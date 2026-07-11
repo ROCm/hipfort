@@ -49,7 +49,7 @@ module hipfort
   !    hipStream_t
   !    hipUserObject_t
 
-  !--- 478 bind(C) interfaces ---
+  !--- 474 bind(C) interfaces ---
   interface
 
     !---------------------------------------------
@@ -3686,133 +3686,6 @@ module hipfort
        integer(c_int), value :: flags
        integer(c_int) :: HostAlloc
     end function hipHostAlloc
-
-    !---------------------------------------------
-    ! hipHostGetDevicePointer
-    !---------------------------------------------
-    !> @brief Get Device pointer from Host Pointer allocated through hipHostMalloc
-    !>
-    !> @param[out] devPtr Device Pointer mapped to passed host pointer
-    !> @param[in]  hstPtr Host Pointer allocated through hipHostMalloc
-    !> @param[in]  flags Flags to be passed for extension
-    !>
-    !> @returns `hipSuccess`, `hipErrorInvalidValue`, `hipErrorOutOfMemory`
-    !>
-    !> @see hipSetDeviceFlags, hipHostMalloc
-    function hipHostGetDevicePointer(devPtr, hstPtr, flags) &
-       result(HostGetDevicePointer) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cudaHostGetDevicePointer")
-#else
-       bind(C, name="hipHostGetDevicePointer")
-#endif
-       import :: c_ptr, c_int
-       type(c_ptr) :: devPtr
-       type(c_ptr), value :: hstPtr
-       integer(c_int), value :: flags
-       integer(c_int) :: HostGetDevicePointer
-    end function hipHostGetDevicePointer
-
-    !---------------------------------------------
-    ! hipHostGetFlags
-    !---------------------------------------------
-    !> @brief Return flags associated with host pointer
-    !>
-    !> @param[out] flagsPtr Memory location to store flags
-    !> @param[in]  hostPtr Host Pointer allocated through hipHostMalloc
-    !> @returns `hipSuccess`, `hipErrorInvalidValue`
-    !>
-    !> @see hipHostMalloc
-    function hipHostGetFlags(flagsPtr, hostPtr) &
-       result(HostGetFlags) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cudaHostGetFlags")
-#else
-       bind(C, name="hipHostGetFlags")
-#endif
-       import :: c_int, c_ptr
-       integer(c_int) :: flagsPtr(*)
-       type(c_ptr), value :: hostPtr
-       integer(c_int) :: HostGetFlags
-    end function hipHostGetFlags
-
-    !---------------------------------------------
-    ! hipHostRegister
-    !---------------------------------------------
-    !> @brief Register host memory so it can be accessed from the current device.
-    !>
-    !> @param[out] hostPtr Pointer to host memory to be registered.
-    !> @param[in] sizeBytes Size of the host memory
-    !> @param[in] flags  See below.
-    !>
-    !> Flags:
-    !> - `hipHostRegisterDefault`   Memory is Mapped and Portable
-    !> - `hipHostRegisterPortable` Memory is considered registered by all contexts. HIP only
-    !> supports
-    !> one context so this is always assumed true.
-    !> - `hipHostRegisterMapped` Map the allocation into the address space for the current device.
-    !> The device pointer can be obtained with `hipHostGetDevicePointer`.
-    !> - `hipExtHostRegisterUncached`  Map the host memory onto extended fine grained access system
-    !> memory pool.
-    !>
-    !> After registering the memory, use `hipHostGetDevicePointer` to obtain the mapped device
-    !> pointer.
-    !> On many systems, the mapped device pointer will have a different value than the mapped host
-    !> pointer. Applications must use the device pointer in device code, and the host pointer in
-    !> host
-    !> code.
-    !>
-    !> On some systems, registered memory is pinned.  On some systems, registered memory may not be
-    !> actually be pinned but uses OS or hardware facilities to all GPU access to the host memory.
-    !>
-    !> Developers are strongly encouraged to register memory blocks which are aligned to the host
-    !> cache-line size. (typically 64-bytes but can be obtains from the CPUID instruction).
-    !>
-    !> If registering non-aligned pointers, the application must take care when register pointers
-    !> from
-    !> the same cache line on different devices. HIP's coarse-grained synchronization model does not
-    !> guarantee correct results if different devices write to different parts of the same cache
-    !> block -
-    !> typically one of the writes will "win" and overwrite data from the other registered memory
-    !> region.
-    !>
-    !> @returns `hipSuccess`, `hipErrorOutOfMemory`
-    !>
-    !> @see hipHostUnregister, hipHostGetFlags, hipHostGetDevicePointer
-    function hipHostRegister(hostPtr, sizeBytes, flags) &
-       result(HostRegister) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cudaHostRegister")
-#else
-       bind(C, name="hipHostRegister")
-#endif
-       import :: c_ptr, c_long, c_int
-       type(c_ptr), value :: hostPtr
-       integer(c_long), value :: sizeBytes
-       integer(c_int), value :: flags
-       integer(c_int) :: HostRegister
-    end function hipHostRegister
-
-    !---------------------------------------------
-    ! hipHostUnregister
-    !---------------------------------------------
-    !> @brief Un-register host pointer
-    !>
-    !> @param[in] hostPtr Host pointer previously registered with `hipHostRegister`
-    !> @returns Error code
-    !>
-    !> @see hipHostRegister
-    function hipHostUnregister(hostPtr) &
-       result(HostUnregister) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cudaHostUnregister")
-#else
-       bind(C, name="hipHostUnregister")
-#endif
-       import :: c_ptr, c_int
-       type(c_ptr), value :: hostPtr
-       integer(c_int) :: HostUnregister
-    end function hipHostUnregister
 
     !---------------------------------------------
     ! hipMallocPitch

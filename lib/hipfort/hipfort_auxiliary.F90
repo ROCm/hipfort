@@ -382,6 +382,231 @@ module hipfort_auxiliary
     module procedure hipMemcpyAsync_c8_7_auto
   end interface hipMemcpyAsync
 
+  interface hipHostRegister
+#ifdef USE_CUDA_NAMES
+    function hipHostRegister_b(hostPtr, sizeBytes, flags) bind(c, name="cudaHostRegister")
+#else
+    function hipHostRegister_b(hostPtr, sizeBytes, flags) bind(c, name="hipHostRegister")
+#endif
+      use iso_c_binding
+      implicit none
+      integer(c_int) :: hipHostRegister_b
+      type(c_ptr), value :: hostPtr
+      integer(c_size_t), value :: sizeBytes
+      integer(c_int), value :: flags
+    end function hipHostRegister_b
+    module procedure hipHostRegister_i4_1
+    module procedure hipHostRegister_i4_2
+    module procedure hipHostRegister_i4_3
+    module procedure hipHostRegister_i4_4
+    module procedure hipHostRegister_i4_5
+    module procedure hipHostRegister_i4_6
+    module procedure hipHostRegister_i4_7
+    module procedure hipHostRegister_i8_1
+    module procedure hipHostRegister_i8_2
+    module procedure hipHostRegister_i8_3
+    module procedure hipHostRegister_i8_4
+    module procedure hipHostRegister_i8_5
+    module procedure hipHostRegister_i8_6
+    module procedure hipHostRegister_i8_7
+    module procedure hipHostRegister_r4_1
+    module procedure hipHostRegister_r4_2
+    module procedure hipHostRegister_r4_3
+    module procedure hipHostRegister_r4_4
+    module procedure hipHostRegister_r4_5
+    module procedure hipHostRegister_r4_6
+    module procedure hipHostRegister_r4_7
+    module procedure hipHostRegister_r8_1
+    module procedure hipHostRegister_r8_2
+    module procedure hipHostRegister_r8_3
+    module procedure hipHostRegister_r8_4
+    module procedure hipHostRegister_r8_5
+    module procedure hipHostRegister_r8_6
+    module procedure hipHostRegister_r8_7
+    module procedure hipHostRegister_c4_1
+    module procedure hipHostRegister_c4_2
+    module procedure hipHostRegister_c4_3
+    module procedure hipHostRegister_c4_4
+    module procedure hipHostRegister_c4_5
+    module procedure hipHostRegister_c4_6
+    module procedure hipHostRegister_c4_7
+    module procedure hipHostRegister_c8_1
+    module procedure hipHostRegister_c8_2
+    module procedure hipHostRegister_c8_3
+    module procedure hipHostRegister_c8_4
+    module procedure hipHostRegister_c8_5
+    module procedure hipHostRegister_c8_6
+    module procedure hipHostRegister_c8_7
+  end interface hipHostRegister
+
+  interface hipHostUnregister
+#ifdef USE_CUDA_NAMES
+    function hipHostUnregister_b(hostPtr) bind(c, name="cudaHostUnregister")
+#else
+    function hipHostUnregister_b(hostPtr) bind(c, name="hipHostUnregister")
+#endif
+      use iso_c_binding
+      implicit none
+      integer(c_int) :: hipHostUnregister_b
+      type(c_ptr), value :: hostPtr
+    end function hipHostUnregister_b
+    module procedure hipHostUnregister_i4_1
+    module procedure hipHostUnregister_i4_2
+    module procedure hipHostUnregister_i4_3
+    module procedure hipHostUnregister_i4_4
+    module procedure hipHostUnregister_i4_5
+    module procedure hipHostUnregister_i4_6
+    module procedure hipHostUnregister_i4_7
+    module procedure hipHostUnregister_i8_1
+    module procedure hipHostUnregister_i8_2
+    module procedure hipHostUnregister_i8_3
+    module procedure hipHostUnregister_i8_4
+    module procedure hipHostUnregister_i8_5
+    module procedure hipHostUnregister_i8_6
+    module procedure hipHostUnregister_i8_7
+    module procedure hipHostUnregister_r4_1
+    module procedure hipHostUnregister_r4_2
+    module procedure hipHostUnregister_r4_3
+    module procedure hipHostUnregister_r4_4
+    module procedure hipHostUnregister_r4_5
+    module procedure hipHostUnregister_r4_6
+    module procedure hipHostUnregister_r4_7
+    module procedure hipHostUnregister_r8_1
+    module procedure hipHostUnregister_r8_2
+    module procedure hipHostUnregister_r8_3
+    module procedure hipHostUnregister_r8_4
+    module procedure hipHostUnregister_r8_5
+    module procedure hipHostUnregister_r8_6
+    module procedure hipHostUnregister_r8_7
+    module procedure hipHostUnregister_c4_1
+    module procedure hipHostUnregister_c4_2
+    module procedure hipHostUnregister_c4_3
+    module procedure hipHostUnregister_c4_4
+    module procedure hipHostUnregister_c4_5
+    module procedure hipHostUnregister_c4_6
+    module procedure hipHostUnregister_c4_7
+    module procedure hipHostUnregister_c8_1
+    module procedure hipHostUnregister_c8_2
+    module procedure hipHostUnregister_c8_3
+    module procedure hipHostUnregister_c8_4
+    module procedure hipHostUnregister_c8_5
+    module procedure hipHostUnregister_c8_6
+    module procedure hipHostUnregister_c8_7
+  end interface hipHostUnregister
+
+  interface hipHostGetDevicePointer
+#ifdef USE_CUDA_NAMES
+    function hipHostGetDevicePointer_b(devPtr, hstPtr, flags) bind(c, name="cudaHostGetDevicePointer")
+#else
+    function hipHostGetDevicePointer_b(devPtr, hstPtr, flags) bind(c, name="hipHostGetDevicePointer")
+#endif
+      use iso_c_binding
+      implicit none
+      integer(c_int) :: hipHostGetDevicePointer_b
+      type(c_ptr) :: devPtr
+      type(c_ptr), value :: hstPtr
+      integer(c_int), value :: flags
+    end function hipHostGetDevicePointer_b
+    module procedure hipHostGetDevicePointer_i4_1
+    module procedure hipHostGetDevicePointer_i4_2
+    module procedure hipHostGetDevicePointer_i4_3
+    module procedure hipHostGetDevicePointer_i4_4
+    module procedure hipHostGetDevicePointer_i4_5
+    module procedure hipHostGetDevicePointer_i4_6
+    module procedure hipHostGetDevicePointer_i4_7
+    module procedure hipHostGetDevicePointer_i8_1
+    module procedure hipHostGetDevicePointer_i8_2
+    module procedure hipHostGetDevicePointer_i8_3
+    module procedure hipHostGetDevicePointer_i8_4
+    module procedure hipHostGetDevicePointer_i8_5
+    module procedure hipHostGetDevicePointer_i8_6
+    module procedure hipHostGetDevicePointer_i8_7
+    module procedure hipHostGetDevicePointer_r4_1
+    module procedure hipHostGetDevicePointer_r4_2
+    module procedure hipHostGetDevicePointer_r4_3
+    module procedure hipHostGetDevicePointer_r4_4
+    module procedure hipHostGetDevicePointer_r4_5
+    module procedure hipHostGetDevicePointer_r4_6
+    module procedure hipHostGetDevicePointer_r4_7
+    module procedure hipHostGetDevicePointer_r8_1
+    module procedure hipHostGetDevicePointer_r8_2
+    module procedure hipHostGetDevicePointer_r8_3
+    module procedure hipHostGetDevicePointer_r8_4
+    module procedure hipHostGetDevicePointer_r8_5
+    module procedure hipHostGetDevicePointer_r8_6
+    module procedure hipHostGetDevicePointer_r8_7
+    module procedure hipHostGetDevicePointer_c4_1
+    module procedure hipHostGetDevicePointer_c4_2
+    module procedure hipHostGetDevicePointer_c4_3
+    module procedure hipHostGetDevicePointer_c4_4
+    module procedure hipHostGetDevicePointer_c4_5
+    module procedure hipHostGetDevicePointer_c4_6
+    module procedure hipHostGetDevicePointer_c4_7
+    module procedure hipHostGetDevicePointer_c8_1
+    module procedure hipHostGetDevicePointer_c8_2
+    module procedure hipHostGetDevicePointer_c8_3
+    module procedure hipHostGetDevicePointer_c8_4
+    module procedure hipHostGetDevicePointer_c8_5
+    module procedure hipHostGetDevicePointer_c8_6
+    module procedure hipHostGetDevicePointer_c8_7
+  end interface hipHostGetDevicePointer
+
+  interface hipHostGetFlags
+#ifdef USE_CUDA_NAMES
+    function hipHostGetFlags_b(flags, hostPtr) bind(c, name="cudaHostGetFlags")
+#else
+    function hipHostGetFlags_b(flags, hostPtr) bind(c, name="hipHostGetFlags")
+#endif
+      use iso_c_binding
+      implicit none
+      integer(c_int) :: hipHostGetFlags_b
+      integer(c_int) :: flags
+      type(c_ptr), value :: hostPtr
+    end function hipHostGetFlags_b
+    module procedure hipHostGetFlags_i4_1
+    module procedure hipHostGetFlags_i4_2
+    module procedure hipHostGetFlags_i4_3
+    module procedure hipHostGetFlags_i4_4
+    module procedure hipHostGetFlags_i4_5
+    module procedure hipHostGetFlags_i4_6
+    module procedure hipHostGetFlags_i4_7
+    module procedure hipHostGetFlags_i8_1
+    module procedure hipHostGetFlags_i8_2
+    module procedure hipHostGetFlags_i8_3
+    module procedure hipHostGetFlags_i8_4
+    module procedure hipHostGetFlags_i8_5
+    module procedure hipHostGetFlags_i8_6
+    module procedure hipHostGetFlags_i8_7
+    module procedure hipHostGetFlags_r4_1
+    module procedure hipHostGetFlags_r4_2
+    module procedure hipHostGetFlags_r4_3
+    module procedure hipHostGetFlags_r4_4
+    module procedure hipHostGetFlags_r4_5
+    module procedure hipHostGetFlags_r4_6
+    module procedure hipHostGetFlags_r4_7
+    module procedure hipHostGetFlags_r8_1
+    module procedure hipHostGetFlags_r8_2
+    module procedure hipHostGetFlags_r8_3
+    module procedure hipHostGetFlags_r8_4
+    module procedure hipHostGetFlags_r8_5
+    module procedure hipHostGetFlags_r8_6
+    module procedure hipHostGetFlags_r8_7
+    module procedure hipHostGetFlags_c4_1
+    module procedure hipHostGetFlags_c4_2
+    module procedure hipHostGetFlags_c4_3
+    module procedure hipHostGetFlags_c4_4
+    module procedure hipHostGetFlags_c4_5
+    module procedure hipHostGetFlags_c4_6
+    module procedure hipHostGetFlags_c4_7
+    module procedure hipHostGetFlags_c8_1
+    module procedure hipHostGetFlags_c8_2
+    module procedure hipHostGetFlags_c8_3
+    module procedure hipHostGetFlags_c8_4
+    module procedure hipHostGetFlags_c8_5
+    module procedure hipHostGetFlags_c8_6
+    module procedure hipHostGetFlags_c8_7
+  end interface hipHostGetFlags
+
 contains
 
   function hipMalloc_i4_1(ptr, length1) result(res)
@@ -5129,5 +5354,1559 @@ contains
     nbytes = int(size(dest), c_size_t) * 16_c_size_t
     res = hipMemcpyAsync_b(c_loc(dest(1,1,1,1,1,1,1)), c_loc(src(1,1,1,1,1,1,1)), nbytes, myKind, stream)
   end function hipMemcpyAsync_c8_7_auto
+
+  function hipHostRegister_i4_1(hostPtr, sizeBytes, flags) result(res)
+    use iso_c_binding
+    implicit none
+    integer(c_int), target, dimension(:), intent(inout) :: hostPtr
+    integer(c_size_t), value :: sizeBytes
+    integer(c_int), value :: flags
+    integer(c_int) :: res
+    res = hipHostRegister_b(c_loc(hostPtr(1)), sizeBytes, flags)
+  end function hipHostRegister_i4_1
+
+  function hipHostRegister_i4_2(hostPtr, sizeBytes, flags) result(res)
+    use iso_c_binding
+    implicit none
+    integer(c_int), target, dimension(:,:), intent(inout) :: hostPtr
+    integer(c_size_t), value :: sizeBytes
+    integer(c_int), value :: flags
+    integer(c_int) :: res
+    res = hipHostRegister_b(c_loc(hostPtr(1,1)), sizeBytes, flags)
+  end function hipHostRegister_i4_2
+
+  function hipHostRegister_i4_3(hostPtr, sizeBytes, flags) result(res)
+    use iso_c_binding
+    implicit none
+    integer(c_int), target, dimension(:,:,:), intent(inout) :: hostPtr
+    integer(c_size_t), value :: sizeBytes
+    integer(c_int), value :: flags
+    integer(c_int) :: res
+    res = hipHostRegister_b(c_loc(hostPtr(1,1,1)), sizeBytes, flags)
+  end function hipHostRegister_i4_3
+
+  function hipHostRegister_i4_4(hostPtr, sizeBytes, flags) result(res)
+    use iso_c_binding
+    implicit none
+    integer(c_int), target, dimension(:,:,:,:), intent(inout) :: hostPtr
+    integer(c_size_t), value :: sizeBytes
+    integer(c_int), value :: flags
+    integer(c_int) :: res
+    res = hipHostRegister_b(c_loc(hostPtr(1,1,1,1)), sizeBytes, flags)
+  end function hipHostRegister_i4_4
+
+  function hipHostRegister_i4_5(hostPtr, sizeBytes, flags) result(res)
+    use iso_c_binding
+    implicit none
+    integer(c_int), target, dimension(:,:,:,:,:), intent(inout) :: hostPtr
+    integer(c_size_t), value :: sizeBytes
+    integer(c_int), value :: flags
+    integer(c_int) :: res
+    res = hipHostRegister_b(c_loc(hostPtr(1,1,1,1,1)), sizeBytes, flags)
+  end function hipHostRegister_i4_5
+
+  function hipHostRegister_i4_6(hostPtr, sizeBytes, flags) result(res)
+    use iso_c_binding
+    implicit none
+    integer(c_int), target, dimension(:,:,:,:,:,:), intent(inout) :: hostPtr
+    integer(c_size_t), value :: sizeBytes
+    integer(c_int), value :: flags
+    integer(c_int) :: res
+    res = hipHostRegister_b(c_loc(hostPtr(1,1,1,1,1,1)), sizeBytes, flags)
+  end function hipHostRegister_i4_6
+
+  function hipHostRegister_i4_7(hostPtr, sizeBytes, flags) result(res)
+    use iso_c_binding
+    implicit none
+    integer(c_int), target, dimension(:,:,:,:,:,:,:), intent(inout) :: hostPtr
+    integer(c_size_t), value :: sizeBytes
+    integer(c_int), value :: flags
+    integer(c_int) :: res
+    res = hipHostRegister_b(c_loc(hostPtr(1,1,1,1,1,1,1)), sizeBytes, flags)
+  end function hipHostRegister_i4_7
+
+  function hipHostRegister_i8_1(hostPtr, sizeBytes, flags) result(res)
+    use iso_c_binding
+    implicit none
+    integer(c_int64_t), target, dimension(:), intent(inout) :: hostPtr
+    integer(c_size_t), value :: sizeBytes
+    integer(c_int), value :: flags
+    integer(c_int) :: res
+    res = hipHostRegister_b(c_loc(hostPtr(1)), sizeBytes, flags)
+  end function hipHostRegister_i8_1
+
+  function hipHostRegister_i8_2(hostPtr, sizeBytes, flags) result(res)
+    use iso_c_binding
+    implicit none
+    integer(c_int64_t), target, dimension(:,:), intent(inout) :: hostPtr
+    integer(c_size_t), value :: sizeBytes
+    integer(c_int), value :: flags
+    integer(c_int) :: res
+    res = hipHostRegister_b(c_loc(hostPtr(1,1)), sizeBytes, flags)
+  end function hipHostRegister_i8_2
+
+  function hipHostRegister_i8_3(hostPtr, sizeBytes, flags) result(res)
+    use iso_c_binding
+    implicit none
+    integer(c_int64_t), target, dimension(:,:,:), intent(inout) :: hostPtr
+    integer(c_size_t), value :: sizeBytes
+    integer(c_int), value :: flags
+    integer(c_int) :: res
+    res = hipHostRegister_b(c_loc(hostPtr(1,1,1)), sizeBytes, flags)
+  end function hipHostRegister_i8_3
+
+  function hipHostRegister_i8_4(hostPtr, sizeBytes, flags) result(res)
+    use iso_c_binding
+    implicit none
+    integer(c_int64_t), target, dimension(:,:,:,:), intent(inout) :: hostPtr
+    integer(c_size_t), value :: sizeBytes
+    integer(c_int), value :: flags
+    integer(c_int) :: res
+    res = hipHostRegister_b(c_loc(hostPtr(1,1,1,1)), sizeBytes, flags)
+  end function hipHostRegister_i8_4
+
+  function hipHostRegister_i8_5(hostPtr, sizeBytes, flags) result(res)
+    use iso_c_binding
+    implicit none
+    integer(c_int64_t), target, dimension(:,:,:,:,:), intent(inout) :: hostPtr
+    integer(c_size_t), value :: sizeBytes
+    integer(c_int), value :: flags
+    integer(c_int) :: res
+    res = hipHostRegister_b(c_loc(hostPtr(1,1,1,1,1)), sizeBytes, flags)
+  end function hipHostRegister_i8_5
+
+  function hipHostRegister_i8_6(hostPtr, sizeBytes, flags) result(res)
+    use iso_c_binding
+    implicit none
+    integer(c_int64_t), target, dimension(:,:,:,:,:,:), intent(inout) :: hostPtr
+    integer(c_size_t), value :: sizeBytes
+    integer(c_int), value :: flags
+    integer(c_int) :: res
+    res = hipHostRegister_b(c_loc(hostPtr(1,1,1,1,1,1)), sizeBytes, flags)
+  end function hipHostRegister_i8_6
+
+  function hipHostRegister_i8_7(hostPtr, sizeBytes, flags) result(res)
+    use iso_c_binding
+    implicit none
+    integer(c_int64_t), target, dimension(:,:,:,:,:,:,:), intent(inout) :: hostPtr
+    integer(c_size_t), value :: sizeBytes
+    integer(c_int), value :: flags
+    integer(c_int) :: res
+    res = hipHostRegister_b(c_loc(hostPtr(1,1,1,1,1,1,1)), sizeBytes, flags)
+  end function hipHostRegister_i8_7
+
+  function hipHostRegister_r4_1(hostPtr, sizeBytes, flags) result(res)
+    use iso_c_binding
+    implicit none
+    real(c_float), target, dimension(:), intent(inout) :: hostPtr
+    integer(c_size_t), value :: sizeBytes
+    integer(c_int), value :: flags
+    integer(c_int) :: res
+    res = hipHostRegister_b(c_loc(hostPtr(1)), sizeBytes, flags)
+  end function hipHostRegister_r4_1
+
+  function hipHostRegister_r4_2(hostPtr, sizeBytes, flags) result(res)
+    use iso_c_binding
+    implicit none
+    real(c_float), target, dimension(:,:), intent(inout) :: hostPtr
+    integer(c_size_t), value :: sizeBytes
+    integer(c_int), value :: flags
+    integer(c_int) :: res
+    res = hipHostRegister_b(c_loc(hostPtr(1,1)), sizeBytes, flags)
+  end function hipHostRegister_r4_2
+
+  function hipHostRegister_r4_3(hostPtr, sizeBytes, flags) result(res)
+    use iso_c_binding
+    implicit none
+    real(c_float), target, dimension(:,:,:), intent(inout) :: hostPtr
+    integer(c_size_t), value :: sizeBytes
+    integer(c_int), value :: flags
+    integer(c_int) :: res
+    res = hipHostRegister_b(c_loc(hostPtr(1,1,1)), sizeBytes, flags)
+  end function hipHostRegister_r4_3
+
+  function hipHostRegister_r4_4(hostPtr, sizeBytes, flags) result(res)
+    use iso_c_binding
+    implicit none
+    real(c_float), target, dimension(:,:,:,:), intent(inout) :: hostPtr
+    integer(c_size_t), value :: sizeBytes
+    integer(c_int), value :: flags
+    integer(c_int) :: res
+    res = hipHostRegister_b(c_loc(hostPtr(1,1,1,1)), sizeBytes, flags)
+  end function hipHostRegister_r4_4
+
+  function hipHostRegister_r4_5(hostPtr, sizeBytes, flags) result(res)
+    use iso_c_binding
+    implicit none
+    real(c_float), target, dimension(:,:,:,:,:), intent(inout) :: hostPtr
+    integer(c_size_t), value :: sizeBytes
+    integer(c_int), value :: flags
+    integer(c_int) :: res
+    res = hipHostRegister_b(c_loc(hostPtr(1,1,1,1,1)), sizeBytes, flags)
+  end function hipHostRegister_r4_5
+
+  function hipHostRegister_r4_6(hostPtr, sizeBytes, flags) result(res)
+    use iso_c_binding
+    implicit none
+    real(c_float), target, dimension(:,:,:,:,:,:), intent(inout) :: hostPtr
+    integer(c_size_t), value :: sizeBytes
+    integer(c_int), value :: flags
+    integer(c_int) :: res
+    res = hipHostRegister_b(c_loc(hostPtr(1,1,1,1,1,1)), sizeBytes, flags)
+  end function hipHostRegister_r4_6
+
+  function hipHostRegister_r4_7(hostPtr, sizeBytes, flags) result(res)
+    use iso_c_binding
+    implicit none
+    real(c_float), target, dimension(:,:,:,:,:,:,:), intent(inout) :: hostPtr
+    integer(c_size_t), value :: sizeBytes
+    integer(c_int), value :: flags
+    integer(c_int) :: res
+    res = hipHostRegister_b(c_loc(hostPtr(1,1,1,1,1,1,1)), sizeBytes, flags)
+  end function hipHostRegister_r4_7
+
+  function hipHostRegister_r8_1(hostPtr, sizeBytes, flags) result(res)
+    use iso_c_binding
+    implicit none
+    real(c_double), target, dimension(:), intent(inout) :: hostPtr
+    integer(c_size_t), value :: sizeBytes
+    integer(c_int), value :: flags
+    integer(c_int) :: res
+    res = hipHostRegister_b(c_loc(hostPtr(1)), sizeBytes, flags)
+  end function hipHostRegister_r8_1
+
+  function hipHostRegister_r8_2(hostPtr, sizeBytes, flags) result(res)
+    use iso_c_binding
+    implicit none
+    real(c_double), target, dimension(:,:), intent(inout) :: hostPtr
+    integer(c_size_t), value :: sizeBytes
+    integer(c_int), value :: flags
+    integer(c_int) :: res
+    res = hipHostRegister_b(c_loc(hostPtr(1,1)), sizeBytes, flags)
+  end function hipHostRegister_r8_2
+
+  function hipHostRegister_r8_3(hostPtr, sizeBytes, flags) result(res)
+    use iso_c_binding
+    implicit none
+    real(c_double), target, dimension(:,:,:), intent(inout) :: hostPtr
+    integer(c_size_t), value :: sizeBytes
+    integer(c_int), value :: flags
+    integer(c_int) :: res
+    res = hipHostRegister_b(c_loc(hostPtr(1,1,1)), sizeBytes, flags)
+  end function hipHostRegister_r8_3
+
+  function hipHostRegister_r8_4(hostPtr, sizeBytes, flags) result(res)
+    use iso_c_binding
+    implicit none
+    real(c_double), target, dimension(:,:,:,:), intent(inout) :: hostPtr
+    integer(c_size_t), value :: sizeBytes
+    integer(c_int), value :: flags
+    integer(c_int) :: res
+    res = hipHostRegister_b(c_loc(hostPtr(1,1,1,1)), sizeBytes, flags)
+  end function hipHostRegister_r8_4
+
+  function hipHostRegister_r8_5(hostPtr, sizeBytes, flags) result(res)
+    use iso_c_binding
+    implicit none
+    real(c_double), target, dimension(:,:,:,:,:), intent(inout) :: hostPtr
+    integer(c_size_t), value :: sizeBytes
+    integer(c_int), value :: flags
+    integer(c_int) :: res
+    res = hipHostRegister_b(c_loc(hostPtr(1,1,1,1,1)), sizeBytes, flags)
+  end function hipHostRegister_r8_5
+
+  function hipHostRegister_r8_6(hostPtr, sizeBytes, flags) result(res)
+    use iso_c_binding
+    implicit none
+    real(c_double), target, dimension(:,:,:,:,:,:), intent(inout) :: hostPtr
+    integer(c_size_t), value :: sizeBytes
+    integer(c_int), value :: flags
+    integer(c_int) :: res
+    res = hipHostRegister_b(c_loc(hostPtr(1,1,1,1,1,1)), sizeBytes, flags)
+  end function hipHostRegister_r8_6
+
+  function hipHostRegister_r8_7(hostPtr, sizeBytes, flags) result(res)
+    use iso_c_binding
+    implicit none
+    real(c_double), target, dimension(:,:,:,:,:,:,:), intent(inout) :: hostPtr
+    integer(c_size_t), value :: sizeBytes
+    integer(c_int), value :: flags
+    integer(c_int) :: res
+    res = hipHostRegister_b(c_loc(hostPtr(1,1,1,1,1,1,1)), sizeBytes, flags)
+  end function hipHostRegister_r8_7
+
+  function hipHostRegister_c4_1(hostPtr, sizeBytes, flags) result(res)
+    use iso_c_binding
+    implicit none
+    complex(c_float_complex), target, dimension(:), intent(inout) :: hostPtr
+    integer(c_size_t), value :: sizeBytes
+    integer(c_int), value :: flags
+    integer(c_int) :: res
+    res = hipHostRegister_b(c_loc(hostPtr(1)), sizeBytes, flags)
+  end function hipHostRegister_c4_1
+
+  function hipHostRegister_c4_2(hostPtr, sizeBytes, flags) result(res)
+    use iso_c_binding
+    implicit none
+    complex(c_float_complex), target, dimension(:,:), intent(inout) :: hostPtr
+    integer(c_size_t), value :: sizeBytes
+    integer(c_int), value :: flags
+    integer(c_int) :: res
+    res = hipHostRegister_b(c_loc(hostPtr(1,1)), sizeBytes, flags)
+  end function hipHostRegister_c4_2
+
+  function hipHostRegister_c4_3(hostPtr, sizeBytes, flags) result(res)
+    use iso_c_binding
+    implicit none
+    complex(c_float_complex), target, dimension(:,:,:), intent(inout) :: hostPtr
+    integer(c_size_t), value :: sizeBytes
+    integer(c_int), value :: flags
+    integer(c_int) :: res
+    res = hipHostRegister_b(c_loc(hostPtr(1,1,1)), sizeBytes, flags)
+  end function hipHostRegister_c4_3
+
+  function hipHostRegister_c4_4(hostPtr, sizeBytes, flags) result(res)
+    use iso_c_binding
+    implicit none
+    complex(c_float_complex), target, dimension(:,:,:,:), intent(inout) :: hostPtr
+    integer(c_size_t), value :: sizeBytes
+    integer(c_int), value :: flags
+    integer(c_int) :: res
+    res = hipHostRegister_b(c_loc(hostPtr(1,1,1,1)), sizeBytes, flags)
+  end function hipHostRegister_c4_4
+
+  function hipHostRegister_c4_5(hostPtr, sizeBytes, flags) result(res)
+    use iso_c_binding
+    implicit none
+    complex(c_float_complex), target, dimension(:,:,:,:,:), intent(inout) :: hostPtr
+    integer(c_size_t), value :: sizeBytes
+    integer(c_int), value :: flags
+    integer(c_int) :: res
+    res = hipHostRegister_b(c_loc(hostPtr(1,1,1,1,1)), sizeBytes, flags)
+  end function hipHostRegister_c4_5
+
+  function hipHostRegister_c4_6(hostPtr, sizeBytes, flags) result(res)
+    use iso_c_binding
+    implicit none
+    complex(c_float_complex), target, dimension(:,:,:,:,:,:), intent(inout) :: hostPtr
+    integer(c_size_t), value :: sizeBytes
+    integer(c_int), value :: flags
+    integer(c_int) :: res
+    res = hipHostRegister_b(c_loc(hostPtr(1,1,1,1,1,1)), sizeBytes, flags)
+  end function hipHostRegister_c4_6
+
+  function hipHostRegister_c4_7(hostPtr, sizeBytes, flags) result(res)
+    use iso_c_binding
+    implicit none
+    complex(c_float_complex), target, dimension(:,:,:,:,:,:,:), intent(inout) :: hostPtr
+    integer(c_size_t), value :: sizeBytes
+    integer(c_int), value :: flags
+    integer(c_int) :: res
+    res = hipHostRegister_b(c_loc(hostPtr(1,1,1,1,1,1,1)), sizeBytes, flags)
+  end function hipHostRegister_c4_7
+
+  function hipHostRegister_c8_1(hostPtr, sizeBytes, flags) result(res)
+    use iso_c_binding
+    implicit none
+    complex(c_double_complex), target, dimension(:), intent(inout) :: hostPtr
+    integer(c_size_t), value :: sizeBytes
+    integer(c_int), value :: flags
+    integer(c_int) :: res
+    res = hipHostRegister_b(c_loc(hostPtr(1)), sizeBytes, flags)
+  end function hipHostRegister_c8_1
+
+  function hipHostRegister_c8_2(hostPtr, sizeBytes, flags) result(res)
+    use iso_c_binding
+    implicit none
+    complex(c_double_complex), target, dimension(:,:), intent(inout) :: hostPtr
+    integer(c_size_t), value :: sizeBytes
+    integer(c_int), value :: flags
+    integer(c_int) :: res
+    res = hipHostRegister_b(c_loc(hostPtr(1,1)), sizeBytes, flags)
+  end function hipHostRegister_c8_2
+
+  function hipHostRegister_c8_3(hostPtr, sizeBytes, flags) result(res)
+    use iso_c_binding
+    implicit none
+    complex(c_double_complex), target, dimension(:,:,:), intent(inout) :: hostPtr
+    integer(c_size_t), value :: sizeBytes
+    integer(c_int), value :: flags
+    integer(c_int) :: res
+    res = hipHostRegister_b(c_loc(hostPtr(1,1,1)), sizeBytes, flags)
+  end function hipHostRegister_c8_3
+
+  function hipHostRegister_c8_4(hostPtr, sizeBytes, flags) result(res)
+    use iso_c_binding
+    implicit none
+    complex(c_double_complex), target, dimension(:,:,:,:), intent(inout) :: hostPtr
+    integer(c_size_t), value :: sizeBytes
+    integer(c_int), value :: flags
+    integer(c_int) :: res
+    res = hipHostRegister_b(c_loc(hostPtr(1,1,1,1)), sizeBytes, flags)
+  end function hipHostRegister_c8_4
+
+  function hipHostRegister_c8_5(hostPtr, sizeBytes, flags) result(res)
+    use iso_c_binding
+    implicit none
+    complex(c_double_complex), target, dimension(:,:,:,:,:), intent(inout) :: hostPtr
+    integer(c_size_t), value :: sizeBytes
+    integer(c_int), value :: flags
+    integer(c_int) :: res
+    res = hipHostRegister_b(c_loc(hostPtr(1,1,1,1,1)), sizeBytes, flags)
+  end function hipHostRegister_c8_5
+
+  function hipHostRegister_c8_6(hostPtr, sizeBytes, flags) result(res)
+    use iso_c_binding
+    implicit none
+    complex(c_double_complex), target, dimension(:,:,:,:,:,:), intent(inout) :: hostPtr
+    integer(c_size_t), value :: sizeBytes
+    integer(c_int), value :: flags
+    integer(c_int) :: res
+    res = hipHostRegister_b(c_loc(hostPtr(1,1,1,1,1,1)), sizeBytes, flags)
+  end function hipHostRegister_c8_6
+
+  function hipHostRegister_c8_7(hostPtr, sizeBytes, flags) result(res)
+    use iso_c_binding
+    implicit none
+    complex(c_double_complex), target, dimension(:,:,:,:,:,:,:), intent(inout) :: hostPtr
+    integer(c_size_t), value :: sizeBytes
+    integer(c_int), value :: flags
+    integer(c_int) :: res
+    res = hipHostRegister_b(c_loc(hostPtr(1,1,1,1,1,1,1)), sizeBytes, flags)
+  end function hipHostRegister_c8_7
+
+  function hipHostUnregister_i4_1(hostPtr) result(res)
+    use iso_c_binding
+    implicit none
+    integer(c_int), target, dimension(:), intent(inout) :: hostPtr
+    integer(c_int) :: res
+    res = hipHostUnregister_b(c_loc(hostPtr(1)))
+  end function hipHostUnregister_i4_1
+
+  function hipHostUnregister_i4_2(hostPtr) result(res)
+    use iso_c_binding
+    implicit none
+    integer(c_int), target, dimension(:,:), intent(inout) :: hostPtr
+    integer(c_int) :: res
+    res = hipHostUnregister_b(c_loc(hostPtr(1,1)))
+  end function hipHostUnregister_i4_2
+
+  function hipHostUnregister_i4_3(hostPtr) result(res)
+    use iso_c_binding
+    implicit none
+    integer(c_int), target, dimension(:,:,:), intent(inout) :: hostPtr
+    integer(c_int) :: res
+    res = hipHostUnregister_b(c_loc(hostPtr(1,1,1)))
+  end function hipHostUnregister_i4_3
+
+  function hipHostUnregister_i4_4(hostPtr) result(res)
+    use iso_c_binding
+    implicit none
+    integer(c_int), target, dimension(:,:,:,:), intent(inout) :: hostPtr
+    integer(c_int) :: res
+    res = hipHostUnregister_b(c_loc(hostPtr(1,1,1,1)))
+  end function hipHostUnregister_i4_4
+
+  function hipHostUnregister_i4_5(hostPtr) result(res)
+    use iso_c_binding
+    implicit none
+    integer(c_int), target, dimension(:,:,:,:,:), intent(inout) :: hostPtr
+    integer(c_int) :: res
+    res = hipHostUnregister_b(c_loc(hostPtr(1,1,1,1,1)))
+  end function hipHostUnregister_i4_5
+
+  function hipHostUnregister_i4_6(hostPtr) result(res)
+    use iso_c_binding
+    implicit none
+    integer(c_int), target, dimension(:,:,:,:,:,:), intent(inout) :: hostPtr
+    integer(c_int) :: res
+    res = hipHostUnregister_b(c_loc(hostPtr(1,1,1,1,1,1)))
+  end function hipHostUnregister_i4_6
+
+  function hipHostUnregister_i4_7(hostPtr) result(res)
+    use iso_c_binding
+    implicit none
+    integer(c_int), target, dimension(:,:,:,:,:,:,:), intent(inout) :: hostPtr
+    integer(c_int) :: res
+    res = hipHostUnregister_b(c_loc(hostPtr(1,1,1,1,1,1,1)))
+  end function hipHostUnregister_i4_7
+
+  function hipHostUnregister_i8_1(hostPtr) result(res)
+    use iso_c_binding
+    implicit none
+    integer(c_int64_t), target, dimension(:), intent(inout) :: hostPtr
+    integer(c_int) :: res
+    res = hipHostUnregister_b(c_loc(hostPtr(1)))
+  end function hipHostUnregister_i8_1
+
+  function hipHostUnregister_i8_2(hostPtr) result(res)
+    use iso_c_binding
+    implicit none
+    integer(c_int64_t), target, dimension(:,:), intent(inout) :: hostPtr
+    integer(c_int) :: res
+    res = hipHostUnregister_b(c_loc(hostPtr(1,1)))
+  end function hipHostUnregister_i8_2
+
+  function hipHostUnregister_i8_3(hostPtr) result(res)
+    use iso_c_binding
+    implicit none
+    integer(c_int64_t), target, dimension(:,:,:), intent(inout) :: hostPtr
+    integer(c_int) :: res
+    res = hipHostUnregister_b(c_loc(hostPtr(1,1,1)))
+  end function hipHostUnregister_i8_3
+
+  function hipHostUnregister_i8_4(hostPtr) result(res)
+    use iso_c_binding
+    implicit none
+    integer(c_int64_t), target, dimension(:,:,:,:), intent(inout) :: hostPtr
+    integer(c_int) :: res
+    res = hipHostUnregister_b(c_loc(hostPtr(1,1,1,1)))
+  end function hipHostUnregister_i8_4
+
+  function hipHostUnregister_i8_5(hostPtr) result(res)
+    use iso_c_binding
+    implicit none
+    integer(c_int64_t), target, dimension(:,:,:,:,:), intent(inout) :: hostPtr
+    integer(c_int) :: res
+    res = hipHostUnregister_b(c_loc(hostPtr(1,1,1,1,1)))
+  end function hipHostUnregister_i8_5
+
+  function hipHostUnregister_i8_6(hostPtr) result(res)
+    use iso_c_binding
+    implicit none
+    integer(c_int64_t), target, dimension(:,:,:,:,:,:), intent(inout) :: hostPtr
+    integer(c_int) :: res
+    res = hipHostUnregister_b(c_loc(hostPtr(1,1,1,1,1,1)))
+  end function hipHostUnregister_i8_6
+
+  function hipHostUnregister_i8_7(hostPtr) result(res)
+    use iso_c_binding
+    implicit none
+    integer(c_int64_t), target, dimension(:,:,:,:,:,:,:), intent(inout) :: hostPtr
+    integer(c_int) :: res
+    res = hipHostUnregister_b(c_loc(hostPtr(1,1,1,1,1,1,1)))
+  end function hipHostUnregister_i8_7
+
+  function hipHostUnregister_r4_1(hostPtr) result(res)
+    use iso_c_binding
+    implicit none
+    real(c_float), target, dimension(:), intent(inout) :: hostPtr
+    integer(c_int) :: res
+    res = hipHostUnregister_b(c_loc(hostPtr(1)))
+  end function hipHostUnregister_r4_1
+
+  function hipHostUnregister_r4_2(hostPtr) result(res)
+    use iso_c_binding
+    implicit none
+    real(c_float), target, dimension(:,:), intent(inout) :: hostPtr
+    integer(c_int) :: res
+    res = hipHostUnregister_b(c_loc(hostPtr(1,1)))
+  end function hipHostUnregister_r4_2
+
+  function hipHostUnregister_r4_3(hostPtr) result(res)
+    use iso_c_binding
+    implicit none
+    real(c_float), target, dimension(:,:,:), intent(inout) :: hostPtr
+    integer(c_int) :: res
+    res = hipHostUnregister_b(c_loc(hostPtr(1,1,1)))
+  end function hipHostUnregister_r4_3
+
+  function hipHostUnregister_r4_4(hostPtr) result(res)
+    use iso_c_binding
+    implicit none
+    real(c_float), target, dimension(:,:,:,:), intent(inout) :: hostPtr
+    integer(c_int) :: res
+    res = hipHostUnregister_b(c_loc(hostPtr(1,1,1,1)))
+  end function hipHostUnregister_r4_4
+
+  function hipHostUnregister_r4_5(hostPtr) result(res)
+    use iso_c_binding
+    implicit none
+    real(c_float), target, dimension(:,:,:,:,:), intent(inout) :: hostPtr
+    integer(c_int) :: res
+    res = hipHostUnregister_b(c_loc(hostPtr(1,1,1,1,1)))
+  end function hipHostUnregister_r4_5
+
+  function hipHostUnregister_r4_6(hostPtr) result(res)
+    use iso_c_binding
+    implicit none
+    real(c_float), target, dimension(:,:,:,:,:,:), intent(inout) :: hostPtr
+    integer(c_int) :: res
+    res = hipHostUnregister_b(c_loc(hostPtr(1,1,1,1,1,1)))
+  end function hipHostUnregister_r4_6
+
+  function hipHostUnregister_r4_7(hostPtr) result(res)
+    use iso_c_binding
+    implicit none
+    real(c_float), target, dimension(:,:,:,:,:,:,:), intent(inout) :: hostPtr
+    integer(c_int) :: res
+    res = hipHostUnregister_b(c_loc(hostPtr(1,1,1,1,1,1,1)))
+  end function hipHostUnregister_r4_7
+
+  function hipHostUnregister_r8_1(hostPtr) result(res)
+    use iso_c_binding
+    implicit none
+    real(c_double), target, dimension(:), intent(inout) :: hostPtr
+    integer(c_int) :: res
+    res = hipHostUnregister_b(c_loc(hostPtr(1)))
+  end function hipHostUnregister_r8_1
+
+  function hipHostUnregister_r8_2(hostPtr) result(res)
+    use iso_c_binding
+    implicit none
+    real(c_double), target, dimension(:,:), intent(inout) :: hostPtr
+    integer(c_int) :: res
+    res = hipHostUnregister_b(c_loc(hostPtr(1,1)))
+  end function hipHostUnregister_r8_2
+
+  function hipHostUnregister_r8_3(hostPtr) result(res)
+    use iso_c_binding
+    implicit none
+    real(c_double), target, dimension(:,:,:), intent(inout) :: hostPtr
+    integer(c_int) :: res
+    res = hipHostUnregister_b(c_loc(hostPtr(1,1,1)))
+  end function hipHostUnregister_r8_3
+
+  function hipHostUnregister_r8_4(hostPtr) result(res)
+    use iso_c_binding
+    implicit none
+    real(c_double), target, dimension(:,:,:,:), intent(inout) :: hostPtr
+    integer(c_int) :: res
+    res = hipHostUnregister_b(c_loc(hostPtr(1,1,1,1)))
+  end function hipHostUnregister_r8_4
+
+  function hipHostUnregister_r8_5(hostPtr) result(res)
+    use iso_c_binding
+    implicit none
+    real(c_double), target, dimension(:,:,:,:,:), intent(inout) :: hostPtr
+    integer(c_int) :: res
+    res = hipHostUnregister_b(c_loc(hostPtr(1,1,1,1,1)))
+  end function hipHostUnregister_r8_5
+
+  function hipHostUnregister_r8_6(hostPtr) result(res)
+    use iso_c_binding
+    implicit none
+    real(c_double), target, dimension(:,:,:,:,:,:), intent(inout) :: hostPtr
+    integer(c_int) :: res
+    res = hipHostUnregister_b(c_loc(hostPtr(1,1,1,1,1,1)))
+  end function hipHostUnregister_r8_6
+
+  function hipHostUnregister_r8_7(hostPtr) result(res)
+    use iso_c_binding
+    implicit none
+    real(c_double), target, dimension(:,:,:,:,:,:,:), intent(inout) :: hostPtr
+    integer(c_int) :: res
+    res = hipHostUnregister_b(c_loc(hostPtr(1,1,1,1,1,1,1)))
+  end function hipHostUnregister_r8_7
+
+  function hipHostUnregister_c4_1(hostPtr) result(res)
+    use iso_c_binding
+    implicit none
+    complex(c_float_complex), target, dimension(:), intent(inout) :: hostPtr
+    integer(c_int) :: res
+    res = hipHostUnregister_b(c_loc(hostPtr(1)))
+  end function hipHostUnregister_c4_1
+
+  function hipHostUnregister_c4_2(hostPtr) result(res)
+    use iso_c_binding
+    implicit none
+    complex(c_float_complex), target, dimension(:,:), intent(inout) :: hostPtr
+    integer(c_int) :: res
+    res = hipHostUnregister_b(c_loc(hostPtr(1,1)))
+  end function hipHostUnregister_c4_2
+
+  function hipHostUnregister_c4_3(hostPtr) result(res)
+    use iso_c_binding
+    implicit none
+    complex(c_float_complex), target, dimension(:,:,:), intent(inout) :: hostPtr
+    integer(c_int) :: res
+    res = hipHostUnregister_b(c_loc(hostPtr(1,1,1)))
+  end function hipHostUnregister_c4_3
+
+  function hipHostUnregister_c4_4(hostPtr) result(res)
+    use iso_c_binding
+    implicit none
+    complex(c_float_complex), target, dimension(:,:,:,:), intent(inout) :: hostPtr
+    integer(c_int) :: res
+    res = hipHostUnregister_b(c_loc(hostPtr(1,1,1,1)))
+  end function hipHostUnregister_c4_4
+
+  function hipHostUnregister_c4_5(hostPtr) result(res)
+    use iso_c_binding
+    implicit none
+    complex(c_float_complex), target, dimension(:,:,:,:,:), intent(inout) :: hostPtr
+    integer(c_int) :: res
+    res = hipHostUnregister_b(c_loc(hostPtr(1,1,1,1,1)))
+  end function hipHostUnregister_c4_5
+
+  function hipHostUnregister_c4_6(hostPtr) result(res)
+    use iso_c_binding
+    implicit none
+    complex(c_float_complex), target, dimension(:,:,:,:,:,:), intent(inout) :: hostPtr
+    integer(c_int) :: res
+    res = hipHostUnregister_b(c_loc(hostPtr(1,1,1,1,1,1)))
+  end function hipHostUnregister_c4_6
+
+  function hipHostUnregister_c4_7(hostPtr) result(res)
+    use iso_c_binding
+    implicit none
+    complex(c_float_complex), target, dimension(:,:,:,:,:,:,:), intent(inout) :: hostPtr
+    integer(c_int) :: res
+    res = hipHostUnregister_b(c_loc(hostPtr(1,1,1,1,1,1,1)))
+  end function hipHostUnregister_c4_7
+
+  function hipHostUnregister_c8_1(hostPtr) result(res)
+    use iso_c_binding
+    implicit none
+    complex(c_double_complex), target, dimension(:), intent(inout) :: hostPtr
+    integer(c_int) :: res
+    res = hipHostUnregister_b(c_loc(hostPtr(1)))
+  end function hipHostUnregister_c8_1
+
+  function hipHostUnregister_c8_2(hostPtr) result(res)
+    use iso_c_binding
+    implicit none
+    complex(c_double_complex), target, dimension(:,:), intent(inout) :: hostPtr
+    integer(c_int) :: res
+    res = hipHostUnregister_b(c_loc(hostPtr(1,1)))
+  end function hipHostUnregister_c8_2
+
+  function hipHostUnregister_c8_3(hostPtr) result(res)
+    use iso_c_binding
+    implicit none
+    complex(c_double_complex), target, dimension(:,:,:), intent(inout) :: hostPtr
+    integer(c_int) :: res
+    res = hipHostUnregister_b(c_loc(hostPtr(1,1,1)))
+  end function hipHostUnregister_c8_3
+
+  function hipHostUnregister_c8_4(hostPtr) result(res)
+    use iso_c_binding
+    implicit none
+    complex(c_double_complex), target, dimension(:,:,:,:), intent(inout) :: hostPtr
+    integer(c_int) :: res
+    res = hipHostUnregister_b(c_loc(hostPtr(1,1,1,1)))
+  end function hipHostUnregister_c8_4
+
+  function hipHostUnregister_c8_5(hostPtr) result(res)
+    use iso_c_binding
+    implicit none
+    complex(c_double_complex), target, dimension(:,:,:,:,:), intent(inout) :: hostPtr
+    integer(c_int) :: res
+    res = hipHostUnregister_b(c_loc(hostPtr(1,1,1,1,1)))
+  end function hipHostUnregister_c8_5
+
+  function hipHostUnregister_c8_6(hostPtr) result(res)
+    use iso_c_binding
+    implicit none
+    complex(c_double_complex), target, dimension(:,:,:,:,:,:), intent(inout) :: hostPtr
+    integer(c_int) :: res
+    res = hipHostUnregister_b(c_loc(hostPtr(1,1,1,1,1,1)))
+  end function hipHostUnregister_c8_6
+
+  function hipHostUnregister_c8_7(hostPtr) result(res)
+    use iso_c_binding
+    implicit none
+    complex(c_double_complex), target, dimension(:,:,:,:,:,:,:), intent(inout) :: hostPtr
+    integer(c_int) :: res
+    res = hipHostUnregister_b(c_loc(hostPtr(1,1,1,1,1,1,1)))
+  end function hipHostUnregister_c8_7
+
+  function hipHostGetDevicePointer_i4_1(devPtr, hstPtr, flags) result(res)
+    use iso_c_binding
+    implicit none
+    type(c_ptr) :: devPtr
+    integer(c_int), target, dimension(:), intent(inout) :: hstPtr
+    integer(c_int), value :: flags
+    integer(c_int) :: res
+    res = hipHostGetDevicePointer_b(devPtr, c_loc(hstPtr(1)), flags)
+  end function hipHostGetDevicePointer_i4_1
+
+  function hipHostGetDevicePointer_i4_2(devPtr, hstPtr, flags) result(res)
+    use iso_c_binding
+    implicit none
+    type(c_ptr) :: devPtr
+    integer(c_int), target, dimension(:,:), intent(inout) :: hstPtr
+    integer(c_int), value :: flags
+    integer(c_int) :: res
+    res = hipHostGetDevicePointer_b(devPtr, c_loc(hstPtr(1,1)), flags)
+  end function hipHostGetDevicePointer_i4_2
+
+  function hipHostGetDevicePointer_i4_3(devPtr, hstPtr, flags) result(res)
+    use iso_c_binding
+    implicit none
+    type(c_ptr) :: devPtr
+    integer(c_int), target, dimension(:,:,:), intent(inout) :: hstPtr
+    integer(c_int), value :: flags
+    integer(c_int) :: res
+    res = hipHostGetDevicePointer_b(devPtr, c_loc(hstPtr(1,1,1)), flags)
+  end function hipHostGetDevicePointer_i4_3
+
+  function hipHostGetDevicePointer_i4_4(devPtr, hstPtr, flags) result(res)
+    use iso_c_binding
+    implicit none
+    type(c_ptr) :: devPtr
+    integer(c_int), target, dimension(:,:,:,:), intent(inout) :: hstPtr
+    integer(c_int), value :: flags
+    integer(c_int) :: res
+    res = hipHostGetDevicePointer_b(devPtr, c_loc(hstPtr(1,1,1,1)), flags)
+  end function hipHostGetDevicePointer_i4_4
+
+  function hipHostGetDevicePointer_i4_5(devPtr, hstPtr, flags) result(res)
+    use iso_c_binding
+    implicit none
+    type(c_ptr) :: devPtr
+    integer(c_int), target, dimension(:,:,:,:,:), intent(inout) :: hstPtr
+    integer(c_int), value :: flags
+    integer(c_int) :: res
+    res = hipHostGetDevicePointer_b(devPtr, c_loc(hstPtr(1,1,1,1,1)), flags)
+  end function hipHostGetDevicePointer_i4_5
+
+  function hipHostGetDevicePointer_i4_6(devPtr, hstPtr, flags) result(res)
+    use iso_c_binding
+    implicit none
+    type(c_ptr) :: devPtr
+    integer(c_int), target, dimension(:,:,:,:,:,:), intent(inout) :: hstPtr
+    integer(c_int), value :: flags
+    integer(c_int) :: res
+    res = hipHostGetDevicePointer_b(devPtr, c_loc(hstPtr(1,1,1,1,1,1)), flags)
+  end function hipHostGetDevicePointer_i4_6
+
+  function hipHostGetDevicePointer_i4_7(devPtr, hstPtr, flags) result(res)
+    use iso_c_binding
+    implicit none
+    type(c_ptr) :: devPtr
+    integer(c_int), target, dimension(:,:,:,:,:,:,:), intent(inout) :: hstPtr
+    integer(c_int), value :: flags
+    integer(c_int) :: res
+    res = hipHostGetDevicePointer_b(devPtr, c_loc(hstPtr(1,1,1,1,1,1,1)), flags)
+  end function hipHostGetDevicePointer_i4_7
+
+  function hipHostGetDevicePointer_i8_1(devPtr, hstPtr, flags) result(res)
+    use iso_c_binding
+    implicit none
+    type(c_ptr) :: devPtr
+    integer(c_int64_t), target, dimension(:), intent(inout) :: hstPtr
+    integer(c_int), value :: flags
+    integer(c_int) :: res
+    res = hipHostGetDevicePointer_b(devPtr, c_loc(hstPtr(1)), flags)
+  end function hipHostGetDevicePointer_i8_1
+
+  function hipHostGetDevicePointer_i8_2(devPtr, hstPtr, flags) result(res)
+    use iso_c_binding
+    implicit none
+    type(c_ptr) :: devPtr
+    integer(c_int64_t), target, dimension(:,:), intent(inout) :: hstPtr
+    integer(c_int), value :: flags
+    integer(c_int) :: res
+    res = hipHostGetDevicePointer_b(devPtr, c_loc(hstPtr(1,1)), flags)
+  end function hipHostGetDevicePointer_i8_2
+
+  function hipHostGetDevicePointer_i8_3(devPtr, hstPtr, flags) result(res)
+    use iso_c_binding
+    implicit none
+    type(c_ptr) :: devPtr
+    integer(c_int64_t), target, dimension(:,:,:), intent(inout) :: hstPtr
+    integer(c_int), value :: flags
+    integer(c_int) :: res
+    res = hipHostGetDevicePointer_b(devPtr, c_loc(hstPtr(1,1,1)), flags)
+  end function hipHostGetDevicePointer_i8_3
+
+  function hipHostGetDevicePointer_i8_4(devPtr, hstPtr, flags) result(res)
+    use iso_c_binding
+    implicit none
+    type(c_ptr) :: devPtr
+    integer(c_int64_t), target, dimension(:,:,:,:), intent(inout) :: hstPtr
+    integer(c_int), value :: flags
+    integer(c_int) :: res
+    res = hipHostGetDevicePointer_b(devPtr, c_loc(hstPtr(1,1,1,1)), flags)
+  end function hipHostGetDevicePointer_i8_4
+
+  function hipHostGetDevicePointer_i8_5(devPtr, hstPtr, flags) result(res)
+    use iso_c_binding
+    implicit none
+    type(c_ptr) :: devPtr
+    integer(c_int64_t), target, dimension(:,:,:,:,:), intent(inout) :: hstPtr
+    integer(c_int), value :: flags
+    integer(c_int) :: res
+    res = hipHostGetDevicePointer_b(devPtr, c_loc(hstPtr(1,1,1,1,1)), flags)
+  end function hipHostGetDevicePointer_i8_5
+
+  function hipHostGetDevicePointer_i8_6(devPtr, hstPtr, flags) result(res)
+    use iso_c_binding
+    implicit none
+    type(c_ptr) :: devPtr
+    integer(c_int64_t), target, dimension(:,:,:,:,:,:), intent(inout) :: hstPtr
+    integer(c_int), value :: flags
+    integer(c_int) :: res
+    res = hipHostGetDevicePointer_b(devPtr, c_loc(hstPtr(1,1,1,1,1,1)), flags)
+  end function hipHostGetDevicePointer_i8_6
+
+  function hipHostGetDevicePointer_i8_7(devPtr, hstPtr, flags) result(res)
+    use iso_c_binding
+    implicit none
+    type(c_ptr) :: devPtr
+    integer(c_int64_t), target, dimension(:,:,:,:,:,:,:), intent(inout) :: hstPtr
+    integer(c_int), value :: flags
+    integer(c_int) :: res
+    res = hipHostGetDevicePointer_b(devPtr, c_loc(hstPtr(1,1,1,1,1,1,1)), flags)
+  end function hipHostGetDevicePointer_i8_7
+
+  function hipHostGetDevicePointer_r4_1(devPtr, hstPtr, flags) result(res)
+    use iso_c_binding
+    implicit none
+    type(c_ptr) :: devPtr
+    real(c_float), target, dimension(:), intent(inout) :: hstPtr
+    integer(c_int), value :: flags
+    integer(c_int) :: res
+    res = hipHostGetDevicePointer_b(devPtr, c_loc(hstPtr(1)), flags)
+  end function hipHostGetDevicePointer_r4_1
+
+  function hipHostGetDevicePointer_r4_2(devPtr, hstPtr, flags) result(res)
+    use iso_c_binding
+    implicit none
+    type(c_ptr) :: devPtr
+    real(c_float), target, dimension(:,:), intent(inout) :: hstPtr
+    integer(c_int), value :: flags
+    integer(c_int) :: res
+    res = hipHostGetDevicePointer_b(devPtr, c_loc(hstPtr(1,1)), flags)
+  end function hipHostGetDevicePointer_r4_2
+
+  function hipHostGetDevicePointer_r4_3(devPtr, hstPtr, flags) result(res)
+    use iso_c_binding
+    implicit none
+    type(c_ptr) :: devPtr
+    real(c_float), target, dimension(:,:,:), intent(inout) :: hstPtr
+    integer(c_int), value :: flags
+    integer(c_int) :: res
+    res = hipHostGetDevicePointer_b(devPtr, c_loc(hstPtr(1,1,1)), flags)
+  end function hipHostGetDevicePointer_r4_3
+
+  function hipHostGetDevicePointer_r4_4(devPtr, hstPtr, flags) result(res)
+    use iso_c_binding
+    implicit none
+    type(c_ptr) :: devPtr
+    real(c_float), target, dimension(:,:,:,:), intent(inout) :: hstPtr
+    integer(c_int), value :: flags
+    integer(c_int) :: res
+    res = hipHostGetDevicePointer_b(devPtr, c_loc(hstPtr(1,1,1,1)), flags)
+  end function hipHostGetDevicePointer_r4_4
+
+  function hipHostGetDevicePointer_r4_5(devPtr, hstPtr, flags) result(res)
+    use iso_c_binding
+    implicit none
+    type(c_ptr) :: devPtr
+    real(c_float), target, dimension(:,:,:,:,:), intent(inout) :: hstPtr
+    integer(c_int), value :: flags
+    integer(c_int) :: res
+    res = hipHostGetDevicePointer_b(devPtr, c_loc(hstPtr(1,1,1,1,1)), flags)
+  end function hipHostGetDevicePointer_r4_5
+
+  function hipHostGetDevicePointer_r4_6(devPtr, hstPtr, flags) result(res)
+    use iso_c_binding
+    implicit none
+    type(c_ptr) :: devPtr
+    real(c_float), target, dimension(:,:,:,:,:,:), intent(inout) :: hstPtr
+    integer(c_int), value :: flags
+    integer(c_int) :: res
+    res = hipHostGetDevicePointer_b(devPtr, c_loc(hstPtr(1,1,1,1,1,1)), flags)
+  end function hipHostGetDevicePointer_r4_6
+
+  function hipHostGetDevicePointer_r4_7(devPtr, hstPtr, flags) result(res)
+    use iso_c_binding
+    implicit none
+    type(c_ptr) :: devPtr
+    real(c_float), target, dimension(:,:,:,:,:,:,:), intent(inout) :: hstPtr
+    integer(c_int), value :: flags
+    integer(c_int) :: res
+    res = hipHostGetDevicePointer_b(devPtr, c_loc(hstPtr(1,1,1,1,1,1,1)), flags)
+  end function hipHostGetDevicePointer_r4_7
+
+  function hipHostGetDevicePointer_r8_1(devPtr, hstPtr, flags) result(res)
+    use iso_c_binding
+    implicit none
+    type(c_ptr) :: devPtr
+    real(c_double), target, dimension(:), intent(inout) :: hstPtr
+    integer(c_int), value :: flags
+    integer(c_int) :: res
+    res = hipHostGetDevicePointer_b(devPtr, c_loc(hstPtr(1)), flags)
+  end function hipHostGetDevicePointer_r8_1
+
+  function hipHostGetDevicePointer_r8_2(devPtr, hstPtr, flags) result(res)
+    use iso_c_binding
+    implicit none
+    type(c_ptr) :: devPtr
+    real(c_double), target, dimension(:,:), intent(inout) :: hstPtr
+    integer(c_int), value :: flags
+    integer(c_int) :: res
+    res = hipHostGetDevicePointer_b(devPtr, c_loc(hstPtr(1,1)), flags)
+  end function hipHostGetDevicePointer_r8_2
+
+  function hipHostGetDevicePointer_r8_3(devPtr, hstPtr, flags) result(res)
+    use iso_c_binding
+    implicit none
+    type(c_ptr) :: devPtr
+    real(c_double), target, dimension(:,:,:), intent(inout) :: hstPtr
+    integer(c_int), value :: flags
+    integer(c_int) :: res
+    res = hipHostGetDevicePointer_b(devPtr, c_loc(hstPtr(1,1,1)), flags)
+  end function hipHostGetDevicePointer_r8_3
+
+  function hipHostGetDevicePointer_r8_4(devPtr, hstPtr, flags) result(res)
+    use iso_c_binding
+    implicit none
+    type(c_ptr) :: devPtr
+    real(c_double), target, dimension(:,:,:,:), intent(inout) :: hstPtr
+    integer(c_int), value :: flags
+    integer(c_int) :: res
+    res = hipHostGetDevicePointer_b(devPtr, c_loc(hstPtr(1,1,1,1)), flags)
+  end function hipHostGetDevicePointer_r8_4
+
+  function hipHostGetDevicePointer_r8_5(devPtr, hstPtr, flags) result(res)
+    use iso_c_binding
+    implicit none
+    type(c_ptr) :: devPtr
+    real(c_double), target, dimension(:,:,:,:,:), intent(inout) :: hstPtr
+    integer(c_int), value :: flags
+    integer(c_int) :: res
+    res = hipHostGetDevicePointer_b(devPtr, c_loc(hstPtr(1,1,1,1,1)), flags)
+  end function hipHostGetDevicePointer_r8_5
+
+  function hipHostGetDevicePointer_r8_6(devPtr, hstPtr, flags) result(res)
+    use iso_c_binding
+    implicit none
+    type(c_ptr) :: devPtr
+    real(c_double), target, dimension(:,:,:,:,:,:), intent(inout) :: hstPtr
+    integer(c_int), value :: flags
+    integer(c_int) :: res
+    res = hipHostGetDevicePointer_b(devPtr, c_loc(hstPtr(1,1,1,1,1,1)), flags)
+  end function hipHostGetDevicePointer_r8_6
+
+  function hipHostGetDevicePointer_r8_7(devPtr, hstPtr, flags) result(res)
+    use iso_c_binding
+    implicit none
+    type(c_ptr) :: devPtr
+    real(c_double), target, dimension(:,:,:,:,:,:,:), intent(inout) :: hstPtr
+    integer(c_int), value :: flags
+    integer(c_int) :: res
+    res = hipHostGetDevicePointer_b(devPtr, c_loc(hstPtr(1,1,1,1,1,1,1)), flags)
+  end function hipHostGetDevicePointer_r8_7
+
+  function hipHostGetDevicePointer_c4_1(devPtr, hstPtr, flags) result(res)
+    use iso_c_binding
+    implicit none
+    type(c_ptr) :: devPtr
+    complex(c_float_complex), target, dimension(:), intent(inout) :: hstPtr
+    integer(c_int), value :: flags
+    integer(c_int) :: res
+    res = hipHostGetDevicePointer_b(devPtr, c_loc(hstPtr(1)), flags)
+  end function hipHostGetDevicePointer_c4_1
+
+  function hipHostGetDevicePointer_c4_2(devPtr, hstPtr, flags) result(res)
+    use iso_c_binding
+    implicit none
+    type(c_ptr) :: devPtr
+    complex(c_float_complex), target, dimension(:,:), intent(inout) :: hstPtr
+    integer(c_int), value :: flags
+    integer(c_int) :: res
+    res = hipHostGetDevicePointer_b(devPtr, c_loc(hstPtr(1,1)), flags)
+  end function hipHostGetDevicePointer_c4_2
+
+  function hipHostGetDevicePointer_c4_3(devPtr, hstPtr, flags) result(res)
+    use iso_c_binding
+    implicit none
+    type(c_ptr) :: devPtr
+    complex(c_float_complex), target, dimension(:,:,:), intent(inout) :: hstPtr
+    integer(c_int), value :: flags
+    integer(c_int) :: res
+    res = hipHostGetDevicePointer_b(devPtr, c_loc(hstPtr(1,1,1)), flags)
+  end function hipHostGetDevicePointer_c4_3
+
+  function hipHostGetDevicePointer_c4_4(devPtr, hstPtr, flags) result(res)
+    use iso_c_binding
+    implicit none
+    type(c_ptr) :: devPtr
+    complex(c_float_complex), target, dimension(:,:,:,:), intent(inout) :: hstPtr
+    integer(c_int), value :: flags
+    integer(c_int) :: res
+    res = hipHostGetDevicePointer_b(devPtr, c_loc(hstPtr(1,1,1,1)), flags)
+  end function hipHostGetDevicePointer_c4_4
+
+  function hipHostGetDevicePointer_c4_5(devPtr, hstPtr, flags) result(res)
+    use iso_c_binding
+    implicit none
+    type(c_ptr) :: devPtr
+    complex(c_float_complex), target, dimension(:,:,:,:,:), intent(inout) :: hstPtr
+    integer(c_int), value :: flags
+    integer(c_int) :: res
+    res = hipHostGetDevicePointer_b(devPtr, c_loc(hstPtr(1,1,1,1,1)), flags)
+  end function hipHostGetDevicePointer_c4_5
+
+  function hipHostGetDevicePointer_c4_6(devPtr, hstPtr, flags) result(res)
+    use iso_c_binding
+    implicit none
+    type(c_ptr) :: devPtr
+    complex(c_float_complex), target, dimension(:,:,:,:,:,:), intent(inout) :: hstPtr
+    integer(c_int), value :: flags
+    integer(c_int) :: res
+    res = hipHostGetDevicePointer_b(devPtr, c_loc(hstPtr(1,1,1,1,1,1)), flags)
+  end function hipHostGetDevicePointer_c4_6
+
+  function hipHostGetDevicePointer_c4_7(devPtr, hstPtr, flags) result(res)
+    use iso_c_binding
+    implicit none
+    type(c_ptr) :: devPtr
+    complex(c_float_complex), target, dimension(:,:,:,:,:,:,:), intent(inout) :: hstPtr
+    integer(c_int), value :: flags
+    integer(c_int) :: res
+    res = hipHostGetDevicePointer_b(devPtr, c_loc(hstPtr(1,1,1,1,1,1,1)), flags)
+  end function hipHostGetDevicePointer_c4_7
+
+  function hipHostGetDevicePointer_c8_1(devPtr, hstPtr, flags) result(res)
+    use iso_c_binding
+    implicit none
+    type(c_ptr) :: devPtr
+    complex(c_double_complex), target, dimension(:), intent(inout) :: hstPtr
+    integer(c_int), value :: flags
+    integer(c_int) :: res
+    res = hipHostGetDevicePointer_b(devPtr, c_loc(hstPtr(1)), flags)
+  end function hipHostGetDevicePointer_c8_1
+
+  function hipHostGetDevicePointer_c8_2(devPtr, hstPtr, flags) result(res)
+    use iso_c_binding
+    implicit none
+    type(c_ptr) :: devPtr
+    complex(c_double_complex), target, dimension(:,:), intent(inout) :: hstPtr
+    integer(c_int), value :: flags
+    integer(c_int) :: res
+    res = hipHostGetDevicePointer_b(devPtr, c_loc(hstPtr(1,1)), flags)
+  end function hipHostGetDevicePointer_c8_2
+
+  function hipHostGetDevicePointer_c8_3(devPtr, hstPtr, flags) result(res)
+    use iso_c_binding
+    implicit none
+    type(c_ptr) :: devPtr
+    complex(c_double_complex), target, dimension(:,:,:), intent(inout) :: hstPtr
+    integer(c_int), value :: flags
+    integer(c_int) :: res
+    res = hipHostGetDevicePointer_b(devPtr, c_loc(hstPtr(1,1,1)), flags)
+  end function hipHostGetDevicePointer_c8_3
+
+  function hipHostGetDevicePointer_c8_4(devPtr, hstPtr, flags) result(res)
+    use iso_c_binding
+    implicit none
+    type(c_ptr) :: devPtr
+    complex(c_double_complex), target, dimension(:,:,:,:), intent(inout) :: hstPtr
+    integer(c_int), value :: flags
+    integer(c_int) :: res
+    res = hipHostGetDevicePointer_b(devPtr, c_loc(hstPtr(1,1,1,1)), flags)
+  end function hipHostGetDevicePointer_c8_4
+
+  function hipHostGetDevicePointer_c8_5(devPtr, hstPtr, flags) result(res)
+    use iso_c_binding
+    implicit none
+    type(c_ptr) :: devPtr
+    complex(c_double_complex), target, dimension(:,:,:,:,:), intent(inout) :: hstPtr
+    integer(c_int), value :: flags
+    integer(c_int) :: res
+    res = hipHostGetDevicePointer_b(devPtr, c_loc(hstPtr(1,1,1,1,1)), flags)
+  end function hipHostGetDevicePointer_c8_5
+
+  function hipHostGetDevicePointer_c8_6(devPtr, hstPtr, flags) result(res)
+    use iso_c_binding
+    implicit none
+    type(c_ptr) :: devPtr
+    complex(c_double_complex), target, dimension(:,:,:,:,:,:), intent(inout) :: hstPtr
+    integer(c_int), value :: flags
+    integer(c_int) :: res
+    res = hipHostGetDevicePointer_b(devPtr, c_loc(hstPtr(1,1,1,1,1,1)), flags)
+  end function hipHostGetDevicePointer_c8_6
+
+  function hipHostGetDevicePointer_c8_7(devPtr, hstPtr, flags) result(res)
+    use iso_c_binding
+    implicit none
+    type(c_ptr) :: devPtr
+    complex(c_double_complex), target, dimension(:,:,:,:,:,:,:), intent(inout) :: hstPtr
+    integer(c_int), value :: flags
+    integer(c_int) :: res
+    res = hipHostGetDevicePointer_b(devPtr, c_loc(hstPtr(1,1,1,1,1,1,1)), flags)
+  end function hipHostGetDevicePointer_c8_7
+
+  function hipHostGetFlags_i4_1(flags, hostPtr) result(res)
+    use iso_c_binding
+    implicit none
+    integer(c_int) :: flags
+    integer(c_int), target, dimension(:), intent(inout) :: hostPtr
+    integer(c_int) :: res
+    res = hipHostGetFlags_b(flags, c_loc(hostPtr(1)))
+  end function hipHostGetFlags_i4_1
+
+  function hipHostGetFlags_i4_2(flags, hostPtr) result(res)
+    use iso_c_binding
+    implicit none
+    integer(c_int) :: flags
+    integer(c_int), target, dimension(:,:), intent(inout) :: hostPtr
+    integer(c_int) :: res
+    res = hipHostGetFlags_b(flags, c_loc(hostPtr(1,1)))
+  end function hipHostGetFlags_i4_2
+
+  function hipHostGetFlags_i4_3(flags, hostPtr) result(res)
+    use iso_c_binding
+    implicit none
+    integer(c_int) :: flags
+    integer(c_int), target, dimension(:,:,:), intent(inout) :: hostPtr
+    integer(c_int) :: res
+    res = hipHostGetFlags_b(flags, c_loc(hostPtr(1,1,1)))
+  end function hipHostGetFlags_i4_3
+
+  function hipHostGetFlags_i4_4(flags, hostPtr) result(res)
+    use iso_c_binding
+    implicit none
+    integer(c_int) :: flags
+    integer(c_int), target, dimension(:,:,:,:), intent(inout) :: hostPtr
+    integer(c_int) :: res
+    res = hipHostGetFlags_b(flags, c_loc(hostPtr(1,1,1,1)))
+  end function hipHostGetFlags_i4_4
+
+  function hipHostGetFlags_i4_5(flags, hostPtr) result(res)
+    use iso_c_binding
+    implicit none
+    integer(c_int) :: flags
+    integer(c_int), target, dimension(:,:,:,:,:), intent(inout) :: hostPtr
+    integer(c_int) :: res
+    res = hipHostGetFlags_b(flags, c_loc(hostPtr(1,1,1,1,1)))
+  end function hipHostGetFlags_i4_5
+
+  function hipHostGetFlags_i4_6(flags, hostPtr) result(res)
+    use iso_c_binding
+    implicit none
+    integer(c_int) :: flags
+    integer(c_int), target, dimension(:,:,:,:,:,:), intent(inout) :: hostPtr
+    integer(c_int) :: res
+    res = hipHostGetFlags_b(flags, c_loc(hostPtr(1,1,1,1,1,1)))
+  end function hipHostGetFlags_i4_6
+
+  function hipHostGetFlags_i4_7(flags, hostPtr) result(res)
+    use iso_c_binding
+    implicit none
+    integer(c_int) :: flags
+    integer(c_int), target, dimension(:,:,:,:,:,:,:), intent(inout) :: hostPtr
+    integer(c_int) :: res
+    res = hipHostGetFlags_b(flags, c_loc(hostPtr(1,1,1,1,1,1,1)))
+  end function hipHostGetFlags_i4_7
+
+  function hipHostGetFlags_i8_1(flags, hostPtr) result(res)
+    use iso_c_binding
+    implicit none
+    integer(c_int) :: flags
+    integer(c_int64_t), target, dimension(:), intent(inout) :: hostPtr
+    integer(c_int) :: res
+    res = hipHostGetFlags_b(flags, c_loc(hostPtr(1)))
+  end function hipHostGetFlags_i8_1
+
+  function hipHostGetFlags_i8_2(flags, hostPtr) result(res)
+    use iso_c_binding
+    implicit none
+    integer(c_int) :: flags
+    integer(c_int64_t), target, dimension(:,:), intent(inout) :: hostPtr
+    integer(c_int) :: res
+    res = hipHostGetFlags_b(flags, c_loc(hostPtr(1,1)))
+  end function hipHostGetFlags_i8_2
+
+  function hipHostGetFlags_i8_3(flags, hostPtr) result(res)
+    use iso_c_binding
+    implicit none
+    integer(c_int) :: flags
+    integer(c_int64_t), target, dimension(:,:,:), intent(inout) :: hostPtr
+    integer(c_int) :: res
+    res = hipHostGetFlags_b(flags, c_loc(hostPtr(1,1,1)))
+  end function hipHostGetFlags_i8_3
+
+  function hipHostGetFlags_i8_4(flags, hostPtr) result(res)
+    use iso_c_binding
+    implicit none
+    integer(c_int) :: flags
+    integer(c_int64_t), target, dimension(:,:,:,:), intent(inout) :: hostPtr
+    integer(c_int) :: res
+    res = hipHostGetFlags_b(flags, c_loc(hostPtr(1,1,1,1)))
+  end function hipHostGetFlags_i8_4
+
+  function hipHostGetFlags_i8_5(flags, hostPtr) result(res)
+    use iso_c_binding
+    implicit none
+    integer(c_int) :: flags
+    integer(c_int64_t), target, dimension(:,:,:,:,:), intent(inout) :: hostPtr
+    integer(c_int) :: res
+    res = hipHostGetFlags_b(flags, c_loc(hostPtr(1,1,1,1,1)))
+  end function hipHostGetFlags_i8_5
+
+  function hipHostGetFlags_i8_6(flags, hostPtr) result(res)
+    use iso_c_binding
+    implicit none
+    integer(c_int) :: flags
+    integer(c_int64_t), target, dimension(:,:,:,:,:,:), intent(inout) :: hostPtr
+    integer(c_int) :: res
+    res = hipHostGetFlags_b(flags, c_loc(hostPtr(1,1,1,1,1,1)))
+  end function hipHostGetFlags_i8_6
+
+  function hipHostGetFlags_i8_7(flags, hostPtr) result(res)
+    use iso_c_binding
+    implicit none
+    integer(c_int) :: flags
+    integer(c_int64_t), target, dimension(:,:,:,:,:,:,:), intent(inout) :: hostPtr
+    integer(c_int) :: res
+    res = hipHostGetFlags_b(flags, c_loc(hostPtr(1,1,1,1,1,1,1)))
+  end function hipHostGetFlags_i8_7
+
+  function hipHostGetFlags_r4_1(flags, hostPtr) result(res)
+    use iso_c_binding
+    implicit none
+    integer(c_int) :: flags
+    real(c_float), target, dimension(:), intent(inout) :: hostPtr
+    integer(c_int) :: res
+    res = hipHostGetFlags_b(flags, c_loc(hostPtr(1)))
+  end function hipHostGetFlags_r4_1
+
+  function hipHostGetFlags_r4_2(flags, hostPtr) result(res)
+    use iso_c_binding
+    implicit none
+    integer(c_int) :: flags
+    real(c_float), target, dimension(:,:), intent(inout) :: hostPtr
+    integer(c_int) :: res
+    res = hipHostGetFlags_b(flags, c_loc(hostPtr(1,1)))
+  end function hipHostGetFlags_r4_2
+
+  function hipHostGetFlags_r4_3(flags, hostPtr) result(res)
+    use iso_c_binding
+    implicit none
+    integer(c_int) :: flags
+    real(c_float), target, dimension(:,:,:), intent(inout) :: hostPtr
+    integer(c_int) :: res
+    res = hipHostGetFlags_b(flags, c_loc(hostPtr(1,1,1)))
+  end function hipHostGetFlags_r4_3
+
+  function hipHostGetFlags_r4_4(flags, hostPtr) result(res)
+    use iso_c_binding
+    implicit none
+    integer(c_int) :: flags
+    real(c_float), target, dimension(:,:,:,:), intent(inout) :: hostPtr
+    integer(c_int) :: res
+    res = hipHostGetFlags_b(flags, c_loc(hostPtr(1,1,1,1)))
+  end function hipHostGetFlags_r4_4
+
+  function hipHostGetFlags_r4_5(flags, hostPtr) result(res)
+    use iso_c_binding
+    implicit none
+    integer(c_int) :: flags
+    real(c_float), target, dimension(:,:,:,:,:), intent(inout) :: hostPtr
+    integer(c_int) :: res
+    res = hipHostGetFlags_b(flags, c_loc(hostPtr(1,1,1,1,1)))
+  end function hipHostGetFlags_r4_5
+
+  function hipHostGetFlags_r4_6(flags, hostPtr) result(res)
+    use iso_c_binding
+    implicit none
+    integer(c_int) :: flags
+    real(c_float), target, dimension(:,:,:,:,:,:), intent(inout) :: hostPtr
+    integer(c_int) :: res
+    res = hipHostGetFlags_b(flags, c_loc(hostPtr(1,1,1,1,1,1)))
+  end function hipHostGetFlags_r4_6
+
+  function hipHostGetFlags_r4_7(flags, hostPtr) result(res)
+    use iso_c_binding
+    implicit none
+    integer(c_int) :: flags
+    real(c_float), target, dimension(:,:,:,:,:,:,:), intent(inout) :: hostPtr
+    integer(c_int) :: res
+    res = hipHostGetFlags_b(flags, c_loc(hostPtr(1,1,1,1,1,1,1)))
+  end function hipHostGetFlags_r4_7
+
+  function hipHostGetFlags_r8_1(flags, hostPtr) result(res)
+    use iso_c_binding
+    implicit none
+    integer(c_int) :: flags
+    real(c_double), target, dimension(:), intent(inout) :: hostPtr
+    integer(c_int) :: res
+    res = hipHostGetFlags_b(flags, c_loc(hostPtr(1)))
+  end function hipHostGetFlags_r8_1
+
+  function hipHostGetFlags_r8_2(flags, hostPtr) result(res)
+    use iso_c_binding
+    implicit none
+    integer(c_int) :: flags
+    real(c_double), target, dimension(:,:), intent(inout) :: hostPtr
+    integer(c_int) :: res
+    res = hipHostGetFlags_b(flags, c_loc(hostPtr(1,1)))
+  end function hipHostGetFlags_r8_2
+
+  function hipHostGetFlags_r8_3(flags, hostPtr) result(res)
+    use iso_c_binding
+    implicit none
+    integer(c_int) :: flags
+    real(c_double), target, dimension(:,:,:), intent(inout) :: hostPtr
+    integer(c_int) :: res
+    res = hipHostGetFlags_b(flags, c_loc(hostPtr(1,1,1)))
+  end function hipHostGetFlags_r8_3
+
+  function hipHostGetFlags_r8_4(flags, hostPtr) result(res)
+    use iso_c_binding
+    implicit none
+    integer(c_int) :: flags
+    real(c_double), target, dimension(:,:,:,:), intent(inout) :: hostPtr
+    integer(c_int) :: res
+    res = hipHostGetFlags_b(flags, c_loc(hostPtr(1,1,1,1)))
+  end function hipHostGetFlags_r8_4
+
+  function hipHostGetFlags_r8_5(flags, hostPtr) result(res)
+    use iso_c_binding
+    implicit none
+    integer(c_int) :: flags
+    real(c_double), target, dimension(:,:,:,:,:), intent(inout) :: hostPtr
+    integer(c_int) :: res
+    res = hipHostGetFlags_b(flags, c_loc(hostPtr(1,1,1,1,1)))
+  end function hipHostGetFlags_r8_5
+
+  function hipHostGetFlags_r8_6(flags, hostPtr) result(res)
+    use iso_c_binding
+    implicit none
+    integer(c_int) :: flags
+    real(c_double), target, dimension(:,:,:,:,:,:), intent(inout) :: hostPtr
+    integer(c_int) :: res
+    res = hipHostGetFlags_b(flags, c_loc(hostPtr(1,1,1,1,1,1)))
+  end function hipHostGetFlags_r8_6
+
+  function hipHostGetFlags_r8_7(flags, hostPtr) result(res)
+    use iso_c_binding
+    implicit none
+    integer(c_int) :: flags
+    real(c_double), target, dimension(:,:,:,:,:,:,:), intent(inout) :: hostPtr
+    integer(c_int) :: res
+    res = hipHostGetFlags_b(flags, c_loc(hostPtr(1,1,1,1,1,1,1)))
+  end function hipHostGetFlags_r8_7
+
+  function hipHostGetFlags_c4_1(flags, hostPtr) result(res)
+    use iso_c_binding
+    implicit none
+    integer(c_int) :: flags
+    complex(c_float_complex), target, dimension(:), intent(inout) :: hostPtr
+    integer(c_int) :: res
+    res = hipHostGetFlags_b(flags, c_loc(hostPtr(1)))
+  end function hipHostGetFlags_c4_1
+
+  function hipHostGetFlags_c4_2(flags, hostPtr) result(res)
+    use iso_c_binding
+    implicit none
+    integer(c_int) :: flags
+    complex(c_float_complex), target, dimension(:,:), intent(inout) :: hostPtr
+    integer(c_int) :: res
+    res = hipHostGetFlags_b(flags, c_loc(hostPtr(1,1)))
+  end function hipHostGetFlags_c4_2
+
+  function hipHostGetFlags_c4_3(flags, hostPtr) result(res)
+    use iso_c_binding
+    implicit none
+    integer(c_int) :: flags
+    complex(c_float_complex), target, dimension(:,:,:), intent(inout) :: hostPtr
+    integer(c_int) :: res
+    res = hipHostGetFlags_b(flags, c_loc(hostPtr(1,1,1)))
+  end function hipHostGetFlags_c4_3
+
+  function hipHostGetFlags_c4_4(flags, hostPtr) result(res)
+    use iso_c_binding
+    implicit none
+    integer(c_int) :: flags
+    complex(c_float_complex), target, dimension(:,:,:,:), intent(inout) :: hostPtr
+    integer(c_int) :: res
+    res = hipHostGetFlags_b(flags, c_loc(hostPtr(1,1,1,1)))
+  end function hipHostGetFlags_c4_4
+
+  function hipHostGetFlags_c4_5(flags, hostPtr) result(res)
+    use iso_c_binding
+    implicit none
+    integer(c_int) :: flags
+    complex(c_float_complex), target, dimension(:,:,:,:,:), intent(inout) :: hostPtr
+    integer(c_int) :: res
+    res = hipHostGetFlags_b(flags, c_loc(hostPtr(1,1,1,1,1)))
+  end function hipHostGetFlags_c4_5
+
+  function hipHostGetFlags_c4_6(flags, hostPtr) result(res)
+    use iso_c_binding
+    implicit none
+    integer(c_int) :: flags
+    complex(c_float_complex), target, dimension(:,:,:,:,:,:), intent(inout) :: hostPtr
+    integer(c_int) :: res
+    res = hipHostGetFlags_b(flags, c_loc(hostPtr(1,1,1,1,1,1)))
+  end function hipHostGetFlags_c4_6
+
+  function hipHostGetFlags_c4_7(flags, hostPtr) result(res)
+    use iso_c_binding
+    implicit none
+    integer(c_int) :: flags
+    complex(c_float_complex), target, dimension(:,:,:,:,:,:,:), intent(inout) :: hostPtr
+    integer(c_int) :: res
+    res = hipHostGetFlags_b(flags, c_loc(hostPtr(1,1,1,1,1,1,1)))
+  end function hipHostGetFlags_c4_7
+
+  function hipHostGetFlags_c8_1(flags, hostPtr) result(res)
+    use iso_c_binding
+    implicit none
+    integer(c_int) :: flags
+    complex(c_double_complex), target, dimension(:), intent(inout) :: hostPtr
+    integer(c_int) :: res
+    res = hipHostGetFlags_b(flags, c_loc(hostPtr(1)))
+  end function hipHostGetFlags_c8_1
+
+  function hipHostGetFlags_c8_2(flags, hostPtr) result(res)
+    use iso_c_binding
+    implicit none
+    integer(c_int) :: flags
+    complex(c_double_complex), target, dimension(:,:), intent(inout) :: hostPtr
+    integer(c_int) :: res
+    res = hipHostGetFlags_b(flags, c_loc(hostPtr(1,1)))
+  end function hipHostGetFlags_c8_2
+
+  function hipHostGetFlags_c8_3(flags, hostPtr) result(res)
+    use iso_c_binding
+    implicit none
+    integer(c_int) :: flags
+    complex(c_double_complex), target, dimension(:,:,:), intent(inout) :: hostPtr
+    integer(c_int) :: res
+    res = hipHostGetFlags_b(flags, c_loc(hostPtr(1,1,1)))
+  end function hipHostGetFlags_c8_3
+
+  function hipHostGetFlags_c8_4(flags, hostPtr) result(res)
+    use iso_c_binding
+    implicit none
+    integer(c_int) :: flags
+    complex(c_double_complex), target, dimension(:,:,:,:), intent(inout) :: hostPtr
+    integer(c_int) :: res
+    res = hipHostGetFlags_b(flags, c_loc(hostPtr(1,1,1,1)))
+  end function hipHostGetFlags_c8_4
+
+  function hipHostGetFlags_c8_5(flags, hostPtr) result(res)
+    use iso_c_binding
+    implicit none
+    integer(c_int) :: flags
+    complex(c_double_complex), target, dimension(:,:,:,:,:), intent(inout) :: hostPtr
+    integer(c_int) :: res
+    res = hipHostGetFlags_b(flags, c_loc(hostPtr(1,1,1,1,1)))
+  end function hipHostGetFlags_c8_5
+
+  function hipHostGetFlags_c8_6(flags, hostPtr) result(res)
+    use iso_c_binding
+    implicit none
+    integer(c_int) :: flags
+    complex(c_double_complex), target, dimension(:,:,:,:,:,:), intent(inout) :: hostPtr
+    integer(c_int) :: res
+    res = hipHostGetFlags_b(flags, c_loc(hostPtr(1,1,1,1,1,1)))
+  end function hipHostGetFlags_c8_6
+
+  function hipHostGetFlags_c8_7(flags, hostPtr) result(res)
+    use iso_c_binding
+    implicit none
+    integer(c_int) :: flags
+    complex(c_double_complex), target, dimension(:,:,:,:,:,:,:), intent(inout) :: hostPtr
+    integer(c_int) :: res
+    res = hipHostGetFlags_b(flags, c_loc(hostPtr(1,1,1,1,1,1,1)))
+  end function hipHostGetFlags_c8_7
 
 end module hipfort_auxiliary
