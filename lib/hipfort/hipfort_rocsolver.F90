@@ -1,5 +1,28 @@
-! Auto-generated module wrapper for hipfort_rocsolver
-! DO NOT EDIT — re-run the generator to update.
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+! ==============================================================================
+! hipfort: FORTRAN Interfaces for GPU kernels
+! ==============================================================================
+! Copyright (c) 2020-2026 Advanced Micro Devices, Inc. All rights reserved.
+! [MITx11 License]
+! 
+! Permission is hereby granted, free of charge, to any person obtaining a copy
+! of this software and associated documentation files (the "Software"), to deal
+! in the Software without restriction, including without limitation the rights
+! to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+! copies of the Software, and to permit persons to whom the Software is
+! furnished to do so, subject to the following conditions:
+! 
+! The above copyright notice and this permission notice shall be included in
+! all copies or substantial portions of the Software.
+! 
+! THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+! IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+! FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.  IN NO EVENT SHALL THE
+! AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+! LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+! OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+! THE SOFTWARE.
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
 module hipfort_rocsolver
   use hipfort_rocsolver_enums
@@ -18,13 +41,13 @@ module hipfort_rocsolver
     ! rocsolver_get_version_string_size
     !---------------------------------------------
     !> \brief The GET_VERSION_STRING_SIZE function queries the minimum buffer size for a
-    !> successful call to \ref rocsolver_get_version_string.
+    !> successful call to `rocsolver_get_version_string`.
     !>
     !> \details
     !> @param[out]
     !> len         pointer to size_t.
     !> The minimum length of buffer to pass to
-    !> \ref rocsolver_get_version_string.
+    !> `rocsolver_get_version_string`.
     function rocsolver_get_version_string_size(len) &
        result(get_version_string_size) &
        bind(C, name="rocsolver_get_version_string_size")
@@ -155,10 +178,10 @@ module hipfort_rocsolver
     !> @param[in]
     !> handle      rocblas_handle.
     !> @param[in]
-    !> func        #rocsolver_function.
+    !> func        `rocsolver_function`.
     !> The function that will use the selected algorithm mode.
     !> @param[in]
-    !> mode        #rocsolver_alg_mode.
+    !> mode        `rocsolver_alg_mode`.
     !> The algorithm mode that will be used by the specified function.
     !> rocsolver_alg_mode_mixed is not supported.
     function rocsolver_set_alg_mode(handle, func, mode) &
@@ -180,10 +203,10 @@ module hipfort_rocsolver
     !> @param[in]
     !> handle      rocblas_handle.
     !> @param[in]
-    !> func        #rocsolver_function.
+    !> func        `rocsolver_function`.
     !> The specified function.
     !> @param[out]
-    !> mode        pointer to #rocsolver_alg_mode.
+    !> mode        pointer to `rocsolver_alg_mode`.
     !> On exit, the value is overwritten by the algorithm mode used
     !> by the specified function.
     function rocsolver_get_alg_mode(handle, func, mode) &
@@ -737,10 +760,10 @@ module hipfort_rocsolver
     !>
     !> \f[
     !> H^H\left[\begin{array}{c}
-    !> \text{alpha}\\
+    !> \text{alpha}\\%
     !> x
     !> \end{array}\right]=\left[\begin{array}{c}
-    !> \text{beta}\\
+    !> \text{beta}\\%
     !> 0
     !> \end{array}\right]
     !> \f]
@@ -750,18 +773,18 @@ module hipfort_rocsolver
     !>
     !> \f[
     !> H = I - \text{tau}\left[\begin{array}{c}
-    !> 1\\
+    !> 1\\%
     !> v
     !> \end{array}\right]\left[\begin{array}{cc}
     !> 1 & v^H \end{array}\right]
     !> \f]
     !>
-    !> where v is an ``n``-1 vector, and ``tau`` is a scalar known as the Householder scalar. The
+    !> where v is an ``n`` -1 vector, and ``tau`` is a scalar known as the Householder scalar. The
     !> vector
     !>
     !> \f[
     !> \bar{v}=\left[\begin{array}{c}
-    !> 1\\
+    !> 1\\%
     !> v
     !> \end{array}\right]
     !> \f]
@@ -771,7 +794,7 @@ module hipfort_rocsolver
     !> \note
     !> The matrix H is orthogonal/unitary (that is, \f$H^H H=H H^H=I\f$). It is symmetric when real
     !> (that is, \f$H^T=H\f$), but not Hermitian when complex
-    !> (that is, \f$H^H\neq H\f$ in general).
+    !> (that is, \f$H^H&ne; H\f$ in general).
     !>
     !> @param[in]
     !> handle      rocblas_handle.
@@ -928,7 +951,7 @@ module hipfort_rocsolver
     !>
     !> \f[
     !> \begin{array}{cl}
-    !> H = H(1)H(2)\cdots H(k) & \: \text{if direct indicates forward direction, or} \\
+    !> H = H(1)H(2)\cdots H(k) & \: \text{if direct indicates forward direction, or} \\%
     !> H = H(k)\cdots H(2)H(1) & \: \text{if direct indicates backward direction}
     !> \end{array}
     !> \f]
@@ -954,10 +977,10 @@ module hipfort_rocsolver
     !> @param[in]
     !> handle      rocblas_handle.
     !> @param[in]
-    !> direct      #rocblas_direct.
+    !> direct      `rocblas_direct`.
     !> Specifies the direction in which the Householder matrices are applied.
     !> @param[in]
-    !> storev      #rocblas_storev.
+    !> storev      `rocblas_storev`.
     !> Specifies how the Householder vectors are stored in matrix V.
     !> @param[in]
     !> n           rocblas_int. n >= 0.
@@ -1065,7 +1088,7 @@ module hipfort_rocsolver
     !> \brief The LARF functions apply a Householder reflector H to a general matrix ``A``.
     !>
     !> \details
-    !> The Householder reflector H, of order ``m`` or ``n``, is applied to an ``m``-by-``n`` matrix
+    !> The Householder reflector H, of order ``m`` or ``n``, is applied to an ``m`` -by-``n`` matrix
     !> ``A``
     !> from the left or the right, depending on the value of ``side``. H is given by
     !>
@@ -1258,7 +1281,7 @@ module hipfort_rocsolver
     !---------------------------------------------
     ! rocsolver_slarfb
     !---------------------------------------------
-    !> \brief The LARFB functions apply a block reflector ``H`` to a general ``m``-by-``n`` matrix
+    !> \brief The LARFB functions apply a block reflector ``H`` to a general ``m`` -by-``n`` matrix
     !> ``A``.
     !>
     !> \details
@@ -1267,9 +1290,9 @@ module hipfort_rocsolver
     !>
     !> \f[
     !> \begin{array}{cl}
-    !> HA & \: \text{(No transpose from the left),}\\
-    !> H^H A & \:  \text{(Transpose or conjugate transpose from the left),}\\
-    !> AH & \: \text{(No transpose from the right), or}\\
+    !> HA & \: \text{(No transpose from the left),}\\%
+    !> H^H A & \:  \text{(Transpose or conjugate transpose from the left),}\\%
+    !> AH & \: \text{(No transpose from the right), or}\\%
     !> AH^H & \: \text{(Transpose or conjugate transpose from the right).}
     !> \end{array}
     !> \f]
@@ -1278,7 +1301,7 @@ module hipfort_rocsolver
     !>
     !> \f[
     !> \begin{array}{cl}
-    !> H = H(1)H(2)\cdots H(k) & \: \text{if direct indicates forward direction, or} \\
+    !> H = H(1)H(2)\cdots H(k) & \: \text{if direct indicates forward direction, or} \\%
     !> H = H(k)\cdots H(2)H(1) & \: \text{if direct indicates backward direction}
     !> \end{array}
     !> \f]
@@ -1309,10 +1332,10 @@ module hipfort_rocsolver
     !> trans       rocblas_operation.
     !> Specifies whether the block reflector or its transpose/conjugate transpose is to be applied.
     !> @param[in]
-    !> direct      #rocblas_direct.
+    !> direct      `rocblas_direct`.
     !> Specifies the direction in which the Householder matrices are to be applied to generate H.
     !> @param[in]
-    !> storev      #rocblas_storev.
+    !> storev      `rocblas_storev`.
     !> Specifies how the Householder vectors are stored in matrix V.
     !> @param[in]
     !> m           rocblas_int. m >= 0.
@@ -1456,7 +1479,7 @@ module hipfort_rocsolver
     !>
     !> \f[
     !> \begin{array}{cl}
-    !> PA & \: \text{(No transpose from the left),}\\
+    !> PA & \: \text{(No transpose from the left),}\\%
     !> AP^T & \: \text{(Transpose from the right).}
     !> \end{array}
     !> \f]
@@ -1467,7 +1490,7 @@ module hipfort_rocsolver
     !>
     !> \f[
     !> \begin{array}{cl}
-    !> P = P(1)P(2)\cdots P(k) & \: \text{if direct indicates backward direction, or} \\
+    !> P = P(1)P(2)\cdots P(k) & \: \text{if direct indicates backward direction, or} \\%
     !> P = P(k)\cdots P(2)P(1) & \: \text{if direct indicates forward direction}
     !> \end{array}
     !> \f]
@@ -1476,7 +1499,7 @@ module hipfort_rocsolver
     !>
     !> \f[
     !> R(i) = \left[\begin{array}{cc}
-    !> c_i & s_i \\
+    !> c_i & s_i \\%
     !> -s_i & c_i
     !> \end{array}\right],
     !> \f]
@@ -1501,10 +1524,10 @@ module hipfort_rocsolver
     !> side        rocblas_side.
     !> Specifies from which side to apply P.
     !> @param[in]
-    !> pivot       #rocblas_pivot.
+    !> pivot       `rocblas_pivot`.
     !> Specifies the planes on which the rotations are applied.
     !> @param[in]
-    !> direct      #rocblas_direct.
+    !> direct      `rocblas_direct`.
     !> Specifies the direction in which the plane rotations are to be applied to generate P.
     !> @param[in]
     !> m           rocblas_int. m >= 0.
@@ -1609,7 +1632,7 @@ module hipfort_rocsolver
     !---------------------------------------------
     !> \brief The LABRD functions computes the bidiagonal form of the first ``k`` rows and columns
     !> of
-    !> a general ``m``-by-``n`` matrix ``A``, as well as the matrices ``X`` and ``Y`` needed to
+    !> a general ``m`` -by-``n`` matrix ``A``, as well as the matrices ``X`` and ``Y`` needed to
     !> reduce
     !> the remaining part of ``A``.
     !>
@@ -1620,13 +1643,13 @@ module hipfort_rocsolver
     !> B = Q^H A P
     !> \f]
     !>
-    !> where the leading ``k``-by-``k`` block of B is upper bidiagonal if ``m`` >= ``n``, or lower
+    !> where the leading ``k`` -by-``k`` block of B is upper bidiagonal if ``m`` >= ``n``, or lower
     !> bidiagonal if ``m`` < ``n``. Q and
     !> P are orthogonal/unitary matrices represented as the product of Householder matrices:
     !>
     !> \f[
     !> \begin{array}{cl}
-    !> Q = H(1)H(2)\cdots H(k), & \text{and} \\
+    !> Q = H(1)H(2)\cdots H(k), & \text{and} \\%
     !> P = G(1)G(2)\cdots G(k).
     !> \end{array}
     !> \f]
@@ -1635,7 +1658,7 @@ module hipfort_rocsolver
     !>
     !> \f[
     !> \begin{array}{cl}
-    !> H(i) = I - \text{tauq}[i]\cdot v_i^{}v_i^H, & \text{and} \\
+    !> H(i) = I - \text{tauq}[i]\cdot v_i^{}v_i^H, & \text{and} \\%
     !> G(i) = I - \text{taup}[i]\cdot u_i^{}u_i^H.
     !> \end{array}
     !> \f]
@@ -1655,7 +1678,7 @@ module hipfort_rocsolver
     !> A = A - VY^H - XU^H
     !> \f]
     !>
-    !> where V and U are the ``m``-by-``k`` and ``n``-by-``k`` matrices formed with the vectors
+    !> where V and U are the ``m`` -by-``k`` and ``n`` -by-``k`` matrices formed with the vectors
     !> \f$v_i\f$ and \f$u_i\f$, respectively.
     !>
     !> @param[in]
@@ -1826,7 +1849,7 @@ module hipfort_rocsolver
     !>
     !> \f[
     !> \begin{array}{cl}
-    !> Q = H(1)H(2)\cdots H(k) & \text{if uplo indicates lower, or}\\
+    !> Q = H(1)H(2)\cdots H(k) & \text{if uplo indicates lower, or}\\%
     !> Q = H(n)H(n-1)\cdots H(n-k+1) & \text{if uplo is upper}.
     !> \end{array}
     !> \f]
@@ -1981,13 +2004,13 @@ module hipfort_rocsolver
     !>
     !> \f[
     !> A = \left[ \begin{array}{cc}
-    !> I & U_{12} \\
+    !> I & U_{12} \\%
     !> 0 & U_{22}
     !> \end{array} \right] \left[ \begin{array}{cc}
-    !> A_{11} & 0 \\
+    !> A_{11} & 0 \\%
     !> 0 & D
     !> \end{array} \right] \left[ \begin{array}{cc}
-    !> I & 0 \\
+    !> I & 0 \\%
     !> U_{12}^T & U_{22}^T
     !> \end{array} \right]
     !> \f]
@@ -1996,13 +2019,13 @@ module hipfort_rocsolver
     !>
     !> \f[
     !> A = \left[ \begin{array}{cc}
-    !> L_{11} & 0 \\
+    !> L_{11} & 0 \\%
     !> L_{21} & I
     !> \end{array} \right] \left[ \begin{array}{cc}
-    !> D & 0 \\
+    !> D & 0 \\%
     !> 0 & A_{22}
     !> \end{array} \right] \left[ \begin{array}{cc}
-    !> L_{11}^T & L_{21}^T \\
+    !> L_{11}^T & L_{21}^T \\%
     !> 0 & I
     !> \end{array} \right]
     !> \f]
@@ -2288,7 +2311,7 @@ module hipfort_rocsolver
     !---------------------------------------------
     ! rocsolver_cung2r
     !---------------------------------------------
-    !> \brief The UNG2R functions generate an ``m``-by-``n`` complex matrix Q with orthonormal
+    !> \brief The UNG2R functions generate an ``m`` -by-``n`` complex matrix Q with orthonormal
     !> columns.
     !>
     !> \details
@@ -2435,7 +2458,7 @@ module hipfort_rocsolver
     !---------------------------------------------
     ! rocsolver_cungqr
     !---------------------------------------------
-    !> \brief The UNGQR functions generate an ``m``-by-``n`` complex matrix Q with orthonormal
+    !> \brief The UNGQR functions generate an ``m`` -by-``n`` complex matrix Q with orthonormal
     !> columns.
     !>
     !> \details
@@ -2872,7 +2895,7 @@ module hipfort_rocsolver
     !---------------------------------------------
     ! rocsolver_cung2l
     !---------------------------------------------
-    !> \brief The UNG2L functions generate an ``m``-by-``n`` complex matrix Q with orthonormal
+    !> \brief The UNG2L functions generate an ``m`` -by-``n`` complex matrix Q with orthonormal
     !> columns.
     !>
     !> \details
@@ -3017,7 +3040,7 @@ module hipfort_rocsolver
     !---------------------------------------------
     ! rocsolver_cungql
     !---------------------------------------------
-    !> \brief The UNGQL functions generate an ``m``-by-``n`` complex matrix Q with orthonormal
+    !> \brief The UNGQL functions generate an ``m`` -by-``n`` complex matrix Q with orthonormal
     !> columns.
     !>
     !> \details
@@ -3090,7 +3113,7 @@ module hipfort_rocsolver
     !---------------------------------------------
     ! rocsolver_sorgbr
     !---------------------------------------------
-    !> \brief The ORGBR functions generate an ``m``-by-``n`` Matrix Q with orthonormal rows or
+    !> \brief The ORGBR functions generate an ``m`` -by-``n`` Matrix Q with orthonormal rows or
     !> columns.
     !>
     !> \details
@@ -3130,7 +3153,7 @@ module hipfort_rocsolver
     !> @param[in]
     !> handle      rocblas_handle.
     !> @param[in]
-    !> storev      #rocblas_storev.
+    !> storev      `rocblas_storev`.
     !> Specifies whether to work column-wise or row-wise.
     !> @param[in]
     !> m           rocblas_int. m >= 0.
@@ -3191,7 +3214,7 @@ module hipfort_rocsolver
     !---------------------------------------------
     ! rocsolver_cungbr
     !---------------------------------------------
-    !> \brief The UNGBR functions generate an ``m``-by-``n`` complex matrix Q with orthonormal rows
+    !> \brief The UNGBR functions generate an ``m`` -by-``n`` complex matrix Q with orthonormal rows
     !> or
     !> columns.
     !>
@@ -3232,7 +3255,7 @@ module hipfort_rocsolver
     !> @param[in]
     !> handle      rocblas_handle.
     !> @param[in]
-    !> storev      #rocblas_storev.
+    !> storev      `rocblas_storev`.
     !> Specifies whether to work column-wise or row-wise.
     !> @param[in]
     !> m           rocblas_int. m >= 0.
@@ -3437,8 +3460,8 @@ module hipfort_rocsolver
     !---------------------------------------------
     ! rocsolver_sorm2r
     !---------------------------------------------
-    !> \brief The ORM2R functions multiply a matrix Q with orthonormal columns by a general
-    !> ``m``-by-``n``
+    !> \brief The ORM2R functions multiply a matrix Q with orthonormal columns by a general ``m``
+    !> -by-``n``
     !> matrix ``C``.
     !>
     !> \details
@@ -3449,9 +3472,9 @@ module hipfort_rocsolver
     !>
     !> \f[
     !> \begin{array}{cl}
-    !> QC & \: \text{No transpose from the left,}\\
-    !> Q^TC & \: \text{Transpose from the left,}\\
-    !> CQ & \: \text{No transpose from the right, and}\\
+    !> QC & \: \text{No transpose from the left,}\\%
+    !> Q^TC & \: \text{Transpose from the left,}\\%
+    !> CQ & \: \text{No transpose from the right, and}\\%
     !> CQ^T & \: \text{Transpose from the right.}
     !> \end{array}
     !> \f]
@@ -3554,9 +3577,9 @@ module hipfort_rocsolver
     !>
     !> \f[
     !> \begin{array}{cl}
-    !> QC & \: \text{No transpose from the left,}\\
-    !> Q^H C & \: \text{Conjugate transpose from the left,}\\
-    !> CQ & \: \text{No transpose from the right, and}\\
+    !> QC & \: \text{No transpose from the left,}\\%
+    !> Q^H C & \: \text{Conjugate transpose from the left,}\\%
+    !> CQ & \: \text{No transpose from the right, and}\\%
     !> CQ^H & \: \text{Conjugate transpose from the right.}
     !> \end{array}
     !> \f]
@@ -3648,8 +3671,8 @@ module hipfort_rocsolver
     !---------------------------------------------
     ! rocsolver_sormqr
     !---------------------------------------------
-    !> \brief The ORMQR functions multiply a matrix Q with orthonormal columns by a general
-    !> ``m``-by-``n``
+    !> \brief The ORMQR functions multiply a matrix Q with orthonormal columns by a general ``m``
+    !> -by-``n``
     !> matrix ``C``.
     !>
     !> \details
@@ -3660,9 +3683,9 @@ module hipfort_rocsolver
     !>
     !> \f[
     !> \begin{array}{cl}
-    !> QC & \: \text{No transpose from the left,}\\
-    !> Q^TC & \: \text{Transpose from the left,}\\
-    !> CQ & \: \text{No transpose from the right, and}\\
+    !> QC & \: \text{No transpose from the left,}\\%
+    !> Q^TC & \: \text{Transpose from the left,}\\%
+    !> CQ & \: \text{No transpose from the right, and}\\%
     !> CQ^T & \: \text{Transpose from the right.}
     !> \end{array}
     !> \f]
@@ -3765,9 +3788,9 @@ module hipfort_rocsolver
     !>
     !> \f[
     !> \begin{array}{cl}
-    !> QC & \: \text{No transpose from the left,}\\
-    !> Q^H C & \: \text{Conjugate transpose from the left,}\\
-    !> CQ & \: \text{No transpose from the right, and}\\
+    !> QC & \: \text{No transpose from the left,}\\%
+    !> Q^H C & \: \text{Conjugate transpose from the left,}\\%
+    !> CQ & \: \text{No transpose from the right, and}\\%
     !> CQ^H & \: \text{Conjugate transpose from the right.}
     !> \end{array}
     !> \f]
@@ -3859,8 +3882,8 @@ module hipfort_rocsolver
     !---------------------------------------------
     ! rocsolver_sorml2
     !---------------------------------------------
-    !> \brief The ORML2 functions multiply a matrix Q with orthonormal rows by a general
-    !> ``m``-by-``n``
+    !> \brief The ORML2 functions multiply a matrix Q with orthonormal rows by a general ``m``
+    !> -by-``n``
     !> matrix ``C``.
     !>
     !> \details
@@ -3871,9 +3894,9 @@ module hipfort_rocsolver
     !>
     !> \f[
     !> \begin{array}{cl}
-    !> QC & \: \text{No transpose from the left,}\\
-    !> Q^TC & \: \text{Transpose from the left,}\\
-    !> CQ & \: \text{No transpose from the right, and}\\
+    !> QC & \: \text{No transpose from the left,}\\%
+    !> Q^TC & \: \text{Transpose from the left,}\\%
+    !> CQ & \: \text{No transpose from the right, and}\\%
     !> CQ^T & \: \text{Transpose from the right.}
     !> \end{array}
     !> \f]
@@ -3976,9 +3999,9 @@ module hipfort_rocsolver
     !>
     !> \f[
     !> \begin{array}{cl}
-    !> QC & \: \text{No transpose from the left,}\\
-    !> Q^H C & \: \text{Conjugate transpose from the left,}\\
-    !> CQ & \: \text{No transpose from the right, and}\\
+    !> QC & \: \text{No transpose from the left,}\\%
+    !> Q^H C & \: \text{Conjugate transpose from the left,}\\%
+    !> CQ & \: \text{No transpose from the right, and}\\%
     !> CQ^H & \: \text{Conjugate transpose from the right.}
     !> \end{array}
     !> \f]
@@ -4070,8 +4093,8 @@ module hipfort_rocsolver
     !---------------------------------------------
     ! rocsolver_sormlq
     !---------------------------------------------
-    !> \brief The ORMLQ functions multiply a matrix Q with orthonormal rows by a general
-    !> ``m``-by-``n``
+    !> \brief The ORMLQ functions multiply a matrix Q with orthonormal rows by a general ``m``
+    !> -by-``n``
     !> matrix ``C``.
     !>
     !> \details
@@ -4082,9 +4105,9 @@ module hipfort_rocsolver
     !>
     !> \f[
     !> \begin{array}{cl}
-    !> QC & \: \text{No transpose from the left,}\\
-    !> Q^TC & \: \text{Transpose from the left,}\\
-    !> CQ & \: \text{No transpose from the right, and}\\
+    !> QC & \: \text{No transpose from the left,}\\%
+    !> Q^TC & \: \text{Transpose from the left,}\\%
+    !> CQ & \: \text{No transpose from the right, and}\\%
     !> CQ^T & \: \text{Transpose from the right.}
     !> \end{array}
     !> \f]
@@ -4187,9 +4210,9 @@ module hipfort_rocsolver
     !>
     !> \f[
     !> \begin{array}{cl}
-    !> QC & \: \text{No transpose from the left,}\\
-    !> Q^H C & \: \text{Conjugate transpose from the left,}\\
-    !> CQ & \: \text{No transpose from the right, and}\\
+    !> QC & \: \text{No transpose from the left,}\\%
+    !> Q^H C & \: \text{Conjugate transpose from the left,}\\%
+    !> CQ & \: \text{No transpose from the right, and}\\%
     !> CQ^H & \: \text{Conjugate transpose from the right.}
     !> \end{array}
     !> \f]
@@ -4281,8 +4304,8 @@ module hipfort_rocsolver
     !---------------------------------------------
     ! rocsolver_sorm2l
     !---------------------------------------------
-    !> \brief The ORM2L functions multiply a matrix Q with orthonormal columns by a general
-    !> ``m``-by-``n``
+    !> \brief The ORM2L functions multiply a matrix Q with orthonormal columns by a general ``m``
+    !> -by-``n``
     !> matrix ``C``.
     !>
     !> \details
@@ -4293,9 +4316,9 @@ module hipfort_rocsolver
     !>
     !> \f[
     !> \begin{array}{cl}
-    !> QC & \: \text{No transpose from the left,}\\
-    !> Q^TC & \: \text{Transpose from the left,}\\
-    !> CQ & \: \text{No transpose from the right, and}\\
+    !> QC & \: \text{No transpose from the left,}\\%
+    !> Q^TC & \: \text{Transpose from the left,}\\%
+    !> CQ & \: \text{No transpose from the right, and}\\%
     !> CQ^T & \: \text{Transpose from the right.}
     !> \end{array}
     !> \f]
@@ -4400,9 +4423,9 @@ module hipfort_rocsolver
     !>
     !> \f[
     !> \begin{array}{cl}
-    !> QC & \: \text{No transpose from the left,}\\
-    !> Q^H C & \: \text{Conjugate transpose from the left,}\\
-    !> CQ & \: \text{No transpose from the right, and}\\
+    !> QC & \: \text{No transpose from the left,}\\%
+    !> Q^H C & \: \text{Conjugate transpose from the left,}\\%
+    !> CQ & \: \text{No transpose from the right, and}\\%
     !> CQ^H & \: \text{Conjugate transpose from the right.}
     !> \end{array}
     !> \f]
@@ -4496,8 +4519,8 @@ module hipfort_rocsolver
     !---------------------------------------------
     ! rocsolver_sormql
     !---------------------------------------------
-    !> \brief The ORMQL functions multiply a matrix Q with orthonormal columns by a general
-    !> ``m``-by-``n``
+    !> \brief The ORMQL functions multiply a matrix Q with orthonormal columns by a general ``m``
+    !> -by-``n``
     !> matrix ``C``.
     !>
     !> \details
@@ -4508,9 +4531,9 @@ module hipfort_rocsolver
     !>
     !> \f[
     !> \begin{array}{cl}
-    !> QC & \: \text{No transpose from the left,}\\
-    !> Q^TC & \: \text{Transpose from the left,}\\
-    !> CQ & \: \text{No transpose from the right, and}\\
+    !> QC & \: \text{No transpose from the left,}\\%
+    !> Q^TC & \: \text{Transpose from the left,}\\%
+    !> CQ & \: \text{No transpose from the right, and}\\%
     !> CQ^T & \: \text{Transpose from the right.}
     !> \end{array}
     !> \f]
@@ -4615,9 +4638,9 @@ module hipfort_rocsolver
     !>
     !> \f[
     !> \begin{array}{cl}
-    !> QC & \: \text{No transpose from the left,}\\
-    !> Q^H C & \: \text{Conjugate transpose from the left,}\\
-    !> CQ & \: \text{No transpose from the right, and}\\
+    !> QC & \: \text{No transpose from the left,}\\%
+    !> Q^H C & \: \text{Conjugate transpose from the left,}\\%
+    !> CQ & \: \text{No transpose from the right, and}\\%
     !> CQ^H & \: \text{Conjugate transpose from the right.}
     !> \end{array}
     !> \f]
@@ -4722,9 +4745,9 @@ module hipfort_rocsolver
     !>
     !> \f[
     !> \begin{array}{cl}
-    !> QC & \: \text{No transpose from the left,}\\
-    !> Q^TC & \: \text{Transpose from the left,}\\
-    !> CQ & \: \text{No transpose from the right, and}\\
+    !> QC & \: \text{No transpose from the left,}\\%
+    !> Q^TC & \: \text{Transpose from the left,}\\%
+    !> CQ & \: \text{No transpose from the right, and}\\%
     !> CQ^T & \: \text{Transpose from the right.}
     !> \end{array}
     !> \f]
@@ -4766,7 +4789,7 @@ module hipfort_rocsolver
     !> @param[in]
     !> handle      rocblas_handle.
     !> @param[in]
-    !> storev      #rocblas_storev.
+    !> storev      `rocblas_storev`.
     !> Specifies whether to work column-wise or row-wise.
     !> @param[in]
     !> side        rocblas_side.
@@ -4856,9 +4879,9 @@ module hipfort_rocsolver
     !>
     !> \f[
     !> \begin{array}{cl}
-    !> QC & \: \text{No transpose from the left,}\\
-    !> Q^H C & \: \text{Conjugate transpose from the left,}\\
-    !> CQ & \: \text{No transpose from the right, and}\\
+    !> QC & \: \text{No transpose from the left,}\\%
+    !> Q^H C & \: \text{Conjugate transpose from the left,}\\%
+    !> CQ & \: \text{No transpose from the right, and}\\%
     !> CQ^H & \: \text{Conjugate transpose from the right.}
     !> \end{array}
     !> \f]
@@ -4900,7 +4923,7 @@ module hipfort_rocsolver
     !> @param[in]
     !> handle      rocblas_handle.
     !> @param[in]
-    !> storev      #rocblas_storev.
+    !> storev      `rocblas_storev`.
     !> Specifies whether to work column-wise or row-wise.
     !> @param[in]
     !> side        rocblas_side.
@@ -4979,8 +5002,8 @@ module hipfort_rocsolver
     !---------------------------------------------
     ! rocsolver_sormtr
     !---------------------------------------------
-    !> \brief The ORMTR functions multiply an orthogonal matrix Q by a general ``m``-by-``n`` matrix
-    !> ``C``.
+    !> \brief The ORMTR functions multiply an orthogonal matrix Q by a general ``m`` -by-``n``
+    !> matrix ``C``.
     !>
     !> \details
     !> The matrix Q is applied in one of the following forms, depending on
@@ -4988,9 +5011,9 @@ module hipfort_rocsolver
     !>
     !> \f[
     !> \begin{array}{cl}
-    !> QC & \: \text{No transpose from the left,}\\
-    !> Q^TC & \: \text{Transpose from the left,}\\
-    !> CQ & \: \text{No transpose from the right, and}\\
+    !> QC & \: \text{No transpose from the left,}\\%
+    !> Q^TC & \: \text{Transpose from the left,}\\%
+    !> CQ & \: \text{No transpose from the right, and}\\%
     !> CQ^T & \: \text{Transpose from the right.}
     !> \end{array}
     !> \f]
@@ -5095,7 +5118,7 @@ module hipfort_rocsolver
     !---------------------------------------------
     ! rocsolver_cunmtr
     !---------------------------------------------
-    !> \brief The UNMTR functions multiply a unitary matrix Q by a general ``m``-by-``n`` matrix
+    !> \brief The UNMTR functions multiply a unitary matrix Q by a general ``m`` -by-``n`` matrix
     !> ``C``.
     !>
     !> \details
@@ -5104,9 +5127,9 @@ module hipfort_rocsolver
     !>
     !> \f[
     !> \begin{array}{cl}
-    !> QC & \: \text{No transpose from the left,}\\
-    !> Q^H C & \: \text{Conjugate transpose from the left,}\\
-    !> CQ & \: \text{No transpose from the right, and}\\
+    !> QC & \: \text{No transpose from the left,}\\%
+    !> Q^H C & \: \text{Conjugate transpose from the left,}\\%
+    !> CQ & \: \text{No transpose from the right, and}\\%
     !> CQ^H & \: \text{Conjugate transpose from the right.}
     !> \end{array}
     !> \f]
@@ -5221,16 +5244,16 @@ module hipfort_rocsolver
     !> B = QSP^H
     !> \f]
     !>
-    !> where S is the ``n``-by-``n`` diagonal matrix of singular values of B, the columns of Q are
+    !> where S is the ``n`` -by-``n`` diagonal matrix of singular values of B, the columns of Q are
     !> the left
     !> singular vectors of B, and the columns of P are its right singular vectors.
     !>
     !> The computation of the singular vectors is optional. This function accepts input matrices
-    !> ``U`` (of size ``nu``-by-``n``) and ``V`` (of size ``n``-by-``nv``) that are overwritten with
-    !> \f$UQ\f$ and \f$P^H V\f$. If ``nu`` = 0,
+    !> ``U`` (of size ``nu`` -by-``n``) and ``V`` (of size ``n`` -by-``nv``) that are overwritten
+    !> with \f$UQ\f$ and \f$P^H V\f$. If ``nu`` = 0,
     !> no left vectors are computed. If ``nv`` = 0, no right vectors are computed.
     !>
-    !> Optionally, this function can also compute \f$Q^H C\f$ for a given ``n``-by-``nc`` input
+    !> Optionally, this function can also compute \f$Q^H C\f$ for a given ``n`` -by-``nc`` input
     !> matrix ``C``.
     !>
     !> \note
@@ -5482,7 +5505,7 @@ module hipfort_rocsolver
     !> @param[in]
     !> handle      rocblas_handle.
     !> @param[in]
-    !> evect       #rocblas_evect.
+    !> evect       `rocblas_evect`.
     !> Specifies how the eigenvectors are computed.
     !> @param[in]
     !> n           rocblas_int. n >= 0.
@@ -5609,7 +5632,7 @@ module hipfort_rocsolver
     !> @param[in]
     !> handle      rocblas_handle.
     !> @param[in]
-    !> evect       #rocblas_evect.
+    !> evect       `rocblas_evect`.
     !> Specifies how the eigenvectors are computed.
     !> @param[in]
     !> n           rocblas_int. n >= 0.
@@ -5715,7 +5738,7 @@ module hipfort_rocsolver
     !>
     !> \details
     !> This function computes all the eigenvalues of T, all the eigenvalues in the half-open
-    !> interval (``vl``, ``vu``],
+    !> interval (``vl``, ``vu`` ],
     !> or the ``il``-th through ``iu``-th eigenvalues, depending on the value of ``erange``.
     !>
     !> The eigenvalues are returned in increasing order either for the entire matrix or grouped by
@@ -5725,10 +5748,10 @@ module hipfort_rocsolver
     !> @param[in]
     !> handle      rocblas_handle.
     !> @param[in]
-    !> erange      #rocblas_erange.
+    !> erange      `rocblas_erange`.
     !> Specifies the type of range or interval of the eigenvalues to be computed.
     !> @param[in]
-    !> eorder      #rocblas_eorder.
+    !> eorder      `rocblas_eorder`.
     !> Specifies whether the computed eigenvalues will be ordered by their position in the
     !> entire spectrum or grouped by independent diagonal (split off) blocks.
     !> @param[in]
@@ -6000,8 +6023,8 @@ module hipfort_rocsolver
     !> \details
     !> This function computes all the singular values of B, all the singular values in the half-open
     !> interval
-    !> \f$[vl, vu)\f$, or the ``il``-th through ``iu``-th singular values, depending on the value of
-    !> ``srange``.
+    !> \f$[vl, vu)\f$, or the ``il`` -th through ``iu`` -th singular values, depending on the value
+    !> of ``srange``.
     !>
     !> Depending on the value of ``svect``, the corresponding singular vectors will be computed and
     !> stored as blocks
@@ -6009,7 +6032,7 @@ module hipfort_rocsolver
     !>
     !> \f[
     !> Z = \left[\begin{array}{c}
-    !> U\\
+    !> U\\%
     !> V
     !> \end{array}\right]
     !> \f]
@@ -6024,11 +6047,11 @@ module hipfort_rocsolver
     !> uplo        rocblas_fill.
     !> Specifies whether B is upper or lower bidiagonal.
     !> @param[in]
-    !> svect       #rocblas_svect.
+    !> svect       `rocblas_svect`.
     !> Specifies how the singular vectors are computed. Only rocblas_svect_none and
     !> rocblas_svect_singular are accepted.
     !> @param[in]
-    !> srange      #rocblas_srange.
+    !> srange      `rocblas_srange`.
     !> Specifies the type of range or interval of the singular values to be computed.
     !> @param[in]
     !> n           rocblas_int. n >= 0.
@@ -6141,7 +6164,7 @@ module hipfort_rocsolver
     !---------------------------------------------
     ! rocsolver_sgetf2_npvt
     !---------------------------------------------
-    !> \brief The GETF2_NPVT functions compute the LU factorization of a general ``m``-by-``n``
+    !> \brief The GETF2_NPVT functions compute the LU factorization of a general ``m`` -by-``n``
     !> matrix ``A``
     !> without partial pivoting.
     !>
@@ -6712,7 +6735,7 @@ module hipfort_rocsolver
     !---------------------------------------------
     ! rocsolver_sgetrf_npvt
     !---------------------------------------------
-    !> \brief The GETRF_NPVT functions compute the LU factorization of a general ``m``-by-``n``
+    !> \brief The GETRF_NPVT functions compute the LU factorization of a general ``m`` -by-``n``
     !> matrix ``A``
     !> without partial pivoting.
     !>
@@ -7282,7 +7305,7 @@ module hipfort_rocsolver
     !---------------------------------------------
     ! rocsolver_sgetf2
     !---------------------------------------------
-    !> \brief The GETF2 functions compute the LU factorization of a general ``m``-by-``n`` matrix
+    !> \brief The GETF2 functions compute the LU factorization of a general ``m`` -by-``n`` matrix
     !> ``A``
     !> using partial pivoting with row interchanges.
     !>
@@ -7899,7 +7922,7 @@ module hipfort_rocsolver
     !---------------------------------------------
     ! rocsolver_sgetrf
     !---------------------------------------------
-    !> \brief The GETRF functions compute the LU factorization of a general ``m``-by-``n`` matrix
+    !> \brief The GETRF functions compute the LU factorization of a general ``m`` -by-``n`` matrix
     !> ``A``
     !> using partial pivoting with row interchanges.
     !>
@@ -8516,7 +8539,7 @@ module hipfort_rocsolver
     !---------------------------------------------
     ! rocsolver_sgeqr2
     !---------------------------------------------
-    !> \brief The GEQR2 functions compute a QR factorization of a general ``m``-by-``n`` matrix
+    !> \brief The GEQR2 functions compute a QR factorization of a general ``m`` -by-``n`` matrix
     !> ``A``.
     !>
     !> \details
@@ -8526,13 +8549,13 @@ module hipfort_rocsolver
     !>
     !> \f[
     !> A = Q\left[\begin{array}{c}
-    !> R\\
+    !> R\\%
     !> 0
     !> \end{array}\right]
     !> \f]
     !>
     !> where R is upper triangular (upper trapezoidal if ``m`` < ``n``), and Q is
-    !> an ``m``-by-``m`` orthogonal/unitary matrix represented as the product of Householder
+    !> an ``m`` -by-``m`` orthogonal/unitary matrix represented as the product of Householder
     !> matrices
     !>
     !> \f[
@@ -8706,13 +8729,13 @@ module hipfort_rocsolver
     !>
     !> \f[
     !> A_l = Q_l\left[\begin{array}{c}
-    !> R_l\\
+    !> R_l\\%
     !> 0
     !> \end{array}\right]
     !> \f]
     !>
     !> where \f$R_l\f$ is upper triangular (upper trapezoidal if ``m`` < ``n``), and \f$Q_l\f$ is
-    !> an ``m``-by-``m`` orthogonal/unitary matrix represented as the product of Householder
+    !> an ``m`` -by-``m`` orthogonal/unitary matrix represented as the product of Householder
     !> matrices
     !>
     !> \f[
@@ -8910,13 +8933,13 @@ module hipfort_rocsolver
     !>
     !> \f[
     !> A_l = Q_l\left[\begin{array}{c}
-    !> R_l\\
+    !> R_l\\%
     !> 0
     !> \end{array}\right]
     !> \f]
     !>
     !> where \f$R_l\f$ is upper triangular (upper trapezoidal if ``m`` < ``n``), and \f$Q_l\f$ is
-    !> an ``m``-by-``m`` orthogonal/unitary matrix represented as the product of Householder
+    !> an ``m`` -by-``m`` orthogonal/unitary matrix represented as the product of Householder
     !> matrices
     !>
     !> \f[
@@ -9124,7 +9147,7 @@ module hipfort_rocsolver
     !---------------------------------------------
     ! rocsolver_sgerq2
     !---------------------------------------------
-    !> \brief The GERQ2 functions compute a RQ factorization of a general ``m``-by-``n`` matrix
+    !> \brief The GERQ2 functions compute a RQ factorization of a general ``m`` -by-``n`` matrix
     !> ``A``.
     !>
     !> \details
@@ -9139,7 +9162,7 @@ module hipfort_rocsolver
     !> \f]
     !>
     !> where R is upper triangular (upper trapezoidal if ``m`` > ``n``), and Q is
-    !> an ``n``-by-``n`` orthogonal/unitary matrix represented as the product of Householder
+    !> an ``n`` -by-``n`` orthogonal/unitary matrix represented as the product of Householder
     !> matrices
     !>
     !> \f[
@@ -9255,7 +9278,7 @@ module hipfort_rocsolver
     !> \f]
     !>
     !> where \f$R_l\f$ is upper triangular (upper trapezoidal if ``m`` > ``n``), and \f$Q_l\f$ is
-    !> an ``n``-by-``n`` orthogonal/unitary matrix represented as the product of Householder
+    !> an ``n`` -by-``n`` orthogonal/unitary matrix represented as the product of Householder
     !> matrices
     !>
     !> \f[
@@ -9387,7 +9410,7 @@ module hipfort_rocsolver
     !> \f]
     !>
     !> where \f$R_l\f$ is upper triangular (upper trapezoidal if ``m`` > ``n``), and \f$Q_l\f$ is
-    !> an ``n``-by-``n`` orthogonal/unitary matrix represented as the product of Householder
+    !> an ``n`` -by-``n`` orthogonal/unitary matrix represented as the product of Householder
     !> matrices
     !>
     !> \f[
@@ -9516,7 +9539,7 @@ module hipfort_rocsolver
     !---------------------------------------------
     ! rocsolver_sgeql2
     !---------------------------------------------
-    !> \brief The GEQL2 functions compute a QL factorization of a general ``m``-by-``n`` matrix
+    !> \brief The GEQL2 functions compute a QL factorization of a general ``m`` -by-``n`` matrix
     !> ``A``.
     !>
     !> \details
@@ -9526,13 +9549,13 @@ module hipfort_rocsolver
     !>
     !> \f[
     !> A = Q\left[\begin{array}{c}
-    !> 0\\
+    !> 0\\%
     !> L
     !> \end{array}\right]
     !> \f]
     !>
     !> where L is lower triangular (lower trapezoidal if ``m`` < ``n``), and Q is
-    !> an ``m``-by-``m`` orthogonal/unitary matrix represented as the product of Householder
+    !> an ``m`` -by-``m`` orthogonal/unitary matrix represented as the product of Householder
     !> matrices
     !>
     !> \f[
@@ -9643,13 +9666,13 @@ module hipfort_rocsolver
     !>
     !> \f[
     !> A_l = Q_l\left[\begin{array}{c}
-    !> 0\\
+    !> 0\\%
     !> L_l
     !> \end{array}\right]
     !> \f]
     !>
     !> where \f$L_l\f$ is lower triangular (lower trapezoidal if ``m`` < ``n``), and \f$Q_l\f$ is
-    !> an ``m``-by-``m`` orthogonal/unitary matrix represented as the product of Householder
+    !> an ``m`` -by-``m`` orthogonal/unitary matrix represented as the product of Householder
     !> matrices
     !>
     !> \f[
@@ -9776,13 +9799,13 @@ module hipfort_rocsolver
     !>
     !> \f[
     !> A_l = Q_l\left[\begin{array}{c}
-    !> 0\\
+    !> 0\\%
     !> L_l
     !> \end{array}\right]
     !> \f]
     !>
     !> where \f$L_l\f$ is lower triangular (lower trapezoidal if ``m`` < ``n``), and \f$Q_l\f$ is
-    !> an ``m``-by-``m`` orthogonal/unitary matrix represented as the product of Householder
+    !> an ``m`` -by-``m`` orthogonal/unitary matrix represented as the product of Householder
     !> matrices
     !>
     !> \f[
@@ -9911,7 +9934,7 @@ module hipfort_rocsolver
     !---------------------------------------------
     ! rocsolver_sgelq2
     !---------------------------------------------
-    !> \brief The GELQ2 functions compute a LQ factorization of a general ``m``-by-``n`` matrix
+    !> \brief The GELQ2 functions compute a LQ factorization of a general ``m`` -by-``n`` matrix
     !> ``A``.
     !>
     !> \details
@@ -9926,7 +9949,7 @@ module hipfort_rocsolver
     !> \f]
     !>
     !> where L is lower triangular (lower trapezoidal if ``m`` > ``n``), and Q is
-    !> an ``n``-by-``n`` orthogonal/unitary matrix represented as the product of Householder
+    !> an ``n`` -by-``n`` orthogonal/unitary matrix represented as the product of Householder
     !> matrices
     !>
     !> \f[
@@ -10041,7 +10064,7 @@ module hipfort_rocsolver
     !> \f]
     !>
     !> where \f$L_l\f$ is lower triangular (lower trapezoidal if ``m`` > ``n``), and \f$Q_l\f$ is
-    !> an ``n``-by-``n`` orthogonal/unitary matrix represented as the product of Householder
+    !> an ``n`` -by-``n`` orthogonal/unitary matrix represented as the product of Householder
     !> matrices
     !>
     !> \f[
@@ -10172,7 +10195,7 @@ module hipfort_rocsolver
     !> \f]
     !>
     !> where \f$L_l\f$ is lower triangular (lower trapezoidal if ``m`` > ``n``), and \f$Q_l\f$ is
-    !> an ``n``-by-``n`` orthogonal/unitary matrix represented as the product of Householder
+    !> an ``n`` -by-``n`` orthogonal/unitary matrix represented as the product of Householder
     !> matrices
     !>
     !> \f[
@@ -10300,7 +10323,7 @@ module hipfort_rocsolver
     !---------------------------------------------
     ! rocsolver_sgeqrf
     !---------------------------------------------
-    !> \brief The GEQRF functions compute a QR factorization of a general ``m``-by-``n`` matrix
+    !> \brief The GEQRF functions compute a QR factorization of a general ``m`` -by-``n`` matrix
     !> ``A``.
     !>
     !> \details
@@ -10310,13 +10333,13 @@ module hipfort_rocsolver
     !>
     !> \f[
     !> A = Q\left[\begin{array}{c}
-    !> R\\
+    !> R\\%
     !> 0
     !> \end{array}\right]
     !> \f]
     !>
     !> where R is upper triangular (upper trapezoidal if ``m`` < ``n``), and Q is
-    !> an ``m``-by-``m`` orthogonal/unitary matrix represented as the product of Householder
+    !> an ``m`` -by-``m`` orthogonal/unitary matrix represented as the product of Householder
     !> matrices
     !>
     !> \f[
@@ -10490,13 +10513,13 @@ module hipfort_rocsolver
     !>
     !> \f[
     !> A_l = Q_l\left[\begin{array}{c}
-    !> R_l\\
+    !> R_l\\%
     !> 0
     !> \end{array}\right]
     !> \f]
     !>
     !> where \f$R_l\f$ is upper triangular (upper trapezoidal if ``m`` < ``n``), and \f$Q_l\f$ is
-    !> an ``m``-by-``m`` orthogonal/unitary matrix represented as the product of Householder
+    !> an ``m`` -by-``m`` orthogonal/unitary matrix represented as the product of Householder
     !> matrices
     !>
     !> \f[
@@ -10694,13 +10717,13 @@ module hipfort_rocsolver
     !>
     !> \f[
     !> A_l = Q_l\left[\begin{array}{c}
-    !> R_l\\
+    !> R_l\\%
     !> 0
     !> \end{array}\right]
     !> \f]
     !>
     !> where \f$R_l\f$ is upper triangular (upper trapezoidal if ``m`` < ``n``), and \f$Q_l\f$ is
-    !> an ``m``-by-``m`` orthogonal/unitary matrix represented as the product of Householder
+    !> an ``m`` -by-``m`` orthogonal/unitary matrix represented as the product of Householder
     !> matrices
     !>
     !> \f[
@@ -10908,7 +10931,7 @@ module hipfort_rocsolver
     !---------------------------------------------
     ! rocsolver_sgerqf
     !---------------------------------------------
-    !> \brief The GERQF functions compute a RQ factorization of a general ``m``-by-``n`` matrix
+    !> \brief The GERQF functions compute a RQ factorization of a general ``m`` -by-``n`` matrix
     !> ``A``.
     !>
     !> \details
@@ -10923,7 +10946,7 @@ module hipfort_rocsolver
     !> \f]
     !>
     !> where R is upper triangular (upper trapezoidal if ``m`` > ``n``), and Q is
-    !> an ``n``-by-``n`` orthogonal/unitary matrix represented as the product of Householder
+    !> an ``n`` -by-``n`` orthogonal/unitary matrix represented as the product of Householder
     !> matrices
     !>
     !> \f[
@@ -11039,7 +11062,7 @@ module hipfort_rocsolver
     !> \f]
     !>
     !> where \f$R_l\f$ is upper triangular (upper trapezoidal if ``m`` > ``n``), and \f$Q_l\f$ is
-    !> an ``n``-by-``n`` orthogonal/unitary matrix represented as the product of Householder
+    !> an ``n`` -by-``n`` orthogonal/unitary matrix represented as the product of Householder
     !> matrices
     !>
     !> \f[
@@ -11171,7 +11194,7 @@ module hipfort_rocsolver
     !> \f]
     !>
     !> where \f$R_l\f$ is upper triangular (upper trapezoidal if ``m`` > ``n``), and \f$Q_l\f$ is
-    !> an ``n``-by-``n`` orthogonal/unitary matrix represented as the product of Householder
+    !> an ``n`` -by-``n`` orthogonal/unitary matrix represented as the product of Householder
     !> matrices
     !>
     !> \f[
@@ -11300,7 +11323,7 @@ module hipfort_rocsolver
     !---------------------------------------------
     ! rocsolver_sgeqlf
     !---------------------------------------------
-    !> \brief The GEQLF functions compute a QL factorization of a general ``m``-by-``n`` matrix
+    !> \brief The GEQLF functions compute a QL factorization of a general ``m`` -by-``n`` matrix
     !> ``A``.
     !>
     !> \details
@@ -11310,13 +11333,13 @@ module hipfort_rocsolver
     !>
     !> \f[
     !> A = Q\left[\begin{array}{c}
-    !> 0\\
+    !> 0\\%
     !> L
     !> \end{array}\right]
     !> \f]
     !>
     !> where L is lower triangular (lower trapezoidal if ``m`` < ``n``), and Q is
-    !> an ``m``-by-``m`` orthogonal/unitary matrix represented as the product of Householder
+    !> an ``m`` -by-``m`` orthogonal/unitary matrix represented as the product of Householder
     !> matrices
     !>
     !> \f[
@@ -11427,13 +11450,13 @@ module hipfort_rocsolver
     !>
     !> \f[
     !> A_l = Q_l\left[\begin{array}{c}
-    !> 0\\
+    !> 0\\%
     !> L_l
     !> \end{array}\right]
     !> \f]
     !>
     !> where \f$L_l\f$ is lower triangular (lower trapezoidal if ``m`` < ``n``), and \f$Q_l\f$ is
-    !> an ``m``-by-``m`` orthogonal/unitary matrix represented as the product of Householder
+    !> an ``m`` -by-``m`` orthogonal/unitary matrix represented as the product of Householder
     !> matrices
     !>
     !> \f[
@@ -11560,13 +11583,13 @@ module hipfort_rocsolver
     !>
     !> \f[
     !> A_l = Q_l\left[\begin{array}{c}
-    !> 0\\
+    !> 0\\%
     !> L_l
     !> \end{array}\right]
     !> \f]
     !>
     !> where \f$L_l\f$ is lower triangular (lower trapezoidal if ``m`` < ``n``), and \f$Q_l\f$ is
-    !> an ``m``-by-``m`` orthogonal/unitary matrix represented as the product of Householder
+    !> an ``m`` -by-``m`` orthogonal/unitary matrix represented as the product of Householder
     !> matrices
     !>
     !> \f[
@@ -11695,7 +11718,7 @@ module hipfort_rocsolver
     !---------------------------------------------
     ! rocsolver_sgelqf
     !---------------------------------------------
-    !> \brief The GELQF functions compute an LQ factorization of a general ``m``-by-``n`` matrix
+    !> \brief The GELQF functions compute an LQ factorization of a general ``m`` -by-``n`` matrix
     !> ``A``.
     !>
     !> \details
@@ -11710,7 +11733,7 @@ module hipfort_rocsolver
     !> \f]
     !>
     !> where L is lower triangular (lower trapezoidal if ``m`` > ``n``), and Q is
-    !> an ``n``-by-``n`` orthogonal/unitary matrix represented as the product of Householder
+    !> an ``n`` -by-``n`` orthogonal/unitary matrix represented as the product of Householder
     !> matrices
     !>
     !> \f[
@@ -11825,7 +11848,7 @@ module hipfort_rocsolver
     !> \f]
     !>
     !> where \f$L_l\f$ is lower triangular (lower trapezoidal if ``m`` > ``n``), and \f$Q_l\f$ is
-    !> an ``n``-by-``n`` orthogonal/unitary matrix represented as the product of Householder
+    !> an ``n`` -by-``n`` orthogonal/unitary matrix represented as the product of Householder
     !> matrices
     !>
     !> \f[
@@ -11956,7 +11979,7 @@ module hipfort_rocsolver
     !> \f]
     !>
     !> where \f$L_l\f$ is lower triangular (lower trapezoidal if ``m`` > ``n``), and \f$Q_l\f$ is
-    !> an ``n``-by-``n`` orthogonal/unitary matrix represented as the product of Householder
+    !> an ``n`` -by-``n`` orthogonal/unitary matrix represented as the product of Householder
     !> matrices
     !>
     !> \f[
@@ -12084,7 +12107,7 @@ module hipfort_rocsolver
     !---------------------------------------------
     ! rocsolver_sgebd2
     !---------------------------------------------
-    !> \brief The GEBD2 functions compute the bidiagonal form of a general ``m``-by-``n`` matrix
+    !> \brief The GEBD2 functions compute the bidiagonal form of a general ``m`` -by-``n`` matrix
     !> ``A``.
     !>
     !> \details
@@ -12103,7 +12126,7 @@ module hipfort_rocsolver
     !> \f[
     !> \begin{array}{cl}
     !> Q = H(1)H(2)\cdots H(n)\: \text{and} \: P = G(1)G(2)\cdots G(n-1), & \: \text{if}\: m >= n,
-    !> \:\text{or}\\
+    !> \:\text{or}\\%
     !> Q = H(1)H(2)\cdots H(m-1)\:  \text{and} \: P = G(1)G(2)\cdots G(m), & \: \text{if}\: m < n.
     !> \end{array}
     !> \f]
@@ -12112,7 +12135,7 @@ module hipfort_rocsolver
     !>
     !> \f[
     !> \begin{array}{cl}
-    !> H(i) = I - \text{tauq}[i] \cdot v_i^{} v_i^H, & \: \text{and}\\
+    !> H(i) = I - \text{tauq}[i] \cdot v_i^{} v_i^H, & \: \text{and}\\%
     !> G(i) = I - \text{taup}[i] \cdot u_i^H u_i^{}.
     !> \end{array}
     !> \f]
@@ -12255,7 +12278,7 @@ module hipfort_rocsolver
     !> \f[
     !> \begin{array}{cl}
     !> Q_l = H_l(1)H_l(2)\cdots H_l(n)\: \text{and} \: P_l = G_l(1)G_l(2)\cdots G_l(n-1), & \:
-    !> \text{if}\: m >= n, \:\text{or}\\
+    !> \text{if}\: m >= n, \:\text{or}\\%
     !> Q_l = H_l(1)H_l(2)\cdots H_l(m-1)\: \text{and} \: P_l = G_l(1)G_l(2)\cdots G_l(m), & \:
     !> \text{if}\: m < n.
     !> \end{array}
@@ -12265,7 +12288,7 @@ module hipfort_rocsolver
     !>
     !> \f[
     !> \begin{array}{cl}
-    !> H_l^{}(i) = I - \text{tauq}_l^{}[i] \cdot v_{l_i}^{} v_{l_i}^H, & \: \text{and}\\
+    !> H_l^{}(i) = I - \text{tauq}_l^{}[i] \cdot v_{l_i}^{} v_{l_i}^H, & \: \text{and}\\%
     !> G_l^{}(i) = I - \text{taup}_l^{}[i] \cdot u_{l_i}^H u_{l_i}^{}.
     !> \end{array}
     !> \f]
@@ -12454,7 +12477,7 @@ module hipfort_rocsolver
     !> \f[
     !> \begin{array}{cl}
     !> Q_l = H_l(1)H_l(2)\cdots H_l(n)\: \text{and} \: P_1 = G_l(1)G_l(2)\cdots G_l(n-1), & \:
-    !> \text{if}\: m >= n, \:\text{or}\\
+    !> \text{if}\: m >= n, \:\text{or}\\%
     !> Q_l = H_l(1)H_l(2)\cdots H_l(m-1)\: \text{and} \: P_1 = G_l(1)G_l(2)\cdots G_l(m), & \:
     !> \text{if}\: m < n.
     !> \end{array}
@@ -12464,7 +12487,7 @@ module hipfort_rocsolver
     !>
     !> \f[
     !> \begin{array}{cl}
-    !> H_l^{}(i) = I - \text{tauq}_l^{}[i] \cdot v_{l_i}^{} v_{l_i}^H, & \: \text{and}\\
+    !> H_l^{}(i) = I - \text{tauq}_l^{}[i] \cdot v_{l_i}^{} v_{l_i}^H, & \: \text{and}\\%
     !> G_l^{}(i) = I - \text{taup}_l^{}[i] \cdot u_{l_i}^H u_{l_i}^{}.
     !> \end{array}
     !> \f]
@@ -12642,7 +12665,7 @@ module hipfort_rocsolver
     !---------------------------------------------
     ! rocsolver_sgebrd
     !---------------------------------------------
-    !> \brief The GEBRD functions compute the bidiagonal form of a general ``m``-by-``n`` matrix
+    !> \brief The GEBRD functions compute the bidiagonal form of a general ``m`` -by-``n`` matrix
     !> ``A``.
     !>
     !> \details
@@ -12661,7 +12684,7 @@ module hipfort_rocsolver
     !> \f[
     !> \begin{array}{cl}
     !> Q = H(1)H(2)\cdots H(n)\: \text{and} \: P = G(1)G(2)\cdots G(n-1), & \: \text{if}\: m >= n,
-    !> \:\text{or}\\
+    !> \:\text{or}\\%
     !> Q = H(1)H(2)\cdots H(m-1)\:  \text{and} \: P = G(1)G(2)\cdots G(m), & \: \text{if}\: m < n.
     !> \end{array}
     !> \f]
@@ -12670,7 +12693,7 @@ module hipfort_rocsolver
     !>
     !> \f[
     !> \begin{array}{cl}
-    !> H(i) = I - \text{tauq}[i] \cdot v_i^{} v_i^H, & \: \text{and}\\
+    !> H(i) = I - \text{tauq}[i] \cdot v_i^{} v_i^H, & \: \text{and}\\%
     !> G(i) = I - \text{taup}[i] \cdot u_i^H u_i^{}.
     !> \end{array}
     !> \f]
@@ -12813,7 +12836,7 @@ module hipfort_rocsolver
     !> \f[
     !> \begin{array}{cl}
     !> Q_l = H_l(1)H_l(2)\cdots H_l(n)\: \text{and} \: P_l = G_l(1)G_l(2)\cdots G_l(n-1), & \:
-    !> \text{if}\: m >= n, \:\text{or}\\
+    !> \text{if}\: m >= n, \:\text{or}\\%
     !> Q_l = H_l(1)H_l(2)\cdots H_l(m-1)\: \text{and} \: P_l = G_l(1)G_l(2)\cdots G_l(m), & \:
     !> \text{if}\: m < n.
     !> \end{array}
@@ -12823,7 +12846,7 @@ module hipfort_rocsolver
     !>
     !> \f[
     !> \begin{array}{cl}
-    !> H_l^{}(i) = I - \text{tauq}_l^{}[i] \cdot v_{l_i}^{} v_{l_i}^H, & \: \text{and}\\
+    !> H_l^{}(i) = I - \text{tauq}_l^{}[i] \cdot v_{l_i}^{} v_{l_i}^H, & \: \text{and}\\%
     !> G_l^{}(i) = I - \text{taup}_l^{}[i] \cdot u_{l_i}^H u_{l_i}^{}.
     !> \end{array}
     !> \f]
@@ -13012,7 +13035,7 @@ module hipfort_rocsolver
     !> \f[
     !> \begin{array}{cl}
     !> Q_l = H_l(1)H_l(2)\cdots H_l(n)\: \text{and} \: P_l = G_l(1)G_l(2)\cdots G_l(n-1), & \:
-    !> \text{if}\: m >= n, \:\text{or}\\
+    !> \text{if}\: m >= n, \:\text{or}\\%
     !> Q_l = H_l(1)H_l(2)\cdots H_l(m-1)\: \text{and} \: P_l = G_l(1)G_l(2)\cdots G_l(m), & \:
     !> \text{if}\: m < n.
     !> \end{array}
@@ -13022,7 +13045,7 @@ module hipfort_rocsolver
     !>
     !> \f[
     !> \begin{array}{cl}
-    !> H_l^{}(i) = I - \text{tauq}_l^{}[i] \cdot v_{l_i}^{} v_{l_i}^H, & \: \text{and}\\
+    !> H_l^{}(i) = I - \text{tauq}_l^{}[i] \cdot v_{l_i}^{} v_{l_i}^H, & \: \text{and}\\%
     !> G_l^{}(i) = I - \text{taup}_l^{}[i] \cdot u_{l_i}^H u_{l_i}^{}.
     !> \end{array}
     !> \f]
@@ -13208,8 +13231,8 @@ module hipfort_rocsolver
     !>
     !> \f[
     !> \begin{array}{cl}
-    !> A X = B & \: \text{not transposed,}\\
-    !> A^T X = B & \: \text{transposed, or}\\
+    !> A X = B & \: \text{not transposed,}\\%
+    !> A^T X = B & \: \text{transposed, or}\\%
     !> A^H X = B & \: \text{conjugate transposed.}
     !> \end{array}
     !> \f]
@@ -13408,8 +13431,8 @@ module hipfort_rocsolver
     !>
     !> \f[
     !> \begin{array}{cl}
-    !> A_l X_l = B_l & \: \text{not transposed,}\\
-    !> A_l^T X_l^{} = B_l^{} & \: \text{transposed, or}\\
+    !> A_l X_l = B_l & \: \text{not transposed,}\\%
+    !> A_l^T X_l^{} = B_l^{} & \: \text{transposed, or}\\%
     !> A_l^H X_l^{} = B_l^{} & \: \text{conjugate transposed.}
     !> \end{array}
     !> \f]
@@ -13640,8 +13663,8 @@ module hipfort_rocsolver
     !>
     !> \f[
     !> \begin{array}{cl}
-    !> A_l X_l = B_l & \: \text{not transposed,}\\
-    !> A_l^T X_l^{} = B_l^{} & \: \text{transposed, or}\\
+    !> A_l X_l = B_l & \: \text{not transposed,}\\%
+    !> A_l^T X_l^{} = B_l^{} & \: \text{transposed, or}\\%
     !> A_l^H X_l^{} = B_l^{} & \: \text{conjugate transposed.}
     !> \end{array}
     !> \f]
@@ -13896,8 +13919,8 @@ module hipfort_rocsolver
     !>
     !> \f[
     !> \begin{array}{cl}
-    !> A X = B & \: \text{where} \\
-    !> A = U D U^T & \: \text{ U is upper triangular or}\\
+    !> A X = B & \: \text{where} \\%
+    !> A = U D U^T & \: \text{ U is upper triangular or}\\%
     !> A = L D L^T & \: \text{ L is lower triangular}
     !> \end{array}
     !> \f]
@@ -14097,8 +14120,8 @@ module hipfort_rocsolver
     !>
     !> \f[
     !> \begin{array}{cl}
-    !> A_l X_l = B_l & \: \text{where} \\
-    !> A_l = U_l D_l U_l^T & \: \text{U is upper triangular, or}\\
+    !> A_l X_l = B_l & \: \text{where} \\%
+    !> A_l = U_l D_l U_l^T & \: \text{U is upper triangular, or}\\%
     !> A_l = L_l D_l L_l^T & \: \text{L is lower triangular }
     !> \end{array}
     !> \f]
@@ -14331,8 +14354,8 @@ module hipfort_rocsolver
     !>
     !> \f[
     !> \begin{array}{cl}
-    !> A_l X_l = B_l & \: \text{where} \\
-    !> A_l = U_l D_l U_l^T & \: \text{U is upper triangular, or}\\
+    !> A_l X_l = B_l & \: \text{where} \\%
+    !> A_l = U_l D_l U_l^T & \: \text{U is upper triangular, or}\\%
     !> A_l = L_l D_l L_l^T & \: \text{L is lower triangular }
     !> \end{array}
     !> \f]
@@ -14589,7 +14612,7 @@ module hipfort_rocsolver
     !> A X = B
     !> \f]
     !>
-    !> where ``A`` is a general ``n``-by-``n ``matrix. Matrix ``A`` is first factorized in
+    !> where ``A`` is a general ``n`` -by-``n ``matrix. Matrix `` A`` is first factorized in
     !> triangular factors L and U
     !> using \ref rocsolver_sgetrf "GETRF", then the solution is computed with \ref rocsolver_sgetrs
     !> "GETRS".
@@ -14713,7 +14736,7 @@ module hipfort_rocsolver
     !> A_l X_l = B_l
     !> \f]
     !>
-    !> where \f$A_l\f$ is a general ``n``-by-``n`` matrix. Matrix \f$A_l\f$ is first factorized in
+    !> where \f$A_l\f$ is a general ``n`` -by-``n`` matrix. Matrix \f$A_l\f$ is first factorized in
     !> triangular factors \f$L_l\f$ and \f$U_l\f$
     !> using \ref rocsolver_sgetrf_batched "GETRF_BATCHED", then the solutions are computed with
     !> \ref rocsolver_sgetrs_batched "GETRS_BATCHED".
@@ -14858,7 +14881,7 @@ module hipfort_rocsolver
     !> A_l X_l = B_l
     !> \f]
     !>
-    !> where \f$A_l\f$ is a general ``n``-by-``n`` matrix. Matrix \f$A_l\f$ is first factorized in
+    !> where \f$A_l\f$ is a general ``n`` -by-``n`` matrix. Matrix \f$A_l\f$ is first factorized in
     !> triangular factors \f$L_l\f$ and \f$U_l\f$
     !> using \ref rocsolver_sgetrf_strided_batched "GETRF_STRIDED_BATCHED", and then the solutions
     !> are computed with
@@ -15016,8 +15039,8 @@ module hipfort_rocsolver
     !>
     !> \f[
     !> \begin{array}{cl}
-    !> A X = B & \: \text{not transposed,}\\
-    !> A^T X = B & \: \text{transposed, or}\\
+    !> A X = B & \: \text{not transposed,}\\%
+    !> A^T X = B & \: \text{transposed, or}\\%
     !> A^H X = B & \: \text{conjugate transposed.}
     !> \end{array}
     !> \f]
@@ -15206,8 +15229,8 @@ module hipfort_rocsolver
     !>
     !> \f[
     !> \begin{array}{cl}
-    !> A_l X_l = B_l & \: \text{not transposed,}\\
-    !> A_l^T X_l^{} = B_l^{} & \: \text{transposed, or}\\
+    !> A_l X_l = B_l & \: \text{not transposed,}\\%
+    !> A_l^T X_l^{} = B_l^{} & \: \text{transposed, or}\\%
     !> A_l^H X_l^{} = B_l^{} & \: \text{conjugate transposed.}
     !> \end{array}
     !> \f]
@@ -15408,8 +15431,8 @@ module hipfort_rocsolver
     !>
     !> \f[
     !> \begin{array}{cl}
-    !> A_l X_l = B_l & \: \text{not transposed,}\\
-    !> A_l^T X_l^{} = B_l^{} & \: \text{transposed, or}\\
+    !> A_l X_l = B_l & \: \text{not transposed,}\\%
+    !> A_l^T X_l^{} = B_l^{} & \: \text{transposed, or}\\%
     !> A_l^H X_l^{} = B_l^{} & \: \text{conjugate transposed.}
     !> \end{array}
     !> \f]
@@ -15631,7 +15654,7 @@ module hipfort_rocsolver
     !---------------------------------------------
     ! rocsolver_sgetri
     !---------------------------------------------
-    !> \brief The GETRI functions invert a general ``n``-by-``n`` matrix ``A`` using the LU
+    !> \brief The GETRI functions invert a general ``n`` -by-``n`` matrix ``A`` using the LU
     !> factorization
     !> computed by \ref rocsolver_sgetrf "GETRF".
     !>
@@ -15968,7 +15991,7 @@ module hipfort_rocsolver
     !---------------------------------------------
     ! rocsolver_sgetri_npvt
     !---------------------------------------------
-    !> \brief The GETRI_NPVT functions invert a general ``n``-by``-n`` matrix ``A`` using the LU
+    !> \brief The GETRI_NPVT functions invert a general ``n`` -by``-n`` matrix ``A`` using the LU
     !> factorization
     !> computed by \ref rocsolver_sgetrf_npvt "GETRF_NPVT".
     !>
@@ -16059,7 +16082,7 @@ module hipfort_rocsolver
     !---------------------------------------------
     ! rocsolver_sgetri_npvt_batched
     !---------------------------------------------
-    !> \brief The GETRI_NPVT_BATCHED functions invert a batch of general ``n``-by-``n`` matrices
+    !> \brief The GETRI_NPVT_BATCHED functions invert a batch of general ``n`` -by-``n`` matrices
     !> using
     !> the LU factorization computed by \ref rocsolver_sgetrf_npvt_batched "GETRF_NPVT_BATCHED".
     !>
@@ -16158,7 +16181,7 @@ module hipfort_rocsolver
     !---------------------------------------------
     ! rocsolver_sgetri_npvt_strided_batched
     !---------------------------------------------
-    !> \brief The GETRI_NPVT_STRIDED_BATCHED functions invert a batch of general ``n``-by-``n``
+    !> \brief The GETRI_NPVT_STRIDED_BATCHED functions invert a batch of general ``n`` -by-``n``
     !> matrices
     !> using the LU factorization computed by \ref rocsolver_sgetrf_npvt_strided_batched
     !> "GETRF_NPVT_STRIDED_BATCHED".
@@ -16267,7 +16290,7 @@ module hipfort_rocsolver
     ! rocsolver_sgels
     !---------------------------------------------
     !> \brief The GELS functions solve an overdetermined (or underdetermined) linear system defined
-    !> by an ``m``-by-``n``
+    !> by an ``m`` -by-``n``
     !> matrix ``A`` and a corresponding matrix ``B``, using the QR factorization computed by \ref
     !> rocsolver_sgeqrf "GEQRF" (or the LQ
     !> factorization computed by \ref rocsolver_sgelqf "GELQF").
@@ -16278,7 +16301,7 @@ module hipfort_rocsolver
     !>
     !> \f[
     !> \begin{array}{cl}
-    !> A X = B & \: \text{not transposed, or}\\
+    !> A X = B & \: \text{not transposed, or}\\%
     !> A^H X = B & \: \text{transposed if real, or conjugate transposed if complex}
     !> \end{array}
     !> \f]
@@ -16413,7 +16436,7 @@ module hipfort_rocsolver
     !---------------------------------------------
     !> \brief The GELS_BATCHED functions solve a batch of overdetermined (or underdetermined) linear
     !> systems
-    !> defined by a set of ``m``-by-``n`` matrices \f$A_l\f$ and corresponding matrices \f$B_l\f$,
+    !> defined by a set of ``m`` -by-``n`` matrices \f$A_l\f$ and corresponding matrices \f$B_l\f$,
     !> using the
     !> QR factorizations computed by \ref rocsolver_sgeqrf_batched "GEQRF_BATCHED" (or the LQ
     !> factorizations computed by \ref rocsolver_sgelqf_batched "GELQF_BATCHED").
@@ -16424,7 +16447,7 @@ module hipfort_rocsolver
     !>
     !> \f[
     !> \begin{array}{cl}
-    !> A_l X_l = B_l & \: \text{not transposed, or}\\
+    !> A_l X_l = B_l & \: \text{not transposed, or}\\%
     !> A_l^H X_l^{} = B_l^{} & \: \text{transposed if real, or conjugate transposed if complex}
     !> \end{array}
     !> \f]
@@ -16567,7 +16590,7 @@ module hipfort_rocsolver
     !---------------------------------------------
     !> \brief The GELS_STRIDED_BATCHED functions solve a batch of overdetermined (or
     !> underdetermined) linear
-    !> systems defined by a set of ``m``-by-``n`` matrices \f$A_l\f$ and corresponding matrices
+    !> systems defined by a set of ``m`` -by-``n`` matrices \f$A_l\f$ and corresponding matrices
     !> \f$B_l\f$,
     !> using the QR factorizations computed by \ref rocsolver_sgeqrf_strided_batched
     !> "GEQRF_STRIDED_BATCHED"
@@ -16580,7 +16603,7 @@ module hipfort_rocsolver
     !>
     !> \f[
     !> \begin{array}{cl}
-    !> A_l X_l = B_l & \: \text{not transposed, or}\\
+    !> A_l X_l = B_l & \: \text{not transposed, or}\\%
     !> A_l^H X_l^{} = B_l^{} & \: \text{transposed if real, or conjugate transposed if complex}
     !> \end{array}
     !> \f]
@@ -16752,7 +16775,7 @@ module hipfort_rocsolver
     !>
     !> \f[
     !> \begin{array}{cl}
-    !> A = U^H U & \: \text{if uplo is upper, or}\\
+    !> A = U^H U & \: \text{if uplo is upper, or}\\%
     !> A = L L^H & \: \text{if uplo is lower.}
     !> \end{array}
     !> \f]
@@ -16917,7 +16940,7 @@ module hipfort_rocsolver
     !>
     !> \f[
     !> \begin{array}{cl}
-    !> A_l^{} = U_l^H U_l^{} & \: \text{if uplo is upper, or}\\
+    !> A_l^{} = U_l^H U_l^{} & \: \text{if uplo is upper, or}\\%
     !> A_l^{} = L_l^{}L_l^H & \: \text{if uplo is lower.}
     !> \end{array}
     !> \f]
@@ -17093,7 +17116,7 @@ module hipfort_rocsolver
     !>
     !> \f[
     !> \begin{array}{cl}
-    !> A_l^{} = U_l^H U_l^{} & \: \text{if uplo is upper, or}\\
+    !> A_l^{} = U_l^H U_l^{} & \: \text{if uplo is upper, or}\\%
     !> A_l^{} = L_l^{}L_l^H & \: \text{if uplo is lower.}
     !> \end{array}
     !> \f]
@@ -17285,7 +17308,7 @@ module hipfort_rocsolver
     !>
     !> \f[
     !> \begin{array}{cl}
-    !> A = U^H U & \: \text{if uplo is upper, or}\\
+    !> A = U^H U & \: \text{if uplo is upper, or}\\%
     !> A = L L^H & \: \text{if uplo is lower.}
     !> \end{array}
     !> \f]
@@ -17450,7 +17473,7 @@ module hipfort_rocsolver
     !>
     !> \f[
     !> \begin{array}{cl}
-    !> A_l^{} = U_l^H U_l^{} & \: \text{if uplo is upper, or}\\
+    !> A_l^{} = U_l^H U_l^{} & \: \text{if uplo is upper, or}\\%
     !> A_l^{} = L_l^{}L_l^H & \: \text{if uplo is lower.}
     !> \end{array}
     !> \f]
@@ -17626,7 +17649,7 @@ module hipfort_rocsolver
     !>
     !> \f[
     !> \begin{array}{cl}
-    !> A_l^{} = U_l^H U_l^{} & \: \text{if uplo is upper, or}\\
+    !> A_l^{} = U_l^H U_l^{} & \: \text{if uplo is upper, or}\\%
     !> A_l^{} = L_l^{}L_l^H & \: \text{if uplo is lower.}
     !> \end{array}
     !> \f]
@@ -17823,7 +17846,7 @@ module hipfort_rocsolver
     !>
     !> \f[
     !> \begin{array}{cl}
-    !> A = U^H U & \: \text{if uplo is upper, or}\\
+    !> A = U^H U & \: \text{if uplo is upper, or}\\%
     !> A = L L^H & \: \text{if uplo is lower.}
     !> \end{array}
     !> \f]
@@ -18018,7 +18041,7 @@ module hipfort_rocsolver
     !>
     !> \f[
     !> \begin{array}{cl}
-    !> A_l^{} = U_l^H U_l^{} & \: \text{if uplo is upper, or}\\
+    !> A_l^{} = U_l^H U_l^{} & \: \text{if uplo is upper, or}\\%
     !> A_l^{} = L_l^{}L_l^H & \: \text{if uplo is lower.}
     !> \end{array}
     !> \f]
@@ -18225,7 +18248,7 @@ module hipfort_rocsolver
     !>
     !> \f[
     !> \begin{array}{cl}
-    !> A_l^{} = U_l^H U_l^{} & \: \text{if uplo is upper, or}\\
+    !> A_l^{} = U_l^H U_l^{} & \: \text{if uplo is upper, or}\\%
     !> A_l^{} = L_l^{}L_l^H & \: \text{if uplo is lower.}
     !> \end{array}
     !> \f]
@@ -18868,7 +18891,7 @@ module hipfort_rocsolver
     !>
     !> \f[
     !> \begin{array}{cl}
-    !> A^{-1} = U^{-1} {U^{-1}}^H & \: \text{if uplo is upper, or}\\
+    !> A^{-1} = U^{-1} {U^{-1}}^H & \: \text{if uplo is upper, or}\\%
     !> A^{-1} = {L^{-1}}^H L^{-1} & \: \text{if uplo is lower.}
     !> \end{array}
     !> \f]
@@ -18970,7 +18993,7 @@ module hipfort_rocsolver
     !>
     !> \f[
     !> \begin{array}{cl}
-    !> A_l^{-1} = U_l^{-1} {U_l^{-1}}^H & \: \text{if uplo is upper, or}\\
+    !> A_l^{-1} = U_l^{-1} {U_l^{-1}}^H & \: \text{if uplo is upper, or}\\%
     !> A_l^{-1} = {L_l^{-1}}^H L_l^{-1} & \: \text{if uplo is lower.}
     !> \end{array}
     !> \f]
@@ -19079,7 +19102,7 @@ module hipfort_rocsolver
     !>
     !> \f[
     !> \begin{array}{cl}
-    !> A_l^{-1} = U_l^{-1} {U_l^{-1}}^H & \: \text{if uplo is upper, or}\\
+    !> A_l^{-1} = U_l^{-1} {U_l^{-1}}^H & \: \text{if uplo is upper, or}\\%
     !> A_l^{-1} = {L_l^{-1}}^H L_l^{-1} & \: \text{if uplo is lower.}
     !> \end{array}
     !> \f]
@@ -19208,7 +19231,7 @@ module hipfort_rocsolver
     !> computed, this function returns the transpose (or transpose conjugate) of the
     !> right singular vectors, that is, the rows of \f$V^H\f$.
     !>
-    !> ``left_svect`` and ``right_svect`` are #rocblas_svect enums that can take the
+    !> ``left_svect`` and ``right_svect`` are `rocblas_svect` enums that can take the
     !> following values:
     !>
     !> - ``rocblas_svect_all``: the entire matrix ``U`` (or \f$V^H\f$) is computed,
@@ -19246,10 +19269,10 @@ module hipfort_rocsolver
     !> @param[in]
     !> handle      rocblas_handle.
     !> @param[in]
-    !> left_svect  #rocblas_svect.
+    !> left_svect  `rocblas_svect`.
     !> Specifies how the left singular vectors are computed.
     !> @param[in]
-    !> right_svect #rocblas_svect.
+    !> right_svect `rocblas_svect`.
     !> Specifies how the right singular vectors are computed.
     !> @param[in]
     !> m           rocblas_int. m >= 0.
@@ -19295,7 +19318,7 @@ module hipfort_rocsolver
     !> are in S. Those that converged correspond to a subset of the singular values
     !> of A (not necessarily ordered).
     !> @param[in]
-    !> fast_alg    #rocblas_workmode.
+    !> fast_alg    `rocblas_workmode`.
     !> If set to rocblas_outofplace, the function will execute the
     !> fast thin-SVD version of the algorithm when possible.
     !> @param[out]
@@ -19428,7 +19451,7 @@ module hipfort_rocsolver
     !> computed, this function returns the transpose (or transpose conjugate) of the
     !> right singular vectors, that is, the rows of \f$V_l^H\f$.
     !>
-    !> ``left_svect`` and ``right_svect`` are #rocblas_svect enums that can take the
+    !> ``left_svect`` and ``right_svect`` are `rocblas_svect` enums that can take the
     !> following values:
     !>
     !> - ``rocblas_svect_all``: the entire matrix \f$U_l\f$ (or \f$V_l^H\f$) is computed,
@@ -19466,10 +19489,10 @@ module hipfort_rocsolver
     !> @param[in]
     !> handle      rocblas_handle.
     !> @param[in]
-    !> left_svect  #rocblas_svect.
+    !> left_svect  `rocblas_svect`.
     !> Specifies how the left singular vectors are computed.
     !> @param[in]
-    !> right_svect #rocblas_svect.
+    !> right_svect `rocblas_svect`.
     !> Specifies how the right singular vectors are computed.
     !> @param[in]
     !> m           rocblas_int. m >= 0.
@@ -19538,7 +19561,7 @@ module hipfort_rocsolver
     !> There is no restriction for the value of strideE. The normal use case is strideE >=
     !> min(m,n)-1.
     !> @param[in]
-    !> fast_alg    #rocblas_workmode.
+    !> fast_alg    `rocblas_workmode`.
     !> If set to rocblas_outofplace, the function will execute the fast thin-SVD version
     !> of the algorithm when possible.
     !> @param[out]
@@ -19698,7 +19721,7 @@ module hipfort_rocsolver
     !> computed, this function returns the transpose (or transpose conjugate) of the
     !> right singular vectors, that is, the rows of \f$V_l^H\f$.
     !>
-    !> ``left_svect`` and ``right_svect`` are #rocblas_svect enums that can take the
+    !> ``left_svect`` and ``right_svect`` are `rocblas_svect` enums that can take the
     !> following values:
     !>
     !> - ``rocblas_svect_all``: the entire matrix \f$U_l\f$ (or \f$V_l^H\f$) is computed,
@@ -19736,10 +19759,10 @@ module hipfort_rocsolver
     !> @param[in]
     !> handle      rocblas_handle.
     !> @param[in]
-    !> left_svect  #rocblas_svect.
+    !> left_svect  `rocblas_svect`.
     !> Specifies how the left singular vectors are computed.
     !> @param[in]
-    !> right_svect #rocblas_svect.
+    !> right_svect `rocblas_svect`.
     !> Specifies how the right singular vectors are computed.
     !> @param[in]
     !> m           rocblas_int. m >= 0.
@@ -19811,7 +19834,7 @@ module hipfort_rocsolver
     !> There is no restriction for the value of strideE.
     !> The normal use case is strideE >= min(m,n)-1.
     !> @param[in]
-    !> fast_alg    #rocblas_workmode.
+    !> fast_alg    `rocblas_workmode`.
     !> If set to rocblas_outofplace, the function will execute the fast thin-SVD version
     !> of the algorithm when possible.
     !> @param[out]
@@ -19973,7 +19996,7 @@ module hipfort_rocsolver
     !> computed, this function returns the transpose (or transpose conjugate) of the
     !> right singular vectors, i.e. the rows of \f$V^H\f$.
     !>
-    !> left_svect and right_svect are #rocblas_svect enums that can take the
+    !> left_svect and right_svect are `rocblas_svect` enums that can take the
     !> following values:
     !>
     !> - rocblas_svect_all: the entire matrix U (or \f$V^H\f$) is computed,
@@ -19982,7 +20005,7 @@ module hipfort_rocsolver
     !> - rocblas_svect_none: no columns (or rows) of U (or \f$V^H\f$) are computed, i.e.
     !> no singular vectors.
     !>
-    !> The singular values are computed by applying QR factorization to \f$AV\f$ if \f$m \geq n\f$
+    !> The singular values are computed by applying QR factorization to \f$AV\f$ if \f$m &ge; n\f$
     !> (resp. LQ factorization to \f$U^H A\f$ if \f$m < n\f$), where \f$V\f$ (resp. \f$U\f$) is
     !> found as the
     !> eigenvectors of \f$A^H A\f$ (resp. \f$A A^H\f$) using the Divide-and-Conquer eigensolver.
@@ -19990,11 +20013,11 @@ module hipfort_rocsolver
     !> @param[in]
     !> handle      rocblas_handle.
     !> @param[in]
-    !> left_svect  #rocblas_svect.
+    !> left_svect  `rocblas_svect`.
     !> Specifies how the left singular vectors are computed.
     !> rocblas_svect_overwrite is not supported.
     !> @param[in]
-    !> right_svect #rocblas_svect.
+    !> right_svect `rocblas_svect`.
     !> Specifies how the right singular vectors are computed.
     !> rocblas_svect_overwrite is not supported.
     !> @param[in]
@@ -20149,7 +20172,7 @@ module hipfort_rocsolver
     !> computed, this function returns the transpose (or transpose conjugate) of the
     !> right singular vectors, i.e. the rows of \f$V_l^H\f$.
     !>
-    !> left_svect and right_svect are #rocblas_svect enums that can take the
+    !> left_svect and right_svect are `rocblas_svect` enums that can take the
     !> following values:
     !>
     !> - rocblas_svect_all: the entire matrix \f$U_l\f$ (or \f$V_l^H\f$) is computed,
@@ -20167,11 +20190,11 @@ module hipfort_rocsolver
     !> @param[in]
     !> handle      rocblas_handle.
     !> @param[in]
-    !> left_svect  #rocblas_svect.
+    !> left_svect  `rocblas_svect`.
     !> Specifies how the left singular vectors are computed.
     !> rocblas_svect_overwrite is not supported.
     !> @param[in]
-    !> right_svect #rocblas_svect.
+    !> right_svect `rocblas_svect`.
     !> Specifies how the right singular vectors are computed.
     !> rocblas_svect_overwrite is not supported.
     !> @param[in]
@@ -20362,7 +20385,7 @@ module hipfort_rocsolver
     !> computed, this function returns the transpose (or transpose conjugate) of the
     !> right singular vectors, i.e. the rows of \f$V_l^H\f$.
     !>
-    !> left_svect and right_svect are #rocblas_svect enums that can take the
+    !> left_svect and right_svect are `rocblas_svect` enums that can take the
     !> following values:
     !>
     !> - rocblas_svect_all: the entire matrix \f$U_l\f$ (or \f$V_l^H\f$) is computed,
@@ -20380,11 +20403,11 @@ module hipfort_rocsolver
     !> @param[in]
     !> handle      rocblas_handle.
     !> @param[in]
-    !> left_svect  #rocblas_svect.
+    !> left_svect  `rocblas_svect`.
     !> Specifies how the left singular vectors are computed.
     !> rocblas_svect_overwrite is not supported.
     !> @param[in]
-    !> right_svect #rocblas_svect.
+    !> right_svect `rocblas_svect`.
     !> Specifies how the right singular vectors are computed.
     !> rocblas_svect_overwrite is not supported.
     !> @param[in]
@@ -20586,7 +20609,7 @@ module hipfort_rocsolver
     !> computed, this function returns the transpose (or transpose conjugate) of the
     !> right singular vectors, that is, the rows of \f$V^H\f$.
     !>
-    !> ``left_svect`` and ``right_svect`` are #rocblas_svect enums that can take the
+    !> ``left_svect`` and ``right_svect`` are `rocblas_svect` enums that can take the
     !> following values:
     !>
     !> - ``rocblas_svect_all``: the entire matrix ``U`` (or \f$V^H\f$) is computed,
@@ -20595,7 +20618,7 @@ module hipfort_rocsolver
     !> - ``rocblas_svect_none``: no columns (or rows) of ``U`` (or \f$V^H\f$) are computed, that is,
     !> no singular vectors.
     !>
-    !> The singular values are computed by applying QR factorization to \f$AV\f$ if \f$m \geq n\f$
+    !> The singular values are computed by applying QR factorization to \f$AV\f$ if \f$m &ge; n\f$
     !> (resp. LQ factorization to \f$U^H A\f$ if \f$m < n\f$), where \f$V\f$ (resp. \f$U\f$) is
     !> found as the
     !> eigenvectors of \f$A^H A\f$ (resp. \f$A A^H\f$) using the Jacobi eigenvalue algorithm.
@@ -20608,11 +20631,11 @@ module hipfort_rocsolver
     !> @param[in]
     !> handle      rocblas_handle.
     !> @param[in]
-    !> left_svect  #rocblas_svect.
+    !> left_svect  `rocblas_svect`.
     !> Specifies how the left singular vectors are computed.
     !> rocblas_svect_overwrite is not supported.
     !> @param[in]
-    !> right_svect #rocblas_svect.
+    !> right_svect `rocblas_svect`.
     !> Specifies how the right singular vectors are computed.
     !> rocblas_svect_overwrite is not supported.
     !> @param[in]
@@ -20631,8 +20654,8 @@ module hipfort_rocsolver
     !> @param[in]
     !> abstol      real type.
     !> The absolute tolerance. The algorithm is considered to have converged once
-    !> \f$\mathrm{off}(A^H A) \leq \mathrm{norm}(A^H A) \cdot \mathrm{abstol}\f$
-    !> [resp. \f$\mathrm{off}(A A^H) \leq \mathrm{norm}(A A^H) \cdot \mathrm{abstol}\f$]. If abstol
+    !> \f$\mathrm{off}(A^H A) &le; \mathrm{norm}(A^H A) \cdot \mathrm{abstol}\f$
+    !> [resp. \f$\mathrm{off}(A A^H) &le; \mathrm{norm}(A A^H) \cdot \mathrm{abstol}\f$]. If abstol
     !> <= 0,
     !> then the tolerance will be set to machine precision.
     !> @param[out]
@@ -20801,7 +20824,7 @@ module hipfort_rocsolver
     !> computed, this function returns the transpose (or transpose conjugate) of the
     !> right singular vectors, that is, the rows of \f$V_l^H\f$.
     !>
-    !> ``left_svect`` and ``right_svect`` are #rocblas_svect enums that can take the
+    !> ``left_svect`` and ``right_svect`` are `rocblas_svect` enums that can take the
     !> following values:
     !>
     !> - ``rocblas_svect_all``: the entire matrix \f$U_l\f$ (or \f$V_l^H\f$) is computed,
@@ -20812,7 +20835,7 @@ module hipfort_rocsolver
     !>
     !> The singular values are computed by applying QR factorization to \f$A_lV_l\f$ if ``m`` >=
     !> ``n``
-    !> (resp. LQ factorization to \f$U_l^H A_l\f$ if ``m`` < ``n``), where \f$V_l\f$ (resp.
+    !> (resp. LQ factorization to \f$U_l^H A_l\f$ if ``m`` < ``n`` ), where \f$V_l\f$ (resp.
     !> \f$U_l\f$) is
     !> found as the eigenvectors of \f$A_l^H A_l\f$ (resp. \f$A_l A_l^H\f$) using the Jacobi
     !> eigenvalue algorithm.
@@ -20825,11 +20848,11 @@ module hipfort_rocsolver
     !> @param[in]
     !> handle      rocblas_handle.
     !> @param[in]
-    !> left_svect  #rocblas_svect.
+    !> left_svect  `rocblas_svect`.
     !> Specifies how the left singular vectors are computed.
     !> rocblas_svect_overwrite is not supported.
     !> @param[in]
-    !> right_svect #rocblas_svect.
+    !> right_svect `rocblas_svect`.
     !> Specifies how the right singular vectors are computed.
     !> rocblas_svect_overwrite is not supported.
     !> @param[in]
@@ -20849,8 +20872,8 @@ module hipfort_rocsolver
     !> @param[in]
     !> abstol      real type.
     !> The absolute tolerance. The algorithm is considered to have converged once
-    !> \f$\mathrm{off}(A_l^H A_l) \leq \mathrm{norm}(A_l^H A_l) \cdot \mathrm{abstol}\f$
-    !> [resp. \f$\mathrm{off}(A_l A_l^H) \leq \mathrm{norm}(A_l A_l^H) \cdot \mathrm{abstol}\f$]. If
+    !> \f$\mathrm{off}(A_l^H A_l) &le; \mathrm{norm}(A_l^H A_l) \cdot \mathrm{abstol}\f$
+    !> [resp. \f$\mathrm{off}(A_l A_l^H) &le; \mathrm{norm}(A_l A_l^H) \cdot \mathrm{abstol}\f$]. If
     !> abstol <= 0,
     !> then the tolerance will be set to machine precision.
     !> @param[out]
@@ -21058,7 +21081,7 @@ module hipfort_rocsolver
     !> computed, this function returns the transpose (or transpose conjugate) of the
     !> right singular vectors, that is, the rows of \f$V_l^H\f$.
     !>
-    !> ``left_svect`` and ``right_svect`` are #rocblas_svect enums that can take the
+    !> ``left_svect`` and ``right_svect`` are `rocblas_svect` enums that can take the
     !> following values:
     !>
     !> - ``rocblas_svect_all``: the entire matrix \f$U_l\f$ (or \f$V_l^H\f$) is computed,
@@ -21069,7 +21092,7 @@ module hipfort_rocsolver
     !>
     !> The singular values are computed by applying QR factorization to \f$A_lV_l\f$ if ``m`` >=
     !> ``n``
-    !> (resp. LQ factorization to \f$U_l^H A_l\f$ if ``m`` < ``n``), where \f$V_l\f$ (resp.
+    !> (resp. LQ factorization to \f$U_l^H A_l\f$ if ``m`` < ``n`` ), where \f$V_l\f$ (resp.
     !> \f$U_l\f$) is
     !> found as the eigenvectors of \f$A_l^H A_l\f$ (resp. \f$A_l A_l^H\f$) using the Jacobi
     !> eigenvalue algorithm.
@@ -21082,11 +21105,11 @@ module hipfort_rocsolver
     !> @param[in]
     !> handle      rocblas_handle.
     !> @param[in]
-    !> left_svect  #rocblas_svect.
+    !> left_svect  `rocblas_svect`.
     !> Specifies how the left singular vectors are computed.
     !> rocblas_svect_overwrite is not supported.
     !> @param[in]
-    !> right_svect #rocblas_svect.
+    !> right_svect `rocblas_svect`.
     !> Specifies how the right singular vectors are computed.
     !> rocblas_svect_overwrite is not supported.
     !> @param[in]
@@ -21110,8 +21133,8 @@ module hipfort_rocsolver
     !> @param[in]
     !> abstol      real type.
     !> The absolute tolerance. The algorithm is considered to have converged once
-    !> \f$\mathrm{off}(A_l^H A_l) \leq \mathrm{norm}(A_l^H A_l) \cdot \mathrm{abstol}\f$
-    !> [resp. \f$\mathrm{off}(A_l A_l^H) \leq \mathrm{norm}(A_l A_l^H) \cdot \mathrm{abstol}\f$]. If
+    !> \f$\mathrm{off}(A_l^H A_l) &le; \mathrm{norm}(A_l^H A_l) \cdot \mathrm{abstol}\f$
+    !> [resp. \f$\mathrm{off}(A_l A_l^H) &le; \mathrm{norm}(A_l A_l^H) \cdot \mathrm{abstol}\f$]. If
     !> abstol <= 0,
     !> then the tolerance will be set to machine precision.
     !> @param[out]
@@ -21313,8 +21336,8 @@ module hipfort_rocsolver
     !> \details
     !> This function computes all the singular values of ``A``, all the singular values in the
     !> half-open interval
-    !> \f$[vl, vu)\f$, or the ``il``-th through ``iu``-th singular values, depending on the value of
-    !> ``srange``.
+    !> \f$[vl, vu)\f$, or the ``il`` -th through ``iu`` -th singular values, depending on the value
+    !> of ``srange``.
     !>
     !> The full SVD of matrix ``A`` is given by:
     !>
@@ -21332,8 +21355,8 @@ module hipfort_rocsolver
     !> computed, this function returns the transpose (or transpose conjugate) of the
     !> right singular vectors, that is, the rows of \f$V^H\f$.
     !>
-    !> ``left_svect`` and ``right_svect`` are #rocblas_svect enums that, for this function, can take
-    !> the
+    !> ``left_svect`` and ``right_svect`` are `rocblas_svect` enums that, for this function, can
+    !> take the
     !> following values:
     !>
     !> - ``rocblas_svect_singular``: the singular vectors (first min(m,n)
@@ -21345,13 +21368,13 @@ module hipfort_rocsolver
     !> @param[in]
     !> handle      rocblas_handle.
     !> @param[in]
-    !> left_svect  #rocblas_svect.
+    !> left_svect  `rocblas_svect`.
     !> Specifies if the left singular vectors are computed.
     !> @param[in]
-    !> right_svect #rocblas_svect.
+    !> right_svect `rocblas_svect`.
     !> Specifies if the right singular vectors are computed.
     !> @param[in]
-    !> srange      #rocblas_srange.
+    !> srange      `rocblas_srange`.
     !> Specifies the type of range or interval of the singular values to be computed.
     !> @param[in]
     !> m           rocblas_int. m >= 0.
@@ -21545,14 +21568,14 @@ module hipfort_rocsolver
     !---------------------------------------------
     !> \brief The GESVDX_BATCHED functions compute a set of singular values and optionally the
     !> corresponding singular
-    !> vectors of a batch of general ``m``-by-``n`` matrices \f$A_l\f$ (partial Singular Value
+    !> vectors of a batch of general ``m`` -by-``n`` matrices \f$A_l\f$ (partial Singular Value
     !> Decomposition).
     !>
     !> \details
     !> This function computes all the singular values of \f$A_l\f$, all the singular values in the
     !> half-open interval
-    !> \f$[vl, vu)\f$, or the ``il``-th through ``iu``-th singular values, depending on the value of
-    !> ``srange``.
+    !> \f$[vl, vu)\f$, or the ``il`` -th through ``iu`` -th singular values, depending on the value
+    !> of ``srange``.
     !>
     !> The full SVD of matrix \f$A_l\f$  is given by:
     !>
@@ -21571,8 +21594,8 @@ module hipfort_rocsolver
     !> computed, this function returns the transpose (or transpose conjugate) of the
     !> right singular vectors, that is, the rows of \f$V_l^H\f$.
     !>
-    !> ``left_svect`` and ``right_svect`` are #rocblas_svect enums that, for this function, can take
-    !> the
+    !> ``left_svect`` and ``right_svect`` are `rocblas_svect` enums that, for this function, can
+    !> take the
     !> following values:
     !>
     !> - ``rocblas_svect_singular``: the singular vectors (first min(m,n)
@@ -21585,13 +21608,13 @@ module hipfort_rocsolver
     !> @param[in]
     !> handle      rocblas_handle.
     !> @param[in]
-    !> left_svect  #rocblas_svect.
+    !> left_svect  `rocblas_svect`.
     !> Specifies if the left singular vectors are computed.
     !> @param[in]
-    !> right_svect #rocblas_svect.
+    !> right_svect `rocblas_svect`.
     !> Specifies if the right singular vectors are computed.
     !> @param[in]
-    !> srange      #rocblas_srange.
+    !> srange      `rocblas_srange`.
     !> Specifies the type of range or interval of the singular values to be computed.
     !> @param[in]
     !> m           rocblas_int. m >= 0.
@@ -21831,14 +21854,14 @@ module hipfort_rocsolver
     !---------------------------------------------
     !> \brief The GESVDX_STRIDED_BATCHED functions compute a set of singular values and optionally
     !> the corresponding singular
-    !> vectors of a batch of general ``m``-by-``n`` matrices \f$A_l\f$ (partial Singular Value
+    !> vectors of a batch of general ``m`` -by-``n`` matrices \f$A_l\f$ (partial Singular Value
     !> Decomposition).
     !>
     !> \details
     !> This function computes all the singular values of \f$A_l\f$, all the singular values in the
     !> half-open interval
-    !> \f$[vl, vu)\f$, or the ``il``-th through ``iu``-th singular values, depending on the value of
-    !> ``srange``.
+    !> \f$[vl, vu)\f$, or the ``il`` -th through ``iu`` -th singular values, depending on the value
+    !> of ``srange``.
     !>
     !> The full SVD of matrix \f$A_l\f$  is given by:
     !>
@@ -21857,8 +21880,8 @@ module hipfort_rocsolver
     !> computed, this function returns the transpose (or transpose conjugate) of the
     !> right singular vectors, that is, the rows of \f$V_l^H\f$.
     !>
-    !> ``left_svect`` and ``right_svect`` are #rocblas_svect enums that, for this function, can take
-    !> the
+    !> ``left_svect`` and ``right_svect`` are `rocblas_svect` enums that, for this function, can
+    !> take the
     !> following values:
     !>
     !> - ``rocblas_svect_singular``: the singular vectors (first min(m,n)
@@ -21871,13 +21894,13 @@ module hipfort_rocsolver
     !> @param[in]
     !> handle      rocblas_handle.
     !> @param[in]
-    !> left_svect  #rocblas_svect.
+    !> left_svect  `rocblas_svect`.
     !> Specifies if the left singular vectors are computed.
     !> @param[in]
-    !> right_svect #rocblas_svect.
+    !> right_svect `rocblas_svect`.
     !> Specifies if the right singular vectors are computed.
     !> @param[in]
-    !> srange      #rocblas_srange.
+    !> srange      `rocblas_srange`.
     !> Specifies the type of range or interval of the singular values to be computed.
     !> @param[in]
     !> m           rocblas_int. m >= 0.
@@ -22143,7 +22166,7 @@ module hipfort_rocsolver
     !>
     !> \f[
     !> \begin{array}{cl}
-    !> Q = H(1)H(2)\cdots H(n-1) & \: \text{if uplo indicates lower, or}\\
+    !> Q = H(1)H(2)\cdots H(n-1) & \: \text{if uplo indicates lower, or}\\%
     !> Q = H(n-1)H(n-2)\cdots H(1) & \: \text{if uplo indicates upper.}
     !> \end{array}
     !> \f]
@@ -22243,7 +22266,7 @@ module hipfort_rocsolver
     !>
     !> \f[
     !> \begin{array}{cl}
-    !> Q = H(1)H(2)\cdots H(n-1) & \: \text{if uplo indicates lower, or}\\
+    !> Q = H(1)H(2)\cdots H(n-1) & \: \text{if uplo indicates lower, or}\\%
     !> Q = H(n-1)H(n-2)\cdots H(1) & \: \text{if uplo indicates upper.}
     !> \end{array}
     !> \f]
@@ -22345,7 +22368,7 @@ module hipfort_rocsolver
     !>
     !> \f[
     !> \begin{array}{cl}
-    !> Q_l = H_l(1)H_l(2)\cdots H_l(n-1) & \: \text{if uplo indicates lower, or}\\
+    !> Q_l = H_l(1)H_l(2)\cdots H_l(n-1) & \: \text{if uplo indicates lower, or}\\%
     !> Q_l = H_l(n-1)H_l(n-2)\cdots H_l(1) & \: \text{if uplo indicates upper.}
     !> \end{array}
     !> \f]
@@ -22474,7 +22497,7 @@ module hipfort_rocsolver
     !>
     !> \f[
     !> \begin{array}{cl}
-    !> Q_l = H_l(1)H_l(2)\cdots H_l(n-1) & \: \text{if uplo indicates lower, or}\\
+    !> Q_l = H_l(1)H_l(2)\cdots H_l(n-1) & \: \text{if uplo indicates lower, or}\\%
     !> Q_l = H_l(n-1)H_l(n-2)\cdots H_l(1) & \: \text{if uplo indicates upper.}
     !> \end{array}
     !> \f]
@@ -22603,7 +22626,7 @@ module hipfort_rocsolver
     !>
     !> \f[
     !> \begin{array}{cl}
-    !> Q_l = H_l(1)H_l(2)\cdots H_l(n-1) & \: \text{if uplo indicates lower, or}\\
+    !> Q_l = H_l(1)H_l(2)\cdots H_l(n-1) & \: \text{if uplo indicates lower, or}\\%
     !> Q_l = H_l(n-1)H_l(n-2)\cdots H_l(1) & \: \text{if uplo indicates upper.}
     !> \end{array}
     !> \f]
@@ -22738,7 +22761,7 @@ module hipfort_rocsolver
     !>
     !> \f[
     !> \begin{array}{cl}
-    !> Q_l = H_l(1)H_l(2)\cdots H_l(n-1) & \: \text{if uplo indicates lower, or}\\
+    !> Q_l = H_l(1)H_l(2)\cdots H_l(n-1) & \: \text{if uplo indicates lower, or}\\%
     !> Q_l = H_l(n-1)H_l(n-2)\cdots H_l(1) & \: \text{if uplo indicates upper.}
     !> \end{array}
     !> \f]
@@ -22871,7 +22894,7 @@ module hipfort_rocsolver
     !>
     !> \f[
     !> \begin{array}{cl}
-    !> Q = H(1)H(2)\cdots H_(n-1) & \: \text{if uplo indicates lower, or}\\
+    !> Q = H(1)H(2)\cdots H_(n-1) & \: \text{if uplo indicates lower, or}\\%
     !> Q = H(n-1)H(n-2)\cdots H(1) & \: \text{if uplo indicates upper.}
     !> \end{array}
     !> \f]
@@ -22971,7 +22994,7 @@ module hipfort_rocsolver
     !>
     !> \f[
     !> \begin{array}{cl}
-    !> Q = H(1)H(2)\cdots H(n-1) & \: \text{if uplo indicates lower, or}\\
+    !> Q = H(1)H(2)\cdots H(n-1) & \: \text{if uplo indicates lower, or}\\%
     !> Q = H(n-1)H(n-2)\cdots H(1) & \: \text{if uplo indicates upper.}
     !> \end{array}
     !> \f]
@@ -23073,7 +23096,7 @@ module hipfort_rocsolver
     !>
     !> \f[
     !> \begin{array}{cl}
-    !> Q_l = H_l(1)H_l(2)\cdots H_l(n-1) & \: \text{if uplo indicates lower, or}\\
+    !> Q_l = H_l(1)H_l(2)\cdots H_l(n-1) & \: \text{if uplo indicates lower, or}\\%
     !> Q_l = H_l(n-1)H_l(n-2)\cdots H_l(1) & \: \text{if uplo indicates upper.}
     !> \end{array}
     !> \f]
@@ -23202,7 +23225,7 @@ module hipfort_rocsolver
     !>
     !> \f[
     !> \begin{array}{cl}
-    !> Q_l = H_l(1)H_l(2)\cdots H_l(n-1) & \: \text{if uplo indicates lower, or}\\
+    !> Q_l = H_l(1)H_l(2)\cdots H_l(n-1) & \: \text{if uplo indicates lower, or}\\%
     !> Q_l = H_l(n-1)H_l(n-2)\cdots H_l(1) & \: \text{if uplo indicates upper.}
     !> \end{array}
     !> \f]
@@ -23331,7 +23354,7 @@ module hipfort_rocsolver
     !>
     !> \f[
     !> \begin{array}{cl}
-    !> Q_l = H_l(1)H_l(2)\cdots H_l(n-1) & \: \text{if uplo indicates lower, or}\\
+    !> Q_l = H_l(1)H_l(2)\cdots H_l(n-1) & \: \text{if uplo indicates lower, or}\\%
     !> Q_l = H_l(n-1)H_l(n-2)\cdots H_l(1) & \: \text{if uplo indicates upper.}
     !> \end{array}
     !> \f]
@@ -23466,7 +23489,7 @@ module hipfort_rocsolver
     !>
     !> \f[
     !> \begin{array}{cl}
-    !> Q_l = H_l(1)H_l(2)\cdots H_l(n-1) & \: \text{if uplo indicates lower, or}\\
+    !> Q_l = H_l(1)H_l(2)\cdots H_l(n-1) & \: \text{if uplo indicates lower, or}\\%
     !> Q_l = H_l(n-1)H_l(n-2)\cdots H_l(1) & \: \text{if uplo indicates upper.}
     !> \end{array}
     !> \f]
@@ -23594,8 +23617,8 @@ module hipfort_rocsolver
     !>
     !> \f[
     !> \begin{array}{cl}
-    !> A X = \lambda B X & \: \text{1st form,}\\
-    !> A B X = \lambda X & \: \text{2nd form, or}\\
+    !> A X = \lambda B X & \: \text{1st form,}\\%
+    !> A B X = \lambda X & \: \text{2nd form, or}\\%
     !> B A X = \lambda X & \: \text{3rd form,}
     !> \end{array}
     !> \f]
@@ -23606,7 +23629,7 @@ module hipfort_rocsolver
     !>
     !> \f[
     !> \begin{array}{cl}
-    !> U^{-T} A U^{-1}, & \: \text{or}\\
+    !> U^{-T} A U^{-1}, & \: \text{or}\\%
     !> L^{-1} A L^{-T},
     !> \end{array}
     !> \f]
@@ -23619,7 +23642,7 @@ module hipfort_rocsolver
     !>
     !> \f[
     !> \begin{array}{cl}
-    !> U A U^T, & \: \text{or}\\
+    !> U A U^T, & \: \text{or}\\%
     !> L^T A L,
     !> \end{array}
     !> \f]
@@ -23629,7 +23652,7 @@ module hipfort_rocsolver
     !> @param[in]
     !> handle      rocblas_handle.
     !> @param[in]
-    !> itype       #rocblas_eform.
+    !> itype       `rocblas_eform`.
     !> Specifies the form of the generalized eigenproblem.
     !> @param[in]
     !> uplo        rocblas_fill.
@@ -23699,8 +23722,8 @@ module hipfort_rocsolver
     !>
     !> \f[
     !> \begin{array}{cl}
-    !> A X = \lambda B X & \: \text{1st form,}\\
-    !> A B X = \lambda X & \: \text{2nd form, or}\\
+    !> A X = \lambda B X & \: \text{1st form,}\\%
+    !> A B X = \lambda X & \: \text{2nd form, or}\\%
     !> B A X = \lambda X & \: \text{3rd form,}
     !> \end{array}
     !> \f]
@@ -23711,7 +23734,7 @@ module hipfort_rocsolver
     !>
     !> \f[
     !> \begin{array}{cl}
-    !> U^{-H} A U^{-1}, & \: \text{or}\\
+    !> U^{-H} A U^{-1}, & \: \text{or}\\%
     !> L^{-1} A L^{-H},
     !> \end{array}
     !> \f]
@@ -23724,7 +23747,7 @@ module hipfort_rocsolver
     !>
     !> \f[
     !> \begin{array}{cl}
-    !> U A U^H, & \: \text{or}\\
+    !> U A U^H, & \: \text{or}\\%
     !> L^H A L,
     !> \end{array}
     !> \f]
@@ -23734,7 +23757,7 @@ module hipfort_rocsolver
     !> @param[in]
     !> handle      rocblas_handle.
     !> @param[in]
-    !> itype       #rocblas_eform.
+    !> itype       `rocblas_eform`.
     !> Specifies the form of the generalized eigenproblem.
     !> @param[in]
     !> uplo        rocblas_fill.
@@ -23805,8 +23828,8 @@ module hipfort_rocsolver
     !>
     !> \f[
     !> \begin{array}{cl}
-    !> A_l X_l = \lambda B_l X_l & \: \text{1st form,}\\
-    !> A_l B_l X_l = \lambda X_l & \: \text{2nd form, or}\\
+    !> A_l X_l = \lambda B_l X_l & \: \text{1st form,}\\%
+    !> A_l B_l X_l = \lambda X_l & \: \text{2nd form, or}\\%
     !> B_l A_l X_l = \lambda X_l & \: \text{3rd form,}
     !> \end{array}
     !> \f]
@@ -23817,7 +23840,7 @@ module hipfort_rocsolver
     !>
     !> \f[
     !> \begin{array}{cl}
-    !> U_l^{-T} A_l^{} U_l^{-1}, & \: \text{or}\\
+    !> U_l^{-T} A_l^{} U_l^{-1}, & \: \text{or}\\%
     !> L_l^{-1} A_l^{} L_l^{-T},
     !> \end{array}
     !> \f]
@@ -23831,7 +23854,7 @@ module hipfort_rocsolver
     !>
     !> \f[
     !> \begin{array}{cl}
-    !> U_l^{} A_l^{} U_l^T, & \: \text{or}\\
+    !> U_l^{} A_l^{} U_l^T, & \: \text{or}\\%
     !> L_l^T A_l^{} L_l^{},
     !> \end{array}
     !> \f]
@@ -23841,7 +23864,7 @@ module hipfort_rocsolver
     !> @param[in]
     !> handle      rocblas_handle.
     !> @param[in]
-    !> itype       #rocblas_eform.
+    !> itype       `rocblas_eform`.
     !> Specifies the form of the generalized eigenproblems.
     !> @param[in]
     !> uplo        rocblas_fill.
@@ -23918,8 +23941,8 @@ module hipfort_rocsolver
     !>
     !> \f[
     !> \begin{array}{cl}
-    !> A_l X_l = \lambda B_l X_l & \: \text{1st form,}\\
-    !> A_l B_l X_l = \lambda X_l & \: \text{2nd form, or}\\
+    !> A_l X_l = \lambda B_l X_l & \: \text{1st form,}\\%
+    !> A_l B_l X_l = \lambda X_l & \: \text{2nd form, or}\\%
     !> B_l A_l X_l = \lambda X_l & \: \text{3rd form,}
     !> \end{array}
     !> \f]
@@ -23930,7 +23953,7 @@ module hipfort_rocsolver
     !>
     !> \f[
     !> \begin{array}{cl}
-    !> U_l^{-H} A_l^{} U_l^{-1}, & \: \text{or}\\
+    !> U_l^{-H} A_l^{} U_l^{-1}, & \: \text{or}\\%
     !> L_l^{-1} A_l^{} L_l^{-H},
     !> \end{array}
     !> \f]
@@ -23944,7 +23967,7 @@ module hipfort_rocsolver
     !>
     !> \f[
     !> \begin{array}{cl}
-    !> U_l^{} A_l^{} U_l^H, & \: \text{or}\\
+    !> U_l^{} A_l^{} U_l^H, & \: \text{or}\\%
     !> L_l^H A_l^{} L_l^{},
     !> \end{array}
     !> \f]
@@ -23954,7 +23977,7 @@ module hipfort_rocsolver
     !> @param[in]
     !> handle      rocblas_handle.
     !> @param[in]
-    !> itype       #rocblas_eform.
+    !> itype       `rocblas_eform`.
     !> Specifies the form of the generalized eigenproblems.
     !> @param[in]
     !> uplo        rocblas_fill.
@@ -24031,8 +24054,8 @@ module hipfort_rocsolver
     !>
     !> \f[
     !> \begin{array}{cl}
-    !> A_l X_l = \lambda B_l X_l & \: \text{1st form,}\\
-    !> A_l B_l X_l = \lambda X_l & \: \text{2nd form, or}\\
+    !> A_l X_l = \lambda B_l X_l & \: \text{1st form,}\\%
+    !> A_l B_l X_l = \lambda X_l & \: \text{2nd form, or}\\%
     !> B_l A_l X_l = \lambda X_l & \: \text{3rd form,}
     !> \end{array}
     !> \f]
@@ -24043,7 +24066,7 @@ module hipfort_rocsolver
     !>
     !> \f[
     !> \begin{array}{cl}
-    !> U_l^{-T} A_l^{} U_l^{-1}, & \: \text{or}\\
+    !> U_l^{-T} A_l^{} U_l^{-1}, & \: \text{or}\\%
     !> L_l^{-1} A_l^{} L_l^{-T},
     !> \end{array}
     !> \f]
@@ -24057,7 +24080,7 @@ module hipfort_rocsolver
     !>
     !> \f[
     !> \begin{array}{cl}
-    !> U_l^{} A_l^{} U_l^T, & \: \text{or}\\
+    !> U_l^{} A_l^{} U_l^T, & \: \text{or}\\%
     !> L_l^T A_l^{} L_l^{},
     !> \end{array}
     !> \f]
@@ -24067,7 +24090,7 @@ module hipfort_rocsolver
     !> @param[in]
     !> handle      rocblas_handle.
     !> @param[in]
-    !> itype       #rocblas_eform.
+    !> itype       `rocblas_eform`.
     !> Specifies the form of the generalized eigenproblems.
     !> @param[in]
     !> uplo        rocblas_fill.
@@ -24157,8 +24180,8 @@ module hipfort_rocsolver
     !>
     !> \f[
     !> \begin{array}{cl}
-    !> A_l X_l = \lambda B_l X_l & \: \text{1st form,}\\
-    !> A_l B_l X_l = \lambda X_l & \: \text{2nd form, or}\\
+    !> A_l X_l = \lambda B_l X_l & \: \text{1st form,}\\%
+    !> A_l B_l X_l = \lambda X_l & \: \text{2nd form, or}\\%
     !> B_l A_l X_l = \lambda X_l & \: \text{3rd form,}
     !> \end{array}
     !> \f]
@@ -24169,7 +24192,7 @@ module hipfort_rocsolver
     !>
     !> \f[
     !> \begin{array}{cl}
-    !> U_l^{-H} A_l^{} U_l^{-1}, & \: \text{or}\\
+    !> U_l^{-H} A_l^{} U_l^{-1}, & \: \text{or}\\%
     !> L_l^{-1} A_l^{} L_l^{-H},
     !> \end{array}
     !> \f]
@@ -24183,7 +24206,7 @@ module hipfort_rocsolver
     !>
     !> \f[
     !> \begin{array}{cl}
-    !> U_l^{} A_l^{} U_l^H, & \: \text{or}\\
+    !> U_l^{} A_l^{} U_l^H, & \: \text{or}\\%
     !> L_l^H A_l^{} L_l^{},
     !> \end{array}
     !> \f]
@@ -24193,7 +24216,7 @@ module hipfort_rocsolver
     !> @param[in]
     !> handle      rocblas_handle.
     !> @param[in]
-    !> itype       #rocblas_eform.
+    !> itype       `rocblas_eform`.
     !> Specifies the form of the generalized eigenproblems.
     !> @param[in]
     !> uplo        rocblas_fill.
@@ -24284,8 +24307,8 @@ module hipfort_rocsolver
     !>
     !> \f[
     !> \begin{array}{cl}
-    !> A X = \lambda B X & \: \text{1st form,}\\
-    !> A B X = \lambda X & \: \text{2nd form, or}\\
+    !> A X = \lambda B X & \: \text{1st form,}\\%
+    !> A B X = \lambda X & \: \text{2nd form, or}\\%
     !> B A X = \lambda X & \: \text{3rd form,}
     !> \end{array}
     !> \f]
@@ -24296,7 +24319,7 @@ module hipfort_rocsolver
     !>
     !> \f[
     !> \begin{array}{cl}
-    !> U^{-T} A U^{-1}, & \: \text{or}\\
+    !> U^{-T} A U^{-1}, & \: \text{or}\\%
     !> L^{-1} A L^{-T},
     !> \end{array}
     !> \f]
@@ -24308,7 +24331,7 @@ module hipfort_rocsolver
     !>
     !> \f[
     !> \begin{array}{cl}
-    !> U A U^T, & \: \text{or}\\
+    !> U A U^T, & \: \text{or}\\%
     !> L^T A L,
     !> \end{array}
     !> \f]
@@ -24318,7 +24341,7 @@ module hipfort_rocsolver
     !> @param[in]
     !> handle      rocblas_handle.
     !> @param[in]
-    !> itype       #rocblas_eform.
+    !> itype       `rocblas_eform`.
     !> Specifies the form of the generalized eigenproblem.
     !> @param[in]
     !> uplo        rocblas_fill.
@@ -24388,8 +24411,8 @@ module hipfort_rocsolver
     !>
     !> \f[
     !> \begin{array}{cl}
-    !> A X = \lambda B X & \: \text{1st form,}\\
-    !> A B X = \lambda X & \: \text{2nd form, or}\\
+    !> A X = \lambda B X & \: \text{1st form,}\\%
+    !> A B X = \lambda X & \: \text{2nd form, or}\\%
     !> B A X = \lambda X & \: \text{3rd form,}
     !> \end{array}
     !> \f]
@@ -24400,7 +24423,7 @@ module hipfort_rocsolver
     !>
     !> \f[
     !> \begin{array}{cl}
-    !> U^{-H} A U^{-1}, & \: \text{or}\\
+    !> U^{-H} A U^{-1}, & \: \text{or}\\%
     !> L^{-1} A L^{-H},
     !> \end{array}
     !> \f]
@@ -24413,7 +24436,7 @@ module hipfort_rocsolver
     !>
     !> \f[
     !> \begin{array}{cl}
-    !> U A U^H, & \: \text{or}\\
+    !> U A U^H, & \: \text{or}\\%
     !> L^H A L,
     !> \end{array}
     !> \f]
@@ -24423,7 +24446,7 @@ module hipfort_rocsolver
     !> @param[in]
     !> handle      rocblas_handle.
     !> @param[in]
-    !> itype       #rocblas_eform.
+    !> itype       `rocblas_eform`.
     !> Specifies the form of the generalized eigenproblem.
     !> @param[in]
     !> uplo        rocblas_fill.
@@ -24494,8 +24517,8 @@ module hipfort_rocsolver
     !>
     !> \f[
     !> \begin{array}{cl}
-    !> A_l X_l = \lambda B_l X_l & \: \text{1st form,}\\
-    !> A_l B_l X_l = \lambda X_l & \: \text{2nd form, or}\\
+    !> A_l X_l = \lambda B_l X_l & \: \text{1st form,}\\%
+    !> A_l B_l X_l = \lambda X_l & \: \text{2nd form, or}\\%
     !> B_l A_l X_l = \lambda X_l & \: \text{3rd form,}
     !> \end{array}
     !> \f]
@@ -24506,7 +24529,7 @@ module hipfort_rocsolver
     !>
     !> \f[
     !> \begin{array}{cl}
-    !> U_l^{-T} A_l^{} U_l^{-1}, & \: \text{or}\\
+    !> U_l^{-T} A_l^{} U_l^{-1}, & \: \text{or}\\%
     !> L_l^{-1} A_l^{} L_l^{-T},
     !> \end{array}
     !> \f]
@@ -24520,7 +24543,7 @@ module hipfort_rocsolver
     !>
     !> \f[
     !> \begin{array}{cl}
-    !> U_l^{} A_l^{} U_l^T, & \: \text{or}\\
+    !> U_l^{} A_l^{} U_l^T, & \: \text{or}\\%
     !> L_l^T A_l^{} L_l^{},
     !> \end{array}
     !> \f]
@@ -24530,7 +24553,7 @@ module hipfort_rocsolver
     !> @param[in]
     !> handle      rocblas_handle.
     !> @param[in]
-    !> itype       #rocblas_eform.
+    !> itype       `rocblas_eform`.
     !> Specifies the form of the generalized eigenproblems.
     !> @param[in]
     !> uplo        rocblas_fill.
@@ -24607,8 +24630,8 @@ module hipfort_rocsolver
     !>
     !> \f[
     !> \begin{array}{cl}
-    !> A_l X_l = \lambda B_l X_l & \: \text{1st form,}\\
-    !> A_l B_l X_l = \lambda X_l & \: \text{2nd form, or}\\
+    !> A_l X_l = \lambda B_l X_l & \: \text{1st form,}\\%
+    !> A_l B_l X_l = \lambda X_l & \: \text{2nd form, or}\\%
     !> B_l A_l X_l = \lambda X_l & \: \text{3rd form,}
     !> \end{array}
     !> \f]
@@ -24619,7 +24642,7 @@ module hipfort_rocsolver
     !>
     !> \f[
     !> \begin{array}{cl}
-    !> U_l^{-H} A_l^{} U_l^{-1}, & \: \text{or}\\
+    !> U_l^{-H} A_l^{} U_l^{-1}, & \: \text{or}\\%
     !> L_l^{-1} A_l^{} L_l^{-H},
     !> \end{array}
     !> \f]
@@ -24633,7 +24656,7 @@ module hipfort_rocsolver
     !>
     !> \f[
     !> \begin{array}{cl}
-    !> U_l^{} A_l^{} U_l^H, & \: \text{or}\\
+    !> U_l^{} A_l^{} U_l^H, & \: \text{or}\\%
     !> L_l^H A_l^{} L_l^{},
     !> \end{array}
     !> \f]
@@ -24643,7 +24666,7 @@ module hipfort_rocsolver
     !> @param[in]
     !> handle      rocblas_handle.
     !> @param[in]
-    !> itype       #rocblas_eform.
+    !> itype       `rocblas_eform`.
     !> Specifies the form of the generalized eigenproblems.
     !> @param[in]
     !> uplo        rocblas_fill.
@@ -24720,8 +24743,8 @@ module hipfort_rocsolver
     !>
     !> \f[
     !> \begin{array}{cl}
-    !> A_l X_l = \lambda B_l X_l & \: \text{1st form,}\\
-    !> A_l B_l X_l = \lambda X_l & \: \text{2nd form, or}\\
+    !> A_l X_l = \lambda B_l X_l & \: \text{1st form,}\\%
+    !> A_l B_l X_l = \lambda X_l & \: \text{2nd form, or}\\%
     !> B_l A_l X_l = \lambda X_l & \: \text{3rd form,}
     !> \end{array}
     !> \f]
@@ -24732,7 +24755,7 @@ module hipfort_rocsolver
     !>
     !> \f[
     !> \begin{array}{cl}
-    !> U_l^{-T} A_l^{} U_l^{-1}, & \: \text{or}\\
+    !> U_l^{-T} A_l^{} U_l^{-1}, & \: \text{or}\\%
     !> L_l^{-1} A_l^{} L_l^{-T},
     !> \end{array}
     !> \f]
@@ -24746,7 +24769,7 @@ module hipfort_rocsolver
     !>
     !> \f[
     !> \begin{array}{cl}
-    !> U_l^{} A_l^{} U_l^T, & \: \text{or}\\
+    !> U_l^{} A_l^{} U_l^T, & \: \text{or}\\%
     !> L_l^T A_l^{} L_l^{},
     !> \end{array}
     !> \f]
@@ -24756,7 +24779,7 @@ module hipfort_rocsolver
     !> @param[in]
     !> handle      rocblas_handle.
     !> @param[in]
-    !> itype       #rocblas_eform.
+    !> itype       `rocblas_eform`.
     !> Specifies the form of the generalized eigenproblems.
     !> @param[in]
     !> uplo        rocblas_fill.
@@ -24846,8 +24869,8 @@ module hipfort_rocsolver
     !>
     !> \f[
     !> \begin{array}{cl}
-    !> A_l X_l = \lambda B_l X_l & \: \text{1st form,}\\
-    !> A_l B_l X_l = \lambda X_l & \: \text{2nd form, or}\\
+    !> A_l X_l = \lambda B_l X_l & \: \text{1st form,}\\%
+    !> A_l B_l X_l = \lambda X_l & \: \text{2nd form, or}\\%
     !> B_l A_l X_l = \lambda X_l & \: \text{3rd form,}
     !> \end{array}
     !> \f]
@@ -24858,7 +24881,7 @@ module hipfort_rocsolver
     !>
     !> \f[
     !> \begin{array}{cl}
-    !> U_l^{-H} A_l^{} U_l^{-1}, & \: \text{or}\\
+    !> U_l^{-H} A_l^{} U_l^{-1}, & \: \text{or}\\%
     !> L_l^{-1} A_l^{} L_l^{-H},
     !> \end{array}
     !> \f]
@@ -24872,7 +24895,7 @@ module hipfort_rocsolver
     !>
     !> \f[
     !> \begin{array}{cl}
-    !> U_l^{} A_l^{} U_l^H, & \: \text{or}\\
+    !> U_l^{} A_l^{} U_l^H, & \: \text{or}\\%
     !> L_l^H A_l^{} L_l^{},
     !> \end{array}
     !> \f]
@@ -24882,7 +24905,7 @@ module hipfort_rocsolver
     !> @param[in]
     !> handle      rocblas_handle.
     !> @param[in]
-    !> itype       #rocblas_eform.
+    !> itype       `rocblas_eform`.
     !> Specifies the form of the generalized eigenproblems.
     !> @param[in]
     !> uplo        rocblas_fill.
@@ -24973,7 +24996,7 @@ module hipfort_rocsolver
     !> @param[in]
     !> handle      rocblas_handle.
     !> @param[in]
-    !> evect       #rocblas_evect.
+    !> evect       `rocblas_evect`.
     !> Specifies whether the eigenvectors are to be computed.
     !> If evect is rocblas_evect_original, then the eigenvectors are computed.
     !> rocblas_evect_tridiagonal is not supported.
@@ -25054,7 +25077,7 @@ module hipfort_rocsolver
     !> @param[in]
     !> handle      rocblas_handle.
     !> @param[in]
-    !> evect       #rocblas_evect.
+    !> evect       `rocblas_evect`.
     !> Specifies whether the eigenvectors are to be computed.
     !> If evect is rocblas_evect_original, then the eigenvectors are computed.
     !> rocblas_evect_tridiagonal is not supported.
@@ -25136,7 +25159,7 @@ module hipfort_rocsolver
     !> @param[in]
     !> handle      rocblas_handle.
     !> @param[in]
-    !> evect       #rocblas_evect.
+    !> evect       `rocblas_evect`.
     !> Specifies whether the eigenvectors are to be computed.
     !> If evect is rocblas_evect_original, then the eigenvectors are computed.
     !> rocblas_evect_tridiagonal is not supported.
@@ -25238,7 +25261,7 @@ module hipfort_rocsolver
     !> @param[in]
     !> handle      rocblas_handle.
     !> @param[in]
-    !> evect       #rocblas_evect.
+    !> evect       `rocblas_evect`.
     !> Specifies whether the eigenvectors are to be computed.
     !> If evect is rocblas_evect_original, then the eigenvectors are computed.
     !> rocblas_evect_tridiagonal is not supported.
@@ -25340,7 +25363,7 @@ module hipfort_rocsolver
     !> @param[in]
     !> handle      rocblas_handle.
     !> @param[in]
-    !> evect       #rocblas_evect.
+    !> evect       `rocblas_evect`.
     !> Specifies whether the eigenvectors are to be computed.
     !> If evect is rocblas_evect_original, then the eigenvectors are computed.
     !> rocblas_evect_tridiagonal is not supported.
@@ -25448,7 +25471,7 @@ module hipfort_rocsolver
     !> @param[in]
     !> handle      rocblas_handle.
     !> @param[in]
-    !> evect       #rocblas_evect.
+    !> evect       `rocblas_evect`.
     !> Specifies whether the eigenvectors are to be computed.
     !> If evect is rocblas_evect_original, then the eigenvectors are computed.
     !> rocblas_evect_tridiagonal is not supported.
@@ -25557,7 +25580,7 @@ module hipfort_rocsolver
     !> @param[in]
     !> handle      rocblas_handle.
     !> @param[in]
-    !> evect       #rocblas_evect.
+    !> evect       `rocblas_evect`.
     !> Specifies whether the eigenvectors are to be computed.
     !> If evect is rocblas_evect_original, then the eigenvectors are computed.
     !> rocblas_evect_tridiagonal is not supported.
@@ -25642,7 +25665,7 @@ module hipfort_rocsolver
     !> @param[in]
     !> handle      rocblas_handle.
     !> @param[in]
-    !> evect       #rocblas_evect.
+    !> evect       `rocblas_evect`.
     !> Specifies whether the eigenvectors are to be computed.
     !> If evect is rocblas_evect_original, then the eigenvectors are computed.
     !> rocblas_evect_tridiagonal is not supported.
@@ -25728,7 +25751,7 @@ module hipfort_rocsolver
     !> @param[in]
     !> handle      rocblas_handle.
     !> @param[in]
-    !> evect       #rocblas_evect.
+    !> evect       `rocblas_evect`.
     !> Specifies whether the eigenvectors are to be computed.
     !> If evect is rocblas_evect_original, then the eigenvectors are computed.
     !> rocblas_evect_tridiagonal is not supported.
@@ -25833,7 +25856,7 @@ module hipfort_rocsolver
     !> @param[in]
     !> handle      rocblas_handle.
     !> @param[in]
-    !> evect       #rocblas_evect.
+    !> evect       `rocblas_evect`.
     !> Specifies whether the eigenvectors are to be computed.
     !> If evect is rocblas_evect_original, then the eigenvectors are computed.
     !> rocblas_evect_tridiagonal is not supported.
@@ -25938,7 +25961,7 @@ module hipfort_rocsolver
     !> @param[in]
     !> handle      rocblas_handle.
     !> @param[in]
-    !> evect       #rocblas_evect.
+    !> evect       `rocblas_evect`.
     !> Specifies whether the eigenvectors are to be computed.
     !> If evect is rocblas_evect_original, then the eigenvectors are computed.
     !> rocblas_evect_tridiagonal is not supported.
@@ -26049,7 +26072,7 @@ module hipfort_rocsolver
     !> @param[in]
     !> handle      rocblas_handle.
     !> @param[in]
-    !> evect       #rocblas_evect.
+    !> evect       `rocblas_evect`.
     !> Specifies whether the eigenvectors are to be computed.
     !> If evect is rocblas_evect_original, then the eigenvectors are computed.
     !> rocblas_evect_tridiagonal is not supported.
@@ -26162,7 +26185,7 @@ module hipfort_rocsolver
     !> @param[in]
     !> handle      rocblas_handle.
     !> @param[in]
-    !> evect       #rocblas_evect.
+    !> evect       `rocblas_evect`.
     !> Specifies whether the eigenvectors are to be computed.
     !> If evect is rocblas_evect_original, then the eigenvectors are computed.
     !> rocblas_evect_tridiagonal is not supported.
@@ -26237,7 +26260,7 @@ module hipfort_rocsolver
     !> @param[in]
     !> handle      rocblas_handle.
     !> @param[in]
-    !> evect       #rocblas_evect.
+    !> evect       `rocblas_evect`.
     !> Specifies whether the eigenvectors are to be computed.
     !> If evect is rocblas_evect_original, then the eigenvectors are computed.
     !> rocblas_evect_tridiagonal is not supported.
@@ -26312,7 +26335,7 @@ module hipfort_rocsolver
     !> @param[in]
     !> handle      rocblas_handle.
     !> @param[in]
-    !> evect       #rocblas_evect.
+    !> evect       `rocblas_evect`.
     !> Specifies whether the eigenvectors are to be computed.
     !> If evect is rocblas_evect_original, then the eigenvectors are computed.
     !> rocblas_evect_tridiagonal is not supported.
@@ -26401,7 +26424,7 @@ module hipfort_rocsolver
     !> @param[in]
     !> handle      rocblas_handle.
     !> @param[in]
-    !> evect       #rocblas_evect.
+    !> evect       `rocblas_evect`.
     !> Specifies whether the eigenvectors are to be computed.
     !> If evect is rocblas_evect_original, then the eigenvectors are computed.
     !> rocblas_evect_tridiagonal is not supported.
@@ -26490,7 +26513,7 @@ module hipfort_rocsolver
     !> @param[in]
     !> handle      rocblas_handle.
     !> @param[in]
-    !> evect       #rocblas_evect.
+    !> evect       `rocblas_evect`.
     !> Specifies whether the eigenvectors are to be computed.
     !> If evect is rocblas_evect_original, then the eigenvectors are computed.
     !> rocblas_evect_tridiagonal is not supported.
@@ -26585,7 +26608,7 @@ module hipfort_rocsolver
     !> @param[in]
     !> handle      rocblas_handle.
     !> @param[in]
-    !> evect       #rocblas_evect.
+    !> evect       `rocblas_evect`.
     !> Specifies whether the eigenvectors are to be computed.
     !> If evect is rocblas_evect_original, then the eigenvectors are computed.
     !> rocblas_evect_tridiagonal is not supported.
@@ -26674,8 +26697,8 @@ module hipfort_rocsolver
     !>
     !> \f[
     !> \begin{array}{cl}
-    !> A X = \lambda B X & \: \text{1st form,}\\
-    !> A B X = \lambda X & \: \text{2nd form, or}\\
+    !> A X = \lambda B X & \: \text{1st form,}\\%
+    !> A B X = \lambda X & \: \text{2nd form, or}\\%
     !> B A X = \lambda X & \: \text{3rd form,}
     !> \end{array}
     !> \f]
@@ -26690,7 +26713,7 @@ module hipfort_rocsolver
     !>
     !> \f[
     !> \begin{array}{cl}
-    !> Z^T B Z=I & \: \text{if 1st or 2nd form, or}\\
+    !> Z^T B Z=I & \: \text{if 1st or 2nd form, or}\\%
     !> Z^T B^{-1} Z=I & \: \text{if 3rd form.}
     !> \end{array}
     !> \f]
@@ -26698,10 +26721,10 @@ module hipfort_rocsolver
     !> @param[in]
     !> handle      rocblas_handle.
     !> @param[in]
-    !> itype       #rocblas_eform.
+    !> itype       `rocblas_eform`.
     !> Specifies the form of the generalized eigenproblem.
     !> @param[in]
-    !> evect       #rocblas_evect.
+    !> evect       `rocblas_evect`.
     !> Specifies whether the eigenvectors are to be computed.
     !> If evect is rocblas_evect_original, then the eigenvectors are computed.
     !> rocblas_evect_tridiagonal is not supported.
@@ -26785,8 +26808,8 @@ module hipfort_rocsolver
     !>
     !> \f[
     !> \begin{array}{cl}
-    !> A X = \lambda B X & \: \text{1st form,}\\
-    !> A B X = \lambda X & \: \text{2nd form, or}\\
+    !> A X = \lambda B X & \: \text{1st form,}\\%
+    !> A B X = \lambda X & \: \text{2nd form, or}\\%
     !> B A X = \lambda X & \: \text{3rd form,}
     !> \end{array}
     !> \f]
@@ -26801,7 +26824,7 @@ module hipfort_rocsolver
     !>
     !> \f[
     !> \begin{array}{cl}
-    !> Z^H B Z=I & \: \text{if 1st or 2nd form, or}\\
+    !> Z^H B Z=I & \: \text{if 1st or 2nd form, or}\\%
     !> Z^H B^{-1} Z=I & \: \text{if 3rd form.}
     !> \end{array}
     !> \f]
@@ -26809,10 +26832,10 @@ module hipfort_rocsolver
     !> @param[in]
     !> handle      rocblas_handle.
     !> @param[in]
-    !> itype       #rocblas_eform.
+    !> itype       `rocblas_eform`.
     !> Specifies the form of the generalized eigenproblem.
     !> @param[in]
-    !> evect       #rocblas_evect.
+    !> evect       `rocblas_evect`.
     !> Specifies whether the eigenvectors are to be computed.
     !> If evect is rocblas_evect_original, then the eigenvectors are computed.
     !> rocblas_evect_tridiagonal is not supported.
@@ -26897,8 +26920,8 @@ module hipfort_rocsolver
     !>
     !> \f[
     !> \begin{array}{cl}
-    !> A_l X_l = \lambda B_l X_l & \: \text{1st form,}\\
-    !> A_l B_l X_l = \lambda X_l & \: \text{2nd form, or}\\
+    !> A_l X_l = \lambda B_l X_l & \: \text{1st form,}\\%
+    !> A_l B_l X_l = \lambda X_l & \: \text{2nd form, or}\\%
     !> B_l A_l X_l = \lambda X_l & \: \text{3rd form,}
     !> \end{array}
     !> \f]
@@ -26913,7 +26936,7 @@ module hipfort_rocsolver
     !>
     !> \f[
     !> \begin{array}{cl}
-    !> Z^T_l B_l Z_l=I & \: \text{if 1st or 2nd form, or}\\
+    !> Z^T_l B_l Z_l=I & \: \text{if 1st or 2nd form, or}\\%
     !> Z^T_l B^{-1}_l Z_l=I & \: \text{if 3rd form.}
     !> \end{array}
     !> \f]
@@ -26921,10 +26944,10 @@ module hipfort_rocsolver
     !> @param[in]
     !> handle      rocblas_handle.
     !> @param[in]
-    !> itype       #rocblas_eform.
+    !> itype       `rocblas_eform`.
     !> Specifies the form of the generalized eigenproblems.
     !> @param[in]
-    !> evect       #rocblas_evect.
+    !> evect       `rocblas_evect`.
     !> Specifies whether the eigenvectors are to be computed.
     !> If evect is rocblas_evect_original, then the eigenvectors are computed.
     !> rocblas_evect_tridiagonal is not supported.
@@ -27023,8 +27046,8 @@ module hipfort_rocsolver
     !>
     !> \f[
     !> \begin{array}{cl}
-    !> A_l X_l = \lambda B_l X_l & \: \text{1st form,}\\
-    !> A_l B_l X_l = \lambda X_l & \: \text{2nd form, or}\\
+    !> A_l X_l = \lambda B_l X_l & \: \text{1st form,}\\%
+    !> A_l B_l X_l = \lambda X_l & \: \text{2nd form, or}\\%
     !> B_l A_l X_l = \lambda X_l & \: \text{3rd form,}
     !> \end{array}
     !> \f]
@@ -27039,7 +27062,7 @@ module hipfort_rocsolver
     !>
     !> \f[
     !> \begin{array}{cl}
-    !> Z^H_l B_l Z_l=I & \: \text{if 1st or 2nd form, or}\\
+    !> Z^H_l B_l Z_l=I & \: \text{if 1st or 2nd form, or}\\%
     !> Z^H_l B^{-1}_l Z_l=I & \: \text{if 3rd form.}
     !> \end{array}
     !> \f]
@@ -27047,10 +27070,10 @@ module hipfort_rocsolver
     !> @param[in]
     !> handle      rocblas_handle.
     !> @param[in]
-    !> itype       #rocblas_eform.
+    !> itype       `rocblas_eform`.
     !> Specifies the form of the generalized eigenproblems.
     !> @param[in]
-    !> evect       #rocblas_evect.
+    !> evect       `rocblas_evect`.
     !> Specifies whether the eigenvectors are to be computed.
     !> If evect is rocblas_evect_original, then the eigenvectors are computed.
     !> rocblas_evect_tridiagonal is not supported.
@@ -27149,8 +27172,8 @@ module hipfort_rocsolver
     !>
     !> \f[
     !> \begin{array}{cl}
-    !> A_l X_l = \lambda B_l X_l & \: \text{1st form,}\\
-    !> A_l B_l X_l = \lambda X_l & \: \text{2nd form, or}\\
+    !> A_l X_l = \lambda B_l X_l & \: \text{1st form,}\\%
+    !> A_l B_l X_l = \lambda X_l & \: \text{2nd form, or}\\%
     !> B_l A_l X_l = \lambda X_l & \: \text{3rd form,}
     !> \end{array}
     !> \f]
@@ -27165,7 +27188,7 @@ module hipfort_rocsolver
     !>
     !> \f[
     !> \begin{array}{cl}
-    !> Z^T_l B_l Z_l=I & \: \text{if 1st or 2nd form, or}\\
+    !> Z^T_l B_l Z_l=I & \: \text{if 1st or 2nd form, or}\\%
     !> Z^T_l B^{-1}_l Z_l=I & \: \text{if 3rd form.}
     !> \end{array}
     !> \f]
@@ -27173,10 +27196,10 @@ module hipfort_rocsolver
     !> @param[in]
     !> handle      rocblas_handle.
     !> @param[in]
-    !> itype       #rocblas_eform.
+    !> itype       `rocblas_eform`.
     !> Specifies the form of the generalized eigenproblems.
     !> @param[in]
-    !> evect       #rocblas_evect.
+    !> evect       `rocblas_evect`.
     !> Specifies whether the eigenvectors are to be computed.
     !> If evect is rocblas_evect_original, then the eigenvectors are computed.
     !> rocblas_evect_tridiagonal is not supported.
@@ -27288,8 +27311,8 @@ module hipfort_rocsolver
     !>
     !> \f[
     !> \begin{array}{cl}
-    !> A_l X_l = \lambda B_l X_l & \: \text{1st form,}\\
-    !> A_l B_l X_l = \lambda X_l & \: \text{2nd form, or}\\
+    !> A_l X_l = \lambda B_l X_l & \: \text{1st form,}\\%
+    !> A_l B_l X_l = \lambda X_l & \: \text{2nd form, or}\\%
     !> B_l A_l X_l = \lambda X_l & \: \text{3rd form,}
     !> \end{array}
     !> \f]
@@ -27304,7 +27327,7 @@ module hipfort_rocsolver
     !>
     !> \f[
     !> \begin{array}{cl}
-    !> Z^H_l B_l Z_l=I & \: \text{if 1st or 2nd form, or}\\
+    !> Z^H_l B_l Z_l=I & \: \text{if 1st or 2nd form, or}\\%
     !> Z^H_l B^{-1}_l Z_l=I & \: \text{if 3rd form.}
     !> \end{array}
     !> \f]
@@ -27312,10 +27335,10 @@ module hipfort_rocsolver
     !> @param[in]
     !> handle      rocblas_handle.
     !> @param[in]
-    !> itype       #rocblas_eform.
+    !> itype       `rocblas_eform`.
     !> Specifies the form of the generalized eigenproblems.
     !> @param[in]
-    !> evect       #rocblas_evect.
+    !> evect       `rocblas_evect`.
     !> Specifies whether the eigenvectors are to be computed.
     !> If evect is rocblas_evect_original, then the eigenvectors are computed.
     !> rocblas_evect_tridiagonal is not supported.
@@ -27448,12 +27471,12 @@ module hipfort_rocsolver
     !> @param[in]
     !> handle      rocblas_handle.
     !> @param[in]
-    !> esort       #rocblas_esort.
+    !> esort       `rocblas_esort`.
     !> Specifies the order of the returned eigenvalues. If esort is
     !> rocblas_esort_ascending, then the eigenvalues are sorted and returned in ascending order.
     !> If esort is rocblas_esort_none, then the order of the returned eigenvalues is unspecified.
     !> @param[in]
-    !> evect       #rocblas_evect.
+    !> evect       `rocblas_evect`.
     !> Specifies whether the eigenvectors are to be computed.
     !> If evect is rocblas_evect_original, then the eigenvectors are computed.
     !> rocblas_evect_tridiagonal is not supported.
@@ -27571,12 +27594,12 @@ module hipfort_rocsolver
     !> @param[in]
     !> handle      rocblas_handle.
     !> @param[in]
-    !> esort       #rocblas_esort.
+    !> esort       `rocblas_esort`.
     !> Specifies the order of the returned eigenvalues. If esort is
     !> rocblas_esort_ascending, then the eigenvalues are sorted and returned in ascending order.
     !> If esort is rocblas_esort_none, then the order of the returned eigenvalues is unspecified.
     !> @param[in]
-    !> evect       #rocblas_evect.
+    !> evect       `rocblas_evect`.
     !> Specifies whether the eigenvectors are to be computed.
     !> If evect is rocblas_evect_original, then the eigenvectors are computed.
     !> rocblas_evect_tridiagonal is not supported.
@@ -27694,12 +27717,12 @@ module hipfort_rocsolver
     !> @param[in]
     !> handle      rocblas_handle.
     !> @param[in]
-    !> esort       #rocblas_esort.
+    !> esort       `rocblas_esort`.
     !> Specifies the order of the returned eigenvalues. If esort is
     !> rocblas_esort_ascending, then the eigenvalues are sorted and returned in ascending order.
     !> If esort is rocblas_esort_none, then the order of the returned eigenvalues is unspecified.
     !> @param[in]
-    !> evect       #rocblas_evect.
+    !> evect       `rocblas_evect`.
     !> Specifies whether the eigenvectors are to be computed.
     !> If evect is rocblas_evect_original, then the eigenvectors are computed.
     !> rocblas_evect_tridiagonal is not supported.
@@ -27829,12 +27852,12 @@ module hipfort_rocsolver
     !> @param[in]
     !> handle      rocblas_handle.
     !> @param[in]
-    !> esort       #rocblas_esort.
+    !> esort       `rocblas_esort`.
     !> Specifies the order of the returned eigenvalues. If esort is
     !> rocblas_esort_ascending, then the eigenvalues are sorted and returned in ascending order.
     !> If esort is rocblas_esort_none, then the order of the returned eigenvalues is unspecified.
     !> @param[in]
-    !> evect       #rocblas_evect.
+    !> evect       `rocblas_evect`.
     !> Specifies whether the eigenvectors are to be computed.
     !> If evect is rocblas_evect_original, then the eigenvectors are computed.
     !> rocblas_evect_tridiagonal is not supported.
@@ -27964,12 +27987,12 @@ module hipfort_rocsolver
     !> @param[in]
     !> handle      rocblas_handle.
     !> @param[in]
-    !> esort       #rocblas_esort.
+    !> esort       `rocblas_esort`.
     !> Specifies the order of the returned eigenvalues. If esort is
     !> rocblas_esort_ascending, then the eigenvalues are sorted and returned in ascending order.
     !> If esort is rocblas_esort_none, then the order of the returned eigenvalues is unspecified.
     !> @param[in]
-    !> evect       #rocblas_evect.
+    !> evect       `rocblas_evect`.
     !> Specifies whether the eigenvectors are to be computed.
     !> If evect is rocblas_evect_original, then the eigenvectors are computed.
     !> rocblas_evect_tridiagonal is not supported.
@@ -28107,12 +28130,12 @@ module hipfort_rocsolver
     !> @param[in]
     !> handle      rocblas_handle.
     !> @param[in]
-    !> esort       #rocblas_esort.
+    !> esort       `rocblas_esort`.
     !> Specifies the order of the returned eigenvalues. If esort is
     !> rocblas_esort_ascending, then the eigenvalues are sorted and returned in ascending order.
     !> If esort is rocblas_esort_none, then the order of the returned eigenvalues is unspecified.
     !> @param[in]
-    !> evect       #rocblas_evect.
+    !> evect       `rocblas_evect`.
     !> Specifies whether the eigenvectors are to be computed.
     !> If evect is rocblas_evect_original, then the eigenvectors are computed.
     !> rocblas_evect_tridiagonal is not supported.
@@ -28226,19 +28249,19 @@ module hipfort_rocsolver
     !> \details
     !> This function computes all the eigenvalues of ``A``, all the eigenvalues in the half-open
     !> interval \f$(vl, vu]\f$,
-    !> or the ``il``-th through ``iu``-th eigenvalues, depending on the value of ``erange``. If
+    !> or the ``il`` -th through ``iu`` -th eigenvalues, depending on the value of ``erange``. If
     !> ``evect`` is rocblas_evect_original,
     !> the eigenvectors for these eigenvalues will be computed as well.
     !>
     !> @param[in]
     !> handle      rocblas_handle.
     !> @param[in]
-    !> evect       #rocblas_evect.
+    !> evect       `rocblas_evect`.
     !> Specifies whether the eigenvectors are to be computed.
     !> If evect is rocblas_evect_original, then the eigenvectors are computed.
     !> rocblas_evect_tridiagonal is not supported.
     !> @param[in]
-    !> erange      #rocblas_erange.
+    !> erange      `rocblas_erange`.
     !> Specifies the type of range or interval of the eigenvalues to be computed.
     !> @param[in]
     !> uplo        rocblas_fill.
@@ -28371,19 +28394,19 @@ module hipfort_rocsolver
     !> \details
     !> This function computes all the eigenvalues of ``A``, all the eigenvalues in the half-open
     !> interval \f$(vl, vu]\f$,
-    !> or the ``il``-th through ``iu``-th eigenvalues, depending on the value of ``erange``. If
+    !> or the ``il`` -th through ``iu`` -th eigenvalues, depending on the value of ``erange``. If
     !> ``evect`` is rocblas_evect_original,
     !> the eigenvectors for these eigenvalues will be computed as well.
     !>
     !> @param[in]
     !> handle      rocblas_handle.
     !> @param[in]
-    !> evect       #rocblas_evect.
+    !> evect       `rocblas_evect`.
     !> Specifies whether the eigenvectors are to be computed.
     !> If evect is rocblas_evect_original, then the eigenvectors are computed.
     !> rocblas_evect_tridiagonal is not supported.
     !> @param[in]
-    !> erange      #rocblas_erange.
+    !> erange      `rocblas_erange`.
     !> Specifies the type of range or interval of the eigenvalues to be computed.
     !> @param[in]
     !> uplo        rocblas_fill.
@@ -28516,19 +28539,19 @@ module hipfort_rocsolver
     !> \details
     !> This function computes all the eigenvalues of A_l, all the eigenvalues in the half-open
     !> interval \f$(vl, vu]\f$,
-    !> or the ``il``-th through ``iu``-th eigenvalues, depending on the value of ``erange``. If
+    !> or the ``il`` -th through ``iu`` -th eigenvalues, depending on the value of ``erange``. If
     !> ``evect`` is rocblas_evect_original,
     !> the eigenvectors for these eigenvalues will be computed as well.
     !>
     !> @param[in]
     !> handle      rocblas_handle.
     !> @param[in]
-    !> evect       #rocblas_evect.
+    !> evect       `rocblas_evect`.
     !> Specifies whether the eigenvectors are to be computed.
     !> If evect is rocblas_evect_original, then the eigenvectors are computed.
     !> rocblas_evect_tridiagonal is not supported.
     !> @param[in]
-    !> erange      #rocblas_erange.
+    !> erange      `rocblas_erange`.
     !> Specifies the type of range or interval of the eigenvalues to be computed.
     !> @param[in]
     !> uplo        rocblas_fill.
@@ -28681,19 +28704,19 @@ module hipfort_rocsolver
     !> \details
     !> This function computes all the eigenvalues of A_l, all the eigenvalues in the half-open
     !> interval \f$(vl, vu]\f$,
-    !> or the ``il``-th through ``iu``-th eigenvalues, depending on the value of ``erange``. If
+    !> or the ``il`` -th through ``iu`` -th eigenvalues, depending on the value of ``erange``. If
     !> ``evect`` is rocblas_evect_original,
     !> the eigenvectors for these eigenvalues will be computed as well.
     !>
     !> @param[in]
     !> handle      rocblas_handle.
     !> @param[in]
-    !> evect       #rocblas_evect.
+    !> evect       `rocblas_evect`.
     !> Specifies whether the eigenvectors are to be computed.
     !> If evect is rocblas_evect_original, then the eigenvectors are computed.
     !> rocblas_evect_tridiagonal is not supported.
     !> @param[in]
-    !> erange      #rocblas_erange.
+    !> erange      `rocblas_erange`.
     !> Specifies the type of range or interval of the eigenvalues to be computed.
     !> @param[in]
     !> uplo        rocblas_fill.
@@ -28846,19 +28869,19 @@ module hipfort_rocsolver
     !> \details
     !> This function computes all the eigenvalues of A_l, all the eigenvalues in the half-open
     !> interval \f$(vl, vu]\f$,
-    !> or the ``il``-th through ``iu``-th eigenvalues, depending on the value of ``erange``. If
+    !> or the ``il`` -th through ``iu`` -th eigenvalues, depending on the value of ``erange``. If
     !> ``evect`` is rocblas_evect_original,
     !> the eigenvectors for these eigenvalues will be computed as well.
     !>
     !> @param[in]
     !> handle      rocblas_handle.
     !> @param[in]
-    !> evect       #rocblas_evect.
+    !> evect       `rocblas_evect`.
     !> Specifies whether the eigenvectors are to be computed.
     !> If evect is rocblas_evect_original, then the eigenvectors are computed.
     !> rocblas_evect_tridiagonal is not supported.
     !> @param[in]
-    !> erange      #rocblas_erange.
+    !> erange      `rocblas_erange`.
     !> Specifies the type of range or interval of the eigenvalues to be computed.
     !> @param[in]
     !> uplo        rocblas_fill.
@@ -29023,19 +29046,19 @@ module hipfort_rocsolver
     !> \details
     !> This function computes all the eigenvalues of A_l, all the eigenvalues in the half-open
     !> interval \f$(vl, vu]\f$,
-    !> or the ``il``-th through ``iu``-th eigenvalues, depending on the value of ``erange``. If
+    !> or the ``il`` -th through ``iu`` -th eigenvalues, depending on the value of ``erange``. If
     !> ``evect`` is rocblas_evect_original,
     !> the eigenvectors for these eigenvalues will be computed as well.
     !>
     !> @param[in]
     !> handle      rocblas_handle.
     !> @param[in]
-    !> evect       #rocblas_evect.
+    !> evect       `rocblas_evect`.
     !> Specifies whether the eigenvectors are to be computed.
     !> If evect is rocblas_evect_original, then the eigenvectors are computed.
     !> rocblas_evect_tridiagonal is not supported.
     !> @param[in]
-    !> erange      #rocblas_erange.
+    !> erange      `rocblas_erange`.
     !> Specifies the type of range or interval of the eigenvalues to be computed.
     !> @param[in]
     !> uplo        rocblas_fill.
@@ -29201,8 +29224,8 @@ module hipfort_rocsolver
     !>
     !> \f[
     !> \begin{array}{cl}
-    !> A X = \lambda B X & \: \text{1st form,}\\
-    !> A B X = \lambda X & \: \text{2nd form, or}\\
+    !> A X = \lambda B X & \: \text{1st form,}\\%
+    !> A B X = \lambda X & \: \text{2nd form, or}\\%
     !> B A X = \lambda X & \: \text{3rd form,}
     !> \end{array}
     !> \f]
@@ -29214,7 +29237,7 @@ module hipfort_rocsolver
     !>
     !> \f[
     !> \begin{array}{cl}
-    !> Z^T B Z=I & \: \text{if 1st or 2nd form, or}\\
+    !> Z^T B Z=I & \: \text{if 1st or 2nd form, or}\\%
     !> Z^T B^{-1} Z=I & \: \text{if 3rd form.}
     !> \end{array}
     !> \f]
@@ -29222,10 +29245,10 @@ module hipfort_rocsolver
     !> @param[in]
     !> handle      rocblas_handle.
     !> @param[in]
-    !> itype       #rocblas_eform.
+    !> itype       `rocblas_eform`.
     !> Specifies the form of the generalized eigenproblem.
     !> @param[in]
-    !> evect       #rocblas_evect.
+    !> evect       `rocblas_evect`.
     !> Specifies whether the eigenvectors are to be computed.
     !> If evect is rocblas_evect_original, then the eigenvectors are computed.
     !> rocblas_evect_tridiagonal is not supported.
@@ -29323,8 +29346,8 @@ module hipfort_rocsolver
     !>
     !> \f[
     !> \begin{array}{cl}
-    !> A X = \lambda B X & \: \text{1st form,}\\
-    !> A B X = \lambda X & \: \text{2nd form, or}\\
+    !> A X = \lambda B X & \: \text{1st form,}\\%
+    !> A B X = \lambda X & \: \text{2nd form, or}\\%
     !> B A X = \lambda X & \: \text{3rd form,}
     !> \end{array}
     !> \f]
@@ -29336,7 +29359,7 @@ module hipfort_rocsolver
     !>
     !> \f[
     !> \begin{array}{cl}
-    !> Z^H B Z=I & \: \text{if 1st or 2nd form, or}\\
+    !> Z^H B Z=I & \: \text{if 1st or 2nd form, or}\\%
     !> Z^H B^{-1} Z=I & \: \text{if 3rd form.}
     !> \end{array}
     !> \f]
@@ -29344,10 +29367,10 @@ module hipfort_rocsolver
     !> @param[in]
     !> handle      rocblas_handle.
     !> @param[in]
-    !> itype       #rocblas_eform.
+    !> itype       `rocblas_eform`.
     !> Specifies the form of the generalized eigenproblem.
     !> @param[in]
-    !> evect       #rocblas_evect.
+    !> evect       `rocblas_evect`.
     !> Specifies whether the eigenvectors are to be computed.
     !> If evect is rocblas_evect_original, then the eigenvectors are computed.
     !> rocblas_evect_tridiagonal is not supported.
@@ -29445,8 +29468,8 @@ module hipfort_rocsolver
     !>
     !> \f[
     !> \begin{array}{cl}
-    !> A_l X_l = \lambda B_l X_l & \: \text{1st form,}\\
-    !> A_l B_l X_l = \lambda X_l & \: \text{2nd form, or}\\
+    !> A_l X_l = \lambda B_l X_l & \: \text{1st form,}\\%
+    !> A_l B_l X_l = \lambda X_l & \: \text{2nd form, or}\\%
     !> B_l A_l X_l = \lambda X_l & \: \text{3rd form,}
     !> \end{array}
     !> \f]
@@ -29458,7 +29481,7 @@ module hipfort_rocsolver
     !>
     !> \f[
     !> \begin{array}{cl}
-    !> Z_l^T B_l^{} Z_l^{}=I & \: \text{if 1st or 2nd form, or}\\
+    !> Z_l^T B_l^{} Z_l^{}=I & \: \text{if 1st or 2nd form, or}\\%
     !> Z_l^T B_l^{-1} Z_l^{}=I & \: \text{if 3rd form.}
     !> \end{array}
     !> \f]
@@ -29466,10 +29489,10 @@ module hipfort_rocsolver
     !> @param[in]
     !> handle      rocblas_handle.
     !> @param[in]
-    !> itype       #rocblas_eform.
+    !> itype       `rocblas_eform`.
     !> Specifies the form of the generalized eigenproblems.
     !> @param[in]
-    !> evect       #rocblas_evect.
+    !> evect       `rocblas_evect`.
     !> Specifies whether the eigenvectors are to be computed.
     !> If evect is rocblas_evect_original, then the eigenvectors are computed.
     !> rocblas_evect_tridiagonal is not supported.
@@ -29587,8 +29610,8 @@ module hipfort_rocsolver
     !>
     !> \f[
     !> \begin{array}{cl}
-    !> A_l X_l = \lambda B_l X_l & \: \text{1st form,}\\
-    !> A_l B_l X_l = \lambda X_l & \: \text{2nd form, or}\\
+    !> A_l X_l = \lambda B_l X_l & \: \text{1st form,}\\%
+    !> A_l B_l X_l = \lambda X_l & \: \text{2nd form, or}\\%
     !> B_l A_l X_l = \lambda X_l & \: \text{3rd form,}
     !> \end{array}
     !> \f]
@@ -29600,7 +29623,7 @@ module hipfort_rocsolver
     !>
     !> \f[
     !> \begin{array}{cl}
-    !> Z_l^H B_l^{} Z_l^{}=I & \: \text{if 1st or 2nd form, or}\\
+    !> Z_l^H B_l^{} Z_l^{}=I & \: \text{if 1st or 2nd form, or}\\%
     !> Z_l^H B_l^{-1} Z_l^{}=I & \: \text{if 3rd form.}
     !> \end{array}
     !> \f]
@@ -29608,10 +29631,10 @@ module hipfort_rocsolver
     !> @param[in]
     !> handle      rocblas_handle.
     !> @param[in]
-    !> itype       #rocblas_eform.
+    !> itype       `rocblas_eform`.
     !> Specifies the form of the generalized eigenproblems.
     !> @param[in]
-    !> evect       #rocblas_evect.
+    !> evect       `rocblas_evect`.
     !> Specifies whether the eigenvectors are to be computed.
     !> If evect is rocblas_evect_original, then the eigenvectors are computed.
     !> rocblas_evect_tridiagonal is not supported.
@@ -29729,8 +29752,8 @@ module hipfort_rocsolver
     !>
     !> \f[
     !> \begin{array}{cl}
-    !> A_l X_l = \lambda B_l X_l & \: \text{1st form,}\\
-    !> A_l B_l X_l = \lambda X_l & \: \text{2nd form, or}\\
+    !> A_l X_l = \lambda B_l X_l & \: \text{1st form,}\\%
+    !> A_l B_l X_l = \lambda X_l & \: \text{2nd form, or}\\%
     !> B_l A_l X_l = \lambda X_l & \: \text{3rd form,}
     !> \end{array}
     !> \f]
@@ -29742,7 +29765,7 @@ module hipfort_rocsolver
     !>
     !> \f[
     !> \begin{array}{cl}
-    !> Z_l^T B_l^{} Z_l^{}=I & \: \text{if 1st or 2nd form, or}\\
+    !> Z_l^T B_l^{} Z_l^{}=I & \: \text{if 1st or 2nd form, or}\\%
     !> Z_l^T B_l^{-1} Z_l^{}=I & \: \text{if 3rd form.}
     !> \end{array}
     !> \f]
@@ -29750,10 +29773,10 @@ module hipfort_rocsolver
     !> @param[in]
     !> handle      rocblas_handle.
     !> @param[in]
-    !> itype       #rocblas_eform.
+    !> itype       `rocblas_eform`.
     !> Specifies the form of the generalized eigenproblems.
     !> @param[in]
-    !> evect       #rocblas_evect.
+    !> evect       `rocblas_evect`.
     !> Specifies whether the eigenvectors are to be computed.
     !> If evect is rocblas_evect_original, then the eigenvectors are computed.
     !> rocblas_evect_tridiagonal is not supported.
@@ -29886,8 +29909,8 @@ module hipfort_rocsolver
     !>
     !> \f[
     !> \begin{array}{cl}
-    !> A_l X_l = \lambda B_l X_l & \: \text{1st form,}\\
-    !> A_l B_l X_l = \lambda X_l & \: \text{2nd form, or}\\
+    !> A_l X_l = \lambda B_l X_l & \: \text{1st form,}\\%
+    !> A_l B_l X_l = \lambda X_l & \: \text{2nd form, or}\\%
     !> B_l A_l X_l = \lambda X_l & \: \text{3rd form,}
     !> \end{array}
     !> \f]
@@ -29899,7 +29922,7 @@ module hipfort_rocsolver
     !>
     !> \f[
     !> \begin{array}{cl}
-    !> Z_l^H B_l^{} Z_l^{}=I & \: \text{if 1st or 2nd form, or}\\
+    !> Z_l^H B_l^{} Z_l^{}=I & \: \text{if 1st or 2nd form, or}\\%
     !> Z_l^H B_l^{-1} Z_l^{}=I & \: \text{if 3rd form.}
     !> \end{array}
     !> \f]
@@ -29907,10 +29930,10 @@ module hipfort_rocsolver
     !> @param[in]
     !> handle      rocblas_handle.
     !> @param[in]
-    !> itype       #rocblas_eform.
+    !> itype       `rocblas_eform`.
     !> Specifies the form of the generalized eigenproblems.
     !> @param[in]
-    !> evect       #rocblas_evect.
+    !> evect       `rocblas_evect`.
     !> Specifies whether the eigenvectors are to be computed.
     !> If evect is rocblas_evect_original, then the eigenvectors are computed.
     !> rocblas_evect_tridiagonal is not supported.
@@ -30043,8 +30066,8 @@ module hipfort_rocsolver
     !>
     !> \f[
     !> \begin{array}{cl}
-    !> A X = \lambda B X & \: \text{1st form,}\\
-    !> A B X = \lambda X & \: \text{2nd form, or}\\
+    !> A X = \lambda B X & \: \text{1st form,}\\%
+    !> A B X = \lambda X & \: \text{2nd form, or}\\%
     !> B A X = \lambda X & \: \text{3rd form,}
     !> \end{array}
     !> \f]
@@ -30057,7 +30080,7 @@ module hipfort_rocsolver
     !>
     !> \f[
     !> \begin{array}{cl}
-    !> Z^T B Z=I & \: \text{if 1st or 2nd form, or}\\
+    !> Z^T B Z=I & \: \text{if 1st or 2nd form, or}\\%
     !> Z^T B^{-1} Z=I & \: \text{if 3rd form.}
     !> \end{array}
     !> \f]
@@ -30065,10 +30088,10 @@ module hipfort_rocsolver
     !> @param[in]
     !> handle      rocblas_handle.
     !> @param[in]
-    !> itype       #rocblas_eform.
+    !> itype       `rocblas_eform`.
     !> Specifies the form of the generalized eigenproblem.
     !> @param[in]
-    !> evect       #rocblas_evect.
+    !> evect       `rocblas_evect`.
     !> Specifies whether the eigenvectors are to be computed.
     !> If evect is rocblas_evect_original, then the eigenvectors are computed.
     !> rocblas_evect_tridiagonal is not supported.
@@ -30168,8 +30191,8 @@ module hipfort_rocsolver
     !>
     !> \f[
     !> \begin{array}{cl}
-    !> A X = \lambda B X & \: \text{1st form,}\\
-    !> A B X = \lambda X & \: \text{2nd form, or}\\
+    !> A X = \lambda B X & \: \text{1st form,}\\%
+    !> A B X = \lambda X & \: \text{2nd form, or}\\%
     !> B A X = \lambda X & \: \text{3rd form,}
     !> \end{array}
     !> \f]
@@ -30182,7 +30205,7 @@ module hipfort_rocsolver
     !>
     !> \f[
     !> \begin{array}{cl}
-    !> Z^H B Z=I & \: \text{if 1st or 2nd form, or}\\
+    !> Z^H B Z=I & \: \text{if 1st or 2nd form, or}\\%
     !> Z^H B^{-1} Z=I & \: \text{if 3rd form.}
     !> \end{array}
     !> \f]
@@ -30190,10 +30213,10 @@ module hipfort_rocsolver
     !> @param[in]
     !> handle      rocblas_handle.
     !> @param[in]
-    !> itype       #rocblas_eform.
+    !> itype       `rocblas_eform`.
     !> Specifies the form of the generalized eigenproblem.
     !> @param[in]
-    !> evect       #rocblas_evect.
+    !> evect       `rocblas_evect`.
     !> Specifies whether the eigenvectors are to be computed.
     !> If evect is rocblas_evect_original, then the eigenvectors are computed.
     !> rocblas_evect_tridiagonal is not supported.
@@ -30293,8 +30316,8 @@ module hipfort_rocsolver
     !>
     !> \f[
     !> \begin{array}{cl}
-    !> A_l X_l = \lambda B_l X_l & \: \text{1st form,}\\
-    !> A_l B_l X_l = \lambda X_l & \: \text{2nd form, or}\\
+    !> A_l X_l = \lambda B_l X_l & \: \text{1st form,}\\%
+    !> A_l B_l X_l = \lambda X_l & \: \text{2nd form, or}\\%
     !> B_l A_l X_l = \lambda X_l & \: \text{3rd form,}
     !> \end{array}
     !> \f]
@@ -30307,7 +30330,7 @@ module hipfort_rocsolver
     !>
     !> \f[
     !> \begin{array}{cl}
-    !> Z_l^T B_l^{} Z_l^{}=I & \: \text{if 1st or 2nd form, or}\\
+    !> Z_l^T B_l^{} Z_l^{}=I & \: \text{if 1st or 2nd form, or}\\%
     !> Z_l^T B_l^{-1} Z_l^{}=I & \: \text{if 3rd form.}
     !> \end{array}
     !> \f]
@@ -30320,10 +30343,10 @@ module hipfort_rocsolver
     !> @param[in]
     !> handle      rocblas_handle.
     !> @param[in]
-    !> itype       #rocblas_eform.
+    !> itype       `rocblas_eform`.
     !> Specifies the form of the generalized eigenproblems.
     !> @param[in]
-    !> evect       #rocblas_evect.
+    !> evect       `rocblas_evect`.
     !> Specifies whether the eigenvectors are to be computed.
     !> If evect is rocblas_evect_original, then the eigenvectors are computed.
     !> rocblas_evect_tridiagonal is not supported.
@@ -30443,8 +30466,8 @@ module hipfort_rocsolver
     !>
     !> \f[
     !> \begin{array}{cl}
-    !> A_l X_l = \lambda B_l X_l & \: \text{1st form,}\\
-    !> A_l B_l X_l = \lambda X_l & \: \text{2nd form, or}\\
+    !> A_l X_l = \lambda B_l X_l & \: \text{1st form,}\\%
+    !> A_l B_l X_l = \lambda X_l & \: \text{2nd form, or}\\%
     !> B_l A_l X_l = \lambda X_l & \: \text{3rd form,}
     !> \end{array}
     !> \f]
@@ -30457,7 +30480,7 @@ module hipfort_rocsolver
     !>
     !> \f[
     !> \begin{array}{cl}
-    !> Z_l^H B_l^{} Z_l^{}=I & \: \text{if 1st or 2nd form, or}\\
+    !> Z_l^H B_l^{} Z_l^{}=I & \: \text{if 1st or 2nd form, or}\\%
     !> Z_l^H B_l^{-1} Z_l^{}=I & \: \text{if 3rd form.}
     !> \end{array}
     !> \f]
@@ -30470,10 +30493,10 @@ module hipfort_rocsolver
     !> @param[in]
     !> handle      rocblas_handle.
     !> @param[in]
-    !> itype       #rocblas_eform.
+    !> itype       `rocblas_eform`.
     !> Specifies the form of the generalized eigenproblems.
     !> @param[in]
-    !> evect       #rocblas_evect.
+    !> evect       `rocblas_evect`.
     !> Specifies whether the eigenvectors are to be computed.
     !> If evect is rocblas_evect_original, then the eigenvectors are computed.
     !> rocblas_evect_tridiagonal is not supported.
@@ -30593,8 +30616,8 @@ module hipfort_rocsolver
     !>
     !> \f[
     !> \begin{array}{cl}
-    !> A_l X_l = \lambda B_l X_l & \: \text{1st form,}\\
-    !> A_l B_l X_l = \lambda X_l & \: \text{2nd form, or}\\
+    !> A_l X_l = \lambda B_l X_l & \: \text{1st form,}\\%
+    !> A_l B_l X_l = \lambda X_l & \: \text{2nd form, or}\\%
     !> B_l A_l X_l = \lambda X_l & \: \text{3rd form,}
     !> \end{array}
     !> \f]
@@ -30607,7 +30630,7 @@ module hipfort_rocsolver
     !>
     !> \f[
     !> \begin{array}{cl}
-    !> Z_l^T B_l^{} Z_l^{}=I & \: \text{if 1st or 2nd form, or}\\
+    !> Z_l^T B_l^{} Z_l^{}=I & \: \text{if 1st or 2nd form, or}\\%
     !> Z_l^T B_l^{-1} Z_l^{}=I & \: \text{if 3rd form.}
     !> \end{array}
     !> \f]
@@ -30620,10 +30643,10 @@ module hipfort_rocsolver
     !> @param[in]
     !> handle      rocblas_handle.
     !> @param[in]
-    !> itype       #rocblas_eform.
+    !> itype       `rocblas_eform`.
     !> Specifies the form of the generalized eigenproblems.
     !> @param[in]
-    !> evect       #rocblas_evect.
+    !> evect       `rocblas_evect`.
     !> Specifies whether the eigenvectors are to be computed.
     !> If evect is rocblas_evect_original, then the eigenvectors are computed.
     !> rocblas_evect_tridiagonal is not supported.
@@ -30758,8 +30781,8 @@ module hipfort_rocsolver
     !>
     !> \f[
     !> \begin{array}{cl}
-    !> A_l X_l = \lambda B_l X_l & \: \text{1st form,}\\
-    !> A_l B_l X_l = \lambda X_l & \: \text{2nd form, or}\\
+    !> A_l X_l = \lambda B_l X_l & \: \text{1st form,}\\%
+    !> A_l B_l X_l = \lambda X_l & \: \text{2nd form, or}\\%
     !> B_l A_l X_l = \lambda X_l & \: \text{3rd form,}
     !> \end{array}
     !> \f]
@@ -30772,7 +30795,7 @@ module hipfort_rocsolver
     !>
     !> \f[
     !> \begin{array}{cl}
-    !> Z_l^H B_l^{} Z_l^{}=I & \: \text{if 1st or 2nd form, or}\\
+    !> Z_l^H B_l^{} Z_l^{}=I & \: \text{if 1st or 2nd form, or}\\%
     !> Z_l^H B_l^{-1} Z_l^{}=I & \: \text{if 3rd form.}
     !> \end{array}
     !> \f]
@@ -30785,10 +30808,10 @@ module hipfort_rocsolver
     !> @param[in]
     !> handle      rocblas_handle.
     !> @param[in]
-    !> itype       #rocblas_eform.
+    !> itype       `rocblas_eform`.
     !> Specifies the form of the generalized eigenproblems.
     !> @param[in]
-    !> evect       #rocblas_evect.
+    !> evect       `rocblas_evect`.
     !> Specifies whether the eigenvectors are to be computed.
     !> If evect is rocblas_evect_original, then the eigenvectors are computed.
     !> rocblas_evect_tridiagonal is not supported.
@@ -30923,8 +30946,8 @@ module hipfort_rocsolver
     !>
     !> \f[
     !> \begin{array}{cl}
-    !> A X = \lambda B X & \: \text{1st form,}\\
-    !> A B X = \lambda X & \: \text{2nd form, or}\\
+    !> A X = \lambda B X & \: \text{1st form,}\\%
+    !> A B X = \lambda X & \: \text{2nd form, or}\\%
     !> B A X = \lambda X & \: \text{3rd form,}
     !> \end{array}
     !> \f]
@@ -30937,7 +30960,7 @@ module hipfort_rocsolver
     !>
     !> \f[
     !> \begin{array}{cl}
-    !> Z^T B Z=I & \: \text{if 1st or 2nd form, or}\\
+    !> Z^T B Z=I & \: \text{if 1st or 2nd form, or}\\%
     !> Z^T B^{-1} Z=I & \: \text{if 3rd form.}
     !> \end{array}
     !> \f]
@@ -30950,10 +30973,10 @@ module hipfort_rocsolver
     !> @param[in]
     !> handle      rocblas_handle.
     !> @param[in]
-    !> itype       #rocblas_eform.
+    !> itype       `rocblas_eform`.
     !> Specifies the form of the generalized eigenproblem.
     !> @param[in]
-    !> evect       #rocblas_evect.
+    !> evect       `rocblas_evect`.
     !> Specifies whether the eigenvectors are to be computed.
     !> If evect is rocblas_evect_original, then the eigenvectors are computed.
     !> rocblas_evect_tridiagonal is not supported.
@@ -31063,8 +31086,8 @@ module hipfort_rocsolver
     !>
     !> \f[
     !> \begin{array}{cl}
-    !> A X = \lambda B X & \: \text{1st form,}\\
-    !> A B X = \lambda X & \: \text{2nd form, or}\\
+    !> A X = \lambda B X & \: \text{1st form,}\\%
+    !> A B X = \lambda X & \: \text{2nd form, or}\\%
     !> B A X = \lambda X & \: \text{3rd form,}
     !> \end{array}
     !> \f]
@@ -31077,7 +31100,7 @@ module hipfort_rocsolver
     !>
     !> \f[
     !> \begin{array}{cl}
-    !> Z^H B Z=I & \: \text{if 1st or 2nd form, or}\\
+    !> Z^H B Z=I & \: \text{if 1st or 2nd form, or}\\%
     !> Z^H B^{-1} Z=I & \: \text{if 3rd form.}
     !> \end{array}
     !> \f]
@@ -31090,10 +31113,10 @@ module hipfort_rocsolver
     !> @param[in]
     !> handle      rocblas_handle.
     !> @param[in]
-    !> itype       #rocblas_eform.
+    !> itype       `rocblas_eform`.
     !> Specifies the form of the generalized eigenproblem.
     !> @param[in]
-    !> evect       #rocblas_evect.
+    !> evect       `rocblas_evect`.
     !> Specifies whether the eigenvectors are to be computed.
     !> If evect is rocblas_evect_original, then the eigenvectors are computed.
     !> rocblas_evect_tridiagonal is not supported.
@@ -31203,8 +31226,8 @@ module hipfort_rocsolver
     !>
     !> \f[
     !> \begin{array}{cl}
-    !> A_l X_l = \lambda B_l X_l & \: \text{1st form,}\\
-    !> A_l B_l X_l = \lambda X_l & \: \text{2nd form, or}\\
+    !> A_l X_l = \lambda B_l X_l & \: \text{1st form,}\\%
+    !> A_l B_l X_l = \lambda X_l & \: \text{2nd form, or}\\%
     !> B_l A_l X_l = \lambda X_l & \: \text{3rd form,}
     !> \end{array}
     !> \f]
@@ -31217,7 +31240,7 @@ module hipfort_rocsolver
     !>
     !> \f[
     !> \begin{array}{cl}
-    !> Z_l^T B_l^{} Z_l^{}=I & \: \text{if 1st or 2nd form, or}\\
+    !> Z_l^T B_l^{} Z_l^{}=I & \: \text{if 1st or 2nd form, or}\\%
     !> Z_l^T B_l^{-1} Z_l^{}=I & \: \text{if 3rd form.}
     !> \end{array}
     !> \f]
@@ -31225,10 +31248,10 @@ module hipfort_rocsolver
     !> @param[in]
     !> handle      rocblas_handle.
     !> @param[in]
-    !> itype       #rocblas_eform.
+    !> itype       `rocblas_eform`.
     !> Specifies the form of the generalized eigenproblems.
     !> @param[in]
-    !> evect       #rocblas_evect.
+    !> evect       `rocblas_evect`.
     !> Specifies whether the eigenvectors are to be computed.
     !> If evect is rocblas_evect_original, then the eigenvectors are computed.
     !> rocblas_evect_tridiagonal is not supported.
@@ -31353,8 +31376,8 @@ module hipfort_rocsolver
     !>
     !> \f[
     !> \begin{array}{cl}
-    !> A_l X_l = \lambda B_l X_l & \: \text{1st form,}\\
-    !> A_l B_l X_l = \lambda X_l & \: \text{2nd form, or}\\
+    !> A_l X_l = \lambda B_l X_l & \: \text{1st form,}\\%
+    !> A_l B_l X_l = \lambda X_l & \: \text{2nd form, or}\\%
     !> B_l A_l X_l = \lambda X_l & \: \text{3rd form,}
     !> \end{array}
     !> \f]
@@ -31367,7 +31390,7 @@ module hipfort_rocsolver
     !>
     !> \f[
     !> \begin{array}{cl}
-    !> Z_l^H B_l^{} Z_l^{}=I & \: \text{if 1st or 2nd form, or}\\
+    !> Z_l^H B_l^{} Z_l^{}=I & \: \text{if 1st or 2nd form, or}\\%
     !> Z_l^H B_l^{-1} Z_l^{}=I & \: \text{if 3rd form.}
     !> \end{array}
     !> \f]
@@ -31375,10 +31398,10 @@ module hipfort_rocsolver
     !> @param[in]
     !> handle      rocblas_handle.
     !> @param[in]
-    !> itype       #rocblas_eform.
+    !> itype       `rocblas_eform`.
     !> Specifies the form of the generalized eigenproblems.
     !> @param[in]
-    !> evect       #rocblas_evect.
+    !> evect       `rocblas_evect`.
     !> Specifies whether the eigenvectors are to be computed.
     !> If evect is rocblas_evect_original, then the eigenvectors are computed.
     !> rocblas_evect_tridiagonal is not supported.
@@ -31503,8 +31526,8 @@ module hipfort_rocsolver
     !>
     !> \f[
     !> \begin{array}{cl}
-    !> A_l X_l = \lambda B_l X_l & \: \text{1st form,}\\
-    !> A_l B_l X_l = \lambda X_l & \: \text{2nd form, or}\\
+    !> A_l X_l = \lambda B_l X_l & \: \text{1st form,}\\%
+    !> A_l B_l X_l = \lambda X_l & \: \text{2nd form, or}\\%
     !> B_l A_l X_l = \lambda X_l & \: \text{3rd form,}
     !> \end{array}
     !> \f]
@@ -31517,7 +31540,7 @@ module hipfort_rocsolver
     !>
     !> \f[
     !> \begin{array}{cl}
-    !> Z_l^T B_l^{} Z_l^{}=I & \: \text{if 1st or 2nd form, or}\\
+    !> Z_l^T B_l^{} Z_l^{}=I & \: \text{if 1st or 2nd form, or}\\%
     !> Z_l^T B_l^{-1} Z_l^{}=I & \: \text{if 3rd form.}
     !> \end{array}
     !> \f]
@@ -31525,10 +31548,10 @@ module hipfort_rocsolver
     !> @param[in]
     !> handle      rocblas_handle.
     !> @param[in]
-    !> itype       #rocblas_eform.
+    !> itype       `rocblas_eform`.
     !> Specifies the form of the generalized eigenproblems.
     !> @param[in]
-    !> evect       #rocblas_evect.
+    !> evect       `rocblas_evect`.
     !> Specifies whether the eigenvectors are to be computed.
     !> If evect is rocblas_evect_original, then the eigenvectors are computed.
     !> rocblas_evect_tridiagonal is not supported.
@@ -31666,8 +31689,8 @@ module hipfort_rocsolver
     !>
     !> \f[
     !> \begin{array}{cl}
-    !> A_l X_l = \lambda B_l X_l & \: \text{1st form,}\\
-    !> A_l B_l X_l = \lambda X_l & \: \text{2nd form, or}\\
+    !> A_l X_l = \lambda B_l X_l & \: \text{1st form,}\\%
+    !> A_l B_l X_l = \lambda X_l & \: \text{2nd form, or}\\%
     !> B_l A_l X_l = \lambda X_l & \: \text{3rd form,}
     !> \end{array}
     !> \f]
@@ -31680,7 +31703,7 @@ module hipfort_rocsolver
     !>
     !> \f[
     !> \begin{array}{cl}
-    !> Z_l^H B_l^{} Z_l^{}=I & \: \text{if 1st or 2nd form, or}\\
+    !> Z_l^H B_l^{} Z_l^{}=I & \: \text{if 1st or 2nd form, or}\\%
     !> Z_l^H B_l^{-1} Z_l^{}=I & \: \text{if 3rd form.}
     !> \end{array}
     !> \f]
@@ -31688,10 +31711,10 @@ module hipfort_rocsolver
     !> @param[in]
     !> handle      rocblas_handle.
     !> @param[in]
-    !> itype       #rocblas_eform.
+    !> itype       `rocblas_eform`.
     !> Specifies the form of the generalized eigenproblems.
     !> @param[in]
-    !> evect       #rocblas_evect.
+    !> evect       `rocblas_evect`.
     !> Specifies whether the eigenvectors are to be computed.
     !> If evect is rocblas_evect_original, then the eigenvectors are computed.
     !> rocblas_evect_tridiagonal is not supported.
@@ -31830,8 +31853,8 @@ module hipfort_rocsolver
     !>
     !> \f[
     !> \begin{array}{cl}
-    !> A X = \lambda B X & \: \text{1st form,}\\
-    !> A B X = \lambda X & \: \text{2nd form, or}\\
+    !> A X = \lambda B X & \: \text{1st form,}\\%
+    !> A B X = \lambda X & \: \text{2nd form, or}\\%
     !> B A X = \lambda X & \: \text{3rd form,}
     !> \end{array}
     !> \f]
@@ -31843,29 +31866,29 @@ module hipfort_rocsolver
     !>
     !> \f[
     !> \begin{array}{cl}
-    !> Z^T B Z=I & \: \text{if 1st or 2nd form, or}\\
+    !> Z^T B Z=I & \: \text{if 1st or 2nd form, or}\\%
     !> Z^T B^{-1} Z=I & \: \text{if 3rd form.}
     !> \end{array}
     !> \f]
     !>
     !> This function computes all the eigenvalues, all the eigenvalues in the half-open interval
     !> \f$(vl, vu]\f$,
-    !> or the ``il``-th through ``iu``-th eigenvalues, depending on the value of ``erange``. If
+    !> or the ``il`` -th through ``iu`` -th eigenvalues, depending on the value of ``erange``. If
     !> ``evect`` is ``rocblas_evect_original``,
     !> the eigenvectors for these eigenvalues will be computed as well.
     !>
     !> @param[in]
     !> handle      rocblas_handle.
     !> @param[in]
-    !> itype       #rocblas_eform.
+    !> itype       `rocblas_eform`.
     !> Specifies the form of the generalized eigenproblem.
     !> @param[in]
-    !> evect       #rocblas_evect.
+    !> evect       `rocblas_evect`.
     !> Specifies whether the eigenvectors are to be computed.
     !> If evect is rocblas_evect_original, then the eigenvectors are computed.
     !> rocblas_evect_tridiagonal is not supported.
     !> @param[in]
-    !> erange      #rocblas_erange.
+    !> erange      `rocblas_erange`.
     !> Specifies the type of range or interval of the eigenvalues to be computed.
     !> @param[in]
     !> uplo        rocblas_fill.
@@ -32016,8 +32039,8 @@ module hipfort_rocsolver
     !>
     !> \f[
     !> \begin{array}{cl}
-    !> A X = \lambda B X & \: \text{1st form,}\\
-    !> A B X = \lambda X & \: \text{2nd form, or}\\
+    !> A X = \lambda B X & \: \text{1st form,}\\%
+    !> A B X = \lambda X & \: \text{2nd form, or}\\%
     !> B A X = \lambda X & \: \text{3rd form,}
     !> \end{array}
     !> \f]
@@ -32029,29 +32052,29 @@ module hipfort_rocsolver
     !>
     !> \f[
     !> \begin{array}{cl}
-    !> Z^H B Z=I & \: \text{if 1st or 2nd form, or}\\
+    !> Z^H B Z=I & \: \text{if 1st or 2nd form, or}\\%
     !> Z^H B^{-1} Z=I & \: \text{if 3rd form.}
     !> \end{array}
     !> \f]
     !>
     !> This function computes all the eigenvalues, all the eigenvalues in the half-open interval
     !> \f$(vl, vu]\f$,
-    !> or the ``il``-th through ``iu``-th eigenvalues, depending on the value of ``erange``. If
+    !> or the ``il`` -th through ``iu`` -th eigenvalues, depending on the value of ``erange``. If
     !> ``evect`` is ``rocblas_evect_original``,
     !> the eigenvectors for these eigenvalues will be computed as well.
     !>
     !> @param[in]
     !> handle      rocblas_handle.
     !> @param[in]
-    !> itype       #rocblas_eform.
+    !> itype       `rocblas_eform`.
     !> Specifies the form of the generalized eigenproblem.
     !> @param[in]
-    !> evect       #rocblas_evect.
+    !> evect       `rocblas_evect`.
     !> Specifies whether the eigenvectors are to be computed.
     !> If evect is rocblas_evect_original, then the eigenvectors are computed.
     !> rocblas_evect_tridiagonal is not supported.
     !> @param[in]
-    !> erange      #rocblas_erange.
+    !> erange      `rocblas_erange`.
     !> Specifies the type of range or interval of the eigenvalues to be computed.
     !> @param[in]
     !> uplo        rocblas_fill.
@@ -32202,8 +32225,8 @@ module hipfort_rocsolver
     !>
     !> \f[
     !> \begin{array}{cl}
-    !> A_l X_l = \lambda B_l X_l & \: \text{1st form,}\\
-    !> A_l B_l X_l = \lambda X_l & \: \text{2nd form, or}\\
+    !> A_l X_l = \lambda B_l X_l & \: \text{1st form,}\\%
+    !> A_l B_l X_l = \lambda X_l & \: \text{2nd form, or}\\%
     !> B_l A_l X_l = \lambda X_l & \: \text{3rd form,}
     !> \end{array}
     !> \f]
@@ -32215,29 +32238,29 @@ module hipfort_rocsolver
     !>
     !> \f[
     !> \begin{array}{cl}
-    !> Z_l^T B_l^{} Z_l^{}=I & \: \text{if 1st or 2nd form, or}\\
+    !> Z_l^T B_l^{} Z_l^{}=I & \: \text{if 1st or 2nd form, or}\\%
     !> Z_l^T B_l^{-1} Z_l^{}=I & \: \text{if 3rd form.}
     !> \end{array}
     !> \f]
     !>
     !> This function computes all the eigenvalues, all the eigenvalues in the half-open interval
     !> \f$(vl, vu]\f$,
-    !> or the ``il``-th through ``iu``-th eigenvalues, depending on the value of ``erange``. If
+    !> or the ``il`` -th through ``iu`` -th eigenvalues, depending on the value of ``erange``. If
     !> ``evect`` is ``rocblas_evect_original``,
     !> the eigenvectors for these eigenvalues will be computed as well.
     !>
     !> @param[in]
     !> handle      rocblas_handle.
     !> @param[in]
-    !> itype       #rocblas_eform.
+    !> itype       `rocblas_eform`.
     !> Specifies the form of the generalized eigenproblems.
     !> @param[in]
-    !> evect       #rocblas_evect.
+    !> evect       `rocblas_evect`.
     !> Specifies whether the eigenvectors are to be computed.
     !> If evect is rocblas_evect_original, then the eigenvectors are computed.
     !> rocblas_evect_tridiagonal is not supported.
     !> @param[in]
-    !> erange      #rocblas_erange.
+    !> erange      `rocblas_erange`.
     !> Specifies the type of range or interval of the eigenvalues to be computed.
     !> @param[in]
     !> uplo        rocblas_fill.
@@ -32408,8 +32431,8 @@ module hipfort_rocsolver
     !>
     !> \f[
     !> \begin{array}{cl}
-    !> A_l X_l = \lambda B_l X_l & \: \text{1st form,}\\
-    !> A_l B_l X_l = \lambda X_l & \: \text{2nd form, or}\\
+    !> A_l X_l = \lambda B_l X_l & \: \text{1st form,}\\%
+    !> A_l B_l X_l = \lambda X_l & \: \text{2nd form, or}\\%
     !> B_l A_l X_l = \lambda X_l & \: \text{3rd form,}
     !> \end{array}
     !> \f]
@@ -32421,29 +32444,29 @@ module hipfort_rocsolver
     !>
     !> \f[
     !> \begin{array}{cl}
-    !> Z_l^H B_l^{} Z_l^{}=I & \: \text{if 1st or 2nd form, or}\\
+    !> Z_l^H B_l^{} Z_l^{}=I & \: \text{if 1st or 2nd form, or}\\%
     !> Z_l^H B_l^{-1} Z_l^{}=I & \: \text{if 3rd form.}
     !> \end{array}
     !> \f]
     !>
     !> This function computes all the eigenvalues, all the eigenvalues in the half-open interval
     !> \f$(vl, vu]\f$,
-    !> or the ``il``-th through ``iu``-th eigenvalues, depending on the value of ``erange``. If
+    !> or the ``il`` -th through ``iu`` -th eigenvalues, depending on the value of ``erange``. If
     !> ``evect`` is ``rocblas_evect_original``,
     !> the eigenvectors for these eigenvalues will be computed as well.
     !>
     !> @param[in]
     !> handle      rocblas_handle.
     !> @param[in]
-    !> itype       #rocblas_eform.
+    !> itype       `rocblas_eform`.
     !> Specifies the form of the generalized eigenproblems.
     !> @param[in]
-    !> evect       #rocblas_evect.
+    !> evect       `rocblas_evect`.
     !> Specifies whether the eigenvectors are to be computed.
     !> If evect is rocblas_evect_original, then the eigenvectors are computed.
     !> rocblas_evect_tridiagonal is not supported.
     !> @param[in]
-    !> erange      #rocblas_erange.
+    !> erange      `rocblas_erange`.
     !> Specifies the type of range or interval of the eigenvalues to be computed.
     !> @param[in]
     !> uplo        rocblas_fill.
@@ -32614,8 +32637,8 @@ module hipfort_rocsolver
     !>
     !> \f[
     !> \begin{array}{cl}
-    !> A_l X_l = \lambda B_l X_l & \: \text{1st form,}\\
-    !> A_l B_l X_l = \lambda X_l & \: \text{2nd form, or}\\
+    !> A_l X_l = \lambda B_l X_l & \: \text{1st form,}\\%
+    !> A_l B_l X_l = \lambda X_l & \: \text{2nd form, or}\\%
     !> B_l A_l X_l = \lambda X_l & \: \text{3rd form,}
     !> \end{array}
     !> \f]
@@ -32627,29 +32650,29 @@ module hipfort_rocsolver
     !>
     !> \f[
     !> \begin{array}{cl}
-    !> Z_l^T B_l^{} Z_l^{}=I & \: \text{if 1st or 2nd form, or}\\
+    !> Z_l^T B_l^{} Z_l^{}=I & \: \text{if 1st or 2nd form, or}\\%
     !> Z_l^T B_l^{-1} Z_l^{}=I & \: \text{if 3rd form.}
     !> \end{array}
     !> \f]
     !>
     !> This function computes all the eigenvalues, all the eigenvalues in the half-open interval
     !> \f$(vl, vu]\f$,
-    !> or the ``il``-th through ``iu``-th eigenvalues, depending on the value of ``erange``. If
+    !> or the ``il`` -th through ``iu`` -th eigenvalues, depending on the value of ``erange``. If
     !> ``evect`` is ``rocblas_evect_original``,
     !> the eigenvectors for these eigenvalues will be computed as well.
     !>
     !> @param[in]
     !> handle      rocblas_handle.
     !> @param[in]
-    !> itype       #rocblas_eform.
+    !> itype       `rocblas_eform`.
     !> Specifies the form of the generalized eigenproblems.
     !> @param[in]
-    !> evect       #rocblas_evect.
+    !> evect       `rocblas_evect`.
     !> Specifies whether the eigenvectors are to be computed.
     !> If evect is rocblas_evect_original, then the eigenvectors are computed.
     !> rocblas_evect_tridiagonal is not supported.
     !> @param[in]
-    !> erange      #rocblas_erange.
+    !> erange      `rocblas_erange`.
     !> Specifies the type of range or interval of the eigenvalues to be computed.
     !> @param[in]
     !> uplo        rocblas_fill.
@@ -32841,8 +32864,8 @@ module hipfort_rocsolver
     !>
     !> \f[
     !> \begin{array}{cl}
-    !> A_l X_l = \lambda B_l X_l & \: \text{1st form,}\\
-    !> A_l B_l X_l = \lambda X_l & \: \text{2nd form, or}\\
+    !> A_l X_l = \lambda B_l X_l & \: \text{1st form,}\\%
+    !> A_l B_l X_l = \lambda X_l & \: \text{2nd form, or}\\%
     !> B_l A_l X_l = \lambda X_l & \: \text{3rd form,}
     !> \end{array}
     !> \f]
@@ -32854,29 +32877,29 @@ module hipfort_rocsolver
     !>
     !> \f[
     !> \begin{array}{cl}
-    !> Z_l^H B_l^{} Z_l^{}=I & \: \text{if 1st or 2nd form, or}\\
+    !> Z_l^H B_l^{} Z_l^{}=I & \: \text{if 1st or 2nd form, or}\\%
     !> Z_l^H B_l^{-1} Z_l^{}=I & \: \text{if 3rd form.}
     !> \end{array}
     !> \f]
     !>
     !> This function computes all the eigenvalues, all the eigenvalues in the half-open interval
     !> \f$(vl, vu]\f$,
-    !> or the ``il``-th through ``iu``-th eigenvalues, depending on the value of ``erange``. If
+    !> or the ``il`` -th through ``iu`` -th eigenvalues, depending on the value of ``erange``. If
     !> ``evect`` is ``rocblas_evect_original``,
     !> the eigenvectors for these eigenvalues will be computed as well.
     !>
     !> @param[in]
     !> handle      rocblas_handle.
     !> @param[in]
-    !> itype       #rocblas_eform.
+    !> itype       `rocblas_eform`.
     !> Specifies the form of the generalized eigenproblems.
     !> @param[in]
-    !> evect       #rocblas_evect.
+    !> evect       `rocblas_evect`.
     !> Specifies whether the eigenvectors are to be computed.
     !> If evect is rocblas_evect_original, then the eigenvectors are computed.
     !> rocblas_evect_tridiagonal is not supported.
     !> @param[in]
-    !> erange      #rocblas_erange.
+    !> erange      `rocblas_erange`.
     !> Specifies the type of range or interval of the eigenvalues to be computed.
     !> @param[in]
     !> uplo        rocblas_fill.
@@ -33059,8 +33082,8 @@ module hipfort_rocsolver
     !---------------------------------------------
     ! rocsolver_sgetri_outofplace
     !---------------------------------------------
-    !> \brief The GETRI_OUTOFPLACE functions compute the inverse \f$C = A^{-1}\f$ of a general
-    !> ``n``-by-``n`` matrix ``A``.
+    !> \brief The GETRI_OUTOFPLACE functions compute the inverse \f$C = A^{-1}\f$ of a general ``n``
+    !> -by-``n`` matrix ``A``.
     !>
     !> \details
     !> The inverse is computed by solving the linear system
@@ -33170,7 +33193,7 @@ module hipfort_rocsolver
     ! rocsolver_sgetri_outofplace_batched
     !---------------------------------------------
     !> \brief The GETRI_OUTOFPLACE_BATCHED functions compute the inverse \f$C_l = A_l^{-1}\f$ of a
-    !> batch of general ``n``-by-``n`` matrices \f$A_l\f$.
+    !> batch of general ``n`` -by-``n`` matrices \f$A_l\f$.
     !>
     !> \details
     !> The inverse is computed by solving the linear system
@@ -33299,7 +33322,7 @@ module hipfort_rocsolver
     ! rocsolver_sgetri_outofplace_strided_batched
     !---------------------------------------------
     !> \brief The GETRI_OUTOFPLACE_STRIDED_BATCHED functions compute the inverse \f$C_l =
-    !> A_l^{-1}\f$ of a batch of general ``n``-by-``n`` matrices \f$A_l\f$.
+    !> A_l^{-1}\f$ of a batch of general ``n`` -by-``n`` matrices \f$A_l\f$.
     !>
     !> \details
     !> The inverse is computed by solving the linear system
@@ -33448,7 +33471,7 @@ module hipfort_rocsolver
     ! rocsolver_sgetri_npvt_outofplace
     !---------------------------------------------
     !> \brief The GETRI_NPVT_OUTOFPLACE functions compute the inverse \f$C = A^{-1}\f$ of a general
-    !> ``n``-by-``n`` matrix ``A`` without partial pivoting.
+    !> ``n`` -by-``n`` matrix ``A`` without partial pivoting.
     !>
     !> \details
     !> The inverse is computed by solving the linear system
@@ -33551,7 +33574,7 @@ module hipfort_rocsolver
     ! rocsolver_sgetri_npvt_outofplace_batched
     !---------------------------------------------
     !> \brief The GETRI_NPVT_OUTOFPLACE_BATCHED functions compute the inverse \f$C_l^{} =
-    !> A_l^{-1}\f$ of a batch of general ``n``-by-``n`` matrices \f$A_l\f$
+    !> A_l^{-1}\f$ of a batch of general ``n`` -by-``n`` matrices \f$A_l\f$
     !> without partial pivoting.
     !>
     !> \details
@@ -33666,7 +33689,7 @@ module hipfort_rocsolver
     ! rocsolver_sgetri_npvt_outofplace_strided_batched
     !---------------------------------------------
     !> \brief The GETRI_NPVT_OUTOFPLACE_STRIDED_BATCHED functions compute the inverse \f$C_l^{} =
-    !> A_l^{-1}\f$ of a batch of general ``n``-by-``n`` matrices \f$A_l\f$
+    !> A_l^{-1}\f$ of a batch of general ``n`` -by-``n`` matrices \f$A_l\f$
     !> without partial pivoting.
     !>
     !> \details
@@ -33896,7 +33919,7 @@ module hipfort_rocsolver
     !---------------------------------------------
     ! rocsolver_strtri_batched
     !---------------------------------------------
-    !> \brief The TRTRI_BATCHED functions invert a batch of triangular ``n``-by-``n`` matrices
+    !> \brief The TRTRI_BATCHED functions invert a batch of triangular ``n`` -by-``n`` matrices
     !> \f$A_l\f$.
     !>
     !> \details
@@ -34004,7 +34027,7 @@ module hipfort_rocsolver
     !---------------------------------------------
     ! rocsolver_strtri_strided_batched
     !---------------------------------------------
-    !> \brief The TRTRI_STRIDED_BATCHED functions invert a batch of triangular ``n``-by-``n``
+    !> \brief The TRTRI_STRIDED_BATCHED functions invert a batch of triangular ``n`` -by-``n``
     !> matrices \f$A_l\f$.
     !>
     !> \details
@@ -34135,7 +34158,7 @@ module hipfort_rocsolver
     !>
     !> \f[
     !> \begin{array}{cl}
-    !> A = U D U^T & \: \text{or}\\
+    !> A = U D U^T & \: \text{or}\\%
     !> A = L D L^T &
     !> \end{array}
     !> \f]
@@ -34148,7 +34171,7 @@ module hipfort_rocsolver
     !>
     !> \f[
     !> \begin{array}{cl}
-    !> U = P(n) U(n) \cdots P(k) U(k) \cdots & \: \text{and}\\
+    !> U = P(n) U(n) \cdots P(k) U(k) \cdots & \: \text{and}\\%
     !> L = P(1) L(1) \cdots P(k) L(k) \cdots &
     !> \end{array}
     !> \f]
@@ -34160,8 +34183,8 @@ module hipfort_rocsolver
     !>
     !> \f[
     !> U(k) = \left[ \begin{array}{ccc}
-    !> I_{k-s} & v & 0 \\
-    !> 0 & I_s & 0 \\
+    !> I_{k-s} & v & 0 \\%
+    !> 0 & I_s & 0 \\%
     !> 0 & 0 & I_{n-k}
     !> \end{array} \right]
     !> \f]
@@ -34170,8 +34193,8 @@ module hipfort_rocsolver
     !>
     !> \f[
     !> L(k) = \left[ \begin{array}{ccc}
-    !> I_{k-1} & 0 & 0 \\
-    !> 0 & I_s & 0 \\
+    !> I_{k-1} & 0 & 0 \\%
+    !> 0 & I_s & 0 \\%
     !> 0 & v & I_{n-k-s+1}
     !> \end{array} \right].
     !> \f]
@@ -34299,7 +34322,7 @@ module hipfort_rocsolver
     !>
     !> \f[
     !> \begin{array}{cl}
-    !> A_l^{} = U_l^{} D_l^{} U_l^T & \: \text{or}\\
+    !> A_l^{} = U_l^{} D_l^{} U_l^T & \: \text{or}\\%
     !> A_l^{} = L_l^{} D_l^{} L_l^T &
     !> \end{array}
     !> \f]
@@ -34312,7 +34335,7 @@ module hipfort_rocsolver
     !>
     !> \f[
     !> \begin{array}{cl}
-    !> U_l = P_l(n) U_l(n) \cdots P_l(k) U_l(k) \cdots & \: \text{and}\\
+    !> U_l = P_l(n) U_l(n) \cdots P_l(k) U_l(k) \cdots & \: \text{and}\\%
     !> L_l = P_l(1) L_l(1) \cdots P_l(k) L_l(k) \cdots &
     !> \end{array}
     !> \f]
@@ -34325,8 +34348,8 @@ module hipfort_rocsolver
     !>
     !> \f[
     !> U_l(k) = \left[ \begin{array}{ccc}
-    !> I_{k-s} & v & 0 \\
-    !> 0 & I_s & 0 \\
+    !> I_{k-s} & v & 0 \\%
+    !> 0 & I_s & 0 \\%
     !> 0 & 0 & I_{n-k}
     !> \end{array} \right]
     !> \f]
@@ -34335,8 +34358,8 @@ module hipfort_rocsolver
     !>
     !> \f[
     !> L_l(k) = \left[ \begin{array}{ccc}
-    !> I_{k-1} & 0 & 0 \\
-    !> 0 & I_s & 0 \\
+    !> I_{k-1} & 0 & 0 \\%
+    !> 0 & I_s & 0 \\%
     !> 0 & v & I_{n-k-s+1}
     !> \end{array} \right].
     !> \f]
@@ -34479,7 +34502,7 @@ module hipfort_rocsolver
     !>
     !> \f[
     !> \begin{array}{cl}
-    !> A_l^{} = U_l^{} D_l^{} U_l^T & \: \text{or}\\
+    !> A_l^{} = U_l^{} D_l^{} U_l^T & \: \text{or}\\%
     !> A_l^{} = L_l^{} D_l^{} L_l^T &
     !> \end{array}
     !> \f]
@@ -34492,7 +34515,7 @@ module hipfort_rocsolver
     !>
     !> \f[
     !> \begin{array}{cl}
-    !> U_l = P_l(n) U_l(n) \cdots P_l(k) U_l(k) \cdots & \: \text{and}\\
+    !> U_l = P_l(n) U_l(n) \cdots P_l(k) U_l(k) \cdots & \: \text{and}\\%
     !> L_l = P_l(1) L_l(1) \cdots P_l(k) L_l(k) \cdots &
     !> \end{array}
     !> \f]
@@ -34505,8 +34528,8 @@ module hipfort_rocsolver
     !>
     !> \f[
     !> U_l(k) = \left[ \begin{array}{ccc}
-    !> I_{k-s} & v & 0 \\
-    !> 0 & I_s & 0 \\
+    !> I_{k-s} & v & 0 \\%
+    !> 0 & I_s & 0 \\%
     !> 0 & 0 & I_{n-k}
     !> \end{array} \right]
     !> \f]
@@ -34515,8 +34538,8 @@ module hipfort_rocsolver
     !>
     !> \f[
     !> L_l(k) = \left[ \begin{array}{ccc}
-    !> I_{k-1} & 0 & 0 \\
-    !> 0 & I_s & 0 \\
+    !> I_{k-1} & 0 & 0 \\%
+    !> 0 & I_s & 0 \\%
     !> 0 & v & I_{n-k-s+1}
     !> \end{array} \right].
     !> \f]
@@ -34671,7 +34694,7 @@ module hipfort_rocsolver
     !>
     !> \f[
     !> \begin{array}{cl}
-    !> A = U D U^T & \: \text{or}\\
+    !> A = U D U^T & \: \text{or}\\%
     !> A = L D L^T &
     !> \end{array}
     !> \f]
@@ -34684,7 +34707,7 @@ module hipfort_rocsolver
     !>
     !> \f[
     !> \begin{array}{cl}
-    !> U = P(n) U(n) \cdots P(k) U(k) \cdots & \: \text{and}\\
+    !> U = P(n) U(n) \cdots P(k) U(k) \cdots & \: \text{and}\\%
     !> L = P(1) L(1) \cdots P(k) L(k) \cdots &
     !> \end{array}
     !> \f]
@@ -34696,8 +34719,8 @@ module hipfort_rocsolver
     !>
     !> \f[
     !> U(k) = \left[ \begin{array}{ccc}
-    !> I_{k-s} & v & 0 \\
-    !> 0 & I_s & 0 \\
+    !> I_{k-s} & v & 0 \\%
+    !> 0 & I_s & 0 \\%
     !> 0 & 0 & I_{n-k}
     !> \end{array} \right]
     !> \f]
@@ -34706,8 +34729,8 @@ module hipfort_rocsolver
     !>
     !> \f[
     !> L(k) = \left[ \begin{array}{ccc}
-    !> I_{k-1} & 0 & 0 \\
-    !> 0 & I_s & 0 \\
+    !> I_{k-1} & 0 & 0 \\%
+    !> 0 & I_s & 0 \\%
     !> 0 & v & I_{n-k-s+1}
     !> \end{array} \right].
     !> \f]
@@ -34835,7 +34858,7 @@ module hipfort_rocsolver
     !>
     !> \f[
     !> \begin{array}{cl}
-    !> A_l^{} = U_l^{} D_l^{} U_l^T & \: \text{or}\\
+    !> A_l^{} = U_l^{} D_l^{} U_l^T & \: \text{or}\\%
     !> A_l^{} = L_l^{} D_l^{} L_l^T &
     !> \end{array}
     !> \f]
@@ -34848,7 +34871,7 @@ module hipfort_rocsolver
     !>
     !> \f[
     !> \begin{array}{cl}
-    !> U_l = P_l(n) U_l(n) \cdots P_l(k) U_l(k) \cdots & \: \text{and}\\
+    !> U_l = P_l(n) U_l(n) \cdots P_l(k) U_l(k) \cdots & \: \text{and}\\%
     !> L_l = P_l(1) L_l(1) \cdots P_l(k) L_l(k) \cdots &
     !> \end{array}
     !> \f]
@@ -34861,8 +34884,8 @@ module hipfort_rocsolver
     !>
     !> \f[
     !> U_l(k) = \left[ \begin{array}{ccc}
-    !> I_{k-s} & v & 0 \\
-    !> 0 & I_s & 0 \\
+    !> I_{k-s} & v & 0 \\%
+    !> 0 & I_s & 0 \\%
     !> 0 & 0 & I_{n-k}
     !> \end{array} \right]
     !> \f]
@@ -34871,8 +34894,8 @@ module hipfort_rocsolver
     !>
     !> \f[
     !> L_l(k) = \left[ \begin{array}{ccc}
-    !> I_{k-1} & 0 & 0 \\
-    !> 0 & I_s & 0 \\
+    !> I_{k-1} & 0 & 0 \\%
+    !> 0 & I_s & 0 \\%
     !> 0 & v & I_{n-k-s+1}
     !> \end{array} \right].
     !> \f]
@@ -35015,7 +35038,7 @@ module hipfort_rocsolver
     !>
     !> \f[
     !> \begin{array}{cl}
-    !> A_l^{} = U_l^{} D_l^{} U_l^T & \: \text{or}\\
+    !> A_l^{} = U_l^{} D_l^{} U_l^T & \: \text{or}\\%
     !> A_l^{} = L_l^{} D_l^{} L_l^T &
     !> \end{array}
     !> \f]
@@ -35028,7 +35051,7 @@ module hipfort_rocsolver
     !>
     !> \f[
     !> \begin{array}{cl}
-    !> U_l = P_l(n) U_l(n) \cdots P_l(k) U_l(k) \cdots & \: \text{and}\\
+    !> U_l = P_l(n) U_l(n) \cdots P_l(k) U_l(k) \cdots & \: \text{and}\\%
     !> L_l = P_l(1) L_l(1) \cdots P_l(k) L_l(k) \cdots &
     !> \end{array}
     !> \f]
@@ -35041,8 +35064,8 @@ module hipfort_rocsolver
     !>
     !> \f[
     !> U_l(k) = \left[ \begin{array}{ccc}
-    !> I_{k-s} & v & 0 \\
-    !> 0 & I_s & 0 \\
+    !> I_{k-s} & v & 0 \\%
+    !> 0 & I_s & 0 \\%
     !> 0 & 0 & I_{n-k}
     !> \end{array} \right]
     !> \f]
@@ -35051,8 +35074,8 @@ module hipfort_rocsolver
     !>
     !> \f[
     !> L_l(k) = \left[ \begin{array}{ccc}
-    !> I_{k-1} & 0 & 0 \\
-    !> 0 & I_s & 0 \\
+    !> I_{k-1} & 0 & 0 \\%
+    !> 0 & I_s & 0 \\%
     !> 0 & v & I_{n-k-s+1}
     !> \end{array} \right].
     !> \f]
@@ -35205,10 +35228,10 @@ module hipfort_rocsolver
     !>
     !> \f[
     !> M = \left[\begin{array}{ccccc}
-    !> B_1 & C_1\\
-    !> A_1 & B_2 & C_2\\
-    !> & \ddots & \ddots & \ddots \\
-    !> &  & A_{n-2} & B_{n-1} & C_{n-1}\\
+    !> B_1 & C_1\\%
+    !> A_1 & B_2 & C_2\\%
+    !> & \ddots & \ddots & \ddots \\%
+    !> &  & A_{n-2} & B_{n-1} & C_{n-1}\\%
     !> &  &  & A_{n-1} & B_n
     !> \end{array}\right]
     !> \f]
@@ -35217,14 +35240,14 @@ module hipfort_rocsolver
     !>
     !> \f[
     !> M = \left[\begin{array}{cccc}
-    !> L_1 \\
-    !> A_1 & L_2\\
-    !> & \ddots & \ddots \\
+    !> L_1 \\%
+    !> A_1 & L_2\\%
+    !> & \ddots & \ddots \\%
     !> &  & A_{n-1} & L_n
     !> \end{array}\right] \left[\begin{array}{cccc}
-    !> I & U_1 \\
-    !> & \ddots & \ddots \\
-    !> &  & I & U_{n-1}\\
+    !> I & U_1 \\%
+    !> & \ddots & \ddots \\%
+    !> &  & I & U_{n-1}\\%
     !> &  &  & I
     !> \end{array}\right] = LU
     !> \f]
@@ -35352,10 +35375,10 @@ module hipfort_rocsolver
     !>
     !> \f[
     !> M_l = \left[\begin{array}{ccccc}
-    !> B_{l1} & C_{l1}\\
-    !> A_{l1} & B_{l2} & C_{l2}\\
-    !> & \ddots & \ddots & \ddots \\
-    !> &  & A_{l(n-2)} & B_{l(n-1)} & C_{l(l-1)}\\
+    !> B_{l1} & C_{l1}\\%
+    !> A_{l1} & B_{l2} & C_{l2}\\%
+    !> & \ddots & \ddots & \ddots \\%
+    !> &  & A_{l(n-2)} & B_{l(n-1)} & C_{l(l-1)}\\%
     !> &  &  & A_{l(n-1)} & B_{ln}
     !> \end{array}\right]
     !> \f]
@@ -35364,14 +35387,14 @@ module hipfort_rocsolver
     !>
     !> \f[
     !> M_l = \left[\begin{array}{cccc}
-    !> L_{l1} \\
-    !> A_{l1} & L_{l2}\\
-    !> & \ddots & \ddots \\
+    !> L_{l1} \\%
+    !> A_{l1} & L_{l2}\\%
+    !> & \ddots & \ddots \\%
     !> &  & A_{l(n-1)} & L_{ln}
     !> \end{array}\right] \left[\begin{array}{cccc}
-    !> I & U_{l1} \\
-    !> & \ddots & \ddots \\
-    !> &  & I & U_{l(n-1)}\\
+    !> I & U_{l1} \\%
+    !> & \ddots & \ddots \\%
+    !> &  & I & U_{l(n-1)}\\%
     !> &  &  & I
     !> \end{array}\right] = L_lU_l
     !> \f]
@@ -35514,10 +35537,10 @@ module hipfort_rocsolver
     !>
     !> \f[
     !> M_l = \left[\begin{array}{ccccc}
-    !> B_{l1} & C_{l1}\\
-    !> A_{l1} & B_{l2} & C_{l2}\\
-    !> & \ddots & \ddots & \ddots \\
-    !> &  & A_{l(n-2)} & B_{l(n-1)} & C_{l(n-1)}\\
+    !> B_{l1} & C_{l1}\\%
+    !> A_{l1} & B_{l2} & C_{l2}\\%
+    !> & \ddots & \ddots & \ddots \\%
+    !> &  & A_{l(n-2)} & B_{l(n-1)} & C_{l(n-1)}\\%
     !> &  &  & A_{l(n-1)} & B_{ln}
     !> \end{array}\right]
     !> \f]
@@ -35526,14 +35549,14 @@ module hipfort_rocsolver
     !>
     !> \f[
     !> M_l = \left[\begin{array}{cccc}
-    !> L_{l1} \\
-    !> A_{l1} & L_{l2}\\
-    !> & \ddots & \ddots \\
+    !> L_{l1} \\%
+    !> A_{l1} & L_{l2}\\%
+    !> & \ddots & \ddots \\%
     !> &  & A_{l(n-1)} & L_{ln}
     !> \end{array}\right] \left[\begin{array}{cccc}
-    !> I & U_{l1} \\
-    !> & \ddots & \ddots \\
-    !> &  & I & U_{l(n-1)}\\
+    !> I & U_{l1} \\%
+    !> & \ddots & \ddots \\%
+    !> &  & I & U_{l(n-1)}\\%
     !> &  &  & I
     !> \end{array}\right] = L_lU_l
     !> \f]
@@ -35706,10 +35729,10 @@ module hipfort_rocsolver
     !>
     !> \f[
     !> M_l = \left[\begin{array}{ccccc}
-    !> B_{l1} & C_{l1}\\
-    !> A_{l1} & B_{l2} & C_{l2}\\
-    !> & \ddots & \ddots & \ddots \\
-    !> &  & A_{l(n-2)} & B_{l(n-1)} & C_{l(n-1)}\\
+    !> B_{l1} & C_{l1}\\%
+    !> A_{l1} & B_{l2} & C_{l2}\\%
+    !> & \ddots & \ddots & \ddots \\%
+    !> &  & A_{l(n-2)} & B_{l(n-1)} & C_{l(n-1)}\\%
     !> &  &  & A_{l(n-1)} & B_{ln}
     !> \end{array}\right]
     !> \f]
@@ -35718,14 +35741,14 @@ module hipfort_rocsolver
     !>
     !> \f[
     !> M_l = \left[\begin{array}{cccc}
-    !> L_{l1} \\
-    !> A_{l1} & L_{l2}\\
-    !> & \ddots & \ddots \\
+    !> L_{l1} \\%
+    !> A_{l1} & L_{l2}\\%
+    !> & \ddots & \ddots \\%
     !> &  & A_{l(n-1)} & L_{ln}
     !> \end{array}\right] \left[\begin{array}{cccc}
-    !> I & U_{l1} \\
-    !> & \ddots & \ddots \\
-    !> &  & I & U_{l(n-1)}\\
+    !> I & U_{l1} \\%
+    !> & \ddots & \ddots \\%
+    !> &  & I & U_{l(n-1)}\\%
     !> &  &  & I
     !> \end{array}\right] = L_lU_l
     !> \f]
@@ -35925,30 +35948,30 @@ module hipfort_rocsolver
     !>
     !> \f[
     !> MX = \left[\begin{array}{ccccc}
-    !> B_1 & C_1\\
-    !> A_1 & B_2 & C_2\\
-    !> & \ddots & \ddots & \ddots \\
-    !> &  & A_{n-2} & B_{n-1} & C_{n-1}\\
+    !> B_1 & C_1\\%
+    !> A_1 & B_2 & C_2\\%
+    !> & \ddots & \ddots & \ddots \\%
+    !> &  & A_{n-2} & B_{n-1} & C_{n-1}\\%
     !> &  &  & A_{n-1} & B_n
     !> \end{array}\right]\left[\begin{array}{c}
-    !> X_1\\
-    !> X_2\\
-    !> X_3\\
-    !> \vdots\\
+    !> X_1\\%
+    !> X_2\\%
+    !> X_3\\%
+    !> \vdots\\%
     !> X_n
     !> \end{array}\right]=\left[\begin{array}{c}
-    !> R_1\\
-    !> R_2\\
-    !> R_3\\
-    !> \vdots\\
+    !> R_1\\%
+    !> R_2\\%
+    !> R_3\\%
+    !> \vdots\\%
     !> R_n
     !> \end{array}\right]=R
     !> \f]
     !>
     !> where matrix M has \f$n = \mathrm{nblocks}\f$ diagonal blocks of size ``nb``, and the
     !> right-hand-side
-    !> blocks \f$R_i\f$ are general blocks of size ``nb``-by-``nrhs``. The blocks of matrix M should
-    !> be in
+    !> blocks \f$R_i\f$ are general blocks of size ``nb`` -by-``nrhs``. The blocks of matrix M
+    !> should be in
     !> the factorized form, as returned by \ref rocsolver_sgeblttrf_npvt "GEBLTTRF_NPVT".
     !>
     !> @param[in]
@@ -36083,29 +36106,29 @@ module hipfort_rocsolver
     !>
     !> \f[
     !> M_lX_l = \left[\begin{array}{ccccc}
-    !> B_{l1} & C_{l1}\\
-    !> A_{l1} & B_{l2} & C_{l2}\\
-    !> & \ddots & \ddots & \ddots \\
-    !> &  & A_{l(n-2)} & B_{l(n-1)} & C_{l(n-1)}\\
+    !> B_{l1} & C_{l1}\\%
+    !> A_{l1} & B_{l2} & C_{l2}\\%
+    !> & \ddots & \ddots & \ddots \\%
+    !> &  & A_{l(n-2)} & B_{l(n-1)} & C_{l(n-1)}\\%
     !> &  &  & A_{l(n-1)} & B_{ln}
     !> \end{array}\right]\left[\begin{array}{c}
-    !> X_{l1}\\
-    !> X_{l2}\\
-    !> X_{l3}\\
-    !> \vdots\\
+    !> X_{l1}\\%
+    !> X_{l2}\\%
+    !> X_{l3}\\%
+    !> \vdots\\%
     !> X_{ln}
     !> \end{array}\right]=\left[\begin{array}{c}
-    !> R_{l1}\\
-    !> R_{l2}\\
-    !> R_{l3}\\
-    !> \vdots\\
+    !> R_{l1}\\%
+    !> R_{l2}\\%
+    !> R_{l3}\\%
+    !> \vdots\\%
     !> R_{ln}
     !> \end{array}\right]=R_l
     !> \f]
     !>
     !> where matrix \f$M_l\f$ has \f$n = \mathrm{nblocks}\f$ diagonal blocks of size ``nb``, and the
     !> right-hand-side
-    !> blocks \f$R_{li}\f$ are general blocks of size ``nb``-by-``nrhs``. The blocks of matrix
+    !> blocks \f$R_{li}\f$ are general blocks of size ``nb`` -by-``nrhs``. The blocks of matrix
     !> \f$M_l\f$ should be in
     !> the factorized form, as returned by \ref rocsolver_sgeblttrf_npvt_batched
     !> "GEBLTTRF_NPVT_BATCHED".
@@ -36260,29 +36283,29 @@ module hipfort_rocsolver
     !>
     !> \f[
     !> M_lX_l = \left[\begin{array}{ccccc}
-    !> B_{l1} & C_{l1}\\
-    !> A_{l1} & B_{l2} & C_{l2}\\
-    !> & \ddots & \ddots & \ddots \\
-    !> &  & A_{l(n-2)} & B_{l(n-1)} & C_{l(n-1)}\\
+    !> B_{l1} & C_{l1}\\%
+    !> A_{l1} & B_{l2} & C_{l2}\\%
+    !> & \ddots & \ddots & \ddots \\%
+    !> &  & A_{l(n-2)} & B_{l(n-1)} & C_{l(n-1)}\\%
     !> &  &  & A_{l(n-1)} & B_{ln}
     !> \end{array}\right]\left[\begin{array}{c}
-    !> X_{l1}\\
-    !> X_{l2}\\
-    !> X_{l3}\\
-    !> \vdots\\
+    !> X_{l1}\\%
+    !> X_{l2}\\%
+    !> X_{l3}\\%
+    !> \vdots\\%
     !> X_{ln}
     !> \end{array}\right]=\left[\begin{array}{c}
-    !> R_{l1}\\
-    !> R_{l2}\\
-    !> R_{l3}\\
-    !> \vdots\\
+    !> R_{l1}\\%
+    !> R_{l2}\\%
+    !> R_{l3}\\%
+    !> \vdots\\%
     !> R_{ln}
     !> \end{array}\right]=R_l
     !> \f]
     !>
     !> where matrix \f$M_l\f$ has \f$n = \mathrm{nblocks}\f$ diagonal blocks of size ``nb``, and the
     !> right-hand-side
-    !> blocks \f$R_{li}\f$ are general blocks of size ``nb``-by-``nrhs``. The blocks of matrix
+    !> blocks \f$R_{li}\f$ are general blocks of size ``nb`` -by-``nrhs``. The blocks of matrix
     !> \f$M_l\f$ should be in
     !> the factorized form, as returned by \ref rocsolver_sgeblttrf_npvt_strided_batched
     !> "GEBLTTRF_NPVT_STRIDED_BATCHED".
@@ -36477,29 +36500,29 @@ module hipfort_rocsolver
     !>
     !> \f[
     !> M_lX_l = \left[\begin{array}{ccccc}
-    !> B_{l1} & C_{ll}\\
-    !> A_{l1} & B_{ll} & C_{ll}\\
-    !> & \ddots & \ddots & \ddots \\
-    !> &  & A_{l(n-2)} & B_{l(n-1)} & C_{l(n-1)}\\
+    !> B_{l1} & C_{ll}\\%
+    !> A_{l1} & B_{ll} & C_{ll}\\%
+    !> & \ddots & \ddots & \ddots \\%
+    !> &  & A_{l(n-2)} & B_{l(n-1)} & C_{l(n-1)}\\%
     !> &  &  & A_{l(n-1)} & B_{ln}
     !> \end{array}\right]\left[\begin{array}{c}
-    !> X_{l1}\\
-    !> X_{l2}\\
-    !> X_{l3}\\
-    !> \vdots\\
+    !> X_{l1}\\%
+    !> X_{l2}\\%
+    !> X_{l3}\\%
+    !> \vdots\\%
     !> X_{ln}
     !> \end{array}\right]=\left[\begin{array}{c}
-    !> R_{l1}\\
-    !> R_{l2}\\
-    !> R_{l3}\\
-    !> \vdots\\
+    !> R_{l1}\\%
+    !> R_{l2}\\%
+    !> R_{l3}\\%
+    !> \vdots\\%
     !> R_{ln}
     !> \end{array}\right]=R_l
     !> \f]
     !>
     !> where matrix \f$M_l\f$ has \f$n = \mathrm{nblocks}\f$ diagonal blocks of size ``nb``, and the
     !> right-hand-side
-    !> blocks \f$R_{li}\f$ are general blocks of size ``nb``-by-``nrhs``. The blocks of matrix
+    !> blocks \f$R_{li}\f$ are general blocks of size ``nb`` -by-``nrhs``. The blocks of matrix
     !> \f$M_l\f$ should be in
     !> the factorized form, as returned by \ref rocsolver_sgeblttrf_npvt_interleaved_batched
     !> "GEBLTTRF_NPVT_INTERLEAVED_BATCHED".
@@ -36735,7 +36758,7 @@ module hipfort_rocsolver
     !>
     !> \details
     !> @param[out]
-    !> rfinfo      #rocsolver_rfinfo.
+    !> rfinfo      `rocsolver_rfinfo`.
     !> The pointer to the rfinfo struct to be initialized.
     !> @param[in]
     !> handle      rocblas_handle.
@@ -36759,7 +36782,7 @@ module hipfort_rocsolver
     !>
     !> \details
     !> @param[in]
-    !> rfinfo      #rocsolver_rfinfo.
+    !> rfinfo      `rocsolver_rfinfo`.
     !> The rfinfo struct to be destroyed.
     function rocsolver_destroy_rfinfo(rfinfo) &
        result(destroy_rfinfo) &
@@ -36780,10 +36803,10 @@ module hipfort_rocsolver
     !>
     !> \details
     !> @param[in]
-    !> rfinfo      #rocsolver_rfinfo.
+    !> rfinfo      `rocsolver_rfinfo`.
     !> The rfinfo struct to be set up.
     !> @param[in]
-    !> mode        #rocsolver_rfinfo_mode.
+    !> mode        `rocsolver_rfinfo_mode`.
     !> Use rocsolver_rfinfo_mode_cholesky when the Cholesky factorization is required.
     function rocsolver_set_rfinfo_mode(rfinfo, mode) &
        result(set_rfinfo_mode) &
@@ -36805,10 +36828,10 @@ module hipfort_rocsolver
     !>
     !> \details
     !> @param[in]
-    !> rfinfo      #rocsolver_rfinfo.
+    !> rfinfo      `rocsolver_rfinfo`.
     !> The referenced rfinfo struct.
     !> @param[out]
-    !> mode        #rocsolver_rfinfo_mode.
+    !> mode        `rocsolver_rfinfo_mode`.
     !> The queried mode.
     function rocsolver_get_rfinfo_mode(rfinfo, mode) &
        result(get_rfinfo_mode) &
@@ -37401,7 +37424,7 @@ module hipfort_rocsolver
     !> Contains the pivot indices representing the permutation matrix Q, that is, the
     !> order in which the columns of matrix M were rearranged.
     !> @param[in]
-    !> rfinfo      #rocsolver_rfinfo.
+    !> rfinfo      `rocsolver_rfinfo`.
     !> Structure that holds the meta data generated in the analysis phase.
     function rocsolver_scsrrf_refactchol(handle, n, nnzA, ptrA, indA, valA, nnzT, ptrT, indT, &
                                          valT, pivQ, rfinfo) &
@@ -37584,7 +37607,7 @@ module hipfort_rocsolver
     !> \details
     !> This function computes all the eigenvalues of ``A``, all the eigenvalues in the half-open
     !> interval \f$(vl, vu]\f$,
-    !> or the ``il``-th through ``iu``-th eigenvalues, depending on the value of ``erange``. If
+    !> or the ``il`` -th through ``iu`` -th eigenvalues, depending on the value of ``erange``. If
     !> ``evect`` is ``rocblas_evect_original``,
     !> the eigenvectors for these eigenvalues will be computed as well. The eigenvectors are
     !> computed using a
@@ -37593,12 +37616,12 @@ module hipfort_rocsolver
     !> @param[in]
     !> handle      rocblas_handle.
     !> @param[in]
-    !> evect       #rocblas_evect.
+    !> evect       `rocblas_evect`.
     !> Specifies whether the eigenvectors are to be computed.
     !> If evect is rocblas_evect_original, then the eigenvectors are computed.
     !> rocblas_evect_tridiagonal is not supported.
     !> @param[in]
-    !> erange      #rocblas_erange.
+    !> erange      `rocblas_erange`.
     !> Specifies the type of range or interval of the eigenvalues to be computed.
     !> @param[in]
     !> uplo        rocblas_fill.
@@ -37714,7 +37737,7 @@ module hipfort_rocsolver
     !> \details
     !> This function computes all the eigenvalues of ``A``, all the eigenvalues in the half-open
     !> interval \f$(vl, vu]\f$,
-    !> or the ``il``-th through ``iu``-th eigenvalues, depending on the value of ``erange``. If
+    !> or the ``il`` -th through ``iu`` -th eigenvalues, depending on the value of ``erange``. If
     !> ``evect`` is ``rocblas_evect_original``,
     !> the eigenvectors for these eigenvalues will be computed as well. The eigenvectors are
     !> computed using a
@@ -37723,12 +37746,12 @@ module hipfort_rocsolver
     !> @param[in]
     !> handle      rocblas_handle.
     !> @param[in]
-    !> evect       #rocblas_evect.
+    !> evect       `rocblas_evect`.
     !> Specifies whether the eigenvectors are to be computed.
     !> If evect is rocblas_evect_original, then the eigenvectors are computed.
     !> rocblas_evect_tridiagonal is not supported.
     !> @param[in]
-    !> erange      #rocblas_erange.
+    !> erange      `rocblas_erange`.
     !> Specifies the type of range or interval of the eigenvalues to be computed.
     !> @param[in]
     !> uplo        rocblas_fill.
@@ -37844,7 +37867,7 @@ module hipfort_rocsolver
     !> \details
     !> This function computes all the eigenvalues of A_l, all the eigenvalues in the half-open
     !> interval \f$(vl, vu]\f$,
-    !> or the ``il``-th through ``iu``-th eigenvalues, depending on the value of ``erange``. If
+    !> or the ``il`` -th through ``iu`` -th eigenvalues, depending on the value of ``erange``. If
     !> ``evect`` is ``rocblas_evect_original``,
     !> the eigenvectors for these eigenvalues will be computed as well. The eigenvectors are
     !> computed using a
@@ -37853,12 +37876,12 @@ module hipfort_rocsolver
     !> @param[in]
     !> handle      rocblas_handle.
     !> @param[in]
-    !> evect       #rocblas_evect.
+    !> evect       `rocblas_evect`.
     !> Specifies whether the eigenvectors are to be computed.
     !> If evect is rocblas_evect_original, then the eigenvectors are computed.
     !> rocblas_evect_tridiagonal is not supported.
     !> @param[in]
-    !> erange      #rocblas_erange.
+    !> erange      `rocblas_erange`.
     !> Specifies the type of range or interval of the eigenvalues to be computed.
     !> @param[in]
     !> uplo        rocblas_fill.
@@ -37986,7 +38009,7 @@ module hipfort_rocsolver
     !> \details
     !> This function computes all the eigenvalues of A_l, all the eigenvalues in the half-open
     !> interval \f$(vl, vu]\f$,
-    !> or the ``il``-th through ``iu``-th eigenvalues, depending on the value of ``erange``. If
+    !> or the ``il`` -th through ``iu`` -th eigenvalues, depending on the value of ``erange``. If
     !> ``evect`` is ``rocblas_evect_original``,
     !> the eigenvectors for these eigenvalues will be computed as well. The eigenvectors are
     !> computed using a
@@ -37995,12 +38018,12 @@ module hipfort_rocsolver
     !> @param[in]
     !> handle      rocblas_handle.
     !> @param[in]
-    !> evect       #rocblas_evect.
+    !> evect       `rocblas_evect`.
     !> Specifies whether the eigenvectors are to be computed.
     !> If evect is rocblas_evect_original, then the eigenvectors are computed.
     !> rocblas_evect_tridiagonal is not supported.
     !> @param[in]
-    !> erange      #rocblas_erange.
+    !> erange      `rocblas_erange`.
     !> Specifies the type of range or interval of the eigenvalues to be computed.
     !> @param[in]
     !> uplo        rocblas_fill.
@@ -38128,7 +38151,7 @@ module hipfort_rocsolver
     !> \details
     !> This function computes all the eigenvalues of A_l, all the eigenvalues in the half-open
     !> interval \f$(vl, vu]\f$,
-    !> or the ``il``-th through ``iu``-th eigenvalues, depending on the value of ``erange``. If
+    !> or the ``il`` -th through ``iu`` -th eigenvalues, depending on the value of ``erange``. If
     !> ``evect`` is ``rocblas_evect_original``,
     !> the eigenvectors for these eigenvalues will be computed as well. The eigenvectors are
     !> computed using a
@@ -38137,12 +38160,12 @@ module hipfort_rocsolver
     !> @param[in]
     !> handle      rocblas_handle.
     !> @param[in]
-    !> evect       #rocblas_evect.
+    !> evect       `rocblas_evect`.
     !> Specifies whether the eigenvectors are to be computed.
     !> If evect is rocblas_evect_original, then the eigenvectors are computed.
     !> rocblas_evect_tridiagonal is not supported.
     !> @param[in]
-    !> erange      #rocblas_erange.
+    !> erange      `rocblas_erange`.
     !> Specifies the type of range or interval of the eigenvalues to be computed.
     !> @param[in]
     !> uplo        rocblas_fill.
@@ -38284,7 +38307,7 @@ module hipfort_rocsolver
     !> \details
     !> This function computes all the eigenvalues of A_l, all the eigenvalues in the half-open
     !> interval \f$(vl, vu]\f$,
-    !> or the ``il``-th through ``iu``-th eigenvalues, depending on the value of ``erange``. If
+    !> or the ``il`` -th through ``iu`` -th eigenvalues, depending on the value of ``erange``. If
     !> ``evect`` is ``rocblas_evect_original``,
     !> the eigenvectors for these eigenvalues will be computed as well. The eigenvectors are
     !> computed using a
@@ -38293,12 +38316,12 @@ module hipfort_rocsolver
     !> @param[in]
     !> handle      rocblas_handle.
     !> @param[in]
-    !> evect       #rocblas_evect.
+    !> evect       `rocblas_evect`.
     !> Specifies whether the eigenvectors are to be computed.
     !> If evect is rocblas_evect_original, then the eigenvectors are computed.
     !> rocblas_evect_tridiagonal is not supported.
     !> @param[in]
-    !> erange      #rocblas_erange.
+    !> erange      `rocblas_erange`.
     !> Specifies the type of range or interval of the eigenvalues to be computed.
     !> @param[in]
     !> uplo        rocblas_fill.
@@ -38442,8 +38465,8 @@ module hipfort_rocsolver
     !>
     !> \f[
     !> \begin{array}{cl}
-    !> A X = \lambda B X & \: \text{1st form,}\\
-    !> A B X = \lambda X & \: \text{2nd form, or}\\
+    !> A X = \lambda B X & \: \text{1st form,}\\%
+    !> A B X = \lambda X & \: \text{2nd form, or}\\%
     !> B A X = \lambda X & \: \text{3rd form,}
     !> \end{array}
     !> \f]
@@ -38455,14 +38478,14 @@ module hipfort_rocsolver
     !>
     !> \f[
     !> \begin{array}{cl}
-    !> Z^T B Z=I & \: \text{if 1st or 2nd form, or}\\
+    !> Z^T B Z=I & \: \text{if 1st or 2nd form, or}\\%
     !> Z^T B^{-1} Z=I & \: \text{if 3rd form.}
     !> \end{array}
     !> \f]
     !>
     !> This function computes all the eigenvalues, all the eigenvalues in the half-open interval
     !> \f$(vl, vu]\f$,
-    !> or the ``il``-th through ``iu``-th eigenvalues, depending on the value of ``erange``. If
+    !> or the ``il`` -th through ``iu`` -th eigenvalues, depending on the value of ``erange``. If
     !> ``evect`` is ``rocblas_evect_original``,
     !> the eigenvectors for these eigenvalues will be computed as well. The eigenvectors are
     !> computed using a
@@ -38471,15 +38494,15 @@ module hipfort_rocsolver
     !> @param[in]
     !> handle      rocblas_handle.
     !> @param[in]
-    !> itype       #rocblas_eform.
+    !> itype       `rocblas_eform`.
     !> Specifies the form of the generalized eigenproblem.
     !> @param[in]
-    !> evect       #rocblas_evect.
+    !> evect       `rocblas_evect`.
     !> Specifies whether the eigenvectors are to be computed.
     !> If evect is rocblas_evect_original, then the eigenvectors are computed.
     !> rocblas_evect_tridiagonal is not supported.
     !> @param[in]
-    !> erange      #rocblas_erange.
+    !> erange      `rocblas_erange`.
     !> Specifies the type of range or interval of the eigenvalues to be computed.
     !> @param[in]
     !> uplo        rocblas_fill.
@@ -38612,8 +38635,8 @@ module hipfort_rocsolver
     !>
     !> \f[
     !> \begin{array}{cl}
-    !> A X = \lambda B X & \: \text{1st form,}\\
-    !> A B X = \lambda X & \: \text{2nd form, or}\\
+    !> A X = \lambda B X & \: \text{1st form,}\\%
+    !> A B X = \lambda X & \: \text{2nd form, or}\\%
     !> B A X = \lambda X & \: \text{3rd form,}
     !> \end{array}
     !> \f]
@@ -38625,14 +38648,14 @@ module hipfort_rocsolver
     !>
     !> \f[
     !> \begin{array}{cl}
-    !> Z^H B Z=I & \: \text{if 1st or 2nd form, or}\\
+    !> Z^H B Z=I & \: \text{if 1st or 2nd form, or}\\%
     !> Z^H B^{-1} Z=I & \: \text{if 3rd form.}
     !> \end{array}
     !> \f]
     !>
     !> This function computes all the eigenvalues, all the eigenvalues in the half-open interval
     !> \f$(vl, vu]\f$,
-    !> or the ``il``-th through ``iu``-th eigenvalues, depending on the value of ``erange``. If
+    !> or the ``il`` -th through ``iu`` -th eigenvalues, depending on the value of ``erange``. If
     !> ``evect`` is ``rocblas_evect_original``,
     !> the eigenvectors for these eigenvalues will be computed as well. The eigenvectors are
     !> computed using a
@@ -38641,15 +38664,15 @@ module hipfort_rocsolver
     !> @param[in]
     !> handle      rocblas_handle.
     !> @param[in]
-    !> itype       #rocblas_eform.
+    !> itype       `rocblas_eform`.
     !> Specifies the form of the generalized eigenproblem.
     !> @param[in]
-    !> evect       #rocblas_evect.
+    !> evect       `rocblas_evect`.
     !> Specifies whether the eigenvectors are to be computed.
     !> If evect is rocblas_evect_original, then the eigenvectors are computed.
     !> rocblas_evect_tridiagonal is not supported.
     !> @param[in]
-    !> erange      #rocblas_erange.
+    !> erange      `rocblas_erange`.
     !> Specifies the type of range or interval of the eigenvalues to be computed.
     !> @param[in]
     !> uplo        rocblas_fill.
@@ -38782,8 +38805,8 @@ module hipfort_rocsolver
     !>
     !> \f[
     !> \begin{array}{cl}
-    !> A_l X_l = \lambda B_l X_l & \: \text{1st form,}\\
-    !> A_l B_l X_l = \lambda X_l & \: \text{2nd form, or}\\
+    !> A_l X_l = \lambda B_l X_l & \: \text{1st form,}\\%
+    !> A_l B_l X_l = \lambda X_l & \: \text{2nd form, or}\\%
     !> B_l A_l X_l = \lambda X_l & \: \text{3rd form,}
     !> \end{array}
     !> \f]
@@ -38795,14 +38818,14 @@ module hipfort_rocsolver
     !>
     !> \f[
     !> \begin{array}{cl}
-    !> Z_l^T B_l^{} Z_l^{}=I & \: \text{if 1st or 2nd form, or}\\
+    !> Z_l^T B_l^{} Z_l^{}=I & \: \text{if 1st or 2nd form, or}\\%
     !> Z_l^T B_l^{-1} Z_l^{}=I & \: \text{if 3rd form.}
     !> \end{array}
     !> \f]
     !>
     !> This function computes all the eigenvalues, all the eigenvalues in the half-open interval
     !> \f$(vl, vu]\f$,
-    !> or the ``il``-th through ``iu``-th eigenvalues, depending on the value of ``erange``. If
+    !> or the ``il`` -th through ``iu`` -th eigenvalues, depending on the value of ``erange``. If
     !> ``evect`` is ``rocblas_evect_original``,
     !> the eigenvectors for these eigenvalues will be computed as well. The eigenvectors are
     !> computed using a
@@ -38811,15 +38834,15 @@ module hipfort_rocsolver
     !> @param[in]
     !> handle      rocblas_handle.
     !> @param[in]
-    !> itype       #rocblas_eform.
+    !> itype       `rocblas_eform`.
     !> Specifies the form of the generalized eigenproblems.
     !> @param[in]
-    !> evect       #rocblas_evect.
+    !> evect       `rocblas_evect`.
     !> Specifies whether the eigenvectors are to be computed.
     !> If evect is rocblas_evect_original, then the eigenvectors are computed.
     !> rocblas_evect_tridiagonal is not supported.
     !> @param[in]
-    !> erange      #rocblas_erange.
+    !> erange      `rocblas_erange`.
     !> Specifies the type of range or interval of the eigenvalues to be computed.
     !> @param[in]
     !> uplo        rocblas_fill.
@@ -38964,8 +38987,8 @@ module hipfort_rocsolver
     !>
     !> \f[
     !> \begin{array}{cl}
-    !> A_l X_l = \lambda B_l X_l & \: \text{1st form,}\\
-    !> A_l B_l X_l = \lambda X_l & \: \text{2nd form, or}\\
+    !> A_l X_l = \lambda B_l X_l & \: \text{1st form,}\\%
+    !> A_l B_l X_l = \lambda X_l & \: \text{2nd form, or}\\%
     !> B_l A_l X_l = \lambda X_l & \: \text{3rd form,}
     !> \end{array}
     !> \f]
@@ -38977,14 +39000,14 @@ module hipfort_rocsolver
     !>
     !> \f[
     !> \begin{array}{cl}
-    !> Z_l^H B_l^{} Z_l^{}=I & \: \text{if 1st or 2nd form, or}\\
+    !> Z_l^H B_l^{} Z_l^{}=I & \: \text{if 1st or 2nd form, or}\\%
     !> Z_l^H B_l^{-1} Z_l^{}=I & \: \text{if 3rd form.}
     !> \end{array}
     !> \f]
     !>
     !> This function computes all the eigenvalues, all the eigenvalues in the half-open interval
     !> \f$(vl, vu]\f$,
-    !> or the ``il``-th through ``iu``-th eigenvalues, depending on the value of ``erange``. If
+    !> or the ``il`` -th through ``iu`` -th eigenvalues, depending on the value of ``erange``. If
     !> ``evect`` is ``rocblas_evect_original``,
     !> the eigenvectors for these eigenvalues will be computed as well. The eigenvectors are
     !> computed using a
@@ -38993,15 +39016,15 @@ module hipfort_rocsolver
     !> @param[in]
     !> handle      rocblas_handle.
     !> @param[in]
-    !> itype       #rocblas_eform.
+    !> itype       `rocblas_eform`.
     !> Specifies the form of the generalized eigenproblems.
     !> @param[in]
-    !> evect       #rocblas_evect.
+    !> evect       `rocblas_evect`.
     !> Specifies whether the eigenvectors are to be computed.
     !> If evect is rocblas_evect_original, then the eigenvectors are computed.
     !> rocblas_evect_tridiagonal is not supported.
     !> @param[in]
-    !> erange      #rocblas_erange.
+    !> erange      `rocblas_erange`.
     !> Specifies the type of range or interval of the eigenvalues to be computed.
     !> @param[in]
     !> uplo        rocblas_fill.
@@ -39146,8 +39169,8 @@ module hipfort_rocsolver
     !>
     !> \f[
     !> \begin{array}{cl}
-    !> A_l X_l = \lambda B_l X_l & \: \text{1st form,}\\
-    !> A_l B_l X_l = \lambda X_l & \: \text{2nd form, or}\\
+    !> A_l X_l = \lambda B_l X_l & \: \text{1st form,}\\%
+    !> A_l B_l X_l = \lambda X_l & \: \text{2nd form, or}\\%
     !> B_l A_l X_l = \lambda X_l & \: \text{3rd form,}
     !> \end{array}
     !> \f]
@@ -39159,14 +39182,14 @@ module hipfort_rocsolver
     !>
     !> \f[
     !> \begin{array}{cl}
-    !> Z_l^T B_l^{} Z_l^{}=I & \: \text{if 1st or 2nd form, or}\\
+    !> Z_l^T B_l^{} Z_l^{}=I & \: \text{if 1st or 2nd form, or}\\%
     !> Z_l^T B_l^{-1} Z_l^{}=I & \: \text{if 3rd form.}
     !> \end{array}
     !> \f]
     !>
     !> This function computes all the eigenvalues, all the eigenvalues in the half-open interval
     !> \f$(vl, vu]\f$,
-    !> or the ``il``-th through ``iu``-th eigenvalues, depending on the value of ``erange``. If
+    !> or the ``il`` -th through ``iu`` -th eigenvalues, depending on the value of ``erange``. If
     !> ``evect`` is ``rocblas_evect_original``,
     !> the eigenvectors for these eigenvalues will be computed as well. The eigenvectors are
     !> computed using a
@@ -39175,15 +39198,15 @@ module hipfort_rocsolver
     !> @param[in]
     !> handle      rocblas_handle.
     !> @param[in]
-    !> itype       #rocblas_eform.
+    !> itype       `rocblas_eform`.
     !> Specifies the form of the generalized eigenproblems.
     !> @param[in]
-    !> evect       #rocblas_evect.
+    !> evect       `rocblas_evect`.
     !> Specifies whether the eigenvectors are to be computed.
     !> If evect is rocblas_evect_original, then the eigenvectors are computed.
     !> rocblas_evect_tridiagonal is not supported.
     !> @param[in]
-    !> erange      #rocblas_erange.
+    !> erange      `rocblas_erange`.
     !> Specifies the type of range or interval of the eigenvalues to be computed.
     !> @param[in]
     !> uplo        rocblas_fill.
@@ -39349,8 +39372,8 @@ module hipfort_rocsolver
     !>
     !> \f[
     !> \begin{array}{cl}
-    !> A_l X_l = \lambda B_l X_l & \: \text{1st form,}\\
-    !> A_l B_l X_l = \lambda X_l & \: \text{2nd form, or}\\
+    !> A_l X_l = \lambda B_l X_l & \: \text{1st form,}\\%
+    !> A_l B_l X_l = \lambda X_l & \: \text{2nd form, or}\\%
     !> B_l A_l X_l = \lambda X_l & \: \text{3rd form,}
     !> \end{array}
     !> \f]
@@ -39362,14 +39385,14 @@ module hipfort_rocsolver
     !>
     !> \f[
     !> \begin{array}{cl}
-    !> Z_l^H B_l^{} Z_l^{}=I & \: \text{if 1st or 2nd form, or}\\
+    !> Z_l^H B_l^{} Z_l^{}=I & \: \text{if 1st or 2nd form, or}\\%
     !> Z_l^H B_l^{-1} Z_l^{}=I & \: \text{if 3rd form.}
     !> \end{array}
     !> \f]
     !>
     !> This function computes all the eigenvalues, all the eigenvalues in the half-open interval
     !> \f$(vl, vu]\f$,
-    !> or the ``il``-th through ``iu``-th eigenvalues, depending on the value of ``erange``. If
+    !> or the ``il`` -th through ``iu`` -th eigenvalues, depending on the value of ``erange``. If
     !> ``evect`` is ``rocblas_evect_original``,
     !> the eigenvectors for these eigenvalues will be computed as well. The eigenvectors are
     !> computed using a
@@ -39378,15 +39401,15 @@ module hipfort_rocsolver
     !> @param[in]
     !> handle      rocblas_handle.
     !> @param[in]
-    !> itype       #rocblas_eform.
+    !> itype       `rocblas_eform`.
     !> Specifies the form of the generalized eigenproblems.
     !> @param[in]
-    !> evect       #rocblas_evect.
+    !> evect       `rocblas_evect`.
     !> Specifies whether the eigenvectors are to be computed.
     !> If evect is rocblas_evect_original, then the eigenvectors are computed.
     !> rocblas_evect_tridiagonal is not supported.
     !> @param[in]
-    !> erange      #rocblas_erange.
+    !> erange      `rocblas_erange`.
     !> Specifies the type of range or interval of the eigenvalues to be computed.
     !> @param[in]
     !> uplo        rocblas_fill.

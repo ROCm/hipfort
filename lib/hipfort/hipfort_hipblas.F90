@@ -1,5 +1,28 @@
-! Auto-generated module wrapper for hipfort_hipblas
-! DO NOT EDIT — re-run the generator to update.
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+! ==============================================================================
+! hipfort: FORTRAN Interfaces for GPU kernels
+! ==============================================================================
+! Copyright (c) 2020-2026 Advanced Micro Devices, Inc. All rights reserved.
+! [MITx11 License]
+! 
+! Permission is hereby granted, free of charge, to any person obtaining a copy
+! of this software and associated documentation files (the "Software"), to deal
+! in the Software without restriction, including without limitation the rights
+! to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+! copies of the Software, and to permit persons to whom the Software is
+! furnished to do so, subject to the following conditions:
+! 
+! The above copyright notice and this permission notice shall be included in
+! all copies or substantial portions of the Software.
+! 
+! THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+! IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+! FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.  IN NO EVENT SHALL THE
+! AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+! LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+! OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+! THE SOFTWARE.
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
 module hipfort_hipblas
   use hipfort_hipblas_enums
@@ -6136,8 +6159,8 @@ module hipfort_hipblas
     !> \brief  BLAS Level 1 API
     !>
     !> \details
-    !> The rotgBatched functions create the Givens rotation matrix for the batched vectors ``(a_i
-    !> b_i)``, for ``i`` = 1, ..., ``batchCount``.
+    !> The rotgBatched functions create the Givens rotation matrix for the batched vectors
+    !> ``(a_i b_i)``, for ``i`` = 1, ..., ``batchCount``.
     !> ``a``, ``b``, ``c``, and ``s`` can be stored in either host or device memory. The location is
     !> specified by calling ``hipblasSetPointerMode``.
     !> If the pointer mode is set to ``HIPBLAS_POINTER_MODE_HOST``, this function blocks the CPU
@@ -6926,8 +6949,8 @@ module hipfort_hipblas
     !> \brief  BLAS Level 1 API
     !>
     !> \details
-    !> The rotmg functions create the modified Givens rotation matrix for the vector ``(d1 * x1, d2
-    !> * y1)``.
+    !> The rotmg functions create the modified Givens rotation matrix for the vector
+    !> ``(d1 * x1, d2 * y1)``.
     !> Parameters can be stored in either host or device memory. The location is specified by
     !> calling ``hipblasSetPointerMode``.
     !> If the pointer mode is set to ``HIPBLAS_POINTER_MODE_HOST``, this function blocks the CPU
@@ -11329,8 +11352,8 @@ module hipfort_hipblas
     !>
     !> y := alpha*A*x + beta*y
     !>
-    !> where ``alpha`` and ``beta`` are scalars, ``x`` and ``y`` are ``n``-element vectors, and ``A
-    !> ``is an
+    !> where ``alpha`` and ``beta`` are scalars, ``x`` and ``y`` are ``n`` -element vectors, and
+    !> ``A `` is an
     !> ``n`` by ``n`` Hermitian band matrix with ``k`` super-diagonals.
     !>
     !> - Supported precisions in rocBLAS : ``c`` and ``z``.
@@ -11497,10 +11520,10 @@ module hipfort_hipblas
     !>
     !> y_i := alpha*A_i*x_i + beta*y_i
     !>
-    !> where ``alpha`` and ``beta`` are scalars, ``x_i`` and ``y_i`` are ``n``-element vectors, and
+    !> where ``alpha`` and ``beta`` are scalars, ``x_i`` and ``y_i`` are ``n`` -element vectors, and
     !> ``A_i`` is an
     !> ``n`` by ``n`` Hermitian band matrix with ``k`` super-diagonals, for each batch in ``i`` =
-    !> [1, ``batchCount``].
+    !> [1, ``batchCount`` ].
     !>
     !> - Supported precisions in rocBLAS : ``c`` and ``z``.
     !> - Supported precisions in cuBLAS  : No support.
@@ -11677,10 +11700,10 @@ module hipfort_hipblas
     !>
     !> y_i := alpha*A_i*x_i + beta*y_i
     !>
-    !> where ``alpha`` and ``beta`` are scalars, ``x_i`` and ``y_i`` are ``n``-element vectors, and
+    !> where ``alpha`` and ``beta`` are scalars, ``x_i`` and ``y_i`` are ``n`` -element vectors, and
     !> ``A_i`` is an
     !> ``n`` by ``n`` Hermitian band matrix with ``k`` super-diagonals, for each batch in ``i`` =
-    !> [1, ``batchCount``].
+    !> [1, ``batchCount`` ].
     !>
     !> - Supported precisions in rocBLAS : ``c`` and ``z``.
     !> - Supported precisions in cuBLAS  : No support.
@@ -11878,7 +11901,7 @@ module hipfort_hipblas
     !>
     !> y := alpha*A*x + beta*y
     !>
-    !> where ``alpha`` and ``beta`` are scalars, ``x`` and ``y`` are ``n``-element vectors, and
+    !> where ``alpha`` and ``beta`` are scalars, ``x`` and ``y`` are ``n`` -element vectors, and
     !> ``A`` is an
     !> ``n`` by ``n`` Hermitian matrix.
     !>
@@ -12023,7 +12046,7 @@ module hipfort_hipblas
     !>
     !> y_i := alpha*A_i*x_i + beta*y_i
     !>
-    !> where ``alpha`` and ``beta`` are scalars, ``x_i`` and ``y_i`` are ``n``-element vectors, and
+    !> where ``alpha`` and ``beta`` are scalars, ``x_i`` and ``y_i`` are ``n`` -element vectors, and
     !> ``A_i`` is an
     !> ``n`` by ``n`` Hermitian matrix, for each batch in ``i`` = [1, ``batchCount``].
     !>
@@ -12179,7 +12202,7 @@ module hipfort_hipblas
     !>
     !> y_i := alpha*A_i*x_i + beta*y_i
     !>
-    !> where ``alpha`` and ``beta`` are scalars, ``x_i`` and ``y_i`` are ``n``-element vectors, and
+    !> where ``alpha`` and ``beta`` are scalars, ``x_i`` and ``y_i`` are ``n`` -element vectors, and
     !> ``A_i`` is an
     !> ``n`` by ``n`` Hermitian matrix, for each batch in ``i`` = [1, ``batchCount``].
     !>
@@ -13227,8 +13250,8 @@ module hipfort_hipblas
     !>
     !> y := alpha*A*x + beta*y
     !>
-    !> where ``alpha`` and ``beta`` are scalars, ``x`` and ``y`` are ``n``-element vectors and ``A``
-    !> is an
+    !> where ``alpha`` and ``beta`` are scalars, ``x`` and ``y`` are ``n`` -element vectors and
+    !> ``A`` is an
     !> ``n`` by ``n`` Hermitian matrix, supplied in packed form (see description below).
     !>
     !> - Supported precisions in rocBLAS : ``c`` and ``z``.
@@ -13382,7 +13405,7 @@ module hipfort_hipblas
     !>
     !> y_i := alpha*A_i*x_i + beta*y_i
     !>
-    !> where ``alpha`` and ``beta`` are scalars, ``x_i`` and ``y_i`` are ``n``-element vectors, and
+    !> where ``alpha`` and ``beta`` are scalars, ``x_i`` and ``y_i`` are ``n`` -element vectors, and
     !> ``A_i`` is an
     !> ``n`` by ``n`` Hermitian matrix, supplied in packed form (see description below),
     !> for each batch in ``i`` = [1, ``batchCount``].
@@ -13547,7 +13570,7 @@ module hipfort_hipblas
     !>
     !> y_i := alpha*A_i*x_i + beta*y_i
     !>
-    !> where ``alpha`` and ``beta`` are scalars, ``x_i`` and ``y_i`` are ``n``-element vectors, and
+    !> where ``alpha`` and ``beta`` are scalars, ``x_i`` and ``y_i`` are ``n`` -element vectors, and
     !> ``A_i`` is an
     !> ``n`` by ``n`` Hermitian matrix, supplied in packed form (see description below),
     !> for each batch in ``i`` = [1, ``batchCount``].
@@ -20457,7 +20480,7 @@ module hipfort_hipblas
     !>
     !> x = A*x or x = A**T*x,
     !>
-    !> where ``x`` is an ``n``-element vector and ``A`` is an ``n`` by ``n`` unit, or non-unit,
+    !> where ``x`` is an ``n`` -element vector and ``A`` is an ``n`` by ``n`` unit, or non-unit,
     !> upper or lower triangular matrix, supplied in the pack form.
     !>
     !> The vector ``x`` is overwritten.
@@ -20671,10 +20694,10 @@ module hipfort_hipblas
     !> \details
     !> The tpmvBatched functions perform one of the matrix-vector operations:
     !>
-    !> x_i = A_i*x_i or x_i = A**T*x_i, 0 \le i < batchCount
+    !> x_i = A_i*x_i or x_i = A**T*x_i, 0 &le; i < batchCount
     !>
-    !> where ``x_i`` is an ``n``-element vector and ``A_i`` is an ``n`` by ``n`` (unit, or non-unit,
-    !> upper or lower triangular matrix).
+    !> where ``x_i`` is an ``n`` -element vector and ``A_i`` is an ``n`` by ``n`` (unit, or
+    !> non-unit, upper or lower triangular matrix).
     !>
     !> The vectors ``x_i`` are overwritten.
     !>
@@ -20889,12 +20912,12 @@ module hipfort_hipblas
     !> \details
     !> The tpmvStridedBatched functions perform one of the matrix-vector operations:
     !>
-    !> x_i = A_i*x_i or x_i = A**T*x_i, 0 \le i < batchCount
+    !> x_i = A_i*x_i or x_i = A**T*x_i, 0 &le; i < batchCount
     !>
     !> where ``x_i`` is an n element vector and ``A_i`` is an ``n`` by ``n`` (unit, or non-unit,
     !> upper or lower triangular matrix),
-    !> with strides specifying how to retrieve ``$x_i$`` (resp. ``$A_i$``) from ``$x_{i-1}$`` (resp.
-    !> ``$A_i$``).
+    !> with strides specifying how to retrieve ``$x_i$`` (resp. ``$A_i$`` ) from ``$x_{i-1}$``
+    !> (resp. ``$A_i$`` ).
     !>
     !> The vectors ``x_i`` are overwritten.
     !>
@@ -21831,7 +21854,7 @@ module hipfort_hipblas
     !>
     !> x = A*x or x = A**T*x,
     !>
-    !> where ``x`` is an ``n``-element vector and ``A`` is an ``n`` by ``n`` unit, or non-unit,
+    !> where ``x`` is an ``n`` -element vector and ``A`` is an ``n`` by ``n`` unit, or non-unit,
     !> upper or lower triangular matrix.
     !>
     !> The vector ``x`` is overwritten.
@@ -22048,10 +22071,10 @@ module hipfort_hipblas
     !> \details
     !> The trmvBatched functions perform one of the matrix-vector operations:
     !>
-    !> x_i = A_i*x_i or x_i = A**T*x_i, 0 \le i < batchCount
+    !> x_i = A_i*x_i or x_i = A**T*x_i, 0 &le; i < batchCount
     !>
-    !> where ``x_i`` is an ``n``-element vector and ``A_i`` is an ``n`` by ``n`` (unit, or non-unit,
-    !> upper or lower triangular) matrix.
+    !> where ``x_i`` is an ``n`` -element vector and ``A_i`` is an ``n`` by ``n`` (unit, or
+    !> non-unit, upper or lower triangular) matrix.
     !>
     !> The vectors ``x_i`` are overwritten.
     !>
@@ -22279,12 +22302,12 @@ module hipfort_hipblas
     !> \details
     !> The trmvStridedBatched functions perform one of the matrix-vector operations:
     !>
-    !> x_i = A_i*x_i or x_i = A**T*x_i, 0 \le i < batchCount
+    !> x_i = A_i*x_i or x_i = A**T*x_i, 0 &le; i < batchCount
     !>
-    !> where ``x_i``is an ``n``-element vector and ``A_i`` is an ``n`` by ``n`` (unit, or non-unit,
-    !> upper or lower triangular) matrix,
-    !> with strides specifying how to retrieve ``$x_i$`` (resp. ``$A_i$``) from ``$x_{i-1}$`` (resp.
-    !> ``$A_i$``).
+    !> where ``x_i`` is an ``n`` -element vector and ``A_i`` is an ``n`` by ``n`` (unit, or
+    !> non-unit, upper or lower triangular) matrix,
+    !> with strides specifying how to retrieve ``$x_i$`` (resp. ``$A_i$`` ) from ``$x_{i-1}$``
+    !> (resp. ``$A_i$`` ).
     !>
     !> The vectors ``x_i`` are overwritten.
     !>
@@ -24825,8 +24848,8 @@ module hipfort_hipblas
     !> where ``alpha`` and ``beta`` are scalars, ``op(A)`` and ``op(B)`` are ``n`` by ``k``
     !> matrices, and
     !> ``C`` is an ``n`` by ``n`` Hermitian matrix stored as either upper or lower.
-    !> This routine should only be used when the caller can guarantee that the result of ``op( A
-    !> )*op( B )^T`` will be Hermitian.
+    !> This routine should only be used when the caller can guarantee that the result of
+    !> ``op( A )*op( B )^T`` will be Hermitian.
     !>
     !> op( A ) = A, op( B ) = B, and A and B are n by k if trans == HIPBLAS_OP_N
     !> op( A ) = A^H, op( B ) = B^H,  and A and B are k by n if trans == HIPBLAS_OP_C
@@ -25007,8 +25030,8 @@ module hipfort_hipblas
     !> where ``alpha`` and ``beta`` are scalars, ``op(A_i)`` and ``op(B_i)`` are ``n`` by ``k``
     !> matrices, and
     !> ``C_i`` is an ``n`` by ``n`` Hermitian matrix stored as either upper or lower.
-    !> This routine should only be used when the caller can guarantee that the result of ``op( A
-    !> )*op( B )^T`` will be Hermitian.
+    !> This routine should only be used when the caller can guarantee that the result of
+    !> ``op( A )*op( B )^T`` will be Hermitian.
     !>
     !> op( A_i ) = A_i, op( B_i ) = B_i, and A_i and B_i are n by k if trans == HIPBLAS_OP_N
     !> op( A_i ) = A_i^H, op( B_i ) = B_i^H,  and A_i and B_i are k by n if trans == HIPBLAS_OP_C
@@ -25201,8 +25224,8 @@ module hipfort_hipblas
     !> where ``alpha`` and ``beta`` are scalars, ``op(A_i)`` and ``op(B_i)`` are ``n`` by ``k``
     !> matrices, and
     !> ``C_i`` is an ``n`` by ``n`` Hermitian matrix stored as either upper or lower.
-    !> This routine should only be used when the caller can guarantee that the result of ``op( A
-    !> )*op( B )^T`` will be Hermitian.
+    !> This routine should only be used when the caller can guarantee that the result of
+    !> ``op( A )*op( B )^T`` will be Hermitian.
     !>
     !> op( A_i ) = A_i, op( B_i ) = B_i, and A_i and B_i are n by k if trans == HIPBLAS_OP_N
     !> op( A_i ) = A_i^H, op( B_i ) = B_i^H,  and A_i and B_i are k by n if trans == HIPBLAS_OP_C
@@ -28632,8 +28655,8 @@ module hipfort_hipblas
     !> where ``alpha`` and ``beta`` are scalars, ``op(A)`` and ``op(B)`` are ``n`` by ``k``
     !> matrices, and
     !> ``C`` is a symmetric ``n`` by ``n ``matrix stored as either upper or lower.
-    !> This routine should only be used when the caller can guarantee that the result of ``op( A
-    !> )*op( B )^T`` will be symmetric.
+    !> This routine should only be used when the caller can guarantee that the result of
+    !> ``op( A )*op( B )^T`` will be symmetric.
     !>
     !> op( A ) = A, op( B ) = B, and A and B are n by k if trans == HIPBLAS_OP_N
     !> op( A ) = A^T, op( B ) = B^T,  and A and B are k by n if trans == HIPBLAS_OP_T
@@ -28914,8 +28937,8 @@ module hipfort_hipblas
     !> where ``alpha`` and ``beta`` are scalars, ``op(A_i)`` and ``op(B_i)`` are an ``n`` by ``k``
     !> matrix, and
     !> ``C_i`` is a symmetric ``n`` x ``n`` matrix stored as either upper or lower.
-    !> This routine should only be used when the caller can guarantee that the result of ``op( A_i
-    !> )*op( B_i )^T`` will be symmetric.
+    !> This routine should only be used when the caller can guarantee that the result of
+    !> ``op( A_i )*op( B_i )^T`` will be symmetric.
     !>
     !> op( A_i ) = A_i, op( B_i ) = B_i, and A_i and B_i are n by k if trans == HIPBLAS_OP_N
     !> op( A_i ) = A_i^T, op( B_i ) = B_i^T,  and A_i and B_i are k by n if trans == HIPBLAS_OP_T
@@ -29214,8 +29237,8 @@ module hipfort_hipblas
     !> where ``alpha`` and ``beta`` are scalars, ``op(A_i)`` and ``op(B_i)`` are ``n`` by ``k``
     !> matrices, and
     !> ``C_i`` is a symmetric ``n`` by ``n`` matrix stored as either upper or lower.
-    !> This routine should only be used when the caller can guarantee that the result of ``op( A_i
-    !> )*op( B_i )^T`` will be symmetric.
+    !> This routine should only be used when the caller can guarantee that the result of
+    !> ``op( A_i )*op( B_i )^T`` will be symmetric.
     !>
     !> op( A_i ) = A_i, op( B_i ) = B_i, and A_i and B_i are n by k if trans == HIPBLAS_OP_N
     !> op( A_i ) = A_i^T, op( B_i ) = B_i^T,  and A_i and B_i are k by n if trans == HIPBLAS_OP_T
@@ -34117,7 +34140,7 @@ module hipfort_hipblas
     !>
     !> \details
     !> The getrfBatched functions compute the LU factorization of a batch of general
-    !> ``n``-by-``n`` matrices using partial pivoting with row interchanges. The LU factorization
+    !> ``n`` -by-``n`` matrices using partial pivoting with row interchanges. The LU factorization
     !> can
     !> be done without pivoting if ``ipiv`` is passed as a nullptr.
     !>
@@ -34257,7 +34280,7 @@ module hipfort_hipblas
     !>
     !> \details
     !> The getrfStridedBatched functions compute the LU factorization of a batch of
-    !> general ``n``-by-``n`` matrices using partial pivoting with row interchanges. The LU
+    !> general ``n`` -by-``n`` matrices using partial pivoting with row interchanges. The LU
     !> factorization can
     !> be done without pivoting if ``ipiv`` is passed as a nullptr.
     !>
@@ -34423,13 +34446,13 @@ module hipfort_hipblas
     !>
     !> \f[
     !> \begin{array}{cl}
-    !> A X = B & \: \text{not transposed,}\\
-    !> A^T X = B & \: \text{transposed, or}\\
+    !> A X = B & \: \text{not transposed,}\\%
+    !> A^T X = B & \: \text{transposed, or}\\%
     !> A^H X = B & \: \text{conjugate transposed.}
     !> \end{array}
     !> \f]
     !>
-    !> Matrix A is defined by its triangular factors as returned by \ref hipblasSgetrf "getrf".
+    !> Matrix A is defined by its triangular factors as returned by `hipblasSgetrf` "getrf".
     !>
     !> - Supported precisions in rocSOLVER : ``s``, ``d``, ``c``, and ``z``.
     !> - Supported precisions in cuBLAS    : ``s``, ``d``, ``c``, and ``z``.
@@ -34449,13 +34472,13 @@ module hipfort_hipblas
     !> of the matrix B.
     !> @param[in]
     !> A           pointer to type. Array on the GPU of dimension lda*n.
-    !> The factors L and U of the factorization A = P*L*U returned by \ref hipblasSgetrf "getrf".
+    !> The factors L and U of the factorization A = P*L*U returned by `hipblasSgetrf` "getrf".
     !> @param[in]
     !> lda         int. lda >= n.
     !> The leading dimension of A.
     !> @param[in]
     !> ipiv        pointer to int. Array on the GPU of dimension n.
-    !> The pivot indices returned by \ref hipblasSgetrf "getrf".
+    !> The pivot indices returned by `hipblasSgetrf` "getrf".
     !> @param[in,out]
     !> B           pointer to type. Array on the GPU of dimension ldb*nrhs.
     !> - On entry, the right hand side matrix B.
@@ -34574,14 +34597,14 @@ module hipfort_hipblas
     !>
     !> \f[
     !> \begin{array}{cl}
-    !> A_i X_i = B_i & \: \text{not transposed,}\\
-    !> A_i^T X_i = B_i & \: \text{transposed, or}\\
+    !> A_i X_i = B_i & \: \text{not transposed,}\\%
+    !> A_i^T X_i = B_i & \: \text{transposed, or}\\%
     !> A_i^H X_i = B_i & \: \text{conjugate transposed.}
     !> \end{array}
     !> \f]
     !>
-    !> Matrix \f$A_i\f$ is defined by its triangular factors as returned by \ref
-    !> hipblasSgetrfBatched "getrfBatched".
+    !> Matrix \f$A_i\f$ is defined by its triangular factors as returned by `hipblasSgetrfBatched`
+    !> "getrfBatched".
     !>
     !> - Supported precisions in rocSOLVER : ``s``, ``d``, ``c``, and ``z``.
     !> - Supported precisions in cuBLAS    : ``s``, ``d``, ``c``, and ``z``.
@@ -34600,14 +34623,14 @@ module hipfort_hipblas
     !> of all the matrices B_i.
     !> @param[in]
     !> A Array of pointers to type. Each pointer points to an array on the GPU of dimension lda*n.
-    !> The factors L_i and U_i of the factorization A_i = P_i*L_i*U_i returned by \ref
-    !> hipblasSgetrfBatched "getrfBatched".
+    !> The factors L_i and U_i of the factorization A_i = P_i*L_i*U_i returned by
+    !> `hipblasSgetrfBatched` "getrfBatched".
     !> @param[in]
     !> lda         int. lda >= n.
     !> The leading dimension of matrices A_i.
     !> @param[in]
     !> ipiv        pointer to int. Array on the GPU.
-    !> Contains the vectors ipiv_i of pivot indices returned by \ref hipblasSgetrfBatched
+    !> Contains the vectors ipiv_i of pivot indices returned by `hipblasSgetrfBatched`
     !> "getrfBatched".
     !> @param[in,out]
     !> B Array of pointers to type. Each pointer points to an array on the GPU of dimension
@@ -34735,14 +34758,14 @@ module hipfort_hipblas
     !>
     !> \f[
     !> \begin{array}{cl}
-    !> A_i X_i = B_i & \: \text{not transposed,}\\
-    !> A_i^T X_i = B_i & \: \text{transposed, or}\\
+    !> A_i X_i = B_i & \: \text{not transposed,}\\%
+    !> A_i^T X_i = B_i & \: \text{transposed, or}\\%
     !> A_i^H X_i = B_i & \: \text{conjugate transposed.}
     !> \end{array}
     !> \f]
     !>
-    !> Matrix \f$A_i\f$ is defined by its triangular factors as returned by \ref
-    !> hipblasSgetrfStridedBatched "getrfStridedBatched".
+    !> Matrix \f$A_i\f$ is defined by its triangular factors as returned by
+    !> `hipblasSgetrfStridedBatched` "getrfStridedBatched".
     !>
     !> - Supported precisions in rocSOLVER : ``s``, ``d``, ``c``, and ``z``.
     !> - Supported precisions in cuBLAS    : No support.
@@ -34761,8 +34784,8 @@ module hipfort_hipblas
     !> of all the matrices B_i.
     !> @param[in]
     !> A           pointer to type. Array on the GPU (the size depends on the value of strideA).
-    !> The factors L_i and U_i of the factorization A_i = P_i*L_i*U_i returned by \ref
-    !> hipblasSgetrfStridedBatched "getrfStridedBatched".
+    !> The factors L_i and U_i of the factorization A_i = P_i*L_i*U_i returned by
+    !> `hipblasSgetrfStridedBatched` "getrfStridedBatched".
     !> @param[in]
     !> lda         int. lda >= n.
     !> The leading dimension of matrices A_i.
@@ -34772,7 +34795,7 @@ module hipfort_hipblas
     !> There is no restriction for the value of strideA. Normal use case is strideA >= lda*n.
     !> @param[in]
     !> ipiv        pointer to int. Array on the GPU (the size depends on the value of strideP).
-    !> Contains the vectors ipiv_i of pivot indices returned by \ref hipblasSgetrfStridedBatched
+    !> Contains the vectors ipiv_i of pivot indices returned by `hipblasSgetrfStridedBatched`
     !> "getrfStridedBatched".
     !> @param[in]
     !> strideP     hipblasStride.
@@ -34925,7 +34948,7 @@ module hipfort_hipblas
     !> \f]
     !>
     !> where I is the identity matrix and \f$A_i\f$ is factorized as \f$A_i = P_i L_i U_i\f$, as
-    !> given by \ref hipblasSgetrfBatched "getrfBatched".
+    !> given by `hipblasSgetrfBatched` "getrfBatched".
     !>
     !> - Supported precisions in rocSOLVER : ``s``, ``d``, ``c``, and ``z``.
     !> - Supported precisions in cuBLAS    : ``s``, ``d``, ``c``, and ``z``.
@@ -34937,14 +34960,14 @@ module hipfort_hipblas
     !> The number of rows and columns of all matrices A_i in the batch.
     !> @param[in]
     !> A array of pointers to type. Each pointer points to an array on the GPU of dimension lda*n.
-    !> The factors L_i and U_i of the factorization A_i = P_i*L_i*U_i returned by \ref
-    !> hipblasSgetrfBatched "getrfBatched".
+    !> The factors L_i and U_i of the factorization A_i = P_i*L_i*U_i returned by
+    !> `hipblasSgetrfBatched` "getrfBatched".
     !> @param[in]
     !> lda       int. lda >= n.
     !> Specifies the leading dimension of matrices A_i.
     !> @param[in]
     !> ipiv      pointer to int. Array on the GPU (the size depends on the value of strideP).
-    !> The pivot indices returned by \ref hipblasSgetrfBatched "getrfBatched".
+    !> The pivot indices returned by `hipblasSgetrfBatched` "getrfBatched".
     !> ipiv can be passed in as a nullptr. This will assume that getrfBatched was called without
     !> partial pivoting.
     !> @param[out]
@@ -35056,9 +35079,9 @@ module hipfort_hipblas
     !>
     !> \details
     !> The gels functions solve an overdetermined (or underdetermined) linear system defined by an
-    !> ``m``-by-``n``
-    !> matrix ``A`` and a corresponding matrix ``B``, using the QR factorization computed by \ref
-    !> hipblasSgeqrf "GEQRF" (or the LQ
+    !> ``m`` -by-``n``
+    !> matrix ``A`` and a corresponding matrix ``B``, using the QR factorization computed by
+    !> `hipblasSgeqrf` "GEQRF" (or the LQ
     !> factorization computed by ``GELQF``).
     !>
     !> Depending on the value of ``trans``, the problem solved by this function is either of the
@@ -35066,7 +35089,7 @@ module hipfort_hipblas
     !>
     !> \f[
     !> \begin{array}{cl}
-    !> A X = B & \: \text{not transposed, or}\\
+    !> A X = B & \: \text{not transposed, or}\\%
     !> A' X = B & \: \text{transposed if real, or conjugate transposed if complex}
     !> \end{array}
     !> \f]
@@ -35213,17 +35236,17 @@ module hipfort_hipblas
     !>
     !> \details
     !> The gelsBatched functions solve a batch of overdetermined (or underdetermined) linear systems
-    !> defined by a set of ``m``-by-``n`` matrices \f$A_j\f$ and corresponding matrices \f$B_j\f$,
+    !> defined by a set of ``m`` -by-``n`` matrices \f$A_j\f$ and corresponding matrices \f$B_j\f$,
     !> using the
     !> QR factorizations computed by ``GEQRF_BATCHED`` (or the LQ factorizations computed by
-    !> ``GELQF_BATCHED``).
+    !> ``GELQF_BATCHED`` ).
     !>
     !> For each instance in the batch, depending on the value of ``trans``, the problem solved by
     !> this function is either of the form:
     !>
     !> \f[
     !> \begin{array}{cl}
-    !> A_j X_j = B_j & \: \text{not transposed, or}\\
+    !> A_j X_j = B_j & \: \text{not transposed, or}\\%
     !> A_j' X_j = B_j & \: \text{transposed if real, or conjugate transposed if complex}
     !> \end{array}
     !> \f]
@@ -35385,7 +35408,7 @@ module hipfort_hipblas
     !>
     !> \details
     !> The gelsStridedBatched functions solve a batch of overdetermined (or underdetermined) linear
-    !> systems defined by a set of ``m``-by-``n`` matrices \f$A_j\f$ and corresponding matrices
+    !> systems defined by a set of ``m`` -by-``n`` matrices \f$A_j\f$ and corresponding matrices
     !> \f$B_j\f$,
     !> using the QR factorizations computed by ``GEQRF_STRIDED_BATCHED``
     !> (or the LQ factorizations computed by ``GELQF_STRIDED_BATCHED``).
@@ -35395,7 +35418,7 @@ module hipfort_hipblas
     !>
     !> \f[
     !> \begin{array}{cl}
-    !> A_j X_j = B_j & \: \text{not transposed, or}\\
+    !> A_j X_j = B_j & \: \text{not transposed, or}\\%
     !> A_j' X_j = B_j & \: \text{transposed if real, or conjugate transposed if complex}
     !> \end{array}
     !> \f]
@@ -35570,18 +35593,18 @@ module hipfort_hipblas
     !> \brief  SOLVER API
     !>
     !> \details
-    !> The geqrf functions compute a QR factorization of a general ``m``-by-``n`` matrix ``A``. The
+    !> The geqrf functions compute a QR factorization of a general ``m`` -by-``n`` matrix ``A``. The
     !> factorization has the form:
     !>
     !> \f[
     !> A = Q\left[\begin{array}{c}
-    !> R\\
+    !> R\\%
     !> 0
     !> \end{array}\right]
     !> \f]
     !>
     !> where ``R`` is upper triangular (upper trapezoidal if ``m < n``), and ``Q`` is
-    !> an ``m``-by-``m`` orthogonal/unitary matrix represented as the product of Householder
+    !> an ``m`` -by-``m`` orthogonal/unitary matrix represented as the product of Householder
     !> matrices:
     !>
     !> \f[
@@ -35594,7 +35617,7 @@ module hipfort_hipblas
     !> H_i = I - \text{ipiv}[i] \cdot v_i v_i'
     !> \f]
     !>
-    !> where the first ``i``-1 elements of the Householder vector \f$v_i\f$ are zero, and \f$v_i[i]
+    !> where the first ``i`` -1 elements of the Householder vector \f$v_i\f$ are zero, and \f$v_i[i]
     !> = 1\f$.
     !>
     !> - Supported precisions in rocSOLVER : ``s``, ``d``, ``c``, and ``z``.
@@ -35718,13 +35741,13 @@ module hipfort_hipblas
     !>
     !> \f[
     !> A_i = Q_i\left[\begin{array}{c}
-    !> R_i\\
+    !> R_i\\%
     !> 0
     !> \end{array}\right]
     !> \f]
     !>
     !> where \f$R_i\f$ is upper triangular (upper trapezoidal if ``m`` < ``n``) and \f$Q_i\f$ is
-    !> an ``m``-by-``m`` orthogonal/unitary matrix represented as the product of Householder
+    !> an ``m`` -by-``m`` orthogonal/unitary matrix represented as the product of Householder
     !> matrices:
     !>
     !> \f[
@@ -35737,7 +35760,7 @@ module hipfort_hipblas
     !> H_{i_j} = I - \text{ipiv}_i[j] \cdot v_{i_j} v_{i_j}'
     !> \f]
     !>
-    !> where the first ``j``-1 elements of Householder vector \f$v_{i_j}\f$ are zero and
+    !> where the first ``j`` -1 elements of Householder vector \f$v_{i_j}\f$ are zero and
     !> \f$v_{i_j}[j] = 1\f$.
     !>
     !> - Supported precisions in rocSOLVER : ``s``, ``d``, ``c``, and ``z``.
@@ -35869,13 +35892,13 @@ module hipfort_hipblas
     !>
     !> \f[
     !> A_i = Q_i\left[\begin{array}{c}
-    !> R_i\\
+    !> R_i\\%
     !> 0
     !> \end{array}\right]
     !> \f]
     !>
     !> where \f$R_i\f$ is upper triangular (upper trapezoidal if ``m`` < ``n``), and \f$Q_i\f$ is
-    !> an ``m``-by-``m`` orthogonal/unitary matrix represented as the product of Householder
+    !> an ``m`` -by-``m`` orthogonal/unitary matrix represented as the product of Householder
     !> matrices:
     !>
     !> \f[
@@ -35888,7 +35911,7 @@ module hipfort_hipblas
     !> H_{i_j} = I - \text{ipiv}_j[j] \cdot v_{i_j} v_{i_j}'
     !> \f]
     !>
-    !> where the first ``j``-1 elements of Householder vector \f$v_{i_j}\f$ are zero, and
+    !> where the first ``j`` -1 elements of Householder vector \f$v_{i_j}\f$ are zero, and
     !> \f$v_{i_j}[j] = 1\f$.
     !>
     !> - Supported precisions in rocSOLVER : ``s``, ``d``, ``c``, and ``z``.

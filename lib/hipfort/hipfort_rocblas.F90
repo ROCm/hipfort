@@ -1,5 +1,28 @@
-! Auto-generated module wrapper for hipfort_rocblas
-! DO NOT EDIT — re-run the generator to update.
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+! ==============================================================================
+! hipfort: FORTRAN Interfaces for GPU kernels
+! ==============================================================================
+! Copyright (c) 2020-2026 Advanced Micro Devices, Inc. All rights reserved.
+! [MITx11 License]
+! 
+! Permission is hereby granted, free of charge, to any person obtaining a copy
+! of this software and associated documentation files (the "Software"), to deal
+! in the Software without restriction, including without limitation the rights
+! to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+! copies of the Software, and to permit persons to whom the Software is
+! furnished to do so, subject to the following conditions:
+! 
+! The above copyright notice and this permission notice shall be included in
+! all copies or substantial portions of the Software.
+! 
+! THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+! IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+! FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.  IN NO EVENT SHALL THE
+! AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+! LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+! OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+! THE SOFTWARE.
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
 module hipfort_rocblas
   use hipfort_rocblas_enums
@@ -6906,8 +6929,8 @@ module hipfort_rocblas
     !> \brief  BLAS Level 1 API
     !>
     !> \details
-    !> The rotg_batched functions create the Givens rotation matrix for the batched vectors ``(a_i
-    !> b_i)``, for ``i`` = 1, ..., ``batch_count``.
+    !> The rotg_batched functions create the Givens rotation matrix for the batched vectors
+    !> ``(a_i b_i)``, for ``i`` = 1, ..., ``batch_count``.
     !> ``a``, ``b``, ``c``, and ``s`` are host pointers to an array of device pointers on the
     !> device, where each device pointer points
     !> to a scalar value of ``a_i``, ``b_i``, ``c_i``, or ``s_i``.
@@ -7626,7 +7649,7 @@ module hipfort_rocblas
     !>
     !> \details
     !> The rotmg functions create the modified Givens rotation matrix for the vector (``d1 * x1``,
-    !> ``d2 * y1``).
+    !> ``d2 * y1`` ).
     !> Parameters can be stored in either host or device memory. The location is specified by
     !> calling ``rocblas_set_pointer_mode``:
     !>
@@ -7727,7 +7750,7 @@ module hipfort_rocblas
     !>
     !> \details
     !> The rotmg_batched functions create the modified Givens rotation matrix for the batched
-    !> vectors (``d1_i * x1_i``, ``d2_i * y1_i``), for ``i`` = 1, ..., ``batch_count``.
+    !> vectors (``d1_i * x1_i``, ``d2_i * y1_i`` ), for ``i`` = 1, ..., ``batch_count``.
     !> Parameters can be stored in either host or device memory. The location is specified by
     !> calling ``rocblas_set_pointer_mode``:
     !>
@@ -7842,7 +7865,7 @@ module hipfort_rocblas
     !>
     !> \details
     !> The rotmg_strided_batched functions create the modified Givens rotation matrix for the
-    !> strided batched vectors (``d1_i * x1_i``, ``d2_i * y1_i``), for ``i`` = 1, ...,
+    !> strided batched vectors (``d1_i * x1_i``, ``d2_i * y1_i`` ), for ``i`` = 1, ...,
     !> ``batch_count``.
     !> Parameters can be stored in either host or device memory. The location is specified by
     !> calling ``rocblas_set_pointer_mode``:
@@ -10011,7 +10034,7 @@ module hipfort_rocblas
     !>
     !> y := alpha*A*x + beta*y
     !>
-    !> where ``alpha`` and ``beta`` are scalars, ``x`` and ``y`` are ``n``-element vectors, and
+    !> where ``alpha`` and ``beta`` are scalars, ``x`` and ``y`` are ``n`` -element vectors, and
     !> ``A`` is an
     !> ``n`` by ``n`` Hermitian band matrix, with ``k`` super-diagonals.
     !>
@@ -10171,10 +10194,10 @@ module hipfort_rocblas
     !>
     !> y_i := alpha*A_i*x_i + beta*y_i
     !>
-    !> where ``alpha`` and ``beta`` are scalars, ``x_i`` and ``y_i`` are ``n``-element vectors, and
+    !> where ``alpha`` and ``beta`` are scalars, ``x_i`` and ``y_i`` are ``n`` -element vectors, and
     !> ``A_i`` is an
     !> ``n`` by ``n`` Hermitian band matrix with ``k`` super-diagonals, for each batch in ``i`` =
-    !> [1, ``batch_count``].
+    !> [1, ``batch_count`` ].
     !>
     !> @param[in]
     !> handle    [rocblas_handle]
@@ -10343,10 +10366,10 @@ module hipfort_rocblas
     !>
     !> y_i := alpha*A_i*x_i + beta*y_i
     !>
-    !> where ``alpha`` and ``beta`` are scalars, ``x_i`` and ``y_i`` are ``n``-element vectors, and
+    !> where ``alpha`` and ``beta`` are scalars, ``x_i`` and ``y_i`` are ``n`` -element vectors, and
     !> ``A_i`` is an
     !> ``n`` by ``n`` Hermitian band matrix with ``k`` super-diagonals, for each batch in ``i`` =
-    !> [1, ``batch_count``].
+    !> [1, ``batch_count`` ].
     !>
     !> @param[in]
     !> handle    [rocblas_handle]
@@ -10538,7 +10561,7 @@ module hipfort_rocblas
     !>
     !> y := alpha*A*x + beta*y
     !>
-    !> where ``alpha`` and ``beta`` are scalars, ``x`` and ``y`` are ``n``-element vectors, and
+    !> where ``alpha`` and ``beta`` are scalars, ``x`` and ``y`` are ``n`` -element vectors, and
     !> ``A`` is an
     !> ``n`` by ``n`` Hermitian matrix.
     !>
@@ -10674,7 +10697,7 @@ module hipfort_rocblas
     !>
     !> y_i := alpha*A_i*x_i + beta*y_i
     !>
-    !> where ``alpha`` and ``beta`` are scalars, ``x_i`` and ``y_i`` are ``n``-element vectors, and
+    !> where ``alpha`` and ``beta`` are scalars, ``x_i`` and ``y_i`` are ``n`` -element vectors, and
     !> ``A_i`` is an
     !> ``n`` by ``n`` Hermitian matrix, for each batch in ``i`` = [1, ``batch_count``].
     !>
@@ -10821,7 +10844,7 @@ module hipfort_rocblas
     !>
     !> y_i := alpha*A_i*x_i + beta*y_i
     !>
-    !> where ``alpha`` and ``beta`` are scalars, ``x_i`` and ``y_i`` are ``n``-element vectors, and
+    !> where ``alpha`` and ``beta`` are scalars, ``x_i`` and ``y_i`` are ``n`` -element vectors, and
     !> ``A_i`` is an
     !> ``n`` by ``n`` Hermitian matrix, for each batch in ``i`` = [1, ``batch_count``].
     !>
@@ -11807,7 +11830,7 @@ module hipfort_rocblas
     !>
     !> y := alpha*A*x + beta*y
     !>
-    !> where ``alpha`` and ``beta`` are scalars, ``x`` and ``y`` are ``n``-element vectors and A is
+    !> where ``alpha`` and ``beta`` are scalars, ``x`` and ``y`` are ``n`` -element vectors and A is
     !> an
     !> ``n`` by ``n`` Hermitian matrix, supplied in packed form (see description below).
     !>
@@ -11953,7 +11976,7 @@ module hipfort_rocblas
     !>
     !> y_i := alpha*A_i*x_i + beta*y_i
     !>
-    !> where ``alpha`` and ``beta`` are scalars, ``x_i`` and ``y_i`` are ``n``-element vectors and
+    !> where ``alpha`` and ``beta`` are scalars, ``x_i`` and ``y_i`` are ``n`` -element vectors and
     !> ``A_i`` is an
     !> ``n`` by ``n`` Hermitian matrix, supplied in packed form (see description below),
     !> for each batch in ``i`` = [1, ``batch_count``].
@@ -12113,7 +12136,7 @@ module hipfort_rocblas
     !>
     !> y_i := alpha*A_i*x_i + beta*y_i
     !>
-    !> where ``alpha`` and ``beta`` are scalars, ``x_i`` and ``y_i`` are ``n``-element vectors and
+    !> where ``alpha`` and ``beta`` are scalars, ``x_i`` and ``y_i`` are ``n`` -element vectors and
     !> ``A_i`` is an
     !> ``n`` by ``n`` Hermitian matrix, supplied in packed form (see description below),
     !> for each batch in ``i`` = [1, ``batch_count``].
@@ -13185,7 +13208,7 @@ module hipfort_rocblas
     !> x = A**T*x or
     !> x = A**H*x
     !>
-    !> where ``x`` is an ``n``-element vector and ``A`` is an ``n`` by ``n`` unit, or non-unit,
+    !> where ``x`` is an ``n`` -element vector and ``A`` is an ``n`` by ``n`` unit, or non-unit,
     !> upper or lower triangular matrix.
     !> The vector ``x`` is overwritten.
     !>
@@ -13389,8 +13412,8 @@ module hipfort_rocblas
     !> x_i = A_i**T*x_i or
     !> x_i = A_i**H*x_i, 0 < i < batch_count
     !>
-    !> where ``x_i`` is an ``n``-element vector and ``A_i`` is an ``n`` by ``n`` (unit, or non-unit,
-    !> upper or lower triangular matrix).
+    !> where ``x_i`` is an ``n`` -element vector and ``A_i`` is an ``n`` by ``n`` (unit, or
+    !> non-unit, upper or lower triangular matrix).
     !> The vectors ``x_i`` are overwritten.
     !>
     !> @param[in]
@@ -13607,10 +13630,10 @@ module hipfort_rocblas
     !> x_i = A_i**T*x_i, or
     !> x_i = A_i**H*x_i, 0 < i < batch_count
     !>
-    !> where ``x_i`` is an ``n``-element vector and ``A_i`` is an ``n`` by ``n`` (unit, or non-unit,
-    !> upper or lower triangular matrix)
-    !> with strides specifying how to retrieve ``$x_i$`` (resp. ``$A_i$``) from ``$x_{i-1}$`` (resp.
-    !> ``$A_i$``).
+    !> where ``x_i`` is an ``n`` -element vector and ``A_i`` is an ``n`` by ``n`` (unit, or
+    !> non-unit, upper or lower triangular matrix)
+    !> with strides specifying how to retrieve ``$x_i$`` (resp. ``$A_i$`` ) from ``$x_{i-1}$``
+    !> (resp. ``$A_i$`` ).
     !>
     !> The vectors ``x_i`` are overwritten.
     !>
@@ -14065,8 +14088,8 @@ module hipfort_rocblas
     !> x_i = A_i**T*x_i or
     !> x_i = A_i**H*x_i, 0 < i < batch_count
     !>
-    !> where ``x_i`` is an ``n``-element vector and ``A_i`` is an ``n`` by ``n`` (unit, or non-unit,
-    !> upper or lower triangular matrix).
+    !> where ``x_i`` is an ``n`` -element vector and ``A_i`` is an ``n`` by ``n`` (unit, or
+    !> non-unit, upper or lower triangular matrix).
     !> The vectors ``x_i`` are overwritten.
     !>
     !> @param[in]
@@ -14271,10 +14294,10 @@ module hipfort_rocblas
     !> x_i = A_i**T*x_i or
     !> x_i = A_i**H*x_i, 0 < i < batch_count
     !>
-    !> where ``x_i`` is an ``n``-element vector and ``A_i`` is an ``n`` by ``n`` (unit, or non-unit,
-    !> upper or lower triangular) matrix
+    !> where ``x_i`` is an ``n`` -element vector and ``A_i`` is an ``n`` by ``n`` (unit, or
+    !> non-unit, upper or lower triangular) matrix
     !> with strides specifying how to retrieve ``$x_i$`` (resp. $``A_i$``) from ``$x_{i-1}$`` (resp.
-    !> ``$A_i$``).
+    !> ``$A_i$`` ).
     !> The vectors ``x_i`` are overwritten.
     !>
     !> @param[in]
@@ -23754,8 +23777,8 @@ module hipfort_rocblas
     !> matrices, and
     !> ``C`` is an ``n`` x ``n`` Hermitian matrix stored as either upper or lower.
     !>
-    !> This routine should only be used when the caller can guarantee that the result of ``op( A
-    !> )*op( B )^T`` will be Hermitian.
+    !> This routine should only be used when the caller can guarantee that the result of
+    !> ``op( A )*op( B )^T`` will be Hermitian.
     !>
     !> op( A ) = A, op( B ) = B, and A and B are n by k if trans == rocblas_operation_none
     !> op( A ) = A^H, op( B ) = B^H, and A and B are k by n if trans ==
@@ -23926,8 +23949,8 @@ module hipfort_rocblas
     !> matrices, and
     !> ``C_i`` is an ``n`` x ``n`` Hermitian matrix stored as either upper or lower.
     !>
-    !> This routine should only be used when the caller can guarantee that the result of ``op( A
-    !> )*op( B )^T`` will be Hermitian.
+    !> This routine should only be used when the caller can guarantee that the result of
+    !> ``op( A )*op( B )^T`` will be Hermitian.
     !>
     !> op( A_i ) = A_i, op( B_i ) = B_i, and A_i and B_i are n by k if trans ==
     !> rocblas_operation_none
@@ -24112,8 +24135,8 @@ module hipfort_rocblas
     !> matrices, and
     !> ``C_i`` is an ``n`` x ``n`` Hermitian matrix stored as either upper or lower.
     !>
-    !> This routine should only be used when the caller can guarantee that the result of ``op( A
-    !> )*op( B )^T`` will be Hermitian.
+    !> This routine should only be used when the caller can guarantee that the result of
+    !> ``op( A )*op( B )^T`` will be Hermitian.
     !>
     !> op( A_i ) = A_i, op( B_i ) = B_i, and A_i and B_i are n by k if trans ==
     !> rocblas_operation_none
@@ -26800,8 +26823,8 @@ module hipfort_rocblas
     !> matrices, and
     !> ``C`` is a symmetric ``n`` x ``n`` matrix stored as either upper or lower.
     !>
-    !> This routine should only be used when the caller can guarantee that the result of ``op( A
-    !> )*op( B )^T`` will be symmetric.
+    !> This routine should only be used when the caller can guarantee that the result of
+    !> ``op( A )*op( B )^T`` will be symmetric.
     !>
     !> op( A ) = A, op( B ) = B, and A and B are n by k if trans == rocblas_operation_none
     !> op( A ) = A^T, op( B ) = B^T,  and A and B are k by n if trans == rocblas_operation_transpose
@@ -27066,8 +27089,8 @@ module hipfort_rocblas
     !> matrices, and
     !> ``C_i`` is a symmetric ``n`` x ``n`` matrix stored as either upper or lower.
     !>
-    !> This routine should only be used when the caller can guarantee that the result of ``op( A_i
-    !> )*op( B_i )^T`` will be symmetric.
+    !> This routine should only be used when the caller can guarantee that the result of
+    !> ``op( A_i )*op( B_i )^T`` will be symmetric.
     !>
     !> op( A_i ) = A_i, op( B_i ) = B_i, and A_i and B_i are n by k if trans ==
     !> rocblas_operation_none
@@ -27354,8 +27377,8 @@ module hipfort_rocblas
     !> matrices, and
     !> ``C_i`` is a symmetric ``n`` x ``n`` matrix stored as either upper or lower.
     !>
-    !> This routine should only be used when the caller can guarantee that the result of ``op( A_i
-    !> )*op( B_i )^T`` will be symmetric.
+    !> This routine should only be used when the caller can guarantee that the result of
+    !> ``op( A_i )*op( B_i )^T`` will be symmetric.
     !>
     !> op( A_i ) = A_i, op( B_i ) = B_i, and A_i and B_i are n by k if trans ==
     !> rocblas_operation_none
@@ -33823,10 +33846,10 @@ module hipfort_rocblas
     !> ``C`` and ``D`` can point to the same matrix if their type and leading dimensions are
     !> identical.
     !>
-    !> Aik refers to the element at the ``i``-th row and ``k``-th column of ``op( A )``, Bkj refers
-    !> to
-    !> the element at the ``k``-th row and ``j``-th column of ``op( B )``, and Cij/Dij refers to the
-    !> element
+    !> Aik refers to the element at the ``i`` -th row and ``k`` -th column of ``op( A )``, Bkj
+    !> refers to
+    !> the element at the ``k`` -th row and ``j`` -th column of ``op( B )``, and Cij/Dij refers to
+    !> the element
     !> at the ``i``-th row and ``j``-th column of ``C``/``D``.
     !>
     !> Supported types are as follows:
@@ -36438,7 +36461,7 @@ module hipfort_rocblas
     ! rocblas_get_version_string_size
     !---------------------------------------------
     !> \brief   Queries the minimum buffer size for a successful call to
-    !> \ref rocblas_get_version_string
+    !> `rocblas_get_version_string`
     !> \details
     !>
     !> @param[out]
@@ -36455,7 +36478,7 @@ module hipfort_rocblas
     ! rocblas_get_commit_hash_string_size
     !---------------------------------------------
     !> \brief   Queries the minimum buffer size for a successful call to
-    !> \ref rocblas_get_commit_hash_string
+    !> `rocblas_get_commit_hash_string`
     !> \details
     !>
     !> @param[out]

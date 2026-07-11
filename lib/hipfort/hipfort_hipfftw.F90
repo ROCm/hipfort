@@ -1,5 +1,28 @@
-! Auto-generated module wrapper for hipfort_hipfftw
-! DO NOT EDIT — re-run the generator to update.
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+! ==============================================================================
+! hipfort: FORTRAN Interfaces for GPU kernels
+! ==============================================================================
+! Copyright (c) 2020-2026 Advanced Micro Devices, Inc. All rights reserved.
+! [MITx11 License]
+! 
+! Permission is hereby granted, free of charge, to any person obtaining a copy
+! of this software and associated documentation files (the "Software"), to deal
+! in the Software without restriction, including without limitation the rights
+! to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+! copies of the Software, and to permit persons to whom the Software is
+! furnished to do so, subject to the following conditions:
+! 
+! The above copyright notice and this permission notice shall be included in
+! all copies or substantial portions of the Software.
+! 
+! THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+! IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+! FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.  IN NO EVENT SHALL THE
+! AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+! LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+! OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+! THE SOFTWARE.
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
 module hipfort_hipfftw
   use hipfort_hipfftw_enums
@@ -70,8 +93,8 @@ module hipfort_hipfftw
     !---------------------------------------------
     ! fftw_alloc_complex
     !---------------------------------------------
-    !> @brief This function is strictly equivalent to ``(fftw_complex*) fftw_malloc(n *
-    !> sizeof(fftw_complex))``
+    !> @brief This function is strictly equivalent to
+    !> ``(fftw_complex*) fftw_malloc(n * sizeof(fftw_complex))``
     function fftw_alloc_complex(n) &
        result(alloc_complex) &
        bind(C, name="fftw_alloc_complex")
@@ -83,8 +106,8 @@ module hipfort_hipfftw
     !---------------------------------------------
     ! fftwf_alloc_complex
     !---------------------------------------------
-    !> @brief This function is strictly equivalent to ``(fftwf_complex*) fftw_malloc(n *
-    !> sizeof(fftwf_complex))``
+    !> @brief This function is strictly equivalent to
+    !> ``(fftwf_complex*) fftw_malloc(n * sizeof(fftwf_complex))``
     function fftwf_alloc_complex(n) &
        result(f_alloc_complex) &
        bind(C, name="fftwf_alloc_complex")
@@ -125,7 +148,7 @@ module hipfort_hipfftw
     !> @param[in] in pointer to the input buffer for the transform;
     !> @param[in] out pointer to the output buffer for the transform;
     !> @param[in] sign exponent sign defining the desired complex transform (``FFTW_FORWARD`` or
-    !> ``FFTW_BACKWARD``);
+    !> ``FFTW_BACKWARD`` );
     !> @param[in] flags bitwise OR (``|``) combination of zero or more constant flag values.
     !> @return a valid double-precision hipFFTW plan ready for execution upon success (``nullptr``
     !> otherwise).
@@ -167,7 +190,7 @@ module hipfort_hipfftw
     !> @param[in] in pointer to the input buffer for the transform;
     !> @param[in] out pointer to the output buffer for the transform;
     !> @param[in] sign exponent sign defining the desired complex transform (``FFTW_FORWARD`` or
-    !> ``FFTW_BACKWARD``);
+    !> ``FFTW_BACKWARD`` );
     !> @param[in] flags bitwise OR (``|``) combination of zero or more constant flag values.
     !> @return a valid double-precision hipFFTW plan ready for execution upon success (``nullptr``
     !> otherwise).
@@ -211,7 +234,7 @@ module hipfort_hipfftw
     !> @param[in] in pointer to the input buffer for the transform;
     !> @param[in] out pointer to the output buffer for the transform;
     !> @param[in] sign exponent sign defining the desired complex transform (``FFTW_FORWARD`` or
-    !> ``FFTW_BACKWARD``);
+    !> ``FFTW_BACKWARD`` );
     !> @param[in] flags bitwise OR (``|``) combination of zero or more constant flag values.
     !> @return a valid double-precision hipFFTW plan ready for execution upon success (``nullptr``
     !> otherwise).
@@ -258,7 +281,7 @@ module hipfort_hipfftw
     !> @param[in] in pointer to the input buffer for the transform;
     !> @param[in] out pointer to the output buffer for the transform;
     !> @param[in] sign exponent sign defining the desired complex transform (``FFTW_FORWARD`` or
-    !> ``FFTW_BACKWARD``);
+    !> ``FFTW_BACKWARD`` );
     !> @param[in] flags bitwise OR (``|``) combination of zero or more constant flag values.
     !> @return a valid double-precision hipFFTW plan ready for execution upon success (``nullptr``
     !> otherwise).
@@ -626,20 +649,20 @@ module hipfort_hipfftw
     !> @param[in] howmany strictly positive batch size;
     !> @param[in] in pointer to the input buffer for the transform;
     !> @param[in] inembed array of strictly positive input-embedding lengths (must be of size
-    !> ``rank``). Default input-embedding is considered if set to ``NULL``;
+    !> ``rank`` ). Default input-embedding is considered if set to ``NULL``;
     !> @param[in] istride strictly positive elementary stride in input data (along the last
     !> dimension);
     !> @param[in] idist strictly positive distance between consecutive input data sequences in the
     !> batch;
     !> @param[in] out pointer to the output buffer for the transform;
     !> @param[in] onembed array of strictly positive output-embedding lengths (must be of size
-    !> ``rank``). Default output-embedding is considered if set to ``NULL``;
+    !> ``rank`` ). Default output-embedding is considered if set to ``NULL``;
     !> @param[in] ostride strictly positive elementary stride in output data (along the last
     !> dimension);
     !> @param[in] odist strictly positive distance between consecutive output data sequences in the
     !> batch;
     !> @param[in] sign exponent sign defining the desired complex transform (``FFTW_FORWARD`` or
-    !> ``FFTW_BACKWARD``);
+    !> ``FFTW_BACKWARD`` );
     !> @param[in] flags bitwise OR (``|``) combination of zero or more constant flag values.
     !> @return a valid double-precision hipFFTW plan ready for execution upon success (``nullptr``
     !> otherwise).
@@ -701,14 +724,14 @@ module hipfort_hipfftw
     !> @param[in] howmany strictly positive batch size;
     !> @param[in] in pointer to the input buffer for the transform;
     !> @param[in] inembed array of strictly positive input-embedding lengths (must be of size
-    !> ``rank``). Default input-embedding is considered if set to ``NULL``;
+    !> ``rank`` ). Default input-embedding is considered if set to ``NULL``;
     !> @param[in] istride strictly positive elementary stride in input data (along the last
     !> dimension);
     !> @param[in] idist strictly positive distance between consecutive input data sequences in the
     !> batch;
     !> @param[in] out pointer to the output buffer for the transform;
     !> @param[in] onembed array of strictly positive output-embedding lengths (must be of size
-    !> ``rank``). Default output-embedding is considered if set to ``NULL``;
+    !> ``rank`` ). Default output-embedding is considered if set to ``NULL``;
     !> @param[in] ostride strictly positive elementary stride in output data (along the last
     !> dimension);
     !> @param[in] odist strictly positive distance between consecutive output data sequences in the
@@ -773,14 +796,14 @@ module hipfort_hipfftw
     !> @param[in] howmany strictly positive batch size;
     !> @param[in] in pointer to the input buffer for the transform;
     !> @param[in] inembed array of strictly positive input-embedding lengths (must be of size
-    !> ``rank``). Default input-embedding is considered if set to ``NULL``;
+    !> ``rank`` ). Default input-embedding is considered if set to ``NULL``;
     !> @param[in] istride strictly positive elementary stride in input data (along the last
     !> dimension);
     !> @param[in] idist strictly positive distance between consecutive input data sequences in the
     !> batch;
     !> @param[in] out pointer to the output buffer for the transform;
     !> @param[in] onembed array of strictly positive output-embedding lengths (must be of size
-    !> ``rank``). Default output-embedding is considered if set to ``NULL``;
+    !> ``rank`` ). Default output-embedding is considered if set to ``NULL``;
     !> @param[in] ostride strictly positive elementary stride in output data (along the last
     !> dimension);
     !> @param[in] odist strictly positive distance between consecutive output data sequences in the
@@ -837,8 +860,8 @@ module hipfort_hipfftw
     !---------------------------------------------
     !> @brief Creates an arbitrary plan for a multidimensional, double-precision, complex
     !> discrete Fourier transform of lengths ``dims[0].n x dims[1].n x ... x dims[rank-1].n``
-    !> and batch sizes ``howmany_dims[0].n x howmany_dims[1].n x ... x
-    !> howmany_dims[howmany_rank-1].n``.
+    !> and batch sizes
+    !> ``howmany_dims[0].n x howmany_dims[1].n x ... x howmany_dims[howmany_rank-1].n``.
     !>
     !> @param[in] rank strictly positive rank of the transform;
     !> @param[in] dims array of ``rank`` ``fftw_iodim`` values;
@@ -847,7 +870,7 @@ module hipfort_hipfftw
     !> @param[in] in pointer to the input buffer for the transform;
     !> @param[in] out pointer to the output buffer for the transform;
     !> @param[in] sign exponent sign defining the desired complex transform (``FFTW_FORWARD`` or
-    !> ``FFTW_BACKWARD``);
+    !> ``FFTW_BACKWARD`` );
     !> @param[in] flags bitwise OR (``|``) combination of zero or more constant flag values.
     !> @return a valid double-precision hipFFTW plan ready for execution upon success (``nullptr``
     !> otherwise).
@@ -890,8 +913,8 @@ module hipfort_hipfftw
     !---------------------------------------------
     !> @brief Creates an arbitrary plan for a multidimensional, double-precision, real forward
     !> discrete Fourier transform of lengths ``dims[0].n x dims[1].n x ... x dims[rank-1].n``
-    !> and batch sizes ``howmany_dims[0].n x howmany_dims[1].n x ... x
-    !> howmany_dims[howmany_rank-1].n``.
+    !> and batch sizes
+    !> ``howmany_dims[0].n x howmany_dims[1].n x ... x howmany_dims[howmany_rank-1].n``.
     !>
     !> @param[in] rank strictly positive rank of the transform;
     !> @param[in] dims array of ``rank`` ``fftw_iodim`` values;
@@ -938,10 +961,10 @@ module hipfort_hipfftw
     ! fftw_plan_guru_dft_c2r
     !---------------------------------------------
     !> @brief Creates an arbitrary plan for a multidimensional, double-precision, real backward
-    !> (inverse) discrete Fourier transform of lengths ``dims[0].n x dims[1].n x ... x
-    !> dims[rank-1].n``
-    !> and batch sizes ``howmany_dims[0].n x howmany_dims[1].n x ... x
-    !> howmany_dims[howmany_rank-1].n``.
+    !> (inverse) discrete Fourier transform of lengths
+    !> ``dims[0].n x dims[1].n x ... x dims[rank-1].n``
+    !> and batch sizes
+    !> ``howmany_dims[0].n x howmany_dims[1].n x ... x howmany_dims[howmany_rank-1].n``.
     !>
     !> @param[in] rank strictly positive rank of the transform;
     !> @param[in] dims array of ``rank`` ``fftw_iodim`` values;

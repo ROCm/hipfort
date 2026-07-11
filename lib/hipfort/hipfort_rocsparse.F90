@@ -1,5 +1,28 @@
-! Auto-generated module wrapper for hipfort_rocsparse
-! DO NOT EDIT — re-run the generator to update.
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+! ==============================================================================
+! hipfort: FORTRAN Interfaces for GPU kernels
+! ==============================================================================
+! Copyright (c) 2020-2026 Advanced Micro Devices, Inc. All rights reserved.
+! [MITx11 License]
+! 
+! Permission is hereby granted, free of charge, to any person obtaining a copy
+! of this software and associated documentation files (the "Software"), to deal
+! in the Software without restriction, including without limitation the rights
+! to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+! copies of the Software, and to permit persons to whom the Software is
+! furnished to do so, subject to the following conditions:
+! 
+! The above copyright notice and this permission notice shall be included in
+! all copies or substantial portions of the Software.
+! 
+! THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+! IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+! FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.  IN NO EVENT SHALL THE
+! AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+! LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+! OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+! THE SOFTWARE.
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
 module hipfort_rocsparse
   use hipfort_rocsparse_enums
@@ -349,16 +372,15 @@ module hipfort_rocsparse
     !> \brief Create a matrix descriptor.
     !> \details
     !> \p rocsparse_create_mat_descr creates a matrix descriptor. It initializes
-    !> \ref rocsparse_matrix_type to \ref rocsparse_matrix_type_general, \ref rocsparse_fill_mode
-    !> to \ref rocsparse_fill_mode_lower, \ref rocsparse_diag_type to \ref
+    !> `rocsparse_matrix_type` to \ref rocsparse_matrix_type_general, `rocsparse_fill_mode`
+    !> to \ref rocsparse_fill_mode_lower, `rocsparse_diag_type` to \ref
     !> rocsparse_diag_type_non_unit,
-    !> \ref rocsparse_index_base to \ref rocsparse_index_base_zero, and \ref rocsparse_storage_mode
+    !> `rocsparse_index_base` to \ref rocsparse_index_base_zero, and `rocsparse_storage_mode`
     !> to \ref rocsparse_storage_mode_sorted.  It should be destroyed at the end using
-    !> \ref rocsparse_destroy_mat_descr().
+    !> `rocsparse_destroy_mat_descr`().
     !>
     !> The matrix type, fill mode, diag type, index base, and storage mode can be set using the
-    !> \ref rocsparse_set_mat_type, \ref rocsparse_set_mat_fill_mode, \ref
-    !> rocsparse_set_mat_diag_type,
+    !> \ref rocsparse_set_mat_type, \ref rocsparse_set_mat_fill_mode, `rocsparse_set_mat_diag_type`,
     !> \ref rocsparse_set_mat_index_base, and \ref rocsparse_set_mat_storage_mode APIs respectively.
     !>
     !> @param[out]
@@ -754,7 +776,7 @@ module hipfort_rocsparse
     !> \details
     !> \p rocsparse_create_mat_info creates a structure that holds the matrix info data
     !> that is gathered during the analysis routines available. It should be destroyed
-    !> at the end using rocsparse_destroy_mat_info().
+    !> at the end using `rocsparse_destroy_mat_info()`.
     !>
     !> @param[inout]
     !> info    the pointer to the info structure.
@@ -896,7 +918,7 @@ module hipfort_rocsparse
     !> \brief Create a sparse vector descriptor.
     !> \details
     !> \p rocsparse_create_spvec_descr creates a sparse vector descriptor. It should be
-    !> destroyed at the end using rocsparse_destroy_mat_descr().
+    !> destroyed at the end using `rocsparse_destroy_mat_descr()`.
     !>
     !> @param[out]
     !> descr   the pointer to the sparse vector descriptor.
@@ -1905,7 +1927,7 @@ module hipfort_rocsparse
     !> \details
     !> \p rocsparse_create_spgeam_descr creates the descriptor of the \ref
     !> rocsparse_spgeam_buffer_size and
-    !> \ref rocsparse_spgeam routines.
+    !> `rocsparse_spgeam` routines.
     !>
     !> @param[out]
     !> descr        pointer to the descriptor of the SpGEAM routine.
@@ -1929,7 +1951,7 @@ module hipfort_rocsparse
     !> \details
     !> \p rocsparse_destroy_spgeam_descr destroys the descriptor of the \ref
     !> rocsparse_spgeam_buffer_size and
-    !> \ref rocsparse_spgeam routines.
+    !> `rocsparse_spgeam` routines.
     !>
     !> @param[in]
     !> descr        descriptor of the SpGEAM routine.
@@ -1946,14 +1968,14 @@ module hipfort_rocsparse
     ! rocsparse_spgeam_set_input
     !---------------------------------------------
     !> \ingroup aux_module
-    !> \brief Set the requested \ref rocsparse_spgeam_input data in the SpGEAM descriptor.
+    !> \brief Set the requested `rocsparse_spgeam_input` data in the SpGEAM descriptor.
     !>
     !> @param[in]
     !> handle      the pointer to the handle to the rocSPARSE library context.
     !> @param[inout]
     !> descr       the pointer to the SpGEAM descriptor.
     !> @param[in]
-    !> input       one of the values from \ref rocsparse_spgeam_input.
+    !> input       one of the values from `rocsparse_spgeam_input`.
     !> @param[in]
     !> data        input data.
     !> @param[in]
@@ -1983,7 +2005,7 @@ module hipfort_rocsparse
     ! rocsparse_spgeam_get_output
     !---------------------------------------------
     !> \ingroup aux_module
-    !> \brief Get the requested \ref rocsparse_spgeam_output data from the SpGEAM descriptor.
+    !> \brief Get the requested `rocsparse_spgeam_output` data from the SpGEAM descriptor.
     !>
     !> @param[in]
     !> handle      the pointer to the handle to the rocSPARSE library context.
@@ -2025,7 +2047,7 @@ module hipfort_rocsparse
     !> \details
     !> \p rocsparse_create_spmv_descr creates the descriptor of the \ref
     !> rocsparse_v2_spmv_buffer_size and
-    !> \ref rocsparse_v2_spmv routines.
+    !> `rocsparse_v2_spmv` routines.
     !>
     !> @param[out]
     !> descr        pointer to the descriptor of the SpMV routine.
@@ -2049,7 +2071,7 @@ module hipfort_rocsparse
     !> \details
     !> \p rocsparse_destroy_spmv_descr destroys the descriptor of the \ref
     !> rocsparse_v2_spmv_buffer_size and
-    !> \ref rocsparse_v2_spmv routines.
+    !> `rocsparse_v2_spmv` routines.
     !>
     !> @param[in]
     !> descr        descriptor of the v2_spmv routine.
@@ -2066,14 +2088,14 @@ module hipfort_rocsparse
     ! rocsparse_spmv_set_input
     !---------------------------------------------
     !> \ingroup aux_module
-    !> \brief Set the requested \ref rocsparse_spmv_input data in the SpMV descriptor.
+    !> \brief Set the requested `rocsparse_spmv_input` data in the SpMV descriptor.
     !>
     !> @param[in]
     !> handle      the pointer to the handle to the rocSPARSE library context.
     !> @param[inout]
     !> descr       the pointer to the SpMV descriptor.
     !> @param[in]
-    !> input       one possible value of \ref rocsparse_spmv_input.
+    !> input       one possible value of `rocsparse_spmv_input`.
     !> @param[in]
     !> in          input value.
     !> @param[in]
@@ -2108,7 +2130,7 @@ module hipfort_rocsparse
     !> \details
     !> \p rocsparse_create_sptrsv_descr creates the descriptor of the \ref
     !> rocsparse_sptrsv_buffer_size and
-    !> \ref rocsparse_sptrsv routines.
+    !> `rocsparse_sptrsv` routines.
     !>
     !> @param[in]
     !> handle  the handle to the rocSPARSE library context.
@@ -2140,7 +2162,7 @@ module hipfort_rocsparse
     !> \details
     !> \p rocsparse_destroy_sptrsv_descr destroys the descriptor of the \ref
     !> rocsparse_sptrsv_buffer_size and
-    !> \ref rocsparse_sptrsv routines.
+    !> `rocsparse_sptrsv` routines.
     !>
     !> @param[in]
     !> handle  the handle to the rocSPARSE library context.
@@ -2171,7 +2193,7 @@ module hipfort_rocsparse
     !> \details
     !> \p rocsparse_create_sptrsv_descr creates the descriptor of the \ref
     !> rocsparse_sptrsv_buffer_size and
-    !> \ref rocsparse_sptrsv routines.
+    !> `rocsparse_sptrsv` routines.
     !>
     !> @param[out]
     !> descr        pointer to the descriptor of the sptrsv routine.
@@ -2195,7 +2217,7 @@ module hipfort_rocsparse
     !> \details
     !> \p rocsparse_destroy_sptrsv_descr destroys the descriptor of the \ref
     !> rocsparse_sptrsv_buffer_size and
-    !> \ref rocsparse_sptrsv routines.
+    !> `rocsparse_sptrsv` routines.
     !>
     !> @param[in]
     !> descr        descriptor of the sptrsv routine.
@@ -2212,14 +2234,14 @@ module hipfort_rocsparse
     ! rocsparse_sptrsv_set_input
     !---------------------------------------------
     !> \ingroup aux_module
-    !> \brief Set the requested \ref rocsparse_sptrsv_input data in the sptrsv descriptor.
+    !> \brief Set the requested `rocsparse_sptrsv_input` data in the sptrsv descriptor.
     !>
     !> @param[in]
     !> handle      the pointer to the handle to the rocSPARSE library context.
     !> @param[inout]
     !> descr       the pointer to the sptrsv descriptor.
     !> @param[in]
-    !> input       value of \ref rocsparse_sptrsv_input.
+    !> input       value of `rocsparse_sptrsv_input`.
     !> @param[in]
     !> data        input data.
     !> @param[in]
@@ -2250,14 +2272,14 @@ module hipfort_rocsparse
     ! rocsparse_sptrsv_get_output
     !---------------------------------------------
     !> \ingroup aux_module
-    !> \brief Get the requested \ref rocsparse_sptrsv_output data from the sptrsv descriptor.
+    !> \brief Get the requested `rocsparse_sptrsv_output` data from the sptrsv descriptor.
     !>
     !> @param[in]
     !> handle      the pointer to the handle to the rocSPARSE library context.
     !> @param[inout]
     !> descr       the pointer to the sptrsv descriptor.
     !> @param[in]
-    !> output      value of \ref rocsparse_sptrsv_output.
+    !> output      value of `rocsparse_sptrsv_output`.
     !> @param[out]
     !> data        output data.
     !> @param[in]
@@ -2292,7 +2314,7 @@ module hipfort_rocsparse
     !> \details
     !> \p rocsparse_create_sptrsm_descr creates the descriptor of the \ref
     !> rocsparse_sptrsm_buffer_size and
-    !> \ref rocsparse_sptrsm routines.
+    !> `rocsparse_sptrsm` routines.
     !>
     !> @param[out]
     !> descr        pointer to the descriptor of the sptrsm routine.
@@ -2316,7 +2338,7 @@ module hipfort_rocsparse
     !> \details
     !> \p rocsparse_destroy_sptrsm_descr destroys the descriptor of the \ref
     !> rocsparse_sptrsm_buffer_size and
-    !> \ref rocsparse_sptrsm routines.
+    !> `rocsparse_sptrsm` routines.
     !>
     !> @param[in]
     !> descr        descriptor of the sptrsm routine.
@@ -2333,14 +2355,14 @@ module hipfort_rocsparse
     ! rocsparse_sptrsm_set_input
     !---------------------------------------------
     !> \ingroup aux_module
-    !> \brief Set the requested \ref rocsparse_sptrsm_input data in the sptrsm descriptor.
+    !> \brief Set the requested `rocsparse_sptrsm_input` data in the sptrsm descriptor.
     !>
     !> @param[in]
     !> handle      the pointer to the handle to the rocSPARSE library context.
     !> @param[inout]
     !> descr       the pointer to the sptrsm descriptor.
     !> @param[in]
-    !> input      value of \ref rocsparse_sptrsm_input.
+    !> input      value of `rocsparse_sptrsm_input`.
     !> @param[in]
     !> data        input data.
     !> @param[in]
@@ -2370,14 +2392,14 @@ module hipfort_rocsparse
     ! rocsparse_sptrsm_get_output
     !---------------------------------------------
     !> \ingroup aux_module
-    !> \brief Get the requested \ref rocsparse_sptrsm_output data from the sptrsm descriptor.
+    !> \brief Get the requested `rocsparse_sptrsm_output` data from the sptrsm descriptor.
     !>
     !> @param[in]
     !> handle      the pointer to the handle to the rocSPARSE library context.
     !> @param[inout]
     !> descr       the pointer to the sptrsm descriptor.
     !> @param[in]
-    !> output      value of \ref rocsparse_sptrsm_output.
+    !> output      value of `rocsparse_sptrsm_output`.
     !> @param[out]
     !> data        output data.
     !> @param[in]
@@ -2466,29 +2488,29 @@ module hipfort_rocsparse
     ! rocsparse_spic0_set_input
     !---------------------------------------------
     !> \ingroup aux_module
-    !> \brief Set the requested \ref rocsparse_spic0_input data in the SpIC0 descriptor.
+    !> \brief Set the requested `rocsparse_spic0_input` data in the SpIC0 descriptor.
     !>
     !> \note
-    !> - \ref rocsparse_spic0_input_alg is \ref rocsparse_spic0_alg. It can only be set before
-    !> applying any phase.
-    !> - \ref rocsparse_spic0_input_compute_datatype is \ref rocsparse_datatype. It can only be set
+    !> - \ref rocsparse_spic0_input_alg is `rocsparse_spic0_alg`. It can only be set before applying
+    !> any phase.
+    !> - \ref rocsparse_spic0_input_compute_datatype is `rocsparse_datatype`. It can only be set
     !> before applying any phase. For now, it must be of value type of A.
-    !> - \ref rocsparse_spic0_input_analysis_policy is \ref rocsparse_analysis_policy. It can only
-    !> be set before applying any phase.
+    !> - \ref rocsparse_spic0_input_analysis_policy is `rocsparse_analysis_policy`. It can only be
+    !> set before applying any phase.
     !> - \ref rocsparse_spic0_input_singularity_tolerance is a device/host double pointer. Its
-    !> device mode is determined from the \ref rocsparse_handle.
+    !> device mode is determined from the `rocsparse_handle`.
     !> -     \ref rocsparse_spic0_input_boost_enable is an \p int32_t.
     !> - \ref rocsparse_spic0_input_boost_value is a pointer to a scalar of value type A. Its device
-    !> mode is determined from the \ref rocsparse_handle.
+    !> mode is determined from the `rocsparse_handle`.
     !> - \ref rocsparse_spic0_input_boost_tolerance is a double pointer. Its device mode is
-    !> determined from the \ref rocsparse_handle.
+    !> determined from the `rocsparse_handle`.
     !>
     !> @param[in]
     !> handle      the pointer to the handle to the rocSPARSE library context.
     !> @param[inout]
     !> spic0_descr       the pointer to the SpIC0 descriptor.
     !> @param[in]
-    !> spic0_input       value of \ref rocsparse_spic0_input.
+    !> spic0_input       value of `rocsparse_spic0_input`.
     !> @param[in]
     !> input        input data.
     !> @param[in]
@@ -2520,10 +2542,10 @@ module hipfort_rocsparse
     ! rocsparse_spic0_get_output
     !---------------------------------------------
     !> \ingroup aux_module
-    !> \brief Get the requested \ref rocsparse_spic0_output data from the SpIC0 descriptor.
+    !> \brief Get the requested `rocsparse_spic0_output` data from the SpIC0 descriptor.
     !> \note
-    !> - \ref rocsparse_spic0_output_singularity is \ref rocsparse_singularity. It will be
-    !> considered as an array of size \p batch_count.
+    !> - \ref rocsparse_spic0_output_singularity is `rocsparse_singularity`. It will be considered
+    !> as an array of size \p batch_count.
     !> - \ref rocsparse_spic0_output_singularity_position is \p int64_t. It will be considered as an
     !> array of size \p batch_count.
     !> @param[in]
@@ -2531,7 +2553,7 @@ module hipfort_rocsparse
     !> @param[inout]
     !> spic0_descr       the pointer to the SpIC0 descriptor.
     !> @param[in]
-    !> spic0_output      value of \ref rocsparse_spic0_output.
+    !> spic0_output      value of `rocsparse_spic0_output`.
     !> @param[out]
     !> output        output data
     !> @param[in]
@@ -2622,32 +2644,32 @@ module hipfort_rocsparse
     ! rocsparse_spilu0_set_input
     !---------------------------------------------
     !> \ingroup aux_module
-    !> \brief Set the requested \ref rocsparse_spilu0_input data in the SpILU0 descriptor.
+    !> \brief Set the requested `rocsparse_spilu0_input` data in the SpILU0 descriptor.
     !>
     !> \note
-    !> - \ref rocsparse_spilu0_input_alg is \ref rocsparse_spilu0_alg. It can only be set before
+    !> - \ref rocsparse_spilu0_input_alg is `rocsparse_spilu0_alg`. It can only be set before
     !> applying any phase.
-    !> - \ref rocsparse_spilu0_input_compute_datatype is \ref rocsparse_datatype. It can only be set
+    !> - \ref rocsparse_spilu0_input_compute_datatype is `rocsparse_datatype`. It can only be set
     !> before applying any phase. For now, it must be of value type of A.
-    !> - \ref rocsparse_spilu0_input_analysis_policy is \ref rocsparse_analysis_policy. It can only
-    !> be set before applying any phase.
+    !> - \ref rocsparse_spilu0_input_analysis_policy is `rocsparse_analysis_policy`. It can only be
+    !> set before applying any phase.
     !> - \ref rocsparse_spilu0_input_singularity_tolerance is a device/host double pointer. Its
-    !> device mode is determined from the \ref rocsparse_handle. No batched tolerances can be
+    !> device mode is determined from the `rocsparse_handle`. No batched tolerances can be
     !> specified.
     !> - \ref rocsparse_spilu0_input_boost_enable is a host \p int32_t. Set to 1 to enable and 0 to
     !> disable.
     !> - \ref rocsparse_spilu0_input_boost_value is a pointer to a scalar of value type of A. Its
-    !> device mode is determined from the \ref rocsparse_handle. No batched boost values can be
+    !> device mode is determined from the `rocsparse_handle`. No batched boost values can be
     !> specified.
     !> - \ref rocsparse_spilu0_input_boost_tolerance is a double pointer. Its device mode is
-    !> determined from the \ref rocsparse_handle. No batched boost tolerances can be specified.
+    !> determined from the `rocsparse_handle`. No batched boost tolerances can be specified.
     !>
     !> @param[in]
     !> handle      the pointer to the handle to the rocSPARSE library context.
     !> @param[inout]
     !> spilu0_descr       the pointer to the SpILU0 descriptor.
     !> @param[in]
-    !> spilu0_input       value of \ref rocsparse_spilu0_input.
+    !> spilu0_input       value of `rocsparse_spilu0_input`.
     !> @param[in]
     !> input        input data.
     !> @param[in]
@@ -2679,10 +2701,10 @@ module hipfort_rocsparse
     ! rocsparse_spilu0_get_output
     !---------------------------------------------
     !> \ingroup aux_module
-    !> \brief Get the requested \ref rocsparse_spilu0_output data from the SpILU0 descriptor.
+    !> \brief Get the requested `rocsparse_spilu0_output` data from the SpILU0 descriptor.
     !> \note
-    !> - \ref rocsparse_spilu0_output_singularity is \ref rocsparse_singularity. It will be
-    !> considered as an array of size \p batch_count.
+    !> - \ref rocsparse_spilu0_output_singularity is `rocsparse_singularity`. It will be considered
+    !> as an array of size \p batch_count.
     !> - \ref rocsparse_spilu0_output_singularity_position is int64_t. It will be considered as an
     !> array of size \p batch_count.
     !> @param[in]
@@ -2690,7 +2712,7 @@ module hipfort_rocsparse
     !> @param[inout]
     !> spilu0_descr       the pointer to the SpILU0 descriptor.
     !> @param[in]
-    !> spilu0_output      value of \ref rocsparse_spilu0_output.
+    !> spilu0_output      value of `rocsparse_spilu0_output`.
     !> @param[out]
     !> output        output data.
     !> @param[in]
@@ -4652,7 +4674,7 @@ module hipfort_rocsparse
     !> that \p csr_val, \p csr_col_ind, and \p csr_row_ptr are allocated. The allocation size
     !> for \p csr_row_ptr is \p m+1 where:
     !> \f[
-    !> m = mb * block\_dim \\
+    !> m = mb * block\_dim \\%
     !> n = nb * block\_dim
     !> \f]
     !> Allocation for \p csr_val and \p csr_col_ind is computed by the
@@ -4713,7 +4735,6 @@ module hipfort_rocsparse
     !>
     !> \par Example
     !> This example converts a BSR matrix into an CSR matrix.
-    !> \snippet example_rocsparse_bsr2csr.cpp doc example
     function rocsparse_sbsr2csr(handle, dir, mb, nb, bsr_descr, bsr_val, bsr_row_ptr, bsr_col_ind, &
                                 block_dim, csr_descr, csr_val, csr_row_ptr, csr_col_ind) &
        result(sbsr2csr) &
@@ -4987,7 +5008,6 @@ module hipfort_rocsparse
     !>
     !> \par Example
     !> This example converts a COO matrix into a CSR matrix.
-    !> \snippet example_rocsparse_coo2csr.cpp doc example
     function rocsparse_coo2csr(handle, coo_row_ind, nnz, m, csr_row_ptr, idx_base) &
        result(coo2csr) &
        bind(C, name="rocsparse_coo2csr")
@@ -5025,7 +5045,7 @@ module hipfort_rocsparse
     !> nnz         number of non-zero entries of the sparse COO matrix.
     !> @param[in]
     !> descr the descriptor of the column-oriented dense matrix \p A. The supported matrix type is
-    !> \ref rocsparse_matrix_type_general and also any valid value of the \ref rocsparse_index_base.
+    !> \ref rocsparse_matrix_type_general and also any valid value of the `rocsparse_index_base`.
     !> @param[in]
     !> coo_val     array of \p nnz non-zero elements of matrix \p A.
     !> @param[in]
@@ -5045,7 +5065,6 @@ module hipfort_rocsparse
     !> pointer is invalid.
     !>
     !> \par Example
-    !> \snippet example_rocsparse_coo2dense.cpp doc example
     function rocsparse_scoo2dense(handle, m, n, nnz, descr, coo_val, coo_row_ind, coo_col_ind, A, &
                                   ld) &
        result(scoo2dense) &
@@ -5133,7 +5152,7 @@ module hipfort_rocsparse
     !> \ingroup conv_module
     !> \details
     !> \p rocsparse_coosort_buffer_size returns the size of the temporary storage buffer that is
-    !> required by \ref rocsparse_coosort_by_row() and \ref rocsparse_coosort_by_column(). The
+    !> required by `rocsparse_coosort_by_row`() and `rocsparse_coosort_by_column`(). The
     !> temporary storage buffer has to be allocated by the user.
     !>
     !> \note
@@ -5159,7 +5178,7 @@ module hipfort_rocsparse
     !> COO matrix.
     !> @param[out]
     !> buffer_size     number of bytes of the temporary storage buffer required by
-    !> \ref rocsparse_coosort_by_row() and \ref rocsparse_coosort_by_column().
+    !> `rocsparse_coosort_by_row`() and `rocsparse_coosort_by_column`().
     !>
     !> \retval     rocsparse_status_success the operation completed successfully.
     !> \retval     rocsparse_status_invalid_handle the library context was not initialized.
@@ -5192,11 +5211,11 @@ module hipfort_rocsparse
     !> \p rocsparse_coosort_by_row sorts a matrix in COO format by row. The sorted
     !> permutation vector \p perm can be used to obtain the sorted \p coo_val array. In this
     !> case, \p perm must be initialized as the identity permutation. See
-    !> \ref rocsparse_create_identity_permutation().
+    !> `rocsparse_create_identity_permutation`().
     !>
     !> \p rocsparse_coosort_by_row requires an extra temporary storage buffer that has to be
     !> allocated by the user. Storage buffer size can be determined by
-    !> \ref rocsparse_coosort_buffer_size().
+    !> `rocsparse_coosort_buffer_size`().
     !>
     !> \note
     !> \p perm can be \p NULL if a sorted permutation vector is not required.
@@ -5227,7 +5246,7 @@ module hipfort_rocsparse
     !> \p NULL.
     !> @param[in]
     !> temp_buffer     temporary storage buffer allocated by the user. The size is returned by
-    !> \ref rocsparse_coosort_buffer_size().
+    !> `rocsparse_coosort_buffer_size`().
     !>
     !> \retval     rocsparse_status_success the operation completed successfully.
     !> \retval     rocsparse_status_invalid_handle the library context was not initialized.
@@ -5238,7 +5257,6 @@ module hipfort_rocsparse
     !>
     !> \par Example
     !> The following example sorts a \f$3 \times 3\f$ COO matrix by row indices.
-    !> \snippet example_rocsparse_coosort_by_row.cpp doc example
     function rocsparse_coosort_by_row(handle, m, n, nnz, coo_row_ind, coo_col_ind, perm, &
                                       temp_buffer) &
        result(coosort_by_row) &
@@ -5265,11 +5283,11 @@ module hipfort_rocsparse
     !> \p rocsparse_coosort_by_column sorts a matrix in COO format by column. The sorted
     !> permutation vector \p perm can be used to obtain the sorted \p coo_val array. In this
     !> case, \p perm must be initialized as the identity permutation. See
-    !> \ref rocsparse_create_identity_permutation().
+    !> `rocsparse_create_identity_permutation`().
     !>
     !> \p rocsparse_coosort_by_column requires an extra temporary storage buffer that has to be
     !> allocated by the user. Storage buffer size can be determined by
-    !> \ref rocsparse_coosort_buffer_size().
+    !> `rocsparse_coosort_buffer_size`().
     !>
     !> \note
     !> \p perm can be \p NULL if a sorted permutation vector is not required.
@@ -5300,7 +5318,7 @@ module hipfort_rocsparse
     !> \p NULL.
     !> @param[in]
     !> temp_buffer     temporary storage buffer allocated by the user. The size is returned by
-    !> \ref rocsparse_coosort_buffer_size().
+    !> `rocsparse_coosort_buffer_size`().
     !>
     !> \retval     rocsparse_status_success the operation completed successfully.
     !> \retval     rocsparse_status_invalid_handle the library context was not initialized.
@@ -5311,7 +5329,6 @@ module hipfort_rocsparse
     !>
     !> \par Example
     !> The following example sorts a \f$3 \times 3\f$ COO matrix by column indices.
-    !> \snippet example_rocsparse_coosort_by_col.cpp doc example
     function rocsparse_coosort_by_column(handle, m, n, nnz, coo_row_ind, coo_col_ind, perm, &
                                          temp_buffer) &
        result(coosort_by_column) &
@@ -5350,7 +5367,7 @@ module hipfort_rocsparse
     !> n           number of columns of the column-oriented dense matrix \p A.
     !> @param[in]
     !> descr the descriptor of the column-oriented dense matrix \p A. The supported matrix type is
-    !> \ref rocsparse_matrix_type_general and also any valid value of the \ref rocsparse_index_base.
+    !> \ref rocsparse_matrix_type_general and also any valid value of the `rocsparse_index_base`.
     !> @param[in]
     !> csc_val array of nnz ( = \p csc_col_ptr[n] - \p csc_col_ptr[0] ) non-zero elements of matrix
     !> \p A.
@@ -5374,7 +5391,6 @@ module hipfort_rocsparse
     !> pointer is invalid.
     !>
     !> \par Example
-    !> \snippet example_rocsparse_csc2dense.cpp doc example
     function rocsparse_scsc2dense(handle, m, n, descr, csc_val, csc_col_ptr, csc_row_ind, A, ld) &
        result(scsc2dense) &
        bind(C, name="rocsparse_scsc2dense")
@@ -5454,7 +5470,7 @@ module hipfort_rocsparse
     !> \ingroup conv_module
     !> \details
     !> \p rocsparse_cscsort_buffer_size returns the size of the temporary storage buffer
-    !> required by \ref rocsparse_cscsort(). The temporary storage buffer must be allocated by
+    !> required by `rocsparse_cscsort`(). The temporary storage buffer must be allocated by
     !> the user.
     !>
     !> \note
@@ -5480,7 +5496,7 @@ module hipfort_rocsparse
     !> CSC matrix.
     !> @param[out]
     !> buffer_size     number of bytes of the temporary storage buffer required by
-    !> \ref rocsparse_cscsort().
+    !> `rocsparse_cscsort`().
     !>
     !> \retval     rocsparse_status_success the operation completed successfully.
     !> \retval     rocsparse_status_invalid_handle the library context was not initialized.
@@ -5511,11 +5527,11 @@ module hipfort_rocsparse
     !> \details
     !> \p rocsparse_cscsort sorts a matrix in CSC format. The sorted permutation vector
     !> \p perm can be used to obtain the sorted \p csc_val array. In this case, \p perm must be
-    !> initialized as the identity permutation. For more information, see \ref
-    !> rocsparse_create_identity_permutation().
+    !> initialized as the identity permutation. For more information, see
+    !> `rocsparse_create_identity_permutation` ().
     !>
     !> \p rocsparse_cscsort requires an extra temporary storage buffer that has to be allocated by
-    !> the user. The storage buffer size can be determined by \ref rocsparse_cscsort_buffer_size().
+    !> the user. The storage buffer size can be determined by `rocsparse_cscsort_buffer_size`().
     !>
     !> \note
     !> \p perm can be \p NULL if a sorted permutation vector is not required.
@@ -5549,7 +5565,7 @@ module hipfort_rocsparse
     !> \p NULL.
     !> @param[in]
     !> temp_buffer     temporary storage buffer allocated by the user. The size is returned by
-    !> \ref rocsparse_cscsort_buffer_size().
+    !> `rocsparse_cscsort_buffer_size`().
     !>
     !> \retval     rocsparse_status_success the operation completed successfully.
     !> \retval     rocsparse_status_invalid_handle the library context was not initialized.
@@ -5558,11 +5574,10 @@ module hipfort_rocsparse
     !> or \p temp_buffer pointer is invalid.
     !> \retval     rocsparse_status_internal_error an internal error occurred.
     !> \retval     rocsparse_status_not_implemented
-    !> \ref rocsparse_matrix_type != \ref rocsparse_matrix_type_general.
+    !> `rocsparse_matrix_type` != \ref rocsparse_matrix_type_general.
     !>
     !> \par Example
     !> The following example sorts a \f$3 \times 3\f$ CSC matrix.
-    !> \snippet example_rocsparse_cscsort.cpp doc example
     function rocsparse_cscsort(handle, m, n, nnz, descr, csc_col_ptr, csc_row_ind, perm, &
                                temp_buffer) &
        result(cscsort) &
@@ -5673,17 +5688,16 @@ module hipfort_rocsparse
     !> for \p bsr_row_ptr is computed as \p mb+1, where \p mb is the number of block rows
     !> and \p nb is the number of block columns in the BSR matrix:
     !> \f[
-    !> mb = (m + block\_dim - 1) / block\_dim \\
+    !> mb = (m + block\_dim - 1) / block\_dim \\%
     !> nb = (n + block\_dim - 1) / block\_dim
     !> \f]
-    !> The allocation size for \p bsr_val and \p bsr_col_ind is computed using \ref
-    !> rocsparse_csr2bsr_nnz(),
+    !> The allocation size for \p bsr_val and \p bsr_col_ind is computed using
+    !> `rocsparse_csr2bsr_nnz` (),
     !> which also fills in \p bsr_row_ptr.
     !>
     !> Converting from a sparse CSR matrix to a sparse BSR matrix requires two steps. First,
     !> allocate the \p bsr_row_ptr array to have length \p mb+1 and pass this to the function
-    !> \ref rocsparse_csr2bsr_nnz. This will fill the \p bsr_row_ptr array and also compute the
-    !> total
+    !> `rocsparse_csr2bsr_nnz`. This will fill the \p bsr_row_ptr array and also compute the total
     !> number of non-zero blocks in the BSR matrix. Now that the total number of non-zero blocks is
     !> known,
     !> allocate the \p bsr_col_ind and \p bsr_val arrays. Finally, call
@@ -5740,7 +5754,6 @@ module hipfort_rocsparse
     !>
     !> \par Example
     !> This example converts a CSR matrix into an BSR matrix.
-    !> \snippet example_rocsparse_csr2bsr.cpp doc example
     function rocsparse_scsr2bsr(handle, dir, m, n, csr_descr, csr_val, csr_row_ptr, csr_col_ind, &
                                 block_dim, bsr_descr, bsr_val, bsr_row_ptr, bsr_col_ind) &
        result(scsr2bsr) &
@@ -5878,7 +5891,6 @@ module hipfort_rocsparse
     !>
     !> \par Example
     !> This example converts a CSR matrix into a COO matrix.
-    !> \snippet example_rocsparse_csr2coo.cpp doc example
     function rocsparse_csr2coo(handle, csr_row_ptr, nnz, m, coo_row_ind, idx_base) &
        result(csr2coo) &
        bind(C, name="rocsparse_csr2coo")
@@ -5967,7 +5979,7 @@ module hipfort_rocsparse
     !> \p rocsparse_csr2csc to complete the conversion. After the conversion is complete,
     !> free the temporary buffer.
     !>
-    !> Both \ref rocsparse_csr2csc_buffer_size and \p rocsparse_csr2csc take a \ref rocsparse_action
+    !> Both \ref rocsparse_csr2csc_buffer_size and \p rocsparse_csr2csc take a `rocsparse_action`
     !> parameter as input. This \p copy_values parameter decides whether \p csc_row_ind and \p
     !> csc_val
     !> are filled during conversion (\ref rocsparse_action_numeric) or whether only \p csc_row_ind
@@ -6084,7 +6096,6 @@ module hipfort_rocsparse
     !>
     !> \par Example
     !> This example computes the symbolic transpose of A
-    !> \snippet example_rocsparse_csr2csc.cpp doc example
     function rocsparse_scsr2csc(handle, m, n, nnz, csr_val, csr_row_ptr, csr_col_ind, csc_val, &
                                 csc_row_ind, csc_col_ptr, copy_values, idx_base, temp_buffer) &
        result(scsr2csc) &
@@ -6252,7 +6263,6 @@ module hipfort_rocsparse
     !>
     !> \par Example
     !> This example demonstrates how to compress a CSR matrix.
-    !> \snippet example_rocsparse_csr2csr_compress.cpp doc example
     function rocsparse_scsr2csr_compress(handle, m, n, descr_A, csr_val_A, csr_row_ptr_A, &
                                          csr_col_ind_A, nnz_A, nnz_per_row, csr_val_C, &
                                          csr_row_ptr_C, csr_col_ind_C, tol) &
@@ -6372,7 +6382,7 @@ module hipfort_rocsparse
     !> n           number of columns of the column-oriented dense matrix \p A.
     !> @param[in]
     !> descr the descriptor of the column-oriented dense matrix \p A. The supported matrix type is
-    !> \ref rocsparse_matrix_type_general and also any valid value of the \ref rocsparse_index_base.
+    !> \ref rocsparse_matrix_type_general and also any valid value of the `rocsparse_index_base`.
     !> @param[in]
     !> csr_val array of nnz ( = \p csr_row_ptr[m] - \p csr_row_ptr[0] ) non-zero elements of matrix
     !> \p A.
@@ -6396,7 +6406,6 @@ module hipfort_rocsparse
     !> pointer is invalid.
     !>
     !> \par Example
-    !> \snippet example_rocsparse_csr2dense.cpp doc example
     function rocsparse_scsr2dense(handle, m, n, descr, csr_val, csr_row_ptr, csr_col_ind, A, ld) &
        result(scsr2dense) &
        bind(C, name="rocsparse_scsr2dense")
@@ -6509,7 +6518,7 @@ module hipfort_rocsparse
     !> \p ell_width pointer is invalid.
     !> \retval     rocsparse_status_internal_error an internal error occurred.
     !> \retval     rocsparse_status_not_implemented
-    !> \ref rocsparse_matrix_type != \ref rocsparse_matrix_type_general.
+    !> `rocsparse_matrix_type` != \ref rocsparse_matrix_type_general.
     function rocsparse_csr2ell_width(handle, m, csr_descr, csr_row_ptr, ell_descr, ell_width) &
        result(csr2ell_width) &
        bind(C, name="rocsparse_csr2ell_width")
@@ -6575,11 +6584,10 @@ module hipfort_rocsparse
     !> \p csr_row_ptr, \p csr_col_ind, \p ell_descr, \p ell_val, or
     !> \p ell_col_ind pointer is invalid.
     !> \retval     rocsparse_status_not_implemented
-    !> \ref rocsparse_matrix_type != \ref rocsparse_matrix_type_general.
+    !> `rocsparse_matrix_type` != \ref rocsparse_matrix_type_general.
     !>
     !> \par Example
     !> This example converts a CSR matrix into an ELL matrix.
-    !> \snippet example_rocsparse_csr2ell.cpp doc example
     function rocsparse_scsr2ell(handle, m, csr_descr, csr_val, csr_row_ptr, csr_col_ind, &
                                 ell_descr, ell_width, ell_val, ell_col_ind) &
        result(scsr2ell) &
@@ -6916,11 +6924,11 @@ module hipfort_rocsparse
     !> for \p bsr_row_ptr is computed as \p mb+1, where \p mb is the number of block rows
     !> and \p nb is the number of block columns in the general BSR matrix:
     !> \f[
-    !> mb = (m + row\_block\_dim - 1) / row\_block\_dim \\
+    !> mb = (m + row\_block\_dim - 1) / row\_block\_dim \\%
     !> nb = (n + col\_block\_dim - 1) / col\_block\_dim
     !> \f]
-    !> The allocation size for \p bsr_val and \p bsr_col_ind is computed using \ref
-    !> rocsparse_csr2bsr_nnz(),
+    !> The allocation size for \p bsr_val and \p bsr_col_ind is computed using
+    !> `rocsparse_csr2bsr_nnz` (),
     !> which also fills in \p bsr_row_ptr.
     !>
     !> Converting from a sparse CSR matrix to a sparse general BSR matrix requires three steps.
@@ -6991,7 +6999,6 @@ module hipfort_rocsparse
     !>
     !> \par Example
     !> This example converts a CSR matrix into an BSR matrix.
-    !> \snippet example_rocsparse_csr2gebsr.cpp doc example
     function rocsparse_scsr2gebsr(handle, dir, m, n, csr_descr, csr_val, csr_row_ptr, csr_col_ind, &
                                   bsr_descr, bsr_val, bsr_row_ptr, bsr_col_ind, row_block_dim, &
                                   col_block_dim, temp_buffer) &
@@ -7105,7 +7112,7 @@ module hipfort_rocsparse
     !>
     !> \details
     !> \p rocsparse_csr2hyb converts a CSR matrix into a HYB matrix. It is assumed
-    !> that \p hyb has been initialized with \ref rocsparse_create_hyb_mat().
+    !> that \p hyb has been initialized with `rocsparse_create_hyb_mat`().
     !>
     !> \note
     !> This function requires a significant amount of storage for the HYB matrix,
@@ -7153,11 +7160,10 @@ module hipfort_rocsparse
     !> allocated.
     !> \retval     rocsparse_status_internal_error an internal error occurred.
     !> \retval     rocsparse_status_not_implemented
-    !> \ref rocsparse_matrix_type != \ref rocsparse_matrix_type_general.
+    !> `rocsparse_matrix_type` != \ref rocsparse_matrix_type_general.
     !>
     !> \par Example
     !> This example converts a CSR matrix into a HYB matrix using user-defined partitioning.
-    !> \snippet example_rocsparse_csr2hyb.cpp doc example
     function rocsparse_scsr2hyb(handle, m, n, descr, csr_val, csr_row_ptr, csr_col_ind, hyb, &
                                 user_ell_width, partition_type) &
        result(scsr2hyb) &
@@ -7245,7 +7251,7 @@ module hipfort_rocsparse
     !> \ingroup conv_module
     !> \details
     !> \p rocsparse_csrsort_buffer_size returns the size of the temporary storage buffer
-    !> required by \ref rocsparse_csrsort(). The temporary storage buffer must be allocated by
+    !> required by `rocsparse_csrsort`(). The temporary storage buffer must be allocated by
     !> the user.
     !>
     !> \note
@@ -7271,7 +7277,7 @@ module hipfort_rocsparse
     !> CSR matrix.
     !> @param[out]
     !> buffer_size     number of bytes of the temporary storage buffer required by
-    !> \ref rocsparse_csrsort().
+    !> `rocsparse_csrsort`().
     !>
     !> \retval     rocsparse_status_success the operation completed successfully.
     !> \retval     rocsparse_status_invalid_handle the library context was not initialized.
@@ -7302,11 +7308,11 @@ module hipfort_rocsparse
     !> \details
     !> \p rocsparse_csrsort sorts a matrix in CSR format. The sorted permutation vector
     !> \p perm can be used to obtain the sorted \p csr_val array. In this case, \p perm must be
-    !> initialized as the identity permutation. For more information, see \ref
-    !> rocsparse_create_identity_permutation().
+    !> initialized as the identity permutation. For more information, see
+    !> `rocsparse_create_identity_permutation` ().
     !>
     !> \p rocsparse_csrsort requires an extra temporary storage buffer that has to be allocated by
-    !> the user. The storage buffer size can be determined by \ref rocsparse_csrsort_buffer_size().
+    !> the user. The storage buffer size can be determined by `rocsparse_csrsort_buffer_size`().
     !>
     !> \note
     !> \p perm can be \p NULL if a sorted permutation vector is not required.
@@ -7340,7 +7346,7 @@ module hipfort_rocsparse
     !> \p NULL.
     !> @param[in]
     !> temp_buffer     temporary storage buffer allocated by the user. The size is returned by
-    !> \ref rocsparse_csrsort_buffer_size().
+    !> `rocsparse_csrsort_buffer_size`().
     !>
     !> \retval     rocsparse_status_success the operation completed successfully.
     !> \retval     rocsparse_status_invalid_handle the library context was not initialized.
@@ -7349,11 +7355,10 @@ module hipfort_rocsparse
     !> or \p temp_buffer pointer is invalid.
     !> \retval     rocsparse_status_internal_error an internal error occurred.
     !> \retval     rocsparse_status_not_implemented
-    !> \ref rocsparse_matrix_type != \ref rocsparse_matrix_type_general.
+    !> `rocsparse_matrix_type` != \ref rocsparse_matrix_type_general.
     !>
     !> \par Example
     !> The following example sorts a \f$3 \times 3\f$ CSR matrix.
-    !> \snippet example_rocsparse_csrsort.cpp doc example
     function rocsparse_csrsort(handle, m, n, nnz, descr, csr_row_ptr, csr_col_ind, perm, &
                                temp_buffer) &
        result(csrsort) &
@@ -7396,7 +7401,7 @@ module hipfort_rocsparse
     !> n            number of columns of the column-oriented dense matrix \p A.
     !> @param[in]
     !> descr the descriptor of the column-oriented dense matrix \p A. The supported matrix type is
-    !> \ref rocsparse_matrix_type_general and also any valid value of the \ref rocsparse_index_base.
+    !> \ref rocsparse_matrix_type_general and also any valid value of the `rocsparse_index_base`.
     !> @param[in]
     !> A            column-oriented dense matrix of dimensions (\p ld, \p n).
     !> @param[in]
@@ -7419,7 +7424,6 @@ module hipfort_rocsparse
     !> pointer is invalid.
     !>
     !> \par Example
-    !> \snippet example_rocsparse_dense2coo.cpp doc example
     function rocsparse_sdense2coo(handle, m, n, descr, A, ld, nnz_per_rows, coo_val, coo_row_ind, &
                                   coo_col_ind) &
        result(sdense2coo) &
@@ -7527,7 +7531,7 @@ module hipfort_rocsparse
     !> n                number of columns of the column-oriented dense matrix \p A.
     !> @param[in]
     !> descr the descriptor of the column-oriented dense matrix \p A. The supported matrix type is
-    !> \ref rocsparse_matrix_type_general and also any valid value of the \ref rocsparse_index_base.
+    !> \ref rocsparse_matrix_type_general and also any valid value of the `rocsparse_index_base`.
     !> @param[in]
     !> A                column-oriented dense matrix of dimensions (\p ld, \p n).
     !> @param[in]
@@ -7554,7 +7558,6 @@ module hipfort_rocsparse
     !> pointer is invalid.
     !>
     !> \par Example
-    !> \snippet example_rocsparse_dense2csc.cpp doc example
     function rocsparse_sdense2csc(handle, m, n, descr, A, ld, nnz_per_columns, csc_val, &
                                   csc_col_ptr, csc_row_ind) &
        result(sdense2csc) &
@@ -7660,7 +7663,7 @@ module hipfort_rocsparse
     !> n             number of columns of the column-oriented dense dense matrix \p A.
     !> @param[in]
     !> descr the descriptor of the column-oriented dense matrix \p A. The supported matrix type is
-    !> \ref rocsparse_matrix_type_general and also any valid value of the \ref rocsparse_index_base.
+    !> \ref rocsparse_matrix_type_general and also any valid value of the `rocsparse_index_base`.
     !> @param[in]
     !> A             column-oriented dense matrix of dimensions (\p ld, \p n).
     !> @param[in]
@@ -7686,7 +7689,6 @@ module hipfort_rocsparse
     !> pointer is invalid.
     !>
     !> \par Example
-    !> \snippet example_rocsparse_dense2csr.cpp doc example
     function rocsparse_sdense2csr(handle, m, n, descr, A, ld, nnz_per_rows, csr_val, csr_row_ptr, &
                                   csr_col_ind) &
        result(sdense2csr) &
@@ -7819,7 +7821,7 @@ module hipfort_rocsparse
     !> \retval     rocsparse_status_invalid_pointer \p ell_descr, \p ell_col_ind,
     !> \p csr_descr, \p csr_row_ptr, or \p csr_nnz pointer is invalid.
     !> \retval     rocsparse_status_not_implemented
-    !> \ref rocsparse_matrix_type != \ref rocsparse_matrix_type_general.
+    !> `rocsparse_matrix_type` != \ref rocsparse_matrix_type_general.
     function rocsparse_ell2csr_nnz(handle, m, n, ell_descr, ell_width, ell_col_ind, csr_descr, &
                                    csr_row_ptr, csr_nnz) &
        result(ell2csr_nnz) &
@@ -7848,7 +7850,7 @@ module hipfort_rocsparse
     !> that \p csr_row_ptr has already been filled and that \p csr_val and \p csr_col_ind
     !> are allocated by the user. The allocation size for \p csr_row_ptr is computed as
     !> \p m+1. The allocation size for \p csr_val and \p csr_col_ind is computed using
-    !> \ref rocsparse_ell2csr_nnz() which also fills in \p csr_row_ptr.
+    !> `rocsparse_ell2csr_nnz`() which also fills in \p csr_row_ptr.
     !>
     !> \note
     !> This function is non-blocking and executed asynchronously with respect to the host.
@@ -7891,11 +7893,10 @@ module hipfort_rocsparse
     !> \p csr_row_ptr, \p csr_col_ind, \p ell_descr, \p ell_val, or
     !> \p ell_col_ind pointer is invalid.
     !> \retval     rocsparse_status_not_implemented
-    !> \ref rocsparse_matrix_type != \ref rocsparse_matrix_type_general.
+    !> `rocsparse_matrix_type` != \ref rocsparse_matrix_type_general.
     !>
     !> \par Example
     !> This example converts an ELL matrix into a CSR matrix.
-    !> \snippet example_rocsparse_ell2csr.cpp doc example
     function rocsparse_sell2csr(handle, m, n, ell_descr, ell_width, ell_val, ell_col_ind, &
                                 csr_descr, csr_val, csr_row_ptr, csr_col_ind) &
        result(sell2csr) &
@@ -7996,8 +7997,8 @@ module hipfort_rocsparse
     !> and
     !> \p csr_val has length \p nnz where:
     !> \f[
-    !> m = mb * row\_block\_dim \\
-    !> n = nb * col\_block\_dim \\
+    !> m = mb * row\_block\_dim \\%
+    !> n = nb * col\_block\_dim \\%
     !> nnz = nnzb * row\_block\_dim * col\_block\_dim
     !> \f]
     !>
@@ -8056,7 +8057,6 @@ module hipfort_rocsparse
     !>
     !> \par Example
     !> This example converts a general BSR matrix into an CSR matrix.
-    !> \snippet example_rocsparse_gebsr2csr.cpp doc example
     function rocsparse_sgebsr2csr(handle, dir, mb, nb, bsr_descr, bsr_val, bsr_row_ptr, &
                                   bsr_col_ind, row_block_dim, col_block_dim, csr_descr, csr_val, &
                                   csr_row_ptr, csr_col_ind) &
@@ -8313,8 +8313,8 @@ module hipfort_rocsparse
     !> the
     !> user must free the temporary buffer.
     !>
-    !> \p rocsparse_gebsr2gebsc takes a \ref rocsparse_action parameter as input. This \p
-    !> copy_values parameter
+    !> \p rocsparse_gebsr2gebsc takes a `rocsparse_action` parameter as input. This \p copy_values
+    !> parameter
     !> decides whether \p bsc_row_ind and \p bsc_val are filled during conversion (\ref
     !> rocsparse_action_numeric)
     !> or whether only \p bsc_row_ind is filled (\ref rocsparse_action_symbolic). Using
@@ -8379,7 +8379,6 @@ module hipfort_rocsparse
     !>
     !> \par Example
     !> This example computes the transpose of a general BSR matrix.
-    !> \snippet example_rocsparse_gebsr2gebsc.cpp doc example
     function rocsparse_sgebsr2gebsc(handle, mb, nb, nnzb, bsr_val, bsr_row_ptr, bsr_col_ind, &
                                     row_block_dim, col_block_dim, bsc_val, bsc_row_ind, &
                                     bsc_col_ptr, copy_values, idx_base, temp_buffer) &
@@ -8492,7 +8491,7 @@ module hipfort_rocsparse
     !> \details
     !> \p rocsparse_gebsr2gebsr_buffer_size returns the size of the temporary storage buffer that is
     !> required by
-    !> \ref rocsparse_gebsr2gebsr_nnz() and \ref rocsparse_sgebsr2gebsr "rocsparse_Xgebsr2gebsr()".
+    !> `rocsparse_gebsr2gebsr_nnz` () and \ref rocsparse_sgebsr2gebsr "rocsparse_Xgebsr2gebsr()".
     !> The temporary
     !> storage buffer must be allocated by the user.
     !>
@@ -8516,7 +8515,7 @@ module hipfort_rocsparse
     !> nnzb             number of blocks in the general BSR sparse matrix \f$A\f$.
     !> @param[in]
     !> descr_A the descriptor of the general BSR sparse matrix \f$A\f$. The supported matrix type is
-    !> \ref rocsparse_matrix_type_general and also any valid value of the \ref rocsparse_index_base.
+    !> \ref rocsparse_matrix_type_general and also any valid value of the `rocsparse_index_base`.
     !> @param[in]
     !> bsr_val_A array of \p nnzb*row_block_dim_A*col_block_dim_A containing the values of the
     !> sparse general BSR
@@ -8536,8 +8535,8 @@ module hipfort_rocsparse
     !> @param[in]
     !> col_block_dim_C  column size of the blocks in the sparse general BSR matrix \f$C\f$.
     !> @param[out]
-    !> buffer_size number of bytes of the temporary storage buffer required by \ref
-    !> rocsparse_gebsr2gebsr_nnz() and
+    !> buffer_size number of bytes of the temporary storage buffer required by
+    !> `rocsparse_gebsr2gebsr_nnz` () and
     !> \ref rocsparse_sgebsr2gebsr "rocsparse_Xgebsr2gebsr()".
     !>
     !> \retval     rocsparse_status_success the operation completed successfully.
@@ -8690,7 +8689,7 @@ module hipfort_rocsparse
     !> nnzb                    number of blocks in the general BSR sparse matrix \f$A\f$.
     !> @param[in]
     !> descr_A the descriptor of the general BSR sparse matrix \f$A\f$. The supported matrix type is
-    !> \ref rocsparse_matrix_type_general and also any valid value of the \ref rocsparse_index_base.
+    !> \ref rocsparse_matrix_type_general and also any valid value of the `rocsparse_index_base`.
     !> @param[in]
     !> bsr_row_ptr_A array of \p mb+1 elements that point to the start of every block row of the
     !> sparse general BSR matrix \f$A\f$.
@@ -8703,7 +8702,7 @@ module hipfort_rocsparse
     !> col_block_dim_A         column size of the blocks in the sparse general BSR matrix \f$A\f$.
     !> @param[in]
     !> descr_C the descriptor of the general BSR sparse matrix \f$C\f$. The supported matrix type is
-    !> \ref rocsparse_matrix_type_general and also any valid value of the \ref rocsparse_index_base.
+    !> \ref rocsparse_matrix_type_general and also any valid value of the `rocsparse_index_base`.
     !> @param[in]
     !> bsr_row_ptr_C array of \p mb_C+1 elements that point to the start of every block row of the
     !> sparse general BSR matrix \f$C\f$ where \p mb_C=(m+row_block_dim_C-1)/row_block_dim_C.
@@ -8771,17 +8770,17 @@ module hipfort_rocsparse
     !> \p nnzb_C, and
     !> \p bsr_val_C has length \p nnzb_C*row_block_dim_C*col_block_dim_C where:
     !> \f[
-    !> m = mb * row\_block\_dim\_A \\
+    !> m = mb * row\_block\_dim\_A \\%
     !> n = nb * col\_block\_dim\_A
     !> \f]
     !> and
     !> \f[
-    !> mb\_C = (m + row\_block\_dim\_C - 1) / row\_block\_dim\_C \\
+    !> mb\_C = (m + row\_block\_dim\_C - 1) / row\_block\_dim\_C \\%
     !> nb\_C = (n + col\_block\_dim\_C - 1) / col\_block\_dim\_C
     !> \f]
     !> The number of non-zero blocks in the output sparse \f$C\f$ matrix (i.e. \p nnzb_C) is
     !> computed using
-    !> \ref rocsparse_gebsr2gebsr_nnz() which also fills in the \p bsr_row_ptr_C array.
+    !> `rocsparse_gebsr2gebsr_nnz`() which also fills in the \p bsr_row_ptr_C array.
     !>
     !> Converting from a sparse general BSR matrix to a sparse general BSR matrix requires three
     !> steps. First,
@@ -8789,7 +8788,7 @@ module hipfort_rocsparse
     !> to determine the size of the required temporary storage buffer. After this has been
     !> determined,
     !> allocate this buffer. Also allocate the \p bsr_row_ptr_C array to have length
-    !> \p mb_C+1 and pass it to the function \ref rocsparse_gebsr2gebsr_nnz. This will fill the \p
+    !> \p mb_C+1 and pass it to the function `rocsparse_gebsr2gebsr_nnz`. This will fill the \p
     !> bsr_row_ptr_C
     !> array and also compute the total number of non-zero blocks in the general BSR output \f$C\f$
     !> matrix. Now that
@@ -8818,7 +8817,7 @@ module hipfort_rocsparse
     !> nnzb             number of blocks in the general BSR sparse matrix \f$A\f$.
     !> @param[in]
     !> descr_A the descriptor of the general BSR sparse matrix \f$A\f$. The supported matrix type is
-    !> \ref rocsparse_matrix_type_general and also any valid value of the \ref rocsparse_index_base.
+    !> \ref rocsparse_matrix_type_general and also any valid value of the `rocsparse_index_base`.
     !> @param[in]
     !> bsr_val_A array of \p nnzb*row_block_dim_A*col_block_dim_A containing the values of the
     !> sparse general BSR matrix \f$A\f$.
@@ -8834,7 +8833,7 @@ module hipfort_rocsparse
     !> col_block_dim_A  column size of the blocks in the sparse general BSR matrix \f$A\f$.
     !> @param[in]
     !> descr_C the descriptor of the general BSR sparse matrix \f$C\f$. The supported matrix type is
-    !> \ref rocsparse_matrix_type_general and also any valid value of the \ref rocsparse_index_base.
+    !> \ref rocsparse_matrix_type_general and also any valid value of the `rocsparse_index_base`.
     !> @param[in]
     !> bsr_val_C array of \p nnzb_C*row_block_dim_C*col_block_dim_C containing the values of the
     !> sparse general BSR matrix \f$C\f$.
@@ -8862,7 +8861,6 @@ module hipfort_rocsparse
     !>
     !> \par Example
     !> This example converts a general BSR matrix into an general BSR matrix.
-    !> \snippet example_rocsparse_gebsr2gebsr.cpp doc example
     function rocsparse_sgebsr2gebsr(handle, dir, mb, nb, nnzb, descr_A, bsr_val_A, bsr_row_ptr_A, &
                                     bsr_col_ind_A, row_block_dim_A, col_block_dim_A, descr_C, &
                                     bsr_val_C, bsr_row_ptr_C, bsr_col_ind_C, row_block_dim_C, &
@@ -9020,7 +9018,7 @@ module hipfort_rocsparse
     !> \p buffer_size pointer is invalid.
     !> \retval     rocsparse_status_internal_error an internal error occurred.
     !> \retval     rocsparse_status_not_implemented
-    !> \ref rocsparse_matrix_type != \ref rocsparse_matrix_type_general.
+    !> `rocsparse_matrix_type` != \ref rocsparse_matrix_type_general.
     function rocsparse_hyb2csr_buffer_size(handle, descr, hyb, csr_row_ptr, buffer_size) &
        result(hyb2csr_buffer_size) &
        bind(C, name="rocsparse_hyb2csr_buffer_size")
@@ -9042,13 +9040,13 @@ module hipfort_rocsparse
     !> \details
     !> \p rocsparse_hyb2csr converts a HYB matrix into a CSR matrix. This requires a HYB input
     !> structure,
-    !> \ref rocsparse_hyb_mat, which is created using \ref rocsparse_create_hyb_mat and is filled
-    !> with data
+    !> `rocsparse_hyb_mat`, which is created using `rocsparse_create_hyb_mat` and is filled with
+    !> data
     !> using the conversion routine \ref rocsparse_scsr2hyb "rocsparse_Xcsr2hyb()".
     !>
     !> Converting back to a sparse CSR matrix from a sparse HYB matrix requires two steps. First,
     !> call
-    !> \ref rocsparse_hyb2csr_buffer_size to determine the size of the required temporary
+    !> `rocsparse_hyb2csr_buffer_size` to determine the size of the required temporary
     !> storage buffer. After this is determined, allocate this buffer. Finally, call
     !> \ref rocsparse_shyb2csr "rocsparse_Xhyb2csr()" to complete the conversion.
     !>
@@ -9075,7 +9073,7 @@ module hipfort_rocsparse
     !> csr_col_ind     array containing the column indices of the sparse CSR matrix.
     !> @param[in]
     !> temp_buffer     temporary storage buffer allocated by the user. The size is returned by
-    !> \ref rocsparse_hyb2csr_buffer_size().
+    !> `rocsparse_hyb2csr_buffer_size`().
     !>
     !> \retval     rocsparse_status_success the operation completed successfully.
     !> \retval     rocsparse_status_invalid_handle the library context was not initialized.
@@ -9083,11 +9081,10 @@ module hipfort_rocsparse
     !> \p csr_row_ptr, \p csr_col_ind, or \p temp_buffer pointer is invalid.
     !> \retval     rocsparse_status_internal_error an internal error occurred.
     !> \retval     rocsparse_status_not_implemented
-    !> \ref rocsparse_matrix_type != \ref rocsparse_matrix_type_general.
+    !> `rocsparse_matrix_type` != \ref rocsparse_matrix_type_general.
     !>
     !> \par Example
     !> This example converts a HYB matrix into a CSR matrix.
-    !> \snippet example_rocsparse_hyb2csr.cpp doc example
     function rocsparse_shyb2csr(handle, descr, hyb, csr_val, csr_row_ptr, csr_col_ind, &
                                 temp_buffer) &
        result(shyb2csr) &
@@ -9195,7 +9192,6 @@ module hipfort_rocsparse
     !>
     !> \par Example
     !> The following example creates an identity permutation.
-    !> \snippet example_rocsparse_create_identity_permutation.cpp doc example
     function rocsparse_create_identity_permutation(handle, n, p) &
        result(create_identity_permutation) &
        bind(C, name="rocsparse_create_identity_permutation")
@@ -9365,7 +9361,6 @@ module hipfort_rocsparse
     !> pointer is invalid.
     !>
     !> \par Example
-    !> \snippet example_rocsparse_nnz.cpp doc example
     function rocsparse_snnz(handle, dir, m, n, descr, A, ld, nnz_per_row_columns, &
                             nnz_total_dev_host_ptr) &
        result(snnz) &
@@ -9496,7 +9491,6 @@ module hipfort_rocsparse
     !> pointer is invalid.
     !>
     !> \par Example
-    !> \snippet example_rocsparse_nnz_compress.cpp doc example
     function rocsparse_snnz_compress(handle, m, descr_A, csr_val_A, csr_row_ptr_A, nnz_per_row, &
                                      nnz_C, tol) &
        result(snnz_compress) &
@@ -9860,7 +9854,6 @@ module hipfort_rocsparse
     !> or \p temp_buffer pointer is invalid.
     !>
     !> \par Example
-    !> \snippet example_rocsparse_prune_csr2csr.cpp doc example
     function rocsparse_sprune_csr2csr(handle, m, n, nnz_A, csr_descr_A, csr_val_A, csr_row_ptr_A, &
                                       csr_col_ind_A, threshold, csr_descr_C, csr_val_C, &
                                       csr_row_ptr_C, csr_col_ind_C, temp_buffer) &
@@ -10165,9 +10158,9 @@ module hipfort_rocsparse
     !>
     !> Step 2: Next, use the \p percentage parameter to determine the threshold:
     !> \f[
-    !> pos = ceil(nnz\_A \times (percentage/100)) - 1 \\
-    !> pos = \min(pos, nnz\_A - 1) \\
-    !> pos = \max(pos, 0) \\
+    !> pos = ceil(nnz\_A \times (percentage/100)) - 1 \\%
+    !> pos = \min(pos, nnz\_A - 1) \\%
+    !> pos = \max(pos, 0) \\%
     !> threshold = csr\_val\_A\_sorted[pos]
     !> \f]
     !>
@@ -10244,7 +10237,6 @@ module hipfort_rocsparse
     !> or \p temp_buffer pointer is invalid.
     !>
     !> \par Example
-    !> \snippet example_rocsparse_prune_csr2csr_by_percentage.cpp doc example
     function rocsparse_sprune_csr2csr_by_percentage(handle, m, n, nnz_A, csr_descr_A, csr_val_A, &
                                                     csr_row_ptr_A, csr_col_ind_A, percentage, &
                                                     csr_descr_C, csr_val_C, csr_row_ptr_C, &
@@ -10331,7 +10323,7 @@ module hipfort_rocsparse
     !> @param[in]
     !> descr the descriptor of the dense matrix \p A, the supported matrix type is \ref
     !> rocsparse_matrix_type_general and
-    !> also any valid value of the \ref rocsparse_index_base.
+    !> also any valid value of the `rocsparse_index_base`.
     !> @param[in]
     !> csr_val array of nnz ( = \p csr_row_ptr[m] - \p csr_row_ptr[0] ) non-zero elements of matrix
     !> \p A.
@@ -10525,7 +10517,7 @@ module hipfort_rocsparse
     !> @param[in]
     !> descr the descriptor of the dense matrix \p A. The supported matrix type is \ref
     !> rocsparse_matrix_type_general and
-    !> also any valid value of the \ref rocsparse_index_base.
+    !> also any valid value of the `rocsparse_index_base`.
     !> @param[out]
     !> csr_val array of nnz ( = \p csr_row_ptr[m] - \p csr_row_ptr[0] ) non-zero elements of matrix
     !> \p A.
@@ -10546,7 +10538,6 @@ module hipfort_rocsparse
     !> \p csr_row_ptr, \p csr_col_ind, or \p temp_buffer pointer is invalid.
     !>
     !> \par Example
-    !> \snippet example_rocsparse_prune_dense2csr.cpp doc example
     function rocsparse_sprune_dense2csr(handle, m, n, A, lda, threshold, descr, csr_val, &
                                         csr_row_ptr, csr_col_ind, temp_buffer) &
        result(sprune_dense2csr) &
@@ -10623,7 +10614,7 @@ module hipfort_rocsparse
     !> @param[in]
     !> descr the descriptor of the dense matrix \p A. The supported matrix type is \ref
     !> rocsparse_matrix_type_general
-    !> and also any valid value of the \ref rocsparse_index_base.
+    !> and also any valid value of the `rocsparse_index_base`.
     !> @param[in]
     !> csr_val array of nnz ( = \p csr_row_ptr[m] - \p csr_row_ptr[0] ) non-zero elements of matrix
     !> \p A.
@@ -10809,9 +10800,9 @@ module hipfort_rocsparse
     !>
     !> Step 2: Next, use the \p percentage parameter to determine the threshold:
     !> \f[
-    !> pos = ceil(m \times n \times (percentage/100)) - 1 \\
-    !> pos = \min(pos, m \times n - 1) \\
-    !> pos = \max(pos, 0) \\
+    !> pos = ceil(m \times n \times (percentage/100)) - 1 \\%
+    !> pos = \min(pos, m \times n - 1) \\%
+    !> pos = \max(pos, 0) \\%
     !> threshold = A\_sorted[pos]
     !> \f]
     !>
@@ -10856,7 +10847,7 @@ module hipfort_rocsparse
     !> @param[in]
     !> descr the descriptor of the dense matrix \p A. The supported matrix type is \ref
     !> rocsparse_matrix_type_general and
-    !> also any valid value of the \ref rocsparse_index_base.
+    !> also any valid value of the `rocsparse_index_base`.
     !> @param[out]
     !> csr_val array of nnz ( = \p csr_row_ptr[m] - \p csr_row_ptr[0] ) non-zero elements of matrix
     !> \p A.
@@ -10880,7 +10871,6 @@ module hipfort_rocsparse
     !> \p csr_row_ptr, \p csr_col_ind, or \p temp_buffer pointer is invalid.
     !>
     !> \par Example
-    !> \snippet example_rocsparse_prune_dense2csr_by_percentage.cpp doc example
     function rocsparse_sprune_dense2csr_by_percentage(handle, m, n, A, lda, percentage, descr, &
                                                       csr_val, csr_row_ptr, csr_col_ind, info, &
                                                       temp_buffer) &
@@ -11044,7 +11034,7 @@ module hipfort_rocsparse
     !> It is assumed that \p bsr_row_ptr_C has already been filled and that \p bsr_val_C and
     !> \p bsr_col_ind_C are allocated by the user. \p bsr_row_ptr_C and the allocation size of
     !> \p bsr_col_ind_C and \p bsr_val_C is defined by the number of non-zero block elements of
-    !> the sparse BSR matrix C. Both can be obtained by \ref rocsparse_bsrgeam_nnzb().
+    !> the sparse BSR matrix C. Both can be obtained by `rocsparse_bsrgeam_nnzb`().
     !>
     !> \note Both scalars \f$\alpha\f$ and \f$beta\f$ have to be valid.
     !>
@@ -11126,7 +11116,6 @@ module hipfort_rocsparse
     !>
     !> \par Example
     !> This example adds two CSR matrices.
-    !> \snippet example_rocsparse_bsrgeam.cpp doc example
     function rocsparse_sbsrgeam(handle, dir, mb, nb, block_dim, alpha, descr_A, nnzb_A, bsr_val_A, &
                                 bsr_row_ptr_A, bsr_col_ind_A, beta, descr_B, nnzb_B, bsr_val_B, &
                                 bsr_row_ptr_B, bsr_col_ind_B, descr_C, bsr_val_C, bsr_row_ptr_C, &
@@ -11266,7 +11255,7 @@ module hipfort_rocsparse
     !> \ingroup extra_module
     !> \details
     !> \p rocsparse_bsrgemm_buffer_size returns the size of the temporary storage buffer
-    !> that is required by \ref rocsparse_bsrgemm_nnzb() and \ref rocsparse_sbsrgemm
+    !> that is required by `rocsparse_bsrgemm_nnzb` () and \ref rocsparse_sbsrgemm
     !> "rocsparse_Xbsrgemm()".
     !> The temporary storage buffer must be allocated by the user.
     !>
@@ -11343,7 +11332,7 @@ module hipfort_rocsparse
     !> info_C          structure that holds metadata for the sparse BSR matrix \f$C\f$.
     !> @param[out]
     !> buffer_size     number of bytes of the temporary storage buffer required by
-    !> rocsparse_bsrgemm_nnzb(), rocsparse_sbsrgemm(), rocsparse_dbsrgemm(),
+    !> `rocsparse_bsrgemm_nnzb()`, rocsparse_sbsrgemm(), rocsparse_dbsrgemm(),
     !> rocsparse_cbsrgemm(), and rocsparse_zbsrgemm().
     !>
     !> \retval rocsparse_status_success the operation completed successfully.
@@ -11679,8 +11668,8 @@ module hipfort_rocsparse
     !> \f[
     !> op(A) = \left\{
     !> \begin{array}{ll}
-    !> A,   & \text{if trans_A == rocsparse_operation_none} \\
-    !> A^T, & \text{if trans_A == rocsparse_operation_transpose} \\
+    !> A,   & \text{if trans_A == rocsparse_operation_none} \\%
+    !> A^T, & \text{if trans_A == rocsparse_operation_transpose} \\%
     !> A^H, & \text{if trans_A == rocsparse_operation_conjugate_transpose}
     !> \end{array}
     !> \right.
@@ -11689,8 +11678,8 @@ module hipfort_rocsparse
     !> \f[
     !> op(B) = \left\{
     !> \begin{array}{ll}
-    !> B,   & \text{if trans_B == rocsparse_operation_none} \\
-    !> B^T, & \text{if trans_B == rocsparse_operation_transpose} \\
+    !> B,   & \text{if trans_B == rocsparse_operation_none} \\%
+    !> B^T, & \text{if trans_B == rocsparse_operation_transpose} \\%
     !> B^H, & \text{if trans_B == rocsparse_operation_conjugate_transpose}
     !> \end{array}
     !> \right.
@@ -11702,7 +11691,7 @@ module hipfort_rocsparse
     !> It is assumed that \p bsr_row_ptr_C has already been filled and that \p bsr_val_C and
     !> \p bsr_col_ind_C are allocated by the user. \p bsr_row_ptr_C and the allocation size of
     !> \p bsr_col_ind_C and \p bsr_val_C is defined by the number of non-zero elements of
-    !> the sparse BSR matrix C. Both can be obtained by \ref rocsparse_bsrgemm_nnzb(). The
+    !> the sparse BSR matrix C. Both can be obtained by `rocsparse_bsrgemm_nnzb`(). The
     !> required buffer size for the computation can be obtained by
     !> \ref rocsparse_sbsrgemm_buffer_size "rocsparse_Xbsrgemm_buffer_size()".
     !>
@@ -11823,7 +11812,6 @@ module hipfort_rocsparse
     !> \par Example
     !> This example multiplies two BSR matrices with a scalar alpha and adds the result to
     !> another BSR matrix.
-    !> \snippet example_rocsparse_bsrgemm.cpp doc example
     function rocsparse_sbsrgemm(handle, dir, trans_A, trans_B, mb, nb, kb, block_dim, alpha, &
                                 descr_A, nnzb_A, bsr_val_A, bsr_row_ptr_A, bsr_col_ind_A, descr_B, &
                                 nnzb_B, bsr_val_B, bsr_row_ptr_B, bsr_col_ind_B, beta, descr_D, &
@@ -12108,7 +12096,7 @@ module hipfort_rocsparse
     !> It is assumed that \p csr_row_ptr_C has already been filled and that \p csr_val_C and
     !> \p csr_col_ind_C are allocated by the user. \p csr_row_ptr_C and the allocation size of
     !> \p csr_col_ind_C and \p csr_val_C is defined by the number of non-zero elements of
-    !> the sparse CSR matrix C. Both can be obtained by \ref rocsparse_csrgeam_nnz().
+    !> the sparse CSR matrix C. Both can be obtained by `rocsparse_csrgeam_nnz`().
     !>
     !> \note Both scalars \f$\alpha\f$ and \f$beta\f$ have to be valid.
     !>
@@ -12180,7 +12168,6 @@ module hipfort_rocsparse
     !>
     !> \par Example
     !> This example adds two CSR matrices.
-    !> \snippet example_rocsparse_csrgeam.cpp doc example
     function rocsparse_scsrgeam(handle, m, n, alpha, descr_A, nnz_A, csr_val_A, csr_row_ptr_A, &
                                 csr_col_ind_A, beta, descr_B, nnz_B, csr_val_B, csr_row_ptr_B, &
                                 csr_col_ind_B, descr_C, csr_val_C, csr_row_ptr_C, csr_col_ind_C) &
@@ -12308,7 +12295,7 @@ module hipfort_rocsparse
     !> \ingroup extra_module
     !> \details
     !> \p rocsparse_csrgemm_buffer_size returns the size of the temporary storage buffer
-    !> that is required by \ref rocsparse_csrgemm_nnz() and \ref rocsparse_scsrgemm
+    !> that is required by `rocsparse_csrgemm_nnz` () and \ref rocsparse_scsrgemm
     !> "rocsparse_Xcsrgemm()".
     !> The temporary storage buffer must be allocated by the user.
     !>
@@ -12383,7 +12370,7 @@ module hipfort_rocsparse
     !> info_C          structure that holds metadata for the sparse CSR matrix \f$C\f$.
     !> @param[out]
     !> buffer_size     number of bytes of the temporary storage buffer required by
-    !> \ref rocsparse_csrgemm_nnz() and \ref rocsparse_scsrgemm "rocsparse_Xcsrgemm()".
+    !> `rocsparse_csrgemm_nnz`() and \ref rocsparse_scsrgemm "rocsparse_Xcsrgemm()".
     !>
     !> \retval rocsparse_status_success the operation completed successfully.
     !> \retval rocsparse_status_invalid_handle the library context was not initialized.
@@ -12702,8 +12689,8 @@ module hipfort_rocsparse
     !> \f[
     !> op(A) = \left\{
     !> \begin{array}{ll}
-    !> A,   & \text{if trans_A == rocsparse_operation_none} \\
-    !> A^T, & \text{if trans_A == rocsparse_operation_transpose} \\
+    !> A,   & \text{if trans_A == rocsparse_operation_none} \\%
+    !> A^T, & \text{if trans_A == rocsparse_operation_transpose} \\%
     !> A^H, & \text{if trans_A == rocsparse_operation_conjugate_transpose}
     !> \end{array}
     !> \right.
@@ -12712,8 +12699,8 @@ module hipfort_rocsparse
     !> \f[
     !> op(B) = \left\{
     !> \begin{array}{ll}
-    !> B,   & \text{if trans_B == rocsparse_operation_none} \\
-    !> B^T, & \text{if trans_B == rocsparse_operation_transpose} \\
+    !> B,   & \text{if trans_B == rocsparse_operation_none} \\%
+    !> B^T, & \text{if trans_B == rocsparse_operation_transpose} \\%
     !> B^H, & \text{if trans_B == rocsparse_operation_conjugate_transpose}
     !> \end{array}
     !> \right.
@@ -12725,7 +12712,7 @@ module hipfort_rocsparse
     !> It is assumed that \p csr_row_ptr_C has already been filled and that \p csr_val_C and
     !> \p csr_col_ind_C are allocated by the user. \p csr_row_ptr_C and the allocation size of
     !> \p csr_col_ind_C and \p csr_val_C are defined by the number of non-zero elements of
-    !> the sparse CSR matrix C. Both can be obtained by using rocsparse_csrgemm_nnz(). The
+    !> the sparse CSR matrix C. Both can be obtained by using `rocsparse_csrgemm_nnz()`. The
     !> required buffer size for the computation can be obtained by
     !> rocsparse_scsrgemm_buffer_size(), rocsparse_dcsrgemm_buffer_size(),
     !> rocsparse_ccsrgemm_buffer_size(), and rocsparse_zcsrgemm_buffer_size(), respectively.
@@ -13152,8 +13139,8 @@ module hipfort_rocsparse
     !> \f[
     !> op(A) = \left\{
     !> \begin{array}{ll}
-    !> A,   & \text{if trans_A == rocsparse_operation_none} \\
-    !> A^T, & \text{if trans_A == rocsparse_operation_transpose} \\
+    !> A,   & \text{if trans_A == rocsparse_operation_none} \\%
+    !> A^T, & \text{if trans_A == rocsparse_operation_transpose} \\%
     !> A^H, & \text{if trans_A == rocsparse_operation_conjugate_transpose}
     !> \end{array}
     !> \right.
@@ -13162,8 +13149,8 @@ module hipfort_rocsparse
     !> \f[
     !> op(B) = \left\{
     !> \begin{array}{ll}
-    !> B,   & \text{if trans_B == rocsparse_operation_none} \\
-    !> B^T, & \text{if trans_B == rocsparse_operation_transpose} \\
+    !> B,   & \text{if trans_B == rocsparse_operation_none} \\%
+    !> B^T, & \text{if trans_B == rocsparse_operation_transpose} \\%
     !> B^H, & \text{if trans_B == rocsparse_operation_conjugate_transpose}
     !> \end{array}
     !> \right.
@@ -13172,7 +13159,7 @@ module hipfort_rocsparse
     !> It is assumed that \p csr_row_ptr_C has already been filled and that
     !> \p csr_col_ind_C is allocated by the user. \p csr_row_ptr_C and the allocation size of
     !> \p csr_col_ind_C are defined by the number of non-zero elements of
-    !> the sparse CSR matrix C. Both can be obtained by using rocsparse_csrgemm_nnz(). The
+    !> the sparse CSR matrix C. Both can be obtained by using `rocsparse_csrgemm_nnz()`. The
     !> required buffer size for the computation can be obtained by
     !> rocsparse_scsrgemm_buffer_size(), rocsparse_dcsrgemm_buffer_size(),
     !> rocsparse_ccsrgemm_buffer_size(), and rocsparse_zcsrgemm_buffer_size(), respectively.
@@ -13438,8 +13425,8 @@ module hipfort_rocsparse
     !> \f[
     !> op(A) = \left\{
     !> \begin{array}{ll}
-    !> A,   & \text{if trans_A == rocsparse_operation_none} \\
-    !> A^T, & \text{if trans_A == rocsparse_operation_transpose} \\
+    !> A,   & \text{if trans_A == rocsparse_operation_none} \\%
+    !> A^T, & \text{if trans_A == rocsparse_operation_transpose} \\%
     !> A^H, & \text{if trans_A == rocsparse_operation_conjugate_transpose}
     !> \end{array}
     !> \right.
@@ -13448,8 +13435,8 @@ module hipfort_rocsparse
     !> \f[
     !> op(B) = \left\{
     !> \begin{array}{ll}
-    !> B,   & \text{if trans_B == rocsparse_operation_none} \\
-    !> B^T, & \text{if trans_B == rocsparse_operation_transpose} \\
+    !> B,   & \text{if trans_B == rocsparse_operation_none} \\%
+    !> B^T, & \text{if trans_B == rocsparse_operation_transpose} \\%
     !> B^H, & \text{if trans_B == rocsparse_operation_conjugate_transpose}
     !> \end{array}
     !> \right.
@@ -13462,7 +13449,7 @@ module hipfort_rocsparse
     !> It is assumed that \p csr_row_ptr_C and \p csr_col_ind_C have already been filled and that \p
     !> csr_val_C is allocated by the user. \p csr_row_ptr_C and the allocation size of
     !> \p csr_col_ind_C and \p csr_val_C are defined by the number of non-zero elements of
-    !> the sparse CSR matrix C. Both can be obtained by rocsparse_csrgemm_nnz(). The
+    !> the sparse CSR matrix C. Both can be obtained by `rocsparse_csrgemm_nnz()`. The
     !> required buffer size for the computation can be obtained by
     !> rocsparse_scsrgemm_buffer_size(), rocsparse_dcsrgemm_buffer_size(),
     !> rocsparse_ccsrgemm_buffer_size(), and rocsparse_zcsrgemm_buffer_size(), respectively.
@@ -13971,7 +13958,6 @@ module hipfort_rocsparse
     !> invalid.
     !>
     !> \par Example
-    !> \snippet example_rocsparse_axpby.cpp doc example
     function rocsparse_axpby(handle, alpha, x, beta, y) &
        result(axpby) &
        bind(C, name="rocsparse_axpby")
@@ -14063,7 +14049,6 @@ module hipfort_rocsparse
     !> This example checks whether a matrix is upper triangular. The matrix passed to
     !> \ref rocsparse_check_spmat is invalid because it contains an entry in the lower triangular
     !> part of the matrix.
-    !> \snippet example_rocsparse_check_spmat.cpp doc example
     function rocsparse_check_spmat(handle, mat, data_status, stage, buffer_size, temp_buffer) &
        result(check_spmat) &
        bind(C, name="rocsparse_check_spmat")
@@ -14193,7 +14178,6 @@ module hipfort_rocsparse
     !> pointer is invalid.
     !>
     !> \par Example
-    !> \snippet example_rocsparse_dense_to_sparse.cpp doc example
     function rocsparse_dense_to_sparse(handle, mat_A, mat_B, alg, buffer_size, temp_buffer) &
        result(dense_to_sparse) &
        bind(C, name="rocsparse_dense_to_sparse")
@@ -14419,11 +14403,11 @@ module hipfort_rocsparse
     !> The target row pointer, column indices, and values arrays will now be filled with the upper
     !> or lower part of the source matrix.
     !>
-    !> The source and the target matrices must have the same format (see \ref rocsparse_format) and
+    !> The source and the target matrices must have the same format (see `rocsparse_format` ) and
     !> the same storage mode (see
-    !> \ref rocsparse_storage_mode). The attributes of the target matrix, the fill mode \ref
-    !> rocsparse_fill_mode, and the diagonal
-    !> type \ref rocsparse_diag_type are used to parameterize the algorithm. These can be set on the
+    !> `rocsparse_storage_mode` ). The attributes of the target matrix, the fill mode
+    !> `rocsparse_fill_mode`, and the diagonal
+    !> type `rocsparse_diag_type` are used to parameterize the algorithm. These can be set on the
     !> target matrix using
     !> \ref rocsparse_spmat_set_attribute. See the full example below.
     !>
@@ -14458,7 +14442,6 @@ module hipfort_rocsparse
     !> pointer is invalid.
     !> \par Example
     !> This example extracts the lower part of CSR matrix into a CSR matrix.
-    !> \snippet example_rocsparse_extract.cpp doc example
     function rocsparse_extract(handle, descr, source, target, stage, buffer_size_in_bytes, buffer) &
        result(extract) &
        bind(C, name="rocsparse_extract")
@@ -14529,7 +14512,6 @@ module hipfort_rocsparse
     !> \retval      rocsparse_status_invalid_pointer \p x or \p y pointer is invalid.
     !>
     !> \par Example
-    !> \snippet example_rocsparse_gather.cpp doc example
     function rocsparse_gather(handle, y, x) &
        result(gather) &
        bind(C, name="rocsparse_gather")
@@ -14604,7 +14586,6 @@ module hipfort_rocsparse
     !> \retval     rocsparse_status_invalid_pointer \p c, \p s, \p x, or \p y pointer is
     !> invalid.
     !> \par Example
-    !> \snippet example_rocsparse_rot.cpp doc example
     function rocsparse_rot(handle, c, s, x, y) &
        result(rot) &
        bind(C, name="rocsparse_rot")
@@ -14673,7 +14654,6 @@ module hipfort_rocsparse
     !> \retval      rocsparse_status_invalid_pointer \p x or \p y pointer is invalid.
     !>
     !> \par Example
-    !> \snippet example_rocsparse_scatter.cpp doc example
     function rocsparse_scatter(handle, x, y) &
        result(scatter) &
        bind(C, name="rocsparse_scatter")
@@ -14691,8 +14671,8 @@ module hipfort_rocsparse
     !> \details
     !> \p rocsparse_sddmm_buffer_size returns the size of the required buffer to execute the SDDMM
     !> operation from a given configuration.
-    !> This routine is used in conjunction with \ref rocsparse_sddmm_preprocess() and \ref
-    !> rocsparse_sddmm().
+    !> This routine is used in conjunction with `rocsparse_sddmm_preprocess` () and
+    !> `rocsparse_sddmm` ().
     !>
     !> \note
     !> This routine does not support execution in a hipGraph context.
@@ -14754,7 +14734,7 @@ module hipfort_rocsparse
     !> \details
     !> \p rocsparse_sddmm_preprocess executes a part of the algorithm that can be calculated once in
     !> the context of multiple
-    !> calls of the \ref rocsparse_sddmm with the same sparsity pattern.
+    !> calls of the `rocsparse_sddmm` with the same sparsity pattern.
     !>
     !> \note
     !> This routine does not support execution in a hipGraph context.
@@ -14830,16 +14810,16 @@ module hipfort_rocsparse
     !> \f[
     !> op(A) = \left\{
     !> \begin{array}{ll}
-    !> A,   & \text{if op(A) == rocsparse_operation_none} \\
-    !> A^T, & \text{if op(A) == rocsparse_operation_transpose} \\
+    !> A,   & \text{if op(A) == rocsparse_operation_none} \\%
+    !> A^T, & \text{if op(A) == rocsparse_operation_transpose} \\%
     !> \end{array}
     !> \right.
     !> \f],
     !> \f[
     !> op(B) = \left\{
     !> \begin{array}{ll}
-    !> B,   & \text{if op(B) == rocsparse_operation_none} \\
-    !> B^T, & \text{if op(B) == rocsparse_operation_transpose} \\
+    !> B,   & \text{if op(B) == rocsparse_operation_none} \\%
+    !> B^T, & \text{if op(B) == rocsparse_operation_transpose} \\%
     !> \end{array}
     !> \right.
     !> \f]
@@ -14847,8 +14827,8 @@ module hipfort_rocsparse
     !> \f[
     !> spy(C)_{ij} = \left\{
     !> \begin{array}{ll}
-    !> 1, & \text{ if C_{ij} != 0} \\
-    !> 0, & \text{ otherwise} \\
+    !> 1, & \text{ if C_{ij} != 0} \\%
+    !> 0, & \text{ otherwise} \\%
     !> \end{array}
     !> \right.
     !> \f]
@@ -14857,7 +14837,7 @@ module hipfort_rocsparse
     !> First, call
     !> \ref rocsparse_sddmm_buffer_size to determine the size of the required temporary storage
     !> buffer. Next,
-    !> allocate this buffer and call \ref rocsparse_sddmm_preprocess, which performs any analysis of
+    !> allocate this buffer and call `rocsparse_sddmm_preprocess`, which performs any analysis of
     !> the input matrices
     !> that might be required. Finally, call \p rocsparse_sddmm to complete the computation. After
     !> all calls to
@@ -14953,7 +14933,6 @@ module hipfort_rocsparse
     !> This example performs a sampled dense-dense matrix product, \f$C := \alpha ( A \cdot B )
     !> \circ spy(C) + \beta C\f$
     !> where \f$\circ\f$ is the Hadamard product.
-    !> \snippet example_rocsparse_sddmm.cpp doc example
     function rocsparse_sddmm(handle, opA, opB, alpha, mat_A, mat_B, beta, mat_C, compute_type, &
                              alg, temp_buffer) &
        result(sddmm) &
@@ -15071,7 +15050,6 @@ module hipfort_rocsparse
     !> pointer is invalid.
     !>
     !> \par Example
-    !> \snippet example_rocsparse_sparse_to_dense.cpp doc example
     function rocsparse_sparse_to_dense(handle, mat_A, mat_B, alg, buffer_size, temp_buffer) &
        result(sparse_to_dense) &
        bind(C, name="rocsparse_sparse_to_dense")
@@ -15166,7 +15144,6 @@ module hipfort_rocsparse
     !> \retval      rocsparse_status_success the operation completed successfully.
     !> \par Example
     !> This example converts a CSR matrix into an ELL matrix.
-    !> \snippet example_rocsparse_sparse_to_sparse.cpp doc example
     function rocsparse_sparse_to_sparse(handle, descr, source, target, stage, &
                                         buffer_size_in_bytes, buffer) &
        result(sparse_to_sparse) &
@@ -15189,8 +15166,8 @@ module hipfort_rocsparse
     !> \details
     !> \p rocsparse_spgeam_buffer_size returns the size of the required buffer to execute the given
     !> stage of the SpGEAM operation.
-    !> This routine is used in conjunction with \ref rocsparse_spgeam(). See \ref rocsparse_spgeam
-    !> for a full description and example.
+    !> This routine is used in conjunction with `rocsparse_spgeam` (). See `rocsparse_spgeam` for a
+    !> full description and example.
     !>
     !> \note
     !> This routine does not support execution in a hipGraph context.
@@ -15266,8 +15243,8 @@ module hipfort_rocsparse
     !> \right.
     !> \f]
     !>
-    !> \p rocsparse_spgeam requires multiple steps to complete. First, create a \ref
-    !> rocsparse_spgeam_descr by
+    !> \p rocsparse_spgeam requires multiple steps to complete. First, create a
+    !> `rocsparse_spgeam_descr` by
     !> calling \ref rocsparse_create_spgeam_descr. Set the SpGEAM algorithm (currently only
     !> \ref rocsparse_spgeam_alg_default supported) as well as the compute type and the transpose
     !> operation type for the sparse
@@ -15281,7 +15258,7 @@ module hipfort_rocsparse
     !> rocsparse_spgeam_stage_analysis.
     !> The total non-zeros and the row offset array for \f$C\f$ have now been calculated and are
     !> stored internally in the
-    !> \ref rocsparse_spgeam_descr. Now, retrieve the non-zero count using \ref
+    !> `rocsparse_spgeam_descr`. Now, retrieve the non-zero count using \ref
     !> rocsparse_spgeam_get_output and then
     !> allocate the \f$C\f$ matrix. To complete the computation, repeat the process (this time
     !> passing the stage
@@ -15406,10 +15383,9 @@ module hipfort_rocsparse
     !> buffer_size pointer is invalid.
     !>
     !> \par First Example
-    !> \snippet example_rocsparse_spgeam_1.cpp doc example
+    !>
     !>
     !> \par Second Example
-    !> \snippet example_rocsparse_spgeam_2.cpp doc example
     function rocsparse_spgeam(handle, descr, mat_A, mat_B, mat_C, stage, buffer_size, temp_buffer, &
                               error) &
        result(spgeam) &
@@ -15610,7 +15586,6 @@ module hipfort_rocsparse
     !> \p trans_B != \ref rocsparse_operation_none.
     !>
     !> \par Example
-    !> \snippet example_rocsparse_spgemm.cpp doc example
     function rocsparse_spgemm(handle, trans_A, trans_B, alpha, A, B, beta, D, C, compute_type, &
                               alg, stage, buffer_size, temp_buffer) &
        result(spgemm) &
@@ -15710,7 +15685,7 @@ module hipfort_rocsparse
     !> \f[
     !> L_{ij} = \left\{
     !> \begin{array}{ll}
-    !> \sqrt{A_{jj} - \sum_{k=0}^{j-1}(L_{jk})^{2}},   & \text{if i == j} \\
+    !> \sqrt{A_{jj} - \sum_{k=0}^{j-1}(L_{jk})^{2}},   & \text{if i == j} \\%
     !> \frac{1}{L_{jj}}(A_{ij} - \sum_{k=0}^{j-1}L_{ik} \times L_{jk}), & \text{if i > j}
     !> \end{array}
     !> \right.
@@ -15776,7 +15751,6 @@ module hipfort_rocsparse
     !> buffer_size_in_bytes pointer is invalid.
     !>
     !> \par Example
-    !> \snippet example_rocsparse_spic0.cpp doc example
     function rocsparse_spic0(handle, spic0_descr, A, P, spic0_stage, buffer_size_in_bytes, buffer, &
                              p_error) &
        result(spic0) &
@@ -15867,7 +15841,7 @@ module hipfort_rocsparse
     !> \f[
     !> \begin{array}{ll}
     !> L_{ij} = \frac{1}{U_{jj}}(A_{ij} - \sum_{k=0}^{j-1}L_{ik} \times U_{kj}), & \text{if i > j}
-    !> \\
+    !> \\%
     !> U_{ij} = (A_{ij} - \sum_{k=0}^{j-1}L_{ik} \times U_{kj}), & \text{if i <= j}
     !> \end{array}
     !> \f]
@@ -15931,7 +15905,6 @@ module hipfort_rocsparse
     !> buffer_size_in_bytes pointer is invalid.
     !>
     !> \par Example
-    !> \snippet example_rocsparse_spilu0.cpp doc example
     function rocsparse_spilu0(handle, spilu0_descr, A, P, spilu0_stage, buffer_size_in_bytes, &
                               buffer, p_error) &
        result(spilu0) &
@@ -15966,8 +15939,8 @@ module hipfort_rocsparse
     !> \f[
     !> op(A) = \left\{
     !> \begin{array}{ll}
-    !> A,   & \text{if trans == rocsparse_operation_none} \\
-    !> A^T, & \text{if trans == rocsparse_operation_transpose} \\
+    !> A,   & \text{if trans == rocsparse_operation_none} \\%
+    !> A^T, & \text{if trans == rocsparse_operation_transpose} \\%
     !> A^H, & \text{if trans == rocsparse_operation_conjugate_transpose}
     !> \end{array}
     !> \right.
@@ -15991,7 +15964,7 @@ module hipfort_rocsparse
     !> Starting with \f$y_0 = \f$ \p y, the method iterates while \f$ k \lt \f$ \p host_nmaxiter and
     !> until
     !> \f[
-    !> \Vert r_k \Vert_{\infty} \le \epsilon,
+    !> \Vert r_k \Vert_{\infty} &le; \epsilon,
     !> \f]
     !> with \f$\epsilon\f$ = \p host_tol.
     !>
@@ -16074,7 +16047,6 @@ module hipfort_rocsparse
     !> currently not supported.
     !>
     !> \par Example
-    !> \snippet example_rocsparse_spitsv.cpp doc example
     function rocsparse_spitsv(handle, host_nmaxiter, host_tol, host_history, trans, alpha, mat, x, &
                               y, compute_type, alg, stage, buffer_size, temp_buffer) &
        result(spitsv) &
@@ -16118,8 +16090,8 @@ module hipfort_rocsparse
     !> \f[
     !> op(A) = \left\{
     !> \begin{array}{ll}
-    !> A,   & \text{if trans_A == rocsparse_operation_none} \\
-    !> A^T, & \text{if trans_A == rocsparse_operation_transpose} \\
+    !> A,   & \text{if trans_A == rocsparse_operation_none} \\%
+    !> A^T, & \text{if trans_A == rocsparse_operation_transpose} \\%
     !> A^H, & \text{if trans_A == rocsparse_operation_conjugate_transpose}
     !> \end{array}
     !> \right.
@@ -16128,8 +16100,8 @@ module hipfort_rocsparse
     !> \f[
     !> op(B) = \left\{
     !> \begin{array}{ll}
-    !> B,   & \text{if trans_B == rocsparse_operation_none} \\
-    !> B^T, & \text{if trans_B == rocsparse_operation_transpose} \\
+    !> B,   & \text{if trans_B == rocsparse_operation_none} \\%
+    !> B^T, & \text{if trans_B == rocsparse_operation_transpose} \\%
     !> B^H, & \text{if trans_B == rocsparse_operation_conjugate_transpose}
     !> \end{array}
     !> \right.
@@ -16252,8 +16224,8 @@ module hipfort_rocsparse
     !> \p rocsparse_spmm also supports batched computation for CSR and COO matrices. There are three
     !> supported batch modes:
     !> \f[
-    !> C_i = A \times B_i \\
-    !> C_i = A_i \times B \\
+    !> C_i = A \times B_i \\%
+    !> C_i = A_i \times B \\%
     !> C_i = A_i \times B_i
     !> \f]
     !>
@@ -16263,32 +16235,32 @@ module hipfort_rocsparse
     !> \f$A\f$,
     !> \f$B\f$, and \f$C\f$, pass:
     !> \f[
-    !> batch\_count\_A=1 \\
-    !> batch\_count\_B=100 \\
-    !> batch\_count\_C=100 \\
-    !> offsets\_batch\_stride\_A=0 \\
-    !> columns\_values\_batch\_stride\_A=0 \\
-    !> batch\_stride\_B=k*n \\
+    !> batch\_count\_A=1 \\%
+    !> batch\_count\_B=100 \\%
+    !> batch\_count\_C=100 \\%
+    !> offsets\_batch\_stride\_A=0 \\%
+    !> columns\_values\_batch\_stride\_A=0 \\%
+    !> batch\_stride\_B=k*n \\%
     !> batch\_stride\_C=m*n
     !> \f]
     !> To use the second batch mode (\f$C_i = A_i \times B\f$), pass:
     !> \f[
-    !> batch\_count\_A=100 \\
-    !> batch\_count\_B=1 \\
-    !> batch\_count\_C=100 \\
-    !> offsets\_batch\_stride\_A=m+1 \\
-    !> columns\_values\_batch\_stride\_A=nnz \\
-    !> batch\_stride\_B=0 \\
+    !> batch\_count\_A=100 \\%
+    !> batch\_count\_B=1 \\%
+    !> batch\_count\_C=100 \\%
+    !> offsets\_batch\_stride\_A=m+1 \\%
+    !> columns\_values\_batch\_stride\_A=nnz \\%
+    !> batch\_stride\_B=0 \\%
     !> batch\_stride\_C=m*n
     !> \f]
     !> And to use the third batch mode (\f$C_i = A_i \times B_i\f$), pass:
     !> \f[
-    !> batch\_count\_A=100 \\
-    !> batch\_count\_B=100 \\
-    !> batch\_count\_C=100 \\
-    !> offsets\_batch\_stride\_A=m+1 \\
-    !> columns\_values\_batch\_stride_A=nnz \\
-    !> batch\_stride_B=k*n \\
+    !> batch\_count\_A=100 \\%
+    !> batch\_count\_B=100 \\%
+    !> batch\_count\_C=100 \\%
+    !> offsets\_batch\_stride\_A=m+1 \\%
+    !> columns\_values\_batch\_stride_A=nnz \\%
+    !> batch\_stride_B=k*n \\%
     !> batch\_stride_C=m*n
     !> \f]
     !> See the examples below.
@@ -16369,11 +16341,10 @@ module hipfort_rocsparse
     !> \par Example
     !> This example performs sparse matrix-dense matrix multiplication, \f$C := \alpha \cdot A \cdot
     !> B + \beta \cdot C\f$
-    !> \snippet example_rocsparse_spmm.cpp doc example
+    !>
     !>
     !> \par Example
     !> An example of the first batch mode (\f$C_i = A \times B_i\f$) is provided below.
-    !> \snippet example_rocsparse_spmm_batched.cpp doc example
     function rocsparse_spmm(handle, trans_A, trans_B, alpha, mat_A, mat_B, beta, mat_C, &
                             compute_type, alg, stage, buffer_size, temp_buffer) &
        result(spmm) &
@@ -16414,8 +16385,8 @@ module hipfort_rocsparse
     !> \f[
     !> op(A) = \left\{
     !> \begin{array}{ll}
-    !> A,   & \text{if trans == rocsparse_operation_none} \\
-    !> A^T, & \text{if trans == rocsparse_operation_transpose} \\
+    !> A,   & \text{if trans == rocsparse_operation_none} \\%
+    !> A^T, & \text{if trans == rocsparse_operation_transpose} \\%
     !> A^H, & \text{if trans == rocsparse_operation_conjugate_transpose}
     !> \end{array}
     !> \right.
@@ -16600,7 +16571,6 @@ module hipfort_rocsparse
     !> currently not supported.
     !>
     !> \par Example
-    !> \snippet example_rocsparse_spmv.cpp doc example
     function rocsparse_spmv(handle, trans, alpha, mat, x, beta, y, compute_type, alg, stage, &
                             buffer_size, temp_buffer) &
        result(spmv) &
@@ -16638,7 +16608,7 @@ module hipfort_rocsparse
     !> \f[
     !> op(A) = \left\{
     !> \begin{array}{ll}
-    !> A,   & \text{if trans == rocsparse_operation_none} \\
+    !> A,   & \text{if trans == rocsparse_operation_none} \\%
     !> A^T, & \text{if trans == rocsparse_operation_transpose}
     !> \end{array}
     !> \right.
@@ -16647,7 +16617,7 @@ module hipfort_rocsparse
     !> \f[
     !> op(B) = \left\{
     !> \begin{array}{ll}
-    !> B,   & \text{if trans_B == rocsparse_operation_none} \\
+    !> B,   & \text{if trans_B == rocsparse_operation_none} \\%
     !> B^T, & \text{if trans_B == rocsparse_operation_transpose}
     !> \end{array}
     !> \right.
@@ -16767,7 +16737,6 @@ module hipfort_rocsparse
     !> currently not supported.
     !>
     !> \par Example
-    !> \snippet example_rocsparse_spsm.cpp doc example
     function rocsparse_spsm(handle, trans_A, trans_B, alpha, matA, matB, matC, compute_type, alg, &
                             stage, buffer_size, temp_buffer) &
        result(spsm) &
@@ -16805,7 +16774,7 @@ module hipfort_rocsparse
     !> \f[
     !> op(A) = \left\{
     !> \begin{array}{ll}
-    !> A,   & \text{if trans == rocsparse_operation_none} \\
+    !> A,   & \text{if trans == rocsparse_operation_none} \\%
     !> A^T, & \text{if trans == rocsparse_operation_transpose}
     !> \end{array}
     !> \right.
@@ -16903,7 +16872,6 @@ module hipfort_rocsparse
     !> currently not supported.
     !>
     !> \par Example
-    !> \snippet example_rocsparse_spsv.cpp doc example
     function rocsparse_spsv(handle, trans, alpha, mat, x, y, compute_type, alg, stage, &
                             buffer_size, temp_buffer) &
        result(spsv) &
@@ -16930,8 +16898,8 @@ module hipfort_rocsparse
     !> \details
     !> \p rocsparse_sptrsm_buffer_size returns the size of the required buffer to execute the given
     !> stage of the SpTrSM operation.
-    !> This routine is used in conjunction with \ref rocsparse_sptrsm(). See \ref rocsparse_sptrsm
-    !> for a full description and example.
+    !> This routine is used in conjunction with `rocsparse_sptrsm` (). See `rocsparse_sptrsm` for a
+    !> full description and example.
     !>
     !> \note
     !> This routine does not support execution in a hipGraph context.
@@ -16995,7 +16963,7 @@ module hipfort_rocsparse
     !> \f[
     !> op(A) = \left\{
     !> \begin{array}{ll}
-    !> A,   & \text{if trans == rocsparse_operation_none} \\
+    !> A,   & \text{if trans == rocsparse_operation_none} \\%
     !> A^T, & \text{if trans == rocsparse_operation_transpose}
     !> \end{array}
     !> \right.
@@ -17004,7 +16972,7 @@ module hipfort_rocsparse
     !> \f[
     !> op(X) = \left\{
     !> \begin{array}{ll}
-    !> X,   & \text{if trans_B == rocsparse_operation_none} \\
+    !> X,   & \text{if trans_B == rocsparse_operation_none} \\%
     !> X^T, & \text{if trans_B == rocsparse_operation_transpose}
     !> \end{array}
     !> \right.
@@ -17105,7 +17073,6 @@ module hipfort_rocsparse
     !> \retval rocsparse_status_not_implemented the configuration of the descriptor \p sptrsm_descr
     !> is currently not supported.
     !> \par Example
-    !> \snippet example_rocsparse_sptrsm.cpp doc example
     function rocsparse_sptrsm(handle, sptrsm_descr, A, X, Y, sptrsm_stage, buffer_size_in_bytes, &
                               buffer, p_error) &
        result(sptrsm) &
@@ -17130,8 +17097,8 @@ module hipfort_rocsparse
     !> \details
     !> \p rocsparse_sptrsv_buffer_size returns the size of the required buffer to execute the given
     !> stage of the SpTrSV operation.
-    !> This routine is used in conjunction with \ref rocsparse_sptrsv(). See \ref rocsparse_sptrsv
-    !> for a full description and example.
+    !> This routine is used in conjunction with `rocsparse_sptrsv` (). See `rocsparse_sptrsv` for a
+    !> full description and example.
     !>
     !> \note
     !> This routine does not support execution in a hipGraph context.
@@ -17196,9 +17163,9 @@ module hipfort_rocsparse
     !> \f[
     !> op(A) = \left\{
     !> \begin{array}{ll}
-    !> A,   & \text{if op == rocsparse_operation_none} \\
-    !> A^T, & \text{if op == rocsparse_operation_transpose} \\
-    !> A^H, & \text{if op == rocsparse_operation_conjugate_transpose} \\
+    !> A,   & \text{if op == rocsparse_operation_none} \\%
+    !> A^T, & \text{if op == rocsparse_operation_transpose} \\%
+    !> A^H, & \text{if op == rocsparse_operation_conjugate_transpose} \\%
     !> \end{array}
     !> \right.
     !> \f]
@@ -17275,7 +17242,6 @@ module hipfort_rocsparse
     !> \retval      rocsparse_status_invalid_value \p sptrsv_stage is invalid.
     !>
     !> \par Example
-    !> \snippet example_rocsparse_sptrsv.cpp doc example
     function rocsparse_sptrsv(handle, sptrsv_descr, A, x, y, sptrsv_stage, buffer_size_in_bytes, &
                               buffer, p_error) &
        result(sptrsv) &
@@ -17309,8 +17275,8 @@ module hipfort_rocsparse
     !> \f[
     !> op(x) = \left\{
     !> \begin{array}{ll}
-    !> x,   & \text{if trans == rocsparse_operation_none} \\
-    !> \bar{x}, & \text{if trans == rocsparse_operation_conjugate_transpose} \\
+    !> x,   & \text{if trans == rocsparse_operation_none} \\%
+    !> \bar{x}, & \text{if trans == rocsparse_operation_conjugate_transpose} \\%
     !> \end{array}
     !> \right.
     !> \f]
@@ -17397,7 +17363,6 @@ module hipfort_rocsparse
     !> supported.
     !>
     !> \par Example
-    !> \snippet example_rocsparse_spvv.cpp doc example
     function rocsparse_spvv(handle, trans, x, y, result, compute_type, buffer_size, temp_buffer) &
        result(spvv) &
        bind(C, name="rocsparse_spvv")
@@ -17420,8 +17385,8 @@ module hipfort_rocsparse
     !> \details
     !> \p rocsparse_v2_spmv_buffer_size returns the size of the required buffer to execute the given
     !> stage of the Version 2 SpMV operation.
-    !> This routine is used in conjunction with \ref rocsparse_v2_spmv(). See \ref rocsparse_v2_spmv
-    !> for a full description and example.
+    !> This routine is used in conjunction with `rocsparse_v2_spmv` (). See `rocsparse_v2_spmv` for
+    !> a full description and example.
     !>
     !> \note
     !> This routine does not support execution in a hipGraph context.
@@ -17482,8 +17447,8 @@ module hipfort_rocsparse
     !> \f[
     !> op(A) = \left\{
     !> \begin{array}{ll}
-    !> A,   & \text{if trans == rocsparse_operation_none} \\
-    !> A^T, & \text{if trans == rocsparse_operation_transpose} \\
+    !> A,   & \text{if trans == rocsparse_operation_none} \\%
+    !> A^T, & \text{if trans == rocsparse_operation_transpose} \\%
     !> A^H, & \text{if trans == rocsparse_operation_conjugate_transpose}
     !> \end{array}
     !> \right.
@@ -17666,7 +17631,6 @@ module hipfort_rocsparse
     !> configuration is not supported.
     !>
     !> \par Example
-    !> \snippet example_rocsparse_v2_spmv.cpp doc example
     function rocsparse_v2_spmv(handle, descr, alpha, mat, x, beta, y, stage, buffer_size_in_bytes, &
                                buffer, error) &
        result(v2_spmv) &
@@ -17737,7 +17701,6 @@ module hipfort_rocsparse
     !> or between \p z_vecs elements.
     !>
     !> \par Example
-    !> \snippet example_rocsparse_spmv_set_extra.cpp doc example
     function rocsparse_spmv_set_extra(handle, descr, num_extras, gamma_vec, z_vecs, p_error) &
        result(spmv_set_extra) &
        bind(C, name="rocsparse_spmv_set_extra")
@@ -17834,7 +17797,6 @@ module hipfort_rocsparse
     !> is invalid.
     !>
     !> \par Example
-    !> \snippet example_rocsparse_axpyi.cpp doc example
     function rocsparse_saxpyi(handle, nnz, alpha, x_val, x_ind, y, idx_base) &
        result(saxpyi) &
        bind(C, name="rocsparse_saxpyi")
@@ -18040,7 +18002,6 @@ module hipfort_rocsparse
     !> \retval rocsparse_status_internal_error an internal error occurred.
     !>
     !> \par Example
-    !> \snippet example_rocsparse_doti.cpp doc example
     function rocsparse_sdoti(handle, nnz, x_val, x_ind, y, result, idx_base) &
        result(sdoti) &
        bind(C, name="rocsparse_sdoti")
@@ -18152,7 +18113,6 @@ module hipfort_rocsparse
     !> invalid.
     !>
     !> \par Example
-    !> \snippet example_rocsparse_gthr.cpp doc example
     function rocsparse_sgthr(handle, nnz, y, x_val, x_ind, idx_base) &
        result(sgthr) &
        bind(C, name="rocsparse_sgthr")
@@ -18379,7 +18339,6 @@ module hipfort_rocsparse
     !> pointer is invalid.
     !>
     !> \par Example
-    !> \snippet example_rocsparse_roti.cpp doc example
     function rocsparse_sroti(handle, nnz, x_val, x_ind, y, c, s, idx_base) &
        result(sroti) &
        bind(C, name="rocsparse_sroti")
@@ -18460,7 +18419,6 @@ module hipfort_rocsparse
     !> invalid.
     !>
     !> \par Example
-    !> \snippet example_rocsparse_sctr.cpp doc example
     function rocsparse_ssctr(handle, nnz, x_val, x_ind, y, idx_base) &
        result(ssctr) &
        bind(C, name="rocsparse_ssctr")
@@ -18547,16 +18505,16 @@ module hipfort_rocsparse
     !> "rocsparse_Xbsrmv()".
     !> It is expected that this function will be executed only once for a given sparsity pattern and
     !> particular operation
-    !> type. The gathered analysis meta data is stored in the \ref rocsparse_mat_info object and can
-    !> be cleared by
-    !> \ref rocsparse_bsrmv_clear().
+    !> type. The gathered analysis meta data is stored in the `rocsparse_mat_info` object and can be
+    !> cleared by
+    !> `rocsparse_bsrmv_clear`().
     !>
     !> If the matrix sparsity pattern changes, the gathered information will become invalid. To
     !> perform another
     !> sparse matrix multiplication with a matrix having a different sparsity pattern, either
     !> destroy
     !> the old \p info object and create a new one or clear the existing \p info object using
-    !> \ref rocsparse_bsrmv_clear(). In both cases, the analysis will need to be called again.
+    !> `rocsparse_bsrmv_clear`(). In both cases, the analysis will need to be called again.
     !>
     !> \note
     !> This function is non-blocking and executed asynchronously with respect to the host.
@@ -18603,7 +18561,7 @@ module hipfort_rocsparse
     !> \retval     rocsparse_status_internal_error an internal error occurred.
     !> \retval     rocsparse_status_not_implemented
     !> \p trans != \ref rocsparse_operation_none or
-    !> \ref rocsparse_matrix_type != \ref rocsparse_matrix_type_general.
+    !> `rocsparse_matrix_type` != \ref rocsparse_matrix_type_general.
     function rocsparse_sbsrmv_analysis(handle, dir, trans, mb, nb, nnzb, descr, bsr_val, &
                                        bsr_row_ptr, bsr_col_ind, block_dim, info) &
        result(sbsrmv_analysis) &
@@ -18729,8 +18687,8 @@ module hipfort_rocsparse
     !> passing
     !> \p NULL for the \p info parameter.
     !>
-    !> Running the operation with analysis involves two steps. First, create a \ref
-    !> rocsparse_mat_info object
+    !> Running the operation with analysis involves two steps. First, create a `rocsparse_mat_info`
+    !> object
     !> by calling \ref rocsparse_create_mat_info and then pass this to \ref
     !> rocsparse_sbsrmv_analysis "rocsparse_Xbsrmv_analysis()",
     !> which will perform analysis on the sparsity pattern of the matrix \f$op(A)\f$. Then complete
@@ -18741,15 +18699,15 @@ module hipfort_rocsparse
     !> as the sparsity pattern has
     !> not changed. After all calls to \p rocsparse_bsrmv have been made, the \p info object can be
     !> destroyed with a call to
-    !> \ref rocsparse_destroy_mat_info.
+    !> `rocsparse_destroy_mat_info`.
     !>
     !> When running with analysis, users might want to perform multiple sparse matrix
     !> multiplications, with each sparse matrix having a different sparsity pattern. Instead of
     !> creating and destroying multiple
-    !> \ref rocsparse_mat_info objects for each unique sparsity pattern, the user can instead create
+    !> `rocsparse_mat_info` objects for each unique sparsity pattern, the user can instead create
     !> the \p info object once and
-    !> then call \ref rocsparse_bsrmv_clear, followed by re-running the analysis in between each
-    !> sparse matrix multiplication.
+    !> then call `rocsparse_bsrmv_clear`, followed by re-running the analysis in between each sparse
+    !> matrix multiplication.
     !>
     !> \note
     !> This function is non-blocking and executed asynchronously with respect to the host.
@@ -18808,11 +18766,10 @@ module hipfort_rocsparse
     !> \retval     rocsparse_status_arch_mismatch the device is not supported.
     !> \retval     rocsparse_status_not_implemented
     !> \p trans != \ref rocsparse_operation_none or
-    !> \ref rocsparse_matrix_type != \ref rocsparse_matrix_type_general.
+    !> `rocsparse_matrix_type` != \ref rocsparse_matrix_type_general.
     !>
     !> \par Example
     !> This example performs a sparse matrix vector multiplication in BSR format.
-    !> \snippet example_rocsparse_bsrmv.cpp doc example
     function rocsparse_sbsrmv(handle, dir, trans, mb, nb, nnzb, alpha, descr, bsr_val, &
                               bsr_row_ptr, bsr_col_ind, block_dim, info, x, beta, y) &
        result(sbsrmv) &
@@ -18929,8 +18886,8 @@ module hipfort_rocsparse
     !> for example, when switching to another sparse matrix format.
     !>
     !> Calling \p rocsparse_bsrmv_clear is optional. All allocated resources will be
-    !> cleared when the opaque \ref rocsparse_mat_info object is destroyed using
-    !> \ref rocsparse_destroy_mat_info().
+    !> cleared when the opaque `rocsparse_mat_info` object is destroyed using
+    !> `rocsparse_destroy_mat_info`().
     !>
     !> \note
     !> This routine does not support execution in a hipGraph context.
@@ -19054,7 +19011,7 @@ module hipfort_rocsparse
     !> \retval     rocsparse_status_internal_error an internal error occurred.
     !> \retval     rocsparse_status_not_implemented
     !> \p trans == \ref rocsparse_operation_conjugate_transpose or
-    !> \ref rocsparse_matrix_type != \ref rocsparse_matrix_type_general.
+    !> `rocsparse_matrix_type` != \ref rocsparse_matrix_type_general.
     function rocsparse_sbsrsv_buffer_size(handle, dir, trans, mb, nnzb, descr, bsr_val, &
                                           bsr_row_ptr, bsr_col_ind, block_dim, info, buffer_size) &
        result(sbsrsv_buffer_size) &
@@ -19153,7 +19110,7 @@ module hipfort_rocsparse
     !> "rocsparse_sbsrsv_solve()".
     !> It is expected that this function will be executed only once for a given matrix and
     !> particular operation type.
-    !> The analysis meta data can be cleared by \ref rocsparse_bsrsv_clear().
+    !> The analysis meta data can be cleared by `rocsparse_bsrsv_clear`().
     !>
     !> \p rocsparse_bsrsv_analysis can share its meta data with \ref rocsparse_sbsrsm_analysis
     !> "rocsparse_Xbsrsm_analysis()",
@@ -19214,7 +19171,7 @@ module hipfort_rocsparse
     !> \retval     rocsparse_status_internal_error an internal error occurred.
     !> \retval     rocsparse_status_not_implemented
     !> \p trans == \ref rocsparse_operation_conjugate_transpose or
-    !> \ref rocsparse_matrix_type != \ref rocsparse_matrix_type_general.
+    !> `rocsparse_matrix_type` != \ref rocsparse_matrix_type_general.
     function rocsparse_sbsrsv_analysis(handle, dir, trans, mb, nnzb, descr, bsr_val, bsr_row_ptr, &
                                        bsr_col_ind, block_dim, info, analysis, solve, temp_buffer) &
        result(sbsrsv_analysis) &
@@ -19322,8 +19279,8 @@ module hipfort_rocsparse
     !> if memory is an issue and the analysis data is not required for further computation, for
     !> example,
     !> when switching to another sparse matrix format. Calling \p rocsparse_bsrsv_clear is optional.
-    !> All allocated resources will be cleared when the opaque \ref rocsparse_mat_info struct is
-    !> destroyed using \ref rocsparse_destroy_mat_info().
+    !> All allocated resources will be cleared when the opaque `rocsparse_mat_info` struct is
+    !> destroyed using `rocsparse_destroy_mat_info`().
     !>
     !> \note
     !> This routine does not support execution in a hipGraph context.
@@ -19365,7 +19322,7 @@ module hipfort_rocsparse
     !> \f[
     !> op(A) = \left\{
     !> \begin{array}{ll}
-    !> A,   & \text{if trans == rocsparse_operation_none} \\
+    !> A,   & \text{if trans == rocsparse_operation_none} \\%
     !> A^T, & \text{if trans == rocsparse_operation_transpose}
     !> \end{array}
     !> \right.
@@ -19392,23 +19349,23 @@ module hipfort_rocsparse
     !> to as a numerical zero), then a solution is not possible. \p rocsparse_bsrsv_solve tracks the
     !> location of the first
     !> zero pivot (either numerical or structural zero). The zero pivot status can be checked by
-    !> calling \ref rocsparse_bsrsv_zero_pivot().
-    !> If \ref rocsparse_bsrsv_zero_pivot() returns \ref rocsparse_status_success, then no zero
-    !> pivot was found and therefore
+    !> calling `rocsparse_bsrsv_zero_pivot` ().
+    !> If `rocsparse_bsrsv_zero_pivot` () returns \ref rocsparse_status_success, then no zero pivot
+    !> was found and therefore
     !> the matrix does not have a structural or numerical zero.
     !>
     !> The user can specify that the sparse matrix should be interpreted as having identity blocks
     !> on the diagonal by setting the diagonal
-    !> type on the descriptor \p descr to \ref rocsparse_diag_type_unit using \ref
-    !> rocsparse_set_mat_diag_type. If
-    !> \ref rocsparse_diag_type == \ref rocsparse_diag_type_unit, no zero pivot will be reported,
-    !> even if the diagonal block \f$A_{j,j}\f$
+    !> type on the descriptor \p descr to \ref rocsparse_diag_type_unit using
+    !> `rocsparse_set_mat_diag_type`. If
+    !> `rocsparse_diag_type` == \ref rocsparse_diag_type_unit, no zero pivot will be reported, even
+    !> if the diagonal block \f$A_{j,j}\f$
     !> for some \f$j\f$ is not invertible.
     !>
     !> The sparse CSR matrix passed to \p rocsparse_bsrsv_solve does not actually have to be a
     !> triangular matrix. Instead, the
-    !> triangular upper or lower part of the sparse matrix is solved based on \ref
-    !> rocsparse_fill_mode set on the descriptor
+    !> triangular upper or lower part of the sparse matrix is solved based on `rocsparse_fill_mode`
+    !> set on the descriptor
     !> \p descr. If the fill mode is set to \ref rocsparse_fill_mode_lower, then the lower
     !> triangular matrix is solved. If the
     !> fill mode is set to \ref rocsparse_fill_mode_upper, then the upper triangular matrix is
@@ -19472,12 +19429,11 @@ module hipfort_rocsparse
     !> \retval     rocsparse_status_internal_error an internal error occurred.
     !> \retval     rocsparse_status_not_implemented
     !> \p trans == \ref rocsparse_operation_conjugate_transpose or
-    !> \ref rocsparse_matrix_type != \ref rocsparse_matrix_type_general.
+    !> `rocsparse_matrix_type` != \ref rocsparse_matrix_type_general.
     !>
     !> \par Example
     !> Consider the lower triangular \f$m \times m\f$ matrix \f$L\f$, stored in BSR
     !> storage format with unit diagonal. The following example solves \f$L \cdot y = x\f$.
-    !> \snippet example_rocsparse_bsrsv.cpp doc example
     function rocsparse_sbsrsv_solve(handle, dir, trans, mb, nnzb, alpha, descr, bsr_val, &
                                     bsr_row_ptr, bsr_col_ind, block_dim, info, x, y, policy, &
                                     temp_buffer) &
@@ -19685,7 +19641,7 @@ module hipfort_rocsparse
     !> \retval     rocsparse_status_arch_mismatch the device is not supported.
     !> \retval     rocsparse_status_not_implemented
     !> \p block_dim==1, \p trans != \ref rocsparse_operation_none or
-    !> \ref rocsparse_matrix_type != \ref rocsparse_matrix_type_general.
+    !> `rocsparse_matrix_type` != \ref rocsparse_matrix_type_general.
     function rocsparse_sbsrxmv(handle, dir, trans, size_of_mask, mb, nb, nnzb, alpha, descr, &
                                bsr_val, bsr_mask_ptr, bsr_row_ptr, bsr_end_ptr, bsr_col_ind, &
                                block_dim, x, beta, y) &
@@ -19821,15 +19777,15 @@ module hipfort_rocsparse
     !> \f[
     !> op(A) = \left\{
     !> \begin{array}{ll}
-    !> A,   & \text{if trans == rocsparse_operation_none} \\
-    !> A^T, & \text{if trans == rocsparse_operation_transpose} \\
+    !> A,   & \text{if trans == rocsparse_operation_none} \\%
+    !> A^T, & \text{if trans == rocsparse_operation_transpose} \\%
     !> A^H, & \text{if trans == rocsparse_operation_conjugate_transpose}
     !> \end{array}
     !> \right.
     !> \f]
     !>
     !> The COO matrix has to be sorted by row indices. This can be achieved by using
-    !> rocsparse_coosort_by_row().
+    !> `rocsparse_coosort_by_row()`.
     !>
     !> \code{.c}
     !> for(i = 0; i < m; ++i)
@@ -19892,11 +19848,10 @@ module hipfort_rocsparse
     !> \p coo_row_ind, \p coo_col_ind, \p x, \p beta, or \p y pointer is invalid.
     !> \retval     rocsparse_status_arch_mismatch the device is not supported.
     !> \retval     rocsparse_status_not_implemented
-    !> \ref rocsparse_matrix_type != \ref rocsparse_matrix_type_general.
+    !> `rocsparse_matrix_type` != \ref rocsparse_matrix_type_general.
     !>
     !> \par Example
     !> This example performs a sparse matrix vector multiplication in COO format.
-    !> \snippet example_rocsparse_coomv.cpp doc example
     function rocsparse_scoomv(handle, trans, m, n, nnz, alpha, descr, coo_val, coo_row_ind, &
                               coo_col_ind, x, beta, y) &
        result(scoomv) &
@@ -20082,8 +20037,8 @@ module hipfort_rocsparse
     !> \p csr_col_ind, \p info, or \p buffer_size pointer is invalid.
     !> \retval     rocsparse_status_internal_error an internal error occurred.
     !> \retval     rocsparse_status_not_implemented
-    !> \ref rocsparse_matrix_type != \ref rocsparse_matrix_type_general and \ref
-    !> rocsparse_matrix_type != \ref rocsparse_matrix_type_triangular.
+    !> `rocsparse_matrix_type` != \ref rocsparse_matrix_type_general and `rocsparse_matrix_type` !=
+    !> \ref rocsparse_matrix_type_triangular.
     function rocsparse_scsritsv_buffer_size(handle, trans, m, nnz, descr, csr_val, csr_row_ptr, &
                                             csr_col_ind, info, buffer_size) &
        result(scsritsv_buffer_size) &
@@ -20174,7 +20129,7 @@ module hipfort_rocsparse
     !> "rocsparse_Xcsritsv_solve()".
     !> It is expected that this function will be executed only once for a given matrix and
     !> particular operation type. The
-    !> analysis meta data can be cleared by \ref rocsparse_csritsv_clear().
+    !> analysis meta data can be cleared by `rocsparse_csritsv_clear`().
     !>
     !> Selecting
     !> \ref rocsparse_analysis_policy_reuse policy can greatly improve the computation
@@ -20227,8 +20182,8 @@ module hipfort_rocsparse
     !> \p csr_col_ind, \p info, or \p temp_buffer pointer is invalid.
     !> \retval     rocsparse_status_internal_error an internal error occurred.
     !> \retval     rocsparse_status_not_implemented
-    !> \ref rocsparse_matrix_type != \ref rocsparse_matrix_type_general and \ref
-    !> rocsparse_matrix_type != \ref rocsparse_matrix_type_triangular.
+    !> `rocsparse_matrix_type` != \ref rocsparse_matrix_type_general and `rocsparse_matrix_type` !=
+    !> \ref rocsparse_matrix_type_triangular.
     function rocsparse_scsritsv_analysis(handle, trans, m, nnz, descr, csr_val, csr_row_ptr, &
                                          csr_col_ind, info, analysis, solve, temp_buffer) &
        result(scsritsv_analysis) &
@@ -20328,8 +20283,8 @@ module hipfort_rocsparse
     !> especially useful if memory is an issue and the analysis data is not
     !> required for further computation, for example, when switching to another sparse
     !> matrix format. Calling \p rocsparse_csritsv_clear is optional. All allocated
-    !> resources will be cleared when the opaque \ref rocsparse_mat_info struct is
-    !> destroyed using \ref rocsparse_destroy_mat_info().
+    !> resources will be cleared when the opaque `rocsparse_mat_info` struct is
+    !> destroyed using `rocsparse_destroy_mat_info`().
     !>
     !> \note
     !> This routine does not support execution in a hipGraph context.
@@ -20375,8 +20330,8 @@ module hipfort_rocsparse
     !> \f[
     !> op(A) = \left\{
     !> \begin{array}{ll}
-    !> A,   & \text{if trans == rocsparse_operation_none} \\
-    !> A^T, & \text{if trans == rocsparse_operation_transpose} \\
+    !> A,   & \text{if trans == rocsparse_operation_none} \\%
+    !> A^T, & \text{if trans == rocsparse_operation_transpose} \\%
     !> A^H, & \text{if trans == rocsparse_operation_conjugate_transpose}
     !> \end{array}
     !> \right.
@@ -20397,7 +20352,7 @@ module hipfort_rocsparse
     !> \f[
     !> r_k = \alpha x - (D + T) y_k.
     !> \f]
-    !> Starting with \f$y_0 = \f$ \p y, the method iterates if \f$ 0 \le k \lt \f$ \p host_nmaxiter
+    !> Starting with \f$y_0 = \f$ \p y, the method iterates if \f$ 0 &le; k \lt \f$ \p host_nmaxiter
     !> and if
     !> \f[
     !> \Vert r_k \Vert_{\infty} \gt \epsilon,
@@ -20409,13 +20364,13 @@ module hipfort_rocsparse
     !> In addition, analysis metadata is required. It can be obtained by
     !> \ref rocsparse_scsritsv_analysis "rocsparse_Xcsritsv_analysis()". \p rocsparse_csritsv_solve
     !> reports the first zero pivot (either numerical or structural zero).
-    !> The zero pivot status can be checked by calling \ref rocsparse_csritsv_zero_pivot(). If
-    !> \ref rocsparse_diag_type == \ref rocsparse_diag_type_unit, no zero pivot will be
+    !> The zero pivot status can be checked by calling `rocsparse_csritsv_zero_pivot`(). If
+    !> `rocsparse_diag_type` == \ref rocsparse_diag_type_unit, no zero pivot will be
     !> reported, even if \f$A_{j,j} = 0\f$ for some \f$j\f$.
     !>
     !> \note
     !> The sparse CSR matrix has to be sorted. This can be achieved by calling
-    !> rocsparse_csrsort().
+    !> `rocsparse_csrsort()`.
     !>
     !> \note
     !> This function is blocking with respect to the host.
@@ -20470,8 +20425,8 @@ module hipfort_rocsparse
     !> \retval     rocsparse_status_arch_mismatch the device is not supported.
     !> \retval     rocsparse_status_internal_error an internal error occurred.
     !> \retval     rocsparse_status_not_implemented
-    !> \ref rocsparse_matrix_type != \ref rocsparse_matrix_type_general and \ref
-    !> rocsparse_matrix_type != \ref rocsparse_matrix_type_triangular.
+    !> `rocsparse_matrix_type` != \ref rocsparse_matrix_type_general and `rocsparse_matrix_type` !=
+    !> \ref rocsparse_matrix_type_triangular.
     !>
     !> \par Example
     !> Consider the lower triangular \f$m \times m\f$ matrix \f$L\f$, stored in CSR
@@ -20701,8 +20656,8 @@ module hipfort_rocsparse
     !> \f[
     !> op(A) = \left\{
     !> \begin{array}{ll}
-    !> A,   & \text{if trans == rocsparse_operation_none} \\
-    !> A^T, & \text{if trans == rocsparse_operation_transpose} \\
+    !> A,   & \text{if trans == rocsparse_operation_none} \\%
+    !> A^T, & \text{if trans == rocsparse_operation_transpose} \\%
     !> A^H, & \text{if trans == rocsparse_operation_conjugate_transpose}
     !> \end{array}
     !> \right.
@@ -20723,7 +20678,7 @@ module hipfort_rocsparse
     !> \f[
     !> r_k = \alpha x - (D + T) y_k.
     !> \f]
-    !> Starting with \f$y_0 = \f$ \p y, the method iterates if \f$ 0 \le k \lt \f$ \p host_nmaxiter
+    !> Starting with \f$y_0 = \f$ \p y, the method iterates if \f$ 0 &le; k \lt \f$ \p host_nmaxiter
     !> and if
     !> \f[
     !> \Vert r_k \Vert_{\infty} \gt \epsilon,
@@ -20743,13 +20698,13 @@ module hipfort_rocsparse
     !> \ref rocsparse_scsritsv_analysis "rocsparse_Xcsritsv_analysis()". \p
     !> rocsparse_csritsv_solve_ex
     !> reports the first zero pivot (either numerical or structural zero). The zero pivot status
-    !> can be checked by calling rocsparse_csritsv_zero_pivot(). If
-    !> \ref rocsparse_diag_type == \ref rocsparse_diag_type_unit, no zero pivot will be
+    !> can be checked by calling `rocsparse_csritsv_zero_pivot()`. If
+    !> `rocsparse_diag_type` == \ref rocsparse_diag_type_unit, no zero pivot will be
     !> reported, even if \f$A_{j,j} = 0\f$ for some \f$j\f$.
     !>
     !> \note
     !> The sparse CSR matrix has to be sorted. This can be achieved by calling
-    !> rocsparse_csrsort().
+    !> `rocsparse_csrsort()`.
     !>
     !> \note
     !> This function is blocking with respect to the host.
@@ -20807,8 +20762,8 @@ module hipfort_rocsparse
     !> \retval     rocsparse_status_arch_mismatch the device is not supported.
     !> \retval     rocsparse_status_internal_error an internal error occurred.
     !> \retval     rocsparse_status_not_implemented
-    !> \ref rocsparse_matrix_type != \ref rocsparse_matrix_type_general and \ref
-    !> rocsparse_matrix_type != \ref rocsparse_matrix_type_triangular.
+    !> `rocsparse_matrix_type` != \ref rocsparse_matrix_type_general and `rocsparse_matrix_type` !=
+    !> \ref rocsparse_matrix_type_triangular.
     !>
     !> \par Example
     !> Consider the lower triangular \f$m \times m\f$ matrix \f$L\f$, stored in CSR
@@ -21039,16 +20994,16 @@ module hipfort_rocsparse
     !> "rocsparse_Xcsrmv()".
     !> It is expected that this function will be executed only once for a given sparsity pattern and
     !> particular operation
-    !> type. The gathered analysis metadata is stored in the \ref rocsparse_mat_info object and can
-    !> be cleared by
-    !> \ref rocsparse_csrmv_clear().
+    !> type. The gathered analysis metadata is stored in the `rocsparse_mat_info` object and can be
+    !> cleared by
+    !> `rocsparse_csrmv_clear`().
     !>
     !> If the matrix sparsity pattern changes, the gathered information will become invalid. To
     !> perform another
     !> sparse matrix multiplication with a matrix having a different sparsity pattern, either
     !> destroy
     !> the old \p info object and create a new one or clear the existing info object using
-    !> \ref rocsparse_csrmv_clear(). In both cases, the analysis will need to be called again.
+    !> `rocsparse_csrmv_clear`(). In both cases, the analysis will need to be called again.
     !>
     !> \note
     !> This function is blocking with respect to the host.
@@ -21087,7 +21042,7 @@ module hipfort_rocsparse
     !> \retval     rocsparse_status_memory_error the buffer for the gathered information
     !> could not be allocated.
     !> \retval     rocsparse_status_internal_error an internal error occurred.
-    !> \retval     rocsparse_status_not_implemented if \ref rocsparse_matrix_type is not one of
+    !> \retval     rocsparse_status_not_implemented if `rocsparse_matrix_type` is not one of
     !> \ref rocsparse_matrix_type_general, \ref rocsparse_matrix_type_symmetric, or
     !> \ref rocsparse_matrix_type_triangular.
     function rocsparse_scsrmv_analysis(handle, trans, m, n, nnz, descr, csr_val, csr_row_ptr, &
@@ -21183,8 +21138,8 @@ module hipfort_rocsparse
     !>
     !> \note
     !> Calling \p rocsparse_csrmv_clear is optional. All allocated resources will be
-    !> cleared, when the opaque \ref rocsparse_mat_info object is destroyed using
-    !> \ref rocsparse_destroy_mat_info().
+    !> cleared, when the opaque `rocsparse_mat_info` object is destroyed using
+    !> `rocsparse_destroy_mat_info`().
     !>
     !> \note
     !> This routine does not support execution in a hipGraph context.
@@ -21227,8 +21182,8 @@ module hipfort_rocsparse
     !> \f[
     !> op(A) = \left\{
     !> \begin{array}{ll}
-    !> A,   & \text{if trans == rocsparse_operation_none} \\
-    !> A^T, & \text{if trans == rocsparse_operation_transpose} \\
+    !> A,   & \text{if trans == rocsparse_operation_none} \\%
+    !> A^T, & \text{if trans == rocsparse_operation_transpose} \\%
     !> A^H, & \text{if trans == rocsparse_operation_conjugate_transpose}
     !> \end{array}
     !> \right.
@@ -21260,8 +21215,8 @@ module hipfort_rocsparse
     !> \p NULL for the \p info parameter.
     !>
     !> With analysis, completing the sparse matrix vector multiplication involves two steps. First,
-    !> create a \ref rocsparse_mat_info object by calling \ref rocsparse_create_mat_info and then
-    !> pass this to
+    !> create a `rocsparse_mat_info` object by calling \ref rocsparse_create_mat_info and then pass
+    !> this to
     !> \ref rocsparse_scsrmv_analysis "rocsparse_Xcsrmv_analysis()", which will perform analysis on
     !> the sparsity pattern of the
     !> matrix \f$op(A)\f$. Then complete the operation by calling \p rocsparse_csrmv. The creation
@@ -21270,15 +21225,14 @@ module hipfort_rocsparse
     !> pattern, while the computation
     !> can be performed repeatedly as long as the sparsity pattern has not changed. After all calls
     !> to \p rocsparse_csrmv have
-    !> been made, the \p info object can be destroyed with a call to \ref
-    !> rocsparse_destroy_mat_info.
+    !> been made, the \p info object can be destroyed with a call to `rocsparse_destroy_mat_info`.
     !>
     !> When running with analysis, a user might want to perform multiple sparse matrix
     !> multiplications, with each sparse matrix having a different sparsity pattern. Instead of
     !> creating and destroying multiple
-    !> \ref rocsparse_mat_info objects for each unique sparsity pattern, they can instead create the
-    !> \p info object once and
-    !> then call \ref rocsparse_csrmv_clear and rerun the analysis in between each sparse matrix
+    !> `rocsparse_mat_info` objects for each unique sparsity pattern, they can instead create the \p
+    !> info object once and
+    !> then call `rocsparse_csrmv_clear` and rerun the analysis in between each sparse matrix
     !> multiplication.
     !>
     !> \note
@@ -21331,12 +21285,11 @@ module hipfort_rocsparse
     !> invalid.
     !> \retval     rocsparse_status_arch_mismatch the device is not supported.
     !> \retval     rocsparse_status_not_implemented
-    !> \ref rocsparse_matrix_type != \ref rocsparse_matrix_type_general.
+    !> `rocsparse_matrix_type` != \ref rocsparse_matrix_type_general.
     !>
     !> \par Example
     !> This example performs a sparse matrix vector multiplication in CSR format
     !> using additional meta data to improve performance.
-    !> \snippet example_rocsparse_csrmv.cpp doc example
     function rocsparse_scsrmv(handle, trans, m, n, nnz, alpha, descr, csr_val, csr_row_ptr, &
                               csr_col_ind, info, x, beta, y) &
        result(scsrmv) &
@@ -21535,7 +21488,7 @@ module hipfort_rocsparse
     !> \retval     rocsparse_status_internal_error an internal error occurred.
     !> \retval     rocsparse_status_not_implemented
     !> \p trans == \ref rocsparse_operation_conjugate_transpose or
-    !> \ref rocsparse_matrix_type != \ref rocsparse_matrix_type_general.
+    !> `rocsparse_matrix_type` != \ref rocsparse_matrix_type_general.
     function rocsparse_scsrsv_buffer_size(handle, trans, m, nnz, descr, csr_val, csr_row_ptr, &
                                           csr_col_ind, info, buffer_size) &
        result(scsrsv_buffer_size) &
@@ -21625,13 +21578,13 @@ module hipfort_rocsparse
     !> \p rocsparse_csrsv_analysis performs the analysis step for
     !> \ref rocsparse_scsrsv_solve "rocsparse_Xcsrsv_solve()". It is expected that this
     !> function will be executed only once for a given matrix and particular operation
-    !> type. The analysis metadata can be cleared by \ref rocsparse_csrsv_clear().
+    !> type. The analysis metadata can be cleared by `rocsparse_csrsv_clear`().
     !>
     !> If the matrix sparsity pattern changes, the gathered information will become invalid. To
     !> perform another
     !> sparse triangular solve with a matrix having a different sparsity pattern, either destroy
     !> the old \p info object and create a new one or clear the existing \p info object using
-    !> \ref rocsparse_csrsv_clear(). In both cases, the analysis will need to be called again.
+    !> `rocsparse_csrsv_clear`(). In both cases, the analysis will need to be called again.
     !>
     !> \p rocsparse_csrsv_analysis can share its meta data with
     !> \ref rocsparse_scsrsm_analysis "rocsparse_Xcsrsm_analysis()",
@@ -21688,7 +21641,7 @@ module hipfort_rocsparse
     !> \retval     rocsparse_status_internal_error an internal error occurred.
     !> \retval     rocsparse_status_not_implemented
     !> \p trans == \ref rocsparse_operation_conjugate_transpose or
-    !> \ref rocsparse_matrix_type != \ref rocsparse_matrix_type_general.
+    !> `rocsparse_matrix_type` != \ref rocsparse_matrix_type_general.
     function rocsparse_scsrsv_analysis(handle, trans, m, nnz, descr, csr_val, csr_row_ptr, &
                                        csr_col_ind, info, analysis, solve, temp_buffer) &
        result(scsrsv_analysis) &
@@ -21791,7 +21744,7 @@ module hipfort_rocsparse
     !>
     !> Calling \p rocsparse_csrsv_clear is optional. All allocated resources will be cleared when
     !> the
-    !> opaque \ref rocsparse_mat_info struct is destroyed using \ref rocsparse_destroy_mat_info().
+    !> opaque `rocsparse_mat_info` struct is destroyed using `rocsparse_destroy_mat_info`().
     !>
     !> \note
     !> This routine does not support execution in a hipGraph context.
@@ -21836,8 +21789,8 @@ module hipfort_rocsparse
     !> \f[
     !> op(A) = \left\{
     !> \begin{array}{ll}
-    !> A,   & \text{if trans == rocsparse_operation_none} \\
-    !> A^T, & \text{if trans == rocsparse_operation_transpose} \\
+    !> A,   & \text{if trans == rocsparse_operation_none} \\%
+    !> A^T, & \text{if trans == rocsparse_operation_transpose} \\%
     !> A^H, & \text{if trans == rocsparse_operation_conjugate_transpose}
     !> \end{array}
     !> \right.
@@ -21863,24 +21816,24 @@ module hipfort_rocsparse
     !> (referred to as a numerical zero),
     !> then a division by zero would occur. \p rocsparse_csrsv_solve tracks the location of the
     !> first zero pivot (either numerical
-    !> or structural zero). The zero pivot status can be checked by calling \ref
-    !> rocsparse_csrsv_zero_pivot(). If
-    !> \ref rocsparse_csrsv_zero_pivot() returns \ref rocsparse_status_success, then no zero pivot
-    !> was found and therefore
+    !> or structural zero). The zero pivot status can be checked by calling
+    !> `rocsparse_csrsv_zero_pivot` (). If
+    !> `rocsparse_csrsv_zero_pivot` () returns \ref rocsparse_status_success, then no zero pivot was
+    !> found and therefore
     !> the matrix does not have a structural or numerical zero.
     !>
     !> The user can specify that the sparse matrix should be interpreted as having ones on the
     !> diagonal by setting the diagonal type
-    !> on the descriptor \p descr to \ref rocsparse_diag_type_unit using \ref
-    !> rocsparse_set_mat_diag_type. If
-    !> \ref rocsparse_diag_type == \ref rocsparse_diag_type_unit, no zero pivot will be reported,
-    !> even if \f$A_{j,j} = 0\f$ for
+    !> on the descriptor \p descr to \ref rocsparse_diag_type_unit using
+    !> `rocsparse_set_mat_diag_type`. If
+    !> `rocsparse_diag_type` == \ref rocsparse_diag_type_unit, no zero pivot will be reported, even
+    !> if \f$A_{j,j} = 0\f$ for
     !> some \f$j\f$.
     !>
     !> The sparse CSR matrix passed to \p rocsparse_csrsv_solve does not actually have to be a
     !> triangular matrix. Instead the
-    !> triangular upper or lower part of the sparse matrix is solved based on \ref
-    !> rocsparse_fill_mode set on the descriptor
+    !> triangular upper or lower part of the sparse matrix is solved based on `rocsparse_fill_mode`
+    !> set on the descriptor
     !> \p descr. If the fill mode is set to \ref rocsparse_fill_mode_lower, then the lower
     !> triangular matrix is solved. If the
     !> fill mode is set to \ref rocsparse_fill_mode_upper, then the upper triangular matrix is
@@ -21888,7 +21841,7 @@ module hipfort_rocsparse
     !>
     !> \note
     !> The sparse CSR matrix has to be sorted. This can be achieved by calling
-    !> rocsparse_csrsort().
+    !> `rocsparse_csrsort()`.
     !>
     !> \note
     !> This function is non-blocking and executed asynchronously with respect to the host.
@@ -21941,12 +21894,11 @@ module hipfort_rocsparse
     !> \retval     rocsparse_status_internal_error an internal error occurred.
     !> \retval     rocsparse_status_not_implemented
     !> \p trans == \ref rocsparse_operation_conjugate_transpose or
-    !> \ref rocsparse_matrix_type != \ref rocsparse_matrix_type_general.
+    !> `rocsparse_matrix_type` != \ref rocsparse_matrix_type_general.
     !>
     !> \par Example
     !> Consider the lower triangular \f$m \times m\f$ matrix \f$L\f$, stored in CSR
     !> storage format with unit diagonal. The following example solves \f$L \cdot y = x\f$.
-    !> \snippet example_rocsparse_csrsv.cpp doc example
     function rocsparse_scsrsv_solve(handle, trans, m, nnz, alpha, descr, csr_val, csr_row_ptr, &
                                     csr_col_ind, info, x, y, policy, temp_buffer) &
        result(scsrsv_solve) &
@@ -22062,8 +22014,8 @@ module hipfort_rocsparse
     !> \f[
     !> op(A) = \left\{
     !> \begin{array}{ll}
-    !> A,   & \text{if trans == rocsparse_operation_none} \\
-    !> A^T, & \text{if trans == rocsparse_operation_transpose} \\
+    !> A,   & \text{if trans == rocsparse_operation_none} \\%
+    !> A^T, & \text{if trans == rocsparse_operation_transpose} \\%
     !> A^H, & \text{if trans == rocsparse_operation_conjugate_transpose}
     !> \end{array}
     !> \right.
@@ -22132,13 +22084,12 @@ module hipfort_rocsparse
     !> \retval     rocsparse_status_invalid_pointer \p descr, \p alpha, \p ell_val,
     !> \p ell_col_ind, \p x, \p beta, or \p y pointer is invalid.
     !> \retval     rocsparse_status_not_implemented
-    !> \ref rocsparse_matrix_type != \ref rocsparse_matrix_type_general.
+    !> `rocsparse_matrix_type` != \ref rocsparse_matrix_type_general.
     !>
     !> \par Example
     !> This example performs a sparse matrix vector multiplication in ELL format. It also shows how
     !> to convert
     !> from CSR to ELL format.
-    !> \snippet example_rocsparse_ellmv.cpp doc example
     function rocsparse_sellmv(handle, trans, m, n, alpha, descr, ell_val, ell_col_ind, ell_width, &
                               x, beta, y) &
        result(sellmv) &
@@ -22309,11 +22260,10 @@ module hipfort_rocsparse
     !> \retval     rocsparse_status_arch_mismatch the device is not supported.
     !> \retval     rocsparse_status_not_implemented
     !> \p trans != \ref rocsparse_operation_none or
-    !> \ref rocsparse_matrix_type != \ref rocsparse_matrix_type_general.
+    !> `rocsparse_matrix_type` != \ref rocsparse_matrix_type_general.
     !>
     !> \par Example
     !> This example performs a sparse matrix vector multiplication in GEBSR format.
-    !> \snippet example_rocsparse_gebsrmv.cpp doc example
     function rocsparse_sgebsrmv(handle, dir, trans, mb, nb, nnzb, alpha, descr, bsr_val, &
                                 bsr_row_ptr, bsr_col_ind, row_block_dim, col_block_dim, x, beta, &
                                 y) &
@@ -22458,7 +22408,7 @@ module hipfort_rocsparse
     !> \retval     rocsparse_status_invalid_pointer \p buffer_size pointer is invalid.
     !> \retval     rocsparse_status_not_implemented
     !> \p trans != \ref rocsparse_operation_none or
-    !> \ref rocsparse_matrix_type != \ref rocsparse_matrix_type_general.
+    !> `rocsparse_matrix_type` != \ref rocsparse_matrix_type_general.
     function rocsparse_sgemvi_buffer_size(handle, trans, m, n, nnz, buffer_size) &
        result(sgemvi_buffer_size) &
        bind(C, name="rocsparse_sgemvi_buffer_size")
@@ -22596,10 +22546,9 @@ module hipfort_rocsparse
     !> \p beta, \p y, or \p temp_buffer pointer is invalid.
     !> \retval     rocsparse_status_not_implemented
     !> \p trans != \ref rocsparse_operation_none or
-    !> \ref rocsparse_matrix_type != \ref rocsparse_matrix_type_general.
+    !> `rocsparse_matrix_type` != \ref rocsparse_matrix_type_general.
     !>
     !> \par Example
-    !> \snippet example_rocsparse_gemvi.cpp doc example
     function rocsparse_sgemvi(handle, trans, m, n, alpha, A, lda, nnz, x_val, x_ind, beta, y, &
                               idx_base, temp_buffer) &
        result(sgemvi) &
@@ -22760,12 +22709,11 @@ module hipfort_rocsparse
     !> \retval     rocsparse_status_internal_error an internal error occurred.
     !> \retval     rocsparse_status_not_implemented
     !> \p trans != \ref rocsparse_operation_none or
-    !> \ref rocsparse_matrix_type != \ref rocsparse_matrix_type_general.
+    !> `rocsparse_matrix_type` != \ref rocsparse_matrix_type_general.
     !>
     !> \par Example
     !> This example performs a sparse matrix vector multiplication in HYB format and
     !> demonstrates a conversion from the CSR to HYB format.
-    !> \snippet example_rocsparse_hybmv.cpp doc example
     function rocsparse_shybmv(handle, trans, alpha, descr, hyb, x, beta, y) &
        result(shybmv) &
        bind(C, name="rocsparse_shybmv")
@@ -22854,7 +22802,7 @@ module hipfort_rocsparse
     !> \f[
     !> op(A) = \left\{
     !> \begin{array}{ll}
-    !> A,   & \text{if trans_A == rocsparse_operation_none} \\
+    !> A,   & \text{if trans_A == rocsparse_operation_none} \\%
     !> \end{array}
     !> \right.
     !> \f]
@@ -22862,8 +22810,8 @@ module hipfort_rocsparse
     !> \f[
     !> op(B) = \left\{
     !> \begin{array}{ll}
-    !> B,   & \text{if trans_B == rocsparse_operation_none} \\
-    !> B^T, & \text{if trans_B == rocsparse_operation_transpose} \\
+    !> B,   & \text{if trans_B == rocsparse_operation_none} \\%
+    !> B^T, & \text{if trans_B == rocsparse_operation_transpose} \\%
     !> \end{array}
     !> \right.
     !> \f]
@@ -22940,11 +22888,10 @@ module hipfort_rocsparse
     !> \retval     rocsparse_status_not_implemented
     !> \p trans_A != \ref rocsparse_operation_none,
     !> \p trans_B == \ref rocsparse_operation_conjugate_transpose, or
-    !> \ref rocsparse_matrix_type != \ref rocsparse_matrix_type_general.
+    !> `rocsparse_matrix_type` != \ref rocsparse_matrix_type_general.
     !>
     !> \par Example
     !> This example multiplies a BSR matrix with a column-oriented dense matrix.
-    !> \snippet example_rocsparse_bsrmm.cpp doc example
     function rocsparse_sbsrmm(handle, dir, trans_A, trans_B, mb, n, kb, nnzb, alpha, descr, &
                               bsr_val, bsr_row_ptr, bsr_col_ind, block_dim, B, ldb, beta, C, ldc) &
        result(sbsrmm) &
@@ -23165,7 +23112,7 @@ module hipfort_rocsparse
     !> \retval     rocsparse_status_not_implemented
     !> \p trans_A == \ref rocsparse_operation_conjugate_transpose,
     !> \p trans_X == \ref rocsparse_operation_conjugate_transpose, or
-    !> \ref rocsparse_matrix_type != \ref rocsparse_matrix_type_general.
+    !> `rocsparse_matrix_type` != \ref rocsparse_matrix_type_general.
     function rocsparse_sbsrsm_buffer_size(handle, dir, trans_A, trans_X, mb, nrhs, nnzb, descr, &
                                           bsr_val, bsr_row_ptr, bsr_col_ind, block_dim, info, &
                                           buffer_size) &
@@ -23275,7 +23222,7 @@ module hipfort_rocsparse
     !> \p rocsparse_bsrsm_analysis performs the analysis step for
     !> \ref rocsparse_sbsrsm_solve "rocsparse_Xbsrsm_solve()". It is expected that this function
     !> will be executed only once for a given matrix and particular operation type. The analysis
-    !> meta data can be cleared by \ref rocsparse_bsrsm_clear().
+    !> meta data can be cleared by `rocsparse_bsrsm_clear`().
     !>
     !> \p rocsparse_bsrsm_analysis can share its meta data with
     !> \ref rocsparse_sbsrilu0_analysis "rocsparse_Xbsrilu0_analysis()",
@@ -23340,7 +23287,7 @@ module hipfort_rocsparse
     !> \retval     rocsparse_status_not_implemented
     !> \p trans_A == \ref rocsparse_operation_conjugate_transpose,
     !> \p trans_X == \ref rocsparse_operation_conjugate_transpose, or
-    !> \ref rocsparse_matrix_type != \ref rocsparse_matrix_type_general.
+    !> `rocsparse_matrix_type` != \ref rocsparse_matrix_type_general.
     function rocsparse_sbsrsm_analysis(handle, dir, trans_A, trans_X, mb, nrhs, nnzb, descr, &
                                        bsr_val, bsr_row_ptr, bsr_col_ind, block_dim, info, &
                                        analysis, solve, temp_buffer) &
@@ -23460,8 +23407,8 @@ module hipfort_rocsparse
     !> if memory is an issue and the analysis data is not required for further computation, for
     !> example,
     !> when switching to another sparse matrix format. Calling \p rocsparse_bsrsm_clear is optional.
-    !> All allocated resources will be cleared when the opaque \ref rocsparse_mat_info struct
-    !> is destroyed using \ref rocsparse_destroy_mat_info().
+    !> All allocated resources will be cleared when the opaque `rocsparse_mat_info` struct
+    !> is destroyed using `rocsparse_destroy_mat_info`().
     !>
     !> \note
     !> This routine does not support execution in a hipGraph context.
@@ -23506,8 +23453,8 @@ module hipfort_rocsparse
     !> \f[
     !> op(A) = \left\{
     !> \begin{array}{ll}
-    !> A,   & \text{if trans_A == rocsparse_operation_none} \\
-    !> A^T, & \text{if trans_A == rocsparse_operation_transpose} \\
+    !> A,   & \text{if trans_A == rocsparse_operation_none} \\%
+    !> A^T, & \text{if trans_A == rocsparse_operation_transpose} \\%
     !> A^H, & \text{if trans_A == rocsparse_operation_conjugate_transpose}
     !> \end{array}
     !> \right.
@@ -23516,8 +23463,8 @@ module hipfort_rocsparse
     !> \f[
     !> op(B) = \left\{
     !> \begin{array}{ll}
-    !> B,   & \text{if trans_X == rocsparse_operation_none} \\
-    !> B^T, & \text{if trans_X == rocsparse_operation_transpose} \\
+    !> B,   & \text{if trans_X == rocsparse_operation_none} \\%
+    !> B^T, & \text{if trans_X == rocsparse_operation_transpose} \\%
     !> B^H, & \text{if trans_X == rocsparse_operation_conjugate_transpose}
     !> \end{array}
     !> \right.
@@ -23526,8 +23473,8 @@ module hipfort_rocsparse
     !> \f[
     !> op(X) = \left\{
     !> \begin{array}{ll}
-    !> X,   & \text{if trans_X == rocsparse_operation_none} \\
-    !> X^T, & \text{if trans_X == rocsparse_operation_transpose} \\
+    !> X,   & \text{if trans_X == rocsparse_operation_none} \\%
+    !> X^T, & \text{if trans_X == rocsparse_operation_transpose} \\%
     !> X^H, & \text{if trans_X == rocsparse_operation_conjugate_transpose}
     !> \end{array}
     !> \right.
@@ -23547,9 +23494,9 @@ module hipfort_rocsparse
     !> \f[
     !> op(B) = \left\{
     !> \begin{array}{ll}
-    !> ldb \times nrhs, \text{  } ldb \ge m, & \text{if trans_X == rocsparse_operation_none} \\
-    !> ldb \times m, \text{ } ldb \ge nrhs, & \text{if trans_X == rocsparse_operation_transpose} \\
-    !> ldb \times m, \text{ } ldb \ge nrhs, & \text{if trans_X ==
+    !> ldb \times nrhs, \text{  } ldb &ge; m, & \text{if trans_X == rocsparse_operation_none} \\%
+    !> ldb \times m, \text{ } ldb &ge; nrhs, & \text{if trans_X == rocsparse_operation_transpose} \\%
+    !> ldb \times m, \text{ } ldb &ge; nrhs, & \text{if trans_X ==
     !> rocsparse_operation_conjugate_transpose}
     !> \end{array}
     !> \right.
@@ -23558,9 +23505,9 @@ module hipfort_rocsparse
     !> \f[
     !> op(X) = \left\{
     !> \begin{array}{ll}
-    !> ldb \times nrhs, \text{  } ldb \ge m, & \text{if trans_X == rocsparse_operation_none} \\
-    !> ldb \times m, \text{ } ldb \ge nrhs, & \text{if trans_X == rocsparse_operation_transpose} \\
-    !> ldb \times m, \text{ } ldb \ge nrhs, & \text{if trans_X ==
+    !> ldb \times nrhs, \text{  } ldb &ge; m, & \text{if trans_X == rocsparse_operation_none} \\%
+    !> ldb \times m, \text{ } ldb &ge; nrhs, & \text{if trans_X == rocsparse_operation_transpose} \\%
+    !> ldb \times m, \text{ } ldb &ge; nrhs, & \text{if trans_X ==
     !> rocsparse_operation_conjugate_transpose}
     !> \end{array}
     !> \right.
@@ -23580,37 +23527,37 @@ module hipfort_rocsparse
     !> \left[
     !> \begin{array}{c | c}
     !> \begin{array}{c c}
-    !> a_{00} & a_{01} \\
+    !> a_{00} & a_{01} \\%
     !> a_{10} & a_{11}
     !> \end{array} &
     !> \begin{array}{c c}
-    !> 0 & 0 \\
+    !> 0 & 0 \\%
     !> 0 & 0
-    !> \end{array} \\
+    !> \end{array} \\%
     !> \hline
     !> \begin{array}{c c}
-    !> a_{20} & a_{21} \\
+    !> a_{20} & a_{21} \\%
     !> a_{30} & a_{31}
     !> \end{array} &
     !> \begin{array}{c c}
-    !> a_{22} & a_{23} \\
+    !> a_{22} & a_{23} \\%
     !> a_{32} & a_{33}
-    !> \end{array} \\
+    !> \end{array} \\%
     !> \end{array}
     !> \right]
     !> \cdot
     !> \begin{bmatrix}
-    !> x_{00} & x_{01} \\
-    !> x_{10} & x_{11} \\
-    !> x_{20} & x_{21} \\
-    !> x_{30} & x_{31} \\
+    !> x_{00} & x_{01} \\%
+    !> x_{10} & x_{11} \\%
+    !> x_{20} & x_{21} \\%
+    !> x_{30} & x_{31} \\%
     !> \end{bmatrix}
     !> =
     !> \begin{bmatrix}
-    !> b_{00} & b_{01} \\
-    !> b_{10} & b_{11} \\
-    !> b_{20} & b_{21} \\
-    !> b_{30} & b_{31} \\
+    !> b_{00} & b_{01} \\%
+    !> b_{10} & b_{11} \\%
+    !> b_{20} & b_{21} \\%
+    !> b_{30} & b_{31} \\%
     !> \end{bmatrix}
     !> \f]
     !>
@@ -23620,32 +23567,32 @@ module hipfort_rocsparse
     !> \left[
     !> \begin{array}{c | c}
     !> \begin{array}{c c}
-    !> a_{00} & a_{01} \\
+    !> a_{00} & a_{01} \\%
     !> a_{10} & a_{11}
     !> \end{array} &
     !> \begin{array}{c c}
-    !> 0 & 0 \\
+    !> 0 & 0 \\%
     !> 0 & 0
-    !> \end{array} \\
+    !> \end{array} \\%
     !> \hline
     !> \begin{array}{c c}
-    !> a_{20} & a_{21} \\
+    !> a_{20} & a_{21} \\%
     !> a_{30} & a_{31}
     !> \end{array} &
     !> \begin{array}{c c}
-    !> a_{22} & a_{23} \\
+    !> a_{22} & a_{23} \\%
     !> a_{32} & a_{33}
-    !> \end{array} \\
+    !> \end{array} \\%
     !> \end{array}
     !> \right]
     !> \cdot
     !> \begin{bmatrix}
-    !> x_{00} & x_{10} & x_{20} & x_{30} \\
+    !> x_{00} & x_{10} & x_{20} & x_{30} \\%
     !> x_{01} & x_{11} & x_{21} & x_{31}
     !> \end{bmatrix}^{T}
     !> =
     !> \begin{bmatrix}
-    !> b_{00} & b_{10} & b_{20} & b_{30} \\
+    !> b_{00} & b_{10} & b_{20} & b_{30} \\%
     !> b_{01} & b_{11} & b_{21} & b_{31}
     !> \end{bmatrix}^{T}
     !> \f]
@@ -23661,23 +23608,23 @@ module hipfort_rocsparse
     !> to as a numerical zero) then a solution is not possible. \p rocsparse_bsrsm_solve tracks the
     !> location of the first
     !> zero pivot (either numerical or structural zero). The zero pivot status can be checked by
-    !> calling \ref rocsparse_bsrsm_zero_pivot().
-    !> If \ref rocsparse_bsrsm_zero_pivot() returns \ref rocsparse_status_success, then no zero
-    !> pivot was found and therefore
+    !> calling `rocsparse_bsrsm_zero_pivot` ().
+    !> If `rocsparse_bsrsm_zero_pivot` () returns \ref rocsparse_status_success, then no zero pivot
+    !> was found and therefore
     !> the matrix does not have a structural or numerical zero.
     !>
     !> The user can specify that the sparse matrix should be interpreted as having identity blocks
     !> on the diagonal by setting the diagonal
-    !> type on the descriptor \p descr to \ref rocsparse_diag_type_unit using \ref
-    !> rocsparse_set_mat_diag_type. If
-    !> \ref rocsparse_diag_type == \ref rocsparse_diag_type_unit, no zero pivot will be reported,
-    !> even if the diagonal block \f$A_{j,j}\f$
+    !> type on the descriptor \p descr to \ref rocsparse_diag_type_unit using
+    !> `rocsparse_set_mat_diag_type`. If
+    !> `rocsparse_diag_type` == \ref rocsparse_diag_type_unit, no zero pivot will be reported, even
+    !> if the diagonal block \f$A_{j,j}\f$
     !> for some \f$j\f$ is not invertible.
     !>
     !> The sparse CSR matrix passed to \p rocsparse_bsrsm_solve does not actually have to be a
     !> triangular matrix. Instead, the
-    !> triangular upper or lower part of the sparse matrix is solved based on \ref
-    !> rocsparse_fill_mode set on the descriptor
+    !> triangular upper or lower part of the sparse matrix is solved based on `rocsparse_fill_mode`
+    !> set on the descriptor
     !> \p descr. If the fill mode is set to \ref rocsparse_fill_mode_lower, then the lower
     !> triangular matrix is solved. If the
     !> fill mode is set to \ref rocsparse_fill_mode_upper, then the upper triangular matrix is
@@ -23753,12 +23700,11 @@ module hipfort_rocsparse
     !> \retval     rocsparse_status_not_implemented
     !> \p trans_A == \ref rocsparse_operation_conjugate_transpose,
     !> \p trans_X == \ref rocsparse_operation_conjugate_transpose, or
-    !> \ref rocsparse_matrix_type != \ref rocsparse_matrix_type_general.
+    !> `rocsparse_matrix_type` != \ref rocsparse_matrix_type_general.
     !>
     !> \par Example
     !> Consider the lower triangular \f$m \times m\f$ matrix \f$L\f$, stored in BSR
     !> storage format with non-unit diagonal. The following example solves \f$L \cdot X = B\f$.
-    !> \snippet example_rocsparse_bsrsm.cpp doc example
     function rocsparse_sbsrsm_solve(handle, dir, trans_A, trans_X, mb, nrhs, nnzb, alpha, descr, &
                                     bsr_val, bsr_row_ptr, bsr_col_ind, block_dim, info, B, ldb, X, &
                                     ldx, policy, temp_buffer) &
@@ -23903,8 +23849,8 @@ module hipfort_rocsparse
     !> \f[
     !> op(A) = \left\{
     !> \begin{array}{ll}
-    !> A,   & \text{if trans_A == rocsparse_operation_none} \\
-    !> A^T, & \text{if trans_A == rocsparse_operation_transpose} \\
+    !> A,   & \text{if trans_A == rocsparse_operation_none} \\%
+    !> A^T, & \text{if trans_A == rocsparse_operation_transpose} \\%
     !> A^H, & \text{if trans_A == rocsparse_operation_conjugate_transpose}
     !> \end{array}
     !> \right.
@@ -23913,8 +23859,8 @@ module hipfort_rocsparse
     !> \f[
     !> op(B) = \left\{
     !> \begin{array}{ll}
-    !> B,   & \text{if trans_B == rocsparse_operation_none} \\
-    !> B^T, & \text{if trans_B == rocsparse_operation_transpose} \\
+    !> B,   & \text{if trans_B == rocsparse_operation_none} \\%
+    !> B^T, & \text{if trans_B == rocsparse_operation_transpose} \\%
     !> B^H, & \text{if trans_B == rocsparse_operation_conjugate_transpose}
     !> \end{array}
     !> \right.
@@ -23994,11 +23940,10 @@ module hipfort_rocsparse
     !> \p csr_row_ptr, \p csr_col_ind, \p B, \p beta, or \p C pointer is invalid.
     !> \retval     rocsparse_status_arch_mismatch the device is not supported.
     !> \retval     rocsparse_status_not_implemented
-    !> \ref rocsparse_matrix_type != \ref rocsparse_matrix_type_general.
+    !> `rocsparse_matrix_type` != \ref rocsparse_matrix_type_general.
     !>
     !> \par Example
     !> This example multiplies a CSR matrix with a column-oriented dense matrix.
-    !> \snippet example_rocsparse_csrmm.cpp doc example
     function rocsparse_scsrmm(handle, trans_A, trans_B, m, n, k, nnz, alpha, descr, csr_val, &
                               csr_row_ptr, csr_col_ind, B, ldb, beta, C, ldc) &
        result(scsrmm) &
@@ -24218,7 +24163,7 @@ module hipfort_rocsparse
     !> \retval     rocsparse_status_not_implemented
     !> \p trans_A == \ref rocsparse_operation_conjugate_transpose,
     !> \p trans_B == \ref rocsparse_operation_conjugate_transpose, or
-    !> \ref rocsparse_matrix_type != \ref rocsparse_matrix_type_general.
+    !> `rocsparse_matrix_type` != \ref rocsparse_matrix_type_general.
     function rocsparse_scsrsm_buffer_size(handle, trans_A, trans_B, m, nrhs, nnz, alpha, descr, &
                                           csr_val, csr_row_ptr, csr_col_ind, B, ldb, info, policy, &
                                           buffer_size) &
@@ -24336,7 +24281,7 @@ module hipfort_rocsparse
     !> \p rocsparse_csrsm_analysis performs the analysis step for
     !> \ref rocsparse_scsrsm_solve "rocsparse_Xcsrsm_solve()". It is expected that this
     !> function will be executed only once for a given matrix and particular operation
-    !> type. The analysis metadata can be cleared by \ref rocsparse_csrsm_clear().
+    !> type. The analysis metadata can be cleared by `rocsparse_csrsm_clear`().
     !>
     !> \p rocsparse_csrsm_analysis can share its meta data with
     !> \ref rocsparse_scsrilu0_analysis "rocsparse_Xcsrilu0_analysis()",
@@ -24405,7 +24350,7 @@ module hipfort_rocsparse
     !> \retval     rocsparse_status_not_implemented
     !> \p trans_A == \ref rocsparse_operation_conjugate_transpose,
     !> \p trans_B == \ref rocsparse_operation_conjugate_transpose, or
-    !> \ref rocsparse_matrix_type != \ref rocsparse_matrix_type_general.
+    !> `rocsparse_matrix_type` != \ref rocsparse_matrix_type_general.
     function rocsparse_scsrsm_analysis(handle, trans_A, trans_B, m, nrhs, nnz, alpha, descr, &
                                        csr_val, csr_row_ptr, csr_col_ind, B, ldb, info, analysis, &
                                        solve, temp_buffer) &
@@ -24529,8 +24474,8 @@ module hipfort_rocsparse
     !> useful if memory is an issue and the analysis data is not required for further
     !> computation, for example, when switching to another sparse matrix format. Calling
     !> \p rocsparse_csrsm_clear is optional. All allocated resources will be cleared
-    !> when the opaque \ref rocsparse_mat_info struct is destroyed using
-    !> \ref rocsparse_destroy_mat_info().
+    !> when the opaque `rocsparse_mat_info` struct is destroyed using
+    !> `rocsparse_destroy_mat_info`().
     !>
     !> \note
     !> This routine does not support execution in a hipGraph context.
@@ -24574,8 +24519,8 @@ module hipfort_rocsparse
     !> \f[
     !> op(A) = \left\{
     !> \begin{array}{ll}
-    !> A,   & \text{if trans_A == rocsparse_operation_none} \\
-    !> A^T, & \text{if trans_A == rocsparse_operation_transpose} \\
+    !> A,   & \text{if trans_A == rocsparse_operation_none} \\%
+    !> A^T, & \text{if trans_A == rocsparse_operation_transpose} \\%
     !> A^H, & \text{if trans_A == rocsparse_operation_conjugate_transpose}
     !> \end{array}
     !> \right.
@@ -24584,8 +24529,8 @@ module hipfort_rocsparse
     !> \f[
     !> op(B) = \left\{
     !> \begin{array}{ll}
-    !> B,   & \text{if trans_B == rocsparse_operation_none} \\
-    !> B^T, & \text{if trans_B == rocsparse_operation_transpose} \\
+    !> B,   & \text{if trans_B == rocsparse_operation_none} \\%
+    !> B^T, & \text{if trans_B == rocsparse_operation_transpose} \\%
     !> B^H, & \text{if trans_B == rocsparse_operation_conjugate_transpose}
     !> \end{array}
     !> \right.
@@ -24594,8 +24539,8 @@ module hipfort_rocsparse
     !> \f[
     !> op(X) = \left\{
     !> \begin{array}{ll}
-    !> X,   & \text{if trans_B == rocsparse_operation_none} \\
-    !> X^T, & \text{if trans_B == rocsparse_operation_transpose} \\
+    !> X,   & \text{if trans_B == rocsparse_operation_none} \\%
+    !> X^T, & \text{if trans_B == rocsparse_operation_transpose} \\%
     !> X^H, & \text{if trans_B == rocsparse_operation_conjugate_transpose}
     !> \end{array}
     !> \right.
@@ -24611,9 +24556,9 @@ module hipfort_rocsparse
     !> \f[
     !> op(B)/op(X) = \left\{
     !> \begin{array}{ll}
-    !> ldb \times nrhs, \text{  } ldb \ge m, & \text{if trans_B == rocsparse_operation_none} \\
-    !> ldb \times m, \text{ } ldb \ge nrhs, & \text{if trans_B == rocsparse_operation_transpose} \\
-    !> ldb \times m, \text{ } ldb \ge nrhs, & \text{if trans_B ==
+    !> ldb \times nrhs, \text{  } ldb &ge; m, & \text{if trans_B == rocsparse_operation_none} \\%
+    !> ldb \times m, \text{ } ldb &ge; nrhs, & \text{if trans_B == rocsparse_operation_transpose} \\%
+    !> ldb \times m, \text{ } ldb &ge; nrhs, & \text{if trans_B ==
     !> rocsparse_operation_conjugate_transpose}
     !> \end{array}
     !> \right.
@@ -24631,21 +24576,21 @@ module hipfort_rocsparse
     !>
     !> \f[
     !> \begin{bmatrix}
-    !> a_{00} & 0 & 0 \\
-    !> a_{10} & a_{11} & 0 \\
-    !> a_{20} & a_{21} & a_{22} \\
+    !> a_{00} & 0 & 0 \\%
+    !> a_{10} & a_{11} & 0 \\%
+    !> a_{20} & a_{21} & a_{22} \\%
     !> \end{bmatrix}
     !> \cdot
     !> \begin{bmatrix}
-    !> x_{00} & x_{01} \\
-    !> x_{10} & x_{11} \\
-    !> x_{20} & x_{21} \\
+    !> x_{00} & x_{01} \\%
+    !> x_{10} & x_{11} \\%
+    !> x_{20} & x_{21} \\%
     !> \end{bmatrix}
     !> =
     !> \begin{bmatrix}
-    !> b_{00} & b_{01} \\
-    !> b_{10} & b_{11} \\
-    !> b_{20} & b_{21} \\
+    !> b_{00} & b_{01} \\%
+    !> b_{10} & b_{11} \\%
+    !> b_{20} & b_{21} \\%
     !> \end{bmatrix}
     !> \f]
     !>
@@ -24653,18 +24598,18 @@ module hipfort_rocsparse
     !>
     !> \f[
     !> \begin{bmatrix}
-    !> a_{00} & 0 & 0 \\
-    !> a_{10} & a_{11} & 0 \\
+    !> a_{00} & 0 & 0 \\%
+    !> a_{10} & a_{11} & 0 \\%
     !> a_{20} & a_{21} & a_{22}
     !> \end{bmatrix}
     !> \cdot
     !> \begin{bmatrix}
-    !> x_{00} & x_{10} & x_{20} \\
+    !> x_{00} & x_{10} & x_{20} \\%
     !> x_{01} & x_{11} & x_{21}
     !> \end{bmatrix}^{T}
     !> =
     !> \begin{bmatrix}
-    !> b_{00} & b_{10} & b_{20} \\
+    !> b_{00} & b_{10} & b_{20} \\%
     !> b_{01} & b_{11} & b_{21}
     !> \end{bmatrix}^{T}
     !> \f]
@@ -24678,24 +24623,24 @@ module hipfort_rocsparse
     !> (referred to as a numerical zero),
     !> then a division by zero would occur. \p rocsparse_csrsm_solve tracks the location of the
     !> first zero pivot (either numerical
-    !> or structural zero). The zero pivot status can be checked by calling \ref
-    !> rocsparse_csrsm_zero_pivot(). If
-    !> \ref rocsparse_csrsm_zero_pivot() returns \ref rocsparse_status_success, then no zero pivot
-    !> was found and therefore
+    !> or structural zero). The zero pivot status can be checked by calling
+    !> `rocsparse_csrsm_zero_pivot` (). If
+    !> `rocsparse_csrsm_zero_pivot` () returns \ref rocsparse_status_success, then no zero pivot was
+    !> found and therefore
     !> the matrix does not have a structural or numerical zero.
     !>
     !> The user can specify that the sparse matrix should be interpreted as having ones on the
     !> diagonal by setting the diagonal type
-    !> on the descriptor \p descr to \ref rocsparse_diag_type_unit using \ref
-    !> rocsparse_set_mat_diag_type. If
-    !> \ref rocsparse_diag_type == \ref rocsparse_diag_type_unit, no zero pivot will be reported,
-    !> even if \f$A_{j,j} = 0\f$ for
+    !> on the descriptor \p descr to \ref rocsparse_diag_type_unit using
+    !> `rocsparse_set_mat_diag_type`. If
+    !> `rocsparse_diag_type` == \ref rocsparse_diag_type_unit, no zero pivot will be reported, even
+    !> if \f$A_{j,j} = 0\f$ for
     !> some \f$j\f$.
     !>
     !> The sparse CSR matrix passed to \p rocsparse_csrsm_solve does not actually have to be a
     !> triangular matrix. Instead, the
-    !> triangular upper or lower part of the sparse matrix is solved based on the \ref
-    !> rocsparse_fill_mode setting on the descriptor
+    !> triangular upper or lower part of the sparse matrix is solved based on the
+    !> `rocsparse_fill_mode` setting on the descriptor
     !> \p descr. If the fill mode is set to \ref rocsparse_fill_mode_lower, then the lower
     !> triangular matrix is solved. If the
     !> fill mode is set to \ref rocsparse_fill_mode_upper, then the upper triangular matrix is
@@ -24703,7 +24648,7 @@ module hipfort_rocsparse
     !>
     !> \note
     !> The sparse CSR matrix has to be sorted. This can be achieved by calling
-    !> rocsparse_csrsort().
+    !> `rocsparse_csrsort()`.
     !>
     !> \note
     !> This function is non-blocking and executed asynchronously with respect to the host.
@@ -24762,12 +24707,11 @@ module hipfort_rocsparse
     !> \retval     rocsparse_status_not_implemented
     !> \p trans_A == \ref rocsparse_operation_conjugate_transpose,
     !> \p trans_B == \ref rocsparse_operation_conjugate_transpose, or
-    !> \ref rocsparse_matrix_type != \ref rocsparse_matrix_type_general.
+    !> `rocsparse_matrix_type` != \ref rocsparse_matrix_type_general.
     !>
     !> \par Example
     !> Consider the lower triangular \f$m \times m\f$ matrix \f$L\f$, stored in CSR
     !> storage format with unit diagonal. The following example solves \f$L \cdot X = B\f$.
-    !> \snippet example_rocsparse_csrmm.cpp doc example
     function rocsparse_scsrsm_solve(handle, trans_A, trans_B, m, nrhs, nnz, alpha, descr, csr_val, &
                                     csr_row_ptr, csr_col_ind, B, ldb, info, policy, temp_buffer) &
        result(scsrsm_solve) &
@@ -24893,7 +24837,7 @@ module hipfort_rocsparse
     !> \f[
     !> op(A) = \left\{
     !> \begin{array}{ll}
-    !> A,   & \text{if trans_A == rocsparse_operation_none} \\
+    !> A,   & \text{if trans_A == rocsparse_operation_none} \\%
     !> \end{array}
     !> \right.
     !> \f]
@@ -24901,8 +24845,8 @@ module hipfort_rocsparse
     !> \f[
     !> op(B) = \left\{
     !> \begin{array}{ll}
-    !> B,   & \text{if trans_B == rocsparse_operation_none} \\
-    !> B^T, & \text{if trans_B == rocsparse_operation_transpose} \\
+    !> B,   & \text{if trans_B == rocsparse_operation_none} \\%
+    !> B^T, & \text{if trans_B == rocsparse_operation_transpose} \\%
     !> \end{array}
     !> \right.
     !> \f]
@@ -24984,11 +24928,10 @@ module hipfort_rocsparse
     !> \retval     rocsparse_status_not_implemented
     !> \p trans_A != \ref rocsparse_operation_none,
     !> \p trans_B == \ref rocsparse_operation_conjugate_transpose, or
-    !> \ref rocsparse_matrix_type != \ref rocsparse_matrix_type_general.
+    !> `rocsparse_matrix_type` != \ref rocsparse_matrix_type_general.
     !>
     !> \par Example
     !> This example multiplies a general BSR matrix with a column-oriented dense matrix.
-    !> \snippet example_rocsparse_gebsrmm.cpp doc example
     function rocsparse_sgebsrmm(handle, dir, trans_A, trans_B, mb, n, kb, nnzb, alpha, descr, &
                                 bsr_val, bsr_row_ptr, bsr_col_ind, row_block_dim, col_block_dim, &
                                 B, ldb, beta, C, ldc) &
@@ -25134,8 +25077,8 @@ module hipfort_rocsparse
     !> \f[
     !> op(A) = \left\{
     !> \begin{array}{ll}
-    !> A,   & \text{if trans_A == rocsparse_operation_none} \\
-    !> A^T, & \text{if trans_A == rocsparse_operation_transpose} \\
+    !> A,   & \text{if trans_A == rocsparse_operation_none} \\%
+    !> A^T, & \text{if trans_A == rocsparse_operation_transpose} \\%
     !> A^H, & \text{if trans_A == rocsparse_operation_conjugate_transpose}
     !> \end{array}
     !> \right.
@@ -25144,8 +25087,8 @@ module hipfort_rocsparse
     !> \f[
     !> op(B) = \left\{
     !> \begin{array}{ll}
-    !> B,   & \text{if trans_B == rocsparse_operation_none} \\
-    !> B^T, & \text{if trans_B == rocsparse_operation_transpose} \\
+    !> B,   & \text{if trans_B == rocsparse_operation_none} \\%
+    !> B^T, & \text{if trans_B == rocsparse_operation_transpose} \\%
     !> B^H, & \text{if trans_B == rocsparse_operation_conjugate_transpose}
     !> \end{array}
     !> \right.
@@ -25215,7 +25158,6 @@ module hipfort_rocsparse
     !>
     !> \par Example
     !> This example multiplies a column-oriented dense matrix with a CSC matrix.
-    !> \snippet example_rocsparse_gemmi.cpp doc example
     function rocsparse_sgemmi(handle, trans_A, trans_B, m, n, k, nnz, alpha, A, lda, descr, &
                               csr_val, csr_row_ptr, csr_col_ind, beta, C, ldc) &
        result(sgemmi) &
@@ -25433,7 +25375,7 @@ module hipfort_rocsparse
     !> \p bsr_col_ind, \p info, or \p buffer_size pointer is invalid.
     !> \retval     rocsparse_status_internal_error an internal error occurred.
     !> \retval     rocsparse_status_not_implemented
-    !> \ref rocsparse_matrix_type != \ref rocsparse_matrix_type_general.
+    !> `rocsparse_matrix_type` != \ref rocsparse_matrix_type_general.
     function rocsparse_sbsric0_buffer_size(handle, dir, mb, nnzb, descr, bsr_val, bsr_row_ptr, &
                                            bsr_col_ind, block_dim, info, buffer_size) &
        result(sbsric0_buffer_size) &
@@ -25527,7 +25469,7 @@ module hipfort_rocsparse
     !> \p rocsparse_bsric0_analysis performs the analysis step for
     !> \ref rocsparse_sbsric0 "rocsparse_Xbsric0()". It is expected that this function will
     !> be executed only once for a given matrix and particular operation type. The analysis
-    !> metadata can be cleared by \ref rocsparse_bsric0_clear().
+    !> metadata can be cleared by `rocsparse_bsric0_clear`().
     !>
     !> \p rocsparse_bsric0_analysis can share its meta data with
     !> \ref rocsparse_sbsrilu0_analysis "rocsparse_Xbsrilu0_analysis()",
@@ -25588,7 +25530,7 @@ module hipfort_rocsparse
     !> \p bsr_col_ind, \p info, or \p temp_buffer pointer is invalid.
     !> \retval     rocsparse_status_internal_error an internal error occurred.
     !> \retval     rocsparse_status_not_implemented
-    !> \ref rocsparse_matrix_type != \ref rocsparse_matrix_type_general.
+    !> `rocsparse_matrix_type` != \ref rocsparse_matrix_type_general.
     function rocsparse_sbsric0_analysis(handle, dir, mb, nnzb, descr, bsr_val, bsr_row_ptr, &
                                         bsr_col_ind, block_dim, info, analysis, solve, &
                                         temp_buffer) &
@@ -25697,8 +25639,8 @@ module hipfort_rocsparse
     !>
     !> \note
     !> Calling \p rocsparse_bsric0_clear is optional. All allocated resources will be
-    !> cleared when the opaque \ref rocsparse_mat_info struct is destroyed using
-    !> \ref rocsparse_destroy_mat_info().
+    !> cleared when the opaque `rocsparse_mat_info` struct is destroyed using
+    !> `rocsparse_destroy_mat_info`().
     !>
     !> \note
     !> This routine does not support execution in a hipGraph context.
@@ -25758,7 +25700,7 @@ module hipfort_rocsparse
     !> deallocated.
     !>
     !> \p rocsparse_bsric0 reports the first zero pivot (either numerical or structural zero).
-    !> The zero pivot status can be obtained by calling \ref rocsparse_bsric0_zero_pivot().
+    !> The zero pivot status can be obtained by calling `rocsparse_bsric0_zero_pivot`().
     !>
     !> \note
     !> This function is non-blocking and executed asynchronously with respect to the host.
@@ -25805,13 +25747,12 @@ module hipfort_rocsparse
     !> \retval     rocsparse_status_arch_mismatch the device is not supported.
     !> \retval     rocsparse_status_internal_error an internal error occurred.
     !> \retval     rocsparse_status_not_implemented
-    !> \ref rocsparse_matrix_type != \ref rocsparse_matrix_type_general.
+    !> `rocsparse_matrix_type` != \ref rocsparse_matrix_type_general.
     !>
     !> \par Example
     !> Consider the sparse \f$m \times m\f$ matrix \f$A\f$, stored in BSR
     !> storage format. The following example computes the incomplete Cholesky factorization
     !> \f$M \approx LL^T\f$ and solves the preconditioned system \f$My = x\f$.
-    !> \snippet example_rocsparse_bsric0.cpp doc example
     function rocsparse_sbsric0(handle, dir, mb, nnzb, descr, bsr_val, bsr_row_ptr, bsr_col_ind, &
                                block_dim, info, policy, temp_buffer) &
        result(sbsric0) &
@@ -25958,7 +25899,7 @@ module hipfort_rocsparse
     !> \p rocsparse_bsrilu0_numeric_boost enables the user to replace a numerical value in
     !> an incomplete LU factorization. \p tol is used to determine whether a numerical value
     !> is replaced by \p boost_val, such that \f$A_{j,j} = \text{boost_val}\f$ if
-    !> \f$\text{tol} \ge \left|A_{j,j}\right|\f$.
+    !> \f$\text{tol} &ge; \left|A_{j,j}\right|\f$.
     !>
     !> \note The boost value is enabled by setting \p enable_boost to 1 or disabled by
     !> setting \p enable_boost to 0.
@@ -26135,7 +26076,7 @@ module hipfort_rocsparse
     !> \p bsr_col_ind, \p info, or \p buffer_size pointer is invalid.
     !> \retval     rocsparse_status_internal_error an internal error occurred.
     !> \retval     rocsparse_status_not_implemented
-    !> \ref rocsparse_matrix_type != \ref rocsparse_matrix_type_general.
+    !> `rocsparse_matrix_type` != \ref rocsparse_matrix_type_general.
     function rocsparse_sbsrilu0_buffer_size(handle, dir, mb, nnzb, descr, bsr_val, bsr_row_ptr, &
                                             bsr_col_ind, block_dim, info, buffer_size) &
        result(sbsrilu0_buffer_size) &
@@ -26229,7 +26170,7 @@ module hipfort_rocsparse
     !> \p rocsparse_bsrilu0_analysis performs the analysis step for
     !> \ref rocsparse_sbsrilu0 "rocsparse_Xbsrilu0()". It is expected that this function will
     !> be executed only once for a given matrix. The analysis metadata can be cleared by
-    !> \ref rocsparse_bsrilu0_clear().
+    !> `rocsparse_bsrilu0_clear`().
     !>
     !> \p rocsparse_bsrilu0_analysis can share its metadata with
     !> \ref rocsparse_sbsric0_analysis "rocsparse_Xbsric0_analysis()",
@@ -26289,7 +26230,7 @@ module hipfort_rocsparse
     !> \p bsr_col_ind, \p info, or \p temp_buffer pointer is invalid.
     !> \retval     rocsparse_status_internal_error an internal error occurred.
     !> \retval     rocsparse_status_not_implemented
-    !> \ref rocsparse_matrix_type != \ref rocsparse_matrix_type_general.
+    !> `rocsparse_matrix_type` != \ref rocsparse_matrix_type_general.
     function rocsparse_sbsrilu0_analysis(handle, dir, mb, nnzb, descr, bsr_val, bsr_row_ptr, &
                                          bsr_col_ind, block_dim, info, analysis, solve, &
                                          temp_buffer) &
@@ -26398,8 +26339,8 @@ module hipfort_rocsparse
     !>
     !> \note
     !> Calling \p rocsparse_bsrilu0_clear is optional. All allocated resources will be
-    !> cleared when the opaque \ref rocsparse_mat_info struct is destroyed using
-    !> \ref rocsparse_destroy_mat_info().
+    !> cleared when the opaque `rocsparse_mat_info` struct is destroyed using
+    !> `rocsparse_destroy_mat_info`().
     !>
     !> \note
     !> This routine does not support execution in a hipGraph context.
@@ -26458,7 +26399,7 @@ module hipfort_rocsparse
     !> buffer can be deallocated.
     !>
     !> \p rocsparse_bsrilu0 reports the first zero pivot (either numerical or structural zero).
-    !> The zero pivot status can be obtained by calling \ref rocsparse_bsrilu0_zero_pivot().
+    !> The zero pivot status can be obtained by calling `rocsparse_bsrilu0_zero_pivot`().
     !>
     !> \note
     !> This function is non-blocking and executed asynchronously with respect to the host.
@@ -26504,13 +26445,12 @@ module hipfort_rocsparse
     !> \retval     rocsparse_status_arch_mismatch the device is not supported.
     !> \retval     rocsparse_status_internal_error an internal error occurred.
     !> \retval     rocsparse_status_not_implemented
-    !> \ref rocsparse_matrix_type != \ref rocsparse_matrix_type_general.
+    !> `rocsparse_matrix_type` != \ref rocsparse_matrix_type_general.
     !>
     !> \par Example
     !> Consider the sparse \f$m \times m\f$ matrix \f$A\f$, stored in the BSR
     !> storage format. The following example computes the incomplete LU factorization
     !> \f$M \approx LU\f$ and solves the preconditioned system \f$My = x\f$.
-    !> \snippet example_rocsparse_bsrilu0.cpp doc example
     function rocsparse_sbsrilu0(handle, dir, mb, nnzb, descr, bsr_val, bsr_row_ptr, bsr_col_ind, &
                                 block_dim, info, policy, temp_buffer) &
        result(sbsrilu0) &
@@ -26649,7 +26589,7 @@ module hipfort_rocsparse
     !> \ingroup precond_module
     !> \details
     !> rocsparse_csric0_singular_pivot() returns the position of a
-    !> numerical singular pivot (where \f$|L_{j,j}| \leq \text{tolerance}\f$)
+    !> numerical singular pivot (where \f$|L_{j,j}| &le; \text{tolerance}\f$)
     !> that has been found during \ref rocsparse_scsric0 "rocsparse_Xcsric0()" computation.
     !> The first singular pivot \f$j\f$ at \f$L_{j,j}\f$ is stored in \p position, using the
     !> same index base as the CSR matrix.
@@ -26691,7 +26631,7 @@ module hipfort_rocsparse
     !> \ingroup precond_module
     !> \details
     !> rocsparse_csric0_set_tolerance()  sets the numerical tolerance for detecting a
-    !> numerical singular pivot (where \f$|L_{j,j}|  \leq \text{tolerance}\f$)
+    !> numerical singular pivot (where \f$|L_{j,j}|  &le; \text{tolerance}\f$)
     !> that might be found during \ref rocsparse_scsric0 "rocsparse_Xcsric0()" computation.
     !>
     !>
@@ -26706,7 +26646,7 @@ module hipfort_rocsparse
     !> @param[in]
     !> info        structure that holds the information collected during the analysis step.
     !> @param[in]
-    !> tolerance    tolerance for detecting singular pivot (\f$|L_{j,j}|  \leq \text{tolerance}\f$).
+    !> tolerance    tolerance for detecting singular pivot (\f$|L_{j,j}|  &le; \text{tolerance}\f$).
     !>
     !> \retval     rocsparse_status_success the operation completed successfully.
     !> \retval     rocsparse_status_invalid_handle the library context was not initialized.
@@ -26728,7 +26668,7 @@ module hipfort_rocsparse
     !> \ingroup precond_module
     !> \details
     !> rocsparse_csric0_get_tolerance() returns the numerical tolerance for detecting a
-    !> numerical singular pivot (where \f$|L_{j,j}|  \leq \text{tolerance}\f$)
+    !> numerical singular pivot (where \f$|L_{j,j}|  &le; \text{tolerance}\f$)
     !> that might be found during \ref rocsparse_scsric0 "rocsparse_Xcsric0()" computation.
     !>
     !>
@@ -26743,7 +26683,7 @@ module hipfort_rocsparse
     !> @param[in]
     !> info        structure that holds the information collected during the analysis step.
     !> @param[out]
-    !> tolerance obtain tolerance for detecting singular pivot (\f$|L_{j,j}| \leq
+    !> tolerance obtain tolerance for detecting singular pivot (\f$|L_{j,j}| &le;
     !> \text{tolerance}\f$).
     !>
     !> \retval     rocsparse_status_success the operation completed successfully.
@@ -26811,7 +26751,7 @@ module hipfort_rocsparse
     !> \p csr_col_ind, \p info, or \p buffer_size pointer is invalid.
     !> \retval     rocsparse_status_internal_error an internal error occurred.
     !> \retval     rocsparse_status_not_implemented
-    !> \ref rocsparse_matrix_type != \ref rocsparse_matrix_type_general.
+    !> `rocsparse_matrix_type` != \ref rocsparse_matrix_type_general.
     function rocsparse_scsric0_buffer_size(handle, m, nnz, descr, csr_val, csr_row_ptr, &
                                            csr_col_ind, info, buffer_size) &
        result(scsric0_buffer_size) &
@@ -26897,7 +26837,7 @@ module hipfort_rocsparse
     !> \p rocsparse_csric0_analysis performs the analysis step for
     !> \ref rocsparse_scsric0 "rocsparse_Xcsric0()". It is expected that this function will be
     !> executed only once for a given matrix and particular operation type. The analysis metadata
-    !> can be cleared by \ref rocsparse_csric0_clear().
+    !> can be cleared by `rocsparse_csric0_clear`().
     !>
     !> \p rocsparse_csric0_analysis can share its metadata with
     !> \ref rocsparse_scsrilu0_analysis "rocsparse_Xcsrilu0_analysis()",
@@ -26951,7 +26891,7 @@ module hipfort_rocsparse
     !> \p csr_col_ind, \p info, or \p temp_buffer pointer is invalid.
     !> \retval     rocsparse_status_internal_error an internal error occurred.
     !> \retval     rocsparse_status_not_implemented
-    !> \ref rocsparse_matrix_type != \ref rocsparse_matrix_type_general.
+    !> `rocsparse_matrix_type` != \ref rocsparse_matrix_type_general.
     function rocsparse_scsric0_analysis(handle, m, nnz, descr, csr_val, csr_row_ptr, csr_col_ind, &
                                         info, analysis, solve, temp_buffer) &
        result(scsric0_analysis) &
@@ -27049,8 +26989,8 @@ module hipfort_rocsparse
     !>
     !> \note
     !> Calling \p rocsparse_csric0_clear is optional. All allocated resources will be
-    !> cleared when the opaque \ref rocsparse_mat_info struct is destroyed using
-    !> \ref rocsparse_destroy_mat_info().
+    !> cleared when the opaque `rocsparse_mat_info` struct is destroyed using
+    !> `rocsparse_destroy_mat_info`().
     !>
     !> \note
     !> This routine does not support execution in a hipGraph context.
@@ -27092,7 +27032,7 @@ module hipfort_rocsparse
     !> \f[
     !> L_{ij} = \left\{
     !> \begin{array}{ll}
-    !> \sqrt{A_{jj} - \sum_{k=0}^{j-1}(L_{jk})^{2}},   & \text{if i == j} \\
+    !> \sqrt{A_{jj} - \sum_{k=0}^{j-1}(L_{jk})^{2}},   & \text{if i == j} \\%
     !> \frac{1}{L_{jj}}(A_{ij} - \sum_{k=0}^{j-1}L_{ik} \times L_{jk}), & \text{if i > j}
     !> \end{array}
     !> \right.
@@ -27126,33 +27066,33 @@ module hipfort_rocsparse
     !> factorization on the following matrix:
     !> \f[
     !> \begin{bmatrix}
-    !> 2 & 1 & 0 \\
-    !> 1 & 2 & 1 \\
+    !> 2 & 1 & 0 \\%
+    !> 1 & 2 & 1 \\%
     !> 0 & 1 & 2
     !> \end{bmatrix}
     !> \f]
     !> results in a successful Cholesky factorization, however running with the matrix:
     !> \f[
     !> \begin{bmatrix}
-    !> 2 & 1 & 0 \\
-    !> 1 & 1/2 & 1 \\
+    !> 2 & 1 & 0 \\%
+    !> 1 & 1/2 & 1 \\%
     !> 0 & 1 & 2
     !> \end{bmatrix}
     !> \f]
     !> results in a numerical zero because:
     !> \f[
     !> \begin{array}{ll}
-    !> L_{00} &= \sqrt{2} \\
-    !> L_{10} &= \frac{1}{\sqrt{2}} \\
+    !> L_{00} &= \sqrt{2} \\%
+    !> L_{10} &= \frac{1}{\sqrt{2}} \\%
     !> L_{11} &= \sqrt{\frac{1}{2} - (\frac{1}{\sqrt{2}})^2}
     !> &= 0
     !> \end{array}
     !> \f]
-    !> The user can detect the presence of a structural zero by calling \ref
-    !> rocsparse_csric0_zero_pivot() after
+    !> The user can detect the presence of a structural zero by calling
+    !> `rocsparse_csric0_zero_pivot` () after
     !> \ref rocsparse_scsric0_analysis "rocsparse_Xcsric0_analysis()" and/or the presence of a
     !> structural or
-    !> numerical zero by calling \ref rocsparse_csric0_zero_pivot() after \ref rocsparse_scsric0
+    !> numerical zero by calling `rocsparse_csric0_zero_pivot` () after \ref rocsparse_scsric0
     !> "rocsparse_Xcsric0()":
     !> \code{.c}
     !> rocsparse_dcsric0(handle,
@@ -27174,10 +27114,10 @@ module hipfort_rocsparse
     !> printf("L has structural and/or numerical zero at L(%d,%d)\n", position, position);
     !> }
     !> \endcode
-    !> In both cases, \ref rocsparse_csric0_zero_pivot() will report the first zero pivot (either
+    !> In both cases, `rocsparse_csric0_zero_pivot` () will report the first zero pivot (either
     !> numerical or structural)
     !> found. See the full example below. The user can also set the diagonal type to be \f$1\f$
-    !> using \ref rocsparse_set_mat_diag_type(),
+    !> using `rocsparse_set_mat_diag_type` (),
     !> which will interpret the matrix \f$A\f$ as having ones on its diagonal (even if no non-zero
     !> exists in the sparsity pattern).
     !>
@@ -27188,14 +27128,14 @@ module hipfort_rocsparse
     !> \f[
     !> \begin{align}
     !> \begin{bmatrix}
-    !> a_{00} & a_{01} & a_{02} \\
-    !> a_{10} & a_{11} & a_{12} \\
+    !> a_{00} & a_{01} & a_{02} \\%
+    !> a_{10} & a_{11} & a_{12} \\%
     !> a_{20} & a_{21} & a_{22}
     !> \end{bmatrix}
     !> \rightarrow
     !> \begin{bmatrix}
-    !> l_{00} & a_{01} & a_{02} \\
-    !> l_{10} & l_{11} & a_{12} \\
+    !> l_{00} & a_{01} & a_{02} \\%
+    !> l_{10} & l_{11} & a_{12} \\%
     !> l_{20} & l_{21} & l_{22}
     !> \end{bmatrix}
     !> \end{align}
@@ -27211,7 +27151,7 @@ module hipfort_rocsparse
     !>
     !> \note
     !> The sparse CSR matrix has to be sorted. This can be achieved by calling
-    !> rocsparse_csrsort().
+    !> `rocsparse_csrsort()`.
     !>
     !> \note
     !> This function is non-blocking and executed asynchronously with respect to the host.
@@ -27251,13 +27191,12 @@ module hipfort_rocsparse
     !> \retval     rocsparse_status_arch_mismatch the device is not supported.
     !> \retval     rocsparse_status_internal_error an internal error occurred.
     !> \retval     rocsparse_status_not_implemented
-    !> \ref rocsparse_matrix_type != \ref rocsparse_matrix_type_general.
+    !> `rocsparse_matrix_type` != \ref rocsparse_matrix_type_general.
     !>
     !> \par Example
     !> Consider the sparse \f$m \times m\f$ matrix \f$A\f$, stored in the CSR
     !> storage format. The following example computes the incomplete Cholesky factorization
     !> \f$M \approx LL^T\f$ and solves the preconditioned system \f$My = x\f$.
-    !> \snippet example_rocsparse_csric0.cpp doc example
     function rocsparse_scsric0(handle, m, nnz, descr, csr_val, csr_row_ptr, csr_col_ind, info, &
                                policy, temp_buffer) &
        result(scsric0) &
@@ -27390,7 +27329,7 @@ module hipfort_rocsparse
     !> \details
     !> rocsparse_csrilu0_set_tolerance() sets the numerical tolerance for detecting a
     !> near numerical zero entry during \ref rocsparse_scsrilu0 "rocsparse_Xcsrilu0()"
-    !> computation. The first singular pivot \f$j\f$ at \f$|A_{j,j}| \leq \text{tolerance}\f$.
+    !> computation. The first singular pivot \f$j\f$ at \f$|A_{j,j}| &le; \text{tolerance}\f$.
     !>
     !>
     !> \note rocsparse_csrilu0_set_tolerance() is a blocking function. It might negatively influence
@@ -27404,7 +27343,7 @@ module hipfort_rocsparse
     !> @param[in]
     !> info        structure that holds the information collected during the analysis step.
     !> @param[in]
-    !> tolerance tolerance value to determine singular pivot \f$|A_{j,j}| \leq \text{tolerance}\f$,
+    !> tolerance tolerance value to determine singular pivot \f$|A_{j,j}| &le; \text{tolerance}\f$,
     !> where variable tolerance is in host memory.
     !>
     !> \retval     rocsparse_status_success the operation completed successfully.
@@ -27428,7 +27367,7 @@ module hipfort_rocsparse
     !> \details
     !> rocsparse_csrilu0_get_tolerance() returns the numerical tolerance for detecting
     !> a near numerical zero entry during \ref rocsparse_scsrilu0 "rocsparse_Xcsrilu0()"
-    !> computation. The first singular pivot \f$j\f$ at \f$|A_{j,j}| \leq \text{tolerance}\f$.
+    !> computation. The first singular pivot \f$j\f$ at \f$|A_{j,j}| &le; \text{tolerance}\f$.
     !>
     !> \note rocsparse_csrilu0_get_tolerance() is a blocking function. It might negatively influence
     !> performance.
@@ -27441,7 +27380,7 @@ module hipfort_rocsparse
     !> @param[in]
     !> info        structure that holds the information collected during the analysis step.
     !> @param[out]
-    !> tolerance obtain tolerance value to determine the singular pivot \f$|A_{j,j}| \leq
+    !> tolerance obtain tolerance value to determine the singular pivot \f$|A_{j,j}| &le;
     !> \text{tolerance}\f$,
     !> where variable tolerance is in host memory.
     !>
@@ -27467,7 +27406,7 @@ module hipfort_rocsparse
     !> rocsparse_csrilu0_singular_pivot() returns the position of a
     !> near numerical zero entry that has been found during \ref rocsparse_scsrilu0
     !> "rocsparse_Xcsrilu0()"
-    !> computation. The first singular pivot \f$j\f$ at \f$|A_{j,j}| \leq \text{tolerance}\f$ is
+    !> computation. The first singular pivot \f$j\f$ at \f$|A_{j,j}| &le; \text{tolerance}\f$ is
     !> stored
     !> in \p position, using the same index base as the CSR matrix.
     !>
@@ -27510,7 +27449,7 @@ module hipfort_rocsparse
     !> \p rocsparse_csrilu0_numeric_boost enables the user to replace a numerical value in
     !> an incomplete LU factorization. \p tol is used to determine whether a numerical value
     !> is replaced by \p boost_val, such that \f$A_{j,j} = \text{boost_val}\f$ if
-    !> \f$\text{tol} \ge \left|A_{j,j}\right|\f$.
+    !> \f$\text{tol} &ge; \left|A_{j,j}\right|\f$.
     !>
     !> \note The boost value is enabled by setting \p enable_boost to 1 or disabled by
     !> setting \p enable_boost to 0.
@@ -27679,7 +27618,7 @@ module hipfort_rocsparse
     !> \p csr_col_ind, \p info, or \p buffer_size pointer is invalid.
     !> \retval     rocsparse_status_internal_error an internal error occurred.
     !> \retval     rocsparse_status_not_implemented
-    !> \ref rocsparse_matrix_type != \ref rocsparse_matrix_type_general.
+    !> `rocsparse_matrix_type` != \ref rocsparse_matrix_type_general.
     function rocsparse_scsrilu0_buffer_size(handle, m, nnz, descr, csr_val, csr_row_ptr, &
                                             csr_col_ind, info, buffer_size) &
        result(scsrilu0_buffer_size) &
@@ -27766,7 +27705,7 @@ module hipfort_rocsparse
     !> "rocsparse_Xcsrilu0()".
     !> It is expected that this function will be executed only once for a given matrix and
     !> particular
-    !> operation type. The analysis metadata can be cleared by \ref rocsparse_csrilu0_clear().
+    !> operation type. The analysis metadata can be cleared by `rocsparse_csrilu0_clear`().
     !>
     !> \p rocsparse_csrilu0_analysis can share its meta data with
     !> \ref rocsparse_scsric0_analysis "rocsparse_Xcsric0_analysis()",
@@ -27820,7 +27759,7 @@ module hipfort_rocsparse
     !> \p csr_col_ind, \p info, or \p temp_buffer pointer is invalid.
     !> \retval     rocsparse_status_internal_error an internal error occurred.
     !> \retval     rocsparse_status_not_implemented
-    !> \ref rocsparse_matrix_type != \ref rocsparse_matrix_type_general.
+    !> `rocsparse_matrix_type` != \ref rocsparse_matrix_type_general.
     function rocsparse_scsrilu0_analysis(handle, m, nnz, descr, csr_val, csr_row_ptr, csr_col_ind, &
                                          info, analysis, solve, temp_buffer) &
        result(scsrilu0_analysis) &
@@ -27918,8 +27857,8 @@ module hipfort_rocsparse
     !>
     !> \note
     !> Calling \p rocsparse_csrilu0_clear is optional. All allocated resources will be
-    !> cleared when the opaque \ref rocsparse_mat_info struct is destroyed using
-    !> \ref rocsparse_destroy_mat_info().
+    !> cleared when the opaque `rocsparse_mat_info` struct is destroyed using
+    !> `rocsparse_destroy_mat_info`().
     !>
     !> \note
     !> This routine does not support execution in a hipGraph context.
@@ -27962,7 +27901,7 @@ module hipfort_rocsparse
     !> \f[
     !> \begin{array}{ll}
     !> L_{ij} = \frac{1}{U_{jj}}(A_{ij} - \sum_{k=0}^{j-1}L_{ik} \times U_{kj}), & \text{if i > j}
-    !> \\
+    !> \\%
     !> U_{ij} = (A_{ij} - \sum_{k=0}^{j-1}L_{ik} \times U_{kj}), & \text{if i <= j}
     !> \end{array}
     !> \f]
@@ -27995,39 +27934,39 @@ module hipfort_rocsparse
     !> \f$LU\f$ factorization on the following matrix:
     !> \f[
     !> \begin{bmatrix}
-    !> 2 & 1 & 0 \\
-    !> 1 & 2 & 1 \\
+    !> 2 & 1 & 0 \\%
+    !> 1 & 2 & 1 \\%
     !> 0 & 1 & 2
     !> \end{bmatrix}
     !> \f]
     !> results in a successful \f$LU\f$ factorization. However, running with the matrix:
     !> \f[
     !> \begin{bmatrix}
-    !> 2 & 1 & 0 \\
-    !> 1 & 1/2 & 1 \\
+    !> 2 & 1 & 0 \\%
+    !> 1 & 1/2 & 1 \\%
     !> 0 & 1 & 2
     !> \end{bmatrix}
     !> \f]
     !> results in a numerical zero because:
     !> \f[
     !> \begin{array}{ll}
-    !> U_{00} &= 2 \\
-    !> U_{01} &= 1 \\
-    !> L_{10} &= \frac{1}{2} \\
+    !> U_{00} &= 2 \\%
+    !> U_{01} &= 1 \\%
+    !> L_{10} &= \frac{1}{2} \\%
     !> U_{11} &= \frac{1}{2} - \frac{1}{2}
     !> &= 0
     !> \end{array}
     !> \f]
-    !> The user can detect the presence of a structural zero by calling \ref
-    !> rocsparse_csrilu0_zero_pivot() after
+    !> The user can detect the presence of a structural zero by calling
+    !> `rocsparse_csrilu0_zero_pivot` () after
     !> \ref rocsparse_scsrilu0_analysis "rocsparse_Xcsrilu0_analysis()" and/or the presence of a
     !> structural or
-    !> numerical zero by calling \ref rocsparse_csrilu0_zero_pivot() after \ref rocsparse_scsrilu0
+    !> numerical zero by calling `rocsparse_csrilu0_zero_pivot` () after \ref rocsparse_scsrilu0
     !> "rocsparse_Xcsric0()".
-    !> In both cases, \ref rocsparse_csrilu0_zero_pivot() will report the first zero pivot (either
+    !> In both cases, `rocsparse_csrilu0_zero_pivot` () will report the first zero pivot (either
     !> numerical or structural)
     !> found. See the example below. The user can also set the diagonal type to be \f$1\f$ using
-    !> \ref rocsparse_set_mat_diag_type(),
+    !> `rocsparse_set_mat_diag_type` (),
     !> which will interpret the matrix \f$A\f$ as having ones on its diagonal (even if no non-zero
     !> exists in the sparsity pattern).
     !>
@@ -28040,14 +27979,14 @@ module hipfort_rocsparse
     !> \f[
     !> \begin{align}
     !> \begin{bmatrix}
-    !> a_{00} & a_{01} & a_{02} \\
-    !> a_{10} & a_{11} & a_{12} \\
+    !> a_{00} & a_{01} & a_{02} \\%
+    !> a_{10} & a_{11} & a_{12} \\%
     !> a_{20} & a_{21} & a_{22}
     !> \end{bmatrix}
     !> \rightarrow
     !> \begin{bmatrix}
-    !> u_{00} & u_{01} & u_{02} \\
-    !> l_{10} & u_{11} & u_{12} \\
+    !> u_{00} & u_{01} & u_{02} \\%
+    !> l_{10} & u_{11} & u_{12} \\%
     !> l_{20} & l_{21} & u_{22}
     !> \end{bmatrix}
     !> \end{align}
@@ -28063,7 +28002,7 @@ module hipfort_rocsparse
     !>
     !> \note
     !> The sparse CSR matrix has to be sorted. This can be achieved by calling
-    !> rocsparse_csrsort().
+    !> `rocsparse_csrsort()`.
     !>
     !> \note
     !> This function is non-blocking and executed asynchronously with respect to the host.
@@ -28103,13 +28042,12 @@ module hipfort_rocsparse
     !> \retval     rocsparse_status_arch_mismatch the device is not supported.
     !> \retval     rocsparse_status_internal_error an internal error occurred.
     !> \retval     rocsparse_status_not_implemented
-    !> \ref rocsparse_matrix_type != \ref rocsparse_matrix_type_general.
+    !> `rocsparse_matrix_type` != \ref rocsparse_matrix_type_general.
     !>
     !> \par Example
     !> Consider the sparse \f$m \times m\f$ matrix \f$A\f$, stored in CSR
     !> storage format. The following example computes the incomplete LU factorization
     !> \f$M \approx LU\f$ and solves the preconditioned system \f$My = x\f$.
-    !> \snippet example_rocsparse_csrilu0.cpp doc example
     function rocsparse_scsrilu0(handle, m, nnz, descr, csr_val, csr_row_ptr, csr_col_ind, info, &
                                 policy, temp_buffer) &
        result(scsrilu0) &
@@ -28205,7 +28143,7 @@ module hipfort_rocsparse
     !>
     !> \note
     !> The sparse CSR matrix has to be sorted. This can be achieved by calling
-    !> rocsparse_csrsort().
+    !> `rocsparse_csrsort()`.
     !>
     !> \note
     !> This function is blocking with respect to the host.
@@ -28216,9 +28154,9 @@ module hipfort_rocsparse
     !> @param[in]
     !> handle      handle to the rocSPARSE library context queue.
     !> @param[in]
-    !> alg         algorithm to use, \ref rocsparse_itilu0_alg.
+    !> alg         algorithm to use, `rocsparse_itilu0_alg`.
     !> @param[in]
-    !> option      combination of enumeration values from \ref rocsparse_itilu0_option.
+    !> option      combination of enumeration values from `rocsparse_itilu0_option`.
     !> @param[in]
     !> nmaxiter     maximum number of iterations.
     !> @param[in]
@@ -28234,7 +28172,7 @@ module hipfort_rocsparse
     !> @param[in]
     !> idx_base    \ref rocsparse_index_base_zero or \ref rocsparse_index_base_one.
     !> @param[in]
-    !> datatype    Type of numerical values, \ref rocsparse_datatype.
+    !> datatype    Type of numerical values, `rocsparse_datatype`.
     !> @param[out]
     !> buffer_size size of the temporary storage buffer allocated by the user.
     !>
@@ -28277,7 +28215,7 @@ module hipfort_rocsparse
     !>
     !> \note
     !> The sparse CSR matrix has to be sorted. This can be achieved by calling
-    !> rocsparse_csrsort().
+    !> `rocsparse_csrsort()`.
     !>
     !> \note
     !> This function is blocking with respect to the host.
@@ -28288,9 +28226,9 @@ module hipfort_rocsparse
     !> @param[in]
     !> handle      handle to the rocSPARSE library context queue.
     !> @param[in]
-    !> alg         algorithm to use, \ref rocsparse_itilu0_alg.
+    !> alg         algorithm to use, `rocsparse_itilu0_alg`.
     !> @param[in]
-    !> option      combination of enumeration values from \ref rocsparse_itilu0_option.
+    !> option      combination of enumeration values from `rocsparse_itilu0_option`.
     !> @param[in]
     !> nmaxiter    maximum number of iterations.
     !> @param[in]
@@ -28306,7 +28244,7 @@ module hipfort_rocsparse
     !> @param[in]
     !> idx_base    \ref rocsparse_index_base_zero or \ref rocsparse_index_base_one.
     !> @param[in]
-    !> datatype    type of numerical values, \ref rocsparse_datatype.
+    !> datatype    type of numerical values, `rocsparse_datatype`.
     !> @param[in]
     !> buffer_size size of the storage buffer allocated by the user.
     !> @param[in]
@@ -28362,13 +28300,13 @@ module hipfort_rocsparse
     !> the method iterates with
     !> \f[
     !> \begin{eqnarray}
-    !> R_k &=& A - L_{k} U_{k},\\
-    !> D_{k+1} &=& diag(R_k),\\
-    !> L_{k+1} &=& lower(R_k) D_{k+1}^{-1},\\
+    !> R_k &=& A - L_{k} U_{k},\\%
+    !> D_{k+1} &=& diag(R_k),\\%
+    !> L_{k+1} &=& lower(R_k) D_{k+1}^{-1},\\%
     !> U_{k+1} &=& upper(R_k),
     !> \end{eqnarray}
     !> \f]
-    !> if \f$ 0 \le k \lt \f$ \p nmaxiter and if
+    !> if \f$ 0 &le; k \lt \f$ \p nmaxiter and if
     !> \f[
     !> \Vert R_k \Vert_{\infty} \gt \epsilon \Vert A \Vert_{\infty},
     !> \f]
@@ -28415,7 +28353,7 @@ module hipfort_rocsparse
     !>
     !> \note
     !> The sparse CSR matrix has to be sorted. This can be achieved by calling
-    !> rocsparse_csrsort().
+    !> `rocsparse_csrsort()`.
     !>
     !> \note
     !> This function is blocking with respect to the host.
@@ -28426,9 +28364,9 @@ module hipfort_rocsparse
     !> @param[in]
     !> handle      handle to the rocSPARSE library context queue.
     !> @param[in]
-    !> alg         algorithm to use, \ref rocsparse_itilu0_alg
+    !> alg         algorithm to use, `rocsparse_itilu0_alg`
     !> @param[in]
-    !> option      combination of enumeration values from \ref rocsparse_itilu0_option.
+    !> option      combination of enumeration values from `rocsparse_itilu0_option`.
     !> @param[inout]
     !> nmaxiter maximum number of iterations on input and number of iterations on output. If the
     !> output number of iterations is strictly less than the input maximum number of iterations,
@@ -28465,7 +28403,6 @@ module hipfort_rocsparse
     !> \retval     rocsparse_status_internal_error an internal error occurred.
     !>
     !> \par Example
-    !> \include example_rocsparse_csritilu0.cpp
     function rocsparse_scsritilu0_compute(handle, alg, option, nmaxiter, tol, m, nnz, csr_row_ptr, &
                                           csr_col_ind, csr_val, ilu0, idx_base, buffer_size, &
                                           buffer) &
@@ -28590,13 +28527,13 @@ module hipfort_rocsparse
     !> method iterates with
     !> \f[
     !> \begin{eqnarray}
-    !> R_k &=& A - L_{k} U_{k},\\
-    !> D_{k+1} &=& diag(R_k),\\
-    !> L_{k+1} &=& lower(R_k) D_{k+1}^{-1},\\
+    !> R_k &=& A - L_{k} U_{k},\\%
+    !> D_{k+1} &=& diag(R_k),\\%
+    !> L_{k+1} &=& lower(R_k) D_{k+1}^{-1},\\%
     !> U_{k+1} &=& upper(R_k),
     !> \end{eqnarray}
     !> \f]
-    !> if \f$ 0 \le k \lt \f$ \p nmaxiter and if
+    !> if \f$ 0 &le; k \lt \f$ \p nmaxiter and if
     !> \f[
     !> \Vert R_k \Vert_{\infty} \gt \epsilon \Vert A \Vert_{\infty},
     !> \f]
@@ -28615,7 +28552,7 @@ module hipfort_rocsparse
     !>
     !> \note
     !> The sparse CSR matrix has to be sorted. This can be achieved by calling
-    !> rocsparse_csrsort().
+    !> `rocsparse_csrsort()`.
     !>
     !> \note
     !> This function is blocking with respect to the host.
@@ -28626,9 +28563,9 @@ module hipfort_rocsparse
     !> @param[in]
     !> handle      handle to the rocSPARSE library context queue.
     !> @param[in]
-    !> alg         algorithm to use, \ref rocsparse_itilu0_alg.
+    !> alg         algorithm to use, `rocsparse_itilu0_alg`.
     !> @param[in]
-    !> option      combination of enumeration values from \ref rocsparse_itilu0_option.
+    !> option      combination of enumeration values from `rocsparse_itilu0_option`.
     !> @param[inout]
     !> nmaxiter maximum number of iterations on input and number of iterations on output. If the
     !> output number of iterations is strictly less than the input maximum number of iterations,
@@ -28823,7 +28760,7 @@ module hipfort_rocsparse
     !>
     !> \note
     !> The sparse CSR matrix has to be sorted. This can be achieved by calling
-    !> rocsparse_csrsort().
+    !> `rocsparse_csrsort()`.
     !>
     !> \note
     !> This function is blocking with respect to the host.
@@ -28834,7 +28771,7 @@ module hipfort_rocsparse
     !> @param[in]
     !> handle      handle to the rocSPARSE library context queue.
     !> @param[in]
-    !> alg         algorithm to use, \ref rocsparse_itilu0_alg.
+    !> alg         algorithm to use, `rocsparse_itilu0_alg`.
     !> @param[out]
     !> niter       number of performed iterations.
     !> @param[out]
@@ -29091,18 +29028,18 @@ module hipfort_rocsparse
     !>
     !> \f[
     !> \begin{bmatrix}
-    !> t^{0}_{00} & t^{0}_{01} & t^{0}_{02} \\
-    !> t^{0}_{10} & t^{0}_{11} & t^{0}_{12} \\
+    !> t^{0}_{00} & t^{0}_{01} & t^{0}_{02} \\%
+    !> t^{0}_{10} & t^{0}_{11} & t^{0}_{12} \\%
     !> t^{0}_{20} & t^{0}_{21} & t^{0}_{22}
     !> \end{bmatrix}
     !> \begin{bmatrix}
-    !> t^{1}_{00} & t^{1}_{01} & t^{1}_{02} \\
-    !> t^{1}_{10} & t^{1}_{11} & t^{1}_{12} \\
+    !> t^{1}_{00} & t^{1}_{01} & t^{1}_{02} \\%
+    !> t^{1}_{10} & t^{1}_{11} & t^{1}_{12} \\%
     !> t^{1}_{20} & t^{1}_{21} & t^{1}_{22}
     !> \end{bmatrix}
     !> \begin{bmatrix}
-    !> t^{2}_{00} & t^{2}_{01} & t^{2}_{02} \\
-    !> t^{2}_{10} & t^{2}_{11} & t^{2}_{12} \\
+    !> t^{2}_{00} & t^{2}_{01} & t^{2}_{02} \\%
+    !> t^{2}_{10} & t^{2}_{11} & t^{2}_{12} \\%
     !> t^{2}_{20} & t^{2}_{21} & t^{2}_{22}
     !> \end{bmatrix}
     !> \f]
@@ -29112,15 +29049,15 @@ module hipfort_rocsparse
     !> \f[
     !> \begin{align}
     !> \text{lowest} &= \begin{bmatrix} 0 & 0 & 0 & 0 & 0 & 0 & t^{0}_{20} & t^{1}_{20} & t^{2}_{20}
-    !> \end{bmatrix} \\
+    !> \end{bmatrix} \\%
     !> \text{lower} &= \begin{bmatrix} 0 & 0 & 0 & t^{0}_{10} & t^{1}_{10} & t^{1}_{10} & t^{0}_{21}
-    !> & t^{1}_{21} & t^{2}_{21} \end{bmatrix} \\
+    !> & t^{1}_{21} & t^{2}_{21} \end{bmatrix} \\%
     !> \text{diagonal} &= \begin{bmatrix} t^{0}_{00} & t^{1}_{00} & t^{2}_{00} & t^{0}_{11} &
-    !> t^{1}_{11} & t^{2}_{11} & t^{0}_{22} & t^{1}_{22} & t^{2}_{22} \end{bmatrix} \\
+    !> t^{1}_{11} & t^{2}_{11} & t^{0}_{22} & t^{1}_{22} & t^{2}_{22} \end{bmatrix} \\%
     !> \text{higher} &= \begin{bmatrix} t^{0}_{01} & t^{1}_{01} & t^{2}_{01} & t^{0}_{12} &
-    !> t^{1}_{12} & t^{2}_{12} & 0 & 0 & 0 \end{bmatrix} \\
+    !> t^{1}_{12} & t^{2}_{12} & 0 & 0 & 0 \end{bmatrix} \\%
     !> \text{highest} &= \begin{bmatrix} t^{0}_{02} & t^{1}_{02} & t^{2}_{02} & 0 & 0 & 0 & 0 & 0 &
-    !> 0 \end{bmatrix} \\
+    !> 0 \end{bmatrix} \\%
     !> \end{align}
     !> \f]
     !> For the lowest array, the first \p 2*batch_count entries are zero, and for the lower array,
@@ -29178,7 +29115,6 @@ module hipfort_rocsparse
     !> \retval     rocsparse_status_internal_error an internal error occurred.
     !>
     !> \par Example
-    !> \snippet example_rocsparse_gpsv.cpp doc example
     function rocsparse_sgpsv_interleaved_batch(handle, alg, m, ds, dl, d, du, dw, x, batch_count, &
                                                batch_stride, temp_buffer) &
        result(sgpsv_interleaved_batch) &
@@ -29445,7 +29381,6 @@ module hipfort_rocsparse
     !> \retval     rocsparse_status_internal_error an internal error occurred.
     !>
     !> \par Example
-    !> \snippet example_rocsparse_gtsv.cpp doc example
     function rocsparse_sgtsv(handle, m, n, dl, d, du, B, ldb, temp_buffer) &
        result(sgtsv) &
        bind(C, name="rocsparse_sgtsv")
@@ -29699,7 +29634,6 @@ module hipfort_rocsparse
     !> \retval     rocsparse_status_internal_error an internal error occurred.
     !>
     !> \par Example
-    !> \snippet example_rocsparse_gtsv_no_pivot.cpp doc example
     function rocsparse_sgtsv_no_pivot(handle, m, n, dl, d, du, B, ldb, temp_buffer) &
        result(sgtsv_no_pivot) &
        bind(C, name="rocsparse_sgtsv_no_pivot")
@@ -29941,18 +29875,18 @@ module hipfort_rocsparse
     !>
     !> \f[
     !> \begin{bmatrix}
-    !> t^{0}_{00} & t^{0}_{01} & 0 \\
-    !> t^{0}_{10} & t^{0}_{11} & t^{0}_{12} \\
+    !> t^{0}_{00} & t^{0}_{01} & 0 \\%
+    !> t^{0}_{10} & t^{0}_{11} & t^{0}_{12} \\%
     !> 0 & t^{0}_{21} & t^{0}_{22}
     !> \end{bmatrix}
     !> \begin{bmatrix}
-    !> t^{1}_{00} & t^{1}_{01} & 0 \\
-    !> t^{1}_{10} & t^{1}_{11} & t^{1}_{12} \\
+    !> t^{1}_{00} & t^{1}_{01} & 0 \\%
+    !> t^{1}_{10} & t^{1}_{11} & t^{1}_{12} \\%
     !> 0 & t^{1}_{21} & t^{1}_{22}
     !> \end{bmatrix}
     !> \begin{bmatrix}
-    !> t^{2}_{00} & t^{2}_{01} & 0 \\
-    !> t^{2}_{10} & t^{2}_{11} & t^{2}_{12} \\
+    !> t^{2}_{00} & t^{2}_{01} & 0 \\%
+    !> t^{2}_{10} & t^{2}_{11} & t^{2}_{12} \\%
     !> 0 & t^{2}_{21} & t^{2}_{22}
     !> \end{bmatrix}
     !> \f]
@@ -29961,11 +29895,11 @@ module hipfort_rocsparse
     !> \f[
     !> \begin{align}
     !> \text{lower} &= \begin{bmatrix} 0 & t^{0}_{10} & t^{0}_{21} & 0 & t^{1}_{10} & t^{1}_{21} & 0
-    !> & t^{2}_{10} & t^{2}_{21} \end{bmatrix} \\
+    !> & t^{2}_{10} & t^{2}_{21} \end{bmatrix} \\%
     !> \text{diagonal} &= \begin{bmatrix} t^{0}_{00} & t^{0}_{11} & t^{0}_{22} & t^{1}_{00} &
-    !> t^{1}_{11} & t^{1}_{22} & t^{2}_{00} & t^{2}_{11} & t^{2}_{22} \end{bmatrix} \\
+    !> t^{1}_{11} & t^{1}_{22} & t^{2}_{00} & t^{2}_{11} & t^{2}_{22} \end{bmatrix} \\%
     !> \text{upper} &= \begin{bmatrix} t^{0}_{01} & t^{0}_{12} & 0 & t^{1}_{01} & t^{1}_{12} & 0 &
-    !> t^{2}_{01} & t^{2}_{12} & 0 \end{bmatrix} \\
+    !> t^{2}_{01} & t^{2}_{12} & 0 \end{bmatrix} \\%
     !> \end{align}
     !> \f]
     !> For the lower array, for each batch \p i, the \p i*batch_stride entries are zero, and for the
@@ -30008,7 +29942,6 @@ module hipfort_rocsparse
     !> \retval     rocsparse_status_internal_error an internal error occurred.
     !>
     !> \par Example
-    !> \snippet example_rocsparse_gtsv_no_pivot_strided_batch.cpp doc example
     function rocsparse_sgtsv_no_pivot_strided_batch(handle, m, dl, d, du, x, batch_count, &
                                                     batch_stride, temp_buffer) &
        result(sgtsv_no_pivot_strided_batch) &
@@ -30269,18 +30202,18 @@ module hipfort_rocsparse
     !>
     !> \f[
     !> \begin{bmatrix}
-    !> t^{0}_{00} & t^{0}_{01} & 0 \\
-    !> t^{0}_{10} & t^{0}_{11} & t^{0}_{12} \\
+    !> t^{0}_{00} & t^{0}_{01} & 0 \\%
+    !> t^{0}_{10} & t^{0}_{11} & t^{0}_{12} \\%
     !> 0 & t^{0}_{21} & t^{0}_{22}
     !> \end{bmatrix}
     !> \begin{bmatrix}
-    !> t^{1}_{00} & t^{1}_{01} & 0 \\
-    !> t^{1}_{10} & t^{1}_{11} & t^{1}_{12} \\
+    !> t^{1}_{00} & t^{1}_{01} & 0 \\%
+    !> t^{1}_{10} & t^{1}_{11} & t^{1}_{12} \\%
     !> 0 & t^{1}_{21} & t^{1}_{22}
     !> \end{bmatrix}
     !> \begin{bmatrix}
-    !> t^{2}_{00} & t^{2}_{01} & 0 \\
-    !> t^{2}_{10} & t^{2}_{11} & t^{2}_{12} \\
+    !> t^{2}_{00} & t^{2}_{01} & 0 \\%
+    !> t^{2}_{10} & t^{2}_{11} & t^{2}_{12} \\%
     !> 0 & t^{2}_{21} & t^{2}_{22}
     !> \end{bmatrix}
     !> \f]
@@ -30289,11 +30222,11 @@ module hipfort_rocsparse
     !> \f[
     !> \begin{align}
     !> \text{lower} &= \begin{bmatrix} 0 & 0 & 0 & t^{0}_{10} & t^{1}_{10} & t^{1}_{10} & t^{0}_{21}
-    !> & t^{1}_{21} & t^{2}_{21} \end{bmatrix} \\
+    !> & t^{1}_{21} & t^{2}_{21} \end{bmatrix} \\%
     !> \text{diagonal} &= \begin{bmatrix} t^{0}_{00} & t^{1}_{00} & t^{2}_{00} & t^{0}_{11} &
-    !> t^{1}_{11} & t^{2}_{11} & t^{0}_{22} & t^{1}_{22} & t^{2}_{22} \end{bmatrix} \\
+    !> t^{1}_{11} & t^{2}_{11} & t^{0}_{22} & t^{1}_{22} & t^{2}_{22} \end{bmatrix} \\%
     !> \text{upper} &= \begin{bmatrix} t^{0}_{01} & t^{1}_{01} & t^{2}_{01} & t^{0}_{12} &
-    !> t^{1}_{12} & t^{2}_{12} & 0 & 0 & 0 \end{bmatrix} \\
+    !> t^{1}_{12} & t^{2}_{12} & 0 & 0 & 0 \end{bmatrix} \\%
     !> \end{align}
     !> \f]
     !> For the lower array, the first \p batch_count entries are zero, and for the upper array, the
@@ -30345,7 +30278,6 @@ module hipfort_rocsparse
     !> \retval     rocsparse_status_internal_error an internal error occurred.
     !>
     !> \par Example
-    !> \snippet example_rocsparse_gtsv_interleaved_batch.cpp doc example
     function rocsparse_sgtsv_interleaved_batch(handle, alg, m, dl, d, du, x, batch_count, &
                                                batch_stride, temp_buffer) &
        result(sgtsv_interleaved_batch) &

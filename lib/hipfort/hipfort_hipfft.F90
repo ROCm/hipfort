@@ -1,5 +1,28 @@
-! Auto-generated module wrapper for hipfort_hipfft
-! DO NOT EDIT — re-run the generator to update.
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+! ==============================================================================
+! hipfort: FORTRAN Interfaces for GPU kernels
+! ==============================================================================
+! Copyright (c) 2020-2026 Advanced Micro Devices, Inc. All rights reserved.
+! [MITx11 License]
+! 
+! Permission is hereby granted, free of charge, to any person obtaining a copy
+! of this software and associated documentation files (the "Software"), to deal
+! in the Software without restriction, including without limitation the rights
+! to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+! copies of the Software, and to permit persons to whom the Software is
+! furnished to do so, subject to the following conditions:
+! 
+! The above copyright notice and this permission notice shall be included in
+! all copies or substantial portions of the Software.
+! 
+! THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+! IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+! FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.  IN NO EVENT SHALL THE
+! AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+! LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+! OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+! THE SOFTWARE.
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
 module hipfort_hipfft
   use hipfort_hipfft_enums
@@ -187,10 +210,10 @@ module hipfort_hipfft
     !> The supplied factor must be a finite number.  That is, it must neither be infinity nor NaN.
     !>
     !> This function must be called after the plan is allocated using
-    !> ::hipfftCreate, but before the plan is initialized by any of the
+    !> `hipfftCreate`, but before the plan is initialized by any of the
     !> "MakePlan" functions.  Therefore, API functions that combine
-    !> creation and initialization (::hipfftPlan1d, ::hipfftPlan2d,
-    !> ::hipfftPlan3d, and ::hipfftPlanMany) cannot set a scale factor.
+    !> creation and initialization (`hipfftPlan1d`, `hipfftPlan2d`,
+    !> `hipfftPlan3d`, and `hipfftPlanMany`) cannot set a scale factor.
     !>
     !> Note that the scale factor applies to both forward and
     !> backward transforms executed with the specified plan handle.

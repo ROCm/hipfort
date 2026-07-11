@@ -1,5 +1,28 @@
-! Auto-generated module wrapper for hipfort_hipsparse
-! DO NOT EDIT — re-run the generator to update.
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+! ==============================================================================
+! hipfort: FORTRAN Interfaces for GPU kernels
+! ==============================================================================
+! Copyright (c) 2020-2026 Advanced Micro Devices, Inc. All rights reserved.
+! [MITx11 License]
+! 
+! Permission is hereby granted, free of charge, to any person obtaining a copy
+! of this software and associated documentation files (the "Software"), to deal
+! in the Software without restriction, including without limitation the rights
+! to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+! copies of the Software, and to permit persons to whom the Software is
+! furnished to do so, subject to the following conditions:
+! 
+! The above copyright notice and this permission notice shall be included in
+! all copies or substantial portions of the Software.
+! 
+! THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+! IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+! FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.  IN NO EVENT SHALL THE
+! AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+! LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+! OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+! THE SOFTWARE.
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
 module hipfort_hipsparse
   use hipfort_hipsparse_enums
@@ -205,8 +228,8 @@ module hipfort_hipsparse
     !> \details
     !> \p hipsparseSetPointerMode specifies the pointer mode to be used by the hipSPARSE
     !> library context and all subsequent function calls. By default, all values are passed
-    !> by reference on the host. Valid pointer modes are \ref HIPSPARSE_POINTER_MODE_HOST
-    !> or \ref HIPSPARSE_POINTER_MODE_DEVICE.
+    !> by reference on the host. Valid pointer modes are `HIPSPARSE_POINTER_MODE_HOST`
+    !> or `HIPSPARSE_POINTER_MODE_DEVICE`.
     function hipsparseSetPointerMode(handle, mode) &
        result(SetPointerMode) &
 #ifdef USE_CUDA_NAMES
@@ -249,8 +272,8 @@ module hipfort_hipsparse
     !> \brief Create a matrix descriptor.
     !> \details
     !> \p hipsparseCreateMatDescr creates a matrix descriptor. It initializes
-    !> \ref hipsparseMatrixType_t to \ref HIPSPARSE_MATRIX_TYPE_GENERAL and
-    !> \ref hipsparseIndexBase_t to \ref HIPSPARSE_INDEX_BASE_ZERO. It should be destroyed
+    !> `hipsparseMatrixType_t` to `HIPSPARSE_MATRIX_TYPE_GENERAL` and
+    !> `hipsparseIndexBase_t` to `HIPSPARSE_INDEX_BASE_ZERO`. It should be destroyed
     !> at the end using hipsparseDestroyMatDescr().
     function hipsparseCreateMatDescr(descrA) &
        result(CreateMatDescr) &
@@ -314,9 +337,9 @@ module hipfort_hipsparse
     !>
     !> \details
     !> \p hipsparseSetMatType sets the matrix type of a matrix descriptor. Valid
-    !> matrix types are \ref HIPSPARSE_MATRIX_TYPE_GENERAL,
-    !> \ref HIPSPARSE_MATRIX_TYPE_SYMMETRIC, \ref HIPSPARSE_MATRIX_TYPE_HERMITIAN, or
-    !> \ref HIPSPARSE_MATRIX_TYPE_TRIANGULAR.
+    !> matrix types are `HIPSPARSE_MATRIX_TYPE_GENERAL`,
+    !> `HIPSPARSE_MATRIX_TYPE_SYMMETRIC`, `HIPSPARSE_MATRIX_TYPE_HERMITIAN`, or
+    !> `HIPSPARSE_MATRIX_TYPE_TRIANGULAR`.
     function hipsparseSetMatType(descrA, type) &
        result(SetMatType) &
 #ifdef USE_CUDA_NAMES
@@ -354,8 +377,8 @@ module hipfort_hipsparse
     !>
     !> \details
     !> \p hipsparseSetMatFillMode sets the matrix fill mode of a matrix descriptor.
-    !> Valid fill modes are \ref HIPSPARSE_FILL_MODE_LOWER or
-    !> \ref HIPSPARSE_FILL_MODE_UPPER.
+    !> Valid fill modes are `HIPSPARSE_FILL_MODE_LOWER` or
+    !> `HIPSPARSE_FILL_MODE_UPPER`.
     function hipsparseSetMatFillMode(descrA, fillMode) &
        result(SetMatFillMode) &
 #ifdef USE_CUDA_NAMES
@@ -393,8 +416,8 @@ module hipfort_hipsparse
     !>
     !> \details
     !> \p hipsparseSetMatDiagType sets the matrix diagonal type of a matrix
-    !> descriptor. Valid diagonal types are \ref HIPSPARSE_DIAG_TYPE_UNIT or
-    !> \ref HIPSPARSE_DIAG_TYPE_NON_UNIT.
+    !> descriptor. Valid diagonal types are `HIPSPARSE_DIAG_TYPE_UNIT` or
+    !> `HIPSPARSE_DIAG_TYPE_NON_UNIT`.
     function hipsparseSetMatDiagType(descrA, diagType) &
        result(SetMatDiagType) &
 #ifdef USE_CUDA_NAMES
@@ -433,7 +456,7 @@ module hipfort_hipsparse
     !>
     !> \details
     !> \p hipsparseSetMatIndexBase sets the index base of a matrix descriptor. Valid
-    !> options are \ref HIPSPARSE_INDEX_BASE_ZERO or \ref HIPSPARSE_INDEX_BASE_ONE.
+    !> options are `HIPSPARSE_INDEX_BASE_ZERO` or `HIPSPARSE_INDEX_BASE_ONE`.
     function hipsparseSetMatIndexBase(descrA, base) &
        result(SetMatIndexBase) &
 #ifdef USE_CUDA_NAMES
@@ -1057,14 +1080,14 @@ module hipfort_hipsparse
     !> y           array of values in dense format. Must be pre-allocated with sufficient
     !> size to accommodate all indices specified in \p xInd.
     !> @param[in]
-    !> idxBase     index base. \ref HIPSPARSE_INDEX_BASE_ZERO for zero-based indexing or
-    !> \ref HIPSPARSE_INDEX_BASE_ONE for one-based indexing.
+    !> idxBase     index base. `HIPSPARSE_INDEX_BASE_ZERO` for zero-based indexing or
+    !> `HIPSPARSE_INDEX_BASE_ONE` for one-based indexing.
     !>
     !> \retval HIPSPARSE_STATUS_SUCCESS the operation completed successfully.
     !> \retval HIPSPARSE_STATUS_NOT_INITIALIZED \p handle is not initialized.
     !> \retval HIPSPARSE_STATUS_INVALID_VALUE \p handle is nullptr, \p nnz is negative,
     !> \p alpha, \p xVal, \p xInd, or \p y is nullptr when \p nnz is greater than zero,
-    !> or \p idxBase is neither \ref HIPSPARSE_INDEX_BASE_ZERO nor \ref HIPSPARSE_INDEX_BASE_ONE.
+    !> or \p idxBase is neither `HIPSPARSE_INDEX_BASE_ZERO` nor `HIPSPARSE_INDEX_BASE_ONE`.
     function hipsparseSaxpyi(handle, nnz, alpha, xVal, xInd, y, idxBase) &
        result(Saxpyi) &
 #ifdef USE_CUDA_NAMES
@@ -1194,14 +1217,14 @@ module hipfort_hipsparse
     !> @param[out]
     !> result      pointer to the result, which can be host or device memory.
     !> @param[in]
-    !> idxBase     index base. \ref HIPSPARSE_INDEX_BASE_ZERO for zero-based indexing or
-    !> \ref HIPSPARSE_INDEX_BASE_ONE for one-based indexing.
+    !> idxBase     index base. `HIPSPARSE_INDEX_BASE_ZERO` for zero-based indexing or
+    !> `HIPSPARSE_INDEX_BASE_ONE` for one-based indexing.
     !>
     !> \retval HIPSPARSE_STATUS_SUCCESS the operation completed successfully.
     !> \retval HIPSPARSE_STATUS_NOT_INITIALIZED \p handle is not initialized.
     !> \retval HIPSPARSE_STATUS_INVALID_VALUE \p handle or \p result is nullptr, \p nnz is negative,
     !> \p xVal, \p xInd, or \p y is nullptr when \p nnz is greater than zero, or \p idxBase
-    !> is neither \ref HIPSPARSE_INDEX_BASE_ZERO nor \ref HIPSPARSE_INDEX_BASE_ONE.
+    !> is neither `HIPSPARSE_INDEX_BASE_ZERO` nor `HIPSPARSE_INDEX_BASE_ONE`.
     !> \retval HIPSPARSE_STATUS_ALLOC_FAILED the buffer for the dot product reduction
     !> could not be allocated.
     !> \retval HIPSPARSE_STATUS_INTERNAL_ERROR an internal error occurred.
@@ -1291,14 +1314,14 @@ module hipfort_hipsparse
     !> @param[out]
     !> result      pointer to the result, which can be host or device memory.
     !> @param[in]
-    !> idxBase     index base. \ref HIPSPARSE_INDEX_BASE_ZERO for zero-based indexing or
-    !> \ref HIPSPARSE_INDEX_BASE_ONE for one-based indexing.
+    !> idxBase     index base. `HIPSPARSE_INDEX_BASE_ZERO` for zero-based indexing or
+    !> `HIPSPARSE_INDEX_BASE_ONE` for one-based indexing.
     !>
     !> \retval HIPSPARSE_STATUS_SUCCESS the operation completed successfully.
     !> \retval HIPSPARSE_STATUS_NOT_INITIALIZED \p handle is not initialized.
     !> \retval HIPSPARSE_STATUS_INVALID_VALUE \p handle or \p result is nullptr, \p nnz is negative,
     !> \p xVal, \p xInd, or \p y is nullptr when \p nnz is greater than zero, or \p idxBase
-    !> is neither \ref HIPSPARSE_INDEX_BASE_ZERO nor \ref HIPSPARSE_INDEX_BASE_ONE.
+    !> is neither `HIPSPARSE_INDEX_BASE_ZERO` nor `HIPSPARSE_INDEX_BASE_ONE`.
     !> \retval HIPSPARSE_STATUS_ALLOC_FAILED the buffer for the dot product reduction
     !> could not be allocated.
     !> \retval HIPSPARSE_STATUS_INTERNAL_ERROR an internal error occurred.
@@ -1424,14 +1447,14 @@ module hipfort_hipsparse
     !> xInd        array of \p nnz elements containing the indices of the non-zero
     !> values of \f$x\f$.
     !> @param[in]
-    !> idxBase     index base. \ref HIPSPARSE_INDEX_BASE_ZERO for zero-based indexing or
-    !> \ref HIPSPARSE_INDEX_BASE_ONE for one-based indexing.
+    !> idxBase     index base. `HIPSPARSE_INDEX_BASE_ZERO` for zero-based indexing or
+    !> `HIPSPARSE_INDEX_BASE_ONE` for one-based indexing.
     !>
     !> \retval HIPSPARSE_STATUS_SUCCESS the operation completed successfully.
     !> \retval HIPSPARSE_STATUS_NOT_INITIALIZED \p handle is not initialized.
     !> \retval HIPSPARSE_STATUS_INVALID_VALUE \p handle is nullptr, \p nnz is negative,
     !> \p y, \p xVal, or \p xInd is nullptr when \p nnz is greater than zero, or \p idxBase
-    !> is neither \ref HIPSPARSE_INDEX_BASE_ZERO nor \ref HIPSPARSE_INDEX_BASE_ONE.
+    !> is neither `HIPSPARSE_INDEX_BASE_ZERO` nor `HIPSPARSE_INDEX_BASE_ONE`.
     function hipsparseSgthr(handle, nnz, y, xVal, xInd, idxBase) &
        result(Sgthr) &
 #ifdef USE_CUDA_NAMES
@@ -1554,14 +1577,14 @@ module hipfort_hipsparse
     !> xInd        array of \p nnz elements containing the indices of the non-zero
     !> values of \f$x\f$.
     !> @param[in]
-    !> idxBase     index base. \ref HIPSPARSE_INDEX_BASE_ZERO for zero-based indexing or
-    !> \ref HIPSPARSE_INDEX_BASE_ONE for one-based indexing.
+    !> idxBase     index base. `HIPSPARSE_INDEX_BASE_ZERO` for zero-based indexing or
+    !> `HIPSPARSE_INDEX_BASE_ONE` for one-based indexing.
     !>
     !> \retval HIPSPARSE_STATUS_SUCCESS the operation completed successfully.
     !> \retval HIPSPARSE_STATUS_NOT_INITIALIZED \p handle is not initialized.
     !> \retval HIPSPARSE_STATUS_INVALID_VALUE \p handle is nullptr, \p nnz is negative,
     !> \p y, \p xVal, or \p xInd is nullptr when \p nnz is greater than zero, or \p idxBase
-    !> is neither \ref HIPSPARSE_INDEX_BASE_ZERO nor \ref HIPSPARSE_INDEX_BASE_ONE.
+    !> is neither `HIPSPARSE_INDEX_BASE_ZERO` nor `HIPSPARSE_INDEX_BASE_ONE`.
     function hipsparseSgthrz(handle, nnz, y, xVal, xInd, idxBase) &
        result(Sgthrz) &
 #ifdef USE_CUDA_NAMES
@@ -1691,15 +1714,15 @@ module hipfort_hipsparse
     !> @param[in]
     !> s           pointer to the sine element of \f$G\f$, which can be on host or device.
     !> @param[in]
-    !> idxBase     index base. \ref HIPSPARSE_INDEX_BASE_ZERO for zero-based indexing or
-    !> \ref HIPSPARSE_INDEX_BASE_ONE for one-based indexing.
+    !> idxBase     index base. `HIPSPARSE_INDEX_BASE_ZERO` for zero-based indexing or
+    !> `HIPSPARSE_INDEX_BASE_ONE` for one-based indexing.
     !>
     !> \retval HIPSPARSE_STATUS_SUCCESS the operation completed successfully.
     !> \retval HIPSPARSE_STATUS_NOT_INITIALIZED \p handle is not initialized.
     !> \retval HIPSPARSE_STATUS_INVALID_VALUE \p handle, \p c, or \p s is nullptr, \p nnz is
     !> negative,
     !> \p xVal, \p xInd, or \p y is nullptr when \p nnz is greater than zero, or \p idxBase
-    !> is neither \ref HIPSPARSE_INDEX_BASE_ZERO nor \ref HIPSPARSE_INDEX_BASE_ONE.
+    !> is neither `HIPSPARSE_INDEX_BASE_ZERO` nor `HIPSPARSE_INDEX_BASE_ONE`.
     function hipsparseSroti(handle, nnz, xVal, xInd, y, c, s, idxBase) &
        result(Sroti) &
 #ifdef USE_CUDA_NAMES
@@ -1784,14 +1807,14 @@ module hipfort_hipsparse
     !> y           array of values in dense format. Must be pre-allocated with sufficient
     !> size to accommodate all indices specified in \p xInd.
     !> @param[in]
-    !> idxBase     index base. \ref HIPSPARSE_INDEX_BASE_ZERO for zero-based indexing or
-    !> \ref HIPSPARSE_INDEX_BASE_ONE for one-based indexing.
+    !> idxBase     index base. `HIPSPARSE_INDEX_BASE_ZERO` for zero-based indexing or
+    !> `HIPSPARSE_INDEX_BASE_ONE` for one-based indexing.
     !>
     !> \retval HIPSPARSE_STATUS_SUCCESS the operation completed successfully.
     !> \retval HIPSPARSE_STATUS_NOT_INITIALIZED \p handle is not initialized.
     !> \retval HIPSPARSE_STATUS_INVALID_VALUE \p handle is nullptr, \p nnz is negative,
     !> \p xVal, \p xInd, or \p y is nullptr when \p nnz is greater than zero, or \p idxBase
-    !> is neither \ref HIPSPARSE_INDEX_BASE_ZERO nor \ref HIPSPARSE_INDEX_BASE_ONE.
+    !> is neither `HIPSPARSE_INDEX_BASE_ZERO` nor `HIPSPARSE_INDEX_BASE_ONE`.
     function hipsparseSsctr(handle, nnz, xVal, xInd, y, idxBase) &
        result(Ssctr) &
 #ifdef USE_CUDA_NAMES
@@ -1898,7 +1921,7 @@ module hipfort_hipsparse
     !> It can return before the actual computation has finished.
     !>
     !> \note
-    !> Currently, only \p transA == \ref HIPSPARSE_OPERATION_NON_TRANSPOSE is supported.
+    !> Currently, only \p transA == `HIPSPARSE_OPERATION_NON_TRANSPOSE` is supported.
     !>
     !> @param[in]
     !> handle          handle to the hipSPARSE library context queue.
@@ -1916,7 +1939,7 @@ module hipfort_hipsparse
     !> alpha           scalar \f$\alpha\f$.
     !> @param[in]
     !> descrA          descriptor of the sparse BSR matrix. Currently, only
-    !> \ref HIPSPARSE_MATRIX_TYPE_GENERAL is supported.
+    !> `HIPSPARSE_MATRIX_TYPE_GENERAL` is supported.
     !> @param[in]
     !> bsrSortedValA   array of \p nnzb blocks of the sparse BSR matrix.
     !> @param[in]
@@ -1942,9 +1965,8 @@ module hipfort_hipsparse
     !> \p mb, \p nb, or \p nnzb is negative, \p blockDim is less than or equal to zero, or
     !> \p bsrSortedValA, \p bsrSortedRowPtrA, \p bsrSortedColIndA, \p x, or \p y is nullptr.
     !> \retval HIPSPARSE_STATUS_ARCH_MISMATCH the device is not supported.
-    !> \retval HIPSPARSE_STATUS_NOT_SUPPORTED \p transA is not \ref
-    !> HIPSPARSE_OPERATION_NON_TRANSPOSE
-    !> or \ref hipsparseMatrixType_t is not \ref HIPSPARSE_MATRIX_TYPE_GENERAL.
+    !> \retval HIPSPARSE_STATUS_NOT_SUPPORTED \p transA is not `HIPSPARSE_OPERATION_NON_TRANSPOSE`
+    !> or `hipsparseMatrixType_t` is not `HIPSPARSE_MATRIX_TYPE_GENERAL`.
     function hipsparseSbsrmv(handle, dirA, transA, mb, nb, nnzb, alpha, descrA, bsrSortedValA, &
                              bsrSortedRowPtrA, bsrSortedColIndA, blockDim, x, beta, y) &
        result(Sbsrmv) &
@@ -2067,14 +2089,14 @@ module hipfort_hipsparse
     !---------------------------------------------
     !> \ingroup level2_module
     !> \details
-    !> \p hipsparseXbsrsv2_zeroPivot returns \ref HIPSPARSE_STATUS_ZERO_PIVOT if either a
-    !> structural or numerical zero has been found during \ref hipsparseSbsrsv2_analysis
-    !> "hipsparseXbsrsv2_analysis()" or \ref hipsparseSbsrsv2_solve "hipsparseXbsrsv2_solve()"
+    !> \p hipsparseXbsrsv2_zeroPivot returns `HIPSPARSE_STATUS_ZERO_PIVOT` if either a
+    !> structural or numerical zero has been found during `hipsparseSbsrsv2_analysis`
+    !> "hipsparseXbsrsv2_analysis()" or `hipsparseSbsrsv2_solve` "hipsparseXbsrsv2_solve()"
     !> computation. The first zero pivot \f$j\f$ at \f$A_{j,j}\f$ is stored in \p position,
     !> using the same index base as the BSR matrix.
     !>
     !> \p position can be in host or device memory. If no zero pivot has been found,
-    !> \p position is set to -1 and \ref HIPSPARSE_STATUS_SUCCESS is returned instead.
+    !> \p position is set to -1 and `HIPSPARSE_STATUS_SUCCESS` is returned instead.
     !>
     !> \note \p hipsparseXbsrsv2_zeroPivot is a blocking function. It might negatively
     !> influence performance.
@@ -2115,8 +2137,8 @@ module hipfort_hipsparse
     !> \ingroup level2_module
     !> \details
     !> \p hipsparseXbsrsv2_bufferSize returns the size of the temporary storage buffer in bytes
-    !> that is required by \ref hipsparseSbsrsv2_analysis "hipsparseXbsrsv2_analysis()" and
-    !> \ref hipsparseSbsrsv2_solve "hipsparseXbsrsv2_solve()". The temporary storage buffer must
+    !> that is required by `hipsparseSbsrsv2_analysis` "hipsparseXbsrsv2_analysis()" and
+    !> `hipsparseSbsrsv2_solve` "hipsparseXbsrsv2_solve()". The temporary storage buffer must
     !> be allocated by the user.
     !>
     !> @param[in]
@@ -2145,8 +2167,8 @@ module hipfort_hipsparse
     !> info        structure that holds the information collected during the analysis step.
     !> @param[out]
     !> pBufferSizeInBytes number of bytes of the temporary storage buffer required by
-    !> \ref hipsparseSbsrsv2_analysis "hipsparseXbsrsv2_analysis()" and
-    !> \ref hipsparseSbsrsv2_solve "hipsparseXbsrsv2_solve()".
+    !> `hipsparseSbsrsv2_analysis` "hipsparseXbsrsv2_analysis()" and
+    !> `hipsparseSbsrsv2_solve` "hipsparseXbsrsv2_solve()".
     !>
     !> \retval     HIPSPARSE_STATUS_SUCCESS the operation completed successfully.
     !> \retval     HIPSPARSE_STATUS_INVALID_VALUE \p handle, \p mb, \p nnzb, \p blockDim,
@@ -2154,8 +2176,8 @@ module hipfort_hipsparse
     !> \p info, or \p pBufferSizeInBytes is invalid.
     !> \retval     HIPSPARSE_STATUS_INTERNAL_ERROR an internal error occurred.
     !> \retval     HIPSPARSE_STATUS_NOT_SUPPORTED
-    !> \p transA == \ref HIPSPARSE_OPERATION_CONJUGATE_TRANSPOSE or
-    !> \ref hipsparseMatrixType_t != \ref HIPSPARSE_MATRIX_TYPE_GENERAL.
+    !> \p transA == `HIPSPARSE_OPERATION_CONJUGATE_TRANSPOSE` or
+    !> `hipsparseMatrixType_t` != `HIPSPARSE_MATRIX_TYPE_GENERAL`.
     function hipsparseSbsrsv2_bufferSize(handle, dirA, transA, mb, nnzb, descrA, bsrSortedValA, &
                                          bsrSortedRowPtrA, bsrSortedColIndA, blockDim, info, &
                                          pBufferSizeInBytes) &
@@ -2271,8 +2293,8 @@ module hipfort_hipsparse
     !> \ingroup level2_module
     !> \details
     !> \p hipsparseXbsrsv2_bufferSizeExt returns the size of the temporary storage buffer in bytes
-    !> that is required by \ref hipsparseSbsrsv2_analysis "hipsparseXbsrsv2_analysis()" and
-    !> \ref hipsparseSbsrsv2_solve "hipsparseXbsrsv2_solve()". The temporary storage buffer must be
+    !> that is required by `hipsparseSbsrsv2_analysis` "hipsparseXbsrsv2_analysis()" and
+    !> `hipsparseSbsrsv2_solve` "hipsparseXbsrsv2_solve()". The temporary storage buffer must be
     !> allocated by the user.
     !>
     !> @param[in]
@@ -2301,8 +2323,8 @@ module hipfort_hipsparse
     !> info        structure that holds the information collected during the analysis step.
     !> @param[out]
     !> pBufferSizeInBytes number of bytes of the temporary storage buffer required by
-    !> \ref hipsparseSbsrsv2_analysis "hipsparseXbsrsv2_analysis()" and
-    !> \ref hipsparseSbsrsv2_solve "hipsparseXbsrsv2_solve()".
+    !> `hipsparseSbsrsv2_analysis` "hipsparseXbsrsv2_analysis()" and
+    !> `hipsparseSbsrsv2_solve` "hipsparseXbsrsv2_solve()".
     !>
     !> \retval     HIPSPARSE_STATUS_SUCCESS the operation completed successfully.
     !> \retval     HIPSPARSE_STATUS_INVALID_VALUE \p handle, \p mb, \p nnzb, \p blockDim,
@@ -2310,8 +2332,8 @@ module hipfort_hipsparse
     !> \p info, or \p pBufferSizeInBytes is invalid.
     !> \retval     HIPSPARSE_STATUS_INTERNAL_ERROR an internal error occurred.
     !> \retval     HIPSPARSE_STATUS_NOT_SUPPORTED
-    !> \p transA == \ref HIPSPARSE_OPERATION_CONJUGATE_TRANSPOSE or
-    !> \ref hipsparseMatrixType_t != \ref HIPSPARSE_MATRIX_TYPE_GENERAL.
+    !> \p transA == `HIPSPARSE_OPERATION_CONJUGATE_TRANSPOSE` or
+    !> `hipsparseMatrixType_t` != `HIPSPARSE_MATRIX_TYPE_GENERAL`.
     function hipsparseSbsrsv2_bufferSizeExt(handle, dirA, transA, mb, nnzb, descrA, bsrSortedValA, &
                                             bsrSortedRowPtrA, bsrSortedColIndA, blockDim, info, &
                                             pBufferSizeInBytes) &
@@ -2426,7 +2448,7 @@ module hipfort_hipsparse
     !---------------------------------------------
     !> \ingroup level2_module
     !> \details
-    !> \p hipsparseXbsrsv2_analysis performs the analysis step for \ref hipsparseSbsrsv2_solve
+    !> \p hipsparseXbsrsv2_analysis performs the analysis step for `hipsparseSbsrsv2_solve`
     !> "hipsparseXbsrsv2_solve()". It is expected that this function will be executed only once
     !> for a given matrix and particular operation type.
     !>
@@ -2463,8 +2485,8 @@ module hipfort_hipsparse
     !> info        structure that holds the information collected during
     !> the analysis step.
     !> @param[in]
-    !> policy      \ref HIPSPARSE_SOLVE_POLICY_NO_LEVEL or
-    !> \ref HIPSPARSE_SOLVE_POLICY_USE_LEVEL.
+    !> policy      `HIPSPARSE_SOLVE_POLICY_NO_LEVEL` or
+    !> `HIPSPARSE_SOLVE_POLICY_USE_LEVEL`.
     !> @param[in]
     !> pBuffer     temporary storage buffer allocated by the user.
     !>
@@ -2474,8 +2496,8 @@ module hipfort_hipsparse
     !> \p pBuffer is invalid.
     !> \retval     HIPSPARSE_STATUS_INTERNAL_ERROR an internal error occurred.
     !> \retval     HIPSPARSE_STATUS_NOT_SUPPORTED
-    !> \p transA == \ref HIPSPARSE_OPERATION_CONJUGATE_TRANSPOSE or
-    !> \ref hipsparseMatrixType_t != \ref HIPSPARSE_MATRIX_TYPE_GENERAL.
+    !> \p transA == `HIPSPARSE_OPERATION_CONJUGATE_TRANSPOSE` or
+    !> `hipsparseMatrixType_t` != `HIPSPARSE_MATRIX_TYPE_GENERAL`.
     function hipsparseSbsrsv2_analysis(handle, dirA, transA, mb, nnzb, descrA, bsrSortedValA, &
                                        bsrSortedRowPtrA, bsrSortedColIndA, blockDim, info, policy, &
                                        pBuffer) &
@@ -2606,18 +2628,18 @@ module hipfort_hipsparse
     !> \f[
     !> op(A) = \left\{
     !> \begin{array}{ll}
-    !> A,   & \text{if trans == HIPSPARSE_OPERATION_NON_TRANSPOSE} \\
+    !> A,   & \text{if trans == HIPSPARSE_OPERATION_NON_TRANSPOSE} \\%
     !> A^T, & \text{if trans == HIPSPARSE_OPERATION_TRANSPOSE}
     !> \end{array}
     !> \right.
     !> \f]
     !>
     !> Performing the above operation requires three steps. First, the user calls
-    !> \ref hipsparseSbsrsv2_bufferSize "hipsparseXbsrsv2_bufferSize()", which will determine the
-    !> size of the required
+    !> `hipsparseSbsrsv2_bufferSize` "hipsparseXbsrsv2_bufferSize()", which will determine the size
+    !> of the required
     !> temporary storage buffer. The user then allocates this buffer and calls
-    !> \ref hipsparseSbsrsv2_analysis "hipsparseXbsrsv2_analysis()", which will perform analysis on
-    !> the sparse matrix
+    !> `hipsparseSbsrsv2_analysis` "hipsparseXbsrsv2_analysis()", which will perform analysis on the
+    !> sparse matrix
     !> \f$op(A)\f$. Finally, the user completes the computation by calling \p
     !> hipsparseXbsrsv2_solve. The buffer size,
     !> buffer allocation, and analysis only need to be called once for a given sparse matrix
@@ -2633,27 +2655,26 @@ module hipfort_hipsparse
     !> to as a numerical zero) then a solution is not possible. \p hipsparseXbsrsv2_solve tracks the
     !> location of the first
     !> zero pivot (either numerical or structural zero). The zero pivot status can be checked
-    !> calling \ref hipsparseXbsrsv2_zeroPivot().
-    !> If \ref hipsparseXbsrsv2_zeroPivot() returns \ref HIPSPARSE_STATUS_SUCCESS, then no zero
-    !> pivot was found and therefore
+    !> calling `hipsparseXbsrsv2_zeroPivot` ().
+    !> If `hipsparseXbsrsv2_zeroPivot` () returns `HIPSPARSE_STATUS_SUCCESS`, then no zero pivot was
+    !> found and therefore
     !> the matrix does not have a structural or numerical zero.
     !>
     !> The user can specify that the sparse matrix should be interpreted as having identity blocks
     !> on the diagonal by setting the diagonal
-    !> type on the descriptor \p descrA to \ref HIPSPARSE_DIAG_TYPE_UNIT using \ref
-    !> hipsparseSetMatDiagType. If
-    !> \ref hipsparseDiagType_t == \ref HIPSPARSE_DIAG_TYPE_UNIT, no zero pivot will be reported,
-    !> even if the diagonal block \f$A_{j,j}\f$
+    !> type on the descriptor \p descrA to `HIPSPARSE_DIAG_TYPE_UNIT` using
+    !> `hipsparseSetMatDiagType`. If
+    !> `hipsparseDiagType_t` == `HIPSPARSE_DIAG_TYPE_UNIT`, no zero pivot will be reported, even if
+    !> the diagonal block \f$A_{j,j}\f$
     !> for some \f$j\f$ is not invertible.
     !>
     !> The sparse CSR matrix passed to \p hipsparseXbsrsv2_solve does not actually have to be a
     !> triangular matrix. Instead, the
-    !> triangular upper or lower part of the sparse matrix is solved based on \ref
-    !> hipsparseFillMode_t set on the descriptor
-    !> \p descrA. If the fill mode is set to \ref HIPSPARSE_FILL_MODE_LOWER, then the lower
-    !> triangular matrix is solved. If the
-    !> fill mode is set to \ref HIPSPARSE_FILL_MODE_UPPER, then the upper triangular matrix is
-    !> solved.
+    !> triangular upper or lower part of the sparse matrix is solved based on `hipsparseFillMode_t`
+    !> set on the descriptor
+    !> \p descrA. If the fill mode is set to `HIPSPARSE_FILL_MODE_LOWER`, then the lower triangular
+    !> matrix is solved. If the
+    !> fill mode is set to `HIPSPARSE_FILL_MODE_UPPER`, then the upper triangular matrix is solved.
     !>
     !> \note
     !> The sparse BSR matrix has to be sorted.
@@ -2663,8 +2684,8 @@ module hipfort_hipsparse
     !> It can return before the actual computation has finished.
     !>
     !> \note
-    !> Currently, only \p transA == \ref HIPSPARSE_OPERATION_NON_TRANSPOSE and
-    !> \p transA == \ref HIPSPARSE_OPERATION_TRANSPOSE is supported.
+    !> Currently, only \p transA == `HIPSPARSE_OPERATION_NON_TRANSPOSE` and
+    !> \p transA == `HIPSPARSE_OPERATION_TRANSPOSE` is supported.
     !>
     !> @param[in]
     !> handle      handle to the hipSPARSE library context queue.
@@ -2697,8 +2718,8 @@ module hipfort_hipsparse
     !> @param[out]
     !> x           array of \p m elements, holding the solution.
     !> @param[in]
-    !> policy      \ref HIPSPARSE_SOLVE_POLICY_NO_LEVEL or
-    !> \ref HIPSPARSE_SOLVE_POLICY_USE_LEVEL.
+    !> policy      `HIPSPARSE_SOLVE_POLICY_NO_LEVEL` or
+    !> `HIPSPARSE_SOLVE_POLICY_USE_LEVEL`.
     !> @param[in]
     !> pBuffer     temporary storage buffer allocated by the user.
     !>
@@ -2709,8 +2730,8 @@ module hipfort_hipsparse
     !> \retval     HIPSPARSE_STATUS_ARCH_MISMATCH the device is not supported.
     !> \retval     HIPSPARSE_STATUS_INTERNAL_ERROR an internal error occurred.
     !> \retval     HIPSPARSE_STATUS_NOT_SUPPORTED
-    !> \p transA == \ref HIPSPARSE_OPERATION_CONJUGATE_TRANSPOSE or
-    !> \ref hipsparseMatrixType_t != \ref HIPSPARSE_MATRIX_TYPE_GENERAL.
+    !> \p transA == `HIPSPARSE_OPERATION_CONJUGATE_TRANSPOSE` or
+    !> `hipsparseMatrixType_t` != `HIPSPARSE_MATRIX_TYPE_GENERAL`.
     function hipsparseSbsrsv2_solve(handle, dirA, transA, mb, nnzb, alpha, descrA, bsrSortedValA, &
                                     bsrSortedRowPtrA, bsrSortedColIndA, blockDim, info, f, x, &
                                     policy, pBuffer) &
@@ -2855,8 +2876,8 @@ module hipfort_hipsparse
     !> \f[
     !> op(A) = \left\{
     !> \begin{array}{ll}
-    !> A,   & \text{if trans == HIPSPARSE_OPERATION_NON_TRANSPOSE} \\
-    !> A^T, & \text{if trans == HIPSPARSE_OPERATION_TRANSPOSE} \\
+    !> A,   & \text{if trans == HIPSPARSE_OPERATION_NON_TRANSPOSE} \\%
+    !> A^T, & \text{if trans == HIPSPARSE_OPERATION_TRANSPOSE} \\%
     !> A^H, & \text{if trans == HIPSPARSE_OPERATION_CONJUGATE_TRANSPOSE}
     !> \end{array}
     !> \right.
@@ -2873,7 +2894,7 @@ module hipfort_hipsparse
     !> It can return before the actual computation has finished.
     !>
     !> \note
-    !> Currently, only \p trans == \ref HIPSPARSE_OPERATION_NON_TRANSPOSE is supported,
+    !> Currently, only \p trans == `HIPSPARSE_OPERATION_NON_TRANSPOSE` is supported,
     !> and \p blockDim == 1 is not supported.
     !>
     !> \deprecated
@@ -2899,7 +2920,7 @@ module hipfort_hipsparse
     !> alpha       scalar \f$\alpha\f$.
     !> @param[in]
     !> descr       descriptor of the sparse BSR matrix. Currently, only
-    !> \ref HIPSPARSE_MATRIX_TYPE_GENERAL is supported.
+    !> `HIPSPARSE_MATRIX_TYPE_GENERAL` is supported.
     !> @param[in]
     !> bsrVal      array of \p nnzb blocks of the sparse BSR matrix.
     !> @param[in]
@@ -2931,9 +2952,8 @@ module hipfort_hipsparse
     !> \p blockDim is less than or equal to 1, or \p bsrVal, \p bsrMaskPtr, \p bsrRowPtr,
     !> \p bsrEndPtr, \p bsrColInd, \p x, or \p y is nullptr.
     !> \retval HIPSPARSE_STATUS_ARCH_MISMATCH the device is not supported.
-    !> \retval HIPSPARSE_STATUS_NOT_SUPPORTED \p trans is not \ref
-    !> HIPSPARSE_OPERATION_NON_TRANSPOSE,
-    !> or \ref hipsparseMatrixType_t is not \ref HIPSPARSE_MATRIX_TYPE_GENERAL.
+    !> \retval HIPSPARSE_STATUS_NOT_SUPPORTED \p trans is not `HIPSPARSE_OPERATION_NON_TRANSPOSE`,
+    !> or `hipsparseMatrixType_t` is not `HIPSPARSE_MATRIX_TYPE_GENERAL`.
     function hipsparseSbsrxmv(handle, dir, trans, sizeOfMask, mb, nb, nnzb, alpha, descr, bsrVal, &
                               bsrMaskPtr, bsrRowPtr, bsrEndPtr, bsrColInd, blockDim, x, beta, y) &
        result(Sbsrxmv) &
@@ -3081,8 +3101,8 @@ module hipfort_hipsparse
     !> \f[
     !> op(A) = \left\{
     !> \begin{array}{ll}
-    !> A,   & \text{if transA == HIPSPARSE_OPERATION_NON_TRANSPOSE} \\
-    !> A^T, & \text{if transA == HIPSPARSE_OPERATION_TRANSPOSE} \\
+    !> A,   & \text{if transA == HIPSPARSE_OPERATION_NON_TRANSPOSE} \\%
+    !> A^T, & \text{if transA == HIPSPARSE_OPERATION_TRANSPOSE} \\%
     !> A^H, & \text{if transA == HIPSPARSE_OPERATION_CONJUGATE_TRANSPOSE}
     !> \end{array}
     !> \right.
@@ -3105,7 +3125,7 @@ module hipfort_hipsparse
     !> It can return before the actual computation has finished.
     !>
     !> \note
-    !> Currently, only \p transA == \ref HIPSPARSE_OPERATION_NON_TRANSPOSE is supported.
+    !> Currently, only \p transA == `HIPSPARSE_OPERATION_NON_TRANSPOSE` is supported.
     !>
     !> \deprecated
     !> This function is deprecated when using the CUDA backend (CUDA 10.0+) and will be
@@ -3125,7 +3145,7 @@ module hipfort_hipsparse
     !> alpha               scalar \f$\alpha\f$.
     !> @param[in]
     !> descrA              descriptor of the sparse CSR matrix. Currently, only
-    !> \ref HIPSPARSE_MATRIX_TYPE_GENERAL is supported.
+    !> `HIPSPARSE_MATRIX_TYPE_GENERAL` is supported.
     !> @param[in]
     !> csrSortedValA       array of \p nnz elements of the sparse CSR matrix.
     !> @param[in]
@@ -3149,8 +3169,8 @@ module hipfort_hipsparse
     !> \p m, \p n, or \p nnz is negative, or \p csrSortedValA, \p csrSortedRowPtrA,
     !> \p csrSortedColIndA, \p x, or \p y is nullptr.
     !> \retval HIPSPARSE_STATUS_ARCH_MISMATCH the device is not supported.
-    !> \retval HIPSPARSE_STATUS_NOT_SUPPORTED \ref hipsparseMatrixType_t is not
-    !> \ref HIPSPARSE_MATRIX_TYPE_GENERAL.
+    !> \retval HIPSPARSE_STATUS_NOT_SUPPORTED `hipsparseMatrixType_t` is not
+    !> `HIPSPARSE_MATRIX_TYPE_GENERAL`.
     function hipsparseScsrmv(handle, transA, m, n, nnz, alpha, descrA, csrSortedValA, &
                              csrSortedRowPtrA, csrSortedColIndA, x, beta, y) &
        result(Scsrmv) &
@@ -3265,14 +3285,14 @@ module hipfort_hipsparse
     !---------------------------------------------
     !> \ingroup level2_module
     !> \details
-    !> \p hipsparseXcsrsv2_zeroPivot returns \ref HIPSPARSE_STATUS_ZERO_PIVOT if either a
-    !> structural or numerical zero has been found during hipsparseScsrsv2_solve(),
+    !> \p hipsparseXcsrsv2_zeroPivot returns `HIPSPARSE_STATUS_ZERO_PIVOT` if either a
+    !> structural or numerical zero has been found during `hipsparseScsrsv2_solve()`,
     !> hipsparseDcsrsv2_solve(), hipsparseCcsrsv2_solve(), or hipsparseZcsrsv2_solve()
     !> computation. The first zero pivot \f$j\f$ at \f$A_{j,j}\f$ is stored in \p position,
     !> using same index base as the CSR matrix.
     !>
     !> \p position can be in host or device memory. If no zero pivot has been found,
-    !> \p position is set to -1 and \ref HIPSPARSE_STATUS_SUCCESS is returned instead.
+    !> \p position is set to -1 and `HIPSPARSE_STATUS_SUCCESS` is returned instead.
     !>
     !> \note \p hipsparseXcsrsv2_zeroPivot is a blocking function. It might negatively
     !> influence performance.
@@ -3313,8 +3333,8 @@ module hipfort_hipsparse
     !> \ingroup level2_module
     !> \details
     !> \p hipsparseXcsrsv2_bufferSize returns the size of the temporary storage buffer in bytes
-    !> that is required by \ref hipsparseScsrsv2_analysis "hipsparseScsrsv2_analysis()" and
-    !> \ref hipsparseScsrsv2_solve "hipsparseXcsrsv2_solve()". The temporary storage buffer must
+    !> that is required by `hipsparseScsrsv2_analysis` "`hipsparseScsrsv2_analysis()`" and
+    !> `hipsparseScsrsv2_solve` "hipsparseXcsrsv2_solve()". The temporary storage buffer must
     !> be allocated by the user.
     !>
     !> @param[in]
@@ -3339,16 +3359,16 @@ module hipfort_hipsparse
     !> info             structure that holds the information collected during the analysis step.
     !> @param[out]
     !> pBufferSizeInBytes number of bytes of the temporary storage buffer required by
-    !> \ref hipsparseScsrsv2_analysis "hipsparseXcsrsv2_analysis()" and
-    !> \ref hipsparseScsrsv2_solve "hipsparseXcsrsv2_solve()".
+    !> `hipsparseScsrsv2_analysis` "hipsparseXcsrsv2_analysis()" and
+    !> `hipsparseScsrsv2_solve` "hipsparseXcsrsv2_solve()".
     !>
     !> \retval     HIPSPARSE_STATUS_SUCCESS the operation completed successfully.
     !> \retval HIPSPARSE_STATUS_INVALID_VALUE \p handle, \p m, \p nnz, \p descrA, \p csrSortedValA,
     !> \p csrSortedRowPtrA, \p csrSortedColIndA, \p info, or \p pBufferSizeInBytes is invalid.
     !> \retval     HIPSPARSE_STATUS_INTERNAL_ERROR an internal error occurred.
     !> \retval     HIPSPARSE_STATUS_NOT_SUPPORTED
-    !> \p transA == \ref HIPSPARSE_OPERATION_CONJUGATE_TRANSPOSE or
-    !> \ref hipsparseMatrixType_t != \ref HIPSPARSE_MATRIX_TYPE_GENERAL.
+    !> \p transA == `HIPSPARSE_OPERATION_CONJUGATE_TRANSPOSE` or
+    !> `hipsparseMatrixType_t` != `HIPSPARSE_MATRIX_TYPE_GENERAL`.
     function hipsparseScsrsv2_bufferSize(handle, transA, m, nnz, descrA, csrSortedValA, &
                                          csrSortedRowPtrA, csrSortedColIndA, info, &
                                          pBufferSizeInBytes) &
@@ -3456,8 +3476,8 @@ module hipfort_hipsparse
     !> \ingroup level2_module
     !> \details
     !> \p hipsparseXcsrsv2_bufferSizeExt returns the size of the temporary storage buffer in bytes
-    !> that is required by \ref hipsparseScsrsv2_analysis "hipsparseXcsrsv2_analysis()" and
-    !> \ref hipsparseScsrsv2_solve "hipsparseScsrsv2_solve()". The temporary storage buffer must be
+    !> that is required by `hipsparseScsrsv2_analysis` "hipsparseXcsrsv2_analysis()" and
+    !> `hipsparseScsrsv2_solve` "`hipsparseScsrsv2_solve()`". The temporary storage buffer must be
     !> allocated by the user.
     !>
     !> @param[in]
@@ -3482,16 +3502,16 @@ module hipfort_hipsparse
     !> info             structure that holds the information collected during the analysis step.
     !> @param[out]
     !> pBufferSizeInBytes number of bytes of the temporary storage buffer required by
-    !> \ref hipsparseScsrsv2_analysis "hipsparseXcsrsv2_analysis()" and
-    !> \ref hipsparseScsrsv2_solve "hipsparseXcsrsv2_solve()".
+    !> `hipsparseScsrsv2_analysis` "hipsparseXcsrsv2_analysis()" and
+    !> `hipsparseScsrsv2_solve` "hipsparseXcsrsv2_solve()".
     !>
     !> \retval     HIPSPARSE_STATUS_SUCCESS the operation completed successfully.
     !> \retval HIPSPARSE_STATUS_INVALID_VALUE \p handle, \p m, \p nnz, \p descrA, \p csrSortedValA,
     !> \p csrSortedRowPtrA, \p csrSortedColIndA, \p info, or \p pBufferSizeInBytes is invalid.
     !> \retval     HIPSPARSE_STATUS_INTERNAL_ERROR an internal error occurred.
     !> \retval     HIPSPARSE_STATUS_NOT_SUPPORTED
-    !> \p transA == \ref HIPSPARSE_OPERATION_CONJUGATE_TRANSPOSE or
-    !> \ref hipsparseMatrixType_t != \ref HIPSPARSE_MATRIX_TYPE_GENERAL.
+    !> \p transA == `HIPSPARSE_OPERATION_CONJUGATE_TRANSPOSE` or
+    !> `hipsparseMatrixType_t` != `HIPSPARSE_MATRIX_TYPE_GENERAL`.
     function hipsparseScsrsv2_bufferSizeExt(handle, transA, m, nnz, descrA, csrSortedValA, &
                                             csrSortedRowPtrA, csrSortedColIndA, info, &
                                             pBufferSizeInBytes) &
@@ -3599,7 +3619,7 @@ module hipfort_hipsparse
     !> \ingroup level2_module
     !> \details
     !> \p hipsparseXcsrsv2_analysis performs the analysis step for
-    !> \ref hipsparseScsrsv2_solve "hipsparseXcsrsv2_solve()". It is expected that this
+    !> `hipsparseScsrsv2_solve` "hipsparseXcsrsv2_solve()". It is expected that this
     !> function will be executed only once for a given matrix and particular operation
     !> type.
     !>
@@ -3629,8 +3649,8 @@ module hipfort_hipsparse
     !> info             structure that holds the information collected during
     !> the analysis step.
     !> @param[in]
-    !> policy      \ref HIPSPARSE_SOLVE_POLICY_NO_LEVEL or
-    !> \ref HIPSPARSE_SOLVE_POLICY_USE_LEVEL.
+    !> policy      `HIPSPARSE_SOLVE_POLICY_NO_LEVEL` or
+    !> `HIPSPARSE_SOLVE_POLICY_USE_LEVEL`.
     !> @param[in]
     !> pBuffer     temporary storage buffer allocated by the user.
     !>
@@ -3640,8 +3660,8 @@ module hipfort_hipsparse
     !> invalid.
     !> \retval     HIPSPARSE_STATUS_INTERNAL_ERROR an internal error occurred.
     !> \retval     HIPSPARSE_STATUS_NOT_SUPPORTED
-    !> \p transA == \ref HIPSPARSE_OPERATION_CONJUGATE_TRANSPOSE or
-    !> \ref hipsparseMatrixType_t != \ref HIPSPARSE_MATRIX_TYPE_GENERAL.
+    !> \p transA == `HIPSPARSE_OPERATION_CONJUGATE_TRANSPOSE` or
+    !> `hipsparseMatrixType_t` != `HIPSPARSE_MATRIX_TYPE_GENERAL`.
     function hipsparseScsrsv2_analysis(handle, transA, m, nnz, descrA, csrSortedValA, &
                                        csrSortedRowPtrA, csrSortedColIndA, info, policy, pBuffer) &
        result(Scsrsv2_analysis) &
@@ -3760,20 +3780,20 @@ module hipfort_hipsparse
     !> \f[
     !> op(A) = \left\{
     !> \begin{array}{ll}
-    !> A,   & \text{if trans == HIPSPARSE_OPERATION_NON_TRANSPOSE} \\
-    !> A^T, & \text{if trans == HIPSPARSE_OPERATION_TRANSPOSE} \\
+    !> A,   & \text{if trans == HIPSPARSE_OPERATION_NON_TRANSPOSE} \\%
+    !> A^T, & \text{if trans == HIPSPARSE_OPERATION_TRANSPOSE} \\%
     !> A^H, & \text{if trans == HIPSPARSE_OPERATION_CONJUGATE_TRANSPOSE}
     !> \end{array}
     !> \right.
     !> \f]
     !>
     !> Performing the above operation requires three steps. First, the user calls
-    !> \ref hipsparseScsrsv2_bufferSize "hipsparseXcsrsv2_bufferSize()" (or
-    !> \ref hipsparseScsrsv2_bufferSizeExt "hipsparseXcsrsv2_bufferSizeExt()") which will determine
-    !> the size of the
+    !> `hipsparseScsrsv2_bufferSize` "hipsparseXcsrsv2_bufferSize()" (or
+    !> `hipsparseScsrsv2_bufferSizeExt` "hipsparseXcsrsv2_bufferSizeExt()") which will determine the
+    !> size of the
     !> required temporary storage buffer. The user then allocates this buffer and calls
-    !> \ref hipsparseScsrsv2_analysis "hipsparseXcsrsv2_analysis()" which will perform analysis on
-    !> the sparse matrix
+    !> `hipsparseScsrsv2_analysis` "hipsparseXcsrsv2_analysis()" which will perform analysis on the
+    !> sparse matrix
     !> \f$op(A)\f$. Finally, the user completes the computation by calling \p
     !> hipsparseXcsrsv2_solve. The buffer size,
     !> buffer allocation, and analysis only need to be called once for a given sparse matrix
@@ -3788,40 +3808,38 @@ module hipfort_hipsparse
     !> (referred to as a numerical zero),
     !> then a division by zero would occur. \p hipsparseXcsrsv2_solve tracks the location of the
     !> first zero pivot (either numerical
-    !> or structural zero). The zero pivot status can be checked by calling \ref
-    !> hipsparseXcsrsv2_zeroPivot(). If
-    !> \ref hipsparseXcsrsv2_zeroPivot() returns \ref HIPSPARSE_STATUS_SUCCESS, then no zero pivot
-    !> was found and therefore
+    !> or structural zero). The zero pivot status can be checked by calling
+    !> `hipsparseXcsrsv2_zeroPivot` (). If
+    !> `hipsparseXcsrsv2_zeroPivot` () returns `HIPSPARSE_STATUS_SUCCESS`, then no zero pivot was
+    !> found and therefore
     !> the matrix does not have a structural or numerical zero.
     !>
     !> The user can specify that the sparse matrix should be interpreted as having ones on the
     !> diagonal by setting the diagonal type
-    !> on the descriptor \p descrA to \ref HIPSPARSE_DIAG_TYPE_UNIT using \ref
-    !> hipsparseSetMatDiagType. If
-    !> \ref hipsparseDiagType_t == \ref HIPSPARSE_DIAG_TYPE_UNIT, no zero pivot will be reported,
-    !> even if \f$A_{j,j} = 0\f$ for
+    !> on the descriptor \p descrA to `HIPSPARSE_DIAG_TYPE_UNIT` using `hipsparseSetMatDiagType`. If
+    !> `hipsparseDiagType_t` == `HIPSPARSE_DIAG_TYPE_UNIT`, no zero pivot will be reported, even if
+    !> \f$A_{j,j} = 0\f$ for
     !> some \f$j\f$.
     !>
     !> The sparse CSR matrix passed to \p hipsparseXcsrsv2_solve does not actually have to be a
     !> triangular matrix. Instead, the
-    !> triangular upper or lower part of the sparse matrix is solved based on \ref
-    !> hipsparseFillMode_t set on the descriptor
-    !> \p descrA. If the fill mode is set to \ref HIPSPARSE_FILL_MODE_LOWER, then the lower
-    !> triangular matrix is solved. If the
-    !> fill mode is set to \ref HIPSPARSE_FILL_MODE_UPPER, then the upper triangular matrix is
-    !> solved.
+    !> triangular upper or lower part of the sparse matrix is solved based on `hipsparseFillMode_t`
+    !> set on the descriptor
+    !> \p descrA. If the fill mode is set to `HIPSPARSE_FILL_MODE_LOWER`, then the lower triangular
+    !> matrix is solved. If the
+    !> fill mode is set to `HIPSPARSE_FILL_MODE_UPPER`, then the upper triangular matrix is solved.
     !>
     !> \note
     !> The sparse CSR matrix has to be sorted. This can be achieved by calling
-    !> hipsparseXcsrsort().
+    !> `hipsparseXcsrsort()`.
     !>
     !> \note
     !> This function is non-blocking and executed asynchronously with respect to the host.
     !> It can return before the actual computation has finished.
     !>
     !> \note
-    !> Currently, only \p transA == \ref HIPSPARSE_OPERATION_NON_TRANSPOSE and
-    !> \p transA == \ref HIPSPARSE_OPERATION_TRANSPOSE is supported.
+    !> Currently, only \p transA == `HIPSPARSE_OPERATION_NON_TRANSPOSE` and
+    !> \p transA == `HIPSPARSE_OPERATION_TRANSPOSE` is supported.
     !>
     !> @param[in]
     !> handle      handle to the hipSPARSE library context queue.
@@ -3850,8 +3868,8 @@ module hipfort_hipsparse
     !> @param[out]
     !> x           array of \p m elements, holding the solution.
     !> @param[in]
-    !> policy      \ref HIPSPARSE_SOLVE_POLICY_NO_LEVEL or
-    !> \ref HIPSPARSE_SOLVE_POLICY_USE_LEVEL.
+    !> policy      `HIPSPARSE_SOLVE_POLICY_NO_LEVEL` or
+    !> `HIPSPARSE_SOLVE_POLICY_USE_LEVEL`.
     !> @param[in]
     !> pBuffer     temporary storage buffer allocated by the user.
     !>
@@ -3862,8 +3880,8 @@ module hipfort_hipsparse
     !> \retval     HIPSPARSE_STATUS_ARCH_MISMATCH the device is not supported.
     !> \retval     HIPSPARSE_STATUS_INTERNAL_ERROR an internal error occurred.
     !> \retval     HIPSPARSE_STATUS_NOT_SUPPORTED
-    !> \p transA == \ref HIPSPARSE_OPERATION_CONJUGATE_TRANSPOSE or
-    !> \ref hipsparseMatrixType_t != \ref HIPSPARSE_MATRIX_TYPE_GENERAL.
+    !> \p transA == `HIPSPARSE_OPERATION_CONJUGATE_TRANSPOSE` or
+    !> `hipsparseMatrixType_t` != `HIPSPARSE_MATRIX_TYPE_GENERAL`.
     function hipsparseScsrsv2_solve(handle, transA, m, nnz, alpha, descrA, csrSortedValA, &
                                     csrSortedRowPtrA, csrSortedColIndA, info, f, x, policy, &
                                     pBuffer) &
@@ -3987,7 +4005,7 @@ module hipfort_hipsparse
     !> \ingroup level2_module
     !> \details
     !> \p hipsparseXgemvi_bufferSize returns the size of the temporary storage buffer in bytes
-    !> required by \ref hipsparseSgemvi "hipsparseXgemvi()". The temporary storage buffer must
+    !> required by `hipsparseSgemvi` "hipsparseXgemvi()". The temporary storage buffer must
     !> be allocated by the user.
     !>
     !> @param[in]
@@ -4007,8 +4025,8 @@ module hipfort_hipsparse
     !> \retval     HIPSPARSE_STATUS_INVALID_VALUE \p handle, \p m, \p n, \p nnz, or
     !> \p pBufferSizeInBytes is invalid.
     !> \retval     HIPSPARSE_STATUS_NOT_SUPPORTED
-    !> \p transA != \ref HIPSPARSE_OPERATION_NON_TRANSPOSE or
-    !> \ref hipsparseMatrixType_t != \ref HIPSPARSE_MATRIX_TYPE_GENERAL.
+    !> \p transA != `HIPSPARSE_OPERATION_NON_TRANSPOSE` or
+    !> `hipsparseMatrixType_t` != `HIPSPARSE_MATRIX_TYPE_GENERAL`.
     function hipsparseSgemvi_bufferSize(handle, transA, m, n, nnz, pBufferSizeInBytes) &
        result(Sgemvi_bufferSize) &
 #ifdef USE_CUDA_NAMES
@@ -4109,7 +4127,7 @@ module hipfort_hipsparse
     !> \f]
     !>
     !> Performing the above operation involves two steps. First, the user calls
-    !> \ref hipsparseSgemvi_bufferSize "hipsparseXgemvi_bufferSize()" to determine the size of
+    !> `hipsparseSgemvi_bufferSize` "hipsparseXgemvi_bufferSize()" to determine the size of
     !> the temporary storage buffer. Next, the user allocates this temporary buffer and passes it to
     !> \p hipsparseXgemvi to complete the computation. After all calls to \p hipsparseXgemvi are
     !> complete, the
@@ -4120,7 +4138,7 @@ module hipfort_hipsparse
     !> It can return before the actual computation has finished.
     !>
     !> \note
-    !> Currently, only \p transA == \ref HIPSPARSE_OPERATION_NON_TRANSPOSE is supported.
+    !> Currently, only \p transA == `HIPSPARSE_OPERATION_NON_TRANSPOSE` is supported.
     !>
     !> @param[in]
     !> handle      handle to the hipSPARSE library context queue.
@@ -4148,7 +4166,7 @@ module hipfort_hipsparse
     !> y           array of \p m elements (\f$op(A) == A\f$) or \p n elements
     !> (\f$op(A) == A^T\f$ or \f$op(A) == A^H\f$).
     !> @param[in]
-    !> idxBase     \ref HIPSPARSE_INDEX_BASE_ZERO or \ref HIPSPARSE_INDEX_BASE_ONE.
+    !> idxBase     `HIPSPARSE_INDEX_BASE_ZERO` or `HIPSPARSE_INDEX_BASE_ONE`.
     !> @param[in]
     !> pBuffer     temporary storage buffer.
     !>
@@ -4156,8 +4174,8 @@ module hipfort_hipsparse
     !> \retval     HIPSPARSE_STATUS_INVALID_VALUE \p handle, \p m, \p n, \p lda, \p nnz, \p alpha,
     !> \p A, \p x, \p xInd, \p beta, \p y, or \p pBuffer is invalid.
     !> \retval     HIPSPARSE_STATUS_NOT_SUPPORTED
-    !> \p transA != \ref HIPSPARSE_OPERATION_NON_TRANSPOSE or
-    !> \ref hipsparseMatrixType_t != \ref HIPSPARSE_MATRIX_TYPE_GENERAL.
+    !> \p transA != `HIPSPARSE_OPERATION_NON_TRANSPOSE` or
+    !> `hipsparseMatrixType_t` != `HIPSPARSE_MATRIX_TYPE_GENERAL`.
     function hipsparseSgemvi(handle, transA, m, n, alpha, A, lda, nnz, x, xInd, beta, y, idxBase, &
                              pBuffer) &
        result(Sgemvi) &
@@ -4299,7 +4317,7 @@ module hipfort_hipsparse
     !> It can return before the actual computation has finished.
     !>
     !> \note
-    !> Currently, only \p transA == \ref HIPSPARSE_OPERATION_NON_TRANSPOSE is supported.
+    !> Currently, only \p transA == `HIPSPARSE_OPERATION_NON_TRANSPOSE` is supported.
     !>
     !> \deprecated
     !> This function is deprecated when using the CUDA backend (CUDA 10.0+) and will be
@@ -4313,7 +4331,7 @@ module hipfort_hipsparse
     !> alpha       scalar \f$\alpha\f$.
     !> @param[in]
     !> descrA      descriptor of the sparse HYB matrix. Currently, only
-    !> \ref HIPSPARSE_MATRIX_TYPE_GENERAL is supported.
+    !> `HIPSPARSE_MATRIX_TYPE_GENERAL` is supported.
     !> @param[in]
     !> hybA        matrix in HYB storage format.
     !> @param[in]
@@ -4333,9 +4351,8 @@ module hipfort_hipsparse
     !> \retval HIPSPARSE_STATUS_ARCH_MISMATCH the device is not supported.
     !> \retval HIPSPARSE_STATUS_ALLOC_FAILED the buffer could not be allocated.
     !> \retval HIPSPARSE_STATUS_INTERNAL_ERROR an internal error occurred.
-    !> \retval HIPSPARSE_STATUS_NOT_SUPPORTED \p transA is not \ref
-    !> HIPSPARSE_OPERATION_NON_TRANSPOSE
-    !> or \ref hipsparseMatrixType_t is not \ref HIPSPARSE_MATRIX_TYPE_GENERAL.
+    !> \retval HIPSPARSE_STATUS_NOT_SUPPORTED \p transA is not `HIPSPARSE_OPERATION_NON_TRANSPOSE`
+    !> or `hipsparseMatrixType_t` is not `HIPSPARSE_MATRIX_TYPE_GENERAL`.
     function hipsparseShybmv(handle, transA, alpha, descrA, hybA, x, beta, y) &
        result(Shybmv) &
 #ifdef USE_CUDA_NAMES
@@ -4440,7 +4457,7 @@ module hipfort_hipsparse
     !> \f[
     !> op(A) = \left\{
     !> \begin{array}{ll}
-    !> A,   & \text{if transA == HIPSPARSE_OPERATION_NON_TRANSPOSE} \\
+    !> A,   & \text{if transA == HIPSPARSE_OPERATION_NON_TRANSPOSE} \\%
     !> \end{array}
     !> \right.
     !> \f]
@@ -4448,8 +4465,8 @@ module hipfort_hipsparse
     !> \f[
     !> op(B) = \left\{
     !> \begin{array}{ll}
-    !> B,   & \text{if transB == HIPSPARSE_OPERATION_NON_TRANSPOSE} \\
-    !> B^T, & \text{if transB == HIPSPARSE_OPERATION_TRANSPOSE} \\
+    !> B,   & \text{if transB == HIPSPARSE_OPERATION_NON_TRANSPOSE} \\%
+    !> B^T, & \text{if transB == HIPSPARSE_OPERATION_TRANSPOSE} \\%
     !> \end{array}
     !> \right.
     !> \f]
@@ -4460,19 +4477,19 @@ module hipfort_hipsparse
     !> It can return before the actual computation has finished.
     !>
     !> \note
-    !> Currently, only \p transA == \ref HIPSPARSE_OPERATION_NON_TRANSPOSE is supported.
+    !> Currently, only \p transA == `HIPSPARSE_OPERATION_NON_TRANSPOSE` is supported.
     !>
     !> @param[in]
     !> handle      handle to the hipSPARSE library context queue.
     !> @param[in]
-    !> dirA the storage format of the blocks. Can be \ref HIPSPARSE_DIRECTION_ROW or \ref
-    !> HIPSPARSE_DIRECTION_COLUMN.
+    !> dirA the storage format of the blocks. Can be `HIPSPARSE_DIRECTION_ROW` or
+    !> `HIPSPARSE_DIRECTION_COLUMN`.
     !> @param[in]
-    !> transA matrix \f$A\f$ operation type. Currently, only \ref HIPSPARSE_OPERATION_NON_TRANSPOSE
-    !> is supported.
+    !> transA matrix \f$A\f$ operation type. Currently, only `HIPSPARSE_OPERATION_NON_TRANSPOSE` is
+    !> supported.
     !> @param[in]
-    !> transB matrix \f$B\f$ operation type. Currently, only \ref HIPSPARSE_OPERATION_NON_TRANSPOSE
-    !> and \ref HIPSPARSE_OPERATION_TRANSPOSE
+    !> transB matrix \f$B\f$ operation type. Currently, only `HIPSPARSE_OPERATION_NON_TRANSPOSE` and
+    !> `HIPSPARSE_OPERATION_TRANSPOSE`
     !> are supported.
     !> @param[in]
     !> mb          number of block rows of the sparse BSR matrix \f$A\f$. Must be non-negative.
@@ -4486,7 +4503,7 @@ module hipfort_hipsparse
     !> alpha       scalar \f$\alpha\f$.
     !> @param[in]
     !> descrA      descriptor of the sparse BSR matrix \f$A\f$. Currently, only
-    !> \ref HIPSPARSE_MATRIX_TYPE_GENERAL is supported.
+    !> `HIPSPARSE_MATRIX_TYPE_GENERAL` is supported.
     !> @param[in]
     !> bsrValA     array of \p nnzb*blockDim*blockDim elements of the sparse BSR matrix \f$A\f$.
     !> @param[in]
@@ -4520,10 +4537,9 @@ module hipfort_hipsparse
     !> \p blockDim is less than or equal to zero, or \p bsrValA, \p bsrRowPtrA, \p bsrColIndA,
     !> \p B, or \p C is nullptr.
     !> \retval HIPSPARSE_STATUS_ARCH_MISMATCH the device is not supported.
-    !> \retval HIPSPARSE_STATUS_NOT_SUPPORTED \p transA is not \ref
-    !> HIPSPARSE_OPERATION_NON_TRANSPOSE,
-    !> \p transB is \ref HIPSPARSE_OPERATION_CONJUGATE_TRANSPOSE, or
-    !> \ref hipsparseMatrixType_t is not \ref HIPSPARSE_MATRIX_TYPE_GENERAL.
+    !> \retval HIPSPARSE_STATUS_NOT_SUPPORTED \p transA is not `HIPSPARSE_OPERATION_NON_TRANSPOSE`,
+    !> \p transB is `HIPSPARSE_OPERATION_CONJUGATE_TRANSPOSE`, or
+    !> `hipsparseMatrixType_t` is not `HIPSPARSE_MATRIX_TYPE_GENERAL`.
     function hipsparseSbsrmm(handle, dirA, transA, transB, mb, n, kb, nnzb, alpha, descrA, &
                              bsrValA, bsrRowPtrA, bsrColIndA, blockDim, B, ldb, beta, C, ldc) &
        result(Sbsrmm) &
@@ -4662,15 +4678,15 @@ module hipfort_hipsparse
     !---------------------------------------------
     !> \ingroup level3_module
     !> \details
-    !> \p hipsparseXbsrsm2_zeroPivot returns \ref HIPSPARSE_STATUS_ZERO_PIVOT if either a
-    !> structural or numerical zero has been found during \ref hipsparseSbsrsm2_analysis
+    !> \p hipsparseXbsrsm2_zeroPivot returns `HIPSPARSE_STATUS_ZERO_PIVOT` if either a
+    !> structural or numerical zero has been found during `hipsparseSbsrsm2_analysis`
     !> "hipsparseXbsrsm2_analysis()"
-    !> or \ref hipsparseSbsrsm2_solve "hipsparseXbsrsm2_solve()" computation. The first zero pivot
+    !> or `hipsparseSbsrsm2_solve` "hipsparseXbsrsm2_solve()" computation. The first zero pivot
     !> \f$j\f$ at \f$A_{j,j}\f$
     !> is stored in \p position, using the same index base as the BSR matrix.
     !>
     !> \p position can be in host or device memory. If no zero pivot has been found,
-    !> \p position is set to -1 and \ref HIPSPARSE_STATUS_SUCCESS is returned instead.
+    !> \p position is set to -1 and `HIPSPARSE_STATUS_SUCCESS` is returned instead.
     !>
     !> \note \p hipsparseXbsrsm2_zeroPivot is a blocking function. It might negatively
     !> influence performance.
@@ -4711,8 +4727,8 @@ module hipfort_hipsparse
     !> \ingroup level3_module
     !> \details
     !> \p hipsparseXbsrsm2_buffer_size returns the size of the temporary storage buffer in bytes
-    !> that is required by \ref hipsparseSbsrsm2_analysis "hipsparseXbsrsm2_analysis()" and
-    !> \ref hipsparseSbsrsm2_solve "hipsparseXbsrsm2_solve()". The temporary storage buffer must
+    !> that is required by `hipsparseSbsrsm2_analysis` "hipsparseXbsrsm2_analysis()" and
+    !> `hipsparseSbsrsm2_solve` "hipsparseXbsrsm2_solve()". The temporary storage buffer must
     !> be allocated by the user.
     !>
     !> @param[in]
@@ -4745,8 +4761,8 @@ module hipfort_hipsparse
     !> info        structure that holds the information collected during the analysis step.
     !> @param[out]
     !> pBufferSizeInBytes number of bytes of the temporary storage buffer required by
-    !> \ref hipsparseSbsrsm2_analysis "hipsparseXbsrsm2_analysis()" and
-    !> \ref hipsparseSbsrsm2_solve "hipsparseXbsrsm2_solve()".
+    !> `hipsparseSbsrsm2_analysis` "hipsparseXbsrsm2_analysis()" and
+    !> `hipsparseSbsrsm2_solve` "hipsparseXbsrsm2_solve()".
     !>
     !> \retval     HIPSPARSE_STATUS_SUCCESS the operation completed successfully.
     !> \retval     HIPSPARSE_STATUS_INVALID_VALUE \p handle, \p mb, \p nrhs, \p nnzb, \p blockDim,
@@ -4754,9 +4770,9 @@ module hipfort_hipsparse
     !> \p pBufferSizeInBytes is invalid.
     !> \retval     HIPSPARSE_STATUS_INTERNAL_ERROR an internal error occurred.
     !> \retval     HIPSPARSE_STATUS_NOT_SUPPORTED
-    !> \p transA == \ref HIPSPARSE_OPERATION_CONJUGATE_TRANSPOSE,
-    !> \p transX == \ref HIPSPARSE_OPERATION_CONJUGATE_TRANSPOSE, or
-    !> \ref hipsparseMatrixType_t != \ref HIPSPARSE_MATRIX_TYPE_GENERAL.
+    !> \p transA == `HIPSPARSE_OPERATION_CONJUGATE_TRANSPOSE`,
+    !> \p transX == `HIPSPARSE_OPERATION_CONJUGATE_TRANSPOSE`, or
+    !> `hipsparseMatrixType_t` != `HIPSPARSE_MATRIX_TYPE_GENERAL`.
     function hipsparseSbsrsm2_bufferSize(handle, dirA, transA, transX, mb, nrhs, nnzb, descrA, &
                                          bsrSortedValA, bsrSortedRowPtrA, bsrSortedColIndA, &
                                          blockDim, info, pBufferSizeInBytes) &
@@ -4881,7 +4897,7 @@ module hipfort_hipsparse
     !> \brief Sparse triangular system solve using the BSR storage format.
     !>
     !> \details
-    !> \p hipsparseXbsrsm2_analysis performs the analysis step for \ref hipsparseSbsrsm2_solve
+    !> \p hipsparseXbsrsm2_analysis performs the analysis step for `hipsparseSbsrsm2_solve`
     !> "hipsparseXbsrsm2_solve()". It is expected that this function will be executed only once
     !> for a given matrix and particular operation type.
     !>
@@ -4921,8 +4937,8 @@ module hipfort_hipsparse
     !> @param[out]
     !> info        structure that holds the information collected during the analysis step.
     !> @param[in]
-    !> policy      \ref HIPSPARSE_SOLVE_POLICY_NO_LEVEL or
-    !> \ref HIPSPARSE_SOLVE_POLICY_USE_LEVEL.
+    !> policy      `HIPSPARSE_SOLVE_POLICY_NO_LEVEL` or
+    !> `HIPSPARSE_SOLVE_POLICY_USE_LEVEL`.
     !> @param[in]
     !> pBuffer     temporary storage buffer allocated by the user.
     !>
@@ -4932,9 +4948,9 @@ module hipfort_hipsparse
     !> \p bsrSortedColIndA, \p info, or \p pBuffer is invalid.
     !> \retval     HIPSPARSE_STATUS_INTERNAL_ERROR an internal error occurred.
     !> \retval     HIPSPARSE_STATUS_NOT_SUPPORTED
-    !> \p transA == \ref HIPSPARSE_OPERATION_CONJUGATE_TRANSPOSE,
-    !> \p transX == \ref HIPSPARSE_OPERATION_CONJUGATE_TRANSPOSE, or
-    !> \ref hipsparseMatrixType_t != \ref HIPSPARSE_MATRIX_TYPE_GENERAL.
+    !> \p transA == `HIPSPARSE_OPERATION_CONJUGATE_TRANSPOSE`,
+    !> \p transX == `HIPSPARSE_OPERATION_CONJUGATE_TRANSPOSE`, or
+    !> `hipsparseMatrixType_t` != `HIPSPARSE_MATRIX_TYPE_GENERAL`.
     function hipsparseSbsrsm2_analysis(handle, dirA, transA, transX, mb, nrhs, nnzb, descrA, &
                                        bsrSortedValA, bsrSortedRowPtrA, bsrSortedColIndA, &
                                        blockDim, info, policy, pBuffer) &
@@ -5076,8 +5092,8 @@ module hipfort_hipsparse
     !> \f[
     !> op(A) = \left\{
     !> \begin{array}{ll}
-    !> A,   & \text{if transA == HIPSPARSE_OPERATION_NON_TRANSPOSE} \\
-    !> A^T, & \text{if transA == HIPSPARSE_OPERATION_TRANSPOSE} \\
+    !> A,   & \text{if transA == HIPSPARSE_OPERATION_NON_TRANSPOSE} \\%
+    !> A^T, & \text{if transA == HIPSPARSE_OPERATION_TRANSPOSE} \\%
     !> A^H, & \text{if transA == HIPSPARSE_OPERATION_CONJUGATE_TRANSPOSE}
     !> \end{array}
     !> \right.
@@ -5086,8 +5102,8 @@ module hipfort_hipsparse
     !> \f[
     !> op(B) = \left\{
     !> \begin{array}{ll}
-    !> B,   & \text{if transX == HIPSPARSE_OPERATION_NON_TRANSPOSE} \\
-    !> B^T, & \text{if transX == HIPSPARSE_OPERATION_TRANSPOSE} \\
+    !> B,   & \text{if transX == HIPSPARSE_OPERATION_NON_TRANSPOSE} \\%
+    !> B^T, & \text{if transX == HIPSPARSE_OPERATION_TRANSPOSE} \\%
     !> B^H, & \text{if transX == HIPSPARSE_OPERATION_CONJUGATE_TRANSPOSE}
     !> \end{array}
     !> \right.
@@ -5096,8 +5112,8 @@ module hipfort_hipsparse
     !> \f[
     !> op(X) = \left\{
     !> \begin{array}{ll}
-    !> X,   & \text{if transX == HIPSPARSE_OPERATION_NON_TRANSPOSE} \\
-    !> X^T, & \text{if transX == HIPSPARSE_OPERATION_TRANSPOSE} \\
+    !> X,   & \text{if transX == HIPSPARSE_OPERATION_NON_TRANSPOSE} \\%
+    !> X^T, & \text{if transX == HIPSPARSE_OPERATION_TRANSPOSE} \\%
     !> X^H, & \text{if transX == HIPSPARSE_OPERATION_CONJUGATE_TRANSPOSE}
     !> \end{array}
     !> \right.
@@ -5119,10 +5135,10 @@ module hipfort_hipsparse
     !> \f[
     !> op(B) = \left\{
     !> \begin{array}{ll}
-    !> ldb \times nrhs, \text{ } ldb \ge m, & \text{if transX == HIPSPARSE_OPERATION_NON_TRANSPOSE}
-    !> \\
-    !> ldb \times m, \text{  } ldb \ge nrhs,  & \text{if transX == HIPSPARSE_OPERATION_TRANSPOSE} \\
-    !> ldb \times m, \text{ } ldb \ge nrhs, & \text{if transX ==
+    !> ldb \times nrhs, \text{ } ldb &ge; m, & \text{if transX == HIPSPARSE_OPERATION_NON_TRANSPOSE}
+    !> \\%
+    !> ldb \times m, \text{ } ldb &ge; nrhs, & \text{if transX == HIPSPARSE_OPERATION_TRANSPOSE} \\%
+    !> ldb \times m, \text{ } ldb &ge; nrhs, & \text{if transX ==
     !> HIPSPARSE_OPERATION_CONJUGATE_TRANSPOSE}
     !> \end{array}
     !> \right.
@@ -5131,21 +5147,21 @@ module hipfort_hipsparse
     !> \f[
     !> op(X) = \left\{
     !> \begin{array}{ll}
-    !> ldb \times nrhs, \text{ } ldb \ge m, & \text{if transX == HIPSPARSE_OPERATION_NON_TRANSPOSE}
-    !> \\
-    !> ldb \times m, \text{  } ldb \ge nrhs,  & \text{if transX == HIPSPARSE_OPERATION_TRANSPOSE} \\
-    !> ldb \times m, \text{ } ldb \ge nrhs, & \text{if transX ==
+    !> ldb \times nrhs, \text{ } ldb &ge; m, & \text{if transX == HIPSPARSE_OPERATION_NON_TRANSPOSE}
+    !> \\%
+    !> ldb \times m, \text{ } ldb &ge; nrhs, & \text{if transX == HIPSPARSE_OPERATION_TRANSPOSE} \\%
+    !> ldb \times m, \text{ } ldb &ge; nrhs, & \text{if transX ==
     !> HIPSPARSE_OPERATION_CONJUGATE_TRANSPOSE}
     !> \end{array}
     !> \right.
     !> \f]
     !>
     !> \p hipsparseXbsrsm2_solve requires a user-allocated temporary buffer. Its size is returned by
-    !> \ref hipsparseSbsrsm2_bufferSize "hipsparseXbsrsm2_bufferSize()". The size of the required
+    !> `hipsparseSbsrsm2_bufferSize` "hipsparseXbsrsm2_bufferSize()". The size of the required
     !> buffer is larger
-    !> when \p transA equals \ref HIPSPARSE_OPERATION_TRANSPOSE or \ref
-    !> HIPSPARSE_OPERATION_CONJUGATE_TRANSPOSE and
-    !> when \p transX is \ref HIPSPARSE_OPERATION_NON_TRANSPOSE. The subsequent solve will also be
+    !> when \p transA equals `HIPSPARSE_OPERATION_TRANSPOSE` or
+    !> `HIPSPARSE_OPERATION_CONJUGATE_TRANSPOSE` and
+    !> when \p transX is `HIPSPARSE_OPERATION_NON_TRANSPOSE`. The subsequent solve will also be
     !> faster when \f$A\f$ is
     !> non-transposed and \f$B\f$ is transposed (or conjugate transposed). For example, instead of
     !> solving:
@@ -5154,37 +5170,37 @@ module hipfort_hipsparse
     !> \left[
     !> \begin{array}{c | c}
     !> \begin{array}{c c}
-    !> a_{00} & a_{01} \\
+    !> a_{00} & a_{01} \\%
     !> a_{10} & a_{11}
     !> \end{array} &
     !> \begin{array}{c c}
-    !> 0 & 0 \\
+    !> 0 & 0 \\%
     !> 0 & 0
-    !> \end{array} \\
+    !> \end{array} \\%
     !> \hline
     !> \begin{array}{c c}
-    !> a_{20} & a_{21} \\
+    !> a_{20} & a_{21} \\%
     !> a_{30} & a_{31}
     !> \end{array} &
     !> \begin{array}{c c}
-    !> a_{22} & a_{23} \\
+    !> a_{22} & a_{23} \\%
     !> a_{32} & a_{33}
-    !> \end{array} \\
+    !> \end{array} \\%
     !> \end{array}
     !> \right]
     !> \cdot
     !> \begin{bmatrix}
-    !> x_{00} & x_{01} \\
-    !> x_{10} & x_{11} \\
-    !> x_{20} & x_{21} \\
-    !> x_{30} & x_{31} \\
+    !> x_{00} & x_{01} \\%
+    !> x_{10} & x_{11} \\%
+    !> x_{20} & x_{21} \\%
+    !> x_{30} & x_{31} \\%
     !> \end{bmatrix}
     !> =
     !> \begin{bmatrix}
-    !> b_{00} & b_{01} \\
-    !> b_{10} & b_{11} \\
-    !> b_{20} & b_{21} \\
-    !> b_{30} & b_{31} \\
+    !> b_{00} & b_{01} \\%
+    !> b_{10} & b_{11} \\%
+    !> b_{20} & b_{21} \\%
+    !> b_{30} & b_{31} \\%
     !> \end{bmatrix}
     !> \f]
     !>
@@ -5194,32 +5210,32 @@ module hipfort_hipsparse
     !> \left[
     !> \begin{array}{c | c}
     !> \begin{array}{c c}
-    !> a_{00} & a_{01} \\
+    !> a_{00} & a_{01} \\%
     !> a_{10} & a_{11}
     !> \end{array} &
     !> \begin{array}{c c}
-    !> 0 & 0 \\
+    !> 0 & 0 \\%
     !> 0 & 0
-    !> \end{array} \\
+    !> \end{array} \\%
     !> \hline
     !> \begin{array}{c c}
-    !> a_{20} & a_{21} \\
+    !> a_{20} & a_{21} \\%
     !> a_{30} & a_{31}
     !> \end{array} &
     !> \begin{array}{c c}
-    !> a_{22} & a_{23} \\
+    !> a_{22} & a_{23} \\%
     !> a_{32} & a_{33}
-    !> \end{array} \\
+    !> \end{array} \\%
     !> \end{array}
     !> \right]
     !> \cdot
     !> \begin{bmatrix}
-    !> x_{00} & x_{10} & x_{20} & x_{30} \\
+    !> x_{00} & x_{10} & x_{20} & x_{30} \\%
     !> x_{01} & x_{11} & x_{21} & x_{31}
     !> \end{bmatrix}^{T}
     !> =
     !> \begin{bmatrix}
-    !> b_{00} & b_{10} & b_{20} & b_{30} \\
+    !> b_{00} & b_{10} & b_{20} & b_{30} \\%
     !> b_{01} & b_{11} & b_{21} & b_{31}
     !> \end{bmatrix}^{T}
     !> \f]
@@ -5239,27 +5255,26 @@ module hipfort_hipsparse
     !> to as a numerical zero), then a solution is not possible. \p hipsparseXbsrsm2_solve tracks
     !> the location of the first
     !> zero pivot (either numerical or structural zero). The zero pivot status can be checked by
-    !> calling \ref hipsparseXbsrsm2_zeroPivot().
-    !> If \ref hipsparseXbsrsm2_zeroPivot() returns \ref HIPSPARSE_STATUS_SUCCESS, then no zero
-    !> pivot was found and therefore
+    !> calling `hipsparseXbsrsm2_zeroPivot` ().
+    !> If `hipsparseXbsrsm2_zeroPivot` () returns `HIPSPARSE_STATUS_SUCCESS`, then no zero pivot was
+    !> found and therefore
     !> the matrix does not have a structural or numerical zero.
     !>
     !> The user can specify that the sparse matrix should be interpreted as having identity blocks
     !> on the diagonal by setting the diagonal
-    !> type on the descriptor \p descrA to \ref HIPSPARSE_DIAG_TYPE_UNIT using \ref
-    !> hipsparseSetMatDiagType. If
-    !> \ref hipsparseDiagType_t == \ref HIPSPARSE_DIAG_TYPE_UNIT, no zero pivot will be reported,
-    !> even if the diagonal block \f$A_{j,j}\f$
+    !> type on the descriptor \p descrA to `HIPSPARSE_DIAG_TYPE_UNIT` using
+    !> `hipsparseSetMatDiagType`. If
+    !> `hipsparseDiagType_t` == `HIPSPARSE_DIAG_TYPE_UNIT`, no zero pivot will be reported, even if
+    !> the diagonal block \f$A_{j,j}\f$
     !> for some \f$j\f$ is not invertible.
     !>
     !> The sparse CSR matrix passed to \p hipsparseXbsrsm2_solve does not actually have to be a
     !> triangular matrix. Instead, the
-    !> triangular upper or lower part of the sparse matrix is solved based on \ref
-    !> hipsparseFillMode_t set on the descriptor
-    !> \p descrA. If the fill mode is set to \ref HIPSPARSE_FILL_MODE_LOWER, then the lower
-    !> triangular matrix is solved. If the
-    !> fill mode is set to \ref HIPSPARSE_FILL_MODE_UPPER, then the upper triangular matrix is
-    !> solved.
+    !> triangular upper or lower part of the sparse matrix is solved based on `hipsparseFillMode_t`
+    !> set on the descriptor
+    !> \p descrA. If the fill mode is set to `HIPSPARSE_FILL_MODE_LOWER`, then the lower triangular
+    !> matrix is solved. If the
+    !> fill mode is set to `HIPSPARSE_FILL_MODE_UPPER`, then the upper triangular matrix is solved.
     !>
     !> \note
     !> The sparse BSR matrix has to be sorted.
@@ -5272,8 +5287,8 @@ module hipfort_hipsparse
     !> It can return before the actual computation has finished.
     !>
     !> \note
-    !> Currently, only \p transA != \ref HIPSPARSE_OPERATION_CONJUGATE_TRANSPOSE and
-    !> \p transX != \ref HIPSPARSE_OPERATION_CONJUGATE_TRANSPOSE is supported.
+    !> Currently, only \p transA != `HIPSPARSE_OPERATION_CONJUGATE_TRANSPOSE` and
+    !> \p transX != `HIPSPARSE_OPERATION_CONJUGATE_TRANSPOSE` is supported.
     !>
     !> @param[in]
     !> handle           handle to the hipSPARSE library context queue.
@@ -5314,7 +5329,7 @@ module hipfort_hipsparse
     !> @param[in]
     !> ldx              leading dimension of solution matrix \f$X\f$.
     !> @param[in]
-    !> policy \ref HIPSPARSE_SOLVE_POLICY_NO_LEVEL or \ref HIPSPARSE_SOLVE_POLICY_USE_LEVEL.
+    !> policy           `HIPSPARSE_SOLVE_POLICY_NO_LEVEL` or `HIPSPARSE_SOLVE_POLICY_USE_LEVEL`.
     !> @param[in]
     !> pBuffer          temporary storage buffer allocated by the user.
     !>
@@ -5324,9 +5339,9 @@ module hipfort_hipsparse
     !> \p B, \p X \p info, or \p pBuffer is invalid.
     !> \retval     HIPSPARSE_STATUS_INTERNAL_ERROR an internal error occurred.
     !> \retval     HIPSPARSE_STATUS_NOT_SUPPORTED
-    !> \p transA == \ref HIPSPARSE_OPERATION_CONJUGATE_TRANSPOSE,
-    !> \p transX == \ref HIPSPARSE_OPERATION_CONJUGATE_TRANSPOSE or
-    !> \ref hipsparseMatrixType_t != \ref HIPSPARSE_MATRIX_TYPE_GENERAL.
+    !> \p transA == `HIPSPARSE_OPERATION_CONJUGATE_TRANSPOSE`,
+    !> \p transX == `HIPSPARSE_OPERATION_CONJUGATE_TRANSPOSE` or
+    !> `hipsparseMatrixType_t` != `HIPSPARSE_MATRIX_TYPE_GENERAL`.
     function hipsparseSbsrsm2_solve(handle, dirA, transA, transX, mb, nrhs, nnzb, alpha, descrA, &
                                     bsrSortedValA, bsrSortedRowPtrA, bsrSortedColIndA, blockDim, &
                                     info, B, ldb, X, ldx, policy, pBuffer) &
@@ -5487,8 +5502,8 @@ module hipfort_hipsparse
     !> \f[
     !> op(A) = \left\{
     !> \begin{array}{ll}
-    !> A,   & \text{if transA == HIPSPARSE_OPERATION_NON_TRANSPOSE} \\
-    !> A^T, & \text{if transA == HIPSPARSE_OPERATION_TRANSPOSE} \\
+    !> A,   & \text{if transA == HIPSPARSE_OPERATION_NON_TRANSPOSE} \\%
+    !> A^T, & \text{if transA == HIPSPARSE_OPERATION_TRANSPOSE} \\%
     !> A^H, & \text{if transA == HIPSPARSE_OPERATION_CONJUGATE_TRANSPOSE}
     !> \end{array}
     !> \right.
@@ -5533,7 +5548,7 @@ module hipfort_hipsparse
     !> alpha               scalar \f$\alpha\f$.
     !> @param[in]
     !> descrA              descriptor of the sparse CSR matrix \f$A\f$. Currently, only
-    !> \ref HIPSPARSE_MATRIX_TYPE_GENERAL is supported.
+    !> `HIPSPARSE_MATRIX_TYPE_GENERAL` is supported.
     !> @param[in]
     !> csrSortedValA       array of \p nnz elements of the sparse CSR matrix \f$A\f$.
     !> @param[in]
@@ -5562,8 +5577,8 @@ module hipfort_hipsparse
     !> \p m, \p n, \p k, or \p nnz is negative, \p ldb or \p ldc is invalid, or
     !> \p csrSortedValA, \p csrSortedRowPtrA, \p csrSortedColIndA, \p B, or \p C is nullptr.
     !> \retval HIPSPARSE_STATUS_ARCH_MISMATCH the device is not supported.
-    !> \retval HIPSPARSE_STATUS_NOT_SUPPORTED \ref hipsparseMatrixType_t is not
-    !> \ref HIPSPARSE_MATRIX_TYPE_GENERAL.
+    !> \retval HIPSPARSE_STATUS_NOT_SUPPORTED `hipsparseMatrixType_t` is not
+    !> `HIPSPARSE_MATRIX_TYPE_GENERAL`.
     function hipsparseScsrmm(handle, transA, m, n, k, nnz, alpha, descrA, csrSortedValA, &
                              csrSortedRowPtrA, csrSortedColIndA, B, ldb, beta, C, ldc) &
        result(Scsrmm) &
@@ -5704,8 +5719,8 @@ module hipfort_hipsparse
     !> \f[
     !> op(A) = \left\{
     !> \begin{array}{ll}
-    !> A,   & \text{if transA == HIPSPARSE_OPERATION_NON_TRANSPOSE} \\
-    !> A^T, & \text{if transA == HIPSPARSE_OPERATION_TRANSPOSE} \\
+    !> A,   & \text{if transA == HIPSPARSE_OPERATION_NON_TRANSPOSE} \\%
+    !> A^T, & \text{if transA == HIPSPARSE_OPERATION_TRANSPOSE} \\%
     !> A^H, & \text{if transA == HIPSPARSE_OPERATION_CONJUGATE_TRANSPOSE}
     !> \end{array}
     !> \right.
@@ -5714,8 +5729,8 @@ module hipfort_hipsparse
     !> \f[
     !> op(B) = \left\{
     !> \begin{array}{ll}
-    !> B,   & \text{if transB == HIPSPARSE_OPERATION_NON_TRANSPOSE} \\
-    !> B^T, & \text{if transB == HIPSPARSE_OPERATION_TRANSPOSE} \\
+    !> B,   & \text{if transB == HIPSPARSE_OPERATION_NON_TRANSPOSE} \\%
+    !> B^T, & \text{if transB == HIPSPARSE_OPERATION_TRANSPOSE} \\%
     !> B^H, & \text{if transB == HIPSPARSE_OPERATION_CONJUGATE_TRANSPOSE}
     !> \end{array}
     !> \right.
@@ -5758,7 +5773,7 @@ module hipfort_hipsparse
     !> alpha       scalar \f$\alpha\f$.
     !> @param[in]
     !> descrA      descriptor of the sparse CSR matrix \f$A\f$. Currently, only
-    !> \ref HIPSPARSE_MATRIX_TYPE_GENERAL is supported.
+    !> `HIPSPARSE_MATRIX_TYPE_GENERAL` is supported.
     !> @param[in]
     !> csrSortedValA array of \p nnz elements of the sparse CSR matrix \f$A\f$.
     !> @param[in]
@@ -5787,7 +5802,7 @@ module hipfort_hipsparse
     !> \p B, \p beta, or \p C is invalid.
     !> \retval     HIPSPARSE_STATUS_ARCH_MISMATCH the device is not supported.
     !> \retval     HIPSPARSE_STATUS_NOT_SUPPORTED
-    !> \ref hipsparseMatrixType_t != \ref HIPSPARSE_MATRIX_TYPE_GENERAL.
+    !> `hipsparseMatrixType_t` != `HIPSPARSE_MATRIX_TYPE_GENERAL`.
     function hipsparseScsrmm2(handle, transA, transB, m, n, k, nnz, alpha, descrA, csrSortedValA, &
                               csrSortedRowPtrA, csrSortedColIndA, B, ldb, beta, C, ldc) &
        result(Scsrmm2) &
@@ -5918,14 +5933,14 @@ module hipfort_hipsparse
     !---------------------------------------------
     !> \ingroup level3_module
     !> \details
-    !> \p hipsparseXcsrsm2_zeroPivot returns \ref HIPSPARSE_STATUS_ZERO_PIVOT if either a
-    !> structural or numerical zero has been found during \ref hipsparseScsrsm2_analysis
-    !> "hipsparseXcsrsm2_analysis()" or \ref hipsparseScsrsm2_solve "hipsparseXcsrsm2_solve()"
+    !> \p hipsparseXcsrsm2_zeroPivot returns `HIPSPARSE_STATUS_ZERO_PIVOT` if either a
+    !> structural or numerical zero has been found during `hipsparseScsrsm2_analysis`
+    !> "hipsparseXcsrsm2_analysis()" or `hipsparseScsrsm2_solve` "hipsparseXcsrsm2_solve()"
     !> computation. The first zero pivot \f$j\f$ at \f$A_{j,j}\f$ is stored in \p position,
     !> using the same index base as the CSR matrix.
     !>
     !> \p position can be in host or device memory. If no zero pivot has been found,
-    !> \p position is set to -1 and \ref HIPSPARSE_STATUS_SUCCESS is returned instead.
+    !> \p position is set to -1 and `HIPSPARSE_STATUS_SUCCESS` is returned instead.
     !>
     !> \note \p hipsparseXcsrsm2_zeroPivot is a blocking function. It might negatively
     !> influence performance.
@@ -5966,8 +5981,8 @@ module hipfort_hipsparse
     !> \ingroup level3_module
     !> \details
     !> \p hipsparseXcsrsm2_bufferSizeExt returns the size of the temporary storage buffer
-    !> in bytes that is required by \ref hipsparseScsrsm2_analysis "hipsparseXcsrsm2_analysis()"
-    !> and \ref hipsparseScsrsm2_solve "hipsparseXcsrsm2_solve()". The temporary storage buffer
+    !> in bytes that is required by `hipsparseScsrsm2_analysis` "hipsparseXcsrsm2_analysis()"
+    !> and `hipsparseScsrsm2_solve` "hipsparseXcsrsm2_solve()". The temporary storage buffer
     !> must be allocated by the user.
     !>
     !> @param[in]
@@ -6003,12 +6018,12 @@ module hipfort_hipsparse
     !> @param[in]
     !> info             structure that holds the information collected during the analysis step.
     !> @param[in]
-    !> policy      \ref HIPSPARSE_SOLVE_POLICY_NO_LEVEL or
-    !> \ref HIPSPARSE_SOLVE_POLICY_USE_LEVEL.
+    !> policy      `HIPSPARSE_SOLVE_POLICY_NO_LEVEL` or
+    !> `HIPSPARSE_SOLVE_POLICY_USE_LEVEL`.
     !> @param[out]
     !> pBufferSizeInBytes number of bytes of the temporary storage buffer required by
-    !> \ref hipsparseScsrsm2_analysis "hipsparseXcsrsm2_analysis()" and
-    !> \ref hipsparseScsrsm2_solve "hipsparseXcsrsm2_solve()".
+    !> `hipsparseScsrsm2_analysis` "hipsparseXcsrsm2_analysis()" and
+    !> `hipsparseScsrsm2_solve` "hipsparseXcsrsm2_solve()".
     !>
     !> \retval     HIPSPARSE_STATUS_SUCCESS the operation completed successfully.
     !> \retval     HIPSPARSE_STATUS_INVALID_VALUE \p handle, \p m, \p nrhs, \p nnz, \p alpha,
@@ -6016,9 +6031,9 @@ module hipfort_hipsparse
     !> \p info, or \p pBufferSizeInBytes is invalid.
     !> \retval     HIPSPARSE_STATUS_INTERNAL_ERROR an internal error occurred.
     !> \retval     HIPSPARSE_STATUS_NOT_SUPPORTED
-    !> \p transA == \ref HIPSPARSE_OPERATION_CONJUGATE_TRANSPOSE,
-    !> \p transB == \ref HIPSPARSE_OPERATION_CONJUGATE_TRANSPOSE, or
-    !> \ref hipsparseMatrixType_t != \ref HIPSPARSE_MATRIX_TYPE_GENERAL.
+    !> \p transA == `HIPSPARSE_OPERATION_CONJUGATE_TRANSPOSE`,
+    !> \p transB == `HIPSPARSE_OPERATION_CONJUGATE_TRANSPOSE`, or
+    !> `hipsparseMatrixType_t` != `HIPSPARSE_MATRIX_TYPE_GENERAL`.
     function hipsparseScsrsm2_bufferSizeExt(handle, algo, transA, transB, m, nrhs, nnz, alpha, &
                                             descrA, csrSortedValA, csrSortedRowPtrA, &
                                             csrSortedColIndA, B, ldb, info, policy, &
@@ -6157,7 +6172,7 @@ module hipfort_hipsparse
     !---------------------------------------------
     !> \ingroup level3_module
     !> \details
-    !> \p hipsparseXcsrsm2_analysis performs the analysis step for \ref hipsparseScsrsm2_solve
+    !> \p hipsparseXcsrsm2_analysis performs the analysis step for `hipsparseScsrsm2_solve`
     !> "hipsparseXcsrsm2_solve()". It is expected that this function will be executed only once
     !> for a given matrix and particular operation type.
     !>
@@ -6201,8 +6216,8 @@ module hipfort_hipsparse
     !> @param[out]
     !> info        structure that holds the information collected during the analysis step.
     !> @param[in]
-    !> policy      \ref HIPSPARSE_SOLVE_POLICY_NO_LEVEL or
-    !> \ref HIPSPARSE_SOLVE_POLICY_USE_LEVEL.
+    !> policy      `HIPSPARSE_SOLVE_POLICY_NO_LEVEL` or
+    !> `HIPSPARSE_SOLVE_POLICY_USE_LEVEL`.
     !> @param[in]
     !> pBuffer     temporary storage buffer allocated by the user.
     !>
@@ -6212,9 +6227,9 @@ module hipfort_hipsparse
     !> \p info, or \p pBuffer is invalid.
     !> \retval     HIPSPARSE_STATUS_INTERNAL_ERROR an internal error occurred.
     !> \retval     HIPSPARSE_STATUS_NOT_SUPPORTED
-    !> \p transA == \ref HIPSPARSE_OPERATION_CONJUGATE_TRANSPOSE,
-    !> \p transB == \ref HIPSPARSE_OPERATION_CONJUGATE_TRANSPOSE, or
-    !> \ref hipsparseMatrixType_t != \ref HIPSPARSE_MATRIX_TYPE_GENERAL.
+    !> \p transA == `HIPSPARSE_OPERATION_CONJUGATE_TRANSPOSE`,
+    !> \p transB == `HIPSPARSE_OPERATION_CONJUGATE_TRANSPOSE`, or
+    !> `hipsparseMatrixType_t` != `HIPSPARSE_MATRIX_TYPE_GENERAL`.
     function hipsparseScsrsm2_analysis(handle, algo, transA, transB, m, nrhs, nnz, alpha, descrA, &
                                        csrSortedValA, csrSortedRowPtrA, csrSortedColIndA, B, ldb, &
                                        info, policy, pBuffer) &
@@ -6363,8 +6378,8 @@ module hipfort_hipsparse
     !> \f[
     !> op(A) = \left\{
     !> \begin{array}{ll}
-    !> A,   & \text{if transA == HIPSPARSE_OPERATION_NON_TRANSPOSE} \\
-    !> A^T, & \text{if transA == HIPSPARSE_OPERATION_TRANSPOSE} \\
+    !> A,   & \text{if transA == HIPSPARSE_OPERATION_NON_TRANSPOSE} \\%
+    !> A^T, & \text{if transA == HIPSPARSE_OPERATION_TRANSPOSE} \\%
     !> A^H, & \text{if transA == HIPSPARSE_OPERATION_CONJUGATE_TRANSPOSE}
     !> \end{array}
     !> \right.
@@ -6373,8 +6388,8 @@ module hipfort_hipsparse
     !> \f[
     !> op(B) = \left\{
     !> \begin{array}{ll}
-    !> B,   & \text{if transB == HIPSPARSE_OPERATION_NON_TRANSPOSE} \\
-    !> B^T, & \text{if transB == HIPSPARSE_OPERATION_TRANSPOSE} \\
+    !> B,   & \text{if transB == HIPSPARSE_OPERATION_NON_TRANSPOSE} \\%
+    !> B^T, & \text{if transB == HIPSPARSE_OPERATION_TRANSPOSE} \\%
     !> B^H, & \text{if transB == HIPSPARSE_OPERATION_CONJUGATE_TRANSPOSE}
     !> \end{array}
     !> \right.
@@ -6383,8 +6398,8 @@ module hipfort_hipsparse
     !> \f[
     !> op(X) = \left\{
     !> \begin{array}{ll}
-    !> X,   & \text{if transB == HIPSPARSE_OPERATION_NON_TRANSPOSE} \\
-    !> X^T, & \text{if transB == HIPSPARSE_OPERATION_TRANSPOSE} \\
+    !> X,   & \text{if transB == HIPSPARSE_OPERATION_NON_TRANSPOSE} \\%
+    !> X^T, & \text{if transB == HIPSPARSE_OPERATION_TRANSPOSE} \\%
     !> X^H, & \text{if transB == HIPSPARSE_OPERATION_CONJUGATE_TRANSPOSE}
     !> \end{array}
     !> \right.
@@ -6401,42 +6416,42 @@ module hipfort_hipsparse
     !> \f[
     !> op(B)/op(X) = \left\{
     !> \begin{array}{ll}
-    !> ldb \times nrhs, \text{ } ldb \ge m, & \text{if transB == HIPSPARSE_OPERATION_NON_TRANSPOSE}
-    !> \\
-    !> ldb \times m, \text{  } ldb \ge nrhs,  & \text{if transB == HIPSPARSE_OPERATION_TRANSPOSE} \\
-    !> ldb \times m, \text{ } ldb \ge nrhs, & \text{if transB ==
+    !> ldb \times nrhs, \text{ } ldb &ge; m, & \text{if transB == HIPSPARSE_OPERATION_NON_TRANSPOSE}
+    !> \\%
+    !> ldb \times m, \text{ } ldb &ge; nrhs, & \text{if transB == HIPSPARSE_OPERATION_TRANSPOSE} \\%
+    !> ldb \times m, \text{ } ldb &ge; nrhs, & \text{if transB ==
     !> HIPSPARSE_OPERATION_CONJUGATE_TRANSPOSE}
     !> \end{array}
     !> \right.
     !> \f]
     !>
     !> \p hipsparseXcsrsm2_solve requires a user-allocated temporary buffer. Its size is returned by
-    !> \ref hipsparseScsrsm2_bufferSizeExt "hipsparseXcsrsm2_bufferSizeExt()". The size of the
-    !> required buffer is
-    !> larger when \p transA equals \ref HIPSPARSE_OPERATION_TRANSPOSE or \ref
-    !> HIPSPARSE_OPERATION_CONJUGATE_TRANSPOSE
-    !> and when \p transB is \ref HIPSPARSE_OPERATION_NON_TRANSPOSE. The subsequent solve will also
-    !> be faster when \f$A\f$
+    !> `hipsparseScsrsm2_bufferSizeExt` "hipsparseXcsrsm2_bufferSizeExt()". The size of the required
+    !> buffer is
+    !> larger when \p transA equals `HIPSPARSE_OPERATION_TRANSPOSE` or
+    !> `HIPSPARSE_OPERATION_CONJUGATE_TRANSPOSE`
+    !> and when \p transB is `HIPSPARSE_OPERATION_NON_TRANSPOSE`. The subsequent solve will also be
+    !> faster when \f$A\f$
     !> is non-transposed and \f$B\f$ is transposed (or conjugate transposed). For example, instead
     !> of solving:
     !>
     !> \f[
     !> \begin{bmatrix}
-    !> a_{00} & 0 & 0 \\
-    !> a_{10} & a_{11} & 0 \\
-    !> a_{20} & a_{21} & a_{22} \\
+    !> a_{00} & 0 & 0 \\%
+    !> a_{10} & a_{11} & 0 \\%
+    !> a_{20} & a_{21} & a_{22} \\%
     !> \end{bmatrix}
     !> \cdot
     !> \begin{bmatrix}
-    !> x_{00} & x_{01} \\
-    !> x_{10} & x_{11} \\
-    !> x_{20} & x_{21} \\
+    !> x_{00} & x_{01} \\%
+    !> x_{10} & x_{11} \\%
+    !> x_{20} & x_{21} \\%
     !> \end{bmatrix}
     !> =
     !> \begin{bmatrix}
-    !> b_{00} & b_{01} \\
-    !> b_{10} & b_{11} \\
-    !> b_{20} & b_{21} \\
+    !> b_{00} & b_{01} \\%
+    !> b_{10} & b_{11} \\%
+    !> b_{20} & b_{21} \\%
     !> \end{bmatrix}
     !> \f]
     !>
@@ -6444,26 +6459,26 @@ module hipfort_hipsparse
     !>
     !> \f[
     !> \begin{bmatrix}
-    !> a_{00} & 0 & 0 \\
-    !> a_{10} & a_{11} & 0 \\
+    !> a_{00} & 0 & 0 \\%
+    !> a_{10} & a_{11} & 0 \\%
     !> a_{20} & a_{21} & a_{22}
     !> \end{bmatrix}
     !> \cdot
     !> \begin{bmatrix}
-    !> x_{00} & x_{10} & x_{20} \\
+    !> x_{00} & x_{10} & x_{20} \\%
     !> x_{01} & x_{11} & x_{21}
     !> \end{bmatrix}^{T}
     !> =
     !> \begin{bmatrix}
-    !> b_{00} & b_{10} & b_{20} \\
+    !> b_{00} & b_{10} & b_{20} \\%
     !> b_{01} & b_{11} & b_{21}
     !> \end{bmatrix}^{T}
     !> \f]
     !>
     !> After the temporary storage buffer has been allocated, analysis meta data is required. It can
     !> be obtained by
-    !> \ref hipsparseScsrsm2_analysis "hipsparseXcsrsm2_analysis()". The triangular solve is
-    !> completed by calling
+    !> `hipsparseScsrsm2_analysis` "hipsparseXcsrsm2_analysis()". The triangular solve is completed
+    !> by calling
     !> \p hipsparseXcsrsm2_solve. After all solves are performed, the temporary storage buffer
     !> allocated by the
     !> user can be freed.
@@ -6474,40 +6489,38 @@ module hipfort_hipsparse
     !> (referred to as a numerical zero),
     !> then a division by zero would occur. \p hipsparseXcsrsm2_solve tracks the location of the
     !> first zero pivot (either numerical
-    !> or structural zero). The zero pivot status can be checked by calling \ref
-    !> hipsparseXcsrsm2_zeroPivot(). If
-    !> \ref hipsparseXcsrsm2_zeroPivot() returns \ref HIPSPARSE_STATUS_SUCCESS, then no zero pivot
-    !> was found and therefore
+    !> or structural zero). The zero pivot status can be checked by calling
+    !> `hipsparseXcsrsm2_zeroPivot` (). If
+    !> `hipsparseXcsrsm2_zeroPivot` () returns `HIPSPARSE_STATUS_SUCCESS`, then no zero pivot was
+    !> found and therefore
     !> the matrix does not have a structural or numerical zero.
     !>
     !> The user can specify that the sparse matrix should be interpreted as having ones on the
     !> diagonal by setting the diagonal type
-    !> on the descriptor \p descrA to \ref HIPSPARSE_DIAG_TYPE_UNIT using \ref
-    !> hipsparseSetMatDiagType. If
-    !> \ref hipsparseDiagType_t == \ref HIPSPARSE_DIAG_TYPE_UNIT, no zero pivot will be reported,
-    !> even if \f$A_{j,j} = 0\f$ for
+    !> on the descriptor \p descrA to `HIPSPARSE_DIAG_TYPE_UNIT` using `hipsparseSetMatDiagType`. If
+    !> `hipsparseDiagType_t` == `HIPSPARSE_DIAG_TYPE_UNIT`, no zero pivot will be reported, even if
+    !> \f$A_{j,j} = 0\f$ for
     !> some \f$j\f$.
     !>
     !> The sparse CSR matrix passed to \p hipsparseXcsrsm2_solve does not actually have to be a
     !> triangular matrix. Instead, the
-    !> triangular upper or lower part of the sparse matrix is solved based on the \ref
-    !> hipsparseFillMode_t setting on the descriptor
-    !> \p descrA. If the fill mode is set to \ref HIPSPARSE_FILL_MODE_LOWER, then the lower
-    !> triangular matrix is solved. If the
-    !> fill mode is set to \ref HIPSPARSE_FILL_MODE_UPPER, then the upper triangular matrix is
-    !> solved.
+    !> triangular upper or lower part of the sparse matrix is solved based on the
+    !> `hipsparseFillMode_t` setting on the descriptor
+    !> \p descrA. If the fill mode is set to `HIPSPARSE_FILL_MODE_LOWER`, then the lower triangular
+    !> matrix is solved. If the
+    !> fill mode is set to `HIPSPARSE_FILL_MODE_UPPER`, then the upper triangular matrix is solved.
     !>
     !> \note
     !> The sparse CSR matrix has to be sorted. This can be achieved by calling
-    !> hipsparseXcsrsort().
+    !> `hipsparseXcsrsort()`.
     !>
     !> \note
     !> This function is non-blocking and executed asynchronously with respect to the host.
     !> It can return before the actual computation has finished.
     !>
     !> \note
-    !> Currently, only \p transA != \ref HIPSPARSE_OPERATION_CONJUGATE_TRANSPOSE and
-    !> \p transB != \ref HIPSPARSE_OPERATION_CONJUGATE_TRANSPOSE is supported.
+    !> Currently, only \p transA != `HIPSPARSE_OPERATION_CONJUGATE_TRANSPOSE` and
+    !> \p transB != `HIPSPARSE_OPERATION_CONJUGATE_TRANSPOSE` is supported.
     !>
     !> @param[in]
     !> handle      handle to the hipSPARSE library context queue.
@@ -6542,8 +6555,8 @@ module hipfort_hipsparse
     !> @param[in]
     !> info        structure that holds the information collected during the analysis step.
     !> @param[in]
-    !> policy      \ref HIPSPARSE_SOLVE_POLICY_NO_LEVEL or
-    !> \ref HIPSPARSE_SOLVE_POLICY_USE_LEVEL.
+    !> policy      `HIPSPARSE_SOLVE_POLICY_NO_LEVEL` or
+    !> `HIPSPARSE_SOLVE_POLICY_USE_LEVEL`.
     !> @param[in]
     !> pBuffer     temporary storage buffer allocated by the user.
     !>
@@ -6553,9 +6566,9 @@ module hipfort_hipsparse
     !> \p info, or \p pBuffer is invalid.
     !> \retval     HIPSPARSE_STATUS_INTERNAL_ERROR an internal error occurred.
     !> \retval     HIPSPARSE_STATUS_NOT_SUPPORTED
-    !> \p transA == \ref HIPSPARSE_OPERATION_CONJUGATE_TRANSPOSE,
-    !> \p transB == \ref HIPSPARSE_OPERATION_CONJUGATE_TRANSPOSE, or
-    !> \ref hipsparseMatrixType_t != \ref HIPSPARSE_MATRIX_TYPE_GENERAL.
+    !> \p transA == `HIPSPARSE_OPERATION_CONJUGATE_TRANSPOSE`,
+    !> \p transB == `HIPSPARSE_OPERATION_CONJUGATE_TRANSPOSE`, or
+    !> `hipsparseMatrixType_t` != `HIPSPARSE_MATRIX_TYPE_GENERAL`.
     function hipsparseScsrsm2_solve(handle, algo, transA, transB, m, nrhs, nnz, alpha, descrA, &
                                     csrSortedValA, csrSortedRowPtrA, csrSortedColIndA, B, ldb, &
                                     info, policy, pBuffer) &
@@ -6871,21 +6884,21 @@ module hipfort_hipsparse
     !> offsets that point to the start of every row of the sparse CSR matrix of the
     !> resulting matrix \f$C\f$. It is assumed that \p csrRowPtrC has been allocated with
     !> size \p m+1. The desired index base in the output CSR matrix is set in the
-    !> \ref hipsparseMatDescr_t. See \ref hipsparseSetMatIndexBase().
+    !> `hipsparseMatDescr_t`. See `hipsparseSetMatIndexBase`().
     !>
-    !> For a full code example, see \ref hipsparseScsrgeam().
+    !> For a full code example, see `hipsparseScsrgeam`().
     !>
     !> \note
     !> As indicated, \p nnzTotalDevHostPtr can point to either host or device memory. This is
     !> controlled
-    !> by setting the pointer mode. See \ref hipsparseSetPointerMode().
+    !> by setting the pointer mode. See `hipsparseSetPointerMode`().
     !>
     !> \note
     !> This function is non-blocking and executed asynchronously with respect to the host.
     !> It can return before the actual computation has finished.
     !>
     !> \note
-    !> Currently, only \ref HIPSPARSE_MATRIX_TYPE_GENERAL is supported.
+    !> Currently, only `HIPSPARSE_MATRIX_TYPE_GENERAL` is supported.
     !>
     !> \deprecated
     !> This function is deprecated and will be removed in a future release.
@@ -6900,7 +6913,7 @@ module hipfort_hipsparse
     !> non-negative.
     !> @param[in]
     !> descrA          descriptor of the sparse CSR matrix \f$A\f$. Currently, only
-    !> \ref HIPSPARSE_MATRIX_TYPE_GENERAL is supported.
+    !> `HIPSPARSE_MATRIX_TYPE_GENERAL` is supported.
     !> @param[in]
     !> nnzA number of non-zero entries of the sparse CSR matrix \f$A\f$. Must be non-negative.
     !> @param[in]
@@ -6911,7 +6924,7 @@ module hipfort_hipsparse
     !> sparse CSR matrix \f$A\f$.
     !> @param[in]
     !> descrB          descriptor of the sparse CSR matrix \f$B\f$. Currently, only
-    !> \ref HIPSPARSE_MATRIX_TYPE_GENERAL is supported.
+    !> `HIPSPARSE_MATRIX_TYPE_GENERAL` is supported.
     !> @param[in]
     !> nnzB number of non-zero entries of the sparse CSR matrix \f$B\f$. Must be non-negative.
     !> @param[in]
@@ -6922,7 +6935,7 @@ module hipfort_hipsparse
     !> sparse CSR matrix \f$B\f$.
     !> @param[in]
     !> descrC          descriptor of the sparse CSR matrix \f$C\f$. Currently, only
-    !> \ref HIPSPARSE_MATRIX_TYPE_GENERAL is supported.
+    !> `HIPSPARSE_MATRIX_TYPE_GENERAL` is supported.
     !> @param[out]
     !> csrRowPtrC      array of \p m+1 elements that point to the start of every row of the
     !> sparse CSR matrix \f$C\f$.
@@ -6936,8 +6949,8 @@ module hipfort_hipsparse
     !> nullptr,
     !> \p m, \p n, \p nnzA, or \p nnzB is negative, or \p csrRowPtrA, \p csrColIndA, \p csrRowPtrB,
     !> \p csrColIndB, \p csrRowPtrC, or \p nnzTotalDevHostPtr is nullptr.
-    !> \retval HIPSPARSE_STATUS_NOT_SUPPORTED \ref hipsparseMatrixType_t is not
-    !> \ref HIPSPARSE_MATRIX_TYPE_GENERAL.
+    !> \retval HIPSPARSE_STATUS_NOT_SUPPORTED `hipsparseMatrixType_t` is not
+    !> `HIPSPARSE_MATRIX_TYPE_GENERAL`.
     function hipsparseXcsrgeamNnz(handle, m, n, descrA, nnzA, csrRowPtrA, csrColIndA, descrB, &
                                   nnzB, csrRowPtrB, csrColIndB, descrC, csrRowPtrC, &
                                   nnzTotalDevHostPtr) &
@@ -6982,17 +6995,17 @@ module hipfort_hipsparse
     !> \f]
     !>
     !> This computation involves a multi-step process. First, the user must allocate \p csrRowPtrC
-    !> to have size \p m+1. The user then calls \ref hipsparseXcsrgeamNnz, which fills in the \p
+    !> to have size \p m+1. The user then calls `hipsparseXcsrgeamNnz`, which fills in the \p
     !> csrRowPtrC
     !> array and computes the total number of non-zeros in \f$C\f$, \p nnzC. The user then allocates
     !> both
     !> arrays \p csrColIndC and \p csrValC to have size \p nnzC and calls \p hipsparseXcsrgeam to
     !> complete
     !> the computation. The desired index base in the output CSR matrix \f$C\f$ is set in the
-    !> \ref hipsparseMatDescr_t \p descrC. See \ref hipsparseSetMatIndexBase().
+    !> `hipsparseMatDescr_t` \p descrC. See `hipsparseSetMatIndexBase`().
     !>
     !> \note Both scalars \f$\alpha\f$ and \f$beta\f$ have to be valid.
-    !> \note Currently, only \ref HIPSPARSE_MATRIX_TYPE_GENERAL is supported.
+    !> \note Currently, only `HIPSPARSE_MATRIX_TYPE_GENERAL` is supported.
     !> \note This function is non-blocking and executed asynchronously with respect to the
     !> host. It can return before the actual computation has finished.
     !>
@@ -7009,7 +7022,7 @@ module hipfort_hipsparse
     !> alpha           scalar \f$\alpha\f$.
     !> @param[in]
     !> descrA          descriptor of the sparse CSR matrix \f$A\f$. Currently, only
-    !> \ref HIPSPARSE_MATRIX_TYPE_GENERAL is supported.
+    !> `HIPSPARSE_MATRIX_TYPE_GENERAL` is supported.
     !> @param[in]
     !> nnzA            number of non-zero entries of the sparse CSR matrix \f$A\f$.
     !> @param[in]
@@ -7024,7 +7037,7 @@ module hipfort_hipsparse
     !> beta            scalar \f$\beta\f$.
     !> @param[in]
     !> descrB          descriptor of the sparse CSR matrix \f$B\f$. Currently, only
-    !> \ref HIPSPARSE_MATRIX_TYPE_GENERAL is supported.
+    !> `HIPSPARSE_MATRIX_TYPE_GENERAL` is supported.
     !> @param[in]
     !> nnzB            number of non-zero entries of the sparse CSR matrix \f$B\f$.
     !> @param[in]
@@ -7037,7 +7050,7 @@ module hipfort_hipsparse
     !> sparse CSR matrix \f$B\f$.
     !> @param[in]
     !> descrC          descriptor of the sparse CSR matrix \f$C\f$. Currently, only
-    !> \ref HIPSPARSE_MATRIX_TYPE_GENERAL is supported.
+    !> `HIPSPARSE_MATRIX_TYPE_GENERAL` is supported.
     !> @param[out]
     !> csrValC         array of elements of the sparse CSR matrix \f$C\f$.
     !> @param[in]
@@ -7053,7 +7066,7 @@ module hipfort_hipsparse
     !> \p descrB, \p csrValB, \p csrRowPtrB, \p csrColIndB, \p descrC, \p csrValC,
     !> \p csrRowPtrC, or \p csrColIndC is invalid.
     !> \retval HIPSPARSE_STATUS_NOT_SUPPORTED
-    !> \ref hipsparseMatrixType_t != \ref HIPSPARSE_MATRIX_TYPE_GENERAL.
+    !> `hipsparseMatrixType_t` != `HIPSPARSE_MATRIX_TYPE_GENERAL`.
     function hipsparseScsrgeam(handle, m, n, alpha, descrA, nnzA, csrValA, csrRowPtrA, csrColIndA, &
                                beta, descrB, nnzB, csrValB, csrRowPtrB, csrColIndB, descrC, &
                                csrValC, csrRowPtrC, csrColIndC) &
@@ -7197,11 +7210,11 @@ module hipfort_hipsparse
     !> \ingroup extra_module
     !> \details
     !> \p hipsparseXcsrgeam2_bufferSizeExt returns the size of the temporary storage buffer
-    !> in bytes that is required by \ref hipsparseXcsrgeam2Nnz() and \ref hipsparseScsrgeam2
+    !> in bytes that is required by `hipsparseXcsrgeam2Nnz`() and `hipsparseScsrgeam2`
     !> "hipsparseXcsrgeam2()". The temporary storage buffer must be allocated by the user.
     !>
     !> \note
-    !> Currently, only \ref HIPSPARSE_MATRIX_TYPE_GENERAL is supported.
+    !> Currently, only `HIPSPARSE_MATRIX_TYPE_GENERAL` is supported.
     !>
     !> @param[in]
     !> handle             handle to the hipSPARSE library context queue.
@@ -7213,7 +7226,7 @@ module hipfort_hipsparse
     !> alpha              scalar \f$\alpha\f$.
     !> @param[in]
     !> descrA             descriptor of the sparse CSR matrix \f$A\f$. Currently, only
-    !> \ref HIPSPARSE_MATRIX_TYPE_GENERAL is supported.
+    !> `HIPSPARSE_MATRIX_TYPE_GENERAL` is supported.
     !> @param[in]
     !> nnzA               number of non-zero entries of the sparse CSR matrix \f$A\f$.
     !> @param[in]
@@ -7228,7 +7241,7 @@ module hipfort_hipsparse
     !> beta               scalar \f$\beta\f$.
     !> @param[in]
     !> descrB             descriptor of the sparse CSR matrix \f$B\f$. Currently, only
-    !> \ref HIPSPARSE_MATRIX_TYPE_GENERAL is supported.
+    !> `HIPSPARSE_MATRIX_TYPE_GENERAL` is supported.
     !> @param[in]
     !> nnzB               number of non-zero entries of the sparse CSR matrix \f$B\f$.
     !> @param[in]
@@ -7241,7 +7254,7 @@ module hipfort_hipsparse
     !> sparse CSR matrix \f$B\f$.
     !> @param[in]
     !> descrC             descriptor of the sparse CSR matrix \f$C\f$. Currently, only
-    !> \ref HIPSPARSE_MATRIX_TYPE_GENERAL is supported.
+    !> `HIPSPARSE_MATRIX_TYPE_GENERAL` is supported.
     !> @param[out]
     !> csrSortedValC      array of elements of the sparse CSR matrix \f$C\f$.
     !> @param[in]
@@ -7252,7 +7265,7 @@ module hipfort_hipsparse
     !> sparse CSR matrix \f$C\f$.
     !> @param[out]
     !> pBufferSizeInBytes number of bytes of the temporary storage buffer required by
-    !> hipsparseXcsrgeam2Nnz() and \ref hipsparseScsrgeam2 "hipsparseXcsrgeam2()".
+    !> `hipsparseXcsrgeam2Nnz()` and `hipsparseScsrgeam2` "hipsparseXcsrgeam2()".
     !>
     !> \retval HIPSPARSE_STATUS_SUCCESS the operation completed successfully.
     !> \retval HIPSPARSE_STATUS_INVALID_VALUE \p handle, \p m, \p n, \p nnzA, \p nnzB,
@@ -7261,7 +7274,7 @@ module hipfort_hipsparse
     !> \p descrC, \p csrSortedValC, \p csrSortedRowPtrC, \p csrSortedColIndC, or
     !> \p pBufferSizeInBytes is invalid.
     !> \retval HIPSPARSE_STATUS_NOT_SUPPORTED
-    !> \ref hipsparseMatrixType_t != \ref HIPSPARSE_MATRIX_TYPE_GENERAL.
+    !> `hipsparseMatrixType_t` != `HIPSPARSE_MATRIX_TYPE_GENERAL`.
     function hipsparseScsrgeam2_bufferSizeExt(handle, m, n, alpha, descrA, nnzA, csrSortedValA, &
                                               csrSortedRowPtrA, csrSortedColIndA, beta, descrB, &
                                               nnzB, csrSortedValB, csrSortedRowPtrB, &
@@ -7424,19 +7437,19 @@ module hipfort_hipsparse
     !> offsets that point to the start of every row of the sparse CSR matrix of the
     !> resulting matrix \f$C\f$. It is assumed that \p csrRowPtrC has been allocated with
     !> size \p m+1. The required buffer size can be obtained by
-    !> \ref hipsparseScsrgeam2_bufferSizeExt "hipsparseXcsrgeam2_bufferSizeExt()". The
-    !> desired index base in the output CSR matrix \f$C\f$ is set in the \ref hipsparseMatDescr_t
-    !> \p descrC. See \ref hipsparseSetMatIndexBase().
+    !> `hipsparseScsrgeam2_bufferSizeExt` "hipsparseXcsrgeam2_bufferSizeExt()". The
+    !> desired index base in the output CSR matrix \f$C\f$ is set in the `hipsparseMatDescr_t`
+    !> \p descrC. See `hipsparseSetMatIndexBase`().
     !>
     !> \note
     !> As indicated, \p nnzTotalDevHostPtr can point to either host or device memory. This is
     !> controlled
-    !> by setting the pointer mode. See \ref hipsparseSetPointerMode().
+    !> by setting the pointer mode. See `hipsparseSetPointerMode`().
     !> \note
     !> This function is non-blocking and executed asynchronously with respect to the host.
     !> It can return before the actual computation has finished.
     !> \note
-    !> Currently, only \ref HIPSPARSE_MATRIX_TYPE_GENERAL is supported.
+    !> Currently, only `HIPSPARSE_MATRIX_TYPE_GENERAL` is supported.
     !>
     !> @param[in]
     !> handle             handle to the hipSPARSE library context queue.
@@ -7446,7 +7459,7 @@ module hipfort_hipsparse
     !> n number of columns of the sparse CSR matrices \f$A\f$, \f$B\f$, and \f$C\f$.
     !> @param[in]
     !> descrA             descriptor of the sparse CSR matrix \f$A\f$. Currently, only
-    !> \ref HIPSPARSE_MATRIX_TYPE_GENERAL is supported.
+    !> `HIPSPARSE_MATRIX_TYPE_GENERAL` is supported.
     !> @param[in]
     !> nnzA               number of non-zero entries of the sparse CSR matrix \f$A\f$.
     !> @param[in]
@@ -7457,7 +7470,7 @@ module hipfort_hipsparse
     !> sparse CSR matrix \f$A\f$.
     !> @param[in]
     !> descrB             descriptor of the sparse CSR matrix \f$B\f$. Currently, only
-    !> \ref HIPSPARSE_MATRIX_TYPE_GENERAL is supported.
+    !> `HIPSPARSE_MATRIX_TYPE_GENERAL` is supported.
     !> @param[in]
     !> nnzB               number of non-zero entries of the sparse CSR matrix \f$B\f$.
     !> @param[in]
@@ -7468,7 +7481,7 @@ module hipfort_hipsparse
     !> sparse CSR matrix \f$B\f$.
     !> @param[in]
     !> descrC             descriptor of the sparse CSR matrix \f$C\f$. Currently, only
-    !> \ref HIPSPARSE_MATRIX_TYPE_GENERAL is supported.
+    !> `HIPSPARSE_MATRIX_TYPE_GENERAL` is supported.
     !> @param[in]
     !> csrSortedRowPtrC   array of \p m+1 elements that point to the start of every row of the
     !> sparse CSR matrix \f$C\f$.
@@ -7483,7 +7496,7 @@ module hipfort_hipsparse
     !> \p descrA, \p csrSortedRowPtrA, \p csrSortedColIndA, \p descrB, \p csrSortedRowPtrB,
     !> \p csrSortedColIndB, \p descrC, \p csrSortedRowPtrC, or \p nnzTotalDevHostPtr is invalid.
     !> \retval HIPSPARSE_STATUS_NOT_SUPPORTED
-    !> \ref hipsparseMatrixType_t != \ref HIPSPARSE_MATRIX_TYPE_GENERAL.
+    !> `hipsparseMatrixType_t` != `HIPSPARSE_MATRIX_TYPE_GENERAL`.
     function hipsparseXcsrgeam2Nnz(handle, m, n, descrA, nnzA, csrSortedRowPtrA, csrSortedColIndA, &
                                    descrB, nnzB, csrSortedRowPtrB, csrSortedColIndB, descrC, &
                                    csrSortedRowPtrC, nnzTotalDevHostPtr, workspace) &
@@ -7529,22 +7542,22 @@ module hipfort_hipsparse
     !> \f]
     !>
     !> This computation involves a multi-step process. First, the user must call
-    !> \ref hipsparseScsrgeam2_bufferSizeExt "hipsparseXcsrgeam2_bufferSizeExt()" to determine the
+    !> `hipsparseScsrgeam2_bufferSizeExt` "hipsparseXcsrgeam2_bufferSizeExt()" to determine the
     !> required user allocated temporary buffer size. The user then allocates this buffer and also
     !> allocates
     !> \p csrRowPtrC to have size \p m+1. Both the temporary storage buffer and \p csrRowPtrC array
     !> are then
-    !> passed to \ref hipsparseXcsrgeam2Nnz, which fills in the \p csrRowPtrC array and computes the
+    !> passed to `hipsparseXcsrgeam2Nnz`, which fills in the \p csrRowPtrC array and computes the
     !> total
     !> number of non-zeros in \f$C\f$, \p nnzC. The user then allocates both arrays \p csrColIndC
     !> and \p csrValC to have
     !> size \p nnzC and calls \p hipsparseXcsrgeam2 to complete the computation. The desired index
     !> base in
-    !> the output CSR matrix \f$C\f$ is set in the \ref hipsparseMatDescr_t \p descrC. See \ref
-    !> hipsparseSetMatIndexBase().
+    !> the output CSR matrix \f$C\f$ is set in the `hipsparseMatDescr_t` \p descrC. See
+    !> `hipsparseSetMatIndexBase` ().
     !>
     !> \note Both scalars \f$\alpha\f$ and \f$beta\f$ have to be valid.
-    !> \note Currently, only \ref HIPSPARSE_MATRIX_TYPE_GENERAL is supported.
+    !> \note Currently, only `HIPSPARSE_MATRIX_TYPE_GENERAL` is supported.
     !> \note This function is non-blocking and executed asynchronously with respect to the
     !> host. It can return before the actual computation has finished.
     !>
@@ -7558,7 +7571,7 @@ module hipfort_hipsparse
     !> alpha            scalar \f$\alpha\f$.
     !> @param[in]
     !> descrA           descriptor of the sparse CSR matrix \f$A\f$. Currently, only
-    !> \ref HIPSPARSE_MATRIX_TYPE_GENERAL is supported.
+    !> `HIPSPARSE_MATRIX_TYPE_GENERAL` is supported.
     !> @param[in]
     !> nnzA             number of non-zero entries of the sparse CSR matrix \f$A\f$.
     !> @param[in]
@@ -7573,7 +7586,7 @@ module hipfort_hipsparse
     !> beta             scalar \f$\beta\f$.
     !> @param[in]
     !> descrB           descriptor of the sparse CSR matrix \f$B\f$. Currently, only
-    !> \ref HIPSPARSE_MATRIX_TYPE_GENERAL is supported.
+    !> `HIPSPARSE_MATRIX_TYPE_GENERAL` is supported.
     !> @param[in]
     !> nnzB             number of non-zero entries of the sparse CSR matrix \f$B\f$.
     !> @param[in]
@@ -7586,7 +7599,7 @@ module hipfort_hipsparse
     !> sparse CSR matrix \f$B\f$.
     !> @param[in]
     !> descrC           descriptor of the sparse CSR matrix \f$C\f$. Currently, only
-    !> \ref HIPSPARSE_MATRIX_TYPE_GENERAL is supported.
+    !> `HIPSPARSE_MATRIX_TYPE_GENERAL` is supported.
     !> @param[out]
     !> csrSortedValC    array of elements of the sparse CSR matrix \f$C\f$.
     !> @param[in]
@@ -7605,7 +7618,7 @@ module hipfort_hipsparse
     !> csrSortedValC,
     !> \p csrSortedRowPtrC, \p csrSortedColIndC, or \p pBuffer is invalid.
     !> \retval HIPSPARSE_STATUS_NOT_SUPPORTED
-    !> \ref hipsparseMatrixType_t != \ref HIPSPARSE_MATRIX_TYPE_GENERAL.
+    !> `hipsparseMatrixType_t` != `HIPSPARSE_MATRIX_TYPE_GENERAL`.
     function hipsparseScsrgeam2(handle, m, n, alpha, descrA, nnzA, csrSortedValA, &
                                 csrSortedRowPtrA, csrSortedColIndA, beta, descrB, nnzB, &
                                 csrSortedValB, csrSortedRowPtrB, csrSortedColIndB, descrC, &
@@ -7760,12 +7773,12 @@ module hipfort_hipsparse
     !> offsets that point to the start of every row of the sparse CSR matrix of the
     !> resulting multiplied matrix \f$C\f$. It is assumed that \p csrRowPtrC has been allocated
     !> with size \p m+1. The desired index base in the output CSR matrix \f$C\f$ is set in the
-    !> \ref hipsparseMatDescr_t \p descrC. See \ref hipsparseSetMatIndexBase().
+    !> `hipsparseMatDescr_t` \p descrC. See `hipsparseSetMatIndexBase`().
     !>
     !> \note
     !> As indicated, \p nnzTotalDevHostPtr can point to either host or device memory. This is
     !> controlled
-    !> by setting the pointer mode. See \ref hipsparseSetPointerMode().
+    !> by setting the pointer mode. See `hipsparseSetPointerMode`().
     !> \note
     !> This function is non-blocking and executed asynchronously with respect to the host.
     !> It can return before the actual computation has finished.
@@ -7775,11 +7788,11 @@ module hipfort_hipsparse
     !> row, an additional temporary storage buffer is allocated by the algorithm.
     !>
     !> \note
-    !> Currently, only \p transA == \p transB == \ref HIPSPARSE_OPERATION_NON_TRANSPOSE is
+    !> Currently, only \p transA == \p transB == `HIPSPARSE_OPERATION_NON_TRANSPOSE` is
     !> supported.
     !>
     !> \note
-    !> Currently, only \ref HIPSPARSE_MATRIX_TYPE_GENERAL is supported.
+    !> Currently, only `HIPSPARSE_MATRIX_TYPE_GENERAL` is supported.
     !>
     !> \deprecated
     !> This function is deprecated when using the CUDA backend (CUDA 10.0+) and will be
@@ -7801,7 +7814,7 @@ module hipfort_hipsparse
     !> rows of the sparse CSR matrix \f$op(B)\f$. Must be non-negative.
     !> @param[in]
     !> descrA          descriptor of the sparse CSR matrix \f$A\f$. Currently, only
-    !> \ref HIPSPARSE_MATRIX_TYPE_GENERAL is supported.
+    !> `HIPSPARSE_MATRIX_TYPE_GENERAL` is supported.
     !> @param[in]
     !> nnzA number of non-zero entries of the sparse CSR matrix \f$A\f$. Must be non-negative.
     !> @param[in]
@@ -7813,7 +7826,7 @@ module hipfort_hipsparse
     !> sparse CSR matrix \f$A\f$.
     !> @param[in]
     !> descrB          descriptor of the sparse CSR matrix \f$B\f$. Currently, only
-    !> \ref HIPSPARSE_MATRIX_TYPE_GENERAL is supported.
+    !> `HIPSPARSE_MATRIX_TYPE_GENERAL` is supported.
     !> @param[in]
     !> nnzB number of non-zero entries of the sparse CSR matrix \f$B\f$. Must be non-negative.
     !> @param[in]
@@ -7825,7 +7838,7 @@ module hipfort_hipsparse
     !> sparse CSR matrix \f$B\f$.
     !> @param[in]
     !> descrC          descriptor of the sparse CSR matrix \f$C\f$. Currently, only
-    !> \ref HIPSPARSE_MATRIX_TYPE_GENERAL is supported.
+    !> `HIPSPARSE_MATRIX_TYPE_GENERAL` is supported.
     !> @param[in]
     !> csrRowPtrC      array of \p m+1 elements that point to the start of every row of the
     !> sparse CSR matrix \f$C\f$.
@@ -7839,10 +7852,9 @@ module hipfort_hipsparse
     !> nullptr,
     !> \p m, \p n, \p k, \p nnzA, or \p nnzB is negative, or \p csrRowPtrA, \p csrColIndA,
     !> \p csrRowPtrB, \p csrColIndB, \p csrRowPtrC, or \p nnzTotalDevHostPtr is nullptr.
-    !> \retval HIPSPARSE_STATUS_NOT_SUPPORTED \p transA is not \ref
-    !> HIPSPARSE_OPERATION_NON_TRANSPOSE,
-    !> \p transB is not \ref HIPSPARSE_OPERATION_NON_TRANSPOSE, or
-    !> \ref hipsparseMatrixType_t is not \ref HIPSPARSE_MATRIX_TYPE_GENERAL.
+    !> \retval HIPSPARSE_STATUS_NOT_SUPPORTED \p transA is not `HIPSPARSE_OPERATION_NON_TRANSPOSE`,
+    !> \p transB is not `HIPSPARSE_OPERATION_NON_TRANSPOSE`, or
+    !> `hipsparseMatrixType_t` is not `HIPSPARSE_MATRIX_TYPE_GENERAL`.
     function hipsparseXcsrgemmNnz(handle, transA, transB, m, n, k, descrA, nnzA, csrRowPtrA, &
                                   csrColIndA, descrB, nnzB, csrRowPtrB, csrColIndB, descrC, &
                                   csrRowPtrC, nnzTotalDevHostPtr) &
@@ -7891,8 +7903,8 @@ module hipfort_hipsparse
     !> \f[
     !> op(A) = \left\{
     !> \begin{array}{ll}
-    !> A,   & \text{if transA == HIPSPARSE_OPERATION_NON_TRANSPOSE} \\
-    !> A^T, & \text{if transA == HIPSPARSE_OPERATION_TRANSPOSE} \\
+    !> A,   & \text{if transA == HIPSPARSE_OPERATION_NON_TRANSPOSE} \\%
+    !> A^T, & \text{if transA == HIPSPARSE_OPERATION_TRANSPOSE} \\%
     !> A^H, & \text{if transA == HIPSPARSE_OPERATION_CONJUGATE_TRANSPOSE}
     !> \end{array}
     !> \right.
@@ -7901,25 +7913,25 @@ module hipfort_hipsparse
     !> \f[
     !> op(B) = \left\{
     !> \begin{array}{ll}
-    !> B,   & \text{if transB == HIPSPARSE_OPERATION_NON_TRANSPOSE} \\
-    !> B^T, & \text{if transB == HIPSPARSE_OPERATION_TRANSPOSE} \\
+    !> B,   & \text{if transB == HIPSPARSE_OPERATION_NON_TRANSPOSE} \\%
+    !> B^T, & \text{if transB == HIPSPARSE_OPERATION_TRANSPOSE} \\%
     !> B^H, & \text{if transB == HIPSPARSE_OPERATION_CONJUGATE_TRANSPOSE}
     !> \end{array}
     !> \right.
     !> \f]
     !>
     !> This computation involves a multi-step process. First, the user must allocate \p csrRowPtrC
-    !> to have size \p m+1. The user then calls \ref hipsparseXcsrgemmNnz, which fills in the \p
+    !> to have size \p m+1. The user then calls `hipsparseXcsrgemmNnz`, which fills in the \p
     !> csrRowPtrC
     !> array and computes the total number of non-zeros in C, \p nnzC. The user then allocates both
     !> arrays \p csrColIndC and \p csrValC to have size \p nnzC and calls \p hipsparseXcsrgemm to
     !> complete
     !> the computation. The desired index base in the output CSR matrix C is set in the
-    !> \ref hipsparseMatDescr_t \p descrC. See \ref hipsparseSetMatIndexBase().
+    !> `hipsparseMatDescr_t` \p descrC. See `hipsparseSetMatIndexBase`().
     !>
-    !> \note Currently, only \p transA == \ref HIPSPARSE_OPERATION_NON_TRANSPOSE is supported.
-    !> \note Currently, only \p transB == \ref HIPSPARSE_OPERATION_NON_TRANSPOSE is supported.
-    !> \note Currently, only \ref HIPSPARSE_MATRIX_TYPE_GENERAL is supported.
+    !> \note Currently, only \p transA == `HIPSPARSE_OPERATION_NON_TRANSPOSE` is supported.
+    !> \note Currently, only \p transB == `HIPSPARSE_OPERATION_NON_TRANSPOSE` is supported.
+    !> \note Currently, only `HIPSPARSE_MATRIX_TYPE_GENERAL` is supported.
     !> \note This function is non-blocking and executed asynchronously with respect to the
     !> host. It can return before the actual computation has finished.
     !> \note For matrix products with more than 4096 non-zero entries per
@@ -7941,7 +7953,7 @@ module hipfort_hipsparse
     !> rows of the sparse CSR matrix \f$op(B)\f$.
     !> @param[in]
     !> descrA          descriptor of the sparse CSR matrix \f$A\f$. Currently, only
-    !> \ref HIPSPARSE_MATRIX_TYPE_GENERAL is supported.
+    !> `HIPSPARSE_MATRIX_TYPE_GENERAL` is supported.
     !> @param[in]
     !> nnzA            number of non-zero entries of the sparse CSR matrix \f$A\f$.
     !> @param[in]
@@ -7955,7 +7967,7 @@ module hipfort_hipsparse
     !> sparse CSR matrix \f$A\f$.
     !> @param[in]
     !> descrB          descriptor of the sparse CSR matrix \f$B\f$. Currently, only
-    !> \ref HIPSPARSE_MATRIX_TYPE_GENERAL is supported.
+    !> `HIPSPARSE_MATRIX_TYPE_GENERAL` is supported.
     !> @param[in]
     !> nnzB            number of non-zero entries of the sparse CSR matrix \f$B\f$.
     !> @param[in]
@@ -7969,7 +7981,7 @@ module hipfort_hipsparse
     !> sparse CSR matrix \f$B\f$.
     !> @param[in]
     !> descrC          descriptor of the sparse CSR matrix \f$C\f$. Currently, only
-    !> \ref HIPSPARSE_MATRIX_TYPE_GENERAL is supported.
+    !> `HIPSPARSE_MATRIX_TYPE_GENERAL` is supported.
     !> @param[out]
     !> csrValC         array of \p nnzC elements of the sparse CSR matrix \f$C\f$.
     !> @param[in]
@@ -7987,9 +7999,9 @@ module hipfort_hipsparse
     !> \retval HIPSPARSE_STATUS_ALLOC_FAILED additional buffer for long rows could not be
     !> allocated.
     !> \retval HIPSPARSE_STATUS_NOT_SUPPORTED
-    !> \p transA != \ref HIPSPARSE_OPERATION_NON_TRANSPOSE,
-    !> \p transB != \ref HIPSPARSE_OPERATION_NON_TRANSPOSE, or
-    !> \ref hipsparseMatrixType_t != \ref HIPSPARSE_MATRIX_TYPE_GENERAL.
+    !> \p transA != `HIPSPARSE_OPERATION_NON_TRANSPOSE`,
+    !> \p transB != `HIPSPARSE_OPERATION_NON_TRANSPOSE`, or
+    !> `hipsparseMatrixType_t` != `HIPSPARSE_MATRIX_TYPE_GENERAL`.
     function hipsparseScsrgemm(handle, transA, transB, m, n, k, descrA, nnzA, csrValA, csrRowPtrA, &
                                csrColIndA, descrB, nnzB, csrValB, csrRowPtrB, csrColIndB, descrC, &
                                csrValC, csrRowPtrC, csrColIndC) &
@@ -8137,7 +8149,7 @@ module hipfort_hipsparse
     !> \ingroup extra_module
     !> \details
     !> \p hipsparseXcsrgemm2_bufferSizeExt returns the size of the temporary storage buffer
-    !> in bytes that is required by \ref hipsparseXcsrgemm2Nnz() and \ref hipsparseScsrgemm2
+    !> in bytes that is required by `hipsparseXcsrgemm2Nnz`() and `hipsparseScsrgemm2`
     !> "hipsparseXcsrgemm2()". The temporary storage buffer must be allocated by the user.
     !>
     !> \note
@@ -8149,7 +8161,7 @@ module hipfort_hipsparse
     !> row, an additional temporary storage buffer is allocated by the algorithm.
     !>
     !> \note
-    !> Currently, only \ref HIPSPARSE_MATRIX_TYPE_GENERAL is supported.
+    !> Currently, only `HIPSPARSE_MATRIX_TYPE_GENERAL` is supported.
     !>
     !> @param[in]
     !> handle          handle to the hipSPARSE library context queue.
@@ -8165,7 +8177,7 @@ module hipfort_hipsparse
     !> alpha           scalar \f$\alpha\f$.
     !> @param[in]
     !> descrA          descriptor of the sparse CSR matrix \f$A\f$. Currently, only
-    !> \ref HIPSPARSE_MATRIX_TYPE_GENERAL is supported.
+    !> `HIPSPARSE_MATRIX_TYPE_GENERAL` is supported.
     !> @param[in]
     !> nnzA            number of non-zero entries of the sparse CSR matrix \f$A\f$.
     !> @param[in]
@@ -8177,7 +8189,7 @@ module hipfort_hipsparse
     !> sparse CSR matrix \f$A\f$.
     !> @param[in]
     !> descrB          descriptor of the sparse CSR matrix \f$B\f$. Currently, only
-    !> \ref HIPSPARSE_MATRIX_TYPE_GENERAL is supported.
+    !> `HIPSPARSE_MATRIX_TYPE_GENERAL` is supported.
     !> @param[in]
     !> nnzB            number of non-zero entries of the sparse CSR matrix \f$B\f$.
     !> @param[in]
@@ -8191,7 +8203,7 @@ module hipfort_hipsparse
     !> beta            scalar \f$\beta\f$.
     !> @param[in]
     !> descrD          descriptor of the sparse CSR matrix \f$D\f$. Currently, only
-    !> \ref HIPSPARSE_MATRIX_TYPE_GENERAL is supported.
+    !> `HIPSPARSE_MATRIX_TYPE_GENERAL` is supported.
     !> @param[in]
     !> nnzD            number of non-zero entries of the sparse CSR matrix \f$D\f$.
     !> @param[in]
@@ -8204,7 +8216,7 @@ module hipfort_hipsparse
     !> info            structure that holds meta data for the sparse CSR matrix \f$C\f$.
     !> @param[out]
     !> pBufferSizeInBytes number of bytes of the temporary storage buffer required by
-    !> hipsparseXcsrgemm2Nnz(), hipsparseScsrgemm2(), hipsparseDcsrgemm2(),
+    !> `hipsparseXcsrgemm2Nnz()`, `hipsparseScsrgemm2()`, hipsparseDcsrgemm2(),
     !> hipsparseCcsrgemm2(), and hipsparseZcsrgemm2().
     !>
     !> \retval HIPSPARSE_STATUS_SUCCESS the operation completed successfully.
@@ -8214,7 +8226,7 @@ module hipfort_hipsparse
     !> \p csrColIndB, \p descrD, \p csrRowPtrD, \p csrColIndD, \p info, or \p pBufferSizeInBytes
     !> is invalid.
     !> \retval HIPSPARSE_STATUS_NOT_SUPPORTED
-    !> \ref hipsparseMatrixType_t != \ref HIPSPARSE_MATRIX_TYPE_GENERAL.
+    !> `hipsparseMatrixType_t` != `HIPSPARSE_MATRIX_TYPE_GENERAL`.
     function hipsparseScsrgemm2_bufferSizeExt(handle, m, n, k, alpha, descrA, nnzA, csrRowPtrA, &
                                               csrColIndA, descrB, nnzB, csrRowPtrB, csrColIndB, &
                                               beta, descrD, nnzD, csrRowPtrD, csrColIndD, info, &
@@ -8369,14 +8381,14 @@ module hipfort_hipsparse
     !> offsets that point to the start of every row of the sparse CSR matrix of the
     !> resulting multiplied matrix \f$C\f$. It is assumed that \p csrRowPtrC has been allocated
     !> with size \p m+1. The required buffer size can be obtained by
-    !> \ref hipsparseScsrgemm2_bufferSizeExt "hipsparseXcsrgemm2_bufferSizeExt()". The desired
-    !> index base in the output CSR matrix \f$C\f$ is set in the \ref hipsparseMatDescr_t \p descrC.
-    !> See \ref hipsparseSetMatIndexBase().
+    !> `hipsparseScsrgemm2_bufferSizeExt` "hipsparseXcsrgemm2_bufferSizeExt()". The desired
+    !> index base in the output CSR matrix \f$C\f$ is set in the `hipsparseMatDescr_t` \p descrC.
+    !> See `hipsparseSetMatIndexBase`().
     !>
     !> \note
     !> As indicated, \p nnzTotalDevHostPtr can point to either host or device memory. This is
     !> controlled
-    !> by setting the pointer mode. See \ref hipsparseSetPointerMode().
+    !> by setting the pointer mode. See `hipsparseSetPointerMode`().
     !>
     !> \note
     !> This function is non-blocking and executed asynchronously with respect to the host.
@@ -8387,7 +8399,7 @@ module hipfort_hipsparse
     !> row, an additional temporary storage buffer is allocated by the algorithm.
     !>
     !> \note
-    !> Currently, only \ref HIPSPARSE_MATRIX_TYPE_GENERAL is supported.
+    !> Currently, only `HIPSPARSE_MATRIX_TYPE_GENERAL` is supported.
     !>
     !> @param[in]
     !> handle          handle to the hipSPARSE library context queue.
@@ -8401,7 +8413,7 @@ module hipfort_hipsparse
     !> rows of the sparse CSR matrix \f$op(B)\f$.
     !> @param[in]
     !> descrA          descriptor of the sparse CSR matrix \f$A\f$. Currently, only
-    !> \ref HIPSPARSE_MATRIX_TYPE_GENERAL is supported.
+    !> `HIPSPARSE_MATRIX_TYPE_GENERAL` is supported.
     !> @param[in]
     !> nnzA            number of non-zero entries of the sparse CSR matrix \f$A\f$.
     !> @param[in]
@@ -8413,7 +8425,7 @@ module hipfort_hipsparse
     !> sparse CSR matrix \f$A\f$.
     !> @param[in]
     !> descrB          descriptor of the sparse CSR matrix \f$B\f$. Currently, only
-    !> \ref HIPSPARSE_MATRIX_TYPE_GENERAL is supported.
+    !> `HIPSPARSE_MATRIX_TYPE_GENERAL` is supported.
     !> @param[in]
     !> nnzB            number of non-zero entries of the sparse CSR matrix \f$B\f$.
     !> @param[in]
@@ -8425,7 +8437,7 @@ module hipfort_hipsparse
     !> sparse CSR matrix \f$B\f$.
     !> @param[in]
     !> descrD          descriptor of the sparse CSR matrix \f$D\f$. Currently, only
-    !> \ref HIPSPARSE_MATRIX_TYPE_GENERAL is supported.
+    !> `HIPSPARSE_MATRIX_TYPE_GENERAL` is supported.
     !> @param[in]
     !> nnzD            number of non-zero entries of the sparse CSR matrix \f$D\f$.
     !> @param[in]
@@ -8436,7 +8448,7 @@ module hipfort_hipsparse
     !> CSR matrix \f$D\f$.
     !> @param[in]
     !> descrC          descriptor of the sparse CSR matrix \f$C\f$. Currently, only
-    !> \ref HIPSPARSE_MATRIX_TYPE_GENERAL is supported.
+    !> `HIPSPARSE_MATRIX_TYPE_GENERAL` is supported.
     !> @param[out]
     !> csrRowPtrC      array of \p m+1 elements that point to the start of every row of the
     !> sparse CSR matrix \f$C\f$.
@@ -8447,7 +8459,7 @@ module hipfort_hipsparse
     !> info            structure that holds meta data for the sparse CSR matrix \f$C\f$.
     !> @param[in]
     !> pBuffer         temporary storage buffer allocated by the user. The size is returned
-    !> by hipsparseScsrgemm2_bufferSizeExt(), hipsparseDcsrgemm2_bufferSizeExt(),
+    !> by `hipsparseScsrgemm2_bufferSizeExt()`, hipsparseDcsrgemm2_bufferSizeExt(),
     !> hipsparseZcsrgemm2_bufferSizeExt(), or hipsparseZcsrgemm2_bufferSizeExt().
     !>
     !> \retval HIPSPARSE_STATUS_SUCCESS the operation completed successfully.
@@ -8459,7 +8471,7 @@ module hipfort_hipsparse
     !> \retval HIPSPARSE_STATUS_ALLOC_FAILED additional buffer for long rows could not be
     !> allocated.
     !> \retval HIPSPARSE_STATUS_NOT_SUPPORTED
-    !> \ref hipsparseMatrixType_t != \ref HIPSPARSE_MATRIX_TYPE_GENERAL.
+    !> `hipsparseMatrixType_t` != `HIPSPARSE_MATRIX_TYPE_GENERAL`.
     function hipsparseXcsrgemm2Nnz(handle, m, n, k, descrA, nnzA, csrRowPtrA, csrColIndA, descrB, &
                                    nnzB, csrRowPtrB, csrColIndB, descrD, nnzD, csrRowPtrD, &
                                    csrColIndD, descrC, csrRowPtrC, nnzTotalDevHostPtr, info, &
@@ -8514,20 +8526,20 @@ module hipfort_hipsparse
     !> \f]
     !>
     !> This computation involves a multi-step process. First, the user must call
-    !> \ref hipsparseScsrgemm2_bufferSizeExt "hipsparseXcsrgemm2_bufferSizeExt()" to
+    !> `hipsparseScsrgemm2_bufferSizeExt` "hipsparseXcsrgemm2_bufferSizeExt()" to
     !> determine the required user-allocated temporary buffer size. The user then allocates this
     !> buffer and also allocates \p csrRowPtrC to have size \p m+1. Both the temporary storage
-    !> buffer and \p csrRowPtrC array are then passed to \ref hipsparseXcsrgemm2Nnz, which fills
+    !> buffer and \p csrRowPtrC array are then passed to `hipsparseXcsrgemm2Nnz`, which fills
     !> in the \p csrRowPtrC array and computes the total number of nonzeros in \f$C\f$, \p nnzC.
     !> The user then allocates both arrays \p csrColIndC and \p csrValC to have size \p nnzC and
     !> calls \p hipsparseXcsrgemm2 to complete the computation. The desired index base in the output
-    !> CSR matrix \f$C\f$ is set in the \ref hipsparseMatDescr_t \p descrC. See \ref
-    !> hipsparseSetMatIndexBase().
+    !> CSR matrix \f$C\f$ is set in the `hipsparseMatDescr_t` \p descrC. See
+    !> `hipsparseSetMatIndexBase` ().
     !>
     !> \note If \f$\alpha == 0\f$, then \f$C = \beta \cdot D\f$ will be computed.
     !> \note If \f$\beta == 0\f$, then \f$C = \alpha \cdot A \cdot B\f$ will be computed.
     !> \note \f$\alpha == beta == 0\f$ is invalid.
-    !> \note Currently, only \ref HIPSPARSE_MATRIX_TYPE_GENERAL is supported.
+    !> \note Currently, only `HIPSPARSE_MATRIX_TYPE_GENERAL` is supported.
     !> \note This function is non-blocking and executed asynchronously with respect to the
     !> host. It can return before the actual computation has finished.
     !> \note For matrix products with more than 4096 non-zero entries per
@@ -8547,7 +8559,7 @@ module hipfort_hipsparse
     !> alpha           scalar \f$\alpha\f$.
     !> @param[in]
     !> descrA          descriptor of the sparse CSR matrix \f$A\f$. Currently, only
-    !> \ref HIPSPARSE_MATRIX_TYPE_GENERAL is supported.
+    !> `HIPSPARSE_MATRIX_TYPE_GENERAL` is supported.
     !> @param[in]
     !> nnzA            number of non-zero entries of the sparse CSR matrix \f$A\f$.
     !> @param[in]
@@ -8561,7 +8573,7 @@ module hipfort_hipsparse
     !> sparse CSR matrix \f$A\f$.
     !> @param[in]
     !> descrB          descriptor of the sparse CSR matrix \f$B\f$. Currently, only
-    !> \ref HIPSPARSE_MATRIX_TYPE_GENERAL is supported.
+    !> `HIPSPARSE_MATRIX_TYPE_GENERAL` is supported.
     !> @param[in]
     !> nnzB            number of non-zero entries of the sparse CSR matrix \f$B\f$.
     !> @param[in]
@@ -8577,7 +8589,7 @@ module hipfort_hipsparse
     !> beta            scalar \f$\beta\f$.
     !> @param[in]
     !> descrD          descriptor of the sparse CSR matrix \f$D\f$. Currently, only
-    !> \ref HIPSPARSE_MATRIX_TYPE_GENERAL is supported.
+    !> `HIPSPARSE_MATRIX_TYPE_GENERAL` is supported.
     !> @param[in]
     !> nnzD            number of non-zero entries of the sparse CSR matrix \f$D\f$.
     !> @param[in]
@@ -8590,7 +8602,7 @@ module hipfort_hipsparse
     !> sparse CSR matrix \f$D\f$.
     !> @param[in]
     !> descrC          descriptor of the sparse CSR matrix \f$C\f$. Currently, only
-    !> \ref HIPSPARSE_MATRIX_TYPE_GENERAL is supported.
+    !> `HIPSPARSE_MATRIX_TYPE_GENERAL` is supported.
     !> @param[out]
     !> csrValC         array of \p nnzC elements of the sparse CSR matrix \f$C\f$.
     !> @param[in]
@@ -8603,7 +8615,7 @@ module hipfort_hipsparse
     !> info            structure that holds meta data for the sparse CSR matrix \f$C\f$.
     !> @param[in]
     !> pBuffer         temporary storage buffer allocated by the user. The size is returned
-    !> by hipsparseScsrgemm2_bufferSizeExt(), hipsparseDcsrgemm2_bufferSizeExt(),
+    !> by `hipsparseScsrgemm2_bufferSizeExt()`, hipsparseDcsrgemm2_bufferSizeExt(),
     !> hipsparseCcsrgemm2_bufferSizeExt(), or hipsparseZcsrgemm2_bufferSizeExt().
     !>
     !> \retval HIPSPARSE_STATUS_SUCCESS the operation completed successfully.
@@ -8615,7 +8627,7 @@ module hipfort_hipsparse
     !> \retval HIPSPARSE_STATUS_ALLOC_FAILED additional buffer for long rows could not be
     !> allocated.
     !> \retval HIPSPARSE_STATUS_NOT_SUPPORTED
-    !> \ref hipsparseMatrixType_t != \ref HIPSPARSE_MATRIX_TYPE_GENERAL.
+    !> `hipsparseMatrixType_t` != `HIPSPARSE_MATRIX_TYPE_GENERAL`.
     function hipsparseScsrgemm2(handle, m, n, k, alpha, descrA, nnzA, csrValA, csrRowPtrA, &
                                 csrColIndA, descrB, nnzB, csrValB, csrRowPtrB, csrColIndB, beta, &
                                 descrD, nnzD, csrValD, csrRowPtrD, csrColIndD, descrC, csrValC, &
@@ -8794,14 +8806,14 @@ module hipfort_hipsparse
     !---------------------------------------------
     !> \ingroup precond_module
     !> \details
-    !> \p hipsparseXbsric02_zeroPivot returns \ref HIPSPARSE_STATUS_ZERO_PIVOT if either a
-    !> structural or numerical zero has been found during \ref hipsparseSbsric02_analysis
-    !> "hipsparseXbsric02_analysis()" or \ref hipsparseSbsric02 "hipsparseXbsric02()" computation.
+    !> \p hipsparseXbsric02_zeroPivot returns `HIPSPARSE_STATUS_ZERO_PIVOT` if either a
+    !> structural or numerical zero has been found during `hipsparseSbsric02_analysis`
+    !> "hipsparseXbsric02_analysis()" or `hipsparseSbsric02` "hipsparseXbsric02()" computation.
     !> The first zero pivot \f$j\f$ at \f$A_{j,j}\f$ is stored in \p position, using the same index
     !> base as the BSR matrix.
     !>
     !> \p position can be in host or device memory. If no zero pivot has been found,
-    !> \p position is set to -1 and \ref HIPSPARSE_STATUS_SUCCESS is returned instead.
+    !> \p position is set to -1 and `HIPSPARSE_STATUS_SUCCESS` is returned instead.
     !>
     !> \note
     !> If a zero pivot is found, \p position=j means that either the diagonal block \p A(j,j)
@@ -8847,16 +8859,15 @@ module hipfort_hipsparse
     !> \ingroup precond_module
     !> \details
     !> \p hipsparseXbsric02_bufferSize returns the size of the temporary storage buffer
-    !> in bytes that is required by \ref hipsparseSbsric02_analysis "hipsparseXbsric02_analysis()"
-    !> and \ref hipsparseSbsric02 "hipsparseXbsric02()". The temporary storage buffer must be
+    !> in bytes that is required by `hipsparseSbsric02_analysis` "hipsparseXbsric02_analysis()"
+    !> and `hipsparseSbsric02` "hipsparseXbsric02()". The temporary storage buffer must be
     !> allocated by the user.
     !>
     !> @param[in]
     !> handle             handle to the hipSPARSE library context queue.
     !> @param[in]
-    !> dirA direction that specifies whether to count non-zero elements by \ref
-    !> HIPSPARSE_DIRECTION_ROW
-    !> or by \ref HIPSPARSE_DIRECTION_COLUMN.
+    !> dirA direction that specifies whether to count non-zero elements by `HIPSPARSE_DIRECTION_ROW`
+    !> or by `HIPSPARSE_DIRECTION_COLUMN`.
     !> @param[in]
     !> mb                 number of block rows in the sparse BSR matrix. Must be non-negative.
     !> @param[in]
@@ -8879,9 +8890,9 @@ module hipfort_hipsparse
     !> info               structure that holds the information collected during the analysis step.
     !> @param[out]
     !> pBufferSizeInBytes number of bytes of the temporary storage buffer required by
-    !> hipsparseSbsric02_analysis(), hipsparseDbsric02_analysis(),
+    !> `hipsparseSbsric02_analysis()`, hipsparseDbsric02_analysis(),
     !> hipsparseCbsric02_analysis(), hipsparseZbsric02_analysis(),
-    !> hipsparseSbsric02(), hipsparseDbsric02(), hipsparseCbsric02(),
+    !> `hipsparseSbsric02()`, hipsparseDbsric02(), hipsparseCbsric02(),
     !> and hipsparseZbsric02().
     !>
     !> \retval HIPSPARSE_STATUS_SUCCESS the operation completed successfully.
@@ -8890,8 +8901,8 @@ module hipfort_hipsparse
     !> \p bsrColIndA, \p info, or \p pBufferSizeInBytes is nullptr, \p mb, or \p nnzb is negative,
     !> or \p blockDim is invalid.
     !> \retval HIPSPARSE_STATUS_INTERNAL_ERROR an internal error occurred.
-    !> \retval HIPSPARSE_STATUS_NOT_SUPPORTED \ref hipsparseMatrixType_t != \ref
-    !> HIPSPARSE_MATRIX_TYPE_GENERAL.
+    !> \retval HIPSPARSE_STATUS_NOT_SUPPORTED `hipsparseMatrixType_t` !=
+    !> `HIPSPARSE_MATRIX_TYPE_GENERAL`.
     function hipsparseSbsric02_bufferSize(handle, dirA, mb, nnzb, descrA, bsrValA, bsrRowPtrA, &
                                           bsrColIndA, blockDim, info, pBufferSizeInBytes) &
        result(Sbsric02_bufferSize) &
@@ -8998,7 +9009,7 @@ module hipfort_hipsparse
     !---------------------------------------------
     !> \ingroup precond_module
     !> \details
-    !> \p hipsparseXbsric02_analysis performs the analysis step for \ref hipsparseSbsric02
+    !> \p hipsparseXbsric02_analysis performs the analysis step for `hipsparseSbsric02`
     !> "hipsparseXbsric02()". It is expected that this function will be executed only once
     !> for a given matrix and particular operation type.
     !>
@@ -9012,9 +9023,9 @@ module hipfort_hipsparse
     !> @param[in]
     !> handle      handle to the hipSPARSE library context queue.
     !> @param[in]
-    !> dirA direction that specifies whether to count non-zero elements by \ref
-    !> HIPSPARSE_DIRECTION_ROW or by
-    !> \ref HIPSPARSE_DIRECTION_COLUMN.
+    !> dirA direction that specifies whether to count non-zero elements by `HIPSPARSE_DIRECTION_ROW`
+    !> or by
+    !> `HIPSPARSE_DIRECTION_COLUMN`.
     !> @param[in]
     !> mb          number of block rows in the sparse BSR matrix.
     !> @param[in]
@@ -9036,7 +9047,7 @@ module hipfort_hipsparse
     !> @param[out]
     !> info        structure that holds the information collected during the analysis step.
     !> @param[in]
-    !> policy      \ref HIPSPARSE_SOLVE_POLICY_NO_LEVEL or \ref HIPSPARSE_SOLVE_POLICY_USE_LEVEL.
+    !> policy      `HIPSPARSE_SOLVE_POLICY_NO_LEVEL` or `HIPSPARSE_SOLVE_POLICY_USE_LEVEL`.
     !> @param[in]
     !> pBuffer     temporary storage buffer allocated by the user.
     !>
@@ -9045,7 +9056,7 @@ module hipfort_hipsparse
     !> \p bsrValA, \p bsrRowPtrA, \p bsrColIndA, \p info, or \p pBuffer pointer is invalid.
     !> \retval     HIPSPARSE_STATUS_INTERNAL_ERROR an internal error occurred.
     !> \retval     HIPSPARSE_STATUS_NOT_SUPPORTED
-    !> \ref hipsparseMatrixType_t != \ref HIPSPARSE_MATRIX_TYPE_GENERAL.
+    !> `hipsparseMatrixType_t` != `HIPSPARSE_MATRIX_TYPE_GENERAL`.
     function hipsparseSbsric02_analysis(handle, dirA, mb, nnzb, descrA, bsrValA, bsrRowPtrA, &
                                         bsrColIndA, blockDim, info, policy, pBuffer) &
        result(Sbsric02_analysis) &
@@ -9168,9 +9179,9 @@ module hipfort_hipsparse
     !> Computing the above incomplete Cholesky factorization requires three steps to complete.
     !> First,
     !> the user determines the size of the required temporary storage buffer by calling
-    !> \ref hipsparseSbsric02_bufferSize "hipsparseXbsric02_bufferSize()". After this buffer size
-    !> has been determined,
-    !> the user allocates the buffer and passes it to \ref hipsparseSbsric02_analysis
+    !> `hipsparseSbsric02_bufferSize` "hipsparseXbsric02_bufferSize()". After this buffer size has
+    !> been determined,
+    !> the user allocates the buffer and passes it to `hipsparseSbsric02_analysis`
     !> "hipsparseXbsric02_analysis()".
     !> This will perform analysis on the sparsity pattern of the matrix. Finally, the user calls \p
     !> hipsparseXbsric02
@@ -9183,14 +9194,14 @@ module hipfort_hipsparse
     !> the temporary buffer can be deallocated.
     !>
     !> \p hipsparseXbsric02 requires a user-allocated temporary buffer. Its size is returned
-    !> by \ref hipsparseSbsric02_bufferSize "hipsparseXbsric02_bufferSize()". Furthermore,
-    !> analysis meta data is required. It can be obtained by \ref hipsparseSbsric02_analysis
+    !> by `hipsparseSbsric02_bufferSize` "hipsparseXbsric02_bufferSize()". Furthermore,
+    !> analysis meta data is required. It can be obtained by `hipsparseSbsric02_analysis`
     !> "hipsparseXbsric02_analysis()". \p hipsparseXbsric02 reports the first zero pivot
     !> (either numerical or structural zero). The zero pivot status can be obtained by calling
-    !> \ref hipsparseXbsric02_zeroPivot().
+    !> `hipsparseXbsric02_zeroPivot`().
     !>
     !> \p hipsparseXbsric02 reports the first zero pivot (either numerical or structural zero).
-    !> The zero pivot status can be obtained by calling \ref hipsparseXbsric02_zeroPivot().
+    !> The zero pivot status can be obtained by calling `hipsparseXbsric02_zeroPivot`().
     !>
     !> \note
     !> This function is non-blocking and executed asynchronously with respect to the host.
@@ -9199,9 +9210,9 @@ module hipfort_hipsparse
     !> @param[in]
     !> handle      handle to the hipSPARSE library context queue.
     !> @param[in]
-    !> dirA direction that specifies whether to count non-zero elements by \ref
-    !> HIPSPARSE_DIRECTION_ROW or by
-    !> \ref HIPSPARSE_DIRECTION_COLUMN.
+    !> dirA direction that specifies whether to count non-zero elements by `HIPSPARSE_DIRECTION_ROW`
+    !> or by
+    !> `HIPSPARSE_DIRECTION_COLUMN`.
     !> @param[in]
     !> mb          number of block rows in the sparse BSR matrix.
     !> @param[in]
@@ -9223,7 +9234,7 @@ module hipfort_hipsparse
     !> @param[in]
     !> info        structure that holds the information collected during the analysis step.
     !> @param[in]
-    !> policy      \ref HIPSPARSE_SOLVE_POLICY_NO_LEVEL or \ref HIPSPARSE_SOLVE_POLICY_USE_LEVEL.
+    !> policy      `HIPSPARSE_SOLVE_POLICY_NO_LEVEL` or `HIPSPARSE_SOLVE_POLICY_USE_LEVEL`.
     !> @param[in]
     !> pBuffer     temporary storage buffer allocated by the user.
     !>
@@ -9233,7 +9244,7 @@ module hipfort_hipsparse
     !> \retval     HIPSPARSE_STATUS_ARCH_MISMATCH the device is not supported.
     !> \retval     HIPSPARSE_STATUS_INTERNAL_ERROR an internal error occurred.
     !> \retval     HIPSPARSE_STATUS_NOT_SUPPORTED
-    !> \ref hipsparseMatrixType_t != \ref HIPSPARSE_MATRIX_TYPE_GENERAL.
+    !> `hipsparseMatrixType_t` != `HIPSPARSE_MATRIX_TYPE_GENERAL`.
     function hipsparseSbsric02(handle, dirA, mb, nnzb, descrA, bsrValA, bsrRowPtrA, bsrColIndA, &
                                blockDim, info, policy, pBuffer) &
        result(Sbsric02) &
@@ -9344,14 +9355,14 @@ module hipfort_hipsparse
     !---------------------------------------------
     !> \ingroup precond_module
     !> \details
-    !> \p hipsparseXbsrilu02_zeroPivot returns \ref HIPSPARSE_STATUS_ZERO_PIVOT if either a
-    !> structural or numerical zero has been found during \ref hipsparseSbsrilu02_analysis
-    !> "hipsparseXbsrilu02_analysis()" or \ref hipsparseSbsrilu02 "hipsparseXbsrilu02()"
+    !> \p hipsparseXbsrilu02_zeroPivot returns `HIPSPARSE_STATUS_ZERO_PIVOT` if either a
+    !> structural or numerical zero has been found during `hipsparseSbsrilu02_analysis`
+    !> "hipsparseXbsrilu02_analysis()" or `hipsparseSbsrilu02` "hipsparseXbsrilu02()"
     !> computation. The first zero pivot \f$j\f$ at \f$A_{j,j}\f$ is stored in \p position,
     !> using the same index base as the BSR matrix.
     !>
     !> \p position can be in host or device memory. If no zero pivot has been found,
-    !> \p position is set to -1 and \ref HIPSPARSE_STATUS_SUCCESS is returned instead.
+    !> \p position is set to -1 and `HIPSPARSE_STATUS_SUCCESS` is returned instead.
     !>
     !> \note
     !> If a zero pivot is found, \p position \f$=j\f$ means that either the diagonal block
@@ -9399,7 +9410,7 @@ module hipfort_hipsparse
     !> \p hipsparseXbsrilu02_numericBoost enables the user to replace a numerical value in
     !> an incomplete LU factorization. \p tol is used to determine whether a numerical value
     !> is replaced by \p boost_val, such that \f$A_{j,j} = \text{boost_val}\f$ if
-    !> \f$\text{tol} \ge \left|A_{j,j}\right|\f$.
+    !> \f$\text{tol} &ge; \left|A_{j,j}\right|\f$.
     !>
     !> \note The boost value is enabled by setting \p enable_boost to 1 or disabled by
     !> setting \p enable_boost to 0.
@@ -9505,16 +9516,15 @@ module hipfort_hipsparse
     !> \ingroup precond_module
     !> \details
     !> \p hipsparseXbsrilu02_bufferSize returns the size of the temporary storage buffer
-    !> in bytes that is required by \ref hipsparseSbsrilu02_analysis "hipsparseXbsrilu02_analysis()"
-    !> and \ref hipsparseSbsrilu02 "hipsparseXbsrilu02()". The temporary storage buffer must be
+    !> in bytes that is required by `hipsparseSbsrilu02_analysis` "hipsparseXbsrilu02_analysis()"
+    !> and `hipsparseSbsrilu02` "hipsparseXbsrilu02()". The temporary storage buffer must be
     !> allocated by the user.
     !>
     !> @param[in]
     !> handle             handle to the hipSPARSE library context queue.
     !> @param[in]
-    !> dirA direction that specifies whether to count non-zero elements by \ref
-    !> HIPSPARSE_DIRECTION_ROW
-    !> or by \ref HIPSPARSE_DIRECTION_COLUMN.
+    !> dirA direction that specifies whether to count non-zero elements by `HIPSPARSE_DIRECTION_ROW`
+    !> or by `HIPSPARSE_DIRECTION_COLUMN`.
     !> @param[in]
     !> mb                 number of block rows in the sparse BSR matrix.
     !> @param[in]
@@ -9537,9 +9547,9 @@ module hipfort_hipsparse
     !> info               structure that holds the information collected during the analysis step.
     !> @param[out]
     !> pBufferSizeInBytes number of bytes of the temporary storage buffer required by
-    !> hipsparseSbsrilu02_analysis(), hipsparseDbsrilu02_analysis(),
+    !> `hipsparseSbsrilu02_analysis()`, hipsparseDbsrilu02_analysis(),
     !> hipsparseCbsrilu02_analysis(), hipsparseZbsrilu02_analysis(),
-    !> hipsparseSbsrilu02(), hipsparseDbsrilu02(), hipsparseCbsrilu02(),
+    !> `hipsparseSbsrilu02()`, hipsparseDbsrilu02(), hipsparseCbsrilu02(),
     !> and hipsparseZbsrilu02().
     !>
     !> \retval     HIPSPARSE_STATUS_SUCCESS the operation completed successfully.
@@ -9548,7 +9558,7 @@ module hipfort_hipsparse
     !> \p pBufferSizeInBytes pointer is invalid.
     !> \retval     HIPSPARSE_STATUS_INTERNAL_ERROR an internal error occurred.
     !> \retval     HIPSPARSE_STATUS_NOT_SUPPORTED
-    !> \ref hipsparseMatrixType_t != \ref HIPSPARSE_MATRIX_TYPE_GENERAL.
+    !> `hipsparseMatrixType_t` != `HIPSPARSE_MATRIX_TYPE_GENERAL`.
     function hipsparseSbsrilu02_bufferSize(handle, dirA, mb, nnzb, descrA, bsrSortedValA, &
                                            bsrSortedRowPtrA, bsrSortedColIndA, blockDim, info, &
                                            pBufferSizeInBytes) &
@@ -9659,7 +9669,7 @@ module hipfort_hipsparse
     !---------------------------------------------
     !> \ingroup precond_module
     !> \details
-    !> \p hipsparseXbsrilu02_analysis performs the analysis step for \ref hipsparseSbsrilu02
+    !> \p hipsparseXbsrilu02_analysis performs the analysis step for `hipsparseSbsrilu02`
     !> "hipsparseXbsrilu02()". It is expected that this function will be executed only once
     !> for a given matrix.
     !>
@@ -9674,7 +9684,7 @@ module hipfort_hipsparse
     !> handle           handle to the hipSPARSE library context queue.
     !> @param[in]
     !> dirA             direction that specified whether to count non-zero elements by
-    !> \ref HIPSPARSE_DIRECTION_ROW or by \ref HIPSPARSE_DIRECTION_COLUMN.
+    !> `HIPSPARSE_DIRECTION_ROW` or by `HIPSPARSE_DIRECTION_COLUMN`.
     !> @param[in]
     !> mb               number of block rows in the sparse BSR matrix.
     !> @param[in]
@@ -9696,7 +9706,7 @@ module hipfort_hipsparse
     !> @param[out]
     !> info             structure that holds the information collected during the analysis step.
     !> @param[in]
-    !> policy \ref HIPSPARSE_SOLVE_POLICY_NO_LEVEL or \ref HIPSPARSE_SOLVE_POLICY_USE_LEVEL.
+    !> policy           `HIPSPARSE_SOLVE_POLICY_NO_LEVEL` or `HIPSPARSE_SOLVE_POLICY_USE_LEVEL`.
     !> @param[in]
     !> pBuffer          temporary storage buffer allocated by the user.
     !>
@@ -9706,7 +9716,7 @@ module hipfort_hipsparse
     !> is invalid.
     !> \retval     HIPSPARSE_STATUS_INTERNAL_ERROR an internal error occurred.
     !> \retval     HIPSPARSE_STATUS_NOT_SUPPORTED
-    !> \ref hipsparseMatrixType_t != \ref HIPSPARSE_MATRIX_TYPE_GENERAL.
+    !> `hipsparseMatrixType_t` != `HIPSPARSE_MATRIX_TYPE_GENERAL`.
     function hipsparseSbsrilu02_analysis(handle, dirA, mb, nnzb, descrA, bsrSortedValA, &
                                          bsrSortedRowPtrA, bsrSortedColIndA, blockDim, info, &
                                          policy, pBuffer) &
@@ -9832,21 +9842,20 @@ module hipfort_hipsparse
     !>
     !> Computing the above incomplete LU factorization requires three steps to complete. First,
     !> the user determines the size of the required temporary storage buffer by calling
-    !> \ref hipsparseSbsrilu02_bufferSize "hipsparseXbsrilu02_bufferSize()". After this buffer size
+    !> `hipsparseSbsrilu02_bufferSize` "hipsparseXbsrilu02_bufferSize()". After this buffer size
     !> has been determined, the user allocates the buffer and passes it to
-    !> \ref hipsparseSbsrilu02_analysis "hipsparseXbsrilu02_analysis()". This will perform analysis
-    !> on
+    !> `hipsparseSbsrilu02_analysis` "hipsparseXbsrilu02_analysis()". This will perform analysis on
     !> the sparsity pattern of the matrix. Finally, the user calls \p hipsparseXbsrilu02 to perform
     !> the
     !> actual factorization. The calculation of the buffer size and the analysis of the sparse
     !> matrix
     !> only need to be performed once for a given sparsity pattern, while the factorization can be
     !> repeatedly applied to multiple matrices having the same sparsity pattern. After all calls to
-    !> \ref hipsparseSbsrilu02 "hipsparseXbsrilu02()" are complete, the temporary buffer can be
+    !> `hipsparseSbsrilu02` "hipsparseXbsrilu02()" are complete, the temporary buffer can be
     !> deallocated.
     !>
     !> \p hipsparseXbsrilu02 reports the first zero pivot (either numerical or structural zero).
-    !> The zero pivot status can be obtained by calling \ref hipsparseXbsrilu02_zeroPivot().
+    !> The zero pivot status can be obtained by calling `hipsparseXbsrilu02_zeroPivot`().
     !>
     !> \note
     !> This function is non-blocking and executed asynchronously with respect to the host.
@@ -9856,7 +9865,7 @@ module hipfort_hipsparse
     !> handle             handle to the hipSPARSE library context queue.
     !> @param[in]
     !> dirA               direction that specified whether to count non-zero elements by
-    !> \ref HIPSPARSE_DIRECTION_ROW or by \ref HIPSPARSE_DIRECTION_COLUMN.
+    !> `HIPSPARSE_DIRECTION_ROW` or by `HIPSPARSE_DIRECTION_COLUMN`.
     !> @param[in]
     !> mb                 number of block rows in the sparse BSR matrix.
     !> @param[in]
@@ -9878,7 +9887,7 @@ module hipfort_hipsparse
     !> @param[in]
     !> info               structure that holds the information collected during the analysis step.
     !> @param[in]
-    !> policy \ref HIPSPARSE_SOLVE_POLICY_NO_LEVEL or \ref HIPSPARSE_SOLVE_POLICY_USE_LEVEL.
+    !> policy             `HIPSPARSE_SOLVE_POLICY_NO_LEVEL` or `HIPSPARSE_SOLVE_POLICY_USE_LEVEL`.
     !> @param[in]
     !> pBuffer            temporary storage buffer allocated by the user.
     !>
@@ -9888,7 +9897,7 @@ module hipfort_hipsparse
     !> \retval     HIPSPARSE_STATUS_ARCH_MISMATCH the device is not supported.
     !> \retval     HIPSPARSE_STATUS_INTERNAL_ERROR an internal error occurred.
     !> \retval     HIPSPARSE_STATUS_NOT_SUPPORTED
-    !> \ref hipsparseMatrixType_t != \ref HIPSPARSE_MATRIX_TYPE_GENERAL.
+    !> `hipsparseMatrixType_t` != `HIPSPARSE_MATRIX_TYPE_GENERAL`.
     function hipsparseSbsrilu02(handle, dirA, mb, nnzb, descrA, bsrSortedValA_valM, &
                                 bsrSortedRowPtrA, bsrSortedColIndA, blockDim, info, policy, &
                                 pBuffer) &
@@ -10003,14 +10012,14 @@ module hipfort_hipsparse
     !---------------------------------------------
     !> \ingroup precond_module
     !> \details
-    !> \p hipsparseXcsric02_zeroPivot returns \ref HIPSPARSE_STATUS_ZERO_PIVOT if either a
-    !> structural or numerical zero has been found during \ref hipsparseScsric02_analysis
-    !> "hipsparseXcsric02_analysis()" or \ref hipsparseScsric02 "hipsparseXcsric02()"
+    !> \p hipsparseXcsric02_zeroPivot returns `HIPSPARSE_STATUS_ZERO_PIVOT` if either a
+    !> structural or numerical zero has been found during `hipsparseScsric02_analysis`
+    !> "hipsparseXcsric02_analysis()" or `hipsparseScsric02` "hipsparseXcsric02()"
     !> computation. The first zero pivot \f$j\f$ at \f$A_{j,j}\f$ is stored in \p position,
     !> using the same index base as the CSR matrix.
     !>
     !> \p position can be in host or device memory. If no zero pivot has been found,
-    !> \p position is set to -1 and \ref HIPSPARSE_STATUS_SUCCESS is returned instead.
+    !> \p position is set to -1 and `HIPSPARSE_STATUS_SUCCESS` is returned instead.
     !>
     !> \note \p hipsparseXcsric02_zeroPivot is a blocking function. It might negatively influence
     !> performance.
@@ -10051,8 +10060,8 @@ module hipfort_hipsparse
     !> \ingroup precond_module
     !> \details
     !> \p hipsparseXcsric02_bufferSize returns the size of the temporary storage buffer in bytes
-    !> that is required by \ref hipsparseScsric02_analysis "hipsparseXcsric02_analysis()" and
-    !> \ref hipsparseScsric02 "hipsparseXcsric02()". The temporary storage buffer must be allocated
+    !> that is required by `hipsparseScsric02_analysis` "hipsparseXcsric02_analysis()" and
+    !> `hipsparseScsric02` "hipsparseXcsric02()". The temporary storage buffer must be allocated
     !> by the user.
     !>
     !> @param[in]
@@ -10075,8 +10084,8 @@ module hipfort_hipsparse
     !> info               structure that holds the information collected during the analysis step.
     !> @param[out]
     !> pBufferSizeInBytes number of bytes of the temporary storage buffer required by
-    !> \ref hipsparseScsric02_analysis "hipsparseXcsric02_analysis()" and
-    !> \ref hipsparseScsric02 "hipsparseXcsric02()".
+    !> `hipsparseScsric02_analysis` "hipsparseXcsric02_analysis()" and
+    !> `hipsparseScsric02` "hipsparseXcsric02()".
     !>
     !> \retval     HIPSPARSE_STATUS_SUCCESS the operation completed successfully.
     !> \retval HIPSPARSE_STATUS_INVALID_VALUE \p handle, \p m, \p nnz, \p descrA, \p csrSortedValA,
@@ -10084,7 +10093,7 @@ module hipfort_hipsparse
     !> invalid.
     !> \retval     HIPSPARSE_STATUS_INTERNAL_ERROR an internal error occurred.
     !> \retval     HIPSPARSE_STATUS_NOT_SUPPORTED
-    !> \ref hipsparseMatrixType_t != \ref HIPSPARSE_MATRIX_TYPE_GENERAL.
+    !> `hipsparseMatrixType_t` != `HIPSPARSE_MATRIX_TYPE_GENERAL`.
     function hipsparseScsric02_bufferSize(handle, m, nnz, descrA, csrSortedValA, csrSortedRowPtrA, &
                                           csrSortedColIndA, info, pBufferSizeInBytes) &
        result(Scsric02_bufferSize) &
@@ -10184,8 +10193,8 @@ module hipfort_hipsparse
     !> \ingroup precond_module
     !> \details
     !> \p hipsparseXcsric02_bufferSizeExt returns the size of the temporary storage buffer
-    !> in bytes that is required by \ref hipsparseScsric02_analysis "hipsparseXcsric02_analysis()"
-    !> and \ref hipsparseScsric02 "hipsparseXcsric02()". The temporary storage buffer must be
+    !> in bytes that is required by `hipsparseScsric02_analysis` "hipsparseXcsric02_analysis()"
+    !> and `hipsparseScsric02` "hipsparseXcsric02()". The temporary storage buffer must be
     !> allocated by the user.
     !>
     !> @param[in]
@@ -10208,8 +10217,8 @@ module hipfort_hipsparse
     !> info               structure that holds the information collected during the analysis step.
     !> @param[out]
     !> pBufferSizeInBytes number of bytes of the temporary storage buffer required by
-    !> \ref hipsparseScsric02_analysis "hipsparseXcsric02_analysis()" and
-    !> \ref hipsparseScsric02 "hipsparseXcsric02()".
+    !> `hipsparseScsric02_analysis` "hipsparseXcsric02_analysis()" and
+    !> `hipsparseScsric02` "hipsparseXcsric02()".
     !>
     !> \retval     HIPSPARSE_STATUS_SUCCESS the operation completed successfully.
     !> \retval HIPSPARSE_STATUS_INVALID_VALUE \p handle, \p m, \p nnz, \p descrA, \p csrSortedValA,
@@ -10217,7 +10226,7 @@ module hipfort_hipsparse
     !> invalid.
     !> \retval     HIPSPARSE_STATUS_INTERNAL_ERROR an internal error occurred.
     !> \retval     HIPSPARSE_STATUS_NOT_SUPPORTED
-    !> \ref hipsparseMatrixType_t != \ref HIPSPARSE_MATRIX_TYPE_GENERAL.
+    !> `hipsparseMatrixType_t` != `HIPSPARSE_MATRIX_TYPE_GENERAL`.
     function hipsparseScsric02_bufferSizeExt(handle, m, nnz, descrA, csrSortedValA, &
                                              csrSortedRowPtrA, csrSortedColIndA, info, &
                                              pBufferSizeInBytes) &
@@ -10320,7 +10329,7 @@ module hipfort_hipsparse
     !---------------------------------------------
     !> \ingroup precond_module
     !> \details
-    !> \p hipsparseXcsric02_analysis performs the analysis step for \ref hipsparseScsric02
+    !> \p hipsparseXcsric02_analysis performs the analysis step for `hipsparseScsric02`
     !> "hipsparseXcsric02()".
     !>
     !> \note
@@ -10350,7 +10359,7 @@ module hipfort_hipsparse
     !> info             structure that holds the information collected during
     !> the analysis step.
     !> @param[in]
-    !> policy \ref HIPSPARSE_SOLVE_POLICY_NO_LEVEL or \ref HIPSPARSE_SOLVE_POLICY_USE_LEVEL.
+    !> policy           `HIPSPARSE_SOLVE_POLICY_NO_LEVEL` or `HIPSPARSE_SOLVE_POLICY_USE_LEVEL`.
     !> @param[in]
     !> pBuffer          temporary storage buffer allocated by the user.
     !>
@@ -10359,7 +10368,7 @@ module hipfort_hipsparse
     !> \p csrSortedRowPtrA, \p csrSortedColIndA, \p info, or \p pBuffer pointer is invalid.
     !> \retval     HIPSPARSE_STATUS_INTERNAL_ERROR an internal error occurred.
     !> \retval     HIPSPARSE_STATUS_NOT_SUPPORTED
-    !> \ref hipsparseMatrixType_t != \ref HIPSPARSE_MATRIX_TYPE_GENERAL.
+    !> `hipsparseMatrixType_t` != `HIPSPARSE_MATRIX_TYPE_GENERAL`.
     function hipsparseScsric02_analysis(handle, m, nnz, descrA, csrSortedValA, csrSortedRowPtrA, &
                                         csrSortedColIndA, info, policy, pBuffer) &
        result(Scsric02_analysis) &
@@ -10474,7 +10483,7 @@ module hipfort_hipsparse
     !> \f[
     !> L_{ij} = \left\{
     !> \begin{array}{ll}
-    !> \sqrt{A_{jj} - \sum_{k=0}^{j-1}(L_{jk})^{2}},   & \text{if i == j} \\
+    !> \sqrt{A_{jj} - \sum_{k=0}^{j-1}(L_{jk})^{2}},   & \text{if i == j} \\%
     !> \frac{1}{L_{jj}}(A_{jj} - \sum_{k=0}^{j-1}L_{ik} \times L_{jk}), & \text{if i > j}
     !> \end{array}
     !> \right.
@@ -10484,9 +10493,9 @@ module hipfort_hipsparse
     !> Computing the above incomplete Cholesky factorization requires three steps to complete.
     !> First,
     !> the user determines the size of the required temporary storage buffer by calling
-    !> \ref hipsparseScsric02_bufferSize "hipsparseXcsric02_bufferSize()". After this buffer size
-    !> has been determined,
-    !> the user allocates the buffer and passes it to \ref hipsparseScsric02_analysis
+    !> `hipsparseScsric02_bufferSize` "hipsparseXcsric02_bufferSize()". After this buffer size has
+    !> been determined,
+    !> the user allocates the buffer and passes it to `hipsparseScsric02_analysis`
     !> "hipsparseXcsric02_analysis()".
     !> This will perform analysis on the sparsity pattern of the matrix. Finally, the user calls \p
     !> hipsparseScsric02,
@@ -10496,7 +10505,7 @@ module hipfort_hipsparse
     !> given sparsity pattern,
     !> while the factorization can be repeatedly applied to multiple matrices having the same
     !> sparsity pattern. After all calls
-    !> to \ref hipsparseScsric02 "hipsparseXcsric02()" are complete, the temporary buffer can be
+    !> to `hipsparseScsric02` "hipsparseXcsric02()" are complete, the temporary buffer can be
     !> deallocated.
     !>
     !> When computing the Cholesky factorization, it is possible that \f$L_{jj} == 0\f$, which would
@@ -10508,33 +10517,33 @@ module hipfort_hipsparse
     !> factorization on the following matrix:
     !> \f[
     !> \begin{bmatrix}
-    !> 2 & 1 & 0 \\
-    !> 1 & 2 & 1 \\
+    !> 2 & 1 & 0 \\%
+    !> 1 & 2 & 1 \\%
     !> 0 & 1 & 2
     !> \end{bmatrix}
     !> \f]
     !> results in a successful Cholesky factorization, however running with the matrix:
     !> \f[
     !> \begin{bmatrix}
-    !> 2 & 1 & 0 \\
-    !> 1 & 1/2 & 1 \\
+    !> 2 & 1 & 0 \\%
+    !> 1 & 1/2 & 1 \\%
     !> 0 & 1 & 2
     !> \end{bmatrix}
     !> \f]
     !> results in a numerical zero because:
     !> \f[
     !> \begin{array}{ll}
-    !> L_{00} &= \sqrt{2} \\
-    !> L_{10} &= \frac{1}{\sqrt{2}} \\
+    !> L_{00} &= \sqrt{2} \\%
+    !> L_{10} &= \frac{1}{\sqrt{2}} \\%
     !> L_{11} &= \sqrt{\frac{1}{2} - (\frac{1}{\sqrt{2}})^2}
     !> &= 0
     !> \end{array}
     !> \f]
-    !> The user can detect the presence of a structural zero by calling \ref
-    !> hipsparseXcsric02_zeroPivot() after
-    !> \ref hipsparseScsric02_analysis "hipsparseXcsric02_analysis()" and/or the presence of a
+    !> The user can detect the presence of a structural zero by calling
+    !> `hipsparseXcsric02_zeroPivot` () after
+    !> `hipsparseScsric02_analysis` "hipsparseXcsric02_analysis()" and/or the presence of a
     !> structural or
-    !> numerical zero by calling \ref hipsparseXcsric02_zeroPivot() after \ref hipsparseScsric02
+    !> numerical zero by calling `hipsparseXcsric02_zeroPivot` () after `hipsparseScsric02`
     !> "hipsparseXcsric02()":
     !> \code{.c}
     !> hipsparseDcsric02(handle,
@@ -10554,10 +10563,10 @@ module hipfort_hipsparse
     !> printf("L has structural and/or numerical zero at L(%d,%d)\n", position, position);
     !> }
     !> \endcode
-    !> In both cases, \ref hipsparseXcsric02_zeroPivot() will report the first zero pivot (either
+    !> In both cases, `hipsparseXcsric02_zeroPivot` () will report the first zero pivot (either
     !> numerical or structural)
     !> found. See the full example below. The user can also set the diagonal type to be \f$1\f$
-    !> using \ref hipsparseSetMatDiagType(),
+    !> using `hipsparseSetMatDiagType` (),
     !> which will interpret the matrix \f$A\f$ as having ones on its diagonal (even if no non-zero
     !> exists in the sparsity pattern).
     !>
@@ -10568,14 +10577,14 @@ module hipfort_hipsparse
     !> \f[
     !> \begin{align}
     !> \begin{bmatrix}
-    !> a_{00} & a_{01} & a_{02} \\
-    !> a_{10} & a_{11} & a_{12} \\
+    !> a_{00} & a_{01} & a_{02} \\%
+    !> a_{10} & a_{11} & a_{12} \\%
     !> a_{20} & a_{21} & a_{22}
     !> \end{bmatrix}
     !> \rightarrow
     !> \begin{bmatrix}
-    !> l_{00} & a_{01} & a_{02} \\
-    !> l_{10} & l_{11} & a_{12} \\
+    !> l_{00} & a_{01} & a_{02} \\%
+    !> l_{10} & l_{11} & a_{12} \\%
     !> l_{20} & l_{21} & l_{22}
     !> \end{bmatrix}
     !> \end{align}
@@ -10591,7 +10600,7 @@ module hipfort_hipsparse
     !>
     !> \note
     !> The sparse CSR matrix has to be sorted. This can be achieved by calling
-    !> \ref hipsparseXcsrsort().
+    !> `hipsparseXcsrsort`().
     !>
     !> \note
     !> This function is non-blocking and executed asynchronously with respect to the host.
@@ -10616,7 +10625,7 @@ module hipfort_hipsparse
     !> @param[in]
     !> info               structure that holds the information collected during the analysis step.
     !> @param[in]
-    !> policy \ref HIPSPARSE_SOLVE_POLICY_NO_LEVEL or \ref HIPSPARSE_SOLVE_POLICY_USE_LEVEL.
+    !> policy             `HIPSPARSE_SOLVE_POLICY_NO_LEVEL` or `HIPSPARSE_SOLVE_POLICY_USE_LEVEL`.
     !> @param[in]
     !> pBuffer            temporary storage buffer allocated by the user.
     !>
@@ -10627,7 +10636,7 @@ module hipfort_hipsparse
     !> \retval     HIPSPARSE_STATUS_ARCH_MISMATCH the device is not supported.
     !> \retval     HIPSPARSE_STATUS_INTERNAL_ERROR an internal error occurred.
     !> \retval     HIPSPARSE_STATUS_NOT_SUPPORTED
-    !> \ref hipsparseMatrixType_t != \ref HIPSPARSE_MATRIX_TYPE_GENERAL.
+    !> `hipsparseMatrixType_t` != `HIPSPARSE_MATRIX_TYPE_GENERAL`.
     function hipsparseScsric02(handle, m, nnz, descrA, csrSortedValA_valM, csrSortedRowPtrA, &
                                csrSortedColIndA, info, policy, pBuffer) &
        result(Scsric02) &
@@ -10730,15 +10739,15 @@ module hipfort_hipsparse
     !---------------------------------------------
     !> \ingroup precond_module
     !> \details
-    !> \p hipsparseXcsrilu02_zeroPivot returns \ref HIPSPARSE_STATUS_ZERO_PIVOT if either a
-    !> structural or numerical zero has been found during \ref hipsparseScsrilu02
+    !> \p hipsparseXcsrilu02_zeroPivot returns `HIPSPARSE_STATUS_ZERO_PIVOT` if either a
+    !> structural or numerical zero has been found during `hipsparseScsrilu02`
     !> "hipsparseXcsrilu02()"
     !> computation. The first zero pivot \f$j\f$ at \f$A_{j,j}\f$ is stored in \p position, using
     !> the same
     !> index base as the CSR matrix.
     !>
     !> \p position can be in host or device memory. If no zero pivot has been found,
-    !> \p position is set to -1 and \ref HIPSPARSE_STATUS_SUCCESS is returned instead.
+    !> \p position is set to -1 and `HIPSPARSE_STATUS_SUCCESS` is returned instead.
     !>
     !> \note \p hipsparseXcsrilu02_zeroPivot is a blocking function. It might negatively influence
     !> performance.
@@ -10781,7 +10790,7 @@ module hipfort_hipsparse
     !> \p hipsparseXcsrilu02_numericBoost enables the user to replace a numerical value in
     !> an incomplete LU factorization. \p tol is used to determine whether a numerical value
     !> is replaced by \p boost_val, such that \f$A_{j,j} = \text{boost_val}\f$ if
-    !> \f$\text{tol} \ge \left|A_{j,j}\right|\f$.
+    !> \f$\text{tol} &ge; \left|A_{j,j}\right|\f$.
     !>
     !> \note The boost value is enabled by setting \p enable_boost to 1 or disabled by
     !> setting \p enable_boost to 0.
@@ -10887,8 +10896,8 @@ module hipfort_hipsparse
     !> \ingroup precond_module
     !> \details
     !> \p hipsparseXcsrilu02_bufferSize returns the size of the temporary storage buffer
-    !> in bytes that is required by \ref hipsparseScsrilu02_analysis "hipsparseXcsrilu02_analysis()"
-    !> and \ref hipsparseScsrilu02 "hipsparseXcsrilu02()". The temporary storage buffer
+    !> in bytes that is required by `hipsparseScsrilu02_analysis` "hipsparseXcsrilu02_analysis()"
+    !> and `hipsparseScsrilu02` "hipsparseXcsrilu02()". The temporary storage buffer
     !> must be allocated by the user.
     !>
     !> @param[in]
@@ -10911,8 +10920,8 @@ module hipfort_hipsparse
     !> info               structure that holds the information collected during the analysis step.
     !> @param[out]
     !> pBufferSizeInBytes number of bytes of the temporary storage buffer required by
-    !> \ref hipsparseScsrilu02_analysis "hipsparseXcsrilu02_analysis()" and
-    !> \ref hipsparseScsrilu02 "hipsparseXcsrilu02()".
+    !> `hipsparseScsrilu02_analysis` "hipsparseXcsrilu02_analysis()" and
+    !> `hipsparseScsrilu02` "hipsparseXcsrilu02()".
     !>
     !> \retval     HIPSPARSE_STATUS_SUCCESS the operation completed successfully.
     !> \retval HIPSPARSE_STATUS_INVALID_VALUE \p handle, \p m, \p nnz, \p descrA, \p csrSortedValA,
@@ -11022,8 +11031,8 @@ module hipfort_hipsparse
     !> \ingroup precond_module
     !> \details
     !> \p hipsparseXcsrilu02_bufferSizeExt returns the size of the temporary storage buffer
-    !> in bytes that is required by \ref hipsparseScsrilu02_analysis "hipsparseXcsrilu02_analysis()"
-    !> and \ref hipsparseScsrilu02 "hipsparseXcsrilu02()". The temporary storage buffer
+    !> in bytes that is required by `hipsparseScsrilu02_analysis` "hipsparseXcsrilu02_analysis()"
+    !> and `hipsparseScsrilu02` "hipsparseXcsrilu02()". The temporary storage buffer
     !> must be allocated by the user.
     !>
     !> @param[in]
@@ -11046,8 +11055,8 @@ module hipfort_hipsparse
     !> info               structure that holds the information collected during the analysis step.
     !> @param[out]
     !> pBufferSizeInBytes number of bytes of the temporary storage buffer required by
-    !> \ref hipsparseScsrilu02_analysis "hipsparseXcsrilu02_analysis()" and
-    !> \ref hipsparseScsrilu02 "hipsparseXcsrilu02()".
+    !> `hipsparseScsrilu02_analysis` "hipsparseXcsrilu02_analysis()" and
+    !> `hipsparseScsrilu02` "hipsparseXcsrilu02()".
     !>
     !> \retval     HIPSPARSE_STATUS_SUCCESS the operation completed successfully.
     !> \retval HIPSPARSE_STATUS_INVALID_VALUE \p handle, \p m, \p nnz, \p descrA, \p csrSortedValA,
@@ -11156,7 +11165,7 @@ module hipfort_hipsparse
     !---------------------------------------------
     !> \ingroup precond_module
     !> \details
-    !> \p hipsparseXcsrilu02_analysis performs the analysis step for \ref hipsparseScsrilu02
+    !> \p hipsparseXcsrilu02_analysis performs the analysis step for `hipsparseScsrilu02`
     !> "hipsparseXcsrilu02()". It is expected that this function will be executed only once for
     !> a given matrix and particular operation type.
     !>
@@ -11187,7 +11196,7 @@ module hipfort_hipsparse
     !> info             structure that holds the information collected during
     !> the analysis step.
     !> @param[in]
-    !> policy \ref HIPSPARSE_SOLVE_POLICY_NO_LEVEL or \ref HIPSPARSE_SOLVE_POLICY_USE_LEVEL.
+    !> policy           `HIPSPARSE_SOLVE_POLICY_NO_LEVEL` or `HIPSPARSE_SOLVE_POLICY_USE_LEVEL`.
     !> @param[in]
     !> pBuffer          temporary storage buffer allocated by the user.
     !>
@@ -11310,7 +11319,7 @@ module hipfort_hipsparse
     !> \f[
     !> \begin{array}{ll}
     !> L_{ij} = \frac{1}{U_{jj}}(A_{ij} - \sum_{k=0}^{j-1}L_{ik} \times U_{kj}), & \text{if i > j}
-    !> \\
+    !> \\%
     !> U_{ij} = (A_{ij} - \sum_{k=0}^{j-1}L_{ik} \times U_{kj}), & \text{if i <= j}
     !> \end{array}
     !> \f]
@@ -11319,9 +11328,9 @@ module hipfort_hipsparse
     !> Computing the above incomplete \f$LU\f$ factorization requires three steps to complete.
     !> First,
     !> the user determines the size of the required temporary storage buffer by calling
-    !> \ref hipsparseScsrilu02_bufferSize "hipsparseXcsrilu02_bufferSize()". After this buffer size
-    !> has been determined,
-    !> the user allocates the buffer and passes it to \ref hipsparseScsrilu02_analysis
+    !> `hipsparseScsrilu02_bufferSize` "hipsparseXcsrilu02_bufferSize()". After this buffer size has
+    !> been determined,
+    !> the user allocates the buffer and passes it to `hipsparseScsrilu02_analysis`
     !> "hipsparseXcsrilu02_analysis()".
     !> This will perform analysis on the sparsity pattern of the matrix. Finally, the user calls \p
     !> hipsparseScsrilu02,
@@ -11331,7 +11340,7 @@ module hipfort_hipsparse
     !> given sparsity pattern,
     !> while the factorization can be repeatedly applied to multiple matrices having the same
     !> sparsity pattern. After all calls
-    !> to \ref hipsparseScsrilu02 "hipsparseXcsrilu02()" are complete, the temporary buffer can be
+    !> to `hipsparseScsrilu02` "hipsparseXcsrilu02()" are complete, the temporary buffer can be
     !> deallocated.
     !>
     !> When computing the \f$LU\f$ factorization, it is possible that \f$U_{jj} == 0\f$ which would
@@ -11343,39 +11352,39 @@ module hipfort_hipsparse
     !> \f$LU\f$ factorization on the following matrix:
     !> \f[
     !> \begin{bmatrix}
-    !> 2 & 1 & 0 \\
-    !> 1 & 2 & 1 \\
+    !> 2 & 1 & 0 \\%
+    !> 1 & 2 & 1 \\%
     !> 0 & 1 & 2
     !> \end{bmatrix}
     !> \f]
     !> results in a successful \f$LU\f$ factorization. However, running with the matrix:
     !> \f[
     !> \begin{bmatrix}
-    !> 2 & 1 & 0 \\
-    !> 1 & 1/2 & 1 \\
+    !> 2 & 1 & 0 \\%
+    !> 1 & 1/2 & 1 \\%
     !> 0 & 1 & 2
     !> \end{bmatrix}
     !> \f]
     !> results in a numerical zero because:
     !> \f[
     !> \begin{array}{ll}
-    !> U_{00} &= 2 \\
-    !> U_{01} &= 1 \\
-    !> L_{10} &= \frac{1}{2} \\
+    !> U_{00} &= 2 \\%
+    !> U_{01} &= 1 \\%
+    !> L_{10} &= \frac{1}{2} \\%
     !> U_{11} &= \frac{1}{2} - \frac{1}{2}
     !> &= 0
     !> \end{array}
     !> \f]
-    !> The user can detect the presence of a structural zero by calling \ref
-    !> hipsparseXcsrilu02_zeroPivot() after
-    !> \ref hipsparseScsrilu02_analysis "hipsparseXcsrilu02_analysis()" and/or the presence of a
+    !> The user can detect the presence of a structural zero by calling
+    !> `hipsparseXcsrilu02_zeroPivot` () after
+    !> `hipsparseScsrilu02_analysis` "hipsparseXcsrilu02_analysis()" and/or the presence of a
     !> structural or
-    !> numerical zero by calling \ref hipsparseXcsrilu02_zeroPivot() after \ref hipsparseScsrilu02
+    !> numerical zero by calling `hipsparseXcsrilu02_zeroPivot` () after `hipsparseScsrilu02`
     !> "hipsparseXcsrilu02()".
-    !> In both cases, \ref hipsparseXcsrilu02_zeroPivot() will report the first zero pivot (either
+    !> In both cases, `hipsparseXcsrilu02_zeroPivot` () will report the first zero pivot (either
     !> numerical or structural)
     !> found. See the example below. The user can also set the diagonal type to be \f$1\f$ using
-    !> \ref hipsparseSetMatDiagType(),
+    !> `hipsparseSetMatDiagType` (),
     !> which will interpret the matrix \f$A\f$ as having ones on its diagonal (even if no nonzero
     !> exists in the sparsity pattern).
     !>
@@ -11388,14 +11397,14 @@ module hipfort_hipsparse
     !> \f[
     !> \begin{align}
     !> \begin{bmatrix}
-    !> a_{00} & a_{01} & a_{02} \\
-    !> a_{10} & a_{11} & a_{12} \\
+    !> a_{00} & a_{01} & a_{02} \\%
+    !> a_{10} & a_{11} & a_{12} \\%
     !> a_{20} & a_{21} & a_{22}
     !> \end{bmatrix}
     !> \rightarrow
     !> \begin{bmatrix}
-    !> u_{00} & u_{01} & u_{02} \\
-    !> l_{10} & u_{11} & u_{12} \\
+    !> u_{00} & u_{01} & u_{02} \\%
+    !> l_{10} & u_{11} & u_{12} \\%
     !> l_{20} & l_{21} & u_{22}
     !> \end{bmatrix}
     !> \end{align}
@@ -11411,7 +11420,7 @@ module hipfort_hipsparse
     !>
     !> \note
     !> The sparse CSR matrix has to be sorted. This can be achieved by calling
-    !> \ref hipsparseXcsrsort().
+    !> `hipsparseXcsrsort`().
     !>
     !> \note
     !> This function is non-blocking and executed asynchronously with respect to the host.
@@ -11436,7 +11445,7 @@ module hipfort_hipsparse
     !> @param[in]
     !> info               structure that holds the information collected during the analysis step.
     !> @param[in]
-    !> policy \ref HIPSPARSE_SOLVE_POLICY_NO_LEVEL or \ref HIPSPARSE_SOLVE_POLICY_USE_LEVEL.
+    !> policy             `HIPSPARSE_SOLVE_POLICY_NO_LEVEL` or `HIPSPARSE_SOLVE_POLICY_USE_LEVEL`.
     !> @param[in]
     !> pBuffer            temporary storage buffer allocated by the user.
     !>
@@ -11549,7 +11558,7 @@ module hipfort_hipsparse
     !> \ingroup precond_module
     !> \details
     !> \p hipsparseXgpsvInterleavedBatch_bufferSizeExt returns the size of the temporary storage
-    !> buffer in bytes that is required by \ref hipsparseSgpsvInterleavedBatch
+    !> buffer in bytes that is required by `hipsparseSgpsvInterleavedBatch`
     !> "hipsparseXgpsvInterleavedBatch()".
     !> The temporary storage buffer must be allocated by the user.
     !>
@@ -11689,16 +11698,16 @@ module hipfort_hipsparse
     !> See below for a description of the interleaved memory pattern.
     !>
     !> Solving the batched pentadiagonal system involves two steps. First, the user calls
-    !> \ref hipsparseSgpsvInterleavedBatch_bufferSizeExt
-    !> "hipsparseSgpsvInterleavedBatch_bufferSizeExt()"
+    !> `hipsparseSgpsvInterleavedBatch_bufferSizeExt`
+    !> "`hipsparseSgpsvInterleavedBatch_bufferSizeExt()`"
     !> to determine the size of the required temporary storage buffer. Once determined, the user
     !> allocates
-    !> this buffer and passes it to \ref hipsparseSgpsvInterleavedBatch
+    !> this buffer and passes it to `hipsparseSgpsvInterleavedBatch`
     !> "hipsparseXgpsvInterleavedBatch()"
     !> to perform the actual solve. The \f$x^{i}\f$ vectors, which initially stores the right-hand
     !> side values, are
     !> overwritten with the solution after the call to
-    !> \ref hipsparseSgpsvInterleavedBatch "hipsparseXgpsvInterleavedBatch()".
+    !> `hipsparseSgpsvInterleavedBatch` "hipsparseXgpsvInterleavedBatch()".
     !>
     !> Unlike the strided batch routines, which write each batch matrix one after the other in
     !> memory, the interleaved
@@ -11708,18 +11717,18 @@ module hipfort_hipsparse
     !>
     !> \f[
     !> \begin{bmatrix}
-    !> t^{0}_{00} & t^{0}_{01} & t^{0}_{02} \\
-    !> t^{0}_{10} & t^{0}_{11} & t^{0}_{12} \\
+    !> t^{0}_{00} & t^{0}_{01} & t^{0}_{02} \\%
+    !> t^{0}_{10} & t^{0}_{11} & t^{0}_{12} \\%
     !> t^{0}_{20} & t^{0}_{21} & t^{0}_{22}
     !> \end{bmatrix}
     !> \begin{bmatrix}
-    !> t^{1}_{00} & t^{1}_{01} & t^{1}_{02} \\
-    !> t^{1}_{10} & t^{1}_{11} & t^{1}_{12} \\
+    !> t^{1}_{00} & t^{1}_{01} & t^{1}_{02} \\%
+    !> t^{1}_{10} & t^{1}_{11} & t^{1}_{12} \\%
     !> t^{1}_{20} & t^{1}_{21} & t^{1}_{22}
     !> \end{bmatrix}
     !> \begin{bmatrix}
-    !> t^{2}_{00} & t^{2}_{01} & t^{2}_{02} \\
-    !> t^{2}_{10} & t^{2}_{11} & t^{2}_{12} \\
+    !> t^{2}_{00} & t^{2}_{01} & t^{2}_{02} \\%
+    !> t^{2}_{10} & t^{2}_{11} & t^{2}_{12} \\%
     !> t^{2}_{20} & t^{2}_{21} & t^{2}_{22}
     !> \end{bmatrix}
     !> \f]
@@ -11729,15 +11738,15 @@ module hipfort_hipsparse
     !> \f[
     !> \begin{align}
     !> \text{lowest} &= \begin{bmatrix} 0 & 0 & 0 & 0 & 0 & 0 & t^{0}_{20} & t^{1}_{20} & t^{2}_{20}
-    !> \end{bmatrix} \\
+    !> \end{bmatrix} \\%
     !> \text{lower} &= \begin{bmatrix} 0 & 0 & 0 & t^{0}_{10} & t^{1}_{10} & t^{1}_{10} & t^{0}_{21}
-    !> & t^{1}_{21} & t^{2}_{21} \end{bmatrix} \\
+    !> & t^{1}_{21} & t^{2}_{21} \end{bmatrix} \\%
     !> \text{diagonal} &= \begin{bmatrix} t^{0}_{00} & t^{1}_{00} & t^{2}_{00} & t^{0}_{11} &
-    !> t^{1}_{11} & t^{2}_{11} & t^{0}_{22} & t^{1}_{22} & t^{2}_{22} \end{bmatrix} \\
+    !> t^{1}_{11} & t^{2}_{11} & t^{0}_{22} & t^{1}_{22} & t^{2}_{22} \end{bmatrix} \\%
     !> \text{higher} &= \begin{bmatrix} t^{0}_{01} & t^{1}_{01} & t^{2}_{01} & t^{0}_{12} &
-    !> t^{1}_{12} & t^{2}_{12} & 0 & 0 & 0 \end{bmatrix} \\
+    !> t^{1}_{12} & t^{2}_{12} & 0 & 0 & 0 \end{bmatrix} \\%
     !> \text{highest} &= \begin{bmatrix} t^{0}_{02} & t^{1}_{02} & t^{2}_{02} & 0 & 0 & 0 & 0 & 0 &
-    !> 0 \end{bmatrix} \\
+    !> 0 \end{bmatrix} \\%
     !> \end{align}
     !> \f]
     !> For the lowest array, the first \p 2*batchCount entries are zero, and for the lower array,
@@ -11869,7 +11878,7 @@ module hipfort_hipsparse
     !> \ingroup precond_module
     !> \details
     !> \p hipsparseSgtsv2_bufferSizeExt returns the size of the temporary storage buffer
-    !> that is required by \ref hipsparseSgtsv2 "hipsparseXgtsv2()". The temporary
+    !> that is required by `hipsparseSgtsv2` "hipsparseXgtsv2()". The temporary
     !> storage buffer must be allocated by the user.
     !>
     !> \note
@@ -11897,7 +11906,7 @@ module hipfort_hipsparse
     !> ldb                leading dimension of B. Must satisfy \p ldb >= max(1, m).
     !> @param[out]
     !> pBufferSizeInBytes number of bytes of the temporary storage buffer required by
-    !> \ref hipsparseSgtsv2 "hipsparseXgtsv2()".
+    !> `hipsparseSgtsv2` "hipsparseXgtsv2()".
     !>
     !> \retval HIPSPARSE_STATUS_SUCCESS the operation completed successfully.
     !> \retval HIPSPARSE_STATUS_NOT_INITIALIZED \p handle is not initialized.
@@ -12012,15 +12021,15 @@ module hipfort_hipsparse
     !> for the lower diagonal, \p d for the main diagonal, and \p du for the upper diagonal.
     !>
     !> Solving the tridiagonal system involves two steps. First, the user calls
-    !> \ref hipsparseSgtsv2_bufferSizeExt "hipsparseXgtsv2_bufferSizeExt()" to determine the size of
+    !> `hipsparseSgtsv2_bufferSizeExt` "hipsparseXgtsv2_bufferSizeExt()" to determine the size of
     !> the required
     !> temporary storage buffer. After this is determined, the user allocates the buffer and passes
     !> it to
-    !> \ref hipsparseSgtsv2 "hipsparseXgtsv2()" to perform the actual solve. The \f$B\f$ dense
-    !> matrix, which initially
+    !> `hipsparseSgtsv2` "hipsparseXgtsv2()" to perform the actual solve. The \f$B\f$ dense matrix,
+    !> which initially
     !> stores the \p n right-hand side vectors, is overwritten with the \p n solution vectors after
     !> the call to
-    !> \ref hipsparseSgtsv2 "hipsparseXgtsv2()".
+    !> `hipsparseSgtsv2` "hipsparseXgtsv2()".
     !>
     !> \note
     !> This function is non-blocking and executed asynchronously with respect to the host.
@@ -12147,7 +12156,7 @@ module hipfort_hipsparse
     !> \ingroup precond_module
     !> \details
     !> \p hipsparseXgtsvInterleavedBatch_bufferSizeExt returns the size of the temporary storage
-    !> buffer in bytes that is required by \ref hipsparseSgtsvInterleavedBatch
+    !> buffer in bytes that is required by `hipsparseSgtsvInterleavedBatch`
     !> "hipsparseXgtsvInterleavedBatch()".
     !> The temporary storage buffer must be allocated by the user.
     !>
@@ -12173,7 +12182,7 @@ module hipfort_hipsparse
     !> batchCount         The number of systems to solve.
     !> @param[out]
     !> pBufferSizeInBytes number of bytes of the temporary storage buffer required by
-    !> \ref hipsparseSgtsvInterleavedBatch "hipsparseSgtsvInterleavedBatch()".
+    !> `hipsparseSgtsvInterleavedBatch` "`hipsparseSgtsvInterleavedBatch()`".
     !>
     !> \retval     HIPSPARSE_STATUS_SUCCESS the operation completed successfully.
     !> \retval HIPSPARSE_STATUS_INVALID_VALUE \p handle, \p m, \p batchCount, \p dl, \p d, \p du,
@@ -12277,16 +12286,16 @@ module hipfort_hipsparse
     !> memory pattern.
     !>
     !> Solving the batched tridiagonal system involves two steps. First, the user calls
-    !> \ref hipsparseSgtsvInterleavedBatch_bufferSizeExt
+    !> `hipsparseSgtsvInterleavedBatch_bufferSizeExt`
     !> "hipsparseXgtsvInterleavedBatch_bufferSizeExt()"
     !> to determine the size of the required temporary storage buffer. Once determined, the user
     !> allocates
-    !> this buffer and passes it to \ref hipsparseSgtsvInterleavedBatch
+    !> this buffer and passes it to `hipsparseSgtsvInterleavedBatch`
     !> "hipsparseXgtsvInterleavedBatch()"
     !> to perform the actual solve. The \f$x^{i}\f$ vectors, which initially stores the right-hand
     !> side values, are
     !> overwritten with the solution after the call to
-    !> \ref hipsparseSgtsvInterleavedBatch "hipsparseXgtsvInterleavedBatch()".
+    !> `hipsparseSgtsvInterleavedBatch` "hipsparseXgtsvInterleavedBatch()".
     !>
     !> The user can specify different algorithms for \p hipsparseXgtsvInterleavedBatch
     !> to use. Options are Thomas ( \p algo=0 ),
@@ -12300,18 +12309,18 @@ module hipfort_hipsparse
     !>
     !> \f[
     !> \begin{bmatrix}
-    !> t^{0}_{00} & t^{0}_{01} & 0 \\
-    !> t^{0}_{10} & t^{0}_{11} & t^{0}_{12} \\
+    !> t^{0}_{00} & t^{0}_{01} & 0 \\%
+    !> t^{0}_{10} & t^{0}_{11} & t^{0}_{12} \\%
     !> 0 & t^{0}_{21} & t^{0}_{22}
     !> \end{bmatrix}
     !> \begin{bmatrix}
-    !> t^{1}_{00} & t^{1}_{01} & 0 \\
-    !> t^{1}_{10} & t^{1}_{11} & t^{1}_{12} \\
+    !> t^{1}_{00} & t^{1}_{01} & 0 \\%
+    !> t^{1}_{10} & t^{1}_{11} & t^{1}_{12} \\%
     !> 0 & t^{1}_{21} & t^{1}_{22}
     !> \end{bmatrix}
     !> \begin{bmatrix}
-    !> t^{2}_{00} & t^{2}_{01} & 0 \\
-    !> t^{2}_{10} & t^{2}_{11} & t^{2}_{12} \\
+    !> t^{2}_{00} & t^{2}_{01} & 0 \\%
+    !> t^{2}_{10} & t^{2}_{11} & t^{2}_{12} \\%
     !> 0 & t^{2}_{21} & t^{2}_{22}
     !> \end{bmatrix}
     !> \f]
@@ -12320,11 +12329,11 @@ module hipfort_hipsparse
     !> \f[
     !> \begin{align}
     !> \text{lower} &= \begin{bmatrix} 0 & 0 & 0 & t^{0}_{10} & t^{1}_{10} & t^{1}_{10} & t^{0}_{21}
-    !> & t^{1}_{21} & t^{2}_{21} \end{bmatrix} \\
+    !> & t^{1}_{21} & t^{2}_{21} \end{bmatrix} \\%
     !> \text{diagonal} &= \begin{bmatrix} t^{0}_{00} & t^{1}_{00} & t^{2}_{00} & t^{0}_{11} &
-    !> t^{1}_{11} & t^{2}_{11} & t^{0}_{22} & t^{1}_{22} & t^{2}_{22} \end{bmatrix} \\
+    !> t^{1}_{11} & t^{2}_{11} & t^{0}_{22} & t^{1}_{22} & t^{2}_{22} \end{bmatrix} \\%
     !> \text{upper} &= \begin{bmatrix} t^{0}_{01} & t^{1}_{01} & t^{2}_{01} & t^{0}_{12} &
-    !> t^{1}_{12} & t^{2}_{12} & 0 & 0 & 0 \end{bmatrix} \\
+    !> t^{1}_{12} & t^{2}_{12} & 0 & 0 & 0 \end{bmatrix} \\%
     !> \end{align}
     !> \f]
     !> For the lower array, the first \p batchCount entries are zero, and for the upper array, the
@@ -12441,7 +12450,7 @@ module hipfort_hipsparse
     !> \ingroup precond_module
     !> \details
     !> \p hipsparseXgtsv2_nopivot_bufferSizeExt returns the size of the temporary storage
-    !> buffer in bytes that is required by \ref hipsparseSgtsv2_nopivot "hipsparseXgtsv2_nopivot()".
+    !> buffer in bytes that is required by `hipsparseSgtsv2_nopivot` "hipsparseXgtsv2_nopivot()".
     !> The temporary storage buffer must be allocated by the user.
     !>
     !> @param[in]
@@ -12462,7 +12471,7 @@ module hipfort_hipsparse
     !> ldb                Leading dimension of B. Must satisfy \p ldb >= max(1, m).
     !> @param[out]
     !> pBufferSizeInBytes number of bytes of the temporary storage buffer required by
-    !> \ref hipsparseSgtsv2_nopivot "hipsparseXgtsv2_nopivot()".
+    !> `hipsparseSgtsv2_nopivot` "hipsparseXgtsv2_nopivot()".
     !>
     !> \retval HIPSPARSE_STATUS_SUCCESS the operation completed successfully.
     !> \retval HIPSPARSE_STATUS_NOT_INITIALIZED \p handle is not initialized.
@@ -12583,15 +12592,15 @@ module hipfort_hipsparse
     !>
     !> Solving the tridiagonal system with multiple right-hand sides without pivoting involves two
     !> steps. First,
-    !> the user calls \ref hipsparseSgtsv2_nopivot_bufferSizeExt
+    !> the user calls `hipsparseSgtsv2_nopivot_bufferSizeExt`
     !> "hipsparseXgtsv2_nopivot_bufferSizeExt()"
     !> to determine the size of the required temporary storage buffer. Once determined, the user
     !> allocates this
-    !> buffer and passes it to \ref hipsparseSgtsv2_nopivot "hipsparseXgtsv2_nopivot()" to perform
-    !> the actual
+    !> buffer and passes it to `hipsparseSgtsv2_nopivot` "hipsparseXgtsv2_nopivot()" to perform the
+    !> actual
     !> solve. The \f$B\f$ dense matrix, which initially stores the \p n right-hand side vectors, is
     !> overwritten
-    !> with the \p n solution vectors after the call to \ref hipsparseSgtsv2_nopivot
+    !> with the \p n solution vectors after the call to `hipsparseSgtsv2_nopivot`
     !> "hipsparseXgtsv2_nopivot()".
     !>
     !> \note
@@ -12716,7 +12725,7 @@ module hipfort_hipsparse
     !> \ingroup precond_module
     !> \details
     !> \p hipsparseXgtsv2StridedBatch_bufferSizeExt returns the size of the temporary storage
-    !> buffer in bytes that is required by \ref hipsparseSgtsv2StridedBatch
+    !> buffer in bytes that is required by `hipsparseSgtsv2StridedBatch`
     !> "hipsparseXgtsv2StridedBatch()".
     !> The temporary storage buffer must be allocated by the user.
     !>
@@ -12742,7 +12751,7 @@ module hipfort_hipsparse
     !> batchStride >= m.
     !> @param[out]
     !> pBufferSizeInBytes number of bytes of the temporary storage buffer required by
-    !> \ref hipsparseSgtsv2StridedBatch "hipsparseXgtsv2StridedBatch()".
+    !> `hipsparseSgtsv2StridedBatch` "hipsparseXgtsv2StridedBatch()".
     !>
     !> \retval     HIPSPARSE_STATUS_SUCCESS the operation completed successfully.
     !> \retval HIPSPARSE_STATUS_INVALID_VALUE \p handle, \p m, \p batchCount, \p batchStride, \p dl,
@@ -12862,14 +12871,14 @@ module hipfort_hipsparse
     !> memory pattern.
     !>
     !> Solving the batched tridiagonal system involves two steps. First, the user calls
-    !> \ref hipsparseSgtsv2StridedBatch_bufferSizeExt "hipsparseXgtsv2StridedBatch_bufferSizeExt()"
+    !> `hipsparseSgtsv2StridedBatch_bufferSizeExt` "hipsparseXgtsv2StridedBatch_bufferSizeExt()"
     !> to determine the size of the required temporary storage buffer. After this is determined, the
     !> user allocates
-    !> this buffer and passes it to \ref hipsparseSgtsv2StridedBatch "hipsparseXgtsv2StridedBatch()"
+    !> this buffer and passes it to `hipsparseSgtsv2StridedBatch` "hipsparseXgtsv2StridedBatch()"
     !> to perform the actual solve. The \f$x^{i}\f$ vectors, which initially stores the right-hand
     !> side values, are
     !> overwritten with the solution after the call to
-    !> \ref hipsparseSgtsv2StridedBatch "hipsparseXgtsv2StridedBatch()".
+    !> `hipsparseSgtsv2StridedBatch` "hipsparseXgtsv2StridedBatch()".
     !>
     !> The strided batch routines write each batch matrix one after the other in memory. For
     !> example, consider
@@ -12877,18 +12886,18 @@ module hipfort_hipsparse
     !>
     !> \f[
     !> \begin{bmatrix}
-    !> t^{0}_{00} & t^{0}_{01} & 0 \\
-    !> t^{0}_{10} & t^{0}_{11} & t^{0}_{12} \\
+    !> t^{0}_{00} & t^{0}_{01} & 0 \\%
+    !> t^{0}_{10} & t^{0}_{11} & t^{0}_{12} \\%
     !> 0 & t^{0}_{21} & t^{0}_{22}
     !> \end{bmatrix}
     !> \begin{bmatrix}
-    !> t^{1}_{00} & t^{1}_{01} & 0 \\
-    !> t^{1}_{10} & t^{1}_{11} & t^{1}_{12} \\
+    !> t^{1}_{00} & t^{1}_{01} & 0 \\%
+    !> t^{1}_{10} & t^{1}_{11} & t^{1}_{12} \\%
     !> 0 & t^{1}_{21} & t^{1}_{22}
     !> \end{bmatrix}
     !> \begin{bmatrix}
-    !> t^{2}_{00} & t^{2}_{01} & 0 \\
-    !> t^{2}_{10} & t^{2}_{11} & t^{2}_{12} \\
+    !> t^{2}_{00} & t^{2}_{01} & 0 \\%
+    !> t^{2}_{10} & t^{2}_{11} & t^{2}_{12} \\%
     !> 0 & t^{2}_{21} & t^{2}_{22}
     !> \end{bmatrix}
     !> \f]
@@ -12897,11 +12906,11 @@ module hipfort_hipsparse
     !> \f[
     !> \begin{align}
     !> \text{lower} &= \begin{bmatrix} 0 & t^{0}_{10} & t^{0}_{21} & 0 & t^{1}_{10} & t^{1}_{21} & 0
-    !> & t^{2}_{10} & t^{2}_{21} \end{bmatrix} \\
+    !> & t^{2}_{10} & t^{2}_{21} \end{bmatrix} \\%
     !> \text{diagonal} &= \begin{bmatrix} t^{0}_{00} & t^{0}_{11} & t^{0}_{22} & t^{1}_{00} &
-    !> t^{1}_{11} & t^{1}_{22} & t^{2}_{00} & t^{2}_{11} & t^{2}_{22} \end{bmatrix} \\
+    !> t^{1}_{11} & t^{1}_{22} & t^{2}_{00} & t^{2}_{11} & t^{2}_{22} \end{bmatrix} \\%
     !> \text{upper} &= \begin{bmatrix} t^{0}_{01} & t^{0}_{12} & 0 & t^{1}_{01} & t^{1}_{12} & 0 &
-    !> t^{2}_{01} & t^{2}_{12} & 0 \end{bmatrix} \\
+    !> t^{2}_{01} & t^{2}_{12} & 0 \end{bmatrix} \\%
     !> \end{align}
     !> \f]
     !> For the lower array, for each batch \p i, the \p i*batchStride entries are zero, and for the
@@ -13048,22 +13057,22 @@ module hipfort_hipsparse
     !> \left[
     !> \begin{array}{c | c}
     !> \begin{array}{c c}
-    !> 1 & 0 \\
+    !> 1 & 0 \\%
     !> 3 & 4
     !> \end{array} &
     !> \begin{array}{c c}
-    !> 0 & 2 \\
+    !> 0 & 2 \\%
     !> 0 & 0
-    !> \end{array} \\
+    !> \end{array} \\%
     !> \hline
     !> \begin{array}{c c}
-    !> 5 & 0 \\
+    !> 5 & 0 \\%
     !> 1 & 2
     !> \end{array} &
     !> \begin{array}{c c}
-    !> 6 & 7 \\
+    !> 6 & 7 \\%
     !> 3 & 4
-    !> \end{array} \\
+    !> \end{array} \\%
     !> \end{array}
     !> \right]
     !> \f]
@@ -13071,11 +13080,11 @@ module hipfort_hipsparse
     !> The resulting CSR matrix row pointer, column indices, and values arrays are:
     !> \f[
     !> \begin{align}
-    !> \text{csrRowPtrC} &= \begin{bmatrix} 0 & 4 & 8 & 12 & 16 \end{bmatrix} \\
+    !> \text{csrRowPtrC} &= \begin{bmatrix} 0 & 4 & 8 & 12 & 16 \end{bmatrix} \\%
     !> \text{csrColIndC} &= \begin{bmatrix} 0 & 1 & 2 & 3 & 0 & 1 & 2 & 3 & 0 & 1 & 2 & 3 & 0 & 1 &
-    !> 2 & 3 \end{bmatrix} \\
+    !> 2 & 3 \end{bmatrix} \\%
     !> \text{csrValC} &= \begin{bmatrix} 1 & 0 & 0 & 2 & 3 & 4 & 0 & 0 & 5 & 0 & 6 & 7 & 1 & 2 & 3 &
-    !> 4 \end{bmatrix} \\
+    !> 4 \end{bmatrix} \\%
     !> \end{align}
     !> \f]
     !>
@@ -13086,15 +13095,15 @@ module hipfort_hipsparse
     !> @param[in]
     !> handle      handle to the hipSPARSE library context queue.
     !> @param[in]
-    !> dirA the storage format of the blocks, \ref HIPSPARSE_DIRECTION_ROW or \ref
-    !> HIPSPARSE_DIRECTION_COLUMN.
+    !> dirA the storage format of the blocks, `HIPSPARSE_DIRECTION_ROW` or
+    !> `HIPSPARSE_DIRECTION_COLUMN`.
     !> @param[in]
     !> mb          number of block rows in the sparse BSR matrix, which must be non-negative.
     !> @param[in]
     !> nb          number of block columns in the sparse BSR matrix, which must be non-negative.
     !> @param[in]
     !> descrA      descriptor of the sparse BSR matrix. Currently, only
-    !> \ref HIPSPARSE_MATRIX_TYPE_GENERAL is supported.
+    !> `HIPSPARSE_MATRIX_TYPE_GENERAL` is supported.
     !> @param[in]
     !> bsrValA array of \p nnzb*blockDim*blockDim containing the values of the sparse BSR matrix.
     !> @param[in]
@@ -13107,7 +13116,7 @@ module hipfort_hipsparse
     !> blockDim    size of the blocks in the sparse BSR matrix. Must be positive.
     !> @param[in]
     !> descrC      descriptor of the sparse CSR matrix. Currently, only
-    !> \ref HIPSPARSE_MATRIX_TYPE_GENERAL is supported.
+    !> `HIPSPARSE_MATRIX_TYPE_GENERAL` is supported.
     !> @param[out]
     !> csrValC array of \p nnzb*blockDim*blockDim elements containing the values of the sparse CSR
     !> matrix.
@@ -13281,14 +13290,14 @@ module hipfort_hipsparse
     !> csrRowPtr   array of \p m+1 elements that point to the start of every row of the
     !> sparse CSR matrix.
     !> @param[in]
-    !> idxBase     index base. \ref HIPSPARSE_INDEX_BASE_ZERO for zero-based indexing or
-    !> \ref HIPSPARSE_INDEX_BASE_ONE for one-based indexing.
+    !> idxBase     index base. `HIPSPARSE_INDEX_BASE_ZERO` for zero-based indexing or
+    !> `HIPSPARSE_INDEX_BASE_ONE` for one-based indexing.
     !>
     !> \retval HIPSPARSE_STATUS_SUCCESS the operation completed successfully.
     !> \retval HIPSPARSE_STATUS_NOT_INITIALIZED \p handle is not initialized.
     !> \retval HIPSPARSE_STATUS_INVALID_VALUE \p handle is nullptr, \p m or \p nnz is negative,
     !> \p cooRowInd or \p csrRowPtr is nullptr when \p nnz is greater than zero, or
-    !> \p idxBase is neither \ref HIPSPARSE_INDEX_BASE_ZERO nor \ref HIPSPARSE_INDEX_BASE_ONE.
+    !> \p idxBase is neither `HIPSPARSE_INDEX_BASE_ZERO` nor `HIPSPARSE_INDEX_BASE_ONE`.
     function hipsparseXcoo2csr(handle, cooRowInd, nnz, m, csrRowPtr, idxBase) &
        result(Xcoo2csr) &
 #ifdef USE_CUDA_NAMES
@@ -13314,7 +13323,7 @@ module hipfort_hipsparse
     !>
     !> \details
     !> \p hipsparseXcoosort_bufferSizeExt returns the size of the temporary storage buffer
-    !> in bytes required by \ref hipsparseXcoosortByRow() and \ref hipsparseXcoosortByColumn().
+    !> in bytes required by `hipsparseXcoosortByRow`() and `hipsparseXcoosortByColumn`().
     !> The temporary storage buffer must be allocated by the user.
     !>
     !> @param[in]
@@ -13333,7 +13342,7 @@ module hipfort_hipsparse
     !> COO matrix.
     !> @param[out]
     !> pBufferSizeInBytes  number of bytes of the temporary storage buffer required by
-    !> hipsparseXcoosortByRow() and hipsparseXcoosortByColumn().
+    !> `hipsparseXcoosortByRow()` and `hipsparseXcoosortByColumn()`.
     !>
     !> \retval     HIPSPARSE_STATUS_SUCCESS the operation completed successfully.
     !> \retval     HIPSPARSE_STATUS_INVALID_VALUE \p handle, \p m, \p n, \p nnz, \p cooRows,
@@ -13368,12 +13377,12 @@ module hipfort_hipsparse
     !> \p hipsparseXcoosortByRow sorts a matrix in COO format by row. The sorted
     !> permutation vector \p P can be used to obtain sorted \p cooVal array. In this
     !> case, \p P must be initialized as the identity permutation. See
-    !> \ref hipsparseCreateIdentityPermutation(). To apply the permutation vector to the COO
-    !> values, see \ref hipsparseSgthr "hipsparseXgthr()".
+    !> `hipsparseCreateIdentityPermutation`(). To apply the permutation vector to the COO
+    !> values, see `hipsparseSgthr` "hipsparseXgthr()".
     !>
     !> \p hipsparseXcoosortByRow requires an extra temporary storage buffer that must be
     !> allocated by the user. The storage buffer size can be determined by
-    !> \ref hipsparseXcoosort_bufferSizeExt().
+    !> `hipsparseXcoosort_bufferSizeExt`().
     !>
     !> \note
     !> \p P can be \p NULL if a sorted permutation vector is not required.
@@ -13401,7 +13410,7 @@ module hipfort_hipsparse
     !> \p NULL.
     !> @param[in]
     !> pBuffer         temporary storage buffer allocated by the user. The size is returned by
-    !> \ref hipsparseXcoosort_bufferSizeExt().
+    !> `hipsparseXcoosort_bufferSizeExt`().
     !>
     !> \retval     HIPSPARSE_STATUS_SUCCESS the operation completed successfully.
     !> \retval     HIPSPARSE_STATUS_INVALID_VALUE \p handle, \p m, \p n, \p nnz, \p cooRows,
@@ -13436,12 +13445,12 @@ module hipfort_hipsparse
     !> \p hipsparseXcoosortByColumn sorts a matrix in COO format by column. The sorted
     !> permutation vector \p P can be used to obtain the sorted \p cooVal array. In this
     !> case, \p P must be initialized as the identity permutation. See
-    !> \ref hipsparseCreateIdentityPermutation(). To apply the permutation vector to the COO
-    !> values, see \ref hipsparseSgthr "hipsparseXgthr()".
+    !> `hipsparseCreateIdentityPermutation`(). To apply the permutation vector to the COO
+    !> values, see `hipsparseSgthr` "hipsparseXgthr()".
     !>
     !> \p hipsparseXcoosortByColumn requires an extra temporary storage buffer that must be
     !> allocated by the user. The storage buffer size can be determined by
-    !> \ref hipsparseXcoosort_bufferSizeExt().
+    !> `hipsparseXcoosort_bufferSizeExt`().
     !>
     !> \note
     !> \p P can be \p NULL if a sorted permutation vector is not required.
@@ -13469,7 +13478,7 @@ module hipfort_hipsparse
     !> \p NULL.
     !> @param[in]
     !> pBuffer         temporary storage buffer allocated by the user. The size is returned by
-    !> \ref hipsparseXcoosort_bufferSizeExt().
+    !> `hipsparseXcoosort_bufferSizeExt`().
     !>
     !> \retval     HIPSPARSE_STATUS_SUCCESS the operation completed successfully.
     !> \retval     HIPSPARSE_STATUS_INVALID_VALUE \p handle, \p m, \p n, \p nnz, \p cooRows,
@@ -13552,31 +13561,31 @@ module hipfort_hipsparse
     !> ldxn where
     !> \p ld>=m. All the parameters are assumed to have been preallocated by the user. If the input
     !> CSC matrix
-    !> has index base of one, it must be set in the \ref hipsparseMatDescr_t. See \ref
-    !> hipsparseSetMatIndexBase()
+    !> has index base of one, it must be set in the `hipsparseMatDescr_t`. See
+    !> `hipsparseSetMatIndexBase` ()
     !> prior to calling \p hipsparseXcsc2dense.
     !>
     !> For example, consider the sparse CSC matrix:
     !> \f[
     !> \begin{align}
-    !> \text{cscRowInd} &= \begin{bmatrix} 0 & 1 & 2 & 1 & 2 & 0 & 2 \end{bmatrix} \\
-    !> \text{cscColPtr} &= \begin{bmatrix} 0 & 3 & 4 & 5 & 7 \end{bmatrix} \\
-    !> \text{cscVal} &= \begin{bmatrix} 1 & 3 & 5 & 4 & 6 & 2 & 7 \end{bmatrix} \\
+    !> \text{cscRowInd} &= \begin{bmatrix} 0 & 1 & 2 & 1 & 2 & 0 & 2 \end{bmatrix} \\%
+    !> \text{cscColPtr} &= \begin{bmatrix} 0 & 3 & 4 & 5 & 7 \end{bmatrix} \\%
+    !> \text{cscVal} &= \begin{bmatrix} 1 & 3 & 5 & 4 & 6 & 2 & 7 \end{bmatrix} \\%
     !> \end{align}
     !> \f]
     !>
     !> \p hipsparseXcsc2dense is used to convert to the dense matrix:
     !> \f[
     !> \begin{bmatrix}
-    !> 1 & 0 & 0 & 2 \\
-    !> 3 & 4 & 0 & 0 \\
+    !> 1 & 0 & 0 & 2 \\%
+    !> 3 & 4 & 0 & 0 \\%
     !> 5 & 0 & 6 & 7
     !> \end{bmatrix}
     !> \f]
     !>
     !> where the values in the \p A array are column ordered:
     !> \f[
-    !> \text{A} &= \begin{bmatrix} 1 & 3 & 5 & 0 & 4 & 0 & 0 & 0 & 6 & 2 & 0 & 7 \end{bmatrix} \\
+    !> \text{A} &= \begin{bmatrix} 1 & 3 & 5 & 0 & 4 & 0 & 0 & 0 & 6 & 2 & 0 & 7 \end{bmatrix} \\%
     !> \f]
     !>
     !> \note
@@ -13595,9 +13604,9 @@ module hipfort_hipsparse
     !> @param[in]
     !> n           number of columns of the dense matrix \p A. Must be non-negative.
     !> @param[in]
-    !> descr the descriptor of the dense matrix \p A. The supported matrix type is \ref
-    !> HIPSPARSE_MATRIX_TYPE_GENERAL and
-    !> any valid value of the \ref hipsparseIndexBase_t.
+    !> descr the descriptor of the dense matrix \p A. The supported matrix type is
+    !> `HIPSPARSE_MATRIX_TYPE_GENERAL` and
+    !> any valid value of the `hipsparseIndexBase_t`.
     !> @param[in]
     !> cscVal array of nnz ( = \p cscColPtr[n] - \p cscColPtr[0] ) non-zero elements of matrix \p A.
     !> @param[in]
@@ -13712,7 +13721,7 @@ module hipfort_hipsparse
     !>
     !> \details
     !> \p hipsparseXcscsort_bufferSizeExt returns the size of the temporary storage buffer
-    !> in bytes required by hipsparseXcscsort(). The temporary storage buffer must be
+    !> in bytes required by `hipsparseXcscsort()`. The temporary storage buffer must be
     !> allocated by the user.
     !>
     !> @param[in]
@@ -13731,7 +13740,7 @@ module hipfort_hipsparse
     !> CSC matrix.
     !> @param[out]
     !> pBufferSizeInBytes  number of bytes of the temporary storage buffer required by
-    !> \ref hipsparseXcscsort().
+    !> `hipsparseXcscsort`().
     !>
     !> \retval     HIPSPARSE_STATUS_SUCCESS the operation completed successfully.
     !> \retval HIPSPARSE_STATUS_INVALID_VALUE \p handle, \p m, \p n, \p nnz, \p cscColPtr, \p
@@ -13765,13 +13774,12 @@ module hipfort_hipsparse
     !> \details
     !> \p hipsparseXcscsort sorts a matrix in CSC format. The sorted permutation vector
     !> \p P can be used to obtain sorted \p cscVal array. In this case, \p P must be
-    !> initialized as the identity permutation. See \ref hipsparseCreateIdentityPermutation(). To
-    !> apply the permutation vector to the CSC values, see \ref hipsparseSgthr
+    !> initialized as the identity permutation. See `hipsparseCreateIdentityPermutation`(). To
+    !> apply the permutation vector to the CSC values, see `hipsparseSgthr`
     !> "hipsparseXgthr()".
     !>
     !> \p hipsparseXcscsort requires extra temporary storage buffer that must be allocated by
-    !> the user. The storage buffer size can be determined by \ref
-    !> hipsparseXcscsort_bufferSizeExt().
+    !> the user. The storage buffer size can be determined by `hipsparseXcscsort_bufferSizeExt`().
     !>
     !> \note
     !> \p P can be \p NULL if a sorted permutation vector is not required.
@@ -13790,7 +13798,7 @@ module hipfort_hipsparse
     !> nnz             number of non-zero entries of the sparse CSC matrix.
     !> @param[in]
     !> descrA          descriptor of the sparse CSC matrix. Currently, only
-    !> \ref HIPSPARSE_MATRIX_TYPE_GENERAL is supported.
+    !> `HIPSPARSE_MATRIX_TYPE_GENERAL` is supported.
     !> @param[in]
     !> cscColPtr       array of \p n+1 elements that point to the start of every column of
     !> the sparse CSC matrix.
@@ -13802,7 +13810,7 @@ module hipfort_hipsparse
     !> \p NULL.
     !> @param[in]
     !> pBuffer         temporary storage buffer allocated by the user. The size is returned by
-    !> \ref hipsparseXcscsort_bufferSizeExt().
+    !> `hipsparseXcscsort_bufferSizeExt`().
     !>
     !> \retval     HIPSPARSE_STATUS_SUCCESS the operation completed successfully.
     !> \retval HIPSPARSE_STATUS_INVALID_VALUE \p handle, \p m, \p n, \p nnz, \p descrA, \p
@@ -13810,7 +13818,7 @@ module hipfort_hipsparse
     !> \p cscRowInd, or \p pBuffer pointer is invalid.
     !> \retval     HIPSPARSE_STATUS_INTERNAL_ERROR an internal error occurred.
     !> \retval     HIPSPARSE_STATUS_NOT_SUPPORTED
-    !> \ref hipsparseMatrixType_t != \ref HIPSPARSE_MATRIX_TYPE_GENERAL.
+    !> `hipsparseMatrixType_t` != `HIPSPARSE_MATRIX_TYPE_GENERAL`.
     function hipsparseXcscsort(handle, m, n, nnz, descrA, cscColPtr, cscRowInd, P, pBuffer) &
        result(Xcscsort) &
 #ifdef USE_CUDA_NAMES
@@ -13844,9 +13852,9 @@ module hipfort_hipsparse
     !> Consider the matrix:
     !> \f[
     !> \begin{bmatrix}
-    !> 1 & 0 & 0 & 2 \\
-    !> 3 & 4 & 0 & 0 \\
-    !> 5 & 0 & 6 & 7 \\
+    !> 1 & 0 & 0 & 2 \\%
+    !> 3 & 4 & 0 & 0 \\%
+    !> 5 & 0 & 6 & 7 \\%
     !> 1 & 2 & 3 & 4
     !> \end{bmatrix}
     !> \f]
@@ -13861,22 +13869,22 @@ module hipfort_hipsparse
     !> \left[
     !> \begin{array}{c | c}
     !> \begin{array}{c c}
-    !> 1 & 0 \\
+    !> 1 & 0 \\%
     !> 3 & 4
     !> \end{array} &
     !> \begin{array}{c c}
-    !> 0 & 2 \\
+    !> 0 & 2 \\%
     !> 0 & 0
-    !> \end{array} \\
+    !> \end{array} \\%
     !> \hline
     !> \begin{array}{c c}
-    !> 5 & 0 \\
+    !> 5 & 0 \\%
     !> 1 & 2
     !> \end{array} &
     !> \begin{array}{c c}
-    !> 6 & 7 \\
+    !> 6 & 7 \\%
     !> 3 & 4
-    !> \end{array} \\
+    !> \end{array} \\%
     !> \end{array}
     !> \right]
     !> \f]
@@ -13887,7 +13895,7 @@ module hipfort_hipsparse
     !>
     !> \f[
     !> \begin{align}
-    !> \text{bsrRowPtrC} &= \begin{bmatrix} 0 & 2 & 4 \end{bmatrix} \\
+    !> \text{bsrRowPtrC} &= \begin{bmatrix} 0 & 2 & 4 \end{bmatrix} \\%
     !> \text{bsrNnzb} &= 4
     !> \end{align}
     !> \f]
@@ -13898,7 +13906,7 @@ module hipfort_hipsparse
     !>
     !> \f[
     !> \begin{align}
-    !> \text{mb} &= \text{(m - 1) / blockDim + 1} \\
+    !> \text{mb} &= \text{(m - 1) / blockDim + 1} \\%
     !> \text{nb} &= \text{(n - 1) / blockDim + 1}
     !> \end{align}
     !> \f]
@@ -13915,26 +13923,26 @@ module hipfort_hipsparse
     !> \left[
     !> \begin{array}{c | c}
     !> \begin{array}{c c c}
-    !> 1 & 0 & 0 \\
-    !> 3 & 4 & 0 \\
+    !> 1 & 0 & 0 \\%
+    !> 3 & 4 & 0 \\%
     !> 5 & 0 & 6
     !> \end{array} &
     !> \begin{array}{c c c}
-    !> 2 & 0 & 0 \\
-    !> 0 & 0 & 0 \\
+    !> 2 & 0 & 0 \\%
+    !> 0 & 0 & 0 \\%
     !> 7 & 0 & 0
-    !> \end{array} \\
+    !> \end{array} \\%
     !> \hline
     !> \begin{array}{c c c}
-    !> 1 & 2 & 3 \\
-    !> 0 & 0 & 0 \\
+    !> 1 & 2 & 3 \\%
+    !> 0 & 0 & 0 \\%
     !> 0 & 0 & 0
     !> \end{array} &
     !> \begin{array}{c c c}
-    !> 4 & 0 & 0 \\
-    !> 0 & 0 & 0 \\
+    !> 4 & 0 & 0 \\%
+    !> 0 & 0 & 0 \\%
     !> 0 & 0 & 0
-    !> \end{array} \\
+    !> \end{array} \\%
     !> \end{array}
     !> \right]
     !> \f]
@@ -13947,16 +13955,16 @@ module hipfort_hipsparse
     !> @param[in]
     !> handle      handle to the hipSPARSE library context queue.
     !> @param[in]
-    !> dirA direction that specifies whether to count non-zero elements by \ref
-    !> HIPSPARSE_DIRECTION_ROW or by
-    !> \ref HIPSPARSE_DIRECTION_COLUMN.
+    !> dirA direction that specifies whether to count non-zero elements by `HIPSPARSE_DIRECTION_ROW`
+    !> or by
+    !> `HIPSPARSE_DIRECTION_COLUMN`.
     !> @param[in]
     !> m           number of rows of the sparse CSR matrix. Must be non-negative.
     !> @param[in]
     !> n           number of columns of the sparse CSR matrix.
     !> @param[in]
-    !> descrA descriptor of the sparse CSR matrix. Currently, only \ref
-    !> HIPSPARSE_MATRIX_TYPE_GENERAL is supported.
+    !> descrA descriptor of the sparse CSR matrix. Currently, only `HIPSPARSE_MATRIX_TYPE_GENERAL`
+    !> is supported.
     !> @param[in]
     !> csrRowPtrA integer array containing \p m+1 elements that points to the start of each row of
     !> the CSR matrix.
@@ -13966,8 +13974,8 @@ module hipfort_hipsparse
     !> blockDim the block dimension of the BSR matrix, which is between \f$1\f$ and \f$\min(m,
     !> n)\f$.
     !> @param[in]
-    !> descrC descriptor of the sparse BSR matrix. Currently, only \ref
-    !> HIPSPARSE_MATRIX_TYPE_GENERAL is supported.
+    !> descrC descriptor of the sparse BSR matrix. Currently, only `HIPSPARSE_MATRIX_TYPE_GENERAL`
+    !> is supported.
     !> @param[out]
     !> bsrRowPtrC integer array containing \p mb+1 elements that point to the start of each block
     !> row of the BSR matrix.
@@ -14020,7 +14028,7 @@ module hipfort_hipsparse
     !> \f]
     !>
     !> The allocation size for \p bsrColIndC, that is, \p bsrNnzb, is computed using
-    !> \ref hipsparseXcsr2bsrNnz(), which also fills the \p bsrRowPtrC array. The allocation size
+    !> `hipsparseXcsr2bsrNnz`(), which also fills the \p bsrRowPtrC array. The allocation size
     !> for \p bsrValC is then equal to:
     !>
     !> \f[
@@ -14030,9 +14038,9 @@ module hipfort_hipsparse
     !> For example, given the CSR matrix:
     !> \f[
     !> \begin{bmatrix}
-    !> 1 & 0 & 0 & 2 \\
-    !> 3 & 4 & 0 & 0 \\
-    !> 5 & 0 & 6 & 7 \\
+    !> 1 & 0 & 0 & 2 \\%
+    !> 3 & 4 & 0 & 0 \\%
+    !> 5 & 0 & 6 & 7 \\%
     !> 1 & 2 & 3 & 4
     !> \end{bmatrix}
     !> \f]
@@ -14042,30 +14050,30 @@ module hipfort_hipsparse
     !> \left[
     !> \begin{array}{c | c}
     !> \begin{array}{c c}
-    !> 1 & 0 \\
+    !> 1 & 0 \\%
     !> 3 & 4
     !> \end{array} &
     !> \begin{array}{c c}
-    !> 0 & 2 \\
+    !> 0 & 2 \\%
     !> 0 & 0
-    !> \end{array} \\
+    !> \end{array} \\%
     !> \hline
     !> \begin{array}{c c}
-    !> 5 & 0 \\
+    !> 5 & 0 \\%
     !> 1 & 2
     !> \end{array} &
     !> \begin{array}{c c}
-    !> 6 & 7 \\
+    !> 6 & 7 \\%
     !> 3 & 4
-    !> \end{array} \\
+    !> \end{array} \\%
     !> \end{array}
     !> \right]
     !> \f]
     !>
-    !> The call to \ref hipsparseXcsr2bsrNnz results in the BSR row pointer array:
+    !> The call to `hipsparseXcsr2bsrNnz` results in the BSR row pointer array:
     !> \f[
     !> \begin{align}
-    !> \text{bsrRowPtrC} &= \begin{bmatrix} 0 & 2 & 4 \end{bmatrix} \\
+    !> \text{bsrRowPtrC} &= \begin{bmatrix} 0 & 2 & 4 \end{bmatrix} \\%
     !> \end{align}
     !> \f]
     !>
@@ -14073,9 +14081,9 @@ module hipfort_hipsparse
     !> indices and values arrays:
     !> \f[
     !> \begin{align}
-    !> \text{bsrColIndC} &= \begin{bmatrix} 0 & 1 & 0 & 1 \end{bmatrix} \\
+    !> \text{bsrColIndC} &= \begin{bmatrix} 0 & 1 & 0 & 1 \end{bmatrix} \\%
     !> \text{bsrValC} &= \begin{bmatrix} 1 & 0 & 3 & 4 & 0 & 2 & 0 & 0 & 5 & 0 & 1 & 2 & 6 & 7 & 3 &
-    !> 4 \end{bmatrix} \\
+    !> 4 \end{bmatrix} \\%
     !> \end{align}
     !> \f]
     !>
@@ -14085,7 +14093,7 @@ module hipfort_hipsparse
     !>
     !> \f[
     !> \text{bsrValC} &= \begin{bmatrix} 1 & 3 & 0 & 4 & 0 & 0 & 2 & 0 & 5 & 1 & 0 & 2 & 6 & 3 & 7 &
-    !> 4 \end{bmatrix} \\
+    !> 4 \end{bmatrix} \\%
     !> \f]
     !>
     !> \note
@@ -14095,15 +14103,15 @@ module hipfort_hipsparse
     !> @param[in]
     !> handle       handle to the hipSPARSE library context queue.
     !> @param[in]
-    !> dirA the storage format of the blocks, \ref HIPSPARSE_DIRECTION_ROW or \ref
-    !> HIPSPARSE_DIRECTION_COLUMN.
+    !> dirA the storage format of the blocks, `HIPSPARSE_DIRECTION_ROW` or
+    !> `HIPSPARSE_DIRECTION_COLUMN`.
     !> @param[in]
     !> m            number of rows in the sparse CSR matrix.
     !> @param[in]
     !> n            number of columns in the sparse CSR matrix.
     !> @param[in]
     !> descrA       descriptor of the sparse CSR matrix. Currently, only
-    !> \ref HIPSPARSE_MATRIX_TYPE_GENERAL is supported.
+    !> `HIPSPARSE_MATRIX_TYPE_GENERAL` is supported.
     !> @param[in]
     !> csrValA      array of \p nnz elements containing the values of the sparse CSR matrix.
     !> @param[in]
@@ -14115,7 +14123,7 @@ module hipfort_hipsparse
     !> blockDim     size of the blocks in the sparse BSR matrix.
     !> @param[in]
     !> descrC       descriptor of the sparse BSR matrix. Currently, only
-    !> \ref HIPSPARSE_MATRIX_TYPE_GENERAL is supported.
+    !> `HIPSPARSE_MATRIX_TYPE_GENERAL` is supported.
     !> @param[out]
     !> bsrValC array of \p nnzb*blockDim*blockDim containing the values of the sparse BSR matrix.
     !> @param[out]
@@ -14285,14 +14293,14 @@ module hipfort_hipsparse
     !> cooRowInd   array of \p nnz elements containing the row indices of the sparse COO
     !> matrix.
     !> @param[in]
-    !> idxBase     index base. \ref HIPSPARSE_INDEX_BASE_ZERO for zero-based indexing or
-    !> \ref HIPSPARSE_INDEX_BASE_ONE for one-based indexing.
+    !> idxBase     index base. `HIPSPARSE_INDEX_BASE_ZERO` for zero-based indexing or
+    !> `HIPSPARSE_INDEX_BASE_ONE` for one-based indexing.
     !>
     !> \retval HIPSPARSE_STATUS_SUCCESS the operation completed successfully.
     !> \retval HIPSPARSE_STATUS_NOT_INITIALIZED \p handle is not initialized.
     !> \retval HIPSPARSE_STATUS_INVALID_VALUE \p handle is nullptr, \p m or, \p nnz is negative,
     !> \p csrRowPtr or \p cooRowInd is nullptr when \p nnz is greater than zero, or
-    !> \p idxBase is neither \ref HIPSPARSE_INDEX_BASE_ZERO nor \ref HIPSPARSE_INDEX_BASE_ONE.
+    !> \p idxBase is neither `HIPSPARSE_INDEX_BASE_ZERO` nor `HIPSPARSE_INDEX_BASE_ONE`.
     !> \retval HIPSPARSE_STATUS_ARCH_MISMATCH the device is not supported.
     function hipsparseXcsr2coo(handle, csrRowPtr, nnz, m, cooRowInd, idxBase) &
        result(Xcsr2coo) &
@@ -14320,14 +14328,14 @@ module hipfort_hipsparse
     !> \details
     !> \p hipsparseXcsr2csc converts a CSR matrix into a CSC matrix. \p hipsparseXcsr2csc
     !> can also be used to convert a CSC matrix into a CSR matrix. \p copyValues decides
-    !> whether \p cscSortedVal is being filled during conversion (\ref HIPSPARSE_ACTION_NUMERIC)
-    !> or not (\ref HIPSPARSE_ACTION_SYMBOLIC).
+    !> whether \p cscSortedVal is being filled during conversion (`HIPSPARSE_ACTION_NUMERIC`)
+    !> or not (`HIPSPARSE_ACTION_SYMBOLIC`).
     !>
     !> For example given the matrix:
     !> \f[
     !> \begin{bmatrix}
-    !> 1 & 0 & 0 & 2 \\
-    !> 3 & 4 & 0 & 0 \\
+    !> 1 & 0 & 0 & 2 \\%
+    !> 3 & 4 & 0 & 0 \\%
     !> 5 & 0 & 6 & 7
     !> \end{bmatrix}
     !> \f]
@@ -14335,8 +14343,8 @@ module hipfort_hipsparse
     !> Represented using the sparse CSR format as:
     !> \f[
     !> \begin{align}
-    !> \text{csrSortedRowPtr} &= \begin{bmatrix} 0 & 2 & 4 & 7 \end{bmatrix} \\
-    !> \text{csrSortedColInd} &= \begin{bmatrix} 0 & 3 & 0 & 1 & 0 & 2 & 3 \end{bmatrix} \\
+    !> \text{csrSortedRowPtr} &= \begin{bmatrix} 0 & 2 & 4 & 7 \end{bmatrix} \\%
+    !> \text{csrSortedColInd} &= \begin{bmatrix} 0 & 3 & 0 & 1 & 0 & 2 & 3 \end{bmatrix} \\%
     !> \text{csrSortedVal} &= \begin{bmatrix} 1 & 2 & 3 & 4 & 5 & 6 & 7 \end{bmatrix}
     !> \end{align}
     !> \f]
@@ -14344,8 +14352,8 @@ module hipfort_hipsparse
     !> this function converts it to the sparse CSC format:
     !> \f[
     !> \begin{align}
-    !> \text{cscSortedRowInd} &= \begin{bmatrix} 0 & 1 & 2 & 1 & 2 & 0 & 2 \end{bmatrix} \\
-    !> \text{cscSortedColPtr} &= \begin{bmatrix} 0 & 3 & 4 & 5 & 7 \end{bmatrix} \\
+    !> \text{cscSortedRowInd} &= \begin{bmatrix} 0 & 1 & 2 & 1 & 2 & 0 & 2 \end{bmatrix} \\%
+    !> \text{cscSortedColPtr} &= \begin{bmatrix} 0 & 3 & 4 & 5 & 7 \end{bmatrix} \\%
     !> \text{cscSortedVal} &= \begin{bmatrix} 1 & 3 & 5 & 4 & 6 & 2 & 7 \end{bmatrix}
     !> \end{align}
     !> \f]
@@ -14390,10 +14398,10 @@ module hipfort_hipsparse
     !> cscSortedColPtr array of \p n+1 elements that point to the start of every column of the
     !> sparse CSC matrix.
     !> @param[in]
-    !> copyValues      \ref HIPSPARSE_ACTION_SYMBOLIC or \ref HIPSPARSE_ACTION_NUMERIC.
+    !> copyValues      `HIPSPARSE_ACTION_SYMBOLIC` or `HIPSPARSE_ACTION_NUMERIC`.
     !> @param[in]
-    !> idxBase         index base. \ref HIPSPARSE_INDEX_BASE_ZERO for zero-based indexing or
-    !> \ref HIPSPARSE_INDEX_BASE_ONE for one-based indexing.
+    !> idxBase         index base. `HIPSPARSE_INDEX_BASE_ZERO` for zero-based indexing or
+    !> `HIPSPARSE_INDEX_BASE_ONE` for one-based indexing.
     !>
     !> \retval HIPSPARSE_STATUS_SUCCESS the operation completed successfully.
     !> \retval HIPSPARSE_STATUS_NOT_INITIALIZED \p handle is not initialized.
@@ -14401,8 +14409,8 @@ module hipfort_hipsparse
     !> negative,
     !> \p csrSortedVal, \p csrSortedRowPtr, \p csrSortedColInd, \p cscSortedVal, \p cscSortedRowInd,
     !> or \p cscSortedColPtr is nullptr when \p nnz is greater than zero, \p copyValues is neither
-    !> \ref HIPSPARSE_ACTION_SYMBOLIC nor \ref HIPSPARSE_ACTION_NUMERIC, or \p idxBase is neither
-    !> \ref HIPSPARSE_INDEX_BASE_ZERO nor \ref HIPSPARSE_INDEX_BASE_ONE.
+    !> `HIPSPARSE_ACTION_SYMBOLIC` nor `HIPSPARSE_ACTION_NUMERIC`, or \p idxBase is neither
+    !> `HIPSPARSE_INDEX_BASE_ZERO` nor `HIPSPARSE_INDEX_BASE_ONE`.
     !> \retval HIPSPARSE_STATUS_ARCH_MISMATCH the device is not supported.
     !> \retval HIPSPARSE_STATUS_INTERNAL_ERROR an internal error occurred.
     function hipsparseScsr2csc(handle, m, n, nnz, csrSortedVal, csrSortedRowPtr, csrSortedColInd, &
@@ -14524,11 +14532,10 @@ module hipfort_hipsparse
     !> \details
     !> \p hipsparseCsr2cscEx2_bufferSize calculates the required user allocated temporary buffer
     !> needed
-    !> by \ref hipsparseCsr2cscEx2 to convert a CSR matrix into a CSC matrix. \ref
-    !> hipsparseCsr2cscEx2
+    !> by `hipsparseCsr2cscEx2` to convert a CSR matrix into a CSC matrix. `hipsparseCsr2cscEx2`
     !> can also be used to convert a CSC matrix into a CSR matrix. \p copyValues decides
-    !> whether \p cscVal is being filled during conversion (\ref HIPSPARSE_ACTION_NUMERIC)
-    !> or not (\ref HIPSPARSE_ACTION_SYMBOLIC).
+    !> whether \p cscVal is being filled during conversion (`HIPSPARSE_ACTION_NUMERIC`)
+    !> or not (`HIPSPARSE_ACTION_SYMBOLIC`).
     !>
     !> \note
     !> The resulting matrix can also be seen as the transpose of the input matrix.
@@ -14565,14 +14572,14 @@ module hipfort_hipsparse
     !> valType The data type of the values arrays \p csrVal and \p cscVal. Can be HIP_R_32F,
     !> HIP_R_64F, HIP_C_32F, or HIP_C_64F.
     !> @param[in]
-    !> copyValues         \ref HIPSPARSE_ACTION_SYMBOLIC or \ref HIPSPARSE_ACTION_NUMERIC.
+    !> copyValues         `HIPSPARSE_ACTION_SYMBOLIC` or `HIPSPARSE_ACTION_NUMERIC`.
     !> @param[in]
-    !> idxBase            \ref HIPSPARSE_INDEX_BASE_ZERO or \ref HIPSPARSE_INDEX_BASE_ONE.
+    !> idxBase            `HIPSPARSE_INDEX_BASE_ZERO` or `HIPSPARSE_INDEX_BASE_ONE`.
     !> @param[in]
     !> alg HIPSPARSE_CSR2CSC_ALG_DEFAULT, HIPSPARSE_CSR2CSC_ALG1, or HIPSPARSE_CSR2CSC_ALG2.
     !> @param[out]
     !> pBufferSizeInBytes number of bytes of the temporary storage buffer required by
-    !> hipsparseCsr2cscEx2().
+    !> `hipsparseCsr2cscEx2()`.
     !>
     !> \retval     HIPSPARSE_STATUS_SUCCESS the operation completed successfully.
     !> \retval HIPSPARSE_STATUS_INVALID_VALUE \p handle, \p m, \p n, \p nnz, \p csrRowPtr, \p
@@ -14612,8 +14619,8 @@ module hipfort_hipsparse
     !> \details
     !> \p hipsparseCsr2cscEx2 converts a CSR matrix into a CSC matrix. \p hipsparseCsr2cscEx2
     !> can also be used to convert a CSC matrix into a CSR matrix. \p copyValues decides
-    !> whether \p cscVal is being filled during conversion (\ref HIPSPARSE_ACTION_NUMERIC)
-    !> or not (\ref HIPSPARSE_ACTION_SYMBOLIC).
+    !> whether \p cscVal is being filled during conversion (`HIPSPARSE_ACTION_NUMERIC`)
+    !> or not (`HIPSPARSE_ACTION_SYMBOLIC`).
     !>
     !> \note
     !> The resulting matrix can also be seen as the transpose of the input matrix.
@@ -14650,9 +14657,9 @@ module hipfort_hipsparse
     !> valType     The data type of the values arrays \p csrVal and \p cscVal. Can be HIP_R_32F,
     !> HIP_R_64F, HIP_C_32F, or HIP_C_64F.
     !> @param[in]
-    !> copyValues  \ref HIPSPARSE_ACTION_SYMBOLIC or \ref HIPSPARSE_ACTION_NUMERIC.
+    !> copyValues  `HIPSPARSE_ACTION_SYMBOLIC` or `HIPSPARSE_ACTION_NUMERIC`.
     !> @param[in]
-    !> idxBase     \ref HIPSPARSE_INDEX_BASE_ZERO or \ref HIPSPARSE_INDEX_BASE_ONE.
+    !> idxBase     `HIPSPARSE_INDEX_BASE_ZERO` or `HIPSPARSE_INDEX_BASE_ONE`.
     !> @param[in]
     !> alg         HIPSPARSE_CSR2CSC_ALG_DEFAULT, HIPSPARSE_CSR2CSC_ALG1 or HIPSPARSE_CSR2CSC_ALG2.
     !> @param[in]
@@ -14701,8 +14708,8 @@ module hipfort_hipsparse
     !> C(i,j) = A(i, j) \text{  if |A(i, j)| > tol}
     !> \f]
     !>
-    !> The user must first call \ref hipsparseSnnz_compress "hipsparseXnnz_compress()" to determine
-    !> the number
+    !> The user must first call `hipsparseSnnz_compress` "hipsparseXnnz_compress()" to determine the
+    !> number
     !> of non-zeros per row as well as the total number of non-zeros that will exist in resulting
     !> compressed CSR
     !> matrix. The user then uses this information to allocate the column indices array \p
@@ -14981,31 +14988,31 @@ module hipfort_hipsparse
     !> ldxn where
     !> \p ld>=m. All the parameters are assumed to have been preallocated by the user. If the input
     !> CSR matrix
-    !> has index base of one, it must be set in the \ref hipsparseMatDescr_t. See \ref
-    !> hipsparseSetMatIndexBase()
+    !> has index base of one, it must be set in the `hipsparseMatDescr_t`. See
+    !> `hipsparseSetMatIndexBase` ()
     !> prior to calling \p hipsparseXcsr2dense.
     !>
     !> For example, consider the sparse CSR matrix:
     !> \f[
     !> \begin{align}
-    !> \text{csrRowPtr} &= \begin{bmatrix} 0 & 2 & 4 & 7 \end{bmatrix} \\
-    !> \text{csrColInd} &= \begin{bmatrix} 0 & 3 & 0 & 1 & 0 & 2 & 3 \end{bmatrix} \\
-    !> \text{csrVal} &= \begin{bmatrix} 1 & 2 & 3 & 4 & 5 & 6 & 7 \end{bmatrix} \\
+    !> \text{csrRowPtr} &= \begin{bmatrix} 0 & 2 & 4 & 7 \end{bmatrix} \\%
+    !> \text{csrColInd} &= \begin{bmatrix} 0 & 3 & 0 & 1 & 0 & 2 & 3 \end{bmatrix} \\%
+    !> \text{csrVal} &= \begin{bmatrix} 1 & 2 & 3 & 4 & 5 & 6 & 7 \end{bmatrix} \\%
     !> \end{align}
     !> \f]
     !>
     !> \p hipsparseXcsr2dense is used to convert to the dense matrix:
     !> \f[
     !> \begin{bmatrix}
-    !> 1 & 0 & 0 & 2 \\
-    !> 3 & 4 & 0 & 0 \\
+    !> 1 & 0 & 0 & 2 \\%
+    !> 3 & 4 & 0 & 0 \\%
     !> 5 & 0 & 6 & 7
     !> \end{bmatrix}
     !> \f]
     !>
     !> where the values in the \p A array are column ordered:
     !> \f[
-    !> \text{A} &= \begin{bmatrix} 1 & 3 & 5 & 0 & 4 & 0 & 0 & 0 & 6 & 2 & 0 & 7 \end{bmatrix} \\
+    !> \text{A} &= \begin{bmatrix} 1 & 3 & 5 & 0 & 4 & 0 & 0 & 0 & 6 & 2 & 0 & 7 \end{bmatrix} \\%
     !> \f]
     !>
     !> \note
@@ -15024,9 +15031,9 @@ module hipfort_hipsparse
     !> @param[in]
     !> n           number of columns of the dense matrix \p A. Must be non-negative.
     !> @param[in]
-    !> descr the descriptor of the dense matrix \p A, the supported matrix type is \ref
-    !> HIPSPARSE_MATRIX_TYPE_GENERAL and
-    !> any valid value of the \ref hipsparseIndexBase_t.
+    !> descr the descriptor of the dense matrix \p A, the supported matrix type is
+    !> `HIPSPARSE_MATRIX_TYPE_GENERAL` and
+    !> any valid value of the `hipsparseIndexBase_t`.
     !> @param[in]
     !> csrVal array of nnz ( = \p csrRowPtr[m] - \p csrRowPtr[0] ) non-zero elements of matrix \p A.
     !> @param[in]
@@ -15141,12 +15148,11 @@ module hipfort_hipsparse
     !>
     !> \details
     !> \p hipsparseXcsr2gebsr_bufferSize returns the size of the temporary buffer that
-    !> is required by \ref hipsparseXcsr2gebsrNnz and \ref hipsparseScsr2gebsr
-    !> "hipsparseXcsr2gebsr()".
+    !> is required by `hipsparseXcsr2gebsrNnz` and `hipsparseScsr2gebsr` "hipsparseXcsr2gebsr()".
     !> After the temporary buffer size has been determined, it must be allocated by the user prior
-    !> to calling \ref hipsparseXcsr2gebsrNnz and \ref hipsparseScsr2gebsr "hipsparseXcsr2gebsr()".
+    !> to calling `hipsparseXcsr2gebsrNnz` and `hipsparseScsr2gebsr` "hipsparseXcsr2gebsr()".
     !>
-    !> See hipsparseScsr2gebsr() for a complete code example.
+    !> See `hipsparseScsr2gebsr()` for a complete code example.
     !>
     !> \note
     !> The routine supports asynchronous execution if the pointer mode is set to device.
@@ -15154,16 +15160,15 @@ module hipfort_hipsparse
     !> @param[in]
     !> handle             handle to the hipSPARSE library context queue.
     !> @param[in]
-    !> dir direction that specifies whether to count non-zero elements by \ref
-    !> HIPSPARSE_DIRECTION_ROW
-    !> or by \ref HIPSPARSE_DIRECTION_COLUMN.
+    !> dir direction that specifies whether to count non-zero elements by `HIPSPARSE_DIRECTION_ROW`
+    !> or by `HIPSPARSE_DIRECTION_COLUMN`.
     !> @param[in]
     !> m                  number of rows of the sparse CSR matrix.
     !> @param[in]
     !> n                  number of columns of the sparse CSR matrix.
     !> @param[in]
     !> csr_descr          descriptor of the sparse CSR matrix. Currently, only
-    !> \ref HIPSPARSE_MATRIX_TYPE_GENERAL is supported.
+    !> `HIPSPARSE_MATRIX_TYPE_GENERAL` is supported.
     !> @param[in]
     !> csrVal             array of \p nnz elements containing the values of the sparse CSR matrix.
     !> @param[in]
@@ -15176,9 +15181,9 @@ module hipfort_hipsparse
     !> @param[in]
     !> colBlockDim        the col block dimension of the general BSR matrix. Between 1 and \p n.
     !> @param[out]
-    !> pBufferSizeInBytes number of bytes of the temporary storage buffer required by \ref
-    !> hipsparseXcsr2gebsrNnz()
-    !> and \ref hipsparseScsr2gebsr "hipsparseXcsr2gebsr()".
+    !> pBufferSizeInBytes number of bytes of the temporary storage buffer required by
+    !> `hipsparseXcsr2gebsrNnz` ()
+    !> and `hipsparseScsr2gebsr` "hipsparseXcsr2gebsr()".
     !>
     !> \retval     HIPSPARSE_STATUS_SUCCESS the operation completed successfully.
     !> \retval HIPSPARSE_STATUS_INVALID_VALUE \p handle, \p m, \p n, \p rowBlockDim, \p colBlockDim,
@@ -15301,10 +15306,9 @@ module hipfort_hipsparse
     !> \details
     !> This is the second step in converting a CSR matrix to a GEBSR matrix. The user must first
     !> call
-    !> \ref hipsparseScsr2gebsr_bufferSize "hipsparseXcsr2gebsr_bufferSize()" to determine the size
-    !> of
+    !> `hipsparseScsr2gebsr_bufferSize` "hipsparseXcsr2gebsr_bufferSize()" to determine the size of
     !> the required temporary storage buffer. The user then allocates this buffer as well as the
-    !> \p bsrRowPtr array ( size \p mb+1 ) and passes both to \p hipsparseXcsr2gebsrNnz(). This
+    !> \p bsrRowPtr array ( size \p mb+1 ) and passes both to \p `hipsparseXcsr2gebsrNnz()`. This
     !> second
     !> step then computes the number of non-zero block columns per row and the total number of
     !> non-zero blocks.
@@ -15314,7 +15318,7 @@ module hipfort_hipsparse
     !> \p mb x \p nb, where \p mb and \p nb equal:
     !> \f[
     !> \begin{align}
-    !> \text{mb} &= \text{(m - 1) / rowBlockDim + 1} \\
+    !> \text{mb} &= \text{(m - 1) / rowBlockDim + 1} \\%
     !> \text{nb} &= \text{(n - 1) / colBlockDim + 1}
     !> \end{align}
     !> \f]
@@ -15322,8 +15326,8 @@ module hipfort_hipsparse
     !> For example, given a matrix:
     !> \f[
     !> \begin{bmatrix}
-    !> 1 & 0 & 0 & 2 & 4 & 0 \\
-    !> 3 & 4 & 0 & 0 & 5 & 1 \\
+    !> 1 & 0 & 0 & 2 & 4 & 0 \\%
+    !> 3 & 4 & 0 & 0 & 5 & 1 \\%
     !> 5 & 0 & 6 & 7 & 6 & 2
     !> \end{bmatrix}
     !> \f]
@@ -15331,9 +15335,9 @@ module hipfort_hipsparse
     !> represented in CSR format with the arrays:
     !> \f[
     !> \begin{align}
-    !> \text{csrRowPtr} &= \begin{bmatrix} 0 & 3 & 7 & 12 \end{bmatrix} \\
+    !> \text{csrRowPtr} &= \begin{bmatrix} 0 & 3 & 7 & 12 \end{bmatrix} \\%
     !> \text{csrColInd} &= \begin{bmatrix} 0 & 3 & 4 & 0 & 1 & 4 & 5 & 0 & 2 & 3 & 4 & 5
-    !> \end{bmatrix} \\
+    !> \end{bmatrix} \\%
     !> \text{csrVal} &= \begin{bmatrix} 1 & 2 & 4 & 3 & 4 & 5 & 1 & 5 & 6 & 7 & 6 & 2 \end{bmatrix}
     !> \end{align}
     !> \f]
@@ -15341,7 +15345,7 @@ module hipfort_hipsparse
     !> the \p bsrRowPtr array and total non-zero block count will be filled with:
     !> \f[
     !> \begin{align}
-    !> \text{bsrRowPtr} &= \begin{bmatrix} 0 & 3 \end{bmatrix} \\
+    !> \text{bsrRowPtr} &= \begin{bmatrix} 0 & 3 \end{bmatrix} \\%
     !> \text{*bsrNnzDevhost} &= 3
     !> \end{align}
     !> \f]
@@ -15350,7 +15354,7 @@ module hipfort_hipsparse
     !>
     !> \note
     !> As indicated, \p bsrNnzDevhost can point either to host or device memory. This is controlled
-    !> by setting the pointer mode. See \ref hipsparseSetPointerMode().
+    !> by setting the pointer mode. See `hipsparseSetPointerMode`().
     !>
     !> It might be the case that \p rowBlockDim does not divide evenly into \p m and/or that \p
     !> colBlockDim does not divide
@@ -15365,41 +15369,41 @@ module hipfort_hipsparse
     !> \left[
     !> \begin{array}{c | c}
     !> \begin{array}{c c c}
-    !> 1 & 0 & 0 \\
+    !> 1 & 0 & 0 \\%
     !> 3 & 4 & 0
     !> \end{array} &
     !> \begin{array}{c c c}
-    !> 2 & 4 & 0 \\
+    !> 2 & 4 & 0 \\%
     !> 0 & 5 & 1
-    !> \end{array} \\
+    !> \end{array} \\%
     !> \hline
     !> \begin{array}{c c c}
-    !> 5 & 0 & 6 \\
+    !> 5 & 0 & 6 \\%
     !> 0 & 0 & 0
     !> \end{array} &
     !> \begin{array}{c c c}
-    !> 7 & 6 & 2 \\
+    !> 7 & 6 & 2 \\%
     !> 0 & 0 & 0
     !> \end{array}
     !> \end{array}
     !> \right]
     !> \f]
     !>
-    !> See hipsparseScsr2gebsr() for a full code example.
+    !> See `hipsparseScsr2gebsr()` for a full code example.
     !>
     !> @param[in]
     !> handle        handle to the hipSPARSE library context queue.
     !> @param[in]
-    !> dir direction that specifies whether to count non-zero elements by \ref
-    !> HIPSPARSE_DIRECTION_ROW or by
-    !> \ref HIPSPARSE_DIRECTION_COLUMN.
+    !> dir direction that specifies whether to count non-zero elements by `HIPSPARSE_DIRECTION_ROW`
+    !> or by
+    !> `HIPSPARSE_DIRECTION_COLUMN`.
     !> @param[in]
     !> m             number of rows of the sparse CSR matrix.
     !> @param[in]
     !> n             number of columns of the sparse CSR matrix.
     !> @param[in]
     !> csr_descr     descriptor of the sparse CSR matrix. Currently, only
-    !> \ref HIPSPARSE_MATRIX_TYPE_GENERAL is supported.
+    !> `HIPSPARSE_MATRIX_TYPE_GENERAL` is supported.
     !> @param[in]
     !> csrRowPtr integer array containing \p m+1 elements that point to the start of each row of the
     !> CSR matrix.
@@ -15407,7 +15411,7 @@ module hipfort_hipsparse
     !> csrColInd integer array of the column indices for each non-zero element in the CSR matrix.
     !> @param[in]
     !> bsr_descr     descriptor of the sparse general BSR matrix. Currently, only
-    !> \ref HIPSPARSE_MATRIX_TYPE_GENERAL is supported.
+    !> `HIPSPARSE_MATRIX_TYPE_GENERAL` is supported.
     !> @param[out]
     !> bsrRowPtr integer array containing \p mb+1 elements that point to the start of each block row
     !> of the general BSR matrix.
@@ -15424,8 +15428,8 @@ module hipfort_hipsparse
     !> bsrNnzDevhost total number of non-zero elements in device or host memory.
     !>
     !> @param[in]
-    !> pbuffer buffer allocated by the user whose size is determined by calling \ref
-    !> hipsparseScsr2gebsr_bufferSize
+    !> pbuffer buffer allocated by the user whose size is determined by calling
+    !> `hipsparseScsr2gebsr_bufferSize`
     !> "hipsparseXcsr2gebsr_bufferSize()".
     !>
     !> \retval     HIPSPARSE_STATUS_SUCCESS the operation completed successfully.
@@ -15468,27 +15472,27 @@ module hipfort_hipsparse
     !> that \p bsrVal, \p bsrColInd, and \p bsrRowPtr are allocated. Allocation size
     !> for \p bsrRowPtr is computed as \p mb+1, where \p mb is the number of block rows in
     !> the GEBSR matrix. The number of non-zero blocks in the resulting GEBSR matrix
-    !> is computed using \ref hipsparseXcsr2gebsrNnz, which also fills in \p bsrRowPtr.
+    !> is computed using `hipsparseXcsr2gebsrNnz`, which also fills in \p bsrRowPtr.
     !>
     !> In more detail, \p hipsparseXcsr2gebsr is the third and final step of the conversion from CSR
     !> to GEBSR.
     !> The user first determines the size of the required user-allocated temporary storage buffer
     !> using
-    !> \ref hipsparseScsr2gebsr_bufferSize "hipsparseXcsr2gebsr_bufferSize()". The user then
-    !> allocates this buffer
+    !> `hipsparseScsr2gebsr_bufferSize` "hipsparseXcsr2gebsr_bufferSize()". The user then allocates
+    !> this buffer
     !> as well as the row pointer array \p bsrRowPtr with size \p mb+1, where \p mb is the number of
     !> block rows
     !> in the GEBSR matrix and \p nb is the number of block columns in GEBSR matrix:
     !>
     !> \f[
     !> \begin{align}
-    !> \text{mb} &= \text{(m - 1) / rowBlockDim + 1} \\
+    !> \text{mb} &= \text{(m - 1) / rowBlockDim + 1} \\%
     !> \text{nb} &= \text{(n - 1) / colBlockDim + 1}
     !> \end{align}
     !> \f]
     !>
-    !> Both the temporary storage buffer and the GEBSR row pointer array are then passed to \ref
-    !> hipsparseXcsr2gebsrNnz,
+    !> Both the temporary storage buffer and the GEBSR row pointer array are then passed to
+    !> `hipsparseXcsr2gebsrNnz`,
     !> which fills the GEBSR row pointer array \p bsrRowPtr and also computes the number of non-zero
     !> blocks,
     !> \p bsrNnzDevhost, that will exist in the GEBSR matrix. The user then allocates both the GEBSR
@@ -15501,8 +15505,8 @@ module hipfort_hipsparse
     !> For example, assuming the matrix:
     !> \f[
     !> \begin{bmatrix}
-    !> 1 & 0 & 0 & 2 & 4 & 0 \\
-    !> 3 & 4 & 0 & 0 & 5 & 1 \\
+    !> 1 & 0 & 0 & 2 & 4 & 0 \\%
+    !> 3 & 4 & 0 & 0 & 5 & 1 \\%
     !> 5 & 0 & 6 & 7 & 6 & 2
     !> \end{bmatrix}
     !> \f]
@@ -15510,9 +15514,9 @@ module hipfort_hipsparse
     !> represented in CSR format with the arrays:
     !> \f[
     !> \begin{align}
-    !> \text{csrRowPtr} &= \begin{bmatrix} 0 & 3 & 7 & 12 \end{bmatrix} \\
+    !> \text{csrRowPtr} &= \begin{bmatrix} 0 & 3 & 7 & 12 \end{bmatrix} \\%
     !> \text{csrColInd} &= \begin{bmatrix} 0 & 3 & 4 & 0 & 1 & 4 & 5 & 0 & 2 & 3 & 4 & 5
-    !> \end{bmatrix} \\
+    !> \end{bmatrix} \\%
     !> \text{csrVal} &= \begin{bmatrix} 1 & 2 & 4 & 3 & 4 & 5 & 1 & 5 & 6 & 7 & 6 & 2 \end{bmatrix}
     !> \end{align}
     !> \f]
@@ -15522,18 +15526,18 @@ module hipfort_hipsparse
     !> \left[
     !> \begin{array}{c | c}
     !> \begin{array}{c c}
-    !> 1 & 0 \\
-    !> 3 & 4 \\
+    !> 1 & 0 \\%
+    !> 3 & 4 \\%
     !> 3 & 0
     !> \end{array} &
     !> \begin{array}{c c}
-    !> 0 & 2 \\
-    !> 0 & 0 \\
+    !> 0 & 2 \\%
+    !> 0 & 0 \\%
     !> 6 & 7
     !> \end{array} &
     !> \begin{array}{c c}
-    !> 4 & 0 \\
-    !> 5 & 1 \\
+    !> 4 & 0 \\%
+    !> 5 & 1 \\%
     !> 6 & 2
     !> \end{array}
     !> \end{array}
@@ -15543,8 +15547,8 @@ module hipfort_hipsparse
     !> and is represented with the arrays:
     !> \f[
     !> \begin{align}
-    !> \text{bsrRowPtr} &= \begin{bmatrix} 0 & 3 \end{bmatrix} \\
-    !> \text{bsrColInd} &= \begin{bmatrix} 0 & 1 & 2 \end{bmatrix} \\
+    !> \text{bsrRowPtr} &= \begin{bmatrix} 0 & 3 \end{bmatrix} \\%
+    !> \text{bsrColInd} &= \begin{bmatrix} 0 & 1 & 2 \end{bmatrix} \\%
     !> \text{bsrVal} &= \begin{bmatrix} 1 & 0 & 3 & 4 & 3 & 0 & 0 & 2 & 0 & 0 & 6 & 7 & 4 & 0 & 5 &
     !> 1 & 6 & 2 \end{bmatrix}
     !> \end{align}
@@ -15574,20 +15578,20 @@ module hipfort_hipsparse
     !> \left[
     !> \begin{array}{c | c}
     !> \begin{array}{c c c}
-    !> 1 & 0 & 0 \\
+    !> 1 & 0 & 0 \\%
     !> 3 & 4 & 0
     !> \end{array} &
     !> \begin{array}{c c c}
-    !> 2 & 4 & 0 \\
+    !> 2 & 4 & 0 \\%
     !> 0 & 5 & 1
-    !> \end{array} \\
+    !> \end{array} \\%
     !> \hline
     !> \begin{array}{c c c}
-    !> 5 & 0 & 6 \\
+    !> 5 & 0 & 6 \\%
     !> 0 & 0 & 0
     !> \end{array} &
     !> \begin{array}{c c c}
-    !> 7 & 6 & 2 \\
+    !> 7 & 6 & 2 \\%
     !> 0 & 0 & 0
     !> \end{array}
     !> \end{array}
@@ -15597,15 +15601,15 @@ module hipfort_hipsparse
     !> @param[in]
     !> handle       handle to the hipSPARSE library context queue.
     !> @param[in]
-    !> dir the storage format of the blocks, \ref HIPSPARSE_DIRECTION_ROW or \ref
-    !> HIPSPARSE_DIRECTION_COLUMN.
+    !> dir the storage format of the blocks, `HIPSPARSE_DIRECTION_ROW` or
+    !> `HIPSPARSE_DIRECTION_COLUMN`.
     !> @param[in]
     !> m            number of rows in the sparse CSR matrix.
     !> @param[in]
     !> n            number of columns in the sparse CSR matrix.
     !> @param[in]
     !> csr_descr    descriptor of the sparse CSR matrix. Currently, only
-    !> \ref HIPSPARSE_MATRIX_TYPE_GENERAL is supported.
+    !> `HIPSPARSE_MATRIX_TYPE_GENERAL` is supported.
     !> @param[in]
     !> csrVal       array of \p nnz elements containing the values of the sparse CSR matrix.
     !> @param[in]
@@ -15615,7 +15619,7 @@ module hipfort_hipsparse
     !> csrColInd    array of \p nnz elements containing the column indices of the sparse CSR matrix.
     !> @param[in]
     !> bsr_descr    descriptor of the sparse BSR matrix. Currently, only
-    !> \ref HIPSPARSE_MATRIX_TYPE_GENERAL is supported.
+    !> `HIPSPARSE_MATRIX_TYPE_GENERAL` is supported.
     !> @param[out]
     !> bsrVal array of \p nnzb* \p rowBlockDim* \p colBlockDim containing the values of the sparse
     !> BSR matrix.
@@ -15630,8 +15634,8 @@ module hipfort_hipsparse
     !> @param[in]
     !> colBlockDim  col size of the blocks in the sparse general BSR matrix.
     !> @param[in]
-    !> pbuffer buffer allocated by the user. The buffer size is determined by calling \ref
-    !> hipsparseScsr2gebsr_bufferSize
+    !> pbuffer buffer allocated by the user. The buffer size is determined by calling
+    !> `hipsparseScsr2gebsr_bufferSize`
     !> "hipsparseXcsr2gebsr_bufferSize()".
     !>
     !> \retval     HIPSPARSE_STATUS_SUCCESS the operation completed successfully.
@@ -15767,7 +15771,7 @@ module hipfort_hipsparse
     !>
     !> \details
     !> \p hipsparseXcsr2hyb converts a CSR matrix into a HYB matrix. It is assumed
-    !> that \p hyb has been initialized with \ref hipsparseCreateHybMat().
+    !> that \p hyb has been initialized with `hipsparseCreateHybMat`().
     !>
     !> \note
     !> This function requires a significant amount of storage for the HYB matrix,
@@ -15789,7 +15793,7 @@ module hipfort_hipsparse
     !> n                 number of columns of the sparse CSR matrix, which must be non-negative.
     !> @param[in]
     !> descrA            descriptor of the sparse CSR matrix. Currently, only
-    !> \ref HIPSPARSE_MATRIX_TYPE_GENERAL is supported.
+    !> `HIPSPARSE_MATRIX_TYPE_GENERAL` is supported.
     !> @param[in]
     !> csrSortedValA     array containing the values of the sparse CSR matrix.
     !> @param[in]
@@ -15801,11 +15805,11 @@ module hipfort_hipsparse
     !> hybA              sparse matrix in HYB format.
     !> @param[in]
     !> userEllWidth      width of the ELL part of the HYB matrix (only required if
-    !> \p partitionType == \ref HIPSPARSE_HYB_PARTITION_USER). Must be non-negative.
+    !> \p partitionType == `HIPSPARSE_HYB_PARTITION_USER`). Must be non-negative.
     !> @param[in]
-    !> partitionType     \ref HIPSPARSE_HYB_PARTITION_AUTO (recommended),
-    !> \ref HIPSPARSE_HYB_PARTITION_USER, or
-    !> \ref HIPSPARSE_HYB_PARTITION_MAX.
+    !> partitionType     `HIPSPARSE_HYB_PARTITION_AUTO` (recommended),
+    !> `HIPSPARSE_HYB_PARTITION_USER`, or
+    !> `HIPSPARSE_HYB_PARTITION_MAX`.
     !>
     !> \retval HIPSPARSE_STATUS_SUCCESS the operation completed successfully.
     !> \retval HIPSPARSE_STATUS_NOT_INITIALIZED \p handle is not initialized.
@@ -15814,8 +15818,8 @@ module hipfort_hipsparse
     !> \p userEllWidth or \p partitionType is invalid.
     !> \retval HIPSPARSE_STATUS_ALLOC_FAILED the buffer for the HYB matrix could not be allocated.
     !> \retval HIPSPARSE_STATUS_INTERNAL_ERROR an internal error occurred.
-    !> \retval HIPSPARSE_STATUS_NOT_SUPPORTED \ref hipsparseMatrixType_t != \ref
-    !> HIPSPARSE_MATRIX_TYPE_GENERAL.
+    !> \retval HIPSPARSE_STATUS_NOT_SUPPORTED `hipsparseMatrixType_t` !=
+    !> `HIPSPARSE_MATRIX_TYPE_GENERAL`.
     function hipsparseScsr2hyb(handle, m, n, descrA, csrSortedValA, csrSortedRowPtrA, &
                                csrSortedColIndA, hybA, userEllWidth, partitionType) &
        result(Scsr2hyb) &
@@ -15921,7 +15925,7 @@ module hipfort_hipsparse
     !>
     !> \details
     !> \p hipsparseXcsrsort_bufferSizeExt returns the size of the temporary storage buffer
-    !> in bytes required by hipsparseXcsrsort(). The temporary storage buffer must be allocated by
+    !> in bytes required by `hipsparseXcsrsort()`. The temporary storage buffer must be allocated by
     !> the user.
     !>
     !> @param[in]
@@ -15940,7 +15944,7 @@ module hipfort_hipsparse
     !> CSR matrix.
     !> @param[out]
     !> pBufferSizeInBytes  number of bytes of the temporary storage buffer required by
-    !> \ref hipsparseXcsrsort().
+    !> `hipsparseXcsrsort`().
     !>
     !> \retval     HIPSPARSE_STATUS_SUCCESS the operation completed successfully.
     !> \retval HIPSPARSE_STATUS_INVALID_VALUE \p handle, \p m, \p n, \p nnz, \p csrRowPtr, \p
@@ -15974,12 +15978,12 @@ module hipfort_hipsparse
     !> \details
     !> \p hipsparseXcsrsort sorts a matrix in CSR format. The sorted permutation vector
     !> \p P can be used to obtain the sorted \p csrVal array. In this case, \p P must be
-    !> initialized as the identity permutation. See \ref hipsparseCreateIdentityPermutation(). To
-    !> apply the permutation vector to the CSR values, see \ref hipsparseSgthr
+    !> initialized as the identity permutation. See `hipsparseCreateIdentityPermutation`(). To
+    !> apply the permutation vector to the CSR values, see `hipsparseSgthr`
     !> "hipsparseXgthr()".
     !>
     !> \p hipsparseXcsrsort requires extra temporary storage buffer that must be allocated by
-    !> the user. The storage buffer size can be determined by hipsparseXcsrsort_bufferSizeExt().
+    !> the user. The storage buffer size can be determined by `hipsparseXcsrsort_bufferSizeExt()`.
     !>
     !> \note
     !> \p P can be \p NULL if a sorted permutation vector is not required.
@@ -15998,7 +16002,7 @@ module hipfort_hipsparse
     !> nnz             number of non-zero entries of the sparse CSR matrix.
     !> @param[in]
     !> descrA          descriptor of the sparse CSR matrix. Currently, only
-    !> \ref HIPSPARSE_MATRIX_TYPE_GENERAL is supported.
+    !> `HIPSPARSE_MATRIX_TYPE_GENERAL` is supported.
     !> @param[in]
     !> csrRowPtr       array of \p m+1 elements that point to the start of every row of the
     !> sparse CSR matrix.
@@ -16010,7 +16014,7 @@ module hipfort_hipsparse
     !> \p NULL.
     !> @param[in]
     !> pBuffer         temporary storage buffer allocated by the user. The size is returned by
-    !> \ref hipsparseXcsrsort_bufferSizeExt().
+    !> `hipsparseXcsrsort_bufferSizeExt`().
     !>
     !> \retval     HIPSPARSE_STATUS_SUCCESS the operation completed successfully.
     !> \retval HIPSPARSE_STATUS_INVALID_VALUE \p handle, \p m, \p n, \p nnz, \p descrA, \p
@@ -16018,7 +16022,7 @@ module hipfort_hipsparse
     !> \p csrColInd, or \p pBuffer pointer is invalid.
     !> \retval     HIPSPARSE_STATUS_INTERNAL_ERROR an internal error occurred.
     !> \retval     HIPSPARSE_STATUS_NOT_SUPPORTED
-    !> \ref hipsparseMatrixType_t != \ref HIPSPARSE_MATRIX_TYPE_GENERAL.
+    !> `hipsparseMatrixType_t` != `HIPSPARSE_MATRIX_TYPE_GENERAL`.
     function hipsparseXcsrsort(handle, m, n, nnz, descrA, csrRowPtr, csrColInd, P, pBuffer) &
        result(Xcsrsort) &
 #ifdef USE_CUDA_NAMES
@@ -16256,37 +16260,37 @@ module hipfort_hipsparse
     !> \p hipsparseXdense2csc converts the matrix to a sparse CSC format matrix.
     !> All the parameters are assumed to have been preallocated by the user and the arrays
     !> are filled in based on number of non-zeros per row, which can be pre-computed with
-    !> \ref hipsparseSnnz "hipsparseXnnz()". Users can set the desired index base in the output CSC
-    !> matrix by setting it in the \ref hipsparseMatDescr_t. See \ref hipsparseSetMatIndexBase().
+    !> `hipsparseSnnz` "hipsparseXnnz()". Users can set the desired index base in the output CSC
+    !> matrix by setting it in the `hipsparseMatDescr_t`. See `hipsparseSetMatIndexBase`().
     !>
     !> As an example, if using index base zero (that is, the default) and the dense
     !> matrix:
     !>
     !> \f[
     !> \begin{bmatrix}
-    !> 1 & 0 & 0 & 2 \\
-    !> 3 & 4 & 0 & 0 \\
+    !> 1 & 0 & 0 & 2 \\%
+    !> 3 & 4 & 0 & 0 \\%
     !> 5 & 0 & 6 & 7
     !> \end{bmatrix}
     !> \f]
     !>
     !> where the \p A values have column ordering with leading dimension \p ld=m:
     !> \f[
-    !> \text{A} &= \begin{bmatrix} 1 & 3 & 5 & 0 & 4 & 0 & 0 & 0 & 6 & 2 & 0 & 7 \end{bmatrix} \\
+    !> \text{A} &= \begin{bmatrix} 1 & 3 & 5 & 0 & 4 & 0 & 0 & 0 & 6 & 2 & 0 & 7 \end{bmatrix} \\%
     !> \f]
     !>
     !> the conversion results in the CSC arrays:
     !>
     !> \f[
     !> \begin{align}
-    !> \text{cscRowInd} &= \begin{bmatrix} 0 & 1 & 2 & 1 & 2 & 0 & 2 \end{bmatrix} \\
-    !> \text{cscColPtr} &= \begin{bmatrix} 0 & 3 & 4 & 5 & 7 \end{bmatrix} \\
-    !> \text{cscVal} &= \begin{bmatrix} 1 & 3 & 5 & 4 & 6 & 2 & 7 \end{bmatrix} \\
+    !> \text{cscRowInd} &= \begin{bmatrix} 0 & 1 & 2 & 1 & 2 & 0 & 2 \end{bmatrix} \\%
+    !> \text{cscColPtr} &= \begin{bmatrix} 0 & 3 & 4 & 5 & 7 \end{bmatrix} \\%
+    !> \text{cscVal} &= \begin{bmatrix} 1 & 3 & 5 & 4 & 6 & 2 & 7 \end{bmatrix} \\%
     !> \end{align}
     !> \f]
     !>
-    !> This function works very similar to \ref hipsparseSdense2csr "hipsparseXdense2csr()".
-    !> See hipsparseSdense2csr() for a code example.
+    !> This function works very similar to `hipsparseSdense2csr` "hipsparseXdense2csr()".
+    !> See `hipsparseSdense2csr()` for a code example.
     !>
     !> \note
     !> This function is executed asynchronously with respect to the host and can return control to
@@ -16304,9 +16308,9 @@ module hipfort_hipsparse
     !> @param[in]
     !> n            number of columns of the dense matrix \p A. Must be non-negative.
     !> @param[in]
-    !> descr the descriptor of the dense matrix \p A. The supported matrix type is \ref
-    !> HIPSPARSE_MATRIX_TYPE_GENERAL and
-    !> any valid value of the \ref hipsparseIndexBase_t.
+    !> descr the descriptor of the dense matrix \p A. The supported matrix type is
+    !> `HIPSPARSE_MATRIX_TYPE_GENERAL` and
+    !> any valid value of the `hipsparseIndexBase_t`.
     !> @param[in]
     !> A            array of dimensions (\p ld, \p n).
     !> @param[in]
@@ -16436,18 +16440,17 @@ module hipfort_hipsparse
     !> \p hipsparseXdense2csr converts the matrix to a sparse CSR format matrix. All the parameters
     !> are assumed to have been pre-allocated by the user and the arrays are filled in based on the
     !> number
-    !> of non-zeros per row, which can be pre-computed with \ref hipsparseSnnz "hipsparseXnnz()".
-    !> The
-    !> desired index base in the output CSR matrix is set in the \ref hipsparseMatDescr_t. See
-    !> \ref hipsparseSetMatIndexBase().
+    !> of non-zeros per row, which can be pre-computed with `hipsparseSnnz` "hipsparseXnnz()". The
+    !> desired index base in the output CSR matrix is set in the `hipsparseMatDescr_t`. See
+    !> `hipsparseSetMatIndexBase`().
     !>
     !> As an example, if using index base zero (which is the default) and the dense
     !> matrix:
     !>
     !> \f[
     !> \begin{bmatrix}
-    !> 1 & 0 & 0 & 2 \\
-    !> 3 & 4 & 0 & 0 \\
+    !> 1 & 0 & 0 & 2 \\%
+    !> 3 & 4 & 0 & 0 \\%
     !> 5 & 0 & 6 & 7
     !> \end{bmatrix}
     !> \f]
@@ -16456,9 +16459,9 @@ module hipfort_hipsparse
     !>
     !> \f[
     !> \begin{align}
-    !> \text{csrRowPtr} &= \begin{bmatrix} 0 & 2 & 4 & 7 \end{bmatrix} \\
-    !> \text{csrColInd} &= \begin{bmatrix} 0 & 3 & 0 & 1 & 0 & 2 & 3 \end{bmatrix} \\
-    !> \text{csrVal} &= \begin{bmatrix} 1 & 2 & 3 & 4 & 5 & 6 & 7 \end{bmatrix} \\
+    !> \text{csrRowPtr} &= \begin{bmatrix} 0 & 2 & 4 & 7 \end{bmatrix} \\%
+    !> \text{csrColInd} &= \begin{bmatrix} 0 & 3 & 0 & 1 & 0 & 2 & 3 \end{bmatrix} \\%
+    !> \text{csrVal} &= \begin{bmatrix} 1 & 2 & 3 & 4 & 5 & 6 & 7 \end{bmatrix} \\%
     !> \end{align}
     !> \f]
     !>
@@ -16474,9 +16477,9 @@ module hipfort_hipsparse
     !> @param[in]
     !> n            number of columns of the dense matrix \p A. Must be non-negative.
     !> @param[in]
-    !> descr the descriptor of the dense matrix \p A. The supported matrix type is \ref
-    !> HIPSPARSE_MATRIX_TYPE_GENERAL and
-    !> any valid value of the \ref hipsparseIndexBase_t.
+    !> descr the descriptor of the dense matrix \p A. The supported matrix type is
+    !> `HIPSPARSE_MATRIX_TYPE_GENERAL` and
+    !> any valid value of the `hipsparseIndexBase_t`.
     !> @param[in]
     !> A            array of dimensions (\p ld, \p n).
     !> @param[in]
@@ -16607,7 +16610,7 @@ module hipfort_hipsparse
     !>
     !> \f[
     !> \begin{align}
-    !> \text{m} &= \text{mb * rowBlockDim} \\
+    !> \text{m} &= \text{mb * rowBlockDim} \\%
     !> \text{n} &= \text{nb * colBlockDim}
     !> \end{align}
     !> \f]
@@ -16622,36 +16625,36 @@ module hipfort_hipsparse
     !> \left[
     !> \begin{array}{c | c | c}
     !> \begin{array}{c c}
-    !> 6 & 2 \\
-    !> 1 & 4 \\
+    !> 6 & 2 \\%
+    !> 1 & 4 \\%
     !> 5 & 4
     !> \end{array} &
     !> \begin{array}{c c}
-    !> 0 & 3 \\
-    !> 5 & 0 \\
+    !> 0 & 3 \\%
+    !> 5 & 0 \\%
     !> 0 & 7
     !> \end{array} &
     !> \begin{array}{c c}
-    !> 0 & 0 \\
-    !> 0 & 0 \\
+    !> 0 & 0 \\%
+    !> 0 & 0 \\%
     !> 0 & 0
-    !> \end{array} \\
+    !> \end{array} \\%
     !> \hline
     !> \begin{array}{c c}
-    !> 0 & 0 \\
-    !> 0 & 0 \\
+    !> 0 & 0 \\%
+    !> 0 & 0 \\%
     !> 0 & 0
     !> \end{array} &
     !> \begin{array}{c c}
-    !> 3 & 0 \\
-    !> 0 & 0 \\
+    !> 3 & 0 \\%
+    !> 0 & 0 \\%
     !> 0 & 7
     !> \end{array} &
     !> \begin{array}{c c}
-    !> 2 & 2 \\
-    !> 4 & 3 \\
+    !> 2 & 2 \\%
+    !> 4 & 3 \\%
     !> 1 & 4
-    !> \end{array} \\
+    !> \end{array} \\%
     !> \end{array}
     !> \right]
     !> \f]
@@ -16663,15 +16666,15 @@ module hipfort_hipsparse
     !> @param[in]
     !> handle      handle to the hipSPARSE library context queue.
     !> @param[in]
-    !> dirA the storage format of the blocks, \ref HIPSPARSE_DIRECTION_ROW or \ref
-    !> HIPSPARSE_DIRECTION_COLUMN.
+    !> dirA the storage format of the blocks, `HIPSPARSE_DIRECTION_ROW` or
+    !> `HIPSPARSE_DIRECTION_COLUMN`.
     !> @param[in]
     !> mb          number of block rows in the sparse general BSR matrix.
     !> @param[in]
     !> nb          number of block columns in the sparse general BSR matrix.
     !> @param[in]
     !> descrA      descriptor of the sparse general BSR matrix. Currently, only
-    !> \ref HIPSPARSE_MATRIX_TYPE_GENERAL is supported.
+    !> `HIPSPARSE_MATRIX_TYPE_GENERAL` is supported.
     !> @param[in]
     !> bsrValA array of \p nnzb*rowBlockDim*colBlockDim containing the values of the sparse BSR
     !> matrix.
@@ -16687,7 +16690,7 @@ module hipfort_hipsparse
     !> colBlockDim column size of the blocks in the sparse general BSR matrix.
     !> @param[in]
     !> descrC      descriptor of the sparse CSR matrix. Currently, only
-    !> \ref HIPSPARSE_MATRIX_TYPE_GENERAL is supported.
+    !> `HIPSPARSE_MATRIX_TYPE_GENERAL` is supported.
     !> @param[out]
     !> csrValC array of \p nnzb*rowBlockDim*colBlockDim elements containing the values of the sparse
     !> CSR matrix.
@@ -16827,12 +16830,12 @@ module hipfort_hipsparse
     !>
     !> \details
     !> \p hipsparseXgebsr2gebsc_bufferSize returns the size of the temporary storage buffer
-    !> required by \ref hipsparseSgebsr2gebsc "hipsparseXgebsr2gebsc()". This is the first step
+    !> required by `hipsparseSgebsr2gebsc` "hipsparseXgebsr2gebsc()". This is the first step
     !> in converting a sparse matrix in GEBSR format to a sparse matrix in GEBSC format. After
     !> the size of the temporary storage buffer has been determined, it must be allocated by the
     !> user.
     !>
-    !> See hipsparseSgebsr2gebsc() for a complete code example.
+    !> See `hipsparseSgebsr2gebsc()` for a complete code example.
     !>
     !> @param[in]
     !> handle             handle to the hipSPARSE library context queue.
@@ -16857,7 +16860,7 @@ module hipfort_hipsparse
     !> colBlockDim        column size of the blocks in the sparse General BSR matrix.
     !> @param[out]
     !> pBufferSizeInBytes number of bytes of the temporary storage buffer required by
-    !> hipsparseSgebsr2gebsc(), hipsparseDgebsr2gebsc(), hipsparseCgebsr2gebsc(), and
+    !> `hipsparseSgebsr2gebsc()`, hipsparseDgebsr2gebsc(), hipsparseCgebsr2gebsc(), and
     !> hipsparseZgebsr2gebsc().
     !>
     !> \retval     HIPSPARSE_STATUS_SUCCESS the operation completed successfully.
@@ -16972,11 +16975,11 @@ module hipfort_hipsparse
     !> \p hipsparseXgebsr2gebsc converts a GEBSR matrix into a GEBSC matrix. \p
     !> hipsparseXgebsr2gebsc
     !> can also be used to convert a GEBSC matrix into a GEBSR matrix. \p copyValues decides
-    !> whether \p bscVal is being filled during conversion (\ref HIPSPARSE_ACTION_NUMERIC)
-    !> or not (\ref HIPSPARSE_ACTION_SYMBOLIC).
+    !> whether \p bscVal is being filled during conversion (`HIPSPARSE_ACTION_NUMERIC`)
+    !> or not (`HIPSPARSE_ACTION_SYMBOLIC`).
     !>
     !> \p hipsparseXgebsr2gebsc requires extra temporary storage buffer that has to be allocated
-    !> by the user. Storage buffer size can be determined by \ref hipsparseSgebsr2gebsc_bufferSize
+    !> by the user. Storage buffer size can be determined by `hipsparseSgebsr2gebsc_bufferSize`
     !> "hipsparseXgebsr2gebsc_bufferSize()".
     !>
     !> For example, given the GEBSR matrix:
@@ -16984,26 +16987,26 @@ module hipfort_hipsparse
     !> \left[
     !> \begin{array}{c | c}
     !> \begin{array}{c c}
-    !> 1 & 2 \\
-    !> 3 & 4 \\
+    !> 1 & 2 \\%
+    !> 3 & 4 \\%
     !> 6 & 0
     !> \end{array} &
     !> \begin{array}{c c}
-    !> 0 & 2 \\
-    !> 0 & 0 \\
+    !> 0 & 2 \\%
+    !> 0 & 0 \\%
     !> 3 & 4
-    !> \end{array} \\
+    !> \end{array} \\%
     !> \hline
     !> \begin{array}{c c}
-    !> 5 & 0 \\
-    !> 1 & 2 \\
+    !> 5 & 0 \\%
+    !> 1 & 2 \\%
     !> 3 & 4
     !> \end{array} &
     !> \begin{array}{c c}
-    !> 6 & 7 \\
-    !> 3 & 4 \\
+    !> 6 & 7 \\%
+    !> 3 & 4 \\%
     !> 3 & 4
-    !> \end{array} \\
+    !> \end{array} \\%
     !> \end{array}
     !> \right]
     !> \f]
@@ -17011,8 +17014,8 @@ module hipfort_hipsparse
     !> represented with the arrays:
     !> \f[
     !> \begin{align}
-    !> \text{bsrRowPtr} &= \begin{bmatrix} 0 & 2 & 4 \end{bmatrix} \\
-    !> \text{bsrColInd} &= \begin{bmatrix} 0 & 1 & 0 & 1 \end{bmatrix} \\
+    !> \text{bsrRowPtr} &= \begin{bmatrix} 0 & 2 & 4 \end{bmatrix} \\%
+    !> \text{bsrColInd} &= \begin{bmatrix} 0 & 1 & 0 & 1 \end{bmatrix} \\%
     !> \text{bsrVal} &= \begin{bmatrix} 1 & 2 & 3 & 4 & 6 & 0 & 0 & 2 & 0 & 0 & 3 & 4 & 5 & 0 & 1 &
     !> 2 & 3 & 4 & 6 & 7 & 3 & 4 & 3 & 4 \end{bmatrix}
     !> \end{align}
@@ -17021,8 +17024,8 @@ module hipfort_hipsparse
     !> this function converts the matrix to GEBSC format:
     !> \f[
     !> \begin{align}
-    !> \text{bscRowInd} &= \begin{bmatrix} 0 & 1 & 0 & 1 \end{bmatrix} \\
-    !> \text{bscColPtr} &= \begin{bmatrix} 0 & 2 & 4 \end{bmatrix} \\
+    !> \text{bscRowInd} &= \begin{bmatrix} 0 & 1 & 0 & 1 \end{bmatrix} \\%
+    !> \text{bscColPtr} &= \begin{bmatrix} 0 & 2 & 4 \end{bmatrix} \\%
     !> \text{bscVal} &= \begin{bmatrix} 1 & 2 & 3 & 4 & 6 & 0 & 5 & 0 & 1 & 2 & 3 & 4 & 0 & 2 & 0 &
     !> 0 & 3 & 4 & 6 & 7 & 3 & 4 & 3 & 4 \end{bmatrix}
     !> \end{align}
@@ -17071,12 +17074,12 @@ module hipfort_hipsparse
     !> bscColPtr   array of \p n+1 elements that point to the start of every column of the
     !> sparse BSC matrix.
     !> @param[in]
-    !> copyValues  \ref HIPSPARSE_ACTION_SYMBOLIC or \ref HIPSPARSE_ACTION_NUMERIC.
+    !> copyValues  `HIPSPARSE_ACTION_SYMBOLIC` or `HIPSPARSE_ACTION_NUMERIC`.
     !> @param[in]
-    !> idxBase     \ref HIPSPARSE_INDEX_BASE_ZERO or \ref HIPSPARSE_INDEX_BASE_ONE.
+    !> idxBase     `HIPSPARSE_INDEX_BASE_ZERO` or `HIPSPARSE_INDEX_BASE_ONE`.
     !> @param[in]
     !> temp_buffer temporary storage buffer allocated by the user. The size is returned by
-    !> \ref hipsparseSgebsr2gebsc_bufferSize "hipsparseXgebsr2gebsc_bufferSize()".
+    !> `hipsparseSgebsr2gebsc_bufferSize` "hipsparseXgebsr2gebsc_bufferSize()".
     !>
     !> \retval     HIPSPARSE_STATUS_SUCCESS the operation completed successfully.
     !> \retval     HIPSPARSE_STATUS_INVALID_VALUE \p handle, \p mb, \p nb, \p nnzb, \p bsrVal,
@@ -17217,15 +17220,15 @@ module hipfort_hipsparse
     !> \details
     !> \p hipsparseXgebsr2gebsr_bufferSize returns the size of the temporary storage buffer that is
     !> required by
-    !> \ref hipsparseXgebsr2gebsrNnz() and \ref hipsparseSgebsr2gebsr "hipsparseXgebsr2gebsr()". The
+    !> `hipsparseXgebsr2gebsrNnz` () and `hipsparseSgebsr2gebsr` "hipsparseXgebsr2gebsr()". The
     !> temporary storage
     !> buffer must be allocated by the user.
     !>
     !> @param[in]
     !> handle             handle to the hipSPARSE library context queue.
     !> @param[in]
-    !> dirA the storage format of the blocks, \ref HIPSPARSE_DIRECTION_ROW or \ref
-    !> HIPSPARSE_DIRECTION_COLUMN.
+    !> dirA the storage format of the blocks, `HIPSPARSE_DIRECTION_ROW` or
+    !> `HIPSPARSE_DIRECTION_COLUMN`.
     !> @param[in]
     !> mb                 number of block rows of the general BSR sparse matrix \f$A\f$.
     !> @param[in]
@@ -17234,7 +17237,7 @@ module hipfort_hipsparse
     !> nnzb               number of blocks in the general BSR sparse matrix \f$A\f$.
     !> @param[in]
     !> descrA the descriptor of the general BSR sparse matrix \f$A\f$. The supported matrix type is
-    !> \ref HIPSPARSE_MATRIX_TYPE_GENERAL and any valid value of the \ref hipsparseIndexBase_t.
+    !> `HIPSPARSE_MATRIX_TYPE_GENERAL` and any valid value of the `hipsparseIndexBase_t`.
     !> @param[in]
     !> bsrValA array of \p nnzb*rowBlockDimA*colBlockDimA containing the values of the sparse
     !> general BSR matrix \f$A\f$.
@@ -17254,8 +17257,8 @@ module hipfort_hipsparse
     !> colBlockDimC       column size of the blocks in the sparse general BSR matrix \f$C\f$.
     !> @param[out]
     !> pBufferSizeInBytes number of bytes of the temporary storage buffer required by
-    !> hipsparseXgebsr2gebsrNnz(),
-    !> hipsparseSgebsr2gebsr(), hipsparseDgebsr2gebsr(), hipsparseCgebsr2gebsr(), and
+    !> `hipsparseXgebsr2gebsrNnz()`,
+    !> `hipsparseSgebsr2gebsr()`, hipsparseDgebsr2gebsr(), hipsparseCgebsr2gebsr(), and
     !> hipsparseZgebsr2gebsr().
     !>
     !> \retval     HIPSPARSE_STATUS_SUCCESS the operation completed successfully.
@@ -17397,8 +17400,8 @@ module hipfort_hipsparse
     !> @param[in]
     !> handle             handle to the hipSPARSE library context queue.
     !> @param[in]
-    !> dirA the storage format of the blocks, \ref HIPSPARSE_DIRECTION_ROW or \ref
-    !> HIPSPARSE_DIRECTION_COLUMN.
+    !> dirA the storage format of the blocks, `HIPSPARSE_DIRECTION_ROW` or
+    !> `HIPSPARSE_DIRECTION_COLUMN`.
     !> @param[in]
     !> mb                 number of block rows of the general BSR sparse matrix \f$A\f$.
     !> @param[in]
@@ -17407,7 +17410,7 @@ module hipfort_hipsparse
     !> nnzb               number of blocks in the general BSR sparse matrix \f$A\f$.
     !> @param[in]
     !> descrA the descriptor of the general BSR sparse matrix \f$A\f$. The supported matrix type is
-    !> \ref HIPSPARSE_MATRIX_TYPE_GENERAL and any valid value of the \ref hipsparseIndexBase_t.
+    !> `HIPSPARSE_MATRIX_TYPE_GENERAL` and any valid value of the `hipsparseIndexBase_t`.
     !> @param[in]
     !> bsrRowPtrA array of \p mb+1 elements that point to the start of every block row of the
     !> sparse general BSR matrix \f$A\f$.
@@ -17420,7 +17423,7 @@ module hipfort_hipsparse
     !> colBlockDimA       column size of the blocks in the sparse general BSR matrix \f$A\f$.
     !> @param[in]
     !> descrC the descriptor of the general BSR sparse matrix \f$C\f$. The supported matrix type is
-    !> \ref HIPSPARSE_MATRIX_TYPE_GENERAL and any valid value of the \ref hipsparseIndexBase_t.
+    !> `HIPSPARSE_MATRIX_TYPE_GENERAL` and any valid value of the `hipsparseIndexBase_t`.
     !> @param[in]
     !> bsrRowPtrC array of \p mbC+1 elements that point to the start of every block row of the
     !> sparse general BSR matrix \f$C\f$ where \p mbC = ( \p m+rowBlockDimC-1 ) / \p rowBlockDimC.
@@ -17432,8 +17435,8 @@ module hipfort_hipsparse
     !> nnzTotalDevHostPtr total number of non-zero blocks in general BSR sparse matrix \f$C\f$,
     !> stored using device or host memory.
     !> @param[out]
-    !> buffer buffer allocated by the user. The size is determined by calling \ref
-    !> hipsparseSgebsr2gebsr_bufferSize
+    !> buffer buffer allocated by the user. The size is determined by calling
+    !> `hipsparseSgebsr2gebsr_bufferSize`
     !> "hipsparseXgebsr2gebsr_bufferSize()".
     !>
     !> \retval     HIPSPARSE_STATUS_SUCCESS the operation completed successfully.
@@ -17479,7 +17482,7 @@ module hipfort_hipsparse
     !> \f$C\f$.
     !>
     !> \details
-    !> The conversion uses three steps. First, the user calls \ref hipsparseSgebsr2gebsr_bufferSize
+    !> The conversion uses three steps. First, the user calls `hipsparseSgebsr2gebsr_bufferSize`
     !> "hipsparseXgebsr2gebsr_bufferSize()" to determine the size of the required temporary storage
     !> buffer.
     !> The user then allocates this buffer. Secondly, the user then allocates \p mbC+1 integers for
@@ -17487,12 +17490,12 @@ module hipfort_hipsparse
     !> pointer array for \f$C\f$ where:
     !> \f[
     !> \begin{align}
-    !> \text{mbC} &= \text{(m - 1) / rowBlockDimC + 1} \\
+    !> \text{mbC} &= \text{(m - 1) / rowBlockDimC + 1} \\%
     !> \text{nbC} &= \text{(n - 1) / colBlockDimC + 1}
     !> \end{align}
     !> \f]
-    !> The user then calls hipsparseXgebsr2gebsrNnz() to fill in the row pointer array for \f$C\f$ (
-    !> \p bsrRowPtrC ) and
+    !> The user then calls `hipsparseXgebsr2gebsrNnz()` to fill in the row pointer array for \f$C\f$
+    !> ( \p bsrRowPtrC ) and
     !> determine the number of non-zero blocks that will exist in \f$C\f$. Finally, the user
     !> allocates space for the column
     !> indices array of \f$C\f$ to have \p nnzbC elements and space for the values array of \f$C\f$
@@ -17510,22 +17513,22 @@ module hipfort_hipsparse
     !> \left[
     !> \begin{array}{c | c}
     !> \begin{array}{c c c}
-    !> 1 & 0 & 0 \\
+    !> 1 & 0 & 0 \\%
     !> 3 & 4 & 0
     !> \end{array} &
     !> \begin{array}{c c c}
-    !> 2 & 0 & 0 \\
+    !> 2 & 0 & 0 \\%
     !> 4 & 5 & 6
-    !> \end{array} \\
+    !> \end{array} \\%
     !> \hline
     !> \begin{array}{c c c}
-    !> 1 & 2 & 3 \\
+    !> 1 & 2 & 3 \\%
     !> 1 & 2 & 0
     !> \end{array} &
     !> \begin{array}{c c c}
-    !> 4 & 0 & 0 \\
+    !> 4 & 0 & 0 \\%
     !> 3 & 0 & 1
-    !> \end{array} \\
+    !> \end{array} \\%
     !> \end{array}
     !> \right]
     !> \f]
@@ -17537,36 +17540,36 @@ module hipfort_hipsparse
     !> \left[
     !> \begin{array}{c | c | c}
     !> \begin{array}{c c}
-    !> 1 & 0 \\
-    !> 3 & 4 \\
+    !> 1 & 0 \\%
+    !> 3 & 4 \\%
     !> 1 & 2
     !> \end{array} &
     !> \begin{array}{c c}
-    !> 0 & 2 \\
-    !> 0 & 4 \\
+    !> 0 & 2 \\%
+    !> 0 & 4 \\%
     !> 3 & 4
     !> \end{array} &
     !> \begin{array}{c c}
-    !> 0 & 0 \\
-    !> 5 & 6 \\
+    !> 0 & 0 \\%
+    !> 5 & 6 \\%
     !> 0 & 0
-    !> \end{array} \\
+    !> \end{array} \\%
     !> \hline
     !> \begin{array}{c c}
-    !> 1 & 2 \\
-    !> 0 & 0 \\
+    !> 1 & 2 \\%
+    !> 0 & 0 \\%
     !> 0 & 0
     !> \end{array} &
     !> \begin{array}{c c}
-    !> 0 & 3 \\
-    !> 0 & 0 \\
+    !> 0 & 3 \\%
+    !> 0 & 0 \\%
     !> 0 & 0
     !> \end{array} &
     !> \begin{array}{c c}
-    !> 0 & 1 \\
-    !> 0 & 0 \\
+    !> 0 & 1 \\%
+    !> 0 & 0 \\%
     !> 0 & 0
-    !> \end{array} \\
+    !> \end{array} \\%
     !> \end{array}
     !> \right]
     !> \f]
@@ -17574,8 +17577,8 @@ module hipfort_hipsparse
     !> @param[in]
     !> handle        handle to the hipSPARSE library context queue.
     !> @param[in]
-    !> dirA the storage format of the blocks, \ref HIPSPARSE_DIRECTION_ROW or \ref
-    !> HIPSPARSE_DIRECTION_COLUMN.
+    !> dirA the storage format of the blocks, `HIPSPARSE_DIRECTION_ROW` or
+    !> `HIPSPARSE_DIRECTION_COLUMN`.
     !> @param[in]
     !> mb            number of block rows of the general BSR sparse matrix \f$A\f$.
     !> @param[in]
@@ -17584,7 +17587,7 @@ module hipfort_hipsparse
     !> nnzb          number of blocks in the general BSR sparse matrix \f$A\f$.
     !> @param[in]
     !> descrA the descriptor of the general BSR sparse matrix \f$A\f$. The supported matrix type is
-    !> \ref HIPSPARSE_MATRIX_TYPE_GENERAL and also any valid value of the \ref hipsparseIndexBase_t.
+    !> `HIPSPARSE_MATRIX_TYPE_GENERAL` and also any valid value of the `hipsparseIndexBase_t`.
     !> @param[in]
     !> bsrValA array of \p nnzb*rowBlockDimA*colBlockDimA containing the values of the sparse
     !> general BSR matrix \f$A\f$.
@@ -17600,7 +17603,7 @@ module hipfort_hipsparse
     !> colBlockDimA  column size of the blocks in the sparse general BSR matrix \f$A\f$.
     !> @param[in]
     !> descrC the descriptor of the general BSR sparse matrix \f$C\f$. The supported matrix type is
-    !> \ref HIPSPARSE_MATRIX_TYPE_GENERAL and any valid value of the \ref hipsparseIndexBase_t.
+    !> `HIPSPARSE_MATRIX_TYPE_GENERAL` and any valid value of the `hipsparseIndexBase_t`.
     !> @param[in]
     !> bsrValC array of \p nnzbC*rowBlockDimC*colBlockDimC containing the values of the sparse
     !> general BSR matrix \f$C\f$.
@@ -17615,8 +17618,8 @@ module hipfort_hipsparse
     !> @param[in]
     !> colBlockDimC  column size of the blocks in the sparse general BSR matrix \f$C\f$.
     !> @param[out]
-    !> buffer buffer allocated by the user. The size is determined by calling \ref
-    !> hipsparseSgebsr2gebsr_bufferSize
+    !> buffer buffer allocated by the user. The size is determined by calling
+    !> `hipsparseSgebsr2gebsr_bufferSize`
     !> "hipsparseXgebsr2gebsr_bufferSize()".
     !>
     !> \retval     HIPSPARSE_STATUS_SUCCESS the operation completed successfully.
@@ -17779,7 +17782,7 @@ module hipfort_hipsparse
     !> handle            handle to the hipSPARSE library context queue.
     !> @param[in]
     !> descrA            descriptor of the sparse HYB matrix. Currently, only
-    !> \ref HIPSPARSE_MATRIX_TYPE_GENERAL is supported.
+    !> `HIPSPARSE_MATRIX_TYPE_GENERAL` is supported.
     !> @param[in]
     !> hybA              sparse matrix in HYB format.
     !> @param[out]
@@ -17795,8 +17798,8 @@ module hipfort_hipsparse
     !> \retval HIPSPARSE_STATUS_INVALID_VALUE \p handle, \p descrA, \p hybA, \p csrSortedValA,
     !> \p csrSortedRowPtrA, or \p csrSortedColIndA is nullptr.
     !> \retval HIPSPARSE_STATUS_INTERNAL_ERROR an internal error occurred.
-    !> \retval HIPSPARSE_STATUS_NOT_SUPPORTED \ref hipsparseMatrixType_t != \ref
-    !> HIPSPARSE_MATRIX_TYPE_GENERAL.
+    !> \retval HIPSPARSE_STATUS_NOT_SUPPORTED `hipsparseMatrixType_t` !=
+    !> `HIPSPARSE_MATRIX_TYPE_GENERAL`.
     function hipsparseShyb2csr(handle, descrA, hybA, csrSortedValA, csrSortedRowPtrA, &
                                csrSortedColIndA) &
        result(Shyb2csr) &
@@ -17890,40 +17893,40 @@ module hipfort_hipsparse
     !> For example, given the dense matrix:
     !> \f[
     !> \begin{bmatrix}
-    !> 1 & 0 & 0 & 2 \\
-    !> 3 & 4 & 0 & 0 \\
+    !> 1 & 0 & 0 & 2 \\%
+    !> 3 & 4 & 0 & 0 \\%
     !> 5 & 0 & 6 & 7
     !> \end{bmatrix}
     !> \f]
     !>
-    !> using \p dirA == \ref HIPSPARSE_DIRECTION_ROW results in:
+    !> using \p dirA == `HIPSPARSE_DIRECTION_ROW` results in:
     !> \f[
     !> \begin{align}
-    !> \text{nnzPerRowColumn} &= \begin{bmatrix} 2 & 2 & 3 \end{bmatrix} \\
+    !> \text{nnzPerRowColumn} &= \begin{bmatrix} 2 & 2 & 3 \end{bmatrix} \\%
     !> \text{nnzTotalDevHostPtr} &= 7
     !> \end{align}
     !> \f]
     !>
-    !> while using \p dirA == \ref HIPSPARSE_DIRECTION_COLUMN results in:
+    !> while using \p dirA == `HIPSPARSE_DIRECTION_COLUMN` results in:
     !> \f[
     !> \begin{align}
-    !> \text{nnzPerRowColumn} &= \begin{bmatrix} 3 & 1 & 1 & 2 \end{bmatrix} \\
+    !> \text{nnzPerRowColumn} &= \begin{bmatrix} 3 & 1 & 1 & 2 \end{bmatrix} \\%
     !> \text{nnzTotalDevHostPtr} &= 7
     !> \end{align}
     !> \f]
     !>
     !> The array \p nnzPerRowColumn must be allocated by the user before calling \p hipsparseXnnz
     !> and
-    !> has length equal to \p m if \p dirA == \ref HIPSPARSE_DIRECTION_ROW or \p n if
-    !> \p dirA == \ref HIPSPARSE_DIRECTION_COLUMN.
+    !> has length equal to \p m if \p dirA == `HIPSPARSE_DIRECTION_ROW` or \p n if
+    !> \p dirA == `HIPSPARSE_DIRECTION_COLUMN`.
     !>
     !> For a complete code example showing its usage, see the example found with
-    !> hipsparseSdense2csr().
+    !> `hipsparseSdense2csr()`.
     !>
     !> \note
     !> As indicated, \p nnzTotalDevHostPtr can point either to host or device memory. This is
     !> controlled
-    !> by setting the pointer mode. See \ref hipsparseSetPointerMode().
+    !> by setting the pointer mode. See `hipsparseSetPointerMode`().
     !>
     !> \note
     !> The routine supports asynchronous execution if the pointer mode is set to device.
@@ -17931,9 +17934,8 @@ module hipfort_hipsparse
     !> @param[in]
     !> handle             handle to the hipSPARSE library context queue.
     !> @param[in]
-    !> dirA direction that specifies whether to count non-zero elements by \ref
-    !> HIPSPARSE_DIRECTION_ROW
-    !> or by \ref HIPSPARSE_DIRECTION_COLUMN.
+    !> dirA direction that specifies whether to count non-zero elements by `HIPSPARSE_DIRECTION_ROW`
+    !> or by `HIPSPARSE_DIRECTION_COLUMN`.
     !> @param[in]
     !> m                  number of rows of the dense matrix \p A. Must be non-negative.
     !> @param[in]
@@ -18212,7 +18214,7 @@ module hipfort_hipsparse
     !> nnzA               number of non-zeros in the sparse CSR matrix A.
     !> @param[in]
     !> descrA             descriptor of the sparse CSR matrix A. Currently, only
-    !> \ref HIPSPARSE_MATRIX_TYPE_GENERAL is supported.
+    !> `HIPSPARSE_MATRIX_TYPE_GENERAL` is supported.
     !> @param[in]
     !> csrValA array of \p nnzA elements containing the values of the sparse CSR matrix A.
     !> @param[in]
@@ -18226,7 +18228,7 @@ module hipfort_hipsparse
     !> device memory.
     !> @param[in]
     !> descrC             descriptor of the sparse CSR matrix C. Currently, only
-    !> \ref HIPSPARSE_MATRIX_TYPE_GENERAL is supported.
+    !> `HIPSPARSE_MATRIX_TYPE_GENERAL` is supported.
     !> @param[in]
     !> csrValC array of \p nnzC elements containing the values of the sparse CSR matrix C.
     !> @param[in]
@@ -18237,8 +18239,8 @@ module hipfort_hipsparse
     !> C.
     !> @param[out]
     !> pBufferSizeInBytes number of bytes of the temporary storage buffer required by
-    !> hipsparseSpruneCsr2csrNnz(),
-    !> hipsparseDpruneCsr2csrNnz(), hipsparseSpruneCsr2csr(), and hipsparseDpruneCsr2csr().
+    !> `hipsparseSpruneCsr2csrNnz()`,
+    !> hipsparseDpruneCsr2csrNnz(), `hipsparseSpruneCsr2csr()`, and hipsparseDpruneCsr2csr().
     !>
     !> \retval     HIPSPARSE_STATUS_SUCCESS the operation completed successfully.
     !> \retval HIPSPARSE_STATUS_INVALID_VALUE \p handle or \p pBufferSizeInBytes pointer is invalid.
@@ -18308,8 +18310,8 @@ module hipfort_hipsparse
     !>
     !> \details
     !> \p hipsparseXpruneCsr2csr_bufferSizeExt returns the size of the temporary buffer that
-    !> is required by \ref hipsparseSpruneCsr2csrNnz "hipsparseXpruneCsr2csrNnz()" and
-    !> \ref hipsparseSpruneCsr2csr "hipsparseXpruneCsr2csr()". The temporary storage buffer
+    !> is required by `hipsparseSpruneCsr2csrNnz` "hipsparseXpruneCsr2csrNnz()" and
+    !> `hipsparseSpruneCsr2csr` "hipsparseXpruneCsr2csr()". The temporary storage buffer
     !> must be allocated by the user.
     !>
     !> @param[in]
@@ -18322,7 +18324,7 @@ module hipfort_hipsparse
     !> nnzA               number of non-zeros in the sparse CSR matrix A.
     !> @param[in]
     !> descrA             descriptor of the sparse CSR matrix A. Currently, only
-    !> \ref HIPSPARSE_MATRIX_TYPE_GENERAL is supported.
+    !> `HIPSPARSE_MATRIX_TYPE_GENERAL` is supported.
     !> @param[in]
     !> csrValA array of \p nnzA elements containing the values of the sparse CSR matrix A.
     !> @param[in]
@@ -18336,7 +18338,7 @@ module hipfort_hipsparse
     !> device memory.
     !> @param[in]
     !> descrC             descriptor of the sparse CSR matrix C. Currently, only
-    !> \ref HIPSPARSE_MATRIX_TYPE_GENERAL is supported.
+    !> `HIPSPARSE_MATRIX_TYPE_GENERAL` is supported.
     !> @param[in]
     !> csrValC array of \p nnzC elements containing the values of the sparse CSR matrix C.
     !> @param[in]
@@ -18347,8 +18349,8 @@ module hipfort_hipsparse
     !> C.
     !> @param[out]
     !> pBufferSizeInBytes number of bytes of the temporary storage buffer required by
-    !> hipsparseSpruneCsr2csrNnz(),
-    !> hipsparseDpruneCsr2csrNnz(), hipsparseSpruneCsr2csr(), and hipsparseDpruneCsr2csr().
+    !> `hipsparseSpruneCsr2csrNnz()`,
+    !> hipsparseDpruneCsr2csrNnz(), `hipsparseSpruneCsr2csr()`, and hipsparseDpruneCsr2csr().
     !>
     !> \retval     HIPSPARSE_STATUS_SUCCESS the operation completed successfully.
     !> \retval HIPSPARSE_STATUS_INVALID_VALUE \p handle or \p pBufferSizeInBytes pointer is invalid.
@@ -18433,7 +18435,7 @@ module hipfort_hipsparse
     !> nnzA               number of non-zeros in the sparse CSR matrix A.
     !> @param[in]
     !> descrA             descriptor of the sparse CSR matrix A. Currently, only
-    !> \ref HIPSPARSE_MATRIX_TYPE_GENERAL is supported.
+    !> `HIPSPARSE_MATRIX_TYPE_GENERAL` is supported.
     !> @param[in]
     !> csrValA array of \p nnzA elements containing the values of the sparse CSR matrix A.
     !> @param[in]
@@ -18447,15 +18449,15 @@ module hipfort_hipsparse
     !> device memory.
     !> @param[in]
     !> descrC             descriptor of the sparse CSR matrix C. Currently, only
-    !> \ref HIPSPARSE_MATRIX_TYPE_GENERAL is supported.
+    !> `HIPSPARSE_MATRIX_TYPE_GENERAL` is supported.
     !> @param[out]
     !> csrRowPtrC         array of \p m+1 elements that point to the start of every row of the
     !> sparse CSR matrix C.
     !> @param[out]
     !> nnzTotalDevHostPtr total number of nonzero elements in device or host memory.
     !> @param[out]
-    !> buffer buffer allocated by the user whose size is determined by calling \ref
-    !> hipsparseSpruneCsr2csr_bufferSize
+    !> buffer buffer allocated by the user whose size is determined by calling
+    !> `hipsparseSpruneCsr2csr_bufferSize`
     !> "hipsparseXpruneCsr2csr_bufferSize()".
     !>
     !> \retval     HIPSPARSE_STATUS_SUCCESS the operation completed successfully.
@@ -18529,9 +18531,9 @@ module hipfort_hipsparse
     !> in A
     !> that are less than the threshold. All the parameters are assumed to have been preallocated by
     !> the user.
-    !> The user first calls \ref hipsparseSpruneCsr2csr_bufferSize
+    !> The user first calls `hipsparseSpruneCsr2csr_bufferSize`
     !> "hipsparseXpruneCsr2csr_bufferSize()" to
-    !> determine the size of the buffer used by \ref hipsparseSpruneCsr2csrNnz
+    !> determine the size of the buffer used by `hipsparseSpruneCsr2csrNnz`
     !> "hipsparseXpruneCsr2csrNnz()"
     !> and \p hipsparseXpruneCsr2csr(), which the user then allocates. The user then allocates \p
     !> csrRowPtrC to
@@ -18554,7 +18556,7 @@ module hipfort_hipsparse
     !> nnzA          number of non-zeros in the sparse CSR matrix A.
     !> @param[in]
     !> descrA        descriptor of the sparse CSR matrix A. Currently, only
-    !> \ref HIPSPARSE_MATRIX_TYPE_GENERAL is supported.
+    !> `HIPSPARSE_MATRIX_TYPE_GENERAL` is supported.
     !> @param[in]
     !> csrValA       array of \p nnzA elements containing the values of the sparse CSR matrix A.
     !> @param[in]
@@ -18568,7 +18570,7 @@ module hipfort_hipsparse
     !> device memory.
     !> @param[in]
     !> descrC        descriptor of the sparse CSR matrix C. Currently, only
-    !> \ref HIPSPARSE_MATRIX_TYPE_GENERAL is supported.
+    !> `HIPSPARSE_MATRIX_TYPE_GENERAL` is supported.
     !> @param[out]
     !> csrValC       array of \p nnzC elements containing the values of the sparse CSR matrix C.
     !> @param[in]
@@ -18578,8 +18580,8 @@ module hipfort_hipsparse
     !> csrColIndC array of \p nnzC elements containing the column indices of the sparse CSR matrix
     !> C.
     !> @param[in]
-    !> buffer buffer allocated by the user whose size is determined by calling \ref
-    !> hipsparseSpruneCsr2csr_bufferSize
+    !> buffer buffer allocated by the user whose size is determined by calling
+    !> `hipsparseSpruneCsr2csr_bufferSize`
     !> "hipsparseXpruneCsr2csr_bufferSize()".
     !>
     !> \retval     HIPSPARSE_STATUS_SUCCESS the operation completed successfully.
@@ -18651,7 +18653,7 @@ module hipfort_hipsparse
     !> \details
     !> \p hipsparseXpruneCsr2csrByPercentage_bufferSize returns the size of the temporary buffer
     !> that
-    !> is required by \ref hipsparseSpruneCsr2csrNnzByPercentage
+    !> is required by `hipsparseSpruneCsr2csrNnzByPercentage`
     !> "hipsparseXpruneCsr2csrNnzByPercentage()".
     !> The temporary storage buffer must be allocated by the user.
     !>
@@ -18665,7 +18667,7 @@ module hipfort_hipsparse
     !> nnzA                number of non-zeros in the sparse CSR matrix A.
     !> @param[in]
     !> descrA              descriptor of the sparse CSR matrix A. Currently, only
-    !> \ref HIPSPARSE_MATRIX_TYPE_GENERAL is supported.
+    !> `HIPSPARSE_MATRIX_TYPE_GENERAL` is supported.
     !> @param[in]
     !> csrValA array of \p nnzA elements containing the values of the sparse CSR matrix A.
     !> @param[in]
@@ -18678,7 +18680,7 @@ module hipfort_hipsparse
     !> percentage          \p percentage>=0 and \p percentage<=100.
     !> @param[in]
     !> descrC              descriptor of the sparse CSR matrix C. Currently, only
-    !> \ref HIPSPARSE_MATRIX_TYPE_GENERAL is supported.
+    !> `HIPSPARSE_MATRIX_TYPE_GENERAL` is supported.
     !> @param[in]
     !> csrValC array of \p nnzC elements containing the values of the sparse CSR matrix C.
     !> @param[in]
@@ -18691,7 +18693,7 @@ module hipfort_hipsparse
     !> info                prune info structure.
     !> @param[out]
     !> pBufferSizeInBytes number of bytes of the temporary storage buffer required by
-    !> hipsparseSpruneCsr2csrNnzByPercentage(),
+    !> `hipsparseSpruneCsr2csrNnzByPercentage()`,
     !> hipsparseDpruneCsr2csrNnzByPercentage(), hipsparseSpruneCsr2csrByPercentage(),
     !> and hipsparseDpruneCsr2csrByPercentage().
     !>
@@ -18768,7 +18770,7 @@ module hipfort_hipsparse
     !> \details
     !> \p hipsparseXpruneCsr2csrByPercentage_bufferSizeExt returns the size of the temporary buffer
     !> that
-    !> is required by \ref hipsparseSpruneCsr2csrNnzByPercentage
+    !> is required by `hipsparseSpruneCsr2csrNnzByPercentage`
     !> "hipsparseXpruneCsr2csrNnzByPercentage()".
     !> The temporary storage buffer must be allocated by the user.
     !>
@@ -18782,7 +18784,7 @@ module hipfort_hipsparse
     !> nnzA                number of non-zeros in the sparse CSR matrix A.
     !> @param[in]
     !> descrA              descriptor of the sparse CSR matrix A. Currently, only
-    !> \ref HIPSPARSE_MATRIX_TYPE_GENERAL is supported.
+    !> `HIPSPARSE_MATRIX_TYPE_GENERAL` is supported.
     !> @param[in]
     !> csrValA array of \p nnzA elements containing the values of the sparse CSR matrix A.
     !> @param[in]
@@ -18795,7 +18797,7 @@ module hipfort_hipsparse
     !> percentage          \p percentage>=0 and \p percentage<=100.
     !> @param[in]
     !> descrC              descriptor of the sparse CSR matrix C. Currently, only
-    !> \ref HIPSPARSE_MATRIX_TYPE_GENERAL is supported.
+    !> `HIPSPARSE_MATRIX_TYPE_GENERAL` is supported.
     !> @param[in]
     !> csrValC array of \p nnzC elements containing the values of the sparse CSR matrix C.
     !> @param[in]
@@ -18808,7 +18810,7 @@ module hipfort_hipsparse
     !> info                prune info structure.
     !> @param[out]
     !> pBufferSizeInBytes number of bytes of the temporary storage buffer required by
-    !> hipsparseSpruneCsr2csrNnzByPercentage(),
+    !> `hipsparseSpruneCsr2csrNnzByPercentage()`,
     !> hipsparseDpruneCsr2csrNnzByPercentage(), hipsparseSpruneCsr2csrByPercentage(),
     !> and hipsparseDpruneCsr2csrByPercentage().
     !>
@@ -18902,7 +18904,7 @@ module hipfort_hipsparse
     !> nnzA               number of non-zeros in the sparse CSR matrix A.
     !> @param[in]
     !> descrA             descriptor of the sparse CSR matrix A. Currently, only
-    !> \ref HIPSPARSE_MATRIX_TYPE_GENERAL is supported.
+    !> `HIPSPARSE_MATRIX_TYPE_GENERAL` is supported.
     !> @param[in]
     !> csrValA array of \p nnzA elements containing the values of the sparse CSR matrix A.
     !> @param[in]
@@ -18915,7 +18917,7 @@ module hipfort_hipsparse
     !> percentage         \p percentage>=0 and \p percentage<=100.
     !> @param[in]
     !> descrC             descriptor of the sparse CSR matrix C. Currently, only
-    !> \ref HIPSPARSE_MATRIX_TYPE_GENERAL is supported.
+    !> `HIPSPARSE_MATRIX_TYPE_GENERAL` is supported.
     !> @param[out]
     !> csrRowPtrC         array of \p m+1 elements that point to the start of every row of the
     !> sparse CSR matrix C.
@@ -18925,7 +18927,7 @@ module hipfort_hipsparse
     !> info               prune info structure.
     !> @param[out]
     !> buffer             buffer allocated by the user whose size is determined by calling
-    !> \ref hipsparseSpruneCsr2csrByPercentage_bufferSize
+    !> `hipsparseSpruneCsr2csrByPercentage_bufferSize`
     !> "hipsparseXpruneCsr2csrByPercentage_bufferSize()".
     !>
     !> \retval     HIPSPARSE_STATUS_SUCCESS the operation completed successfully.
@@ -19002,13 +19004,13 @@ module hipfort_hipsparse
     !> in A
     !> that are less than the threshold. All the parameters are assumed to have been preallocated by
     !> the user.
-    !> The user first calls \ref hipsparseSpruneCsr2csr_bufferSize
+    !> The user first calls `hipsparseSpruneCsr2csr_bufferSize`
     !> "hipsparseXpruneCsr2csr_bufferSize()" to
-    !> determine the size of the buffer used by \ref hipsparseSpruneCsr2csrNnz
+    !> determine the size of the buffer used by `hipsparseSpruneCsr2csrNnz`
     !> "hipsparseXpruneCsr2csrNnz()" and
     !> \p hipsparseXpruneCsr2csr(), which the user then allocates. The user then allocates \p
     !> csrRowPtrC to have
-    !> \p m+1 elements and then calls \ref hipsparseSpruneCsr2csrNnz "hipsparseXpruneCsr2csrNnz()"
+    !> \p m+1 elements and then calls `hipsparseSpruneCsr2csrNnz` "hipsparseXpruneCsr2csrNnz()"
     !> which fills
     !> in the \p csrRowPtrC array and stores the number of elements that are larger than the pruning
     !> \p threshold
@@ -19028,7 +19030,7 @@ module hipfort_hipsparse
     !> nnzA          number of non-zeros in the sparse CSR matrix A.
     !> @param[in]
     !> descrA        descriptor of the sparse CSR matrix A. Currently, only
-    !> \ref HIPSPARSE_MATRIX_TYPE_GENERAL is supported.
+    !> `HIPSPARSE_MATRIX_TYPE_GENERAL` is supported.
     !> @param[in]
     !> csrValA       array of \p nnzA elements containing the values of the sparse CSR matrix A.
     !> @param[in]
@@ -19041,7 +19043,7 @@ module hipfort_hipsparse
     !> percentage    \p percentage>=0 and \p percentage<=100.
     !> @param[in]
     !> descrC        descriptor of the sparse CSR matrix C. Currently, only
-    !> \ref HIPSPARSE_MATRIX_TYPE_GENERAL is supported.
+    !> `HIPSPARSE_MATRIX_TYPE_GENERAL` is supported.
     !> @param[out]
     !> csrValC       array of \p nnz_C elements containing the values of the sparse CSR matrix C.
     !> @param[in]
@@ -19054,7 +19056,7 @@ module hipfort_hipsparse
     !> info          prune info structure.
     !> @param[in]
     !> buffer        buffer allocated by the user whose size is determined by calling
-    !> \ref hipsparseSpruneCsr2csrByPercentage_bufferSize
+    !> `hipsparseSpruneCsr2csrByPercentage_bufferSize`
     !> "hipsparseXpruneCsr2csrByPercentage_bufferSize()".
     !>
     !> \retval     HIPSPARSE_STATUS_SUCCESS the operation completed successfully.
@@ -19144,13 +19146,13 @@ module hipfort_hipsparse
     !> the conversion.
     !> After the buffer size has been determined, the user must allocate it. This user-allocated
     !> buffer is then passed
-    !> to \ref hipsparseSpruneDense2csrNnz "hipsparseXpruneDense2csrNnz()" and \ref
-    !> hipsparseSpruneDense2csr
+    !> to `hipsparseSpruneDense2csrNnz` "hipsparseXpruneDense2csrNnz()" and
+    !> `hipsparseSpruneDense2csr`
     !> "hipsparseXpruneDense2csr()" to complete the conversion. The user is responsible for then
     !> freeing the buffer after
     !> the conversion has been completed.
     !>
-    !> See hipsparseSpruneDense2csr() for a full code example.
+    !> See `hipsparseSpruneDense2csr()` for a full code example.
     !>
     !> \deprecated
     !> This function is deprecated when using the CUDA backend (CUDA 12.0+) and will be
@@ -19170,9 +19172,9 @@ module hipfort_hipsparse
     !> threshold pointer to the pruning non-negative threshold, which can exist in either host or
     !> device memory.
     !> @param[in]
-    !> descr the descriptor of the dense matrix \p A. The supported matrix type is \ref
-    !> HIPSPARSE_MATRIX_TYPE_GENERAL
-    !> and any valid value of the \ref hipsparseIndexBase_t.
+    !> descr the descriptor of the dense matrix \p A. The supported matrix type is
+    !> `HIPSPARSE_MATRIX_TYPE_GENERAL`
+    !> and any valid value of the `hipsparseIndexBase_t`.
     !> @param[in]
     !> csrVal array of nnz ( = \p csrRowPtr[m] - \p csrRowPtr[0] ) non-zero elements of matrix \p A.
     !> @param[in]
@@ -19183,8 +19185,8 @@ module hipfort_hipsparse
     !> non-zero elements of matrix \p A.
     !> @param[out]
     !> pBufferSizeInBytes number of bytes of the temporary storage buffer required by
-    !> hipsparseSpruneDense2csrNnz(), hipsparseDpruneDense2csrNnz(),
-    !> hipsparseSpruneDense2csr(), and hipsparseDpruneDense2csr().
+    !> `hipsparseSpruneDense2csrNnz()`, hipsparseDpruneDense2csrNnz(),
+    !> `hipsparseSpruneDense2csr()`, and hipsparseDpruneDense2csr().
     !>
     !> \retval HIPSPARSE_STATUS_SUCCESS the operation completed successfully.
     !> \retval HIPSPARSE_STATUS_NOT_INITIALIZED \p handle is not initialized.
@@ -19313,7 +19315,7 @@ module hipfort_hipsparse
     !> \f]
     !>
     !> First, the user must determine the size of the required temporary buffer using the routine
-    !> \ref hipsparseSpruneDense2csr_bufferSize "hipsparseXpruneDense2csr_bufferSize()" and then
+    !> `hipsparseSpruneDense2csr_bufferSize` "hipsparseXpruneDense2csr_bufferSize()" and then
     !> allocate it. Next,
     !> the user allocates \p csrRowPtr with size \p m+1. Then the function passes both the temporary
     !> storage buffer and
@@ -19327,8 +19329,8 @@ module hipfort_hipsparse
     !>
     !> \f[
     !> \begin{bmatrix}
-    !> 6 & 2 & 3 & 7 \\
-    !> 5 & 6 & 7 & 8 \\
+    !> 6 & 2 & 3 & 7 \\%
+    !> 5 & 6 & 7 & 8 \\%
     !> 5 & 4 & 8 & 1
     !> \end{bmatrix}
     !> \f]
@@ -19337,8 +19339,8 @@ module hipfort_hipsparse
     !>
     !> \f[
     !> \begin{bmatrix}
-    !> 6 & 0 & 0 & 7 \\
-    !> 0 & 6 & 7 & 8 \\
+    !> 6 & 0 & 0 & 7 \\%
+    !> 0 & 6 & 7 & 8 \\%
     !> 0 & 0 & 8 & 0
     !> \end{bmatrix}
     !> \f]
@@ -19347,17 +19349,17 @@ module hipfort_hipsparse
     !>
     !> \f[
     !> \begin{align}
-    !> \text{csrRowPtr} &= \begin{bmatrix} 0 & 2 & 5 & 6 \end{bmatrix} \\
+    !> \text{csrRowPtr} &= \begin{bmatrix} 0 & 2 & 5 & 6 \end{bmatrix} \\%
     !> \text{nnzTotalDevHostPtr} &= 6
     !> \end{align}
     !> \f]
     !>
     !> The above example assumes a zero index base for the output CSR matrix. Users can set the
     !> desired index base
-    !> in the output CSR matrix by setting it in the \ref hipsparseMatDescr_t. See \ref
-    !> hipsparseSetMatIndexBase().
+    !> in the output CSR matrix by setting it in the `hipsparseMatDescr_t`. See
+    !> `hipsparseSetMatIndexBase` ().
     !>
-    !> For a full code example on how to use this routine, see hipsparseSpruneDense2csr().
+    !> For a full code example on how to use this routine, see `hipsparseSpruneDense2csr()`.
     !>
     !> \note
     !> The routine supports asynchronous execution if the pointer mode is set to device.
@@ -19384,8 +19386,8 @@ module hipfort_hipsparse
     !> nnzTotalDevHostPtr total number of non-zero elements in device or host memory.
     !> @param[out]
     !> buffer             buffer allocated by the user whose size is determined by calling
-    !> \ref hipsparseSpruneDense2csr_bufferSize "hipsparseXpruneDense2csr_bufferSize()" or
-    !> \ref hipsparseSpruneDense2csr_bufferSizeExt "hipsparseXpruneDense2csr_bufferSizeExt()".
+    !> `hipsparseSpruneDense2csr_bufferSize` "hipsparseXpruneDense2csr_bufferSize()" or
+    !> `hipsparseSpruneDense2csr_bufferSizeExt` "hipsparseXpruneDense2csr_bufferSizeExt()".
     !>
     !> \retval     HIPSPARSE_STATUS_SUCCESS the operation completed successfully.
     !> \retval HIPSPARSE_STATUS_INVALID_VALUE \p handle, \p m, \p n, \p lda, \p A, \p threshold, \p
@@ -19457,12 +19459,12 @@ module hipfort_hipsparse
     !> |C(i,j)| = A(i, j) \text{  if |A(i, j)| > threshold}
     !> \f]
     !>
-    !> The user first calls \ref hipsparseSpruneDense2csr_bufferSize
+    !> The user first calls `hipsparseSpruneDense2csr_bufferSize`
     !> "hipsparseXpruneDense2csr_bufferSize()" to
     !> determine the size of the required user-allocated temporary storage buffer. The user then
     !> allocates this
     !> buffer. Next, the user allocates \p csrRowPtr to have \p m+1 elements and then calls
-    !> \ref hipsparseSpruneDense2csrNnz "hipsparseXpruneDense2csrNnz()", which fills in the \p
+    !> `hipsparseSpruneDense2csrNnz` "hipsparseXpruneDense2csrNnz()", which fills in the \p
     !> csrRowPtr array
     !> and stores the number of elements that are larger than the pruning \p threshold in \p
     !> nnzTotalDevHostPtr.
@@ -19473,8 +19475,8 @@ module hipfort_hipsparse
     !> For example, performing these steps with the dense input matrix \p A :
     !> \f[
     !> \begin{bmatrix}
-    !> 6 & 2 & 3 & 7 \\
-    !> 5 & 6 & 7 & 8 \\
+    !> 6 & 2 & 3 & 7 \\%
+    !> 5 & 6 & 7 & 8 \\%
     !> 5 & 4 & 8 & 1
     !> \end{bmatrix}
     !> \f]
@@ -19483,8 +19485,8 @@ module hipfort_hipsparse
     !>
     !> \f[
     !> \begin{bmatrix}
-    !> 6 & 0 & 0 & 7 \\
-    !> 0 & 6 & 7 & 8 \\
+    !> 6 & 0 & 0 & 7 \\%
+    !> 0 & 6 & 7 & 8 \\%
     !> 0 & 0 & 8 & 0
     !> \end{bmatrix}
     !> \f]
@@ -19493,9 +19495,9 @@ module hipfort_hipsparse
     !>
     !> \f[
     !> \begin{align}
-    !> \text{csrRowPtr} &= \begin{bmatrix} 0 & 2 & 5 & 6 \end{bmatrix} \\
-    !> \text{csrColInd} &= \begin{bmatrix} 0 & 3 & 1 & 2 & 3 & 2 \end{bmatrix} \\
-    !> \text{csrVal} &= \begin{bmatrix} 6 & 7 & 6 & 7 & 8 & 8 \end{bmatrix} \\
+    !> \text{csrRowPtr} &= \begin{bmatrix} 0 & 2 & 5 & 6 \end{bmatrix} \\%
+    !> \text{csrColInd} &= \begin{bmatrix} 0 & 3 & 1 & 2 & 3 & 2 \end{bmatrix} \\%
+    !> \text{csrVal} &= \begin{bmatrix} 6 & 7 & 6 & 7 & 8 & 8 \end{bmatrix} \\%
     !> \end{align}
     !> \f]
     !>
@@ -19518,9 +19520,9 @@ module hipfort_hipsparse
     !> threshold pointer to the non-negative pruning threshold, which can exist in either host or
     !> device memory.
     !> @param[in]
-    !> descr the descriptor of the dense matrix \p A. The supported matrix type is \ref
-    !> HIPSPARSE_MATRIX_TYPE_GENERAL
-    !> and any valid value of the \ref hipsparseIndexBase_t.
+    !> descr the descriptor of the dense matrix \p A. The supported matrix type is
+    !> `HIPSPARSE_MATRIX_TYPE_GENERAL`
+    !> and any valid value of the `hipsparseIndexBase_t`.
     !> @param[out]
     !> csrVal array of nnz ( = \p csrRowPtr[m] - \p csrRowPtr[0] ) non-zero elements of matrix \p A.
     !> @param[in]
@@ -19532,8 +19534,8 @@ module hipfort_hipsparse
     !>
     !> @param[in]
     !> buffer     temporary storage buffer allocated by the user. The size is returned by
-    !> \ref hipsparseSpruneDense2csr_bufferSize "hipsparseXpruneDense2csr_bufferSize()" or
-    !> \ref hipsparseSpruneDense2csr_bufferSizeExt "hipsparseXpruneDense2csr_bufferSizeExt()".
+    !> `hipsparseSpruneDense2csr_bufferSize` "hipsparseXpruneDense2csr_bufferSize()" or
+    !> `hipsparseSpruneDense2csr_bufferSizeExt` "hipsparseXpruneDense2csr_bufferSizeExt()".
     !>
     !> \retval     HIPSPARSE_STATUS_SUCCESS the operation completed successfully.
     !> \retval HIPSPARSE_STATUS_INVALID_VALUE \p handle, \p m, \p n, \p lda, \p A, \p descr, \p
@@ -19606,22 +19608,22 @@ module hipfort_hipsparse
     !> temporary storage buffer. After this is determined, this buffer must be allocated by the
     !> user.
     !> Next, the user allocates the \p csrRowPtr array to have \p m+1 elements and calls
-    !> \ref hipsparseSpruneDense2csrNnzByPercentage "hipsparseXpruneDense2csrNnzByPercentage()".
+    !> `hipsparseSpruneDense2csrNnzByPercentage` "hipsparseXpruneDense2csrNnzByPercentage()".
     !> Finally, the user finishes the conversion by allocating the \p csrColInd and \p csrVal arrays
     !> (whose size is determined by the value at \p nnzTotalDevHostPtr) and calling
-    !> \ref hipsparseSpruneDense2csrByPercentage "hipsparseXpruneDense2csrByPercentage()".
+    !> `hipsparseSpruneDense2csrByPercentage` "hipsparseXpruneDense2csrByPercentage()".
     !>
     !> The pruning by \p percentage works by first sorting the absolute values of the dense
     !> matrix \p A. Users can then determine a position in this sorted array by
     !> \f[
-    !> pos = ceil(m \cdot n \cdot (percentage/100)) - 1 \\
-    !> pos = \min(pos, m \cdot n-1) \\
-    !> pos = \max(pos, 0) \\
+    !> pos = ceil(m \cdot n \cdot (percentage/100)) - 1 \\%
+    !> pos = \min(pos, m \cdot n-1) \\%
+    !> pos = \max(pos, 0) \\%
     !> threshold = sorted_A[pos]
     !> \f]
     !>
     !> After the user has this threshold, they can prune values in the dense matrix \p A, as in
-    !> \ref hipsparseSpruneDense2csr "hipsparseXpruneDense2csr()".
+    !> `hipsparseSpruneDense2csr` "hipsparseXpruneDense2csr()".
     !>
     !> \note
     !> This function is executed asynchronously with respect to the host and can return control to
@@ -19641,9 +19643,9 @@ module hipfort_hipsparse
     !> @param[in]
     !> percentage         \p percentage>=0 and \p percentage<=100.
     !> @param[in]
-    !> descr the descriptor of the dense matrix \p A. The supported matrix type is \ref
-    !> HIPSPARSE_MATRIX_TYPE_GENERAL and
-    !> any valid value of the \ref hipsparseIndexBase_t.
+    !> descr the descriptor of the dense matrix \p A. The supported matrix type is
+    !> `HIPSPARSE_MATRIX_TYPE_GENERAL` and
+    !> any valid value of the `hipsparseIndexBase_t`.
     !> @param[in]
     !> csrVal array of nnz ( = \p csrRowPtr[m] - \p csrRowPtr[0] ) nonzero elements of matrix \p A.
     !> @param[in]
@@ -19656,7 +19658,7 @@ module hipfort_hipsparse
     !> info               prune information structure.
     !> @param[out]
     !> pBufferSizeInBytes number of bytes of the temporary storage buffer required by
-    !> hipsparseSpruneDense2csrNnzByPercentage() and hipsparseDpruneDense2csrNnzByPercentage().
+    !> `hipsparseSpruneDense2csrNnzByPercentage()` and hipsparseDpruneDense2csrNnzByPercentage().
     !>
     !> \retval     HIPSPARSE_STATUS_SUCCESS the operation completed successfully.
     !> \retval HIPSPARSE_STATUS_INVALID_VALUE the \p handle or \p pBufferSizeInBytes pointer is
@@ -19730,22 +19732,22 @@ module hipfort_hipsparse
     !> temporary storage buffer. After this is determined, this buffer must be allocated by the
     !> user.
     !> Next, the user allocates the \p csrRowPtr array to have \p m+1 elements and calls
-    !> \ref hipsparseSpruneDense2csrNnzByPercentage "hipsparseXpruneDense2csrNnzByPercentage()".
+    !> `hipsparseSpruneDense2csrNnzByPercentage` "hipsparseXpruneDense2csrNnzByPercentage()".
     !> Finally, the user finishes the conversion by allocating the \p csrColInd and \p csrVal arrays
     !> (whose size is determined by the value at \p nnzTotalDevHostPtr) and calling
-    !> \ref hipsparseSpruneDense2csrByPercentage "hipsparseXpruneDense2csrByPercentage()".
+    !> `hipsparseSpruneDense2csrByPercentage` "hipsparseXpruneDense2csrByPercentage()".
     !>
     !> The pruning by \p percentage works by first sorting the absolute values of the dense
     !> matrix \p A. Users can then determine a position in this sorted array by
     !> \f[
-    !> pos = ceil(m \cdot n \cdot (percentage/100)) - 1 \\
-    !> pos = \min(pos, m \cdot n-1) \\
-    !> pos = \max(pos, 0) \\
+    !> pos = ceil(m \cdot n \cdot (percentage/100)) - 1 \\%
+    !> pos = \min(pos, m \cdot n-1) \\%
+    !> pos = \max(pos, 0) \\%
     !> threshold = sorted_A[pos]
     !> \f]
     !>
     !> After users have this threshold, they can prune values in the dense matrix \p A, as in
-    !> \ref hipsparseSpruneDense2csr "hipsparseXpruneDense2csr()".
+    !> `hipsparseSpruneDense2csr` "hipsparseXpruneDense2csr()".
     !>
     !> \note
     !> This function is executed asynchronously with respect to the host and can return control to
@@ -19765,9 +19767,9 @@ module hipfort_hipsparse
     !> @param[in]
     !> percentage         \p percentage>=0 and \p percentage<=100.
     !> @param[in]
-    !> descr the descriptor of the dense matrix \p A. The supported matrix type is \ref
-    !> HIPSPARSE_MATRIX_TYPE_GENERAL and
-    !> any valid value of the \ref hipsparseIndexBase_t.
+    !> descr the descriptor of the dense matrix \p A. The supported matrix type is
+    !> `HIPSPARSE_MATRIX_TYPE_GENERAL` and
+    !> any valid value of the `hipsparseIndexBase_t`.
     !> @param[in]
     !> csrVal array of nnz ( = \p csrRowPtr[m] - \p csrRowPtr[0] ) non-zero elements of matrix \p A.
     !> @param[in]
@@ -19780,7 +19782,7 @@ module hipfort_hipsparse
     !> info               prune information structure.
     !> @param[out]
     !> pBufferSizeInBytes number of bytes of the temporary storage buffer required by
-    !> hipsparseSpruneDense2csrNnzByPercentage() and hipsparseDpruneDense2csrNnzByPercentage().
+    !> `hipsparseSpruneDense2csrNnzByPercentage()` and hipsparseDpruneDense2csrNnzByPercentage().
     !>
     !> \retval     HIPSPARSE_STATUS_SUCCESS the operation completed successfully.
     !> \retval HIPSPARSE_STATUS_INVALID_VALUE the \p handle or \p pBufferSizeInBytes pointer is
@@ -19853,7 +19855,7 @@ module hipfort_hipsparse
     !> \details
     !> When converting and pruning a dense matrix \p A to a CSR matrix by \p percentage, the
     !> following steps are performed. First, the user calls
-    !> \ref hipsparseSpruneDense2csrByPercentage_bufferSize
+    !> `hipsparseSpruneDense2csrByPercentage_bufferSize`
     !> "hipsparseXpruneDense2csrByPercentage_bufferSize()",
     !> which determines the size of the temporary storage buffer. After this is determined, this
     !> buffer must be allocated
@@ -19862,20 +19864,20 @@ module hipfort_hipsparse
     !> \p hipsparseXpruneDense2csrNnzByPercentage. Finally, the user finishes the conversion
     !> by allocating the \p csrColInd and \p csrVal arrays (which have a size determined by the
     !> value
-    !> at \p nnzTotalDevHostPtr) and calling \ref hipsparseSpruneDense2csrByPercentage
+    !> at \p nnzTotalDevHostPtr) and calling `hipsparseSpruneDense2csrByPercentage`
     !> "hipsparseXpruneDense2csrByPercentage()".
     !>
     !> The pruning by \p percentage works by first sorting the absolute values of the dense
     !> matrix \p A. Users can then determine a position in this sorted array by
     !> \f[
-    !> pos = ceil(m \cdot n \cdot (percentage/100)) - 1 \\
-    !> pos = \min(pos, m \cdot n-1) \\
-    !> pos = \max(pos, 0) \\
+    !> pos = ceil(m \cdot n \cdot (percentage/100)) - 1 \\%
+    !> pos = \min(pos, m \cdot n-1) \\%
+    !> pos = \max(pos, 0) \\%
     !> threshold = sorted_A[pos]
     !> \f]
     !>
     !> After users have this threshold, they can prune values in the dense matrix \p A, as in
-    !> \ref hipsparseSpruneDense2csr "hipsparseXpruneDense2csr()".
+    !> `hipsparseSpruneDense2csr` "hipsparseXpruneDense2csr()".
     !>
     !> \note
     !> This routine supports asynchronous execution if the pointer mode is set to device.
@@ -19903,9 +19905,9 @@ module hipfort_hipsparse
     !> info               prune information structure
     !> @param[out]
     !> buffer             buffer allocated by the user whose size is determined by calling
-    !> \ref hipsparseSpruneDense2csrByPercentage_bufferSize
+    !> `hipsparseSpruneDense2csrByPercentage_bufferSize`
     !> "hipsparseXpruneDense2csrByPercentage_bufferSize()"
-    !> or \ref hipsparseSpruneDense2csrByPercentage_bufferSizeExt
+    !> or `hipsparseSpruneDense2csrByPercentage_bufferSizeExt`
     !> "hipsparseXpruneDense2csrByPercentage_bufferSizeExt()".
     !>
     !> \retval     HIPSPARSE_STATUS_SUCCESS the operation completed successfully.
@@ -19972,13 +19974,13 @@ module hipfort_hipsparse
     !>
     !> \details
     !> When converting and pruning a dense matrix \p A to a CSR matrix by \p percentage, the
-    !> following steps are performed. First, the user calls \ref
-    !> hipsparseSpruneDense2csrByPercentage_bufferSize
+    !> following steps are performed. First, the user calls
+    !> `hipsparseSpruneDense2csrByPercentage_bufferSize`
     !> "hipsparseXpruneDense2csrByPercentage_bufferSize()", which determines the size of the
     !> temporary storage buffer. After this is determined, this buffer must be allocated by the
     !> user.
     !> Next, the user allocates the \p csrRowPtr array to have \p m+1 elements and calls
-    !> \ref hipsparseSpruneDense2csrNnzByPercentage "hipsparseXpruneDense2csrNnzByPercentage()".
+    !> `hipsparseSpruneDense2csrNnzByPercentage` "hipsparseXpruneDense2csrNnzByPercentage()".
     !> Finally, the
     !> user finishes the conversion by allocating the \p csrColInd and \p csrVal arrays (which have
     !> a size
@@ -19988,14 +19990,14 @@ module hipfort_hipsparse
     !> The pruning by \p percentage works by first sorting the absolute values of the dense
     !> matrix \p A. Users can then determine a position in this sorted array by
     !> \f[
-    !> pos = ceil(m \ cdot n \cdot (percentage/100)) - 1 \\
-    !> pos = \min(pos, m \cdot n-1) \\
-    !> pos = \max(pos, 0) \\
+    !> pos = ceil(m \ cdot n \cdot (percentage/100)) - 1 \\%
+    !> pos = \min(pos, m \cdot n-1) \\%
+    !> pos = \max(pos, 0) \\%
     !> threshold = sorted_A[pos]
     !> \f]
     !>
     !> After users have this threshold, they can prune values in the dense matrix \p A, as in
-    !> \ref hipsparseSpruneDense2csr "hipsparseXpruneDense2csr()".
+    !> `hipsparseSpruneDense2csr` "hipsparseXpruneDense2csr()".
     !>
     !> \note
     !> This routine support asynchronous execution if the pointer mode is set to device.
@@ -20013,9 +20015,9 @@ module hipfort_hipsparse
     !> @param[in]
     !> percentage  \p percentage>=0 and \p percentage<=100.
     !> @param[in]
-    !> descr the descriptor of the dense matrix \p A. The supported matrix type is \ref
-    !> HIPSPARSE_MATRIX_TYPE_GENERAL and
-    !> any valid value of the \ref hipsparseIndexBase_t.
+    !> descr the descriptor of the dense matrix \p A. The supported matrix type is
+    !> `HIPSPARSE_MATRIX_TYPE_GENERAL` and
+    !> any valid value of the `hipsparseIndexBase_t`.
     !> @param[out]
     !> csrVal array of nnz ( = \p csrRowPtr[m] - \p csrRowPtr[0] ) non-zero elements of matrix \p A.
     !> @param[in]
@@ -20028,9 +20030,9 @@ module hipfort_hipsparse
     !> info prune  information structure
     !> @param[in]
     !> buffer      temporary storage buffer allocated by the user. The size is returned by
-    !> \ref hipsparseSpruneDense2csrByPercentage_bufferSize
+    !> `hipsparseSpruneDense2csrByPercentage_bufferSize`
     !> "hipsparseXpruneDense2csrByPercentage_bufferSize()" or
-    !> \ref hipsparseSpruneDense2csrByPercentage_bufferSizeExt
+    !> `hipsparseSpruneDense2csrByPercentage_bufferSizeExt`
     !> "hipsparseXpruneDense2csrByPercentage_bufferSizeExt()".
     !>
     !> \retval     HIPSPARSE_STATUS_SUCCESS the operation completed successfully.

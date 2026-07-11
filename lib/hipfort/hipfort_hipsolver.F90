@@ -1,5 +1,28 @@
-! Auto-generated module wrapper for hipfort_hipsolver
-! DO NOT EDIT — re-run the generator to update.
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+! ==============================================================================
+! hipfort: FORTRAN Interfaces for GPU kernels
+! ==============================================================================
+! Copyright (c) 2020-2026 Advanced Micro Devices, Inc. All rights reserved.
+! [MITx11 License]
+! 
+! Permission is hereby granted, free of charge, to any person obtaining a copy
+! of this software and associated documentation files (the "Software"), to deal
+! in the Software without restriction, including without limitation the rights
+! to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+! copies of the Software, and to permit persons to whom the Software is
+! furnished to do so, subject to the following conditions:
+! 
+! The above copyright notice and this permission notice shall be included in
+! all copies or substantial portions of the Software.
+! 
+! THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+! IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+! FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.  IN NO EVENT SHALL THE
+! AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+! LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+! OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+! THE SOFTWARE.
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
 module hipfort_hipsolver
   use hipfort_hipsolver_enums
@@ -5838,7 +5861,7 @@ module hipfort_hipsolver
     !---------------------------------------------
     ! hipsolverDnCreate
     !---------------------------------------------
-    !> \brief An alias for #hipsolverCreate.
+    !> \brief An alias for `hipsolverCreate`.
     function hipsolverDnCreate(handle) &
        result(DnCreate) &
 #ifdef USE_CUDA_NAMES
@@ -5854,7 +5877,7 @@ module hipfort_hipsolver
     !---------------------------------------------
     ! hipsolverDnDestroy
     !---------------------------------------------
-    !> \brief An alias for #hipsolverDestroy.
+    !> \brief An alias for `hipsolverDestroy`.
     function hipsolverDnDestroy(handle) &
        result(DnDestroy) &
 #ifdef USE_CUDA_NAMES
@@ -5870,7 +5893,7 @@ module hipfort_hipsolver
     !---------------------------------------------
     ! hipsolverDnSetStream
     !---------------------------------------------
-    !> \brief An alias for #hipsolverSetStream.
+    !> \brief An alias for `hipsolverSetStream`.
     function hipsolverDnSetStream(handle, streamId) &
        result(DnSetStream) &
 #ifdef USE_CUDA_NAMES
@@ -5887,7 +5910,7 @@ module hipfort_hipsolver
     !---------------------------------------------
     ! hipsolverDnGetStream
     !---------------------------------------------
-    !> \brief An alias for #hipsolverGetStream.
+    !> \brief An alias for `hipsolverGetStream`.
     function hipsolverDnGetStream(handle, streamId) &
        result(DnGetStream) &
 #ifdef USE_CUDA_NAMES
@@ -5904,7 +5927,7 @@ module hipfort_hipsolver
     !---------------------------------------------
     ! hipsolverDnSetDeterministicMode
     !---------------------------------------------
-    !> \brief An alias for #hipsolverSetDeterministicMode.
+    !> \brief An alias for `hipsolverSetDeterministicMode`.
     function hipsolverDnSetDeterministicMode(handle, mode) &
        result(DnSetDeterministicMode) &
        bind(C, name="hipsolverDnSetDeterministicMode")
@@ -5917,7 +5940,7 @@ module hipfort_hipsolver
     !---------------------------------------------
     ! hipsolverDnGetDeterministicMode
     !---------------------------------------------
-    !> \brief An alias for #hipsolverGetDeterministicMode.
+    !> \brief An alias for `hipsolverGetDeterministicMode`.
     function hipsolverDnGetDeterministicMode(handle, mode) &
        result(DnGetDeterministicMode) &
        bind(C, name="hipsolverDnGetDeterministicMode")

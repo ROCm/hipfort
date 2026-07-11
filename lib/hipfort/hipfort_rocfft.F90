@@ -1,5 +1,28 @@
-! Auto-generated module wrapper for hipfort_rocfft
-! DO NOT EDIT — re-run the generator to update.
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+! ==============================================================================
+! hipfort: FORTRAN Interfaces for GPU kernels
+! ==============================================================================
+! Copyright (c) 2020-2026 Advanced Micro Devices, Inc. All rights reserved.
+! [MITx11 License]
+! 
+! Permission is hereby granted, free of charge, to any person obtaining a copy
+! of this software and associated documentation files (the "Software"), to deal
+! in the Software without restriction, including without limitation the rights
+! to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+! copies of the Software, and to permit persons to whom the Software is
+! furnished to do so, subject to the following conditions:
+! 
+! The above copyright notice and this permission notice shall be included in
+! all copies or substantial portions of the Software.
+! 
+! THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+! IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+! FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.  IN NO EVENT SHALL THE
+! AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+! LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+! OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+! THE SOFTWARE.
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
 module hipfort_rocfft
   use hipfort_rocfft_enums
@@ -63,7 +86,7 @@ module hipfort_rocfft
     !> more detailed transforms. For simple transforms, this parameter
     !> can be set to NULL.
     !>
-    !> The plan must be destroyed with a call to ::rocfft_plan_destroy.
+    !> The plan must be destroyed with a call to `rocfft_plan_destroy`.
     !>
     !> @param[out] plan plan handle
     !> @param[in] placement placement of result
@@ -364,14 +387,14 @@ module hipfort_rocfft
     !> @brief Add a brick to a field.
     !>
     !> Note that the order in which the bricks are added is significant;
-    !> the pointers provided for each brick to ::rocfft_execute are in
+    !> the pointers provided for each brick to `rocfft_execute` are in
     !> the same order that the bricks were added to the field.
     !>
     !> The brick may be added to another field or destroyed any time
     !> after this function returns.
     !>
-    !> @param[in, out] field: \ref rocfft_field struct which holds the brick decomposition.
-    !> @param[in] brick: \ref rocfft_brick struct to add to the field.
+    !> @param[in, out] field: `rocfft_field` struct which holds the brick decomposition.
+    !> @param[in] brick: `rocfft_brick` struct to add to the field.
     !>
     !> @warning Experimental!  This feature is part of an experimental API preview.
     function rocfft_field_add_brick(field, brick) &
@@ -386,13 +409,13 @@ module hipfort_rocfft
     !---------------------------------------------
     ! rocfft_plan_description_add_infield
     !---------------------------------------------
-    !> @brief Add a \ref rocfft_field to a \ref rocfft_plan_description as an input.
+    !> @brief Add a `rocfft_field` to a `rocfft_plan_description` as an input.
     !>
     !> The field may be reused or freed immediately after the function returns.
     !>
-    !> @param[in, out] description: \ref rocfft_plan_description that will pass the field
-    !> information to plan creation
-    !> @param[in] field: \ref rocfft_field struct added as an input field
+    !> @param[in, out] description: `rocfft_plan_description` that will pass the field information
+    !> to plan creation
+    !> @param[in] field: `rocfft_field` struct added as an input field
     !>
     !> @warning Experimental!  This feature is part of an experimental API preview.
     function rocfft_plan_description_add_infield(description, field) &
@@ -407,13 +430,13 @@ module hipfort_rocfft
     !---------------------------------------------
     ! rocfft_plan_description_add_outfield
     !---------------------------------------------
-    !> @brief Add a \ref rocfft_field to a \ref rocfft_plan_description as an output.
+    !> @brief Add a `rocfft_field` to a `rocfft_plan_description` as an output.
     !>
     !> The field may be reused or freed immediately after the function returns.
     !>
-    !> @param[in, out] description: \ref rocfft_plan_description that will pass the field
-    !> information to plan creation
-    !> @param[in] field: \ref rocfft_field struct added as an output field
+    !> @param[in, out] description: `rocfft_plan_description` that will pass the field information
+    !> to plan creation
+    !> @param[in] field: `rocfft_field` struct added as an output field
     !>
     !> @warning Experimental!  This feature is part of an experimental API preview.
     function rocfft_plan_description_add_outfield(description, field) &
@@ -469,7 +492,7 @@ module hipfort_rocfft
     !> @brief Create plan description
     !> @details This API creates a plan description with which the user
     !> can set extra plan properties.  The plan description must be freed
-    !> with a call to ::rocfft_plan_description_destroy.
+    !> with a call to `rocfft_plan_description_destroy`.
     !> @param[out] description plan description handle
     function rocfft_plan_description_create(description) &
        result(plan_description_create) &
@@ -484,7 +507,7 @@ module hipfort_rocfft
     !---------------------------------------------
     !> @brief Destroy a plan description
     !> @details This API frees the plan description.  A plan description
-    !> can be freed any time after it is passed to ::rocfft_plan_create.
+    !> can be freed any time after it is passed to `rocfft_plan_create`.
     !> @param[in] description plan description handle
     function rocfft_plan_description_destroy(description) &
        result(plan_description_destroy) &
@@ -500,7 +523,7 @@ module hipfort_rocfft
     !> @brief Create execution info
     !> @details This API creates an execution info with which the user
     !> can control plan execution and work buffers.  The execution info must be freed
-    !> with a call to ::rocfft_execution_info_destroy.
+    !> with a call to `rocfft_execution_info_destroy`.
     !> @param[out] info execution info handle
     function rocfft_execution_info_create(info) &
        result(execution_info_create) &
@@ -516,7 +539,7 @@ module hipfort_rocfft
     !> @brief Destroy an execution info
     !> @details This API frees the execution info.  An execution info
     !> object can be freed any time after it is passed to
-    !> ::rocfft_execute.
+    !> `rocfft_execute`.
     !> @param[in] info execution info handle
     function rocfft_execution_info_destroy(info) &
        result(execution_info_destroy) &
@@ -534,7 +557,7 @@ module hipfort_rocfft
     !> @details This is one of the execution info functions to specify
     !> optional additional information to control execution.  This API
     !> provides a work buffer for the transform. It must be called
-    !> before ::rocfft_execute.
+    !> before `rocfft_execute`.
     !>
     !> Work memory may be required on any device(s) with input or output
     !> data for the transform, and also the current device when the plan
@@ -543,13 +566,13 @@ module hipfort_rocfft
     !> the current HIP device, to set work memory for all devices.
     !>
     !> When a non-zero value is obtained from
-    !> ::rocfft_plan_get_work_buffer_size, that means the library needs a
+    !> `rocfft_plan_get_work_buffer_size`, that means the library needs a
     !> work buffer to compute the transform. In this case, the user
     !> should allocate the work buffer and pass it to the library via
     !> this API.
     !>
     !> If a work buffer is required for the transform but is not
-    !> specified using this function, ::rocfft_execute will automatically
+    !> specified using this function, `rocfft_execute` will automatically
     !> allocate the required buffer and free it when execution is
     !> finished.
     !>
@@ -575,7 +598,7 @@ module hipfort_rocfft
     !---------------------------------------------
     !> @brief Set stream in execution info
     !> @details Associates an existing compute stream to a plan.  This
-    !> must be called before the call to ::rocfft_execute.
+    !> must be called before the call to `rocfft_execute`.
     !>
     !> Once the association is made, execution of the FFT will run the
     !> computation through the specified stream.
@@ -721,7 +744,7 @@ module hipfort_rocfft
     !>
     !> @details Serialize rocFFT's cache of compiled kernels into a
     !> buffer.  This buffer is allocated by rocFFT and must be freed
-    !> with a call to ::rocfft_cache_buffer_free.  The length of the
+    !> with a call to `rocfft_cache_buffer_free`.  The length of the
     !> buffer in bytes is written to 'buffer_len_bytes'.
     function rocfft_cache_serialize(buffer, buffer_len_bytes) &
        result(cache_serialize) &
@@ -737,7 +760,7 @@ module hipfort_rocfft
     !---------------------------------------------
     !> @brief Free cache serialization buffer
     !>
-    !> @details Deallocate a buffer allocated by ::rocfft_cache_serialize.
+    !> @details Deallocate a buffer allocated by `rocfft_cache_serialize`.
     function rocfft_cache_buffer_free(buffer) &
        result(cache_buffer_free) &
        bind(C, name="rocfft_cache_buffer_free")
