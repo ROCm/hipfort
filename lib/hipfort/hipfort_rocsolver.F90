@@ -19737,7 +19737,7 @@ module hipfort_rocsolver
     !> returns.
     !>
     !> \note
-    !> When ```m`` >> ``n`` (or ``n`` >> ``m``) the algorithm could be sped up by compressing
+    !> When ``m`` >> ``n`` (or ``n`` >> ``m``) the algorithm could be sped up by compressing
     !> the matrix \f$A_l\f$ via a QR (or LQ) factorization, and working with the
     !> triangular factor afterwards (thin-SVD). If the singular vectors are also
     !> requested, its computation could be sped up as well via executing some
