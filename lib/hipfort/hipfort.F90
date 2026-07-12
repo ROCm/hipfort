@@ -181,27 +181,6 @@ module hipfort
     end function hipDeviceGetPCIBusId
 
     !---------------------------------------------
-    ! hipDeviceGetByPCIBusId
-    !---------------------------------------------
-    !> @brief Returns a handle to a compute device.
-    !> @param [out] device The handle of the device
-    !> @param [in] pciBusId The string of PCI Bus Id for the device
-    !>
-    !> @returns `hipSuccess`, `hipErrorInvalidDevice`, `hipErrorInvalidValue`
-    function hipDeviceGetByPCIBusId(device, pciBusId) &
-       result(DeviceGetByPCIBusId) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cudaDeviceGetByPCIBusId")
-#else
-       bind(C, name="hipDeviceGetByPCIBusId")
-#endif
-       import :: c_int, c_ptr
-       integer(c_int) :: device
-       type(c_ptr), value :: pciBusId
-       integer(c_int) :: DeviceGetByPCIBusId
-    end function hipDeviceGetByPCIBusId
-
-    !---------------------------------------------
     ! hipDeviceTotalMem
     !---------------------------------------------
     !> @brief Returns the total amount of memory on the device.
@@ -3026,25 +3005,6 @@ module hipfort
     end function hipLibraryUnload
 
     !---------------------------------------------
-    ! hipLibraryGetKernel
-    !---------------------------------------------
-    !> @brief Get Kernel object from library
-    !>
-    !> @param [out] pKernel Output kernel object
-    !> @param [in] library Input hip library
-    !> @param [in] name kernel name to be searched for
-    !> @return `hipSuccess`, `hipErrorInvalidValue`
-    function hipLibraryGetKernel(pKernel, library, name) &
-       result(LibraryGetKernel) &
-       bind(C, name="hipLibraryGetKernel")
-       import :: c_ptr, c_int
-       type(c_ptr) :: pKernel
-       type(c_ptr), value :: library
-       type(c_ptr), value :: name
-       integer(c_int) :: LibraryGetKernel
-    end function hipLibraryGetKernel
-
-    !---------------------------------------------
     ! hipLibraryEnumerateKernels
     !---------------------------------------------
     !> @brief Retrieve kernel handles within a library
@@ -5184,6 +5144,31 @@ module hipfort
 
     module procedure hipDeviceGetP2PAttribute_native
   end interface hipDeviceGetP2PAttribute
+
+  interface hipDeviceGetByPCIBusId
+    !---------------------------------------------
+    ! hipDeviceGetByPCIBusId
+    !---------------------------------------------
+    !> @brief Returns a handle to a compute device.
+    !> @param [out] device The handle of the device
+    !> @param [in] pciBusId The string of PCI Bus Id for the device
+    !>
+    !> @returns `hipSuccess`, `hipErrorInvalidDevice`, `hipErrorInvalidValue`
+    function hipDeviceGetByPCIBusId_raw(device, pciBusId) &
+       result(DeviceGetByPCIBusId_raw) &
+#ifdef USE_CUDA_NAMES
+       bind(C, name="cudaDeviceGetByPCIBusId")
+#else
+       bind(C, name="hipDeviceGetByPCIBusId")
+#endif
+       import :: c_int, c_ptr
+       integer(c_int) :: device
+       type(c_ptr), value :: pciBusId
+       integer(c_int) :: DeviceGetByPCIBusId_raw
+    end function hipDeviceGetByPCIBusId_raw
+
+    module procedure hipDeviceGetByPCIBusId_cstr
+  end interface hipDeviceGetByPCIBusId
 
   interface hipSetValidDevices
     !---------------------------------------------
@@ -8140,6 +8125,7 @@ module hipfort
     end function hipModuleGetGlobal_raw
 
     module procedure hipModuleGetGlobal_typed
+    module procedure hipModuleGetGlobal_cstr
   end interface hipModuleGetGlobal
 
   interface hipGetProcAddress
@@ -8179,6 +8165,7 @@ module hipfort
     end function hipGetProcAddress_raw
 
     module procedure hipGetProcAddress_native
+    module procedure hipGetProcAddress_cstr
   end interface hipGetProcAddress
 
   interface hipMemcpyToSymbolAsync
@@ -9554,6 +9541,7 @@ module hipfort
     end function hipModuleLoad_raw
 
     module procedure hipModuleLoad_typed
+    module procedure hipModuleLoad_cstr
   end interface hipModuleLoad
 
   interface hipModuleUnload
@@ -9610,6 +9598,7 @@ module hipfort
     end function hipModuleGetFunction_raw
 
     module procedure hipModuleGetFunction_typed
+    module procedure hipModuleGetFunction_cstr
   end interface hipModuleGetFunction
 
   interface hipModuleGetFunctionCount
@@ -9708,7 +9697,31 @@ module hipfort
     end function hipLibraryLoadFromFile_raw
 
     module procedure hipLibraryLoadFromFile_native
+    module procedure hipLibraryLoadFromFile_cstr
   end interface hipLibraryLoadFromFile
+
+  interface hipLibraryGetKernel
+    !---------------------------------------------
+    ! hipLibraryGetKernel
+    !---------------------------------------------
+    !> @brief Get Kernel object from library
+    !>
+    !> @param [out] pKernel Output kernel object
+    !> @param [in] library Input hip library
+    !> @param [in] name kernel name to be searched for
+    !> @return `hipSuccess`, `hipErrorInvalidValue`
+    function hipLibraryGetKernel_raw(pKernel, library, name) &
+       result(LibraryGetKernel_raw) &
+       bind(C, name="hipLibraryGetKernel")
+       import :: c_ptr, c_int
+       type(c_ptr) :: pKernel
+       type(c_ptr), value :: library
+       type(c_ptr), value :: name
+       integer(c_int) :: LibraryGetKernel_raw
+    end function hipLibraryGetKernel_raw
+
+    module procedure hipLibraryGetKernel_cstr
+  end interface hipLibraryGetKernel
 
   interface hipLibraryGetKernelCount
     !---------------------------------------------
@@ -9814,6 +9827,7 @@ module hipfort
     end function hipGetDriverEntryPoint_raw
 
     module procedure hipGetDriverEntryPoint_native
+    module procedure hipGetDriverEntryPoint_cstr
   end interface hipGetDriverEntryPoint
 
   interface hipModuleGetTexRef
@@ -9842,6 +9856,7 @@ module hipfort
     end function hipModuleGetTexRef_raw
 
     module procedure hipModuleGetTexRef_typed
+    module procedure hipModuleGetTexRef_cstr
   end interface hipModuleGetTexRef
 
   interface hipModuleLoadData
@@ -9959,6 +9974,7 @@ module hipfort
     end function hipLinkAddData_raw
 
     module procedure hipLinkAddData_native
+    module procedure hipLinkAddData_cstr
   end interface hipLinkAddData
 
   interface hipLinkAddFile
@@ -9993,6 +10009,7 @@ module hipfort
     end function hipLinkAddFile_raw
 
     module procedure hipLinkAddFile_native
+    module procedure hipLinkAddFile_cstr
   end interface hipLinkAddFile
 
   interface hipLinkCreate
@@ -13365,6 +13382,7 @@ module hipfort
     end function hipGraphDebugDotPrint_raw
 
     module procedure hipGraphDebugDotPrint_typed
+    module procedure hipGraphDebugDotPrint_cstr
   end interface hipGraphDebugDotPrint
 
   interface hipGraphKernelNodeCopyAttributes
@@ -14448,6 +14466,7 @@ module hipfort
     end function hipGetDriverEntryPoint_spt_raw
 
     module procedure hipGetDriverEntryPoint_spt_native
+    module procedure hipGetDriverEntryPoint_spt_cstr
   end interface hipGetDriverEntryPoint_spt
 
 
@@ -14490,6 +14509,18 @@ contains
       integer(c_int) :: DeviceGetP2PAttribute
       DeviceGetP2PAttribute = hipDeviceGetP2PAttribute_raw(c_loc(value), attr, srcDevice, dstDevice)
     end function hipDeviceGetP2PAttribute_native
+
+    function hipDeviceGetByPCIBusId_cstr(device, pciBusId) result(DeviceGetByPCIBusId)
+      use, intrinsic :: iso_c_binding
+      use hipfort_handles
+      implicit none
+      integer(c_int) :: device
+      character(len=*), intent(in) :: pciBusId
+      integer(c_int) :: DeviceGetByPCIBusId
+      character(len=len_trim(pciBusId)+1, kind=c_char), target :: pciBusId__c
+      pciBusId__c = trim(pciBusId)//c_null_char
+      DeviceGetByPCIBusId = hipDeviceGetByPCIBusId_raw(device, c_loc(pciBusId__c))
+    end function hipDeviceGetByPCIBusId_cstr
 
     function hipSetValidDevices_native(device_arr, len) result(SetValidDevices)
       use, intrinsic :: iso_c_binding
@@ -15457,6 +15488,20 @@ contains
       ModuleGetGlobal = hipModuleGetGlobal_raw(dptr, bytes, hmod%ptr, name)
     end function hipModuleGetGlobal_typed
 
+    function hipModuleGetGlobal_cstr(dptr, bytes, hmod, name) result(ModuleGetGlobal)
+      use, intrinsic :: iso_c_binding
+      use hipfort_handles
+      implicit none
+      type(c_ptr) :: dptr
+      type(c_ptr), value :: bytes
+      type(c_ptr), value :: hmod
+      character(len=*), intent(in) :: name
+      integer(c_int) :: ModuleGetGlobal
+      character(len=len_trim(name)+1, kind=c_char), target :: name__c
+      name__c = trim(name)//c_null_char
+      ModuleGetGlobal = hipModuleGetGlobal_raw(dptr, bytes, hmod, c_loc(name__c))
+    end function hipModuleGetGlobal_cstr
+
     function hipGetProcAddress_native(symbol, pfn, hipVersion, flags, symbolStatus) result( &
         GetProcAddress)
       use, intrinsic :: iso_c_binding
@@ -15469,6 +15514,22 @@ contains
       integer(c_int) :: GetProcAddress
       GetProcAddress = hipGetProcAddress_raw(symbol, pfn, hipVersion, flags, c_loc(symbolStatus))
     end function hipGetProcAddress_native
+
+    function hipGetProcAddress_cstr(symbol, pfn, hipVersion, flags, symbolStatus) result( &
+        GetProcAddress)
+      use, intrinsic :: iso_c_binding
+      use hipfort_handles
+      implicit none
+      character(len=*), intent(in) :: symbol
+      type(c_ptr) :: pfn
+      integer(c_int), value :: hipVersion
+      integer(c_long), value :: flags
+      type(c_ptr), value :: symbolStatus
+      integer(c_int) :: GetProcAddress
+      character(len=len_trim(symbol)+1, kind=c_char), target :: symbol__c
+      symbol__c = trim(symbol)//c_null_char
+      GetProcAddress = hipGetProcAddress_raw(c_loc(symbol__c), pfn, hipVersion, flags, symbolStatus)
+    end function hipGetProcAddress_cstr
 
     function hipMemcpyToSymbolAsync_typed(symbol, src, sizeBytes, offset, kind, stream) result( &
         MemcpyToSymbolAsync)
@@ -15946,6 +16007,18 @@ contains
       ModuleLoad = hipModuleLoad_raw(module_%ptr, fname)
     end function hipModuleLoad_typed
 
+    function hipModuleLoad_cstr(module_, fname) result(ModuleLoad)
+      use, intrinsic :: iso_c_binding
+      use hipfort_handles
+      implicit none
+      type(c_ptr) :: module_
+      character(len=*), intent(in) :: fname
+      integer(c_int) :: ModuleLoad
+      character(len=len_trim(fname)+1, kind=c_char), target :: fname__c
+      fname__c = trim(fname)//c_null_char
+      ModuleLoad = hipModuleLoad_raw(module_, c_loc(fname__c))
+    end function hipModuleLoad_cstr
+
     function hipModuleUnload_typed(module_) result(ModuleUnload)
       use, intrinsic :: iso_c_binding
       use hipfort_handles
@@ -15965,6 +16038,19 @@ contains
       integer(c_int) :: ModuleGetFunction
       ModuleGetFunction = hipModuleGetFunction_raw(function_%ptr, module_%ptr, kname)
     end function hipModuleGetFunction_typed
+
+    function hipModuleGetFunction_cstr(function_, module_, kname) result(ModuleGetFunction)
+      use, intrinsic :: iso_c_binding
+      use hipfort_handles
+      implicit none
+      type(c_ptr) :: function_
+      type(c_ptr), value :: module_
+      character(len=*), intent(in) :: kname
+      integer(c_int) :: ModuleGetFunction
+      character(len=len_trim(kname)+1, kind=c_char), target :: kname__c
+      kname__c = trim(kname)//c_null_char
+      ModuleGetFunction = hipModuleGetFunction_raw(function_, module_, c_loc(kname__c))
+    end function hipModuleGetFunction_cstr
 
     function hipModuleGetFunctionCount_native(count, mod) result(ModuleGetFunctionCount)
       use, intrinsic :: iso_c_binding
@@ -16021,6 +16107,40 @@ contains
         numLibraryOptions)
     end function hipLibraryLoadFromFile_native
 
+    function hipLibraryLoadFromFile_cstr(library, fileName, jitOptions, jitOptionsValues, &
+        numJitOptions, libraryOptions, libraryOptionValues, numLibraryOptions) result( &
+        LibraryLoadFromFile)
+      use, intrinsic :: iso_c_binding
+      use hipfort_handles
+      implicit none
+      type(c_ptr) :: library
+      character(len=*), intent(in) :: fileName
+      type(c_ptr), value :: jitOptions
+      type(c_ptr) :: jitOptionsValues
+      integer(c_int), value :: numJitOptions
+      type(c_ptr), value :: libraryOptions
+      type(c_ptr) :: libraryOptionValues
+      integer(c_int), value :: numLibraryOptions
+      integer(c_int) :: LibraryLoadFromFile
+      character(len=len_trim(fileName)+1, kind=c_char), target :: fileName__c
+      fileName__c = trim(fileName)//c_null_char
+      LibraryLoadFromFile = hipLibraryLoadFromFile_raw(library, c_loc(fileName__c), jitOptions, &
+        jitOptionsValues, numJitOptions, libraryOptions, libraryOptionValues, numLibraryOptions)
+    end function hipLibraryLoadFromFile_cstr
+
+    function hipLibraryGetKernel_cstr(pKernel, library, name) result(LibraryGetKernel)
+      use, intrinsic :: iso_c_binding
+      use hipfort_handles
+      implicit none
+      type(c_ptr) :: pKernel
+      type(c_ptr), value :: library
+      character(len=*), intent(in) :: name
+      integer(c_int) :: LibraryGetKernel
+      character(len=len_trim(name)+1, kind=c_char), target :: name__c
+      name__c = trim(name)//c_null_char
+      LibraryGetKernel = hipLibraryGetKernel_raw(pKernel, library, c_loc(name__c))
+    end function hipLibraryGetKernel_cstr
+
     function hipLibraryGetKernelCount_native(count, library) result(LibraryGetKernelCount)
       use, intrinsic :: iso_c_binding
       implicit none
@@ -16073,6 +16193,22 @@ contains
       GetDriverEntryPoint = hipGetDriverEntryPoint_raw(symbol, funcPtr, flags, c_loc(driverStatus))
     end function hipGetDriverEntryPoint_native
 
+    function hipGetDriverEntryPoint_cstr(symbol, funcPtr, flags, driverStatus) result( &
+        GetDriverEntryPoint)
+      use, intrinsic :: iso_c_binding
+      use hipfort_handles
+      implicit none
+      character(len=*), intent(in) :: symbol
+      type(c_ptr) :: funcPtr
+      integer(c_int64_t), value :: flags
+      type(c_ptr), value :: driverStatus
+      integer(c_int) :: GetDriverEntryPoint
+      character(len=len_trim(symbol)+1, kind=c_char), target :: symbol__c
+      symbol__c = trim(symbol)//c_null_char
+      GetDriverEntryPoint = hipGetDriverEntryPoint_raw(c_loc(symbol__c), funcPtr, flags, &
+        driverStatus)
+    end function hipGetDriverEntryPoint_cstr
+
     function hipModuleGetTexRef_typed(texRef, hmod, name) result(ModuleGetTexRef)
       use, intrinsic :: iso_c_binding
       use hipfort_handles
@@ -16083,6 +16219,19 @@ contains
       integer(c_int) :: ModuleGetTexRef
       ModuleGetTexRef = hipModuleGetTexRef_raw(texRef, hmod%ptr, name)
     end function hipModuleGetTexRef_typed
+
+    function hipModuleGetTexRef_cstr(texRef, hmod, name) result(ModuleGetTexRef)
+      use, intrinsic :: iso_c_binding
+      use hipfort_handles
+      implicit none
+      type(c_ptr) :: texRef
+      type(c_ptr), value :: hmod
+      character(len=*), intent(in) :: name
+      integer(c_int) :: ModuleGetTexRef
+      character(len=len_trim(name)+1, kind=c_char), target :: name__c
+      name__c = trim(name)//c_null_char
+      ModuleGetTexRef = hipModuleGetTexRef_raw(texRef, hmod, c_loc(name__c))
+    end function hipModuleGetTexRef_cstr
 
     function hipModuleLoadData_typed(module_, image) result(ModuleLoadData)
       use, intrinsic :: iso_c_binding
@@ -16140,6 +16289,26 @@ contains
         optionValues)
     end function hipLinkAddData_native
 
+    function hipLinkAddData_cstr(state, type, data, size, name, numOptions, options, &
+        optionValues) result(LinkAddData)
+      use, intrinsic :: iso_c_binding
+      use hipfort_handles
+      implicit none
+      type(c_ptr), value :: state
+      integer(c_int), value :: type
+      type(c_ptr), value :: data
+      integer(c_long), value :: size
+      character(len=*), intent(in) :: name
+      integer(c_int), value :: numOptions
+      type(c_ptr), value :: options
+      type(c_ptr) :: optionValues
+      integer(c_int) :: LinkAddData
+      character(len=len_trim(name)+1, kind=c_char), target :: name__c
+      name__c = trim(name)//c_null_char
+      LinkAddData = hipLinkAddData_raw(state, type, data, size, c_loc(name__c), numOptions, &
+        options, optionValues)
+    end function hipLinkAddData_cstr
+
     function hipLinkAddFile_native(state, type, path, numOptions, options, optionValues) result( &
         LinkAddFile)
       use, intrinsic :: iso_c_binding
@@ -16153,6 +16322,24 @@ contains
       integer(c_int) :: LinkAddFile
       LinkAddFile = hipLinkAddFile_raw(state, type, path, numOptions, c_loc(options), optionValues)
     end function hipLinkAddFile_native
+
+    function hipLinkAddFile_cstr(state, type, path, numOptions, options, optionValues) result( &
+        LinkAddFile)
+      use, intrinsic :: iso_c_binding
+      use hipfort_handles
+      implicit none
+      type(c_ptr), value :: state
+      integer(c_int), value :: type
+      character(len=*), intent(in) :: path
+      integer(c_int), value :: numOptions
+      type(c_ptr), value :: options
+      type(c_ptr) :: optionValues
+      integer(c_int) :: LinkAddFile
+      character(len=len_trim(path)+1, kind=c_char), target :: path__c
+      path__c = trim(path)//c_null_char
+      LinkAddFile = hipLinkAddFile_raw(state, type, c_loc(path__c), numOptions, options, &
+        optionValues)
+    end function hipLinkAddFile_cstr
 
     function hipLinkCreate_native(numOptions, options, optionValues, stateOut) result(LinkCreate)
       use, intrinsic :: iso_c_binding
@@ -17673,6 +17860,19 @@ contains
       GraphDebugDotPrint = hipGraphDebugDotPrint_raw(graph%ptr, path, flags)
     end function hipGraphDebugDotPrint_typed
 
+    function hipGraphDebugDotPrint_cstr(graph, path, flags) result(GraphDebugDotPrint)
+      use, intrinsic :: iso_c_binding
+      use hipfort_handles
+      implicit none
+      type(c_ptr), value :: graph
+      character(len=*), intent(in) :: path
+      integer(c_int), value :: flags
+      integer(c_int) :: GraphDebugDotPrint
+      character(len=len_trim(path)+1, kind=c_char), target :: path__c
+      path__c = trim(path)//c_null_char
+      GraphDebugDotPrint = hipGraphDebugDotPrint_raw(graph, c_loc(path__c), flags)
+    end function hipGraphDebugDotPrint_cstr
+
     function hipGraphKernelNodeCopyAttributes_typed(hSrc, hDst) result( &
         GraphKernelNodeCopyAttributes)
       use, intrinsic :: iso_c_binding
@@ -18345,5 +18545,21 @@ contains
       GetDriverEntryPoint_spt = hipGetDriverEntryPoint_spt_raw(symbol, funcPtr, flags, c_loc( &
         status))
     end function hipGetDriverEntryPoint_spt_native
+
+    function hipGetDriverEntryPoint_spt_cstr(symbol, funcPtr, flags, status) result( &
+        GetDriverEntryPoint_spt)
+      use, intrinsic :: iso_c_binding
+      use hipfort_handles
+      implicit none
+      character(len=*), intent(in) :: symbol
+      type(c_ptr) :: funcPtr
+      integer(c_int64_t), value :: flags
+      type(c_ptr), value :: status
+      integer(c_int) :: GetDriverEntryPoint_spt
+      character(len=len_trim(symbol)+1, kind=c_char), target :: symbol__c
+      symbol__c = trim(symbol)//c_null_char
+      GetDriverEntryPoint_spt = hipGetDriverEntryPoint_spt_raw(c_loc(symbol__c), funcPtr, flags, &
+        status)
+    end function hipGetDriverEntryPoint_spt_cstr
 
 end module hipfort
