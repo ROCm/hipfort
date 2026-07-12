@@ -1049,13 +1049,13 @@ module hipfort_rocsolver
     function rocsolver_slarfg_64_raw(handle, n, alpha, x, incx, tau) &
        result(slarfg_64_raw) &
        bind(C, name="rocsolver_slarfg_64")
-       import :: c_ptr, c_long, c_int
+       import :: c_ptr, c_long, c_float, c_int
        type(c_ptr), value :: handle
        integer(c_long), value :: n
-       type(c_ptr), value :: alpha
+       real(c_float) :: alpha
        type(c_ptr), value :: x
        integer(c_long), value :: incx
-       type(c_ptr), value :: tau
+       real(c_float) :: tau
        integer(c_int) :: slarfg_64_raw
     end function rocsolver_slarfg_64_raw
 
@@ -1070,13 +1070,13 @@ module hipfort_rocsolver
     function rocsolver_dlarfg_64_raw(handle, n, alpha, x, incx, tau) &
        result(dlarfg_64_raw) &
        bind(C, name="rocsolver_dlarfg_64")
-       import :: c_ptr, c_long, c_int
+       import :: c_ptr, c_long, c_double, c_int
        type(c_ptr), value :: handle
        integer(c_long), value :: n
-       type(c_ptr), value :: alpha
+       real(c_double) :: alpha
        type(c_ptr), value :: x
        integer(c_long), value :: incx
-       type(c_ptr), value :: tau
+       real(c_double) :: tau
        integer(c_int) :: dlarfg_64_raw
     end function rocsolver_dlarfg_64_raw
 
@@ -1091,13 +1091,13 @@ module hipfort_rocsolver
     function rocsolver_clarfg_64_raw(handle, n, alpha, x, incx, tau) &
        result(clarfg_64_raw) &
        bind(C, name="rocsolver_clarfg_64")
-       import :: c_ptr, c_long, c_int
+       import :: c_ptr, c_long, c_float_complex, c_int
        type(c_ptr), value :: handle
        integer(c_long), value :: n
-       type(c_ptr), value :: alpha
+       complex(c_float_complex) :: alpha
        type(c_ptr), value :: x
        integer(c_long), value :: incx
-       type(c_ptr), value :: tau
+       complex(c_float_complex) :: tau
        integer(c_int) :: clarfg_64_raw
     end function rocsolver_clarfg_64_raw
 
@@ -1112,13 +1112,13 @@ module hipfort_rocsolver
     function rocsolver_zlarfg_64_raw(handle, n, alpha, x, incx, tau) &
        result(zlarfg_64_raw) &
        bind(C, name="rocsolver_zlarfg_64")
-       import :: c_ptr, c_long, c_int
+       import :: c_ptr, c_long, c_double_complex, c_int
        type(c_ptr), value :: handle
        integer(c_long), value :: n
-       type(c_ptr), value :: alpha
+       complex(c_double_complex) :: alpha
        type(c_ptr), value :: x
        integer(c_long), value :: incx
-       type(c_ptr), value :: tau
+       complex(c_double_complex) :: tau
        integer(c_int) :: zlarfg_64_raw
     end function rocsolver_zlarfg_64_raw
 
@@ -1435,14 +1435,14 @@ module hipfort_rocsolver
     function rocsolver_slarf_64_raw(handle, side, m, n, x, incx, alpha, A, lda) &
        result(slarf_64_raw) &
        bind(C, name="rocsolver_slarf_64")
-       import :: c_ptr, c_int, c_long
+       import :: c_ptr, c_int, c_long, c_float
        type(c_ptr), value :: handle
        integer(c_int), value :: side
        integer(c_long), value :: m
        integer(c_long), value :: n
        type(c_ptr), value :: x
        integer(c_long), value :: incx
-       type(c_ptr), value :: alpha
+       real(c_float) :: alpha
        type(c_ptr), value :: A
        integer(c_long), value :: lda
        integer(c_int) :: slarf_64_raw
@@ -1459,14 +1459,14 @@ module hipfort_rocsolver
     function rocsolver_dlarf_64_raw(handle, side, m, n, x, incx, alpha, A, lda) &
        result(dlarf_64_raw) &
        bind(C, name="rocsolver_dlarf_64")
-       import :: c_ptr, c_int, c_long
+       import :: c_ptr, c_int, c_long, c_double
        type(c_ptr), value :: handle
        integer(c_int), value :: side
        integer(c_long), value :: m
        integer(c_long), value :: n
        type(c_ptr), value :: x
        integer(c_long), value :: incx
-       type(c_ptr), value :: alpha
+       real(c_double) :: alpha
        type(c_ptr), value :: A
        integer(c_long), value :: lda
        integer(c_int) :: dlarf_64_raw
@@ -1483,14 +1483,14 @@ module hipfort_rocsolver
     function rocsolver_clarf_64_raw(handle, side, m, n, x, incx, alpha, A, lda) &
        result(clarf_64_raw) &
        bind(C, name="rocsolver_clarf_64")
-       import :: c_ptr, c_int, c_long
+       import :: c_ptr, c_int, c_long, c_float_complex
        type(c_ptr), value :: handle
        integer(c_int), value :: side
        integer(c_long), value :: m
        integer(c_long), value :: n
        type(c_ptr), value :: x
        integer(c_long), value :: incx
-       type(c_ptr), value :: alpha
+       complex(c_float_complex) :: alpha
        type(c_ptr), value :: A
        integer(c_long), value :: lda
        integer(c_int) :: clarf_64_raw
@@ -1507,14 +1507,14 @@ module hipfort_rocsolver
     function rocsolver_zlarf_64_raw(handle, side, m, n, x, incx, alpha, A, lda) &
        result(zlarf_64_raw) &
        bind(C, name="rocsolver_zlarf_64")
-       import :: c_ptr, c_int, c_long
+       import :: c_ptr, c_int, c_long, c_double_complex
        type(c_ptr), value :: handle
        integer(c_int), value :: side
        integer(c_long), value :: m
        integer(c_long), value :: n
        type(c_ptr), value :: x
        integer(c_long), value :: incx
-       type(c_ptr), value :: alpha
+       complex(c_double_complex) :: alpha
        type(c_ptr), value :: A
        integer(c_long), value :: lda
        integer(c_int) :: zlarf_64_raw
@@ -44409,6 +44409,7 @@ contains
       integer(c_int), value :: func
       integer(c_int), target :: mode(..)
       integer(c_int) :: get_alg_mode
+      if (.not. is_contiguous(mode)) error stop "mode: array must be contiguous"
       get_alg_mode = rocsolver_get_alg_mode_raw(handle, func, c_loc(mode))
     end function rocsolver_get_alg_mode_native
 
@@ -44431,6 +44432,7 @@ contains
       complex(c_float_complex), target :: x(..)
       integer(c_int), value :: incx
       integer(c_int) :: clacgv
+      if (.not. is_contiguous(x)) error stop "x: array must be contiguous"
       clacgv = rocsolver_clacgv_raw(handle, n, c_loc(x), incx)
     end function rocsolver_clacgv_native
 
@@ -44454,6 +44456,7 @@ contains
       complex(c_double_complex), target :: x(..)
       integer(c_int), value :: incx
       integer(c_int) :: zlacgv
+      if (.not. is_contiguous(x)) error stop "x: array must be contiguous"
       zlacgv = rocsolver_zlacgv_raw(handle, n, c_loc(x), incx)
     end function rocsolver_zlacgv_native
 
@@ -44477,6 +44480,7 @@ contains
       complex(c_float_complex), target :: x(..)
       integer(c_long), value :: incx
       integer(c_int) :: clacgv_64
+      if (.not. is_contiguous(x)) error stop "x: array must be contiguous"
       clacgv_64 = rocsolver_clacgv_64_raw(handle, n, c_loc(x), incx)
     end function rocsolver_clacgv_64_native
 
@@ -44500,6 +44504,7 @@ contains
       complex(c_double_complex), target :: x(..)
       integer(c_long), value :: incx
       integer(c_int) :: zlacgv_64
+      if (.not. is_contiguous(x)) error stop "x: array must be contiguous"
       zlacgv_64 = rocsolver_zlacgv_64_raw(handle, n, c_loc(x), incx)
     end function rocsolver_zlacgv_64_native
 
@@ -44526,6 +44531,8 @@ contains
       integer(c_int), value :: lda
       real(c_float), target :: norm(..)
       integer(c_int) :: slange
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(norm)) error stop "norm: array must be contiguous"
       slange = rocsolver_slange_raw(handle, norm_type, m, n, c_loc(A), lda, c_loc(norm))
     end function rocsolver_slange_native
 
@@ -44555,6 +44562,8 @@ contains
       integer(c_int), value :: lda
       real(c_double), target :: norm(..)
       integer(c_int) :: dlange
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(norm)) error stop "norm: array must be contiguous"
       dlange = rocsolver_dlange_raw(handle, norm_type, m, n, c_loc(A), lda, c_loc(norm))
     end function rocsolver_dlange_native
 
@@ -44584,6 +44593,8 @@ contains
       integer(c_int), value :: lda
       real(c_float), target :: norm(..)
       integer(c_int) :: clange
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(norm)) error stop "norm: array must be contiguous"
       clange = rocsolver_clange_raw(handle, norm_type, m, n, c_loc(A), lda, c_loc(norm))
     end function rocsolver_clange_native
 
@@ -44613,6 +44624,8 @@ contains
       integer(c_int), value :: lda
       real(c_double), target :: norm(..)
       integer(c_int) :: zlange
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(norm)) error stop "norm: array must be contiguous"
       zlange = rocsolver_zlange_raw(handle, norm_type, m, n, c_loc(A), lda, c_loc(norm))
     end function rocsolver_zlange_native
 
@@ -44642,6 +44655,8 @@ contains
       integer(c_long), value :: lda
       real(c_float), target :: norm(..)
       integer(c_int) :: slange_64
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(norm)) error stop "norm: array must be contiguous"
       slange_64 = rocsolver_slange_64_raw(handle, norm_type, m, n, c_loc(A), lda, c_loc(norm))
     end function rocsolver_slange_64_native
 
@@ -44671,6 +44686,8 @@ contains
       integer(c_long), value :: lda
       real(c_double), target :: norm(..)
       integer(c_int) :: dlange_64
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(norm)) error stop "norm: array must be contiguous"
       dlange_64 = rocsolver_dlange_64_raw(handle, norm_type, m, n, c_loc(A), lda, c_loc(norm))
     end function rocsolver_dlange_64_native
 
@@ -44700,6 +44717,8 @@ contains
       integer(c_long), value :: lda
       real(c_float), target :: norm(..)
       integer(c_int) :: clange_64
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(norm)) error stop "norm: array must be contiguous"
       clange_64 = rocsolver_clange_64_raw(handle, norm_type, m, n, c_loc(A), lda, c_loc(norm))
     end function rocsolver_clange_64_native
 
@@ -44729,6 +44748,8 @@ contains
       integer(c_long), value :: lda
       real(c_double), target :: norm(..)
       integer(c_int) :: zlange_64
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(norm)) error stop "norm: array must be contiguous"
       zlange_64 = rocsolver_zlange_64_raw(handle, norm_type, m, n, c_loc(A), lda, c_loc(norm))
     end function rocsolver_zlange_64_native
 
@@ -44758,6 +44779,9 @@ contains
       real(c_float), target :: anorm(..)
       real(c_float), target :: rcond(..)
       integer(c_int) :: sgecon
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(anorm)) error stop "anorm: array must be contiguous"
+      if (.not. is_contiguous(rcond)) error stop "rcond: array must be contiguous"
       sgecon = rocsolver_sgecon_raw(handle, norm_type, n, c_loc(A), lda, c_loc(anorm), c_loc(rcond))
     end function rocsolver_sgecon_native
 
@@ -44787,6 +44811,9 @@ contains
       real(c_double), target :: anorm(..)
       real(c_double), target :: rcond(..)
       integer(c_int) :: dgecon
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(anorm)) error stop "anorm: array must be contiguous"
+      if (.not. is_contiguous(rcond)) error stop "rcond: array must be contiguous"
       dgecon = rocsolver_dgecon_raw(handle, norm_type, n, c_loc(A), lda, c_loc(anorm), c_loc(rcond))
     end function rocsolver_dgecon_native
 
@@ -44816,6 +44843,9 @@ contains
       real(c_float), target :: anorm(..)
       real(c_float), target :: rcond(..)
       integer(c_int) :: cgecon
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(anorm)) error stop "anorm: array must be contiguous"
+      if (.not. is_contiguous(rcond)) error stop "rcond: array must be contiguous"
       cgecon = rocsolver_cgecon_raw(handle, norm_type, n, c_loc(A), lda, c_loc(anorm), c_loc(rcond))
     end function rocsolver_cgecon_native
 
@@ -44845,6 +44875,9 @@ contains
       real(c_double), target :: anorm(..)
       real(c_double), target :: rcond(..)
       integer(c_int) :: zgecon
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(anorm)) error stop "anorm: array must be contiguous"
+      if (.not. is_contiguous(rcond)) error stop "rcond: array must be contiguous"
       zgecon = rocsolver_zgecon_raw(handle, norm_type, n, c_loc(A), lda, c_loc(anorm), c_loc(rcond))
     end function rocsolver_zgecon_native
 
@@ -44875,6 +44908,9 @@ contains
       real(c_float), target :: anorm(..)
       real(c_float), target :: rcond(..)
       integer(c_int) :: sgecon_64
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(anorm)) error stop "anorm: array must be contiguous"
+      if (.not. is_contiguous(rcond)) error stop "rcond: array must be contiguous"
       sgecon_64 = rocsolver_sgecon_64_raw(handle, norm_type, n, c_loc(A), lda, c_loc(anorm), &
         c_loc(rcond))
     end function rocsolver_sgecon_64_native
@@ -44906,6 +44942,9 @@ contains
       real(c_double), target :: anorm(..)
       real(c_double), target :: rcond(..)
       integer(c_int) :: dgecon_64
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(anorm)) error stop "anorm: array must be contiguous"
+      if (.not. is_contiguous(rcond)) error stop "rcond: array must be contiguous"
       dgecon_64 = rocsolver_dgecon_64_raw(handle, norm_type, n, c_loc(A), lda, c_loc(anorm), &
         c_loc(rcond))
     end function rocsolver_dgecon_64_native
@@ -44937,6 +44976,9 @@ contains
       real(c_float), target :: anorm(..)
       real(c_float), target :: rcond(..)
       integer(c_int) :: cgecon_64
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(anorm)) error stop "anorm: array must be contiguous"
+      if (.not. is_contiguous(rcond)) error stop "rcond: array must be contiguous"
       cgecon_64 = rocsolver_cgecon_64_raw(handle, norm_type, n, c_loc(A), lda, c_loc(anorm), &
         c_loc(rcond))
     end function rocsolver_cgecon_64_native
@@ -44968,6 +45010,9 @@ contains
       real(c_double), target :: anorm(..)
       real(c_double), target :: rcond(..)
       integer(c_int) :: zgecon_64
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(anorm)) error stop "anorm: array must be contiguous"
+      if (.not. is_contiguous(rcond)) error stop "rcond: array must be contiguous"
       zgecon_64 = rocsolver_zgecon_64_raw(handle, norm_type, n, c_loc(A), lda, c_loc(anorm), &
         c_loc(rcond))
     end function rocsolver_zgecon_64_native
@@ -44999,6 +45044,8 @@ contains
       integer(c_int), target :: ipiv(..)
       integer(c_int), value :: incx
       integer(c_int) :: slaswp
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(ipiv)) error stop "ipiv: array must be contiguous"
       slaswp = rocsolver_slaswp_raw(handle, n, c_loc(A), lda, k1, k2, c_loc(ipiv), incx)
     end function rocsolver_slaswp_native
 
@@ -45030,6 +45077,8 @@ contains
       integer(c_int), target :: ipiv(..)
       integer(c_int), value :: incx
       integer(c_int) :: dlaswp
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(ipiv)) error stop "ipiv: array must be contiguous"
       dlaswp = rocsolver_dlaswp_raw(handle, n, c_loc(A), lda, k1, k2, c_loc(ipiv), incx)
     end function rocsolver_dlaswp_native
 
@@ -45061,6 +45110,8 @@ contains
       integer(c_int), target :: ipiv(..)
       integer(c_int), value :: incx
       integer(c_int) :: claswp
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(ipiv)) error stop "ipiv: array must be contiguous"
       claswp = rocsolver_claswp_raw(handle, n, c_loc(A), lda, k1, k2, c_loc(ipiv), incx)
     end function rocsolver_claswp_native
 
@@ -45092,6 +45143,8 @@ contains
       integer(c_int), target :: ipiv(..)
       integer(c_int), value :: incx
       integer(c_int) :: zlaswp
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(ipiv)) error stop "ipiv: array must be contiguous"
       zlaswp = rocsolver_zlaswp_raw(handle, n, c_loc(A), lda, k1, k2, c_loc(ipiv), incx)
     end function rocsolver_zlaswp_native
 
@@ -45121,6 +45174,7 @@ contains
       integer(c_int), value :: incx
       real(c_float) :: tau
       integer(c_int) :: slarfg
+      if (.not. is_contiguous(x)) error stop "x: array must be contiguous"
       slarfg = rocsolver_slarfg_raw(handle, n, alpha, c_loc(x), incx, tau)
     end function rocsolver_slarfg_native
 
@@ -45148,6 +45202,7 @@ contains
       integer(c_int), value :: incx
       real(c_double) :: tau
       integer(c_int) :: dlarfg
+      if (.not. is_contiguous(x)) error stop "x: array must be contiguous"
       dlarfg = rocsolver_dlarfg_raw(handle, n, alpha, c_loc(x), incx, tau)
     end function rocsolver_dlarfg_native
 
@@ -45175,6 +45230,7 @@ contains
       integer(c_int), value :: incx
       complex(c_float_complex) :: tau
       integer(c_int) :: clarfg
+      if (.not. is_contiguous(x)) error stop "x: array must be contiguous"
       clarfg = rocsolver_clarfg_raw(handle, n, alpha, c_loc(x), incx, tau)
     end function rocsolver_clarfg_native
 
@@ -45202,6 +45258,7 @@ contains
       integer(c_int), value :: incx
       complex(c_double_complex) :: tau
       integer(c_int) :: zlarfg
+      if (.not. is_contiguous(x)) error stop "x: array must be contiguous"
       zlarfg = rocsolver_zlarfg_raw(handle, n, alpha, c_loc(x), incx, tau)
     end function rocsolver_zlarfg_native
 
@@ -45224,12 +45281,13 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_long), value :: n
-      real(c_float), target :: alpha(..)
+      real(c_float) :: alpha
       real(c_float), target :: x(..)
       integer(c_long), value :: incx
-      real(c_float), target :: tau(..)
+      real(c_float) :: tau
       integer(c_int) :: slarfg_64
-      slarfg_64 = rocsolver_slarfg_64_raw(handle, n, c_loc(alpha), c_loc(x), incx, c_loc(tau))
+      if (.not. is_contiguous(x)) error stop "x: array must be contiguous"
+      slarfg_64 = rocsolver_slarfg_64_raw(handle, n, alpha, c_loc(x), incx, tau)
     end function rocsolver_slarfg_64_native
 
     function rocsolver_slarfg_64_typed(handle, n, alpha, x, incx, tau) result(slarfg_64)
@@ -45238,10 +45296,10 @@ contains
       implicit none
       type(rocblas_handle_t), value :: handle
       integer(c_long), value :: n
-      type(c_ptr), value :: alpha
+      real(c_float) :: alpha
       type(c_ptr), value :: x
       integer(c_long), value :: incx
-      type(c_ptr), value :: tau
+      real(c_float) :: tau
       integer(c_int) :: slarfg_64
       slarfg_64 = rocsolver_slarfg_64_raw(handle%ptr, n, alpha, x, incx, tau)
     end function rocsolver_slarfg_64_typed
@@ -45251,12 +45309,13 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_long), value :: n
-      real(c_double), target :: alpha(..)
+      real(c_double) :: alpha
       real(c_double), target :: x(..)
       integer(c_long), value :: incx
-      real(c_double), target :: tau(..)
+      real(c_double) :: tau
       integer(c_int) :: dlarfg_64
-      dlarfg_64 = rocsolver_dlarfg_64_raw(handle, n, c_loc(alpha), c_loc(x), incx, c_loc(tau))
+      if (.not. is_contiguous(x)) error stop "x: array must be contiguous"
+      dlarfg_64 = rocsolver_dlarfg_64_raw(handle, n, alpha, c_loc(x), incx, tau)
     end function rocsolver_dlarfg_64_native
 
     function rocsolver_dlarfg_64_typed(handle, n, alpha, x, incx, tau) result(dlarfg_64)
@@ -45265,10 +45324,10 @@ contains
       implicit none
       type(rocblas_handle_t), value :: handle
       integer(c_long), value :: n
-      type(c_ptr), value :: alpha
+      real(c_double) :: alpha
       type(c_ptr), value :: x
       integer(c_long), value :: incx
-      type(c_ptr), value :: tau
+      real(c_double) :: tau
       integer(c_int) :: dlarfg_64
       dlarfg_64 = rocsolver_dlarfg_64_raw(handle%ptr, n, alpha, x, incx, tau)
     end function rocsolver_dlarfg_64_typed
@@ -45278,12 +45337,13 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_long), value :: n
-      complex(c_float_complex), target :: alpha(..)
+      complex(c_float_complex) :: alpha
       complex(c_float_complex), target :: x(..)
       integer(c_long), value :: incx
-      complex(c_float_complex), target :: tau(..)
+      complex(c_float_complex) :: tau
       integer(c_int) :: clarfg_64
-      clarfg_64 = rocsolver_clarfg_64_raw(handle, n, c_loc(alpha), c_loc(x), incx, c_loc(tau))
+      if (.not. is_contiguous(x)) error stop "x: array must be contiguous"
+      clarfg_64 = rocsolver_clarfg_64_raw(handle, n, alpha, c_loc(x), incx, tau)
     end function rocsolver_clarfg_64_native
 
     function rocsolver_clarfg_64_typed(handle, n, alpha, x, incx, tau) result(clarfg_64)
@@ -45292,10 +45352,10 @@ contains
       implicit none
       type(rocblas_handle_t), value :: handle
       integer(c_long), value :: n
-      type(c_ptr), value :: alpha
+      complex(c_float_complex) :: alpha
       type(c_ptr), value :: x
       integer(c_long), value :: incx
-      type(c_ptr), value :: tau
+      complex(c_float_complex) :: tau
       integer(c_int) :: clarfg_64
       clarfg_64 = rocsolver_clarfg_64_raw(handle%ptr, n, alpha, x, incx, tau)
     end function rocsolver_clarfg_64_typed
@@ -45305,12 +45365,13 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_long), value :: n
-      complex(c_double_complex), target :: alpha(..)
+      complex(c_double_complex) :: alpha
       complex(c_double_complex), target :: x(..)
       integer(c_long), value :: incx
-      complex(c_double_complex), target :: tau(..)
+      complex(c_double_complex) :: tau
       integer(c_int) :: zlarfg_64
-      zlarfg_64 = rocsolver_zlarfg_64_raw(handle, n, c_loc(alpha), c_loc(x), incx, c_loc(tau))
+      if (.not. is_contiguous(x)) error stop "x: array must be contiguous"
+      zlarfg_64 = rocsolver_zlarfg_64_raw(handle, n, alpha, c_loc(x), incx, tau)
     end function rocsolver_zlarfg_64_native
 
     function rocsolver_zlarfg_64_typed(handle, n, alpha, x, incx, tau) result(zlarfg_64)
@@ -45319,10 +45380,10 @@ contains
       implicit none
       type(rocblas_handle_t), value :: handle
       integer(c_long), value :: n
-      type(c_ptr), value :: alpha
+      complex(c_double_complex) :: alpha
       type(c_ptr), value :: x
       integer(c_long), value :: incx
-      type(c_ptr), value :: tau
+      complex(c_double_complex) :: tau
       integer(c_int) :: zlarfg_64
       zlarfg_64 = rocsolver_zlarfg_64_raw(handle%ptr, n, alpha, x, incx, tau)
     end function rocsolver_zlarfg_64_typed
@@ -45342,6 +45403,8 @@ contains
       real(c_float), target :: T(..)
       integer(c_int), value :: ldt
       integer(c_int) :: slarft
+      if (.not. is_contiguous(V)) error stop "V: array must be contiguous"
+      if (.not. is_contiguous(T)) error stop "T: array must be contiguous"
       slarft = rocsolver_slarft_raw(handle, direct, storev, n, k, c_loc(V), ldv, tau, c_loc(T), ldt)
     end function rocsolver_slarft_native
 
@@ -45379,6 +45442,8 @@ contains
       real(c_double), target :: T(..)
       integer(c_int), value :: ldt
       integer(c_int) :: dlarft
+      if (.not. is_contiguous(V)) error stop "V: array must be contiguous"
+      if (.not. is_contiguous(T)) error stop "T: array must be contiguous"
       dlarft = rocsolver_dlarft_raw(handle, direct, storev, n, k, c_loc(V), ldv, tau, c_loc(T), ldt)
     end function rocsolver_dlarft_native
 
@@ -45416,6 +45481,8 @@ contains
       complex(c_float_complex), target :: T(..)
       integer(c_int), value :: ldt
       integer(c_int) :: clarft
+      if (.not. is_contiguous(V)) error stop "V: array must be contiguous"
+      if (.not. is_contiguous(T)) error stop "T: array must be contiguous"
       clarft = rocsolver_clarft_raw(handle, direct, storev, n, k, c_loc(V), ldv, tau, c_loc(T), ldt)
     end function rocsolver_clarft_native
 
@@ -45453,6 +45520,8 @@ contains
       complex(c_double_complex), target :: T(..)
       integer(c_int), value :: ldt
       integer(c_int) :: zlarft
+      if (.not. is_contiguous(V)) error stop "V: array must be contiguous"
+      if (.not. is_contiguous(T)) error stop "T: array must be contiguous"
       zlarft = rocsolver_zlarft_raw(handle, direct, storev, n, k, c_loc(V), ldv, tau, c_loc(T), ldt)
     end function rocsolver_zlarft_native
 
@@ -45488,6 +45557,8 @@ contains
       real(c_float), target :: A(..)
       integer(c_int), value :: lda
       integer(c_int) :: slarf
+      if (.not. is_contiguous(x)) error stop "x: array must be contiguous"
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
       slarf = rocsolver_slarf_raw(handle, side, m, n, c_loc(x), incx, alpha, c_loc(A), lda)
     end function rocsolver_slarf_native
 
@@ -45521,6 +45592,8 @@ contains
       real(c_double), target :: A(..)
       integer(c_int), value :: lda
       integer(c_int) :: dlarf
+      if (.not. is_contiguous(x)) error stop "x: array must be contiguous"
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
       dlarf = rocsolver_dlarf_raw(handle, side, m, n, c_loc(x), incx, alpha, c_loc(A), lda)
     end function rocsolver_dlarf_native
 
@@ -45554,6 +45627,8 @@ contains
       complex(c_float_complex), target :: A(..)
       integer(c_int), value :: lda
       integer(c_int) :: clarf
+      if (.not. is_contiguous(x)) error stop "x: array must be contiguous"
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
       clarf = rocsolver_clarf_raw(handle, side, m, n, c_loc(x), incx, alpha, c_loc(A), lda)
     end function rocsolver_clarf_native
 
@@ -45587,6 +45662,8 @@ contains
       complex(c_double_complex), target :: A(..)
       integer(c_int), value :: lda
       integer(c_int) :: zlarf
+      if (.not. is_contiguous(x)) error stop "x: array must be contiguous"
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
       zlarf = rocsolver_zlarf_raw(handle, side, m, n, c_loc(x), incx, alpha, c_loc(A), lda)
     end function rocsolver_zlarf_native
 
@@ -45616,12 +45693,13 @@ contains
       integer(c_long), value :: n
       real(c_float), target :: x(..)
       integer(c_long), value :: incx
-      real(c_float), target :: alpha(..)
+      real(c_float) :: alpha
       real(c_float), target :: A(..)
       integer(c_long), value :: lda
       integer(c_int) :: slarf_64
-      slarf_64 = rocsolver_slarf_64_raw(handle, side, m, n, c_loc(x), incx, c_loc(alpha), c_loc( &
-        A), lda)
+      if (.not. is_contiguous(x)) error stop "x: array must be contiguous"
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      slarf_64 = rocsolver_slarf_64_raw(handle, side, m, n, c_loc(x), incx, alpha, c_loc(A), lda)
     end function rocsolver_slarf_64_native
 
     function rocsolver_slarf_64_typed(handle, side, m, n, x, incx, alpha, A, lda) result(slarf_64)
@@ -45634,7 +45712,7 @@ contains
       integer(c_long), value :: n
       type(c_ptr), value :: x
       integer(c_long), value :: incx
-      type(c_ptr), value :: alpha
+      real(c_float) :: alpha
       type(c_ptr), value :: A
       integer(c_long), value :: lda
       integer(c_int) :: slarf_64
@@ -45650,12 +45728,13 @@ contains
       integer(c_long), value :: n
       real(c_double), target :: x(..)
       integer(c_long), value :: incx
-      real(c_double), target :: alpha(..)
+      real(c_double) :: alpha
       real(c_double), target :: A(..)
       integer(c_long), value :: lda
       integer(c_int) :: dlarf_64
-      dlarf_64 = rocsolver_dlarf_64_raw(handle, side, m, n, c_loc(x), incx, c_loc(alpha), c_loc( &
-        A), lda)
+      if (.not. is_contiguous(x)) error stop "x: array must be contiguous"
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      dlarf_64 = rocsolver_dlarf_64_raw(handle, side, m, n, c_loc(x), incx, alpha, c_loc(A), lda)
     end function rocsolver_dlarf_64_native
 
     function rocsolver_dlarf_64_typed(handle, side, m, n, x, incx, alpha, A, lda) result(dlarf_64)
@@ -45668,7 +45747,7 @@ contains
       integer(c_long), value :: n
       type(c_ptr), value :: x
       integer(c_long), value :: incx
-      type(c_ptr), value :: alpha
+      real(c_double) :: alpha
       type(c_ptr), value :: A
       integer(c_long), value :: lda
       integer(c_int) :: dlarf_64
@@ -45684,12 +45763,13 @@ contains
       integer(c_long), value :: n
       complex(c_float_complex), target :: x(..)
       integer(c_long), value :: incx
-      complex(c_float_complex), target :: alpha(..)
+      complex(c_float_complex) :: alpha
       complex(c_float_complex), target :: A(..)
       integer(c_long), value :: lda
       integer(c_int) :: clarf_64
-      clarf_64 = rocsolver_clarf_64_raw(handle, side, m, n, c_loc(x), incx, c_loc(alpha), c_loc( &
-        A), lda)
+      if (.not. is_contiguous(x)) error stop "x: array must be contiguous"
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      clarf_64 = rocsolver_clarf_64_raw(handle, side, m, n, c_loc(x), incx, alpha, c_loc(A), lda)
     end function rocsolver_clarf_64_native
 
     function rocsolver_clarf_64_typed(handle, side, m, n, x, incx, alpha, A, lda) result(clarf_64)
@@ -45702,7 +45782,7 @@ contains
       integer(c_long), value :: n
       type(c_ptr), value :: x
       integer(c_long), value :: incx
-      type(c_ptr), value :: alpha
+      complex(c_float_complex) :: alpha
       type(c_ptr), value :: A
       integer(c_long), value :: lda
       integer(c_int) :: clarf_64
@@ -45718,12 +45798,13 @@ contains
       integer(c_long), value :: n
       complex(c_double_complex), target :: x(..)
       integer(c_long), value :: incx
-      complex(c_double_complex), target :: alpha(..)
+      complex(c_double_complex) :: alpha
       complex(c_double_complex), target :: A(..)
       integer(c_long), value :: lda
       integer(c_int) :: zlarf_64
-      zlarf_64 = rocsolver_zlarf_64_raw(handle, side, m, n, c_loc(x), incx, c_loc(alpha), c_loc( &
-        A), lda)
+      if (.not. is_contiguous(x)) error stop "x: array must be contiguous"
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      zlarf_64 = rocsolver_zlarf_64_raw(handle, side, m, n, c_loc(x), incx, alpha, c_loc(A), lda)
     end function rocsolver_zlarf_64_native
 
     function rocsolver_zlarf_64_typed(handle, side, m, n, x, incx, alpha, A, lda) result(zlarf_64)
@@ -45736,7 +45817,7 @@ contains
       integer(c_long), value :: n
       type(c_ptr), value :: x
       integer(c_long), value :: incx
-      type(c_ptr), value :: alpha
+      complex(c_double_complex) :: alpha
       type(c_ptr), value :: A
       integer(c_long), value :: lda
       integer(c_int) :: zlarf_64
@@ -45762,6 +45843,9 @@ contains
       real(c_float), target :: A(..)
       integer(c_int), value :: lda
       integer(c_int) :: slarfb
+      if (.not. is_contiguous(V)) error stop "V: array must be contiguous"
+      if (.not. is_contiguous(T)) error stop "T: array must be contiguous"
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
       slarfb = rocsolver_slarfb_raw(handle, side, trans, direct, storev, m, n, k, c_loc(V), ldv, &
         c_loc(T), ldt, c_loc(A), lda)
     end function rocsolver_slarfb_native
@@ -45809,6 +45893,9 @@ contains
       real(c_double), target :: A(..)
       integer(c_int), value :: lda
       integer(c_int) :: dlarfb
+      if (.not. is_contiguous(V)) error stop "V: array must be contiguous"
+      if (.not. is_contiguous(T)) error stop "T: array must be contiguous"
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
       dlarfb = rocsolver_dlarfb_raw(handle, side, trans, direct, storev, m, n, k, c_loc(V), ldv, &
         c_loc(T), ldt, c_loc(A), lda)
     end function rocsolver_dlarfb_native
@@ -45856,6 +45943,9 @@ contains
       complex(c_float_complex), target :: A(..)
       integer(c_int), value :: lda
       integer(c_int) :: clarfb
+      if (.not. is_contiguous(V)) error stop "V: array must be contiguous"
+      if (.not. is_contiguous(T)) error stop "T: array must be contiguous"
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
       clarfb = rocsolver_clarfb_raw(handle, side, trans, direct, storev, m, n, k, c_loc(V), ldv, &
         c_loc(T), ldt, c_loc(A), lda)
     end function rocsolver_clarfb_native
@@ -45903,6 +45993,9 @@ contains
       complex(c_double_complex), target :: A(..)
       integer(c_int), value :: lda
       integer(c_int) :: zlarfb
+      if (.not. is_contiguous(V)) error stop "V: array must be contiguous"
+      if (.not. is_contiguous(T)) error stop "T: array must be contiguous"
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
       zlarfb = rocsolver_zlarfb_raw(handle, side, trans, direct, storev, m, n, k, c_loc(V), ldv, &
         c_loc(T), ldt, c_loc(A), lda)
     end function rocsolver_zlarfb_native
@@ -45945,6 +46038,9 @@ contains
       real(c_float), target :: A(..)
       integer(c_int), value :: lda
       integer(c_int) :: slasr
+      if (.not. is_contiguous(C)) error stop "C: array must be contiguous"
+      if (.not. is_contiguous(S)) error stop "S: array must be contiguous"
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
       slasr = rocsolver_slasr_raw(handle, side, pivot, direct, m, n, c_loc(C), c_loc(S), c_loc(A), &
         lda)
     end function rocsolver_slasr_native
@@ -45981,6 +46077,9 @@ contains
       real(c_double), target :: A(..)
       integer(c_int), value :: lda
       integer(c_int) :: dlasr
+      if (.not. is_contiguous(C)) error stop "C: array must be contiguous"
+      if (.not. is_contiguous(S)) error stop "S: array must be contiguous"
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
       dlasr = rocsolver_dlasr_raw(handle, side, pivot, direct, m, n, c_loc(C), c_loc(S), c_loc(A), &
         lda)
     end function rocsolver_dlasr_native
@@ -46017,6 +46116,9 @@ contains
       complex(c_float_complex), target :: A(..)
       integer(c_int), value :: lda
       integer(c_int) :: clasr
+      if (.not. is_contiguous(C)) error stop "C: array must be contiguous"
+      if (.not. is_contiguous(S)) error stop "S: array must be contiguous"
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
       clasr = rocsolver_clasr_raw(handle, side, pivot, direct, m, n, c_loc(C), c_loc(S), c_loc(A), &
         lda)
     end function rocsolver_clasr_native
@@ -46053,6 +46155,9 @@ contains
       complex(c_double_complex), target :: A(..)
       integer(c_int), value :: lda
       integer(c_int) :: zlasr
+      if (.not. is_contiguous(C)) error stop "C: array must be contiguous"
+      if (.not. is_contiguous(S)) error stop "S: array must be contiguous"
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
       zlasr = rocsolver_zlasr_raw(handle, side, pivot, direct, m, n, c_loc(C), c_loc(S), c_loc(A), &
         lda)
     end function rocsolver_zlasr_native
@@ -46094,6 +46199,13 @@ contains
       real(c_float), target :: Y(..)
       integer(c_int), value :: ldy
       integer(c_int) :: slabrd
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(D)) error stop "D: array must be contiguous"
+      if (.not. is_contiguous(E)) error stop "E: array must be contiguous"
+      if (.not. is_contiguous(tauq)) error stop "tauq: array must be contiguous"
+      if (.not. is_contiguous(taup)) error stop "taup: array must be contiguous"
+      if (.not. is_contiguous(X)) error stop "X: array must be contiguous"
+      if (.not. is_contiguous(Y)) error stop "Y: array must be contiguous"
       slabrd = rocsolver_slabrd_raw(handle, m, n, k, c_loc(A), lda, c_loc(D), c_loc(E), c_loc( &
         tauq), c_loc(taup), c_loc(X), ldx, c_loc(Y), ldy)
     end function rocsolver_slabrd_native
@@ -46140,6 +46252,13 @@ contains
       real(c_double), target :: Y(..)
       integer(c_int), value :: ldy
       integer(c_int) :: dlabrd
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(D)) error stop "D: array must be contiguous"
+      if (.not. is_contiguous(E)) error stop "E: array must be contiguous"
+      if (.not. is_contiguous(tauq)) error stop "tauq: array must be contiguous"
+      if (.not. is_contiguous(taup)) error stop "taup: array must be contiguous"
+      if (.not. is_contiguous(X)) error stop "X: array must be contiguous"
+      if (.not. is_contiguous(Y)) error stop "Y: array must be contiguous"
       dlabrd = rocsolver_dlabrd_raw(handle, m, n, k, c_loc(A), lda, c_loc(D), c_loc(E), c_loc( &
         tauq), c_loc(taup), c_loc(X), ldx, c_loc(Y), ldy)
     end function rocsolver_dlabrd_native
@@ -46186,6 +46305,13 @@ contains
       complex(c_float_complex), target :: Y(..)
       integer(c_int), value :: ldy
       integer(c_int) :: clabrd
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(D)) error stop "D: array must be contiguous"
+      if (.not. is_contiguous(E)) error stop "E: array must be contiguous"
+      if (.not. is_contiguous(tauq)) error stop "tauq: array must be contiguous"
+      if (.not. is_contiguous(taup)) error stop "taup: array must be contiguous"
+      if (.not. is_contiguous(X)) error stop "X: array must be contiguous"
+      if (.not. is_contiguous(Y)) error stop "Y: array must be contiguous"
       clabrd = rocsolver_clabrd_raw(handle, m, n, k, c_loc(A), lda, c_loc(D), c_loc(E), c_loc( &
         tauq), c_loc(taup), c_loc(X), ldx, c_loc(Y), ldy)
     end function rocsolver_clabrd_native
@@ -46232,6 +46358,13 @@ contains
       complex(c_double_complex), target :: Y(..)
       integer(c_int), value :: ldy
       integer(c_int) :: zlabrd
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(D)) error stop "D: array must be contiguous"
+      if (.not. is_contiguous(E)) error stop "E: array must be contiguous"
+      if (.not. is_contiguous(tauq)) error stop "tauq: array must be contiguous"
+      if (.not. is_contiguous(taup)) error stop "taup: array must be contiguous"
+      if (.not. is_contiguous(X)) error stop "X: array must be contiguous"
+      if (.not. is_contiguous(Y)) error stop "Y: array must be contiguous"
       zlabrd = rocsolver_zlabrd_raw(handle, m, n, k, c_loc(A), lda, c_loc(D), c_loc(E), c_loc( &
         tauq), c_loc(taup), c_loc(X), ldx, c_loc(Y), ldy)
     end function rocsolver_zlabrd_native
@@ -46273,6 +46406,9 @@ contains
       real(c_float), target :: W(..)
       integer(c_int), value :: ldw
       integer(c_int) :: slatrd
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(E)) error stop "E: array must be contiguous"
+      if (.not. is_contiguous(W)) error stop "W: array must be contiguous"
       slatrd = rocsolver_slatrd_raw(handle, uplo, n, k, c_loc(A), lda, c_loc(E), tau, c_loc(W), ldw)
     end function rocsolver_slatrd_native
 
@@ -46308,6 +46444,9 @@ contains
       real(c_double), target :: W(..)
       integer(c_int), value :: ldw
       integer(c_int) :: dlatrd
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(E)) error stop "E: array must be contiguous"
+      if (.not. is_contiguous(W)) error stop "W: array must be contiguous"
       dlatrd = rocsolver_dlatrd_raw(handle, uplo, n, k, c_loc(A), lda, c_loc(E), tau, c_loc(W), ldw)
     end function rocsolver_dlatrd_native
 
@@ -46343,6 +46482,9 @@ contains
       complex(c_float_complex), target :: W(..)
       integer(c_int), value :: ldw
       integer(c_int) :: clatrd
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(E)) error stop "E: array must be contiguous"
+      if (.not. is_contiguous(W)) error stop "W: array must be contiguous"
       clatrd = rocsolver_clatrd_raw(handle, uplo, n, k, c_loc(A), lda, c_loc(E), tau, c_loc(W), ldw)
     end function rocsolver_clatrd_native
 
@@ -46378,6 +46520,9 @@ contains
       complex(c_double_complex), target :: W(..)
       integer(c_int), value :: ldw
       integer(c_int) :: zlatrd
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(E)) error stop "E: array must be contiguous"
+      if (.not. is_contiguous(W)) error stop "W: array must be contiguous"
       zlatrd = rocsolver_zlatrd_raw(handle, uplo, n, k, c_loc(A), lda, c_loc(E), tau, c_loc(W), ldw)
     end function rocsolver_zlatrd_native
 
@@ -46412,6 +46557,10 @@ contains
       integer(c_int), target :: ipiv(..)
       integer(c_int), target :: info(..)
       integer(c_int) :: slasyf
+      if (.not. is_contiguous(kb)) error stop "kb: array must be contiguous"
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(ipiv)) error stop "ipiv: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       slasyf = rocsolver_slasyf_raw(handle, uplo, n, nb, c_loc(kb), c_loc(A), lda, c_loc(ipiv), &
         c_loc(info))
     end function rocsolver_slasyf_native
@@ -46446,6 +46595,10 @@ contains
       integer(c_int), target :: ipiv(..)
       integer(c_int), target :: info(..)
       integer(c_int) :: dlasyf
+      if (.not. is_contiguous(kb)) error stop "kb: array must be contiguous"
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(ipiv)) error stop "ipiv: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       dlasyf = rocsolver_dlasyf_raw(handle, uplo, n, nb, c_loc(kb), c_loc(A), lda, c_loc(ipiv), &
         c_loc(info))
     end function rocsolver_dlasyf_native
@@ -46480,6 +46633,10 @@ contains
       integer(c_int), target :: ipiv(..)
       integer(c_int), target :: info(..)
       integer(c_int) :: clasyf
+      if (.not. is_contiguous(kb)) error stop "kb: array must be contiguous"
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(ipiv)) error stop "ipiv: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       clasyf = rocsolver_clasyf_raw(handle, uplo, n, nb, c_loc(kb), c_loc(A), lda, c_loc(ipiv), &
         c_loc(info))
     end function rocsolver_clasyf_native
@@ -46514,6 +46671,10 @@ contains
       integer(c_int), target :: ipiv(..)
       integer(c_int), target :: info(..)
       integer(c_int) :: zlasyf
+      if (.not. is_contiguous(kb)) error stop "kb: array must be contiguous"
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(ipiv)) error stop "ipiv: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       zlasyf = rocsolver_zlasyf_raw(handle, uplo, n, nb, c_loc(kb), c_loc(A), lda, c_loc(ipiv), &
         c_loc(info))
     end function rocsolver_zlasyf_native
@@ -46544,6 +46705,7 @@ contains
       real(c_float), target :: A(..)
       integer(c_int), value :: lda
       integer(c_int) :: slauum
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
       slauum = rocsolver_slauum_raw(handle, uplo, n, c_loc(A), lda)
     end function rocsolver_slauum_native
 
@@ -46569,6 +46731,7 @@ contains
       real(c_double), target :: A(..)
       integer(c_int), value :: lda
       integer(c_int) :: dlauum
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
       dlauum = rocsolver_dlauum_raw(handle, uplo, n, c_loc(A), lda)
     end function rocsolver_dlauum_native
 
@@ -46594,6 +46757,7 @@ contains
       complex(c_float_complex), target :: A(..)
       integer(c_int), value :: lda
       integer(c_int) :: clauum
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
       clauum = rocsolver_clauum_raw(handle, uplo, n, c_loc(A), lda)
     end function rocsolver_clauum_native
 
@@ -46619,6 +46783,7 @@ contains
       complex(c_double_complex), target :: A(..)
       integer(c_int), value :: lda
       integer(c_int) :: zlauum
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
       zlauum = rocsolver_zlauum_raw(handle, uplo, n, c_loc(A), lda)
     end function rocsolver_zlauum_native
 
@@ -46646,6 +46811,8 @@ contains
       integer(c_int), value :: lda
       real(c_float), target :: ipiv(..)
       integer(c_int) :: sorg2r
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(ipiv)) error stop "ipiv: array must be contiguous"
       sorg2r = rocsolver_sorg2r_raw(handle, m, n, k, c_loc(A), lda, c_loc(ipiv))
     end function rocsolver_sorg2r_native
 
@@ -46675,6 +46842,8 @@ contains
       integer(c_int), value :: lda
       real(c_double), target :: ipiv(..)
       integer(c_int) :: dorg2r
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(ipiv)) error stop "ipiv: array must be contiguous"
       dorg2r = rocsolver_dorg2r_raw(handle, m, n, k, c_loc(A), lda, c_loc(ipiv))
     end function rocsolver_dorg2r_native
 
@@ -46704,6 +46873,8 @@ contains
       integer(c_int), value :: lda
       complex(c_float_complex), target :: ipiv(..)
       integer(c_int) :: cung2r
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(ipiv)) error stop "ipiv: array must be contiguous"
       cung2r = rocsolver_cung2r_raw(handle, m, n, k, c_loc(A), lda, c_loc(ipiv))
     end function rocsolver_cung2r_native
 
@@ -46733,6 +46904,8 @@ contains
       integer(c_int), value :: lda
       complex(c_double_complex), target :: ipiv(..)
       integer(c_int) :: zung2r
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(ipiv)) error stop "ipiv: array must be contiguous"
       zung2r = rocsolver_zung2r_raw(handle, m, n, k, c_loc(A), lda, c_loc(ipiv))
     end function rocsolver_zung2r_native
 
@@ -46762,6 +46935,8 @@ contains
       integer(c_int), value :: lda
       real(c_float), target :: ipiv(..)
       integer(c_int) :: sorgqr
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(ipiv)) error stop "ipiv: array must be contiguous"
       sorgqr = rocsolver_sorgqr_raw(handle, m, n, k, c_loc(A), lda, c_loc(ipiv))
     end function rocsolver_sorgqr_native
 
@@ -46791,6 +46966,8 @@ contains
       integer(c_int), value :: lda
       real(c_double), target :: ipiv(..)
       integer(c_int) :: dorgqr
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(ipiv)) error stop "ipiv: array must be contiguous"
       dorgqr = rocsolver_dorgqr_raw(handle, m, n, k, c_loc(A), lda, c_loc(ipiv))
     end function rocsolver_dorgqr_native
 
@@ -46820,6 +46997,8 @@ contains
       integer(c_int), value :: lda
       complex(c_float_complex), target :: ipiv(..)
       integer(c_int) :: cungqr
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(ipiv)) error stop "ipiv: array must be contiguous"
       cungqr = rocsolver_cungqr_raw(handle, m, n, k, c_loc(A), lda, c_loc(ipiv))
     end function rocsolver_cungqr_native
 
@@ -46849,6 +47028,8 @@ contains
       integer(c_int), value :: lda
       complex(c_double_complex), target :: ipiv(..)
       integer(c_int) :: zungqr
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(ipiv)) error stop "ipiv: array must be contiguous"
       zungqr = rocsolver_zungqr_raw(handle, m, n, k, c_loc(A), lda, c_loc(ipiv))
     end function rocsolver_zungqr_native
 
@@ -46878,6 +47059,8 @@ contains
       integer(c_int), value :: lda
       real(c_float), target :: ipiv(..)
       integer(c_int) :: sorgl2
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(ipiv)) error stop "ipiv: array must be contiguous"
       sorgl2 = rocsolver_sorgl2_raw(handle, m, n, k, c_loc(A), lda, c_loc(ipiv))
     end function rocsolver_sorgl2_native
 
@@ -46907,6 +47090,8 @@ contains
       integer(c_int), value :: lda
       real(c_double), target :: ipiv(..)
       integer(c_int) :: dorgl2
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(ipiv)) error stop "ipiv: array must be contiguous"
       dorgl2 = rocsolver_dorgl2_raw(handle, m, n, k, c_loc(A), lda, c_loc(ipiv))
     end function rocsolver_dorgl2_native
 
@@ -46936,6 +47121,8 @@ contains
       integer(c_int), value :: lda
       complex(c_float_complex), target :: ipiv(..)
       integer(c_int) :: cungl2
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(ipiv)) error stop "ipiv: array must be contiguous"
       cungl2 = rocsolver_cungl2_raw(handle, m, n, k, c_loc(A), lda, c_loc(ipiv))
     end function rocsolver_cungl2_native
 
@@ -46965,6 +47152,8 @@ contains
       integer(c_int), value :: lda
       complex(c_double_complex), target :: ipiv(..)
       integer(c_int) :: zungl2
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(ipiv)) error stop "ipiv: array must be contiguous"
       zungl2 = rocsolver_zungl2_raw(handle, m, n, k, c_loc(A), lda, c_loc(ipiv))
     end function rocsolver_zungl2_native
 
@@ -46994,6 +47183,8 @@ contains
       integer(c_int), value :: lda
       real(c_float), target :: ipiv(..)
       integer(c_int) :: sorglq
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(ipiv)) error stop "ipiv: array must be contiguous"
       sorglq = rocsolver_sorglq_raw(handle, m, n, k, c_loc(A), lda, c_loc(ipiv))
     end function rocsolver_sorglq_native
 
@@ -47023,6 +47214,8 @@ contains
       integer(c_int), value :: lda
       real(c_double), target :: ipiv(..)
       integer(c_int) :: dorglq
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(ipiv)) error stop "ipiv: array must be contiguous"
       dorglq = rocsolver_dorglq_raw(handle, m, n, k, c_loc(A), lda, c_loc(ipiv))
     end function rocsolver_dorglq_native
 
@@ -47052,6 +47245,8 @@ contains
       integer(c_int), value :: lda
       complex(c_float_complex), target :: ipiv(..)
       integer(c_int) :: cunglq
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(ipiv)) error stop "ipiv: array must be contiguous"
       cunglq = rocsolver_cunglq_raw(handle, m, n, k, c_loc(A), lda, c_loc(ipiv))
     end function rocsolver_cunglq_native
 
@@ -47081,6 +47276,8 @@ contains
       integer(c_int), value :: lda
       complex(c_double_complex), target :: ipiv(..)
       integer(c_int) :: zunglq
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(ipiv)) error stop "ipiv: array must be contiguous"
       zunglq = rocsolver_zunglq_raw(handle, m, n, k, c_loc(A), lda, c_loc(ipiv))
     end function rocsolver_zunglq_native
 
@@ -47110,6 +47307,8 @@ contains
       integer(c_int), value :: lda
       real(c_float), target :: ipiv(..)
       integer(c_int) :: sorg2l
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(ipiv)) error stop "ipiv: array must be contiguous"
       sorg2l = rocsolver_sorg2l_raw(handle, m, n, k, c_loc(A), lda, c_loc(ipiv))
     end function rocsolver_sorg2l_native
 
@@ -47139,6 +47338,8 @@ contains
       integer(c_int), value :: lda
       real(c_double), target :: ipiv(..)
       integer(c_int) :: dorg2l
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(ipiv)) error stop "ipiv: array must be contiguous"
       dorg2l = rocsolver_dorg2l_raw(handle, m, n, k, c_loc(A), lda, c_loc(ipiv))
     end function rocsolver_dorg2l_native
 
@@ -47168,6 +47369,8 @@ contains
       integer(c_int), value :: lda
       complex(c_float_complex), target :: ipiv(..)
       integer(c_int) :: cung2l
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(ipiv)) error stop "ipiv: array must be contiguous"
       cung2l = rocsolver_cung2l_raw(handle, m, n, k, c_loc(A), lda, c_loc(ipiv))
     end function rocsolver_cung2l_native
 
@@ -47197,6 +47400,8 @@ contains
       integer(c_int), value :: lda
       complex(c_double_complex), target :: ipiv(..)
       integer(c_int) :: zung2l
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(ipiv)) error stop "ipiv: array must be contiguous"
       zung2l = rocsolver_zung2l_raw(handle, m, n, k, c_loc(A), lda, c_loc(ipiv))
     end function rocsolver_zung2l_native
 
@@ -47226,6 +47431,8 @@ contains
       integer(c_int), value :: lda
       real(c_float), target :: ipiv(..)
       integer(c_int) :: sorgql
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(ipiv)) error stop "ipiv: array must be contiguous"
       sorgql = rocsolver_sorgql_raw(handle, m, n, k, c_loc(A), lda, c_loc(ipiv))
     end function rocsolver_sorgql_native
 
@@ -47255,6 +47462,8 @@ contains
       integer(c_int), value :: lda
       real(c_double), target :: ipiv(..)
       integer(c_int) :: dorgql
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(ipiv)) error stop "ipiv: array must be contiguous"
       dorgql = rocsolver_dorgql_raw(handle, m, n, k, c_loc(A), lda, c_loc(ipiv))
     end function rocsolver_dorgql_native
 
@@ -47284,6 +47493,8 @@ contains
       integer(c_int), value :: lda
       complex(c_float_complex), target :: ipiv(..)
       integer(c_int) :: cungql
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(ipiv)) error stop "ipiv: array must be contiguous"
       cungql = rocsolver_cungql_raw(handle, m, n, k, c_loc(A), lda, c_loc(ipiv))
     end function rocsolver_cungql_native
 
@@ -47313,6 +47524,8 @@ contains
       integer(c_int), value :: lda
       complex(c_double_complex), target :: ipiv(..)
       integer(c_int) :: zungql
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(ipiv)) error stop "ipiv: array must be contiguous"
       zungql = rocsolver_zungql_raw(handle, m, n, k, c_loc(A), lda, c_loc(ipiv))
     end function rocsolver_zungql_native
 
@@ -47343,6 +47556,8 @@ contains
       integer(c_int), value :: lda
       real(c_float), target :: ipiv(..)
       integer(c_int) :: sorgbr
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(ipiv)) error stop "ipiv: array must be contiguous"
       sorgbr = rocsolver_sorgbr_raw(handle, storev, m, n, k, c_loc(A), lda, c_loc(ipiv))
     end function rocsolver_sorgbr_native
 
@@ -47374,6 +47589,8 @@ contains
       integer(c_int), value :: lda
       real(c_double), target :: ipiv(..)
       integer(c_int) :: dorgbr
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(ipiv)) error stop "ipiv: array must be contiguous"
       dorgbr = rocsolver_dorgbr_raw(handle, storev, m, n, k, c_loc(A), lda, c_loc(ipiv))
     end function rocsolver_dorgbr_native
 
@@ -47405,6 +47622,8 @@ contains
       integer(c_int), value :: lda
       complex(c_float_complex), target :: ipiv(..)
       integer(c_int) :: cungbr
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(ipiv)) error stop "ipiv: array must be contiguous"
       cungbr = rocsolver_cungbr_raw(handle, storev, m, n, k, c_loc(A), lda, c_loc(ipiv))
     end function rocsolver_cungbr_native
 
@@ -47436,6 +47655,8 @@ contains
       integer(c_int), value :: lda
       complex(c_double_complex), target :: ipiv(..)
       integer(c_int) :: zungbr
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(ipiv)) error stop "ipiv: array must be contiguous"
       zungbr = rocsolver_zungbr_raw(handle, storev, m, n, k, c_loc(A), lda, c_loc(ipiv))
     end function rocsolver_zungbr_native
 
@@ -47465,6 +47686,8 @@ contains
       integer(c_int), value :: lda
       real(c_float), target :: ipiv(..)
       integer(c_int) :: sorgtr
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(ipiv)) error stop "ipiv: array must be contiguous"
       sorgtr = rocsolver_sorgtr_raw(handle, uplo, n, c_loc(A), lda, c_loc(ipiv))
     end function rocsolver_sorgtr_native
 
@@ -47492,6 +47715,8 @@ contains
       integer(c_int), value :: lda
       real(c_double), target :: ipiv(..)
       integer(c_int) :: dorgtr
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(ipiv)) error stop "ipiv: array must be contiguous"
       dorgtr = rocsolver_dorgtr_raw(handle, uplo, n, c_loc(A), lda, c_loc(ipiv))
     end function rocsolver_dorgtr_native
 
@@ -47519,6 +47744,8 @@ contains
       integer(c_int), value :: lda
       complex(c_float_complex), target :: ipiv(..)
       integer(c_int) :: cungtr
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(ipiv)) error stop "ipiv: array must be contiguous"
       cungtr = rocsolver_cungtr_raw(handle, uplo, n, c_loc(A), lda, c_loc(ipiv))
     end function rocsolver_cungtr_native
 
@@ -47546,6 +47773,8 @@ contains
       integer(c_int), value :: lda
       complex(c_double_complex), target :: ipiv(..)
       integer(c_int) :: zungtr
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(ipiv)) error stop "ipiv: array must be contiguous"
       zungtr = rocsolver_zungtr_raw(handle, uplo, n, c_loc(A), lda, c_loc(ipiv))
     end function rocsolver_zungtr_native
 
@@ -47579,6 +47808,9 @@ contains
       real(c_float), target :: C(..)
       integer(c_int), value :: ldc
       integer(c_int) :: sorm2r
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(ipiv)) error stop "ipiv: array must be contiguous"
+      if (.not. is_contiguous(C)) error stop "C: array must be contiguous"
       sorm2r = rocsolver_sorm2r_raw(handle, side, trans, m, n, k, c_loc(A), lda, c_loc(ipiv), &
         c_loc(C), ldc)
     end function rocsolver_sorm2r_native
@@ -47619,6 +47851,9 @@ contains
       real(c_double), target :: C(..)
       integer(c_int), value :: ldc
       integer(c_int) :: dorm2r
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(ipiv)) error stop "ipiv: array must be contiguous"
+      if (.not. is_contiguous(C)) error stop "C: array must be contiguous"
       dorm2r = rocsolver_dorm2r_raw(handle, side, trans, m, n, k, c_loc(A), lda, c_loc(ipiv), &
         c_loc(C), ldc)
     end function rocsolver_dorm2r_native
@@ -47659,6 +47894,9 @@ contains
       complex(c_float_complex), target :: C(..)
       integer(c_int), value :: ldc
       integer(c_int) :: cunm2r
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(ipiv)) error stop "ipiv: array must be contiguous"
+      if (.not. is_contiguous(C)) error stop "C: array must be contiguous"
       cunm2r = rocsolver_cunm2r_raw(handle, side, trans, m, n, k, c_loc(A), lda, c_loc(ipiv), &
         c_loc(C), ldc)
     end function rocsolver_cunm2r_native
@@ -47699,6 +47937,9 @@ contains
       complex(c_double_complex), target :: C(..)
       integer(c_int), value :: ldc
       integer(c_int) :: zunm2r
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(ipiv)) error stop "ipiv: array must be contiguous"
+      if (.not. is_contiguous(C)) error stop "C: array must be contiguous"
       zunm2r = rocsolver_zunm2r_raw(handle, side, trans, m, n, k, c_loc(A), lda, c_loc(ipiv), &
         c_loc(C), ldc)
     end function rocsolver_zunm2r_native
@@ -47739,6 +47980,9 @@ contains
       real(c_float), target :: C(..)
       integer(c_int), value :: ldc
       integer(c_int) :: sormqr
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(ipiv)) error stop "ipiv: array must be contiguous"
+      if (.not. is_contiguous(C)) error stop "C: array must be contiguous"
       sormqr = rocsolver_sormqr_raw(handle, side, trans, m, n, k, c_loc(A), lda, c_loc(ipiv), &
         c_loc(C), ldc)
     end function rocsolver_sormqr_native
@@ -47779,6 +48023,9 @@ contains
       real(c_double), target :: C(..)
       integer(c_int), value :: ldc
       integer(c_int) :: dormqr
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(ipiv)) error stop "ipiv: array must be contiguous"
+      if (.not. is_contiguous(C)) error stop "C: array must be contiguous"
       dormqr = rocsolver_dormqr_raw(handle, side, trans, m, n, k, c_loc(A), lda, c_loc(ipiv), &
         c_loc(C), ldc)
     end function rocsolver_dormqr_native
@@ -47819,6 +48066,9 @@ contains
       complex(c_float_complex), target :: C(..)
       integer(c_int), value :: ldc
       integer(c_int) :: cunmqr
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(ipiv)) error stop "ipiv: array must be contiguous"
+      if (.not. is_contiguous(C)) error stop "C: array must be contiguous"
       cunmqr = rocsolver_cunmqr_raw(handle, side, trans, m, n, k, c_loc(A), lda, c_loc(ipiv), &
         c_loc(C), ldc)
     end function rocsolver_cunmqr_native
@@ -47859,6 +48109,9 @@ contains
       complex(c_double_complex), target :: C(..)
       integer(c_int), value :: ldc
       integer(c_int) :: zunmqr
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(ipiv)) error stop "ipiv: array must be contiguous"
+      if (.not. is_contiguous(C)) error stop "C: array must be contiguous"
       zunmqr = rocsolver_zunmqr_raw(handle, side, trans, m, n, k, c_loc(A), lda, c_loc(ipiv), &
         c_loc(C), ldc)
     end function rocsolver_zunmqr_native
@@ -47899,6 +48152,9 @@ contains
       real(c_float), target :: C(..)
       integer(c_int), value :: ldc
       integer(c_int) :: sorml2
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(ipiv)) error stop "ipiv: array must be contiguous"
+      if (.not. is_contiguous(C)) error stop "C: array must be contiguous"
       sorml2 = rocsolver_sorml2_raw(handle, side, trans, m, n, k, c_loc(A), lda, c_loc(ipiv), &
         c_loc(C), ldc)
     end function rocsolver_sorml2_native
@@ -47939,6 +48195,9 @@ contains
       real(c_double), target :: C(..)
       integer(c_int), value :: ldc
       integer(c_int) :: dorml2
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(ipiv)) error stop "ipiv: array must be contiguous"
+      if (.not. is_contiguous(C)) error stop "C: array must be contiguous"
       dorml2 = rocsolver_dorml2_raw(handle, side, trans, m, n, k, c_loc(A), lda, c_loc(ipiv), &
         c_loc(C), ldc)
     end function rocsolver_dorml2_native
@@ -47979,6 +48238,9 @@ contains
       complex(c_float_complex), target :: C(..)
       integer(c_int), value :: ldc
       integer(c_int) :: cunml2
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(ipiv)) error stop "ipiv: array must be contiguous"
+      if (.not. is_contiguous(C)) error stop "C: array must be contiguous"
       cunml2 = rocsolver_cunml2_raw(handle, side, trans, m, n, k, c_loc(A), lda, c_loc(ipiv), &
         c_loc(C), ldc)
     end function rocsolver_cunml2_native
@@ -48019,6 +48281,9 @@ contains
       complex(c_double_complex), target :: C(..)
       integer(c_int), value :: ldc
       integer(c_int) :: zunml2
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(ipiv)) error stop "ipiv: array must be contiguous"
+      if (.not. is_contiguous(C)) error stop "C: array must be contiguous"
       zunml2 = rocsolver_zunml2_raw(handle, side, trans, m, n, k, c_loc(A), lda, c_loc(ipiv), &
         c_loc(C), ldc)
     end function rocsolver_zunml2_native
@@ -48059,6 +48324,9 @@ contains
       real(c_float), target :: C(..)
       integer(c_int), value :: ldc
       integer(c_int) :: sormlq
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(ipiv)) error stop "ipiv: array must be contiguous"
+      if (.not. is_contiguous(C)) error stop "C: array must be contiguous"
       sormlq = rocsolver_sormlq_raw(handle, side, trans, m, n, k, c_loc(A), lda, c_loc(ipiv), &
         c_loc(C), ldc)
     end function rocsolver_sormlq_native
@@ -48099,6 +48367,9 @@ contains
       real(c_double), target :: C(..)
       integer(c_int), value :: ldc
       integer(c_int) :: dormlq
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(ipiv)) error stop "ipiv: array must be contiguous"
+      if (.not. is_contiguous(C)) error stop "C: array must be contiguous"
       dormlq = rocsolver_dormlq_raw(handle, side, trans, m, n, k, c_loc(A), lda, c_loc(ipiv), &
         c_loc(C), ldc)
     end function rocsolver_dormlq_native
@@ -48139,6 +48410,9 @@ contains
       complex(c_float_complex), target :: C(..)
       integer(c_int), value :: ldc
       integer(c_int) :: cunmlq
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(ipiv)) error stop "ipiv: array must be contiguous"
+      if (.not. is_contiguous(C)) error stop "C: array must be contiguous"
       cunmlq = rocsolver_cunmlq_raw(handle, side, trans, m, n, k, c_loc(A), lda, c_loc(ipiv), &
         c_loc(C), ldc)
     end function rocsolver_cunmlq_native
@@ -48179,6 +48453,9 @@ contains
       complex(c_double_complex), target :: C(..)
       integer(c_int), value :: ldc
       integer(c_int) :: zunmlq
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(ipiv)) error stop "ipiv: array must be contiguous"
+      if (.not. is_contiguous(C)) error stop "C: array must be contiguous"
       zunmlq = rocsolver_zunmlq_raw(handle, side, trans, m, n, k, c_loc(A), lda, c_loc(ipiv), &
         c_loc(C), ldc)
     end function rocsolver_zunmlq_native
@@ -48219,6 +48496,9 @@ contains
       real(c_float), target :: C(..)
       integer(c_int), value :: ldc
       integer(c_int) :: sorm2l
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(ipiv)) error stop "ipiv: array must be contiguous"
+      if (.not. is_contiguous(C)) error stop "C: array must be contiguous"
       sorm2l = rocsolver_sorm2l_raw(handle, side, trans, m, n, k, c_loc(A), lda, c_loc(ipiv), &
         c_loc(C), ldc)
     end function rocsolver_sorm2l_native
@@ -48259,6 +48539,9 @@ contains
       real(c_double), target :: C(..)
       integer(c_int), value :: ldc
       integer(c_int) :: dorm2l
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(ipiv)) error stop "ipiv: array must be contiguous"
+      if (.not. is_contiguous(C)) error stop "C: array must be contiguous"
       dorm2l = rocsolver_dorm2l_raw(handle, side, trans, m, n, k, c_loc(A), lda, c_loc(ipiv), &
         c_loc(C), ldc)
     end function rocsolver_dorm2l_native
@@ -48299,6 +48582,9 @@ contains
       complex(c_float_complex), target :: C(..)
       integer(c_int), value :: ldc
       integer(c_int) :: cunm2l
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(ipiv)) error stop "ipiv: array must be contiguous"
+      if (.not. is_contiguous(C)) error stop "C: array must be contiguous"
       cunm2l = rocsolver_cunm2l_raw(handle, side, trans, m, n, k, c_loc(A), lda, c_loc(ipiv), &
         c_loc(C), ldc)
     end function rocsolver_cunm2l_native
@@ -48339,6 +48625,9 @@ contains
       complex(c_double_complex), target :: C(..)
       integer(c_int), value :: ldc
       integer(c_int) :: zunm2l
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(ipiv)) error stop "ipiv: array must be contiguous"
+      if (.not. is_contiguous(C)) error stop "C: array must be contiguous"
       zunm2l = rocsolver_zunm2l_raw(handle, side, trans, m, n, k, c_loc(A), lda, c_loc(ipiv), &
         c_loc(C), ldc)
     end function rocsolver_zunm2l_native
@@ -48379,6 +48668,9 @@ contains
       real(c_float), target :: C(..)
       integer(c_int), value :: ldc
       integer(c_int) :: sormql
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(ipiv)) error stop "ipiv: array must be contiguous"
+      if (.not. is_contiguous(C)) error stop "C: array must be contiguous"
       sormql = rocsolver_sormql_raw(handle, side, trans, m, n, k, c_loc(A), lda, c_loc(ipiv), &
         c_loc(C), ldc)
     end function rocsolver_sormql_native
@@ -48419,6 +48711,9 @@ contains
       real(c_double), target :: C(..)
       integer(c_int), value :: ldc
       integer(c_int) :: dormql
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(ipiv)) error stop "ipiv: array must be contiguous"
+      if (.not. is_contiguous(C)) error stop "C: array must be contiguous"
       dormql = rocsolver_dormql_raw(handle, side, trans, m, n, k, c_loc(A), lda, c_loc(ipiv), &
         c_loc(C), ldc)
     end function rocsolver_dormql_native
@@ -48459,6 +48754,9 @@ contains
       complex(c_float_complex), target :: C(..)
       integer(c_int), value :: ldc
       integer(c_int) :: cunmql
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(ipiv)) error stop "ipiv: array must be contiguous"
+      if (.not. is_contiguous(C)) error stop "C: array must be contiguous"
       cunmql = rocsolver_cunmql_raw(handle, side, trans, m, n, k, c_loc(A), lda, c_loc(ipiv), &
         c_loc(C), ldc)
     end function rocsolver_cunmql_native
@@ -48499,6 +48797,9 @@ contains
       complex(c_double_complex), target :: C(..)
       integer(c_int), value :: ldc
       integer(c_int) :: zunmql
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(ipiv)) error stop "ipiv: array must be contiguous"
+      if (.not. is_contiguous(C)) error stop "C: array must be contiguous"
       zunmql = rocsolver_zunmql_raw(handle, side, trans, m, n, k, c_loc(A), lda, c_loc(ipiv), &
         c_loc(C), ldc)
     end function rocsolver_zunmql_native
@@ -48540,6 +48841,9 @@ contains
       real(c_float), target :: C(..)
       integer(c_int), value :: ldc
       integer(c_int) :: sormbr
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(ipiv)) error stop "ipiv: array must be contiguous"
+      if (.not. is_contiguous(C)) error stop "C: array must be contiguous"
       sormbr = rocsolver_sormbr_raw(handle, storev, side, trans, m, n, k, c_loc(A), lda, c_loc( &
         ipiv), c_loc(C), ldc)
     end function rocsolver_sormbr_native
@@ -48582,6 +48886,9 @@ contains
       real(c_double), target :: C(..)
       integer(c_int), value :: ldc
       integer(c_int) :: dormbr
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(ipiv)) error stop "ipiv: array must be contiguous"
+      if (.not. is_contiguous(C)) error stop "C: array must be contiguous"
       dormbr = rocsolver_dormbr_raw(handle, storev, side, trans, m, n, k, c_loc(A), lda, c_loc( &
         ipiv), c_loc(C), ldc)
     end function rocsolver_dormbr_native
@@ -48624,6 +48931,9 @@ contains
       complex(c_float_complex), target :: C(..)
       integer(c_int), value :: ldc
       integer(c_int) :: cunmbr
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(ipiv)) error stop "ipiv: array must be contiguous"
+      if (.not. is_contiguous(C)) error stop "C: array must be contiguous"
       cunmbr = rocsolver_cunmbr_raw(handle, storev, side, trans, m, n, k, c_loc(A), lda, c_loc( &
         ipiv), c_loc(C), ldc)
     end function rocsolver_cunmbr_native
@@ -48666,6 +48976,9 @@ contains
       complex(c_double_complex), target :: C(..)
       integer(c_int), value :: ldc
       integer(c_int) :: zunmbr
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(ipiv)) error stop "ipiv: array must be contiguous"
+      if (.not. is_contiguous(C)) error stop "C: array must be contiguous"
       zunmbr = rocsolver_zunmbr_raw(handle, storev, side, trans, m, n, k, c_loc(A), lda, c_loc( &
         ipiv), c_loc(C), ldc)
     end function rocsolver_zunmbr_native
@@ -48707,6 +49020,9 @@ contains
       real(c_float), target :: C(..)
       integer(c_int), value :: ldc
       integer(c_int) :: sormtr
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(ipiv)) error stop "ipiv: array must be contiguous"
+      if (.not. is_contiguous(C)) error stop "C: array must be contiguous"
       sormtr = rocsolver_sormtr_raw(handle, side, uplo, trans, m, n, c_loc(A), lda, c_loc(ipiv), &
         c_loc(C), ldc)
     end function rocsolver_sormtr_native
@@ -48747,6 +49063,9 @@ contains
       real(c_double), target :: C(..)
       integer(c_int), value :: ldc
       integer(c_int) :: dormtr
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(ipiv)) error stop "ipiv: array must be contiguous"
+      if (.not. is_contiguous(C)) error stop "C: array must be contiguous"
       dormtr = rocsolver_dormtr_raw(handle, side, uplo, trans, m, n, c_loc(A), lda, c_loc(ipiv), &
         c_loc(C), ldc)
     end function rocsolver_dormtr_native
@@ -48787,6 +49106,9 @@ contains
       complex(c_float_complex), target :: C(..)
       integer(c_int), value :: ldc
       integer(c_int) :: cunmtr
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(ipiv)) error stop "ipiv: array must be contiguous"
+      if (.not. is_contiguous(C)) error stop "C: array must be contiguous"
       cunmtr = rocsolver_cunmtr_raw(handle, side, uplo, trans, m, n, c_loc(A), lda, c_loc(ipiv), &
         c_loc(C), ldc)
     end function rocsolver_cunmtr_native
@@ -48827,6 +49149,9 @@ contains
       complex(c_double_complex), target :: C(..)
       integer(c_int), value :: ldc
       integer(c_int) :: zunmtr
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(ipiv)) error stop "ipiv: array must be contiguous"
+      if (.not. is_contiguous(C)) error stop "C: array must be contiguous"
       zunmtr = rocsolver_zunmtr_raw(handle, side, uplo, trans, m, n, c_loc(A), lda, c_loc(ipiv), &
         c_loc(C), ldc)
     end function rocsolver_zunmtr_native
@@ -48871,6 +49196,12 @@ contains
       integer(c_int), value :: ldc
       integer(c_int), target :: info(..)
       integer(c_int) :: sbdsqr
+      if (.not. is_contiguous(D)) error stop "D: array must be contiguous"
+      if (.not. is_contiguous(E)) error stop "E: array must be contiguous"
+      if (.not. is_contiguous(V)) error stop "V: array must be contiguous"
+      if (.not. is_contiguous(U)) error stop "U: array must be contiguous"
+      if (.not. is_contiguous(C)) error stop "C: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       sbdsqr = rocsolver_sbdsqr_raw(handle, uplo, n, nv, nu, nc, c_loc(D), c_loc(E), c_loc(V), &
         ldv, c_loc(U), ldu, c_loc(C), ldc, c_loc(info))
     end function rocsolver_sbdsqr_native
@@ -48920,6 +49251,12 @@ contains
       integer(c_int), value :: ldc
       integer(c_int), target :: info(..)
       integer(c_int) :: dbdsqr
+      if (.not. is_contiguous(D)) error stop "D: array must be contiguous"
+      if (.not. is_contiguous(E)) error stop "E: array must be contiguous"
+      if (.not. is_contiguous(V)) error stop "V: array must be contiguous"
+      if (.not. is_contiguous(U)) error stop "U: array must be contiguous"
+      if (.not. is_contiguous(C)) error stop "C: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       dbdsqr = rocsolver_dbdsqr_raw(handle, uplo, n, nv, nu, nc, c_loc(D), c_loc(E), c_loc(V), &
         ldv, c_loc(U), ldu, c_loc(C), ldc, c_loc(info))
     end function rocsolver_dbdsqr_native
@@ -48969,6 +49306,12 @@ contains
       integer(c_int), value :: ldc
       integer(c_int), target :: info(..)
       integer(c_int) :: cbdsqr
+      if (.not. is_contiguous(D)) error stop "D: array must be contiguous"
+      if (.not. is_contiguous(E)) error stop "E: array must be contiguous"
+      if (.not. is_contiguous(V)) error stop "V: array must be contiguous"
+      if (.not. is_contiguous(U)) error stop "U: array must be contiguous"
+      if (.not. is_contiguous(C)) error stop "C: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       cbdsqr = rocsolver_cbdsqr_raw(handle, uplo, n, nv, nu, nc, c_loc(D), c_loc(E), c_loc(V), &
         ldv, c_loc(U), ldu, c_loc(C), ldc, c_loc(info))
     end function rocsolver_cbdsqr_native
@@ -49018,6 +49361,12 @@ contains
       integer(c_int), value :: ldc
       integer(c_int), target :: info(..)
       integer(c_int) :: zbdsqr
+      if (.not. is_contiguous(D)) error stop "D: array must be contiguous"
+      if (.not. is_contiguous(E)) error stop "E: array must be contiguous"
+      if (.not. is_contiguous(V)) error stop "V: array must be contiguous"
+      if (.not. is_contiguous(U)) error stop "U: array must be contiguous"
+      if (.not. is_contiguous(C)) error stop "C: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       zbdsqr = rocsolver_zbdsqr_raw(handle, uplo, n, nv, nu, nc, c_loc(D), c_loc(E), c_loc(V), &
         ldv, c_loc(U), ldu, c_loc(C), ldc, c_loc(info))
     end function rocsolver_zbdsqr_native
@@ -49056,6 +49405,9 @@ contains
       real(c_float), target :: E(..)
       integer(c_int), target :: info(..)
       integer(c_int) :: ssterf
+      if (.not. is_contiguous(D)) error stop "D: array must be contiguous"
+      if (.not. is_contiguous(E)) error stop "E: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       ssterf = rocsolver_ssterf_raw(handle, n, c_loc(D), c_loc(E), c_loc(info))
     end function rocsolver_ssterf_native
 
@@ -49081,6 +49433,9 @@ contains
       real(c_double), target :: E(..)
       integer(c_int), target :: info(..)
       integer(c_int) :: dsterf
+      if (.not. is_contiguous(D)) error stop "D: array must be contiguous"
+      if (.not. is_contiguous(E)) error stop "E: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       dsterf = rocsolver_dsterf_raw(handle, n, c_loc(D), c_loc(E), c_loc(info))
     end function rocsolver_dsterf_native
 
@@ -49109,6 +49464,10 @@ contains
       integer(c_int), value :: ldc
       integer(c_int), target :: info(..)
       integer(c_int) :: ssteqr
+      if (.not. is_contiguous(D)) error stop "D: array must be contiguous"
+      if (.not. is_contiguous(E)) error stop "E: array must be contiguous"
+      if (.not. is_contiguous(C)) error stop "C: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       ssteqr = rocsolver_ssteqr_raw(handle, evect, n, c_loc(D), c_loc(E), c_loc(C), ldc, c_loc( &
         info))
     end function rocsolver_ssteqr_native
@@ -49141,6 +49500,10 @@ contains
       integer(c_int), value :: ldc
       integer(c_int), target :: info(..)
       integer(c_int) :: dsteqr
+      if (.not. is_contiguous(D)) error stop "D: array must be contiguous"
+      if (.not. is_contiguous(E)) error stop "E: array must be contiguous"
+      if (.not. is_contiguous(C)) error stop "C: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       dsteqr = rocsolver_dsteqr_raw(handle, evect, n, c_loc(D), c_loc(E), c_loc(C), ldc, c_loc( &
         info))
     end function rocsolver_dsteqr_native
@@ -49173,6 +49536,10 @@ contains
       integer(c_int), value :: ldc
       integer(c_int), target :: info(..)
       integer(c_int) :: csteqr
+      if (.not. is_contiguous(D)) error stop "D: array must be contiguous"
+      if (.not. is_contiguous(E)) error stop "E: array must be contiguous"
+      if (.not. is_contiguous(C)) error stop "C: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       csteqr = rocsolver_csteqr_raw(handle, evect, n, c_loc(D), c_loc(E), c_loc(C), ldc, c_loc( &
         info))
     end function rocsolver_csteqr_native
@@ -49205,6 +49572,10 @@ contains
       integer(c_int), value :: ldc
       integer(c_int), target :: info(..)
       integer(c_int) :: zsteqr
+      if (.not. is_contiguous(D)) error stop "D: array must be contiguous"
+      if (.not. is_contiguous(E)) error stop "E: array must be contiguous"
+      if (.not. is_contiguous(C)) error stop "C: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       zsteqr = rocsolver_zsteqr_raw(handle, evect, n, c_loc(D), c_loc(E), c_loc(C), ldc, c_loc( &
         info))
     end function rocsolver_zsteqr_native
@@ -49237,6 +49608,10 @@ contains
       integer(c_int), value :: ldc
       integer(c_int), target :: info(..)
       integer(c_int) :: sstedc
+      if (.not. is_contiguous(D)) error stop "D: array must be contiguous"
+      if (.not. is_contiguous(E)) error stop "E: array must be contiguous"
+      if (.not. is_contiguous(C)) error stop "C: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       sstedc = rocsolver_sstedc_raw(handle, evect, n, c_loc(D), c_loc(E), c_loc(C), ldc, c_loc( &
         info))
     end function rocsolver_sstedc_native
@@ -49269,6 +49644,10 @@ contains
       integer(c_int), value :: ldc
       integer(c_int), target :: info(..)
       integer(c_int) :: dstedc
+      if (.not. is_contiguous(D)) error stop "D: array must be contiguous"
+      if (.not. is_contiguous(E)) error stop "E: array must be contiguous"
+      if (.not. is_contiguous(C)) error stop "C: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       dstedc = rocsolver_dstedc_raw(handle, evect, n, c_loc(D), c_loc(E), c_loc(C), ldc, c_loc( &
         info))
     end function rocsolver_dstedc_native
@@ -49301,6 +49680,10 @@ contains
       integer(c_int), value :: ldc
       integer(c_int), target :: info(..)
       integer(c_int) :: cstedc
+      if (.not. is_contiguous(D)) error stop "D: array must be contiguous"
+      if (.not. is_contiguous(E)) error stop "E: array must be contiguous"
+      if (.not. is_contiguous(C)) error stop "C: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       cstedc = rocsolver_cstedc_raw(handle, evect, n, c_loc(D), c_loc(E), c_loc(C), ldc, c_loc( &
         info))
     end function rocsolver_cstedc_native
@@ -49333,6 +49716,10 @@ contains
       integer(c_int), value :: ldc
       integer(c_int), target :: info(..)
       integer(c_int) :: zstedc
+      if (.not. is_contiguous(D)) error stop "D: array must be contiguous"
+      if (.not. is_contiguous(E)) error stop "E: array must be contiguous"
+      if (.not. is_contiguous(C)) error stop "C: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       zstedc = rocsolver_zstedc_raw(handle, evect, n, c_loc(D), c_loc(E), c_loc(C), ldc, c_loc( &
         info))
     end function rocsolver_zstedc_native
@@ -49375,6 +49762,14 @@ contains
       integer(c_int), target :: isplit(..)
       integer(c_int), target :: info(..)
       integer(c_int) :: sstebz
+      if (.not. is_contiguous(D)) error stop "D: array must be contiguous"
+      if (.not. is_contiguous(E)) error stop "E: array must be contiguous"
+      if (.not. is_contiguous(nev)) error stop "nev: array must be contiguous"
+      if (.not. is_contiguous(nsplit)) error stop "nsplit: array must be contiguous"
+      if (.not. is_contiguous(W)) error stop "W: array must be contiguous"
+      if (.not. is_contiguous(iblock)) error stop "iblock: array must be contiguous"
+      if (.not. is_contiguous(isplit)) error stop "isplit: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       sstebz = rocsolver_sstebz_raw(handle, erange, eorder, n, vl, vu, il, iu, abstol, c_loc(D), &
         c_loc(E), c_loc(nev), c_loc(nsplit), c_loc(W), c_loc(iblock), c_loc(isplit), c_loc(info))
     end function rocsolver_sstebz_native
@@ -49428,6 +49823,14 @@ contains
       integer(c_int), target :: isplit(..)
       integer(c_int), target :: info(..)
       integer(c_int) :: dstebz
+      if (.not. is_contiguous(D)) error stop "D: array must be contiguous"
+      if (.not. is_contiguous(E)) error stop "E: array must be contiguous"
+      if (.not. is_contiguous(nev)) error stop "nev: array must be contiguous"
+      if (.not. is_contiguous(nsplit)) error stop "nsplit: array must be contiguous"
+      if (.not. is_contiguous(W)) error stop "W: array must be contiguous"
+      if (.not. is_contiguous(iblock)) error stop "iblock: array must be contiguous"
+      if (.not. is_contiguous(isplit)) error stop "isplit: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       dstebz = rocsolver_dstebz_raw(handle, erange, eorder, n, vl, vu, il, iu, abstol, c_loc(D), &
         c_loc(E), c_loc(nev), c_loc(nsplit), c_loc(W), c_loc(iblock), c_loc(isplit), c_loc(info))
     end function rocsolver_dstebz_native
@@ -49476,6 +49879,15 @@ contains
       integer(c_int), target :: ifail(..)
       integer(c_int), target :: info(..)
       integer(c_int) :: sstein
+      if (.not. is_contiguous(D)) error stop "D: array must be contiguous"
+      if (.not. is_contiguous(E)) error stop "E: array must be contiguous"
+      if (.not. is_contiguous(nev)) error stop "nev: array must be contiguous"
+      if (.not. is_contiguous(W)) error stop "W: array must be contiguous"
+      if (.not. is_contiguous(iblock)) error stop "iblock: array must be contiguous"
+      if (.not. is_contiguous(isplit)) error stop "isplit: array must be contiguous"
+      if (.not. is_contiguous(Z)) error stop "Z: array must be contiguous"
+      if (.not. is_contiguous(ifail)) error stop "ifail: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       sstein = rocsolver_sstein_raw(handle, n, c_loc(D), c_loc(E), c_loc(nev), c_loc(W), c_loc( &
         iblock), c_loc(isplit), c_loc(Z), ldz, c_loc(ifail), c_loc(info))
     end function rocsolver_sstein_native
@@ -49519,6 +49931,15 @@ contains
       integer(c_int), target :: ifail(..)
       integer(c_int), target :: info(..)
       integer(c_int) :: dstein
+      if (.not. is_contiguous(D)) error stop "D: array must be contiguous"
+      if (.not. is_contiguous(E)) error stop "E: array must be contiguous"
+      if (.not. is_contiguous(nev)) error stop "nev: array must be contiguous"
+      if (.not. is_contiguous(W)) error stop "W: array must be contiguous"
+      if (.not. is_contiguous(iblock)) error stop "iblock: array must be contiguous"
+      if (.not. is_contiguous(isplit)) error stop "isplit: array must be contiguous"
+      if (.not. is_contiguous(Z)) error stop "Z: array must be contiguous"
+      if (.not. is_contiguous(ifail)) error stop "ifail: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       dstein = rocsolver_dstein_raw(handle, n, c_loc(D), c_loc(E), c_loc(nev), c_loc(W), c_loc( &
         iblock), c_loc(isplit), c_loc(Z), ldz, c_loc(ifail), c_loc(info))
     end function rocsolver_dstein_native
@@ -49562,6 +49983,15 @@ contains
       integer(c_int), target :: ifail(..)
       integer(c_int), target :: info(..)
       integer(c_int) :: cstein
+      if (.not. is_contiguous(D)) error stop "D: array must be contiguous"
+      if (.not. is_contiguous(E)) error stop "E: array must be contiguous"
+      if (.not. is_contiguous(nev)) error stop "nev: array must be contiguous"
+      if (.not. is_contiguous(W)) error stop "W: array must be contiguous"
+      if (.not. is_contiguous(iblock)) error stop "iblock: array must be contiguous"
+      if (.not. is_contiguous(isplit)) error stop "isplit: array must be contiguous"
+      if (.not. is_contiguous(Z)) error stop "Z: array must be contiguous"
+      if (.not. is_contiguous(ifail)) error stop "ifail: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       cstein = rocsolver_cstein_raw(handle, n, c_loc(D), c_loc(E), c_loc(nev), c_loc(W), c_loc( &
         iblock), c_loc(isplit), c_loc(Z), ldz, c_loc(ifail), c_loc(info))
     end function rocsolver_cstein_native
@@ -49605,6 +50035,15 @@ contains
       integer(c_int), target :: ifail(..)
       integer(c_int), target :: info(..)
       integer(c_int) :: zstein
+      if (.not. is_contiguous(D)) error stop "D: array must be contiguous"
+      if (.not. is_contiguous(E)) error stop "E: array must be contiguous"
+      if (.not. is_contiguous(nev)) error stop "nev: array must be contiguous"
+      if (.not. is_contiguous(W)) error stop "W: array must be contiguous"
+      if (.not. is_contiguous(iblock)) error stop "iblock: array must be contiguous"
+      if (.not. is_contiguous(isplit)) error stop "isplit: array must be contiguous"
+      if (.not. is_contiguous(Z)) error stop "Z: array must be contiguous"
+      if (.not. is_contiguous(ifail)) error stop "ifail: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       zstein = rocsolver_zstein_raw(handle, n, c_loc(D), c_loc(E), c_loc(nev), c_loc(W), c_loc( &
         iblock), c_loc(isplit), c_loc(Z), ldz, c_loc(ifail), c_loc(info))
     end function rocsolver_zstein_native
@@ -49653,6 +50092,13 @@ contains
       integer(c_int), target :: ifail(..)
       integer(c_int), target :: info(..)
       integer(c_int) :: sbdsvdx
+      if (.not. is_contiguous(D)) error stop "D: array must be contiguous"
+      if (.not. is_contiguous(E)) error stop "E: array must be contiguous"
+      if (.not. is_contiguous(nsv)) error stop "nsv: array must be contiguous"
+      if (.not. is_contiguous(S)) error stop "S: array must be contiguous"
+      if (.not. is_contiguous(Z)) error stop "Z: array must be contiguous"
+      if (.not. is_contiguous(ifail)) error stop "ifail: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       sbdsvdx = rocsolver_sbdsvdx_raw(handle, uplo, svect, srange, n, c_loc(D), c_loc(E), vl, vu, &
         il, iu, c_loc(nsv), c_loc(S), c_loc(Z), ldz, c_loc(ifail), c_loc(info))
     end function rocsolver_sbdsvdx_native
@@ -49706,6 +50152,13 @@ contains
       integer(c_int), target :: ifail(..)
       integer(c_int), target :: info(..)
       integer(c_int) :: dbdsvdx
+      if (.not. is_contiguous(D)) error stop "D: array must be contiguous"
+      if (.not. is_contiguous(E)) error stop "E: array must be contiguous"
+      if (.not. is_contiguous(nsv)) error stop "nsv: array must be contiguous"
+      if (.not. is_contiguous(S)) error stop "S: array must be contiguous"
+      if (.not. is_contiguous(Z)) error stop "Z: array must be contiguous"
+      if (.not. is_contiguous(ifail)) error stop "ifail: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       dbdsvdx = rocsolver_dbdsvdx_raw(handle, uplo, svect, srange, n, c_loc(D), c_loc(E), vl, vu, &
         il, iu, c_loc(nsv), c_loc(S), c_loc(Z), ldz, c_loc(ifail), c_loc(info))
     end function rocsolver_dbdsvdx_native
@@ -49747,6 +50200,8 @@ contains
       integer(c_int), value :: lda
       integer(c_int), target :: info(..)
       integer(c_int) :: sgetf2_npvt
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       sgetf2_npvt = rocsolver_sgetf2_npvt_raw(handle, m, n, c_loc(A), lda, c_loc(info))
     end function rocsolver_sgetf2_npvt_native
 
@@ -49774,6 +50229,8 @@ contains
       integer(c_int), value :: lda
       integer(c_int), target :: info(..)
       integer(c_int) :: dgetf2_npvt
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       dgetf2_npvt = rocsolver_dgetf2_npvt_raw(handle, m, n, c_loc(A), lda, c_loc(info))
     end function rocsolver_dgetf2_npvt_native
 
@@ -49801,6 +50258,8 @@ contains
       integer(c_int), value :: lda
       integer(c_int), target :: info(..)
       integer(c_int) :: cgetf2_npvt
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       cgetf2_npvt = rocsolver_cgetf2_npvt_raw(handle, m, n, c_loc(A), lda, c_loc(info))
     end function rocsolver_cgetf2_npvt_native
 
@@ -49828,6 +50287,8 @@ contains
       integer(c_int), value :: lda
       integer(c_int), target :: info(..)
       integer(c_int) :: zgetf2_npvt
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       zgetf2_npvt = rocsolver_zgetf2_npvt_raw(handle, m, n, c_loc(A), lda, c_loc(info))
     end function rocsolver_zgetf2_npvt_native
 
@@ -49855,6 +50316,7 @@ contains
       integer(c_long), value :: lda
       type(c_ptr), value :: info
       integer(c_int) :: sgetf2_npvt_64
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
       sgetf2_npvt_64 = rocsolver_sgetf2_npvt_64_raw(handle, m, n, c_loc(A), lda, info)
     end function rocsolver_sgetf2_npvt_64_native
 
@@ -49882,6 +50344,7 @@ contains
       integer(c_long), value :: lda
       type(c_ptr), value :: info
       integer(c_int) :: dgetf2_npvt_64
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
       dgetf2_npvt_64 = rocsolver_dgetf2_npvt_64_raw(handle, m, n, c_loc(A), lda, info)
     end function rocsolver_dgetf2_npvt_64_native
 
@@ -49909,6 +50372,7 @@ contains
       integer(c_long), value :: lda
       type(c_ptr), value :: info
       integer(c_int) :: cgetf2_npvt_64
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
       cgetf2_npvt_64 = rocsolver_cgetf2_npvt_64_raw(handle, m, n, c_loc(A), lda, info)
     end function rocsolver_cgetf2_npvt_64_native
 
@@ -49936,6 +50400,7 @@ contains
       integer(c_long), value :: lda
       type(c_ptr), value :: info
       integer(c_int) :: zgetf2_npvt_64
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
       zgetf2_npvt_64 = rocsolver_zgetf2_npvt_64_raw(handle, m, n, c_loc(A), lda, info)
     end function rocsolver_zgetf2_npvt_64_native
 
@@ -49965,6 +50430,7 @@ contains
       integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: sgetf2_npvt_batched
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       sgetf2_npvt_batched = rocsolver_sgetf2_npvt_batched_raw(handle, m, n, A, lda, c_loc(info), &
         batch_count)
     end function rocsolver_sgetf2_npvt_batched_native
@@ -49998,6 +50464,7 @@ contains
       integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: dgetf2_npvt_batched
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       dgetf2_npvt_batched = rocsolver_dgetf2_npvt_batched_raw(handle, m, n, A, lda, c_loc(info), &
         batch_count)
     end function rocsolver_dgetf2_npvt_batched_native
@@ -50031,6 +50498,7 @@ contains
       integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: cgetf2_npvt_batched
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       cgetf2_npvt_batched = rocsolver_cgetf2_npvt_batched_raw(handle, m, n, A, lda, c_loc(info), &
         batch_count)
     end function rocsolver_cgetf2_npvt_batched_native
@@ -50064,6 +50532,7 @@ contains
       integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: zgetf2_npvt_batched
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       zgetf2_npvt_batched = rocsolver_zgetf2_npvt_batched_raw(handle, m, n, A, lda, c_loc(info), &
         batch_count)
     end function rocsolver_zgetf2_npvt_batched_native
@@ -50166,6 +50635,8 @@ contains
       integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: sgetf2_npvt_strided_batched
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       sgetf2_npvt_strided_batched = rocsolver_sgetf2_npvt_strided_batched_raw(handle, m, n, c_loc( &
         A), lda, strideA, c_loc(info), batch_count)
     end function rocsolver_sgetf2_npvt_strided_batched_native
@@ -50201,6 +50672,8 @@ contains
       integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: dgetf2_npvt_strided_batched
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       dgetf2_npvt_strided_batched = rocsolver_dgetf2_npvt_strided_batched_raw(handle, m, n, c_loc( &
         A), lda, strideA, c_loc(info), batch_count)
     end function rocsolver_dgetf2_npvt_strided_batched_native
@@ -50236,6 +50709,8 @@ contains
       integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: cgetf2_npvt_strided_batched
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       cgetf2_npvt_strided_batched = rocsolver_cgetf2_npvt_strided_batched_raw(handle, m, n, c_loc( &
         A), lda, strideA, c_loc(info), batch_count)
     end function rocsolver_cgetf2_npvt_strided_batched_native
@@ -50271,6 +50746,8 @@ contains
       integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: zgetf2_npvt_strided_batched
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       zgetf2_npvt_strided_batched = rocsolver_zgetf2_npvt_strided_batched_raw(handle, m, n, c_loc( &
         A), lda, strideA, c_loc(info), batch_count)
     end function rocsolver_zgetf2_npvt_strided_batched_native
@@ -50306,6 +50783,7 @@ contains
       type(c_ptr), value :: info
       integer(c_long), value :: batch_count
       integer(c_int) :: sgetf2_npvt_strided_batched_64
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
       sgetf2_npvt_strided_batched_64 = rocsolver_sgetf2_npvt_strided_batched_64_raw(handle, m, n, &
         c_loc(A), lda, strideA, info, batch_count)
     end function rocsolver_sgetf2_npvt_strided_batched_64_native
@@ -50341,6 +50819,7 @@ contains
       type(c_ptr), value :: info
       integer(c_long), value :: batch_count
       integer(c_int) :: dgetf2_npvt_strided_batched_64
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
       dgetf2_npvt_strided_batched_64 = rocsolver_dgetf2_npvt_strided_batched_64_raw(handle, m, n, &
         c_loc(A), lda, strideA, info, batch_count)
     end function rocsolver_dgetf2_npvt_strided_batched_64_native
@@ -50376,6 +50855,7 @@ contains
       type(c_ptr), value :: info
       integer(c_long), value :: batch_count
       integer(c_int) :: cgetf2_npvt_strided_batched_64
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
       cgetf2_npvt_strided_batched_64 = rocsolver_cgetf2_npvt_strided_batched_64_raw(handle, m, n, &
         c_loc(A), lda, strideA, info, batch_count)
     end function rocsolver_cgetf2_npvt_strided_batched_64_native
@@ -50411,6 +50891,7 @@ contains
       type(c_ptr), value :: info
       integer(c_long), value :: batch_count
       integer(c_int) :: zgetf2_npvt_strided_batched_64
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
       zgetf2_npvt_strided_batched_64 = rocsolver_zgetf2_npvt_strided_batched_64_raw(handle, m, n, &
         c_loc(A), lda, strideA, info, batch_count)
     end function rocsolver_zgetf2_npvt_strided_batched_64_native
@@ -50443,6 +50924,8 @@ contains
       integer(c_int), value :: lda
       integer(c_int), target :: info(..)
       integer(c_int) :: sgetrf_npvt
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       sgetrf_npvt = rocsolver_sgetrf_npvt_raw(handle, m, n, c_loc(A), lda, c_loc(info))
     end function rocsolver_sgetrf_npvt_native
 
@@ -50470,6 +50953,8 @@ contains
       integer(c_int), value :: lda
       integer(c_int), target :: info(..)
       integer(c_int) :: dgetrf_npvt
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       dgetrf_npvt = rocsolver_dgetrf_npvt_raw(handle, m, n, c_loc(A), lda, c_loc(info))
     end function rocsolver_dgetrf_npvt_native
 
@@ -50497,6 +50982,8 @@ contains
       integer(c_int), value :: lda
       integer(c_int), target :: info(..)
       integer(c_int) :: cgetrf_npvt
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       cgetrf_npvt = rocsolver_cgetrf_npvt_raw(handle, m, n, c_loc(A), lda, c_loc(info))
     end function rocsolver_cgetrf_npvt_native
 
@@ -50524,6 +51011,8 @@ contains
       integer(c_int), value :: lda
       integer(c_int), target :: info(..)
       integer(c_int) :: zgetrf_npvt
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       zgetrf_npvt = rocsolver_zgetrf_npvt_raw(handle, m, n, c_loc(A), lda, c_loc(info))
     end function rocsolver_zgetrf_npvt_native
 
@@ -50551,6 +51040,7 @@ contains
       integer(c_long), value :: lda
       type(c_ptr), value :: info
       integer(c_int) :: sgetrf_npvt_64
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
       sgetrf_npvt_64 = rocsolver_sgetrf_npvt_64_raw(handle, m, n, c_loc(A), lda, info)
     end function rocsolver_sgetrf_npvt_64_native
 
@@ -50578,6 +51068,7 @@ contains
       integer(c_long), value :: lda
       type(c_ptr), value :: info
       integer(c_int) :: dgetrf_npvt_64
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
       dgetrf_npvt_64 = rocsolver_dgetrf_npvt_64_raw(handle, m, n, c_loc(A), lda, info)
     end function rocsolver_dgetrf_npvt_64_native
 
@@ -50605,6 +51096,7 @@ contains
       integer(c_long), value :: lda
       type(c_ptr), value :: info
       integer(c_int) :: cgetrf_npvt_64
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
       cgetrf_npvt_64 = rocsolver_cgetrf_npvt_64_raw(handle, m, n, c_loc(A), lda, info)
     end function rocsolver_cgetrf_npvt_64_native
 
@@ -50632,6 +51124,7 @@ contains
       integer(c_long), value :: lda
       type(c_ptr), value :: info
       integer(c_int) :: zgetrf_npvt_64
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
       zgetrf_npvt_64 = rocsolver_zgetrf_npvt_64_raw(handle, m, n, c_loc(A), lda, info)
     end function rocsolver_zgetrf_npvt_64_native
 
@@ -50661,6 +51154,7 @@ contains
       integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: sgetrf_npvt_batched
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       sgetrf_npvt_batched = rocsolver_sgetrf_npvt_batched_raw(handle, m, n, A, lda, c_loc(info), &
         batch_count)
     end function rocsolver_sgetrf_npvt_batched_native
@@ -50694,6 +51188,7 @@ contains
       integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: dgetrf_npvt_batched
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       dgetrf_npvt_batched = rocsolver_dgetrf_npvt_batched_raw(handle, m, n, A, lda, c_loc(info), &
         batch_count)
     end function rocsolver_dgetrf_npvt_batched_native
@@ -50727,6 +51222,7 @@ contains
       integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: cgetrf_npvt_batched
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       cgetrf_npvt_batched = rocsolver_cgetrf_npvt_batched_raw(handle, m, n, A, lda, c_loc(info), &
         batch_count)
     end function rocsolver_cgetrf_npvt_batched_native
@@ -50760,6 +51256,7 @@ contains
       integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: zgetrf_npvt_batched
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       zgetrf_npvt_batched = rocsolver_zgetrf_npvt_batched_raw(handle, m, n, A, lda, c_loc(info), &
         batch_count)
     end function rocsolver_zgetrf_npvt_batched_native
@@ -50862,6 +51359,8 @@ contains
       integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: sgetrf_npvt_strided_batched
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       sgetrf_npvt_strided_batched = rocsolver_sgetrf_npvt_strided_batched_raw(handle, m, n, c_loc( &
         A), lda, strideA, c_loc(info), batch_count)
     end function rocsolver_sgetrf_npvt_strided_batched_native
@@ -50897,6 +51396,8 @@ contains
       integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: dgetrf_npvt_strided_batched
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       dgetrf_npvt_strided_batched = rocsolver_dgetrf_npvt_strided_batched_raw(handle, m, n, c_loc( &
         A), lda, strideA, c_loc(info), batch_count)
     end function rocsolver_dgetrf_npvt_strided_batched_native
@@ -50932,6 +51433,8 @@ contains
       integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: cgetrf_npvt_strided_batched
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       cgetrf_npvt_strided_batched = rocsolver_cgetrf_npvt_strided_batched_raw(handle, m, n, c_loc( &
         A), lda, strideA, c_loc(info), batch_count)
     end function rocsolver_cgetrf_npvt_strided_batched_native
@@ -50967,6 +51470,8 @@ contains
       integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: zgetrf_npvt_strided_batched
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       zgetrf_npvt_strided_batched = rocsolver_zgetrf_npvt_strided_batched_raw(handle, m, n, c_loc( &
         A), lda, strideA, c_loc(info), batch_count)
     end function rocsolver_zgetrf_npvt_strided_batched_native
@@ -51002,6 +51507,7 @@ contains
       type(c_ptr), value :: info
       integer(c_long), value :: batch_count
       integer(c_int) :: sgetrf_npvt_strided_batched_64
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
       sgetrf_npvt_strided_batched_64 = rocsolver_sgetrf_npvt_strided_batched_64_raw(handle, m, n, &
         c_loc(A), lda, strideA, info, batch_count)
     end function rocsolver_sgetrf_npvt_strided_batched_64_native
@@ -51037,6 +51543,7 @@ contains
       type(c_ptr), value :: info
       integer(c_long), value :: batch_count
       integer(c_int) :: dgetrf_npvt_strided_batched_64
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
       dgetrf_npvt_strided_batched_64 = rocsolver_dgetrf_npvt_strided_batched_64_raw(handle, m, n, &
         c_loc(A), lda, strideA, info, batch_count)
     end function rocsolver_dgetrf_npvt_strided_batched_64_native
@@ -51072,6 +51579,7 @@ contains
       type(c_ptr), value :: info
       integer(c_long), value :: batch_count
       integer(c_int) :: cgetrf_npvt_strided_batched_64
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
       cgetrf_npvt_strided_batched_64 = rocsolver_cgetrf_npvt_strided_batched_64_raw(handle, m, n, &
         c_loc(A), lda, strideA, info, batch_count)
     end function rocsolver_cgetrf_npvt_strided_batched_64_native
@@ -51107,6 +51615,7 @@ contains
       type(c_ptr), value :: info
       integer(c_long), value :: batch_count
       integer(c_int) :: zgetrf_npvt_strided_batched_64
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
       zgetrf_npvt_strided_batched_64 = rocsolver_zgetrf_npvt_strided_batched_64_raw(handle, m, n, &
         c_loc(A), lda, strideA, info, batch_count)
     end function rocsolver_zgetrf_npvt_strided_batched_64_native
@@ -51140,6 +51649,9 @@ contains
       integer(c_int), target :: ipiv(..)
       integer(c_int), target :: info(..)
       integer(c_int) :: sgetf2
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(ipiv)) error stop "ipiv: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       sgetf2 = rocsolver_sgetf2_raw(handle, m, n, c_loc(A), lda, c_loc(ipiv), c_loc(info))
     end function rocsolver_sgetf2_native
 
@@ -51169,6 +51681,9 @@ contains
       integer(c_int), target :: ipiv(..)
       integer(c_int), target :: info(..)
       integer(c_int) :: dgetf2
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(ipiv)) error stop "ipiv: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       dgetf2 = rocsolver_dgetf2_raw(handle, m, n, c_loc(A), lda, c_loc(ipiv), c_loc(info))
     end function rocsolver_dgetf2_native
 
@@ -51198,6 +51713,9 @@ contains
       integer(c_int), target :: ipiv(..)
       integer(c_int), target :: info(..)
       integer(c_int) :: cgetf2
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(ipiv)) error stop "ipiv: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       cgetf2 = rocsolver_cgetf2_raw(handle, m, n, c_loc(A), lda, c_loc(ipiv), c_loc(info))
     end function rocsolver_cgetf2_native
 
@@ -51227,6 +51745,9 @@ contains
       integer(c_int), target :: ipiv(..)
       integer(c_int), target :: info(..)
       integer(c_int) :: zgetf2
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(ipiv)) error stop "ipiv: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       zgetf2 = rocsolver_zgetf2_raw(handle, m, n, c_loc(A), lda, c_loc(ipiv), c_loc(info))
     end function rocsolver_zgetf2_native
 
@@ -51256,6 +51777,7 @@ contains
       type(c_ptr), value :: ipiv
       type(c_ptr), value :: info
       integer(c_int) :: sgetf2_64
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
       sgetf2_64 = rocsolver_sgetf2_64_raw(handle, m, n, c_loc(A), lda, ipiv, info)
     end function rocsolver_sgetf2_64_native
 
@@ -51285,6 +51807,7 @@ contains
       type(c_ptr), value :: ipiv
       type(c_ptr), value :: info
       integer(c_int) :: dgetf2_64
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
       dgetf2_64 = rocsolver_dgetf2_64_raw(handle, m, n, c_loc(A), lda, ipiv, info)
     end function rocsolver_dgetf2_64_native
 
@@ -51314,6 +51837,7 @@ contains
       type(c_ptr), value :: ipiv
       type(c_ptr), value :: info
       integer(c_int) :: cgetf2_64
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
       cgetf2_64 = rocsolver_cgetf2_64_raw(handle, m, n, c_loc(A), lda, ipiv, info)
     end function rocsolver_cgetf2_64_native
 
@@ -51343,6 +51867,7 @@ contains
       type(c_ptr), value :: ipiv
       type(c_ptr), value :: info
       integer(c_int) :: zgetf2_64
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
       zgetf2_64 = rocsolver_zgetf2_64_raw(handle, m, n, c_loc(A), lda, ipiv, info)
     end function rocsolver_zgetf2_64_native
 
@@ -51375,6 +51900,8 @@ contains
       integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: sgetf2_batched
+      if (.not. is_contiguous(ipiv)) error stop "ipiv: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       sgetf2_batched = rocsolver_sgetf2_batched_raw(handle, m, n, A, lda, c_loc(ipiv), strideP, &
         c_loc(info), batch_count)
     end function rocsolver_sgetf2_batched_native
@@ -51412,6 +51939,8 @@ contains
       integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: dgetf2_batched
+      if (.not. is_contiguous(ipiv)) error stop "ipiv: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       dgetf2_batched = rocsolver_dgetf2_batched_raw(handle, m, n, A, lda, c_loc(ipiv), strideP, &
         c_loc(info), batch_count)
     end function rocsolver_dgetf2_batched_native
@@ -51449,6 +51978,8 @@ contains
       integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: cgetf2_batched
+      if (.not. is_contiguous(ipiv)) error stop "ipiv: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       cgetf2_batched = rocsolver_cgetf2_batched_raw(handle, m, n, A, lda, c_loc(ipiv), strideP, &
         c_loc(info), batch_count)
     end function rocsolver_cgetf2_batched_native
@@ -51486,6 +52017,8 @@ contains
       integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: zgetf2_batched
+      if (.not. is_contiguous(ipiv)) error stop "ipiv: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       zgetf2_batched = rocsolver_zgetf2_batched_raw(handle, m, n, A, lda, c_loc(ipiv), strideP, &
         c_loc(info), batch_count)
     end function rocsolver_zgetf2_batched_native
@@ -51600,6 +52133,9 @@ contains
       integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: sgetf2_strided_batched
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(ipiv)) error stop "ipiv: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       sgetf2_strided_batched = rocsolver_sgetf2_strided_batched_raw(handle, m, n, c_loc(A), lda, &
         strideA, c_loc(ipiv), strideP, c_loc(info), batch_count)
     end function rocsolver_sgetf2_strided_batched_native
@@ -51639,6 +52175,9 @@ contains
       integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: dgetf2_strided_batched
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(ipiv)) error stop "ipiv: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       dgetf2_strided_batched = rocsolver_dgetf2_strided_batched_raw(handle, m, n, c_loc(A), lda, &
         strideA, c_loc(ipiv), strideP, c_loc(info), batch_count)
     end function rocsolver_dgetf2_strided_batched_native
@@ -51678,6 +52217,9 @@ contains
       integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: cgetf2_strided_batched
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(ipiv)) error stop "ipiv: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       cgetf2_strided_batched = rocsolver_cgetf2_strided_batched_raw(handle, m, n, c_loc(A), lda, &
         strideA, c_loc(ipiv), strideP, c_loc(info), batch_count)
     end function rocsolver_cgetf2_strided_batched_native
@@ -51717,6 +52259,9 @@ contains
       integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: zgetf2_strided_batched
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(ipiv)) error stop "ipiv: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       zgetf2_strided_batched = rocsolver_zgetf2_strided_batched_raw(handle, m, n, c_loc(A), lda, &
         strideA, c_loc(ipiv), strideP, c_loc(info), batch_count)
     end function rocsolver_zgetf2_strided_batched_native
@@ -51756,6 +52301,7 @@ contains
       type(c_ptr), value :: info
       integer(c_long), value :: batch_count
       integer(c_int) :: sgetf2_strided_batched_64
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
       sgetf2_strided_batched_64 = rocsolver_sgetf2_strided_batched_64_raw(handle, m, n, c_loc(A), &
         lda, strideA, ipiv, strideP, info, batch_count)
     end function rocsolver_sgetf2_strided_batched_64_native
@@ -51795,6 +52341,7 @@ contains
       type(c_ptr), value :: info
       integer(c_long), value :: batch_count
       integer(c_int) :: dgetf2_strided_batched_64
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
       dgetf2_strided_batched_64 = rocsolver_dgetf2_strided_batched_64_raw(handle, m, n, c_loc(A), &
         lda, strideA, ipiv, strideP, info, batch_count)
     end function rocsolver_dgetf2_strided_batched_64_native
@@ -51834,6 +52381,7 @@ contains
       type(c_ptr), value :: info
       integer(c_long), value :: batch_count
       integer(c_int) :: cgetf2_strided_batched_64
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
       cgetf2_strided_batched_64 = rocsolver_cgetf2_strided_batched_64_raw(handle, m, n, c_loc(A), &
         lda, strideA, ipiv, strideP, info, batch_count)
     end function rocsolver_cgetf2_strided_batched_64_native
@@ -51873,6 +52421,7 @@ contains
       type(c_ptr), value :: info
       integer(c_long), value :: batch_count
       integer(c_int) :: zgetf2_strided_batched_64
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
       zgetf2_strided_batched_64 = rocsolver_zgetf2_strided_batched_64_raw(handle, m, n, c_loc(A), &
         lda, strideA, ipiv, strideP, info, batch_count)
     end function rocsolver_zgetf2_strided_batched_64_native
@@ -51908,6 +52457,9 @@ contains
       integer(c_int), target :: ipiv(..)
       integer(c_int), target :: info(..)
       integer(c_int) :: sgetrf
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(ipiv)) error stop "ipiv: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       sgetrf = rocsolver_sgetrf_raw(handle, m, n, c_loc(A), lda, c_loc(ipiv), c_loc(info))
     end function rocsolver_sgetrf_native
 
@@ -51937,6 +52489,9 @@ contains
       integer(c_int), target :: ipiv(..)
       integer(c_int), target :: info(..)
       integer(c_int) :: dgetrf
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(ipiv)) error stop "ipiv: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       dgetrf = rocsolver_dgetrf_raw(handle, m, n, c_loc(A), lda, c_loc(ipiv), c_loc(info))
     end function rocsolver_dgetrf_native
 
@@ -51966,6 +52521,9 @@ contains
       integer(c_int), target :: ipiv(..)
       integer(c_int), target :: info(..)
       integer(c_int) :: cgetrf
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(ipiv)) error stop "ipiv: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       cgetrf = rocsolver_cgetrf_raw(handle, m, n, c_loc(A), lda, c_loc(ipiv), c_loc(info))
     end function rocsolver_cgetrf_native
 
@@ -51995,6 +52553,9 @@ contains
       integer(c_int), target :: ipiv(..)
       integer(c_int), target :: info(..)
       integer(c_int) :: zgetrf
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(ipiv)) error stop "ipiv: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       zgetrf = rocsolver_zgetrf_raw(handle, m, n, c_loc(A), lda, c_loc(ipiv), c_loc(info))
     end function rocsolver_zgetrf_native
 
@@ -52024,6 +52585,7 @@ contains
       type(c_ptr), value :: ipiv
       type(c_ptr), value :: info
       integer(c_int) :: sgetrf_64
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
       sgetrf_64 = rocsolver_sgetrf_64_raw(handle, m, n, c_loc(A), lda, ipiv, info)
     end function rocsolver_sgetrf_64_native
 
@@ -52053,6 +52615,7 @@ contains
       type(c_ptr), value :: ipiv
       type(c_ptr), value :: info
       integer(c_int) :: dgetrf_64
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
       dgetrf_64 = rocsolver_dgetrf_64_raw(handle, m, n, c_loc(A), lda, ipiv, info)
     end function rocsolver_dgetrf_64_native
 
@@ -52082,6 +52645,7 @@ contains
       type(c_ptr), value :: ipiv
       type(c_ptr), value :: info
       integer(c_int) :: cgetrf_64
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
       cgetrf_64 = rocsolver_cgetrf_64_raw(handle, m, n, c_loc(A), lda, ipiv, info)
     end function rocsolver_cgetrf_64_native
 
@@ -52111,6 +52675,7 @@ contains
       type(c_ptr), value :: ipiv
       type(c_ptr), value :: info
       integer(c_int) :: zgetrf_64
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
       zgetrf_64 = rocsolver_zgetrf_64_raw(handle, m, n, c_loc(A), lda, ipiv, info)
     end function rocsolver_zgetrf_64_native
 
@@ -52143,6 +52708,8 @@ contains
       integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: sgetrf_batched
+      if (.not. is_contiguous(ipiv)) error stop "ipiv: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       sgetrf_batched = rocsolver_sgetrf_batched_raw(handle, m, n, A, lda, c_loc(ipiv), strideP, &
         c_loc(info), batch_count)
     end function rocsolver_sgetrf_batched_native
@@ -52180,6 +52747,8 @@ contains
       integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: dgetrf_batched
+      if (.not. is_contiguous(ipiv)) error stop "ipiv: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       dgetrf_batched = rocsolver_dgetrf_batched_raw(handle, m, n, A, lda, c_loc(ipiv), strideP, &
         c_loc(info), batch_count)
     end function rocsolver_dgetrf_batched_native
@@ -52217,6 +52786,8 @@ contains
       integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: cgetrf_batched
+      if (.not. is_contiguous(ipiv)) error stop "ipiv: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       cgetrf_batched = rocsolver_cgetrf_batched_raw(handle, m, n, A, lda, c_loc(ipiv), strideP, &
         c_loc(info), batch_count)
     end function rocsolver_cgetrf_batched_native
@@ -52254,6 +52825,8 @@ contains
       integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: zgetrf_batched
+      if (.not. is_contiguous(ipiv)) error stop "ipiv: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       zgetrf_batched = rocsolver_zgetrf_batched_raw(handle, m, n, A, lda, c_loc(ipiv), strideP, &
         c_loc(info), batch_count)
     end function rocsolver_zgetrf_batched_native
@@ -52368,6 +52941,9 @@ contains
       integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: sgetrf_strided_batched
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(ipiv)) error stop "ipiv: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       sgetrf_strided_batched = rocsolver_sgetrf_strided_batched_raw(handle, m, n, c_loc(A), lda, &
         strideA, c_loc(ipiv), strideP, c_loc(info), batch_count)
     end function rocsolver_sgetrf_strided_batched_native
@@ -52407,6 +52983,9 @@ contains
       integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: dgetrf_strided_batched
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(ipiv)) error stop "ipiv: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       dgetrf_strided_batched = rocsolver_dgetrf_strided_batched_raw(handle, m, n, c_loc(A), lda, &
         strideA, c_loc(ipiv), strideP, c_loc(info), batch_count)
     end function rocsolver_dgetrf_strided_batched_native
@@ -52446,6 +53025,9 @@ contains
       integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: cgetrf_strided_batched
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(ipiv)) error stop "ipiv: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       cgetrf_strided_batched = rocsolver_cgetrf_strided_batched_raw(handle, m, n, c_loc(A), lda, &
         strideA, c_loc(ipiv), strideP, c_loc(info), batch_count)
     end function rocsolver_cgetrf_strided_batched_native
@@ -52485,6 +53067,9 @@ contains
       integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: zgetrf_strided_batched
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(ipiv)) error stop "ipiv: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       zgetrf_strided_batched = rocsolver_zgetrf_strided_batched_raw(handle, m, n, c_loc(A), lda, &
         strideA, c_loc(ipiv), strideP, c_loc(info), batch_count)
     end function rocsolver_zgetrf_strided_batched_native
@@ -52524,6 +53109,7 @@ contains
       type(c_ptr), value :: info
       integer(c_long), value :: batch_count
       integer(c_int) :: sgetrf_strided_batched_64
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
       sgetrf_strided_batched_64 = rocsolver_sgetrf_strided_batched_64_raw(handle, m, n, c_loc(A), &
         lda, strideA, ipiv, strideP, info, batch_count)
     end function rocsolver_sgetrf_strided_batched_64_native
@@ -52563,6 +53149,7 @@ contains
       type(c_ptr), value :: info
       integer(c_long), value :: batch_count
       integer(c_int) :: dgetrf_strided_batched_64
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
       dgetrf_strided_batched_64 = rocsolver_dgetrf_strided_batched_64_raw(handle, m, n, c_loc(A), &
         lda, strideA, ipiv, strideP, info, batch_count)
     end function rocsolver_dgetrf_strided_batched_64_native
@@ -52602,6 +53189,7 @@ contains
       type(c_ptr), value :: info
       integer(c_long), value :: batch_count
       integer(c_int) :: cgetrf_strided_batched_64
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
       cgetrf_strided_batched_64 = rocsolver_cgetrf_strided_batched_64_raw(handle, m, n, c_loc(A), &
         lda, strideA, ipiv, strideP, info, batch_count)
     end function rocsolver_cgetrf_strided_batched_64_native
@@ -52641,6 +53229,7 @@ contains
       type(c_ptr), value :: info
       integer(c_long), value :: batch_count
       integer(c_int) :: zgetrf_strided_batched_64
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
       zgetrf_strided_batched_64 = rocsolver_zgetrf_strided_batched_64_raw(handle, m, n, c_loc(A), &
         lda, strideA, ipiv, strideP, info, batch_count)
     end function rocsolver_zgetrf_strided_batched_64_native
@@ -52675,6 +53264,8 @@ contains
       integer(c_int), value :: lda
       real(c_float), target :: ipiv(..)
       integer(c_int) :: sgeqr2
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(ipiv)) error stop "ipiv: array must be contiguous"
       sgeqr2 = rocsolver_sgeqr2_raw(handle, m, n, c_loc(A), lda, c_loc(ipiv))
     end function rocsolver_sgeqr2_native
 
@@ -52702,6 +53293,8 @@ contains
       integer(c_int), value :: lda
       real(c_double), target :: ipiv(..)
       integer(c_int) :: dgeqr2
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(ipiv)) error stop "ipiv: array must be contiguous"
       dgeqr2 = rocsolver_dgeqr2_raw(handle, m, n, c_loc(A), lda, c_loc(ipiv))
     end function rocsolver_dgeqr2_native
 
@@ -52729,6 +53322,8 @@ contains
       integer(c_int), value :: lda
       complex(c_float_complex), target :: ipiv(..)
       integer(c_int) :: cgeqr2
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(ipiv)) error stop "ipiv: array must be contiguous"
       cgeqr2 = rocsolver_cgeqr2_raw(handle, m, n, c_loc(A), lda, c_loc(ipiv))
     end function rocsolver_cgeqr2_native
 
@@ -52756,6 +53351,8 @@ contains
       integer(c_int), value :: lda
       complex(c_double_complex), target :: ipiv(..)
       integer(c_int) :: zgeqr2
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(ipiv)) error stop "ipiv: array must be contiguous"
       zgeqr2 = rocsolver_zgeqr2_raw(handle, m, n, c_loc(A), lda, c_loc(ipiv))
     end function rocsolver_zgeqr2_native
 
@@ -52783,6 +53380,8 @@ contains
       integer(c_long), value :: lda
       real(c_float), target :: ipiv(..)
       integer(c_int) :: sgeqr2_64
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(ipiv)) error stop "ipiv: array must be contiguous"
       sgeqr2_64 = rocsolver_sgeqr2_64_raw(handle, m, n, c_loc(A), lda, c_loc(ipiv))
     end function rocsolver_sgeqr2_64_native
 
@@ -52810,6 +53409,8 @@ contains
       integer(c_long), value :: lda
       real(c_double), target :: ipiv(..)
       integer(c_int) :: dgeqr2_64
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(ipiv)) error stop "ipiv: array must be contiguous"
       dgeqr2_64 = rocsolver_dgeqr2_64_raw(handle, m, n, c_loc(A), lda, c_loc(ipiv))
     end function rocsolver_dgeqr2_64_native
 
@@ -52837,6 +53438,8 @@ contains
       integer(c_long), value :: lda
       complex(c_float_complex), target :: ipiv(..)
       integer(c_int) :: cgeqr2_64
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(ipiv)) error stop "ipiv: array must be contiguous"
       cgeqr2_64 = rocsolver_cgeqr2_64_raw(handle, m, n, c_loc(A), lda, c_loc(ipiv))
     end function rocsolver_cgeqr2_64_native
 
@@ -52864,6 +53467,8 @@ contains
       integer(c_long), value :: lda
       complex(c_double_complex), target :: ipiv(..)
       integer(c_int) :: zgeqr2_64
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(ipiv)) error stop "ipiv: array must be contiguous"
       zgeqr2_64 = rocsolver_zgeqr2_64_raw(handle, m, n, c_loc(A), lda, c_loc(ipiv))
     end function rocsolver_zgeqr2_64_native
 
@@ -52894,6 +53499,7 @@ contains
       integer(c_long), value :: strideP
       integer(c_int), value :: batch_count
       integer(c_int) :: sgeqr2_batched
+      if (.not. is_contiguous(ipiv)) error stop "ipiv: array must be contiguous"
       sgeqr2_batched = rocsolver_sgeqr2_batched_raw(handle, m, n, A, lda, c_loc(ipiv), strideP, &
         batch_count)
     end function rocsolver_sgeqr2_batched_native
@@ -52929,6 +53535,7 @@ contains
       integer(c_long), value :: strideP
       integer(c_int), value :: batch_count
       integer(c_int) :: dgeqr2_batched
+      if (.not. is_contiguous(ipiv)) error stop "ipiv: array must be contiguous"
       dgeqr2_batched = rocsolver_dgeqr2_batched_raw(handle, m, n, A, lda, c_loc(ipiv), strideP, &
         batch_count)
     end function rocsolver_dgeqr2_batched_native
@@ -52964,6 +53571,7 @@ contains
       integer(c_long), value :: strideP
       integer(c_int), value :: batch_count
       integer(c_int) :: cgeqr2_batched
+      if (.not. is_contiguous(ipiv)) error stop "ipiv: array must be contiguous"
       cgeqr2_batched = rocsolver_cgeqr2_batched_raw(handle, m, n, A, lda, c_loc(ipiv), strideP, &
         batch_count)
     end function rocsolver_cgeqr2_batched_native
@@ -52999,6 +53607,7 @@ contains
       integer(c_long), value :: strideP
       integer(c_int), value :: batch_count
       integer(c_int) :: zgeqr2_batched
+      if (.not. is_contiguous(ipiv)) error stop "ipiv: array must be contiguous"
       zgeqr2_batched = rocsolver_zgeqr2_batched_raw(handle, m, n, A, lda, c_loc(ipiv), strideP, &
         batch_count)
     end function rocsolver_zgeqr2_batched_native
@@ -53034,6 +53643,7 @@ contains
       integer(c_long), value :: strideP
       integer(c_long), value :: batch_count
       integer(c_int) :: sgeqr2_batched_64
+      if (.not. is_contiguous(ipiv)) error stop "ipiv: array must be contiguous"
       sgeqr2_batched_64 = rocsolver_sgeqr2_batched_64_raw(handle, m, n, A, lda, c_loc(ipiv), &
         strideP, batch_count)
     end function rocsolver_sgeqr2_batched_64_native
@@ -53069,6 +53679,7 @@ contains
       integer(c_long), value :: strideP
       integer(c_long), value :: batch_count
       integer(c_int) :: dgeqr2_batched_64
+      if (.not. is_contiguous(ipiv)) error stop "ipiv: array must be contiguous"
       dgeqr2_batched_64 = rocsolver_dgeqr2_batched_64_raw(handle, m, n, A, lda, c_loc(ipiv), &
         strideP, batch_count)
     end function rocsolver_dgeqr2_batched_64_native
@@ -53104,6 +53715,7 @@ contains
       integer(c_long), value :: strideP
       integer(c_long), value :: batch_count
       integer(c_int) :: cgeqr2_batched_64
+      if (.not. is_contiguous(ipiv)) error stop "ipiv: array must be contiguous"
       cgeqr2_batched_64 = rocsolver_cgeqr2_batched_64_raw(handle, m, n, A, lda, c_loc(ipiv), &
         strideP, batch_count)
     end function rocsolver_cgeqr2_batched_64_native
@@ -53139,6 +53751,7 @@ contains
       integer(c_long), value :: strideP
       integer(c_long), value :: batch_count
       integer(c_int) :: zgeqr2_batched_64
+      if (.not. is_contiguous(ipiv)) error stop "ipiv: array must be contiguous"
       zgeqr2_batched_64 = rocsolver_zgeqr2_batched_64_raw(handle, m, n, A, lda, c_loc(ipiv), &
         strideP, batch_count)
     end function rocsolver_zgeqr2_batched_64_native
@@ -53175,6 +53788,8 @@ contains
       integer(c_long), value :: strideP
       integer(c_int), value :: batch_count
       integer(c_int) :: sgeqr2_strided_batched
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(ipiv)) error stop "ipiv: array must be contiguous"
       sgeqr2_strided_batched = rocsolver_sgeqr2_strided_batched_raw(handle, m, n, c_loc(A), lda, &
         strideA, c_loc(ipiv), strideP, batch_count)
     end function rocsolver_sgeqr2_strided_batched_native
@@ -53212,6 +53827,8 @@ contains
       integer(c_long), value :: strideP
       integer(c_int), value :: batch_count
       integer(c_int) :: dgeqr2_strided_batched
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(ipiv)) error stop "ipiv: array must be contiguous"
       dgeqr2_strided_batched = rocsolver_dgeqr2_strided_batched_raw(handle, m, n, c_loc(A), lda, &
         strideA, c_loc(ipiv), strideP, batch_count)
     end function rocsolver_dgeqr2_strided_batched_native
@@ -53249,6 +53866,8 @@ contains
       integer(c_long), value :: strideP
       integer(c_int), value :: batch_count
       integer(c_int) :: cgeqr2_strided_batched
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(ipiv)) error stop "ipiv: array must be contiguous"
       cgeqr2_strided_batched = rocsolver_cgeqr2_strided_batched_raw(handle, m, n, c_loc(A), lda, &
         strideA, c_loc(ipiv), strideP, batch_count)
     end function rocsolver_cgeqr2_strided_batched_native
@@ -53286,6 +53905,8 @@ contains
       integer(c_long), value :: strideP
       integer(c_int), value :: batch_count
       integer(c_int) :: zgeqr2_strided_batched
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(ipiv)) error stop "ipiv: array must be contiguous"
       zgeqr2_strided_batched = rocsolver_zgeqr2_strided_batched_raw(handle, m, n, c_loc(A), lda, &
         strideA, c_loc(ipiv), strideP, batch_count)
     end function rocsolver_zgeqr2_strided_batched_native
@@ -53323,6 +53944,8 @@ contains
       integer(c_long), value :: strideP
       integer(c_long), value :: batch_count
       integer(c_int) :: sgeqr2_strided_batched_64
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(ipiv)) error stop "ipiv: array must be contiguous"
       sgeqr2_strided_batched_64 = rocsolver_sgeqr2_strided_batched_64_raw(handle, m, n, c_loc(A), &
         lda, strideA, c_loc(ipiv), strideP, batch_count)
     end function rocsolver_sgeqr2_strided_batched_64_native
@@ -53360,6 +53983,8 @@ contains
       integer(c_long), value :: strideP
       integer(c_long), value :: batch_count
       integer(c_int) :: dgeqr2_strided_batched_64
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(ipiv)) error stop "ipiv: array must be contiguous"
       dgeqr2_strided_batched_64 = rocsolver_dgeqr2_strided_batched_64_raw(handle, m, n, c_loc(A), &
         lda, strideA, c_loc(ipiv), strideP, batch_count)
     end function rocsolver_dgeqr2_strided_batched_64_native
@@ -53397,6 +54022,8 @@ contains
       integer(c_long), value :: strideP
       integer(c_long), value :: batch_count
       integer(c_int) :: cgeqr2_strided_batched_64
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(ipiv)) error stop "ipiv: array must be contiguous"
       cgeqr2_strided_batched_64 = rocsolver_cgeqr2_strided_batched_64_raw(handle, m, n, c_loc(A), &
         lda, strideA, c_loc(ipiv), strideP, batch_count)
     end function rocsolver_cgeqr2_strided_batched_64_native
@@ -53434,6 +54061,8 @@ contains
       integer(c_long), value :: strideP
       integer(c_long), value :: batch_count
       integer(c_int) :: zgeqr2_strided_batched_64
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(ipiv)) error stop "ipiv: array must be contiguous"
       zgeqr2_strided_batched_64 = rocsolver_zgeqr2_strided_batched_64_raw(handle, m, n, c_loc(A), &
         lda, strideA, c_loc(ipiv), strideP, batch_count)
     end function rocsolver_zgeqr2_strided_batched_64_native
@@ -53467,6 +54096,8 @@ contains
       integer(c_int), value :: lda
       real(c_float), target :: ipiv(..)
       integer(c_int) :: sgerq2
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(ipiv)) error stop "ipiv: array must be contiguous"
       sgerq2 = rocsolver_sgerq2_raw(handle, m, n, c_loc(A), lda, c_loc(ipiv))
     end function rocsolver_sgerq2_native
 
@@ -53494,6 +54125,8 @@ contains
       integer(c_int), value :: lda
       real(c_double), target :: ipiv(..)
       integer(c_int) :: dgerq2
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(ipiv)) error stop "ipiv: array must be contiguous"
       dgerq2 = rocsolver_dgerq2_raw(handle, m, n, c_loc(A), lda, c_loc(ipiv))
     end function rocsolver_dgerq2_native
 
@@ -53521,6 +54154,8 @@ contains
       integer(c_int), value :: lda
       complex(c_float_complex), target :: ipiv(..)
       integer(c_int) :: cgerq2
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(ipiv)) error stop "ipiv: array must be contiguous"
       cgerq2 = rocsolver_cgerq2_raw(handle, m, n, c_loc(A), lda, c_loc(ipiv))
     end function rocsolver_cgerq2_native
 
@@ -53548,6 +54183,8 @@ contains
       integer(c_int), value :: lda
       complex(c_double_complex), target :: ipiv(..)
       integer(c_int) :: zgerq2
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(ipiv)) error stop "ipiv: array must be contiguous"
       zgerq2 = rocsolver_zgerq2_raw(handle, m, n, c_loc(A), lda, c_loc(ipiv))
     end function rocsolver_zgerq2_native
 
@@ -53578,6 +54215,7 @@ contains
       integer(c_long), value :: strideP
       integer(c_int), value :: batch_count
       integer(c_int) :: sgerq2_batched
+      if (.not. is_contiguous(ipiv)) error stop "ipiv: array must be contiguous"
       sgerq2_batched = rocsolver_sgerq2_batched_raw(handle, m, n, A, lda, c_loc(ipiv), strideP, &
         batch_count)
     end function rocsolver_sgerq2_batched_native
@@ -53613,6 +54251,7 @@ contains
       integer(c_long), value :: strideP
       integer(c_int), value :: batch_count
       integer(c_int) :: dgerq2_batched
+      if (.not. is_contiguous(ipiv)) error stop "ipiv: array must be contiguous"
       dgerq2_batched = rocsolver_dgerq2_batched_raw(handle, m, n, A, lda, c_loc(ipiv), strideP, &
         batch_count)
     end function rocsolver_dgerq2_batched_native
@@ -53648,6 +54287,7 @@ contains
       integer(c_long), value :: strideP
       integer(c_int), value :: batch_count
       integer(c_int) :: cgerq2_batched
+      if (.not. is_contiguous(ipiv)) error stop "ipiv: array must be contiguous"
       cgerq2_batched = rocsolver_cgerq2_batched_raw(handle, m, n, A, lda, c_loc(ipiv), strideP, &
         batch_count)
     end function rocsolver_cgerq2_batched_native
@@ -53683,6 +54323,7 @@ contains
       integer(c_long), value :: strideP
       integer(c_int), value :: batch_count
       integer(c_int) :: zgerq2_batched
+      if (.not. is_contiguous(ipiv)) error stop "ipiv: array must be contiguous"
       zgerq2_batched = rocsolver_zgerq2_batched_raw(handle, m, n, A, lda, c_loc(ipiv), strideP, &
         batch_count)
     end function rocsolver_zgerq2_batched_native
@@ -53719,6 +54360,8 @@ contains
       integer(c_long), value :: strideP
       integer(c_int), value :: batch_count
       integer(c_int) :: sgerq2_strided_batched
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(ipiv)) error stop "ipiv: array must be contiguous"
       sgerq2_strided_batched = rocsolver_sgerq2_strided_batched_raw(handle, m, n, c_loc(A), lda, &
         strideA, c_loc(ipiv), strideP, batch_count)
     end function rocsolver_sgerq2_strided_batched_native
@@ -53756,6 +54399,8 @@ contains
       integer(c_long), value :: strideP
       integer(c_int), value :: batch_count
       integer(c_int) :: dgerq2_strided_batched
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(ipiv)) error stop "ipiv: array must be contiguous"
       dgerq2_strided_batched = rocsolver_dgerq2_strided_batched_raw(handle, m, n, c_loc(A), lda, &
         strideA, c_loc(ipiv), strideP, batch_count)
     end function rocsolver_dgerq2_strided_batched_native
@@ -53793,6 +54438,8 @@ contains
       integer(c_long), value :: strideP
       integer(c_int), value :: batch_count
       integer(c_int) :: cgerq2_strided_batched
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(ipiv)) error stop "ipiv: array must be contiguous"
       cgerq2_strided_batched = rocsolver_cgerq2_strided_batched_raw(handle, m, n, c_loc(A), lda, &
         strideA, c_loc(ipiv), strideP, batch_count)
     end function rocsolver_cgerq2_strided_batched_native
@@ -53830,6 +54477,8 @@ contains
       integer(c_long), value :: strideP
       integer(c_int), value :: batch_count
       integer(c_int) :: zgerq2_strided_batched
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(ipiv)) error stop "ipiv: array must be contiguous"
       zgerq2_strided_batched = rocsolver_zgerq2_strided_batched_raw(handle, m, n, c_loc(A), lda, &
         strideA, c_loc(ipiv), strideP, batch_count)
     end function rocsolver_zgerq2_strided_batched_native
@@ -53863,6 +54512,8 @@ contains
       integer(c_int), value :: lda
       real(c_float), target :: ipiv(..)
       integer(c_int) :: sgeql2
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(ipiv)) error stop "ipiv: array must be contiguous"
       sgeql2 = rocsolver_sgeql2_raw(handle, m, n, c_loc(A), lda, c_loc(ipiv))
     end function rocsolver_sgeql2_native
 
@@ -53890,6 +54541,8 @@ contains
       integer(c_int), value :: lda
       real(c_double), target :: ipiv(..)
       integer(c_int) :: dgeql2
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(ipiv)) error stop "ipiv: array must be contiguous"
       dgeql2 = rocsolver_dgeql2_raw(handle, m, n, c_loc(A), lda, c_loc(ipiv))
     end function rocsolver_dgeql2_native
 
@@ -53917,6 +54570,8 @@ contains
       integer(c_int), value :: lda
       complex(c_float_complex), target :: ipiv(..)
       integer(c_int) :: cgeql2
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(ipiv)) error stop "ipiv: array must be contiguous"
       cgeql2 = rocsolver_cgeql2_raw(handle, m, n, c_loc(A), lda, c_loc(ipiv))
     end function rocsolver_cgeql2_native
 
@@ -53944,6 +54599,8 @@ contains
       integer(c_int), value :: lda
       complex(c_double_complex), target :: ipiv(..)
       integer(c_int) :: zgeql2
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(ipiv)) error stop "ipiv: array must be contiguous"
       zgeql2 = rocsolver_zgeql2_raw(handle, m, n, c_loc(A), lda, c_loc(ipiv))
     end function rocsolver_zgeql2_native
 
@@ -53974,6 +54631,7 @@ contains
       integer(c_long), value :: strideP
       integer(c_int), value :: batch_count
       integer(c_int) :: sgeql2_batched
+      if (.not. is_contiguous(ipiv)) error stop "ipiv: array must be contiguous"
       sgeql2_batched = rocsolver_sgeql2_batched_raw(handle, m, n, A, lda, c_loc(ipiv), strideP, &
         batch_count)
     end function rocsolver_sgeql2_batched_native
@@ -54009,6 +54667,7 @@ contains
       integer(c_long), value :: strideP
       integer(c_int), value :: batch_count
       integer(c_int) :: dgeql2_batched
+      if (.not. is_contiguous(ipiv)) error stop "ipiv: array must be contiguous"
       dgeql2_batched = rocsolver_dgeql2_batched_raw(handle, m, n, A, lda, c_loc(ipiv), strideP, &
         batch_count)
     end function rocsolver_dgeql2_batched_native
@@ -54044,6 +54703,7 @@ contains
       integer(c_long), value :: strideP
       integer(c_int), value :: batch_count
       integer(c_int) :: cgeql2_batched
+      if (.not. is_contiguous(ipiv)) error stop "ipiv: array must be contiguous"
       cgeql2_batched = rocsolver_cgeql2_batched_raw(handle, m, n, A, lda, c_loc(ipiv), strideP, &
         batch_count)
     end function rocsolver_cgeql2_batched_native
@@ -54079,6 +54739,7 @@ contains
       integer(c_long), value :: strideP
       integer(c_int), value :: batch_count
       integer(c_int) :: zgeql2_batched
+      if (.not. is_contiguous(ipiv)) error stop "ipiv: array must be contiguous"
       zgeql2_batched = rocsolver_zgeql2_batched_raw(handle, m, n, A, lda, c_loc(ipiv), strideP, &
         batch_count)
     end function rocsolver_zgeql2_batched_native
@@ -54115,6 +54776,8 @@ contains
       integer(c_long), value :: strideP
       integer(c_int), value :: batch_count
       integer(c_int) :: sgeql2_strided_batched
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(ipiv)) error stop "ipiv: array must be contiguous"
       sgeql2_strided_batched = rocsolver_sgeql2_strided_batched_raw(handle, m, n, c_loc(A), lda, &
         strideA, c_loc(ipiv), strideP, batch_count)
     end function rocsolver_sgeql2_strided_batched_native
@@ -54152,6 +54815,8 @@ contains
       integer(c_long), value :: strideP
       integer(c_int), value :: batch_count
       integer(c_int) :: dgeql2_strided_batched
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(ipiv)) error stop "ipiv: array must be contiguous"
       dgeql2_strided_batched = rocsolver_dgeql2_strided_batched_raw(handle, m, n, c_loc(A), lda, &
         strideA, c_loc(ipiv), strideP, batch_count)
     end function rocsolver_dgeql2_strided_batched_native
@@ -54189,6 +54854,8 @@ contains
       integer(c_long), value :: strideP
       integer(c_int), value :: batch_count
       integer(c_int) :: cgeql2_strided_batched
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(ipiv)) error stop "ipiv: array must be contiguous"
       cgeql2_strided_batched = rocsolver_cgeql2_strided_batched_raw(handle, m, n, c_loc(A), lda, &
         strideA, c_loc(ipiv), strideP, batch_count)
     end function rocsolver_cgeql2_strided_batched_native
@@ -54226,6 +54893,8 @@ contains
       integer(c_long), value :: strideP
       integer(c_int), value :: batch_count
       integer(c_int) :: zgeql2_strided_batched
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(ipiv)) error stop "ipiv: array must be contiguous"
       zgeql2_strided_batched = rocsolver_zgeql2_strided_batched_raw(handle, m, n, c_loc(A), lda, &
         strideA, c_loc(ipiv), strideP, batch_count)
     end function rocsolver_zgeql2_strided_batched_native
@@ -54259,6 +54928,8 @@ contains
       integer(c_int), value :: lda
       real(c_float), target :: ipiv(..)
       integer(c_int) :: sgelq2
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(ipiv)) error stop "ipiv: array must be contiguous"
       sgelq2 = rocsolver_sgelq2_raw(handle, m, n, c_loc(A), lda, c_loc(ipiv))
     end function rocsolver_sgelq2_native
 
@@ -54286,6 +54957,8 @@ contains
       integer(c_int), value :: lda
       real(c_double), target :: ipiv(..)
       integer(c_int) :: dgelq2
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(ipiv)) error stop "ipiv: array must be contiguous"
       dgelq2 = rocsolver_dgelq2_raw(handle, m, n, c_loc(A), lda, c_loc(ipiv))
     end function rocsolver_dgelq2_native
 
@@ -54313,6 +54986,8 @@ contains
       integer(c_int), value :: lda
       complex(c_float_complex), target :: ipiv(..)
       integer(c_int) :: cgelq2
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(ipiv)) error stop "ipiv: array must be contiguous"
       cgelq2 = rocsolver_cgelq2_raw(handle, m, n, c_loc(A), lda, c_loc(ipiv))
     end function rocsolver_cgelq2_native
 
@@ -54340,6 +55015,8 @@ contains
       integer(c_int), value :: lda
       complex(c_double_complex), target :: ipiv(..)
       integer(c_int) :: zgelq2
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(ipiv)) error stop "ipiv: array must be contiguous"
       zgelq2 = rocsolver_zgelq2_raw(handle, m, n, c_loc(A), lda, c_loc(ipiv))
     end function rocsolver_zgelq2_native
 
@@ -54370,6 +55047,7 @@ contains
       integer(c_long), value :: strideP
       integer(c_int), value :: batch_count
       integer(c_int) :: sgelq2_batched
+      if (.not. is_contiguous(ipiv)) error stop "ipiv: array must be contiguous"
       sgelq2_batched = rocsolver_sgelq2_batched_raw(handle, m, n, A, lda, c_loc(ipiv), strideP, &
         batch_count)
     end function rocsolver_sgelq2_batched_native
@@ -54405,6 +55083,7 @@ contains
       integer(c_long), value :: strideP
       integer(c_int), value :: batch_count
       integer(c_int) :: dgelq2_batched
+      if (.not. is_contiguous(ipiv)) error stop "ipiv: array must be contiguous"
       dgelq2_batched = rocsolver_dgelq2_batched_raw(handle, m, n, A, lda, c_loc(ipiv), strideP, &
         batch_count)
     end function rocsolver_dgelq2_batched_native
@@ -54440,6 +55119,7 @@ contains
       integer(c_long), value :: strideP
       integer(c_int), value :: batch_count
       integer(c_int) :: cgelq2_batched
+      if (.not. is_contiguous(ipiv)) error stop "ipiv: array must be contiguous"
       cgelq2_batched = rocsolver_cgelq2_batched_raw(handle, m, n, A, lda, c_loc(ipiv), strideP, &
         batch_count)
     end function rocsolver_cgelq2_batched_native
@@ -54475,6 +55155,7 @@ contains
       integer(c_long), value :: strideP
       integer(c_int), value :: batch_count
       integer(c_int) :: zgelq2_batched
+      if (.not. is_contiguous(ipiv)) error stop "ipiv: array must be contiguous"
       zgelq2_batched = rocsolver_zgelq2_batched_raw(handle, m, n, A, lda, c_loc(ipiv), strideP, &
         batch_count)
     end function rocsolver_zgelq2_batched_native
@@ -54511,6 +55192,8 @@ contains
       integer(c_long), value :: strideP
       integer(c_int), value :: batch_count
       integer(c_int) :: sgelq2_strided_batched
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(ipiv)) error stop "ipiv: array must be contiguous"
       sgelq2_strided_batched = rocsolver_sgelq2_strided_batched_raw(handle, m, n, c_loc(A), lda, &
         strideA, c_loc(ipiv), strideP, batch_count)
     end function rocsolver_sgelq2_strided_batched_native
@@ -54548,6 +55231,8 @@ contains
       integer(c_long), value :: strideP
       integer(c_int), value :: batch_count
       integer(c_int) :: dgelq2_strided_batched
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(ipiv)) error stop "ipiv: array must be contiguous"
       dgelq2_strided_batched = rocsolver_dgelq2_strided_batched_raw(handle, m, n, c_loc(A), lda, &
         strideA, c_loc(ipiv), strideP, batch_count)
     end function rocsolver_dgelq2_strided_batched_native
@@ -54585,6 +55270,8 @@ contains
       integer(c_long), value :: strideP
       integer(c_int), value :: batch_count
       integer(c_int) :: cgelq2_strided_batched
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(ipiv)) error stop "ipiv: array must be contiguous"
       cgelq2_strided_batched = rocsolver_cgelq2_strided_batched_raw(handle, m, n, c_loc(A), lda, &
         strideA, c_loc(ipiv), strideP, batch_count)
     end function rocsolver_cgelq2_strided_batched_native
@@ -54622,6 +55309,8 @@ contains
       integer(c_long), value :: strideP
       integer(c_int), value :: batch_count
       integer(c_int) :: zgelq2_strided_batched
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(ipiv)) error stop "ipiv: array must be contiguous"
       zgelq2_strided_batched = rocsolver_zgelq2_strided_batched_raw(handle, m, n, c_loc(A), lda, &
         strideA, c_loc(ipiv), strideP, batch_count)
     end function rocsolver_zgelq2_strided_batched_native
@@ -54655,6 +55344,8 @@ contains
       integer(c_int), value :: lda
       real(c_float), target :: ipiv(..)
       integer(c_int) :: sgeqrf
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(ipiv)) error stop "ipiv: array must be contiguous"
       sgeqrf = rocsolver_sgeqrf_raw(handle, m, n, c_loc(A), lda, c_loc(ipiv))
     end function rocsolver_sgeqrf_native
 
@@ -54682,6 +55373,8 @@ contains
       integer(c_int), value :: lda
       real(c_double), target :: ipiv(..)
       integer(c_int) :: dgeqrf
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(ipiv)) error stop "ipiv: array must be contiguous"
       dgeqrf = rocsolver_dgeqrf_raw(handle, m, n, c_loc(A), lda, c_loc(ipiv))
     end function rocsolver_dgeqrf_native
 
@@ -54709,6 +55402,8 @@ contains
       integer(c_int), value :: lda
       complex(c_float_complex), target :: ipiv(..)
       integer(c_int) :: cgeqrf
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(ipiv)) error stop "ipiv: array must be contiguous"
       cgeqrf = rocsolver_cgeqrf_raw(handle, m, n, c_loc(A), lda, c_loc(ipiv))
     end function rocsolver_cgeqrf_native
 
@@ -54736,6 +55431,8 @@ contains
       integer(c_int), value :: lda
       complex(c_double_complex), target :: ipiv(..)
       integer(c_int) :: zgeqrf
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(ipiv)) error stop "ipiv: array must be contiguous"
       zgeqrf = rocsolver_zgeqrf_raw(handle, m, n, c_loc(A), lda, c_loc(ipiv))
     end function rocsolver_zgeqrf_native
 
@@ -54763,6 +55460,8 @@ contains
       integer(c_long), value :: lda
       real(c_float), target :: ipiv(..)
       integer(c_int) :: sgeqrf_64
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(ipiv)) error stop "ipiv: array must be contiguous"
       sgeqrf_64 = rocsolver_sgeqrf_64_raw(handle, m, n, c_loc(A), lda, c_loc(ipiv))
     end function rocsolver_sgeqrf_64_native
 
@@ -54790,6 +55489,8 @@ contains
       integer(c_long), value :: lda
       real(c_double), target :: ipiv(..)
       integer(c_int) :: dgeqrf_64
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(ipiv)) error stop "ipiv: array must be contiguous"
       dgeqrf_64 = rocsolver_dgeqrf_64_raw(handle, m, n, c_loc(A), lda, c_loc(ipiv))
     end function rocsolver_dgeqrf_64_native
 
@@ -54817,6 +55518,8 @@ contains
       integer(c_long), value :: lda
       complex(c_float_complex), target :: ipiv(..)
       integer(c_int) :: cgeqrf_64
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(ipiv)) error stop "ipiv: array must be contiguous"
       cgeqrf_64 = rocsolver_cgeqrf_64_raw(handle, m, n, c_loc(A), lda, c_loc(ipiv))
     end function rocsolver_cgeqrf_64_native
 
@@ -54844,6 +55547,8 @@ contains
       integer(c_long), value :: lda
       complex(c_double_complex), target :: ipiv(..)
       integer(c_int) :: zgeqrf_64
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(ipiv)) error stop "ipiv: array must be contiguous"
       zgeqrf_64 = rocsolver_zgeqrf_64_raw(handle, m, n, c_loc(A), lda, c_loc(ipiv))
     end function rocsolver_zgeqrf_64_native
 
@@ -54874,6 +55579,7 @@ contains
       integer(c_long), value :: strideP
       integer(c_int), value :: batch_count
       integer(c_int) :: sgeqrf_batched
+      if (.not. is_contiguous(ipiv)) error stop "ipiv: array must be contiguous"
       sgeqrf_batched = rocsolver_sgeqrf_batched_raw(handle, m, n, A, lda, c_loc(ipiv), strideP, &
         batch_count)
     end function rocsolver_sgeqrf_batched_native
@@ -54909,6 +55615,7 @@ contains
       integer(c_long), value :: strideP
       integer(c_int), value :: batch_count
       integer(c_int) :: dgeqrf_batched
+      if (.not. is_contiguous(ipiv)) error stop "ipiv: array must be contiguous"
       dgeqrf_batched = rocsolver_dgeqrf_batched_raw(handle, m, n, A, lda, c_loc(ipiv), strideP, &
         batch_count)
     end function rocsolver_dgeqrf_batched_native
@@ -54944,6 +55651,7 @@ contains
       integer(c_long), value :: strideP
       integer(c_int), value :: batch_count
       integer(c_int) :: cgeqrf_batched
+      if (.not. is_contiguous(ipiv)) error stop "ipiv: array must be contiguous"
       cgeqrf_batched = rocsolver_cgeqrf_batched_raw(handle, m, n, A, lda, c_loc(ipiv), strideP, &
         batch_count)
     end function rocsolver_cgeqrf_batched_native
@@ -54979,6 +55687,7 @@ contains
       integer(c_long), value :: strideP
       integer(c_int), value :: batch_count
       integer(c_int) :: zgeqrf_batched
+      if (.not. is_contiguous(ipiv)) error stop "ipiv: array must be contiguous"
       zgeqrf_batched = rocsolver_zgeqrf_batched_raw(handle, m, n, A, lda, c_loc(ipiv), strideP, &
         batch_count)
     end function rocsolver_zgeqrf_batched_native
@@ -55014,6 +55723,7 @@ contains
       integer(c_long), value :: strideP
       integer(c_long), value :: batch_count
       integer(c_int) :: sgeqrf_batched_64
+      if (.not. is_contiguous(ipiv)) error stop "ipiv: array must be contiguous"
       sgeqrf_batched_64 = rocsolver_sgeqrf_batched_64_raw(handle, m, n, A, lda, c_loc(ipiv), &
         strideP, batch_count)
     end function rocsolver_sgeqrf_batched_64_native
@@ -55049,6 +55759,7 @@ contains
       integer(c_long), value :: strideP
       integer(c_long), value :: batch_count
       integer(c_int) :: dgeqrf_batched_64
+      if (.not. is_contiguous(ipiv)) error stop "ipiv: array must be contiguous"
       dgeqrf_batched_64 = rocsolver_dgeqrf_batched_64_raw(handle, m, n, A, lda, c_loc(ipiv), &
         strideP, batch_count)
     end function rocsolver_dgeqrf_batched_64_native
@@ -55084,6 +55795,7 @@ contains
       integer(c_long), value :: strideP
       integer(c_long), value :: batch_count
       integer(c_int) :: cgeqrf_batched_64
+      if (.not. is_contiguous(ipiv)) error stop "ipiv: array must be contiguous"
       cgeqrf_batched_64 = rocsolver_cgeqrf_batched_64_raw(handle, m, n, A, lda, c_loc(ipiv), &
         strideP, batch_count)
     end function rocsolver_cgeqrf_batched_64_native
@@ -55119,6 +55831,7 @@ contains
       integer(c_long), value :: strideP
       integer(c_long), value :: batch_count
       integer(c_int) :: zgeqrf_batched_64
+      if (.not. is_contiguous(ipiv)) error stop "ipiv: array must be contiguous"
       zgeqrf_batched_64 = rocsolver_zgeqrf_batched_64_raw(handle, m, n, A, lda, c_loc(ipiv), &
         strideP, batch_count)
     end function rocsolver_zgeqrf_batched_64_native
@@ -55155,6 +55868,8 @@ contains
       integer(c_long), value :: strideP
       integer(c_int), value :: batch_count
       integer(c_int) :: sgeqrf_strided_batched
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(ipiv)) error stop "ipiv: array must be contiguous"
       sgeqrf_strided_batched = rocsolver_sgeqrf_strided_batched_raw(handle, m, n, c_loc(A), lda, &
         strideA, c_loc(ipiv), strideP, batch_count)
     end function rocsolver_sgeqrf_strided_batched_native
@@ -55192,6 +55907,8 @@ contains
       integer(c_long), value :: strideP
       integer(c_int), value :: batch_count
       integer(c_int) :: dgeqrf_strided_batched
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(ipiv)) error stop "ipiv: array must be contiguous"
       dgeqrf_strided_batched = rocsolver_dgeqrf_strided_batched_raw(handle, m, n, c_loc(A), lda, &
         strideA, c_loc(ipiv), strideP, batch_count)
     end function rocsolver_dgeqrf_strided_batched_native
@@ -55229,6 +55946,8 @@ contains
       integer(c_long), value :: strideP
       integer(c_int), value :: batch_count
       integer(c_int) :: cgeqrf_strided_batched
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(ipiv)) error stop "ipiv: array must be contiguous"
       cgeqrf_strided_batched = rocsolver_cgeqrf_strided_batched_raw(handle, m, n, c_loc(A), lda, &
         strideA, c_loc(ipiv), strideP, batch_count)
     end function rocsolver_cgeqrf_strided_batched_native
@@ -55266,6 +55985,8 @@ contains
       integer(c_long), value :: strideP
       integer(c_int), value :: batch_count
       integer(c_int) :: zgeqrf_strided_batched
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(ipiv)) error stop "ipiv: array must be contiguous"
       zgeqrf_strided_batched = rocsolver_zgeqrf_strided_batched_raw(handle, m, n, c_loc(A), lda, &
         strideA, c_loc(ipiv), strideP, batch_count)
     end function rocsolver_zgeqrf_strided_batched_native
@@ -55303,6 +56024,8 @@ contains
       integer(c_long), value :: strideP
       integer(c_long), value :: batch_count
       integer(c_int) :: sgeqrf_strided_batched_64
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(ipiv)) error stop "ipiv: array must be contiguous"
       sgeqrf_strided_batched_64 = rocsolver_sgeqrf_strided_batched_64_raw(handle, m, n, c_loc(A), &
         lda, strideA, c_loc(ipiv), strideP, batch_count)
     end function rocsolver_sgeqrf_strided_batched_64_native
@@ -55340,6 +56063,8 @@ contains
       integer(c_long), value :: strideP
       integer(c_long), value :: batch_count
       integer(c_int) :: dgeqrf_strided_batched_64
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(ipiv)) error stop "ipiv: array must be contiguous"
       dgeqrf_strided_batched_64 = rocsolver_dgeqrf_strided_batched_64_raw(handle, m, n, c_loc(A), &
         lda, strideA, c_loc(ipiv), strideP, batch_count)
     end function rocsolver_dgeqrf_strided_batched_64_native
@@ -55377,6 +56102,8 @@ contains
       integer(c_long), value :: strideP
       integer(c_long), value :: batch_count
       integer(c_int) :: cgeqrf_strided_batched_64
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(ipiv)) error stop "ipiv: array must be contiguous"
       cgeqrf_strided_batched_64 = rocsolver_cgeqrf_strided_batched_64_raw(handle, m, n, c_loc(A), &
         lda, strideA, c_loc(ipiv), strideP, batch_count)
     end function rocsolver_cgeqrf_strided_batched_64_native
@@ -55414,6 +56141,8 @@ contains
       integer(c_long), value :: strideP
       integer(c_long), value :: batch_count
       integer(c_int) :: zgeqrf_strided_batched_64
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(ipiv)) error stop "ipiv: array must be contiguous"
       zgeqrf_strided_batched_64 = rocsolver_zgeqrf_strided_batched_64_raw(handle, m, n, c_loc(A), &
         lda, strideA, c_loc(ipiv), strideP, batch_count)
     end function rocsolver_zgeqrf_strided_batched_64_native
@@ -55447,6 +56176,8 @@ contains
       integer(c_int), value :: lda
       real(c_float), target :: ipiv(..)
       integer(c_int) :: sgerqf
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(ipiv)) error stop "ipiv: array must be contiguous"
       sgerqf = rocsolver_sgerqf_raw(handle, m, n, c_loc(A), lda, c_loc(ipiv))
     end function rocsolver_sgerqf_native
 
@@ -55474,6 +56205,8 @@ contains
       integer(c_int), value :: lda
       real(c_double), target :: ipiv(..)
       integer(c_int) :: dgerqf
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(ipiv)) error stop "ipiv: array must be contiguous"
       dgerqf = rocsolver_dgerqf_raw(handle, m, n, c_loc(A), lda, c_loc(ipiv))
     end function rocsolver_dgerqf_native
 
@@ -55501,6 +56234,8 @@ contains
       integer(c_int), value :: lda
       complex(c_float_complex), target :: ipiv(..)
       integer(c_int) :: cgerqf
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(ipiv)) error stop "ipiv: array must be contiguous"
       cgerqf = rocsolver_cgerqf_raw(handle, m, n, c_loc(A), lda, c_loc(ipiv))
     end function rocsolver_cgerqf_native
 
@@ -55528,6 +56263,8 @@ contains
       integer(c_int), value :: lda
       complex(c_double_complex), target :: ipiv(..)
       integer(c_int) :: zgerqf
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(ipiv)) error stop "ipiv: array must be contiguous"
       zgerqf = rocsolver_zgerqf_raw(handle, m, n, c_loc(A), lda, c_loc(ipiv))
     end function rocsolver_zgerqf_native
 
@@ -55558,6 +56295,7 @@ contains
       integer(c_long), value :: strideP
       integer(c_int), value :: batch_count
       integer(c_int) :: sgerqf_batched
+      if (.not. is_contiguous(ipiv)) error stop "ipiv: array must be contiguous"
       sgerqf_batched = rocsolver_sgerqf_batched_raw(handle, m, n, A, lda, c_loc(ipiv), strideP, &
         batch_count)
     end function rocsolver_sgerqf_batched_native
@@ -55593,6 +56331,7 @@ contains
       integer(c_long), value :: strideP
       integer(c_int), value :: batch_count
       integer(c_int) :: dgerqf_batched
+      if (.not. is_contiguous(ipiv)) error stop "ipiv: array must be contiguous"
       dgerqf_batched = rocsolver_dgerqf_batched_raw(handle, m, n, A, lda, c_loc(ipiv), strideP, &
         batch_count)
     end function rocsolver_dgerqf_batched_native
@@ -55628,6 +56367,7 @@ contains
       integer(c_long), value :: strideP
       integer(c_int), value :: batch_count
       integer(c_int) :: cgerqf_batched
+      if (.not. is_contiguous(ipiv)) error stop "ipiv: array must be contiguous"
       cgerqf_batched = rocsolver_cgerqf_batched_raw(handle, m, n, A, lda, c_loc(ipiv), strideP, &
         batch_count)
     end function rocsolver_cgerqf_batched_native
@@ -55663,6 +56403,7 @@ contains
       integer(c_long), value :: strideP
       integer(c_int), value :: batch_count
       integer(c_int) :: zgerqf_batched
+      if (.not. is_contiguous(ipiv)) error stop "ipiv: array must be contiguous"
       zgerqf_batched = rocsolver_zgerqf_batched_raw(handle, m, n, A, lda, c_loc(ipiv), strideP, &
         batch_count)
     end function rocsolver_zgerqf_batched_native
@@ -55699,6 +56440,8 @@ contains
       integer(c_long), value :: strideP
       integer(c_int), value :: batch_count
       integer(c_int) :: sgerqf_strided_batched
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(ipiv)) error stop "ipiv: array must be contiguous"
       sgerqf_strided_batched = rocsolver_sgerqf_strided_batched_raw(handle, m, n, c_loc(A), lda, &
         strideA, c_loc(ipiv), strideP, batch_count)
     end function rocsolver_sgerqf_strided_batched_native
@@ -55736,6 +56479,8 @@ contains
       integer(c_long), value :: strideP
       integer(c_int), value :: batch_count
       integer(c_int) :: dgerqf_strided_batched
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(ipiv)) error stop "ipiv: array must be contiguous"
       dgerqf_strided_batched = rocsolver_dgerqf_strided_batched_raw(handle, m, n, c_loc(A), lda, &
         strideA, c_loc(ipiv), strideP, batch_count)
     end function rocsolver_dgerqf_strided_batched_native
@@ -55773,6 +56518,8 @@ contains
       integer(c_long), value :: strideP
       integer(c_int), value :: batch_count
       integer(c_int) :: cgerqf_strided_batched
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(ipiv)) error stop "ipiv: array must be contiguous"
       cgerqf_strided_batched = rocsolver_cgerqf_strided_batched_raw(handle, m, n, c_loc(A), lda, &
         strideA, c_loc(ipiv), strideP, batch_count)
     end function rocsolver_cgerqf_strided_batched_native
@@ -55810,6 +56557,8 @@ contains
       integer(c_long), value :: strideP
       integer(c_int), value :: batch_count
       integer(c_int) :: zgerqf_strided_batched
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(ipiv)) error stop "ipiv: array must be contiguous"
       zgerqf_strided_batched = rocsolver_zgerqf_strided_batched_raw(handle, m, n, c_loc(A), lda, &
         strideA, c_loc(ipiv), strideP, batch_count)
     end function rocsolver_zgerqf_strided_batched_native
@@ -55843,6 +56592,8 @@ contains
       integer(c_int), value :: lda
       real(c_float), target :: ipiv(..)
       integer(c_int) :: sgeqlf
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(ipiv)) error stop "ipiv: array must be contiguous"
       sgeqlf = rocsolver_sgeqlf_raw(handle, m, n, c_loc(A), lda, c_loc(ipiv))
     end function rocsolver_sgeqlf_native
 
@@ -55870,6 +56621,8 @@ contains
       integer(c_int), value :: lda
       real(c_double), target :: ipiv(..)
       integer(c_int) :: dgeqlf
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(ipiv)) error stop "ipiv: array must be contiguous"
       dgeqlf = rocsolver_dgeqlf_raw(handle, m, n, c_loc(A), lda, c_loc(ipiv))
     end function rocsolver_dgeqlf_native
 
@@ -55897,6 +56650,8 @@ contains
       integer(c_int), value :: lda
       complex(c_float_complex), target :: ipiv(..)
       integer(c_int) :: cgeqlf
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(ipiv)) error stop "ipiv: array must be contiguous"
       cgeqlf = rocsolver_cgeqlf_raw(handle, m, n, c_loc(A), lda, c_loc(ipiv))
     end function rocsolver_cgeqlf_native
 
@@ -55924,6 +56679,8 @@ contains
       integer(c_int), value :: lda
       complex(c_double_complex), target :: ipiv(..)
       integer(c_int) :: zgeqlf
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(ipiv)) error stop "ipiv: array must be contiguous"
       zgeqlf = rocsolver_zgeqlf_raw(handle, m, n, c_loc(A), lda, c_loc(ipiv))
     end function rocsolver_zgeqlf_native
 
@@ -55954,6 +56711,7 @@ contains
       integer(c_long), value :: strideP
       integer(c_int), value :: batch_count
       integer(c_int) :: sgeqlf_batched
+      if (.not. is_contiguous(ipiv)) error stop "ipiv: array must be contiguous"
       sgeqlf_batched = rocsolver_sgeqlf_batched_raw(handle, m, n, A, lda, c_loc(ipiv), strideP, &
         batch_count)
     end function rocsolver_sgeqlf_batched_native
@@ -55989,6 +56747,7 @@ contains
       integer(c_long), value :: strideP
       integer(c_int), value :: batch_count
       integer(c_int) :: dgeqlf_batched
+      if (.not. is_contiguous(ipiv)) error stop "ipiv: array must be contiguous"
       dgeqlf_batched = rocsolver_dgeqlf_batched_raw(handle, m, n, A, lda, c_loc(ipiv), strideP, &
         batch_count)
     end function rocsolver_dgeqlf_batched_native
@@ -56024,6 +56783,7 @@ contains
       integer(c_long), value :: strideP
       integer(c_int), value :: batch_count
       integer(c_int) :: cgeqlf_batched
+      if (.not. is_contiguous(ipiv)) error stop "ipiv: array must be contiguous"
       cgeqlf_batched = rocsolver_cgeqlf_batched_raw(handle, m, n, A, lda, c_loc(ipiv), strideP, &
         batch_count)
     end function rocsolver_cgeqlf_batched_native
@@ -56059,6 +56819,7 @@ contains
       integer(c_long), value :: strideP
       integer(c_int), value :: batch_count
       integer(c_int) :: zgeqlf_batched
+      if (.not. is_contiguous(ipiv)) error stop "ipiv: array must be contiguous"
       zgeqlf_batched = rocsolver_zgeqlf_batched_raw(handle, m, n, A, lda, c_loc(ipiv), strideP, &
         batch_count)
     end function rocsolver_zgeqlf_batched_native
@@ -56095,6 +56856,8 @@ contains
       integer(c_long), value :: strideP
       integer(c_int), value :: batch_count
       integer(c_int) :: sgeqlf_strided_batched
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(ipiv)) error stop "ipiv: array must be contiguous"
       sgeqlf_strided_batched = rocsolver_sgeqlf_strided_batched_raw(handle, m, n, c_loc(A), lda, &
         strideA, c_loc(ipiv), strideP, batch_count)
     end function rocsolver_sgeqlf_strided_batched_native
@@ -56132,6 +56895,8 @@ contains
       integer(c_long), value :: strideP
       integer(c_int), value :: batch_count
       integer(c_int) :: dgeqlf_strided_batched
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(ipiv)) error stop "ipiv: array must be contiguous"
       dgeqlf_strided_batched = rocsolver_dgeqlf_strided_batched_raw(handle, m, n, c_loc(A), lda, &
         strideA, c_loc(ipiv), strideP, batch_count)
     end function rocsolver_dgeqlf_strided_batched_native
@@ -56169,6 +56934,8 @@ contains
       integer(c_long), value :: strideP
       integer(c_int), value :: batch_count
       integer(c_int) :: cgeqlf_strided_batched
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(ipiv)) error stop "ipiv: array must be contiguous"
       cgeqlf_strided_batched = rocsolver_cgeqlf_strided_batched_raw(handle, m, n, c_loc(A), lda, &
         strideA, c_loc(ipiv), strideP, batch_count)
     end function rocsolver_cgeqlf_strided_batched_native
@@ -56206,6 +56973,8 @@ contains
       integer(c_long), value :: strideP
       integer(c_int), value :: batch_count
       integer(c_int) :: zgeqlf_strided_batched
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(ipiv)) error stop "ipiv: array must be contiguous"
       zgeqlf_strided_batched = rocsolver_zgeqlf_strided_batched_raw(handle, m, n, c_loc(A), lda, &
         strideA, c_loc(ipiv), strideP, batch_count)
     end function rocsolver_zgeqlf_strided_batched_native
@@ -56239,6 +57008,8 @@ contains
       integer(c_int), value :: lda
       real(c_float), target :: ipiv(..)
       integer(c_int) :: sgelqf
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(ipiv)) error stop "ipiv: array must be contiguous"
       sgelqf = rocsolver_sgelqf_raw(handle, m, n, c_loc(A), lda, c_loc(ipiv))
     end function rocsolver_sgelqf_native
 
@@ -56266,6 +57037,8 @@ contains
       integer(c_int), value :: lda
       real(c_double), target :: ipiv(..)
       integer(c_int) :: dgelqf
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(ipiv)) error stop "ipiv: array must be contiguous"
       dgelqf = rocsolver_dgelqf_raw(handle, m, n, c_loc(A), lda, c_loc(ipiv))
     end function rocsolver_dgelqf_native
 
@@ -56293,6 +57066,8 @@ contains
       integer(c_int), value :: lda
       complex(c_float_complex), target :: ipiv(..)
       integer(c_int) :: cgelqf
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(ipiv)) error stop "ipiv: array must be contiguous"
       cgelqf = rocsolver_cgelqf_raw(handle, m, n, c_loc(A), lda, c_loc(ipiv))
     end function rocsolver_cgelqf_native
 
@@ -56320,6 +57095,8 @@ contains
       integer(c_int), value :: lda
       complex(c_double_complex), target :: ipiv(..)
       integer(c_int) :: zgelqf
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(ipiv)) error stop "ipiv: array must be contiguous"
       zgelqf = rocsolver_zgelqf_raw(handle, m, n, c_loc(A), lda, c_loc(ipiv))
     end function rocsolver_zgelqf_native
 
@@ -56350,6 +57127,7 @@ contains
       integer(c_long), value :: strideP
       integer(c_int), value :: batch_count
       integer(c_int) :: sgelqf_batched
+      if (.not. is_contiguous(ipiv)) error stop "ipiv: array must be contiguous"
       sgelqf_batched = rocsolver_sgelqf_batched_raw(handle, m, n, A, lda, c_loc(ipiv), strideP, &
         batch_count)
     end function rocsolver_sgelqf_batched_native
@@ -56385,6 +57163,7 @@ contains
       integer(c_long), value :: strideP
       integer(c_int), value :: batch_count
       integer(c_int) :: dgelqf_batched
+      if (.not. is_contiguous(ipiv)) error stop "ipiv: array must be contiguous"
       dgelqf_batched = rocsolver_dgelqf_batched_raw(handle, m, n, A, lda, c_loc(ipiv), strideP, &
         batch_count)
     end function rocsolver_dgelqf_batched_native
@@ -56420,6 +57199,7 @@ contains
       integer(c_long), value :: strideP
       integer(c_int), value :: batch_count
       integer(c_int) :: cgelqf_batched
+      if (.not. is_contiguous(ipiv)) error stop "ipiv: array must be contiguous"
       cgelqf_batched = rocsolver_cgelqf_batched_raw(handle, m, n, A, lda, c_loc(ipiv), strideP, &
         batch_count)
     end function rocsolver_cgelqf_batched_native
@@ -56455,6 +57235,7 @@ contains
       integer(c_long), value :: strideP
       integer(c_int), value :: batch_count
       integer(c_int) :: zgelqf_batched
+      if (.not. is_contiguous(ipiv)) error stop "ipiv: array must be contiguous"
       zgelqf_batched = rocsolver_zgelqf_batched_raw(handle, m, n, A, lda, c_loc(ipiv), strideP, &
         batch_count)
     end function rocsolver_zgelqf_batched_native
@@ -56491,6 +57272,8 @@ contains
       integer(c_long), value :: strideP
       integer(c_int), value :: batch_count
       integer(c_int) :: sgelqf_strided_batched
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(ipiv)) error stop "ipiv: array must be contiguous"
       sgelqf_strided_batched = rocsolver_sgelqf_strided_batched_raw(handle, m, n, c_loc(A), lda, &
         strideA, c_loc(ipiv), strideP, batch_count)
     end function rocsolver_sgelqf_strided_batched_native
@@ -56528,6 +57311,8 @@ contains
       integer(c_long), value :: strideP
       integer(c_int), value :: batch_count
       integer(c_int) :: dgelqf_strided_batched
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(ipiv)) error stop "ipiv: array must be contiguous"
       dgelqf_strided_batched = rocsolver_dgelqf_strided_batched_raw(handle, m, n, c_loc(A), lda, &
         strideA, c_loc(ipiv), strideP, batch_count)
     end function rocsolver_dgelqf_strided_batched_native
@@ -56565,6 +57350,8 @@ contains
       integer(c_long), value :: strideP
       integer(c_int), value :: batch_count
       integer(c_int) :: cgelqf_strided_batched
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(ipiv)) error stop "ipiv: array must be contiguous"
       cgelqf_strided_batched = rocsolver_cgelqf_strided_batched_raw(handle, m, n, c_loc(A), lda, &
         strideA, c_loc(ipiv), strideP, batch_count)
     end function rocsolver_cgelqf_strided_batched_native
@@ -56602,6 +57389,8 @@ contains
       integer(c_long), value :: strideP
       integer(c_int), value :: batch_count
       integer(c_int) :: zgelqf_strided_batched
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(ipiv)) error stop "ipiv: array must be contiguous"
       zgelqf_strided_batched = rocsolver_zgelqf_strided_batched_raw(handle, m, n, c_loc(A), lda, &
         strideA, c_loc(ipiv), strideP, batch_count)
     end function rocsolver_zgelqf_strided_batched_native
@@ -56638,6 +57427,11 @@ contains
       real(c_float), target :: tauq(..)
       real(c_float), target :: taup(..)
       integer(c_int) :: sgebd2
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(D)) error stop "D: array must be contiguous"
+      if (.not. is_contiguous(E)) error stop "E: array must be contiguous"
+      if (.not. is_contiguous(tauq)) error stop "tauq: array must be contiguous"
+      if (.not. is_contiguous(taup)) error stop "taup: array must be contiguous"
       sgebd2 = rocsolver_sgebd2_raw(handle, m, n, c_loc(A), lda, c_loc(D), c_loc(E), c_loc(tauq), &
         c_loc(taup))
     end function rocsolver_sgebd2_native
@@ -56672,6 +57466,11 @@ contains
       real(c_double), target :: tauq(..)
       real(c_double), target :: taup(..)
       integer(c_int) :: dgebd2
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(D)) error stop "D: array must be contiguous"
+      if (.not. is_contiguous(E)) error stop "E: array must be contiguous"
+      if (.not. is_contiguous(tauq)) error stop "tauq: array must be contiguous"
+      if (.not. is_contiguous(taup)) error stop "taup: array must be contiguous"
       dgebd2 = rocsolver_dgebd2_raw(handle, m, n, c_loc(A), lda, c_loc(D), c_loc(E), c_loc(tauq), &
         c_loc(taup))
     end function rocsolver_dgebd2_native
@@ -56706,6 +57505,11 @@ contains
       complex(c_float_complex), target :: tauq(..)
       complex(c_float_complex), target :: taup(..)
       integer(c_int) :: cgebd2
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(D)) error stop "D: array must be contiguous"
+      if (.not. is_contiguous(E)) error stop "E: array must be contiguous"
+      if (.not. is_contiguous(tauq)) error stop "tauq: array must be contiguous"
+      if (.not. is_contiguous(taup)) error stop "taup: array must be contiguous"
       cgebd2 = rocsolver_cgebd2_raw(handle, m, n, c_loc(A), lda, c_loc(D), c_loc(E), c_loc(tauq), &
         c_loc(taup))
     end function rocsolver_cgebd2_native
@@ -56740,6 +57544,11 @@ contains
       complex(c_double_complex), target :: tauq(..)
       complex(c_double_complex), target :: taup(..)
       integer(c_int) :: zgebd2
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(D)) error stop "D: array must be contiguous"
+      if (.not. is_contiguous(E)) error stop "E: array must be contiguous"
+      if (.not. is_contiguous(tauq)) error stop "tauq: array must be contiguous"
+      if (.not. is_contiguous(taup)) error stop "taup: array must be contiguous"
       zgebd2 = rocsolver_zgebd2_raw(handle, m, n, c_loc(A), lda, c_loc(D), c_loc(E), c_loc(tauq), &
         c_loc(taup))
     end function rocsolver_zgebd2_native
@@ -56780,6 +57589,10 @@ contains
       integer(c_long), value :: strideP
       integer(c_int), value :: batch_count
       integer(c_int) :: sgebd2_batched
+      if (.not. is_contiguous(D)) error stop "D: array must be contiguous"
+      if (.not. is_contiguous(E)) error stop "E: array must be contiguous"
+      if (.not. is_contiguous(tauq)) error stop "tauq: array must be contiguous"
+      if (.not. is_contiguous(taup)) error stop "taup: array must be contiguous"
       sgebd2_batched = rocsolver_sgebd2_batched_raw(handle, m, n, A, lda, c_loc(D), strideD, &
         c_loc(E), strideE, c_loc(tauq), strideQ, c_loc(taup), strideP, batch_count)
     end function rocsolver_sgebd2_batched_native
@@ -56827,6 +57640,10 @@ contains
       integer(c_long), value :: strideP
       integer(c_int), value :: batch_count
       integer(c_int) :: dgebd2_batched
+      if (.not. is_contiguous(D)) error stop "D: array must be contiguous"
+      if (.not. is_contiguous(E)) error stop "E: array must be contiguous"
+      if (.not. is_contiguous(tauq)) error stop "tauq: array must be contiguous"
+      if (.not. is_contiguous(taup)) error stop "taup: array must be contiguous"
       dgebd2_batched = rocsolver_dgebd2_batched_raw(handle, m, n, A, lda, c_loc(D), strideD, &
         c_loc(E), strideE, c_loc(tauq), strideQ, c_loc(taup), strideP, batch_count)
     end function rocsolver_dgebd2_batched_native
@@ -56874,6 +57691,10 @@ contains
       integer(c_long), value :: strideP
       integer(c_int), value :: batch_count
       integer(c_int) :: cgebd2_batched
+      if (.not. is_contiguous(D)) error stop "D: array must be contiguous"
+      if (.not. is_contiguous(E)) error stop "E: array must be contiguous"
+      if (.not. is_contiguous(tauq)) error stop "tauq: array must be contiguous"
+      if (.not. is_contiguous(taup)) error stop "taup: array must be contiguous"
       cgebd2_batched = rocsolver_cgebd2_batched_raw(handle, m, n, A, lda, c_loc(D), strideD, &
         c_loc(E), strideE, c_loc(tauq), strideQ, c_loc(taup), strideP, batch_count)
     end function rocsolver_cgebd2_batched_native
@@ -56921,6 +57742,10 @@ contains
       integer(c_long), value :: strideP
       integer(c_int), value :: batch_count
       integer(c_int) :: zgebd2_batched
+      if (.not. is_contiguous(D)) error stop "D: array must be contiguous"
+      if (.not. is_contiguous(E)) error stop "E: array must be contiguous"
+      if (.not. is_contiguous(tauq)) error stop "tauq: array must be contiguous"
+      if (.not. is_contiguous(taup)) error stop "taup: array must be contiguous"
       zgebd2_batched = rocsolver_zgebd2_batched_raw(handle, m, n, A, lda, c_loc(D), strideD, &
         c_loc(E), strideE, c_loc(tauq), strideQ, c_loc(taup), strideP, batch_count)
     end function rocsolver_zgebd2_batched_native
@@ -56969,6 +57794,11 @@ contains
       integer(c_long), value :: strideP
       integer(c_int), value :: batch_count
       integer(c_int) :: sgebd2_strided_batched
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(D)) error stop "D: array must be contiguous"
+      if (.not. is_contiguous(E)) error stop "E: array must be contiguous"
+      if (.not. is_contiguous(tauq)) error stop "tauq: array must be contiguous"
+      if (.not. is_contiguous(taup)) error stop "taup: array must be contiguous"
       sgebd2_strided_batched = rocsolver_sgebd2_strided_batched_raw(handle, m, n, c_loc(A), lda, &
         strideA, c_loc(D), strideD, c_loc(E), strideE, c_loc(tauq), strideQ, c_loc(taup), strideP, &
         batch_count)
@@ -57019,6 +57849,11 @@ contains
       integer(c_long), value :: strideP
       integer(c_int), value :: batch_count
       integer(c_int) :: dgebd2_strided_batched
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(D)) error stop "D: array must be contiguous"
+      if (.not. is_contiguous(E)) error stop "E: array must be contiguous"
+      if (.not. is_contiguous(tauq)) error stop "tauq: array must be contiguous"
+      if (.not. is_contiguous(taup)) error stop "taup: array must be contiguous"
       dgebd2_strided_batched = rocsolver_dgebd2_strided_batched_raw(handle, m, n, c_loc(A), lda, &
         strideA, c_loc(D), strideD, c_loc(E), strideE, c_loc(tauq), strideQ, c_loc(taup), strideP, &
         batch_count)
@@ -57069,6 +57904,11 @@ contains
       integer(c_long), value :: strideP
       integer(c_int), value :: batch_count
       integer(c_int) :: cgebd2_strided_batched
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(D)) error stop "D: array must be contiguous"
+      if (.not. is_contiguous(E)) error stop "E: array must be contiguous"
+      if (.not. is_contiguous(tauq)) error stop "tauq: array must be contiguous"
+      if (.not. is_contiguous(taup)) error stop "taup: array must be contiguous"
       cgebd2_strided_batched = rocsolver_cgebd2_strided_batched_raw(handle, m, n, c_loc(A), lda, &
         strideA, c_loc(D), strideD, c_loc(E), strideE, c_loc(tauq), strideQ, c_loc(taup), strideP, &
         batch_count)
@@ -57119,6 +57959,11 @@ contains
       integer(c_long), value :: strideP
       integer(c_int), value :: batch_count
       integer(c_int) :: zgebd2_strided_batched
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(D)) error stop "D: array must be contiguous"
+      if (.not. is_contiguous(E)) error stop "E: array must be contiguous"
+      if (.not. is_contiguous(tauq)) error stop "tauq: array must be contiguous"
+      if (.not. is_contiguous(taup)) error stop "taup: array must be contiguous"
       zgebd2_strided_batched = rocsolver_zgebd2_strided_batched_raw(handle, m, n, c_loc(A), lda, &
         strideA, c_loc(D), strideD, c_loc(E), strideE, c_loc(tauq), strideQ, c_loc(taup), strideP, &
         batch_count)
@@ -57162,6 +58007,11 @@ contains
       real(c_float), target :: tauq(..)
       real(c_float), target :: taup(..)
       integer(c_int) :: sgebrd
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(D)) error stop "D: array must be contiguous"
+      if (.not. is_contiguous(E)) error stop "E: array must be contiguous"
+      if (.not. is_contiguous(tauq)) error stop "tauq: array must be contiguous"
+      if (.not. is_contiguous(taup)) error stop "taup: array must be contiguous"
       sgebrd = rocsolver_sgebrd_raw(handle, m, n, c_loc(A), lda, c_loc(D), c_loc(E), c_loc(tauq), &
         c_loc(taup))
     end function rocsolver_sgebrd_native
@@ -57196,6 +58046,11 @@ contains
       real(c_double), target :: tauq(..)
       real(c_double), target :: taup(..)
       integer(c_int) :: dgebrd
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(D)) error stop "D: array must be contiguous"
+      if (.not. is_contiguous(E)) error stop "E: array must be contiguous"
+      if (.not. is_contiguous(tauq)) error stop "tauq: array must be contiguous"
+      if (.not. is_contiguous(taup)) error stop "taup: array must be contiguous"
       dgebrd = rocsolver_dgebrd_raw(handle, m, n, c_loc(A), lda, c_loc(D), c_loc(E), c_loc(tauq), &
         c_loc(taup))
     end function rocsolver_dgebrd_native
@@ -57230,6 +58085,11 @@ contains
       complex(c_float_complex), target :: tauq(..)
       complex(c_float_complex), target :: taup(..)
       integer(c_int) :: cgebrd
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(D)) error stop "D: array must be contiguous"
+      if (.not. is_contiguous(E)) error stop "E: array must be contiguous"
+      if (.not. is_contiguous(tauq)) error stop "tauq: array must be contiguous"
+      if (.not. is_contiguous(taup)) error stop "taup: array must be contiguous"
       cgebrd = rocsolver_cgebrd_raw(handle, m, n, c_loc(A), lda, c_loc(D), c_loc(E), c_loc(tauq), &
         c_loc(taup))
     end function rocsolver_cgebrd_native
@@ -57264,6 +58124,11 @@ contains
       complex(c_double_complex), target :: tauq(..)
       complex(c_double_complex), target :: taup(..)
       integer(c_int) :: zgebrd
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(D)) error stop "D: array must be contiguous"
+      if (.not. is_contiguous(E)) error stop "E: array must be contiguous"
+      if (.not. is_contiguous(tauq)) error stop "tauq: array must be contiguous"
+      if (.not. is_contiguous(taup)) error stop "taup: array must be contiguous"
       zgebrd = rocsolver_zgebrd_raw(handle, m, n, c_loc(A), lda, c_loc(D), c_loc(E), c_loc(tauq), &
         c_loc(taup))
     end function rocsolver_zgebrd_native
@@ -57304,6 +58169,10 @@ contains
       integer(c_long), value :: strideP
       integer(c_int), value :: batch_count
       integer(c_int) :: sgebrd_batched
+      if (.not. is_contiguous(D)) error stop "D: array must be contiguous"
+      if (.not. is_contiguous(E)) error stop "E: array must be contiguous"
+      if (.not. is_contiguous(tauq)) error stop "tauq: array must be contiguous"
+      if (.not. is_contiguous(taup)) error stop "taup: array must be contiguous"
       sgebrd_batched = rocsolver_sgebrd_batched_raw(handle, m, n, A, lda, c_loc(D), strideD, &
         c_loc(E), strideE, c_loc(tauq), strideQ, c_loc(taup), strideP, batch_count)
     end function rocsolver_sgebrd_batched_native
@@ -57351,6 +58220,10 @@ contains
       integer(c_long), value :: strideP
       integer(c_int), value :: batch_count
       integer(c_int) :: dgebrd_batched
+      if (.not. is_contiguous(D)) error stop "D: array must be contiguous"
+      if (.not. is_contiguous(E)) error stop "E: array must be contiguous"
+      if (.not. is_contiguous(tauq)) error stop "tauq: array must be contiguous"
+      if (.not. is_contiguous(taup)) error stop "taup: array must be contiguous"
       dgebrd_batched = rocsolver_dgebrd_batched_raw(handle, m, n, A, lda, c_loc(D), strideD, &
         c_loc(E), strideE, c_loc(tauq), strideQ, c_loc(taup), strideP, batch_count)
     end function rocsolver_dgebrd_batched_native
@@ -57398,6 +58271,10 @@ contains
       integer(c_long), value :: strideP
       integer(c_int), value :: batch_count
       integer(c_int) :: cgebrd_batched
+      if (.not. is_contiguous(D)) error stop "D: array must be contiguous"
+      if (.not. is_contiguous(E)) error stop "E: array must be contiguous"
+      if (.not. is_contiguous(tauq)) error stop "tauq: array must be contiguous"
+      if (.not. is_contiguous(taup)) error stop "taup: array must be contiguous"
       cgebrd_batched = rocsolver_cgebrd_batched_raw(handle, m, n, A, lda, c_loc(D), strideD, &
         c_loc(E), strideE, c_loc(tauq), strideQ, c_loc(taup), strideP, batch_count)
     end function rocsolver_cgebrd_batched_native
@@ -57445,6 +58322,10 @@ contains
       integer(c_long), value :: strideP
       integer(c_int), value :: batch_count
       integer(c_int) :: zgebrd_batched
+      if (.not. is_contiguous(D)) error stop "D: array must be contiguous"
+      if (.not. is_contiguous(E)) error stop "E: array must be contiguous"
+      if (.not. is_contiguous(tauq)) error stop "tauq: array must be contiguous"
+      if (.not. is_contiguous(taup)) error stop "taup: array must be contiguous"
       zgebrd_batched = rocsolver_zgebrd_batched_raw(handle, m, n, A, lda, c_loc(D), strideD, &
         c_loc(E), strideE, c_loc(tauq), strideQ, c_loc(taup), strideP, batch_count)
     end function rocsolver_zgebrd_batched_native
@@ -57493,6 +58374,11 @@ contains
       integer(c_long), value :: strideP
       integer(c_int), value :: batch_count
       integer(c_int) :: sgebrd_strided_batched
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(D)) error stop "D: array must be contiguous"
+      if (.not. is_contiguous(E)) error stop "E: array must be contiguous"
+      if (.not. is_contiguous(tauq)) error stop "tauq: array must be contiguous"
+      if (.not. is_contiguous(taup)) error stop "taup: array must be contiguous"
       sgebrd_strided_batched = rocsolver_sgebrd_strided_batched_raw(handle, m, n, c_loc(A), lda, &
         strideA, c_loc(D), strideD, c_loc(E), strideE, c_loc(tauq), strideQ, c_loc(taup), strideP, &
         batch_count)
@@ -57543,6 +58429,11 @@ contains
       integer(c_long), value :: strideP
       integer(c_int), value :: batch_count
       integer(c_int) :: dgebrd_strided_batched
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(D)) error stop "D: array must be contiguous"
+      if (.not. is_contiguous(E)) error stop "E: array must be contiguous"
+      if (.not. is_contiguous(tauq)) error stop "tauq: array must be contiguous"
+      if (.not. is_contiguous(taup)) error stop "taup: array must be contiguous"
       dgebrd_strided_batched = rocsolver_dgebrd_strided_batched_raw(handle, m, n, c_loc(A), lda, &
         strideA, c_loc(D), strideD, c_loc(E), strideE, c_loc(tauq), strideQ, c_loc(taup), strideP, &
         batch_count)
@@ -57593,6 +58484,11 @@ contains
       integer(c_long), value :: strideP
       integer(c_int), value :: batch_count
       integer(c_int) :: cgebrd_strided_batched
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(D)) error stop "D: array must be contiguous"
+      if (.not. is_contiguous(E)) error stop "E: array must be contiguous"
+      if (.not. is_contiguous(tauq)) error stop "tauq: array must be contiguous"
+      if (.not. is_contiguous(taup)) error stop "taup: array must be contiguous"
       cgebrd_strided_batched = rocsolver_cgebrd_strided_batched_raw(handle, m, n, c_loc(A), lda, &
         strideA, c_loc(D), strideD, c_loc(E), strideE, c_loc(tauq), strideQ, c_loc(taup), strideP, &
         batch_count)
@@ -57643,6 +58539,11 @@ contains
       integer(c_long), value :: strideP
       integer(c_int), value :: batch_count
       integer(c_int) :: zgebrd_strided_batched
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(D)) error stop "D: array must be contiguous"
+      if (.not. is_contiguous(E)) error stop "E: array must be contiguous"
+      if (.not. is_contiguous(tauq)) error stop "tauq: array must be contiguous"
+      if (.not. is_contiguous(taup)) error stop "taup: array must be contiguous"
       zgebrd_strided_batched = rocsolver_zgebrd_strided_batched_raw(handle, m, n, c_loc(A), lda, &
         strideA, c_loc(D), strideD, c_loc(E), strideE, c_loc(tauq), strideQ, c_loc(taup), strideP, &
         batch_count)
@@ -57686,6 +58587,9 @@ contains
       real(c_float), target :: B(..)
       integer(c_int), value :: ldb
       integer(c_int) :: sgetrs
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(ipiv)) error stop "ipiv: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
       sgetrs = rocsolver_sgetrs_raw(handle, trans, n, nrhs, c_loc(A), lda, c_loc(ipiv), c_loc(B), &
         ldb)
     end function rocsolver_sgetrs_native
@@ -57720,6 +58624,9 @@ contains
       real(c_double), target :: B(..)
       integer(c_int), value :: ldb
       integer(c_int) :: dgetrs
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(ipiv)) error stop "ipiv: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
       dgetrs = rocsolver_dgetrs_raw(handle, trans, n, nrhs, c_loc(A), lda, c_loc(ipiv), c_loc(B), &
         ldb)
     end function rocsolver_dgetrs_native
@@ -57754,6 +58661,9 @@ contains
       complex(c_float_complex), target :: B(..)
       integer(c_int), value :: ldb
       integer(c_int) :: cgetrs
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(ipiv)) error stop "ipiv: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
       cgetrs = rocsolver_cgetrs_raw(handle, trans, n, nrhs, c_loc(A), lda, c_loc(ipiv), c_loc(B), &
         ldb)
     end function rocsolver_cgetrs_native
@@ -57788,6 +58698,9 @@ contains
       complex(c_double_complex), target :: B(..)
       integer(c_int), value :: ldb
       integer(c_int) :: zgetrs
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(ipiv)) error stop "ipiv: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
       zgetrs = rocsolver_zgetrs_raw(handle, trans, n, nrhs, c_loc(A), lda, c_loc(ipiv), c_loc(B), &
         ldb)
     end function rocsolver_zgetrs_native
@@ -57823,6 +58736,8 @@ contains
       real(c_float), target :: B(..)
       integer(c_long), value :: ldb
       integer(c_int) :: sgetrs_64
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
       sgetrs_64 = rocsolver_sgetrs_64_raw(handle, trans, n, nrhs, c_loc(A), lda, ipiv, c_loc(B), &
         ldb)
     end function rocsolver_sgetrs_64_native
@@ -57859,6 +58774,8 @@ contains
       real(c_double), target :: B(..)
       integer(c_long), value :: ldb
       integer(c_int) :: dgetrs_64
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
       dgetrs_64 = rocsolver_dgetrs_64_raw(handle, trans, n, nrhs, c_loc(A), lda, ipiv, c_loc(B), &
         ldb)
     end function rocsolver_dgetrs_64_native
@@ -57895,6 +58812,8 @@ contains
       complex(c_float_complex), target :: B(..)
       integer(c_long), value :: ldb
       integer(c_int) :: cgetrs_64
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
       cgetrs_64 = rocsolver_cgetrs_64_raw(handle, trans, n, nrhs, c_loc(A), lda, ipiv, c_loc(B), &
         ldb)
     end function rocsolver_cgetrs_64_native
@@ -57931,6 +58850,8 @@ contains
       complex(c_double_complex), target :: B(..)
       integer(c_long), value :: ldb
       integer(c_int) :: zgetrs_64
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
       zgetrs_64 = rocsolver_zgetrs_64_raw(handle, trans, n, nrhs, c_loc(A), lda, ipiv, c_loc(B), &
         ldb)
     end function rocsolver_zgetrs_64_native
@@ -57969,6 +58890,7 @@ contains
       integer(c_int), value :: ldb
       integer(c_int), value :: batch_count
       integer(c_int) :: sgetrs_batched
+      if (.not. is_contiguous(ipiv)) error stop "ipiv: array must be contiguous"
       sgetrs_batched = rocsolver_sgetrs_batched_raw(handle, trans, n, nrhs, A, lda, c_loc(ipiv), &
         strideP, B, ldb, batch_count)
     end function rocsolver_sgetrs_batched_native
@@ -58010,6 +58932,7 @@ contains
       integer(c_int), value :: ldb
       integer(c_int), value :: batch_count
       integer(c_int) :: dgetrs_batched
+      if (.not. is_contiguous(ipiv)) error stop "ipiv: array must be contiguous"
       dgetrs_batched = rocsolver_dgetrs_batched_raw(handle, trans, n, nrhs, A, lda, c_loc(ipiv), &
         strideP, B, ldb, batch_count)
     end function rocsolver_dgetrs_batched_native
@@ -58051,6 +58974,7 @@ contains
       integer(c_int), value :: ldb
       integer(c_int), value :: batch_count
       integer(c_int) :: cgetrs_batched
+      if (.not. is_contiguous(ipiv)) error stop "ipiv: array must be contiguous"
       cgetrs_batched = rocsolver_cgetrs_batched_raw(handle, trans, n, nrhs, A, lda, c_loc(ipiv), &
         strideP, B, ldb, batch_count)
     end function rocsolver_cgetrs_batched_native
@@ -58092,6 +59016,7 @@ contains
       integer(c_int), value :: ldb
       integer(c_int), value :: batch_count
       integer(c_int) :: zgetrs_batched
+      if (.not. is_contiguous(ipiv)) error stop "ipiv: array must be contiguous"
       zgetrs_batched = rocsolver_zgetrs_batched_raw(handle, trans, n, nrhs, A, lda, c_loc(ipiv), &
         strideP, B, ldb, batch_count)
     end function rocsolver_zgetrs_batched_native
@@ -58219,6 +59144,9 @@ contains
       integer(c_long), value :: strideB
       integer(c_int), value :: batch_count
       integer(c_int) :: sgetrs_strided_batched
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(ipiv)) error stop "ipiv: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
       sgetrs_strided_batched = rocsolver_sgetrs_strided_batched_raw(handle, trans, n, nrhs, c_loc( &
         A), lda, strideA, c_loc(ipiv), strideP, c_loc(B), ldb, strideB, batch_count)
     end function rocsolver_sgetrs_strided_batched_native
@@ -58264,6 +59192,9 @@ contains
       integer(c_long), value :: strideB
       integer(c_int), value :: batch_count
       integer(c_int) :: dgetrs_strided_batched
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(ipiv)) error stop "ipiv: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
       dgetrs_strided_batched = rocsolver_dgetrs_strided_batched_raw(handle, trans, n, nrhs, c_loc( &
         A), lda, strideA, c_loc(ipiv), strideP, c_loc(B), ldb, strideB, batch_count)
     end function rocsolver_dgetrs_strided_batched_native
@@ -58309,6 +59240,9 @@ contains
       integer(c_long), value :: strideB
       integer(c_int), value :: batch_count
       integer(c_int) :: cgetrs_strided_batched
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(ipiv)) error stop "ipiv: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
       cgetrs_strided_batched = rocsolver_cgetrs_strided_batched_raw(handle, trans, n, nrhs, c_loc( &
         A), lda, strideA, c_loc(ipiv), strideP, c_loc(B), ldb, strideB, batch_count)
     end function rocsolver_cgetrs_strided_batched_native
@@ -58354,6 +59288,9 @@ contains
       integer(c_long), value :: strideB
       integer(c_int), value :: batch_count
       integer(c_int) :: zgetrs_strided_batched
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(ipiv)) error stop "ipiv: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
       zgetrs_strided_batched = rocsolver_zgetrs_strided_batched_raw(handle, trans, n, nrhs, c_loc( &
         A), lda, strideA, c_loc(ipiv), strideP, c_loc(B), ldb, strideB, batch_count)
     end function rocsolver_zgetrs_strided_batched_native
@@ -58399,6 +59336,8 @@ contains
       integer(c_long), value :: strideB
       integer(c_long), value :: batch_count
       integer(c_int) :: sgetrs_strided_batched_64
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
       sgetrs_strided_batched_64 = rocsolver_sgetrs_strided_batched_64_raw(handle, trans, n, nrhs, &
         c_loc(A), lda, strideA, ipiv, strideP, c_loc(B), ldb, strideB, batch_count)
     end function rocsolver_sgetrs_strided_batched_64_native
@@ -58444,6 +59383,8 @@ contains
       integer(c_long), value :: strideB
       integer(c_long), value :: batch_count
       integer(c_int) :: dgetrs_strided_batched_64
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
       dgetrs_strided_batched_64 = rocsolver_dgetrs_strided_batched_64_raw(handle, trans, n, nrhs, &
         c_loc(A), lda, strideA, ipiv, strideP, c_loc(B), ldb, strideB, batch_count)
     end function rocsolver_dgetrs_strided_batched_64_native
@@ -58489,6 +59430,8 @@ contains
       integer(c_long), value :: strideB
       integer(c_long), value :: batch_count
       integer(c_int) :: cgetrs_strided_batched_64
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
       cgetrs_strided_batched_64 = rocsolver_cgetrs_strided_batched_64_raw(handle, trans, n, nrhs, &
         c_loc(A), lda, strideA, ipiv, strideP, c_loc(B), ldb, strideB, batch_count)
     end function rocsolver_cgetrs_strided_batched_64_native
@@ -58534,6 +59477,8 @@ contains
       integer(c_long), value :: strideB
       integer(c_long), value :: batch_count
       integer(c_int) :: zgetrs_strided_batched_64
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
       zgetrs_strided_batched_64 = rocsolver_zgetrs_strided_batched_64_raw(handle, trans, n, nrhs, &
         c_loc(A), lda, strideA, ipiv, strideP, c_loc(B), ldb, strideB, batch_count)
     end function rocsolver_zgetrs_strided_batched_64_native
@@ -58574,6 +59519,9 @@ contains
       real(c_float), target :: B(..)
       integer(c_int), value :: ldb
       integer(c_int) :: ssytrs
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(ipiv)) error stop "ipiv: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
       ssytrs = rocsolver_ssytrs_raw(handle, uplo, n, nrhs, c_loc(A), lda, c_loc(ipiv), c_loc(B), &
         ldb)
     end function rocsolver_ssytrs_native
@@ -58608,6 +59556,9 @@ contains
       real(c_double), target :: B(..)
       integer(c_int), value :: ldb
       integer(c_int) :: dsytrs
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(ipiv)) error stop "ipiv: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
       dsytrs = rocsolver_dsytrs_raw(handle, uplo, n, nrhs, c_loc(A), lda, c_loc(ipiv), c_loc(B), &
         ldb)
     end function rocsolver_dsytrs_native
@@ -58642,6 +59593,9 @@ contains
       complex(c_float_complex), target :: B(..)
       integer(c_int), value :: ldb
       integer(c_int) :: csytrs
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(ipiv)) error stop "ipiv: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
       csytrs = rocsolver_csytrs_raw(handle, uplo, n, nrhs, c_loc(A), lda, c_loc(ipiv), c_loc(B), &
         ldb)
     end function rocsolver_csytrs_native
@@ -58676,6 +59630,9 @@ contains
       complex(c_double_complex), target :: B(..)
       integer(c_int), value :: ldb
       integer(c_int) :: zsytrs
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(ipiv)) error stop "ipiv: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
       zsytrs = rocsolver_zsytrs_raw(handle, uplo, n, nrhs, c_loc(A), lda, c_loc(ipiv), c_loc(B), &
         ldb)
     end function rocsolver_zsytrs_native
@@ -58711,6 +59668,8 @@ contains
       real(c_float), target :: B(..)
       integer(c_long), value :: ldb
       integer(c_int) :: ssytrs_64
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
       ssytrs_64 = rocsolver_ssytrs_64_raw(handle, uplo, n, nrhs, c_loc(A), lda, ipiv, c_loc(B), ldb)
     end function rocsolver_ssytrs_64_native
 
@@ -58746,6 +59705,8 @@ contains
       real(c_double), target :: B(..)
       integer(c_long), value :: ldb
       integer(c_int) :: dsytrs_64
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
       dsytrs_64 = rocsolver_dsytrs_64_raw(handle, uplo, n, nrhs, c_loc(A), lda, ipiv, c_loc(B), ldb)
     end function rocsolver_dsytrs_64_native
 
@@ -58781,6 +59742,8 @@ contains
       complex(c_float_complex), target :: B(..)
       integer(c_long), value :: ldb
       integer(c_int) :: csytrs_64
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
       csytrs_64 = rocsolver_csytrs_64_raw(handle, uplo, n, nrhs, c_loc(A), lda, ipiv, c_loc(B), ldb)
     end function rocsolver_csytrs_64_native
 
@@ -58816,6 +59779,8 @@ contains
       complex(c_double_complex), target :: B(..)
       integer(c_long), value :: ldb
       integer(c_int) :: zsytrs_64
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
       zsytrs_64 = rocsolver_zsytrs_64_raw(handle, uplo, n, nrhs, c_loc(A), lda, ipiv, c_loc(B), ldb)
     end function rocsolver_zsytrs_64_native
 
@@ -58853,6 +59818,7 @@ contains
       integer(c_int), value :: ldb
       integer(c_int), value :: batch_count
       integer(c_int) :: ssytrs_batched
+      if (.not. is_contiguous(ipiv)) error stop "ipiv: array must be contiguous"
       ssytrs_batched = rocsolver_ssytrs_batched_raw(handle, uplo, n, nrhs, A, lda, c_loc(ipiv), &
         strideP, B, ldb, batch_count)
     end function rocsolver_ssytrs_batched_native
@@ -58894,6 +59860,7 @@ contains
       integer(c_int), value :: ldb
       integer(c_int), value :: batch_count
       integer(c_int) :: dsytrs_batched
+      if (.not. is_contiguous(ipiv)) error stop "ipiv: array must be contiguous"
       dsytrs_batched = rocsolver_dsytrs_batched_raw(handle, uplo, n, nrhs, A, lda, c_loc(ipiv), &
         strideP, B, ldb, batch_count)
     end function rocsolver_dsytrs_batched_native
@@ -58935,6 +59902,7 @@ contains
       integer(c_int), value :: ldb
       integer(c_int), value :: batch_count
       integer(c_int) :: csytrs_batched
+      if (.not. is_contiguous(ipiv)) error stop "ipiv: array must be contiguous"
       csytrs_batched = rocsolver_csytrs_batched_raw(handle, uplo, n, nrhs, A, lda, c_loc(ipiv), &
         strideP, B, ldb, batch_count)
     end function rocsolver_csytrs_batched_native
@@ -58976,6 +59944,7 @@ contains
       integer(c_int), value :: ldb
       integer(c_int), value :: batch_count
       integer(c_int) :: zsytrs_batched
+      if (.not. is_contiguous(ipiv)) error stop "ipiv: array must be contiguous"
       zsytrs_batched = rocsolver_zsytrs_batched_raw(handle, uplo, n, nrhs, A, lda, c_loc(ipiv), &
         strideP, B, ldb, batch_count)
     end function rocsolver_zsytrs_batched_native
@@ -59103,6 +60072,9 @@ contains
       integer(c_long), value :: strideB
       integer(c_int), value :: batch_count
       integer(c_int) :: ssytrs_strided_batched
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(ipiv)) error stop "ipiv: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
       ssytrs_strided_batched = rocsolver_ssytrs_strided_batched_raw(handle, uplo, n, nrhs, c_loc( &
         A), lda, strideA, c_loc(ipiv), strideP, c_loc(B), ldb, strideB, batch_count)
     end function rocsolver_ssytrs_strided_batched_native
@@ -59148,6 +60120,9 @@ contains
       integer(c_long), value :: strideB
       integer(c_int), value :: batch_count
       integer(c_int) :: dsytrs_strided_batched
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(ipiv)) error stop "ipiv: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
       dsytrs_strided_batched = rocsolver_dsytrs_strided_batched_raw(handle, uplo, n, nrhs, c_loc( &
         A), lda, strideA, c_loc(ipiv), strideP, c_loc(B), ldb, strideB, batch_count)
     end function rocsolver_dsytrs_strided_batched_native
@@ -59193,6 +60168,9 @@ contains
       integer(c_long), value :: strideB
       integer(c_int), value :: batch_count
       integer(c_int) :: csytrs_strided_batched
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(ipiv)) error stop "ipiv: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
       csytrs_strided_batched = rocsolver_csytrs_strided_batched_raw(handle, uplo, n, nrhs, c_loc( &
         A), lda, strideA, c_loc(ipiv), strideP, c_loc(B), ldb, strideB, batch_count)
     end function rocsolver_csytrs_strided_batched_native
@@ -59238,6 +60216,9 @@ contains
       integer(c_long), value :: strideB
       integer(c_int), value :: batch_count
       integer(c_int) :: zsytrs_strided_batched
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(ipiv)) error stop "ipiv: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
       zsytrs_strided_batched = rocsolver_zsytrs_strided_batched_raw(handle, uplo, n, nrhs, c_loc( &
         A), lda, strideA, c_loc(ipiv), strideP, c_loc(B), ldb, strideB, batch_count)
     end function rocsolver_zsytrs_strided_batched_native
@@ -59283,6 +60264,8 @@ contains
       integer(c_long), value :: strideB
       integer(c_long), value :: batch_count
       integer(c_int) :: ssytrs_strided_batched_64
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
       ssytrs_strided_batched_64 = rocsolver_ssytrs_strided_batched_64_raw(handle, uplo, n, nrhs, &
         c_loc(A), lda, strideA, ipiv, strideP, c_loc(B), ldb, strideB, batch_count)
     end function rocsolver_ssytrs_strided_batched_64_native
@@ -59328,6 +60311,8 @@ contains
       integer(c_long), value :: strideB
       integer(c_long), value :: batch_count
       integer(c_int) :: dsytrs_strided_batched_64
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
       dsytrs_strided_batched_64 = rocsolver_dsytrs_strided_batched_64_raw(handle, uplo, n, nrhs, &
         c_loc(A), lda, strideA, ipiv, strideP, c_loc(B), ldb, strideB, batch_count)
     end function rocsolver_dsytrs_strided_batched_64_native
@@ -59373,6 +60358,8 @@ contains
       integer(c_long), value :: strideB
       integer(c_long), value :: batch_count
       integer(c_int) :: csytrs_strided_batched_64
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
       csytrs_strided_batched_64 = rocsolver_csytrs_strided_batched_64_raw(handle, uplo, n, nrhs, &
         c_loc(A), lda, strideA, ipiv, strideP, c_loc(B), ldb, strideB, batch_count)
     end function rocsolver_csytrs_strided_batched_64_native
@@ -59418,6 +60405,8 @@ contains
       integer(c_long), value :: strideB
       integer(c_long), value :: batch_count
       integer(c_int) :: zsytrs_strided_batched_64
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
       zsytrs_strided_batched_64 = rocsolver_zsytrs_strided_batched_64_raw(handle, uplo, n, nrhs, &
         c_loc(A), lda, strideA, ipiv, strideP, c_loc(B), ldb, strideB, batch_count)
     end function rocsolver_zsytrs_strided_batched_64_native
@@ -59458,6 +60447,10 @@ contains
       integer(c_int), value :: ldb
       integer(c_int), target :: info(..)
       integer(c_int) :: sgesv
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(ipiv)) error stop "ipiv: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       sgesv = rocsolver_sgesv_raw(handle, n, nrhs, c_loc(A), lda, c_loc(ipiv), c_loc(B), ldb, &
         c_loc(info))
     end function rocsolver_sgesv_native
@@ -59492,6 +60485,10 @@ contains
       integer(c_int), value :: ldb
       integer(c_int), target :: info(..)
       integer(c_int) :: dgesv
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(ipiv)) error stop "ipiv: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       dgesv = rocsolver_dgesv_raw(handle, n, nrhs, c_loc(A), lda, c_loc(ipiv), c_loc(B), ldb, &
         c_loc(info))
     end function rocsolver_dgesv_native
@@ -59526,6 +60523,10 @@ contains
       integer(c_int), value :: ldb
       integer(c_int), target :: info(..)
       integer(c_int) :: cgesv
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(ipiv)) error stop "ipiv: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       cgesv = rocsolver_cgesv_raw(handle, n, nrhs, c_loc(A), lda, c_loc(ipiv), c_loc(B), ldb, &
         c_loc(info))
     end function rocsolver_cgesv_native
@@ -59560,6 +60561,10 @@ contains
       integer(c_int), value :: ldb
       integer(c_int), target :: info(..)
       integer(c_int) :: zgesv
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(ipiv)) error stop "ipiv: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       zgesv = rocsolver_zgesv_raw(handle, n, nrhs, c_loc(A), lda, c_loc(ipiv), c_loc(B), ldb, &
         c_loc(info))
     end function rocsolver_zgesv_native
@@ -59597,6 +60602,8 @@ contains
       integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: sgesv_batched
+      if (.not. is_contiguous(ipiv)) error stop "ipiv: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       sgesv_batched = rocsolver_sgesv_batched_raw(handle, n, nrhs, A, lda, c_loc(ipiv), strideP, &
         B, ldb, c_loc(info), batch_count)
     end function rocsolver_sgesv_batched_native
@@ -59638,6 +60645,8 @@ contains
       integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: dgesv_batched
+      if (.not. is_contiguous(ipiv)) error stop "ipiv: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       dgesv_batched = rocsolver_dgesv_batched_raw(handle, n, nrhs, A, lda, c_loc(ipiv), strideP, &
         B, ldb, c_loc(info), batch_count)
     end function rocsolver_dgesv_batched_native
@@ -59679,6 +60688,8 @@ contains
       integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: cgesv_batched
+      if (.not. is_contiguous(ipiv)) error stop "ipiv: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       cgesv_batched = rocsolver_cgesv_batched_raw(handle, n, nrhs, A, lda, c_loc(ipiv), strideP, &
         B, ldb, c_loc(info), batch_count)
     end function rocsolver_cgesv_batched_native
@@ -59720,6 +60731,8 @@ contains
       integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: zgesv_batched
+      if (.not. is_contiguous(ipiv)) error stop "ipiv: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       zgesv_batched = rocsolver_zgesv_batched_raw(handle, n, nrhs, A, lda, c_loc(ipiv), strideP, &
         B, ldb, c_loc(info), batch_count)
     end function rocsolver_zgesv_batched_native
@@ -59763,6 +60776,10 @@ contains
       integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: sgesv_strided_batched
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(ipiv)) error stop "ipiv: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       sgesv_strided_batched = rocsolver_sgesv_strided_batched_raw(handle, n, nrhs, c_loc(A), lda, &
         strideA, c_loc(ipiv), strideP, c_loc(B), ldb, strideB, c_loc(info), batch_count)
     end function rocsolver_sgesv_strided_batched_native
@@ -59808,6 +60825,10 @@ contains
       integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: dgesv_strided_batched
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(ipiv)) error stop "ipiv: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       dgesv_strided_batched = rocsolver_dgesv_strided_batched_raw(handle, n, nrhs, c_loc(A), lda, &
         strideA, c_loc(ipiv), strideP, c_loc(B), ldb, strideB, c_loc(info), batch_count)
     end function rocsolver_dgesv_strided_batched_native
@@ -59853,6 +60874,10 @@ contains
       integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: cgesv_strided_batched
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(ipiv)) error stop "ipiv: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       cgesv_strided_batched = rocsolver_cgesv_strided_batched_raw(handle, n, nrhs, c_loc(A), lda, &
         strideA, c_loc(ipiv), strideP, c_loc(B), ldb, strideB, c_loc(info), batch_count)
     end function rocsolver_cgesv_strided_batched_native
@@ -59898,6 +60923,10 @@ contains
       integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: zgesv_strided_batched
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(ipiv)) error stop "ipiv: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       zgesv_strided_batched = rocsolver_zgesv_strided_batched_raw(handle, n, nrhs, c_loc(A), lda, &
         strideA, c_loc(ipiv), strideP, c_loc(B), ldb, strideB, c_loc(info), batch_count)
     end function rocsolver_zgesv_strided_batched_native
@@ -59938,6 +60967,8 @@ contains
       real(c_float), target :: B(..)
       integer(c_int), value :: ldb
       integer(c_int) :: sgetrs_npvt
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
       sgetrs_npvt = rocsolver_sgetrs_npvt_raw(handle, trans, n, nrhs, c_loc(A), lda, c_loc(B), ldb)
     end function rocsolver_sgetrs_npvt_native
 
@@ -59970,6 +61001,8 @@ contains
       real(c_double), target :: B(..)
       integer(c_int), value :: ldb
       integer(c_int) :: dgetrs_npvt
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
       dgetrs_npvt = rocsolver_dgetrs_npvt_raw(handle, trans, n, nrhs, c_loc(A), lda, c_loc(B), ldb)
     end function rocsolver_dgetrs_npvt_native
 
@@ -60002,6 +61035,8 @@ contains
       complex(c_float_complex), target :: B(..)
       integer(c_int), value :: ldb
       integer(c_int) :: cgetrs_npvt
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
       cgetrs_npvt = rocsolver_cgetrs_npvt_raw(handle, trans, n, nrhs, c_loc(A), lda, c_loc(B), ldb)
     end function rocsolver_cgetrs_npvt_native
 
@@ -60034,6 +61069,8 @@ contains
       complex(c_double_complex), target :: B(..)
       integer(c_int), value :: ldb
       integer(c_int) :: zgetrs_npvt
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
       zgetrs_npvt = rocsolver_zgetrs_npvt_raw(handle, trans, n, nrhs, c_loc(A), lda, c_loc(B), ldb)
     end function rocsolver_zgetrs_npvt_native
 
@@ -60066,6 +61103,8 @@ contains
       real(c_float), target :: B(..)
       integer(c_long), value :: ldb
       integer(c_int) :: sgetrs_npvt_64
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
       sgetrs_npvt_64 = rocsolver_sgetrs_npvt_64_raw(handle, trans, n, nrhs, c_loc(A), lda, c_loc( &
         B), ldb)
     end function rocsolver_sgetrs_npvt_64_native
@@ -60100,6 +61139,8 @@ contains
       real(c_double), target :: B(..)
       integer(c_long), value :: ldb
       integer(c_int) :: dgetrs_npvt_64
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
       dgetrs_npvt_64 = rocsolver_dgetrs_npvt_64_raw(handle, trans, n, nrhs, c_loc(A), lda, c_loc( &
         B), ldb)
     end function rocsolver_dgetrs_npvt_64_native
@@ -60134,6 +61175,8 @@ contains
       complex(c_float_complex), target :: B(..)
       integer(c_long), value :: ldb
       integer(c_int) :: cgetrs_npvt_64
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
       cgetrs_npvt_64 = rocsolver_cgetrs_npvt_64_raw(handle, trans, n, nrhs, c_loc(A), lda, c_loc( &
         B), ldb)
     end function rocsolver_cgetrs_npvt_64_native
@@ -60168,6 +61211,8 @@ contains
       complex(c_double_complex), target :: B(..)
       integer(c_long), value :: ldb
       integer(c_int) :: zgetrs_npvt_64
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
       zgetrs_npvt_64 = rocsolver_zgetrs_npvt_64_raw(handle, trans, n, nrhs, c_loc(A), lda, c_loc( &
         B), ldb)
     end function rocsolver_zgetrs_npvt_64_native
@@ -60357,6 +61402,8 @@ contains
       integer(c_long), value :: strideB
       integer(c_int), value :: batch_count
       integer(c_int) :: sgetrs_npvt_strided_batched
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
       sgetrs_npvt_strided_batched = rocsolver_sgetrs_npvt_strided_batched_raw(handle, trans, n, &
         nrhs, c_loc(A), lda, strideA, c_loc(B), ldb, strideB, batch_count)
     end function rocsolver_sgetrs_npvt_strided_batched_native
@@ -60398,6 +61445,8 @@ contains
       integer(c_long), value :: strideB
       integer(c_int), value :: batch_count
       integer(c_int) :: dgetrs_npvt_strided_batched
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
       dgetrs_npvt_strided_batched = rocsolver_dgetrs_npvt_strided_batched_raw(handle, trans, n, &
         nrhs, c_loc(A), lda, strideA, c_loc(B), ldb, strideB, batch_count)
     end function rocsolver_dgetrs_npvt_strided_batched_native
@@ -60439,6 +61488,8 @@ contains
       integer(c_long), value :: strideB
       integer(c_int), value :: batch_count
       integer(c_int) :: cgetrs_npvt_strided_batched
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
       cgetrs_npvt_strided_batched = rocsolver_cgetrs_npvt_strided_batched_raw(handle, trans, n, &
         nrhs, c_loc(A), lda, strideA, c_loc(B), ldb, strideB, batch_count)
     end function rocsolver_cgetrs_npvt_strided_batched_native
@@ -60480,6 +61531,8 @@ contains
       integer(c_long), value :: strideB
       integer(c_int), value :: batch_count
       integer(c_int) :: zgetrs_npvt_strided_batched
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
       zgetrs_npvt_strided_batched = rocsolver_zgetrs_npvt_strided_batched_raw(handle, trans, n, &
         nrhs, c_loc(A), lda, strideA, c_loc(B), ldb, strideB, batch_count)
     end function rocsolver_zgetrs_npvt_strided_batched_native
@@ -60521,6 +61574,8 @@ contains
       integer(c_long), value :: strideB
       integer(c_long), value :: batch_count
       integer(c_int) :: sgetrs_npvt_strided_batched_64
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
       sgetrs_npvt_strided_batched_64 = rocsolver_sgetrs_npvt_strided_batched_64_raw(handle, trans, &
         n, nrhs, c_loc(A), lda, strideA, c_loc(B), ldb, strideB, batch_count)
     end function rocsolver_sgetrs_npvt_strided_batched_64_native
@@ -60562,6 +61617,8 @@ contains
       integer(c_long), value :: strideB
       integer(c_long), value :: batch_count
       integer(c_int) :: dgetrs_npvt_strided_batched_64
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
       dgetrs_npvt_strided_batched_64 = rocsolver_dgetrs_npvt_strided_batched_64_raw(handle, trans, &
         n, nrhs, c_loc(A), lda, strideA, c_loc(B), ldb, strideB, batch_count)
     end function rocsolver_dgetrs_npvt_strided_batched_64_native
@@ -60603,6 +61660,8 @@ contains
       integer(c_long), value :: strideB
       integer(c_long), value :: batch_count
       integer(c_int) :: cgetrs_npvt_strided_batched_64
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
       cgetrs_npvt_strided_batched_64 = rocsolver_cgetrs_npvt_strided_batched_64_raw(handle, trans, &
         n, nrhs, c_loc(A), lda, strideA, c_loc(B), ldb, strideB, batch_count)
     end function rocsolver_cgetrs_npvt_strided_batched_64_native
@@ -60644,6 +61703,8 @@ contains
       integer(c_long), value :: strideB
       integer(c_long), value :: batch_count
       integer(c_int) :: zgetrs_npvt_strided_batched_64
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
       zgetrs_npvt_strided_batched_64 = rocsolver_zgetrs_npvt_strided_batched_64_raw(handle, trans, &
         n, nrhs, c_loc(A), lda, strideA, c_loc(B), ldb, strideB, batch_count)
     end function rocsolver_zgetrs_npvt_strided_batched_64_native
@@ -60679,6 +61740,9 @@ contains
       integer(c_int), target :: ipiv(..)
       integer(c_int), target :: info(..)
       integer(c_int) :: sgetri
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(ipiv)) error stop "ipiv: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       sgetri = rocsolver_sgetri_raw(handle, n, c_loc(A), lda, c_loc(ipiv), c_loc(info))
     end function rocsolver_sgetri_native
 
@@ -60706,6 +61770,9 @@ contains
       integer(c_int), target :: ipiv(..)
       integer(c_int), target :: info(..)
       integer(c_int) :: dgetri
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(ipiv)) error stop "ipiv: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       dgetri = rocsolver_dgetri_raw(handle, n, c_loc(A), lda, c_loc(ipiv), c_loc(info))
     end function rocsolver_dgetri_native
 
@@ -60733,6 +61800,9 @@ contains
       integer(c_int), target :: ipiv(..)
       integer(c_int), target :: info(..)
       integer(c_int) :: cgetri
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(ipiv)) error stop "ipiv: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       cgetri = rocsolver_cgetri_raw(handle, n, c_loc(A), lda, c_loc(ipiv), c_loc(info))
     end function rocsolver_cgetri_native
 
@@ -60760,6 +61830,9 @@ contains
       integer(c_int), target :: ipiv(..)
       integer(c_int), target :: info(..)
       integer(c_int) :: zgetri
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(ipiv)) error stop "ipiv: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       zgetri = rocsolver_zgetri_raw(handle, n, c_loc(A), lda, c_loc(ipiv), c_loc(info))
     end function rocsolver_zgetri_native
 
@@ -60790,6 +61863,8 @@ contains
       integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: sgetri_batched
+      if (.not. is_contiguous(ipiv)) error stop "ipiv: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       sgetri_batched = rocsolver_sgetri_batched_raw(handle, n, A, lda, c_loc(ipiv), strideP, &
         c_loc(info), batch_count)
     end function rocsolver_sgetri_batched_native
@@ -60825,6 +61900,8 @@ contains
       integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: dgetri_batched
+      if (.not. is_contiguous(ipiv)) error stop "ipiv: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       dgetri_batched = rocsolver_dgetri_batched_raw(handle, n, A, lda, c_loc(ipiv), strideP, &
         c_loc(info), batch_count)
     end function rocsolver_dgetri_batched_native
@@ -60860,6 +61937,8 @@ contains
       integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: cgetri_batched
+      if (.not. is_contiguous(ipiv)) error stop "ipiv: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       cgetri_batched = rocsolver_cgetri_batched_raw(handle, n, A, lda, c_loc(ipiv), strideP, &
         c_loc(info), batch_count)
     end function rocsolver_cgetri_batched_native
@@ -60895,6 +61974,8 @@ contains
       integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: zgetri_batched
+      if (.not. is_contiguous(ipiv)) error stop "ipiv: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       zgetri_batched = rocsolver_zgetri_batched_raw(handle, n, A, lda, c_loc(ipiv), strideP, &
         c_loc(info), batch_count)
     end function rocsolver_zgetri_batched_native
@@ -60931,6 +62012,9 @@ contains
       integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: sgetri_strided_batched
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(ipiv)) error stop "ipiv: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       sgetri_strided_batched = rocsolver_sgetri_strided_batched_raw(handle, n, c_loc(A), lda, &
         strideA, c_loc(ipiv), strideP, c_loc(info), batch_count)
     end function rocsolver_sgetri_strided_batched_native
@@ -60968,6 +62052,9 @@ contains
       integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: dgetri_strided_batched
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(ipiv)) error stop "ipiv: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       dgetri_strided_batched = rocsolver_dgetri_strided_batched_raw(handle, n, c_loc(A), lda, &
         strideA, c_loc(ipiv), strideP, c_loc(info), batch_count)
     end function rocsolver_dgetri_strided_batched_native
@@ -61005,6 +62092,9 @@ contains
       integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: cgetri_strided_batched
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(ipiv)) error stop "ipiv: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       cgetri_strided_batched = rocsolver_cgetri_strided_batched_raw(handle, n, c_loc(A), lda, &
         strideA, c_loc(ipiv), strideP, c_loc(info), batch_count)
     end function rocsolver_cgetri_strided_batched_native
@@ -61042,6 +62132,9 @@ contains
       integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: zgetri_strided_batched
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(ipiv)) error stop "ipiv: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       zgetri_strided_batched = rocsolver_zgetri_strided_batched_raw(handle, n, c_loc(A), lda, &
         strideA, c_loc(ipiv), strideP, c_loc(info), batch_count)
     end function rocsolver_zgetri_strided_batched_native
@@ -61074,6 +62167,8 @@ contains
       integer(c_int), value :: lda
       integer(c_int), target :: info(..)
       integer(c_int) :: sgetri_npvt
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       sgetri_npvt = rocsolver_sgetri_npvt_raw(handle, n, c_loc(A), lda, c_loc(info))
     end function rocsolver_sgetri_npvt_native
 
@@ -61099,6 +62194,8 @@ contains
       integer(c_int), value :: lda
       integer(c_int), target :: info(..)
       integer(c_int) :: dgetri_npvt
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       dgetri_npvt = rocsolver_dgetri_npvt_raw(handle, n, c_loc(A), lda, c_loc(info))
     end function rocsolver_dgetri_npvt_native
 
@@ -61124,6 +62221,8 @@ contains
       integer(c_int), value :: lda
       integer(c_int), target :: info(..)
       integer(c_int) :: cgetri_npvt
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       cgetri_npvt = rocsolver_cgetri_npvt_raw(handle, n, c_loc(A), lda, c_loc(info))
     end function rocsolver_cgetri_npvt_native
 
@@ -61149,6 +62248,8 @@ contains
       integer(c_int), value :: lda
       integer(c_int), target :: info(..)
       integer(c_int) :: zgetri_npvt
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       zgetri_npvt = rocsolver_zgetri_npvt_raw(handle, n, c_loc(A), lda, c_loc(info))
     end function rocsolver_zgetri_npvt_native
 
@@ -61176,6 +62277,7 @@ contains
       integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: sgetri_npvt_batched
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       sgetri_npvt_batched = rocsolver_sgetri_npvt_batched_raw(handle, n, A, lda, c_loc(info), &
         batch_count)
     end function rocsolver_sgetri_npvt_batched_native
@@ -61207,6 +62309,7 @@ contains
       integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: dgetri_npvt_batched
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       dgetri_npvt_batched = rocsolver_dgetri_npvt_batched_raw(handle, n, A, lda, c_loc(info), &
         batch_count)
     end function rocsolver_dgetri_npvt_batched_native
@@ -61238,6 +62341,7 @@ contains
       integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: cgetri_npvt_batched
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       cgetri_npvt_batched = rocsolver_cgetri_npvt_batched_raw(handle, n, A, lda, c_loc(info), &
         batch_count)
     end function rocsolver_cgetri_npvt_batched_native
@@ -61269,6 +62373,7 @@ contains
       integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: zgetri_npvt_batched
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       zgetri_npvt_batched = rocsolver_zgetri_npvt_batched_raw(handle, n, A, lda, c_loc(info), &
         batch_count)
     end function rocsolver_zgetri_npvt_batched_native
@@ -61301,6 +62406,8 @@ contains
       integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: sgetri_npvt_strided_batched
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       sgetri_npvt_strided_batched = rocsolver_sgetri_npvt_strided_batched_raw(handle, n, c_loc(A), &
         lda, strideA, c_loc(info), batch_count)
     end function rocsolver_sgetri_npvt_strided_batched_native
@@ -61334,6 +62441,8 @@ contains
       integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: dgetri_npvt_strided_batched
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       dgetri_npvt_strided_batched = rocsolver_dgetri_npvt_strided_batched_raw(handle, n, c_loc(A), &
         lda, strideA, c_loc(info), batch_count)
     end function rocsolver_dgetri_npvt_strided_batched_native
@@ -61367,6 +62476,8 @@ contains
       integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: cgetri_npvt_strided_batched
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       cgetri_npvt_strided_batched = rocsolver_cgetri_npvt_strided_batched_raw(handle, n, c_loc(A), &
         lda, strideA, c_loc(info), batch_count)
     end function rocsolver_cgetri_npvt_strided_batched_native
@@ -61400,6 +62511,8 @@ contains
       integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: zgetri_npvt_strided_batched
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       zgetri_npvt_strided_batched = rocsolver_zgetri_npvt_strided_batched_raw(handle, n, c_loc(A), &
         lda, strideA, c_loc(info), batch_count)
     end function rocsolver_zgetri_npvt_strided_batched_native
@@ -61435,6 +62548,9 @@ contains
       integer(c_int), value :: ldb
       integer(c_int), target :: info(..)
       integer(c_int) :: sgels
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       sgels = rocsolver_sgels_raw(handle, trans, m, n, nrhs, c_loc(A), lda, c_loc(B), ldb, c_loc( &
         info))
     end function rocsolver_sgels_native
@@ -61471,6 +62587,9 @@ contains
       integer(c_int), value :: ldb
       integer(c_int), target :: info(..)
       integer(c_int) :: dgels
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       dgels = rocsolver_dgels_raw(handle, trans, m, n, nrhs, c_loc(A), lda, c_loc(B), ldb, c_loc( &
         info))
     end function rocsolver_dgels_native
@@ -61507,6 +62626,9 @@ contains
       integer(c_int), value :: ldb
       integer(c_int), target :: info(..)
       integer(c_int) :: cgels
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       cgels = rocsolver_cgels_raw(handle, trans, m, n, nrhs, c_loc(A), lda, c_loc(B), ldb, c_loc( &
         info))
     end function rocsolver_cgels_native
@@ -61543,6 +62665,9 @@ contains
       integer(c_int), value :: ldb
       integer(c_int), target :: info(..)
       integer(c_int) :: zgels
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       zgels = rocsolver_zgels_raw(handle, trans, m, n, nrhs, c_loc(A), lda, c_loc(B), ldb, c_loc( &
         info))
     end function rocsolver_zgels_native
@@ -61581,6 +62706,7 @@ contains
       integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: sgels_batched
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       sgels_batched = rocsolver_sgels_batched_raw(handle, trans, m, n, nrhs, A, lda, B, ldb, &
         c_loc(info), batch_count)
     end function rocsolver_sgels_batched_native
@@ -61622,6 +62748,7 @@ contains
       integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: dgels_batched
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       dgels_batched = rocsolver_dgels_batched_raw(handle, trans, m, n, nrhs, A, lda, B, ldb, &
         c_loc(info), batch_count)
     end function rocsolver_dgels_batched_native
@@ -61663,6 +62790,7 @@ contains
       integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: cgels_batched
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       cgels_batched = rocsolver_cgels_batched_raw(handle, trans, m, n, nrhs, A, lda, B, ldb, &
         c_loc(info), batch_count)
     end function rocsolver_cgels_batched_native
@@ -61704,6 +62832,7 @@ contains
       integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: zgels_batched
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       zgels_batched = rocsolver_zgels_batched_raw(handle, trans, m, n, nrhs, A, lda, B, ldb, &
         c_loc(info), batch_count)
     end function rocsolver_zgels_batched_native
@@ -61747,6 +62876,9 @@ contains
       integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: sgels_strided_batched
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       sgels_strided_batched = rocsolver_sgels_strided_batched_raw(handle, trans, m, n, nrhs, &
         c_loc(A), lda, strideA, c_loc(B), ldb, strideB, c_loc(info), batch_count)
     end function rocsolver_sgels_strided_batched_native
@@ -61792,6 +62924,9 @@ contains
       integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: dgels_strided_batched
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       dgels_strided_batched = rocsolver_dgels_strided_batched_raw(handle, trans, m, n, nrhs, &
         c_loc(A), lda, strideA, c_loc(B), ldb, strideB, c_loc(info), batch_count)
     end function rocsolver_dgels_strided_batched_native
@@ -61837,6 +62972,9 @@ contains
       integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: cgels_strided_batched
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       cgels_strided_batched = rocsolver_cgels_strided_batched_raw(handle, trans, m, n, nrhs, &
         c_loc(A), lda, strideA, c_loc(B), ldb, strideB, c_loc(info), batch_count)
     end function rocsolver_cgels_strided_batched_native
@@ -61882,6 +63020,9 @@ contains
       integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: zgels_strided_batched
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       zgels_strided_batched = rocsolver_zgels_strided_batched_raw(handle, trans, m, n, nrhs, &
         c_loc(A), lda, strideA, c_loc(B), ldb, strideB, c_loc(info), batch_count)
     end function rocsolver_zgels_strided_batched_native
@@ -61919,6 +63060,8 @@ contains
       integer(c_int), value :: lda
       integer(c_int), target :: info(..)
       integer(c_int) :: spotf2
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       spotf2 = rocsolver_spotf2_raw(handle, uplo, n, c_loc(A), lda, c_loc(info))
     end function rocsolver_spotf2_native
 
@@ -61946,6 +63089,8 @@ contains
       integer(c_int), value :: lda
       integer(c_int), target :: info(..)
       integer(c_int) :: dpotf2
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       dpotf2 = rocsolver_dpotf2_raw(handle, uplo, n, c_loc(A), lda, c_loc(info))
     end function rocsolver_dpotf2_native
 
@@ -61973,6 +63118,8 @@ contains
       integer(c_int), value :: lda
       integer(c_int), target :: info(..)
       integer(c_int) :: cpotf2
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       cpotf2 = rocsolver_cpotf2_raw(handle, uplo, n, c_loc(A), lda, c_loc(info))
     end function rocsolver_cpotf2_native
 
@@ -62000,6 +63147,8 @@ contains
       integer(c_int), value :: lda
       integer(c_int), target :: info(..)
       integer(c_int) :: zpotf2
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       zpotf2 = rocsolver_zpotf2_raw(handle, uplo, n, c_loc(A), lda, c_loc(info))
     end function rocsolver_zpotf2_native
 
@@ -62027,6 +63176,7 @@ contains
       integer(c_long), value :: lda
       type(c_ptr), value :: info
       integer(c_int) :: spotf2_64
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
       spotf2_64 = rocsolver_spotf2_64_raw(handle, uplo, n, c_loc(A), lda, info)
     end function rocsolver_spotf2_64_native
 
@@ -62054,6 +63204,7 @@ contains
       integer(c_long), value :: lda
       type(c_ptr), value :: info
       integer(c_int) :: dpotf2_64
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
       dpotf2_64 = rocsolver_dpotf2_64_raw(handle, uplo, n, c_loc(A), lda, info)
     end function rocsolver_dpotf2_64_native
 
@@ -62081,6 +63232,7 @@ contains
       integer(c_long), value :: lda
       type(c_ptr), value :: info
       integer(c_int) :: cpotf2_64
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
       cpotf2_64 = rocsolver_cpotf2_64_raw(handle, uplo, n, c_loc(A), lda, info)
     end function rocsolver_cpotf2_64_native
 
@@ -62108,6 +63260,7 @@ contains
       integer(c_long), value :: lda
       type(c_ptr), value :: info
       integer(c_int) :: zpotf2_64
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
       zpotf2_64 = rocsolver_zpotf2_64_raw(handle, uplo, n, c_loc(A), lda, info)
     end function rocsolver_zpotf2_64_native
 
@@ -62137,6 +63290,7 @@ contains
       integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: spotf2_batched
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       spotf2_batched = rocsolver_spotf2_batched_raw(handle, uplo, n, A, lda, c_loc(info), &
         batch_count)
     end function rocsolver_spotf2_batched_native
@@ -62169,6 +63323,7 @@ contains
       integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: dpotf2_batched
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       dpotf2_batched = rocsolver_dpotf2_batched_raw(handle, uplo, n, A, lda, c_loc(info), &
         batch_count)
     end function rocsolver_dpotf2_batched_native
@@ -62201,6 +63356,7 @@ contains
       integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: cpotf2_batched
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       cpotf2_batched = rocsolver_cpotf2_batched_raw(handle, uplo, n, A, lda, c_loc(info), &
         batch_count)
     end function rocsolver_cpotf2_batched_native
@@ -62233,6 +63389,7 @@ contains
       integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: zpotf2_batched
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       zpotf2_batched = rocsolver_zpotf2_batched_raw(handle, uplo, n, A, lda, c_loc(info), &
         batch_count)
     end function rocsolver_zpotf2_batched_native
@@ -62334,6 +63491,8 @@ contains
       integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: spotf2_strided_batched
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       spotf2_strided_batched = rocsolver_spotf2_strided_batched_raw(handle, uplo, n, c_loc(A), &
         lda, strideA, c_loc(info), batch_count)
     end function rocsolver_spotf2_strided_batched_native
@@ -62369,6 +63528,8 @@ contains
       integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: dpotf2_strided_batched
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       dpotf2_strided_batched = rocsolver_dpotf2_strided_batched_raw(handle, uplo, n, c_loc(A), &
         lda, strideA, c_loc(info), batch_count)
     end function rocsolver_dpotf2_strided_batched_native
@@ -62404,6 +63565,8 @@ contains
       integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: cpotf2_strided_batched
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       cpotf2_strided_batched = rocsolver_cpotf2_strided_batched_raw(handle, uplo, n, c_loc(A), &
         lda, strideA, c_loc(info), batch_count)
     end function rocsolver_cpotf2_strided_batched_native
@@ -62439,6 +63602,8 @@ contains
       integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: zpotf2_strided_batched
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       zpotf2_strided_batched = rocsolver_zpotf2_strided_batched_raw(handle, uplo, n, c_loc(A), &
         lda, strideA, c_loc(info), batch_count)
     end function rocsolver_zpotf2_strided_batched_native
@@ -62474,6 +63639,7 @@ contains
       type(c_ptr), value :: info
       integer(c_long), value :: batch_count
       integer(c_int) :: spotf2_strided_batched_64
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
       spotf2_strided_batched_64 = rocsolver_spotf2_strided_batched_64_raw(handle, uplo, n, c_loc( &
         A), lda, strideA, info, batch_count)
     end function rocsolver_spotf2_strided_batched_64_native
@@ -62509,6 +63675,7 @@ contains
       type(c_ptr), value :: info
       integer(c_long), value :: batch_count
       integer(c_int) :: dpotf2_strided_batched_64
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
       dpotf2_strided_batched_64 = rocsolver_dpotf2_strided_batched_64_raw(handle, uplo, n, c_loc( &
         A), lda, strideA, info, batch_count)
     end function rocsolver_dpotf2_strided_batched_64_native
@@ -62544,6 +63711,7 @@ contains
       type(c_ptr), value :: info
       integer(c_long), value :: batch_count
       integer(c_int) :: cpotf2_strided_batched_64
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
       cpotf2_strided_batched_64 = rocsolver_cpotf2_strided_batched_64_raw(handle, uplo, n, c_loc( &
         A), lda, strideA, info, batch_count)
     end function rocsolver_cpotf2_strided_batched_64_native
@@ -62579,6 +63747,7 @@ contains
       type(c_ptr), value :: info
       integer(c_long), value :: batch_count
       integer(c_int) :: zpotf2_strided_batched_64
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
       zpotf2_strided_batched_64 = rocsolver_zpotf2_strided_batched_64_raw(handle, uplo, n, c_loc( &
         A), lda, strideA, info, batch_count)
     end function rocsolver_zpotf2_strided_batched_64_native
@@ -62611,6 +63780,8 @@ contains
       integer(c_int), value :: lda
       integer(c_int), target :: info(..)
       integer(c_int) :: spotrf
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       spotrf = rocsolver_spotrf_raw(handle, uplo, n, c_loc(A), lda, c_loc(info))
     end function rocsolver_spotrf_native
 
@@ -62638,6 +63809,8 @@ contains
       integer(c_int), value :: lda
       integer(c_int), target :: info(..)
       integer(c_int) :: dpotrf
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       dpotrf = rocsolver_dpotrf_raw(handle, uplo, n, c_loc(A), lda, c_loc(info))
     end function rocsolver_dpotrf_native
 
@@ -62665,6 +63838,8 @@ contains
       integer(c_int), value :: lda
       integer(c_int), target :: info(..)
       integer(c_int) :: cpotrf
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       cpotrf = rocsolver_cpotrf_raw(handle, uplo, n, c_loc(A), lda, c_loc(info))
     end function rocsolver_cpotrf_native
 
@@ -62692,6 +63867,8 @@ contains
       integer(c_int), value :: lda
       integer(c_int), target :: info(..)
       integer(c_int) :: zpotrf
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       zpotrf = rocsolver_zpotrf_raw(handle, uplo, n, c_loc(A), lda, c_loc(info))
     end function rocsolver_zpotrf_native
 
@@ -62719,6 +63896,7 @@ contains
       integer(c_long), value :: lda
       type(c_ptr), value :: info
       integer(c_int) :: spotrf_64
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
       spotrf_64 = rocsolver_spotrf_64_raw(handle, uplo, n, c_loc(A), lda, info)
     end function rocsolver_spotrf_64_native
 
@@ -62746,6 +63924,7 @@ contains
       integer(c_long), value :: lda
       type(c_ptr), value :: info
       integer(c_int) :: dpotrf_64
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
       dpotrf_64 = rocsolver_dpotrf_64_raw(handle, uplo, n, c_loc(A), lda, info)
     end function rocsolver_dpotrf_64_native
 
@@ -62773,6 +63952,7 @@ contains
       integer(c_long), value :: lda
       type(c_ptr), value :: info
       integer(c_int) :: cpotrf_64
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
       cpotrf_64 = rocsolver_cpotrf_64_raw(handle, uplo, n, c_loc(A), lda, info)
     end function rocsolver_cpotrf_64_native
 
@@ -62800,6 +63980,7 @@ contains
       integer(c_long), value :: lda
       type(c_ptr), value :: info
       integer(c_int) :: zpotrf_64
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
       zpotrf_64 = rocsolver_zpotrf_64_raw(handle, uplo, n, c_loc(A), lda, info)
     end function rocsolver_zpotrf_64_native
 
@@ -62829,6 +64010,7 @@ contains
       integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: spotrf_batched
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       spotrf_batched = rocsolver_spotrf_batched_raw(handle, uplo, n, A, lda, c_loc(info), &
         batch_count)
     end function rocsolver_spotrf_batched_native
@@ -62861,6 +64043,7 @@ contains
       integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: dpotrf_batched
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       dpotrf_batched = rocsolver_dpotrf_batched_raw(handle, uplo, n, A, lda, c_loc(info), &
         batch_count)
     end function rocsolver_dpotrf_batched_native
@@ -62893,6 +64076,7 @@ contains
       integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: cpotrf_batched
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       cpotrf_batched = rocsolver_cpotrf_batched_raw(handle, uplo, n, A, lda, c_loc(info), &
         batch_count)
     end function rocsolver_cpotrf_batched_native
@@ -62925,6 +64109,7 @@ contains
       integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: zpotrf_batched
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       zpotrf_batched = rocsolver_zpotrf_batched_raw(handle, uplo, n, A, lda, c_loc(info), &
         batch_count)
     end function rocsolver_zpotrf_batched_native
@@ -63026,6 +64211,8 @@ contains
       integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: spotrf_strided_batched
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       spotrf_strided_batched = rocsolver_spotrf_strided_batched_raw(handle, uplo, n, c_loc(A), &
         lda, strideA, c_loc(info), batch_count)
     end function rocsolver_spotrf_strided_batched_native
@@ -63061,6 +64248,8 @@ contains
       integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: dpotrf_strided_batched
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       dpotrf_strided_batched = rocsolver_dpotrf_strided_batched_raw(handle, uplo, n, c_loc(A), &
         lda, strideA, c_loc(info), batch_count)
     end function rocsolver_dpotrf_strided_batched_native
@@ -63096,6 +64285,8 @@ contains
       integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: cpotrf_strided_batched
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       cpotrf_strided_batched = rocsolver_cpotrf_strided_batched_raw(handle, uplo, n, c_loc(A), &
         lda, strideA, c_loc(info), batch_count)
     end function rocsolver_cpotrf_strided_batched_native
@@ -63131,6 +64322,8 @@ contains
       integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: zpotrf_strided_batched
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       zpotrf_strided_batched = rocsolver_zpotrf_strided_batched_raw(handle, uplo, n, c_loc(A), &
         lda, strideA, c_loc(info), batch_count)
     end function rocsolver_zpotrf_strided_batched_native
@@ -63166,6 +64359,7 @@ contains
       type(c_ptr), value :: info
       integer(c_long), value :: batch_count
       integer(c_int) :: spotrf_strided_batched_64
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
       spotrf_strided_batched_64 = rocsolver_spotrf_strided_batched_64_raw(handle, uplo, n, c_loc( &
         A), lda, strideA, info, batch_count)
     end function rocsolver_spotrf_strided_batched_64_native
@@ -63201,6 +64395,7 @@ contains
       type(c_ptr), value :: info
       integer(c_long), value :: batch_count
       integer(c_int) :: dpotrf_strided_batched_64
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
       dpotrf_strided_batched_64 = rocsolver_dpotrf_strided_batched_64_raw(handle, uplo, n, c_loc( &
         A), lda, strideA, info, batch_count)
     end function rocsolver_dpotrf_strided_batched_64_native
@@ -63236,6 +64431,7 @@ contains
       type(c_ptr), value :: info
       integer(c_long), value :: batch_count
       integer(c_int) :: cpotrf_strided_batched_64
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
       cpotrf_strided_batched_64 = rocsolver_cpotrf_strided_batched_64_raw(handle, uplo, n, c_loc( &
         A), lda, strideA, info, batch_count)
     end function rocsolver_cpotrf_strided_batched_64_native
@@ -63271,6 +64467,7 @@ contains
       type(c_ptr), value :: info
       integer(c_long), value :: batch_count
       integer(c_int) :: zpotrf_strided_batched_64
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
       zpotrf_strided_batched_64 = rocsolver_zpotrf_strided_batched_64_raw(handle, uplo, n, c_loc( &
         A), lda, strideA, info, batch_count)
     end function rocsolver_zpotrf_strided_batched_64_native
@@ -63305,6 +64502,8 @@ contains
       real(c_float), target :: B(..)
       integer(c_int), value :: ldb
       integer(c_int) :: spotrs
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
       spotrs = rocsolver_spotrs_raw(handle, uplo, n, nrhs, c_loc(A), lda, c_loc(B), ldb)
     end function rocsolver_spotrs_native
 
@@ -63336,6 +64535,8 @@ contains
       real(c_double), target :: B(..)
       integer(c_int), value :: ldb
       integer(c_int) :: dpotrs
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
       dpotrs = rocsolver_dpotrs_raw(handle, uplo, n, nrhs, c_loc(A), lda, c_loc(B), ldb)
     end function rocsolver_dpotrs_native
 
@@ -63367,6 +64568,8 @@ contains
       complex(c_float_complex), target :: B(..)
       integer(c_int), value :: ldb
       integer(c_int) :: cpotrs
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
       cpotrs = rocsolver_cpotrs_raw(handle, uplo, n, nrhs, c_loc(A), lda, c_loc(B), ldb)
     end function rocsolver_cpotrs_native
 
@@ -63398,6 +64601,8 @@ contains
       complex(c_double_complex), target :: B(..)
       integer(c_int), value :: ldb
       integer(c_int) :: zpotrs
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
       zpotrs = rocsolver_zpotrs_raw(handle, uplo, n, nrhs, c_loc(A), lda, c_loc(B), ldb)
     end function rocsolver_zpotrs_native
 
@@ -63429,6 +64634,8 @@ contains
       real(c_float), target :: B(..)
       integer(c_long), value :: ldb
       integer(c_int) :: spotrs_64
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
       spotrs_64 = rocsolver_spotrs_64_raw(handle, uplo, n, nrhs, c_loc(A), lda, c_loc(B), ldb)
     end function rocsolver_spotrs_64_native
 
@@ -63460,6 +64667,8 @@ contains
       real(c_double), target :: B(..)
       integer(c_long), value :: ldb
       integer(c_int) :: dpotrs_64
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
       dpotrs_64 = rocsolver_dpotrs_64_raw(handle, uplo, n, nrhs, c_loc(A), lda, c_loc(B), ldb)
     end function rocsolver_dpotrs_64_native
 
@@ -63491,6 +64700,8 @@ contains
       complex(c_float_complex), target :: B(..)
       integer(c_long), value :: ldb
       integer(c_int) :: cpotrs_64
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
       cpotrs_64 = rocsolver_cpotrs_64_raw(handle, uplo, n, nrhs, c_loc(A), lda, c_loc(B), ldb)
     end function rocsolver_cpotrs_64_native
 
@@ -63522,6 +64733,8 @@ contains
       complex(c_double_complex), target :: B(..)
       integer(c_long), value :: ldb
       integer(c_int) :: zpotrs_64
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
       zpotrs_64 = rocsolver_zpotrs_64_raw(handle, uplo, n, nrhs, c_loc(A), lda, c_loc(B), ldb)
     end function rocsolver_zpotrs_64_native
 
@@ -63709,6 +64922,8 @@ contains
       integer(c_long), value :: strideB
       integer(c_int), value :: batch_count
       integer(c_int) :: spotrs_strided_batched
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
       spotrs_strided_batched = rocsolver_spotrs_strided_batched_raw(handle, uplo, n, nrhs, c_loc( &
         A), lda, strideA, c_loc(B), ldb, strideB, batch_count)
     end function rocsolver_spotrs_strided_batched_native
@@ -63750,6 +64965,8 @@ contains
       integer(c_long), value :: strideB
       integer(c_int), value :: batch_count
       integer(c_int) :: dpotrs_strided_batched
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
       dpotrs_strided_batched = rocsolver_dpotrs_strided_batched_raw(handle, uplo, n, nrhs, c_loc( &
         A), lda, strideA, c_loc(B), ldb, strideB, batch_count)
     end function rocsolver_dpotrs_strided_batched_native
@@ -63791,6 +65008,8 @@ contains
       integer(c_long), value :: strideB
       integer(c_int), value :: batch_count
       integer(c_int) :: cpotrs_strided_batched
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
       cpotrs_strided_batched = rocsolver_cpotrs_strided_batched_raw(handle, uplo, n, nrhs, c_loc( &
         A), lda, strideA, c_loc(B), ldb, strideB, batch_count)
     end function rocsolver_cpotrs_strided_batched_native
@@ -63832,6 +65051,8 @@ contains
       integer(c_long), value :: strideB
       integer(c_int), value :: batch_count
       integer(c_int) :: zpotrs_strided_batched
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
       zpotrs_strided_batched = rocsolver_zpotrs_strided_batched_raw(handle, uplo, n, nrhs, c_loc( &
         A), lda, strideA, c_loc(B), ldb, strideB, batch_count)
     end function rocsolver_zpotrs_strided_batched_native
@@ -63873,6 +65094,8 @@ contains
       integer(c_long), value :: strideB
       integer(c_long), value :: batch_count
       integer(c_int) :: spotrs_strided_batched_64
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
       spotrs_strided_batched_64 = rocsolver_spotrs_strided_batched_64_raw(handle, uplo, n, nrhs, &
         c_loc(A), lda, strideA, c_loc(B), ldb, strideB, batch_count)
     end function rocsolver_spotrs_strided_batched_64_native
@@ -63914,6 +65137,8 @@ contains
       integer(c_long), value :: strideB
       integer(c_long), value :: batch_count
       integer(c_int) :: dpotrs_strided_batched_64
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
       dpotrs_strided_batched_64 = rocsolver_dpotrs_strided_batched_64_raw(handle, uplo, n, nrhs, &
         c_loc(A), lda, strideA, c_loc(B), ldb, strideB, batch_count)
     end function rocsolver_dpotrs_strided_batched_64_native
@@ -63955,6 +65180,8 @@ contains
       integer(c_long), value :: strideB
       integer(c_long), value :: batch_count
       integer(c_int) :: cpotrs_strided_batched_64
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
       cpotrs_strided_batched_64 = rocsolver_cpotrs_strided_batched_64_raw(handle, uplo, n, nrhs, &
         c_loc(A), lda, strideA, c_loc(B), ldb, strideB, batch_count)
     end function rocsolver_cpotrs_strided_batched_64_native
@@ -63996,6 +65223,8 @@ contains
       integer(c_long), value :: strideB
       integer(c_long), value :: batch_count
       integer(c_int) :: zpotrs_strided_batched_64
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
       zpotrs_strided_batched_64 = rocsolver_zpotrs_strided_batched_64_raw(handle, uplo, n, nrhs, &
         c_loc(A), lda, strideA, c_loc(B), ldb, strideB, batch_count)
     end function rocsolver_zpotrs_strided_batched_64_native
@@ -64034,6 +65263,9 @@ contains
       integer(c_int), value :: ldb
       integer(c_int), target :: info(..)
       integer(c_int) :: sposv
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       sposv = rocsolver_sposv_raw(handle, uplo, n, nrhs, c_loc(A), lda, c_loc(B), ldb, c_loc(info))
     end function rocsolver_sposv_native
 
@@ -64067,6 +65299,9 @@ contains
       integer(c_int), value :: ldb
       integer(c_int), target :: info(..)
       integer(c_int) :: dposv
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       dposv = rocsolver_dposv_raw(handle, uplo, n, nrhs, c_loc(A), lda, c_loc(B), ldb, c_loc(info))
     end function rocsolver_dposv_native
 
@@ -64100,6 +65335,9 @@ contains
       integer(c_int), value :: ldb
       integer(c_int), target :: info(..)
       integer(c_int) :: cposv
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       cposv = rocsolver_cposv_raw(handle, uplo, n, nrhs, c_loc(A), lda, c_loc(B), ldb, c_loc(info))
     end function rocsolver_cposv_native
 
@@ -64133,6 +65371,9 @@ contains
       integer(c_int), value :: ldb
       integer(c_int), target :: info(..)
       integer(c_int) :: zposv
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       zposv = rocsolver_zposv_raw(handle, uplo, n, nrhs, c_loc(A), lda, c_loc(B), ldb, c_loc(info))
     end function rocsolver_zposv_native
 
@@ -64168,6 +65409,7 @@ contains
       integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: sposv_batched
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       sposv_batched = rocsolver_sposv_batched_raw(handle, uplo, n, nrhs, A, lda, B, ldb, c_loc( &
         info), batch_count)
     end function rocsolver_sposv_batched_native
@@ -64207,6 +65449,7 @@ contains
       integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: dposv_batched
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       dposv_batched = rocsolver_dposv_batched_raw(handle, uplo, n, nrhs, A, lda, B, ldb, c_loc( &
         info), batch_count)
     end function rocsolver_dposv_batched_native
@@ -64246,6 +65489,7 @@ contains
       integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: cposv_batched
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       cposv_batched = rocsolver_cposv_batched_raw(handle, uplo, n, nrhs, A, lda, B, ldb, c_loc( &
         info), batch_count)
     end function rocsolver_cposv_batched_native
@@ -64285,6 +65529,7 @@ contains
       integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: zposv_batched
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       zposv_batched = rocsolver_zposv_batched_raw(handle, uplo, n, nrhs, A, lda, B, ldb, c_loc( &
         info), batch_count)
     end function rocsolver_zposv_batched_native
@@ -64326,6 +65571,9 @@ contains
       integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: sposv_strided_batched
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       sposv_strided_batched = rocsolver_sposv_strided_batched_raw(handle, uplo, n, nrhs, c_loc(A), &
         lda, strideA, c_loc(B), ldb, strideB, c_loc(info), batch_count)
     end function rocsolver_sposv_strided_batched_native
@@ -64369,6 +65617,9 @@ contains
       integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: dposv_strided_batched
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       dposv_strided_batched = rocsolver_dposv_strided_batched_raw(handle, uplo, n, nrhs, c_loc(A), &
         lda, strideA, c_loc(B), ldb, strideB, c_loc(info), batch_count)
     end function rocsolver_dposv_strided_batched_native
@@ -64412,6 +65663,9 @@ contains
       integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: cposv_strided_batched
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       cposv_strided_batched = rocsolver_cposv_strided_batched_raw(handle, uplo, n, nrhs, c_loc(A), &
         lda, strideA, c_loc(B), ldb, strideB, c_loc(info), batch_count)
     end function rocsolver_cposv_strided_batched_native
@@ -64455,6 +65709,9 @@ contains
       integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: zposv_strided_batched
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       zposv_strided_batched = rocsolver_zposv_strided_batched_raw(handle, uplo, n, nrhs, c_loc(A), &
         lda, strideA, c_loc(B), ldb, strideB, c_loc(info), batch_count)
     end function rocsolver_zposv_strided_batched_native
@@ -64491,6 +65748,8 @@ contains
       integer(c_int), value :: lda
       integer(c_int), target :: info(..)
       integer(c_int) :: spotri
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       spotri = rocsolver_spotri_raw(handle, uplo, n, c_loc(A), lda, c_loc(info))
     end function rocsolver_spotri_native
 
@@ -64518,6 +65777,8 @@ contains
       integer(c_int), value :: lda
       integer(c_int), target :: info(..)
       integer(c_int) :: dpotri
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       dpotri = rocsolver_dpotri_raw(handle, uplo, n, c_loc(A), lda, c_loc(info))
     end function rocsolver_dpotri_native
 
@@ -64545,6 +65806,8 @@ contains
       integer(c_int), value :: lda
       integer(c_int), target :: info(..)
       integer(c_int) :: cpotri
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       cpotri = rocsolver_cpotri_raw(handle, uplo, n, c_loc(A), lda, c_loc(info))
     end function rocsolver_cpotri_native
 
@@ -64572,6 +65835,8 @@ contains
       integer(c_int), value :: lda
       integer(c_int), target :: info(..)
       integer(c_int) :: zpotri
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       zpotri = rocsolver_zpotri_raw(handle, uplo, n, c_loc(A), lda, c_loc(info))
     end function rocsolver_zpotri_native
 
@@ -64601,6 +65866,7 @@ contains
       integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: spotri_batched
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       spotri_batched = rocsolver_spotri_batched_raw(handle, uplo, n, A, lda, c_loc(info), &
         batch_count)
     end function rocsolver_spotri_batched_native
@@ -64633,6 +65899,7 @@ contains
       integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: dpotri_batched
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       dpotri_batched = rocsolver_dpotri_batched_raw(handle, uplo, n, A, lda, c_loc(info), &
         batch_count)
     end function rocsolver_dpotri_batched_native
@@ -64665,6 +65932,7 @@ contains
       integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: cpotri_batched
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       cpotri_batched = rocsolver_cpotri_batched_raw(handle, uplo, n, A, lda, c_loc(info), &
         batch_count)
     end function rocsolver_cpotri_batched_native
@@ -64697,6 +65965,7 @@ contains
       integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: zpotri_batched
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       zpotri_batched = rocsolver_zpotri_batched_raw(handle, uplo, n, A, lda, c_loc(info), &
         batch_count)
     end function rocsolver_zpotri_batched_native
@@ -64730,6 +65999,8 @@ contains
       integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: spotri_strided_batched
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       spotri_strided_batched = rocsolver_spotri_strided_batched_raw(handle, uplo, n, c_loc(A), &
         lda, strideA, c_loc(info), batch_count)
     end function rocsolver_spotri_strided_batched_native
@@ -64765,6 +66036,8 @@ contains
       integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: dpotri_strided_batched
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       dpotri_strided_batched = rocsolver_dpotri_strided_batched_raw(handle, uplo, n, c_loc(A), &
         lda, strideA, c_loc(info), batch_count)
     end function rocsolver_dpotri_strided_batched_native
@@ -64800,6 +66073,8 @@ contains
       integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: cpotri_strided_batched
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       cpotri_strided_batched = rocsolver_cpotri_strided_batched_raw(handle, uplo, n, c_loc(A), &
         lda, strideA, c_loc(info), batch_count)
     end function rocsolver_cpotri_strided_batched_native
@@ -64835,6 +66110,8 @@ contains
       integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: zpotri_strided_batched
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       zpotri_strided_batched = rocsolver_zpotri_strided_batched_raw(handle, uplo, n, c_loc(A), &
         lda, strideA, c_loc(info), batch_count)
     end function rocsolver_zpotri_strided_batched_native
@@ -64877,6 +66154,12 @@ contains
       integer(c_int), value :: fast_alg
       integer(c_int), target :: info(..)
       integer(c_int) :: sgesvd
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(S)) error stop "S: array must be contiguous"
+      if (.not. is_contiguous(U)) error stop "U: array must be contiguous"
+      if (.not. is_contiguous(V)) error stop "V: array must be contiguous"
+      if (.not. is_contiguous(E)) error stop "E: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       sgesvd = rocsolver_sgesvd_raw(handle, left_svect, right_svect, m, n, c_loc(A), lda, c_loc( &
         S), c_loc(U), ldu, c_loc(V), ldv, c_loc(E), fast_alg, c_loc(info))
     end function rocsolver_sgesvd_native
@@ -64926,6 +66209,12 @@ contains
       integer(c_int), value :: fast_alg
       integer(c_int), target :: info(..)
       integer(c_int) :: dgesvd
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(S)) error stop "S: array must be contiguous"
+      if (.not. is_contiguous(U)) error stop "U: array must be contiguous"
+      if (.not. is_contiguous(V)) error stop "V: array must be contiguous"
+      if (.not. is_contiguous(E)) error stop "E: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       dgesvd = rocsolver_dgesvd_raw(handle, left_svect, right_svect, m, n, c_loc(A), lda, c_loc( &
         S), c_loc(U), ldu, c_loc(V), ldv, c_loc(E), fast_alg, c_loc(info))
     end function rocsolver_dgesvd_native
@@ -64975,6 +66264,12 @@ contains
       integer(c_int), value :: fast_alg
       integer(c_int), target :: info(..)
       integer(c_int) :: cgesvd
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(S)) error stop "S: array must be contiguous"
+      if (.not. is_contiguous(U)) error stop "U: array must be contiguous"
+      if (.not. is_contiguous(V)) error stop "V: array must be contiguous"
+      if (.not. is_contiguous(E)) error stop "E: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       cgesvd = rocsolver_cgesvd_raw(handle, left_svect, right_svect, m, n, c_loc(A), lda, c_loc( &
         S), c_loc(U), ldu, c_loc(V), ldv, c_loc(E), fast_alg, c_loc(info))
     end function rocsolver_cgesvd_native
@@ -65024,6 +66319,12 @@ contains
       integer(c_int), value :: fast_alg
       integer(c_int), target :: info(..)
       integer(c_int) :: zgesvd
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(S)) error stop "S: array must be contiguous"
+      if (.not. is_contiguous(U)) error stop "U: array must be contiguous"
+      if (.not. is_contiguous(V)) error stop "V: array must be contiguous"
+      if (.not. is_contiguous(E)) error stop "E: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       zgesvd = rocsolver_zgesvd_raw(handle, left_svect, right_svect, m, n, c_loc(A), lda, c_loc( &
         S), c_loc(U), ldu, c_loc(V), ldv, c_loc(E), fast_alg, c_loc(info))
     end function rocsolver_zgesvd_native
@@ -65079,6 +66380,11 @@ contains
       integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: sgesvd_batched
+      if (.not. is_contiguous(S)) error stop "S: array must be contiguous"
+      if (.not. is_contiguous(U)) error stop "U: array must be contiguous"
+      if (.not. is_contiguous(V)) error stop "V: array must be contiguous"
+      if (.not. is_contiguous(E)) error stop "E: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       sgesvd_batched = rocsolver_sgesvd_batched_raw(handle, left_svect, right_svect, m, n, A, lda, &
         c_loc(S), strideS, c_loc(U), ldu, strideU, c_loc(V), ldv, strideV, c_loc(E), strideE, &
         fast_alg, c_loc(info), batch_count)
@@ -65141,6 +66447,11 @@ contains
       integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: dgesvd_batched
+      if (.not. is_contiguous(S)) error stop "S: array must be contiguous"
+      if (.not. is_contiguous(U)) error stop "U: array must be contiguous"
+      if (.not. is_contiguous(V)) error stop "V: array must be contiguous"
+      if (.not. is_contiguous(E)) error stop "E: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       dgesvd_batched = rocsolver_dgesvd_batched_raw(handle, left_svect, right_svect, m, n, A, lda, &
         c_loc(S), strideS, c_loc(U), ldu, strideU, c_loc(V), ldv, strideV, c_loc(E), strideE, &
         fast_alg, c_loc(info), batch_count)
@@ -65203,6 +66514,11 @@ contains
       integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: cgesvd_batched
+      if (.not. is_contiguous(S)) error stop "S: array must be contiguous"
+      if (.not. is_contiguous(U)) error stop "U: array must be contiguous"
+      if (.not. is_contiguous(V)) error stop "V: array must be contiguous"
+      if (.not. is_contiguous(E)) error stop "E: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       cgesvd_batched = rocsolver_cgesvd_batched_raw(handle, left_svect, right_svect, m, n, A, lda, &
         c_loc(S), strideS, c_loc(U), ldu, strideU, c_loc(V), ldv, strideV, c_loc(E), strideE, &
         fast_alg, c_loc(info), batch_count)
@@ -65265,6 +66581,11 @@ contains
       integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: zgesvd_batched
+      if (.not. is_contiguous(S)) error stop "S: array must be contiguous"
+      if (.not. is_contiguous(U)) error stop "U: array must be contiguous"
+      if (.not. is_contiguous(V)) error stop "V: array must be contiguous"
+      if (.not. is_contiguous(E)) error stop "E: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       zgesvd_batched = rocsolver_zgesvd_batched_raw(handle, left_svect, right_svect, m, n, A, lda, &
         c_loc(S), strideS, c_loc(U), ldu, strideU, c_loc(V), ldv, strideV, c_loc(E), strideE, &
         fast_alg, c_loc(info), batch_count)
@@ -65328,6 +66649,12 @@ contains
       integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: sgesvd_strided_batched
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(S)) error stop "S: array must be contiguous"
+      if (.not. is_contiguous(U)) error stop "U: array must be contiguous"
+      if (.not. is_contiguous(V)) error stop "V: array must be contiguous"
+      if (.not. is_contiguous(E)) error stop "E: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       sgesvd_strided_batched = rocsolver_sgesvd_strided_batched_raw(handle, left_svect, &
         right_svect, m, n, c_loc(A), lda, strideA, c_loc(S), strideS, c_loc(U), ldu, strideU, &
         c_loc(V), ldv, strideV, c_loc(E), strideE, fast_alg, c_loc(info), batch_count)
@@ -65393,6 +66720,12 @@ contains
       integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: dgesvd_strided_batched
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(S)) error stop "S: array must be contiguous"
+      if (.not. is_contiguous(U)) error stop "U: array must be contiguous"
+      if (.not. is_contiguous(V)) error stop "V: array must be contiguous"
+      if (.not. is_contiguous(E)) error stop "E: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       dgesvd_strided_batched = rocsolver_dgesvd_strided_batched_raw(handle, left_svect, &
         right_svect, m, n, c_loc(A), lda, strideA, c_loc(S), strideS, c_loc(U), ldu, strideU, &
         c_loc(V), ldv, strideV, c_loc(E), strideE, fast_alg, c_loc(info), batch_count)
@@ -65458,6 +66791,12 @@ contains
       integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: cgesvd_strided_batched
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(S)) error stop "S: array must be contiguous"
+      if (.not. is_contiguous(U)) error stop "U: array must be contiguous"
+      if (.not. is_contiguous(V)) error stop "V: array must be contiguous"
+      if (.not. is_contiguous(E)) error stop "E: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       cgesvd_strided_batched = rocsolver_cgesvd_strided_batched_raw(handle, left_svect, &
         right_svect, m, n, c_loc(A), lda, strideA, c_loc(S), strideS, c_loc(U), ldu, strideU, &
         c_loc(V), ldv, strideV, c_loc(E), strideE, fast_alg, c_loc(info), batch_count)
@@ -65523,6 +66862,12 @@ contains
       integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: zgesvd_strided_batched
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(S)) error stop "S: array must be contiguous"
+      if (.not. is_contiguous(U)) error stop "U: array must be contiguous"
+      if (.not. is_contiguous(V)) error stop "V: array must be contiguous"
+      if (.not. is_contiguous(E)) error stop "E: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       zgesvd_strided_batched = rocsolver_zgesvd_strided_batched_raw(handle, left_svect, &
         right_svect, m, n, c_loc(A), lda, strideA, c_loc(S), strideS, c_loc(U), ldu, strideU, &
         c_loc(V), ldv, strideV, c_loc(E), strideE, fast_alg, c_loc(info), batch_count)
@@ -65579,6 +66924,11 @@ contains
       integer(c_int), value :: ldv
       integer(c_int), target :: info(..)
       integer(c_int) :: sgesdd
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(S)) error stop "S: array must be contiguous"
+      if (.not. is_contiguous(U)) error stop "U: array must be contiguous"
+      if (.not. is_contiguous(V)) error stop "V: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       sgesdd = rocsolver_sgesdd_raw(handle, left_svect, right_svect, m, n, c_loc(A), lda, c_loc( &
         S), c_loc(U), ldu, c_loc(V), ldv, c_loc(info))
     end function rocsolver_sgesdd_native
@@ -65624,6 +66974,11 @@ contains
       integer(c_int), value :: ldv
       integer(c_int), target :: info(..)
       integer(c_int) :: dgesdd
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(S)) error stop "S: array must be contiguous"
+      if (.not. is_contiguous(U)) error stop "U: array must be contiguous"
+      if (.not. is_contiguous(V)) error stop "V: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       dgesdd = rocsolver_dgesdd_raw(handle, left_svect, right_svect, m, n, c_loc(A), lda, c_loc( &
         S), c_loc(U), ldu, c_loc(V), ldv, c_loc(info))
     end function rocsolver_dgesdd_native
@@ -65669,6 +67024,11 @@ contains
       integer(c_int), value :: ldv
       integer(c_int), target :: info(..)
       integer(c_int) :: cgesdd
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(S)) error stop "S: array must be contiguous"
+      if (.not. is_contiguous(U)) error stop "U: array must be contiguous"
+      if (.not. is_contiguous(V)) error stop "V: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       cgesdd = rocsolver_cgesdd_raw(handle, left_svect, right_svect, m, n, c_loc(A), lda, c_loc( &
         S), c_loc(U), ldu, c_loc(V), ldv, c_loc(info))
     end function rocsolver_cgesdd_native
@@ -65714,6 +67074,11 @@ contains
       integer(c_int), value :: ldv
       integer(c_int), target :: info(..)
       integer(c_int) :: zgesdd
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(S)) error stop "S: array must be contiguous"
+      if (.not. is_contiguous(U)) error stop "U: array must be contiguous"
+      if (.not. is_contiguous(V)) error stop "V: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       zgesdd = rocsolver_zgesdd_raw(handle, left_svect, right_svect, m, n, c_loc(A), lda, c_loc( &
         S), c_loc(U), ldu, c_loc(V), ldv, c_loc(info))
     end function rocsolver_zgesdd_native
@@ -65763,6 +67128,10 @@ contains
       integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: sgesdd_batched
+      if (.not. is_contiguous(S)) error stop "S: array must be contiguous"
+      if (.not. is_contiguous(U)) error stop "U: array must be contiguous"
+      if (.not. is_contiguous(V)) error stop "V: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       sgesdd_batched = rocsolver_sgesdd_batched_raw(handle, left_svect, right_svect, m, n, A, lda, &
         c_loc(S), strideS, c_loc(U), ldu, strideU, c_loc(V), ldv, strideV, c_loc(info), batch_count)
     end function rocsolver_sgesdd_batched_native
@@ -65816,6 +67185,10 @@ contains
       integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: dgesdd_batched
+      if (.not. is_contiguous(S)) error stop "S: array must be contiguous"
+      if (.not. is_contiguous(U)) error stop "U: array must be contiguous"
+      if (.not. is_contiguous(V)) error stop "V: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       dgesdd_batched = rocsolver_dgesdd_batched_raw(handle, left_svect, right_svect, m, n, A, lda, &
         c_loc(S), strideS, c_loc(U), ldu, strideU, c_loc(V), ldv, strideV, c_loc(info), batch_count)
     end function rocsolver_dgesdd_batched_native
@@ -65869,6 +67242,10 @@ contains
       integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: cgesdd_batched
+      if (.not. is_contiguous(S)) error stop "S: array must be contiguous"
+      if (.not. is_contiguous(U)) error stop "U: array must be contiguous"
+      if (.not. is_contiguous(V)) error stop "V: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       cgesdd_batched = rocsolver_cgesdd_batched_raw(handle, left_svect, right_svect, m, n, A, lda, &
         c_loc(S), strideS, c_loc(U), ldu, strideU, c_loc(V), ldv, strideV, c_loc(info), batch_count)
     end function rocsolver_cgesdd_batched_native
@@ -65922,6 +67299,10 @@ contains
       integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: zgesdd_batched
+      if (.not. is_contiguous(S)) error stop "S: array must be contiguous"
+      if (.not. is_contiguous(U)) error stop "U: array must be contiguous"
+      if (.not. is_contiguous(V)) error stop "V: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       zgesdd_batched = rocsolver_zgesdd_batched_raw(handle, left_svect, right_svect, m, n, A, lda, &
         c_loc(S), strideS, c_loc(U), ldu, strideU, c_loc(V), ldv, strideV, c_loc(info), batch_count)
     end function rocsolver_zgesdd_batched_native
@@ -65977,6 +67358,11 @@ contains
       integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: sgesdd_strided_batched
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(S)) error stop "S: array must be contiguous"
+      if (.not. is_contiguous(U)) error stop "U: array must be contiguous"
+      if (.not. is_contiguous(V)) error stop "V: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       sgesdd_strided_batched = rocsolver_sgesdd_strided_batched_raw(handle, left_svect, &
         right_svect, m, n, c_loc(A), lda, strideA, c_loc(S), strideS, c_loc(U), ldu, strideU, &
         c_loc(V), ldv, strideV, c_loc(info), batch_count)
@@ -66036,6 +67422,11 @@ contains
       integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: dgesdd_strided_batched
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(S)) error stop "S: array must be contiguous"
+      if (.not. is_contiguous(U)) error stop "U: array must be contiguous"
+      if (.not. is_contiguous(V)) error stop "V: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       dgesdd_strided_batched = rocsolver_dgesdd_strided_batched_raw(handle, left_svect, &
         right_svect, m, n, c_loc(A), lda, strideA, c_loc(S), strideS, c_loc(U), ldu, strideU, &
         c_loc(V), ldv, strideV, c_loc(info), batch_count)
@@ -66095,6 +67486,11 @@ contains
       integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: cgesdd_strided_batched
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(S)) error stop "S: array must be contiguous"
+      if (.not. is_contiguous(U)) error stop "U: array must be contiguous"
+      if (.not. is_contiguous(V)) error stop "V: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       cgesdd_strided_batched = rocsolver_cgesdd_strided_batched_raw(handle, left_svect, &
         right_svect, m, n, c_loc(A), lda, strideA, c_loc(S), strideS, c_loc(U), ldu, strideU, &
         c_loc(V), ldv, strideV, c_loc(info), batch_count)
@@ -66154,6 +67550,11 @@ contains
       integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: zgesdd_strided_batched
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(S)) error stop "S: array must be contiguous"
+      if (.not. is_contiguous(U)) error stop "U: array must be contiguous"
+      if (.not. is_contiguous(V)) error stop "V: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       zgesdd_strided_batched = rocsolver_zgesdd_strided_batched_raw(handle, left_svect, &
         right_svect, m, n, c_loc(A), lda, strideA, c_loc(S), strideS, c_loc(U), ldu, strideU, &
         c_loc(V), ldv, strideV, c_loc(info), batch_count)
@@ -66211,6 +67612,13 @@ contains
       integer(c_int), value :: ldv
       integer(c_int), target :: info(..)
       integer(c_int) :: sgesvdj
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(residual)) error stop "residual: array must be contiguous"
+      if (.not. is_contiguous(n_sweeps)) error stop "n_sweeps: array must be contiguous"
+      if (.not. is_contiguous(S)) error stop "S: array must be contiguous"
+      if (.not. is_contiguous(U)) error stop "U: array must be contiguous"
+      if (.not. is_contiguous(V)) error stop "V: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       sgesvdj = rocsolver_sgesvdj_raw(handle, left_svect, right_svect, m, n, c_loc(A), lda, &
         abstol, c_loc(residual), max_sweeps, c_loc(n_sweeps), c_loc(S), c_loc(U), ldu, c_loc(V), &
         ldv, c_loc(info))
@@ -66265,6 +67673,13 @@ contains
       integer(c_int), value :: ldv
       integer(c_int), target :: info(..)
       integer(c_int) :: dgesvdj
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(residual)) error stop "residual: array must be contiguous"
+      if (.not. is_contiguous(n_sweeps)) error stop "n_sweeps: array must be contiguous"
+      if (.not. is_contiguous(S)) error stop "S: array must be contiguous"
+      if (.not. is_contiguous(U)) error stop "U: array must be contiguous"
+      if (.not. is_contiguous(V)) error stop "V: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       dgesvdj = rocsolver_dgesvdj_raw(handle, left_svect, right_svect, m, n, c_loc(A), lda, &
         abstol, c_loc(residual), max_sweeps, c_loc(n_sweeps), c_loc(S), c_loc(U), ldu, c_loc(V), &
         ldv, c_loc(info))
@@ -66319,6 +67734,13 @@ contains
       integer(c_int), value :: ldv
       integer(c_int), target :: info(..)
       integer(c_int) :: cgesvdj
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(residual)) error stop "residual: array must be contiguous"
+      if (.not. is_contiguous(n_sweeps)) error stop "n_sweeps: array must be contiguous"
+      if (.not. is_contiguous(S)) error stop "S: array must be contiguous"
+      if (.not. is_contiguous(U)) error stop "U: array must be contiguous"
+      if (.not. is_contiguous(V)) error stop "V: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       cgesvdj = rocsolver_cgesvdj_raw(handle, left_svect, right_svect, m, n, c_loc(A), lda, &
         abstol, c_loc(residual), max_sweeps, c_loc(n_sweeps), c_loc(S), c_loc(U), ldu, c_loc(V), &
         ldv, c_loc(info))
@@ -66373,6 +67795,13 @@ contains
       integer(c_int), value :: ldv
       integer(c_int), target :: info(..)
       integer(c_int) :: zgesvdj
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(residual)) error stop "residual: array must be contiguous"
+      if (.not. is_contiguous(n_sweeps)) error stop "n_sweeps: array must be contiguous"
+      if (.not. is_contiguous(S)) error stop "S: array must be contiguous"
+      if (.not. is_contiguous(U)) error stop "U: array must be contiguous"
+      if (.not. is_contiguous(V)) error stop "V: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       zgesvdj = rocsolver_zgesvdj_raw(handle, left_svect, right_svect, m, n, c_loc(A), lda, &
         abstol, c_loc(residual), max_sweeps, c_loc(n_sweeps), c_loc(S), c_loc(U), ldu, c_loc(V), &
         ldv, c_loc(info))
@@ -66432,6 +67861,12 @@ contains
       integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: sgesvdj_batched
+      if (.not. is_contiguous(residual)) error stop "residual: array must be contiguous"
+      if (.not. is_contiguous(n_sweeps)) error stop "n_sweeps: array must be contiguous"
+      if (.not. is_contiguous(S)) error stop "S: array must be contiguous"
+      if (.not. is_contiguous(U)) error stop "U: array must be contiguous"
+      if (.not. is_contiguous(V)) error stop "V: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       sgesvdj_batched = rocsolver_sgesvdj_batched_raw(handle, left_svect, right_svect, m, n, A, &
         lda, abstol, c_loc(residual), max_sweeps, c_loc(n_sweeps), c_loc(S), strideS, c_loc(U), &
         ldu, strideU, c_loc(V), ldv, strideV, c_loc(info), batch_count)
@@ -66497,6 +67932,12 @@ contains
       integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: dgesvdj_batched
+      if (.not. is_contiguous(residual)) error stop "residual: array must be contiguous"
+      if (.not. is_contiguous(n_sweeps)) error stop "n_sweeps: array must be contiguous"
+      if (.not. is_contiguous(S)) error stop "S: array must be contiguous"
+      if (.not. is_contiguous(U)) error stop "U: array must be contiguous"
+      if (.not. is_contiguous(V)) error stop "V: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       dgesvdj_batched = rocsolver_dgesvdj_batched_raw(handle, left_svect, right_svect, m, n, A, &
         lda, abstol, c_loc(residual), max_sweeps, c_loc(n_sweeps), c_loc(S), strideS, c_loc(U), &
         ldu, strideU, c_loc(V), ldv, strideV, c_loc(info), batch_count)
@@ -66562,6 +68003,12 @@ contains
       integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: cgesvdj_batched
+      if (.not. is_contiguous(residual)) error stop "residual: array must be contiguous"
+      if (.not. is_contiguous(n_sweeps)) error stop "n_sweeps: array must be contiguous"
+      if (.not. is_contiguous(S)) error stop "S: array must be contiguous"
+      if (.not. is_contiguous(U)) error stop "U: array must be contiguous"
+      if (.not. is_contiguous(V)) error stop "V: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       cgesvdj_batched = rocsolver_cgesvdj_batched_raw(handle, left_svect, right_svect, m, n, A, &
         lda, abstol, c_loc(residual), max_sweeps, c_loc(n_sweeps), c_loc(S), strideS, c_loc(U), &
         ldu, strideU, c_loc(V), ldv, strideV, c_loc(info), batch_count)
@@ -66627,6 +68074,12 @@ contains
       integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: zgesvdj_batched
+      if (.not. is_contiguous(residual)) error stop "residual: array must be contiguous"
+      if (.not. is_contiguous(n_sweeps)) error stop "n_sweeps: array must be contiguous"
+      if (.not. is_contiguous(S)) error stop "S: array must be contiguous"
+      if (.not. is_contiguous(U)) error stop "U: array must be contiguous"
+      if (.not. is_contiguous(V)) error stop "V: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       zgesvdj_batched = rocsolver_zgesvdj_batched_raw(handle, left_svect, right_svect, m, n, A, &
         lda, abstol, c_loc(residual), max_sweeps, c_loc(n_sweeps), c_loc(S), strideS, c_loc(U), &
         ldu, strideU, c_loc(V), ldv, strideV, c_loc(info), batch_count)
@@ -66693,6 +68146,13 @@ contains
       integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: sgesvdj_strided_batched
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(residual)) error stop "residual: array must be contiguous"
+      if (.not. is_contiguous(n_sweeps)) error stop "n_sweeps: array must be contiguous"
+      if (.not. is_contiguous(S)) error stop "S: array must be contiguous"
+      if (.not. is_contiguous(U)) error stop "U: array must be contiguous"
+      if (.not. is_contiguous(V)) error stop "V: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       sgesvdj_strided_batched = rocsolver_sgesvdj_strided_batched_raw(handle, left_svect, &
         right_svect, m, n, c_loc(A), lda, strideA, abstol, c_loc(residual), max_sweeps, c_loc( &
         n_sweeps), c_loc(S), strideS, c_loc(U), ldu, strideU, c_loc(V), ldv, strideV, c_loc(info), &
@@ -66761,6 +68221,13 @@ contains
       integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: dgesvdj_strided_batched
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(residual)) error stop "residual: array must be contiguous"
+      if (.not. is_contiguous(n_sweeps)) error stop "n_sweeps: array must be contiguous"
+      if (.not. is_contiguous(S)) error stop "S: array must be contiguous"
+      if (.not. is_contiguous(U)) error stop "U: array must be contiguous"
+      if (.not. is_contiguous(V)) error stop "V: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       dgesvdj_strided_batched = rocsolver_dgesvdj_strided_batched_raw(handle, left_svect, &
         right_svect, m, n, c_loc(A), lda, strideA, abstol, c_loc(residual), max_sweeps, c_loc( &
         n_sweeps), c_loc(S), strideS, c_loc(U), ldu, strideU, c_loc(V), ldv, strideV, c_loc(info), &
@@ -66829,6 +68296,13 @@ contains
       integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: cgesvdj_strided_batched
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(residual)) error stop "residual: array must be contiguous"
+      if (.not. is_contiguous(n_sweeps)) error stop "n_sweeps: array must be contiguous"
+      if (.not. is_contiguous(S)) error stop "S: array must be contiguous"
+      if (.not. is_contiguous(U)) error stop "U: array must be contiguous"
+      if (.not. is_contiguous(V)) error stop "V: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       cgesvdj_strided_batched = rocsolver_cgesvdj_strided_batched_raw(handle, left_svect, &
         right_svect, m, n, c_loc(A), lda, strideA, abstol, c_loc(residual), max_sweeps, c_loc( &
         n_sweeps), c_loc(S), strideS, c_loc(U), ldu, strideU, c_loc(V), ldv, strideV, c_loc(info), &
@@ -66897,6 +68371,13 @@ contains
       integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: zgesvdj_strided_batched
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(residual)) error stop "residual: array must be contiguous"
+      if (.not. is_contiguous(n_sweeps)) error stop "n_sweeps: array must be contiguous"
+      if (.not. is_contiguous(S)) error stop "S: array must be contiguous"
+      if (.not. is_contiguous(U)) error stop "U: array must be contiguous"
+      if (.not. is_contiguous(V)) error stop "V: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       zgesvdj_strided_batched = rocsolver_zgesvdj_strided_batched_raw(handle, left_svect, &
         right_svect, m, n, c_loc(A), lda, strideA, abstol, c_loc(residual), max_sweeps, c_loc( &
         n_sweeps), c_loc(S), strideS, c_loc(U), ldu, strideU, c_loc(V), ldv, strideV, c_loc(info), &
@@ -66962,6 +68443,13 @@ contains
       integer(c_int), target :: ifail(..)
       integer(c_int), target :: info(..)
       integer(c_int) :: sgesvdx
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(nsv)) error stop "nsv: array must be contiguous"
+      if (.not. is_contiguous(S)) error stop "S: array must be contiguous"
+      if (.not. is_contiguous(U)) error stop "U: array must be contiguous"
+      if (.not. is_contiguous(V)) error stop "V: array must be contiguous"
+      if (.not. is_contiguous(ifail)) error stop "ifail: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       sgesvdx = rocsolver_sgesvdx_raw(handle, left_svect, right_svect, srange, m, n, c_loc(A), &
         lda, vl, vu, il, iu, c_loc(nsv), c_loc(S), c_loc(U), ldu, c_loc(V), ldv, c_loc(ifail), &
         c_loc(info))
@@ -67022,6 +68510,13 @@ contains
       integer(c_int), target :: ifail(..)
       integer(c_int), target :: info(..)
       integer(c_int) :: dgesvdx
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(nsv)) error stop "nsv: array must be contiguous"
+      if (.not. is_contiguous(S)) error stop "S: array must be contiguous"
+      if (.not. is_contiguous(U)) error stop "U: array must be contiguous"
+      if (.not. is_contiguous(V)) error stop "V: array must be contiguous"
+      if (.not. is_contiguous(ifail)) error stop "ifail: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       dgesvdx = rocsolver_dgesvdx_raw(handle, left_svect, right_svect, srange, m, n, c_loc(A), &
         lda, vl, vu, il, iu, c_loc(nsv), c_loc(S), c_loc(U), ldu, c_loc(V), ldv, c_loc(ifail), &
         c_loc(info))
@@ -67082,6 +68577,13 @@ contains
       integer(c_int), target :: ifail(..)
       integer(c_int), target :: info(..)
       integer(c_int) :: cgesvdx
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(nsv)) error stop "nsv: array must be contiguous"
+      if (.not. is_contiguous(S)) error stop "S: array must be contiguous"
+      if (.not. is_contiguous(U)) error stop "U: array must be contiguous"
+      if (.not. is_contiguous(V)) error stop "V: array must be contiguous"
+      if (.not. is_contiguous(ifail)) error stop "ifail: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       cgesvdx = rocsolver_cgesvdx_raw(handle, left_svect, right_svect, srange, m, n, c_loc(A), &
         lda, vl, vu, il, iu, c_loc(nsv), c_loc(S), c_loc(U), ldu, c_loc(V), ldv, c_loc(ifail), &
         c_loc(info))
@@ -67142,6 +68644,13 @@ contains
       integer(c_int), target :: ifail(..)
       integer(c_int), target :: info(..)
       integer(c_int) :: zgesvdx
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(nsv)) error stop "nsv: array must be contiguous"
+      if (.not. is_contiguous(S)) error stop "S: array must be contiguous"
+      if (.not. is_contiguous(U)) error stop "U: array must be contiguous"
+      if (.not. is_contiguous(V)) error stop "V: array must be contiguous"
+      if (.not. is_contiguous(ifail)) error stop "ifail: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       zgesvdx = rocsolver_zgesvdx_raw(handle, left_svect, right_svect, srange, m, n, c_loc(A), &
         lda, vl, vu, il, iu, c_loc(nsv), c_loc(S), c_loc(U), ldu, c_loc(V), ldv, c_loc(ifail), &
         c_loc(info))
@@ -67208,6 +68717,12 @@ contains
       integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: sgesvdx_batched
+      if (.not. is_contiguous(nsv)) error stop "nsv: array must be contiguous"
+      if (.not. is_contiguous(S)) error stop "S: array must be contiguous"
+      if (.not. is_contiguous(U)) error stop "U: array must be contiguous"
+      if (.not. is_contiguous(V)) error stop "V: array must be contiguous"
+      if (.not. is_contiguous(ifail)) error stop "ifail: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       sgesvdx_batched = rocsolver_sgesvdx_batched_raw(handle, left_svect, right_svect, srange, m, &
         n, A, lda, vl, vu, il, iu, c_loc(nsv), c_loc(S), strideS, c_loc(U), ldu, strideU, c_loc( &
         V), ldv, strideV, c_loc(ifail), strideF, c_loc(info), batch_count)
@@ -67281,6 +68796,12 @@ contains
       integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: dgesvdx_batched
+      if (.not. is_contiguous(nsv)) error stop "nsv: array must be contiguous"
+      if (.not. is_contiguous(S)) error stop "S: array must be contiguous"
+      if (.not. is_contiguous(U)) error stop "U: array must be contiguous"
+      if (.not. is_contiguous(V)) error stop "V: array must be contiguous"
+      if (.not. is_contiguous(ifail)) error stop "ifail: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       dgesvdx_batched = rocsolver_dgesvdx_batched_raw(handle, left_svect, right_svect, srange, m, &
         n, A, lda, vl, vu, il, iu, c_loc(nsv), c_loc(S), strideS, c_loc(U), ldu, strideU, c_loc( &
         V), ldv, strideV, c_loc(ifail), strideF, c_loc(info), batch_count)
@@ -67354,6 +68875,12 @@ contains
       integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: cgesvdx_batched
+      if (.not. is_contiguous(nsv)) error stop "nsv: array must be contiguous"
+      if (.not. is_contiguous(S)) error stop "S: array must be contiguous"
+      if (.not. is_contiguous(U)) error stop "U: array must be contiguous"
+      if (.not. is_contiguous(V)) error stop "V: array must be contiguous"
+      if (.not. is_contiguous(ifail)) error stop "ifail: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       cgesvdx_batched = rocsolver_cgesvdx_batched_raw(handle, left_svect, right_svect, srange, m, &
         n, A, lda, vl, vu, il, iu, c_loc(nsv), c_loc(S), strideS, c_loc(U), ldu, strideU, c_loc( &
         V), ldv, strideV, c_loc(ifail), strideF, c_loc(info), batch_count)
@@ -67427,6 +68954,12 @@ contains
       integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: zgesvdx_batched
+      if (.not. is_contiguous(nsv)) error stop "nsv: array must be contiguous"
+      if (.not. is_contiguous(S)) error stop "S: array must be contiguous"
+      if (.not. is_contiguous(U)) error stop "U: array must be contiguous"
+      if (.not. is_contiguous(V)) error stop "V: array must be contiguous"
+      if (.not. is_contiguous(ifail)) error stop "ifail: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       zgesvdx_batched = rocsolver_zgesvdx_batched_raw(handle, left_svect, right_svect, srange, m, &
         n, A, lda, vl, vu, il, iu, c_loc(nsv), c_loc(S), strideS, c_loc(U), ldu, strideU, c_loc( &
         V), ldv, strideV, c_loc(ifail), strideF, c_loc(info), batch_count)
@@ -67501,6 +69034,13 @@ contains
       integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: sgesvdx_strided_batched
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(nsv)) error stop "nsv: array must be contiguous"
+      if (.not. is_contiguous(S)) error stop "S: array must be contiguous"
+      if (.not. is_contiguous(U)) error stop "U: array must be contiguous"
+      if (.not. is_contiguous(V)) error stop "V: array must be contiguous"
+      if (.not. is_contiguous(ifail)) error stop "ifail: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       sgesvdx_strided_batched = rocsolver_sgesvdx_strided_batched_raw(handle, left_svect, &
         right_svect, srange, m, n, c_loc(A), lda, strideA, vl, vu, il, iu, c_loc(nsv), c_loc(S), &
         strideS, c_loc(U), ldu, strideU, c_loc(V), ldv, strideV, c_loc(ifail), strideF, c_loc( &
@@ -67577,6 +69117,13 @@ contains
       integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: dgesvdx_strided_batched
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(nsv)) error stop "nsv: array must be contiguous"
+      if (.not. is_contiguous(S)) error stop "S: array must be contiguous"
+      if (.not. is_contiguous(U)) error stop "U: array must be contiguous"
+      if (.not. is_contiguous(V)) error stop "V: array must be contiguous"
+      if (.not. is_contiguous(ifail)) error stop "ifail: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       dgesvdx_strided_batched = rocsolver_dgesvdx_strided_batched_raw(handle, left_svect, &
         right_svect, srange, m, n, c_loc(A), lda, strideA, vl, vu, il, iu, c_loc(nsv), c_loc(S), &
         strideS, c_loc(U), ldu, strideU, c_loc(V), ldv, strideV, c_loc(ifail), strideF, c_loc( &
@@ -67653,6 +69200,13 @@ contains
       integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: cgesvdx_strided_batched
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(nsv)) error stop "nsv: array must be contiguous"
+      if (.not. is_contiguous(S)) error stop "S: array must be contiguous"
+      if (.not. is_contiguous(U)) error stop "U: array must be contiguous"
+      if (.not. is_contiguous(V)) error stop "V: array must be contiguous"
+      if (.not. is_contiguous(ifail)) error stop "ifail: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       cgesvdx_strided_batched = rocsolver_cgesvdx_strided_batched_raw(handle, left_svect, &
         right_svect, srange, m, n, c_loc(A), lda, strideA, vl, vu, il, iu, c_loc(nsv), c_loc(S), &
         strideS, c_loc(U), ldu, strideU, c_loc(V), ldv, strideV, c_loc(ifail), strideF, c_loc( &
@@ -67729,6 +69283,13 @@ contains
       integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: zgesvdx_strided_batched
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(nsv)) error stop "nsv: array must be contiguous"
+      if (.not. is_contiguous(S)) error stop "S: array must be contiguous"
+      if (.not. is_contiguous(U)) error stop "U: array must be contiguous"
+      if (.not. is_contiguous(V)) error stop "V: array must be contiguous"
+      if (.not. is_contiguous(ifail)) error stop "ifail: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       zgesvdx_strided_batched = rocsolver_zgesvdx_strided_batched_raw(handle, left_svect, &
         right_svect, srange, m, n, c_loc(A), lda, strideA, vl, vu, il, iu, c_loc(nsv), c_loc(S), &
         strideS, c_loc(U), ldu, strideU, c_loc(V), ldv, strideV, c_loc(ifail), strideF, c_loc( &
@@ -67785,6 +69346,9 @@ contains
       real(c_float), target :: E(..)
       real(c_float) :: tau
       integer(c_int) :: ssytd2
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(D)) error stop "D: array must be contiguous"
+      if (.not. is_contiguous(E)) error stop "E: array must be contiguous"
       ssytd2 = rocsolver_ssytd2_raw(handle, uplo, n, c_loc(A), lda, c_loc(D), c_loc(E), tau)
     end function rocsolver_ssytd2_native
 
@@ -67816,6 +69380,9 @@ contains
       real(c_double), target :: E(..)
       real(c_double) :: tau
       integer(c_int) :: dsytd2
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(D)) error stop "D: array must be contiguous"
+      if (.not. is_contiguous(E)) error stop "E: array must be contiguous"
       dsytd2 = rocsolver_dsytd2_raw(handle, uplo, n, c_loc(A), lda, c_loc(D), c_loc(E), tau)
     end function rocsolver_dsytd2_native
 
@@ -67847,6 +69414,9 @@ contains
       real(c_float), target :: E(..)
       complex(c_float_complex) :: tau
       integer(c_int) :: chetd2
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(D)) error stop "D: array must be contiguous"
+      if (.not. is_contiguous(E)) error stop "E: array must be contiguous"
       chetd2 = rocsolver_chetd2_raw(handle, uplo, n, c_loc(A), lda, c_loc(D), c_loc(E), tau)
     end function rocsolver_chetd2_native
 
@@ -67878,6 +69448,9 @@ contains
       real(c_double), target :: E(..)
       complex(c_double_complex) :: tau
       integer(c_int) :: zhetd2
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(D)) error stop "D: array must be contiguous"
+      if (.not. is_contiguous(E)) error stop "E: array must be contiguous"
       zhetd2 = rocsolver_zhetd2_raw(handle, uplo, n, c_loc(A), lda, c_loc(D), c_loc(E), tau)
     end function rocsolver_zhetd2_native
 
@@ -67914,6 +69487,8 @@ contains
       integer(c_long), value :: strideP
       integer(c_int), value :: batch_count
       integer(c_int) :: ssytd2_batched
+      if (.not. is_contiguous(D)) error stop "D: array must be contiguous"
+      if (.not. is_contiguous(E)) error stop "E: array must be contiguous"
       ssytd2_batched = rocsolver_ssytd2_batched_raw(handle, uplo, n, A, lda, c_loc(D), strideD, &
         c_loc(E), strideE, tau, strideP, batch_count)
     end function rocsolver_ssytd2_batched_native
@@ -67957,6 +69532,8 @@ contains
       integer(c_long), value :: strideP
       integer(c_int), value :: batch_count
       integer(c_int) :: dsytd2_batched
+      if (.not. is_contiguous(D)) error stop "D: array must be contiguous"
+      if (.not. is_contiguous(E)) error stop "E: array must be contiguous"
       dsytd2_batched = rocsolver_dsytd2_batched_raw(handle, uplo, n, A, lda, c_loc(D), strideD, &
         c_loc(E), strideE, tau, strideP, batch_count)
     end function rocsolver_dsytd2_batched_native
@@ -68000,6 +69577,8 @@ contains
       integer(c_long), value :: strideP
       integer(c_int), value :: batch_count
       integer(c_int) :: chetd2_batched
+      if (.not. is_contiguous(D)) error stop "D: array must be contiguous"
+      if (.not. is_contiguous(E)) error stop "E: array must be contiguous"
       chetd2_batched = rocsolver_chetd2_batched_raw(handle, uplo, n, A, lda, c_loc(D), strideD, &
         c_loc(E), strideE, tau, strideP, batch_count)
     end function rocsolver_chetd2_batched_native
@@ -68043,6 +69622,8 @@ contains
       integer(c_long), value :: strideP
       integer(c_int), value :: batch_count
       integer(c_int) :: zhetd2_batched
+      if (.not. is_contiguous(D)) error stop "D: array must be contiguous"
+      if (.not. is_contiguous(E)) error stop "E: array must be contiguous"
       zhetd2_batched = rocsolver_zhetd2_batched_raw(handle, uplo, n, A, lda, c_loc(D), strideD, &
         c_loc(E), strideE, tau, strideP, batch_count)
     end function rocsolver_zhetd2_batched_native
@@ -68087,6 +69668,9 @@ contains
       integer(c_long), value :: strideP
       integer(c_int), value :: batch_count
       integer(c_int) :: ssytd2_strided_batched
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(D)) error stop "D: array must be contiguous"
+      if (.not. is_contiguous(E)) error stop "E: array must be contiguous"
       ssytd2_strided_batched = rocsolver_ssytd2_strided_batched_raw(handle, uplo, n, c_loc(A), &
         lda, strideA, c_loc(D), strideD, c_loc(E), strideE, tau, strideP, batch_count)
     end function rocsolver_ssytd2_strided_batched_native
@@ -68132,6 +69716,9 @@ contains
       integer(c_long), value :: strideP
       integer(c_int), value :: batch_count
       integer(c_int) :: dsytd2_strided_batched
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(D)) error stop "D: array must be contiguous"
+      if (.not. is_contiguous(E)) error stop "E: array must be contiguous"
       dsytd2_strided_batched = rocsolver_dsytd2_strided_batched_raw(handle, uplo, n, c_loc(A), &
         lda, strideA, c_loc(D), strideD, c_loc(E), strideE, tau, strideP, batch_count)
     end function rocsolver_dsytd2_strided_batched_native
@@ -68177,6 +69764,9 @@ contains
       integer(c_long), value :: strideP
       integer(c_int), value :: batch_count
       integer(c_int) :: chetd2_strided_batched
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(D)) error stop "D: array must be contiguous"
+      if (.not. is_contiguous(E)) error stop "E: array must be contiguous"
       chetd2_strided_batched = rocsolver_chetd2_strided_batched_raw(handle, uplo, n, c_loc(A), &
         lda, strideA, c_loc(D), strideD, c_loc(E), strideE, tau, strideP, batch_count)
     end function rocsolver_chetd2_strided_batched_native
@@ -68222,6 +69812,9 @@ contains
       integer(c_long), value :: strideP
       integer(c_int), value :: batch_count
       integer(c_int) :: zhetd2_strided_batched
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(D)) error stop "D: array must be contiguous"
+      if (.not. is_contiguous(E)) error stop "E: array must be contiguous"
       zhetd2_strided_batched = rocsolver_zhetd2_strided_batched_raw(handle, uplo, n, c_loc(A), &
         lda, strideA, c_loc(D), strideD, c_loc(E), strideE, tau, strideP, batch_count)
     end function rocsolver_zhetd2_strided_batched_native
@@ -68261,6 +69854,9 @@ contains
       real(c_float), target :: E(..)
       real(c_float) :: tau
       integer(c_int) :: ssytrd
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(D)) error stop "D: array must be contiguous"
+      if (.not. is_contiguous(E)) error stop "E: array must be contiguous"
       ssytrd = rocsolver_ssytrd_raw(handle, uplo, n, c_loc(A), lda, c_loc(D), c_loc(E), tau)
     end function rocsolver_ssytrd_native
 
@@ -68292,6 +69888,9 @@ contains
       real(c_double), target :: E(..)
       real(c_double) :: tau
       integer(c_int) :: dsytrd
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(D)) error stop "D: array must be contiguous"
+      if (.not. is_contiguous(E)) error stop "E: array must be contiguous"
       dsytrd = rocsolver_dsytrd_raw(handle, uplo, n, c_loc(A), lda, c_loc(D), c_loc(E), tau)
     end function rocsolver_dsytrd_native
 
@@ -68323,6 +69922,9 @@ contains
       real(c_float), target :: E(..)
       complex(c_float_complex) :: tau
       integer(c_int) :: chetrd
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(D)) error stop "D: array must be contiguous"
+      if (.not. is_contiguous(E)) error stop "E: array must be contiguous"
       chetrd = rocsolver_chetrd_raw(handle, uplo, n, c_loc(A), lda, c_loc(D), c_loc(E), tau)
     end function rocsolver_chetrd_native
 
@@ -68354,6 +69956,9 @@ contains
       real(c_double), target :: E(..)
       complex(c_double_complex) :: tau
       integer(c_int) :: zhetrd
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(D)) error stop "D: array must be contiguous"
+      if (.not. is_contiguous(E)) error stop "E: array must be contiguous"
       zhetrd = rocsolver_zhetrd_raw(handle, uplo, n, c_loc(A), lda, c_loc(D), c_loc(E), tau)
     end function rocsolver_zhetrd_native
 
@@ -68390,6 +69995,8 @@ contains
       integer(c_long), value :: strideP
       integer(c_int), value :: batch_count
       integer(c_int) :: ssytrd_batched
+      if (.not. is_contiguous(D)) error stop "D: array must be contiguous"
+      if (.not. is_contiguous(E)) error stop "E: array must be contiguous"
       ssytrd_batched = rocsolver_ssytrd_batched_raw(handle, uplo, n, A, lda, c_loc(D), strideD, &
         c_loc(E), strideE, tau, strideP, batch_count)
     end function rocsolver_ssytrd_batched_native
@@ -68433,6 +70040,8 @@ contains
       integer(c_long), value :: strideP
       integer(c_int), value :: batch_count
       integer(c_int) :: dsytrd_batched
+      if (.not. is_contiguous(D)) error stop "D: array must be contiguous"
+      if (.not. is_contiguous(E)) error stop "E: array must be contiguous"
       dsytrd_batched = rocsolver_dsytrd_batched_raw(handle, uplo, n, A, lda, c_loc(D), strideD, &
         c_loc(E), strideE, tau, strideP, batch_count)
     end function rocsolver_dsytrd_batched_native
@@ -68476,6 +70085,8 @@ contains
       integer(c_long), value :: strideP
       integer(c_int), value :: batch_count
       integer(c_int) :: chetrd_batched
+      if (.not. is_contiguous(D)) error stop "D: array must be contiguous"
+      if (.not. is_contiguous(E)) error stop "E: array must be contiguous"
       chetrd_batched = rocsolver_chetrd_batched_raw(handle, uplo, n, A, lda, c_loc(D), strideD, &
         c_loc(E), strideE, tau, strideP, batch_count)
     end function rocsolver_chetrd_batched_native
@@ -68519,6 +70130,8 @@ contains
       integer(c_long), value :: strideP
       integer(c_int), value :: batch_count
       integer(c_int) :: zhetrd_batched
+      if (.not. is_contiguous(D)) error stop "D: array must be contiguous"
+      if (.not. is_contiguous(E)) error stop "E: array must be contiguous"
       zhetrd_batched = rocsolver_zhetrd_batched_raw(handle, uplo, n, A, lda, c_loc(D), strideD, &
         c_loc(E), strideE, tau, strideP, batch_count)
     end function rocsolver_zhetrd_batched_native
@@ -68563,6 +70176,9 @@ contains
       integer(c_long), value :: strideP
       integer(c_int), value :: batch_count
       integer(c_int) :: ssytrd_strided_batched
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(D)) error stop "D: array must be contiguous"
+      if (.not. is_contiguous(E)) error stop "E: array must be contiguous"
       ssytrd_strided_batched = rocsolver_ssytrd_strided_batched_raw(handle, uplo, n, c_loc(A), &
         lda, strideA, c_loc(D), strideD, c_loc(E), strideE, tau, strideP, batch_count)
     end function rocsolver_ssytrd_strided_batched_native
@@ -68608,6 +70224,9 @@ contains
       integer(c_long), value :: strideP
       integer(c_int), value :: batch_count
       integer(c_int) :: dsytrd_strided_batched
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(D)) error stop "D: array must be contiguous"
+      if (.not. is_contiguous(E)) error stop "E: array must be contiguous"
       dsytrd_strided_batched = rocsolver_dsytrd_strided_batched_raw(handle, uplo, n, c_loc(A), &
         lda, strideA, c_loc(D), strideD, c_loc(E), strideE, tau, strideP, batch_count)
     end function rocsolver_dsytrd_strided_batched_native
@@ -68653,6 +70272,9 @@ contains
       integer(c_long), value :: strideP
       integer(c_int), value :: batch_count
       integer(c_int) :: chetrd_strided_batched
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(D)) error stop "D: array must be contiguous"
+      if (.not. is_contiguous(E)) error stop "E: array must be contiguous"
       chetrd_strided_batched = rocsolver_chetrd_strided_batched_raw(handle, uplo, n, c_loc(A), &
         lda, strideA, c_loc(D), strideD, c_loc(E), strideE, tau, strideP, batch_count)
     end function rocsolver_chetrd_strided_batched_native
@@ -68698,6 +70320,9 @@ contains
       integer(c_long), value :: strideP
       integer(c_int), value :: batch_count
       integer(c_int) :: zhetrd_strided_batched
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(D)) error stop "D: array must be contiguous"
+      if (.not. is_contiguous(E)) error stop "E: array must be contiguous"
       zhetrd_strided_batched = rocsolver_zhetrd_strided_batched_raw(handle, uplo, n, c_loc(A), &
         lda, strideA, c_loc(D), strideD, c_loc(E), strideE, tau, strideP, batch_count)
     end function rocsolver_zhetrd_strided_batched_native
@@ -68737,6 +70362,8 @@ contains
       real(c_float), target :: B(..)
       integer(c_int), value :: ldb
       integer(c_int) :: ssygs2
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
       ssygs2 = rocsolver_ssygs2_raw(handle, itype, uplo, n, c_loc(A), lda, c_loc(B), ldb)
     end function rocsolver_ssygs2_native
 
@@ -68768,6 +70395,8 @@ contains
       real(c_double), target :: B(..)
       integer(c_int), value :: ldb
       integer(c_int) :: dsygs2
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
       dsygs2 = rocsolver_dsygs2_raw(handle, itype, uplo, n, c_loc(A), lda, c_loc(B), ldb)
     end function rocsolver_dsygs2_native
 
@@ -68799,6 +70428,8 @@ contains
       complex(c_float_complex), target :: B(..)
       integer(c_int), value :: ldb
       integer(c_int) :: chegs2
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
       chegs2 = rocsolver_chegs2_raw(handle, itype, uplo, n, c_loc(A), lda, c_loc(B), ldb)
     end function rocsolver_chegs2_native
 
@@ -68830,6 +70461,8 @@ contains
       complex(c_double_complex), target :: B(..)
       integer(c_int), value :: ldb
       integer(c_int) :: zhegs2
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
       zhegs2 = rocsolver_zhegs2_raw(handle, itype, uplo, n, c_loc(A), lda, c_loc(B), ldb)
     end function rocsolver_zhegs2_native
 
@@ -68941,6 +70574,8 @@ contains
       integer(c_long), value :: strideB
       integer(c_int), value :: batch_count
       integer(c_int) :: ssygs2_strided_batched
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
       ssygs2_strided_batched = rocsolver_ssygs2_strided_batched_raw(handle, itype, uplo, n, c_loc( &
         A), lda, strideA, c_loc(B), ldb, strideB, batch_count)
     end function rocsolver_ssygs2_strided_batched_native
@@ -68982,6 +70617,8 @@ contains
       integer(c_long), value :: strideB
       integer(c_int), value :: batch_count
       integer(c_int) :: dsygs2_strided_batched
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
       dsygs2_strided_batched = rocsolver_dsygs2_strided_batched_raw(handle, itype, uplo, n, c_loc( &
         A), lda, strideA, c_loc(B), ldb, strideB, batch_count)
     end function rocsolver_dsygs2_strided_batched_native
@@ -69023,6 +70660,8 @@ contains
       integer(c_long), value :: strideB
       integer(c_int), value :: batch_count
       integer(c_int) :: chegs2_strided_batched
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
       chegs2_strided_batched = rocsolver_chegs2_strided_batched_raw(handle, itype, uplo, n, c_loc( &
         A), lda, strideA, c_loc(B), ldb, strideB, batch_count)
     end function rocsolver_chegs2_strided_batched_native
@@ -69064,6 +70703,8 @@ contains
       integer(c_long), value :: strideB
       integer(c_int), value :: batch_count
       integer(c_int) :: zhegs2_strided_batched
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
       zhegs2_strided_batched = rocsolver_zhegs2_strided_batched_raw(handle, itype, uplo, n, c_loc( &
         A), lda, strideA, c_loc(B), ldb, strideB, batch_count)
     end function rocsolver_zhegs2_strided_batched_native
@@ -69101,6 +70742,8 @@ contains
       real(c_float), target :: B(..)
       integer(c_int), value :: ldb
       integer(c_int) :: ssygst
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
       ssygst = rocsolver_ssygst_raw(handle, itype, uplo, n, c_loc(A), lda, c_loc(B), ldb)
     end function rocsolver_ssygst_native
 
@@ -69132,6 +70775,8 @@ contains
       real(c_double), target :: B(..)
       integer(c_int), value :: ldb
       integer(c_int) :: dsygst
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
       dsygst = rocsolver_dsygst_raw(handle, itype, uplo, n, c_loc(A), lda, c_loc(B), ldb)
     end function rocsolver_dsygst_native
 
@@ -69163,6 +70808,8 @@ contains
       complex(c_float_complex), target :: B(..)
       integer(c_int), value :: ldb
       integer(c_int) :: chegst
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
       chegst = rocsolver_chegst_raw(handle, itype, uplo, n, c_loc(A), lda, c_loc(B), ldb)
     end function rocsolver_chegst_native
 
@@ -69194,6 +70841,8 @@ contains
       complex(c_double_complex), target :: B(..)
       integer(c_int), value :: ldb
       integer(c_int) :: zhegst
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
       zhegst = rocsolver_zhegst_raw(handle, itype, uplo, n, c_loc(A), lda, c_loc(B), ldb)
     end function rocsolver_zhegst_native
 
@@ -69305,6 +70954,8 @@ contains
       integer(c_long), value :: strideB
       integer(c_int), value :: batch_count
       integer(c_int) :: ssygst_strided_batched
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
       ssygst_strided_batched = rocsolver_ssygst_strided_batched_raw(handle, itype, uplo, n, c_loc( &
         A), lda, strideA, c_loc(B), ldb, strideB, batch_count)
     end function rocsolver_ssygst_strided_batched_native
@@ -69346,6 +70997,8 @@ contains
       integer(c_long), value :: strideB
       integer(c_int), value :: batch_count
       integer(c_int) :: dsygst_strided_batched
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
       dsygst_strided_batched = rocsolver_dsygst_strided_batched_raw(handle, itype, uplo, n, c_loc( &
         A), lda, strideA, c_loc(B), ldb, strideB, batch_count)
     end function rocsolver_dsygst_strided_batched_native
@@ -69387,6 +71040,8 @@ contains
       integer(c_long), value :: strideB
       integer(c_int), value :: batch_count
       integer(c_int) :: chegst_strided_batched
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
       chegst_strided_batched = rocsolver_chegst_strided_batched_raw(handle, itype, uplo, n, c_loc( &
         A), lda, strideA, c_loc(B), ldb, strideB, batch_count)
     end function rocsolver_chegst_strided_batched_native
@@ -69428,6 +71083,8 @@ contains
       integer(c_long), value :: strideB
       integer(c_int), value :: batch_count
       integer(c_int) :: zhegst_strided_batched
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
       zhegst_strided_batched = rocsolver_zhegst_strided_batched_raw(handle, itype, uplo, n, c_loc( &
         A), lda, strideA, c_loc(B), ldb, strideB, batch_count)
     end function rocsolver_zhegst_strided_batched_native
@@ -69466,6 +71123,10 @@ contains
       real(c_float), target :: E(..)
       integer(c_int), target :: info(..)
       integer(c_int) :: ssyev
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(D)) error stop "D: array must be contiguous"
+      if (.not. is_contiguous(E)) error stop "E: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       ssyev = rocsolver_ssyev_raw(handle, evect, uplo, n, c_loc(A), lda, c_loc(D), c_loc(E), &
         c_loc(info))
     end function rocsolver_ssyev_native
@@ -69500,6 +71161,10 @@ contains
       real(c_double), target :: E(..)
       integer(c_int), target :: info(..)
       integer(c_int) :: dsyev
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(D)) error stop "D: array must be contiguous"
+      if (.not. is_contiguous(E)) error stop "E: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       dsyev = rocsolver_dsyev_raw(handle, evect, uplo, n, c_loc(A), lda, c_loc(D), c_loc(E), &
         c_loc(info))
     end function rocsolver_dsyev_native
@@ -69534,6 +71199,10 @@ contains
       real(c_float), target :: E(..)
       integer(c_int), target :: info(..)
       integer(c_int) :: cheev
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(D)) error stop "D: array must be contiguous"
+      if (.not. is_contiguous(E)) error stop "E: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       cheev = rocsolver_cheev_raw(handle, evect, uplo, n, c_loc(A), lda, c_loc(D), c_loc(E), &
         c_loc(info))
     end function rocsolver_cheev_native
@@ -69568,6 +71237,10 @@ contains
       real(c_double), target :: E(..)
       integer(c_int), target :: info(..)
       integer(c_int) :: zheev
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(D)) error stop "D: array must be contiguous"
+      if (.not. is_contiguous(E)) error stop "E: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       zheev = rocsolver_zheev_raw(handle, evect, uplo, n, c_loc(A), lda, c_loc(D), c_loc(E), &
         c_loc(info))
     end function rocsolver_zheev_native
@@ -69606,6 +71279,9 @@ contains
       integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: ssyev_batched
+      if (.not. is_contiguous(D)) error stop "D: array must be contiguous"
+      if (.not. is_contiguous(E)) error stop "E: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       ssyev_batched = rocsolver_ssyev_batched_raw(handle, evect, uplo, n, A, lda, c_loc(D), &
         strideD, c_loc(E), strideE, c_loc(info), batch_count)
     end function rocsolver_ssyev_batched_native
@@ -69649,6 +71325,9 @@ contains
       integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: dsyev_batched
+      if (.not. is_contiguous(D)) error stop "D: array must be contiguous"
+      if (.not. is_contiguous(E)) error stop "E: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       dsyev_batched = rocsolver_dsyev_batched_raw(handle, evect, uplo, n, A, lda, c_loc(D), &
         strideD, c_loc(E), strideE, c_loc(info), batch_count)
     end function rocsolver_dsyev_batched_native
@@ -69692,6 +71371,9 @@ contains
       integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: cheev_batched
+      if (.not. is_contiguous(D)) error stop "D: array must be contiguous"
+      if (.not. is_contiguous(E)) error stop "E: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       cheev_batched = rocsolver_cheev_batched_raw(handle, evect, uplo, n, A, lda, c_loc(D), &
         strideD, c_loc(E), strideE, c_loc(info), batch_count)
     end function rocsolver_cheev_batched_native
@@ -69735,6 +71417,9 @@ contains
       integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: zheev_batched
+      if (.not. is_contiguous(D)) error stop "D: array must be contiguous"
+      if (.not. is_contiguous(E)) error stop "E: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       zheev_batched = rocsolver_zheev_batched_raw(handle, evect, uplo, n, A, lda, c_loc(D), &
         strideD, c_loc(E), strideE, c_loc(info), batch_count)
     end function rocsolver_zheev_batched_native
@@ -69779,6 +71464,10 @@ contains
       integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: ssyev_strided_batched
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(D)) error stop "D: array must be contiguous"
+      if (.not. is_contiguous(E)) error stop "E: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       ssyev_strided_batched = rocsolver_ssyev_strided_batched_raw(handle, evect, uplo, n, c_loc( &
         A), lda, strideA, c_loc(D), strideD, c_loc(E), strideE, c_loc(info), batch_count)
     end function rocsolver_ssyev_strided_batched_native
@@ -69824,6 +71513,10 @@ contains
       integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: dsyev_strided_batched
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(D)) error stop "D: array must be contiguous"
+      if (.not. is_contiguous(E)) error stop "E: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       dsyev_strided_batched = rocsolver_dsyev_strided_batched_raw(handle, evect, uplo, n, c_loc( &
         A), lda, strideA, c_loc(D), strideD, c_loc(E), strideE, c_loc(info), batch_count)
     end function rocsolver_dsyev_strided_batched_native
@@ -69869,6 +71562,10 @@ contains
       integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: cheev_strided_batched
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(D)) error stop "D: array must be contiguous"
+      if (.not. is_contiguous(E)) error stop "E: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       cheev_strided_batched = rocsolver_cheev_strided_batched_raw(handle, evect, uplo, n, c_loc( &
         A), lda, strideA, c_loc(D), strideD, c_loc(E), strideE, c_loc(info), batch_count)
     end function rocsolver_cheev_strided_batched_native
@@ -69914,6 +71611,10 @@ contains
       integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: zheev_strided_batched
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(D)) error stop "D: array must be contiguous"
+      if (.not. is_contiguous(E)) error stop "E: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       zheev_strided_batched = rocsolver_zheev_strided_batched_raw(handle, evect, uplo, n, c_loc( &
         A), lda, strideA, c_loc(D), strideD, c_loc(E), strideE, c_loc(info), batch_count)
     end function rocsolver_zheev_strided_batched_native
@@ -69954,6 +71655,10 @@ contains
       real(c_float), target :: E(..)
       integer(c_int), target :: info(..)
       integer(c_int) :: ssyevd
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(D)) error stop "D: array must be contiguous"
+      if (.not. is_contiguous(E)) error stop "E: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       ssyevd = rocsolver_ssyevd_raw(handle, evect, uplo, n, c_loc(A), lda, c_loc(D), c_loc(E), &
         c_loc(info))
     end function rocsolver_ssyevd_native
@@ -69988,6 +71693,10 @@ contains
       real(c_double), target :: E(..)
       integer(c_int), target :: info(..)
       integer(c_int) :: dsyevd
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(D)) error stop "D: array must be contiguous"
+      if (.not. is_contiguous(E)) error stop "E: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       dsyevd = rocsolver_dsyevd_raw(handle, evect, uplo, n, c_loc(A), lda, c_loc(D), c_loc(E), &
         c_loc(info))
     end function rocsolver_dsyevd_native
@@ -70022,6 +71731,10 @@ contains
       real(c_float), target :: E(..)
       integer(c_int), target :: info(..)
       integer(c_int) :: cheevd
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(D)) error stop "D: array must be contiguous"
+      if (.not. is_contiguous(E)) error stop "E: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       cheevd = rocsolver_cheevd_raw(handle, evect, uplo, n, c_loc(A), lda, c_loc(D), c_loc(E), &
         c_loc(info))
     end function rocsolver_cheevd_native
@@ -70056,6 +71769,10 @@ contains
       real(c_double), target :: E(..)
       integer(c_int), target :: info(..)
       integer(c_int) :: zheevd
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(D)) error stop "D: array must be contiguous"
+      if (.not. is_contiguous(E)) error stop "E: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       zheevd = rocsolver_zheevd_raw(handle, evect, uplo, n, c_loc(A), lda, c_loc(D), c_loc(E), &
         c_loc(info))
     end function rocsolver_zheevd_native
@@ -70094,6 +71811,9 @@ contains
       integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: ssyevd_batched
+      if (.not. is_contiguous(D)) error stop "D: array must be contiguous"
+      if (.not. is_contiguous(E)) error stop "E: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       ssyevd_batched = rocsolver_ssyevd_batched_raw(handle, evect, uplo, n, A, lda, c_loc(D), &
         strideD, c_loc(E), strideE, c_loc(info), batch_count)
     end function rocsolver_ssyevd_batched_native
@@ -70137,6 +71857,9 @@ contains
       integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: dsyevd_batched
+      if (.not. is_contiguous(D)) error stop "D: array must be contiguous"
+      if (.not. is_contiguous(E)) error stop "E: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       dsyevd_batched = rocsolver_dsyevd_batched_raw(handle, evect, uplo, n, A, lda, c_loc(D), &
         strideD, c_loc(E), strideE, c_loc(info), batch_count)
     end function rocsolver_dsyevd_batched_native
@@ -70180,6 +71903,9 @@ contains
       integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: cheevd_batched
+      if (.not. is_contiguous(D)) error stop "D: array must be contiguous"
+      if (.not. is_contiguous(E)) error stop "E: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       cheevd_batched = rocsolver_cheevd_batched_raw(handle, evect, uplo, n, A, lda, c_loc(D), &
         strideD, c_loc(E), strideE, c_loc(info), batch_count)
     end function rocsolver_cheevd_batched_native
@@ -70223,6 +71949,9 @@ contains
       integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: zheevd_batched
+      if (.not. is_contiguous(D)) error stop "D: array must be contiguous"
+      if (.not. is_contiguous(E)) error stop "E: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       zheevd_batched = rocsolver_zheevd_batched_raw(handle, evect, uplo, n, A, lda, c_loc(D), &
         strideD, c_loc(E), strideE, c_loc(info), batch_count)
     end function rocsolver_zheevd_batched_native
@@ -70267,6 +71996,10 @@ contains
       integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: ssyevd_strided_batched
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(D)) error stop "D: array must be contiguous"
+      if (.not. is_contiguous(E)) error stop "E: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       ssyevd_strided_batched = rocsolver_ssyevd_strided_batched_raw(handle, evect, uplo, n, c_loc( &
         A), lda, strideA, c_loc(D), strideD, c_loc(E), strideE, c_loc(info), batch_count)
     end function rocsolver_ssyevd_strided_batched_native
@@ -70312,6 +72045,10 @@ contains
       integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: dsyevd_strided_batched
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(D)) error stop "D: array must be contiguous"
+      if (.not. is_contiguous(E)) error stop "E: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       dsyevd_strided_batched = rocsolver_dsyevd_strided_batched_raw(handle, evect, uplo, n, c_loc( &
         A), lda, strideA, c_loc(D), strideD, c_loc(E), strideE, c_loc(info), batch_count)
     end function rocsolver_dsyevd_strided_batched_native
@@ -70357,6 +72094,10 @@ contains
       integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: cheevd_strided_batched
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(D)) error stop "D: array must be contiguous"
+      if (.not. is_contiguous(E)) error stop "E: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       cheevd_strided_batched = rocsolver_cheevd_strided_batched_raw(handle, evect, uplo, n, c_loc( &
         A), lda, strideA, c_loc(D), strideD, c_loc(E), strideE, c_loc(info), batch_count)
     end function rocsolver_cheevd_strided_batched_native
@@ -70402,6 +72143,10 @@ contains
       integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: zheevd_strided_batched
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(D)) error stop "D: array must be contiguous"
+      if (.not. is_contiguous(E)) error stop "E: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       zheevd_strided_batched = rocsolver_zheevd_strided_batched_raw(handle, evect, uplo, n, c_loc( &
         A), lda, strideA, c_loc(D), strideD, c_loc(E), strideE, c_loc(info), batch_count)
     end function rocsolver_zheevd_strided_batched_native
@@ -70441,6 +72186,9 @@ contains
       real(c_float), target :: D(..)
       integer(c_int), target :: info(..)
       integer(c_int) :: ssyevdj
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(D)) error stop "D: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       ssyevdj = rocsolver_ssyevdj_raw(handle, evect, uplo, n, c_loc(A), lda, c_loc(D), c_loc(info))
     end function rocsolver_ssyevdj_native
 
@@ -70472,6 +72220,9 @@ contains
       real(c_double), target :: D(..)
       integer(c_int), target :: info(..)
       integer(c_int) :: dsyevdj
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(D)) error stop "D: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       dsyevdj = rocsolver_dsyevdj_raw(handle, evect, uplo, n, c_loc(A), lda, c_loc(D), c_loc(info))
     end function rocsolver_dsyevdj_native
 
@@ -70503,6 +72254,9 @@ contains
       real(c_float), target :: D(..)
       integer(c_int), target :: info(..)
       integer(c_int) :: cheevdj
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(D)) error stop "D: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       cheevdj = rocsolver_cheevdj_raw(handle, evect, uplo, n, c_loc(A), lda, c_loc(D), c_loc(info))
     end function rocsolver_cheevdj_native
 
@@ -70534,6 +72288,9 @@ contains
       real(c_double), target :: D(..)
       integer(c_int), target :: info(..)
       integer(c_int) :: zheevdj
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(D)) error stop "D: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       zheevdj = rocsolver_zheevdj_raw(handle, evect, uplo, n, c_loc(A), lda, c_loc(D), c_loc(info))
     end function rocsolver_zheevdj_native
 
@@ -70568,6 +72325,8 @@ contains
       integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: ssyevdj_batched
+      if (.not. is_contiguous(D)) error stop "D: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       ssyevdj_batched = rocsolver_ssyevdj_batched_raw(handle, evect, uplo, n, A, lda, c_loc(D), &
         strideD, c_loc(info), batch_count)
     end function rocsolver_ssyevdj_batched_native
@@ -70607,6 +72366,8 @@ contains
       integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: dsyevdj_batched
+      if (.not. is_contiguous(D)) error stop "D: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       dsyevdj_batched = rocsolver_dsyevdj_batched_raw(handle, evect, uplo, n, A, lda, c_loc(D), &
         strideD, c_loc(info), batch_count)
     end function rocsolver_dsyevdj_batched_native
@@ -70646,6 +72407,8 @@ contains
       integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: cheevdj_batched
+      if (.not. is_contiguous(D)) error stop "D: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       cheevdj_batched = rocsolver_cheevdj_batched_raw(handle, evect, uplo, n, A, lda, c_loc(D), &
         strideD, c_loc(info), batch_count)
     end function rocsolver_cheevdj_batched_native
@@ -70685,6 +72448,8 @@ contains
       integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: zheevdj_batched
+      if (.not. is_contiguous(D)) error stop "D: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       zheevdj_batched = rocsolver_zheevdj_batched_raw(handle, evect, uplo, n, A, lda, c_loc(D), &
         strideD, c_loc(info), batch_count)
     end function rocsolver_zheevdj_batched_native
@@ -70725,6 +72490,9 @@ contains
       integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: ssyevdj_strided_batched
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(D)) error stop "D: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       ssyevdj_strided_batched = rocsolver_ssyevdj_strided_batched_raw(handle, evect, uplo, n, &
         c_loc(A), lda, strideA, c_loc(D), strideD, c_loc(info), batch_count)
     end function rocsolver_ssyevdj_strided_batched_native
@@ -70766,6 +72534,9 @@ contains
       integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: dsyevdj_strided_batched
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(D)) error stop "D: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       dsyevdj_strided_batched = rocsolver_dsyevdj_strided_batched_raw(handle, evect, uplo, n, &
         c_loc(A), lda, strideA, c_loc(D), strideD, c_loc(info), batch_count)
     end function rocsolver_dsyevdj_strided_batched_native
@@ -70807,6 +72578,9 @@ contains
       integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: cheevdj_strided_batched
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(D)) error stop "D: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       cheevdj_strided_batched = rocsolver_cheevdj_strided_batched_raw(handle, evect, uplo, n, &
         c_loc(A), lda, strideA, c_loc(D), strideD, c_loc(info), batch_count)
     end function rocsolver_cheevdj_strided_batched_native
@@ -70848,6 +72622,9 @@ contains
       integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: zheevdj_strided_batched
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(D)) error stop "D: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       zheevdj_strided_batched = rocsolver_zheevdj_strided_batched_raw(handle, evect, uplo, n, &
         c_loc(A), lda, strideA, c_loc(D), strideD, c_loc(info), batch_count)
     end function rocsolver_zheevdj_strided_batched_native
@@ -70889,6 +72666,10 @@ contains
       real(c_float), target :: D(..)
       integer(c_int), target :: info(..)
       integer(c_int) :: ssygvdj
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
+      if (.not. is_contiguous(D)) error stop "D: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       ssygvdj = rocsolver_ssygvdj_raw(handle, itype, evect, uplo, n, c_loc(A), lda, c_loc(B), ldb, &
         c_loc(D), c_loc(info))
     end function rocsolver_ssygvdj_native
@@ -70929,6 +72710,10 @@ contains
       real(c_double), target :: D(..)
       integer(c_int), target :: info(..)
       integer(c_int) :: dsygvdj
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
+      if (.not. is_contiguous(D)) error stop "D: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       dsygvdj = rocsolver_dsygvdj_raw(handle, itype, evect, uplo, n, c_loc(A), lda, c_loc(B), ldb, &
         c_loc(D), c_loc(info))
     end function rocsolver_dsygvdj_native
@@ -70969,6 +72754,10 @@ contains
       real(c_float), target :: D(..)
       integer(c_int), target :: info(..)
       integer(c_int) :: chegvdj
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
+      if (.not. is_contiguous(D)) error stop "D: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       chegvdj = rocsolver_chegvdj_raw(handle, itype, evect, uplo, n, c_loc(A), lda, c_loc(B), ldb, &
         c_loc(D), c_loc(info))
     end function rocsolver_chegvdj_native
@@ -71009,6 +72798,10 @@ contains
       real(c_double), target :: D(..)
       integer(c_int), target :: info(..)
       integer(c_int) :: zhegvdj
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
+      if (.not. is_contiguous(D)) error stop "D: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       zhegvdj = rocsolver_zhegvdj_raw(handle, itype, evect, uplo, n, c_loc(A), lda, c_loc(B), ldb, &
         c_loc(D), c_loc(info))
     end function rocsolver_zhegvdj_native
@@ -71051,6 +72844,8 @@ contains
       integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: ssygvdj_batched
+      if (.not. is_contiguous(D)) error stop "D: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       ssygvdj_batched = rocsolver_ssygvdj_batched_raw(handle, itype, evect, uplo, n, A, lda, B, &
         ldb, c_loc(D), strideD, c_loc(info), batch_count)
     end function rocsolver_ssygvdj_batched_native
@@ -71096,6 +72891,8 @@ contains
       integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: dsygvdj_batched
+      if (.not. is_contiguous(D)) error stop "D: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       dsygvdj_batched = rocsolver_dsygvdj_batched_raw(handle, itype, evect, uplo, n, A, lda, B, &
         ldb, c_loc(D), strideD, c_loc(info), batch_count)
     end function rocsolver_dsygvdj_batched_native
@@ -71141,6 +72938,8 @@ contains
       integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: chegvdj_batched
+      if (.not. is_contiguous(D)) error stop "D: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       chegvdj_batched = rocsolver_chegvdj_batched_raw(handle, itype, evect, uplo, n, A, lda, B, &
         ldb, c_loc(D), strideD, c_loc(info), batch_count)
     end function rocsolver_chegvdj_batched_native
@@ -71186,6 +72985,8 @@ contains
       integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: zhegvdj_batched
+      if (.not. is_contiguous(D)) error stop "D: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       zhegvdj_batched = rocsolver_zhegvdj_batched_raw(handle, itype, evect, uplo, n, A, lda, B, &
         ldb, c_loc(D), strideD, c_loc(info), batch_count)
     end function rocsolver_zhegvdj_batched_native
@@ -71233,6 +73034,10 @@ contains
       integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: ssygvdj_strided_batched
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
+      if (.not. is_contiguous(D)) error stop "D: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       ssygvdj_strided_batched = rocsolver_ssygvdj_strided_batched_raw(handle, itype, evect, uplo, &
         n, c_loc(A), lda, strideA, c_loc(B), ldb, strideB, c_loc(D), strideD, c_loc(info), &
         batch_count)
@@ -71283,6 +73088,10 @@ contains
       integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: dsygvdj_strided_batched
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
+      if (.not. is_contiguous(D)) error stop "D: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       dsygvdj_strided_batched = rocsolver_dsygvdj_strided_batched_raw(handle, itype, evect, uplo, &
         n, c_loc(A), lda, strideA, c_loc(B), ldb, strideB, c_loc(D), strideD, c_loc(info), &
         batch_count)
@@ -71333,6 +73142,10 @@ contains
       integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: chegvdj_strided_batched
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
+      if (.not. is_contiguous(D)) error stop "D: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       chegvdj_strided_batched = rocsolver_chegvdj_strided_batched_raw(handle, itype, evect, uplo, &
         n, c_loc(A), lda, strideA, c_loc(B), ldb, strideB, c_loc(D), strideD, c_loc(info), &
         batch_count)
@@ -71383,6 +73196,10 @@ contains
       integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: zhegvdj_strided_batched
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
+      if (.not. is_contiguous(D)) error stop "D: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       zhegvdj_strided_batched = rocsolver_zhegvdj_strided_batched_raw(handle, itype, evect, uplo, &
         n, c_loc(A), lda, strideA, c_loc(B), ldb, strideB, c_loc(D), strideD, c_loc(info), &
         batch_count)
@@ -71431,6 +73248,11 @@ contains
       real(c_float), target :: W(..)
       integer(c_int), target :: info(..)
       integer(c_int) :: ssyevj
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(residual)) error stop "residual: array must be contiguous"
+      if (.not. is_contiguous(n_sweeps)) error stop "n_sweeps: array must be contiguous"
+      if (.not. is_contiguous(W)) error stop "W: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       ssyevj = rocsolver_ssyevj_raw(handle, esort, evect, uplo, n, c_loc(A), lda, abstol, c_loc( &
         residual), max_sweeps, c_loc(n_sweeps), c_loc(W), c_loc(info))
     end function rocsolver_ssyevj_native
@@ -71476,6 +73298,11 @@ contains
       real(c_double), target :: W(..)
       integer(c_int), target :: info(..)
       integer(c_int) :: dsyevj
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(residual)) error stop "residual: array must be contiguous"
+      if (.not. is_contiguous(n_sweeps)) error stop "n_sweeps: array must be contiguous"
+      if (.not. is_contiguous(W)) error stop "W: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       dsyevj = rocsolver_dsyevj_raw(handle, esort, evect, uplo, n, c_loc(A), lda, abstol, c_loc( &
         residual), max_sweeps, c_loc(n_sweeps), c_loc(W), c_loc(info))
     end function rocsolver_dsyevj_native
@@ -71521,6 +73348,11 @@ contains
       real(c_float), target :: W(..)
       integer(c_int), target :: info(..)
       integer(c_int) :: cheevj
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(residual)) error stop "residual: array must be contiguous"
+      if (.not. is_contiguous(n_sweeps)) error stop "n_sweeps: array must be contiguous"
+      if (.not. is_contiguous(W)) error stop "W: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       cheevj = rocsolver_cheevj_raw(handle, esort, evect, uplo, n, c_loc(A), lda, abstol, c_loc( &
         residual), max_sweeps, c_loc(n_sweeps), c_loc(W), c_loc(info))
     end function rocsolver_cheevj_native
@@ -71566,6 +73398,11 @@ contains
       real(c_double), target :: W(..)
       integer(c_int), target :: info(..)
       integer(c_int) :: zheevj
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(residual)) error stop "residual: array must be contiguous"
+      if (.not. is_contiguous(n_sweeps)) error stop "n_sweeps: array must be contiguous"
+      if (.not. is_contiguous(W)) error stop "W: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       zheevj = rocsolver_zheevj_raw(handle, esort, evect, uplo, n, c_loc(A), lda, abstol, c_loc( &
         residual), max_sweeps, c_loc(n_sweeps), c_loc(W), c_loc(info))
     end function rocsolver_zheevj_native
@@ -71613,6 +73450,10 @@ contains
       integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: ssyevj_batched
+      if (.not. is_contiguous(residual)) error stop "residual: array must be contiguous"
+      if (.not. is_contiguous(n_sweeps)) error stop "n_sweeps: array must be contiguous"
+      if (.not. is_contiguous(W)) error stop "W: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       ssyevj_batched = rocsolver_ssyevj_batched_raw(handle, esort, evect, uplo, n, A, lda, abstol, &
         c_loc(residual), max_sweeps, c_loc(n_sweeps), c_loc(W), strideW, c_loc(info), batch_count)
     end function rocsolver_ssyevj_batched_native
@@ -71662,6 +73503,10 @@ contains
       integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: dsyevj_batched
+      if (.not. is_contiguous(residual)) error stop "residual: array must be contiguous"
+      if (.not. is_contiguous(n_sweeps)) error stop "n_sweeps: array must be contiguous"
+      if (.not. is_contiguous(W)) error stop "W: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       dsyevj_batched = rocsolver_dsyevj_batched_raw(handle, esort, evect, uplo, n, A, lda, abstol, &
         c_loc(residual), max_sweeps, c_loc(n_sweeps), c_loc(W), strideW, c_loc(info), batch_count)
     end function rocsolver_dsyevj_batched_native
@@ -71711,6 +73556,10 @@ contains
       integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: cheevj_batched
+      if (.not. is_contiguous(residual)) error stop "residual: array must be contiguous"
+      if (.not. is_contiguous(n_sweeps)) error stop "n_sweeps: array must be contiguous"
+      if (.not. is_contiguous(W)) error stop "W: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       cheevj_batched = rocsolver_cheevj_batched_raw(handle, esort, evect, uplo, n, A, lda, abstol, &
         c_loc(residual), max_sweeps, c_loc(n_sweeps), c_loc(W), strideW, c_loc(info), batch_count)
     end function rocsolver_cheevj_batched_native
@@ -71760,6 +73609,10 @@ contains
       integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: zheevj_batched
+      if (.not. is_contiguous(residual)) error stop "residual: array must be contiguous"
+      if (.not. is_contiguous(n_sweeps)) error stop "n_sweeps: array must be contiguous"
+      if (.not. is_contiguous(W)) error stop "W: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       zheevj_batched = rocsolver_zheevj_batched_raw(handle, esort, evect, uplo, n, A, lda, abstol, &
         c_loc(residual), max_sweeps, c_loc(n_sweeps), c_loc(W), strideW, c_loc(info), batch_count)
     end function rocsolver_zheevj_batched_native
@@ -71811,6 +73664,11 @@ contains
       integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: ssyevj_strided_batched
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(residual)) error stop "residual: array must be contiguous"
+      if (.not. is_contiguous(n_sweeps)) error stop "n_sweeps: array must be contiguous"
+      if (.not. is_contiguous(W)) error stop "W: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       ssyevj_strided_batched = rocsolver_ssyevj_strided_batched_raw(handle, esort, evect, uplo, n, &
         c_loc(A), lda, strideA, abstol, c_loc(residual), max_sweeps, c_loc(n_sweeps), c_loc(W), &
         strideW, c_loc(info), batch_count)
@@ -71866,6 +73724,11 @@ contains
       integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: dsyevj_strided_batched
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(residual)) error stop "residual: array must be contiguous"
+      if (.not. is_contiguous(n_sweeps)) error stop "n_sweeps: array must be contiguous"
+      if (.not. is_contiguous(W)) error stop "W: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       dsyevj_strided_batched = rocsolver_dsyevj_strided_batched_raw(handle, esort, evect, uplo, n, &
         c_loc(A), lda, strideA, abstol, c_loc(residual), max_sweeps, c_loc(n_sweeps), c_loc(W), &
         strideW, c_loc(info), batch_count)
@@ -71921,6 +73784,11 @@ contains
       integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: cheevj_strided_batched
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(residual)) error stop "residual: array must be contiguous"
+      if (.not. is_contiguous(n_sweeps)) error stop "n_sweeps: array must be contiguous"
+      if (.not. is_contiguous(W)) error stop "W: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       cheevj_strided_batched = rocsolver_cheevj_strided_batched_raw(handle, esort, evect, uplo, n, &
         c_loc(A), lda, strideA, abstol, c_loc(residual), max_sweeps, c_loc(n_sweeps), c_loc(W), &
         strideW, c_loc(info), batch_count)
@@ -71976,6 +73844,11 @@ contains
       integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: zheevj_strided_batched
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(residual)) error stop "residual: array must be contiguous"
+      if (.not. is_contiguous(n_sweeps)) error stop "n_sweeps: array must be contiguous"
+      if (.not. is_contiguous(W)) error stop "W: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       zheevj_strided_batched = rocsolver_zheevj_strided_batched_raw(handle, esort, evect, uplo, n, &
         c_loc(A), lda, strideA, abstol, c_loc(residual), max_sweeps, c_loc(n_sweeps), c_loc(W), &
         strideW, c_loc(info), batch_count)
@@ -72032,6 +73905,12 @@ contains
       integer(c_int), target :: ifail(..)
       integer(c_int), target :: info(..)
       integer(c_int) :: ssyevx
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(nev)) error stop "nev: array must be contiguous"
+      if (.not. is_contiguous(W)) error stop "W: array must be contiguous"
+      if (.not. is_contiguous(Z)) error stop "Z: array must be contiguous"
+      if (.not. is_contiguous(ifail)) error stop "ifail: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       ssyevx = rocsolver_ssyevx_raw(handle, evect, erange, uplo, n, c_loc(A), lda, vl, vu, il, iu, &
         abstol, c_loc(nev), c_loc(W), c_loc(Z), ldz, c_loc(ifail), c_loc(info))
     end function rocsolver_ssyevx_native
@@ -72087,6 +73966,12 @@ contains
       integer(c_int), target :: ifail(..)
       integer(c_int), target :: info(..)
       integer(c_int) :: dsyevx
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(nev)) error stop "nev: array must be contiguous"
+      if (.not. is_contiguous(W)) error stop "W: array must be contiguous"
+      if (.not. is_contiguous(Z)) error stop "Z: array must be contiguous"
+      if (.not. is_contiguous(ifail)) error stop "ifail: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       dsyevx = rocsolver_dsyevx_raw(handle, evect, erange, uplo, n, c_loc(A), lda, vl, vu, il, iu, &
         abstol, c_loc(nev), c_loc(W), c_loc(Z), ldz, c_loc(ifail), c_loc(info))
     end function rocsolver_dsyevx_native
@@ -72142,6 +74027,12 @@ contains
       integer(c_int), target :: ifail(..)
       integer(c_int), target :: info(..)
       integer(c_int) :: cheevx
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(nev)) error stop "nev: array must be contiguous"
+      if (.not. is_contiguous(W)) error stop "W: array must be contiguous"
+      if (.not. is_contiguous(Z)) error stop "Z: array must be contiguous"
+      if (.not. is_contiguous(ifail)) error stop "ifail: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       cheevx = rocsolver_cheevx_raw(handle, evect, erange, uplo, n, c_loc(A), lda, vl, vu, il, iu, &
         abstol, c_loc(nev), c_loc(W), c_loc(Z), ldz, c_loc(ifail), c_loc(info))
     end function rocsolver_cheevx_native
@@ -72197,6 +74088,12 @@ contains
       integer(c_int), target :: ifail(..)
       integer(c_int), target :: info(..)
       integer(c_int) :: zheevx
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(nev)) error stop "nev: array must be contiguous"
+      if (.not. is_contiguous(W)) error stop "W: array must be contiguous"
+      if (.not. is_contiguous(Z)) error stop "Z: array must be contiguous"
+      if (.not. is_contiguous(ifail)) error stop "ifail: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       zheevx = rocsolver_zheevx_raw(handle, evect, erange, uplo, n, c_loc(A), lda, vl, vu, il, iu, &
         abstol, c_loc(nev), c_loc(W), c_loc(Z), ldz, c_loc(ifail), c_loc(info))
     end function rocsolver_zheevx_native
@@ -72256,6 +74153,10 @@ contains
       integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: ssyevx_batched
+      if (.not. is_contiguous(nev)) error stop "nev: array must be contiguous"
+      if (.not. is_contiguous(W)) error stop "W: array must be contiguous"
+      if (.not. is_contiguous(ifail)) error stop "ifail: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       ssyevx_batched = rocsolver_ssyevx_batched_raw(handle, evect, erange, uplo, n, A, lda, vl, &
         vu, il, iu, abstol, c_loc(nev), c_loc(W), strideW, Z, ldz, c_loc(ifail), strideF, c_loc( &
         info), batch_count)
@@ -72320,6 +74221,10 @@ contains
       integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: dsyevx_batched
+      if (.not. is_contiguous(nev)) error stop "nev: array must be contiguous"
+      if (.not. is_contiguous(W)) error stop "W: array must be contiguous"
+      if (.not. is_contiguous(ifail)) error stop "ifail: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       dsyevx_batched = rocsolver_dsyevx_batched_raw(handle, evect, erange, uplo, n, A, lda, vl, &
         vu, il, iu, abstol, c_loc(nev), c_loc(W), strideW, Z, ldz, c_loc(ifail), strideF, c_loc( &
         info), batch_count)
@@ -72384,6 +74289,10 @@ contains
       integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: cheevx_batched
+      if (.not. is_contiguous(nev)) error stop "nev: array must be contiguous"
+      if (.not. is_contiguous(W)) error stop "W: array must be contiguous"
+      if (.not. is_contiguous(ifail)) error stop "ifail: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       cheevx_batched = rocsolver_cheevx_batched_raw(handle, evect, erange, uplo, n, A, lda, vl, &
         vu, il, iu, abstol, c_loc(nev), c_loc(W), strideW, Z, ldz, c_loc(ifail), strideF, c_loc( &
         info), batch_count)
@@ -72448,6 +74357,10 @@ contains
       integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: zheevx_batched
+      if (.not. is_contiguous(nev)) error stop "nev: array must be contiguous"
+      if (.not. is_contiguous(W)) error stop "W: array must be contiguous"
+      if (.not. is_contiguous(ifail)) error stop "ifail: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       zheevx_batched = rocsolver_zheevx_batched_raw(handle, evect, erange, uplo, n, A, lda, vl, &
         vu, il, iu, abstol, c_loc(nev), c_loc(W), strideW, Z, ldz, c_loc(ifail), strideF, c_loc( &
         info), batch_count)
@@ -72514,6 +74427,12 @@ contains
       integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: ssyevx_strided_batched
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(nev)) error stop "nev: array must be contiguous"
+      if (.not. is_contiguous(W)) error stop "W: array must be contiguous"
+      if (.not. is_contiguous(Z)) error stop "Z: array must be contiguous"
+      if (.not. is_contiguous(ifail)) error stop "ifail: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       ssyevx_strided_batched = rocsolver_ssyevx_strided_batched_raw(handle, evect, erange, uplo, &
         n, c_loc(A), lda, strideA, vl, vu, il, iu, abstol, c_loc(nev), c_loc(W), strideW, c_loc( &
         Z), ldz, strideZ, c_loc(ifail), strideF, c_loc(info), batch_count)
@@ -72583,6 +74502,12 @@ contains
       integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: dsyevx_strided_batched
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(nev)) error stop "nev: array must be contiguous"
+      if (.not. is_contiguous(W)) error stop "W: array must be contiguous"
+      if (.not. is_contiguous(Z)) error stop "Z: array must be contiguous"
+      if (.not. is_contiguous(ifail)) error stop "ifail: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       dsyevx_strided_batched = rocsolver_dsyevx_strided_batched_raw(handle, evect, erange, uplo, &
         n, c_loc(A), lda, strideA, vl, vu, il, iu, abstol, c_loc(nev), c_loc(W), strideW, c_loc( &
         Z), ldz, strideZ, c_loc(ifail), strideF, c_loc(info), batch_count)
@@ -72652,6 +74577,12 @@ contains
       integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: cheevx_strided_batched
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(nev)) error stop "nev: array must be contiguous"
+      if (.not. is_contiguous(W)) error stop "W: array must be contiguous"
+      if (.not. is_contiguous(Z)) error stop "Z: array must be contiguous"
+      if (.not. is_contiguous(ifail)) error stop "ifail: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       cheevx_strided_batched = rocsolver_cheevx_strided_batched_raw(handle, evect, erange, uplo, &
         n, c_loc(A), lda, strideA, vl, vu, il, iu, abstol, c_loc(nev), c_loc(W), strideW, c_loc( &
         Z), ldz, strideZ, c_loc(ifail), strideF, c_loc(info), batch_count)
@@ -72721,6 +74652,12 @@ contains
       integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: zheevx_strided_batched
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(nev)) error stop "nev: array must be contiguous"
+      if (.not. is_contiguous(W)) error stop "W: array must be contiguous"
+      if (.not. is_contiguous(Z)) error stop "Z: array must be contiguous"
+      if (.not. is_contiguous(ifail)) error stop "ifail: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       zheevx_strided_batched = rocsolver_zheevx_strided_batched_raw(handle, evect, erange, uplo, &
         n, c_loc(A), lda, strideA, vl, vu, il, iu, abstol, c_loc(nev), c_loc(W), strideW, c_loc( &
         Z), ldz, strideZ, c_loc(ifail), strideF, c_loc(info), batch_count)
@@ -72778,6 +74715,11 @@ contains
       real(c_float), target :: E(..)
       integer(c_int), target :: info(..)
       integer(c_int) :: ssygv
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
+      if (.not. is_contiguous(D)) error stop "D: array must be contiguous"
+      if (.not. is_contiguous(E)) error stop "E: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       ssygv = rocsolver_ssygv_raw(handle, itype, evect, uplo, n, c_loc(A), lda, c_loc(B), ldb, &
         c_loc(D), c_loc(E), c_loc(info))
     end function rocsolver_ssygv_native
@@ -72820,6 +74762,11 @@ contains
       real(c_double), target :: E(..)
       integer(c_int), target :: info(..)
       integer(c_int) :: dsygv
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
+      if (.not. is_contiguous(D)) error stop "D: array must be contiguous"
+      if (.not. is_contiguous(E)) error stop "E: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       dsygv = rocsolver_dsygv_raw(handle, itype, evect, uplo, n, c_loc(A), lda, c_loc(B), ldb, &
         c_loc(D), c_loc(E), c_loc(info))
     end function rocsolver_dsygv_native
@@ -72862,6 +74809,11 @@ contains
       real(c_float), target :: E(..)
       integer(c_int), target :: info(..)
       integer(c_int) :: chegv
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
+      if (.not. is_contiguous(D)) error stop "D: array must be contiguous"
+      if (.not. is_contiguous(E)) error stop "E: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       chegv = rocsolver_chegv_raw(handle, itype, evect, uplo, n, c_loc(A), lda, c_loc(B), ldb, &
         c_loc(D), c_loc(E), c_loc(info))
     end function rocsolver_chegv_native
@@ -72904,6 +74856,11 @@ contains
       real(c_double), target :: E(..)
       integer(c_int), target :: info(..)
       integer(c_int) :: zhegv
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
+      if (.not. is_contiguous(D)) error stop "D: array must be contiguous"
+      if (.not. is_contiguous(E)) error stop "E: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       zhegv = rocsolver_zhegv_raw(handle, itype, evect, uplo, n, c_loc(A), lda, c_loc(B), ldb, &
         c_loc(D), c_loc(E), c_loc(info))
     end function rocsolver_zhegv_native
@@ -72949,6 +74906,9 @@ contains
       integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: ssygv_batched
+      if (.not. is_contiguous(D)) error stop "D: array must be contiguous"
+      if (.not. is_contiguous(E)) error stop "E: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       ssygv_batched = rocsolver_ssygv_batched_raw(handle, itype, evect, uplo, n, A, lda, B, ldb, &
         c_loc(D), strideD, c_loc(E), strideE, c_loc(info), batch_count)
     end function rocsolver_ssygv_batched_native
@@ -72998,6 +74958,9 @@ contains
       integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: dsygv_batched
+      if (.not. is_contiguous(D)) error stop "D: array must be contiguous"
+      if (.not. is_contiguous(E)) error stop "E: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       dsygv_batched = rocsolver_dsygv_batched_raw(handle, itype, evect, uplo, n, A, lda, B, ldb, &
         c_loc(D), strideD, c_loc(E), strideE, c_loc(info), batch_count)
     end function rocsolver_dsygv_batched_native
@@ -73047,6 +75010,9 @@ contains
       integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: chegv_batched
+      if (.not. is_contiguous(D)) error stop "D: array must be contiguous"
+      if (.not. is_contiguous(E)) error stop "E: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       chegv_batched = rocsolver_chegv_batched_raw(handle, itype, evect, uplo, n, A, lda, B, ldb, &
         c_loc(D), strideD, c_loc(E), strideE, c_loc(info), batch_count)
     end function rocsolver_chegv_batched_native
@@ -73096,6 +75062,9 @@ contains
       integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: zhegv_batched
+      if (.not. is_contiguous(D)) error stop "D: array must be contiguous"
+      if (.not. is_contiguous(E)) error stop "E: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       zhegv_batched = rocsolver_zhegv_batched_raw(handle, itype, evect, uplo, n, A, lda, B, ldb, &
         c_loc(D), strideD, c_loc(E), strideE, c_loc(info), batch_count)
     end function rocsolver_zhegv_batched_native
@@ -73148,6 +75117,11 @@ contains
       integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: ssygv_strided_batched
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
+      if (.not. is_contiguous(D)) error stop "D: array must be contiguous"
+      if (.not. is_contiguous(E)) error stop "E: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       ssygv_strided_batched = rocsolver_ssygv_strided_batched_raw(handle, itype, evect, uplo, n, &
         c_loc(A), lda, strideA, c_loc(B), ldb, strideB, c_loc(D), strideD, c_loc(E), strideE, &
         c_loc(info), batch_count)
@@ -73203,6 +75177,11 @@ contains
       integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: dsygv_strided_batched
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
+      if (.not. is_contiguous(D)) error stop "D: array must be contiguous"
+      if (.not. is_contiguous(E)) error stop "E: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       dsygv_strided_batched = rocsolver_dsygv_strided_batched_raw(handle, itype, evect, uplo, n, &
         c_loc(A), lda, strideA, c_loc(B), ldb, strideB, c_loc(D), strideD, c_loc(E), strideE, &
         c_loc(info), batch_count)
@@ -73258,6 +75237,11 @@ contains
       integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: chegv_strided_batched
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
+      if (.not. is_contiguous(D)) error stop "D: array must be contiguous"
+      if (.not. is_contiguous(E)) error stop "E: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       chegv_strided_batched = rocsolver_chegv_strided_batched_raw(handle, itype, evect, uplo, n, &
         c_loc(A), lda, strideA, c_loc(B), ldb, strideB, c_loc(D), strideD, c_loc(E), strideE, &
         c_loc(info), batch_count)
@@ -73313,6 +75297,11 @@ contains
       integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: zhegv_strided_batched
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
+      if (.not. is_contiguous(D)) error stop "D: array must be contiguous"
+      if (.not. is_contiguous(E)) error stop "E: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       zhegv_strided_batched = rocsolver_zhegv_strided_batched_raw(handle, itype, evect, uplo, n, &
         c_loc(A), lda, strideA, c_loc(B), ldb, strideB, c_loc(D), strideD, c_loc(E), strideE, &
         c_loc(info), batch_count)
@@ -73362,6 +75351,11 @@ contains
       real(c_float), target :: E(..)
       integer(c_int), target :: info(..)
       integer(c_int) :: ssygvd
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
+      if (.not. is_contiguous(D)) error stop "D: array must be contiguous"
+      if (.not. is_contiguous(E)) error stop "E: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       ssygvd = rocsolver_ssygvd_raw(handle, itype, evect, uplo, n, c_loc(A), lda, c_loc(B), ldb, &
         c_loc(D), c_loc(E), c_loc(info))
     end function rocsolver_ssygvd_native
@@ -73404,6 +75398,11 @@ contains
       real(c_double), target :: E(..)
       integer(c_int), target :: info(..)
       integer(c_int) :: dsygvd
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
+      if (.not. is_contiguous(D)) error stop "D: array must be contiguous"
+      if (.not. is_contiguous(E)) error stop "E: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       dsygvd = rocsolver_dsygvd_raw(handle, itype, evect, uplo, n, c_loc(A), lda, c_loc(B), ldb, &
         c_loc(D), c_loc(E), c_loc(info))
     end function rocsolver_dsygvd_native
@@ -73446,6 +75445,11 @@ contains
       real(c_float), target :: E(..)
       integer(c_int), target :: info(..)
       integer(c_int) :: chegvd
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
+      if (.not. is_contiguous(D)) error stop "D: array must be contiguous"
+      if (.not. is_contiguous(E)) error stop "E: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       chegvd = rocsolver_chegvd_raw(handle, itype, evect, uplo, n, c_loc(A), lda, c_loc(B), ldb, &
         c_loc(D), c_loc(E), c_loc(info))
     end function rocsolver_chegvd_native
@@ -73488,6 +75492,11 @@ contains
       real(c_double), target :: E(..)
       integer(c_int), target :: info(..)
       integer(c_int) :: zhegvd
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
+      if (.not. is_contiguous(D)) error stop "D: array must be contiguous"
+      if (.not. is_contiguous(E)) error stop "E: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       zhegvd = rocsolver_zhegvd_raw(handle, itype, evect, uplo, n, c_loc(A), lda, c_loc(B), ldb, &
         c_loc(D), c_loc(E), c_loc(info))
     end function rocsolver_zhegvd_native
@@ -73533,6 +75542,9 @@ contains
       integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: ssygvd_batched
+      if (.not. is_contiguous(D)) error stop "D: array must be contiguous"
+      if (.not. is_contiguous(E)) error stop "E: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       ssygvd_batched = rocsolver_ssygvd_batched_raw(handle, itype, evect, uplo, n, A, lda, B, ldb, &
         c_loc(D), strideD, c_loc(E), strideE, c_loc(info), batch_count)
     end function rocsolver_ssygvd_batched_native
@@ -73582,6 +75594,9 @@ contains
       integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: dsygvd_batched
+      if (.not. is_contiguous(D)) error stop "D: array must be contiguous"
+      if (.not. is_contiguous(E)) error stop "E: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       dsygvd_batched = rocsolver_dsygvd_batched_raw(handle, itype, evect, uplo, n, A, lda, B, ldb, &
         c_loc(D), strideD, c_loc(E), strideE, c_loc(info), batch_count)
     end function rocsolver_dsygvd_batched_native
@@ -73631,6 +75646,9 @@ contains
       integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: chegvd_batched
+      if (.not. is_contiguous(D)) error stop "D: array must be contiguous"
+      if (.not. is_contiguous(E)) error stop "E: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       chegvd_batched = rocsolver_chegvd_batched_raw(handle, itype, evect, uplo, n, A, lda, B, ldb, &
         c_loc(D), strideD, c_loc(E), strideE, c_loc(info), batch_count)
     end function rocsolver_chegvd_batched_native
@@ -73680,6 +75698,9 @@ contains
       integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: zhegvd_batched
+      if (.not. is_contiguous(D)) error stop "D: array must be contiguous"
+      if (.not. is_contiguous(E)) error stop "E: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       zhegvd_batched = rocsolver_zhegvd_batched_raw(handle, itype, evect, uplo, n, A, lda, B, ldb, &
         c_loc(D), strideD, c_loc(E), strideE, c_loc(info), batch_count)
     end function rocsolver_zhegvd_batched_native
@@ -73732,6 +75753,11 @@ contains
       integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: ssygvd_strided_batched
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
+      if (.not. is_contiguous(D)) error stop "D: array must be contiguous"
+      if (.not. is_contiguous(E)) error stop "E: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       ssygvd_strided_batched = rocsolver_ssygvd_strided_batched_raw(handle, itype, evect, uplo, n, &
         c_loc(A), lda, strideA, c_loc(B), ldb, strideB, c_loc(D), strideD, c_loc(E), strideE, &
         c_loc(info), batch_count)
@@ -73788,6 +75814,11 @@ contains
       integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: dsygvd_strided_batched
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
+      if (.not. is_contiguous(D)) error stop "D: array must be contiguous"
+      if (.not. is_contiguous(E)) error stop "E: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       dsygvd_strided_batched = rocsolver_dsygvd_strided_batched_raw(handle, itype, evect, uplo, n, &
         c_loc(A), lda, strideA, c_loc(B), ldb, strideB, c_loc(D), strideD, c_loc(E), strideE, &
         c_loc(info), batch_count)
@@ -73844,6 +75875,11 @@ contains
       integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: chegvd_strided_batched
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
+      if (.not. is_contiguous(D)) error stop "D: array must be contiguous"
+      if (.not. is_contiguous(E)) error stop "E: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       chegvd_strided_batched = rocsolver_chegvd_strided_batched_raw(handle, itype, evect, uplo, n, &
         c_loc(A), lda, strideA, c_loc(B), ldb, strideB, c_loc(D), strideD, c_loc(E), strideE, &
         c_loc(info), batch_count)
@@ -73900,6 +75936,11 @@ contains
       integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: zhegvd_strided_batched
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
+      if (.not. is_contiguous(D)) error stop "D: array must be contiguous"
+      if (.not. is_contiguous(E)) error stop "E: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       zhegvd_strided_batched = rocsolver_zhegvd_strided_batched_raw(handle, itype, evect, uplo, n, &
         c_loc(A), lda, strideA, c_loc(B), ldb, strideB, c_loc(D), strideD, c_loc(E), strideE, &
         c_loc(info), batch_count)
@@ -73953,6 +75994,12 @@ contains
       real(c_float), target :: W(..)
       integer(c_int), target :: info(..)
       integer(c_int) :: ssygvj
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
+      if (.not. is_contiguous(residual)) error stop "residual: array must be contiguous"
+      if (.not. is_contiguous(n_sweeps)) error stop "n_sweeps: array must be contiguous"
+      if (.not. is_contiguous(W)) error stop "W: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       ssygvj = rocsolver_ssygvj_raw(handle, itype, evect, uplo, n, c_loc(A), lda, c_loc(B), ldb, &
         abstol, c_loc(residual), max_sweeps, c_loc(n_sweeps), c_loc(W), c_loc(info))
     end function rocsolver_ssygvj_native
@@ -74002,6 +76049,12 @@ contains
       real(c_double), target :: W(..)
       integer(c_int), target :: info(..)
       integer(c_int) :: dsygvj
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
+      if (.not. is_contiguous(residual)) error stop "residual: array must be contiguous"
+      if (.not. is_contiguous(n_sweeps)) error stop "n_sweeps: array must be contiguous"
+      if (.not. is_contiguous(W)) error stop "W: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       dsygvj = rocsolver_dsygvj_raw(handle, itype, evect, uplo, n, c_loc(A), lda, c_loc(B), ldb, &
         abstol, c_loc(residual), max_sweeps, c_loc(n_sweeps), c_loc(W), c_loc(info))
     end function rocsolver_dsygvj_native
@@ -74051,6 +76104,12 @@ contains
       real(c_float), target :: W(..)
       integer(c_int), target :: info(..)
       integer(c_int) :: chegvj
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
+      if (.not. is_contiguous(residual)) error stop "residual: array must be contiguous"
+      if (.not. is_contiguous(n_sweeps)) error stop "n_sweeps: array must be contiguous"
+      if (.not. is_contiguous(W)) error stop "W: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       chegvj = rocsolver_chegvj_raw(handle, itype, evect, uplo, n, c_loc(A), lda, c_loc(B), ldb, &
         abstol, c_loc(residual), max_sweeps, c_loc(n_sweeps), c_loc(W), c_loc(info))
     end function rocsolver_chegvj_native
@@ -74100,6 +76159,12 @@ contains
       real(c_double), target :: W(..)
       integer(c_int), target :: info(..)
       integer(c_int) :: zhegvj
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
+      if (.not. is_contiguous(residual)) error stop "residual: array must be contiguous"
+      if (.not. is_contiguous(n_sweeps)) error stop "n_sweeps: array must be contiguous"
+      if (.not. is_contiguous(W)) error stop "W: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       zhegvj = rocsolver_zhegvj_raw(handle, itype, evect, uplo, n, c_loc(A), lda, c_loc(B), ldb, &
         abstol, c_loc(residual), max_sweeps, c_loc(n_sweeps), c_loc(W), c_loc(info))
     end function rocsolver_zhegvj_native
@@ -74152,6 +76217,10 @@ contains
       integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: ssygvj_batched
+      if (.not. is_contiguous(residual)) error stop "residual: array must be contiguous"
+      if (.not. is_contiguous(n_sweeps)) error stop "n_sweeps: array must be contiguous"
+      if (.not. is_contiguous(W)) error stop "W: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       ssygvj_batched = rocsolver_ssygvj_batched_raw(handle, itype, evect, uplo, n, A, lda, B, ldb, &
         abstol, c_loc(residual), max_sweeps, c_loc(n_sweeps), c_loc(W), strideW, c_loc(info), &
         batch_count)
@@ -74207,6 +76276,10 @@ contains
       integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: dsygvj_batched
+      if (.not. is_contiguous(residual)) error stop "residual: array must be contiguous"
+      if (.not. is_contiguous(n_sweeps)) error stop "n_sweeps: array must be contiguous"
+      if (.not. is_contiguous(W)) error stop "W: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       dsygvj_batched = rocsolver_dsygvj_batched_raw(handle, itype, evect, uplo, n, A, lda, B, ldb, &
         abstol, c_loc(residual), max_sweeps, c_loc(n_sweeps), c_loc(W), strideW, c_loc(info), &
         batch_count)
@@ -74262,6 +76335,10 @@ contains
       integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: chegvj_batched
+      if (.not. is_contiguous(residual)) error stop "residual: array must be contiguous"
+      if (.not. is_contiguous(n_sweeps)) error stop "n_sweeps: array must be contiguous"
+      if (.not. is_contiguous(W)) error stop "W: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       chegvj_batched = rocsolver_chegvj_batched_raw(handle, itype, evect, uplo, n, A, lda, B, ldb, &
         abstol, c_loc(residual), max_sweeps, c_loc(n_sweeps), c_loc(W), strideW, c_loc(info), &
         batch_count)
@@ -74317,6 +76394,10 @@ contains
       integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: zhegvj_batched
+      if (.not. is_contiguous(residual)) error stop "residual: array must be contiguous"
+      if (.not. is_contiguous(n_sweeps)) error stop "n_sweeps: array must be contiguous"
+      if (.not. is_contiguous(W)) error stop "W: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       zhegvj_batched = rocsolver_zhegvj_batched_raw(handle, itype, evect, uplo, n, A, lda, B, ldb, &
         abstol, c_loc(residual), max_sweeps, c_loc(n_sweeps), c_loc(W), strideW, c_loc(info), &
         batch_count)
@@ -74374,6 +76455,12 @@ contains
       integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: ssygvj_strided_batched
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
+      if (.not. is_contiguous(residual)) error stop "residual: array must be contiguous"
+      if (.not. is_contiguous(n_sweeps)) error stop "n_sweeps: array must be contiguous"
+      if (.not. is_contiguous(W)) error stop "W: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       ssygvj_strided_batched = rocsolver_ssygvj_strided_batched_raw(handle, itype, evect, uplo, n, &
         c_loc(A), lda, strideA, c_loc(B), ldb, strideB, abstol, c_loc(residual), max_sweeps, &
         c_loc(n_sweeps), c_loc(W), strideW, c_loc(info), batch_count)
@@ -74435,6 +76522,12 @@ contains
       integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: dsygvj_strided_batched
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
+      if (.not. is_contiguous(residual)) error stop "residual: array must be contiguous"
+      if (.not. is_contiguous(n_sweeps)) error stop "n_sweeps: array must be contiguous"
+      if (.not. is_contiguous(W)) error stop "W: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       dsygvj_strided_batched = rocsolver_dsygvj_strided_batched_raw(handle, itype, evect, uplo, n, &
         c_loc(A), lda, strideA, c_loc(B), ldb, strideB, abstol, c_loc(residual), max_sweeps, &
         c_loc(n_sweeps), c_loc(W), strideW, c_loc(info), batch_count)
@@ -74496,6 +76589,12 @@ contains
       integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: chegvj_strided_batched
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
+      if (.not. is_contiguous(residual)) error stop "residual: array must be contiguous"
+      if (.not. is_contiguous(n_sweeps)) error stop "n_sweeps: array must be contiguous"
+      if (.not. is_contiguous(W)) error stop "W: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       chegvj_strided_batched = rocsolver_chegvj_strided_batched_raw(handle, itype, evect, uplo, n, &
         c_loc(A), lda, strideA, c_loc(B), ldb, strideB, abstol, c_loc(residual), max_sweeps, &
         c_loc(n_sweeps), c_loc(W), strideW, c_loc(info), batch_count)
@@ -74557,6 +76656,12 @@ contains
       integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: zhegvj_strided_batched
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
+      if (.not. is_contiguous(residual)) error stop "residual: array must be contiguous"
+      if (.not. is_contiguous(n_sweeps)) error stop "n_sweeps: array must be contiguous"
+      if (.not. is_contiguous(W)) error stop "W: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       zhegvj_strided_batched = rocsolver_zhegvj_strided_batched_raw(handle, itype, evect, uplo, n, &
         c_loc(A), lda, strideA, c_loc(B), ldb, strideB, abstol, c_loc(residual), max_sweeps, &
         c_loc(n_sweeps), c_loc(W), strideW, c_loc(info), batch_count)
@@ -74619,6 +76724,13 @@ contains
       integer(c_int), target :: ifail(..)
       integer(c_int), target :: info(..)
       integer(c_int) :: ssygvx
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
+      if (.not. is_contiguous(nev)) error stop "nev: array must be contiguous"
+      if (.not. is_contiguous(W)) error stop "W: array must be contiguous"
+      if (.not. is_contiguous(Z)) error stop "Z: array must be contiguous"
+      if (.not. is_contiguous(ifail)) error stop "ifail: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       ssygvx = rocsolver_ssygvx_raw(handle, itype, evect, erange, uplo, n, c_loc(A), lda, c_loc( &
         B), ldb, vl, vu, il, iu, abstol, c_loc(nev), c_loc(W), c_loc(Z), ldz, c_loc(ifail), c_loc( &
         info))
@@ -74681,6 +76793,13 @@ contains
       integer(c_int), target :: ifail(..)
       integer(c_int), target :: info(..)
       integer(c_int) :: dsygvx
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
+      if (.not. is_contiguous(nev)) error stop "nev: array must be contiguous"
+      if (.not. is_contiguous(W)) error stop "W: array must be contiguous"
+      if (.not. is_contiguous(Z)) error stop "Z: array must be contiguous"
+      if (.not. is_contiguous(ifail)) error stop "ifail: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       dsygvx = rocsolver_dsygvx_raw(handle, itype, evect, erange, uplo, n, c_loc(A), lda, c_loc( &
         B), ldb, vl, vu, il, iu, abstol, c_loc(nev), c_loc(W), c_loc(Z), ldz, c_loc(ifail), c_loc( &
         info))
@@ -74743,6 +76862,13 @@ contains
       integer(c_int), target :: ifail(..)
       integer(c_int), target :: info(..)
       integer(c_int) :: chegvx
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
+      if (.not. is_contiguous(nev)) error stop "nev: array must be contiguous"
+      if (.not. is_contiguous(W)) error stop "W: array must be contiguous"
+      if (.not. is_contiguous(Z)) error stop "Z: array must be contiguous"
+      if (.not. is_contiguous(ifail)) error stop "ifail: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       chegvx = rocsolver_chegvx_raw(handle, itype, evect, erange, uplo, n, c_loc(A), lda, c_loc( &
         B), ldb, vl, vu, il, iu, abstol, c_loc(nev), c_loc(W), c_loc(Z), ldz, c_loc(ifail), c_loc( &
         info))
@@ -74805,6 +76931,13 @@ contains
       integer(c_int), target :: ifail(..)
       integer(c_int), target :: info(..)
       integer(c_int) :: zhegvx
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
+      if (.not. is_contiguous(nev)) error stop "nev: array must be contiguous"
+      if (.not. is_contiguous(W)) error stop "W: array must be contiguous"
+      if (.not. is_contiguous(Z)) error stop "Z: array must be contiguous"
+      if (.not. is_contiguous(ifail)) error stop "ifail: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       zhegvx = rocsolver_zhegvx_raw(handle, itype, evect, erange, uplo, n, c_loc(A), lda, c_loc( &
         B), ldb, vl, vu, il, iu, abstol, c_loc(nev), c_loc(W), c_loc(Z), ldz, c_loc(ifail), c_loc( &
         info))
@@ -74871,6 +77004,10 @@ contains
       integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: ssygvx_batched
+      if (.not. is_contiguous(nev)) error stop "nev: array must be contiguous"
+      if (.not. is_contiguous(W)) error stop "W: array must be contiguous"
+      if (.not. is_contiguous(ifail)) error stop "ifail: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       ssygvx_batched = rocsolver_ssygvx_batched_raw(handle, itype, evect, erange, uplo, n, A, lda, &
         B, ldb, vl, vu, il, iu, abstol, c_loc(nev), c_loc(W), strideW, Z, ldz, c_loc(ifail), &
         strideF, c_loc(info), batch_count)
@@ -74942,6 +77079,10 @@ contains
       integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: dsygvx_batched
+      if (.not. is_contiguous(nev)) error stop "nev: array must be contiguous"
+      if (.not. is_contiguous(W)) error stop "W: array must be contiguous"
+      if (.not. is_contiguous(ifail)) error stop "ifail: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       dsygvx_batched = rocsolver_dsygvx_batched_raw(handle, itype, evect, erange, uplo, n, A, lda, &
         B, ldb, vl, vu, il, iu, abstol, c_loc(nev), c_loc(W), strideW, Z, ldz, c_loc(ifail), &
         strideF, c_loc(info), batch_count)
@@ -75013,6 +77154,10 @@ contains
       integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: chegvx_batched
+      if (.not. is_contiguous(nev)) error stop "nev: array must be contiguous"
+      if (.not. is_contiguous(W)) error stop "W: array must be contiguous"
+      if (.not. is_contiguous(ifail)) error stop "ifail: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       chegvx_batched = rocsolver_chegvx_batched_raw(handle, itype, evect, erange, uplo, n, A, lda, &
         B, ldb, vl, vu, il, iu, abstol, c_loc(nev), c_loc(W), strideW, Z, ldz, c_loc(ifail), &
         strideF, c_loc(info), batch_count)
@@ -75084,6 +77229,10 @@ contains
       integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: zhegvx_batched
+      if (.not. is_contiguous(nev)) error stop "nev: array must be contiguous"
+      if (.not. is_contiguous(W)) error stop "W: array must be contiguous"
+      if (.not. is_contiguous(ifail)) error stop "ifail: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       zhegvx_batched = rocsolver_zhegvx_batched_raw(handle, itype, evect, erange, uplo, n, A, lda, &
         B, ldb, vl, vu, il, iu, abstol, c_loc(nev), c_loc(W), strideW, Z, ldz, c_loc(ifail), &
         strideF, c_loc(info), batch_count)
@@ -75158,6 +77307,13 @@ contains
       integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: ssygvx_strided_batched
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
+      if (.not. is_contiguous(nev)) error stop "nev: array must be contiguous"
+      if (.not. is_contiguous(W)) error stop "W: array must be contiguous"
+      if (.not. is_contiguous(Z)) error stop "Z: array must be contiguous"
+      if (.not. is_contiguous(ifail)) error stop "ifail: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       ssygvx_strided_batched = rocsolver_ssygvx_strided_batched_raw(handle, itype, evect, erange, &
         uplo, n, c_loc(A), lda, strideA, c_loc(B), ldb, strideB, vl, vu, il, iu, abstol, c_loc( &
         nev), c_loc(W), strideW, c_loc(Z), ldz, strideZ, c_loc(ifail), strideF, c_loc(info), &
@@ -75236,6 +77392,13 @@ contains
       integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: dsygvx_strided_batched
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
+      if (.not. is_contiguous(nev)) error stop "nev: array must be contiguous"
+      if (.not. is_contiguous(W)) error stop "W: array must be contiguous"
+      if (.not. is_contiguous(Z)) error stop "Z: array must be contiguous"
+      if (.not. is_contiguous(ifail)) error stop "ifail: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       dsygvx_strided_batched = rocsolver_dsygvx_strided_batched_raw(handle, itype, evect, erange, &
         uplo, n, c_loc(A), lda, strideA, c_loc(B), ldb, strideB, vl, vu, il, iu, abstol, c_loc( &
         nev), c_loc(W), strideW, c_loc(Z), ldz, strideZ, c_loc(ifail), strideF, c_loc(info), &
@@ -75314,6 +77477,13 @@ contains
       integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: chegvx_strided_batched
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
+      if (.not. is_contiguous(nev)) error stop "nev: array must be contiguous"
+      if (.not. is_contiguous(W)) error stop "W: array must be contiguous"
+      if (.not. is_contiguous(Z)) error stop "Z: array must be contiguous"
+      if (.not. is_contiguous(ifail)) error stop "ifail: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       chegvx_strided_batched = rocsolver_chegvx_strided_batched_raw(handle, itype, evect, erange, &
         uplo, n, c_loc(A), lda, strideA, c_loc(B), ldb, strideB, vl, vu, il, iu, abstol, c_loc( &
         nev), c_loc(W), strideW, c_loc(Z), ldz, strideZ, c_loc(ifail), strideF, c_loc(info), &
@@ -75392,6 +77562,13 @@ contains
       integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: zhegvx_strided_batched
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
+      if (.not. is_contiguous(nev)) error stop "nev: array must be contiguous"
+      if (.not. is_contiguous(W)) error stop "W: array must be contiguous"
+      if (.not. is_contiguous(Z)) error stop "Z: array must be contiguous"
+      if (.not. is_contiguous(ifail)) error stop "ifail: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       zhegvx_strided_batched = rocsolver_zhegvx_strided_batched_raw(handle, itype, evect, erange, &
         uplo, n, c_loc(A), lda, strideA, c_loc(B), ldb, strideB, vl, vu, il, iu, abstol, c_loc( &
         nev), c_loc(W), strideW, c_loc(Z), ldz, strideZ, c_loc(ifail), strideF, c_loc(info), &
@@ -75450,6 +77627,10 @@ contains
       integer(c_int), value :: ldc
       integer(c_int), target :: info(..)
       integer(c_int) :: sgetri_outofplace
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(ipiv)) error stop "ipiv: array must be contiguous"
+      if (.not. is_contiguous(C)) error stop "C: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       sgetri_outofplace = rocsolver_sgetri_outofplace_raw(handle, n, c_loc(A), lda, c_loc(ipiv), &
         c_loc(C), ldc, c_loc(info))
     end function rocsolver_sgetri_outofplace_native
@@ -75484,6 +77665,10 @@ contains
       integer(c_int), value :: ldc
       integer(c_int), target :: info(..)
       integer(c_int) :: dgetri_outofplace
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(ipiv)) error stop "ipiv: array must be contiguous"
+      if (.not. is_contiguous(C)) error stop "C: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       dgetri_outofplace = rocsolver_dgetri_outofplace_raw(handle, n, c_loc(A), lda, c_loc(ipiv), &
         c_loc(C), ldc, c_loc(info))
     end function rocsolver_dgetri_outofplace_native
@@ -75518,6 +77703,10 @@ contains
       integer(c_int), value :: ldc
       integer(c_int), target :: info(..)
       integer(c_int) :: cgetri_outofplace
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(ipiv)) error stop "ipiv: array must be contiguous"
+      if (.not. is_contiguous(C)) error stop "C: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       cgetri_outofplace = rocsolver_cgetri_outofplace_raw(handle, n, c_loc(A), lda, c_loc(ipiv), &
         c_loc(C), ldc, c_loc(info))
     end function rocsolver_cgetri_outofplace_native
@@ -75552,6 +77741,10 @@ contains
       integer(c_int), value :: ldc
       integer(c_int), target :: info(..)
       integer(c_int) :: zgetri_outofplace
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(ipiv)) error stop "ipiv: array must be contiguous"
+      if (.not. is_contiguous(C)) error stop "C: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       zgetri_outofplace = rocsolver_zgetri_outofplace_raw(handle, n, c_loc(A), lda, c_loc(ipiv), &
         c_loc(C), ldc, c_loc(info))
     end function rocsolver_zgetri_outofplace_native
@@ -75588,6 +77781,8 @@ contains
       integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: sgetri_outofplace_batched
+      if (.not. is_contiguous(ipiv)) error stop "ipiv: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       sgetri_outofplace_batched = rocsolver_sgetri_outofplace_batched_raw(handle, n, A, lda, &
         c_loc(ipiv), strideP, C, ldc, c_loc(info), batch_count)
     end function rocsolver_sgetri_outofplace_batched_native
@@ -75627,6 +77822,8 @@ contains
       integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: dgetri_outofplace_batched
+      if (.not. is_contiguous(ipiv)) error stop "ipiv: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       dgetri_outofplace_batched = rocsolver_dgetri_outofplace_batched_raw(handle, n, A, lda, &
         c_loc(ipiv), strideP, C, ldc, c_loc(info), batch_count)
     end function rocsolver_dgetri_outofplace_batched_native
@@ -75666,6 +77863,8 @@ contains
       integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: cgetri_outofplace_batched
+      if (.not. is_contiguous(ipiv)) error stop "ipiv: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       cgetri_outofplace_batched = rocsolver_cgetri_outofplace_batched_raw(handle, n, A, lda, &
         c_loc(ipiv), strideP, C, ldc, c_loc(info), batch_count)
     end function rocsolver_cgetri_outofplace_batched_native
@@ -75705,6 +77904,8 @@ contains
       integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: zgetri_outofplace_batched
+      if (.not. is_contiguous(ipiv)) error stop "ipiv: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       zgetri_outofplace_batched = rocsolver_zgetri_outofplace_batched_raw(handle, n, A, lda, &
         c_loc(ipiv), strideP, C, ldc, c_loc(info), batch_count)
     end function rocsolver_zgetri_outofplace_batched_native
@@ -75746,6 +77947,10 @@ contains
       integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: sgetri_outofplace_strided_batched
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(ipiv)) error stop "ipiv: array must be contiguous"
+      if (.not. is_contiguous(C)) error stop "C: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       sgetri_outofplace_strided_batched = rocsolver_sgetri_outofplace_strided_batched_raw(handle, &
         n, c_loc(A), lda, strideA, c_loc(ipiv), strideP, c_loc(C), ldc, strideC, c_loc(info), &
         batch_count)
@@ -75790,6 +77995,10 @@ contains
       integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: dgetri_outofplace_strided_batched
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(ipiv)) error stop "ipiv: array must be contiguous"
+      if (.not. is_contiguous(C)) error stop "C: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       dgetri_outofplace_strided_batched = rocsolver_dgetri_outofplace_strided_batched_raw(handle, &
         n, c_loc(A), lda, strideA, c_loc(ipiv), strideP, c_loc(C), ldc, strideC, c_loc(info), &
         batch_count)
@@ -75834,6 +78043,10 @@ contains
       integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: cgetri_outofplace_strided_batched
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(ipiv)) error stop "ipiv: array must be contiguous"
+      if (.not. is_contiguous(C)) error stop "C: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       cgetri_outofplace_strided_batched = rocsolver_cgetri_outofplace_strided_batched_raw(handle, &
         n, c_loc(A), lda, strideA, c_loc(ipiv), strideP, c_loc(C), ldc, strideC, c_loc(info), &
         batch_count)
@@ -75878,6 +78091,10 @@ contains
       integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: zgetri_outofplace_strided_batched
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(ipiv)) error stop "ipiv: array must be contiguous"
+      if (.not. is_contiguous(C)) error stop "C: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       zgetri_outofplace_strided_batched = rocsolver_zgetri_outofplace_strided_batched_raw(handle, &
         n, c_loc(A), lda, strideA, c_loc(ipiv), strideP, c_loc(C), ldc, strideC, c_loc(info), &
         batch_count)
@@ -75917,6 +78134,9 @@ contains
       integer(c_int), value :: ldc
       integer(c_int), target :: info(..)
       integer(c_int) :: sgetri_npvt_outofplace
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(C)) error stop "C: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       sgetri_npvt_outofplace = rocsolver_sgetri_npvt_outofplace_raw(handle, n, c_loc(A), lda, &
         c_loc(C), ldc, c_loc(info))
     end function rocsolver_sgetri_npvt_outofplace_native
@@ -75950,6 +78170,9 @@ contains
       integer(c_int), value :: ldc
       integer(c_int), target :: info(..)
       integer(c_int) :: dgetri_npvt_outofplace
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(C)) error stop "C: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       dgetri_npvt_outofplace = rocsolver_dgetri_npvt_outofplace_raw(handle, n, c_loc(A), lda, &
         c_loc(C), ldc, c_loc(info))
     end function rocsolver_dgetri_npvt_outofplace_native
@@ -75983,6 +78206,9 @@ contains
       integer(c_int), value :: ldc
       integer(c_int), target :: info(..)
       integer(c_int) :: cgetri_npvt_outofplace
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(C)) error stop "C: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       cgetri_npvt_outofplace = rocsolver_cgetri_npvt_outofplace_raw(handle, n, c_loc(A), lda, &
         c_loc(C), ldc, c_loc(info))
     end function rocsolver_cgetri_npvt_outofplace_native
@@ -76016,6 +78242,9 @@ contains
       integer(c_int), value :: ldc
       integer(c_int), target :: info(..)
       integer(c_int) :: zgetri_npvt_outofplace
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(C)) error stop "C: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       zgetri_npvt_outofplace = rocsolver_zgetri_npvt_outofplace_raw(handle, n, c_loc(A), lda, &
         c_loc(C), ldc, c_loc(info))
     end function rocsolver_zgetri_npvt_outofplace_native
@@ -76050,6 +78279,7 @@ contains
       integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: sgetri_npvt_outofplace_batched
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       sgetri_npvt_outofplace_batched = rocsolver_sgetri_npvt_outofplace_batched_raw(handle, n, A, &
         lda, C, ldc, c_loc(info), batch_count)
     end function rocsolver_sgetri_npvt_outofplace_batched_native
@@ -76085,6 +78315,7 @@ contains
       integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: dgetri_npvt_outofplace_batched
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       dgetri_npvt_outofplace_batched = rocsolver_dgetri_npvt_outofplace_batched_raw(handle, n, A, &
         lda, C, ldc, c_loc(info), batch_count)
     end function rocsolver_dgetri_npvt_outofplace_batched_native
@@ -76120,6 +78351,7 @@ contains
       integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: cgetri_npvt_outofplace_batched
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       cgetri_npvt_outofplace_batched = rocsolver_cgetri_npvt_outofplace_batched_raw(handle, n, A, &
         lda, C, ldc, c_loc(info), batch_count)
     end function rocsolver_cgetri_npvt_outofplace_batched_native
@@ -76155,6 +78387,7 @@ contains
       integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: zgetri_npvt_outofplace_batched
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       zgetri_npvt_outofplace_batched = rocsolver_zgetri_npvt_outofplace_batched_raw(handle, n, A, &
         lda, C, ldc, c_loc(info), batch_count)
     end function rocsolver_zgetri_npvt_outofplace_batched_native
@@ -76192,6 +78425,9 @@ contains
       integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: sgetri_npvt_outofplace_strided_batched
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(C)) error stop "C: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       sgetri_npvt_outofplace_strided_batched = rocsolver_sgetri_npvt_outofplace_strided_batched_raw( &
         handle, n, c_loc(A), lda, strideA, c_loc(C), ldc, strideC, c_loc(info), batch_count)
     end function rocsolver_sgetri_npvt_outofplace_strided_batched_native
@@ -76231,6 +78467,9 @@ contains
       integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: dgetri_npvt_outofplace_strided_batched
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(C)) error stop "C: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       dgetri_npvt_outofplace_strided_batched = rocsolver_dgetri_npvt_outofplace_strided_batched_raw( &
         handle, n, c_loc(A), lda, strideA, c_loc(C), ldc, strideC, c_loc(info), batch_count)
     end function rocsolver_dgetri_npvt_outofplace_strided_batched_native
@@ -76270,6 +78509,9 @@ contains
       integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: cgetri_npvt_outofplace_strided_batched
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(C)) error stop "C: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       cgetri_npvt_outofplace_strided_batched = rocsolver_cgetri_npvt_outofplace_strided_batched_raw( &
         handle, n, c_loc(A), lda, strideA, c_loc(C), ldc, strideC, c_loc(info), batch_count)
     end function rocsolver_cgetri_npvt_outofplace_strided_batched_native
@@ -76309,6 +78551,9 @@ contains
       integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: zgetri_npvt_outofplace_strided_batched
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(C)) error stop "C: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       zgetri_npvt_outofplace_strided_batched = rocsolver_zgetri_npvt_outofplace_strided_batched_raw( &
         handle, n, c_loc(A), lda, strideA, c_loc(C), ldc, strideC, c_loc(info), batch_count)
     end function rocsolver_zgetri_npvt_outofplace_strided_batched_native
@@ -76344,6 +78589,8 @@ contains
       integer(c_int), value :: lda
       integer(c_int), target :: info(..)
       integer(c_int) :: strtri
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       strtri = rocsolver_strtri_raw(handle, uplo, diag, n, c_loc(A), lda, c_loc(info))
     end function rocsolver_strtri_native
 
@@ -76373,6 +78620,8 @@ contains
       integer(c_int), value :: lda
       integer(c_int), target :: info(..)
       integer(c_int) :: dtrtri
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       dtrtri = rocsolver_dtrtri_raw(handle, uplo, diag, n, c_loc(A), lda, c_loc(info))
     end function rocsolver_dtrtri_native
 
@@ -76402,6 +78651,8 @@ contains
       integer(c_int), value :: lda
       integer(c_int), target :: info(..)
       integer(c_int) :: ctrtri
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       ctrtri = rocsolver_ctrtri_raw(handle, uplo, diag, n, c_loc(A), lda, c_loc(info))
     end function rocsolver_ctrtri_native
 
@@ -76431,6 +78682,8 @@ contains
       integer(c_int), value :: lda
       integer(c_int), target :: info(..)
       integer(c_int) :: ztrtri
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       ztrtri = rocsolver_ztrtri_raw(handle, uplo, diag, n, c_loc(A), lda, c_loc(info))
     end function rocsolver_ztrtri_native
 
@@ -76462,6 +78715,7 @@ contains
       integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: strtri_batched
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       strtri_batched = rocsolver_strtri_batched_raw(handle, uplo, diag, n, A, lda, c_loc(info), &
         batch_count)
     end function rocsolver_strtri_batched_native
@@ -76497,6 +78751,7 @@ contains
       integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: dtrtri_batched
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       dtrtri_batched = rocsolver_dtrtri_batched_raw(handle, uplo, diag, n, A, lda, c_loc(info), &
         batch_count)
     end function rocsolver_dtrtri_batched_native
@@ -76532,6 +78787,7 @@ contains
       integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: ctrtri_batched
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       ctrtri_batched = rocsolver_ctrtri_batched_raw(handle, uplo, diag, n, A, lda, c_loc(info), &
         batch_count)
     end function rocsolver_ctrtri_batched_native
@@ -76567,6 +78823,7 @@ contains
       integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: ztrtri_batched
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       ztrtri_batched = rocsolver_ztrtri_batched_raw(handle, uplo, diag, n, A, lda, c_loc(info), &
         batch_count)
     end function rocsolver_ztrtri_batched_native
@@ -76603,6 +78860,8 @@ contains
       integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: strtri_strided_batched
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       strtri_strided_batched = rocsolver_strtri_strided_batched_raw(handle, uplo, diag, n, c_loc( &
         A), lda, strideA, c_loc(info), batch_count)
     end function rocsolver_strtri_strided_batched_native
@@ -76640,6 +78899,8 @@ contains
       integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: dtrtri_strided_batched
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       dtrtri_strided_batched = rocsolver_dtrtri_strided_batched_raw(handle, uplo, diag, n, c_loc( &
         A), lda, strideA, c_loc(info), batch_count)
     end function rocsolver_dtrtri_strided_batched_native
@@ -76677,6 +78938,8 @@ contains
       integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: ctrtri_strided_batched
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       ctrtri_strided_batched = rocsolver_ctrtri_strided_batched_raw(handle, uplo, diag, n, c_loc( &
         A), lda, strideA, c_loc(info), batch_count)
     end function rocsolver_ctrtri_strided_batched_native
@@ -76714,6 +78977,8 @@ contains
       integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: ztrtri_strided_batched
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       ztrtri_strided_batched = rocsolver_ztrtri_strided_batched_raw(handle, uplo, diag, n, c_loc( &
         A), lda, strideA, c_loc(info), batch_count)
     end function rocsolver_ztrtri_strided_batched_native
@@ -76748,6 +79013,9 @@ contains
       integer(c_int), target :: ipiv(..)
       integer(c_int), target :: info(..)
       integer(c_int) :: ssytf2
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(ipiv)) error stop "ipiv: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       ssytf2 = rocsolver_ssytf2_raw(handle, uplo, n, c_loc(A), lda, c_loc(ipiv), c_loc(info))
     end function rocsolver_ssytf2_native
 
@@ -76777,6 +79045,9 @@ contains
       integer(c_int), target :: ipiv(..)
       integer(c_int), target :: info(..)
       integer(c_int) :: dsytf2
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(ipiv)) error stop "ipiv: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       dsytf2 = rocsolver_dsytf2_raw(handle, uplo, n, c_loc(A), lda, c_loc(ipiv), c_loc(info))
     end function rocsolver_dsytf2_native
 
@@ -76806,6 +79077,9 @@ contains
       integer(c_int), target :: ipiv(..)
       integer(c_int), target :: info(..)
       integer(c_int) :: csytf2
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(ipiv)) error stop "ipiv: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       csytf2 = rocsolver_csytf2_raw(handle, uplo, n, c_loc(A), lda, c_loc(ipiv), c_loc(info))
     end function rocsolver_csytf2_native
 
@@ -76835,6 +79109,9 @@ contains
       integer(c_int), target :: ipiv(..)
       integer(c_int), target :: info(..)
       integer(c_int) :: zsytf2
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(ipiv)) error stop "ipiv: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       zsytf2 = rocsolver_zsytf2_raw(handle, uplo, n, c_loc(A), lda, c_loc(ipiv), c_loc(info))
     end function rocsolver_zsytf2_native
 
@@ -76867,6 +79144,8 @@ contains
       integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: ssytf2_batched
+      if (.not. is_contiguous(ipiv)) error stop "ipiv: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       ssytf2_batched = rocsolver_ssytf2_batched_raw(handle, uplo, n, A, lda, c_loc(ipiv), strideP, &
         c_loc(info), batch_count)
     end function rocsolver_ssytf2_batched_native
@@ -76904,6 +79183,8 @@ contains
       integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: dsytf2_batched
+      if (.not. is_contiguous(ipiv)) error stop "ipiv: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       dsytf2_batched = rocsolver_dsytf2_batched_raw(handle, uplo, n, A, lda, c_loc(ipiv), strideP, &
         c_loc(info), batch_count)
     end function rocsolver_dsytf2_batched_native
@@ -76941,6 +79222,8 @@ contains
       integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: csytf2_batched
+      if (.not. is_contiguous(ipiv)) error stop "ipiv: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       csytf2_batched = rocsolver_csytf2_batched_raw(handle, uplo, n, A, lda, c_loc(ipiv), strideP, &
         c_loc(info), batch_count)
     end function rocsolver_csytf2_batched_native
@@ -76978,6 +79261,8 @@ contains
       integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: zsytf2_batched
+      if (.not. is_contiguous(ipiv)) error stop "ipiv: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       zsytf2_batched = rocsolver_zsytf2_batched_raw(handle, uplo, n, A, lda, c_loc(ipiv), strideP, &
         c_loc(info), batch_count)
     end function rocsolver_zsytf2_batched_native
@@ -77016,6 +79301,9 @@ contains
       integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: ssytf2_strided_batched
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(ipiv)) error stop "ipiv: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       ssytf2_strided_batched = rocsolver_ssytf2_strided_batched_raw(handle, uplo, n, c_loc(A), &
         lda, strideA, c_loc(ipiv), strideP, c_loc(info), batch_count)
     end function rocsolver_ssytf2_strided_batched_native
@@ -77055,6 +79343,9 @@ contains
       integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: dsytf2_strided_batched
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(ipiv)) error stop "ipiv: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       dsytf2_strided_batched = rocsolver_dsytf2_strided_batched_raw(handle, uplo, n, c_loc(A), &
         lda, strideA, c_loc(ipiv), strideP, c_loc(info), batch_count)
     end function rocsolver_dsytf2_strided_batched_native
@@ -77094,6 +79385,9 @@ contains
       integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: csytf2_strided_batched
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(ipiv)) error stop "ipiv: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       csytf2_strided_batched = rocsolver_csytf2_strided_batched_raw(handle, uplo, n, c_loc(A), &
         lda, strideA, c_loc(ipiv), strideP, c_loc(info), batch_count)
     end function rocsolver_csytf2_strided_batched_native
@@ -77133,6 +79427,9 @@ contains
       integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: zsytf2_strided_batched
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(ipiv)) error stop "ipiv: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       zsytf2_strided_batched = rocsolver_zsytf2_strided_batched_raw(handle, uplo, n, c_loc(A), &
         lda, strideA, c_loc(ipiv), strideP, c_loc(info), batch_count)
     end function rocsolver_zsytf2_strided_batched_native
@@ -77168,6 +79465,9 @@ contains
       integer(c_int), target :: ipiv(..)
       integer(c_int), target :: info(..)
       integer(c_int) :: ssytrf
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(ipiv)) error stop "ipiv: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       ssytrf = rocsolver_ssytrf_raw(handle, uplo, n, c_loc(A), lda, c_loc(ipiv), c_loc(info))
     end function rocsolver_ssytrf_native
 
@@ -77197,6 +79497,9 @@ contains
       integer(c_int), target :: ipiv(..)
       integer(c_int), target :: info(..)
       integer(c_int) :: dsytrf
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(ipiv)) error stop "ipiv: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       dsytrf = rocsolver_dsytrf_raw(handle, uplo, n, c_loc(A), lda, c_loc(ipiv), c_loc(info))
     end function rocsolver_dsytrf_native
 
@@ -77226,6 +79529,9 @@ contains
       integer(c_int), target :: ipiv(..)
       integer(c_int), target :: info(..)
       integer(c_int) :: csytrf
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(ipiv)) error stop "ipiv: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       csytrf = rocsolver_csytrf_raw(handle, uplo, n, c_loc(A), lda, c_loc(ipiv), c_loc(info))
     end function rocsolver_csytrf_native
 
@@ -77255,6 +79561,9 @@ contains
       integer(c_int), target :: ipiv(..)
       integer(c_int), target :: info(..)
       integer(c_int) :: zsytrf
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(ipiv)) error stop "ipiv: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       zsytrf = rocsolver_zsytrf_raw(handle, uplo, n, c_loc(A), lda, c_loc(ipiv), c_loc(info))
     end function rocsolver_zsytrf_native
 
@@ -77287,6 +79596,8 @@ contains
       integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: ssytrf_batched
+      if (.not. is_contiguous(ipiv)) error stop "ipiv: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       ssytrf_batched = rocsolver_ssytrf_batched_raw(handle, uplo, n, A, lda, c_loc(ipiv), strideP, &
         c_loc(info), batch_count)
     end function rocsolver_ssytrf_batched_native
@@ -77324,6 +79635,8 @@ contains
       integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: dsytrf_batched
+      if (.not. is_contiguous(ipiv)) error stop "ipiv: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       dsytrf_batched = rocsolver_dsytrf_batched_raw(handle, uplo, n, A, lda, c_loc(ipiv), strideP, &
         c_loc(info), batch_count)
     end function rocsolver_dsytrf_batched_native
@@ -77361,6 +79674,8 @@ contains
       integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: csytrf_batched
+      if (.not. is_contiguous(ipiv)) error stop "ipiv: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       csytrf_batched = rocsolver_csytrf_batched_raw(handle, uplo, n, A, lda, c_loc(ipiv), strideP, &
         c_loc(info), batch_count)
     end function rocsolver_csytrf_batched_native
@@ -77398,6 +79713,8 @@ contains
       integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: zsytrf_batched
+      if (.not. is_contiguous(ipiv)) error stop "ipiv: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       zsytrf_batched = rocsolver_zsytrf_batched_raw(handle, uplo, n, A, lda, c_loc(ipiv), strideP, &
         c_loc(info), batch_count)
     end function rocsolver_zsytrf_batched_native
@@ -77436,6 +79753,9 @@ contains
       integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: ssytrf_strided_batched
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(ipiv)) error stop "ipiv: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       ssytrf_strided_batched = rocsolver_ssytrf_strided_batched_raw(handle, uplo, n, c_loc(A), &
         lda, strideA, c_loc(ipiv), strideP, c_loc(info), batch_count)
     end function rocsolver_ssytrf_strided_batched_native
@@ -77475,6 +79795,9 @@ contains
       integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: dsytrf_strided_batched
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(ipiv)) error stop "ipiv: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       dsytrf_strided_batched = rocsolver_dsytrf_strided_batched_raw(handle, uplo, n, c_loc(A), &
         lda, strideA, c_loc(ipiv), strideP, c_loc(info), batch_count)
     end function rocsolver_dsytrf_strided_batched_native
@@ -77514,6 +79837,9 @@ contains
       integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: csytrf_strided_batched
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(ipiv)) error stop "ipiv: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       csytrf_strided_batched = rocsolver_csytrf_strided_batched_raw(handle, uplo, n, c_loc(A), &
         lda, strideA, c_loc(ipiv), strideP, c_loc(info), batch_count)
     end function rocsolver_csytrf_strided_batched_native
@@ -77553,6 +79879,9 @@ contains
       integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: zsytrf_strided_batched
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(ipiv)) error stop "ipiv: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       zsytrf_strided_batched = rocsolver_zsytrf_strided_batched_raw(handle, uplo, n, c_loc(A), &
         lda, strideA, c_loc(ipiv), strideP, c_loc(info), batch_count)
     end function rocsolver_zsytrf_strided_batched_native
@@ -77592,6 +79921,10 @@ contains
       integer(c_int), value :: ldc
       integer(c_int), target :: info(..)
       integer(c_int) :: sgeblttrf_npvt
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
+      if (.not. is_contiguous(C)) error stop "C: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       sgeblttrf_npvt = rocsolver_sgeblttrf_npvt_raw(handle, nb, nblocks, c_loc(A), lda, c_loc(B), &
         ldb, c_loc(C), ldc, c_loc(info))
     end function rocsolver_sgeblttrf_npvt_native
@@ -77631,6 +79964,10 @@ contains
       integer(c_int), value :: ldc
       integer(c_int), target :: info(..)
       integer(c_int) :: dgeblttrf_npvt
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
+      if (.not. is_contiguous(C)) error stop "C: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       dgeblttrf_npvt = rocsolver_dgeblttrf_npvt_raw(handle, nb, nblocks, c_loc(A), lda, c_loc(B), &
         ldb, c_loc(C), ldc, c_loc(info))
     end function rocsolver_dgeblttrf_npvt_native
@@ -77670,6 +80007,10 @@ contains
       integer(c_int), value :: ldc
       integer(c_int), target :: info(..)
       integer(c_int) :: cgeblttrf_npvt
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
+      if (.not. is_contiguous(C)) error stop "C: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       cgeblttrf_npvt = rocsolver_cgeblttrf_npvt_raw(handle, nb, nblocks, c_loc(A), lda, c_loc(B), &
         ldb, c_loc(C), ldc, c_loc(info))
     end function rocsolver_cgeblttrf_npvt_native
@@ -77709,6 +80050,10 @@ contains
       integer(c_int), value :: ldc
       integer(c_int), target :: info(..)
       integer(c_int) :: zgeblttrf_npvt
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
+      if (.not. is_contiguous(C)) error stop "C: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       zgeblttrf_npvt = rocsolver_zgeblttrf_npvt_raw(handle, nb, nblocks, c_loc(A), lda, c_loc(B), &
         ldb, c_loc(C), ldc, c_loc(info))
     end function rocsolver_zgeblttrf_npvt_native
@@ -77749,6 +80094,7 @@ contains
       integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: sgeblttrf_npvt_batched
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       sgeblttrf_npvt_batched = rocsolver_sgeblttrf_npvt_batched_raw(handle, nb, nblocks, A, lda, &
         B, ldb, C, ldc, c_loc(info), batch_count)
     end function rocsolver_sgeblttrf_npvt_batched_native
@@ -77790,6 +80136,7 @@ contains
       integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: dgeblttrf_npvt_batched
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       dgeblttrf_npvt_batched = rocsolver_dgeblttrf_npvt_batched_raw(handle, nb, nblocks, A, lda, &
         B, ldb, C, ldc, c_loc(info), batch_count)
     end function rocsolver_dgeblttrf_npvt_batched_native
@@ -77831,6 +80178,7 @@ contains
       integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: cgeblttrf_npvt_batched
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       cgeblttrf_npvt_batched = rocsolver_cgeblttrf_npvt_batched_raw(handle, nb, nblocks, A, lda, &
         B, ldb, C, ldc, c_loc(info), batch_count)
     end function rocsolver_cgeblttrf_npvt_batched_native
@@ -77872,6 +80220,7 @@ contains
       integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: zgeblttrf_npvt_batched
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       zgeblttrf_npvt_batched = rocsolver_zgeblttrf_npvt_batched_raw(handle, nb, nblocks, A, lda, &
         B, ldb, C, ldc, c_loc(info), batch_count)
     end function rocsolver_zgeblttrf_npvt_batched_native
@@ -77916,6 +80265,10 @@ contains
       integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: sgeblttrf_npvt_strided_batched
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
+      if (.not. is_contiguous(C)) error stop "C: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       sgeblttrf_npvt_strided_batched = rocsolver_sgeblttrf_npvt_strided_batched_raw(handle, nb, &
         nblocks, c_loc(A), lda, strideA, c_loc(B), ldb, strideB, c_loc(C), ldc, strideC, c_loc( &
         info), batch_count)
@@ -77964,6 +80317,10 @@ contains
       integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: dgeblttrf_npvt_strided_batched
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
+      if (.not. is_contiguous(C)) error stop "C: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       dgeblttrf_npvt_strided_batched = rocsolver_dgeblttrf_npvt_strided_batched_raw(handle, nb, &
         nblocks, c_loc(A), lda, strideA, c_loc(B), ldb, strideB, c_loc(C), ldc, strideC, c_loc( &
         info), batch_count)
@@ -78012,6 +80369,10 @@ contains
       integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: cgeblttrf_npvt_strided_batched
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
+      if (.not. is_contiguous(C)) error stop "C: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       cgeblttrf_npvt_strided_batched = rocsolver_cgeblttrf_npvt_strided_batched_raw(handle, nb, &
         nblocks, c_loc(A), lda, strideA, c_loc(B), ldb, strideB, c_loc(C), ldc, strideC, c_loc( &
         info), batch_count)
@@ -78060,6 +80421,10 @@ contains
       integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: zgeblttrf_npvt_strided_batched
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
+      if (.not. is_contiguous(C)) error stop "C: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       zgeblttrf_npvt_strided_batched = rocsolver_zgeblttrf_npvt_strided_batched_raw(handle, nb, &
         nblocks, c_loc(A), lda, strideA, c_loc(B), ldb, strideB, c_loc(C), ldc, strideC, c_loc( &
         info), batch_count)
@@ -78112,6 +80477,10 @@ contains
       integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: sgeblttrf_npvt_interleaved_batched
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
+      if (.not. is_contiguous(C)) error stop "C: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       sgeblttrf_npvt_interleaved_batched = rocsolver_sgeblttrf_npvt_interleaved_batched_raw( &
         handle, nb, nblocks, c_loc(A), inca, lda, strideA, c_loc(B), incb, ldb, strideB, c_loc(C), &
         incc, ldc, strideC, c_loc(info), batch_count)
@@ -78169,6 +80538,10 @@ contains
       integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: dgeblttrf_npvt_interleaved_batched
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
+      if (.not. is_contiguous(C)) error stop "C: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       dgeblttrf_npvt_interleaved_batched = rocsolver_dgeblttrf_npvt_interleaved_batched_raw( &
         handle, nb, nblocks, c_loc(A), inca, lda, strideA, c_loc(B), incb, ldb, strideB, c_loc(C), &
         incc, ldc, strideC, c_loc(info), batch_count)
@@ -78226,6 +80599,10 @@ contains
       integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: cgeblttrf_npvt_interleaved_batched
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
+      if (.not. is_contiguous(C)) error stop "C: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       cgeblttrf_npvt_interleaved_batched = rocsolver_cgeblttrf_npvt_interleaved_batched_raw( &
         handle, nb, nblocks, c_loc(A), inca, lda, strideA, c_loc(B), incb, ldb, strideB, c_loc(C), &
         incc, ldc, strideC, c_loc(info), batch_count)
@@ -78283,6 +80660,10 @@ contains
       integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: zgeblttrf_npvt_interleaved_batched
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
+      if (.not. is_contiguous(C)) error stop "C: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       zgeblttrf_npvt_interleaved_batched = rocsolver_zgeblttrf_npvt_interleaved_batched_raw( &
         handle, nb, nblocks, c_loc(A), inca, lda, strideA, c_loc(B), incb, ldb, strideB, c_loc(C), &
         incc, ldc, strideC, c_loc(info), batch_count)
@@ -78334,6 +80715,10 @@ contains
       real(c_float), target :: X(..)
       integer(c_int), value :: ldx
       integer(c_int) :: sgeblttrs_npvt
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
+      if (.not. is_contiguous(C)) error stop "C: array must be contiguous"
+      if (.not. is_contiguous(X)) error stop "X: array must be contiguous"
       sgeblttrs_npvt = rocsolver_sgeblttrs_npvt_raw(handle, nb, nblocks, nrhs, c_loc(A), lda, &
         c_loc(B), ldb, c_loc(C), ldc, c_loc(X), ldx)
     end function rocsolver_sgeblttrs_npvt_native
@@ -78377,6 +80762,10 @@ contains
       real(c_double), target :: X(..)
       integer(c_int), value :: ldx
       integer(c_int) :: dgeblttrs_npvt
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
+      if (.not. is_contiguous(C)) error stop "C: array must be contiguous"
+      if (.not. is_contiguous(X)) error stop "X: array must be contiguous"
       dgeblttrs_npvt = rocsolver_dgeblttrs_npvt_raw(handle, nb, nblocks, nrhs, c_loc(A), lda, &
         c_loc(B), ldb, c_loc(C), ldc, c_loc(X), ldx)
     end function rocsolver_dgeblttrs_npvt_native
@@ -78420,6 +80809,10 @@ contains
       complex(c_float_complex), target :: X(..)
       integer(c_int), value :: ldx
       integer(c_int) :: cgeblttrs_npvt
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
+      if (.not. is_contiguous(C)) error stop "C: array must be contiguous"
+      if (.not. is_contiguous(X)) error stop "X: array must be contiguous"
       cgeblttrs_npvt = rocsolver_cgeblttrs_npvt_raw(handle, nb, nblocks, nrhs, c_loc(A), lda, &
         c_loc(B), ldb, c_loc(C), ldc, c_loc(X), ldx)
     end function rocsolver_cgeblttrs_npvt_native
@@ -78463,6 +80856,10 @@ contains
       complex(c_double_complex), target :: X(..)
       integer(c_int), value :: ldx
       integer(c_int) :: zgeblttrs_npvt
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
+      if (.not. is_contiguous(C)) error stop "C: array must be contiguous"
+      if (.not. is_contiguous(X)) error stop "X: array must be contiguous"
       zgeblttrs_npvt = rocsolver_zgeblttrs_npvt_raw(handle, nb, nblocks, nrhs, c_loc(A), lda, &
         c_loc(B), ldb, c_loc(C), ldc, c_loc(X), ldx)
     end function rocsolver_zgeblttrs_npvt_native
@@ -78604,6 +81001,10 @@ contains
       integer(c_long), value :: strideX
       integer(c_int), value :: batch_count
       integer(c_int) :: sgeblttrs_npvt_strided_batched
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
+      if (.not. is_contiguous(C)) error stop "C: array must be contiguous"
+      if (.not. is_contiguous(X)) error stop "X: array must be contiguous"
       sgeblttrs_npvt_strided_batched = rocsolver_sgeblttrs_npvt_strided_batched_raw(handle, nb, &
         nblocks, nrhs, c_loc(A), lda, strideA, c_loc(B), ldb, strideB, c_loc(C), ldc, strideC, &
         c_loc(X), ldx, strideX, batch_count)
@@ -78661,6 +81062,10 @@ contains
       integer(c_long), value :: strideX
       integer(c_int), value :: batch_count
       integer(c_int) :: dgeblttrs_npvt_strided_batched
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
+      if (.not. is_contiguous(C)) error stop "C: array must be contiguous"
+      if (.not. is_contiguous(X)) error stop "X: array must be contiguous"
       dgeblttrs_npvt_strided_batched = rocsolver_dgeblttrs_npvt_strided_batched_raw(handle, nb, &
         nblocks, nrhs, c_loc(A), lda, strideA, c_loc(B), ldb, strideB, c_loc(C), ldc, strideC, &
         c_loc(X), ldx, strideX, batch_count)
@@ -78718,6 +81123,10 @@ contains
       integer(c_long), value :: strideX
       integer(c_int), value :: batch_count
       integer(c_int) :: cgeblttrs_npvt_strided_batched
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
+      if (.not. is_contiguous(C)) error stop "C: array must be contiguous"
+      if (.not. is_contiguous(X)) error stop "X: array must be contiguous"
       cgeblttrs_npvt_strided_batched = rocsolver_cgeblttrs_npvt_strided_batched_raw(handle, nb, &
         nblocks, nrhs, c_loc(A), lda, strideA, c_loc(B), ldb, strideB, c_loc(C), ldc, strideC, &
         c_loc(X), ldx, strideX, batch_count)
@@ -78775,6 +81184,10 @@ contains
       integer(c_long), value :: strideX
       integer(c_int), value :: batch_count
       integer(c_int) :: zgeblttrs_npvt_strided_batched
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
+      if (.not. is_contiguous(C)) error stop "C: array must be contiguous"
+      if (.not. is_contiguous(X)) error stop "X: array must be contiguous"
       zgeblttrs_npvt_strided_batched = rocsolver_zgeblttrs_npvt_strided_batched_raw(handle, nb, &
         nblocks, nrhs, c_loc(A), lda, strideA, c_loc(B), ldb, strideB, c_loc(C), ldc, strideC, &
         c_loc(X), ldx, strideX, batch_count)
@@ -78836,6 +81249,10 @@ contains
       integer(c_long), value :: strideX
       integer(c_int), value :: batch_count
       integer(c_int) :: sgeblttrs_npvt_interleaved_batched
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
+      if (.not. is_contiguous(C)) error stop "C: array must be contiguous"
+      if (.not. is_contiguous(X)) error stop "X: array must be contiguous"
       sgeblttrs_npvt_interleaved_batched = rocsolver_sgeblttrs_npvt_interleaved_batched_raw( &
         handle, nb, nblocks, nrhs, c_loc(A), inca, lda, strideA, c_loc(B), incb, ldb, strideB, &
         c_loc(C), incc, ldc, strideC, c_loc(X), incx, ldx, strideX, batch_count)
@@ -78901,6 +81318,10 @@ contains
       integer(c_long), value :: strideX
       integer(c_int), value :: batch_count
       integer(c_int) :: dgeblttrs_npvt_interleaved_batched
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
+      if (.not. is_contiguous(C)) error stop "C: array must be contiguous"
+      if (.not. is_contiguous(X)) error stop "X: array must be contiguous"
       dgeblttrs_npvt_interleaved_batched = rocsolver_dgeblttrs_npvt_interleaved_batched_raw( &
         handle, nb, nblocks, nrhs, c_loc(A), inca, lda, strideA, c_loc(B), incb, ldb, strideB, &
         c_loc(C), incc, ldc, strideC, c_loc(X), incx, ldx, strideX, batch_count)
@@ -78966,6 +81387,10 @@ contains
       integer(c_long), value :: strideX
       integer(c_int), value :: batch_count
       integer(c_int) :: cgeblttrs_npvt_interleaved_batched
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
+      if (.not. is_contiguous(C)) error stop "C: array must be contiguous"
+      if (.not. is_contiguous(X)) error stop "X: array must be contiguous"
       cgeblttrs_npvt_interleaved_batched = rocsolver_cgeblttrs_npvt_interleaved_batched_raw( &
         handle, nb, nblocks, nrhs, c_loc(A), inca, lda, strideA, c_loc(B), incb, ldb, strideB, &
         c_loc(C), incc, ldc, strideC, c_loc(X), incx, ldx, strideX, batch_count)
@@ -79031,6 +81456,10 @@ contains
       integer(c_long), value :: strideX
       integer(c_int), value :: batch_count
       integer(c_int) :: zgeblttrs_npvt_interleaved_batched
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
+      if (.not. is_contiguous(C)) error stop "C: array must be contiguous"
+      if (.not. is_contiguous(X)) error stop "X: array must be contiguous"
       zgeblttrs_npvt_interleaved_batched = rocsolver_zgeblttrs_npvt_interleaved_batched_raw( &
         handle, nb, nblocks, nrhs, c_loc(A), inca, lda, strideA, c_loc(B), incb, ldb, strideB, &
         c_loc(C), incc, ldc, strideC, c_loc(X), incx, ldx, strideX, batch_count)
@@ -79104,6 +81533,7 @@ contains
       type(c_ptr), value :: rfinfo
       integer(c_int), target :: mode(..)
       integer(c_int) :: get_rfinfo_mode
+      if (.not. is_contiguous(mode)) error stop "mode: array must be contiguous"
       get_rfinfo_mode = rocsolver_get_rfinfo_mode_raw(rfinfo, c_loc(mode))
     end function rocsolver_get_rfinfo_mode_native
 
@@ -79135,6 +81565,15 @@ contains
       integer(c_int), target :: indT(..)
       real(c_float), target :: valT(..)
       integer(c_int) :: scsrrf_sumlu
+      if (.not. is_contiguous(ptrL)) error stop "ptrL: array must be contiguous"
+      if (.not. is_contiguous(indL)) error stop "indL: array must be contiguous"
+      if (.not. is_contiguous(valL)) error stop "valL: array must be contiguous"
+      if (.not. is_contiguous(ptrU)) error stop "ptrU: array must be contiguous"
+      if (.not. is_contiguous(indU)) error stop "indU: array must be contiguous"
+      if (.not. is_contiguous(valU)) error stop "valU: array must be contiguous"
+      if (.not. is_contiguous(ptrT)) error stop "ptrT: array must be contiguous"
+      if (.not. is_contiguous(indT)) error stop "indT: array must be contiguous"
+      if (.not. is_contiguous(valT)) error stop "valT: array must be contiguous"
       scsrrf_sumlu = rocsolver_scsrrf_sumlu_raw(handle, n, nnzL, c_loc(ptrL), c_loc(indL), c_loc( &
         valL), nnzU, c_loc(ptrU), c_loc(indU), c_loc(valU), c_loc(ptrT), c_loc(indT), c_loc(valT))
     end function rocsolver_scsrrf_sumlu_native
@@ -79180,6 +81619,15 @@ contains
       integer(c_int), target :: indT(..)
       real(c_double), target :: valT(..)
       integer(c_int) :: dcsrrf_sumlu
+      if (.not. is_contiguous(ptrL)) error stop "ptrL: array must be contiguous"
+      if (.not. is_contiguous(indL)) error stop "indL: array must be contiguous"
+      if (.not. is_contiguous(valL)) error stop "valL: array must be contiguous"
+      if (.not. is_contiguous(ptrU)) error stop "ptrU: array must be contiguous"
+      if (.not. is_contiguous(indU)) error stop "indU: array must be contiguous"
+      if (.not. is_contiguous(valU)) error stop "valU: array must be contiguous"
+      if (.not. is_contiguous(ptrT)) error stop "ptrT: array must be contiguous"
+      if (.not. is_contiguous(indT)) error stop "indT: array must be contiguous"
+      if (.not. is_contiguous(valT)) error stop "valT: array must be contiguous"
       dcsrrf_sumlu = rocsolver_dcsrrf_sumlu_raw(handle, n, nnzL, c_loc(ptrL), c_loc(indL), c_loc( &
         valL), nnzU, c_loc(ptrU), c_loc(indU), c_loc(valU), c_loc(ptrT), c_loc(indT), c_loc(valT))
     end function rocsolver_dcsrrf_sumlu_native
@@ -79224,6 +81672,15 @@ contains
       integer(c_int), target :: indU(..)
       real(c_float), target :: valU(..)
       integer(c_int) :: scsrrf_splitlu
+      if (.not. is_contiguous(ptrT)) error stop "ptrT: array must be contiguous"
+      if (.not. is_contiguous(indT)) error stop "indT: array must be contiguous"
+      if (.not. is_contiguous(valT)) error stop "valT: array must be contiguous"
+      if (.not. is_contiguous(ptrL)) error stop "ptrL: array must be contiguous"
+      if (.not. is_contiguous(indL)) error stop "indL: array must be contiguous"
+      if (.not. is_contiguous(valL)) error stop "valL: array must be contiguous"
+      if (.not. is_contiguous(ptrU)) error stop "ptrU: array must be contiguous"
+      if (.not. is_contiguous(indU)) error stop "indU: array must be contiguous"
+      if (.not. is_contiguous(valU)) error stop "valU: array must be contiguous"
       scsrrf_splitlu = rocsolver_scsrrf_splitlu_raw(handle, n, nnzT, c_loc(ptrT), c_loc(indT), &
         c_loc(valT), c_loc(ptrL), c_loc(indL), c_loc(valL), c_loc(ptrU), c_loc(indU), c_loc(valU))
     end function rocsolver_scsrrf_splitlu_native
@@ -79267,6 +81724,15 @@ contains
       integer(c_int), target :: indU(..)
       real(c_double), target :: valU(..)
       integer(c_int) :: dcsrrf_splitlu
+      if (.not. is_contiguous(ptrT)) error stop "ptrT: array must be contiguous"
+      if (.not. is_contiguous(indT)) error stop "indT: array must be contiguous"
+      if (.not. is_contiguous(valT)) error stop "valT: array must be contiguous"
+      if (.not. is_contiguous(ptrL)) error stop "ptrL: array must be contiguous"
+      if (.not. is_contiguous(indL)) error stop "indL: array must be contiguous"
+      if (.not. is_contiguous(valL)) error stop "valL: array must be contiguous"
+      if (.not. is_contiguous(ptrU)) error stop "ptrU: array must be contiguous"
+      if (.not. is_contiguous(indU)) error stop "indU: array must be contiguous"
+      if (.not. is_contiguous(valU)) error stop "valU: array must be contiguous"
       dcsrrf_splitlu = rocsolver_dcsrrf_splitlu_raw(handle, n, nnzT, c_loc(ptrT), c_loc(indT), &
         c_loc(valT), c_loc(ptrL), c_loc(indL), c_loc(valL), c_loc(ptrU), c_loc(indU), c_loc(valU))
     end function rocsolver_dcsrrf_splitlu_native
@@ -79314,6 +81780,15 @@ contains
       integer(c_int), value :: ldb
       type(c_ptr), value :: rfinfo
       integer(c_int) :: scsrrf_analysis
+      if (.not. is_contiguous(ptrM)) error stop "ptrM: array must be contiguous"
+      if (.not. is_contiguous(indM)) error stop "indM: array must be contiguous"
+      if (.not. is_contiguous(valM)) error stop "valM: array must be contiguous"
+      if (.not. is_contiguous(ptrT)) error stop "ptrT: array must be contiguous"
+      if (.not. is_contiguous(indT)) error stop "indT: array must be contiguous"
+      if (.not. is_contiguous(valT)) error stop "valT: array must be contiguous"
+      if (.not. is_contiguous(pivP)) error stop "pivP: array must be contiguous"
+      if (.not. is_contiguous(pivQ)) error stop "pivQ: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
       scsrrf_analysis = rocsolver_scsrrf_analysis_raw(handle, n, nrhs, nnzM, c_loc(ptrM), c_loc( &
         indM), c_loc(valM), nnzT, c_loc(ptrT), c_loc(indT), c_loc(valT), c_loc(pivP), c_loc(pivQ), &
         c_loc(B), ldb, rfinfo)
@@ -79366,6 +81841,15 @@ contains
       integer(c_int), value :: ldb
       type(c_ptr), value :: rfinfo
       integer(c_int) :: dcsrrf_analysis
+      if (.not. is_contiguous(ptrM)) error stop "ptrM: array must be contiguous"
+      if (.not. is_contiguous(indM)) error stop "indM: array must be contiguous"
+      if (.not. is_contiguous(valM)) error stop "valM: array must be contiguous"
+      if (.not. is_contiguous(ptrT)) error stop "ptrT: array must be contiguous"
+      if (.not. is_contiguous(indT)) error stop "indT: array must be contiguous"
+      if (.not. is_contiguous(valT)) error stop "valT: array must be contiguous"
+      if (.not. is_contiguous(pivP)) error stop "pivP: array must be contiguous"
+      if (.not. is_contiguous(pivQ)) error stop "pivQ: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
       dcsrrf_analysis = rocsolver_dcsrrf_analysis_raw(handle, n, nrhs, nnzM, c_loc(ptrM), c_loc( &
         indM), c_loc(valM), nnzT, c_loc(ptrT), c_loc(indT), c_loc(valT), c_loc(pivP), c_loc(pivQ), &
         c_loc(B), ldb, rfinfo)
@@ -79415,6 +81899,14 @@ contains
       integer(c_int), target :: pivQ(..)
       type(c_ptr), value :: rfinfo
       integer(c_int) :: scsrrf_refactlu
+      if (.not. is_contiguous(ptrA)) error stop "ptrA: array must be contiguous"
+      if (.not. is_contiguous(indA)) error stop "indA: array must be contiguous"
+      if (.not. is_contiguous(valA)) error stop "valA: array must be contiguous"
+      if (.not. is_contiguous(ptrT)) error stop "ptrT: array must be contiguous"
+      if (.not. is_contiguous(indT)) error stop "indT: array must be contiguous"
+      if (.not. is_contiguous(valT)) error stop "valT: array must be contiguous"
+      if (.not. is_contiguous(pivP)) error stop "pivP: array must be contiguous"
+      if (.not. is_contiguous(pivQ)) error stop "pivQ: array must be contiguous"
       scsrrf_refactlu = rocsolver_scsrrf_refactlu_raw(handle, n, nnzA, c_loc(ptrA), c_loc(indA), &
         c_loc(valA), nnzT, c_loc(ptrT), c_loc(indT), c_loc(valT), c_loc(pivP), c_loc(pivQ), rfinfo)
     end function rocsolver_scsrrf_refactlu_native
@@ -79460,6 +81952,14 @@ contains
       integer(c_int), target :: pivQ(..)
       type(c_ptr), value :: rfinfo
       integer(c_int) :: dcsrrf_refactlu
+      if (.not. is_contiguous(ptrA)) error stop "ptrA: array must be contiguous"
+      if (.not. is_contiguous(indA)) error stop "indA: array must be contiguous"
+      if (.not. is_contiguous(valA)) error stop "valA: array must be contiguous"
+      if (.not. is_contiguous(ptrT)) error stop "ptrT: array must be contiguous"
+      if (.not. is_contiguous(indT)) error stop "indT: array must be contiguous"
+      if (.not. is_contiguous(valT)) error stop "valT: array must be contiguous"
+      if (.not. is_contiguous(pivP)) error stop "pivP: array must be contiguous"
+      if (.not. is_contiguous(pivQ)) error stop "pivQ: array must be contiguous"
       dcsrrf_refactlu = rocsolver_dcsrrf_refactlu_raw(handle, n, nnzA, c_loc(ptrA), c_loc(indA), &
         c_loc(valA), nnzT, c_loc(ptrT), c_loc(indT), c_loc(valT), c_loc(pivP), c_loc(pivQ), rfinfo)
     end function rocsolver_dcsrrf_refactlu_native
@@ -79504,6 +82004,13 @@ contains
       integer(c_int), target :: pivQ(..)
       type(c_ptr), value :: rfinfo
       integer(c_int) :: scsrrf_refactchol
+      if (.not. is_contiguous(ptrA)) error stop "ptrA: array must be contiguous"
+      if (.not. is_contiguous(indA)) error stop "indA: array must be contiguous"
+      if (.not. is_contiguous(valA)) error stop "valA: array must be contiguous"
+      if (.not. is_contiguous(ptrT)) error stop "ptrT: array must be contiguous"
+      if (.not. is_contiguous(indT)) error stop "indT: array must be contiguous"
+      if (.not. is_contiguous(valT)) error stop "valT: array must be contiguous"
+      if (.not. is_contiguous(pivQ)) error stop "pivQ: array must be contiguous"
       scsrrf_refactchol = rocsolver_scsrrf_refactchol_raw(handle, n, nnzA, c_loc(ptrA), c_loc( &
         indA), c_loc(valA), nnzT, c_loc(ptrT), c_loc(indT), c_loc(valT), c_loc(pivQ), rfinfo)
     end function rocsolver_scsrrf_refactchol_native
@@ -79547,6 +82054,13 @@ contains
       integer(c_int), target :: pivQ(..)
       type(c_ptr), value :: rfinfo
       integer(c_int) :: dcsrrf_refactchol
+      if (.not. is_contiguous(ptrA)) error stop "ptrA: array must be contiguous"
+      if (.not. is_contiguous(indA)) error stop "indA: array must be contiguous"
+      if (.not. is_contiguous(valA)) error stop "valA: array must be contiguous"
+      if (.not. is_contiguous(ptrT)) error stop "ptrT: array must be contiguous"
+      if (.not. is_contiguous(indT)) error stop "indT: array must be contiguous"
+      if (.not. is_contiguous(valT)) error stop "valT: array must be contiguous"
+      if (.not. is_contiguous(pivQ)) error stop "pivQ: array must be contiguous"
       dcsrrf_refactchol = rocsolver_dcsrrf_refactchol_raw(handle, n, nnzA, c_loc(ptrA), c_loc( &
         indA), c_loc(valA), nnzT, c_loc(ptrT), c_loc(indT), c_loc(valT), c_loc(pivQ), rfinfo)
     end function rocsolver_dcsrrf_refactchol_native
@@ -79590,6 +82104,12 @@ contains
       integer(c_int), value :: ldb
       type(c_ptr), value :: rfinfo
       integer(c_int) :: scsrrf_solve
+      if (.not. is_contiguous(ptrT)) error stop "ptrT: array must be contiguous"
+      if (.not. is_contiguous(indT)) error stop "indT: array must be contiguous"
+      if (.not. is_contiguous(valT)) error stop "valT: array must be contiguous"
+      if (.not. is_contiguous(pivP)) error stop "pivP: array must be contiguous"
+      if (.not. is_contiguous(pivQ)) error stop "pivQ: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
       scsrrf_solve = rocsolver_scsrrf_solve_raw(handle, n, nrhs, nnzT, c_loc(ptrT), c_loc(indT), &
         c_loc(valT), c_loc(pivP), c_loc(pivQ), c_loc(B), ldb, rfinfo)
     end function rocsolver_scsrrf_solve_native
@@ -79633,6 +82153,12 @@ contains
       integer(c_int), value :: ldb
       type(c_ptr), value :: rfinfo
       integer(c_int) :: dcsrrf_solve
+      if (.not. is_contiguous(ptrT)) error stop "ptrT: array must be contiguous"
+      if (.not. is_contiguous(indT)) error stop "indT: array must be contiguous"
+      if (.not. is_contiguous(valT)) error stop "valT: array must be contiguous"
+      if (.not. is_contiguous(pivP)) error stop "pivP: array must be contiguous"
+      if (.not. is_contiguous(pivQ)) error stop "pivQ: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
       dcsrrf_solve = rocsolver_dcsrrf_solve_raw(handle, n, nrhs, nnzT, c_loc(ptrT), c_loc(indT), &
         c_loc(valT), c_loc(pivP), c_loc(pivQ), c_loc(B), ldb, rfinfo)
     end function rocsolver_dcsrrf_solve_native
@@ -79680,6 +82206,11 @@ contains
       integer(c_int), value :: ldz
       integer(c_int), target :: info(..)
       integer(c_int) :: ssyevdx
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(nev)) error stop "nev: array must be contiguous"
+      if (.not. is_contiguous(W)) error stop "W: array must be contiguous"
+      if (.not. is_contiguous(Z)) error stop "Z: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       ssyevdx = rocsolver_ssyevdx_raw(handle, evect, erange, uplo, n, c_loc(A), lda, vl, vu, il, &
         iu, c_loc(nev), c_loc(W), c_loc(Z), ldz, c_loc(info))
     end function rocsolver_ssyevdx_native
@@ -79731,6 +82262,11 @@ contains
       integer(c_int), value :: ldz
       integer(c_int), target :: info(..)
       integer(c_int) :: dsyevdx
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(nev)) error stop "nev: array must be contiguous"
+      if (.not. is_contiguous(W)) error stop "W: array must be contiguous"
+      if (.not. is_contiguous(Z)) error stop "Z: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       dsyevdx = rocsolver_dsyevdx_raw(handle, evect, erange, uplo, n, c_loc(A), lda, vl, vu, il, &
         iu, c_loc(nev), c_loc(W), c_loc(Z), ldz, c_loc(info))
     end function rocsolver_dsyevdx_native
@@ -79782,6 +82318,11 @@ contains
       integer(c_int), value :: ldz
       integer(c_int), target :: info(..)
       integer(c_int) :: cheevdx
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(nev)) error stop "nev: array must be contiguous"
+      if (.not. is_contiguous(W)) error stop "W: array must be contiguous"
+      if (.not. is_contiguous(Z)) error stop "Z: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       cheevdx = rocsolver_cheevdx_raw(handle, evect, erange, uplo, n, c_loc(A), lda, vl, vu, il, &
         iu, c_loc(nev), c_loc(W), c_loc(Z), ldz, c_loc(info))
     end function rocsolver_cheevdx_native
@@ -79833,6 +82374,11 @@ contains
       integer(c_int), value :: ldz
       integer(c_int), target :: info(..)
       integer(c_int) :: zheevdx
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(nev)) error stop "nev: array must be contiguous"
+      if (.not. is_contiguous(W)) error stop "W: array must be contiguous"
+      if (.not. is_contiguous(Z)) error stop "Z: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       zheevdx = rocsolver_zheevdx_raw(handle, evect, erange, uplo, n, c_loc(A), lda, vl, vu, il, &
         iu, c_loc(nev), c_loc(W), c_loc(Z), ldz, c_loc(info))
     end function rocsolver_zheevdx_native
@@ -79886,6 +82432,9 @@ contains
       integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: ssyevdx_batched
+      if (.not. is_contiguous(nev)) error stop "nev: array must be contiguous"
+      if (.not. is_contiguous(W)) error stop "W: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       ssyevdx_batched = rocsolver_ssyevdx_batched_raw(handle, evect, erange, uplo, n, A, lda, vl, &
         vu, il, iu, c_loc(nev), c_loc(W), strideW, Z, ldz, c_loc(info), batch_count)
     end function rocsolver_ssyevdx_batched_native
@@ -79941,6 +82490,9 @@ contains
       integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: dsyevdx_batched
+      if (.not. is_contiguous(nev)) error stop "nev: array must be contiguous"
+      if (.not. is_contiguous(W)) error stop "W: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       dsyevdx_batched = rocsolver_dsyevdx_batched_raw(handle, evect, erange, uplo, n, A, lda, vl, &
         vu, il, iu, c_loc(nev), c_loc(W), strideW, Z, ldz, c_loc(info), batch_count)
     end function rocsolver_dsyevdx_batched_native
@@ -79996,6 +82548,9 @@ contains
       integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: cheevdx_batched
+      if (.not. is_contiguous(nev)) error stop "nev: array must be contiguous"
+      if (.not. is_contiguous(W)) error stop "W: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       cheevdx_batched = rocsolver_cheevdx_batched_raw(handle, evect, erange, uplo, n, A, lda, vl, &
         vu, il, iu, c_loc(nev), c_loc(W), strideW, Z, ldz, c_loc(info), batch_count)
     end function rocsolver_cheevdx_batched_native
@@ -80051,6 +82606,9 @@ contains
       integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: zheevdx_batched
+      if (.not. is_contiguous(nev)) error stop "nev: array must be contiguous"
+      if (.not. is_contiguous(W)) error stop "W: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       zheevdx_batched = rocsolver_zheevdx_batched_raw(handle, evect, erange, uplo, n, A, lda, vl, &
         vu, il, iu, c_loc(nev), c_loc(W), strideW, Z, ldz, c_loc(info), batch_count)
     end function rocsolver_zheevdx_batched_native
@@ -80109,6 +82667,11 @@ contains
       integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: ssyevdx_strided_batched
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(nev)) error stop "nev: array must be contiguous"
+      if (.not. is_contiguous(W)) error stop "W: array must be contiguous"
+      if (.not. is_contiguous(Z)) error stop "Z: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       ssyevdx_strided_batched = rocsolver_ssyevdx_strided_batched_raw(handle, evect, erange, uplo, &
         n, c_loc(A), lda, strideA, vl, vu, il, iu, c_loc(nev), c_loc(W), strideW, c_loc(Z), ldz, &
         strideZ, c_loc(info), batch_count)
@@ -80172,6 +82735,11 @@ contains
       integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: dsyevdx_strided_batched
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(nev)) error stop "nev: array must be contiguous"
+      if (.not. is_contiguous(W)) error stop "W: array must be contiguous"
+      if (.not. is_contiguous(Z)) error stop "Z: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       dsyevdx_strided_batched = rocsolver_dsyevdx_strided_batched_raw(handle, evect, erange, uplo, &
         n, c_loc(A), lda, strideA, vl, vu, il, iu, c_loc(nev), c_loc(W), strideW, c_loc(Z), ldz, &
         strideZ, c_loc(info), batch_count)
@@ -80235,6 +82803,11 @@ contains
       integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: cheevdx_strided_batched
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(nev)) error stop "nev: array must be contiguous"
+      if (.not. is_contiguous(W)) error stop "W: array must be contiguous"
+      if (.not. is_contiguous(Z)) error stop "Z: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       cheevdx_strided_batched = rocsolver_cheevdx_strided_batched_raw(handle, evect, erange, uplo, &
         n, c_loc(A), lda, strideA, vl, vu, il, iu, c_loc(nev), c_loc(W), strideW, c_loc(Z), ldz, &
         strideZ, c_loc(info), batch_count)
@@ -80298,6 +82871,11 @@ contains
       integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: zheevdx_strided_batched
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(nev)) error stop "nev: array must be contiguous"
+      if (.not. is_contiguous(W)) error stop "W: array must be contiguous"
+      if (.not. is_contiguous(Z)) error stop "Z: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       zheevdx_strided_batched = rocsolver_zheevdx_strided_batched_raw(handle, evect, erange, uplo, &
         n, c_loc(A), lda, strideA, vl, vu, il, iu, c_loc(nev), c_loc(W), strideW, c_loc(Z), ldz, &
         strideZ, c_loc(info), batch_count)
@@ -80359,6 +82937,12 @@ contains
       integer(c_int), value :: ldz
       integer(c_int), target :: info(..)
       integer(c_int) :: ssygvdx
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
+      if (.not. is_contiguous(nev)) error stop "nev: array must be contiguous"
+      if (.not. is_contiguous(W)) error stop "W: array must be contiguous"
+      if (.not. is_contiguous(Z)) error stop "Z: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       ssygvdx = rocsolver_ssygvdx_raw(handle, itype, evect, erange, uplo, n, c_loc(A), lda, c_loc( &
         B), ldb, vl, vu, il, iu, c_loc(nev), c_loc(W), c_loc(Z), ldz, c_loc(info))
     end function rocsolver_ssygvdx_native
@@ -80416,6 +83000,12 @@ contains
       integer(c_int), value :: ldz
       integer(c_int), target :: info(..)
       integer(c_int) :: dsygvdx
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
+      if (.not. is_contiguous(nev)) error stop "nev: array must be contiguous"
+      if (.not. is_contiguous(W)) error stop "W: array must be contiguous"
+      if (.not. is_contiguous(Z)) error stop "Z: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       dsygvdx = rocsolver_dsygvdx_raw(handle, itype, evect, erange, uplo, n, c_loc(A), lda, c_loc( &
         B), ldb, vl, vu, il, iu, c_loc(nev), c_loc(W), c_loc(Z), ldz, c_loc(info))
     end function rocsolver_dsygvdx_native
@@ -80473,6 +83063,10 @@ contains
       integer(c_int), value :: ldz
       integer(c_int) :: info
       integer(c_int) :: chegvdx
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
+      if (.not. is_contiguous(W)) error stop "W: array must be contiguous"
+      if (.not. is_contiguous(Z)) error stop "Z: array must be contiguous"
       chegvdx = rocsolver_chegvdx_raw(handle, itype, evect, erange, uplo, n, c_loc(A), lda, c_loc( &
         B), ldb, vl, vu, il, iu, nev, c_loc(W), c_loc(Z), ldz, info)
     end function rocsolver_chegvdx_native
@@ -80530,6 +83124,10 @@ contains
       integer(c_int), value :: ldz
       integer(c_int) :: info
       integer(c_int) :: zhegvdx
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
+      if (.not. is_contiguous(W)) error stop "W: array must be contiguous"
+      if (.not. is_contiguous(Z)) error stop "Z: array must be contiguous"
       zhegvdx = rocsolver_zhegvdx_raw(handle, itype, evect, erange, uplo, n, c_loc(A), lda, c_loc( &
         B), ldb, vl, vu, il, iu, nev, c_loc(W), c_loc(Z), ldz, info)
     end function rocsolver_zhegvdx_native
@@ -80589,6 +83187,9 @@ contains
       integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: ssygvdx_batched
+      if (.not. is_contiguous(nev)) error stop "nev: array must be contiguous"
+      if (.not. is_contiguous(W)) error stop "W: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       ssygvdx_batched = rocsolver_ssygvdx_batched_raw(handle, itype, evect, erange, uplo, n, A, &
         lda, B, ldb, vl, vu, il, iu, c_loc(nev), c_loc(W), strideW, Z, ldz, c_loc(info), &
         batch_count)
@@ -80651,6 +83252,9 @@ contains
       integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: dsygvdx_batched
+      if (.not. is_contiguous(nev)) error stop "nev: array must be contiguous"
+      if (.not. is_contiguous(W)) error stop "W: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       dsygvdx_batched = rocsolver_dsygvdx_batched_raw(handle, itype, evect, erange, uplo, n, A, &
         lda, B, ldb, vl, vu, il, iu, c_loc(nev), c_loc(W), strideW, Z, ldz, c_loc(info), &
         batch_count)
@@ -80713,6 +83317,9 @@ contains
       integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: chegvdx_batched
+      if (.not. is_contiguous(nev)) error stop "nev: array must be contiguous"
+      if (.not. is_contiguous(W)) error stop "W: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       chegvdx_batched = rocsolver_chegvdx_batched_raw(handle, itype, evect, erange, uplo, n, A, &
         lda, B, ldb, vl, vu, il, iu, c_loc(nev), c_loc(W), strideW, Z, ldz, c_loc(info), &
         batch_count)
@@ -80775,6 +83382,9 @@ contains
       integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: zhegvdx_batched
+      if (.not. is_contiguous(nev)) error stop "nev: array must be contiguous"
+      if (.not. is_contiguous(W)) error stop "W: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       zhegvdx_batched = rocsolver_zhegvdx_batched_raw(handle, itype, evect, erange, uplo, n, A, &
         lda, B, ldb, vl, vu, il, iu, c_loc(nev), c_loc(W), strideW, Z, ldz, c_loc(info), &
         batch_count)
@@ -80841,6 +83451,12 @@ contains
       integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: ssygvdx_strided_batched
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
+      if (.not. is_contiguous(nev)) error stop "nev: array must be contiguous"
+      if (.not. is_contiguous(W)) error stop "W: array must be contiguous"
+      if (.not. is_contiguous(Z)) error stop "Z: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       ssygvdx_strided_batched = rocsolver_ssygvdx_strided_batched_raw(handle, itype, evect, &
         erange, uplo, n, c_loc(A), lda, strideA, c_loc(B), ldb, strideB, vl, vu, il, iu, c_loc( &
         nev), c_loc(W), strideW, c_loc(Z), ldz, strideZ, c_loc(info), batch_count)
@@ -80912,6 +83528,12 @@ contains
       integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: dsygvdx_strided_batched
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
+      if (.not. is_contiguous(nev)) error stop "nev: array must be contiguous"
+      if (.not. is_contiguous(W)) error stop "W: array must be contiguous"
+      if (.not. is_contiguous(Z)) error stop "Z: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       dsygvdx_strided_batched = rocsolver_dsygvdx_strided_batched_raw(handle, itype, evect, &
         erange, uplo, n, c_loc(A), lda, strideA, c_loc(B), ldb, strideB, vl, vu, il, iu, c_loc( &
         nev), c_loc(W), strideW, c_loc(Z), ldz, strideZ, c_loc(info), batch_count)
@@ -80983,6 +83605,12 @@ contains
       integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: chegvdx_strided_batched
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
+      if (.not. is_contiguous(nev)) error stop "nev: array must be contiguous"
+      if (.not. is_contiguous(W)) error stop "W: array must be contiguous"
+      if (.not. is_contiguous(Z)) error stop "Z: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       chegvdx_strided_batched = rocsolver_chegvdx_strided_batched_raw(handle, itype, evect, &
         erange, uplo, n, c_loc(A), lda, strideA, c_loc(B), ldb, strideB, vl, vu, il, iu, c_loc( &
         nev), c_loc(W), strideW, c_loc(Z), ldz, strideZ, c_loc(info), batch_count)
@@ -81054,6 +83682,12 @@ contains
       integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: zhegvdx_strided_batched
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
+      if (.not. is_contiguous(nev)) error stop "nev: array must be contiguous"
+      if (.not. is_contiguous(W)) error stop "W: array must be contiguous"
+      if (.not. is_contiguous(Z)) error stop "Z: array must be contiguous"
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       zhegvdx_strided_batched = rocsolver_zhegvdx_strided_batched_raw(handle, itype, evect, &
         erange, uplo, n, c_loc(A), lda, strideA, c_loc(B), ldb, strideB, vl, vu, il, iu, c_loc( &
         nev), c_loc(W), strideW, c_loc(Z), ldz, strideZ, c_loc(info), batch_count)

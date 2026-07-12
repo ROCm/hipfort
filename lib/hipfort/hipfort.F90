@@ -81,11 +81,7 @@ module hipfort
     !> @returns `hipSuccess`, `hipErrorInvalidValue`
     function hipInit(flags) &
        result(Init) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cudaInit")
-#else
        bind(C, name="hipInit")
-#endif
        import :: c_int
        integer(c_int), value :: flags
        integer(c_int) :: Init
@@ -101,11 +97,7 @@ module hipfort
     !> @returns `hipSuccess`, `hipErrorInvalidDevice`
     function hipDeviceGet(device, ordinal) &
        result(DeviceGet) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cudaDeviceGet")
-#else
        bind(C, name="hipDeviceGet")
-#endif
        import :: c_int
        integer(c_int) :: device
        integer(c_int), value :: ordinal
@@ -123,11 +115,7 @@ module hipfort
     !> @returns `hipSuccess`, `hipErrorInvalidDevice`
     function hipDeviceGetName(name, len, device) &
        result(DeviceGetName) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cudaDeviceGetName")
-#else
        bind(C, name="hipDeviceGetName")
-#endif
        import :: c_ptr, c_int
        type(c_ptr), value :: name
        integer(c_int), value :: len
@@ -190,11 +178,7 @@ module hipfort
     !> @returns `hipSuccess`, `hipErrorInvalidDevice`
     function hipDeviceTotalMem(bytes, device) &
        result(DeviceTotalMem) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cudaDeviceTotalMem")
-#else
        bind(C, name="hipDeviceTotalMem")
-#endif
        import :: c_ptr, c_int
        type(c_ptr), value :: bytes
        integer(c_int), value :: device
@@ -986,11 +970,7 @@ module hipfort
     !> @see hipPointerGetAttributes
     function hipPointerGetAttribute(data, attribute, ptr) &
        result(PointerGetAttribute) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cudaPointerGetAttribute")
-#else
        bind(C, name="hipPointerGetAttribute")
-#endif
        import :: c_ptr, c_int
        type(c_ptr), value :: data
        integer(c_int), value :: attribute
@@ -1020,11 +1000,7 @@ module hipfort
     !> hipHostFree, hiHostMalloc
     function hipExtMallocWithFlags(ptr, sizeBytes, flags) &
        result(ExtMallocWithFlags) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cudaExtMallocWithFlags")
-#else
        bind(C, name="hipExtMallocWithFlags")
-#endif
        import :: c_ptr, c_long, c_int
        type(c_ptr) :: ptr
        integer(c_long), value :: sizeBytes
@@ -1073,11 +1049,7 @@ module hipfort
     !> @warning  This API is deprecated, use hipHostMalloc() instead
     function hipMemAllocHost(ptr, size) &
        result(MemAllocHost) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cudaMemAllocHost")
-#else
        bind(C, name="hipMemAllocHost")
-#endif
        import :: c_ptr, c_long, c_int
        type(c_ptr) :: ptr
        integer(c_long), value :: size
@@ -1122,11 +1094,7 @@ module hipfort
     !> @see hipSetDeviceFlags, hiptHostFree
     function hipHostMalloc(ptr, size, flags) &
        result(HostMalloc) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cudaHostMalloc")
-#else
        bind(C, name="hipHostMalloc")
-#endif
        import :: c_ptr, c_long, c_int
        type(c_ptr) :: ptr
        integer(c_long), value :: size
@@ -1410,11 +1378,7 @@ module hipfort
     !> hipMalloc3DArray, hipHostMalloc
     function hipMemAllocPitch(dptr, pitch, widthInBytes, height, elementSizeBytes) &
        result(MemAllocPitch) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cudaMemAllocPitch")
-#else
        bind(C, name="hipMemAllocPitch")
-#endif
        import :: c_ptr, c_long, c_int
        type(c_ptr) :: dptr
        type(c_ptr), value :: pitch
@@ -1465,11 +1429,7 @@ module hipfort
     !> hipMalloc3DArray, hipHostMalloc
     function hipHostFree(ptr) &
        result(HostFree) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cudaHostFree")
-#else
        bind(C, name="hipHostFree")
-#endif
        import :: c_ptr, c_int
        type(c_ptr), value :: ptr
        integer(c_int) :: HostFree
@@ -1496,11 +1456,7 @@ module hipfort
     !> hipMemHostAlloc, hipMemHostGetDevicePointer
     function hipMemcpyHtoD(dst, src, sizeBytes) &
        result(MemcpyHtoD) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cudaMemcpyHtoD")
-#else
        bind(C, name="hipMemcpyHtoD")
-#endif
        import :: c_ptr, c_long, c_int
        type(c_ptr), value :: dst
        type(c_ptr), value :: src
@@ -1529,11 +1485,7 @@ module hipfort
     !> hipMemHostAlloc, hipMemHostGetDevicePointer
     function hipMemcpyDtoH(dst, src, sizeBytes) &
        result(MemcpyDtoH) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cudaMemcpyDtoH")
-#else
        bind(C, name="hipMemcpyDtoH")
-#endif
        import :: c_ptr, c_long, c_int
        type(c_ptr), value :: dst
        type(c_ptr), value :: src
@@ -1562,11 +1514,7 @@ module hipfort
     !> hipMemHostAlloc, hipMemHostGetDevicePointer
     function hipMemcpyDtoD(dst, src, sizeBytes) &
        result(MemcpyDtoD) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cudaMemcpyDtoD")
-#else
        bind(C, name="hipMemcpyDtoD")
-#endif
        import :: c_ptr, c_long, c_int
        type(c_ptr), value :: dst
        type(c_ptr), value :: src
@@ -1816,11 +1764,7 @@ module hipfort
     !> @returns `hipSuccess`, `hipErrorInvalidValue`, `hipErrorNotInitialized`
     function hipMemsetD8(dest, value, count) &
        result(MemsetD8) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cudaMemsetD8")
-#else
        bind(C, name="hipMemsetD8")
-#endif
        import :: c_ptr, c_long, c_int
        type(c_ptr), value :: dest
        type(c_ptr), value :: value
@@ -1841,11 +1785,7 @@ module hipfort
     !> @returns `hipSuccess`, `hipErrorInvalidValue`, `hipErrorNotInitialized`
     function hipMemsetD16(dest, value, count) &
        result(MemsetD16) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cudaMemsetD16")
-#else
        bind(C, name="hipMemsetD16")
-#endif
        import :: c_ptr, c_short, c_long, c_int
        type(c_ptr), value :: dest
        integer(c_short), value :: value
@@ -1865,11 +1805,7 @@ module hipfort
     !> @returns `hipSuccess`, `hipErrorInvalidValue`, `hipErrorNotInitialized`
     function hipMemsetD32(dest, value, count) &
        result(MemsetD32) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cudaMemsetD32")
-#else
        bind(C, name="hipMemsetD32")
-#endif
        import :: c_ptr, c_int, c_long
        type(c_ptr), value :: dest
        integer(c_int), value :: value
@@ -2047,11 +1983,7 @@ module hipfort
     !> @returns `hipSuccess`, `hipErrorInvalidValue`
     function hipMemPtrGetInfo(ptr, size) &
        result(MemPtrGetInfo) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cudaMemPtrGetInfo")
-#else
        bind(C, name="hipMemPtrGetInfo")
-#endif
        import :: c_ptr, c_int
        type(c_ptr), value :: ptr
        type(c_ptr), value :: size
@@ -2100,11 +2032,7 @@ module hipfort
     !> @see hipMallocArray, hipArrayDestroy, hipFreeArray
     function hipArrayCreate(pHandle, pAllocateArray) &
        result(ArrayCreate) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cudaArrayCreate")
-#else
        bind(C, name="hipArrayCreate")
-#endif
        import :: c_ptr, HIP_ARRAY_DESCRIPTOR, c_int
        type(c_ptr) :: pHandle
        type(HIP_ARRAY_DESCRIPTOR) :: pAllocateArray
@@ -2123,11 +2051,7 @@ module hipfort
     !> @see hipArrayCreate, hipArrayDestroy, hipFreeArray
     function hipArrayDestroy(array) &
        result(ArrayDestroy) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cudaArrayDestroy")
-#else
        bind(C, name="hipArrayDestroy")
-#endif
        import :: c_ptr, c_int
        type(c_ptr), value :: array
        integer(c_int) :: ArrayDestroy
@@ -2146,11 +2070,7 @@ module hipfort
     !> @see hipMallocArray, hipArrayDestroy, hipFreeArray
     function hipArray3DCreate(array, pAllocateArray) &
        result(Array3DCreate) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cudaArray3DCreate")
-#else
        bind(C, name="hipArray3DCreate")
-#endif
        import :: c_ptr, HIP_ARRAY3D_DESCRIPTOR, c_int
        type(c_ptr) :: array
        type(HIP_ARRAY3D_DESCRIPTOR) :: pAllocateArray
@@ -2356,11 +2276,7 @@ module hipfort
     !> hipMemcpyToSymbol, hipMemcpyAsync
     function hipMemcpyParam2D(pCopy) &
        result(MemcpyParam2D) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cudaMemcpyParam2D")
-#else
        bind(C, name="hipMemcpyParam2D")
-#endif
        import :: hip_Memcpy2D, c_int
        type(hip_Memcpy2D) :: pCopy
        integer(c_int) :: MemcpyParam2D
@@ -2568,11 +2484,7 @@ module hipfort
     !> hipMemcpyAsync
     function hipMemcpyAtoH(dst, srcArray, srcOffset, count) &
        result(MemcpyAtoH) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cudaMemcpyAtoH")
-#else
        bind(C, name="hipMemcpyAtoH")
-#endif
        import :: c_ptr, c_long, c_int
        type(c_ptr), value :: dst
        type(c_ptr), value :: srcArray
@@ -2597,11 +2509,7 @@ module hipfort
     !> hipMemcpyAsync
     function hipMemcpyHtoA(dstArray, dstOffset, srcHost, count) &
        result(MemcpyHtoA) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cudaMemcpyHtoA")
-#else
        bind(C, name="hipMemcpyHtoA")
-#endif
        import :: c_ptr, c_long, c_int
        type(c_ptr), value :: dstArray
        integer(c_long), value :: dstOffset
@@ -2646,11 +2554,7 @@ module hipfort
     !> hipMemcpyAsync
     function hipDrvMemcpy3D(pCopy) &
        result(DrvMemcpy3D) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cudaDrvMemcpy3D")
-#else
        bind(C, name="hipDrvMemcpy3D")
-#endif
        import :: HIP_MEMCPY3D, c_int
        type(HIP_MEMCPY3D) :: pCopy
        integer(c_int) :: DrvMemcpy3D
@@ -2671,11 +2575,7 @@ module hipfort
     !> hipCtxSetCurrent, hipCtxPushCurrent, hipCtxSetCacheConfig, hipCtxSynchronize, hipCtxGetDevice
     function hipMemGetAddressRange(pbase, psize, dptr) &
        result(MemGetAddressRange) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cudaMemGetAddressRange")
-#else
        bind(C, name="hipMemGetAddressRange")
-#endif
        import :: c_ptr, c_int
        type(c_ptr) :: pbase
        type(c_ptr), value :: psize
@@ -2803,11 +2703,7 @@ module hipfort
     !> NVIDIA platform.
     function hipCtxGetDevice(device) &
        result(CtxGetDevice) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cudaCtxGetDevice")
-#else
        bind(C, name="hipCtxGetDevice")
-#endif
        import :: c_int
        integer(c_int) :: device
        integer(c_int) :: CtxGetDevice
@@ -2833,11 +2729,7 @@ module hipfort
     !> NVIDIA platform.
     function hipCtxSetCacheConfig(cacheConfig) &
        result(CtxSetCacheConfig) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cudaCtxSetCacheConfig")
-#else
        bind(C, name="hipCtxSetCacheConfig")
-#endif
        import :: c_int
        integer(c_int), value :: cacheConfig
        integer(c_int) :: CtxSetCacheConfig
@@ -2864,11 +2756,7 @@ module hipfort
     !> NVIDIA platform.
     function hipCtxSetSharedMemConfig(config) &
        result(CtxSetSharedMemConfig) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cudaCtxSetSharedMemConfig")
-#else
        bind(C, name="hipCtxSetSharedMemConfig")
-#endif
        import :: c_int
        integer(c_int), value :: config
        integer(c_int) :: CtxSetSharedMemConfig
@@ -2894,11 +2782,7 @@ module hipfort
     !> NVIDIA platform.
     function hipCtxSynchronize() &
        result(CtxSynchronize) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cudaCtxSynchronize")
-#else
        bind(C, name="hipCtxSynchronize")
-#endif
        import :: c_int
        integer(c_int) :: CtxSynchronize
     end function hipCtxSynchronize
@@ -2921,11 +2805,7 @@ module hipfort
     !> NVIDIA platform.
     function hipDevicePrimaryCtxRelease(dev) &
        result(DevicePrimaryCtxRelease) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cudaDevicePrimaryCtxRelease")
-#else
        bind(C, name="hipDevicePrimaryCtxRelease")
-#endif
        import :: c_int
        integer(c_int), value :: dev
        integer(c_int) :: DevicePrimaryCtxRelease
@@ -2947,11 +2827,7 @@ module hipfort
     !> NVIDIA platform.
     function hipDevicePrimaryCtxReset(dev) &
        result(DevicePrimaryCtxReset) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cudaDevicePrimaryCtxReset")
-#else
        bind(C, name="hipDevicePrimaryCtxReset")
-#endif
        import :: c_int
        integer(c_int), value :: dev
        integer(c_int) :: DevicePrimaryCtxReset
@@ -2974,11 +2850,7 @@ module hipfort
     !> NVIDIA platform.
     function hipDevicePrimaryCtxSetFlags(dev, flags) &
        result(DevicePrimaryCtxSetFlags) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cudaDevicePrimaryCtxSetFlags")
-#else
        bind(C, name="hipDevicePrimaryCtxSetFlags")
-#endif
        import :: c_int
        integer(c_int), value :: dev
        integer(c_int), value :: flags
@@ -3191,11 +3063,7 @@ module hipfort
     !> @returns `hipSuccess`, `hipErrorNotInitialized`, `hipErrorInvalidValue`
     function hipExtLaunchMultiKernelMultiDevice(launchParamsList, numDevices, flags) &
        result(ExtLaunchMultiKernelMultiDevice) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cudaExtLaunchMultiKernelMultiDevice")
-#else
        bind(C, name="hipExtLaunchMultiKernelMultiDevice")
-#endif
        import :: hipLaunchParams, c_int
        type(hipLaunchParams) :: launchParamsList
        integer(c_int), value :: numDevices
@@ -3342,11 +3210,7 @@ module hipfort
     !> @param [in] offset Offset of the argument on the argument stack.
     function hipSetupArgument(arg, size, offset) &
        result(SetupArgument) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cudaSetupArgument")
-#else
        bind(C, name="hipSetupArgument")
-#endif
        import :: c_ptr, c_long, c_int
        type(c_ptr), value :: arg
        integer(c_long), value :: size
@@ -3364,11 +3228,7 @@ module hipfort
     !> @returns `hipSuccess`, `hipErrorNotInitialized`, `hipErrorInvalidValue`
     function hipLaunchByPtr(func) &
        result(LaunchByPtr) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cudaLaunchByPtr")
-#else
        bind(C, name="hipLaunchByPtr")
-#endif
        import :: c_ptr, c_int
        type(c_ptr), value :: func
        integer(c_int) :: LaunchByPtr
@@ -3384,11 +3244,7 @@ module hipfort
     !> @returns `hipSuccess`, `hipErrorInvalidValue`
     function hipDrvMemcpy2DUnaligned(pCopy) &
        result(DrvMemcpy2DUnaligned) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cudaDrvMemcpy2DUnaligned")
-#else
        bind(C, name="hipDrvMemcpy2DUnaligned")
-#endif
        import :: hip_Memcpy2D, c_int
        type(hip_Memcpy2D) :: pCopy
        integer(c_int) :: DrvMemcpy2DUnaligned
@@ -3544,11 +3400,7 @@ module hipfort
     !> @returns `hipSuccess`, `hipErrorInvalidValue`
     function hipTexObjectCreate(pTexObject, pResDesc, pTexDesc, pResViewDesc) &
        result(TexObjectCreate) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cudaTexObjectCreate")
-#else
        bind(C, name="hipTexObjectCreate")
-#endif
        import :: c_ptr, HIP_RESOURCE_DESC, HIP_TEXTURE_DESC, HIP_RESOURCE_VIEW_DESC, c_int
        type(c_ptr) :: pTexObject
        type(HIP_RESOURCE_DESC) :: pResDesc
@@ -3567,11 +3419,7 @@ module hipfort
     !> @returns `hipSuccess`, `hipErrorInvalidValue`
     function hipTexObjectDestroy(texObject) &
        result(TexObjectDestroy) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cudaTexObjectDestroy")
-#else
        bind(C, name="hipTexObjectDestroy")
-#endif
        import :: c_ptr, c_int
        type(c_ptr), value :: texObject
        integer(c_int) :: TexObjectDestroy
@@ -3588,11 +3436,7 @@ module hipfort
     !> @returns `hipSuccess`, `hipErrorNotSupported`, `hipErrorInvalidValue`
     function hipTexObjectGetResourceDesc(pResDesc, texObject) &
        result(TexObjectGetResourceDesc) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cudaTexObjectGetResourceDesc")
-#else
        bind(C, name="hipTexObjectGetResourceDesc")
-#endif
        import :: HIP_RESOURCE_DESC, c_ptr, c_int
        type(HIP_RESOURCE_DESC) :: pResDesc
        type(c_ptr), value :: texObject
@@ -3610,11 +3454,7 @@ module hipfort
     !> @returns `hipSuccess`, `hipErrorNotSupported`, `hipErrorInvalidValue`
     function hipTexObjectGetResourceViewDesc(pResViewDesc, texObject) &
        result(TexObjectGetResourceViewDesc) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cudaTexObjectGetResourceViewDesc")
-#else
        bind(C, name="hipTexObjectGetResourceViewDesc")
-#endif
        import :: HIP_RESOURCE_VIEW_DESC, c_ptr, c_int
        type(HIP_RESOURCE_VIEW_DESC) :: pResViewDesc
        type(c_ptr), value :: texObject
@@ -3632,11 +3472,7 @@ module hipfort
     !> @returns `hipSuccess`, `hipErrorNotSupported`, `hipErrorInvalidValue`
     function hipTexObjectGetTextureDesc(pTexDesc, texObject) &
        result(TexObjectGetTextureDesc) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cudaTexObjectGetTextureDesc")
-#else
        bind(C, name="hipTexObjectGetTextureDesc")
-#endif
        import :: HIP_TEXTURE_DESC, c_ptr, c_int
        type(HIP_TEXTURE_DESC) :: pTexDesc
        type(c_ptr), value :: texObject
@@ -3735,11 +3571,7 @@ module hipfort
     !> @note  This API is implemented on Linux and is under development on Microsoft Windows.
     function hipMipmappedArrayCreate(pHandle, pMipmappedArrayDesc, numMipmapLevels) &
        result(MipmappedArrayCreate) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cudaMipmappedArrayCreate")
-#else
        bind(C, name="hipMipmappedArrayCreate")
-#endif
        import :: c_ptr, HIP_ARRAY3D_DESCRIPTOR, c_int
        type(c_ptr) :: pHandle
        type(HIP_ARRAY3D_DESCRIPTOR) :: pMipmappedArrayDesc
@@ -3759,11 +3591,7 @@ module hipfort
     !> @note  This API is implemented on Linux and is under development on Microsoft Windows.
     function hipMipmappedArrayDestroy(hMipmappedArray) &
        result(MipmappedArrayDestroy) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cudaMipmappedArrayDestroy")
-#else
        bind(C, name="hipMipmappedArrayDestroy")
-#endif
        import :: c_ptr, c_int
        type(c_ptr), value :: hMipmappedArray
        integer(c_int) :: MipmappedArrayDestroy
@@ -3783,11 +3611,7 @@ module hipfort
     !> @note  This API is implemented on Linux and is under development on Microsoft Windows.
     function hipMipmappedArrayGetLevel(pLevelArray, hMipMappedArray, level) &
        result(MipmappedArrayGetLevel) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cudaMipmappedArrayGetLevel")
-#else
        bind(C, name="hipMipmappedArrayGetLevel")
-#endif
        import :: c_ptr, c_int
        type(c_ptr) :: pLevelArray
        type(c_ptr), value :: hMipMappedArray
@@ -3807,11 +3631,7 @@ module hipfort
     !> @returns `hipSuccess`, `hipErrorInvalidValue`
     function hipBindTextureToMipmappedArray(tex, mipmappedArray, desc) &
        result(BindTextureToMipmappedArray) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cudaBindTextureToMipmappedArray")
-#else
        bind(C, name="hipBindTextureToMipmappedArray")
-#endif
        import :: textureReference, c_ptr, hipChannelFormatDesc, c_int
        type(textureReference) :: tex
        type(c_ptr), value :: mipmappedArray
@@ -3871,11 +3691,7 @@ module hipfort
     !> @warning This API is deprecated.
     function hipTexRefSetAddressMode(texRef, dim, am) &
        result(TexRefSetAddressMode) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cudaTexRefSetAddressMode")
-#else
        bind(C, name="hipTexRefSetAddressMode")
-#endif
        import :: textureReference, c_int
        type(textureReference) :: texRef
        integer(c_int), value :: dim
@@ -3897,11 +3713,7 @@ module hipfort
     !> @warning This API is deprecated.
     function hipTexRefSetArray(tex, array, flags) &
        result(TexRefSetArray) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cudaTexRefSetArray")
-#else
        bind(C, name="hipTexRefSetArray")
-#endif
        import :: textureReference, c_ptr, c_int
        type(textureReference) :: tex
        type(c_ptr), value :: array
@@ -3922,11 +3734,7 @@ module hipfort
     !> @warning This API is deprecated.
     function hipTexRefSetFilterMode(texRef, fm) &
        result(TexRefSetFilterMode) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cudaTexRefSetFilterMode")
-#else
        bind(C, name="hipTexRefSetFilterMode")
-#endif
        import :: textureReference, c_int
        type(textureReference) :: texRef
        integer(c_int), value :: fm
@@ -3946,11 +3754,7 @@ module hipfort
     !> @warning This API is deprecated.
     function hipTexRefSetFlags(texRef, Flags) &
        result(TexRefSetFlags) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cudaTexRefSetFlags")
-#else
        bind(C, name="hipTexRefSetFlags")
-#endif
        import :: textureReference, c_int
        type(textureReference) :: texRef
        integer(c_int), value :: Flags
@@ -3971,11 +3775,7 @@ module hipfort
     !> @warning This API is deprecated.
     function hipTexRefSetFormat(texRef, fmt, NumPackedComponents) &
        result(TexRefSetFormat) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cudaTexRefSetFormat")
-#else
        bind(C, name="hipTexRefSetFormat")
-#endif
        import :: textureReference, c_int
        type(textureReference) :: texRef
        integer(c_int), value :: fmt
@@ -3999,11 +3799,7 @@ module hipfort
     !> @warning This API is deprecated.
     function hipBindTexture(offset, tex, devPtr, desc, size) &
        result(BindTexture) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cudaBindTexture")
-#else
        bind(C, name="hipBindTexture")
-#endif
        import :: c_ptr, textureReference, hipChannelFormatDesc, c_long, c_int
        type(c_ptr), value :: offset
        type(textureReference) :: tex
@@ -4031,11 +3827,7 @@ module hipfort
     !> @warning This API is deprecated.
     function hipBindTexture2D(offset, tex, devPtr, desc, width, height, pitch) &
        result(BindTexture2D) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cudaBindTexture2D")
-#else
        bind(C, name="hipBindTexture2D")
-#endif
        import :: c_ptr, textureReference, hipChannelFormatDesc, c_long, c_int
        type(c_ptr), value :: offset
        type(textureReference) :: tex
@@ -4061,11 +3853,7 @@ module hipfort
     !> @warning This API is deprecated.
     function hipBindTextureToArray(tex, array, desc) &
        result(BindTextureToArray) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cudaBindTextureToArray")
-#else
        bind(C, name="hipBindTextureToArray")
-#endif
        import :: textureReference, c_ptr, hipChannelFormatDesc, c_int
        type(textureReference) :: tex
        type(c_ptr), value :: array
@@ -4086,11 +3874,7 @@ module hipfort
     !> @warning This API is deprecated.
     function hipGetTextureAlignmentOffset(offset, texref) &
        result(GetTextureAlignmentOffset) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cudaGetTextureAlignmentOffset")
-#else
        bind(C, name="hipGetTextureAlignmentOffset")
-#endif
        import :: c_ptr, textureReference, c_int
        type(c_ptr), value :: offset
        type(textureReference) :: texref
@@ -4109,11 +3893,7 @@ module hipfort
     !> @warning This API is deprecated.
     function hipUnbindTexture(tex) &
        result(UnbindTexture) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cudaUnbindTexture")
-#else
        bind(C, name="hipUnbindTexture")
-#endif
        import :: textureReference, c_int
        type(textureReference) :: tex
        integer(c_int) :: UnbindTexture
@@ -4132,11 +3912,7 @@ module hipfort
     !> @warning This API is deprecated.
     function hipTexRefGetAddress(dev_ptr, texRef) &
        result(TexRefGetAddress) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cudaTexRefGetAddress")
-#else
        bind(C, name="hipTexRefGetAddress")
-#endif
        import :: c_ptr, textureReference, c_int
        type(c_ptr) :: dev_ptr
        type(textureReference) :: texRef
@@ -4156,11 +3932,7 @@ module hipfort
     !> @warning This API is deprecated.
     function hipTexRefGetMipMappedArray(pArray, texRef) &
        result(TexRefGetMipMappedArray) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cudaTexRefGetMipMappedArray")
-#else
        bind(C, name="hipTexRefGetMipMappedArray")
-#endif
        import :: c_ptr, textureReference, c_int
        type(c_ptr) :: pArray
        type(textureReference) :: texRef
@@ -4182,11 +3954,7 @@ module hipfort
     !> @warning This API is deprecated.
     function hipTexRefSetAddress(ByteOffset, texRef, dptr, bytes) &
        result(TexRefSetAddress) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cudaTexRefSetAddress")
-#else
        bind(C, name="hipTexRefSetAddress")
-#endif
        import :: c_ptr, textureReference, c_long, c_int
        type(c_ptr), value :: ByteOffset
        type(textureReference) :: texRef
@@ -4210,11 +3978,7 @@ module hipfort
     !> @warning This API is deprecated.
     function hipTexRefSetAddress2D(texRef, desc, dptr, Pitch) &
        result(TexRefSetAddress2D) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cudaTexRefSetAddress2D")
-#else
        bind(C, name="hipTexRefSetAddress2D")
-#endif
        import :: textureReference, HIP_ARRAY_DESCRIPTOR, c_ptr, c_long, c_int
        type(textureReference) :: texRef
        type(HIP_ARRAY_DESCRIPTOR) :: desc
@@ -4236,11 +4000,7 @@ module hipfort
     !> @warning This API is deprecated.
     function hipTexRefSetMaxAnisotropy(texRef, maxAniso) &
        result(TexRefSetMaxAnisotropy) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cudaTexRefSetMaxAnisotropy")
-#else
        bind(C, name="hipTexRefSetMaxAnisotropy")
-#endif
        import :: textureReference, c_int
        type(textureReference) :: texRef
        integer(c_int), value :: maxAniso
@@ -4260,11 +4020,7 @@ module hipfort
     !> @warning This API is deprecated.
     function hipTexRefSetMipmapFilterMode(texRef, fm) &
        result(TexRefSetMipmapFilterMode) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cudaTexRefSetMipmapFilterMode")
-#else
        bind(C, name="hipTexRefSetMipmapFilterMode")
-#endif
        import :: textureReference, c_int
        type(textureReference) :: texRef
        integer(c_int), value :: fm
@@ -4284,11 +4040,7 @@ module hipfort
     !> @warning This API is deprecated.
     function hipTexRefSetMipmapLevelBias(texRef, bias) &
        result(TexRefSetMipmapLevelBias) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cudaTexRefSetMipmapLevelBias")
-#else
        bind(C, name="hipTexRefSetMipmapLevelBias")
-#endif
        import :: textureReference, c_float, c_int
        type(textureReference) :: texRef
        real(c_float), value :: bias
@@ -4309,11 +4061,7 @@ module hipfort
     !> @warning This API is deprecated.
     function hipTexRefSetMipmapLevelClamp(texRef, minMipMapLevelClamp, maxMipMapLevelClamp) &
        result(TexRefSetMipmapLevelClamp) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cudaTexRefSetMipmapLevelClamp")
-#else
        bind(C, name="hipTexRefSetMipmapLevelClamp")
-#endif
        import :: textureReference, c_float, c_int
        type(textureReference) :: texRef
        real(c_float), value :: minMipMapLevelClamp
@@ -4335,11 +4083,7 @@ module hipfort
     !> @warning This API is deprecated.
     function hipTexRefSetMipmappedArray(texRef, mipmappedArray, Flags) &
        result(TexRefSetMipmappedArray) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cudaTexRefSetMipmappedArray")
-#else
        bind(C, name="hipTexRefSetMipmappedArray")
-#endif
        import :: textureReference, hipMipmappedArray, c_int
        type(textureReference) :: texRef
        type(hipMipmappedArray) :: mipmappedArray
@@ -5101,11 +4845,7 @@ module hipfort
     !> @returns `hipSuccess`, `hipErrorInvalidDevice`
     function hipDeviceComputeCapability_raw(major, minor, device) &
        result(DeviceComputeCapability_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cudaDeviceComputeCapability")
-#else
        bind(C, name="hipDeviceComputeCapability")
-#endif
        import :: c_ptr, c_int
        type(c_ptr), value :: major
        type(c_ptr), value :: minor
@@ -5457,11 +5197,7 @@ module hipfort
     !> @returns `hipSuccess`, `hipErrorInvalidValue`
     function hipExtGetLinkTypeAndHopCount_raw(device1, device2, linktype, hopcount) &
        result(ExtGetLinkTypeAndHopCount_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cudaExtGetLinkTypeAndHopCount")
-#else
        bind(C, name="hipExtGetLinkTypeAndHopCount")
-#endif
        import :: c_int, c_ptr
        integer(c_int), value :: device1
        integer(c_int), value :: device2
@@ -5999,11 +5735,7 @@ module hipfort
     !> @see hipStreamCreate, hipStreamSynchronize, hipStreamWaitEvent, hipStreamDestroy
     function hipExtStreamCreateWithCUMask_raw(stream, cuMaskSize, cuMask) &
        result(ExtStreamCreateWithCUMask_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cudaExtStreamCreateWithCUMask")
-#else
        bind(C, name="hipExtStreamCreateWithCUMask")
-#endif
        import :: c_ptr, c_int
        type(c_ptr) :: stream
        integer(c_int), value :: cuMaskSize
@@ -6031,11 +5763,7 @@ module hipfort
     !> @see hipStreamCreate, hipStreamSynchronize, hipStreamWaitEvent, hipStreamDestroy
     function hipExtStreamGetCUMask_raw(stream, cuMaskSize, cuMask) &
        result(ExtStreamGetCUMask_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cudaExtStreamGetCUMask")
-#else
        bind(C, name="hipExtStreamGetCUMask")
-#endif
        import :: c_ptr, c_int
        type(c_ptr), value :: stream
        integer(c_int), value :: cuMaskSize
@@ -6290,11 +6018,7 @@ module hipfort
     !> hipStreamWaitValue64
     function hipStreamWriteValue32_raw(stream, ptr, value, flags) &
        result(StreamWriteValue32_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cudaStreamWriteValue32")
-#else
        bind(C, name="hipStreamWriteValue32")
-#endif
        import :: c_ptr, c_int
        type(c_ptr), value :: stream
        type(c_ptr), value :: ptr
@@ -6330,11 +6054,7 @@ module hipfort
     !> hipStreamWaitValue64
     function hipStreamWriteValue64_raw(stream, ptr, value, flags) &
        result(StreamWriteValue64_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cudaStreamWriteValue64")
-#else
        bind(C, name="hipStreamWriteValue64")
-#endif
        import :: c_ptr, c_long, c_int
        type(c_ptr), value :: stream
        type(c_ptr), value :: ptr
@@ -6847,11 +6567,7 @@ module hipfort
     !> @see hipPointerGetAttribute
     function hipDrvPointerGetAttributes_raw(numAttributes, attributes, data, ptr) &
        result(DrvPointerGetAttributes_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cudaDrvPointerGetAttributes")
-#else
        bind(C, name="hipDrvPointerGetAttributes")
-#endif
        import :: c_int, c_ptr
        integer(c_int), value :: numAttributes
        type(c_ptr), value :: attributes
@@ -7883,11 +7599,7 @@ module hipfort
     !> hipLaunchKernelGGL
     function hipMemcpyWithStream_raw(dst, src, sizeBytes, kind, stream) &
        result(MemcpyWithStream_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cudaMemcpyWithStream")
-#else
        bind(C, name="hipMemcpyWithStream")
-#endif
        import :: c_ptr, c_long, c_int
        type(c_ptr), value :: dst
        type(c_ptr), value :: src
@@ -7923,11 +7635,7 @@ module hipfort
     !> hipMemHostAlloc, hipMemHostGetDevicePointer
     function hipMemcpyHtoDAsync_raw(dst, src, sizeBytes, stream) &
        result(MemcpyHtoDAsync_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cudaMemcpyHtoDAsync")
-#else
        bind(C, name="hipMemcpyHtoDAsync")
-#endif
        import :: c_ptr, c_long, c_int
        type(c_ptr), value :: dst
        type(c_ptr), value :: src
@@ -7962,11 +7670,7 @@ module hipfort
     !> hipMemHostAlloc, hipMemHostGetDevicePointer
     function hipMemcpyDtoHAsync_raw(dst, src, sizeBytes, stream) &
        result(MemcpyDtoHAsync_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cudaMemcpyDtoHAsync")
-#else
        bind(C, name="hipMemcpyDtoHAsync")
-#endif
        import :: c_ptr, c_long, c_int
        type(c_ptr), value :: dst
        type(c_ptr), value :: src
@@ -8001,11 +7705,7 @@ module hipfort
     !> hipMemHostAlloc, hipMemHostGetDevicePointer
     function hipMemcpyDtoDAsync_raw(dst, src, sizeBytes, stream) &
        result(MemcpyDtoDAsync_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cudaMemcpyDtoDAsync")
-#else
        bind(C, name="hipMemcpyDtoDAsync")
-#endif
        import :: c_ptr, c_long, c_int
        type(c_ptr), value :: dst
        type(c_ptr), value :: src
@@ -8111,11 +7811,7 @@ module hipfort
     !> @returns `hipSuccess`, `hipErrorInvalidValue`, `hipErrorNotFound`, `hipErrorInvalidContext`
     function hipModuleGetGlobal_raw(dptr, bytes, hmod, name) &
        result(ModuleGetGlobal_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cudaModuleGetGlobal")
-#else
        bind(C, name="hipModuleGetGlobal")
-#endif
        import :: c_ptr, c_int
        type(c_ptr) :: dptr
        type(c_ptr), value :: bytes
@@ -8258,11 +7954,7 @@ module hipfort
     !> @returns `hipSuccess`, `hipErrorInvalidValue`, `hipErrorNotInitialized`
     function hipMemsetD8Async_raw(dest, value, count, stream) &
        result(MemsetD8Async_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cudaMemsetD8Async")
-#else
        bind(C, name="hipMemsetD8Async")
-#endif
        import :: c_ptr, c_long, c_int
        type(c_ptr), value :: dest
        type(c_ptr), value :: value
@@ -8296,11 +7988,7 @@ module hipfort
     !> @returns `hipSuccess`, `hipErrorInvalidValue`, `hipErrorNotInitialized`
     function hipMemsetD16Async_raw(dest, value, count, stream) &
        result(MemsetD16Async_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cudaMemsetD16Async")
-#else
        bind(C, name="hipMemsetD16Async")
-#endif
        import :: c_ptr, c_short, c_long, c_int
        type(c_ptr), value :: dest
        integer(c_short), value :: value
@@ -8369,11 +8057,7 @@ module hipfort
     !> @return `hipSuccess`, `hipErrorInvalidValue`
     function hipMemsetD32Async_raw(dst, value, count, stream) &
        result(MemsetD32Async_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cudaMemsetD32Async")
-#else
        bind(C, name="hipMemsetD32Async")
-#endif
        import :: c_ptr, c_int, c_long
        type(c_ptr), value :: dst
        integer(c_int), value :: value
@@ -8586,11 +8270,7 @@ module hipfort
     !> hipMemcpyToSymbol, hipMemcpyAsync
     function hipMemcpyParam2DAsync_raw(pCopy, stream) &
        result(MemcpyParam2DAsync_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cudaMemcpyParam2DAsync")
-#else
        bind(C, name="hipMemcpyParam2DAsync")
-#endif
        import :: hip_Memcpy2D, c_ptr, c_int
        type(hip_Memcpy2D) :: pCopy
        type(c_ptr), value :: stream
@@ -8801,11 +8481,7 @@ module hipfort
     !> hipMemcpyAsync
     function hipDrvMemcpy3DAsync_raw(pCopy, stream) &
        result(DrvMemcpy3DAsync_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cudaDrvMemcpy3DAsync")
-#else
        bind(C, name="hipDrvMemcpy3DAsync")
-#endif
        import :: HIP_MEMCPY3D, c_ptr, c_int
        type(HIP_MEMCPY3D) :: pCopy
        type(c_ptr), value :: stream
@@ -9019,11 +8695,7 @@ module hipfort
     !> NVIDIA platform.
     function hipCtxCreate_raw(ctx, flags, device) &
        result(CtxCreate_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cudaCtxCreate")
-#else
        bind(C, name="hipCtxCreate")
-#endif
        import :: c_ptr, c_int
        type(c_ptr) :: ctx
        integer(c_int), value :: flags
@@ -9052,11 +8724,7 @@ module hipfort
     !> NVIDIA platform.
     function hipCtxDestroy_raw(ctx) &
        result(CtxDestroy_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cudaCtxDestroy")
-#else
        bind(C, name="hipCtxDestroy")
-#endif
        import :: c_ptr, c_int
        type(c_ptr), value :: ctx
        integer(c_int) :: CtxDestroy_raw
@@ -9083,11 +8751,7 @@ module hipfort
     !> NVIDIA platform.
     function hipCtxPopCurrent_raw(ctx) &
        result(CtxPopCurrent_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cudaCtxPopCurrent")
-#else
        bind(C, name="hipCtxPopCurrent")
-#endif
        import :: c_ptr, c_int
        type(c_ptr) :: ctx
        integer(c_int) :: CtxPopCurrent_raw
@@ -9114,11 +8778,7 @@ module hipfort
     !> NVIDIA platform.
     function hipCtxPushCurrent_raw(ctx) &
        result(CtxPushCurrent_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cudaCtxPushCurrent")
-#else
        bind(C, name="hipCtxPushCurrent")
-#endif
        import :: c_ptr, c_int
        type(c_ptr), value :: ctx
        integer(c_int) :: CtxPushCurrent_raw
@@ -9145,11 +8805,7 @@ module hipfort
     !> NVIDIA platform.
     function hipCtxSetCurrent_raw(ctx) &
        result(CtxSetCurrent_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cudaCtxSetCurrent")
-#else
        bind(C, name="hipCtxSetCurrent")
-#endif
        import :: c_ptr, c_int
        type(c_ptr), value :: ctx
        integer(c_int) :: CtxSetCurrent_raw
@@ -9176,11 +8832,7 @@ module hipfort
     !> NVIDIA platform.
     function hipCtxGetCurrent_raw(ctx) &
        result(CtxGetCurrent_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cudaCtxGetCurrent")
-#else
        bind(C, name="hipCtxGetCurrent")
-#endif
        import :: c_ptr, c_int
        type(c_ptr) :: ctx
        integer(c_int) :: CtxGetCurrent_raw
@@ -9214,11 +8866,7 @@ module hipfort
     !> NVIDIA platform.
     function hipCtxGetApiVersion_raw(ctx, apiVersion) &
        result(CtxGetApiVersion_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cudaCtxGetApiVersion")
-#else
        bind(C, name="hipCtxGetApiVersion")
-#endif
        import :: c_ptr, c_int
        type(c_ptr), value :: ctx
        type(c_ptr), value :: apiVersion
@@ -9250,11 +8898,7 @@ module hipfort
     !> NVIDIA platform.
     function hipCtxGetCacheConfig_raw(cacheConfig) &
        result(CtxGetCacheConfig_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cudaCtxGetCacheConfig")
-#else
        bind(C, name="hipCtxGetCacheConfig")
-#endif
        import :: c_ptr, c_int
        type(c_ptr), value :: cacheConfig
        integer(c_int) :: CtxGetCacheConfig_raw
@@ -9285,11 +8929,7 @@ module hipfort
     !> NVIDIA platform.
     function hipCtxGetSharedMemConfig_raw(pConfig) &
        result(CtxGetSharedMemConfig_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cudaCtxGetSharedMemConfig")
-#else
        bind(C, name="hipCtxGetSharedMemConfig")
-#endif
        import :: c_ptr, c_int
        type(c_ptr), value :: pConfig
        integer(c_int) :: CtxGetSharedMemConfig_raw
@@ -9316,11 +8956,7 @@ module hipfort
     !> NVIDIA platform.
     function hipCtxGetFlags_raw(flags) &
        result(CtxGetFlags_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cudaCtxGetFlags")
-#else
        bind(C, name="hipCtxGetFlags")
-#endif
        import :: c_ptr, c_int
        type(c_ptr), value :: flags
        integer(c_int) :: CtxGetFlags_raw
@@ -9358,11 +8994,7 @@ module hipfort
     !> NVIDIA platform.
     function hipCtxEnablePeerAccess_raw(peerCtx, flags) &
        result(CtxEnablePeerAccess_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cudaCtxEnablePeerAccess")
-#else
        bind(C, name="hipCtxEnablePeerAccess")
-#endif
        import :: c_ptr, c_int
        type(c_ptr), value :: peerCtx
        integer(c_int), value :: flags
@@ -9398,11 +9030,7 @@ module hipfort
     !> NVIDIA platform.
     function hipCtxDisablePeerAccess_raw(peerCtx) &
        result(CtxDisablePeerAccess_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cudaCtxDisablePeerAccess")
-#else
        bind(C, name="hipCtxDisablePeerAccess")
-#endif
        import :: c_ptr, c_int
        type(c_ptr), value :: peerCtx
        integer(c_int) :: CtxDisablePeerAccess_raw
@@ -9430,11 +9058,7 @@ module hipfort
     !> NVIDIA platform.
     function hipDevicePrimaryCtxGetState_raw(dev, flags, active) &
        result(DevicePrimaryCtxGetState_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cudaDevicePrimaryCtxGetState")
-#else
        bind(C, name="hipDevicePrimaryCtxGetState")
-#endif
        import :: c_int, c_ptr
        integer(c_int), value :: dev
        type(c_ptr), value :: flags
@@ -9463,11 +9087,7 @@ module hipfort
     !> NVIDIA platform.
     function hipDevicePrimaryCtxRetain_raw(pctx, dev) &
        result(DevicePrimaryCtxRetain_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cudaDevicePrimaryCtxRetain")
-#else
        bind(C, name="hipDevicePrimaryCtxRetain")
-#endif
        import :: c_ptr, c_int
        type(c_ptr) :: pctx
        integer(c_int), value :: dev
@@ -9529,11 +9149,7 @@ module hipfort
     !> `hipErrorOutOfMemory`, `hipErrorSharedObjectInitFailed`, `hipErrorNotInitialized`
     function hipModuleLoad_raw(module_, fname) &
        result(ModuleLoad_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cudaModuleLoad")
-#else
        bind(C, name="hipModuleLoad")
-#endif
        import :: c_ptr, c_int
        type(c_ptr) :: module_
        type(c_ptr), value :: fname
@@ -9557,11 +9173,7 @@ module hipfort
     !> The module is freed, and the code objects associated with it are destroyed.
     function hipModuleUnload_raw(module_) &
        result(ModuleUnload_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cudaModuleUnload")
-#else
        bind(C, name="hipModuleUnload")
-#endif
        import :: c_ptr, c_int
        type(c_ptr), value :: module_
        integer(c_int) :: ModuleUnload_raw
@@ -9585,11 +9197,7 @@ module hipfort
     !> `hipErrorNotFound`,
     function hipModuleGetFunction_raw(function_, module_, kname) &
        result(ModuleGetFunction_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cudaModuleGetFunction")
-#else
        bind(C, name="hipModuleGetFunction")
-#endif
        import :: c_ptr, c_int
        type(c_ptr) :: function_
        type(c_ptr), value :: module_
@@ -9761,11 +9369,7 @@ module hipfort
     !> @returns `hipSuccess`, `hipErrorInvalidValue`, `hipErrorInvalidDeviceFunction`
     function hipFuncGetAttribute_raw(value, attrib, hfunc) &
        result(FuncGetAttribute_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cudaFuncGetAttribute")
-#else
        bind(C, name="hipFuncGetAttribute")
-#endif
        import :: c_ptr, c_int
        type(c_ptr), value :: value
        integer(c_int), value :: attrib
@@ -9843,11 +9447,7 @@ module hipfort
     !> @returns `hipSuccess`, `hipErrorNotInitialized`, `hipErrorNotFound`, `hipErrorInvalidValue`
     function hipModuleGetTexRef_raw(texRef, hmod, name) &
        result(ModuleGetTexRef_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cudaModuleGetTexRef")
-#else
        bind(C, name="hipModuleGetTexRef")
-#endif
        import :: c_ptr, c_int
        type(c_ptr) :: texRef
        type(c_ptr), value :: hmod
@@ -9890,11 +9490,7 @@ module hipfort
     !> @returns hipSuccess, hipErrorNotInitialized, hipErrorOutOfMemory, hipErrorNotInitialized
     function hipModuleLoadData_raw(module_, image) &
        result(ModuleLoadData_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cudaModuleLoadData")
-#else
        bind(C, name="hipModuleLoadData")
-#endif
        import :: c_ptr, c_int
        type(c_ptr) :: module_
        type(c_ptr), value :: image
@@ -9920,11 +9516,7 @@ module hipfort
     !> @returns hipSuccess, hipErrorNotInitialized, hipErrorOutOfMemory, hipErrorNotInitialized
     function hipModuleLoadDataEx_raw(module_, image, numOptions, options, optionValues) &
        result(ModuleLoadDataEx_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cudaModuleLoadDataEx")
-#else
        bind(C, name="hipModuleLoadDataEx")
-#endif
        import :: c_ptr, c_int
        type(c_ptr) :: module_
        type(c_ptr), value :: image
@@ -10074,11 +9666,7 @@ module hipfort
     function hipModuleLaunchKernel_raw(f, gridDimX, gridDimY, gridDimZ, blockDimX, blockDimY, &
                                        blockDimZ, sharedMemBytes, stream, kernelParams, extra) &
        result(ModuleLaunchKernel_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cudaModuleLaunchKernel")
-#else
        bind(C, name="hipModuleLaunchKernel")
-#endif
        import :: c_ptr, c_int
        type(c_ptr), value :: f
        integer(c_int), value :: gridDimX
@@ -10262,11 +9850,7 @@ module hipfort
     function hipModuleOccupancyMaxPotentialBlockSize_raw(gridSize, blockSize, f, &
                                                          dynSharedMemPerBlk, blockSizeLimit) &
        result(ModuleOccupancyMaxPotentialBlockSize_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cudaModuleOccupancyMaxPotentialBlockSize")
-#else
        bind(C, name="hipModuleOccupancyMaxPotentialBlockSize")
-#endif
        import :: c_ptr, c_long, c_int
        type(c_ptr), value :: gridSize
        type(c_ptr), value :: blockSize
@@ -10302,11 +9886,7 @@ module hipfort
                                                                   dynSharedMemPerBlk, &
                                                                   blockSizeLimit, flags) &
        result(ModuleOccupancyMaxPotentialBlockSizeWithFlags_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cudaModuleOccupancyMaxPotentialBlockSizeWithFlags")
-#else
        bind(C, name="hipModuleOccupancyMaxPotentialBlockSizeWithFlags")
-#endif
        import :: c_ptr, c_long, c_int
        type(c_ptr), value :: gridSize
        type(c_ptr), value :: blockSize
@@ -10335,11 +9915,7 @@ module hipfort
     function hipModuleOccupancyMaxActiveBlocksPerMultiprocessor_raw(numBlocks, f, blockSize, &
                                                                     dynSharedMemPerBlk) &
        result(ModuleOccupancyMaxActiveBlocksPerMultiprocessor_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cudaModuleOccupancyMaxActiveBlocksPerMultiprocessor")
-#else
        bind(C, name="hipModuleOccupancyMaxActiveBlocksPerMultiprocessor")
-#endif
        import :: c_ptr, c_int, c_long
        type(c_ptr), value :: numBlocks
        type(c_ptr), value :: f
@@ -10465,11 +10041,7 @@ module hipfort
     function hipOccupancyMaxPotentialBlockSize_raw(gridSize, blockSize, f, dynSharedMemPerBlk, &
                                                    blockSizeLimit) &
        result(OccupancyMaxPotentialBlockSize_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cudaOccupancyMaxPotentialBlockSize")
-#else
        bind(C, name="hipOccupancyMaxPotentialBlockSize")
-#endif
        import :: c_ptr, c_long, c_int
        type(c_ptr), value :: gridSize
        type(c_ptr), value :: blockSize
@@ -10509,11 +10081,7 @@ module hipfort
     !> @returns `hipSuccess`, `hipErrorNotInitialized`, `hipErrorInvalidValue`
     function hipConfigureCall_raw(gridDim, blockDim, sharedMem, stream) &
        result(ConfigureCall_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cudaConfigureCall")
-#else
        bind(C, name="hipConfigureCall")
-#endif
        import :: c_ptr, c_long, c_int
        type(c_ptr), value :: gridDim
        type(c_ptr), value :: blockDim
@@ -10636,11 +10204,7 @@ module hipfort
     function hipExtLaunchKernel_raw(function_address, numBlocks, dimBlocks, args, sharedMemBytes, &
                                     stream, startEvent, stopEvent, flags) &
        result(ExtLaunchKernel_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cudaExtLaunchKernel")
-#else
        bind(C, name="hipExtLaunchKernel")
-#endif
        import :: c_ptr, c_long, c_int
        type(c_ptr), value :: function_address
        type(c_ptr), value :: numBlocks
@@ -10695,11 +10259,7 @@ module hipfort
     !> @warning This API is deprecated.
     function hipTexRefGetAddressMode_raw(pam, texRef, dim) &
        result(TexRefGetAddressMode_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cudaTexRefGetAddressMode")
-#else
        bind(C, name="hipTexRefGetAddressMode")
-#endif
        import :: c_ptr, textureReference, c_int
        type(c_ptr), value :: pam
        type(textureReference) :: texRef
@@ -10724,11 +10284,7 @@ module hipfort
     !> @warning This API is deprecated.
     function hipTexRefGetFilterMode_raw(pfm, texRef) &
        result(TexRefGetFilterMode_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cudaTexRefGetFilterMode")
-#else
        bind(C, name="hipTexRefGetFilterMode")
-#endif
        import :: c_ptr, textureReference, c_int
        type(c_ptr), value :: pfm
        type(textureReference) :: texRef
@@ -10752,11 +10308,7 @@ module hipfort
     !> @warning This API is deprecated.
     function hipTexRefGetFlags_raw(pFlags, texRef) &
        result(TexRefGetFlags_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cudaTexRefGetFlags")
-#else
        bind(C, name="hipTexRefGetFlags")
-#endif
        import :: c_ptr, textureReference, c_int
        type(c_ptr), value :: pFlags
        type(textureReference) :: texRef
@@ -10781,11 +10333,7 @@ module hipfort
     !> @warning This API is deprecated.
     function hipTexRefGetFormat_raw(pFormat, pNumChannels, texRef) &
        result(TexRefGetFormat_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cudaTexRefGetFormat")
-#else
        bind(C, name="hipTexRefGetFormat")
-#endif
        import :: c_ptr, textureReference, c_int
        type(c_ptr), value :: pFormat
        type(c_ptr), value :: pNumChannels
@@ -10810,11 +10358,7 @@ module hipfort
     !> @warning This API is deprecated.
     function hipTexRefGetMaxAnisotropy_raw(pmaxAnsio, texRef) &
        result(TexRefGetMaxAnisotropy_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cudaTexRefGetMaxAnisotropy")
-#else
        bind(C, name="hipTexRefGetMaxAnisotropy")
-#endif
        import :: c_ptr, textureReference, c_int
        type(c_ptr), value :: pmaxAnsio
        type(textureReference) :: texRef
@@ -10838,11 +10382,7 @@ module hipfort
     !> @warning This API is deprecated.
     function hipTexRefGetMipmapFilterMode_raw(pfm, texRef) &
        result(TexRefGetMipmapFilterMode_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cudaTexRefGetMipmapFilterMode")
-#else
        bind(C, name="hipTexRefGetMipmapFilterMode")
-#endif
        import :: c_ptr, textureReference, c_int
        type(c_ptr), value :: pfm
        type(textureReference) :: texRef
@@ -10866,11 +10406,7 @@ module hipfort
     !> @warning This API is deprecated.
     function hipTexRefGetMipmapLevelBias_raw(pbias, texRef) &
        result(TexRefGetMipmapLevelBias_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cudaTexRefGetMipmapLevelBias")
-#else
        bind(C, name="hipTexRefGetMipmapLevelBias")
-#endif
        import :: c_ptr, textureReference, c_int
        type(c_ptr), value :: pbias
        type(textureReference) :: texRef
@@ -10895,11 +10431,7 @@ module hipfort
     !> @warning This API is deprecated.
     function hipTexRefGetMipmapLevelClamp_raw(pminMipmapLevelClamp, pmaxMipmapLevelClamp, texRef) &
        result(TexRefGetMipmapLevelClamp_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cudaTexRefGetMipmapLevelClamp")
-#else
        bind(C, name="hipTexRefGetMipmapLevelClamp")
-#endif
        import :: c_ptr, textureReference, c_int
        type(c_ptr), value :: pminMipmapLevelClamp
        type(c_ptr), value :: pmaxMipmapLevelClamp
@@ -10924,11 +10456,7 @@ module hipfort
     !> @warning This API is deprecated.
     function hipTexRefSetBorderColor_raw(texRef, pBorderColor) &
        result(TexRefSetBorderColor_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cudaTexRefSetBorderColor")
-#else
        bind(C, name="hipTexRefSetBorderColor")
-#endif
        import :: textureReference, c_ptr, c_int
        type(textureReference) :: texRef
        type(c_ptr), value :: pBorderColor
@@ -14477,6 +14005,7 @@ contains
       implicit none
       integer(c_int), target :: driverVersion(..)
       integer(c_int) :: DriverGetVersion
+      if (.not. is_contiguous(driverVersion)) error stop "driverVersion: array must be contiguous"
       DriverGetVersion = hipDriverGetVersion_raw(c_loc(driverVersion))
     end function hipDriverGetVersion_native
 
@@ -14485,6 +14014,7 @@ contains
       implicit none
       integer(c_int), target :: runtimeVersion(..)
       integer(c_int) :: RuntimeGetVersion
+      if (.not. is_contiguous(runtimeVersion)) error stop "runtimeVersion: array must be contiguous"
       RuntimeGetVersion = hipRuntimeGetVersion_raw(c_loc(runtimeVersion))
     end function hipRuntimeGetVersion_native
 
@@ -14495,6 +14025,8 @@ contains
       integer(c_int), target :: minor(..)
       integer(c_int), value :: device
       integer(c_int) :: DeviceComputeCapability
+      if (.not. is_contiguous(major)) error stop "major: array must be contiguous"
+      if (.not. is_contiguous(minor)) error stop "minor: array must be contiguous"
       DeviceComputeCapability = hipDeviceComputeCapability_raw(c_loc(major), c_loc(minor), device)
     end function hipDeviceComputeCapability_native
 
@@ -14507,6 +14039,7 @@ contains
       integer(c_int), value :: srcDevice
       integer(c_int), value :: dstDevice
       integer(c_int) :: DeviceGetP2PAttribute
+      if (.not. is_contiguous(value)) error stop "value: array must be contiguous"
       DeviceGetP2PAttribute = hipDeviceGetP2PAttribute_raw(c_loc(value), attr, srcDevice, dstDevice)
     end function hipDeviceGetP2PAttribute_native
 
@@ -14528,6 +14061,7 @@ contains
       integer(c_int), target :: device_arr(..)
       integer(c_int), value :: len
       integer(c_int) :: SetValidDevices
+      if (.not. is_contiguous(device_arr)) error stop "device_arr: array must be contiguous"
       SetValidDevices = hipSetValidDevices_raw(c_loc(device_arr), len)
     end function hipSetValidDevices_native
 
@@ -14538,6 +14072,7 @@ contains
       integer(c_int), value :: attr
       integer(c_int), value :: deviceId
       integer(c_int) :: DeviceGetAttribute
+      if (.not. is_contiguous(pi)) error stop "pi: array must be contiguous"
       DeviceGetAttribute = hipDeviceGetAttribute_raw(c_loc(pi), attr, deviceId)
     end function hipDeviceGetAttribute_native
 
@@ -14576,6 +14111,7 @@ contains
       implicit none
       integer(c_int), target :: cacheConfig(..)
       integer(c_int) :: DeviceGetCacheConfig
+      if (.not. is_contiguous(cacheConfig)) error stop "cacheConfig: array must be contiguous"
       DeviceGetCacheConfig = hipDeviceGetCacheConfig_raw(c_loc(cacheConfig))
     end function hipDeviceGetCacheConfig_native
 
@@ -14584,6 +14120,7 @@ contains
       implicit none
       integer(c_int), target :: pConfig(..)
       integer(c_int) :: DeviceGetSharedMemConfig
+      if (.not. is_contiguous(pConfig)) error stop "pConfig: array must be contiguous"
       DeviceGetSharedMemConfig = hipDeviceGetSharedMemConfig_raw(c_loc(pConfig))
     end function hipDeviceGetSharedMemConfig_native
 
@@ -14592,6 +14129,7 @@ contains
       implicit none
       integer(c_int), target :: flags(..)
       integer(c_int) :: GetDeviceFlags
+      if (.not. is_contiguous(flags)) error stop "flags: array must be contiguous"
       GetDeviceFlags = hipGetDeviceFlags_raw(c_loc(flags))
     end function hipGetDeviceFlags_native
 
@@ -14601,6 +14139,7 @@ contains
       integer(c_int), target :: device(..)
       type(hipDeviceProp_t) :: prop
       integer(c_int) :: ChooseDeviceR0600
+      if (.not. is_contiguous(device)) error stop "device: array must be contiguous"
       ChooseDeviceR0600 = hipChooseDeviceR0600_raw(c_loc(device), prop)
     end function hipChooseDeviceR0600_native
 
@@ -14613,6 +14152,8 @@ contains
       integer(c_int), target :: linktype(..)
       integer(c_int), target :: hopcount(..)
       integer(c_int) :: ExtGetLinkTypeAndHopCount
+      if (.not. is_contiguous(linktype)) error stop "linktype: array must be contiguous"
+      if (.not. is_contiguous(hopcount)) error stop "hopcount: array must be contiguous"
       ExtGetLinkTypeAndHopCount = hipExtGetLinkTypeAndHopCount_raw(device1, device2, c_loc( &
         linktype), c_loc(hopcount))
     end function hipExtGetLinkTypeAndHopCount_native
@@ -14675,6 +14216,8 @@ contains
       integer(c_int), target :: leastPriority(..)
       integer(c_int), target :: greatestPriority(..)
       integer(c_int) :: DeviceGetStreamPriorityRange
+      if (.not. is_contiguous(leastPriority)) error stop "leastPriority: array must be contiguous"
+      if (.not. is_contiguous(greatestPriority)) error stop "greatestPriority: array must be contiguous"
       DeviceGetStreamPriorityRange = hipDeviceGetStreamPriorityRange_raw(c_loc(leastPriority), &
         c_loc(greatestPriority))
     end function hipDeviceGetStreamPriorityRange_native
@@ -14723,6 +14266,7 @@ contains
       type(c_ptr), value :: stream
       integer(c_int), target :: flags(..)
       integer(c_int) :: StreamGetFlags
+      if (.not. is_contiguous(flags)) error stop "flags: array must be contiguous"
       StreamGetFlags = hipStreamGetFlags_raw(stream, c_loc(flags))
     end function hipStreamGetFlags_native
 
@@ -14742,6 +14286,7 @@ contains
       type(c_ptr), value :: stream
       integer(c_int64_t), target :: streamId(..)
       integer(c_int) :: StreamGetId
+      if (.not. is_contiguous(streamId)) error stop "streamId: array must be contiguous"
       StreamGetId = hipStreamGetId_raw(stream, c_loc(streamId))
     end function hipStreamGetId_native
 
@@ -14761,6 +14306,7 @@ contains
       type(c_ptr), value :: stream
       integer(c_int), target :: priority(..)
       integer(c_int) :: StreamGetPriority
+      if (.not. is_contiguous(priority)) error stop "priority: array must be contiguous"
       StreamGetPriority = hipStreamGetPriority_raw(stream, c_loc(priority))
     end function hipStreamGetPriority_native
 
@@ -14780,6 +14326,7 @@ contains
       type(c_ptr), value :: stream
       integer(c_int), target :: device(..)
       integer(c_int) :: StreamGetDevice
+      if (.not. is_contiguous(device)) error stop "device: array must be contiguous"
       StreamGetDevice = hipStreamGetDevice_raw(stream, c_loc(device))
     end function hipStreamGetDevice_native
 
@@ -14801,6 +14348,7 @@ contains
       integer(c_int), value :: cuMaskSize
       integer(c_int), target :: cuMask(..)
       integer(c_int) :: ExtStreamCreateWithCUMask
+      if (.not. is_contiguous(cuMask)) error stop "cuMask: array must be contiguous"
       ExtStreamCreateWithCUMask = hipExtStreamCreateWithCUMask_raw(stream, cuMaskSize, c_loc( &
         cuMask))
     end function hipExtStreamCreateWithCUMask_native
@@ -14824,6 +14372,7 @@ contains
       integer(c_int), value :: cuMaskSize
       integer(c_int), target :: cuMask(..)
       integer(c_int) :: ExtStreamGetCUMask
+      if (.not. is_contiguous(cuMask)) error stop "cuMask: array must be contiguous"
       ExtStreamGetCUMask = hipExtStreamGetCUMask_raw(stream, cuMaskSize, c_loc(cuMask))
     end function hipExtStreamGetCUMask_native
 
@@ -15059,6 +14608,7 @@ contains
       type(c_ptr), value :: start
       type(c_ptr), value :: stop
       integer(c_int) :: EventElapsedTime
+      if (.not. is_contiguous(ms)) error stop "ms: array must be contiguous"
       EventElapsedTime = hipEventElapsedTime_raw(c_loc(ms), start, stop)
     end function hipEventElapsedTime_native
 
@@ -15091,6 +14641,7 @@ contains
       type(c_ptr) :: data
       type(c_ptr), value :: ptr
       integer(c_int) :: DrvPointerGetAttributes
+      if (.not. is_contiguous(attributes)) error stop "attributes: array must be contiguous"
       DrvPointerGetAttributes = hipDrvPointerGetAttributes_raw(numAttributes, c_loc(attributes), &
         data, ptr)
     end function hipDrvPointerGetAttributes_native
@@ -15225,6 +14776,7 @@ contains
       type(c_ptr), value :: dev_ptr
       integer(c_long), value :: count
       integer(c_int) :: MemRangeGetAttributes
+      if (.not. is_contiguous(attributes)) error stop "attributes: array must be contiguous"
       MemRangeGetAttributes = hipMemRangeGetAttributes_raw(data, data_sizes, c_loc(attributes), &
         num_attributes, dev_ptr, count)
     end function hipMemRangeGetAttributes_native
@@ -15313,6 +14865,7 @@ contains
       type(c_ptr), value :: mem_pool
       type(hipMemLocation) :: location
       integer(c_int) :: MemPoolGetAccess
+      if (.not. is_contiguous(flags)) error stop "flags: array must be contiguous"
       MemPoolGetAccess = hipMemPoolGetAccess_raw(c_loc(flags), mem_pool, location)
     end function hipMemPoolGetAccess_native
 
@@ -15512,6 +15065,7 @@ contains
       integer(c_long), value :: flags
       integer(c_int), target :: symbolStatus(..)
       integer(c_int) :: GetProcAddress
+      if (.not. is_contiguous(symbolStatus)) error stop "symbolStatus: array must be contiguous"
       GetProcAddress = hipGetProcAddress_raw(symbol, pfn, hipVersion, flags, c_loc(symbolStatus))
     end function hipGetProcAddress_native
 
@@ -15690,6 +15244,7 @@ contains
       integer(c_int), target :: flags(..)
       type(c_ptr), value :: array
       integer(c_int) :: ArrayGetInfo
+      if (.not. is_contiguous(flags)) error stop "flags: array must be contiguous"
       ArrayGetInfo = hipArrayGetInfo_raw(desc, extent, c_loc(flags), array)
     end function hipArrayGetInfo_native
 
@@ -15830,6 +15385,7 @@ contains
       integer(c_int), value :: deviceId
       integer(c_int), value :: peerDeviceId
       integer(c_int) :: DeviceCanAccessPeer
+      if (.not. is_contiguous(canAccessPeer)) error stop "canAccessPeer: array must be contiguous"
       DeviceCanAccessPeer = hipDeviceCanAccessPeer_raw(c_loc(canAccessPeer), deviceId, peerDeviceId)
     end function hipDeviceCanAccessPeer_native
 
@@ -15911,6 +15467,7 @@ contains
       type(c_ptr), value :: ctx
       integer(c_int), target :: apiVersion(..)
       integer(c_int) :: CtxGetApiVersion
+      if (.not. is_contiguous(apiVersion)) error stop "apiVersion: array must be contiguous"
       CtxGetApiVersion = hipCtxGetApiVersion_raw(ctx, c_loc(apiVersion))
     end function hipCtxGetApiVersion_native
 
@@ -15929,6 +15486,7 @@ contains
       implicit none
       integer(c_int), target :: cacheConfig(..)
       integer(c_int) :: CtxGetCacheConfig
+      if (.not. is_contiguous(cacheConfig)) error stop "cacheConfig: array must be contiguous"
       CtxGetCacheConfig = hipCtxGetCacheConfig_raw(c_loc(cacheConfig))
     end function hipCtxGetCacheConfig_native
 
@@ -15937,6 +15495,7 @@ contains
       implicit none
       integer(c_int), target :: pConfig(..)
       integer(c_int) :: CtxGetSharedMemConfig
+      if (.not. is_contiguous(pConfig)) error stop "pConfig: array must be contiguous"
       CtxGetSharedMemConfig = hipCtxGetSharedMemConfig_raw(c_loc(pConfig))
     end function hipCtxGetSharedMemConfig_native
 
@@ -15945,6 +15504,7 @@ contains
       implicit none
       integer(c_int), target :: flags(..)
       integer(c_int) :: CtxGetFlags
+      if (.not. is_contiguous(flags)) error stop "flags: array must be contiguous"
       CtxGetFlags = hipCtxGetFlags_raw(c_loc(flags))
     end function hipCtxGetFlags_native
 
@@ -15974,6 +15534,8 @@ contains
       integer(c_int), target :: flags(..)
       integer(c_int), target :: active(..)
       integer(c_int) :: DevicePrimaryCtxGetState
+      if (.not. is_contiguous(flags)) error stop "flags: array must be contiguous"
+      if (.not. is_contiguous(active)) error stop "active: array must be contiguous"
       DevicePrimaryCtxGetState = hipDevicePrimaryCtxGetState_raw(dev, c_loc(flags), c_loc(active))
     end function hipDevicePrimaryCtxGetState_native
 
@@ -16058,6 +15620,7 @@ contains
       integer(c_int), target :: count(..)
       type(c_ptr), value :: mod
       integer(c_int) :: ModuleGetFunctionCount
+      if (.not. is_contiguous(count)) error stop "count: array must be contiguous"
       ModuleGetFunctionCount = hipModuleGetFunctionCount_raw(c_loc(count), mod)
     end function hipModuleGetFunctionCount_native
 
@@ -16084,6 +15647,8 @@ contains
       type(c_ptr) :: libraryOptionValues
       integer(c_int), value :: numLibraryOptions
       integer(c_int) :: LibraryLoadData
+      if (.not. is_contiguous(jitOptions)) error stop "jitOptions: array must be contiguous"
+      if (.not. is_contiguous(libraryOptions)) error stop "libraryOptions: array must be contiguous"
       LibraryLoadData = hipLibraryLoadData_raw(library, code, c_loc(jitOptions), jitOptionsValues, &
         numJitOptions, c_loc(libraryOptions), libraryOptionValues, numLibraryOptions)
     end function hipLibraryLoadData_native
@@ -16102,6 +15667,8 @@ contains
       type(c_ptr) :: libraryOptionValues
       integer(c_int), value :: numLibraryOptions
       integer(c_int) :: LibraryLoadFromFile
+      if (.not. is_contiguous(jitOptions)) error stop "jitOptions: array must be contiguous"
+      if (.not. is_contiguous(libraryOptions)) error stop "libraryOptions: array must be contiguous"
       LibraryLoadFromFile = hipLibraryLoadFromFile_raw(library, fileName, c_loc(jitOptions), &
         jitOptionsValues, numJitOptions, c_loc(libraryOptions), libraryOptionValues, &
         numLibraryOptions)
@@ -16147,6 +15714,7 @@ contains
       integer(c_int), target :: count(..)
       type(c_ptr), value :: library
       integer(c_int) :: LibraryGetKernelCount
+      if (.not. is_contiguous(count)) error stop "count: array must be contiguous"
       LibraryGetKernelCount = hipLibraryGetKernelCount_raw(c_loc(count), library)
     end function hipLibraryGetKernelCount_native
 
@@ -16157,6 +15725,7 @@ contains
       integer(c_int), value :: attrib
       type(c_ptr), value :: hfunc
       integer(c_int) :: FuncGetAttribute
+      if (.not. is_contiguous(value)) error stop "value: array must be contiguous"
       FuncGetAttribute = hipFuncGetAttribute_raw(c_loc(value), attrib, hfunc)
     end function hipFuncGetAttribute_native
 
@@ -16190,6 +15759,7 @@ contains
       integer(c_int64_t), value :: flags
       integer(c_int), target :: driverStatus(..)
       integer(c_int) :: GetDriverEntryPoint
+      if (.not. is_contiguous(driverStatus)) error stop "driverStatus: array must be contiguous"
       GetDriverEntryPoint = hipGetDriverEntryPoint_raw(symbol, funcPtr, flags, c_loc(driverStatus))
     end function hipGetDriverEntryPoint_native
 
@@ -16253,6 +15823,7 @@ contains
       integer(c_int), target :: options(..)
       type(c_ptr) :: optionValues
       integer(c_int) :: ModuleLoadDataEx
+      if (.not. is_contiguous(options)) error stop "options: array must be contiguous"
       ModuleLoadDataEx = hipModuleLoadDataEx_raw(module_, image, numOptions, c_loc(options), &
         optionValues)
     end function hipModuleLoadDataEx_native
@@ -16285,6 +15856,7 @@ contains
       integer(c_int), target :: options(..)
       type(c_ptr) :: optionValues
       integer(c_int) :: LinkAddData
+      if (.not. is_contiguous(options)) error stop "options: array must be contiguous"
       LinkAddData = hipLinkAddData_raw(state, type, data, size, name, numOptions, c_loc(options), &
         optionValues)
     end function hipLinkAddData_native
@@ -16320,6 +15892,7 @@ contains
       integer(c_int), target :: options(..)
       type(c_ptr) :: optionValues
       integer(c_int) :: LinkAddFile
+      if (.not. is_contiguous(options)) error stop "options: array must be contiguous"
       LinkAddFile = hipLinkAddFile_raw(state, type, path, numOptions, c_loc(options), optionValues)
     end function hipLinkAddFile_native
 
@@ -16349,6 +15922,7 @@ contains
       type(c_ptr) :: optionValues
       type(c_ptr) :: stateOut
       integer(c_int) :: LinkCreate
+      if (.not. is_contiguous(options)) error stop "options: array must be contiguous"
       LinkCreate = hipLinkCreate_raw(numOptions, c_loc(options), optionValues, stateOut)
     end function hipLinkCreate_native
 
@@ -16433,6 +16007,8 @@ contains
       integer(c_long), value :: dynSharedMemPerBlk
       integer(c_int), value :: blockSizeLimit
       integer(c_int) :: ModuleOccupancyMaxPotentialBlockSize
+      if (.not. is_contiguous(gridSize)) error stop "gridSize: array must be contiguous"
+      if (.not. is_contiguous(blockSize)) error stop "blockSize: array must be contiguous"
       ModuleOccupancyMaxPotentialBlockSize = hipModuleOccupancyMaxPotentialBlockSize_raw(c_loc( &
         gridSize), c_loc(blockSize), f, dynSharedMemPerBlk, blockSizeLimit)
     end function hipModuleOccupancyMaxPotentialBlockSize_native
@@ -16464,6 +16040,8 @@ contains
       integer(c_int), value :: blockSizeLimit
       integer(c_int), value :: flags
       integer(c_int) :: ModuleOccupancyMaxPotentialBlockSizeWithFlags
+      if (.not. is_contiguous(gridSize)) error stop "gridSize: array must be contiguous"
+      if (.not. is_contiguous(blockSize)) error stop "blockSize: array must be contiguous"
       ModuleOccupancyMaxPotentialBlockSizeWithFlags = hipModuleOccupancyMaxPotentialBlockSizeWithFlags_raw( &
         c_loc(gridSize), c_loc(blockSize), f, dynSharedMemPerBlk, blockSizeLimit, flags)
     end function hipModuleOccupancyMaxPotentialBlockSizeWithFlags_native
@@ -16494,6 +16072,7 @@ contains
       integer(c_int), value :: blockSize
       integer(c_long), value :: dynSharedMemPerBlk
       integer(c_int) :: ModuleOccupancyMaxActiveBlocksPerMultiprocessor
+      if (.not. is_contiguous(numBlocks)) error stop "numBlocks: array must be contiguous"
       ModuleOccupancyMaxActiveBlocksPerMultiprocessor = hipModuleOccupancyMaxActiveBlocksPerMultiprocessor_raw( &
         c_loc(numBlocks), f, blockSize, dynSharedMemPerBlk)
     end function hipModuleOccupancyMaxActiveBlocksPerMultiprocessor_native
@@ -16523,6 +16102,7 @@ contains
       integer(c_long), value :: dynSharedMemPerBlk
       integer(c_int), value :: flags
       integer(c_int) :: ModuleOccupancyMaxActiveBlocksPerMultiprocessorWithFlags
+      if (.not. is_contiguous(numBlocks)) error stop "numBlocks: array must be contiguous"
       ModuleOccupancyMaxActiveBlocksPerMultiprocessorWithFlags = hipModuleOccupancyMaxActiveBlocksPerMultiprocessorWithFlags_raw( &
         c_loc(numBlocks), f, blockSize, dynSharedMemPerBlk, flags)
     end function hipModuleOccupancyMaxActiveBlocksPerMultiprocessorWithFl_native
@@ -16552,6 +16132,7 @@ contains
       integer(c_int), value :: blockSize
       integer(c_long), value :: dynSharedMemPerBlk
       integer(c_int) :: OccupancyMaxActiveBlocksPerMultiprocessor
+      if (.not. is_contiguous(numBlocks)) error stop "numBlocks: array must be contiguous"
       OccupancyMaxActiveBlocksPerMultiprocessor = hipOccupancyMaxActiveBlocksPerMultiprocessor_raw( &
         c_loc(numBlocks), f, blockSize, dynSharedMemPerBlk)
     end function hipOccupancyMaxActiveBlocksPerMultiprocessor_native
@@ -16566,6 +16147,7 @@ contains
       integer(c_long), value :: dynSharedMemPerBlk
       integer(c_int), value :: flags
       integer(c_int) :: OccupancyMaxActiveBlocksPerMultiprocessorWithFlags
+      if (.not. is_contiguous(numBlocks)) error stop "numBlocks: array must be contiguous"
       OccupancyMaxActiveBlocksPerMultiprocessorWithFlags = hipOccupancyMaxActiveBlocksPerMultiprocessorWithFlags_raw( &
         c_loc(numBlocks), f, blockSize, dynSharedMemPerBlk, flags)
     end function hipOccupancyMaxActiveBlocksPerMultiprocessorWithFlags_native
@@ -16580,6 +16162,8 @@ contains
       integer(c_long), value :: dynSharedMemPerBlk
       integer(c_int), value :: blockSizeLimit
       integer(c_int) :: OccupancyMaxPotentialBlockSize
+      if (.not. is_contiguous(gridSize)) error stop "gridSize: array must be contiguous"
+      if (.not. is_contiguous(blockSize)) error stop "blockSize: array must be contiguous"
       OccupancyMaxPotentialBlockSize = hipOccupancyMaxPotentialBlockSize_raw(c_loc(gridSize), &
         c_loc(blockSize), f, dynSharedMemPerBlk, blockSizeLimit)
     end function hipOccupancyMaxPotentialBlockSize_native
@@ -16648,6 +16232,7 @@ contains
       real(c_float), target :: pBorderColor(..)
       type(textureReference) :: texRef
       integer(c_int) :: TexRefGetBorderColor
+      if (.not. is_contiguous(pBorderColor)) error stop "pBorderColor: array must be contiguous"
       TexRefGetBorderColor = hipTexRefGetBorderColor_raw(c_loc(pBorderColor), texRef)
     end function hipTexRefGetBorderColor_native
 
@@ -16658,6 +16243,7 @@ contains
       type(textureReference) :: texRef
       integer(c_int), value :: dim
       integer(c_int) :: TexRefGetAddressMode
+      if (.not. is_contiguous(pam)) error stop "pam: array must be contiguous"
       TexRefGetAddressMode = hipTexRefGetAddressMode_raw(c_loc(pam), texRef, dim)
     end function hipTexRefGetAddressMode_native
 
@@ -16667,6 +16253,7 @@ contains
       integer(c_int), target :: pfm(..)
       type(textureReference) :: texRef
       integer(c_int) :: TexRefGetFilterMode
+      if (.not. is_contiguous(pfm)) error stop "pfm: array must be contiguous"
       TexRefGetFilterMode = hipTexRefGetFilterMode_raw(c_loc(pfm), texRef)
     end function hipTexRefGetFilterMode_native
 
@@ -16676,6 +16263,7 @@ contains
       integer(c_int), target :: pFlags(..)
       type(textureReference) :: texRef
       integer(c_int) :: TexRefGetFlags
+      if (.not. is_contiguous(pFlags)) error stop "pFlags: array must be contiguous"
       TexRefGetFlags = hipTexRefGetFlags_raw(c_loc(pFlags), texRef)
     end function hipTexRefGetFlags_native
 
@@ -16686,6 +16274,8 @@ contains
       integer(c_int), target :: pNumChannels(..)
       type(textureReference) :: texRef
       integer(c_int) :: TexRefGetFormat
+      if (.not. is_contiguous(pFormat)) error stop "pFormat: array must be contiguous"
+      if (.not. is_contiguous(pNumChannels)) error stop "pNumChannels: array must be contiguous"
       TexRefGetFormat = hipTexRefGetFormat_raw(c_loc(pFormat), c_loc(pNumChannels), texRef)
     end function hipTexRefGetFormat_native
 
@@ -16695,6 +16285,7 @@ contains
       integer(c_int), target :: pmaxAnsio(..)
       type(textureReference) :: texRef
       integer(c_int) :: TexRefGetMaxAnisotropy
+      if (.not. is_contiguous(pmaxAnsio)) error stop "pmaxAnsio: array must be contiguous"
       TexRefGetMaxAnisotropy = hipTexRefGetMaxAnisotropy_raw(c_loc(pmaxAnsio), texRef)
     end function hipTexRefGetMaxAnisotropy_native
 
@@ -16704,6 +16295,7 @@ contains
       integer(c_int), target :: pfm(..)
       type(textureReference) :: texRef
       integer(c_int) :: TexRefGetMipmapFilterMode
+      if (.not. is_contiguous(pfm)) error stop "pfm: array must be contiguous"
       TexRefGetMipmapFilterMode = hipTexRefGetMipmapFilterMode_raw(c_loc(pfm), texRef)
     end function hipTexRefGetMipmapFilterMode_native
 
@@ -16713,6 +16305,7 @@ contains
       real(c_float), target :: pbias(..)
       type(textureReference) :: texRef
       integer(c_int) :: TexRefGetMipmapLevelBias
+      if (.not. is_contiguous(pbias)) error stop "pbias: array must be contiguous"
       TexRefGetMipmapLevelBias = hipTexRefGetMipmapLevelBias_raw(c_loc(pbias), texRef)
     end function hipTexRefGetMipmapLevelBias_native
 
@@ -16724,6 +16317,8 @@ contains
       real(c_float), target :: pmaxMipmapLevelClamp(..)
       type(textureReference) :: texRef
       integer(c_int) :: TexRefGetMipmapLevelClamp
+      if (.not. is_contiguous(pminMipmapLevelClamp)) error stop "pminMipmapLevelClamp: array must be contiguous"
+      if (.not. is_contiguous(pmaxMipmapLevelClamp)) error stop "pmaxMipmapLevelClamp: array must be contiguous"
       TexRefGetMipmapLevelClamp = hipTexRefGetMipmapLevelClamp_raw(c_loc(pminMipmapLevelClamp), &
         c_loc(pmaxMipmapLevelClamp), texRef)
     end function hipTexRefGetMipmapLevelClamp_native
@@ -16734,6 +16329,7 @@ contains
       type(textureReference) :: texRef
       real(c_float), target :: pBorderColor(..)
       integer(c_int) :: TexRefSetBorderColor
+      if (.not. is_contiguous(pBorderColor)) error stop "pBorderColor: array must be contiguous"
       TexRefSetBorderColor = hipTexRefSetBorderColor_raw(texRef, c_loc(pBorderColor))
     end function hipTexRefSetBorderColor_native
 
@@ -16809,6 +16405,8 @@ contains
       integer(c_int), target :: pCaptureStatus(..)
       integer(c_int64_t), target :: pId(..)
       integer(c_int) :: StreamGetCaptureInfo
+      if (.not. is_contiguous(pCaptureStatus)) error stop "pCaptureStatus: array must be contiguous"
+      if (.not. is_contiguous(pId)) error stop "pId: array must be contiguous"
       StreamGetCaptureInfo = hipStreamGetCaptureInfo_raw(stream, c_loc(pCaptureStatus), c_loc(pId))
     end function hipStreamGetCaptureInfo_native
 
@@ -16834,6 +16432,8 @@ contains
       type(c_ptr) :: dependencies_out
       type(c_ptr), value :: numDependencies_out
       integer(c_int) :: StreamGetCaptureInfo_v2
+      if (.not. is_contiguous(captureStatus_out)) error stop "captureStatus_out: array must be contiguous"
+      if (.not. is_contiguous(id_out)) error stop "id_out: array must be contiguous"
       StreamGetCaptureInfo_v2 = hipStreamGetCaptureInfo_v2_raw(stream, c_loc(captureStatus_out), &
         c_loc(id_out), graph_out, dependencies_out, numDependencies_out)
     end function hipStreamGetCaptureInfo_v2_native
@@ -16860,6 +16460,7 @@ contains
       type(c_ptr), value :: stream
       integer(c_int), target :: pCaptureStatus(..)
       integer(c_int) :: StreamIsCapturing
+      if (.not. is_contiguous(pCaptureStatus)) error stop "pCaptureStatus: array must be contiguous"
       StreamIsCapturing = hipStreamIsCapturing_raw(stream, c_loc(pCaptureStatus))
     end function hipStreamIsCapturing_native
 
@@ -16892,6 +16493,7 @@ contains
       implicit none
       integer(c_int), target :: mode(..)
       integer(c_int) :: ThreadExchangeStreamCaptureMode
+      if (.not. is_contiguous(mode)) error stop "mode: array must be contiguous"
       ThreadExchangeStreamCaptureMode = hipThreadExchangeStreamCaptureMode_raw(c_loc(mode))
     end function hipThreadExchangeStreamCaptureMode_native
 
@@ -17008,6 +16610,7 @@ contains
       type(c_ptr), value :: node
       integer(c_int), target :: pType(..)
       integer(c_int) :: GraphNodeGetType
+      if (.not. is_contiguous(pType)) error stop "pType: array must be contiguous"
       GraphNodeGetType = hipGraphNodeGetType_raw(node, c_loc(pType))
     end function hipGraphNodeGetType_native
 
@@ -17134,6 +16737,7 @@ contains
       type(c_ptr), value :: graphExec
       integer(c_int64_t), target :: flags(..)
       integer(c_int) :: GraphExecGetFlags
+      if (.not. is_contiguous(flags)) error stop "flags: array must be contiguous"
       GraphExecGetFlags = hipGraphExecGetFlags_raw(graphExec, c_loc(flags))
     end function hipGraphExecGetFlags_native
 
@@ -17187,6 +16791,7 @@ contains
       type(c_ptr) :: hErrorNode_out
       integer(c_int), target :: updateResult_out(..)
       integer(c_int) :: GraphExecUpdate
+      if (.not. is_contiguous(updateResult_out)) error stop "updateResult_out: array must be contiguous"
       GraphExecUpdate = hipGraphExecUpdate_raw(hGraphExec, hGraph, hErrorNode_out, c_loc( &
         updateResult_out))
     end function hipGraphExecUpdate_native
@@ -17902,6 +17507,7 @@ contains
       type(c_ptr), value :: hNode
       integer(c_int), target :: isEnabled(..)
       integer(c_int) :: GraphNodeGetEnabled
+      if (.not. is_contiguous(isEnabled)) error stop "isEnabled: array must be contiguous"
       GraphNodeGetEnabled = hipGraphNodeGetEnabled_raw(hGraphExec, hNode, c_loc(isEnabled))
     end function hipGraphNodeGetEnabled_native
 
@@ -18108,6 +17714,7 @@ contains
       type(hipMemLocation) :: location
       type(c_ptr), value :: ptr
       integer(c_int) :: MemGetAccess
+      if (.not. is_contiguous(flags)) error stop "flags: array must be contiguous"
       MemGetAccess = hipMemGetAccess_raw(c_loc(flags), location, ptr)
     end function hipMemGetAccess_native
 
@@ -18320,6 +17927,7 @@ contains
       type(c_ptr), value :: stream
       integer(c_int), target :: priority(..)
       integer(c_int) :: StreamGetPriority_spt
+      if (.not. is_contiguous(priority)) error stop "priority: array must be contiguous"
       StreamGetPriority_spt = hipStreamGetPriority_spt_raw(stream, c_loc(priority))
     end function hipStreamGetPriority_spt_native
 
@@ -18350,6 +17958,7 @@ contains
       type(c_ptr), value :: stream
       integer(c_int), target :: flags(..)
       integer(c_int) :: StreamGetFlags_spt
+      if (.not. is_contiguous(flags)) error stop "flags: array must be contiguous"
       StreamGetFlags_spt = hipStreamGetFlags_spt_raw(stream, c_loc(flags))
     end function hipStreamGetFlags_spt_native
 
@@ -18454,6 +18063,7 @@ contains
       type(c_ptr), value :: stream
       integer(c_int), target :: pCaptureStatus(..)
       integer(c_int) :: StreamIsCapturing_spt
+      if (.not. is_contiguous(pCaptureStatus)) error stop "pCaptureStatus: array must be contiguous"
       StreamIsCapturing_spt = hipStreamIsCapturing_spt_raw(stream, c_loc(pCaptureStatus))
     end function hipStreamIsCapturing_spt_native
 
@@ -18475,6 +18085,8 @@ contains
       integer(c_int), target :: pCaptureStatus(..)
       integer(c_int64_t), target :: pId(..)
       integer(c_int) :: StreamGetCaptureInfo_spt
+      if (.not. is_contiguous(pCaptureStatus)) error stop "pCaptureStatus: array must be contiguous"
+      if (.not. is_contiguous(pId)) error stop "pId: array must be contiguous"
       StreamGetCaptureInfo_spt = hipStreamGetCaptureInfo_spt_raw(stream, c_loc(pCaptureStatus), &
         c_loc(pId))
     end function hipStreamGetCaptureInfo_spt_native
@@ -18502,6 +18114,8 @@ contains
       type(c_ptr) :: dependencies_out
       type(c_ptr), value :: numDependencies_out
       integer(c_int) :: StreamGetCaptureInfo_v2_spt
+      if (.not. is_contiguous(captureStatus_out)) error stop "captureStatus_out: array must be contiguous"
+      if (.not. is_contiguous(id_out)) error stop "id_out: array must be contiguous"
       StreamGetCaptureInfo_v2_spt = hipStreamGetCaptureInfo_v2_spt_raw(stream, c_loc( &
         captureStatus_out), c_loc(id_out), graph_out, dependencies_out, numDependencies_out)
     end function hipStreamGetCaptureInfo_v2_spt_native
@@ -18542,6 +18156,7 @@ contains
       integer(c_int64_t), value :: flags
       integer(c_int), target :: status(..)
       integer(c_int) :: GetDriverEntryPoint_spt
+      if (.not. is_contiguous(status)) error stop "status: array must be contiguous"
       GetDriverEntryPoint_spt = hipGetDriverEntryPoint_spt_raw(symbol, funcPtr, flags, c_loc( &
         status))
     end function hipGetDriverEntryPoint_spt_native

@@ -1151,6 +1151,9 @@ contains
       integer(c_int), value :: type
       integer(c_int), value :: batch
       integer(c_int) :: PlanMany
+      if (.not. is_contiguous(n)) error stop "n: array must be contiguous"
+      if (.not. is_contiguous(inembed)) error stop "inembed: array must be contiguous"
+      if (.not. is_contiguous(onembed)) error stop "onembed: array must be contiguous"
       PlanMany = hipfftPlanMany_raw(plan, rank, c_loc(n), c_loc(inembed), istride, idist, c_loc( &
         onembed), ostride, odist, type, batch)
     end function hipfftPlanMany_native
@@ -1252,6 +1255,9 @@ contains
       integer(c_int), value :: batch
       type(c_ptr), value :: workSize
       integer(c_int) :: MakePlanMany
+      if (.not. is_contiguous(n)) error stop "n: array must be contiguous"
+      if (.not. is_contiguous(inembed)) error stop "inembed: array must be contiguous"
+      if (.not. is_contiguous(onembed)) error stop "onembed: array must be contiguous"
       MakePlanMany = hipfftMakePlanMany_raw(plan, rank, c_loc(n), c_loc(inembed), istride, idist, &
         c_loc(onembed), ostride, odist, type, batch, workSize)
     end function hipfftMakePlanMany_native
@@ -1295,6 +1301,9 @@ contains
       integer(c_int64_t), value :: batch
       type(c_ptr), value :: workSize
       integer(c_int) :: MakePlanMany64
+      if (.not. is_contiguous(n)) error stop "n: array must be contiguous"
+      if (.not. is_contiguous(inembed)) error stop "inembed: array must be contiguous"
+      if (.not. is_contiguous(onembed)) error stop "onembed: array must be contiguous"
       MakePlanMany64 = hipfftMakePlanMany64_raw(plan, rank, c_loc(n), c_loc(inembed), istride, &
         idist, c_loc(onembed), ostride, odist, type, batch, workSize)
     end function hipfftMakePlanMany64_native
@@ -1337,6 +1346,9 @@ contains
       integer(c_int), value :: batch
       type(c_ptr), value :: workSize
       integer(c_int) :: EstimateMany
+      if (.not. is_contiguous(n)) error stop "n: array must be contiguous"
+      if (.not. is_contiguous(inembed)) error stop "inembed: array must be contiguous"
+      if (.not. is_contiguous(onembed)) error stop "onembed: array must be contiguous"
       EstimateMany = hipfftEstimateMany_raw(rank, c_loc(n), c_loc(inembed), istride, idist, c_loc( &
         onembed), ostride, odist, type, batch, workSize)
     end function hipfftEstimateMany_native
@@ -1398,6 +1410,9 @@ contains
       integer(c_int), value :: batch
       type(c_ptr), value :: workSize
       integer(c_int) :: GetSizeMany
+      if (.not. is_contiguous(n)) error stop "n: array must be contiguous"
+      if (.not. is_contiguous(inembed)) error stop "inembed: array must be contiguous"
+      if (.not. is_contiguous(onembed)) error stop "onembed: array must be contiguous"
       GetSizeMany = hipfftGetSizeMany_raw(plan, rank, c_loc(n), c_loc(inembed), istride, idist, &
         c_loc(onembed), ostride, odist, type, batch, workSize)
     end function hipfftGetSizeMany_native
@@ -1441,6 +1456,9 @@ contains
       integer(c_int64_t), value :: batch
       type(c_ptr), value :: workSize
       integer(c_int) :: GetSizeMany64
+      if (.not. is_contiguous(n)) error stop "n: array must be contiguous"
+      if (.not. is_contiguous(inembed)) error stop "inembed: array must be contiguous"
+      if (.not. is_contiguous(onembed)) error stop "onembed: array must be contiguous"
       GetSizeMany64 = hipfftGetSizeMany64_raw(plan, rank, c_loc(n), c_loc(inembed), istride, &
         idist, c_loc(onembed), ostride, odist, type, batch, workSize)
     end function hipfftGetSizeMany64_native
@@ -1505,6 +1523,8 @@ contains
       complex(c_float_complex), target :: odata(..)
       integer(c_int), value :: direction
       integer(c_int) :: ExecC2C
+      if (.not. is_contiguous(idata)) error stop "idata: array must be contiguous"
+      if (.not. is_contiguous(odata)) error stop "odata: array must be contiguous"
       ExecC2C = hipfftExecC2C_raw(plan, c_loc(idata), c_loc(odata), direction)
     end function hipfftExecC2C_native
 
@@ -1527,6 +1547,8 @@ contains
       real(c_float), target :: idata(..)
       complex(c_float_complex), target :: odata(..)
       integer(c_int) :: ExecR2C
+      if (.not. is_contiguous(idata)) error stop "idata: array must be contiguous"
+      if (.not. is_contiguous(odata)) error stop "odata: array must be contiguous"
       ExecR2C = hipfftExecR2C_raw(plan, c_loc(idata), c_loc(odata))
     end function hipfftExecR2C_native
 
@@ -1548,6 +1570,8 @@ contains
       complex(c_float_complex), target :: idata(..)
       real(c_float), target :: odata(..)
       integer(c_int) :: ExecC2R
+      if (.not. is_contiguous(idata)) error stop "idata: array must be contiguous"
+      if (.not. is_contiguous(odata)) error stop "odata: array must be contiguous"
       ExecC2R = hipfftExecC2R_raw(plan, c_loc(idata), c_loc(odata))
     end function hipfftExecC2R_native
 
@@ -1570,6 +1594,8 @@ contains
       complex(c_double_complex), target :: odata(..)
       integer(c_int), value :: direction
       integer(c_int) :: ExecZ2Z
+      if (.not. is_contiguous(idata)) error stop "idata: array must be contiguous"
+      if (.not. is_contiguous(odata)) error stop "odata: array must be contiguous"
       ExecZ2Z = hipfftExecZ2Z_raw(plan, c_loc(idata), c_loc(odata), direction)
     end function hipfftExecZ2Z_native
 
@@ -1592,6 +1618,8 @@ contains
       real(c_double), target :: idata(..)
       complex(c_double_complex), target :: odata(..)
       integer(c_int) :: ExecD2Z
+      if (.not. is_contiguous(idata)) error stop "idata: array must be contiguous"
+      if (.not. is_contiguous(odata)) error stop "odata: array must be contiguous"
       ExecD2Z = hipfftExecD2Z_raw(plan, c_loc(idata), c_loc(odata))
     end function hipfftExecD2Z_native
 
@@ -1613,6 +1641,8 @@ contains
       complex(c_double_complex), target :: idata(..)
       real(c_double), target :: odata(..)
       integer(c_int) :: ExecZ2D
+      if (.not. is_contiguous(idata)) error stop "idata: array must be contiguous"
+      if (.not. is_contiguous(odata)) error stop "odata: array must be contiguous"
       ExecZ2D = hipfftExecZ2D_raw(plan, c_loc(idata), c_loc(odata))
     end function hipfftExecZ2D_native
 
@@ -1651,6 +1681,7 @@ contains
       implicit none
       integer(c_int), target :: version(..)
       integer(c_int) :: GetVersion
+      if (.not. is_contiguous(version)) error stop "version: array must be contiguous"
       GetVersion = hipfftGetVersion_raw(c_loc(version))
     end function hipfftGetVersion_native
 
@@ -1660,6 +1691,7 @@ contains
       integer(c_int), value :: type
       integer(c_int), target :: value(..)
       integer(c_int) :: GetProperty
+      if (.not. is_contiguous(value)) error stop "value: array must be contiguous"
       GetProperty = hipfftGetProperty_raw(type, c_loc(value))
     end function hipfftGetProperty_native
 

@@ -315,11 +315,7 @@ module hipfort_hiprand
     !> - HIPRAND_STATUS_SUCCESS if random numbers were successfully generated \n
     function hiprandGenerateChar_raw(generator, output_data, n) &
        result(GenerateChar_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="curandGenerateChar")
-#else
        bind(C, name="hiprandGenerateChar")
-#endif
        import :: c_ptr, c_long, c_int
        type(c_ptr), value :: generator
        type(c_ptr), value :: output_data
@@ -352,11 +348,7 @@ module hipfort_hiprand
     !> - HIPRAND_STATUS_SUCCESS if random numbers were successfully generated \n
     function hiprandGenerateShort_raw(generator, output_data, n) &
        result(GenerateShort_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="curandGenerateShort")
-#else
        bind(C, name="hiprandGenerateShort")
-#endif
        import :: c_ptr, c_long, c_int
        type(c_ptr), value :: generator
        type(c_ptr), value :: output_data
@@ -1160,6 +1152,7 @@ contains
       integer(c_int), target :: output_data(..)
       integer(c_long), value :: n
       integer(c_int) :: Generate
+      if (.not. is_contiguous(output_data)) error stop "output_data: array must be contiguous"
       Generate = hiprandGenerate_raw(generator, c_loc(output_data), n)
     end function hiprandGenerate_native
 
@@ -1203,6 +1196,7 @@ contains
       integer(c_int64_t), target :: output_data(..)
       integer(c_long), value :: n
       integer(c_int) :: GenerateLongLong
+      if (.not. is_contiguous(output_data)) error stop "output_data: array must be contiguous"
       GenerateLongLong = hiprandGenerateLongLong_raw(generator, c_loc(output_data), n)
     end function hiprandGenerateLongLong_native
 
@@ -1224,6 +1218,7 @@ contains
       real(c_float), target :: output_data(..)
       integer(c_long), value :: n
       integer(c_int) :: GenerateUniform
+      if (.not. is_contiguous(output_data)) error stop "output_data: array must be contiguous"
       GenerateUniform = hiprandGenerateUniform_raw(generator, c_loc(output_data), n)
     end function hiprandGenerateUniform_native
 
@@ -1246,6 +1241,7 @@ contains
       real(c_double), target :: output_data(..)
       integer(c_long), value :: n
       integer(c_int) :: GenerateUniformDouble
+      if (.not. is_contiguous(output_data)) error stop "output_data: array must be contiguous"
       GenerateUniformDouble = hiprandGenerateUniformDouble_raw(generator, c_loc(output_data), n)
     end function hiprandGenerateUniformDouble_native
 
@@ -1269,6 +1265,7 @@ contains
       integer(c_int), target :: output_data(..)
       integer(c_long), value :: n
       integer(c_int) :: GenerateUniformHalf
+      if (.not. is_contiguous(output_data)) error stop "output_data: array must be contiguous"
       GenerateUniformHalf = hiprandGenerateUniformHalf_raw(generator, c_loc(output_data), n)
     end function hiprandGenerateUniformHalf_native
 
@@ -1293,6 +1290,7 @@ contains
       real(c_float), value :: mean
       real(c_float), value :: stddev
       integer(c_int) :: GenerateNormal
+      if (.not. is_contiguous(output_data)) error stop "output_data: array must be contiguous"
       GenerateNormal = hiprandGenerateNormal_raw(generator, c_loc(output_data), n, mean, stddev)
     end function hiprandGenerateNormal_native
 
@@ -1320,6 +1318,7 @@ contains
       real(c_double), value :: mean
       real(c_double), value :: stddev
       integer(c_int) :: GenerateNormalDouble
+      if (.not. is_contiguous(output_data)) error stop "output_data: array must be contiguous"
       GenerateNormalDouble = hiprandGenerateNormalDouble_raw(generator, c_loc(output_data), n, &
         mean, stddev)
     end function hiprandGenerateNormalDouble_native
@@ -1349,6 +1348,7 @@ contains
       integer(c_int), value :: mean
       integer(c_int), value :: stddev
       integer(c_int) :: GenerateNormalHalf
+      if (.not. is_contiguous(output_data)) error stop "output_data: array must be contiguous"
       GenerateNormalHalf = hiprandGenerateNormalHalf_raw(generator, c_loc(output_data), n, mean, &
         stddev)
     end function hiprandGenerateNormalHalf_native
@@ -1378,6 +1378,7 @@ contains
       real(c_float), value :: mean
       real(c_float), value :: stddev
       integer(c_int) :: GenerateLogNormal
+      if (.not. is_contiguous(output_data)) error stop "output_data: array must be contiguous"
       GenerateLogNormal = hiprandGenerateLogNormal_raw(generator, c_loc(output_data), n, mean, &
         stddev)
     end function hiprandGenerateLogNormal_native
@@ -1406,6 +1407,7 @@ contains
       real(c_double), value :: mean
       real(c_double), value :: stddev
       integer(c_int) :: GenerateLogNormalDouble
+      if (.not. is_contiguous(output_data)) error stop "output_data: array must be contiguous"
       GenerateLogNormalDouble = hiprandGenerateLogNormalDouble_raw(generator, c_loc(output_data), &
         n, mean, stddev)
     end function hiprandGenerateLogNormalDouble_native
@@ -1435,6 +1437,7 @@ contains
       integer(c_int), value :: mean
       integer(c_int), value :: stddev
       integer(c_int) :: GenerateLogNormalHalf
+      if (.not. is_contiguous(output_data)) error stop "output_data: array must be contiguous"
       GenerateLogNormalHalf = hiprandGenerateLogNormalHalf_raw(generator, c_loc(output_data), n, &
         mean, stddev)
     end function hiprandGenerateLogNormalHalf_native
@@ -1463,6 +1466,7 @@ contains
       integer(c_long), value :: n
       real(c_double), value :: lambda
       integer(c_int) :: GeneratePoisson
+      if (.not. is_contiguous(output_data)) error stop "output_data: array must be contiguous"
       GeneratePoisson = hiprandGeneratePoisson_raw(generator, c_loc(output_data), n, lambda)
     end function hiprandGeneratePoisson_native
 
@@ -1545,6 +1549,7 @@ contains
       implicit none
       integer(c_int), target :: version(..)
       integer(c_int) :: GetVersion
+      if (.not. is_contiguous(version)) error stop "version: array must be contiguous"
       GetVersion = hiprandGetVersion_raw(c_loc(version))
     end function hiprandGetVersion_native
 

@@ -36296,6 +36296,7 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), target :: pointer_mode(..)
       integer(c_int) :: get_pointer_mode
+      if (.not. is_contiguous(pointer_mode)) error stop "pointer_mode: array must be contiguous"
       get_pointer_mode = rocsparse_get_pointer_mode_raw(handle, c_loc(pointer_mode))
     end function rocsparse_get_pointer_mode_native
 
@@ -36315,6 +36316,7 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), target :: version(..)
       integer(c_int) :: get_version
+      if (.not. is_contiguous(version)) error stop "version: array must be contiguous"
       get_version = rocsparse_get_version_raw(handle, c_loc(version))
     end function rocsparse_get_version_native
 
@@ -36603,6 +36605,9 @@ contains
       integer(c_int), target :: idx_base(..)
       integer(c_int), target :: data_type(..)
       integer(c_int) :: spvec_get
+      if (.not. is_contiguous(idx_type)) error stop "idx_type: array must be contiguous"
+      if (.not. is_contiguous(idx_base)) error stop "idx_base: array must be contiguous"
+      if (.not. is_contiguous(data_type)) error stop "data_type: array must be contiguous"
       spvec_get = rocsparse_spvec_get_raw(descr, size, nnz, indices, values, c_loc(idx_type), &
         c_loc(idx_base), c_loc(data_type))
     end function rocsparse_spvec_get_native
@@ -36638,6 +36643,9 @@ contains
       integer(c_int), target :: idx_base(..)
       integer(c_int), target :: data_type(..)
       integer(c_int) :: const_spvec_get
+      if (.not. is_contiguous(idx_type)) error stop "idx_type: array must be contiguous"
+      if (.not. is_contiguous(idx_base)) error stop "idx_base: array must be contiguous"
+      if (.not. is_contiguous(data_type)) error stop "data_type: array must be contiguous"
       const_spvec_get = rocsparse_const_spvec_get_raw(descr, size, nnz, indices, values, c_loc( &
         idx_type), c_loc(idx_base), c_loc(data_type))
     end function rocsparse_const_spvec_get_native
@@ -36666,6 +36674,7 @@ contains
       type(c_ptr), value :: descr
       integer(c_int), target :: idx_base(..)
       integer(c_int) :: spvec_get_index_base
+      if (.not. is_contiguous(idx_base)) error stop "idx_base: array must be contiguous"
       spvec_get_index_base = rocsparse_spvec_get_index_base_raw(descr, c_loc(idx_base))
     end function rocsparse_spvec_get_index_base_native
 
@@ -37422,6 +37431,9 @@ contains
       integer(c_int), target :: idx_base(..)
       integer(c_int), target :: data_type(..)
       integer(c_int) :: coo_get
+      if (.not. is_contiguous(idx_type)) error stop "idx_type: array must be contiguous"
+      if (.not. is_contiguous(idx_base)) error stop "idx_base: array must be contiguous"
+      if (.not. is_contiguous(data_type)) error stop "data_type: array must be contiguous"
       coo_get = rocsparse_coo_get_raw(descr, rows, cols, nnz, coo_row_ind, coo_col_ind, coo_val, &
         c_loc(idx_type), c_loc(idx_base), c_loc(data_type))
     end function rocsparse_coo_get_native
@@ -37461,6 +37473,9 @@ contains
       integer(c_int), target :: idx_base(..)
       integer(c_int), target :: data_type(..)
       integer(c_int) :: const_coo_get
+      if (.not. is_contiguous(idx_type)) error stop "idx_type: array must be contiguous"
+      if (.not. is_contiguous(idx_base)) error stop "idx_base: array must be contiguous"
+      if (.not. is_contiguous(data_type)) error stop "data_type: array must be contiguous"
       const_coo_get = rocsparse_const_coo_get_raw(descr, rows, cols, nnz, coo_row_ind, &
         coo_col_ind, coo_val, c_loc(idx_type), c_loc(idx_base), c_loc(data_type))
     end function rocsparse_const_coo_get_native
@@ -37499,6 +37514,9 @@ contains
       integer(c_int), target :: idx_base(..)
       integer(c_int), target :: data_type(..)
       integer(c_int) :: coo_aos_get
+      if (.not. is_contiguous(idx_type)) error stop "idx_type: array must be contiguous"
+      if (.not. is_contiguous(idx_base)) error stop "idx_base: array must be contiguous"
+      if (.not. is_contiguous(data_type)) error stop "data_type: array must be contiguous"
       coo_aos_get = rocsparse_coo_aos_get_raw(descr, rows, cols, nnz, coo_ind, coo_val, c_loc( &
         idx_type), c_loc(idx_base), c_loc(data_type))
     end function rocsparse_coo_aos_get_native
@@ -37536,6 +37554,9 @@ contains
       integer(c_int), target :: idx_base(..)
       integer(c_int), target :: data_type(..)
       integer(c_int) :: const_coo_aos_get
+      if (.not. is_contiguous(idx_type)) error stop "idx_type: array must be contiguous"
+      if (.not. is_contiguous(idx_base)) error stop "idx_base: array must be contiguous"
+      if (.not. is_contiguous(data_type)) error stop "data_type: array must be contiguous"
       const_coo_aos_get = rocsparse_const_coo_aos_get_raw(descr, rows, cols, nnz, coo_ind, &
         coo_val, c_loc(idx_type), c_loc(idx_base), c_loc(data_type))
     end function rocsparse_const_coo_aos_get_native
@@ -37575,6 +37596,10 @@ contains
       integer(c_int), target :: idx_base(..)
       integer(c_int), target :: data_type(..)
       integer(c_int) :: csr_get
+      if (.not. is_contiguous(row_ptr_type)) error stop "row_ptr_type: array must be contiguous"
+      if (.not. is_contiguous(col_ind_type)) error stop "col_ind_type: array must be contiguous"
+      if (.not. is_contiguous(idx_base)) error stop "idx_base: array must be contiguous"
+      if (.not. is_contiguous(data_type)) error stop "data_type: array must be contiguous"
       csr_get = rocsparse_csr_get_raw(descr, rows, cols, nnz, csr_row_ptr, csr_col_ind, csr_val, &
         c_loc(row_ptr_type), c_loc(col_ind_type), c_loc(idx_base), c_loc(data_type))
     end function rocsparse_csr_get_native
@@ -37616,6 +37641,10 @@ contains
       integer(c_int), target :: idx_base(..)
       integer(c_int), target :: data_type(..)
       integer(c_int) :: const_csr_get
+      if (.not. is_contiguous(row_ptr_type)) error stop "row_ptr_type: array must be contiguous"
+      if (.not. is_contiguous(col_ind_type)) error stop "col_ind_type: array must be contiguous"
+      if (.not. is_contiguous(idx_base)) error stop "idx_base: array must be contiguous"
+      if (.not. is_contiguous(data_type)) error stop "data_type: array must be contiguous"
       const_csr_get = rocsparse_const_csr_get_raw(descr, rows, cols, nnz, csr_row_ptr, &
         csr_col_ind, csr_val, c_loc(row_ptr_type), c_loc(col_ind_type), c_loc(idx_base), c_loc( &
         data_type))
@@ -37658,6 +37687,10 @@ contains
       integer(c_int), target :: idx_base(..)
       integer(c_int), target :: data_type(..)
       integer(c_int) :: csc_get
+      if (.not. is_contiguous(col_ptr_type)) error stop "col_ptr_type: array must be contiguous"
+      if (.not. is_contiguous(row_ind_type)) error stop "row_ind_type: array must be contiguous"
+      if (.not. is_contiguous(idx_base)) error stop "idx_base: array must be contiguous"
+      if (.not. is_contiguous(data_type)) error stop "data_type: array must be contiguous"
       csc_get = rocsparse_csc_get_raw(descr, rows, cols, nnz, csc_col_ptr, csc_row_ind, csc_val, &
         c_loc(col_ptr_type), c_loc(row_ind_type), c_loc(idx_base), c_loc(data_type))
     end function rocsparse_csc_get_native
@@ -37699,6 +37732,10 @@ contains
       integer(c_int), target :: idx_base(..)
       integer(c_int), target :: data_type(..)
       integer(c_int) :: const_csc_get
+      if (.not. is_contiguous(col_ptr_type)) error stop "col_ptr_type: array must be contiguous"
+      if (.not. is_contiguous(row_ind_type)) error stop "row_ind_type: array must be contiguous"
+      if (.not. is_contiguous(idx_base)) error stop "idx_base: array must be contiguous"
+      if (.not. is_contiguous(data_type)) error stop "data_type: array must be contiguous"
       const_csc_get = rocsparse_const_csc_get_raw(descr, rows, cols, nnz, csc_col_ptr, &
         csc_row_ind, csc_val, c_loc(col_ptr_type), c_loc(row_ind_type), c_loc(idx_base), c_loc( &
         data_type))
@@ -37739,6 +37776,9 @@ contains
       integer(c_int), target :: idx_base(..)
       integer(c_int), target :: data_type(..)
       integer(c_int) :: ell_get
+      if (.not. is_contiguous(idx_type)) error stop "idx_type: array must be contiguous"
+      if (.not. is_contiguous(idx_base)) error stop "idx_base: array must be contiguous"
+      if (.not. is_contiguous(data_type)) error stop "data_type: array must be contiguous"
       ell_get = rocsparse_ell_get_raw(descr, rows, cols, ell_col_ind, ell_val, ell_width, c_loc( &
         idx_type), c_loc(idx_base), c_loc(data_type))
     end function rocsparse_ell_get_native
@@ -37776,6 +37816,9 @@ contains
       integer(c_int), target :: idx_base(..)
       integer(c_int), target :: data_type(..)
       integer(c_int) :: const_ell_get
+      if (.not. is_contiguous(idx_type)) error stop "idx_type: array must be contiguous"
+      if (.not. is_contiguous(idx_base)) error stop "idx_base: array must be contiguous"
+      if (.not. is_contiguous(data_type)) error stop "data_type: array must be contiguous"
       const_ell_get = rocsparse_const_ell_get_raw(descr, rows, cols, ell_col_ind, ell_val, &
         ell_width, c_loc(idx_type), c_loc(idx_base), c_loc(data_type))
     end function rocsparse_const_ell_get_native
@@ -37815,6 +37858,10 @@ contains
       integer(c_int), target :: idx_base(..)
       integer(c_int), target :: data_type(..)
       integer(c_int) :: bell_get
+      if (.not. is_contiguous(ell_block_dir)) error stop "ell_block_dir: array must be contiguous"
+      if (.not. is_contiguous(idx_type)) error stop "idx_type: array must be contiguous"
+      if (.not. is_contiguous(idx_base)) error stop "idx_base: array must be contiguous"
+      if (.not. is_contiguous(data_type)) error stop "data_type: array must be contiguous"
       bell_get = rocsparse_bell_get_raw(descr, rows, cols, c_loc(ell_block_dir), ell_block_dim, &
         ell_cols, ell_col_ind, ell_val, c_loc(idx_type), c_loc(idx_base), c_loc(data_type))
     end function rocsparse_bell_get_native
@@ -37856,6 +37903,10 @@ contains
       integer(c_int), target :: idx_base(..)
       integer(c_int), target :: data_type(..)
       integer(c_int) :: const_bell_get
+      if (.not. is_contiguous(ell_block_dir)) error stop "ell_block_dir: array must be contiguous"
+      if (.not. is_contiguous(idx_type)) error stop "idx_type: array must be contiguous"
+      if (.not. is_contiguous(idx_base)) error stop "idx_base: array must be contiguous"
+      if (.not. is_contiguous(data_type)) error stop "data_type: array must be contiguous"
       const_bell_get = rocsparse_const_bell_get_raw(descr, rows, cols, c_loc(ell_block_dir), &
         ell_block_dim, ell_cols, ell_col_ind, ell_val, c_loc(idx_type), c_loc(idx_base), c_loc( &
         data_type))
@@ -37901,6 +37952,10 @@ contains
       integer(c_int), target :: idx_base(..)
       integer(c_int), target :: data_type(..)
       integer(c_int) :: sell_get
+      if (.not. is_contiguous(sell_slice_offsets_type)) error stop "sell_slice_offsets_type: array must be contiguous"
+      if (.not. is_contiguous(sell_col_ind_type)) error stop "sell_col_ind_type: array must be contiguous"
+      if (.not. is_contiguous(idx_base)) error stop "idx_base: array must be contiguous"
+      if (.not. is_contiguous(data_type)) error stop "data_type: array must be contiguous"
       sell_get = rocsparse_sell_get_raw(descr, rows, cols, nnz, sell_slice_size, sell_colval_size, &
         sell_slice_offsets, sell_col_ind, sell_val, c_loc(sell_slice_offsets_type), c_loc( &
         sell_col_ind_type), c_loc(idx_base), c_loc(data_type))
@@ -37950,6 +38005,10 @@ contains
       integer(c_int), target :: idx_base(..)
       integer(c_int), target :: data_type(..)
       integer(c_int) :: const_sell_get
+      if (.not. is_contiguous(sell_slice_offsets_type)) error stop "sell_slice_offsets_type: array must be contiguous"
+      if (.not. is_contiguous(sell_col_ind_type)) error stop "sell_col_ind_type: array must be contiguous"
+      if (.not. is_contiguous(idx_base)) error stop "idx_base: array must be contiguous"
+      if (.not. is_contiguous(data_type)) error stop "data_type: array must be contiguous"
       const_sell_get = rocsparse_const_sell_get_raw(descr, rows, cols, nnz, sell_slice_size, &
         sell_colval_size, sell_slice_offsets, sell_col_ind, sell_val, c_loc( &
         sell_slice_offsets_type), c_loc(sell_col_ind_type), c_loc(idx_base), c_loc(data_type))
@@ -37999,6 +38058,11 @@ contains
       integer(c_int), target :: idx_base(..)
       integer(c_int), target :: data_type(..)
       integer(c_int) :: bsr_get
+      if (.not. is_contiguous(block_dir)) error stop "block_dir: array must be contiguous"
+      if (.not. is_contiguous(row_ptr_type)) error stop "row_ptr_type: array must be contiguous"
+      if (.not. is_contiguous(col_ind_type)) error stop "col_ind_type: array must be contiguous"
+      if (.not. is_contiguous(idx_base)) error stop "idx_base: array must be contiguous"
+      if (.not. is_contiguous(data_type)) error stop "data_type: array must be contiguous"
       bsr_get = rocsparse_bsr_get_raw(descr, brows, bcols, bnnz, c_loc(block_dir), block_dim, &
         bsr_row_ptr, bsr_col_ind, bsr_val, c_loc(row_ptr_type), c_loc(col_ind_type), c_loc( &
         idx_base), c_loc(data_type))
@@ -38046,6 +38110,11 @@ contains
       integer(c_int), target :: idx_base(..)
       integer(c_int), target :: data_type(..)
       integer(c_int) :: const_bsr_get
+      if (.not. is_contiguous(block_dir)) error stop "block_dir: array must be contiguous"
+      if (.not. is_contiguous(row_ptr_type)) error stop "row_ptr_type: array must be contiguous"
+      if (.not. is_contiguous(col_ind_type)) error stop "col_ind_type: array must be contiguous"
+      if (.not. is_contiguous(idx_base)) error stop "idx_base: array must be contiguous"
+      if (.not. is_contiguous(data_type)) error stop "data_type: array must be contiguous"
       const_bsr_get = rocsparse_const_bsr_get_raw(descr, brows, bcols, bnnz, c_loc(block_dir), &
         block_dim, bsr_row_ptr, bsr_col_ind, bsr_val, c_loc(row_ptr_type), c_loc(col_ind_type), &
         c_loc(idx_base), c_loc(data_type))
@@ -38173,6 +38242,7 @@ contains
       type(c_ptr), value :: descr
       integer(c_int), target :: format_(..)
       integer(c_int) :: spmat_get_format
+      if (.not. is_contiguous(format_)) error stop "format_: array must be contiguous"
       spmat_get_format = rocsparse_spmat_get_format_raw(descr, c_loc(format_))
     end function rocsparse_spmat_get_format_native
 
@@ -38192,6 +38262,7 @@ contains
       type(c_ptr), value :: descr
       integer(c_int), target :: idx_base(..)
       integer(c_int) :: spmat_get_index_base
+      if (.not. is_contiguous(idx_base)) error stop "idx_base: array must be contiguous"
       spmat_get_index_base = rocsparse_spmat_get_index_base_raw(descr, c_loc(idx_base))
     end function rocsparse_spmat_get_index_base_native
 
@@ -38262,6 +38333,7 @@ contains
       type(c_ptr), value :: descr
       integer(c_int), target :: batch_count(..)
       integer(c_int) :: spmat_get_strided_batch
+      if (.not. is_contiguous(batch_count)) error stop "batch_count: array must be contiguous"
       spmat_get_strided_batch = rocsparse_spmat_get_strided_batch_raw(descr, c_loc(batch_count))
     end function rocsparse_spmat_get_strided_batch_native
 
@@ -38398,6 +38470,7 @@ contains
       type(c_ptr) :: values
       integer(c_int), target :: data_type(..)
       integer(c_int) :: dnvec_get
+      if (.not. is_contiguous(data_type)) error stop "data_type: array must be contiguous"
       dnvec_get = rocsparse_dnvec_get_raw(descr, size, values, c_loc(data_type))
     end function rocsparse_dnvec_get_native
 
@@ -38422,6 +38495,7 @@ contains
       type(c_ptr) :: values
       integer(c_int), target :: data_type(..)
       integer(c_int) :: const_dnvec_get
+      if (.not. is_contiguous(data_type)) error stop "data_type: array must be contiguous"
       const_dnvec_get = rocsparse_const_dnvec_get_raw(descr, size, values, c_loc(data_type))
     end function rocsparse_const_dnvec_get_native
 
@@ -38522,6 +38596,8 @@ contains
       integer(c_int), target :: data_type(..)
       integer(c_int), target :: order(..)
       integer(c_int) :: dnmat_get
+      if (.not. is_contiguous(data_type)) error stop "data_type: array must be contiguous"
+      if (.not. is_contiguous(order)) error stop "order: array must be contiguous"
       dnmat_get = rocsparse_dnmat_get_raw(descr, rows, cols, ld, values, c_loc(data_type), c_loc( &
         order))
     end function rocsparse_dnmat_get_native
@@ -38554,6 +38630,8 @@ contains
       integer(c_int), target :: data_type(..)
       integer(c_int), target :: order(..)
       integer(c_int) :: const_dnmat_get
+      if (.not. is_contiguous(data_type)) error stop "data_type: array must be contiguous"
+      if (.not. is_contiguous(order)) error stop "order: array must be contiguous"
       const_dnmat_get = rocsparse_const_dnmat_get_raw(descr, rows, cols, ld, values, c_loc( &
         data_type), c_loc(order))
     end function rocsparse_const_dnmat_get_native
@@ -38613,6 +38691,7 @@ contains
       integer(c_int), target :: batch_count(..)
       type(c_ptr), value :: batch_stride
       integer(c_int) :: dnmat_get_strided_batch
+      if (.not. is_contiguous(batch_count)) error stop "batch_count: array must be contiguous"
       dnmat_get_strided_batch = rocsparse_dnmat_get_strided_batch_raw(descr, c_loc(batch_count), &
         batch_stride)
     end function rocsparse_dnmat_get_strided_batch_native
@@ -38651,6 +38730,7 @@ contains
       integer(c_int), target :: batch_count(..)
       type(c_ptr), value :: batch_stride
       integer(c_int) :: dnvec_get_strided_batch
+      if (.not. is_contiguous(batch_count)) error stop "batch_count: array must be contiguous"
       dnvec_get_strided_batch = rocsparse_dnvec_get_strided_batch_raw(descr, c_loc(batch_count), &
         batch_stride)
     end function rocsparse_dnvec_get_strided_batch_native
@@ -38699,6 +38779,12 @@ contains
       integer(c_int), target :: csr_row_ptr(..)
       integer(c_int), target :: csr_col_ind(..)
       integer(c_int) :: sbsr2csr
+      if (.not. is_contiguous(bsr_val)) error stop "bsr_val: array must be contiguous"
+      if (.not. is_contiguous(bsr_row_ptr)) error stop "bsr_row_ptr: array must be contiguous"
+      if (.not. is_contiguous(bsr_col_ind)) error stop "bsr_col_ind: array must be contiguous"
+      if (.not. is_contiguous(csr_val)) error stop "csr_val: array must be contiguous"
+      if (.not. is_contiguous(csr_row_ptr)) error stop "csr_row_ptr: array must be contiguous"
+      if (.not. is_contiguous(csr_col_ind)) error stop "csr_col_ind: array must be contiguous"
       sbsr2csr = rocsparse_sbsr2csr_raw(handle, dir, mb, nb, bsr_descr, c_loc(bsr_val), c_loc( &
         bsr_row_ptr), c_loc(bsr_col_ind), block_dim, csr_descr, c_loc(csr_val), c_loc( &
         csr_row_ptr), c_loc(csr_col_ind))
@@ -38745,6 +38831,12 @@ contains
       integer(c_int), target :: csr_row_ptr(..)
       integer(c_int), target :: csr_col_ind(..)
       integer(c_int) :: dbsr2csr
+      if (.not. is_contiguous(bsr_val)) error stop "bsr_val: array must be contiguous"
+      if (.not. is_contiguous(bsr_row_ptr)) error stop "bsr_row_ptr: array must be contiguous"
+      if (.not. is_contiguous(bsr_col_ind)) error stop "bsr_col_ind: array must be contiguous"
+      if (.not. is_contiguous(csr_val)) error stop "csr_val: array must be contiguous"
+      if (.not. is_contiguous(csr_row_ptr)) error stop "csr_row_ptr: array must be contiguous"
+      if (.not. is_contiguous(csr_col_ind)) error stop "csr_col_ind: array must be contiguous"
       dbsr2csr = rocsparse_dbsr2csr_raw(handle, dir, mb, nb, bsr_descr, c_loc(bsr_val), c_loc( &
         bsr_row_ptr), c_loc(bsr_col_ind), block_dim, csr_descr, c_loc(csr_val), c_loc( &
         csr_row_ptr), c_loc(csr_col_ind))
@@ -38791,6 +38883,12 @@ contains
       integer(c_int), target :: csr_row_ptr(..)
       integer(c_int), target :: csr_col_ind(..)
       integer(c_int) :: cbsr2csr
+      if (.not. is_contiguous(bsr_val)) error stop "bsr_val: array must be contiguous"
+      if (.not. is_contiguous(bsr_row_ptr)) error stop "bsr_row_ptr: array must be contiguous"
+      if (.not. is_contiguous(bsr_col_ind)) error stop "bsr_col_ind: array must be contiguous"
+      if (.not. is_contiguous(csr_val)) error stop "csr_val: array must be contiguous"
+      if (.not. is_contiguous(csr_row_ptr)) error stop "csr_row_ptr: array must be contiguous"
+      if (.not. is_contiguous(csr_col_ind)) error stop "csr_col_ind: array must be contiguous"
       cbsr2csr = rocsparse_cbsr2csr_raw(handle, dir, mb, nb, bsr_descr, c_loc(bsr_val), c_loc( &
         bsr_row_ptr), c_loc(bsr_col_ind), block_dim, csr_descr, c_loc(csr_val), c_loc( &
         csr_row_ptr), c_loc(csr_col_ind))
@@ -38837,6 +38935,12 @@ contains
       integer(c_int), target :: csr_row_ptr(..)
       integer(c_int), target :: csr_col_ind(..)
       integer(c_int) :: zbsr2csr
+      if (.not. is_contiguous(bsr_val)) error stop "bsr_val: array must be contiguous"
+      if (.not. is_contiguous(bsr_row_ptr)) error stop "bsr_row_ptr: array must be contiguous"
+      if (.not. is_contiguous(bsr_col_ind)) error stop "bsr_col_ind: array must be contiguous"
+      if (.not. is_contiguous(csr_val)) error stop "csr_val: array must be contiguous"
+      if (.not. is_contiguous(csr_row_ptr)) error stop "csr_row_ptr: array must be contiguous"
+      if (.not. is_contiguous(csr_col_ind)) error stop "csr_col_ind: array must be contiguous"
       zbsr2csr = rocsparse_zbsr2csr_raw(handle, dir, mb, nb, bsr_descr, c_loc(bsr_val), c_loc( &
         bsr_row_ptr), c_loc(bsr_col_ind), block_dim, csr_descr, c_loc(csr_val), c_loc( &
         csr_row_ptr), c_loc(csr_col_ind))
@@ -38880,6 +38984,9 @@ contains
       integer(c_int), target :: bsr_row_ptr(..)
       integer(c_int), target :: bsr_col_ind(..)
       integer(c_int) :: sbsrpad_value
+      if (.not. is_contiguous(bsr_val)) error stop "bsr_val: array must be contiguous"
+      if (.not. is_contiguous(bsr_row_ptr)) error stop "bsr_row_ptr: array must be contiguous"
+      if (.not. is_contiguous(bsr_col_ind)) error stop "bsr_col_ind: array must be contiguous"
       sbsrpad_value = rocsparse_sbsrpad_value_raw(handle, m, mb, nnzb, block_dim, value, &
         bsr_descr, c_loc(bsr_val), c_loc(bsr_row_ptr), c_loc(bsr_col_ind))
     end function rocsparse_sbsrpad_value_native
@@ -38919,6 +39026,9 @@ contains
       integer(c_int), target :: bsr_row_ptr(..)
       integer(c_int), target :: bsr_col_ind(..)
       integer(c_int) :: dbsrpad_value
+      if (.not. is_contiguous(bsr_val)) error stop "bsr_val: array must be contiguous"
+      if (.not. is_contiguous(bsr_row_ptr)) error stop "bsr_row_ptr: array must be contiguous"
+      if (.not. is_contiguous(bsr_col_ind)) error stop "bsr_col_ind: array must be contiguous"
       dbsrpad_value = rocsparse_dbsrpad_value_raw(handle, m, mb, nnzb, block_dim, value, &
         bsr_descr, c_loc(bsr_val), c_loc(bsr_row_ptr), c_loc(bsr_col_ind))
     end function rocsparse_dbsrpad_value_native
@@ -38958,6 +39068,9 @@ contains
       integer(c_int), target :: bsr_row_ptr(..)
       integer(c_int), target :: bsr_col_ind(..)
       integer(c_int) :: cbsrpad_value
+      if (.not. is_contiguous(bsr_val)) error stop "bsr_val: array must be contiguous"
+      if (.not. is_contiguous(bsr_row_ptr)) error stop "bsr_row_ptr: array must be contiguous"
+      if (.not. is_contiguous(bsr_col_ind)) error stop "bsr_col_ind: array must be contiguous"
       cbsrpad_value = rocsparse_cbsrpad_value_raw(handle, m, mb, nnzb, block_dim, value, &
         bsr_descr, c_loc(bsr_val), c_loc(bsr_row_ptr), c_loc(bsr_col_ind))
     end function rocsparse_cbsrpad_value_native
@@ -38997,6 +39110,9 @@ contains
       integer(c_int), target :: bsr_row_ptr(..)
       integer(c_int), target :: bsr_col_ind(..)
       integer(c_int) :: zbsrpad_value
+      if (.not. is_contiguous(bsr_val)) error stop "bsr_val: array must be contiguous"
+      if (.not. is_contiguous(bsr_row_ptr)) error stop "bsr_row_ptr: array must be contiguous"
+      if (.not. is_contiguous(bsr_col_ind)) error stop "bsr_col_ind: array must be contiguous"
       zbsrpad_value = rocsparse_zbsrpad_value_raw(handle, m, mb, nnzb, block_dim, value, &
         bsr_descr, c_loc(bsr_val), c_loc(bsr_row_ptr), c_loc(bsr_col_ind))
     end function rocsparse_zbsrpad_value_native
@@ -39032,6 +39148,8 @@ contains
       integer(c_int), target :: csr_row_ptr(..)
       integer(c_int), value :: idx_base
       integer(c_int) :: coo2csr
+      if (.not. is_contiguous(coo_row_ind)) error stop "coo_row_ind: array must be contiguous"
+      if (.not. is_contiguous(csr_row_ptr)) error stop "csr_row_ptr: array must be contiguous"
       coo2csr = rocsparse_coo2csr_raw(handle, c_loc(coo_row_ind), nnz, m, c_loc(csr_row_ptr), &
         idx_base)
     end function rocsparse_coo2csr_native
@@ -39066,6 +39184,10 @@ contains
       real(c_float), target :: A(..)
       integer(c_int), value :: ld
       integer(c_int) :: scoo2dense
+      if (.not. is_contiguous(coo_val)) error stop "coo_val: array must be contiguous"
+      if (.not. is_contiguous(coo_row_ind)) error stop "coo_row_ind: array must be contiguous"
+      if (.not. is_contiguous(coo_col_ind)) error stop "coo_col_ind: array must be contiguous"
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
       scoo2dense = rocsparse_scoo2dense_raw(handle, m, n, nnz, descr, c_loc(coo_val), c_loc( &
         coo_row_ind), c_loc(coo_col_ind), c_loc(A), ld)
     end function rocsparse_scoo2dense_native
@@ -39105,6 +39227,10 @@ contains
       real(c_double), target :: A(..)
       integer(c_int), value :: ld
       integer(c_int) :: dcoo2dense
+      if (.not. is_contiguous(coo_val)) error stop "coo_val: array must be contiguous"
+      if (.not. is_contiguous(coo_row_ind)) error stop "coo_row_ind: array must be contiguous"
+      if (.not. is_contiguous(coo_col_ind)) error stop "coo_col_ind: array must be contiguous"
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
       dcoo2dense = rocsparse_dcoo2dense_raw(handle, m, n, nnz, descr, c_loc(coo_val), c_loc( &
         coo_row_ind), c_loc(coo_col_ind), c_loc(A), ld)
     end function rocsparse_dcoo2dense_native
@@ -39144,6 +39270,10 @@ contains
       complex(c_float_complex), target :: A(..)
       integer(c_int), value :: ld
       integer(c_int) :: ccoo2dense
+      if (.not. is_contiguous(coo_val)) error stop "coo_val: array must be contiguous"
+      if (.not. is_contiguous(coo_row_ind)) error stop "coo_row_ind: array must be contiguous"
+      if (.not. is_contiguous(coo_col_ind)) error stop "coo_col_ind: array must be contiguous"
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
       ccoo2dense = rocsparse_ccoo2dense_raw(handle, m, n, nnz, descr, c_loc(coo_val), c_loc( &
         coo_row_ind), c_loc(coo_col_ind), c_loc(A), ld)
     end function rocsparse_ccoo2dense_native
@@ -39183,6 +39313,10 @@ contains
       complex(c_double_complex), target :: A(..)
       integer(c_int), value :: ld
       integer(c_int) :: zcoo2dense
+      if (.not. is_contiguous(coo_val)) error stop "coo_val: array must be contiguous"
+      if (.not. is_contiguous(coo_row_ind)) error stop "coo_row_ind: array must be contiguous"
+      if (.not. is_contiguous(coo_col_ind)) error stop "coo_col_ind: array must be contiguous"
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
       zcoo2dense = rocsparse_zcoo2dense_raw(handle, m, n, nnz, descr, c_loc(coo_val), c_loc( &
         coo_row_ind), c_loc(coo_col_ind), c_loc(A), ld)
     end function rocsparse_zcoo2dense_native
@@ -39219,6 +39353,8 @@ contains
       integer(c_int), target :: coo_col_ind(..)
       type(c_ptr), value :: buffer_size
       integer(c_int) :: coosort_buffer_size
+      if (.not. is_contiguous(coo_row_ind)) error stop "coo_row_ind: array must be contiguous"
+      if (.not. is_contiguous(coo_col_ind)) error stop "coo_col_ind: array must be contiguous"
       coosort_buffer_size = rocsparse_coosort_buffer_size_raw(handle, m, n, nnz, c_loc( &
         coo_row_ind), c_loc(coo_col_ind), buffer_size)
     end function rocsparse_coosort_buffer_size_native
@@ -39253,6 +39389,9 @@ contains
       integer(c_int), target :: perm(..)
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: coosort_by_row
+      if (.not. is_contiguous(coo_row_ind)) error stop "coo_row_ind: array must be contiguous"
+      if (.not. is_contiguous(coo_col_ind)) error stop "coo_col_ind: array must be contiguous"
+      if (.not. is_contiguous(perm)) error stop "perm: array must be contiguous"
       coosort_by_row = rocsparse_coosort_by_row_raw(handle, m, n, nnz, c_loc(coo_row_ind), c_loc( &
         coo_col_ind), c_loc(perm), temp_buffer)
     end function rocsparse_coosort_by_row_native
@@ -39288,6 +39427,9 @@ contains
       integer(c_int), target :: perm(..)
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: coosort_by_column
+      if (.not. is_contiguous(coo_row_ind)) error stop "coo_row_ind: array must be contiguous"
+      if (.not. is_contiguous(coo_col_ind)) error stop "coo_col_ind: array must be contiguous"
+      if (.not. is_contiguous(perm)) error stop "perm: array must be contiguous"
       coosort_by_column = rocsparse_coosort_by_column_raw(handle, m, n, nnz, c_loc(coo_row_ind), &
         c_loc(coo_col_ind), c_loc(perm), temp_buffer)
     end function rocsparse_coosort_by_column_native
@@ -39324,6 +39466,10 @@ contains
       real(c_float), target :: A(..)
       integer(c_int), value :: ld
       integer(c_int) :: scsc2dense
+      if (.not. is_contiguous(csc_val)) error stop "csc_val: array must be contiguous"
+      if (.not. is_contiguous(csc_col_ptr)) error stop "csc_col_ptr: array must be contiguous"
+      if (.not. is_contiguous(csc_row_ind)) error stop "csc_row_ind: array must be contiguous"
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
       scsc2dense = rocsparse_scsc2dense_raw(handle, m, n, descr, c_loc(csc_val), c_loc( &
         csc_col_ptr), c_loc(csc_row_ind), c_loc(A), ld)
     end function rocsparse_scsc2dense_native
@@ -39361,6 +39507,10 @@ contains
       real(c_double), target :: A(..)
       integer(c_int), value :: ld
       integer(c_int) :: dcsc2dense
+      if (.not. is_contiguous(csc_val)) error stop "csc_val: array must be contiguous"
+      if (.not. is_contiguous(csc_col_ptr)) error stop "csc_col_ptr: array must be contiguous"
+      if (.not. is_contiguous(csc_row_ind)) error stop "csc_row_ind: array must be contiguous"
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
       dcsc2dense = rocsparse_dcsc2dense_raw(handle, m, n, descr, c_loc(csc_val), c_loc( &
         csc_col_ptr), c_loc(csc_row_ind), c_loc(A), ld)
     end function rocsparse_dcsc2dense_native
@@ -39398,6 +39548,10 @@ contains
       complex(c_float_complex), target :: A(..)
       integer(c_int), value :: ld
       integer(c_int) :: ccsc2dense
+      if (.not. is_contiguous(csc_val)) error stop "csc_val: array must be contiguous"
+      if (.not. is_contiguous(csc_col_ptr)) error stop "csc_col_ptr: array must be contiguous"
+      if (.not. is_contiguous(csc_row_ind)) error stop "csc_row_ind: array must be contiguous"
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
       ccsc2dense = rocsparse_ccsc2dense_raw(handle, m, n, descr, c_loc(csc_val), c_loc( &
         csc_col_ptr), c_loc(csc_row_ind), c_loc(A), ld)
     end function rocsparse_ccsc2dense_native
@@ -39435,6 +39589,10 @@ contains
       complex(c_double_complex), target :: A(..)
       integer(c_int), value :: ld
       integer(c_int) :: zcsc2dense
+      if (.not. is_contiguous(csc_val)) error stop "csc_val: array must be contiguous"
+      if (.not. is_contiguous(csc_col_ptr)) error stop "csc_col_ptr: array must be contiguous"
+      if (.not. is_contiguous(csc_row_ind)) error stop "csc_row_ind: array must be contiguous"
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
       zcsc2dense = rocsparse_zcsc2dense_raw(handle, m, n, descr, c_loc(csc_val), c_loc( &
         csc_col_ptr), c_loc(csc_row_ind), c_loc(A), ld)
     end function rocsparse_zcsc2dense_native
@@ -39470,6 +39628,8 @@ contains
       integer(c_int), target :: csc_row_ind(..)
       type(c_ptr), value :: buffer_size
       integer(c_int) :: cscsort_buffer_size
+      if (.not. is_contiguous(csc_col_ptr)) error stop "csc_col_ptr: array must be contiguous"
+      if (.not. is_contiguous(csc_row_ind)) error stop "csc_row_ind: array must be contiguous"
       cscsort_buffer_size = rocsparse_cscsort_buffer_size_raw(handle, m, n, nnz, c_loc( &
         csc_col_ptr), c_loc(csc_row_ind), buffer_size)
     end function rocsparse_cscsort_buffer_size_native
@@ -39505,6 +39665,9 @@ contains
       integer(c_int), target :: perm(..)
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: cscsort
+      if (.not. is_contiguous(csc_col_ptr)) error stop "csc_col_ptr: array must be contiguous"
+      if (.not. is_contiguous(csc_row_ind)) error stop "csc_row_ind: array must be contiguous"
+      if (.not. is_contiguous(perm)) error stop "perm: array must be contiguous"
       cscsort = rocsparse_cscsort_raw(handle, m, n, nnz, descr, c_loc(csc_col_ptr), c_loc( &
         csc_row_ind), c_loc(perm), temp_buffer)
     end function rocsparse_cscsort_native
@@ -39544,6 +39707,10 @@ contains
       integer(c_int), target :: bsr_row_ptr(..)
       integer(c_int), target :: bsr_nnz(..)
       integer(c_int) :: csr2bsr_nnz
+      if (.not. is_contiguous(csr_row_ptr)) error stop "csr_row_ptr: array must be contiguous"
+      if (.not. is_contiguous(csr_col_ind)) error stop "csr_col_ind: array must be contiguous"
+      if (.not. is_contiguous(bsr_row_ptr)) error stop "bsr_row_ptr: array must be contiguous"
+      if (.not. is_contiguous(bsr_nnz)) error stop "bsr_nnz: array must be contiguous"
       csr2bsr_nnz = rocsparse_csr2bsr_nnz_raw(handle, dir, m, n, csr_descr, c_loc(csr_row_ptr), &
         c_loc(csr_col_ind), block_dim, bsr_descr, c_loc(bsr_row_ptr), c_loc(bsr_nnz))
     end function rocsparse_csr2bsr_nnz_native
@@ -39587,6 +39754,12 @@ contains
       integer(c_int), target :: bsr_row_ptr(..)
       integer(c_int), target :: bsr_col_ind(..)
       integer(c_int) :: scsr2bsr
+      if (.not. is_contiguous(csr_val)) error stop "csr_val: array must be contiguous"
+      if (.not. is_contiguous(csr_row_ptr)) error stop "csr_row_ptr: array must be contiguous"
+      if (.not. is_contiguous(csr_col_ind)) error stop "csr_col_ind: array must be contiguous"
+      if (.not. is_contiguous(bsr_val)) error stop "bsr_val: array must be contiguous"
+      if (.not. is_contiguous(bsr_row_ptr)) error stop "bsr_row_ptr: array must be contiguous"
+      if (.not. is_contiguous(bsr_col_ind)) error stop "bsr_col_ind: array must be contiguous"
       scsr2bsr = rocsparse_scsr2bsr_raw(handle, dir, m, n, csr_descr, c_loc(csr_val), c_loc( &
         csr_row_ptr), c_loc(csr_col_ind), block_dim, bsr_descr, c_loc(bsr_val), c_loc( &
         bsr_row_ptr), c_loc(bsr_col_ind))
@@ -39633,6 +39806,12 @@ contains
       integer(c_int), target :: bsr_row_ptr(..)
       integer(c_int), target :: bsr_col_ind(..)
       integer(c_int) :: dcsr2bsr
+      if (.not. is_contiguous(csr_val)) error stop "csr_val: array must be contiguous"
+      if (.not. is_contiguous(csr_row_ptr)) error stop "csr_row_ptr: array must be contiguous"
+      if (.not. is_contiguous(csr_col_ind)) error stop "csr_col_ind: array must be contiguous"
+      if (.not. is_contiguous(bsr_val)) error stop "bsr_val: array must be contiguous"
+      if (.not. is_contiguous(bsr_row_ptr)) error stop "bsr_row_ptr: array must be contiguous"
+      if (.not. is_contiguous(bsr_col_ind)) error stop "bsr_col_ind: array must be contiguous"
       dcsr2bsr = rocsparse_dcsr2bsr_raw(handle, dir, m, n, csr_descr, c_loc(csr_val), c_loc( &
         csr_row_ptr), c_loc(csr_col_ind), block_dim, bsr_descr, c_loc(bsr_val), c_loc( &
         bsr_row_ptr), c_loc(bsr_col_ind))
@@ -39679,6 +39858,12 @@ contains
       integer(c_int), target :: bsr_row_ptr(..)
       integer(c_int), target :: bsr_col_ind(..)
       integer(c_int) :: ccsr2bsr
+      if (.not. is_contiguous(csr_val)) error stop "csr_val: array must be contiguous"
+      if (.not. is_contiguous(csr_row_ptr)) error stop "csr_row_ptr: array must be contiguous"
+      if (.not. is_contiguous(csr_col_ind)) error stop "csr_col_ind: array must be contiguous"
+      if (.not. is_contiguous(bsr_val)) error stop "bsr_val: array must be contiguous"
+      if (.not. is_contiguous(bsr_row_ptr)) error stop "bsr_row_ptr: array must be contiguous"
+      if (.not. is_contiguous(bsr_col_ind)) error stop "bsr_col_ind: array must be contiguous"
       ccsr2bsr = rocsparse_ccsr2bsr_raw(handle, dir, m, n, csr_descr, c_loc(csr_val), c_loc( &
         csr_row_ptr), c_loc(csr_col_ind), block_dim, bsr_descr, c_loc(bsr_val), c_loc( &
         bsr_row_ptr), c_loc(bsr_col_ind))
@@ -39725,6 +39910,12 @@ contains
       integer(c_int), target :: bsr_row_ptr(..)
       integer(c_int), target :: bsr_col_ind(..)
       integer(c_int) :: zcsr2bsr
+      if (.not. is_contiguous(csr_val)) error stop "csr_val: array must be contiguous"
+      if (.not. is_contiguous(csr_row_ptr)) error stop "csr_row_ptr: array must be contiguous"
+      if (.not. is_contiguous(csr_col_ind)) error stop "csr_col_ind: array must be contiguous"
+      if (.not. is_contiguous(bsr_val)) error stop "bsr_val: array must be contiguous"
+      if (.not. is_contiguous(bsr_row_ptr)) error stop "bsr_row_ptr: array must be contiguous"
+      if (.not. is_contiguous(bsr_col_ind)) error stop "bsr_col_ind: array must be contiguous"
       zcsr2bsr = rocsparse_zcsr2bsr_raw(handle, dir, m, n, csr_descr, c_loc(csr_val), c_loc( &
         csr_row_ptr), c_loc(csr_col_ind), block_dim, bsr_descr, c_loc(bsr_val), c_loc( &
         bsr_row_ptr), c_loc(bsr_col_ind))
@@ -39764,6 +39955,8 @@ contains
       integer(c_int), target :: coo_row_ind(..)
       integer(c_int), value :: idx_base
       integer(c_int) :: csr2coo
+      if (.not. is_contiguous(csr_row_ptr)) error stop "csr_row_ptr: array must be contiguous"
+      if (.not. is_contiguous(coo_row_ind)) error stop "coo_row_ind: array must be contiguous"
       csr2coo = rocsparse_csr2coo_raw(handle, c_loc(csr_row_ptr), nnz, m, c_loc(coo_row_ind), &
         idx_base)
     end function rocsparse_csr2coo_native
@@ -39796,6 +39989,8 @@ contains
       integer(c_int), value :: copy_values
       type(c_ptr), value :: buffer_size
       integer(c_int) :: csr2csc_buffer_size
+      if (.not. is_contiguous(csr_row_ptr)) error stop "csr_row_ptr: array must be contiguous"
+      if (.not. is_contiguous(csr_col_ind)) error stop "csr_col_ind: array must be contiguous"
       csr2csc_buffer_size = rocsparse_csr2csc_buffer_size_raw(handle, m, n, nnz, c_loc( &
         csr_row_ptr), c_loc(csr_col_ind), copy_values, buffer_size)
     end function rocsparse_csr2csc_buffer_size_native
@@ -39836,6 +40031,12 @@ contains
       integer(c_int), value :: idx_base
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: scsr2csc
+      if (.not. is_contiguous(csr_val)) error stop "csr_val: array must be contiguous"
+      if (.not. is_contiguous(csr_row_ptr)) error stop "csr_row_ptr: array must be contiguous"
+      if (.not. is_contiguous(csr_col_ind)) error stop "csr_col_ind: array must be contiguous"
+      if (.not. is_contiguous(csc_val)) error stop "csc_val: array must be contiguous"
+      if (.not. is_contiguous(csc_row_ind)) error stop "csc_row_ind: array must be contiguous"
+      if (.not. is_contiguous(csc_col_ptr)) error stop "csc_col_ptr: array must be contiguous"
       scsr2csc = rocsparse_scsr2csc_raw(handle, m, n, nnz, c_loc(csr_val), c_loc(csr_row_ptr), &
         c_loc(csr_col_ind), c_loc(csc_val), c_loc(csc_row_ind), c_loc(csc_col_ptr), copy_values, &
         idx_base, temp_buffer)
@@ -39882,6 +40083,12 @@ contains
       integer(c_int), value :: idx_base
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: dcsr2csc
+      if (.not. is_contiguous(csr_val)) error stop "csr_val: array must be contiguous"
+      if (.not. is_contiguous(csr_row_ptr)) error stop "csr_row_ptr: array must be contiguous"
+      if (.not. is_contiguous(csr_col_ind)) error stop "csr_col_ind: array must be contiguous"
+      if (.not. is_contiguous(csc_val)) error stop "csc_val: array must be contiguous"
+      if (.not. is_contiguous(csc_row_ind)) error stop "csc_row_ind: array must be contiguous"
+      if (.not. is_contiguous(csc_col_ptr)) error stop "csc_col_ptr: array must be contiguous"
       dcsr2csc = rocsparse_dcsr2csc_raw(handle, m, n, nnz, c_loc(csr_val), c_loc(csr_row_ptr), &
         c_loc(csr_col_ind), c_loc(csc_val), c_loc(csc_row_ind), c_loc(csc_col_ptr), copy_values, &
         idx_base, temp_buffer)
@@ -39928,6 +40135,12 @@ contains
       integer(c_int), value :: idx_base
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: ccsr2csc
+      if (.not. is_contiguous(csr_val)) error stop "csr_val: array must be contiguous"
+      if (.not. is_contiguous(csr_row_ptr)) error stop "csr_row_ptr: array must be contiguous"
+      if (.not. is_contiguous(csr_col_ind)) error stop "csr_col_ind: array must be contiguous"
+      if (.not. is_contiguous(csc_val)) error stop "csc_val: array must be contiguous"
+      if (.not. is_contiguous(csc_row_ind)) error stop "csc_row_ind: array must be contiguous"
+      if (.not. is_contiguous(csc_col_ptr)) error stop "csc_col_ptr: array must be contiguous"
       ccsr2csc = rocsparse_ccsr2csc_raw(handle, m, n, nnz, c_loc(csr_val), c_loc(csr_row_ptr), &
         c_loc(csr_col_ind), c_loc(csc_val), c_loc(csc_row_ind), c_loc(csc_col_ptr), copy_values, &
         idx_base, temp_buffer)
@@ -39974,6 +40187,12 @@ contains
       integer(c_int), value :: idx_base
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: zcsr2csc
+      if (.not. is_contiguous(csr_val)) error stop "csr_val: array must be contiguous"
+      if (.not. is_contiguous(csr_row_ptr)) error stop "csr_row_ptr: array must be contiguous"
+      if (.not. is_contiguous(csr_col_ind)) error stop "csr_col_ind: array must be contiguous"
+      if (.not. is_contiguous(csc_val)) error stop "csc_val: array must be contiguous"
+      if (.not. is_contiguous(csc_row_ind)) error stop "csc_row_ind: array must be contiguous"
+      if (.not. is_contiguous(csc_col_ptr)) error stop "csc_col_ptr: array must be contiguous"
       zcsr2csc = rocsparse_zcsr2csc_raw(handle, m, n, nnz, c_loc(csr_val), c_loc(csr_row_ptr), &
         c_loc(csr_col_ind), c_loc(csc_val), c_loc(csc_row_ind), c_loc(csc_col_ptr), copy_values, &
         idx_base, temp_buffer)
@@ -40021,6 +40240,13 @@ contains
       integer(c_int), target :: csr_col_ind_C(..)
       real(c_float), value :: tol
       integer(c_int) :: scsr2csr_compress
+      if (.not. is_contiguous(csr_val_A)) error stop "csr_val_A: array must be contiguous"
+      if (.not. is_contiguous(csr_row_ptr_A)) error stop "csr_row_ptr_A: array must be contiguous"
+      if (.not. is_contiguous(csr_col_ind_A)) error stop "csr_col_ind_A: array must be contiguous"
+      if (.not. is_contiguous(nnz_per_row)) error stop "nnz_per_row: array must be contiguous"
+      if (.not. is_contiguous(csr_val_C)) error stop "csr_val_C: array must be contiguous"
+      if (.not. is_contiguous(csr_row_ptr_C)) error stop "csr_row_ptr_C: array must be contiguous"
+      if (.not. is_contiguous(csr_col_ind_C)) error stop "csr_col_ind_C: array must be contiguous"
       scsr2csr_compress = rocsparse_scsr2csr_compress_raw(handle, m, n, descr_A, c_loc(csr_val_A), &
         c_loc(csr_row_ptr_A), c_loc(csr_col_ind_A), nnz_A, c_loc(nnz_per_row), c_loc(csr_val_C), &
         c_loc(csr_row_ptr_C), c_loc(csr_col_ind_C), tol)
@@ -40070,6 +40296,13 @@ contains
       integer(c_int), target :: csr_col_ind_C(..)
       real(c_double), value :: tol
       integer(c_int) :: dcsr2csr_compress
+      if (.not. is_contiguous(csr_val_A)) error stop "csr_val_A: array must be contiguous"
+      if (.not. is_contiguous(csr_row_ptr_A)) error stop "csr_row_ptr_A: array must be contiguous"
+      if (.not. is_contiguous(csr_col_ind_A)) error stop "csr_col_ind_A: array must be contiguous"
+      if (.not. is_contiguous(nnz_per_row)) error stop "nnz_per_row: array must be contiguous"
+      if (.not. is_contiguous(csr_val_C)) error stop "csr_val_C: array must be contiguous"
+      if (.not. is_contiguous(csr_row_ptr_C)) error stop "csr_row_ptr_C: array must be contiguous"
+      if (.not. is_contiguous(csr_col_ind_C)) error stop "csr_col_ind_C: array must be contiguous"
       dcsr2csr_compress = rocsparse_dcsr2csr_compress_raw(handle, m, n, descr_A, c_loc(csr_val_A), &
         c_loc(csr_row_ptr_A), c_loc(csr_col_ind_A), nnz_A, c_loc(nnz_per_row), c_loc(csr_val_C), &
         c_loc(csr_row_ptr_C), c_loc(csr_col_ind_C), tol)
@@ -40119,6 +40352,13 @@ contains
       integer(c_int), target :: csr_col_ind_C(..)
       complex(c_float_complex), value :: tol
       integer(c_int) :: ccsr2csr_compress
+      if (.not. is_contiguous(csr_val_A)) error stop "csr_val_A: array must be contiguous"
+      if (.not. is_contiguous(csr_row_ptr_A)) error stop "csr_row_ptr_A: array must be contiguous"
+      if (.not. is_contiguous(csr_col_ind_A)) error stop "csr_col_ind_A: array must be contiguous"
+      if (.not. is_contiguous(nnz_per_row)) error stop "nnz_per_row: array must be contiguous"
+      if (.not. is_contiguous(csr_val_C)) error stop "csr_val_C: array must be contiguous"
+      if (.not. is_contiguous(csr_row_ptr_C)) error stop "csr_row_ptr_C: array must be contiguous"
+      if (.not. is_contiguous(csr_col_ind_C)) error stop "csr_col_ind_C: array must be contiguous"
       ccsr2csr_compress = rocsparse_ccsr2csr_compress_raw(handle, m, n, descr_A, c_loc(csr_val_A), &
         c_loc(csr_row_ptr_A), c_loc(csr_col_ind_A), nnz_A, c_loc(nnz_per_row), c_loc(csr_val_C), &
         c_loc(csr_row_ptr_C), c_loc(csr_col_ind_C), tol)
@@ -40168,6 +40408,13 @@ contains
       integer(c_int), target :: csr_col_ind_C(..)
       complex(c_double_complex), value :: tol
       integer(c_int) :: zcsr2csr_compress
+      if (.not. is_contiguous(csr_val_A)) error stop "csr_val_A: array must be contiguous"
+      if (.not. is_contiguous(csr_row_ptr_A)) error stop "csr_row_ptr_A: array must be contiguous"
+      if (.not. is_contiguous(csr_col_ind_A)) error stop "csr_col_ind_A: array must be contiguous"
+      if (.not. is_contiguous(nnz_per_row)) error stop "nnz_per_row: array must be contiguous"
+      if (.not. is_contiguous(csr_val_C)) error stop "csr_val_C: array must be contiguous"
+      if (.not. is_contiguous(csr_row_ptr_C)) error stop "csr_row_ptr_C: array must be contiguous"
+      if (.not. is_contiguous(csr_col_ind_C)) error stop "csr_col_ind_C: array must be contiguous"
       zcsr2csr_compress = rocsparse_zcsr2csr_compress_raw(handle, m, n, descr_A, c_loc(csr_val_A), &
         c_loc(csr_row_ptr_A), c_loc(csr_col_ind_A), nnz_A, c_loc(nnz_per_row), c_loc(csr_val_C), &
         c_loc(csr_row_ptr_C), c_loc(csr_col_ind_C), tol)
@@ -40212,6 +40459,10 @@ contains
       real(c_float), target :: A(..)
       integer(c_int), value :: ld
       integer(c_int) :: scsr2dense
+      if (.not. is_contiguous(csr_val)) error stop "csr_val: array must be contiguous"
+      if (.not. is_contiguous(csr_row_ptr)) error stop "csr_row_ptr: array must be contiguous"
+      if (.not. is_contiguous(csr_col_ind)) error stop "csr_col_ind: array must be contiguous"
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
       scsr2dense = rocsparse_scsr2dense_raw(handle, m, n, descr, c_loc(csr_val), c_loc( &
         csr_row_ptr), c_loc(csr_col_ind), c_loc(A), ld)
     end function rocsparse_scsr2dense_native
@@ -40249,6 +40500,10 @@ contains
       real(c_double), target :: A(..)
       integer(c_int), value :: ld
       integer(c_int) :: dcsr2dense
+      if (.not. is_contiguous(csr_val)) error stop "csr_val: array must be contiguous"
+      if (.not. is_contiguous(csr_row_ptr)) error stop "csr_row_ptr: array must be contiguous"
+      if (.not. is_contiguous(csr_col_ind)) error stop "csr_col_ind: array must be contiguous"
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
       dcsr2dense = rocsparse_dcsr2dense_raw(handle, m, n, descr, c_loc(csr_val), c_loc( &
         csr_row_ptr), c_loc(csr_col_ind), c_loc(A), ld)
     end function rocsparse_dcsr2dense_native
@@ -40286,6 +40541,10 @@ contains
       complex(c_float_complex), target :: A(..)
       integer(c_int), value :: ld
       integer(c_int) :: ccsr2dense
+      if (.not. is_contiguous(csr_val)) error stop "csr_val: array must be contiguous"
+      if (.not. is_contiguous(csr_row_ptr)) error stop "csr_row_ptr: array must be contiguous"
+      if (.not. is_contiguous(csr_col_ind)) error stop "csr_col_ind: array must be contiguous"
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
       ccsr2dense = rocsparse_ccsr2dense_raw(handle, m, n, descr, c_loc(csr_val), c_loc( &
         csr_row_ptr), c_loc(csr_col_ind), c_loc(A), ld)
     end function rocsparse_ccsr2dense_native
@@ -40323,6 +40582,10 @@ contains
       complex(c_double_complex), target :: A(..)
       integer(c_int), value :: ld
       integer(c_int) :: zcsr2dense
+      if (.not. is_contiguous(csr_val)) error stop "csr_val: array must be contiguous"
+      if (.not. is_contiguous(csr_row_ptr)) error stop "csr_row_ptr: array must be contiguous"
+      if (.not. is_contiguous(csr_col_ind)) error stop "csr_col_ind: array must be contiguous"
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
       zcsr2dense = rocsparse_zcsr2dense_raw(handle, m, n, descr, c_loc(csr_val), c_loc( &
         csr_row_ptr), c_loc(csr_col_ind), c_loc(A), ld)
     end function rocsparse_zcsr2dense_native
@@ -40357,6 +40620,8 @@ contains
       type(c_ptr), value :: ell_descr
       integer(c_int), target :: ell_width(..)
       integer(c_int) :: csr2ell_width
+      if (.not. is_contiguous(csr_row_ptr)) error stop "csr_row_ptr: array must be contiguous"
+      if (.not. is_contiguous(ell_width)) error stop "ell_width: array must be contiguous"
       csr2ell_width = rocsparse_csr2ell_width_raw(handle, m, csr_descr, c_loc(csr_row_ptr), &
         ell_descr, c_loc(ell_width))
     end function rocsparse_csr2ell_width_native
@@ -40392,6 +40657,11 @@ contains
       real(c_float), target :: ell_val(..)
       integer(c_int), target :: ell_col_ind(..)
       integer(c_int) :: scsr2ell
+      if (.not. is_contiguous(csr_val)) error stop "csr_val: array must be contiguous"
+      if (.not. is_contiguous(csr_row_ptr)) error stop "csr_row_ptr: array must be contiguous"
+      if (.not. is_contiguous(csr_col_ind)) error stop "csr_col_ind: array must be contiguous"
+      if (.not. is_contiguous(ell_val)) error stop "ell_val: array must be contiguous"
+      if (.not. is_contiguous(ell_col_ind)) error stop "ell_col_ind: array must be contiguous"
       scsr2ell = rocsparse_scsr2ell_raw(handle, m, csr_descr, c_loc(csr_val), c_loc(csr_row_ptr), &
         c_loc(csr_col_ind), ell_descr, ell_width, c_loc(ell_val), c_loc(ell_col_ind))
     end function rocsparse_scsr2ell_native
@@ -40431,6 +40701,11 @@ contains
       real(c_double), target :: ell_val(..)
       integer(c_int), target :: ell_col_ind(..)
       integer(c_int) :: dcsr2ell
+      if (.not. is_contiguous(csr_val)) error stop "csr_val: array must be contiguous"
+      if (.not. is_contiguous(csr_row_ptr)) error stop "csr_row_ptr: array must be contiguous"
+      if (.not. is_contiguous(csr_col_ind)) error stop "csr_col_ind: array must be contiguous"
+      if (.not. is_contiguous(ell_val)) error stop "ell_val: array must be contiguous"
+      if (.not. is_contiguous(ell_col_ind)) error stop "ell_col_ind: array must be contiguous"
       dcsr2ell = rocsparse_dcsr2ell_raw(handle, m, csr_descr, c_loc(csr_val), c_loc(csr_row_ptr), &
         c_loc(csr_col_ind), ell_descr, ell_width, c_loc(ell_val), c_loc(ell_col_ind))
     end function rocsparse_dcsr2ell_native
@@ -40470,6 +40745,11 @@ contains
       complex(c_float_complex), target :: ell_val(..)
       integer(c_int), target :: ell_col_ind(..)
       integer(c_int) :: ccsr2ell
+      if (.not. is_contiguous(csr_val)) error stop "csr_val: array must be contiguous"
+      if (.not. is_contiguous(csr_row_ptr)) error stop "csr_row_ptr: array must be contiguous"
+      if (.not. is_contiguous(csr_col_ind)) error stop "csr_col_ind: array must be contiguous"
+      if (.not. is_contiguous(ell_val)) error stop "ell_val: array must be contiguous"
+      if (.not. is_contiguous(ell_col_ind)) error stop "ell_col_ind: array must be contiguous"
       ccsr2ell = rocsparse_ccsr2ell_raw(handle, m, csr_descr, c_loc(csr_val), c_loc(csr_row_ptr), &
         c_loc(csr_col_ind), ell_descr, ell_width, c_loc(ell_val), c_loc(ell_col_ind))
     end function rocsparse_ccsr2ell_native
@@ -40509,6 +40789,11 @@ contains
       complex(c_double_complex), target :: ell_val(..)
       integer(c_int), target :: ell_col_ind(..)
       integer(c_int) :: zcsr2ell
+      if (.not. is_contiguous(csr_val)) error stop "csr_val: array must be contiguous"
+      if (.not. is_contiguous(csr_row_ptr)) error stop "csr_row_ptr: array must be contiguous"
+      if (.not. is_contiguous(csr_col_ind)) error stop "csr_col_ind: array must be contiguous"
+      if (.not. is_contiguous(ell_val)) error stop "ell_val: array must be contiguous"
+      if (.not. is_contiguous(ell_col_ind)) error stop "ell_col_ind: array must be contiguous"
       zcsr2ell = rocsparse_zcsr2ell_raw(handle, m, csr_descr, c_loc(csr_val), c_loc(csr_row_ptr), &
         c_loc(csr_col_ind), ell_descr, ell_width, c_loc(ell_val), c_loc(ell_col_ind))
     end function rocsparse_zcsr2ell_native
@@ -40550,6 +40835,9 @@ contains
       integer(c_int), value :: col_block_dim
       type(c_ptr), value :: buffer_size
       integer(c_int) :: scsr2gebsr_buffer_size
+      if (.not. is_contiguous(csr_val)) error stop "csr_val: array must be contiguous"
+      if (.not. is_contiguous(csr_row_ptr)) error stop "csr_row_ptr: array must be contiguous"
+      if (.not. is_contiguous(csr_col_ind)) error stop "csr_col_ind: array must be contiguous"
       scsr2gebsr_buffer_size = rocsparse_scsr2gebsr_buffer_size_raw(handle, dir, m, n, csr_descr, &
         c_loc(csr_val), c_loc(csr_row_ptr), c_loc(csr_col_ind), row_block_dim, col_block_dim, &
         buffer_size)
@@ -40594,6 +40882,9 @@ contains
       integer(c_int), value :: col_block_dim
       type(c_ptr), value :: buffer_size
       integer(c_int) :: dcsr2gebsr_buffer_size
+      if (.not. is_contiguous(csr_val)) error stop "csr_val: array must be contiguous"
+      if (.not. is_contiguous(csr_row_ptr)) error stop "csr_row_ptr: array must be contiguous"
+      if (.not. is_contiguous(csr_col_ind)) error stop "csr_col_ind: array must be contiguous"
       dcsr2gebsr_buffer_size = rocsparse_dcsr2gebsr_buffer_size_raw(handle, dir, m, n, csr_descr, &
         c_loc(csr_val), c_loc(csr_row_ptr), c_loc(csr_col_ind), row_block_dim, col_block_dim, &
         buffer_size)
@@ -40638,6 +40929,9 @@ contains
       integer(c_int), value :: col_block_dim
       type(c_ptr), value :: buffer_size
       integer(c_int) :: ccsr2gebsr_buffer_size
+      if (.not. is_contiguous(csr_val)) error stop "csr_val: array must be contiguous"
+      if (.not. is_contiguous(csr_row_ptr)) error stop "csr_row_ptr: array must be contiguous"
+      if (.not. is_contiguous(csr_col_ind)) error stop "csr_col_ind: array must be contiguous"
       ccsr2gebsr_buffer_size = rocsparse_ccsr2gebsr_buffer_size_raw(handle, dir, m, n, csr_descr, &
         c_loc(csr_val), c_loc(csr_row_ptr), c_loc(csr_col_ind), row_block_dim, col_block_dim, &
         buffer_size)
@@ -40682,6 +40976,9 @@ contains
       integer(c_int), value :: col_block_dim
       type(c_ptr), value :: buffer_size
       integer(c_int) :: zcsr2gebsr_buffer_size
+      if (.not. is_contiguous(csr_val)) error stop "csr_val: array must be contiguous"
+      if (.not. is_contiguous(csr_row_ptr)) error stop "csr_row_ptr: array must be contiguous"
+      if (.not. is_contiguous(csr_col_ind)) error stop "csr_col_ind: array must be contiguous"
       zcsr2gebsr_buffer_size = rocsparse_zcsr2gebsr_buffer_size_raw(handle, dir, m, n, csr_descr, &
         c_loc(csr_val), c_loc(csr_row_ptr), c_loc(csr_col_ind), row_block_dim, col_block_dim, &
         buffer_size)
@@ -40728,6 +41025,10 @@ contains
       integer(c_int), target :: bsr_nnz_devhost(..)
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: csr2gebsr_nnz
+      if (.not. is_contiguous(csr_row_ptr)) error stop "csr_row_ptr: array must be contiguous"
+      if (.not. is_contiguous(csr_col_ind)) error stop "csr_col_ind: array must be contiguous"
+      if (.not. is_contiguous(bsr_row_ptr)) error stop "bsr_row_ptr: array must be contiguous"
+      if (.not. is_contiguous(bsr_nnz_devhost)) error stop "bsr_nnz_devhost: array must be contiguous"
       csr2gebsr_nnz = rocsparse_csr2gebsr_nnz_raw(handle, dir, m, n, csr_descr, c_loc( &
         csr_row_ptr), c_loc(csr_col_ind), bsr_descr, c_loc(bsr_row_ptr), row_block_dim, &
         col_block_dim, c_loc(bsr_nnz_devhost), temp_buffer)
@@ -40779,6 +41080,12 @@ contains
       integer(c_int), value :: col_block_dim
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: scsr2gebsr
+      if (.not. is_contiguous(csr_val)) error stop "csr_val: array must be contiguous"
+      if (.not. is_contiguous(csr_row_ptr)) error stop "csr_row_ptr: array must be contiguous"
+      if (.not. is_contiguous(csr_col_ind)) error stop "csr_col_ind: array must be contiguous"
+      if (.not. is_contiguous(bsr_val)) error stop "bsr_val: array must be contiguous"
+      if (.not. is_contiguous(bsr_row_ptr)) error stop "bsr_row_ptr: array must be contiguous"
+      if (.not. is_contiguous(bsr_col_ind)) error stop "bsr_col_ind: array must be contiguous"
       scsr2gebsr = rocsparse_scsr2gebsr_raw(handle, dir, m, n, csr_descr, c_loc(csr_val), c_loc( &
         csr_row_ptr), c_loc(csr_col_ind), bsr_descr, c_loc(bsr_val), c_loc(bsr_row_ptr), c_loc( &
         bsr_col_ind), row_block_dim, col_block_dim, temp_buffer)
@@ -40832,6 +41139,12 @@ contains
       integer(c_int), value :: col_block_dim
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: dcsr2gebsr
+      if (.not. is_contiguous(csr_val)) error stop "csr_val: array must be contiguous"
+      if (.not. is_contiguous(csr_row_ptr)) error stop "csr_row_ptr: array must be contiguous"
+      if (.not. is_contiguous(csr_col_ind)) error stop "csr_col_ind: array must be contiguous"
+      if (.not. is_contiguous(bsr_val)) error stop "bsr_val: array must be contiguous"
+      if (.not. is_contiguous(bsr_row_ptr)) error stop "bsr_row_ptr: array must be contiguous"
+      if (.not. is_contiguous(bsr_col_ind)) error stop "bsr_col_ind: array must be contiguous"
       dcsr2gebsr = rocsparse_dcsr2gebsr_raw(handle, dir, m, n, csr_descr, c_loc(csr_val), c_loc( &
         csr_row_ptr), c_loc(csr_col_ind), bsr_descr, c_loc(bsr_val), c_loc(bsr_row_ptr), c_loc( &
         bsr_col_ind), row_block_dim, col_block_dim, temp_buffer)
@@ -40885,6 +41198,12 @@ contains
       integer(c_int), value :: col_block_dim
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: ccsr2gebsr
+      if (.not. is_contiguous(csr_val)) error stop "csr_val: array must be contiguous"
+      if (.not. is_contiguous(csr_row_ptr)) error stop "csr_row_ptr: array must be contiguous"
+      if (.not. is_contiguous(csr_col_ind)) error stop "csr_col_ind: array must be contiguous"
+      if (.not. is_contiguous(bsr_val)) error stop "bsr_val: array must be contiguous"
+      if (.not. is_contiguous(bsr_row_ptr)) error stop "bsr_row_ptr: array must be contiguous"
+      if (.not. is_contiguous(bsr_col_ind)) error stop "bsr_col_ind: array must be contiguous"
       ccsr2gebsr = rocsparse_ccsr2gebsr_raw(handle, dir, m, n, csr_descr, c_loc(csr_val), c_loc( &
         csr_row_ptr), c_loc(csr_col_ind), bsr_descr, c_loc(bsr_val), c_loc(bsr_row_ptr), c_loc( &
         bsr_col_ind), row_block_dim, col_block_dim, temp_buffer)
@@ -40938,6 +41257,12 @@ contains
       integer(c_int), value :: col_block_dim
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: zcsr2gebsr
+      if (.not. is_contiguous(csr_val)) error stop "csr_val: array must be contiguous"
+      if (.not. is_contiguous(csr_row_ptr)) error stop "csr_row_ptr: array must be contiguous"
+      if (.not. is_contiguous(csr_col_ind)) error stop "csr_col_ind: array must be contiguous"
+      if (.not. is_contiguous(bsr_val)) error stop "bsr_val: array must be contiguous"
+      if (.not. is_contiguous(bsr_row_ptr)) error stop "bsr_row_ptr: array must be contiguous"
+      if (.not. is_contiguous(bsr_col_ind)) error stop "bsr_col_ind: array must be contiguous"
       zcsr2gebsr = rocsparse_zcsr2gebsr_raw(handle, dir, m, n, csr_descr, c_loc(csr_val), c_loc( &
         csr_row_ptr), c_loc(csr_col_ind), bsr_descr, c_loc(bsr_val), c_loc(bsr_row_ptr), c_loc( &
         bsr_col_ind), row_block_dim, col_block_dim, temp_buffer)
@@ -40985,6 +41310,9 @@ contains
       integer(c_int), value :: user_ell_width
       integer(c_int), value :: partition_type
       integer(c_int) :: scsr2hyb
+      if (.not. is_contiguous(csr_val)) error stop "csr_val: array must be contiguous"
+      if (.not. is_contiguous(csr_row_ptr)) error stop "csr_row_ptr: array must be contiguous"
+      if (.not. is_contiguous(csr_col_ind)) error stop "csr_col_ind: array must be contiguous"
       scsr2hyb = rocsparse_scsr2hyb_raw(handle, m, n, descr, c_loc(csr_val), c_loc(csr_row_ptr), &
         c_loc(csr_col_ind), hyb, user_ell_width, partition_type)
     end function rocsparse_scsr2hyb_native
@@ -41024,6 +41352,9 @@ contains
       integer(c_int), value :: user_ell_width
       integer(c_int), value :: partition_type
       integer(c_int) :: dcsr2hyb
+      if (.not. is_contiguous(csr_val)) error stop "csr_val: array must be contiguous"
+      if (.not. is_contiguous(csr_row_ptr)) error stop "csr_row_ptr: array must be contiguous"
+      if (.not. is_contiguous(csr_col_ind)) error stop "csr_col_ind: array must be contiguous"
       dcsr2hyb = rocsparse_dcsr2hyb_raw(handle, m, n, descr, c_loc(csr_val), c_loc(csr_row_ptr), &
         c_loc(csr_col_ind), hyb, user_ell_width, partition_type)
     end function rocsparse_dcsr2hyb_native
@@ -41063,6 +41394,9 @@ contains
       integer(c_int), value :: user_ell_width
       integer(c_int), value :: partition_type
       integer(c_int) :: ccsr2hyb
+      if (.not. is_contiguous(csr_val)) error stop "csr_val: array must be contiguous"
+      if (.not. is_contiguous(csr_row_ptr)) error stop "csr_row_ptr: array must be contiguous"
+      if (.not. is_contiguous(csr_col_ind)) error stop "csr_col_ind: array must be contiguous"
       ccsr2hyb = rocsparse_ccsr2hyb_raw(handle, m, n, descr, c_loc(csr_val), c_loc(csr_row_ptr), &
         c_loc(csr_col_ind), hyb, user_ell_width, partition_type)
     end function rocsparse_ccsr2hyb_native
@@ -41102,6 +41436,9 @@ contains
       integer(c_int), value :: user_ell_width
       integer(c_int), value :: partition_type
       integer(c_int) :: zcsr2hyb
+      if (.not. is_contiguous(csr_val)) error stop "csr_val: array must be contiguous"
+      if (.not. is_contiguous(csr_row_ptr)) error stop "csr_row_ptr: array must be contiguous"
+      if (.not. is_contiguous(csr_col_ind)) error stop "csr_col_ind: array must be contiguous"
       zcsr2hyb = rocsparse_zcsr2hyb_raw(handle, m, n, descr, c_loc(csr_val), c_loc(csr_row_ptr), &
         c_loc(csr_col_ind), hyb, user_ell_width, partition_type)
     end function rocsparse_zcsr2hyb_native
@@ -41138,6 +41475,8 @@ contains
       integer(c_int), target :: csr_col_ind(..)
       type(c_ptr), value :: buffer_size
       integer(c_int) :: csrsort_buffer_size
+      if (.not. is_contiguous(csr_row_ptr)) error stop "csr_row_ptr: array must be contiguous"
+      if (.not. is_contiguous(csr_col_ind)) error stop "csr_col_ind: array must be contiguous"
       csrsort_buffer_size = rocsparse_csrsort_buffer_size_raw(handle, m, n, nnz, c_loc( &
         csr_row_ptr), c_loc(csr_col_ind), buffer_size)
     end function rocsparse_csrsort_buffer_size_native
@@ -41173,6 +41512,9 @@ contains
       integer(c_int), target :: perm(..)
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: csrsort
+      if (.not. is_contiguous(csr_row_ptr)) error stop "csr_row_ptr: array must be contiguous"
+      if (.not. is_contiguous(csr_col_ind)) error stop "csr_col_ind: array must be contiguous"
+      if (.not. is_contiguous(perm)) error stop "perm: array must be contiguous"
       csrsort = rocsparse_csrsort_raw(handle, m, n, nnz, descr, c_loc(csr_row_ptr), c_loc( &
         csr_col_ind), c_loc(perm), temp_buffer)
     end function rocsparse_csrsort_native
@@ -41211,6 +41553,11 @@ contains
       integer(c_int), target :: coo_row_ind(..)
       integer(c_int), target :: coo_col_ind(..)
       integer(c_int) :: sdense2coo
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(nnz_per_rows)) error stop "nnz_per_rows: array must be contiguous"
+      if (.not. is_contiguous(coo_val)) error stop "coo_val: array must be contiguous"
+      if (.not. is_contiguous(coo_row_ind)) error stop "coo_row_ind: array must be contiguous"
+      if (.not. is_contiguous(coo_col_ind)) error stop "coo_col_ind: array must be contiguous"
       sdense2coo = rocsparse_sdense2coo_raw(handle, m, n, descr, c_loc(A), ld, c_loc( &
         nnz_per_rows), c_loc(coo_val), c_loc(coo_row_ind), c_loc(coo_col_ind))
     end function rocsparse_sdense2coo_native
@@ -41250,6 +41597,11 @@ contains
       integer(c_int), target :: coo_row_ind(..)
       integer(c_int), target :: coo_col_ind(..)
       integer(c_int) :: ddense2coo
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(nnz_per_rows)) error stop "nnz_per_rows: array must be contiguous"
+      if (.not. is_contiguous(coo_val)) error stop "coo_val: array must be contiguous"
+      if (.not. is_contiguous(coo_row_ind)) error stop "coo_row_ind: array must be contiguous"
+      if (.not. is_contiguous(coo_col_ind)) error stop "coo_col_ind: array must be contiguous"
       ddense2coo = rocsparse_ddense2coo_raw(handle, m, n, descr, c_loc(A), ld, c_loc( &
         nnz_per_rows), c_loc(coo_val), c_loc(coo_row_ind), c_loc(coo_col_ind))
     end function rocsparse_ddense2coo_native
@@ -41289,6 +41641,11 @@ contains
       integer(c_int), target :: coo_row_ind(..)
       integer(c_int), target :: coo_col_ind(..)
       integer(c_int) :: cdense2coo
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(nnz_per_rows)) error stop "nnz_per_rows: array must be contiguous"
+      if (.not. is_contiguous(coo_val)) error stop "coo_val: array must be contiguous"
+      if (.not. is_contiguous(coo_row_ind)) error stop "coo_row_ind: array must be contiguous"
+      if (.not. is_contiguous(coo_col_ind)) error stop "coo_col_ind: array must be contiguous"
       cdense2coo = rocsparse_cdense2coo_raw(handle, m, n, descr, c_loc(A), ld, c_loc( &
         nnz_per_rows), c_loc(coo_val), c_loc(coo_row_ind), c_loc(coo_col_ind))
     end function rocsparse_cdense2coo_native
@@ -41328,6 +41685,11 @@ contains
       integer(c_int), target :: coo_row_ind(..)
       integer(c_int), target :: coo_col_ind(..)
       integer(c_int) :: zdense2coo
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(nnz_per_rows)) error stop "nnz_per_rows: array must be contiguous"
+      if (.not. is_contiguous(coo_val)) error stop "coo_val: array must be contiguous"
+      if (.not. is_contiguous(coo_row_ind)) error stop "coo_row_ind: array must be contiguous"
+      if (.not. is_contiguous(coo_col_ind)) error stop "coo_col_ind: array must be contiguous"
       zdense2coo = rocsparse_zdense2coo_raw(handle, m, n, descr, c_loc(A), ld, c_loc( &
         nnz_per_rows), c_loc(coo_val), c_loc(coo_row_ind), c_loc(coo_col_ind))
     end function rocsparse_zdense2coo_native
@@ -41367,6 +41729,11 @@ contains
       integer(c_int), target :: csc_col_ptr(..)
       integer(c_int), target :: csc_row_ind(..)
       integer(c_int) :: sdense2csc
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(nnz_per_columns)) error stop "nnz_per_columns: array must be contiguous"
+      if (.not. is_contiguous(csc_val)) error stop "csc_val: array must be contiguous"
+      if (.not. is_contiguous(csc_col_ptr)) error stop "csc_col_ptr: array must be contiguous"
+      if (.not. is_contiguous(csc_row_ind)) error stop "csc_row_ind: array must be contiguous"
       sdense2csc = rocsparse_sdense2csc_raw(handle, m, n, descr, c_loc(A), ld, c_loc( &
         nnz_per_columns), c_loc(csc_val), c_loc(csc_col_ptr), c_loc(csc_row_ind))
     end function rocsparse_sdense2csc_native
@@ -41406,6 +41773,11 @@ contains
       integer(c_int), target :: csc_col_ptr(..)
       integer(c_int), target :: csc_row_ind(..)
       integer(c_int) :: ddense2csc
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(nnz_per_columns)) error stop "nnz_per_columns: array must be contiguous"
+      if (.not. is_contiguous(csc_val)) error stop "csc_val: array must be contiguous"
+      if (.not. is_contiguous(csc_col_ptr)) error stop "csc_col_ptr: array must be contiguous"
+      if (.not. is_contiguous(csc_row_ind)) error stop "csc_row_ind: array must be contiguous"
       ddense2csc = rocsparse_ddense2csc_raw(handle, m, n, descr, c_loc(A), ld, c_loc( &
         nnz_per_columns), c_loc(csc_val), c_loc(csc_col_ptr), c_loc(csc_row_ind))
     end function rocsparse_ddense2csc_native
@@ -41445,6 +41817,11 @@ contains
       integer(c_int), target :: csc_col_ptr(..)
       integer(c_int), target :: csc_row_ind(..)
       integer(c_int) :: cdense2csc
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(nnz_per_columns)) error stop "nnz_per_columns: array must be contiguous"
+      if (.not. is_contiguous(csc_val)) error stop "csc_val: array must be contiguous"
+      if (.not. is_contiguous(csc_col_ptr)) error stop "csc_col_ptr: array must be contiguous"
+      if (.not. is_contiguous(csc_row_ind)) error stop "csc_row_ind: array must be contiguous"
       cdense2csc = rocsparse_cdense2csc_raw(handle, m, n, descr, c_loc(A), ld, c_loc( &
         nnz_per_columns), c_loc(csc_val), c_loc(csc_col_ptr), c_loc(csc_row_ind))
     end function rocsparse_cdense2csc_native
@@ -41484,6 +41861,11 @@ contains
       integer(c_int), target :: csc_col_ptr(..)
       integer(c_int), target :: csc_row_ind(..)
       integer(c_int) :: zdense2csc
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(nnz_per_columns)) error stop "nnz_per_columns: array must be contiguous"
+      if (.not. is_contiguous(csc_val)) error stop "csc_val: array must be contiguous"
+      if (.not. is_contiguous(csc_col_ptr)) error stop "csc_col_ptr: array must be contiguous"
+      if (.not. is_contiguous(csc_row_ind)) error stop "csc_row_ind: array must be contiguous"
       zdense2csc = rocsparse_zdense2csc_raw(handle, m, n, descr, c_loc(A), ld, c_loc( &
         nnz_per_columns), c_loc(csc_val), c_loc(csc_col_ptr), c_loc(csc_row_ind))
     end function rocsparse_zdense2csc_native
@@ -41523,6 +41905,11 @@ contains
       integer(c_int), target :: csr_row_ptr(..)
       integer(c_int), target :: csr_col_ind(..)
       integer(c_int) :: sdense2csr
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(nnz_per_rows)) error stop "nnz_per_rows: array must be contiguous"
+      if (.not. is_contiguous(csr_val)) error stop "csr_val: array must be contiguous"
+      if (.not. is_contiguous(csr_row_ptr)) error stop "csr_row_ptr: array must be contiguous"
+      if (.not. is_contiguous(csr_col_ind)) error stop "csr_col_ind: array must be contiguous"
       sdense2csr = rocsparse_sdense2csr_raw(handle, m, n, descr, c_loc(A), ld, c_loc( &
         nnz_per_rows), c_loc(csr_val), c_loc(csr_row_ptr), c_loc(csr_col_ind))
     end function rocsparse_sdense2csr_native
@@ -41562,6 +41949,11 @@ contains
       integer(c_int), target :: csr_row_ptr(..)
       integer(c_int), target :: csr_col_ind(..)
       integer(c_int) :: ddense2csr
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(nnz_per_rows)) error stop "nnz_per_rows: array must be contiguous"
+      if (.not. is_contiguous(csr_val)) error stop "csr_val: array must be contiguous"
+      if (.not. is_contiguous(csr_row_ptr)) error stop "csr_row_ptr: array must be contiguous"
+      if (.not. is_contiguous(csr_col_ind)) error stop "csr_col_ind: array must be contiguous"
       ddense2csr = rocsparse_ddense2csr_raw(handle, m, n, descr, c_loc(A), ld, c_loc( &
         nnz_per_rows), c_loc(csr_val), c_loc(csr_row_ptr), c_loc(csr_col_ind))
     end function rocsparse_ddense2csr_native
@@ -41601,6 +41993,11 @@ contains
       integer(c_int), target :: csr_row_ptr(..)
       integer(c_int), target :: csr_col_ind(..)
       integer(c_int) :: cdense2csr
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(nnz_per_rows)) error stop "nnz_per_rows: array must be contiguous"
+      if (.not. is_contiguous(csr_val)) error stop "csr_val: array must be contiguous"
+      if (.not. is_contiguous(csr_row_ptr)) error stop "csr_row_ptr: array must be contiguous"
+      if (.not. is_contiguous(csr_col_ind)) error stop "csr_col_ind: array must be contiguous"
       cdense2csr = rocsparse_cdense2csr_raw(handle, m, n, descr, c_loc(A), ld, c_loc( &
         nnz_per_rows), c_loc(csr_val), c_loc(csr_row_ptr), c_loc(csr_col_ind))
     end function rocsparse_cdense2csr_native
@@ -41640,6 +42037,11 @@ contains
       integer(c_int), target :: csr_row_ptr(..)
       integer(c_int), target :: csr_col_ind(..)
       integer(c_int) :: zdense2csr
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(nnz_per_rows)) error stop "nnz_per_rows: array must be contiguous"
+      if (.not. is_contiguous(csr_val)) error stop "csr_val: array must be contiguous"
+      if (.not. is_contiguous(csr_row_ptr)) error stop "csr_row_ptr: array must be contiguous"
+      if (.not. is_contiguous(csr_col_ind)) error stop "csr_col_ind: array must be contiguous"
       zdense2csr = rocsparse_zdense2csr_raw(handle, m, n, descr, c_loc(A), ld, c_loc( &
         nnz_per_rows), c_loc(csr_val), c_loc(csr_row_ptr), c_loc(csr_col_ind))
     end function rocsparse_zdense2csr_native
@@ -41678,6 +42080,9 @@ contains
       integer(c_int), target :: csr_row_ptr(..)
       integer(c_int), target :: csr_nnz(..)
       integer(c_int) :: ell2csr_nnz
+      if (.not. is_contiguous(ell_col_ind)) error stop "ell_col_ind: array must be contiguous"
+      if (.not. is_contiguous(csr_row_ptr)) error stop "csr_row_ptr: array must be contiguous"
+      if (.not. is_contiguous(csr_nnz)) error stop "csr_nnz: array must be contiguous"
       ell2csr_nnz = rocsparse_ell2csr_nnz_raw(handle, m, n, ell_descr, ell_width, c_loc( &
         ell_col_ind), csr_descr, c_loc(csr_row_ptr), c_loc(csr_nnz))
     end function rocsparse_ell2csr_nnz_native
@@ -41717,6 +42122,11 @@ contains
       integer(c_int), target :: csr_row_ptr(..)
       integer(c_int), target :: csr_col_ind(..)
       integer(c_int) :: sell2csr
+      if (.not. is_contiguous(ell_val)) error stop "ell_val: array must be contiguous"
+      if (.not. is_contiguous(ell_col_ind)) error stop "ell_col_ind: array must be contiguous"
+      if (.not. is_contiguous(csr_val)) error stop "csr_val: array must be contiguous"
+      if (.not. is_contiguous(csr_row_ptr)) error stop "csr_row_ptr: array must be contiguous"
+      if (.not. is_contiguous(csr_col_ind)) error stop "csr_col_ind: array must be contiguous"
       sell2csr = rocsparse_sell2csr_raw(handle, m, n, ell_descr, ell_width, c_loc(ell_val), c_loc( &
         ell_col_ind), csr_descr, c_loc(csr_val), c_loc(csr_row_ptr), c_loc(csr_col_ind))
     end function rocsparse_sell2csr_native
@@ -41758,6 +42168,11 @@ contains
       integer(c_int), target :: csr_row_ptr(..)
       integer(c_int), target :: csr_col_ind(..)
       integer(c_int) :: dell2csr
+      if (.not. is_contiguous(ell_val)) error stop "ell_val: array must be contiguous"
+      if (.not. is_contiguous(ell_col_ind)) error stop "ell_col_ind: array must be contiguous"
+      if (.not. is_contiguous(csr_val)) error stop "csr_val: array must be contiguous"
+      if (.not. is_contiguous(csr_row_ptr)) error stop "csr_row_ptr: array must be contiguous"
+      if (.not. is_contiguous(csr_col_ind)) error stop "csr_col_ind: array must be contiguous"
       dell2csr = rocsparse_dell2csr_raw(handle, m, n, ell_descr, ell_width, c_loc(ell_val), c_loc( &
         ell_col_ind), csr_descr, c_loc(csr_val), c_loc(csr_row_ptr), c_loc(csr_col_ind))
     end function rocsparse_dell2csr_native
@@ -41799,6 +42214,11 @@ contains
       integer(c_int), target :: csr_row_ptr(..)
       integer(c_int), target :: csr_col_ind(..)
       integer(c_int) :: cell2csr
+      if (.not. is_contiguous(ell_val)) error stop "ell_val: array must be contiguous"
+      if (.not. is_contiguous(ell_col_ind)) error stop "ell_col_ind: array must be contiguous"
+      if (.not. is_contiguous(csr_val)) error stop "csr_val: array must be contiguous"
+      if (.not. is_contiguous(csr_row_ptr)) error stop "csr_row_ptr: array must be contiguous"
+      if (.not. is_contiguous(csr_col_ind)) error stop "csr_col_ind: array must be contiguous"
       cell2csr = rocsparse_cell2csr_raw(handle, m, n, ell_descr, ell_width, c_loc(ell_val), c_loc( &
         ell_col_ind), csr_descr, c_loc(csr_val), c_loc(csr_row_ptr), c_loc(csr_col_ind))
     end function rocsparse_cell2csr_native
@@ -41840,6 +42260,11 @@ contains
       integer(c_int), target :: csr_row_ptr(..)
       integer(c_int), target :: csr_col_ind(..)
       integer(c_int) :: zell2csr
+      if (.not. is_contiguous(ell_val)) error stop "ell_val: array must be contiguous"
+      if (.not. is_contiguous(ell_col_ind)) error stop "ell_col_ind: array must be contiguous"
+      if (.not. is_contiguous(csr_val)) error stop "csr_val: array must be contiguous"
+      if (.not. is_contiguous(csr_row_ptr)) error stop "csr_row_ptr: array must be contiguous"
+      if (.not. is_contiguous(csr_col_ind)) error stop "csr_col_ind: array must be contiguous"
       zell2csr = rocsparse_zell2csr_raw(handle, m, n, ell_descr, ell_width, c_loc(ell_val), c_loc( &
         ell_col_ind), csr_descr, c_loc(csr_val), c_loc(csr_row_ptr), c_loc(csr_col_ind))
     end function rocsparse_zell2csr_native
@@ -41885,6 +42310,12 @@ contains
       integer(c_int), target :: csr_row_ptr(..)
       integer(c_int), target :: csr_col_ind(..)
       integer(c_int) :: sgebsr2csr
+      if (.not. is_contiguous(bsr_val)) error stop "bsr_val: array must be contiguous"
+      if (.not. is_contiguous(bsr_row_ptr)) error stop "bsr_row_ptr: array must be contiguous"
+      if (.not. is_contiguous(bsr_col_ind)) error stop "bsr_col_ind: array must be contiguous"
+      if (.not. is_contiguous(csr_val)) error stop "csr_val: array must be contiguous"
+      if (.not. is_contiguous(csr_row_ptr)) error stop "csr_row_ptr: array must be contiguous"
+      if (.not. is_contiguous(csr_col_ind)) error stop "csr_col_ind: array must be contiguous"
       sgebsr2csr = rocsparse_sgebsr2csr_raw(handle, dir, mb, nb, bsr_descr, c_loc(bsr_val), c_loc( &
         bsr_row_ptr), c_loc(bsr_col_ind), row_block_dim, col_block_dim, csr_descr, c_loc(csr_val), &
         c_loc(csr_row_ptr), c_loc(csr_col_ind))
@@ -41936,6 +42367,12 @@ contains
       integer(c_int), target :: csr_row_ptr(..)
       integer(c_int), target :: csr_col_ind(..)
       integer(c_int) :: dgebsr2csr
+      if (.not. is_contiguous(bsr_val)) error stop "bsr_val: array must be contiguous"
+      if (.not. is_contiguous(bsr_row_ptr)) error stop "bsr_row_ptr: array must be contiguous"
+      if (.not. is_contiguous(bsr_col_ind)) error stop "bsr_col_ind: array must be contiguous"
+      if (.not. is_contiguous(csr_val)) error stop "csr_val: array must be contiguous"
+      if (.not. is_contiguous(csr_row_ptr)) error stop "csr_row_ptr: array must be contiguous"
+      if (.not. is_contiguous(csr_col_ind)) error stop "csr_col_ind: array must be contiguous"
       dgebsr2csr = rocsparse_dgebsr2csr_raw(handle, dir, mb, nb, bsr_descr, c_loc(bsr_val), c_loc( &
         bsr_row_ptr), c_loc(bsr_col_ind), row_block_dim, col_block_dim, csr_descr, c_loc(csr_val), &
         c_loc(csr_row_ptr), c_loc(csr_col_ind))
@@ -41987,6 +42424,12 @@ contains
       integer(c_int), target :: csr_row_ptr(..)
       integer(c_int), target :: csr_col_ind(..)
       integer(c_int) :: cgebsr2csr
+      if (.not. is_contiguous(bsr_val)) error stop "bsr_val: array must be contiguous"
+      if (.not. is_contiguous(bsr_row_ptr)) error stop "bsr_row_ptr: array must be contiguous"
+      if (.not. is_contiguous(bsr_col_ind)) error stop "bsr_col_ind: array must be contiguous"
+      if (.not. is_contiguous(csr_val)) error stop "csr_val: array must be contiguous"
+      if (.not. is_contiguous(csr_row_ptr)) error stop "csr_row_ptr: array must be contiguous"
+      if (.not. is_contiguous(csr_col_ind)) error stop "csr_col_ind: array must be contiguous"
       cgebsr2csr = rocsparse_cgebsr2csr_raw(handle, dir, mb, nb, bsr_descr, c_loc(bsr_val), c_loc( &
         bsr_row_ptr), c_loc(bsr_col_ind), row_block_dim, col_block_dim, csr_descr, c_loc(csr_val), &
         c_loc(csr_row_ptr), c_loc(csr_col_ind))
@@ -42038,6 +42481,12 @@ contains
       integer(c_int), target :: csr_row_ptr(..)
       integer(c_int), target :: csr_col_ind(..)
       integer(c_int) :: zgebsr2csr
+      if (.not. is_contiguous(bsr_val)) error stop "bsr_val: array must be contiguous"
+      if (.not. is_contiguous(bsr_row_ptr)) error stop "bsr_row_ptr: array must be contiguous"
+      if (.not. is_contiguous(bsr_col_ind)) error stop "bsr_col_ind: array must be contiguous"
+      if (.not. is_contiguous(csr_val)) error stop "csr_val: array must be contiguous"
+      if (.not. is_contiguous(csr_row_ptr)) error stop "csr_row_ptr: array must be contiguous"
+      if (.not. is_contiguous(csr_col_ind)) error stop "csr_col_ind: array must be contiguous"
       zgebsr2csr = rocsparse_zgebsr2csr_raw(handle, dir, mb, nb, bsr_descr, c_loc(bsr_val), c_loc( &
         bsr_row_ptr), c_loc(bsr_col_ind), row_block_dim, col_block_dim, csr_descr, c_loc(csr_val), &
         c_loc(csr_row_ptr), c_loc(csr_col_ind))
@@ -42084,6 +42533,9 @@ contains
       integer(c_int), value :: col_block_dim
       type(c_ptr), value :: p_buffer_size
       integer(c_int) :: sgebsr2gebsc_buffer_size
+      if (.not. is_contiguous(bsr_val)) error stop "bsr_val: array must be contiguous"
+      if (.not. is_contiguous(bsr_row_ptr)) error stop "bsr_row_ptr: array must be contiguous"
+      if (.not. is_contiguous(bsr_col_ind)) error stop "bsr_col_ind: array must be contiguous"
       sgebsr2gebsc_buffer_size = rocsparse_sgebsr2gebsc_buffer_size_raw(handle, mb, nb, nnzb, &
         c_loc(bsr_val), c_loc(bsr_row_ptr), c_loc(bsr_col_ind), row_block_dim, col_block_dim, &
         p_buffer_size)
@@ -42124,6 +42576,9 @@ contains
       integer(c_int), value :: col_block_dim
       type(c_ptr), value :: p_buffer_size
       integer(c_int) :: dgebsr2gebsc_buffer_size
+      if (.not. is_contiguous(bsr_val)) error stop "bsr_val: array must be contiguous"
+      if (.not. is_contiguous(bsr_row_ptr)) error stop "bsr_row_ptr: array must be contiguous"
+      if (.not. is_contiguous(bsr_col_ind)) error stop "bsr_col_ind: array must be contiguous"
       dgebsr2gebsc_buffer_size = rocsparse_dgebsr2gebsc_buffer_size_raw(handle, mb, nb, nnzb, &
         c_loc(bsr_val), c_loc(bsr_row_ptr), c_loc(bsr_col_ind), row_block_dim, col_block_dim, &
         p_buffer_size)
@@ -42164,6 +42619,9 @@ contains
       integer(c_int), value :: col_block_dim
       type(c_ptr), value :: p_buffer_size
       integer(c_int) :: cgebsr2gebsc_buffer_size
+      if (.not. is_contiguous(bsr_val)) error stop "bsr_val: array must be contiguous"
+      if (.not. is_contiguous(bsr_row_ptr)) error stop "bsr_row_ptr: array must be contiguous"
+      if (.not. is_contiguous(bsr_col_ind)) error stop "bsr_col_ind: array must be contiguous"
       cgebsr2gebsc_buffer_size = rocsparse_cgebsr2gebsc_buffer_size_raw(handle, mb, nb, nnzb, &
         c_loc(bsr_val), c_loc(bsr_row_ptr), c_loc(bsr_col_ind), row_block_dim, col_block_dim, &
         p_buffer_size)
@@ -42204,6 +42662,9 @@ contains
       integer(c_int), value :: col_block_dim
       type(c_ptr), value :: p_buffer_size
       integer(c_int) :: zgebsr2gebsc_buffer_size
+      if (.not. is_contiguous(bsr_val)) error stop "bsr_val: array must be contiguous"
+      if (.not. is_contiguous(bsr_row_ptr)) error stop "bsr_row_ptr: array must be contiguous"
+      if (.not. is_contiguous(bsr_col_ind)) error stop "bsr_col_ind: array must be contiguous"
       zgebsr2gebsc_buffer_size = rocsparse_zgebsr2gebsc_buffer_size_raw(handle, mb, nb, nnzb, &
         c_loc(bsr_val), c_loc(bsr_row_ptr), c_loc(bsr_col_ind), row_block_dim, col_block_dim, &
         p_buffer_size)
@@ -42250,6 +42711,12 @@ contains
       integer(c_int), value :: idx_base
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: sgebsr2gebsc
+      if (.not. is_contiguous(bsr_val)) error stop "bsr_val: array must be contiguous"
+      if (.not. is_contiguous(bsr_row_ptr)) error stop "bsr_row_ptr: array must be contiguous"
+      if (.not. is_contiguous(bsr_col_ind)) error stop "bsr_col_ind: array must be contiguous"
+      if (.not. is_contiguous(bsc_val)) error stop "bsc_val: array must be contiguous"
+      if (.not. is_contiguous(bsc_row_ind)) error stop "bsc_row_ind: array must be contiguous"
+      if (.not. is_contiguous(bsc_col_ptr)) error stop "bsc_col_ptr: array must be contiguous"
       sgebsr2gebsc = rocsparse_sgebsr2gebsc_raw(handle, mb, nb, nnzb, c_loc(bsr_val), c_loc( &
         bsr_row_ptr), c_loc(bsr_col_ind), row_block_dim, col_block_dim, c_loc(bsc_val), c_loc( &
         bsc_row_ind), c_loc(bsc_col_ptr), copy_values, idx_base, temp_buffer)
@@ -42303,6 +42770,12 @@ contains
       integer(c_int), value :: idx_base
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: dgebsr2gebsc
+      if (.not. is_contiguous(bsr_val)) error stop "bsr_val: array must be contiguous"
+      if (.not. is_contiguous(bsr_row_ptr)) error stop "bsr_row_ptr: array must be contiguous"
+      if (.not. is_contiguous(bsr_col_ind)) error stop "bsr_col_ind: array must be contiguous"
+      if (.not. is_contiguous(bsc_val)) error stop "bsc_val: array must be contiguous"
+      if (.not. is_contiguous(bsc_row_ind)) error stop "bsc_row_ind: array must be contiguous"
+      if (.not. is_contiguous(bsc_col_ptr)) error stop "bsc_col_ptr: array must be contiguous"
       dgebsr2gebsc = rocsparse_dgebsr2gebsc_raw(handle, mb, nb, nnzb, c_loc(bsr_val), c_loc( &
         bsr_row_ptr), c_loc(bsr_col_ind), row_block_dim, col_block_dim, c_loc(bsc_val), c_loc( &
         bsc_row_ind), c_loc(bsc_col_ptr), copy_values, idx_base, temp_buffer)
@@ -42356,6 +42829,12 @@ contains
       integer(c_int), value :: idx_base
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: cgebsr2gebsc
+      if (.not. is_contiguous(bsr_val)) error stop "bsr_val: array must be contiguous"
+      if (.not. is_contiguous(bsr_row_ptr)) error stop "bsr_row_ptr: array must be contiguous"
+      if (.not. is_contiguous(bsr_col_ind)) error stop "bsr_col_ind: array must be contiguous"
+      if (.not. is_contiguous(bsc_val)) error stop "bsc_val: array must be contiguous"
+      if (.not. is_contiguous(bsc_row_ind)) error stop "bsc_row_ind: array must be contiguous"
+      if (.not. is_contiguous(bsc_col_ptr)) error stop "bsc_col_ptr: array must be contiguous"
       cgebsr2gebsc = rocsparse_cgebsr2gebsc_raw(handle, mb, nb, nnzb, c_loc(bsr_val), c_loc( &
         bsr_row_ptr), c_loc(bsr_col_ind), row_block_dim, col_block_dim, c_loc(bsc_val), c_loc( &
         bsc_row_ind), c_loc(bsc_col_ptr), copy_values, idx_base, temp_buffer)
@@ -42409,6 +42888,12 @@ contains
       integer(c_int), value :: idx_base
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: zgebsr2gebsc
+      if (.not. is_contiguous(bsr_val)) error stop "bsr_val: array must be contiguous"
+      if (.not. is_contiguous(bsr_row_ptr)) error stop "bsr_row_ptr: array must be contiguous"
+      if (.not. is_contiguous(bsr_col_ind)) error stop "bsr_col_ind: array must be contiguous"
+      if (.not. is_contiguous(bsc_val)) error stop "bsc_val: array must be contiguous"
+      if (.not. is_contiguous(bsc_row_ind)) error stop "bsc_row_ind: array must be contiguous"
+      if (.not. is_contiguous(bsc_col_ptr)) error stop "bsc_col_ptr: array must be contiguous"
       zgebsr2gebsc = rocsparse_zgebsr2gebsc_raw(handle, mb, nb, nnzb, c_loc(bsr_val), c_loc( &
         bsr_row_ptr), c_loc(bsr_col_ind), row_block_dim, col_block_dim, c_loc(bsc_val), c_loc( &
         bsc_row_ind), c_loc(bsc_col_ptr), copy_values, idx_base, temp_buffer)
@@ -42461,6 +42946,9 @@ contains
       integer(c_int), value :: col_block_dim_C
       type(c_ptr), value :: buffer_size
       integer(c_int) :: sgebsr2gebsr_buffer_size
+      if (.not. is_contiguous(bsr_val_A)) error stop "bsr_val_A: array must be contiguous"
+      if (.not. is_contiguous(bsr_row_ptr_A)) error stop "bsr_row_ptr_A: array must be contiguous"
+      if (.not. is_contiguous(bsr_col_ind_A)) error stop "bsr_col_ind_A: array must be contiguous"
       sgebsr2gebsr_buffer_size = rocsparse_sgebsr2gebsr_buffer_size_raw(handle, dir, mb, nb, nnzb, &
         descr_A, c_loc(bsr_val_A), c_loc(bsr_row_ptr_A), c_loc(bsr_col_ind_A), row_block_dim_A, &
         col_block_dim_A, row_block_dim_C, col_block_dim_C, buffer_size)
@@ -42512,6 +43000,9 @@ contains
       integer(c_int), value :: col_block_dim_C
       type(c_ptr), value :: buffer_size
       integer(c_int) :: dgebsr2gebsr_buffer_size
+      if (.not. is_contiguous(bsr_val_A)) error stop "bsr_val_A: array must be contiguous"
+      if (.not. is_contiguous(bsr_row_ptr_A)) error stop "bsr_row_ptr_A: array must be contiguous"
+      if (.not. is_contiguous(bsr_col_ind_A)) error stop "bsr_col_ind_A: array must be contiguous"
       dgebsr2gebsr_buffer_size = rocsparse_dgebsr2gebsr_buffer_size_raw(handle, dir, mb, nb, nnzb, &
         descr_A, c_loc(bsr_val_A), c_loc(bsr_row_ptr_A), c_loc(bsr_col_ind_A), row_block_dim_A, &
         col_block_dim_A, row_block_dim_C, col_block_dim_C, buffer_size)
@@ -42563,6 +43054,9 @@ contains
       integer(c_int), value :: col_block_dim_C
       type(c_ptr), value :: buffer_size
       integer(c_int) :: cgebsr2gebsr_buffer_size
+      if (.not. is_contiguous(bsr_val_A)) error stop "bsr_val_A: array must be contiguous"
+      if (.not. is_contiguous(bsr_row_ptr_A)) error stop "bsr_row_ptr_A: array must be contiguous"
+      if (.not. is_contiguous(bsr_col_ind_A)) error stop "bsr_col_ind_A: array must be contiguous"
       cgebsr2gebsr_buffer_size = rocsparse_cgebsr2gebsr_buffer_size_raw(handle, dir, mb, nb, nnzb, &
         descr_A, c_loc(bsr_val_A), c_loc(bsr_row_ptr_A), c_loc(bsr_col_ind_A), row_block_dim_A, &
         col_block_dim_A, row_block_dim_C, col_block_dim_C, buffer_size)
@@ -42614,6 +43108,9 @@ contains
       integer(c_int), value :: col_block_dim_C
       type(c_ptr), value :: buffer_size
       integer(c_int) :: zgebsr2gebsr_buffer_size
+      if (.not. is_contiguous(bsr_val_A)) error stop "bsr_val_A: array must be contiguous"
+      if (.not. is_contiguous(bsr_row_ptr_A)) error stop "bsr_row_ptr_A: array must be contiguous"
+      if (.not. is_contiguous(bsr_col_ind_A)) error stop "bsr_col_ind_A: array must be contiguous"
       zgebsr2gebsr_buffer_size = rocsparse_zgebsr2gebsr_buffer_size_raw(handle, dir, mb, nb, nnzb, &
         descr_A, c_loc(bsr_val_A), c_loc(bsr_row_ptr_A), c_loc(bsr_col_ind_A), row_block_dim_A, &
         col_block_dim_A, row_block_dim_C, col_block_dim_C, buffer_size)
@@ -42667,6 +43164,9 @@ contains
       integer(c_int) :: nnz_total_dev_host_ptr
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: gebsr2gebsr_nnz
+      if (.not. is_contiguous(bsr_row_ptr_A)) error stop "bsr_row_ptr_A: array must be contiguous"
+      if (.not. is_contiguous(bsr_col_ind_A)) error stop "bsr_col_ind_A: array must be contiguous"
+      if (.not. is_contiguous(bsr_row_ptr_C)) error stop "bsr_row_ptr_C: array must be contiguous"
       gebsr2gebsr_nnz = rocsparse_gebsr2gebsr_nnz_raw(handle, dir, mb, nb, nnzb, descr_A, c_loc( &
         bsr_row_ptr_A), c_loc(bsr_col_ind_A), row_block_dim_A, col_block_dim_A, descr_C, c_loc( &
         bsr_row_ptr_C), row_block_dim_C, col_block_dim_C, nnz_total_dev_host_ptr, temp_buffer)
@@ -42725,6 +43225,12 @@ contains
       integer(c_int), value :: col_block_dim_C
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: sgebsr2gebsr
+      if (.not. is_contiguous(bsr_val_A)) error stop "bsr_val_A: array must be contiguous"
+      if (.not. is_contiguous(bsr_row_ptr_A)) error stop "bsr_row_ptr_A: array must be contiguous"
+      if (.not. is_contiguous(bsr_col_ind_A)) error stop "bsr_col_ind_A: array must be contiguous"
+      if (.not. is_contiguous(bsr_val_C)) error stop "bsr_val_C: array must be contiguous"
+      if (.not. is_contiguous(bsr_row_ptr_C)) error stop "bsr_row_ptr_C: array must be contiguous"
+      if (.not. is_contiguous(bsr_col_ind_C)) error stop "bsr_col_ind_C: array must be contiguous"
       sgebsr2gebsr = rocsparse_sgebsr2gebsr_raw(handle, dir, mb, nb, nnzb, descr_A, c_loc( &
         bsr_val_A), c_loc(bsr_row_ptr_A), c_loc(bsr_col_ind_A), row_block_dim_A, col_block_dim_A, &
         descr_C, c_loc(bsr_val_C), c_loc(bsr_row_ptr_C), c_loc(bsr_col_ind_C), row_block_dim_C, &
@@ -42787,6 +43293,12 @@ contains
       integer(c_int), value :: col_block_dim_C
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: dgebsr2gebsr
+      if (.not. is_contiguous(bsr_val_A)) error stop "bsr_val_A: array must be contiguous"
+      if (.not. is_contiguous(bsr_row_ptr_A)) error stop "bsr_row_ptr_A: array must be contiguous"
+      if (.not. is_contiguous(bsr_col_ind_A)) error stop "bsr_col_ind_A: array must be contiguous"
+      if (.not. is_contiguous(bsr_val_C)) error stop "bsr_val_C: array must be contiguous"
+      if (.not. is_contiguous(bsr_row_ptr_C)) error stop "bsr_row_ptr_C: array must be contiguous"
+      if (.not. is_contiguous(bsr_col_ind_C)) error stop "bsr_col_ind_C: array must be contiguous"
       dgebsr2gebsr = rocsparse_dgebsr2gebsr_raw(handle, dir, mb, nb, nnzb, descr_A, c_loc( &
         bsr_val_A), c_loc(bsr_row_ptr_A), c_loc(bsr_col_ind_A), row_block_dim_A, col_block_dim_A, &
         descr_C, c_loc(bsr_val_C), c_loc(bsr_row_ptr_C), c_loc(bsr_col_ind_C), row_block_dim_C, &
@@ -42849,6 +43361,12 @@ contains
       integer(c_int), value :: col_block_dim_C
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: cgebsr2gebsr
+      if (.not. is_contiguous(bsr_val_A)) error stop "bsr_val_A: array must be contiguous"
+      if (.not. is_contiguous(bsr_row_ptr_A)) error stop "bsr_row_ptr_A: array must be contiguous"
+      if (.not. is_contiguous(bsr_col_ind_A)) error stop "bsr_col_ind_A: array must be contiguous"
+      if (.not. is_contiguous(bsr_val_C)) error stop "bsr_val_C: array must be contiguous"
+      if (.not. is_contiguous(bsr_row_ptr_C)) error stop "bsr_row_ptr_C: array must be contiguous"
+      if (.not. is_contiguous(bsr_col_ind_C)) error stop "bsr_col_ind_C: array must be contiguous"
       cgebsr2gebsr = rocsparse_cgebsr2gebsr_raw(handle, dir, mb, nb, nnzb, descr_A, c_loc( &
         bsr_val_A), c_loc(bsr_row_ptr_A), c_loc(bsr_col_ind_A), row_block_dim_A, col_block_dim_A, &
         descr_C, c_loc(bsr_val_C), c_loc(bsr_row_ptr_C), c_loc(bsr_col_ind_C), row_block_dim_C, &
@@ -42911,6 +43429,12 @@ contains
       integer(c_int), value :: col_block_dim_C
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: zgebsr2gebsr
+      if (.not. is_contiguous(bsr_val_A)) error stop "bsr_val_A: array must be contiguous"
+      if (.not. is_contiguous(bsr_row_ptr_A)) error stop "bsr_row_ptr_A: array must be contiguous"
+      if (.not. is_contiguous(bsr_col_ind_A)) error stop "bsr_col_ind_A: array must be contiguous"
+      if (.not. is_contiguous(bsr_val_C)) error stop "bsr_val_C: array must be contiguous"
+      if (.not. is_contiguous(bsr_row_ptr_C)) error stop "bsr_row_ptr_C: array must be contiguous"
+      if (.not. is_contiguous(bsr_col_ind_C)) error stop "bsr_col_ind_C: array must be contiguous"
       zgebsr2gebsr = rocsparse_zgebsr2gebsr_raw(handle, dir, mb, nb, nnzb, descr_A, c_loc( &
         bsr_val_A), c_loc(bsr_row_ptr_A), c_loc(bsr_col_ind_A), row_block_dim_A, col_block_dim_A, &
         descr_C, c_loc(bsr_val_C), c_loc(bsr_row_ptr_C), c_loc(bsr_col_ind_C), row_block_dim_C, &
@@ -42958,6 +43482,7 @@ contains
       integer(c_int), target :: csr_row_ptr(..)
       type(c_ptr), value :: buffer_size
       integer(c_int) :: hyb2csr_buffer_size
+      if (.not. is_contiguous(csr_row_ptr)) error stop "csr_row_ptr: array must be contiguous"
       hyb2csr_buffer_size = rocsparse_hyb2csr_buffer_size_raw(handle, descr, hyb, c_loc( &
         csr_row_ptr), buffer_size)
     end function rocsparse_hyb2csr_buffer_size_native
@@ -42989,6 +43514,9 @@ contains
       integer(c_int), target :: csr_col_ind(..)
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: shyb2csr
+      if (.not. is_contiguous(csr_val)) error stop "csr_val: array must be contiguous"
+      if (.not. is_contiguous(csr_row_ptr)) error stop "csr_row_ptr: array must be contiguous"
+      if (.not. is_contiguous(csr_col_ind)) error stop "csr_col_ind: array must be contiguous"
       shyb2csr = rocsparse_shyb2csr_raw(handle, descr, hyb, c_loc(csr_val), c_loc(csr_row_ptr), &
         c_loc(csr_col_ind), temp_buffer)
     end function rocsparse_shyb2csr_native
@@ -43022,6 +43550,9 @@ contains
       integer(c_int), target :: csr_col_ind(..)
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: dhyb2csr
+      if (.not. is_contiguous(csr_val)) error stop "csr_val: array must be contiguous"
+      if (.not. is_contiguous(csr_row_ptr)) error stop "csr_row_ptr: array must be contiguous"
+      if (.not. is_contiguous(csr_col_ind)) error stop "csr_col_ind: array must be contiguous"
       dhyb2csr = rocsparse_dhyb2csr_raw(handle, descr, hyb, c_loc(csr_val), c_loc(csr_row_ptr), &
         c_loc(csr_col_ind), temp_buffer)
     end function rocsparse_dhyb2csr_native
@@ -43055,6 +43586,9 @@ contains
       integer(c_int), target :: csr_col_ind(..)
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: chyb2csr
+      if (.not. is_contiguous(csr_val)) error stop "csr_val: array must be contiguous"
+      if (.not. is_contiguous(csr_row_ptr)) error stop "csr_row_ptr: array must be contiguous"
+      if (.not. is_contiguous(csr_col_ind)) error stop "csr_col_ind: array must be contiguous"
       chyb2csr = rocsparse_chyb2csr_raw(handle, descr, hyb, c_loc(csr_val), c_loc(csr_row_ptr), &
         c_loc(csr_col_ind), temp_buffer)
     end function rocsparse_chyb2csr_native
@@ -43088,6 +43622,9 @@ contains
       integer(c_int), target :: csr_col_ind(..)
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: zhyb2csr
+      if (.not. is_contiguous(csr_val)) error stop "csr_val: array must be contiguous"
+      if (.not. is_contiguous(csr_row_ptr)) error stop "csr_row_ptr: array must be contiguous"
+      if (.not. is_contiguous(csr_col_ind)) error stop "csr_col_ind: array must be contiguous"
       zhyb2csr = rocsparse_zhyb2csr_raw(handle, descr, hyb, c_loc(csr_val), c_loc(csr_row_ptr), &
         c_loc(csr_col_ind), temp_buffer)
     end function rocsparse_zhyb2csr_native
@@ -43117,6 +43654,7 @@ contains
       integer(c_int), value :: n
       integer(c_int), target :: p(..)
       integer(c_int) :: create_identity_permutation
+      if (.not. is_contiguous(p)) error stop "p: array must be contiguous"
       create_identity_permutation = rocsparse_create_identity_permutation_raw(handle, n, c_loc(p))
     end function rocsparse_create_identity_permutation_native
 
@@ -43141,6 +43679,8 @@ contains
       integer(c_int), target :: q(..)
       integer(c_int), value :: base
       integer(c_int) :: inverse_permutation
+      if (.not. is_contiguous(p)) error stop "p: array must be contiguous"
+      if (.not. is_contiguous(q)) error stop "q: array must be contiguous"
       inverse_permutation = rocsparse_inverse_permutation_raw(handle, n, c_loc(p), c_loc(q), base)
     end function rocsparse_inverse_permutation_native
 
@@ -43184,6 +43724,8 @@ contains
       integer(c_int), target :: nnz_per_row_columns(..)
       integer(c_int) :: nnz_total_dev_host_ptr
       integer(c_int) :: snnz
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(nnz_per_row_columns)) error stop "nnz_per_row_columns: array must be contiguous"
       snnz = rocsparse_snnz_raw(handle, dir, m, n, descr, c_loc(A), ld, c_loc( &
         nnz_per_row_columns), nnz_total_dev_host_ptr)
     end function rocsparse_snnz_native
@@ -43221,6 +43763,8 @@ contains
       integer(c_int), target :: nnz_per_row_columns(..)
       integer(c_int) :: nnz_total_dev_host_ptr
       integer(c_int) :: dnnz
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(nnz_per_row_columns)) error stop "nnz_per_row_columns: array must be contiguous"
       dnnz = rocsparse_dnnz_raw(handle, dir, m, n, descr, c_loc(A), ld, c_loc( &
         nnz_per_row_columns), nnz_total_dev_host_ptr)
     end function rocsparse_dnnz_native
@@ -43258,6 +43802,8 @@ contains
       integer(c_int), target :: nnz_per_row_columns(..)
       integer(c_int) :: nnz_total_dev_host_ptr
       integer(c_int) :: cnnz
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(nnz_per_row_columns)) error stop "nnz_per_row_columns: array must be contiguous"
       cnnz = rocsparse_cnnz_raw(handle, dir, m, n, descr, c_loc(A), ld, c_loc( &
         nnz_per_row_columns), nnz_total_dev_host_ptr)
     end function rocsparse_cnnz_native
@@ -43295,6 +43841,8 @@ contains
       integer(c_int), target :: nnz_per_row_columns(..)
       integer(c_int) :: nnz_total_dev_host_ptr
       integer(c_int) :: znnz
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(nnz_per_row_columns)) error stop "nnz_per_row_columns: array must be contiguous"
       znnz = rocsparse_znnz_raw(handle, dir, m, n, descr, c_loc(A), ld, c_loc( &
         nnz_per_row_columns), nnz_total_dev_host_ptr)
     end function rocsparse_znnz_native
@@ -43331,6 +43879,10 @@ contains
       integer(c_int), target :: nnz_C(..)
       real(c_float), value :: tol
       integer(c_int) :: snnz_compress
+      if (.not. is_contiguous(csr_val_A)) error stop "csr_val_A: array must be contiguous"
+      if (.not. is_contiguous(csr_row_ptr_A)) error stop "csr_row_ptr_A: array must be contiguous"
+      if (.not. is_contiguous(nnz_per_row)) error stop "nnz_per_row: array must be contiguous"
+      if (.not. is_contiguous(nnz_C)) error stop "nnz_C: array must be contiguous"
       snnz_compress = rocsparse_snnz_compress_raw(handle, m, descr_A, c_loc(csr_val_A), c_loc( &
         csr_row_ptr_A), c_loc(nnz_per_row), c_loc(nnz_C), tol)
     end function rocsparse_snnz_compress_native
@@ -43366,6 +43918,10 @@ contains
       integer(c_int), target :: nnz_C(..)
       real(c_double), value :: tol
       integer(c_int) :: dnnz_compress
+      if (.not. is_contiguous(csr_val_A)) error stop "csr_val_A: array must be contiguous"
+      if (.not. is_contiguous(csr_row_ptr_A)) error stop "csr_row_ptr_A: array must be contiguous"
+      if (.not. is_contiguous(nnz_per_row)) error stop "nnz_per_row: array must be contiguous"
+      if (.not. is_contiguous(nnz_C)) error stop "nnz_C: array must be contiguous"
       dnnz_compress = rocsparse_dnnz_compress_raw(handle, m, descr_A, c_loc(csr_val_A), c_loc( &
         csr_row_ptr_A), c_loc(nnz_per_row), c_loc(nnz_C), tol)
     end function rocsparse_dnnz_compress_native
@@ -43401,6 +43957,10 @@ contains
       integer(c_int), target :: nnz_C(..)
       complex(c_float_complex), value :: tol
       integer(c_int) :: cnnz_compress
+      if (.not. is_contiguous(csr_val_A)) error stop "csr_val_A: array must be contiguous"
+      if (.not. is_contiguous(csr_row_ptr_A)) error stop "csr_row_ptr_A: array must be contiguous"
+      if (.not. is_contiguous(nnz_per_row)) error stop "nnz_per_row: array must be contiguous"
+      if (.not. is_contiguous(nnz_C)) error stop "nnz_C: array must be contiguous"
       cnnz_compress = rocsparse_cnnz_compress_raw(handle, m, descr_A, c_loc(csr_val_A), c_loc( &
         csr_row_ptr_A), c_loc(nnz_per_row), c_loc(nnz_C), tol)
     end function rocsparse_cnnz_compress_native
@@ -43436,6 +43996,10 @@ contains
       integer(c_int), target :: nnz_C(..)
       complex(c_double_complex), value :: tol
       integer(c_int) :: znnz_compress
+      if (.not. is_contiguous(csr_val_A)) error stop "csr_val_A: array must be contiguous"
+      if (.not. is_contiguous(csr_row_ptr_A)) error stop "csr_row_ptr_A: array must be contiguous"
+      if (.not. is_contiguous(nnz_per_row)) error stop "nnz_per_row: array must be contiguous"
+      if (.not. is_contiguous(nnz_C)) error stop "nnz_C: array must be contiguous"
       znnz_compress = rocsparse_znnz_compress_raw(handle, m, descr_A, c_loc(csr_val_A), c_loc( &
         csr_row_ptr_A), c_loc(nnz_per_row), c_loc(nnz_C), tol)
     end function rocsparse_znnz_compress_native
@@ -43478,6 +44042,12 @@ contains
       integer(c_int), target :: csr_col_ind_C(..)
       type(c_ptr), value :: buffer_size
       integer(c_int) :: sprune_csr2csr_buffer_size
+      if (.not. is_contiguous(csr_val_A)) error stop "csr_val_A: array must be contiguous"
+      if (.not. is_contiguous(csr_row_ptr_A)) error stop "csr_row_ptr_A: array must be contiguous"
+      if (.not. is_contiguous(csr_col_ind_A)) error stop "csr_col_ind_A: array must be contiguous"
+      if (.not. is_contiguous(csr_val_C)) error stop "csr_val_C: array must be contiguous"
+      if (.not. is_contiguous(csr_row_ptr_C)) error stop "csr_row_ptr_C: array must be contiguous"
+      if (.not. is_contiguous(csr_col_ind_C)) error stop "csr_col_ind_C: array must be contiguous"
       sprune_csr2csr_buffer_size = rocsparse_sprune_csr2csr_buffer_size_raw(handle, m, n, nnz_A, &
         csr_descr_A, c_loc(csr_val_A), c_loc(csr_row_ptr_A), c_loc(csr_col_ind_A), threshold, &
         csr_descr_C, c_loc(csr_val_C), c_loc(csr_row_ptr_C), c_loc(csr_col_ind_C), buffer_size)
@@ -43529,6 +44099,12 @@ contains
       integer(c_int), target :: csr_col_ind_C(..)
       type(c_ptr), value :: buffer_size
       integer(c_int) :: dprune_csr2csr_buffer_size
+      if (.not. is_contiguous(csr_val_A)) error stop "csr_val_A: array must be contiguous"
+      if (.not. is_contiguous(csr_row_ptr_A)) error stop "csr_row_ptr_A: array must be contiguous"
+      if (.not. is_contiguous(csr_col_ind_A)) error stop "csr_col_ind_A: array must be contiguous"
+      if (.not. is_contiguous(csr_val_C)) error stop "csr_val_C: array must be contiguous"
+      if (.not. is_contiguous(csr_row_ptr_C)) error stop "csr_row_ptr_C: array must be contiguous"
+      if (.not. is_contiguous(csr_col_ind_C)) error stop "csr_col_ind_C: array must be contiguous"
       dprune_csr2csr_buffer_size = rocsparse_dprune_csr2csr_buffer_size_raw(handle, m, n, nnz_A, &
         csr_descr_A, c_loc(csr_val_A), c_loc(csr_row_ptr_A), c_loc(csr_col_ind_A), threshold, &
         csr_descr_C, c_loc(csr_val_C), c_loc(csr_row_ptr_C), c_loc(csr_col_ind_C), buffer_size)
@@ -43579,6 +44155,10 @@ contains
       integer(c_int) :: nnz_total_dev_host_ptr
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: sprune_csr2csr_nnz
+      if (.not. is_contiguous(csr_val_A)) error stop "csr_val_A: array must be contiguous"
+      if (.not. is_contiguous(csr_row_ptr_A)) error stop "csr_row_ptr_A: array must be contiguous"
+      if (.not. is_contiguous(csr_col_ind_A)) error stop "csr_col_ind_A: array must be contiguous"
+      if (.not. is_contiguous(csr_row_ptr_C)) error stop "csr_row_ptr_C: array must be contiguous"
       sprune_csr2csr_nnz = rocsparse_sprune_csr2csr_nnz_raw(handle, m, n, nnz_A, csr_descr_A, &
         c_loc(csr_val_A), c_loc(csr_row_ptr_A), c_loc(csr_col_ind_A), threshold, csr_descr_C, &
         c_loc(csr_row_ptr_C), nnz_total_dev_host_ptr, temp_buffer)
@@ -43628,6 +44208,10 @@ contains
       integer(c_int) :: nnz_total_dev_host_ptr
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: dprune_csr2csr_nnz
+      if (.not. is_contiguous(csr_val_A)) error stop "csr_val_A: array must be contiguous"
+      if (.not. is_contiguous(csr_row_ptr_A)) error stop "csr_row_ptr_A: array must be contiguous"
+      if (.not. is_contiguous(csr_col_ind_A)) error stop "csr_col_ind_A: array must be contiguous"
+      if (.not. is_contiguous(csr_row_ptr_C)) error stop "csr_row_ptr_C: array must be contiguous"
       dprune_csr2csr_nnz = rocsparse_dprune_csr2csr_nnz_raw(handle, m, n, nnz_A, csr_descr_A, &
         c_loc(csr_val_A), c_loc(csr_row_ptr_A), c_loc(csr_col_ind_A), threshold, csr_descr_C, &
         c_loc(csr_row_ptr_C), nnz_total_dev_host_ptr, temp_buffer)
@@ -43678,6 +44262,12 @@ contains
       integer(c_int), target :: csr_col_ind_C(..)
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: sprune_csr2csr
+      if (.not. is_contiguous(csr_val_A)) error stop "csr_val_A: array must be contiguous"
+      if (.not. is_contiguous(csr_row_ptr_A)) error stop "csr_row_ptr_A: array must be contiguous"
+      if (.not. is_contiguous(csr_col_ind_A)) error stop "csr_col_ind_A: array must be contiguous"
+      if (.not. is_contiguous(csr_val_C)) error stop "csr_val_C: array must be contiguous"
+      if (.not. is_contiguous(csr_row_ptr_C)) error stop "csr_row_ptr_C: array must be contiguous"
+      if (.not. is_contiguous(csr_col_ind_C)) error stop "csr_col_ind_C: array must be contiguous"
       sprune_csr2csr = rocsparse_sprune_csr2csr_raw(handle, m, n, nnz_A, csr_descr_A, c_loc( &
         csr_val_A), c_loc(csr_row_ptr_A), c_loc(csr_col_ind_A), threshold, csr_descr_C, c_loc( &
         csr_val_C), c_loc(csr_row_ptr_C), c_loc(csr_col_ind_C), temp_buffer)
@@ -43729,6 +44319,12 @@ contains
       integer(c_int), target :: csr_col_ind_C(..)
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: dprune_csr2csr
+      if (.not. is_contiguous(csr_val_A)) error stop "csr_val_A: array must be contiguous"
+      if (.not. is_contiguous(csr_row_ptr_A)) error stop "csr_row_ptr_A: array must be contiguous"
+      if (.not. is_contiguous(csr_col_ind_A)) error stop "csr_col_ind_A: array must be contiguous"
+      if (.not. is_contiguous(csr_val_C)) error stop "csr_val_C: array must be contiguous"
+      if (.not. is_contiguous(csr_row_ptr_C)) error stop "csr_row_ptr_C: array must be contiguous"
+      if (.not. is_contiguous(csr_col_ind_C)) error stop "csr_col_ind_C: array must be contiguous"
       dprune_csr2csr = rocsparse_dprune_csr2csr_raw(handle, m, n, nnz_A, csr_descr_A, c_loc( &
         csr_val_A), c_loc(csr_row_ptr_A), c_loc(csr_col_ind_A), threshold, csr_descr_C, c_loc( &
         csr_val_C), c_loc(csr_row_ptr_C), c_loc(csr_col_ind_C), temp_buffer)
@@ -43782,6 +44378,12 @@ contains
       type(c_ptr), value :: info
       type(c_ptr), value :: buffer_size
       integer(c_int) :: sprune_csr2csr_by_percentage_buffer_size
+      if (.not. is_contiguous(csr_val_A)) error stop "csr_val_A: array must be contiguous"
+      if (.not. is_contiguous(csr_row_ptr_A)) error stop "csr_row_ptr_A: array must be contiguous"
+      if (.not. is_contiguous(csr_col_ind_A)) error stop "csr_col_ind_A: array must be contiguous"
+      if (.not. is_contiguous(csr_val_C)) error stop "csr_val_C: array must be contiguous"
+      if (.not. is_contiguous(csr_row_ptr_C)) error stop "csr_row_ptr_C: array must be contiguous"
+      if (.not. is_contiguous(csr_col_ind_C)) error stop "csr_col_ind_C: array must be contiguous"
       sprune_csr2csr_by_percentage_buffer_size = rocsparse_sprune_csr2csr_by_percentage_buffer_size_raw( &
         handle, m, n, nnz_A, csr_descr_A, c_loc(csr_val_A), c_loc(csr_row_ptr_A), c_loc( &
         csr_col_ind_A), percentage, csr_descr_C, c_loc(csr_val_C), c_loc(csr_row_ptr_C), c_loc( &
@@ -43838,6 +44440,12 @@ contains
       type(c_ptr), value :: info
       type(c_ptr), value :: buffer_size
       integer(c_int) :: dprune_csr2csr_by_percentage_buffer_size
+      if (.not. is_contiguous(csr_val_A)) error stop "csr_val_A: array must be contiguous"
+      if (.not. is_contiguous(csr_row_ptr_A)) error stop "csr_row_ptr_A: array must be contiguous"
+      if (.not. is_contiguous(csr_col_ind_A)) error stop "csr_col_ind_A: array must be contiguous"
+      if (.not. is_contiguous(csr_val_C)) error stop "csr_val_C: array must be contiguous"
+      if (.not. is_contiguous(csr_row_ptr_C)) error stop "csr_row_ptr_C: array must be contiguous"
+      if (.not. is_contiguous(csr_col_ind_C)) error stop "csr_col_ind_C: array must be contiguous"
       dprune_csr2csr_by_percentage_buffer_size = rocsparse_dprune_csr2csr_by_percentage_buffer_size_raw( &
         handle, m, n, nnz_A, csr_descr_A, c_loc(csr_val_A), c_loc(csr_row_ptr_A), c_loc( &
         csr_col_ind_A), percentage, csr_descr_C, c_loc(csr_val_C), c_loc(csr_row_ptr_C), c_loc( &
@@ -43892,6 +44500,10 @@ contains
       type(c_ptr), value :: info
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: sprune_csr2csr_nnz_by_percentage
+      if (.not. is_contiguous(csr_val_A)) error stop "csr_val_A: array must be contiguous"
+      if (.not. is_contiguous(csr_row_ptr_A)) error stop "csr_row_ptr_A: array must be contiguous"
+      if (.not. is_contiguous(csr_col_ind_A)) error stop "csr_col_ind_A: array must be contiguous"
+      if (.not. is_contiguous(csr_row_ptr_C)) error stop "csr_row_ptr_C: array must be contiguous"
       sprune_csr2csr_nnz_by_percentage = rocsparse_sprune_csr2csr_nnz_by_percentage_raw(handle, m, &
         n, nnz_A, csr_descr_A, c_loc(csr_val_A), c_loc(csr_row_ptr_A), c_loc(csr_col_ind_A), &
         percentage, csr_descr_C, c_loc(csr_row_ptr_C), nnz_total_dev_host_ptr, info, temp_buffer)
@@ -43943,6 +44555,10 @@ contains
       type(c_ptr), value :: info
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: dprune_csr2csr_nnz_by_percentage
+      if (.not. is_contiguous(csr_val_A)) error stop "csr_val_A: array must be contiguous"
+      if (.not. is_contiguous(csr_row_ptr_A)) error stop "csr_row_ptr_A: array must be contiguous"
+      if (.not. is_contiguous(csr_col_ind_A)) error stop "csr_col_ind_A: array must be contiguous"
+      if (.not. is_contiguous(csr_row_ptr_C)) error stop "csr_row_ptr_C: array must be contiguous"
       dprune_csr2csr_nnz_by_percentage = rocsparse_dprune_csr2csr_nnz_by_percentage_raw(handle, m, &
         n, nnz_A, csr_descr_A, c_loc(csr_val_A), c_loc(csr_row_ptr_A), c_loc(csr_col_ind_A), &
         percentage, csr_descr_C, c_loc(csr_row_ptr_C), nnz_total_dev_host_ptr, info, temp_buffer)
@@ -43995,6 +44611,12 @@ contains
       type(c_ptr), value :: info
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: sprune_csr2csr_by_percentage
+      if (.not. is_contiguous(csr_val_A)) error stop "csr_val_A: array must be contiguous"
+      if (.not. is_contiguous(csr_row_ptr_A)) error stop "csr_row_ptr_A: array must be contiguous"
+      if (.not. is_contiguous(csr_col_ind_A)) error stop "csr_col_ind_A: array must be contiguous"
+      if (.not. is_contiguous(csr_val_C)) error stop "csr_val_C: array must be contiguous"
+      if (.not. is_contiguous(csr_row_ptr_C)) error stop "csr_row_ptr_C: array must be contiguous"
+      if (.not. is_contiguous(csr_col_ind_C)) error stop "csr_col_ind_C: array must be contiguous"
       sprune_csr2csr_by_percentage = rocsparse_sprune_csr2csr_by_percentage_raw(handle, m, n, &
         nnz_A, csr_descr_A, c_loc(csr_val_A), c_loc(csr_row_ptr_A), c_loc(csr_col_ind_A), &
         percentage, csr_descr_C, c_loc(csr_val_C), c_loc(csr_row_ptr_C), c_loc(csr_col_ind_C), &
@@ -44049,6 +44671,12 @@ contains
       type(c_ptr), value :: info
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: dprune_csr2csr_by_percentage
+      if (.not. is_contiguous(csr_val_A)) error stop "csr_val_A: array must be contiguous"
+      if (.not. is_contiguous(csr_row_ptr_A)) error stop "csr_row_ptr_A: array must be contiguous"
+      if (.not. is_contiguous(csr_col_ind_A)) error stop "csr_col_ind_A: array must be contiguous"
+      if (.not. is_contiguous(csr_val_C)) error stop "csr_val_C: array must be contiguous"
+      if (.not. is_contiguous(csr_row_ptr_C)) error stop "csr_row_ptr_C: array must be contiguous"
+      if (.not. is_contiguous(csr_col_ind_C)) error stop "csr_col_ind_C: array must be contiguous"
       dprune_csr2csr_by_percentage = rocsparse_dprune_csr2csr_by_percentage_raw(handle, m, n, &
         nnz_A, csr_descr_A, c_loc(csr_val_A), c_loc(csr_row_ptr_A), c_loc(csr_col_ind_A), &
         percentage, csr_descr_C, c_loc(csr_val_C), c_loc(csr_row_ptr_C), c_loc(csr_col_ind_C), &
@@ -44098,6 +44726,10 @@ contains
       integer(c_int), target :: csr_col_ind(..)
       type(c_ptr), value :: buffer_size
       integer(c_int) :: sprune_dense2csr_buffer_size
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(csr_val)) error stop "csr_val: array must be contiguous"
+      if (.not. is_contiguous(csr_row_ptr)) error stop "csr_row_ptr: array must be contiguous"
+      if (.not. is_contiguous(csr_col_ind)) error stop "csr_col_ind: array must be contiguous"
       sprune_dense2csr_buffer_size = rocsparse_sprune_dense2csr_buffer_size_raw(handle, m, n, &
         c_loc(A), lda, threshold, descr, c_loc(csr_val), c_loc(csr_row_ptr), c_loc(csr_col_ind), &
         buffer_size)
@@ -44140,6 +44772,10 @@ contains
       integer(c_int), target :: csr_col_ind(..)
       type(c_ptr), value :: buffer_size
       integer(c_int) :: dprune_dense2csr_buffer_size
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(csr_val)) error stop "csr_val: array must be contiguous"
+      if (.not. is_contiguous(csr_row_ptr)) error stop "csr_row_ptr: array must be contiguous"
+      if (.not. is_contiguous(csr_col_ind)) error stop "csr_col_ind: array must be contiguous"
       dprune_dense2csr_buffer_size = rocsparse_dprune_dense2csr_buffer_size_raw(handle, m, n, &
         c_loc(A), lda, threshold, descr, c_loc(csr_val), c_loc(csr_row_ptr), c_loc(csr_col_ind), &
         buffer_size)
@@ -44181,6 +44817,8 @@ contains
       integer(c_int) :: nnz_total_dev_host_ptr
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: sprune_dense2csr_nnz
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(csr_row_ptr)) error stop "csr_row_ptr: array must be contiguous"
       sprune_dense2csr_nnz = rocsparse_sprune_dense2csr_nnz_raw(handle, m, n, c_loc(A), lda, &
         threshold, descr, c_loc(csr_row_ptr), nnz_total_dev_host_ptr, temp_buffer)
     end function rocsparse_sprune_dense2csr_nnz_native
@@ -44220,6 +44858,8 @@ contains
       integer(c_int) :: nnz_total_dev_host_ptr
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: dprune_dense2csr_nnz
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(csr_row_ptr)) error stop "csr_row_ptr: array must be contiguous"
       dprune_dense2csr_nnz = rocsparse_dprune_dense2csr_nnz_raw(handle, m, n, c_loc(A), lda, &
         threshold, descr, c_loc(csr_row_ptr), nnz_total_dev_host_ptr, temp_buffer)
     end function rocsparse_dprune_dense2csr_nnz_native
@@ -44260,6 +44900,10 @@ contains
       integer(c_int), target :: csr_col_ind(..)
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: sprune_dense2csr
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(csr_val)) error stop "csr_val: array must be contiguous"
+      if (.not. is_contiguous(csr_row_ptr)) error stop "csr_row_ptr: array must be contiguous"
+      if (.not. is_contiguous(csr_col_ind)) error stop "csr_col_ind: array must be contiguous"
       sprune_dense2csr = rocsparse_sprune_dense2csr_raw(handle, m, n, c_loc(A), lda, threshold, &
         descr, c_loc(csr_val), c_loc(csr_row_ptr), c_loc(csr_col_ind), temp_buffer)
     end function rocsparse_sprune_dense2csr_native
@@ -44301,6 +44945,10 @@ contains
       integer(c_int), target :: csr_col_ind(..)
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: dprune_dense2csr
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(csr_val)) error stop "csr_val: array must be contiguous"
+      if (.not. is_contiguous(csr_row_ptr)) error stop "csr_row_ptr: array must be contiguous"
+      if (.not. is_contiguous(csr_col_ind)) error stop "csr_col_ind: array must be contiguous"
       dprune_dense2csr = rocsparse_dprune_dense2csr_raw(handle, m, n, c_loc(A), lda, threshold, &
         descr, c_loc(csr_val), c_loc(csr_row_ptr), c_loc(csr_col_ind), temp_buffer)
     end function rocsparse_dprune_dense2csr_native
@@ -44344,6 +44992,10 @@ contains
       type(c_ptr), value :: info
       type(c_ptr), value :: buffer_size
       integer(c_int) :: sprune_dense2csr_by_percentage_buffer_size
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(csr_val)) error stop "csr_val: array must be contiguous"
+      if (.not. is_contiguous(csr_row_ptr)) error stop "csr_row_ptr: array must be contiguous"
+      if (.not. is_contiguous(csr_col_ind)) error stop "csr_col_ind: array must be contiguous"
       sprune_dense2csr_by_percentage_buffer_size = rocsparse_sprune_dense2csr_by_percentage_buffer_size_raw( &
         handle, m, n, c_loc(A), lda, percentage, descr, c_loc(csr_val), c_loc(csr_row_ptr), c_loc( &
         csr_col_ind), info, buffer_size)
@@ -44391,6 +45043,10 @@ contains
       type(c_ptr), value :: info
       type(c_ptr), value :: buffer_size
       integer(c_int) :: dprune_dense2csr_by_percentage_buffer_size
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(csr_val)) error stop "csr_val: array must be contiguous"
+      if (.not. is_contiguous(csr_row_ptr)) error stop "csr_row_ptr: array must be contiguous"
+      if (.not. is_contiguous(csr_col_ind)) error stop "csr_col_ind: array must be contiguous"
       dprune_dense2csr_by_percentage_buffer_size = rocsparse_dprune_dense2csr_by_percentage_buffer_size_raw( &
         handle, m, n, c_loc(A), lda, percentage, descr, c_loc(csr_val), c_loc(csr_row_ptr), c_loc( &
         csr_col_ind), info, buffer_size)
@@ -44437,6 +45093,8 @@ contains
       type(c_ptr), value :: info
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: sprune_dense2csr_nnz_by_percentage
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(csr_row_ptr)) error stop "csr_row_ptr: array must be contiguous"
       sprune_dense2csr_nnz_by_percentage = rocsparse_sprune_dense2csr_nnz_by_percentage_raw( &
         handle, m, n, c_loc(A), lda, percentage, descr, c_loc(csr_row_ptr), &
         nnz_total_dev_host_ptr, info, temp_buffer)
@@ -44482,6 +45140,8 @@ contains
       type(c_ptr), value :: info
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: dprune_dense2csr_nnz_by_percentage
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(csr_row_ptr)) error stop "csr_row_ptr: array must be contiguous"
       dprune_dense2csr_nnz_by_percentage = rocsparse_dprune_dense2csr_nnz_by_percentage_raw( &
         handle, m, n, c_loc(A), lda, percentage, descr, c_loc(csr_row_ptr), &
         nnz_total_dev_host_ptr, info, temp_buffer)
@@ -44528,6 +45188,10 @@ contains
       type(c_ptr), value :: info
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: sprune_dense2csr_by_percentage
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(csr_val)) error stop "csr_val: array must be contiguous"
+      if (.not. is_contiguous(csr_row_ptr)) error stop "csr_row_ptr: array must be contiguous"
+      if (.not. is_contiguous(csr_col_ind)) error stop "csr_col_ind: array must be contiguous"
       sprune_dense2csr_by_percentage = rocsparse_sprune_dense2csr_by_percentage_raw(handle, m, n, &
         c_loc(A), lda, percentage, descr, c_loc(csr_val), c_loc(csr_row_ptr), c_loc(csr_col_ind), &
         info, temp_buffer)
@@ -44574,6 +45238,10 @@ contains
       type(c_ptr), value :: info
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: dprune_dense2csr_by_percentage
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(csr_val)) error stop "csr_val: array must be contiguous"
+      if (.not. is_contiguous(csr_row_ptr)) error stop "csr_row_ptr: array must be contiguous"
+      if (.not. is_contiguous(csr_col_ind)) error stop "csr_col_ind: array must be contiguous"
       dprune_dense2csr_by_percentage = rocsparse_dprune_dense2csr_by_percentage_raw(handle, m, n, &
         c_loc(A), lda, percentage, descr, c_loc(csr_val), c_loc(csr_row_ptr), c_loc(csr_col_ind), &
         info, temp_buffer)
@@ -44624,6 +45292,12 @@ contains
       integer(c_int), target :: bsr_row_ptr_C(..)
       integer(c_int), target :: nnzb_C(..)
       integer(c_int) :: bsrgeam_nnzb
+      if (.not. is_contiguous(bsr_row_ptr_A)) error stop "bsr_row_ptr_A: array must be contiguous"
+      if (.not. is_contiguous(bsr_col_ind_A)) error stop "bsr_col_ind_A: array must be contiguous"
+      if (.not. is_contiguous(bsr_row_ptr_B)) error stop "bsr_row_ptr_B: array must be contiguous"
+      if (.not. is_contiguous(bsr_col_ind_B)) error stop "bsr_col_ind_B: array must be contiguous"
+      if (.not. is_contiguous(bsr_row_ptr_C)) error stop "bsr_row_ptr_C: array must be contiguous"
+      if (.not. is_contiguous(nnzb_C)) error stop "nnzb_C: array must be contiguous"
       bsrgeam_nnzb = rocsparse_bsrgeam_nnzb_raw(handle, dir, mb, nb, block_dim, descr_A, nnzb_A, &
         c_loc(bsr_row_ptr_A), c_loc(bsr_col_ind_A), descr_B, nnzb_B, c_loc(bsr_row_ptr_B), c_loc( &
         bsr_col_ind_B), descr_C, c_loc(bsr_row_ptr_C), c_loc(nnzb_C))
@@ -44684,6 +45358,17 @@ contains
       integer(c_int), target :: bsr_row_ptr_C(..)
       integer(c_int), target :: bsr_col_ind_C(..)
       integer(c_int) :: sbsrgeam
+      if (.not. is_contiguous(alpha)) error stop "alpha: array must be contiguous"
+      if (.not. is_contiguous(bsr_val_A)) error stop "bsr_val_A: array must be contiguous"
+      if (.not. is_contiguous(bsr_row_ptr_A)) error stop "bsr_row_ptr_A: array must be contiguous"
+      if (.not. is_contiguous(bsr_col_ind_A)) error stop "bsr_col_ind_A: array must be contiguous"
+      if (.not. is_contiguous(beta)) error stop "beta: array must be contiguous"
+      if (.not. is_contiguous(bsr_val_B)) error stop "bsr_val_B: array must be contiguous"
+      if (.not. is_contiguous(bsr_row_ptr_B)) error stop "bsr_row_ptr_B: array must be contiguous"
+      if (.not. is_contiguous(bsr_col_ind_B)) error stop "bsr_col_ind_B: array must be contiguous"
+      if (.not. is_contiguous(bsr_val_C)) error stop "bsr_val_C: array must be contiguous"
+      if (.not. is_contiguous(bsr_row_ptr_C)) error stop "bsr_row_ptr_C: array must be contiguous"
+      if (.not. is_contiguous(bsr_col_ind_C)) error stop "bsr_col_ind_C: array must be contiguous"
       sbsrgeam = rocsparse_sbsrgeam_raw(handle, dir, mb, nb, block_dim, c_loc(alpha), descr_A, &
         nnzb_A, c_loc(bsr_val_A), c_loc(bsr_row_ptr_A), c_loc(bsr_col_ind_A), c_loc(beta), &
         descr_B, nnzb_B, c_loc(bsr_val_B), c_loc(bsr_row_ptr_B), c_loc(bsr_col_ind_B), descr_C, &
@@ -44750,6 +45435,17 @@ contains
       integer(c_int), target :: bsr_row_ptr_C(..)
       integer(c_int), target :: bsr_col_ind_C(..)
       integer(c_int) :: dbsrgeam
+      if (.not. is_contiguous(alpha)) error stop "alpha: array must be contiguous"
+      if (.not. is_contiguous(bsr_val_A)) error stop "bsr_val_A: array must be contiguous"
+      if (.not. is_contiguous(bsr_row_ptr_A)) error stop "bsr_row_ptr_A: array must be contiguous"
+      if (.not. is_contiguous(bsr_col_ind_A)) error stop "bsr_col_ind_A: array must be contiguous"
+      if (.not. is_contiguous(beta)) error stop "beta: array must be contiguous"
+      if (.not. is_contiguous(bsr_val_B)) error stop "bsr_val_B: array must be contiguous"
+      if (.not. is_contiguous(bsr_row_ptr_B)) error stop "bsr_row_ptr_B: array must be contiguous"
+      if (.not. is_contiguous(bsr_col_ind_B)) error stop "bsr_col_ind_B: array must be contiguous"
+      if (.not. is_contiguous(bsr_val_C)) error stop "bsr_val_C: array must be contiguous"
+      if (.not. is_contiguous(bsr_row_ptr_C)) error stop "bsr_row_ptr_C: array must be contiguous"
+      if (.not. is_contiguous(bsr_col_ind_C)) error stop "bsr_col_ind_C: array must be contiguous"
       dbsrgeam = rocsparse_dbsrgeam_raw(handle, dir, mb, nb, block_dim, c_loc(alpha), descr_A, &
         nnzb_A, c_loc(bsr_val_A), c_loc(bsr_row_ptr_A), c_loc(bsr_col_ind_A), c_loc(beta), &
         descr_B, nnzb_B, c_loc(bsr_val_B), c_loc(bsr_row_ptr_B), c_loc(bsr_col_ind_B), descr_C, &
@@ -44816,6 +45512,17 @@ contains
       integer(c_int), target :: bsr_row_ptr_C(..)
       integer(c_int), target :: bsr_col_ind_C(..)
       integer(c_int) :: cbsrgeam
+      if (.not. is_contiguous(alpha)) error stop "alpha: array must be contiguous"
+      if (.not. is_contiguous(bsr_val_A)) error stop "bsr_val_A: array must be contiguous"
+      if (.not. is_contiguous(bsr_row_ptr_A)) error stop "bsr_row_ptr_A: array must be contiguous"
+      if (.not. is_contiguous(bsr_col_ind_A)) error stop "bsr_col_ind_A: array must be contiguous"
+      if (.not. is_contiguous(beta)) error stop "beta: array must be contiguous"
+      if (.not. is_contiguous(bsr_val_B)) error stop "bsr_val_B: array must be contiguous"
+      if (.not. is_contiguous(bsr_row_ptr_B)) error stop "bsr_row_ptr_B: array must be contiguous"
+      if (.not. is_contiguous(bsr_col_ind_B)) error stop "bsr_col_ind_B: array must be contiguous"
+      if (.not. is_contiguous(bsr_val_C)) error stop "bsr_val_C: array must be contiguous"
+      if (.not. is_contiguous(bsr_row_ptr_C)) error stop "bsr_row_ptr_C: array must be contiguous"
+      if (.not. is_contiguous(bsr_col_ind_C)) error stop "bsr_col_ind_C: array must be contiguous"
       cbsrgeam = rocsparse_cbsrgeam_raw(handle, dir, mb, nb, block_dim, c_loc(alpha), descr_A, &
         nnzb_A, c_loc(bsr_val_A), c_loc(bsr_row_ptr_A), c_loc(bsr_col_ind_A), c_loc(beta), &
         descr_B, nnzb_B, c_loc(bsr_val_B), c_loc(bsr_row_ptr_B), c_loc(bsr_col_ind_B), descr_C, &
@@ -44882,6 +45589,17 @@ contains
       integer(c_int), target :: bsr_row_ptr_C(..)
       integer(c_int), target :: bsr_col_ind_C(..)
       integer(c_int) :: zbsrgeam
+      if (.not. is_contiguous(alpha)) error stop "alpha: array must be contiguous"
+      if (.not. is_contiguous(bsr_val_A)) error stop "bsr_val_A: array must be contiguous"
+      if (.not. is_contiguous(bsr_row_ptr_A)) error stop "bsr_row_ptr_A: array must be contiguous"
+      if (.not. is_contiguous(bsr_col_ind_A)) error stop "bsr_col_ind_A: array must be contiguous"
+      if (.not. is_contiguous(beta)) error stop "beta: array must be contiguous"
+      if (.not. is_contiguous(bsr_val_B)) error stop "bsr_val_B: array must be contiguous"
+      if (.not. is_contiguous(bsr_row_ptr_B)) error stop "bsr_row_ptr_B: array must be contiguous"
+      if (.not. is_contiguous(bsr_col_ind_B)) error stop "bsr_col_ind_B: array must be contiguous"
+      if (.not. is_contiguous(bsr_val_C)) error stop "bsr_val_C: array must be contiguous"
+      if (.not. is_contiguous(bsr_row_ptr_C)) error stop "bsr_row_ptr_C: array must be contiguous"
+      if (.not. is_contiguous(bsr_col_ind_C)) error stop "bsr_col_ind_C: array must be contiguous"
       zbsrgeam = rocsparse_zbsrgeam_raw(handle, dir, mb, nb, block_dim, c_loc(alpha), descr_A, &
         nnzb_A, c_loc(bsr_val_A), c_loc(bsr_row_ptr_A), c_loc(bsr_col_ind_A), c_loc(beta), &
         descr_B, nnzb_B, c_loc(bsr_val_B), c_loc(bsr_row_ptr_B), c_loc(bsr_col_ind_B), descr_C, &
@@ -44952,6 +45670,14 @@ contains
       type(c_ptr), value :: info_C
       type(c_ptr), value :: buffer_size
       integer(c_int) :: sbsrgemm_buffer_size
+      if (.not. is_contiguous(alpha)) error stop "alpha: array must be contiguous"
+      if (.not. is_contiguous(bsr_row_ptr_A)) error stop "bsr_row_ptr_A: array must be contiguous"
+      if (.not. is_contiguous(bsr_col_ind_A)) error stop "bsr_col_ind_A: array must be contiguous"
+      if (.not. is_contiguous(bsr_row_ptr_B)) error stop "bsr_row_ptr_B: array must be contiguous"
+      if (.not. is_contiguous(bsr_col_ind_B)) error stop "bsr_col_ind_B: array must be contiguous"
+      if (.not. is_contiguous(beta)) error stop "beta: array must be contiguous"
+      if (.not. is_contiguous(bsr_row_ptr_D)) error stop "bsr_row_ptr_D: array must be contiguous"
+      if (.not. is_contiguous(bsr_col_ind_D)) error stop "bsr_col_ind_D: array must be contiguous"
       sbsrgemm_buffer_size = rocsparse_sbsrgemm_buffer_size_raw(handle, dir, trans_A, trans_B, mb, &
         nb, kb, block_dim, c_loc(alpha), descr_A, nnzb_A, c_loc(bsr_row_ptr_A), c_loc( &
         bsr_col_ind_A), descr_B, nnzb_B, c_loc(bsr_row_ptr_B), c_loc(bsr_col_ind_B), c_loc(beta), &
@@ -45027,6 +45753,14 @@ contains
       type(c_ptr), value :: info_C
       type(c_ptr), value :: buffer_size
       integer(c_int) :: dbsrgemm_buffer_size
+      if (.not. is_contiguous(alpha)) error stop "alpha: array must be contiguous"
+      if (.not. is_contiguous(bsr_row_ptr_A)) error stop "bsr_row_ptr_A: array must be contiguous"
+      if (.not. is_contiguous(bsr_col_ind_A)) error stop "bsr_col_ind_A: array must be contiguous"
+      if (.not. is_contiguous(bsr_row_ptr_B)) error stop "bsr_row_ptr_B: array must be contiguous"
+      if (.not. is_contiguous(bsr_col_ind_B)) error stop "bsr_col_ind_B: array must be contiguous"
+      if (.not. is_contiguous(beta)) error stop "beta: array must be contiguous"
+      if (.not. is_contiguous(bsr_row_ptr_D)) error stop "bsr_row_ptr_D: array must be contiguous"
+      if (.not. is_contiguous(bsr_col_ind_D)) error stop "bsr_col_ind_D: array must be contiguous"
       dbsrgemm_buffer_size = rocsparse_dbsrgemm_buffer_size_raw(handle, dir, trans_A, trans_B, mb, &
         nb, kb, block_dim, c_loc(alpha), descr_A, nnzb_A, c_loc(bsr_row_ptr_A), c_loc( &
         bsr_col_ind_A), descr_B, nnzb_B, c_loc(bsr_row_ptr_B), c_loc(bsr_col_ind_B), c_loc(beta), &
@@ -45102,6 +45836,14 @@ contains
       type(c_ptr), value :: info_C
       type(c_ptr), value :: buffer_size
       integer(c_int) :: cbsrgemm_buffer_size
+      if (.not. is_contiguous(alpha)) error stop "alpha: array must be contiguous"
+      if (.not. is_contiguous(bsr_row_ptr_A)) error stop "bsr_row_ptr_A: array must be contiguous"
+      if (.not. is_contiguous(bsr_col_ind_A)) error stop "bsr_col_ind_A: array must be contiguous"
+      if (.not. is_contiguous(bsr_row_ptr_B)) error stop "bsr_row_ptr_B: array must be contiguous"
+      if (.not. is_contiguous(bsr_col_ind_B)) error stop "bsr_col_ind_B: array must be contiguous"
+      if (.not. is_contiguous(beta)) error stop "beta: array must be contiguous"
+      if (.not. is_contiguous(bsr_row_ptr_D)) error stop "bsr_row_ptr_D: array must be contiguous"
+      if (.not. is_contiguous(bsr_col_ind_D)) error stop "bsr_col_ind_D: array must be contiguous"
       cbsrgemm_buffer_size = rocsparse_cbsrgemm_buffer_size_raw(handle, dir, trans_A, trans_B, mb, &
         nb, kb, block_dim, c_loc(alpha), descr_A, nnzb_A, c_loc(bsr_row_ptr_A), c_loc( &
         bsr_col_ind_A), descr_B, nnzb_B, c_loc(bsr_row_ptr_B), c_loc(bsr_col_ind_B), c_loc(beta), &
@@ -45177,6 +45919,14 @@ contains
       type(c_ptr), value :: info_C
       type(c_ptr), value :: buffer_size
       integer(c_int) :: zbsrgemm_buffer_size
+      if (.not. is_contiguous(alpha)) error stop "alpha: array must be contiguous"
+      if (.not. is_contiguous(bsr_row_ptr_A)) error stop "bsr_row_ptr_A: array must be contiguous"
+      if (.not. is_contiguous(bsr_col_ind_A)) error stop "bsr_col_ind_A: array must be contiguous"
+      if (.not. is_contiguous(bsr_row_ptr_B)) error stop "bsr_row_ptr_B: array must be contiguous"
+      if (.not. is_contiguous(bsr_col_ind_B)) error stop "bsr_col_ind_B: array must be contiguous"
+      if (.not. is_contiguous(beta)) error stop "beta: array must be contiguous"
+      if (.not. is_contiguous(bsr_row_ptr_D)) error stop "bsr_row_ptr_D: array must be contiguous"
+      if (.not. is_contiguous(bsr_col_ind_D)) error stop "bsr_col_ind_D: array must be contiguous"
       zbsrgemm_buffer_size = rocsparse_zbsrgemm_buffer_size_raw(handle, dir, trans_A, trans_B, mb, &
         nb, kb, block_dim, c_loc(alpha), descr_A, nnzb_A, c_loc(bsr_row_ptr_A), c_loc( &
         bsr_col_ind_A), descr_B, nnzb_B, c_loc(bsr_row_ptr_B), c_loc(bsr_col_ind_B), c_loc(beta), &
@@ -45253,6 +46003,14 @@ contains
       type(c_ptr), value :: info_C
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: bsrgemm_nnzb
+      if (.not. is_contiguous(bsr_row_ptr_A)) error stop "bsr_row_ptr_A: array must be contiguous"
+      if (.not. is_contiguous(bsr_col_ind_A)) error stop "bsr_col_ind_A: array must be contiguous"
+      if (.not. is_contiguous(bsr_row_ptr_B)) error stop "bsr_row_ptr_B: array must be contiguous"
+      if (.not. is_contiguous(bsr_col_ind_B)) error stop "bsr_col_ind_B: array must be contiguous"
+      if (.not. is_contiguous(bsr_row_ptr_D)) error stop "bsr_row_ptr_D: array must be contiguous"
+      if (.not. is_contiguous(bsr_col_ind_D)) error stop "bsr_col_ind_D: array must be contiguous"
+      if (.not. is_contiguous(bsr_row_ptr_C)) error stop "bsr_row_ptr_C: array must be contiguous"
+      if (.not. is_contiguous(nnzb_C)) error stop "nnzb_C: array must be contiguous"
       bsrgemm_nnzb = rocsparse_bsrgemm_nnzb_raw(handle, dir, trans_A, trans_B, mb, nb, kb, &
         block_dim, descr_A, nnzb_A, c_loc(bsr_row_ptr_A), c_loc(bsr_col_ind_A), descr_B, nnzb_B, &
         c_loc(bsr_row_ptr_B), c_loc(bsr_col_ind_B), descr_D, nnzb_D, c_loc(bsr_row_ptr_D), c_loc( &
@@ -45337,6 +46095,20 @@ contains
       type(c_ptr), value :: info_C
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: sbsrgemm
+      if (.not. is_contiguous(alpha)) error stop "alpha: array must be contiguous"
+      if (.not. is_contiguous(bsr_val_A)) error stop "bsr_val_A: array must be contiguous"
+      if (.not. is_contiguous(bsr_row_ptr_A)) error stop "bsr_row_ptr_A: array must be contiguous"
+      if (.not. is_contiguous(bsr_col_ind_A)) error stop "bsr_col_ind_A: array must be contiguous"
+      if (.not. is_contiguous(bsr_val_B)) error stop "bsr_val_B: array must be contiguous"
+      if (.not. is_contiguous(bsr_row_ptr_B)) error stop "bsr_row_ptr_B: array must be contiguous"
+      if (.not. is_contiguous(bsr_col_ind_B)) error stop "bsr_col_ind_B: array must be contiguous"
+      if (.not. is_contiguous(beta)) error stop "beta: array must be contiguous"
+      if (.not. is_contiguous(bsr_val_D)) error stop "bsr_val_D: array must be contiguous"
+      if (.not. is_contiguous(bsr_row_ptr_D)) error stop "bsr_row_ptr_D: array must be contiguous"
+      if (.not. is_contiguous(bsr_col_ind_D)) error stop "bsr_col_ind_D: array must be contiguous"
+      if (.not. is_contiguous(bsr_val_C)) error stop "bsr_val_C: array must be contiguous"
+      if (.not. is_contiguous(bsr_row_ptr_C)) error stop "bsr_row_ptr_C: array must be contiguous"
+      if (.not. is_contiguous(bsr_col_ind_C)) error stop "bsr_col_ind_C: array must be contiguous"
       sbsrgemm = rocsparse_sbsrgemm_raw(handle, dir, trans_A, trans_B, mb, nb, kb, block_dim, &
         c_loc(alpha), descr_A, nnzb_A, c_loc(bsr_val_A), c_loc(bsr_row_ptr_A), c_loc( &
         bsr_col_ind_A), descr_B, nnzb_B, c_loc(bsr_val_B), c_loc(bsr_row_ptr_B), c_loc( &
@@ -45431,6 +46203,20 @@ contains
       type(c_ptr), value :: info_C
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: dbsrgemm
+      if (.not. is_contiguous(alpha)) error stop "alpha: array must be contiguous"
+      if (.not. is_contiguous(bsr_val_A)) error stop "bsr_val_A: array must be contiguous"
+      if (.not. is_contiguous(bsr_row_ptr_A)) error stop "bsr_row_ptr_A: array must be contiguous"
+      if (.not. is_contiguous(bsr_col_ind_A)) error stop "bsr_col_ind_A: array must be contiguous"
+      if (.not. is_contiguous(bsr_val_B)) error stop "bsr_val_B: array must be contiguous"
+      if (.not. is_contiguous(bsr_row_ptr_B)) error stop "bsr_row_ptr_B: array must be contiguous"
+      if (.not. is_contiguous(bsr_col_ind_B)) error stop "bsr_col_ind_B: array must be contiguous"
+      if (.not. is_contiguous(beta)) error stop "beta: array must be contiguous"
+      if (.not. is_contiguous(bsr_val_D)) error stop "bsr_val_D: array must be contiguous"
+      if (.not. is_contiguous(bsr_row_ptr_D)) error stop "bsr_row_ptr_D: array must be contiguous"
+      if (.not. is_contiguous(bsr_col_ind_D)) error stop "bsr_col_ind_D: array must be contiguous"
+      if (.not. is_contiguous(bsr_val_C)) error stop "bsr_val_C: array must be contiguous"
+      if (.not. is_contiguous(bsr_row_ptr_C)) error stop "bsr_row_ptr_C: array must be contiguous"
+      if (.not. is_contiguous(bsr_col_ind_C)) error stop "bsr_col_ind_C: array must be contiguous"
       dbsrgemm = rocsparse_dbsrgemm_raw(handle, dir, trans_A, trans_B, mb, nb, kb, block_dim, &
         c_loc(alpha), descr_A, nnzb_A, c_loc(bsr_val_A), c_loc(bsr_row_ptr_A), c_loc( &
         bsr_col_ind_A), descr_B, nnzb_B, c_loc(bsr_val_B), c_loc(bsr_row_ptr_B), c_loc( &
@@ -45525,6 +46311,20 @@ contains
       type(c_ptr), value :: info_C
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: cbsrgemm
+      if (.not. is_contiguous(alpha)) error stop "alpha: array must be contiguous"
+      if (.not. is_contiguous(bsr_val_A)) error stop "bsr_val_A: array must be contiguous"
+      if (.not. is_contiguous(bsr_row_ptr_A)) error stop "bsr_row_ptr_A: array must be contiguous"
+      if (.not. is_contiguous(bsr_col_ind_A)) error stop "bsr_col_ind_A: array must be contiguous"
+      if (.not. is_contiguous(bsr_val_B)) error stop "bsr_val_B: array must be contiguous"
+      if (.not. is_contiguous(bsr_row_ptr_B)) error stop "bsr_row_ptr_B: array must be contiguous"
+      if (.not. is_contiguous(bsr_col_ind_B)) error stop "bsr_col_ind_B: array must be contiguous"
+      if (.not. is_contiguous(beta)) error stop "beta: array must be contiguous"
+      if (.not. is_contiguous(bsr_val_D)) error stop "bsr_val_D: array must be contiguous"
+      if (.not. is_contiguous(bsr_row_ptr_D)) error stop "bsr_row_ptr_D: array must be contiguous"
+      if (.not. is_contiguous(bsr_col_ind_D)) error stop "bsr_col_ind_D: array must be contiguous"
+      if (.not. is_contiguous(bsr_val_C)) error stop "bsr_val_C: array must be contiguous"
+      if (.not. is_contiguous(bsr_row_ptr_C)) error stop "bsr_row_ptr_C: array must be contiguous"
+      if (.not. is_contiguous(bsr_col_ind_C)) error stop "bsr_col_ind_C: array must be contiguous"
       cbsrgemm = rocsparse_cbsrgemm_raw(handle, dir, trans_A, trans_B, mb, nb, kb, block_dim, &
         c_loc(alpha), descr_A, nnzb_A, c_loc(bsr_val_A), c_loc(bsr_row_ptr_A), c_loc( &
         bsr_col_ind_A), descr_B, nnzb_B, c_loc(bsr_val_B), c_loc(bsr_row_ptr_B), c_loc( &
@@ -45619,6 +46419,20 @@ contains
       type(c_ptr), value :: info_C
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: zbsrgemm
+      if (.not. is_contiguous(alpha)) error stop "alpha: array must be contiguous"
+      if (.not. is_contiguous(bsr_val_A)) error stop "bsr_val_A: array must be contiguous"
+      if (.not. is_contiguous(bsr_row_ptr_A)) error stop "bsr_row_ptr_A: array must be contiguous"
+      if (.not. is_contiguous(bsr_col_ind_A)) error stop "bsr_col_ind_A: array must be contiguous"
+      if (.not. is_contiguous(bsr_val_B)) error stop "bsr_val_B: array must be contiguous"
+      if (.not. is_contiguous(bsr_row_ptr_B)) error stop "bsr_row_ptr_B: array must be contiguous"
+      if (.not. is_contiguous(bsr_col_ind_B)) error stop "bsr_col_ind_B: array must be contiguous"
+      if (.not. is_contiguous(beta)) error stop "beta: array must be contiguous"
+      if (.not. is_contiguous(bsr_val_D)) error stop "bsr_val_D: array must be contiguous"
+      if (.not. is_contiguous(bsr_row_ptr_D)) error stop "bsr_row_ptr_D: array must be contiguous"
+      if (.not. is_contiguous(bsr_col_ind_D)) error stop "bsr_col_ind_D: array must be contiguous"
+      if (.not. is_contiguous(bsr_val_C)) error stop "bsr_val_C: array must be contiguous"
+      if (.not. is_contiguous(bsr_row_ptr_C)) error stop "bsr_row_ptr_C: array must be contiguous"
+      if (.not. is_contiguous(bsr_col_ind_C)) error stop "bsr_col_ind_C: array must be contiguous"
       zbsrgemm = rocsparse_zbsrgemm_raw(handle, dir, trans_A, trans_B, mb, nb, kb, block_dim, &
         c_loc(alpha), descr_A, nnzb_A, c_loc(bsr_val_A), c_loc(bsr_row_ptr_A), c_loc( &
         bsr_col_ind_A), descr_B, nnzb_B, c_loc(bsr_val_B), c_loc(bsr_row_ptr_B), c_loc( &
@@ -45694,6 +46508,12 @@ contains
       integer(c_int), target :: csr_row_ptr_C(..)
       integer(c_int), target :: nnz_C(..)
       integer(c_int) :: csrgeam_nnz
+      if (.not. is_contiguous(csr_row_ptr_A)) error stop "csr_row_ptr_A: array must be contiguous"
+      if (.not. is_contiguous(csr_col_ind_A)) error stop "csr_col_ind_A: array must be contiguous"
+      if (.not. is_contiguous(csr_row_ptr_B)) error stop "csr_row_ptr_B: array must be contiguous"
+      if (.not. is_contiguous(csr_col_ind_B)) error stop "csr_col_ind_B: array must be contiguous"
+      if (.not. is_contiguous(csr_row_ptr_C)) error stop "csr_row_ptr_C: array must be contiguous"
+      if (.not. is_contiguous(nnz_C)) error stop "nnz_C: array must be contiguous"
       csrgeam_nnz = rocsparse_csrgeam_nnz_raw(handle, m, n, descr_A, nnz_A, c_loc(csr_row_ptr_A), &
         c_loc(csr_col_ind_A), descr_B, nnz_B, c_loc(csr_row_ptr_B), c_loc(csr_col_ind_B), descr_C, &
         c_loc(csr_row_ptr_C), c_loc(nnz_C))
@@ -45750,6 +46570,15 @@ contains
       integer(c_int), target :: csr_row_ptr_C(..)
       integer(c_int), target :: csr_col_ind_C(..)
       integer(c_int) :: scsrgeam
+      if (.not. is_contiguous(csr_val_A)) error stop "csr_val_A: array must be contiguous"
+      if (.not. is_contiguous(csr_row_ptr_A)) error stop "csr_row_ptr_A: array must be contiguous"
+      if (.not. is_contiguous(csr_col_ind_A)) error stop "csr_col_ind_A: array must be contiguous"
+      if (.not. is_contiguous(csr_val_B)) error stop "csr_val_B: array must be contiguous"
+      if (.not. is_contiguous(csr_row_ptr_B)) error stop "csr_row_ptr_B: array must be contiguous"
+      if (.not. is_contiguous(csr_col_ind_B)) error stop "csr_col_ind_B: array must be contiguous"
+      if (.not. is_contiguous(csr_val_C)) error stop "csr_val_C: array must be contiguous"
+      if (.not. is_contiguous(csr_row_ptr_C)) error stop "csr_row_ptr_C: array must be contiguous"
+      if (.not. is_contiguous(csr_col_ind_C)) error stop "csr_col_ind_C: array must be contiguous"
       scsrgeam = rocsparse_scsrgeam_raw(handle, m, n, alpha, descr_A, nnz_A, c_loc(csr_val_A), &
         c_loc(csr_row_ptr_A), c_loc(csr_col_ind_A), beta, descr_B, nnz_B, c_loc(csr_val_B), c_loc( &
         csr_row_ptr_B), c_loc(csr_col_ind_B), descr_C, c_loc(csr_val_C), c_loc(csr_row_ptr_C), &
@@ -45812,6 +46641,15 @@ contains
       integer(c_int), target :: csr_row_ptr_C(..)
       integer(c_int), target :: csr_col_ind_C(..)
       integer(c_int) :: dcsrgeam
+      if (.not. is_contiguous(csr_val_A)) error stop "csr_val_A: array must be contiguous"
+      if (.not. is_contiguous(csr_row_ptr_A)) error stop "csr_row_ptr_A: array must be contiguous"
+      if (.not. is_contiguous(csr_col_ind_A)) error stop "csr_col_ind_A: array must be contiguous"
+      if (.not. is_contiguous(csr_val_B)) error stop "csr_val_B: array must be contiguous"
+      if (.not. is_contiguous(csr_row_ptr_B)) error stop "csr_row_ptr_B: array must be contiguous"
+      if (.not. is_contiguous(csr_col_ind_B)) error stop "csr_col_ind_B: array must be contiguous"
+      if (.not. is_contiguous(csr_val_C)) error stop "csr_val_C: array must be contiguous"
+      if (.not. is_contiguous(csr_row_ptr_C)) error stop "csr_row_ptr_C: array must be contiguous"
+      if (.not. is_contiguous(csr_col_ind_C)) error stop "csr_col_ind_C: array must be contiguous"
       dcsrgeam = rocsparse_dcsrgeam_raw(handle, m, n, alpha, descr_A, nnz_A, c_loc(csr_val_A), &
         c_loc(csr_row_ptr_A), c_loc(csr_col_ind_A), beta, descr_B, nnz_B, c_loc(csr_val_B), c_loc( &
         csr_row_ptr_B), c_loc(csr_col_ind_B), descr_C, c_loc(csr_val_C), c_loc(csr_row_ptr_C), &
@@ -45874,6 +46712,15 @@ contains
       integer(c_int), target :: csr_row_ptr_C(..)
       integer(c_int), target :: csr_col_ind_C(..)
       integer(c_int) :: ccsrgeam
+      if (.not. is_contiguous(csr_val_A)) error stop "csr_val_A: array must be contiguous"
+      if (.not. is_contiguous(csr_row_ptr_A)) error stop "csr_row_ptr_A: array must be contiguous"
+      if (.not. is_contiguous(csr_col_ind_A)) error stop "csr_col_ind_A: array must be contiguous"
+      if (.not. is_contiguous(csr_val_B)) error stop "csr_val_B: array must be contiguous"
+      if (.not. is_contiguous(csr_row_ptr_B)) error stop "csr_row_ptr_B: array must be contiguous"
+      if (.not. is_contiguous(csr_col_ind_B)) error stop "csr_col_ind_B: array must be contiguous"
+      if (.not. is_contiguous(csr_val_C)) error stop "csr_val_C: array must be contiguous"
+      if (.not. is_contiguous(csr_row_ptr_C)) error stop "csr_row_ptr_C: array must be contiguous"
+      if (.not. is_contiguous(csr_col_ind_C)) error stop "csr_col_ind_C: array must be contiguous"
       ccsrgeam = rocsparse_ccsrgeam_raw(handle, m, n, alpha, descr_A, nnz_A, c_loc(csr_val_A), &
         c_loc(csr_row_ptr_A), c_loc(csr_col_ind_A), beta, descr_B, nnz_B, c_loc(csr_val_B), c_loc( &
         csr_row_ptr_B), c_loc(csr_col_ind_B), descr_C, c_loc(csr_val_C), c_loc(csr_row_ptr_C), &
@@ -45936,6 +46783,15 @@ contains
       integer(c_int), target :: csr_row_ptr_C(..)
       integer(c_int), target :: csr_col_ind_C(..)
       integer(c_int) :: zcsrgeam
+      if (.not. is_contiguous(csr_val_A)) error stop "csr_val_A: array must be contiguous"
+      if (.not. is_contiguous(csr_row_ptr_A)) error stop "csr_row_ptr_A: array must be contiguous"
+      if (.not. is_contiguous(csr_col_ind_A)) error stop "csr_col_ind_A: array must be contiguous"
+      if (.not. is_contiguous(csr_val_B)) error stop "csr_val_B: array must be contiguous"
+      if (.not. is_contiguous(csr_row_ptr_B)) error stop "csr_row_ptr_B: array must be contiguous"
+      if (.not. is_contiguous(csr_col_ind_B)) error stop "csr_col_ind_B: array must be contiguous"
+      if (.not. is_contiguous(csr_val_C)) error stop "csr_val_C: array must be contiguous"
+      if (.not. is_contiguous(csr_row_ptr_C)) error stop "csr_row_ptr_C: array must be contiguous"
+      if (.not. is_contiguous(csr_col_ind_C)) error stop "csr_col_ind_C: array must be contiguous"
       zcsrgeam = rocsparse_zcsrgeam_raw(handle, m, n, alpha, descr_A, nnz_A, c_loc(csr_val_A), &
         c_loc(csr_row_ptr_A), c_loc(csr_col_ind_A), beta, descr_B, nnz_B, c_loc(csr_val_B), c_loc( &
         csr_row_ptr_B), c_loc(csr_col_ind_B), descr_C, c_loc(csr_val_C), c_loc(csr_row_ptr_C), &
@@ -46002,6 +46858,12 @@ contains
       type(c_ptr), value :: info_C
       type(c_ptr), value :: buffer_size
       integer(c_int) :: scsrgemm_buffer_size
+      if (.not. is_contiguous(csr_row_ptr_A)) error stop "csr_row_ptr_A: array must be contiguous"
+      if (.not. is_contiguous(csr_col_ind_A)) error stop "csr_col_ind_A: array must be contiguous"
+      if (.not. is_contiguous(csr_row_ptr_B)) error stop "csr_row_ptr_B: array must be contiguous"
+      if (.not. is_contiguous(csr_col_ind_B)) error stop "csr_col_ind_B: array must be contiguous"
+      if (.not. is_contiguous(csr_row_ptr_D)) error stop "csr_row_ptr_D: array must be contiguous"
+      if (.not. is_contiguous(csr_col_ind_D)) error stop "csr_col_ind_D: array must be contiguous"
       scsrgemm_buffer_size = rocsparse_scsrgemm_buffer_size_raw(handle, trans_A, trans_B, m, n, k, &
         alpha, descr_A, nnz_A, c_loc(csr_row_ptr_A), c_loc(csr_col_ind_A), descr_B, nnz_B, c_loc( &
         csr_row_ptr_B), c_loc(csr_col_ind_B), beta, descr_D, nnz_D, c_loc(csr_row_ptr_D), c_loc( &
@@ -46073,6 +46935,12 @@ contains
       type(c_ptr), value :: info_C
       type(c_ptr), value :: buffer_size
       integer(c_int) :: dcsrgemm_buffer_size
+      if (.not. is_contiguous(csr_row_ptr_A)) error stop "csr_row_ptr_A: array must be contiguous"
+      if (.not. is_contiguous(csr_col_ind_A)) error stop "csr_col_ind_A: array must be contiguous"
+      if (.not. is_contiguous(csr_row_ptr_B)) error stop "csr_row_ptr_B: array must be contiguous"
+      if (.not. is_contiguous(csr_col_ind_B)) error stop "csr_col_ind_B: array must be contiguous"
+      if (.not. is_contiguous(csr_row_ptr_D)) error stop "csr_row_ptr_D: array must be contiguous"
+      if (.not. is_contiguous(csr_col_ind_D)) error stop "csr_col_ind_D: array must be contiguous"
       dcsrgemm_buffer_size = rocsparse_dcsrgemm_buffer_size_raw(handle, trans_A, trans_B, m, n, k, &
         alpha, descr_A, nnz_A, c_loc(csr_row_ptr_A), c_loc(csr_col_ind_A), descr_B, nnz_B, c_loc( &
         csr_row_ptr_B), c_loc(csr_col_ind_B), beta, descr_D, nnz_D, c_loc(csr_row_ptr_D), c_loc( &
@@ -46144,6 +47012,12 @@ contains
       type(c_ptr), value :: info_C
       type(c_ptr), value :: buffer_size
       integer(c_int) :: ccsrgemm_buffer_size
+      if (.not. is_contiguous(csr_row_ptr_A)) error stop "csr_row_ptr_A: array must be contiguous"
+      if (.not. is_contiguous(csr_col_ind_A)) error stop "csr_col_ind_A: array must be contiguous"
+      if (.not. is_contiguous(csr_row_ptr_B)) error stop "csr_row_ptr_B: array must be contiguous"
+      if (.not. is_contiguous(csr_col_ind_B)) error stop "csr_col_ind_B: array must be contiguous"
+      if (.not. is_contiguous(csr_row_ptr_D)) error stop "csr_row_ptr_D: array must be contiguous"
+      if (.not. is_contiguous(csr_col_ind_D)) error stop "csr_col_ind_D: array must be contiguous"
       ccsrgemm_buffer_size = rocsparse_ccsrgemm_buffer_size_raw(handle, trans_A, trans_B, m, n, k, &
         alpha, descr_A, nnz_A, c_loc(csr_row_ptr_A), c_loc(csr_col_ind_A), descr_B, nnz_B, c_loc( &
         csr_row_ptr_B), c_loc(csr_col_ind_B), beta, descr_D, nnz_D, c_loc(csr_row_ptr_D), c_loc( &
@@ -46215,6 +47089,12 @@ contains
       type(c_ptr), value :: info_C
       type(c_ptr), value :: buffer_size
       integer(c_int) :: zcsrgemm_buffer_size
+      if (.not. is_contiguous(csr_row_ptr_A)) error stop "csr_row_ptr_A: array must be contiguous"
+      if (.not. is_contiguous(csr_col_ind_A)) error stop "csr_col_ind_A: array must be contiguous"
+      if (.not. is_contiguous(csr_row_ptr_B)) error stop "csr_row_ptr_B: array must be contiguous"
+      if (.not. is_contiguous(csr_col_ind_B)) error stop "csr_col_ind_B: array must be contiguous"
+      if (.not. is_contiguous(csr_row_ptr_D)) error stop "csr_row_ptr_D: array must be contiguous"
+      if (.not. is_contiguous(csr_col_ind_D)) error stop "csr_col_ind_D: array must be contiguous"
       zcsrgemm_buffer_size = rocsparse_zcsrgemm_buffer_size_raw(handle, trans_A, trans_B, m, n, k, &
         alpha, descr_A, nnz_A, c_loc(csr_row_ptr_A), c_loc(csr_col_ind_A), descr_B, nnz_B, c_loc( &
         csr_row_ptr_B), c_loc(csr_col_ind_B), beta, descr_D, nnz_D, c_loc(csr_row_ptr_D), c_loc( &
@@ -46287,6 +47167,14 @@ contains
       type(c_ptr), value :: info_C
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: csrgemm_nnz
+      if (.not. is_contiguous(csr_row_ptr_A)) error stop "csr_row_ptr_A: array must be contiguous"
+      if (.not. is_contiguous(csr_col_ind_A)) error stop "csr_col_ind_A: array must be contiguous"
+      if (.not. is_contiguous(csr_row_ptr_B)) error stop "csr_row_ptr_B: array must be contiguous"
+      if (.not. is_contiguous(csr_col_ind_B)) error stop "csr_col_ind_B: array must be contiguous"
+      if (.not. is_contiguous(csr_row_ptr_D)) error stop "csr_row_ptr_D: array must be contiguous"
+      if (.not. is_contiguous(csr_col_ind_D)) error stop "csr_col_ind_D: array must be contiguous"
+      if (.not. is_contiguous(csr_row_ptr_C)) error stop "csr_row_ptr_C: array must be contiguous"
+      if (.not. is_contiguous(nnz_C)) error stop "nnz_C: array must be contiguous"
       csrgemm_nnz = rocsparse_csrgemm_nnz_raw(handle, trans_A, trans_B, m, n, k, descr_A, nnz_A, &
         c_loc(csr_row_ptr_A), c_loc(csr_col_ind_A), descr_B, nnz_B, c_loc(csr_row_ptr_B), c_loc( &
         csr_col_ind_B), descr_D, nnz_D, c_loc(csr_row_ptr_D), c_loc(csr_col_ind_D), descr_C, &
@@ -46366,6 +47254,18 @@ contains
       type(c_ptr), value :: info_C
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: scsrgemm
+      if (.not. is_contiguous(csr_val_A)) error stop "csr_val_A: array must be contiguous"
+      if (.not. is_contiguous(csr_row_ptr_A)) error stop "csr_row_ptr_A: array must be contiguous"
+      if (.not. is_contiguous(csr_col_ind_A)) error stop "csr_col_ind_A: array must be contiguous"
+      if (.not. is_contiguous(csr_val_B)) error stop "csr_val_B: array must be contiguous"
+      if (.not. is_contiguous(csr_row_ptr_B)) error stop "csr_row_ptr_B: array must be contiguous"
+      if (.not. is_contiguous(csr_col_ind_B)) error stop "csr_col_ind_B: array must be contiguous"
+      if (.not. is_contiguous(csr_val_D)) error stop "csr_val_D: array must be contiguous"
+      if (.not. is_contiguous(csr_row_ptr_D)) error stop "csr_row_ptr_D: array must be contiguous"
+      if (.not. is_contiguous(csr_col_ind_D)) error stop "csr_col_ind_D: array must be contiguous"
+      if (.not. is_contiguous(csr_val_C)) error stop "csr_val_C: array must be contiguous"
+      if (.not. is_contiguous(csr_row_ptr_C)) error stop "csr_row_ptr_C: array must be contiguous"
+      if (.not. is_contiguous(csr_col_ind_C)) error stop "csr_col_ind_C: array must be contiguous"
       scsrgemm = rocsparse_scsrgemm_raw(handle, trans_A, trans_B, m, n, k, alpha, descr_A, nnz_A, &
         c_loc(csr_val_A), c_loc(csr_row_ptr_A), c_loc(csr_col_ind_A), descr_B, nnz_B, c_loc( &
         csr_val_B), c_loc(csr_row_ptr_B), c_loc(csr_col_ind_B), beta, descr_D, nnz_D, c_loc( &
@@ -46453,6 +47353,18 @@ contains
       type(c_ptr), value :: info_C
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: dcsrgemm
+      if (.not. is_contiguous(csr_val_A)) error stop "csr_val_A: array must be contiguous"
+      if (.not. is_contiguous(csr_row_ptr_A)) error stop "csr_row_ptr_A: array must be contiguous"
+      if (.not. is_contiguous(csr_col_ind_A)) error stop "csr_col_ind_A: array must be contiguous"
+      if (.not. is_contiguous(csr_val_B)) error stop "csr_val_B: array must be contiguous"
+      if (.not. is_contiguous(csr_row_ptr_B)) error stop "csr_row_ptr_B: array must be contiguous"
+      if (.not. is_contiguous(csr_col_ind_B)) error stop "csr_col_ind_B: array must be contiguous"
+      if (.not. is_contiguous(csr_val_D)) error stop "csr_val_D: array must be contiguous"
+      if (.not. is_contiguous(csr_row_ptr_D)) error stop "csr_row_ptr_D: array must be contiguous"
+      if (.not. is_contiguous(csr_col_ind_D)) error stop "csr_col_ind_D: array must be contiguous"
+      if (.not. is_contiguous(csr_val_C)) error stop "csr_val_C: array must be contiguous"
+      if (.not. is_contiguous(csr_row_ptr_C)) error stop "csr_row_ptr_C: array must be contiguous"
+      if (.not. is_contiguous(csr_col_ind_C)) error stop "csr_col_ind_C: array must be contiguous"
       dcsrgemm = rocsparse_dcsrgemm_raw(handle, trans_A, trans_B, m, n, k, alpha, descr_A, nnz_A, &
         c_loc(csr_val_A), c_loc(csr_row_ptr_A), c_loc(csr_col_ind_A), descr_B, nnz_B, c_loc( &
         csr_val_B), c_loc(csr_row_ptr_B), c_loc(csr_col_ind_B), beta, descr_D, nnz_D, c_loc( &
@@ -46540,6 +47452,18 @@ contains
       type(c_ptr), value :: info_C
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: ccsrgemm
+      if (.not. is_contiguous(csr_val_A)) error stop "csr_val_A: array must be contiguous"
+      if (.not. is_contiguous(csr_row_ptr_A)) error stop "csr_row_ptr_A: array must be contiguous"
+      if (.not. is_contiguous(csr_col_ind_A)) error stop "csr_col_ind_A: array must be contiguous"
+      if (.not. is_contiguous(csr_val_B)) error stop "csr_val_B: array must be contiguous"
+      if (.not. is_contiguous(csr_row_ptr_B)) error stop "csr_row_ptr_B: array must be contiguous"
+      if (.not. is_contiguous(csr_col_ind_B)) error stop "csr_col_ind_B: array must be contiguous"
+      if (.not. is_contiguous(csr_val_D)) error stop "csr_val_D: array must be contiguous"
+      if (.not. is_contiguous(csr_row_ptr_D)) error stop "csr_row_ptr_D: array must be contiguous"
+      if (.not. is_contiguous(csr_col_ind_D)) error stop "csr_col_ind_D: array must be contiguous"
+      if (.not. is_contiguous(csr_val_C)) error stop "csr_val_C: array must be contiguous"
+      if (.not. is_contiguous(csr_row_ptr_C)) error stop "csr_row_ptr_C: array must be contiguous"
+      if (.not. is_contiguous(csr_col_ind_C)) error stop "csr_col_ind_C: array must be contiguous"
       ccsrgemm = rocsparse_ccsrgemm_raw(handle, trans_A, trans_B, m, n, k, alpha, descr_A, nnz_A, &
         c_loc(csr_val_A), c_loc(csr_row_ptr_A), c_loc(csr_col_ind_A), descr_B, nnz_B, c_loc( &
         csr_val_B), c_loc(csr_row_ptr_B), c_loc(csr_col_ind_B), beta, descr_D, nnz_D, c_loc( &
@@ -46627,6 +47551,18 @@ contains
       type(c_ptr), value :: info_C
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: zcsrgemm
+      if (.not. is_contiguous(csr_val_A)) error stop "csr_val_A: array must be contiguous"
+      if (.not. is_contiguous(csr_row_ptr_A)) error stop "csr_row_ptr_A: array must be contiguous"
+      if (.not. is_contiguous(csr_col_ind_A)) error stop "csr_col_ind_A: array must be contiguous"
+      if (.not. is_contiguous(csr_val_B)) error stop "csr_val_B: array must be contiguous"
+      if (.not. is_contiguous(csr_row_ptr_B)) error stop "csr_row_ptr_B: array must be contiguous"
+      if (.not. is_contiguous(csr_col_ind_B)) error stop "csr_col_ind_B: array must be contiguous"
+      if (.not. is_contiguous(csr_val_D)) error stop "csr_val_D: array must be contiguous"
+      if (.not. is_contiguous(csr_row_ptr_D)) error stop "csr_row_ptr_D: array must be contiguous"
+      if (.not. is_contiguous(csr_col_ind_D)) error stop "csr_col_ind_D: array must be contiguous"
+      if (.not. is_contiguous(csr_val_C)) error stop "csr_val_C: array must be contiguous"
+      if (.not. is_contiguous(csr_row_ptr_C)) error stop "csr_row_ptr_C: array must be contiguous"
+      if (.not. is_contiguous(csr_col_ind_C)) error stop "csr_col_ind_C: array must be contiguous"
       zcsrgemm = rocsparse_zcsrgemm_raw(handle, trans_A, trans_B, m, n, k, alpha, descr_A, nnz_A, &
         c_loc(csr_val_A), c_loc(csr_row_ptr_A), c_loc(csr_col_ind_A), descr_B, nnz_B, c_loc( &
         csr_val_B), c_loc(csr_row_ptr_B), c_loc(csr_col_ind_B), beta, descr_D, nnz_D, c_loc( &
@@ -46709,6 +47645,14 @@ contains
       type(c_ptr), value :: info_C
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: csrgemm_symbolic
+      if (.not. is_contiguous(csr_row_ptr_A)) error stop "csr_row_ptr_A: array must be contiguous"
+      if (.not. is_contiguous(csr_col_ind_A)) error stop "csr_col_ind_A: array must be contiguous"
+      if (.not. is_contiguous(csr_row_ptr_B)) error stop "csr_row_ptr_B: array must be contiguous"
+      if (.not. is_contiguous(csr_col_ind_B)) error stop "csr_col_ind_B: array must be contiguous"
+      if (.not. is_contiguous(csr_row_ptr_D)) error stop "csr_row_ptr_D: array must be contiguous"
+      if (.not. is_contiguous(csr_col_ind_D)) error stop "csr_col_ind_D: array must be contiguous"
+      if (.not. is_contiguous(csr_row_ptr_C)) error stop "csr_row_ptr_C: array must be contiguous"
+      if (.not. is_contiguous(csr_col_ind_C)) error stop "csr_col_ind_C: array must be contiguous"
       csrgemm_symbolic = rocsparse_csrgemm_symbolic_raw(handle, trans_A, trans_B, m, n, k, &
         descr_A, nnz_A, c_loc(csr_row_ptr_A), c_loc(csr_col_ind_A), descr_B, nnz_B, c_loc( &
         csr_row_ptr_B), c_loc(csr_col_ind_B), descr_D, nnz_D, c_loc(csr_row_ptr_D), c_loc( &
@@ -46792,6 +47736,20 @@ contains
       type(c_ptr), value :: info_C
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: scsrgemm_numeric
+      if (.not. is_contiguous(alpha)) error stop "alpha: array must be contiguous"
+      if (.not. is_contiguous(csr_val_A)) error stop "csr_val_A: array must be contiguous"
+      if (.not. is_contiguous(csr_row_ptr_A)) error stop "csr_row_ptr_A: array must be contiguous"
+      if (.not. is_contiguous(csr_col_ind_A)) error stop "csr_col_ind_A: array must be contiguous"
+      if (.not. is_contiguous(csr_val_B)) error stop "csr_val_B: array must be contiguous"
+      if (.not. is_contiguous(csr_row_ptr_B)) error stop "csr_row_ptr_B: array must be contiguous"
+      if (.not. is_contiguous(csr_col_ind_B)) error stop "csr_col_ind_B: array must be contiguous"
+      if (.not. is_contiguous(beta)) error stop "beta: array must be contiguous"
+      if (.not. is_contiguous(csr_val_D)) error stop "csr_val_D: array must be contiguous"
+      if (.not. is_contiguous(csr_row_ptr_D)) error stop "csr_row_ptr_D: array must be contiguous"
+      if (.not. is_contiguous(csr_col_ind_D)) error stop "csr_col_ind_D: array must be contiguous"
+      if (.not. is_contiguous(csr_val_C)) error stop "csr_val_C: array must be contiguous"
+      if (.not. is_contiguous(csr_row_ptr_C)) error stop "csr_row_ptr_C: array must be contiguous"
+      if (.not. is_contiguous(csr_col_ind_C)) error stop "csr_col_ind_C: array must be contiguous"
       scsrgemm_numeric = rocsparse_scsrgemm_numeric_raw(handle, trans_A, trans_B, m, n, k, c_loc( &
         alpha), descr_A, nnz_A, c_loc(csr_val_A), c_loc(csr_row_ptr_A), c_loc(csr_col_ind_A), &
         descr_B, nnz_B, c_loc(csr_val_B), c_loc(csr_row_ptr_B), c_loc(csr_col_ind_B), c_loc(beta), &
@@ -46883,6 +47841,20 @@ contains
       type(c_ptr), value :: info_C
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: dcsrgemm_numeric
+      if (.not. is_contiguous(alpha)) error stop "alpha: array must be contiguous"
+      if (.not. is_contiguous(csr_val_A)) error stop "csr_val_A: array must be contiguous"
+      if (.not. is_contiguous(csr_row_ptr_A)) error stop "csr_row_ptr_A: array must be contiguous"
+      if (.not. is_contiguous(csr_col_ind_A)) error stop "csr_col_ind_A: array must be contiguous"
+      if (.not. is_contiguous(csr_val_B)) error stop "csr_val_B: array must be contiguous"
+      if (.not. is_contiguous(csr_row_ptr_B)) error stop "csr_row_ptr_B: array must be contiguous"
+      if (.not. is_contiguous(csr_col_ind_B)) error stop "csr_col_ind_B: array must be contiguous"
+      if (.not. is_contiguous(beta)) error stop "beta: array must be contiguous"
+      if (.not. is_contiguous(csr_val_D)) error stop "csr_val_D: array must be contiguous"
+      if (.not. is_contiguous(csr_row_ptr_D)) error stop "csr_row_ptr_D: array must be contiguous"
+      if (.not. is_contiguous(csr_col_ind_D)) error stop "csr_col_ind_D: array must be contiguous"
+      if (.not. is_contiguous(csr_val_C)) error stop "csr_val_C: array must be contiguous"
+      if (.not. is_contiguous(csr_row_ptr_C)) error stop "csr_row_ptr_C: array must be contiguous"
+      if (.not. is_contiguous(csr_col_ind_C)) error stop "csr_col_ind_C: array must be contiguous"
       dcsrgemm_numeric = rocsparse_dcsrgemm_numeric_raw(handle, trans_A, trans_B, m, n, k, c_loc( &
         alpha), descr_A, nnz_A, c_loc(csr_val_A), c_loc(csr_row_ptr_A), c_loc(csr_col_ind_A), &
         descr_B, nnz_B, c_loc(csr_val_B), c_loc(csr_row_ptr_B), c_loc(csr_col_ind_B), c_loc(beta), &
@@ -46974,6 +47946,20 @@ contains
       type(c_ptr), value :: info_C
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: ccsrgemm_numeric
+      if (.not. is_contiguous(alpha)) error stop "alpha: array must be contiguous"
+      if (.not. is_contiguous(csr_val_A)) error stop "csr_val_A: array must be contiguous"
+      if (.not. is_contiguous(csr_row_ptr_A)) error stop "csr_row_ptr_A: array must be contiguous"
+      if (.not. is_contiguous(csr_col_ind_A)) error stop "csr_col_ind_A: array must be contiguous"
+      if (.not. is_contiguous(csr_val_B)) error stop "csr_val_B: array must be contiguous"
+      if (.not. is_contiguous(csr_row_ptr_B)) error stop "csr_row_ptr_B: array must be contiguous"
+      if (.not. is_contiguous(csr_col_ind_B)) error stop "csr_col_ind_B: array must be contiguous"
+      if (.not. is_contiguous(beta)) error stop "beta: array must be contiguous"
+      if (.not. is_contiguous(csr_val_D)) error stop "csr_val_D: array must be contiguous"
+      if (.not. is_contiguous(csr_row_ptr_D)) error stop "csr_row_ptr_D: array must be contiguous"
+      if (.not. is_contiguous(csr_col_ind_D)) error stop "csr_col_ind_D: array must be contiguous"
+      if (.not. is_contiguous(csr_val_C)) error stop "csr_val_C: array must be contiguous"
+      if (.not. is_contiguous(csr_row_ptr_C)) error stop "csr_row_ptr_C: array must be contiguous"
+      if (.not. is_contiguous(csr_col_ind_C)) error stop "csr_col_ind_C: array must be contiguous"
       ccsrgemm_numeric = rocsparse_ccsrgemm_numeric_raw(handle, trans_A, trans_B, m, n, k, c_loc( &
         alpha), descr_A, nnz_A, c_loc(csr_val_A), c_loc(csr_row_ptr_A), c_loc(csr_col_ind_A), &
         descr_B, nnz_B, c_loc(csr_val_B), c_loc(csr_row_ptr_B), c_loc(csr_col_ind_B), c_loc(beta), &
@@ -47065,6 +48051,20 @@ contains
       type(c_ptr), value :: info_C
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: zcsrgemm_numeric
+      if (.not. is_contiguous(alpha)) error stop "alpha: array must be contiguous"
+      if (.not. is_contiguous(csr_val_A)) error stop "csr_val_A: array must be contiguous"
+      if (.not. is_contiguous(csr_row_ptr_A)) error stop "csr_row_ptr_A: array must be contiguous"
+      if (.not. is_contiguous(csr_col_ind_A)) error stop "csr_col_ind_A: array must be contiguous"
+      if (.not. is_contiguous(csr_val_B)) error stop "csr_val_B: array must be contiguous"
+      if (.not. is_contiguous(csr_row_ptr_B)) error stop "csr_row_ptr_B: array must be contiguous"
+      if (.not. is_contiguous(csr_col_ind_B)) error stop "csr_col_ind_B: array must be contiguous"
+      if (.not. is_contiguous(beta)) error stop "beta: array must be contiguous"
+      if (.not. is_contiguous(csr_val_D)) error stop "csr_val_D: array must be contiguous"
+      if (.not. is_contiguous(csr_row_ptr_D)) error stop "csr_row_ptr_D: array must be contiguous"
+      if (.not. is_contiguous(csr_col_ind_D)) error stop "csr_col_ind_D: array must be contiguous"
+      if (.not. is_contiguous(csr_val_C)) error stop "csr_val_C: array must be contiguous"
+      if (.not. is_contiguous(csr_row_ptr_C)) error stop "csr_row_ptr_C: array must be contiguous"
+      if (.not. is_contiguous(csr_col_ind_C)) error stop "csr_col_ind_C: array must be contiguous"
       zcsrgemm_numeric = rocsparse_zcsrgemm_numeric_raw(handle, trans_A, trans_B, m, n, k, c_loc( &
         alpha), descr_A, nnz_A, c_loc(csr_val_A), c_loc(csr_row_ptr_A), c_loc(csr_col_ind_A), &
         descr_B, nnz_B, c_loc(csr_val_B), c_loc(csr_row_ptr_B), c_loc(csr_col_ind_B), c_loc(beta), &
@@ -47142,6 +48142,7 @@ contains
       type(c_ptr), value :: buffer_size
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: check_spmat
+      if (.not. is_contiguous(data_status)) error stop "data_status: array must be contiguous"
       check_spmat = rocsparse_check_spmat_raw(handle, mat, c_loc(data_status), stage, buffer_size, &
         temp_buffer)
     end function rocsparse_check_spmat_native
@@ -47519,6 +48520,7 @@ contains
       type(c_ptr), value :: buffer_size
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: spitsv
+      if (.not. is_contiguous(host_nmaxiter)) error stop "host_nmaxiter: array must be contiguous"
       spitsv = rocsparse_spitsv_raw(handle, c_loc(host_nmaxiter), host_tol, host_history, trans, &
         alpha, mat, x, y, compute_type, alg, stage, buffer_size, temp_buffer)
     end function rocsparse_spitsv_native
@@ -47804,6 +48806,9 @@ contains
       real(c_float), target :: y(..)
       integer(c_int), value :: idx_base
       integer(c_int) :: saxpyi
+      if (.not. is_contiguous(x_val)) error stop "x_val: array must be contiguous"
+      if (.not. is_contiguous(x_ind)) error stop "x_ind: array must be contiguous"
+      if (.not. is_contiguous(y)) error stop "y: array must be contiguous"
       saxpyi = rocsparse_saxpyi_raw(handle, nnz, alpha, c_loc(x_val), c_loc(x_ind), c_loc(y), &
         idx_base)
     end function rocsparse_saxpyi_native
@@ -47834,6 +48839,9 @@ contains
       real(c_double), target :: y(..)
       integer(c_int), value :: idx_base
       integer(c_int) :: daxpyi
+      if (.not. is_contiguous(x_val)) error stop "x_val: array must be contiguous"
+      if (.not. is_contiguous(x_ind)) error stop "x_ind: array must be contiguous"
+      if (.not. is_contiguous(y)) error stop "y: array must be contiguous"
       daxpyi = rocsparse_daxpyi_raw(handle, nnz, alpha, c_loc(x_val), c_loc(x_ind), c_loc(y), &
         idx_base)
     end function rocsparse_daxpyi_native
@@ -47864,6 +48872,9 @@ contains
       complex(c_float_complex), target :: y(..)
       integer(c_int), value :: idx_base
       integer(c_int) :: caxpyi
+      if (.not. is_contiguous(x_val)) error stop "x_val: array must be contiguous"
+      if (.not. is_contiguous(x_ind)) error stop "x_ind: array must be contiguous"
+      if (.not. is_contiguous(y)) error stop "y: array must be contiguous"
       caxpyi = rocsparse_caxpyi_raw(handle, nnz, alpha, c_loc(x_val), c_loc(x_ind), c_loc(y), &
         idx_base)
     end function rocsparse_caxpyi_native
@@ -47894,6 +48905,9 @@ contains
       complex(c_double_complex), target :: y(..)
       integer(c_int), value :: idx_base
       integer(c_int) :: zaxpyi
+      if (.not. is_contiguous(x_val)) error stop "x_val: array must be contiguous"
+      if (.not. is_contiguous(x_ind)) error stop "x_ind: array must be contiguous"
+      if (.not. is_contiguous(y)) error stop "y: array must be contiguous"
       zaxpyi = rocsparse_zaxpyi_raw(handle, nnz, alpha, c_loc(x_val), c_loc(x_ind), c_loc(y), &
         idx_base)
     end function rocsparse_zaxpyi_native
@@ -47924,6 +48938,10 @@ contains
       complex(c_float_complex), target :: result(..)
       integer(c_int), value :: idx_base
       integer(c_int) :: cdotci
+      if (.not. is_contiguous(x_val)) error stop "x_val: array must be contiguous"
+      if (.not. is_contiguous(x_ind)) error stop "x_ind: array must be contiguous"
+      if (.not. is_contiguous(y)) error stop "y: array must be contiguous"
+      if (.not. is_contiguous(result)) error stop "result: array must be contiguous"
       cdotci = rocsparse_cdotci_raw(handle, nnz, c_loc(x_val), c_loc(x_ind), c_loc(y), c_loc( &
         result), idx_base)
     end function rocsparse_cdotci_native
@@ -47954,6 +48972,10 @@ contains
       complex(c_double_complex), target :: result(..)
       integer(c_int), value :: idx_base
       integer(c_int) :: zdotci
+      if (.not. is_contiguous(x_val)) error stop "x_val: array must be contiguous"
+      if (.not. is_contiguous(x_ind)) error stop "x_ind: array must be contiguous"
+      if (.not. is_contiguous(y)) error stop "y: array must be contiguous"
+      if (.not. is_contiguous(result)) error stop "result: array must be contiguous"
       zdotci = rocsparse_zdotci_raw(handle, nnz, c_loc(x_val), c_loc(x_ind), c_loc(y), c_loc( &
         result), idx_base)
     end function rocsparse_zdotci_native
@@ -47984,6 +49006,10 @@ contains
       real(c_float), target :: result(..)
       integer(c_int), value :: idx_base
       integer(c_int) :: sdoti
+      if (.not. is_contiguous(x_val)) error stop "x_val: array must be contiguous"
+      if (.not. is_contiguous(x_ind)) error stop "x_ind: array must be contiguous"
+      if (.not. is_contiguous(y)) error stop "y: array must be contiguous"
+      if (.not. is_contiguous(result)) error stop "result: array must be contiguous"
       sdoti = rocsparse_sdoti_raw(handle, nnz, c_loc(x_val), c_loc(x_ind), c_loc(y), c_loc( &
         result), idx_base)
     end function rocsparse_sdoti_native
@@ -48014,6 +49040,10 @@ contains
       real(c_double), target :: result(..)
       integer(c_int), value :: idx_base
       integer(c_int) :: ddoti
+      if (.not. is_contiguous(x_val)) error stop "x_val: array must be contiguous"
+      if (.not. is_contiguous(x_ind)) error stop "x_ind: array must be contiguous"
+      if (.not. is_contiguous(y)) error stop "y: array must be contiguous"
+      if (.not. is_contiguous(result)) error stop "result: array must be contiguous"
       ddoti = rocsparse_ddoti_raw(handle, nnz, c_loc(x_val), c_loc(x_ind), c_loc(y), c_loc( &
         result), idx_base)
     end function rocsparse_ddoti_native
@@ -48044,6 +49074,10 @@ contains
       complex(c_float_complex), target :: result(..)
       integer(c_int), value :: idx_base
       integer(c_int) :: cdoti
+      if (.not. is_contiguous(x_val)) error stop "x_val: array must be contiguous"
+      if (.not. is_contiguous(x_ind)) error stop "x_ind: array must be contiguous"
+      if (.not. is_contiguous(y)) error stop "y: array must be contiguous"
+      if (.not. is_contiguous(result)) error stop "result: array must be contiguous"
       cdoti = rocsparse_cdoti_raw(handle, nnz, c_loc(x_val), c_loc(x_ind), c_loc(y), c_loc( &
         result), idx_base)
     end function rocsparse_cdoti_native
@@ -48074,6 +49108,10 @@ contains
       complex(c_double_complex), target :: result(..)
       integer(c_int), value :: idx_base
       integer(c_int) :: zdoti
+      if (.not. is_contiguous(x_val)) error stop "x_val: array must be contiguous"
+      if (.not. is_contiguous(x_ind)) error stop "x_ind: array must be contiguous"
+      if (.not. is_contiguous(y)) error stop "y: array must be contiguous"
+      if (.not. is_contiguous(result)) error stop "result: array must be contiguous"
       zdoti = rocsparse_zdoti_raw(handle, nnz, c_loc(x_val), c_loc(x_ind), c_loc(y), c_loc( &
         result), idx_base)
     end function rocsparse_zdoti_native
@@ -48103,6 +49141,9 @@ contains
       integer(c_int), target :: x_ind(..)
       integer(c_int), value :: idx_base
       integer(c_int) :: sgthr
+      if (.not. is_contiguous(y)) error stop "y: array must be contiguous"
+      if (.not. is_contiguous(x_val)) error stop "x_val: array must be contiguous"
+      if (.not. is_contiguous(x_ind)) error stop "x_ind: array must be contiguous"
       sgthr = rocsparse_sgthr_raw(handle, nnz, c_loc(y), c_loc(x_val), c_loc(x_ind), idx_base)
     end function rocsparse_sgthr_native
 
@@ -48130,6 +49171,9 @@ contains
       integer(c_int), target :: x_ind(..)
       integer(c_int), value :: idx_base
       integer(c_int) :: dgthr
+      if (.not. is_contiguous(y)) error stop "y: array must be contiguous"
+      if (.not. is_contiguous(x_val)) error stop "x_val: array must be contiguous"
+      if (.not. is_contiguous(x_ind)) error stop "x_ind: array must be contiguous"
       dgthr = rocsparse_dgthr_raw(handle, nnz, c_loc(y), c_loc(x_val), c_loc(x_ind), idx_base)
     end function rocsparse_dgthr_native
 
@@ -48157,6 +49201,9 @@ contains
       integer(c_int), target :: x_ind(..)
       integer(c_int), value :: idx_base
       integer(c_int) :: cgthr
+      if (.not. is_contiguous(y)) error stop "y: array must be contiguous"
+      if (.not. is_contiguous(x_val)) error stop "x_val: array must be contiguous"
+      if (.not. is_contiguous(x_ind)) error stop "x_ind: array must be contiguous"
       cgthr = rocsparse_cgthr_raw(handle, nnz, c_loc(y), c_loc(x_val), c_loc(x_ind), idx_base)
     end function rocsparse_cgthr_native
 
@@ -48184,6 +49231,9 @@ contains
       integer(c_int), target :: x_ind(..)
       integer(c_int), value :: idx_base
       integer(c_int) :: zgthr
+      if (.not. is_contiguous(y)) error stop "y: array must be contiguous"
+      if (.not. is_contiguous(x_val)) error stop "x_val: array must be contiguous"
+      if (.not. is_contiguous(x_ind)) error stop "x_ind: array must be contiguous"
       zgthr = rocsparse_zgthr_raw(handle, nnz, c_loc(y), c_loc(x_val), c_loc(x_ind), idx_base)
     end function rocsparse_zgthr_native
 
@@ -48211,6 +49261,9 @@ contains
       integer(c_int), target :: x_ind(..)
       integer(c_int), value :: idx_base
       integer(c_int) :: sgthrz
+      if (.not. is_contiguous(y)) error stop "y: array must be contiguous"
+      if (.not. is_contiguous(x_val)) error stop "x_val: array must be contiguous"
+      if (.not. is_contiguous(x_ind)) error stop "x_ind: array must be contiguous"
       sgthrz = rocsparse_sgthrz_raw(handle, nnz, c_loc(y), c_loc(x_val), c_loc(x_ind), idx_base)
     end function rocsparse_sgthrz_native
 
@@ -48238,6 +49291,9 @@ contains
       integer(c_int), target :: x_ind(..)
       integer(c_int), value :: idx_base
       integer(c_int) :: dgthrz
+      if (.not. is_contiguous(y)) error stop "y: array must be contiguous"
+      if (.not. is_contiguous(x_val)) error stop "x_val: array must be contiguous"
+      if (.not. is_contiguous(x_ind)) error stop "x_ind: array must be contiguous"
       dgthrz = rocsparse_dgthrz_raw(handle, nnz, c_loc(y), c_loc(x_val), c_loc(x_ind), idx_base)
     end function rocsparse_dgthrz_native
 
@@ -48265,6 +49321,9 @@ contains
       integer(c_int), target :: x_ind(..)
       integer(c_int), value :: idx_base
       integer(c_int) :: cgthrz
+      if (.not. is_contiguous(y)) error stop "y: array must be contiguous"
+      if (.not. is_contiguous(x_val)) error stop "x_val: array must be contiguous"
+      if (.not. is_contiguous(x_ind)) error stop "x_ind: array must be contiguous"
       cgthrz = rocsparse_cgthrz_raw(handle, nnz, c_loc(y), c_loc(x_val), c_loc(x_ind), idx_base)
     end function rocsparse_cgthrz_native
 
@@ -48292,6 +49351,9 @@ contains
       integer(c_int), target :: x_ind(..)
       integer(c_int), value :: idx_base
       integer(c_int) :: zgthrz
+      if (.not. is_contiguous(y)) error stop "y: array must be contiguous"
+      if (.not. is_contiguous(x_val)) error stop "x_val: array must be contiguous"
+      if (.not. is_contiguous(x_ind)) error stop "x_ind: array must be contiguous"
       zgthrz = rocsparse_zgthrz_raw(handle, nnz, c_loc(y), c_loc(x_val), c_loc(x_ind), idx_base)
     end function rocsparse_zgthrz_native
 
@@ -48321,6 +49383,9 @@ contains
       real(c_float) :: s
       integer(c_int), value :: idx_base
       integer(c_int) :: sroti
+      if (.not. is_contiguous(x_val)) error stop "x_val: array must be contiguous"
+      if (.not. is_contiguous(x_ind)) error stop "x_ind: array must be contiguous"
+      if (.not. is_contiguous(y)) error stop "y: array must be contiguous"
       sroti = rocsparse_sroti_raw(handle, nnz, c_loc(x_val), c_loc(x_ind), c_loc(y), c, s, idx_base)
     end function rocsparse_sroti_native
 
@@ -48352,6 +49417,9 @@ contains
       real(c_double) :: s
       integer(c_int), value :: idx_base
       integer(c_int) :: droti
+      if (.not. is_contiguous(x_val)) error stop "x_val: array must be contiguous"
+      if (.not. is_contiguous(x_ind)) error stop "x_ind: array must be contiguous"
+      if (.not. is_contiguous(y)) error stop "y: array must be contiguous"
       droti = rocsparse_droti_raw(handle, nnz, c_loc(x_val), c_loc(x_ind), c_loc(y), c, s, idx_base)
     end function rocsparse_droti_native
 
@@ -48381,6 +49449,9 @@ contains
       real(c_float), target :: y(..)
       integer(c_int), value :: idx_base
       integer(c_int) :: ssctr
+      if (.not. is_contiguous(x_val)) error stop "x_val: array must be contiguous"
+      if (.not. is_contiguous(x_ind)) error stop "x_ind: array must be contiguous"
+      if (.not. is_contiguous(y)) error stop "y: array must be contiguous"
       ssctr = rocsparse_ssctr_raw(handle, nnz, c_loc(x_val), c_loc(x_ind), c_loc(y), idx_base)
     end function rocsparse_ssctr_native
 
@@ -48408,6 +49479,9 @@ contains
       real(c_double), target :: y(..)
       integer(c_int), value :: idx_base
       integer(c_int) :: dsctr
+      if (.not. is_contiguous(x_val)) error stop "x_val: array must be contiguous"
+      if (.not. is_contiguous(x_ind)) error stop "x_ind: array must be contiguous"
+      if (.not. is_contiguous(y)) error stop "y: array must be contiguous"
       dsctr = rocsparse_dsctr_raw(handle, nnz, c_loc(x_val), c_loc(x_ind), c_loc(y), idx_base)
     end function rocsparse_dsctr_native
 
@@ -48435,6 +49509,9 @@ contains
       complex(c_float_complex), target :: y(..)
       integer(c_int), value :: idx_base
       integer(c_int) :: csctr
+      if (.not. is_contiguous(x_val)) error stop "x_val: array must be contiguous"
+      if (.not. is_contiguous(x_ind)) error stop "x_ind: array must be contiguous"
+      if (.not. is_contiguous(y)) error stop "y: array must be contiguous"
       csctr = rocsparse_csctr_raw(handle, nnz, c_loc(x_val), c_loc(x_ind), c_loc(y), idx_base)
     end function rocsparse_csctr_native
 
@@ -48462,6 +49539,9 @@ contains
       complex(c_double_complex), target :: y(..)
       integer(c_int), value :: idx_base
       integer(c_int) :: zsctr
+      if (.not. is_contiguous(x_val)) error stop "x_val: array must be contiguous"
+      if (.not. is_contiguous(x_ind)) error stop "x_ind: array must be contiguous"
+      if (.not. is_contiguous(y)) error stop "y: array must be contiguous"
       zsctr = rocsparse_zsctr_raw(handle, nnz, c_loc(x_val), c_loc(x_ind), c_loc(y), idx_base)
     end function rocsparse_zsctr_native
 
@@ -48489,6 +49569,9 @@ contains
       integer(c_int), target :: y(..)
       integer(c_int), value :: idx_base
       integer(c_int) :: isctr
+      if (.not. is_contiguous(x_val)) error stop "x_val: array must be contiguous"
+      if (.not. is_contiguous(x_ind)) error stop "x_ind: array must be contiguous"
+      if (.not. is_contiguous(y)) error stop "y: array must be contiguous"
       isctr = rocsparse_isctr_raw(handle, nnz, c_loc(x_val), c_loc(x_ind), c_loc(y), idx_base)
     end function rocsparse_isctr_native
 
@@ -48523,6 +49606,9 @@ contains
       integer(c_int), value :: block_dim
       type(c_ptr), value :: info
       integer(c_int) :: sbsrmv_analysis
+      if (.not. is_contiguous(bsr_val)) error stop "bsr_val: array must be contiguous"
+      if (.not. is_contiguous(bsr_row_ptr)) error stop "bsr_row_ptr: array must be contiguous"
+      if (.not. is_contiguous(bsr_col_ind)) error stop "bsr_col_ind: array must be contiguous"
       sbsrmv_analysis = rocsparse_sbsrmv_analysis_raw(handle, dir, trans, mb, nb, nnzb, descr, &
         c_loc(bsr_val), c_loc(bsr_row_ptr), c_loc(bsr_col_ind), block_dim, info)
     end function rocsparse_sbsrmv_analysis_native
@@ -48566,6 +49652,9 @@ contains
       integer(c_int), value :: block_dim
       type(c_ptr), value :: info
       integer(c_int) :: dbsrmv_analysis
+      if (.not. is_contiguous(bsr_val)) error stop "bsr_val: array must be contiguous"
+      if (.not. is_contiguous(bsr_row_ptr)) error stop "bsr_row_ptr: array must be contiguous"
+      if (.not. is_contiguous(bsr_col_ind)) error stop "bsr_col_ind: array must be contiguous"
       dbsrmv_analysis = rocsparse_dbsrmv_analysis_raw(handle, dir, trans, mb, nb, nnzb, descr, &
         c_loc(bsr_val), c_loc(bsr_row_ptr), c_loc(bsr_col_ind), block_dim, info)
     end function rocsparse_dbsrmv_analysis_native
@@ -48609,6 +49698,9 @@ contains
       integer(c_int), value :: block_dim
       type(c_ptr), value :: info
       integer(c_int) :: cbsrmv_analysis
+      if (.not. is_contiguous(bsr_val)) error stop "bsr_val: array must be contiguous"
+      if (.not. is_contiguous(bsr_row_ptr)) error stop "bsr_row_ptr: array must be contiguous"
+      if (.not. is_contiguous(bsr_col_ind)) error stop "bsr_col_ind: array must be contiguous"
       cbsrmv_analysis = rocsparse_cbsrmv_analysis_raw(handle, dir, trans, mb, nb, nnzb, descr, &
         c_loc(bsr_val), c_loc(bsr_row_ptr), c_loc(bsr_col_ind), block_dim, info)
     end function rocsparse_cbsrmv_analysis_native
@@ -48652,6 +49744,9 @@ contains
       integer(c_int), value :: block_dim
       type(c_ptr), value :: info
       integer(c_int) :: zbsrmv_analysis
+      if (.not. is_contiguous(bsr_val)) error stop "bsr_val: array must be contiguous"
+      if (.not. is_contiguous(bsr_row_ptr)) error stop "bsr_row_ptr: array must be contiguous"
+      if (.not. is_contiguous(bsr_col_ind)) error stop "bsr_col_ind: array must be contiguous"
       zbsrmv_analysis = rocsparse_zbsrmv_analysis_raw(handle, dir, trans, mb, nb, nnzb, descr, &
         c_loc(bsr_val), c_loc(bsr_row_ptr), c_loc(bsr_col_ind), block_dim, info)
     end function rocsparse_zbsrmv_analysis_native
@@ -48699,6 +49794,11 @@ contains
       real(c_float) :: beta
       real(c_float), target :: y(..)
       integer(c_int) :: sbsrmv
+      if (.not. is_contiguous(bsr_val)) error stop "bsr_val: array must be contiguous"
+      if (.not. is_contiguous(bsr_row_ptr)) error stop "bsr_row_ptr: array must be contiguous"
+      if (.not. is_contiguous(bsr_col_ind)) error stop "bsr_col_ind: array must be contiguous"
+      if (.not. is_contiguous(x)) error stop "x: array must be contiguous"
+      if (.not. is_contiguous(y)) error stop "y: array must be contiguous"
       sbsrmv = rocsparse_sbsrmv_raw(handle, dir, trans, mb, nb, nnzb, alpha, descr, c_loc( &
         bsr_val), c_loc(bsr_row_ptr), c_loc(bsr_col_ind), block_dim, info, c_loc(x), beta, c_loc(y))
     end function rocsparse_sbsrmv_native
@@ -48750,6 +49850,11 @@ contains
       real(c_double) :: beta
       real(c_double), target :: y(..)
       integer(c_int) :: dbsrmv
+      if (.not. is_contiguous(bsr_val)) error stop "bsr_val: array must be contiguous"
+      if (.not. is_contiguous(bsr_row_ptr)) error stop "bsr_row_ptr: array must be contiguous"
+      if (.not. is_contiguous(bsr_col_ind)) error stop "bsr_col_ind: array must be contiguous"
+      if (.not. is_contiguous(x)) error stop "x: array must be contiguous"
+      if (.not. is_contiguous(y)) error stop "y: array must be contiguous"
       dbsrmv = rocsparse_dbsrmv_raw(handle, dir, trans, mb, nb, nnzb, alpha, descr, c_loc( &
         bsr_val), c_loc(bsr_row_ptr), c_loc(bsr_col_ind), block_dim, info, c_loc(x), beta, c_loc(y))
     end function rocsparse_dbsrmv_native
@@ -48801,6 +49906,11 @@ contains
       complex(c_float_complex) :: beta
       complex(c_float_complex), target :: y(..)
       integer(c_int) :: cbsrmv
+      if (.not. is_contiguous(bsr_val)) error stop "bsr_val: array must be contiguous"
+      if (.not. is_contiguous(bsr_row_ptr)) error stop "bsr_row_ptr: array must be contiguous"
+      if (.not. is_contiguous(bsr_col_ind)) error stop "bsr_col_ind: array must be contiguous"
+      if (.not. is_contiguous(x)) error stop "x: array must be contiguous"
+      if (.not. is_contiguous(y)) error stop "y: array must be contiguous"
       cbsrmv = rocsparse_cbsrmv_raw(handle, dir, trans, mb, nb, nnzb, alpha, descr, c_loc( &
         bsr_val), c_loc(bsr_row_ptr), c_loc(bsr_col_ind), block_dim, info, c_loc(x), beta, c_loc(y))
     end function rocsparse_cbsrmv_native
@@ -48852,6 +49962,11 @@ contains
       complex(c_double_complex) :: beta
       complex(c_double_complex), target :: y(..)
       integer(c_int) :: zbsrmv
+      if (.not. is_contiguous(bsr_val)) error stop "bsr_val: array must be contiguous"
+      if (.not. is_contiguous(bsr_row_ptr)) error stop "bsr_row_ptr: array must be contiguous"
+      if (.not. is_contiguous(bsr_col_ind)) error stop "bsr_col_ind: array must be contiguous"
+      if (.not. is_contiguous(x)) error stop "x: array must be contiguous"
+      if (.not. is_contiguous(y)) error stop "y: array must be contiguous"
       zbsrmv = rocsparse_zbsrmv_raw(handle, dir, trans, mb, nb, nnzb, alpha, descr, c_loc( &
         bsr_val), c_loc(bsr_row_ptr), c_loc(bsr_col_ind), block_dim, info, c_loc(x), beta, c_loc(y))
     end function rocsparse_zbsrmv_native
@@ -48920,6 +50035,9 @@ contains
       type(c_ptr), value :: info
       type(c_ptr), value :: buffer_size
       integer(c_int) :: sbsrsv_buffer_size
+      if (.not. is_contiguous(bsr_val)) error stop "bsr_val: array must be contiguous"
+      if (.not. is_contiguous(bsr_row_ptr)) error stop "bsr_row_ptr: array must be contiguous"
+      if (.not. is_contiguous(bsr_col_ind)) error stop "bsr_col_ind: array must be contiguous"
       sbsrsv_buffer_size = rocsparse_sbsrsv_buffer_size_raw(handle, dir, trans, mb, nnzb, descr, &
         c_loc(bsr_val), c_loc(bsr_row_ptr), c_loc(bsr_col_ind), block_dim, info, buffer_size)
     end function rocsparse_sbsrsv_buffer_size_native
@@ -48963,6 +50081,9 @@ contains
       type(c_ptr), value :: info
       type(c_ptr), value :: buffer_size
       integer(c_int) :: dbsrsv_buffer_size
+      if (.not. is_contiguous(bsr_val)) error stop "bsr_val: array must be contiguous"
+      if (.not. is_contiguous(bsr_row_ptr)) error stop "bsr_row_ptr: array must be contiguous"
+      if (.not. is_contiguous(bsr_col_ind)) error stop "bsr_col_ind: array must be contiguous"
       dbsrsv_buffer_size = rocsparse_dbsrsv_buffer_size_raw(handle, dir, trans, mb, nnzb, descr, &
         c_loc(bsr_val), c_loc(bsr_row_ptr), c_loc(bsr_col_ind), block_dim, info, buffer_size)
     end function rocsparse_dbsrsv_buffer_size_native
@@ -49006,6 +50127,9 @@ contains
       type(c_ptr), value :: info
       type(c_ptr), value :: buffer_size
       integer(c_int) :: cbsrsv_buffer_size
+      if (.not. is_contiguous(bsr_val)) error stop "bsr_val: array must be contiguous"
+      if (.not. is_contiguous(bsr_row_ptr)) error stop "bsr_row_ptr: array must be contiguous"
+      if (.not. is_contiguous(bsr_col_ind)) error stop "bsr_col_ind: array must be contiguous"
       cbsrsv_buffer_size = rocsparse_cbsrsv_buffer_size_raw(handle, dir, trans, mb, nnzb, descr, &
         c_loc(bsr_val), c_loc(bsr_row_ptr), c_loc(bsr_col_ind), block_dim, info, buffer_size)
     end function rocsparse_cbsrsv_buffer_size_native
@@ -49049,6 +50173,9 @@ contains
       type(c_ptr), value :: info
       type(c_ptr), value :: buffer_size
       integer(c_int) :: zbsrsv_buffer_size
+      if (.not. is_contiguous(bsr_val)) error stop "bsr_val: array must be contiguous"
+      if (.not. is_contiguous(bsr_row_ptr)) error stop "bsr_row_ptr: array must be contiguous"
+      if (.not. is_contiguous(bsr_col_ind)) error stop "bsr_col_ind: array must be contiguous"
       zbsrsv_buffer_size = rocsparse_zbsrsv_buffer_size_raw(handle, dir, trans, mb, nnzb, descr, &
         c_loc(bsr_val), c_loc(bsr_row_ptr), c_loc(bsr_col_ind), block_dim, info, buffer_size)
     end function rocsparse_zbsrsv_buffer_size_native
@@ -49095,6 +50222,9 @@ contains
       integer(c_int), value :: solve
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: sbsrsv_analysis
+      if (.not. is_contiguous(bsr_val)) error stop "bsr_val: array must be contiguous"
+      if (.not. is_contiguous(bsr_row_ptr)) error stop "bsr_row_ptr: array must be contiguous"
+      if (.not. is_contiguous(bsr_col_ind)) error stop "bsr_col_ind: array must be contiguous"
       sbsrsv_analysis = rocsparse_sbsrsv_analysis_raw(handle, dir, trans, mb, nnzb, descr, c_loc( &
         bsr_val), c_loc(bsr_row_ptr), c_loc(bsr_col_ind), block_dim, info, analysis, solve, &
         temp_buffer)
@@ -49145,6 +50275,9 @@ contains
       integer(c_int), value :: solve
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: dbsrsv_analysis
+      if (.not. is_contiguous(bsr_val)) error stop "bsr_val: array must be contiguous"
+      if (.not. is_contiguous(bsr_row_ptr)) error stop "bsr_row_ptr: array must be contiguous"
+      if (.not. is_contiguous(bsr_col_ind)) error stop "bsr_col_ind: array must be contiguous"
       dbsrsv_analysis = rocsparse_dbsrsv_analysis_raw(handle, dir, trans, mb, nnzb, descr, c_loc( &
         bsr_val), c_loc(bsr_row_ptr), c_loc(bsr_col_ind), block_dim, info, analysis, solve, &
         temp_buffer)
@@ -49195,6 +50328,9 @@ contains
       integer(c_int), value :: solve
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: cbsrsv_analysis
+      if (.not. is_contiguous(bsr_val)) error stop "bsr_val: array must be contiguous"
+      if (.not. is_contiguous(bsr_row_ptr)) error stop "bsr_row_ptr: array must be contiguous"
+      if (.not. is_contiguous(bsr_col_ind)) error stop "bsr_col_ind: array must be contiguous"
       cbsrsv_analysis = rocsparse_cbsrsv_analysis_raw(handle, dir, trans, mb, nnzb, descr, c_loc( &
         bsr_val), c_loc(bsr_row_ptr), c_loc(bsr_col_ind), block_dim, info, analysis, solve, &
         temp_buffer)
@@ -49245,6 +50381,9 @@ contains
       integer(c_int), value :: solve
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: zbsrsv_analysis
+      if (.not. is_contiguous(bsr_val)) error stop "bsr_val: array must be contiguous"
+      if (.not. is_contiguous(bsr_row_ptr)) error stop "bsr_row_ptr: array must be contiguous"
+      if (.not. is_contiguous(bsr_col_ind)) error stop "bsr_col_ind: array must be contiguous"
       zbsrsv_analysis = rocsparse_zbsrsv_analysis_raw(handle, dir, trans, mb, nnzb, descr, c_loc( &
         bsr_val), c_loc(bsr_row_ptr), c_loc(bsr_col_ind), block_dim, info, analysis, solve, &
         temp_buffer)
@@ -49306,6 +50445,11 @@ contains
       integer(c_int), value :: policy
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: sbsrsv_solve
+      if (.not. is_contiguous(bsr_val)) error stop "bsr_val: array must be contiguous"
+      if (.not. is_contiguous(bsr_row_ptr)) error stop "bsr_row_ptr: array must be contiguous"
+      if (.not. is_contiguous(bsr_col_ind)) error stop "bsr_col_ind: array must be contiguous"
+      if (.not. is_contiguous(x)) error stop "x: array must be contiguous"
+      if (.not. is_contiguous(y)) error stop "y: array must be contiguous"
       sbsrsv_solve = rocsparse_sbsrsv_solve_raw(handle, dir, trans, mb, nnzb, alpha, descr, c_loc( &
         bsr_val), c_loc(bsr_row_ptr), c_loc(bsr_col_ind), block_dim, info, c_loc(x), c_loc(y), &
         policy, temp_buffer)
@@ -49359,6 +50503,11 @@ contains
       integer(c_int), value :: policy
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: dbsrsv_solve
+      if (.not. is_contiguous(bsr_val)) error stop "bsr_val: array must be contiguous"
+      if (.not. is_contiguous(bsr_row_ptr)) error stop "bsr_row_ptr: array must be contiguous"
+      if (.not. is_contiguous(bsr_col_ind)) error stop "bsr_col_ind: array must be contiguous"
+      if (.not. is_contiguous(x)) error stop "x: array must be contiguous"
+      if (.not. is_contiguous(y)) error stop "y: array must be contiguous"
       dbsrsv_solve = rocsparse_dbsrsv_solve_raw(handle, dir, trans, mb, nnzb, alpha, descr, c_loc( &
         bsr_val), c_loc(bsr_row_ptr), c_loc(bsr_col_ind), block_dim, info, c_loc(x), c_loc(y), &
         policy, temp_buffer)
@@ -49412,6 +50561,11 @@ contains
       integer(c_int), value :: policy
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: cbsrsv_solve
+      if (.not. is_contiguous(bsr_val)) error stop "bsr_val: array must be contiguous"
+      if (.not. is_contiguous(bsr_row_ptr)) error stop "bsr_row_ptr: array must be contiguous"
+      if (.not. is_contiguous(bsr_col_ind)) error stop "bsr_col_ind: array must be contiguous"
+      if (.not. is_contiguous(x)) error stop "x: array must be contiguous"
+      if (.not. is_contiguous(y)) error stop "y: array must be contiguous"
       cbsrsv_solve = rocsparse_cbsrsv_solve_raw(handle, dir, trans, mb, nnzb, alpha, descr, c_loc( &
         bsr_val), c_loc(bsr_row_ptr), c_loc(bsr_col_ind), block_dim, info, c_loc(x), c_loc(y), &
         policy, temp_buffer)
@@ -49465,6 +50619,11 @@ contains
       integer(c_int), value :: policy
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: zbsrsv_solve
+      if (.not. is_contiguous(bsr_val)) error stop "bsr_val: array must be contiguous"
+      if (.not. is_contiguous(bsr_row_ptr)) error stop "bsr_row_ptr: array must be contiguous"
+      if (.not. is_contiguous(bsr_col_ind)) error stop "bsr_col_ind: array must be contiguous"
+      if (.not. is_contiguous(x)) error stop "x: array must be contiguous"
+      if (.not. is_contiguous(y)) error stop "y: array must be contiguous"
       zbsrsv_solve = rocsparse_zbsrsv_solve_raw(handle, dir, trans, mb, nnzb, alpha, descr, c_loc( &
         bsr_val), c_loc(bsr_row_ptr), c_loc(bsr_col_ind), block_dim, info, c_loc(x), c_loc(y), &
         policy, temp_buffer)
@@ -49521,6 +50680,13 @@ contains
       real(c_float) :: beta
       real(c_float), target :: y(..)
       integer(c_int) :: sbsrxmv
+      if (.not. is_contiguous(bsr_val)) error stop "bsr_val: array must be contiguous"
+      if (.not. is_contiguous(bsr_mask_ptr)) error stop "bsr_mask_ptr: array must be contiguous"
+      if (.not. is_contiguous(bsr_row_ptr)) error stop "bsr_row_ptr: array must be contiguous"
+      if (.not. is_contiguous(bsr_end_ptr)) error stop "bsr_end_ptr: array must be contiguous"
+      if (.not. is_contiguous(bsr_col_ind)) error stop "bsr_col_ind: array must be contiguous"
+      if (.not. is_contiguous(x)) error stop "x: array must be contiguous"
+      if (.not. is_contiguous(y)) error stop "y: array must be contiguous"
       sbsrxmv = rocsparse_sbsrxmv_raw(handle, dir, trans, size_of_mask, mb, nb, nnzb, alpha, &
         descr, c_loc(bsr_val), c_loc(bsr_mask_ptr), c_loc(bsr_row_ptr), c_loc(bsr_end_ptr), c_loc( &
         bsr_col_ind), block_dim, c_loc(x), beta, c_loc(y))
@@ -49580,6 +50746,13 @@ contains
       real(c_double) :: beta
       real(c_double), target :: y(..)
       integer(c_int) :: dbsrxmv
+      if (.not. is_contiguous(bsr_val)) error stop "bsr_val: array must be contiguous"
+      if (.not. is_contiguous(bsr_mask_ptr)) error stop "bsr_mask_ptr: array must be contiguous"
+      if (.not. is_contiguous(bsr_row_ptr)) error stop "bsr_row_ptr: array must be contiguous"
+      if (.not. is_contiguous(bsr_end_ptr)) error stop "bsr_end_ptr: array must be contiguous"
+      if (.not. is_contiguous(bsr_col_ind)) error stop "bsr_col_ind: array must be contiguous"
+      if (.not. is_contiguous(x)) error stop "x: array must be contiguous"
+      if (.not. is_contiguous(y)) error stop "y: array must be contiguous"
       dbsrxmv = rocsparse_dbsrxmv_raw(handle, dir, trans, size_of_mask, mb, nb, nnzb, alpha, &
         descr, c_loc(bsr_val), c_loc(bsr_mask_ptr), c_loc(bsr_row_ptr), c_loc(bsr_end_ptr), c_loc( &
         bsr_col_ind), block_dim, c_loc(x), beta, c_loc(y))
@@ -49639,6 +50812,13 @@ contains
       complex(c_float_complex) :: beta
       complex(c_float_complex), target :: y(..)
       integer(c_int) :: cbsrxmv
+      if (.not. is_contiguous(bsr_val)) error stop "bsr_val: array must be contiguous"
+      if (.not. is_contiguous(bsr_mask_ptr)) error stop "bsr_mask_ptr: array must be contiguous"
+      if (.not. is_contiguous(bsr_row_ptr)) error stop "bsr_row_ptr: array must be contiguous"
+      if (.not. is_contiguous(bsr_end_ptr)) error stop "bsr_end_ptr: array must be contiguous"
+      if (.not. is_contiguous(bsr_col_ind)) error stop "bsr_col_ind: array must be contiguous"
+      if (.not. is_contiguous(x)) error stop "x: array must be contiguous"
+      if (.not. is_contiguous(y)) error stop "y: array must be contiguous"
       cbsrxmv = rocsparse_cbsrxmv_raw(handle, dir, trans, size_of_mask, mb, nb, nnzb, alpha, &
         descr, c_loc(bsr_val), c_loc(bsr_mask_ptr), c_loc(bsr_row_ptr), c_loc(bsr_end_ptr), c_loc( &
         bsr_col_ind), block_dim, c_loc(x), beta, c_loc(y))
@@ -49698,6 +50878,13 @@ contains
       complex(c_double_complex) :: beta
       complex(c_double_complex), target :: y(..)
       integer(c_int) :: zbsrxmv
+      if (.not. is_contiguous(bsr_val)) error stop "bsr_val: array must be contiguous"
+      if (.not. is_contiguous(bsr_mask_ptr)) error stop "bsr_mask_ptr: array must be contiguous"
+      if (.not. is_contiguous(bsr_row_ptr)) error stop "bsr_row_ptr: array must be contiguous"
+      if (.not. is_contiguous(bsr_end_ptr)) error stop "bsr_end_ptr: array must be contiguous"
+      if (.not. is_contiguous(bsr_col_ind)) error stop "bsr_col_ind: array must be contiguous"
+      if (.not. is_contiguous(x)) error stop "x: array must be contiguous"
+      if (.not. is_contiguous(y)) error stop "y: array must be contiguous"
       zbsrxmv = rocsparse_zbsrxmv_raw(handle, dir, trans, size_of_mask, mb, nb, nnzb, alpha, &
         descr, c_loc(bsr_val), c_loc(bsr_mask_ptr), c_loc(bsr_row_ptr), c_loc(bsr_end_ptr), c_loc( &
         bsr_col_ind), block_dim, c_loc(x), beta, c_loc(y))
@@ -49751,6 +50938,11 @@ contains
       real(c_float) :: beta
       real(c_float), target :: y(..)
       integer(c_int) :: scoomv
+      if (.not. is_contiguous(coo_val)) error stop "coo_val: array must be contiguous"
+      if (.not. is_contiguous(coo_row_ind)) error stop "coo_row_ind: array must be contiguous"
+      if (.not. is_contiguous(coo_col_ind)) error stop "coo_col_ind: array must be contiguous"
+      if (.not. is_contiguous(x)) error stop "x: array must be contiguous"
+      if (.not. is_contiguous(y)) error stop "y: array must be contiguous"
       scoomv = rocsparse_scoomv_raw(handle, trans, m, n, nnz, alpha, descr, c_loc(coo_val), c_loc( &
         coo_row_ind), c_loc(coo_col_ind), c_loc(x), beta, c_loc(y))
     end function rocsparse_scoomv_native
@@ -49796,6 +50988,11 @@ contains
       real(c_double) :: beta
       real(c_double), target :: y(..)
       integer(c_int) :: dcoomv
+      if (.not. is_contiguous(coo_val)) error stop "coo_val: array must be contiguous"
+      if (.not. is_contiguous(coo_row_ind)) error stop "coo_row_ind: array must be contiguous"
+      if (.not. is_contiguous(coo_col_ind)) error stop "coo_col_ind: array must be contiguous"
+      if (.not. is_contiguous(x)) error stop "x: array must be contiguous"
+      if (.not. is_contiguous(y)) error stop "y: array must be contiguous"
       dcoomv = rocsparse_dcoomv_raw(handle, trans, m, n, nnz, alpha, descr, c_loc(coo_val), c_loc( &
         coo_row_ind), c_loc(coo_col_ind), c_loc(x), beta, c_loc(y))
     end function rocsparse_dcoomv_native
@@ -49841,6 +51038,11 @@ contains
       complex(c_float_complex) :: beta
       complex(c_float_complex), target :: y(..)
       integer(c_int) :: ccoomv
+      if (.not. is_contiguous(coo_val)) error stop "coo_val: array must be contiguous"
+      if (.not. is_contiguous(coo_row_ind)) error stop "coo_row_ind: array must be contiguous"
+      if (.not. is_contiguous(coo_col_ind)) error stop "coo_col_ind: array must be contiguous"
+      if (.not. is_contiguous(x)) error stop "x: array must be contiguous"
+      if (.not. is_contiguous(y)) error stop "y: array must be contiguous"
       ccoomv = rocsparse_ccoomv_raw(handle, trans, m, n, nnz, alpha, descr, c_loc(coo_val), c_loc( &
         coo_row_ind), c_loc(coo_col_ind), c_loc(x), beta, c_loc(y))
     end function rocsparse_ccoomv_native
@@ -49886,6 +51088,11 @@ contains
       complex(c_double_complex) :: beta
       complex(c_double_complex), target :: y(..)
       integer(c_int) :: zcoomv
+      if (.not. is_contiguous(coo_val)) error stop "coo_val: array must be contiguous"
+      if (.not. is_contiguous(coo_row_ind)) error stop "coo_row_ind: array must be contiguous"
+      if (.not. is_contiguous(coo_col_ind)) error stop "coo_col_ind: array must be contiguous"
+      if (.not. is_contiguous(x)) error stop "x: array must be contiguous"
+      if (.not. is_contiguous(y)) error stop "y: array must be contiguous"
       zcoomv = rocsparse_zcoomv_raw(handle, trans, m, n, nnz, alpha, descr, c_loc(coo_val), c_loc( &
         coo_row_ind), c_loc(coo_col_ind), c_loc(x), beta, c_loc(y))
     end function rocsparse_zcoomv_native
@@ -49922,6 +51129,7 @@ contains
       type(c_ptr), value :: info
       integer(c_int), target :: position(..)
       integer(c_int) :: csritsv_zero_pivot
+      if (.not. is_contiguous(position)) error stop "position: array must be contiguous"
       csritsv_zero_pivot = rocsparse_csritsv_zero_pivot_raw(handle, descr, info, c_loc(position))
     end function rocsparse_csritsv_zero_pivot_native
 
@@ -49954,6 +51162,9 @@ contains
       type(c_ptr), value :: info
       type(c_ptr), value :: buffer_size
       integer(c_int) :: scsritsv_buffer_size
+      if (.not. is_contiguous(csr_val)) error stop "csr_val: array must be contiguous"
+      if (.not. is_contiguous(csr_row_ptr)) error stop "csr_row_ptr: array must be contiguous"
+      if (.not. is_contiguous(csr_col_ind)) error stop "csr_col_ind: array must be contiguous"
       scsritsv_buffer_size = rocsparse_scsritsv_buffer_size_raw(handle, trans, m, nnz, descr, &
         c_loc(csr_val), c_loc(csr_row_ptr), c_loc(csr_col_ind), info, buffer_size)
     end function rocsparse_scsritsv_buffer_size_native
@@ -49993,6 +51204,9 @@ contains
       type(c_ptr), value :: info
       type(c_ptr), value :: buffer_size
       integer(c_int) :: dcsritsv_buffer_size
+      if (.not. is_contiguous(csr_val)) error stop "csr_val: array must be contiguous"
+      if (.not. is_contiguous(csr_row_ptr)) error stop "csr_row_ptr: array must be contiguous"
+      if (.not. is_contiguous(csr_col_ind)) error stop "csr_col_ind: array must be contiguous"
       dcsritsv_buffer_size = rocsparse_dcsritsv_buffer_size_raw(handle, trans, m, nnz, descr, &
         c_loc(csr_val), c_loc(csr_row_ptr), c_loc(csr_col_ind), info, buffer_size)
     end function rocsparse_dcsritsv_buffer_size_native
@@ -50032,6 +51246,9 @@ contains
       type(c_ptr), value :: info
       type(c_ptr), value :: buffer_size
       integer(c_int) :: ccsritsv_buffer_size
+      if (.not. is_contiguous(csr_val)) error stop "csr_val: array must be contiguous"
+      if (.not. is_contiguous(csr_row_ptr)) error stop "csr_row_ptr: array must be contiguous"
+      if (.not. is_contiguous(csr_col_ind)) error stop "csr_col_ind: array must be contiguous"
       ccsritsv_buffer_size = rocsparse_ccsritsv_buffer_size_raw(handle, trans, m, nnz, descr, &
         c_loc(csr_val), c_loc(csr_row_ptr), c_loc(csr_col_ind), info, buffer_size)
     end function rocsparse_ccsritsv_buffer_size_native
@@ -50071,6 +51288,9 @@ contains
       type(c_ptr), value :: info
       type(c_ptr), value :: buffer_size
       integer(c_int) :: zcsritsv_buffer_size
+      if (.not. is_contiguous(csr_val)) error stop "csr_val: array must be contiguous"
+      if (.not. is_contiguous(csr_row_ptr)) error stop "csr_row_ptr: array must be contiguous"
+      if (.not. is_contiguous(csr_col_ind)) error stop "csr_col_ind: array must be contiguous"
       zcsritsv_buffer_size = rocsparse_zcsritsv_buffer_size_raw(handle, trans, m, nnz, descr, &
         c_loc(csr_val), c_loc(csr_row_ptr), c_loc(csr_col_ind), info, buffer_size)
     end function rocsparse_zcsritsv_buffer_size_native
@@ -50112,6 +51332,9 @@ contains
       integer(c_int), value :: solve
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: scsritsv_analysis
+      if (.not. is_contiguous(csr_val)) error stop "csr_val: array must be contiguous"
+      if (.not. is_contiguous(csr_row_ptr)) error stop "csr_row_ptr: array must be contiguous"
+      if (.not. is_contiguous(csr_col_ind)) error stop "csr_col_ind: array must be contiguous"
       scsritsv_analysis = rocsparse_scsritsv_analysis_raw(handle, trans, m, nnz, descr, c_loc( &
         csr_val), c_loc(csr_row_ptr), c_loc(csr_col_ind), info, analysis, solve, temp_buffer)
     end function rocsparse_scsritsv_analysis_native
@@ -50155,6 +51378,9 @@ contains
       integer(c_int), value :: solve
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: dcsritsv_analysis
+      if (.not. is_contiguous(csr_val)) error stop "csr_val: array must be contiguous"
+      if (.not. is_contiguous(csr_row_ptr)) error stop "csr_row_ptr: array must be contiguous"
+      if (.not. is_contiguous(csr_col_ind)) error stop "csr_col_ind: array must be contiguous"
       dcsritsv_analysis = rocsparse_dcsritsv_analysis_raw(handle, trans, m, nnz, descr, c_loc( &
         csr_val), c_loc(csr_row_ptr), c_loc(csr_col_ind), info, analysis, solve, temp_buffer)
     end function rocsparse_dcsritsv_analysis_native
@@ -50198,6 +51424,9 @@ contains
       integer(c_int), value :: solve
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: ccsritsv_analysis
+      if (.not. is_contiguous(csr_val)) error stop "csr_val: array must be contiguous"
+      if (.not. is_contiguous(csr_row_ptr)) error stop "csr_row_ptr: array must be contiguous"
+      if (.not. is_contiguous(csr_col_ind)) error stop "csr_col_ind: array must be contiguous"
       ccsritsv_analysis = rocsparse_ccsritsv_analysis_raw(handle, trans, m, nnz, descr, c_loc( &
         csr_val), c_loc(csr_row_ptr), c_loc(csr_col_ind), info, analysis, solve, temp_buffer)
     end function rocsparse_ccsritsv_analysis_native
@@ -50241,6 +51470,9 @@ contains
       integer(c_int), value :: solve
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: zcsritsv_analysis
+      if (.not. is_contiguous(csr_val)) error stop "csr_val: array must be contiguous"
+      if (.not. is_contiguous(csr_row_ptr)) error stop "csr_row_ptr: array must be contiguous"
+      if (.not. is_contiguous(csr_col_ind)) error stop "csr_col_ind: array must be contiguous"
       zcsritsv_analysis = rocsparse_zcsritsv_analysis_raw(handle, trans, m, nnz, descr, c_loc( &
         csr_val), c_loc(csr_row_ptr), c_loc(csr_col_ind), info, analysis, solve, temp_buffer)
     end function rocsparse_zcsritsv_analysis_native
@@ -50301,6 +51533,15 @@ contains
       integer(c_int), value :: policy
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: scsritsv_solve
+      if (.not. is_contiguous(host_nmaxiter)) error stop "host_nmaxiter: array must be contiguous"
+      if (.not. is_contiguous(host_tol)) error stop "host_tol: array must be contiguous"
+      if (.not. is_contiguous(host_history)) error stop "host_history: array must be contiguous"
+      if (.not. is_contiguous(alpha)) error stop "alpha: array must be contiguous"
+      if (.not. is_contiguous(csr_val)) error stop "csr_val: array must be contiguous"
+      if (.not. is_contiguous(csr_row_ptr)) error stop "csr_row_ptr: array must be contiguous"
+      if (.not. is_contiguous(csr_col_ind)) error stop "csr_col_ind: array must be contiguous"
+      if (.not. is_contiguous(x)) error stop "x: array must be contiguous"
+      if (.not. is_contiguous(y)) error stop "y: array must be contiguous"
       scsritsv_solve = rocsparse_scsritsv_solve_raw(handle, c_loc(host_nmaxiter), c_loc(host_tol), &
         c_loc(host_history), trans, m, nnz, c_loc(alpha), descr, c_loc(csr_val), c_loc( &
         csr_row_ptr), c_loc(csr_col_ind), info, c_loc(x), c_loc(y), policy, temp_buffer)
@@ -50358,6 +51599,15 @@ contains
       integer(c_int), value :: policy
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: dcsritsv_solve
+      if (.not. is_contiguous(host_nmaxiter)) error stop "host_nmaxiter: array must be contiguous"
+      if (.not. is_contiguous(host_tol)) error stop "host_tol: array must be contiguous"
+      if (.not. is_contiguous(host_history)) error stop "host_history: array must be contiguous"
+      if (.not. is_contiguous(alpha)) error stop "alpha: array must be contiguous"
+      if (.not. is_contiguous(csr_val)) error stop "csr_val: array must be contiguous"
+      if (.not. is_contiguous(csr_row_ptr)) error stop "csr_row_ptr: array must be contiguous"
+      if (.not. is_contiguous(csr_col_ind)) error stop "csr_col_ind: array must be contiguous"
+      if (.not. is_contiguous(x)) error stop "x: array must be contiguous"
+      if (.not. is_contiguous(y)) error stop "y: array must be contiguous"
       dcsritsv_solve = rocsparse_dcsritsv_solve_raw(handle, c_loc(host_nmaxiter), c_loc(host_tol), &
         c_loc(host_history), trans, m, nnz, c_loc(alpha), descr, c_loc(csr_val), c_loc( &
         csr_row_ptr), c_loc(csr_col_ind), info, c_loc(x), c_loc(y), policy, temp_buffer)
@@ -50415,6 +51665,15 @@ contains
       integer(c_int), value :: policy
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: ccsritsv_solve
+      if (.not. is_contiguous(host_nmaxiter)) error stop "host_nmaxiter: array must be contiguous"
+      if (.not. is_contiguous(host_tol)) error stop "host_tol: array must be contiguous"
+      if (.not. is_contiguous(host_history)) error stop "host_history: array must be contiguous"
+      if (.not. is_contiguous(alpha)) error stop "alpha: array must be contiguous"
+      if (.not. is_contiguous(csr_val)) error stop "csr_val: array must be contiguous"
+      if (.not. is_contiguous(csr_row_ptr)) error stop "csr_row_ptr: array must be contiguous"
+      if (.not. is_contiguous(csr_col_ind)) error stop "csr_col_ind: array must be contiguous"
+      if (.not. is_contiguous(x)) error stop "x: array must be contiguous"
+      if (.not. is_contiguous(y)) error stop "y: array must be contiguous"
       ccsritsv_solve = rocsparse_ccsritsv_solve_raw(handle, c_loc(host_nmaxiter), c_loc(host_tol), &
         c_loc(host_history), trans, m, nnz, c_loc(alpha), descr, c_loc(csr_val), c_loc( &
         csr_row_ptr), c_loc(csr_col_ind), info, c_loc(x), c_loc(y), policy, temp_buffer)
@@ -50472,6 +51731,15 @@ contains
       integer(c_int), value :: policy
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: zcsritsv_solve
+      if (.not. is_contiguous(host_nmaxiter)) error stop "host_nmaxiter: array must be contiguous"
+      if (.not. is_contiguous(host_tol)) error stop "host_tol: array must be contiguous"
+      if (.not. is_contiguous(host_history)) error stop "host_history: array must be contiguous"
+      if (.not. is_contiguous(alpha)) error stop "alpha: array must be contiguous"
+      if (.not. is_contiguous(csr_val)) error stop "csr_val: array must be contiguous"
+      if (.not. is_contiguous(csr_row_ptr)) error stop "csr_row_ptr: array must be contiguous"
+      if (.not. is_contiguous(csr_col_ind)) error stop "csr_col_ind: array must be contiguous"
+      if (.not. is_contiguous(x)) error stop "x: array must be contiguous"
+      if (.not. is_contiguous(y)) error stop "y: array must be contiguous"
       zcsritsv_solve = rocsparse_zcsritsv_solve_raw(handle, c_loc(host_nmaxiter), c_loc(host_tol), &
         c_loc(host_history), trans, m, nnz, c_loc(alpha), descr, c_loc(csr_val), c_loc( &
         csr_row_ptr), c_loc(csr_col_ind), info, c_loc(x), c_loc(y), policy, temp_buffer)
@@ -50530,6 +51798,15 @@ contains
       integer(c_int), value :: policy
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: scsritsv_solve_ex
+      if (.not. is_contiguous(host_nmaxiter)) error stop "host_nmaxiter: array must be contiguous"
+      if (.not. is_contiguous(host_tol)) error stop "host_tol: array must be contiguous"
+      if (.not. is_contiguous(host_history)) error stop "host_history: array must be contiguous"
+      if (.not. is_contiguous(alpha)) error stop "alpha: array must be contiguous"
+      if (.not. is_contiguous(csr_val)) error stop "csr_val: array must be contiguous"
+      if (.not. is_contiguous(csr_row_ptr)) error stop "csr_row_ptr: array must be contiguous"
+      if (.not. is_contiguous(csr_col_ind)) error stop "csr_col_ind: array must be contiguous"
+      if (.not. is_contiguous(x)) error stop "x: array must be contiguous"
+      if (.not. is_contiguous(y)) error stop "y: array must be contiguous"
       scsritsv_solve_ex = rocsparse_scsritsv_solve_ex_raw(handle, c_loc(host_nmaxiter), &
         host_nfreeiter, c_loc(host_tol), c_loc(host_history), trans, m, nnz, c_loc(alpha), descr, &
         c_loc(csr_val), c_loc(csr_row_ptr), c_loc(csr_col_ind), info, c_loc(x), c_loc(y), policy, &
@@ -50590,6 +51867,15 @@ contains
       integer(c_int), value :: policy
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: dcsritsv_solve_ex
+      if (.not. is_contiguous(host_nmaxiter)) error stop "host_nmaxiter: array must be contiguous"
+      if (.not. is_contiguous(host_tol)) error stop "host_tol: array must be contiguous"
+      if (.not. is_contiguous(host_history)) error stop "host_history: array must be contiguous"
+      if (.not. is_contiguous(alpha)) error stop "alpha: array must be contiguous"
+      if (.not. is_contiguous(csr_val)) error stop "csr_val: array must be contiguous"
+      if (.not. is_contiguous(csr_row_ptr)) error stop "csr_row_ptr: array must be contiguous"
+      if (.not. is_contiguous(csr_col_ind)) error stop "csr_col_ind: array must be contiguous"
+      if (.not. is_contiguous(x)) error stop "x: array must be contiguous"
+      if (.not. is_contiguous(y)) error stop "y: array must be contiguous"
       dcsritsv_solve_ex = rocsparse_dcsritsv_solve_ex_raw(handle, c_loc(host_nmaxiter), &
         host_nfreeiter, c_loc(host_tol), c_loc(host_history), trans, m, nnz, c_loc(alpha), descr, &
         c_loc(csr_val), c_loc(csr_row_ptr), c_loc(csr_col_ind), info, c_loc(x), c_loc(y), policy, &
@@ -50650,6 +51936,15 @@ contains
       integer(c_int), value :: policy
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: ccsritsv_solve_ex
+      if (.not. is_contiguous(host_nmaxiter)) error stop "host_nmaxiter: array must be contiguous"
+      if (.not. is_contiguous(host_tol)) error stop "host_tol: array must be contiguous"
+      if (.not. is_contiguous(host_history)) error stop "host_history: array must be contiguous"
+      if (.not. is_contiguous(alpha)) error stop "alpha: array must be contiguous"
+      if (.not. is_contiguous(csr_val)) error stop "csr_val: array must be contiguous"
+      if (.not. is_contiguous(csr_row_ptr)) error stop "csr_row_ptr: array must be contiguous"
+      if (.not. is_contiguous(csr_col_ind)) error stop "csr_col_ind: array must be contiguous"
+      if (.not. is_contiguous(x)) error stop "x: array must be contiguous"
+      if (.not. is_contiguous(y)) error stop "y: array must be contiguous"
       ccsritsv_solve_ex = rocsparse_ccsritsv_solve_ex_raw(handle, c_loc(host_nmaxiter), &
         host_nfreeiter, c_loc(host_tol), c_loc(host_history), trans, m, nnz, c_loc(alpha), descr, &
         c_loc(csr_val), c_loc(csr_row_ptr), c_loc(csr_col_ind), info, c_loc(x), c_loc(y), policy, &
@@ -50710,6 +52005,15 @@ contains
       integer(c_int), value :: policy
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: zcsritsv_solve_ex
+      if (.not. is_contiguous(host_nmaxiter)) error stop "host_nmaxiter: array must be contiguous"
+      if (.not. is_contiguous(host_tol)) error stop "host_tol: array must be contiguous"
+      if (.not. is_contiguous(host_history)) error stop "host_history: array must be contiguous"
+      if (.not. is_contiguous(alpha)) error stop "alpha: array must be contiguous"
+      if (.not. is_contiguous(csr_val)) error stop "csr_val: array must be contiguous"
+      if (.not. is_contiguous(csr_row_ptr)) error stop "csr_row_ptr: array must be contiguous"
+      if (.not. is_contiguous(csr_col_ind)) error stop "csr_col_ind: array must be contiguous"
+      if (.not. is_contiguous(x)) error stop "x: array must be contiguous"
+      if (.not. is_contiguous(y)) error stop "y: array must be contiguous"
       zcsritsv_solve_ex = rocsparse_zcsritsv_solve_ex_raw(handle, c_loc(host_nmaxiter), &
         host_nfreeiter, c_loc(host_tol), c_loc(host_history), trans, m, nnz, c_loc(alpha), descr, &
         c_loc(csr_val), c_loc(csr_row_ptr), c_loc(csr_col_ind), info, c_loc(x), c_loc(y), policy, &
@@ -50761,6 +52065,9 @@ contains
       integer(c_int), target :: csr_col_ind(..)
       type(c_ptr), value :: info
       integer(c_int) :: scsrmv_analysis
+      if (.not. is_contiguous(csr_val)) error stop "csr_val: array must be contiguous"
+      if (.not. is_contiguous(csr_row_ptr)) error stop "csr_row_ptr: array must be contiguous"
+      if (.not. is_contiguous(csr_col_ind)) error stop "csr_col_ind: array must be contiguous"
       scsrmv_analysis = rocsparse_scsrmv_analysis_raw(handle, trans, m, n, nnz, descr, c_loc( &
         csr_val), c_loc(csr_row_ptr), c_loc(csr_col_ind), info)
     end function rocsparse_scsrmv_analysis_native
@@ -50800,6 +52107,9 @@ contains
       integer(c_int), target :: csr_col_ind(..)
       type(c_ptr), value :: info
       integer(c_int) :: dcsrmv_analysis
+      if (.not. is_contiguous(csr_val)) error stop "csr_val: array must be contiguous"
+      if (.not. is_contiguous(csr_row_ptr)) error stop "csr_row_ptr: array must be contiguous"
+      if (.not. is_contiguous(csr_col_ind)) error stop "csr_col_ind: array must be contiguous"
       dcsrmv_analysis = rocsparse_dcsrmv_analysis_raw(handle, trans, m, n, nnz, descr, c_loc( &
         csr_val), c_loc(csr_row_ptr), c_loc(csr_col_ind), info)
     end function rocsparse_dcsrmv_analysis_native
@@ -50839,6 +52149,9 @@ contains
       integer(c_int), target :: csr_col_ind(..)
       type(c_ptr), value :: info
       integer(c_int) :: ccsrmv_analysis
+      if (.not. is_contiguous(csr_val)) error stop "csr_val: array must be contiguous"
+      if (.not. is_contiguous(csr_row_ptr)) error stop "csr_row_ptr: array must be contiguous"
+      if (.not. is_contiguous(csr_col_ind)) error stop "csr_col_ind: array must be contiguous"
       ccsrmv_analysis = rocsparse_ccsrmv_analysis_raw(handle, trans, m, n, nnz, descr, c_loc( &
         csr_val), c_loc(csr_row_ptr), c_loc(csr_col_ind), info)
     end function rocsparse_ccsrmv_analysis_native
@@ -50878,6 +52191,9 @@ contains
       integer(c_int), target :: csr_col_ind(..)
       type(c_ptr), value :: info
       integer(c_int) :: zcsrmv_analysis
+      if (.not. is_contiguous(csr_val)) error stop "csr_val: array must be contiguous"
+      if (.not. is_contiguous(csr_row_ptr)) error stop "csr_row_ptr: array must be contiguous"
+      if (.not. is_contiguous(csr_col_ind)) error stop "csr_col_ind: array must be contiguous"
       zcsrmv_analysis = rocsparse_zcsrmv_analysis_raw(handle, trans, m, n, nnz, descr, c_loc( &
         csr_val), c_loc(csr_row_ptr), c_loc(csr_col_ind), info)
     end function rocsparse_zcsrmv_analysis_native
@@ -50931,6 +52247,11 @@ contains
       real(c_float) :: beta
       real(c_float), target :: y(..)
       integer(c_int) :: scsrmv
+      if (.not. is_contiguous(csr_val)) error stop "csr_val: array must be contiguous"
+      if (.not. is_contiguous(csr_row_ptr)) error stop "csr_row_ptr: array must be contiguous"
+      if (.not. is_contiguous(csr_col_ind)) error stop "csr_col_ind: array must be contiguous"
+      if (.not. is_contiguous(x)) error stop "x: array must be contiguous"
+      if (.not. is_contiguous(y)) error stop "y: array must be contiguous"
       scsrmv = rocsparse_scsrmv_raw(handle, trans, m, n, nnz, alpha, descr, c_loc(csr_val), c_loc( &
         csr_row_ptr), c_loc(csr_col_ind), info, c_loc(x), beta, c_loc(y))
     end function rocsparse_scsrmv_native
@@ -50978,6 +52299,11 @@ contains
       real(c_double) :: beta
       real(c_double), target :: y(..)
       integer(c_int) :: dcsrmv
+      if (.not. is_contiguous(csr_val)) error stop "csr_val: array must be contiguous"
+      if (.not. is_contiguous(csr_row_ptr)) error stop "csr_row_ptr: array must be contiguous"
+      if (.not. is_contiguous(csr_col_ind)) error stop "csr_col_ind: array must be contiguous"
+      if (.not. is_contiguous(x)) error stop "x: array must be contiguous"
+      if (.not. is_contiguous(y)) error stop "y: array must be contiguous"
       dcsrmv = rocsparse_dcsrmv_raw(handle, trans, m, n, nnz, alpha, descr, c_loc(csr_val), c_loc( &
         csr_row_ptr), c_loc(csr_col_ind), info, c_loc(x), beta, c_loc(y))
     end function rocsparse_dcsrmv_native
@@ -51025,6 +52351,11 @@ contains
       complex(c_float_complex) :: beta
       complex(c_float_complex), target :: y(..)
       integer(c_int) :: ccsrmv
+      if (.not. is_contiguous(csr_val)) error stop "csr_val: array must be contiguous"
+      if (.not. is_contiguous(csr_row_ptr)) error stop "csr_row_ptr: array must be contiguous"
+      if (.not. is_contiguous(csr_col_ind)) error stop "csr_col_ind: array must be contiguous"
+      if (.not. is_contiguous(x)) error stop "x: array must be contiguous"
+      if (.not. is_contiguous(y)) error stop "y: array must be contiguous"
       ccsrmv = rocsparse_ccsrmv_raw(handle, trans, m, n, nnz, alpha, descr, c_loc(csr_val), c_loc( &
         csr_row_ptr), c_loc(csr_col_ind), info, c_loc(x), beta, c_loc(y))
     end function rocsparse_ccsrmv_native
@@ -51072,6 +52403,11 @@ contains
       complex(c_double_complex) :: beta
       complex(c_double_complex), target :: y(..)
       integer(c_int) :: zcsrmv
+      if (.not. is_contiguous(csr_val)) error stop "csr_val: array must be contiguous"
+      if (.not. is_contiguous(csr_row_ptr)) error stop "csr_row_ptr: array must be contiguous"
+      if (.not. is_contiguous(csr_col_ind)) error stop "csr_col_ind: array must be contiguous"
+      if (.not. is_contiguous(x)) error stop "x: array must be contiguous"
+      if (.not. is_contiguous(y)) error stop "y: array must be contiguous"
       zcsrmv = rocsparse_zcsrmv_raw(handle, trans, m, n, nnz, alpha, descr, c_loc(csr_val), c_loc( &
         csr_row_ptr), c_loc(csr_col_ind), info, c_loc(x), beta, c_loc(y))
     end function rocsparse_zcsrmv_native
@@ -51128,6 +52464,9 @@ contains
       type(c_ptr), value :: info
       type(c_ptr), value :: buffer_size
       integer(c_int) :: scsrsv_buffer_size
+      if (.not. is_contiguous(csr_val)) error stop "csr_val: array must be contiguous"
+      if (.not. is_contiguous(csr_row_ptr)) error stop "csr_row_ptr: array must be contiguous"
+      if (.not. is_contiguous(csr_col_ind)) error stop "csr_col_ind: array must be contiguous"
       scsrsv_buffer_size = rocsparse_scsrsv_buffer_size_raw(handle, trans, m, nnz, descr, c_loc( &
         csr_val), c_loc(csr_row_ptr), c_loc(csr_col_ind), info, buffer_size)
     end function rocsparse_scsrsv_buffer_size_native
@@ -51167,6 +52506,9 @@ contains
       type(c_ptr), value :: info
       type(c_ptr), value :: buffer_size
       integer(c_int) :: dcsrsv_buffer_size
+      if (.not. is_contiguous(csr_val)) error stop "csr_val: array must be contiguous"
+      if (.not. is_contiguous(csr_row_ptr)) error stop "csr_row_ptr: array must be contiguous"
+      if (.not. is_contiguous(csr_col_ind)) error stop "csr_col_ind: array must be contiguous"
       dcsrsv_buffer_size = rocsparse_dcsrsv_buffer_size_raw(handle, trans, m, nnz, descr, c_loc( &
         csr_val), c_loc(csr_row_ptr), c_loc(csr_col_ind), info, buffer_size)
     end function rocsparse_dcsrsv_buffer_size_native
@@ -51206,6 +52548,9 @@ contains
       type(c_ptr), value :: info
       type(c_ptr), value :: buffer_size
       integer(c_int) :: ccsrsv_buffer_size
+      if (.not. is_contiguous(csr_val)) error stop "csr_val: array must be contiguous"
+      if (.not. is_contiguous(csr_row_ptr)) error stop "csr_row_ptr: array must be contiguous"
+      if (.not. is_contiguous(csr_col_ind)) error stop "csr_col_ind: array must be contiguous"
       ccsrsv_buffer_size = rocsparse_ccsrsv_buffer_size_raw(handle, trans, m, nnz, descr, c_loc( &
         csr_val), c_loc(csr_row_ptr), c_loc(csr_col_ind), info, buffer_size)
     end function rocsparse_ccsrsv_buffer_size_native
@@ -51245,6 +52590,9 @@ contains
       type(c_ptr), value :: info
       type(c_ptr), value :: buffer_size
       integer(c_int) :: zcsrsv_buffer_size
+      if (.not. is_contiguous(csr_val)) error stop "csr_val: array must be contiguous"
+      if (.not. is_contiguous(csr_row_ptr)) error stop "csr_row_ptr: array must be contiguous"
+      if (.not. is_contiguous(csr_col_ind)) error stop "csr_col_ind: array must be contiguous"
       zcsrsv_buffer_size = rocsparse_zcsrsv_buffer_size_raw(handle, trans, m, nnz, descr, c_loc( &
         csr_val), c_loc(csr_row_ptr), c_loc(csr_col_ind), info, buffer_size)
     end function rocsparse_zcsrsv_buffer_size_native
@@ -51286,6 +52634,9 @@ contains
       integer(c_int), value :: solve
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: scsrsv_analysis
+      if (.not. is_contiguous(csr_val)) error stop "csr_val: array must be contiguous"
+      if (.not. is_contiguous(csr_row_ptr)) error stop "csr_row_ptr: array must be contiguous"
+      if (.not. is_contiguous(csr_col_ind)) error stop "csr_col_ind: array must be contiguous"
       scsrsv_analysis = rocsparse_scsrsv_analysis_raw(handle, trans, m, nnz, descr, c_loc( &
         csr_val), c_loc(csr_row_ptr), c_loc(csr_col_ind), info, analysis, solve, temp_buffer)
     end function rocsparse_scsrsv_analysis_native
@@ -51329,6 +52680,9 @@ contains
       integer(c_int), value :: solve
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: dcsrsv_analysis
+      if (.not. is_contiguous(csr_val)) error stop "csr_val: array must be contiguous"
+      if (.not. is_contiguous(csr_row_ptr)) error stop "csr_row_ptr: array must be contiguous"
+      if (.not. is_contiguous(csr_col_ind)) error stop "csr_col_ind: array must be contiguous"
       dcsrsv_analysis = rocsparse_dcsrsv_analysis_raw(handle, trans, m, nnz, descr, c_loc( &
         csr_val), c_loc(csr_row_ptr), c_loc(csr_col_ind), info, analysis, solve, temp_buffer)
     end function rocsparse_dcsrsv_analysis_native
@@ -51372,6 +52726,9 @@ contains
       integer(c_int), value :: solve
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: ccsrsv_analysis
+      if (.not. is_contiguous(csr_val)) error stop "csr_val: array must be contiguous"
+      if (.not. is_contiguous(csr_row_ptr)) error stop "csr_row_ptr: array must be contiguous"
+      if (.not. is_contiguous(csr_col_ind)) error stop "csr_col_ind: array must be contiguous"
       ccsrsv_analysis = rocsparse_ccsrsv_analysis_raw(handle, trans, m, nnz, descr, c_loc( &
         csr_val), c_loc(csr_row_ptr), c_loc(csr_col_ind), info, analysis, solve, temp_buffer)
     end function rocsparse_ccsrsv_analysis_native
@@ -51415,6 +52772,9 @@ contains
       integer(c_int), value :: solve
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: zcsrsv_analysis
+      if (.not. is_contiguous(csr_val)) error stop "csr_val: array must be contiguous"
+      if (.not. is_contiguous(csr_row_ptr)) error stop "csr_row_ptr: array must be contiguous"
+      if (.not. is_contiguous(csr_col_ind)) error stop "csr_col_ind: array must be contiguous"
       zcsrsv_analysis = rocsparse_zcsrsv_analysis_raw(handle, trans, m, nnz, descr, c_loc( &
         csr_val), c_loc(csr_row_ptr), c_loc(csr_col_ind), info, analysis, solve, temp_buffer)
     end function rocsparse_zcsrsv_analysis_native
@@ -51471,6 +52831,11 @@ contains
       integer(c_int), value :: policy
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: scsrsv_solve
+      if (.not. is_contiguous(csr_val)) error stop "csr_val: array must be contiguous"
+      if (.not. is_contiguous(csr_row_ptr)) error stop "csr_row_ptr: array must be contiguous"
+      if (.not. is_contiguous(csr_col_ind)) error stop "csr_col_ind: array must be contiguous"
+      if (.not. is_contiguous(x)) error stop "x: array must be contiguous"
+      if (.not. is_contiguous(y)) error stop "y: array must be contiguous"
       scsrsv_solve = rocsparse_scsrsv_solve_raw(handle, trans, m, nnz, alpha, descr, c_loc( &
         csr_val), c_loc(csr_row_ptr), c_loc(csr_col_ind), info, c_loc(x), c_loc(y), policy, &
         temp_buffer)
@@ -51519,6 +52884,11 @@ contains
       integer(c_int), value :: policy
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: dcsrsv_solve
+      if (.not. is_contiguous(csr_val)) error stop "csr_val: array must be contiguous"
+      if (.not. is_contiguous(csr_row_ptr)) error stop "csr_row_ptr: array must be contiguous"
+      if (.not. is_contiguous(csr_col_ind)) error stop "csr_col_ind: array must be contiguous"
+      if (.not. is_contiguous(x)) error stop "x: array must be contiguous"
+      if (.not. is_contiguous(y)) error stop "y: array must be contiguous"
       dcsrsv_solve = rocsparse_dcsrsv_solve_raw(handle, trans, m, nnz, alpha, descr, c_loc( &
         csr_val), c_loc(csr_row_ptr), c_loc(csr_col_ind), info, c_loc(x), c_loc(y), policy, &
         temp_buffer)
@@ -51567,6 +52937,11 @@ contains
       integer(c_int), value :: policy
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: ccsrsv_solve
+      if (.not. is_contiguous(csr_val)) error stop "csr_val: array must be contiguous"
+      if (.not. is_contiguous(csr_row_ptr)) error stop "csr_row_ptr: array must be contiguous"
+      if (.not. is_contiguous(csr_col_ind)) error stop "csr_col_ind: array must be contiguous"
+      if (.not. is_contiguous(x)) error stop "x: array must be contiguous"
+      if (.not. is_contiguous(y)) error stop "y: array must be contiguous"
       ccsrsv_solve = rocsparse_ccsrsv_solve_raw(handle, trans, m, nnz, alpha, descr, c_loc( &
         csr_val), c_loc(csr_row_ptr), c_loc(csr_col_ind), info, c_loc(x), c_loc(y), policy, &
         temp_buffer)
@@ -51615,6 +52990,11 @@ contains
       integer(c_int), value :: policy
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: zcsrsv_solve
+      if (.not. is_contiguous(csr_val)) error stop "csr_val: array must be contiguous"
+      if (.not. is_contiguous(csr_row_ptr)) error stop "csr_row_ptr: array must be contiguous"
+      if (.not. is_contiguous(csr_col_ind)) error stop "csr_col_ind: array must be contiguous"
+      if (.not. is_contiguous(x)) error stop "x: array must be contiguous"
+      if (.not. is_contiguous(y)) error stop "y: array must be contiguous"
       zcsrsv_solve = rocsparse_zcsrsv_solve_raw(handle, trans, m, nnz, alpha, descr, c_loc( &
         csr_val), c_loc(csr_row_ptr), c_loc(csr_col_ind), info, c_loc(x), c_loc(y), policy, &
         temp_buffer)
@@ -51661,6 +53041,10 @@ contains
       real(c_float) :: beta
       real(c_float), target :: y(..)
       integer(c_int) :: sellmv
+      if (.not. is_contiguous(ell_val)) error stop "ell_val: array must be contiguous"
+      if (.not. is_contiguous(ell_col_ind)) error stop "ell_col_ind: array must be contiguous"
+      if (.not. is_contiguous(x)) error stop "x: array must be contiguous"
+      if (.not. is_contiguous(y)) error stop "y: array must be contiguous"
       sellmv = rocsparse_sellmv_raw(handle, trans, m, n, alpha, descr, c_loc(ell_val), c_loc( &
         ell_col_ind), ell_width, c_loc(x), beta, c_loc(y))
     end function rocsparse_sellmv_native
@@ -51704,6 +53088,10 @@ contains
       real(c_double) :: beta
       real(c_double), target :: y(..)
       integer(c_int) :: dellmv
+      if (.not. is_contiguous(ell_val)) error stop "ell_val: array must be contiguous"
+      if (.not. is_contiguous(ell_col_ind)) error stop "ell_col_ind: array must be contiguous"
+      if (.not. is_contiguous(x)) error stop "x: array must be contiguous"
+      if (.not. is_contiguous(y)) error stop "y: array must be contiguous"
       dellmv = rocsparse_dellmv_raw(handle, trans, m, n, alpha, descr, c_loc(ell_val), c_loc( &
         ell_col_ind), ell_width, c_loc(x), beta, c_loc(y))
     end function rocsparse_dellmv_native
@@ -51747,6 +53135,10 @@ contains
       complex(c_float_complex) :: beta
       complex(c_float_complex), target :: y(..)
       integer(c_int) :: cellmv
+      if (.not. is_contiguous(ell_val)) error stop "ell_val: array must be contiguous"
+      if (.not. is_contiguous(ell_col_ind)) error stop "ell_col_ind: array must be contiguous"
+      if (.not. is_contiguous(x)) error stop "x: array must be contiguous"
+      if (.not. is_contiguous(y)) error stop "y: array must be contiguous"
       cellmv = rocsparse_cellmv_raw(handle, trans, m, n, alpha, descr, c_loc(ell_val), c_loc( &
         ell_col_ind), ell_width, c_loc(x), beta, c_loc(y))
     end function rocsparse_cellmv_native
@@ -51790,6 +53182,10 @@ contains
       complex(c_double_complex) :: beta
       complex(c_double_complex), target :: y(..)
       integer(c_int) :: zellmv
+      if (.not. is_contiguous(ell_val)) error stop "ell_val: array must be contiguous"
+      if (.not. is_contiguous(ell_col_ind)) error stop "ell_col_ind: array must be contiguous"
+      if (.not. is_contiguous(x)) error stop "x: array must be contiguous"
+      if (.not. is_contiguous(y)) error stop "y: array must be contiguous"
       zellmv = rocsparse_zellmv_raw(handle, trans, m, n, alpha, descr, c_loc(ell_val), c_loc( &
         ell_col_ind), ell_width, c_loc(x), beta, c_loc(y))
     end function rocsparse_zellmv_native
@@ -51837,6 +53233,11 @@ contains
       real(c_float) :: beta
       real(c_float), target :: y(..)
       integer(c_int) :: sgebsrmv
+      if (.not. is_contiguous(bsr_val)) error stop "bsr_val: array must be contiguous"
+      if (.not. is_contiguous(bsr_row_ptr)) error stop "bsr_row_ptr: array must be contiguous"
+      if (.not. is_contiguous(bsr_col_ind)) error stop "bsr_col_ind: array must be contiguous"
+      if (.not. is_contiguous(x)) error stop "x: array must be contiguous"
+      if (.not. is_contiguous(y)) error stop "y: array must be contiguous"
       sgebsrmv = rocsparse_sgebsrmv_raw(handle, dir, trans, mb, nb, nnzb, alpha, descr, c_loc( &
         bsr_val), c_loc(bsr_row_ptr), c_loc(bsr_col_ind), row_block_dim, col_block_dim, c_loc(x), &
         beta, c_loc(y))
@@ -51889,6 +53290,11 @@ contains
       real(c_double) :: beta
       real(c_double), target :: y(..)
       integer(c_int) :: dgebsrmv
+      if (.not. is_contiguous(bsr_val)) error stop "bsr_val: array must be contiguous"
+      if (.not. is_contiguous(bsr_row_ptr)) error stop "bsr_row_ptr: array must be contiguous"
+      if (.not. is_contiguous(bsr_col_ind)) error stop "bsr_col_ind: array must be contiguous"
+      if (.not. is_contiguous(x)) error stop "x: array must be contiguous"
+      if (.not. is_contiguous(y)) error stop "y: array must be contiguous"
       dgebsrmv = rocsparse_dgebsrmv_raw(handle, dir, trans, mb, nb, nnzb, alpha, descr, c_loc( &
         bsr_val), c_loc(bsr_row_ptr), c_loc(bsr_col_ind), row_block_dim, col_block_dim, c_loc(x), &
         beta, c_loc(y))
@@ -51941,6 +53347,11 @@ contains
       complex(c_float_complex) :: beta
       complex(c_float_complex), target :: y(..)
       integer(c_int) :: cgebsrmv
+      if (.not. is_contiguous(bsr_val)) error stop "bsr_val: array must be contiguous"
+      if (.not. is_contiguous(bsr_row_ptr)) error stop "bsr_row_ptr: array must be contiguous"
+      if (.not. is_contiguous(bsr_col_ind)) error stop "bsr_col_ind: array must be contiguous"
+      if (.not. is_contiguous(x)) error stop "x: array must be contiguous"
+      if (.not. is_contiguous(y)) error stop "y: array must be contiguous"
       cgebsrmv = rocsparse_cgebsrmv_raw(handle, dir, trans, mb, nb, nnzb, alpha, descr, c_loc( &
         bsr_val), c_loc(bsr_row_ptr), c_loc(bsr_col_ind), row_block_dim, col_block_dim, c_loc(x), &
         beta, c_loc(y))
@@ -51993,6 +53404,11 @@ contains
       complex(c_double_complex) :: beta
       complex(c_double_complex), target :: y(..)
       integer(c_int) :: zgebsrmv
+      if (.not. is_contiguous(bsr_val)) error stop "bsr_val: array must be contiguous"
+      if (.not. is_contiguous(bsr_row_ptr)) error stop "bsr_row_ptr: array must be contiguous"
+      if (.not. is_contiguous(bsr_col_ind)) error stop "bsr_col_ind: array must be contiguous"
+      if (.not. is_contiguous(x)) error stop "x: array must be contiguous"
+      if (.not. is_contiguous(y)) error stop "y: array must be contiguous"
       zgebsrmv = rocsparse_zgebsrmv_raw(handle, dir, trans, mb, nb, nnzb, alpha, descr, c_loc( &
         bsr_val), c_loc(bsr_row_ptr), c_loc(bsr_col_ind), row_block_dim, col_block_dim, c_loc(x), &
         beta, c_loc(y))
@@ -52107,6 +53523,10 @@ contains
       integer(c_int), value :: idx_base
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: sgemvi
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(x_val)) error stop "x_val: array must be contiguous"
+      if (.not. is_contiguous(x_ind)) error stop "x_ind: array must be contiguous"
+      if (.not. is_contiguous(y)) error stop "y: array must be contiguous"
       sgemvi = rocsparse_sgemvi_raw(handle, trans, m, n, alpha, c_loc(A), lda, nnz, c_loc(x_val), &
         c_loc(x_ind), beta, c_loc(y), idx_base, temp_buffer)
     end function rocsparse_sgemvi_native
@@ -52154,6 +53574,10 @@ contains
       integer(c_int), value :: idx_base
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: dgemvi
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(x_val)) error stop "x_val: array must be contiguous"
+      if (.not. is_contiguous(x_ind)) error stop "x_ind: array must be contiguous"
+      if (.not. is_contiguous(y)) error stop "y: array must be contiguous"
       dgemvi = rocsparse_dgemvi_raw(handle, trans, m, n, alpha, c_loc(A), lda, nnz, c_loc(x_val), &
         c_loc(x_ind), beta, c_loc(y), idx_base, temp_buffer)
     end function rocsparse_dgemvi_native
@@ -52201,6 +53625,10 @@ contains
       integer(c_int), value :: idx_base
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: cgemvi
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(x_val)) error stop "x_val: array must be contiguous"
+      if (.not. is_contiguous(x_ind)) error stop "x_ind: array must be contiguous"
+      if (.not. is_contiguous(y)) error stop "y: array must be contiguous"
       cgemvi = rocsparse_cgemvi_raw(handle, trans, m, n, alpha, c_loc(A), lda, nnz, c_loc(x_val), &
         c_loc(x_ind), beta, c_loc(y), idx_base, temp_buffer)
     end function rocsparse_cgemvi_native
@@ -52248,6 +53676,10 @@ contains
       integer(c_int), value :: idx_base
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: zgemvi
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(x_val)) error stop "x_val: array must be contiguous"
+      if (.not. is_contiguous(x_ind)) error stop "x_ind: array must be contiguous"
+      if (.not. is_contiguous(y)) error stop "y: array must be contiguous"
       zgemvi = rocsparse_zgemvi_raw(handle, trans, m, n, alpha, c_loc(A), lda, nnz, c_loc(x_val), &
         c_loc(x_ind), beta, c_loc(y), idx_base, temp_buffer)
     end function rocsparse_zgemvi_native
@@ -52288,6 +53720,8 @@ contains
       real(c_float) :: beta
       real(c_float), target :: y(..)
       integer(c_int) :: shybmv
+      if (.not. is_contiguous(x)) error stop "x: array must be contiguous"
+      if (.not. is_contiguous(y)) error stop "y: array must be contiguous"
       shybmv = rocsparse_shybmv_raw(handle, trans, alpha, descr, hyb, c_loc(x), beta, c_loc(y))
     end function rocsparse_shybmv_native
 
@@ -52319,6 +53753,8 @@ contains
       real(c_double) :: beta
       real(c_double), target :: y(..)
       integer(c_int) :: dhybmv
+      if (.not. is_contiguous(x)) error stop "x: array must be contiguous"
+      if (.not. is_contiguous(y)) error stop "y: array must be contiguous"
       dhybmv = rocsparse_dhybmv_raw(handle, trans, alpha, descr, hyb, c_loc(x), beta, c_loc(y))
     end function rocsparse_dhybmv_native
 
@@ -52350,6 +53786,8 @@ contains
       complex(c_float_complex) :: beta
       complex(c_float_complex), target :: y(..)
       integer(c_int) :: chybmv
+      if (.not. is_contiguous(x)) error stop "x: array must be contiguous"
+      if (.not. is_contiguous(y)) error stop "y: array must be contiguous"
       chybmv = rocsparse_chybmv_raw(handle, trans, alpha, descr, hyb, c_loc(x), beta, c_loc(y))
     end function rocsparse_chybmv_native
 
@@ -52381,6 +53819,8 @@ contains
       complex(c_double_complex) :: beta
       complex(c_double_complex), target :: y(..)
       integer(c_int) :: zhybmv
+      if (.not. is_contiguous(x)) error stop "x: array must be contiguous"
+      if (.not. is_contiguous(y)) error stop "y: array must be contiguous"
       zhybmv = rocsparse_zhybmv_raw(handle, trans, alpha, descr, hyb, c_loc(x), beta, c_loc(y))
     end function rocsparse_zhybmv_native
 
@@ -52424,6 +53864,11 @@ contains
       real(c_float), target :: C(..)
       integer(c_int), value :: ldc
       integer(c_int) :: sbsrmm
+      if (.not. is_contiguous(bsr_val)) error stop "bsr_val: array must be contiguous"
+      if (.not. is_contiguous(bsr_row_ptr)) error stop "bsr_row_ptr: array must be contiguous"
+      if (.not. is_contiguous(bsr_col_ind)) error stop "bsr_col_ind: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
+      if (.not. is_contiguous(C)) error stop "C: array must be contiguous"
       sbsrmm = rocsparse_sbsrmm_raw(handle, dir, trans_A, trans_B, mb, n, kb, nnzb, alpha, descr, &
         c_loc(bsr_val), c_loc(bsr_row_ptr), c_loc(bsr_col_ind), block_dim, c_loc(B), ldb, beta, &
         c_loc(C), ldc)
@@ -52482,6 +53927,11 @@ contains
       real(c_double), target :: C(..)
       integer(c_int), value :: ldc
       integer(c_int) :: dbsrmm
+      if (.not. is_contiguous(bsr_val)) error stop "bsr_val: array must be contiguous"
+      if (.not. is_contiguous(bsr_row_ptr)) error stop "bsr_row_ptr: array must be contiguous"
+      if (.not. is_contiguous(bsr_col_ind)) error stop "bsr_col_ind: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
+      if (.not. is_contiguous(C)) error stop "C: array must be contiguous"
       dbsrmm = rocsparse_dbsrmm_raw(handle, dir, trans_A, trans_B, mb, n, kb, nnzb, alpha, descr, &
         c_loc(bsr_val), c_loc(bsr_row_ptr), c_loc(bsr_col_ind), block_dim, c_loc(B), ldb, beta, &
         c_loc(C), ldc)
@@ -52540,6 +53990,11 @@ contains
       complex(c_float_complex), target :: C(..)
       integer(c_int), value :: ldc
       integer(c_int) :: cbsrmm
+      if (.not. is_contiguous(bsr_val)) error stop "bsr_val: array must be contiguous"
+      if (.not. is_contiguous(bsr_row_ptr)) error stop "bsr_row_ptr: array must be contiguous"
+      if (.not. is_contiguous(bsr_col_ind)) error stop "bsr_col_ind: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
+      if (.not. is_contiguous(C)) error stop "C: array must be contiguous"
       cbsrmm = rocsparse_cbsrmm_raw(handle, dir, trans_A, trans_B, mb, n, kb, nnzb, alpha, descr, &
         c_loc(bsr_val), c_loc(bsr_row_ptr), c_loc(bsr_col_ind), block_dim, c_loc(B), ldb, beta, &
         c_loc(C), ldc)
@@ -52598,6 +54053,11 @@ contains
       complex(c_double_complex), target :: C(..)
       integer(c_int), value :: ldc
       integer(c_int) :: zbsrmm
+      if (.not. is_contiguous(bsr_val)) error stop "bsr_val: array must be contiguous"
+      if (.not. is_contiguous(bsr_row_ptr)) error stop "bsr_row_ptr: array must be contiguous"
+      if (.not. is_contiguous(bsr_col_ind)) error stop "bsr_col_ind: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
+      if (.not. is_contiguous(C)) error stop "C: array must be contiguous"
       zbsrmm = rocsparse_zbsrmm_raw(handle, dir, trans_A, trans_B, mb, n, kb, nnzb, alpha, descr, &
         c_loc(bsr_val), c_loc(bsr_row_ptr), c_loc(bsr_col_ind), block_dim, c_loc(B), ldb, beta, &
         c_loc(C), ldc)
@@ -52663,6 +54123,9 @@ contains
       type(c_ptr), value :: info
       type(c_ptr), value :: buffer_size
       integer(c_int) :: sbsrsm_buffer_size
+      if (.not. is_contiguous(bsr_val)) error stop "bsr_val: array must be contiguous"
+      if (.not. is_contiguous(bsr_row_ptr)) error stop "bsr_row_ptr: array must be contiguous"
+      if (.not. is_contiguous(bsr_col_ind)) error stop "bsr_col_ind: array must be contiguous"
       sbsrsm_buffer_size = rocsparse_sbsrsm_buffer_size_raw(handle, dir, trans_A, trans_X, mb, &
         nrhs, nnzb, descr, c_loc(bsr_val), c_loc(bsr_row_ptr), c_loc(bsr_col_ind), block_dim, &
         info, buffer_size)
@@ -52713,6 +54176,9 @@ contains
       type(c_ptr), value :: info
       type(c_ptr), value :: buffer_size
       integer(c_int) :: dbsrsm_buffer_size
+      if (.not. is_contiguous(bsr_val)) error stop "bsr_val: array must be contiguous"
+      if (.not. is_contiguous(bsr_row_ptr)) error stop "bsr_row_ptr: array must be contiguous"
+      if (.not. is_contiguous(bsr_col_ind)) error stop "bsr_col_ind: array must be contiguous"
       dbsrsm_buffer_size = rocsparse_dbsrsm_buffer_size_raw(handle, dir, trans_A, trans_X, mb, &
         nrhs, nnzb, descr, c_loc(bsr_val), c_loc(bsr_row_ptr), c_loc(bsr_col_ind), block_dim, &
         info, buffer_size)
@@ -52763,6 +54229,9 @@ contains
       type(c_ptr), value :: info
       type(c_ptr), value :: buffer_size
       integer(c_int) :: cbsrsm_buffer_size
+      if (.not. is_contiguous(bsr_val)) error stop "bsr_val: array must be contiguous"
+      if (.not. is_contiguous(bsr_row_ptr)) error stop "bsr_row_ptr: array must be contiguous"
+      if (.not. is_contiguous(bsr_col_ind)) error stop "bsr_col_ind: array must be contiguous"
       cbsrsm_buffer_size = rocsparse_cbsrsm_buffer_size_raw(handle, dir, trans_A, trans_X, mb, &
         nrhs, nnzb, descr, c_loc(bsr_val), c_loc(bsr_row_ptr), c_loc(bsr_col_ind), block_dim, &
         info, buffer_size)
@@ -52813,6 +54282,9 @@ contains
       type(c_ptr), value :: info
       type(c_ptr), value :: buffer_size
       integer(c_int) :: zbsrsm_buffer_size
+      if (.not. is_contiguous(bsr_val)) error stop "bsr_val: array must be contiguous"
+      if (.not. is_contiguous(bsr_row_ptr)) error stop "bsr_row_ptr: array must be contiguous"
+      if (.not. is_contiguous(bsr_col_ind)) error stop "bsr_col_ind: array must be contiguous"
       zbsrsm_buffer_size = rocsparse_zbsrsm_buffer_size_raw(handle, dir, trans_A, trans_X, mb, &
         nrhs, nnzb, descr, c_loc(bsr_val), c_loc(bsr_row_ptr), c_loc(bsr_col_ind), block_dim, &
         info, buffer_size)
@@ -52865,6 +54337,9 @@ contains
       integer(c_int), value :: solve
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: sbsrsm_analysis
+      if (.not. is_contiguous(bsr_val)) error stop "bsr_val: array must be contiguous"
+      if (.not. is_contiguous(bsr_row_ptr)) error stop "bsr_row_ptr: array must be contiguous"
+      if (.not. is_contiguous(bsr_col_ind)) error stop "bsr_col_ind: array must be contiguous"
       sbsrsm_analysis = rocsparse_sbsrsm_analysis_raw(handle, dir, trans_A, trans_X, mb, nrhs, &
         nnzb, descr, c_loc(bsr_val), c_loc(bsr_row_ptr), c_loc(bsr_col_ind), block_dim, info, &
         analysis, solve, temp_buffer)
@@ -52920,6 +54395,9 @@ contains
       integer(c_int), value :: solve
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: dbsrsm_analysis
+      if (.not. is_contiguous(bsr_val)) error stop "bsr_val: array must be contiguous"
+      if (.not. is_contiguous(bsr_row_ptr)) error stop "bsr_row_ptr: array must be contiguous"
+      if (.not. is_contiguous(bsr_col_ind)) error stop "bsr_col_ind: array must be contiguous"
       dbsrsm_analysis = rocsparse_dbsrsm_analysis_raw(handle, dir, trans_A, trans_X, mb, nrhs, &
         nnzb, descr, c_loc(bsr_val), c_loc(bsr_row_ptr), c_loc(bsr_col_ind), block_dim, info, &
         analysis, solve, temp_buffer)
@@ -52975,6 +54453,9 @@ contains
       integer(c_int), value :: solve
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: cbsrsm_analysis
+      if (.not. is_contiguous(bsr_val)) error stop "bsr_val: array must be contiguous"
+      if (.not. is_contiguous(bsr_row_ptr)) error stop "bsr_row_ptr: array must be contiguous"
+      if (.not. is_contiguous(bsr_col_ind)) error stop "bsr_col_ind: array must be contiguous"
       cbsrsm_analysis = rocsparse_cbsrsm_analysis_raw(handle, dir, trans_A, trans_X, mb, nrhs, &
         nnzb, descr, c_loc(bsr_val), c_loc(bsr_row_ptr), c_loc(bsr_col_ind), block_dim, info, &
         analysis, solve, temp_buffer)
@@ -53030,6 +54511,9 @@ contains
       integer(c_int), value :: solve
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: zbsrsm_analysis
+      if (.not. is_contiguous(bsr_val)) error stop "bsr_val: array must be contiguous"
+      if (.not. is_contiguous(bsr_row_ptr)) error stop "bsr_row_ptr: array must be contiguous"
+      if (.not. is_contiguous(bsr_col_ind)) error stop "bsr_col_ind: array must be contiguous"
       zbsrsm_analysis = rocsparse_zbsrsm_analysis_raw(handle, dir, trans_A, trans_X, mb, nrhs, &
         nnzb, descr, c_loc(bsr_val), c_loc(bsr_row_ptr), c_loc(bsr_col_ind), block_dim, info, &
         analysis, solve, temp_buffer)
@@ -53099,6 +54583,11 @@ contains
       integer(c_int), value :: policy
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: sbsrsm_solve
+      if (.not. is_contiguous(bsr_val)) error stop "bsr_val: array must be contiguous"
+      if (.not. is_contiguous(bsr_row_ptr)) error stop "bsr_row_ptr: array must be contiguous"
+      if (.not. is_contiguous(bsr_col_ind)) error stop "bsr_col_ind: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
+      if (.not. is_contiguous(X)) error stop "X: array must be contiguous"
       sbsrsm_solve = rocsparse_sbsrsm_solve_raw(handle, dir, trans_A, trans_X, mb, nrhs, nnzb, &
         alpha, descr, c_loc(bsr_val), c_loc(bsr_row_ptr), c_loc(bsr_col_ind), block_dim, info, &
         c_loc(B), ldb, c_loc(X), ldx, policy, temp_buffer)
@@ -53162,6 +54651,11 @@ contains
       integer(c_int), value :: policy
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: dbsrsm_solve
+      if (.not. is_contiguous(bsr_val)) error stop "bsr_val: array must be contiguous"
+      if (.not. is_contiguous(bsr_row_ptr)) error stop "bsr_row_ptr: array must be contiguous"
+      if (.not. is_contiguous(bsr_col_ind)) error stop "bsr_col_ind: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
+      if (.not. is_contiguous(X)) error stop "X: array must be contiguous"
       dbsrsm_solve = rocsparse_dbsrsm_solve_raw(handle, dir, trans_A, trans_X, mb, nrhs, nnzb, &
         alpha, descr, c_loc(bsr_val), c_loc(bsr_row_ptr), c_loc(bsr_col_ind), block_dim, info, &
         c_loc(B), ldb, c_loc(X), ldx, policy, temp_buffer)
@@ -53225,6 +54719,11 @@ contains
       integer(c_int), value :: policy
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: cbsrsm_solve
+      if (.not. is_contiguous(bsr_val)) error stop "bsr_val: array must be contiguous"
+      if (.not. is_contiguous(bsr_row_ptr)) error stop "bsr_row_ptr: array must be contiguous"
+      if (.not. is_contiguous(bsr_col_ind)) error stop "bsr_col_ind: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
+      if (.not. is_contiguous(X)) error stop "X: array must be contiguous"
       cbsrsm_solve = rocsparse_cbsrsm_solve_raw(handle, dir, trans_A, trans_X, mb, nrhs, nnzb, &
         alpha, descr, c_loc(bsr_val), c_loc(bsr_row_ptr), c_loc(bsr_col_ind), block_dim, info, &
         c_loc(B), ldb, c_loc(X), ldx, policy, temp_buffer)
@@ -53288,6 +54787,11 @@ contains
       integer(c_int), value :: policy
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: zbsrsm_solve
+      if (.not. is_contiguous(bsr_val)) error stop "bsr_val: array must be contiguous"
+      if (.not. is_contiguous(bsr_row_ptr)) error stop "bsr_row_ptr: array must be contiguous"
+      if (.not. is_contiguous(bsr_col_ind)) error stop "bsr_col_ind: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
+      if (.not. is_contiguous(X)) error stop "X: array must be contiguous"
       zbsrsm_solve = rocsparse_zbsrsm_solve_raw(handle, dir, trans_A, trans_X, mb, nrhs, nnzb, &
         alpha, descr, c_loc(bsr_val), c_loc(bsr_row_ptr), c_loc(bsr_col_ind), block_dim, info, &
         c_loc(B), ldb, c_loc(X), ldx, policy, temp_buffer)
@@ -53347,6 +54851,11 @@ contains
       real(c_float), target :: C(..)
       integer(c_int), value :: ldc
       integer(c_int) :: scsrmm
+      if (.not. is_contiguous(csr_val)) error stop "csr_val: array must be contiguous"
+      if (.not. is_contiguous(csr_row_ptr)) error stop "csr_row_ptr: array must be contiguous"
+      if (.not. is_contiguous(csr_col_ind)) error stop "csr_col_ind: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
+      if (.not. is_contiguous(C)) error stop "C: array must be contiguous"
       scsrmm = rocsparse_scsrmm_raw(handle, trans_A, trans_B, m, n, k, nnz, alpha, descr, c_loc( &
         csr_val), c_loc(csr_row_ptr), c_loc(csr_col_ind), c_loc(B), ldb, beta, c_loc(C), ldc)
     end function rocsparse_scsrmm_native
@@ -53400,6 +54909,11 @@ contains
       real(c_double), target :: C(..)
       integer(c_int), value :: ldc
       integer(c_int) :: dcsrmm
+      if (.not. is_contiguous(csr_val)) error stop "csr_val: array must be contiguous"
+      if (.not. is_contiguous(csr_row_ptr)) error stop "csr_row_ptr: array must be contiguous"
+      if (.not. is_contiguous(csr_col_ind)) error stop "csr_col_ind: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
+      if (.not. is_contiguous(C)) error stop "C: array must be contiguous"
       dcsrmm = rocsparse_dcsrmm_raw(handle, trans_A, trans_B, m, n, k, nnz, alpha, descr, c_loc( &
         csr_val), c_loc(csr_row_ptr), c_loc(csr_col_ind), c_loc(B), ldb, beta, c_loc(C), ldc)
     end function rocsparse_dcsrmm_native
@@ -53453,6 +54967,11 @@ contains
       complex(c_float_complex), target :: C(..)
       integer(c_int), value :: ldc
       integer(c_int) :: ccsrmm
+      if (.not. is_contiguous(csr_val)) error stop "csr_val: array must be contiguous"
+      if (.not. is_contiguous(csr_row_ptr)) error stop "csr_row_ptr: array must be contiguous"
+      if (.not. is_contiguous(csr_col_ind)) error stop "csr_col_ind: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
+      if (.not. is_contiguous(C)) error stop "C: array must be contiguous"
       ccsrmm = rocsparse_ccsrmm_raw(handle, trans_A, trans_B, m, n, k, nnz, alpha, descr, c_loc( &
         csr_val), c_loc(csr_row_ptr), c_loc(csr_col_ind), c_loc(B), ldb, beta, c_loc(C), ldc)
     end function rocsparse_ccsrmm_native
@@ -53506,6 +55025,11 @@ contains
       complex(c_double_complex), target :: C(..)
       integer(c_int), value :: ldc
       integer(c_int) :: zcsrmm
+      if (.not. is_contiguous(csr_val)) error stop "csr_val: array must be contiguous"
+      if (.not. is_contiguous(csr_row_ptr)) error stop "csr_row_ptr: array must be contiguous"
+      if (.not. is_contiguous(csr_col_ind)) error stop "csr_col_ind: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
+      if (.not. is_contiguous(C)) error stop "C: array must be contiguous"
       zcsrmm = rocsparse_zcsrmm_raw(handle, trans_A, trans_B, m, n, k, nnz, alpha, descr, c_loc( &
         csr_val), c_loc(csr_row_ptr), c_loc(csr_col_ind), c_loc(B), ldb, beta, c_loc(C), ldc)
     end function rocsparse_zcsrmm_native
@@ -53570,6 +55094,10 @@ contains
       integer(c_int), value :: policy
       type(c_ptr), value :: buffer_size
       integer(c_int) :: scsrsm_buffer_size
+      if (.not. is_contiguous(csr_val)) error stop "csr_val: array must be contiguous"
+      if (.not. is_contiguous(csr_row_ptr)) error stop "csr_row_ptr: array must be contiguous"
+      if (.not. is_contiguous(csr_col_ind)) error stop "csr_col_ind: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
       scsrsm_buffer_size = rocsparse_scsrsm_buffer_size_raw(handle, trans_A, trans_B, m, nrhs, &
         nnz, alpha, descr, c_loc(csr_val), c_loc(csr_row_ptr), c_loc(csr_col_ind), c_loc(B), ldb, &
         info, policy, buffer_size)
@@ -53625,6 +55153,10 @@ contains
       integer(c_int), value :: policy
       type(c_ptr), value :: buffer_size
       integer(c_int) :: dcsrsm_buffer_size
+      if (.not. is_contiguous(csr_val)) error stop "csr_val: array must be contiguous"
+      if (.not. is_contiguous(csr_row_ptr)) error stop "csr_row_ptr: array must be contiguous"
+      if (.not. is_contiguous(csr_col_ind)) error stop "csr_col_ind: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
       dcsrsm_buffer_size = rocsparse_dcsrsm_buffer_size_raw(handle, trans_A, trans_B, m, nrhs, &
         nnz, alpha, descr, c_loc(csr_val), c_loc(csr_row_ptr), c_loc(csr_col_ind), c_loc(B), ldb, &
         info, policy, buffer_size)
@@ -53680,6 +55212,10 @@ contains
       integer(c_int), value :: policy
       type(c_ptr), value :: buffer_size
       integer(c_int) :: ccsrsm_buffer_size
+      if (.not. is_contiguous(csr_val)) error stop "csr_val: array must be contiguous"
+      if (.not. is_contiguous(csr_row_ptr)) error stop "csr_row_ptr: array must be contiguous"
+      if (.not. is_contiguous(csr_col_ind)) error stop "csr_col_ind: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
       ccsrsm_buffer_size = rocsparse_ccsrsm_buffer_size_raw(handle, trans_A, trans_B, m, nrhs, &
         nnz, alpha, descr, c_loc(csr_val), c_loc(csr_row_ptr), c_loc(csr_col_ind), c_loc(B), ldb, &
         info, policy, buffer_size)
@@ -53735,6 +55271,10 @@ contains
       integer(c_int), value :: policy
       type(c_ptr), value :: buffer_size
       integer(c_int) :: zcsrsm_buffer_size
+      if (.not. is_contiguous(csr_val)) error stop "csr_val: array must be contiguous"
+      if (.not. is_contiguous(csr_row_ptr)) error stop "csr_row_ptr: array must be contiguous"
+      if (.not. is_contiguous(csr_col_ind)) error stop "csr_col_ind: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
       zcsrsm_buffer_size = rocsparse_zcsrsm_buffer_size_raw(handle, trans_A, trans_B, m, nrhs, &
         nnz, alpha, descr, c_loc(csr_val), c_loc(csr_row_ptr), c_loc(csr_col_ind), c_loc(B), ldb, &
         info, policy, buffer_size)
@@ -53791,6 +55331,10 @@ contains
       integer(c_int), value :: solve
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: scsrsm_analysis
+      if (.not. is_contiguous(csr_val)) error stop "csr_val: array must be contiguous"
+      if (.not. is_contiguous(csr_row_ptr)) error stop "csr_row_ptr: array must be contiguous"
+      if (.not. is_contiguous(csr_col_ind)) error stop "csr_col_ind: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
       scsrsm_analysis = rocsparse_scsrsm_analysis_raw(handle, trans_A, trans_B, m, nrhs, nnz, &
         alpha, descr, c_loc(csr_val), c_loc(csr_row_ptr), c_loc(csr_col_ind), c_loc(B), ldb, info, &
         analysis, solve, temp_buffer)
@@ -53848,6 +55392,10 @@ contains
       integer(c_int), value :: solve
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: dcsrsm_analysis
+      if (.not. is_contiguous(csr_val)) error stop "csr_val: array must be contiguous"
+      if (.not. is_contiguous(csr_row_ptr)) error stop "csr_row_ptr: array must be contiguous"
+      if (.not. is_contiguous(csr_col_ind)) error stop "csr_col_ind: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
       dcsrsm_analysis = rocsparse_dcsrsm_analysis_raw(handle, trans_A, trans_B, m, nrhs, nnz, &
         alpha, descr, c_loc(csr_val), c_loc(csr_row_ptr), c_loc(csr_col_ind), c_loc(B), ldb, info, &
         analysis, solve, temp_buffer)
@@ -53905,6 +55453,10 @@ contains
       integer(c_int), value :: solve
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: ccsrsm_analysis
+      if (.not. is_contiguous(csr_val)) error stop "csr_val: array must be contiguous"
+      if (.not. is_contiguous(csr_row_ptr)) error stop "csr_row_ptr: array must be contiguous"
+      if (.not. is_contiguous(csr_col_ind)) error stop "csr_col_ind: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
       ccsrsm_analysis = rocsparse_ccsrsm_analysis_raw(handle, trans_A, trans_B, m, nrhs, nnz, &
         alpha, descr, c_loc(csr_val), c_loc(csr_row_ptr), c_loc(csr_col_ind), c_loc(B), ldb, info, &
         analysis, solve, temp_buffer)
@@ -53962,6 +55514,10 @@ contains
       integer(c_int), value :: solve
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: zcsrsm_analysis
+      if (.not. is_contiguous(csr_val)) error stop "csr_val: array must be contiguous"
+      if (.not. is_contiguous(csr_row_ptr)) error stop "csr_row_ptr: array must be contiguous"
+      if (.not. is_contiguous(csr_col_ind)) error stop "csr_col_ind: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
       zcsrsm_analysis = rocsparse_zcsrsm_analysis_raw(handle, trans_A, trans_B, m, nrhs, nnz, &
         alpha, descr, c_loc(csr_val), c_loc(csr_row_ptr), c_loc(csr_col_ind), c_loc(B), ldb, info, &
         analysis, solve, temp_buffer)
@@ -54027,6 +55583,10 @@ contains
       integer(c_int), value :: policy
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: scsrsm_solve
+      if (.not. is_contiguous(csr_val)) error stop "csr_val: array must be contiguous"
+      if (.not. is_contiguous(csr_row_ptr)) error stop "csr_row_ptr: array must be contiguous"
+      if (.not. is_contiguous(csr_col_ind)) error stop "csr_col_ind: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
       scsrsm_solve = rocsparse_scsrsm_solve_raw(handle, trans_A, trans_B, m, nrhs, nnz, alpha, &
         descr, c_loc(csr_val), c_loc(csr_row_ptr), c_loc(csr_col_ind), c_loc(B), ldb, info, &
         policy, temp_buffer)
@@ -54079,6 +55639,10 @@ contains
       integer(c_int), value :: policy
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: dcsrsm_solve
+      if (.not. is_contiguous(csr_val)) error stop "csr_val: array must be contiguous"
+      if (.not. is_contiguous(csr_row_ptr)) error stop "csr_row_ptr: array must be contiguous"
+      if (.not. is_contiguous(csr_col_ind)) error stop "csr_col_ind: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
       dcsrsm_solve = rocsparse_dcsrsm_solve_raw(handle, trans_A, trans_B, m, nrhs, nnz, alpha, &
         descr, c_loc(csr_val), c_loc(csr_row_ptr), c_loc(csr_col_ind), c_loc(B), ldb, info, &
         policy, temp_buffer)
@@ -54131,6 +55695,10 @@ contains
       integer(c_int), value :: policy
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: ccsrsm_solve
+      if (.not. is_contiguous(csr_val)) error stop "csr_val: array must be contiguous"
+      if (.not. is_contiguous(csr_row_ptr)) error stop "csr_row_ptr: array must be contiguous"
+      if (.not. is_contiguous(csr_col_ind)) error stop "csr_col_ind: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
       ccsrsm_solve = rocsparse_ccsrsm_solve_raw(handle, trans_A, trans_B, m, nrhs, nnz, alpha, &
         descr, c_loc(csr_val), c_loc(csr_row_ptr), c_loc(csr_col_ind), c_loc(B), ldb, info, &
         policy, temp_buffer)
@@ -54183,6 +55751,10 @@ contains
       integer(c_int), value :: policy
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: zcsrsm_solve
+      if (.not. is_contiguous(csr_val)) error stop "csr_val: array must be contiguous"
+      if (.not. is_contiguous(csr_row_ptr)) error stop "csr_row_ptr: array must be contiguous"
+      if (.not. is_contiguous(csr_col_ind)) error stop "csr_col_ind: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
       zcsrsm_solve = rocsparse_zcsrsm_solve_raw(handle, trans_A, trans_B, m, nrhs, nnz, alpha, &
         descr, c_loc(csr_val), c_loc(csr_row_ptr), c_loc(csr_col_ind), c_loc(B), ldb, info, &
         policy, temp_buffer)
@@ -54240,6 +55812,11 @@ contains
       real(c_float), target :: C(..)
       integer(c_int), value :: ldc
       integer(c_int) :: sgebsrmm
+      if (.not. is_contiguous(bsr_val)) error stop "bsr_val: array must be contiguous"
+      if (.not. is_contiguous(bsr_row_ptr)) error stop "bsr_row_ptr: array must be contiguous"
+      if (.not. is_contiguous(bsr_col_ind)) error stop "bsr_col_ind: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
+      if (.not. is_contiguous(C)) error stop "C: array must be contiguous"
       sgebsrmm = rocsparse_sgebsrmm_raw(handle, dir, trans_A, trans_B, mb, n, kb, nnzb, alpha, &
         descr, c_loc(bsr_val), c_loc(bsr_row_ptr), c_loc(bsr_col_ind), row_block_dim, &
         col_block_dim, c_loc(B), ldb, beta, c_loc(C), ldc)
@@ -54303,6 +55880,11 @@ contains
       real(c_double), target :: C(..)
       integer(c_int), value :: ldc
       integer(c_int) :: dgebsrmm
+      if (.not. is_contiguous(bsr_val)) error stop "bsr_val: array must be contiguous"
+      if (.not. is_contiguous(bsr_row_ptr)) error stop "bsr_row_ptr: array must be contiguous"
+      if (.not. is_contiguous(bsr_col_ind)) error stop "bsr_col_ind: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
+      if (.not. is_contiguous(C)) error stop "C: array must be contiguous"
       dgebsrmm = rocsparse_dgebsrmm_raw(handle, dir, trans_A, trans_B, mb, n, kb, nnzb, alpha, &
         descr, c_loc(bsr_val), c_loc(bsr_row_ptr), c_loc(bsr_col_ind), row_block_dim, &
         col_block_dim, c_loc(B), ldb, beta, c_loc(C), ldc)
@@ -54366,6 +55948,11 @@ contains
       complex(c_float_complex), target :: C(..)
       integer(c_int), value :: ldc
       integer(c_int) :: cgebsrmm
+      if (.not. is_contiguous(bsr_val)) error stop "bsr_val: array must be contiguous"
+      if (.not. is_contiguous(bsr_row_ptr)) error stop "bsr_row_ptr: array must be contiguous"
+      if (.not. is_contiguous(bsr_col_ind)) error stop "bsr_col_ind: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
+      if (.not. is_contiguous(C)) error stop "C: array must be contiguous"
       cgebsrmm = rocsparse_cgebsrmm_raw(handle, dir, trans_A, trans_B, mb, n, kb, nnzb, alpha, &
         descr, c_loc(bsr_val), c_loc(bsr_row_ptr), c_loc(bsr_col_ind), row_block_dim, &
         col_block_dim, c_loc(B), ldb, beta, c_loc(C), ldc)
@@ -54429,6 +56016,11 @@ contains
       complex(c_double_complex), target :: C(..)
       integer(c_int), value :: ldc
       integer(c_int) :: zgebsrmm
+      if (.not. is_contiguous(bsr_val)) error stop "bsr_val: array must be contiguous"
+      if (.not. is_contiguous(bsr_row_ptr)) error stop "bsr_row_ptr: array must be contiguous"
+      if (.not. is_contiguous(bsr_col_ind)) error stop "bsr_col_ind: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
+      if (.not. is_contiguous(C)) error stop "C: array must be contiguous"
       zgebsrmm = rocsparse_zgebsrmm_raw(handle, dir, trans_A, trans_B, mb, n, kb, nnzb, alpha, &
         descr, c_loc(bsr_val), c_loc(bsr_row_ptr), c_loc(bsr_col_ind), row_block_dim, &
         col_block_dim, c_loc(B), ldb, beta, c_loc(C), ldc)
@@ -54488,6 +56080,11 @@ contains
       real(c_float), target :: C(..)
       integer(c_int), value :: ldc
       integer(c_int) :: sgemmi
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(csr_val)) error stop "csr_val: array must be contiguous"
+      if (.not. is_contiguous(csr_row_ptr)) error stop "csr_row_ptr: array must be contiguous"
+      if (.not. is_contiguous(csr_col_ind)) error stop "csr_col_ind: array must be contiguous"
+      if (.not. is_contiguous(C)) error stop "C: array must be contiguous"
       sgemmi = rocsparse_sgemmi_raw(handle, trans_A, trans_B, m, n, k, nnz, alpha, c_loc(A), lda, &
         descr, c_loc(csr_val), c_loc(csr_row_ptr), c_loc(csr_col_ind), beta, c_loc(C), ldc)
     end function rocsparse_sgemmi_native
@@ -54541,6 +56138,11 @@ contains
       real(c_double), target :: C(..)
       integer(c_int), value :: ldc
       integer(c_int) :: dgemmi
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(csr_val)) error stop "csr_val: array must be contiguous"
+      if (.not. is_contiguous(csr_row_ptr)) error stop "csr_row_ptr: array must be contiguous"
+      if (.not. is_contiguous(csr_col_ind)) error stop "csr_col_ind: array must be contiguous"
+      if (.not. is_contiguous(C)) error stop "C: array must be contiguous"
       dgemmi = rocsparse_dgemmi_raw(handle, trans_A, trans_B, m, n, k, nnz, alpha, c_loc(A), lda, &
         descr, c_loc(csr_val), c_loc(csr_row_ptr), c_loc(csr_col_ind), beta, c_loc(C), ldc)
     end function rocsparse_dgemmi_native
@@ -54594,6 +56196,11 @@ contains
       complex(c_float_complex), target :: C(..)
       integer(c_int), value :: ldc
       integer(c_int) :: cgemmi
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(csr_val)) error stop "csr_val: array must be contiguous"
+      if (.not. is_contiguous(csr_row_ptr)) error stop "csr_row_ptr: array must be contiguous"
+      if (.not. is_contiguous(csr_col_ind)) error stop "csr_col_ind: array must be contiguous"
+      if (.not. is_contiguous(C)) error stop "C: array must be contiguous"
       cgemmi = rocsparse_cgemmi_raw(handle, trans_A, trans_B, m, n, k, nnz, alpha, c_loc(A), lda, &
         descr, c_loc(csr_val), c_loc(csr_row_ptr), c_loc(csr_col_ind), beta, c_loc(C), ldc)
     end function rocsparse_cgemmi_native
@@ -54647,6 +56254,11 @@ contains
       complex(c_double_complex), target :: C(..)
       integer(c_int), value :: ldc
       integer(c_int) :: zgemmi
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(csr_val)) error stop "csr_val: array must be contiguous"
+      if (.not. is_contiguous(csr_row_ptr)) error stop "csr_row_ptr: array must be contiguous"
+      if (.not. is_contiguous(csr_col_ind)) error stop "csr_col_ind: array must be contiguous"
+      if (.not. is_contiguous(C)) error stop "C: array must be contiguous"
       zgemmi = rocsparse_zgemmi_raw(handle, trans_A, trans_B, m, n, k, nnz, alpha, c_loc(A), lda, &
         descr, c_loc(csr_val), c_loc(csr_row_ptr), c_loc(csr_col_ind), beta, c_loc(C), ldc)
     end function rocsparse_zgemmi_native
@@ -54705,6 +56317,9 @@ contains
       type(c_ptr), value :: info
       type(c_ptr), value :: buffer_size
       integer(c_int) :: sbsric0_buffer_size
+      if (.not. is_contiguous(bsr_val)) error stop "bsr_val: array must be contiguous"
+      if (.not. is_contiguous(bsr_row_ptr)) error stop "bsr_row_ptr: array must be contiguous"
+      if (.not. is_contiguous(bsr_col_ind)) error stop "bsr_col_ind: array must be contiguous"
       sbsric0_buffer_size = rocsparse_sbsric0_buffer_size_raw(handle, dir, mb, nnzb, descr, c_loc( &
         bsr_val), c_loc(bsr_row_ptr), c_loc(bsr_col_ind), block_dim, info, buffer_size)
     end function rocsparse_sbsric0_buffer_size_native
@@ -54746,6 +56361,9 @@ contains
       type(c_ptr), value :: info
       type(c_ptr), value :: buffer_size
       integer(c_int) :: dbsric0_buffer_size
+      if (.not. is_contiguous(bsr_val)) error stop "bsr_val: array must be contiguous"
+      if (.not. is_contiguous(bsr_row_ptr)) error stop "bsr_row_ptr: array must be contiguous"
+      if (.not. is_contiguous(bsr_col_ind)) error stop "bsr_col_ind: array must be contiguous"
       dbsric0_buffer_size = rocsparse_dbsric0_buffer_size_raw(handle, dir, mb, nnzb, descr, c_loc( &
         bsr_val), c_loc(bsr_row_ptr), c_loc(bsr_col_ind), block_dim, info, buffer_size)
     end function rocsparse_dbsric0_buffer_size_native
@@ -54787,6 +56405,9 @@ contains
       type(c_ptr), value :: info
       type(c_ptr), value :: buffer_size
       integer(c_int) :: cbsric0_buffer_size
+      if (.not. is_contiguous(bsr_val)) error stop "bsr_val: array must be contiguous"
+      if (.not. is_contiguous(bsr_row_ptr)) error stop "bsr_row_ptr: array must be contiguous"
+      if (.not. is_contiguous(bsr_col_ind)) error stop "bsr_col_ind: array must be contiguous"
       cbsric0_buffer_size = rocsparse_cbsric0_buffer_size_raw(handle, dir, mb, nnzb, descr, c_loc( &
         bsr_val), c_loc(bsr_row_ptr), c_loc(bsr_col_ind), block_dim, info, buffer_size)
     end function rocsparse_cbsric0_buffer_size_native
@@ -54828,6 +56449,9 @@ contains
       type(c_ptr), value :: info
       type(c_ptr), value :: buffer_size
       integer(c_int) :: zbsric0_buffer_size
+      if (.not. is_contiguous(bsr_val)) error stop "bsr_val: array must be contiguous"
+      if (.not. is_contiguous(bsr_row_ptr)) error stop "bsr_row_ptr: array must be contiguous"
+      if (.not. is_contiguous(bsr_col_ind)) error stop "bsr_col_ind: array must be contiguous"
       zbsric0_buffer_size = rocsparse_zbsric0_buffer_size_raw(handle, dir, mb, nnzb, descr, c_loc( &
         bsr_val), c_loc(bsr_row_ptr), c_loc(bsr_col_ind), block_dim, info, buffer_size)
     end function rocsparse_zbsric0_buffer_size_native
@@ -54871,6 +56495,9 @@ contains
       integer(c_int), value :: solve
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: sbsric0_analysis
+      if (.not. is_contiguous(bsr_val)) error stop "bsr_val: array must be contiguous"
+      if (.not. is_contiguous(bsr_row_ptr)) error stop "bsr_row_ptr: array must be contiguous"
+      if (.not. is_contiguous(bsr_col_ind)) error stop "bsr_col_ind: array must be contiguous"
       sbsric0_analysis = rocsparse_sbsric0_analysis_raw(handle, dir, mb, nnzb, descr, c_loc( &
         bsr_val), c_loc(bsr_row_ptr), c_loc(bsr_col_ind), block_dim, info, analysis, solve, &
         temp_buffer)
@@ -54917,6 +56544,9 @@ contains
       integer(c_int), value :: solve
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: dbsric0_analysis
+      if (.not. is_contiguous(bsr_val)) error stop "bsr_val: array must be contiguous"
+      if (.not. is_contiguous(bsr_row_ptr)) error stop "bsr_row_ptr: array must be contiguous"
+      if (.not. is_contiguous(bsr_col_ind)) error stop "bsr_col_ind: array must be contiguous"
       dbsric0_analysis = rocsparse_dbsric0_analysis_raw(handle, dir, mb, nnzb, descr, c_loc( &
         bsr_val), c_loc(bsr_row_ptr), c_loc(bsr_col_ind), block_dim, info, analysis, solve, &
         temp_buffer)
@@ -54963,6 +56593,9 @@ contains
       integer(c_int), value :: solve
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: cbsric0_analysis
+      if (.not. is_contiguous(bsr_val)) error stop "bsr_val: array must be contiguous"
+      if (.not. is_contiguous(bsr_row_ptr)) error stop "bsr_row_ptr: array must be contiguous"
+      if (.not. is_contiguous(bsr_col_ind)) error stop "bsr_col_ind: array must be contiguous"
       cbsric0_analysis = rocsparse_cbsric0_analysis_raw(handle, dir, mb, nnzb, descr, c_loc( &
         bsr_val), c_loc(bsr_row_ptr), c_loc(bsr_col_ind), block_dim, info, analysis, solve, &
         temp_buffer)
@@ -55009,6 +56642,9 @@ contains
       integer(c_int), value :: solve
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: zbsric0_analysis
+      if (.not. is_contiguous(bsr_val)) error stop "bsr_val: array must be contiguous"
+      if (.not. is_contiguous(bsr_row_ptr)) error stop "bsr_row_ptr: array must be contiguous"
+      if (.not. is_contiguous(bsr_col_ind)) error stop "bsr_col_ind: array must be contiguous"
       zbsric0_analysis = rocsparse_zbsric0_analysis_raw(handle, dir, mb, nnzb, descr, c_loc( &
         bsr_val), c_loc(bsr_row_ptr), c_loc(bsr_col_ind), block_dim, info, analysis, solve, &
         temp_buffer)
@@ -55064,6 +56700,9 @@ contains
       integer(c_int), value :: policy
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: sbsric0
+      if (.not. is_contiguous(bsr_val)) error stop "bsr_val: array must be contiguous"
+      if (.not. is_contiguous(bsr_row_ptr)) error stop "bsr_row_ptr: array must be contiguous"
+      if (.not. is_contiguous(bsr_col_ind)) error stop "bsr_col_ind: array must be contiguous"
       sbsric0 = rocsparse_sbsric0_raw(handle, dir, mb, nnzb, descr, c_loc(bsr_val), c_loc( &
         bsr_row_ptr), c_loc(bsr_col_ind), block_dim, info, policy, temp_buffer)
     end function rocsparse_sbsric0_native
@@ -55107,6 +56746,9 @@ contains
       integer(c_int), value :: policy
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: dbsric0
+      if (.not. is_contiguous(bsr_val)) error stop "bsr_val: array must be contiguous"
+      if (.not. is_contiguous(bsr_row_ptr)) error stop "bsr_row_ptr: array must be contiguous"
+      if (.not. is_contiguous(bsr_col_ind)) error stop "bsr_col_ind: array must be contiguous"
       dbsric0 = rocsparse_dbsric0_raw(handle, dir, mb, nnzb, descr, c_loc(bsr_val), c_loc( &
         bsr_row_ptr), c_loc(bsr_col_ind), block_dim, info, policy, temp_buffer)
     end function rocsparse_dbsric0_native
@@ -55150,6 +56792,9 @@ contains
       integer(c_int), value :: policy
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: cbsric0
+      if (.not. is_contiguous(bsr_val)) error stop "bsr_val: array must be contiguous"
+      if (.not. is_contiguous(bsr_row_ptr)) error stop "bsr_row_ptr: array must be contiguous"
+      if (.not. is_contiguous(bsr_col_ind)) error stop "bsr_col_ind: array must be contiguous"
       cbsric0 = rocsparse_cbsric0_raw(handle, dir, mb, nnzb, descr, c_loc(bsr_val), c_loc( &
         bsr_row_ptr), c_loc(bsr_col_ind), block_dim, info, policy, temp_buffer)
     end function rocsparse_cbsric0_native
@@ -55193,6 +56838,9 @@ contains
       integer(c_int), value :: policy
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: zbsric0
+      if (.not. is_contiguous(bsr_val)) error stop "bsr_val: array must be contiguous"
+      if (.not. is_contiguous(bsr_row_ptr)) error stop "bsr_row_ptr: array must be contiguous"
+      if (.not. is_contiguous(bsr_col_ind)) error stop "bsr_col_ind: array must be contiguous"
       zbsric0 = rocsparse_zbsric0_raw(handle, dir, mb, nnzb, descr, c_loc(bsr_val), c_loc( &
         bsr_row_ptr), c_loc(bsr_col_ind), block_dim, info, policy, temp_buffer)
     end function rocsparse_zbsric0_native
@@ -55336,6 +56984,9 @@ contains
       type(c_ptr), value :: info
       type(c_ptr), value :: buffer_size
       integer(c_int) :: sbsrilu0_buffer_size
+      if (.not. is_contiguous(bsr_val)) error stop "bsr_val: array must be contiguous"
+      if (.not. is_contiguous(bsr_row_ptr)) error stop "bsr_row_ptr: array must be contiguous"
+      if (.not. is_contiguous(bsr_col_ind)) error stop "bsr_col_ind: array must be contiguous"
       sbsrilu0_buffer_size = rocsparse_sbsrilu0_buffer_size_raw(handle, dir, mb, nnzb, descr, &
         c_loc(bsr_val), c_loc(bsr_row_ptr), c_loc(bsr_col_ind), block_dim, info, buffer_size)
     end function rocsparse_sbsrilu0_buffer_size_native
@@ -55377,6 +57028,9 @@ contains
       type(c_ptr), value :: info
       type(c_ptr), value :: buffer_size
       integer(c_int) :: dbsrilu0_buffer_size
+      if (.not. is_contiguous(bsr_val)) error stop "bsr_val: array must be contiguous"
+      if (.not. is_contiguous(bsr_row_ptr)) error stop "bsr_row_ptr: array must be contiguous"
+      if (.not. is_contiguous(bsr_col_ind)) error stop "bsr_col_ind: array must be contiguous"
       dbsrilu0_buffer_size = rocsparse_dbsrilu0_buffer_size_raw(handle, dir, mb, nnzb, descr, &
         c_loc(bsr_val), c_loc(bsr_row_ptr), c_loc(bsr_col_ind), block_dim, info, buffer_size)
     end function rocsparse_dbsrilu0_buffer_size_native
@@ -55418,6 +57072,9 @@ contains
       type(c_ptr), value :: info
       type(c_ptr), value :: buffer_size
       integer(c_int) :: cbsrilu0_buffer_size
+      if (.not. is_contiguous(bsr_val)) error stop "bsr_val: array must be contiguous"
+      if (.not. is_contiguous(bsr_row_ptr)) error stop "bsr_row_ptr: array must be contiguous"
+      if (.not. is_contiguous(bsr_col_ind)) error stop "bsr_col_ind: array must be contiguous"
       cbsrilu0_buffer_size = rocsparse_cbsrilu0_buffer_size_raw(handle, dir, mb, nnzb, descr, &
         c_loc(bsr_val), c_loc(bsr_row_ptr), c_loc(bsr_col_ind), block_dim, info, buffer_size)
     end function rocsparse_cbsrilu0_buffer_size_native
@@ -55459,6 +57116,9 @@ contains
       type(c_ptr), value :: info
       type(c_ptr), value :: buffer_size
       integer(c_int) :: zbsrilu0_buffer_size
+      if (.not. is_contiguous(bsr_val)) error stop "bsr_val: array must be contiguous"
+      if (.not. is_contiguous(bsr_row_ptr)) error stop "bsr_row_ptr: array must be contiguous"
+      if (.not. is_contiguous(bsr_col_ind)) error stop "bsr_col_ind: array must be contiguous"
       zbsrilu0_buffer_size = rocsparse_zbsrilu0_buffer_size_raw(handle, dir, mb, nnzb, descr, &
         c_loc(bsr_val), c_loc(bsr_row_ptr), c_loc(bsr_col_ind), block_dim, info, buffer_size)
     end function rocsparse_zbsrilu0_buffer_size_native
@@ -55503,6 +57163,9 @@ contains
       integer(c_int), value :: solve
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: sbsrilu0_analysis
+      if (.not. is_contiguous(bsr_val)) error stop "bsr_val: array must be contiguous"
+      if (.not. is_contiguous(bsr_row_ptr)) error stop "bsr_row_ptr: array must be contiguous"
+      if (.not. is_contiguous(bsr_col_ind)) error stop "bsr_col_ind: array must be contiguous"
       sbsrilu0_analysis = rocsparse_sbsrilu0_analysis_raw(handle, dir, mb, nnzb, descr, c_loc( &
         bsr_val), c_loc(bsr_row_ptr), c_loc(bsr_col_ind), block_dim, info, analysis, solve, &
         temp_buffer)
@@ -55550,6 +57213,9 @@ contains
       integer(c_int), value :: solve
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: dbsrilu0_analysis
+      if (.not. is_contiguous(bsr_val)) error stop "bsr_val: array must be contiguous"
+      if (.not. is_contiguous(bsr_row_ptr)) error stop "bsr_row_ptr: array must be contiguous"
+      if (.not. is_contiguous(bsr_col_ind)) error stop "bsr_col_ind: array must be contiguous"
       dbsrilu0_analysis = rocsparse_dbsrilu0_analysis_raw(handle, dir, mb, nnzb, descr, c_loc( &
         bsr_val), c_loc(bsr_row_ptr), c_loc(bsr_col_ind), block_dim, info, analysis, solve, &
         temp_buffer)
@@ -55597,6 +57263,9 @@ contains
       integer(c_int), value :: solve
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: cbsrilu0_analysis
+      if (.not. is_contiguous(bsr_val)) error stop "bsr_val: array must be contiguous"
+      if (.not. is_contiguous(bsr_row_ptr)) error stop "bsr_row_ptr: array must be contiguous"
+      if (.not. is_contiguous(bsr_col_ind)) error stop "bsr_col_ind: array must be contiguous"
       cbsrilu0_analysis = rocsparse_cbsrilu0_analysis_raw(handle, dir, mb, nnzb, descr, c_loc( &
         bsr_val), c_loc(bsr_row_ptr), c_loc(bsr_col_ind), block_dim, info, analysis, solve, &
         temp_buffer)
@@ -55644,6 +57313,9 @@ contains
       integer(c_int), value :: solve
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: zbsrilu0_analysis
+      if (.not. is_contiguous(bsr_val)) error stop "bsr_val: array must be contiguous"
+      if (.not. is_contiguous(bsr_row_ptr)) error stop "bsr_row_ptr: array must be contiguous"
+      if (.not. is_contiguous(bsr_col_ind)) error stop "bsr_col_ind: array must be contiguous"
       zbsrilu0_analysis = rocsparse_zbsrilu0_analysis_raw(handle, dir, mb, nnzb, descr, c_loc( &
         bsr_val), c_loc(bsr_row_ptr), c_loc(bsr_col_ind), block_dim, info, analysis, solve, &
         temp_buffer)
@@ -55699,6 +57371,9 @@ contains
       integer(c_int), value :: policy
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: sbsrilu0
+      if (.not. is_contiguous(bsr_val)) error stop "bsr_val: array must be contiguous"
+      if (.not. is_contiguous(bsr_row_ptr)) error stop "bsr_row_ptr: array must be contiguous"
+      if (.not. is_contiguous(bsr_col_ind)) error stop "bsr_col_ind: array must be contiguous"
       sbsrilu0 = rocsparse_sbsrilu0_raw(handle, dir, mb, nnzb, descr, c_loc(bsr_val), c_loc( &
         bsr_row_ptr), c_loc(bsr_col_ind), block_dim, info, policy, temp_buffer)
     end function rocsparse_sbsrilu0_native
@@ -55742,6 +57417,9 @@ contains
       integer(c_int), value :: policy
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: dbsrilu0
+      if (.not. is_contiguous(bsr_val)) error stop "bsr_val: array must be contiguous"
+      if (.not. is_contiguous(bsr_row_ptr)) error stop "bsr_row_ptr: array must be contiguous"
+      if (.not. is_contiguous(bsr_col_ind)) error stop "bsr_col_ind: array must be contiguous"
       dbsrilu0 = rocsparse_dbsrilu0_raw(handle, dir, mb, nnzb, descr, c_loc(bsr_val), c_loc( &
         bsr_row_ptr), c_loc(bsr_col_ind), block_dim, info, policy, temp_buffer)
     end function rocsparse_dbsrilu0_native
@@ -55785,6 +57463,9 @@ contains
       integer(c_int), value :: policy
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: cbsrilu0
+      if (.not. is_contiguous(bsr_val)) error stop "bsr_val: array must be contiguous"
+      if (.not. is_contiguous(bsr_row_ptr)) error stop "bsr_row_ptr: array must be contiguous"
+      if (.not. is_contiguous(bsr_col_ind)) error stop "bsr_col_ind: array must be contiguous"
       cbsrilu0 = rocsparse_cbsrilu0_raw(handle, dir, mb, nnzb, descr, c_loc(bsr_val), c_loc( &
         bsr_row_ptr), c_loc(bsr_col_ind), block_dim, info, policy, temp_buffer)
     end function rocsparse_cbsrilu0_native
@@ -55828,6 +57509,9 @@ contains
       integer(c_int), value :: policy
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: zbsrilu0
+      if (.not. is_contiguous(bsr_val)) error stop "bsr_val: array must be contiguous"
+      if (.not. is_contiguous(bsr_row_ptr)) error stop "bsr_row_ptr: array must be contiguous"
+      if (.not. is_contiguous(bsr_col_ind)) error stop "bsr_col_ind: array must be contiguous"
       zbsrilu0 = rocsparse_zbsrilu0_raw(handle, dir, mb, nnzb, descr, c_loc(bsr_val), c_loc( &
         bsr_row_ptr), c_loc(bsr_col_ind), block_dim, info, policy, temp_buffer)
     end function rocsparse_zbsrilu0_native
@@ -55873,6 +57557,7 @@ contains
       type(c_ptr), value :: info
       integer(c_int), target :: position(..)
       integer(c_int) :: csric0_singular_pivot
+      if (.not. is_contiguous(position)) error stop "position: array must be contiguous"
       csric0_singular_pivot = rocsparse_csric0_singular_pivot_raw(handle, info, c_loc(position))
     end function rocsparse_csric0_singular_pivot_native
 
@@ -55908,6 +57593,7 @@ contains
       type(c_ptr), value :: info
       real(c_double), target :: tolerance(..)
       integer(c_int) :: csric0_get_tolerance
+      if (.not. is_contiguous(tolerance)) error stop "tolerance: array must be contiguous"
       csric0_get_tolerance = rocsparse_csric0_get_tolerance_raw(handle, info, c_loc(tolerance))
     end function rocsparse_csric0_get_tolerance_native
 
@@ -55937,6 +57623,9 @@ contains
       type(c_ptr), value :: info
       type(c_ptr), value :: buffer_size
       integer(c_int) :: scsric0_buffer_size
+      if (.not. is_contiguous(csr_val)) error stop "csr_val: array must be contiguous"
+      if (.not. is_contiguous(csr_row_ptr)) error stop "csr_row_ptr: array must be contiguous"
+      if (.not. is_contiguous(csr_col_ind)) error stop "csr_col_ind: array must be contiguous"
       scsric0_buffer_size = rocsparse_scsric0_buffer_size_raw(handle, m, nnz, descr, c_loc( &
         csr_val), c_loc(csr_row_ptr), c_loc(csr_col_ind), info, buffer_size)
     end function rocsparse_scsric0_buffer_size_native
@@ -55974,6 +57663,9 @@ contains
       type(c_ptr), value :: info
       type(c_ptr), value :: buffer_size
       integer(c_int) :: dcsric0_buffer_size
+      if (.not. is_contiguous(csr_val)) error stop "csr_val: array must be contiguous"
+      if (.not. is_contiguous(csr_row_ptr)) error stop "csr_row_ptr: array must be contiguous"
+      if (.not. is_contiguous(csr_col_ind)) error stop "csr_col_ind: array must be contiguous"
       dcsric0_buffer_size = rocsparse_dcsric0_buffer_size_raw(handle, m, nnz, descr, c_loc( &
         csr_val), c_loc(csr_row_ptr), c_loc(csr_col_ind), info, buffer_size)
     end function rocsparse_dcsric0_buffer_size_native
@@ -56011,6 +57703,9 @@ contains
       type(c_ptr), value :: info
       type(c_ptr), value :: buffer_size
       integer(c_int) :: ccsric0_buffer_size
+      if (.not. is_contiguous(csr_val)) error stop "csr_val: array must be contiguous"
+      if (.not. is_contiguous(csr_row_ptr)) error stop "csr_row_ptr: array must be contiguous"
+      if (.not. is_contiguous(csr_col_ind)) error stop "csr_col_ind: array must be contiguous"
       ccsric0_buffer_size = rocsparse_ccsric0_buffer_size_raw(handle, m, nnz, descr, c_loc( &
         csr_val), c_loc(csr_row_ptr), c_loc(csr_col_ind), info, buffer_size)
     end function rocsparse_ccsric0_buffer_size_native
@@ -56048,6 +57743,9 @@ contains
       type(c_ptr), value :: info
       type(c_ptr), value :: buffer_size
       integer(c_int) :: zcsric0_buffer_size
+      if (.not. is_contiguous(csr_val)) error stop "csr_val: array must be contiguous"
+      if (.not. is_contiguous(csr_row_ptr)) error stop "csr_row_ptr: array must be contiguous"
+      if (.not. is_contiguous(csr_col_ind)) error stop "csr_col_ind: array must be contiguous"
       zcsric0_buffer_size = rocsparse_zcsric0_buffer_size_raw(handle, m, nnz, descr, c_loc( &
         csr_val), c_loc(csr_row_ptr), c_loc(csr_col_ind), info, buffer_size)
     end function rocsparse_zcsric0_buffer_size_native
@@ -56087,6 +57785,9 @@ contains
       integer(c_int), value :: solve
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: scsric0_analysis
+      if (.not. is_contiguous(csr_val)) error stop "csr_val: array must be contiguous"
+      if (.not. is_contiguous(csr_row_ptr)) error stop "csr_row_ptr: array must be contiguous"
+      if (.not. is_contiguous(csr_col_ind)) error stop "csr_col_ind: array must be contiguous"
       scsric0_analysis = rocsparse_scsric0_analysis_raw(handle, m, nnz, descr, c_loc(csr_val), &
         c_loc(csr_row_ptr), c_loc(csr_col_ind), info, analysis, solve, temp_buffer)
     end function rocsparse_scsric0_analysis_native
@@ -56128,6 +57829,9 @@ contains
       integer(c_int), value :: solve
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: dcsric0_analysis
+      if (.not. is_contiguous(csr_val)) error stop "csr_val: array must be contiguous"
+      if (.not. is_contiguous(csr_row_ptr)) error stop "csr_row_ptr: array must be contiguous"
+      if (.not. is_contiguous(csr_col_ind)) error stop "csr_col_ind: array must be contiguous"
       dcsric0_analysis = rocsparse_dcsric0_analysis_raw(handle, m, nnz, descr, c_loc(csr_val), &
         c_loc(csr_row_ptr), c_loc(csr_col_ind), info, analysis, solve, temp_buffer)
     end function rocsparse_dcsric0_analysis_native
@@ -56169,6 +57873,9 @@ contains
       integer(c_int), value :: solve
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: ccsric0_analysis
+      if (.not. is_contiguous(csr_val)) error stop "csr_val: array must be contiguous"
+      if (.not. is_contiguous(csr_row_ptr)) error stop "csr_row_ptr: array must be contiguous"
+      if (.not. is_contiguous(csr_col_ind)) error stop "csr_col_ind: array must be contiguous"
       ccsric0_analysis = rocsparse_ccsric0_analysis_raw(handle, m, nnz, descr, c_loc(csr_val), &
         c_loc(csr_row_ptr), c_loc(csr_col_ind), info, analysis, solve, temp_buffer)
     end function rocsparse_ccsric0_analysis_native
@@ -56210,6 +57917,9 @@ contains
       integer(c_int), value :: solve
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: zcsric0_analysis
+      if (.not. is_contiguous(csr_val)) error stop "csr_val: array must be contiguous"
+      if (.not. is_contiguous(csr_row_ptr)) error stop "csr_row_ptr: array must be contiguous"
+      if (.not. is_contiguous(csr_col_ind)) error stop "csr_col_ind: array must be contiguous"
       zcsric0_analysis = rocsparse_zcsric0_analysis_raw(handle, m, nnz, descr, c_loc(csr_val), &
         c_loc(csr_row_ptr), c_loc(csr_col_ind), info, analysis, solve, temp_buffer)
     end function rocsparse_zcsric0_analysis_native
@@ -56260,6 +57970,9 @@ contains
       integer(c_int), value :: policy
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: scsric0
+      if (.not. is_contiguous(csr_val)) error stop "csr_val: array must be contiguous"
+      if (.not. is_contiguous(csr_row_ptr)) error stop "csr_row_ptr: array must be contiguous"
+      if (.not. is_contiguous(csr_col_ind)) error stop "csr_col_ind: array must be contiguous"
       scsric0 = rocsparse_scsric0_raw(handle, m, nnz, descr, c_loc(csr_val), c_loc(csr_row_ptr), &
         c_loc(csr_col_ind), info, policy, temp_buffer)
     end function rocsparse_scsric0_native
@@ -56299,6 +58012,9 @@ contains
       integer(c_int), value :: policy
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: dcsric0
+      if (.not. is_contiguous(csr_val)) error stop "csr_val: array must be contiguous"
+      if (.not. is_contiguous(csr_row_ptr)) error stop "csr_row_ptr: array must be contiguous"
+      if (.not. is_contiguous(csr_col_ind)) error stop "csr_col_ind: array must be contiguous"
       dcsric0 = rocsparse_dcsric0_raw(handle, m, nnz, descr, c_loc(csr_val), c_loc(csr_row_ptr), &
         c_loc(csr_col_ind), info, policy, temp_buffer)
     end function rocsparse_dcsric0_native
@@ -56338,6 +58054,9 @@ contains
       integer(c_int), value :: policy
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: ccsric0
+      if (.not. is_contiguous(csr_val)) error stop "csr_val: array must be contiguous"
+      if (.not. is_contiguous(csr_row_ptr)) error stop "csr_row_ptr: array must be contiguous"
+      if (.not. is_contiguous(csr_col_ind)) error stop "csr_col_ind: array must be contiguous"
       ccsric0 = rocsparse_ccsric0_raw(handle, m, nnz, descr, c_loc(csr_val), c_loc(csr_row_ptr), &
         c_loc(csr_col_ind), info, policy, temp_buffer)
     end function rocsparse_ccsric0_native
@@ -56377,6 +58096,9 @@ contains
       integer(c_int), value :: policy
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: zcsric0
+      if (.not. is_contiguous(csr_val)) error stop "csr_val: array must be contiguous"
+      if (.not. is_contiguous(csr_row_ptr)) error stop "csr_row_ptr: array must be contiguous"
+      if (.not. is_contiguous(csr_col_ind)) error stop "csr_col_ind: array must be contiguous"
       zcsric0 = rocsparse_zcsric0_raw(handle, m, nnz, descr, c_loc(csr_val), c_loc(csr_row_ptr), &
         c_loc(csr_col_ind), info, policy, temp_buffer)
     end function rocsparse_zcsric0_native
@@ -56432,6 +58154,7 @@ contains
       type(c_ptr), value :: info
       real(c_double), target :: tolerance(..)
       integer(c_int) :: csrilu0_get_tolerance
+      if (.not. is_contiguous(tolerance)) error stop "tolerance: array must be contiguous"
       csrilu0_get_tolerance = rocsparse_csrilu0_get_tolerance_raw(handle, info, c_loc(tolerance))
     end function rocsparse_csrilu0_get_tolerance_native
 
@@ -56455,6 +58178,7 @@ contains
       type(c_ptr), value :: info
       integer(c_int), target :: position(..)
       integer(c_int) :: csrilu0_singular_pivot
+      if (.not. is_contiguous(position)) error stop "position: array must be contiguous"
       csrilu0_singular_pivot = rocsparse_csrilu0_singular_pivot_raw(handle, info, c_loc(position))
     end function rocsparse_csrilu0_singular_pivot_native
 
@@ -56574,6 +58298,9 @@ contains
       type(c_ptr), value :: info
       type(c_ptr), value :: buffer_size
       integer(c_int) :: scsrilu0_buffer_size
+      if (.not. is_contiguous(csr_val)) error stop "csr_val: array must be contiguous"
+      if (.not. is_contiguous(csr_row_ptr)) error stop "csr_row_ptr: array must be contiguous"
+      if (.not. is_contiguous(csr_col_ind)) error stop "csr_col_ind: array must be contiguous"
       scsrilu0_buffer_size = rocsparse_scsrilu0_buffer_size_raw(handle, m, nnz, descr, c_loc( &
         csr_val), c_loc(csr_row_ptr), c_loc(csr_col_ind), info, buffer_size)
     end function rocsparse_scsrilu0_buffer_size_native
@@ -56611,6 +58338,9 @@ contains
       type(c_ptr), value :: info
       type(c_ptr), value :: buffer_size
       integer(c_int) :: dcsrilu0_buffer_size
+      if (.not. is_contiguous(csr_val)) error stop "csr_val: array must be contiguous"
+      if (.not. is_contiguous(csr_row_ptr)) error stop "csr_row_ptr: array must be contiguous"
+      if (.not. is_contiguous(csr_col_ind)) error stop "csr_col_ind: array must be contiguous"
       dcsrilu0_buffer_size = rocsparse_dcsrilu0_buffer_size_raw(handle, m, nnz, descr, c_loc( &
         csr_val), c_loc(csr_row_ptr), c_loc(csr_col_ind), info, buffer_size)
     end function rocsparse_dcsrilu0_buffer_size_native
@@ -56648,6 +58378,9 @@ contains
       type(c_ptr), value :: info
       type(c_ptr), value :: buffer_size
       integer(c_int) :: ccsrilu0_buffer_size
+      if (.not. is_contiguous(csr_val)) error stop "csr_val: array must be contiguous"
+      if (.not. is_contiguous(csr_row_ptr)) error stop "csr_row_ptr: array must be contiguous"
+      if (.not. is_contiguous(csr_col_ind)) error stop "csr_col_ind: array must be contiguous"
       ccsrilu0_buffer_size = rocsparse_ccsrilu0_buffer_size_raw(handle, m, nnz, descr, c_loc( &
         csr_val), c_loc(csr_row_ptr), c_loc(csr_col_ind), info, buffer_size)
     end function rocsparse_ccsrilu0_buffer_size_native
@@ -56685,6 +58418,9 @@ contains
       type(c_ptr), value :: info
       type(c_ptr), value :: buffer_size
       integer(c_int) :: zcsrilu0_buffer_size
+      if (.not. is_contiguous(csr_val)) error stop "csr_val: array must be contiguous"
+      if (.not. is_contiguous(csr_row_ptr)) error stop "csr_row_ptr: array must be contiguous"
+      if (.not. is_contiguous(csr_col_ind)) error stop "csr_col_ind: array must be contiguous"
       zcsrilu0_buffer_size = rocsparse_zcsrilu0_buffer_size_raw(handle, m, nnz, descr, c_loc( &
         csr_val), c_loc(csr_row_ptr), c_loc(csr_col_ind), info, buffer_size)
     end function rocsparse_zcsrilu0_buffer_size_native
@@ -56724,6 +58460,9 @@ contains
       integer(c_int), value :: solve
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: scsrilu0_analysis
+      if (.not. is_contiguous(csr_val)) error stop "csr_val: array must be contiguous"
+      if (.not. is_contiguous(csr_row_ptr)) error stop "csr_row_ptr: array must be contiguous"
+      if (.not. is_contiguous(csr_col_ind)) error stop "csr_col_ind: array must be contiguous"
       scsrilu0_analysis = rocsparse_scsrilu0_analysis_raw(handle, m, nnz, descr, c_loc(csr_val), &
         c_loc(csr_row_ptr), c_loc(csr_col_ind), info, analysis, solve, temp_buffer)
     end function rocsparse_scsrilu0_analysis_native
@@ -56765,6 +58504,9 @@ contains
       integer(c_int), value :: solve
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: dcsrilu0_analysis
+      if (.not. is_contiguous(csr_val)) error stop "csr_val: array must be contiguous"
+      if (.not. is_contiguous(csr_row_ptr)) error stop "csr_row_ptr: array must be contiguous"
+      if (.not. is_contiguous(csr_col_ind)) error stop "csr_col_ind: array must be contiguous"
       dcsrilu0_analysis = rocsparse_dcsrilu0_analysis_raw(handle, m, nnz, descr, c_loc(csr_val), &
         c_loc(csr_row_ptr), c_loc(csr_col_ind), info, analysis, solve, temp_buffer)
     end function rocsparse_dcsrilu0_analysis_native
@@ -56806,6 +58548,9 @@ contains
       integer(c_int), value :: solve
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: ccsrilu0_analysis
+      if (.not. is_contiguous(csr_val)) error stop "csr_val: array must be contiguous"
+      if (.not. is_contiguous(csr_row_ptr)) error stop "csr_row_ptr: array must be contiguous"
+      if (.not. is_contiguous(csr_col_ind)) error stop "csr_col_ind: array must be contiguous"
       ccsrilu0_analysis = rocsparse_ccsrilu0_analysis_raw(handle, m, nnz, descr, c_loc(csr_val), &
         c_loc(csr_row_ptr), c_loc(csr_col_ind), info, analysis, solve, temp_buffer)
     end function rocsparse_ccsrilu0_analysis_native
@@ -56847,6 +58592,9 @@ contains
       integer(c_int), value :: solve
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: zcsrilu0_analysis
+      if (.not. is_contiguous(csr_val)) error stop "csr_val: array must be contiguous"
+      if (.not. is_contiguous(csr_row_ptr)) error stop "csr_row_ptr: array must be contiguous"
+      if (.not. is_contiguous(csr_col_ind)) error stop "csr_col_ind: array must be contiguous"
       zcsrilu0_analysis = rocsparse_zcsrilu0_analysis_raw(handle, m, nnz, descr, c_loc(csr_val), &
         c_loc(csr_row_ptr), c_loc(csr_col_ind), info, analysis, solve, temp_buffer)
     end function rocsparse_zcsrilu0_analysis_native
@@ -56897,6 +58645,9 @@ contains
       integer(c_int), value :: policy
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: scsrilu0
+      if (.not. is_contiguous(csr_val)) error stop "csr_val: array must be contiguous"
+      if (.not. is_contiguous(csr_row_ptr)) error stop "csr_row_ptr: array must be contiguous"
+      if (.not. is_contiguous(csr_col_ind)) error stop "csr_col_ind: array must be contiguous"
       scsrilu0 = rocsparse_scsrilu0_raw(handle, m, nnz, descr, c_loc(csr_val), c_loc(csr_row_ptr), &
         c_loc(csr_col_ind), info, policy, temp_buffer)
     end function rocsparse_scsrilu0_native
@@ -56936,6 +58687,9 @@ contains
       integer(c_int), value :: policy
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: dcsrilu0
+      if (.not. is_contiguous(csr_val)) error stop "csr_val: array must be contiguous"
+      if (.not. is_contiguous(csr_row_ptr)) error stop "csr_row_ptr: array must be contiguous"
+      if (.not. is_contiguous(csr_col_ind)) error stop "csr_col_ind: array must be contiguous"
       dcsrilu0 = rocsparse_dcsrilu0_raw(handle, m, nnz, descr, c_loc(csr_val), c_loc(csr_row_ptr), &
         c_loc(csr_col_ind), info, policy, temp_buffer)
     end function rocsparse_dcsrilu0_native
@@ -56975,6 +58729,9 @@ contains
       integer(c_int), value :: policy
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: ccsrilu0
+      if (.not. is_contiguous(csr_val)) error stop "csr_val: array must be contiguous"
+      if (.not. is_contiguous(csr_row_ptr)) error stop "csr_row_ptr: array must be contiguous"
+      if (.not. is_contiguous(csr_col_ind)) error stop "csr_col_ind: array must be contiguous"
       ccsrilu0 = rocsparse_ccsrilu0_raw(handle, m, nnz, descr, c_loc(csr_val), c_loc(csr_row_ptr), &
         c_loc(csr_col_ind), info, policy, temp_buffer)
     end function rocsparse_ccsrilu0_native
@@ -57014,6 +58771,9 @@ contains
       integer(c_int), value :: policy
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: zcsrilu0
+      if (.not. is_contiguous(csr_val)) error stop "csr_val: array must be contiguous"
+      if (.not. is_contiguous(csr_row_ptr)) error stop "csr_row_ptr: array must be contiguous"
+      if (.not. is_contiguous(csr_col_ind)) error stop "csr_col_ind: array must be contiguous"
       zcsrilu0 = rocsparse_zcsrilu0_raw(handle, m, nnz, descr, c_loc(csr_val), c_loc(csr_row_ptr), &
         c_loc(csr_col_ind), info, policy, temp_buffer)
     end function rocsparse_zcsrilu0_native
@@ -57054,6 +58814,8 @@ contains
       integer(c_int), value :: datatype
       type(c_ptr), value :: buffer_size
       integer(c_int) :: csritilu0_buffer_size
+      if (.not. is_contiguous(csr_row_ptr)) error stop "csr_row_ptr: array must be contiguous"
+      if (.not. is_contiguous(csr_col_ind)) error stop "csr_col_ind: array must be contiguous"
       csritilu0_buffer_size = rocsparse_csritilu0_buffer_size_raw(handle, alg, option, nmaxiter, &
         m, nnz, c_loc(csr_row_ptr), c_loc(csr_col_ind), idx_base, datatype, buffer_size)
     end function rocsparse_csritilu0_buffer_size_native
@@ -57097,6 +58859,8 @@ contains
       integer(c_long), value :: buffer_size
       type(c_ptr), value :: buffer
       integer(c_int) :: csritilu0_preprocess
+      if (.not. is_contiguous(csr_row_ptr)) error stop "csr_row_ptr: array must be contiguous"
+      if (.not. is_contiguous(csr_col_ind)) error stop "csr_col_ind: array must be contiguous"
       csritilu0_preprocess = rocsparse_csritilu0_preprocess_raw(handle, alg, option, nmaxiter, m, &
         nnz, c_loc(csr_row_ptr), c_loc(csr_col_ind), idx_base, datatype, buffer_size, buffer)
     end function rocsparse_csritilu0_preprocess_native
@@ -57144,6 +58908,11 @@ contains
       integer(c_long), value :: buffer_size
       type(c_ptr), value :: buffer
       integer(c_int) :: scsritilu0_compute
+      if (.not. is_contiguous(nmaxiter)) error stop "nmaxiter: array must be contiguous"
+      if (.not. is_contiguous(csr_row_ptr)) error stop "csr_row_ptr: array must be contiguous"
+      if (.not. is_contiguous(csr_col_ind)) error stop "csr_col_ind: array must be contiguous"
+      if (.not. is_contiguous(csr_val)) error stop "csr_val: array must be contiguous"
+      if (.not. is_contiguous(ilu0)) error stop "ilu0: array must be contiguous"
       scsritilu0_compute = rocsparse_scsritilu0_compute_raw(handle, alg, option, c_loc(nmaxiter), &
         tol, m, nnz, c_loc(csr_row_ptr), c_loc(csr_col_ind), c_loc(csr_val), c_loc(ilu0), &
         idx_base, buffer_size, buffer)
@@ -57194,6 +58963,11 @@ contains
       integer(c_long), value :: buffer_size
       type(c_ptr), value :: buffer
       integer(c_int) :: dcsritilu0_compute
+      if (.not. is_contiguous(nmaxiter)) error stop "nmaxiter: array must be contiguous"
+      if (.not. is_contiguous(csr_row_ptr)) error stop "csr_row_ptr: array must be contiguous"
+      if (.not. is_contiguous(csr_col_ind)) error stop "csr_col_ind: array must be contiguous"
+      if (.not. is_contiguous(csr_val)) error stop "csr_val: array must be contiguous"
+      if (.not. is_contiguous(ilu0)) error stop "ilu0: array must be contiguous"
       dcsritilu0_compute = rocsparse_dcsritilu0_compute_raw(handle, alg, option, c_loc(nmaxiter), &
         tol, m, nnz, c_loc(csr_row_ptr), c_loc(csr_col_ind), c_loc(csr_val), c_loc(ilu0), &
         idx_base, buffer_size, buffer)
@@ -57244,6 +59018,11 @@ contains
       integer(c_long), value :: buffer_size
       type(c_ptr), value :: buffer
       integer(c_int) :: ccsritilu0_compute
+      if (.not. is_contiguous(nmaxiter)) error stop "nmaxiter: array must be contiguous"
+      if (.not. is_contiguous(csr_row_ptr)) error stop "csr_row_ptr: array must be contiguous"
+      if (.not. is_contiguous(csr_col_ind)) error stop "csr_col_ind: array must be contiguous"
+      if (.not. is_contiguous(csr_val)) error stop "csr_val: array must be contiguous"
+      if (.not. is_contiguous(ilu0)) error stop "ilu0: array must be contiguous"
       ccsritilu0_compute = rocsparse_ccsritilu0_compute_raw(handle, alg, option, c_loc(nmaxiter), &
         tol, m, nnz, c_loc(csr_row_ptr), c_loc(csr_col_ind), c_loc(csr_val), c_loc(ilu0), &
         idx_base, buffer_size, buffer)
@@ -57294,6 +59073,11 @@ contains
       integer(c_long), value :: buffer_size
       type(c_ptr), value :: buffer
       integer(c_int) :: zcsritilu0_compute
+      if (.not. is_contiguous(nmaxiter)) error stop "nmaxiter: array must be contiguous"
+      if (.not. is_contiguous(csr_row_ptr)) error stop "csr_row_ptr: array must be contiguous"
+      if (.not. is_contiguous(csr_col_ind)) error stop "csr_col_ind: array must be contiguous"
+      if (.not. is_contiguous(csr_val)) error stop "csr_val: array must be contiguous"
+      if (.not. is_contiguous(ilu0)) error stop "ilu0: array must be contiguous"
       zcsritilu0_compute = rocsparse_zcsritilu0_compute_raw(handle, alg, option, c_loc(nmaxiter), &
         tol, m, nnz, c_loc(csr_row_ptr), c_loc(csr_col_ind), c_loc(csr_val), c_loc(ilu0), &
         idx_base, buffer_size, buffer)
@@ -57345,6 +59129,11 @@ contains
       integer(c_long), value :: buffer_size
       type(c_ptr), value :: buffer
       integer(c_int) :: scsritilu0_compute_ex
+      if (.not. is_contiguous(nmaxiter)) error stop "nmaxiter: array must be contiguous"
+      if (.not. is_contiguous(csr_row_ptr)) error stop "csr_row_ptr: array must be contiguous"
+      if (.not. is_contiguous(csr_col_ind)) error stop "csr_col_ind: array must be contiguous"
+      if (.not. is_contiguous(csr_val)) error stop "csr_val: array must be contiguous"
+      if (.not. is_contiguous(ilu0)) error stop "ilu0: array must be contiguous"
       scsritilu0_compute_ex = rocsparse_scsritilu0_compute_ex_raw(handle, alg, option, c_loc( &
         nmaxiter), nfreeiter, tol, m, nnz, c_loc(csr_row_ptr), c_loc(csr_col_ind), c_loc(csr_val), &
         c_loc(ilu0), idx_base, buffer_size, buffer)
@@ -57398,6 +59187,11 @@ contains
       integer(c_long), value :: buffer_size
       type(c_ptr), value :: buffer
       integer(c_int) :: dcsritilu0_compute_ex
+      if (.not. is_contiguous(nmaxiter)) error stop "nmaxiter: array must be contiguous"
+      if (.not. is_contiguous(csr_row_ptr)) error stop "csr_row_ptr: array must be contiguous"
+      if (.not. is_contiguous(csr_col_ind)) error stop "csr_col_ind: array must be contiguous"
+      if (.not. is_contiguous(csr_val)) error stop "csr_val: array must be contiguous"
+      if (.not. is_contiguous(ilu0)) error stop "ilu0: array must be contiguous"
       dcsritilu0_compute_ex = rocsparse_dcsritilu0_compute_ex_raw(handle, alg, option, c_loc( &
         nmaxiter), nfreeiter, tol, m, nnz, c_loc(csr_row_ptr), c_loc(csr_col_ind), c_loc(csr_val), &
         c_loc(ilu0), idx_base, buffer_size, buffer)
@@ -57451,6 +59245,11 @@ contains
       integer(c_long), value :: buffer_size
       type(c_ptr), value :: buffer
       integer(c_int) :: ccsritilu0_compute_ex
+      if (.not. is_contiguous(nmaxiter)) error stop "nmaxiter: array must be contiguous"
+      if (.not. is_contiguous(csr_row_ptr)) error stop "csr_row_ptr: array must be contiguous"
+      if (.not. is_contiguous(csr_col_ind)) error stop "csr_col_ind: array must be contiguous"
+      if (.not. is_contiguous(csr_val)) error stop "csr_val: array must be contiguous"
+      if (.not. is_contiguous(ilu0)) error stop "ilu0: array must be contiguous"
       ccsritilu0_compute_ex = rocsparse_ccsritilu0_compute_ex_raw(handle, alg, option, c_loc( &
         nmaxiter), nfreeiter, tol, m, nnz, c_loc(csr_row_ptr), c_loc(csr_col_ind), c_loc(csr_val), &
         c_loc(ilu0), idx_base, buffer_size, buffer)
@@ -57504,6 +59303,11 @@ contains
       integer(c_long), value :: buffer_size
       type(c_ptr), value :: buffer
       integer(c_int) :: zcsritilu0_compute_ex
+      if (.not. is_contiguous(nmaxiter)) error stop "nmaxiter: array must be contiguous"
+      if (.not. is_contiguous(csr_row_ptr)) error stop "csr_row_ptr: array must be contiguous"
+      if (.not. is_contiguous(csr_col_ind)) error stop "csr_col_ind: array must be contiguous"
+      if (.not. is_contiguous(csr_val)) error stop "csr_val: array must be contiguous"
+      if (.not. is_contiguous(ilu0)) error stop "ilu0: array must be contiguous"
       zcsritilu0_compute_ex = rocsparse_zcsritilu0_compute_ex_raw(handle, alg, option, c_loc( &
         nmaxiter), nfreeiter, tol, m, nnz, c_loc(csr_row_ptr), c_loc(csr_col_ind), c_loc(csr_val), &
         c_loc(ilu0), idx_base, buffer_size, buffer)
@@ -57547,6 +59351,8 @@ contains
       integer(c_long), value :: buffer_size
       type(c_ptr), value :: buffer
       integer(c_int) :: scsritilu0_history
+      if (.not. is_contiguous(niter)) error stop "niter: array must be contiguous"
+      if (.not. is_contiguous(data)) error stop "data: array must be contiguous"
       scsritilu0_history = rocsparse_scsritilu0_history_raw(handle, alg, c_loc(niter), c_loc( &
         data), buffer_size, buffer)
     end function rocsparse_scsritilu0_history_native
@@ -57578,6 +59384,8 @@ contains
       integer(c_long), value :: buffer_size
       type(c_ptr), value :: buffer
       integer(c_int) :: dcsritilu0_history
+      if (.not. is_contiguous(niter)) error stop "niter: array must be contiguous"
+      if (.not. is_contiguous(data)) error stop "data: array must be contiguous"
       dcsritilu0_history = rocsparse_dcsritilu0_history_raw(handle, alg, c_loc(niter), c_loc( &
         data), buffer_size, buffer)
     end function rocsparse_dcsritilu0_history_native
@@ -57609,6 +59417,8 @@ contains
       integer(c_long), value :: buffer_size
       type(c_ptr), value :: buffer
       integer(c_int) :: ccsritilu0_history
+      if (.not. is_contiguous(niter)) error stop "niter: array must be contiguous"
+      if (.not. is_contiguous(data)) error stop "data: array must be contiguous"
       ccsritilu0_history = rocsparse_ccsritilu0_history_raw(handle, alg, c_loc(niter), c_loc( &
         data), buffer_size, buffer)
     end function rocsparse_ccsritilu0_history_native
@@ -57640,6 +59450,8 @@ contains
       integer(c_long), value :: buffer_size
       type(c_ptr), value :: buffer
       integer(c_int) :: zcsritilu0_history
+      if (.not. is_contiguous(niter)) error stop "niter: array must be contiguous"
+      if (.not. is_contiguous(data)) error stop "data: array must be contiguous"
       zcsritilu0_history = rocsparse_zcsritilu0_history_raw(handle, alg, c_loc(niter), c_loc( &
         data), buffer_size, buffer)
     end function rocsparse_zcsritilu0_history_native
@@ -57677,6 +59489,12 @@ contains
       integer(c_int), value :: batch_stride
       type(c_ptr), value :: buffer_size
       integer(c_int) :: sgpsv_interleaved_batch_buffer_size
+      if (.not. is_contiguous(ds)) error stop "ds: array must be contiguous"
+      if (.not. is_contiguous(dl)) error stop "dl: array must be contiguous"
+      if (.not. is_contiguous(d)) error stop "d: array must be contiguous"
+      if (.not. is_contiguous(du)) error stop "du: array must be contiguous"
+      if (.not. is_contiguous(dw)) error stop "dw: array must be contiguous"
+      if (.not. is_contiguous(x)) error stop "x: array must be contiguous"
       sgpsv_interleaved_batch_buffer_size = rocsparse_sgpsv_interleaved_batch_buffer_size_raw( &
         handle, alg, m, c_loc(ds), c_loc(dl), c_loc(d), c_loc(du), c_loc(dw), c_loc(x), &
         batch_count, batch_stride, buffer_size)
@@ -57721,6 +59539,12 @@ contains
       integer(c_int), value :: batch_stride
       type(c_ptr), value :: buffer_size
       integer(c_int) :: dgpsv_interleaved_batch_buffer_size
+      if (.not. is_contiguous(ds)) error stop "ds: array must be contiguous"
+      if (.not. is_contiguous(dl)) error stop "dl: array must be contiguous"
+      if (.not. is_contiguous(d)) error stop "d: array must be contiguous"
+      if (.not. is_contiguous(du)) error stop "du: array must be contiguous"
+      if (.not. is_contiguous(dw)) error stop "dw: array must be contiguous"
+      if (.not. is_contiguous(x)) error stop "x: array must be contiguous"
       dgpsv_interleaved_batch_buffer_size = rocsparse_dgpsv_interleaved_batch_buffer_size_raw( &
         handle, alg, m, c_loc(ds), c_loc(dl), c_loc(d), c_loc(du), c_loc(dw), c_loc(x), &
         batch_count, batch_stride, buffer_size)
@@ -57765,6 +59589,12 @@ contains
       integer(c_int), value :: batch_stride
       type(c_ptr), value :: buffer_size
       integer(c_int) :: cgpsv_interleaved_batch_buffer_size
+      if (.not. is_contiguous(ds)) error stop "ds: array must be contiguous"
+      if (.not. is_contiguous(dl)) error stop "dl: array must be contiguous"
+      if (.not. is_contiguous(d)) error stop "d: array must be contiguous"
+      if (.not. is_contiguous(du)) error stop "du: array must be contiguous"
+      if (.not. is_contiguous(dw)) error stop "dw: array must be contiguous"
+      if (.not. is_contiguous(x)) error stop "x: array must be contiguous"
       cgpsv_interleaved_batch_buffer_size = rocsparse_cgpsv_interleaved_batch_buffer_size_raw( &
         handle, alg, m, c_loc(ds), c_loc(dl), c_loc(d), c_loc(du), c_loc(dw), c_loc(x), &
         batch_count, batch_stride, buffer_size)
@@ -57809,6 +59639,12 @@ contains
       integer(c_int), value :: batch_stride
       type(c_ptr), value :: buffer_size
       integer(c_int) :: zgpsv_interleaved_batch_buffer_size
+      if (.not. is_contiguous(ds)) error stop "ds: array must be contiguous"
+      if (.not. is_contiguous(dl)) error stop "dl: array must be contiguous"
+      if (.not. is_contiguous(d)) error stop "d: array must be contiguous"
+      if (.not. is_contiguous(du)) error stop "du: array must be contiguous"
+      if (.not. is_contiguous(dw)) error stop "dw: array must be contiguous"
+      if (.not. is_contiguous(x)) error stop "x: array must be contiguous"
       zgpsv_interleaved_batch_buffer_size = rocsparse_zgpsv_interleaved_batch_buffer_size_raw( &
         handle, alg, m, c_loc(ds), c_loc(dl), c_loc(d), c_loc(du), c_loc(dw), c_loc(x), &
         batch_count, batch_stride, buffer_size)
@@ -57853,6 +59689,12 @@ contains
       integer(c_int), value :: batch_stride
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: sgpsv_interleaved_batch
+      if (.not. is_contiguous(ds)) error stop "ds: array must be contiguous"
+      if (.not. is_contiguous(dl)) error stop "dl: array must be contiguous"
+      if (.not. is_contiguous(d)) error stop "d: array must be contiguous"
+      if (.not. is_contiguous(du)) error stop "du: array must be contiguous"
+      if (.not. is_contiguous(dw)) error stop "dw: array must be contiguous"
+      if (.not. is_contiguous(x)) error stop "x: array must be contiguous"
       sgpsv_interleaved_batch = rocsparse_sgpsv_interleaved_batch_raw(handle, alg, m, c_loc(ds), &
         c_loc(dl), c_loc(d), c_loc(du), c_loc(dw), c_loc(x), batch_count, batch_stride, temp_buffer)
     end function rocsparse_sgpsv_interleaved_batch_native
@@ -57896,6 +59738,12 @@ contains
       integer(c_int), value :: batch_stride
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: dgpsv_interleaved_batch
+      if (.not. is_contiguous(ds)) error stop "ds: array must be contiguous"
+      if (.not. is_contiguous(dl)) error stop "dl: array must be contiguous"
+      if (.not. is_contiguous(d)) error stop "d: array must be contiguous"
+      if (.not. is_contiguous(du)) error stop "du: array must be contiguous"
+      if (.not. is_contiguous(dw)) error stop "dw: array must be contiguous"
+      if (.not. is_contiguous(x)) error stop "x: array must be contiguous"
       dgpsv_interleaved_batch = rocsparse_dgpsv_interleaved_batch_raw(handle, alg, m, c_loc(ds), &
         c_loc(dl), c_loc(d), c_loc(du), c_loc(dw), c_loc(x), batch_count, batch_stride, temp_buffer)
     end function rocsparse_dgpsv_interleaved_batch_native
@@ -57939,6 +59787,12 @@ contains
       integer(c_int), value :: batch_stride
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: cgpsv_interleaved_batch
+      if (.not. is_contiguous(ds)) error stop "ds: array must be contiguous"
+      if (.not. is_contiguous(dl)) error stop "dl: array must be contiguous"
+      if (.not. is_contiguous(d)) error stop "d: array must be contiguous"
+      if (.not. is_contiguous(du)) error stop "du: array must be contiguous"
+      if (.not. is_contiguous(dw)) error stop "dw: array must be contiguous"
+      if (.not. is_contiguous(x)) error stop "x: array must be contiguous"
       cgpsv_interleaved_batch = rocsparse_cgpsv_interleaved_batch_raw(handle, alg, m, c_loc(ds), &
         c_loc(dl), c_loc(d), c_loc(du), c_loc(dw), c_loc(x), batch_count, batch_stride, temp_buffer)
     end function rocsparse_cgpsv_interleaved_batch_native
@@ -57982,6 +59836,12 @@ contains
       integer(c_int), value :: batch_stride
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: zgpsv_interleaved_batch
+      if (.not. is_contiguous(ds)) error stop "ds: array must be contiguous"
+      if (.not. is_contiguous(dl)) error stop "dl: array must be contiguous"
+      if (.not. is_contiguous(d)) error stop "d: array must be contiguous"
+      if (.not. is_contiguous(du)) error stop "du: array must be contiguous"
+      if (.not. is_contiguous(dw)) error stop "dw: array must be contiguous"
+      if (.not. is_contiguous(x)) error stop "x: array must be contiguous"
       zgpsv_interleaved_batch = rocsparse_zgpsv_interleaved_batch_raw(handle, alg, m, c_loc(ds), &
         c_loc(dl), c_loc(d), c_loc(du), c_loc(dw), c_loc(x), batch_count, batch_stride, temp_buffer)
     end function rocsparse_zgpsv_interleaved_batch_native
@@ -58022,6 +59882,10 @@ contains
       integer(c_int), value :: ldb
       type(c_ptr), value :: buffer_size
       integer(c_int) :: sgtsv_buffer_size
+      if (.not. is_contiguous(dl)) error stop "dl: array must be contiguous"
+      if (.not. is_contiguous(d)) error stop "d: array must be contiguous"
+      if (.not. is_contiguous(du)) error stop "du: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
       sgtsv_buffer_size = rocsparse_sgtsv_buffer_size_raw(handle, m, n, c_loc(dl), c_loc(d), &
         c_loc(du), c_loc(B), ldb, buffer_size)
     end function rocsparse_sgtsv_buffer_size_native
@@ -58059,6 +59923,10 @@ contains
       integer(c_int), value :: ldb
       type(c_ptr), value :: buffer_size
       integer(c_int) :: dgtsv_buffer_size
+      if (.not. is_contiguous(dl)) error stop "dl: array must be contiguous"
+      if (.not. is_contiguous(d)) error stop "d: array must be contiguous"
+      if (.not. is_contiguous(du)) error stop "du: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
       dgtsv_buffer_size = rocsparse_dgtsv_buffer_size_raw(handle, m, n, c_loc(dl), c_loc(d), &
         c_loc(du), c_loc(B), ldb, buffer_size)
     end function rocsparse_dgtsv_buffer_size_native
@@ -58096,6 +59964,10 @@ contains
       integer(c_int), value :: ldb
       type(c_ptr), value :: buffer_size
       integer(c_int) :: cgtsv_buffer_size
+      if (.not. is_contiguous(dl)) error stop "dl: array must be contiguous"
+      if (.not. is_contiguous(d)) error stop "d: array must be contiguous"
+      if (.not. is_contiguous(du)) error stop "du: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
       cgtsv_buffer_size = rocsparse_cgtsv_buffer_size_raw(handle, m, n, c_loc(dl), c_loc(d), &
         c_loc(du), c_loc(B), ldb, buffer_size)
     end function rocsparse_cgtsv_buffer_size_native
@@ -58133,6 +60005,10 @@ contains
       integer(c_int), value :: ldb
       type(c_ptr), value :: buffer_size
       integer(c_int) :: zgtsv_buffer_size
+      if (.not. is_contiguous(dl)) error stop "dl: array must be contiguous"
+      if (.not. is_contiguous(d)) error stop "d: array must be contiguous"
+      if (.not. is_contiguous(du)) error stop "du: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
       zgtsv_buffer_size = rocsparse_zgtsv_buffer_size_raw(handle, m, n, c_loc(dl), c_loc(d), &
         c_loc(du), c_loc(B), ldb, buffer_size)
     end function rocsparse_zgtsv_buffer_size_native
@@ -58169,6 +60045,10 @@ contains
       integer(c_int), value :: ldb
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: sgtsv
+      if (.not. is_contiguous(dl)) error stop "dl: array must be contiguous"
+      if (.not. is_contiguous(d)) error stop "d: array must be contiguous"
+      if (.not. is_contiguous(du)) error stop "du: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
       sgtsv = rocsparse_sgtsv_raw(handle, m, n, c_loc(dl), c_loc(d), c_loc(du), c_loc(B), ldb, &
         temp_buffer)
     end function rocsparse_sgtsv_native
@@ -58203,6 +60083,10 @@ contains
       integer(c_int), value :: ldb
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: dgtsv
+      if (.not. is_contiguous(dl)) error stop "dl: array must be contiguous"
+      if (.not. is_contiguous(d)) error stop "d: array must be contiguous"
+      if (.not. is_contiguous(du)) error stop "du: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
       dgtsv = rocsparse_dgtsv_raw(handle, m, n, c_loc(dl), c_loc(d), c_loc(du), c_loc(B), ldb, &
         temp_buffer)
     end function rocsparse_dgtsv_native
@@ -58237,6 +60121,10 @@ contains
       integer(c_int), value :: ldb
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: cgtsv
+      if (.not. is_contiguous(dl)) error stop "dl: array must be contiguous"
+      if (.not. is_contiguous(d)) error stop "d: array must be contiguous"
+      if (.not. is_contiguous(du)) error stop "du: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
       cgtsv = rocsparse_cgtsv_raw(handle, m, n, c_loc(dl), c_loc(d), c_loc(du), c_loc(B), ldb, &
         temp_buffer)
     end function rocsparse_cgtsv_native
@@ -58271,6 +60159,10 @@ contains
       integer(c_int), value :: ldb
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: zgtsv
+      if (.not. is_contiguous(dl)) error stop "dl: array must be contiguous"
+      if (.not. is_contiguous(d)) error stop "d: array must be contiguous"
+      if (.not. is_contiguous(du)) error stop "du: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
       zgtsv = rocsparse_zgtsv_raw(handle, m, n, c_loc(dl), c_loc(d), c_loc(du), c_loc(B), ldb, &
         temp_buffer)
     end function rocsparse_zgtsv_native
@@ -58306,6 +60198,10 @@ contains
       integer(c_int), value :: ldb
       type(c_ptr), value :: buffer_size
       integer(c_int) :: sgtsv_no_pivot_buffer_size
+      if (.not. is_contiguous(dl)) error stop "dl: array must be contiguous"
+      if (.not. is_contiguous(d)) error stop "d: array must be contiguous"
+      if (.not. is_contiguous(du)) error stop "du: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
       sgtsv_no_pivot_buffer_size = rocsparse_sgtsv_no_pivot_buffer_size_raw(handle, m, n, c_loc( &
         dl), c_loc(d), c_loc(du), c_loc(B), ldb, buffer_size)
     end function rocsparse_sgtsv_no_pivot_buffer_size_native
@@ -58343,6 +60239,10 @@ contains
       integer(c_int), value :: ldb
       type(c_ptr), value :: buffer_size
       integer(c_int) :: dgtsv_no_pivot_buffer_size
+      if (.not. is_contiguous(dl)) error stop "dl: array must be contiguous"
+      if (.not. is_contiguous(d)) error stop "d: array must be contiguous"
+      if (.not. is_contiguous(du)) error stop "du: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
       dgtsv_no_pivot_buffer_size = rocsparse_dgtsv_no_pivot_buffer_size_raw(handle, m, n, c_loc( &
         dl), c_loc(d), c_loc(du), c_loc(B), ldb, buffer_size)
     end function rocsparse_dgtsv_no_pivot_buffer_size_native
@@ -58380,6 +60280,10 @@ contains
       integer(c_int), value :: ldb
       type(c_ptr), value :: buffer_size
       integer(c_int) :: cgtsv_no_pivot_buffer_size
+      if (.not. is_contiguous(dl)) error stop "dl: array must be contiguous"
+      if (.not. is_contiguous(d)) error stop "d: array must be contiguous"
+      if (.not. is_contiguous(du)) error stop "du: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
       cgtsv_no_pivot_buffer_size = rocsparse_cgtsv_no_pivot_buffer_size_raw(handle, m, n, c_loc( &
         dl), c_loc(d), c_loc(du), c_loc(B), ldb, buffer_size)
     end function rocsparse_cgtsv_no_pivot_buffer_size_native
@@ -58417,6 +60321,10 @@ contains
       integer(c_int), value :: ldb
       type(c_ptr), value :: buffer_size
       integer(c_int) :: zgtsv_no_pivot_buffer_size
+      if (.not. is_contiguous(dl)) error stop "dl: array must be contiguous"
+      if (.not. is_contiguous(d)) error stop "d: array must be contiguous"
+      if (.not. is_contiguous(du)) error stop "du: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
       zgtsv_no_pivot_buffer_size = rocsparse_zgtsv_no_pivot_buffer_size_raw(handle, m, n, c_loc( &
         dl), c_loc(d), c_loc(du), c_loc(B), ldb, buffer_size)
     end function rocsparse_zgtsv_no_pivot_buffer_size_native
@@ -58454,6 +60362,10 @@ contains
       integer(c_int), value :: ldb
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: sgtsv_no_pivot
+      if (.not. is_contiguous(dl)) error stop "dl: array must be contiguous"
+      if (.not. is_contiguous(d)) error stop "d: array must be contiguous"
+      if (.not. is_contiguous(du)) error stop "du: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
       sgtsv_no_pivot = rocsparse_sgtsv_no_pivot_raw(handle, m, n, c_loc(dl), c_loc(d), c_loc(du), &
         c_loc(B), ldb, temp_buffer)
     end function rocsparse_sgtsv_no_pivot_native
@@ -58491,6 +60403,10 @@ contains
       integer(c_int), value :: ldb
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: dgtsv_no_pivot
+      if (.not. is_contiguous(dl)) error stop "dl: array must be contiguous"
+      if (.not. is_contiguous(d)) error stop "d: array must be contiguous"
+      if (.not. is_contiguous(du)) error stop "du: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
       dgtsv_no_pivot = rocsparse_dgtsv_no_pivot_raw(handle, m, n, c_loc(dl), c_loc(d), c_loc(du), &
         c_loc(B), ldb, temp_buffer)
     end function rocsparse_dgtsv_no_pivot_native
@@ -58528,6 +60444,10 @@ contains
       integer(c_int), value :: ldb
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: cgtsv_no_pivot
+      if (.not. is_contiguous(dl)) error stop "dl: array must be contiguous"
+      if (.not. is_contiguous(d)) error stop "d: array must be contiguous"
+      if (.not. is_contiguous(du)) error stop "du: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
       cgtsv_no_pivot = rocsparse_cgtsv_no_pivot_raw(handle, m, n, c_loc(dl), c_loc(d), c_loc(du), &
         c_loc(B), ldb, temp_buffer)
     end function rocsparse_cgtsv_no_pivot_native
@@ -58565,6 +60485,10 @@ contains
       integer(c_int), value :: ldb
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: zgtsv_no_pivot
+      if (.not. is_contiguous(dl)) error stop "dl: array must be contiguous"
+      if (.not. is_contiguous(d)) error stop "d: array must be contiguous"
+      if (.not. is_contiguous(du)) error stop "du: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
       zgtsv_no_pivot = rocsparse_zgtsv_no_pivot_raw(handle, m, n, c_loc(dl), c_loc(d), c_loc(du), &
         c_loc(B), ldb, temp_buffer)
     end function rocsparse_zgtsv_no_pivot_native
@@ -58602,6 +60526,10 @@ contains
       integer(c_int), value :: batch_stride
       type(c_ptr), value :: buffer_size
       integer(c_int) :: sgtsv_no_pivot_strided_batch_buffer_size
+      if (.not. is_contiguous(dl)) error stop "dl: array must be contiguous"
+      if (.not. is_contiguous(d)) error stop "d: array must be contiguous"
+      if (.not. is_contiguous(du)) error stop "du: array must be contiguous"
+      if (.not. is_contiguous(x)) error stop "x: array must be contiguous"
       sgtsv_no_pivot_strided_batch_buffer_size = rocsparse_sgtsv_no_pivot_strided_batch_buffer_size_raw( &
         handle, m, c_loc(dl), c_loc(d), c_loc(du), c_loc(x), batch_count, batch_stride, buffer_size)
     end function rocsparse_sgtsv_no_pivot_strided_batch_buffer_size_native
@@ -58639,6 +60567,10 @@ contains
       integer(c_int), value :: batch_stride
       type(c_ptr), value :: buffer_size
       integer(c_int) :: dgtsv_no_pivot_strided_batch_buffer_size
+      if (.not. is_contiguous(dl)) error stop "dl: array must be contiguous"
+      if (.not. is_contiguous(d)) error stop "d: array must be contiguous"
+      if (.not. is_contiguous(du)) error stop "du: array must be contiguous"
+      if (.not. is_contiguous(x)) error stop "x: array must be contiguous"
       dgtsv_no_pivot_strided_batch_buffer_size = rocsparse_dgtsv_no_pivot_strided_batch_buffer_size_raw( &
         handle, m, c_loc(dl), c_loc(d), c_loc(du), c_loc(x), batch_count, batch_stride, buffer_size)
     end function rocsparse_dgtsv_no_pivot_strided_batch_buffer_size_native
@@ -58676,6 +60608,10 @@ contains
       integer(c_int), value :: batch_stride
       type(c_ptr), value :: buffer_size
       integer(c_int) :: cgtsv_no_pivot_strided_batch_buffer_size
+      if (.not. is_contiguous(dl)) error stop "dl: array must be contiguous"
+      if (.not. is_contiguous(d)) error stop "d: array must be contiguous"
+      if (.not. is_contiguous(du)) error stop "du: array must be contiguous"
+      if (.not. is_contiguous(x)) error stop "x: array must be contiguous"
       cgtsv_no_pivot_strided_batch_buffer_size = rocsparse_cgtsv_no_pivot_strided_batch_buffer_size_raw( &
         handle, m, c_loc(dl), c_loc(d), c_loc(du), c_loc(x), batch_count, batch_stride, buffer_size)
     end function rocsparse_cgtsv_no_pivot_strided_batch_buffer_size_native
@@ -58713,6 +60649,10 @@ contains
       integer(c_int), value :: batch_stride
       type(c_ptr), value :: buffer_size
       integer(c_int) :: zgtsv_no_pivot_strided_batch_buffer_size
+      if (.not. is_contiguous(dl)) error stop "dl: array must be contiguous"
+      if (.not. is_contiguous(d)) error stop "d: array must be contiguous"
+      if (.not. is_contiguous(du)) error stop "du: array must be contiguous"
+      if (.not. is_contiguous(x)) error stop "x: array must be contiguous"
       zgtsv_no_pivot_strided_batch_buffer_size = rocsparse_zgtsv_no_pivot_strided_batch_buffer_size_raw( &
         handle, m, c_loc(dl), c_loc(d), c_loc(du), c_loc(x), batch_count, batch_stride, buffer_size)
     end function rocsparse_zgtsv_no_pivot_strided_batch_buffer_size_native
@@ -58750,6 +60690,10 @@ contains
       integer(c_int), value :: batch_stride
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: sgtsv_no_pivot_strided_batch
+      if (.not. is_contiguous(dl)) error stop "dl: array must be contiguous"
+      if (.not. is_contiguous(d)) error stop "d: array must be contiguous"
+      if (.not. is_contiguous(du)) error stop "du: array must be contiguous"
+      if (.not. is_contiguous(x)) error stop "x: array must be contiguous"
       sgtsv_no_pivot_strided_batch = rocsparse_sgtsv_no_pivot_strided_batch_raw(handle, m, c_loc( &
         dl), c_loc(d), c_loc(du), c_loc(x), batch_count, batch_stride, temp_buffer)
     end function rocsparse_sgtsv_no_pivot_strided_batch_native
@@ -58787,6 +60731,10 @@ contains
       integer(c_int), value :: batch_stride
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: dgtsv_no_pivot_strided_batch
+      if (.not. is_contiguous(dl)) error stop "dl: array must be contiguous"
+      if (.not. is_contiguous(d)) error stop "d: array must be contiguous"
+      if (.not. is_contiguous(du)) error stop "du: array must be contiguous"
+      if (.not. is_contiguous(x)) error stop "x: array must be contiguous"
       dgtsv_no_pivot_strided_batch = rocsparse_dgtsv_no_pivot_strided_batch_raw(handle, m, c_loc( &
         dl), c_loc(d), c_loc(du), c_loc(x), batch_count, batch_stride, temp_buffer)
     end function rocsparse_dgtsv_no_pivot_strided_batch_native
@@ -58824,6 +60772,10 @@ contains
       integer(c_int), value :: batch_stride
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: cgtsv_no_pivot_strided_batch
+      if (.not. is_contiguous(dl)) error stop "dl: array must be contiguous"
+      if (.not. is_contiguous(d)) error stop "d: array must be contiguous"
+      if (.not. is_contiguous(du)) error stop "du: array must be contiguous"
+      if (.not. is_contiguous(x)) error stop "x: array must be contiguous"
       cgtsv_no_pivot_strided_batch = rocsparse_cgtsv_no_pivot_strided_batch_raw(handle, m, c_loc( &
         dl), c_loc(d), c_loc(du), c_loc(x), batch_count, batch_stride, temp_buffer)
     end function rocsparse_cgtsv_no_pivot_strided_batch_native
@@ -58861,6 +60813,10 @@ contains
       integer(c_int), value :: batch_stride
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: zgtsv_no_pivot_strided_batch
+      if (.not. is_contiguous(dl)) error stop "dl: array must be contiguous"
+      if (.not. is_contiguous(d)) error stop "d: array must be contiguous"
+      if (.not. is_contiguous(du)) error stop "du: array must be contiguous"
+      if (.not. is_contiguous(x)) error stop "x: array must be contiguous"
       zgtsv_no_pivot_strided_batch = rocsparse_zgtsv_no_pivot_strided_batch_raw(handle, m, c_loc( &
         dl), c_loc(d), c_loc(du), c_loc(x), batch_count, batch_stride, temp_buffer)
     end function rocsparse_zgtsv_no_pivot_strided_batch_native
@@ -58899,6 +60855,10 @@ contains
       integer(c_int), value :: batch_stride
       type(c_ptr), value :: buffer_size
       integer(c_int) :: sgtsv_interleaved_batch_buffer_size
+      if (.not. is_contiguous(dl)) error stop "dl: array must be contiguous"
+      if (.not. is_contiguous(d)) error stop "d: array must be contiguous"
+      if (.not. is_contiguous(du)) error stop "du: array must be contiguous"
+      if (.not. is_contiguous(x)) error stop "x: array must be contiguous"
       sgtsv_interleaved_batch_buffer_size = rocsparse_sgtsv_interleaved_batch_buffer_size_raw( &
         handle, alg, m, c_loc(dl), c_loc(d), c_loc(du), c_loc(x), batch_count, batch_stride, &
         buffer_size)
@@ -58939,6 +60899,10 @@ contains
       integer(c_int), value :: batch_stride
       type(c_ptr), value :: buffer_size
       integer(c_int) :: dgtsv_interleaved_batch_buffer_size
+      if (.not. is_contiguous(dl)) error stop "dl: array must be contiguous"
+      if (.not. is_contiguous(d)) error stop "d: array must be contiguous"
+      if (.not. is_contiguous(du)) error stop "du: array must be contiguous"
+      if (.not. is_contiguous(x)) error stop "x: array must be contiguous"
       dgtsv_interleaved_batch_buffer_size = rocsparse_dgtsv_interleaved_batch_buffer_size_raw( &
         handle, alg, m, c_loc(dl), c_loc(d), c_loc(du), c_loc(x), batch_count, batch_stride, &
         buffer_size)
@@ -58979,6 +60943,10 @@ contains
       integer(c_int), value :: batch_stride
       type(c_ptr), value :: buffer_size
       integer(c_int) :: cgtsv_interleaved_batch_buffer_size
+      if (.not. is_contiguous(dl)) error stop "dl: array must be contiguous"
+      if (.not. is_contiguous(d)) error stop "d: array must be contiguous"
+      if (.not. is_contiguous(du)) error stop "du: array must be contiguous"
+      if (.not. is_contiguous(x)) error stop "x: array must be contiguous"
       cgtsv_interleaved_batch_buffer_size = rocsparse_cgtsv_interleaved_batch_buffer_size_raw( &
         handle, alg, m, c_loc(dl), c_loc(d), c_loc(du), c_loc(x), batch_count, batch_stride, &
         buffer_size)
@@ -59019,6 +60987,10 @@ contains
       integer(c_int), value :: batch_stride
       type(c_ptr), value :: buffer_size
       integer(c_int) :: zgtsv_interleaved_batch_buffer_size
+      if (.not. is_contiguous(dl)) error stop "dl: array must be contiguous"
+      if (.not. is_contiguous(d)) error stop "d: array must be contiguous"
+      if (.not. is_contiguous(du)) error stop "du: array must be contiguous"
+      if (.not. is_contiguous(x)) error stop "x: array must be contiguous"
       zgtsv_interleaved_batch_buffer_size = rocsparse_zgtsv_interleaved_batch_buffer_size_raw( &
         handle, alg, m, c_loc(dl), c_loc(d), c_loc(du), c_loc(x), batch_count, batch_stride, &
         buffer_size)
@@ -59059,6 +61031,10 @@ contains
       integer(c_int), value :: batch_stride
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: sgtsv_interleaved_batch
+      if (.not. is_contiguous(dl)) error stop "dl: array must be contiguous"
+      if (.not. is_contiguous(d)) error stop "d: array must be contiguous"
+      if (.not. is_contiguous(du)) error stop "du: array must be contiguous"
+      if (.not. is_contiguous(x)) error stop "x: array must be contiguous"
       sgtsv_interleaved_batch = rocsparse_sgtsv_interleaved_batch_raw(handle, alg, m, c_loc(dl), &
         c_loc(d), c_loc(du), c_loc(x), batch_count, batch_stride, temp_buffer)
     end function rocsparse_sgtsv_interleaved_batch_native
@@ -59098,6 +61074,10 @@ contains
       integer(c_int), value :: batch_stride
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: dgtsv_interleaved_batch
+      if (.not. is_contiguous(dl)) error stop "dl: array must be contiguous"
+      if (.not. is_contiguous(d)) error stop "d: array must be contiguous"
+      if (.not. is_contiguous(du)) error stop "du: array must be contiguous"
+      if (.not. is_contiguous(x)) error stop "x: array must be contiguous"
       dgtsv_interleaved_batch = rocsparse_dgtsv_interleaved_batch_raw(handle, alg, m, c_loc(dl), &
         c_loc(d), c_loc(du), c_loc(x), batch_count, batch_stride, temp_buffer)
     end function rocsparse_dgtsv_interleaved_batch_native
@@ -59137,6 +61117,10 @@ contains
       integer(c_int), value :: batch_stride
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: cgtsv_interleaved_batch
+      if (.not. is_contiguous(dl)) error stop "dl: array must be contiguous"
+      if (.not. is_contiguous(d)) error stop "d: array must be contiguous"
+      if (.not. is_contiguous(du)) error stop "du: array must be contiguous"
+      if (.not. is_contiguous(x)) error stop "x: array must be contiguous"
       cgtsv_interleaved_batch = rocsparse_cgtsv_interleaved_batch_raw(handle, alg, m, c_loc(dl), &
         c_loc(d), c_loc(du), c_loc(x), batch_count, batch_stride, temp_buffer)
     end function rocsparse_cgtsv_interleaved_batch_native
@@ -59176,6 +61160,10 @@ contains
       integer(c_int), value :: batch_stride
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: zgtsv_interleaved_batch
+      if (.not. is_contiguous(dl)) error stop "dl: array must be contiguous"
+      if (.not. is_contiguous(d)) error stop "d: array must be contiguous"
+      if (.not. is_contiguous(du)) error stop "du: array must be contiguous"
+      if (.not. is_contiguous(x)) error stop "x: array must be contiguous"
       zgtsv_interleaved_batch = rocsparse_zgtsv_interleaved_batch_raw(handle, alg, m, c_loc(dl), &
         c_loc(d), c_loc(du), c_loc(x), batch_count, batch_stride, temp_buffer)
     end function rocsparse_zgtsv_interleaved_batch_native
@@ -59217,6 +61205,9 @@ contains
       integer(c_int) :: reordering
       type(c_ptr), value :: info
       integer(c_int) :: scsrcolor
+      if (.not. is_contiguous(csr_val)) error stop "csr_val: array must be contiguous"
+      if (.not. is_contiguous(csr_row_ptr)) error stop "csr_row_ptr: array must be contiguous"
+      if (.not. is_contiguous(csr_col_ind)) error stop "csr_col_ind: array must be contiguous"
       scsrcolor = rocsparse_scsrcolor_raw(handle, m, nnz, descr, c_loc(csr_val), c_loc( &
         csr_row_ptr), c_loc(csr_col_ind), fraction_to_color, ncolors, coloring, reordering, info)
     end function rocsparse_scsrcolor_native
@@ -59260,6 +61251,9 @@ contains
       integer(c_int) :: reordering
       type(c_ptr), value :: info
       integer(c_int) :: dcsrcolor
+      if (.not. is_contiguous(csr_val)) error stop "csr_val: array must be contiguous"
+      if (.not. is_contiguous(csr_row_ptr)) error stop "csr_row_ptr: array must be contiguous"
+      if (.not. is_contiguous(csr_col_ind)) error stop "csr_col_ind: array must be contiguous"
       dcsrcolor = rocsparse_dcsrcolor_raw(handle, m, nnz, descr, c_loc(csr_val), c_loc( &
         csr_row_ptr), c_loc(csr_col_ind), fraction_to_color, ncolors, coloring, reordering, info)
     end function rocsparse_dcsrcolor_native
@@ -59303,6 +61297,9 @@ contains
       integer(c_int) :: reordering
       type(c_ptr), value :: info
       integer(c_int) :: ccsrcolor
+      if (.not. is_contiguous(csr_val)) error stop "csr_val: array must be contiguous"
+      if (.not. is_contiguous(csr_row_ptr)) error stop "csr_row_ptr: array must be contiguous"
+      if (.not. is_contiguous(csr_col_ind)) error stop "csr_col_ind: array must be contiguous"
       ccsrcolor = rocsparse_ccsrcolor_raw(handle, m, nnz, descr, c_loc(csr_val), c_loc( &
         csr_row_ptr), c_loc(csr_col_ind), fraction_to_color, ncolors, coloring, reordering, info)
     end function rocsparse_ccsrcolor_native
@@ -59346,6 +61343,9 @@ contains
       integer(c_int) :: reordering
       type(c_ptr), value :: info
       integer(c_int) :: zcsrcolor
+      if (.not. is_contiguous(csr_val)) error stop "csr_val: array must be contiguous"
+      if (.not. is_contiguous(csr_row_ptr)) error stop "csr_row_ptr: array must be contiguous"
+      if (.not. is_contiguous(csr_col_ind)) error stop "csr_col_ind: array must be contiguous"
       zcsrcolor = rocsparse_zcsrcolor_raw(handle, m, nnz, descr, c_loc(csr_val), c_loc( &
         csr_row_ptr), c_loc(csr_col_ind), fraction_to_color, ncolors, coloring, reordering, info)
     end function rocsparse_zcsrcolor_native
@@ -59390,6 +61390,9 @@ contains
       integer(c_int), value :: storage
       type(c_ptr), value :: buffer_size
       integer(c_int) :: scheck_matrix_coo_buffer_size
+      if (.not. is_contiguous(coo_val)) error stop "coo_val: array must be contiguous"
+      if (.not. is_contiguous(coo_row_ind)) error stop "coo_row_ind: array must be contiguous"
+      if (.not. is_contiguous(coo_col_ind)) error stop "coo_col_ind: array must be contiguous"
       scheck_matrix_coo_buffer_size = rocsparse_scheck_matrix_coo_buffer_size_raw(handle, m, n, &
         nnz, c_loc(coo_val), c_loc(coo_row_ind), c_loc(coo_col_ind), idx_base, matrix_type, uplo, &
         storage, buffer_size)
@@ -59437,6 +61440,9 @@ contains
       integer(c_int), value :: storage
       type(c_ptr), value :: buffer_size
       integer(c_int) :: dcheck_matrix_coo_buffer_size
+      if (.not. is_contiguous(coo_val)) error stop "coo_val: array must be contiguous"
+      if (.not. is_contiguous(coo_row_ind)) error stop "coo_row_ind: array must be contiguous"
+      if (.not. is_contiguous(coo_col_ind)) error stop "coo_col_ind: array must be contiguous"
       dcheck_matrix_coo_buffer_size = rocsparse_dcheck_matrix_coo_buffer_size_raw(handle, m, n, &
         nnz, c_loc(coo_val), c_loc(coo_row_ind), c_loc(coo_col_ind), idx_base, matrix_type, uplo, &
         storage, buffer_size)
@@ -59484,6 +61490,9 @@ contains
       integer(c_int), value :: storage
       type(c_ptr), value :: buffer_size
       integer(c_int) :: ccheck_matrix_coo_buffer_size
+      if (.not. is_contiguous(coo_val)) error stop "coo_val: array must be contiguous"
+      if (.not. is_contiguous(coo_row_ind)) error stop "coo_row_ind: array must be contiguous"
+      if (.not. is_contiguous(coo_col_ind)) error stop "coo_col_ind: array must be contiguous"
       ccheck_matrix_coo_buffer_size = rocsparse_ccheck_matrix_coo_buffer_size_raw(handle, m, n, &
         nnz, c_loc(coo_val), c_loc(coo_row_ind), c_loc(coo_col_ind), idx_base, matrix_type, uplo, &
         storage, buffer_size)
@@ -59531,6 +61540,9 @@ contains
       integer(c_int), value :: storage
       type(c_ptr), value :: buffer_size
       integer(c_int) :: zcheck_matrix_coo_buffer_size
+      if (.not. is_contiguous(coo_val)) error stop "coo_val: array must be contiguous"
+      if (.not. is_contiguous(coo_row_ind)) error stop "coo_row_ind: array must be contiguous"
+      if (.not. is_contiguous(coo_col_ind)) error stop "coo_col_ind: array must be contiguous"
       zcheck_matrix_coo_buffer_size = rocsparse_zcheck_matrix_coo_buffer_size_raw(handle, m, n, &
         nnz, c_loc(coo_val), c_loc(coo_row_ind), c_loc(coo_col_ind), idx_base, matrix_type, uplo, &
         storage, buffer_size)
@@ -59579,6 +61591,10 @@ contains
       integer(c_int), target :: data_status(..)
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: scheck_matrix_coo
+      if (.not. is_contiguous(coo_val)) error stop "coo_val: array must be contiguous"
+      if (.not. is_contiguous(coo_row_ind)) error stop "coo_row_ind: array must be contiguous"
+      if (.not. is_contiguous(coo_col_ind)) error stop "coo_col_ind: array must be contiguous"
+      if (.not. is_contiguous(data_status)) error stop "data_status: array must be contiguous"
       scheck_matrix_coo = rocsparse_scheck_matrix_coo_raw(handle, m, n, nnz, c_loc(coo_val), &
         c_loc(coo_row_ind), c_loc(coo_col_ind), idx_base, matrix_type, uplo, storage, c_loc( &
         data_status), temp_buffer)
@@ -59627,6 +61643,10 @@ contains
       integer(c_int), target :: data_status(..)
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: dcheck_matrix_coo
+      if (.not. is_contiguous(coo_val)) error stop "coo_val: array must be contiguous"
+      if (.not. is_contiguous(coo_row_ind)) error stop "coo_row_ind: array must be contiguous"
+      if (.not. is_contiguous(coo_col_ind)) error stop "coo_col_ind: array must be contiguous"
+      if (.not. is_contiguous(data_status)) error stop "data_status: array must be contiguous"
       dcheck_matrix_coo = rocsparse_dcheck_matrix_coo_raw(handle, m, n, nnz, c_loc(coo_val), &
         c_loc(coo_row_ind), c_loc(coo_col_ind), idx_base, matrix_type, uplo, storage, c_loc( &
         data_status), temp_buffer)
@@ -59675,6 +61695,10 @@ contains
       integer(c_int), target :: data_status(..)
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: ccheck_matrix_coo
+      if (.not. is_contiguous(coo_val)) error stop "coo_val: array must be contiguous"
+      if (.not. is_contiguous(coo_row_ind)) error stop "coo_row_ind: array must be contiguous"
+      if (.not. is_contiguous(coo_col_ind)) error stop "coo_col_ind: array must be contiguous"
+      if (.not. is_contiguous(data_status)) error stop "data_status: array must be contiguous"
       ccheck_matrix_coo = rocsparse_ccheck_matrix_coo_raw(handle, m, n, nnz, c_loc(coo_val), &
         c_loc(coo_row_ind), c_loc(coo_col_ind), idx_base, matrix_type, uplo, storage, c_loc( &
         data_status), temp_buffer)
@@ -59723,6 +61747,10 @@ contains
       integer(c_int), target :: data_status(..)
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: zcheck_matrix_coo
+      if (.not. is_contiguous(coo_val)) error stop "coo_val: array must be contiguous"
+      if (.not. is_contiguous(coo_row_ind)) error stop "coo_row_ind: array must be contiguous"
+      if (.not. is_contiguous(coo_col_ind)) error stop "coo_col_ind: array must be contiguous"
+      if (.not. is_contiguous(data_status)) error stop "data_status: array must be contiguous"
       zcheck_matrix_coo = rocsparse_zcheck_matrix_coo_raw(handle, m, n, nnz, c_loc(coo_val), &
         c_loc(coo_row_ind), c_loc(coo_col_ind), idx_base, matrix_type, uplo, storage, c_loc( &
         data_status), temp_buffer)
@@ -59770,6 +61798,9 @@ contains
       integer(c_int), value :: storage
       type(c_ptr), value :: buffer_size
       integer(c_int) :: scheck_matrix_csc_buffer_size
+      if (.not. is_contiguous(csc_val)) error stop "csc_val: array must be contiguous"
+      if (.not. is_contiguous(csc_col_ptr)) error stop "csc_col_ptr: array must be contiguous"
+      if (.not. is_contiguous(csc_row_ind)) error stop "csc_row_ind: array must be contiguous"
       scheck_matrix_csc_buffer_size = rocsparse_scheck_matrix_csc_buffer_size_raw(handle, m, n, &
         nnz, c_loc(csc_val), c_loc(csc_col_ptr), c_loc(csc_row_ind), idx_base, matrix_type, uplo, &
         storage, buffer_size)
@@ -59817,6 +61848,9 @@ contains
       integer(c_int), value :: storage
       type(c_ptr), value :: buffer_size
       integer(c_int) :: dcheck_matrix_csc_buffer_size
+      if (.not. is_contiguous(csc_val)) error stop "csc_val: array must be contiguous"
+      if (.not. is_contiguous(csc_col_ptr)) error stop "csc_col_ptr: array must be contiguous"
+      if (.not. is_contiguous(csc_row_ind)) error stop "csc_row_ind: array must be contiguous"
       dcheck_matrix_csc_buffer_size = rocsparse_dcheck_matrix_csc_buffer_size_raw(handle, m, n, &
         nnz, c_loc(csc_val), c_loc(csc_col_ptr), c_loc(csc_row_ind), idx_base, matrix_type, uplo, &
         storage, buffer_size)
@@ -59864,6 +61898,9 @@ contains
       integer(c_int), value :: storage
       type(c_ptr), value :: buffer_size
       integer(c_int) :: ccheck_matrix_csc_buffer_size
+      if (.not. is_contiguous(csc_val)) error stop "csc_val: array must be contiguous"
+      if (.not. is_contiguous(csc_col_ptr)) error stop "csc_col_ptr: array must be contiguous"
+      if (.not. is_contiguous(csc_row_ind)) error stop "csc_row_ind: array must be contiguous"
       ccheck_matrix_csc_buffer_size = rocsparse_ccheck_matrix_csc_buffer_size_raw(handle, m, n, &
         nnz, c_loc(csc_val), c_loc(csc_col_ptr), c_loc(csc_row_ind), idx_base, matrix_type, uplo, &
         storage, buffer_size)
@@ -59911,6 +61948,9 @@ contains
       integer(c_int), value :: storage
       type(c_ptr), value :: buffer_size
       integer(c_int) :: zcheck_matrix_csc_buffer_size
+      if (.not. is_contiguous(csc_val)) error stop "csc_val: array must be contiguous"
+      if (.not. is_contiguous(csc_col_ptr)) error stop "csc_col_ptr: array must be contiguous"
+      if (.not. is_contiguous(csc_row_ind)) error stop "csc_row_ind: array must be contiguous"
       zcheck_matrix_csc_buffer_size = rocsparse_zcheck_matrix_csc_buffer_size_raw(handle, m, n, &
         nnz, c_loc(csc_val), c_loc(csc_col_ptr), c_loc(csc_row_ind), idx_base, matrix_type, uplo, &
         storage, buffer_size)
@@ -59959,6 +61999,10 @@ contains
       integer(c_int), target :: data_status(..)
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: scheck_matrix_csc
+      if (.not. is_contiguous(csc_val)) error stop "csc_val: array must be contiguous"
+      if (.not. is_contiguous(csc_col_ptr)) error stop "csc_col_ptr: array must be contiguous"
+      if (.not. is_contiguous(csc_row_ind)) error stop "csc_row_ind: array must be contiguous"
+      if (.not. is_contiguous(data_status)) error stop "data_status: array must be contiguous"
       scheck_matrix_csc = rocsparse_scheck_matrix_csc_raw(handle, m, n, nnz, c_loc(csc_val), &
         c_loc(csc_col_ptr), c_loc(csc_row_ind), idx_base, matrix_type, uplo, storage, c_loc( &
         data_status), temp_buffer)
@@ -60007,6 +62051,10 @@ contains
       integer(c_int), target :: data_status(..)
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: dcheck_matrix_csc
+      if (.not. is_contiguous(csc_val)) error stop "csc_val: array must be contiguous"
+      if (.not. is_contiguous(csc_col_ptr)) error stop "csc_col_ptr: array must be contiguous"
+      if (.not. is_contiguous(csc_row_ind)) error stop "csc_row_ind: array must be contiguous"
+      if (.not. is_contiguous(data_status)) error stop "data_status: array must be contiguous"
       dcheck_matrix_csc = rocsparse_dcheck_matrix_csc_raw(handle, m, n, nnz, c_loc(csc_val), &
         c_loc(csc_col_ptr), c_loc(csc_row_ind), idx_base, matrix_type, uplo, storage, c_loc( &
         data_status), temp_buffer)
@@ -60055,6 +62103,10 @@ contains
       integer(c_int), target :: data_status(..)
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: ccheck_matrix_csc
+      if (.not. is_contiguous(csc_val)) error stop "csc_val: array must be contiguous"
+      if (.not. is_contiguous(csc_col_ptr)) error stop "csc_col_ptr: array must be contiguous"
+      if (.not. is_contiguous(csc_row_ind)) error stop "csc_row_ind: array must be contiguous"
+      if (.not. is_contiguous(data_status)) error stop "data_status: array must be contiguous"
       ccheck_matrix_csc = rocsparse_ccheck_matrix_csc_raw(handle, m, n, nnz, c_loc(csc_val), &
         c_loc(csc_col_ptr), c_loc(csc_row_ind), idx_base, matrix_type, uplo, storage, c_loc( &
         data_status), temp_buffer)
@@ -60103,6 +62155,10 @@ contains
       integer(c_int), target :: data_status(..)
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: zcheck_matrix_csc
+      if (.not. is_contiguous(csc_val)) error stop "csc_val: array must be contiguous"
+      if (.not. is_contiguous(csc_col_ptr)) error stop "csc_col_ptr: array must be contiguous"
+      if (.not. is_contiguous(csc_row_ind)) error stop "csc_row_ind: array must be contiguous"
+      if (.not. is_contiguous(data_status)) error stop "data_status: array must be contiguous"
       zcheck_matrix_csc = rocsparse_zcheck_matrix_csc_raw(handle, m, n, nnz, c_loc(csc_val), &
         c_loc(csc_col_ptr), c_loc(csc_row_ind), idx_base, matrix_type, uplo, storage, c_loc( &
         data_status), temp_buffer)
@@ -60150,6 +62206,9 @@ contains
       integer(c_int), value :: storage
       type(c_ptr), value :: buffer_size
       integer(c_int) :: scheck_matrix_csr_buffer_size
+      if (.not. is_contiguous(csr_val)) error stop "csr_val: array must be contiguous"
+      if (.not. is_contiguous(csr_row_ptr)) error stop "csr_row_ptr: array must be contiguous"
+      if (.not. is_contiguous(csr_col_ind)) error stop "csr_col_ind: array must be contiguous"
       scheck_matrix_csr_buffer_size = rocsparse_scheck_matrix_csr_buffer_size_raw(handle, m, n, &
         nnz, c_loc(csr_val), c_loc(csr_row_ptr), c_loc(csr_col_ind), idx_base, matrix_type, uplo, &
         storage, buffer_size)
@@ -60197,6 +62256,9 @@ contains
       integer(c_int), value :: storage
       type(c_ptr), value :: buffer_size
       integer(c_int) :: dcheck_matrix_csr_buffer_size
+      if (.not. is_contiguous(csr_val)) error stop "csr_val: array must be contiguous"
+      if (.not. is_contiguous(csr_row_ptr)) error stop "csr_row_ptr: array must be contiguous"
+      if (.not. is_contiguous(csr_col_ind)) error stop "csr_col_ind: array must be contiguous"
       dcheck_matrix_csr_buffer_size = rocsparse_dcheck_matrix_csr_buffer_size_raw(handle, m, n, &
         nnz, c_loc(csr_val), c_loc(csr_row_ptr), c_loc(csr_col_ind), idx_base, matrix_type, uplo, &
         storage, buffer_size)
@@ -60244,6 +62306,9 @@ contains
       integer(c_int), value :: storage
       type(c_ptr), value :: buffer_size
       integer(c_int) :: ccheck_matrix_csr_buffer_size
+      if (.not. is_contiguous(csr_val)) error stop "csr_val: array must be contiguous"
+      if (.not. is_contiguous(csr_row_ptr)) error stop "csr_row_ptr: array must be contiguous"
+      if (.not. is_contiguous(csr_col_ind)) error stop "csr_col_ind: array must be contiguous"
       ccheck_matrix_csr_buffer_size = rocsparse_ccheck_matrix_csr_buffer_size_raw(handle, m, n, &
         nnz, c_loc(csr_val), c_loc(csr_row_ptr), c_loc(csr_col_ind), idx_base, matrix_type, uplo, &
         storage, buffer_size)
@@ -60291,6 +62356,9 @@ contains
       integer(c_int), value :: storage
       type(c_ptr), value :: buffer_size
       integer(c_int) :: zcheck_matrix_csr_buffer_size
+      if (.not. is_contiguous(csr_val)) error stop "csr_val: array must be contiguous"
+      if (.not. is_contiguous(csr_row_ptr)) error stop "csr_row_ptr: array must be contiguous"
+      if (.not. is_contiguous(csr_col_ind)) error stop "csr_col_ind: array must be contiguous"
       zcheck_matrix_csr_buffer_size = rocsparse_zcheck_matrix_csr_buffer_size_raw(handle, m, n, &
         nnz, c_loc(csr_val), c_loc(csr_row_ptr), c_loc(csr_col_ind), idx_base, matrix_type, uplo, &
         storage, buffer_size)
@@ -60339,6 +62407,10 @@ contains
       integer(c_int), target :: data_status(..)
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: scheck_matrix_csr
+      if (.not. is_contiguous(csr_val)) error stop "csr_val: array must be contiguous"
+      if (.not. is_contiguous(csr_row_ptr)) error stop "csr_row_ptr: array must be contiguous"
+      if (.not. is_contiguous(csr_col_ind)) error stop "csr_col_ind: array must be contiguous"
+      if (.not. is_contiguous(data_status)) error stop "data_status: array must be contiguous"
       scheck_matrix_csr = rocsparse_scheck_matrix_csr_raw(handle, m, n, nnz, c_loc(csr_val), &
         c_loc(csr_row_ptr), c_loc(csr_col_ind), idx_base, matrix_type, uplo, storage, c_loc( &
         data_status), temp_buffer)
@@ -60387,6 +62459,10 @@ contains
       integer(c_int), target :: data_status(..)
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: dcheck_matrix_csr
+      if (.not. is_contiguous(csr_val)) error stop "csr_val: array must be contiguous"
+      if (.not. is_contiguous(csr_row_ptr)) error stop "csr_row_ptr: array must be contiguous"
+      if (.not. is_contiguous(csr_col_ind)) error stop "csr_col_ind: array must be contiguous"
+      if (.not. is_contiguous(data_status)) error stop "data_status: array must be contiguous"
       dcheck_matrix_csr = rocsparse_dcheck_matrix_csr_raw(handle, m, n, nnz, c_loc(csr_val), &
         c_loc(csr_row_ptr), c_loc(csr_col_ind), idx_base, matrix_type, uplo, storage, c_loc( &
         data_status), temp_buffer)
@@ -60435,6 +62511,10 @@ contains
       integer(c_int), target :: data_status(..)
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: ccheck_matrix_csr
+      if (.not. is_contiguous(csr_val)) error stop "csr_val: array must be contiguous"
+      if (.not. is_contiguous(csr_row_ptr)) error stop "csr_row_ptr: array must be contiguous"
+      if (.not. is_contiguous(csr_col_ind)) error stop "csr_col_ind: array must be contiguous"
+      if (.not. is_contiguous(data_status)) error stop "data_status: array must be contiguous"
       ccheck_matrix_csr = rocsparse_ccheck_matrix_csr_raw(handle, m, n, nnz, c_loc(csr_val), &
         c_loc(csr_row_ptr), c_loc(csr_col_ind), idx_base, matrix_type, uplo, storage, c_loc( &
         data_status), temp_buffer)
@@ -60483,6 +62563,10 @@ contains
       integer(c_int), target :: data_status(..)
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: zcheck_matrix_csr
+      if (.not. is_contiguous(csr_val)) error stop "csr_val: array must be contiguous"
+      if (.not. is_contiguous(csr_row_ptr)) error stop "csr_row_ptr: array must be contiguous"
+      if (.not. is_contiguous(csr_col_ind)) error stop "csr_col_ind: array must be contiguous"
+      if (.not. is_contiguous(data_status)) error stop "data_status: array must be contiguous"
       zcheck_matrix_csr = rocsparse_zcheck_matrix_csr_raw(handle, m, n, nnz, c_loc(csr_val), &
         c_loc(csr_row_ptr), c_loc(csr_col_ind), idx_base, matrix_type, uplo, storage, c_loc( &
         data_status), temp_buffer)
@@ -60529,6 +62613,8 @@ contains
       integer(c_int), value :: storage
       type(c_ptr), value :: buffer_size
       integer(c_int) :: scheck_matrix_ell_buffer_size
+      if (.not. is_contiguous(ell_val)) error stop "ell_val: array must be contiguous"
+      if (.not. is_contiguous(ell_col_ind)) error stop "ell_col_ind: array must be contiguous"
       scheck_matrix_ell_buffer_size = rocsparse_scheck_matrix_ell_buffer_size_raw(handle, m, n, &
         ell_width, c_loc(ell_val), c_loc(ell_col_ind), idx_base, matrix_type, uplo, storage, &
         buffer_size)
@@ -60573,6 +62659,8 @@ contains
       integer(c_int), value :: storage
       type(c_ptr), value :: buffer_size
       integer(c_int) :: dcheck_matrix_ell_buffer_size
+      if (.not. is_contiguous(ell_val)) error stop "ell_val: array must be contiguous"
+      if (.not. is_contiguous(ell_col_ind)) error stop "ell_col_ind: array must be contiguous"
       dcheck_matrix_ell_buffer_size = rocsparse_dcheck_matrix_ell_buffer_size_raw(handle, m, n, &
         ell_width, c_loc(ell_val), c_loc(ell_col_ind), idx_base, matrix_type, uplo, storage, &
         buffer_size)
@@ -60617,6 +62705,8 @@ contains
       integer(c_int), value :: storage
       type(c_ptr), value :: buffer_size
       integer(c_int) :: ccheck_matrix_ell_buffer_size
+      if (.not. is_contiguous(ell_val)) error stop "ell_val: array must be contiguous"
+      if (.not. is_contiguous(ell_col_ind)) error stop "ell_col_ind: array must be contiguous"
       ccheck_matrix_ell_buffer_size = rocsparse_ccheck_matrix_ell_buffer_size_raw(handle, m, n, &
         ell_width, c_loc(ell_val), c_loc(ell_col_ind), idx_base, matrix_type, uplo, storage, &
         buffer_size)
@@ -60661,6 +62751,8 @@ contains
       integer(c_int), value :: storage
       type(c_ptr), value :: buffer_size
       integer(c_int) :: zcheck_matrix_ell_buffer_size
+      if (.not. is_contiguous(ell_val)) error stop "ell_val: array must be contiguous"
+      if (.not. is_contiguous(ell_col_ind)) error stop "ell_col_ind: array must be contiguous"
       zcheck_matrix_ell_buffer_size = rocsparse_zcheck_matrix_ell_buffer_size_raw(handle, m, n, &
         ell_width, c_loc(ell_val), c_loc(ell_col_ind), idx_base, matrix_type, uplo, storage, &
         buffer_size)
@@ -60705,6 +62797,9 @@ contains
       integer(c_int), target :: data_status(..)
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: scheck_matrix_ell
+      if (.not. is_contiguous(ell_val)) error stop "ell_val: array must be contiguous"
+      if (.not. is_contiguous(ell_col_ind)) error stop "ell_col_ind: array must be contiguous"
+      if (.not. is_contiguous(data_status)) error stop "data_status: array must be contiguous"
       scheck_matrix_ell = rocsparse_scheck_matrix_ell_raw(handle, m, n, ell_width, c_loc(ell_val), &
         c_loc(ell_col_ind), idx_base, matrix_type, uplo, storage, c_loc(data_status), temp_buffer)
     end function rocsparse_scheck_matrix_ell_native
@@ -60748,6 +62843,9 @@ contains
       integer(c_int), target :: data_status(..)
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: dcheck_matrix_ell
+      if (.not. is_contiguous(ell_val)) error stop "ell_val: array must be contiguous"
+      if (.not. is_contiguous(ell_col_ind)) error stop "ell_col_ind: array must be contiguous"
+      if (.not. is_contiguous(data_status)) error stop "data_status: array must be contiguous"
       dcheck_matrix_ell = rocsparse_dcheck_matrix_ell_raw(handle, m, n, ell_width, c_loc(ell_val), &
         c_loc(ell_col_ind), idx_base, matrix_type, uplo, storage, c_loc(data_status), temp_buffer)
     end function rocsparse_dcheck_matrix_ell_native
@@ -60791,6 +62889,9 @@ contains
       integer(c_int), target :: data_status(..)
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: ccheck_matrix_ell
+      if (.not. is_contiguous(ell_val)) error stop "ell_val: array must be contiguous"
+      if (.not. is_contiguous(ell_col_ind)) error stop "ell_col_ind: array must be contiguous"
+      if (.not. is_contiguous(data_status)) error stop "data_status: array must be contiguous"
       ccheck_matrix_ell = rocsparse_ccheck_matrix_ell_raw(handle, m, n, ell_width, c_loc(ell_val), &
         c_loc(ell_col_ind), idx_base, matrix_type, uplo, storage, c_loc(data_status), temp_buffer)
     end function rocsparse_ccheck_matrix_ell_native
@@ -60834,6 +62935,9 @@ contains
       integer(c_int), target :: data_status(..)
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: zcheck_matrix_ell
+      if (.not. is_contiguous(ell_val)) error stop "ell_val: array must be contiguous"
+      if (.not. is_contiguous(ell_col_ind)) error stop "ell_col_ind: array must be contiguous"
+      if (.not. is_contiguous(data_status)) error stop "data_status: array must be contiguous"
       zcheck_matrix_ell = rocsparse_zcheck_matrix_ell_raw(handle, m, n, ell_width, c_loc(ell_val), &
         c_loc(ell_col_ind), idx_base, matrix_type, uplo, storage, c_loc(data_status), temp_buffer)
     end function rocsparse_zcheck_matrix_ell_native
@@ -60881,6 +62985,9 @@ contains
       integer(c_int), value :: storage
       type(c_ptr), value :: buffer_size
       integer(c_int) :: scheck_matrix_gebsc_buffer_size
+      if (.not. is_contiguous(bsc_val)) error stop "bsc_val: array must be contiguous"
+      if (.not. is_contiguous(bsc_col_ptr)) error stop "bsc_col_ptr: array must be contiguous"
+      if (.not. is_contiguous(bsc_row_ind)) error stop "bsc_row_ind: array must be contiguous"
       scheck_matrix_gebsc_buffer_size = rocsparse_scheck_matrix_gebsc_buffer_size_raw(handle, dir, &
         mb, nb, nnzb, row_block_dim, col_block_dim, c_loc(bsc_val), c_loc(bsc_col_ptr), c_loc( &
         bsc_row_ind), idx_base, matrix_type, uplo, storage, buffer_size)
@@ -60934,6 +63041,9 @@ contains
       integer(c_int), value :: storage
       type(c_ptr), value :: buffer_size
       integer(c_int) :: dcheck_matrix_gebsc_buffer_size
+      if (.not. is_contiguous(bsc_val)) error stop "bsc_val: array must be contiguous"
+      if (.not. is_contiguous(bsc_col_ptr)) error stop "bsc_col_ptr: array must be contiguous"
+      if (.not. is_contiguous(bsc_row_ind)) error stop "bsc_row_ind: array must be contiguous"
       dcheck_matrix_gebsc_buffer_size = rocsparse_dcheck_matrix_gebsc_buffer_size_raw(handle, dir, &
         mb, nb, nnzb, row_block_dim, col_block_dim, c_loc(bsc_val), c_loc(bsc_col_ptr), c_loc( &
         bsc_row_ind), idx_base, matrix_type, uplo, storage, buffer_size)
@@ -60987,6 +63097,9 @@ contains
       integer(c_int), value :: storage
       type(c_ptr), value :: buffer_size
       integer(c_int) :: ccheck_matrix_gebsc_buffer_size
+      if (.not. is_contiguous(bsc_val)) error stop "bsc_val: array must be contiguous"
+      if (.not. is_contiguous(bsc_col_ptr)) error stop "bsc_col_ptr: array must be contiguous"
+      if (.not. is_contiguous(bsc_row_ind)) error stop "bsc_row_ind: array must be contiguous"
       ccheck_matrix_gebsc_buffer_size = rocsparse_ccheck_matrix_gebsc_buffer_size_raw(handle, dir, &
         mb, nb, nnzb, row_block_dim, col_block_dim, c_loc(bsc_val), c_loc(bsc_col_ptr), c_loc( &
         bsc_row_ind), idx_base, matrix_type, uplo, storage, buffer_size)
@@ -61040,6 +63153,9 @@ contains
       integer(c_int), value :: storage
       type(c_ptr), value :: buffer_size
       integer(c_int) :: zcheck_matrix_gebsc_buffer_size
+      if (.not. is_contiguous(bsc_val)) error stop "bsc_val: array must be contiguous"
+      if (.not. is_contiguous(bsc_col_ptr)) error stop "bsc_col_ptr: array must be contiguous"
+      if (.not. is_contiguous(bsc_row_ind)) error stop "bsc_row_ind: array must be contiguous"
       zcheck_matrix_gebsc_buffer_size = rocsparse_zcheck_matrix_gebsc_buffer_size_raw(handle, dir, &
         mb, nb, nnzb, row_block_dim, col_block_dim, c_loc(bsc_val), c_loc(bsc_col_ptr), c_loc( &
         bsc_row_ind), idx_base, matrix_type, uplo, storage, buffer_size)
@@ -61094,6 +63210,10 @@ contains
       integer(c_int), target :: data_status(..)
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: scheck_matrix_gebsc
+      if (.not. is_contiguous(bsc_val)) error stop "bsc_val: array must be contiguous"
+      if (.not. is_contiguous(bsc_col_ptr)) error stop "bsc_col_ptr: array must be contiguous"
+      if (.not. is_contiguous(bsc_row_ind)) error stop "bsc_row_ind: array must be contiguous"
+      if (.not. is_contiguous(data_status)) error stop "data_status: array must be contiguous"
       scheck_matrix_gebsc = rocsparse_scheck_matrix_gebsc_raw(handle, dir, mb, nb, nnzb, &
         row_block_dim, col_block_dim, c_loc(bsc_val), c_loc(bsc_col_ptr), c_loc(bsc_row_ind), &
         idx_base, matrix_type, uplo, storage, c_loc(data_status), temp_buffer)
@@ -61149,6 +63269,10 @@ contains
       integer(c_int), target :: data_status(..)
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: dcheck_matrix_gebsc
+      if (.not. is_contiguous(bsc_val)) error stop "bsc_val: array must be contiguous"
+      if (.not. is_contiguous(bsc_col_ptr)) error stop "bsc_col_ptr: array must be contiguous"
+      if (.not. is_contiguous(bsc_row_ind)) error stop "bsc_row_ind: array must be contiguous"
+      if (.not. is_contiguous(data_status)) error stop "data_status: array must be contiguous"
       dcheck_matrix_gebsc = rocsparse_dcheck_matrix_gebsc_raw(handle, dir, mb, nb, nnzb, &
         row_block_dim, col_block_dim, c_loc(bsc_val), c_loc(bsc_col_ptr), c_loc(bsc_row_ind), &
         idx_base, matrix_type, uplo, storage, c_loc(data_status), temp_buffer)
@@ -61204,6 +63328,10 @@ contains
       integer(c_int), target :: data_status(..)
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: ccheck_matrix_gebsc
+      if (.not. is_contiguous(bsc_val)) error stop "bsc_val: array must be contiguous"
+      if (.not. is_contiguous(bsc_col_ptr)) error stop "bsc_col_ptr: array must be contiguous"
+      if (.not. is_contiguous(bsc_row_ind)) error stop "bsc_row_ind: array must be contiguous"
+      if (.not. is_contiguous(data_status)) error stop "data_status: array must be contiguous"
       ccheck_matrix_gebsc = rocsparse_ccheck_matrix_gebsc_raw(handle, dir, mb, nb, nnzb, &
         row_block_dim, col_block_dim, c_loc(bsc_val), c_loc(bsc_col_ptr), c_loc(bsc_row_ind), &
         idx_base, matrix_type, uplo, storage, c_loc(data_status), temp_buffer)
@@ -61259,6 +63387,10 @@ contains
       integer(c_int), target :: data_status(..)
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: zcheck_matrix_gebsc
+      if (.not. is_contiguous(bsc_val)) error stop "bsc_val: array must be contiguous"
+      if (.not. is_contiguous(bsc_col_ptr)) error stop "bsc_col_ptr: array must be contiguous"
+      if (.not. is_contiguous(bsc_row_ind)) error stop "bsc_row_ind: array must be contiguous"
+      if (.not. is_contiguous(data_status)) error stop "data_status: array must be contiguous"
       zcheck_matrix_gebsc = rocsparse_zcheck_matrix_gebsc_raw(handle, dir, mb, nb, nnzb, &
         row_block_dim, col_block_dim, c_loc(bsc_val), c_loc(bsc_col_ptr), c_loc(bsc_row_ind), &
         idx_base, matrix_type, uplo, storage, c_loc(data_status), temp_buffer)
@@ -61313,6 +63445,9 @@ contains
       integer(c_int), value :: storage
       type(c_ptr), value :: buffer_size
       integer(c_int) :: scheck_matrix_gebsr_buffer_size
+      if (.not. is_contiguous(bsr_val)) error stop "bsr_val: array must be contiguous"
+      if (.not. is_contiguous(bsr_row_ptr)) error stop "bsr_row_ptr: array must be contiguous"
+      if (.not. is_contiguous(bsr_col_ind)) error stop "bsr_col_ind: array must be contiguous"
       scheck_matrix_gebsr_buffer_size = rocsparse_scheck_matrix_gebsr_buffer_size_raw(handle, dir, &
         mb, nb, nnzb, row_block_dim, col_block_dim, c_loc(bsr_val), c_loc(bsr_row_ptr), c_loc( &
         bsr_col_ind), idx_base, matrix_type, uplo, storage, buffer_size)
@@ -61366,6 +63501,9 @@ contains
       integer(c_int), value :: storage
       type(c_ptr), value :: buffer_size
       integer(c_int) :: dcheck_matrix_gebsr_buffer_size
+      if (.not. is_contiguous(bsr_val)) error stop "bsr_val: array must be contiguous"
+      if (.not. is_contiguous(bsr_row_ptr)) error stop "bsr_row_ptr: array must be contiguous"
+      if (.not. is_contiguous(bsr_col_ind)) error stop "bsr_col_ind: array must be contiguous"
       dcheck_matrix_gebsr_buffer_size = rocsparse_dcheck_matrix_gebsr_buffer_size_raw(handle, dir, &
         mb, nb, nnzb, row_block_dim, col_block_dim, c_loc(bsr_val), c_loc(bsr_row_ptr), c_loc( &
         bsr_col_ind), idx_base, matrix_type, uplo, storage, buffer_size)
@@ -61419,6 +63557,9 @@ contains
       integer(c_int), value :: storage
       type(c_ptr), value :: buffer_size
       integer(c_int) :: ccheck_matrix_gebsr_buffer_size
+      if (.not. is_contiguous(bsr_val)) error stop "bsr_val: array must be contiguous"
+      if (.not. is_contiguous(bsr_row_ptr)) error stop "bsr_row_ptr: array must be contiguous"
+      if (.not. is_contiguous(bsr_col_ind)) error stop "bsr_col_ind: array must be contiguous"
       ccheck_matrix_gebsr_buffer_size = rocsparse_ccheck_matrix_gebsr_buffer_size_raw(handle, dir, &
         mb, nb, nnzb, row_block_dim, col_block_dim, c_loc(bsr_val), c_loc(bsr_row_ptr), c_loc( &
         bsr_col_ind), idx_base, matrix_type, uplo, storage, buffer_size)
@@ -61472,6 +63613,9 @@ contains
       integer(c_int), value :: storage
       type(c_ptr), value :: buffer_size
       integer(c_int) :: zcheck_matrix_gebsr_buffer_size
+      if (.not. is_contiguous(bsr_val)) error stop "bsr_val: array must be contiguous"
+      if (.not. is_contiguous(bsr_row_ptr)) error stop "bsr_row_ptr: array must be contiguous"
+      if (.not. is_contiguous(bsr_col_ind)) error stop "bsr_col_ind: array must be contiguous"
       zcheck_matrix_gebsr_buffer_size = rocsparse_zcheck_matrix_gebsr_buffer_size_raw(handle, dir, &
         mb, nb, nnzb, row_block_dim, col_block_dim, c_loc(bsr_val), c_loc(bsr_row_ptr), c_loc( &
         bsr_col_ind), idx_base, matrix_type, uplo, storage, buffer_size)
@@ -61526,6 +63670,10 @@ contains
       integer(c_int), target :: data_status(..)
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: scheck_matrix_gebsr
+      if (.not. is_contiguous(bsr_val)) error stop "bsr_val: array must be contiguous"
+      if (.not. is_contiguous(bsr_row_ptr)) error stop "bsr_row_ptr: array must be contiguous"
+      if (.not. is_contiguous(bsr_col_ind)) error stop "bsr_col_ind: array must be contiguous"
+      if (.not. is_contiguous(data_status)) error stop "data_status: array must be contiguous"
       scheck_matrix_gebsr = rocsparse_scheck_matrix_gebsr_raw(handle, dir, mb, nb, nnzb, &
         row_block_dim, col_block_dim, c_loc(bsr_val), c_loc(bsr_row_ptr), c_loc(bsr_col_ind), &
         idx_base, matrix_type, uplo, storage, c_loc(data_status), temp_buffer)
@@ -61581,6 +63729,10 @@ contains
       integer(c_int), target :: data_status(..)
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: dcheck_matrix_gebsr
+      if (.not. is_contiguous(bsr_val)) error stop "bsr_val: array must be contiguous"
+      if (.not. is_contiguous(bsr_row_ptr)) error stop "bsr_row_ptr: array must be contiguous"
+      if (.not. is_contiguous(bsr_col_ind)) error stop "bsr_col_ind: array must be contiguous"
+      if (.not. is_contiguous(data_status)) error stop "data_status: array must be contiguous"
       dcheck_matrix_gebsr = rocsparse_dcheck_matrix_gebsr_raw(handle, dir, mb, nb, nnzb, &
         row_block_dim, col_block_dim, c_loc(bsr_val), c_loc(bsr_row_ptr), c_loc(bsr_col_ind), &
         idx_base, matrix_type, uplo, storage, c_loc(data_status), temp_buffer)
@@ -61636,6 +63788,10 @@ contains
       integer(c_int), target :: data_status(..)
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: ccheck_matrix_gebsr
+      if (.not. is_contiguous(bsr_val)) error stop "bsr_val: array must be contiguous"
+      if (.not. is_contiguous(bsr_row_ptr)) error stop "bsr_row_ptr: array must be contiguous"
+      if (.not. is_contiguous(bsr_col_ind)) error stop "bsr_col_ind: array must be contiguous"
+      if (.not. is_contiguous(data_status)) error stop "data_status: array must be contiguous"
       ccheck_matrix_gebsr = rocsparse_ccheck_matrix_gebsr_raw(handle, dir, mb, nb, nnzb, &
         row_block_dim, col_block_dim, c_loc(bsr_val), c_loc(bsr_row_ptr), c_loc(bsr_col_ind), &
         idx_base, matrix_type, uplo, storage, c_loc(data_status), temp_buffer)
@@ -61691,6 +63847,10 @@ contains
       integer(c_int), target :: data_status(..)
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: zcheck_matrix_gebsr
+      if (.not. is_contiguous(bsr_val)) error stop "bsr_val: array must be contiguous"
+      if (.not. is_contiguous(bsr_row_ptr)) error stop "bsr_row_ptr: array must be contiguous"
+      if (.not. is_contiguous(bsr_col_ind)) error stop "bsr_col_ind: array must be contiguous"
+      if (.not. is_contiguous(data_status)) error stop "data_status: array must be contiguous"
       zcheck_matrix_gebsr = rocsparse_zcheck_matrix_gebsr_raw(handle, dir, mb, nb, nnzb, &
         row_block_dim, col_block_dim, c_loc(bsr_val), c_loc(bsr_row_ptr), c_loc(bsr_col_ind), &
         idx_base, matrix_type, uplo, storage, c_loc(data_status), temp_buffer)
@@ -61754,6 +63914,7 @@ contains
       integer(c_int), target :: data_status(..)
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: check_matrix_hyb
+      if (.not. is_contiguous(data_status)) error stop "data_status: array must be contiguous"
       check_matrix_hyb = rocsparse_check_matrix_hyb_raw(handle, hyb, idx_base, matrix_type, uplo, &
         storage, c_loc(data_status), temp_buffer)
     end function rocsparse_check_matrix_hyb_native

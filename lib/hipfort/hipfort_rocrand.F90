@@ -1137,6 +1137,7 @@ contains
       integer(c_int), target :: output_data(..)
       integer(c_long), value :: n
       integer(c_int) :: generate
+      if (.not. is_contiguous(output_data)) error stop "output_data: array must be contiguous"
       generate = rocrand_generate_raw(generator, c_loc(output_data), n)
     end function rocrand_generate_native
 
@@ -1158,6 +1159,7 @@ contains
       integer(c_int64_t), target :: output_data(..)
       integer(c_long), value :: n
       integer(c_int) :: generate_long_long
+      if (.not. is_contiguous(output_data)) error stop "output_data: array must be contiguous"
       generate_long_long = rocrand_generate_long_long_raw(generator, c_loc(output_data), n)
     end function rocrand_generate_long_long_native
 
@@ -1201,6 +1203,7 @@ contains
       real(c_float), target :: output_data(..)
       integer(c_long), value :: n
       integer(c_int) :: generate_uniform
+      if (.not. is_contiguous(output_data)) error stop "output_data: array must be contiguous"
       generate_uniform = rocrand_generate_uniform_raw(generator, c_loc(output_data), n)
     end function rocrand_generate_uniform_native
 
@@ -1223,6 +1226,7 @@ contains
       real(c_double), target :: output_data(..)
       integer(c_long), value :: n
       integer(c_int) :: generate_uniform_double
+      if (.not. is_contiguous(output_data)) error stop "output_data: array must be contiguous"
       generate_uniform_double = rocrand_generate_uniform_double_raw(generator, c_loc(output_data), &
         n)
     end function rocrand_generate_uniform_double_native
@@ -1261,6 +1265,7 @@ contains
       real(c_float), value :: mean
       real(c_float), value :: stddev
       integer(c_int) :: generate_normal
+      if (.not. is_contiguous(output_data)) error stop "output_data: array must be contiguous"
       generate_normal = rocrand_generate_normal_raw(generator, c_loc(output_data), n, mean, stddev)
     end function rocrand_generate_normal_native
 
@@ -1288,6 +1293,7 @@ contains
       real(c_double), value :: mean
       real(c_double), value :: stddev
       integer(c_int) :: generate_normal_double
+      if (.not. is_contiguous(output_data)) error stop "output_data: array must be contiguous"
       generate_normal_double = rocrand_generate_normal_double_raw(generator, c_loc(output_data), &
         n, mean, stddev)
     end function rocrand_generate_normal_double_native
@@ -1332,6 +1338,7 @@ contains
       real(c_float), value :: mean
       real(c_float), value :: stddev
       integer(c_int) :: generate_log_normal
+      if (.not. is_contiguous(output_data)) error stop "output_data: array must be contiguous"
       generate_log_normal = rocrand_generate_log_normal_raw(generator, c_loc(output_data), n, &
         mean, stddev)
     end function rocrand_generate_log_normal_native
@@ -1361,6 +1368,7 @@ contains
       real(c_double), value :: mean
       real(c_double), value :: stddev
       integer(c_int) :: generate_log_normal_double
+      if (.not. is_contiguous(output_data)) error stop "output_data: array must be contiguous"
       generate_log_normal_double = rocrand_generate_log_normal_double_raw(generator, c_loc( &
         output_data), n, mean, stddev)
     end function rocrand_generate_log_normal_double_native
@@ -1404,6 +1412,7 @@ contains
       integer(c_long), value :: n
       real(c_double), value :: lambda
       integer(c_int) :: generate_poisson
+      if (.not. is_contiguous(output_data)) error stop "output_data: array must be contiguous"
       generate_poisson = rocrand_generate_poisson_raw(generator, c_loc(output_data), n, lambda)
     end function rocrand_generate_poisson_native
 
@@ -1496,6 +1505,7 @@ contains
       implicit none
       integer(c_int), target :: version(..)
       integer(c_int) :: get_version
+      if (.not. is_contiguous(version)) error stop "version: array must be contiguous"
       get_version = rocrand_get_version_raw(c_loc(version))
     end function rocrand_get_version_native
 
@@ -1508,6 +1518,7 @@ contains
       integer(c_int), value :: offset
       type(c_ptr) :: discrete_distribution
       integer(c_int) :: create_discrete_distribution
+      if (.not. is_contiguous(probabilities)) error stop "probabilities: array must be contiguous"
       create_discrete_distribution = rocrand_create_discrete_distribution_raw(c_loc( &
         probabilities), size, offset, discrete_distribution)
     end function rocrand_create_discrete_distribution_native

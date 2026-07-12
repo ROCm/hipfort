@@ -87,11 +87,7 @@ module hipfort_hipsolver
     !---------------------------------------------
     function hipsolverCreate_raw(handle) &
        result(Create_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusolverCreate")
-#else
        bind(C, name="hipsolverCreate")
-#endif
        import :: c_ptr, c_int
        type(c_ptr) :: handle
        integer(c_int) :: Create_raw
@@ -106,11 +102,7 @@ module hipfort_hipsolver
     !---------------------------------------------
     function hipsolverDestroy_raw(handle) &
        result(Destroy_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusolverDestroy")
-#else
        bind(C, name="hipsolverDestroy")
-#endif
        import :: c_ptr, c_int
        type(c_ptr), value :: handle
        integer(c_int) :: Destroy_raw
@@ -125,11 +117,7 @@ module hipfort_hipsolver
     !---------------------------------------------
     function hipsolverSetStream_raw(handle, streamId) &
        result(SetStream_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusolverSetStream")
-#else
        bind(C, name="hipsolverSetStream")
-#endif
        import :: c_ptr, c_int
        type(c_ptr), value :: handle
        type(c_ptr), value :: streamId
@@ -145,11 +133,7 @@ module hipfort_hipsolver
     !---------------------------------------------
     function hipsolverGetStream_raw(handle, streamId) &
        result(GetStream_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusolverGetStream")
-#else
        bind(C, name="hipsolverGetStream")
-#endif
        import :: c_ptr, c_int
        type(c_ptr), value :: handle
        type(c_ptr) :: streamId
@@ -165,11 +149,7 @@ module hipfort_hipsolver
     !---------------------------------------------
     function hipsolverSetDeterministicMode_raw(handle, mode) &
        result(SetDeterministicMode_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusolverSetDeterministicMode")
-#else
        bind(C, name="hipsolverSetDeterministicMode")
-#endif
        import :: c_ptr, c_int
        type(c_ptr), value :: handle
        integer(c_int), value :: mode
@@ -185,11 +165,7 @@ module hipfort_hipsolver
     !---------------------------------------------
     function hipsolverGetDeterministicMode_raw(handle, mode) &
        result(GetDeterministicMode_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusolverGetDeterministicMode")
-#else
        bind(C, name="hipsolverGetDeterministicMode")
-#endif
        import :: c_ptr, c_int
        type(c_ptr), value :: handle
        type(c_ptr), value :: mode
@@ -490,11 +466,7 @@ module hipfort_hipsolver
     !---------------------------------------------
     function hipsolverSorgbr_bufferSize_raw(handle, side, m, n, k, A, lda, tau, lwork) &
        result(Sorgbr_bufferSize_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusolverSorgbr_bufferSize")
-#else
        bind(C, name="hipsolverSorgbr_bufferSize")
-#endif
        import :: c_ptr, c_int, c_float
        type(c_ptr), value :: handle
        integer(c_int), value :: side
@@ -518,11 +490,7 @@ module hipfort_hipsolver
     !---------------------------------------------
     function hipsolverDorgbr_bufferSize_raw(handle, side, m, n, k, A, lda, tau, lwork) &
        result(Dorgbr_bufferSize_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusolverDorgbr_bufferSize")
-#else
        bind(C, name="hipsolverDorgbr_bufferSize")
-#endif
        import :: c_ptr, c_int, c_double
        type(c_ptr), value :: handle
        integer(c_int), value :: side
@@ -546,11 +514,7 @@ module hipfort_hipsolver
     !---------------------------------------------
     function hipsolverCungbr_bufferSize_raw(handle, side, m, n, k, A, lda, tau, lwork) &
        result(Cungbr_bufferSize_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusolverCungbr_bufferSize")
-#else
        bind(C, name="hipsolverCungbr_bufferSize")
-#endif
        import :: c_ptr, c_int, c_float_complex
        type(c_ptr), value :: handle
        integer(c_int), value :: side
@@ -574,11 +538,7 @@ module hipfort_hipsolver
     !---------------------------------------------
     function hipsolverZungbr_bufferSize_raw(handle, side, m, n, k, A, lda, tau, lwork) &
        result(Zungbr_bufferSize_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusolverZungbr_bufferSize")
-#else
        bind(C, name="hipsolverZungbr_bufferSize")
-#endif
        import :: c_ptr, c_int, c_double_complex
        type(c_ptr), value :: handle
        integer(c_int), value :: side
@@ -602,11 +562,7 @@ module hipfort_hipsolver
     !---------------------------------------------
     function hipsolverSorgbr_raw(handle, side, m, n, k, A, lda, tau, work, lwork, devInfo) &
        result(Sorgbr_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusolverSorgbr")
-#else
        bind(C, name="hipsolverSorgbr")
-#endif
        import :: c_ptr, c_int, c_float
        type(c_ptr), value :: handle
        integer(c_int), value :: side
@@ -632,11 +588,7 @@ module hipfort_hipsolver
     !---------------------------------------------
     function hipsolverDorgbr_raw(handle, side, m, n, k, A, lda, tau, work, lwork, devInfo) &
        result(Dorgbr_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusolverDorgbr")
-#else
        bind(C, name="hipsolverDorgbr")
-#endif
        import :: c_ptr, c_int, c_double
        type(c_ptr), value :: handle
        integer(c_int), value :: side
@@ -662,11 +614,7 @@ module hipfort_hipsolver
     !---------------------------------------------
     function hipsolverCungbr_raw(handle, side, m, n, k, A, lda, tau, work, lwork, devInfo) &
        result(Cungbr_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusolverCungbr")
-#else
        bind(C, name="hipsolverCungbr")
-#endif
        import :: c_ptr, c_int, c_float_complex
        type(c_ptr), value :: handle
        integer(c_int), value :: side
@@ -692,11 +640,7 @@ module hipfort_hipsolver
     !---------------------------------------------
     function hipsolverZungbr_raw(handle, side, m, n, k, A, lda, tau, work, lwork, devInfo) &
        result(Zungbr_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusolverZungbr")
-#else
        bind(C, name="hipsolverZungbr")
-#endif
        import :: c_ptr, c_int, c_double_complex
        type(c_ptr), value :: handle
        integer(c_int), value :: side
@@ -722,11 +666,7 @@ module hipfort_hipsolver
     !---------------------------------------------
     function hipsolverSorgqr_bufferSize_raw(handle, m, n, k, A, lda, tau, lwork) &
        result(Sorgqr_bufferSize_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusolverSorgqr_bufferSize")
-#else
        bind(C, name="hipsolverSorgqr_bufferSize")
-#endif
        import :: c_ptr, c_int, c_float
        type(c_ptr), value :: handle
        integer(c_int), value :: m
@@ -749,11 +689,7 @@ module hipfort_hipsolver
     !---------------------------------------------
     function hipsolverDorgqr_bufferSize_raw(handle, m, n, k, A, lda, tau, lwork) &
        result(Dorgqr_bufferSize_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusolverDorgqr_bufferSize")
-#else
        bind(C, name="hipsolverDorgqr_bufferSize")
-#endif
        import :: c_ptr, c_int, c_double
        type(c_ptr), value :: handle
        integer(c_int), value :: m
@@ -776,11 +712,7 @@ module hipfort_hipsolver
     !---------------------------------------------
     function hipsolverCungqr_bufferSize_raw(handle, m, n, k, A, lda, tau, lwork) &
        result(Cungqr_bufferSize_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusolverCungqr_bufferSize")
-#else
        bind(C, name="hipsolverCungqr_bufferSize")
-#endif
        import :: c_ptr, c_int, c_float_complex
        type(c_ptr), value :: handle
        integer(c_int), value :: m
@@ -803,11 +735,7 @@ module hipfort_hipsolver
     !---------------------------------------------
     function hipsolverZungqr_bufferSize_raw(handle, m, n, k, A, lda, tau, lwork) &
        result(Zungqr_bufferSize_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusolverZungqr_bufferSize")
-#else
        bind(C, name="hipsolverZungqr_bufferSize")
-#endif
        import :: c_ptr, c_int, c_double_complex
        type(c_ptr), value :: handle
        integer(c_int), value :: m
@@ -830,11 +758,7 @@ module hipfort_hipsolver
     !---------------------------------------------
     function hipsolverSorgqr_raw(handle, m, n, k, A, lda, tau, work, lwork, devInfo) &
        result(Sorgqr_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusolverSorgqr")
-#else
        bind(C, name="hipsolverSorgqr")
-#endif
        import :: c_ptr, c_int, c_float
        type(c_ptr), value :: handle
        integer(c_int), value :: m
@@ -859,11 +783,7 @@ module hipfort_hipsolver
     !---------------------------------------------
     function hipsolverDorgqr_raw(handle, m, n, k, A, lda, tau, work, lwork, devInfo) &
        result(Dorgqr_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusolverDorgqr")
-#else
        bind(C, name="hipsolverDorgqr")
-#endif
        import :: c_ptr, c_int, c_double
        type(c_ptr), value :: handle
        integer(c_int), value :: m
@@ -888,11 +808,7 @@ module hipfort_hipsolver
     !---------------------------------------------
     function hipsolverCungqr_raw(handle, m, n, k, A, lda, tau, work, lwork, devInfo) &
        result(Cungqr_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusolverCungqr")
-#else
        bind(C, name="hipsolverCungqr")
-#endif
        import :: c_ptr, c_int, c_float_complex
        type(c_ptr), value :: handle
        integer(c_int), value :: m
@@ -917,11 +833,7 @@ module hipfort_hipsolver
     !---------------------------------------------
     function hipsolverZungqr_raw(handle, m, n, k, A, lda, tau, work, lwork, devInfo) &
        result(Zungqr_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusolverZungqr")
-#else
        bind(C, name="hipsolverZungqr")
-#endif
        import :: c_ptr, c_int, c_double_complex
        type(c_ptr), value :: handle
        integer(c_int), value :: m
@@ -946,11 +858,7 @@ module hipfort_hipsolver
     !---------------------------------------------
     function hipsolverSorgtr_bufferSize_raw(handle, uplo, n, A, lda, tau, lwork) &
        result(Sorgtr_bufferSize_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusolverSorgtr_bufferSize")
-#else
        bind(C, name="hipsolverSorgtr_bufferSize")
-#endif
        import :: c_ptr, c_int, c_float
        type(c_ptr), value :: handle
        integer(c_int), value :: uplo
@@ -972,11 +880,7 @@ module hipfort_hipsolver
     !---------------------------------------------
     function hipsolverDorgtr_bufferSize_raw(handle, uplo, n, A, lda, tau, lwork) &
        result(Dorgtr_bufferSize_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusolverDorgtr_bufferSize")
-#else
        bind(C, name="hipsolverDorgtr_bufferSize")
-#endif
        import :: c_ptr, c_int, c_double
        type(c_ptr), value :: handle
        integer(c_int), value :: uplo
@@ -998,11 +902,7 @@ module hipfort_hipsolver
     !---------------------------------------------
     function hipsolverCungtr_bufferSize_raw(handle, uplo, n, A, lda, tau, lwork) &
        result(Cungtr_bufferSize_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusolverCungtr_bufferSize")
-#else
        bind(C, name="hipsolverCungtr_bufferSize")
-#endif
        import :: c_ptr, c_int, c_float_complex
        type(c_ptr), value :: handle
        integer(c_int), value :: uplo
@@ -1024,11 +924,7 @@ module hipfort_hipsolver
     !---------------------------------------------
     function hipsolverZungtr_bufferSize_raw(handle, uplo, n, A, lda, tau, lwork) &
        result(Zungtr_bufferSize_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusolverZungtr_bufferSize")
-#else
        bind(C, name="hipsolverZungtr_bufferSize")
-#endif
        import :: c_ptr, c_int, c_double_complex
        type(c_ptr), value :: handle
        integer(c_int), value :: uplo
@@ -1050,11 +946,7 @@ module hipfort_hipsolver
     !---------------------------------------------
     function hipsolverSorgtr_raw(handle, uplo, n, A, lda, tau, work, lwork, devInfo) &
        result(Sorgtr_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusolverSorgtr")
-#else
        bind(C, name="hipsolverSorgtr")
-#endif
        import :: c_ptr, c_int, c_float
        type(c_ptr), value :: handle
        integer(c_int), value :: uplo
@@ -1078,11 +970,7 @@ module hipfort_hipsolver
     !---------------------------------------------
     function hipsolverDorgtr_raw(handle, uplo, n, A, lda, tau, work, lwork, devInfo) &
        result(Dorgtr_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusolverDorgtr")
-#else
        bind(C, name="hipsolverDorgtr")
-#endif
        import :: c_ptr, c_int, c_double
        type(c_ptr), value :: handle
        integer(c_int), value :: uplo
@@ -1106,11 +994,7 @@ module hipfort_hipsolver
     !---------------------------------------------
     function hipsolverCungtr_raw(handle, uplo, n, A, lda, tau, work, lwork, devInfo) &
        result(Cungtr_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusolverCungtr")
-#else
        bind(C, name="hipsolverCungtr")
-#endif
        import :: c_ptr, c_int, c_float_complex
        type(c_ptr), value :: handle
        integer(c_int), value :: uplo
@@ -1134,11 +1018,7 @@ module hipfort_hipsolver
     !---------------------------------------------
     function hipsolverZungtr_raw(handle, uplo, n, A, lda, tau, work, lwork, devInfo) &
        result(Zungtr_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusolverZungtr")
-#else
        bind(C, name="hipsolverZungtr")
-#endif
        import :: c_ptr, c_int, c_double_complex
        type(c_ptr), value :: handle
        integer(c_int), value :: uplo
@@ -1163,11 +1043,7 @@ module hipfort_hipsolver
     function hipsolverSormqr_bufferSize_raw(handle, side, trans, m, n, k, A, lda, tau, C, ldc, &
                                             lwork) &
        result(Sormqr_bufferSize_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusolverSormqr_bufferSize")
-#else
        bind(C, name="hipsolverSormqr_bufferSize")
-#endif
        import :: c_ptr, c_int, c_float
        type(c_ptr), value :: handle
        integer(c_int), value :: side
@@ -1195,11 +1071,7 @@ module hipfort_hipsolver
     function hipsolverDormqr_bufferSize_raw(handle, side, trans, m, n, k, A, lda, tau, C, ldc, &
                                             lwork) &
        result(Dormqr_bufferSize_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusolverDormqr_bufferSize")
-#else
        bind(C, name="hipsolverDormqr_bufferSize")
-#endif
        import :: c_ptr, c_int, c_double
        type(c_ptr), value :: handle
        integer(c_int), value :: side
@@ -1227,11 +1099,7 @@ module hipfort_hipsolver
     function hipsolverCunmqr_bufferSize_raw(handle, side, trans, m, n, k, A, lda, tau, C, ldc, &
                                             lwork) &
        result(Cunmqr_bufferSize_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusolverCunmqr_bufferSize")
-#else
        bind(C, name="hipsolverCunmqr_bufferSize")
-#endif
        import :: c_ptr, c_int, c_float_complex
        type(c_ptr), value :: handle
        integer(c_int), value :: side
@@ -1259,11 +1127,7 @@ module hipfort_hipsolver
     function hipsolverZunmqr_bufferSize_raw(handle, side, trans, m, n, k, A, lda, tau, C, ldc, &
                                             lwork) &
        result(Zunmqr_bufferSize_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusolverZunmqr_bufferSize")
-#else
        bind(C, name="hipsolverZunmqr_bufferSize")
-#endif
        import :: c_ptr, c_int, c_double_complex
        type(c_ptr), value :: handle
        integer(c_int), value :: side
@@ -1291,11 +1155,7 @@ module hipfort_hipsolver
     function hipsolverSormqr_raw(handle, side, trans, m, n, k, A, lda, tau, C, ldc, work, lwork, &
                                  devInfo) &
        result(Sormqr_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusolverSormqr")
-#else
        bind(C, name="hipsolverSormqr")
-#endif
        import :: c_ptr, c_int, c_float
        type(c_ptr), value :: handle
        integer(c_int), value :: side
@@ -1325,11 +1185,7 @@ module hipfort_hipsolver
     function hipsolverDormqr_raw(handle, side, trans, m, n, k, A, lda, tau, C, ldc, work, lwork, &
                                  devInfo) &
        result(Dormqr_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusolverDormqr")
-#else
        bind(C, name="hipsolverDormqr")
-#endif
        import :: c_ptr, c_int, c_double
        type(c_ptr), value :: handle
        integer(c_int), value :: side
@@ -1359,11 +1215,7 @@ module hipfort_hipsolver
     function hipsolverCunmqr_raw(handle, side, trans, m, n, k, A, lda, tau, C, ldc, work, lwork, &
                                  devInfo) &
        result(Cunmqr_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusolverCunmqr")
-#else
        bind(C, name="hipsolverCunmqr")
-#endif
        import :: c_ptr, c_int, c_float_complex
        type(c_ptr), value :: handle
        integer(c_int), value :: side
@@ -1393,11 +1245,7 @@ module hipfort_hipsolver
     function hipsolverZunmqr_raw(handle, side, trans, m, n, k, A, lda, tau, C, ldc, work, lwork, &
                                  devInfo) &
        result(Zunmqr_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusolverZunmqr")
-#else
        bind(C, name="hipsolverZunmqr")
-#endif
        import :: c_ptr, c_int, c_double_complex
        type(c_ptr), value :: handle
        integer(c_int), value :: side
@@ -1427,11 +1275,7 @@ module hipfort_hipsolver
     function hipsolverSormtr_bufferSize_raw(handle, side, uplo, trans, m, n, A, lda, tau, C, ldc, &
                                             lwork) &
        result(Sormtr_bufferSize_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusolverSormtr_bufferSize")
-#else
        bind(C, name="hipsolverSormtr_bufferSize")
-#endif
        import :: c_ptr, c_int, c_float
        type(c_ptr), value :: handle
        integer(c_int), value :: side
@@ -1459,11 +1303,7 @@ module hipfort_hipsolver
     function hipsolverDormtr_bufferSize_raw(handle, side, uplo, trans, m, n, A, lda, tau, C, ldc, &
                                             lwork) &
        result(Dormtr_bufferSize_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusolverDormtr_bufferSize")
-#else
        bind(C, name="hipsolverDormtr_bufferSize")
-#endif
        import :: c_ptr, c_int, c_double
        type(c_ptr), value :: handle
        integer(c_int), value :: side
@@ -1491,11 +1331,7 @@ module hipfort_hipsolver
     function hipsolverCunmtr_bufferSize_raw(handle, side, uplo, trans, m, n, A, lda, tau, C, ldc, &
                                             lwork) &
        result(Cunmtr_bufferSize_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusolverCunmtr_bufferSize")
-#else
        bind(C, name="hipsolverCunmtr_bufferSize")
-#endif
        import :: c_ptr, c_int, c_float_complex
        type(c_ptr), value :: handle
        integer(c_int), value :: side
@@ -1523,11 +1359,7 @@ module hipfort_hipsolver
     function hipsolverZunmtr_bufferSize_raw(handle, side, uplo, trans, m, n, A, lda, tau, C, ldc, &
                                             lwork) &
        result(Zunmtr_bufferSize_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusolverZunmtr_bufferSize")
-#else
        bind(C, name="hipsolverZunmtr_bufferSize")
-#endif
        import :: c_ptr, c_int, c_double_complex
        type(c_ptr), value :: handle
        integer(c_int), value :: side
@@ -1555,11 +1387,7 @@ module hipfort_hipsolver
     function hipsolverSormtr_raw(handle, side, uplo, trans, m, n, A, lda, tau, C, ldc, work, &
                                  lwork, devInfo) &
        result(Sormtr_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusolverSormtr")
-#else
        bind(C, name="hipsolverSormtr")
-#endif
        import :: c_ptr, c_int, c_float
        type(c_ptr), value :: handle
        integer(c_int), value :: side
@@ -1589,11 +1417,7 @@ module hipfort_hipsolver
     function hipsolverDormtr_raw(handle, side, uplo, trans, m, n, A, lda, tau, C, ldc, work, &
                                  lwork, devInfo) &
        result(Dormtr_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusolverDormtr")
-#else
        bind(C, name="hipsolverDormtr")
-#endif
        import :: c_ptr, c_int, c_double
        type(c_ptr), value :: handle
        integer(c_int), value :: side
@@ -1623,11 +1447,7 @@ module hipfort_hipsolver
     function hipsolverCunmtr_raw(handle, side, uplo, trans, m, n, A, lda, tau, C, ldc, work, &
                                  lwork, devInfo) &
        result(Cunmtr_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusolverCunmtr")
-#else
        bind(C, name="hipsolverCunmtr")
-#endif
        import :: c_ptr, c_int, c_float_complex
        type(c_ptr), value :: handle
        integer(c_int), value :: side
@@ -1657,11 +1477,7 @@ module hipfort_hipsolver
     function hipsolverZunmtr_raw(handle, side, uplo, trans, m, n, A, lda, tau, C, ldc, work, &
                                  lwork, devInfo) &
        result(Zunmtr_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusolverZunmtr")
-#else
        bind(C, name="hipsolverZunmtr")
-#endif
        import :: c_ptr, c_int, c_double_complex
        type(c_ptr), value :: handle
        integer(c_int), value :: side
@@ -1690,11 +1506,7 @@ module hipfort_hipsolver
     !---------------------------------------------
     function hipsolverSgebrd_bufferSize_raw(handle, m, n, lwork) &
        result(Sgebrd_bufferSize_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusolverSgebrd_bufferSize")
-#else
        bind(C, name="hipsolverSgebrd_bufferSize")
-#endif
        import :: c_ptr, c_int
        type(c_ptr), value :: handle
        integer(c_int), value :: m
@@ -1712,11 +1524,7 @@ module hipfort_hipsolver
     !---------------------------------------------
     function hipsolverDgebrd_bufferSize_raw(handle, m, n, lwork) &
        result(Dgebrd_bufferSize_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusolverDgebrd_bufferSize")
-#else
        bind(C, name="hipsolverDgebrd_bufferSize")
-#endif
        import :: c_ptr, c_int
        type(c_ptr), value :: handle
        integer(c_int), value :: m
@@ -1734,11 +1542,7 @@ module hipfort_hipsolver
     !---------------------------------------------
     function hipsolverCgebrd_bufferSize_raw(handle, m, n, lwork) &
        result(Cgebrd_bufferSize_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusolverCgebrd_bufferSize")
-#else
        bind(C, name="hipsolverCgebrd_bufferSize")
-#endif
        import :: c_ptr, c_int
        type(c_ptr), value :: handle
        integer(c_int), value :: m
@@ -1756,11 +1560,7 @@ module hipfort_hipsolver
     !---------------------------------------------
     function hipsolverZgebrd_bufferSize_raw(handle, m, n, lwork) &
        result(Zgebrd_bufferSize_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusolverZgebrd_bufferSize")
-#else
        bind(C, name="hipsolverZgebrd_bufferSize")
-#endif
        import :: c_ptr, c_int
        type(c_ptr), value :: handle
        integer(c_int), value :: m
@@ -1778,11 +1578,7 @@ module hipfort_hipsolver
     !---------------------------------------------
     function hipsolverSgebrd_raw(handle, m, n, A, lda, D, E, tauq, taup, work, lwork, devInfo) &
        result(Sgebrd_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusolverSgebrd")
-#else
        bind(C, name="hipsolverSgebrd")
-#endif
        import :: c_ptr, c_int
        type(c_ptr), value :: handle
        integer(c_int), value :: m
@@ -1809,11 +1605,7 @@ module hipfort_hipsolver
     !---------------------------------------------
     function hipsolverDgebrd_raw(handle, m, n, A, lda, D, E, tauq, taup, work, lwork, devInfo) &
        result(Dgebrd_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusolverDgebrd")
-#else
        bind(C, name="hipsolverDgebrd")
-#endif
        import :: c_ptr, c_int
        type(c_ptr), value :: handle
        integer(c_int), value :: m
@@ -1840,11 +1632,7 @@ module hipfort_hipsolver
     !---------------------------------------------
     function hipsolverCgebrd_raw(handle, m, n, A, lda, D, E, tauq, taup, work, lwork, devInfo) &
        result(Cgebrd_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusolverCgebrd")
-#else
        bind(C, name="hipsolverCgebrd")
-#endif
        import :: c_ptr, c_int
        type(c_ptr), value :: handle
        integer(c_int), value :: m
@@ -1871,11 +1659,7 @@ module hipfort_hipsolver
     !---------------------------------------------
     function hipsolverZgebrd_raw(handle, m, n, A, lda, D, E, tauq, taup, work, lwork, devInfo) &
        result(Zgebrd_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusolverZgebrd")
-#else
        bind(C, name="hipsolverZgebrd")
-#endif
        import :: c_ptr, c_int
        type(c_ptr), value :: handle
        integer(c_int), value :: m
@@ -2158,11 +1942,7 @@ module hipfort_hipsolver
     !---------------------------------------------
     function hipsolverSgeqrf_bufferSize_raw(handle, m, n, A, lda, lwork) &
        result(Sgeqrf_bufferSize_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusolverSgeqrf_bufferSize")
-#else
        bind(C, name="hipsolverSgeqrf_bufferSize")
-#endif
        import :: c_ptr, c_int
        type(c_ptr), value :: handle
        integer(c_int), value :: m
@@ -2183,11 +1963,7 @@ module hipfort_hipsolver
     !---------------------------------------------
     function hipsolverDgeqrf_bufferSize_raw(handle, m, n, A, lda, lwork) &
        result(Dgeqrf_bufferSize_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusolverDgeqrf_bufferSize")
-#else
        bind(C, name="hipsolverDgeqrf_bufferSize")
-#endif
        import :: c_ptr, c_int
        type(c_ptr), value :: handle
        integer(c_int), value :: m
@@ -2208,11 +1984,7 @@ module hipfort_hipsolver
     !---------------------------------------------
     function hipsolverCgeqrf_bufferSize_raw(handle, m, n, A, lda, lwork) &
        result(Cgeqrf_bufferSize_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusolverCgeqrf_bufferSize")
-#else
        bind(C, name="hipsolverCgeqrf_bufferSize")
-#endif
        import :: c_ptr, c_int
        type(c_ptr), value :: handle
        integer(c_int), value :: m
@@ -2233,11 +2005,7 @@ module hipfort_hipsolver
     !---------------------------------------------
     function hipsolverZgeqrf_bufferSize_raw(handle, m, n, A, lda, lwork) &
        result(Zgeqrf_bufferSize_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusolverZgeqrf_bufferSize")
-#else
        bind(C, name="hipsolverZgeqrf_bufferSize")
-#endif
        import :: c_ptr, c_int
        type(c_ptr), value :: handle
        integer(c_int), value :: m
@@ -2258,11 +2026,7 @@ module hipfort_hipsolver
     !---------------------------------------------
     function hipsolverSgeqrf_raw(handle, m, n, A, lda, tau, work, lwork, devInfo) &
        result(Sgeqrf_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusolverSgeqrf")
-#else
        bind(C, name="hipsolverSgeqrf")
-#endif
        import :: c_ptr, c_int, c_float
        type(c_ptr), value :: handle
        integer(c_int), value :: m
@@ -2286,11 +2050,7 @@ module hipfort_hipsolver
     !---------------------------------------------
     function hipsolverDgeqrf_raw(handle, m, n, A, lda, tau, work, lwork, devInfo) &
        result(Dgeqrf_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusolverDgeqrf")
-#else
        bind(C, name="hipsolverDgeqrf")
-#endif
        import :: c_ptr, c_int, c_double
        type(c_ptr), value :: handle
        integer(c_int), value :: m
@@ -2314,11 +2074,7 @@ module hipfort_hipsolver
     !---------------------------------------------
     function hipsolverCgeqrf_raw(handle, m, n, A, lda, tau, work, lwork, devInfo) &
        result(Cgeqrf_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusolverCgeqrf")
-#else
        bind(C, name="hipsolverCgeqrf")
-#endif
        import :: c_ptr, c_int, c_float_complex
        type(c_ptr), value :: handle
        integer(c_int), value :: m
@@ -2342,11 +2098,7 @@ module hipfort_hipsolver
     !---------------------------------------------
     function hipsolverZgeqrf_raw(handle, m, n, A, lda, tau, work, lwork, devInfo) &
        result(Zgeqrf_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusolverZgeqrf")
-#else
        bind(C, name="hipsolverZgeqrf")
-#endif
        import :: c_ptr, c_int, c_double_complex
        type(c_ptr), value :: handle
        integer(c_int), value :: m
@@ -2371,11 +2123,7 @@ module hipfort_hipsolver
     function hipsolverSSgesv_bufferSize_raw(handle, n, nrhs, A, lda, devIpiv, B, ldb, X, ldx, &
                                             lwork) &
        result(SSgesv_bufferSize_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusolverSSgesv_bufferSize")
-#else
        bind(C, name="hipsolverSSgesv_bufferSize")
-#endif
        import :: c_ptr, c_int
        type(c_ptr), value :: handle
        integer(c_int), value :: n
@@ -2402,11 +2150,7 @@ module hipfort_hipsolver
     function hipsolverDDgesv_bufferSize_raw(handle, n, nrhs, A, lda, devIpiv, B, ldb, X, ldx, &
                                             lwork) &
        result(DDgesv_bufferSize_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusolverDDgesv_bufferSize")
-#else
        bind(C, name="hipsolverDDgesv_bufferSize")
-#endif
        import :: c_ptr, c_int
        type(c_ptr), value :: handle
        integer(c_int), value :: n
@@ -2433,11 +2177,7 @@ module hipfort_hipsolver
     function hipsolverCCgesv_bufferSize_raw(handle, n, nrhs, A, lda, devIpiv, B, ldb, X, ldx, &
                                             lwork) &
        result(CCgesv_bufferSize_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusolverCCgesv_bufferSize")
-#else
        bind(C, name="hipsolverCCgesv_bufferSize")
-#endif
        import :: c_ptr, c_int
        type(c_ptr), value :: handle
        integer(c_int), value :: n
@@ -2464,11 +2204,7 @@ module hipfort_hipsolver
     function hipsolverZZgesv_bufferSize_raw(handle, n, nrhs, A, lda, devIpiv, B, ldb, X, ldx, &
                                             lwork) &
        result(ZZgesv_bufferSize_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusolverZZgesv_bufferSize")
-#else
        bind(C, name="hipsolverZZgesv_bufferSize")
-#endif
        import :: c_ptr, c_int
        type(c_ptr), value :: handle
        integer(c_int), value :: n
@@ -2495,11 +2231,7 @@ module hipfort_hipsolver
     function hipsolverSSgesv_raw(handle, n, nrhs, A, lda, devIpiv, B, ldb, X, ldx, work, lwork, &
                                  niters, devInfo) &
        result(SSgesv_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusolverSSgesv")
-#else
        bind(C, name="hipsolverSSgesv")
-#endif
        import :: c_ptr, c_int, c_long
        type(c_ptr), value :: handle
        integer(c_int), value :: n
@@ -2529,11 +2261,7 @@ module hipfort_hipsolver
     function hipsolverDDgesv_raw(handle, n, nrhs, A, lda, devIpiv, B, ldb, X, ldx, work, lwork, &
                                  niters, devInfo) &
        result(DDgesv_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusolverDDgesv")
-#else
        bind(C, name="hipsolverDDgesv")
-#endif
        import :: c_ptr, c_int, c_long
        type(c_ptr), value :: handle
        integer(c_int), value :: n
@@ -2563,11 +2291,7 @@ module hipfort_hipsolver
     function hipsolverCCgesv_raw(handle, n, nrhs, A, lda, devIpiv, B, ldb, X, ldx, work, lwork, &
                                  niters, devInfo) &
        result(CCgesv_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusolverCCgesv")
-#else
        bind(C, name="hipsolverCCgesv")
-#endif
        import :: c_ptr, c_int, c_long
        type(c_ptr), value :: handle
        integer(c_int), value :: n
@@ -2597,11 +2321,7 @@ module hipfort_hipsolver
     function hipsolverZZgesv_raw(handle, n, nrhs, A, lda, devIpiv, B, ldb, X, ldx, work, lwork, &
                                  niters, devInfo) &
        result(ZZgesv_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusolverZZgesv")
-#else
        bind(C, name="hipsolverZZgesv")
-#endif
        import :: c_ptr, c_int, c_long
        type(c_ptr), value :: handle
        integer(c_int), value :: n
@@ -2875,11 +2595,7 @@ module hipfort_hipsolver
     function hipsolverSgesvdj_bufferSize_raw(handle, jobz, econ, m, n, A, lda, S, U, ldu, V, ldv, &
                                              lwork, params) &
        result(Sgesvdj_bufferSize_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusolverSgesvdj_bufferSize")
-#else
        bind(C, name="hipsolverSgesvdj_bufferSize")
-#endif
        import :: c_ptr, c_int
        type(c_ptr), value :: handle
        integer(c_int), value :: jobz
@@ -2909,11 +2625,7 @@ module hipfort_hipsolver
     function hipsolverDgesvdj_bufferSize_raw(handle, jobz, econ, m, n, A, lda, S, U, ldu, V, ldv, &
                                              lwork, params) &
        result(Dgesvdj_bufferSize_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusolverDgesvdj_bufferSize")
-#else
        bind(C, name="hipsolverDgesvdj_bufferSize")
-#endif
        import :: c_ptr, c_int
        type(c_ptr), value :: handle
        integer(c_int), value :: jobz
@@ -2943,11 +2655,7 @@ module hipfort_hipsolver
     function hipsolverCgesvdj_bufferSize_raw(handle, jobz, econ, m, n, A, lda, S, U, ldu, V, ldv, &
                                              lwork, params) &
        result(Cgesvdj_bufferSize_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusolverCgesvdj_bufferSize")
-#else
        bind(C, name="hipsolverCgesvdj_bufferSize")
-#endif
        import :: c_ptr, c_int
        type(c_ptr), value :: handle
        integer(c_int), value :: jobz
@@ -2977,11 +2685,7 @@ module hipfort_hipsolver
     function hipsolverZgesvdj_bufferSize_raw(handle, jobz, econ, m, n, A, lda, S, U, ldu, V, ldv, &
                                              lwork, params) &
        result(Zgesvdj_bufferSize_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusolverZgesvdj_bufferSize")
-#else
        bind(C, name="hipsolverZgesvdj_bufferSize")
-#endif
        import :: c_ptr, c_int
        type(c_ptr), value :: handle
        integer(c_int), value :: jobz
@@ -3011,11 +2715,7 @@ module hipfort_hipsolver
     function hipsolverSgesvdj_raw(handle, jobz, econ, m, n, A, lda, S, U, ldu, V, ldv, work, &
                                   lwork, devInfo, params) &
        result(Sgesvdj_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusolverSgesvdj")
-#else
        bind(C, name="hipsolverSgesvdj")
-#endif
        import :: c_ptr, c_int
        type(c_ptr), value :: handle
        integer(c_int), value :: jobz
@@ -3047,11 +2747,7 @@ module hipfort_hipsolver
     function hipsolverDgesvdj_raw(handle, jobz, econ, m, n, A, lda, S, U, ldu, V, ldv, work, &
                                   lwork, devInfo, params) &
        result(Dgesvdj_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusolverDgesvdj")
-#else
        bind(C, name="hipsolverDgesvdj")
-#endif
        import :: c_ptr, c_int
        type(c_ptr), value :: handle
        integer(c_int), value :: jobz
@@ -3083,11 +2779,7 @@ module hipfort_hipsolver
     function hipsolverCgesvdj_raw(handle, jobz, econ, m, n, A, lda, S, U, ldu, V, ldv, work, &
                                   lwork, devInfo, params) &
        result(Cgesvdj_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusolverCgesvdj")
-#else
        bind(C, name="hipsolverCgesvdj")
-#endif
        import :: c_ptr, c_int
        type(c_ptr), value :: handle
        integer(c_int), value :: jobz
@@ -3119,11 +2811,7 @@ module hipfort_hipsolver
     function hipsolverZgesvdj_raw(handle, jobz, econ, m, n, A, lda, S, U, ldu, V, ldv, work, &
                                   lwork, devInfo, params) &
        result(Zgesvdj_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusolverZgesvdj")
-#else
        bind(C, name="hipsolverZgesvdj")
-#endif
        import :: c_ptr, c_int
        type(c_ptr), value :: handle
        integer(c_int), value :: jobz
@@ -3155,11 +2843,7 @@ module hipfort_hipsolver
     function hipsolverSgesvdjBatched_bufferSize_raw(handle, jobz, m, n, A, lda, S, U, ldu, V, ldv, &
                                                     lwork, params, batch_count) &
        result(SgesvdjBatched_bufferSize_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusolverSgesvdjBatched_bufferSize")
-#else
        bind(C, name="hipsolverSgesvdjBatched_bufferSize")
-#endif
        import :: c_ptr, c_int
        type(c_ptr), value :: handle
        integer(c_int), value :: jobz
@@ -3189,11 +2873,7 @@ module hipfort_hipsolver
     function hipsolverDgesvdjBatched_bufferSize_raw(handle, jobz, m, n, A, lda, S, U, ldu, V, ldv, &
                                                     lwork, params, batch_count) &
        result(DgesvdjBatched_bufferSize_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusolverDgesvdjBatched_bufferSize")
-#else
        bind(C, name="hipsolverDgesvdjBatched_bufferSize")
-#endif
        import :: c_ptr, c_int
        type(c_ptr), value :: handle
        integer(c_int), value :: jobz
@@ -3223,11 +2903,7 @@ module hipfort_hipsolver
     function hipsolverCgesvdjBatched_bufferSize_raw(handle, jobz, m, n, A, lda, S, U, ldu, V, ldv, &
                                                     lwork, params, batch_count) &
        result(CgesvdjBatched_bufferSize_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusolverCgesvdjBatched_bufferSize")
-#else
        bind(C, name="hipsolverCgesvdjBatched_bufferSize")
-#endif
        import :: c_ptr, c_int
        type(c_ptr), value :: handle
        integer(c_int), value :: jobz
@@ -3257,11 +2933,7 @@ module hipfort_hipsolver
     function hipsolverZgesvdjBatched_bufferSize_raw(handle, jobz, m, n, A, lda, S, U, ldu, V, ldv, &
                                                     lwork, params, batch_count) &
        result(ZgesvdjBatched_bufferSize_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusolverZgesvdjBatched_bufferSize")
-#else
        bind(C, name="hipsolverZgesvdjBatched_bufferSize")
-#endif
        import :: c_ptr, c_int
        type(c_ptr), value :: handle
        integer(c_int), value :: jobz
@@ -3291,11 +2963,7 @@ module hipfort_hipsolver
     function hipsolverSgesvdjBatched_raw(handle, jobz, m, n, A, lda, S, U, ldu, V, ldv, work, &
                                          lwork, devInfo, params, batch_count) &
        result(SgesvdjBatched_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusolverSgesvdjBatched")
-#else
        bind(C, name="hipsolverSgesvdjBatched")
-#endif
        import :: c_ptr, c_int
        type(c_ptr), value :: handle
        integer(c_int), value :: jobz
@@ -3327,11 +2995,7 @@ module hipfort_hipsolver
     function hipsolverDgesvdjBatched_raw(handle, jobz, m, n, A, lda, S, U, ldu, V, ldv, work, &
                                          lwork, devInfo, params, batch_count) &
        result(DgesvdjBatched_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusolverDgesvdjBatched")
-#else
        bind(C, name="hipsolverDgesvdjBatched")
-#endif
        import :: c_ptr, c_int
        type(c_ptr), value :: handle
        integer(c_int), value :: jobz
@@ -3363,11 +3027,7 @@ module hipfort_hipsolver
     function hipsolverCgesvdjBatched_raw(handle, jobz, m, n, A, lda, S, U, ldu, V, ldv, work, &
                                          lwork, devInfo, params, batch_count) &
        result(CgesvdjBatched_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusolverCgesvdjBatched")
-#else
        bind(C, name="hipsolverCgesvdjBatched")
-#endif
        import :: c_ptr, c_int
        type(c_ptr), value :: handle
        integer(c_int), value :: jobz
@@ -3399,11 +3059,7 @@ module hipfort_hipsolver
     function hipsolverZgesvdjBatched_raw(handle, jobz, m, n, A, lda, S, U, ldu, V, ldv, work, &
                                          lwork, devInfo, params, batch_count) &
        result(ZgesvdjBatched_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusolverZgesvdjBatched")
-#else
        bind(C, name="hipsolverZgesvdjBatched")
-#endif
        import :: c_ptr, c_int
        type(c_ptr), value :: handle
        integer(c_int), value :: jobz
@@ -3434,11 +3090,7 @@ module hipfort_hipsolver
     !---------------------------------------------
     function hipsolverSgetrf_bufferSize_raw(handle, m, n, A, lda, lwork) &
        result(Sgetrf_bufferSize_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusolverSgetrf_bufferSize")
-#else
        bind(C, name="hipsolverSgetrf_bufferSize")
-#endif
        import :: c_ptr, c_int
        type(c_ptr), value :: handle
        integer(c_int), value :: m
@@ -3459,11 +3111,7 @@ module hipfort_hipsolver
     !---------------------------------------------
     function hipsolverDgetrf_bufferSize_raw(handle, m, n, A, lda, lwork) &
        result(Dgetrf_bufferSize_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusolverDgetrf_bufferSize")
-#else
        bind(C, name="hipsolverDgetrf_bufferSize")
-#endif
        import :: c_ptr, c_int
        type(c_ptr), value :: handle
        integer(c_int), value :: m
@@ -3484,11 +3132,7 @@ module hipfort_hipsolver
     !---------------------------------------------
     function hipsolverCgetrf_bufferSize_raw(handle, m, n, A, lda, lwork) &
        result(Cgetrf_bufferSize_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusolverCgetrf_bufferSize")
-#else
        bind(C, name="hipsolverCgetrf_bufferSize")
-#endif
        import :: c_ptr, c_int
        type(c_ptr), value :: handle
        integer(c_int), value :: m
@@ -3509,11 +3153,7 @@ module hipfort_hipsolver
     !---------------------------------------------
     function hipsolverZgetrf_bufferSize_raw(handle, m, n, A, lda, lwork) &
        result(Zgetrf_bufferSize_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusolverZgetrf_bufferSize")
-#else
        bind(C, name="hipsolverZgetrf_bufferSize")
-#endif
        import :: c_ptr, c_int
        type(c_ptr), value :: handle
        integer(c_int), value :: m
@@ -3534,11 +3174,7 @@ module hipfort_hipsolver
     !---------------------------------------------
     function hipsolverSgetrf_raw(handle, m, n, A, lda, work, lwork, devIpiv, devInfo) &
        result(Sgetrf_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusolverSgetrf")
-#else
        bind(C, name="hipsolverSgetrf")
-#endif
        import :: c_ptr, c_int
        type(c_ptr), value :: handle
        integer(c_int), value :: m
@@ -3562,11 +3198,7 @@ module hipfort_hipsolver
     !---------------------------------------------
     function hipsolverDgetrf_raw(handle, m, n, A, lda, work, lwork, devIpiv, devInfo) &
        result(Dgetrf_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusolverDgetrf")
-#else
        bind(C, name="hipsolverDgetrf")
-#endif
        import :: c_ptr, c_int
        type(c_ptr), value :: handle
        integer(c_int), value :: m
@@ -3590,11 +3222,7 @@ module hipfort_hipsolver
     !---------------------------------------------
     function hipsolverCgetrf_raw(handle, m, n, A, lda, work, lwork, devIpiv, devInfo) &
        result(Cgetrf_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusolverCgetrf")
-#else
        bind(C, name="hipsolverCgetrf")
-#endif
        import :: c_ptr, c_int
        type(c_ptr), value :: handle
        integer(c_int), value :: m
@@ -3618,11 +3246,7 @@ module hipfort_hipsolver
     !---------------------------------------------
     function hipsolverZgetrf_raw(handle, m, n, A, lda, work, lwork, devIpiv, devInfo) &
        result(Zgetrf_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusolverZgetrf")
-#else
        bind(C, name="hipsolverZgetrf")
-#endif
        import :: c_ptr, c_int
        type(c_ptr), value :: handle
        integer(c_int), value :: m
@@ -3647,11 +3271,7 @@ module hipfort_hipsolver
     function hipsolverSgetrs_bufferSize_raw(handle, trans, n, nrhs, A, lda, devIpiv, B, ldb, &
                                             lwork) &
        result(Sgetrs_bufferSize_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusolverSgetrs_bufferSize")
-#else
        bind(C, name="hipsolverSgetrs_bufferSize")
-#endif
        import :: c_ptr, c_int
        type(c_ptr), value :: handle
        integer(c_int), value :: trans
@@ -3677,11 +3297,7 @@ module hipfort_hipsolver
     function hipsolverDgetrs_bufferSize_raw(handle, trans, n, nrhs, A, lda, devIpiv, B, ldb, &
                                             lwork) &
        result(Dgetrs_bufferSize_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusolverDgetrs_bufferSize")
-#else
        bind(C, name="hipsolverDgetrs_bufferSize")
-#endif
        import :: c_ptr, c_int
        type(c_ptr), value :: handle
        integer(c_int), value :: trans
@@ -3707,11 +3323,7 @@ module hipfort_hipsolver
     function hipsolverCgetrs_bufferSize_raw(handle, trans, n, nrhs, A, lda, devIpiv, B, ldb, &
                                             lwork) &
        result(Cgetrs_bufferSize_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusolverCgetrs_bufferSize")
-#else
        bind(C, name="hipsolverCgetrs_bufferSize")
-#endif
        import :: c_ptr, c_int
        type(c_ptr), value :: handle
        integer(c_int), value :: trans
@@ -3737,11 +3349,7 @@ module hipfort_hipsolver
     function hipsolverZgetrs_bufferSize_raw(handle, trans, n, nrhs, A, lda, devIpiv, B, ldb, &
                                             lwork) &
        result(Zgetrs_bufferSize_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusolverZgetrs_bufferSize")
-#else
        bind(C, name="hipsolverZgetrs_bufferSize")
-#endif
        import :: c_ptr, c_int
        type(c_ptr), value :: handle
        integer(c_int), value :: trans
@@ -3767,11 +3375,7 @@ module hipfort_hipsolver
     function hipsolverSgetrs_raw(handle, trans, n, nrhs, A, lda, devIpiv, B, ldb, work, lwork, &
                                  devInfo) &
        result(Sgetrs_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusolverSgetrs")
-#else
        bind(C, name="hipsolverSgetrs")
-#endif
        import :: c_ptr, c_int
        type(c_ptr), value :: handle
        integer(c_int), value :: trans
@@ -3799,11 +3403,7 @@ module hipfort_hipsolver
     function hipsolverDgetrs_raw(handle, trans, n, nrhs, A, lda, devIpiv, B, ldb, work, lwork, &
                                  devInfo) &
        result(Dgetrs_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusolverDgetrs")
-#else
        bind(C, name="hipsolverDgetrs")
-#endif
        import :: c_ptr, c_int
        type(c_ptr), value :: handle
        integer(c_int), value :: trans
@@ -3831,11 +3431,7 @@ module hipfort_hipsolver
     function hipsolverCgetrs_raw(handle, trans, n, nrhs, A, lda, devIpiv, B, ldb, work, lwork, &
                                  devInfo) &
        result(Cgetrs_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusolverCgetrs")
-#else
        bind(C, name="hipsolverCgetrs")
-#endif
        import :: c_ptr, c_int
        type(c_ptr), value :: handle
        integer(c_int), value :: trans
@@ -3863,11 +3459,7 @@ module hipfort_hipsolver
     function hipsolverZgetrs_raw(handle, trans, n, nrhs, A, lda, devIpiv, B, ldb, work, lwork, &
                                  devInfo) &
        result(Zgetrs_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusolverZgetrs")
-#else
        bind(C, name="hipsolverZgetrs")
-#endif
        import :: c_ptr, c_int
        type(c_ptr), value :: handle
        integer(c_int), value :: trans
@@ -3894,11 +3486,7 @@ module hipfort_hipsolver
     !---------------------------------------------
     function hipsolverSpotrf_bufferSize_raw(handle, uplo, n, A, lda, lwork) &
        result(Spotrf_bufferSize_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusolverSpotrf_bufferSize")
-#else
        bind(C, name="hipsolverSpotrf_bufferSize")
-#endif
        import :: c_ptr, c_int
        type(c_ptr), value :: handle
        integer(c_int), value :: uplo
@@ -3919,11 +3507,7 @@ module hipfort_hipsolver
     !---------------------------------------------
     function hipsolverDpotrf_bufferSize_raw(handle, uplo, n, A, lda, lwork) &
        result(Dpotrf_bufferSize_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusolverDpotrf_bufferSize")
-#else
        bind(C, name="hipsolverDpotrf_bufferSize")
-#endif
        import :: c_ptr, c_int
        type(c_ptr), value :: handle
        integer(c_int), value :: uplo
@@ -3944,11 +3528,7 @@ module hipfort_hipsolver
     !---------------------------------------------
     function hipsolverCpotrf_bufferSize_raw(handle, uplo, n, A, lda, lwork) &
        result(Cpotrf_bufferSize_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusolverCpotrf_bufferSize")
-#else
        bind(C, name="hipsolverCpotrf_bufferSize")
-#endif
        import :: c_ptr, c_int
        type(c_ptr), value :: handle
        integer(c_int), value :: uplo
@@ -3969,11 +3549,7 @@ module hipfort_hipsolver
     !---------------------------------------------
     function hipsolverZpotrf_bufferSize_raw(handle, uplo, n, A, lda, lwork) &
        result(Zpotrf_bufferSize_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusolverZpotrf_bufferSize")
-#else
        bind(C, name="hipsolverZpotrf_bufferSize")
-#endif
        import :: c_ptr, c_int
        type(c_ptr), value :: handle
        integer(c_int), value :: uplo
@@ -3994,11 +3570,7 @@ module hipfort_hipsolver
     !---------------------------------------------
     function hipsolverSpotrf_raw(handle, uplo, n, A, lda, work, lwork, devInfo) &
        result(Spotrf_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusolverSpotrf")
-#else
        bind(C, name="hipsolverSpotrf")
-#endif
        import :: c_ptr, c_int
        type(c_ptr), value :: handle
        integer(c_int), value :: uplo
@@ -4021,11 +3593,7 @@ module hipfort_hipsolver
     !---------------------------------------------
     function hipsolverDpotrf_raw(handle, uplo, n, A, lda, work, lwork, devInfo) &
        result(Dpotrf_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusolverDpotrf")
-#else
        bind(C, name="hipsolverDpotrf")
-#endif
        import :: c_ptr, c_int
        type(c_ptr), value :: handle
        integer(c_int), value :: uplo
@@ -4048,11 +3616,7 @@ module hipfort_hipsolver
     !---------------------------------------------
     function hipsolverCpotrf_raw(handle, uplo, n, A, lda, work, lwork, devInfo) &
        result(Cpotrf_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusolverCpotrf")
-#else
        bind(C, name="hipsolverCpotrf")
-#endif
        import :: c_ptr, c_int
        type(c_ptr), value :: handle
        integer(c_int), value :: uplo
@@ -4075,11 +3639,7 @@ module hipfort_hipsolver
     !---------------------------------------------
     function hipsolverZpotrf_raw(handle, uplo, n, A, lda, work, lwork, devInfo) &
        result(Zpotrf_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusolverZpotrf")
-#else
        bind(C, name="hipsolverZpotrf")
-#endif
        import :: c_ptr, c_int
        type(c_ptr), value :: handle
        integer(c_int), value :: uplo
@@ -4102,11 +3662,7 @@ module hipfort_hipsolver
     !---------------------------------------------
     function hipsolverSpotrfBatched_bufferSize_raw(handle, uplo, n, A, lda, lwork, batch_count) &
        result(SpotrfBatched_bufferSize_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusolverSpotrfBatched_bufferSize")
-#else
        bind(C, name="hipsolverSpotrfBatched_bufferSize")
-#endif
        import :: c_ptr, c_int
        type(c_ptr), value :: handle
        integer(c_int), value :: uplo
@@ -4127,11 +3683,7 @@ module hipfort_hipsolver
     !---------------------------------------------
     function hipsolverDpotrfBatched_bufferSize_raw(handle, uplo, n, A, lda, lwork, batch_count) &
        result(DpotrfBatched_bufferSize_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusolverDpotrfBatched_bufferSize")
-#else
        bind(C, name="hipsolverDpotrfBatched_bufferSize")
-#endif
        import :: c_ptr, c_int
        type(c_ptr), value :: handle
        integer(c_int), value :: uplo
@@ -4152,11 +3704,7 @@ module hipfort_hipsolver
     !---------------------------------------------
     function hipsolverCpotrfBatched_bufferSize_raw(handle, uplo, n, A, lda, lwork, batch_count) &
        result(CpotrfBatched_bufferSize_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusolverCpotrfBatched_bufferSize")
-#else
        bind(C, name="hipsolverCpotrfBatched_bufferSize")
-#endif
        import :: c_ptr, c_int
        type(c_ptr), value :: handle
        integer(c_int), value :: uplo
@@ -4177,11 +3725,7 @@ module hipfort_hipsolver
     !---------------------------------------------
     function hipsolverZpotrfBatched_bufferSize_raw(handle, uplo, n, A, lda, lwork, batch_count) &
        result(ZpotrfBatched_bufferSize_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusolverZpotrfBatched_bufferSize")
-#else
        bind(C, name="hipsolverZpotrfBatched_bufferSize")
-#endif
        import :: c_ptr, c_int
        type(c_ptr), value :: handle
        integer(c_int), value :: uplo
@@ -4203,11 +3747,7 @@ module hipfort_hipsolver
     function hipsolverSpotrfBatched_raw(handle, uplo, n, A, lda, work, lwork, devInfo, &
                                         batch_count) &
        result(SpotrfBatched_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusolverSpotrfBatched")
-#else
        bind(C, name="hipsolverSpotrfBatched")
-#endif
        import :: c_ptr, c_int
        type(c_ptr), value :: handle
        integer(c_int), value :: uplo
@@ -4231,11 +3771,7 @@ module hipfort_hipsolver
     function hipsolverDpotrfBatched_raw(handle, uplo, n, A, lda, work, lwork, devInfo, &
                                         batch_count) &
        result(DpotrfBatched_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusolverDpotrfBatched")
-#else
        bind(C, name="hipsolverDpotrfBatched")
-#endif
        import :: c_ptr, c_int
        type(c_ptr), value :: handle
        integer(c_int), value :: uplo
@@ -4259,11 +3795,7 @@ module hipfort_hipsolver
     function hipsolverCpotrfBatched_raw(handle, uplo, n, A, lda, work, lwork, devInfo, &
                                         batch_count) &
        result(CpotrfBatched_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusolverCpotrfBatched")
-#else
        bind(C, name="hipsolverCpotrfBatched")
-#endif
        import :: c_ptr, c_int
        type(c_ptr), value :: handle
        integer(c_int), value :: uplo
@@ -4287,11 +3819,7 @@ module hipfort_hipsolver
     function hipsolverZpotrfBatched_raw(handle, uplo, n, A, lda, work, lwork, devInfo, &
                                         batch_count) &
        result(ZpotrfBatched_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusolverZpotrfBatched")
-#else
        bind(C, name="hipsolverZpotrfBatched")
-#endif
        import :: c_ptr, c_int
        type(c_ptr), value :: handle
        integer(c_int), value :: uplo
@@ -4314,11 +3842,7 @@ module hipfort_hipsolver
     !---------------------------------------------
     function hipsolverSpotri_bufferSize_raw(handle, uplo, n, A, lda, lwork) &
        result(Spotri_bufferSize_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusolverSpotri_bufferSize")
-#else
        bind(C, name="hipsolverSpotri_bufferSize")
-#endif
        import :: c_ptr, c_int
        type(c_ptr), value :: handle
        integer(c_int), value :: uplo
@@ -4339,11 +3863,7 @@ module hipfort_hipsolver
     !---------------------------------------------
     function hipsolverDpotri_bufferSize_raw(handle, uplo, n, A, lda, lwork) &
        result(Dpotri_bufferSize_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusolverDpotri_bufferSize")
-#else
        bind(C, name="hipsolverDpotri_bufferSize")
-#endif
        import :: c_ptr, c_int
        type(c_ptr), value :: handle
        integer(c_int), value :: uplo
@@ -4364,11 +3884,7 @@ module hipfort_hipsolver
     !---------------------------------------------
     function hipsolverCpotri_bufferSize_raw(handle, uplo, n, A, lda, lwork) &
        result(Cpotri_bufferSize_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusolverCpotri_bufferSize")
-#else
        bind(C, name="hipsolverCpotri_bufferSize")
-#endif
        import :: c_ptr, c_int
        type(c_ptr), value :: handle
        integer(c_int), value :: uplo
@@ -4389,11 +3905,7 @@ module hipfort_hipsolver
     !---------------------------------------------
     function hipsolverZpotri_bufferSize_raw(handle, uplo, n, A, lda, lwork) &
        result(Zpotri_bufferSize_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusolverZpotri_bufferSize")
-#else
        bind(C, name="hipsolverZpotri_bufferSize")
-#endif
        import :: c_ptr, c_int
        type(c_ptr), value :: handle
        integer(c_int), value :: uplo
@@ -4414,11 +3926,7 @@ module hipfort_hipsolver
     !---------------------------------------------
     function hipsolverSpotri_raw(handle, uplo, n, A, lda, work, lwork, devInfo) &
        result(Spotri_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusolverSpotri")
-#else
        bind(C, name="hipsolverSpotri")
-#endif
        import :: c_ptr, c_int
        type(c_ptr), value :: handle
        integer(c_int), value :: uplo
@@ -4441,11 +3949,7 @@ module hipfort_hipsolver
     !---------------------------------------------
     function hipsolverDpotri_raw(handle, uplo, n, A, lda, work, lwork, devInfo) &
        result(Dpotri_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusolverDpotri")
-#else
        bind(C, name="hipsolverDpotri")
-#endif
        import :: c_ptr, c_int
        type(c_ptr), value :: handle
        integer(c_int), value :: uplo
@@ -4468,11 +3972,7 @@ module hipfort_hipsolver
     !---------------------------------------------
     function hipsolverCpotri_raw(handle, uplo, n, A, lda, work, lwork, devInfo) &
        result(Cpotri_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusolverCpotri")
-#else
        bind(C, name="hipsolverCpotri")
-#endif
        import :: c_ptr, c_int
        type(c_ptr), value :: handle
        integer(c_int), value :: uplo
@@ -4495,11 +3995,7 @@ module hipfort_hipsolver
     !---------------------------------------------
     function hipsolverZpotri_raw(handle, uplo, n, A, lda, work, lwork, devInfo) &
        result(Zpotri_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusolverZpotri")
-#else
        bind(C, name="hipsolverZpotri")
-#endif
        import :: c_ptr, c_int
        type(c_ptr), value :: handle
        integer(c_int), value :: uplo
@@ -4522,11 +4018,7 @@ module hipfort_hipsolver
     !---------------------------------------------
     function hipsolverSpotrs_bufferSize_raw(handle, uplo, n, nrhs, A, lda, B, ldb, lwork) &
        result(Spotrs_bufferSize_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusolverSpotrs_bufferSize")
-#else
        bind(C, name="hipsolverSpotrs_bufferSize")
-#endif
        import :: c_ptr, c_int
        type(c_ptr), value :: handle
        integer(c_int), value :: uplo
@@ -4550,11 +4042,7 @@ module hipfort_hipsolver
     !---------------------------------------------
     function hipsolverDpotrs_bufferSize_raw(handle, uplo, n, nrhs, A, lda, B, ldb, lwork) &
        result(Dpotrs_bufferSize_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusolverDpotrs_bufferSize")
-#else
        bind(C, name="hipsolverDpotrs_bufferSize")
-#endif
        import :: c_ptr, c_int
        type(c_ptr), value :: handle
        integer(c_int), value :: uplo
@@ -4578,11 +4066,7 @@ module hipfort_hipsolver
     !---------------------------------------------
     function hipsolverCpotrs_bufferSize_raw(handle, uplo, n, nrhs, A, lda, B, ldb, lwork) &
        result(Cpotrs_bufferSize_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusolverCpotrs_bufferSize")
-#else
        bind(C, name="hipsolverCpotrs_bufferSize")
-#endif
        import :: c_ptr, c_int
        type(c_ptr), value :: handle
        integer(c_int), value :: uplo
@@ -4606,11 +4090,7 @@ module hipfort_hipsolver
     !---------------------------------------------
     function hipsolverZpotrs_bufferSize_raw(handle, uplo, n, nrhs, A, lda, B, ldb, lwork) &
        result(Zpotrs_bufferSize_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusolverZpotrs_bufferSize")
-#else
        bind(C, name="hipsolverZpotrs_bufferSize")
-#endif
        import :: c_ptr, c_int
        type(c_ptr), value :: handle
        integer(c_int), value :: uplo
@@ -4634,11 +4114,7 @@ module hipfort_hipsolver
     !---------------------------------------------
     function hipsolverSpotrs_raw(handle, uplo, n, nrhs, A, lda, B, ldb, work, lwork, devInfo) &
        result(Spotrs_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusolverSpotrs")
-#else
        bind(C, name="hipsolverSpotrs")
-#endif
        import :: c_ptr, c_int
        type(c_ptr), value :: handle
        integer(c_int), value :: uplo
@@ -4664,11 +4140,7 @@ module hipfort_hipsolver
     !---------------------------------------------
     function hipsolverDpotrs_raw(handle, uplo, n, nrhs, A, lda, B, ldb, work, lwork, devInfo) &
        result(Dpotrs_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusolverDpotrs")
-#else
        bind(C, name="hipsolverDpotrs")
-#endif
        import :: c_ptr, c_int
        type(c_ptr), value :: handle
        integer(c_int), value :: uplo
@@ -4694,11 +4166,7 @@ module hipfort_hipsolver
     !---------------------------------------------
     function hipsolverCpotrs_raw(handle, uplo, n, nrhs, A, lda, B, ldb, work, lwork, devInfo) &
        result(Cpotrs_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusolverCpotrs")
-#else
        bind(C, name="hipsolverCpotrs")
-#endif
        import :: c_ptr, c_int
        type(c_ptr), value :: handle
        integer(c_int), value :: uplo
@@ -4724,11 +4192,7 @@ module hipfort_hipsolver
     !---------------------------------------------
     function hipsolverZpotrs_raw(handle, uplo, n, nrhs, A, lda, B, ldb, work, lwork, devInfo) &
        result(Zpotrs_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusolverZpotrs")
-#else
        bind(C, name="hipsolverZpotrs")
-#endif
        import :: c_ptr, c_int
        type(c_ptr), value :: handle
        integer(c_int), value :: uplo
@@ -4755,11 +4219,7 @@ module hipfort_hipsolver
     function hipsolverSpotrsBatched_bufferSize_raw(handle, uplo, n, nrhs, A, lda, B, ldb, lwork, &
                                                    batch_count) &
        result(SpotrsBatched_bufferSize_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusolverSpotrsBatched_bufferSize")
-#else
        bind(C, name="hipsolverSpotrsBatched_bufferSize")
-#endif
        import :: c_ptr, c_int
        type(c_ptr), value :: handle
        integer(c_int), value :: uplo
@@ -4784,11 +4244,7 @@ module hipfort_hipsolver
     function hipsolverDpotrsBatched_bufferSize_raw(handle, uplo, n, nrhs, A, lda, B, ldb, lwork, &
                                                    batch_count) &
        result(DpotrsBatched_bufferSize_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusolverDpotrsBatched_bufferSize")
-#else
        bind(C, name="hipsolverDpotrsBatched_bufferSize")
-#endif
        import :: c_ptr, c_int
        type(c_ptr), value :: handle
        integer(c_int), value :: uplo
@@ -4813,11 +4269,7 @@ module hipfort_hipsolver
     function hipsolverCpotrsBatched_bufferSize_raw(handle, uplo, n, nrhs, A, lda, B, ldb, lwork, &
                                                    batch_count) &
        result(CpotrsBatched_bufferSize_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusolverCpotrsBatched_bufferSize")
-#else
        bind(C, name="hipsolverCpotrsBatched_bufferSize")
-#endif
        import :: c_ptr, c_int
        type(c_ptr), value :: handle
        integer(c_int), value :: uplo
@@ -4842,11 +4294,7 @@ module hipfort_hipsolver
     function hipsolverZpotrsBatched_bufferSize_raw(handle, uplo, n, nrhs, A, lda, B, ldb, lwork, &
                                                    batch_count) &
        result(ZpotrsBatched_bufferSize_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusolverZpotrsBatched_bufferSize")
-#else
        bind(C, name="hipsolverZpotrsBatched_bufferSize")
-#endif
        import :: c_ptr, c_int
        type(c_ptr), value :: handle
        integer(c_int), value :: uplo
@@ -4871,11 +4319,7 @@ module hipfort_hipsolver
     function hipsolverSpotrsBatched_raw(handle, uplo, n, nrhs, A, lda, B, ldb, work, lwork, &
                                         devInfo, batch_count) &
        result(SpotrsBatched_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusolverSpotrsBatched")
-#else
        bind(C, name="hipsolverSpotrsBatched")
-#endif
        import :: c_ptr, c_int
        type(c_ptr), value :: handle
        integer(c_int), value :: uplo
@@ -4902,11 +4346,7 @@ module hipfort_hipsolver
     function hipsolverDpotrsBatched_raw(handle, uplo, n, nrhs, A, lda, B, ldb, work, lwork, &
                                         devInfo, batch_count) &
        result(DpotrsBatched_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusolverDpotrsBatched")
-#else
        bind(C, name="hipsolverDpotrsBatched")
-#endif
        import :: c_ptr, c_int
        type(c_ptr), value :: handle
        integer(c_int), value :: uplo
@@ -4933,11 +4373,7 @@ module hipfort_hipsolver
     function hipsolverCpotrsBatched_raw(handle, uplo, n, nrhs, A, lda, B, ldb, work, lwork, &
                                         devInfo, batch_count) &
        result(CpotrsBatched_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusolverCpotrsBatched")
-#else
        bind(C, name="hipsolverCpotrsBatched")
-#endif
        import :: c_ptr, c_int
        type(c_ptr), value :: handle
        integer(c_int), value :: uplo
@@ -4964,11 +4400,7 @@ module hipfort_hipsolver
     function hipsolverZpotrsBatched_raw(handle, uplo, n, nrhs, A, lda, B, ldb, work, lwork, &
                                         devInfo, batch_count) &
        result(ZpotrsBatched_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusolverZpotrsBatched")
-#else
        bind(C, name="hipsolverZpotrsBatched")
-#endif
        import :: c_ptr, c_int
        type(c_ptr), value :: handle
        integer(c_int), value :: uplo
@@ -4994,11 +4426,7 @@ module hipfort_hipsolver
     !---------------------------------------------
     function hipsolverSsyevd_bufferSize_raw(handle, jobz, uplo, n, A, lda, D, lwork) &
        result(Ssyevd_bufferSize_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusolverSsyevd_bufferSize")
-#else
        bind(C, name="hipsolverSsyevd_bufferSize")
-#endif
        import :: c_ptr, c_int
        type(c_ptr), value :: handle
        integer(c_int), value :: jobz
@@ -5021,11 +4449,7 @@ module hipfort_hipsolver
     !---------------------------------------------
     function hipsolverDsyevd_bufferSize_raw(handle, jobz, uplo, n, A, lda, D, lwork) &
        result(Dsyevd_bufferSize_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusolverDsyevd_bufferSize")
-#else
        bind(C, name="hipsolverDsyevd_bufferSize")
-#endif
        import :: c_ptr, c_int
        type(c_ptr), value :: handle
        integer(c_int), value :: jobz
@@ -5048,11 +4472,7 @@ module hipfort_hipsolver
     !---------------------------------------------
     function hipsolverCheevd_bufferSize_raw(handle, jobz, uplo, n, A, lda, D, lwork) &
        result(Cheevd_bufferSize_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusolverCheevd_bufferSize")
-#else
        bind(C, name="hipsolverCheevd_bufferSize")
-#endif
        import :: c_ptr, c_int
        type(c_ptr), value :: handle
        integer(c_int), value :: jobz
@@ -5075,11 +4495,7 @@ module hipfort_hipsolver
     !---------------------------------------------
     function hipsolverZheevd_bufferSize_raw(handle, jobz, uplo, n, A, lda, D, lwork) &
        result(Zheevd_bufferSize_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusolverZheevd_bufferSize")
-#else
        bind(C, name="hipsolverZheevd_bufferSize")
-#endif
        import :: c_ptr, c_int
        type(c_ptr), value :: handle
        integer(c_int), value :: jobz
@@ -5102,11 +4518,7 @@ module hipfort_hipsolver
     !---------------------------------------------
     function hipsolverSsyevd_raw(handle, jobz, uplo, n, A, lda, D, work, lwork, devInfo) &
        result(Ssyevd_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusolverSsyevd")
-#else
        bind(C, name="hipsolverSsyevd")
-#endif
        import :: c_ptr, c_int
        type(c_ptr), value :: handle
        integer(c_int), value :: jobz
@@ -5131,11 +4543,7 @@ module hipfort_hipsolver
     !---------------------------------------------
     function hipsolverDsyevd_raw(handle, jobz, uplo, n, A, lda, D, work, lwork, devInfo) &
        result(Dsyevd_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusolverDsyevd")
-#else
        bind(C, name="hipsolverDsyevd")
-#endif
        import :: c_ptr, c_int
        type(c_ptr), value :: handle
        integer(c_int), value :: jobz
@@ -5160,11 +4568,7 @@ module hipfort_hipsolver
     !---------------------------------------------
     function hipsolverCheevd_raw(handle, jobz, uplo, n, A, lda, D, work, lwork, devInfo) &
        result(Cheevd_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusolverCheevd")
-#else
        bind(C, name="hipsolverCheevd")
-#endif
        import :: c_ptr, c_int
        type(c_ptr), value :: handle
        integer(c_int), value :: jobz
@@ -5189,11 +4593,7 @@ module hipfort_hipsolver
     !---------------------------------------------
     function hipsolverZheevd_raw(handle, jobz, uplo, n, A, lda, D, work, lwork, devInfo) &
        result(Zheevd_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusolverZheevd")
-#else
        bind(C, name="hipsolverZheevd")
-#endif
        import :: c_ptr, c_int
        type(c_ptr), value :: handle
        integer(c_int), value :: jobz
@@ -5219,11 +4619,7 @@ module hipfort_hipsolver
     function hipsolverSsyevdx_bufferSize_raw(handle, jobz, range, uplo, n, A, lda, vl, vu, il, iu, &
                                              nev, W, lwork) &
        result(Ssyevdx_bufferSize_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusolverSsyevdx_bufferSize")
-#else
        bind(C, name="hipsolverSsyevdx_bufferSize")
-#endif
        import :: c_ptr, c_int, c_float
        type(c_ptr), value :: handle
        integer(c_int), value :: jobz
@@ -5287,11 +4683,7 @@ module hipfort_hipsolver
     function hipsolverCheevdx_bufferSize_raw(handle, jobz, range, uplo, n, A, lda, vl, vu, il, iu, &
                                              nev, W, lwork) &
        result(Cheevdx_bufferSize_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusolverCheevdx_bufferSize")
-#else
        bind(C, name="hipsolverCheevdx_bufferSize")
-#endif
        import :: c_ptr, c_int, c_float
        type(c_ptr), value :: handle
        integer(c_int), value :: jobz
@@ -5321,11 +4713,7 @@ module hipfort_hipsolver
     function hipsolverZheevdx_bufferSize_raw(handle, jobz, range, uplo, n, A, lda, vl, vu, il, iu, &
                                              nev, W, lwork) &
        result(Zheevdx_bufferSize_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusolverZheevdx_bufferSize")
-#else
        bind(C, name="hipsolverZheevdx_bufferSize")
-#endif
        import :: c_ptr, c_int, c_double
        type(c_ptr), value :: handle
        integer(c_int), value :: jobz
@@ -5355,11 +4743,7 @@ module hipfort_hipsolver
     function hipsolverSsyevdx_raw(handle, jobz, range, uplo, n, A, lda, vl, vu, il, iu, nev, W, &
                                   work, lwork, devInfo) &
        result(Ssyevdx_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusolverSsyevdx")
-#else
        bind(C, name="hipsolverSsyevdx")
-#endif
        import :: c_ptr, c_int, c_float
        type(c_ptr), value :: handle
        integer(c_int), value :: jobz
@@ -5427,11 +4811,7 @@ module hipfort_hipsolver
     function hipsolverCheevdx_raw(handle, jobz, range, uplo, n, A, lda, vl, vu, il, iu, nev, W, &
                                   work, lwork, devInfo) &
        result(Cheevdx_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusolverCheevdx")
-#else
        bind(C, name="hipsolverCheevdx")
-#endif
        import :: c_ptr, c_int, c_float
        type(c_ptr), value :: handle
        integer(c_int), value :: jobz
@@ -5463,11 +4843,7 @@ module hipfort_hipsolver
     function hipsolverZheevdx_raw(handle, jobz, range, uplo, n, A, lda, vl, vu, il, iu, nev, W, &
                                   work, lwork, devInfo) &
        result(Zheevdx_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusolverZheevdx")
-#else
        bind(C, name="hipsolverZheevdx")
-#endif
        import :: c_ptr, c_int, c_double
        type(c_ptr), value :: handle
        integer(c_int), value :: jobz
@@ -5498,11 +4874,7 @@ module hipfort_hipsolver
     !---------------------------------------------
     function hipsolverSsyevj_bufferSize_raw(handle, jobz, uplo, n, A, lda, W, lwork, params) &
        result(Ssyevj_bufferSize_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusolverSsyevj_bufferSize")
-#else
        bind(C, name="hipsolverSsyevj_bufferSize")
-#endif
        import :: c_ptr, c_int
        type(c_ptr), value :: handle
        integer(c_int), value :: jobz
@@ -5526,11 +4898,7 @@ module hipfort_hipsolver
     !---------------------------------------------
     function hipsolverDsyevj_bufferSize_raw(handle, jobz, uplo, n, A, lda, W, lwork, params) &
        result(Dsyevj_bufferSize_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusolverDsyevj_bufferSize")
-#else
        bind(C, name="hipsolverDsyevj_bufferSize")
-#endif
        import :: c_ptr, c_int
        type(c_ptr), value :: handle
        integer(c_int), value :: jobz
@@ -5554,11 +4922,7 @@ module hipfort_hipsolver
     !---------------------------------------------
     function hipsolverCheevj_bufferSize_raw(handle, jobz, uplo, n, A, lda, W, lwork, params) &
        result(Cheevj_bufferSize_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusolverCheevj_bufferSize")
-#else
        bind(C, name="hipsolverCheevj_bufferSize")
-#endif
        import :: c_ptr, c_int
        type(c_ptr), value :: handle
        integer(c_int), value :: jobz
@@ -5582,11 +4946,7 @@ module hipfort_hipsolver
     !---------------------------------------------
     function hipsolverZheevj_bufferSize_raw(handle, jobz, uplo, n, A, lda, W, lwork, params) &
        result(Zheevj_bufferSize_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusolverZheevj_bufferSize")
-#else
        bind(C, name="hipsolverZheevj_bufferSize")
-#endif
        import :: c_ptr, c_int
        type(c_ptr), value :: handle
        integer(c_int), value :: jobz
@@ -5610,11 +4970,7 @@ module hipfort_hipsolver
     !---------------------------------------------
     function hipsolverSsyevj_raw(handle, jobz, uplo, n, A, lda, W, work, lwork, devInfo, params) &
        result(Ssyevj_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusolverSsyevj")
-#else
        bind(C, name="hipsolverSsyevj")
-#endif
        import :: c_ptr, c_int
        type(c_ptr), value :: handle
        integer(c_int), value :: jobz
@@ -5640,11 +4996,7 @@ module hipfort_hipsolver
     !---------------------------------------------
     function hipsolverDsyevj_raw(handle, jobz, uplo, n, A, lda, W, work, lwork, devInfo, params) &
        result(Dsyevj_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusolverDsyevj")
-#else
        bind(C, name="hipsolverDsyevj")
-#endif
        import :: c_ptr, c_int
        type(c_ptr), value :: handle
        integer(c_int), value :: jobz
@@ -5670,11 +5022,7 @@ module hipfort_hipsolver
     !---------------------------------------------
     function hipsolverCheevj_raw(handle, jobz, uplo, n, A, lda, W, work, lwork, devInfo, params) &
        result(Cheevj_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusolverCheevj")
-#else
        bind(C, name="hipsolverCheevj")
-#endif
        import :: c_ptr, c_int
        type(c_ptr), value :: handle
        integer(c_int), value :: jobz
@@ -5700,11 +5048,7 @@ module hipfort_hipsolver
     !---------------------------------------------
     function hipsolverZheevj_raw(handle, jobz, uplo, n, A, lda, W, work, lwork, devInfo, params) &
        result(Zheevj_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusolverZheevj")
-#else
        bind(C, name="hipsolverZheevj")
-#endif
        import :: c_ptr, c_int
        type(c_ptr), value :: handle
        integer(c_int), value :: jobz
@@ -5731,11 +5075,7 @@ module hipfort_hipsolver
     function hipsolverSsyevjBatched_bufferSize_raw(handle, jobz, uplo, n, A, lda, W, lwork, &
                                                    params, batch_count) &
        result(SsyevjBatched_bufferSize_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusolverSsyevjBatched_bufferSize")
-#else
        bind(C, name="hipsolverSsyevjBatched_bufferSize")
-#endif
        import :: c_ptr, c_int
        type(c_ptr), value :: handle
        integer(c_int), value :: jobz
@@ -5761,11 +5101,7 @@ module hipfort_hipsolver
     function hipsolverDsyevjBatched_bufferSize_raw(handle, jobz, uplo, n, A, lda, W, lwork, &
                                                    params, batch_count) &
        result(DsyevjBatched_bufferSize_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusolverDsyevjBatched_bufferSize")
-#else
        bind(C, name="hipsolverDsyevjBatched_bufferSize")
-#endif
        import :: c_ptr, c_int
        type(c_ptr), value :: handle
        integer(c_int), value :: jobz
@@ -5791,11 +5127,7 @@ module hipfort_hipsolver
     function hipsolverCheevjBatched_bufferSize_raw(handle, jobz, uplo, n, A, lda, W, lwork, &
                                                    params, batch_count) &
        result(CheevjBatched_bufferSize_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusolverCheevjBatched_bufferSize")
-#else
        bind(C, name="hipsolverCheevjBatched_bufferSize")
-#endif
        import :: c_ptr, c_int
        type(c_ptr), value :: handle
        integer(c_int), value :: jobz
@@ -5821,11 +5153,7 @@ module hipfort_hipsolver
     function hipsolverZheevjBatched_bufferSize_raw(handle, jobz, uplo, n, A, lda, W, lwork, &
                                                    params, batch_count) &
        result(ZheevjBatched_bufferSize_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusolverZheevjBatched_bufferSize")
-#else
        bind(C, name="hipsolverZheevjBatched_bufferSize")
-#endif
        import :: c_ptr, c_int
        type(c_ptr), value :: handle
        integer(c_int), value :: jobz
@@ -5851,11 +5179,7 @@ module hipfort_hipsolver
     function hipsolverSsyevjBatched_raw(handle, jobz, uplo, n, A, lda, W, work, lwork, devInfo, &
                                         params, batch_count) &
        result(SsyevjBatched_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusolverSsyevjBatched")
-#else
        bind(C, name="hipsolverSsyevjBatched")
-#endif
        import :: c_ptr, c_int
        type(c_ptr), value :: handle
        integer(c_int), value :: jobz
@@ -5915,11 +5239,7 @@ module hipfort_hipsolver
     function hipsolverCheevjBatched_raw(handle, jobz, uplo, n, A, lda, W, work, lwork, devInfo, &
                                         params, batch_count) &
        result(CheevjBatched_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusolverCheevjBatched")
-#else
        bind(C, name="hipsolverCheevjBatched")
-#endif
        import :: c_ptr, c_int
        type(c_ptr), value :: handle
        integer(c_int), value :: jobz
@@ -5947,11 +5267,7 @@ module hipfort_hipsolver
     function hipsolverZheevjBatched_raw(handle, jobz, uplo, n, A, lda, W, work, lwork, devInfo, &
                                         params, batch_count) &
        result(ZheevjBatched_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusolverZheevjBatched")
-#else
        bind(C, name="hipsolverZheevjBatched")
-#endif
        import :: c_ptr, c_int
        type(c_ptr), value :: handle
        integer(c_int), value :: jobz
@@ -5979,11 +5295,7 @@ module hipfort_hipsolver
     function hipsolverSsygvd_bufferSize_raw(handle, itype, jobz, uplo, n, A, lda, B, ldb, W, &
                                             lwork) &
        result(Ssygvd_bufferSize_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusolverSsygvd_bufferSize")
-#else
        bind(C, name="hipsolverSsygvd_bufferSize")
-#endif
        import :: c_ptr, c_int
        type(c_ptr), value :: handle
        integer(c_int), value :: itype
@@ -6010,11 +5322,7 @@ module hipfort_hipsolver
     function hipsolverDsygvd_bufferSize_raw(handle, itype, jobz, uplo, n, A, lda, B, ldb, W, &
                                             lwork) &
        result(Dsygvd_bufferSize_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusolverDsygvd_bufferSize")
-#else
        bind(C, name="hipsolverDsygvd_bufferSize")
-#endif
        import :: c_ptr, c_int
        type(c_ptr), value :: handle
        integer(c_int), value :: itype
@@ -6041,11 +5349,7 @@ module hipfort_hipsolver
     function hipsolverChegvd_bufferSize_raw(handle, itype, jobz, uplo, n, A, lda, B, ldb, W, &
                                             lwork) &
        result(Chegvd_bufferSize_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusolverChegvd_bufferSize")
-#else
        bind(C, name="hipsolverChegvd_bufferSize")
-#endif
        import :: c_ptr, c_int
        type(c_ptr), value :: handle
        integer(c_int), value :: itype
@@ -6072,11 +5376,7 @@ module hipfort_hipsolver
     function hipsolverZhegvd_bufferSize_raw(handle, itype, jobz, uplo, n, A, lda, B, ldb, W, &
                                             lwork) &
        result(Zhegvd_bufferSize_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusolverZhegvd_bufferSize")
-#else
        bind(C, name="hipsolverZhegvd_bufferSize")
-#endif
        import :: c_ptr, c_int
        type(c_ptr), value :: handle
        integer(c_int), value :: itype
@@ -6103,11 +5403,7 @@ module hipfort_hipsolver
     function hipsolverSsygvd_raw(handle, itype, jobz, uplo, n, A, lda, B, ldb, W, work, lwork, &
                                  devInfo) &
        result(Ssygvd_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusolverSsygvd")
-#else
        bind(C, name="hipsolverSsygvd")
-#endif
        import :: c_ptr, c_int
        type(c_ptr), value :: handle
        integer(c_int), value :: itype
@@ -6136,11 +5432,7 @@ module hipfort_hipsolver
     function hipsolverDsygvd_raw(handle, itype, jobz, uplo, n, A, lda, B, ldb, W, work, lwork, &
                                  devInfo) &
        result(Dsygvd_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusolverDsygvd")
-#else
        bind(C, name="hipsolverDsygvd")
-#endif
        import :: c_ptr, c_int
        type(c_ptr), value :: handle
        integer(c_int), value :: itype
@@ -6169,11 +5461,7 @@ module hipfort_hipsolver
     function hipsolverChegvd_raw(handle, itype, jobz, uplo, n, A, lda, B, ldb, W, work, lwork, &
                                  devInfo) &
        result(Chegvd_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusolverChegvd")
-#else
        bind(C, name="hipsolverChegvd")
-#endif
        import :: c_ptr, c_int
        type(c_ptr), value :: handle
        integer(c_int), value :: itype
@@ -6202,11 +5490,7 @@ module hipfort_hipsolver
     function hipsolverZhegvd_raw(handle, itype, jobz, uplo, n, A, lda, B, ldb, W, work, lwork, &
                                  devInfo) &
        result(Zhegvd_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusolverZhegvd")
-#else
        bind(C, name="hipsolverZhegvd")
-#endif
        import :: c_ptr, c_int
        type(c_ptr), value :: handle
        integer(c_int), value :: itype
@@ -6235,11 +5519,7 @@ module hipfort_hipsolver
     function hipsolverSsygvdx_bufferSize_raw(handle, itype, jobz, range, uplo, n, A, lda, B, ldb, &
                                              vl, vu, il, iu, nev, W, lwork) &
        result(Ssygvdx_bufferSize_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusolverSsygvdx_bufferSize")
-#else
        bind(C, name="hipsolverSsygvdx_bufferSize")
-#endif
        import :: c_ptr, c_int, c_float
        type(c_ptr), value :: handle
        integer(c_int), value :: itype
@@ -6272,11 +5552,7 @@ module hipfort_hipsolver
     function hipsolverDsygvdx_bufferSize_raw(handle, itype, jobz, range, uplo, n, A, lda, B, ldb, &
                                              vl, vu, il, iu, nev, W, lwork) &
        result(Dsygvdx_bufferSize_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusolverDsygvdx_bufferSize")
-#else
        bind(C, name="hipsolverDsygvdx_bufferSize")
-#endif
        import :: c_ptr, c_int, c_double
        type(c_ptr), value :: handle
        integer(c_int), value :: itype
@@ -6309,11 +5585,7 @@ module hipfort_hipsolver
     function hipsolverChegvdx_bufferSize_raw(handle, itype, jobz, range, uplo, n, A, lda, B, ldb, &
                                              vl, vu, il, iu, nev, W, lwork) &
        result(Chegvdx_bufferSize_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusolverChegvdx_bufferSize")
-#else
        bind(C, name="hipsolverChegvdx_bufferSize")
-#endif
        import :: c_ptr, c_int, c_float
        type(c_ptr), value :: handle
        integer(c_int), value :: itype
@@ -6346,11 +5618,7 @@ module hipfort_hipsolver
     function hipsolverZhegvdx_bufferSize_raw(handle, itype, jobz, range, uplo, n, A, lda, B, ldb, &
                                              vl, vu, il, iu, nev, W, lwork) &
        result(Zhegvdx_bufferSize_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusolverZhegvdx_bufferSize")
-#else
        bind(C, name="hipsolverZhegvdx_bufferSize")
-#endif
        import :: c_ptr, c_int, c_double
        type(c_ptr), value :: handle
        integer(c_int), value :: itype
@@ -6383,11 +5651,7 @@ module hipfort_hipsolver
     function hipsolverSsygvdx_raw(handle, itype, jobz, range, uplo, n, A, lda, B, ldb, vl, vu, il, &
                                   iu, nev, W, work, lwork, devInfo) &
        result(Ssygvdx_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusolverSsygvdx")
-#else
        bind(C, name="hipsolverSsygvdx")
-#endif
        import :: c_ptr, c_int, c_float
        type(c_ptr), value :: handle
        integer(c_int), value :: itype
@@ -6422,11 +5686,7 @@ module hipfort_hipsolver
     function hipsolverDsygvdx_raw(handle, itype, jobz, range, uplo, n, A, lda, B, ldb, vl, vu, il, &
                                   iu, nev, W, work, lwork, devInfo) &
        result(Dsygvdx_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusolverDsygvdx")
-#else
        bind(C, name="hipsolverDsygvdx")
-#endif
        import :: c_ptr, c_int, c_double
        type(c_ptr), value :: handle
        integer(c_int), value :: itype
@@ -6461,11 +5721,7 @@ module hipfort_hipsolver
     function hipsolverChegvdx_raw(handle, itype, jobz, range, uplo, n, A, lda, B, ldb, vl, vu, il, &
                                   iu, nev, W, work, lwork, devInfo) &
        result(Chegvdx_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusolverChegvdx")
-#else
        bind(C, name="hipsolverChegvdx")
-#endif
        import :: c_ptr, c_int, c_float
        type(c_ptr), value :: handle
        integer(c_int), value :: itype
@@ -6500,11 +5756,7 @@ module hipfort_hipsolver
     function hipsolverZhegvdx_raw(handle, itype, jobz, range, uplo, n, A, lda, B, ldb, vl, vu, il, &
                                   iu, nev, W, work, lwork, devInfo) &
        result(Zhegvdx_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusolverZhegvdx")
-#else
        bind(C, name="hipsolverZhegvdx")
-#endif
        import :: c_ptr, c_int, c_double
        type(c_ptr), value :: handle
        integer(c_int), value :: itype
@@ -6539,11 +5791,7 @@ module hipfort_hipsolver
     function hipsolverSsygvj_bufferSize_raw(handle, itype, jobz, uplo, n, A, lda, B, ldb, W, &
                                             lwork, params) &
        result(Ssygvj_bufferSize_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusolverSsygvj_bufferSize")
-#else
        bind(C, name="hipsolverSsygvj_bufferSize")
-#endif
        import :: c_ptr, c_int
        type(c_ptr), value :: handle
        integer(c_int), value :: itype
@@ -6571,11 +5819,7 @@ module hipfort_hipsolver
     function hipsolverDsygvj_bufferSize_raw(handle, itype, jobz, uplo, n, A, lda, B, ldb, W, &
                                             lwork, params) &
        result(Dsygvj_bufferSize_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusolverDsygvj_bufferSize")
-#else
        bind(C, name="hipsolverDsygvj_bufferSize")
-#endif
        import :: c_ptr, c_int
        type(c_ptr), value :: handle
        integer(c_int), value :: itype
@@ -6603,11 +5847,7 @@ module hipfort_hipsolver
     function hipsolverChegvj_bufferSize_raw(handle, itype, jobz, uplo, n, A, lda, B, ldb, W, &
                                             lwork, params) &
        result(Chegvj_bufferSize_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusolverChegvj_bufferSize")
-#else
        bind(C, name="hipsolverChegvj_bufferSize")
-#endif
        import :: c_ptr, c_int
        type(c_ptr), value :: handle
        integer(c_int), value :: itype
@@ -6635,11 +5875,7 @@ module hipfort_hipsolver
     function hipsolverZhegvj_bufferSize_raw(handle, itype, jobz, uplo, n, A, lda, B, ldb, W, &
                                             lwork, params) &
        result(Zhegvj_bufferSize_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusolverZhegvj_bufferSize")
-#else
        bind(C, name="hipsolverZhegvj_bufferSize")
-#endif
        import :: c_ptr, c_int
        type(c_ptr), value :: handle
        integer(c_int), value :: itype
@@ -6667,11 +5903,7 @@ module hipfort_hipsolver
     function hipsolverSsygvj_raw(handle, itype, jobz, uplo, n, A, lda, B, ldb, W, work, lwork, &
                                  devInfo, params) &
        result(Ssygvj_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusolverSsygvj")
-#else
        bind(C, name="hipsolverSsygvj")
-#endif
        import :: c_ptr, c_int
        type(c_ptr), value :: handle
        integer(c_int), value :: itype
@@ -6701,11 +5933,7 @@ module hipfort_hipsolver
     function hipsolverDsygvj_raw(handle, itype, jobz, uplo, n, A, lda, B, ldb, W, work, lwork, &
                                  devInfo, params) &
        result(Dsygvj_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusolverDsygvj")
-#else
        bind(C, name="hipsolverDsygvj")
-#endif
        import :: c_ptr, c_int
        type(c_ptr), value :: handle
        integer(c_int), value :: itype
@@ -6735,11 +5963,7 @@ module hipfort_hipsolver
     function hipsolverChegvj_raw(handle, itype, jobz, uplo, n, A, lda, B, ldb, W, work, lwork, &
                                  devInfo, params) &
        result(Chegvj_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusolverChegvj")
-#else
        bind(C, name="hipsolverChegvj")
-#endif
        import :: c_ptr, c_int
        type(c_ptr), value :: handle
        integer(c_int), value :: itype
@@ -6769,11 +5993,7 @@ module hipfort_hipsolver
     function hipsolverZhegvj_raw(handle, itype, jobz, uplo, n, A, lda, B, ldb, W, work, lwork, &
                                  devInfo, params) &
        result(Zhegvj_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusolverZhegvj")
-#else
        bind(C, name="hipsolverZhegvj")
-#endif
        import :: c_ptr, c_int
        type(c_ptr), value :: handle
        integer(c_int), value :: itype
@@ -6802,11 +6022,7 @@ module hipfort_hipsolver
     !---------------------------------------------
     function hipsolverSsytrd_bufferSize_raw(handle, uplo, n, A, lda, D, E, tau, lwork) &
        result(Ssytrd_bufferSize_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusolverSsytrd_bufferSize")
-#else
        bind(C, name="hipsolverSsytrd_bufferSize")
-#endif
        import :: c_ptr, c_int, c_float
        type(c_ptr), value :: handle
        integer(c_int), value :: uplo
@@ -6830,11 +6046,7 @@ module hipfort_hipsolver
     !---------------------------------------------
     function hipsolverDsytrd_bufferSize_raw(handle, uplo, n, A, lda, D, E, tau, lwork) &
        result(Dsytrd_bufferSize_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusolverDsytrd_bufferSize")
-#else
        bind(C, name="hipsolverDsytrd_bufferSize")
-#endif
        import :: c_ptr, c_int, c_double
        type(c_ptr), value :: handle
        integer(c_int), value :: uplo
@@ -6858,11 +6070,7 @@ module hipfort_hipsolver
     !---------------------------------------------
     function hipsolverChetrd_bufferSize_raw(handle, uplo, n, A, lda, D, E, tau, lwork) &
        result(Chetrd_bufferSize_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusolverChetrd_bufferSize")
-#else
        bind(C, name="hipsolverChetrd_bufferSize")
-#endif
        import :: c_ptr, c_int, c_float_complex
        type(c_ptr), value :: handle
        integer(c_int), value :: uplo
@@ -6886,11 +6094,7 @@ module hipfort_hipsolver
     !---------------------------------------------
     function hipsolverZhetrd_bufferSize_raw(handle, uplo, n, A, lda, D, E, tau, lwork) &
        result(Zhetrd_bufferSize_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusolverZhetrd_bufferSize")
-#else
        bind(C, name="hipsolverZhetrd_bufferSize")
-#endif
        import :: c_ptr, c_int, c_double_complex
        type(c_ptr), value :: handle
        integer(c_int), value :: uplo
@@ -6914,11 +6118,7 @@ module hipfort_hipsolver
     !---------------------------------------------
     function hipsolverSsytrd_raw(handle, uplo, n, A, lda, D, E, tau, work, lwork, devInfo) &
        result(Ssytrd_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusolverSsytrd")
-#else
        bind(C, name="hipsolverSsytrd")
-#endif
        import :: c_ptr, c_int, c_float
        type(c_ptr), value :: handle
        integer(c_int), value :: uplo
@@ -6944,11 +6144,7 @@ module hipfort_hipsolver
     !---------------------------------------------
     function hipsolverDsytrd_raw(handle, uplo, n, A, lda, D, E, tau, work, lwork, devInfo) &
        result(Dsytrd_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusolverDsytrd")
-#else
        bind(C, name="hipsolverDsytrd")
-#endif
        import :: c_ptr, c_int, c_double
        type(c_ptr), value :: handle
        integer(c_int), value :: uplo
@@ -6974,11 +6170,7 @@ module hipfort_hipsolver
     !---------------------------------------------
     function hipsolverChetrd_raw(handle, uplo, n, A, lda, D, E, tau, work, lwork, devInfo) &
        result(Chetrd_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusolverChetrd")
-#else
        bind(C, name="hipsolverChetrd")
-#endif
        import :: c_ptr, c_int, c_float_complex
        type(c_ptr), value :: handle
        integer(c_int), value :: uplo
@@ -7004,11 +6196,7 @@ module hipfort_hipsolver
     !---------------------------------------------
     function hipsolverZhetrd_raw(handle, uplo, n, A, lda, D, E, tau, work, lwork, devInfo) &
        result(Zhetrd_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusolverZhetrd")
-#else
        bind(C, name="hipsolverZhetrd")
-#endif
        import :: c_ptr, c_int, c_double_complex
        type(c_ptr), value :: handle
        integer(c_int), value :: uplo
@@ -7034,11 +6222,7 @@ module hipfort_hipsolver
     !---------------------------------------------
     function hipsolverSsytrf_bufferSize_raw(handle, n, A, lda, lwork) &
        result(Ssytrf_bufferSize_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusolverSsytrf_bufferSize")
-#else
        bind(C, name="hipsolverSsytrf_bufferSize")
-#endif
        import :: c_ptr, c_int
        type(c_ptr), value :: handle
        integer(c_int), value :: n
@@ -7058,11 +6242,7 @@ module hipfort_hipsolver
     !---------------------------------------------
     function hipsolverDsytrf_bufferSize_raw(handle, n, A, lda, lwork) &
        result(Dsytrf_bufferSize_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusolverDsytrf_bufferSize")
-#else
        bind(C, name="hipsolverDsytrf_bufferSize")
-#endif
        import :: c_ptr, c_int
        type(c_ptr), value :: handle
        integer(c_int), value :: n
@@ -7082,11 +6262,7 @@ module hipfort_hipsolver
     !---------------------------------------------
     function hipsolverCsytrf_bufferSize_raw(handle, n, A, lda, lwork) &
        result(Csytrf_bufferSize_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusolverCsytrf_bufferSize")
-#else
        bind(C, name="hipsolverCsytrf_bufferSize")
-#endif
        import :: c_ptr, c_int
        type(c_ptr), value :: handle
        integer(c_int), value :: n
@@ -7106,11 +6282,7 @@ module hipfort_hipsolver
     !---------------------------------------------
     function hipsolverZsytrf_bufferSize_raw(handle, n, A, lda, lwork) &
        result(Zsytrf_bufferSize_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusolverZsytrf_bufferSize")
-#else
        bind(C, name="hipsolverZsytrf_bufferSize")
-#endif
        import :: c_ptr, c_int
        type(c_ptr), value :: handle
        integer(c_int), value :: n
@@ -7130,11 +6302,7 @@ module hipfort_hipsolver
     !---------------------------------------------
     function hipsolverSsytrf_raw(handle, uplo, n, A, lda, ipiv, work, lwork, devInfo) &
        result(Ssytrf_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusolverSsytrf")
-#else
        bind(C, name="hipsolverSsytrf")
-#endif
        import :: c_ptr, c_int
        type(c_ptr), value :: handle
        integer(c_int), value :: uplo
@@ -7158,11 +6326,7 @@ module hipfort_hipsolver
     !---------------------------------------------
     function hipsolverDsytrf_raw(handle, uplo, n, A, lda, ipiv, work, lwork, devInfo) &
        result(Dsytrf_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusolverDsytrf")
-#else
        bind(C, name="hipsolverDsytrf")
-#endif
        import :: c_ptr, c_int
        type(c_ptr), value :: handle
        integer(c_int), value :: uplo
@@ -7186,11 +6350,7 @@ module hipfort_hipsolver
     !---------------------------------------------
     function hipsolverCsytrf_raw(handle, uplo, n, A, lda, ipiv, work, lwork, devInfo) &
        result(Csytrf_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusolverCsytrf")
-#else
        bind(C, name="hipsolverCsytrf")
-#endif
        import :: c_ptr, c_int
        type(c_ptr), value :: handle
        integer(c_int), value :: uplo
@@ -7214,11 +6374,7 @@ module hipfort_hipsolver
     !---------------------------------------------
     function hipsolverZsytrf_raw(handle, uplo, n, A, lda, ipiv, work, lwork, devInfo) &
        result(Zsytrf_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusolverZsytrf")
-#else
        bind(C, name="hipsolverZsytrf")
-#endif
        import :: c_ptr, c_int
        type(c_ptr), value :: handle
        integer(c_int), value :: uplo
@@ -15005,11 +14161,7 @@ module hipfort_hipsolver
     !---------------------------------------------
     function hipsolverRfGet_Algs_raw(handle, fact_alg, solve_alg) &
        result(RfGet_Algs_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusolverRfGet_Algs")
-#else
        bind(C, name="hipsolverRfGet_Algs")
-#endif
        import :: c_ptr, c_int
        type(c_ptr), value :: handle
        type(c_ptr), value :: fact_alg
@@ -15787,6 +14939,7 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), target :: mode(..)
       integer(c_int) :: GetDeterministicMode
+      if (.not. is_contiguous(mode)) error stop "mode: array must be contiguous"
       GetDeterministicMode = hipsolverGetDeterministicMode_raw(handle, c_loc(mode))
     end function hipsolverGetDeterministicMode_native
 
@@ -15855,6 +15008,7 @@ contains
       type(c_ptr), value :: info
       real(c_double), target :: residual(..)
       integer(c_int) :: XgesvdjGetResidual
+      if (.not. is_contiguous(residual)) error stop "residual: array must be contiguous"
       XgesvdjGetResidual = hipsolverXgesvdjGetResidual_raw(handle, info, c_loc(residual))
     end function hipsolverXgesvdjGetResidual_native
 
@@ -15877,6 +15031,7 @@ contains
       type(c_ptr), value :: info
       integer(c_int), target :: executed_sweeps(..)
       integer(c_int) :: XgesvdjGetSweeps
+      if (.not. is_contiguous(executed_sweeps)) error stop "executed_sweeps: array must be contiguous"
       XgesvdjGetSweeps = hipsolverXgesvdjGetSweeps_raw(handle, info, c_loc(executed_sweeps))
     end function hipsolverXgesvdjGetSweeps_native
 
@@ -15946,6 +15101,7 @@ contains
       type(c_ptr), value :: info
       real(c_double), target :: residual(..)
       integer(c_int) :: XsyevjGetResidual
+      if (.not. is_contiguous(residual)) error stop "residual: array must be contiguous"
       XsyevjGetResidual = hipsolverXsyevjGetResidual_raw(handle, info, c_loc(residual))
     end function hipsolverXsyevjGetResidual_native
 
@@ -15967,6 +15123,7 @@ contains
       type(c_ptr), value :: info
       integer(c_int), target :: executed_sweeps(..)
       integer(c_int) :: XsyevjGetSweeps
+      if (.not. is_contiguous(executed_sweeps)) error stop "executed_sweeps: array must be contiguous"
       XsyevjGetSweeps = hipsolverXsyevjGetSweeps_raw(handle, info, c_loc(executed_sweeps))
     end function hipsolverXsyevjGetSweeps_native
 
@@ -15995,6 +15152,7 @@ contains
       real(c_float) :: tau
       integer(c_int) :: lwork
       integer(c_int) :: Sorgbr_bufferSize
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
       Sorgbr_bufferSize = hipsolverSorgbr_bufferSize_raw(handle, side, m, n, k, c_loc(A), lda, &
         tau, lwork)
     end function hipsolverSorgbr_bufferSize_native
@@ -16032,6 +15190,7 @@ contains
       real(c_double) :: tau
       integer(c_int) :: lwork
       integer(c_int) :: Dorgbr_bufferSize
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
       Dorgbr_bufferSize = hipsolverDorgbr_bufferSize_raw(handle, side, m, n, k, c_loc(A), lda, &
         tau, lwork)
     end function hipsolverDorgbr_bufferSize_native
@@ -16069,6 +15228,7 @@ contains
       complex(c_float_complex) :: tau
       integer(c_int) :: lwork
       integer(c_int) :: Cungbr_bufferSize
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
       Cungbr_bufferSize = hipsolverCungbr_bufferSize_raw(handle, side, m, n, k, c_loc(A), lda, &
         tau, lwork)
     end function hipsolverCungbr_bufferSize_native
@@ -16106,6 +15266,7 @@ contains
       complex(c_double_complex) :: tau
       integer(c_int) :: lwork
       integer(c_int) :: Zungbr_bufferSize
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
       Zungbr_bufferSize = hipsolverZungbr_bufferSize_raw(handle, side, m, n, k, c_loc(A), lda, &
         tau, lwork)
     end function hipsolverZungbr_bufferSize_native
@@ -16145,6 +15306,7 @@ contains
       integer(c_int), value :: lwork
       integer(c_int) :: devInfo
       integer(c_int) :: Sorgbr
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
       Sorgbr = hipsolverSorgbr_raw(handle, side, m, n, k, c_loc(A), lda, tau, work, lwork, devInfo)
     end function hipsolverSorgbr_native
 
@@ -16184,6 +15346,7 @@ contains
       integer(c_int), value :: lwork
       integer(c_int) :: devInfo
       integer(c_int) :: Dorgbr
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
       Dorgbr = hipsolverDorgbr_raw(handle, side, m, n, k, c_loc(A), lda, tau, work, lwork, devInfo)
     end function hipsolverDorgbr_native
 
@@ -16223,6 +15386,7 @@ contains
       integer(c_int), value :: lwork
       integer(c_int) :: devInfo
       integer(c_int) :: Cungbr
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
       Cungbr = hipsolverCungbr_raw(handle, side, m, n, k, c_loc(A), lda, tau, work, lwork, devInfo)
     end function hipsolverCungbr_native
 
@@ -16262,6 +15426,7 @@ contains
       integer(c_int), value :: lwork
       integer(c_int) :: devInfo
       integer(c_int) :: Zungbr
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
       Zungbr = hipsolverZungbr_raw(handle, side, m, n, k, c_loc(A), lda, tau, work, lwork, devInfo)
     end function hipsolverZungbr_native
 
@@ -16298,6 +15463,7 @@ contains
       real(c_float) :: tau
       integer(c_int) :: lwork
       integer(c_int) :: Sorgqr_bufferSize
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
       Sorgqr_bufferSize = hipsolverSorgqr_bufferSize_raw(handle, m, n, k, c_loc(A), lda, tau, lwork)
     end function hipsolverSorgqr_bufferSize_native
 
@@ -16331,6 +15497,7 @@ contains
       real(c_double) :: tau
       integer(c_int) :: lwork
       integer(c_int) :: Dorgqr_bufferSize
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
       Dorgqr_bufferSize = hipsolverDorgqr_bufferSize_raw(handle, m, n, k, c_loc(A), lda, tau, lwork)
     end function hipsolverDorgqr_bufferSize_native
 
@@ -16364,6 +15531,7 @@ contains
       complex(c_float_complex) :: tau
       integer(c_int) :: lwork
       integer(c_int) :: Cungqr_bufferSize
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
       Cungqr_bufferSize = hipsolverCungqr_bufferSize_raw(handle, m, n, k, c_loc(A), lda, tau, lwork)
     end function hipsolverCungqr_bufferSize_native
 
@@ -16397,6 +15565,7 @@ contains
       complex(c_double_complex) :: tau
       integer(c_int) :: lwork
       integer(c_int) :: Zungqr_bufferSize
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
       Zungqr_bufferSize = hipsolverZungqr_bufferSize_raw(handle, m, n, k, c_loc(A), lda, tau, lwork)
     end function hipsolverZungqr_bufferSize_native
 
@@ -16432,6 +15601,7 @@ contains
       integer(c_int), value :: lwork
       integer(c_int) :: devInfo
       integer(c_int) :: Sorgqr
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
       Sorgqr = hipsolverSorgqr_raw(handle, m, n, k, c_loc(A), lda, tau, work, lwork, devInfo)
     end function hipsolverSorgqr_native
 
@@ -16469,6 +15639,7 @@ contains
       integer(c_int), value :: lwork
       integer(c_int) :: devInfo
       integer(c_int) :: Dorgqr
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
       Dorgqr = hipsolverDorgqr_raw(handle, m, n, k, c_loc(A), lda, tau, work, lwork, devInfo)
     end function hipsolverDorgqr_native
 
@@ -16506,6 +15677,7 @@ contains
       integer(c_int), value :: lwork
       integer(c_int) :: devInfo
       integer(c_int) :: Cungqr
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
       Cungqr = hipsolverCungqr_raw(handle, m, n, k, c_loc(A), lda, tau, work, lwork, devInfo)
     end function hipsolverCungqr_native
 
@@ -16543,6 +15715,7 @@ contains
       integer(c_int), value :: lwork
       integer(c_int) :: devInfo
       integer(c_int) :: Zungqr
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
       Zungqr = hipsolverZungqr_raw(handle, m, n, k, c_loc(A), lda, tau, work, lwork, devInfo)
     end function hipsolverZungqr_native
 
@@ -16577,6 +15750,7 @@ contains
       real(c_float) :: tau
       integer(c_int) :: lwork
       integer(c_int) :: Sorgtr_bufferSize
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
       Sorgtr_bufferSize = hipsolverSorgtr_bufferSize_raw(handle, uplo, n, c_loc(A), lda, tau, lwork)
     end function hipsolverSorgtr_bufferSize_native
 
@@ -16608,6 +15782,7 @@ contains
       real(c_double) :: tau
       integer(c_int) :: lwork
       integer(c_int) :: Dorgtr_bufferSize
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
       Dorgtr_bufferSize = hipsolverDorgtr_bufferSize_raw(handle, uplo, n, c_loc(A), lda, tau, lwork)
     end function hipsolverDorgtr_bufferSize_native
 
@@ -16639,6 +15814,7 @@ contains
       complex(c_float_complex) :: tau
       integer(c_int) :: lwork
       integer(c_int) :: Cungtr_bufferSize
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
       Cungtr_bufferSize = hipsolverCungtr_bufferSize_raw(handle, uplo, n, c_loc(A), lda, tau, lwork)
     end function hipsolverCungtr_bufferSize_native
 
@@ -16670,6 +15846,7 @@ contains
       complex(c_double_complex) :: tau
       integer(c_int) :: lwork
       integer(c_int) :: Zungtr_bufferSize
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
       Zungtr_bufferSize = hipsolverZungtr_bufferSize_raw(handle, uplo, n, c_loc(A), lda, tau, lwork)
     end function hipsolverZungtr_bufferSize_native
 
@@ -16703,6 +15880,7 @@ contains
       integer(c_int), value :: lwork
       integer(c_int) :: devInfo
       integer(c_int) :: Sorgtr
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
       Sorgtr = hipsolverSorgtr_raw(handle, uplo, n, c_loc(A), lda, tau, work, lwork, devInfo)
     end function hipsolverSorgtr_native
 
@@ -16738,6 +15916,7 @@ contains
       integer(c_int), value :: lwork
       integer(c_int) :: devInfo
       integer(c_int) :: Dorgtr
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
       Dorgtr = hipsolverDorgtr_raw(handle, uplo, n, c_loc(A), lda, tau, work, lwork, devInfo)
     end function hipsolverDorgtr_native
 
@@ -16773,6 +15952,7 @@ contains
       integer(c_int), value :: lwork
       integer(c_int) :: devInfo
       integer(c_int) :: Cungtr
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
       Cungtr = hipsolverCungtr_raw(handle, uplo, n, c_loc(A), lda, tau, work, lwork, devInfo)
     end function hipsolverCungtr_native
 
@@ -16808,6 +15988,7 @@ contains
       integer(c_int), value :: lwork
       integer(c_int) :: devInfo
       integer(c_int) :: Zungtr
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
       Zungtr = hipsolverZungtr_raw(handle, uplo, n, c_loc(A), lda, tau, work, lwork, devInfo)
     end function hipsolverZungtr_native
 
@@ -16846,6 +16027,8 @@ contains
       integer(c_int), value :: ldc
       integer(c_int) :: lwork
       integer(c_int) :: Sormqr_bufferSize
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(C)) error stop "C: array must be contiguous"
       Sormqr_bufferSize = hipsolverSormqr_bufferSize_raw(handle, side, trans, m, n, k, c_loc(A), &
         lda, tau, c_loc(C), ldc, lwork)
     end function hipsolverSormqr_bufferSize_native
@@ -16889,6 +16072,8 @@ contains
       integer(c_int), value :: ldc
       integer(c_int) :: lwork
       integer(c_int) :: Dormqr_bufferSize
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(C)) error stop "C: array must be contiguous"
       Dormqr_bufferSize = hipsolverDormqr_bufferSize_raw(handle, side, trans, m, n, k, c_loc(A), &
         lda, tau, c_loc(C), ldc, lwork)
     end function hipsolverDormqr_bufferSize_native
@@ -16932,6 +16117,8 @@ contains
       integer(c_int), value :: ldc
       integer(c_int) :: lwork
       integer(c_int) :: Cunmqr_bufferSize
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(C)) error stop "C: array must be contiguous"
       Cunmqr_bufferSize = hipsolverCunmqr_bufferSize_raw(handle, side, trans, m, n, k, c_loc(A), &
         lda, tau, c_loc(C), ldc, lwork)
     end function hipsolverCunmqr_bufferSize_native
@@ -16975,6 +16162,8 @@ contains
       integer(c_int), value :: ldc
       integer(c_int) :: lwork
       integer(c_int) :: Zunmqr_bufferSize
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(C)) error stop "C: array must be contiguous"
       Zunmqr_bufferSize = hipsolverZunmqr_bufferSize_raw(handle, side, trans, m, n, k, c_loc(A), &
         lda, tau, c_loc(C), ldc, lwork)
     end function hipsolverZunmqr_bufferSize_native
@@ -17020,6 +16209,8 @@ contains
       integer(c_int), value :: lwork
       integer(c_int) :: devInfo
       integer(c_int) :: Sormqr
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(C)) error stop "C: array must be contiguous"
       Sormqr = hipsolverSormqr_raw(handle, side, trans, m, n, k, c_loc(A), lda, tau, c_loc(C), &
         ldc, work, lwork, devInfo)
     end function hipsolverSormqr_native
@@ -17067,6 +16258,8 @@ contains
       integer(c_int), value :: lwork
       integer(c_int) :: devInfo
       integer(c_int) :: Dormqr
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(C)) error stop "C: array must be contiguous"
       Dormqr = hipsolverDormqr_raw(handle, side, trans, m, n, k, c_loc(A), lda, tau, c_loc(C), &
         ldc, work, lwork, devInfo)
     end function hipsolverDormqr_native
@@ -17114,6 +16307,8 @@ contains
       integer(c_int), value :: lwork
       integer(c_int) :: devInfo
       integer(c_int) :: Cunmqr
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(C)) error stop "C: array must be contiguous"
       Cunmqr = hipsolverCunmqr_raw(handle, side, trans, m, n, k, c_loc(A), lda, tau, c_loc(C), &
         ldc, work, lwork, devInfo)
     end function hipsolverCunmqr_native
@@ -17161,6 +16356,8 @@ contains
       integer(c_int), value :: lwork
       integer(c_int) :: devInfo
       integer(c_int) :: Zunmqr
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(C)) error stop "C: array must be contiguous"
       Zunmqr = hipsolverZunmqr_raw(handle, side, trans, m, n, k, c_loc(A), lda, tau, c_loc(C), &
         ldc, work, lwork, devInfo)
     end function hipsolverZunmqr_native
@@ -17206,6 +16403,8 @@ contains
       integer(c_int), value :: ldc
       integer(c_int) :: lwork
       integer(c_int) :: Sormtr_bufferSize
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(C)) error stop "C: array must be contiguous"
       Sormtr_bufferSize = hipsolverSormtr_bufferSize_raw(handle, side, uplo, trans, m, n, c_loc( &
         A), lda, tau, c_loc(C), ldc, lwork)
     end function hipsolverSormtr_bufferSize_native
@@ -17249,6 +16448,8 @@ contains
       integer(c_int), value :: ldc
       integer(c_int) :: lwork
       integer(c_int) :: Dormtr_bufferSize
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(C)) error stop "C: array must be contiguous"
       Dormtr_bufferSize = hipsolverDormtr_bufferSize_raw(handle, side, uplo, trans, m, n, c_loc( &
         A), lda, tau, c_loc(C), ldc, lwork)
     end function hipsolverDormtr_bufferSize_native
@@ -17292,6 +16493,8 @@ contains
       integer(c_int), value :: ldc
       integer(c_int) :: lwork
       integer(c_int) :: Cunmtr_bufferSize
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(C)) error stop "C: array must be contiguous"
       Cunmtr_bufferSize = hipsolverCunmtr_bufferSize_raw(handle, side, uplo, trans, m, n, c_loc( &
         A), lda, tau, c_loc(C), ldc, lwork)
     end function hipsolverCunmtr_bufferSize_native
@@ -17335,6 +16538,8 @@ contains
       integer(c_int), value :: ldc
       integer(c_int) :: lwork
       integer(c_int) :: Zunmtr_bufferSize
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(C)) error stop "C: array must be contiguous"
       Zunmtr_bufferSize = hipsolverZunmtr_bufferSize_raw(handle, side, uplo, trans, m, n, c_loc( &
         A), lda, tau, c_loc(C), ldc, lwork)
     end function hipsolverZunmtr_bufferSize_native
@@ -17380,6 +16585,8 @@ contains
       integer(c_int), value :: lwork
       integer(c_int) :: devInfo
       integer(c_int) :: Sormtr
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(C)) error stop "C: array must be contiguous"
       Sormtr = hipsolverSormtr_raw(handle, side, uplo, trans, m, n, c_loc(A), lda, tau, c_loc(C), &
         ldc, work, lwork, devInfo)
     end function hipsolverSormtr_native
@@ -17427,6 +16634,8 @@ contains
       integer(c_int), value :: lwork
       integer(c_int) :: devInfo
       integer(c_int) :: Dormtr
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(C)) error stop "C: array must be contiguous"
       Dormtr = hipsolverDormtr_raw(handle, side, uplo, trans, m, n, c_loc(A), lda, tau, c_loc(C), &
         ldc, work, lwork, devInfo)
     end function hipsolverDormtr_native
@@ -17474,6 +16683,8 @@ contains
       integer(c_int), value :: lwork
       integer(c_int) :: devInfo
       integer(c_int) :: Cunmtr
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(C)) error stop "C: array must be contiguous"
       Cunmtr = hipsolverCunmtr_raw(handle, side, uplo, trans, m, n, c_loc(A), lda, tau, c_loc(C), &
         ldc, work, lwork, devInfo)
     end function hipsolverCunmtr_native
@@ -17521,6 +16732,8 @@ contains
       integer(c_int), value :: lwork
       integer(c_int) :: devInfo
       integer(c_int) :: Zunmtr
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(C)) error stop "C: array must be contiguous"
       Zunmtr = hipsolverZunmtr_raw(handle, side, uplo, trans, m, n, c_loc(A), lda, tau, c_loc(C), &
         ldc, work, lwork, devInfo)
     end function hipsolverZunmtr_native
@@ -17614,6 +16827,11 @@ contains
       integer(c_int), value :: lwork
       integer(c_int) :: devInfo
       integer(c_int) :: Sgebrd
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(D)) error stop "D: array must be contiguous"
+      if (.not. is_contiguous(E)) error stop "E: array must be contiguous"
+      if (.not. is_contiguous(tauq)) error stop "tauq: array must be contiguous"
+      if (.not. is_contiguous(taup)) error stop "taup: array must be contiguous"
       Sgebrd = hipsolverSgebrd_raw(handle, m, n, c_loc(A), lda, c_loc(D), c_loc(E), c_loc(tauq), &
         c_loc(taup), work, lwork, devInfo)
     end function hipsolverSgebrd_native
@@ -17656,6 +16874,11 @@ contains
       integer(c_int), value :: lwork
       integer(c_int) :: devInfo
       integer(c_int) :: Dgebrd
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(D)) error stop "D: array must be contiguous"
+      if (.not. is_contiguous(E)) error stop "E: array must be contiguous"
+      if (.not. is_contiguous(tauq)) error stop "tauq: array must be contiguous"
+      if (.not. is_contiguous(taup)) error stop "taup: array must be contiguous"
       Dgebrd = hipsolverDgebrd_raw(handle, m, n, c_loc(A), lda, c_loc(D), c_loc(E), c_loc(tauq), &
         c_loc(taup), work, lwork, devInfo)
     end function hipsolverDgebrd_native
@@ -17698,6 +16921,11 @@ contains
       integer(c_int), value :: lwork
       integer(c_int) :: devInfo
       integer(c_int) :: Cgebrd
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(D)) error stop "D: array must be contiguous"
+      if (.not. is_contiguous(E)) error stop "E: array must be contiguous"
+      if (.not. is_contiguous(tauq)) error stop "tauq: array must be contiguous"
+      if (.not. is_contiguous(taup)) error stop "taup: array must be contiguous"
       Cgebrd = hipsolverCgebrd_raw(handle, m, n, c_loc(A), lda, c_loc(D), c_loc(E), c_loc(tauq), &
         c_loc(taup), work, lwork, devInfo)
     end function hipsolverCgebrd_native
@@ -17740,6 +16968,11 @@ contains
       integer(c_int), value :: lwork
       integer(c_int) :: devInfo
       integer(c_int) :: Zgebrd
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(D)) error stop "D: array must be contiguous"
+      if (.not. is_contiguous(E)) error stop "E: array must be contiguous"
+      if (.not. is_contiguous(tauq)) error stop "tauq: array must be contiguous"
+      if (.not. is_contiguous(taup)) error stop "taup: array must be contiguous"
       Zgebrd = hipsolverZgebrd_raw(handle, m, n, c_loc(A), lda, c_loc(D), c_loc(E), c_loc(tauq), &
         c_loc(taup), work, lwork, devInfo)
     end function hipsolverZgebrd_native
@@ -17781,6 +17014,9 @@ contains
       integer(c_int), value :: ldx
       type(c_ptr), value :: lwork
       integer(c_int) :: SSgels_bufferSize
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
+      if (.not. is_contiguous(X)) error stop "X: array must be contiguous"
       SSgels_bufferSize = hipsolverSSgels_bufferSize_raw(handle, m, n, nrhs, c_loc(A), lda, c_loc( &
         B), ldb, c_loc(X), ldx, lwork)
     end function hipsolverSSgels_bufferSize_native
@@ -17822,6 +17058,9 @@ contains
       integer(c_int), value :: ldx
       type(c_ptr), value :: lwork
       integer(c_int) :: DDgels_bufferSize
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
+      if (.not. is_contiguous(X)) error stop "X: array must be contiguous"
       DDgels_bufferSize = hipsolverDDgels_bufferSize_raw(handle, m, n, nrhs, c_loc(A), lda, c_loc( &
         B), ldb, c_loc(X), ldx, lwork)
     end function hipsolverDDgels_bufferSize_native
@@ -17863,6 +17102,9 @@ contains
       integer(c_int), value :: ldx
       type(c_ptr), value :: lwork
       integer(c_int) :: CCgels_bufferSize
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
+      if (.not. is_contiguous(X)) error stop "X: array must be contiguous"
       CCgels_bufferSize = hipsolverCCgels_bufferSize_raw(handle, m, n, nrhs, c_loc(A), lda, c_loc( &
         B), ldb, c_loc(X), ldx, lwork)
     end function hipsolverCCgels_bufferSize_native
@@ -17904,6 +17146,9 @@ contains
       integer(c_int), value :: ldx
       type(c_ptr), value :: lwork
       integer(c_int) :: ZZgels_bufferSize
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
+      if (.not. is_contiguous(X)) error stop "X: array must be contiguous"
       ZZgels_bufferSize = hipsolverZZgels_bufferSize_raw(handle, m, n, nrhs, c_loc(A), lda, c_loc( &
         B), ldb, c_loc(X), ldx, lwork)
     end function hipsolverZZgels_bufferSize_native
@@ -17948,6 +17193,11 @@ contains
       integer(c_int), target :: niters(..)
       integer(c_int), target :: devInfo(..)
       integer(c_int) :: SSgels
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
+      if (.not. is_contiguous(X)) error stop "X: array must be contiguous"
+      if (.not. is_contiguous(niters)) error stop "niters: array must be contiguous"
+      if (.not. is_contiguous(devInfo)) error stop "devInfo: array must be contiguous"
       SSgels = hipsolverSSgels_raw(handle, m, n, nrhs, c_loc(A), lda, c_loc(B), ldb, c_loc(X), &
         ldx, work, lwork, c_loc(niters), c_loc(devInfo))
     end function hipsolverSSgels_native
@@ -17995,6 +17245,11 @@ contains
       integer(c_int), target :: niters(..)
       integer(c_int), target :: devInfo(..)
       integer(c_int) :: DDgels
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
+      if (.not. is_contiguous(X)) error stop "X: array must be contiguous"
+      if (.not. is_contiguous(niters)) error stop "niters: array must be contiguous"
+      if (.not. is_contiguous(devInfo)) error stop "devInfo: array must be contiguous"
       DDgels = hipsolverDDgels_raw(handle, m, n, nrhs, c_loc(A), lda, c_loc(B), ldb, c_loc(X), &
         ldx, work, lwork, c_loc(niters), c_loc(devInfo))
     end function hipsolverDDgels_native
@@ -18042,6 +17297,11 @@ contains
       integer(c_int), target :: niters(..)
       integer(c_int), target :: devInfo(..)
       integer(c_int) :: CCgels
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
+      if (.not. is_contiguous(X)) error stop "X: array must be contiguous"
+      if (.not. is_contiguous(niters)) error stop "niters: array must be contiguous"
+      if (.not. is_contiguous(devInfo)) error stop "devInfo: array must be contiguous"
       CCgels = hipsolverCCgels_raw(handle, m, n, nrhs, c_loc(A), lda, c_loc(B), ldb, c_loc(X), &
         ldx, work, lwork, c_loc(niters), c_loc(devInfo))
     end function hipsolverCCgels_native
@@ -18089,6 +17349,11 @@ contains
       integer(c_int), target :: niters(..)
       integer(c_int), target :: devInfo(..)
       integer(c_int) :: ZZgels
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
+      if (.not. is_contiguous(X)) error stop "X: array must be contiguous"
+      if (.not. is_contiguous(niters)) error stop "niters: array must be contiguous"
+      if (.not. is_contiguous(devInfo)) error stop "devInfo: array must be contiguous"
       ZZgels = hipsolverZZgels_raw(handle, m, n, nrhs, c_loc(A), lda, c_loc(B), ldb, c_loc(X), &
         ldx, work, lwork, c_loc(niters), c_loc(devInfo))
     end function hipsolverZZgels_native
@@ -18128,6 +17393,7 @@ contains
       integer(c_int), value :: lda
       integer(c_int) :: lwork
       integer(c_int) :: Sgeqrf_bufferSize
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
       Sgeqrf_bufferSize = hipsolverSgeqrf_bufferSize_raw(handle, m, n, c_loc(A), lda, lwork)
     end function hipsolverSgeqrf_bufferSize_native
 
@@ -18156,6 +17422,7 @@ contains
       integer(c_int), value :: lda
       integer(c_int) :: lwork
       integer(c_int) :: Dgeqrf_bufferSize
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
       Dgeqrf_bufferSize = hipsolverDgeqrf_bufferSize_raw(handle, m, n, c_loc(A), lda, lwork)
     end function hipsolverDgeqrf_bufferSize_native
 
@@ -18184,6 +17451,7 @@ contains
       integer(c_int), value :: lda
       integer(c_int) :: lwork
       integer(c_int) :: Cgeqrf_bufferSize
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
       Cgeqrf_bufferSize = hipsolverCgeqrf_bufferSize_raw(handle, m, n, c_loc(A), lda, lwork)
     end function hipsolverCgeqrf_bufferSize_native
 
@@ -18212,6 +17480,7 @@ contains
       integer(c_int), value :: lda
       integer(c_int) :: lwork
       integer(c_int) :: Zgeqrf_bufferSize
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
       Zgeqrf_bufferSize = hipsolverZgeqrf_bufferSize_raw(handle, m, n, c_loc(A), lda, lwork)
     end function hipsolverZgeqrf_bufferSize_native
 
@@ -18242,6 +17511,7 @@ contains
       integer(c_int), value :: lwork
       integer(c_int) :: devInfo
       integer(c_int) :: Sgeqrf
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
       Sgeqrf = hipsolverSgeqrf_raw(handle, m, n, c_loc(A), lda, tau, work, lwork, devInfo)
     end function hipsolverSgeqrf_native
 
@@ -18275,6 +17545,7 @@ contains
       integer(c_int), value :: lwork
       integer(c_int) :: devInfo
       integer(c_int) :: Dgeqrf
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
       Dgeqrf = hipsolverDgeqrf_raw(handle, m, n, c_loc(A), lda, tau, work, lwork, devInfo)
     end function hipsolverDgeqrf_native
 
@@ -18308,6 +17579,7 @@ contains
       integer(c_int), value :: lwork
       integer(c_int) :: devInfo
       integer(c_int) :: Cgeqrf
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
       Cgeqrf = hipsolverCgeqrf_raw(handle, m, n, c_loc(A), lda, tau, work, lwork, devInfo)
     end function hipsolverCgeqrf_native
 
@@ -18341,6 +17613,7 @@ contains
       integer(c_int), value :: lwork
       integer(c_int) :: devInfo
       integer(c_int) :: Zgeqrf
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
       Zgeqrf = hipsolverZgeqrf_raw(handle, m, n, c_loc(A), lda, tau, work, lwork, devInfo)
     end function hipsolverZgeqrf_native
 
@@ -18377,6 +17650,10 @@ contains
       integer(c_int), value :: ldx
       type(c_ptr), value :: lwork
       integer(c_int) :: SSgesv_bufferSize
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(devIpiv)) error stop "devIpiv: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
+      if (.not. is_contiguous(X)) error stop "X: array must be contiguous"
       SSgesv_bufferSize = hipsolverSSgesv_bufferSize_raw(handle, n, nrhs, c_loc(A), lda, c_loc( &
         devIpiv), c_loc(B), ldb, c_loc(X), ldx, lwork)
     end function hipsolverSSgesv_bufferSize_native
@@ -18418,6 +17695,10 @@ contains
       integer(c_int), value :: ldx
       type(c_ptr), value :: lwork
       integer(c_int) :: DDgesv_bufferSize
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(devIpiv)) error stop "devIpiv: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
+      if (.not. is_contiguous(X)) error stop "X: array must be contiguous"
       DDgesv_bufferSize = hipsolverDDgesv_bufferSize_raw(handle, n, nrhs, c_loc(A), lda, c_loc( &
         devIpiv), c_loc(B), ldb, c_loc(X), ldx, lwork)
     end function hipsolverDDgesv_bufferSize_native
@@ -18459,6 +17740,10 @@ contains
       integer(c_int), value :: ldx
       type(c_ptr), value :: lwork
       integer(c_int) :: CCgesv_bufferSize
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(devIpiv)) error stop "devIpiv: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
+      if (.not. is_contiguous(X)) error stop "X: array must be contiguous"
       CCgesv_bufferSize = hipsolverCCgesv_bufferSize_raw(handle, n, nrhs, c_loc(A), lda, c_loc( &
         devIpiv), c_loc(B), ldb, c_loc(X), ldx, lwork)
     end function hipsolverCCgesv_bufferSize_native
@@ -18500,6 +17785,10 @@ contains
       integer(c_int), value :: ldx
       type(c_ptr), value :: lwork
       integer(c_int) :: ZZgesv_bufferSize
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(devIpiv)) error stop "devIpiv: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
+      if (.not. is_contiguous(X)) error stop "X: array must be contiguous"
       ZZgesv_bufferSize = hipsolverZZgesv_bufferSize_raw(handle, n, nrhs, c_loc(A), lda, c_loc( &
         devIpiv), c_loc(B), ldb, c_loc(X), ldx, lwork)
     end function hipsolverZZgesv_bufferSize_native
@@ -18544,6 +17833,11 @@ contains
       integer(c_int), target :: niters(..)
       integer(c_int) :: devInfo
       integer(c_int) :: SSgesv
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(devIpiv)) error stop "devIpiv: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
+      if (.not. is_contiguous(X)) error stop "X: array must be contiguous"
+      if (.not. is_contiguous(niters)) error stop "niters: array must be contiguous"
       SSgesv = hipsolverSSgesv_raw(handle, n, nrhs, c_loc(A), lda, c_loc(devIpiv), c_loc(B), ldb, &
         c_loc(X), ldx, work, lwork, c_loc(niters), devInfo)
     end function hipsolverSSgesv_native
@@ -18591,6 +17885,11 @@ contains
       integer(c_int), target :: niters(..)
       integer(c_int) :: devInfo
       integer(c_int) :: DDgesv
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(devIpiv)) error stop "devIpiv: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
+      if (.not. is_contiguous(X)) error stop "X: array must be contiguous"
+      if (.not. is_contiguous(niters)) error stop "niters: array must be contiguous"
       DDgesv = hipsolverDDgesv_raw(handle, n, nrhs, c_loc(A), lda, c_loc(devIpiv), c_loc(B), ldb, &
         c_loc(X), ldx, work, lwork, c_loc(niters), devInfo)
     end function hipsolverDDgesv_native
@@ -18638,6 +17937,11 @@ contains
       integer(c_int), target :: niters(..)
       integer(c_int) :: devInfo
       integer(c_int) :: CCgesv
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(devIpiv)) error stop "devIpiv: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
+      if (.not. is_contiguous(X)) error stop "X: array must be contiguous"
+      if (.not. is_contiguous(niters)) error stop "niters: array must be contiguous"
       CCgesv = hipsolverCCgesv_raw(handle, n, nrhs, c_loc(A), lda, c_loc(devIpiv), c_loc(B), ldb, &
         c_loc(X), ldx, work, lwork, c_loc(niters), devInfo)
     end function hipsolverCCgesv_native
@@ -18685,6 +17989,11 @@ contains
       integer(c_int), target :: niters(..)
       integer(c_int) :: devInfo
       integer(c_int) :: ZZgesv
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(devIpiv)) error stop "devIpiv: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
+      if (.not. is_contiguous(X)) error stop "X: array must be contiguous"
+      if (.not. is_contiguous(niters)) error stop "niters: array must be contiguous"
       ZZgesv = hipsolverZZgesv_raw(handle, n, nrhs, c_loc(A), lda, c_loc(devIpiv), c_loc(B), ldb, &
         c_loc(X), ldx, work, lwork, c_loc(niters), devInfo)
     end function hipsolverZZgesv_native
@@ -18724,6 +18033,7 @@ contains
       integer(c_int), value :: n
       integer(c_int), target :: lwork(..)
       integer(c_int) :: Sgesvd_bufferSize
+      if (.not. is_contiguous(lwork)) error stop "lwork: array must be contiguous"
       Sgesvd_bufferSize = hipsolverSgesvd_bufferSize_raw(handle, jobu, jobv, m, n, c_loc(lwork))
     end function hipsolverSgesvd_bufferSize_native
 
@@ -18753,6 +18063,7 @@ contains
       integer(c_int), value :: n
       integer(c_int), target :: lwork(..)
       integer(c_int) :: Dgesvd_bufferSize
+      if (.not. is_contiguous(lwork)) error stop "lwork: array must be contiguous"
       Dgesvd_bufferSize = hipsolverDgesvd_bufferSize_raw(handle, jobu, jobv, m, n, c_loc(lwork))
     end function hipsolverDgesvd_bufferSize_native
 
@@ -18782,6 +18093,7 @@ contains
       integer(c_int), value :: n
       integer(c_int), target :: lwork(..)
       integer(c_int) :: Cgesvd_bufferSize
+      if (.not. is_contiguous(lwork)) error stop "lwork: array must be contiguous"
       Cgesvd_bufferSize = hipsolverCgesvd_bufferSize_raw(handle, jobu, jobv, m, n, c_loc(lwork))
     end function hipsolverCgesvd_bufferSize_native
 
@@ -18811,6 +18123,7 @@ contains
       integer(c_int), value :: n
       integer(c_int), target :: lwork(..)
       integer(c_int) :: Zgesvd_bufferSize
+      if (.not. is_contiguous(lwork)) error stop "lwork: array must be contiguous"
       Zgesvd_bufferSize = hipsolverZgesvd_bufferSize_raw(handle, jobu, jobv, m, n, c_loc(lwork))
     end function hipsolverZgesvd_bufferSize_native
 
@@ -18850,6 +18163,12 @@ contains
       real(c_float), target :: rwork(..)
       integer(c_int), target :: devInfo(..)
       integer(c_int) :: Sgesvd
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(S)) error stop "S: array must be contiguous"
+      if (.not. is_contiguous(U)) error stop "U: array must be contiguous"
+      if (.not. is_contiguous(V)) error stop "V: array must be contiguous"
+      if (.not. is_contiguous(rwork)) error stop "rwork: array must be contiguous"
+      if (.not. is_contiguous(devInfo)) error stop "devInfo: array must be contiguous"
       Sgesvd = hipsolverSgesvd_raw(handle, jobu, jobv, m, n, c_loc(A), lda, c_loc(S), c_loc(U), &
         ldu, c_loc(V), ldv, work, lwork, c_loc(rwork), c_loc(devInfo))
     end function hipsolverSgesvd_native
@@ -18901,6 +18220,12 @@ contains
       real(c_double), target :: rwork(..)
       integer(c_int), target :: devInfo(..)
       integer(c_int) :: Dgesvd
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(S)) error stop "S: array must be contiguous"
+      if (.not. is_contiguous(U)) error stop "U: array must be contiguous"
+      if (.not. is_contiguous(V)) error stop "V: array must be contiguous"
+      if (.not. is_contiguous(rwork)) error stop "rwork: array must be contiguous"
+      if (.not. is_contiguous(devInfo)) error stop "devInfo: array must be contiguous"
       Dgesvd = hipsolverDgesvd_raw(handle, jobu, jobv, m, n, c_loc(A), lda, c_loc(S), c_loc(U), &
         ldu, c_loc(V), ldv, work, lwork, c_loc(rwork), c_loc(devInfo))
     end function hipsolverDgesvd_native
@@ -18952,6 +18277,12 @@ contains
       real(c_float), target :: rwork(..)
       integer(c_int), target :: devInfo(..)
       integer(c_int) :: Cgesvd
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(S)) error stop "S: array must be contiguous"
+      if (.not. is_contiguous(U)) error stop "U: array must be contiguous"
+      if (.not. is_contiguous(V)) error stop "V: array must be contiguous"
+      if (.not. is_contiguous(rwork)) error stop "rwork: array must be contiguous"
+      if (.not. is_contiguous(devInfo)) error stop "devInfo: array must be contiguous"
       Cgesvd = hipsolverCgesvd_raw(handle, jobu, jobv, m, n, c_loc(A), lda, c_loc(S), c_loc(U), &
         ldu, c_loc(V), ldv, work, lwork, c_loc(rwork), c_loc(devInfo))
     end function hipsolverCgesvd_native
@@ -19003,6 +18334,12 @@ contains
       real(c_double), target :: rwork(..)
       integer(c_int), target :: devInfo(..)
       integer(c_int) :: Zgesvd
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(S)) error stop "S: array must be contiguous"
+      if (.not. is_contiguous(U)) error stop "U: array must be contiguous"
+      if (.not. is_contiguous(V)) error stop "V: array must be contiguous"
+      if (.not. is_contiguous(rwork)) error stop "rwork: array must be contiguous"
+      if (.not. is_contiguous(devInfo)) error stop "devInfo: array must be contiguous"
       Zgesvd = hipsolverZgesvd_raw(handle, jobu, jobv, m, n, c_loc(A), lda, c_loc(S), c_loc(U), &
         ldu, c_loc(V), ldv, work, lwork, c_loc(rwork), c_loc(devInfo))
     end function hipsolverZgesvd_native
@@ -19052,6 +18389,10 @@ contains
       integer(c_int) :: lwork
       type(c_ptr), value :: params
       integer(c_int) :: Sgesvdj_bufferSize
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(S)) error stop "S: array must be contiguous"
+      if (.not. is_contiguous(U)) error stop "U: array must be contiguous"
+      if (.not. is_contiguous(V)) error stop "V: array must be contiguous"
       Sgesvdj_bufferSize = hipsolverSgesvdj_bufferSize_raw(handle, jobz, econ, m, n, c_loc(A), &
         lda, c_loc(S), c_loc(U), ldu, c_loc(V), ldv, lwork, params)
     end function hipsolverSgesvdj_bufferSize_native
@@ -19099,6 +18440,10 @@ contains
       integer(c_int) :: lwork
       type(c_ptr), value :: params
       integer(c_int) :: Dgesvdj_bufferSize
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(S)) error stop "S: array must be contiguous"
+      if (.not. is_contiguous(U)) error stop "U: array must be contiguous"
+      if (.not. is_contiguous(V)) error stop "V: array must be contiguous"
       Dgesvdj_bufferSize = hipsolverDgesvdj_bufferSize_raw(handle, jobz, econ, m, n, c_loc(A), &
         lda, c_loc(S), c_loc(U), ldu, c_loc(V), ldv, lwork, params)
     end function hipsolverDgesvdj_bufferSize_native
@@ -19146,6 +18491,10 @@ contains
       integer(c_int) :: lwork
       type(c_ptr), value :: params
       integer(c_int) :: Cgesvdj_bufferSize
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(S)) error stop "S: array must be contiguous"
+      if (.not. is_contiguous(U)) error stop "U: array must be contiguous"
+      if (.not. is_contiguous(V)) error stop "V: array must be contiguous"
       Cgesvdj_bufferSize = hipsolverCgesvdj_bufferSize_raw(handle, jobz, econ, m, n, c_loc(A), &
         lda, c_loc(S), c_loc(U), ldu, c_loc(V), ldv, lwork, params)
     end function hipsolverCgesvdj_bufferSize_native
@@ -19193,6 +18542,10 @@ contains
       integer(c_int) :: lwork
       type(c_ptr), value :: params
       integer(c_int) :: Zgesvdj_bufferSize
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(S)) error stop "S: array must be contiguous"
+      if (.not. is_contiguous(U)) error stop "U: array must be contiguous"
+      if (.not. is_contiguous(V)) error stop "V: array must be contiguous"
       Zgesvdj_bufferSize = hipsolverZgesvdj_bufferSize_raw(handle, jobz, econ, m, n, c_loc(A), &
         lda, c_loc(S), c_loc(U), ldu, c_loc(V), ldv, lwork, params)
     end function hipsolverZgesvdj_bufferSize_native
@@ -19242,6 +18595,10 @@ contains
       integer(c_int) :: devInfo
       type(c_ptr), value :: params
       integer(c_int) :: Sgesvdj
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(S)) error stop "S: array must be contiguous"
+      if (.not. is_contiguous(U)) error stop "U: array must be contiguous"
+      if (.not. is_contiguous(V)) error stop "V: array must be contiguous"
       Sgesvdj = hipsolverSgesvdj_raw(handle, jobz, econ, m, n, c_loc(A), lda, c_loc(S), c_loc(U), &
         ldu, c_loc(V), ldv, work, lwork, devInfo, params)
     end function hipsolverSgesvdj_native
@@ -19293,6 +18650,10 @@ contains
       integer(c_int) :: devInfo
       type(c_ptr), value :: params
       integer(c_int) :: Dgesvdj
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(S)) error stop "S: array must be contiguous"
+      if (.not. is_contiguous(U)) error stop "U: array must be contiguous"
+      if (.not. is_contiguous(V)) error stop "V: array must be contiguous"
       Dgesvdj = hipsolverDgesvdj_raw(handle, jobz, econ, m, n, c_loc(A), lda, c_loc(S), c_loc(U), &
         ldu, c_loc(V), ldv, work, lwork, devInfo, params)
     end function hipsolverDgesvdj_native
@@ -19344,6 +18705,10 @@ contains
       integer(c_int) :: devInfo
       type(c_ptr), value :: params
       integer(c_int) :: Cgesvdj
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(S)) error stop "S: array must be contiguous"
+      if (.not. is_contiguous(U)) error stop "U: array must be contiguous"
+      if (.not. is_contiguous(V)) error stop "V: array must be contiguous"
       Cgesvdj = hipsolverCgesvdj_raw(handle, jobz, econ, m, n, c_loc(A), lda, c_loc(S), c_loc(U), &
         ldu, c_loc(V), ldv, work, lwork, devInfo, params)
     end function hipsolverCgesvdj_native
@@ -19395,6 +18760,10 @@ contains
       integer(c_int) :: devInfo
       type(c_ptr), value :: params
       integer(c_int) :: Zgesvdj
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(S)) error stop "S: array must be contiguous"
+      if (.not. is_contiguous(U)) error stop "U: array must be contiguous"
+      if (.not. is_contiguous(V)) error stop "V: array must be contiguous"
       Zgesvdj = hipsolverZgesvdj_raw(handle, jobz, econ, m, n, c_loc(A), lda, c_loc(S), c_loc(U), &
         ldu, c_loc(V), ldv, work, lwork, devInfo, params)
     end function hipsolverZgesvdj_native
@@ -19444,6 +18813,10 @@ contains
       type(c_ptr), value :: params
       integer(c_int), value :: batch_count
       integer(c_int) :: SgesvdjBatched_bufferSize
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(S)) error stop "S: array must be contiguous"
+      if (.not. is_contiguous(U)) error stop "U: array must be contiguous"
+      if (.not. is_contiguous(V)) error stop "V: array must be contiguous"
       SgesvdjBatched_bufferSize = hipsolverSgesvdjBatched_bufferSize_raw(handle, jobz, m, n, &
         c_loc(A), lda, c_loc(S), c_loc(U), ldu, c_loc(V), ldv, lwork, params, batch_count)
     end function hipsolverSgesvdjBatched_bufferSize_native
@@ -19491,6 +18864,10 @@ contains
       type(c_ptr), value :: params
       integer(c_int), value :: batch_count
       integer(c_int) :: DgesvdjBatched_bufferSize
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(S)) error stop "S: array must be contiguous"
+      if (.not. is_contiguous(U)) error stop "U: array must be contiguous"
+      if (.not. is_contiguous(V)) error stop "V: array must be contiguous"
       DgesvdjBatched_bufferSize = hipsolverDgesvdjBatched_bufferSize_raw(handle, jobz, m, n, &
         c_loc(A), lda, c_loc(S), c_loc(U), ldu, c_loc(V), ldv, lwork, params, batch_count)
     end function hipsolverDgesvdjBatched_bufferSize_native
@@ -19538,6 +18915,10 @@ contains
       type(c_ptr), value :: params
       integer(c_int), value :: batch_count
       integer(c_int) :: CgesvdjBatched_bufferSize
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(S)) error stop "S: array must be contiguous"
+      if (.not. is_contiguous(U)) error stop "U: array must be contiguous"
+      if (.not. is_contiguous(V)) error stop "V: array must be contiguous"
       CgesvdjBatched_bufferSize = hipsolverCgesvdjBatched_bufferSize_raw(handle, jobz, m, n, &
         c_loc(A), lda, c_loc(S), c_loc(U), ldu, c_loc(V), ldv, lwork, params, batch_count)
     end function hipsolverCgesvdjBatched_bufferSize_native
@@ -19585,6 +18966,10 @@ contains
       type(c_ptr), value :: params
       integer(c_int), value :: batch_count
       integer(c_int) :: ZgesvdjBatched_bufferSize
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(S)) error stop "S: array must be contiguous"
+      if (.not. is_contiguous(U)) error stop "U: array must be contiguous"
+      if (.not. is_contiguous(V)) error stop "V: array must be contiguous"
       ZgesvdjBatched_bufferSize = hipsolverZgesvdjBatched_bufferSize_raw(handle, jobz, m, n, &
         c_loc(A), lda, c_loc(S), c_loc(U), ldu, c_loc(V), ldv, lwork, params, batch_count)
     end function hipsolverZgesvdjBatched_bufferSize_native
@@ -19634,6 +19019,10 @@ contains
       type(c_ptr), value :: params
       integer(c_int), value :: batch_count
       integer(c_int) :: SgesvdjBatched
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(S)) error stop "S: array must be contiguous"
+      if (.not. is_contiguous(U)) error stop "U: array must be contiguous"
+      if (.not. is_contiguous(V)) error stop "V: array must be contiguous"
       SgesvdjBatched = hipsolverSgesvdjBatched_raw(handle, jobz, m, n, c_loc(A), lda, c_loc(S), &
         c_loc(U), ldu, c_loc(V), ldv, work, lwork, devInfo, params, batch_count)
     end function hipsolverSgesvdjBatched_native
@@ -19685,6 +19074,10 @@ contains
       type(c_ptr), value :: params
       integer(c_int), value :: batch_count
       integer(c_int) :: DgesvdjBatched
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(S)) error stop "S: array must be contiguous"
+      if (.not. is_contiguous(U)) error stop "U: array must be contiguous"
+      if (.not. is_contiguous(V)) error stop "V: array must be contiguous"
       DgesvdjBatched = hipsolverDgesvdjBatched_raw(handle, jobz, m, n, c_loc(A), lda, c_loc(S), &
         c_loc(U), ldu, c_loc(V), ldv, work, lwork, devInfo, params, batch_count)
     end function hipsolverDgesvdjBatched_native
@@ -19736,6 +19129,10 @@ contains
       type(c_ptr), value :: params
       integer(c_int), value :: batch_count
       integer(c_int) :: CgesvdjBatched
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(S)) error stop "S: array must be contiguous"
+      if (.not. is_contiguous(U)) error stop "U: array must be contiguous"
+      if (.not. is_contiguous(V)) error stop "V: array must be contiguous"
       CgesvdjBatched = hipsolverCgesvdjBatched_raw(handle, jobz, m, n, c_loc(A), lda, c_loc(S), &
         c_loc(U), ldu, c_loc(V), ldv, work, lwork, devInfo, params, batch_count)
     end function hipsolverCgesvdjBatched_native
@@ -19787,6 +19184,10 @@ contains
       type(c_ptr), value :: params
       integer(c_int), value :: batch_count
       integer(c_int) :: ZgesvdjBatched
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(S)) error stop "S: array must be contiguous"
+      if (.not. is_contiguous(U)) error stop "U: array must be contiguous"
+      if (.not. is_contiguous(V)) error stop "V: array must be contiguous"
       ZgesvdjBatched = hipsolverZgesvdjBatched_raw(handle, jobz, m, n, c_loc(A), lda, c_loc(S), &
         c_loc(U), ldu, c_loc(V), ldv, work, lwork, devInfo, params, batch_count)
     end function hipsolverZgesvdjBatched_native
@@ -19828,6 +19229,7 @@ contains
       integer(c_int), value :: lda
       integer(c_int) :: lwork
       integer(c_int) :: Sgetrf_bufferSize
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
       Sgetrf_bufferSize = hipsolverSgetrf_bufferSize_raw(handle, m, n, c_loc(A), lda, lwork)
     end function hipsolverSgetrf_bufferSize_native
 
@@ -19856,6 +19258,7 @@ contains
       integer(c_int), value :: lda
       integer(c_int) :: lwork
       integer(c_int) :: Dgetrf_bufferSize
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
       Dgetrf_bufferSize = hipsolverDgetrf_bufferSize_raw(handle, m, n, c_loc(A), lda, lwork)
     end function hipsolverDgetrf_bufferSize_native
 
@@ -19884,6 +19287,7 @@ contains
       integer(c_int), value :: lda
       integer(c_int) :: lwork
       integer(c_int) :: Cgetrf_bufferSize
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
       Cgetrf_bufferSize = hipsolverCgetrf_bufferSize_raw(handle, m, n, c_loc(A), lda, lwork)
     end function hipsolverCgetrf_bufferSize_native
 
@@ -19912,6 +19316,7 @@ contains
       integer(c_int), value :: lda
       integer(c_int) :: lwork
       integer(c_int) :: Zgetrf_bufferSize
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
       Zgetrf_bufferSize = hipsolverZgetrf_bufferSize_raw(handle, m, n, c_loc(A), lda, lwork)
     end function hipsolverZgetrf_bufferSize_native
 
@@ -19943,6 +19348,8 @@ contains
       integer(c_int), target :: devIpiv(..)
       integer(c_int) :: devInfo
       integer(c_int) :: Sgetrf
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(devIpiv)) error stop "devIpiv: array must be contiguous"
       Sgetrf = hipsolverSgetrf_raw(handle, m, n, c_loc(A), lda, work, lwork, c_loc(devIpiv), &
         devInfo)
     end function hipsolverSgetrf_native
@@ -19979,6 +19386,8 @@ contains
       integer(c_int), target :: devIpiv(..)
       integer(c_int) :: devInfo
       integer(c_int) :: Dgetrf
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(devIpiv)) error stop "devIpiv: array must be contiguous"
       Dgetrf = hipsolverDgetrf_raw(handle, m, n, c_loc(A), lda, work, lwork, c_loc(devIpiv), &
         devInfo)
     end function hipsolverDgetrf_native
@@ -20015,6 +19424,8 @@ contains
       integer(c_int), target :: devIpiv(..)
       integer(c_int) :: devInfo
       integer(c_int) :: Cgetrf
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(devIpiv)) error stop "devIpiv: array must be contiguous"
       Cgetrf = hipsolverCgetrf_raw(handle, m, n, c_loc(A), lda, work, lwork, c_loc(devIpiv), &
         devInfo)
     end function hipsolverCgetrf_native
@@ -20051,6 +19462,8 @@ contains
       integer(c_int), target :: devIpiv(..)
       integer(c_int) :: devInfo
       integer(c_int) :: Zgetrf
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(devIpiv)) error stop "devIpiv: array must be contiguous"
       Zgetrf = hipsolverZgetrf_raw(handle, m, n, c_loc(A), lda, work, lwork, c_loc(devIpiv), &
         devInfo)
     end function hipsolverZgetrf_native
@@ -20088,6 +19501,9 @@ contains
       integer(c_int), value :: ldb
       integer(c_int) :: lwork
       integer(c_int) :: Sgetrs_bufferSize
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(devIpiv)) error stop "devIpiv: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
       Sgetrs_bufferSize = hipsolverSgetrs_bufferSize_raw(handle, trans, n, nrhs, c_loc(A), lda, &
         c_loc(devIpiv), c_loc(B), ldb, lwork)
     end function hipsolverSgetrs_bufferSize_native
@@ -20127,6 +19543,9 @@ contains
       integer(c_int), value :: ldb
       integer(c_int) :: lwork
       integer(c_int) :: Dgetrs_bufferSize
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(devIpiv)) error stop "devIpiv: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
       Dgetrs_bufferSize = hipsolverDgetrs_bufferSize_raw(handle, trans, n, nrhs, c_loc(A), lda, &
         c_loc(devIpiv), c_loc(B), ldb, lwork)
     end function hipsolverDgetrs_bufferSize_native
@@ -20166,6 +19585,9 @@ contains
       integer(c_int), value :: ldb
       integer(c_int) :: lwork
       integer(c_int) :: Cgetrs_bufferSize
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(devIpiv)) error stop "devIpiv: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
       Cgetrs_bufferSize = hipsolverCgetrs_bufferSize_raw(handle, trans, n, nrhs, c_loc(A), lda, &
         c_loc(devIpiv), c_loc(B), ldb, lwork)
     end function hipsolverCgetrs_bufferSize_native
@@ -20205,6 +19627,9 @@ contains
       integer(c_int), value :: ldb
       integer(c_int) :: lwork
       integer(c_int) :: Zgetrs_bufferSize
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(devIpiv)) error stop "devIpiv: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
       Zgetrs_bufferSize = hipsolverZgetrs_bufferSize_raw(handle, trans, n, nrhs, c_loc(A), lda, &
         c_loc(devIpiv), c_loc(B), ldb, lwork)
     end function hipsolverZgetrs_bufferSize_native
@@ -20246,6 +19671,9 @@ contains
       integer(c_int), value :: lwork
       integer(c_int) :: devInfo
       integer(c_int) :: Sgetrs
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(devIpiv)) error stop "devIpiv: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
       Sgetrs = hipsolverSgetrs_raw(handle, trans, n, nrhs, c_loc(A), lda, c_loc(devIpiv), c_loc( &
         B), ldb, work, lwork, devInfo)
     end function hipsolverSgetrs_native
@@ -20289,6 +19717,9 @@ contains
       integer(c_int), value :: lwork
       integer(c_int) :: devInfo
       integer(c_int) :: Dgetrs
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(devIpiv)) error stop "devIpiv: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
       Dgetrs = hipsolverDgetrs_raw(handle, trans, n, nrhs, c_loc(A), lda, c_loc(devIpiv), c_loc( &
         B), ldb, work, lwork, devInfo)
     end function hipsolverDgetrs_native
@@ -20332,6 +19763,9 @@ contains
       integer(c_int), value :: lwork
       integer(c_int) :: devInfo
       integer(c_int) :: Cgetrs
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(devIpiv)) error stop "devIpiv: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
       Cgetrs = hipsolverCgetrs_raw(handle, trans, n, nrhs, c_loc(A), lda, c_loc(devIpiv), c_loc( &
         B), ldb, work, lwork, devInfo)
     end function hipsolverCgetrs_native
@@ -20375,6 +19809,9 @@ contains
       integer(c_int), value :: lwork
       integer(c_int) :: devInfo
       integer(c_int) :: Zgetrs
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(devIpiv)) error stop "devIpiv: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
       Zgetrs = hipsolverZgetrs_raw(handle, trans, n, nrhs, c_loc(A), lda, c_loc(devIpiv), c_loc( &
         B), ldb, work, lwork, devInfo)
     end function hipsolverZgetrs_native
@@ -20412,6 +19849,7 @@ contains
       integer(c_int), value :: lda
       integer(c_int) :: lwork
       integer(c_int) :: Spotrf_bufferSize
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
       Spotrf_bufferSize = hipsolverSpotrf_bufferSize_raw(handle, uplo, n, c_loc(A), lda, lwork)
     end function hipsolverSpotrf_bufferSize_native
 
@@ -20441,6 +19879,7 @@ contains
       integer(c_int), value :: lda
       integer(c_int) :: lwork
       integer(c_int) :: Dpotrf_bufferSize
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
       Dpotrf_bufferSize = hipsolverDpotrf_bufferSize_raw(handle, uplo, n, c_loc(A), lda, lwork)
     end function hipsolverDpotrf_bufferSize_native
 
@@ -20470,6 +19909,7 @@ contains
       integer(c_int), value :: lda
       integer(c_int) :: lwork
       integer(c_int) :: Cpotrf_bufferSize
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
       Cpotrf_bufferSize = hipsolverCpotrf_bufferSize_raw(handle, uplo, n, c_loc(A), lda, lwork)
     end function hipsolverCpotrf_bufferSize_native
 
@@ -20499,6 +19939,7 @@ contains
       integer(c_int), value :: lda
       integer(c_int) :: lwork
       integer(c_int) :: Zpotrf_bufferSize
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
       Zpotrf_bufferSize = hipsolverZpotrf_bufferSize_raw(handle, uplo, n, c_loc(A), lda, lwork)
     end function hipsolverZpotrf_bufferSize_native
 
@@ -20529,6 +19970,7 @@ contains
       integer(c_int), value :: lwork
       integer(c_int) :: devInfo
       integer(c_int) :: Spotrf
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
       Spotrf = hipsolverSpotrf_raw(handle, uplo, n, c_loc(A), lda, work, lwork, devInfo)
     end function hipsolverSpotrf_native
 
@@ -20560,6 +20002,7 @@ contains
       integer(c_int), value :: lwork
       integer(c_int) :: devInfo
       integer(c_int) :: Dpotrf
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
       Dpotrf = hipsolverDpotrf_raw(handle, uplo, n, c_loc(A), lda, work, lwork, devInfo)
     end function hipsolverDpotrf_native
 
@@ -20591,6 +20034,7 @@ contains
       integer(c_int), value :: lwork
       integer(c_int) :: devInfo
       integer(c_int) :: Cpotrf
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
       Cpotrf = hipsolverCpotrf_raw(handle, uplo, n, c_loc(A), lda, work, lwork, devInfo)
     end function hipsolverCpotrf_native
 
@@ -20622,6 +20066,7 @@ contains
       integer(c_int), value :: lwork
       integer(c_int) :: devInfo
       integer(c_int) :: Zpotrf
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
       Zpotrf = hipsolverZpotrf_raw(handle, uplo, n, c_loc(A), lda, work, lwork, devInfo)
     end function hipsolverZpotrf_native
 
@@ -20796,6 +20241,7 @@ contains
       integer(c_int), value :: lda
       integer(c_int) :: lwork
       integer(c_int) :: Spotri_bufferSize
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
       Spotri_bufferSize = hipsolverSpotri_bufferSize_raw(handle, uplo, n, c_loc(A), lda, lwork)
     end function hipsolverSpotri_bufferSize_native
 
@@ -20825,6 +20271,7 @@ contains
       integer(c_int), value :: lda
       integer(c_int) :: lwork
       integer(c_int) :: Dpotri_bufferSize
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
       Dpotri_bufferSize = hipsolverDpotri_bufferSize_raw(handle, uplo, n, c_loc(A), lda, lwork)
     end function hipsolverDpotri_bufferSize_native
 
@@ -20854,6 +20301,7 @@ contains
       integer(c_int), value :: lda
       integer(c_int) :: lwork
       integer(c_int) :: Cpotri_bufferSize
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
       Cpotri_bufferSize = hipsolverCpotri_bufferSize_raw(handle, uplo, n, c_loc(A), lda, lwork)
     end function hipsolverCpotri_bufferSize_native
 
@@ -20883,6 +20331,7 @@ contains
       integer(c_int), value :: lda
       integer(c_int) :: lwork
       integer(c_int) :: Zpotri_bufferSize
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
       Zpotri_bufferSize = hipsolverZpotri_bufferSize_raw(handle, uplo, n, c_loc(A), lda, lwork)
     end function hipsolverZpotri_bufferSize_native
 
@@ -20913,6 +20362,7 @@ contains
       integer(c_int), value :: lwork
       integer(c_int) :: devInfo
       integer(c_int) :: Spotri
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
       Spotri = hipsolverSpotri_raw(handle, uplo, n, c_loc(A), lda, work, lwork, devInfo)
     end function hipsolverSpotri_native
 
@@ -20944,6 +20394,7 @@ contains
       integer(c_int), value :: lwork
       integer(c_int) :: devInfo
       integer(c_int) :: Dpotri
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
       Dpotri = hipsolverDpotri_raw(handle, uplo, n, c_loc(A), lda, work, lwork, devInfo)
     end function hipsolverDpotri_native
 
@@ -20975,6 +20426,7 @@ contains
       integer(c_int), value :: lwork
       integer(c_int) :: devInfo
       integer(c_int) :: Cpotri
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
       Cpotri = hipsolverCpotri_raw(handle, uplo, n, c_loc(A), lda, work, lwork, devInfo)
     end function hipsolverCpotri_native
 
@@ -21006,6 +20458,7 @@ contains
       integer(c_int), value :: lwork
       integer(c_int) :: devInfo
       integer(c_int) :: Zpotri
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
       Zpotri = hipsolverZpotri_raw(handle, uplo, n, c_loc(A), lda, work, lwork, devInfo)
     end function hipsolverZpotri_native
 
@@ -21039,6 +20492,8 @@ contains
       integer(c_int), value :: ldb
       integer(c_int) :: lwork
       integer(c_int) :: Spotrs_bufferSize
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
       Spotrs_bufferSize = hipsolverSpotrs_bufferSize_raw(handle, uplo, n, nrhs, c_loc(A), lda, &
         c_loc(B), ldb, lwork)
     end function hipsolverSpotrs_bufferSize_native
@@ -21076,6 +20531,8 @@ contains
       integer(c_int), value :: ldb
       integer(c_int) :: lwork
       integer(c_int) :: Dpotrs_bufferSize
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
       Dpotrs_bufferSize = hipsolverDpotrs_bufferSize_raw(handle, uplo, n, nrhs, c_loc(A), lda, &
         c_loc(B), ldb, lwork)
     end function hipsolverDpotrs_bufferSize_native
@@ -21113,6 +20570,8 @@ contains
       integer(c_int), value :: ldb
       integer(c_int) :: lwork
       integer(c_int) :: Cpotrs_bufferSize
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
       Cpotrs_bufferSize = hipsolverCpotrs_bufferSize_raw(handle, uplo, n, nrhs, c_loc(A), lda, &
         c_loc(B), ldb, lwork)
     end function hipsolverCpotrs_bufferSize_native
@@ -21150,6 +20609,8 @@ contains
       integer(c_int), value :: ldb
       integer(c_int) :: lwork
       integer(c_int) :: Zpotrs_bufferSize
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
       Zpotrs_bufferSize = hipsolverZpotrs_bufferSize_raw(handle, uplo, n, nrhs, c_loc(A), lda, &
         c_loc(B), ldb, lwork)
     end function hipsolverZpotrs_bufferSize_native
@@ -21189,6 +20650,8 @@ contains
       integer(c_int), value :: lwork
       integer(c_int) :: devInfo
       integer(c_int) :: Spotrs
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
       Spotrs = hipsolverSpotrs_raw(handle, uplo, n, nrhs, c_loc(A), lda, c_loc(B), ldb, work, &
         lwork, devInfo)
     end function hipsolverSpotrs_native
@@ -21229,6 +20692,8 @@ contains
       integer(c_int), value :: lwork
       integer(c_int) :: devInfo
       integer(c_int) :: Dpotrs
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
       Dpotrs = hipsolverDpotrs_raw(handle, uplo, n, nrhs, c_loc(A), lda, c_loc(B), ldb, work, &
         lwork, devInfo)
     end function hipsolverDpotrs_native
@@ -21269,6 +20734,8 @@ contains
       integer(c_int), value :: lwork
       integer(c_int) :: devInfo
       integer(c_int) :: Cpotrs
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
       Cpotrs = hipsolverCpotrs_raw(handle, uplo, n, nrhs, c_loc(A), lda, c_loc(B), ldb, work, &
         lwork, devInfo)
     end function hipsolverCpotrs_native
@@ -21309,6 +20776,8 @@ contains
       integer(c_int), value :: lwork
       integer(c_int) :: devInfo
       integer(c_int) :: Zpotrs
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
       Zpotrs = hipsolverZpotrs_raw(handle, uplo, n, nrhs, c_loc(A), lda, c_loc(B), ldb, work, &
         lwork, devInfo)
     end function hipsolverZpotrs_native
@@ -21514,6 +20983,8 @@ contains
       real(c_float), target :: D(..)
       integer(c_int) :: lwork
       integer(c_int) :: Ssyevd_bufferSize
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(D)) error stop "D: array must be contiguous"
       Ssyevd_bufferSize = hipsolverSsyevd_bufferSize_raw(handle, jobz, uplo, n, c_loc(A), lda, &
         c_loc(D), lwork)
     end function hipsolverSsyevd_bufferSize_native
@@ -21549,6 +21020,8 @@ contains
       real(c_double), target :: D(..)
       integer(c_int) :: lwork
       integer(c_int) :: Dsyevd_bufferSize
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(D)) error stop "D: array must be contiguous"
       Dsyevd_bufferSize = hipsolverDsyevd_bufferSize_raw(handle, jobz, uplo, n, c_loc(A), lda, &
         c_loc(D), lwork)
     end function hipsolverDsyevd_bufferSize_native
@@ -21584,6 +21057,8 @@ contains
       real(c_float), target :: D(..)
       integer(c_int) :: lwork
       integer(c_int) :: Cheevd_bufferSize
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(D)) error stop "D: array must be contiguous"
       Cheevd_bufferSize = hipsolverCheevd_bufferSize_raw(handle, jobz, uplo, n, c_loc(A), lda, &
         c_loc(D), lwork)
     end function hipsolverCheevd_bufferSize_native
@@ -21619,6 +21094,8 @@ contains
       real(c_double), target :: D(..)
       integer(c_int) :: lwork
       integer(c_int) :: Zheevd_bufferSize
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(D)) error stop "D: array must be contiguous"
       Zheevd_bufferSize = hipsolverZheevd_bufferSize_raw(handle, jobz, uplo, n, c_loc(A), lda, &
         c_loc(D), lwork)
     end function hipsolverZheevd_bufferSize_native
@@ -21656,6 +21133,8 @@ contains
       integer(c_int), value :: lwork
       integer(c_int) :: devInfo
       integer(c_int) :: Ssyevd
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(D)) error stop "D: array must be contiguous"
       Ssyevd = hipsolverSsyevd_raw(handle, jobz, uplo, n, c_loc(A), lda, c_loc(D), work, lwork, &
         devInfo)
     end function hipsolverSsyevd_native
@@ -21694,6 +21173,8 @@ contains
       integer(c_int), value :: lwork
       integer(c_int) :: devInfo
       integer(c_int) :: Dsyevd
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(D)) error stop "D: array must be contiguous"
       Dsyevd = hipsolverDsyevd_raw(handle, jobz, uplo, n, c_loc(A), lda, c_loc(D), work, lwork, &
         devInfo)
     end function hipsolverDsyevd_native
@@ -21732,6 +21213,8 @@ contains
       integer(c_int), value :: lwork
       integer(c_int) :: devInfo
       integer(c_int) :: Cheevd
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(D)) error stop "D: array must be contiguous"
       Cheevd = hipsolverCheevd_raw(handle, jobz, uplo, n, c_loc(A), lda, c_loc(D), work, lwork, &
         devInfo)
     end function hipsolverCheevd_native
@@ -21770,6 +21253,8 @@ contains
       integer(c_int), value :: lwork
       integer(c_int) :: devInfo
       integer(c_int) :: Zheevd
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(D)) error stop "D: array must be contiguous"
       Zheevd = hipsolverZheevd_raw(handle, jobz, uplo, n, c_loc(A), lda, c_loc(D), work, lwork, &
         devInfo)
     end function hipsolverZheevd_native
@@ -21812,6 +21297,8 @@ contains
       real(c_float), target :: W(..)
       integer(c_int) :: lwork
       integer(c_int) :: Ssyevdx_bufferSize
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(W)) error stop "W: array must be contiguous"
       Ssyevdx_bufferSize = hipsolverSsyevdx_bufferSize_raw(handle, jobz, range, uplo, n, c_loc(A), &
         lda, vl, vu, il, iu, nev, c_loc(W), lwork)
     end function hipsolverSsyevdx_bufferSize_native
@@ -21859,6 +21346,10 @@ contains
       real(c_double), target :: W(..)
       integer(c_int), target :: lwork(..)
       integer(c_int) :: Dsyevdx_bufferSize
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(nev)) error stop "nev: array must be contiguous"
+      if (.not. is_contiguous(W)) error stop "W: array must be contiguous"
+      if (.not. is_contiguous(lwork)) error stop "lwork: array must be contiguous"
       Dsyevdx_bufferSize = hipsolverDsyevdx_bufferSize_raw(handle, jobz, range, uplo, n, c_loc(A), &
         lda, vl, vu, il, iu, c_loc(nev), c_loc(W), c_loc(lwork))
     end function hipsolverDsyevdx_bufferSize_native
@@ -21906,6 +21397,8 @@ contains
       real(c_float), target :: W(..)
       integer(c_int) :: lwork
       integer(c_int) :: Cheevdx_bufferSize
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(W)) error stop "W: array must be contiguous"
       Cheevdx_bufferSize = hipsolverCheevdx_bufferSize_raw(handle, jobz, range, uplo, n, c_loc(A), &
         lda, vl, vu, il, iu, nev, c_loc(W), lwork)
     end function hipsolverCheevdx_bufferSize_native
@@ -21953,6 +21446,8 @@ contains
       real(c_double), target :: W(..)
       integer(c_int) :: lwork
       integer(c_int) :: Zheevdx_bufferSize
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(W)) error stop "W: array must be contiguous"
       Zheevdx_bufferSize = hipsolverZheevdx_bufferSize_raw(handle, jobz, range, uplo, n, c_loc(A), &
         lda, vl, vu, il, iu, nev, c_loc(W), lwork)
     end function hipsolverZheevdx_bufferSize_native
@@ -22002,6 +21497,10 @@ contains
       integer(c_int), value :: lwork
       integer(c_int), target :: devInfo(..)
       integer(c_int) :: Ssyevdx
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(nev)) error stop "nev: array must be contiguous"
+      if (.not. is_contiguous(W)) error stop "W: array must be contiguous"
+      if (.not. is_contiguous(devInfo)) error stop "devInfo: array must be contiguous"
       Ssyevdx = hipsolverSsyevdx_raw(handle, jobz, range, uplo, n, c_loc(A), lda, vl, vu, il, iu, &
         c_loc(nev), c_loc(W), work, lwork, c_loc(devInfo))
     end function hipsolverSsyevdx_native
@@ -22053,6 +21552,10 @@ contains
       integer(c_int), value :: lwork
       integer(c_int), target :: devInfo(..)
       integer(c_int) :: Dsyevdx
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(nev)) error stop "nev: array must be contiguous"
+      if (.not. is_contiguous(W)) error stop "W: array must be contiguous"
+      if (.not. is_contiguous(devInfo)) error stop "devInfo: array must be contiguous"
       Dsyevdx = hipsolverDsyevdx_raw(handle, jobz, range, uplo, n, c_loc(A), lda, vl, vu, il, iu, &
         c_loc(nev), c_loc(W), work, lwork, c_loc(devInfo))
     end function hipsolverDsyevdx_native
@@ -22104,6 +21607,8 @@ contains
       integer(c_int), value :: lwork
       integer(c_int) :: devInfo
       integer(c_int) :: Cheevdx
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(W)) error stop "W: array must be contiguous"
       Cheevdx = hipsolverCheevdx_raw(handle, jobz, range, uplo, n, c_loc(A), lda, vl, vu, il, iu, &
         nev, c_loc(W), work, lwork, devInfo)
     end function hipsolverCheevdx_native
@@ -22155,6 +21660,8 @@ contains
       integer(c_int), value :: lwork
       integer(c_int) :: devInfo
       integer(c_int) :: Zheevdx
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(W)) error stop "W: array must be contiguous"
       Zheevdx = hipsolverZheevdx_raw(handle, jobz, range, uplo, n, c_loc(A), lda, vl, vu, il, iu, &
         nev, c_loc(W), work, lwork, devInfo)
     end function hipsolverZheevdx_native
@@ -22199,6 +21706,8 @@ contains
       integer(c_int) :: lwork
       type(c_ptr), value :: params
       integer(c_int) :: Ssyevj_bufferSize
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(W)) error stop "W: array must be contiguous"
       Ssyevj_bufferSize = hipsolverSsyevj_bufferSize_raw(handle, jobz, uplo, n, c_loc(A), lda, &
         c_loc(W), lwork, params)
     end function hipsolverSsyevj_bufferSize_native
@@ -22236,6 +21745,8 @@ contains
       integer(c_int) :: lwork
       type(c_ptr), value :: params
       integer(c_int) :: Dsyevj_bufferSize
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(W)) error stop "W: array must be contiguous"
       Dsyevj_bufferSize = hipsolverDsyevj_bufferSize_raw(handle, jobz, uplo, n, c_loc(A), lda, &
         c_loc(W), lwork, params)
     end function hipsolverDsyevj_bufferSize_native
@@ -22273,6 +21784,8 @@ contains
       integer(c_int) :: lwork
       type(c_ptr), value :: params
       integer(c_int) :: Cheevj_bufferSize
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(W)) error stop "W: array must be contiguous"
       Cheevj_bufferSize = hipsolverCheevj_bufferSize_raw(handle, jobz, uplo, n, c_loc(A), lda, &
         c_loc(W), lwork, params)
     end function hipsolverCheevj_bufferSize_native
@@ -22310,6 +21823,8 @@ contains
       integer(c_int) :: lwork
       type(c_ptr), value :: params
       integer(c_int) :: Zheevj_bufferSize
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(W)) error stop "W: array must be contiguous"
       Zheevj_bufferSize = hipsolverZheevj_bufferSize_raw(handle, jobz, uplo, n, c_loc(A), lda, &
         c_loc(W), lwork, params)
     end function hipsolverZheevj_bufferSize_native
@@ -22349,6 +21864,8 @@ contains
       integer(c_int) :: devInfo
       type(c_ptr), value :: params
       integer(c_int) :: Ssyevj
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(W)) error stop "W: array must be contiguous"
       Ssyevj = hipsolverSsyevj_raw(handle, jobz, uplo, n, c_loc(A), lda, c_loc(W), work, lwork, &
         devInfo, params)
     end function hipsolverSsyevj_native
@@ -22390,6 +21907,8 @@ contains
       integer(c_int) :: devInfo
       type(c_ptr), value :: params
       integer(c_int) :: Dsyevj
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(W)) error stop "W: array must be contiguous"
       Dsyevj = hipsolverDsyevj_raw(handle, jobz, uplo, n, c_loc(A), lda, c_loc(W), work, lwork, &
         devInfo, params)
     end function hipsolverDsyevj_native
@@ -22431,6 +21950,8 @@ contains
       integer(c_int) :: devInfo
       type(c_ptr), value :: params
       integer(c_int) :: Cheevj
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(W)) error stop "W: array must be contiguous"
       Cheevj = hipsolverCheevj_raw(handle, jobz, uplo, n, c_loc(A), lda, c_loc(W), work, lwork, &
         devInfo, params)
     end function hipsolverCheevj_native
@@ -22472,6 +21993,8 @@ contains
       integer(c_int) :: devInfo
       type(c_ptr), value :: params
       integer(c_int) :: Zheevj
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(W)) error stop "W: array must be contiguous"
       Zheevj = hipsolverZheevj_raw(handle, jobz, uplo, n, c_loc(A), lda, c_loc(W), work, lwork, &
         devInfo, params)
     end function hipsolverZheevj_native
@@ -22512,6 +22035,8 @@ contains
       type(c_ptr), value :: params
       integer(c_int), value :: batch_count
       integer(c_int) :: SsyevjBatched_bufferSize
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(W)) error stop "W: array must be contiguous"
       SsyevjBatched_bufferSize = hipsolverSsyevjBatched_bufferSize_raw(handle, jobz, uplo, n, &
         c_loc(A), lda, c_loc(W), lwork, params, batch_count)
     end function hipsolverSsyevjBatched_bufferSize_native
@@ -22551,6 +22076,8 @@ contains
       type(c_ptr), value :: params
       integer(c_int), value :: batch_count
       integer(c_int) :: DsyevjBatched_bufferSize
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(W)) error stop "W: array must be contiguous"
       DsyevjBatched_bufferSize = hipsolverDsyevjBatched_bufferSize_raw(handle, jobz, uplo, n, &
         c_loc(A), lda, c_loc(W), lwork, params, batch_count)
     end function hipsolverDsyevjBatched_bufferSize_native
@@ -22590,6 +22117,8 @@ contains
       type(c_ptr), value :: params
       integer(c_int), value :: batch_count
       integer(c_int) :: CheevjBatched_bufferSize
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(W)) error stop "W: array must be contiguous"
       CheevjBatched_bufferSize = hipsolverCheevjBatched_bufferSize_raw(handle, jobz, uplo, n, &
         c_loc(A), lda, c_loc(W), lwork, params, batch_count)
     end function hipsolverCheevjBatched_bufferSize_native
@@ -22629,6 +22158,8 @@ contains
       type(c_ptr), value :: params
       integer(c_int), value :: batch_count
       integer(c_int) :: ZheevjBatched_bufferSize
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(W)) error stop "W: array must be contiguous"
       ZheevjBatched_bufferSize = hipsolverZheevjBatched_bufferSize_raw(handle, jobz, uplo, n, &
         c_loc(A), lda, c_loc(W), lwork, params, batch_count)
     end function hipsolverZheevjBatched_bufferSize_native
@@ -22670,6 +22201,8 @@ contains
       type(c_ptr), value :: params
       integer(c_int), value :: batch_count
       integer(c_int) :: SsyevjBatched
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(W)) error stop "W: array must be contiguous"
       SsyevjBatched = hipsolverSsyevjBatched_raw(handle, jobz, uplo, n, c_loc(A), lda, c_loc(W), &
         work, lwork, devInfo, params, batch_count)
     end function hipsolverSsyevjBatched_native
@@ -22713,6 +22246,9 @@ contains
       type(c_ptr), value :: params
       integer(c_int), value :: batch_count
       integer(c_int) :: DsyevjBatched
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(W)) error stop "W: array must be contiguous"
+      if (.not. is_contiguous(devInfo)) error stop "devInfo: array must be contiguous"
       DsyevjBatched = hipsolverDsyevjBatched_raw(handle, jobz, uplo, n, c_loc(A), lda, c_loc(W), &
         work, lwork, c_loc(devInfo), params, batch_count)
     end function hipsolverDsyevjBatched_native
@@ -22756,6 +22292,8 @@ contains
       type(c_ptr), value :: params
       integer(c_int), value :: batch_count
       integer(c_int) :: CheevjBatched
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(W)) error stop "W: array must be contiguous"
       CheevjBatched = hipsolverCheevjBatched_raw(handle, jobz, uplo, n, c_loc(A), lda, c_loc(W), &
         work, lwork, devInfo, params, batch_count)
     end function hipsolverCheevjBatched_native
@@ -22799,6 +22337,8 @@ contains
       type(c_ptr), value :: params
       integer(c_int), value :: batch_count
       integer(c_int) :: ZheevjBatched
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(W)) error stop "W: array must be contiguous"
       ZheevjBatched = hipsolverZheevjBatched_raw(handle, jobz, uplo, n, c_loc(A), lda, c_loc(W), &
         work, lwork, devInfo, params, batch_count)
     end function hipsolverZheevjBatched_native
@@ -22841,6 +22381,9 @@ contains
       real(c_float), target :: W(..)
       integer(c_int) :: lwork
       integer(c_int) :: Ssygvd_bufferSize
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
+      if (.not. is_contiguous(W)) error stop "W: array must be contiguous"
       Ssygvd_bufferSize = hipsolverSsygvd_bufferSize_raw(handle, itype, jobz, uplo, n, c_loc(A), &
         lda, c_loc(B), ldb, c_loc(W), lwork)
     end function hipsolverSsygvd_bufferSize_native
@@ -22882,6 +22425,9 @@ contains
       real(c_double), target :: W(..)
       integer(c_int) :: lwork
       integer(c_int) :: Dsygvd_bufferSize
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
+      if (.not. is_contiguous(W)) error stop "W: array must be contiguous"
       Dsygvd_bufferSize = hipsolverDsygvd_bufferSize_raw(handle, itype, jobz, uplo, n, c_loc(A), &
         lda, c_loc(B), ldb, c_loc(W), lwork)
     end function hipsolverDsygvd_bufferSize_native
@@ -22923,6 +22469,9 @@ contains
       real(c_float), target :: W(..)
       integer(c_int) :: lwork
       integer(c_int) :: Chegvd_bufferSize
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
+      if (.not. is_contiguous(W)) error stop "W: array must be contiguous"
       Chegvd_bufferSize = hipsolverChegvd_bufferSize_raw(handle, itype, jobz, uplo, n, c_loc(A), &
         lda, c_loc(B), ldb, c_loc(W), lwork)
     end function hipsolverChegvd_bufferSize_native
@@ -22964,6 +22513,9 @@ contains
       real(c_double), target :: W(..)
       integer(c_int) :: lwork
       integer(c_int) :: Zhegvd_bufferSize
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
+      if (.not. is_contiguous(W)) error stop "W: array must be contiguous"
       Zhegvd_bufferSize = hipsolverZhegvd_bufferSize_raw(handle, itype, jobz, uplo, n, c_loc(A), &
         lda, c_loc(B), ldb, c_loc(W), lwork)
     end function hipsolverZhegvd_bufferSize_native
@@ -23007,6 +22559,9 @@ contains
       integer(c_int), value :: lwork
       integer(c_int) :: devInfo
       integer(c_int) :: Ssygvd
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
+      if (.not. is_contiguous(W)) error stop "W: array must be contiguous"
       Ssygvd = hipsolverSsygvd_raw(handle, itype, jobz, uplo, n, c_loc(A), lda, c_loc(B), ldb, &
         c_loc(W), work, lwork, devInfo)
     end function hipsolverSsygvd_native
@@ -23052,6 +22607,9 @@ contains
       integer(c_int), value :: lwork
       integer(c_int) :: devInfo
       integer(c_int) :: Dsygvd
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
+      if (.not. is_contiguous(W)) error stop "W: array must be contiguous"
       Dsygvd = hipsolverDsygvd_raw(handle, itype, jobz, uplo, n, c_loc(A), lda, c_loc(B), ldb, &
         c_loc(W), work, lwork, devInfo)
     end function hipsolverDsygvd_native
@@ -23097,6 +22655,9 @@ contains
       integer(c_int), value :: lwork
       integer(c_int) :: devInfo
       integer(c_int) :: Chegvd
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
+      if (.not. is_contiguous(W)) error stop "W: array must be contiguous"
       Chegvd = hipsolverChegvd_raw(handle, itype, jobz, uplo, n, c_loc(A), lda, c_loc(B), ldb, &
         c_loc(W), work, lwork, devInfo)
     end function hipsolverChegvd_native
@@ -23142,6 +22703,9 @@ contains
       integer(c_int), value :: lwork
       integer(c_int) :: devInfo
       integer(c_int) :: Zhegvd
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
+      if (.not. is_contiguous(W)) error stop "W: array must be contiguous"
       Zhegvd = hipsolverZhegvd_raw(handle, itype, jobz, uplo, n, c_loc(A), lda, c_loc(B), ldb, &
         c_loc(W), work, lwork, devInfo)
     end function hipsolverZhegvd_native
@@ -23191,6 +22755,9 @@ contains
       real(c_float), target :: W(..)
       integer(c_int) :: lwork
       integer(c_int) :: Ssygvdx_bufferSize
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
+      if (.not. is_contiguous(W)) error stop "W: array must be contiguous"
       Ssygvdx_bufferSize = hipsolverSsygvdx_bufferSize_raw(handle, itype, jobz, range, uplo, n, &
         c_loc(A), lda, c_loc(B), ldb, vl, vu, il, iu, nev, c_loc(W), lwork)
     end function hipsolverSsygvdx_bufferSize_native
@@ -23244,6 +22811,9 @@ contains
       real(c_double), target :: W(..)
       integer(c_int) :: lwork
       integer(c_int) :: Dsygvdx_bufferSize
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
+      if (.not. is_contiguous(W)) error stop "W: array must be contiguous"
       Dsygvdx_bufferSize = hipsolverDsygvdx_bufferSize_raw(handle, itype, jobz, range, uplo, n, &
         c_loc(A), lda, c_loc(B), ldb, vl, vu, il, iu, nev, c_loc(W), lwork)
     end function hipsolverDsygvdx_bufferSize_native
@@ -23297,6 +22867,9 @@ contains
       real(c_float), target :: W(..)
       integer(c_int) :: lwork
       integer(c_int) :: Chegvdx_bufferSize
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
+      if (.not. is_contiguous(W)) error stop "W: array must be contiguous"
       Chegvdx_bufferSize = hipsolverChegvdx_bufferSize_raw(handle, itype, jobz, range, uplo, n, &
         c_loc(A), lda, c_loc(B), ldb, vl, vu, il, iu, nev, c_loc(W), lwork)
     end function hipsolverChegvdx_bufferSize_native
@@ -23350,6 +22923,9 @@ contains
       real(c_double), target :: W(..)
       integer(c_int) :: lwork
       integer(c_int) :: Zhegvdx_bufferSize
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
+      if (.not. is_contiguous(W)) error stop "W: array must be contiguous"
       Zhegvdx_bufferSize = hipsolverZhegvdx_bufferSize_raw(handle, itype, jobz, range, uplo, n, &
         c_loc(A), lda, c_loc(B), ldb, vl, vu, il, iu, nev, c_loc(W), lwork)
     end function hipsolverZhegvdx_bufferSize_native
@@ -23405,6 +22981,9 @@ contains
       integer(c_int), value :: lwork
       integer(c_int) :: devInfo
       integer(c_int) :: Ssygvdx
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
+      if (.not. is_contiguous(W)) error stop "W: array must be contiguous"
       Ssygvdx = hipsolverSsygvdx_raw(handle, itype, jobz, range, uplo, n, c_loc(A), lda, c_loc(B), &
         ldb, vl, vu, il, iu, nev, c_loc(W), work, lwork, devInfo)
     end function hipsolverSsygvdx_native
@@ -23462,6 +23041,9 @@ contains
       integer(c_int), value :: lwork
       integer(c_int) :: devInfo
       integer(c_int) :: Dsygvdx
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
+      if (.not. is_contiguous(W)) error stop "W: array must be contiguous"
       Dsygvdx = hipsolverDsygvdx_raw(handle, itype, jobz, range, uplo, n, c_loc(A), lda, c_loc(B), &
         ldb, vl, vu, il, iu, nev, c_loc(W), work, lwork, devInfo)
     end function hipsolverDsygvdx_native
@@ -23519,6 +23101,9 @@ contains
       integer(c_int), value :: lwork
       integer(c_int) :: devInfo
       integer(c_int) :: Chegvdx
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
+      if (.not. is_contiguous(W)) error stop "W: array must be contiguous"
       Chegvdx = hipsolverChegvdx_raw(handle, itype, jobz, range, uplo, n, c_loc(A), lda, c_loc(B), &
         ldb, vl, vu, il, iu, nev, c_loc(W), work, lwork, devInfo)
     end function hipsolverChegvdx_native
@@ -23576,6 +23161,9 @@ contains
       integer(c_int), value :: lwork
       integer(c_int) :: devInfo
       integer(c_int) :: Zhegvdx
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
+      if (.not. is_contiguous(W)) error stop "W: array must be contiguous"
       Zhegvdx = hipsolverZhegvdx_raw(handle, itype, jobz, range, uplo, n, c_loc(A), lda, c_loc(B), &
         ldb, vl, vu, il, iu, nev, c_loc(W), work, lwork, devInfo)
     end function hipsolverZhegvdx_native
@@ -23626,6 +23214,9 @@ contains
       integer(c_int) :: lwork
       type(c_ptr), value :: params
       integer(c_int) :: Ssygvj_bufferSize
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
+      if (.not. is_contiguous(W)) error stop "W: array must be contiguous"
       Ssygvj_bufferSize = hipsolverSsygvj_bufferSize_raw(handle, itype, jobz, uplo, n, c_loc(A), &
         lda, c_loc(B), ldb, c_loc(W), lwork, params)
     end function hipsolverSsygvj_bufferSize_native
@@ -23669,6 +23260,9 @@ contains
       integer(c_int) :: lwork
       type(c_ptr), value :: params
       integer(c_int) :: Dsygvj_bufferSize
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
+      if (.not. is_contiguous(W)) error stop "W: array must be contiguous"
       Dsygvj_bufferSize = hipsolverDsygvj_bufferSize_raw(handle, itype, jobz, uplo, n, c_loc(A), &
         lda, c_loc(B), ldb, c_loc(W), lwork, params)
     end function hipsolverDsygvj_bufferSize_native
@@ -23712,6 +23306,9 @@ contains
       integer(c_int) :: lwork
       type(c_ptr), value :: params
       integer(c_int) :: Chegvj_bufferSize
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
+      if (.not. is_contiguous(W)) error stop "W: array must be contiguous"
       Chegvj_bufferSize = hipsolverChegvj_bufferSize_raw(handle, itype, jobz, uplo, n, c_loc(A), &
         lda, c_loc(B), ldb, c_loc(W), lwork, params)
     end function hipsolverChegvj_bufferSize_native
@@ -23755,6 +23352,9 @@ contains
       integer(c_int) :: lwork
       type(c_ptr), value :: params
       integer(c_int) :: Zhegvj_bufferSize
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
+      if (.not. is_contiguous(W)) error stop "W: array must be contiguous"
       Zhegvj_bufferSize = hipsolverZhegvj_bufferSize_raw(handle, itype, jobz, uplo, n, c_loc(A), &
         lda, c_loc(B), ldb, c_loc(W), lwork, params)
     end function hipsolverZhegvj_bufferSize_native
@@ -23800,6 +23400,9 @@ contains
       integer(c_int) :: devInfo
       type(c_ptr), value :: params
       integer(c_int) :: Ssygvj
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
+      if (.not. is_contiguous(W)) error stop "W: array must be contiguous"
       Ssygvj = hipsolverSsygvj_raw(handle, itype, jobz, uplo, n, c_loc(A), lda, c_loc(B), ldb, &
         c_loc(W), work, lwork, devInfo, params)
     end function hipsolverSsygvj_native
@@ -23847,6 +23450,9 @@ contains
       integer(c_int) :: devInfo
       type(c_ptr), value :: params
       integer(c_int) :: Dsygvj
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
+      if (.not. is_contiguous(W)) error stop "W: array must be contiguous"
       Dsygvj = hipsolverDsygvj_raw(handle, itype, jobz, uplo, n, c_loc(A), lda, c_loc(B), ldb, &
         c_loc(W), work, lwork, devInfo, params)
     end function hipsolverDsygvj_native
@@ -23894,6 +23500,9 @@ contains
       integer(c_int) :: devInfo
       type(c_ptr), value :: params
       integer(c_int) :: Chegvj
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
+      if (.not. is_contiguous(W)) error stop "W: array must be contiguous"
       Chegvj = hipsolverChegvj_raw(handle, itype, jobz, uplo, n, c_loc(A), lda, c_loc(B), ldb, &
         c_loc(W), work, lwork, devInfo, params)
     end function hipsolverChegvj_native
@@ -23941,6 +23550,9 @@ contains
       integer(c_int) :: devInfo
       type(c_ptr), value :: params
       integer(c_int) :: Zhegvj
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
+      if (.not. is_contiguous(W)) error stop "W: array must be contiguous"
       Zhegvj = hipsolverZhegvj_raw(handle, itype, jobz, uplo, n, c_loc(A), lda, c_loc(B), ldb, &
         c_loc(W), work, lwork, devInfo, params)
     end function hipsolverZhegvj_native
@@ -23983,6 +23595,9 @@ contains
       real(c_float) :: tau
       integer(c_int) :: lwork
       integer(c_int) :: Ssytrd_bufferSize
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(D)) error stop "D: array must be contiguous"
+      if (.not. is_contiguous(E)) error stop "E: array must be contiguous"
       Ssytrd_bufferSize = hipsolverSsytrd_bufferSize_raw(handle, uplo, n, c_loc(A), lda, c_loc(D), &
         c_loc(E), tau, lwork)
     end function hipsolverSsytrd_bufferSize_native
@@ -24020,6 +23635,9 @@ contains
       real(c_double) :: tau
       integer(c_int) :: lwork
       integer(c_int) :: Dsytrd_bufferSize
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(D)) error stop "D: array must be contiguous"
+      if (.not. is_contiguous(E)) error stop "E: array must be contiguous"
       Dsytrd_bufferSize = hipsolverDsytrd_bufferSize_raw(handle, uplo, n, c_loc(A), lda, c_loc(D), &
         c_loc(E), tau, lwork)
     end function hipsolverDsytrd_bufferSize_native
@@ -24057,6 +23675,9 @@ contains
       complex(c_float_complex) :: tau
       integer(c_int) :: lwork
       integer(c_int) :: Chetrd_bufferSize
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(D)) error stop "D: array must be contiguous"
+      if (.not. is_contiguous(E)) error stop "E: array must be contiguous"
       Chetrd_bufferSize = hipsolverChetrd_bufferSize_raw(handle, uplo, n, c_loc(A), lda, c_loc(D), &
         c_loc(E), tau, lwork)
     end function hipsolverChetrd_bufferSize_native
@@ -24094,6 +23715,9 @@ contains
       complex(c_double_complex) :: tau
       integer(c_int) :: lwork
       integer(c_int) :: Zhetrd_bufferSize
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(D)) error stop "D: array must be contiguous"
+      if (.not. is_contiguous(E)) error stop "E: array must be contiguous"
       Zhetrd_bufferSize = hipsolverZhetrd_bufferSize_raw(handle, uplo, n, c_loc(A), lda, c_loc(D), &
         c_loc(E), tau, lwork)
     end function hipsolverZhetrd_bufferSize_native
@@ -24133,6 +23757,9 @@ contains
       integer(c_int), value :: lwork
       integer(c_int) :: devInfo
       integer(c_int) :: Ssytrd
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(D)) error stop "D: array must be contiguous"
+      if (.not. is_contiguous(E)) error stop "E: array must be contiguous"
       Ssytrd = hipsolverSsytrd_raw(handle, uplo, n, c_loc(A), lda, c_loc(D), c_loc(E), tau, work, &
         lwork, devInfo)
     end function hipsolverSsytrd_native
@@ -24173,6 +23800,9 @@ contains
       integer(c_int), value :: lwork
       integer(c_int) :: devInfo
       integer(c_int) :: Dsytrd
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(D)) error stop "D: array must be contiguous"
+      if (.not. is_contiguous(E)) error stop "E: array must be contiguous"
       Dsytrd = hipsolverDsytrd_raw(handle, uplo, n, c_loc(A), lda, c_loc(D), c_loc(E), tau, work, &
         lwork, devInfo)
     end function hipsolverDsytrd_native
@@ -24213,6 +23843,9 @@ contains
       integer(c_int), value :: lwork
       integer(c_int) :: devInfo
       integer(c_int) :: Chetrd
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(D)) error stop "D: array must be contiguous"
+      if (.not. is_contiguous(E)) error stop "E: array must be contiguous"
       Chetrd = hipsolverChetrd_raw(handle, uplo, n, c_loc(A), lda, c_loc(D), c_loc(E), tau, work, &
         lwork, devInfo)
     end function hipsolverChetrd_native
@@ -24253,6 +23886,9 @@ contains
       integer(c_int), value :: lwork
       integer(c_int) :: devInfo
       integer(c_int) :: Zhetrd
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(D)) error stop "D: array must be contiguous"
+      if (.not. is_contiguous(E)) error stop "E: array must be contiguous"
       Zhetrd = hipsolverZhetrd_raw(handle, uplo, n, c_loc(A), lda, c_loc(D), c_loc(E), tau, work, &
         lwork, devInfo)
     end function hipsolverZhetrd_native
@@ -24286,6 +23922,7 @@ contains
       integer(c_int), value :: lda
       integer(c_int) :: lwork
       integer(c_int) :: Ssytrf_bufferSize
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
       Ssytrf_bufferSize = hipsolverSsytrf_bufferSize_raw(handle, n, c_loc(A), lda, lwork)
     end function hipsolverSsytrf_bufferSize_native
 
@@ -24311,6 +23948,7 @@ contains
       integer(c_int), value :: lda
       integer(c_int) :: lwork
       integer(c_int) :: Dsytrf_bufferSize
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
       Dsytrf_bufferSize = hipsolverDsytrf_bufferSize_raw(handle, n, c_loc(A), lda, lwork)
     end function hipsolverDsytrf_bufferSize_native
 
@@ -24336,6 +23974,7 @@ contains
       integer(c_int), value :: lda
       integer(c_int) :: lwork
       integer(c_int) :: Csytrf_bufferSize
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
       Csytrf_bufferSize = hipsolverCsytrf_bufferSize_raw(handle, n, c_loc(A), lda, lwork)
     end function hipsolverCsytrf_bufferSize_native
 
@@ -24361,6 +24000,7 @@ contains
       integer(c_int), value :: lda
       integer(c_int) :: lwork
       integer(c_int) :: Zsytrf_bufferSize
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
       Zsytrf_bufferSize = hipsolverZsytrf_bufferSize_raw(handle, n, c_loc(A), lda, lwork)
     end function hipsolverZsytrf_bufferSize_native
 
@@ -24391,6 +24031,8 @@ contains
       integer(c_int), value :: lwork
       integer(c_int) :: devInfo
       integer(c_int) :: Ssytrf
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(ipiv)) error stop "ipiv: array must be contiguous"
       Ssytrf = hipsolverSsytrf_raw(handle, uplo, n, c_loc(A), lda, c_loc(ipiv), work, lwork, &
         devInfo)
     end function hipsolverSsytrf_native
@@ -24427,6 +24069,8 @@ contains
       integer(c_int), value :: lwork
       integer(c_int) :: devInfo
       integer(c_int) :: Dsytrf
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(ipiv)) error stop "ipiv: array must be contiguous"
       Dsytrf = hipsolverDsytrf_raw(handle, uplo, n, c_loc(A), lda, c_loc(ipiv), work, lwork, &
         devInfo)
     end function hipsolverDsytrf_native
@@ -24463,6 +24107,8 @@ contains
       integer(c_int), value :: lwork
       integer(c_int) :: devInfo
       integer(c_int) :: Csytrf
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(ipiv)) error stop "ipiv: array must be contiguous"
       Csytrf = hipsolverCsytrf_raw(handle, uplo, n, c_loc(A), lda, c_loc(ipiv), work, lwork, &
         devInfo)
     end function hipsolverCsytrf_native
@@ -24499,6 +24145,8 @@ contains
       integer(c_int), value :: lwork
       integer(c_int) :: devInfo
       integer(c_int) :: Zsytrf
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(ipiv)) error stop "ipiv: array must be contiguous"
       Zsytrf = hipsolverZsytrf_raw(handle, uplo, n, c_loc(A), lda, c_loc(ipiv), work, lwork, &
         devInfo)
     end function hipsolverZsytrf_native
@@ -24575,6 +24223,7 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), target :: mode(..)
       integer(c_int) :: DnGetDeterministicMode
+      if (.not. is_contiguous(mode)) error stop "mode: array must be contiguous"
       DnGetDeterministicMode = hipsolverDnGetDeterministicMode_raw(handle, c_loc(mode))
     end function hipsolverDnGetDeterministicMode_native
 
@@ -24644,6 +24293,7 @@ contains
       type(c_ptr), value :: info
       real(c_double), target :: residual(..)
       integer(c_int) :: DnXgesvdjGetResidual
+      if (.not. is_contiguous(residual)) error stop "residual: array must be contiguous"
       DnXgesvdjGetResidual = hipsolverDnXgesvdjGetResidual_raw(handle, info, c_loc(residual))
     end function hipsolverDnXgesvdjGetResidual_native
 
@@ -24667,6 +24317,7 @@ contains
       type(c_ptr), value :: info
       integer(c_int), target :: executed_sweeps(..)
       integer(c_int) :: DnXgesvdjGetSweeps
+      if (.not. is_contiguous(executed_sweeps)) error stop "executed_sweeps: array must be contiguous"
       DnXgesvdjGetSweeps = hipsolverDnXgesvdjGetSweeps_raw(handle, info, c_loc(executed_sweeps))
     end function hipsolverDnXgesvdjGetSweeps_native
 
@@ -24737,6 +24388,7 @@ contains
       type(c_ptr), value :: info
       real(c_double), target :: residual(..)
       integer(c_int) :: DnXsyevjGetResidual
+      if (.not. is_contiguous(residual)) error stop "residual: array must be contiguous"
       DnXsyevjGetResidual = hipsolverDnXsyevjGetResidual_raw(handle, info, c_loc(residual))
     end function hipsolverDnXsyevjGetResidual_native
 
@@ -24759,6 +24411,7 @@ contains
       type(c_ptr), value :: info
       integer(c_int), target :: executed_sweeps(..)
       integer(c_int) :: DnXsyevjGetSweeps
+      if (.not. is_contiguous(executed_sweeps)) error stop "executed_sweeps: array must be contiguous"
       DnXsyevjGetSweeps = hipsolverDnXsyevjGetSweeps_raw(handle, info, c_loc(executed_sweeps))
     end function hipsolverDnXsyevjGetSweeps_native
 
@@ -24788,6 +24441,9 @@ contains
       real(c_float), target :: tau(..)
       integer(c_int), target :: lwork(..)
       integer(c_int) :: DnSorgbr_bufferSize
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(tau)) error stop "tau: array must be contiguous"
+      if (.not. is_contiguous(lwork)) error stop "lwork: array must be contiguous"
       DnSorgbr_bufferSize = hipsolverDnSorgbr_bufferSize_raw(handle, side, m, n, k, c_loc(A), lda, &
         c_loc(tau), c_loc(lwork))
     end function hipsolverDnSorgbr_bufferSize_native
@@ -24825,6 +24481,9 @@ contains
       real(c_double), target :: tau(..)
       integer(c_int), target :: lwork(..)
       integer(c_int) :: DnDorgbr_bufferSize
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(tau)) error stop "tau: array must be contiguous"
+      if (.not. is_contiguous(lwork)) error stop "lwork: array must be contiguous"
       DnDorgbr_bufferSize = hipsolverDnDorgbr_bufferSize_raw(handle, side, m, n, k, c_loc(A), lda, &
         c_loc(tau), c_loc(lwork))
     end function hipsolverDnDorgbr_bufferSize_native
@@ -24862,6 +24521,9 @@ contains
       complex(c_float_complex), target :: tau(..)
       integer(c_int), target :: lwork(..)
       integer(c_int) :: DnCungbr_bufferSize
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(tau)) error stop "tau: array must be contiguous"
+      if (.not. is_contiguous(lwork)) error stop "lwork: array must be contiguous"
       DnCungbr_bufferSize = hipsolverDnCungbr_bufferSize_raw(handle, side, m, n, k, c_loc(A), lda, &
         c_loc(tau), c_loc(lwork))
     end function hipsolverDnCungbr_bufferSize_native
@@ -24899,6 +24561,9 @@ contains
       complex(c_double_complex), target :: tau(..)
       integer(c_int), target :: lwork(..)
       integer(c_int) :: DnZungbr_bufferSize
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(tau)) error stop "tau: array must be contiguous"
+      if (.not. is_contiguous(lwork)) error stop "lwork: array must be contiguous"
       DnZungbr_bufferSize = hipsolverDnZungbr_bufferSize_raw(handle, side, m, n, k, c_loc(A), lda, &
         c_loc(tau), c_loc(lwork))
     end function hipsolverDnZungbr_bufferSize_native
@@ -24938,6 +24603,9 @@ contains
       integer(c_int), value :: lwork
       integer(c_int), target :: devInfo(..)
       integer(c_int) :: DnSorgbr
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(tau)) error stop "tau: array must be contiguous"
+      if (.not. is_contiguous(devInfo)) error stop "devInfo: array must be contiguous"
       DnSorgbr = hipsolverDnSorgbr_raw(handle, side, m, n, k, c_loc(A), lda, c_loc(tau), work, &
         lwork, c_loc(devInfo))
     end function hipsolverDnSorgbr_native
@@ -24978,6 +24646,9 @@ contains
       integer(c_int), value :: lwork
       integer(c_int), target :: devInfo(..)
       integer(c_int) :: DnDorgbr
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(tau)) error stop "tau: array must be contiguous"
+      if (.not. is_contiguous(devInfo)) error stop "devInfo: array must be contiguous"
       DnDorgbr = hipsolverDnDorgbr_raw(handle, side, m, n, k, c_loc(A), lda, c_loc(tau), work, &
         lwork, c_loc(devInfo))
     end function hipsolverDnDorgbr_native
@@ -25018,6 +24689,9 @@ contains
       integer(c_int), value :: lwork
       integer(c_int), target :: devInfo(..)
       integer(c_int) :: DnCungbr
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(tau)) error stop "tau: array must be contiguous"
+      if (.not. is_contiguous(devInfo)) error stop "devInfo: array must be contiguous"
       DnCungbr = hipsolverDnCungbr_raw(handle, side, m, n, k, c_loc(A), lda, c_loc(tau), work, &
         lwork, c_loc(devInfo))
     end function hipsolverDnCungbr_native
@@ -25058,6 +24732,9 @@ contains
       integer(c_int), value :: lwork
       integer(c_int), target :: devInfo(..)
       integer(c_int) :: DnZungbr
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(tau)) error stop "tau: array must be contiguous"
+      if (.not. is_contiguous(devInfo)) error stop "devInfo: array must be contiguous"
       DnZungbr = hipsolverDnZungbr_raw(handle, side, m, n, k, c_loc(A), lda, c_loc(tau), work, &
         lwork, c_loc(devInfo))
     end function hipsolverDnZungbr_native
@@ -25095,6 +24772,9 @@ contains
       real(c_float), target :: tau(..)
       integer(c_int), target :: lwork(..)
       integer(c_int) :: DnSorgqr_bufferSize
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(tau)) error stop "tau: array must be contiguous"
+      if (.not. is_contiguous(lwork)) error stop "lwork: array must be contiguous"
       DnSorgqr_bufferSize = hipsolverDnSorgqr_bufferSize_raw(handle, m, n, k, c_loc(A), lda, &
         c_loc(tau), c_loc(lwork))
     end function hipsolverDnSorgqr_bufferSize_native
@@ -25130,6 +24810,9 @@ contains
       real(c_double), target :: tau(..)
       integer(c_int), target :: lwork(..)
       integer(c_int) :: DnDorgqr_bufferSize
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(tau)) error stop "tau: array must be contiguous"
+      if (.not. is_contiguous(lwork)) error stop "lwork: array must be contiguous"
       DnDorgqr_bufferSize = hipsolverDnDorgqr_bufferSize_raw(handle, m, n, k, c_loc(A), lda, &
         c_loc(tau), c_loc(lwork))
     end function hipsolverDnDorgqr_bufferSize_native
@@ -25165,6 +24848,9 @@ contains
       complex(c_float_complex), target :: tau(..)
       integer(c_int), target :: lwork(..)
       integer(c_int) :: DnCungqr_bufferSize
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(tau)) error stop "tau: array must be contiguous"
+      if (.not. is_contiguous(lwork)) error stop "lwork: array must be contiguous"
       DnCungqr_bufferSize = hipsolverDnCungqr_bufferSize_raw(handle, m, n, k, c_loc(A), lda, &
         c_loc(tau), c_loc(lwork))
     end function hipsolverDnCungqr_bufferSize_native
@@ -25200,6 +24886,9 @@ contains
       complex(c_double_complex), target :: tau(..)
       integer(c_int), target :: lwork(..)
       integer(c_int) :: DnZungqr_bufferSize
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(tau)) error stop "tau: array must be contiguous"
+      if (.not. is_contiguous(lwork)) error stop "lwork: array must be contiguous"
       DnZungqr_bufferSize = hipsolverDnZungqr_bufferSize_raw(handle, m, n, k, c_loc(A), lda, &
         c_loc(tau), c_loc(lwork))
     end function hipsolverDnZungqr_bufferSize_native
@@ -25237,6 +24926,9 @@ contains
       integer(c_int), value :: lwork
       integer(c_int), target :: devInfo(..)
       integer(c_int) :: DnSorgqr
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(tau)) error stop "tau: array must be contiguous"
+      if (.not. is_contiguous(devInfo)) error stop "devInfo: array must be contiguous"
       DnSorgqr = hipsolverDnSorgqr_raw(handle, m, n, k, c_loc(A), lda, c_loc(tau), work, lwork, &
         c_loc(devInfo))
     end function hipsolverDnSorgqr_native
@@ -25275,6 +24967,9 @@ contains
       integer(c_int), value :: lwork
       integer(c_int), target :: devInfo(..)
       integer(c_int) :: DnDorgqr
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(tau)) error stop "tau: array must be contiguous"
+      if (.not. is_contiguous(devInfo)) error stop "devInfo: array must be contiguous"
       DnDorgqr = hipsolverDnDorgqr_raw(handle, m, n, k, c_loc(A), lda, c_loc(tau), work, lwork, &
         c_loc(devInfo))
     end function hipsolverDnDorgqr_native
@@ -25313,6 +25008,9 @@ contains
       integer(c_int), value :: lwork
       integer(c_int), target :: devInfo(..)
       integer(c_int) :: DnCungqr
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(tau)) error stop "tau: array must be contiguous"
+      if (.not. is_contiguous(devInfo)) error stop "devInfo: array must be contiguous"
       DnCungqr = hipsolverDnCungqr_raw(handle, m, n, k, c_loc(A), lda, c_loc(tau), work, lwork, &
         c_loc(devInfo))
     end function hipsolverDnCungqr_native
@@ -25351,6 +25049,9 @@ contains
       integer(c_int), value :: lwork
       integer(c_int), target :: devInfo(..)
       integer(c_int) :: DnZungqr
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(tau)) error stop "tau: array must be contiguous"
+      if (.not. is_contiguous(devInfo)) error stop "devInfo: array must be contiguous"
       DnZungqr = hipsolverDnZungqr_raw(handle, m, n, k, c_loc(A), lda, c_loc(tau), work, lwork, &
         c_loc(devInfo))
     end function hipsolverDnZungqr_native
@@ -25386,6 +25087,9 @@ contains
       real(c_float), target :: tau(..)
       integer(c_int), target :: lwork(..)
       integer(c_int) :: DnSorgtr_bufferSize
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(tau)) error stop "tau: array must be contiguous"
+      if (.not. is_contiguous(lwork)) error stop "lwork: array must be contiguous"
       DnSorgtr_bufferSize = hipsolverDnSorgtr_bufferSize_raw(handle, uplo, n, c_loc(A), lda, &
         c_loc(tau), c_loc(lwork))
     end function hipsolverDnSorgtr_bufferSize_native
@@ -25419,6 +25123,9 @@ contains
       real(c_double), target :: tau(..)
       integer(c_int), target :: lwork(..)
       integer(c_int) :: DnDorgtr_bufferSize
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(tau)) error stop "tau: array must be contiguous"
+      if (.not. is_contiguous(lwork)) error stop "lwork: array must be contiguous"
       DnDorgtr_bufferSize = hipsolverDnDorgtr_bufferSize_raw(handle, uplo, n, c_loc(A), lda, &
         c_loc(tau), c_loc(lwork))
     end function hipsolverDnDorgtr_bufferSize_native
@@ -25452,6 +25159,9 @@ contains
       complex(c_float_complex), target :: tau(..)
       integer(c_int), target :: lwork(..)
       integer(c_int) :: DnCungtr_bufferSize
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(tau)) error stop "tau: array must be contiguous"
+      if (.not. is_contiguous(lwork)) error stop "lwork: array must be contiguous"
       DnCungtr_bufferSize = hipsolverDnCungtr_bufferSize_raw(handle, uplo, n, c_loc(A), lda, &
         c_loc(tau), c_loc(lwork))
     end function hipsolverDnCungtr_bufferSize_native
@@ -25485,6 +25195,9 @@ contains
       complex(c_double_complex), target :: tau(..)
       integer(c_int), target :: lwork(..)
       integer(c_int) :: DnZungtr_bufferSize
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(tau)) error stop "tau: array must be contiguous"
+      if (.not. is_contiguous(lwork)) error stop "lwork: array must be contiguous"
       DnZungtr_bufferSize = hipsolverDnZungtr_bufferSize_raw(handle, uplo, n, c_loc(A), lda, &
         c_loc(tau), c_loc(lwork))
     end function hipsolverDnZungtr_bufferSize_native
@@ -25520,6 +25233,9 @@ contains
       integer(c_int), value :: lwork
       integer(c_int), target :: devInfo(..)
       integer(c_int) :: DnSorgtr
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(tau)) error stop "tau: array must be contiguous"
+      if (.not. is_contiguous(devInfo)) error stop "devInfo: array must be contiguous"
       DnSorgtr = hipsolverDnSorgtr_raw(handle, uplo, n, c_loc(A), lda, c_loc(tau), work, lwork, &
         c_loc(devInfo))
     end function hipsolverDnSorgtr_native
@@ -25556,6 +25272,9 @@ contains
       integer(c_int), value :: lwork
       integer(c_int), target :: devInfo(..)
       integer(c_int) :: DnDorgtr
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(tau)) error stop "tau: array must be contiguous"
+      if (.not. is_contiguous(devInfo)) error stop "devInfo: array must be contiguous"
       DnDorgtr = hipsolverDnDorgtr_raw(handle, uplo, n, c_loc(A), lda, c_loc(tau), work, lwork, &
         c_loc(devInfo))
     end function hipsolverDnDorgtr_native
@@ -25592,6 +25311,9 @@ contains
       integer(c_int), value :: lwork
       integer(c_int), target :: devInfo(..)
       integer(c_int) :: DnCungtr
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(tau)) error stop "tau: array must be contiguous"
+      if (.not. is_contiguous(devInfo)) error stop "devInfo: array must be contiguous"
       DnCungtr = hipsolverDnCungtr_raw(handle, uplo, n, c_loc(A), lda, c_loc(tau), work, lwork, &
         c_loc(devInfo))
     end function hipsolverDnCungtr_native
@@ -25628,6 +25350,9 @@ contains
       integer(c_int), value :: lwork
       integer(c_int), target :: devInfo(..)
       integer(c_int) :: DnZungtr
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(tau)) error stop "tau: array must be contiguous"
+      if (.not. is_contiguous(devInfo)) error stop "devInfo: array must be contiguous"
       DnZungtr = hipsolverDnZungtr_raw(handle, uplo, n, c_loc(A), lda, c_loc(tau), work, lwork, &
         c_loc(devInfo))
     end function hipsolverDnZungtr_native
@@ -25667,6 +25392,10 @@ contains
       integer(c_int), value :: ldc
       integer(c_int), target :: lwork(..)
       integer(c_int) :: DnSormqr_bufferSize
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(tau)) error stop "tau: array must be contiguous"
+      if (.not. is_contiguous(C)) error stop "C: array must be contiguous"
+      if (.not. is_contiguous(lwork)) error stop "lwork: array must be contiguous"
       DnSormqr_bufferSize = hipsolverDnSormqr_bufferSize_raw(handle, side, trans, m, n, k, c_loc( &
         A), lda, c_loc(tau), c_loc(C), ldc, c_loc(lwork))
     end function hipsolverDnSormqr_bufferSize_native
@@ -25710,6 +25439,10 @@ contains
       integer(c_int), value :: ldc
       integer(c_int), target :: lwork(..)
       integer(c_int) :: DnDormqr_bufferSize
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(tau)) error stop "tau: array must be contiguous"
+      if (.not. is_contiguous(C)) error stop "C: array must be contiguous"
+      if (.not. is_contiguous(lwork)) error stop "lwork: array must be contiguous"
       DnDormqr_bufferSize = hipsolverDnDormqr_bufferSize_raw(handle, side, trans, m, n, k, c_loc( &
         A), lda, c_loc(tau), c_loc(C), ldc, c_loc(lwork))
     end function hipsolverDnDormqr_bufferSize_native
@@ -25753,6 +25486,10 @@ contains
       integer(c_int), value :: ldc
       integer(c_int), target :: lwork(..)
       integer(c_int) :: DnCunmqr_bufferSize
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(tau)) error stop "tau: array must be contiguous"
+      if (.not. is_contiguous(C)) error stop "C: array must be contiguous"
+      if (.not. is_contiguous(lwork)) error stop "lwork: array must be contiguous"
       DnCunmqr_bufferSize = hipsolverDnCunmqr_bufferSize_raw(handle, side, trans, m, n, k, c_loc( &
         A), lda, c_loc(tau), c_loc(C), ldc, c_loc(lwork))
     end function hipsolverDnCunmqr_bufferSize_native
@@ -25796,6 +25533,10 @@ contains
       integer(c_int), value :: ldc
       integer(c_int), target :: lwork(..)
       integer(c_int) :: DnZunmqr_bufferSize
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(tau)) error stop "tau: array must be contiguous"
+      if (.not. is_contiguous(C)) error stop "C: array must be contiguous"
+      if (.not. is_contiguous(lwork)) error stop "lwork: array must be contiguous"
       DnZunmqr_bufferSize = hipsolverDnZunmqr_bufferSize_raw(handle, side, trans, m, n, k, c_loc( &
         A), lda, c_loc(tau), c_loc(C), ldc, c_loc(lwork))
     end function hipsolverDnZunmqr_bufferSize_native
@@ -25841,6 +25582,10 @@ contains
       integer(c_int), value :: lwork
       integer(c_int), target :: devInfo(..)
       integer(c_int) :: DnSormqr
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(tau)) error stop "tau: array must be contiguous"
+      if (.not. is_contiguous(C)) error stop "C: array must be contiguous"
+      if (.not. is_contiguous(devInfo)) error stop "devInfo: array must be contiguous"
       DnSormqr = hipsolverDnSormqr_raw(handle, side, trans, m, n, k, c_loc(A), lda, c_loc(tau), &
         c_loc(C), ldc, work, lwork, c_loc(devInfo))
     end function hipsolverDnSormqr_native
@@ -25888,6 +25633,10 @@ contains
       integer(c_int), value :: lwork
       integer(c_int), target :: devInfo(..)
       integer(c_int) :: DnDormqr
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(tau)) error stop "tau: array must be contiguous"
+      if (.not. is_contiguous(C)) error stop "C: array must be contiguous"
+      if (.not. is_contiguous(devInfo)) error stop "devInfo: array must be contiguous"
       DnDormqr = hipsolverDnDormqr_raw(handle, side, trans, m, n, k, c_loc(A), lda, c_loc(tau), &
         c_loc(C), ldc, work, lwork, c_loc(devInfo))
     end function hipsolverDnDormqr_native
@@ -25935,6 +25684,10 @@ contains
       integer(c_int), value :: lwork
       integer(c_int), target :: devInfo(..)
       integer(c_int) :: DnCunmqr
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(tau)) error stop "tau: array must be contiguous"
+      if (.not. is_contiguous(C)) error stop "C: array must be contiguous"
+      if (.not. is_contiguous(devInfo)) error stop "devInfo: array must be contiguous"
       DnCunmqr = hipsolverDnCunmqr_raw(handle, side, trans, m, n, k, c_loc(A), lda, c_loc(tau), &
         c_loc(C), ldc, work, lwork, c_loc(devInfo))
     end function hipsolverDnCunmqr_native
@@ -25982,6 +25735,10 @@ contains
       integer(c_int), value :: lwork
       integer(c_int), target :: devInfo(..)
       integer(c_int) :: DnZunmqr
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(tau)) error stop "tau: array must be contiguous"
+      if (.not. is_contiguous(C)) error stop "C: array must be contiguous"
+      if (.not. is_contiguous(devInfo)) error stop "devInfo: array must be contiguous"
       DnZunmqr = hipsolverDnZunmqr_raw(handle, side, trans, m, n, k, c_loc(A), lda, c_loc(tau), &
         c_loc(C), ldc, work, lwork, c_loc(devInfo))
     end function hipsolverDnZunmqr_native
@@ -26027,6 +25784,10 @@ contains
       integer(c_int), value :: ldc
       integer(c_int), target :: lwork(..)
       integer(c_int) :: DnSormtr_bufferSize
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(tau)) error stop "tau: array must be contiguous"
+      if (.not. is_contiguous(C)) error stop "C: array must be contiguous"
+      if (.not. is_contiguous(lwork)) error stop "lwork: array must be contiguous"
       DnSormtr_bufferSize = hipsolverDnSormtr_bufferSize_raw(handle, side, uplo, trans, m, n, &
         c_loc(A), lda, c_loc(tau), c_loc(C), ldc, c_loc(lwork))
     end function hipsolverDnSormtr_bufferSize_native
@@ -26070,6 +25831,10 @@ contains
       integer(c_int), value :: ldc
       integer(c_int), target :: lwork(..)
       integer(c_int) :: DnDormtr_bufferSize
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(tau)) error stop "tau: array must be contiguous"
+      if (.not. is_contiguous(C)) error stop "C: array must be contiguous"
+      if (.not. is_contiguous(lwork)) error stop "lwork: array must be contiguous"
       DnDormtr_bufferSize = hipsolverDnDormtr_bufferSize_raw(handle, side, uplo, trans, m, n, &
         c_loc(A), lda, c_loc(tau), c_loc(C), ldc, c_loc(lwork))
     end function hipsolverDnDormtr_bufferSize_native
@@ -26113,6 +25878,10 @@ contains
       integer(c_int), value :: ldc
       integer(c_int), target :: lwork(..)
       integer(c_int) :: DnCunmtr_bufferSize
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(tau)) error stop "tau: array must be contiguous"
+      if (.not. is_contiguous(C)) error stop "C: array must be contiguous"
+      if (.not. is_contiguous(lwork)) error stop "lwork: array must be contiguous"
       DnCunmtr_bufferSize = hipsolverDnCunmtr_bufferSize_raw(handle, side, uplo, trans, m, n, &
         c_loc(A), lda, c_loc(tau), c_loc(C), ldc, c_loc(lwork))
     end function hipsolverDnCunmtr_bufferSize_native
@@ -26156,6 +25925,10 @@ contains
       integer(c_int), value :: ldc
       integer(c_int), target :: lwork(..)
       integer(c_int) :: DnZunmtr_bufferSize
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(tau)) error stop "tau: array must be contiguous"
+      if (.not. is_contiguous(C)) error stop "C: array must be contiguous"
+      if (.not. is_contiguous(lwork)) error stop "lwork: array must be contiguous"
       DnZunmtr_bufferSize = hipsolverDnZunmtr_bufferSize_raw(handle, side, uplo, trans, m, n, &
         c_loc(A), lda, c_loc(tau), c_loc(C), ldc, c_loc(lwork))
     end function hipsolverDnZunmtr_bufferSize_native
@@ -26201,6 +25974,10 @@ contains
       integer(c_int), value :: lwork
       integer(c_int), target :: devInfo(..)
       integer(c_int) :: DnSormtr
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(tau)) error stop "tau: array must be contiguous"
+      if (.not. is_contiguous(C)) error stop "C: array must be contiguous"
+      if (.not. is_contiguous(devInfo)) error stop "devInfo: array must be contiguous"
       DnSormtr = hipsolverDnSormtr_raw(handle, side, uplo, trans, m, n, c_loc(A), lda, c_loc(tau), &
         c_loc(C), ldc, work, lwork, c_loc(devInfo))
     end function hipsolverDnSormtr_native
@@ -26248,6 +26025,10 @@ contains
       integer(c_int), value :: lwork
       integer(c_int), target :: devInfo(..)
       integer(c_int) :: DnDormtr
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(tau)) error stop "tau: array must be contiguous"
+      if (.not. is_contiguous(C)) error stop "C: array must be contiguous"
+      if (.not. is_contiguous(devInfo)) error stop "devInfo: array must be contiguous"
       DnDormtr = hipsolverDnDormtr_raw(handle, side, uplo, trans, m, n, c_loc(A), lda, c_loc(tau), &
         c_loc(C), ldc, work, lwork, c_loc(devInfo))
     end function hipsolverDnDormtr_native
@@ -26295,6 +26076,10 @@ contains
       integer(c_int), value :: lwork
       integer(c_int), target :: devInfo(..)
       integer(c_int) :: DnCunmtr
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(tau)) error stop "tau: array must be contiguous"
+      if (.not. is_contiguous(C)) error stop "C: array must be contiguous"
+      if (.not. is_contiguous(devInfo)) error stop "devInfo: array must be contiguous"
       DnCunmtr = hipsolverDnCunmtr_raw(handle, side, uplo, trans, m, n, c_loc(A), lda, c_loc(tau), &
         c_loc(C), ldc, work, lwork, c_loc(devInfo))
     end function hipsolverDnCunmtr_native
@@ -26342,6 +26127,10 @@ contains
       integer(c_int), value :: lwork
       integer(c_int), target :: devInfo(..)
       integer(c_int) :: DnZunmtr
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(tau)) error stop "tau: array must be contiguous"
+      if (.not. is_contiguous(C)) error stop "C: array must be contiguous"
+      if (.not. is_contiguous(devInfo)) error stop "devInfo: array must be contiguous"
       DnZunmtr = hipsolverDnZunmtr_raw(handle, side, uplo, trans, m, n, c_loc(A), lda, c_loc(tau), &
         c_loc(C), ldc, work, lwork, c_loc(devInfo))
     end function hipsolverDnZunmtr_native
@@ -26378,6 +26167,7 @@ contains
       integer(c_int), value :: n
       integer(c_int), target :: lwork(..)
       integer(c_int) :: DnSgebrd_bufferSize
+      if (.not. is_contiguous(lwork)) error stop "lwork: array must be contiguous"
       DnSgebrd_bufferSize = hipsolverDnSgebrd_bufferSize_raw(handle, m, n, c_loc(lwork))
     end function hipsolverDnSgebrd_bufferSize_native
 
@@ -26401,6 +26191,7 @@ contains
       integer(c_int), value :: n
       integer(c_int), target :: lwork(..)
       integer(c_int) :: DnDgebrd_bufferSize
+      if (.not. is_contiguous(lwork)) error stop "lwork: array must be contiguous"
       DnDgebrd_bufferSize = hipsolverDnDgebrd_bufferSize_raw(handle, m, n, c_loc(lwork))
     end function hipsolverDnDgebrd_bufferSize_native
 
@@ -26424,6 +26215,7 @@ contains
       integer(c_int), value :: n
       integer(c_int), target :: lwork(..)
       integer(c_int) :: DnCgebrd_bufferSize
+      if (.not. is_contiguous(lwork)) error stop "lwork: array must be contiguous"
       DnCgebrd_bufferSize = hipsolverDnCgebrd_bufferSize_raw(handle, m, n, c_loc(lwork))
     end function hipsolverDnCgebrd_bufferSize_native
 
@@ -26447,6 +26239,7 @@ contains
       integer(c_int), value :: n
       integer(c_int), target :: lwork(..)
       integer(c_int) :: DnZgebrd_bufferSize
+      if (.not. is_contiguous(lwork)) error stop "lwork: array must be contiguous"
       DnZgebrd_bufferSize = hipsolverDnZgebrd_bufferSize_raw(handle, m, n, c_loc(lwork))
     end function hipsolverDnZgebrd_bufferSize_native
 
@@ -26479,6 +26272,12 @@ contains
       integer(c_int), value :: lwork
       integer(c_int), target :: devInfo(..)
       integer(c_int) :: DnSgebrd
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(D)) error stop "D: array must be contiguous"
+      if (.not. is_contiguous(E)) error stop "E: array must be contiguous"
+      if (.not. is_contiguous(tauq)) error stop "tauq: array must be contiguous"
+      if (.not. is_contiguous(taup)) error stop "taup: array must be contiguous"
+      if (.not. is_contiguous(devInfo)) error stop "devInfo: array must be contiguous"
       DnSgebrd = hipsolverDnSgebrd_raw(handle, m, n, c_loc(A), lda, c_loc(D), c_loc(E), c_loc( &
         tauq), c_loc(taup), work, lwork, c_loc(devInfo))
     end function hipsolverDnSgebrd_native
@@ -26522,6 +26321,12 @@ contains
       integer(c_int), value :: lwork
       integer(c_int), target :: devInfo(..)
       integer(c_int) :: DnDgebrd
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(D)) error stop "D: array must be contiguous"
+      if (.not. is_contiguous(E)) error stop "E: array must be contiguous"
+      if (.not. is_contiguous(tauq)) error stop "tauq: array must be contiguous"
+      if (.not. is_contiguous(taup)) error stop "taup: array must be contiguous"
+      if (.not. is_contiguous(devInfo)) error stop "devInfo: array must be contiguous"
       DnDgebrd = hipsolverDnDgebrd_raw(handle, m, n, c_loc(A), lda, c_loc(D), c_loc(E), c_loc( &
         tauq), c_loc(taup), work, lwork, c_loc(devInfo))
     end function hipsolverDnDgebrd_native
@@ -26565,6 +26370,12 @@ contains
       integer(c_int), value :: lwork
       integer(c_int), target :: devInfo(..)
       integer(c_int) :: DnCgebrd
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(D)) error stop "D: array must be contiguous"
+      if (.not. is_contiguous(E)) error stop "E: array must be contiguous"
+      if (.not. is_contiguous(tauq)) error stop "tauq: array must be contiguous"
+      if (.not. is_contiguous(taup)) error stop "taup: array must be contiguous"
+      if (.not. is_contiguous(devInfo)) error stop "devInfo: array must be contiguous"
       DnCgebrd = hipsolverDnCgebrd_raw(handle, m, n, c_loc(A), lda, c_loc(D), c_loc(E), c_loc( &
         tauq), c_loc(taup), work, lwork, c_loc(devInfo))
     end function hipsolverDnCgebrd_native
@@ -26608,6 +26419,12 @@ contains
       integer(c_int), value :: lwork
       integer(c_int), target :: devInfo(..)
       integer(c_int) :: DnZgebrd
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(D)) error stop "D: array must be contiguous"
+      if (.not. is_contiguous(E)) error stop "E: array must be contiguous"
+      if (.not. is_contiguous(tauq)) error stop "tauq: array must be contiguous"
+      if (.not. is_contiguous(taup)) error stop "taup: array must be contiguous"
+      if (.not. is_contiguous(devInfo)) error stop "devInfo: array must be contiguous"
       DnZgebrd = hipsolverDnZgebrd_raw(handle, m, n, c_loc(A), lda, c_loc(D), c_loc(E), c_loc( &
         tauq), c_loc(taup), work, lwork, c_loc(devInfo))
     end function hipsolverDnZgebrd_native
@@ -26651,6 +26468,9 @@ contains
       type(c_ptr), value :: work
       type(c_ptr), value :: lwork
       integer(c_int) :: DnSSgels_bufferSize
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
+      if (.not. is_contiguous(X)) error stop "X: array must be contiguous"
       DnSSgels_bufferSize = hipsolverDnSSgels_bufferSize_raw(handle, m, n, nrhs, c_loc(A), lda, &
         c_loc(B), ldb, c_loc(X), ldx, work, lwork)
     end function hipsolverDnSSgels_bufferSize_native
@@ -26694,6 +26514,9 @@ contains
       type(c_ptr), value :: work
       type(c_ptr), value :: lwork
       integer(c_int) :: DnDDgels_bufferSize
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
+      if (.not. is_contiguous(X)) error stop "X: array must be contiguous"
       DnDDgels_bufferSize = hipsolverDnDDgels_bufferSize_raw(handle, m, n, nrhs, c_loc(A), lda, &
         c_loc(B), ldb, c_loc(X), ldx, work, lwork)
     end function hipsolverDnDDgels_bufferSize_native
@@ -26737,6 +26560,9 @@ contains
       type(c_ptr), value :: work
       type(c_ptr), value :: lwork
       integer(c_int) :: DnCCgels_bufferSize
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
+      if (.not. is_contiguous(X)) error stop "X: array must be contiguous"
       DnCCgels_bufferSize = hipsolverDnCCgels_bufferSize_raw(handle, m, n, nrhs, c_loc(A), lda, &
         c_loc(B), ldb, c_loc(X), ldx, work, lwork)
     end function hipsolverDnCCgels_bufferSize_native
@@ -26780,6 +26606,9 @@ contains
       type(c_ptr), value :: work
       type(c_ptr), value :: lwork
       integer(c_int) :: DnZZgels_bufferSize
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
+      if (.not. is_contiguous(X)) error stop "X: array must be contiguous"
       DnZZgels_bufferSize = hipsolverDnZZgels_bufferSize_raw(handle, m, n, nrhs, c_loc(A), lda, &
         c_loc(B), ldb, c_loc(X), ldx, work, lwork)
     end function hipsolverDnZZgels_bufferSize_native
@@ -26825,6 +26654,11 @@ contains
       integer(c_int), target :: niters(..)
       integer(c_int), target :: devInfo(..)
       integer(c_int) :: DnSSgels
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
+      if (.not. is_contiguous(X)) error stop "X: array must be contiguous"
+      if (.not. is_contiguous(niters)) error stop "niters: array must be contiguous"
+      if (.not. is_contiguous(devInfo)) error stop "devInfo: array must be contiguous"
       DnSSgels = hipsolverDnSSgels_raw(handle, m, n, nrhs, c_loc(A), lda, c_loc(B), ldb, c_loc(X), &
         ldx, work, lwork, c_loc(niters), c_loc(devInfo))
     end function hipsolverDnSSgels_native
@@ -26872,6 +26706,11 @@ contains
       integer(c_int), target :: niters(..)
       integer(c_int), target :: devInfo(..)
       integer(c_int) :: DnDDgels
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
+      if (.not. is_contiguous(X)) error stop "X: array must be contiguous"
+      if (.not. is_contiguous(niters)) error stop "niters: array must be contiguous"
+      if (.not. is_contiguous(devInfo)) error stop "devInfo: array must be contiguous"
       DnDDgels = hipsolverDnDDgels_raw(handle, m, n, nrhs, c_loc(A), lda, c_loc(B), ldb, c_loc(X), &
         ldx, work, lwork, c_loc(niters), c_loc(devInfo))
     end function hipsolverDnDDgels_native
@@ -26919,6 +26758,11 @@ contains
       integer(c_int), target :: niters(..)
       integer(c_int), target :: devInfo(..)
       integer(c_int) :: DnCCgels
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
+      if (.not. is_contiguous(X)) error stop "X: array must be contiguous"
+      if (.not. is_contiguous(niters)) error stop "niters: array must be contiguous"
+      if (.not. is_contiguous(devInfo)) error stop "devInfo: array must be contiguous"
       DnCCgels = hipsolverDnCCgels_raw(handle, m, n, nrhs, c_loc(A), lda, c_loc(B), ldb, c_loc(X), &
         ldx, work, lwork, c_loc(niters), c_loc(devInfo))
     end function hipsolverDnCCgels_native
@@ -26966,6 +26810,11 @@ contains
       integer(c_int), target :: niters(..)
       integer(c_int), target :: devInfo(..)
       integer(c_int) :: DnZZgels
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
+      if (.not. is_contiguous(X)) error stop "X: array must be contiguous"
+      if (.not. is_contiguous(niters)) error stop "niters: array must be contiguous"
+      if (.not. is_contiguous(devInfo)) error stop "devInfo: array must be contiguous"
       DnZZgels = hipsolverDnZZgels_raw(handle, m, n, nrhs, c_loc(A), lda, c_loc(B), ldb, c_loc(X), &
         ldx, work, lwork, c_loc(niters), c_loc(devInfo))
     end function hipsolverDnZZgels_native
@@ -27005,6 +26854,8 @@ contains
       integer(c_int), value :: lda
       integer(c_int), target :: lwork(..)
       integer(c_int) :: DnSgeqrf_bufferSize
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(lwork)) error stop "lwork: array must be contiguous"
       DnSgeqrf_bufferSize = hipsolverDnSgeqrf_bufferSize_raw(handle, m, n, c_loc(A), lda, c_loc( &
         lwork))
     end function hipsolverDnSgeqrf_bufferSize_native
@@ -27035,6 +26886,8 @@ contains
       integer(c_int), value :: lda
       integer(c_int), target :: lwork(..)
       integer(c_int) :: DnDgeqrf_bufferSize
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(lwork)) error stop "lwork: array must be contiguous"
       DnDgeqrf_bufferSize = hipsolverDnDgeqrf_bufferSize_raw(handle, m, n, c_loc(A), lda, c_loc( &
         lwork))
     end function hipsolverDnDgeqrf_bufferSize_native
@@ -27065,6 +26918,8 @@ contains
       integer(c_int), value :: lda
       integer(c_int), target :: lwork(..)
       integer(c_int) :: DnCgeqrf_bufferSize
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(lwork)) error stop "lwork: array must be contiguous"
       DnCgeqrf_bufferSize = hipsolverDnCgeqrf_bufferSize_raw(handle, m, n, c_loc(A), lda, c_loc( &
         lwork))
     end function hipsolverDnCgeqrf_bufferSize_native
@@ -27095,6 +26950,8 @@ contains
       integer(c_int), value :: lda
       integer(c_int), target :: lwork(..)
       integer(c_int) :: DnZgeqrf_bufferSize
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(lwork)) error stop "lwork: array must be contiguous"
       DnZgeqrf_bufferSize = hipsolverDnZgeqrf_bufferSize_raw(handle, m, n, c_loc(A), lda, c_loc( &
         lwork))
     end function hipsolverDnZgeqrf_bufferSize_native
@@ -27128,6 +26985,9 @@ contains
       integer(c_int), value :: lwork
       integer(c_int), target :: devInfo(..)
       integer(c_int) :: DnSgeqrf
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(tau)) error stop "tau: array must be contiguous"
+      if (.not. is_contiguous(devInfo)) error stop "devInfo: array must be contiguous"
       DnSgeqrf = hipsolverDnSgeqrf_raw(handle, m, n, c_loc(A), lda, c_loc(tau), work, lwork, &
         c_loc(devInfo))
     end function hipsolverDnSgeqrf_native
@@ -27164,6 +27024,9 @@ contains
       integer(c_int), value :: lwork
       integer(c_int), target :: devInfo(..)
       integer(c_int) :: DnDgeqrf
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(tau)) error stop "tau: array must be contiguous"
+      if (.not. is_contiguous(devInfo)) error stop "devInfo: array must be contiguous"
       DnDgeqrf = hipsolverDnDgeqrf_raw(handle, m, n, c_loc(A), lda, c_loc(tau), work, lwork, &
         c_loc(devInfo))
     end function hipsolverDnDgeqrf_native
@@ -27200,6 +27063,9 @@ contains
       integer(c_int), value :: lwork
       integer(c_int), target :: devInfo(..)
       integer(c_int) :: DnCgeqrf
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(tau)) error stop "tau: array must be contiguous"
+      if (.not. is_contiguous(devInfo)) error stop "devInfo: array must be contiguous"
       DnCgeqrf = hipsolverDnCgeqrf_raw(handle, m, n, c_loc(A), lda, c_loc(tau), work, lwork, &
         c_loc(devInfo))
     end function hipsolverDnCgeqrf_native
@@ -27236,6 +27102,9 @@ contains
       integer(c_int), value :: lwork
       integer(c_int), target :: devInfo(..)
       integer(c_int) :: DnZgeqrf
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(tau)) error stop "tau: array must be contiguous"
+      if (.not. is_contiguous(devInfo)) error stop "devInfo: array must be contiguous"
       DnZgeqrf = hipsolverDnZgeqrf_raw(handle, m, n, c_loc(A), lda, c_loc(tau), work, lwork, &
         c_loc(devInfo))
     end function hipsolverDnZgeqrf_native
@@ -27275,6 +27144,10 @@ contains
       type(c_ptr), value :: work
       type(c_ptr), value :: lwork
       integer(c_int) :: DnSSgesv_bufferSize
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(devIpiv)) error stop "devIpiv: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
+      if (.not. is_contiguous(X)) error stop "X: array must be contiguous"
       DnSSgesv_bufferSize = hipsolverDnSSgesv_bufferSize_raw(handle, n, nrhs, c_loc(A), lda, &
         c_loc(devIpiv), c_loc(B), ldb, c_loc(X), ldx, work, lwork)
     end function hipsolverDnSSgesv_bufferSize_native
@@ -27318,6 +27191,10 @@ contains
       type(c_ptr), value :: work
       type(c_ptr), value :: lwork
       integer(c_int) :: DnDDgesv_bufferSize
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(devIpiv)) error stop "devIpiv: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
+      if (.not. is_contiguous(X)) error stop "X: array must be contiguous"
       DnDDgesv_bufferSize = hipsolverDnDDgesv_bufferSize_raw(handle, n, nrhs, c_loc(A), lda, &
         c_loc(devIpiv), c_loc(B), ldb, c_loc(X), ldx, work, lwork)
     end function hipsolverDnDDgesv_bufferSize_native
@@ -27361,6 +27238,10 @@ contains
       type(c_ptr), value :: work
       type(c_ptr), value :: lwork
       integer(c_int) :: DnCCgesv_bufferSize
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(devIpiv)) error stop "devIpiv: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
+      if (.not. is_contiguous(X)) error stop "X: array must be contiguous"
       DnCCgesv_bufferSize = hipsolverDnCCgesv_bufferSize_raw(handle, n, nrhs, c_loc(A), lda, &
         c_loc(devIpiv), c_loc(B), ldb, c_loc(X), ldx, work, lwork)
     end function hipsolverDnCCgesv_bufferSize_native
@@ -27404,6 +27285,10 @@ contains
       type(c_ptr), value :: work
       type(c_ptr), value :: lwork
       integer(c_int) :: DnZZgesv_bufferSize
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(devIpiv)) error stop "devIpiv: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
+      if (.not. is_contiguous(X)) error stop "X: array must be contiguous"
       DnZZgesv_bufferSize = hipsolverDnZZgesv_bufferSize_raw(handle, n, nrhs, c_loc(A), lda, &
         c_loc(devIpiv), c_loc(B), ldb, c_loc(X), ldx, work, lwork)
     end function hipsolverDnZZgesv_bufferSize_native
@@ -27449,6 +27334,12 @@ contains
       integer(c_int), target :: niters(..)
       integer(c_int), target :: devInfo(..)
       integer(c_int) :: DnSSgesv
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(devIpiv)) error stop "devIpiv: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
+      if (.not. is_contiguous(X)) error stop "X: array must be contiguous"
+      if (.not. is_contiguous(niters)) error stop "niters: array must be contiguous"
+      if (.not. is_contiguous(devInfo)) error stop "devInfo: array must be contiguous"
       DnSSgesv = hipsolverDnSSgesv_raw(handle, n, nrhs, c_loc(A), lda, c_loc(devIpiv), c_loc(B), &
         ldb, c_loc(X), ldx, work, lwork, c_loc(niters), c_loc(devInfo))
     end function hipsolverDnSSgesv_native
@@ -27496,6 +27387,12 @@ contains
       integer(c_int), target :: niters(..)
       integer(c_int), target :: devInfo(..)
       integer(c_int) :: DnDDgesv
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(devIpiv)) error stop "devIpiv: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
+      if (.not. is_contiguous(X)) error stop "X: array must be contiguous"
+      if (.not. is_contiguous(niters)) error stop "niters: array must be contiguous"
+      if (.not. is_contiguous(devInfo)) error stop "devInfo: array must be contiguous"
       DnDDgesv = hipsolverDnDDgesv_raw(handle, n, nrhs, c_loc(A), lda, c_loc(devIpiv), c_loc(B), &
         ldb, c_loc(X), ldx, work, lwork, c_loc(niters), c_loc(devInfo))
     end function hipsolverDnDDgesv_native
@@ -27543,6 +27440,12 @@ contains
       integer(c_int), target :: niters(..)
       integer(c_int), target :: devInfo(..)
       integer(c_int) :: DnCCgesv
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(devIpiv)) error stop "devIpiv: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
+      if (.not. is_contiguous(X)) error stop "X: array must be contiguous"
+      if (.not. is_contiguous(niters)) error stop "niters: array must be contiguous"
+      if (.not. is_contiguous(devInfo)) error stop "devInfo: array must be contiguous"
       DnCCgesv = hipsolverDnCCgesv_raw(handle, n, nrhs, c_loc(A), lda, c_loc(devIpiv), c_loc(B), &
         ldb, c_loc(X), ldx, work, lwork, c_loc(niters), c_loc(devInfo))
     end function hipsolverDnCCgesv_native
@@ -27590,6 +27493,12 @@ contains
       integer(c_int), target :: niters(..)
       integer(c_int), target :: devInfo(..)
       integer(c_int) :: DnZZgesv
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(devIpiv)) error stop "devIpiv: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
+      if (.not. is_contiguous(X)) error stop "X: array must be contiguous"
+      if (.not. is_contiguous(niters)) error stop "niters: array must be contiguous"
+      if (.not. is_contiguous(devInfo)) error stop "devInfo: array must be contiguous"
       DnZZgesv = hipsolverDnZZgesv_raw(handle, n, nrhs, c_loc(A), lda, c_loc(devIpiv), c_loc(B), &
         ldb, c_loc(X), ldx, work, lwork, c_loc(niters), c_loc(devInfo))
     end function hipsolverDnZZgesv_native
@@ -27626,6 +27535,7 @@ contains
       integer(c_int), value :: n
       integer(c_int), target :: lwork(..)
       integer(c_int) :: DnSgesvd_bufferSize
+      if (.not. is_contiguous(lwork)) error stop "lwork: array must be contiguous"
       DnSgesvd_bufferSize = hipsolverDnSgesvd_bufferSize_raw(handle, m, n, c_loc(lwork))
     end function hipsolverDnSgesvd_bufferSize_native
 
@@ -27649,6 +27559,7 @@ contains
       integer(c_int), value :: n
       integer(c_int), target :: lwork(..)
       integer(c_int) :: DnDgesvd_bufferSize
+      if (.not. is_contiguous(lwork)) error stop "lwork: array must be contiguous"
       DnDgesvd_bufferSize = hipsolverDnDgesvd_bufferSize_raw(handle, m, n, c_loc(lwork))
     end function hipsolverDnDgesvd_bufferSize_native
 
@@ -27672,6 +27583,7 @@ contains
       integer(c_int), value :: n
       integer(c_int), target :: lwork(..)
       integer(c_int) :: DnCgesvd_bufferSize
+      if (.not. is_contiguous(lwork)) error stop "lwork: array must be contiguous"
       DnCgesvd_bufferSize = hipsolverDnCgesvd_bufferSize_raw(handle, m, n, c_loc(lwork))
     end function hipsolverDnCgesvd_bufferSize_native
 
@@ -27695,6 +27607,7 @@ contains
       integer(c_int), value :: n
       integer(c_int), target :: lwork(..)
       integer(c_int) :: DnZgesvd_bufferSize
+      if (.not. is_contiguous(lwork)) error stop "lwork: array must be contiguous"
       DnZgesvd_bufferSize = hipsolverDnZgesvd_bufferSize_raw(handle, m, n, c_loc(lwork))
     end function hipsolverDnZgesvd_bufferSize_native
 
@@ -27731,6 +27644,12 @@ contains
       real(c_float), target :: rwork(..)
       integer(c_int), target :: devInfo(..)
       integer(c_int) :: DnSgesvd
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(S)) error stop "S: array must be contiguous"
+      if (.not. is_contiguous(U)) error stop "U: array must be contiguous"
+      if (.not. is_contiguous(V)) error stop "V: array must be contiguous"
+      if (.not. is_contiguous(rwork)) error stop "rwork: array must be contiguous"
+      if (.not. is_contiguous(devInfo)) error stop "devInfo: array must be contiguous"
       DnSgesvd = hipsolverDnSgesvd_raw(handle, jobu, jobv, m, n, c_loc(A), lda, c_loc(S), c_loc( &
         U), ldu, c_loc(V), ldv, work, lwork, c_loc(rwork), c_loc(devInfo))
     end function hipsolverDnSgesvd_native
@@ -27782,6 +27701,12 @@ contains
       real(c_double), target :: rwork(..)
       integer(c_int), target :: devInfo(..)
       integer(c_int) :: DnDgesvd
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(S)) error stop "S: array must be contiguous"
+      if (.not. is_contiguous(U)) error stop "U: array must be contiguous"
+      if (.not. is_contiguous(V)) error stop "V: array must be contiguous"
+      if (.not. is_contiguous(rwork)) error stop "rwork: array must be contiguous"
+      if (.not. is_contiguous(devInfo)) error stop "devInfo: array must be contiguous"
       DnDgesvd = hipsolverDnDgesvd_raw(handle, jobu, jobv, m, n, c_loc(A), lda, c_loc(S), c_loc( &
         U), ldu, c_loc(V), ldv, work, lwork, c_loc(rwork), c_loc(devInfo))
     end function hipsolverDnDgesvd_native
@@ -27833,6 +27758,12 @@ contains
       real(c_float), target :: rwork(..)
       integer(c_int), target :: devInfo(..)
       integer(c_int) :: DnCgesvd
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(S)) error stop "S: array must be contiguous"
+      if (.not. is_contiguous(U)) error stop "U: array must be contiguous"
+      if (.not. is_contiguous(V)) error stop "V: array must be contiguous"
+      if (.not. is_contiguous(rwork)) error stop "rwork: array must be contiguous"
+      if (.not. is_contiguous(devInfo)) error stop "devInfo: array must be contiguous"
       DnCgesvd = hipsolverDnCgesvd_raw(handle, jobu, jobv, m, n, c_loc(A), lda, c_loc(S), c_loc( &
         U), ldu, c_loc(V), ldv, work, lwork, c_loc(rwork), c_loc(devInfo))
     end function hipsolverDnCgesvd_native
@@ -27884,6 +27815,12 @@ contains
       real(c_double), target :: rwork(..)
       integer(c_int), target :: devInfo(..)
       integer(c_int) :: DnZgesvd
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(S)) error stop "S: array must be contiguous"
+      if (.not. is_contiguous(U)) error stop "U: array must be contiguous"
+      if (.not. is_contiguous(V)) error stop "V: array must be contiguous"
+      if (.not. is_contiguous(rwork)) error stop "rwork: array must be contiguous"
+      if (.not. is_contiguous(devInfo)) error stop "devInfo: array must be contiguous"
       DnZgesvd = hipsolverDnZgesvd_raw(handle, jobu, jobv, m, n, c_loc(A), lda, c_loc(S), c_loc( &
         U), ldu, c_loc(V), ldv, work, lwork, c_loc(rwork), c_loc(devInfo))
     end function hipsolverDnZgesvd_native
@@ -27933,6 +27870,11 @@ contains
       integer(c_int), target :: lwork(..)
       type(c_ptr), value :: params
       integer(c_int) :: DnSgesvdj_bufferSize
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(S)) error stop "S: array must be contiguous"
+      if (.not. is_contiguous(U)) error stop "U: array must be contiguous"
+      if (.not. is_contiguous(V)) error stop "V: array must be contiguous"
+      if (.not. is_contiguous(lwork)) error stop "lwork: array must be contiguous"
       DnSgesvdj_bufferSize = hipsolverDnSgesvdj_bufferSize_raw(handle, jobz, econ, m, n, c_loc(A), &
         lda, c_loc(S), c_loc(U), ldu, c_loc(V), ldv, c_loc(lwork), params)
     end function hipsolverDnSgesvdj_bufferSize_native
@@ -27980,6 +27922,11 @@ contains
       integer(c_int), target :: lwork(..)
       type(c_ptr), value :: params
       integer(c_int) :: DnDgesvdj_bufferSize
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(S)) error stop "S: array must be contiguous"
+      if (.not. is_contiguous(U)) error stop "U: array must be contiguous"
+      if (.not. is_contiguous(V)) error stop "V: array must be contiguous"
+      if (.not. is_contiguous(lwork)) error stop "lwork: array must be contiguous"
       DnDgesvdj_bufferSize = hipsolverDnDgesvdj_bufferSize_raw(handle, jobz, econ, m, n, c_loc(A), &
         lda, c_loc(S), c_loc(U), ldu, c_loc(V), ldv, c_loc(lwork), params)
     end function hipsolverDnDgesvdj_bufferSize_native
@@ -28027,6 +27974,11 @@ contains
       integer(c_int), target :: lwork(..)
       type(c_ptr), value :: params
       integer(c_int) :: DnCgesvdj_bufferSize
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(S)) error stop "S: array must be contiguous"
+      if (.not. is_contiguous(U)) error stop "U: array must be contiguous"
+      if (.not. is_contiguous(V)) error stop "V: array must be contiguous"
+      if (.not. is_contiguous(lwork)) error stop "lwork: array must be contiguous"
       DnCgesvdj_bufferSize = hipsolverDnCgesvdj_bufferSize_raw(handle, jobz, econ, m, n, c_loc(A), &
         lda, c_loc(S), c_loc(U), ldu, c_loc(V), ldv, c_loc(lwork), params)
     end function hipsolverDnCgesvdj_bufferSize_native
@@ -28074,6 +28026,11 @@ contains
       integer(c_int), target :: lwork(..)
       type(c_ptr), value :: params
       integer(c_int) :: DnZgesvdj_bufferSize
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(S)) error stop "S: array must be contiguous"
+      if (.not. is_contiguous(U)) error stop "U: array must be contiguous"
+      if (.not. is_contiguous(V)) error stop "V: array must be contiguous"
+      if (.not. is_contiguous(lwork)) error stop "lwork: array must be contiguous"
       DnZgesvdj_bufferSize = hipsolverDnZgesvdj_bufferSize_raw(handle, jobz, econ, m, n, c_loc(A), &
         lda, c_loc(S), c_loc(U), ldu, c_loc(V), ldv, c_loc(lwork), params)
     end function hipsolverDnZgesvdj_bufferSize_native
@@ -28123,6 +28080,11 @@ contains
       integer(c_int), target :: devInfo(..)
       type(c_ptr), value :: params
       integer(c_int) :: DnSgesvdj
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(S)) error stop "S: array must be contiguous"
+      if (.not. is_contiguous(U)) error stop "U: array must be contiguous"
+      if (.not. is_contiguous(V)) error stop "V: array must be contiguous"
+      if (.not. is_contiguous(devInfo)) error stop "devInfo: array must be contiguous"
       DnSgesvdj = hipsolverDnSgesvdj_raw(handle, jobz, econ, m, n, c_loc(A), lda, c_loc(S), c_loc( &
         U), ldu, c_loc(V), ldv, work, lwork, c_loc(devInfo), params)
     end function hipsolverDnSgesvdj_native
@@ -28174,6 +28136,11 @@ contains
       integer(c_int), target :: devInfo(..)
       type(c_ptr), value :: params
       integer(c_int) :: DnDgesvdj
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(S)) error stop "S: array must be contiguous"
+      if (.not. is_contiguous(U)) error stop "U: array must be contiguous"
+      if (.not. is_contiguous(V)) error stop "V: array must be contiguous"
+      if (.not. is_contiguous(devInfo)) error stop "devInfo: array must be contiguous"
       DnDgesvdj = hipsolverDnDgesvdj_raw(handle, jobz, econ, m, n, c_loc(A), lda, c_loc(S), c_loc( &
         U), ldu, c_loc(V), ldv, work, lwork, c_loc(devInfo), params)
     end function hipsolverDnDgesvdj_native
@@ -28225,6 +28192,11 @@ contains
       integer(c_int), target :: devInfo(..)
       type(c_ptr), value :: params
       integer(c_int) :: DnCgesvdj
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(S)) error stop "S: array must be contiguous"
+      if (.not. is_contiguous(U)) error stop "U: array must be contiguous"
+      if (.not. is_contiguous(V)) error stop "V: array must be contiguous"
+      if (.not. is_contiguous(devInfo)) error stop "devInfo: array must be contiguous"
       DnCgesvdj = hipsolverDnCgesvdj_raw(handle, jobz, econ, m, n, c_loc(A), lda, c_loc(S), c_loc( &
         U), ldu, c_loc(V), ldv, work, lwork, c_loc(devInfo), params)
     end function hipsolverDnCgesvdj_native
@@ -28276,6 +28248,11 @@ contains
       integer(c_int), target :: devInfo(..)
       type(c_ptr), value :: params
       integer(c_int) :: DnZgesvdj
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(S)) error stop "S: array must be contiguous"
+      if (.not. is_contiguous(U)) error stop "U: array must be contiguous"
+      if (.not. is_contiguous(V)) error stop "V: array must be contiguous"
+      if (.not. is_contiguous(devInfo)) error stop "devInfo: array must be contiguous"
       DnZgesvdj = hipsolverDnZgesvdj_raw(handle, jobz, econ, m, n, c_loc(A), lda, c_loc(S), c_loc( &
         U), ldu, c_loc(V), ldv, work, lwork, c_loc(devInfo), params)
     end function hipsolverDnZgesvdj_native
@@ -28325,6 +28302,11 @@ contains
       type(c_ptr), value :: params
       integer(c_int), value :: batch_count
       integer(c_int) :: DnSgesvdjBatched_bufferSize
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(S)) error stop "S: array must be contiguous"
+      if (.not. is_contiguous(U)) error stop "U: array must be contiguous"
+      if (.not. is_contiguous(V)) error stop "V: array must be contiguous"
+      if (.not. is_contiguous(lwork)) error stop "lwork: array must be contiguous"
       DnSgesvdjBatched_bufferSize = hipsolverDnSgesvdjBatched_bufferSize_raw(handle, jobz, m, n, &
         c_loc(A), lda, c_loc(S), c_loc(U), ldu, c_loc(V), ldv, c_loc(lwork), params, batch_count)
     end function hipsolverDnSgesvdjBatched_bufferSize_native
@@ -28372,6 +28354,11 @@ contains
       type(c_ptr), value :: params
       integer(c_int), value :: batch_count
       integer(c_int) :: DnDgesvdjBatched_bufferSize
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(S)) error stop "S: array must be contiguous"
+      if (.not. is_contiguous(U)) error stop "U: array must be contiguous"
+      if (.not. is_contiguous(V)) error stop "V: array must be contiguous"
+      if (.not. is_contiguous(lwork)) error stop "lwork: array must be contiguous"
       DnDgesvdjBatched_bufferSize = hipsolverDnDgesvdjBatched_bufferSize_raw(handle, jobz, m, n, &
         c_loc(A), lda, c_loc(S), c_loc(U), ldu, c_loc(V), ldv, c_loc(lwork), params, batch_count)
     end function hipsolverDnDgesvdjBatched_bufferSize_native
@@ -28419,6 +28406,11 @@ contains
       type(c_ptr), value :: params
       integer(c_int), value :: batch_count
       integer(c_int) :: DnCgesvdjBatched_bufferSize
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(S)) error stop "S: array must be contiguous"
+      if (.not. is_contiguous(U)) error stop "U: array must be contiguous"
+      if (.not. is_contiguous(V)) error stop "V: array must be contiguous"
+      if (.not. is_contiguous(lwork)) error stop "lwork: array must be contiguous"
       DnCgesvdjBatched_bufferSize = hipsolverDnCgesvdjBatched_bufferSize_raw(handle, jobz, m, n, &
         c_loc(A), lda, c_loc(S), c_loc(U), ldu, c_loc(V), ldv, c_loc(lwork), params, batch_count)
     end function hipsolverDnCgesvdjBatched_bufferSize_native
@@ -28466,6 +28458,11 @@ contains
       type(c_ptr), value :: params
       integer(c_int), value :: batch_count
       integer(c_int) :: DnZgesvdjBatched_bufferSize
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(S)) error stop "S: array must be contiguous"
+      if (.not. is_contiguous(U)) error stop "U: array must be contiguous"
+      if (.not. is_contiguous(V)) error stop "V: array must be contiguous"
+      if (.not. is_contiguous(lwork)) error stop "lwork: array must be contiguous"
       DnZgesvdjBatched_bufferSize = hipsolverDnZgesvdjBatched_bufferSize_raw(handle, jobz, m, n, &
         c_loc(A), lda, c_loc(S), c_loc(U), ldu, c_loc(V), ldv, c_loc(lwork), params, batch_count)
     end function hipsolverDnZgesvdjBatched_bufferSize_native
@@ -28515,6 +28512,11 @@ contains
       type(c_ptr), value :: params
       integer(c_int), value :: batch_count
       integer(c_int) :: DnSgesvdjBatched
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(S)) error stop "S: array must be contiguous"
+      if (.not. is_contiguous(U)) error stop "U: array must be contiguous"
+      if (.not. is_contiguous(V)) error stop "V: array must be contiguous"
+      if (.not. is_contiguous(devInfo)) error stop "devInfo: array must be contiguous"
       DnSgesvdjBatched = hipsolverDnSgesvdjBatched_raw(handle, jobz, m, n, c_loc(A), lda, c_loc( &
         S), c_loc(U), ldu, c_loc(V), ldv, work, lwork, c_loc(devInfo), params, batch_count)
     end function hipsolverDnSgesvdjBatched_native
@@ -28566,6 +28568,11 @@ contains
       type(c_ptr), value :: params
       integer(c_int), value :: batch_count
       integer(c_int) :: DnDgesvdjBatched
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(S)) error stop "S: array must be contiguous"
+      if (.not. is_contiguous(U)) error stop "U: array must be contiguous"
+      if (.not. is_contiguous(V)) error stop "V: array must be contiguous"
+      if (.not. is_contiguous(devInfo)) error stop "devInfo: array must be contiguous"
       DnDgesvdjBatched = hipsolverDnDgesvdjBatched_raw(handle, jobz, m, n, c_loc(A), lda, c_loc( &
         S), c_loc(U), ldu, c_loc(V), ldv, work, lwork, c_loc(devInfo), params, batch_count)
     end function hipsolverDnDgesvdjBatched_native
@@ -28617,6 +28624,11 @@ contains
       type(c_ptr), value :: params
       integer(c_int), value :: batch_count
       integer(c_int) :: DnCgesvdjBatched
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(S)) error stop "S: array must be contiguous"
+      if (.not. is_contiguous(U)) error stop "U: array must be contiguous"
+      if (.not. is_contiguous(V)) error stop "V: array must be contiguous"
+      if (.not. is_contiguous(devInfo)) error stop "devInfo: array must be contiguous"
       DnCgesvdjBatched = hipsolverDnCgesvdjBatched_raw(handle, jobz, m, n, c_loc(A), lda, c_loc( &
         S), c_loc(U), ldu, c_loc(V), ldv, work, lwork, c_loc(devInfo), params, batch_count)
     end function hipsolverDnCgesvdjBatched_native
@@ -28668,6 +28680,11 @@ contains
       type(c_ptr), value :: params
       integer(c_int), value :: batch_count
       integer(c_int) :: DnZgesvdjBatched
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(S)) error stop "S: array must be contiguous"
+      if (.not. is_contiguous(U)) error stop "U: array must be contiguous"
+      if (.not. is_contiguous(V)) error stop "V: array must be contiguous"
+      if (.not. is_contiguous(devInfo)) error stop "devInfo: array must be contiguous"
       DnZgesvdjBatched = hipsolverDnZgesvdjBatched_raw(handle, jobz, m, n, c_loc(A), lda, c_loc( &
         S), c_loc(U), ldu, c_loc(V), ldv, work, lwork, c_loc(devInfo), params, batch_count)
     end function hipsolverDnZgesvdjBatched_native
@@ -28722,6 +28739,11 @@ contains
       integer(c_int), target :: lwork(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: DnSgesvdaStridedBatched_bufferSize
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(S)) error stop "S: array must be contiguous"
+      if (.not. is_contiguous(U)) error stop "U: array must be contiguous"
+      if (.not. is_contiguous(V)) error stop "V: array must be contiguous"
+      if (.not. is_contiguous(lwork)) error stop "lwork: array must be contiguous"
       DnSgesvdaStridedBatched_bufferSize = hipsolverDnSgesvdaStridedBatched_bufferSize_raw(handle, &
         jobz, rank, m, n, c_loc(A), lda, strideA, c_loc(S), strideS, c_loc(U), ldu, strideU, &
         c_loc(V), ldv, strideV, c_loc(lwork), batch_count)
@@ -28781,6 +28803,11 @@ contains
       integer(c_int), target :: lwork(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: DnDgesvdaStridedBatched_bufferSize
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(S)) error stop "S: array must be contiguous"
+      if (.not. is_contiguous(U)) error stop "U: array must be contiguous"
+      if (.not. is_contiguous(V)) error stop "V: array must be contiguous"
+      if (.not. is_contiguous(lwork)) error stop "lwork: array must be contiguous"
       DnDgesvdaStridedBatched_bufferSize = hipsolverDnDgesvdaStridedBatched_bufferSize_raw(handle, &
         jobz, rank, m, n, c_loc(A), lda, strideA, c_loc(S), strideS, c_loc(U), ldu, strideU, &
         c_loc(V), ldv, strideV, c_loc(lwork), batch_count)
@@ -28840,6 +28867,11 @@ contains
       integer(c_int), target :: lwork(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: DnCgesvdaStridedBatched_bufferSize
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(S)) error stop "S: array must be contiguous"
+      if (.not. is_contiguous(U)) error stop "U: array must be contiguous"
+      if (.not. is_contiguous(V)) error stop "V: array must be contiguous"
+      if (.not. is_contiguous(lwork)) error stop "lwork: array must be contiguous"
       DnCgesvdaStridedBatched_bufferSize = hipsolverDnCgesvdaStridedBatched_bufferSize_raw(handle, &
         jobz, rank, m, n, c_loc(A), lda, strideA, c_loc(S), strideS, c_loc(U), ldu, strideU, &
         c_loc(V), ldv, strideV, c_loc(lwork), batch_count)
@@ -28899,6 +28931,11 @@ contains
       integer(c_int), target :: lwork(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: DnZgesvdaStridedBatched_bufferSize
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(S)) error stop "S: array must be contiguous"
+      if (.not. is_contiguous(U)) error stop "U: array must be contiguous"
+      if (.not. is_contiguous(V)) error stop "V: array must be contiguous"
+      if (.not. is_contiguous(lwork)) error stop "lwork: array must be contiguous"
       DnZgesvdaStridedBatched_bufferSize = hipsolverDnZgesvdaStridedBatched_bufferSize_raw(handle, &
         jobz, rank, m, n, c_loc(A), lda, strideA, c_loc(S), strideS, c_loc(U), ldu, strideU, &
         c_loc(V), ldv, strideV, c_loc(lwork), batch_count)
@@ -28961,6 +28998,12 @@ contains
       real(c_double), target :: hRnrmF(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: DnSgesvdaStridedBatched
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(S)) error stop "S: array must be contiguous"
+      if (.not. is_contiguous(U)) error stop "U: array must be contiguous"
+      if (.not. is_contiguous(V)) error stop "V: array must be contiguous"
+      if (.not. is_contiguous(devInfo)) error stop "devInfo: array must be contiguous"
+      if (.not. is_contiguous(hRnrmF)) error stop "hRnrmF: array must be contiguous"
       DnSgesvdaStridedBatched = hipsolverDnSgesvdaStridedBatched_raw(handle, jobz, rank, m, n, &
         c_loc(A), lda, strideA, c_loc(S), strideS, c_loc(U), ldu, strideU, c_loc(V), ldv, strideV, &
         work, lwork, c_loc(devInfo), c_loc(hRnrmF), batch_count)
@@ -29026,6 +29069,12 @@ contains
       real(c_double), target :: hRnrmF(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: DnDgesvdaStridedBatched
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(S)) error stop "S: array must be contiguous"
+      if (.not. is_contiguous(U)) error stop "U: array must be contiguous"
+      if (.not. is_contiguous(V)) error stop "V: array must be contiguous"
+      if (.not. is_contiguous(devInfo)) error stop "devInfo: array must be contiguous"
+      if (.not. is_contiguous(hRnrmF)) error stop "hRnrmF: array must be contiguous"
       DnDgesvdaStridedBatched = hipsolverDnDgesvdaStridedBatched_raw(handle, jobz, rank, m, n, &
         c_loc(A), lda, strideA, c_loc(S), strideS, c_loc(U), ldu, strideU, c_loc(V), ldv, strideV, &
         work, lwork, c_loc(devInfo), c_loc(hRnrmF), batch_count)
@@ -29091,6 +29140,12 @@ contains
       real(c_double), target :: hRnrmF(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: DnCgesvdaStridedBatched
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(S)) error stop "S: array must be contiguous"
+      if (.not. is_contiguous(U)) error stop "U: array must be contiguous"
+      if (.not. is_contiguous(V)) error stop "V: array must be contiguous"
+      if (.not. is_contiguous(devInfo)) error stop "devInfo: array must be contiguous"
+      if (.not. is_contiguous(hRnrmF)) error stop "hRnrmF: array must be contiguous"
       DnCgesvdaStridedBatched = hipsolverDnCgesvdaStridedBatched_raw(handle, jobz, rank, m, n, &
         c_loc(A), lda, strideA, c_loc(S), strideS, c_loc(U), ldu, strideU, c_loc(V), ldv, strideV, &
         work, lwork, c_loc(devInfo), c_loc(hRnrmF), batch_count)
@@ -29156,6 +29211,12 @@ contains
       real(c_double), target :: hRnrmF(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: DnZgesvdaStridedBatched
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(S)) error stop "S: array must be contiguous"
+      if (.not. is_contiguous(U)) error stop "U: array must be contiguous"
+      if (.not. is_contiguous(V)) error stop "V: array must be contiguous"
+      if (.not. is_contiguous(devInfo)) error stop "devInfo: array must be contiguous"
+      if (.not. is_contiguous(hRnrmF)) error stop "hRnrmF: array must be contiguous"
       DnZgesvdaStridedBatched = hipsolverDnZgesvdaStridedBatched_raw(handle, jobz, rank, m, n, &
         c_loc(A), lda, strideA, c_loc(S), strideS, c_loc(U), ldu, strideU, c_loc(V), ldv, strideV, &
         work, lwork, c_loc(devInfo), c_loc(hRnrmF), batch_count)
@@ -29205,6 +29266,8 @@ contains
       integer(c_int), value :: lda
       integer(c_int), target :: lwork(..)
       integer(c_int) :: DnSgetrf_bufferSize
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(lwork)) error stop "lwork: array must be contiguous"
       DnSgetrf_bufferSize = hipsolverDnSgetrf_bufferSize_raw(handle, m, n, c_loc(A), lda, c_loc( &
         lwork))
     end function hipsolverDnSgetrf_bufferSize_native
@@ -29235,6 +29298,8 @@ contains
       integer(c_int), value :: lda
       integer(c_int), target :: lwork(..)
       integer(c_int) :: DnDgetrf_bufferSize
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(lwork)) error stop "lwork: array must be contiguous"
       DnDgetrf_bufferSize = hipsolverDnDgetrf_bufferSize_raw(handle, m, n, c_loc(A), lda, c_loc( &
         lwork))
     end function hipsolverDnDgetrf_bufferSize_native
@@ -29265,6 +29330,8 @@ contains
       integer(c_int), value :: lda
       integer(c_int), target :: lwork(..)
       integer(c_int) :: DnCgetrf_bufferSize
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(lwork)) error stop "lwork: array must be contiguous"
       DnCgetrf_bufferSize = hipsolverDnCgetrf_bufferSize_raw(handle, m, n, c_loc(A), lda, c_loc( &
         lwork))
     end function hipsolverDnCgetrf_bufferSize_native
@@ -29295,6 +29362,8 @@ contains
       integer(c_int), value :: lda
       integer(c_int), target :: lwork(..)
       integer(c_int) :: DnZgetrf_bufferSize
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(lwork)) error stop "lwork: array must be contiguous"
       DnZgetrf_bufferSize = hipsolverDnZgetrf_bufferSize_raw(handle, m, n, c_loc(A), lda, c_loc( &
         lwork))
     end function hipsolverDnZgetrf_bufferSize_native
@@ -29326,6 +29395,9 @@ contains
       integer(c_int), target :: devIpiv(..)
       integer(c_int), target :: devInfo(..)
       integer(c_int) :: DnSgetrf
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(devIpiv)) error stop "devIpiv: array must be contiguous"
+      if (.not. is_contiguous(devInfo)) error stop "devInfo: array must be contiguous"
       DnSgetrf = hipsolverDnSgetrf_raw(handle, m, n, c_loc(A), lda, work, c_loc(devIpiv), c_loc( &
         devInfo))
     end function hipsolverDnSgetrf_native
@@ -29358,6 +29430,9 @@ contains
       integer(c_int), target :: devIpiv(..)
       integer(c_int), target :: devInfo(..)
       integer(c_int) :: DnDgetrf
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(devIpiv)) error stop "devIpiv: array must be contiguous"
+      if (.not. is_contiguous(devInfo)) error stop "devInfo: array must be contiguous"
       DnDgetrf = hipsolverDnDgetrf_raw(handle, m, n, c_loc(A), lda, work, c_loc(devIpiv), c_loc( &
         devInfo))
     end function hipsolverDnDgetrf_native
@@ -29390,6 +29465,9 @@ contains
       integer(c_int), target :: devIpiv(..)
       integer(c_int), target :: devInfo(..)
       integer(c_int) :: DnCgetrf
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(devIpiv)) error stop "devIpiv: array must be contiguous"
+      if (.not. is_contiguous(devInfo)) error stop "devInfo: array must be contiguous"
       DnCgetrf = hipsolverDnCgetrf_raw(handle, m, n, c_loc(A), lda, work, c_loc(devIpiv), c_loc( &
         devInfo))
     end function hipsolverDnCgetrf_native
@@ -29422,6 +29500,9 @@ contains
       integer(c_int), target :: devIpiv(..)
       integer(c_int), target :: devInfo(..)
       integer(c_int) :: DnZgetrf
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(devIpiv)) error stop "devIpiv: array must be contiguous"
+      if (.not. is_contiguous(devInfo)) error stop "devInfo: array must be contiguous"
       DnZgetrf = hipsolverDnZgetrf_raw(handle, m, n, c_loc(A), lda, work, c_loc(devIpiv), c_loc( &
         devInfo))
     end function hipsolverDnZgetrf_native
@@ -29457,6 +29538,10 @@ contains
       integer(c_int), value :: ldb
       integer(c_int), target :: devInfo(..)
       integer(c_int) :: DnSgetrs
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(devIpiv)) error stop "devIpiv: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
+      if (.not. is_contiguous(devInfo)) error stop "devInfo: array must be contiguous"
       DnSgetrs = hipsolverDnSgetrs_raw(handle, trans, n, nrhs, c_loc(A), lda, c_loc(devIpiv), &
         c_loc(B), ldb, c_loc(devInfo))
     end function hipsolverDnSgetrs_native
@@ -29495,6 +29580,10 @@ contains
       integer(c_int), value :: ldb
       integer(c_int), target :: devInfo(..)
       integer(c_int) :: DnDgetrs
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(devIpiv)) error stop "devIpiv: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
+      if (.not. is_contiguous(devInfo)) error stop "devInfo: array must be contiguous"
       DnDgetrs = hipsolverDnDgetrs_raw(handle, trans, n, nrhs, c_loc(A), lda, c_loc(devIpiv), &
         c_loc(B), ldb, c_loc(devInfo))
     end function hipsolverDnDgetrs_native
@@ -29533,6 +29622,10 @@ contains
       integer(c_int), value :: ldb
       integer(c_int), target :: devInfo(..)
       integer(c_int) :: DnCgetrs
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(devIpiv)) error stop "devIpiv: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
+      if (.not. is_contiguous(devInfo)) error stop "devInfo: array must be contiguous"
       DnCgetrs = hipsolverDnCgetrs_raw(handle, trans, n, nrhs, c_loc(A), lda, c_loc(devIpiv), &
         c_loc(B), ldb, c_loc(devInfo))
     end function hipsolverDnCgetrs_native
@@ -29571,6 +29664,10 @@ contains
       integer(c_int), value :: ldb
       integer(c_int), target :: devInfo(..)
       integer(c_int) :: DnZgetrs
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(devIpiv)) error stop "devIpiv: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
+      if (.not. is_contiguous(devInfo)) error stop "devInfo: array must be contiguous"
       DnZgetrs = hipsolverDnZgetrs_raw(handle, trans, n, nrhs, c_loc(A), lda, c_loc(devIpiv), &
         c_loc(B), ldb, c_loc(devInfo))
     end function hipsolverDnZgetrs_native
@@ -29605,6 +29702,8 @@ contains
       integer(c_int), value :: lda
       integer(c_int), target :: lwork(..)
       integer(c_int) :: DnSpotrf_bufferSize
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(lwork)) error stop "lwork: array must be contiguous"
       DnSpotrf_bufferSize = hipsolverDnSpotrf_bufferSize_raw(handle, uplo, n, c_loc(A), lda, &
         c_loc(lwork))
     end function hipsolverDnSpotrf_bufferSize_native
@@ -29635,6 +29734,8 @@ contains
       integer(c_int), value :: lda
       integer(c_int), target :: lwork(..)
       integer(c_int) :: DnDpotrf_bufferSize
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(lwork)) error stop "lwork: array must be contiguous"
       DnDpotrf_bufferSize = hipsolverDnDpotrf_bufferSize_raw(handle, uplo, n, c_loc(A), lda, &
         c_loc(lwork))
     end function hipsolverDnDpotrf_bufferSize_native
@@ -29665,6 +29766,8 @@ contains
       integer(c_int), value :: lda
       integer(c_int), target :: lwork(..)
       integer(c_int) :: DnCpotrf_bufferSize
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(lwork)) error stop "lwork: array must be contiguous"
       DnCpotrf_bufferSize = hipsolverDnCpotrf_bufferSize_raw(handle, uplo, n, c_loc(A), lda, &
         c_loc(lwork))
     end function hipsolverDnCpotrf_bufferSize_native
@@ -29695,6 +29798,8 @@ contains
       integer(c_int), value :: lda
       integer(c_int), target :: lwork(..)
       integer(c_int) :: DnZpotrf_bufferSize
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(lwork)) error stop "lwork: array must be contiguous"
       DnZpotrf_bufferSize = hipsolverDnZpotrf_bufferSize_raw(handle, uplo, n, c_loc(A), lda, &
         c_loc(lwork))
     end function hipsolverDnZpotrf_bufferSize_native
@@ -29727,6 +29832,8 @@ contains
       integer(c_int), value :: lwork
       integer(c_int), target :: devInfo(..)
       integer(c_int) :: DnSpotrf
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(devInfo)) error stop "devInfo: array must be contiguous"
       DnSpotrf = hipsolverDnSpotrf_raw(handle, uplo, n, c_loc(A), lda, work, lwork, c_loc(devInfo))
     end function hipsolverDnSpotrf_native
 
@@ -29759,6 +29866,8 @@ contains
       integer(c_int), value :: lwork
       integer(c_int), target :: devInfo(..)
       integer(c_int) :: DnDpotrf
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(devInfo)) error stop "devInfo: array must be contiguous"
       DnDpotrf = hipsolverDnDpotrf_raw(handle, uplo, n, c_loc(A), lda, work, lwork, c_loc(devInfo))
     end function hipsolverDnDpotrf_native
 
@@ -29791,6 +29900,8 @@ contains
       integer(c_int), value :: lwork
       integer(c_int), target :: devInfo(..)
       integer(c_int) :: DnCpotrf
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(devInfo)) error stop "devInfo: array must be contiguous"
       DnCpotrf = hipsolverDnCpotrf_raw(handle, uplo, n, c_loc(A), lda, work, lwork, c_loc(devInfo))
     end function hipsolverDnCpotrf_native
 
@@ -29823,6 +29934,8 @@ contains
       integer(c_int), value :: lwork
       integer(c_int), target :: devInfo(..)
       integer(c_int) :: DnZpotrf
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(devInfo)) error stop "devInfo: array must be contiguous"
       DnZpotrf = hipsolverDnZpotrf_raw(handle, uplo, n, c_loc(A), lda, work, lwork, c_loc(devInfo))
     end function hipsolverDnZpotrf_native
 
@@ -29854,6 +29967,7 @@ contains
       integer(c_int), target :: devInfo(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: DnSpotrfBatched
+      if (.not. is_contiguous(devInfo)) error stop "devInfo: array must be contiguous"
       DnSpotrfBatched = hipsolverDnSpotrfBatched_raw(handle, uplo, n, A, lda, c_loc(devInfo), &
         batch_count)
     end function hipsolverDnSpotrfBatched_native
@@ -29887,6 +30001,7 @@ contains
       integer(c_int), target :: devInfo(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: DnDpotrfBatched
+      if (.not. is_contiguous(devInfo)) error stop "devInfo: array must be contiguous"
       DnDpotrfBatched = hipsolverDnDpotrfBatched_raw(handle, uplo, n, A, lda, c_loc(devInfo), &
         batch_count)
     end function hipsolverDnDpotrfBatched_native
@@ -29920,6 +30035,7 @@ contains
       integer(c_int), target :: devInfo(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: DnCpotrfBatched
+      if (.not. is_contiguous(devInfo)) error stop "devInfo: array must be contiguous"
       DnCpotrfBatched = hipsolverDnCpotrfBatched_raw(handle, uplo, n, A, lda, c_loc(devInfo), &
         batch_count)
     end function hipsolverDnCpotrfBatched_native
@@ -29953,6 +30069,7 @@ contains
       integer(c_int), target :: devInfo(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: DnZpotrfBatched
+      if (.not. is_contiguous(devInfo)) error stop "devInfo: array must be contiguous"
       DnZpotrfBatched = hipsolverDnZpotrfBatched_raw(handle, uplo, n, A, lda, c_loc(devInfo), &
         batch_count)
     end function hipsolverDnZpotrfBatched_native
@@ -29985,6 +30102,8 @@ contains
       integer(c_int), value :: lda
       integer(c_int), target :: lwork(..)
       integer(c_int) :: DnSpotri_bufferSize
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(lwork)) error stop "lwork: array must be contiguous"
       DnSpotri_bufferSize = hipsolverDnSpotri_bufferSize_raw(handle, uplo, n, c_loc(A), lda, &
         c_loc(lwork))
     end function hipsolverDnSpotri_bufferSize_native
@@ -30015,6 +30134,8 @@ contains
       integer(c_int), value :: lda
       integer(c_int), target :: lwork(..)
       integer(c_int) :: DnDpotri_bufferSize
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(lwork)) error stop "lwork: array must be contiguous"
       DnDpotri_bufferSize = hipsolverDnDpotri_bufferSize_raw(handle, uplo, n, c_loc(A), lda, &
         c_loc(lwork))
     end function hipsolverDnDpotri_bufferSize_native
@@ -30045,6 +30166,8 @@ contains
       integer(c_int), value :: lda
       integer(c_int), target :: lwork(..)
       integer(c_int) :: DnCpotri_bufferSize
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(lwork)) error stop "lwork: array must be contiguous"
       DnCpotri_bufferSize = hipsolverDnCpotri_bufferSize_raw(handle, uplo, n, c_loc(A), lda, &
         c_loc(lwork))
     end function hipsolverDnCpotri_bufferSize_native
@@ -30075,6 +30198,8 @@ contains
       integer(c_int), value :: lda
       integer(c_int), target :: lwork(..)
       integer(c_int) :: DnZpotri_bufferSize
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(lwork)) error stop "lwork: array must be contiguous"
       DnZpotri_bufferSize = hipsolverDnZpotri_bufferSize_raw(handle, uplo, n, c_loc(A), lda, &
         c_loc(lwork))
     end function hipsolverDnZpotri_bufferSize_native
@@ -30107,6 +30232,8 @@ contains
       integer(c_int), value :: lwork
       integer(c_int), target :: devInfo(..)
       integer(c_int) :: DnSpotri
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(devInfo)) error stop "devInfo: array must be contiguous"
       DnSpotri = hipsolverDnSpotri_raw(handle, uplo, n, c_loc(A), lda, work, lwork, c_loc(devInfo))
     end function hipsolverDnSpotri_native
 
@@ -30139,6 +30266,8 @@ contains
       integer(c_int), value :: lwork
       integer(c_int), target :: devInfo(..)
       integer(c_int) :: DnDpotri
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(devInfo)) error stop "devInfo: array must be contiguous"
       DnDpotri = hipsolverDnDpotri_raw(handle, uplo, n, c_loc(A), lda, work, lwork, c_loc(devInfo))
     end function hipsolverDnDpotri_native
 
@@ -30171,6 +30300,8 @@ contains
       integer(c_int), value :: lwork
       integer(c_int), target :: devInfo(..)
       integer(c_int) :: DnCpotri
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(devInfo)) error stop "devInfo: array must be contiguous"
       DnCpotri = hipsolverDnCpotri_raw(handle, uplo, n, c_loc(A), lda, work, lwork, c_loc(devInfo))
     end function hipsolverDnCpotri_native
 
@@ -30203,6 +30334,8 @@ contains
       integer(c_int), value :: lwork
       integer(c_int), target :: devInfo(..)
       integer(c_int) :: DnZpotri
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(devInfo)) error stop "devInfo: array must be contiguous"
       DnZpotri = hipsolverDnZpotri_raw(handle, uplo, n, c_loc(A), lda, work, lwork, c_loc(devInfo))
     end function hipsolverDnZpotri_native
 
@@ -30236,6 +30369,9 @@ contains
       integer(c_int), value :: ldb
       integer(c_int), target :: devInfo(..)
       integer(c_int) :: DnSpotrs
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
+      if (.not. is_contiguous(devInfo)) error stop "devInfo: array must be contiguous"
       DnSpotrs = hipsolverDnSpotrs_raw(handle, uplo, n, nrhs, c_loc(A), lda, c_loc(B), ldb, c_loc( &
         devInfo))
     end function hipsolverDnSpotrs_native
@@ -30272,6 +30408,9 @@ contains
       integer(c_int), value :: ldb
       integer(c_int), target :: devInfo(..)
       integer(c_int) :: DnDpotrs
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
+      if (.not. is_contiguous(devInfo)) error stop "devInfo: array must be contiguous"
       DnDpotrs = hipsolverDnDpotrs_raw(handle, uplo, n, nrhs, c_loc(A), lda, c_loc(B), ldb, c_loc( &
         devInfo))
     end function hipsolverDnDpotrs_native
@@ -30308,6 +30447,9 @@ contains
       integer(c_int), value :: ldb
       integer(c_int), target :: devInfo(..)
       integer(c_int) :: DnCpotrs
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
+      if (.not. is_contiguous(devInfo)) error stop "devInfo: array must be contiguous"
       DnCpotrs = hipsolverDnCpotrs_raw(handle, uplo, n, nrhs, c_loc(A), lda, c_loc(B), ldb, c_loc( &
         devInfo))
     end function hipsolverDnCpotrs_native
@@ -30344,6 +30486,9 @@ contains
       integer(c_int), value :: ldb
       integer(c_int), target :: devInfo(..)
       integer(c_int) :: DnZpotrs
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
+      if (.not. is_contiguous(devInfo)) error stop "devInfo: array must be contiguous"
       DnZpotrs = hipsolverDnZpotrs_raw(handle, uplo, n, nrhs, c_loc(A), lda, c_loc(B), ldb, c_loc( &
         devInfo))
     end function hipsolverDnZpotrs_native
@@ -30381,6 +30526,7 @@ contains
       integer(c_int), target :: devInfo(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: DnSpotrsBatched
+      if (.not. is_contiguous(devInfo)) error stop "devInfo: array must be contiguous"
       DnSpotrsBatched = hipsolverDnSpotrsBatched_raw(handle, uplo, n, nrhs, A, lda, B, ldb, c_loc( &
         devInfo), batch_count)
     end function hipsolverDnSpotrsBatched_native
@@ -30420,6 +30566,7 @@ contains
       integer(c_int), target :: devInfo(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: DnDpotrsBatched
+      if (.not. is_contiguous(devInfo)) error stop "devInfo: array must be contiguous"
       DnDpotrsBatched = hipsolverDnDpotrsBatched_raw(handle, uplo, n, nrhs, A, lda, B, ldb, c_loc( &
         devInfo), batch_count)
     end function hipsolverDnDpotrsBatched_native
@@ -30459,6 +30606,7 @@ contains
       integer(c_int), target :: devInfo(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: DnCpotrsBatched
+      if (.not. is_contiguous(devInfo)) error stop "devInfo: array must be contiguous"
       DnCpotrsBatched = hipsolverDnCpotrsBatched_raw(handle, uplo, n, nrhs, A, lda, B, ldb, c_loc( &
         devInfo), batch_count)
     end function hipsolverDnCpotrsBatched_native
@@ -30498,6 +30646,7 @@ contains
       integer(c_int), target :: devInfo(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: DnZpotrsBatched
+      if (.not. is_contiguous(devInfo)) error stop "devInfo: array must be contiguous"
       DnZpotrsBatched = hipsolverDnZpotrsBatched_raw(handle, uplo, n, nrhs, A, lda, B, ldb, c_loc( &
         devInfo), batch_count)
     end function hipsolverDnZpotrsBatched_native
@@ -30535,6 +30684,9 @@ contains
       real(c_float), target :: W(..)
       integer(c_int), target :: lwork(..)
       integer(c_int) :: DnSsyevd_bufferSize
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(W)) error stop "W: array must be contiguous"
+      if (.not. is_contiguous(lwork)) error stop "lwork: array must be contiguous"
       DnSsyevd_bufferSize = hipsolverDnSsyevd_bufferSize_raw(handle, jobz, uplo, n, c_loc(A), lda, &
         c_loc(W), c_loc(lwork))
     end function hipsolverDnSsyevd_bufferSize_native
@@ -30570,6 +30722,9 @@ contains
       real(c_double), target :: W(..)
       integer(c_int), target :: lwork(..)
       integer(c_int) :: DnDsyevd_bufferSize
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(W)) error stop "W: array must be contiguous"
+      if (.not. is_contiguous(lwork)) error stop "lwork: array must be contiguous"
       DnDsyevd_bufferSize = hipsolverDnDsyevd_bufferSize_raw(handle, jobz, uplo, n, c_loc(A), lda, &
         c_loc(W), c_loc(lwork))
     end function hipsolverDnDsyevd_bufferSize_native
@@ -30605,6 +30760,9 @@ contains
       real(c_float), target :: W(..)
       integer(c_int), target :: lwork(..)
       integer(c_int) :: DnCheevd_bufferSize
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(W)) error stop "W: array must be contiguous"
+      if (.not. is_contiguous(lwork)) error stop "lwork: array must be contiguous"
       DnCheevd_bufferSize = hipsolverDnCheevd_bufferSize_raw(handle, jobz, uplo, n, c_loc(A), lda, &
         c_loc(W), c_loc(lwork))
     end function hipsolverDnCheevd_bufferSize_native
@@ -30640,6 +30798,9 @@ contains
       real(c_double), target :: W(..)
       integer(c_int), target :: lwork(..)
       integer(c_int) :: DnZheevd_bufferSize
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(W)) error stop "W: array must be contiguous"
+      if (.not. is_contiguous(lwork)) error stop "lwork: array must be contiguous"
       DnZheevd_bufferSize = hipsolverDnZheevd_bufferSize_raw(handle, jobz, uplo, n, c_loc(A), lda, &
         c_loc(W), c_loc(lwork))
     end function hipsolverDnZheevd_bufferSize_native
@@ -30677,6 +30838,9 @@ contains
       integer(c_int), value :: lwork
       integer(c_int), target :: devInfo(..)
       integer(c_int) :: DnSsyevd
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(W)) error stop "W: array must be contiguous"
+      if (.not. is_contiguous(devInfo)) error stop "devInfo: array must be contiguous"
       DnSsyevd = hipsolverDnSsyevd_raw(handle, jobz, uplo, n, c_loc(A), lda, c_loc(W), work, &
         lwork, c_loc(devInfo))
     end function hipsolverDnSsyevd_native
@@ -30715,6 +30879,9 @@ contains
       integer(c_int), value :: lwork
       integer(c_int), target :: devInfo(..)
       integer(c_int) :: DnDsyevd
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(W)) error stop "W: array must be contiguous"
+      if (.not. is_contiguous(devInfo)) error stop "devInfo: array must be contiguous"
       DnDsyevd = hipsolverDnDsyevd_raw(handle, jobz, uplo, n, c_loc(A), lda, c_loc(W), work, &
         lwork, c_loc(devInfo))
     end function hipsolverDnDsyevd_native
@@ -30753,6 +30920,9 @@ contains
       integer(c_int), value :: lwork
       integer(c_int), target :: devInfo(..)
       integer(c_int) :: DnCheevd
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(W)) error stop "W: array must be contiguous"
+      if (.not. is_contiguous(devInfo)) error stop "devInfo: array must be contiguous"
       DnCheevd = hipsolverDnCheevd_raw(handle, jobz, uplo, n, c_loc(A), lda, c_loc(W), work, &
         lwork, c_loc(devInfo))
     end function hipsolverDnCheevd_native
@@ -30791,6 +30961,9 @@ contains
       integer(c_int), value :: lwork
       integer(c_int), target :: devInfo(..)
       integer(c_int) :: DnZheevd
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(W)) error stop "W: array must be contiguous"
+      if (.not. is_contiguous(devInfo)) error stop "devInfo: array must be contiguous"
       DnZheevd = hipsolverDnZheevd_raw(handle, jobz, uplo, n, c_loc(A), lda, c_loc(W), work, &
         lwork, c_loc(devInfo))
     end function hipsolverDnZheevd_native
@@ -30833,6 +31006,10 @@ contains
       real(c_float), target :: W(..)
       integer(c_int), target :: lwork(..)
       integer(c_int) :: DnSsyevdx_bufferSize
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(nev)) error stop "nev: array must be contiguous"
+      if (.not. is_contiguous(W)) error stop "W: array must be contiguous"
+      if (.not. is_contiguous(lwork)) error stop "lwork: array must be contiguous"
       DnSsyevdx_bufferSize = hipsolverDnSsyevdx_bufferSize_raw(handle, jobz, range, uplo, n, &
         c_loc(A), lda, vl, vu, il, iu, c_loc(nev), c_loc(W), c_loc(lwork))
     end function hipsolverDnSsyevdx_bufferSize_native
@@ -30880,6 +31057,10 @@ contains
       real(c_double), target :: W(..)
       integer(c_int), target :: lwork(..)
       integer(c_int) :: DnDsyevdx_bufferSize
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(nev)) error stop "nev: array must be contiguous"
+      if (.not. is_contiguous(W)) error stop "W: array must be contiguous"
+      if (.not. is_contiguous(lwork)) error stop "lwork: array must be contiguous"
       DnDsyevdx_bufferSize = hipsolverDnDsyevdx_bufferSize_raw(handle, jobz, range, uplo, n, &
         c_loc(A), lda, vl, vu, il, iu, c_loc(nev), c_loc(W), c_loc(lwork))
     end function hipsolverDnDsyevdx_bufferSize_native
@@ -30927,6 +31108,10 @@ contains
       real(c_float), target :: W(..)
       integer(c_int), target :: lwork(..)
       integer(c_int) :: DnCheevdx_bufferSize
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(nev)) error stop "nev: array must be contiguous"
+      if (.not. is_contiguous(W)) error stop "W: array must be contiguous"
+      if (.not. is_contiguous(lwork)) error stop "lwork: array must be contiguous"
       DnCheevdx_bufferSize = hipsolverDnCheevdx_bufferSize_raw(handle, jobz, range, uplo, n, &
         c_loc(A), lda, vl, vu, il, iu, c_loc(nev), c_loc(W), c_loc(lwork))
     end function hipsolverDnCheevdx_bufferSize_native
@@ -30974,6 +31159,10 @@ contains
       real(c_double), target :: W(..)
       integer(c_int), target :: lwork(..)
       integer(c_int) :: DnZheevdx_bufferSize
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(nev)) error stop "nev: array must be contiguous"
+      if (.not. is_contiguous(W)) error stop "W: array must be contiguous"
+      if (.not. is_contiguous(lwork)) error stop "lwork: array must be contiguous"
       DnZheevdx_bufferSize = hipsolverDnZheevdx_bufferSize_raw(handle, jobz, range, uplo, n, &
         c_loc(A), lda, vl, vu, il, iu, c_loc(nev), c_loc(W), c_loc(lwork))
     end function hipsolverDnZheevdx_bufferSize_native
@@ -31023,6 +31212,10 @@ contains
       integer(c_int), value :: lwork
       integer(c_int), target :: devInfo(..)
       integer(c_int) :: DnSsyevdx
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(nev)) error stop "nev: array must be contiguous"
+      if (.not. is_contiguous(W)) error stop "W: array must be contiguous"
+      if (.not. is_contiguous(devInfo)) error stop "devInfo: array must be contiguous"
       DnSsyevdx = hipsolverDnSsyevdx_raw(handle, jobz, range, uplo, n, c_loc(A), lda, vl, vu, il, &
         iu, c_loc(nev), c_loc(W), work, lwork, c_loc(devInfo))
     end function hipsolverDnSsyevdx_native
@@ -31074,6 +31267,10 @@ contains
       integer(c_int), value :: lwork
       integer(c_int), target :: devInfo(..)
       integer(c_int) :: DnDsyevdx
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(nev)) error stop "nev: array must be contiguous"
+      if (.not. is_contiguous(W)) error stop "W: array must be contiguous"
+      if (.not. is_contiguous(devInfo)) error stop "devInfo: array must be contiguous"
       DnDsyevdx = hipsolverDnDsyevdx_raw(handle, jobz, range, uplo, n, c_loc(A), lda, vl, vu, il, &
         iu, c_loc(nev), c_loc(W), work, lwork, c_loc(devInfo))
     end function hipsolverDnDsyevdx_native
@@ -31125,6 +31322,10 @@ contains
       integer(c_int), value :: lwork
       integer(c_int), target :: devInfo(..)
       integer(c_int) :: DnCheevdx
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(nev)) error stop "nev: array must be contiguous"
+      if (.not. is_contiguous(W)) error stop "W: array must be contiguous"
+      if (.not. is_contiguous(devInfo)) error stop "devInfo: array must be contiguous"
       DnCheevdx = hipsolverDnCheevdx_raw(handle, jobz, range, uplo, n, c_loc(A), lda, vl, vu, il, &
         iu, c_loc(nev), c_loc(W), work, lwork, c_loc(devInfo))
     end function hipsolverDnCheevdx_native
@@ -31176,6 +31377,10 @@ contains
       integer(c_int), value :: lwork
       integer(c_int), target :: devInfo(..)
       integer(c_int) :: DnZheevdx
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(nev)) error stop "nev: array must be contiguous"
+      if (.not. is_contiguous(W)) error stop "W: array must be contiguous"
+      if (.not. is_contiguous(devInfo)) error stop "devInfo: array must be contiguous"
       DnZheevdx = hipsolverDnZheevdx_raw(handle, jobz, range, uplo, n, c_loc(A), lda, vl, vu, il, &
         iu, c_loc(nev), c_loc(W), work, lwork, c_loc(devInfo))
     end function hipsolverDnZheevdx_native
@@ -31220,6 +31425,9 @@ contains
       integer(c_int), target :: lwork(..)
       type(c_ptr), value :: params
       integer(c_int) :: DnSsyevj_bufferSize
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(W)) error stop "W: array must be contiguous"
+      if (.not. is_contiguous(lwork)) error stop "lwork: array must be contiguous"
       DnSsyevj_bufferSize = hipsolverDnSsyevj_bufferSize_raw(handle, jobz, uplo, n, c_loc(A), lda, &
         c_loc(W), c_loc(lwork), params)
     end function hipsolverDnSsyevj_bufferSize_native
@@ -31257,6 +31465,9 @@ contains
       integer(c_int), target :: lwork(..)
       type(c_ptr), value :: params
       integer(c_int) :: DnDsyevj_bufferSize
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(W)) error stop "W: array must be contiguous"
+      if (.not. is_contiguous(lwork)) error stop "lwork: array must be contiguous"
       DnDsyevj_bufferSize = hipsolverDnDsyevj_bufferSize_raw(handle, jobz, uplo, n, c_loc(A), lda, &
         c_loc(W), c_loc(lwork), params)
     end function hipsolverDnDsyevj_bufferSize_native
@@ -31294,6 +31505,9 @@ contains
       integer(c_int), target :: lwork(..)
       type(c_ptr), value :: params
       integer(c_int) :: DnCheevj_bufferSize
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(W)) error stop "W: array must be contiguous"
+      if (.not. is_contiguous(lwork)) error stop "lwork: array must be contiguous"
       DnCheevj_bufferSize = hipsolverDnCheevj_bufferSize_raw(handle, jobz, uplo, n, c_loc(A), lda, &
         c_loc(W), c_loc(lwork), params)
     end function hipsolverDnCheevj_bufferSize_native
@@ -31331,6 +31545,9 @@ contains
       integer(c_int), target :: lwork(..)
       type(c_ptr), value :: params
       integer(c_int) :: DnZheevj_bufferSize
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(W)) error stop "W: array must be contiguous"
+      if (.not. is_contiguous(lwork)) error stop "lwork: array must be contiguous"
       DnZheevj_bufferSize = hipsolverDnZheevj_bufferSize_raw(handle, jobz, uplo, n, c_loc(A), lda, &
         c_loc(W), c_loc(lwork), params)
     end function hipsolverDnZheevj_bufferSize_native
@@ -31370,6 +31587,9 @@ contains
       integer(c_int), target :: devInfo(..)
       type(c_ptr), value :: params
       integer(c_int) :: DnSsyevj
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(W)) error stop "W: array must be contiguous"
+      if (.not. is_contiguous(devInfo)) error stop "devInfo: array must be contiguous"
       DnSsyevj = hipsolverDnSsyevj_raw(handle, jobz, uplo, n, c_loc(A), lda, c_loc(W), work, &
         lwork, c_loc(devInfo), params)
     end function hipsolverDnSsyevj_native
@@ -31411,6 +31631,9 @@ contains
       integer(c_int), target :: devInfo(..)
       type(c_ptr), value :: params
       integer(c_int) :: DnDsyevj
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(W)) error stop "W: array must be contiguous"
+      if (.not. is_contiguous(devInfo)) error stop "devInfo: array must be contiguous"
       DnDsyevj = hipsolverDnDsyevj_raw(handle, jobz, uplo, n, c_loc(A), lda, c_loc(W), work, &
         lwork, c_loc(devInfo), params)
     end function hipsolverDnDsyevj_native
@@ -31452,6 +31675,9 @@ contains
       integer(c_int), target :: devInfo(..)
       type(c_ptr), value :: params
       integer(c_int) :: DnCheevj
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(W)) error stop "W: array must be contiguous"
+      if (.not. is_contiguous(devInfo)) error stop "devInfo: array must be contiguous"
       DnCheevj = hipsolverDnCheevj_raw(handle, jobz, uplo, n, c_loc(A), lda, c_loc(W), work, &
         lwork, c_loc(devInfo), params)
     end function hipsolverDnCheevj_native
@@ -31493,6 +31719,9 @@ contains
       integer(c_int), target :: devInfo(..)
       type(c_ptr), value :: params
       integer(c_int) :: DnZheevj
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(W)) error stop "W: array must be contiguous"
+      if (.not. is_contiguous(devInfo)) error stop "devInfo: array must be contiguous"
       DnZheevj = hipsolverDnZheevj_raw(handle, jobz, uplo, n, c_loc(A), lda, c_loc(W), work, &
         lwork, c_loc(devInfo), params)
     end function hipsolverDnZheevj_native
@@ -31533,6 +31762,9 @@ contains
       type(c_ptr), value :: params
       integer(c_int), value :: batch_count
       integer(c_int) :: DnSsyevjBatched_bufferSize
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(W)) error stop "W: array must be contiguous"
+      if (.not. is_contiguous(lwork)) error stop "lwork: array must be contiguous"
       DnSsyevjBatched_bufferSize = hipsolverDnSsyevjBatched_bufferSize_raw(handle, jobz, uplo, n, &
         c_loc(A), lda, c_loc(W), c_loc(lwork), params, batch_count)
     end function hipsolverDnSsyevjBatched_bufferSize_native
@@ -31572,6 +31804,9 @@ contains
       type(c_ptr), value :: params
       integer(c_int), value :: batch_count
       integer(c_int) :: DnDsyevjBatched_bufferSize
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(W)) error stop "W: array must be contiguous"
+      if (.not. is_contiguous(lwork)) error stop "lwork: array must be contiguous"
       DnDsyevjBatched_bufferSize = hipsolverDnDsyevjBatched_bufferSize_raw(handle, jobz, uplo, n, &
         c_loc(A), lda, c_loc(W), c_loc(lwork), params, batch_count)
     end function hipsolverDnDsyevjBatched_bufferSize_native
@@ -31611,6 +31846,9 @@ contains
       type(c_ptr), value :: params
       integer(c_int), value :: batch_count
       integer(c_int) :: DnCheevjBatched_bufferSize
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(W)) error stop "W: array must be contiguous"
+      if (.not. is_contiguous(lwork)) error stop "lwork: array must be contiguous"
       DnCheevjBatched_bufferSize = hipsolverDnCheevjBatched_bufferSize_raw(handle, jobz, uplo, n, &
         c_loc(A), lda, c_loc(W), c_loc(lwork), params, batch_count)
     end function hipsolverDnCheevjBatched_bufferSize_native
@@ -31650,6 +31888,9 @@ contains
       type(c_ptr), value :: params
       integer(c_int), value :: batch_count
       integer(c_int) :: DnZheevjBatched_bufferSize
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(W)) error stop "W: array must be contiguous"
+      if (.not. is_contiguous(lwork)) error stop "lwork: array must be contiguous"
       DnZheevjBatched_bufferSize = hipsolverDnZheevjBatched_bufferSize_raw(handle, jobz, uplo, n, &
         c_loc(A), lda, c_loc(W), c_loc(lwork), params, batch_count)
     end function hipsolverDnZheevjBatched_bufferSize_native
@@ -31691,6 +31932,9 @@ contains
       type(c_ptr), value :: params
       integer(c_int), value :: batch_count
       integer(c_int) :: DnSsyevjBatched
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(W)) error stop "W: array must be contiguous"
+      if (.not. is_contiguous(devInfo)) error stop "devInfo: array must be contiguous"
       DnSsyevjBatched = hipsolverDnSsyevjBatched_raw(handle, jobz, uplo, n, c_loc(A), lda, c_loc( &
         W), work, lwork, c_loc(devInfo), params, batch_count)
     end function hipsolverDnSsyevjBatched_native
@@ -31734,6 +31978,9 @@ contains
       type(c_ptr), value :: params
       integer(c_int), value :: batch_count
       integer(c_int) :: DnDsyevjBatched
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(W)) error stop "W: array must be contiguous"
+      if (.not. is_contiguous(devInfo)) error stop "devInfo: array must be contiguous"
       DnDsyevjBatched = hipsolverDnDsyevjBatched_raw(handle, jobz, uplo, n, c_loc(A), lda, c_loc( &
         W), work, lwork, c_loc(devInfo), params, batch_count)
     end function hipsolverDnDsyevjBatched_native
@@ -31777,6 +32024,9 @@ contains
       type(c_ptr), value :: params
       integer(c_int), value :: batch_count
       integer(c_int) :: DnCheevjBatched
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(W)) error stop "W: array must be contiguous"
+      if (.not. is_contiguous(devInfo)) error stop "devInfo: array must be contiguous"
       DnCheevjBatched = hipsolverDnCheevjBatched_raw(handle, jobz, uplo, n, c_loc(A), lda, c_loc( &
         W), work, lwork, c_loc(devInfo), params, batch_count)
     end function hipsolverDnCheevjBatched_native
@@ -31820,6 +32070,9 @@ contains
       type(c_ptr), value :: params
       integer(c_int), value :: batch_count
       integer(c_int) :: DnZheevjBatched
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(W)) error stop "W: array must be contiguous"
+      if (.not. is_contiguous(devInfo)) error stop "devInfo: array must be contiguous"
       DnZheevjBatched = hipsolverDnZheevjBatched_raw(handle, jobz, uplo, n, c_loc(A), lda, c_loc( &
         W), work, lwork, c_loc(devInfo), params, batch_count)
     end function hipsolverDnZheevjBatched_native
@@ -31862,6 +32115,10 @@ contains
       real(c_float), target :: W(..)
       integer(c_int), target :: lwork(..)
       integer(c_int) :: DnSsygvd_bufferSize
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
+      if (.not. is_contiguous(W)) error stop "W: array must be contiguous"
+      if (.not. is_contiguous(lwork)) error stop "lwork: array must be contiguous"
       DnSsygvd_bufferSize = hipsolverDnSsygvd_bufferSize_raw(handle, itype, jobz, uplo, n, c_loc( &
         A), lda, c_loc(B), ldb, c_loc(W), c_loc(lwork))
     end function hipsolverDnSsygvd_bufferSize_native
@@ -31903,6 +32160,10 @@ contains
       real(c_double), target :: W(..)
       integer(c_int), target :: lwork(..)
       integer(c_int) :: DnDsygvd_bufferSize
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
+      if (.not. is_contiguous(W)) error stop "W: array must be contiguous"
+      if (.not. is_contiguous(lwork)) error stop "lwork: array must be contiguous"
       DnDsygvd_bufferSize = hipsolverDnDsygvd_bufferSize_raw(handle, itype, jobz, uplo, n, c_loc( &
         A), lda, c_loc(B), ldb, c_loc(W), c_loc(lwork))
     end function hipsolverDnDsygvd_bufferSize_native
@@ -31944,6 +32205,10 @@ contains
       real(c_float), target :: W(..)
       integer(c_int), target :: lwork(..)
       integer(c_int) :: DnChegvd_bufferSize
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
+      if (.not. is_contiguous(W)) error stop "W: array must be contiguous"
+      if (.not. is_contiguous(lwork)) error stop "lwork: array must be contiguous"
       DnChegvd_bufferSize = hipsolverDnChegvd_bufferSize_raw(handle, itype, jobz, uplo, n, c_loc( &
         A), lda, c_loc(B), ldb, c_loc(W), c_loc(lwork))
     end function hipsolverDnChegvd_bufferSize_native
@@ -31985,6 +32250,10 @@ contains
       real(c_double), target :: W(..)
       integer(c_int), target :: lwork(..)
       integer(c_int) :: DnZhegvd_bufferSize
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
+      if (.not. is_contiguous(W)) error stop "W: array must be contiguous"
+      if (.not. is_contiguous(lwork)) error stop "lwork: array must be contiguous"
       DnZhegvd_bufferSize = hipsolverDnZhegvd_bufferSize_raw(handle, itype, jobz, uplo, n, c_loc( &
         A), lda, c_loc(B), ldb, c_loc(W), c_loc(lwork))
     end function hipsolverDnZhegvd_bufferSize_native
@@ -32028,6 +32297,10 @@ contains
       integer(c_int), value :: lwork
       integer(c_int), target :: devInfo(..)
       integer(c_int) :: DnSsygvd
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
+      if (.not. is_contiguous(W)) error stop "W: array must be contiguous"
+      if (.not. is_contiguous(devInfo)) error stop "devInfo: array must be contiguous"
       DnSsygvd = hipsolverDnSsygvd_raw(handle, itype, jobz, uplo, n, c_loc(A), lda, c_loc(B), ldb, &
         c_loc(W), work, lwork, c_loc(devInfo))
     end function hipsolverDnSsygvd_native
@@ -32073,6 +32346,10 @@ contains
       integer(c_int), value :: lwork
       integer(c_int), target :: devInfo(..)
       integer(c_int) :: DnDsygvd
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
+      if (.not. is_contiguous(W)) error stop "W: array must be contiguous"
+      if (.not. is_contiguous(devInfo)) error stop "devInfo: array must be contiguous"
       DnDsygvd = hipsolverDnDsygvd_raw(handle, itype, jobz, uplo, n, c_loc(A), lda, c_loc(B), ldb, &
         c_loc(W), work, lwork, c_loc(devInfo))
     end function hipsolverDnDsygvd_native
@@ -32118,6 +32395,10 @@ contains
       integer(c_int), value :: lwork
       integer(c_int), target :: devInfo(..)
       integer(c_int) :: DnChegvd
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
+      if (.not. is_contiguous(W)) error stop "W: array must be contiguous"
+      if (.not. is_contiguous(devInfo)) error stop "devInfo: array must be contiguous"
       DnChegvd = hipsolverDnChegvd_raw(handle, itype, jobz, uplo, n, c_loc(A), lda, c_loc(B), ldb, &
         c_loc(W), work, lwork, c_loc(devInfo))
     end function hipsolverDnChegvd_native
@@ -32163,6 +32444,10 @@ contains
       integer(c_int), value :: lwork
       integer(c_int), target :: devInfo(..)
       integer(c_int) :: DnZhegvd
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
+      if (.not. is_contiguous(W)) error stop "W: array must be contiguous"
+      if (.not. is_contiguous(devInfo)) error stop "devInfo: array must be contiguous"
       DnZhegvd = hipsolverDnZhegvd_raw(handle, itype, jobz, uplo, n, c_loc(A), lda, c_loc(B), ldb, &
         c_loc(W), work, lwork, c_loc(devInfo))
     end function hipsolverDnZhegvd_native
@@ -32212,6 +32497,11 @@ contains
       real(c_float), target :: W(..)
       integer(c_int), target :: lwork(..)
       integer(c_int) :: DnSsygvdx_bufferSize
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
+      if (.not. is_contiguous(nev)) error stop "nev: array must be contiguous"
+      if (.not. is_contiguous(W)) error stop "W: array must be contiguous"
+      if (.not. is_contiguous(lwork)) error stop "lwork: array must be contiguous"
       DnSsygvdx_bufferSize = hipsolverDnSsygvdx_bufferSize_raw(handle, itype, jobz, range, uplo, &
         n, c_loc(A), lda, c_loc(B), ldb, vl, vu, il, iu, c_loc(nev), c_loc(W), c_loc(lwork))
     end function hipsolverDnSsygvdx_bufferSize_native
@@ -32265,6 +32555,11 @@ contains
       real(c_double), target :: W(..)
       integer(c_int), target :: lwork(..)
       integer(c_int) :: DnDsygvdx_bufferSize
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
+      if (.not. is_contiguous(nev)) error stop "nev: array must be contiguous"
+      if (.not. is_contiguous(W)) error stop "W: array must be contiguous"
+      if (.not. is_contiguous(lwork)) error stop "lwork: array must be contiguous"
       DnDsygvdx_bufferSize = hipsolverDnDsygvdx_bufferSize_raw(handle, itype, jobz, range, uplo, &
         n, c_loc(A), lda, c_loc(B), ldb, vl, vu, il, iu, c_loc(nev), c_loc(W), c_loc(lwork))
     end function hipsolverDnDsygvdx_bufferSize_native
@@ -32318,6 +32613,11 @@ contains
       real(c_float), target :: W(..)
       integer(c_int), target :: lwork(..)
       integer(c_int) :: DnChegvdx_bufferSize
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
+      if (.not. is_contiguous(nev)) error stop "nev: array must be contiguous"
+      if (.not. is_contiguous(W)) error stop "W: array must be contiguous"
+      if (.not. is_contiguous(lwork)) error stop "lwork: array must be contiguous"
       DnChegvdx_bufferSize = hipsolverDnChegvdx_bufferSize_raw(handle, itype, jobz, range, uplo, &
         n, c_loc(A), lda, c_loc(B), ldb, vl, vu, il, iu, c_loc(nev), c_loc(W), c_loc(lwork))
     end function hipsolverDnChegvdx_bufferSize_native
@@ -32371,6 +32671,11 @@ contains
       real(c_double), target :: W(..)
       integer(c_int), target :: lwork(..)
       integer(c_int) :: DnZhegvdx_bufferSize
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
+      if (.not. is_contiguous(nev)) error stop "nev: array must be contiguous"
+      if (.not. is_contiguous(W)) error stop "W: array must be contiguous"
+      if (.not. is_contiguous(lwork)) error stop "lwork: array must be contiguous"
       DnZhegvdx_bufferSize = hipsolverDnZhegvdx_bufferSize_raw(handle, itype, jobz, range, uplo, &
         n, c_loc(A), lda, c_loc(B), ldb, vl, vu, il, iu, c_loc(nev), c_loc(W), c_loc(lwork))
     end function hipsolverDnZhegvdx_bufferSize_native
@@ -32426,6 +32731,11 @@ contains
       integer(c_int), value :: lwork
       integer(c_int), target :: devInfo(..)
       integer(c_int) :: DnSsygvdx
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
+      if (.not. is_contiguous(nev)) error stop "nev: array must be contiguous"
+      if (.not. is_contiguous(W)) error stop "W: array must be contiguous"
+      if (.not. is_contiguous(devInfo)) error stop "devInfo: array must be contiguous"
       DnSsygvdx = hipsolverDnSsygvdx_raw(handle, itype, jobz, range, uplo, n, c_loc(A), lda, &
         c_loc(B), ldb, vl, vu, il, iu, c_loc(nev), c_loc(W), work, lwork, c_loc(devInfo))
     end function hipsolverDnSsygvdx_native
@@ -32483,6 +32793,11 @@ contains
       integer(c_int), value :: lwork
       integer(c_int), target :: devInfo(..)
       integer(c_int) :: DnDsygvdx
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
+      if (.not. is_contiguous(nev)) error stop "nev: array must be contiguous"
+      if (.not. is_contiguous(W)) error stop "W: array must be contiguous"
+      if (.not. is_contiguous(devInfo)) error stop "devInfo: array must be contiguous"
       DnDsygvdx = hipsolverDnDsygvdx_raw(handle, itype, jobz, range, uplo, n, c_loc(A), lda, &
         c_loc(B), ldb, vl, vu, il, iu, c_loc(nev), c_loc(W), work, lwork, c_loc(devInfo))
     end function hipsolverDnDsygvdx_native
@@ -32540,6 +32855,11 @@ contains
       integer(c_int), value :: lwork
       integer(c_int), target :: devInfo(..)
       integer(c_int) :: DnChegvdx
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
+      if (.not. is_contiguous(nev)) error stop "nev: array must be contiguous"
+      if (.not. is_contiguous(W)) error stop "W: array must be contiguous"
+      if (.not. is_contiguous(devInfo)) error stop "devInfo: array must be contiguous"
       DnChegvdx = hipsolverDnChegvdx_raw(handle, itype, jobz, range, uplo, n, c_loc(A), lda, &
         c_loc(B), ldb, vl, vu, il, iu, c_loc(nev), c_loc(W), work, lwork, c_loc(devInfo))
     end function hipsolverDnChegvdx_native
@@ -32597,6 +32917,11 @@ contains
       integer(c_int), value :: lwork
       integer(c_int), target :: devInfo(..)
       integer(c_int) :: DnZhegvdx
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
+      if (.not. is_contiguous(nev)) error stop "nev: array must be contiguous"
+      if (.not. is_contiguous(W)) error stop "W: array must be contiguous"
+      if (.not. is_contiguous(devInfo)) error stop "devInfo: array must be contiguous"
       DnZhegvdx = hipsolverDnZhegvdx_raw(handle, itype, jobz, range, uplo, n, c_loc(A), lda, &
         c_loc(B), ldb, vl, vu, il, iu, c_loc(nev), c_loc(W), work, lwork, c_loc(devInfo))
     end function hipsolverDnZhegvdx_native
@@ -32647,6 +32972,10 @@ contains
       integer(c_int), target :: lwork(..)
       type(c_ptr), value :: params
       integer(c_int) :: DnSsygvj_bufferSize
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
+      if (.not. is_contiguous(W)) error stop "W: array must be contiguous"
+      if (.not. is_contiguous(lwork)) error stop "lwork: array must be contiguous"
       DnSsygvj_bufferSize = hipsolverDnSsygvj_bufferSize_raw(handle, itype, jobz, uplo, n, c_loc( &
         A), lda, c_loc(B), ldb, c_loc(W), c_loc(lwork), params)
     end function hipsolverDnSsygvj_bufferSize_native
@@ -32690,6 +33019,10 @@ contains
       integer(c_int), target :: lwork(..)
       type(c_ptr), value :: params
       integer(c_int) :: DnDsygvj_bufferSize
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
+      if (.not. is_contiguous(W)) error stop "W: array must be contiguous"
+      if (.not. is_contiguous(lwork)) error stop "lwork: array must be contiguous"
       DnDsygvj_bufferSize = hipsolverDnDsygvj_bufferSize_raw(handle, itype, jobz, uplo, n, c_loc( &
         A), lda, c_loc(B), ldb, c_loc(W), c_loc(lwork), params)
     end function hipsolverDnDsygvj_bufferSize_native
@@ -32733,6 +33066,10 @@ contains
       integer(c_int), target :: lwork(..)
       type(c_ptr), value :: params
       integer(c_int) :: DnChegvj_bufferSize
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
+      if (.not. is_contiguous(W)) error stop "W: array must be contiguous"
+      if (.not. is_contiguous(lwork)) error stop "lwork: array must be contiguous"
       DnChegvj_bufferSize = hipsolverDnChegvj_bufferSize_raw(handle, itype, jobz, uplo, n, c_loc( &
         A), lda, c_loc(B), ldb, c_loc(W), c_loc(lwork), params)
     end function hipsolverDnChegvj_bufferSize_native
@@ -32776,6 +33113,10 @@ contains
       integer(c_int), target :: lwork(..)
       type(c_ptr), value :: params
       integer(c_int) :: DnZhegvj_bufferSize
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
+      if (.not. is_contiguous(W)) error stop "W: array must be contiguous"
+      if (.not. is_contiguous(lwork)) error stop "lwork: array must be contiguous"
       DnZhegvj_bufferSize = hipsolverDnZhegvj_bufferSize_raw(handle, itype, jobz, uplo, n, c_loc( &
         A), lda, c_loc(B), ldb, c_loc(W), c_loc(lwork), params)
     end function hipsolverDnZhegvj_bufferSize_native
@@ -32821,6 +33162,10 @@ contains
       integer(c_int), target :: devInfo(..)
       type(c_ptr), value :: params
       integer(c_int) :: DnSsygvj
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
+      if (.not. is_contiguous(W)) error stop "W: array must be contiguous"
+      if (.not. is_contiguous(devInfo)) error stop "devInfo: array must be contiguous"
       DnSsygvj = hipsolverDnSsygvj_raw(handle, itype, jobz, uplo, n, c_loc(A), lda, c_loc(B), ldb, &
         c_loc(W), work, lwork, c_loc(devInfo), params)
     end function hipsolverDnSsygvj_native
@@ -32868,6 +33213,10 @@ contains
       integer(c_int), target :: devInfo(..)
       type(c_ptr), value :: params
       integer(c_int) :: DnDsygvj
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
+      if (.not. is_contiguous(W)) error stop "W: array must be contiguous"
+      if (.not. is_contiguous(devInfo)) error stop "devInfo: array must be contiguous"
       DnDsygvj = hipsolverDnDsygvj_raw(handle, itype, jobz, uplo, n, c_loc(A), lda, c_loc(B), ldb, &
         c_loc(W), work, lwork, c_loc(devInfo), params)
     end function hipsolverDnDsygvj_native
@@ -32915,6 +33264,10 @@ contains
       integer(c_int), target :: devInfo(..)
       type(c_ptr), value :: params
       integer(c_int) :: DnChegvj
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
+      if (.not. is_contiguous(W)) error stop "W: array must be contiguous"
+      if (.not. is_contiguous(devInfo)) error stop "devInfo: array must be contiguous"
       DnChegvj = hipsolverDnChegvj_raw(handle, itype, jobz, uplo, n, c_loc(A), lda, c_loc(B), ldb, &
         c_loc(W), work, lwork, c_loc(devInfo), params)
     end function hipsolverDnChegvj_native
@@ -32962,6 +33315,10 @@ contains
       integer(c_int), target :: devInfo(..)
       type(c_ptr), value :: params
       integer(c_int) :: DnZhegvj
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
+      if (.not. is_contiguous(W)) error stop "W: array must be contiguous"
+      if (.not. is_contiguous(devInfo)) error stop "devInfo: array must be contiguous"
       DnZhegvj = hipsolverDnZhegvj_raw(handle, itype, jobz, uplo, n, c_loc(A), lda, c_loc(B), ldb, &
         c_loc(W), work, lwork, c_loc(devInfo), params)
     end function hipsolverDnZhegvj_native
@@ -33004,6 +33361,11 @@ contains
       real(c_float), target :: tau(..)
       integer(c_int), target :: lwork(..)
       integer(c_int) :: DnSsytrd_bufferSize
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(D)) error stop "D: array must be contiguous"
+      if (.not. is_contiguous(E)) error stop "E: array must be contiguous"
+      if (.not. is_contiguous(tau)) error stop "tau: array must be contiguous"
+      if (.not. is_contiguous(lwork)) error stop "lwork: array must be contiguous"
       DnSsytrd_bufferSize = hipsolverDnSsytrd_bufferSize_raw(handle, uplo, n, c_loc(A), lda, &
         c_loc(D), c_loc(E), c_loc(tau), c_loc(lwork))
     end function hipsolverDnSsytrd_bufferSize_native
@@ -33041,6 +33403,11 @@ contains
       real(c_double), target :: tau(..)
       integer(c_int), target :: lwork(..)
       integer(c_int) :: DnDsytrd_bufferSize
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(D)) error stop "D: array must be contiguous"
+      if (.not. is_contiguous(E)) error stop "E: array must be contiguous"
+      if (.not. is_contiguous(tau)) error stop "tau: array must be contiguous"
+      if (.not. is_contiguous(lwork)) error stop "lwork: array must be contiguous"
       DnDsytrd_bufferSize = hipsolverDnDsytrd_bufferSize_raw(handle, uplo, n, c_loc(A), lda, &
         c_loc(D), c_loc(E), c_loc(tau), c_loc(lwork))
     end function hipsolverDnDsytrd_bufferSize_native
@@ -33078,6 +33445,11 @@ contains
       complex(c_float_complex), target :: tau(..)
       integer(c_int), target :: lwork(..)
       integer(c_int) :: DnChetrd_bufferSize
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(D)) error stop "D: array must be contiguous"
+      if (.not. is_contiguous(E)) error stop "E: array must be contiguous"
+      if (.not. is_contiguous(tau)) error stop "tau: array must be contiguous"
+      if (.not. is_contiguous(lwork)) error stop "lwork: array must be contiguous"
       DnChetrd_bufferSize = hipsolverDnChetrd_bufferSize_raw(handle, uplo, n, c_loc(A), lda, &
         c_loc(D), c_loc(E), c_loc(tau), c_loc(lwork))
     end function hipsolverDnChetrd_bufferSize_native
@@ -33115,6 +33487,11 @@ contains
       complex(c_double_complex), target :: tau(..)
       integer(c_int), target :: lwork(..)
       integer(c_int) :: DnZhetrd_bufferSize
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(D)) error stop "D: array must be contiguous"
+      if (.not. is_contiguous(E)) error stop "E: array must be contiguous"
+      if (.not. is_contiguous(tau)) error stop "tau: array must be contiguous"
+      if (.not. is_contiguous(lwork)) error stop "lwork: array must be contiguous"
       DnZhetrd_bufferSize = hipsolverDnZhetrd_bufferSize_raw(handle, uplo, n, c_loc(A), lda, &
         c_loc(D), c_loc(E), c_loc(tau), c_loc(lwork))
     end function hipsolverDnZhetrd_bufferSize_native
@@ -33154,6 +33531,11 @@ contains
       integer(c_int), value :: lwork
       integer(c_int), target :: devInfo(..)
       integer(c_int) :: DnSsytrd
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(D)) error stop "D: array must be contiguous"
+      if (.not. is_contiguous(E)) error stop "E: array must be contiguous"
+      if (.not. is_contiguous(tau)) error stop "tau: array must be contiguous"
+      if (.not. is_contiguous(devInfo)) error stop "devInfo: array must be contiguous"
       DnSsytrd = hipsolverDnSsytrd_raw(handle, uplo, n, c_loc(A), lda, c_loc(D), c_loc(E), c_loc( &
         tau), work, lwork, c_loc(devInfo))
     end function hipsolverDnSsytrd_native
@@ -33194,6 +33576,11 @@ contains
       integer(c_int), value :: lwork
       integer(c_int), target :: devInfo(..)
       integer(c_int) :: DnDsytrd
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(D)) error stop "D: array must be contiguous"
+      if (.not. is_contiguous(E)) error stop "E: array must be contiguous"
+      if (.not. is_contiguous(tau)) error stop "tau: array must be contiguous"
+      if (.not. is_contiguous(devInfo)) error stop "devInfo: array must be contiguous"
       DnDsytrd = hipsolverDnDsytrd_raw(handle, uplo, n, c_loc(A), lda, c_loc(D), c_loc(E), c_loc( &
         tau), work, lwork, c_loc(devInfo))
     end function hipsolverDnDsytrd_native
@@ -33234,6 +33621,11 @@ contains
       integer(c_int), value :: lwork
       integer(c_int), target :: devInfo(..)
       integer(c_int) :: DnChetrd
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(D)) error stop "D: array must be contiguous"
+      if (.not. is_contiguous(E)) error stop "E: array must be contiguous"
+      if (.not. is_contiguous(tau)) error stop "tau: array must be contiguous"
+      if (.not. is_contiguous(devInfo)) error stop "devInfo: array must be contiguous"
       DnChetrd = hipsolverDnChetrd_raw(handle, uplo, n, c_loc(A), lda, c_loc(D), c_loc(E), c_loc( &
         tau), work, lwork, c_loc(devInfo))
     end function hipsolverDnChetrd_native
@@ -33274,6 +33666,11 @@ contains
       integer(c_int), value :: lwork
       integer(c_int), target :: devInfo(..)
       integer(c_int) :: DnZhetrd
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(D)) error stop "D: array must be contiguous"
+      if (.not. is_contiguous(E)) error stop "E: array must be contiguous"
+      if (.not. is_contiguous(tau)) error stop "tau: array must be contiguous"
+      if (.not. is_contiguous(devInfo)) error stop "devInfo: array must be contiguous"
       DnZhetrd = hipsolverDnZhetrd_raw(handle, uplo, n, c_loc(A), lda, c_loc(D), c_loc(E), c_loc( &
         tau), work, lwork, c_loc(devInfo))
     end function hipsolverDnZhetrd_native
@@ -33308,6 +33705,8 @@ contains
       integer(c_int), value :: lda
       integer(c_int), target :: lwork(..)
       integer(c_int) :: DnSsytrf_bufferSize
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(lwork)) error stop "lwork: array must be contiguous"
       DnSsytrf_bufferSize = hipsolverDnSsytrf_bufferSize_raw(handle, n, c_loc(A), lda, c_loc(lwork))
     end function hipsolverDnSsytrf_bufferSize_native
 
@@ -33335,6 +33734,8 @@ contains
       integer(c_int), value :: lda
       integer(c_int), target :: lwork(..)
       integer(c_int) :: DnDsytrf_bufferSize
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(lwork)) error stop "lwork: array must be contiguous"
       DnDsytrf_bufferSize = hipsolverDnDsytrf_bufferSize_raw(handle, n, c_loc(A), lda, c_loc(lwork))
     end function hipsolverDnDsytrf_bufferSize_native
 
@@ -33362,6 +33763,8 @@ contains
       integer(c_int), value :: lda
       integer(c_int), target :: lwork(..)
       integer(c_int) :: DnCsytrf_bufferSize
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(lwork)) error stop "lwork: array must be contiguous"
       DnCsytrf_bufferSize = hipsolverDnCsytrf_bufferSize_raw(handle, n, c_loc(A), lda, c_loc(lwork))
     end function hipsolverDnCsytrf_bufferSize_native
 
@@ -33389,6 +33792,8 @@ contains
       integer(c_int), value :: lda
       integer(c_int), target :: lwork(..)
       integer(c_int) :: DnZsytrf_bufferSize
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(lwork)) error stop "lwork: array must be contiguous"
       DnZsytrf_bufferSize = hipsolverDnZsytrf_bufferSize_raw(handle, n, c_loc(A), lda, c_loc(lwork))
     end function hipsolverDnZsytrf_bufferSize_native
 
@@ -33420,6 +33825,9 @@ contains
       integer(c_int), value :: lwork
       integer(c_int), target :: devInfo(..)
       integer(c_int) :: DnSsytrf
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(ipiv)) error stop "ipiv: array must be contiguous"
+      if (.not. is_contiguous(devInfo)) error stop "devInfo: array must be contiguous"
       DnSsytrf = hipsolverDnSsytrf_raw(handle, uplo, n, c_loc(A), lda, c_loc(ipiv), work, lwork, &
         c_loc(devInfo))
     end function hipsolverDnSsytrf_native
@@ -33456,6 +33864,9 @@ contains
       integer(c_int), value :: lwork
       integer(c_int), target :: devInfo(..)
       integer(c_int) :: DnDsytrf
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(ipiv)) error stop "ipiv: array must be contiguous"
+      if (.not. is_contiguous(devInfo)) error stop "devInfo: array must be contiguous"
       DnDsytrf = hipsolverDnDsytrf_raw(handle, uplo, n, c_loc(A), lda, c_loc(ipiv), work, lwork, &
         c_loc(devInfo))
     end function hipsolverDnDsytrf_native
@@ -33492,6 +33903,9 @@ contains
       integer(c_int), value :: lwork
       integer(c_int), target :: devInfo(..)
       integer(c_int) :: DnCsytrf
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(ipiv)) error stop "ipiv: array must be contiguous"
+      if (.not. is_contiguous(devInfo)) error stop "devInfo: array must be contiguous"
       DnCsytrf = hipsolverDnCsytrf_raw(handle, uplo, n, c_loc(A), lda, c_loc(ipiv), work, lwork, &
         c_loc(devInfo))
     end function hipsolverDnCsytrf_native
@@ -33528,6 +33942,9 @@ contains
       integer(c_int), value :: lwork
       integer(c_int), target :: devInfo(..)
       integer(c_int) :: DnZsytrf
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(ipiv)) error stop "ipiv: array must be contiguous"
+      if (.not. is_contiguous(devInfo)) error stop "devInfo: array must be contiguous"
       DnZsytrf = hipsolverDnZsytrf_raw(handle, uplo, n, c_loc(A), lda, c_loc(ipiv), work, lwork, &
         c_loc(devInfo))
     end function hipsolverDnZsytrf_native
@@ -33609,6 +34026,7 @@ contains
       integer(c_long), value :: lworkOnHost
       integer(c_int), target :: devInfo(..)
       integer(c_int) :: DnXgeev
+      if (.not. is_contiguous(devInfo)) error stop "devInfo: array must be contiguous"
       DnXgeev = hipsolverDnXgeev_raw(handle, params, jobvl, jobvr, n, dataTypeA, A, lda, &
         dataTypeW, W, dataTypeVL, VL, ldvl, dataTypeVR, VR, ldvr, computeType, workOnDevice, &
         lworkOnDevice, workOnHost, lworkOnHost, c_loc(devInfo))
@@ -33690,6 +34108,7 @@ contains
       integer(c_long), value :: lworkOnHost
       integer(c_int), target :: devInfo(..)
       integer(c_int) :: DnXgeqrf
+      if (.not. is_contiguous(devInfo)) error stop "devInfo: array must be contiguous"
       DnXgeqrf = hipsolverDnXgeqrf_raw(handle, params, m, n, dataTypeA, A, lda, dataTypeTau, tau, &
         computeType, workOnDevice, lworkOnDevice, workOnHost, lworkOnHost, c_loc(devInfo))
     end function hipsolverDnXgeqrf_native
@@ -33824,6 +34243,7 @@ contains
       integer(c_long), value :: lworkOnHost
       integer(c_int), target :: info(..)
       integer(c_int) :: DnXpotrf
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       DnXpotrf = hipsolverDnXpotrf_raw(handle, params, uplo, n, dataTypeA, A, lda, computeType, &
         workOnDevice, lworkOnDevice, workOnHost, lworkOnHost, c_loc(info))
     end function hipsolverDnXpotrf_native
@@ -33868,6 +34288,7 @@ contains
       integer(c_long), value :: ldb
       integer(c_int), target :: info(..)
       integer(c_int) :: DnXpotrs
+      if (.not. is_contiguous(info)) error stop "info: array must be contiguous"
       DnXpotrs = hipsolverDnXpotrs_raw(handle, params, uplo, n, nrhs, dataTypeA, A, lda, &
         dataTypeB, B, ldb, c_loc(info))
     end function hipsolverDnXpotrs_native
@@ -33939,6 +34360,7 @@ contains
       integer(c_long), value :: lworkOnHost
       integer(c_int), target :: devInfo(..)
       integer(c_int) :: DnXsyevd
+      if (.not. is_contiguous(devInfo)) error stop "devInfo: array must be contiguous"
       DnXsyevd = hipsolverDnXsyevd_raw(handle, params, jobz, uplo, n, dataTypeA, A, lda, &
         dataTypeW, W, computeType, workOnDevice, lworkOnDevice, workOnHost, lworkOnHost, c_loc( &
         devInfo))
@@ -34020,6 +34442,7 @@ contains
       integer(c_int), target :: devInfo(..)
       integer(c_long), value :: batchSize
       integer(c_int) :: DnXsyevBatched
+      if (.not. is_contiguous(devInfo)) error stop "devInfo: array must be contiguous"
       DnXsyevBatched = hipsolverDnXsyevBatched_raw(handle, params, jobz, uplo, n, dataTypeA, A, &
         lda, dataTypeW, W, computeType, workOnDevice, lworkOnDevice, workOnHost, lworkOnHost, &
         c_loc(devInfo), batchSize)
@@ -34099,6 +34522,7 @@ contains
       integer(c_long), value :: lworkOnHost
       integer(c_int), target :: devInfo(..)
       integer(c_int) :: DnXsytrs
+      if (.not. is_contiguous(devInfo)) error stop "devInfo: array must be contiguous"
       DnXsytrs = hipsolverDnXsytrs_raw(handle, uplo, n, nrhs, dataTypeA, A, lda, devIpiv, &
         dataTypeB, B, ldb, workOnDevice, lworkOnDevice, workOnHost, lworkOnHost, c_loc(devInfo))
     end function hipsolverDnXsytrs_native
@@ -34169,6 +34593,17 @@ contains
       integer(c_int), target :: Q(..)
       type(c_ptr), value :: handle
       integer(c_int) :: RfSetupDevice
+      if (.not. is_contiguous(csrRowPtrA)) error stop "csrRowPtrA: array must be contiguous"
+      if (.not. is_contiguous(csrColIndA)) error stop "csrColIndA: array must be contiguous"
+      if (.not. is_contiguous(csrValA)) error stop "csrValA: array must be contiguous"
+      if (.not. is_contiguous(csrRowPtrL)) error stop "csrRowPtrL: array must be contiguous"
+      if (.not. is_contiguous(csrColIndL)) error stop "csrColIndL: array must be contiguous"
+      if (.not. is_contiguous(csrValL)) error stop "csrValL: array must be contiguous"
+      if (.not. is_contiguous(csrRowPtrU)) error stop "csrRowPtrU: array must be contiguous"
+      if (.not. is_contiguous(csrColIndU)) error stop "csrColIndU: array must be contiguous"
+      if (.not. is_contiguous(csrValU)) error stop "csrValU: array must be contiguous"
+      if (.not. is_contiguous(P)) error stop "P: array must be contiguous"
+      if (.not. is_contiguous(Q)) error stop "Q: array must be contiguous"
       RfSetupDevice = hipsolverRfSetupDevice_raw(n, nnzA, c_loc(csrRowPtrA), c_loc(csrColIndA), &
         c_loc(csrValA), nnzL, c_loc(csrRowPtrL), c_loc(csrColIndL), c_loc(csrValL), nnzU, c_loc( &
         csrRowPtrU), c_loc(csrColIndU), c_loc(csrValU), c_loc(P), c_loc(Q), handle)
@@ -34223,6 +34658,17 @@ contains
       integer(c_int), target :: h_Q(..)
       type(c_ptr), value :: handle
       integer(c_int) :: RfSetupHost
+      if (.not. is_contiguous(h_csrRowPtrA)) error stop "h_csrRowPtrA: array must be contiguous"
+      if (.not. is_contiguous(h_csrColIndA)) error stop "h_csrColIndA: array must be contiguous"
+      if (.not. is_contiguous(h_csrValA)) error stop "h_csrValA: array must be contiguous"
+      if (.not. is_contiguous(h_csrRowPtrL)) error stop "h_csrRowPtrL: array must be contiguous"
+      if (.not. is_contiguous(h_csrColIndL)) error stop "h_csrColIndL: array must be contiguous"
+      if (.not. is_contiguous(h_csrValL)) error stop "h_csrValL: array must be contiguous"
+      if (.not. is_contiguous(h_csrRowPtrU)) error stop "h_csrRowPtrU: array must be contiguous"
+      if (.not. is_contiguous(h_csrColIndU)) error stop "h_csrColIndU: array must be contiguous"
+      if (.not. is_contiguous(h_csrValU)) error stop "h_csrValU: array must be contiguous"
+      if (.not. is_contiguous(h_P)) error stop "h_P: array must be contiguous"
+      if (.not. is_contiguous(h_Q)) error stop "h_Q: array must be contiguous"
       RfSetupHost = hipsolverRfSetupHost_raw(n, nnzA, c_loc(h_csrRowPtrA), c_loc(h_csrColIndA), &
         c_loc(h_csrValA), nnzL, c_loc(h_csrRowPtrL), c_loc(h_csrColIndL), c_loc(h_csrValL), nnzU, &
         c_loc(h_csrRowPtrU), c_loc(h_csrColIndU), c_loc(h_csrValU), c_loc(h_P), c_loc(h_Q), handle)
@@ -34321,6 +34767,8 @@ contains
       integer(c_int), target :: fact_alg(..)
       integer(c_int), target :: solve_alg(..)
       integer(c_int) :: RfGet_Algs
+      if (.not. is_contiguous(fact_alg)) error stop "fact_alg: array must be contiguous"
+      if (.not. is_contiguous(solve_alg)) error stop "solve_alg: array must be contiguous"
       RfGet_Algs = hipsolverRfGet_Algs_raw(handle, c_loc(fact_alg), c_loc(solve_alg))
     end function hipsolverRfGet_Algs_native
 
@@ -34342,6 +34790,8 @@ contains
       integer(c_int), target :: format_(..)
       integer(c_int), target :: diag(..)
       integer(c_int) :: RfGetMatrixFormat
+      if (.not. is_contiguous(format_)) error stop "format_: array must be contiguous"
+      if (.not. is_contiguous(diag)) error stop "diag: array must be contiguous"
       RfGetMatrixFormat = hipsolverRfGetMatrixFormat_raw(handle, c_loc(format_), c_loc(diag))
     end function hipsolverRfGetMatrixFormat_native
 
@@ -34362,6 +34812,7 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), target :: report(..)
       integer(c_int) :: RfGetNumericBoostReport
+      if (.not. is_contiguous(report)) error stop "report: array must be contiguous"
       RfGetNumericBoostReport = hipsolverRfGetNumericBoostReport_raw(handle, c_loc(report))
     end function hipsolverRfGetNumericBoostReport_native
 
@@ -34394,6 +34845,7 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), target :: fastMode(..)
       integer(c_int) :: RfGetResetValuesFastMode
+      if (.not. is_contiguous(fastMode)) error stop "fastMode: array must be contiguous"
       RfGetResetValuesFastMode = hipsolverRfGetResetValuesFastMode_raw(handle, c_loc(fastMode))
     end function hipsolverRfGetResetValuesFastMode_native
 
@@ -34430,6 +34882,11 @@ contains
       integer(c_int), target :: Q(..)
       type(c_ptr), value :: handle
       integer(c_int) :: RfResetValues
+      if (.not. is_contiguous(csrRowPtrA)) error stop "csrRowPtrA: array must be contiguous"
+      if (.not. is_contiguous(csrColIndA)) error stop "csrColIndA: array must be contiguous"
+      if (.not. is_contiguous(csrValA)) error stop "csrValA: array must be contiguous"
+      if (.not. is_contiguous(P)) error stop "P: array must be contiguous"
+      if (.not. is_contiguous(Q)) error stop "Q: array must be contiguous"
       RfResetValues = hipsolverRfResetValues_raw(n, nnzA, c_loc(csrRowPtrA), c_loc(csrColIndA), &
         c_loc(csrValA), c_loc(P), c_loc(Q), handle)
     end function hipsolverRfResetValues_native
@@ -34510,6 +34967,10 @@ contains
       real(c_double), target :: XF(..)
       integer(c_int), value :: ldxf
       integer(c_int) :: RfSolve
+      if (.not. is_contiguous(P)) error stop "P: array must be contiguous"
+      if (.not. is_contiguous(Q)) error stop "Q: array must be contiguous"
+      if (.not. is_contiguous(Temp)) error stop "Temp: array must be contiguous"
+      if (.not. is_contiguous(XF)) error stop "XF: array must be contiguous"
       RfSolve = hipsolverRfSolve_raw(handle, c_loc(P), c_loc(Q), nrhs, c_loc(Temp), ldt, c_loc( &
         XF), ldxf)
     end function hipsolverRfSolve_native
@@ -34553,6 +35014,16 @@ contains
       integer(c_int), target :: h_Q(..)
       type(c_ptr), value :: handle
       integer(c_int) :: RfBatchSetupHost
+      if (.not. is_contiguous(h_csrRowPtrA)) error stop "h_csrRowPtrA: array must be contiguous"
+      if (.not. is_contiguous(h_csrColIndA)) error stop "h_csrColIndA: array must be contiguous"
+      if (.not. is_contiguous(h_csrRowPtrL)) error stop "h_csrRowPtrL: array must be contiguous"
+      if (.not. is_contiguous(h_csrColIndL)) error stop "h_csrColIndL: array must be contiguous"
+      if (.not. is_contiguous(h_csrValL)) error stop "h_csrValL: array must be contiguous"
+      if (.not. is_contiguous(h_csrRowPtrU)) error stop "h_csrRowPtrU: array must be contiguous"
+      if (.not. is_contiguous(h_csrColIndU)) error stop "h_csrColIndU: array must be contiguous"
+      if (.not. is_contiguous(h_csrValU)) error stop "h_csrValU: array must be contiguous"
+      if (.not. is_contiguous(h_P)) error stop "h_P: array must be contiguous"
+      if (.not. is_contiguous(h_Q)) error stop "h_Q: array must be contiguous"
       RfBatchSetupHost = hipsolverRfBatchSetupHost_raw(batchSize, n, nnzA, c_loc(h_csrRowPtrA), &
         c_loc(h_csrColIndA), h_csrValA_array, nnzL, c_loc(h_csrRowPtrL), c_loc(h_csrColIndL), &
         c_loc(h_csrValL), nnzU, c_loc(h_csrRowPtrU), c_loc(h_csrColIndU), c_loc(h_csrValU), c_loc( &
@@ -34620,6 +35091,10 @@ contains
       integer(c_int), target :: Q(..)
       type(c_ptr), value :: handle
       integer(c_int) :: RfBatchResetValues
+      if (.not. is_contiguous(csrRowPtrA)) error stop "csrRowPtrA: array must be contiguous"
+      if (.not. is_contiguous(csrColIndA)) error stop "csrColIndA: array must be contiguous"
+      if (.not. is_contiguous(P)) error stop "P: array must be contiguous"
+      if (.not. is_contiguous(Q)) error stop "Q: array must be contiguous"
       RfBatchResetValues = hipsolverRfBatchResetValues_raw(batchSize, n, nnzA, c_loc(csrRowPtrA), &
         c_loc(csrColIndA), csrValA_array, c_loc(P), c_loc(Q), handle)
     end function hipsolverRfBatchResetValues_native
@@ -34656,6 +35131,9 @@ contains
       type(c_ptr), value :: XF_array
       integer(c_int), value :: ldxf
       integer(c_int) :: RfBatchSolve
+      if (.not. is_contiguous(P)) error stop "P: array must be contiguous"
+      if (.not. is_contiguous(Q)) error stop "Q: array must be contiguous"
+      if (.not. is_contiguous(Temp)) error stop "Temp: array must be contiguous"
       RfBatchSolve = hipsolverRfBatchSolve_raw(handle, c_loc(P), c_loc(Q), nrhs, c_loc(Temp), ldt, &
         XF_array, ldxf)
     end function hipsolverRfBatchSolve_native
@@ -34683,6 +35161,7 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), target :: position(..)
       integer(c_int) :: RfBatchZeroPivot
+      if (.not. is_contiguous(position)) error stop "position: array must be contiguous"
       RfBatchZeroPivot = hipsolverRfBatchZeroPivot_raw(handle, c_loc(position))
     end function hipsolverRfBatchZeroPivot_native
 
@@ -34741,6 +35220,11 @@ contains
       real(c_float), target :: x(..)
       integer(c_int) :: singularity
       integer(c_int) :: SpScsrlsvchol
+      if (.not. is_contiguous(csrVal)) error stop "csrVal: array must be contiguous"
+      if (.not. is_contiguous(csrRowPtr)) error stop "csrRowPtr: array must be contiguous"
+      if (.not. is_contiguous(csrColInd)) error stop "csrColInd: array must be contiguous"
+      if (.not. is_contiguous(b)) error stop "b: array must be contiguous"
+      if (.not. is_contiguous(x)) error stop "x: array must be contiguous"
       SpScsrlsvchol = hipsolverSpScsrlsvchol_raw(handle, n, nnzA, descrA, c_loc(csrVal), c_loc( &
         csrRowPtr), c_loc(csrColInd), c_loc(b), tolerance, reorder, c_loc(x), singularity)
     end function hipsolverSpScsrlsvchol_native
@@ -34784,6 +35268,11 @@ contains
       real(c_double), target :: x(..)
       integer(c_int) :: singularity
       integer(c_int) :: SpDcsrlsvchol
+      if (.not. is_contiguous(csrVal)) error stop "csrVal: array must be contiguous"
+      if (.not. is_contiguous(csrRowPtr)) error stop "csrRowPtr: array must be contiguous"
+      if (.not. is_contiguous(csrColInd)) error stop "csrColInd: array must be contiguous"
+      if (.not. is_contiguous(b)) error stop "b: array must be contiguous"
+      if (.not. is_contiguous(x)) error stop "x: array must be contiguous"
       SpDcsrlsvchol = hipsolverSpDcsrlsvchol_raw(handle, n, nnzA, descrA, c_loc(csrVal), c_loc( &
         csrRowPtr), c_loc(csrColInd), c_loc(b), tolerance, reorder, c_loc(x), singularity)
     end function hipsolverSpDcsrlsvchol_native
@@ -34827,6 +35316,11 @@ contains
       real(c_float), target :: x(..)
       integer(c_int) :: singularity
       integer(c_int) :: SpScsrlsvcholHost
+      if (.not. is_contiguous(csrVal)) error stop "csrVal: array must be contiguous"
+      if (.not. is_contiguous(csrRowPtr)) error stop "csrRowPtr: array must be contiguous"
+      if (.not. is_contiguous(csrColInd)) error stop "csrColInd: array must be contiguous"
+      if (.not. is_contiguous(b)) error stop "b: array must be contiguous"
+      if (.not. is_contiguous(x)) error stop "x: array must be contiguous"
       SpScsrlsvcholHost = hipsolverSpScsrlsvcholHost_raw(handle, n, nnzA, descrA, c_loc(csrVal), &
         c_loc(csrRowPtr), c_loc(csrColInd), c_loc(b), tolerance, reorder, c_loc(x), singularity)
     end function hipsolverSpScsrlsvcholHost_native
@@ -34870,6 +35364,12 @@ contains
       real(c_double), target :: x(..)
       integer(c_int), target :: singularity(..)
       integer(c_int) :: SpDcsrlsvcholHost
+      if (.not. is_contiguous(csrVal)) error stop "csrVal: array must be contiguous"
+      if (.not. is_contiguous(csrRowPtr)) error stop "csrRowPtr: array must be contiguous"
+      if (.not. is_contiguous(csrColInd)) error stop "csrColInd: array must be contiguous"
+      if (.not. is_contiguous(b)) error stop "b: array must be contiguous"
+      if (.not. is_contiguous(x)) error stop "x: array must be contiguous"
+      if (.not. is_contiguous(singularity)) error stop "singularity: array must be contiguous"
       SpDcsrlsvcholHost = hipsolverSpDcsrlsvcholHost_raw(handle, n, nnzA, descrA, c_loc(csrVal), &
         c_loc(csrRowPtr), c_loc(csrColInd), c_loc(b), tolerance, reorder, c_loc(x), c_loc( &
         singularity))
@@ -34914,6 +35414,12 @@ contains
       real(c_float), target :: x(..)
       integer(c_int), target :: singularity(..)
       integer(c_int) :: SpScsrlsvqr
+      if (.not. is_contiguous(csrVal)) error stop "csrVal: array must be contiguous"
+      if (.not. is_contiguous(csrRowPts)) error stop "csrRowPts: array must be contiguous"
+      if (.not. is_contiguous(csrColInd)) error stop "csrColInd: array must be contiguous"
+      if (.not. is_contiguous(b)) error stop "b: array must be contiguous"
+      if (.not. is_contiguous(x)) error stop "x: array must be contiguous"
+      if (.not. is_contiguous(singularity)) error stop "singularity: array must be contiguous"
       SpScsrlsvqr = hipsolverSpScsrlsvqr_raw(handle, n, nnz, descrA, c_loc(csrVal), c_loc( &
         csrRowPts), c_loc(csrColInd), c_loc(b), tolerance, reorder, c_loc(x), c_loc(singularity))
     end function hipsolverSpScsrlsvqr_native
@@ -34957,6 +35463,12 @@ contains
       real(c_double), target :: x(..)
       integer(c_int), target :: singularity(..)
       integer(c_int) :: SpDcsrlsvqr
+      if (.not. is_contiguous(csrVal)) error stop "csrVal: array must be contiguous"
+      if (.not. is_contiguous(csrRowPts)) error stop "csrRowPts: array must be contiguous"
+      if (.not. is_contiguous(csrColInd)) error stop "csrColInd: array must be contiguous"
+      if (.not. is_contiguous(b)) error stop "b: array must be contiguous"
+      if (.not. is_contiguous(x)) error stop "x: array must be contiguous"
+      if (.not. is_contiguous(singularity)) error stop "singularity: array must be contiguous"
       SpDcsrlsvqr = hipsolverSpDcsrlsvqr_raw(handle, n, nnz, descrA, c_loc(csrVal), c_loc( &
         csrRowPts), c_loc(csrColInd), c_loc(b), tolerance, reorder, c_loc(x), c_loc(singularity))
     end function hipsolverSpDcsrlsvqr_native
@@ -35000,6 +35512,12 @@ contains
       complex(c_float_complex), target :: x(..)
       integer(c_int), target :: singularity(..)
       integer(c_int) :: SpCcsrlsvqr
+      if (.not. is_contiguous(csrVal)) error stop "csrVal: array must be contiguous"
+      if (.not. is_contiguous(csrRowPts)) error stop "csrRowPts: array must be contiguous"
+      if (.not. is_contiguous(csrColInd)) error stop "csrColInd: array must be contiguous"
+      if (.not. is_contiguous(b)) error stop "b: array must be contiguous"
+      if (.not. is_contiguous(x)) error stop "x: array must be contiguous"
+      if (.not. is_contiguous(singularity)) error stop "singularity: array must be contiguous"
       SpCcsrlsvqr = hipsolverSpCcsrlsvqr_raw(handle, n, nnz, descrA, c_loc(csrVal), c_loc( &
         csrRowPts), c_loc(csrColInd), c_loc(b), tolerance, reorder, c_loc(x), c_loc(singularity))
     end function hipsolverSpCcsrlsvqr_native
@@ -35043,6 +35561,12 @@ contains
       complex(c_double_complex), target :: x(..)
       integer(c_int), target :: singularity(..)
       integer(c_int) :: SpZcsrlsvqr
+      if (.not. is_contiguous(csrVal)) error stop "csrVal: array must be contiguous"
+      if (.not. is_contiguous(csrRowPts)) error stop "csrRowPts: array must be contiguous"
+      if (.not. is_contiguous(csrColInd)) error stop "csrColInd: array must be contiguous"
+      if (.not. is_contiguous(b)) error stop "b: array must be contiguous"
+      if (.not. is_contiguous(x)) error stop "x: array must be contiguous"
+      if (.not. is_contiguous(singularity)) error stop "singularity: array must be contiguous"
       SpZcsrlsvqr = hipsolverSpZcsrlsvqr_raw(handle, n, nnz, descrA, c_loc(csrVal), c_loc( &
         csrRowPts), c_loc(csrColInd), c_loc(b), tolerance, reorder, c_loc(x), c_loc(singularity))
     end function hipsolverSpZcsrlsvqr_native

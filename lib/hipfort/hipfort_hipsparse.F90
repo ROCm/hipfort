@@ -266,11 +266,7 @@ module hipfort_hipsparse
     !> \p hipsparseGetGitRevision gets the hipSPARSE library git commit revision (SHA-1).
     function hipsparseGetGitRevision_raw(handle, rev) &
        result(GetGitRevision_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusparseGetGitRevision")
-#else
        bind(C, name="hipsparseGetGitRevision")
-#endif
        import :: c_ptr, c_int
        type(c_ptr), value :: handle
        type(c_ptr), value :: rev
@@ -449,11 +445,7 @@ module hipfort_hipsparse
     !> matrix descriptors must be initialized prior to calling \p hipsparseCopyMatDescr.
     function hipsparseCopyMatDescr_raw(dest, src) &
        result(CopyMatDescr_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusparseCopyMatDescr")
-#else
        bind(C, name="hipsparseCopyMatDescr")
-#endif
        import :: c_ptr, c_int
        type(c_ptr), value :: dest
        type(c_ptr), value :: src
@@ -680,11 +672,7 @@ module hipfort_hipsparse
     !> storage format. It should be destroyed at the end using hipsparseDestroyHybMat().
     function hipsparseCreateHybMat_raw(hybA) &
        result(CreateHybMat_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusparseCreateHybMat")
-#else
        bind(C, name="hipsparseCreateHybMat")
-#endif
        import :: c_ptr, c_int
        type(c_ptr) :: hybA
        integer(c_int) :: CreateHybMat_raw
@@ -704,11 +692,7 @@ module hipfort_hipsparse
     !> \p hipsparseDestroyHybMat destroys a \p HYB structure.
     function hipsparseDestroyHybMat_raw(hybA) &
        result(DestroyHybMat_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusparseDestroyHybMat")
-#else
        bind(C, name="hipsparseDestroyHybMat")
-#endif
        import :: c_ptr, c_int
        type(c_ptr), value :: hybA
        integer(c_int) :: DestroyHybMat_raw
@@ -930,11 +914,7 @@ module hipfort_hipsparse
     !> at the end using hipsparseDestroyCsrsv2Info().
     function hipsparseCreateCsrsv2Info_raw(info) &
        result(CreateCsrsv2Info_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusparseCreateCsrsv2Info")
-#else
        bind(C, name="hipsparseCreateCsrsv2Info")
-#endif
        import :: c_ptr, c_int
        type(c_ptr) :: info
        integer(c_int) :: CreateCsrsv2Info_raw
@@ -954,11 +934,7 @@ module hipfort_hipsparse
     !> \p hipsparseDestroyCsrsv2Info destroys a csrsv2 info structure.
     function hipsparseDestroyCsrsv2Info_raw(info) &
        result(DestroyCsrsv2Info_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusparseDestroyCsrsv2Info")
-#else
        bind(C, name="hipsparseDestroyCsrsv2Info")
-#endif
        import :: c_ptr, c_int
        type(c_ptr), value :: info
        integer(c_int) :: DestroyCsrsv2Info_raw
@@ -980,11 +956,7 @@ module hipfort_hipsparse
     !> at the end using hipsparseDestroyCsrsm2Info().
     function hipsparseCreateCsrsm2Info_raw(info) &
        result(CreateCsrsm2Info_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusparseCreateCsrsm2Info")
-#else
        bind(C, name="hipsparseCreateCsrsm2Info")
-#endif
        import :: c_ptr, c_int
        type(c_ptr) :: info
        integer(c_int) :: CreateCsrsm2Info_raw
@@ -1004,11 +976,7 @@ module hipfort_hipsparse
     !> \p hipsparseDestroyCsrsm2Info destroys a csrsm2 info structure.
     function hipsparseDestroyCsrsm2Info_raw(info) &
        result(DestroyCsrsm2Info_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusparseDestroyCsrsm2Info")
-#else
        bind(C, name="hipsparseDestroyCsrsm2Info")
-#endif
        import :: c_ptr, c_int
        type(c_ptr), value :: info
        integer(c_int) :: DestroyCsrsm2Info_raw
@@ -1130,11 +1098,7 @@ module hipfort_hipsparse
     !> at the end using hipsparseDestroyCsrgemm2Info().
     function hipsparseCreateCsrgemm2Info_raw(info) &
        result(CreateCsrgemm2Info_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusparseCreateCsrgemm2Info")
-#else
        bind(C, name="hipsparseCreateCsrgemm2Info")
-#endif
        import :: c_ptr, c_int
        type(c_ptr) :: info
        integer(c_int) :: CreateCsrgemm2Info_raw
@@ -1154,11 +1118,7 @@ module hipfort_hipsparse
     !> \p hipsparseDestroyCsrgemm2Info destroys a csrgemm2 info structure.
     function hipsparseDestroyCsrgemm2Info_raw(info) &
        result(DestroyCsrgemm2Info_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusparseDestroyCsrgemm2Info")
-#else
        bind(C, name="hipsparseDestroyCsrgemm2Info")
-#endif
        import :: c_ptr, c_int
        type(c_ptr), value :: info
        integer(c_int) :: DestroyCsrgemm2Info_raw
@@ -1277,11 +1237,7 @@ module hipfort_hipsparse
     !> or \p idxBase is neither `HIPSPARSE_INDEX_BASE_ZERO` nor `HIPSPARSE_INDEX_BASE_ONE`.
     function hipsparseSaxpyi_raw(handle, nnz, alpha, xVal, xInd, y, idxBase) &
        result(Saxpyi_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusparseSaxpyi")
-#else
        bind(C, name="hipsparseSaxpyi")
-#endif
        import :: c_ptr, c_int, c_float
        type(c_ptr), value :: handle
        integer(c_int), value :: nnz
@@ -1303,11 +1259,7 @@ module hipfort_hipsparse
     !---------------------------------------------
     function hipsparseDaxpyi_raw(handle, nnz, alpha, xVal, xInd, y, idxBase) &
        result(Daxpyi_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusparseDaxpyi")
-#else
        bind(C, name="hipsparseDaxpyi")
-#endif
        import :: c_ptr, c_int, c_double
        type(c_ptr), value :: handle
        integer(c_int), value :: nnz
@@ -1329,11 +1281,7 @@ module hipfort_hipsparse
     !---------------------------------------------
     function hipsparseCaxpyi_raw(handle, nnz, alpha, xVal, xInd, y, idxBase) &
        result(Caxpyi_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusparseCaxpyi")
-#else
        bind(C, name="hipsparseCaxpyi")
-#endif
        import :: c_ptr, c_int, c_float_complex
        type(c_ptr), value :: handle
        integer(c_int), value :: nnz
@@ -1355,11 +1303,7 @@ module hipfort_hipsparse
     !---------------------------------------------
     function hipsparseZaxpyi_raw(handle, nnz, alpha, xVal, xInd, y, idxBase) &
        result(Zaxpyi_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusparseZaxpyi")
-#else
        bind(C, name="hipsparseZaxpyi")
-#endif
        import :: c_ptr, c_int, c_double_complex
        type(c_ptr), value :: handle
        integer(c_int), value :: nnz
@@ -1437,11 +1381,7 @@ module hipfort_hipsparse
     !> \retval HIPSPARSE_STATUS_INTERNAL_ERROR an internal error occurred.
     function hipsparseCdotci_raw(handle, nnz, xVal, xInd, y, result, idxBase) &
        result(Cdotci_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusparseCdotci")
-#else
        bind(C, name="hipsparseCdotci")
-#endif
        import :: c_ptr, c_int
        type(c_ptr), value :: handle
        integer(c_int), value :: nnz
@@ -1463,11 +1403,7 @@ module hipfort_hipsparse
     !---------------------------------------------
     function hipsparseZdotci_raw(handle, nnz, xVal, xInd, y, result, idxBase) &
        result(Zdotci_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusparseZdotci")
-#else
        bind(C, name="hipsparseZdotci")
-#endif
        import :: c_ptr, c_int
        type(c_ptr), value :: handle
        integer(c_int), value :: nnz
@@ -1544,11 +1480,7 @@ module hipfort_hipsparse
     !> \retval HIPSPARSE_STATUS_INTERNAL_ERROR an internal error occurred.
     function hipsparseSdoti_raw(handle, nnz, xVal, xInd, y, result, idxBase) &
        result(Sdoti_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusparseSdoti")
-#else
        bind(C, name="hipsparseSdoti")
-#endif
        import :: c_ptr, c_int
        type(c_ptr), value :: handle
        integer(c_int), value :: nnz
@@ -1570,11 +1502,7 @@ module hipfort_hipsparse
     !---------------------------------------------
     function hipsparseDdoti_raw(handle, nnz, xVal, xInd, y, result, idxBase) &
        result(Ddoti_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusparseDdoti")
-#else
        bind(C, name="hipsparseDdoti")
-#endif
        import :: c_ptr, c_int
        type(c_ptr), value :: handle
        integer(c_int), value :: nnz
@@ -1596,11 +1524,7 @@ module hipfort_hipsparse
     !---------------------------------------------
     function hipsparseCdoti_raw(handle, nnz, xVal, xInd, y, result, idxBase) &
        result(Cdoti_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusparseCdoti")
-#else
        bind(C, name="hipsparseCdoti")
-#endif
        import :: c_ptr, c_int
        type(c_ptr), value :: handle
        integer(c_int), value :: nnz
@@ -1622,11 +1546,7 @@ module hipfort_hipsparse
     !---------------------------------------------
     function hipsparseZdoti_raw(handle, nnz, xVal, xInd, y, result, idxBase) &
        result(Zdoti_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusparseZdoti")
-#else
        bind(C, name="hipsparseZdoti")
-#endif
        import :: c_ptr, c_int
        type(c_ptr), value :: handle
        integer(c_int), value :: nnz
@@ -1694,11 +1614,7 @@ module hipfort_hipsparse
     !> is neither `HIPSPARSE_INDEX_BASE_ZERO` nor `HIPSPARSE_INDEX_BASE_ONE`.
     function hipsparseSgthr_raw(handle, nnz, y, xVal, xInd, idxBase) &
        result(Sgthr_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusparseSgthr")
-#else
        bind(C, name="hipsparseSgthr")
-#endif
        import :: c_ptr, c_int
        type(c_ptr), value :: handle
        integer(c_int), value :: nnz
@@ -1719,11 +1635,7 @@ module hipfort_hipsparse
     !---------------------------------------------
     function hipsparseDgthr_raw(handle, nnz, y, xVal, xInd, idxBase) &
        result(Dgthr_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusparseDgthr")
-#else
        bind(C, name="hipsparseDgthr")
-#endif
        import :: c_ptr, c_int
        type(c_ptr), value :: handle
        integer(c_int), value :: nnz
@@ -1744,11 +1656,7 @@ module hipfort_hipsparse
     !---------------------------------------------
     function hipsparseCgthr_raw(handle, nnz, y, xVal, xInd, idxBase) &
        result(Cgthr_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusparseCgthr")
-#else
        bind(C, name="hipsparseCgthr")
-#endif
        import :: c_ptr, c_int
        type(c_ptr), value :: handle
        integer(c_int), value :: nnz
@@ -1769,11 +1677,7 @@ module hipfort_hipsparse
     !---------------------------------------------
     function hipsparseZgthr_raw(handle, nnz, y, xVal, xInd, idxBase) &
        result(Zgthr_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusparseZgthr")
-#else
        bind(C, name="hipsparseZgthr")
-#endif
        import :: c_ptr, c_int
        type(c_ptr), value :: handle
        integer(c_int), value :: nnz
@@ -1844,11 +1748,7 @@ module hipfort_hipsparse
     !> is neither `HIPSPARSE_INDEX_BASE_ZERO` nor `HIPSPARSE_INDEX_BASE_ONE`.
     function hipsparseSgthrz_raw(handle, nnz, y, xVal, xInd, idxBase) &
        result(Sgthrz_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusparseSgthrz")
-#else
        bind(C, name="hipsparseSgthrz")
-#endif
        import :: c_ptr, c_int
        type(c_ptr), value :: handle
        integer(c_int), value :: nnz
@@ -1869,11 +1769,7 @@ module hipfort_hipsparse
     !---------------------------------------------
     function hipsparseDgthrz_raw(handle, nnz, y, xVal, xInd, idxBase) &
        result(Dgthrz_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusparseDgthrz")
-#else
        bind(C, name="hipsparseDgthrz")
-#endif
        import :: c_ptr, c_int
        type(c_ptr), value :: handle
        integer(c_int), value :: nnz
@@ -1894,11 +1790,7 @@ module hipfort_hipsparse
     !---------------------------------------------
     function hipsparseCgthrz_raw(handle, nnz, y, xVal, xInd, idxBase) &
        result(Cgthrz_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusparseCgthrz")
-#else
        bind(C, name="hipsparseCgthrz")
-#endif
        import :: c_ptr, c_int
        type(c_ptr), value :: handle
        integer(c_int), value :: nnz
@@ -1919,11 +1811,7 @@ module hipfort_hipsparse
     !---------------------------------------------
     function hipsparseZgthrz_raw(handle, nnz, y, xVal, xInd, idxBase) &
        result(Zgthrz_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusparseZgthrz")
-#else
        bind(C, name="hipsparseZgthrz")
-#endif
        import :: c_ptr, c_int
        type(c_ptr), value :: handle
        integer(c_int), value :: nnz
@@ -2002,11 +1890,7 @@ module hipfort_hipsparse
     !> is neither `HIPSPARSE_INDEX_BASE_ZERO` nor `HIPSPARSE_INDEX_BASE_ONE`.
     function hipsparseSroti_raw(handle, nnz, xVal, xInd, y, c, s, idxBase) &
        result(Sroti_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusparseSroti")
-#else
        bind(C, name="hipsparseSroti")
-#endif
        import :: c_ptr, c_int, c_float
        type(c_ptr), value :: handle
        integer(c_int), value :: nnz
@@ -2029,11 +1913,7 @@ module hipfort_hipsparse
     !---------------------------------------------
     function hipsparseDroti_raw(handle, nnz, xVal, xInd, y, c, s, idxBase) &
        result(Droti_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusparseDroti")
-#else
        bind(C, name="hipsparseDroti")
-#endif
        import :: c_ptr, c_int, c_double
        type(c_ptr), value :: handle
        integer(c_int), value :: nnz
@@ -2104,11 +1984,7 @@ module hipfort_hipsparse
     !> is neither `HIPSPARSE_INDEX_BASE_ZERO` nor `HIPSPARSE_INDEX_BASE_ONE`.
     function hipsparseSsctr_raw(handle, nnz, xVal, xInd, y, idxBase) &
        result(Ssctr_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusparseSsctr")
-#else
        bind(C, name="hipsparseSsctr")
-#endif
        import :: c_ptr, c_int
        type(c_ptr), value :: handle
        integer(c_int), value :: nnz
@@ -2129,11 +2005,7 @@ module hipfort_hipsparse
     !---------------------------------------------
     function hipsparseDsctr_raw(handle, nnz, xVal, xInd, y, idxBase) &
        result(Dsctr_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusparseDsctr")
-#else
        bind(C, name="hipsparseDsctr")
-#endif
        import :: c_ptr, c_int
        type(c_ptr), value :: handle
        integer(c_int), value :: nnz
@@ -2154,11 +2026,7 @@ module hipfort_hipsparse
     !---------------------------------------------
     function hipsparseCsctr_raw(handle, nnz, xVal, xInd, y, idxBase) &
        result(Csctr_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusparseCsctr")
-#else
        bind(C, name="hipsparseCsctr")
-#endif
        import :: c_ptr, c_int
        type(c_ptr), value :: handle
        integer(c_int), value :: nnz
@@ -2179,11 +2047,7 @@ module hipfort_hipsparse
     !---------------------------------------------
     function hipsparseZsctr_raw(handle, nnz, xVal, xInd, y, idxBase) &
        result(Zsctr_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusparseZsctr")
-#else
        bind(C, name="hipsparseZsctr")
-#endif
        import :: c_ptr, c_int
        type(c_ptr), value :: handle
        integer(c_int), value :: nnz
@@ -2689,11 +2553,7 @@ module hipfort_hipsparse
                                                 bsrSortedValA, bsrSortedRowPtrA, bsrSortedColIndA, &
                                                 blockDim, info, pBufferSizeInBytes) &
        result(Sbsrsv2_bufferSizeExt_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusparseSbsrsv2_bufferSizeExt")
-#else
        bind(C, name="hipsparseSbsrsv2_bufferSizeExt")
-#endif
        import :: c_ptr, c_int
        type(c_ptr), value :: handle
        integer(c_int), value :: dirA
@@ -2722,11 +2582,7 @@ module hipfort_hipsparse
                                                 bsrSortedValA, bsrSortedRowPtrA, bsrSortedColIndA, &
                                                 blockDim, info, pBufferSizeInBytes) &
        result(Dbsrsv2_bufferSizeExt_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusparseDbsrsv2_bufferSizeExt")
-#else
        bind(C, name="hipsparseDbsrsv2_bufferSizeExt")
-#endif
        import :: c_ptr, c_int
        type(c_ptr), value :: handle
        integer(c_int), value :: dirA
@@ -2755,11 +2611,7 @@ module hipfort_hipsparse
                                                 bsrSortedValA, bsrSortedRowPtrA, bsrSortedColIndA, &
                                                 blockDim, info, pBufferSizeInBytes) &
        result(Cbsrsv2_bufferSizeExt_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusparseCbsrsv2_bufferSizeExt")
-#else
        bind(C, name="hipsparseCbsrsv2_bufferSizeExt")
-#endif
        import :: c_ptr, c_int
        type(c_ptr), value :: handle
        integer(c_int), value :: dirA
@@ -2788,11 +2640,7 @@ module hipfort_hipsparse
                                                 bsrSortedValA, bsrSortedRowPtrA, bsrSortedColIndA, &
                                                 blockDim, info, pBufferSizeInBytes) &
        result(Zbsrsv2_bufferSizeExt_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusparseZbsrsv2_bufferSizeExt")
-#else
        bind(C, name="hipsparseZbsrsv2_bufferSizeExt")
-#endif
        import :: c_ptr, c_int
        type(c_ptr), value :: handle
        integer(c_int), value :: dirA
@@ -3609,11 +3457,7 @@ module hipfort_hipsparse
     function hipsparseScsrmv_raw(handle, transA, m, n, nnz, alpha, descrA, csrSortedValA, &
                                  csrSortedRowPtrA, csrSortedColIndA, x, beta, y) &
        result(Scsrmv_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusparseScsrmv")
-#else
        bind(C, name="hipsparseScsrmv")
-#endif
        import :: c_ptr, c_int, c_float
        type(c_ptr), value :: handle
        integer(c_int), value :: transA
@@ -3642,11 +3486,7 @@ module hipfort_hipsparse
     function hipsparseDcsrmv_raw(handle, transA, m, n, nnz, alpha, descrA, csrSortedValA, &
                                  csrSortedRowPtrA, csrSortedColIndA, x, beta, y) &
        result(Dcsrmv_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusparseDcsrmv")
-#else
        bind(C, name="hipsparseDcsrmv")
-#endif
        import :: c_ptr, c_int, c_double
        type(c_ptr), value :: handle
        integer(c_int), value :: transA
@@ -3675,11 +3515,7 @@ module hipfort_hipsparse
     function hipsparseCcsrmv_raw(handle, transA, m, n, nnz, alpha, descrA, csrSortedValA, &
                                  csrSortedRowPtrA, csrSortedColIndA, x, beta, y) &
        result(Ccsrmv_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusparseCcsrmv")
-#else
        bind(C, name="hipsparseCcsrmv")
-#endif
        import :: c_ptr, c_int, c_float_complex
        type(c_ptr), value :: handle
        integer(c_int), value :: transA
@@ -3708,11 +3544,7 @@ module hipfort_hipsparse
     function hipsparseZcsrmv_raw(handle, transA, m, n, nnz, alpha, descrA, csrSortedValA, &
                                  csrSortedRowPtrA, csrSortedColIndA, x, beta, y) &
        result(Zcsrmv_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusparseZcsrmv")
-#else
        bind(C, name="hipsparseZcsrmv")
-#endif
        import :: c_ptr, c_int, c_double_complex
        type(c_ptr), value :: handle
        integer(c_int), value :: transA
@@ -3770,11 +3602,7 @@ module hipfort_hipsparse
     !> \retval HIPSPARSE_STATUS_ZERO_PIVOT zero pivot has been found.
     function hipsparseXcsrsv2_zeroPivot_raw(handle, info, position) &
        result(Xcsrsv2_zeroPivot_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusparseXcsrsv2_zeroPivot")
-#else
        bind(C, name="hipsparseXcsrsv2_zeroPivot")
-#endif
        import :: c_ptr, c_int
        type(c_ptr), value :: handle
        type(c_ptr), value :: info
@@ -3832,11 +3660,7 @@ module hipfort_hipsparse
                                              csrSortedRowPtrA, csrSortedColIndA, info, &
                                              pBufferSizeInBytes) &
        result(Scsrsv2_bufferSize_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusparseScsrsv2_bufferSize")
-#else
        bind(C, name="hipsparseScsrsv2_bufferSize")
-#endif
        import :: c_ptr, c_int
        type(c_ptr), value :: handle
        integer(c_int), value :: transA
@@ -3863,11 +3687,7 @@ module hipfort_hipsparse
                                              csrSortedRowPtrA, csrSortedColIndA, info, &
                                              pBufferSizeInBytes) &
        result(Dcsrsv2_bufferSize_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusparseDcsrsv2_bufferSize")
-#else
        bind(C, name="hipsparseDcsrsv2_bufferSize")
-#endif
        import :: c_ptr, c_int
        type(c_ptr), value :: handle
        integer(c_int), value :: transA
@@ -3894,11 +3714,7 @@ module hipfort_hipsparse
                                              csrSortedRowPtrA, csrSortedColIndA, info, &
                                              pBufferSizeInBytes) &
        result(Ccsrsv2_bufferSize_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusparseCcsrsv2_bufferSize")
-#else
        bind(C, name="hipsparseCcsrsv2_bufferSize")
-#endif
        import :: c_ptr, c_int
        type(c_ptr), value :: handle
        integer(c_int), value :: transA
@@ -3925,11 +3741,7 @@ module hipfort_hipsparse
                                              csrSortedRowPtrA, csrSortedColIndA, info, &
                                              pBufferSizeInBytes) &
        result(Zcsrsv2_bufferSize_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusparseZcsrsv2_bufferSize")
-#else
        bind(C, name="hipsparseZcsrsv2_bufferSize")
-#endif
        import :: c_ptr, c_int
        type(c_ptr), value :: handle
        integer(c_int), value :: transA
@@ -3995,11 +3807,7 @@ module hipfort_hipsparse
                                                 csrSortedRowPtrA, csrSortedColIndA, info, &
                                                 pBufferSizeInBytes) &
        result(Scsrsv2_bufferSizeExt_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusparseScsrsv2_bufferSizeExt")
-#else
        bind(C, name="hipsparseScsrsv2_bufferSizeExt")
-#endif
        import :: c_ptr, c_int
        type(c_ptr), value :: handle
        integer(c_int), value :: transA
@@ -4026,11 +3834,7 @@ module hipfort_hipsparse
                                                 csrSortedRowPtrA, csrSortedColIndA, info, &
                                                 pBufferSizeInBytes) &
        result(Dcsrsv2_bufferSizeExt_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusparseDcsrsv2_bufferSizeExt")
-#else
        bind(C, name="hipsparseDcsrsv2_bufferSizeExt")
-#endif
        import :: c_ptr, c_int
        type(c_ptr), value :: handle
        integer(c_int), value :: transA
@@ -4057,11 +3861,7 @@ module hipfort_hipsparse
                                                 csrSortedRowPtrA, csrSortedColIndA, info, &
                                                 pBufferSizeInBytes) &
        result(Ccsrsv2_bufferSizeExt_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusparseCcsrsv2_bufferSizeExt")
-#else
        bind(C, name="hipsparseCcsrsv2_bufferSizeExt")
-#endif
        import :: c_ptr, c_int
        type(c_ptr), value :: handle
        integer(c_int), value :: transA
@@ -4088,11 +3888,7 @@ module hipfort_hipsparse
                                                 csrSortedRowPtrA, csrSortedColIndA, info, &
                                                 pBufferSizeInBytes) &
        result(Zcsrsv2_bufferSizeExt_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusparseZcsrsv2_bufferSizeExt")
-#else
        bind(C, name="hipsparseZcsrsv2_bufferSizeExt")
-#endif
        import :: c_ptr, c_int
        type(c_ptr), value :: handle
        integer(c_int), value :: transA
@@ -4165,11 +3961,7 @@ module hipfort_hipsparse
                                            csrSortedRowPtrA, csrSortedColIndA, info, policy, &
                                            pBuffer) &
        result(Scsrsv2_analysis_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusparseScsrsv2_analysis")
-#else
        bind(C, name="hipsparseScsrsv2_analysis")
-#endif
        import :: c_ptr, c_int
        type(c_ptr), value :: handle
        integer(c_int), value :: transA
@@ -4197,11 +3989,7 @@ module hipfort_hipsparse
                                            csrSortedRowPtrA, csrSortedColIndA, info, policy, &
                                            pBuffer) &
        result(Dcsrsv2_analysis_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusparseDcsrsv2_analysis")
-#else
        bind(C, name="hipsparseDcsrsv2_analysis")
-#endif
        import :: c_ptr, c_int
        type(c_ptr), value :: handle
        integer(c_int), value :: transA
@@ -4229,11 +4017,7 @@ module hipfort_hipsparse
                                            csrSortedRowPtrA, csrSortedColIndA, info, policy, &
                                            pBuffer) &
        result(Ccsrsv2_analysis_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusparseCcsrsv2_analysis")
-#else
        bind(C, name="hipsparseCcsrsv2_analysis")
-#endif
        import :: c_ptr, c_int
        type(c_ptr), value :: handle
        integer(c_int), value :: transA
@@ -4261,11 +4045,7 @@ module hipfort_hipsparse
                                            csrSortedRowPtrA, csrSortedColIndA, info, policy, &
                                            pBuffer) &
        result(Zcsrsv2_analysis_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusparseZcsrsv2_analysis")
-#else
        bind(C, name="hipsparseZcsrsv2_analysis")
-#endif
        import :: c_ptr, c_int
        type(c_ptr), value :: handle
        integer(c_int), value :: transA
@@ -4409,11 +4189,7 @@ module hipfort_hipsparse
                                         csrSortedRowPtrA, csrSortedColIndA, info, f, x, policy, &
                                         pBuffer) &
        result(Scsrsv2_solve_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusparseScsrsv2_solve")
-#else
        bind(C, name="hipsparseScsrsv2_solve")
-#endif
        import :: c_ptr, c_int, c_float
        type(c_ptr), value :: handle
        integer(c_int), value :: transA
@@ -4444,11 +4220,7 @@ module hipfort_hipsparse
                                         csrSortedRowPtrA, csrSortedColIndA, info, f, x, policy, &
                                         pBuffer) &
        result(Dcsrsv2_solve_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusparseDcsrsv2_solve")
-#else
        bind(C, name="hipsparseDcsrsv2_solve")
-#endif
        import :: c_ptr, c_int, c_double
        type(c_ptr), value :: handle
        integer(c_int), value :: transA
@@ -4479,11 +4251,7 @@ module hipfort_hipsparse
                                         csrSortedRowPtrA, csrSortedColIndA, info, f, x, policy, &
                                         pBuffer) &
        result(Ccsrsv2_solve_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusparseCcsrsv2_solve")
-#else
        bind(C, name="hipsparseCcsrsv2_solve")
-#endif
        import :: c_ptr, c_int, c_float_complex
        type(c_ptr), value :: handle
        integer(c_int), value :: transA
@@ -4514,11 +4282,7 @@ module hipfort_hipsparse
                                         csrSortedRowPtrA, csrSortedColIndA, info, f, x, policy, &
                                         pBuffer) &
        result(Zcsrsv2_solve_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusparseZcsrsv2_solve")
-#else
        bind(C, name="hipsparseZcsrsv2_solve")
-#endif
        import :: c_ptr, c_int, c_double_complex
        type(c_ptr), value :: handle
        integer(c_int), value :: transA
@@ -4938,11 +4702,7 @@ module hipfort_hipsparse
     !> or `hipsparseMatrixType_t` is not `HIPSPARSE_MATRIX_TYPE_GENERAL`.
     function hipsparseShybmv_raw(handle, transA, alpha, descrA, hybA, x, beta, y) &
        result(Shybmv_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusparseShybmv")
-#else
        bind(C, name="hipsparseShybmv")
-#endif
        import :: c_ptr, c_int, c_float
        type(c_ptr), value :: handle
        integer(c_int), value :: transA
@@ -4965,11 +4725,7 @@ module hipfort_hipsparse
     !---------------------------------------------
     function hipsparseDhybmv_raw(handle, transA, alpha, descrA, hybA, x, beta, y) &
        result(Dhybmv_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusparseDhybmv")
-#else
        bind(C, name="hipsparseDhybmv")
-#endif
        import :: c_ptr, c_int, c_double
        type(c_ptr), value :: handle
        integer(c_int), value :: transA
@@ -4992,11 +4748,7 @@ module hipfort_hipsparse
     !---------------------------------------------
     function hipsparseChybmv_raw(handle, transA, alpha, descrA, hybA, x, beta, y) &
        result(Chybmv_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusparseChybmv")
-#else
        bind(C, name="hipsparseChybmv")
-#endif
        import :: c_ptr, c_int, c_float_complex
        type(c_ptr), value :: handle
        integer(c_int), value :: transA
@@ -5019,11 +4771,7 @@ module hipfort_hipsparse
     !---------------------------------------------
     function hipsparseZhybmv_raw(handle, transA, alpha, descrA, hybA, x, beta, y) &
        result(Zhybmv_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusparseZhybmv")
-#else
        bind(C, name="hipsparseZhybmv")
-#endif
        import :: c_ptr, c_int, c_double_complex
        type(c_ptr), value :: handle
        integer(c_int), value :: transA
@@ -6269,11 +6017,7 @@ module hipfort_hipsparse
     function hipsparseScsrmm_raw(handle, transA, m, n, k, nnz, alpha, descrA, csrSortedValA, &
                                  csrSortedRowPtrA, csrSortedColIndA, B, ldb, beta, C, ldc) &
        result(Scsrmm_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusparseScsrmm")
-#else
        bind(C, name="hipsparseScsrmm")
-#endif
        import :: c_ptr, c_int, c_float
        type(c_ptr), value :: handle
        integer(c_int), value :: transA
@@ -6305,11 +6049,7 @@ module hipfort_hipsparse
     function hipsparseDcsrmm_raw(handle, transA, m, n, k, nnz, alpha, descrA, csrSortedValA, &
                                  csrSortedRowPtrA, csrSortedColIndA, B, ldb, beta, C, ldc) &
        result(Dcsrmm_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusparseDcsrmm")
-#else
        bind(C, name="hipsparseDcsrmm")
-#endif
        import :: c_ptr, c_int, c_double
        type(c_ptr), value :: handle
        integer(c_int), value :: transA
@@ -6341,11 +6081,7 @@ module hipfort_hipsparse
     function hipsparseCcsrmm_raw(handle, transA, m, n, k, nnz, alpha, descrA, csrSortedValA, &
                                  csrSortedRowPtrA, csrSortedColIndA, B, ldb, beta, C, ldc) &
        result(Ccsrmm_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusparseCcsrmm")
-#else
        bind(C, name="hipsparseCcsrmm")
-#endif
        import :: c_ptr, c_int, c_float_complex
        type(c_ptr), value :: handle
        integer(c_int), value :: transA
@@ -6377,11 +6113,7 @@ module hipfort_hipsparse
     function hipsparseZcsrmm_raw(handle, transA, m, n, k, nnz, alpha, descrA, csrSortedValA, &
                                  csrSortedRowPtrA, csrSortedColIndA, B, ldb, beta, C, ldc) &
        result(Zcsrmm_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusparseZcsrmm")
-#else
        bind(C, name="hipsparseZcsrmm")
-#endif
        import :: c_ptr, c_int, c_double_complex
        type(c_ptr), value :: handle
        integer(c_int), value :: transA
@@ -6514,11 +6246,7 @@ module hipfort_hipsparse
                                   csrSortedValA, csrSortedRowPtrA, csrSortedColIndA, B, ldb, beta, &
                                   C, ldc) &
        result(Scsrmm2_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusparseScsrmm2")
-#else
        bind(C, name="hipsparseScsrmm2")
-#endif
        import :: c_ptr, c_int, c_float
        type(c_ptr), value :: handle
        integer(c_int), value :: transA
@@ -6552,11 +6280,7 @@ module hipfort_hipsparse
                                   csrSortedValA, csrSortedRowPtrA, csrSortedColIndA, B, ldb, beta, &
                                   C, ldc) &
        result(Dcsrmm2_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusparseDcsrmm2")
-#else
        bind(C, name="hipsparseDcsrmm2")
-#endif
        import :: c_ptr, c_int, c_double
        type(c_ptr), value :: handle
        integer(c_int), value :: transA
@@ -6590,11 +6314,7 @@ module hipfort_hipsparse
                                   csrSortedValA, csrSortedRowPtrA, csrSortedColIndA, B, ldb, beta, &
                                   C, ldc) &
        result(Ccsrmm2_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusparseCcsrmm2")
-#else
        bind(C, name="hipsparseCcsrmm2")
-#endif
        import :: c_ptr, c_int, c_float_complex
        type(c_ptr), value :: handle
        integer(c_int), value :: transA
@@ -6628,11 +6348,7 @@ module hipfort_hipsparse
                                   csrSortedValA, csrSortedRowPtrA, csrSortedColIndA, B, ldb, beta, &
                                   C, ldc) &
        result(Zcsrmm2_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusparseZcsrmm2")
-#else
        bind(C, name="hipsparseZcsrmm2")
-#endif
        import :: c_ptr, c_int, c_double_complex
        type(c_ptr), value :: handle
        integer(c_int), value :: transA
@@ -6694,11 +6410,7 @@ module hipfort_hipsparse
     !> \retval HIPSPARSE_STATUS_ZERO_PIVOT zero pivot has been found.
     function hipsparseXcsrsm2_zeroPivot_raw(handle, info, position) &
        result(Xcsrsm2_zeroPivot_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusparseXcsrsm2_zeroPivot")
-#else
        bind(C, name="hipsparseXcsrsm2_zeroPivot")
-#endif
        import :: c_ptr, c_int
        type(c_ptr), value :: handle
        type(c_ptr), value :: info
@@ -6774,11 +6486,7 @@ module hipfort_hipsparse
                                                 csrSortedColIndA, B, ldb, info, policy, &
                                                 pBufferSizeInBytes) &
        result(Scsrsm2_bufferSizeExt_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusparseScsrsm2_bufferSizeExt")
-#else
        bind(C, name="hipsparseScsrsm2_bufferSizeExt")
-#endif
        import :: c_ptr, c_int, c_float
        type(c_ptr), value :: handle
        integer(c_int), value :: algo
@@ -6813,11 +6521,7 @@ module hipfort_hipsparse
                                                 csrSortedColIndA, B, ldb, info, policy, &
                                                 pBufferSizeInBytes) &
        result(Dcsrsm2_bufferSizeExt_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusparseDcsrsm2_bufferSizeExt")
-#else
        bind(C, name="hipsparseDcsrsm2_bufferSizeExt")
-#endif
        import :: c_ptr, c_int, c_double
        type(c_ptr), value :: handle
        integer(c_int), value :: algo
@@ -6852,11 +6556,7 @@ module hipfort_hipsparse
                                                 csrSortedColIndA, B, ldb, info, policy, &
                                                 pBufferSizeInBytes) &
        result(Ccsrsm2_bufferSizeExt_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusparseCcsrsm2_bufferSizeExt")
-#else
        bind(C, name="hipsparseCcsrsm2_bufferSizeExt")
-#endif
        import :: c_ptr, c_int, c_float_complex
        type(c_ptr), value :: handle
        integer(c_int), value :: algo
@@ -6891,11 +6591,7 @@ module hipfort_hipsparse
                                                 csrSortedColIndA, B, ldb, info, policy, &
                                                 pBufferSizeInBytes) &
        result(Zcsrsm2_bufferSizeExt_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusparseZcsrsm2_bufferSizeExt")
-#else
        bind(C, name="hipsparseZcsrsm2_bufferSizeExt")
-#endif
        import :: c_ptr, c_int, c_double_complex
        type(c_ptr), value :: handle
        integer(c_int), value :: algo
@@ -6989,11 +6685,7 @@ module hipfort_hipsparse
                                            descrA, csrSortedValA, csrSortedRowPtrA, &
                                            csrSortedColIndA, B, ldb, info, policy, pBuffer) &
        result(Scsrsm2_analysis_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusparseScsrsm2_analysis")
-#else
        bind(C, name="hipsparseScsrsm2_analysis")
-#endif
        import :: c_ptr, c_int, c_float
        type(c_ptr), value :: handle
        integer(c_int), value :: algo
@@ -7027,11 +6719,7 @@ module hipfort_hipsparse
                                            descrA, csrSortedValA, csrSortedRowPtrA, &
                                            csrSortedColIndA, B, ldb, info, policy, pBuffer) &
        result(Dcsrsm2_analysis_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusparseDcsrsm2_analysis")
-#else
        bind(C, name="hipsparseDcsrsm2_analysis")
-#endif
        import :: c_ptr, c_int, c_double
        type(c_ptr), value :: handle
        integer(c_int), value :: algo
@@ -7065,11 +6753,7 @@ module hipfort_hipsparse
                                            descrA, csrSortedValA, csrSortedRowPtrA, &
                                            csrSortedColIndA, B, ldb, info, policy, pBuffer) &
        result(Ccsrsm2_analysis_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusparseCcsrsm2_analysis")
-#else
        bind(C, name="hipsparseCcsrsm2_analysis")
-#endif
        import :: c_ptr, c_int, c_float_complex
        type(c_ptr), value :: handle
        integer(c_int), value :: algo
@@ -7103,11 +6787,7 @@ module hipfort_hipsparse
                                            descrA, csrSortedValA, csrSortedRowPtrA, &
                                            csrSortedColIndA, B, ldb, info, policy, pBuffer) &
        result(Zcsrsm2_analysis_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusparseZcsrsm2_analysis")
-#else
        bind(C, name="hipsparseZcsrsm2_analysis")
-#endif
        import :: c_ptr, c_int, c_double_complex
        type(c_ptr), value :: handle
        integer(c_int), value :: algo
@@ -7348,11 +7028,7 @@ module hipfort_hipsparse
                                         csrSortedValA, csrSortedRowPtrA, csrSortedColIndA, B, ldb, &
                                         info, policy, pBuffer) &
        result(Scsrsm2_solve_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusparseScsrsm2_solve")
-#else
        bind(C, name="hipsparseScsrsm2_solve")
-#endif
        import :: c_ptr, c_int, c_float
        type(c_ptr), value :: handle
        integer(c_int), value :: algo
@@ -7386,11 +7062,7 @@ module hipfort_hipsparse
                                         csrSortedValA, csrSortedRowPtrA, csrSortedColIndA, B, ldb, &
                                         info, policy, pBuffer) &
        result(Dcsrsm2_solve_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusparseDcsrsm2_solve")
-#else
        bind(C, name="hipsparseDcsrsm2_solve")
-#endif
        import :: c_ptr, c_int, c_double
        type(c_ptr), value :: handle
        integer(c_int), value :: algo
@@ -7424,11 +7096,7 @@ module hipfort_hipsparse
                                         csrSortedValA, csrSortedRowPtrA, csrSortedColIndA, B, ldb, &
                                         info, policy, pBuffer) &
        result(Ccsrsm2_solve_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusparseCcsrsm2_solve")
-#else
        bind(C, name="hipsparseCcsrsm2_solve")
-#endif
        import :: c_ptr, c_int, c_float_complex
        type(c_ptr), value :: handle
        integer(c_int), value :: algo
@@ -7462,11 +7130,7 @@ module hipfort_hipsparse
                                         csrSortedValA, csrSortedRowPtrA, csrSortedColIndA, B, ldb, &
                                         info, policy, pBuffer) &
        result(Zcsrsm2_solve_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusparseZcsrsm2_solve")
-#else
        bind(C, name="hipsparseZcsrsm2_solve")
-#endif
        import :: c_ptr, c_int, c_double_complex
        type(c_ptr), value :: handle
        integer(c_int), value :: algo
@@ -7560,11 +7224,7 @@ module hipfort_hipsparse
     function hipsparseSgemmi_raw(handle, m, n, k, nnz, alpha, A, lda, cscValB, cscColPtrB, &
                                  cscRowIndB, beta, C, ldc) &
        result(Sgemmi_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusparseSgemmi")
-#else
        bind(C, name="hipsparseSgemmi")
-#endif
        import :: c_ptr, c_int, c_float
        type(c_ptr), value :: handle
        integer(c_int), value :: m
@@ -7594,11 +7254,7 @@ module hipfort_hipsparse
     function hipsparseDgemmi_raw(handle, m, n, k, nnz, alpha, A, lda, cscValB, cscColPtrB, &
                                  cscRowIndB, beta, C, ldc) &
        result(Dgemmi_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusparseDgemmi")
-#else
        bind(C, name="hipsparseDgemmi")
-#endif
        import :: c_ptr, c_int, c_double
        type(c_ptr), value :: handle
        integer(c_int), value :: m
@@ -7628,11 +7284,7 @@ module hipfort_hipsparse
     function hipsparseCgemmi_raw(handle, m, n, k, nnz, alpha, A, lda, cscValB, cscColPtrB, &
                                  cscRowIndB, beta, C, ldc) &
        result(Cgemmi_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusparseCgemmi")
-#else
        bind(C, name="hipsparseCgemmi")
-#endif
        import :: c_ptr, c_int, c_float_complex
        type(c_ptr), value :: handle
        integer(c_int), value :: m
@@ -7662,11 +7314,7 @@ module hipfort_hipsparse
     function hipsparseZgemmi_raw(handle, m, n, k, nnz, alpha, A, lda, cscValB, cscColPtrB, &
                                  cscRowIndB, beta, C, ldc) &
        result(Zgemmi_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusparseZgemmi")
-#else
        bind(C, name="hipsparseZgemmi")
-#endif
        import :: c_ptr, c_int, c_double_complex
        type(c_ptr), value :: handle
        integer(c_int), value :: m
@@ -7770,11 +7418,7 @@ module hipfort_hipsparse
                                       nnzB, csrRowPtrB, csrColIndB, descrC, csrRowPtrC, &
                                       nnzTotalDevHostPtr) &
        result(XcsrgeamNnz_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusparseXcsrgeamNnz")
-#else
        bind(C, name="hipsparseXcsrgeamNnz")
-#endif
        import :: c_ptr, c_int
        type(c_ptr), value :: handle
        integer(c_int), value :: m
@@ -7891,11 +7535,7 @@ module hipfort_hipsparse
                                    csrColIndA, beta, descrB, nnzB, csrValB, csrRowPtrB, &
                                    csrColIndB, descrC, csrValC, csrRowPtrC, csrColIndC) &
        result(Scsrgeam_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusparseScsrgeam")
-#else
        bind(C, name="hipsparseScsrgeam")
-#endif
        import :: c_ptr, c_int, c_float
        type(c_ptr), value :: handle
        integer(c_int), value :: m
@@ -7931,11 +7571,7 @@ module hipfort_hipsparse
                                    csrColIndA, beta, descrB, nnzB, csrValB, csrRowPtrB, &
                                    csrColIndB, descrC, csrValC, csrRowPtrC, csrColIndC) &
        result(Dcsrgeam_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusparseDcsrgeam")
-#else
        bind(C, name="hipsparseDcsrgeam")
-#endif
        import :: c_ptr, c_int, c_double
        type(c_ptr), value :: handle
        integer(c_int), value :: m
@@ -7971,11 +7607,7 @@ module hipfort_hipsparse
                                    csrColIndA, beta, descrB, nnzB, csrValB, csrRowPtrB, &
                                    csrColIndB, descrC, csrValC, csrRowPtrC, csrColIndC) &
        result(Ccsrgeam_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusparseCcsrgeam")
-#else
        bind(C, name="hipsparseCcsrgeam")
-#endif
        import :: c_ptr, c_int, c_float_complex
        type(c_ptr), value :: handle
        integer(c_int), value :: m
@@ -8011,11 +7643,7 @@ module hipfort_hipsparse
                                    csrColIndA, beta, descrB, nnzB, csrValB, csrRowPtrB, &
                                    csrColIndB, descrC, csrValC, csrRowPtrC, csrColIndC) &
        result(Zcsrgeam_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusparseZcsrgeam")
-#else
        bind(C, name="hipsparseZcsrgeam")
-#endif
        import :: c_ptr, c_int, c_double_complex
        type(c_ptr), value :: handle
        integer(c_int), value :: m
@@ -8749,11 +8377,7 @@ module hipfort_hipsparse
                                       csrColIndA, descrB, nnzB, csrRowPtrB, csrColIndB, descrC, &
                                       csrRowPtrC, nnzTotalDevHostPtr) &
        result(XcsrgemmNnz_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusparseXcsrgemmNnz")
-#else
        bind(C, name="hipsparseXcsrgemmNnz")
-#endif
        import :: c_ptr, c_int
        type(c_ptr), value :: handle
        integer(c_int), value :: transA
@@ -8901,11 +8525,7 @@ module hipfort_hipsparse
                                    csrRowPtrA, csrColIndA, descrB, nnzB, csrValB, csrRowPtrB, &
                                    csrColIndB, descrC, csrValC, csrRowPtrC, csrColIndC) &
        result(Scsrgemm_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusparseScsrgemm")
-#else
        bind(C, name="hipsparseScsrgemm")
-#endif
        import :: c_ptr, c_int
        type(c_ptr), value :: handle
        integer(c_int), value :: transA
@@ -8942,11 +8562,7 @@ module hipfort_hipsparse
                                    csrRowPtrA, csrColIndA, descrB, nnzB, csrValB, csrRowPtrB, &
                                    csrColIndB, descrC, csrValC, csrRowPtrC, csrColIndC) &
        result(Dcsrgemm_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusparseDcsrgemm")
-#else
        bind(C, name="hipsparseDcsrgemm")
-#endif
        import :: c_ptr, c_int
        type(c_ptr), value :: handle
        integer(c_int), value :: transA
@@ -8983,11 +8599,7 @@ module hipfort_hipsparse
                                    csrRowPtrA, csrColIndA, descrB, nnzB, csrValB, csrRowPtrB, &
                                    csrColIndB, descrC, csrValC, csrRowPtrC, csrColIndC) &
        result(Ccsrgemm_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusparseCcsrgemm")
-#else
        bind(C, name="hipsparseCcsrgemm")
-#endif
        import :: c_ptr, c_int
        type(c_ptr), value :: handle
        integer(c_int), value :: transA
@@ -9024,11 +8636,7 @@ module hipfort_hipsparse
                                    csrRowPtrA, csrColIndA, descrB, nnzB, csrValB, csrRowPtrB, &
                                    csrColIndB, descrC, csrValC, csrRowPtrC, csrColIndC) &
        result(Zcsrgemm_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusparseZcsrgemm")
-#else
        bind(C, name="hipsparseZcsrgemm")
-#endif
        import :: c_ptr, c_int
        type(c_ptr), value :: handle
        integer(c_int), value :: transA
@@ -9148,11 +8756,7 @@ module hipfort_hipsparse
                                                   csrRowPtrD, csrColIndD, info, &
                                                   pBufferSizeInBytes) &
        result(Scsrgemm2_bufferSizeExt_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusparseScsrgemm2_bufferSizeExt")
-#else
        bind(C, name="hipsparseScsrgemm2_bufferSizeExt")
-#endif
        import :: c_ptr, c_int, c_float
        type(c_ptr), value :: handle
        integer(c_int), value :: m
@@ -9191,11 +8795,7 @@ module hipfort_hipsparse
                                                   csrRowPtrD, csrColIndD, info, &
                                                   pBufferSizeInBytes) &
        result(Dcsrgemm2_bufferSizeExt_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusparseDcsrgemm2_bufferSizeExt")
-#else
        bind(C, name="hipsparseDcsrgemm2_bufferSizeExt")
-#endif
        import :: c_ptr, c_int, c_double
        type(c_ptr), value :: handle
        integer(c_int), value :: m
@@ -9234,11 +8834,7 @@ module hipfort_hipsparse
                                                   csrRowPtrD, csrColIndD, info, &
                                                   pBufferSizeInBytes) &
        result(Ccsrgemm2_bufferSizeExt_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusparseCcsrgemm2_bufferSizeExt")
-#else
        bind(C, name="hipsparseCcsrgemm2_bufferSizeExt")
-#endif
        import :: c_ptr, c_int, c_float_complex
        type(c_ptr), value :: handle
        integer(c_int), value :: m
@@ -9277,11 +8873,7 @@ module hipfort_hipsparse
                                                   csrRowPtrD, csrColIndD, info, &
                                                   pBufferSizeInBytes) &
        result(Zcsrgemm2_bufferSizeExt_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusparseZcsrgemm2_bufferSizeExt")
-#else
        bind(C, name="hipsparseZcsrgemm2_bufferSizeExt")
-#endif
        import :: c_ptr, c_int, c_double_complex
        type(c_ptr), value :: handle
        integer(c_int), value :: m
@@ -9416,11 +9008,7 @@ module hipfort_hipsparse
                                        csrRowPtrD, csrColIndD, descrC, csrRowPtrC, &
                                        nnzTotalDevHostPtr, info, pBuffer) &
        result(Xcsrgemm2Nnz_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusparseXcsrgemm2Nnz")
-#else
        bind(C, name="hipsparseXcsrgemm2Nnz")
-#endif
        import :: c_ptr, c_int
        type(c_ptr), value :: handle
        integer(c_int), value :: m
@@ -9577,11 +9165,7 @@ module hipfort_hipsparse
                                     beta, descrD, nnzD, csrValD, csrRowPtrD, csrColIndD, descrC, &
                                     csrValC, csrRowPtrC, csrColIndC, info, pBuffer) &
        result(Scsrgemm2_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusparseScsrgemm2")
-#else
        bind(C, name="hipsparseScsrgemm2")
-#endif
        import :: c_ptr, c_int, c_float
        type(c_ptr), value :: handle
        integer(c_int), value :: m
@@ -9626,11 +9210,7 @@ module hipfort_hipsparse
                                     beta, descrD, nnzD, csrValD, csrRowPtrD, csrColIndD, descrC, &
                                     csrValC, csrRowPtrC, csrColIndC, info, pBuffer) &
        result(Dcsrgemm2_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusparseDcsrgemm2")
-#else
        bind(C, name="hipsparseDcsrgemm2")
-#endif
        import :: c_ptr, c_int, c_double
        type(c_ptr), value :: handle
        integer(c_int), value :: m
@@ -9675,11 +9255,7 @@ module hipfort_hipsparse
                                     beta, descrD, nnzD, csrValD, csrRowPtrD, csrColIndD, descrC, &
                                     csrValC, csrRowPtrC, csrColIndC, info, pBuffer) &
        result(Ccsrgemm2_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusparseCcsrgemm2")
-#else
        bind(C, name="hipsparseCcsrgemm2")
-#endif
        import :: c_ptr, c_int, c_float_complex
        type(c_ptr), value :: handle
        integer(c_int), value :: m
@@ -9724,11 +9300,7 @@ module hipfort_hipsparse
                                     beta, descrD, nnzD, csrValD, csrRowPtrD, csrColIndD, descrC, &
                                     csrValC, csrRowPtrC, csrColIndC, info, pBuffer) &
        result(Zcsrgemm2_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusparseZcsrgemm2")
-#else
        bind(C, name="hipsparseZcsrgemm2")
-#endif
        import :: c_ptr, c_int, c_double_complex
        type(c_ptr), value :: handle
        integer(c_int), value :: m
@@ -11367,11 +10939,7 @@ module hipfort_hipsparse
                                                  csrSortedRowPtrA, csrSortedColIndA, info, &
                                                  pBufferSizeInBytes) &
        result(Scsric02_bufferSizeExt_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusparseScsric02_bufferSizeExt")
-#else
        bind(C, name="hipsparseScsric02_bufferSizeExt")
-#endif
        import :: c_ptr, c_int
        type(c_ptr), value :: handle
        integer(c_int), value :: m
@@ -11397,11 +10965,7 @@ module hipfort_hipsparse
                                                  csrSortedRowPtrA, csrSortedColIndA, info, &
                                                  pBufferSizeInBytes) &
        result(Dcsric02_bufferSizeExt_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusparseDcsric02_bufferSizeExt")
-#else
        bind(C, name="hipsparseDcsric02_bufferSizeExt")
-#endif
        import :: c_ptr, c_int
        type(c_ptr), value :: handle
        integer(c_int), value :: m
@@ -11427,11 +10991,7 @@ module hipfort_hipsparse
                                                  csrSortedRowPtrA, csrSortedColIndA, info, &
                                                  pBufferSizeInBytes) &
        result(Ccsric02_bufferSizeExt_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusparseCcsric02_bufferSizeExt")
-#else
        bind(C, name="hipsparseCcsric02_bufferSizeExt")
-#endif
        import :: c_ptr, c_int
        type(c_ptr), value :: handle
        integer(c_int), value :: m
@@ -11457,11 +11017,7 @@ module hipfort_hipsparse
                                                  csrSortedRowPtrA, csrSortedColIndA, info, &
                                                  pBufferSizeInBytes) &
        result(Zcsric02_bufferSizeExt_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusparseZcsric02_bufferSizeExt")
-#else
        bind(C, name="hipsparseZcsric02_bufferSizeExt")
-#endif
        import :: c_ptr, c_int
        type(c_ptr), value :: handle
        integer(c_int), value :: m
@@ -12307,11 +11863,7 @@ module hipfort_hipsparse
                                                   csrSortedRowPtrA, csrSortedColIndA, info, &
                                                   pBufferSizeInBytes) &
        result(Scsrilu02_bufferSizeExt_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusparseScsrilu02_bufferSizeExt")
-#else
        bind(C, name="hipsparseScsrilu02_bufferSizeExt")
-#endif
        import :: c_ptr, c_int
        type(c_ptr), value :: handle
        integer(c_int), value :: m
@@ -12337,11 +11889,7 @@ module hipfort_hipsparse
                                                   csrSortedRowPtrA, csrSortedColIndA, info, &
                                                   pBufferSizeInBytes) &
        result(Dcsrilu02_bufferSizeExt_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusparseDcsrilu02_bufferSizeExt")
-#else
        bind(C, name="hipsparseDcsrilu02_bufferSizeExt")
-#endif
        import :: c_ptr, c_int
        type(c_ptr), value :: handle
        integer(c_int), value :: m
@@ -12367,11 +11915,7 @@ module hipfort_hipsparse
                                                   csrSortedRowPtrA, csrSortedColIndA, info, &
                                                   pBufferSizeInBytes) &
        result(Ccsrilu02_bufferSizeExt_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusparseCcsrilu02_bufferSizeExt")
-#else
        bind(C, name="hipsparseCcsrilu02_bufferSizeExt")
-#endif
        import :: c_ptr, c_int
        type(c_ptr), value :: handle
        integer(c_int), value :: m
@@ -12397,11 +11941,7 @@ module hipfort_hipsparse
                                                   csrSortedRowPtrA, csrSortedColIndA, info, &
                                                   pBufferSizeInBytes) &
        result(Zcsrilu02_bufferSizeExt_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusparseZcsrilu02_bufferSizeExt")
-#else
        bind(C, name="hipsparseZcsrilu02_bufferSizeExt")
-#endif
        import :: c_ptr, c_int
        type(c_ptr), value :: handle
        integer(c_int), value :: m
@@ -15247,11 +14787,7 @@ module hipfort_hipsparse
     !> \p cscRowInd, or \p A is nullptr, \p m or \p n is negative, or \p ld is invalid.
     function hipsparseScsc2dense_raw(handle, m, n, descr, cscVal, cscRowInd, cscColPtr, A, ld) &
        result(Scsc2dense_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusparseScsc2dense")
-#else
        bind(C, name="hipsparseScsc2dense")
-#endif
        import :: c_ptr, c_int
        type(c_ptr), value :: handle
        integer(c_int), value :: m
@@ -15275,11 +14811,7 @@ module hipfort_hipsparse
     !---------------------------------------------
     function hipsparseDcsc2dense_raw(handle, m, n, descr, cscVal, cscRowInd, cscColPtr, A, ld) &
        result(Dcsc2dense_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusparseDcsc2dense")
-#else
        bind(C, name="hipsparseDcsc2dense")
-#endif
        import :: c_ptr, c_int
        type(c_ptr), value :: handle
        integer(c_int), value :: m
@@ -15303,11 +14835,7 @@ module hipfort_hipsparse
     !---------------------------------------------
     function hipsparseCcsc2dense_raw(handle, m, n, descr, cscVal, cscRowInd, cscColPtr, A, ld) &
        result(Ccsc2dense_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusparseCcsc2dense")
-#else
        bind(C, name="hipsparseCcsc2dense")
-#endif
        import :: c_ptr, c_int
        type(c_ptr), value :: handle
        integer(c_int), value :: m
@@ -15331,11 +14859,7 @@ module hipfort_hipsparse
     !---------------------------------------------
     function hipsparseZcsc2dense_raw(handle, m, n, descr, cscVal, cscRowInd, cscColPtr, A, ld) &
        result(Zcsc2dense_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusparseZcsc2dense")
-#else
        bind(C, name="hipsparseZcsc2dense")
-#endif
        import :: c_ptr, c_int
        type(c_ptr), value :: handle
        integer(c_int), value :: m
@@ -16098,11 +15622,7 @@ module hipfort_hipsparse
                                    csrSortedColInd, cscSortedVal, cscSortedRowInd, &
                                    cscSortedColPtr, copyValues, idxBase) &
        result(Scsr2csc_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusparseScsr2csc")
-#else
        bind(C, name="hipsparseScsr2csc")
-#endif
        import :: c_ptr, c_int
        type(c_ptr), value :: handle
        integer(c_int), value :: m
@@ -16131,11 +15651,7 @@ module hipfort_hipsparse
                                    csrSortedColInd, cscSortedVal, cscSortedRowInd, &
                                    cscSortedColPtr, copyValues, idxBase) &
        result(Dcsr2csc_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusparseDcsr2csc")
-#else
        bind(C, name="hipsparseDcsr2csc")
-#endif
        import :: c_ptr, c_int
        type(c_ptr), value :: handle
        integer(c_int), value :: m
@@ -16164,11 +15680,7 @@ module hipfort_hipsparse
                                    csrSortedColInd, cscSortedVal, cscSortedRowInd, &
                                    cscSortedColPtr, copyValues, idxBase) &
        result(Ccsr2csc_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusparseCcsr2csc")
-#else
        bind(C, name="hipsparseCcsr2csc")
-#endif
        import :: c_ptr, c_int
        type(c_ptr), value :: handle
        integer(c_int), value :: m
@@ -16197,11 +15709,7 @@ module hipfort_hipsparse
                                    csrSortedColInd, cscSortedVal, cscSortedRowInd, &
                                    cscSortedColPtr, copyValues, idxBase) &
        result(Zcsr2csc_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusparseZcsr2csc")
-#else
        bind(C, name="hipsparseZcsr2csc")
-#endif
        import :: c_ptr, c_int
        type(c_ptr), value :: handle
        integer(c_int), value :: m
@@ -16813,11 +16321,7 @@ module hipfort_hipsparse
     !> \p csrColInd, or \p A is nullptr, \p m or \p n is negative, or \p ld is invalid.
     function hipsparseScsr2dense_raw(handle, m, n, descr, csrVal, csrRowPtr, csrColInd, A, ld) &
        result(Scsr2dense_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusparseScsr2dense")
-#else
        bind(C, name="hipsparseScsr2dense")
-#endif
        import :: c_ptr, c_int
        type(c_ptr), value :: handle
        integer(c_int), value :: m
@@ -16841,11 +16345,7 @@ module hipfort_hipsparse
     !---------------------------------------------
     function hipsparseDcsr2dense_raw(handle, m, n, descr, csrVal, csrRowPtr, csrColInd, A, ld) &
        result(Dcsr2dense_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusparseDcsr2dense")
-#else
        bind(C, name="hipsparseDcsr2dense")
-#endif
        import :: c_ptr, c_int
        type(c_ptr), value :: handle
        integer(c_int), value :: m
@@ -16869,11 +16369,7 @@ module hipfort_hipsparse
     !---------------------------------------------
     function hipsparseCcsr2dense_raw(handle, m, n, descr, csrVal, csrRowPtr, csrColInd, A, ld) &
        result(Ccsr2dense_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusparseCcsr2dense")
-#else
        bind(C, name="hipsparseCcsr2dense")
-#endif
        import :: c_ptr, c_int
        type(c_ptr), value :: handle
        integer(c_int), value :: m
@@ -16897,11 +16393,7 @@ module hipfort_hipsparse
     !---------------------------------------------
     function hipsparseZcsr2dense_raw(handle, m, n, descr, csrVal, csrRowPtr, csrColInd, A, ld) &
        result(Zcsr2dense_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusparseZcsr2dense")
-#else
        bind(C, name="hipsparseZcsr2dense")
-#endif
        import :: c_ptr, c_int
        type(c_ptr), value :: handle
        integer(c_int), value :: m
@@ -17649,11 +17141,7 @@ module hipfort_hipsparse
     function hipsparseScsr2hyb_raw(handle, m, n, descrA, csrSortedValA, csrSortedRowPtrA, &
                                    csrSortedColIndA, hybA, userEllWidth, partitionType) &
        result(Scsr2hyb_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusparseScsr2hyb")
-#else
        bind(C, name="hipsparseScsr2hyb")
-#endif
        import :: c_ptr, c_int
        type(c_ptr), value :: handle
        integer(c_int), value :: m
@@ -17679,11 +17167,7 @@ module hipfort_hipsparse
     function hipsparseDcsr2hyb_raw(handle, m, n, descrA, csrSortedValA, csrSortedRowPtrA, &
                                    csrSortedColIndA, hybA, userEllWidth, partitionType) &
        result(Dcsr2hyb_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusparseDcsr2hyb")
-#else
        bind(C, name="hipsparseDcsr2hyb")
-#endif
        import :: c_ptr, c_int
        type(c_ptr), value :: handle
        integer(c_int), value :: m
@@ -17709,11 +17193,7 @@ module hipfort_hipsparse
     function hipsparseCcsr2hyb_raw(handle, m, n, descrA, csrSortedValA, csrSortedRowPtrA, &
                                    csrSortedColIndA, hybA, userEllWidth, partitionType) &
        result(Ccsr2hyb_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusparseCcsr2hyb")
-#else
        bind(C, name="hipsparseCcsr2hyb")
-#endif
        import :: c_ptr, c_int
        type(c_ptr), value :: handle
        integer(c_int), value :: m
@@ -17739,11 +17219,7 @@ module hipfort_hipsparse
     function hipsparseZcsr2hyb_raw(handle, m, n, descrA, csrSortedValA, csrSortedRowPtrA, &
                                    csrSortedColIndA, hybA, userEllWidth, partitionType) &
        result(Zcsr2hyb_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusparseZcsr2hyb")
-#else
        bind(C, name="hipsparseZcsr2hyb")
-#endif
        import :: c_ptr, c_int
        type(c_ptr), value :: handle
        integer(c_int), value :: m
@@ -18229,11 +17705,7 @@ module hipfort_hipsparse
     function hipsparseSdense2csc_raw(handle, m, n, descr, A, ld, nnzPerColumn, cscVal, cscRowInd, &
                                      cscColPtr) &
        result(Sdense2csc_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusparseSdense2csc")
-#else
        bind(C, name="hipsparseSdense2csc")
-#endif
        import :: c_ptr, c_int
        type(c_ptr), value :: handle
        integer(c_int), value :: m
@@ -18259,11 +17731,7 @@ module hipfort_hipsparse
     function hipsparseDdense2csc_raw(handle, m, n, descr, A, ld, nnzPerColumn, cscVal, cscRowInd, &
                                      cscColPtr) &
        result(Ddense2csc_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusparseDdense2csc")
-#else
        bind(C, name="hipsparseDdense2csc")
-#endif
        import :: c_ptr, c_int
        type(c_ptr), value :: handle
        integer(c_int), value :: m
@@ -18289,11 +17757,7 @@ module hipfort_hipsparse
     function hipsparseCdense2csc_raw(handle, m, n, descr, A, ld, nnzPerColumn, cscVal, cscRowInd, &
                                      cscColPtr) &
        result(Cdense2csc_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusparseCdense2csc")
-#else
        bind(C, name="hipsparseCdense2csc")
-#endif
        import :: c_ptr, c_int
        type(c_ptr), value :: handle
        integer(c_int), value :: m
@@ -18319,11 +17783,7 @@ module hipfort_hipsparse
     function hipsparseZdense2csc_raw(handle, m, n, descr, A, ld, nnzPerColumn, cscVal, cscRowInd, &
                                      cscColPtr) &
        result(Zdense2csc_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusparseZdense2csc")
-#else
        bind(C, name="hipsparseZdense2csc")
-#endif
        import :: c_ptr, c_int
        type(c_ptr), value :: handle
        integer(c_int), value :: m
@@ -18418,11 +17878,7 @@ module hipfort_hipsparse
     function hipsparseSdense2csr_raw(handle, m, n, descr, A, ld, nnzPerRow, csrVal, csrRowPtr, &
                                      csrColInd) &
        result(Sdense2csr_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusparseSdense2csr")
-#else
        bind(C, name="hipsparseSdense2csr")
-#endif
        import :: c_ptr, c_int
        type(c_ptr), value :: handle
        integer(c_int), value :: m
@@ -18448,11 +17904,7 @@ module hipfort_hipsparse
     function hipsparseDdense2csr_raw(handle, m, n, descr, A, ld, nnzPerRow, csrVal, csrRowPtr, &
                                      csrColInd) &
        result(Ddense2csr_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusparseDdense2csr")
-#else
        bind(C, name="hipsparseDdense2csr")
-#endif
        import :: c_ptr, c_int
        type(c_ptr), value :: handle
        integer(c_int), value :: m
@@ -18478,11 +17930,7 @@ module hipfort_hipsparse
     function hipsparseCdense2csr_raw(handle, m, n, descr, A, ld, nnzPerRow, csrVal, csrRowPtr, &
                                      csrColInd) &
        result(Cdense2csr_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusparseCdense2csr")
-#else
        bind(C, name="hipsparseCdense2csr")
-#endif
        import :: c_ptr, c_int
        type(c_ptr), value :: handle
        integer(c_int), value :: m
@@ -18508,11 +17956,7 @@ module hipfort_hipsparse
     function hipsparseZdense2csr_raw(handle, m, n, descr, A, ld, nnzPerRow, csrVal, csrRowPtr, &
                                      csrColInd) &
        result(Zdense2csr_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusparseZdense2csr")
-#else
        bind(C, name="hipsparseZdense2csr")
-#endif
        import :: c_ptr, c_int
        type(c_ptr), value :: handle
        integer(c_int), value :: m
@@ -19853,11 +19297,7 @@ module hipfort_hipsparse
     function hipsparseShyb2csr_raw(handle, descrA, hybA, csrSortedValA, csrSortedRowPtrA, &
                                    csrSortedColIndA) &
        result(Shyb2csr_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusparseShyb2csr")
-#else
        bind(C, name="hipsparseShyb2csr")
-#endif
        import :: c_ptr, c_int
        type(c_ptr), value :: handle
        type(c_ptr), value :: descrA
@@ -19879,11 +19319,7 @@ module hipfort_hipsparse
     function hipsparseDhyb2csr_raw(handle, descrA, hybA, csrSortedValA, csrSortedRowPtrA, &
                                    csrSortedColIndA) &
        result(Dhyb2csr_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusparseDhyb2csr")
-#else
        bind(C, name="hipsparseDhyb2csr")
-#endif
        import :: c_ptr, c_int
        type(c_ptr), value :: handle
        type(c_ptr), value :: descrA
@@ -19905,11 +19341,7 @@ module hipfort_hipsparse
     function hipsparseChyb2csr_raw(handle, descrA, hybA, csrSortedValA, csrSortedRowPtrA, &
                                    csrSortedColIndA) &
        result(Chyb2csr_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusparseChyb2csr")
-#else
        bind(C, name="hipsparseChyb2csr")
-#endif
        import :: c_ptr, c_int
        type(c_ptr), value :: handle
        type(c_ptr), value :: descrA
@@ -19931,11 +19363,7 @@ module hipfort_hipsparse
     function hipsparseZhyb2csr_raw(handle, descrA, hybA, csrSortedValA, csrSortedRowPtrA, &
                                    csrSortedColIndA) &
        result(Zhyb2csr_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusparseZhyb2csr")
-#else
        bind(C, name="hipsparseZhyb2csr")
-#endif
        import :: c_ptr, c_int
        type(c_ptr), value :: handle
        type(c_ptr), value :: descrA
@@ -20364,11 +19792,7 @@ module hipfort_hipsparse
                                                    csrValC, csrRowPtrC, csrColIndC, &
                                                    pBufferSizeInBytes) &
        result(SpruneCsr2csr_bufferSize_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusparseSpruneCsr2csr_bufferSize")
-#else
        bind(C, name="hipsparseSpruneCsr2csr_bufferSize")
-#endif
        import :: c_ptr, c_int, c_float
        type(c_ptr), value :: handle
        integer(c_int), value :: m
@@ -20400,11 +19824,7 @@ module hipfort_hipsparse
                                                    csrValC, csrRowPtrC, csrColIndC, &
                                                    pBufferSizeInBytes) &
        result(DpruneCsr2csr_bufferSize_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusparseDpruneCsr2csr_bufferSize")
-#else
        bind(C, name="hipsparseDpruneCsr2csr_bufferSize")
-#endif
        import :: c_ptr, c_int, c_double
        type(c_ptr), value :: handle
        integer(c_int), value :: m
@@ -20866,11 +20286,7 @@ module hipfort_hipsparse
                                                                csrRowPtrC, csrColIndC, info, &
                                                                pBufferSizeInBytes) &
        result(SpruneCsr2csrByPercentage_bufferSize_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusparseSpruneCsr2csrByPercentage_bufferSize")
-#else
        bind(C, name="hipsparseSpruneCsr2csrByPercentage_bufferSize")
-#endif
        import :: c_ptr, c_int, c_float
        type(c_ptr), value :: handle
        integer(c_int), value :: m
@@ -20904,11 +20320,7 @@ module hipfort_hipsparse
                                                                csrRowPtrC, csrColIndC, info, &
                                                                pBufferSizeInBytes) &
        result(DpruneCsr2csrByPercentage_bufferSize_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusparseDpruneCsr2csrByPercentage_bufferSize")
-#else
        bind(C, name="hipsparseDpruneCsr2csrByPercentage_bufferSize")
-#endif
        import :: c_ptr, c_int, c_double
        type(c_ptr), value :: handle
        integer(c_int), value :: m
@@ -21401,11 +20813,7 @@ module hipfort_hipsparse
                                                      csrVal, csrRowPtr, csrColInd, &
                                                      pBufferSizeInBytes) &
        result(SpruneDense2csr_bufferSize_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusparseSpruneDense2csr_bufferSize")
-#else
        bind(C, name="hipsparseSpruneDense2csr_bufferSize")
-#endif
        import :: c_ptr, c_int, c_float
        type(c_ptr), value :: handle
        integer(c_int), value :: m
@@ -21433,11 +20841,7 @@ module hipfort_hipsparse
                                                      csrVal, csrRowPtr, csrColInd, &
                                                      pBufferSizeInBytes) &
        result(DpruneDense2csr_bufferSize_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusparseDpruneDense2csr_bufferSize")
-#else
        bind(C, name="hipsparseDpruneDense2csr_bufferSize")
-#endif
        import :: c_ptr, c_int, c_double
        type(c_ptr), value :: handle
        integer(c_int), value :: m
@@ -21915,11 +21319,7 @@ module hipfort_hipsparse
                                                                  csrColInd, info, &
                                                                  pBufferSizeInBytes) &
        result(SpruneDense2csrByPercentage_bufferSize_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusparseSpruneDense2csrByPercentage_bufferSize")
-#else
        bind(C, name="hipsparseSpruneDense2csrByPercentage_bufferSize")
-#endif
        import :: c_ptr, c_int, c_float
        type(c_ptr), value :: handle
        integer(c_int), value :: m
@@ -21949,11 +21349,7 @@ module hipfort_hipsparse
                                                                  csrColInd, info, &
                                                                  pBufferSizeInBytes) &
        result(DpruneDense2csrByPercentage_bufferSize_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusparseDpruneDense2csrByPercentage_bufferSize")
-#else
        bind(C, name="hipsparseDpruneDense2csrByPercentage_bufferSize")
-#endif
        import :: c_ptr, c_int, c_double
        type(c_ptr), value :: handle
        integer(c_int), value :: m
@@ -22838,11 +22234,7 @@ module hipfort_hipsparse
     function hipsparseCreateCooAoS_raw(spMatDescr, rows, cols, nnz, cooInd, cooValues, cooIdxType, &
                                        idxBase, valueType) &
        result(CreateCooAoS_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusparseCreateCooAoS")
-#else
        bind(C, name="hipsparseCreateCooAoS")
-#endif
        import :: c_ptr, c_long, c_int
        type(c_ptr) :: spMatDescr
        integer(c_long), value :: rows
@@ -23196,11 +22588,7 @@ module hipfort_hipsparse
     function hipsparseCooAoSGet_raw(spMatDescr, rows, cols, nnz, cooInd, cooValues, idxType, &
                                     idxBase, valueType) &
        result(CooAoSGet_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cusparseCooAoSGet")
-#else
        bind(C, name="hipsparseCooAoSGet")
-#endif
        import :: c_ptr, c_int
        type(c_ptr), value :: spMatDescr
        type(c_ptr), value :: rows
@@ -25192,6 +24580,7 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), target :: version(..)
       integer(c_int) :: GetVersion
+      if (.not. is_contiguous(version)) error stop "version: array must be contiguous"
       GetVersion = hipsparseGetVersion_raw(handle, c_loc(version))
     end function hipsparseGetVersion_native
 
@@ -25251,6 +24640,7 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), target :: mode(..)
       integer(c_int) :: GetPointerMode
+      if (.not. is_contiguous(mode)) error stop "mode: array must be contiguous"
       GetPointerMode = hipsparseGetPointerMode_raw(handle, c_loc(mode))
     end function hipsparseGetPointerMode_native
 
@@ -25577,6 +24967,9 @@ contains
       real(c_float), target :: y(..)
       integer(c_int), value :: idxBase
       integer(c_int) :: Saxpyi
+      if (.not. is_contiguous(xVal)) error stop "xVal: array must be contiguous"
+      if (.not. is_contiguous(xInd)) error stop "xInd: array must be contiguous"
+      if (.not. is_contiguous(y)) error stop "y: array must be contiguous"
       Saxpyi = hipsparseSaxpyi_raw(handle, nnz, alpha, c_loc(xVal), c_loc(xInd), c_loc(y), idxBase)
     end function hipsparseSaxpyi_native
 
@@ -25606,6 +24999,9 @@ contains
       real(c_double), target :: y(..)
       integer(c_int), value :: idxBase
       integer(c_int) :: Daxpyi
+      if (.not. is_contiguous(xVal)) error stop "xVal: array must be contiguous"
+      if (.not. is_contiguous(xInd)) error stop "xInd: array must be contiguous"
+      if (.not. is_contiguous(y)) error stop "y: array must be contiguous"
       Daxpyi = hipsparseDaxpyi_raw(handle, nnz, alpha, c_loc(xVal), c_loc(xInd), c_loc(y), idxBase)
     end function hipsparseDaxpyi_native
 
@@ -25635,6 +25031,9 @@ contains
       complex(c_float_complex), target :: y(..)
       integer(c_int), value :: idxBase
       integer(c_int) :: Caxpyi
+      if (.not. is_contiguous(xVal)) error stop "xVal: array must be contiguous"
+      if (.not. is_contiguous(xInd)) error stop "xInd: array must be contiguous"
+      if (.not. is_contiguous(y)) error stop "y: array must be contiguous"
       Caxpyi = hipsparseCaxpyi_raw(handle, nnz, alpha, c_loc(xVal), c_loc(xInd), c_loc(y), idxBase)
     end function hipsparseCaxpyi_native
 
@@ -25664,6 +25063,9 @@ contains
       complex(c_double_complex), target :: y(..)
       integer(c_int), value :: idxBase
       integer(c_int) :: Zaxpyi
+      if (.not. is_contiguous(xVal)) error stop "xVal: array must be contiguous"
+      if (.not. is_contiguous(xInd)) error stop "xInd: array must be contiguous"
+      if (.not. is_contiguous(y)) error stop "y: array must be contiguous"
       Zaxpyi = hipsparseZaxpyi_raw(handle, nnz, alpha, c_loc(xVal), c_loc(xInd), c_loc(y), idxBase)
     end function hipsparseZaxpyi_native
 
@@ -25693,6 +25095,10 @@ contains
       complex(c_float_complex), target :: result(..)
       integer(c_int), value :: idxBase
       integer(c_int) :: Cdotci
+      if (.not. is_contiguous(xVal)) error stop "xVal: array must be contiguous"
+      if (.not. is_contiguous(xInd)) error stop "xInd: array must be contiguous"
+      if (.not. is_contiguous(y)) error stop "y: array must be contiguous"
+      if (.not. is_contiguous(result)) error stop "result: array must be contiguous"
       Cdotci = hipsparseCdotci_raw(handle, nnz, c_loc(xVal), c_loc(xInd), c_loc(y), c_loc(result), &
         idxBase)
     end function hipsparseCdotci_native
@@ -25723,6 +25129,10 @@ contains
       complex(c_double_complex), target :: result(..)
       integer(c_int), value :: idxBase
       integer(c_int) :: Zdotci
+      if (.not. is_contiguous(xVal)) error stop "xVal: array must be contiguous"
+      if (.not. is_contiguous(xInd)) error stop "xInd: array must be contiguous"
+      if (.not. is_contiguous(y)) error stop "y: array must be contiguous"
+      if (.not. is_contiguous(result)) error stop "result: array must be contiguous"
       Zdotci = hipsparseZdotci_raw(handle, nnz, c_loc(xVal), c_loc(xInd), c_loc(y), c_loc(result), &
         idxBase)
     end function hipsparseZdotci_native
@@ -25753,6 +25163,10 @@ contains
       real(c_float), target :: result(..)
       integer(c_int), value :: idxBase
       integer(c_int) :: Sdoti
+      if (.not. is_contiguous(xVal)) error stop "xVal: array must be contiguous"
+      if (.not. is_contiguous(xInd)) error stop "xInd: array must be contiguous"
+      if (.not. is_contiguous(y)) error stop "y: array must be contiguous"
+      if (.not. is_contiguous(result)) error stop "result: array must be contiguous"
       Sdoti = hipsparseSdoti_raw(handle, nnz, c_loc(xVal), c_loc(xInd), c_loc(y), c_loc(result), &
         idxBase)
     end function hipsparseSdoti_native
@@ -25783,6 +25197,10 @@ contains
       real(c_double), target :: result(..)
       integer(c_int), value :: idxBase
       integer(c_int) :: Ddoti
+      if (.not. is_contiguous(xVal)) error stop "xVal: array must be contiguous"
+      if (.not. is_contiguous(xInd)) error stop "xInd: array must be contiguous"
+      if (.not. is_contiguous(y)) error stop "y: array must be contiguous"
+      if (.not. is_contiguous(result)) error stop "result: array must be contiguous"
       Ddoti = hipsparseDdoti_raw(handle, nnz, c_loc(xVal), c_loc(xInd), c_loc(y), c_loc(result), &
         idxBase)
     end function hipsparseDdoti_native
@@ -25813,6 +25231,10 @@ contains
       complex(c_float_complex), target :: result(..)
       integer(c_int), value :: idxBase
       integer(c_int) :: Cdoti
+      if (.not. is_contiguous(xVal)) error stop "xVal: array must be contiguous"
+      if (.not. is_contiguous(xInd)) error stop "xInd: array must be contiguous"
+      if (.not. is_contiguous(y)) error stop "y: array must be contiguous"
+      if (.not. is_contiguous(result)) error stop "result: array must be contiguous"
       Cdoti = hipsparseCdoti_raw(handle, nnz, c_loc(xVal), c_loc(xInd), c_loc(y), c_loc(result), &
         idxBase)
     end function hipsparseCdoti_native
@@ -25843,6 +25265,10 @@ contains
       complex(c_double_complex), target :: result(..)
       integer(c_int), value :: idxBase
       integer(c_int) :: Zdoti
+      if (.not. is_contiguous(xVal)) error stop "xVal: array must be contiguous"
+      if (.not. is_contiguous(xInd)) error stop "xInd: array must be contiguous"
+      if (.not. is_contiguous(y)) error stop "y: array must be contiguous"
+      if (.not. is_contiguous(result)) error stop "result: array must be contiguous"
       Zdoti = hipsparseZdoti_raw(handle, nnz, c_loc(xVal), c_loc(xInd), c_loc(y), c_loc(result), &
         idxBase)
     end function hipsparseZdoti_native
@@ -25872,6 +25298,9 @@ contains
       integer(c_int), target :: xInd(..)
       integer(c_int), value :: idxBase
       integer(c_int) :: Sgthr
+      if (.not. is_contiguous(y)) error stop "y: array must be contiguous"
+      if (.not. is_contiguous(xVal)) error stop "xVal: array must be contiguous"
+      if (.not. is_contiguous(xInd)) error stop "xInd: array must be contiguous"
       Sgthr = hipsparseSgthr_raw(handle, nnz, c_loc(y), c_loc(xVal), c_loc(xInd), idxBase)
     end function hipsparseSgthr_native
 
@@ -25899,6 +25328,9 @@ contains
       integer(c_int), target :: xInd(..)
       integer(c_int), value :: idxBase
       integer(c_int) :: Dgthr
+      if (.not. is_contiguous(y)) error stop "y: array must be contiguous"
+      if (.not. is_contiguous(xVal)) error stop "xVal: array must be contiguous"
+      if (.not. is_contiguous(xInd)) error stop "xInd: array must be contiguous"
       Dgthr = hipsparseDgthr_raw(handle, nnz, c_loc(y), c_loc(xVal), c_loc(xInd), idxBase)
     end function hipsparseDgthr_native
 
@@ -25926,6 +25358,9 @@ contains
       integer(c_int), target :: xInd(..)
       integer(c_int), value :: idxBase
       integer(c_int) :: Cgthr
+      if (.not. is_contiguous(y)) error stop "y: array must be contiguous"
+      if (.not. is_contiguous(xVal)) error stop "xVal: array must be contiguous"
+      if (.not. is_contiguous(xInd)) error stop "xInd: array must be contiguous"
       Cgthr = hipsparseCgthr_raw(handle, nnz, c_loc(y), c_loc(xVal), c_loc(xInd), idxBase)
     end function hipsparseCgthr_native
 
@@ -25953,6 +25388,9 @@ contains
       integer(c_int), target :: xInd(..)
       integer(c_int), value :: idxBase
       integer(c_int) :: Zgthr
+      if (.not. is_contiguous(y)) error stop "y: array must be contiguous"
+      if (.not. is_contiguous(xVal)) error stop "xVal: array must be contiguous"
+      if (.not. is_contiguous(xInd)) error stop "xInd: array must be contiguous"
       Zgthr = hipsparseZgthr_raw(handle, nnz, c_loc(y), c_loc(xVal), c_loc(xInd), idxBase)
     end function hipsparseZgthr_native
 
@@ -25980,6 +25418,9 @@ contains
       integer(c_int), target :: xInd(..)
       integer(c_int), value :: idxBase
       integer(c_int) :: Sgthrz
+      if (.not. is_contiguous(y)) error stop "y: array must be contiguous"
+      if (.not. is_contiguous(xVal)) error stop "xVal: array must be contiguous"
+      if (.not. is_contiguous(xInd)) error stop "xInd: array must be contiguous"
       Sgthrz = hipsparseSgthrz_raw(handle, nnz, c_loc(y), c_loc(xVal), c_loc(xInd), idxBase)
     end function hipsparseSgthrz_native
 
@@ -26007,6 +25448,9 @@ contains
       integer(c_int), target :: xInd(..)
       integer(c_int), value :: idxBase
       integer(c_int) :: Dgthrz
+      if (.not. is_contiguous(y)) error stop "y: array must be contiguous"
+      if (.not. is_contiguous(xVal)) error stop "xVal: array must be contiguous"
+      if (.not. is_contiguous(xInd)) error stop "xInd: array must be contiguous"
       Dgthrz = hipsparseDgthrz_raw(handle, nnz, c_loc(y), c_loc(xVal), c_loc(xInd), idxBase)
     end function hipsparseDgthrz_native
 
@@ -26034,6 +25478,9 @@ contains
       integer(c_int), target :: xInd(..)
       integer(c_int), value :: idxBase
       integer(c_int) :: Cgthrz
+      if (.not. is_contiguous(y)) error stop "y: array must be contiguous"
+      if (.not. is_contiguous(xVal)) error stop "xVal: array must be contiguous"
+      if (.not. is_contiguous(xInd)) error stop "xInd: array must be contiguous"
       Cgthrz = hipsparseCgthrz_raw(handle, nnz, c_loc(y), c_loc(xVal), c_loc(xInd), idxBase)
     end function hipsparseCgthrz_native
 
@@ -26061,6 +25508,9 @@ contains
       integer(c_int), target :: xInd(..)
       integer(c_int), value :: idxBase
       integer(c_int) :: Zgthrz
+      if (.not. is_contiguous(y)) error stop "y: array must be contiguous"
+      if (.not. is_contiguous(xVal)) error stop "xVal: array must be contiguous"
+      if (.not. is_contiguous(xInd)) error stop "xInd: array must be contiguous"
       Zgthrz = hipsparseZgthrz_raw(handle, nnz, c_loc(y), c_loc(xVal), c_loc(xInd), idxBase)
     end function hipsparseZgthrz_native
 
@@ -26090,6 +25540,9 @@ contains
       real(c_float) :: s
       integer(c_int), value :: idxBase
       integer(c_int) :: Sroti
+      if (.not. is_contiguous(xVal)) error stop "xVal: array must be contiguous"
+      if (.not. is_contiguous(xInd)) error stop "xInd: array must be contiguous"
+      if (.not. is_contiguous(y)) error stop "y: array must be contiguous"
       Sroti = hipsparseSroti_raw(handle, nnz, c_loc(xVal), c_loc(xInd), c_loc(y), c, s, idxBase)
     end function hipsparseSroti_native
 
@@ -26121,6 +25574,9 @@ contains
       real(c_double) :: s
       integer(c_int), value :: idxBase
       integer(c_int) :: Droti
+      if (.not. is_contiguous(xVal)) error stop "xVal: array must be contiguous"
+      if (.not. is_contiguous(xInd)) error stop "xInd: array must be contiguous"
+      if (.not. is_contiguous(y)) error stop "y: array must be contiguous"
       Droti = hipsparseDroti_raw(handle, nnz, c_loc(xVal), c_loc(xInd), c_loc(y), c, s, idxBase)
     end function hipsparseDroti_native
 
@@ -26150,6 +25606,9 @@ contains
       real(c_float), target :: y(..)
       integer(c_int), value :: idxBase
       integer(c_int) :: Ssctr
+      if (.not. is_contiguous(xVal)) error stop "xVal: array must be contiguous"
+      if (.not. is_contiguous(xInd)) error stop "xInd: array must be contiguous"
+      if (.not. is_contiguous(y)) error stop "y: array must be contiguous"
       Ssctr = hipsparseSsctr_raw(handle, nnz, c_loc(xVal), c_loc(xInd), c_loc(y), idxBase)
     end function hipsparseSsctr_native
 
@@ -26177,6 +25636,9 @@ contains
       real(c_double), target :: y(..)
       integer(c_int), value :: idxBase
       integer(c_int) :: Dsctr
+      if (.not. is_contiguous(xVal)) error stop "xVal: array must be contiguous"
+      if (.not. is_contiguous(xInd)) error stop "xInd: array must be contiguous"
+      if (.not. is_contiguous(y)) error stop "y: array must be contiguous"
       Dsctr = hipsparseDsctr_raw(handle, nnz, c_loc(xVal), c_loc(xInd), c_loc(y), idxBase)
     end function hipsparseDsctr_native
 
@@ -26204,6 +25666,9 @@ contains
       complex(c_float_complex), target :: y(..)
       integer(c_int), value :: idxBase
       integer(c_int) :: Csctr
+      if (.not. is_contiguous(xVal)) error stop "xVal: array must be contiguous"
+      if (.not. is_contiguous(xInd)) error stop "xInd: array must be contiguous"
+      if (.not. is_contiguous(y)) error stop "y: array must be contiguous"
       Csctr = hipsparseCsctr_raw(handle, nnz, c_loc(xVal), c_loc(xInd), c_loc(y), idxBase)
     end function hipsparseCsctr_native
 
@@ -26231,6 +25696,9 @@ contains
       complex(c_double_complex), target :: y(..)
       integer(c_int), value :: idxBase
       integer(c_int) :: Zsctr
+      if (.not. is_contiguous(xVal)) error stop "xVal: array must be contiguous"
+      if (.not. is_contiguous(xInd)) error stop "xInd: array must be contiguous"
+      if (.not. is_contiguous(y)) error stop "y: array must be contiguous"
       Zsctr = hipsparseZsctr_raw(handle, nnz, c_loc(xVal), c_loc(xInd), c_loc(y), idxBase)
     end function hipsparseZsctr_native
 
@@ -26268,6 +25736,11 @@ contains
       real(c_float) :: beta
       real(c_float), target :: y(..)
       integer(c_int) :: Sbsrmv
+      if (.not. is_contiguous(bsrSortedValA)) error stop "bsrSortedValA: array must be contiguous"
+      if (.not. is_contiguous(bsrSortedRowPtrA)) error stop "bsrSortedRowPtrA: array must be contiguous"
+      if (.not. is_contiguous(bsrSortedColIndA)) error stop "bsrSortedColIndA: array must be contiguous"
+      if (.not. is_contiguous(x)) error stop "x: array must be contiguous"
+      if (.not. is_contiguous(y)) error stop "y: array must be contiguous"
       Sbsrmv = hipsparseSbsrmv_raw(handle, dirA, transA, mb, nb, nnzb, alpha, descrA, c_loc( &
         bsrSortedValA), c_loc(bsrSortedRowPtrA), c_loc(bsrSortedColIndA), blockDim, c_loc(x), &
         beta, c_loc(y))
@@ -26318,6 +25791,11 @@ contains
       real(c_double) :: beta
       real(c_double), target :: y(..)
       integer(c_int) :: Dbsrmv
+      if (.not. is_contiguous(bsrSortedValA)) error stop "bsrSortedValA: array must be contiguous"
+      if (.not. is_contiguous(bsrSortedRowPtrA)) error stop "bsrSortedRowPtrA: array must be contiguous"
+      if (.not. is_contiguous(bsrSortedColIndA)) error stop "bsrSortedColIndA: array must be contiguous"
+      if (.not. is_contiguous(x)) error stop "x: array must be contiguous"
+      if (.not. is_contiguous(y)) error stop "y: array must be contiguous"
       Dbsrmv = hipsparseDbsrmv_raw(handle, dirA, transA, mb, nb, nnzb, alpha, descrA, c_loc( &
         bsrSortedValA), c_loc(bsrSortedRowPtrA), c_loc(bsrSortedColIndA), blockDim, c_loc(x), &
         beta, c_loc(y))
@@ -26368,6 +25846,11 @@ contains
       complex(c_float_complex) :: beta
       complex(c_float_complex), target :: y(..)
       integer(c_int) :: Cbsrmv
+      if (.not. is_contiguous(bsrSortedValA)) error stop "bsrSortedValA: array must be contiguous"
+      if (.not. is_contiguous(bsrSortedRowPtrA)) error stop "bsrSortedRowPtrA: array must be contiguous"
+      if (.not. is_contiguous(bsrSortedColIndA)) error stop "bsrSortedColIndA: array must be contiguous"
+      if (.not. is_contiguous(x)) error stop "x: array must be contiguous"
+      if (.not. is_contiguous(y)) error stop "y: array must be contiguous"
       Cbsrmv = hipsparseCbsrmv_raw(handle, dirA, transA, mb, nb, nnzb, alpha, descrA, c_loc( &
         bsrSortedValA), c_loc(bsrSortedRowPtrA), c_loc(bsrSortedColIndA), blockDim, c_loc(x), &
         beta, c_loc(y))
@@ -26418,6 +25901,11 @@ contains
       complex(c_double_complex) :: beta
       complex(c_double_complex), target :: y(..)
       integer(c_int) :: Zbsrmv
+      if (.not. is_contiguous(bsrSortedValA)) error stop "bsrSortedValA: array must be contiguous"
+      if (.not. is_contiguous(bsrSortedRowPtrA)) error stop "bsrSortedRowPtrA: array must be contiguous"
+      if (.not. is_contiguous(bsrSortedColIndA)) error stop "bsrSortedColIndA: array must be contiguous"
+      if (.not. is_contiguous(x)) error stop "x: array must be contiguous"
+      if (.not. is_contiguous(y)) error stop "y: array must be contiguous"
       Zbsrmv = hipsparseZbsrmv_raw(handle, dirA, transA, mb, nb, nnzb, alpha, descrA, c_loc( &
         bsrSortedValA), c_loc(bsrSortedRowPtrA), c_loc(bsrSortedColIndA), blockDim, c_loc(x), &
         beta, c_loc(y))
@@ -26477,6 +25965,9 @@ contains
       type(c_ptr), value :: info
       integer(c_int) :: pBufferSizeInBytes
       integer(c_int) :: Sbsrsv2_bufferSize
+      if (.not. is_contiguous(bsrSortedValA)) error stop "bsrSortedValA: array must be contiguous"
+      if (.not. is_contiguous(bsrSortedRowPtrA)) error stop "bsrSortedRowPtrA: array must be contiguous"
+      if (.not. is_contiguous(bsrSortedColIndA)) error stop "bsrSortedColIndA: array must be contiguous"
       Sbsrsv2_bufferSize = hipsparseSbsrsv2_bufferSize_raw(handle, dirA, transA, mb, nnzb, descrA, &
         c_loc(bsrSortedValA), c_loc(bsrSortedRowPtrA), c_loc(bsrSortedColIndA), blockDim, info, &
         pBufferSizeInBytes)
@@ -26524,6 +26015,9 @@ contains
       type(c_ptr), value :: info
       integer(c_int) :: pBufferSizeInBytes
       integer(c_int) :: Dbsrsv2_bufferSize
+      if (.not. is_contiguous(bsrSortedValA)) error stop "bsrSortedValA: array must be contiguous"
+      if (.not. is_contiguous(bsrSortedRowPtrA)) error stop "bsrSortedRowPtrA: array must be contiguous"
+      if (.not. is_contiguous(bsrSortedColIndA)) error stop "bsrSortedColIndA: array must be contiguous"
       Dbsrsv2_bufferSize = hipsparseDbsrsv2_bufferSize_raw(handle, dirA, transA, mb, nnzb, descrA, &
         c_loc(bsrSortedValA), c_loc(bsrSortedRowPtrA), c_loc(bsrSortedColIndA), blockDim, info, &
         pBufferSizeInBytes)
@@ -26571,6 +26065,9 @@ contains
       type(c_ptr), value :: info
       integer(c_int) :: pBufferSizeInBytes
       integer(c_int) :: Cbsrsv2_bufferSize
+      if (.not. is_contiguous(bsrSortedValA)) error stop "bsrSortedValA: array must be contiguous"
+      if (.not. is_contiguous(bsrSortedRowPtrA)) error stop "bsrSortedRowPtrA: array must be contiguous"
+      if (.not. is_contiguous(bsrSortedColIndA)) error stop "bsrSortedColIndA: array must be contiguous"
       Cbsrsv2_bufferSize = hipsparseCbsrsv2_bufferSize_raw(handle, dirA, transA, mb, nnzb, descrA, &
         c_loc(bsrSortedValA), c_loc(bsrSortedRowPtrA), c_loc(bsrSortedColIndA), blockDim, info, &
         pBufferSizeInBytes)
@@ -26618,6 +26115,9 @@ contains
       type(c_ptr), value :: info
       integer(c_int) :: pBufferSizeInBytes
       integer(c_int) :: Zbsrsv2_bufferSize
+      if (.not. is_contiguous(bsrSortedValA)) error stop "bsrSortedValA: array must be contiguous"
+      if (.not. is_contiguous(bsrSortedRowPtrA)) error stop "bsrSortedRowPtrA: array must be contiguous"
+      if (.not. is_contiguous(bsrSortedColIndA)) error stop "bsrSortedColIndA: array must be contiguous"
       Zbsrsv2_bufferSize = hipsparseZbsrsv2_bufferSize_raw(handle, dirA, transA, mb, nnzb, descrA, &
         c_loc(bsrSortedValA), c_loc(bsrSortedRowPtrA), c_loc(bsrSortedColIndA), blockDim, info, &
         pBufferSizeInBytes)
@@ -26665,6 +26165,9 @@ contains
       type(c_ptr), value :: info
       type(c_ptr), value :: pBufferSizeInBytes
       integer(c_int) :: Sbsrsv2_bufferSizeExt
+      if (.not. is_contiguous(bsrSortedValA)) error stop "bsrSortedValA: array must be contiguous"
+      if (.not. is_contiguous(bsrSortedRowPtrA)) error stop "bsrSortedRowPtrA: array must be contiguous"
+      if (.not. is_contiguous(bsrSortedColIndA)) error stop "bsrSortedColIndA: array must be contiguous"
       Sbsrsv2_bufferSizeExt = hipsparseSbsrsv2_bufferSizeExt_raw(handle, dirA, transA, mb, nnzb, &
         descrA, c_loc(bsrSortedValA), c_loc(bsrSortedRowPtrA), c_loc(bsrSortedColIndA), blockDim, &
         info, pBufferSizeInBytes)
@@ -26712,6 +26215,9 @@ contains
       type(c_ptr), value :: info
       type(c_ptr), value :: pBufferSizeInBytes
       integer(c_int) :: Dbsrsv2_bufferSizeExt
+      if (.not. is_contiguous(bsrSortedValA)) error stop "bsrSortedValA: array must be contiguous"
+      if (.not. is_contiguous(bsrSortedRowPtrA)) error stop "bsrSortedRowPtrA: array must be contiguous"
+      if (.not. is_contiguous(bsrSortedColIndA)) error stop "bsrSortedColIndA: array must be contiguous"
       Dbsrsv2_bufferSizeExt = hipsparseDbsrsv2_bufferSizeExt_raw(handle, dirA, transA, mb, nnzb, &
         descrA, c_loc(bsrSortedValA), c_loc(bsrSortedRowPtrA), c_loc(bsrSortedColIndA), blockDim, &
         info, pBufferSizeInBytes)
@@ -26759,6 +26265,9 @@ contains
       type(c_ptr), value :: info
       type(c_ptr), value :: pBufferSizeInBytes
       integer(c_int) :: Cbsrsv2_bufferSizeExt
+      if (.not. is_contiguous(bsrSortedValA)) error stop "bsrSortedValA: array must be contiguous"
+      if (.not. is_contiguous(bsrSortedRowPtrA)) error stop "bsrSortedRowPtrA: array must be contiguous"
+      if (.not. is_contiguous(bsrSortedColIndA)) error stop "bsrSortedColIndA: array must be contiguous"
       Cbsrsv2_bufferSizeExt = hipsparseCbsrsv2_bufferSizeExt_raw(handle, dirA, transA, mb, nnzb, &
         descrA, c_loc(bsrSortedValA), c_loc(bsrSortedRowPtrA), c_loc(bsrSortedColIndA), blockDim, &
         info, pBufferSizeInBytes)
@@ -26806,6 +26315,9 @@ contains
       type(c_ptr), value :: info
       type(c_ptr), value :: pBufferSizeInBytes
       integer(c_int) :: Zbsrsv2_bufferSizeExt
+      if (.not. is_contiguous(bsrSortedValA)) error stop "bsrSortedValA: array must be contiguous"
+      if (.not. is_contiguous(bsrSortedRowPtrA)) error stop "bsrSortedRowPtrA: array must be contiguous"
+      if (.not. is_contiguous(bsrSortedColIndA)) error stop "bsrSortedColIndA: array must be contiguous"
       Zbsrsv2_bufferSizeExt = hipsparseZbsrsv2_bufferSizeExt_raw(handle, dirA, transA, mb, nnzb, &
         descrA, c_loc(bsrSortedValA), c_loc(bsrSortedRowPtrA), c_loc(bsrSortedColIndA), blockDim, &
         info, pBufferSizeInBytes)
@@ -26854,6 +26366,9 @@ contains
       integer(c_int), value :: policy
       type(c_ptr), value :: pBuffer
       integer(c_int) :: Sbsrsv2_analysis
+      if (.not. is_contiguous(bsrSortedValA)) error stop "bsrSortedValA: array must be contiguous"
+      if (.not. is_contiguous(bsrSortedRowPtrA)) error stop "bsrSortedRowPtrA: array must be contiguous"
+      if (.not. is_contiguous(bsrSortedColIndA)) error stop "bsrSortedColIndA: array must be contiguous"
       Sbsrsv2_analysis = hipsparseSbsrsv2_analysis_raw(handle, dirA, transA, mb, nnzb, descrA, &
         c_loc(bsrSortedValA), c_loc(bsrSortedRowPtrA), c_loc(bsrSortedColIndA), blockDim, info, &
         policy, pBuffer)
@@ -26903,6 +26418,9 @@ contains
       integer(c_int), value :: policy
       type(c_ptr), value :: pBuffer
       integer(c_int) :: Dbsrsv2_analysis
+      if (.not. is_contiguous(bsrSortedValA)) error stop "bsrSortedValA: array must be contiguous"
+      if (.not. is_contiguous(bsrSortedRowPtrA)) error stop "bsrSortedRowPtrA: array must be contiguous"
+      if (.not. is_contiguous(bsrSortedColIndA)) error stop "bsrSortedColIndA: array must be contiguous"
       Dbsrsv2_analysis = hipsparseDbsrsv2_analysis_raw(handle, dirA, transA, mb, nnzb, descrA, &
         c_loc(bsrSortedValA), c_loc(bsrSortedRowPtrA), c_loc(bsrSortedColIndA), blockDim, info, &
         policy, pBuffer)
@@ -26952,6 +26470,9 @@ contains
       integer(c_int), value :: policy
       type(c_ptr), value :: pBuffer
       integer(c_int) :: Cbsrsv2_analysis
+      if (.not. is_contiguous(bsrSortedValA)) error stop "bsrSortedValA: array must be contiguous"
+      if (.not. is_contiguous(bsrSortedRowPtrA)) error stop "bsrSortedRowPtrA: array must be contiguous"
+      if (.not. is_contiguous(bsrSortedColIndA)) error stop "bsrSortedColIndA: array must be contiguous"
       Cbsrsv2_analysis = hipsparseCbsrsv2_analysis_raw(handle, dirA, transA, mb, nnzb, descrA, &
         c_loc(bsrSortedValA), c_loc(bsrSortedRowPtrA), c_loc(bsrSortedColIndA), blockDim, info, &
         policy, pBuffer)
@@ -27001,6 +26522,9 @@ contains
       integer(c_int), value :: policy
       type(c_ptr), value :: pBuffer
       integer(c_int) :: Zbsrsv2_analysis
+      if (.not. is_contiguous(bsrSortedValA)) error stop "bsrSortedValA: array must be contiguous"
+      if (.not. is_contiguous(bsrSortedRowPtrA)) error stop "bsrSortedRowPtrA: array must be contiguous"
+      if (.not. is_contiguous(bsrSortedColIndA)) error stop "bsrSortedColIndA: array must be contiguous"
       Zbsrsv2_analysis = hipsparseZbsrsv2_analysis_raw(handle, dirA, transA, mb, nnzb, descrA, &
         c_loc(bsrSortedValA), c_loc(bsrSortedRowPtrA), c_loc(bsrSortedColIndA), blockDim, info, &
         policy, pBuffer)
@@ -27053,6 +26577,11 @@ contains
       integer(c_int), value :: policy
       type(c_ptr), value :: pBuffer
       integer(c_int) :: Sbsrsv2_solve
+      if (.not. is_contiguous(bsrSortedValA)) error stop "bsrSortedValA: array must be contiguous"
+      if (.not. is_contiguous(bsrSortedRowPtrA)) error stop "bsrSortedRowPtrA: array must be contiguous"
+      if (.not. is_contiguous(bsrSortedColIndA)) error stop "bsrSortedColIndA: array must be contiguous"
+      if (.not. is_contiguous(f)) error stop "f: array must be contiguous"
+      if (.not. is_contiguous(x)) error stop "x: array must be contiguous"
       Sbsrsv2_solve = hipsparseSbsrsv2_solve_raw(handle, dirA, transA, mb, nnzb, alpha, descrA, &
         c_loc(bsrSortedValA), c_loc(bsrSortedRowPtrA), c_loc(bsrSortedColIndA), blockDim, info, &
         c_loc(f), c_loc(x), policy, pBuffer)
@@ -27108,6 +26637,11 @@ contains
       integer(c_int), value :: policy
       type(c_ptr), value :: pBuffer
       integer(c_int) :: Dbsrsv2_solve
+      if (.not. is_contiguous(bsrSortedValA)) error stop "bsrSortedValA: array must be contiguous"
+      if (.not. is_contiguous(bsrSortedRowPtrA)) error stop "bsrSortedRowPtrA: array must be contiguous"
+      if (.not. is_contiguous(bsrSortedColIndA)) error stop "bsrSortedColIndA: array must be contiguous"
+      if (.not. is_contiguous(f)) error stop "f: array must be contiguous"
+      if (.not. is_contiguous(x)) error stop "x: array must be contiguous"
       Dbsrsv2_solve = hipsparseDbsrsv2_solve_raw(handle, dirA, transA, mb, nnzb, alpha, descrA, &
         c_loc(bsrSortedValA), c_loc(bsrSortedRowPtrA), c_loc(bsrSortedColIndA), blockDim, info, &
         c_loc(f), c_loc(x), policy, pBuffer)
@@ -27163,6 +26697,11 @@ contains
       integer(c_int), value :: policy
       type(c_ptr), value :: pBuffer
       integer(c_int) :: Cbsrsv2_solve
+      if (.not. is_contiguous(bsrSortedValA)) error stop "bsrSortedValA: array must be contiguous"
+      if (.not. is_contiguous(bsrSortedRowPtrA)) error stop "bsrSortedRowPtrA: array must be contiguous"
+      if (.not. is_contiguous(bsrSortedColIndA)) error stop "bsrSortedColIndA: array must be contiguous"
+      if (.not. is_contiguous(f)) error stop "f: array must be contiguous"
+      if (.not. is_contiguous(x)) error stop "x: array must be contiguous"
       Cbsrsv2_solve = hipsparseCbsrsv2_solve_raw(handle, dirA, transA, mb, nnzb, alpha, descrA, &
         c_loc(bsrSortedValA), c_loc(bsrSortedRowPtrA), c_loc(bsrSortedColIndA), blockDim, info, &
         c_loc(f), c_loc(x), policy, pBuffer)
@@ -27218,6 +26757,11 @@ contains
       integer(c_int), value :: policy
       type(c_ptr), value :: pBuffer
       integer(c_int) :: Zbsrsv2_solve
+      if (.not. is_contiguous(bsrSortedValA)) error stop "bsrSortedValA: array must be contiguous"
+      if (.not. is_contiguous(bsrSortedRowPtrA)) error stop "bsrSortedRowPtrA: array must be contiguous"
+      if (.not. is_contiguous(bsrSortedColIndA)) error stop "bsrSortedColIndA: array must be contiguous"
+      if (.not. is_contiguous(f)) error stop "f: array must be contiguous"
+      if (.not. is_contiguous(x)) error stop "x: array must be contiguous"
       Zbsrsv2_solve = hipsparseZbsrsv2_solve_raw(handle, dirA, transA, mb, nnzb, alpha, descrA, &
         c_loc(bsrSortedValA), c_loc(bsrSortedRowPtrA), c_loc(bsrSortedColIndA), blockDim, info, &
         c_loc(f), c_loc(x), policy, pBuffer)
@@ -27274,6 +26818,13 @@ contains
       real(c_float) :: beta
       real(c_float), target :: y(..)
       integer(c_int) :: Sbsrxmv
+      if (.not. is_contiguous(bsrVal)) error stop "bsrVal: array must be contiguous"
+      if (.not. is_contiguous(bsrMaskPtr)) error stop "bsrMaskPtr: array must be contiguous"
+      if (.not. is_contiguous(bsrRowPtr)) error stop "bsrRowPtr: array must be contiguous"
+      if (.not. is_contiguous(bsrEndPtr)) error stop "bsrEndPtr: array must be contiguous"
+      if (.not. is_contiguous(bsrColInd)) error stop "bsrColInd: array must be contiguous"
+      if (.not. is_contiguous(x)) error stop "x: array must be contiguous"
+      if (.not. is_contiguous(y)) error stop "y: array must be contiguous"
       Sbsrxmv = hipsparseSbsrxmv_raw(handle, dir, trans, sizeOfMask, mb, nb, nnzb, alpha, descr, &
         c_loc(bsrVal), c_loc(bsrMaskPtr), c_loc(bsrRowPtr), c_loc(bsrEndPtr), c_loc(bsrColInd), &
         blockDim, c_loc(x), beta, c_loc(y))
@@ -27330,6 +26881,13 @@ contains
       real(c_double) :: beta
       real(c_double), target :: y(..)
       integer(c_int) :: Dbsrxmv
+      if (.not. is_contiguous(bsrVal)) error stop "bsrVal: array must be contiguous"
+      if (.not. is_contiguous(bsrMaskPtr)) error stop "bsrMaskPtr: array must be contiguous"
+      if (.not. is_contiguous(bsrRowPtr)) error stop "bsrRowPtr: array must be contiguous"
+      if (.not. is_contiguous(bsrEndPtr)) error stop "bsrEndPtr: array must be contiguous"
+      if (.not. is_contiguous(bsrColInd)) error stop "bsrColInd: array must be contiguous"
+      if (.not. is_contiguous(x)) error stop "x: array must be contiguous"
+      if (.not. is_contiguous(y)) error stop "y: array must be contiguous"
       Dbsrxmv = hipsparseDbsrxmv_raw(handle, dir, trans, sizeOfMask, mb, nb, nnzb, alpha, descr, &
         c_loc(bsrVal), c_loc(bsrMaskPtr), c_loc(bsrRowPtr), c_loc(bsrEndPtr), c_loc(bsrColInd), &
         blockDim, c_loc(x), beta, c_loc(y))
@@ -27386,6 +26944,13 @@ contains
       complex(c_float_complex) :: beta
       complex(c_float_complex), target :: y(..)
       integer(c_int) :: Cbsrxmv
+      if (.not. is_contiguous(bsrVal)) error stop "bsrVal: array must be contiguous"
+      if (.not. is_contiguous(bsrMaskPtr)) error stop "bsrMaskPtr: array must be contiguous"
+      if (.not. is_contiguous(bsrRowPtr)) error stop "bsrRowPtr: array must be contiguous"
+      if (.not. is_contiguous(bsrEndPtr)) error stop "bsrEndPtr: array must be contiguous"
+      if (.not. is_contiguous(bsrColInd)) error stop "bsrColInd: array must be contiguous"
+      if (.not. is_contiguous(x)) error stop "x: array must be contiguous"
+      if (.not. is_contiguous(y)) error stop "y: array must be contiguous"
       Cbsrxmv = hipsparseCbsrxmv_raw(handle, dir, trans, sizeOfMask, mb, nb, nnzb, alpha, descr, &
         c_loc(bsrVal), c_loc(bsrMaskPtr), c_loc(bsrRowPtr), c_loc(bsrEndPtr), c_loc(bsrColInd), &
         blockDim, c_loc(x), beta, c_loc(y))
@@ -27442,6 +27007,13 @@ contains
       complex(c_double_complex) :: beta
       complex(c_double_complex), target :: y(..)
       integer(c_int) :: Zbsrxmv
+      if (.not. is_contiguous(bsrVal)) error stop "bsrVal: array must be contiguous"
+      if (.not. is_contiguous(bsrMaskPtr)) error stop "bsrMaskPtr: array must be contiguous"
+      if (.not. is_contiguous(bsrRowPtr)) error stop "bsrRowPtr: array must be contiguous"
+      if (.not. is_contiguous(bsrEndPtr)) error stop "bsrEndPtr: array must be contiguous"
+      if (.not. is_contiguous(bsrColInd)) error stop "bsrColInd: array must be contiguous"
+      if (.not. is_contiguous(x)) error stop "x: array must be contiguous"
+      if (.not. is_contiguous(y)) error stop "y: array must be contiguous"
       Zbsrxmv = hipsparseZbsrxmv_raw(handle, dir, trans, sizeOfMask, mb, nb, nnzb, alpha, descr, &
         c_loc(bsrVal), c_loc(bsrMaskPtr), c_loc(bsrRowPtr), c_loc(bsrEndPtr), c_loc(bsrColInd), &
         blockDim, c_loc(x), beta, c_loc(y))
@@ -27493,6 +27065,11 @@ contains
       real(c_float) :: beta
       real(c_float), target :: y(..)
       integer(c_int) :: Scsrmv
+      if (.not. is_contiguous(csrSortedValA)) error stop "csrSortedValA: array must be contiguous"
+      if (.not. is_contiguous(csrSortedRowPtrA)) error stop "csrSortedRowPtrA: array must be contiguous"
+      if (.not. is_contiguous(csrSortedColIndA)) error stop "csrSortedColIndA: array must be contiguous"
+      if (.not. is_contiguous(x)) error stop "x: array must be contiguous"
+      if (.not. is_contiguous(y)) error stop "y: array must be contiguous"
       Scsrmv = hipsparseScsrmv_raw(handle, transA, m, n, nnz, alpha, descrA, c_loc(csrSortedValA), &
         c_loc(csrSortedRowPtrA), c_loc(csrSortedColIndA), c_loc(x), beta, c_loc(y))
     end function hipsparseScsrmv_native
@@ -27538,6 +27115,11 @@ contains
       real(c_double) :: beta
       real(c_double), target :: y(..)
       integer(c_int) :: Dcsrmv
+      if (.not. is_contiguous(csrSortedValA)) error stop "csrSortedValA: array must be contiguous"
+      if (.not. is_contiguous(csrSortedRowPtrA)) error stop "csrSortedRowPtrA: array must be contiguous"
+      if (.not. is_contiguous(csrSortedColIndA)) error stop "csrSortedColIndA: array must be contiguous"
+      if (.not. is_contiguous(x)) error stop "x: array must be contiguous"
+      if (.not. is_contiguous(y)) error stop "y: array must be contiguous"
       Dcsrmv = hipsparseDcsrmv_raw(handle, transA, m, n, nnz, alpha, descrA, c_loc(csrSortedValA), &
         c_loc(csrSortedRowPtrA), c_loc(csrSortedColIndA), c_loc(x), beta, c_loc(y))
     end function hipsparseDcsrmv_native
@@ -27583,6 +27165,11 @@ contains
       complex(c_float_complex) :: beta
       complex(c_float_complex), target :: y(..)
       integer(c_int) :: Ccsrmv
+      if (.not. is_contiguous(csrSortedValA)) error stop "csrSortedValA: array must be contiguous"
+      if (.not. is_contiguous(csrSortedRowPtrA)) error stop "csrSortedRowPtrA: array must be contiguous"
+      if (.not. is_contiguous(csrSortedColIndA)) error stop "csrSortedColIndA: array must be contiguous"
+      if (.not. is_contiguous(x)) error stop "x: array must be contiguous"
+      if (.not. is_contiguous(y)) error stop "y: array must be contiguous"
       Ccsrmv = hipsparseCcsrmv_raw(handle, transA, m, n, nnz, alpha, descrA, c_loc(csrSortedValA), &
         c_loc(csrSortedRowPtrA), c_loc(csrSortedColIndA), c_loc(x), beta, c_loc(y))
     end function hipsparseCcsrmv_native
@@ -27628,6 +27215,11 @@ contains
       complex(c_double_complex) :: beta
       complex(c_double_complex), target :: y(..)
       integer(c_int) :: Zcsrmv
+      if (.not. is_contiguous(csrSortedValA)) error stop "csrSortedValA: array must be contiguous"
+      if (.not. is_contiguous(csrSortedRowPtrA)) error stop "csrSortedRowPtrA: array must be contiguous"
+      if (.not. is_contiguous(csrSortedColIndA)) error stop "csrSortedColIndA: array must be contiguous"
+      if (.not. is_contiguous(x)) error stop "x: array must be contiguous"
+      if (.not. is_contiguous(y)) error stop "y: array must be contiguous"
       Zcsrmv = hipsparseZcsrmv_raw(handle, transA, m, n, nnz, alpha, descrA, c_loc(csrSortedValA), &
         c_loc(csrSortedRowPtrA), c_loc(csrSortedColIndA), c_loc(x), beta, c_loc(y))
     end function hipsparseZcsrmv_native
@@ -27681,6 +27273,9 @@ contains
       type(c_ptr), value :: info
       integer(c_int) :: pBufferSizeInBytes
       integer(c_int) :: Scsrsv2_bufferSize
+      if (.not. is_contiguous(csrSortedValA)) error stop "csrSortedValA: array must be contiguous"
+      if (.not. is_contiguous(csrSortedRowPtrA)) error stop "csrSortedRowPtrA: array must be contiguous"
+      if (.not. is_contiguous(csrSortedColIndA)) error stop "csrSortedColIndA: array must be contiguous"
       Scsrsv2_bufferSize = hipsparseScsrsv2_bufferSize_raw(handle, transA, m, nnz, descrA, c_loc( &
         csrSortedValA), c_loc(csrSortedRowPtrA), c_loc(csrSortedColIndA), info, pBufferSizeInBytes)
     end function hipsparseScsrsv2_bufferSize_native
@@ -27720,6 +27315,9 @@ contains
       type(c_ptr), value :: info
       integer(c_int) :: pBufferSizeInBytes
       integer(c_int) :: Dcsrsv2_bufferSize
+      if (.not. is_contiguous(csrSortedValA)) error stop "csrSortedValA: array must be contiguous"
+      if (.not. is_contiguous(csrSortedRowPtrA)) error stop "csrSortedRowPtrA: array must be contiguous"
+      if (.not. is_contiguous(csrSortedColIndA)) error stop "csrSortedColIndA: array must be contiguous"
       Dcsrsv2_bufferSize = hipsparseDcsrsv2_bufferSize_raw(handle, transA, m, nnz, descrA, c_loc( &
         csrSortedValA), c_loc(csrSortedRowPtrA), c_loc(csrSortedColIndA), info, pBufferSizeInBytes)
     end function hipsparseDcsrsv2_bufferSize_native
@@ -27759,6 +27357,9 @@ contains
       type(c_ptr), value :: info
       integer(c_int) :: pBufferSizeInBytes
       integer(c_int) :: Ccsrsv2_bufferSize
+      if (.not. is_contiguous(csrSortedValA)) error stop "csrSortedValA: array must be contiguous"
+      if (.not. is_contiguous(csrSortedRowPtrA)) error stop "csrSortedRowPtrA: array must be contiguous"
+      if (.not. is_contiguous(csrSortedColIndA)) error stop "csrSortedColIndA: array must be contiguous"
       Ccsrsv2_bufferSize = hipsparseCcsrsv2_bufferSize_raw(handle, transA, m, nnz, descrA, c_loc( &
         csrSortedValA), c_loc(csrSortedRowPtrA), c_loc(csrSortedColIndA), info, pBufferSizeInBytes)
     end function hipsparseCcsrsv2_bufferSize_native
@@ -27798,6 +27399,9 @@ contains
       type(c_ptr), value :: info
       integer(c_int) :: pBufferSizeInBytes
       integer(c_int) :: Zcsrsv2_bufferSize
+      if (.not. is_contiguous(csrSortedValA)) error stop "csrSortedValA: array must be contiguous"
+      if (.not. is_contiguous(csrSortedRowPtrA)) error stop "csrSortedRowPtrA: array must be contiguous"
+      if (.not. is_contiguous(csrSortedColIndA)) error stop "csrSortedColIndA: array must be contiguous"
       Zcsrsv2_bufferSize = hipsparseZcsrsv2_bufferSize_raw(handle, transA, m, nnz, descrA, c_loc( &
         csrSortedValA), c_loc(csrSortedRowPtrA), c_loc(csrSortedColIndA), info, pBufferSizeInBytes)
     end function hipsparseZcsrsv2_bufferSize_native
@@ -27837,6 +27441,9 @@ contains
       type(c_ptr), value :: info
       type(c_ptr), value :: pBufferSizeInBytes
       integer(c_int) :: Scsrsv2_bufferSizeExt
+      if (.not. is_contiguous(csrSortedValA)) error stop "csrSortedValA: array must be contiguous"
+      if (.not. is_contiguous(csrSortedRowPtrA)) error stop "csrSortedRowPtrA: array must be contiguous"
+      if (.not. is_contiguous(csrSortedColIndA)) error stop "csrSortedColIndA: array must be contiguous"
       Scsrsv2_bufferSizeExt = hipsparseScsrsv2_bufferSizeExt_raw(handle, transA, m, nnz, descrA, &
         c_loc(csrSortedValA), c_loc(csrSortedRowPtrA), c_loc(csrSortedColIndA), info, &
         pBufferSizeInBytes)
@@ -27877,6 +27484,9 @@ contains
       type(c_ptr), value :: info
       type(c_ptr), value :: pBufferSizeInBytes
       integer(c_int) :: Dcsrsv2_bufferSizeExt
+      if (.not. is_contiguous(csrSortedValA)) error stop "csrSortedValA: array must be contiguous"
+      if (.not. is_contiguous(csrSortedRowPtrA)) error stop "csrSortedRowPtrA: array must be contiguous"
+      if (.not. is_contiguous(csrSortedColIndA)) error stop "csrSortedColIndA: array must be contiguous"
       Dcsrsv2_bufferSizeExt = hipsparseDcsrsv2_bufferSizeExt_raw(handle, transA, m, nnz, descrA, &
         c_loc(csrSortedValA), c_loc(csrSortedRowPtrA), c_loc(csrSortedColIndA), info, &
         pBufferSizeInBytes)
@@ -27917,6 +27527,9 @@ contains
       type(c_ptr), value :: info
       type(c_ptr), value :: pBufferSizeInBytes
       integer(c_int) :: Ccsrsv2_bufferSizeExt
+      if (.not. is_contiguous(csrSortedValA)) error stop "csrSortedValA: array must be contiguous"
+      if (.not. is_contiguous(csrSortedRowPtrA)) error stop "csrSortedRowPtrA: array must be contiguous"
+      if (.not. is_contiguous(csrSortedColIndA)) error stop "csrSortedColIndA: array must be contiguous"
       Ccsrsv2_bufferSizeExt = hipsparseCcsrsv2_bufferSizeExt_raw(handle, transA, m, nnz, descrA, &
         c_loc(csrSortedValA), c_loc(csrSortedRowPtrA), c_loc(csrSortedColIndA), info, &
         pBufferSizeInBytes)
@@ -27957,6 +27570,9 @@ contains
       type(c_ptr), value :: info
       type(c_ptr), value :: pBufferSizeInBytes
       integer(c_int) :: Zcsrsv2_bufferSizeExt
+      if (.not. is_contiguous(csrSortedValA)) error stop "csrSortedValA: array must be contiguous"
+      if (.not. is_contiguous(csrSortedRowPtrA)) error stop "csrSortedRowPtrA: array must be contiguous"
+      if (.not. is_contiguous(csrSortedColIndA)) error stop "csrSortedColIndA: array must be contiguous"
       Zcsrsv2_bufferSizeExt = hipsparseZcsrsv2_bufferSizeExt_raw(handle, transA, m, nnz, descrA, &
         c_loc(csrSortedValA), c_loc(csrSortedRowPtrA), c_loc(csrSortedColIndA), info, &
         pBufferSizeInBytes)
@@ -27998,6 +27614,9 @@ contains
       integer(c_int), value :: policy
       type(c_ptr), value :: pBuffer
       integer(c_int) :: Scsrsv2_analysis
+      if (.not. is_contiguous(csrSortedValA)) error stop "csrSortedValA: array must be contiguous"
+      if (.not. is_contiguous(csrSortedRowPtrA)) error stop "csrSortedRowPtrA: array must be contiguous"
+      if (.not. is_contiguous(csrSortedColIndA)) error stop "csrSortedColIndA: array must be contiguous"
       Scsrsv2_analysis = hipsparseScsrsv2_analysis_raw(handle, transA, m, nnz, descrA, c_loc( &
         csrSortedValA), c_loc(csrSortedRowPtrA), c_loc(csrSortedColIndA), info, policy, pBuffer)
     end function hipsparseScsrsv2_analysis_native
@@ -28039,6 +27658,9 @@ contains
       integer(c_int), value :: policy
       type(c_ptr), value :: pBuffer
       integer(c_int) :: Dcsrsv2_analysis
+      if (.not. is_contiguous(csrSortedValA)) error stop "csrSortedValA: array must be contiguous"
+      if (.not. is_contiguous(csrSortedRowPtrA)) error stop "csrSortedRowPtrA: array must be contiguous"
+      if (.not. is_contiguous(csrSortedColIndA)) error stop "csrSortedColIndA: array must be contiguous"
       Dcsrsv2_analysis = hipsparseDcsrsv2_analysis_raw(handle, transA, m, nnz, descrA, c_loc( &
         csrSortedValA), c_loc(csrSortedRowPtrA), c_loc(csrSortedColIndA), info, policy, pBuffer)
     end function hipsparseDcsrsv2_analysis_native
@@ -28080,6 +27702,9 @@ contains
       integer(c_int), value :: policy
       type(c_ptr), value :: pBuffer
       integer(c_int) :: Ccsrsv2_analysis
+      if (.not. is_contiguous(csrSortedValA)) error stop "csrSortedValA: array must be contiguous"
+      if (.not. is_contiguous(csrSortedRowPtrA)) error stop "csrSortedRowPtrA: array must be contiguous"
+      if (.not. is_contiguous(csrSortedColIndA)) error stop "csrSortedColIndA: array must be contiguous"
       Ccsrsv2_analysis = hipsparseCcsrsv2_analysis_raw(handle, transA, m, nnz, descrA, c_loc( &
         csrSortedValA), c_loc(csrSortedRowPtrA), c_loc(csrSortedColIndA), info, policy, pBuffer)
     end function hipsparseCcsrsv2_analysis_native
@@ -28121,6 +27746,9 @@ contains
       integer(c_int), value :: policy
       type(c_ptr), value :: pBuffer
       integer(c_int) :: Zcsrsv2_analysis
+      if (.not. is_contiguous(csrSortedValA)) error stop "csrSortedValA: array must be contiguous"
+      if (.not. is_contiguous(csrSortedRowPtrA)) error stop "csrSortedRowPtrA: array must be contiguous"
+      if (.not. is_contiguous(csrSortedColIndA)) error stop "csrSortedColIndA: array must be contiguous"
       Zcsrsv2_analysis = hipsparseZcsrsv2_analysis_raw(handle, transA, m, nnz, descrA, c_loc( &
         csrSortedValA), c_loc(csrSortedRowPtrA), c_loc(csrSortedColIndA), info, policy, pBuffer)
     end function hipsparseZcsrsv2_analysis_native
@@ -28165,6 +27793,11 @@ contains
       integer(c_int), value :: policy
       type(c_ptr), value :: pBuffer
       integer(c_int) :: Scsrsv2_solve
+      if (.not. is_contiguous(csrSortedValA)) error stop "csrSortedValA: array must be contiguous"
+      if (.not. is_contiguous(csrSortedRowPtrA)) error stop "csrSortedRowPtrA: array must be contiguous"
+      if (.not. is_contiguous(csrSortedColIndA)) error stop "csrSortedColIndA: array must be contiguous"
+      if (.not. is_contiguous(f)) error stop "f: array must be contiguous"
+      if (.not. is_contiguous(x)) error stop "x: array must be contiguous"
       Scsrsv2_solve = hipsparseScsrsv2_solve_raw(handle, transA, m, nnz, alpha, descrA, c_loc( &
         csrSortedValA), c_loc(csrSortedRowPtrA), c_loc(csrSortedColIndA), info, c_loc(f), c_loc( &
         x), policy, pBuffer)
@@ -28213,6 +27846,11 @@ contains
       integer(c_int), value :: policy
       type(c_ptr), value :: pBuffer
       integer(c_int) :: Dcsrsv2_solve
+      if (.not. is_contiguous(csrSortedValA)) error stop "csrSortedValA: array must be contiguous"
+      if (.not. is_contiguous(csrSortedRowPtrA)) error stop "csrSortedRowPtrA: array must be contiguous"
+      if (.not. is_contiguous(csrSortedColIndA)) error stop "csrSortedColIndA: array must be contiguous"
+      if (.not. is_contiguous(f)) error stop "f: array must be contiguous"
+      if (.not. is_contiguous(x)) error stop "x: array must be contiguous"
       Dcsrsv2_solve = hipsparseDcsrsv2_solve_raw(handle, transA, m, nnz, alpha, descrA, c_loc( &
         csrSortedValA), c_loc(csrSortedRowPtrA), c_loc(csrSortedColIndA), info, c_loc(f), c_loc( &
         x), policy, pBuffer)
@@ -28261,6 +27899,11 @@ contains
       integer(c_int), value :: policy
       type(c_ptr), value :: pBuffer
       integer(c_int) :: Ccsrsv2_solve
+      if (.not. is_contiguous(csrSortedValA)) error stop "csrSortedValA: array must be contiguous"
+      if (.not. is_contiguous(csrSortedRowPtrA)) error stop "csrSortedRowPtrA: array must be contiguous"
+      if (.not. is_contiguous(csrSortedColIndA)) error stop "csrSortedColIndA: array must be contiguous"
+      if (.not. is_contiguous(f)) error stop "f: array must be contiguous"
+      if (.not. is_contiguous(x)) error stop "x: array must be contiguous"
       Ccsrsv2_solve = hipsparseCcsrsv2_solve_raw(handle, transA, m, nnz, alpha, descrA, c_loc( &
         csrSortedValA), c_loc(csrSortedRowPtrA), c_loc(csrSortedColIndA), info, c_loc(f), c_loc( &
         x), policy, pBuffer)
@@ -28309,6 +27952,11 @@ contains
       integer(c_int), value :: policy
       type(c_ptr), value :: pBuffer
       integer(c_int) :: Zcsrsv2_solve
+      if (.not. is_contiguous(csrSortedValA)) error stop "csrSortedValA: array must be contiguous"
+      if (.not. is_contiguous(csrSortedRowPtrA)) error stop "csrSortedRowPtrA: array must be contiguous"
+      if (.not. is_contiguous(csrSortedColIndA)) error stop "csrSortedColIndA: array must be contiguous"
+      if (.not. is_contiguous(f)) error stop "f: array must be contiguous"
+      if (.not. is_contiguous(x)) error stop "x: array must be contiguous"
       Zcsrsv2_solve = hipsparseZcsrsv2_solve_raw(handle, transA, m, nnz, alpha, descrA, c_loc( &
         csrSortedValA), c_loc(csrSortedRowPtrA), c_loc(csrSortedColIndA), info, c_loc(f), c_loc( &
         x), policy, pBuffer)
@@ -28349,6 +27997,7 @@ contains
       integer(c_int), value :: nnz
       integer(c_int), target :: pBufferSizeInBytes(..)
       integer(c_int) :: Sgemvi_bufferSize
+      if (.not. is_contiguous(pBufferSizeInBytes)) error stop "pBufferSizeInBytes: array must be contiguous"
       Sgemvi_bufferSize = hipsparseSgemvi_bufferSize_raw(handle, transA, m, n, nnz, c_loc( &
         pBufferSizeInBytes))
     end function hipsparseSgemvi_bufferSize_native
@@ -28380,6 +28029,7 @@ contains
       integer(c_int), value :: nnz
       integer(c_int), target :: pBufferSizeInBytes(..)
       integer(c_int) :: Dgemvi_bufferSize
+      if (.not. is_contiguous(pBufferSizeInBytes)) error stop "pBufferSizeInBytes: array must be contiguous"
       Dgemvi_bufferSize = hipsparseDgemvi_bufferSize_raw(handle, transA, m, n, nnz, c_loc( &
         pBufferSizeInBytes))
     end function hipsparseDgemvi_bufferSize_native
@@ -28411,6 +28061,7 @@ contains
       integer(c_int), value :: nnz
       integer(c_int), target :: pBufferSizeInBytes(..)
       integer(c_int) :: Cgemvi_bufferSize
+      if (.not. is_contiguous(pBufferSizeInBytes)) error stop "pBufferSizeInBytes: array must be contiguous"
       Cgemvi_bufferSize = hipsparseCgemvi_bufferSize_raw(handle, transA, m, n, nnz, c_loc( &
         pBufferSizeInBytes))
     end function hipsparseCgemvi_bufferSize_native
@@ -28442,6 +28093,7 @@ contains
       integer(c_int), value :: nnz
       integer(c_int), target :: pBufferSizeInBytes(..)
       integer(c_int) :: Zgemvi_bufferSize
+      if (.not. is_contiguous(pBufferSizeInBytes)) error stop "pBufferSizeInBytes: array must be contiguous"
       Zgemvi_bufferSize = hipsparseZgemvi_bufferSize_raw(handle, transA, m, n, nnz, c_loc( &
         pBufferSizeInBytes))
     end function hipsparseZgemvi_bufferSize_native
@@ -28481,6 +28133,10 @@ contains
       integer(c_int), value :: idxBase
       type(c_ptr), value :: pBuffer
       integer(c_int) :: Sgemvi
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(x)) error stop "x: array must be contiguous"
+      if (.not. is_contiguous(xInd)) error stop "xInd: array must be contiguous"
+      if (.not. is_contiguous(y)) error stop "y: array must be contiguous"
       Sgemvi = hipsparseSgemvi_raw(handle, transA, m, n, alpha, c_loc(A), lda, nnz, c_loc(x), &
         c_loc(xInd), beta, c_loc(y), idxBase, pBuffer)
     end function hipsparseSgemvi_native
@@ -28528,6 +28184,10 @@ contains
       integer(c_int), value :: idxBase
       type(c_ptr), value :: pBuffer
       integer(c_int) :: Dgemvi
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(x)) error stop "x: array must be contiguous"
+      if (.not. is_contiguous(xInd)) error stop "xInd: array must be contiguous"
+      if (.not. is_contiguous(y)) error stop "y: array must be contiguous"
       Dgemvi = hipsparseDgemvi_raw(handle, transA, m, n, alpha, c_loc(A), lda, nnz, c_loc(x), &
         c_loc(xInd), beta, c_loc(y), idxBase, pBuffer)
     end function hipsparseDgemvi_native
@@ -28575,6 +28235,10 @@ contains
       integer(c_int), value :: idxBase
       type(c_ptr), value :: pBuffer
       integer(c_int) :: Cgemvi
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(x)) error stop "x: array must be contiguous"
+      if (.not. is_contiguous(xInd)) error stop "xInd: array must be contiguous"
+      if (.not. is_contiguous(y)) error stop "y: array must be contiguous"
       Cgemvi = hipsparseCgemvi_raw(handle, transA, m, n, alpha, c_loc(A), lda, nnz, c_loc(x), &
         c_loc(xInd), beta, c_loc(y), idxBase, pBuffer)
     end function hipsparseCgemvi_native
@@ -28622,6 +28286,10 @@ contains
       integer(c_int), value :: idxBase
       type(c_ptr), value :: pBuffer
       integer(c_int) :: Zgemvi
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(x)) error stop "x: array must be contiguous"
+      if (.not. is_contiguous(xInd)) error stop "xInd: array must be contiguous"
+      if (.not. is_contiguous(y)) error stop "y: array must be contiguous"
       Zgemvi = hipsparseZgemvi_raw(handle, transA, m, n, alpha, c_loc(A), lda, nnz, c_loc(x), &
         c_loc(xInd), beta, c_loc(y), idxBase, pBuffer)
     end function hipsparseZgemvi_native
@@ -28662,6 +28330,8 @@ contains
       real(c_float) :: beta
       real(c_float), target :: y(..)
       integer(c_int) :: Shybmv
+      if (.not. is_contiguous(x)) error stop "x: array must be contiguous"
+      if (.not. is_contiguous(y)) error stop "y: array must be contiguous"
       Shybmv = hipsparseShybmv_raw(handle, transA, alpha, descrA, hybA, c_loc(x), beta, c_loc(y))
     end function hipsparseShybmv_native
 
@@ -28693,6 +28363,8 @@ contains
       real(c_double) :: beta
       real(c_double), target :: y(..)
       integer(c_int) :: Dhybmv
+      if (.not. is_contiguous(x)) error stop "x: array must be contiguous"
+      if (.not. is_contiguous(y)) error stop "y: array must be contiguous"
       Dhybmv = hipsparseDhybmv_raw(handle, transA, alpha, descrA, hybA, c_loc(x), beta, c_loc(y))
     end function hipsparseDhybmv_native
 
@@ -28724,6 +28396,8 @@ contains
       complex(c_float_complex) :: beta
       complex(c_float_complex), target :: y(..)
       integer(c_int) :: Chybmv
+      if (.not. is_contiguous(x)) error stop "x: array must be contiguous"
+      if (.not. is_contiguous(y)) error stop "y: array must be contiguous"
       Chybmv = hipsparseChybmv_raw(handle, transA, alpha, descrA, hybA, c_loc(x), beta, c_loc(y))
     end function hipsparseChybmv_native
 
@@ -28755,6 +28429,8 @@ contains
       complex(c_double_complex) :: beta
       complex(c_double_complex), target :: y(..)
       integer(c_int) :: Zhybmv
+      if (.not. is_contiguous(x)) error stop "x: array must be contiguous"
+      if (.not. is_contiguous(y)) error stop "y: array must be contiguous"
       Zhybmv = hipsparseZhybmv_raw(handle, transA, alpha, descrA, hybA, c_loc(x), beta, c_loc(y))
     end function hipsparseZhybmv_native
 
@@ -28798,6 +28474,11 @@ contains
       real(c_float), target :: C(..)
       integer(c_int), value :: ldc
       integer(c_int) :: Sbsrmm
+      if (.not. is_contiguous(bsrValA)) error stop "bsrValA: array must be contiguous"
+      if (.not. is_contiguous(bsrRowPtrA)) error stop "bsrRowPtrA: array must be contiguous"
+      if (.not. is_contiguous(bsrColIndA)) error stop "bsrColIndA: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
+      if (.not. is_contiguous(C)) error stop "C: array must be contiguous"
       Sbsrmm = hipsparseSbsrmm_raw(handle, dirA, transA, transB, mb, n, kb, nnzb, alpha, descrA, &
         c_loc(bsrValA), c_loc(bsrRowPtrA), c_loc(bsrColIndA), blockDim, c_loc(B), ldb, beta, &
         c_loc(C), ldc)
@@ -28856,6 +28537,11 @@ contains
       real(c_double), target :: C(..)
       integer(c_int), value :: ldc
       integer(c_int) :: Dbsrmm
+      if (.not. is_contiguous(bsrValA)) error stop "bsrValA: array must be contiguous"
+      if (.not. is_contiguous(bsrRowPtrA)) error stop "bsrRowPtrA: array must be contiguous"
+      if (.not. is_contiguous(bsrColIndA)) error stop "bsrColIndA: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
+      if (.not. is_contiguous(C)) error stop "C: array must be contiguous"
       Dbsrmm = hipsparseDbsrmm_raw(handle, dirA, transA, transB, mb, n, kb, nnzb, alpha, descrA, &
         c_loc(bsrValA), c_loc(bsrRowPtrA), c_loc(bsrColIndA), blockDim, c_loc(B), ldb, beta, &
         c_loc(C), ldc)
@@ -28914,6 +28600,11 @@ contains
       complex(c_float_complex), target :: C(..)
       integer(c_int), value :: ldc
       integer(c_int) :: Cbsrmm
+      if (.not. is_contiguous(bsrValA)) error stop "bsrValA: array must be contiguous"
+      if (.not. is_contiguous(bsrRowPtrA)) error stop "bsrRowPtrA: array must be contiguous"
+      if (.not. is_contiguous(bsrColIndA)) error stop "bsrColIndA: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
+      if (.not. is_contiguous(C)) error stop "C: array must be contiguous"
       Cbsrmm = hipsparseCbsrmm_raw(handle, dirA, transA, transB, mb, n, kb, nnzb, alpha, descrA, &
         c_loc(bsrValA), c_loc(bsrRowPtrA), c_loc(bsrColIndA), blockDim, c_loc(B), ldb, beta, &
         c_loc(C), ldc)
@@ -28972,6 +28663,11 @@ contains
       complex(c_double_complex), target :: C(..)
       integer(c_int), value :: ldc
       integer(c_int) :: Zbsrmm
+      if (.not. is_contiguous(bsrValA)) error stop "bsrValA: array must be contiguous"
+      if (.not. is_contiguous(bsrRowPtrA)) error stop "bsrRowPtrA: array must be contiguous"
+      if (.not. is_contiguous(bsrColIndA)) error stop "bsrColIndA: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
+      if (.not. is_contiguous(C)) error stop "C: array must be contiguous"
       Zbsrmm = hipsparseZbsrmm_raw(handle, dirA, transA, transB, mb, n, kb, nnzb, alpha, descrA, &
         c_loc(bsrValA), c_loc(bsrRowPtrA), c_loc(bsrColIndA), blockDim, c_loc(B), ldb, beta, &
         c_loc(C), ldc)
@@ -29037,6 +28733,9 @@ contains
       type(c_ptr), value :: info
       integer(c_int) :: pBufferSizeInBytes
       integer(c_int) :: Sbsrsm2_bufferSize
+      if (.not. is_contiguous(bsrSortedValA)) error stop "bsrSortedValA: array must be contiguous"
+      if (.not. is_contiguous(bsrSortedRowPtrA)) error stop "bsrSortedRowPtrA: array must be contiguous"
+      if (.not. is_contiguous(bsrSortedColIndA)) error stop "bsrSortedColIndA: array must be contiguous"
       Sbsrsm2_bufferSize = hipsparseSbsrsm2_bufferSize_raw(handle, dirA, transA, transX, mb, nrhs, &
         nnzb, descrA, c_loc(bsrSortedValA), c_loc(bsrSortedRowPtrA), c_loc(bsrSortedColIndA), &
         blockDim, info, pBufferSizeInBytes)
@@ -29088,6 +28787,9 @@ contains
       type(c_ptr), value :: info
       integer(c_int) :: pBufferSizeInBytes
       integer(c_int) :: Dbsrsm2_bufferSize
+      if (.not. is_contiguous(bsrSortedValA)) error stop "bsrSortedValA: array must be contiguous"
+      if (.not. is_contiguous(bsrSortedRowPtrA)) error stop "bsrSortedRowPtrA: array must be contiguous"
+      if (.not. is_contiguous(bsrSortedColIndA)) error stop "bsrSortedColIndA: array must be contiguous"
       Dbsrsm2_bufferSize = hipsparseDbsrsm2_bufferSize_raw(handle, dirA, transA, transX, mb, nrhs, &
         nnzb, descrA, c_loc(bsrSortedValA), c_loc(bsrSortedRowPtrA), c_loc(bsrSortedColIndA), &
         blockDim, info, pBufferSizeInBytes)
@@ -29139,6 +28841,9 @@ contains
       type(c_ptr), value :: info
       integer(c_int) :: pBufferSizeInBytes
       integer(c_int) :: Cbsrsm2_bufferSize
+      if (.not. is_contiguous(bsrSortedValA)) error stop "bsrSortedValA: array must be contiguous"
+      if (.not. is_contiguous(bsrSortedRowPtrA)) error stop "bsrSortedRowPtrA: array must be contiguous"
+      if (.not. is_contiguous(bsrSortedColIndA)) error stop "bsrSortedColIndA: array must be contiguous"
       Cbsrsm2_bufferSize = hipsparseCbsrsm2_bufferSize_raw(handle, dirA, transA, transX, mb, nrhs, &
         nnzb, descrA, c_loc(bsrSortedValA), c_loc(bsrSortedRowPtrA), c_loc(bsrSortedColIndA), &
         blockDim, info, pBufferSizeInBytes)
@@ -29190,6 +28895,9 @@ contains
       type(c_ptr), value :: info
       integer(c_int) :: pBufferSizeInBytes
       integer(c_int) :: Zbsrsm2_bufferSize
+      if (.not. is_contiguous(bsrSortedValA)) error stop "bsrSortedValA: array must be contiguous"
+      if (.not. is_contiguous(bsrSortedRowPtrA)) error stop "bsrSortedRowPtrA: array must be contiguous"
+      if (.not. is_contiguous(bsrSortedColIndA)) error stop "bsrSortedColIndA: array must be contiguous"
       Zbsrsm2_bufferSize = hipsparseZbsrsm2_bufferSize_raw(handle, dirA, transA, transX, mb, nrhs, &
         nnzb, descrA, c_loc(bsrSortedValA), c_loc(bsrSortedRowPtrA), c_loc(bsrSortedColIndA), &
         blockDim, info, pBufferSizeInBytes)
@@ -29242,6 +28950,9 @@ contains
       integer(c_int), value :: policy
       type(c_ptr), value :: pBuffer
       integer(c_int) :: Sbsrsm2_analysis
+      if (.not. is_contiguous(bsrSortedValA)) error stop "bsrSortedValA: array must be contiguous"
+      if (.not. is_contiguous(bsrSortedRowPtrA)) error stop "bsrSortedRowPtrA: array must be contiguous"
+      if (.not. is_contiguous(bsrSortedColIndA)) error stop "bsrSortedColIndA: array must be contiguous"
       Sbsrsm2_analysis = hipsparseSbsrsm2_analysis_raw(handle, dirA, transA, transX, mb, nrhs, &
         nnzb, descrA, c_loc(bsrSortedValA), c_loc(bsrSortedRowPtrA), c_loc(bsrSortedColIndA), &
         blockDim, info, policy, pBuffer)
@@ -29295,6 +29006,9 @@ contains
       integer(c_int), value :: policy
       type(c_ptr), value :: pBuffer
       integer(c_int) :: Dbsrsm2_analysis
+      if (.not. is_contiguous(bsrSortedValA)) error stop "bsrSortedValA: array must be contiguous"
+      if (.not. is_contiguous(bsrSortedRowPtrA)) error stop "bsrSortedRowPtrA: array must be contiguous"
+      if (.not. is_contiguous(bsrSortedColIndA)) error stop "bsrSortedColIndA: array must be contiguous"
       Dbsrsm2_analysis = hipsparseDbsrsm2_analysis_raw(handle, dirA, transA, transX, mb, nrhs, &
         nnzb, descrA, c_loc(bsrSortedValA), c_loc(bsrSortedRowPtrA), c_loc(bsrSortedColIndA), &
         blockDim, info, policy, pBuffer)
@@ -29348,6 +29062,9 @@ contains
       integer(c_int), value :: policy
       type(c_ptr), value :: pBuffer
       integer(c_int) :: Cbsrsm2_analysis
+      if (.not. is_contiguous(bsrSortedValA)) error stop "bsrSortedValA: array must be contiguous"
+      if (.not. is_contiguous(bsrSortedRowPtrA)) error stop "bsrSortedRowPtrA: array must be contiguous"
+      if (.not. is_contiguous(bsrSortedColIndA)) error stop "bsrSortedColIndA: array must be contiguous"
       Cbsrsm2_analysis = hipsparseCbsrsm2_analysis_raw(handle, dirA, transA, transX, mb, nrhs, &
         nnzb, descrA, c_loc(bsrSortedValA), c_loc(bsrSortedRowPtrA), c_loc(bsrSortedColIndA), &
         blockDim, info, policy, pBuffer)
@@ -29401,6 +29118,9 @@ contains
       integer(c_int), value :: policy
       type(c_ptr), value :: pBuffer
       integer(c_int) :: Zbsrsm2_analysis
+      if (.not. is_contiguous(bsrSortedValA)) error stop "bsrSortedValA: array must be contiguous"
+      if (.not. is_contiguous(bsrSortedRowPtrA)) error stop "bsrSortedRowPtrA: array must be contiguous"
+      if (.not. is_contiguous(bsrSortedColIndA)) error stop "bsrSortedColIndA: array must be contiguous"
       Zbsrsm2_analysis = hipsparseZbsrsm2_analysis_raw(handle, dirA, transA, transX, mb, nrhs, &
         nnzb, descrA, c_loc(bsrSortedValA), c_loc(bsrSortedRowPtrA), c_loc(bsrSortedColIndA), &
         blockDim, info, policy, pBuffer)
@@ -29459,6 +29179,11 @@ contains
       integer(c_int), value :: policy
       type(c_ptr), value :: pBuffer
       integer(c_int) :: Sbsrsm2_solve
+      if (.not. is_contiguous(bsrSortedValA)) error stop "bsrSortedValA: array must be contiguous"
+      if (.not. is_contiguous(bsrSortedRowPtrA)) error stop "bsrSortedRowPtrA: array must be contiguous"
+      if (.not. is_contiguous(bsrSortedColIndA)) error stop "bsrSortedColIndA: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
+      if (.not. is_contiguous(X)) error stop "X: array must be contiguous"
       Sbsrsm2_solve = hipsparseSbsrsm2_solve_raw(handle, dirA, transA, transX, mb, nrhs, nnzb, &
         alpha, descrA, c_loc(bsrSortedValA), c_loc(bsrSortedRowPtrA), c_loc(bsrSortedColIndA), &
         blockDim, info, c_loc(B), ldb, c_loc(X), ldx, policy, pBuffer)
@@ -29522,6 +29247,11 @@ contains
       integer(c_int), value :: policy
       type(c_ptr), value :: pBuffer
       integer(c_int) :: Dbsrsm2_solve
+      if (.not. is_contiguous(bsrSortedValA)) error stop "bsrSortedValA: array must be contiguous"
+      if (.not. is_contiguous(bsrSortedRowPtrA)) error stop "bsrSortedRowPtrA: array must be contiguous"
+      if (.not. is_contiguous(bsrSortedColIndA)) error stop "bsrSortedColIndA: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
+      if (.not. is_contiguous(X)) error stop "X: array must be contiguous"
       Dbsrsm2_solve = hipsparseDbsrsm2_solve_raw(handle, dirA, transA, transX, mb, nrhs, nnzb, &
         alpha, descrA, c_loc(bsrSortedValA), c_loc(bsrSortedRowPtrA), c_loc(bsrSortedColIndA), &
         blockDim, info, c_loc(B), ldb, c_loc(X), ldx, policy, pBuffer)
@@ -29585,6 +29315,11 @@ contains
       integer(c_int), value :: policy
       type(c_ptr), value :: pBuffer
       integer(c_int) :: Cbsrsm2_solve
+      if (.not. is_contiguous(bsrSortedValA)) error stop "bsrSortedValA: array must be contiguous"
+      if (.not. is_contiguous(bsrSortedRowPtrA)) error stop "bsrSortedRowPtrA: array must be contiguous"
+      if (.not. is_contiguous(bsrSortedColIndA)) error stop "bsrSortedColIndA: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
+      if (.not. is_contiguous(X)) error stop "X: array must be contiguous"
       Cbsrsm2_solve = hipsparseCbsrsm2_solve_raw(handle, dirA, transA, transX, mb, nrhs, nnzb, &
         alpha, descrA, c_loc(bsrSortedValA), c_loc(bsrSortedRowPtrA), c_loc(bsrSortedColIndA), &
         blockDim, info, c_loc(B), ldb, c_loc(X), ldx, policy, pBuffer)
@@ -29648,6 +29383,11 @@ contains
       integer(c_int), value :: policy
       type(c_ptr), value :: pBuffer
       integer(c_int) :: Zbsrsm2_solve
+      if (.not. is_contiguous(bsrSortedValA)) error stop "bsrSortedValA: array must be contiguous"
+      if (.not. is_contiguous(bsrSortedRowPtrA)) error stop "bsrSortedRowPtrA: array must be contiguous"
+      if (.not. is_contiguous(bsrSortedColIndA)) error stop "bsrSortedColIndA: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
+      if (.not. is_contiguous(X)) error stop "X: array must be contiguous"
       Zbsrsm2_solve = hipsparseZbsrsm2_solve_raw(handle, dirA, transA, transX, mb, nrhs, nnzb, &
         alpha, descrA, c_loc(bsrSortedValA), c_loc(bsrSortedRowPtrA), c_loc(bsrSortedColIndA), &
         blockDim, info, c_loc(B), ldb, c_loc(X), ldx, policy, pBuffer)
@@ -29706,6 +29446,11 @@ contains
       real(c_float), target :: C(..)
       integer(c_int), value :: ldc
       integer(c_int) :: Scsrmm
+      if (.not. is_contiguous(csrSortedValA)) error stop "csrSortedValA: array must be contiguous"
+      if (.not. is_contiguous(csrSortedRowPtrA)) error stop "csrSortedRowPtrA: array must be contiguous"
+      if (.not. is_contiguous(csrSortedColIndA)) error stop "csrSortedColIndA: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
+      if (.not. is_contiguous(C)) error stop "C: array must be contiguous"
       Scsrmm = hipsparseScsrmm_raw(handle, transA, m, n, k, nnz, alpha, descrA, c_loc( &
         csrSortedValA), c_loc(csrSortedRowPtrA), c_loc(csrSortedColIndA), c_loc(B), ldb, beta, &
         c_loc(C), ldc)
@@ -29758,6 +29503,11 @@ contains
       real(c_double), target :: C(..)
       integer(c_int), value :: ldc
       integer(c_int) :: Dcsrmm
+      if (.not. is_contiguous(csrSortedValA)) error stop "csrSortedValA: array must be contiguous"
+      if (.not. is_contiguous(csrSortedRowPtrA)) error stop "csrSortedRowPtrA: array must be contiguous"
+      if (.not. is_contiguous(csrSortedColIndA)) error stop "csrSortedColIndA: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
+      if (.not. is_contiguous(C)) error stop "C: array must be contiguous"
       Dcsrmm = hipsparseDcsrmm_raw(handle, transA, m, n, k, nnz, alpha, descrA, c_loc( &
         csrSortedValA), c_loc(csrSortedRowPtrA), c_loc(csrSortedColIndA), c_loc(B), ldb, beta, &
         c_loc(C), ldc)
@@ -29810,6 +29560,11 @@ contains
       complex(c_float_complex), target :: C(..)
       integer(c_int), value :: ldc
       integer(c_int) :: Ccsrmm
+      if (.not. is_contiguous(csrSortedValA)) error stop "csrSortedValA: array must be contiguous"
+      if (.not. is_contiguous(csrSortedRowPtrA)) error stop "csrSortedRowPtrA: array must be contiguous"
+      if (.not. is_contiguous(csrSortedColIndA)) error stop "csrSortedColIndA: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
+      if (.not. is_contiguous(C)) error stop "C: array must be contiguous"
       Ccsrmm = hipsparseCcsrmm_raw(handle, transA, m, n, k, nnz, alpha, descrA, c_loc( &
         csrSortedValA), c_loc(csrSortedRowPtrA), c_loc(csrSortedColIndA), c_loc(B), ldb, beta, &
         c_loc(C), ldc)
@@ -29862,6 +29617,11 @@ contains
       complex(c_double_complex), target :: C(..)
       integer(c_int), value :: ldc
       integer(c_int) :: Zcsrmm
+      if (.not. is_contiguous(csrSortedValA)) error stop "csrSortedValA: array must be contiguous"
+      if (.not. is_contiguous(csrSortedRowPtrA)) error stop "csrSortedRowPtrA: array must be contiguous"
+      if (.not. is_contiguous(csrSortedColIndA)) error stop "csrSortedColIndA: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
+      if (.not. is_contiguous(C)) error stop "C: array must be contiguous"
       Zcsrmm = hipsparseZcsrmm_raw(handle, transA, m, n, k, nnz, alpha, descrA, c_loc( &
         csrSortedValA), c_loc(csrSortedRowPtrA), c_loc(csrSortedColIndA), c_loc(B), ldb, beta, &
         c_loc(C), ldc)
@@ -29915,6 +29675,11 @@ contains
       real(c_float), target :: C(..)
       integer(c_int), value :: ldc
       integer(c_int) :: Scsrmm2
+      if (.not. is_contiguous(csrSortedValA)) error stop "csrSortedValA: array must be contiguous"
+      if (.not. is_contiguous(csrSortedRowPtrA)) error stop "csrSortedRowPtrA: array must be contiguous"
+      if (.not. is_contiguous(csrSortedColIndA)) error stop "csrSortedColIndA: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
+      if (.not. is_contiguous(C)) error stop "C: array must be contiguous"
       Scsrmm2 = hipsparseScsrmm2_raw(handle, transA, transB, m, n, k, nnz, alpha, descrA, c_loc( &
         csrSortedValA), c_loc(csrSortedRowPtrA), c_loc(csrSortedColIndA), c_loc(B), ldb, beta, &
         c_loc(C), ldc)
@@ -29969,6 +29734,11 @@ contains
       real(c_double), target :: C(..)
       integer(c_int), value :: ldc
       integer(c_int) :: Dcsrmm2
+      if (.not. is_contiguous(csrSortedValA)) error stop "csrSortedValA: array must be contiguous"
+      if (.not. is_contiguous(csrSortedRowPtrA)) error stop "csrSortedRowPtrA: array must be contiguous"
+      if (.not. is_contiguous(csrSortedColIndA)) error stop "csrSortedColIndA: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
+      if (.not. is_contiguous(C)) error stop "C: array must be contiguous"
       Dcsrmm2 = hipsparseDcsrmm2_raw(handle, transA, transB, m, n, k, nnz, alpha, descrA, c_loc( &
         csrSortedValA), c_loc(csrSortedRowPtrA), c_loc(csrSortedColIndA), c_loc(B), ldb, beta, &
         c_loc(C), ldc)
@@ -30023,6 +29793,11 @@ contains
       complex(c_float_complex), target :: C(..)
       integer(c_int), value :: ldc
       integer(c_int) :: Ccsrmm2
+      if (.not. is_contiguous(csrSortedValA)) error stop "csrSortedValA: array must be contiguous"
+      if (.not. is_contiguous(csrSortedRowPtrA)) error stop "csrSortedRowPtrA: array must be contiguous"
+      if (.not. is_contiguous(csrSortedColIndA)) error stop "csrSortedColIndA: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
+      if (.not. is_contiguous(C)) error stop "C: array must be contiguous"
       Ccsrmm2 = hipsparseCcsrmm2_raw(handle, transA, transB, m, n, k, nnz, alpha, descrA, c_loc( &
         csrSortedValA), c_loc(csrSortedRowPtrA), c_loc(csrSortedColIndA), c_loc(B), ldb, beta, &
         c_loc(C), ldc)
@@ -30077,6 +29852,11 @@ contains
       complex(c_double_complex), target :: C(..)
       integer(c_int), value :: ldc
       integer(c_int) :: Zcsrmm2
+      if (.not. is_contiguous(csrSortedValA)) error stop "csrSortedValA: array must be contiguous"
+      if (.not. is_contiguous(csrSortedRowPtrA)) error stop "csrSortedRowPtrA: array must be contiguous"
+      if (.not. is_contiguous(csrSortedColIndA)) error stop "csrSortedColIndA: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
+      if (.not. is_contiguous(C)) error stop "C: array must be contiguous"
       Zcsrmm2 = hipsparseZcsrmm2_raw(handle, transA, transB, m, n, k, nnz, alpha, descrA, c_loc( &
         csrSortedValA), c_loc(csrSortedRowPtrA), c_loc(csrSortedColIndA), c_loc(B), ldb, beta, &
         c_loc(C), ldc)
@@ -30143,6 +29923,10 @@ contains
       integer(c_int), value :: policy
       type(c_ptr), value :: pBufferSizeInBytes
       integer(c_int) :: Scsrsm2_bufferSizeExt
+      if (.not. is_contiguous(csrSortedValA)) error stop "csrSortedValA: array must be contiguous"
+      if (.not. is_contiguous(csrSortedRowPtrA)) error stop "csrSortedRowPtrA: array must be contiguous"
+      if (.not. is_contiguous(csrSortedColIndA)) error stop "csrSortedColIndA: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
       Scsrsm2_bufferSizeExt = hipsparseScsrsm2_bufferSizeExt_raw(handle, algo, transA, transB, m, &
         nrhs, nnz, alpha, descrA, c_loc(csrSortedValA), c_loc(csrSortedRowPtrA), c_loc( &
         csrSortedColIndA), c_loc(B), ldb, info, policy, pBufferSizeInBytes)
@@ -30200,6 +29984,10 @@ contains
       integer(c_int), value :: policy
       type(c_ptr), value :: pBufferSizeInBytes
       integer(c_int) :: Dcsrsm2_bufferSizeExt
+      if (.not. is_contiguous(csrSortedValA)) error stop "csrSortedValA: array must be contiguous"
+      if (.not. is_contiguous(csrSortedRowPtrA)) error stop "csrSortedRowPtrA: array must be contiguous"
+      if (.not. is_contiguous(csrSortedColIndA)) error stop "csrSortedColIndA: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
       Dcsrsm2_bufferSizeExt = hipsparseDcsrsm2_bufferSizeExt_raw(handle, algo, transA, transB, m, &
         nrhs, nnz, alpha, descrA, c_loc(csrSortedValA), c_loc(csrSortedRowPtrA), c_loc( &
         csrSortedColIndA), c_loc(B), ldb, info, policy, pBufferSizeInBytes)
@@ -30257,6 +30045,10 @@ contains
       integer(c_int), value :: policy
       type(c_ptr), value :: pBufferSizeInBytes
       integer(c_int) :: Ccsrsm2_bufferSizeExt
+      if (.not. is_contiguous(csrSortedValA)) error stop "csrSortedValA: array must be contiguous"
+      if (.not. is_contiguous(csrSortedRowPtrA)) error stop "csrSortedRowPtrA: array must be contiguous"
+      if (.not. is_contiguous(csrSortedColIndA)) error stop "csrSortedColIndA: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
       Ccsrsm2_bufferSizeExt = hipsparseCcsrsm2_bufferSizeExt_raw(handle, algo, transA, transB, m, &
         nrhs, nnz, alpha, descrA, c_loc(csrSortedValA), c_loc(csrSortedRowPtrA), c_loc( &
         csrSortedColIndA), c_loc(B), ldb, info, policy, pBufferSizeInBytes)
@@ -30314,6 +30106,10 @@ contains
       integer(c_int), value :: policy
       type(c_ptr), value :: pBufferSizeInBytes
       integer(c_int) :: Zcsrsm2_bufferSizeExt
+      if (.not. is_contiguous(csrSortedValA)) error stop "csrSortedValA: array must be contiguous"
+      if (.not. is_contiguous(csrSortedRowPtrA)) error stop "csrSortedRowPtrA: array must be contiguous"
+      if (.not. is_contiguous(csrSortedColIndA)) error stop "csrSortedColIndA: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
       Zcsrsm2_bufferSizeExt = hipsparseZcsrsm2_bufferSizeExt_raw(handle, algo, transA, transB, m, &
         nrhs, nnz, alpha, descrA, c_loc(csrSortedValA), c_loc(csrSortedRowPtrA), c_loc( &
         csrSortedColIndA), c_loc(B), ldb, info, policy, pBufferSizeInBytes)
@@ -30371,6 +30167,10 @@ contains
       integer(c_int), value :: policy
       type(c_ptr), value :: pBuffer
       integer(c_int) :: Scsrsm2_analysis
+      if (.not. is_contiguous(csrSortedValA)) error stop "csrSortedValA: array must be contiguous"
+      if (.not. is_contiguous(csrSortedRowPtrA)) error stop "csrSortedRowPtrA: array must be contiguous"
+      if (.not. is_contiguous(csrSortedColIndA)) error stop "csrSortedColIndA: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
       Scsrsm2_analysis = hipsparseScsrsm2_analysis_raw(handle, algo, transA, transB, m, nrhs, nnz, &
         alpha, descrA, c_loc(csrSortedValA), c_loc(csrSortedRowPtrA), c_loc(csrSortedColIndA), &
         c_loc(B), ldb, info, policy, pBuffer)
@@ -30428,6 +30228,10 @@ contains
       integer(c_int), value :: policy
       type(c_ptr), value :: pBuffer
       integer(c_int) :: Dcsrsm2_analysis
+      if (.not. is_contiguous(csrSortedValA)) error stop "csrSortedValA: array must be contiguous"
+      if (.not. is_contiguous(csrSortedRowPtrA)) error stop "csrSortedRowPtrA: array must be contiguous"
+      if (.not. is_contiguous(csrSortedColIndA)) error stop "csrSortedColIndA: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
       Dcsrsm2_analysis = hipsparseDcsrsm2_analysis_raw(handle, algo, transA, transB, m, nrhs, nnz, &
         alpha, descrA, c_loc(csrSortedValA), c_loc(csrSortedRowPtrA), c_loc(csrSortedColIndA), &
         c_loc(B), ldb, info, policy, pBuffer)
@@ -30485,6 +30289,10 @@ contains
       integer(c_int), value :: policy
       type(c_ptr), value :: pBuffer
       integer(c_int) :: Ccsrsm2_analysis
+      if (.not. is_contiguous(csrSortedValA)) error stop "csrSortedValA: array must be contiguous"
+      if (.not. is_contiguous(csrSortedRowPtrA)) error stop "csrSortedRowPtrA: array must be contiguous"
+      if (.not. is_contiguous(csrSortedColIndA)) error stop "csrSortedColIndA: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
       Ccsrsm2_analysis = hipsparseCcsrsm2_analysis_raw(handle, algo, transA, transB, m, nrhs, nnz, &
         alpha, descrA, c_loc(csrSortedValA), c_loc(csrSortedRowPtrA), c_loc(csrSortedColIndA), &
         c_loc(B), ldb, info, policy, pBuffer)
@@ -30542,6 +30350,10 @@ contains
       integer(c_int), value :: policy
       type(c_ptr), value :: pBuffer
       integer(c_int) :: Zcsrsm2_analysis
+      if (.not. is_contiguous(csrSortedValA)) error stop "csrSortedValA: array must be contiguous"
+      if (.not. is_contiguous(csrSortedRowPtrA)) error stop "csrSortedRowPtrA: array must be contiguous"
+      if (.not. is_contiguous(csrSortedColIndA)) error stop "csrSortedColIndA: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
       Zcsrsm2_analysis = hipsparseZcsrsm2_analysis_raw(handle, algo, transA, transB, m, nrhs, nnz, &
         alpha, descrA, c_loc(csrSortedValA), c_loc(csrSortedRowPtrA), c_loc(csrSortedColIndA), &
         c_loc(B), ldb, info, policy, pBuffer)
@@ -30599,6 +30411,10 @@ contains
       integer(c_int), value :: policy
       type(c_ptr), value :: pBuffer
       integer(c_int) :: Scsrsm2_solve
+      if (.not. is_contiguous(csrSortedValA)) error stop "csrSortedValA: array must be contiguous"
+      if (.not. is_contiguous(csrSortedRowPtrA)) error stop "csrSortedRowPtrA: array must be contiguous"
+      if (.not. is_contiguous(csrSortedColIndA)) error stop "csrSortedColIndA: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
       Scsrsm2_solve = hipsparseScsrsm2_solve_raw(handle, algo, transA, transB, m, nrhs, nnz, &
         alpha, descrA, c_loc(csrSortedValA), c_loc(csrSortedRowPtrA), c_loc(csrSortedColIndA), &
         c_loc(B), ldb, info, policy, pBuffer)
@@ -30656,6 +30472,10 @@ contains
       integer(c_int), value :: policy
       type(c_ptr), value :: pBuffer
       integer(c_int) :: Dcsrsm2_solve
+      if (.not. is_contiguous(csrSortedValA)) error stop "csrSortedValA: array must be contiguous"
+      if (.not. is_contiguous(csrSortedRowPtrA)) error stop "csrSortedRowPtrA: array must be contiguous"
+      if (.not. is_contiguous(csrSortedColIndA)) error stop "csrSortedColIndA: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
       Dcsrsm2_solve = hipsparseDcsrsm2_solve_raw(handle, algo, transA, transB, m, nrhs, nnz, &
         alpha, descrA, c_loc(csrSortedValA), c_loc(csrSortedRowPtrA), c_loc(csrSortedColIndA), &
         c_loc(B), ldb, info, policy, pBuffer)
@@ -30713,6 +30533,10 @@ contains
       integer(c_int), value :: policy
       type(c_ptr), value :: pBuffer
       integer(c_int) :: Ccsrsm2_solve
+      if (.not. is_contiguous(csrSortedValA)) error stop "csrSortedValA: array must be contiguous"
+      if (.not. is_contiguous(csrSortedRowPtrA)) error stop "csrSortedRowPtrA: array must be contiguous"
+      if (.not. is_contiguous(csrSortedColIndA)) error stop "csrSortedColIndA: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
       Ccsrsm2_solve = hipsparseCcsrsm2_solve_raw(handle, algo, transA, transB, m, nrhs, nnz, &
         alpha, descrA, c_loc(csrSortedValA), c_loc(csrSortedRowPtrA), c_loc(csrSortedColIndA), &
         c_loc(B), ldb, info, policy, pBuffer)
@@ -30770,6 +30594,10 @@ contains
       integer(c_int), value :: policy
       type(c_ptr), value :: pBuffer
       integer(c_int) :: Zcsrsm2_solve
+      if (.not. is_contiguous(csrSortedValA)) error stop "csrSortedValA: array must be contiguous"
+      if (.not. is_contiguous(csrSortedRowPtrA)) error stop "csrSortedRowPtrA: array must be contiguous"
+      if (.not. is_contiguous(csrSortedColIndA)) error stop "csrSortedColIndA: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
       Zcsrsm2_solve = hipsparseZcsrsm2_solve_raw(handle, algo, transA, transB, m, nrhs, nnz, &
         alpha, descrA, c_loc(csrSortedValA), c_loc(csrSortedRowPtrA), c_loc(csrSortedColIndA), &
         c_loc(B), ldb, info, policy, pBuffer)
@@ -30823,6 +30651,11 @@ contains
       real(c_float), target :: C(..)
       integer(c_int), value :: ldc
       integer(c_int) :: Sgemmi
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(cscValB)) error stop "cscValB: array must be contiguous"
+      if (.not. is_contiguous(cscColPtrB)) error stop "cscColPtrB: array must be contiguous"
+      if (.not. is_contiguous(cscRowIndB)) error stop "cscRowIndB: array must be contiguous"
+      if (.not. is_contiguous(C)) error stop "C: array must be contiguous"
       Sgemmi = hipsparseSgemmi_raw(handle, m, n, k, nnz, alpha, c_loc(A), lda, c_loc(cscValB), &
         c_loc(cscColPtrB), c_loc(cscRowIndB), beta, c_loc(C), ldc)
     end function hipsparseSgemmi_native
@@ -30870,6 +30703,11 @@ contains
       real(c_double), target :: C(..)
       integer(c_int), value :: ldc
       integer(c_int) :: Dgemmi
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(cscValB)) error stop "cscValB: array must be contiguous"
+      if (.not. is_contiguous(cscColPtrB)) error stop "cscColPtrB: array must be contiguous"
+      if (.not. is_contiguous(cscRowIndB)) error stop "cscRowIndB: array must be contiguous"
+      if (.not. is_contiguous(C)) error stop "C: array must be contiguous"
       Dgemmi = hipsparseDgemmi_raw(handle, m, n, k, nnz, alpha, c_loc(A), lda, c_loc(cscValB), &
         c_loc(cscColPtrB), c_loc(cscRowIndB), beta, c_loc(C), ldc)
     end function hipsparseDgemmi_native
@@ -30917,6 +30755,11 @@ contains
       complex(c_float_complex), target :: C(..)
       integer(c_int), value :: ldc
       integer(c_int) :: Cgemmi
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(cscValB)) error stop "cscValB: array must be contiguous"
+      if (.not. is_contiguous(cscColPtrB)) error stop "cscColPtrB: array must be contiguous"
+      if (.not. is_contiguous(cscRowIndB)) error stop "cscRowIndB: array must be contiguous"
+      if (.not. is_contiguous(C)) error stop "C: array must be contiguous"
       Cgemmi = hipsparseCgemmi_raw(handle, m, n, k, nnz, alpha, c_loc(A), lda, c_loc(cscValB), &
         c_loc(cscColPtrB), c_loc(cscRowIndB), beta, c_loc(C), ldc)
     end function hipsparseCgemmi_native
@@ -30964,6 +30807,11 @@ contains
       complex(c_double_complex), target :: C(..)
       integer(c_int), value :: ldc
       integer(c_int) :: Zgemmi
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(cscValB)) error stop "cscValB: array must be contiguous"
+      if (.not. is_contiguous(cscColPtrB)) error stop "cscColPtrB: array must be contiguous"
+      if (.not. is_contiguous(cscRowIndB)) error stop "cscRowIndB: array must be contiguous"
+      if (.not. is_contiguous(C)) error stop "C: array must be contiguous"
       Zgemmi = hipsparseZgemmi_raw(handle, m, n, k, nnz, alpha, c_loc(A), lda, c_loc(cscValB), &
         c_loc(cscColPtrB), c_loc(cscRowIndB), beta, c_loc(C), ldc)
     end function hipsparseZgemmi_native
@@ -31012,6 +30860,11 @@ contains
       integer(c_int), target :: csrRowPtrC(..)
       integer(c_int) :: nnzTotalDevHostPtr
       integer(c_int) :: XcsrgeamNnz
+      if (.not. is_contiguous(csrRowPtrA)) error stop "csrRowPtrA: array must be contiguous"
+      if (.not. is_contiguous(csrColIndA)) error stop "csrColIndA: array must be contiguous"
+      if (.not. is_contiguous(csrRowPtrB)) error stop "csrRowPtrB: array must be contiguous"
+      if (.not. is_contiguous(csrColIndB)) error stop "csrColIndB: array must be contiguous"
+      if (.not. is_contiguous(csrRowPtrC)) error stop "csrRowPtrC: array must be contiguous"
       XcsrgeamNnz = hipsparseXcsrgeamNnz_raw(handle, m, n, descrA, nnzA, c_loc(csrRowPtrA), c_loc( &
         csrColIndA), descrB, nnzB, c_loc(csrRowPtrB), c_loc(csrColIndB), descrC, c_loc( &
         csrRowPtrC), nnzTotalDevHostPtr)
@@ -31068,6 +30921,15 @@ contains
       integer(c_int), target :: csrRowPtrC(..)
       integer(c_int), target :: csrColIndC(..)
       integer(c_int) :: Scsrgeam
+      if (.not. is_contiguous(csrValA)) error stop "csrValA: array must be contiguous"
+      if (.not. is_contiguous(csrRowPtrA)) error stop "csrRowPtrA: array must be contiguous"
+      if (.not. is_contiguous(csrColIndA)) error stop "csrColIndA: array must be contiguous"
+      if (.not. is_contiguous(csrValB)) error stop "csrValB: array must be contiguous"
+      if (.not. is_contiguous(csrRowPtrB)) error stop "csrRowPtrB: array must be contiguous"
+      if (.not. is_contiguous(csrColIndB)) error stop "csrColIndB: array must be contiguous"
+      if (.not. is_contiguous(csrValC)) error stop "csrValC: array must be contiguous"
+      if (.not. is_contiguous(csrRowPtrC)) error stop "csrRowPtrC: array must be contiguous"
+      if (.not. is_contiguous(csrColIndC)) error stop "csrColIndC: array must be contiguous"
       Scsrgeam = hipsparseScsrgeam_raw(handle, m, n, alpha, descrA, nnzA, c_loc(csrValA), c_loc( &
         csrRowPtrA), c_loc(csrColIndA), beta, descrB, nnzB, c_loc(csrValB), c_loc(csrRowPtrB), &
         c_loc(csrColIndB), descrC, c_loc(csrValC), c_loc(csrRowPtrC), c_loc(csrColIndC))
@@ -31129,6 +30991,15 @@ contains
       integer(c_int), target :: csrRowPtrC(..)
       integer(c_int), target :: csrColIndC(..)
       integer(c_int) :: Dcsrgeam
+      if (.not. is_contiguous(csrValA)) error stop "csrValA: array must be contiguous"
+      if (.not. is_contiguous(csrRowPtrA)) error stop "csrRowPtrA: array must be contiguous"
+      if (.not. is_contiguous(csrColIndA)) error stop "csrColIndA: array must be contiguous"
+      if (.not. is_contiguous(csrValB)) error stop "csrValB: array must be contiguous"
+      if (.not. is_contiguous(csrRowPtrB)) error stop "csrRowPtrB: array must be contiguous"
+      if (.not. is_contiguous(csrColIndB)) error stop "csrColIndB: array must be contiguous"
+      if (.not. is_contiguous(csrValC)) error stop "csrValC: array must be contiguous"
+      if (.not. is_contiguous(csrRowPtrC)) error stop "csrRowPtrC: array must be contiguous"
+      if (.not. is_contiguous(csrColIndC)) error stop "csrColIndC: array must be contiguous"
       Dcsrgeam = hipsparseDcsrgeam_raw(handle, m, n, alpha, descrA, nnzA, c_loc(csrValA), c_loc( &
         csrRowPtrA), c_loc(csrColIndA), beta, descrB, nnzB, c_loc(csrValB), c_loc(csrRowPtrB), &
         c_loc(csrColIndB), descrC, c_loc(csrValC), c_loc(csrRowPtrC), c_loc(csrColIndC))
@@ -31190,6 +31061,15 @@ contains
       integer(c_int), target :: csrRowPtrC(..)
       integer(c_int), target :: csrColIndC(..)
       integer(c_int) :: Ccsrgeam
+      if (.not. is_contiguous(csrValA)) error stop "csrValA: array must be contiguous"
+      if (.not. is_contiguous(csrRowPtrA)) error stop "csrRowPtrA: array must be contiguous"
+      if (.not. is_contiguous(csrColIndA)) error stop "csrColIndA: array must be contiguous"
+      if (.not. is_contiguous(csrValB)) error stop "csrValB: array must be contiguous"
+      if (.not. is_contiguous(csrRowPtrB)) error stop "csrRowPtrB: array must be contiguous"
+      if (.not. is_contiguous(csrColIndB)) error stop "csrColIndB: array must be contiguous"
+      if (.not. is_contiguous(csrValC)) error stop "csrValC: array must be contiguous"
+      if (.not. is_contiguous(csrRowPtrC)) error stop "csrRowPtrC: array must be contiguous"
+      if (.not. is_contiguous(csrColIndC)) error stop "csrColIndC: array must be contiguous"
       Ccsrgeam = hipsparseCcsrgeam_raw(handle, m, n, alpha, descrA, nnzA, c_loc(csrValA), c_loc( &
         csrRowPtrA), c_loc(csrColIndA), beta, descrB, nnzB, c_loc(csrValB), c_loc(csrRowPtrB), &
         c_loc(csrColIndB), descrC, c_loc(csrValC), c_loc(csrRowPtrC), c_loc(csrColIndC))
@@ -31251,6 +31131,15 @@ contains
       integer(c_int), target :: csrRowPtrC(..)
       integer(c_int), target :: csrColIndC(..)
       integer(c_int) :: Zcsrgeam
+      if (.not. is_contiguous(csrValA)) error stop "csrValA: array must be contiguous"
+      if (.not. is_contiguous(csrRowPtrA)) error stop "csrRowPtrA: array must be contiguous"
+      if (.not. is_contiguous(csrColIndA)) error stop "csrColIndA: array must be contiguous"
+      if (.not. is_contiguous(csrValB)) error stop "csrValB: array must be contiguous"
+      if (.not. is_contiguous(csrRowPtrB)) error stop "csrRowPtrB: array must be contiguous"
+      if (.not. is_contiguous(csrColIndB)) error stop "csrColIndB: array must be contiguous"
+      if (.not. is_contiguous(csrValC)) error stop "csrValC: array must be contiguous"
+      if (.not. is_contiguous(csrRowPtrC)) error stop "csrRowPtrC: array must be contiguous"
+      if (.not. is_contiguous(csrColIndC)) error stop "csrColIndC: array must be contiguous"
       Zcsrgeam = hipsparseZcsrgeam_raw(handle, m, n, alpha, descrA, nnzA, c_loc(csrValA), c_loc( &
         csrRowPtrA), c_loc(csrColIndA), beta, descrB, nnzB, c_loc(csrValB), c_loc(csrRowPtrB), &
         c_loc(csrColIndB), descrC, c_loc(csrValC), c_loc(csrRowPtrC), c_loc(csrColIndC))
@@ -31314,6 +31203,15 @@ contains
       integer(c_int), target :: csrSortedColIndC(..)
       type(c_ptr), value :: pBufferSizeInBytes
       integer(c_int) :: Scsrgeam2_bufferSizeExt
+      if (.not. is_contiguous(csrSortedValA)) error stop "csrSortedValA: array must be contiguous"
+      if (.not. is_contiguous(csrSortedRowPtrA)) error stop "csrSortedRowPtrA: array must be contiguous"
+      if (.not. is_contiguous(csrSortedColIndA)) error stop "csrSortedColIndA: array must be contiguous"
+      if (.not. is_contiguous(csrSortedValB)) error stop "csrSortedValB: array must be contiguous"
+      if (.not. is_contiguous(csrSortedRowPtrB)) error stop "csrSortedRowPtrB: array must be contiguous"
+      if (.not. is_contiguous(csrSortedColIndB)) error stop "csrSortedColIndB: array must be contiguous"
+      if (.not. is_contiguous(csrSortedValC)) error stop "csrSortedValC: array must be contiguous"
+      if (.not. is_contiguous(csrSortedRowPtrC)) error stop "csrSortedRowPtrC: array must be contiguous"
+      if (.not. is_contiguous(csrSortedColIndC)) error stop "csrSortedColIndC: array must be contiguous"
       Scsrgeam2_bufferSizeExt = hipsparseScsrgeam2_bufferSizeExt_raw(handle, m, n, alpha, descrA, &
         nnzA, c_loc(csrSortedValA), c_loc(csrSortedRowPtrA), c_loc(csrSortedColIndA), beta, &
         descrB, nnzB, c_loc(csrSortedValB), c_loc(csrSortedRowPtrB), c_loc(csrSortedColIndB), &
@@ -31382,6 +31280,15 @@ contains
       integer(c_int), target :: csrSortedColIndC(..)
       type(c_ptr), value :: pBufferSizeInBytes
       integer(c_int) :: Dcsrgeam2_bufferSizeExt
+      if (.not. is_contiguous(csrSortedValA)) error stop "csrSortedValA: array must be contiguous"
+      if (.not. is_contiguous(csrSortedRowPtrA)) error stop "csrSortedRowPtrA: array must be contiguous"
+      if (.not. is_contiguous(csrSortedColIndA)) error stop "csrSortedColIndA: array must be contiguous"
+      if (.not. is_contiguous(csrSortedValB)) error stop "csrSortedValB: array must be contiguous"
+      if (.not. is_contiguous(csrSortedRowPtrB)) error stop "csrSortedRowPtrB: array must be contiguous"
+      if (.not. is_contiguous(csrSortedColIndB)) error stop "csrSortedColIndB: array must be contiguous"
+      if (.not. is_contiguous(csrSortedValC)) error stop "csrSortedValC: array must be contiguous"
+      if (.not. is_contiguous(csrSortedRowPtrC)) error stop "csrSortedRowPtrC: array must be contiguous"
+      if (.not. is_contiguous(csrSortedColIndC)) error stop "csrSortedColIndC: array must be contiguous"
       Dcsrgeam2_bufferSizeExt = hipsparseDcsrgeam2_bufferSizeExt_raw(handle, m, n, alpha, descrA, &
         nnzA, c_loc(csrSortedValA), c_loc(csrSortedRowPtrA), c_loc(csrSortedColIndA), beta, &
         descrB, nnzB, c_loc(csrSortedValB), c_loc(csrSortedRowPtrB), c_loc(csrSortedColIndB), &
@@ -31450,6 +31357,15 @@ contains
       integer(c_int), target :: csrSortedColIndC(..)
       type(c_ptr), value :: pBufferSizeInBytes
       integer(c_int) :: Ccsrgeam2_bufferSizeExt
+      if (.not. is_contiguous(csrSortedValA)) error stop "csrSortedValA: array must be contiguous"
+      if (.not. is_contiguous(csrSortedRowPtrA)) error stop "csrSortedRowPtrA: array must be contiguous"
+      if (.not. is_contiguous(csrSortedColIndA)) error stop "csrSortedColIndA: array must be contiguous"
+      if (.not. is_contiguous(csrSortedValB)) error stop "csrSortedValB: array must be contiguous"
+      if (.not. is_contiguous(csrSortedRowPtrB)) error stop "csrSortedRowPtrB: array must be contiguous"
+      if (.not. is_contiguous(csrSortedColIndB)) error stop "csrSortedColIndB: array must be contiguous"
+      if (.not. is_contiguous(csrSortedValC)) error stop "csrSortedValC: array must be contiguous"
+      if (.not. is_contiguous(csrSortedRowPtrC)) error stop "csrSortedRowPtrC: array must be contiguous"
+      if (.not. is_contiguous(csrSortedColIndC)) error stop "csrSortedColIndC: array must be contiguous"
       Ccsrgeam2_bufferSizeExt = hipsparseCcsrgeam2_bufferSizeExt_raw(handle, m, n, alpha, descrA, &
         nnzA, c_loc(csrSortedValA), c_loc(csrSortedRowPtrA), c_loc(csrSortedColIndA), beta, &
         descrB, nnzB, c_loc(csrSortedValB), c_loc(csrSortedRowPtrB), c_loc(csrSortedColIndB), &
@@ -31518,6 +31434,15 @@ contains
       integer(c_int), target :: csrSortedColIndC(..)
       type(c_ptr), value :: pBufferSizeInBytes
       integer(c_int) :: Zcsrgeam2_bufferSizeExt
+      if (.not. is_contiguous(csrSortedValA)) error stop "csrSortedValA: array must be contiguous"
+      if (.not. is_contiguous(csrSortedRowPtrA)) error stop "csrSortedRowPtrA: array must be contiguous"
+      if (.not. is_contiguous(csrSortedColIndA)) error stop "csrSortedColIndA: array must be contiguous"
+      if (.not. is_contiguous(csrSortedValB)) error stop "csrSortedValB: array must be contiguous"
+      if (.not. is_contiguous(csrSortedRowPtrB)) error stop "csrSortedRowPtrB: array must be contiguous"
+      if (.not. is_contiguous(csrSortedColIndB)) error stop "csrSortedColIndB: array must be contiguous"
+      if (.not. is_contiguous(csrSortedValC)) error stop "csrSortedValC: array must be contiguous"
+      if (.not. is_contiguous(csrSortedRowPtrC)) error stop "csrSortedRowPtrC: array must be contiguous"
+      if (.not. is_contiguous(csrSortedColIndC)) error stop "csrSortedColIndC: array must be contiguous"
       Zcsrgeam2_bufferSizeExt = hipsparseZcsrgeam2_bufferSizeExt_raw(handle, m, n, alpha, descrA, &
         nnzA, c_loc(csrSortedValA), c_loc(csrSortedRowPtrA), c_loc(csrSortedColIndA), beta, &
         descrB, nnzB, c_loc(csrSortedValB), c_loc(csrSortedRowPtrB), c_loc(csrSortedColIndB), &
@@ -31580,6 +31505,11 @@ contains
       integer(c_int) :: nnzTotalDevHostPtr
       type(c_ptr), value :: workspace
       integer(c_int) :: Xcsrgeam2Nnz
+      if (.not. is_contiguous(csrSortedRowPtrA)) error stop "csrSortedRowPtrA: array must be contiguous"
+      if (.not. is_contiguous(csrSortedColIndA)) error stop "csrSortedColIndA: array must be contiguous"
+      if (.not. is_contiguous(csrSortedRowPtrB)) error stop "csrSortedRowPtrB: array must be contiguous"
+      if (.not. is_contiguous(csrSortedColIndB)) error stop "csrSortedColIndB: array must be contiguous"
+      if (.not. is_contiguous(csrSortedRowPtrC)) error stop "csrSortedRowPtrC: array must be contiguous"
       Xcsrgeam2Nnz = hipsparseXcsrgeam2Nnz_raw(handle, m, n, descrA, nnzA, c_loc( &
         csrSortedRowPtrA), c_loc(csrSortedColIndA), descrB, nnzB, c_loc(csrSortedRowPtrB), c_loc( &
         csrSortedColIndB), descrC, c_loc(csrSortedRowPtrC), nnzTotalDevHostPtr, workspace)
@@ -31639,6 +31569,15 @@ contains
       integer(c_int), target :: csrSortedColIndC(..)
       type(c_ptr), value :: pBuffer
       integer(c_int) :: Scsrgeam2
+      if (.not. is_contiguous(csrSortedValA)) error stop "csrSortedValA: array must be contiguous"
+      if (.not. is_contiguous(csrSortedRowPtrA)) error stop "csrSortedRowPtrA: array must be contiguous"
+      if (.not. is_contiguous(csrSortedColIndA)) error stop "csrSortedColIndA: array must be contiguous"
+      if (.not. is_contiguous(csrSortedValB)) error stop "csrSortedValB: array must be contiguous"
+      if (.not. is_contiguous(csrSortedRowPtrB)) error stop "csrSortedRowPtrB: array must be contiguous"
+      if (.not. is_contiguous(csrSortedColIndB)) error stop "csrSortedColIndB: array must be contiguous"
+      if (.not. is_contiguous(csrSortedValC)) error stop "csrSortedValC: array must be contiguous"
+      if (.not. is_contiguous(csrSortedRowPtrC)) error stop "csrSortedRowPtrC: array must be contiguous"
+      if (.not. is_contiguous(csrSortedColIndC)) error stop "csrSortedColIndC: array must be contiguous"
       Scsrgeam2 = hipsparseScsrgeam2_raw(handle, m, n, alpha, descrA, nnzA, c_loc(csrSortedValA), &
         c_loc(csrSortedRowPtrA), c_loc(csrSortedColIndA), beta, descrB, nnzB, c_loc( &
         csrSortedValB), c_loc(csrSortedRowPtrB), c_loc(csrSortedColIndB), descrC, c_loc( &
@@ -31706,6 +31645,15 @@ contains
       integer(c_int), target :: csrSortedColIndC(..)
       type(c_ptr), value :: pBuffer
       integer(c_int) :: Dcsrgeam2
+      if (.not. is_contiguous(csrSortedValA)) error stop "csrSortedValA: array must be contiguous"
+      if (.not. is_contiguous(csrSortedRowPtrA)) error stop "csrSortedRowPtrA: array must be contiguous"
+      if (.not. is_contiguous(csrSortedColIndA)) error stop "csrSortedColIndA: array must be contiguous"
+      if (.not. is_contiguous(csrSortedValB)) error stop "csrSortedValB: array must be contiguous"
+      if (.not. is_contiguous(csrSortedRowPtrB)) error stop "csrSortedRowPtrB: array must be contiguous"
+      if (.not. is_contiguous(csrSortedColIndB)) error stop "csrSortedColIndB: array must be contiguous"
+      if (.not. is_contiguous(csrSortedValC)) error stop "csrSortedValC: array must be contiguous"
+      if (.not. is_contiguous(csrSortedRowPtrC)) error stop "csrSortedRowPtrC: array must be contiguous"
+      if (.not. is_contiguous(csrSortedColIndC)) error stop "csrSortedColIndC: array must be contiguous"
       Dcsrgeam2 = hipsparseDcsrgeam2_raw(handle, m, n, alpha, descrA, nnzA, c_loc(csrSortedValA), &
         c_loc(csrSortedRowPtrA), c_loc(csrSortedColIndA), beta, descrB, nnzB, c_loc( &
         csrSortedValB), c_loc(csrSortedRowPtrB), c_loc(csrSortedColIndB), descrC, c_loc( &
@@ -31773,6 +31721,15 @@ contains
       integer(c_int), target :: csrSortedColIndC(..)
       type(c_ptr), value :: pBuffer
       integer(c_int) :: Ccsrgeam2
+      if (.not. is_contiguous(csrSortedValA)) error stop "csrSortedValA: array must be contiguous"
+      if (.not. is_contiguous(csrSortedRowPtrA)) error stop "csrSortedRowPtrA: array must be contiguous"
+      if (.not. is_contiguous(csrSortedColIndA)) error stop "csrSortedColIndA: array must be contiguous"
+      if (.not. is_contiguous(csrSortedValB)) error stop "csrSortedValB: array must be contiguous"
+      if (.not. is_contiguous(csrSortedRowPtrB)) error stop "csrSortedRowPtrB: array must be contiguous"
+      if (.not. is_contiguous(csrSortedColIndB)) error stop "csrSortedColIndB: array must be contiguous"
+      if (.not. is_contiguous(csrSortedValC)) error stop "csrSortedValC: array must be contiguous"
+      if (.not. is_contiguous(csrSortedRowPtrC)) error stop "csrSortedRowPtrC: array must be contiguous"
+      if (.not. is_contiguous(csrSortedColIndC)) error stop "csrSortedColIndC: array must be contiguous"
       Ccsrgeam2 = hipsparseCcsrgeam2_raw(handle, m, n, alpha, descrA, nnzA, c_loc(csrSortedValA), &
         c_loc(csrSortedRowPtrA), c_loc(csrSortedColIndA), beta, descrB, nnzB, c_loc( &
         csrSortedValB), c_loc(csrSortedRowPtrB), c_loc(csrSortedColIndB), descrC, c_loc( &
@@ -31840,6 +31797,15 @@ contains
       integer(c_int), target :: csrSortedColIndC(..)
       type(c_ptr), value :: pBuffer
       integer(c_int) :: Zcsrgeam2
+      if (.not. is_contiguous(csrSortedValA)) error stop "csrSortedValA: array must be contiguous"
+      if (.not. is_contiguous(csrSortedRowPtrA)) error stop "csrSortedRowPtrA: array must be contiguous"
+      if (.not. is_contiguous(csrSortedColIndA)) error stop "csrSortedColIndA: array must be contiguous"
+      if (.not. is_contiguous(csrSortedValB)) error stop "csrSortedValB: array must be contiguous"
+      if (.not. is_contiguous(csrSortedRowPtrB)) error stop "csrSortedRowPtrB: array must be contiguous"
+      if (.not. is_contiguous(csrSortedColIndB)) error stop "csrSortedColIndB: array must be contiguous"
+      if (.not. is_contiguous(csrSortedValC)) error stop "csrSortedValC: array must be contiguous"
+      if (.not. is_contiguous(csrSortedRowPtrC)) error stop "csrSortedRowPtrC: array must be contiguous"
+      if (.not. is_contiguous(csrSortedColIndC)) error stop "csrSortedColIndC: array must be contiguous"
       Zcsrgeam2 = hipsparseZcsrgeam2_raw(handle, m, n, alpha, descrA, nnzA, c_loc(csrSortedValA), &
         c_loc(csrSortedRowPtrA), c_loc(csrSortedColIndA), beta, descrB, nnzB, c_loc( &
         csrSortedValB), c_loc(csrSortedRowPtrB), c_loc(csrSortedColIndB), descrC, c_loc( &
@@ -31903,6 +31869,11 @@ contains
       integer(c_int), target :: csrRowPtrC(..)
       integer(c_int) :: nnzTotalDevHostPtr
       integer(c_int) :: XcsrgemmNnz
+      if (.not. is_contiguous(csrRowPtrA)) error stop "csrRowPtrA: array must be contiguous"
+      if (.not. is_contiguous(csrColIndA)) error stop "csrColIndA: array must be contiguous"
+      if (.not. is_contiguous(csrRowPtrB)) error stop "csrRowPtrB: array must be contiguous"
+      if (.not. is_contiguous(csrColIndB)) error stop "csrColIndB: array must be contiguous"
+      if (.not. is_contiguous(csrRowPtrC)) error stop "csrRowPtrC: array must be contiguous"
       XcsrgemmNnz = hipsparseXcsrgemmNnz_raw(handle, transA, transB, m, n, k, descrA, nnzA, c_loc( &
         csrRowPtrA), c_loc(csrColIndA), descrB, nnzB, c_loc(csrRowPtrB), c_loc(csrColIndB), &
         descrC, c_loc(csrRowPtrC), nnzTotalDevHostPtr)
@@ -31963,6 +31934,15 @@ contains
       integer(c_int), target :: csrRowPtrC(..)
       integer(c_int), target :: csrColIndC(..)
       integer(c_int) :: Scsrgemm
+      if (.not. is_contiguous(csrValA)) error stop "csrValA: array must be contiguous"
+      if (.not. is_contiguous(csrRowPtrA)) error stop "csrRowPtrA: array must be contiguous"
+      if (.not. is_contiguous(csrColIndA)) error stop "csrColIndA: array must be contiguous"
+      if (.not. is_contiguous(csrValB)) error stop "csrValB: array must be contiguous"
+      if (.not. is_contiguous(csrRowPtrB)) error stop "csrRowPtrB: array must be contiguous"
+      if (.not. is_contiguous(csrColIndB)) error stop "csrColIndB: array must be contiguous"
+      if (.not. is_contiguous(csrValC)) error stop "csrValC: array must be contiguous"
+      if (.not. is_contiguous(csrRowPtrC)) error stop "csrRowPtrC: array must be contiguous"
+      if (.not. is_contiguous(csrColIndC)) error stop "csrColIndC: array must be contiguous"
       Scsrgemm = hipsparseScsrgemm_raw(handle, transA, transB, m, n, k, descrA, nnzA, c_loc( &
         csrValA), c_loc(csrRowPtrA), c_loc(csrColIndA), descrB, nnzB, c_loc(csrValB), c_loc( &
         csrRowPtrB), c_loc(csrColIndB), descrC, c_loc(csrValC), c_loc(csrRowPtrC), c_loc( &
@@ -32027,6 +32007,15 @@ contains
       integer(c_int), target :: csrRowPtrC(..)
       integer(c_int), target :: csrColIndC(..)
       integer(c_int) :: Dcsrgemm
+      if (.not. is_contiguous(csrValA)) error stop "csrValA: array must be contiguous"
+      if (.not. is_contiguous(csrRowPtrA)) error stop "csrRowPtrA: array must be contiguous"
+      if (.not. is_contiguous(csrColIndA)) error stop "csrColIndA: array must be contiguous"
+      if (.not. is_contiguous(csrValB)) error stop "csrValB: array must be contiguous"
+      if (.not. is_contiguous(csrRowPtrB)) error stop "csrRowPtrB: array must be contiguous"
+      if (.not. is_contiguous(csrColIndB)) error stop "csrColIndB: array must be contiguous"
+      if (.not. is_contiguous(csrValC)) error stop "csrValC: array must be contiguous"
+      if (.not. is_contiguous(csrRowPtrC)) error stop "csrRowPtrC: array must be contiguous"
+      if (.not. is_contiguous(csrColIndC)) error stop "csrColIndC: array must be contiguous"
       Dcsrgemm = hipsparseDcsrgemm_raw(handle, transA, transB, m, n, k, descrA, nnzA, c_loc( &
         csrValA), c_loc(csrRowPtrA), c_loc(csrColIndA), descrB, nnzB, c_loc(csrValB), c_loc( &
         csrRowPtrB), c_loc(csrColIndB), descrC, c_loc(csrValC), c_loc(csrRowPtrC), c_loc( &
@@ -32091,6 +32080,15 @@ contains
       integer(c_int), target :: csrRowPtrC(..)
       integer(c_int), target :: csrColIndC(..)
       integer(c_int) :: Ccsrgemm
+      if (.not. is_contiguous(csrValA)) error stop "csrValA: array must be contiguous"
+      if (.not. is_contiguous(csrRowPtrA)) error stop "csrRowPtrA: array must be contiguous"
+      if (.not. is_contiguous(csrColIndA)) error stop "csrColIndA: array must be contiguous"
+      if (.not. is_contiguous(csrValB)) error stop "csrValB: array must be contiguous"
+      if (.not. is_contiguous(csrRowPtrB)) error stop "csrRowPtrB: array must be contiguous"
+      if (.not. is_contiguous(csrColIndB)) error stop "csrColIndB: array must be contiguous"
+      if (.not. is_contiguous(csrValC)) error stop "csrValC: array must be contiguous"
+      if (.not. is_contiguous(csrRowPtrC)) error stop "csrRowPtrC: array must be contiguous"
+      if (.not. is_contiguous(csrColIndC)) error stop "csrColIndC: array must be contiguous"
       Ccsrgemm = hipsparseCcsrgemm_raw(handle, transA, transB, m, n, k, descrA, nnzA, c_loc( &
         csrValA), c_loc(csrRowPtrA), c_loc(csrColIndA), descrB, nnzB, c_loc(csrValB), c_loc( &
         csrRowPtrB), c_loc(csrColIndB), descrC, c_loc(csrValC), c_loc(csrRowPtrC), c_loc( &
@@ -32155,6 +32153,15 @@ contains
       integer(c_int), target :: csrRowPtrC(..)
       integer(c_int), target :: csrColIndC(..)
       integer(c_int) :: Zcsrgemm
+      if (.not. is_contiguous(csrValA)) error stop "csrValA: array must be contiguous"
+      if (.not. is_contiguous(csrRowPtrA)) error stop "csrRowPtrA: array must be contiguous"
+      if (.not. is_contiguous(csrColIndA)) error stop "csrColIndA: array must be contiguous"
+      if (.not. is_contiguous(csrValB)) error stop "csrValB: array must be contiguous"
+      if (.not. is_contiguous(csrRowPtrB)) error stop "csrRowPtrB: array must be contiguous"
+      if (.not. is_contiguous(csrColIndB)) error stop "csrColIndB: array must be contiguous"
+      if (.not. is_contiguous(csrValC)) error stop "csrValC: array must be contiguous"
+      if (.not. is_contiguous(csrRowPtrC)) error stop "csrRowPtrC: array must be contiguous"
+      if (.not. is_contiguous(csrColIndC)) error stop "csrColIndC: array must be contiguous"
       Zcsrgemm = hipsparseZcsrgemm_raw(handle, transA, transB, m, n, k, descrA, nnzA, c_loc( &
         csrValA), c_loc(csrRowPtrA), c_loc(csrColIndA), descrB, nnzB, c_loc(csrValB), c_loc( &
         csrRowPtrB), c_loc(csrColIndB), descrC, c_loc(csrValC), c_loc(csrRowPtrC), c_loc( &
@@ -32219,6 +32226,12 @@ contains
       type(c_ptr), value :: info
       type(c_ptr), value :: pBufferSizeInBytes
       integer(c_int) :: Scsrgemm2_bufferSizeExt
+      if (.not. is_contiguous(csrRowPtrA)) error stop "csrRowPtrA: array must be contiguous"
+      if (.not. is_contiguous(csrColIndA)) error stop "csrColIndA: array must be contiguous"
+      if (.not. is_contiguous(csrRowPtrB)) error stop "csrRowPtrB: array must be contiguous"
+      if (.not. is_contiguous(csrColIndB)) error stop "csrColIndB: array must be contiguous"
+      if (.not. is_contiguous(csrRowPtrD)) error stop "csrRowPtrD: array must be contiguous"
+      if (.not. is_contiguous(csrColIndD)) error stop "csrColIndD: array must be contiguous"
       Scsrgemm2_bufferSizeExt = hipsparseScsrgemm2_bufferSizeExt_raw(handle, m, n, k, alpha, &
         descrA, nnzA, c_loc(csrRowPtrA), c_loc(csrColIndA), descrB, nnzB, c_loc(csrRowPtrB), &
         c_loc(csrColIndB), beta, descrD, nnzD, c_loc(csrRowPtrD), c_loc(csrColIndD), info, &
@@ -32283,6 +32296,12 @@ contains
       type(c_ptr), value :: info
       type(c_ptr), value :: pBufferSizeInBytes
       integer(c_int) :: Dcsrgemm2_bufferSizeExt
+      if (.not. is_contiguous(csrRowPtrA)) error stop "csrRowPtrA: array must be contiguous"
+      if (.not. is_contiguous(csrColIndA)) error stop "csrColIndA: array must be contiguous"
+      if (.not. is_contiguous(csrRowPtrB)) error stop "csrRowPtrB: array must be contiguous"
+      if (.not. is_contiguous(csrColIndB)) error stop "csrColIndB: array must be contiguous"
+      if (.not. is_contiguous(csrRowPtrD)) error stop "csrRowPtrD: array must be contiguous"
+      if (.not. is_contiguous(csrColIndD)) error stop "csrColIndD: array must be contiguous"
       Dcsrgemm2_bufferSizeExt = hipsparseDcsrgemm2_bufferSizeExt_raw(handle, m, n, k, alpha, &
         descrA, nnzA, c_loc(csrRowPtrA), c_loc(csrColIndA), descrB, nnzB, c_loc(csrRowPtrB), &
         c_loc(csrColIndB), beta, descrD, nnzD, c_loc(csrRowPtrD), c_loc(csrColIndD), info, &
@@ -32347,6 +32366,12 @@ contains
       type(c_ptr), value :: info
       type(c_ptr), value :: pBufferSizeInBytes
       integer(c_int) :: Ccsrgemm2_bufferSizeExt
+      if (.not. is_contiguous(csrRowPtrA)) error stop "csrRowPtrA: array must be contiguous"
+      if (.not. is_contiguous(csrColIndA)) error stop "csrColIndA: array must be contiguous"
+      if (.not. is_contiguous(csrRowPtrB)) error stop "csrRowPtrB: array must be contiguous"
+      if (.not. is_contiguous(csrColIndB)) error stop "csrColIndB: array must be contiguous"
+      if (.not. is_contiguous(csrRowPtrD)) error stop "csrRowPtrD: array must be contiguous"
+      if (.not. is_contiguous(csrColIndD)) error stop "csrColIndD: array must be contiguous"
       Ccsrgemm2_bufferSizeExt = hipsparseCcsrgemm2_bufferSizeExt_raw(handle, m, n, k, alpha, &
         descrA, nnzA, c_loc(csrRowPtrA), c_loc(csrColIndA), descrB, nnzB, c_loc(csrRowPtrB), &
         c_loc(csrColIndB), beta, descrD, nnzD, c_loc(csrRowPtrD), c_loc(csrColIndD), info, &
@@ -32411,6 +32436,12 @@ contains
       type(c_ptr), value :: info
       type(c_ptr), value :: pBufferSizeInBytes
       integer(c_int) :: Zcsrgemm2_bufferSizeExt
+      if (.not. is_contiguous(csrRowPtrA)) error stop "csrRowPtrA: array must be contiguous"
+      if (.not. is_contiguous(csrColIndA)) error stop "csrColIndA: array must be contiguous"
+      if (.not. is_contiguous(csrRowPtrB)) error stop "csrRowPtrB: array must be contiguous"
+      if (.not. is_contiguous(csrColIndB)) error stop "csrColIndB: array must be contiguous"
+      if (.not. is_contiguous(csrRowPtrD)) error stop "csrRowPtrD: array must be contiguous"
+      if (.not. is_contiguous(csrColIndD)) error stop "csrColIndD: array must be contiguous"
       Zcsrgemm2_bufferSizeExt = hipsparseZcsrgemm2_bufferSizeExt_raw(handle, m, n, k, alpha, &
         descrA, nnzA, c_loc(csrRowPtrA), c_loc(csrColIndA), descrB, nnzB, c_loc(csrRowPtrB), &
         c_loc(csrColIndB), beta, descrD, nnzD, c_loc(csrRowPtrD), c_loc(csrColIndD), info, &
@@ -32476,6 +32507,13 @@ contains
       type(c_ptr), value :: info
       type(c_ptr), value :: pBuffer
       integer(c_int) :: Xcsrgemm2Nnz
+      if (.not. is_contiguous(csrRowPtrA)) error stop "csrRowPtrA: array must be contiguous"
+      if (.not. is_contiguous(csrColIndA)) error stop "csrColIndA: array must be contiguous"
+      if (.not. is_contiguous(csrRowPtrB)) error stop "csrRowPtrB: array must be contiguous"
+      if (.not. is_contiguous(csrColIndB)) error stop "csrColIndB: array must be contiguous"
+      if (.not. is_contiguous(csrRowPtrD)) error stop "csrRowPtrD: array must be contiguous"
+      if (.not. is_contiguous(csrColIndD)) error stop "csrColIndD: array must be contiguous"
+      if (.not. is_contiguous(csrRowPtrC)) error stop "csrRowPtrC: array must be contiguous"
       Xcsrgemm2Nnz = hipsparseXcsrgemm2Nnz_raw(handle, m, n, k, descrA, nnzA, c_loc(csrRowPtrA), &
         c_loc(csrColIndA), descrB, nnzB, c_loc(csrRowPtrB), c_loc(csrColIndB), descrD, nnzD, &
         c_loc(csrRowPtrD), c_loc(csrColIndD), descrC, c_loc(csrRowPtrC), nnzTotalDevHostPtr, info, &
@@ -32549,6 +32587,18 @@ contains
       type(c_ptr), value :: info
       type(c_ptr), value :: pBuffer
       integer(c_int) :: Scsrgemm2
+      if (.not. is_contiguous(csrValA)) error stop "csrValA: array must be contiguous"
+      if (.not. is_contiguous(csrRowPtrA)) error stop "csrRowPtrA: array must be contiguous"
+      if (.not. is_contiguous(csrColIndA)) error stop "csrColIndA: array must be contiguous"
+      if (.not. is_contiguous(csrValB)) error stop "csrValB: array must be contiguous"
+      if (.not. is_contiguous(csrRowPtrB)) error stop "csrRowPtrB: array must be contiguous"
+      if (.not. is_contiguous(csrColIndB)) error stop "csrColIndB: array must be contiguous"
+      if (.not. is_contiguous(csrValD)) error stop "csrValD: array must be contiguous"
+      if (.not. is_contiguous(csrRowPtrD)) error stop "csrRowPtrD: array must be contiguous"
+      if (.not. is_contiguous(csrColIndD)) error stop "csrColIndD: array must be contiguous"
+      if (.not. is_contiguous(csrValC)) error stop "csrValC: array must be contiguous"
+      if (.not. is_contiguous(csrRowPtrC)) error stop "csrRowPtrC: array must be contiguous"
+      if (.not. is_contiguous(csrColIndC)) error stop "csrColIndC: array must be contiguous"
       Scsrgemm2 = hipsparseScsrgemm2_raw(handle, m, n, k, alpha, descrA, nnzA, c_loc(csrValA), &
         c_loc(csrRowPtrA), c_loc(csrColIndA), descrB, nnzB, c_loc(csrValB), c_loc(csrRowPtrB), &
         c_loc(csrColIndB), beta, descrD, nnzD, c_loc(csrValD), c_loc(csrRowPtrD), c_loc( &
@@ -32630,6 +32680,18 @@ contains
       type(c_ptr), value :: info
       type(c_ptr), value :: pBuffer
       integer(c_int) :: Dcsrgemm2
+      if (.not. is_contiguous(csrValA)) error stop "csrValA: array must be contiguous"
+      if (.not. is_contiguous(csrRowPtrA)) error stop "csrRowPtrA: array must be contiguous"
+      if (.not. is_contiguous(csrColIndA)) error stop "csrColIndA: array must be contiguous"
+      if (.not. is_contiguous(csrValB)) error stop "csrValB: array must be contiguous"
+      if (.not. is_contiguous(csrRowPtrB)) error stop "csrRowPtrB: array must be contiguous"
+      if (.not. is_contiguous(csrColIndB)) error stop "csrColIndB: array must be contiguous"
+      if (.not. is_contiguous(csrValD)) error stop "csrValD: array must be contiguous"
+      if (.not. is_contiguous(csrRowPtrD)) error stop "csrRowPtrD: array must be contiguous"
+      if (.not. is_contiguous(csrColIndD)) error stop "csrColIndD: array must be contiguous"
+      if (.not. is_contiguous(csrValC)) error stop "csrValC: array must be contiguous"
+      if (.not. is_contiguous(csrRowPtrC)) error stop "csrRowPtrC: array must be contiguous"
+      if (.not. is_contiguous(csrColIndC)) error stop "csrColIndC: array must be contiguous"
       Dcsrgemm2 = hipsparseDcsrgemm2_raw(handle, m, n, k, alpha, descrA, nnzA, c_loc(csrValA), &
         c_loc(csrRowPtrA), c_loc(csrColIndA), descrB, nnzB, c_loc(csrValB), c_loc(csrRowPtrB), &
         c_loc(csrColIndB), beta, descrD, nnzD, c_loc(csrValD), c_loc(csrRowPtrD), c_loc( &
@@ -32711,6 +32773,18 @@ contains
       type(c_ptr), value :: info
       type(c_ptr), value :: pBuffer
       integer(c_int) :: Ccsrgemm2
+      if (.not. is_contiguous(csrValA)) error stop "csrValA: array must be contiguous"
+      if (.not. is_contiguous(csrRowPtrA)) error stop "csrRowPtrA: array must be contiguous"
+      if (.not. is_contiguous(csrColIndA)) error stop "csrColIndA: array must be contiguous"
+      if (.not. is_contiguous(csrValB)) error stop "csrValB: array must be contiguous"
+      if (.not. is_contiguous(csrRowPtrB)) error stop "csrRowPtrB: array must be contiguous"
+      if (.not. is_contiguous(csrColIndB)) error stop "csrColIndB: array must be contiguous"
+      if (.not. is_contiguous(csrValD)) error stop "csrValD: array must be contiguous"
+      if (.not. is_contiguous(csrRowPtrD)) error stop "csrRowPtrD: array must be contiguous"
+      if (.not. is_contiguous(csrColIndD)) error stop "csrColIndD: array must be contiguous"
+      if (.not. is_contiguous(csrValC)) error stop "csrValC: array must be contiguous"
+      if (.not. is_contiguous(csrRowPtrC)) error stop "csrRowPtrC: array must be contiguous"
+      if (.not. is_contiguous(csrColIndC)) error stop "csrColIndC: array must be contiguous"
       Ccsrgemm2 = hipsparseCcsrgemm2_raw(handle, m, n, k, alpha, descrA, nnzA, c_loc(csrValA), &
         c_loc(csrRowPtrA), c_loc(csrColIndA), descrB, nnzB, c_loc(csrValB), c_loc(csrRowPtrB), &
         c_loc(csrColIndB), beta, descrD, nnzD, c_loc(csrValD), c_loc(csrRowPtrD), c_loc( &
@@ -32792,6 +32866,18 @@ contains
       type(c_ptr), value :: info
       type(c_ptr), value :: pBuffer
       integer(c_int) :: Zcsrgemm2
+      if (.not. is_contiguous(csrValA)) error stop "csrValA: array must be contiguous"
+      if (.not. is_contiguous(csrRowPtrA)) error stop "csrRowPtrA: array must be contiguous"
+      if (.not. is_contiguous(csrColIndA)) error stop "csrColIndA: array must be contiguous"
+      if (.not. is_contiguous(csrValB)) error stop "csrValB: array must be contiguous"
+      if (.not. is_contiguous(csrRowPtrB)) error stop "csrRowPtrB: array must be contiguous"
+      if (.not. is_contiguous(csrColIndB)) error stop "csrColIndB: array must be contiguous"
+      if (.not. is_contiguous(csrValD)) error stop "csrValD: array must be contiguous"
+      if (.not. is_contiguous(csrRowPtrD)) error stop "csrRowPtrD: array must be contiguous"
+      if (.not. is_contiguous(csrColIndD)) error stop "csrColIndD: array must be contiguous"
+      if (.not. is_contiguous(csrValC)) error stop "csrValC: array must be contiguous"
+      if (.not. is_contiguous(csrRowPtrC)) error stop "csrRowPtrC: array must be contiguous"
+      if (.not. is_contiguous(csrColIndC)) error stop "csrColIndC: array must be contiguous"
       Zcsrgemm2 = hipsparseZcsrgemm2_raw(handle, m, n, k, alpha, descrA, nnzA, c_loc(csrValA), &
         c_loc(csrRowPtrA), c_loc(csrColIndA), descrB, nnzB, c_loc(csrValB), c_loc(csrRowPtrB), &
         c_loc(csrColIndB), beta, descrD, nnzD, c_loc(csrValD), c_loc(csrRowPtrD), c_loc( &
@@ -32866,6 +32952,9 @@ contains
       type(c_ptr), value :: info
       integer(c_int) :: pBufferSizeInBytes
       integer(c_int) :: Sbsric02_bufferSize
+      if (.not. is_contiguous(bsrValA)) error stop "bsrValA: array must be contiguous"
+      if (.not. is_contiguous(bsrRowPtrA)) error stop "bsrRowPtrA: array must be contiguous"
+      if (.not. is_contiguous(bsrColIndA)) error stop "bsrColIndA: array must be contiguous"
       Sbsric02_bufferSize = hipsparseSbsric02_bufferSize_raw(handle, dirA, mb, nnzb, descrA, &
         c_loc(bsrValA), c_loc(bsrRowPtrA), c_loc(bsrColIndA), blockDim, info, pBufferSizeInBytes)
     end function hipsparseSbsric02_bufferSize_native
@@ -32907,6 +32996,9 @@ contains
       type(c_ptr), value :: info
       integer(c_int) :: pBufferSizeInBytes
       integer(c_int) :: Dbsric02_bufferSize
+      if (.not. is_contiguous(bsrValA)) error stop "bsrValA: array must be contiguous"
+      if (.not. is_contiguous(bsrRowPtrA)) error stop "bsrRowPtrA: array must be contiguous"
+      if (.not. is_contiguous(bsrColIndA)) error stop "bsrColIndA: array must be contiguous"
       Dbsric02_bufferSize = hipsparseDbsric02_bufferSize_raw(handle, dirA, mb, nnzb, descrA, &
         c_loc(bsrValA), c_loc(bsrRowPtrA), c_loc(bsrColIndA), blockDim, info, pBufferSizeInBytes)
     end function hipsparseDbsric02_bufferSize_native
@@ -32948,6 +33040,9 @@ contains
       type(c_ptr), value :: info
       integer(c_int) :: pBufferSizeInBytes
       integer(c_int) :: Cbsric02_bufferSize
+      if (.not. is_contiguous(bsrValA)) error stop "bsrValA: array must be contiguous"
+      if (.not. is_contiguous(bsrRowPtrA)) error stop "bsrRowPtrA: array must be contiguous"
+      if (.not. is_contiguous(bsrColIndA)) error stop "bsrColIndA: array must be contiguous"
       Cbsric02_bufferSize = hipsparseCbsric02_bufferSize_raw(handle, dirA, mb, nnzb, descrA, &
         c_loc(bsrValA), c_loc(bsrRowPtrA), c_loc(bsrColIndA), blockDim, info, pBufferSizeInBytes)
     end function hipsparseCbsric02_bufferSize_native
@@ -32989,6 +33084,9 @@ contains
       type(c_ptr), value :: info
       integer(c_int) :: pBufferSizeInBytes
       integer(c_int) :: Zbsric02_bufferSize
+      if (.not. is_contiguous(bsrValA)) error stop "bsrValA: array must be contiguous"
+      if (.not. is_contiguous(bsrRowPtrA)) error stop "bsrRowPtrA: array must be contiguous"
+      if (.not. is_contiguous(bsrColIndA)) error stop "bsrColIndA: array must be contiguous"
       Zbsric02_bufferSize = hipsparseZbsric02_bufferSize_raw(handle, dirA, mb, nnzb, descrA, &
         c_loc(bsrValA), c_loc(bsrRowPtrA), c_loc(bsrColIndA), blockDim, info, pBufferSizeInBytes)
     end function hipsparseZbsric02_bufferSize_native
@@ -33031,6 +33129,9 @@ contains
       integer(c_int), value :: policy
       type(c_ptr), value :: pBuffer
       integer(c_int) :: Sbsric02_analysis
+      if (.not. is_contiguous(bsrValA)) error stop "bsrValA: array must be contiguous"
+      if (.not. is_contiguous(bsrRowPtrA)) error stop "bsrRowPtrA: array must be contiguous"
+      if (.not. is_contiguous(bsrColIndA)) error stop "bsrColIndA: array must be contiguous"
       Sbsric02_analysis = hipsparseSbsric02_analysis_raw(handle, dirA, mb, nnzb, descrA, c_loc( &
         bsrValA), c_loc(bsrRowPtrA), c_loc(bsrColIndA), blockDim, info, policy, pBuffer)
     end function hipsparseSbsric02_analysis_native
@@ -33074,6 +33175,9 @@ contains
       integer(c_int), value :: policy
       type(c_ptr), value :: pBuffer
       integer(c_int) :: Dbsric02_analysis
+      if (.not. is_contiguous(bsrValA)) error stop "bsrValA: array must be contiguous"
+      if (.not. is_contiguous(bsrRowPtrA)) error stop "bsrRowPtrA: array must be contiguous"
+      if (.not. is_contiguous(bsrColIndA)) error stop "bsrColIndA: array must be contiguous"
       Dbsric02_analysis = hipsparseDbsric02_analysis_raw(handle, dirA, mb, nnzb, descrA, c_loc( &
         bsrValA), c_loc(bsrRowPtrA), c_loc(bsrColIndA), blockDim, info, policy, pBuffer)
     end function hipsparseDbsric02_analysis_native
@@ -33117,6 +33221,9 @@ contains
       integer(c_int), value :: policy
       type(c_ptr), value :: pBuffer
       integer(c_int) :: Cbsric02_analysis
+      if (.not. is_contiguous(bsrValA)) error stop "bsrValA: array must be contiguous"
+      if (.not. is_contiguous(bsrRowPtrA)) error stop "bsrRowPtrA: array must be contiguous"
+      if (.not. is_contiguous(bsrColIndA)) error stop "bsrColIndA: array must be contiguous"
       Cbsric02_analysis = hipsparseCbsric02_analysis_raw(handle, dirA, mb, nnzb, descrA, c_loc( &
         bsrValA), c_loc(bsrRowPtrA), c_loc(bsrColIndA), blockDim, info, policy, pBuffer)
     end function hipsparseCbsric02_analysis_native
@@ -33160,6 +33267,9 @@ contains
       integer(c_int), value :: policy
       type(c_ptr), value :: pBuffer
       integer(c_int) :: Zbsric02_analysis
+      if (.not. is_contiguous(bsrValA)) error stop "bsrValA: array must be contiguous"
+      if (.not. is_contiguous(bsrRowPtrA)) error stop "bsrRowPtrA: array must be contiguous"
+      if (.not. is_contiguous(bsrColIndA)) error stop "bsrColIndA: array must be contiguous"
       Zbsric02_analysis = hipsparseZbsric02_analysis_raw(handle, dirA, mb, nnzb, descrA, c_loc( &
         bsrValA), c_loc(bsrRowPtrA), c_loc(bsrColIndA), blockDim, info, policy, pBuffer)
     end function hipsparseZbsric02_analysis_native
@@ -33203,6 +33313,9 @@ contains
       integer(c_int), value :: policy
       type(c_ptr), value :: pBuffer
       integer(c_int) :: Sbsric02
+      if (.not. is_contiguous(bsrValA)) error stop "bsrValA: array must be contiguous"
+      if (.not. is_contiguous(bsrRowPtrA)) error stop "bsrRowPtrA: array must be contiguous"
+      if (.not. is_contiguous(bsrColIndA)) error stop "bsrColIndA: array must be contiguous"
       Sbsric02 = hipsparseSbsric02_raw(handle, dirA, mb, nnzb, descrA, c_loc(bsrValA), c_loc( &
         bsrRowPtrA), c_loc(bsrColIndA), blockDim, info, policy, pBuffer)
     end function hipsparseSbsric02_native
@@ -33246,6 +33359,9 @@ contains
       integer(c_int), value :: policy
       type(c_ptr), value :: pBuffer
       integer(c_int) :: Dbsric02
+      if (.not. is_contiguous(bsrValA)) error stop "bsrValA: array must be contiguous"
+      if (.not. is_contiguous(bsrRowPtrA)) error stop "bsrRowPtrA: array must be contiguous"
+      if (.not. is_contiguous(bsrColIndA)) error stop "bsrColIndA: array must be contiguous"
       Dbsric02 = hipsparseDbsric02_raw(handle, dirA, mb, nnzb, descrA, c_loc(bsrValA), c_loc( &
         bsrRowPtrA), c_loc(bsrColIndA), blockDim, info, policy, pBuffer)
     end function hipsparseDbsric02_native
@@ -33289,6 +33405,9 @@ contains
       integer(c_int), value :: policy
       type(c_ptr), value :: pBuffer
       integer(c_int) :: Cbsric02
+      if (.not. is_contiguous(bsrValA)) error stop "bsrValA: array must be contiguous"
+      if (.not. is_contiguous(bsrRowPtrA)) error stop "bsrRowPtrA: array must be contiguous"
+      if (.not. is_contiguous(bsrColIndA)) error stop "bsrColIndA: array must be contiguous"
       Cbsric02 = hipsparseCbsric02_raw(handle, dirA, mb, nnzb, descrA, c_loc(bsrValA), c_loc( &
         bsrRowPtrA), c_loc(bsrColIndA), blockDim, info, policy, pBuffer)
     end function hipsparseCbsric02_native
@@ -33332,6 +33451,9 @@ contains
       integer(c_int), value :: policy
       type(c_ptr), value :: pBuffer
       integer(c_int) :: Zbsric02
+      if (.not. is_contiguous(bsrValA)) error stop "bsrValA: array must be contiguous"
+      if (.not. is_contiguous(bsrRowPtrA)) error stop "bsrRowPtrA: array must be contiguous"
+      if (.not. is_contiguous(bsrColIndA)) error stop "bsrColIndA: array must be contiguous"
       Zbsric02 = hipsparseZbsric02_raw(handle, dirA, mb, nnzb, descrA, c_loc(bsrValA), c_loc( &
         bsrRowPtrA), c_loc(bsrColIndA), blockDim, info, policy, pBuffer)
     end function hipsparseZbsric02_native
@@ -33446,6 +33568,9 @@ contains
       type(c_ptr), value :: info
       integer(c_int) :: pBufferSizeInBytes
       integer(c_int) :: Sbsrilu02_bufferSize
+      if (.not. is_contiguous(bsrSortedValA)) error stop "bsrSortedValA: array must be contiguous"
+      if (.not. is_contiguous(bsrSortedRowPtrA)) error stop "bsrSortedRowPtrA: array must be contiguous"
+      if (.not. is_contiguous(bsrSortedColIndA)) error stop "bsrSortedColIndA: array must be contiguous"
       Sbsrilu02_bufferSize = hipsparseSbsrilu02_bufferSize_raw(handle, dirA, mb, nnzb, descrA, &
         c_loc(bsrSortedValA), c_loc(bsrSortedRowPtrA), c_loc(bsrSortedColIndA), blockDim, info, &
         pBufferSizeInBytes)
@@ -33491,6 +33616,9 @@ contains
       type(c_ptr), value :: info
       integer(c_int) :: pBufferSizeInBytes
       integer(c_int) :: Dbsrilu02_bufferSize
+      if (.not. is_contiguous(bsrSortedValA)) error stop "bsrSortedValA: array must be contiguous"
+      if (.not. is_contiguous(bsrSortedRowPtrA)) error stop "bsrSortedRowPtrA: array must be contiguous"
+      if (.not. is_contiguous(bsrSortedColIndA)) error stop "bsrSortedColIndA: array must be contiguous"
       Dbsrilu02_bufferSize = hipsparseDbsrilu02_bufferSize_raw(handle, dirA, mb, nnzb, descrA, &
         c_loc(bsrSortedValA), c_loc(bsrSortedRowPtrA), c_loc(bsrSortedColIndA), blockDim, info, &
         pBufferSizeInBytes)
@@ -33536,6 +33664,9 @@ contains
       type(c_ptr), value :: info
       integer(c_int) :: pBufferSizeInBytes
       integer(c_int) :: Cbsrilu02_bufferSize
+      if (.not. is_contiguous(bsrSortedValA)) error stop "bsrSortedValA: array must be contiguous"
+      if (.not. is_contiguous(bsrSortedRowPtrA)) error stop "bsrSortedRowPtrA: array must be contiguous"
+      if (.not. is_contiguous(bsrSortedColIndA)) error stop "bsrSortedColIndA: array must be contiguous"
       Cbsrilu02_bufferSize = hipsparseCbsrilu02_bufferSize_raw(handle, dirA, mb, nnzb, descrA, &
         c_loc(bsrSortedValA), c_loc(bsrSortedRowPtrA), c_loc(bsrSortedColIndA), blockDim, info, &
         pBufferSizeInBytes)
@@ -33581,6 +33712,9 @@ contains
       type(c_ptr), value :: info
       integer(c_int) :: pBufferSizeInBytes
       integer(c_int) :: Zbsrilu02_bufferSize
+      if (.not. is_contiguous(bsrSortedValA)) error stop "bsrSortedValA: array must be contiguous"
+      if (.not. is_contiguous(bsrSortedRowPtrA)) error stop "bsrSortedRowPtrA: array must be contiguous"
+      if (.not. is_contiguous(bsrSortedColIndA)) error stop "bsrSortedColIndA: array must be contiguous"
       Zbsrilu02_bufferSize = hipsparseZbsrilu02_bufferSize_raw(handle, dirA, mb, nnzb, descrA, &
         c_loc(bsrSortedValA), c_loc(bsrSortedRowPtrA), c_loc(bsrSortedColIndA), blockDim, info, &
         pBufferSizeInBytes)
@@ -33627,6 +33761,9 @@ contains
       integer(c_int), value :: policy
       type(c_ptr), value :: pBuffer
       integer(c_int) :: Sbsrilu02_analysis
+      if (.not. is_contiguous(bsrSortedValA)) error stop "bsrSortedValA: array must be contiguous"
+      if (.not. is_contiguous(bsrSortedRowPtrA)) error stop "bsrSortedRowPtrA: array must be contiguous"
+      if (.not. is_contiguous(bsrSortedColIndA)) error stop "bsrSortedColIndA: array must be contiguous"
       Sbsrilu02_analysis = hipsparseSbsrilu02_analysis_raw(handle, dirA, mb, nnzb, descrA, c_loc( &
         bsrSortedValA), c_loc(bsrSortedRowPtrA), c_loc(bsrSortedColIndA), blockDim, info, policy, &
         pBuffer)
@@ -33673,6 +33810,9 @@ contains
       integer(c_int), value :: policy
       type(c_ptr), value :: pBuffer
       integer(c_int) :: Dbsrilu02_analysis
+      if (.not. is_contiguous(bsrSortedValA)) error stop "bsrSortedValA: array must be contiguous"
+      if (.not. is_contiguous(bsrSortedRowPtrA)) error stop "bsrSortedRowPtrA: array must be contiguous"
+      if (.not. is_contiguous(bsrSortedColIndA)) error stop "bsrSortedColIndA: array must be contiguous"
       Dbsrilu02_analysis = hipsparseDbsrilu02_analysis_raw(handle, dirA, mb, nnzb, descrA, c_loc( &
         bsrSortedValA), c_loc(bsrSortedRowPtrA), c_loc(bsrSortedColIndA), blockDim, info, policy, &
         pBuffer)
@@ -33719,6 +33859,9 @@ contains
       integer(c_int), value :: policy
       type(c_ptr), value :: pBuffer
       integer(c_int) :: Cbsrilu02_analysis
+      if (.not. is_contiguous(bsrSortedValA)) error stop "bsrSortedValA: array must be contiguous"
+      if (.not. is_contiguous(bsrSortedRowPtrA)) error stop "bsrSortedRowPtrA: array must be contiguous"
+      if (.not. is_contiguous(bsrSortedColIndA)) error stop "bsrSortedColIndA: array must be contiguous"
       Cbsrilu02_analysis = hipsparseCbsrilu02_analysis_raw(handle, dirA, mb, nnzb, descrA, c_loc( &
         bsrSortedValA), c_loc(bsrSortedRowPtrA), c_loc(bsrSortedColIndA), blockDim, info, policy, &
         pBuffer)
@@ -33765,6 +33908,9 @@ contains
       integer(c_int), value :: policy
       type(c_ptr), value :: pBuffer
       integer(c_int) :: Zbsrilu02_analysis
+      if (.not. is_contiguous(bsrSortedValA)) error stop "bsrSortedValA: array must be contiguous"
+      if (.not. is_contiguous(bsrSortedRowPtrA)) error stop "bsrSortedRowPtrA: array must be contiguous"
+      if (.not. is_contiguous(bsrSortedColIndA)) error stop "bsrSortedColIndA: array must be contiguous"
       Zbsrilu02_analysis = hipsparseZbsrilu02_analysis_raw(handle, dirA, mb, nnzb, descrA, c_loc( &
         bsrSortedValA), c_loc(bsrSortedRowPtrA), c_loc(bsrSortedColIndA), blockDim, info, policy, &
         pBuffer)
@@ -33810,6 +33956,9 @@ contains
       integer(c_int), value :: policy
       type(c_ptr), value :: pBuffer
       integer(c_int) :: Sbsrilu02
+      if (.not. is_contiguous(bsrSortedValA_valM)) error stop "bsrSortedValA_valM: array must be contiguous"
+      if (.not. is_contiguous(bsrSortedRowPtrA)) error stop "bsrSortedRowPtrA: array must be contiguous"
+      if (.not. is_contiguous(bsrSortedColIndA)) error stop "bsrSortedColIndA: array must be contiguous"
       Sbsrilu02 = hipsparseSbsrilu02_raw(handle, dirA, mb, nnzb, descrA, c_loc( &
         bsrSortedValA_valM), c_loc(bsrSortedRowPtrA), c_loc(bsrSortedColIndA), blockDim, info, &
         policy, pBuffer)
@@ -33854,6 +34003,9 @@ contains
       integer(c_int), value :: policy
       type(c_ptr), value :: pBuffer
       integer(c_int) :: Dbsrilu02
+      if (.not. is_contiguous(bsrSortedValA_valM)) error stop "bsrSortedValA_valM: array must be contiguous"
+      if (.not. is_contiguous(bsrSortedRowPtrA)) error stop "bsrSortedRowPtrA: array must be contiguous"
+      if (.not. is_contiguous(bsrSortedColIndA)) error stop "bsrSortedColIndA: array must be contiguous"
       Dbsrilu02 = hipsparseDbsrilu02_raw(handle, dirA, mb, nnzb, descrA, c_loc( &
         bsrSortedValA_valM), c_loc(bsrSortedRowPtrA), c_loc(bsrSortedColIndA), blockDim, info, &
         policy, pBuffer)
@@ -33898,6 +34050,9 @@ contains
       integer(c_int), value :: policy
       type(c_ptr), value :: pBuffer
       integer(c_int) :: Cbsrilu02
+      if (.not. is_contiguous(bsrSortedValA_valM)) error stop "bsrSortedValA_valM: array must be contiguous"
+      if (.not. is_contiguous(bsrSortedRowPtrA)) error stop "bsrSortedRowPtrA: array must be contiguous"
+      if (.not. is_contiguous(bsrSortedColIndA)) error stop "bsrSortedColIndA: array must be contiguous"
       Cbsrilu02 = hipsparseCbsrilu02_raw(handle, dirA, mb, nnzb, descrA, c_loc( &
         bsrSortedValA_valM), c_loc(bsrSortedRowPtrA), c_loc(bsrSortedColIndA), blockDim, info, &
         policy, pBuffer)
@@ -33942,6 +34097,9 @@ contains
       integer(c_int), value :: policy
       type(c_ptr), value :: pBuffer
       integer(c_int) :: Zbsrilu02
+      if (.not. is_contiguous(bsrSortedValA_valM)) error stop "bsrSortedValA_valM: array must be contiguous"
+      if (.not. is_contiguous(bsrSortedRowPtrA)) error stop "bsrSortedRowPtrA: array must be contiguous"
+      if (.not. is_contiguous(bsrSortedColIndA)) error stop "bsrSortedColIndA: array must be contiguous"
       Zbsrilu02 = hipsparseZbsrilu02_raw(handle, dirA, mb, nnzb, descrA, c_loc( &
         bsrSortedValA_valM), c_loc(bsrSortedRowPtrA), c_loc(bsrSortedColIndA), blockDim, info, &
         policy, pBuffer)
@@ -33994,6 +34152,9 @@ contains
       type(c_ptr), value :: info
       integer(c_int) :: pBufferSizeInBytes
       integer(c_int) :: Scsric02_bufferSize
+      if (.not. is_contiguous(csrSortedValA)) error stop "csrSortedValA: array must be contiguous"
+      if (.not. is_contiguous(csrSortedRowPtrA)) error stop "csrSortedRowPtrA: array must be contiguous"
+      if (.not. is_contiguous(csrSortedColIndA)) error stop "csrSortedColIndA: array must be contiguous"
       Scsric02_bufferSize = hipsparseScsric02_bufferSize_raw(handle, m, nnz, descrA, c_loc( &
         csrSortedValA), c_loc(csrSortedRowPtrA), c_loc(csrSortedColIndA), info, pBufferSizeInBytes)
     end function hipsparseScsric02_bufferSize_native
@@ -34031,6 +34192,9 @@ contains
       type(c_ptr), value :: info
       integer(c_int) :: pBufferSizeInBytes
       integer(c_int) :: Dcsric02_bufferSize
+      if (.not. is_contiguous(csrSortedValA)) error stop "csrSortedValA: array must be contiguous"
+      if (.not. is_contiguous(csrSortedRowPtrA)) error stop "csrSortedRowPtrA: array must be contiguous"
+      if (.not. is_contiguous(csrSortedColIndA)) error stop "csrSortedColIndA: array must be contiguous"
       Dcsric02_bufferSize = hipsparseDcsric02_bufferSize_raw(handle, m, nnz, descrA, c_loc( &
         csrSortedValA), c_loc(csrSortedRowPtrA), c_loc(csrSortedColIndA), info, pBufferSizeInBytes)
     end function hipsparseDcsric02_bufferSize_native
@@ -34068,6 +34232,9 @@ contains
       type(c_ptr), value :: info
       integer(c_int) :: pBufferSizeInBytes
       integer(c_int) :: Ccsric02_bufferSize
+      if (.not. is_contiguous(csrSortedValA)) error stop "csrSortedValA: array must be contiguous"
+      if (.not. is_contiguous(csrSortedRowPtrA)) error stop "csrSortedRowPtrA: array must be contiguous"
+      if (.not. is_contiguous(csrSortedColIndA)) error stop "csrSortedColIndA: array must be contiguous"
       Ccsric02_bufferSize = hipsparseCcsric02_bufferSize_raw(handle, m, nnz, descrA, c_loc( &
         csrSortedValA), c_loc(csrSortedRowPtrA), c_loc(csrSortedColIndA), info, pBufferSizeInBytes)
     end function hipsparseCcsric02_bufferSize_native
@@ -34105,6 +34272,9 @@ contains
       type(c_ptr), value :: info
       integer(c_int) :: pBufferSizeInBytes
       integer(c_int) :: Zcsric02_bufferSize
+      if (.not. is_contiguous(csrSortedValA)) error stop "csrSortedValA: array must be contiguous"
+      if (.not. is_contiguous(csrSortedRowPtrA)) error stop "csrSortedRowPtrA: array must be contiguous"
+      if (.not. is_contiguous(csrSortedColIndA)) error stop "csrSortedColIndA: array must be contiguous"
       Zcsric02_bufferSize = hipsparseZcsric02_bufferSize_raw(handle, m, nnz, descrA, c_loc( &
         csrSortedValA), c_loc(csrSortedRowPtrA), c_loc(csrSortedColIndA), info, pBufferSizeInBytes)
     end function hipsparseZcsric02_bufferSize_native
@@ -34142,6 +34312,9 @@ contains
       type(c_ptr), value :: info
       type(c_ptr), value :: pBufferSizeInBytes
       integer(c_int) :: Scsric02_bufferSizeExt
+      if (.not. is_contiguous(csrSortedValA)) error stop "csrSortedValA: array must be contiguous"
+      if (.not. is_contiguous(csrSortedRowPtrA)) error stop "csrSortedRowPtrA: array must be contiguous"
+      if (.not. is_contiguous(csrSortedColIndA)) error stop "csrSortedColIndA: array must be contiguous"
       Scsric02_bufferSizeExt = hipsparseScsric02_bufferSizeExt_raw(handle, m, nnz, descrA, c_loc( &
         csrSortedValA), c_loc(csrSortedRowPtrA), c_loc(csrSortedColIndA), info, pBufferSizeInBytes)
     end function hipsparseScsric02_bufferSizeExt_native
@@ -34179,6 +34352,9 @@ contains
       type(c_ptr), value :: info
       type(c_ptr), value :: pBufferSizeInBytes
       integer(c_int) :: Dcsric02_bufferSizeExt
+      if (.not. is_contiguous(csrSortedValA)) error stop "csrSortedValA: array must be contiguous"
+      if (.not. is_contiguous(csrSortedRowPtrA)) error stop "csrSortedRowPtrA: array must be contiguous"
+      if (.not. is_contiguous(csrSortedColIndA)) error stop "csrSortedColIndA: array must be contiguous"
       Dcsric02_bufferSizeExt = hipsparseDcsric02_bufferSizeExt_raw(handle, m, nnz, descrA, c_loc( &
         csrSortedValA), c_loc(csrSortedRowPtrA), c_loc(csrSortedColIndA), info, pBufferSizeInBytes)
     end function hipsparseDcsric02_bufferSizeExt_native
@@ -34216,6 +34392,9 @@ contains
       type(c_ptr), value :: info
       type(c_ptr), value :: pBufferSizeInBytes
       integer(c_int) :: Ccsric02_bufferSizeExt
+      if (.not. is_contiguous(csrSortedValA)) error stop "csrSortedValA: array must be contiguous"
+      if (.not. is_contiguous(csrSortedRowPtrA)) error stop "csrSortedRowPtrA: array must be contiguous"
+      if (.not. is_contiguous(csrSortedColIndA)) error stop "csrSortedColIndA: array must be contiguous"
       Ccsric02_bufferSizeExt = hipsparseCcsric02_bufferSizeExt_raw(handle, m, nnz, descrA, c_loc( &
         csrSortedValA), c_loc(csrSortedRowPtrA), c_loc(csrSortedColIndA), info, pBufferSizeInBytes)
     end function hipsparseCcsric02_bufferSizeExt_native
@@ -34253,6 +34432,9 @@ contains
       type(c_ptr), value :: info
       type(c_ptr), value :: pBufferSizeInBytes
       integer(c_int) :: Zcsric02_bufferSizeExt
+      if (.not. is_contiguous(csrSortedValA)) error stop "csrSortedValA: array must be contiguous"
+      if (.not. is_contiguous(csrSortedRowPtrA)) error stop "csrSortedRowPtrA: array must be contiguous"
+      if (.not. is_contiguous(csrSortedColIndA)) error stop "csrSortedColIndA: array must be contiguous"
       Zcsric02_bufferSizeExt = hipsparseZcsric02_bufferSizeExt_raw(handle, m, nnz, descrA, c_loc( &
         csrSortedValA), c_loc(csrSortedRowPtrA), c_loc(csrSortedColIndA), info, pBufferSizeInBytes)
     end function hipsparseZcsric02_bufferSizeExt_native
@@ -34291,6 +34473,9 @@ contains
       integer(c_int), value :: policy
       type(c_ptr), value :: pBuffer
       integer(c_int) :: Scsric02_analysis
+      if (.not. is_contiguous(csrSortedValA)) error stop "csrSortedValA: array must be contiguous"
+      if (.not. is_contiguous(csrSortedRowPtrA)) error stop "csrSortedRowPtrA: array must be contiguous"
+      if (.not. is_contiguous(csrSortedColIndA)) error stop "csrSortedColIndA: array must be contiguous"
       Scsric02_analysis = hipsparseScsric02_analysis_raw(handle, m, nnz, descrA, c_loc( &
         csrSortedValA), c_loc(csrSortedRowPtrA), c_loc(csrSortedColIndA), info, policy, pBuffer)
     end function hipsparseScsric02_analysis_native
@@ -34330,6 +34515,9 @@ contains
       integer(c_int), value :: policy
       type(c_ptr), value :: pBuffer
       integer(c_int) :: Dcsric02_analysis
+      if (.not. is_contiguous(csrSortedValA)) error stop "csrSortedValA: array must be contiguous"
+      if (.not. is_contiguous(csrSortedRowPtrA)) error stop "csrSortedRowPtrA: array must be contiguous"
+      if (.not. is_contiguous(csrSortedColIndA)) error stop "csrSortedColIndA: array must be contiguous"
       Dcsric02_analysis = hipsparseDcsric02_analysis_raw(handle, m, nnz, descrA, c_loc( &
         csrSortedValA), c_loc(csrSortedRowPtrA), c_loc(csrSortedColIndA), info, policy, pBuffer)
     end function hipsparseDcsric02_analysis_native
@@ -34369,6 +34557,9 @@ contains
       integer(c_int), value :: policy
       type(c_ptr), value :: pBuffer
       integer(c_int) :: Ccsric02_analysis
+      if (.not. is_contiguous(csrSortedValA)) error stop "csrSortedValA: array must be contiguous"
+      if (.not. is_contiguous(csrSortedRowPtrA)) error stop "csrSortedRowPtrA: array must be contiguous"
+      if (.not. is_contiguous(csrSortedColIndA)) error stop "csrSortedColIndA: array must be contiguous"
       Ccsric02_analysis = hipsparseCcsric02_analysis_raw(handle, m, nnz, descrA, c_loc( &
         csrSortedValA), c_loc(csrSortedRowPtrA), c_loc(csrSortedColIndA), info, policy, pBuffer)
     end function hipsparseCcsric02_analysis_native
@@ -34408,6 +34599,9 @@ contains
       integer(c_int), value :: policy
       type(c_ptr), value :: pBuffer
       integer(c_int) :: Zcsric02_analysis
+      if (.not. is_contiguous(csrSortedValA)) error stop "csrSortedValA: array must be contiguous"
+      if (.not. is_contiguous(csrSortedRowPtrA)) error stop "csrSortedRowPtrA: array must be contiguous"
+      if (.not. is_contiguous(csrSortedColIndA)) error stop "csrSortedColIndA: array must be contiguous"
       Zcsric02_analysis = hipsparseZcsric02_analysis_raw(handle, m, nnz, descrA, c_loc( &
         csrSortedValA), c_loc(csrSortedRowPtrA), c_loc(csrSortedColIndA), info, policy, pBuffer)
     end function hipsparseZcsric02_analysis_native
@@ -34447,6 +34641,9 @@ contains
       integer(c_int), value :: policy
       type(c_ptr), value :: pBuffer
       integer(c_int) :: Scsric02
+      if (.not. is_contiguous(csrSortedValA_valM)) error stop "csrSortedValA_valM: array must be contiguous"
+      if (.not. is_contiguous(csrSortedRowPtrA)) error stop "csrSortedRowPtrA: array must be contiguous"
+      if (.not. is_contiguous(csrSortedColIndA)) error stop "csrSortedColIndA: array must be contiguous"
       Scsric02 = hipsparseScsric02_raw(handle, m, nnz, descrA, c_loc(csrSortedValA_valM), c_loc( &
         csrSortedRowPtrA), c_loc(csrSortedColIndA), info, policy, pBuffer)
     end function hipsparseScsric02_native
@@ -34486,6 +34683,9 @@ contains
       integer(c_int), value :: policy
       type(c_ptr), value :: pBuffer
       integer(c_int) :: Dcsric02
+      if (.not. is_contiguous(csrSortedValA_valM)) error stop "csrSortedValA_valM: array must be contiguous"
+      if (.not. is_contiguous(csrSortedRowPtrA)) error stop "csrSortedRowPtrA: array must be contiguous"
+      if (.not. is_contiguous(csrSortedColIndA)) error stop "csrSortedColIndA: array must be contiguous"
       Dcsric02 = hipsparseDcsric02_raw(handle, m, nnz, descrA, c_loc(csrSortedValA_valM), c_loc( &
         csrSortedRowPtrA), c_loc(csrSortedColIndA), info, policy, pBuffer)
     end function hipsparseDcsric02_native
@@ -34525,6 +34725,9 @@ contains
       integer(c_int), value :: policy
       type(c_ptr), value :: pBuffer
       integer(c_int) :: Ccsric02
+      if (.not. is_contiguous(csrSortedValA_valM)) error stop "csrSortedValA_valM: array must be contiguous"
+      if (.not. is_contiguous(csrSortedRowPtrA)) error stop "csrSortedRowPtrA: array must be contiguous"
+      if (.not. is_contiguous(csrSortedColIndA)) error stop "csrSortedColIndA: array must be contiguous"
       Ccsric02 = hipsparseCcsric02_raw(handle, m, nnz, descrA, c_loc(csrSortedValA_valM), c_loc( &
         csrSortedRowPtrA), c_loc(csrSortedColIndA), info, policy, pBuffer)
     end function hipsparseCcsric02_native
@@ -34564,6 +34767,9 @@ contains
       integer(c_int), value :: policy
       type(c_ptr), value :: pBuffer
       integer(c_int) :: Zcsric02
+      if (.not. is_contiguous(csrSortedValA_valM)) error stop "csrSortedValA_valM: array must be contiguous"
+      if (.not. is_contiguous(csrSortedRowPtrA)) error stop "csrSortedRowPtrA: array must be contiguous"
+      if (.not. is_contiguous(csrSortedColIndA)) error stop "csrSortedColIndA: array must be contiguous"
       Zcsric02 = hipsparseZcsric02_raw(handle, m, nnz, descrA, c_loc(csrSortedValA_valM), c_loc( &
         csrSortedRowPtrA), c_loc(csrSortedColIndA), info, policy, pBuffer)
     end function hipsparseZcsric02_native
@@ -34673,6 +34879,9 @@ contains
       type(c_ptr), value :: info
       integer(c_int) :: pBufferSizeInBytes
       integer(c_int) :: Scsrilu02_bufferSize
+      if (.not. is_contiguous(csrSortedValA)) error stop "csrSortedValA: array must be contiguous"
+      if (.not. is_contiguous(csrSortedRowPtrA)) error stop "csrSortedRowPtrA: array must be contiguous"
+      if (.not. is_contiguous(csrSortedColIndA)) error stop "csrSortedColIndA: array must be contiguous"
       Scsrilu02_bufferSize = hipsparseScsrilu02_bufferSize_raw(handle, m, nnz, descrA, c_loc( &
         csrSortedValA), c_loc(csrSortedRowPtrA), c_loc(csrSortedColIndA), info, pBufferSizeInBytes)
     end function hipsparseScsrilu02_bufferSize_native
@@ -34710,6 +34919,9 @@ contains
       type(c_ptr), value :: info
       integer(c_int) :: pBufferSizeInBytes
       integer(c_int) :: Dcsrilu02_bufferSize
+      if (.not. is_contiguous(csrSortedValA)) error stop "csrSortedValA: array must be contiguous"
+      if (.not. is_contiguous(csrSortedRowPtrA)) error stop "csrSortedRowPtrA: array must be contiguous"
+      if (.not. is_contiguous(csrSortedColIndA)) error stop "csrSortedColIndA: array must be contiguous"
       Dcsrilu02_bufferSize = hipsparseDcsrilu02_bufferSize_raw(handle, m, nnz, descrA, c_loc( &
         csrSortedValA), c_loc(csrSortedRowPtrA), c_loc(csrSortedColIndA), info, pBufferSizeInBytes)
     end function hipsparseDcsrilu02_bufferSize_native
@@ -34747,6 +34959,9 @@ contains
       type(c_ptr), value :: info
       integer(c_int) :: pBufferSizeInBytes
       integer(c_int) :: Ccsrilu02_bufferSize
+      if (.not. is_contiguous(csrSortedValA)) error stop "csrSortedValA: array must be contiguous"
+      if (.not. is_contiguous(csrSortedRowPtrA)) error stop "csrSortedRowPtrA: array must be contiguous"
+      if (.not. is_contiguous(csrSortedColIndA)) error stop "csrSortedColIndA: array must be contiguous"
       Ccsrilu02_bufferSize = hipsparseCcsrilu02_bufferSize_raw(handle, m, nnz, descrA, c_loc( &
         csrSortedValA), c_loc(csrSortedRowPtrA), c_loc(csrSortedColIndA), info, pBufferSizeInBytes)
     end function hipsparseCcsrilu02_bufferSize_native
@@ -34784,6 +34999,9 @@ contains
       type(c_ptr), value :: info
       integer(c_int) :: pBufferSizeInBytes
       integer(c_int) :: Zcsrilu02_bufferSize
+      if (.not. is_contiguous(csrSortedValA)) error stop "csrSortedValA: array must be contiguous"
+      if (.not. is_contiguous(csrSortedRowPtrA)) error stop "csrSortedRowPtrA: array must be contiguous"
+      if (.not. is_contiguous(csrSortedColIndA)) error stop "csrSortedColIndA: array must be contiguous"
       Zcsrilu02_bufferSize = hipsparseZcsrilu02_bufferSize_raw(handle, m, nnz, descrA, c_loc( &
         csrSortedValA), c_loc(csrSortedRowPtrA), c_loc(csrSortedColIndA), info, pBufferSizeInBytes)
     end function hipsparseZcsrilu02_bufferSize_native
@@ -34822,6 +35040,9 @@ contains
       type(c_ptr), value :: info
       type(c_ptr), value :: pBufferSizeInBytes
       integer(c_int) :: Scsrilu02_bufferSizeExt
+      if (.not. is_contiguous(csrSortedValA)) error stop "csrSortedValA: array must be contiguous"
+      if (.not. is_contiguous(csrSortedRowPtrA)) error stop "csrSortedRowPtrA: array must be contiguous"
+      if (.not. is_contiguous(csrSortedColIndA)) error stop "csrSortedColIndA: array must be contiguous"
       Scsrilu02_bufferSizeExt = hipsparseScsrilu02_bufferSizeExt_raw(handle, m, nnz, descrA, &
         c_loc(csrSortedValA), c_loc(csrSortedRowPtrA), c_loc(csrSortedColIndA), info, &
         pBufferSizeInBytes)
@@ -34862,6 +35083,9 @@ contains
       type(c_ptr), value :: info
       type(c_ptr), value :: pBufferSizeInBytes
       integer(c_int) :: Dcsrilu02_bufferSizeExt
+      if (.not. is_contiguous(csrSortedValA)) error stop "csrSortedValA: array must be contiguous"
+      if (.not. is_contiguous(csrSortedRowPtrA)) error stop "csrSortedRowPtrA: array must be contiguous"
+      if (.not. is_contiguous(csrSortedColIndA)) error stop "csrSortedColIndA: array must be contiguous"
       Dcsrilu02_bufferSizeExt = hipsparseDcsrilu02_bufferSizeExt_raw(handle, m, nnz, descrA, &
         c_loc(csrSortedValA), c_loc(csrSortedRowPtrA), c_loc(csrSortedColIndA), info, &
         pBufferSizeInBytes)
@@ -34902,6 +35126,9 @@ contains
       type(c_ptr), value :: info
       type(c_ptr), value :: pBufferSizeInBytes
       integer(c_int) :: Ccsrilu02_bufferSizeExt
+      if (.not. is_contiguous(csrSortedValA)) error stop "csrSortedValA: array must be contiguous"
+      if (.not. is_contiguous(csrSortedRowPtrA)) error stop "csrSortedRowPtrA: array must be contiguous"
+      if (.not. is_contiguous(csrSortedColIndA)) error stop "csrSortedColIndA: array must be contiguous"
       Ccsrilu02_bufferSizeExt = hipsparseCcsrilu02_bufferSizeExt_raw(handle, m, nnz, descrA, &
         c_loc(csrSortedValA), c_loc(csrSortedRowPtrA), c_loc(csrSortedColIndA), info, &
         pBufferSizeInBytes)
@@ -34942,6 +35169,9 @@ contains
       type(c_ptr), value :: info
       type(c_ptr), value :: pBufferSizeInBytes
       integer(c_int) :: Zcsrilu02_bufferSizeExt
+      if (.not. is_contiguous(csrSortedValA)) error stop "csrSortedValA: array must be contiguous"
+      if (.not. is_contiguous(csrSortedRowPtrA)) error stop "csrSortedRowPtrA: array must be contiguous"
+      if (.not. is_contiguous(csrSortedColIndA)) error stop "csrSortedColIndA: array must be contiguous"
       Zcsrilu02_bufferSizeExt = hipsparseZcsrilu02_bufferSizeExt_raw(handle, m, nnz, descrA, &
         c_loc(csrSortedValA), c_loc(csrSortedRowPtrA), c_loc(csrSortedColIndA), info, &
         pBufferSizeInBytes)
@@ -34982,6 +35212,9 @@ contains
       integer(c_int), value :: policy
       type(c_ptr), value :: pBuffer
       integer(c_int) :: Scsrilu02_analysis
+      if (.not. is_contiguous(csrSortedValA)) error stop "csrSortedValA: array must be contiguous"
+      if (.not. is_contiguous(csrSortedRowPtrA)) error stop "csrSortedRowPtrA: array must be contiguous"
+      if (.not. is_contiguous(csrSortedColIndA)) error stop "csrSortedColIndA: array must be contiguous"
       Scsrilu02_analysis = hipsparseScsrilu02_analysis_raw(handle, m, nnz, descrA, c_loc( &
         csrSortedValA), c_loc(csrSortedRowPtrA), c_loc(csrSortedColIndA), info, policy, pBuffer)
     end function hipsparseScsrilu02_analysis_native
@@ -35021,6 +35254,9 @@ contains
       integer(c_int), value :: policy
       type(c_ptr), value :: pBuffer
       integer(c_int) :: Dcsrilu02_analysis
+      if (.not. is_contiguous(csrSortedValA)) error stop "csrSortedValA: array must be contiguous"
+      if (.not. is_contiguous(csrSortedRowPtrA)) error stop "csrSortedRowPtrA: array must be contiguous"
+      if (.not. is_contiguous(csrSortedColIndA)) error stop "csrSortedColIndA: array must be contiguous"
       Dcsrilu02_analysis = hipsparseDcsrilu02_analysis_raw(handle, m, nnz, descrA, c_loc( &
         csrSortedValA), c_loc(csrSortedRowPtrA), c_loc(csrSortedColIndA), info, policy, pBuffer)
     end function hipsparseDcsrilu02_analysis_native
@@ -35060,6 +35296,9 @@ contains
       integer(c_int), value :: policy
       type(c_ptr), value :: pBuffer
       integer(c_int) :: Ccsrilu02_analysis
+      if (.not. is_contiguous(csrSortedValA)) error stop "csrSortedValA: array must be contiguous"
+      if (.not. is_contiguous(csrSortedRowPtrA)) error stop "csrSortedRowPtrA: array must be contiguous"
+      if (.not. is_contiguous(csrSortedColIndA)) error stop "csrSortedColIndA: array must be contiguous"
       Ccsrilu02_analysis = hipsparseCcsrilu02_analysis_raw(handle, m, nnz, descrA, c_loc( &
         csrSortedValA), c_loc(csrSortedRowPtrA), c_loc(csrSortedColIndA), info, policy, pBuffer)
     end function hipsparseCcsrilu02_analysis_native
@@ -35099,6 +35338,9 @@ contains
       integer(c_int), value :: policy
       type(c_ptr), value :: pBuffer
       integer(c_int) :: Zcsrilu02_analysis
+      if (.not. is_contiguous(csrSortedValA)) error stop "csrSortedValA: array must be contiguous"
+      if (.not. is_contiguous(csrSortedRowPtrA)) error stop "csrSortedRowPtrA: array must be contiguous"
+      if (.not. is_contiguous(csrSortedColIndA)) error stop "csrSortedColIndA: array must be contiguous"
       Zcsrilu02_analysis = hipsparseZcsrilu02_analysis_raw(handle, m, nnz, descrA, c_loc( &
         csrSortedValA), c_loc(csrSortedRowPtrA), c_loc(csrSortedColIndA), info, policy, pBuffer)
     end function hipsparseZcsrilu02_analysis_native
@@ -35138,6 +35380,9 @@ contains
       integer(c_int), value :: policy
       type(c_ptr), value :: pBuffer
       integer(c_int) :: Scsrilu02
+      if (.not. is_contiguous(csrSortedValA_valM)) error stop "csrSortedValA_valM: array must be contiguous"
+      if (.not. is_contiguous(csrSortedRowPtrA)) error stop "csrSortedRowPtrA: array must be contiguous"
+      if (.not. is_contiguous(csrSortedColIndA)) error stop "csrSortedColIndA: array must be contiguous"
       Scsrilu02 = hipsparseScsrilu02_raw(handle, m, nnz, descrA, c_loc(csrSortedValA_valM), c_loc( &
         csrSortedRowPtrA), c_loc(csrSortedColIndA), info, policy, pBuffer)
     end function hipsparseScsrilu02_native
@@ -35177,6 +35422,9 @@ contains
       integer(c_int), value :: policy
       type(c_ptr), value :: pBuffer
       integer(c_int) :: Dcsrilu02
+      if (.not. is_contiguous(csrSortedValA_valM)) error stop "csrSortedValA_valM: array must be contiguous"
+      if (.not. is_contiguous(csrSortedRowPtrA)) error stop "csrSortedRowPtrA: array must be contiguous"
+      if (.not. is_contiguous(csrSortedColIndA)) error stop "csrSortedColIndA: array must be contiguous"
       Dcsrilu02 = hipsparseDcsrilu02_raw(handle, m, nnz, descrA, c_loc(csrSortedValA_valM), c_loc( &
         csrSortedRowPtrA), c_loc(csrSortedColIndA), info, policy, pBuffer)
     end function hipsparseDcsrilu02_native
@@ -35216,6 +35464,9 @@ contains
       integer(c_int), value :: policy
       type(c_ptr), value :: pBuffer
       integer(c_int) :: Ccsrilu02
+      if (.not. is_contiguous(csrSortedValA_valM)) error stop "csrSortedValA_valM: array must be contiguous"
+      if (.not. is_contiguous(csrSortedRowPtrA)) error stop "csrSortedRowPtrA: array must be contiguous"
+      if (.not. is_contiguous(csrSortedColIndA)) error stop "csrSortedColIndA: array must be contiguous"
       Ccsrilu02 = hipsparseCcsrilu02_raw(handle, m, nnz, descrA, c_loc(csrSortedValA_valM), c_loc( &
         csrSortedRowPtrA), c_loc(csrSortedColIndA), info, policy, pBuffer)
     end function hipsparseCcsrilu02_native
@@ -35255,6 +35506,9 @@ contains
       integer(c_int), value :: policy
       type(c_ptr), value :: pBuffer
       integer(c_int) :: Zcsrilu02
+      if (.not. is_contiguous(csrSortedValA_valM)) error stop "csrSortedValA_valM: array must be contiguous"
+      if (.not. is_contiguous(csrSortedRowPtrA)) error stop "csrSortedRowPtrA: array must be contiguous"
+      if (.not. is_contiguous(csrSortedColIndA)) error stop "csrSortedColIndA: array must be contiguous"
       Zcsrilu02 = hipsparseZcsrilu02_raw(handle, m, nnz, descrA, c_loc(csrSortedValA_valM), c_loc( &
         csrSortedRowPtrA), c_loc(csrSortedColIndA), info, policy, pBuffer)
     end function hipsparseZcsrilu02_native
@@ -35295,6 +35549,12 @@ contains
       integer(c_int), value :: batchCount
       type(c_ptr), value :: pBufferSizeInBytes
       integer(c_int) :: SgpsvInterleavedBatch_bufferSizeExt
+      if (.not. is_contiguous(ds)) error stop "ds: array must be contiguous"
+      if (.not. is_contiguous(dl)) error stop "dl: array must be contiguous"
+      if (.not. is_contiguous(d)) error stop "d: array must be contiguous"
+      if (.not. is_contiguous(du)) error stop "du: array must be contiguous"
+      if (.not. is_contiguous(dw)) error stop "dw: array must be contiguous"
+      if (.not. is_contiguous(x)) error stop "x: array must be contiguous"
       SgpsvInterleavedBatch_bufferSizeExt = hipsparseSgpsvInterleavedBatch_bufferSizeExt_raw( &
         handle, algo, m, c_loc(ds), c_loc(dl), c_loc(d), c_loc(du), c_loc(dw), c_loc(x), &
         batchCount, pBufferSizeInBytes)
@@ -35337,6 +35597,12 @@ contains
       integer(c_int), value :: batchCount
       type(c_ptr), value :: pBufferSizeInBytes
       integer(c_int) :: DgpsvInterleavedBatch_bufferSizeExt
+      if (.not. is_contiguous(ds)) error stop "ds: array must be contiguous"
+      if (.not. is_contiguous(dl)) error stop "dl: array must be contiguous"
+      if (.not. is_contiguous(d)) error stop "d: array must be contiguous"
+      if (.not. is_contiguous(du)) error stop "du: array must be contiguous"
+      if (.not. is_contiguous(dw)) error stop "dw: array must be contiguous"
+      if (.not. is_contiguous(x)) error stop "x: array must be contiguous"
       DgpsvInterleavedBatch_bufferSizeExt = hipsparseDgpsvInterleavedBatch_bufferSizeExt_raw( &
         handle, algo, m, c_loc(ds), c_loc(dl), c_loc(d), c_loc(du), c_loc(dw), c_loc(x), &
         batchCount, pBufferSizeInBytes)
@@ -35379,6 +35645,12 @@ contains
       integer(c_int), value :: batchCount
       type(c_ptr), value :: pBufferSizeInBytes
       integer(c_int) :: CgpsvInterleavedBatch_bufferSizeExt
+      if (.not. is_contiguous(ds)) error stop "ds: array must be contiguous"
+      if (.not. is_contiguous(dl)) error stop "dl: array must be contiguous"
+      if (.not. is_contiguous(d)) error stop "d: array must be contiguous"
+      if (.not. is_contiguous(du)) error stop "du: array must be contiguous"
+      if (.not. is_contiguous(dw)) error stop "dw: array must be contiguous"
+      if (.not. is_contiguous(x)) error stop "x: array must be contiguous"
       CgpsvInterleavedBatch_bufferSizeExt = hipsparseCgpsvInterleavedBatch_bufferSizeExt_raw( &
         handle, algo, m, c_loc(ds), c_loc(dl), c_loc(d), c_loc(du), c_loc(dw), c_loc(x), &
         batchCount, pBufferSizeInBytes)
@@ -35421,6 +35693,12 @@ contains
       integer(c_int), value :: batchCount
       type(c_ptr), value :: pBufferSizeInBytes
       integer(c_int) :: ZgpsvInterleavedBatch_bufferSizeExt
+      if (.not. is_contiguous(ds)) error stop "ds: array must be contiguous"
+      if (.not. is_contiguous(dl)) error stop "dl: array must be contiguous"
+      if (.not. is_contiguous(d)) error stop "d: array must be contiguous"
+      if (.not. is_contiguous(du)) error stop "du: array must be contiguous"
+      if (.not. is_contiguous(dw)) error stop "dw: array must be contiguous"
+      if (.not. is_contiguous(x)) error stop "x: array must be contiguous"
       ZgpsvInterleavedBatch_bufferSizeExt = hipsparseZgpsvInterleavedBatch_bufferSizeExt_raw( &
         handle, algo, m, c_loc(ds), c_loc(dl), c_loc(d), c_loc(du), c_loc(dw), c_loc(x), &
         batchCount, pBufferSizeInBytes)
@@ -35463,6 +35741,12 @@ contains
       integer(c_int), value :: batchCount
       type(c_ptr), value :: pBuffer
       integer(c_int) :: SgpsvInterleavedBatch
+      if (.not. is_contiguous(ds)) error stop "ds: array must be contiguous"
+      if (.not. is_contiguous(dl)) error stop "dl: array must be contiguous"
+      if (.not. is_contiguous(d)) error stop "d: array must be contiguous"
+      if (.not. is_contiguous(du)) error stop "du: array must be contiguous"
+      if (.not. is_contiguous(dw)) error stop "dw: array must be contiguous"
+      if (.not. is_contiguous(x)) error stop "x: array must be contiguous"
       SgpsvInterleavedBatch = hipsparseSgpsvInterleavedBatch_raw(handle, algo, m, c_loc(ds), &
         c_loc(dl), c_loc(d), c_loc(du), c_loc(dw), c_loc(x), batchCount, pBuffer)
     end function hipsparseSgpsvInterleavedBatch_native
@@ -35504,6 +35788,12 @@ contains
       integer(c_int), value :: batchCount
       type(c_ptr), value :: pBuffer
       integer(c_int) :: DgpsvInterleavedBatch
+      if (.not. is_contiguous(ds)) error stop "ds: array must be contiguous"
+      if (.not. is_contiguous(dl)) error stop "dl: array must be contiguous"
+      if (.not. is_contiguous(d)) error stop "d: array must be contiguous"
+      if (.not. is_contiguous(du)) error stop "du: array must be contiguous"
+      if (.not. is_contiguous(dw)) error stop "dw: array must be contiguous"
+      if (.not. is_contiguous(x)) error stop "x: array must be contiguous"
       DgpsvInterleavedBatch = hipsparseDgpsvInterleavedBatch_raw(handle, algo, m, c_loc(ds), &
         c_loc(dl), c_loc(d), c_loc(du), c_loc(dw), c_loc(x), batchCount, pBuffer)
     end function hipsparseDgpsvInterleavedBatch_native
@@ -35545,6 +35835,12 @@ contains
       integer(c_int), value :: batchCount
       type(c_ptr), value :: pBuffer
       integer(c_int) :: CgpsvInterleavedBatch
+      if (.not. is_contiguous(ds)) error stop "ds: array must be contiguous"
+      if (.not. is_contiguous(dl)) error stop "dl: array must be contiguous"
+      if (.not. is_contiguous(d)) error stop "d: array must be contiguous"
+      if (.not. is_contiguous(du)) error stop "du: array must be contiguous"
+      if (.not. is_contiguous(dw)) error stop "dw: array must be contiguous"
+      if (.not. is_contiguous(x)) error stop "x: array must be contiguous"
       CgpsvInterleavedBatch = hipsparseCgpsvInterleavedBatch_raw(handle, algo, m, c_loc(ds), &
         c_loc(dl), c_loc(d), c_loc(du), c_loc(dw), c_loc(x), batchCount, pBuffer)
     end function hipsparseCgpsvInterleavedBatch_native
@@ -35586,6 +35882,12 @@ contains
       integer(c_int), value :: batchCount
       type(c_ptr), value :: pBuffer
       integer(c_int) :: ZgpsvInterleavedBatch
+      if (.not. is_contiguous(ds)) error stop "ds: array must be contiguous"
+      if (.not. is_contiguous(dl)) error stop "dl: array must be contiguous"
+      if (.not. is_contiguous(d)) error stop "d: array must be contiguous"
+      if (.not. is_contiguous(du)) error stop "du: array must be contiguous"
+      if (.not. is_contiguous(dw)) error stop "dw: array must be contiguous"
+      if (.not. is_contiguous(x)) error stop "x: array must be contiguous"
       ZgpsvInterleavedBatch = hipsparseZgpsvInterleavedBatch_raw(handle, algo, m, c_loc(ds), &
         c_loc(dl), c_loc(d), c_loc(du), c_loc(dw), c_loc(x), batchCount, pBuffer)
     end function hipsparseZgpsvInterleavedBatch_native
@@ -35625,6 +35927,10 @@ contains
       integer(c_int), value :: ldb
       type(c_ptr), value :: pBufferSizeInBytes
       integer(c_int) :: Sgtsv2_bufferSizeExt
+      if (.not. is_contiguous(dl)) error stop "dl: array must be contiguous"
+      if (.not. is_contiguous(d)) error stop "d: array must be contiguous"
+      if (.not. is_contiguous(du)) error stop "du: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
       Sgtsv2_bufferSizeExt = hipsparseSgtsv2_bufferSizeExt_raw(handle, m, n, c_loc(dl), c_loc(d), &
         c_loc(du), c_loc(B), ldb, pBufferSizeInBytes)
     end function hipsparseSgtsv2_bufferSizeExt_native
@@ -35662,6 +35968,10 @@ contains
       integer(c_int), value :: ldb
       type(c_ptr), value :: pBufferSizeInBytes
       integer(c_int) :: Dgtsv2_bufferSizeExt
+      if (.not. is_contiguous(dl)) error stop "dl: array must be contiguous"
+      if (.not. is_contiguous(d)) error stop "d: array must be contiguous"
+      if (.not. is_contiguous(du)) error stop "du: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
       Dgtsv2_bufferSizeExt = hipsparseDgtsv2_bufferSizeExt_raw(handle, m, n, c_loc(dl), c_loc(d), &
         c_loc(du), c_loc(B), ldb, pBufferSizeInBytes)
     end function hipsparseDgtsv2_bufferSizeExt_native
@@ -35699,6 +36009,10 @@ contains
       integer(c_int), value :: ldb
       type(c_ptr), value :: pBufferSizeInBytes
       integer(c_int) :: Cgtsv2_bufferSizeExt
+      if (.not. is_contiguous(dl)) error stop "dl: array must be contiguous"
+      if (.not. is_contiguous(d)) error stop "d: array must be contiguous"
+      if (.not. is_contiguous(du)) error stop "du: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
       Cgtsv2_bufferSizeExt = hipsparseCgtsv2_bufferSizeExt_raw(handle, m, n, c_loc(dl), c_loc(d), &
         c_loc(du), c_loc(B), ldb, pBufferSizeInBytes)
     end function hipsparseCgtsv2_bufferSizeExt_native
@@ -35736,6 +36050,10 @@ contains
       integer(c_int), value :: ldb
       type(c_ptr), value :: pBufferSizeInBytes
       integer(c_int) :: Zgtsv2_bufferSizeExt
+      if (.not. is_contiguous(dl)) error stop "dl: array must be contiguous"
+      if (.not. is_contiguous(d)) error stop "d: array must be contiguous"
+      if (.not. is_contiguous(du)) error stop "du: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
       Zgtsv2_bufferSizeExt = hipsparseZgtsv2_bufferSizeExt_raw(handle, m, n, c_loc(dl), c_loc(d), &
         c_loc(du), c_loc(B), ldb, pBufferSizeInBytes)
     end function hipsparseZgtsv2_bufferSizeExt_native
@@ -35772,6 +36090,10 @@ contains
       integer(c_int), value :: ldb
       type(c_ptr), value :: pBuffer
       integer(c_int) :: Sgtsv2
+      if (.not. is_contiguous(dl)) error stop "dl: array must be contiguous"
+      if (.not. is_contiguous(d)) error stop "d: array must be contiguous"
+      if (.not. is_contiguous(du)) error stop "du: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
       Sgtsv2 = hipsparseSgtsv2_raw(handle, m, n, c_loc(dl), c_loc(d), c_loc(du), c_loc(B), ldb, &
         pBuffer)
     end function hipsparseSgtsv2_native
@@ -35806,6 +36128,10 @@ contains
       integer(c_int), value :: ldb
       type(c_ptr), value :: pBuffer
       integer(c_int) :: Dgtsv2
+      if (.not. is_contiguous(dl)) error stop "dl: array must be contiguous"
+      if (.not. is_contiguous(d)) error stop "d: array must be contiguous"
+      if (.not. is_contiguous(du)) error stop "du: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
       Dgtsv2 = hipsparseDgtsv2_raw(handle, m, n, c_loc(dl), c_loc(d), c_loc(du), c_loc(B), ldb, &
         pBuffer)
     end function hipsparseDgtsv2_native
@@ -35840,6 +36166,10 @@ contains
       integer(c_int), value :: ldb
       type(c_ptr), value :: pBuffer
       integer(c_int) :: Cgtsv2
+      if (.not. is_contiguous(dl)) error stop "dl: array must be contiguous"
+      if (.not. is_contiguous(d)) error stop "d: array must be contiguous"
+      if (.not. is_contiguous(du)) error stop "du: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
       Cgtsv2 = hipsparseCgtsv2_raw(handle, m, n, c_loc(dl), c_loc(d), c_loc(du), c_loc(B), ldb, &
         pBuffer)
     end function hipsparseCgtsv2_native
@@ -35874,6 +36204,10 @@ contains
       integer(c_int), value :: ldb
       type(c_ptr), value :: pBuffer
       integer(c_int) :: Zgtsv2
+      if (.not. is_contiguous(dl)) error stop "dl: array must be contiguous"
+      if (.not. is_contiguous(d)) error stop "d: array must be contiguous"
+      if (.not. is_contiguous(du)) error stop "du: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
       Zgtsv2 = hipsparseZgtsv2_raw(handle, m, n, c_loc(dl), c_loc(d), c_loc(du), c_loc(B), ldb, &
         pBuffer)
     end function hipsparseZgtsv2_native
@@ -35909,6 +36243,10 @@ contains
       integer(c_int), value :: batchCount
       type(c_ptr), value :: pBufferSizeInBytes
       integer(c_int) :: SgtsvInterleavedBatch_bufferSizeExt
+      if (.not. is_contiguous(dl)) error stop "dl: array must be contiguous"
+      if (.not. is_contiguous(d)) error stop "d: array must be contiguous"
+      if (.not. is_contiguous(du)) error stop "du: array must be contiguous"
+      if (.not. is_contiguous(x)) error stop "x: array must be contiguous"
       SgtsvInterleavedBatch_bufferSizeExt = hipsparseSgtsvInterleavedBatch_bufferSizeExt_raw( &
         handle, algo, m, c_loc(dl), c_loc(d), c_loc(du), c_loc(x), batchCount, pBufferSizeInBytes)
     end function hipsparseSgtsvInterleavedBatch_bufferSizeExt_native
@@ -35946,6 +36284,10 @@ contains
       integer(c_int), value :: batchCount
       type(c_ptr), value :: pBufferSizeInBytes
       integer(c_int) :: DgtsvInterleavedBatch_bufferSizeExt
+      if (.not. is_contiguous(dl)) error stop "dl: array must be contiguous"
+      if (.not. is_contiguous(d)) error stop "d: array must be contiguous"
+      if (.not. is_contiguous(du)) error stop "du: array must be contiguous"
+      if (.not. is_contiguous(x)) error stop "x: array must be contiguous"
       DgtsvInterleavedBatch_bufferSizeExt = hipsparseDgtsvInterleavedBatch_bufferSizeExt_raw( &
         handle, algo, m, c_loc(dl), c_loc(d), c_loc(du), c_loc(x), batchCount, pBufferSizeInBytes)
     end function hipsparseDgtsvInterleavedBatch_bufferSizeExt_native
@@ -35983,6 +36325,10 @@ contains
       integer(c_int), value :: batchCount
       type(c_ptr), value :: pBufferSizeInBytes
       integer(c_int) :: CgtsvInterleavedBatch_bufferSizeExt
+      if (.not. is_contiguous(dl)) error stop "dl: array must be contiguous"
+      if (.not. is_contiguous(d)) error stop "d: array must be contiguous"
+      if (.not. is_contiguous(du)) error stop "du: array must be contiguous"
+      if (.not. is_contiguous(x)) error stop "x: array must be contiguous"
       CgtsvInterleavedBatch_bufferSizeExt = hipsparseCgtsvInterleavedBatch_bufferSizeExt_raw( &
         handle, algo, m, c_loc(dl), c_loc(d), c_loc(du), c_loc(x), batchCount, pBufferSizeInBytes)
     end function hipsparseCgtsvInterleavedBatch_bufferSizeExt_native
@@ -36020,6 +36366,10 @@ contains
       integer(c_int), value :: batchCount
       type(c_ptr), value :: pBufferSizeInBytes
       integer(c_int) :: ZgtsvInterleavedBatch_bufferSizeExt
+      if (.not. is_contiguous(dl)) error stop "dl: array must be contiguous"
+      if (.not. is_contiguous(d)) error stop "d: array must be contiguous"
+      if (.not. is_contiguous(du)) error stop "du: array must be contiguous"
+      if (.not. is_contiguous(x)) error stop "x: array must be contiguous"
       ZgtsvInterleavedBatch_bufferSizeExt = hipsparseZgtsvInterleavedBatch_bufferSizeExt_raw( &
         handle, algo, m, c_loc(dl), c_loc(d), c_loc(du), c_loc(x), batchCount, pBufferSizeInBytes)
     end function hipsparseZgtsvInterleavedBatch_bufferSizeExt_native
@@ -36057,6 +36407,10 @@ contains
       integer(c_int), value :: batchCount
       type(c_ptr), value :: pBuffer
       integer(c_int) :: SgtsvInterleavedBatch
+      if (.not. is_contiguous(dl)) error stop "dl: array must be contiguous"
+      if (.not. is_contiguous(d)) error stop "d: array must be contiguous"
+      if (.not. is_contiguous(du)) error stop "du: array must be contiguous"
+      if (.not. is_contiguous(x)) error stop "x: array must be contiguous"
       SgtsvInterleavedBatch = hipsparseSgtsvInterleavedBatch_raw(handle, algo, m, c_loc(dl), &
         c_loc(d), c_loc(du), c_loc(x), batchCount, pBuffer)
     end function hipsparseSgtsvInterleavedBatch_native
@@ -36094,6 +36448,10 @@ contains
       integer(c_int), value :: batchCount
       type(c_ptr), value :: pBuffer
       integer(c_int) :: DgtsvInterleavedBatch
+      if (.not. is_contiguous(dl)) error stop "dl: array must be contiguous"
+      if (.not. is_contiguous(d)) error stop "d: array must be contiguous"
+      if (.not. is_contiguous(du)) error stop "du: array must be contiguous"
+      if (.not. is_contiguous(x)) error stop "x: array must be contiguous"
       DgtsvInterleavedBatch = hipsparseDgtsvInterleavedBatch_raw(handle, algo, m, c_loc(dl), &
         c_loc(d), c_loc(du), c_loc(x), batchCount, pBuffer)
     end function hipsparseDgtsvInterleavedBatch_native
@@ -36131,6 +36489,10 @@ contains
       integer(c_int), value :: batchCount
       type(c_ptr), value :: pBuffer
       integer(c_int) :: CgtsvInterleavedBatch
+      if (.not. is_contiguous(dl)) error stop "dl: array must be contiguous"
+      if (.not. is_contiguous(d)) error stop "d: array must be contiguous"
+      if (.not. is_contiguous(du)) error stop "du: array must be contiguous"
+      if (.not. is_contiguous(x)) error stop "x: array must be contiguous"
       CgtsvInterleavedBatch = hipsparseCgtsvInterleavedBatch_raw(handle, algo, m, c_loc(dl), &
         c_loc(d), c_loc(du), c_loc(x), batchCount, pBuffer)
     end function hipsparseCgtsvInterleavedBatch_native
@@ -36168,6 +36530,10 @@ contains
       integer(c_int), value :: batchCount
       type(c_ptr), value :: pBuffer
       integer(c_int) :: ZgtsvInterleavedBatch
+      if (.not. is_contiguous(dl)) error stop "dl: array must be contiguous"
+      if (.not. is_contiguous(d)) error stop "d: array must be contiguous"
+      if (.not. is_contiguous(du)) error stop "du: array must be contiguous"
+      if (.not. is_contiguous(x)) error stop "x: array must be contiguous"
       ZgtsvInterleavedBatch = hipsparseZgtsvInterleavedBatch_raw(handle, algo, m, c_loc(dl), &
         c_loc(d), c_loc(du), c_loc(x), batchCount, pBuffer)
     end function hipsparseZgtsvInterleavedBatch_native
@@ -36205,6 +36571,10 @@ contains
       integer(c_int), value :: ldb
       type(c_ptr), value :: pBufferSizeInBytes
       integer(c_int) :: Sgtsv2_nopivot_bufferSizeExt
+      if (.not. is_contiguous(dl)) error stop "dl: array must be contiguous"
+      if (.not. is_contiguous(d)) error stop "d: array must be contiguous"
+      if (.not. is_contiguous(du)) error stop "du: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
       Sgtsv2_nopivot_bufferSizeExt = hipsparseSgtsv2_nopivot_bufferSizeExt_raw(handle, m, n, &
         c_loc(dl), c_loc(d), c_loc(du), c_loc(B), ldb, pBufferSizeInBytes)
     end function hipsparseSgtsv2_nopivot_bufferSizeExt_native
@@ -36242,6 +36612,10 @@ contains
       integer(c_int), value :: ldb
       type(c_ptr), value :: pBufferSizeInBytes
       integer(c_int) :: Dgtsv2_nopivot_bufferSizeExt
+      if (.not. is_contiguous(dl)) error stop "dl: array must be contiguous"
+      if (.not. is_contiguous(d)) error stop "d: array must be contiguous"
+      if (.not. is_contiguous(du)) error stop "du: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
       Dgtsv2_nopivot_bufferSizeExt = hipsparseDgtsv2_nopivot_bufferSizeExt_raw(handle, m, n, &
         c_loc(dl), c_loc(d), c_loc(du), c_loc(B), ldb, pBufferSizeInBytes)
     end function hipsparseDgtsv2_nopivot_bufferSizeExt_native
@@ -36279,6 +36653,10 @@ contains
       integer(c_int), value :: ldb
       type(c_ptr), value :: pBufferSizeInBytes
       integer(c_int) :: Cgtsv2_nopivot_bufferSizeExt
+      if (.not. is_contiguous(dl)) error stop "dl: array must be contiguous"
+      if (.not. is_contiguous(d)) error stop "d: array must be contiguous"
+      if (.not. is_contiguous(du)) error stop "du: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
       Cgtsv2_nopivot_bufferSizeExt = hipsparseCgtsv2_nopivot_bufferSizeExt_raw(handle, m, n, &
         c_loc(dl), c_loc(d), c_loc(du), c_loc(B), ldb, pBufferSizeInBytes)
     end function hipsparseCgtsv2_nopivot_bufferSizeExt_native
@@ -36316,6 +36694,10 @@ contains
       integer(c_int), value :: ldb
       type(c_ptr), value :: pBufferSizeInBytes
       integer(c_int) :: Zgtsv2_nopivot_bufferSizeExt
+      if (.not. is_contiguous(dl)) error stop "dl: array must be contiguous"
+      if (.not. is_contiguous(d)) error stop "d: array must be contiguous"
+      if (.not. is_contiguous(du)) error stop "du: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
       Zgtsv2_nopivot_bufferSizeExt = hipsparseZgtsv2_nopivot_bufferSizeExt_raw(handle, m, n, &
         c_loc(dl), c_loc(d), c_loc(du), c_loc(B), ldb, pBufferSizeInBytes)
     end function hipsparseZgtsv2_nopivot_bufferSizeExt_native
@@ -36353,6 +36735,10 @@ contains
       integer(c_int), value :: ldb
       type(c_ptr), value :: pBuffer
       integer(c_int) :: Sgtsv2_nopivot
+      if (.not. is_contiguous(dl)) error stop "dl: array must be contiguous"
+      if (.not. is_contiguous(d)) error stop "d: array must be contiguous"
+      if (.not. is_contiguous(du)) error stop "du: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
       Sgtsv2_nopivot = hipsparseSgtsv2_nopivot_raw(handle, m, n, c_loc(dl), c_loc(d), c_loc(du), &
         c_loc(B), ldb, pBuffer)
     end function hipsparseSgtsv2_nopivot_native
@@ -36389,6 +36775,10 @@ contains
       integer(c_int), value :: ldb
       type(c_ptr), value :: pBuffer
       integer(c_int) :: Dgtsv2_nopivot
+      if (.not. is_contiguous(dl)) error stop "dl: array must be contiguous"
+      if (.not. is_contiguous(d)) error stop "d: array must be contiguous"
+      if (.not. is_contiguous(du)) error stop "du: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
       Dgtsv2_nopivot = hipsparseDgtsv2_nopivot_raw(handle, m, n, c_loc(dl), c_loc(d), c_loc(du), &
         c_loc(B), ldb, pBuffer)
     end function hipsparseDgtsv2_nopivot_native
@@ -36425,6 +36815,10 @@ contains
       integer(c_int), value :: ldb
       type(c_ptr), value :: pBuffer
       integer(c_int) :: Cgtsv2_nopivot
+      if (.not. is_contiguous(dl)) error stop "dl: array must be contiguous"
+      if (.not. is_contiguous(d)) error stop "d: array must be contiguous"
+      if (.not. is_contiguous(du)) error stop "du: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
       Cgtsv2_nopivot = hipsparseCgtsv2_nopivot_raw(handle, m, n, c_loc(dl), c_loc(d), c_loc(du), &
         c_loc(B), ldb, pBuffer)
     end function hipsparseCgtsv2_nopivot_native
@@ -36461,6 +36855,10 @@ contains
       integer(c_int), value :: ldb
       type(c_ptr), value :: pBuffer
       integer(c_int) :: Zgtsv2_nopivot
+      if (.not. is_contiguous(dl)) error stop "dl: array must be contiguous"
+      if (.not. is_contiguous(d)) error stop "d: array must be contiguous"
+      if (.not. is_contiguous(du)) error stop "du: array must be contiguous"
+      if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
       Zgtsv2_nopivot = hipsparseZgtsv2_nopivot_raw(handle, m, n, c_loc(dl), c_loc(d), c_loc(du), &
         c_loc(B), ldb, pBuffer)
     end function hipsparseZgtsv2_nopivot_native
@@ -36497,6 +36895,10 @@ contains
       integer(c_int), value :: batchStride
       type(c_ptr), value :: pBufferSizeInBytes
       integer(c_int) :: Sgtsv2StridedBatch_bufferSizeExt
+      if (.not. is_contiguous(dl)) error stop "dl: array must be contiguous"
+      if (.not. is_contiguous(d)) error stop "d: array must be contiguous"
+      if (.not. is_contiguous(du)) error stop "du: array must be contiguous"
+      if (.not. is_contiguous(x)) error stop "x: array must be contiguous"
       Sgtsv2StridedBatch_bufferSizeExt = hipsparseSgtsv2StridedBatch_bufferSizeExt_raw(handle, m, &
         c_loc(dl), c_loc(d), c_loc(du), c_loc(x), batchCount, batchStride, pBufferSizeInBytes)
     end function hipsparseSgtsv2StridedBatch_bufferSizeExt_native
@@ -36534,6 +36936,10 @@ contains
       integer(c_int), value :: batchStride
       type(c_ptr), value :: pBufferSizeInBytes
       integer(c_int) :: Dgtsv2StridedBatch_bufferSizeExt
+      if (.not. is_contiguous(dl)) error stop "dl: array must be contiguous"
+      if (.not. is_contiguous(d)) error stop "d: array must be contiguous"
+      if (.not. is_contiguous(du)) error stop "du: array must be contiguous"
+      if (.not. is_contiguous(x)) error stop "x: array must be contiguous"
       Dgtsv2StridedBatch_bufferSizeExt = hipsparseDgtsv2StridedBatch_bufferSizeExt_raw(handle, m, &
         c_loc(dl), c_loc(d), c_loc(du), c_loc(x), batchCount, batchStride, pBufferSizeInBytes)
     end function hipsparseDgtsv2StridedBatch_bufferSizeExt_native
@@ -36571,6 +36977,10 @@ contains
       integer(c_int), value :: batchStride
       type(c_ptr), value :: pBufferSizeInBytes
       integer(c_int) :: Cgtsv2StridedBatch_bufferSizeExt
+      if (.not. is_contiguous(dl)) error stop "dl: array must be contiguous"
+      if (.not. is_contiguous(d)) error stop "d: array must be contiguous"
+      if (.not. is_contiguous(du)) error stop "du: array must be contiguous"
+      if (.not. is_contiguous(x)) error stop "x: array must be contiguous"
       Cgtsv2StridedBatch_bufferSizeExt = hipsparseCgtsv2StridedBatch_bufferSizeExt_raw(handle, m, &
         c_loc(dl), c_loc(d), c_loc(du), c_loc(x), batchCount, batchStride, pBufferSizeInBytes)
     end function hipsparseCgtsv2StridedBatch_bufferSizeExt_native
@@ -36608,6 +37018,10 @@ contains
       integer(c_int), value :: batchStride
       type(c_ptr), value :: pBufferSizeInBytes
       integer(c_int) :: Zgtsv2StridedBatch_bufferSizeExt
+      if (.not. is_contiguous(dl)) error stop "dl: array must be contiguous"
+      if (.not. is_contiguous(d)) error stop "d: array must be contiguous"
+      if (.not. is_contiguous(du)) error stop "du: array must be contiguous"
+      if (.not. is_contiguous(x)) error stop "x: array must be contiguous"
       Zgtsv2StridedBatch_bufferSizeExt = hipsparseZgtsv2StridedBatch_bufferSizeExt_raw(handle, m, &
         c_loc(dl), c_loc(d), c_loc(du), c_loc(x), batchCount, batchStride, pBufferSizeInBytes)
     end function hipsparseZgtsv2StridedBatch_bufferSizeExt_native
@@ -36645,6 +37059,10 @@ contains
       integer(c_int), value :: batchStride
       type(c_ptr), value :: pBuffer
       integer(c_int) :: Sgtsv2StridedBatch
+      if (.not. is_contiguous(dl)) error stop "dl: array must be contiguous"
+      if (.not. is_contiguous(d)) error stop "d: array must be contiguous"
+      if (.not. is_contiguous(du)) error stop "du: array must be contiguous"
+      if (.not. is_contiguous(x)) error stop "x: array must be contiguous"
       Sgtsv2StridedBatch = hipsparseSgtsv2StridedBatch_raw(handle, m, c_loc(dl), c_loc(d), c_loc( &
         du), c_loc(x), batchCount, batchStride, pBuffer)
     end function hipsparseSgtsv2StridedBatch_native
@@ -36682,6 +37100,10 @@ contains
       integer(c_int), value :: batchStride
       type(c_ptr), value :: pBuffer
       integer(c_int) :: Dgtsv2StridedBatch
+      if (.not. is_contiguous(dl)) error stop "dl: array must be contiguous"
+      if (.not. is_contiguous(d)) error stop "d: array must be contiguous"
+      if (.not. is_contiguous(du)) error stop "du: array must be contiguous"
+      if (.not. is_contiguous(x)) error stop "x: array must be contiguous"
       Dgtsv2StridedBatch = hipsparseDgtsv2StridedBatch_raw(handle, m, c_loc(dl), c_loc(d), c_loc( &
         du), c_loc(x), batchCount, batchStride, pBuffer)
     end function hipsparseDgtsv2StridedBatch_native
@@ -36719,6 +37141,10 @@ contains
       integer(c_int), value :: batchStride
       type(c_ptr), value :: pBuffer
       integer(c_int) :: Cgtsv2StridedBatch
+      if (.not. is_contiguous(dl)) error stop "dl: array must be contiguous"
+      if (.not. is_contiguous(d)) error stop "d: array must be contiguous"
+      if (.not. is_contiguous(du)) error stop "du: array must be contiguous"
+      if (.not. is_contiguous(x)) error stop "x: array must be contiguous"
       Cgtsv2StridedBatch = hipsparseCgtsv2StridedBatch_raw(handle, m, c_loc(dl), c_loc(d), c_loc( &
         du), c_loc(x), batchCount, batchStride, pBuffer)
     end function hipsparseCgtsv2StridedBatch_native
@@ -36756,6 +37182,10 @@ contains
       integer(c_int), value :: batchStride
       type(c_ptr), value :: pBuffer
       integer(c_int) :: Zgtsv2StridedBatch
+      if (.not. is_contiguous(dl)) error stop "dl: array must be contiguous"
+      if (.not. is_contiguous(d)) error stop "d: array must be contiguous"
+      if (.not. is_contiguous(du)) error stop "du: array must be contiguous"
+      if (.not. is_contiguous(x)) error stop "x: array must be contiguous"
       Zgtsv2StridedBatch = hipsparseZgtsv2StridedBatch_raw(handle, m, c_loc(dl), c_loc(d), c_loc( &
         du), c_loc(x), batchCount, batchStride, pBuffer)
     end function hipsparseZgtsv2StridedBatch_native
@@ -36797,6 +37227,12 @@ contains
       integer(c_int), target :: csrRowPtrC(..)
       integer(c_int), target :: csrColIndC(..)
       integer(c_int) :: Sbsr2csr
+      if (.not. is_contiguous(bsrValA)) error stop "bsrValA: array must be contiguous"
+      if (.not. is_contiguous(bsrRowPtrA)) error stop "bsrRowPtrA: array must be contiguous"
+      if (.not. is_contiguous(bsrColIndA)) error stop "bsrColIndA: array must be contiguous"
+      if (.not. is_contiguous(csrValC)) error stop "csrValC: array must be contiguous"
+      if (.not. is_contiguous(csrRowPtrC)) error stop "csrRowPtrC: array must be contiguous"
+      if (.not. is_contiguous(csrColIndC)) error stop "csrColIndC: array must be contiguous"
       Sbsr2csr = hipsparseSbsr2csr_raw(handle, dirA, mb, nb, descrA, c_loc(bsrValA), c_loc( &
         bsrRowPtrA), c_loc(bsrColIndA), blockDim, descrC, c_loc(csrValC), c_loc(csrRowPtrC), &
         c_loc(csrColIndC))
@@ -36843,6 +37279,12 @@ contains
       integer(c_int), target :: csrRowPtrC(..)
       integer(c_int), target :: csrColIndC(..)
       integer(c_int) :: Dbsr2csr
+      if (.not. is_contiguous(bsrValA)) error stop "bsrValA: array must be contiguous"
+      if (.not. is_contiguous(bsrRowPtrA)) error stop "bsrRowPtrA: array must be contiguous"
+      if (.not. is_contiguous(bsrColIndA)) error stop "bsrColIndA: array must be contiguous"
+      if (.not. is_contiguous(csrValC)) error stop "csrValC: array must be contiguous"
+      if (.not. is_contiguous(csrRowPtrC)) error stop "csrRowPtrC: array must be contiguous"
+      if (.not. is_contiguous(csrColIndC)) error stop "csrColIndC: array must be contiguous"
       Dbsr2csr = hipsparseDbsr2csr_raw(handle, dirA, mb, nb, descrA, c_loc(bsrValA), c_loc( &
         bsrRowPtrA), c_loc(bsrColIndA), blockDim, descrC, c_loc(csrValC), c_loc(csrRowPtrC), &
         c_loc(csrColIndC))
@@ -36889,6 +37331,12 @@ contains
       integer(c_int), target :: csrRowPtrC(..)
       integer(c_int), target :: csrColIndC(..)
       integer(c_int) :: Cbsr2csr
+      if (.not. is_contiguous(bsrValA)) error stop "bsrValA: array must be contiguous"
+      if (.not. is_contiguous(bsrRowPtrA)) error stop "bsrRowPtrA: array must be contiguous"
+      if (.not. is_contiguous(bsrColIndA)) error stop "bsrColIndA: array must be contiguous"
+      if (.not. is_contiguous(csrValC)) error stop "csrValC: array must be contiguous"
+      if (.not. is_contiguous(csrRowPtrC)) error stop "csrRowPtrC: array must be contiguous"
+      if (.not. is_contiguous(csrColIndC)) error stop "csrColIndC: array must be contiguous"
       Cbsr2csr = hipsparseCbsr2csr_raw(handle, dirA, mb, nb, descrA, c_loc(bsrValA), c_loc( &
         bsrRowPtrA), c_loc(bsrColIndA), blockDim, descrC, c_loc(csrValC), c_loc(csrRowPtrC), &
         c_loc(csrColIndC))
@@ -36935,6 +37383,12 @@ contains
       integer(c_int), target :: csrRowPtrC(..)
       integer(c_int), target :: csrColIndC(..)
       integer(c_int) :: Zbsr2csr
+      if (.not. is_contiguous(bsrValA)) error stop "bsrValA: array must be contiguous"
+      if (.not. is_contiguous(bsrRowPtrA)) error stop "bsrRowPtrA: array must be contiguous"
+      if (.not. is_contiguous(bsrColIndA)) error stop "bsrColIndA: array must be contiguous"
+      if (.not. is_contiguous(csrValC)) error stop "csrValC: array must be contiguous"
+      if (.not. is_contiguous(csrRowPtrC)) error stop "csrRowPtrC: array must be contiguous"
+      if (.not. is_contiguous(csrColIndC)) error stop "csrColIndC: array must be contiguous"
       Zbsr2csr = hipsparseZbsr2csr_raw(handle, dirA, mb, nb, descrA, c_loc(bsrValA), c_loc( &
         bsrRowPtrA), c_loc(bsrColIndA), blockDim, descrC, c_loc(csrValC), c_loc(csrRowPtrC), &
         c_loc(csrColIndC))
@@ -36974,6 +37428,8 @@ contains
       integer(c_int), target :: csrRowPtr(..)
       integer(c_int), value :: idxBase
       integer(c_int) :: Xcoo2csr
+      if (.not. is_contiguous(cooRowInd)) error stop "cooRowInd: array must be contiguous"
+      if (.not. is_contiguous(csrRowPtr)) error stop "csrRowPtr: array must be contiguous"
       Xcoo2csr = hipsparseXcoo2csr_raw(handle, c_loc(cooRowInd), nnz, m, c_loc(csrRowPtr), idxBase)
     end function hipsparseXcoo2csr_native
 
@@ -37003,6 +37459,8 @@ contains
       integer(c_int), target :: cooCols(..)
       type(c_ptr), value :: pBufferSizeInBytes
       integer(c_int) :: Xcoosort_bufferSizeExt
+      if (.not. is_contiguous(cooRows)) error stop "cooRows: array must be contiguous"
+      if (.not. is_contiguous(cooCols)) error stop "cooCols: array must be contiguous"
       Xcoosort_bufferSizeExt = hipsparseXcoosort_bufferSizeExt_raw(handle, m, n, nnz, c_loc( &
         cooRows), c_loc(cooCols), pBufferSizeInBytes)
     end function hipsparseXcoosort_bufferSizeExt_native
@@ -37037,6 +37495,9 @@ contains
       integer(c_int), target :: P(..)
       type(c_ptr), value :: pBuffer
       integer(c_int) :: XcoosortByRow
+      if (.not. is_contiguous(cooRows)) error stop "cooRows: array must be contiguous"
+      if (.not. is_contiguous(cooCols)) error stop "cooCols: array must be contiguous"
+      if (.not. is_contiguous(P)) error stop "P: array must be contiguous"
       XcoosortByRow = hipsparseXcoosortByRow_raw(handle, m, n, nnz, c_loc(cooRows), c_loc( &
         cooCols), c_loc(P), pBuffer)
     end function hipsparseXcoosortByRow_native
@@ -37072,6 +37533,9 @@ contains
       integer(c_int), target :: P(..)
       type(c_ptr), value :: pBuffer
       integer(c_int) :: XcoosortByColumn
+      if (.not. is_contiguous(cooRows)) error stop "cooRows: array must be contiguous"
+      if (.not. is_contiguous(cooCols)) error stop "cooCols: array must be contiguous"
+      if (.not. is_contiguous(P)) error stop "P: array must be contiguous"
       XcoosortByColumn = hipsparseXcoosortByColumn_raw(handle, m, n, nnz, c_loc(cooRows), c_loc( &
         cooCols), c_loc(P), pBuffer)
     end function hipsparseXcoosortByColumn_native
@@ -37102,6 +37566,7 @@ contains
       integer(c_int), value :: n
       integer(c_int), target :: p(..)
       integer(c_int) :: CreateIdentityPermutation
+      if (.not. is_contiguous(p)) error stop "p: array must be contiguous"
       CreateIdentityPermutation = hipsparseCreateIdentityPermutation_raw(handle, n, c_loc(p))
     end function hipsparseCreateIdentityPermutation_native
 
@@ -37131,6 +37596,10 @@ contains
       real(c_float), target :: A(..)
       integer(c_int), value :: ld
       integer(c_int) :: Scsc2dense
+      if (.not. is_contiguous(cscVal)) error stop "cscVal: array must be contiguous"
+      if (.not. is_contiguous(cscRowInd)) error stop "cscRowInd: array must be contiguous"
+      if (.not. is_contiguous(cscColPtr)) error stop "cscColPtr: array must be contiguous"
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
       Scsc2dense = hipsparseScsc2dense_raw(handle, m, n, descr, c_loc(cscVal), c_loc(cscRowInd), &
         c_loc(cscColPtr), c_loc(A), ld)
     end function hipsparseScsc2dense_native
@@ -37168,6 +37637,10 @@ contains
       real(c_double), target :: A(..)
       integer(c_int), value :: ld
       integer(c_int) :: Dcsc2dense
+      if (.not. is_contiguous(cscVal)) error stop "cscVal: array must be contiguous"
+      if (.not. is_contiguous(cscRowInd)) error stop "cscRowInd: array must be contiguous"
+      if (.not. is_contiguous(cscColPtr)) error stop "cscColPtr: array must be contiguous"
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
       Dcsc2dense = hipsparseDcsc2dense_raw(handle, m, n, descr, c_loc(cscVal), c_loc(cscRowInd), &
         c_loc(cscColPtr), c_loc(A), ld)
     end function hipsparseDcsc2dense_native
@@ -37205,6 +37678,10 @@ contains
       complex(c_float_complex), target :: A(..)
       integer(c_int), value :: ld
       integer(c_int) :: Ccsc2dense
+      if (.not. is_contiguous(cscVal)) error stop "cscVal: array must be contiguous"
+      if (.not. is_contiguous(cscRowInd)) error stop "cscRowInd: array must be contiguous"
+      if (.not. is_contiguous(cscColPtr)) error stop "cscColPtr: array must be contiguous"
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
       Ccsc2dense = hipsparseCcsc2dense_raw(handle, m, n, descr, c_loc(cscVal), c_loc(cscRowInd), &
         c_loc(cscColPtr), c_loc(A), ld)
     end function hipsparseCcsc2dense_native
@@ -37242,6 +37719,10 @@ contains
       complex(c_double_complex), target :: A(..)
       integer(c_int), value :: ld
       integer(c_int) :: Zcsc2dense
+      if (.not. is_contiguous(cscVal)) error stop "cscVal: array must be contiguous"
+      if (.not. is_contiguous(cscRowInd)) error stop "cscRowInd: array must be contiguous"
+      if (.not. is_contiguous(cscColPtr)) error stop "cscColPtr: array must be contiguous"
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
       Zcsc2dense = hipsparseZcsc2dense_raw(handle, m, n, descr, c_loc(cscVal), c_loc(cscRowInd), &
         c_loc(cscColPtr), c_loc(A), ld)
     end function hipsparseZcsc2dense_native
@@ -37277,6 +37758,8 @@ contains
       integer(c_int), target :: cscRowInd(..)
       type(c_ptr), value :: pBufferSizeInBytes
       integer(c_int) :: Xcscsort_bufferSizeExt
+      if (.not. is_contiguous(cscColPtr)) error stop "cscColPtr: array must be contiguous"
+      if (.not. is_contiguous(cscRowInd)) error stop "cscRowInd: array must be contiguous"
       Xcscsort_bufferSizeExt = hipsparseXcscsort_bufferSizeExt_raw(handle, m, n, nnz, c_loc( &
         cscColPtr), c_loc(cscRowInd), pBufferSizeInBytes)
     end function hipsparseXcscsort_bufferSizeExt_native
@@ -37312,6 +37795,9 @@ contains
       integer(c_int), target :: P(..)
       type(c_ptr), value :: pBuffer
       integer(c_int) :: Xcscsort
+      if (.not. is_contiguous(cscColPtr)) error stop "cscColPtr: array must be contiguous"
+      if (.not. is_contiguous(cscRowInd)) error stop "cscRowInd: array must be contiguous"
+      if (.not. is_contiguous(P)) error stop "P: array must be contiguous"
       Xcscsort = hipsparseXcscsort_raw(handle, m, n, nnz, descrA, c_loc(cscColPtr), c_loc( &
         cscRowInd), c_loc(P), pBuffer)
     end function hipsparseXcscsort_native
@@ -37351,6 +37837,10 @@ contains
       integer(c_int), target :: bsrRowPtrC(..)
       integer(c_int), target :: bsrNnzb(..)
       integer(c_int) :: Xcsr2bsrNnz
+      if (.not. is_contiguous(csrRowPtrA)) error stop "csrRowPtrA: array must be contiguous"
+      if (.not. is_contiguous(csrColIndA)) error stop "csrColIndA: array must be contiguous"
+      if (.not. is_contiguous(bsrRowPtrC)) error stop "bsrRowPtrC: array must be contiguous"
+      if (.not. is_contiguous(bsrNnzb)) error stop "bsrNnzb: array must be contiguous"
       Xcsr2bsrNnz = hipsparseXcsr2bsrNnz_raw(handle, dirA, m, n, descrA, c_loc(csrRowPtrA), c_loc( &
         csrColIndA), blockDim, descrC, c_loc(bsrRowPtrC), c_loc(bsrNnzb))
     end function hipsparseXcsr2bsrNnz_native
@@ -37394,6 +37884,12 @@ contains
       integer(c_int), target :: bsrRowPtrC(..)
       integer(c_int), target :: bsrColIndC(..)
       integer(c_int) :: Scsr2bsr
+      if (.not. is_contiguous(csrValA)) error stop "csrValA: array must be contiguous"
+      if (.not. is_contiguous(csrRowPtrA)) error stop "csrRowPtrA: array must be contiguous"
+      if (.not. is_contiguous(csrColIndA)) error stop "csrColIndA: array must be contiguous"
+      if (.not. is_contiguous(bsrValC)) error stop "bsrValC: array must be contiguous"
+      if (.not. is_contiguous(bsrRowPtrC)) error stop "bsrRowPtrC: array must be contiguous"
+      if (.not. is_contiguous(bsrColIndC)) error stop "bsrColIndC: array must be contiguous"
       Scsr2bsr = hipsparseScsr2bsr_raw(handle, dirA, m, n, descrA, c_loc(csrValA), c_loc( &
         csrRowPtrA), c_loc(csrColIndA), blockDim, descrC, c_loc(bsrValC), c_loc(bsrRowPtrC), &
         c_loc(bsrColIndC))
@@ -37440,6 +37936,12 @@ contains
       integer(c_int), target :: bsrRowPtrC(..)
       integer(c_int), target :: bsrColIndC(..)
       integer(c_int) :: Dcsr2bsr
+      if (.not. is_contiguous(csrValA)) error stop "csrValA: array must be contiguous"
+      if (.not. is_contiguous(csrRowPtrA)) error stop "csrRowPtrA: array must be contiguous"
+      if (.not. is_contiguous(csrColIndA)) error stop "csrColIndA: array must be contiguous"
+      if (.not. is_contiguous(bsrValC)) error stop "bsrValC: array must be contiguous"
+      if (.not. is_contiguous(bsrRowPtrC)) error stop "bsrRowPtrC: array must be contiguous"
+      if (.not. is_contiguous(bsrColIndC)) error stop "bsrColIndC: array must be contiguous"
       Dcsr2bsr = hipsparseDcsr2bsr_raw(handle, dirA, m, n, descrA, c_loc(csrValA), c_loc( &
         csrRowPtrA), c_loc(csrColIndA), blockDim, descrC, c_loc(bsrValC), c_loc(bsrRowPtrC), &
         c_loc(bsrColIndC))
@@ -37486,6 +37988,12 @@ contains
       integer(c_int), target :: bsrRowPtrC(..)
       integer(c_int), target :: bsrColIndC(..)
       integer(c_int) :: Ccsr2bsr
+      if (.not. is_contiguous(csrValA)) error stop "csrValA: array must be contiguous"
+      if (.not. is_contiguous(csrRowPtrA)) error stop "csrRowPtrA: array must be contiguous"
+      if (.not. is_contiguous(csrColIndA)) error stop "csrColIndA: array must be contiguous"
+      if (.not. is_contiguous(bsrValC)) error stop "bsrValC: array must be contiguous"
+      if (.not. is_contiguous(bsrRowPtrC)) error stop "bsrRowPtrC: array must be contiguous"
+      if (.not. is_contiguous(bsrColIndC)) error stop "bsrColIndC: array must be contiguous"
       Ccsr2bsr = hipsparseCcsr2bsr_raw(handle, dirA, m, n, descrA, c_loc(csrValA), c_loc( &
         csrRowPtrA), c_loc(csrColIndA), blockDim, descrC, c_loc(bsrValC), c_loc(bsrRowPtrC), &
         c_loc(bsrColIndC))
@@ -37532,6 +38040,12 @@ contains
       integer(c_int), target :: bsrRowPtrC(..)
       integer(c_int), target :: bsrColIndC(..)
       integer(c_int) :: Zcsr2bsr
+      if (.not. is_contiguous(csrValA)) error stop "csrValA: array must be contiguous"
+      if (.not. is_contiguous(csrRowPtrA)) error stop "csrRowPtrA: array must be contiguous"
+      if (.not. is_contiguous(csrColIndA)) error stop "csrColIndA: array must be contiguous"
+      if (.not. is_contiguous(bsrValC)) error stop "bsrValC: array must be contiguous"
+      if (.not. is_contiguous(bsrRowPtrC)) error stop "bsrRowPtrC: array must be contiguous"
+      if (.not. is_contiguous(bsrColIndC)) error stop "bsrColIndC: array must be contiguous"
       Zcsr2bsr = hipsparseZcsr2bsr_raw(handle, dirA, m, n, descrA, c_loc(csrValA), c_loc( &
         csrRowPtrA), c_loc(csrColIndA), blockDim, descrC, c_loc(bsrValC), c_loc(bsrRowPtrC), &
         c_loc(bsrColIndC))
@@ -37571,6 +38085,8 @@ contains
       integer(c_int), target :: cooRowInd(..)
       integer(c_int), value :: idxBase
       integer(c_int) :: Xcsr2coo
+      if (.not. is_contiguous(csrRowPtr)) error stop "csrRowPtr: array must be contiguous"
+      if (.not. is_contiguous(cooRowInd)) error stop "cooRowInd: array must be contiguous"
       Xcsr2coo = hipsparseXcsr2coo_raw(handle, c_loc(csrRowPtr), nnz, m, c_loc(cooRowInd), idxBase)
     end function hipsparseXcsr2coo_native
 
@@ -37606,6 +38122,12 @@ contains
       integer(c_int), value :: copyValues
       integer(c_int), value :: idxBase
       integer(c_int) :: Scsr2csc
+      if (.not. is_contiguous(csrSortedVal)) error stop "csrSortedVal: array must be contiguous"
+      if (.not. is_contiguous(csrSortedRowPtr)) error stop "csrSortedRowPtr: array must be contiguous"
+      if (.not. is_contiguous(csrSortedColInd)) error stop "csrSortedColInd: array must be contiguous"
+      if (.not. is_contiguous(cscSortedVal)) error stop "cscSortedVal: array must be contiguous"
+      if (.not. is_contiguous(cscSortedRowInd)) error stop "cscSortedRowInd: array must be contiguous"
+      if (.not. is_contiguous(cscSortedColPtr)) error stop "cscSortedColPtr: array must be contiguous"
       Scsr2csc = hipsparseScsr2csc_raw(handle, m, n, nnz, c_loc(csrSortedVal), c_loc( &
         csrSortedRowPtr), c_loc(csrSortedColInd), c_loc(cscSortedVal), c_loc(cscSortedRowInd), &
         c_loc(cscSortedColPtr), copyValues, idxBase)
@@ -37652,6 +38174,12 @@ contains
       integer(c_int), value :: copyValues
       integer(c_int), value :: idxBase
       integer(c_int) :: Dcsr2csc
+      if (.not. is_contiguous(csrSortedVal)) error stop "csrSortedVal: array must be contiguous"
+      if (.not. is_contiguous(csrSortedRowPtr)) error stop "csrSortedRowPtr: array must be contiguous"
+      if (.not. is_contiguous(csrSortedColInd)) error stop "csrSortedColInd: array must be contiguous"
+      if (.not. is_contiguous(cscSortedVal)) error stop "cscSortedVal: array must be contiguous"
+      if (.not. is_contiguous(cscSortedRowInd)) error stop "cscSortedRowInd: array must be contiguous"
+      if (.not. is_contiguous(cscSortedColPtr)) error stop "cscSortedColPtr: array must be contiguous"
       Dcsr2csc = hipsparseDcsr2csc_raw(handle, m, n, nnz, c_loc(csrSortedVal), c_loc( &
         csrSortedRowPtr), c_loc(csrSortedColInd), c_loc(cscSortedVal), c_loc(cscSortedRowInd), &
         c_loc(cscSortedColPtr), copyValues, idxBase)
@@ -37698,6 +38226,12 @@ contains
       integer(c_int), value :: copyValues
       integer(c_int), value :: idxBase
       integer(c_int) :: Ccsr2csc
+      if (.not. is_contiguous(csrSortedVal)) error stop "csrSortedVal: array must be contiguous"
+      if (.not. is_contiguous(csrSortedRowPtr)) error stop "csrSortedRowPtr: array must be contiguous"
+      if (.not. is_contiguous(csrSortedColInd)) error stop "csrSortedColInd: array must be contiguous"
+      if (.not. is_contiguous(cscSortedVal)) error stop "cscSortedVal: array must be contiguous"
+      if (.not. is_contiguous(cscSortedRowInd)) error stop "cscSortedRowInd: array must be contiguous"
+      if (.not. is_contiguous(cscSortedColPtr)) error stop "cscSortedColPtr: array must be contiguous"
       Ccsr2csc = hipsparseCcsr2csc_raw(handle, m, n, nnz, c_loc(csrSortedVal), c_loc( &
         csrSortedRowPtr), c_loc(csrSortedColInd), c_loc(cscSortedVal), c_loc(cscSortedRowInd), &
         c_loc(cscSortedColPtr), copyValues, idxBase)
@@ -37744,6 +38278,12 @@ contains
       integer(c_int), value :: copyValues
       integer(c_int), value :: idxBase
       integer(c_int) :: Zcsr2csc
+      if (.not. is_contiguous(csrSortedVal)) error stop "csrSortedVal: array must be contiguous"
+      if (.not. is_contiguous(csrSortedRowPtr)) error stop "csrSortedRowPtr: array must be contiguous"
+      if (.not. is_contiguous(csrSortedColInd)) error stop "csrSortedColInd: array must be contiguous"
+      if (.not. is_contiguous(cscSortedVal)) error stop "cscSortedVal: array must be contiguous"
+      if (.not. is_contiguous(cscSortedRowInd)) error stop "cscSortedRowInd: array must be contiguous"
+      if (.not. is_contiguous(cscSortedColPtr)) error stop "cscSortedColPtr: array must be contiguous"
       Zcsr2csc = hipsparseZcsr2csc_raw(handle, m, n, nnz, c_loc(csrSortedVal), c_loc( &
         csrSortedRowPtr), c_loc(csrSortedColInd), c_loc(cscSortedVal), c_loc(cscSortedRowInd), &
         c_loc(cscSortedColPtr), copyValues, idxBase)
@@ -37793,6 +38333,10 @@ contains
       integer(c_int), value :: alg
       type(c_ptr), value :: pBufferSizeInBytes
       integer(c_int) :: Csr2cscEx2_bufferSize
+      if (.not. is_contiguous(csrRowPtr)) error stop "csrRowPtr: array must be contiguous"
+      if (.not. is_contiguous(csrColInd)) error stop "csrColInd: array must be contiguous"
+      if (.not. is_contiguous(cscColPtr)) error stop "cscColPtr: array must be contiguous"
+      if (.not. is_contiguous(cscRowInd)) error stop "cscRowInd: array must be contiguous"
       Csr2cscEx2_bufferSize = hipsparseCsr2cscEx2_bufferSize_raw(handle, m, n, nnz, csrVal, c_loc( &
         csrRowPtr), c_loc(csrColInd), cscVal, c_loc(cscColPtr), c_loc(cscRowInd), valType, &
         copyValues, idxBase, alg, pBufferSizeInBytes)
@@ -37845,6 +38389,10 @@ contains
       integer(c_int), value :: alg
       type(c_ptr), value :: buffer
       integer(c_int) :: Csr2cscEx2
+      if (.not. is_contiguous(csrRowPtr)) error stop "csrRowPtr: array must be contiguous"
+      if (.not. is_contiguous(csrColInd)) error stop "csrColInd: array must be contiguous"
+      if (.not. is_contiguous(cscColPtr)) error stop "cscColPtr: array must be contiguous"
+      if (.not. is_contiguous(cscRowInd)) error stop "cscRowInd: array must be contiguous"
       Csr2cscEx2 = hipsparseCsr2cscEx2_raw(handle, m, n, nnz, csrVal, c_loc(csrRowPtr), c_loc( &
         csrColInd), cscVal, c_loc(cscColPtr), c_loc(cscRowInd), valType, copyValues, idxBase, alg, &
         buffer)
@@ -37893,6 +38441,13 @@ contains
       integer(c_int), target :: csrRowPtrC(..)
       real(c_float), value :: tol
       integer(c_int) :: Scsr2csr_compress
+      if (.not. is_contiguous(csrValA)) error stop "csrValA: array must be contiguous"
+      if (.not. is_contiguous(csrColIndA)) error stop "csrColIndA: array must be contiguous"
+      if (.not. is_contiguous(csrRowPtrA)) error stop "csrRowPtrA: array must be contiguous"
+      if (.not. is_contiguous(nnzPerRow)) error stop "nnzPerRow: array must be contiguous"
+      if (.not. is_contiguous(csrValC)) error stop "csrValC: array must be contiguous"
+      if (.not. is_contiguous(csrColIndC)) error stop "csrColIndC: array must be contiguous"
+      if (.not. is_contiguous(csrRowPtrC)) error stop "csrRowPtrC: array must be contiguous"
       Scsr2csr_compress = hipsparseScsr2csr_compress_raw(handle, m, n, descrA, c_loc(csrValA), &
         c_loc(csrColIndA), c_loc(csrRowPtrA), nnzA, c_loc(nnzPerRow), c_loc(csrValC), c_loc( &
         csrColIndC), c_loc(csrRowPtrC), tol)
@@ -37939,6 +38494,13 @@ contains
       integer(c_int), target :: csrRowPtrC(..)
       real(c_double), value :: tol
       integer(c_int) :: Dcsr2csr_compress
+      if (.not. is_contiguous(csrValA)) error stop "csrValA: array must be contiguous"
+      if (.not. is_contiguous(csrColIndA)) error stop "csrColIndA: array must be contiguous"
+      if (.not. is_contiguous(csrRowPtrA)) error stop "csrRowPtrA: array must be contiguous"
+      if (.not. is_contiguous(nnzPerRow)) error stop "nnzPerRow: array must be contiguous"
+      if (.not. is_contiguous(csrValC)) error stop "csrValC: array must be contiguous"
+      if (.not. is_contiguous(csrColIndC)) error stop "csrColIndC: array must be contiguous"
+      if (.not. is_contiguous(csrRowPtrC)) error stop "csrRowPtrC: array must be contiguous"
       Dcsr2csr_compress = hipsparseDcsr2csr_compress_raw(handle, m, n, descrA, c_loc(csrValA), &
         c_loc(csrColIndA), c_loc(csrRowPtrA), nnzA, c_loc(nnzPerRow), c_loc(csrValC), c_loc( &
         csrColIndC), c_loc(csrRowPtrC), tol)
@@ -37985,6 +38547,13 @@ contains
       integer(c_int), target :: csrRowPtrC(..)
       complex(c_float_complex), value :: tol
       integer(c_int) :: Ccsr2csr_compress
+      if (.not. is_contiguous(csrValA)) error stop "csrValA: array must be contiguous"
+      if (.not. is_contiguous(csrColIndA)) error stop "csrColIndA: array must be contiguous"
+      if (.not. is_contiguous(csrRowPtrA)) error stop "csrRowPtrA: array must be contiguous"
+      if (.not. is_contiguous(nnzPerRow)) error stop "nnzPerRow: array must be contiguous"
+      if (.not. is_contiguous(csrValC)) error stop "csrValC: array must be contiguous"
+      if (.not. is_contiguous(csrColIndC)) error stop "csrColIndC: array must be contiguous"
+      if (.not. is_contiguous(csrRowPtrC)) error stop "csrRowPtrC: array must be contiguous"
       Ccsr2csr_compress = hipsparseCcsr2csr_compress_raw(handle, m, n, descrA, c_loc(csrValA), &
         c_loc(csrColIndA), c_loc(csrRowPtrA), nnzA, c_loc(nnzPerRow), c_loc(csrValC), c_loc( &
         csrColIndC), c_loc(csrRowPtrC), tol)
@@ -38031,6 +38600,13 @@ contains
       integer(c_int), target :: csrRowPtrC(..)
       complex(c_double_complex), value :: tol
       integer(c_int) :: Zcsr2csr_compress
+      if (.not. is_contiguous(csrValA)) error stop "csrValA: array must be contiguous"
+      if (.not. is_contiguous(csrColIndA)) error stop "csrColIndA: array must be contiguous"
+      if (.not. is_contiguous(csrRowPtrA)) error stop "csrRowPtrA: array must be contiguous"
+      if (.not. is_contiguous(nnzPerRow)) error stop "nnzPerRow: array must be contiguous"
+      if (.not. is_contiguous(csrValC)) error stop "csrValC: array must be contiguous"
+      if (.not. is_contiguous(csrColIndC)) error stop "csrColIndC: array must be contiguous"
+      if (.not. is_contiguous(csrRowPtrC)) error stop "csrRowPtrC: array must be contiguous"
       Zcsr2csr_compress = hipsparseZcsr2csr_compress_raw(handle, m, n, descrA, c_loc(csrValA), &
         c_loc(csrColIndA), c_loc(csrRowPtrA), nnzA, c_loc(nnzPerRow), c_loc(csrValC), c_loc( &
         csrColIndC), c_loc(csrRowPtrC), tol)
@@ -38074,6 +38650,9 @@ contains
       type(c_ptr), value :: info
       type(c_ptr), value :: pBuffer
       integer(c_int) :: Scsr2csru
+      if (.not. is_contiguous(csrVal)) error stop "csrVal: array must be contiguous"
+      if (.not. is_contiguous(csrRowPtr)) error stop "csrRowPtr: array must be contiguous"
+      if (.not. is_contiguous(csrColInd)) error stop "csrColInd: array must be contiguous"
       Scsr2csru = hipsparseScsr2csru_raw(handle, m, n, nnz, descrA, c_loc(csrVal), c_loc( &
         csrRowPtr), c_loc(csrColInd), info, pBuffer)
     end function hipsparseScsr2csru_native
@@ -38113,6 +38692,9 @@ contains
       type(c_ptr), value :: info
       type(c_ptr), value :: pBuffer
       integer(c_int) :: Dcsr2csru
+      if (.not. is_contiguous(csrVal)) error stop "csrVal: array must be contiguous"
+      if (.not. is_contiguous(csrRowPtr)) error stop "csrRowPtr: array must be contiguous"
+      if (.not. is_contiguous(csrColInd)) error stop "csrColInd: array must be contiguous"
       Dcsr2csru = hipsparseDcsr2csru_raw(handle, m, n, nnz, descrA, c_loc(csrVal), c_loc( &
         csrRowPtr), c_loc(csrColInd), info, pBuffer)
     end function hipsparseDcsr2csru_native
@@ -38152,6 +38734,9 @@ contains
       type(c_ptr), value :: info
       type(c_ptr), value :: pBuffer
       integer(c_int) :: Ccsr2csru
+      if (.not. is_contiguous(csrVal)) error stop "csrVal: array must be contiguous"
+      if (.not. is_contiguous(csrRowPtr)) error stop "csrRowPtr: array must be contiguous"
+      if (.not. is_contiguous(csrColInd)) error stop "csrColInd: array must be contiguous"
       Ccsr2csru = hipsparseCcsr2csru_raw(handle, m, n, nnz, descrA, c_loc(csrVal), c_loc( &
         csrRowPtr), c_loc(csrColInd), info, pBuffer)
     end function hipsparseCcsr2csru_native
@@ -38191,6 +38776,9 @@ contains
       type(c_ptr), value :: info
       type(c_ptr), value :: pBuffer
       integer(c_int) :: Zcsr2csru
+      if (.not. is_contiguous(csrVal)) error stop "csrVal: array must be contiguous"
+      if (.not. is_contiguous(csrRowPtr)) error stop "csrRowPtr: array must be contiguous"
+      if (.not. is_contiguous(csrColInd)) error stop "csrColInd: array must be contiguous"
       Zcsr2csru = hipsparseZcsr2csru_raw(handle, m, n, nnz, descrA, c_loc(csrVal), c_loc( &
         csrRowPtr), c_loc(csrColInd), info, pBuffer)
     end function hipsparseZcsr2csru_native
@@ -38229,6 +38817,10 @@ contains
       real(c_float), target :: A(..)
       integer(c_int), value :: ld
       integer(c_int) :: Scsr2dense
+      if (.not. is_contiguous(csrVal)) error stop "csrVal: array must be contiguous"
+      if (.not. is_contiguous(csrRowPtr)) error stop "csrRowPtr: array must be contiguous"
+      if (.not. is_contiguous(csrColInd)) error stop "csrColInd: array must be contiguous"
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
       Scsr2dense = hipsparseScsr2dense_raw(handle, m, n, descr, c_loc(csrVal), c_loc(csrRowPtr), &
         c_loc(csrColInd), c_loc(A), ld)
     end function hipsparseScsr2dense_native
@@ -38266,6 +38858,10 @@ contains
       real(c_double), target :: A(..)
       integer(c_int), value :: ld
       integer(c_int) :: Dcsr2dense
+      if (.not. is_contiguous(csrVal)) error stop "csrVal: array must be contiguous"
+      if (.not. is_contiguous(csrRowPtr)) error stop "csrRowPtr: array must be contiguous"
+      if (.not. is_contiguous(csrColInd)) error stop "csrColInd: array must be contiguous"
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
       Dcsr2dense = hipsparseDcsr2dense_raw(handle, m, n, descr, c_loc(csrVal), c_loc(csrRowPtr), &
         c_loc(csrColInd), c_loc(A), ld)
     end function hipsparseDcsr2dense_native
@@ -38303,6 +38899,10 @@ contains
       complex(c_float_complex), target :: A(..)
       integer(c_int), value :: ld
       integer(c_int) :: Ccsr2dense
+      if (.not. is_contiguous(csrVal)) error stop "csrVal: array must be contiguous"
+      if (.not. is_contiguous(csrRowPtr)) error stop "csrRowPtr: array must be contiguous"
+      if (.not. is_contiguous(csrColInd)) error stop "csrColInd: array must be contiguous"
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
       Ccsr2dense = hipsparseCcsr2dense_raw(handle, m, n, descr, c_loc(csrVal), c_loc(csrRowPtr), &
         c_loc(csrColInd), c_loc(A), ld)
     end function hipsparseCcsr2dense_native
@@ -38340,6 +38940,10 @@ contains
       complex(c_double_complex), target :: A(..)
       integer(c_int), value :: ld
       integer(c_int) :: Zcsr2dense
+      if (.not. is_contiguous(csrVal)) error stop "csrVal: array must be contiguous"
+      if (.not. is_contiguous(csrRowPtr)) error stop "csrRowPtr: array must be contiguous"
+      if (.not. is_contiguous(csrColInd)) error stop "csrColInd: array must be contiguous"
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
       Zcsr2dense = hipsparseZcsr2dense_raw(handle, m, n, descr, c_loc(csrVal), c_loc(csrRowPtr), &
         c_loc(csrColInd), c_loc(A), ld)
     end function hipsparseZcsr2dense_native
@@ -38380,6 +38984,9 @@ contains
       integer(c_int), value :: colBlockDim
       type(c_ptr), value :: pBufferSizeInBytes
       integer(c_int) :: Scsr2gebsr_bufferSize
+      if (.not. is_contiguous(csrVal)) error stop "csrVal: array must be contiguous"
+      if (.not. is_contiguous(csrRowPtr)) error stop "csrRowPtr: array must be contiguous"
+      if (.not. is_contiguous(csrColInd)) error stop "csrColInd: array must be contiguous"
       Scsr2gebsr_bufferSize = hipsparseScsr2gebsr_bufferSize_raw(handle, dir, m, n, csr_descr, &
         c_loc(csrVal), c_loc(csrRowPtr), c_loc(csrColInd), rowBlockDim, colBlockDim, &
         pBufferSizeInBytes)
@@ -38423,6 +39030,9 @@ contains
       integer(c_int), value :: colBlockDim
       type(c_ptr), value :: pBufferSizeInBytes
       integer(c_int) :: Dcsr2gebsr_bufferSize
+      if (.not. is_contiguous(csrVal)) error stop "csrVal: array must be contiguous"
+      if (.not. is_contiguous(csrRowPtr)) error stop "csrRowPtr: array must be contiguous"
+      if (.not. is_contiguous(csrColInd)) error stop "csrColInd: array must be contiguous"
       Dcsr2gebsr_bufferSize = hipsparseDcsr2gebsr_bufferSize_raw(handle, dir, m, n, csr_descr, &
         c_loc(csrVal), c_loc(csrRowPtr), c_loc(csrColInd), rowBlockDim, colBlockDim, &
         pBufferSizeInBytes)
@@ -38466,6 +39076,9 @@ contains
       integer(c_int), value :: colBlockDim
       type(c_ptr), value :: pBufferSizeInBytes
       integer(c_int) :: Ccsr2gebsr_bufferSize
+      if (.not. is_contiguous(csrVal)) error stop "csrVal: array must be contiguous"
+      if (.not. is_contiguous(csrRowPtr)) error stop "csrRowPtr: array must be contiguous"
+      if (.not. is_contiguous(csrColInd)) error stop "csrColInd: array must be contiguous"
       Ccsr2gebsr_bufferSize = hipsparseCcsr2gebsr_bufferSize_raw(handle, dir, m, n, csr_descr, &
         c_loc(csrVal), c_loc(csrRowPtr), c_loc(csrColInd), rowBlockDim, colBlockDim, &
         pBufferSizeInBytes)
@@ -38509,6 +39122,9 @@ contains
       integer(c_int), value :: colBlockDim
       type(c_ptr), value :: pBufferSizeInBytes
       integer(c_int) :: Zcsr2gebsr_bufferSize
+      if (.not. is_contiguous(csrVal)) error stop "csrVal: array must be contiguous"
+      if (.not. is_contiguous(csrRowPtr)) error stop "csrRowPtr: array must be contiguous"
+      if (.not. is_contiguous(csrColInd)) error stop "csrColInd: array must be contiguous"
       Zcsr2gebsr_bufferSize = hipsparseZcsr2gebsr_bufferSize_raw(handle, dir, m, n, csr_descr, &
         c_loc(csrVal), c_loc(csrRowPtr), c_loc(csrColInd), rowBlockDim, colBlockDim, &
         pBufferSizeInBytes)
@@ -38554,6 +39170,10 @@ contains
       integer(c_int), target :: bsrNnzDevhost(..)
       type(c_ptr), value :: pbuffer
       integer(c_int) :: Xcsr2gebsrNnz
+      if (.not. is_contiguous(csrRowPtr)) error stop "csrRowPtr: array must be contiguous"
+      if (.not. is_contiguous(csrColInd)) error stop "csrColInd: array must be contiguous"
+      if (.not. is_contiguous(bsrRowPtr)) error stop "bsrRowPtr: array must be contiguous"
+      if (.not. is_contiguous(bsrNnzDevhost)) error stop "bsrNnzDevhost: array must be contiguous"
       Xcsr2gebsrNnz = hipsparseXcsr2gebsrNnz_raw(handle, dir, m, n, csr_descr, c_loc(csrRowPtr), &
         c_loc(csrColInd), bsr_descr, c_loc(bsrRowPtr), rowBlockDim, colBlockDim, c_loc( &
         bsrNnzDevhost), pbuffer)
@@ -38604,6 +39224,12 @@ contains
       integer(c_int), value :: colBlockDim
       type(c_ptr), value :: pbuffer
       integer(c_int) :: Scsr2gebsr
+      if (.not. is_contiguous(csrVal)) error stop "csrVal: array must be contiguous"
+      if (.not. is_contiguous(csrRowPtr)) error stop "csrRowPtr: array must be contiguous"
+      if (.not. is_contiguous(csrColInd)) error stop "csrColInd: array must be contiguous"
+      if (.not. is_contiguous(bsrVal)) error stop "bsrVal: array must be contiguous"
+      if (.not. is_contiguous(bsrRowPtr)) error stop "bsrRowPtr: array must be contiguous"
+      if (.not. is_contiguous(bsrColInd)) error stop "bsrColInd: array must be contiguous"
       Scsr2gebsr = hipsparseScsr2gebsr_raw(handle, dir, m, n, csr_descr, c_loc(csrVal), c_loc( &
         csrRowPtr), c_loc(csrColInd), bsr_descr, c_loc(bsrVal), c_loc(bsrRowPtr), c_loc( &
         bsrColInd), rowBlockDim, colBlockDim, pbuffer)
@@ -38657,6 +39283,12 @@ contains
       integer(c_int), value :: colBlockDim
       type(c_ptr), value :: pbuffer
       integer(c_int) :: Dcsr2gebsr
+      if (.not. is_contiguous(csrVal)) error stop "csrVal: array must be contiguous"
+      if (.not. is_contiguous(csrRowPtr)) error stop "csrRowPtr: array must be contiguous"
+      if (.not. is_contiguous(csrColInd)) error stop "csrColInd: array must be contiguous"
+      if (.not. is_contiguous(bsrVal)) error stop "bsrVal: array must be contiguous"
+      if (.not. is_contiguous(bsrRowPtr)) error stop "bsrRowPtr: array must be contiguous"
+      if (.not. is_contiguous(bsrColInd)) error stop "bsrColInd: array must be contiguous"
       Dcsr2gebsr = hipsparseDcsr2gebsr_raw(handle, dir, m, n, csr_descr, c_loc(csrVal), c_loc( &
         csrRowPtr), c_loc(csrColInd), bsr_descr, c_loc(bsrVal), c_loc(bsrRowPtr), c_loc( &
         bsrColInd), rowBlockDim, colBlockDim, pbuffer)
@@ -38710,6 +39342,12 @@ contains
       integer(c_int), value :: colBlockDim
       type(c_ptr), value :: pbuffer
       integer(c_int) :: Ccsr2gebsr
+      if (.not. is_contiguous(csrVal)) error stop "csrVal: array must be contiguous"
+      if (.not. is_contiguous(csrRowPtr)) error stop "csrRowPtr: array must be contiguous"
+      if (.not. is_contiguous(csrColInd)) error stop "csrColInd: array must be contiguous"
+      if (.not. is_contiguous(bsrVal)) error stop "bsrVal: array must be contiguous"
+      if (.not. is_contiguous(bsrRowPtr)) error stop "bsrRowPtr: array must be contiguous"
+      if (.not. is_contiguous(bsrColInd)) error stop "bsrColInd: array must be contiguous"
       Ccsr2gebsr = hipsparseCcsr2gebsr_raw(handle, dir, m, n, csr_descr, c_loc(csrVal), c_loc( &
         csrRowPtr), c_loc(csrColInd), bsr_descr, c_loc(bsrVal), c_loc(bsrRowPtr), c_loc( &
         bsrColInd), rowBlockDim, colBlockDim, pbuffer)
@@ -38763,6 +39401,12 @@ contains
       integer(c_int), value :: colBlockDim
       type(c_ptr), value :: pbuffer
       integer(c_int) :: Zcsr2gebsr
+      if (.not. is_contiguous(csrVal)) error stop "csrVal: array must be contiguous"
+      if (.not. is_contiguous(csrRowPtr)) error stop "csrRowPtr: array must be contiguous"
+      if (.not. is_contiguous(csrColInd)) error stop "csrColInd: array must be contiguous"
+      if (.not. is_contiguous(bsrVal)) error stop "bsrVal: array must be contiguous"
+      if (.not. is_contiguous(bsrRowPtr)) error stop "bsrRowPtr: array must be contiguous"
+      if (.not. is_contiguous(bsrColInd)) error stop "bsrColInd: array must be contiguous"
       Zcsr2gebsr = hipsparseZcsr2gebsr_raw(handle, dir, m, n, csr_descr, c_loc(csrVal), c_loc( &
         csrRowPtr), c_loc(csrColInd), bsr_descr, c_loc(bsrVal), c_loc(bsrRowPtr), c_loc( &
         bsrColInd), rowBlockDim, colBlockDim, pbuffer)
@@ -38810,6 +39454,9 @@ contains
       integer(c_int), value :: userEllWidth
       integer(c_int), value :: partitionType
       integer(c_int) :: Scsr2hyb
+      if (.not. is_contiguous(csrSortedValA)) error stop "csrSortedValA: array must be contiguous"
+      if (.not. is_contiguous(csrSortedRowPtrA)) error stop "csrSortedRowPtrA: array must be contiguous"
+      if (.not. is_contiguous(csrSortedColIndA)) error stop "csrSortedColIndA: array must be contiguous"
       Scsr2hyb = hipsparseScsr2hyb_raw(handle, m, n, descrA, c_loc(csrSortedValA), c_loc( &
         csrSortedRowPtrA), c_loc(csrSortedColIndA), hybA, userEllWidth, partitionType)
     end function hipsparseScsr2hyb_native
@@ -38849,6 +39496,9 @@ contains
       integer(c_int), value :: userEllWidth
       integer(c_int), value :: partitionType
       integer(c_int) :: Dcsr2hyb
+      if (.not. is_contiguous(csrSortedValA)) error stop "csrSortedValA: array must be contiguous"
+      if (.not. is_contiguous(csrSortedRowPtrA)) error stop "csrSortedRowPtrA: array must be contiguous"
+      if (.not. is_contiguous(csrSortedColIndA)) error stop "csrSortedColIndA: array must be contiguous"
       Dcsr2hyb = hipsparseDcsr2hyb_raw(handle, m, n, descrA, c_loc(csrSortedValA), c_loc( &
         csrSortedRowPtrA), c_loc(csrSortedColIndA), hybA, userEllWidth, partitionType)
     end function hipsparseDcsr2hyb_native
@@ -38888,6 +39538,9 @@ contains
       integer(c_int), value :: userEllWidth
       integer(c_int), value :: partitionType
       integer(c_int) :: Ccsr2hyb
+      if (.not. is_contiguous(csrSortedValA)) error stop "csrSortedValA: array must be contiguous"
+      if (.not. is_contiguous(csrSortedRowPtrA)) error stop "csrSortedRowPtrA: array must be contiguous"
+      if (.not. is_contiguous(csrSortedColIndA)) error stop "csrSortedColIndA: array must be contiguous"
       Ccsr2hyb = hipsparseCcsr2hyb_raw(handle, m, n, descrA, c_loc(csrSortedValA), c_loc( &
         csrSortedRowPtrA), c_loc(csrSortedColIndA), hybA, userEllWidth, partitionType)
     end function hipsparseCcsr2hyb_native
@@ -38927,6 +39580,9 @@ contains
       integer(c_int), value :: userEllWidth
       integer(c_int), value :: partitionType
       integer(c_int) :: Zcsr2hyb
+      if (.not. is_contiguous(csrSortedValA)) error stop "csrSortedValA: array must be contiguous"
+      if (.not. is_contiguous(csrSortedRowPtrA)) error stop "csrSortedRowPtrA: array must be contiguous"
+      if (.not. is_contiguous(csrSortedColIndA)) error stop "csrSortedColIndA: array must be contiguous"
       Zcsr2hyb = hipsparseZcsr2hyb_raw(handle, m, n, descrA, c_loc(csrSortedValA), c_loc( &
         csrSortedRowPtrA), c_loc(csrSortedColIndA), hybA, userEllWidth, partitionType)
     end function hipsparseZcsr2hyb_native
@@ -38963,6 +39619,8 @@ contains
       integer(c_int), target :: csrColInd(..)
       type(c_ptr), value :: pBufferSizeInBytes
       integer(c_int) :: Xcsrsort_bufferSizeExt
+      if (.not. is_contiguous(csrRowPtr)) error stop "csrRowPtr: array must be contiguous"
+      if (.not. is_contiguous(csrColInd)) error stop "csrColInd: array must be contiguous"
       Xcsrsort_bufferSizeExt = hipsparseXcsrsort_bufferSizeExt_raw(handle, m, n, nnz, c_loc( &
         csrRowPtr), c_loc(csrColInd), pBufferSizeInBytes)
     end function hipsparseXcsrsort_bufferSizeExt_native
@@ -38998,6 +39656,9 @@ contains
       integer(c_int), target :: P(..)
       type(c_ptr), value :: pBuffer
       integer(c_int) :: Xcsrsort
+      if (.not. is_contiguous(csrRowPtr)) error stop "csrRowPtr: array must be contiguous"
+      if (.not. is_contiguous(csrColInd)) error stop "csrColInd: array must be contiguous"
+      if (.not. is_contiguous(P)) error stop "P: array must be contiguous"
       Xcsrsort = hipsparseXcsrsort_raw(handle, m, n, nnz, descrA, c_loc(csrRowPtr), c_loc( &
         csrColInd), c_loc(P), pBuffer)
     end function hipsparseXcsrsort_native
@@ -39035,6 +39696,9 @@ contains
       type(c_ptr), value :: info
       type(c_ptr), value :: pBufferSizeInBytes
       integer(c_int) :: Scsru2csr_bufferSizeExt
+      if (.not. is_contiguous(csrVal)) error stop "csrVal: array must be contiguous"
+      if (.not. is_contiguous(csrRowPtr)) error stop "csrRowPtr: array must be contiguous"
+      if (.not. is_contiguous(csrColInd)) error stop "csrColInd: array must be contiguous"
       Scsru2csr_bufferSizeExt = hipsparseScsru2csr_bufferSizeExt_raw(handle, m, n, nnz, c_loc( &
         csrVal), c_loc(csrRowPtr), c_loc(csrColInd), info, pBufferSizeInBytes)
     end function hipsparseScsru2csr_bufferSizeExt_native
@@ -39072,6 +39736,9 @@ contains
       type(c_ptr), value :: info
       type(c_ptr), value :: pBufferSizeInBytes
       integer(c_int) :: Dcsru2csr_bufferSizeExt
+      if (.not. is_contiguous(csrVal)) error stop "csrVal: array must be contiguous"
+      if (.not. is_contiguous(csrRowPtr)) error stop "csrRowPtr: array must be contiguous"
+      if (.not. is_contiguous(csrColInd)) error stop "csrColInd: array must be contiguous"
       Dcsru2csr_bufferSizeExt = hipsparseDcsru2csr_bufferSizeExt_raw(handle, m, n, nnz, c_loc( &
         csrVal), c_loc(csrRowPtr), c_loc(csrColInd), info, pBufferSizeInBytes)
     end function hipsparseDcsru2csr_bufferSizeExt_native
@@ -39109,6 +39776,9 @@ contains
       type(c_ptr), value :: info
       type(c_ptr), value :: pBufferSizeInBytes
       integer(c_int) :: Ccsru2csr_bufferSizeExt
+      if (.not. is_contiguous(csrVal)) error stop "csrVal: array must be contiguous"
+      if (.not. is_contiguous(csrRowPtr)) error stop "csrRowPtr: array must be contiguous"
+      if (.not. is_contiguous(csrColInd)) error stop "csrColInd: array must be contiguous"
       Ccsru2csr_bufferSizeExt = hipsparseCcsru2csr_bufferSizeExt_raw(handle, m, n, nnz, c_loc( &
         csrVal), c_loc(csrRowPtr), c_loc(csrColInd), info, pBufferSizeInBytes)
     end function hipsparseCcsru2csr_bufferSizeExt_native
@@ -39146,6 +39816,9 @@ contains
       type(c_ptr), value :: info
       type(c_ptr), value :: pBufferSizeInBytes
       integer(c_int) :: Zcsru2csr_bufferSizeExt
+      if (.not. is_contiguous(csrVal)) error stop "csrVal: array must be contiguous"
+      if (.not. is_contiguous(csrRowPtr)) error stop "csrRowPtr: array must be contiguous"
+      if (.not. is_contiguous(csrColInd)) error stop "csrColInd: array must be contiguous"
       Zcsru2csr_bufferSizeExt = hipsparseZcsru2csr_bufferSizeExt_raw(handle, m, n, nnz, c_loc( &
         csrVal), c_loc(csrRowPtr), c_loc(csrColInd), info, pBufferSizeInBytes)
     end function hipsparseZcsru2csr_bufferSizeExt_native
@@ -39184,6 +39857,9 @@ contains
       type(c_ptr), value :: info
       type(c_ptr), value :: pBuffer
       integer(c_int) :: Scsru2csr
+      if (.not. is_contiguous(csrVal)) error stop "csrVal: array must be contiguous"
+      if (.not. is_contiguous(csrRowPtr)) error stop "csrRowPtr: array must be contiguous"
+      if (.not. is_contiguous(csrColInd)) error stop "csrColInd: array must be contiguous"
       Scsru2csr = hipsparseScsru2csr_raw(handle, m, n, nnz, descrA, c_loc(csrVal), c_loc( &
         csrRowPtr), c_loc(csrColInd), info, pBuffer)
     end function hipsparseScsru2csr_native
@@ -39223,6 +39899,9 @@ contains
       type(c_ptr), value :: info
       type(c_ptr), value :: pBuffer
       integer(c_int) :: Dcsru2csr
+      if (.not. is_contiguous(csrVal)) error stop "csrVal: array must be contiguous"
+      if (.not. is_contiguous(csrRowPtr)) error stop "csrRowPtr: array must be contiguous"
+      if (.not. is_contiguous(csrColInd)) error stop "csrColInd: array must be contiguous"
       Dcsru2csr = hipsparseDcsru2csr_raw(handle, m, n, nnz, descrA, c_loc(csrVal), c_loc( &
         csrRowPtr), c_loc(csrColInd), info, pBuffer)
     end function hipsparseDcsru2csr_native
@@ -39262,6 +39941,9 @@ contains
       type(c_ptr), value :: info
       type(c_ptr), value :: pBuffer
       integer(c_int) :: Ccsru2csr
+      if (.not. is_contiguous(csrVal)) error stop "csrVal: array must be contiguous"
+      if (.not. is_contiguous(csrRowPtr)) error stop "csrRowPtr: array must be contiguous"
+      if (.not. is_contiguous(csrColInd)) error stop "csrColInd: array must be contiguous"
       Ccsru2csr = hipsparseCcsru2csr_raw(handle, m, n, nnz, descrA, c_loc(csrVal), c_loc( &
         csrRowPtr), c_loc(csrColInd), info, pBuffer)
     end function hipsparseCcsru2csr_native
@@ -39301,6 +39983,9 @@ contains
       type(c_ptr), value :: info
       type(c_ptr), value :: pBuffer
       integer(c_int) :: Zcsru2csr
+      if (.not. is_contiguous(csrVal)) error stop "csrVal: array must be contiguous"
+      if (.not. is_contiguous(csrRowPtr)) error stop "csrRowPtr: array must be contiguous"
+      if (.not. is_contiguous(csrColInd)) error stop "csrColInd: array must be contiguous"
       Zcsru2csr = hipsparseZcsru2csr_raw(handle, m, n, nnz, descrA, c_loc(csrVal), c_loc( &
         csrRowPtr), c_loc(csrColInd), info, pBuffer)
     end function hipsparseZcsru2csr_native
@@ -39340,6 +40025,11 @@ contains
       integer(c_int), target :: cscRowInd(..)
       integer(c_int), target :: cscColPtr(..)
       integer(c_int) :: Sdense2csc
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(nnzPerColumn)) error stop "nnzPerColumn: array must be contiguous"
+      if (.not. is_contiguous(cscVal)) error stop "cscVal: array must be contiguous"
+      if (.not. is_contiguous(cscRowInd)) error stop "cscRowInd: array must be contiguous"
+      if (.not. is_contiguous(cscColPtr)) error stop "cscColPtr: array must be contiguous"
       Sdense2csc = hipsparseSdense2csc_raw(handle, m, n, descr, c_loc(A), ld, c_loc(nnzPerColumn), &
         c_loc(cscVal), c_loc(cscRowInd), c_loc(cscColPtr))
     end function hipsparseSdense2csc_native
@@ -39379,6 +40069,11 @@ contains
       integer(c_int), target :: cscRowInd(..)
       integer(c_int), target :: cscColPtr(..)
       integer(c_int) :: Ddense2csc
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(nnzPerColumn)) error stop "nnzPerColumn: array must be contiguous"
+      if (.not. is_contiguous(cscVal)) error stop "cscVal: array must be contiguous"
+      if (.not. is_contiguous(cscRowInd)) error stop "cscRowInd: array must be contiguous"
+      if (.not. is_contiguous(cscColPtr)) error stop "cscColPtr: array must be contiguous"
       Ddense2csc = hipsparseDdense2csc_raw(handle, m, n, descr, c_loc(A), ld, c_loc(nnzPerColumn), &
         c_loc(cscVal), c_loc(cscRowInd), c_loc(cscColPtr))
     end function hipsparseDdense2csc_native
@@ -39418,6 +40113,11 @@ contains
       integer(c_int), target :: cscRowInd(..)
       integer(c_int), target :: cscColPtr(..)
       integer(c_int) :: Cdense2csc
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(nnzPerColumn)) error stop "nnzPerColumn: array must be contiguous"
+      if (.not. is_contiguous(cscVal)) error stop "cscVal: array must be contiguous"
+      if (.not. is_contiguous(cscRowInd)) error stop "cscRowInd: array must be contiguous"
+      if (.not. is_contiguous(cscColPtr)) error stop "cscColPtr: array must be contiguous"
       Cdense2csc = hipsparseCdense2csc_raw(handle, m, n, descr, c_loc(A), ld, c_loc(nnzPerColumn), &
         c_loc(cscVal), c_loc(cscRowInd), c_loc(cscColPtr))
     end function hipsparseCdense2csc_native
@@ -39457,6 +40157,11 @@ contains
       integer(c_int), target :: cscRowInd(..)
       integer(c_int), target :: cscColPtr(..)
       integer(c_int) :: Zdense2csc
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(nnzPerColumn)) error stop "nnzPerColumn: array must be contiguous"
+      if (.not. is_contiguous(cscVal)) error stop "cscVal: array must be contiguous"
+      if (.not. is_contiguous(cscRowInd)) error stop "cscRowInd: array must be contiguous"
+      if (.not. is_contiguous(cscColPtr)) error stop "cscColPtr: array must be contiguous"
       Zdense2csc = hipsparseZdense2csc_raw(handle, m, n, descr, c_loc(A), ld, c_loc(nnzPerColumn), &
         c_loc(cscVal), c_loc(cscRowInd), c_loc(cscColPtr))
     end function hipsparseZdense2csc_native
@@ -39496,6 +40201,11 @@ contains
       integer(c_int), target :: csrRowPtr(..)
       integer(c_int), target :: csrColInd(..)
       integer(c_int) :: Sdense2csr
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(nnzPerRow)) error stop "nnzPerRow: array must be contiguous"
+      if (.not. is_contiguous(csrVal)) error stop "csrVal: array must be contiguous"
+      if (.not. is_contiguous(csrRowPtr)) error stop "csrRowPtr: array must be contiguous"
+      if (.not. is_contiguous(csrColInd)) error stop "csrColInd: array must be contiguous"
       Sdense2csr = hipsparseSdense2csr_raw(handle, m, n, descr, c_loc(A), ld, c_loc(nnzPerRow), &
         c_loc(csrVal), c_loc(csrRowPtr), c_loc(csrColInd))
     end function hipsparseSdense2csr_native
@@ -39535,6 +40245,11 @@ contains
       integer(c_int), target :: csrRowPtr(..)
       integer(c_int), target :: csrColInd(..)
       integer(c_int) :: Ddense2csr
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(nnzPerRow)) error stop "nnzPerRow: array must be contiguous"
+      if (.not. is_contiguous(csrVal)) error stop "csrVal: array must be contiguous"
+      if (.not. is_contiguous(csrRowPtr)) error stop "csrRowPtr: array must be contiguous"
+      if (.not. is_contiguous(csrColInd)) error stop "csrColInd: array must be contiguous"
       Ddense2csr = hipsparseDdense2csr_raw(handle, m, n, descr, c_loc(A), ld, c_loc(nnzPerRow), &
         c_loc(csrVal), c_loc(csrRowPtr), c_loc(csrColInd))
     end function hipsparseDdense2csr_native
@@ -39574,6 +40289,11 @@ contains
       integer(c_int), target :: csrRowPtr(..)
       integer(c_int), target :: csrColInd(..)
       integer(c_int) :: Cdense2csr
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(nnzPerRow)) error stop "nnzPerRow: array must be contiguous"
+      if (.not. is_contiguous(csrVal)) error stop "csrVal: array must be contiguous"
+      if (.not. is_contiguous(csrRowPtr)) error stop "csrRowPtr: array must be contiguous"
+      if (.not. is_contiguous(csrColInd)) error stop "csrColInd: array must be contiguous"
       Cdense2csr = hipsparseCdense2csr_raw(handle, m, n, descr, c_loc(A), ld, c_loc(nnzPerRow), &
         c_loc(csrVal), c_loc(csrRowPtr), c_loc(csrColInd))
     end function hipsparseCdense2csr_native
@@ -39613,6 +40333,11 @@ contains
       integer(c_int), target :: csrRowPtr(..)
       integer(c_int), target :: csrColInd(..)
       integer(c_int) :: Zdense2csr
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(nnzPerRow)) error stop "nnzPerRow: array must be contiguous"
+      if (.not. is_contiguous(csrVal)) error stop "csrVal: array must be contiguous"
+      if (.not. is_contiguous(csrRowPtr)) error stop "csrRowPtr: array must be contiguous"
+      if (.not. is_contiguous(csrColInd)) error stop "csrColInd: array must be contiguous"
       Zdense2csr = hipsparseZdense2csr_raw(handle, m, n, descr, c_loc(A), ld, c_loc(nnzPerRow), &
         c_loc(csrVal), c_loc(csrRowPtr), c_loc(csrColInd))
     end function hipsparseZdense2csr_native
@@ -39657,6 +40382,12 @@ contains
       integer(c_int), target :: csrRowPtrC(..)
       integer(c_int), target :: csrColIndC(..)
       integer(c_int) :: Sgebsr2csr
+      if (.not. is_contiguous(bsrValA)) error stop "bsrValA: array must be contiguous"
+      if (.not. is_contiguous(bsrRowPtrA)) error stop "bsrRowPtrA: array must be contiguous"
+      if (.not. is_contiguous(bsrColIndA)) error stop "bsrColIndA: array must be contiguous"
+      if (.not. is_contiguous(csrValC)) error stop "csrValC: array must be contiguous"
+      if (.not. is_contiguous(csrRowPtrC)) error stop "csrRowPtrC: array must be contiguous"
+      if (.not. is_contiguous(csrColIndC)) error stop "csrColIndC: array must be contiguous"
       Sgebsr2csr = hipsparseSgebsr2csr_raw(handle, dirA, mb, nb, descrA, c_loc(bsrValA), c_loc( &
         bsrRowPtrA), c_loc(bsrColIndA), rowBlockDim, colBlockDim, descrC, c_loc(csrValC), c_loc( &
         csrRowPtrC), c_loc(csrColIndC))
@@ -39708,6 +40439,12 @@ contains
       integer(c_int), target :: csrRowPtrC(..)
       integer(c_int), target :: csrColIndC(..)
       integer(c_int) :: Dgebsr2csr
+      if (.not. is_contiguous(bsrValA)) error stop "bsrValA: array must be contiguous"
+      if (.not. is_contiguous(bsrRowPtrA)) error stop "bsrRowPtrA: array must be contiguous"
+      if (.not. is_contiguous(bsrColIndA)) error stop "bsrColIndA: array must be contiguous"
+      if (.not. is_contiguous(csrValC)) error stop "csrValC: array must be contiguous"
+      if (.not. is_contiguous(csrRowPtrC)) error stop "csrRowPtrC: array must be contiguous"
+      if (.not. is_contiguous(csrColIndC)) error stop "csrColIndC: array must be contiguous"
       Dgebsr2csr = hipsparseDgebsr2csr_raw(handle, dirA, mb, nb, descrA, c_loc(bsrValA), c_loc( &
         bsrRowPtrA), c_loc(bsrColIndA), rowBlockDim, colBlockDim, descrC, c_loc(csrValC), c_loc( &
         csrRowPtrC), c_loc(csrColIndC))
@@ -39759,6 +40496,12 @@ contains
       integer(c_int), target :: csrRowPtrC(..)
       integer(c_int), target :: csrColIndC(..)
       integer(c_int) :: Cgebsr2csr
+      if (.not. is_contiguous(bsrValA)) error stop "bsrValA: array must be contiguous"
+      if (.not. is_contiguous(bsrRowPtrA)) error stop "bsrRowPtrA: array must be contiguous"
+      if (.not. is_contiguous(bsrColIndA)) error stop "bsrColIndA: array must be contiguous"
+      if (.not. is_contiguous(csrValC)) error stop "csrValC: array must be contiguous"
+      if (.not. is_contiguous(csrRowPtrC)) error stop "csrRowPtrC: array must be contiguous"
+      if (.not. is_contiguous(csrColIndC)) error stop "csrColIndC: array must be contiguous"
       Cgebsr2csr = hipsparseCgebsr2csr_raw(handle, dirA, mb, nb, descrA, c_loc(bsrValA), c_loc( &
         bsrRowPtrA), c_loc(bsrColIndA), rowBlockDim, colBlockDim, descrC, c_loc(csrValC), c_loc( &
         csrRowPtrC), c_loc(csrColIndC))
@@ -39810,6 +40553,12 @@ contains
       integer(c_int), target :: csrRowPtrC(..)
       integer(c_int), target :: csrColIndC(..)
       integer(c_int) :: Zgebsr2csr
+      if (.not. is_contiguous(bsrValA)) error stop "bsrValA: array must be contiguous"
+      if (.not. is_contiguous(bsrRowPtrA)) error stop "bsrRowPtrA: array must be contiguous"
+      if (.not. is_contiguous(bsrColIndA)) error stop "bsrColIndA: array must be contiguous"
+      if (.not. is_contiguous(csrValC)) error stop "csrValC: array must be contiguous"
+      if (.not. is_contiguous(csrRowPtrC)) error stop "csrRowPtrC: array must be contiguous"
+      if (.not. is_contiguous(csrColIndC)) error stop "csrColIndC: array must be contiguous"
       Zgebsr2csr = hipsparseZgebsr2csr_raw(handle, dirA, mb, nb, descrA, c_loc(bsrValA), c_loc( &
         bsrRowPtrA), c_loc(bsrColIndA), rowBlockDim, colBlockDim, descrC, c_loc(csrValC), c_loc( &
         csrRowPtrC), c_loc(csrColIndC))
@@ -39856,6 +40605,9 @@ contains
       integer(c_int), value :: colBlockDim
       type(c_ptr), value :: pBufferSizeInBytes
       integer(c_int) :: Sgebsr2gebsc_bufferSize
+      if (.not. is_contiguous(bsrVal)) error stop "bsrVal: array must be contiguous"
+      if (.not. is_contiguous(bsrRowPtr)) error stop "bsrRowPtr: array must be contiguous"
+      if (.not. is_contiguous(bsrColInd)) error stop "bsrColInd: array must be contiguous"
       Sgebsr2gebsc_bufferSize = hipsparseSgebsr2gebsc_bufferSize_raw(handle, mb, nb, nnzb, c_loc( &
         bsrVal), c_loc(bsrRowPtr), c_loc(bsrColInd), rowBlockDim, colBlockDim, pBufferSizeInBytes)
     end function hipsparseSgebsr2gebsc_bufferSize_native
@@ -39895,6 +40647,9 @@ contains
       integer(c_int), value :: colBlockDim
       type(c_ptr), value :: pBufferSizeInBytes
       integer(c_int) :: Dgebsr2gebsc_bufferSize
+      if (.not. is_contiguous(bsrVal)) error stop "bsrVal: array must be contiguous"
+      if (.not. is_contiguous(bsrRowPtr)) error stop "bsrRowPtr: array must be contiguous"
+      if (.not. is_contiguous(bsrColInd)) error stop "bsrColInd: array must be contiguous"
       Dgebsr2gebsc_bufferSize = hipsparseDgebsr2gebsc_bufferSize_raw(handle, mb, nb, nnzb, c_loc( &
         bsrVal), c_loc(bsrRowPtr), c_loc(bsrColInd), rowBlockDim, colBlockDim, pBufferSizeInBytes)
     end function hipsparseDgebsr2gebsc_bufferSize_native
@@ -39934,6 +40689,9 @@ contains
       integer(c_int), value :: colBlockDim
       type(c_ptr), value :: pBufferSizeInBytes
       integer(c_int) :: Cgebsr2gebsc_bufferSize
+      if (.not. is_contiguous(bsrVal)) error stop "bsrVal: array must be contiguous"
+      if (.not. is_contiguous(bsrRowPtr)) error stop "bsrRowPtr: array must be contiguous"
+      if (.not. is_contiguous(bsrColInd)) error stop "bsrColInd: array must be contiguous"
       Cgebsr2gebsc_bufferSize = hipsparseCgebsr2gebsc_bufferSize_raw(handle, mb, nb, nnzb, c_loc( &
         bsrVal), c_loc(bsrRowPtr), c_loc(bsrColInd), rowBlockDim, colBlockDim, pBufferSizeInBytes)
     end function hipsparseCgebsr2gebsc_bufferSize_native
@@ -39973,6 +40731,9 @@ contains
       integer(c_int), value :: colBlockDim
       type(c_ptr), value :: pBufferSizeInBytes
       integer(c_int) :: Zgebsr2gebsc_bufferSize
+      if (.not. is_contiguous(bsrVal)) error stop "bsrVal: array must be contiguous"
+      if (.not. is_contiguous(bsrRowPtr)) error stop "bsrRowPtr: array must be contiguous"
+      if (.not. is_contiguous(bsrColInd)) error stop "bsrColInd: array must be contiguous"
       Zgebsr2gebsc_bufferSize = hipsparseZgebsr2gebsc_bufferSize_raw(handle, mb, nb, nnzb, c_loc( &
         bsrVal), c_loc(bsrRowPtr), c_loc(bsrColInd), rowBlockDim, colBlockDim, pBufferSizeInBytes)
     end function hipsparseZgebsr2gebsc_bufferSize_native
@@ -40018,6 +40779,12 @@ contains
       integer(c_int), value :: idxBase
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: Sgebsr2gebsc
+      if (.not. is_contiguous(bsrVal)) error stop "bsrVal: array must be contiguous"
+      if (.not. is_contiguous(bsrRowPtr)) error stop "bsrRowPtr: array must be contiguous"
+      if (.not. is_contiguous(bsrColInd)) error stop "bsrColInd: array must be contiguous"
+      if (.not. is_contiguous(bscVal)) error stop "bscVal: array must be contiguous"
+      if (.not. is_contiguous(bscRowInd)) error stop "bscRowInd: array must be contiguous"
+      if (.not. is_contiguous(bscColPtr)) error stop "bscColPtr: array must be contiguous"
       Sgebsr2gebsc = hipsparseSgebsr2gebsc_raw(handle, mb, nb, nnzb, c_loc(bsrVal), c_loc( &
         bsrRowPtr), c_loc(bsrColInd), rowBlockDim, colBlockDim, c_loc(bscVal), c_loc(bscRowInd), &
         c_loc(bscColPtr), copyValues, idxBase, temp_buffer)
@@ -40071,6 +40838,12 @@ contains
       integer(c_int), value :: idxBase
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: Dgebsr2gebsc
+      if (.not. is_contiguous(bsrVal)) error stop "bsrVal: array must be contiguous"
+      if (.not. is_contiguous(bsrRowPtr)) error stop "bsrRowPtr: array must be contiguous"
+      if (.not. is_contiguous(bsrColInd)) error stop "bsrColInd: array must be contiguous"
+      if (.not. is_contiguous(bscVal)) error stop "bscVal: array must be contiguous"
+      if (.not. is_contiguous(bscRowInd)) error stop "bscRowInd: array must be contiguous"
+      if (.not. is_contiguous(bscColPtr)) error stop "bscColPtr: array must be contiguous"
       Dgebsr2gebsc = hipsparseDgebsr2gebsc_raw(handle, mb, nb, nnzb, c_loc(bsrVal), c_loc( &
         bsrRowPtr), c_loc(bsrColInd), rowBlockDim, colBlockDim, c_loc(bscVal), c_loc(bscRowInd), &
         c_loc(bscColPtr), copyValues, idxBase, temp_buffer)
@@ -40124,6 +40897,12 @@ contains
       integer(c_int), value :: idxBase
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: Cgebsr2gebsc
+      if (.not. is_contiguous(bsrVal)) error stop "bsrVal: array must be contiguous"
+      if (.not. is_contiguous(bsrRowPtr)) error stop "bsrRowPtr: array must be contiguous"
+      if (.not. is_contiguous(bsrColInd)) error stop "bsrColInd: array must be contiguous"
+      if (.not. is_contiguous(bscVal)) error stop "bscVal: array must be contiguous"
+      if (.not. is_contiguous(bscRowInd)) error stop "bscRowInd: array must be contiguous"
+      if (.not. is_contiguous(bscColPtr)) error stop "bscColPtr: array must be contiguous"
       Cgebsr2gebsc = hipsparseCgebsr2gebsc_raw(handle, mb, nb, nnzb, c_loc(bsrVal), c_loc( &
         bsrRowPtr), c_loc(bsrColInd), rowBlockDim, colBlockDim, c_loc(bscVal), c_loc(bscRowInd), &
         c_loc(bscColPtr), copyValues, idxBase, temp_buffer)
@@ -40177,6 +40956,12 @@ contains
       integer(c_int), value :: idxBase
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: Zgebsr2gebsc
+      if (.not. is_contiguous(bsrVal)) error stop "bsrVal: array must be contiguous"
+      if (.not. is_contiguous(bsrRowPtr)) error stop "bsrRowPtr: array must be contiguous"
+      if (.not. is_contiguous(bsrColInd)) error stop "bsrColInd: array must be contiguous"
+      if (.not. is_contiguous(bscVal)) error stop "bscVal: array must be contiguous"
+      if (.not. is_contiguous(bscRowInd)) error stop "bscRowInd: array must be contiguous"
+      if (.not. is_contiguous(bscColPtr)) error stop "bscColPtr: array must be contiguous"
       Zgebsr2gebsc = hipsparseZgebsr2gebsc_raw(handle, mb, nb, nnzb, c_loc(bsrVal), c_loc( &
         bsrRowPtr), c_loc(bsrColInd), rowBlockDim, colBlockDim, c_loc(bscVal), c_loc(bscRowInd), &
         c_loc(bscColPtr), copyValues, idxBase, temp_buffer)
@@ -40229,6 +41014,10 @@ contains
       integer(c_int), value :: colBlockDimC
       integer(c_int), target :: pBufferSizeInBytes(..)
       integer(c_int) :: Sgebsr2gebsr_bufferSize
+      if (.not. is_contiguous(bsrValA)) error stop "bsrValA: array must be contiguous"
+      if (.not. is_contiguous(bsrRowPtrA)) error stop "bsrRowPtrA: array must be contiguous"
+      if (.not. is_contiguous(bsrColIndA)) error stop "bsrColIndA: array must be contiguous"
+      if (.not. is_contiguous(pBufferSizeInBytes)) error stop "pBufferSizeInBytes: array must be contiguous"
       Sgebsr2gebsr_bufferSize = hipsparseSgebsr2gebsr_bufferSize_raw(handle, dirA, mb, nb, nnzb, &
         descrA, c_loc(bsrValA), c_loc(bsrRowPtrA), c_loc(bsrColIndA), rowBlockDimA, colBlockDimA, &
         rowBlockDimC, colBlockDimC, c_loc(pBufferSizeInBytes))
@@ -40280,6 +41069,10 @@ contains
       integer(c_int), value :: colBlockDimC
       integer(c_int), target :: pBufferSizeInBytes(..)
       integer(c_int) :: Dgebsr2gebsr_bufferSize
+      if (.not. is_contiguous(bsrValA)) error stop "bsrValA: array must be contiguous"
+      if (.not. is_contiguous(bsrRowPtrA)) error stop "bsrRowPtrA: array must be contiguous"
+      if (.not. is_contiguous(bsrColIndA)) error stop "bsrColIndA: array must be contiguous"
+      if (.not. is_contiguous(pBufferSizeInBytes)) error stop "pBufferSizeInBytes: array must be contiguous"
       Dgebsr2gebsr_bufferSize = hipsparseDgebsr2gebsr_bufferSize_raw(handle, dirA, mb, nb, nnzb, &
         descrA, c_loc(bsrValA), c_loc(bsrRowPtrA), c_loc(bsrColIndA), rowBlockDimA, colBlockDimA, &
         rowBlockDimC, colBlockDimC, c_loc(pBufferSizeInBytes))
@@ -40331,6 +41124,10 @@ contains
       integer(c_int), value :: colBlockDimC
       integer(c_int), target :: pBufferSizeInBytes(..)
       integer(c_int) :: Cgebsr2gebsr_bufferSize
+      if (.not. is_contiguous(bsrValA)) error stop "bsrValA: array must be contiguous"
+      if (.not. is_contiguous(bsrRowPtrA)) error stop "bsrRowPtrA: array must be contiguous"
+      if (.not. is_contiguous(bsrColIndA)) error stop "bsrColIndA: array must be contiguous"
+      if (.not. is_contiguous(pBufferSizeInBytes)) error stop "pBufferSizeInBytes: array must be contiguous"
       Cgebsr2gebsr_bufferSize = hipsparseCgebsr2gebsr_bufferSize_raw(handle, dirA, mb, nb, nnzb, &
         descrA, c_loc(bsrValA), c_loc(bsrRowPtrA), c_loc(bsrColIndA), rowBlockDimA, colBlockDimA, &
         rowBlockDimC, colBlockDimC, c_loc(pBufferSizeInBytes))
@@ -40382,6 +41179,10 @@ contains
       integer(c_int), value :: colBlockDimC
       integer(c_int), target :: pBufferSizeInBytes(..)
       integer(c_int) :: Zgebsr2gebsr_bufferSize
+      if (.not. is_contiguous(bsrValA)) error stop "bsrValA: array must be contiguous"
+      if (.not. is_contiguous(bsrRowPtrA)) error stop "bsrRowPtrA: array must be contiguous"
+      if (.not. is_contiguous(bsrColIndA)) error stop "bsrColIndA: array must be contiguous"
+      if (.not. is_contiguous(pBufferSizeInBytes)) error stop "pBufferSizeInBytes: array must be contiguous"
       Zgebsr2gebsr_bufferSize = hipsparseZgebsr2gebsr_bufferSize_raw(handle, dirA, mb, nb, nnzb, &
         descrA, c_loc(bsrValA), c_loc(bsrRowPtrA), c_loc(bsrColIndA), rowBlockDimA, colBlockDimA, &
         rowBlockDimC, colBlockDimC, c_loc(pBufferSizeInBytes))
@@ -40435,6 +41236,9 @@ contains
       integer(c_int) :: nnzTotalDevHostPtr
       type(c_ptr), value :: buffer
       integer(c_int) :: Xgebsr2gebsrNnz
+      if (.not. is_contiguous(bsrRowPtrA)) error stop "bsrRowPtrA: array must be contiguous"
+      if (.not. is_contiguous(bsrColIndA)) error stop "bsrColIndA: array must be contiguous"
+      if (.not. is_contiguous(bsrRowPtrC)) error stop "bsrRowPtrC: array must be contiguous"
       Xgebsr2gebsrNnz = hipsparseXgebsr2gebsrNnz_raw(handle, dirA, mb, nb, nnzb, descrA, c_loc( &
         bsrRowPtrA), c_loc(bsrColIndA), rowBlockDimA, colBlockDimA, descrC, c_loc(bsrRowPtrC), &
         rowBlockDimC, colBlockDimC, nnzTotalDevHostPtr, buffer)
@@ -40492,6 +41296,12 @@ contains
       integer(c_int), value :: colBlockDimC
       type(c_ptr), value :: buffer
       integer(c_int) :: Sgebsr2gebsr
+      if (.not. is_contiguous(bsrValA)) error stop "bsrValA: array must be contiguous"
+      if (.not. is_contiguous(bsrRowPtrA)) error stop "bsrRowPtrA: array must be contiguous"
+      if (.not. is_contiguous(bsrColIndA)) error stop "bsrColIndA: array must be contiguous"
+      if (.not. is_contiguous(bsrValC)) error stop "bsrValC: array must be contiguous"
+      if (.not. is_contiguous(bsrRowPtrC)) error stop "bsrRowPtrC: array must be contiguous"
+      if (.not. is_contiguous(bsrColIndC)) error stop "bsrColIndC: array must be contiguous"
       Sgebsr2gebsr = hipsparseSgebsr2gebsr_raw(handle, dirA, mb, nb, nnzb, descrA, c_loc(bsrValA), &
         c_loc(bsrRowPtrA), c_loc(bsrColIndA), rowBlockDimA, colBlockDimA, descrC, c_loc(bsrValC), &
         c_loc(bsrRowPtrC), c_loc(bsrColIndC), rowBlockDimC, colBlockDimC, buffer)
@@ -40551,6 +41361,12 @@ contains
       integer(c_int), value :: colBlockDimC
       type(c_ptr), value :: buffer
       integer(c_int) :: Dgebsr2gebsr
+      if (.not. is_contiguous(bsrValA)) error stop "bsrValA: array must be contiguous"
+      if (.not. is_contiguous(bsrRowPtrA)) error stop "bsrRowPtrA: array must be contiguous"
+      if (.not. is_contiguous(bsrColIndA)) error stop "bsrColIndA: array must be contiguous"
+      if (.not. is_contiguous(bsrValC)) error stop "bsrValC: array must be contiguous"
+      if (.not. is_contiguous(bsrRowPtrC)) error stop "bsrRowPtrC: array must be contiguous"
+      if (.not. is_contiguous(bsrColIndC)) error stop "bsrColIndC: array must be contiguous"
       Dgebsr2gebsr = hipsparseDgebsr2gebsr_raw(handle, dirA, mb, nb, nnzb, descrA, c_loc(bsrValA), &
         c_loc(bsrRowPtrA), c_loc(bsrColIndA), rowBlockDimA, colBlockDimA, descrC, c_loc(bsrValC), &
         c_loc(bsrRowPtrC), c_loc(bsrColIndC), rowBlockDimC, colBlockDimC, buffer)
@@ -40610,6 +41426,12 @@ contains
       integer(c_int), value :: colBlockDimC
       type(c_ptr), value :: buffer
       integer(c_int) :: Cgebsr2gebsr
+      if (.not. is_contiguous(bsrValA)) error stop "bsrValA: array must be contiguous"
+      if (.not. is_contiguous(bsrRowPtrA)) error stop "bsrRowPtrA: array must be contiguous"
+      if (.not. is_contiguous(bsrColIndA)) error stop "bsrColIndA: array must be contiguous"
+      if (.not. is_contiguous(bsrValC)) error stop "bsrValC: array must be contiguous"
+      if (.not. is_contiguous(bsrRowPtrC)) error stop "bsrRowPtrC: array must be contiguous"
+      if (.not. is_contiguous(bsrColIndC)) error stop "bsrColIndC: array must be contiguous"
       Cgebsr2gebsr = hipsparseCgebsr2gebsr_raw(handle, dirA, mb, nb, nnzb, descrA, c_loc(bsrValA), &
         c_loc(bsrRowPtrA), c_loc(bsrColIndA), rowBlockDimA, colBlockDimA, descrC, c_loc(bsrValC), &
         c_loc(bsrRowPtrC), c_loc(bsrColIndC), rowBlockDimC, colBlockDimC, buffer)
@@ -40669,6 +41491,12 @@ contains
       integer(c_int), value :: colBlockDimC
       type(c_ptr), value :: buffer
       integer(c_int) :: Zgebsr2gebsr
+      if (.not. is_contiguous(bsrValA)) error stop "bsrValA: array must be contiguous"
+      if (.not. is_contiguous(bsrRowPtrA)) error stop "bsrRowPtrA: array must be contiguous"
+      if (.not. is_contiguous(bsrColIndA)) error stop "bsrColIndA: array must be contiguous"
+      if (.not. is_contiguous(bsrValC)) error stop "bsrValC: array must be contiguous"
+      if (.not. is_contiguous(bsrRowPtrC)) error stop "bsrRowPtrC: array must be contiguous"
+      if (.not. is_contiguous(bsrColIndC)) error stop "bsrColIndC: array must be contiguous"
       Zgebsr2gebsr = hipsparseZgebsr2gebsr_raw(handle, dirA, mb, nb, nnzb, descrA, c_loc(bsrValA), &
         c_loc(bsrRowPtrA), c_loc(bsrColIndA), rowBlockDimA, colBlockDimA, descrC, c_loc(bsrValC), &
         c_loc(bsrRowPtrC), c_loc(bsrColIndC), rowBlockDimC, colBlockDimC, buffer)
@@ -40715,6 +41543,9 @@ contains
       integer(c_int), target :: csrSortedRowPtrA(..)
       integer(c_int), target :: csrSortedColIndA(..)
       integer(c_int) :: Shyb2csr
+      if (.not. is_contiguous(csrSortedValA)) error stop "csrSortedValA: array must be contiguous"
+      if (.not. is_contiguous(csrSortedRowPtrA)) error stop "csrSortedRowPtrA: array must be contiguous"
+      if (.not. is_contiguous(csrSortedColIndA)) error stop "csrSortedColIndA: array must be contiguous"
       Shyb2csr = hipsparseShyb2csr_raw(handle, descrA, hybA, c_loc(csrSortedValA), c_loc( &
         csrSortedRowPtrA), c_loc(csrSortedColIndA))
     end function hipsparseShyb2csr_native
@@ -40746,6 +41577,9 @@ contains
       integer(c_int), target :: csrSortedRowPtrA(..)
       integer(c_int), target :: csrSortedColIndA(..)
       integer(c_int) :: Dhyb2csr
+      if (.not. is_contiguous(csrSortedValA)) error stop "csrSortedValA: array must be contiguous"
+      if (.not. is_contiguous(csrSortedRowPtrA)) error stop "csrSortedRowPtrA: array must be contiguous"
+      if (.not. is_contiguous(csrSortedColIndA)) error stop "csrSortedColIndA: array must be contiguous"
       Dhyb2csr = hipsparseDhyb2csr_raw(handle, descrA, hybA, c_loc(csrSortedValA), c_loc( &
         csrSortedRowPtrA), c_loc(csrSortedColIndA))
     end function hipsparseDhyb2csr_native
@@ -40777,6 +41611,9 @@ contains
       integer(c_int), target :: csrSortedRowPtrA(..)
       integer(c_int), target :: csrSortedColIndA(..)
       integer(c_int) :: Chyb2csr
+      if (.not. is_contiguous(csrSortedValA)) error stop "csrSortedValA: array must be contiguous"
+      if (.not. is_contiguous(csrSortedRowPtrA)) error stop "csrSortedRowPtrA: array must be contiguous"
+      if (.not. is_contiguous(csrSortedColIndA)) error stop "csrSortedColIndA: array must be contiguous"
       Chyb2csr = hipsparseChyb2csr_raw(handle, descrA, hybA, c_loc(csrSortedValA), c_loc( &
         csrSortedRowPtrA), c_loc(csrSortedColIndA))
     end function hipsparseChyb2csr_native
@@ -40808,6 +41645,9 @@ contains
       integer(c_int), target :: csrSortedRowPtrA(..)
       integer(c_int), target :: csrSortedColIndA(..)
       integer(c_int) :: Zhyb2csr
+      if (.not. is_contiguous(csrSortedValA)) error stop "csrSortedValA: array must be contiguous"
+      if (.not. is_contiguous(csrSortedRowPtrA)) error stop "csrSortedRowPtrA: array must be contiguous"
+      if (.not. is_contiguous(csrSortedColIndA)) error stop "csrSortedColIndA: array must be contiguous"
       Zhyb2csr = hipsparseZhyb2csr_raw(handle, descrA, hybA, c_loc(csrSortedValA), c_loc( &
         csrSortedRowPtrA), c_loc(csrSortedColIndA))
     end function hipsparseZhyb2csr_native
@@ -40842,6 +41682,8 @@ contains
       integer(c_int), target :: nnzPerRowColumn(..)
       integer(c_int) :: nnzTotalDevHostPtr
       integer(c_int) :: Snnz
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(nnzPerRowColumn)) error stop "nnzPerRowColumn: array must be contiguous"
       Snnz = hipsparseSnnz_raw(handle, dirA, m, n, descrA, c_loc(A), lda, c_loc(nnzPerRowColumn), &
         nnzTotalDevHostPtr)
     end function hipsparseSnnz_native
@@ -40879,6 +41721,8 @@ contains
       integer(c_int), target :: nnzPerRowColumn(..)
       integer(c_int) :: nnzTotalDevHostPtr
       integer(c_int) :: Dnnz
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(nnzPerRowColumn)) error stop "nnzPerRowColumn: array must be contiguous"
       Dnnz = hipsparseDnnz_raw(handle, dirA, m, n, descrA, c_loc(A), lda, c_loc(nnzPerRowColumn), &
         nnzTotalDevHostPtr)
     end function hipsparseDnnz_native
@@ -40916,6 +41760,8 @@ contains
       integer(c_int), target :: nnzPerRowColumn(..)
       integer(c_int) :: nnzTotalDevHostPtr
       integer(c_int) :: Cnnz
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(nnzPerRowColumn)) error stop "nnzPerRowColumn: array must be contiguous"
       Cnnz = hipsparseCnnz_raw(handle, dirA, m, n, descrA, c_loc(A), lda, c_loc(nnzPerRowColumn), &
         nnzTotalDevHostPtr)
     end function hipsparseCnnz_native
@@ -40953,6 +41799,8 @@ contains
       integer(c_int), target :: nnzPerRowColumn(..)
       integer(c_int) :: nnzTotalDevHostPtr
       integer(c_int) :: Znnz
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(nnzPerRowColumn)) error stop "nnzPerRowColumn: array must be contiguous"
       Znnz = hipsparseZnnz_raw(handle, dirA, m, n, descrA, c_loc(A), lda, c_loc(nnzPerRowColumn), &
         nnzTotalDevHostPtr)
     end function hipsparseZnnz_native
@@ -40989,6 +41837,10 @@ contains
       integer(c_int), target :: nnzC(..)
       real(c_float), value :: tol
       integer(c_int) :: Snnz_compress
+      if (.not. is_contiguous(csrValA)) error stop "csrValA: array must be contiguous"
+      if (.not. is_contiguous(csrRowPtrA)) error stop "csrRowPtrA: array must be contiguous"
+      if (.not. is_contiguous(nnzPerRow)) error stop "nnzPerRow: array must be contiguous"
+      if (.not. is_contiguous(nnzC)) error stop "nnzC: array must be contiguous"
       Snnz_compress = hipsparseSnnz_compress_raw(handle, m, descrA, c_loc(csrValA), c_loc( &
         csrRowPtrA), c_loc(nnzPerRow), c_loc(nnzC), tol)
     end function hipsparseSnnz_compress_native
@@ -41024,6 +41876,10 @@ contains
       integer(c_int), target :: nnzC(..)
       real(c_double), value :: tol
       integer(c_int) :: Dnnz_compress
+      if (.not. is_contiguous(csrValA)) error stop "csrValA: array must be contiguous"
+      if (.not. is_contiguous(csrRowPtrA)) error stop "csrRowPtrA: array must be contiguous"
+      if (.not. is_contiguous(nnzPerRow)) error stop "nnzPerRow: array must be contiguous"
+      if (.not. is_contiguous(nnzC)) error stop "nnzC: array must be contiguous"
       Dnnz_compress = hipsparseDnnz_compress_raw(handle, m, descrA, c_loc(csrValA), c_loc( &
         csrRowPtrA), c_loc(nnzPerRow), c_loc(nnzC), tol)
     end function hipsparseDnnz_compress_native
@@ -41059,6 +41915,10 @@ contains
       integer(c_int), target :: nnzC(..)
       complex(c_float_complex), value :: tol
       integer(c_int) :: Cnnz_compress
+      if (.not. is_contiguous(csrValA)) error stop "csrValA: array must be contiguous"
+      if (.not. is_contiguous(csrRowPtrA)) error stop "csrRowPtrA: array must be contiguous"
+      if (.not. is_contiguous(nnzPerRow)) error stop "nnzPerRow: array must be contiguous"
+      if (.not. is_contiguous(nnzC)) error stop "nnzC: array must be contiguous"
       Cnnz_compress = hipsparseCnnz_compress_raw(handle, m, descrA, c_loc(csrValA), c_loc( &
         csrRowPtrA), c_loc(nnzPerRow), c_loc(nnzC), tol)
     end function hipsparseCnnz_compress_native
@@ -41094,6 +41954,10 @@ contains
       integer(c_int), target :: nnzC(..)
       complex(c_double_complex), value :: tol
       integer(c_int) :: Znnz_compress
+      if (.not. is_contiguous(csrValA)) error stop "csrValA: array must be contiguous"
+      if (.not. is_contiguous(csrRowPtrA)) error stop "csrRowPtrA: array must be contiguous"
+      if (.not. is_contiguous(nnzPerRow)) error stop "nnzPerRow: array must be contiguous"
+      if (.not. is_contiguous(nnzC)) error stop "nnzC: array must be contiguous"
       Znnz_compress = hipsparseZnnz_compress_raw(handle, m, descrA, c_loc(csrValA), c_loc( &
         csrRowPtrA), c_loc(nnzPerRow), c_loc(nnzC), tol)
     end function hipsparseZnnz_compress_native
@@ -41136,6 +42000,12 @@ contains
       integer(c_int), target :: csrColIndC(..)
       type(c_ptr), value :: pBufferSizeInBytes
       integer(c_int) :: SpruneCsr2csr_bufferSize
+      if (.not. is_contiguous(csrValA)) error stop "csrValA: array must be contiguous"
+      if (.not. is_contiguous(csrRowPtrA)) error stop "csrRowPtrA: array must be contiguous"
+      if (.not. is_contiguous(csrColIndA)) error stop "csrColIndA: array must be contiguous"
+      if (.not. is_contiguous(csrValC)) error stop "csrValC: array must be contiguous"
+      if (.not. is_contiguous(csrRowPtrC)) error stop "csrRowPtrC: array must be contiguous"
+      if (.not. is_contiguous(csrColIndC)) error stop "csrColIndC: array must be contiguous"
       SpruneCsr2csr_bufferSize = hipsparseSpruneCsr2csr_bufferSize_raw(handle, m, n, nnzA, descrA, &
         c_loc(csrValA), c_loc(csrRowPtrA), c_loc(csrColIndA), threshold, descrC, c_loc(csrValC), &
         c_loc(csrRowPtrC), c_loc(csrColIndC), pBufferSizeInBytes)
@@ -41187,6 +42057,12 @@ contains
       integer(c_int), target :: csrColIndC(..)
       type(c_ptr), value :: pBufferSizeInBytes
       integer(c_int) :: DpruneCsr2csr_bufferSize
+      if (.not. is_contiguous(csrValA)) error stop "csrValA: array must be contiguous"
+      if (.not. is_contiguous(csrRowPtrA)) error stop "csrRowPtrA: array must be contiguous"
+      if (.not. is_contiguous(csrColIndA)) error stop "csrColIndA: array must be contiguous"
+      if (.not. is_contiguous(csrValC)) error stop "csrValC: array must be contiguous"
+      if (.not. is_contiguous(csrRowPtrC)) error stop "csrRowPtrC: array must be contiguous"
+      if (.not. is_contiguous(csrColIndC)) error stop "csrColIndC: array must be contiguous"
       DpruneCsr2csr_bufferSize = hipsparseDpruneCsr2csr_bufferSize_raw(handle, m, n, nnzA, descrA, &
         c_loc(csrValA), c_loc(csrRowPtrA), c_loc(csrColIndA), threshold, descrC, c_loc(csrValC), &
         c_loc(csrRowPtrC), c_loc(csrColIndC), pBufferSizeInBytes)
@@ -41238,6 +42114,12 @@ contains
       integer(c_int), target :: csrColIndC(..)
       type(c_ptr), value :: pBufferSizeInBytes
       integer(c_int) :: SpruneCsr2csr_bufferSizeExt
+      if (.not. is_contiguous(csrValA)) error stop "csrValA: array must be contiguous"
+      if (.not. is_contiguous(csrRowPtrA)) error stop "csrRowPtrA: array must be contiguous"
+      if (.not. is_contiguous(csrColIndA)) error stop "csrColIndA: array must be contiguous"
+      if (.not. is_contiguous(csrValC)) error stop "csrValC: array must be contiguous"
+      if (.not. is_contiguous(csrRowPtrC)) error stop "csrRowPtrC: array must be contiguous"
+      if (.not. is_contiguous(csrColIndC)) error stop "csrColIndC: array must be contiguous"
       SpruneCsr2csr_bufferSizeExt = hipsparseSpruneCsr2csr_bufferSizeExt_raw(handle, m, n, nnzA, &
         descrA, c_loc(csrValA), c_loc(csrRowPtrA), c_loc(csrColIndA), threshold, descrC, c_loc( &
         csrValC), c_loc(csrRowPtrC), c_loc(csrColIndC), pBufferSizeInBytes)
@@ -41289,6 +42171,12 @@ contains
       integer(c_int), target :: csrColIndC(..)
       type(c_ptr), value :: pBufferSizeInBytes
       integer(c_int) :: DpruneCsr2csr_bufferSizeExt
+      if (.not. is_contiguous(csrValA)) error stop "csrValA: array must be contiguous"
+      if (.not. is_contiguous(csrRowPtrA)) error stop "csrRowPtrA: array must be contiguous"
+      if (.not. is_contiguous(csrColIndA)) error stop "csrColIndA: array must be contiguous"
+      if (.not. is_contiguous(csrValC)) error stop "csrValC: array must be contiguous"
+      if (.not. is_contiguous(csrRowPtrC)) error stop "csrRowPtrC: array must be contiguous"
+      if (.not. is_contiguous(csrColIndC)) error stop "csrColIndC: array must be contiguous"
       DpruneCsr2csr_bufferSizeExt = hipsparseDpruneCsr2csr_bufferSizeExt_raw(handle, m, n, nnzA, &
         descrA, c_loc(csrValA), c_loc(csrRowPtrA), c_loc(csrColIndA), threshold, descrC, c_loc( &
         csrValC), c_loc(csrRowPtrC), c_loc(csrColIndC), pBufferSizeInBytes)
@@ -41339,6 +42227,10 @@ contains
       integer(c_int) :: nnzTotalDevHostPtr
       type(c_ptr), value :: buffer
       integer(c_int) :: SpruneCsr2csrNnz
+      if (.not. is_contiguous(csrValA)) error stop "csrValA: array must be contiguous"
+      if (.not. is_contiguous(csrRowPtrA)) error stop "csrRowPtrA: array must be contiguous"
+      if (.not. is_contiguous(csrColIndA)) error stop "csrColIndA: array must be contiguous"
+      if (.not. is_contiguous(csrRowPtrC)) error stop "csrRowPtrC: array must be contiguous"
       SpruneCsr2csrNnz = hipsparseSpruneCsr2csrNnz_raw(handle, m, n, nnzA, descrA, c_loc(csrValA), &
         c_loc(csrRowPtrA), c_loc(csrColIndA), threshold, descrC, c_loc(csrRowPtrC), &
         nnzTotalDevHostPtr, buffer)
@@ -41388,6 +42280,10 @@ contains
       integer(c_int) :: nnzTotalDevHostPtr
       type(c_ptr), value :: buffer
       integer(c_int) :: DpruneCsr2csrNnz
+      if (.not. is_contiguous(csrValA)) error stop "csrValA: array must be contiguous"
+      if (.not. is_contiguous(csrRowPtrA)) error stop "csrRowPtrA: array must be contiguous"
+      if (.not. is_contiguous(csrColIndA)) error stop "csrColIndA: array must be contiguous"
+      if (.not. is_contiguous(csrRowPtrC)) error stop "csrRowPtrC: array must be contiguous"
       DpruneCsr2csrNnz = hipsparseDpruneCsr2csrNnz_raw(handle, m, n, nnzA, descrA, c_loc(csrValA), &
         c_loc(csrRowPtrA), c_loc(csrColIndA), threshold, descrC, c_loc(csrRowPtrC), &
         nnzTotalDevHostPtr, buffer)
@@ -41438,6 +42334,12 @@ contains
       integer(c_int), target :: csrColIndC(..)
       type(c_ptr), value :: buffer
       integer(c_int) :: SpruneCsr2csr
+      if (.not. is_contiguous(csrValA)) error stop "csrValA: array must be contiguous"
+      if (.not. is_contiguous(csrRowPtrA)) error stop "csrRowPtrA: array must be contiguous"
+      if (.not. is_contiguous(csrColIndA)) error stop "csrColIndA: array must be contiguous"
+      if (.not. is_contiguous(csrValC)) error stop "csrValC: array must be contiguous"
+      if (.not. is_contiguous(csrRowPtrC)) error stop "csrRowPtrC: array must be contiguous"
+      if (.not. is_contiguous(csrColIndC)) error stop "csrColIndC: array must be contiguous"
       SpruneCsr2csr = hipsparseSpruneCsr2csr_raw(handle, m, n, nnzA, descrA, c_loc(csrValA), &
         c_loc(csrRowPtrA), c_loc(csrColIndA), threshold, descrC, c_loc(csrValC), c_loc( &
         csrRowPtrC), c_loc(csrColIndC), buffer)
@@ -41488,6 +42390,12 @@ contains
       integer(c_int), target :: csrColIndC(..)
       type(c_ptr), value :: buffer
       integer(c_int) :: DpruneCsr2csr
+      if (.not. is_contiguous(csrValA)) error stop "csrValA: array must be contiguous"
+      if (.not. is_contiguous(csrRowPtrA)) error stop "csrRowPtrA: array must be contiguous"
+      if (.not. is_contiguous(csrColIndA)) error stop "csrColIndA: array must be contiguous"
+      if (.not. is_contiguous(csrValC)) error stop "csrValC: array must be contiguous"
+      if (.not. is_contiguous(csrRowPtrC)) error stop "csrRowPtrC: array must be contiguous"
+      if (.not. is_contiguous(csrColIndC)) error stop "csrColIndC: array must be contiguous"
       DpruneCsr2csr = hipsparseDpruneCsr2csr_raw(handle, m, n, nnzA, descrA, c_loc(csrValA), &
         c_loc(csrRowPtrA), c_loc(csrColIndA), threshold, descrC, c_loc(csrValC), c_loc( &
         csrRowPtrC), c_loc(csrColIndC), buffer)
@@ -41539,6 +42447,12 @@ contains
       type(c_ptr), value :: info
       type(c_ptr), value :: pBufferSizeInBytes
       integer(c_int) :: SpruneCsr2csrByPercentage_bufferSize
+      if (.not. is_contiguous(csrValA)) error stop "csrValA: array must be contiguous"
+      if (.not. is_contiguous(csrRowPtrA)) error stop "csrRowPtrA: array must be contiguous"
+      if (.not. is_contiguous(csrColIndA)) error stop "csrColIndA: array must be contiguous"
+      if (.not. is_contiguous(csrValC)) error stop "csrValC: array must be contiguous"
+      if (.not. is_contiguous(csrRowPtrC)) error stop "csrRowPtrC: array must be contiguous"
+      if (.not. is_contiguous(csrColIndC)) error stop "csrColIndC: array must be contiguous"
       SpruneCsr2csrByPercentage_bufferSize = hipsparseSpruneCsr2csrByPercentage_bufferSize_raw( &
         handle, m, n, nnzA, descrA, c_loc(csrValA), c_loc(csrRowPtrA), c_loc(csrColIndA), &
         percentage, descrC, c_loc(csrValC), c_loc(csrRowPtrC), c_loc(csrColIndC), info, &
@@ -41593,6 +42507,12 @@ contains
       type(c_ptr), value :: info
       type(c_ptr), value :: pBufferSizeInBytes
       integer(c_int) :: DpruneCsr2csrByPercentage_bufferSize
+      if (.not. is_contiguous(csrValA)) error stop "csrValA: array must be contiguous"
+      if (.not. is_contiguous(csrRowPtrA)) error stop "csrRowPtrA: array must be contiguous"
+      if (.not. is_contiguous(csrColIndA)) error stop "csrColIndA: array must be contiguous"
+      if (.not. is_contiguous(csrValC)) error stop "csrValC: array must be contiguous"
+      if (.not. is_contiguous(csrRowPtrC)) error stop "csrRowPtrC: array must be contiguous"
+      if (.not. is_contiguous(csrColIndC)) error stop "csrColIndC: array must be contiguous"
       DpruneCsr2csrByPercentage_bufferSize = hipsparseDpruneCsr2csrByPercentage_bufferSize_raw( &
         handle, m, n, nnzA, descrA, c_loc(csrValA), c_loc(csrRowPtrA), c_loc(csrColIndA), &
         percentage, descrC, c_loc(csrValC), c_loc(csrRowPtrC), c_loc(csrColIndC), info, &
@@ -41647,6 +42567,12 @@ contains
       type(c_ptr), value :: info
       type(c_ptr), value :: pBufferSizeInBytes
       integer(c_int) :: SpruneCsr2csrByPercentage_bufferSizeExt
+      if (.not. is_contiguous(csrValA)) error stop "csrValA: array must be contiguous"
+      if (.not. is_contiguous(csrRowPtrA)) error stop "csrRowPtrA: array must be contiguous"
+      if (.not. is_contiguous(csrColIndA)) error stop "csrColIndA: array must be contiguous"
+      if (.not. is_contiguous(csrValC)) error stop "csrValC: array must be contiguous"
+      if (.not. is_contiguous(csrRowPtrC)) error stop "csrRowPtrC: array must be contiguous"
+      if (.not. is_contiguous(csrColIndC)) error stop "csrColIndC: array must be contiguous"
       SpruneCsr2csrByPercentage_bufferSizeExt = hipsparseSpruneCsr2csrByPercentage_bufferSizeExt_raw( &
         handle, m, n, nnzA, descrA, c_loc(csrValA), c_loc(csrRowPtrA), c_loc(csrColIndA), &
         percentage, descrC, c_loc(csrValC), c_loc(csrRowPtrC), c_loc(csrColIndC), info, &
@@ -41701,6 +42627,12 @@ contains
       type(c_ptr), value :: info
       type(c_ptr), value :: pBufferSizeInBytes
       integer(c_int) :: DpruneCsr2csrByPercentage_bufferSizeExt
+      if (.not. is_contiguous(csrValA)) error stop "csrValA: array must be contiguous"
+      if (.not. is_contiguous(csrRowPtrA)) error stop "csrRowPtrA: array must be contiguous"
+      if (.not. is_contiguous(csrColIndA)) error stop "csrColIndA: array must be contiguous"
+      if (.not. is_contiguous(csrValC)) error stop "csrValC: array must be contiguous"
+      if (.not. is_contiguous(csrRowPtrC)) error stop "csrRowPtrC: array must be contiguous"
+      if (.not. is_contiguous(csrColIndC)) error stop "csrColIndC: array must be contiguous"
       DpruneCsr2csrByPercentage_bufferSizeExt = hipsparseDpruneCsr2csrByPercentage_bufferSizeExt_raw( &
         handle, m, n, nnzA, descrA, c_loc(csrValA), c_loc(csrRowPtrA), c_loc(csrColIndA), &
         percentage, descrC, c_loc(csrValC), c_loc(csrRowPtrC), c_loc(csrColIndC), info, &
@@ -41754,6 +42686,10 @@ contains
       type(c_ptr), value :: info
       type(c_ptr), value :: buffer
       integer(c_int) :: SpruneCsr2csrNnzByPercentage
+      if (.not. is_contiguous(csrValA)) error stop "csrValA: array must be contiguous"
+      if (.not. is_contiguous(csrRowPtrA)) error stop "csrRowPtrA: array must be contiguous"
+      if (.not. is_contiguous(csrColIndA)) error stop "csrColIndA: array must be contiguous"
+      if (.not. is_contiguous(csrRowPtrC)) error stop "csrRowPtrC: array must be contiguous"
       SpruneCsr2csrNnzByPercentage = hipsparseSpruneCsr2csrNnzByPercentage_raw(handle, m, n, nnzA, &
         descrA, c_loc(csrValA), c_loc(csrRowPtrA), c_loc(csrColIndA), percentage, descrC, c_loc( &
         csrRowPtrC), nnzTotalDevHostPtr, info, buffer)
@@ -41805,6 +42741,10 @@ contains
       type(c_ptr), value :: info
       type(c_ptr), value :: buffer
       integer(c_int) :: DpruneCsr2csrNnzByPercentage
+      if (.not. is_contiguous(csrValA)) error stop "csrValA: array must be contiguous"
+      if (.not. is_contiguous(csrRowPtrA)) error stop "csrRowPtrA: array must be contiguous"
+      if (.not. is_contiguous(csrColIndA)) error stop "csrColIndA: array must be contiguous"
+      if (.not. is_contiguous(csrRowPtrC)) error stop "csrRowPtrC: array must be contiguous"
       DpruneCsr2csrNnzByPercentage = hipsparseDpruneCsr2csrNnzByPercentage_raw(handle, m, n, nnzA, &
         descrA, c_loc(csrValA), c_loc(csrRowPtrA), c_loc(csrColIndA), percentage, descrC, c_loc( &
         csrRowPtrC), nnzTotalDevHostPtr, info, buffer)
@@ -41857,6 +42797,12 @@ contains
       type(c_ptr), value :: info
       type(c_ptr), value :: buffer
       integer(c_int) :: SpruneCsr2csrByPercentage
+      if (.not. is_contiguous(csrValA)) error stop "csrValA: array must be contiguous"
+      if (.not. is_contiguous(csrRowPtrA)) error stop "csrRowPtrA: array must be contiguous"
+      if (.not. is_contiguous(csrColIndA)) error stop "csrColIndA: array must be contiguous"
+      if (.not. is_contiguous(csrValC)) error stop "csrValC: array must be contiguous"
+      if (.not. is_contiguous(csrRowPtrC)) error stop "csrRowPtrC: array must be contiguous"
+      if (.not. is_contiguous(csrColIndC)) error stop "csrColIndC: array must be contiguous"
       SpruneCsr2csrByPercentage = hipsparseSpruneCsr2csrByPercentage_raw(handle, m, n, nnzA, &
         descrA, c_loc(csrValA), c_loc(csrRowPtrA), c_loc(csrColIndA), percentage, descrC, c_loc( &
         csrValC), c_loc(csrRowPtrC), c_loc(csrColIndC), info, buffer)
@@ -41910,6 +42856,12 @@ contains
       type(c_ptr), value :: info
       type(c_ptr), value :: buffer
       integer(c_int) :: DpruneCsr2csrByPercentage
+      if (.not. is_contiguous(csrValA)) error stop "csrValA: array must be contiguous"
+      if (.not. is_contiguous(csrRowPtrA)) error stop "csrRowPtrA: array must be contiguous"
+      if (.not. is_contiguous(csrColIndA)) error stop "csrColIndA: array must be contiguous"
+      if (.not. is_contiguous(csrValC)) error stop "csrValC: array must be contiguous"
+      if (.not. is_contiguous(csrRowPtrC)) error stop "csrRowPtrC: array must be contiguous"
+      if (.not. is_contiguous(csrColIndC)) error stop "csrColIndC: array must be contiguous"
       DpruneCsr2csrByPercentage = hipsparseDpruneCsr2csrByPercentage_raw(handle, m, n, nnzA, &
         descrA, c_loc(csrValA), c_loc(csrRowPtrA), c_loc(csrColIndA), percentage, descrC, c_loc( &
         csrValC), c_loc(csrRowPtrC), c_loc(csrColIndC), info, buffer)
@@ -41958,6 +42910,10 @@ contains
       integer(c_int), target :: csrColInd(..)
       type(c_ptr), value :: pBufferSizeInBytes
       integer(c_int) :: SpruneDense2csr_bufferSize
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(csrVal)) error stop "csrVal: array must be contiguous"
+      if (.not. is_contiguous(csrRowPtr)) error stop "csrRowPtr: array must be contiguous"
+      if (.not. is_contiguous(csrColInd)) error stop "csrColInd: array must be contiguous"
       SpruneDense2csr_bufferSize = hipsparseSpruneDense2csr_bufferSize_raw(handle, m, n, c_loc(A), &
         lda, threshold, descr, c_loc(csrVal), c_loc(csrRowPtr), c_loc(csrColInd), &
         pBufferSizeInBytes)
@@ -42000,6 +42956,10 @@ contains
       integer(c_int), target :: csrColInd(..)
       type(c_ptr), value :: pBufferSizeInBytes
       integer(c_int) :: DpruneDense2csr_bufferSize
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(csrVal)) error stop "csrVal: array must be contiguous"
+      if (.not. is_contiguous(csrRowPtr)) error stop "csrRowPtr: array must be contiguous"
+      if (.not. is_contiguous(csrColInd)) error stop "csrColInd: array must be contiguous"
       DpruneDense2csr_bufferSize = hipsparseDpruneDense2csr_bufferSize_raw(handle, m, n, c_loc(A), &
         lda, threshold, descr, c_loc(csrVal), c_loc(csrRowPtr), c_loc(csrColInd), &
         pBufferSizeInBytes)
@@ -42042,6 +43002,10 @@ contains
       integer(c_int), target :: csrColInd(..)
       type(c_ptr), value :: pBufferSizeInBytes
       integer(c_int) :: SpruneDense2csr_bufferSizeExt
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(csrVal)) error stop "csrVal: array must be contiguous"
+      if (.not. is_contiguous(csrRowPtr)) error stop "csrRowPtr: array must be contiguous"
+      if (.not. is_contiguous(csrColInd)) error stop "csrColInd: array must be contiguous"
       SpruneDense2csr_bufferSizeExt = hipsparseSpruneDense2csr_bufferSizeExt_raw(handle, m, n, &
         c_loc(A), lda, threshold, descr, c_loc(csrVal), c_loc(csrRowPtr), c_loc(csrColInd), &
         pBufferSizeInBytes)
@@ -42084,6 +43048,10 @@ contains
       integer(c_int), target :: csrColInd(..)
       type(c_ptr), value :: pBufferSizeInBytes
       integer(c_int) :: DpruneDense2csr_bufferSizeExt
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(csrVal)) error stop "csrVal: array must be contiguous"
+      if (.not. is_contiguous(csrRowPtr)) error stop "csrRowPtr: array must be contiguous"
+      if (.not. is_contiguous(csrColInd)) error stop "csrColInd: array must be contiguous"
       DpruneDense2csr_bufferSizeExt = hipsparseDpruneDense2csr_bufferSizeExt_raw(handle, m, n, &
         c_loc(A), lda, threshold, descr, c_loc(csrVal), c_loc(csrRowPtr), c_loc(csrColInd), &
         pBufferSizeInBytes)
@@ -42125,6 +43093,8 @@ contains
       integer(c_int) :: nnzTotalDevHostPtr
       type(c_ptr), value :: buffer
       integer(c_int) :: SpruneDense2csrNnz
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(csrRowPtr)) error stop "csrRowPtr: array must be contiguous"
       SpruneDense2csrNnz = hipsparseSpruneDense2csrNnz_raw(handle, m, n, c_loc(A), lda, threshold, &
         descr, c_loc(csrRowPtr), nnzTotalDevHostPtr, buffer)
     end function hipsparseSpruneDense2csrNnz_native
@@ -42164,6 +43134,8 @@ contains
       integer(c_int) :: nnzTotalDevHostPtr
       type(c_ptr), value :: buffer
       integer(c_int) :: DpruneDense2csrNnz
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(csrRowPtr)) error stop "csrRowPtr: array must be contiguous"
       DpruneDense2csrNnz = hipsparseDpruneDense2csrNnz_raw(handle, m, n, c_loc(A), lda, threshold, &
         descr, c_loc(csrRowPtr), nnzTotalDevHostPtr, buffer)
     end function hipsparseDpruneDense2csrNnz_native
@@ -42204,6 +43176,10 @@ contains
       integer(c_int), target :: csrColInd(..)
       type(c_ptr), value :: buffer
       integer(c_int) :: SpruneDense2csr
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(csrVal)) error stop "csrVal: array must be contiguous"
+      if (.not. is_contiguous(csrRowPtr)) error stop "csrRowPtr: array must be contiguous"
+      if (.not. is_contiguous(csrColInd)) error stop "csrColInd: array must be contiguous"
       SpruneDense2csr = hipsparseSpruneDense2csr_raw(handle, m, n, c_loc(A), lda, threshold, &
         descr, c_loc(csrVal), c_loc(csrRowPtr), c_loc(csrColInd), buffer)
     end function hipsparseSpruneDense2csr_native
@@ -42245,6 +43221,10 @@ contains
       integer(c_int), target :: csrColInd(..)
       type(c_ptr), value :: buffer
       integer(c_int) :: DpruneDense2csr
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(csrVal)) error stop "csrVal: array must be contiguous"
+      if (.not. is_contiguous(csrRowPtr)) error stop "csrRowPtr: array must be contiguous"
+      if (.not. is_contiguous(csrColInd)) error stop "csrColInd: array must be contiguous"
       DpruneDense2csr = hipsparseDpruneDense2csr_raw(handle, m, n, c_loc(A), lda, threshold, &
         descr, c_loc(csrVal), c_loc(csrRowPtr), c_loc(csrColInd), buffer)
     end function hipsparseDpruneDense2csr_native
@@ -42288,6 +43268,10 @@ contains
       type(c_ptr), value :: info
       type(c_ptr), value :: pBufferSizeInBytes
       integer(c_int) :: SpruneDense2csrByPercentage_bufferSize
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(csrVal)) error stop "csrVal: array must be contiguous"
+      if (.not. is_contiguous(csrRowPtr)) error stop "csrRowPtr: array must be contiguous"
+      if (.not. is_contiguous(csrColInd)) error stop "csrColInd: array must be contiguous"
       SpruneDense2csrByPercentage_bufferSize = hipsparseSpruneDense2csrByPercentage_bufferSize_raw( &
         handle, m, n, c_loc(A), lda, percentage, descr, c_loc(csrVal), c_loc(csrRowPtr), c_loc( &
         csrColInd), info, pBufferSizeInBytes)
@@ -42335,6 +43319,10 @@ contains
       type(c_ptr), value :: info
       type(c_ptr), value :: pBufferSizeInBytes
       integer(c_int) :: DpruneDense2csrByPercentage_bufferSize
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(csrVal)) error stop "csrVal: array must be contiguous"
+      if (.not. is_contiguous(csrRowPtr)) error stop "csrRowPtr: array must be contiguous"
+      if (.not. is_contiguous(csrColInd)) error stop "csrColInd: array must be contiguous"
       DpruneDense2csrByPercentage_bufferSize = hipsparseDpruneDense2csrByPercentage_bufferSize_raw( &
         handle, m, n, c_loc(A), lda, percentage, descr, c_loc(csrVal), c_loc(csrRowPtr), c_loc( &
         csrColInd), info, pBufferSizeInBytes)
@@ -42382,6 +43370,10 @@ contains
       type(c_ptr), value :: info
       type(c_ptr), value :: pBufferSizeInBytes
       integer(c_int) :: SpruneDense2csrByPercentage_bufferSizeExt
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(csrVal)) error stop "csrVal: array must be contiguous"
+      if (.not. is_contiguous(csrRowPtr)) error stop "csrRowPtr: array must be contiguous"
+      if (.not. is_contiguous(csrColInd)) error stop "csrColInd: array must be contiguous"
       SpruneDense2csrByPercentage_bufferSizeExt = hipsparseSpruneDense2csrByPercentage_bufferSizeExt_raw( &
         handle, m, n, c_loc(A), lda, percentage, descr, c_loc(csrVal), c_loc(csrRowPtr), c_loc( &
         csrColInd), info, pBufferSizeInBytes)
@@ -42429,6 +43421,10 @@ contains
       type(c_ptr), value :: info
       type(c_ptr), value :: pBufferSizeInBytes
       integer(c_int) :: DpruneDense2csrByPercentage_bufferSizeExt
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(csrVal)) error stop "csrVal: array must be contiguous"
+      if (.not. is_contiguous(csrRowPtr)) error stop "csrRowPtr: array must be contiguous"
+      if (.not. is_contiguous(csrColInd)) error stop "csrColInd: array must be contiguous"
       DpruneDense2csrByPercentage_bufferSizeExt = hipsparseDpruneDense2csrByPercentage_bufferSizeExt_raw( &
         handle, m, n, c_loc(A), lda, percentage, descr, c_loc(csrVal), c_loc(csrRowPtr), c_loc( &
         csrColInd), info, pBufferSizeInBytes)
@@ -42474,6 +43470,8 @@ contains
       type(c_ptr), value :: info
       type(c_ptr), value :: buffer
       integer(c_int) :: SpruneDense2csrNnzByPercentage
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(csrRowPtr)) error stop "csrRowPtr: array must be contiguous"
       SpruneDense2csrNnzByPercentage = hipsparseSpruneDense2csrNnzByPercentage_raw(handle, m, n, &
         c_loc(A), lda, percentage, descr, c_loc(csrRowPtr), nnzTotalDevHostPtr, info, buffer)
     end function hipsparseSpruneDense2csrNnzByPercentage_native
@@ -42515,6 +43513,8 @@ contains
       type(c_ptr), value :: info
       type(c_ptr), value :: buffer
       integer(c_int) :: DpruneDense2csrNnzByPercentage
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(csrRowPtr)) error stop "csrRowPtr: array must be contiguous"
       DpruneDense2csrNnzByPercentage = hipsparseDpruneDense2csrNnzByPercentage_raw(handle, m, n, &
         c_loc(A), lda, percentage, descr, c_loc(csrRowPtr), nnzTotalDevHostPtr, info, buffer)
     end function hipsparseDpruneDense2csrNnzByPercentage_native
@@ -42557,6 +43557,10 @@ contains
       type(c_ptr), value :: info
       type(c_ptr), value :: buffer
       integer(c_int) :: SpruneDense2csrByPercentage
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(csrVal)) error stop "csrVal: array must be contiguous"
+      if (.not. is_contiguous(csrRowPtr)) error stop "csrRowPtr: array must be contiguous"
+      if (.not. is_contiguous(csrColInd)) error stop "csrColInd: array must be contiguous"
       SpruneDense2csrByPercentage = hipsparseSpruneDense2csrByPercentage_raw(handle, m, n, c_loc( &
         A), lda, percentage, descr, c_loc(csrVal), c_loc(csrRowPtr), c_loc(csrColInd), info, buffer)
     end function hipsparseSpruneDense2csrByPercentage_native
@@ -42600,6 +43604,10 @@ contains
       type(c_ptr), value :: info
       type(c_ptr), value :: buffer
       integer(c_int) :: DpruneDense2csrByPercentage
+      if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
+      if (.not. is_contiguous(csrVal)) error stop "csrVal: array must be contiguous"
+      if (.not. is_contiguous(csrRowPtr)) error stop "csrRowPtr: array must be contiguous"
+      if (.not. is_contiguous(csrColInd)) error stop "csrColInd: array must be contiguous"
       DpruneDense2csrByPercentage = hipsparseDpruneDense2csrByPercentage_raw(handle, m, n, c_loc( &
         A), lda, percentage, descr, c_loc(csrVal), c_loc(csrRowPtr), c_loc(csrColInd), info, buffer)
     end function hipsparseDpruneDense2csrByPercentage_native
@@ -42643,6 +43651,10 @@ contains
       integer(c_int) :: reordering
       type(c_ptr), value :: info
       integer(c_int) :: Scsrcolor
+      if (.not. is_contiguous(csrValA)) error stop "csrValA: array must be contiguous"
+      if (.not. is_contiguous(csrRowPtrA)) error stop "csrRowPtrA: array must be contiguous"
+      if (.not. is_contiguous(csrColIndA)) error stop "csrColIndA: array must be contiguous"
+      if (.not. is_contiguous(fractionToColor)) error stop "fractionToColor: array must be contiguous"
       Scsrcolor = hipsparseScsrcolor_raw(handle, m, nnz, descrA, c_loc(csrValA), c_loc( &
         csrRowPtrA), c_loc(csrColIndA), c_loc(fractionToColor), ncolors, coloring, reordering, info)
     end function hipsparseScsrcolor_native
@@ -42686,6 +43698,10 @@ contains
       integer(c_int) :: reordering
       type(c_ptr), value :: info
       integer(c_int) :: Dcsrcolor
+      if (.not. is_contiguous(csrValA)) error stop "csrValA: array must be contiguous"
+      if (.not. is_contiguous(csrRowPtrA)) error stop "csrRowPtrA: array must be contiguous"
+      if (.not. is_contiguous(csrColIndA)) error stop "csrColIndA: array must be contiguous"
+      if (.not. is_contiguous(fractionToColor)) error stop "fractionToColor: array must be contiguous"
       Dcsrcolor = hipsparseDcsrcolor_raw(handle, m, nnz, descrA, c_loc(csrValA), c_loc( &
         csrRowPtrA), c_loc(csrColIndA), c_loc(fractionToColor), ncolors, coloring, reordering, info)
     end function hipsparseDcsrcolor_native
@@ -42729,6 +43745,10 @@ contains
       integer(c_int) :: reordering
       type(c_ptr), value :: info
       integer(c_int) :: Ccsrcolor
+      if (.not. is_contiguous(csrValA)) error stop "csrValA: array must be contiguous"
+      if (.not. is_contiguous(csrRowPtrA)) error stop "csrRowPtrA: array must be contiguous"
+      if (.not. is_contiguous(csrColIndA)) error stop "csrColIndA: array must be contiguous"
+      if (.not. is_contiguous(fractionToColor)) error stop "fractionToColor: array must be contiguous"
       Ccsrcolor = hipsparseCcsrcolor_raw(handle, m, nnz, descrA, c_loc(csrValA), c_loc( &
         csrRowPtrA), c_loc(csrColIndA), c_loc(fractionToColor), ncolors, coloring, reordering, info)
     end function hipsparseCcsrcolor_native
@@ -42772,6 +43792,10 @@ contains
       integer(c_int) :: reordering
       type(c_ptr), value :: info
       integer(c_int) :: Zcsrcolor
+      if (.not. is_contiguous(csrValA)) error stop "csrValA: array must be contiguous"
+      if (.not. is_contiguous(csrRowPtrA)) error stop "csrRowPtrA: array must be contiguous"
+      if (.not. is_contiguous(csrColIndA)) error stop "csrColIndA: array must be contiguous"
+      if (.not. is_contiguous(fractionToColor)) error stop "fractionToColor: array must be contiguous"
       Zcsrcolor = hipsparseZcsrcolor_raw(handle, m, nnz, descrA, c_loc(csrValA), c_loc( &
         csrRowPtrA), c_loc(csrColIndA), c_loc(fractionToColor), ncolors, coloring, reordering, info)
     end function hipsparseZcsrcolor_native
@@ -42856,6 +43880,9 @@ contains
       integer(c_int), target :: idxBase(..)
       integer(c_int), target :: valueType(..)
       integer(c_int) :: SpVecGet
+      if (.not. is_contiguous(idxType)) error stop "idxType: array must be contiguous"
+      if (.not. is_contiguous(idxBase)) error stop "idxBase: array must be contiguous"
+      if (.not. is_contiguous(valueType)) error stop "valueType: array must be contiguous"
       SpVecGet = hipsparseSpVecGet_raw(spVecDescr, size, nnz, indices, values, c_loc(idxType), &
         c_loc(idxBase), c_loc(valueType))
     end function hipsparseSpVecGet_native
@@ -42891,6 +43918,9 @@ contains
       integer(c_int), target :: idxBase(..)
       integer(c_int), target :: valueType(..)
       integer(c_int) :: ConstSpVecGet
+      if (.not. is_contiguous(idxType)) error stop "idxType: array must be contiguous"
+      if (.not. is_contiguous(idxBase)) error stop "idxBase: array must be contiguous"
+      if (.not. is_contiguous(valueType)) error stop "valueType: array must be contiguous"
       ConstSpVecGet = hipsparseConstSpVecGet_raw(spVecDescr, size, nnz, indices, values, c_loc( &
         idxType), c_loc(idxBase), c_loc(valueType))
     end function hipsparseConstSpVecGet_native
@@ -42919,6 +43949,7 @@ contains
       type(c_ptr), value :: spVecDescr
       integer(c_int), target :: idxBase(..)
       integer(c_int) :: SpVecGetIndexBase
+      if (.not. is_contiguous(idxBase)) error stop "idxBase: array must be contiguous"
       SpVecGetIndexBase = hipsparseSpVecGetIndexBase_raw(spVecDescr, c_loc(idxBase))
     end function hipsparseSpVecGetIndexBase_native
 
@@ -43219,6 +44250,9 @@ contains
       integer(c_int), target :: idxBase(..)
       integer(c_int), target :: valueType(..)
       integer(c_int) :: CooGet
+      if (.not. is_contiguous(idxType)) error stop "idxType: array must be contiguous"
+      if (.not. is_contiguous(idxBase)) error stop "idxBase: array must be contiguous"
+      if (.not. is_contiguous(valueType)) error stop "valueType: array must be contiguous"
       CooGet = hipsparseCooGet_raw(spMatDescr, rows, cols, nnz, cooRowInd, cooColInd, cooValues, &
         c_loc(idxType), c_loc(idxBase), c_loc(valueType))
     end function hipsparseCooGet_native
@@ -43258,6 +44292,9 @@ contains
       integer(c_int), target :: idxBase(..)
       integer(c_int), target :: valueType(..)
       integer(c_int) :: ConstCooGet
+      if (.not. is_contiguous(idxType)) error stop "idxType: array must be contiguous"
+      if (.not. is_contiguous(idxBase)) error stop "idxBase: array must be contiguous"
+      if (.not. is_contiguous(valueType)) error stop "valueType: array must be contiguous"
       ConstCooGet = hipsparseConstCooGet_raw(spMatDescr, rows, cols, nnz, cooRowInd, cooColInd, &
         cooValues, c_loc(idxType), c_loc(idxBase), c_loc(valueType))
     end function hipsparseConstCooGet_native
@@ -43296,6 +44333,9 @@ contains
       integer(c_int), target :: idxBase(..)
       integer(c_int), target :: valueType(..)
       integer(c_int) :: CooAoSGet
+      if (.not. is_contiguous(idxType)) error stop "idxType: array must be contiguous"
+      if (.not. is_contiguous(idxBase)) error stop "idxBase: array must be contiguous"
+      if (.not. is_contiguous(valueType)) error stop "valueType: array must be contiguous"
       CooAoSGet = hipsparseCooAoSGet_raw(spMatDescr, rows, cols, nnz, cooInd, cooValues, c_loc( &
         idxType), c_loc(idxBase), c_loc(valueType))
     end function hipsparseCooAoSGet_native
@@ -43335,6 +44375,10 @@ contains
       integer(c_int), target :: idxBase(..)
       integer(c_int), target :: valueType(..)
       integer(c_int) :: CsrGet
+      if (.not. is_contiguous(csrRowOffsetsType)) error stop "csrRowOffsetsType: array must be contiguous"
+      if (.not. is_contiguous(csrColIndType)) error stop "csrColIndType: array must be contiguous"
+      if (.not. is_contiguous(idxBase)) error stop "idxBase: array must be contiguous"
+      if (.not. is_contiguous(valueType)) error stop "valueType: array must be contiguous"
       CsrGet = hipsparseCsrGet_raw(spMatDescr, rows, cols, nnz, csrRowOffsets, csrColInd, &
         csrValues, c_loc(csrRowOffsetsType), c_loc(csrColIndType), c_loc(idxBase), c_loc(valueType))
     end function hipsparseCsrGet_native
@@ -43376,6 +44420,10 @@ contains
       integer(c_int), target :: idxBase(..)
       integer(c_int), target :: valueType(..)
       integer(c_int) :: ConstCsrGet
+      if (.not. is_contiguous(csrRowOffsetsType)) error stop "csrRowOffsetsType: array must be contiguous"
+      if (.not. is_contiguous(csrColIndType)) error stop "csrColIndType: array must be contiguous"
+      if (.not. is_contiguous(idxBase)) error stop "idxBase: array must be contiguous"
+      if (.not. is_contiguous(valueType)) error stop "valueType: array must be contiguous"
       ConstCsrGet = hipsparseConstCsrGet_raw(spMatDescr, rows, cols, nnz, csrRowOffsets, &
         csrColInd, csrValues, c_loc(csrRowOffsetsType), c_loc(csrColIndType), c_loc(idxBase), &
         c_loc(valueType))
@@ -43418,6 +44466,10 @@ contains
       integer(c_int), target :: idxBase(..)
       integer(c_int), target :: valueType(..)
       integer(c_int) :: CscGet
+      if (.not. is_contiguous(cscColOffsetsType)) error stop "cscColOffsetsType: array must be contiguous"
+      if (.not. is_contiguous(cscRowIndType)) error stop "cscRowIndType: array must be contiguous"
+      if (.not. is_contiguous(idxBase)) error stop "idxBase: array must be contiguous"
+      if (.not. is_contiguous(valueType)) error stop "valueType: array must be contiguous"
       CscGet = hipsparseCscGet_raw(spMatDescr, rows, cols, nnz, cscColOffsets, cscRowInd, &
         cscValues, c_loc(cscColOffsetsType), c_loc(cscRowIndType), c_loc(idxBase), c_loc(valueType))
     end function hipsparseCscGet_native
@@ -43459,6 +44511,10 @@ contains
       integer(c_int), target :: idxBase(..)
       integer(c_int), target :: valueType(..)
       integer(c_int) :: ConstCscGet
+      if (.not. is_contiguous(cscColOffsetsType)) error stop "cscColOffsetsType: array must be contiguous"
+      if (.not. is_contiguous(cscRowIndType)) error stop "cscRowIndType: array must be contiguous"
+      if (.not. is_contiguous(idxBase)) error stop "idxBase: array must be contiguous"
+      if (.not. is_contiguous(valueType)) error stop "valueType: array must be contiguous"
       ConstCscGet = hipsparseConstCscGet_raw(spMatDescr, rows, cols, nnz, cscColOffsets, &
         cscRowInd, cscValues, c_loc(cscColOffsetsType), c_loc(cscRowIndType), c_loc(idxBase), &
         c_loc(valueType))
@@ -43500,6 +44556,9 @@ contains
       integer(c_int), target :: idxBase(..)
       integer(c_int), target :: valueType(..)
       integer(c_int) :: BlockedEllGet
+      if (.not. is_contiguous(ellIdxType)) error stop "ellIdxType: array must be contiguous"
+      if (.not. is_contiguous(idxBase)) error stop "idxBase: array must be contiguous"
+      if (.not. is_contiguous(valueType)) error stop "valueType: array must be contiguous"
       BlockedEllGet = hipsparseBlockedEllGet_raw(spMatDescr, rows, cols, ellBlockSize, ellCols, &
         ellColInd, ellValue, c_loc(ellIdxType), c_loc(idxBase), c_loc(valueType))
     end function hipsparseBlockedEllGet_native
@@ -43539,6 +44598,9 @@ contains
       integer(c_int), target :: idxBase(..)
       integer(c_int), target :: valueType(..)
       integer(c_int) :: ConstBlockedEllGet
+      if (.not. is_contiguous(ellIdxType)) error stop "ellIdxType: array must be contiguous"
+      if (.not. is_contiguous(idxBase)) error stop "idxBase: array must be contiguous"
+      if (.not. is_contiguous(valueType)) error stop "valueType: array must be contiguous"
       ConstBlockedEllGet = hipsparseConstBlockedEllGet_raw(spMatDescr, rows, cols, ellBlockSize, &
         ellCols, ellColInd, ellValue, c_loc(ellIdxType), c_loc(idxBase), c_loc(valueType))
     end function hipsparseConstBlockedEllGet_native
@@ -43622,6 +44684,7 @@ contains
       type(c_ptr), value :: spMatDescr
       integer(c_int), target :: format_(..)
       integer(c_int) :: SpMatGetFormat
+      if (.not. is_contiguous(format_)) error stop "format_: array must be contiguous"
       SpMatGetFormat = hipsparseSpMatGetFormat_raw(spMatDescr, c_loc(format_))
     end function hipsparseSpMatGetFormat_native
 
@@ -43641,6 +44704,7 @@ contains
       type(c_ptr), value :: spMatDescr
       integer(c_int), target :: idxBase(..)
       integer(c_int) :: SpMatGetIndexBase
+      if (.not. is_contiguous(idxBase)) error stop "idxBase: array must be contiguous"
       SpMatGetIndexBase = hipsparseSpMatGetIndexBase_raw(spMatDescr, c_loc(idxBase))
     end function hipsparseSpMatGetIndexBase_native
 
@@ -43691,6 +44755,7 @@ contains
       type(c_ptr), value :: spMatDescr
       integer(c_int), target :: batchCount(..)
       integer(c_int) :: SpMatGetStridedBatch
+      if (.not. is_contiguous(batchCount)) error stop "batchCount: array must be contiguous"
       SpMatGetStridedBatch = hipsparseSpMatGetStridedBatch_raw(spMatDescr, c_loc(batchCount))
     end function hipsparseSpMatGetStridedBatch_native
 
@@ -43810,6 +44875,7 @@ contains
       type(c_ptr) :: values
       integer(c_int), target :: valueType(..)
       integer(c_int) :: DnVecGet
+      if (.not. is_contiguous(valueType)) error stop "valueType: array must be contiguous"
       DnVecGet = hipsparseDnVecGet_raw(dnVecDescr, size, values, c_loc(valueType))
     end function hipsparseDnVecGet_native
 
@@ -43834,6 +44900,7 @@ contains
       type(c_ptr) :: values
       integer(c_int), target :: valueType(..)
       integer(c_int) :: ConstDnVecGet
+      if (.not. is_contiguous(valueType)) error stop "valueType: array must be contiguous"
       ConstDnVecGet = hipsparseConstDnVecGet_raw(dnVecDescr, size, values, c_loc(valueType))
     end function hipsparseConstDnVecGet_native
 
@@ -43934,6 +45001,8 @@ contains
       integer(c_int), target :: valueType(..)
       integer(c_int), target :: order(..)
       integer(c_int) :: DnMatGet
+      if (.not. is_contiguous(valueType)) error stop "valueType: array must be contiguous"
+      if (.not. is_contiguous(order)) error stop "order: array must be contiguous"
       DnMatGet = hipsparseDnMatGet_raw(dnMatDescr, rows, cols, ld, values, c_loc(valueType), &
         c_loc(order))
     end function hipsparseDnMatGet_native
@@ -43966,6 +45035,8 @@ contains
       integer(c_int), target :: valueType(..)
       integer(c_int), target :: order(..)
       integer(c_int) :: ConstDnMatGet
+      if (.not. is_contiguous(valueType)) error stop "valueType: array must be contiguous"
+      if (.not. is_contiguous(order)) error stop "order: array must be contiguous"
       ConstDnMatGet = hipsparseConstDnMatGet_raw(dnMatDescr, rows, cols, ld, values, c_loc( &
         valueType), c_loc(order))
     end function hipsparseConstDnMatGet_native
@@ -44025,6 +45096,7 @@ contains
       integer(c_int), target :: batchCount(..)
       type(c_ptr), value :: batchStride
       integer(c_int) :: DnMatGetStridedBatch
+      if (.not. is_contiguous(batchCount)) error stop "batchCount: array must be contiguous"
       DnMatGetStridedBatch = hipsparseDnMatGetStridedBatch_raw(dnMatDescr, c_loc(batchCount), &
         batchStride)
     end function hipsparseDnMatGetStridedBatch_native

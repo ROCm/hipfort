@@ -1564,6 +1564,7 @@ contains
       integer(c_int), value :: sign
       integer(c_int), value :: flags
       type(c_ptr) :: plan_dft
+      if (.not. is_contiguous(n)) error stop "n: array must be contiguous"
       plan_dft = fftw_plan_dft_raw(rank, c_loc(n), in, out, sign, flags)
     end function fftw_plan_dft_native
 
@@ -1577,6 +1578,7 @@ contains
       integer(c_int), value :: sign
       integer(c_int), value :: flags
       type(c_ptr) :: f_plan_dft
+      if (.not. is_contiguous(n)) error stop "n: array must be contiguous"
       f_plan_dft = fftwf_plan_dft_raw(rank, c_loc(n), in, out, sign, flags)
     end function fftwf_plan_dft_native
 
@@ -1588,6 +1590,7 @@ contains
       type(c_ptr), value :: out
       integer(c_int), value :: flags
       type(c_ptr) :: plan_dft_r2c_1d
+      if (.not. is_contiguous(in)) error stop "in: array must be contiguous"
       plan_dft_r2c_1d = fftw_plan_dft_r2c_1d_raw(n, c_loc(in), out, flags)
     end function fftw_plan_dft_r2c_1d_native
 
@@ -1599,6 +1602,7 @@ contains
       type(c_ptr), value :: out
       integer(c_int), value :: flags
       type(c_ptr) :: f_plan_dft_r2c_1d
+      if (.not. is_contiguous(in)) error stop "in: array must be contiguous"
       f_plan_dft_r2c_1d = fftwf_plan_dft_r2c_1d_raw(n, c_loc(in), out, flags)
     end function fftwf_plan_dft_r2c_1d_native
 
@@ -1611,6 +1615,7 @@ contains
       type(c_ptr), value :: out
       integer(c_int), value :: flags
       type(c_ptr) :: plan_dft_r2c_2d
+      if (.not. is_contiguous(in)) error stop "in: array must be contiguous"
       plan_dft_r2c_2d = fftw_plan_dft_r2c_2d_raw(n0, n1, c_loc(in), out, flags)
     end function fftw_plan_dft_r2c_2d_native
 
@@ -1623,6 +1628,7 @@ contains
       type(c_ptr), value :: out
       integer(c_int), value :: flags
       type(c_ptr) :: f_plan_dft_r2c_2d
+      if (.not. is_contiguous(in)) error stop "in: array must be contiguous"
       f_plan_dft_r2c_2d = fftwf_plan_dft_r2c_2d_raw(n0, n1, c_loc(in), out, flags)
     end function fftwf_plan_dft_r2c_2d_native
 
@@ -1636,6 +1642,7 @@ contains
       type(c_ptr), value :: out
       integer(c_int), value :: flags
       type(c_ptr) :: plan_dft_r2c_3d
+      if (.not. is_contiguous(in)) error stop "in: array must be contiguous"
       plan_dft_r2c_3d = fftw_plan_dft_r2c_3d_raw(n0, n1, n2, c_loc(in), out, flags)
     end function fftw_plan_dft_r2c_3d_native
 
@@ -1649,6 +1656,7 @@ contains
       type(c_ptr), value :: out
       integer(c_int), value :: flags
       type(c_ptr) :: f_plan_dft_r2c_3d
+      if (.not. is_contiguous(in)) error stop "in: array must be contiguous"
       f_plan_dft_r2c_3d = fftwf_plan_dft_r2c_3d_raw(n0, n1, n2, c_loc(in), out, flags)
     end function fftwf_plan_dft_r2c_3d_native
 
@@ -1661,6 +1669,8 @@ contains
       type(c_ptr), value :: out
       integer(c_int), value :: flags
       type(c_ptr) :: plan_dft_r2c
+      if (.not. is_contiguous(n)) error stop "n: array must be contiguous"
+      if (.not. is_contiguous(in)) error stop "in: array must be contiguous"
       plan_dft_r2c = fftw_plan_dft_r2c_raw(rank, c_loc(n), c_loc(in), out, flags)
     end function fftw_plan_dft_r2c_native
 
@@ -1673,6 +1683,8 @@ contains
       type(c_ptr), value :: out
       integer(c_int), value :: flags
       type(c_ptr) :: f_plan_dft_r2c
+      if (.not. is_contiguous(n)) error stop "n: array must be contiguous"
+      if (.not. is_contiguous(in)) error stop "in: array must be contiguous"
       f_plan_dft_r2c = fftwf_plan_dft_r2c_raw(rank, c_loc(n), c_loc(in), out, flags)
     end function fftwf_plan_dft_r2c_native
 
@@ -1684,6 +1696,7 @@ contains
       real(c_double), target :: out(..)
       integer(c_int), value :: flags
       type(c_ptr) :: plan_dft_c2r_1d
+      if (.not. is_contiguous(out)) error stop "out: array must be contiguous"
       plan_dft_c2r_1d = fftw_plan_dft_c2r_1d_raw(n, in, c_loc(out), flags)
     end function fftw_plan_dft_c2r_1d_native
 
@@ -1695,6 +1708,7 @@ contains
       real(c_float), target :: out(..)
       integer(c_int), value :: flags
       type(c_ptr) :: f_plan_dft_c2r_1d
+      if (.not. is_contiguous(out)) error stop "out: array must be contiguous"
       f_plan_dft_c2r_1d = fftwf_plan_dft_c2r_1d_raw(n, in, c_loc(out), flags)
     end function fftwf_plan_dft_c2r_1d_native
 
@@ -1707,6 +1721,7 @@ contains
       real(c_double), target :: out(..)
       integer(c_int), value :: flags
       type(c_ptr) :: plan_dft_c2r_2d
+      if (.not. is_contiguous(out)) error stop "out: array must be contiguous"
       plan_dft_c2r_2d = fftw_plan_dft_c2r_2d_raw(n0, n1, in, c_loc(out), flags)
     end function fftw_plan_dft_c2r_2d_native
 
@@ -1719,6 +1734,7 @@ contains
       real(c_float), target :: out(..)
       integer(c_int), value :: flags
       type(c_ptr) :: f_plan_dft_c2r_2d
+      if (.not. is_contiguous(out)) error stop "out: array must be contiguous"
       f_plan_dft_c2r_2d = fftwf_plan_dft_c2r_2d_raw(n0, n1, in, c_loc(out), flags)
     end function fftwf_plan_dft_c2r_2d_native
 
@@ -1732,6 +1748,7 @@ contains
       real(c_double), target :: out(..)
       integer(c_int), value :: flags
       type(c_ptr) :: plan_dft_c2r_3d
+      if (.not. is_contiguous(out)) error stop "out: array must be contiguous"
       plan_dft_c2r_3d = fftw_plan_dft_c2r_3d_raw(n0, n1, n2, in, c_loc(out), flags)
     end function fftw_plan_dft_c2r_3d_native
 
@@ -1745,6 +1762,7 @@ contains
       real(c_float), target :: out(..)
       integer(c_int), value :: flags
       type(c_ptr) :: f_plan_dft_c2r_3d
+      if (.not. is_contiguous(out)) error stop "out: array must be contiguous"
       f_plan_dft_c2r_3d = fftwf_plan_dft_c2r_3d_raw(n0, n1, n2, in, c_loc(out), flags)
     end function fftwf_plan_dft_c2r_3d_native
 
@@ -1757,6 +1775,8 @@ contains
       real(c_double), target :: out(..)
       integer(c_int), value :: flags
       type(c_ptr) :: plan_dft_c2r
+      if (.not. is_contiguous(n)) error stop "n: array must be contiguous"
+      if (.not. is_contiguous(out)) error stop "out: array must be contiguous"
       plan_dft_c2r = fftw_plan_dft_c2r_raw(rank, c_loc(n), in, c_loc(out), flags)
     end function fftw_plan_dft_c2r_native
 
@@ -1769,6 +1789,8 @@ contains
       real(c_float), target :: out(..)
       integer(c_int), value :: flags
       type(c_ptr) :: f_plan_dft_c2r
+      if (.not. is_contiguous(n)) error stop "n: array must be contiguous"
+      if (.not. is_contiguous(out)) error stop "out: array must be contiguous"
       f_plan_dft_c2r = fftwf_plan_dft_c2r_raw(rank, c_loc(n), in, c_loc(out), flags)
     end function fftwf_plan_dft_c2r_native
 
@@ -1790,6 +1812,9 @@ contains
       integer(c_int), value :: sign
       integer(c_int), value :: flags
       type(c_ptr) :: plan_many_dft
+      if (.not. is_contiguous(n)) error stop "n: array must be contiguous"
+      if (.not. is_contiguous(inembed)) error stop "inembed: array must be contiguous"
+      if (.not. is_contiguous(onembed)) error stop "onembed: array must be contiguous"
       plan_many_dft = fftw_plan_many_dft_raw(rank, c_loc(n), howmany, in, c_loc(inembed), istride, &
         idist, out, c_loc(onembed), ostride, odist, sign, flags)
     end function fftw_plan_many_dft_native
@@ -1812,6 +1837,9 @@ contains
       integer(c_int), value :: sign
       integer(c_int), value :: flags
       type(c_ptr) :: f_plan_many_dft
+      if (.not. is_contiguous(n)) error stop "n: array must be contiguous"
+      if (.not. is_contiguous(inembed)) error stop "inembed: array must be contiguous"
+      if (.not. is_contiguous(onembed)) error stop "onembed: array must be contiguous"
       f_plan_many_dft = fftwf_plan_many_dft_raw(rank, c_loc(n), howmany, in, c_loc(inembed), &
         istride, idist, out, c_loc(onembed), ostride, odist, sign, flags)
     end function fftwf_plan_many_dft_native
@@ -1833,6 +1861,10 @@ contains
       integer(c_int), value :: odist
       integer(c_int), value :: flags
       type(c_ptr) :: plan_many_dft_r2c
+      if (.not. is_contiguous(n)) error stop "n: array must be contiguous"
+      if (.not. is_contiguous(in)) error stop "in: array must be contiguous"
+      if (.not. is_contiguous(inembed)) error stop "inembed: array must be contiguous"
+      if (.not. is_contiguous(onembed)) error stop "onembed: array must be contiguous"
       plan_many_dft_r2c = fftw_plan_many_dft_r2c_raw(rank, c_loc(n), howmany, c_loc(in), c_loc( &
         inembed), istride, idist, out, c_loc(onembed), ostride, odist, flags)
     end function fftw_plan_many_dft_r2c_native
@@ -1854,6 +1886,10 @@ contains
       integer(c_int), value :: odist
       integer(c_int), value :: flags
       type(c_ptr) :: f_plan_many_dft_r2c
+      if (.not. is_contiguous(n)) error stop "n: array must be contiguous"
+      if (.not. is_contiguous(in)) error stop "in: array must be contiguous"
+      if (.not. is_contiguous(inembed)) error stop "inembed: array must be contiguous"
+      if (.not. is_contiguous(onembed)) error stop "onembed: array must be contiguous"
       f_plan_many_dft_r2c = fftwf_plan_many_dft_r2c_raw(rank, c_loc(n), howmany, c_loc(in), c_loc( &
         inembed), istride, idist, out, c_loc(onembed), ostride, odist, flags)
     end function fftwf_plan_many_dft_r2c_native
@@ -1875,6 +1911,10 @@ contains
       integer(c_int), value :: odist
       integer(c_int), value :: flags
       type(c_ptr) :: plan_many_dft_c2r
+      if (.not. is_contiguous(n)) error stop "n: array must be contiguous"
+      if (.not. is_contiguous(inembed)) error stop "inembed: array must be contiguous"
+      if (.not. is_contiguous(out)) error stop "out: array must be contiguous"
+      if (.not. is_contiguous(onembed)) error stop "onembed: array must be contiguous"
       plan_many_dft_c2r = fftw_plan_many_dft_c2r_raw(rank, c_loc(n), howmany, in, c_loc(inembed), &
         istride, idist, c_loc(out), c_loc(onembed), ostride, odist, flags)
     end function fftw_plan_many_dft_c2r_native
@@ -1896,6 +1936,10 @@ contains
       integer(c_int), value :: odist
       integer(c_int), value :: flags
       type(c_ptr) :: f_plan_many_dft_c2r
+      if (.not. is_contiguous(n)) error stop "n: array must be contiguous"
+      if (.not. is_contiguous(inembed)) error stop "inembed: array must be contiguous"
+      if (.not. is_contiguous(out)) error stop "out: array must be contiguous"
+      if (.not. is_contiguous(onembed)) error stop "onembed: array must be contiguous"
       f_plan_many_dft_c2r = fftwf_plan_many_dft_c2r_raw(rank, c_loc(n), howmany, in, c_loc( &
         inembed), istride, idist, c_loc(out), c_loc(onembed), ostride, odist, flags)
     end function fftwf_plan_many_dft_c2r_native
@@ -1912,6 +1956,7 @@ contains
       type(c_ptr), value :: out
       integer(c_int), value :: flags
       type(c_ptr) :: plan_guru_dft_r2c
+      if (.not. is_contiguous(in)) error stop "in: array must be contiguous"
       plan_guru_dft_r2c = fftw_plan_guru_dft_r2c_raw(rank, dims, howmany_rank, howmany_dims, &
         c_loc(in), out, flags)
     end function fftw_plan_guru_dft_r2c_native
@@ -1928,6 +1973,7 @@ contains
       type(c_ptr), value :: out
       integer(c_int), value :: flags
       type(c_ptr) :: f_plan_guru_dft_r2c
+      if (.not. is_contiguous(in)) error stop "in: array must be contiguous"
       f_plan_guru_dft_r2c = fftwf_plan_guru_dft_r2c_raw(rank, dims, howmany_rank, howmany_dims, &
         c_loc(in), out, flags)
     end function fftwf_plan_guru_dft_r2c_native
@@ -1944,6 +1990,7 @@ contains
       real(c_double), target :: out(..)
       integer(c_int), value :: flags
       type(c_ptr) :: plan_guru_dft_c2r
+      if (.not. is_contiguous(out)) error stop "out: array must be contiguous"
       plan_guru_dft_c2r = fftw_plan_guru_dft_c2r_raw(rank, dims, howmany_rank, howmany_dims, in, &
         c_loc(out), flags)
     end function fftw_plan_guru_dft_c2r_native
@@ -1960,6 +2007,7 @@ contains
       real(c_float), target :: out(..)
       integer(c_int), value :: flags
       type(c_ptr) :: f_plan_guru_dft_c2r
+      if (.not. is_contiguous(out)) error stop "out: array must be contiguous"
       f_plan_guru_dft_c2r = fftwf_plan_guru_dft_c2r_raw(rank, dims, howmany_rank, howmany_dims, &
         in, c_loc(out), flags)
     end function fftwf_plan_guru_dft_c2r_native
@@ -1976,6 +2024,7 @@ contains
       type(c_ptr), value :: out
       integer(c_int), value :: flags
       type(c_ptr) :: plan_guru64_dft_r2c
+      if (.not. is_contiguous(in)) error stop "in: array must be contiguous"
       plan_guru64_dft_r2c = fftw_plan_guru64_dft_r2c_raw(rank, dims, howmany_rank, howmany_dims, &
         c_loc(in), out, flags)
     end function fftw_plan_guru64_dft_r2c_native
@@ -1992,6 +2041,7 @@ contains
       type(c_ptr), value :: out
       integer(c_int), value :: flags
       type(c_ptr) :: f_plan_guru64_dft_r2c
+      if (.not. is_contiguous(in)) error stop "in: array must be contiguous"
       f_plan_guru64_dft_r2c = fftwf_plan_guru64_dft_r2c_raw(rank, dims, howmany_rank, &
         howmany_dims, c_loc(in), out, flags)
     end function fftwf_plan_guru64_dft_r2c_native
@@ -2008,6 +2058,7 @@ contains
       real(c_double), target :: out(..)
       integer(c_int), value :: flags
       type(c_ptr) :: plan_guru64_dft_c2r
+      if (.not. is_contiguous(out)) error stop "out: array must be contiguous"
       plan_guru64_dft_c2r = fftw_plan_guru64_dft_c2r_raw(rank, dims, howmany_rank, howmany_dims, &
         in, c_loc(out), flags)
     end function fftw_plan_guru64_dft_c2r_native
@@ -2024,6 +2075,7 @@ contains
       real(c_float), target :: out(..)
       integer(c_int), value :: flags
       type(c_ptr) :: f_plan_guru64_dft_c2r
+      if (.not. is_contiguous(out)) error stop "out: array must be contiguous"
       f_plan_guru64_dft_c2r = fftwf_plan_guru64_dft_c2r_raw(rank, dims, howmany_rank, &
         howmany_dims, in, c_loc(out), flags)
     end function fftwf_plan_guru64_dft_c2r_native
@@ -2070,6 +2122,7 @@ contains
       type(c_ptr), value :: plan
       real(c_double), target :: in(..)
       type(c_ptr), value :: out
+      if (.not. is_contiguous(in)) error stop "in: array must be contiguous"
       call fftw_execute_dft_r2c_raw(plan, c_loc(in), out)
     end subroutine fftw_execute_dft_r2c_native
 
@@ -2089,6 +2142,7 @@ contains
       type(c_ptr), value :: plan
       real(c_float), target :: in(..)
       type(c_ptr), value :: out
+      if (.not. is_contiguous(in)) error stop "in: array must be contiguous"
       call fftwf_execute_dft_r2c_raw(plan, c_loc(in), out)
     end subroutine fftwf_execute_dft_r2c_native
 
@@ -2108,6 +2162,7 @@ contains
       type(c_ptr), value :: plan
       type(c_ptr), value :: in
       real(c_double), target :: out(..)
+      if (.not. is_contiguous(out)) error stop "out: array must be contiguous"
       call fftw_execute_dft_c2r_raw(plan, in, c_loc(out))
     end subroutine fftw_execute_dft_c2r_native
 
@@ -2127,6 +2182,7 @@ contains
       type(c_ptr), value :: plan
       type(c_ptr), value :: in
       real(c_float), target :: out(..)
+      if (.not. is_contiguous(out)) error stop "out: array must be contiguous"
       call fftwf_execute_dft_c2r_raw(plan, in, c_loc(out))
     end subroutine fftwf_execute_dft_c2r_native
 
@@ -2197,6 +2253,9 @@ contains
       real(c_double), target :: arg2(..)
       real(c_double), target :: arg3(..)
       real(c_double), target :: arg4(..)
+      if (.not. is_contiguous(arg2)) error stop "arg2: array must be contiguous"
+      if (.not. is_contiguous(arg3)) error stop "arg3: array must be contiguous"
+      if (.not. is_contiguous(arg4)) error stop "arg4: array must be contiguous"
       call fftw_flops_raw(arg1, c_loc(arg2), c_loc(arg3), c_loc(arg4))
     end subroutine fftw_flops_native
 
@@ -2218,6 +2277,9 @@ contains
       real(c_double), target :: arg2(..)
       real(c_double), target :: arg3(..)
       real(c_double), target :: arg4(..)
+      if (.not. is_contiguous(arg2)) error stop "arg2: array must be contiguous"
+      if (.not. is_contiguous(arg3)) error stop "arg3: array must be contiguous"
+      if (.not. is_contiguous(arg4)) error stop "arg4: array must be contiguous"
       call fftwf_flops_raw(arg1, c_loc(arg2), c_loc(arg3), c_loc(arg4))
     end subroutine fftwf_flops_native
 
