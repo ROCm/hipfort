@@ -36,11 +36,4 @@ module hipfort_rocrand_types
     type(c_ptr) :: cdf
   end type rocrand_discrete_distribution_st
 
-  type, bind(c) :: uint4
-    integer(c_int) :: x
-    integer(c_int) :: y
-    integer(c_int) :: z
-    integer(c_int) :: w
-  end type uint4
-
 end module hipfort_rocrand_types

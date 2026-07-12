@@ -4352,14 +4352,14 @@ module hipfort_hipblas
     function hipblasBfdot_raw(handle, n, x, incx, y, incy, result) &
        result(Bfdot_raw) &
        bind(C, name="hipblasBfdot")
-       import :: c_ptr, c_int
+       import :: c_ptr, c_int, hipblasBfloat16
        type(c_ptr), value :: handle
        integer(c_int), value :: n
-       type(c_ptr), value :: x
+       type(hipblasBfloat16) :: x
        integer(c_int), value :: incx
-       type(c_ptr), value :: y
+       type(hipblasBfloat16) :: y
        integer(c_int), value :: incy
-       type(c_ptr), value :: result
+       type(hipblasBfloat16) :: result
        integer(c_int) :: Bfdot_raw
     end function hipblasBfdot_raw
 
@@ -4550,14 +4550,14 @@ module hipfort_hipblas
     function hipblasBfdot_64_raw(handle, n, x, incx, y, incy, result) &
        result(Bfdot_64_raw) &
        bind(C, name="hipblasBfdot_64")
-       import :: c_ptr, c_long, c_int
+       import :: c_ptr, c_long, hipblasBfloat16, c_int
        type(c_ptr), value :: handle
        integer(c_long), value :: n
-       type(c_ptr), value :: x
+       type(hipblasBfloat16) :: x
        integer(c_long), value :: incx
-       type(c_ptr), value :: y
+       type(hipblasBfloat16) :: y
        integer(c_long), value :: incy
-       type(c_ptr), value :: result
+       type(hipblasBfloat16) :: result
        integer(c_int) :: Bfdot_64_raw
     end function hipblasBfdot_64_raw
 
@@ -4790,7 +4790,7 @@ module hipfort_hipblas
     function hipblasBfdotBatched_raw(handle, n, x, incx, y, incy, batchCount, result) &
        result(BfdotBatched_raw) &
        bind(C, name="hipblasBfdotBatched")
-       import :: c_ptr, c_int
+       import :: c_ptr, c_int, hipblasBfloat16
        type(c_ptr), value :: handle
        integer(c_int), value :: n
        type(c_ptr), value :: x
@@ -4798,7 +4798,7 @@ module hipfort_hipblas
        type(c_ptr), value :: y
        integer(c_int), value :: incy
        integer(c_int), value :: batchCount
-       type(c_ptr), value :: result
+       type(hipblasBfloat16) :: result
        integer(c_int) :: BfdotBatched_raw
     end function hipblasBfdotBatched_raw
 
@@ -4996,7 +4996,7 @@ module hipfort_hipblas
     function hipblasBfdotBatched_64_raw(handle, n, x, incx, y, incy, batchCount, result) &
        result(BfdotBatched_64_raw) &
        bind(C, name="hipblasBfdotBatched_64")
-       import :: c_ptr, c_long, c_int
+       import :: c_ptr, c_long, hipblasBfloat16, c_int
        type(c_ptr), value :: handle
        integer(c_long), value :: n
        type(c_ptr), value :: x
@@ -5004,7 +5004,7 @@ module hipfort_hipblas
        type(c_ptr), value :: y
        integer(c_long), value :: incy
        integer(c_long), value :: batchCount
-       type(c_ptr), value :: result
+       type(hipblasBfloat16) :: result
        integer(c_int) :: BfdotBatched_64_raw
     end function hipblasBfdotBatched_64_raw
 
@@ -5230,17 +5230,17 @@ module hipfort_hipblas
                                             batchCount, result) &
        result(BfdotStridedBatched_raw) &
        bind(C, name="hipblasBfdotStridedBatched")
-       import :: c_ptr, c_int, c_long
+       import :: c_ptr, c_int, hipblasBfloat16, c_long
        type(c_ptr), value :: handle
        integer(c_int), value :: n
-       type(c_ptr), value :: x
+       type(hipblasBfloat16) :: x
        integer(c_int), value :: incx
        integer(c_long), value :: stridex
-       type(c_ptr), value :: y
+       type(hipblasBfloat16) :: y
        integer(c_int), value :: incy
        integer(c_long), value :: stridey
        integer(c_int), value :: batchCount
-       type(c_ptr), value :: result
+       type(hipblasBfloat16) :: result
        integer(c_int) :: BfdotStridedBatched_raw
     end function hipblasBfdotStridedBatched_raw
 
@@ -5460,17 +5460,17 @@ module hipfort_hipblas
                                                batchCount, result) &
        result(BfdotStridedBatched_64_raw) &
        bind(C, name="hipblasBfdotStridedBatched_64")
-       import :: c_ptr, c_long, c_int
+       import :: c_ptr, c_long, hipblasBfloat16, c_int
        type(c_ptr), value :: handle
        integer(c_long), value :: n
-       type(c_ptr), value :: x
+       type(hipblasBfloat16) :: x
        integer(c_long), value :: incx
        integer(c_long), value :: stridex
-       type(c_ptr), value :: y
+       type(hipblasBfloat16) :: y
        integer(c_long), value :: incy
        integer(c_long), value :: stridey
        integer(c_long), value :: batchCount
-       type(c_ptr), value :: result
+       type(hipblasBfloat16) :: result
        integer(c_int) :: BfdotStridedBatched_64_raw
     end function hipblasBfdotStridedBatched_64_raw
 
@@ -45731,9 +45731,9 @@ contains
       use, intrinsic :: iso_c_binding
       implicit none
       type(c_ptr), value :: handle
-      integer(c_int), target :: version(*)
+      integer(c_int), target :: version(..)
       integer(c_int) :: GetVersion
-      GetVersion = hipblasGetVersion_raw(handle, c_loc(version(1)))
+      GetVersion = hipblasGetVersion_raw(handle, c_loc(version))
     end function hipblasGetVersion_native
 
     function hipblasGetVersion_typed(handle, version) result(GetVersion)
@@ -45750,9 +45750,9 @@ contains
       use, intrinsic :: iso_c_binding
       implicit none
       integer(c_int), value :: type
-      integer(c_int), target :: value(*)
+      integer(c_int), target :: value(..)
       integer(c_int) :: GetProperty
-      GetProperty = hipblasGetProperty_raw(type, c_loc(value(1)))
+      GetProperty = hipblasGetProperty_raw(type, c_loc(value))
     end function hipblasGetProperty_native
 
     function hipblasSetStream_typed(handle, streamId) result(SetStream)
@@ -45789,9 +45789,9 @@ contains
       use, intrinsic :: iso_c_binding
       implicit none
       type(c_ptr), value :: handle
-      integer(c_int), target :: mode(*)
+      integer(c_int), target :: mode(..)
       integer(c_int) :: GetPointerMode
-      GetPointerMode = hipblasGetPointerMode_raw(handle, c_loc(mode(1)))
+      GetPointerMode = hipblasGetPointerMode_raw(handle, c_loc(mode))
     end function hipblasGetPointerMode_native
 
     function hipblasGetPointerMode_typed(handle, mode) result(GetPointerMode)
@@ -45818,9 +45818,9 @@ contains
       use, intrinsic :: iso_c_binding
       implicit none
       type(c_ptr), value :: handle
-      integer(c_int), target :: mode(*)
+      integer(c_int), target :: mode(..)
       integer(c_int) :: GetMathMode
-      GetMathMode = hipblasGetMathMode_raw(handle, c_loc(mode(1)))
+      GetMathMode = hipblasGetMathMode_raw(handle, c_loc(mode))
     end function hipblasGetMathMode_native
 
     function hipblasGetMathMode_typed(handle, mode) result(GetMathMode)
@@ -45858,9 +45858,9 @@ contains
       use, intrinsic :: iso_c_binding
       implicit none
       type(c_ptr), value :: handle
-      integer(c_int), target :: atomics_mode(*)
+      integer(c_int), target :: atomics_mode(..)
       integer(c_int) :: GetAtomicsMode
-      GetAtomicsMode = hipblasGetAtomicsMode_raw(handle, c_loc(atomics_mode(1)))
+      GetAtomicsMode = hipblasGetAtomicsMode_raw(handle, c_loc(atomics_mode))
     end function hipblasGetAtomicsMode_native
 
     function hipblasGetAtomicsMode_typed(handle, atomics_mode) result(GetAtomicsMode)
@@ -45918,11 +45918,11 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_int), value :: n
-      real(c_float), target :: x(*)
+      real(c_float), target :: x(..)
       integer(c_int), value :: incx
-      integer(c_int), target :: result(*)
+      integer(c_int), target :: result(..)
       integer(c_int) :: Isamax
-      Isamax = hipblasIsamax_raw(handle, n, c_loc(x(1)), incx, c_loc(result(1)))
+      Isamax = hipblasIsamax_raw(handle, n, c_loc(x), incx, c_loc(result))
     end function hipblasIsamax_native
 
     function hipblasIsamax_typed(handle, n, x, incx, result) result(Isamax)
@@ -45943,11 +45943,11 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_int), value :: n
-      real(c_double), target :: x(*)
+      real(c_double), target :: x(..)
       integer(c_int), value :: incx
-      integer(c_int), target :: result(*)
+      integer(c_int), target :: result(..)
       integer(c_int) :: Idamax
-      Idamax = hipblasIdamax_raw(handle, n, c_loc(x(1)), incx, c_loc(result(1)))
+      Idamax = hipblasIdamax_raw(handle, n, c_loc(x), incx, c_loc(result))
     end function hipblasIdamax_native
 
     function hipblasIdamax_typed(handle, n, x, incx, result) result(Idamax)
@@ -45968,11 +45968,11 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_int), value :: n
-      complex(c_float_complex), target :: x(*)
+      complex(c_float_complex), target :: x(..)
       integer(c_int), value :: incx
-      integer(c_int), target :: result(*)
+      integer(c_int), target :: result(..)
       integer(c_int) :: Icamax
-      Icamax = hipblasIcamax_raw(handle, n, c_loc(x(1)), incx, c_loc(result(1)))
+      Icamax = hipblasIcamax_raw(handle, n, c_loc(x), incx, c_loc(result))
     end function hipblasIcamax_native
 
     function hipblasIcamax_typed(handle, n, x, incx, result) result(Icamax)
@@ -45993,11 +45993,11 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_int), value :: n
-      complex(c_double_complex), target :: x(*)
+      complex(c_double_complex), target :: x(..)
       integer(c_int), value :: incx
-      integer(c_int), target :: result(*)
+      integer(c_int), target :: result(..)
       integer(c_int) :: Izamax
-      Izamax = hipblasIzamax_raw(handle, n, c_loc(x(1)), incx, c_loc(result(1)))
+      Izamax = hipblasIzamax_raw(handle, n, c_loc(x), incx, c_loc(result))
     end function hipblasIzamax_native
 
     function hipblasIzamax_typed(handle, n, x, incx, result) result(Izamax)
@@ -46018,11 +46018,11 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_long), value :: n
-      real(c_float), target :: x(*)
+      real(c_float), target :: x(..)
       integer(c_long), value :: incx
       type(c_ptr), value :: result
       integer(c_int) :: Isamax_64
-      Isamax_64 = hipblasIsamax_64_raw(handle, n, c_loc(x(1)), incx, result)
+      Isamax_64 = hipblasIsamax_64_raw(handle, n, c_loc(x), incx, result)
     end function hipblasIsamax_64_native
 
     function hipblasIsamax_64_typed(handle, n, x, incx, result) result(Isamax_64)
@@ -46043,11 +46043,11 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_long), value :: n
-      real(c_double), target :: x(*)
+      real(c_double), target :: x(..)
       integer(c_long), value :: incx
       type(c_ptr), value :: result
       integer(c_int) :: Idamax_64
-      Idamax_64 = hipblasIdamax_64_raw(handle, n, c_loc(x(1)), incx, result)
+      Idamax_64 = hipblasIdamax_64_raw(handle, n, c_loc(x), incx, result)
     end function hipblasIdamax_64_native
 
     function hipblasIdamax_64_typed(handle, n, x, incx, result) result(Idamax_64)
@@ -46068,11 +46068,11 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_long), value :: n
-      complex(c_float_complex), target :: x(*)
+      complex(c_float_complex), target :: x(..)
       integer(c_long), value :: incx
       type(c_ptr), value :: result
       integer(c_int) :: Icamax_64
-      Icamax_64 = hipblasIcamax_64_raw(handle, n, c_loc(x(1)), incx, result)
+      Icamax_64 = hipblasIcamax_64_raw(handle, n, c_loc(x), incx, result)
     end function hipblasIcamax_64_native
 
     function hipblasIcamax_64_typed(handle, n, x, incx, result) result(Icamax_64)
@@ -46093,11 +46093,11 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_long), value :: n
-      complex(c_double_complex), target :: x(*)
+      complex(c_double_complex), target :: x(..)
       integer(c_long), value :: incx
       type(c_ptr), value :: result
       integer(c_int) :: Izamax_64
-      Izamax_64 = hipblasIzamax_64_raw(handle, n, c_loc(x(1)), incx, result)
+      Izamax_64 = hipblasIzamax_64_raw(handle, n, c_loc(x), incx, result)
     end function hipblasIzamax_64_native
 
     function hipblasIzamax_64_typed(handle, n, x, incx, result) result(Izamax_64)
@@ -46122,9 +46122,9 @@ contains
       type(c_ptr), value :: x
       integer(c_int), value :: incx
       integer(c_int), value :: batchCount
-      integer(c_int), target :: result(*)
+      integer(c_int), target :: result(..)
       integer(c_int) :: IsamaxBatched
-      IsamaxBatched = hipblasIsamaxBatched_raw(handle, n, x, incx, batchCount, c_loc(result(1)))
+      IsamaxBatched = hipblasIsamaxBatched_raw(handle, n, x, incx, batchCount, c_loc(result))
     end function hipblasIsamaxBatched_native
 
     function hipblasIsamaxBatched_typed(handle, n, x, incx, batchCount, result) result( &
@@ -46151,9 +46151,9 @@ contains
       type(c_ptr), value :: x
       integer(c_int), value :: incx
       integer(c_int), value :: batchCount
-      integer(c_int), target :: result(*)
+      integer(c_int), target :: result(..)
       integer(c_int) :: IdamaxBatched
-      IdamaxBatched = hipblasIdamaxBatched_raw(handle, n, x, incx, batchCount, c_loc(result(1)))
+      IdamaxBatched = hipblasIdamaxBatched_raw(handle, n, x, incx, batchCount, c_loc(result))
     end function hipblasIdamaxBatched_native
 
     function hipblasIdamaxBatched_typed(handle, n, x, incx, batchCount, result) result( &
@@ -46180,9 +46180,9 @@ contains
       type(c_ptr), value :: x
       integer(c_int), value :: incx
       integer(c_int), value :: batchCount
-      integer(c_int), target :: result(*)
+      integer(c_int), target :: result(..)
       integer(c_int) :: IcamaxBatched
-      IcamaxBatched = hipblasIcamaxBatched_raw(handle, n, x, incx, batchCount, c_loc(result(1)))
+      IcamaxBatched = hipblasIcamaxBatched_raw(handle, n, x, incx, batchCount, c_loc(result))
     end function hipblasIcamaxBatched_native
 
     function hipblasIcamaxBatched_typed(handle, n, x, incx, batchCount, result) result( &
@@ -46209,9 +46209,9 @@ contains
       type(c_ptr), value :: x
       integer(c_int), value :: incx
       integer(c_int), value :: batchCount
-      integer(c_int), target :: result(*)
+      integer(c_int), target :: result(..)
       integer(c_int) :: IzamaxBatched
-      IzamaxBatched = hipblasIzamaxBatched_raw(handle, n, x, incx, batchCount, c_loc(result(1)))
+      IzamaxBatched = hipblasIzamaxBatched_raw(handle, n, x, incx, batchCount, c_loc(result))
     end function hipblasIzamaxBatched_native
 
     function hipblasIzamaxBatched_typed(handle, n, x, incx, batchCount, result) result( &
@@ -46295,14 +46295,14 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_int), value :: n
-      real(c_float), target :: x(*)
+      real(c_float), target :: x(..)
       integer(c_int), value :: incx
       integer(c_long), value :: stridex
       integer(c_int), value :: batchCount
-      integer(c_int), target :: result(*)
+      integer(c_int), target :: result(..)
       integer(c_int) :: IsamaxStridedBatched
-      IsamaxStridedBatched = hipblasIsamaxStridedBatched_raw(handle, n, c_loc(x(1)), incx, &
-        stridex, batchCount, c_loc(result(1)))
+      IsamaxStridedBatched = hipblasIsamaxStridedBatched_raw(handle, n, c_loc(x), incx, stridex, &
+        batchCount, c_loc(result))
     end function hipblasIsamaxStridedBatched_native
 
     function hipblasIsamaxStridedBatched_typed(handle, n, x, incx, stridex, batchCount, &
@@ -46328,14 +46328,14 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_int), value :: n
-      real(c_double), target :: x(*)
+      real(c_double), target :: x(..)
       integer(c_int), value :: incx
       integer(c_long), value :: stridex
       integer(c_int), value :: batchCount
-      integer(c_int), target :: result(*)
+      integer(c_int), target :: result(..)
       integer(c_int) :: IdamaxStridedBatched
-      IdamaxStridedBatched = hipblasIdamaxStridedBatched_raw(handle, n, c_loc(x(1)), incx, &
-        stridex, batchCount, c_loc(result(1)))
+      IdamaxStridedBatched = hipblasIdamaxStridedBatched_raw(handle, n, c_loc(x), incx, stridex, &
+        batchCount, c_loc(result))
     end function hipblasIdamaxStridedBatched_native
 
     function hipblasIdamaxStridedBatched_typed(handle, n, x, incx, stridex, batchCount, &
@@ -46361,14 +46361,14 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_int), value :: n
-      complex(c_float_complex), target :: x(*)
+      complex(c_float_complex), target :: x(..)
       integer(c_int), value :: incx
       integer(c_long), value :: stridex
       integer(c_int), value :: batchCount
-      integer(c_int), target :: result(*)
+      integer(c_int), target :: result(..)
       integer(c_int) :: IcamaxStridedBatched
-      IcamaxStridedBatched = hipblasIcamaxStridedBatched_raw(handle, n, c_loc(x(1)), incx, &
-        stridex, batchCount, c_loc(result(1)))
+      IcamaxStridedBatched = hipblasIcamaxStridedBatched_raw(handle, n, c_loc(x), incx, stridex, &
+        batchCount, c_loc(result))
     end function hipblasIcamaxStridedBatched_native
 
     function hipblasIcamaxStridedBatched_typed(handle, n, x, incx, stridex, batchCount, &
@@ -46394,14 +46394,14 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_int), value :: n
-      complex(c_double_complex), target :: x(*)
+      complex(c_double_complex), target :: x(..)
       integer(c_int), value :: incx
       integer(c_long), value :: stridex
       integer(c_int), value :: batchCount
-      integer(c_int), target :: result(*)
+      integer(c_int), target :: result(..)
       integer(c_int) :: IzamaxStridedBatched
-      IzamaxStridedBatched = hipblasIzamaxStridedBatched_raw(handle, n, c_loc(x(1)), incx, &
-        stridex, batchCount, c_loc(result(1)))
+      IzamaxStridedBatched = hipblasIzamaxStridedBatched_raw(handle, n, c_loc(x), incx, stridex, &
+        batchCount, c_loc(result))
     end function hipblasIzamaxStridedBatched_native
 
     function hipblasIzamaxStridedBatched_typed(handle, n, x, incx, stridex, batchCount, &
@@ -46427,13 +46427,13 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_long), value :: n
-      real(c_float), target :: x(*)
+      real(c_float), target :: x(..)
       integer(c_long), value :: incx
       integer(c_long), value :: stridex
       integer(c_long), value :: batchCount
       type(c_ptr), value :: result
       integer(c_int) :: IsamaxStridedBatched_64
-      IsamaxStridedBatched_64 = hipblasIsamaxStridedBatched_64_raw(handle, n, c_loc(x(1)), incx, &
+      IsamaxStridedBatched_64 = hipblasIsamaxStridedBatched_64_raw(handle, n, c_loc(x), incx, &
         stridex, batchCount, result)
     end function hipblasIsamaxStridedBatched_64_native
 
@@ -46460,13 +46460,13 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_long), value :: n
-      real(c_double), target :: x(*)
+      real(c_double), target :: x(..)
       integer(c_long), value :: incx
       integer(c_long), value :: stridex
       integer(c_long), value :: batchCount
       type(c_ptr), value :: result
       integer(c_int) :: IdamaxStridedBatched_64
-      IdamaxStridedBatched_64 = hipblasIdamaxStridedBatched_64_raw(handle, n, c_loc(x(1)), incx, &
+      IdamaxStridedBatched_64 = hipblasIdamaxStridedBatched_64_raw(handle, n, c_loc(x), incx, &
         stridex, batchCount, result)
     end function hipblasIdamaxStridedBatched_64_native
 
@@ -46493,13 +46493,13 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_long), value :: n
-      complex(c_float_complex), target :: x(*)
+      complex(c_float_complex), target :: x(..)
       integer(c_long), value :: incx
       integer(c_long), value :: stridex
       integer(c_long), value :: batchCount
       type(c_ptr), value :: result
       integer(c_int) :: IcamaxStridedBatched_64
-      IcamaxStridedBatched_64 = hipblasIcamaxStridedBatched_64_raw(handle, n, c_loc(x(1)), incx, &
+      IcamaxStridedBatched_64 = hipblasIcamaxStridedBatched_64_raw(handle, n, c_loc(x), incx, &
         stridex, batchCount, result)
     end function hipblasIcamaxStridedBatched_64_native
 
@@ -46526,13 +46526,13 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_long), value :: n
-      complex(c_double_complex), target :: x(*)
+      complex(c_double_complex), target :: x(..)
       integer(c_long), value :: incx
       integer(c_long), value :: stridex
       integer(c_long), value :: batchCount
       type(c_ptr), value :: result
       integer(c_int) :: IzamaxStridedBatched_64
-      IzamaxStridedBatched_64 = hipblasIzamaxStridedBatched_64_raw(handle, n, c_loc(x(1)), incx, &
+      IzamaxStridedBatched_64 = hipblasIzamaxStridedBatched_64_raw(handle, n, c_loc(x), incx, &
         stridex, batchCount, result)
     end function hipblasIzamaxStridedBatched_64_native
 
@@ -46558,11 +46558,11 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_int), value :: n
-      real(c_float), target :: x(*)
+      real(c_float), target :: x(..)
       integer(c_int), value :: incx
-      integer(c_int), target :: result(*)
+      integer(c_int), target :: result(..)
       integer(c_int) :: Isamin
-      Isamin = hipblasIsamin_raw(handle, n, c_loc(x(1)), incx, c_loc(result(1)))
+      Isamin = hipblasIsamin_raw(handle, n, c_loc(x), incx, c_loc(result))
     end function hipblasIsamin_native
 
     function hipblasIsamin_typed(handle, n, x, incx, result) result(Isamin)
@@ -46583,11 +46583,11 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_int), value :: n
-      real(c_double), target :: x(*)
+      real(c_double), target :: x(..)
       integer(c_int), value :: incx
-      integer(c_int), target :: result(*)
+      integer(c_int), target :: result(..)
       integer(c_int) :: Idamin
-      Idamin = hipblasIdamin_raw(handle, n, c_loc(x(1)), incx, c_loc(result(1)))
+      Idamin = hipblasIdamin_raw(handle, n, c_loc(x), incx, c_loc(result))
     end function hipblasIdamin_native
 
     function hipblasIdamin_typed(handle, n, x, incx, result) result(Idamin)
@@ -46608,11 +46608,11 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_int), value :: n
-      complex(c_float_complex), target :: x(*)
+      complex(c_float_complex), target :: x(..)
       integer(c_int), value :: incx
-      integer(c_int), target :: result(*)
+      integer(c_int), target :: result(..)
       integer(c_int) :: Icamin
-      Icamin = hipblasIcamin_raw(handle, n, c_loc(x(1)), incx, c_loc(result(1)))
+      Icamin = hipblasIcamin_raw(handle, n, c_loc(x), incx, c_loc(result))
     end function hipblasIcamin_native
 
     function hipblasIcamin_typed(handle, n, x, incx, result) result(Icamin)
@@ -46633,11 +46633,11 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_int), value :: n
-      complex(c_double_complex), target :: x(*)
+      complex(c_double_complex), target :: x(..)
       integer(c_int), value :: incx
-      integer(c_int), target :: result(*)
+      integer(c_int), target :: result(..)
       integer(c_int) :: Izamin
-      Izamin = hipblasIzamin_raw(handle, n, c_loc(x(1)), incx, c_loc(result(1)))
+      Izamin = hipblasIzamin_raw(handle, n, c_loc(x), incx, c_loc(result))
     end function hipblasIzamin_native
 
     function hipblasIzamin_typed(handle, n, x, incx, result) result(Izamin)
@@ -46658,11 +46658,11 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_long), value :: n
-      real(c_float), target :: x(*)
+      real(c_float), target :: x(..)
       integer(c_long), value :: incx
       type(c_ptr), value :: result
       integer(c_int) :: Isamin_64
-      Isamin_64 = hipblasIsamin_64_raw(handle, n, c_loc(x(1)), incx, result)
+      Isamin_64 = hipblasIsamin_64_raw(handle, n, c_loc(x), incx, result)
     end function hipblasIsamin_64_native
 
     function hipblasIsamin_64_typed(handle, n, x, incx, result) result(Isamin_64)
@@ -46683,11 +46683,11 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_long), value :: n
-      real(c_double), target :: x(*)
+      real(c_double), target :: x(..)
       integer(c_long), value :: incx
       type(c_ptr), value :: result
       integer(c_int) :: Idamin_64
-      Idamin_64 = hipblasIdamin_64_raw(handle, n, c_loc(x(1)), incx, result)
+      Idamin_64 = hipblasIdamin_64_raw(handle, n, c_loc(x), incx, result)
     end function hipblasIdamin_64_native
 
     function hipblasIdamin_64_typed(handle, n, x, incx, result) result(Idamin_64)
@@ -46708,11 +46708,11 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_long), value :: n
-      complex(c_float_complex), target :: x(*)
+      complex(c_float_complex), target :: x(..)
       integer(c_long), value :: incx
       type(c_ptr), value :: result
       integer(c_int) :: Icamin_64
-      Icamin_64 = hipblasIcamin_64_raw(handle, n, c_loc(x(1)), incx, result)
+      Icamin_64 = hipblasIcamin_64_raw(handle, n, c_loc(x), incx, result)
     end function hipblasIcamin_64_native
 
     function hipblasIcamin_64_typed(handle, n, x, incx, result) result(Icamin_64)
@@ -46733,11 +46733,11 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_long), value :: n
-      complex(c_double_complex), target :: x(*)
+      complex(c_double_complex), target :: x(..)
       integer(c_long), value :: incx
       type(c_ptr), value :: result
       integer(c_int) :: Izamin_64
-      Izamin_64 = hipblasIzamin_64_raw(handle, n, c_loc(x(1)), incx, result)
+      Izamin_64 = hipblasIzamin_64_raw(handle, n, c_loc(x), incx, result)
     end function hipblasIzamin_64_native
 
     function hipblasIzamin_64_typed(handle, n, x, incx, result) result(Izamin_64)
@@ -46762,9 +46762,9 @@ contains
       type(c_ptr), value :: x
       integer(c_int), value :: incx
       integer(c_int), value :: batchCount
-      integer(c_int), target :: result(*)
+      integer(c_int), target :: result(..)
       integer(c_int) :: IsaminBatched
-      IsaminBatched = hipblasIsaminBatched_raw(handle, n, x, incx, batchCount, c_loc(result(1)))
+      IsaminBatched = hipblasIsaminBatched_raw(handle, n, x, incx, batchCount, c_loc(result))
     end function hipblasIsaminBatched_native
 
     function hipblasIsaminBatched_typed(handle, n, x, incx, batchCount, result) result( &
@@ -46791,9 +46791,9 @@ contains
       type(c_ptr), value :: x
       integer(c_int), value :: incx
       integer(c_int), value :: batchCount
-      integer(c_int), target :: result(*)
+      integer(c_int), target :: result(..)
       integer(c_int) :: IdaminBatched
-      IdaminBatched = hipblasIdaminBatched_raw(handle, n, x, incx, batchCount, c_loc(result(1)))
+      IdaminBatched = hipblasIdaminBatched_raw(handle, n, x, incx, batchCount, c_loc(result))
     end function hipblasIdaminBatched_native
 
     function hipblasIdaminBatched_typed(handle, n, x, incx, batchCount, result) result( &
@@ -46820,9 +46820,9 @@ contains
       type(c_ptr), value :: x
       integer(c_int), value :: incx
       integer(c_int), value :: batchCount
-      integer(c_int), target :: result(*)
+      integer(c_int), target :: result(..)
       integer(c_int) :: IcaminBatched
-      IcaminBatched = hipblasIcaminBatched_raw(handle, n, x, incx, batchCount, c_loc(result(1)))
+      IcaminBatched = hipblasIcaminBatched_raw(handle, n, x, incx, batchCount, c_loc(result))
     end function hipblasIcaminBatched_native
 
     function hipblasIcaminBatched_typed(handle, n, x, incx, batchCount, result) result( &
@@ -46849,9 +46849,9 @@ contains
       type(c_ptr), value :: x
       integer(c_int), value :: incx
       integer(c_int), value :: batchCount
-      integer(c_int), target :: result(*)
+      integer(c_int), target :: result(..)
       integer(c_int) :: IzaminBatched
-      IzaminBatched = hipblasIzaminBatched_raw(handle, n, x, incx, batchCount, c_loc(result(1)))
+      IzaminBatched = hipblasIzaminBatched_raw(handle, n, x, incx, batchCount, c_loc(result))
     end function hipblasIzaminBatched_native
 
     function hipblasIzaminBatched_typed(handle, n, x, incx, batchCount, result) result( &
@@ -46935,14 +46935,14 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_int), value :: n
-      real(c_float), target :: x(*)
+      real(c_float), target :: x(..)
       integer(c_int), value :: incx
       integer(c_long), value :: stridex
       integer(c_int), value :: batchCount
-      integer(c_int), target :: result(*)
+      integer(c_int), target :: result(..)
       integer(c_int) :: IsaminStridedBatched
-      IsaminStridedBatched = hipblasIsaminStridedBatched_raw(handle, n, c_loc(x(1)), incx, &
-        stridex, batchCount, c_loc(result(1)))
+      IsaminStridedBatched = hipblasIsaminStridedBatched_raw(handle, n, c_loc(x), incx, stridex, &
+        batchCount, c_loc(result))
     end function hipblasIsaminStridedBatched_native
 
     function hipblasIsaminStridedBatched_typed(handle, n, x, incx, stridex, batchCount, &
@@ -46968,14 +46968,14 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_int), value :: n
-      real(c_double), target :: x(*)
+      real(c_double), target :: x(..)
       integer(c_int), value :: incx
       integer(c_long), value :: stridex
       integer(c_int), value :: batchCount
-      integer(c_int), target :: result(*)
+      integer(c_int), target :: result(..)
       integer(c_int) :: IdaminStridedBatched
-      IdaminStridedBatched = hipblasIdaminStridedBatched_raw(handle, n, c_loc(x(1)), incx, &
-        stridex, batchCount, c_loc(result(1)))
+      IdaminStridedBatched = hipblasIdaminStridedBatched_raw(handle, n, c_loc(x), incx, stridex, &
+        batchCount, c_loc(result))
     end function hipblasIdaminStridedBatched_native
 
     function hipblasIdaminStridedBatched_typed(handle, n, x, incx, stridex, batchCount, &
@@ -47001,14 +47001,14 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_int), value :: n
-      complex(c_float_complex), target :: x(*)
+      complex(c_float_complex), target :: x(..)
       integer(c_int), value :: incx
       integer(c_long), value :: stridex
       integer(c_int), value :: batchCount
-      integer(c_int), target :: result(*)
+      integer(c_int), target :: result(..)
       integer(c_int) :: IcaminStridedBatched
-      IcaminStridedBatched = hipblasIcaminStridedBatched_raw(handle, n, c_loc(x(1)), incx, &
-        stridex, batchCount, c_loc(result(1)))
+      IcaminStridedBatched = hipblasIcaminStridedBatched_raw(handle, n, c_loc(x), incx, stridex, &
+        batchCount, c_loc(result))
     end function hipblasIcaminStridedBatched_native
 
     function hipblasIcaminStridedBatched_typed(handle, n, x, incx, stridex, batchCount, &
@@ -47034,14 +47034,14 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_int), value :: n
-      complex(c_double_complex), target :: x(*)
+      complex(c_double_complex), target :: x(..)
       integer(c_int), value :: incx
       integer(c_long), value :: stridex
       integer(c_int), value :: batchCount
-      integer(c_int), target :: result(*)
+      integer(c_int), target :: result(..)
       integer(c_int) :: IzaminStridedBatched
-      IzaminStridedBatched = hipblasIzaminStridedBatched_raw(handle, n, c_loc(x(1)), incx, &
-        stridex, batchCount, c_loc(result(1)))
+      IzaminStridedBatched = hipblasIzaminStridedBatched_raw(handle, n, c_loc(x), incx, stridex, &
+        batchCount, c_loc(result))
     end function hipblasIzaminStridedBatched_native
 
     function hipblasIzaminStridedBatched_typed(handle, n, x, incx, stridex, batchCount, &
@@ -47067,13 +47067,13 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_long), value :: n
-      real(c_float), target :: x(*)
+      real(c_float), target :: x(..)
       integer(c_long), value :: incx
       integer(c_long), value :: stridex
       integer(c_long), value :: batchCount
       type(c_ptr), value :: result
       integer(c_int) :: IsaminStridedBatched_64
-      IsaminStridedBatched_64 = hipblasIsaminStridedBatched_64_raw(handle, n, c_loc(x(1)), incx, &
+      IsaminStridedBatched_64 = hipblasIsaminStridedBatched_64_raw(handle, n, c_loc(x), incx, &
         stridex, batchCount, result)
     end function hipblasIsaminStridedBatched_64_native
 
@@ -47100,13 +47100,13 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_long), value :: n
-      real(c_double), target :: x(*)
+      real(c_double), target :: x(..)
       integer(c_long), value :: incx
       integer(c_long), value :: stridex
       integer(c_long), value :: batchCount
       type(c_ptr), value :: result
       integer(c_int) :: IdaminStridedBatched_64
-      IdaminStridedBatched_64 = hipblasIdaminStridedBatched_64_raw(handle, n, c_loc(x(1)), incx, &
+      IdaminStridedBatched_64 = hipblasIdaminStridedBatched_64_raw(handle, n, c_loc(x), incx, &
         stridex, batchCount, result)
     end function hipblasIdaminStridedBatched_64_native
 
@@ -47133,13 +47133,13 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_long), value :: n
-      complex(c_float_complex), target :: x(*)
+      complex(c_float_complex), target :: x(..)
       integer(c_long), value :: incx
       integer(c_long), value :: stridex
       integer(c_long), value :: batchCount
       type(c_ptr), value :: result
       integer(c_int) :: IcaminStridedBatched_64
-      IcaminStridedBatched_64 = hipblasIcaminStridedBatched_64_raw(handle, n, c_loc(x(1)), incx, &
+      IcaminStridedBatched_64 = hipblasIcaminStridedBatched_64_raw(handle, n, c_loc(x), incx, &
         stridex, batchCount, result)
     end function hipblasIcaminStridedBatched_64_native
 
@@ -47166,13 +47166,13 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_long), value :: n
-      complex(c_double_complex), target :: x(*)
+      complex(c_double_complex), target :: x(..)
       integer(c_long), value :: incx
       integer(c_long), value :: stridex
       integer(c_long), value :: batchCount
       type(c_ptr), value :: result
       integer(c_int) :: IzaminStridedBatched_64
-      IzaminStridedBatched_64 = hipblasIzaminStridedBatched_64_raw(handle, n, c_loc(x(1)), incx, &
+      IzaminStridedBatched_64 = hipblasIzaminStridedBatched_64_raw(handle, n, c_loc(x), incx, &
         stridex, batchCount, result)
     end function hipblasIzaminStridedBatched_64_native
 
@@ -47198,11 +47198,11 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_int), value :: n
-      real(c_float), target :: x(*)
+      real(c_float), target :: x(..)
       integer(c_int), value :: incx
-      real(c_float), target :: result(*)
+      real(c_float), target :: result(..)
       integer(c_int) :: Sasum
-      Sasum = hipblasSasum_raw(handle, n, c_loc(x(1)), incx, c_loc(result(1)))
+      Sasum = hipblasSasum_raw(handle, n, c_loc(x), incx, c_loc(result))
     end function hipblasSasum_native
 
     function hipblasSasum_typed(handle, n, x, incx, result) result(Sasum)
@@ -47223,11 +47223,11 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_int), value :: n
-      real(c_double), target :: x(*)
+      real(c_double), target :: x(..)
       integer(c_int), value :: incx
-      real(c_double), target :: result(*)
+      real(c_double), target :: result(..)
       integer(c_int) :: Dasum
-      Dasum = hipblasDasum_raw(handle, n, c_loc(x(1)), incx, c_loc(result(1)))
+      Dasum = hipblasDasum_raw(handle, n, c_loc(x), incx, c_loc(result))
     end function hipblasDasum_native
 
     function hipblasDasum_typed(handle, n, x, incx, result) result(Dasum)
@@ -47248,11 +47248,11 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_int), value :: n
-      complex(c_float_complex), target :: x(*)
+      complex(c_float_complex), target :: x(..)
       integer(c_int), value :: incx
-      real(c_float), target :: result(*)
+      real(c_float), target :: result(..)
       integer(c_int) :: Scasum
-      Scasum = hipblasScasum_raw(handle, n, c_loc(x(1)), incx, c_loc(result(1)))
+      Scasum = hipblasScasum_raw(handle, n, c_loc(x), incx, c_loc(result))
     end function hipblasScasum_native
 
     function hipblasScasum_typed(handle, n, x, incx, result) result(Scasum)
@@ -47273,11 +47273,11 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_int), value :: n
-      complex(c_double_complex), target :: x(*)
+      complex(c_double_complex), target :: x(..)
       integer(c_int), value :: incx
-      real(c_double), target :: result(*)
+      real(c_double), target :: result(..)
       integer(c_int) :: Dzasum
-      Dzasum = hipblasDzasum_raw(handle, n, c_loc(x(1)), incx, c_loc(result(1)))
+      Dzasum = hipblasDzasum_raw(handle, n, c_loc(x), incx, c_loc(result))
     end function hipblasDzasum_native
 
     function hipblasDzasum_typed(handle, n, x, incx, result) result(Dzasum)
@@ -47298,11 +47298,11 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_long), value :: n
-      real(c_float), target :: x(*)
+      real(c_float), target :: x(..)
       integer(c_long), value :: incx
-      real(c_float), target :: result(*)
+      real(c_float), target :: result(..)
       integer(c_int) :: Sasum_64
-      Sasum_64 = hipblasSasum_64_raw(handle, n, c_loc(x(1)), incx, c_loc(result(1)))
+      Sasum_64 = hipblasSasum_64_raw(handle, n, c_loc(x), incx, c_loc(result))
     end function hipblasSasum_64_native
 
     function hipblasSasum_64_typed(handle, n, x, incx, result) result(Sasum_64)
@@ -47323,11 +47323,11 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_long), value :: n
-      real(c_double), target :: x(*)
+      real(c_double), target :: x(..)
       integer(c_long), value :: incx
-      real(c_double), target :: result(*)
+      real(c_double), target :: result(..)
       integer(c_int) :: Dasum_64
-      Dasum_64 = hipblasDasum_64_raw(handle, n, c_loc(x(1)), incx, c_loc(result(1)))
+      Dasum_64 = hipblasDasum_64_raw(handle, n, c_loc(x), incx, c_loc(result))
     end function hipblasDasum_64_native
 
     function hipblasDasum_64_typed(handle, n, x, incx, result) result(Dasum_64)
@@ -47348,11 +47348,11 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_long), value :: n
-      complex(c_float_complex), target :: x(*)
+      complex(c_float_complex), target :: x(..)
       integer(c_long), value :: incx
-      real(c_float), target :: result(*)
+      real(c_float), target :: result(..)
       integer(c_int) :: Scasum_64
-      Scasum_64 = hipblasScasum_64_raw(handle, n, c_loc(x(1)), incx, c_loc(result(1)))
+      Scasum_64 = hipblasScasum_64_raw(handle, n, c_loc(x), incx, c_loc(result))
     end function hipblasScasum_64_native
 
     function hipblasScasum_64_typed(handle, n, x, incx, result) result(Scasum_64)
@@ -47373,11 +47373,11 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_long), value :: n
-      complex(c_double_complex), target :: x(*)
+      complex(c_double_complex), target :: x(..)
       integer(c_long), value :: incx
-      real(c_double), target :: result(*)
+      real(c_double), target :: result(..)
       integer(c_int) :: Dzasum_64
-      Dzasum_64 = hipblasDzasum_64_raw(handle, n, c_loc(x(1)), incx, c_loc(result(1)))
+      Dzasum_64 = hipblasDzasum_64_raw(handle, n, c_loc(x), incx, c_loc(result))
     end function hipblasDzasum_64_native
 
     function hipblasDzasum_64_typed(handle, n, x, incx, result) result(Dzasum_64)
@@ -47401,9 +47401,9 @@ contains
       type(c_ptr), value :: x
       integer(c_int), value :: incx
       integer(c_int), value :: batchCount
-      real(c_float), target :: result(*)
+      real(c_float), target :: result(..)
       integer(c_int) :: SasumBatched
-      SasumBatched = hipblasSasumBatched_raw(handle, n, x, incx, batchCount, c_loc(result(1)))
+      SasumBatched = hipblasSasumBatched_raw(handle, n, x, incx, batchCount, c_loc(result))
     end function hipblasSasumBatched_native
 
     function hipblasSasumBatched_typed(handle, n, x, incx, batchCount, result) result(SasumBatched)
@@ -47428,9 +47428,9 @@ contains
       type(c_ptr), value :: x
       integer(c_int), value :: incx
       integer(c_int), value :: batchCount
-      real(c_double), target :: result(*)
+      real(c_double), target :: result(..)
       integer(c_int) :: DasumBatched
-      DasumBatched = hipblasDasumBatched_raw(handle, n, x, incx, batchCount, c_loc(result(1)))
+      DasumBatched = hipblasDasumBatched_raw(handle, n, x, incx, batchCount, c_loc(result))
     end function hipblasDasumBatched_native
 
     function hipblasDasumBatched_typed(handle, n, x, incx, batchCount, result) result(DasumBatched)
@@ -47456,9 +47456,9 @@ contains
       type(c_ptr), value :: x
       integer(c_int), value :: incx
       integer(c_int), value :: batchCount
-      real(c_float), target :: result(*)
+      real(c_float), target :: result(..)
       integer(c_int) :: ScasumBatched
-      ScasumBatched = hipblasScasumBatched_raw(handle, n, x, incx, batchCount, c_loc(result(1)))
+      ScasumBatched = hipblasScasumBatched_raw(handle, n, x, incx, batchCount, c_loc(result))
     end function hipblasScasumBatched_native
 
     function hipblasScasumBatched_typed(handle, n, x, incx, batchCount, result) result( &
@@ -47485,9 +47485,9 @@ contains
       type(c_ptr), value :: x
       integer(c_int), value :: incx
       integer(c_int), value :: batchCount
-      real(c_double), target :: result(*)
+      real(c_double), target :: result(..)
       integer(c_int) :: DzasumBatched
-      DzasumBatched = hipblasDzasumBatched_raw(handle, n, x, incx, batchCount, c_loc(result(1)))
+      DzasumBatched = hipblasDzasumBatched_raw(handle, n, x, incx, batchCount, c_loc(result))
     end function hipblasDzasumBatched_native
 
     function hipblasDzasumBatched_typed(handle, n, x, incx, batchCount, result) result( &
@@ -47514,9 +47514,9 @@ contains
       type(c_ptr), value :: x
       integer(c_long), value :: incx
       integer(c_long), value :: batchCount
-      real(c_float), target :: result(*)
+      real(c_float), target :: result(..)
       integer(c_int) :: SasumBatched_64
-      SasumBatched_64 = hipblasSasumBatched_64_raw(handle, n, x, incx, batchCount, c_loc(result(1)))
+      SasumBatched_64 = hipblasSasumBatched_64_raw(handle, n, x, incx, batchCount, c_loc(result))
     end function hipblasSasumBatched_64_native
 
     function hipblasSasumBatched_64_typed(handle, n, x, incx, batchCount, result) result( &
@@ -47543,9 +47543,9 @@ contains
       type(c_ptr), value :: x
       integer(c_long), value :: incx
       integer(c_long), value :: batchCount
-      real(c_double), target :: result(*)
+      real(c_double), target :: result(..)
       integer(c_int) :: DasumBatched_64
-      DasumBatched_64 = hipblasDasumBatched_64_raw(handle, n, x, incx, batchCount, c_loc(result(1)))
+      DasumBatched_64 = hipblasDasumBatched_64_raw(handle, n, x, incx, batchCount, c_loc(result))
     end function hipblasDasumBatched_64_native
 
     function hipblasDasumBatched_64_typed(handle, n, x, incx, batchCount, result) result( &
@@ -47572,10 +47572,9 @@ contains
       type(c_ptr), value :: x
       integer(c_long), value :: incx
       integer(c_long), value :: batchCount
-      real(c_float), target :: result(*)
+      real(c_float), target :: result(..)
       integer(c_int) :: ScasumBatched_64
-      ScasumBatched_64 = hipblasScasumBatched_64_raw(handle, n, x, incx, batchCount, c_loc(result( &
-        1)))
+      ScasumBatched_64 = hipblasScasumBatched_64_raw(handle, n, x, incx, batchCount, c_loc(result))
     end function hipblasScasumBatched_64_native
 
     function hipblasScasumBatched_64_typed(handle, n, x, incx, batchCount, result) result( &
@@ -47602,10 +47601,9 @@ contains
       type(c_ptr), value :: x
       integer(c_long), value :: incx
       integer(c_long), value :: batchCount
-      real(c_double), target :: result(*)
+      real(c_double), target :: result(..)
       integer(c_int) :: DzasumBatched_64
-      DzasumBatched_64 = hipblasDzasumBatched_64_raw(handle, n, x, incx, batchCount, c_loc(result( &
-        1)))
+      DzasumBatched_64 = hipblasDzasumBatched_64_raw(handle, n, x, incx, batchCount, c_loc(result))
     end function hipblasDzasumBatched_64_native
 
     function hipblasDzasumBatched_64_typed(handle, n, x, incx, batchCount, result) result( &
@@ -47629,14 +47627,14 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_int), value :: n
-      real(c_float), target :: x(*)
+      real(c_float), target :: x(..)
       integer(c_int), value :: incx
       integer(c_long), value :: stridex
       integer(c_int), value :: batchCount
-      real(c_float), target :: result(*)
+      real(c_float), target :: result(..)
       integer(c_int) :: SasumStridedBatched
-      SasumStridedBatched = hipblasSasumStridedBatched_raw(handle, n, c_loc(x(1)), incx, stridex, &
-        batchCount, c_loc(result(1)))
+      SasumStridedBatched = hipblasSasumStridedBatched_raw(handle, n, c_loc(x), incx, stridex, &
+        batchCount, c_loc(result))
     end function hipblasSasumStridedBatched_native
 
     function hipblasSasumStridedBatched_typed(handle, n, x, incx, stridex, batchCount, &
@@ -47662,14 +47660,14 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_int), value :: n
-      real(c_double), target :: x(*)
+      real(c_double), target :: x(..)
       integer(c_int), value :: incx
       integer(c_long), value :: stridex
       integer(c_int), value :: batchCount
-      real(c_double), target :: result(*)
+      real(c_double), target :: result(..)
       integer(c_int) :: DasumStridedBatched
-      DasumStridedBatched = hipblasDasumStridedBatched_raw(handle, n, c_loc(x(1)), incx, stridex, &
-        batchCount, c_loc(result(1)))
+      DasumStridedBatched = hipblasDasumStridedBatched_raw(handle, n, c_loc(x), incx, stridex, &
+        batchCount, c_loc(result))
     end function hipblasDasumStridedBatched_native
 
     function hipblasDasumStridedBatched_typed(handle, n, x, incx, stridex, batchCount, &
@@ -47695,14 +47693,14 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_int), value :: n
-      complex(c_float_complex), target :: x(*)
+      complex(c_float_complex), target :: x(..)
       integer(c_int), value :: incx
       integer(c_long), value :: stridex
       integer(c_int), value :: batchCount
-      real(c_float), target :: result(*)
+      real(c_float), target :: result(..)
       integer(c_int) :: ScasumStridedBatched
-      ScasumStridedBatched = hipblasScasumStridedBatched_raw(handle, n, c_loc(x(1)), incx, &
-        stridex, batchCount, c_loc(result(1)))
+      ScasumStridedBatched = hipblasScasumStridedBatched_raw(handle, n, c_loc(x), incx, stridex, &
+        batchCount, c_loc(result))
     end function hipblasScasumStridedBatched_native
 
     function hipblasScasumStridedBatched_typed(handle, n, x, incx, stridex, batchCount, &
@@ -47728,14 +47726,14 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_int), value :: n
-      complex(c_double_complex), target :: x(*)
+      complex(c_double_complex), target :: x(..)
       integer(c_int), value :: incx
       integer(c_long), value :: stridex
       integer(c_int), value :: batchCount
-      real(c_double), target :: result(*)
+      real(c_double), target :: result(..)
       integer(c_int) :: DzasumStridedBatched
-      DzasumStridedBatched = hipblasDzasumStridedBatched_raw(handle, n, c_loc(x(1)), incx, &
-        stridex, batchCount, c_loc(result(1)))
+      DzasumStridedBatched = hipblasDzasumStridedBatched_raw(handle, n, c_loc(x), incx, stridex, &
+        batchCount, c_loc(result))
     end function hipblasDzasumStridedBatched_native
 
     function hipblasDzasumStridedBatched_typed(handle, n, x, incx, stridex, batchCount, &
@@ -47761,14 +47759,14 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_long), value :: n
-      real(c_float), target :: x(*)
+      real(c_float), target :: x(..)
       integer(c_long), value :: incx
       integer(c_long), value :: stridex
       integer(c_long), value :: batchCount
-      real(c_float), target :: result(*)
+      real(c_float), target :: result(..)
       integer(c_int) :: SasumStridedBatched_64
-      SasumStridedBatched_64 = hipblasSasumStridedBatched_64_raw(handle, n, c_loc(x(1)), incx, &
-        stridex, batchCount, c_loc(result(1)))
+      SasumStridedBatched_64 = hipblasSasumStridedBatched_64_raw(handle, n, c_loc(x), incx, &
+        stridex, batchCount, c_loc(result))
     end function hipblasSasumStridedBatched_64_native
 
     function hipblasSasumStridedBatched_64_typed(handle, n, x, incx, stridex, batchCount, &
@@ -47794,14 +47792,14 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_long), value :: n
-      real(c_double), target :: x(*)
+      real(c_double), target :: x(..)
       integer(c_long), value :: incx
       integer(c_long), value :: stridex
       integer(c_long), value :: batchCount
-      real(c_double), target :: result(*)
+      real(c_double), target :: result(..)
       integer(c_int) :: DasumStridedBatched_64
-      DasumStridedBatched_64 = hipblasDasumStridedBatched_64_raw(handle, n, c_loc(x(1)), incx, &
-        stridex, batchCount, c_loc(result(1)))
+      DasumStridedBatched_64 = hipblasDasumStridedBatched_64_raw(handle, n, c_loc(x), incx, &
+        stridex, batchCount, c_loc(result))
     end function hipblasDasumStridedBatched_64_native
 
     function hipblasDasumStridedBatched_64_typed(handle, n, x, incx, stridex, batchCount, &
@@ -47827,14 +47825,14 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_long), value :: n
-      complex(c_float_complex), target :: x(*)
+      complex(c_float_complex), target :: x(..)
       integer(c_long), value :: incx
       integer(c_long), value :: stridex
       integer(c_long), value :: batchCount
-      real(c_float), target :: result(*)
+      real(c_float), target :: result(..)
       integer(c_int) :: ScasumStridedBatched_64
-      ScasumStridedBatched_64 = hipblasScasumStridedBatched_64_raw(handle, n, c_loc(x(1)), incx, &
-        stridex, batchCount, c_loc(result(1)))
+      ScasumStridedBatched_64 = hipblasScasumStridedBatched_64_raw(handle, n, c_loc(x), incx, &
+        stridex, batchCount, c_loc(result))
     end function hipblasScasumStridedBatched_64_native
 
     function hipblasScasumStridedBatched_64_typed(handle, n, x, incx, stridex, batchCount, &
@@ -47860,14 +47858,14 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_long), value :: n
-      complex(c_double_complex), target :: x(*)
+      complex(c_double_complex), target :: x(..)
       integer(c_long), value :: incx
       integer(c_long), value :: stridex
       integer(c_long), value :: batchCount
-      real(c_double), target :: result(*)
+      real(c_double), target :: result(..)
       integer(c_int) :: DzasumStridedBatched_64
-      DzasumStridedBatched_64 = hipblasDzasumStridedBatched_64_raw(handle, n, c_loc(x(1)), incx, &
-        stridex, batchCount, c_loc(result(1)))
+      DzasumStridedBatched_64 = hipblasDzasumStridedBatched_64_raw(handle, n, c_loc(x), incx, &
+        stridex, batchCount, c_loc(result))
     end function hipblasDzasumStridedBatched_64_native
 
     function hipblasDzasumStridedBatched_64_typed(handle, n, x, incx, stridex, batchCount, &
@@ -47908,12 +47906,12 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: n
       real(c_float) :: alpha
-      real(c_float), target :: x(*)
+      real(c_float), target :: x(..)
       integer(c_int), value :: incx
-      real(c_float), target :: y(*)
+      real(c_float), target :: y(..)
       integer(c_int), value :: incy
       integer(c_int) :: Saxpy
-      Saxpy = hipblasSaxpy_raw(handle, n, alpha, c_loc(x(1)), incx, c_loc(y(1)), incy)
+      Saxpy = hipblasSaxpy_raw(handle, n, alpha, c_loc(x), incx, c_loc(y), incy)
     end function hipblasSaxpy_native
 
     function hipblasSaxpy_typed(handle, n, alpha, x, incx, y, incy) result(Saxpy)
@@ -47937,12 +47935,12 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: n
       real(c_double) :: alpha
-      real(c_double), target :: x(*)
+      real(c_double), target :: x(..)
       integer(c_int), value :: incx
-      real(c_double), target :: y(*)
+      real(c_double), target :: y(..)
       integer(c_int), value :: incy
       integer(c_int) :: Daxpy
-      Daxpy = hipblasDaxpy_raw(handle, n, alpha, c_loc(x(1)), incx, c_loc(y(1)), incy)
+      Daxpy = hipblasDaxpy_raw(handle, n, alpha, c_loc(x), incx, c_loc(y), incy)
     end function hipblasDaxpy_native
 
     function hipblasDaxpy_typed(handle, n, alpha, x, incx, y, incy) result(Daxpy)
@@ -47966,12 +47964,12 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: n
       complex(c_float_complex) :: alpha
-      complex(c_float_complex), target :: x(*)
+      complex(c_float_complex), target :: x(..)
       integer(c_int), value :: incx
-      complex(c_float_complex), target :: y(*)
+      complex(c_float_complex), target :: y(..)
       integer(c_int), value :: incy
       integer(c_int) :: Caxpy
-      Caxpy = hipblasCaxpy_raw(handle, n, alpha, c_loc(x(1)), incx, c_loc(y(1)), incy)
+      Caxpy = hipblasCaxpy_raw(handle, n, alpha, c_loc(x), incx, c_loc(y), incy)
     end function hipblasCaxpy_native
 
     function hipblasCaxpy_typed(handle, n, alpha, x, incx, y, incy) result(Caxpy)
@@ -47995,12 +47993,12 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: n
       complex(c_double_complex) :: alpha
-      complex(c_double_complex), target :: x(*)
+      complex(c_double_complex), target :: x(..)
       integer(c_int), value :: incx
-      complex(c_double_complex), target :: y(*)
+      complex(c_double_complex), target :: y(..)
       integer(c_int), value :: incy
       integer(c_int) :: Zaxpy
-      Zaxpy = hipblasZaxpy_raw(handle, n, alpha, c_loc(x(1)), incx, c_loc(y(1)), incy)
+      Zaxpy = hipblasZaxpy_raw(handle, n, alpha, c_loc(x), incx, c_loc(y), incy)
     end function hipblasZaxpy_native
 
     function hipblasZaxpy_typed(handle, n, alpha, x, incx, y, incy) result(Zaxpy)
@@ -48038,14 +48036,13 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_long), value :: n
-      real(c_float), target :: alpha(*)
-      real(c_float), target :: x(*)
+      real(c_float), target :: alpha(..)
+      real(c_float), target :: x(..)
       integer(c_long), value :: incx
-      real(c_float), target :: y(*)
+      real(c_float), target :: y(..)
       integer(c_long), value :: incy
       integer(c_int) :: Saxpy_64
-      Saxpy_64 = hipblasSaxpy_64_raw(handle, n, c_loc(alpha(1)), c_loc(x(1)), incx, c_loc(y(1)), &
-        incy)
+      Saxpy_64 = hipblasSaxpy_64_raw(handle, n, c_loc(alpha), c_loc(x), incx, c_loc(y), incy)
     end function hipblasSaxpy_64_native
 
     function hipblasSaxpy_64_typed(handle, n, alpha, x, incx, y, incy) result(Saxpy_64)
@@ -48068,14 +48065,13 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_long), value :: n
-      real(c_double), target :: alpha(*)
-      real(c_double), target :: x(*)
+      real(c_double), target :: alpha(..)
+      real(c_double), target :: x(..)
       integer(c_long), value :: incx
-      real(c_double), target :: y(*)
+      real(c_double), target :: y(..)
       integer(c_long), value :: incy
       integer(c_int) :: Daxpy_64
-      Daxpy_64 = hipblasDaxpy_64_raw(handle, n, c_loc(alpha(1)), c_loc(x(1)), incx, c_loc(y(1)), &
-        incy)
+      Daxpy_64 = hipblasDaxpy_64_raw(handle, n, c_loc(alpha), c_loc(x), incx, c_loc(y), incy)
     end function hipblasDaxpy_64_native
 
     function hipblasDaxpy_64_typed(handle, n, alpha, x, incx, y, incy) result(Daxpy_64)
@@ -48098,14 +48094,13 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_long), value :: n
-      complex(c_float_complex), target :: alpha(*)
-      complex(c_float_complex), target :: x(*)
+      complex(c_float_complex), target :: alpha(..)
+      complex(c_float_complex), target :: x(..)
       integer(c_long), value :: incx
-      complex(c_float_complex), target :: y(*)
+      complex(c_float_complex), target :: y(..)
       integer(c_long), value :: incy
       integer(c_int) :: Caxpy_64
-      Caxpy_64 = hipblasCaxpy_64_raw(handle, n, c_loc(alpha(1)), c_loc(x(1)), incx, c_loc(y(1)), &
-        incy)
+      Caxpy_64 = hipblasCaxpy_64_raw(handle, n, c_loc(alpha), c_loc(x), incx, c_loc(y), incy)
     end function hipblasCaxpy_64_native
 
     function hipblasCaxpy_64_typed(handle, n, alpha, x, incx, y, incy) result(Caxpy_64)
@@ -48128,14 +48123,13 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_long), value :: n
-      complex(c_double_complex), target :: alpha(*)
-      complex(c_double_complex), target :: x(*)
+      complex(c_double_complex), target :: alpha(..)
+      complex(c_double_complex), target :: x(..)
       integer(c_long), value :: incx
-      complex(c_double_complex), target :: y(*)
+      complex(c_double_complex), target :: y(..)
       integer(c_long), value :: incy
       integer(c_int) :: Zaxpy_64
-      Zaxpy_64 = hipblasZaxpy_64_raw(handle, n, c_loc(alpha(1)), c_loc(x(1)), incx, c_loc(y(1)), &
-        incy)
+      Zaxpy_64 = hipblasZaxpy_64_raw(handle, n, c_loc(alpha), c_loc(x), incx, c_loc(y), incy)
     end function hipblasZaxpy_64_native
 
     function hipblasZaxpy_64_typed(handle, n, alpha, x, incx, y, incy) result(Zaxpy_64)
@@ -48262,14 +48256,14 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_long), value :: n
-      real(c_float), target :: alpha(*)
+      real(c_float), target :: alpha(..)
       type(c_ptr), value :: x
       integer(c_long), value :: incx
       type(c_ptr), value :: y
       integer(c_long), value :: incy
       integer(c_long), value :: batchCount
       integer(c_int) :: SaxpyBatched_64
-      SaxpyBatched_64 = hipblasSaxpyBatched_64_raw(handle, n, c_loc(alpha(1)), x, incx, y, incy, &
+      SaxpyBatched_64 = hipblasSaxpyBatched_64_raw(handle, n, c_loc(alpha), x, incx, y, incy, &
         batchCount)
     end function hipblasSaxpyBatched_64_native
 
@@ -48297,14 +48291,14 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_long), value :: n
-      real(c_double), target :: alpha(*)
+      real(c_double), target :: alpha(..)
       type(c_ptr), value :: x
       integer(c_long), value :: incx
       type(c_ptr), value :: y
       integer(c_long), value :: incy
       integer(c_long), value :: batchCount
       integer(c_int) :: DaxpyBatched_64
-      DaxpyBatched_64 = hipblasDaxpyBatched_64_raw(handle, n, c_loc(alpha(1)), x, incx, y, incy, &
+      DaxpyBatched_64 = hipblasDaxpyBatched_64_raw(handle, n, c_loc(alpha), x, incx, y, incy, &
         batchCount)
     end function hipblasDaxpyBatched_64_native
 
@@ -48332,14 +48326,14 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_long), value :: n
-      complex(c_float_complex), target :: alpha(*)
+      complex(c_float_complex), target :: alpha(..)
       type(c_ptr), value :: x
       integer(c_long), value :: incx
       type(c_ptr), value :: y
       integer(c_long), value :: incy
       integer(c_long), value :: batchCount
       integer(c_int) :: CaxpyBatched_64
-      CaxpyBatched_64 = hipblasCaxpyBatched_64_raw(handle, n, c_loc(alpha(1)), x, incx, y, incy, &
+      CaxpyBatched_64 = hipblasCaxpyBatched_64_raw(handle, n, c_loc(alpha), x, incx, y, incy, &
         batchCount)
     end function hipblasCaxpyBatched_64_native
 
@@ -48367,14 +48361,14 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_long), value :: n
-      complex(c_double_complex), target :: alpha(*)
+      complex(c_double_complex), target :: alpha(..)
       type(c_ptr), value :: x
       integer(c_long), value :: incx
       type(c_ptr), value :: y
       integer(c_long), value :: incy
       integer(c_long), value :: batchCount
       integer(c_int) :: ZaxpyBatched_64
-      ZaxpyBatched_64 = hipblasZaxpyBatched_64_raw(handle, n, c_loc(alpha(1)), x, incx, y, incy, &
+      ZaxpyBatched_64 = hipblasZaxpyBatched_64_raw(handle, n, c_loc(alpha), x, incx, y, incy, &
         batchCount)
     end function hipblasZaxpyBatched_64_native
 
@@ -48423,16 +48417,16 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: n
       real(c_float) :: alpha
-      real(c_float), target :: x(*)
+      real(c_float), target :: x(..)
       integer(c_int), value :: incx
       integer(c_long), value :: stridex
-      real(c_float), target :: y(*)
+      real(c_float), target :: y(..)
       integer(c_int), value :: incy
       integer(c_long), value :: stridey
       integer(c_int), value :: batchCount
       integer(c_int) :: SaxpyStridedBatched
-      SaxpyStridedBatched = hipblasSaxpyStridedBatched_raw(handle, n, alpha, c_loc(x(1)), incx, &
-        stridex, c_loc(y(1)), incy, stridey, batchCount)
+      SaxpyStridedBatched = hipblasSaxpyStridedBatched_raw(handle, n, alpha, c_loc(x), incx, &
+        stridex, c_loc(y), incy, stridey, batchCount)
     end function hipblasSaxpyStridedBatched_native
 
     function hipblasSaxpyStridedBatched_typed(handle, n, alpha, x, incx, stridex, y, incy, &
@@ -48462,16 +48456,16 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: n
       real(c_double) :: alpha
-      real(c_double), target :: x(*)
+      real(c_double), target :: x(..)
       integer(c_int), value :: incx
       integer(c_long), value :: stridex
-      real(c_double), target :: y(*)
+      real(c_double), target :: y(..)
       integer(c_int), value :: incy
       integer(c_long), value :: stridey
       integer(c_int), value :: batchCount
       integer(c_int) :: DaxpyStridedBatched
-      DaxpyStridedBatched = hipblasDaxpyStridedBatched_raw(handle, n, alpha, c_loc(x(1)), incx, &
-        stridex, c_loc(y(1)), incy, stridey, batchCount)
+      DaxpyStridedBatched = hipblasDaxpyStridedBatched_raw(handle, n, alpha, c_loc(x), incx, &
+        stridex, c_loc(y), incy, stridey, batchCount)
     end function hipblasDaxpyStridedBatched_native
 
     function hipblasDaxpyStridedBatched_typed(handle, n, alpha, x, incx, stridex, y, incy, &
@@ -48501,16 +48495,16 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: n
       complex(c_float_complex) :: alpha
-      complex(c_float_complex), target :: x(*)
+      complex(c_float_complex), target :: x(..)
       integer(c_int), value :: incx
       integer(c_long), value :: stridex
-      complex(c_float_complex), target :: y(*)
+      complex(c_float_complex), target :: y(..)
       integer(c_int), value :: incy
       integer(c_long), value :: stridey
       integer(c_int), value :: batchCount
       integer(c_int) :: CaxpyStridedBatched
-      CaxpyStridedBatched = hipblasCaxpyStridedBatched_raw(handle, n, alpha, c_loc(x(1)), incx, &
-        stridex, c_loc(y(1)), incy, stridey, batchCount)
+      CaxpyStridedBatched = hipblasCaxpyStridedBatched_raw(handle, n, alpha, c_loc(x), incx, &
+        stridex, c_loc(y), incy, stridey, batchCount)
     end function hipblasCaxpyStridedBatched_native
 
     function hipblasCaxpyStridedBatched_typed(handle, n, alpha, x, incx, stridex, y, incy, &
@@ -48540,16 +48534,16 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: n
       complex(c_double_complex) :: alpha
-      complex(c_double_complex), target :: x(*)
+      complex(c_double_complex), target :: x(..)
       integer(c_int), value :: incx
       integer(c_long), value :: stridex
-      complex(c_double_complex), target :: y(*)
+      complex(c_double_complex), target :: y(..)
       integer(c_int), value :: incy
       integer(c_long), value :: stridey
       integer(c_int), value :: batchCount
       integer(c_int) :: ZaxpyStridedBatched
-      ZaxpyStridedBatched = hipblasZaxpyStridedBatched_raw(handle, n, alpha, c_loc(x(1)), incx, &
-        stridex, c_loc(y(1)), incy, stridey, batchCount)
+      ZaxpyStridedBatched = hipblasZaxpyStridedBatched_raw(handle, n, alpha, c_loc(x), incx, &
+        stridex, c_loc(y), incy, stridey, batchCount)
     end function hipblasZaxpyStridedBatched_native
 
     function hipblasZaxpyStridedBatched_typed(handle, n, alpha, x, incx, stridex, y, incy, &
@@ -48598,17 +48592,17 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_long), value :: n
-      real(c_float), target :: alpha(*)
-      real(c_float), target :: x(*)
+      real(c_float), target :: alpha(..)
+      real(c_float), target :: x(..)
       integer(c_long), value :: incx
       integer(c_long), value :: stridex
-      real(c_float), target :: y(*)
+      real(c_float), target :: y(..)
       integer(c_long), value :: incy
       integer(c_long), value :: stridey
       integer(c_long), value :: batchCount
       integer(c_int) :: SaxpyStridedBatched_64
-      SaxpyStridedBatched_64 = hipblasSaxpyStridedBatched_64_raw(handle, n, c_loc(alpha(1)), &
-        c_loc(x(1)), incx, stridex, c_loc(y(1)), incy, stridey, batchCount)
+      SaxpyStridedBatched_64 = hipblasSaxpyStridedBatched_64_raw(handle, n, c_loc(alpha), c_loc( &
+        x), incx, stridex, c_loc(y), incy, stridey, batchCount)
     end function hipblasSaxpyStridedBatched_64_native
 
     function hipblasSaxpyStridedBatched_64_typed(handle, n, alpha, x, incx, stridex, y, incy, &
@@ -48637,17 +48631,17 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_long), value :: n
-      real(c_double), target :: alpha(*)
-      real(c_double), target :: x(*)
+      real(c_double), target :: alpha(..)
+      real(c_double), target :: x(..)
       integer(c_long), value :: incx
       integer(c_long), value :: stridex
-      real(c_double), target :: y(*)
+      real(c_double), target :: y(..)
       integer(c_long), value :: incy
       integer(c_long), value :: stridey
       integer(c_long), value :: batchCount
       integer(c_int) :: DaxpyStridedBatched_64
-      DaxpyStridedBatched_64 = hipblasDaxpyStridedBatched_64_raw(handle, n, c_loc(alpha(1)), &
-        c_loc(x(1)), incx, stridex, c_loc(y(1)), incy, stridey, batchCount)
+      DaxpyStridedBatched_64 = hipblasDaxpyStridedBatched_64_raw(handle, n, c_loc(alpha), c_loc( &
+        x), incx, stridex, c_loc(y), incy, stridey, batchCount)
     end function hipblasDaxpyStridedBatched_64_native
 
     function hipblasDaxpyStridedBatched_64_typed(handle, n, alpha, x, incx, stridex, y, incy, &
@@ -48676,17 +48670,17 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_long), value :: n
-      complex(c_float_complex), target :: alpha(*)
-      complex(c_float_complex), target :: x(*)
+      complex(c_float_complex), target :: alpha(..)
+      complex(c_float_complex), target :: x(..)
       integer(c_long), value :: incx
       integer(c_long), value :: stridex
-      complex(c_float_complex), target :: y(*)
+      complex(c_float_complex), target :: y(..)
       integer(c_long), value :: incy
       integer(c_long), value :: stridey
       integer(c_long), value :: batchCount
       integer(c_int) :: CaxpyStridedBatched_64
-      CaxpyStridedBatched_64 = hipblasCaxpyStridedBatched_64_raw(handle, n, c_loc(alpha(1)), &
-        c_loc(x(1)), incx, stridex, c_loc(y(1)), incy, stridey, batchCount)
+      CaxpyStridedBatched_64 = hipblasCaxpyStridedBatched_64_raw(handle, n, c_loc(alpha), c_loc( &
+        x), incx, stridex, c_loc(y), incy, stridey, batchCount)
     end function hipblasCaxpyStridedBatched_64_native
 
     function hipblasCaxpyStridedBatched_64_typed(handle, n, alpha, x, incx, stridex, y, incy, &
@@ -48715,17 +48709,17 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_long), value :: n
-      complex(c_double_complex), target :: alpha(*)
-      complex(c_double_complex), target :: x(*)
+      complex(c_double_complex), target :: alpha(..)
+      complex(c_double_complex), target :: x(..)
       integer(c_long), value :: incx
       integer(c_long), value :: stridex
-      complex(c_double_complex), target :: y(*)
+      complex(c_double_complex), target :: y(..)
       integer(c_long), value :: incy
       integer(c_long), value :: stridey
       integer(c_long), value :: batchCount
       integer(c_int) :: ZaxpyStridedBatched_64
-      ZaxpyStridedBatched_64 = hipblasZaxpyStridedBatched_64_raw(handle, n, c_loc(alpha(1)), &
-        c_loc(x(1)), incx, stridex, c_loc(y(1)), incy, stridey, batchCount)
+      ZaxpyStridedBatched_64 = hipblasZaxpyStridedBatched_64_raw(handle, n, c_loc(alpha), c_loc( &
+        x), incx, stridex, c_loc(y), incy, stridey, batchCount)
     end function hipblasZaxpyStridedBatched_64_native
 
     function hipblasZaxpyStridedBatched_64_typed(handle, n, alpha, x, incx, stridex, y, incy, &
@@ -48753,12 +48747,12 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_int), value :: n
-      real(c_float), target :: x(*)
+      real(c_float), target :: x(..)
       integer(c_int), value :: incx
-      real(c_float), target :: y(*)
+      real(c_float), target :: y(..)
       integer(c_int), value :: incy
       integer(c_int) :: Scopy
-      Scopy = hipblasScopy_raw(handle, n, c_loc(x(1)), incx, c_loc(y(1)), incy)
+      Scopy = hipblasScopy_raw(handle, n, c_loc(x), incx, c_loc(y), incy)
     end function hipblasScopy_native
 
     function hipblasScopy_typed(handle, n, x, incx, y, incy) result(Scopy)
@@ -48780,12 +48774,12 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_int), value :: n
-      real(c_double), target :: x(*)
+      real(c_double), target :: x(..)
       integer(c_int), value :: incx
-      real(c_double), target :: y(*)
+      real(c_double), target :: y(..)
       integer(c_int), value :: incy
       integer(c_int) :: Dcopy
-      Dcopy = hipblasDcopy_raw(handle, n, c_loc(x(1)), incx, c_loc(y(1)), incy)
+      Dcopy = hipblasDcopy_raw(handle, n, c_loc(x), incx, c_loc(y), incy)
     end function hipblasDcopy_native
 
     function hipblasDcopy_typed(handle, n, x, incx, y, incy) result(Dcopy)
@@ -48807,12 +48801,12 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_int), value :: n
-      complex(c_float_complex), target :: x(*)
+      complex(c_float_complex), target :: x(..)
       integer(c_int), value :: incx
-      complex(c_float_complex), target :: y(*)
+      complex(c_float_complex), target :: y(..)
       integer(c_int), value :: incy
       integer(c_int) :: Ccopy
-      Ccopy = hipblasCcopy_raw(handle, n, c_loc(x(1)), incx, c_loc(y(1)), incy)
+      Ccopy = hipblasCcopy_raw(handle, n, c_loc(x), incx, c_loc(y), incy)
     end function hipblasCcopy_native
 
     function hipblasCcopy_typed(handle, n, x, incx, y, incy) result(Ccopy)
@@ -48834,12 +48828,12 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_int), value :: n
-      complex(c_double_complex), target :: x(*)
+      complex(c_double_complex), target :: x(..)
       integer(c_int), value :: incx
-      complex(c_double_complex), target :: y(*)
+      complex(c_double_complex), target :: y(..)
       integer(c_int), value :: incy
       integer(c_int) :: Zcopy
-      Zcopy = hipblasZcopy_raw(handle, n, c_loc(x(1)), incx, c_loc(y(1)), incy)
+      Zcopy = hipblasZcopy_raw(handle, n, c_loc(x), incx, c_loc(y), incy)
     end function hipblasZcopy_native
 
     function hipblasZcopy_typed(handle, n, x, incx, y, incy) result(Zcopy)
@@ -48861,12 +48855,12 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_long), value :: n
-      real(c_float), target :: x(*)
+      real(c_float), target :: x(..)
       integer(c_long), value :: incx
-      real(c_float), target :: y(*)
+      real(c_float), target :: y(..)
       integer(c_long), value :: incy
       integer(c_int) :: Scopy_64
-      Scopy_64 = hipblasScopy_64_raw(handle, n, c_loc(x(1)), incx, c_loc(y(1)), incy)
+      Scopy_64 = hipblasScopy_64_raw(handle, n, c_loc(x), incx, c_loc(y), incy)
     end function hipblasScopy_64_native
 
     function hipblasScopy_64_typed(handle, n, x, incx, y, incy) result(Scopy_64)
@@ -48888,12 +48882,12 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_long), value :: n
-      real(c_double), target :: x(*)
+      real(c_double), target :: x(..)
       integer(c_long), value :: incx
-      real(c_double), target :: y(*)
+      real(c_double), target :: y(..)
       integer(c_long), value :: incy
       integer(c_int) :: Dcopy_64
-      Dcopy_64 = hipblasDcopy_64_raw(handle, n, c_loc(x(1)), incx, c_loc(y(1)), incy)
+      Dcopy_64 = hipblasDcopy_64_raw(handle, n, c_loc(x), incx, c_loc(y), incy)
     end function hipblasDcopy_64_native
 
     function hipblasDcopy_64_typed(handle, n, x, incx, y, incy) result(Dcopy_64)
@@ -48915,12 +48909,12 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_long), value :: n
-      complex(c_float_complex), target :: x(*)
+      complex(c_float_complex), target :: x(..)
       integer(c_long), value :: incx
-      complex(c_float_complex), target :: y(*)
+      complex(c_float_complex), target :: y(..)
       integer(c_long), value :: incy
       integer(c_int) :: Ccopy_64
-      Ccopy_64 = hipblasCcopy_64_raw(handle, n, c_loc(x(1)), incx, c_loc(y(1)), incy)
+      Ccopy_64 = hipblasCcopy_64_raw(handle, n, c_loc(x), incx, c_loc(y), incy)
     end function hipblasCcopy_64_native
 
     function hipblasCcopy_64_typed(handle, n, x, incx, y, incy) result(Ccopy_64)
@@ -48942,12 +48936,12 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_long), value :: n
-      complex(c_double_complex), target :: x(*)
+      complex(c_double_complex), target :: x(..)
       integer(c_long), value :: incx
-      complex(c_double_complex), target :: y(*)
+      complex(c_double_complex), target :: y(..)
       integer(c_long), value :: incy
       integer(c_int) :: Zcopy_64
-      Zcopy_64 = hipblasZcopy_64_raw(handle, n, c_loc(x(1)), incx, c_loc(y(1)), incy)
+      Zcopy_64 = hipblasZcopy_64_raw(handle, n, c_loc(x), incx, c_loc(y), incy)
     end function hipblasZcopy_64_native
 
     function hipblasZcopy_64_typed(handle, n, x, incx, y, incy) result(Zcopy_64)
@@ -49094,16 +49088,16 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_int), value :: n
-      real(c_float), target :: x(*)
+      real(c_float), target :: x(..)
       integer(c_int), value :: incx
       integer(c_long), value :: stridex
-      real(c_float), target :: y(*)
+      real(c_float), target :: y(..)
       integer(c_int), value :: incy
       integer(c_long), value :: stridey
       integer(c_int), value :: batchCount
       integer(c_int) :: ScopyStridedBatched
-      ScopyStridedBatched = hipblasScopyStridedBatched_raw(handle, n, c_loc(x(1)), incx, stridex, &
-        c_loc(y(1)), incy, stridey, batchCount)
+      ScopyStridedBatched = hipblasScopyStridedBatched_raw(handle, n, c_loc(x), incx, stridex, &
+        c_loc(y), incy, stridey, batchCount)
     end function hipblasScopyStridedBatched_native
 
     function hipblasScopyStridedBatched_typed(handle, n, x, incx, stridex, y, incy, stridey, &
@@ -49131,16 +49125,16 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_int), value :: n
-      real(c_double), target :: x(*)
+      real(c_double), target :: x(..)
       integer(c_int), value :: incx
       integer(c_long), value :: stridex
-      real(c_double), target :: y(*)
+      real(c_double), target :: y(..)
       integer(c_int), value :: incy
       integer(c_long), value :: stridey
       integer(c_int), value :: batchCount
       integer(c_int) :: DcopyStridedBatched
-      DcopyStridedBatched = hipblasDcopyStridedBatched_raw(handle, n, c_loc(x(1)), incx, stridex, &
-        c_loc(y(1)), incy, stridey, batchCount)
+      DcopyStridedBatched = hipblasDcopyStridedBatched_raw(handle, n, c_loc(x), incx, stridex, &
+        c_loc(y), incy, stridey, batchCount)
     end function hipblasDcopyStridedBatched_native
 
     function hipblasDcopyStridedBatched_typed(handle, n, x, incx, stridex, y, incy, stridey, &
@@ -49168,16 +49162,16 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_int), value :: n
-      complex(c_float_complex), target :: x(*)
+      complex(c_float_complex), target :: x(..)
       integer(c_int), value :: incx
       integer(c_long), value :: stridex
-      complex(c_float_complex), target :: y(*)
+      complex(c_float_complex), target :: y(..)
       integer(c_int), value :: incy
       integer(c_long), value :: stridey
       integer(c_int), value :: batchCount
       integer(c_int) :: CcopyStridedBatched
-      CcopyStridedBatched = hipblasCcopyStridedBatched_raw(handle, n, c_loc(x(1)), incx, stridex, &
-        c_loc(y(1)), incy, stridey, batchCount)
+      CcopyStridedBatched = hipblasCcopyStridedBatched_raw(handle, n, c_loc(x), incx, stridex, &
+        c_loc(y), incy, stridey, batchCount)
     end function hipblasCcopyStridedBatched_native
 
     function hipblasCcopyStridedBatched_typed(handle, n, x, incx, stridex, y, incy, stridey, &
@@ -49205,16 +49199,16 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_int), value :: n
-      complex(c_double_complex), target :: x(*)
+      complex(c_double_complex), target :: x(..)
       integer(c_int), value :: incx
       integer(c_long), value :: stridex
-      complex(c_double_complex), target :: y(*)
+      complex(c_double_complex), target :: y(..)
       integer(c_int), value :: incy
       integer(c_long), value :: stridey
       integer(c_int), value :: batchCount
       integer(c_int) :: ZcopyStridedBatched
-      ZcopyStridedBatched = hipblasZcopyStridedBatched_raw(handle, n, c_loc(x(1)), incx, stridex, &
-        c_loc(y(1)), incy, stridey, batchCount)
+      ZcopyStridedBatched = hipblasZcopyStridedBatched_raw(handle, n, c_loc(x), incx, stridex, &
+        c_loc(y), incy, stridey, batchCount)
     end function hipblasZcopyStridedBatched_native
 
     function hipblasZcopyStridedBatched_typed(handle, n, x, incx, stridex, y, incy, stridey, &
@@ -49242,16 +49236,16 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_long), value :: n
-      real(c_float), target :: x(*)
+      real(c_float), target :: x(..)
       integer(c_long), value :: incx
       integer(c_long), value :: stridex
-      real(c_float), target :: y(*)
+      real(c_float), target :: y(..)
       integer(c_long), value :: incy
       integer(c_long), value :: stridey
       integer(c_long), value :: batchCount
       integer(c_int) :: ScopyStridedBatched_64
-      ScopyStridedBatched_64 = hipblasScopyStridedBatched_64_raw(handle, n, c_loc(x(1)), incx, &
-        stridex, c_loc(y(1)), incy, stridey, batchCount)
+      ScopyStridedBatched_64 = hipblasScopyStridedBatched_64_raw(handle, n, c_loc(x), incx, &
+        stridex, c_loc(y), incy, stridey, batchCount)
     end function hipblasScopyStridedBatched_64_native
 
     function hipblasScopyStridedBatched_64_typed(handle, n, x, incx, stridex, y, incy, stridey, &
@@ -49279,16 +49273,16 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_long), value :: n
-      real(c_double), target :: x(*)
+      real(c_double), target :: x(..)
       integer(c_long), value :: incx
       integer(c_long), value :: stridex
-      real(c_double), target :: y(*)
+      real(c_double), target :: y(..)
       integer(c_long), value :: incy
       integer(c_long), value :: stridey
       integer(c_long), value :: batchCount
       integer(c_int) :: DcopyStridedBatched_64
-      DcopyStridedBatched_64 = hipblasDcopyStridedBatched_64_raw(handle, n, c_loc(x(1)), incx, &
-        stridex, c_loc(y(1)), incy, stridey, batchCount)
+      DcopyStridedBatched_64 = hipblasDcopyStridedBatched_64_raw(handle, n, c_loc(x), incx, &
+        stridex, c_loc(y), incy, stridey, batchCount)
     end function hipblasDcopyStridedBatched_64_native
 
     function hipblasDcopyStridedBatched_64_typed(handle, n, x, incx, stridex, y, incy, stridey, &
@@ -49316,16 +49310,16 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_long), value :: n
-      complex(c_float_complex), target :: x(*)
+      complex(c_float_complex), target :: x(..)
       integer(c_long), value :: incx
       integer(c_long), value :: stridex
-      complex(c_float_complex), target :: y(*)
+      complex(c_float_complex), target :: y(..)
       integer(c_long), value :: incy
       integer(c_long), value :: stridey
       integer(c_long), value :: batchCount
       integer(c_int) :: CcopyStridedBatched_64
-      CcopyStridedBatched_64 = hipblasCcopyStridedBatched_64_raw(handle, n, c_loc(x(1)), incx, &
-        stridex, c_loc(y(1)), incy, stridey, batchCount)
+      CcopyStridedBatched_64 = hipblasCcopyStridedBatched_64_raw(handle, n, c_loc(x), incx, &
+        stridex, c_loc(y), incy, stridey, batchCount)
     end function hipblasCcopyStridedBatched_64_native
 
     function hipblasCcopyStridedBatched_64_typed(handle, n, x, incx, stridex, y, incy, stridey, &
@@ -49353,16 +49347,16 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_long), value :: n
-      complex(c_double_complex), target :: x(*)
+      complex(c_double_complex), target :: x(..)
       integer(c_long), value :: incx
       integer(c_long), value :: stridex
-      complex(c_double_complex), target :: y(*)
+      complex(c_double_complex), target :: y(..)
       integer(c_long), value :: incy
       integer(c_long), value :: stridey
       integer(c_long), value :: batchCount
       integer(c_int) :: ZcopyStridedBatched_64
-      ZcopyStridedBatched_64 = hipblasZcopyStridedBatched_64_raw(handle, n, c_loc(x(1)), incx, &
-        stridex, c_loc(y(1)), incy, stridey, batchCount)
+      ZcopyStridedBatched_64 = hipblasZcopyStridedBatched_64_raw(handle, n, c_loc(x), incx, &
+        stridex, c_loc(y), incy, stridey, batchCount)
     end function hipblasZcopyStridedBatched_64_native
 
     function hipblasZcopyStridedBatched_64_typed(handle, n, x, incx, stridex, y, incy, stridey, &
@@ -49405,11 +49399,11 @@ contains
       implicit none
       type(hipblasHandle_t), value :: handle
       integer(c_int), value :: n
-      type(c_ptr), value :: x
+      type(hipblasBfloat16) :: x
       integer(c_int), value :: incx
-      type(c_ptr), value :: y
+      type(hipblasBfloat16) :: y
       integer(c_int), value :: incy
-      type(c_ptr), value :: result
+      type(hipblasBfloat16) :: result
       integer(c_int) :: Bfdot
       Bfdot = hipblasBfdot_raw(handle%ptr, n, x, incx, y, incy, result)
     end function hipblasBfdot_typed
@@ -49419,13 +49413,13 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_int), value :: n
-      real(c_float), target :: x(*)
+      real(c_float), target :: x(..)
       integer(c_int), value :: incx
-      real(c_float), target :: y(*)
+      real(c_float), target :: y(..)
       integer(c_int), value :: incy
-      real(c_float), target :: result(*)
+      real(c_float), target :: result(..)
       integer(c_int) :: Sdot
-      Sdot = hipblasSdot_raw(handle, n, c_loc(x(1)), incx, c_loc(y(1)), incy, c_loc(result(1)))
+      Sdot = hipblasSdot_raw(handle, n, c_loc(x), incx, c_loc(y), incy, c_loc(result))
     end function hipblasSdot_native
 
     function hipblasSdot_typed(handle, n, x, incx, y, incy, result) result(Sdot)
@@ -49448,13 +49442,13 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_int), value :: n
-      real(c_double), target :: x(*)
+      real(c_double), target :: x(..)
       integer(c_int), value :: incx
-      real(c_double), target :: y(*)
+      real(c_double), target :: y(..)
       integer(c_int), value :: incy
-      real(c_double), target :: result(*)
+      real(c_double), target :: result(..)
       integer(c_int) :: Ddot
-      Ddot = hipblasDdot_raw(handle, n, c_loc(x(1)), incx, c_loc(y(1)), incy, c_loc(result(1)))
+      Ddot = hipblasDdot_raw(handle, n, c_loc(x), incx, c_loc(y), incy, c_loc(result))
     end function hipblasDdot_native
 
     function hipblasDdot_typed(handle, n, x, incx, y, incy, result) result(Ddot)
@@ -49477,13 +49471,13 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_int), value :: n
-      complex(c_float_complex), target :: x(*)
+      complex(c_float_complex), target :: x(..)
       integer(c_int), value :: incx
-      complex(c_float_complex), target :: y(*)
+      complex(c_float_complex), target :: y(..)
       integer(c_int), value :: incy
-      complex(c_float_complex), target :: result(*)
+      complex(c_float_complex), target :: result(..)
       integer(c_int) :: Cdotc
-      Cdotc = hipblasCdotc_raw(handle, n, c_loc(x(1)), incx, c_loc(y(1)), incy, c_loc(result(1)))
+      Cdotc = hipblasCdotc_raw(handle, n, c_loc(x), incx, c_loc(y), incy, c_loc(result))
     end function hipblasCdotc_native
 
     function hipblasCdotc_typed(handle, n, x, incx, y, incy, result) result(Cdotc)
@@ -49506,13 +49500,13 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_int), value :: n
-      complex(c_float_complex), target :: x(*)
+      complex(c_float_complex), target :: x(..)
       integer(c_int), value :: incx
-      complex(c_float_complex), target :: y(*)
+      complex(c_float_complex), target :: y(..)
       integer(c_int), value :: incy
-      complex(c_float_complex), target :: result(*)
+      complex(c_float_complex), target :: result(..)
       integer(c_int) :: Cdotu
-      Cdotu = hipblasCdotu_raw(handle, n, c_loc(x(1)), incx, c_loc(y(1)), incy, c_loc(result(1)))
+      Cdotu = hipblasCdotu_raw(handle, n, c_loc(x), incx, c_loc(y), incy, c_loc(result))
     end function hipblasCdotu_native
 
     function hipblasCdotu_typed(handle, n, x, incx, y, incy, result) result(Cdotu)
@@ -49535,13 +49529,13 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_int), value :: n
-      complex(c_double_complex), target :: x(*)
+      complex(c_double_complex), target :: x(..)
       integer(c_int), value :: incx
-      complex(c_double_complex), target :: y(*)
+      complex(c_double_complex), target :: y(..)
       integer(c_int), value :: incy
-      complex(c_double_complex), target :: result(*)
+      complex(c_double_complex), target :: result(..)
       integer(c_int) :: Zdotc
-      Zdotc = hipblasZdotc_raw(handle, n, c_loc(x(1)), incx, c_loc(y(1)), incy, c_loc(result(1)))
+      Zdotc = hipblasZdotc_raw(handle, n, c_loc(x), incx, c_loc(y), incy, c_loc(result))
     end function hipblasZdotc_native
 
     function hipblasZdotc_typed(handle, n, x, incx, y, incy, result) result(Zdotc)
@@ -49564,13 +49558,13 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_int), value :: n
-      complex(c_double_complex), target :: x(*)
+      complex(c_double_complex), target :: x(..)
       integer(c_int), value :: incx
-      complex(c_double_complex), target :: y(*)
+      complex(c_double_complex), target :: y(..)
       integer(c_int), value :: incy
-      complex(c_double_complex), target :: result(*)
+      complex(c_double_complex), target :: result(..)
       integer(c_int) :: Zdotu
-      Zdotu = hipblasZdotu_raw(handle, n, c_loc(x(1)), incx, c_loc(y(1)), incy, c_loc(result(1)))
+      Zdotu = hipblasZdotu_raw(handle, n, c_loc(x), incx, c_loc(y), incy, c_loc(result))
     end function hipblasZdotu_native
 
     function hipblasZdotu_typed(handle, n, x, incx, y, incy, result) result(Zdotu)
@@ -49609,11 +49603,11 @@ contains
       implicit none
       type(hipblasHandle_t), value :: handle
       integer(c_long), value :: n
-      type(c_ptr), value :: x
+      type(hipblasBfloat16) :: x
       integer(c_long), value :: incx
-      type(c_ptr), value :: y
+      type(hipblasBfloat16) :: y
       integer(c_long), value :: incy
-      type(c_ptr), value :: result
+      type(hipblasBfloat16) :: result
       integer(c_int) :: Bfdot_64
       Bfdot_64 = hipblasBfdot_64_raw(handle%ptr, n, x, incx, y, incy, result)
     end function hipblasBfdot_64_typed
@@ -49623,14 +49617,13 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_long), value :: n
-      real(c_float), target :: x(*)
+      real(c_float), target :: x(..)
       integer(c_long), value :: incx
-      real(c_float), target :: y(*)
+      real(c_float), target :: y(..)
       integer(c_long), value :: incy
-      real(c_float), target :: result(*)
+      real(c_float), target :: result(..)
       integer(c_int) :: Sdot_64
-      Sdot_64 = hipblasSdot_64_raw(handle, n, c_loc(x(1)), incx, c_loc(y(1)), incy, c_loc(result( &
-        1)))
+      Sdot_64 = hipblasSdot_64_raw(handle, n, c_loc(x), incx, c_loc(y), incy, c_loc(result))
     end function hipblasSdot_64_native
 
     function hipblasSdot_64_typed(handle, n, x, incx, y, incy, result) result(Sdot_64)
@@ -49653,14 +49646,13 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_long), value :: n
-      real(c_double), target :: x(*)
+      real(c_double), target :: x(..)
       integer(c_long), value :: incx
-      real(c_double), target :: y(*)
+      real(c_double), target :: y(..)
       integer(c_long), value :: incy
-      real(c_double), target :: result(*)
+      real(c_double), target :: result(..)
       integer(c_int) :: Ddot_64
-      Ddot_64 = hipblasDdot_64_raw(handle, n, c_loc(x(1)), incx, c_loc(y(1)), incy, c_loc(result( &
-        1)))
+      Ddot_64 = hipblasDdot_64_raw(handle, n, c_loc(x), incx, c_loc(y), incy, c_loc(result))
     end function hipblasDdot_64_native
 
     function hipblasDdot_64_typed(handle, n, x, incx, y, incy, result) result(Ddot_64)
@@ -49683,14 +49675,13 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_long), value :: n
-      complex(c_float_complex), target :: x(*)
+      complex(c_float_complex), target :: x(..)
       integer(c_long), value :: incx
-      complex(c_float_complex), target :: y(*)
+      complex(c_float_complex), target :: y(..)
       integer(c_long), value :: incy
-      complex(c_float_complex), target :: result(*)
+      complex(c_float_complex), target :: result(..)
       integer(c_int) :: Cdotc_64
-      Cdotc_64 = hipblasCdotc_64_raw(handle, n, c_loc(x(1)), incx, c_loc(y(1)), incy, c_loc( &
-        result(1)))
+      Cdotc_64 = hipblasCdotc_64_raw(handle, n, c_loc(x), incx, c_loc(y), incy, c_loc(result))
     end function hipblasCdotc_64_native
 
     function hipblasCdotc_64_typed(handle, n, x, incx, y, incy, result) result(Cdotc_64)
@@ -49713,14 +49704,13 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_long), value :: n
-      complex(c_float_complex), target :: x(*)
+      complex(c_float_complex), target :: x(..)
       integer(c_long), value :: incx
-      complex(c_float_complex), target :: y(*)
+      complex(c_float_complex), target :: y(..)
       integer(c_long), value :: incy
-      complex(c_float_complex), target :: result(*)
+      complex(c_float_complex), target :: result(..)
       integer(c_int) :: Cdotu_64
-      Cdotu_64 = hipblasCdotu_64_raw(handle, n, c_loc(x(1)), incx, c_loc(y(1)), incy, c_loc( &
-        result(1)))
+      Cdotu_64 = hipblasCdotu_64_raw(handle, n, c_loc(x), incx, c_loc(y), incy, c_loc(result))
     end function hipblasCdotu_64_native
 
     function hipblasCdotu_64_typed(handle, n, x, incx, y, incy, result) result(Cdotu_64)
@@ -49743,14 +49733,13 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_long), value :: n
-      complex(c_double_complex), target :: x(*)
+      complex(c_double_complex), target :: x(..)
       integer(c_long), value :: incx
-      complex(c_double_complex), target :: y(*)
+      complex(c_double_complex), target :: y(..)
       integer(c_long), value :: incy
-      complex(c_double_complex), target :: result(*)
+      complex(c_double_complex), target :: result(..)
       integer(c_int) :: Zdotc_64
-      Zdotc_64 = hipblasZdotc_64_raw(handle, n, c_loc(x(1)), incx, c_loc(y(1)), incy, c_loc( &
-        result(1)))
+      Zdotc_64 = hipblasZdotc_64_raw(handle, n, c_loc(x), incx, c_loc(y), incy, c_loc(result))
     end function hipblasZdotc_64_native
 
     function hipblasZdotc_64_typed(handle, n, x, incx, y, incy, result) result(Zdotc_64)
@@ -49773,14 +49762,13 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_long), value :: n
-      complex(c_double_complex), target :: x(*)
+      complex(c_double_complex), target :: x(..)
       integer(c_long), value :: incx
-      complex(c_double_complex), target :: y(*)
+      complex(c_double_complex), target :: y(..)
       integer(c_long), value :: incy
-      complex(c_double_complex), target :: result(*)
+      complex(c_double_complex), target :: result(..)
       integer(c_int) :: Zdotu_64
-      Zdotu_64 = hipblasZdotu_64_raw(handle, n, c_loc(x(1)), incx, c_loc(y(1)), incy, c_loc( &
-        result(1)))
+      Zdotu_64 = hipblasZdotu_64_raw(handle, n, c_loc(x), incx, c_loc(y), incy, c_loc(result))
     end function hipblasZdotu_64_native
 
     function hipblasZdotu_64_typed(handle, n, x, incx, y, incy, result) result(Zdotu_64)
@@ -49827,7 +49815,7 @@ contains
       type(c_ptr), value :: y
       integer(c_int), value :: incy
       integer(c_int), value :: batchCount
-      type(c_ptr), value :: result
+      type(hipblasBfloat16) :: result
       integer(c_int) :: BfdotBatched
       BfdotBatched = hipblasBfdotBatched_raw(handle%ptr, n, x, incx, y, incy, batchCount, result)
     end function hipblasBfdotBatched_typed
@@ -49843,10 +49831,9 @@ contains
       type(c_ptr), value :: y
       integer(c_int), value :: incy
       integer(c_int), value :: batchCount
-      real(c_float), target :: result(*)
+      real(c_float), target :: result(..)
       integer(c_int) :: SdotBatched
-      SdotBatched = hipblasSdotBatched_raw(handle, n, x, incx, y, incy, batchCount, c_loc(result( &
-        1)))
+      SdotBatched = hipblasSdotBatched_raw(handle, n, x, incx, y, incy, batchCount, c_loc(result))
     end function hipblasSdotBatched_native
 
     function hipblasSdotBatched_typed(handle, n, x, incx, y, incy, batchCount, result) result( &
@@ -49877,10 +49864,9 @@ contains
       type(c_ptr), value :: y
       integer(c_int), value :: incy
       integer(c_int), value :: batchCount
-      real(c_double), target :: result(*)
+      real(c_double), target :: result(..)
       integer(c_int) :: DdotBatched
-      DdotBatched = hipblasDdotBatched_raw(handle, n, x, incx, y, incy, batchCount, c_loc(result( &
-        1)))
+      DdotBatched = hipblasDdotBatched_raw(handle, n, x, incx, y, incy, batchCount, c_loc(result))
     end function hipblasDdotBatched_native
 
     function hipblasDdotBatched_typed(handle, n, x, incx, y, incy, batchCount, result) result( &
@@ -49911,10 +49897,9 @@ contains
       type(c_ptr), value :: y
       integer(c_int), value :: incy
       integer(c_int), value :: batchCount
-      complex(c_float_complex), target :: result(*)
+      complex(c_float_complex), target :: result(..)
       integer(c_int) :: CdotcBatched
-      CdotcBatched = hipblasCdotcBatched_raw(handle, n, x, incx, y, incy, batchCount, c_loc( &
-        result(1)))
+      CdotcBatched = hipblasCdotcBatched_raw(handle, n, x, incx, y, incy, batchCount, c_loc(result))
     end function hipblasCdotcBatched_native
 
     function hipblasCdotcBatched_typed(handle, n, x, incx, y, incy, batchCount, result) result( &
@@ -49945,10 +49930,9 @@ contains
       type(c_ptr), value :: y
       integer(c_int), value :: incy
       integer(c_int), value :: batchCount
-      complex(c_float_complex), target :: result(*)
+      complex(c_float_complex), target :: result(..)
       integer(c_int) :: CdotuBatched
-      CdotuBatched = hipblasCdotuBatched_raw(handle, n, x, incx, y, incy, batchCount, c_loc( &
-        result(1)))
+      CdotuBatched = hipblasCdotuBatched_raw(handle, n, x, incx, y, incy, batchCount, c_loc(result))
     end function hipblasCdotuBatched_native
 
     function hipblasCdotuBatched_typed(handle, n, x, incx, y, incy, batchCount, result) result( &
@@ -49979,10 +49963,9 @@ contains
       type(c_ptr), value :: y
       integer(c_int), value :: incy
       integer(c_int), value :: batchCount
-      complex(c_double_complex), target :: result(*)
+      complex(c_double_complex), target :: result(..)
       integer(c_int) :: ZdotcBatched
-      ZdotcBatched = hipblasZdotcBatched_raw(handle, n, x, incx, y, incy, batchCount, c_loc( &
-        result(1)))
+      ZdotcBatched = hipblasZdotcBatched_raw(handle, n, x, incx, y, incy, batchCount, c_loc(result))
     end function hipblasZdotcBatched_native
 
     function hipblasZdotcBatched_typed(handle, n, x, incx, y, incy, batchCount, result) result( &
@@ -50013,10 +49996,9 @@ contains
       type(c_ptr), value :: y
       integer(c_int), value :: incy
       integer(c_int), value :: batchCount
-      complex(c_double_complex), target :: result(*)
+      complex(c_double_complex), target :: result(..)
       integer(c_int) :: ZdotuBatched
-      ZdotuBatched = hipblasZdotuBatched_raw(handle, n, x, incx, y, incy, batchCount, c_loc( &
-        result(1)))
+      ZdotuBatched = hipblasZdotuBatched_raw(handle, n, x, incx, y, incy, batchCount, c_loc(result))
     end function hipblasZdotuBatched_native
 
     function hipblasZdotuBatched_typed(handle, n, x, incx, y, incy, batchCount, result) result( &
@@ -50066,7 +50048,7 @@ contains
       type(c_ptr), value :: y
       integer(c_long), value :: incy
       integer(c_long), value :: batchCount
-      type(c_ptr), value :: result
+      type(hipblasBfloat16) :: result
       integer(c_int) :: BfdotBatched_64
       BfdotBatched_64 = hipblasBfdotBatched_64_raw(handle%ptr, n, x, incx, y, incy, batchCount, &
         result)
@@ -50083,10 +50065,10 @@ contains
       type(c_ptr), value :: y
       integer(c_long), value :: incy
       integer(c_long), value :: batchCount
-      real(c_float), target :: result(*)
+      real(c_float), target :: result(..)
       integer(c_int) :: SdotBatched_64
       SdotBatched_64 = hipblasSdotBatched_64_raw(handle, n, x, incx, y, incy, batchCount, c_loc( &
-        result(1)))
+        result))
     end function hipblasSdotBatched_64_native
 
     function hipblasSdotBatched_64_typed(handle, n, x, incx, y, incy, batchCount, result) result( &
@@ -50118,10 +50100,10 @@ contains
       type(c_ptr), value :: y
       integer(c_long), value :: incy
       integer(c_long), value :: batchCount
-      real(c_double), target :: result(*)
+      real(c_double), target :: result(..)
       integer(c_int) :: DdotBatched_64
       DdotBatched_64 = hipblasDdotBatched_64_raw(handle, n, x, incx, y, incy, batchCount, c_loc( &
-        result(1)))
+        result))
     end function hipblasDdotBatched_64_native
 
     function hipblasDdotBatched_64_typed(handle, n, x, incx, y, incy, batchCount, result) result( &
@@ -50153,10 +50135,10 @@ contains
       type(c_ptr), value :: y
       integer(c_long), value :: incy
       integer(c_long), value :: batchCount
-      complex(c_float_complex), target :: result(*)
+      complex(c_float_complex), target :: result(..)
       integer(c_int) :: CdotcBatched_64
       CdotcBatched_64 = hipblasCdotcBatched_64_raw(handle, n, x, incx, y, incy, batchCount, c_loc( &
-        result(1)))
+        result))
     end function hipblasCdotcBatched_64_native
 
     function hipblasCdotcBatched_64_typed(handle, n, x, incx, y, incy, batchCount, result) result( &
@@ -50188,10 +50170,10 @@ contains
       type(c_ptr), value :: y
       integer(c_long), value :: incy
       integer(c_long), value :: batchCount
-      complex(c_float_complex), target :: result(*)
+      complex(c_float_complex), target :: result(..)
       integer(c_int) :: CdotuBatched_64
       CdotuBatched_64 = hipblasCdotuBatched_64_raw(handle, n, x, incx, y, incy, batchCount, c_loc( &
-        result(1)))
+        result))
     end function hipblasCdotuBatched_64_native
 
     function hipblasCdotuBatched_64_typed(handle, n, x, incx, y, incy, batchCount, result) result( &
@@ -50223,10 +50205,10 @@ contains
       type(c_ptr), value :: y
       integer(c_long), value :: incy
       integer(c_long), value :: batchCount
-      complex(c_double_complex), target :: result(*)
+      complex(c_double_complex), target :: result(..)
       integer(c_int) :: ZdotcBatched_64
       ZdotcBatched_64 = hipblasZdotcBatched_64_raw(handle, n, x, incx, y, incy, batchCount, c_loc( &
-        result(1)))
+        result))
     end function hipblasZdotcBatched_64_native
 
     function hipblasZdotcBatched_64_typed(handle, n, x, incx, y, incy, batchCount, result) result( &
@@ -50258,10 +50240,10 @@ contains
       type(c_ptr), value :: y
       integer(c_long), value :: incy
       integer(c_long), value :: batchCount
-      complex(c_double_complex), target :: result(*)
+      complex(c_double_complex), target :: result(..)
       integer(c_int) :: ZdotuBatched_64
       ZdotuBatched_64 = hipblasZdotuBatched_64_raw(handle, n, x, incx, y, incy, batchCount, c_loc( &
-        result(1)))
+        result))
     end function hipblasZdotuBatched_64_native
 
     function hipblasZdotuBatched_64_typed(handle, n, x, incx, y, incy, batchCount, result) result( &
@@ -50309,14 +50291,14 @@ contains
       implicit none
       type(hipblasHandle_t), value :: handle
       integer(c_int), value :: n
-      type(c_ptr), value :: x
+      type(hipblasBfloat16) :: x
       integer(c_int), value :: incx
       integer(c_long), value :: stridex
-      type(c_ptr), value :: y
+      type(hipblasBfloat16) :: y
       integer(c_int), value :: incy
       integer(c_long), value :: stridey
       integer(c_int), value :: batchCount
-      type(c_ptr), value :: result
+      type(hipblasBfloat16) :: result
       integer(c_int) :: BfdotStridedBatched
       BfdotStridedBatched = hipblasBfdotStridedBatched_raw(handle%ptr, n, x, incx, stridex, y, &
         incy, stridey, batchCount, result)
@@ -50328,17 +50310,17 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_int), value :: n
-      real(c_float), target :: x(*)
+      real(c_float), target :: x(..)
       integer(c_int), value :: incx
       integer(c_long), value :: stridex
-      real(c_float), target :: y(*)
+      real(c_float), target :: y(..)
       integer(c_int), value :: incy
       integer(c_long), value :: stridey
       integer(c_int), value :: batchCount
-      real(c_float), target :: result(*)
+      real(c_float), target :: result(..)
       integer(c_int) :: SdotStridedBatched
-      SdotStridedBatched = hipblasSdotStridedBatched_raw(handle, n, c_loc(x(1)), incx, stridex, &
-        c_loc(y(1)), incy, stridey, batchCount, c_loc(result(1)))
+      SdotStridedBatched = hipblasSdotStridedBatched_raw(handle, n, c_loc(x), incx, stridex, &
+        c_loc(y), incy, stridey, batchCount, c_loc(result))
     end function hipblasSdotStridedBatched_native
 
     function hipblasSdotStridedBatched_typed(handle, n, x, incx, stridex, y, incy, stridey, &
@@ -50367,17 +50349,17 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_int), value :: n
-      real(c_double), target :: x(*)
+      real(c_double), target :: x(..)
       integer(c_int), value :: incx
       integer(c_long), value :: stridex
-      real(c_double), target :: y(*)
+      real(c_double), target :: y(..)
       integer(c_int), value :: incy
       integer(c_long), value :: stridey
       integer(c_int), value :: batchCount
-      real(c_double), target :: result(*)
+      real(c_double), target :: result(..)
       integer(c_int) :: DdotStridedBatched
-      DdotStridedBatched = hipblasDdotStridedBatched_raw(handle, n, c_loc(x(1)), incx, stridex, &
-        c_loc(y(1)), incy, stridey, batchCount, c_loc(result(1)))
+      DdotStridedBatched = hipblasDdotStridedBatched_raw(handle, n, c_loc(x), incx, stridex, &
+        c_loc(y), incy, stridey, batchCount, c_loc(result))
     end function hipblasDdotStridedBatched_native
 
     function hipblasDdotStridedBatched_typed(handle, n, x, incx, stridex, y, incy, stridey, &
@@ -50406,17 +50388,17 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_int), value :: n
-      complex(c_float_complex), target :: x(*)
+      complex(c_float_complex), target :: x(..)
       integer(c_int), value :: incx
       integer(c_long), value :: stridex
-      complex(c_float_complex), target :: y(*)
+      complex(c_float_complex), target :: y(..)
       integer(c_int), value :: incy
       integer(c_long), value :: stridey
       integer(c_int), value :: batchCount
-      complex(c_float_complex), target :: result(*)
+      complex(c_float_complex), target :: result(..)
       integer(c_int) :: CdotcStridedBatched
-      CdotcStridedBatched = hipblasCdotcStridedBatched_raw(handle, n, c_loc(x(1)), incx, stridex, &
-        c_loc(y(1)), incy, stridey, batchCount, c_loc(result(1)))
+      CdotcStridedBatched = hipblasCdotcStridedBatched_raw(handle, n, c_loc(x), incx, stridex, &
+        c_loc(y), incy, stridey, batchCount, c_loc(result))
     end function hipblasCdotcStridedBatched_native
 
     function hipblasCdotcStridedBatched_typed(handle, n, x, incx, stridex, y, incy, stridey, &
@@ -50445,17 +50427,17 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_int), value :: n
-      complex(c_float_complex), target :: x(*)
+      complex(c_float_complex), target :: x(..)
       integer(c_int), value :: incx
       integer(c_long), value :: stridex
-      complex(c_float_complex), target :: y(*)
+      complex(c_float_complex), target :: y(..)
       integer(c_int), value :: incy
       integer(c_long), value :: stridey
       integer(c_int), value :: batchCount
-      complex(c_float_complex), target :: result(*)
+      complex(c_float_complex), target :: result(..)
       integer(c_int) :: CdotuStridedBatched
-      CdotuStridedBatched = hipblasCdotuStridedBatched_raw(handle, n, c_loc(x(1)), incx, stridex, &
-        c_loc(y(1)), incy, stridey, batchCount, c_loc(result(1)))
+      CdotuStridedBatched = hipblasCdotuStridedBatched_raw(handle, n, c_loc(x), incx, stridex, &
+        c_loc(y), incy, stridey, batchCount, c_loc(result))
     end function hipblasCdotuStridedBatched_native
 
     function hipblasCdotuStridedBatched_typed(handle, n, x, incx, stridex, y, incy, stridey, &
@@ -50484,17 +50466,17 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_int), value :: n
-      complex(c_double_complex), target :: x(*)
+      complex(c_double_complex), target :: x(..)
       integer(c_int), value :: incx
       integer(c_long), value :: stridex
-      complex(c_double_complex), target :: y(*)
+      complex(c_double_complex), target :: y(..)
       integer(c_int), value :: incy
       integer(c_long), value :: stridey
       integer(c_int), value :: batchCount
-      complex(c_double_complex), target :: result(*)
+      complex(c_double_complex), target :: result(..)
       integer(c_int) :: ZdotcStridedBatched
-      ZdotcStridedBatched = hipblasZdotcStridedBatched_raw(handle, n, c_loc(x(1)), incx, stridex, &
-        c_loc(y(1)), incy, stridey, batchCount, c_loc(result(1)))
+      ZdotcStridedBatched = hipblasZdotcStridedBatched_raw(handle, n, c_loc(x), incx, stridex, &
+        c_loc(y), incy, stridey, batchCount, c_loc(result))
     end function hipblasZdotcStridedBatched_native
 
     function hipblasZdotcStridedBatched_typed(handle, n, x, incx, stridex, y, incy, stridey, &
@@ -50523,17 +50505,17 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_int), value :: n
-      complex(c_double_complex), target :: x(*)
+      complex(c_double_complex), target :: x(..)
       integer(c_int), value :: incx
       integer(c_long), value :: stridex
-      complex(c_double_complex), target :: y(*)
+      complex(c_double_complex), target :: y(..)
       integer(c_int), value :: incy
       integer(c_long), value :: stridey
       integer(c_int), value :: batchCount
-      complex(c_double_complex), target :: result(*)
+      complex(c_double_complex), target :: result(..)
       integer(c_int) :: ZdotuStridedBatched
-      ZdotuStridedBatched = hipblasZdotuStridedBatched_raw(handle, n, c_loc(x(1)), incx, stridex, &
-        c_loc(y(1)), incy, stridey, batchCount, c_loc(result(1)))
+      ZdotuStridedBatched = hipblasZdotuStridedBatched_raw(handle, n, c_loc(x), incx, stridex, &
+        c_loc(y), incy, stridey, batchCount, c_loc(result))
     end function hipblasZdotuStridedBatched_native
 
     function hipblasZdotuStridedBatched_typed(handle, n, x, incx, stridex, y, incy, stridey, &
@@ -50583,14 +50565,14 @@ contains
       implicit none
       type(hipblasHandle_t), value :: handle
       integer(c_long), value :: n
-      type(c_ptr), value :: x
+      type(hipblasBfloat16) :: x
       integer(c_long), value :: incx
       integer(c_long), value :: stridex
-      type(c_ptr), value :: y
+      type(hipblasBfloat16) :: y
       integer(c_long), value :: incy
       integer(c_long), value :: stridey
       integer(c_long), value :: batchCount
-      type(c_ptr), value :: result
+      type(hipblasBfloat16) :: result
       integer(c_int) :: BfdotStridedBatched_64
       BfdotStridedBatched_64 = hipblasBfdotStridedBatched_64_raw(handle%ptr, n, x, incx, stridex, &
         y, incy, stridey, batchCount, result)
@@ -50602,17 +50584,17 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_long), value :: n
-      real(c_float), target :: x(*)
+      real(c_float), target :: x(..)
       integer(c_long), value :: incx
       integer(c_long), value :: stridex
-      real(c_float), target :: y(*)
+      real(c_float), target :: y(..)
       integer(c_long), value :: incy
       integer(c_long), value :: stridey
       integer(c_long), value :: batchCount
-      real(c_float), target :: result(*)
+      real(c_float), target :: result(..)
       integer(c_int) :: SdotStridedBatched_64
-      SdotStridedBatched_64 = hipblasSdotStridedBatched_64_raw(handle, n, c_loc(x(1)), incx, &
-        stridex, c_loc(y(1)), incy, stridey, batchCount, c_loc(result(1)))
+      SdotStridedBatched_64 = hipblasSdotStridedBatched_64_raw(handle, n, c_loc(x), incx, stridex, &
+        c_loc(y), incy, stridey, batchCount, c_loc(result))
     end function hipblasSdotStridedBatched_64_native
 
     function hipblasSdotStridedBatched_64_typed(handle, n, x, incx, stridex, y, incy, stridey, &
@@ -50641,17 +50623,17 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_long), value :: n
-      real(c_double), target :: x(*)
+      real(c_double), target :: x(..)
       integer(c_long), value :: incx
       integer(c_long), value :: stridex
-      real(c_double), target :: y(*)
+      real(c_double), target :: y(..)
       integer(c_long), value :: incy
       integer(c_long), value :: stridey
       integer(c_long), value :: batchCount
-      real(c_double), target :: result(*)
+      real(c_double), target :: result(..)
       integer(c_int) :: DdotStridedBatched_64
-      DdotStridedBatched_64 = hipblasDdotStridedBatched_64_raw(handle, n, c_loc(x(1)), incx, &
-        stridex, c_loc(y(1)), incy, stridey, batchCount, c_loc(result(1)))
+      DdotStridedBatched_64 = hipblasDdotStridedBatched_64_raw(handle, n, c_loc(x), incx, stridex, &
+        c_loc(y), incy, stridey, batchCount, c_loc(result))
     end function hipblasDdotStridedBatched_64_native
 
     function hipblasDdotStridedBatched_64_typed(handle, n, x, incx, stridex, y, incy, stridey, &
@@ -50680,17 +50662,17 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_long), value :: n
-      complex(c_float_complex), target :: x(*)
+      complex(c_float_complex), target :: x(..)
       integer(c_long), value :: incx
       integer(c_long), value :: stridex
-      complex(c_float_complex), target :: y(*)
+      complex(c_float_complex), target :: y(..)
       integer(c_long), value :: incy
       integer(c_long), value :: stridey
       integer(c_long), value :: batchCount
-      complex(c_float_complex), target :: result(*)
+      complex(c_float_complex), target :: result(..)
       integer(c_int) :: CdotcStridedBatched_64
-      CdotcStridedBatched_64 = hipblasCdotcStridedBatched_64_raw(handle, n, c_loc(x(1)), incx, &
-        stridex, c_loc(y(1)), incy, stridey, batchCount, c_loc(result(1)))
+      CdotcStridedBatched_64 = hipblasCdotcStridedBatched_64_raw(handle, n, c_loc(x), incx, &
+        stridex, c_loc(y), incy, stridey, batchCount, c_loc(result))
     end function hipblasCdotcStridedBatched_64_native
 
     function hipblasCdotcStridedBatched_64_typed(handle, n, x, incx, stridex, y, incy, stridey, &
@@ -50719,17 +50701,17 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_long), value :: n
-      complex(c_float_complex), target :: x(*)
+      complex(c_float_complex), target :: x(..)
       integer(c_long), value :: incx
       integer(c_long), value :: stridex
-      complex(c_float_complex), target :: y(*)
+      complex(c_float_complex), target :: y(..)
       integer(c_long), value :: incy
       integer(c_long), value :: stridey
       integer(c_long), value :: batchCount
-      complex(c_float_complex), target :: result(*)
+      complex(c_float_complex), target :: result(..)
       integer(c_int) :: CdotuStridedBatched_64
-      CdotuStridedBatched_64 = hipblasCdotuStridedBatched_64_raw(handle, n, c_loc(x(1)), incx, &
-        stridex, c_loc(y(1)), incy, stridey, batchCount, c_loc(result(1)))
+      CdotuStridedBatched_64 = hipblasCdotuStridedBatched_64_raw(handle, n, c_loc(x), incx, &
+        stridex, c_loc(y), incy, stridey, batchCount, c_loc(result))
     end function hipblasCdotuStridedBatched_64_native
 
     function hipblasCdotuStridedBatched_64_typed(handle, n, x, incx, stridex, y, incy, stridey, &
@@ -50758,17 +50740,17 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_long), value :: n
-      complex(c_double_complex), target :: x(*)
+      complex(c_double_complex), target :: x(..)
       integer(c_long), value :: incx
       integer(c_long), value :: stridex
-      complex(c_double_complex), target :: y(*)
+      complex(c_double_complex), target :: y(..)
       integer(c_long), value :: incy
       integer(c_long), value :: stridey
       integer(c_long), value :: batchCount
-      complex(c_double_complex), target :: result(*)
+      complex(c_double_complex), target :: result(..)
       integer(c_int) :: ZdotcStridedBatched_64
-      ZdotcStridedBatched_64 = hipblasZdotcStridedBatched_64_raw(handle, n, c_loc(x(1)), incx, &
-        stridex, c_loc(y(1)), incy, stridey, batchCount, c_loc(result(1)))
+      ZdotcStridedBatched_64 = hipblasZdotcStridedBatched_64_raw(handle, n, c_loc(x), incx, &
+        stridex, c_loc(y), incy, stridey, batchCount, c_loc(result))
     end function hipblasZdotcStridedBatched_64_native
 
     function hipblasZdotcStridedBatched_64_typed(handle, n, x, incx, stridex, y, incy, stridey, &
@@ -50797,17 +50779,17 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_long), value :: n
-      complex(c_double_complex), target :: x(*)
+      complex(c_double_complex), target :: x(..)
       integer(c_long), value :: incx
       integer(c_long), value :: stridex
-      complex(c_double_complex), target :: y(*)
+      complex(c_double_complex), target :: y(..)
       integer(c_long), value :: incy
       integer(c_long), value :: stridey
       integer(c_long), value :: batchCount
-      complex(c_double_complex), target :: result(*)
+      complex(c_double_complex), target :: result(..)
       integer(c_int) :: ZdotuStridedBatched_64
-      ZdotuStridedBatched_64 = hipblasZdotuStridedBatched_64_raw(handle, n, c_loc(x(1)), incx, &
-        stridex, c_loc(y(1)), incy, stridey, batchCount, c_loc(result(1)))
+      ZdotuStridedBatched_64 = hipblasZdotuStridedBatched_64_raw(handle, n, c_loc(x), incx, &
+        stridex, c_loc(y), incy, stridey, batchCount, c_loc(result))
     end function hipblasZdotuStridedBatched_64_native
 
     function hipblasZdotuStridedBatched_64_typed(handle, n, x, incx, stridex, y, incy, stridey, &
@@ -50835,11 +50817,11 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_int), value :: n
-      real(c_float), target :: x(*)
+      real(c_float), target :: x(..)
       integer(c_int), value :: incx
-      real(c_float), target :: result(*)
+      real(c_float), target :: result(..)
       integer(c_int) :: Snrm2
-      Snrm2 = hipblasSnrm2_raw(handle, n, c_loc(x(1)), incx, c_loc(result(1)))
+      Snrm2 = hipblasSnrm2_raw(handle, n, c_loc(x), incx, c_loc(result))
     end function hipblasSnrm2_native
 
     function hipblasSnrm2_typed(handle, n, x, incx, result) result(Snrm2)
@@ -50860,11 +50842,11 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_int), value :: n
-      real(c_double), target :: x(*)
+      real(c_double), target :: x(..)
       integer(c_int), value :: incx
-      real(c_double), target :: result(*)
+      real(c_double), target :: result(..)
       integer(c_int) :: Dnrm2
-      Dnrm2 = hipblasDnrm2_raw(handle, n, c_loc(x(1)), incx, c_loc(result(1)))
+      Dnrm2 = hipblasDnrm2_raw(handle, n, c_loc(x), incx, c_loc(result))
     end function hipblasDnrm2_native
 
     function hipblasDnrm2_typed(handle, n, x, incx, result) result(Dnrm2)
@@ -50885,11 +50867,11 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_int), value :: n
-      complex(c_float_complex), target :: x(*)
+      complex(c_float_complex), target :: x(..)
       integer(c_int), value :: incx
-      real(c_float), target :: result(*)
+      real(c_float), target :: result(..)
       integer(c_int) :: Scnrm2
-      Scnrm2 = hipblasScnrm2_raw(handle, n, c_loc(x(1)), incx, c_loc(result(1)))
+      Scnrm2 = hipblasScnrm2_raw(handle, n, c_loc(x), incx, c_loc(result))
     end function hipblasScnrm2_native
 
     function hipblasScnrm2_typed(handle, n, x, incx, result) result(Scnrm2)
@@ -50910,11 +50892,11 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_int), value :: n
-      complex(c_double_complex), target :: x(*)
+      complex(c_double_complex), target :: x(..)
       integer(c_int), value :: incx
-      real(c_double), target :: result(*)
+      real(c_double), target :: result(..)
       integer(c_int) :: Dznrm2
-      Dznrm2 = hipblasDznrm2_raw(handle, n, c_loc(x(1)), incx, c_loc(result(1)))
+      Dznrm2 = hipblasDznrm2_raw(handle, n, c_loc(x), incx, c_loc(result))
     end function hipblasDznrm2_native
 
     function hipblasDznrm2_typed(handle, n, x, incx, result) result(Dznrm2)
@@ -50935,11 +50917,11 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_long), value :: n
-      real(c_float), target :: x(*)
+      real(c_float), target :: x(..)
       integer(c_long), value :: incx
-      real(c_float), target :: result(*)
+      real(c_float), target :: result(..)
       integer(c_int) :: Snrm2_64
-      Snrm2_64 = hipblasSnrm2_64_raw(handle, n, c_loc(x(1)), incx, c_loc(result(1)))
+      Snrm2_64 = hipblasSnrm2_64_raw(handle, n, c_loc(x), incx, c_loc(result))
     end function hipblasSnrm2_64_native
 
     function hipblasSnrm2_64_typed(handle, n, x, incx, result) result(Snrm2_64)
@@ -50960,11 +50942,11 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_long), value :: n
-      real(c_double), target :: x(*)
+      real(c_double), target :: x(..)
       integer(c_long), value :: incx
-      real(c_double), target :: result(*)
+      real(c_double), target :: result(..)
       integer(c_int) :: Dnrm2_64
-      Dnrm2_64 = hipblasDnrm2_64_raw(handle, n, c_loc(x(1)), incx, c_loc(result(1)))
+      Dnrm2_64 = hipblasDnrm2_64_raw(handle, n, c_loc(x), incx, c_loc(result))
     end function hipblasDnrm2_64_native
 
     function hipblasDnrm2_64_typed(handle, n, x, incx, result) result(Dnrm2_64)
@@ -50985,11 +50967,11 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_long), value :: n
-      complex(c_float_complex), target :: x(*)
+      complex(c_float_complex), target :: x(..)
       integer(c_long), value :: incx
-      real(c_float), target :: result(*)
+      real(c_float), target :: result(..)
       integer(c_int) :: Scnrm2_64
-      Scnrm2_64 = hipblasScnrm2_64_raw(handle, n, c_loc(x(1)), incx, c_loc(result(1)))
+      Scnrm2_64 = hipblasScnrm2_64_raw(handle, n, c_loc(x), incx, c_loc(result))
     end function hipblasScnrm2_64_native
 
     function hipblasScnrm2_64_typed(handle, n, x, incx, result) result(Scnrm2_64)
@@ -51010,11 +50992,11 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_long), value :: n
-      complex(c_double_complex), target :: x(*)
+      complex(c_double_complex), target :: x(..)
       integer(c_long), value :: incx
-      real(c_double), target :: result(*)
+      real(c_double), target :: result(..)
       integer(c_int) :: Dznrm2_64
-      Dznrm2_64 = hipblasDznrm2_64_raw(handle, n, c_loc(x(1)), incx, c_loc(result(1)))
+      Dznrm2_64 = hipblasDznrm2_64_raw(handle, n, c_loc(x), incx, c_loc(result))
     end function hipblasDznrm2_64_native
 
     function hipblasDznrm2_64_typed(handle, n, x, incx, result) result(Dznrm2_64)
@@ -51038,9 +51020,9 @@ contains
       type(c_ptr), value :: x
       integer(c_int), value :: incx
       integer(c_int), value :: batchCount
-      real(c_float), target :: result(*)
+      real(c_float), target :: result(..)
       integer(c_int) :: Snrm2Batched
-      Snrm2Batched = hipblasSnrm2Batched_raw(handle, n, x, incx, batchCount, c_loc(result(1)))
+      Snrm2Batched = hipblasSnrm2Batched_raw(handle, n, x, incx, batchCount, c_loc(result))
     end function hipblasSnrm2Batched_native
 
     function hipblasSnrm2Batched_typed(handle, n, x, incx, batchCount, result) result(Snrm2Batched)
@@ -51065,9 +51047,9 @@ contains
       type(c_ptr), value :: x
       integer(c_int), value :: incx
       integer(c_int), value :: batchCount
-      real(c_double), target :: result(*)
+      real(c_double), target :: result(..)
       integer(c_int) :: Dnrm2Batched
-      Dnrm2Batched = hipblasDnrm2Batched_raw(handle, n, x, incx, batchCount, c_loc(result(1)))
+      Dnrm2Batched = hipblasDnrm2Batched_raw(handle, n, x, incx, batchCount, c_loc(result))
     end function hipblasDnrm2Batched_native
 
     function hipblasDnrm2Batched_typed(handle, n, x, incx, batchCount, result) result(Dnrm2Batched)
@@ -51093,9 +51075,9 @@ contains
       type(c_ptr), value :: x
       integer(c_int), value :: incx
       integer(c_int), value :: batchCount
-      real(c_float), target :: result(*)
+      real(c_float), target :: result(..)
       integer(c_int) :: Scnrm2Batched
-      Scnrm2Batched = hipblasScnrm2Batched_raw(handle, n, x, incx, batchCount, c_loc(result(1)))
+      Scnrm2Batched = hipblasScnrm2Batched_raw(handle, n, x, incx, batchCount, c_loc(result))
     end function hipblasScnrm2Batched_native
 
     function hipblasScnrm2Batched_typed(handle, n, x, incx, batchCount, result) result( &
@@ -51122,9 +51104,9 @@ contains
       type(c_ptr), value :: x
       integer(c_int), value :: incx
       integer(c_int), value :: batchCount
-      real(c_double), target :: result(*)
+      real(c_double), target :: result(..)
       integer(c_int) :: Dznrm2Batched
-      Dznrm2Batched = hipblasDznrm2Batched_raw(handle, n, x, incx, batchCount, c_loc(result(1)))
+      Dznrm2Batched = hipblasDznrm2Batched_raw(handle, n, x, incx, batchCount, c_loc(result))
     end function hipblasDznrm2Batched_native
 
     function hipblasDznrm2Batched_typed(handle, n, x, incx, batchCount, result) result( &
@@ -51151,9 +51133,9 @@ contains
       type(c_ptr), value :: x
       integer(c_long), value :: incx
       integer(c_long), value :: batchCount
-      real(c_float), target :: result(*)
+      real(c_float), target :: result(..)
       integer(c_int) :: Snrm2Batched_64
-      Snrm2Batched_64 = hipblasSnrm2Batched_64_raw(handle, n, x, incx, batchCount, c_loc(result(1)))
+      Snrm2Batched_64 = hipblasSnrm2Batched_64_raw(handle, n, x, incx, batchCount, c_loc(result))
     end function hipblasSnrm2Batched_64_native
 
     function hipblasSnrm2Batched_64_typed(handle, n, x, incx, batchCount, result) result( &
@@ -51180,9 +51162,9 @@ contains
       type(c_ptr), value :: x
       integer(c_long), value :: incx
       integer(c_long), value :: batchCount
-      real(c_double), target :: result(*)
+      real(c_double), target :: result(..)
       integer(c_int) :: Dnrm2Batched_64
-      Dnrm2Batched_64 = hipblasDnrm2Batched_64_raw(handle, n, x, incx, batchCount, c_loc(result(1)))
+      Dnrm2Batched_64 = hipblasDnrm2Batched_64_raw(handle, n, x, incx, batchCount, c_loc(result))
     end function hipblasDnrm2Batched_64_native
 
     function hipblasDnrm2Batched_64_typed(handle, n, x, incx, batchCount, result) result( &
@@ -51209,10 +51191,9 @@ contains
       type(c_ptr), value :: x
       integer(c_long), value :: incx
       integer(c_long), value :: batchCount
-      real(c_float), target :: result(*)
+      real(c_float), target :: result(..)
       integer(c_int) :: Scnrm2Batched_64
-      Scnrm2Batched_64 = hipblasScnrm2Batched_64_raw(handle, n, x, incx, batchCount, c_loc(result( &
-        1)))
+      Scnrm2Batched_64 = hipblasScnrm2Batched_64_raw(handle, n, x, incx, batchCount, c_loc(result))
     end function hipblasScnrm2Batched_64_native
 
     function hipblasScnrm2Batched_64_typed(handle, n, x, incx, batchCount, result) result( &
@@ -51239,10 +51220,9 @@ contains
       type(c_ptr), value :: x
       integer(c_long), value :: incx
       integer(c_long), value :: batchCount
-      real(c_double), target :: result(*)
+      real(c_double), target :: result(..)
       integer(c_int) :: Dznrm2Batched_64
-      Dznrm2Batched_64 = hipblasDznrm2Batched_64_raw(handle, n, x, incx, batchCount, c_loc(result( &
-        1)))
+      Dznrm2Batched_64 = hipblasDznrm2Batched_64_raw(handle, n, x, incx, batchCount, c_loc(result))
     end function hipblasDznrm2Batched_64_native
 
     function hipblasDznrm2Batched_64_typed(handle, n, x, incx, batchCount, result) result( &
@@ -51266,14 +51246,14 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_int), value :: n
-      real(c_float), target :: x(*)
+      real(c_float), target :: x(..)
       integer(c_int), value :: incx
       integer(c_long), value :: stridex
       integer(c_int), value :: batchCount
-      real(c_float), target :: result(*)
+      real(c_float), target :: result(..)
       integer(c_int) :: Snrm2StridedBatched
-      Snrm2StridedBatched = hipblasSnrm2StridedBatched_raw(handle, n, c_loc(x(1)), incx, stridex, &
-        batchCount, c_loc(result(1)))
+      Snrm2StridedBatched = hipblasSnrm2StridedBatched_raw(handle, n, c_loc(x), incx, stridex, &
+        batchCount, c_loc(result))
     end function hipblasSnrm2StridedBatched_native
 
     function hipblasSnrm2StridedBatched_typed(handle, n, x, incx, stridex, batchCount, &
@@ -51299,14 +51279,14 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_int), value :: n
-      real(c_double), target :: x(*)
+      real(c_double), target :: x(..)
       integer(c_int), value :: incx
       integer(c_long), value :: stridex
       integer(c_int), value :: batchCount
-      real(c_double), target :: result(*)
+      real(c_double), target :: result(..)
       integer(c_int) :: Dnrm2StridedBatched
-      Dnrm2StridedBatched = hipblasDnrm2StridedBatched_raw(handle, n, c_loc(x(1)), incx, stridex, &
-        batchCount, c_loc(result(1)))
+      Dnrm2StridedBatched = hipblasDnrm2StridedBatched_raw(handle, n, c_loc(x), incx, stridex, &
+        batchCount, c_loc(result))
     end function hipblasDnrm2StridedBatched_native
 
     function hipblasDnrm2StridedBatched_typed(handle, n, x, incx, stridex, batchCount, &
@@ -51332,14 +51312,14 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_int), value :: n
-      complex(c_float_complex), target :: x(*)
+      complex(c_float_complex), target :: x(..)
       integer(c_int), value :: incx
       integer(c_long), value :: stridex
       integer(c_int), value :: batchCount
-      real(c_float), target :: result(*)
+      real(c_float), target :: result(..)
       integer(c_int) :: Scnrm2StridedBatched
-      Scnrm2StridedBatched = hipblasScnrm2StridedBatched_raw(handle, n, c_loc(x(1)), incx, &
-        stridex, batchCount, c_loc(result(1)))
+      Scnrm2StridedBatched = hipblasScnrm2StridedBatched_raw(handle, n, c_loc(x), incx, stridex, &
+        batchCount, c_loc(result))
     end function hipblasScnrm2StridedBatched_native
 
     function hipblasScnrm2StridedBatched_typed(handle, n, x, incx, stridex, batchCount, &
@@ -51365,14 +51345,14 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_int), value :: n
-      complex(c_double_complex), target :: x(*)
+      complex(c_double_complex), target :: x(..)
       integer(c_int), value :: incx
       integer(c_long), value :: stridex
       integer(c_int), value :: batchCount
-      real(c_double), target :: result(*)
+      real(c_double), target :: result(..)
       integer(c_int) :: Dznrm2StridedBatched
-      Dznrm2StridedBatched = hipblasDznrm2StridedBatched_raw(handle, n, c_loc(x(1)), incx, &
-        stridex, batchCount, c_loc(result(1)))
+      Dznrm2StridedBatched = hipblasDznrm2StridedBatched_raw(handle, n, c_loc(x), incx, stridex, &
+        batchCount, c_loc(result))
     end function hipblasDznrm2StridedBatched_native
 
     function hipblasDznrm2StridedBatched_typed(handle, n, x, incx, stridex, batchCount, &
@@ -51398,14 +51378,14 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_long), value :: n
-      real(c_float), target :: x(*)
+      real(c_float), target :: x(..)
       integer(c_long), value :: incx
       integer(c_long), value :: stridex
       integer(c_long), value :: batchCount
-      real(c_float), target :: result(*)
+      real(c_float), target :: result(..)
       integer(c_int) :: Snrm2StridedBatched_64
-      Snrm2StridedBatched_64 = hipblasSnrm2StridedBatched_64_raw(handle, n, c_loc(x(1)), incx, &
-        stridex, batchCount, c_loc(result(1)))
+      Snrm2StridedBatched_64 = hipblasSnrm2StridedBatched_64_raw(handle, n, c_loc(x), incx, &
+        stridex, batchCount, c_loc(result))
     end function hipblasSnrm2StridedBatched_64_native
 
     function hipblasSnrm2StridedBatched_64_typed(handle, n, x, incx, stridex, batchCount, &
@@ -51431,14 +51411,14 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_long), value :: n
-      real(c_double), target :: x(*)
+      real(c_double), target :: x(..)
       integer(c_long), value :: incx
       integer(c_long), value :: stridex
       integer(c_long), value :: batchCount
-      real(c_double), target :: result(*)
+      real(c_double), target :: result(..)
       integer(c_int) :: Dnrm2StridedBatched_64
-      Dnrm2StridedBatched_64 = hipblasDnrm2StridedBatched_64_raw(handle, n, c_loc(x(1)), incx, &
-        stridex, batchCount, c_loc(result(1)))
+      Dnrm2StridedBatched_64 = hipblasDnrm2StridedBatched_64_raw(handle, n, c_loc(x), incx, &
+        stridex, batchCount, c_loc(result))
     end function hipblasDnrm2StridedBatched_64_native
 
     function hipblasDnrm2StridedBatched_64_typed(handle, n, x, incx, stridex, batchCount, &
@@ -51464,14 +51444,14 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_long), value :: n
-      complex(c_float_complex), target :: x(*)
+      complex(c_float_complex), target :: x(..)
       integer(c_long), value :: incx
       integer(c_long), value :: stridex
       integer(c_long), value :: batchCount
-      real(c_float), target :: result(*)
+      real(c_float), target :: result(..)
       integer(c_int) :: Scnrm2StridedBatched_64
-      Scnrm2StridedBatched_64 = hipblasScnrm2StridedBatched_64_raw(handle, n, c_loc(x(1)), incx, &
-        stridex, batchCount, c_loc(result(1)))
+      Scnrm2StridedBatched_64 = hipblasScnrm2StridedBatched_64_raw(handle, n, c_loc(x), incx, &
+        stridex, batchCount, c_loc(result))
     end function hipblasScnrm2StridedBatched_64_native
 
     function hipblasScnrm2StridedBatched_64_typed(handle, n, x, incx, stridex, batchCount, &
@@ -51497,14 +51477,14 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_long), value :: n
-      complex(c_double_complex), target :: x(*)
+      complex(c_double_complex), target :: x(..)
       integer(c_long), value :: incx
       integer(c_long), value :: stridex
       integer(c_long), value :: batchCount
-      real(c_double), target :: result(*)
+      real(c_double), target :: result(..)
       integer(c_int) :: Dznrm2StridedBatched_64
-      Dznrm2StridedBatched_64 = hipblasDznrm2StridedBatched_64_raw(handle, n, c_loc(x(1)), incx, &
-        stridex, batchCount, c_loc(result(1)))
+      Dznrm2StridedBatched_64 = hipblasDznrm2StridedBatched_64_raw(handle, n, c_loc(x), incx, &
+        stridex, batchCount, c_loc(result))
     end function hipblasDznrm2StridedBatched_64_native
 
     function hipblasDznrm2StridedBatched_64_typed(handle, n, x, incx, stridex, batchCount, &
@@ -51529,15 +51509,14 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_int), value :: n
-      real(c_float), target :: x(*)
+      real(c_float), target :: x(..)
       integer(c_int), value :: incx
-      real(c_float), target :: y(*)
+      real(c_float), target :: y(..)
       integer(c_int), value :: incy
-      real(c_float), target :: c(*)
-      real(c_float), target :: s(*)
+      real(c_float), target :: c(..)
+      real(c_float), target :: s(..)
       integer(c_int) :: Srot
-      Srot = hipblasSrot_raw(handle, n, c_loc(x(1)), incx, c_loc(y(1)), incy, c_loc(c(1)), c_loc( &
-        s(1)))
+      Srot = hipblasSrot_raw(handle, n, c_loc(x), incx, c_loc(y), incy, c_loc(c), c_loc(s))
     end function hipblasSrot_native
 
     function hipblasSrot_typed(handle, n, x, incx, y, incy, c, s) result(Srot)
@@ -51561,15 +51540,14 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_int), value :: n
-      real(c_double), target :: x(*)
+      real(c_double), target :: x(..)
       integer(c_int), value :: incx
-      real(c_double), target :: y(*)
+      real(c_double), target :: y(..)
       integer(c_int), value :: incy
-      real(c_double), target :: c(*)
-      real(c_double), target :: s(*)
+      real(c_double), target :: c(..)
+      real(c_double), target :: s(..)
       integer(c_int) :: Drot
-      Drot = hipblasDrot_raw(handle, n, c_loc(x(1)), incx, c_loc(y(1)), incy, c_loc(c(1)), c_loc( &
-        s(1)))
+      Drot = hipblasDrot_raw(handle, n, c_loc(x), incx, c_loc(y), incy, c_loc(c), c_loc(s))
     end function hipblasDrot_native
 
     function hipblasDrot_typed(handle, n, x, incx, y, incy, c, s) result(Drot)
@@ -51593,15 +51571,14 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_int), value :: n
-      complex(c_float_complex), target :: x(*)
+      complex(c_float_complex), target :: x(..)
       integer(c_int), value :: incx
-      complex(c_float_complex), target :: y(*)
+      complex(c_float_complex), target :: y(..)
       integer(c_int), value :: incy
-      real(c_float), target :: c(*)
-      complex(c_float_complex), target :: s(*)
+      real(c_float), target :: c(..)
+      complex(c_float_complex), target :: s(..)
       integer(c_int) :: Crot
-      Crot = hipblasCrot_raw(handle, n, c_loc(x(1)), incx, c_loc(y(1)), incy, c_loc(c(1)), c_loc( &
-        s(1)))
+      Crot = hipblasCrot_raw(handle, n, c_loc(x), incx, c_loc(y), incy, c_loc(c), c_loc(s))
     end function hipblasCrot_native
 
     function hipblasCrot_typed(handle, n, x, incx, y, incy, c, s) result(Crot)
@@ -51625,15 +51602,14 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_int), value :: n
-      complex(c_float_complex), target :: x(*)
+      complex(c_float_complex), target :: x(..)
       integer(c_int), value :: incx
-      complex(c_float_complex), target :: y(*)
+      complex(c_float_complex), target :: y(..)
       integer(c_int), value :: incy
-      real(c_float), target :: c(*)
-      real(c_float), target :: s(*)
+      real(c_float), target :: c(..)
+      real(c_float), target :: s(..)
       integer(c_int) :: Csrot
-      Csrot = hipblasCsrot_raw(handle, n, c_loc(x(1)), incx, c_loc(y(1)), incy, c_loc(c(1)), &
-        c_loc(s(1)))
+      Csrot = hipblasCsrot_raw(handle, n, c_loc(x), incx, c_loc(y), incy, c_loc(c), c_loc(s))
     end function hipblasCsrot_native
 
     function hipblasCsrot_typed(handle, n, x, incx, y, incy, c, s) result(Csrot)
@@ -51657,15 +51633,14 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_int), value :: n
-      complex(c_double_complex), target :: x(*)
+      complex(c_double_complex), target :: x(..)
       integer(c_int), value :: incx
-      complex(c_double_complex), target :: y(*)
+      complex(c_double_complex), target :: y(..)
       integer(c_int), value :: incy
-      real(c_double), target :: c(*)
-      complex(c_double_complex), target :: s(*)
+      real(c_double), target :: c(..)
+      complex(c_double_complex), target :: s(..)
       integer(c_int) :: Zrot
-      Zrot = hipblasZrot_raw(handle, n, c_loc(x(1)), incx, c_loc(y(1)), incy, c_loc(c(1)), c_loc( &
-        s(1)))
+      Zrot = hipblasZrot_raw(handle, n, c_loc(x), incx, c_loc(y), incy, c_loc(c), c_loc(s))
     end function hipblasZrot_native
 
     function hipblasZrot_typed(handle, n, x, incx, y, incy, c, s) result(Zrot)
@@ -51689,15 +51664,14 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_int), value :: n
-      complex(c_double_complex), target :: x(*)
+      complex(c_double_complex), target :: x(..)
       integer(c_int), value :: incx
-      complex(c_double_complex), target :: y(*)
+      complex(c_double_complex), target :: y(..)
       integer(c_int), value :: incy
-      real(c_double), target :: c(*)
-      real(c_double), target :: s(*)
+      real(c_double), target :: c(..)
+      real(c_double), target :: s(..)
       integer(c_int) :: Zdrot
-      Zdrot = hipblasZdrot_raw(handle, n, c_loc(x(1)), incx, c_loc(y(1)), incy, c_loc(c(1)), &
-        c_loc(s(1)))
+      Zdrot = hipblasZdrot_raw(handle, n, c_loc(x), incx, c_loc(y), incy, c_loc(c), c_loc(s))
     end function hipblasZdrot_native
 
     function hipblasZdrot_typed(handle, n, x, incx, y, incy, c, s) result(Zdrot)
@@ -51721,15 +51695,14 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_long), value :: n
-      real(c_float), target :: x(*)
+      real(c_float), target :: x(..)
       integer(c_long), value :: incx
-      real(c_float), target :: y(*)
+      real(c_float), target :: y(..)
       integer(c_long), value :: incy
-      real(c_float), target :: c(*)
-      real(c_float), target :: s(*)
+      real(c_float), target :: c(..)
+      real(c_float), target :: s(..)
       integer(c_int) :: Srot_64
-      Srot_64 = hipblasSrot_64_raw(handle, n, c_loc(x(1)), incx, c_loc(y(1)), incy, c_loc(c(1)), &
-        c_loc(s(1)))
+      Srot_64 = hipblasSrot_64_raw(handle, n, c_loc(x), incx, c_loc(y), incy, c_loc(c), c_loc(s))
     end function hipblasSrot_64_native
 
     function hipblasSrot_64_typed(handle, n, x, incx, y, incy, c, s) result(Srot_64)
@@ -51753,15 +51726,14 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_long), value :: n
-      real(c_double), target :: x(*)
+      real(c_double), target :: x(..)
       integer(c_long), value :: incx
-      real(c_double), target :: y(*)
+      real(c_double), target :: y(..)
       integer(c_long), value :: incy
-      real(c_double), target :: c(*)
-      real(c_double), target :: s(*)
+      real(c_double), target :: c(..)
+      real(c_double), target :: s(..)
       integer(c_int) :: Drot_64
-      Drot_64 = hipblasDrot_64_raw(handle, n, c_loc(x(1)), incx, c_loc(y(1)), incy, c_loc(c(1)), &
-        c_loc(s(1)))
+      Drot_64 = hipblasDrot_64_raw(handle, n, c_loc(x), incx, c_loc(y), incy, c_loc(c), c_loc(s))
     end function hipblasDrot_64_native
 
     function hipblasDrot_64_typed(handle, n, x, incx, y, incy, c, s) result(Drot_64)
@@ -51785,15 +51757,14 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_long), value :: n
-      complex(c_float_complex), target :: x(*)
+      complex(c_float_complex), target :: x(..)
       integer(c_long), value :: incx
-      complex(c_float_complex), target :: y(*)
+      complex(c_float_complex), target :: y(..)
       integer(c_long), value :: incy
-      real(c_float), target :: c(*)
-      complex(c_float_complex), target :: s(*)
+      real(c_float), target :: c(..)
+      complex(c_float_complex), target :: s(..)
       integer(c_int) :: Crot_64
-      Crot_64 = hipblasCrot_64_raw(handle, n, c_loc(x(1)), incx, c_loc(y(1)), incy, c_loc(c(1)), &
-        c_loc(s(1)))
+      Crot_64 = hipblasCrot_64_raw(handle, n, c_loc(x), incx, c_loc(y), incy, c_loc(c), c_loc(s))
     end function hipblasCrot_64_native
 
     function hipblasCrot_64_typed(handle, n, x, incx, y, incy, c, s) result(Crot_64)
@@ -51817,15 +51788,14 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_long), value :: n
-      complex(c_float_complex), target :: x(*)
+      complex(c_float_complex), target :: x(..)
       integer(c_long), value :: incx
-      complex(c_float_complex), target :: y(*)
+      complex(c_float_complex), target :: y(..)
       integer(c_long), value :: incy
-      real(c_float), target :: c(*)
-      real(c_float), target :: s(*)
+      real(c_float), target :: c(..)
+      real(c_float), target :: s(..)
       integer(c_int) :: Csrot_64
-      Csrot_64 = hipblasCsrot_64_raw(handle, n, c_loc(x(1)), incx, c_loc(y(1)), incy, c_loc(c(1)), &
-        c_loc(s(1)))
+      Csrot_64 = hipblasCsrot_64_raw(handle, n, c_loc(x), incx, c_loc(y), incy, c_loc(c), c_loc(s))
     end function hipblasCsrot_64_native
 
     function hipblasCsrot_64_typed(handle, n, x, incx, y, incy, c, s) result(Csrot_64)
@@ -51849,15 +51819,14 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_long), value :: n
-      complex(c_double_complex), target :: x(*)
+      complex(c_double_complex), target :: x(..)
       integer(c_long), value :: incx
-      complex(c_double_complex), target :: y(*)
+      complex(c_double_complex), target :: y(..)
       integer(c_long), value :: incy
-      real(c_double), target :: c(*)
-      complex(c_double_complex), target :: s(*)
+      real(c_double), target :: c(..)
+      complex(c_double_complex), target :: s(..)
       integer(c_int) :: Zrot_64
-      Zrot_64 = hipblasZrot_64_raw(handle, n, c_loc(x(1)), incx, c_loc(y(1)), incy, c_loc(c(1)), &
-        c_loc(s(1)))
+      Zrot_64 = hipblasZrot_64_raw(handle, n, c_loc(x), incx, c_loc(y), incy, c_loc(c), c_loc(s))
     end function hipblasZrot_64_native
 
     function hipblasZrot_64_typed(handle, n, x, incx, y, incy, c, s) result(Zrot_64)
@@ -51881,15 +51850,14 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_long), value :: n
-      complex(c_double_complex), target :: x(*)
+      complex(c_double_complex), target :: x(..)
       integer(c_long), value :: incx
-      complex(c_double_complex), target :: y(*)
+      complex(c_double_complex), target :: y(..)
       integer(c_long), value :: incy
-      real(c_double), target :: c(*)
-      real(c_double), target :: s(*)
+      real(c_double), target :: c(..)
+      real(c_double), target :: s(..)
       integer(c_int) :: Zdrot_64
-      Zdrot_64 = hipblasZdrot_64_raw(handle, n, c_loc(x(1)), incx, c_loc(y(1)), incy, c_loc(c(1)), &
-        c_loc(s(1)))
+      Zdrot_64 = hipblasZdrot_64_raw(handle, n, c_loc(x), incx, c_loc(y), incy, c_loc(c), c_loc(s))
     end function hipblasZdrot_64_native
 
     function hipblasZdrot_64_typed(handle, n, x, incx, y, incy, c, s) result(Zdrot_64)
@@ -51918,11 +51886,11 @@ contains
       integer(c_int), value :: incx
       type(c_ptr), value :: y
       integer(c_int), value :: incy
-      real(c_float), target :: c(*)
-      real(c_float), target :: s(*)
+      real(c_float), target :: c(..)
+      real(c_float), target :: s(..)
       integer(c_int), value :: batchCount
       integer(c_int) :: SrotBatched
-      SrotBatched = hipblasSrotBatched_raw(handle, n, x, incx, y, incy, c_loc(c(1)), c_loc(s(1)), &
+      SrotBatched = hipblasSrotBatched_raw(handle, n, x, incx, y, incy, c_loc(c), c_loc(s), &
         batchCount)
     end function hipblasSrotBatched_native
 
@@ -51954,11 +51922,11 @@ contains
       integer(c_int), value :: incx
       type(c_ptr), value :: y
       integer(c_int), value :: incy
-      real(c_double), target :: c(*)
-      real(c_double), target :: s(*)
+      real(c_double), target :: c(..)
+      real(c_double), target :: s(..)
       integer(c_int), value :: batchCount
       integer(c_int) :: DrotBatched
-      DrotBatched = hipblasDrotBatched_raw(handle, n, x, incx, y, incy, c_loc(c(1)), c_loc(s(1)), &
+      DrotBatched = hipblasDrotBatched_raw(handle, n, x, incx, y, incy, c_loc(c), c_loc(s), &
         batchCount)
     end function hipblasDrotBatched_native
 
@@ -51990,11 +51958,11 @@ contains
       integer(c_int), value :: incx
       type(c_ptr), value :: y
       integer(c_int), value :: incy
-      real(c_float), target :: c(*)
-      complex(c_float_complex), target :: s(*)
+      real(c_float), target :: c(..)
+      complex(c_float_complex), target :: s(..)
       integer(c_int), value :: batchCount
       integer(c_int) :: CrotBatched
-      CrotBatched = hipblasCrotBatched_raw(handle, n, x, incx, y, incy, c_loc(c(1)), c_loc(s(1)), &
+      CrotBatched = hipblasCrotBatched_raw(handle, n, x, incx, y, incy, c_loc(c), c_loc(s), &
         batchCount)
     end function hipblasCrotBatched_native
 
@@ -52026,12 +51994,12 @@ contains
       integer(c_int), value :: incx
       type(c_ptr), value :: y
       integer(c_int), value :: incy
-      real(c_float), target :: c(*)
-      real(c_float), target :: s(*)
+      real(c_float), target :: c(..)
+      real(c_float), target :: s(..)
       integer(c_int), value :: batchCount
       integer(c_int) :: CsrotBatched
-      CsrotBatched = hipblasCsrotBatched_raw(handle, n, x, incx, y, incy, c_loc(c(1)), c_loc(s( &
-        1)), batchCount)
+      CsrotBatched = hipblasCsrotBatched_raw(handle, n, x, incx, y, incy, c_loc(c), c_loc(s), &
+        batchCount)
     end function hipblasCsrotBatched_native
 
     function hipblasCsrotBatched_typed(handle, n, x, incx, y, incy, c, s, batchCount) result( &
@@ -52062,11 +52030,11 @@ contains
       integer(c_int), value :: incx
       type(c_ptr), value :: y
       integer(c_int), value :: incy
-      real(c_double), target :: c(*)
-      complex(c_double_complex), target :: s(*)
+      real(c_double), target :: c(..)
+      complex(c_double_complex), target :: s(..)
       integer(c_int), value :: batchCount
       integer(c_int) :: ZrotBatched
-      ZrotBatched = hipblasZrotBatched_raw(handle, n, x, incx, y, incy, c_loc(c(1)), c_loc(s(1)), &
+      ZrotBatched = hipblasZrotBatched_raw(handle, n, x, incx, y, incy, c_loc(c), c_loc(s), &
         batchCount)
     end function hipblasZrotBatched_native
 
@@ -52098,12 +52066,12 @@ contains
       integer(c_int), value :: incx
       type(c_ptr), value :: y
       integer(c_int), value :: incy
-      real(c_double), target :: c(*)
-      real(c_double), target :: s(*)
+      real(c_double), target :: c(..)
+      real(c_double), target :: s(..)
       integer(c_int), value :: batchCount
       integer(c_int) :: ZdrotBatched
-      ZdrotBatched = hipblasZdrotBatched_raw(handle, n, x, incx, y, incy, c_loc(c(1)), c_loc(s( &
-        1)), batchCount)
+      ZdrotBatched = hipblasZdrotBatched_raw(handle, n, x, incx, y, incy, c_loc(c), c_loc(s), &
+        batchCount)
     end function hipblasZdrotBatched_native
 
     function hipblasZdrotBatched_typed(handle, n, x, incx, y, incy, c, s, batchCount) result( &
@@ -52134,12 +52102,12 @@ contains
       integer(c_long), value :: incx
       type(c_ptr), value :: y
       integer(c_long), value :: incy
-      real(c_float), target :: c(*)
-      real(c_float), target :: s(*)
+      real(c_float), target :: c(..)
+      real(c_float), target :: s(..)
       integer(c_long), value :: batchCount
       integer(c_int) :: SrotBatched_64
-      SrotBatched_64 = hipblasSrotBatched_64_raw(handle, n, x, incx, y, incy, c_loc(c(1)), c_loc( &
-        s(1)), batchCount)
+      SrotBatched_64 = hipblasSrotBatched_64_raw(handle, n, x, incx, y, incy, c_loc(c), c_loc(s), &
+        batchCount)
     end function hipblasSrotBatched_64_native
 
     function hipblasSrotBatched_64_typed(handle, n, x, incx, y, incy, c, s, batchCount) result( &
@@ -52170,12 +52138,12 @@ contains
       integer(c_long), value :: incx
       type(c_ptr), value :: y
       integer(c_long), value :: incy
-      real(c_double), target :: c(*)
-      real(c_double), target :: s(*)
+      real(c_double), target :: c(..)
+      real(c_double), target :: s(..)
       integer(c_long), value :: batchCount
       integer(c_int) :: DrotBatched_64
-      DrotBatched_64 = hipblasDrotBatched_64_raw(handle, n, x, incx, y, incy, c_loc(c(1)), c_loc( &
-        s(1)), batchCount)
+      DrotBatched_64 = hipblasDrotBatched_64_raw(handle, n, x, incx, y, incy, c_loc(c), c_loc(s), &
+        batchCount)
     end function hipblasDrotBatched_64_native
 
     function hipblasDrotBatched_64_typed(handle, n, x, incx, y, incy, c, s, batchCount) result( &
@@ -52206,12 +52174,12 @@ contains
       integer(c_long), value :: incx
       type(c_ptr), value :: y
       integer(c_long), value :: incy
-      real(c_float), target :: c(*)
-      complex(c_float_complex), target :: s(*)
+      real(c_float), target :: c(..)
+      complex(c_float_complex), target :: s(..)
       integer(c_long), value :: batchCount
       integer(c_int) :: CrotBatched_64
-      CrotBatched_64 = hipblasCrotBatched_64_raw(handle, n, x, incx, y, incy, c_loc(c(1)), c_loc( &
-        s(1)), batchCount)
+      CrotBatched_64 = hipblasCrotBatched_64_raw(handle, n, x, incx, y, incy, c_loc(c), c_loc(s), &
+        batchCount)
     end function hipblasCrotBatched_64_native
 
     function hipblasCrotBatched_64_typed(handle, n, x, incx, y, incy, c, s, batchCount) result( &
@@ -52242,12 +52210,12 @@ contains
       integer(c_long), value :: incx
       type(c_ptr), value :: y
       integer(c_long), value :: incy
-      real(c_float), target :: c(*)
-      real(c_float), target :: s(*)
+      real(c_float), target :: c(..)
+      real(c_float), target :: s(..)
       integer(c_long), value :: batchCount
       integer(c_int) :: CsrotBatched_64
-      CsrotBatched_64 = hipblasCsrotBatched_64_raw(handle, n, x, incx, y, incy, c_loc(c(1)), &
-        c_loc(s(1)), batchCount)
+      CsrotBatched_64 = hipblasCsrotBatched_64_raw(handle, n, x, incx, y, incy, c_loc(c), c_loc( &
+        s), batchCount)
     end function hipblasCsrotBatched_64_native
 
     function hipblasCsrotBatched_64_typed(handle, n, x, incx, y, incy, c, s, batchCount) result( &
@@ -52279,12 +52247,12 @@ contains
       integer(c_long), value :: incx
       type(c_ptr), value :: y
       integer(c_long), value :: incy
-      real(c_double), target :: c(*)
-      complex(c_double_complex), target :: s(*)
+      real(c_double), target :: c(..)
+      complex(c_double_complex), target :: s(..)
       integer(c_long), value :: batchCount
       integer(c_int) :: ZrotBatched_64
-      ZrotBatched_64 = hipblasZrotBatched_64_raw(handle, n, x, incx, y, incy, c_loc(c(1)), c_loc( &
-        s(1)), batchCount)
+      ZrotBatched_64 = hipblasZrotBatched_64_raw(handle, n, x, incx, y, incy, c_loc(c), c_loc(s), &
+        batchCount)
     end function hipblasZrotBatched_64_native
 
     function hipblasZrotBatched_64_typed(handle, n, x, incx, y, incy, c, s, batchCount) result( &
@@ -52315,12 +52283,12 @@ contains
       integer(c_long), value :: incx
       type(c_ptr), value :: y
       integer(c_long), value :: incy
-      real(c_double), target :: c(*)
-      real(c_double), target :: s(*)
+      real(c_double), target :: c(..)
+      real(c_double), target :: s(..)
       integer(c_long), value :: batchCount
       integer(c_int) :: ZdrotBatched_64
-      ZdrotBatched_64 = hipblasZdrotBatched_64_raw(handle, n, x, incx, y, incy, c_loc(c(1)), &
-        c_loc(s(1)), batchCount)
+      ZdrotBatched_64 = hipblasZdrotBatched_64_raw(handle, n, x, incx, y, incy, c_loc(c), c_loc( &
+        s), batchCount)
     end function hipblasZdrotBatched_64_native
 
     function hipblasZdrotBatched_64_typed(handle, n, x, incx, y, incy, c, s, batchCount) result( &
@@ -52348,18 +52316,18 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_int), value :: n
-      real(c_float), target :: x(*)
+      real(c_float), target :: x(..)
       integer(c_int), value :: incx
       integer(c_long), value :: stridex
-      real(c_float), target :: y(*)
+      real(c_float), target :: y(..)
       integer(c_int), value :: incy
       integer(c_long), value :: stridey
-      real(c_float), target :: c(*)
-      real(c_float), target :: s(*)
+      real(c_float), target :: c(..)
+      real(c_float), target :: s(..)
       integer(c_int), value :: batchCount
       integer(c_int) :: SrotStridedBatched
-      SrotStridedBatched = hipblasSrotStridedBatched_raw(handle, n, c_loc(x(1)), incx, stridex, &
-        c_loc(y(1)), incy, stridey, c_loc(c(1)), c_loc(s(1)), batchCount)
+      SrotStridedBatched = hipblasSrotStridedBatched_raw(handle, n, c_loc(x), incx, stridex, &
+        c_loc(y), incy, stridey, c_loc(c), c_loc(s), batchCount)
     end function hipblasSrotStridedBatched_native
 
     function hipblasSrotStridedBatched_typed(handle, n, x, incx, stridex, y, incy, stridey, c, s, &
@@ -52389,18 +52357,18 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_int), value :: n
-      real(c_double), target :: x(*)
+      real(c_double), target :: x(..)
       integer(c_int), value :: incx
       integer(c_long), value :: stridex
-      real(c_double), target :: y(*)
+      real(c_double), target :: y(..)
       integer(c_int), value :: incy
       integer(c_long), value :: stridey
-      real(c_double), target :: c(*)
-      real(c_double), target :: s(*)
+      real(c_double), target :: c(..)
+      real(c_double), target :: s(..)
       integer(c_int), value :: batchCount
       integer(c_int) :: DrotStridedBatched
-      DrotStridedBatched = hipblasDrotStridedBatched_raw(handle, n, c_loc(x(1)), incx, stridex, &
-        c_loc(y(1)), incy, stridey, c_loc(c(1)), c_loc(s(1)), batchCount)
+      DrotStridedBatched = hipblasDrotStridedBatched_raw(handle, n, c_loc(x), incx, stridex, &
+        c_loc(y), incy, stridey, c_loc(c), c_loc(s), batchCount)
     end function hipblasDrotStridedBatched_native
 
     function hipblasDrotStridedBatched_typed(handle, n, x, incx, stridex, y, incy, stridey, c, s, &
@@ -52430,18 +52398,18 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_int), value :: n
-      complex(c_float_complex), target :: x(*)
+      complex(c_float_complex), target :: x(..)
       integer(c_int), value :: incx
       integer(c_long), value :: stridex
-      complex(c_float_complex), target :: y(*)
+      complex(c_float_complex), target :: y(..)
       integer(c_int), value :: incy
       integer(c_long), value :: stridey
-      real(c_float), target :: c(*)
-      complex(c_float_complex), target :: s(*)
+      real(c_float), target :: c(..)
+      complex(c_float_complex), target :: s(..)
       integer(c_int), value :: batchCount
       integer(c_int) :: CrotStridedBatched
-      CrotStridedBatched = hipblasCrotStridedBatched_raw(handle, n, c_loc(x(1)), incx, stridex, &
-        c_loc(y(1)), incy, stridey, c_loc(c(1)), c_loc(s(1)), batchCount)
+      CrotStridedBatched = hipblasCrotStridedBatched_raw(handle, n, c_loc(x), incx, stridex, &
+        c_loc(y), incy, stridey, c_loc(c), c_loc(s), batchCount)
     end function hipblasCrotStridedBatched_native
 
     function hipblasCrotStridedBatched_typed(handle, n, x, incx, stridex, y, incy, stridey, c, s, &
@@ -52471,18 +52439,18 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_int), value :: n
-      complex(c_float_complex), target :: x(*)
+      complex(c_float_complex), target :: x(..)
       integer(c_int), value :: incx
       integer(c_long), value :: stridex
-      complex(c_float_complex), target :: y(*)
+      complex(c_float_complex), target :: y(..)
       integer(c_int), value :: incy
       integer(c_long), value :: stridey
-      real(c_float), target :: c(*)
-      real(c_float), target :: s(*)
+      real(c_float), target :: c(..)
+      real(c_float), target :: s(..)
       integer(c_int), value :: batchCount
       integer(c_int) :: CsrotStridedBatched
-      CsrotStridedBatched = hipblasCsrotStridedBatched_raw(handle, n, c_loc(x(1)), incx, stridex, &
-        c_loc(y(1)), incy, stridey, c_loc(c(1)), c_loc(s(1)), batchCount)
+      CsrotStridedBatched = hipblasCsrotStridedBatched_raw(handle, n, c_loc(x), incx, stridex, &
+        c_loc(y), incy, stridey, c_loc(c), c_loc(s), batchCount)
     end function hipblasCsrotStridedBatched_native
 
     function hipblasCsrotStridedBatched_typed(handle, n, x, incx, stridex, y, incy, stridey, c, s, &
@@ -52512,18 +52480,18 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_int), value :: n
-      complex(c_double_complex), target :: x(*)
+      complex(c_double_complex), target :: x(..)
       integer(c_int), value :: incx
       integer(c_long), value :: stridex
-      complex(c_double_complex), target :: y(*)
+      complex(c_double_complex), target :: y(..)
       integer(c_int), value :: incy
       integer(c_long), value :: stridey
-      real(c_double), target :: c(*)
-      complex(c_double_complex), target :: s(*)
+      real(c_double), target :: c(..)
+      complex(c_double_complex), target :: s(..)
       integer(c_int), value :: batchCount
       integer(c_int) :: ZrotStridedBatched
-      ZrotStridedBatched = hipblasZrotStridedBatched_raw(handle, n, c_loc(x(1)), incx, stridex, &
-        c_loc(y(1)), incy, stridey, c_loc(c(1)), c_loc(s(1)), batchCount)
+      ZrotStridedBatched = hipblasZrotStridedBatched_raw(handle, n, c_loc(x), incx, stridex, &
+        c_loc(y), incy, stridey, c_loc(c), c_loc(s), batchCount)
     end function hipblasZrotStridedBatched_native
 
     function hipblasZrotStridedBatched_typed(handle, n, x, incx, stridex, y, incy, stridey, c, s, &
@@ -52553,18 +52521,18 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_int), value :: n
-      complex(c_double_complex), target :: x(*)
+      complex(c_double_complex), target :: x(..)
       integer(c_int), value :: incx
       integer(c_long), value :: stridex
-      complex(c_double_complex), target :: y(*)
+      complex(c_double_complex), target :: y(..)
       integer(c_int), value :: incy
       integer(c_long), value :: stridey
-      real(c_double), target :: c(*)
-      real(c_double), target :: s(*)
+      real(c_double), target :: c(..)
+      real(c_double), target :: s(..)
       integer(c_int), value :: batchCount
       integer(c_int) :: ZdrotStridedBatched
-      ZdrotStridedBatched = hipblasZdrotStridedBatched_raw(handle, n, c_loc(x(1)), incx, stridex, &
-        c_loc(y(1)), incy, stridey, c_loc(c(1)), c_loc(s(1)), batchCount)
+      ZdrotStridedBatched = hipblasZdrotStridedBatched_raw(handle, n, c_loc(x), incx, stridex, &
+        c_loc(y), incy, stridey, c_loc(c), c_loc(s), batchCount)
     end function hipblasZdrotStridedBatched_native
 
     function hipblasZdrotStridedBatched_typed(handle, n, x, incx, stridex, y, incy, stridey, c, s, &
@@ -52594,18 +52562,18 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_long), value :: n
-      real(c_float), target :: x(*)
+      real(c_float), target :: x(..)
       integer(c_long), value :: incx
       integer(c_long), value :: stridex
-      real(c_float), target :: y(*)
+      real(c_float), target :: y(..)
       integer(c_long), value :: incy
       integer(c_long), value :: stridey
-      real(c_float), target :: c(*)
-      real(c_float), target :: s(*)
+      real(c_float), target :: c(..)
+      real(c_float), target :: s(..)
       integer(c_long), value :: batchCount
       integer(c_int) :: SrotStridedBatched_64
-      SrotStridedBatched_64 = hipblasSrotStridedBatched_64_raw(handle, n, c_loc(x(1)), incx, &
-        stridex, c_loc(y(1)), incy, stridey, c_loc(c(1)), c_loc(s(1)), batchCount)
+      SrotStridedBatched_64 = hipblasSrotStridedBatched_64_raw(handle, n, c_loc(x), incx, stridex, &
+        c_loc(y), incy, stridey, c_loc(c), c_loc(s), batchCount)
     end function hipblasSrotStridedBatched_64_native
 
     function hipblasSrotStridedBatched_64_typed(handle, n, x, incx, stridex, y, incy, stridey, c, &
@@ -52635,18 +52603,18 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_long), value :: n
-      real(c_double), target :: x(*)
+      real(c_double), target :: x(..)
       integer(c_long), value :: incx
       integer(c_long), value :: stridex
-      real(c_double), target :: y(*)
+      real(c_double), target :: y(..)
       integer(c_long), value :: incy
       integer(c_long), value :: stridey
-      real(c_double), target :: c(*)
-      real(c_double), target :: s(*)
+      real(c_double), target :: c(..)
+      real(c_double), target :: s(..)
       integer(c_long), value :: batchCount
       integer(c_int) :: DrotStridedBatched_64
-      DrotStridedBatched_64 = hipblasDrotStridedBatched_64_raw(handle, n, c_loc(x(1)), incx, &
-        stridex, c_loc(y(1)), incy, stridey, c_loc(c(1)), c_loc(s(1)), batchCount)
+      DrotStridedBatched_64 = hipblasDrotStridedBatched_64_raw(handle, n, c_loc(x), incx, stridex, &
+        c_loc(y), incy, stridey, c_loc(c), c_loc(s), batchCount)
     end function hipblasDrotStridedBatched_64_native
 
     function hipblasDrotStridedBatched_64_typed(handle, n, x, incx, stridex, y, incy, stridey, c, &
@@ -52676,18 +52644,18 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_long), value :: n
-      complex(c_float_complex), target :: x(*)
+      complex(c_float_complex), target :: x(..)
       integer(c_long), value :: incx
       integer(c_long), value :: stridex
-      complex(c_float_complex), target :: y(*)
+      complex(c_float_complex), target :: y(..)
       integer(c_long), value :: incy
       integer(c_long), value :: stridey
-      real(c_float), target :: c(*)
-      complex(c_float_complex), target :: s(*)
+      real(c_float), target :: c(..)
+      complex(c_float_complex), target :: s(..)
       integer(c_long), value :: batchCount
       integer(c_int) :: CrotStridedBatched_64
-      CrotStridedBatched_64 = hipblasCrotStridedBatched_64_raw(handle, n, c_loc(x(1)), incx, &
-        stridex, c_loc(y(1)), incy, stridey, c_loc(c(1)), c_loc(s(1)), batchCount)
+      CrotStridedBatched_64 = hipblasCrotStridedBatched_64_raw(handle, n, c_loc(x), incx, stridex, &
+        c_loc(y), incy, stridey, c_loc(c), c_loc(s), batchCount)
     end function hipblasCrotStridedBatched_64_native
 
     function hipblasCrotStridedBatched_64_typed(handle, n, x, incx, stridex, y, incy, stridey, c, &
@@ -52717,18 +52685,18 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_long), value :: n
-      complex(c_float_complex), target :: x(*)
+      complex(c_float_complex), target :: x(..)
       integer(c_long), value :: incx
       integer(c_long), value :: stridex
-      complex(c_float_complex), target :: y(*)
+      complex(c_float_complex), target :: y(..)
       integer(c_long), value :: incy
       integer(c_long), value :: stridey
-      real(c_float), target :: c(*)
-      real(c_float), target :: s(*)
+      real(c_float), target :: c(..)
+      real(c_float), target :: s(..)
       integer(c_long), value :: batchCount
       integer(c_int) :: CsrotStridedBatched_64
-      CsrotStridedBatched_64 = hipblasCsrotStridedBatched_64_raw(handle, n, c_loc(x(1)), incx, &
-        stridex, c_loc(y(1)), incy, stridey, c_loc(c(1)), c_loc(s(1)), batchCount)
+      CsrotStridedBatched_64 = hipblasCsrotStridedBatched_64_raw(handle, n, c_loc(x), incx, &
+        stridex, c_loc(y), incy, stridey, c_loc(c), c_loc(s), batchCount)
     end function hipblasCsrotStridedBatched_64_native
 
     function hipblasCsrotStridedBatched_64_typed(handle, n, x, incx, stridex, y, incy, stridey, c, &
@@ -52758,18 +52726,18 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_long), value :: n
-      complex(c_double_complex), target :: x(*)
+      complex(c_double_complex), target :: x(..)
       integer(c_long), value :: incx
       integer(c_long), value :: stridex
-      complex(c_double_complex), target :: y(*)
+      complex(c_double_complex), target :: y(..)
       integer(c_long), value :: incy
       integer(c_long), value :: stridey
-      real(c_double), target :: c(*)
-      complex(c_double_complex), target :: s(*)
+      real(c_double), target :: c(..)
+      complex(c_double_complex), target :: s(..)
       integer(c_long), value :: batchCount
       integer(c_int) :: ZrotStridedBatched_64
-      ZrotStridedBatched_64 = hipblasZrotStridedBatched_64_raw(handle, n, c_loc(x(1)), incx, &
-        stridex, c_loc(y(1)), incy, stridey, c_loc(c(1)), c_loc(s(1)), batchCount)
+      ZrotStridedBatched_64 = hipblasZrotStridedBatched_64_raw(handle, n, c_loc(x), incx, stridex, &
+        c_loc(y), incy, stridey, c_loc(c), c_loc(s), batchCount)
     end function hipblasZrotStridedBatched_64_native
 
     function hipblasZrotStridedBatched_64_typed(handle, n, x, incx, stridex, y, incy, stridey, c, &
@@ -52799,18 +52767,18 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_long), value :: n
-      complex(c_double_complex), target :: x(*)
+      complex(c_double_complex), target :: x(..)
       integer(c_long), value :: incx
       integer(c_long), value :: stridex
-      complex(c_double_complex), target :: y(*)
+      complex(c_double_complex), target :: y(..)
       integer(c_long), value :: incy
       integer(c_long), value :: stridey
-      real(c_double), target :: c(*)
-      real(c_double), target :: s(*)
+      real(c_double), target :: c(..)
+      real(c_double), target :: s(..)
       integer(c_long), value :: batchCount
       integer(c_int) :: ZdrotStridedBatched_64
-      ZdrotStridedBatched_64 = hipblasZdrotStridedBatched_64_raw(handle, n, c_loc(x(1)), incx, &
-        stridex, c_loc(y(1)), incy, stridey, c_loc(c(1)), c_loc(s(1)), batchCount)
+      ZdrotStridedBatched_64 = hipblasZdrotStridedBatched_64_raw(handle, n, c_loc(x), incx, &
+        stridex, c_loc(y), incy, stridey, c_loc(c), c_loc(s), batchCount)
     end function hipblasZdrotStridedBatched_64_native
 
     function hipblasZdrotStridedBatched_64_typed(handle, n, x, incx, stridex, y, incy, stridey, c, &
@@ -52838,12 +52806,12 @@ contains
       use, intrinsic :: iso_c_binding
       implicit none
       type(c_ptr), value :: handle
-      real(c_float), target :: a(*)
-      real(c_float), target :: b(*)
-      real(c_float), target :: c(*)
-      real(c_float), target :: s(*)
+      real(c_float), target :: a(..)
+      real(c_float), target :: b(..)
+      real(c_float), target :: c(..)
+      real(c_float), target :: s(..)
       integer(c_int) :: Srotg
-      Srotg = hipblasSrotg_raw(handle, c_loc(a(1)), c_loc(b(1)), c_loc(c(1)), c_loc(s(1)))
+      Srotg = hipblasSrotg_raw(handle, c_loc(a), c_loc(b), c_loc(c), c_loc(s))
     end function hipblasSrotg_native
 
     function hipblasSrotg_typed(handle, a, b, c, s) result(Srotg)
@@ -52863,12 +52831,12 @@ contains
       use, intrinsic :: iso_c_binding
       implicit none
       type(c_ptr), value :: handle
-      real(c_double), target :: a(*)
-      real(c_double), target :: b(*)
-      real(c_double), target :: c(*)
-      real(c_double), target :: s(*)
+      real(c_double), target :: a(..)
+      real(c_double), target :: b(..)
+      real(c_double), target :: c(..)
+      real(c_double), target :: s(..)
       integer(c_int) :: Drotg
-      Drotg = hipblasDrotg_raw(handle, c_loc(a(1)), c_loc(b(1)), c_loc(c(1)), c_loc(s(1)))
+      Drotg = hipblasDrotg_raw(handle, c_loc(a), c_loc(b), c_loc(c), c_loc(s))
     end function hipblasDrotg_native
 
     function hipblasDrotg_typed(handle, a, b, c, s) result(Drotg)
@@ -52888,12 +52856,12 @@ contains
       use, intrinsic :: iso_c_binding
       implicit none
       type(c_ptr), value :: handle
-      complex(c_float_complex), target :: a(*)
-      complex(c_float_complex), target :: b(*)
-      real(c_float), target :: c(*)
-      complex(c_float_complex), target :: s(*)
+      complex(c_float_complex), target :: a(..)
+      complex(c_float_complex), target :: b(..)
+      real(c_float), target :: c(..)
+      complex(c_float_complex), target :: s(..)
       integer(c_int) :: Crotg
-      Crotg = hipblasCrotg_raw(handle, c_loc(a(1)), c_loc(b(1)), c_loc(c(1)), c_loc(s(1)))
+      Crotg = hipblasCrotg_raw(handle, c_loc(a), c_loc(b), c_loc(c), c_loc(s))
     end function hipblasCrotg_native
 
     function hipblasCrotg_typed(handle, a, b, c, s) result(Crotg)
@@ -52913,12 +52881,12 @@ contains
       use, intrinsic :: iso_c_binding
       implicit none
       type(c_ptr), value :: handle
-      complex(c_double_complex), target :: a(*)
-      complex(c_double_complex), target :: b(*)
-      real(c_double), target :: c(*)
-      complex(c_double_complex), target :: s(*)
+      complex(c_double_complex), target :: a(..)
+      complex(c_double_complex), target :: b(..)
+      real(c_double), target :: c(..)
+      complex(c_double_complex), target :: s(..)
       integer(c_int) :: Zrotg
-      Zrotg = hipblasZrotg_raw(handle, c_loc(a(1)), c_loc(b(1)), c_loc(c(1)), c_loc(s(1)))
+      Zrotg = hipblasZrotg_raw(handle, c_loc(a), c_loc(b), c_loc(c), c_loc(s))
     end function hipblasZrotg_native
 
     function hipblasZrotg_typed(handle, a, b, c, s) result(Zrotg)
@@ -52938,12 +52906,12 @@ contains
       use, intrinsic :: iso_c_binding
       implicit none
       type(c_ptr), value :: handle
-      real(c_float), target :: a(*)
-      real(c_float), target :: b(*)
-      real(c_float), target :: c(*)
-      real(c_float), target :: s(*)
+      real(c_float), target :: a(..)
+      real(c_float), target :: b(..)
+      real(c_float), target :: c(..)
+      real(c_float), target :: s(..)
       integer(c_int) :: Srotg_64
-      Srotg_64 = hipblasSrotg_64_raw(handle, c_loc(a(1)), c_loc(b(1)), c_loc(c(1)), c_loc(s(1)))
+      Srotg_64 = hipblasSrotg_64_raw(handle, c_loc(a), c_loc(b), c_loc(c), c_loc(s))
     end function hipblasSrotg_64_native
 
     function hipblasSrotg_64_typed(handle, a, b, c, s) result(Srotg_64)
@@ -52963,12 +52931,12 @@ contains
       use, intrinsic :: iso_c_binding
       implicit none
       type(c_ptr), value :: handle
-      real(c_double), target :: a(*)
-      real(c_double), target :: b(*)
-      real(c_double), target :: c(*)
-      real(c_double), target :: s(*)
+      real(c_double), target :: a(..)
+      real(c_double), target :: b(..)
+      real(c_double), target :: c(..)
+      real(c_double), target :: s(..)
       integer(c_int) :: Drotg_64
-      Drotg_64 = hipblasDrotg_64_raw(handle, c_loc(a(1)), c_loc(b(1)), c_loc(c(1)), c_loc(s(1)))
+      Drotg_64 = hipblasDrotg_64_raw(handle, c_loc(a), c_loc(b), c_loc(c), c_loc(s))
     end function hipblasDrotg_64_native
 
     function hipblasDrotg_64_typed(handle, a, b, c, s) result(Drotg_64)
@@ -52988,12 +52956,12 @@ contains
       use, intrinsic :: iso_c_binding
       implicit none
       type(c_ptr), value :: handle
-      complex(c_float_complex), target :: a(*)
-      complex(c_float_complex), target :: b(*)
-      real(c_float), target :: c(*)
-      complex(c_float_complex), target :: s(*)
+      complex(c_float_complex), target :: a(..)
+      complex(c_float_complex), target :: b(..)
+      real(c_float), target :: c(..)
+      complex(c_float_complex), target :: s(..)
       integer(c_int) :: Crotg_64
-      Crotg_64 = hipblasCrotg_64_raw(handle, c_loc(a(1)), c_loc(b(1)), c_loc(c(1)), c_loc(s(1)))
+      Crotg_64 = hipblasCrotg_64_raw(handle, c_loc(a), c_loc(b), c_loc(c), c_loc(s))
     end function hipblasCrotg_64_native
 
     function hipblasCrotg_64_typed(handle, a, b, c, s) result(Crotg_64)
@@ -53013,12 +52981,12 @@ contains
       use, intrinsic :: iso_c_binding
       implicit none
       type(c_ptr), value :: handle
-      complex(c_double_complex), target :: a(*)
-      complex(c_double_complex), target :: b(*)
-      real(c_double), target :: c(*)
-      complex(c_double_complex), target :: s(*)
+      complex(c_double_complex), target :: a(..)
+      complex(c_double_complex), target :: b(..)
+      real(c_double), target :: c(..)
+      complex(c_double_complex), target :: s(..)
       integer(c_int) :: Zrotg_64
-      Zrotg_64 = hipblasZrotg_64_raw(handle, c_loc(a(1)), c_loc(b(1)), c_loc(c(1)), c_loc(s(1)))
+      Zrotg_64 = hipblasZrotg_64_raw(handle, c_loc(a), c_loc(b), c_loc(c), c_loc(s))
     end function hipblasZrotg_64_native
 
     function hipblasZrotg_64_typed(handle, a, b, c, s) result(Zrotg_64)
@@ -53151,18 +53119,18 @@ contains
       use, intrinsic :: iso_c_binding
       implicit none
       type(c_ptr), value :: handle
-      real(c_float), target :: a(*)
+      real(c_float), target :: a(..)
       integer(c_long), value :: stridea
-      real(c_float), target :: b(*)
+      real(c_float), target :: b(..)
       integer(c_long), value :: strideb
-      real(c_float), target :: c(*)
+      real(c_float), target :: c(..)
       integer(c_long), value :: stridec
-      real(c_float), target :: s(*)
+      real(c_float), target :: s(..)
       integer(c_long), value :: strides
       integer(c_int), value :: batchCount
       integer(c_int) :: SrotgStridedBatched
-      SrotgStridedBatched = hipblasSrotgStridedBatched_raw(handle, c_loc(a(1)), stridea, c_loc(b( &
-        1)), strideb, c_loc(c(1)), stridec, c_loc(s(1)), strides, batchCount)
+      SrotgStridedBatched = hipblasSrotgStridedBatched_raw(handle, c_loc(a), stridea, c_loc(b), &
+        strideb, c_loc(c), stridec, c_loc(s), strides, batchCount)
     end function hipblasSrotgStridedBatched_native
 
     function hipblasSrotgStridedBatched_typed(handle, a, stridea, b, strideb, c, stridec, s, &
@@ -53190,18 +53158,18 @@ contains
       use, intrinsic :: iso_c_binding
       implicit none
       type(c_ptr), value :: handle
-      real(c_double), target :: a(*)
+      real(c_double), target :: a(..)
       integer(c_long), value :: stridea
-      real(c_double), target :: b(*)
+      real(c_double), target :: b(..)
       integer(c_long), value :: strideb
-      real(c_double), target :: c(*)
+      real(c_double), target :: c(..)
       integer(c_long), value :: stridec
-      real(c_double), target :: s(*)
+      real(c_double), target :: s(..)
       integer(c_long), value :: strides
       integer(c_int), value :: batchCount
       integer(c_int) :: DrotgStridedBatched
-      DrotgStridedBatched = hipblasDrotgStridedBatched_raw(handle, c_loc(a(1)), stridea, c_loc(b( &
-        1)), strideb, c_loc(c(1)), stridec, c_loc(s(1)), strides, batchCount)
+      DrotgStridedBatched = hipblasDrotgStridedBatched_raw(handle, c_loc(a), stridea, c_loc(b), &
+        strideb, c_loc(c), stridec, c_loc(s), strides, batchCount)
     end function hipblasDrotgStridedBatched_native
 
     function hipblasDrotgStridedBatched_typed(handle, a, stridea, b, strideb, c, stridec, s, &
@@ -53229,18 +53197,18 @@ contains
       use, intrinsic :: iso_c_binding
       implicit none
       type(c_ptr), value :: handle
-      complex(c_float_complex), target :: a(*)
+      complex(c_float_complex), target :: a(..)
       integer(c_long), value :: stridea
-      complex(c_float_complex), target :: b(*)
+      complex(c_float_complex), target :: b(..)
       integer(c_long), value :: strideb
-      real(c_float), target :: c(*)
+      real(c_float), target :: c(..)
       integer(c_long), value :: stridec
-      complex(c_float_complex), target :: s(*)
+      complex(c_float_complex), target :: s(..)
       integer(c_long), value :: strides
       integer(c_int), value :: batchCount
       integer(c_int) :: CrotgStridedBatched
-      CrotgStridedBatched = hipblasCrotgStridedBatched_raw(handle, c_loc(a(1)), stridea, c_loc(b( &
-        1)), strideb, c_loc(c(1)), stridec, c_loc(s(1)), strides, batchCount)
+      CrotgStridedBatched = hipblasCrotgStridedBatched_raw(handle, c_loc(a), stridea, c_loc(b), &
+        strideb, c_loc(c), stridec, c_loc(s), strides, batchCount)
     end function hipblasCrotgStridedBatched_native
 
     function hipblasCrotgStridedBatched_typed(handle, a, stridea, b, strideb, c, stridec, s, &
@@ -53268,18 +53236,18 @@ contains
       use, intrinsic :: iso_c_binding
       implicit none
       type(c_ptr), value :: handle
-      complex(c_double_complex), target :: a(*)
+      complex(c_double_complex), target :: a(..)
       integer(c_long), value :: stridea
-      complex(c_double_complex), target :: b(*)
+      complex(c_double_complex), target :: b(..)
       integer(c_long), value :: strideb
-      real(c_double), target :: c(*)
+      real(c_double), target :: c(..)
       integer(c_long), value :: stridec
-      complex(c_double_complex), target :: s(*)
+      complex(c_double_complex), target :: s(..)
       integer(c_long), value :: strides
       integer(c_int), value :: batchCount
       integer(c_int) :: ZrotgStridedBatched
-      ZrotgStridedBatched = hipblasZrotgStridedBatched_raw(handle, c_loc(a(1)), stridea, c_loc(b( &
-        1)), strideb, c_loc(c(1)), stridec, c_loc(s(1)), strides, batchCount)
+      ZrotgStridedBatched = hipblasZrotgStridedBatched_raw(handle, c_loc(a), stridea, c_loc(b), &
+        strideb, c_loc(c), stridec, c_loc(s), strides, batchCount)
     end function hipblasZrotgStridedBatched_native
 
     function hipblasZrotgStridedBatched_typed(handle, a, stridea, b, strideb, c, stridec, s, &
@@ -53307,18 +53275,18 @@ contains
       use, intrinsic :: iso_c_binding
       implicit none
       type(c_ptr), value :: handle
-      real(c_float), target :: a(*)
+      real(c_float), target :: a(..)
       integer(c_long), value :: stridea
-      real(c_float), target :: b(*)
+      real(c_float), target :: b(..)
       integer(c_long), value :: strideb
-      real(c_float), target :: c(*)
+      real(c_float), target :: c(..)
       integer(c_long), value :: stridec
-      real(c_float), target :: s(*)
+      real(c_float), target :: s(..)
       integer(c_long), value :: strides
       integer(c_long), value :: batchCount
       integer(c_int) :: SrotgStridedBatched_64
-      SrotgStridedBatched_64 = hipblasSrotgStridedBatched_64_raw(handle, c_loc(a(1)), stridea, &
-        c_loc(b(1)), strideb, c_loc(c(1)), stridec, c_loc(s(1)), strides, batchCount)
+      SrotgStridedBatched_64 = hipblasSrotgStridedBatched_64_raw(handle, c_loc(a), stridea, c_loc( &
+        b), strideb, c_loc(c), stridec, c_loc(s), strides, batchCount)
     end function hipblasSrotgStridedBatched_64_native
 
     function hipblasSrotgStridedBatched_64_typed(handle, a, stridea, b, strideb, c, stridec, s, &
@@ -53346,18 +53314,18 @@ contains
       use, intrinsic :: iso_c_binding
       implicit none
       type(c_ptr), value :: handle
-      real(c_double), target :: a(*)
+      real(c_double), target :: a(..)
       integer(c_long), value :: stridea
-      real(c_double), target :: b(*)
+      real(c_double), target :: b(..)
       integer(c_long), value :: strideb
-      real(c_double), target :: c(*)
+      real(c_double), target :: c(..)
       integer(c_long), value :: stridec
-      real(c_double), target :: s(*)
+      real(c_double), target :: s(..)
       integer(c_long), value :: strides
       integer(c_long), value :: batchCount
       integer(c_int) :: DrotgStridedBatched_64
-      DrotgStridedBatched_64 = hipblasDrotgStridedBatched_64_raw(handle, c_loc(a(1)), stridea, &
-        c_loc(b(1)), strideb, c_loc(c(1)), stridec, c_loc(s(1)), strides, batchCount)
+      DrotgStridedBatched_64 = hipblasDrotgStridedBatched_64_raw(handle, c_loc(a), stridea, c_loc( &
+        b), strideb, c_loc(c), stridec, c_loc(s), strides, batchCount)
     end function hipblasDrotgStridedBatched_64_native
 
     function hipblasDrotgStridedBatched_64_typed(handle, a, stridea, b, strideb, c, stridec, s, &
@@ -53385,18 +53353,18 @@ contains
       use, intrinsic :: iso_c_binding
       implicit none
       type(c_ptr), value :: handle
-      complex(c_float_complex), target :: a(*)
+      complex(c_float_complex), target :: a(..)
       integer(c_long), value :: stridea
-      complex(c_float_complex), target :: b(*)
+      complex(c_float_complex), target :: b(..)
       integer(c_long), value :: strideb
-      real(c_float), target :: c(*)
+      real(c_float), target :: c(..)
       integer(c_long), value :: stridec
-      complex(c_float_complex), target :: s(*)
+      complex(c_float_complex), target :: s(..)
       integer(c_long), value :: strides
       integer(c_long), value :: batchCount
       integer(c_int) :: CrotgStridedBatched_64
-      CrotgStridedBatched_64 = hipblasCrotgStridedBatched_64_raw(handle, c_loc(a(1)), stridea, &
-        c_loc(b(1)), strideb, c_loc(c(1)), stridec, c_loc(s(1)), strides, batchCount)
+      CrotgStridedBatched_64 = hipblasCrotgStridedBatched_64_raw(handle, c_loc(a), stridea, c_loc( &
+        b), strideb, c_loc(c), stridec, c_loc(s), strides, batchCount)
     end function hipblasCrotgStridedBatched_64_native
 
     function hipblasCrotgStridedBatched_64_typed(handle, a, stridea, b, strideb, c, stridec, s, &
@@ -53424,18 +53392,18 @@ contains
       use, intrinsic :: iso_c_binding
       implicit none
       type(c_ptr), value :: handle
-      complex(c_double_complex), target :: a(*)
+      complex(c_double_complex), target :: a(..)
       integer(c_long), value :: stridea
-      complex(c_double_complex), target :: b(*)
+      complex(c_double_complex), target :: b(..)
       integer(c_long), value :: strideb
-      real(c_double), target :: c(*)
+      real(c_double), target :: c(..)
       integer(c_long), value :: stridec
-      complex(c_double_complex), target :: s(*)
+      complex(c_double_complex), target :: s(..)
       integer(c_long), value :: strides
       integer(c_long), value :: batchCount
       integer(c_int) :: ZrotgStridedBatched_64
-      ZrotgStridedBatched_64 = hipblasZrotgStridedBatched_64_raw(handle, c_loc(a(1)), stridea, &
-        c_loc(b(1)), strideb, c_loc(c(1)), stridec, c_loc(s(1)), strides, batchCount)
+      ZrotgStridedBatched_64 = hipblasZrotgStridedBatched_64_raw(handle, c_loc(a), stridea, c_loc( &
+        b), strideb, c_loc(c), stridec, c_loc(s), strides, batchCount)
     end function hipblasZrotgStridedBatched_64_native
 
     function hipblasZrotgStridedBatched_64_typed(handle, a, stridea, b, strideb, c, stridec, s, &
@@ -53463,13 +53431,13 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_int), value :: n
-      real(c_float), target :: x(*)
+      real(c_float), target :: x(..)
       integer(c_int), value :: incx
-      real(c_float), target :: y(*)
+      real(c_float), target :: y(..)
       integer(c_int), value :: incy
-      real(c_float), target :: param(*)
+      real(c_float), target :: param(..)
       integer(c_int) :: Srotm
-      Srotm = hipblasSrotm_raw(handle, n, c_loc(x(1)), incx, c_loc(y(1)), incy, c_loc(param(1)))
+      Srotm = hipblasSrotm_raw(handle, n, c_loc(x), incx, c_loc(y), incy, c_loc(param))
     end function hipblasSrotm_native
 
     function hipblasSrotm_typed(handle, n, x, incx, y, incy, param) result(Srotm)
@@ -53492,13 +53460,13 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_int), value :: n
-      real(c_double), target :: x(*)
+      real(c_double), target :: x(..)
       integer(c_int), value :: incx
-      real(c_double), target :: y(*)
+      real(c_double), target :: y(..)
       integer(c_int), value :: incy
-      real(c_double), target :: param(*)
+      real(c_double), target :: param(..)
       integer(c_int) :: Drotm
-      Drotm = hipblasDrotm_raw(handle, n, c_loc(x(1)), incx, c_loc(y(1)), incy, c_loc(param(1)))
+      Drotm = hipblasDrotm_raw(handle, n, c_loc(x), incx, c_loc(y), incy, c_loc(param))
     end function hipblasDrotm_native
 
     function hipblasDrotm_typed(handle, n, x, incx, y, incy, param) result(Drotm)
@@ -53521,14 +53489,13 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_long), value :: n
-      real(c_float), target :: x(*)
+      real(c_float), target :: x(..)
       integer(c_long), value :: incx
-      real(c_float), target :: y(*)
+      real(c_float), target :: y(..)
       integer(c_long), value :: incy
-      real(c_float), target :: param(*)
+      real(c_float), target :: param(..)
       integer(c_int) :: Srotm_64
-      Srotm_64 = hipblasSrotm_64_raw(handle, n, c_loc(x(1)), incx, c_loc(y(1)), incy, c_loc(param( &
-        1)))
+      Srotm_64 = hipblasSrotm_64_raw(handle, n, c_loc(x), incx, c_loc(y), incy, c_loc(param))
     end function hipblasSrotm_64_native
 
     function hipblasSrotm_64_typed(handle, n, x, incx, y, incy, param) result(Srotm_64)
@@ -53551,14 +53518,13 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_long), value :: n
-      real(c_double), target :: x(*)
+      real(c_double), target :: x(..)
       integer(c_long), value :: incx
-      real(c_double), target :: y(*)
+      real(c_double), target :: y(..)
       integer(c_long), value :: incy
-      real(c_double), target :: param(*)
+      real(c_double), target :: param(..)
       integer(c_int) :: Drotm_64
-      Drotm_64 = hipblasDrotm_64_raw(handle, n, c_loc(x(1)), incx, c_loc(y(1)), incy, c_loc(param( &
-        1)))
+      Drotm_64 = hipblasDrotm_64_raw(handle, n, c_loc(x), incx, c_loc(y), incy, c_loc(param))
     end function hipblasDrotm_64_native
 
     function hipblasDrotm_64_typed(handle, n, x, incx, y, incy, param) result(Drotm_64)
@@ -53652,18 +53618,18 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_int), value :: n
-      real(c_float), target :: x(*)
+      real(c_float), target :: x(..)
       integer(c_int), value :: incx
       integer(c_long), value :: stridex
-      real(c_float), target :: y(*)
+      real(c_float), target :: y(..)
       integer(c_int), value :: incy
       integer(c_long), value :: stridey
-      real(c_float), target :: param(*)
+      real(c_float), target :: param(..)
       integer(c_long), value :: strideParam
       integer(c_int), value :: batchCount
       integer(c_int) :: SrotmStridedBatched
-      SrotmStridedBatched = hipblasSrotmStridedBatched_raw(handle, n, c_loc(x(1)), incx, stridex, &
-        c_loc(y(1)), incy, stridey, c_loc(param(1)), strideParam, batchCount)
+      SrotmStridedBatched = hipblasSrotmStridedBatched_raw(handle, n, c_loc(x), incx, stridex, &
+        c_loc(y), incy, stridey, c_loc(param), strideParam, batchCount)
     end function hipblasSrotmStridedBatched_native
 
     function hipblasSrotmStridedBatched_typed(handle, n, x, incx, stridex, y, incy, stridey, &
@@ -53693,18 +53659,18 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_int), value :: n
-      real(c_double), target :: x(*)
+      real(c_double), target :: x(..)
       integer(c_int), value :: incx
       integer(c_long), value :: stridex
-      real(c_double), target :: y(*)
+      real(c_double), target :: y(..)
       integer(c_int), value :: incy
       integer(c_long), value :: stridey
-      real(c_double), target :: param(*)
+      real(c_double), target :: param(..)
       integer(c_long), value :: strideParam
       integer(c_int), value :: batchCount
       integer(c_int) :: DrotmStridedBatched
-      DrotmStridedBatched = hipblasDrotmStridedBatched_raw(handle, n, c_loc(x(1)), incx, stridex, &
-        c_loc(y(1)), incy, stridey, c_loc(param(1)), strideParam, batchCount)
+      DrotmStridedBatched = hipblasDrotmStridedBatched_raw(handle, n, c_loc(x), incx, stridex, &
+        c_loc(y), incy, stridey, c_loc(param), strideParam, batchCount)
     end function hipblasDrotmStridedBatched_native
 
     function hipblasDrotmStridedBatched_typed(handle, n, x, incx, stridex, y, incy, stridey, &
@@ -53734,18 +53700,18 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_long), value :: n
-      real(c_float), target :: x(*)
+      real(c_float), target :: x(..)
       integer(c_long), value :: incx
       integer(c_long), value :: stridex
-      real(c_float), target :: y(*)
+      real(c_float), target :: y(..)
       integer(c_long), value :: incy
       integer(c_long), value :: stridey
-      real(c_float), target :: param(*)
+      real(c_float), target :: param(..)
       integer(c_long), value :: strideParam
       integer(c_long), value :: batchCount
       integer(c_int) :: SrotmStridedBatched_64
-      SrotmStridedBatched_64 = hipblasSrotmStridedBatched_64_raw(handle, n, c_loc(x(1)), incx, &
-        stridex, c_loc(y(1)), incy, stridey, c_loc(param(1)), strideParam, batchCount)
+      SrotmStridedBatched_64 = hipblasSrotmStridedBatched_64_raw(handle, n, c_loc(x), incx, &
+        stridex, c_loc(y), incy, stridey, c_loc(param), strideParam, batchCount)
     end function hipblasSrotmStridedBatched_64_native
 
     function hipblasSrotmStridedBatched_64_typed(handle, n, x, incx, stridex, y, incy, stridey, &
@@ -53775,18 +53741,18 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_long), value :: n
-      real(c_double), target :: x(*)
+      real(c_double), target :: x(..)
       integer(c_long), value :: incx
       integer(c_long), value :: stridex
-      real(c_double), target :: y(*)
+      real(c_double), target :: y(..)
       integer(c_long), value :: incy
       integer(c_long), value :: stridey
-      real(c_double), target :: param(*)
+      real(c_double), target :: param(..)
       integer(c_long), value :: strideParam
       integer(c_long), value :: batchCount
       integer(c_int) :: DrotmStridedBatched_64
-      DrotmStridedBatched_64 = hipblasDrotmStridedBatched_64_raw(handle, n, c_loc(x(1)), incx, &
-        stridex, c_loc(y(1)), incy, stridey, c_loc(param(1)), strideParam, batchCount)
+      DrotmStridedBatched_64 = hipblasDrotmStridedBatched_64_raw(handle, n, c_loc(x), incx, &
+        stridex, c_loc(y), incy, stridey, c_loc(param), strideParam, batchCount)
     end function hipblasDrotmStridedBatched_64_native
 
     function hipblasDrotmStridedBatched_64_typed(handle, n, x, incx, stridex, y, incy, stridey, &
@@ -53814,14 +53780,13 @@ contains
       use, intrinsic :: iso_c_binding
       implicit none
       type(c_ptr), value :: handle
-      real(c_float), target :: d1(*)
-      real(c_float), target :: d2(*)
-      real(c_float), target :: x1(*)
-      real(c_float), target :: y1(*)
-      real(c_float), target :: param(*)
+      real(c_float), target :: d1(..)
+      real(c_float), target :: d2(..)
+      real(c_float), target :: x1(..)
+      real(c_float), target :: y1(..)
+      real(c_float), target :: param(..)
       integer(c_int) :: Srotmg
-      Srotmg = hipblasSrotmg_raw(handle, c_loc(d1(1)), c_loc(d2(1)), c_loc(x1(1)), c_loc(y1(1)), &
-        c_loc(param(1)))
+      Srotmg = hipblasSrotmg_raw(handle, c_loc(d1), c_loc(d2), c_loc(x1), c_loc(y1), c_loc(param))
     end function hipblasSrotmg_native
 
     function hipblasSrotmg_typed(handle, d1, d2, x1, y1, param) result(Srotmg)
@@ -53842,14 +53807,13 @@ contains
       use, intrinsic :: iso_c_binding
       implicit none
       type(c_ptr), value :: handle
-      real(c_double), target :: d1(*)
-      real(c_double), target :: d2(*)
-      real(c_double), target :: x1(*)
-      real(c_double), target :: y1(*)
-      real(c_double), target :: param(*)
+      real(c_double), target :: d1(..)
+      real(c_double), target :: d2(..)
+      real(c_double), target :: x1(..)
+      real(c_double), target :: y1(..)
+      real(c_double), target :: param(..)
       integer(c_int) :: Drotmg
-      Drotmg = hipblasDrotmg_raw(handle, c_loc(d1(1)), c_loc(d2(1)), c_loc(x1(1)), c_loc(y1(1)), &
-        c_loc(param(1)))
+      Drotmg = hipblasDrotmg_raw(handle, c_loc(d1), c_loc(d2), c_loc(x1), c_loc(y1), c_loc(param))
     end function hipblasDrotmg_native
 
     function hipblasDrotmg_typed(handle, d1, d2, x1, y1, param) result(Drotmg)
@@ -53870,14 +53834,14 @@ contains
       use, intrinsic :: iso_c_binding
       implicit none
       type(c_ptr), value :: handle
-      real(c_float), target :: d1(*)
-      real(c_float), target :: d2(*)
-      real(c_float), target :: x1(*)
-      real(c_float), target :: y1(*)
-      real(c_float), target :: param(*)
+      real(c_float), target :: d1(..)
+      real(c_float), target :: d2(..)
+      real(c_float), target :: x1(..)
+      real(c_float), target :: y1(..)
+      real(c_float), target :: param(..)
       integer(c_int) :: Srotmg_64
-      Srotmg_64 = hipblasSrotmg_64_raw(handle, c_loc(d1(1)), c_loc(d2(1)), c_loc(x1(1)), c_loc(y1( &
-        1)), c_loc(param(1)))
+      Srotmg_64 = hipblasSrotmg_64_raw(handle, c_loc(d1), c_loc(d2), c_loc(x1), c_loc(y1), c_loc( &
+        param))
     end function hipblasSrotmg_64_native
 
     function hipblasSrotmg_64_typed(handle, d1, d2, x1, y1, param) result(Srotmg_64)
@@ -53898,14 +53862,14 @@ contains
       use, intrinsic :: iso_c_binding
       implicit none
       type(c_ptr), value :: handle
-      real(c_double), target :: d1(*)
-      real(c_double), target :: d2(*)
-      real(c_double), target :: x1(*)
-      real(c_double), target :: y1(*)
-      real(c_double), target :: param(*)
+      real(c_double), target :: d1(..)
+      real(c_double), target :: d2(..)
+      real(c_double), target :: x1(..)
+      real(c_double), target :: y1(..)
+      real(c_double), target :: param(..)
       integer(c_int) :: Drotmg_64
-      Drotmg_64 = hipblasDrotmg_64_raw(handle, c_loc(d1(1)), c_loc(d2(1)), c_loc(x1(1)), c_loc(y1( &
-        1)), c_loc(param(1)))
+      Drotmg_64 = hipblasDrotmg_64_raw(handle, c_loc(d1), c_loc(d2), c_loc(x1), c_loc(y1), c_loc( &
+        param))
     end function hipblasDrotmg_64_native
 
     function hipblasDrotmg_64_typed(handle, d1, d2, x1, y1, param) result(Drotmg_64)
@@ -53991,21 +53955,21 @@ contains
       use, intrinsic :: iso_c_binding
       implicit none
       type(c_ptr), value :: handle
-      real(c_float), target :: d1(*)
+      real(c_float), target :: d1(..)
       integer(c_long), value :: strided1
-      real(c_float), target :: d2(*)
+      real(c_float), target :: d2(..)
       integer(c_long), value :: strided2
-      real(c_float), target :: x1(*)
+      real(c_float), target :: x1(..)
       integer(c_long), value :: stridex1
-      real(c_float), target :: y1(*)
+      real(c_float), target :: y1(..)
       integer(c_long), value :: stridey1
-      real(c_float), target :: param(*)
+      real(c_float), target :: param(..)
       integer(c_long), value :: strideParam
       integer(c_int), value :: batchCount
       integer(c_int) :: SrotmgStridedBatched
-      SrotmgStridedBatched = hipblasSrotmgStridedBatched_raw(handle, c_loc(d1(1)), strided1, &
-        c_loc(d2(1)), strided2, c_loc(x1(1)), stridex1, c_loc(y1(1)), stridey1, c_loc(param(1)), &
-        strideParam, batchCount)
+      SrotmgStridedBatched = hipblasSrotmgStridedBatched_raw(handle, c_loc(d1), strided1, c_loc( &
+        d2), strided2, c_loc(x1), stridex1, c_loc(y1), stridey1, c_loc(param), strideParam, &
+        batchCount)
     end function hipblasSrotmgStridedBatched_native
 
     function hipblasSrotmgStridedBatched_typed(handle, d1, strided1, d2, strided2, x1, stridex1, &
@@ -54035,21 +53999,21 @@ contains
       use, intrinsic :: iso_c_binding
       implicit none
       type(c_ptr), value :: handle
-      real(c_double), target :: d1(*)
+      real(c_double), target :: d1(..)
       integer(c_long), value :: strided1
-      real(c_double), target :: d2(*)
+      real(c_double), target :: d2(..)
       integer(c_long), value :: strided2
-      real(c_double), target :: x1(*)
+      real(c_double), target :: x1(..)
       integer(c_long), value :: stridex1
-      real(c_double), target :: y1(*)
+      real(c_double), target :: y1(..)
       integer(c_long), value :: stridey1
-      real(c_double), target :: param(*)
+      real(c_double), target :: param(..)
       integer(c_long), value :: strideParam
       integer(c_int), value :: batchCount
       integer(c_int) :: DrotmgStridedBatched
-      DrotmgStridedBatched = hipblasDrotmgStridedBatched_raw(handle, c_loc(d1(1)), strided1, &
-        c_loc(d2(1)), strided2, c_loc(x1(1)), stridex1, c_loc(y1(1)), stridey1, c_loc(param(1)), &
-        strideParam, batchCount)
+      DrotmgStridedBatched = hipblasDrotmgStridedBatched_raw(handle, c_loc(d1), strided1, c_loc( &
+        d2), strided2, c_loc(x1), stridex1, c_loc(y1), stridey1, c_loc(param), strideParam, &
+        batchCount)
     end function hipblasDrotmgStridedBatched_native
 
     function hipblasDrotmgStridedBatched_typed(handle, d1, strided1, d2, strided2, x1, stridex1, &
@@ -54079,21 +54043,21 @@ contains
       use, intrinsic :: iso_c_binding
       implicit none
       type(c_ptr), value :: handle
-      real(c_float), target :: d1(*)
+      real(c_float), target :: d1(..)
       integer(c_long), value :: strided1
-      real(c_float), target :: d2(*)
+      real(c_float), target :: d2(..)
       integer(c_long), value :: strided2
-      real(c_float), target :: x1(*)
+      real(c_float), target :: x1(..)
       integer(c_long), value :: stridex1
-      real(c_float), target :: y1(*)
+      real(c_float), target :: y1(..)
       integer(c_long), value :: stridey1
-      real(c_float), target :: param(*)
+      real(c_float), target :: param(..)
       integer(c_long), value :: strideParam
       integer(c_long), value :: batchCount
       integer(c_int) :: SrotmgStridedBatched_64
-      SrotmgStridedBatched_64 = hipblasSrotmgStridedBatched_64_raw(handle, c_loc(d1(1)), strided1, &
-        c_loc(d2(1)), strided2, c_loc(x1(1)), stridex1, c_loc(y1(1)), stridey1, c_loc(param(1)), &
-        strideParam, batchCount)
+      SrotmgStridedBatched_64 = hipblasSrotmgStridedBatched_64_raw(handle, c_loc(d1), strided1, &
+        c_loc(d2), strided2, c_loc(x1), stridex1, c_loc(y1), stridey1, c_loc(param), strideParam, &
+        batchCount)
     end function hipblasSrotmgStridedBatched_64_native
 
     function hipblasSrotmgStridedBatched_64_typed(handle, d1, strided1, d2, strided2, x1, &
@@ -54123,21 +54087,21 @@ contains
       use, intrinsic :: iso_c_binding
       implicit none
       type(c_ptr), value :: handle
-      real(c_double), target :: d1(*)
+      real(c_double), target :: d1(..)
       integer(c_long), value :: strided1
-      real(c_double), target :: d2(*)
+      real(c_double), target :: d2(..)
       integer(c_long), value :: strided2
-      real(c_double), target :: x1(*)
+      real(c_double), target :: x1(..)
       integer(c_long), value :: stridex1
-      real(c_double), target :: y1(*)
+      real(c_double), target :: y1(..)
       integer(c_long), value :: stridey1
-      real(c_double), target :: param(*)
+      real(c_double), target :: param(..)
       integer(c_long), value :: strideParam
       integer(c_long), value :: batchCount
       integer(c_int) :: DrotmgStridedBatched_64
-      DrotmgStridedBatched_64 = hipblasDrotmgStridedBatched_64_raw(handle, c_loc(d1(1)), strided1, &
-        c_loc(d2(1)), strided2, c_loc(x1(1)), stridex1, c_loc(y1(1)), stridey1, c_loc(param(1)), &
-        strideParam, batchCount)
+      DrotmgStridedBatched_64 = hipblasDrotmgStridedBatched_64_raw(handle, c_loc(d1), strided1, &
+        c_loc(d2), strided2, c_loc(x1), stridex1, c_loc(y1), stridey1, c_loc(param), strideParam, &
+        batchCount)
     end function hipblasDrotmgStridedBatched_64_native
 
     function hipblasDrotmgStridedBatched_64_typed(handle, d1, strided1, d2, strided2, x1, &
@@ -54168,10 +54132,10 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: n
       real(c_float) :: alpha
-      real(c_float), target :: x(*)
+      real(c_float), target :: x(..)
       integer(c_int), value :: incx
       integer(c_int) :: Sscal
-      Sscal = hipblasSscal_raw(handle, n, alpha, c_loc(x(1)), incx)
+      Sscal = hipblasSscal_raw(handle, n, alpha, c_loc(x), incx)
     end function hipblasSscal_native
 
     function hipblasSscal_typed(handle, n, alpha, x, incx) result(Sscal)
@@ -54193,10 +54157,10 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: n
       real(c_double) :: alpha
-      real(c_double), target :: x(*)
+      real(c_double), target :: x(..)
       integer(c_int), value :: incx
       integer(c_int) :: Dscal
-      Dscal = hipblasDscal_raw(handle, n, alpha, c_loc(x(1)), incx)
+      Dscal = hipblasDscal_raw(handle, n, alpha, c_loc(x), incx)
     end function hipblasDscal_native
 
     function hipblasDscal_typed(handle, n, alpha, x, incx) result(Dscal)
@@ -54218,10 +54182,10 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: n
       complex(c_float_complex) :: alpha
-      complex(c_float_complex), target :: x(*)
+      complex(c_float_complex), target :: x(..)
       integer(c_int), value :: incx
       integer(c_int) :: Cscal
-      Cscal = hipblasCscal_raw(handle, n, alpha, c_loc(x(1)), incx)
+      Cscal = hipblasCscal_raw(handle, n, alpha, c_loc(x), incx)
     end function hipblasCscal_native
 
     function hipblasCscal_typed(handle, n, alpha, x, incx) result(Cscal)
@@ -54243,10 +54207,10 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: n
       real(c_float) :: alpha
-      complex(c_float_complex), target :: x(*)
+      complex(c_float_complex), target :: x(..)
       integer(c_int), value :: incx
       integer(c_int) :: Csscal
-      Csscal = hipblasCsscal_raw(handle, n, alpha, c_loc(x(1)), incx)
+      Csscal = hipblasCsscal_raw(handle, n, alpha, c_loc(x), incx)
     end function hipblasCsscal_native
 
     function hipblasCsscal_typed(handle, n, alpha, x, incx) result(Csscal)
@@ -54268,10 +54232,10 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: n
       complex(c_double_complex) :: alpha
-      complex(c_double_complex), target :: x(*)
+      complex(c_double_complex), target :: x(..)
       integer(c_int), value :: incx
       integer(c_int) :: Zscal
-      Zscal = hipblasZscal_raw(handle, n, alpha, c_loc(x(1)), incx)
+      Zscal = hipblasZscal_raw(handle, n, alpha, c_loc(x), incx)
     end function hipblasZscal_native
 
     function hipblasZscal_typed(handle, n, alpha, x, incx) result(Zscal)
@@ -54293,10 +54257,10 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: n
       real(c_double) :: alpha
-      complex(c_double_complex), target :: x(*)
+      complex(c_double_complex), target :: x(..)
       integer(c_int), value :: incx
       integer(c_int) :: Zdscal
-      Zdscal = hipblasZdscal_raw(handle, n, alpha, c_loc(x(1)), incx)
+      Zdscal = hipblasZdscal_raw(handle, n, alpha, c_loc(x), incx)
     end function hipblasZdscal_native
 
     function hipblasZdscal_typed(handle, n, alpha, x, incx) result(Zdscal)
@@ -54317,11 +54281,11 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_long), value :: n
-      real(c_float), target :: alpha(*)
-      real(c_float), target :: x(*)
+      real(c_float), target :: alpha(..)
+      real(c_float), target :: x(..)
       integer(c_long), value :: incx
       integer(c_int) :: Sscal_64
-      Sscal_64 = hipblasSscal_64_raw(handle, n, c_loc(alpha(1)), c_loc(x(1)), incx)
+      Sscal_64 = hipblasSscal_64_raw(handle, n, c_loc(alpha), c_loc(x), incx)
     end function hipblasSscal_64_native
 
     function hipblasSscal_64_typed(handle, n, alpha, x, incx) result(Sscal_64)
@@ -54342,11 +54306,11 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_long), value :: n
-      real(c_double), target :: alpha(*)
-      real(c_double), target :: x(*)
+      real(c_double), target :: alpha(..)
+      real(c_double), target :: x(..)
       integer(c_long), value :: incx
       integer(c_int) :: Dscal_64
-      Dscal_64 = hipblasDscal_64_raw(handle, n, c_loc(alpha(1)), c_loc(x(1)), incx)
+      Dscal_64 = hipblasDscal_64_raw(handle, n, c_loc(alpha), c_loc(x), incx)
     end function hipblasDscal_64_native
 
     function hipblasDscal_64_typed(handle, n, alpha, x, incx) result(Dscal_64)
@@ -54367,11 +54331,11 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_long), value :: n
-      complex(c_float_complex), target :: alpha(*)
-      complex(c_float_complex), target :: x(*)
+      complex(c_float_complex), target :: alpha(..)
+      complex(c_float_complex), target :: x(..)
       integer(c_long), value :: incx
       integer(c_int) :: Cscal_64
-      Cscal_64 = hipblasCscal_64_raw(handle, n, c_loc(alpha(1)), c_loc(x(1)), incx)
+      Cscal_64 = hipblasCscal_64_raw(handle, n, c_loc(alpha), c_loc(x), incx)
     end function hipblasCscal_64_native
 
     function hipblasCscal_64_typed(handle, n, alpha, x, incx) result(Cscal_64)
@@ -54392,11 +54356,11 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_long), value :: n
-      real(c_float), target :: alpha(*)
-      complex(c_float_complex), target :: x(*)
+      real(c_float), target :: alpha(..)
+      complex(c_float_complex), target :: x(..)
       integer(c_long), value :: incx
       integer(c_int) :: Csscal_64
-      Csscal_64 = hipblasCsscal_64_raw(handle, n, c_loc(alpha(1)), c_loc(x(1)), incx)
+      Csscal_64 = hipblasCsscal_64_raw(handle, n, c_loc(alpha), c_loc(x), incx)
     end function hipblasCsscal_64_native
 
     function hipblasCsscal_64_typed(handle, n, alpha, x, incx) result(Csscal_64)
@@ -54417,11 +54381,11 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_long), value :: n
-      complex(c_double_complex), target :: alpha(*)
-      complex(c_double_complex), target :: x(*)
+      complex(c_double_complex), target :: alpha(..)
+      complex(c_double_complex), target :: x(..)
       integer(c_long), value :: incx
       integer(c_int) :: Zscal_64
-      Zscal_64 = hipblasZscal_64_raw(handle, n, c_loc(alpha(1)), c_loc(x(1)), incx)
+      Zscal_64 = hipblasZscal_64_raw(handle, n, c_loc(alpha), c_loc(x), incx)
     end function hipblasZscal_64_native
 
     function hipblasZscal_64_typed(handle, n, alpha, x, incx) result(Zscal_64)
@@ -54442,11 +54406,11 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_long), value :: n
-      real(c_double), target :: alpha(*)
-      complex(c_double_complex), target :: x(*)
+      real(c_double), target :: alpha(..)
+      complex(c_double_complex), target :: x(..)
       integer(c_long), value :: incx
       integer(c_int) :: Zdscal_64
-      Zdscal_64 = hipblasZdscal_64_raw(handle, n, c_loc(alpha(1)), c_loc(x(1)), incx)
+      Zdscal_64 = hipblasZdscal_64_raw(handle, n, c_loc(alpha), c_loc(x), incx)
     end function hipblasZdscal_64_native
 
     function hipblasZdscal_64_typed(handle, n, alpha, x, incx) result(Zdscal_64)
@@ -54552,12 +54516,12 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_long), value :: n
-      real(c_float), target :: alpha(*)
+      real(c_float), target :: alpha(..)
       type(c_ptr), value :: x
       integer(c_long), value :: incx
       integer(c_long), value :: batchCount
       integer(c_int) :: SscalBatched_64
-      SscalBatched_64 = hipblasSscalBatched_64_raw(handle, n, c_loc(alpha(1)), x, incx, batchCount)
+      SscalBatched_64 = hipblasSscalBatched_64_raw(handle, n, c_loc(alpha), x, incx, batchCount)
     end function hipblasSscalBatched_64_native
 
     function hipblasSscalBatched_64_typed(handle, n, alpha, x, incx, batchCount) result( &
@@ -54581,12 +54545,12 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_long), value :: n
-      real(c_double), target :: alpha(*)
+      real(c_double), target :: alpha(..)
       type(c_ptr), value :: x
       integer(c_long), value :: incx
       integer(c_long), value :: batchCount
       integer(c_int) :: DscalBatched_64
-      DscalBatched_64 = hipblasDscalBatched_64_raw(handle, n, c_loc(alpha(1)), x, incx, batchCount)
+      DscalBatched_64 = hipblasDscalBatched_64_raw(handle, n, c_loc(alpha), x, incx, batchCount)
     end function hipblasDscalBatched_64_native
 
     function hipblasDscalBatched_64_typed(handle, n, alpha, x, incx, batchCount) result( &
@@ -54610,12 +54574,12 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_long), value :: n
-      complex(c_float_complex), target :: alpha(*)
+      complex(c_float_complex), target :: alpha(..)
       type(c_ptr), value :: x
       integer(c_long), value :: incx
       integer(c_long), value :: batchCount
       integer(c_int) :: CscalBatched_64
-      CscalBatched_64 = hipblasCscalBatched_64_raw(handle, n, c_loc(alpha(1)), x, incx, batchCount)
+      CscalBatched_64 = hipblasCscalBatched_64_raw(handle, n, c_loc(alpha), x, incx, batchCount)
     end function hipblasCscalBatched_64_native
 
     function hipblasCscalBatched_64_typed(handle, n, alpha, x, incx, batchCount) result( &
@@ -54639,12 +54603,12 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_long), value :: n
-      complex(c_double_complex), target :: alpha(*)
+      complex(c_double_complex), target :: alpha(..)
       type(c_ptr), value :: x
       integer(c_long), value :: incx
       integer(c_long), value :: batchCount
       integer(c_int) :: ZscalBatched_64
-      ZscalBatched_64 = hipblasZscalBatched_64_raw(handle, n, c_loc(alpha(1)), x, incx, batchCount)
+      ZscalBatched_64 = hipblasZscalBatched_64_raw(handle, n, c_loc(alpha), x, incx, batchCount)
     end function hipblasZscalBatched_64_native
 
     function hipblasZscalBatched_64_typed(handle, n, alpha, x, incx, batchCount) result( &
@@ -54668,13 +54632,12 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_long), value :: n
-      real(c_float), target :: alpha(*)
+      real(c_float), target :: alpha(..)
       type(c_ptr), value :: x
       integer(c_long), value :: incx
       integer(c_long), value :: batchCount
       integer(c_int) :: CsscalBatched_64
-      CsscalBatched_64 = hipblasCsscalBatched_64_raw(handle, n, c_loc(alpha(1)), x, incx, &
-        batchCount)
+      CsscalBatched_64 = hipblasCsscalBatched_64_raw(handle, n, c_loc(alpha), x, incx, batchCount)
     end function hipblasCsscalBatched_64_native
 
     function hipblasCsscalBatched_64_typed(handle, n, alpha, x, incx, batchCount) result( &
@@ -54698,13 +54661,12 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_long), value :: n
-      real(c_double), target :: alpha(*)
+      real(c_double), target :: alpha(..)
       type(c_ptr), value :: x
       integer(c_long), value :: incx
       integer(c_long), value :: batchCount
       integer(c_int) :: ZdscalBatched_64
-      ZdscalBatched_64 = hipblasZdscalBatched_64_raw(handle, n, c_loc(alpha(1)), x, incx, &
-        batchCount)
+      ZdscalBatched_64 = hipblasZdscalBatched_64_raw(handle, n, c_loc(alpha), x, incx, batchCount)
     end function hipblasZdscalBatched_64_native
 
     function hipblasZdscalBatched_64_typed(handle, n, alpha, x, incx, batchCount) result( &
@@ -54729,12 +54691,12 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: n
       real(c_float) :: alpha
-      real(c_float), target :: x(*)
+      real(c_float), target :: x(..)
       integer(c_int), value :: incx
       integer(c_long), value :: stridex
       integer(c_int), value :: batchCount
       integer(c_int) :: SscalStridedBatched
-      SscalStridedBatched = hipblasSscalStridedBatched_raw(handle, n, alpha, c_loc(x(1)), incx, &
+      SscalStridedBatched = hipblasSscalStridedBatched_raw(handle, n, alpha, c_loc(x), incx, &
         stridex, batchCount)
     end function hipblasSscalStridedBatched_native
 
@@ -54762,12 +54724,12 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: n
       real(c_double) :: alpha
-      real(c_double), target :: x(*)
+      real(c_double), target :: x(..)
       integer(c_int), value :: incx
       integer(c_long), value :: stridex
       integer(c_int), value :: batchCount
       integer(c_int) :: DscalStridedBatched
-      DscalStridedBatched = hipblasDscalStridedBatched_raw(handle, n, alpha, c_loc(x(1)), incx, &
+      DscalStridedBatched = hipblasDscalStridedBatched_raw(handle, n, alpha, c_loc(x), incx, &
         stridex, batchCount)
     end function hipblasDscalStridedBatched_native
 
@@ -54795,12 +54757,12 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: n
       complex(c_float_complex) :: alpha
-      complex(c_float_complex), target :: x(*)
+      complex(c_float_complex), target :: x(..)
       integer(c_int), value :: incx
       integer(c_long), value :: stridex
       integer(c_int), value :: batchCount
       integer(c_int) :: CscalStridedBatched
-      CscalStridedBatched = hipblasCscalStridedBatched_raw(handle, n, alpha, c_loc(x(1)), incx, &
+      CscalStridedBatched = hipblasCscalStridedBatched_raw(handle, n, alpha, c_loc(x), incx, &
         stridex, batchCount)
     end function hipblasCscalStridedBatched_native
 
@@ -54828,12 +54790,12 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: n
       complex(c_double_complex) :: alpha
-      complex(c_double_complex), target :: x(*)
+      complex(c_double_complex), target :: x(..)
       integer(c_int), value :: incx
       integer(c_long), value :: stridex
       integer(c_int), value :: batchCount
       integer(c_int) :: ZscalStridedBatched
-      ZscalStridedBatched = hipblasZscalStridedBatched_raw(handle, n, alpha, c_loc(x(1)), incx, &
+      ZscalStridedBatched = hipblasZscalStridedBatched_raw(handle, n, alpha, c_loc(x), incx, &
         stridex, batchCount)
     end function hipblasZscalStridedBatched_native
 
@@ -54861,12 +54823,12 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: n
       real(c_float) :: alpha
-      complex(c_float_complex), target :: x(*)
+      complex(c_float_complex), target :: x(..)
       integer(c_int), value :: incx
       integer(c_long), value :: stridex
       integer(c_int), value :: batchCount
       integer(c_int) :: CsscalStridedBatched
-      CsscalStridedBatched = hipblasCsscalStridedBatched_raw(handle, n, alpha, c_loc(x(1)), incx, &
+      CsscalStridedBatched = hipblasCsscalStridedBatched_raw(handle, n, alpha, c_loc(x), incx, &
         stridex, batchCount)
     end function hipblasCsscalStridedBatched_native
 
@@ -54894,12 +54856,12 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: n
       real(c_double) :: alpha
-      complex(c_double_complex), target :: x(*)
+      complex(c_double_complex), target :: x(..)
       integer(c_int), value :: incx
       integer(c_long), value :: stridex
       integer(c_int), value :: batchCount
       integer(c_int) :: ZdscalStridedBatched
-      ZdscalStridedBatched = hipblasZdscalStridedBatched_raw(handle, n, alpha, c_loc(x(1)), incx, &
+      ZdscalStridedBatched = hipblasZdscalStridedBatched_raw(handle, n, alpha, c_loc(x), incx, &
         stridex, batchCount)
     end function hipblasZdscalStridedBatched_native
 
@@ -54926,14 +54888,14 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_long), value :: n
-      real(c_float), target :: alpha(*)
-      real(c_float), target :: x(*)
+      real(c_float), target :: alpha(..)
+      real(c_float), target :: x(..)
       integer(c_long), value :: incx
       integer(c_long), value :: stridex
       integer(c_long), value :: batchCount
       integer(c_int) :: SscalStridedBatched_64
-      SscalStridedBatched_64 = hipblasSscalStridedBatched_64_raw(handle, n, c_loc(alpha(1)), &
-        c_loc(x(1)), incx, stridex, batchCount)
+      SscalStridedBatched_64 = hipblasSscalStridedBatched_64_raw(handle, n, c_loc(alpha), c_loc( &
+        x), incx, stridex, batchCount)
     end function hipblasSscalStridedBatched_64_native
 
     function hipblasSscalStridedBatched_64_typed(handle, n, alpha, x, incx, stridex, &
@@ -54959,14 +54921,14 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_long), value :: n
-      real(c_double), target :: alpha(*)
-      real(c_double), target :: x(*)
+      real(c_double), target :: alpha(..)
+      real(c_double), target :: x(..)
       integer(c_long), value :: incx
       integer(c_long), value :: stridex
       integer(c_long), value :: batchCount
       integer(c_int) :: DscalStridedBatched_64
-      DscalStridedBatched_64 = hipblasDscalStridedBatched_64_raw(handle, n, c_loc(alpha(1)), &
-        c_loc(x(1)), incx, stridex, batchCount)
+      DscalStridedBatched_64 = hipblasDscalStridedBatched_64_raw(handle, n, c_loc(alpha), c_loc( &
+        x), incx, stridex, batchCount)
     end function hipblasDscalStridedBatched_64_native
 
     function hipblasDscalStridedBatched_64_typed(handle, n, alpha, x, incx, stridex, &
@@ -54992,14 +54954,14 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_long), value :: n
-      complex(c_float_complex), target :: alpha(*)
-      complex(c_float_complex), target :: x(*)
+      complex(c_float_complex), target :: alpha(..)
+      complex(c_float_complex), target :: x(..)
       integer(c_long), value :: incx
       integer(c_long), value :: stridex
       integer(c_long), value :: batchCount
       integer(c_int) :: CscalStridedBatched_64
-      CscalStridedBatched_64 = hipblasCscalStridedBatched_64_raw(handle, n, c_loc(alpha(1)), &
-        c_loc(x(1)), incx, stridex, batchCount)
+      CscalStridedBatched_64 = hipblasCscalStridedBatched_64_raw(handle, n, c_loc(alpha), c_loc( &
+        x), incx, stridex, batchCount)
     end function hipblasCscalStridedBatched_64_native
 
     function hipblasCscalStridedBatched_64_typed(handle, n, alpha, x, incx, stridex, &
@@ -55025,14 +54987,14 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_long), value :: n
-      complex(c_double_complex), target :: alpha(*)
-      complex(c_double_complex), target :: x(*)
+      complex(c_double_complex), target :: alpha(..)
+      complex(c_double_complex), target :: x(..)
       integer(c_long), value :: incx
       integer(c_long), value :: stridex
       integer(c_long), value :: batchCount
       integer(c_int) :: ZscalStridedBatched_64
-      ZscalStridedBatched_64 = hipblasZscalStridedBatched_64_raw(handle, n, c_loc(alpha(1)), &
-        c_loc(x(1)), incx, stridex, batchCount)
+      ZscalStridedBatched_64 = hipblasZscalStridedBatched_64_raw(handle, n, c_loc(alpha), c_loc( &
+        x), incx, stridex, batchCount)
     end function hipblasZscalStridedBatched_64_native
 
     function hipblasZscalStridedBatched_64_typed(handle, n, alpha, x, incx, stridex, &
@@ -55058,14 +55020,14 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_long), value :: n
-      real(c_float), target :: alpha(*)
-      complex(c_float_complex), target :: x(*)
+      real(c_float), target :: alpha(..)
+      complex(c_float_complex), target :: x(..)
       integer(c_long), value :: incx
       integer(c_long), value :: stridex
       integer(c_long), value :: batchCount
       integer(c_int) :: CsscalStridedBatched_64
-      CsscalStridedBatched_64 = hipblasCsscalStridedBatched_64_raw(handle, n, c_loc(alpha(1)), &
-        c_loc(x(1)), incx, stridex, batchCount)
+      CsscalStridedBatched_64 = hipblasCsscalStridedBatched_64_raw(handle, n, c_loc(alpha), c_loc( &
+        x), incx, stridex, batchCount)
     end function hipblasCsscalStridedBatched_64_native
 
     function hipblasCsscalStridedBatched_64_typed(handle, n, alpha, x, incx, stridex, &
@@ -55091,14 +55053,14 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_long), value :: n
-      real(c_double), target :: alpha(*)
-      complex(c_double_complex), target :: x(*)
+      real(c_double), target :: alpha(..)
+      complex(c_double_complex), target :: x(..)
       integer(c_long), value :: incx
       integer(c_long), value :: stridex
       integer(c_long), value :: batchCount
       integer(c_int) :: ZdscalStridedBatched_64
-      ZdscalStridedBatched_64 = hipblasZdscalStridedBatched_64_raw(handle, n, c_loc(alpha(1)), &
-        c_loc(x(1)), incx, stridex, batchCount)
+      ZdscalStridedBatched_64 = hipblasZdscalStridedBatched_64_raw(handle, n, c_loc(alpha), c_loc( &
+        x), incx, stridex, batchCount)
     end function hipblasZdscalStridedBatched_64_native
 
     function hipblasZdscalStridedBatched_64_typed(handle, n, alpha, x, incx, stridex, &
@@ -55123,12 +55085,12 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_int), value :: n
-      real(c_float), target :: x(*)
+      real(c_float), target :: x(..)
       integer(c_int), value :: incx
-      real(c_float), target :: y(*)
+      real(c_float), target :: y(..)
       integer(c_int), value :: incy
       integer(c_int) :: Sswap
-      Sswap = hipblasSswap_raw(handle, n, c_loc(x(1)), incx, c_loc(y(1)), incy)
+      Sswap = hipblasSswap_raw(handle, n, c_loc(x), incx, c_loc(y), incy)
     end function hipblasSswap_native
 
     function hipblasSswap_typed(handle, n, x, incx, y, incy) result(Sswap)
@@ -55150,12 +55112,12 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_int), value :: n
-      real(c_double), target :: x(*)
+      real(c_double), target :: x(..)
       integer(c_int), value :: incx
-      real(c_double), target :: y(*)
+      real(c_double), target :: y(..)
       integer(c_int), value :: incy
       integer(c_int) :: Dswap
-      Dswap = hipblasDswap_raw(handle, n, c_loc(x(1)), incx, c_loc(y(1)), incy)
+      Dswap = hipblasDswap_raw(handle, n, c_loc(x), incx, c_loc(y), incy)
     end function hipblasDswap_native
 
     function hipblasDswap_typed(handle, n, x, incx, y, incy) result(Dswap)
@@ -55177,12 +55139,12 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_int), value :: n
-      complex(c_float_complex), target :: x(*)
+      complex(c_float_complex), target :: x(..)
       integer(c_int), value :: incx
-      complex(c_float_complex), target :: y(*)
+      complex(c_float_complex), target :: y(..)
       integer(c_int), value :: incy
       integer(c_int) :: Cswap
-      Cswap = hipblasCswap_raw(handle, n, c_loc(x(1)), incx, c_loc(y(1)), incy)
+      Cswap = hipblasCswap_raw(handle, n, c_loc(x), incx, c_loc(y), incy)
     end function hipblasCswap_native
 
     function hipblasCswap_typed(handle, n, x, incx, y, incy) result(Cswap)
@@ -55204,12 +55166,12 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_int), value :: n
-      complex(c_double_complex), target :: x(*)
+      complex(c_double_complex), target :: x(..)
       integer(c_int), value :: incx
-      complex(c_double_complex), target :: y(*)
+      complex(c_double_complex), target :: y(..)
       integer(c_int), value :: incy
       integer(c_int) :: Zswap
-      Zswap = hipblasZswap_raw(handle, n, c_loc(x(1)), incx, c_loc(y(1)), incy)
+      Zswap = hipblasZswap_raw(handle, n, c_loc(x), incx, c_loc(y), incy)
     end function hipblasZswap_native
 
     function hipblasZswap_typed(handle, n, x, incx, y, incy) result(Zswap)
@@ -55231,12 +55193,12 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_long), value :: n
-      real(c_float), target :: x(*)
+      real(c_float), target :: x(..)
       integer(c_long), value :: incx
-      real(c_float), target :: y(*)
+      real(c_float), target :: y(..)
       integer(c_long), value :: incy
       integer(c_int) :: Sswap_64
-      Sswap_64 = hipblasSswap_64_raw(handle, n, c_loc(x(1)), incx, c_loc(y(1)), incy)
+      Sswap_64 = hipblasSswap_64_raw(handle, n, c_loc(x), incx, c_loc(y), incy)
     end function hipblasSswap_64_native
 
     function hipblasSswap_64_typed(handle, n, x, incx, y, incy) result(Sswap_64)
@@ -55258,12 +55220,12 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_long), value :: n
-      real(c_double), target :: x(*)
+      real(c_double), target :: x(..)
       integer(c_long), value :: incx
-      real(c_double), target :: y(*)
+      real(c_double), target :: y(..)
       integer(c_long), value :: incy
       integer(c_int) :: Dswap_64
-      Dswap_64 = hipblasDswap_64_raw(handle, n, c_loc(x(1)), incx, c_loc(y(1)), incy)
+      Dswap_64 = hipblasDswap_64_raw(handle, n, c_loc(x), incx, c_loc(y), incy)
     end function hipblasDswap_64_native
 
     function hipblasDswap_64_typed(handle, n, x, incx, y, incy) result(Dswap_64)
@@ -55285,12 +55247,12 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_long), value :: n
-      complex(c_float_complex), target :: x(*)
+      complex(c_float_complex), target :: x(..)
       integer(c_long), value :: incx
-      complex(c_float_complex), target :: y(*)
+      complex(c_float_complex), target :: y(..)
       integer(c_long), value :: incy
       integer(c_int) :: Cswap_64
-      Cswap_64 = hipblasCswap_64_raw(handle, n, c_loc(x(1)), incx, c_loc(y(1)), incy)
+      Cswap_64 = hipblasCswap_64_raw(handle, n, c_loc(x), incx, c_loc(y), incy)
     end function hipblasCswap_64_native
 
     function hipblasCswap_64_typed(handle, n, x, incx, y, incy) result(Cswap_64)
@@ -55312,12 +55274,12 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_long), value :: n
-      complex(c_double_complex), target :: x(*)
+      complex(c_double_complex), target :: x(..)
       integer(c_long), value :: incx
-      complex(c_double_complex), target :: y(*)
+      complex(c_double_complex), target :: y(..)
       integer(c_long), value :: incy
       integer(c_int) :: Zswap_64
-      Zswap_64 = hipblasZswap_64_raw(handle, n, c_loc(x(1)), incx, c_loc(y(1)), incy)
+      Zswap_64 = hipblasZswap_64_raw(handle, n, c_loc(x), incx, c_loc(y), incy)
     end function hipblasZswap_64_native
 
     function hipblasZswap_64_typed(handle, n, x, incx, y, incy) result(Zswap_64)
@@ -55464,16 +55426,16 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_int), value :: n
-      real(c_float), target :: x(*)
+      real(c_float), target :: x(..)
       integer(c_int), value :: incx
       integer(c_long), value :: stridex
-      real(c_float), target :: y(*)
+      real(c_float), target :: y(..)
       integer(c_int), value :: incy
       integer(c_long), value :: stridey
       integer(c_int), value :: batchCount
       integer(c_int) :: SswapStridedBatched
-      SswapStridedBatched = hipblasSswapStridedBatched_raw(handle, n, c_loc(x(1)), incx, stridex, &
-        c_loc(y(1)), incy, stridey, batchCount)
+      SswapStridedBatched = hipblasSswapStridedBatched_raw(handle, n, c_loc(x), incx, stridex, &
+        c_loc(y), incy, stridey, batchCount)
     end function hipblasSswapStridedBatched_native
 
     function hipblasSswapStridedBatched_typed(handle, n, x, incx, stridex, y, incy, stridey, &
@@ -55501,16 +55463,16 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_int), value :: n
-      real(c_double), target :: x(*)
+      real(c_double), target :: x(..)
       integer(c_int), value :: incx
       integer(c_long), value :: stridex
-      real(c_double), target :: y(*)
+      real(c_double), target :: y(..)
       integer(c_int), value :: incy
       integer(c_long), value :: stridey
       integer(c_int), value :: batchCount
       integer(c_int) :: DswapStridedBatched
-      DswapStridedBatched = hipblasDswapStridedBatched_raw(handle, n, c_loc(x(1)), incx, stridex, &
-        c_loc(y(1)), incy, stridey, batchCount)
+      DswapStridedBatched = hipblasDswapStridedBatched_raw(handle, n, c_loc(x), incx, stridex, &
+        c_loc(y), incy, stridey, batchCount)
     end function hipblasDswapStridedBatched_native
 
     function hipblasDswapStridedBatched_typed(handle, n, x, incx, stridex, y, incy, stridey, &
@@ -55538,16 +55500,16 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_int), value :: n
-      complex(c_float_complex), target :: x(*)
+      complex(c_float_complex), target :: x(..)
       integer(c_int), value :: incx
       integer(c_long), value :: stridex
-      complex(c_float_complex), target :: y(*)
+      complex(c_float_complex), target :: y(..)
       integer(c_int), value :: incy
       integer(c_long), value :: stridey
       integer(c_int), value :: batchCount
       integer(c_int) :: CswapStridedBatched
-      CswapStridedBatched = hipblasCswapStridedBatched_raw(handle, n, c_loc(x(1)), incx, stridex, &
-        c_loc(y(1)), incy, stridey, batchCount)
+      CswapStridedBatched = hipblasCswapStridedBatched_raw(handle, n, c_loc(x), incx, stridex, &
+        c_loc(y), incy, stridey, batchCount)
     end function hipblasCswapStridedBatched_native
 
     function hipblasCswapStridedBatched_typed(handle, n, x, incx, stridex, y, incy, stridey, &
@@ -55575,16 +55537,16 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_int), value :: n
-      complex(c_double_complex), target :: x(*)
+      complex(c_double_complex), target :: x(..)
       integer(c_int), value :: incx
       integer(c_long), value :: stridex
-      complex(c_double_complex), target :: y(*)
+      complex(c_double_complex), target :: y(..)
       integer(c_int), value :: incy
       integer(c_long), value :: stridey
       integer(c_int), value :: batchCount
       integer(c_int) :: ZswapStridedBatched
-      ZswapStridedBatched = hipblasZswapStridedBatched_raw(handle, n, c_loc(x(1)), incx, stridex, &
-        c_loc(y(1)), incy, stridey, batchCount)
+      ZswapStridedBatched = hipblasZswapStridedBatched_raw(handle, n, c_loc(x), incx, stridex, &
+        c_loc(y), incy, stridey, batchCount)
     end function hipblasZswapStridedBatched_native
 
     function hipblasZswapStridedBatched_typed(handle, n, x, incx, stridex, y, incy, stridey, &
@@ -55612,16 +55574,16 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_long), value :: n
-      real(c_float), target :: x(*)
+      real(c_float), target :: x(..)
       integer(c_long), value :: incx
       integer(c_long), value :: stridex
-      real(c_float), target :: y(*)
+      real(c_float), target :: y(..)
       integer(c_long), value :: incy
       integer(c_long), value :: stridey
       integer(c_long), value :: batchCount
       integer(c_int) :: SswapStridedBatched_64
-      SswapStridedBatched_64 = hipblasSswapStridedBatched_64_raw(handle, n, c_loc(x(1)), incx, &
-        stridex, c_loc(y(1)), incy, stridey, batchCount)
+      SswapStridedBatched_64 = hipblasSswapStridedBatched_64_raw(handle, n, c_loc(x), incx, &
+        stridex, c_loc(y), incy, stridey, batchCount)
     end function hipblasSswapStridedBatched_64_native
 
     function hipblasSswapStridedBatched_64_typed(handle, n, x, incx, stridex, y, incy, stridey, &
@@ -55649,16 +55611,16 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_long), value :: n
-      real(c_double), target :: x(*)
+      real(c_double), target :: x(..)
       integer(c_long), value :: incx
       integer(c_long), value :: stridex
-      real(c_double), target :: y(*)
+      real(c_double), target :: y(..)
       integer(c_long), value :: incy
       integer(c_long), value :: stridey
       integer(c_long), value :: batchCount
       integer(c_int) :: DswapStridedBatched_64
-      DswapStridedBatched_64 = hipblasDswapStridedBatched_64_raw(handle, n, c_loc(x(1)), incx, &
-        stridex, c_loc(y(1)), incy, stridey, batchCount)
+      DswapStridedBatched_64 = hipblasDswapStridedBatched_64_raw(handle, n, c_loc(x), incx, &
+        stridex, c_loc(y), incy, stridey, batchCount)
     end function hipblasDswapStridedBatched_64_native
 
     function hipblasDswapStridedBatched_64_typed(handle, n, x, incx, stridex, y, incy, stridey, &
@@ -55686,16 +55648,16 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_long), value :: n
-      complex(c_float_complex), target :: x(*)
+      complex(c_float_complex), target :: x(..)
       integer(c_long), value :: incx
       integer(c_long), value :: stridex
-      complex(c_float_complex), target :: y(*)
+      complex(c_float_complex), target :: y(..)
       integer(c_long), value :: incy
       integer(c_long), value :: stridey
       integer(c_long), value :: batchCount
       integer(c_int) :: CswapStridedBatched_64
-      CswapStridedBatched_64 = hipblasCswapStridedBatched_64_raw(handle, n, c_loc(x(1)), incx, &
-        stridex, c_loc(y(1)), incy, stridey, batchCount)
+      CswapStridedBatched_64 = hipblasCswapStridedBatched_64_raw(handle, n, c_loc(x), incx, &
+        stridex, c_loc(y), incy, stridey, batchCount)
     end function hipblasCswapStridedBatched_64_native
 
     function hipblasCswapStridedBatched_64_typed(handle, n, x, incx, stridex, y, incy, stridey, &
@@ -55723,16 +55685,16 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_long), value :: n
-      complex(c_double_complex), target :: x(*)
+      complex(c_double_complex), target :: x(..)
       integer(c_long), value :: incx
       integer(c_long), value :: stridex
-      complex(c_double_complex), target :: y(*)
+      complex(c_double_complex), target :: y(..)
       integer(c_long), value :: incy
       integer(c_long), value :: stridey
       integer(c_long), value :: batchCount
       integer(c_int) :: ZswapStridedBatched_64
-      ZswapStridedBatched_64 = hipblasZswapStridedBatched_64_raw(handle, n, c_loc(x(1)), incx, &
-        stridex, c_loc(y(1)), incy, stridey, batchCount)
+      ZswapStridedBatched_64 = hipblasZswapStridedBatched_64_raw(handle, n, c_loc(x), incx, &
+        stridex, c_loc(y), incy, stridey, batchCount)
     end function hipblasZswapStridedBatched_64_native
 
     function hipblasZswapStridedBatched_64_typed(handle, n, x, incx, stridex, y, incy, stridey, &
@@ -55765,16 +55727,16 @@ contains
       integer(c_int), value :: kl
       integer(c_int), value :: ku
       real(c_float) :: alpha
-      real(c_float), target :: AP(*)
+      real(c_float), target :: AP(..)
       integer(c_int), value :: lda
-      real(c_float), target :: x(*)
+      real(c_float), target :: x(..)
       integer(c_int), value :: incx
       real(c_float) :: beta
-      real(c_float), target :: y(*)
+      real(c_float), target :: y(..)
       integer(c_int), value :: incy
       integer(c_int) :: Sgbmv
-      Sgbmv = hipblasSgbmv_raw(handle, trans, m, n, kl, ku, alpha, c_loc(AP(1)), lda, c_loc(x(1)), &
-        incx, beta, c_loc(y(1)), incy)
+      Sgbmv = hipblasSgbmv_raw(handle, trans, m, n, kl, ku, alpha, c_loc(AP), lda, c_loc(x), incx, &
+        beta, c_loc(y), incy)
     end function hipblasSgbmv_native
 
     function hipblasSgbmv_typed(handle, trans, m, n, kl, ku, alpha, AP, lda, x, incx, beta, y, &
@@ -55812,16 +55774,16 @@ contains
       integer(c_int), value :: kl
       integer(c_int), value :: ku
       real(c_double) :: alpha
-      real(c_double), target :: AP(*)
+      real(c_double), target :: AP(..)
       integer(c_int), value :: lda
-      real(c_double), target :: x(*)
+      real(c_double), target :: x(..)
       integer(c_int), value :: incx
       real(c_double) :: beta
-      real(c_double), target :: y(*)
+      real(c_double), target :: y(..)
       integer(c_int), value :: incy
       integer(c_int) :: Dgbmv
-      Dgbmv = hipblasDgbmv_raw(handle, trans, m, n, kl, ku, alpha, c_loc(AP(1)), lda, c_loc(x(1)), &
-        incx, beta, c_loc(y(1)), incy)
+      Dgbmv = hipblasDgbmv_raw(handle, trans, m, n, kl, ku, alpha, c_loc(AP), lda, c_loc(x), incx, &
+        beta, c_loc(y), incy)
     end function hipblasDgbmv_native
 
     function hipblasDgbmv_typed(handle, trans, m, n, kl, ku, alpha, AP, lda, x, incx, beta, y, &
@@ -55859,16 +55821,16 @@ contains
       integer(c_int), value :: kl
       integer(c_int), value :: ku
       complex(c_float_complex) :: alpha
-      complex(c_float_complex), target :: AP(*)
+      complex(c_float_complex), target :: AP(..)
       integer(c_int), value :: lda
-      complex(c_float_complex), target :: x(*)
+      complex(c_float_complex), target :: x(..)
       integer(c_int), value :: incx
       complex(c_float_complex) :: beta
-      complex(c_float_complex), target :: y(*)
+      complex(c_float_complex), target :: y(..)
       integer(c_int), value :: incy
       integer(c_int) :: Cgbmv
-      Cgbmv = hipblasCgbmv_raw(handle, trans, m, n, kl, ku, alpha, c_loc(AP(1)), lda, c_loc(x(1)), &
-        incx, beta, c_loc(y(1)), incy)
+      Cgbmv = hipblasCgbmv_raw(handle, trans, m, n, kl, ku, alpha, c_loc(AP), lda, c_loc(x), incx, &
+        beta, c_loc(y), incy)
     end function hipblasCgbmv_native
 
     function hipblasCgbmv_typed(handle, trans, m, n, kl, ku, alpha, AP, lda, x, incx, beta, y, &
@@ -55906,16 +55868,16 @@ contains
       integer(c_int), value :: kl
       integer(c_int), value :: ku
       complex(c_double_complex) :: alpha
-      complex(c_double_complex), target :: AP(*)
+      complex(c_double_complex), target :: AP(..)
       integer(c_int), value :: lda
-      complex(c_double_complex), target :: x(*)
+      complex(c_double_complex), target :: x(..)
       integer(c_int), value :: incx
       complex(c_double_complex) :: beta
-      complex(c_double_complex), target :: y(*)
+      complex(c_double_complex), target :: y(..)
       integer(c_int), value :: incy
       integer(c_int) :: Zgbmv
-      Zgbmv = hipblasZgbmv_raw(handle, trans, m, n, kl, ku, alpha, c_loc(AP(1)), lda, c_loc(x(1)), &
-        incx, beta, c_loc(y(1)), incy)
+      Zgbmv = hipblasZgbmv_raw(handle, trans, m, n, kl, ku, alpha, c_loc(AP), lda, c_loc(x), incx, &
+        beta, c_loc(y), incy)
     end function hipblasZgbmv_native
 
     function hipblasZgbmv_typed(handle, trans, m, n, kl, ku, alpha, AP, lda, x, incx, beta, y, &
@@ -55952,17 +55914,17 @@ contains
       integer(c_long), value :: n
       integer(c_long), value :: kl
       integer(c_long), value :: ku
-      real(c_float), target :: alpha(*)
-      real(c_float), target :: AP(*)
+      real(c_float), target :: alpha(..)
+      real(c_float), target :: AP(..)
       integer(c_long), value :: lda
-      real(c_float), target :: x(*)
+      real(c_float), target :: x(..)
       integer(c_long), value :: incx
-      real(c_float), target :: beta(*)
-      real(c_float), target :: y(*)
+      real(c_float), target :: beta(..)
+      real(c_float), target :: y(..)
       integer(c_long), value :: incy
       integer(c_int) :: Sgbmv_64
-      Sgbmv_64 = hipblasSgbmv_64_raw(handle, trans, m, n, kl, ku, c_loc(alpha(1)), c_loc(AP(1)), &
-        lda, c_loc(x(1)), incx, c_loc(beta(1)), c_loc(y(1)), incy)
+      Sgbmv_64 = hipblasSgbmv_64_raw(handle, trans, m, n, kl, ku, c_loc(alpha), c_loc(AP), lda, &
+        c_loc(x), incx, c_loc(beta), c_loc(y), incy)
     end function hipblasSgbmv_64_native
 
     function hipblasSgbmv_64_typed(handle, trans, m, n, kl, ku, alpha, AP, lda, x, incx, beta, y, &
@@ -55999,17 +55961,17 @@ contains
       integer(c_long), value :: n
       integer(c_long), value :: kl
       integer(c_long), value :: ku
-      real(c_double), target :: alpha(*)
-      real(c_double), target :: AP(*)
+      real(c_double), target :: alpha(..)
+      real(c_double), target :: AP(..)
       integer(c_long), value :: lda
-      real(c_double), target :: x(*)
+      real(c_double), target :: x(..)
       integer(c_long), value :: incx
-      real(c_double), target :: beta(*)
-      real(c_double), target :: y(*)
+      real(c_double), target :: beta(..)
+      real(c_double), target :: y(..)
       integer(c_long), value :: incy
       integer(c_int) :: Dgbmv_64
-      Dgbmv_64 = hipblasDgbmv_64_raw(handle, trans, m, n, kl, ku, c_loc(alpha(1)), c_loc(AP(1)), &
-        lda, c_loc(x(1)), incx, c_loc(beta(1)), c_loc(y(1)), incy)
+      Dgbmv_64 = hipblasDgbmv_64_raw(handle, trans, m, n, kl, ku, c_loc(alpha), c_loc(AP), lda, &
+        c_loc(x), incx, c_loc(beta), c_loc(y), incy)
     end function hipblasDgbmv_64_native
 
     function hipblasDgbmv_64_typed(handle, trans, m, n, kl, ku, alpha, AP, lda, x, incx, beta, y, &
@@ -56046,17 +56008,17 @@ contains
       integer(c_long), value :: n
       integer(c_long), value :: kl
       integer(c_long), value :: ku
-      complex(c_float_complex), target :: alpha(*)
-      complex(c_float_complex), target :: AP(*)
+      complex(c_float_complex), target :: alpha(..)
+      complex(c_float_complex), target :: AP(..)
       integer(c_long), value :: lda
-      complex(c_float_complex), target :: x(*)
+      complex(c_float_complex), target :: x(..)
       integer(c_long), value :: incx
-      complex(c_float_complex), target :: beta(*)
-      complex(c_float_complex), target :: y(*)
+      complex(c_float_complex), target :: beta(..)
+      complex(c_float_complex), target :: y(..)
       integer(c_long), value :: incy
       integer(c_int) :: Cgbmv_64
-      Cgbmv_64 = hipblasCgbmv_64_raw(handle, trans, m, n, kl, ku, c_loc(alpha(1)), c_loc(AP(1)), &
-        lda, c_loc(x(1)), incx, c_loc(beta(1)), c_loc(y(1)), incy)
+      Cgbmv_64 = hipblasCgbmv_64_raw(handle, trans, m, n, kl, ku, c_loc(alpha), c_loc(AP), lda, &
+        c_loc(x), incx, c_loc(beta), c_loc(y), incy)
     end function hipblasCgbmv_64_native
 
     function hipblasCgbmv_64_typed(handle, trans, m, n, kl, ku, alpha, AP, lda, x, incx, beta, y, &
@@ -56093,17 +56055,17 @@ contains
       integer(c_long), value :: n
       integer(c_long), value :: kl
       integer(c_long), value :: ku
-      complex(c_double_complex), target :: alpha(*)
-      complex(c_double_complex), target :: AP(*)
+      complex(c_double_complex), target :: alpha(..)
+      complex(c_double_complex), target :: AP(..)
       integer(c_long), value :: lda
-      complex(c_double_complex), target :: x(*)
+      complex(c_double_complex), target :: x(..)
       integer(c_long), value :: incx
-      complex(c_double_complex), target :: beta(*)
-      complex(c_double_complex), target :: y(*)
+      complex(c_double_complex), target :: beta(..)
+      complex(c_double_complex), target :: y(..)
       integer(c_long), value :: incy
       integer(c_int) :: Zgbmv_64
-      Zgbmv_64 = hipblasZgbmv_64_raw(handle, trans, m, n, kl, ku, c_loc(alpha(1)), c_loc(AP(1)), &
-        lda, c_loc(x(1)), incx, c_loc(beta(1)), c_loc(y(1)), incy)
+      Zgbmv_64 = hipblasZgbmv_64_raw(handle, trans, m, n, kl, ku, c_loc(alpha), c_loc(AP), lda, &
+        c_loc(x), incx, c_loc(beta), c_loc(y), incy)
     end function hipblasZgbmv_64_native
 
     function hipblasZgbmv_64_typed(handle, trans, m, n, kl, ku, alpha, AP, lda, x, incx, beta, y, &
@@ -56240,18 +56202,18 @@ contains
       integer(c_long), value :: n
       integer(c_long), value :: kl
       integer(c_long), value :: ku
-      real(c_float), target :: alpha(*)
+      real(c_float), target :: alpha(..)
       type(c_ptr), value :: AP
       integer(c_long), value :: lda
       type(c_ptr), value :: x
       integer(c_long), value :: incx
-      real(c_float), target :: beta(*)
+      real(c_float), target :: beta(..)
       type(c_ptr), value :: y
       integer(c_long), value :: incy
       integer(c_long), value :: batchCount
       integer(c_int) :: SgbmvBatched_64
-      SgbmvBatched_64 = hipblasSgbmvBatched_64_raw(handle, trans, m, n, kl, ku, c_loc(alpha(1)), &
-        AP, lda, x, incx, c_loc(beta(1)), y, incy, batchCount)
+      SgbmvBatched_64 = hipblasSgbmvBatched_64_raw(handle, trans, m, n, kl, ku, c_loc(alpha), AP, &
+        lda, x, incx, c_loc(beta), y, incy, batchCount)
     end function hipblasSgbmvBatched_64_native
 
     function hipblasSgbmvBatched_64_typed(handle, trans, m, n, kl, ku, alpha, AP, lda, x, incx, &
@@ -56289,18 +56251,18 @@ contains
       integer(c_long), value :: n
       integer(c_long), value :: kl
       integer(c_long), value :: ku
-      real(c_double), target :: alpha(*)
+      real(c_double), target :: alpha(..)
       type(c_ptr), value :: AP
       integer(c_long), value :: lda
       type(c_ptr), value :: x
       integer(c_long), value :: incx
-      real(c_double), target :: beta(*)
+      real(c_double), target :: beta(..)
       type(c_ptr), value :: y
       integer(c_long), value :: incy
       integer(c_long), value :: batchCount
       integer(c_int) :: DgbmvBatched_64
-      DgbmvBatched_64 = hipblasDgbmvBatched_64_raw(handle, trans, m, n, kl, ku, c_loc(alpha(1)), &
-        AP, lda, x, incx, c_loc(beta(1)), y, incy, batchCount)
+      DgbmvBatched_64 = hipblasDgbmvBatched_64_raw(handle, trans, m, n, kl, ku, c_loc(alpha), AP, &
+        lda, x, incx, c_loc(beta), y, incy, batchCount)
     end function hipblasDgbmvBatched_64_native
 
     function hipblasDgbmvBatched_64_typed(handle, trans, m, n, kl, ku, alpha, AP, lda, x, incx, &
@@ -56338,18 +56300,18 @@ contains
       integer(c_long), value :: n
       integer(c_long), value :: kl
       integer(c_long), value :: ku
-      complex(c_float_complex), target :: alpha(*)
+      complex(c_float_complex), target :: alpha(..)
       type(c_ptr), value :: AP
       integer(c_long), value :: lda
       type(c_ptr), value :: x
       integer(c_long), value :: incx
-      complex(c_float_complex), target :: beta(*)
+      complex(c_float_complex), target :: beta(..)
       type(c_ptr), value :: y
       integer(c_long), value :: incy
       integer(c_long), value :: batchCount
       integer(c_int) :: CgbmvBatched_64
-      CgbmvBatched_64 = hipblasCgbmvBatched_64_raw(handle, trans, m, n, kl, ku, c_loc(alpha(1)), &
-        AP, lda, x, incx, c_loc(beta(1)), y, incy, batchCount)
+      CgbmvBatched_64 = hipblasCgbmvBatched_64_raw(handle, trans, m, n, kl, ku, c_loc(alpha), AP, &
+        lda, x, incx, c_loc(beta), y, incy, batchCount)
     end function hipblasCgbmvBatched_64_native
 
     function hipblasCgbmvBatched_64_typed(handle, trans, m, n, kl, ku, alpha, AP, lda, x, incx, &
@@ -56387,18 +56349,18 @@ contains
       integer(c_long), value :: n
       integer(c_long), value :: kl
       integer(c_long), value :: ku
-      complex(c_double_complex), target :: alpha(*)
+      complex(c_double_complex), target :: alpha(..)
       type(c_ptr), value :: AP
       integer(c_long), value :: lda
       type(c_ptr), value :: x
       integer(c_long), value :: incx
-      complex(c_double_complex), target :: beta(*)
+      complex(c_double_complex), target :: beta(..)
       type(c_ptr), value :: y
       integer(c_long), value :: incy
       integer(c_long), value :: batchCount
       integer(c_int) :: ZgbmvBatched_64
-      ZgbmvBatched_64 = hipblasZgbmvBatched_64_raw(handle, trans, m, n, kl, ku, c_loc(alpha(1)), &
-        AP, lda, x, incx, c_loc(beta(1)), y, incy, batchCount)
+      ZgbmvBatched_64 = hipblasZgbmvBatched_64_raw(handle, trans, m, n, kl, ku, c_loc(alpha), AP, &
+        lda, x, incx, c_loc(beta), y, incy, batchCount)
     end function hipblasZgbmvBatched_64_native
 
     function hipblasZgbmvBatched_64_typed(handle, trans, m, n, kl, ku, alpha, AP, lda, x, incx, &
@@ -56437,21 +56399,20 @@ contains
       integer(c_int), value :: kl
       integer(c_int), value :: ku
       real(c_float) :: alpha
-      real(c_float), target :: AP(*)
+      real(c_float), target :: AP(..)
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
-      real(c_float), target :: x(*)
+      real(c_float), target :: x(..)
       integer(c_int), value :: incx
       integer(c_long), value :: stridex
       real(c_float) :: beta
-      real(c_float), target :: y(*)
+      real(c_float), target :: y(..)
       integer(c_int), value :: incy
       integer(c_long), value :: stridey
       integer(c_int), value :: batchCount
       integer(c_int) :: SgbmvStridedBatched
       SgbmvStridedBatched = hipblasSgbmvStridedBatched_raw(handle, trans, m, n, kl, ku, alpha, &
-        c_loc(AP(1)), lda, strideA, c_loc(x(1)), incx, stridex, beta, c_loc(y(1)), incy, stridey, &
-        batchCount)
+        c_loc(AP), lda, strideA, c_loc(x), incx, stridex, beta, c_loc(y), incy, stridey, batchCount)
     end function hipblasSgbmvStridedBatched_native
 
     function hipblasSgbmvStridedBatched_typed(handle, trans, m, n, kl, ku, alpha, AP, lda, &
@@ -56493,21 +56454,20 @@ contains
       integer(c_int), value :: kl
       integer(c_int), value :: ku
       real(c_double) :: alpha
-      real(c_double), target :: AP(*)
+      real(c_double), target :: AP(..)
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
-      real(c_double), target :: x(*)
+      real(c_double), target :: x(..)
       integer(c_int), value :: incx
       integer(c_long), value :: stridex
       real(c_double) :: beta
-      real(c_double), target :: y(*)
+      real(c_double), target :: y(..)
       integer(c_int), value :: incy
       integer(c_long), value :: stridey
       integer(c_int), value :: batchCount
       integer(c_int) :: DgbmvStridedBatched
       DgbmvStridedBatched = hipblasDgbmvStridedBatched_raw(handle, trans, m, n, kl, ku, alpha, &
-        c_loc(AP(1)), lda, strideA, c_loc(x(1)), incx, stridex, beta, c_loc(y(1)), incy, stridey, &
-        batchCount)
+        c_loc(AP), lda, strideA, c_loc(x), incx, stridex, beta, c_loc(y), incy, stridey, batchCount)
     end function hipblasDgbmvStridedBatched_native
 
     function hipblasDgbmvStridedBatched_typed(handle, trans, m, n, kl, ku, alpha, AP, lda, &
@@ -56549,21 +56509,20 @@ contains
       integer(c_int), value :: kl
       integer(c_int), value :: ku
       complex(c_float_complex) :: alpha
-      complex(c_float_complex), target :: AP(*)
+      complex(c_float_complex), target :: AP(..)
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
-      complex(c_float_complex), target :: x(*)
+      complex(c_float_complex), target :: x(..)
       integer(c_int), value :: incx
       integer(c_long), value :: stridex
       complex(c_float_complex) :: beta
-      complex(c_float_complex), target :: y(*)
+      complex(c_float_complex), target :: y(..)
       integer(c_int), value :: incy
       integer(c_long), value :: stridey
       integer(c_int), value :: batchCount
       integer(c_int) :: CgbmvStridedBatched
       CgbmvStridedBatched = hipblasCgbmvStridedBatched_raw(handle, trans, m, n, kl, ku, alpha, &
-        c_loc(AP(1)), lda, strideA, c_loc(x(1)), incx, stridex, beta, c_loc(y(1)), incy, stridey, &
-        batchCount)
+        c_loc(AP), lda, strideA, c_loc(x), incx, stridex, beta, c_loc(y), incy, stridey, batchCount)
     end function hipblasCgbmvStridedBatched_native
 
     function hipblasCgbmvStridedBatched_typed(handle, trans, m, n, kl, ku, alpha, AP, lda, &
@@ -56605,21 +56564,20 @@ contains
       integer(c_int), value :: kl
       integer(c_int), value :: ku
       complex(c_double_complex) :: alpha
-      complex(c_double_complex), target :: AP(*)
+      complex(c_double_complex), target :: AP(..)
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
-      complex(c_double_complex), target :: x(*)
+      complex(c_double_complex), target :: x(..)
       integer(c_int), value :: incx
       integer(c_long), value :: stridex
       complex(c_double_complex) :: beta
-      complex(c_double_complex), target :: y(*)
+      complex(c_double_complex), target :: y(..)
       integer(c_int), value :: incy
       integer(c_long), value :: stridey
       integer(c_int), value :: batchCount
       integer(c_int) :: ZgbmvStridedBatched
       ZgbmvStridedBatched = hipblasZgbmvStridedBatched_raw(handle, trans, m, n, kl, ku, alpha, &
-        c_loc(AP(1)), lda, strideA, c_loc(x(1)), incx, stridex, beta, c_loc(y(1)), incy, stridey, &
-        batchCount)
+        c_loc(AP), lda, strideA, c_loc(x), incx, stridex, beta, c_loc(y), incy, stridey, batchCount)
     end function hipblasZgbmvStridedBatched_native
 
     function hipblasZgbmvStridedBatched_typed(handle, trans, m, n, kl, ku, alpha, AP, lda, &
@@ -56661,22 +56619,22 @@ contains
       integer(c_long), value :: n
       integer(c_long), value :: kl
       integer(c_long), value :: ku
-      real(c_float), target :: alpha(*)
-      real(c_float), target :: AP(*)
+      real(c_float), target :: alpha(..)
+      real(c_float), target :: AP(..)
       integer(c_long), value :: lda
       integer(c_long), value :: strideA
-      real(c_float), target :: x(*)
+      real(c_float), target :: x(..)
       integer(c_long), value :: incx
       integer(c_long), value :: stridex
-      real(c_float), target :: beta(*)
-      real(c_float), target :: y(*)
+      real(c_float), target :: beta(..)
+      real(c_float), target :: y(..)
       integer(c_long), value :: incy
       integer(c_long), value :: stridey
       integer(c_long), value :: batchCount
       integer(c_int) :: SgbmvStridedBatched_64
       SgbmvStridedBatched_64 = hipblasSgbmvStridedBatched_64_raw(handle, trans, m, n, kl, ku, &
-        c_loc(alpha(1)), c_loc(AP(1)), lda, strideA, c_loc(x(1)), incx, stridex, c_loc(beta(1)), &
-        c_loc(y(1)), incy, stridey, batchCount)
+        c_loc(alpha), c_loc(AP), lda, strideA, c_loc(x), incx, stridex, c_loc(beta), c_loc(y), &
+        incy, stridey, batchCount)
     end function hipblasSgbmvStridedBatched_64_native
 
     function hipblasSgbmvStridedBatched_64_typed(handle, trans, m, n, kl, ku, alpha, AP, lda, &
@@ -56719,22 +56677,22 @@ contains
       integer(c_long), value :: n
       integer(c_long), value :: kl
       integer(c_long), value :: ku
-      real(c_double), target :: alpha(*)
-      real(c_double), target :: AP(*)
+      real(c_double), target :: alpha(..)
+      real(c_double), target :: AP(..)
       integer(c_long), value :: lda
       integer(c_long), value :: strideA
-      real(c_double), target :: x(*)
+      real(c_double), target :: x(..)
       integer(c_long), value :: incx
       integer(c_long), value :: stridex
-      real(c_double), target :: beta(*)
-      real(c_double), target :: y(*)
+      real(c_double), target :: beta(..)
+      real(c_double), target :: y(..)
       integer(c_long), value :: incy
       integer(c_long), value :: stridey
       integer(c_long), value :: batchCount
       integer(c_int) :: DgbmvStridedBatched_64
       DgbmvStridedBatched_64 = hipblasDgbmvStridedBatched_64_raw(handle, trans, m, n, kl, ku, &
-        c_loc(alpha(1)), c_loc(AP(1)), lda, strideA, c_loc(x(1)), incx, stridex, c_loc(beta(1)), &
-        c_loc(y(1)), incy, stridey, batchCount)
+        c_loc(alpha), c_loc(AP), lda, strideA, c_loc(x), incx, stridex, c_loc(beta), c_loc(y), &
+        incy, stridey, batchCount)
     end function hipblasDgbmvStridedBatched_64_native
 
     function hipblasDgbmvStridedBatched_64_typed(handle, trans, m, n, kl, ku, alpha, AP, lda, &
@@ -56777,22 +56735,22 @@ contains
       integer(c_long), value :: n
       integer(c_long), value :: kl
       integer(c_long), value :: ku
-      complex(c_float_complex), target :: alpha(*)
-      complex(c_float_complex), target :: AP(*)
+      complex(c_float_complex), target :: alpha(..)
+      complex(c_float_complex), target :: AP(..)
       integer(c_long), value :: lda
       integer(c_long), value :: strideA
-      complex(c_float_complex), target :: x(*)
+      complex(c_float_complex), target :: x(..)
       integer(c_long), value :: incx
       integer(c_long), value :: stridex
-      complex(c_float_complex), target :: beta(*)
-      complex(c_float_complex), target :: y(*)
+      complex(c_float_complex), target :: beta(..)
+      complex(c_float_complex), target :: y(..)
       integer(c_long), value :: incy
       integer(c_long), value :: stridey
       integer(c_long), value :: batchCount
       integer(c_int) :: CgbmvStridedBatched_64
       CgbmvStridedBatched_64 = hipblasCgbmvStridedBatched_64_raw(handle, trans, m, n, kl, ku, &
-        c_loc(alpha(1)), c_loc(AP(1)), lda, strideA, c_loc(x(1)), incx, stridex, c_loc(beta(1)), &
-        c_loc(y(1)), incy, stridey, batchCount)
+        c_loc(alpha), c_loc(AP), lda, strideA, c_loc(x), incx, stridex, c_loc(beta), c_loc(y), &
+        incy, stridey, batchCount)
     end function hipblasCgbmvStridedBatched_64_native
 
     function hipblasCgbmvStridedBatched_64_typed(handle, trans, m, n, kl, ku, alpha, AP, lda, &
@@ -56835,22 +56793,22 @@ contains
       integer(c_long), value :: n
       integer(c_long), value :: kl
       integer(c_long), value :: ku
-      complex(c_double_complex), target :: alpha(*)
-      complex(c_double_complex), target :: AP(*)
+      complex(c_double_complex), target :: alpha(..)
+      complex(c_double_complex), target :: AP(..)
       integer(c_long), value :: lda
       integer(c_long), value :: strideA
-      complex(c_double_complex), target :: x(*)
+      complex(c_double_complex), target :: x(..)
       integer(c_long), value :: incx
       integer(c_long), value :: stridex
-      complex(c_double_complex), target :: beta(*)
-      complex(c_double_complex), target :: y(*)
+      complex(c_double_complex), target :: beta(..)
+      complex(c_double_complex), target :: y(..)
       integer(c_long), value :: incy
       integer(c_long), value :: stridey
       integer(c_long), value :: batchCount
       integer(c_int) :: ZgbmvStridedBatched_64
       ZgbmvStridedBatched_64 = hipblasZgbmvStridedBatched_64_raw(handle, trans, m, n, kl, ku, &
-        c_loc(alpha(1)), c_loc(AP(1)), lda, strideA, c_loc(x(1)), incx, stridex, c_loc(beta(1)), &
-        c_loc(y(1)), incy, stridey, batchCount)
+        c_loc(alpha), c_loc(AP), lda, strideA, c_loc(x), incx, stridex, c_loc(beta), c_loc(y), &
+        incy, stridey, batchCount)
     end function hipblasZgbmvStridedBatched_64_native
 
     function hipblasZgbmvStridedBatched_64_typed(handle, trans, m, n, kl, ku, alpha, AP, lda, &
@@ -56891,16 +56849,16 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       real(c_float) :: alpha
-      real(c_float), target :: AP(*)
+      real(c_float), target :: AP(..)
       integer(c_int), value :: lda
-      real(c_float), target :: x(*)
+      real(c_float), target :: x(..)
       integer(c_int), value :: incx
       real(c_float) :: beta
-      real(c_float), target :: y(*)
+      real(c_float), target :: y(..)
       integer(c_int), value :: incy
       integer(c_int) :: Sgemv
-      Sgemv = hipblasSgemv_raw(handle, trans, m, n, alpha, c_loc(AP(1)), lda, c_loc(x(1)), incx, &
-        beta, c_loc(y(1)), incy)
+      Sgemv = hipblasSgemv_raw(handle, trans, m, n, alpha, c_loc(AP), lda, c_loc(x), incx, beta, &
+        c_loc(y), incy)
     end function hipblasSgemv_native
 
     function hipblasSgemv_typed(handle, trans, m, n, alpha, AP, lda, x, incx, beta, y, &
@@ -56933,16 +56891,16 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       real(c_double) :: alpha
-      real(c_double), target :: AP(*)
+      real(c_double), target :: AP(..)
       integer(c_int), value :: lda
-      real(c_double), target :: x(*)
+      real(c_double), target :: x(..)
       integer(c_int), value :: incx
       real(c_double) :: beta
-      real(c_double), target :: y(*)
+      real(c_double), target :: y(..)
       integer(c_int), value :: incy
       integer(c_int) :: Dgemv
-      Dgemv = hipblasDgemv_raw(handle, trans, m, n, alpha, c_loc(AP(1)), lda, c_loc(x(1)), incx, &
-        beta, c_loc(y(1)), incy)
+      Dgemv = hipblasDgemv_raw(handle, trans, m, n, alpha, c_loc(AP), lda, c_loc(x), incx, beta, &
+        c_loc(y), incy)
     end function hipblasDgemv_native
 
     function hipblasDgemv_typed(handle, trans, m, n, alpha, AP, lda, x, incx, beta, y, &
@@ -56975,16 +56933,16 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       complex(c_float_complex) :: alpha
-      complex(c_float_complex), target :: AP(*)
+      complex(c_float_complex), target :: AP(..)
       integer(c_int), value :: lda
-      complex(c_float_complex), target :: x(*)
+      complex(c_float_complex), target :: x(..)
       integer(c_int), value :: incx
       complex(c_float_complex) :: beta
-      complex(c_float_complex), target :: y(*)
+      complex(c_float_complex), target :: y(..)
       integer(c_int), value :: incy
       integer(c_int) :: Cgemv
-      Cgemv = hipblasCgemv_raw(handle, trans, m, n, alpha, c_loc(AP(1)), lda, c_loc(x(1)), incx, &
-        beta, c_loc(y(1)), incy)
+      Cgemv = hipblasCgemv_raw(handle, trans, m, n, alpha, c_loc(AP), lda, c_loc(x), incx, beta, &
+        c_loc(y), incy)
     end function hipblasCgemv_native
 
     function hipblasCgemv_typed(handle, trans, m, n, alpha, AP, lda, x, incx, beta, y, &
@@ -57017,16 +56975,16 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       complex(c_double_complex) :: alpha
-      complex(c_double_complex), target :: AP(*)
+      complex(c_double_complex), target :: AP(..)
       integer(c_int), value :: lda
-      complex(c_double_complex), target :: x(*)
+      complex(c_double_complex), target :: x(..)
       integer(c_int), value :: incx
       complex(c_double_complex) :: beta
-      complex(c_double_complex), target :: y(*)
+      complex(c_double_complex), target :: y(..)
       integer(c_int), value :: incy
       integer(c_int) :: Zgemv
-      Zgemv = hipblasZgemv_raw(handle, trans, m, n, alpha, c_loc(AP(1)), lda, c_loc(x(1)), incx, &
-        beta, c_loc(y(1)), incy)
+      Zgemv = hipblasZgemv_raw(handle, trans, m, n, alpha, c_loc(AP), lda, c_loc(x), incx, beta, &
+        c_loc(y), incy)
     end function hipblasZgemv_native
 
     function hipblasZgemv_typed(handle, trans, m, n, alpha, AP, lda, x, incx, beta, y, &
@@ -57058,17 +57016,17 @@ contains
       integer(c_int), value :: trans
       integer(c_long), value :: m
       integer(c_long), value :: n
-      real(c_float), target :: alpha(*)
-      real(c_float), target :: AP(*)
+      real(c_float), target :: alpha(..)
+      real(c_float), target :: AP(..)
       integer(c_long), value :: lda
-      real(c_float), target :: x(*)
+      real(c_float), target :: x(..)
       integer(c_long), value :: incx
-      real(c_float), target :: beta(*)
-      real(c_float), target :: y(*)
+      real(c_float), target :: beta(..)
+      real(c_float), target :: y(..)
       integer(c_long), value :: incy
       integer(c_int) :: Sgemv_64
-      Sgemv_64 = hipblasSgemv_64_raw(handle, trans, m, n, c_loc(alpha(1)), c_loc(AP(1)), lda, &
-        c_loc(x(1)), incx, c_loc(beta(1)), c_loc(y(1)), incy)
+      Sgemv_64 = hipblasSgemv_64_raw(handle, trans, m, n, c_loc(alpha), c_loc(AP), lda, c_loc(x), &
+        incx, c_loc(beta), c_loc(y), incy)
     end function hipblasSgemv_64_native
 
     function hipblasSgemv_64_typed(handle, trans, m, n, alpha, AP, lda, x, incx, beta, y, &
@@ -57101,17 +57059,17 @@ contains
       integer(c_int), value :: trans
       integer(c_long), value :: m
       integer(c_long), value :: n
-      real(c_double), target :: alpha(*)
-      real(c_double), target :: AP(*)
+      real(c_double), target :: alpha(..)
+      real(c_double), target :: AP(..)
       integer(c_long), value :: lda
-      real(c_double), target :: x(*)
+      real(c_double), target :: x(..)
       integer(c_long), value :: incx
-      real(c_double), target :: beta(*)
-      real(c_double), target :: y(*)
+      real(c_double), target :: beta(..)
+      real(c_double), target :: y(..)
       integer(c_long), value :: incy
       integer(c_int) :: Dgemv_64
-      Dgemv_64 = hipblasDgemv_64_raw(handle, trans, m, n, c_loc(alpha(1)), c_loc(AP(1)), lda, &
-        c_loc(x(1)), incx, c_loc(beta(1)), c_loc(y(1)), incy)
+      Dgemv_64 = hipblasDgemv_64_raw(handle, trans, m, n, c_loc(alpha), c_loc(AP), lda, c_loc(x), &
+        incx, c_loc(beta), c_loc(y), incy)
     end function hipblasDgemv_64_native
 
     function hipblasDgemv_64_typed(handle, trans, m, n, alpha, AP, lda, x, incx, beta, y, &
@@ -57144,17 +57102,17 @@ contains
       integer(c_int), value :: trans
       integer(c_long), value :: m
       integer(c_long), value :: n
-      complex(c_float_complex), target :: alpha(*)
-      complex(c_float_complex), target :: AP(*)
+      complex(c_float_complex), target :: alpha(..)
+      complex(c_float_complex), target :: AP(..)
       integer(c_long), value :: lda
-      complex(c_float_complex), target :: x(*)
+      complex(c_float_complex), target :: x(..)
       integer(c_long), value :: incx
-      complex(c_float_complex), target :: beta(*)
-      complex(c_float_complex), target :: y(*)
+      complex(c_float_complex), target :: beta(..)
+      complex(c_float_complex), target :: y(..)
       integer(c_long), value :: incy
       integer(c_int) :: Cgemv_64
-      Cgemv_64 = hipblasCgemv_64_raw(handle, trans, m, n, c_loc(alpha(1)), c_loc(AP(1)), lda, &
-        c_loc(x(1)), incx, c_loc(beta(1)), c_loc(y(1)), incy)
+      Cgemv_64 = hipblasCgemv_64_raw(handle, trans, m, n, c_loc(alpha), c_loc(AP), lda, c_loc(x), &
+        incx, c_loc(beta), c_loc(y), incy)
     end function hipblasCgemv_64_native
 
     function hipblasCgemv_64_typed(handle, trans, m, n, alpha, AP, lda, x, incx, beta, y, &
@@ -57187,17 +57145,17 @@ contains
       integer(c_int), value :: trans
       integer(c_long), value :: m
       integer(c_long), value :: n
-      complex(c_double_complex), target :: alpha(*)
-      complex(c_double_complex), target :: AP(*)
+      complex(c_double_complex), target :: alpha(..)
+      complex(c_double_complex), target :: AP(..)
       integer(c_long), value :: lda
-      complex(c_double_complex), target :: x(*)
+      complex(c_double_complex), target :: x(..)
       integer(c_long), value :: incx
-      complex(c_double_complex), target :: beta(*)
-      complex(c_double_complex), target :: y(*)
+      complex(c_double_complex), target :: beta(..)
+      complex(c_double_complex), target :: y(..)
       integer(c_long), value :: incy
       integer(c_int) :: Zgemv_64
-      Zgemv_64 = hipblasZgemv_64_raw(handle, trans, m, n, c_loc(alpha(1)), c_loc(AP(1)), lda, &
-        c_loc(x(1)), incx, c_loc(beta(1)), c_loc(y(1)), incy)
+      Zgemv_64 = hipblasZgemv_64_raw(handle, trans, m, n, c_loc(alpha), c_loc(AP), lda, c_loc(x), &
+        incx, c_loc(beta), c_loc(y), incy)
     end function hipblasZgemv_64_native
 
     function hipblasZgemv_64_typed(handle, trans, m, n, alpha, AP, lda, x, incx, beta, y, &
@@ -57322,18 +57280,18 @@ contains
       integer(c_int), value :: trans
       integer(c_long), value :: m
       integer(c_long), value :: n
-      real(c_float), target :: alpha(*)
+      real(c_float), target :: alpha(..)
       type(c_ptr), value :: AP
       integer(c_long), value :: lda
       type(c_ptr), value :: x
       integer(c_long), value :: incx
-      real(c_float), target :: beta(*)
+      real(c_float), target :: beta(..)
       type(c_ptr), value :: y
       integer(c_long), value :: incy
       integer(c_long), value :: batchCount
       integer(c_int) :: SgemvBatched_64
-      SgemvBatched_64 = hipblasSgemvBatched_64_raw(handle, trans, m, n, c_loc(alpha(1)), AP, lda, &
-        x, incx, c_loc(beta(1)), y, incy, batchCount)
+      SgemvBatched_64 = hipblasSgemvBatched_64_raw(handle, trans, m, n, c_loc(alpha), AP, lda, x, &
+        incx, c_loc(beta), y, incy, batchCount)
     end function hipblasSgemvBatched_64_native
 
     function hipblasSgemvBatched_64_typed(handle, trans, m, n, alpha, AP, lda, x, incx, beta, y, &
@@ -57367,18 +57325,18 @@ contains
       integer(c_int), value :: trans
       integer(c_long), value :: m
       integer(c_long), value :: n
-      real(c_double), target :: alpha(*)
+      real(c_double), target :: alpha(..)
       type(c_ptr), value :: AP
       integer(c_long), value :: lda
       type(c_ptr), value :: x
       integer(c_long), value :: incx
-      real(c_double), target :: beta(*)
+      real(c_double), target :: beta(..)
       type(c_ptr), value :: y
       integer(c_long), value :: incy
       integer(c_long), value :: batchCount
       integer(c_int) :: DgemvBatched_64
-      DgemvBatched_64 = hipblasDgemvBatched_64_raw(handle, trans, m, n, c_loc(alpha(1)), AP, lda, &
-        x, incx, c_loc(beta(1)), y, incy, batchCount)
+      DgemvBatched_64 = hipblasDgemvBatched_64_raw(handle, trans, m, n, c_loc(alpha), AP, lda, x, &
+        incx, c_loc(beta), y, incy, batchCount)
     end function hipblasDgemvBatched_64_native
 
     function hipblasDgemvBatched_64_typed(handle, trans, m, n, alpha, AP, lda, x, incx, beta, y, &
@@ -57412,18 +57370,18 @@ contains
       integer(c_int), value :: trans
       integer(c_long), value :: m
       integer(c_long), value :: n
-      complex(c_float_complex), target :: alpha(*)
+      complex(c_float_complex), target :: alpha(..)
       type(c_ptr), value :: AP
       integer(c_long), value :: lda
       type(c_ptr), value :: x
       integer(c_long), value :: incx
-      complex(c_float_complex), target :: beta(*)
+      complex(c_float_complex), target :: beta(..)
       type(c_ptr), value :: y
       integer(c_long), value :: incy
       integer(c_long), value :: batchCount
       integer(c_int) :: CgemvBatched_64
-      CgemvBatched_64 = hipblasCgemvBatched_64_raw(handle, trans, m, n, c_loc(alpha(1)), AP, lda, &
-        x, incx, c_loc(beta(1)), y, incy, batchCount)
+      CgemvBatched_64 = hipblasCgemvBatched_64_raw(handle, trans, m, n, c_loc(alpha), AP, lda, x, &
+        incx, c_loc(beta), y, incy, batchCount)
     end function hipblasCgemvBatched_64_native
 
     function hipblasCgemvBatched_64_typed(handle, trans, m, n, alpha, AP, lda, x, incx, beta, y, &
@@ -57457,18 +57415,18 @@ contains
       integer(c_int), value :: trans
       integer(c_long), value :: m
       integer(c_long), value :: n
-      complex(c_double_complex), target :: alpha(*)
+      complex(c_double_complex), target :: alpha(..)
       type(c_ptr), value :: AP
       integer(c_long), value :: lda
       type(c_ptr), value :: x
       integer(c_long), value :: incx
-      complex(c_double_complex), target :: beta(*)
+      complex(c_double_complex), target :: beta(..)
       type(c_ptr), value :: y
       integer(c_long), value :: incy
       integer(c_long), value :: batchCount
       integer(c_int) :: ZgemvBatched_64
-      ZgemvBatched_64 = hipblasZgemvBatched_64_raw(handle, trans, m, n, c_loc(alpha(1)), AP, lda, &
-        x, incx, c_loc(beta(1)), y, incy, batchCount)
+      ZgemvBatched_64 = hipblasZgemvBatched_64_raw(handle, trans, m, n, c_loc(alpha), AP, lda, x, &
+        incx, c_loc(beta), y, incy, batchCount)
     end function hipblasZgemvBatched_64_native
 
     function hipblasZgemvBatched_64_typed(handle, trans, m, n, alpha, AP, lda, x, incx, beta, y, &
@@ -57503,20 +57461,20 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       real(c_float) :: alpha
-      real(c_float), target :: AP(*)
+      real(c_float), target :: AP(..)
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
-      real(c_float), target :: x(*)
+      real(c_float), target :: x(..)
       integer(c_int), value :: incx
       integer(c_long), value :: stridex
       real(c_float) :: beta
-      real(c_float), target :: y(*)
+      real(c_float), target :: y(..)
       integer(c_int), value :: incy
       integer(c_long), value :: stridey
       integer(c_int), value :: batchCount
       integer(c_int) :: SgemvStridedBatched
-      SgemvStridedBatched = hipblasSgemvStridedBatched_raw(handle, transA, m, n, alpha, c_loc(AP( &
-        1)), lda, strideA, c_loc(x(1)), incx, stridex, beta, c_loc(y(1)), incy, stridey, batchCount)
+      SgemvStridedBatched = hipblasSgemvStridedBatched_raw(handle, transA, m, n, alpha, c_loc(AP), &
+        lda, strideA, c_loc(x), incx, stridex, beta, c_loc(y), incy, stridey, batchCount)
     end function hipblasSgemvStridedBatched_native
 
     function hipblasSgemvStridedBatched_typed(handle, transA, m, n, alpha, AP, lda, strideA, x, &
@@ -57554,20 +57512,20 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       real(c_double) :: alpha
-      real(c_double), target :: AP(*)
+      real(c_double), target :: AP(..)
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
-      real(c_double), target :: x(*)
+      real(c_double), target :: x(..)
       integer(c_int), value :: incx
       integer(c_long), value :: stridex
       real(c_double) :: beta
-      real(c_double), target :: y(*)
+      real(c_double), target :: y(..)
       integer(c_int), value :: incy
       integer(c_long), value :: stridey
       integer(c_int), value :: batchCount
       integer(c_int) :: DgemvStridedBatched
-      DgemvStridedBatched = hipblasDgemvStridedBatched_raw(handle, transA, m, n, alpha, c_loc(AP( &
-        1)), lda, strideA, c_loc(x(1)), incx, stridex, beta, c_loc(y(1)), incy, stridey, batchCount)
+      DgemvStridedBatched = hipblasDgemvStridedBatched_raw(handle, transA, m, n, alpha, c_loc(AP), &
+        lda, strideA, c_loc(x), incx, stridex, beta, c_loc(y), incy, stridey, batchCount)
     end function hipblasDgemvStridedBatched_native
 
     function hipblasDgemvStridedBatched_typed(handle, transA, m, n, alpha, AP, lda, strideA, x, &
@@ -57605,20 +57563,20 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       complex(c_float_complex) :: alpha
-      complex(c_float_complex), target :: AP(*)
+      complex(c_float_complex), target :: AP(..)
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
-      complex(c_float_complex), target :: x(*)
+      complex(c_float_complex), target :: x(..)
       integer(c_int), value :: incx
       integer(c_long), value :: stridex
       complex(c_float_complex) :: beta
-      complex(c_float_complex), target :: y(*)
+      complex(c_float_complex), target :: y(..)
       integer(c_int), value :: incy
       integer(c_long), value :: stridey
       integer(c_int), value :: batchCount
       integer(c_int) :: CgemvStridedBatched
-      CgemvStridedBatched = hipblasCgemvStridedBatched_raw(handle, transA, m, n, alpha, c_loc(AP( &
-        1)), lda, strideA, c_loc(x(1)), incx, stridex, beta, c_loc(y(1)), incy, stridey, batchCount)
+      CgemvStridedBatched = hipblasCgemvStridedBatched_raw(handle, transA, m, n, alpha, c_loc(AP), &
+        lda, strideA, c_loc(x), incx, stridex, beta, c_loc(y), incy, stridey, batchCount)
     end function hipblasCgemvStridedBatched_native
 
     function hipblasCgemvStridedBatched_typed(handle, transA, m, n, alpha, AP, lda, strideA, x, &
@@ -57656,20 +57614,20 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       complex(c_double_complex) :: alpha
-      complex(c_double_complex), target :: AP(*)
+      complex(c_double_complex), target :: AP(..)
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
-      complex(c_double_complex), target :: x(*)
+      complex(c_double_complex), target :: x(..)
       integer(c_int), value :: incx
       integer(c_long), value :: stridex
       complex(c_double_complex) :: beta
-      complex(c_double_complex), target :: y(*)
+      complex(c_double_complex), target :: y(..)
       integer(c_int), value :: incy
       integer(c_long), value :: stridey
       integer(c_int), value :: batchCount
       integer(c_int) :: ZgemvStridedBatched
-      ZgemvStridedBatched = hipblasZgemvStridedBatched_raw(handle, transA, m, n, alpha, c_loc(AP( &
-        1)), lda, strideA, c_loc(x(1)), incx, stridex, beta, c_loc(y(1)), incy, stridey, batchCount)
+      ZgemvStridedBatched = hipblasZgemvStridedBatched_raw(handle, transA, m, n, alpha, c_loc(AP), &
+        lda, strideA, c_loc(x), incx, stridex, beta, c_loc(y), incy, stridey, batchCount)
     end function hipblasZgemvStridedBatched_native
 
     function hipblasZgemvStridedBatched_typed(handle, transA, m, n, alpha, AP, lda, strideA, x, &
@@ -57706,22 +57664,22 @@ contains
       integer(c_int), value :: transA
       integer(c_long), value :: m
       integer(c_long), value :: n
-      real(c_float), target :: alpha(*)
-      real(c_float), target :: AP(*)
+      real(c_float), target :: alpha(..)
+      real(c_float), target :: AP(..)
       integer(c_long), value :: lda
       integer(c_long), value :: strideA
-      real(c_float), target :: x(*)
+      real(c_float), target :: x(..)
       integer(c_long), value :: incx
       integer(c_long), value :: stridex
-      real(c_float), target :: beta(*)
-      real(c_float), target :: y(*)
+      real(c_float), target :: beta(..)
+      real(c_float), target :: y(..)
       integer(c_long), value :: incy
       integer(c_long), value :: stridey
       integer(c_long), value :: batchCount
       integer(c_int) :: SgemvStridedBatched_64
       SgemvStridedBatched_64 = hipblasSgemvStridedBatched_64_raw(handle, transA, m, n, c_loc( &
-        alpha(1)), c_loc(AP(1)), lda, strideA, c_loc(x(1)), incx, stridex, c_loc(beta(1)), c_loc( &
-        y(1)), incy, stridey, batchCount)
+        alpha), c_loc(AP), lda, strideA, c_loc(x), incx, stridex, c_loc(beta), c_loc(y), incy, &
+        stridey, batchCount)
     end function hipblasSgemvStridedBatched_64_native
 
     function hipblasSgemvStridedBatched_64_typed(handle, transA, m, n, alpha, AP, lda, strideA, x, &
@@ -57758,22 +57716,22 @@ contains
       integer(c_int), value :: transA
       integer(c_long), value :: m
       integer(c_long), value :: n
-      real(c_double), target :: alpha(*)
-      real(c_double), target :: AP(*)
+      real(c_double), target :: alpha(..)
+      real(c_double), target :: AP(..)
       integer(c_long), value :: lda
       integer(c_long), value :: strideA
-      real(c_double), target :: x(*)
+      real(c_double), target :: x(..)
       integer(c_long), value :: incx
       integer(c_long), value :: stridex
-      real(c_double), target :: beta(*)
-      real(c_double), target :: y(*)
+      real(c_double), target :: beta(..)
+      real(c_double), target :: y(..)
       integer(c_long), value :: incy
       integer(c_long), value :: stridey
       integer(c_long), value :: batchCount
       integer(c_int) :: DgemvStridedBatched_64
       DgemvStridedBatched_64 = hipblasDgemvStridedBatched_64_raw(handle, transA, m, n, c_loc( &
-        alpha(1)), c_loc(AP(1)), lda, strideA, c_loc(x(1)), incx, stridex, c_loc(beta(1)), c_loc( &
-        y(1)), incy, stridey, batchCount)
+        alpha), c_loc(AP), lda, strideA, c_loc(x), incx, stridex, c_loc(beta), c_loc(y), incy, &
+        stridey, batchCount)
     end function hipblasDgemvStridedBatched_64_native
 
     function hipblasDgemvStridedBatched_64_typed(handle, transA, m, n, alpha, AP, lda, strideA, x, &
@@ -57810,22 +57768,22 @@ contains
       integer(c_int), value :: transA
       integer(c_long), value :: m
       integer(c_long), value :: n
-      complex(c_float_complex), target :: alpha(*)
-      complex(c_float_complex), target :: AP(*)
+      complex(c_float_complex), target :: alpha(..)
+      complex(c_float_complex), target :: AP(..)
       integer(c_long), value :: lda
       integer(c_long), value :: strideA
-      complex(c_float_complex), target :: x(*)
+      complex(c_float_complex), target :: x(..)
       integer(c_long), value :: incx
       integer(c_long), value :: stridex
-      complex(c_float_complex), target :: beta(*)
-      complex(c_float_complex), target :: y(*)
+      complex(c_float_complex), target :: beta(..)
+      complex(c_float_complex), target :: y(..)
       integer(c_long), value :: incy
       integer(c_long), value :: stridey
       integer(c_long), value :: batchCount
       integer(c_int) :: CgemvStridedBatched_64
       CgemvStridedBatched_64 = hipblasCgemvStridedBatched_64_raw(handle, transA, m, n, c_loc( &
-        alpha(1)), c_loc(AP(1)), lda, strideA, c_loc(x(1)), incx, stridex, c_loc(beta(1)), c_loc( &
-        y(1)), incy, stridey, batchCount)
+        alpha), c_loc(AP), lda, strideA, c_loc(x), incx, stridex, c_loc(beta), c_loc(y), incy, &
+        stridey, batchCount)
     end function hipblasCgemvStridedBatched_64_native
 
     function hipblasCgemvStridedBatched_64_typed(handle, transA, m, n, alpha, AP, lda, strideA, x, &
@@ -57862,22 +57820,22 @@ contains
       integer(c_int), value :: transA
       integer(c_long), value :: m
       integer(c_long), value :: n
-      complex(c_double_complex), target :: alpha(*)
-      complex(c_double_complex), target :: AP(*)
+      complex(c_double_complex), target :: alpha(..)
+      complex(c_double_complex), target :: AP(..)
       integer(c_long), value :: lda
       integer(c_long), value :: strideA
-      complex(c_double_complex), target :: x(*)
+      complex(c_double_complex), target :: x(..)
       integer(c_long), value :: incx
       integer(c_long), value :: stridex
-      complex(c_double_complex), target :: beta(*)
-      complex(c_double_complex), target :: y(*)
+      complex(c_double_complex), target :: beta(..)
+      complex(c_double_complex), target :: y(..)
       integer(c_long), value :: incy
       integer(c_long), value :: stridey
       integer(c_long), value :: batchCount
       integer(c_int) :: ZgemvStridedBatched_64
       ZgemvStridedBatched_64 = hipblasZgemvStridedBatched_64_raw(handle, transA, m, n, c_loc( &
-        alpha(1)), c_loc(AP(1)), lda, strideA, c_loc(x(1)), incx, stridex, c_loc(beta(1)), c_loc( &
-        y(1)), incy, stridey, batchCount)
+        alpha), c_loc(AP), lda, strideA, c_loc(x), incx, stridex, c_loc(beta), c_loc(y), incy, &
+        stridey, batchCount)
     end function hipblasZgemvStridedBatched_64_native
 
     function hipblasZgemvStridedBatched_64_typed(handle, transA, m, n, alpha, AP, lda, strideA, x, &
@@ -57913,15 +57871,14 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       real(c_float) :: alpha
-      real(c_float), target :: x(*)
+      real(c_float), target :: x(..)
       integer(c_int), value :: incx
-      real(c_float), target :: y(*)
+      real(c_float), target :: y(..)
       integer(c_int), value :: incy
-      real(c_float), target :: AP(*)
+      real(c_float), target :: AP(..)
       integer(c_int), value :: lda
       integer(c_int) :: Sger
-      Sger = hipblasSger_raw(handle, m, n, alpha, c_loc(x(1)), incx, c_loc(y(1)), incy, c_loc(AP( &
-        1)), lda)
+      Sger = hipblasSger_raw(handle, m, n, alpha, c_loc(x), incx, c_loc(y), incy, c_loc(AP), lda)
     end function hipblasSger_native
 
     function hipblasSger_typed(handle, m, n, alpha, x, incx, y, incy, AP, lda) result(Sger)
@@ -57949,15 +57906,14 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       real(c_double) :: alpha
-      real(c_double), target :: x(*)
+      real(c_double), target :: x(..)
       integer(c_int), value :: incx
-      real(c_double), target :: y(*)
+      real(c_double), target :: y(..)
       integer(c_int), value :: incy
-      real(c_double), target :: AP(*)
+      real(c_double), target :: AP(..)
       integer(c_int), value :: lda
       integer(c_int) :: Dger
-      Dger = hipblasDger_raw(handle, m, n, alpha, c_loc(x(1)), incx, c_loc(y(1)), incy, c_loc(AP( &
-        1)), lda)
+      Dger = hipblasDger_raw(handle, m, n, alpha, c_loc(x), incx, c_loc(y), incy, c_loc(AP), lda)
     end function hipblasDger_native
 
     function hipblasDger_typed(handle, m, n, alpha, x, incx, y, incy, AP, lda) result(Dger)
@@ -57985,15 +57941,14 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       complex(c_float_complex) :: alpha
-      complex(c_float_complex), target :: x(*)
+      complex(c_float_complex), target :: x(..)
       integer(c_int), value :: incx
-      complex(c_float_complex), target :: y(*)
+      complex(c_float_complex), target :: y(..)
       integer(c_int), value :: incy
-      complex(c_float_complex), target :: AP(*)
+      complex(c_float_complex), target :: AP(..)
       integer(c_int), value :: lda
       integer(c_int) :: Cgeru
-      Cgeru = hipblasCgeru_raw(handle, m, n, alpha, c_loc(x(1)), incx, c_loc(y(1)), incy, c_loc( &
-        AP(1)), lda)
+      Cgeru = hipblasCgeru_raw(handle, m, n, alpha, c_loc(x), incx, c_loc(y), incy, c_loc(AP), lda)
     end function hipblasCgeru_native
 
     function hipblasCgeru_typed(handle, m, n, alpha, x, incx, y, incy, AP, lda) result(Cgeru)
@@ -58021,15 +57976,14 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       complex(c_float_complex) :: alpha
-      complex(c_float_complex), target :: x(*)
+      complex(c_float_complex), target :: x(..)
       integer(c_int), value :: incx
-      complex(c_float_complex), target :: y(*)
+      complex(c_float_complex), target :: y(..)
       integer(c_int), value :: incy
-      complex(c_float_complex), target :: AP(*)
+      complex(c_float_complex), target :: AP(..)
       integer(c_int), value :: lda
       integer(c_int) :: Cgerc
-      Cgerc = hipblasCgerc_raw(handle, m, n, alpha, c_loc(x(1)), incx, c_loc(y(1)), incy, c_loc( &
-        AP(1)), lda)
+      Cgerc = hipblasCgerc_raw(handle, m, n, alpha, c_loc(x), incx, c_loc(y), incy, c_loc(AP), lda)
     end function hipblasCgerc_native
 
     function hipblasCgerc_typed(handle, m, n, alpha, x, incx, y, incy, AP, lda) result(Cgerc)
@@ -58057,15 +58011,14 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       complex(c_double_complex) :: alpha
-      complex(c_double_complex), target :: x(*)
+      complex(c_double_complex), target :: x(..)
       integer(c_int), value :: incx
-      complex(c_double_complex), target :: y(*)
+      complex(c_double_complex), target :: y(..)
       integer(c_int), value :: incy
-      complex(c_double_complex), target :: AP(*)
+      complex(c_double_complex), target :: AP(..)
       integer(c_int), value :: lda
       integer(c_int) :: Zgeru
-      Zgeru = hipblasZgeru_raw(handle, m, n, alpha, c_loc(x(1)), incx, c_loc(y(1)), incy, c_loc( &
-        AP(1)), lda)
+      Zgeru = hipblasZgeru_raw(handle, m, n, alpha, c_loc(x), incx, c_loc(y), incy, c_loc(AP), lda)
     end function hipblasZgeru_native
 
     function hipblasZgeru_typed(handle, m, n, alpha, x, incx, y, incy, AP, lda) result(Zgeru)
@@ -58093,15 +58046,14 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       complex(c_double_complex) :: alpha
-      complex(c_double_complex), target :: x(*)
+      complex(c_double_complex), target :: x(..)
       integer(c_int), value :: incx
-      complex(c_double_complex), target :: y(*)
+      complex(c_double_complex), target :: y(..)
       integer(c_int), value :: incy
-      complex(c_double_complex), target :: AP(*)
+      complex(c_double_complex), target :: AP(..)
       integer(c_int), value :: lda
       integer(c_int) :: Zgerc
-      Zgerc = hipblasZgerc_raw(handle, m, n, alpha, c_loc(x(1)), incx, c_loc(y(1)), incy, c_loc( &
-        AP(1)), lda)
+      Zgerc = hipblasZgerc_raw(handle, m, n, alpha, c_loc(x), incx, c_loc(y), incy, c_loc(AP), lda)
     end function hipblasZgerc_native
 
     function hipblasZgerc_typed(handle, m, n, alpha, x, incx, y, incy, AP, lda) result(Zgerc)
@@ -58128,16 +58080,16 @@ contains
       type(c_ptr), value :: handle
       integer(c_long), value :: m
       integer(c_long), value :: n
-      real(c_float), target :: alpha(*)
-      real(c_float), target :: x(*)
+      real(c_float), target :: alpha(..)
+      real(c_float), target :: x(..)
       integer(c_long), value :: incx
-      real(c_float), target :: y(*)
+      real(c_float), target :: y(..)
       integer(c_long), value :: incy
-      real(c_float), target :: AP(*)
+      real(c_float), target :: AP(..)
       integer(c_long), value :: lda
       integer(c_int) :: Sger_64
-      Sger_64 = hipblasSger_64_raw(handle, m, n, c_loc(alpha(1)), c_loc(x(1)), incx, c_loc(y(1)), &
-        incy, c_loc(AP(1)), lda)
+      Sger_64 = hipblasSger_64_raw(handle, m, n, c_loc(alpha), c_loc(x), incx, c_loc(y), incy, &
+        c_loc(AP), lda)
     end function hipblasSger_64_native
 
     function hipblasSger_64_typed(handle, m, n, alpha, x, incx, y, incy, AP, lda) result(Sger_64)
@@ -58164,16 +58116,16 @@ contains
       type(c_ptr), value :: handle
       integer(c_long), value :: m
       integer(c_long), value :: n
-      real(c_double), target :: alpha(*)
-      real(c_double), target :: x(*)
+      real(c_double), target :: alpha(..)
+      real(c_double), target :: x(..)
       integer(c_long), value :: incx
-      real(c_double), target :: y(*)
+      real(c_double), target :: y(..)
       integer(c_long), value :: incy
-      real(c_double), target :: AP(*)
+      real(c_double), target :: AP(..)
       integer(c_long), value :: lda
       integer(c_int) :: Dger_64
-      Dger_64 = hipblasDger_64_raw(handle, m, n, c_loc(alpha(1)), c_loc(x(1)), incx, c_loc(y(1)), &
-        incy, c_loc(AP(1)), lda)
+      Dger_64 = hipblasDger_64_raw(handle, m, n, c_loc(alpha), c_loc(x), incx, c_loc(y), incy, &
+        c_loc(AP), lda)
     end function hipblasDger_64_native
 
     function hipblasDger_64_typed(handle, m, n, alpha, x, incx, y, incy, AP, lda) result(Dger_64)
@@ -58200,16 +58152,16 @@ contains
       type(c_ptr), value :: handle
       integer(c_long), value :: m
       integer(c_long), value :: n
-      complex(c_float_complex), target :: alpha(*)
-      complex(c_float_complex), target :: x(*)
+      complex(c_float_complex), target :: alpha(..)
+      complex(c_float_complex), target :: x(..)
       integer(c_long), value :: incx
-      complex(c_float_complex), target :: y(*)
+      complex(c_float_complex), target :: y(..)
       integer(c_long), value :: incy
-      complex(c_float_complex), target :: AP(*)
+      complex(c_float_complex), target :: AP(..)
       integer(c_long), value :: lda
       integer(c_int) :: Cgeru_64
-      Cgeru_64 = hipblasCgeru_64_raw(handle, m, n, c_loc(alpha(1)), c_loc(x(1)), incx, c_loc(y( &
-        1)), incy, c_loc(AP(1)), lda)
+      Cgeru_64 = hipblasCgeru_64_raw(handle, m, n, c_loc(alpha), c_loc(x), incx, c_loc(y), incy, &
+        c_loc(AP), lda)
     end function hipblasCgeru_64_native
 
     function hipblasCgeru_64_typed(handle, m, n, alpha, x, incx, y, incy, AP, lda) result(Cgeru_64)
@@ -58236,16 +58188,16 @@ contains
       type(c_ptr), value :: handle
       integer(c_long), value :: m
       integer(c_long), value :: n
-      complex(c_float_complex), target :: alpha(*)
-      complex(c_float_complex), target :: x(*)
+      complex(c_float_complex), target :: alpha(..)
+      complex(c_float_complex), target :: x(..)
       integer(c_long), value :: incx
-      complex(c_float_complex), target :: y(*)
+      complex(c_float_complex), target :: y(..)
       integer(c_long), value :: incy
-      complex(c_float_complex), target :: AP(*)
+      complex(c_float_complex), target :: AP(..)
       integer(c_long), value :: lda
       integer(c_int) :: Cgerc_64
-      Cgerc_64 = hipblasCgerc_64_raw(handle, m, n, c_loc(alpha(1)), c_loc(x(1)), incx, c_loc(y( &
-        1)), incy, c_loc(AP(1)), lda)
+      Cgerc_64 = hipblasCgerc_64_raw(handle, m, n, c_loc(alpha), c_loc(x), incx, c_loc(y), incy, &
+        c_loc(AP), lda)
     end function hipblasCgerc_64_native
 
     function hipblasCgerc_64_typed(handle, m, n, alpha, x, incx, y, incy, AP, lda) result(Cgerc_64)
@@ -58272,16 +58224,16 @@ contains
       type(c_ptr), value :: handle
       integer(c_long), value :: m
       integer(c_long), value :: n
-      complex(c_double_complex), target :: alpha(*)
-      complex(c_double_complex), target :: x(*)
+      complex(c_double_complex), target :: alpha(..)
+      complex(c_double_complex), target :: x(..)
       integer(c_long), value :: incx
-      complex(c_double_complex), target :: y(*)
+      complex(c_double_complex), target :: y(..)
       integer(c_long), value :: incy
-      complex(c_double_complex), target :: AP(*)
+      complex(c_double_complex), target :: AP(..)
       integer(c_long), value :: lda
       integer(c_int) :: Zgeru_64
-      Zgeru_64 = hipblasZgeru_64_raw(handle, m, n, c_loc(alpha(1)), c_loc(x(1)), incx, c_loc(y( &
-        1)), incy, c_loc(AP(1)), lda)
+      Zgeru_64 = hipblasZgeru_64_raw(handle, m, n, c_loc(alpha), c_loc(x), incx, c_loc(y), incy, &
+        c_loc(AP), lda)
     end function hipblasZgeru_64_native
 
     function hipblasZgeru_64_typed(handle, m, n, alpha, x, incx, y, incy, AP, lda) result(Zgeru_64)
@@ -58308,16 +58260,16 @@ contains
       type(c_ptr), value :: handle
       integer(c_long), value :: m
       integer(c_long), value :: n
-      complex(c_double_complex), target :: alpha(*)
-      complex(c_double_complex), target :: x(*)
+      complex(c_double_complex), target :: alpha(..)
+      complex(c_double_complex), target :: x(..)
       integer(c_long), value :: incx
-      complex(c_double_complex), target :: y(*)
+      complex(c_double_complex), target :: y(..)
       integer(c_long), value :: incy
-      complex(c_double_complex), target :: AP(*)
+      complex(c_double_complex), target :: AP(..)
       integer(c_long), value :: lda
       integer(c_int) :: Zgerc_64
-      Zgerc_64 = hipblasZgerc_64_raw(handle, m, n, c_loc(alpha(1)), c_loc(x(1)), incx, c_loc(y( &
-        1)), incy, c_loc(AP(1)), lda)
+      Zgerc_64 = hipblasZgerc_64_raw(handle, m, n, c_loc(alpha), c_loc(x), incx, c_loc(y), incy, &
+        c_loc(AP), lda)
     end function hipblasZgerc_64_native
 
     function hipblasZgerc_64_typed(handle, m, n, alpha, x, incx, y, incy, AP, lda) result(Zgerc_64)
@@ -58471,7 +58423,7 @@ contains
       type(c_ptr), value :: handle
       integer(c_long), value :: m
       integer(c_long), value :: n
-      real(c_float), target :: alpha(*)
+      real(c_float), target :: alpha(..)
       type(c_ptr), value :: x
       integer(c_long), value :: incx
       type(c_ptr), value :: y
@@ -58480,8 +58432,8 @@ contains
       integer(c_long), value :: lda
       integer(c_long), value :: batchCount
       integer(c_int) :: SgerBatched_64
-      SgerBatched_64 = hipblasSgerBatched_64_raw(handle, m, n, c_loc(alpha(1)), x, incx, y, incy, &
-        AP, lda, batchCount)
+      SgerBatched_64 = hipblasSgerBatched_64_raw(handle, m, n, c_loc(alpha), x, incx, y, incy, AP, &
+        lda, batchCount)
     end function hipblasSgerBatched_64_native
 
     function hipblasSgerBatched_64_typed(handle, m, n, alpha, x, incx, y, incy, AP, lda, &
@@ -58512,7 +58464,7 @@ contains
       type(c_ptr), value :: handle
       integer(c_long), value :: m
       integer(c_long), value :: n
-      real(c_double), target :: alpha(*)
+      real(c_double), target :: alpha(..)
       type(c_ptr), value :: x
       integer(c_long), value :: incx
       type(c_ptr), value :: y
@@ -58521,8 +58473,8 @@ contains
       integer(c_long), value :: lda
       integer(c_long), value :: batchCount
       integer(c_int) :: DgerBatched_64
-      DgerBatched_64 = hipblasDgerBatched_64_raw(handle, m, n, c_loc(alpha(1)), x, incx, y, incy, &
-        AP, lda, batchCount)
+      DgerBatched_64 = hipblasDgerBatched_64_raw(handle, m, n, c_loc(alpha), x, incx, y, incy, AP, &
+        lda, batchCount)
     end function hipblasDgerBatched_64_native
 
     function hipblasDgerBatched_64_typed(handle, m, n, alpha, x, incx, y, incy, AP, lda, &
@@ -58553,7 +58505,7 @@ contains
       type(c_ptr), value :: handle
       integer(c_long), value :: m
       integer(c_long), value :: n
-      complex(c_float_complex), target :: alpha(*)
+      complex(c_float_complex), target :: alpha(..)
       type(c_ptr), value :: x
       integer(c_long), value :: incx
       type(c_ptr), value :: y
@@ -58562,8 +58514,8 @@ contains
       integer(c_long), value :: lda
       integer(c_long), value :: batchCount
       integer(c_int) :: CgeruBatched_64
-      CgeruBatched_64 = hipblasCgeruBatched_64_raw(handle, m, n, c_loc(alpha(1)), x, incx, y, &
-        incy, AP, lda, batchCount)
+      CgeruBatched_64 = hipblasCgeruBatched_64_raw(handle, m, n, c_loc(alpha), x, incx, y, incy, &
+        AP, lda, batchCount)
     end function hipblasCgeruBatched_64_native
 
     function hipblasCgeruBatched_64_typed(handle, m, n, alpha, x, incx, y, incy, AP, lda, &
@@ -58594,7 +58546,7 @@ contains
       type(c_ptr), value :: handle
       integer(c_long), value :: m
       integer(c_long), value :: n
-      complex(c_float_complex), target :: alpha(*)
+      complex(c_float_complex), target :: alpha(..)
       type(c_ptr), value :: x
       integer(c_long), value :: incx
       type(c_ptr), value :: y
@@ -58603,8 +58555,8 @@ contains
       integer(c_long), value :: lda
       integer(c_long), value :: batchCount
       integer(c_int) :: CgercBatched_64
-      CgercBatched_64 = hipblasCgercBatched_64_raw(handle, m, n, c_loc(alpha(1)), x, incx, y, &
-        incy, AP, lda, batchCount)
+      CgercBatched_64 = hipblasCgercBatched_64_raw(handle, m, n, c_loc(alpha), x, incx, y, incy, &
+        AP, lda, batchCount)
     end function hipblasCgercBatched_64_native
 
     function hipblasCgercBatched_64_typed(handle, m, n, alpha, x, incx, y, incy, AP, lda, &
@@ -58635,7 +58587,7 @@ contains
       type(c_ptr), value :: handle
       integer(c_long), value :: m
       integer(c_long), value :: n
-      complex(c_double_complex), target :: alpha(*)
+      complex(c_double_complex), target :: alpha(..)
       type(c_ptr), value :: x
       integer(c_long), value :: incx
       type(c_ptr), value :: y
@@ -58644,8 +58596,8 @@ contains
       integer(c_long), value :: lda
       integer(c_long), value :: batchCount
       integer(c_int) :: ZgeruBatched_64
-      ZgeruBatched_64 = hipblasZgeruBatched_64_raw(handle, m, n, c_loc(alpha(1)), x, incx, y, &
-        incy, AP, lda, batchCount)
+      ZgeruBatched_64 = hipblasZgeruBatched_64_raw(handle, m, n, c_loc(alpha), x, incx, y, incy, &
+        AP, lda, batchCount)
     end function hipblasZgeruBatched_64_native
 
     function hipblasZgeruBatched_64_typed(handle, m, n, alpha, x, incx, y, incy, AP, lda, &
@@ -58676,7 +58628,7 @@ contains
       type(c_ptr), value :: handle
       integer(c_long), value :: m
       integer(c_long), value :: n
-      complex(c_double_complex), target :: alpha(*)
+      complex(c_double_complex), target :: alpha(..)
       type(c_ptr), value :: x
       integer(c_long), value :: incx
       type(c_ptr), value :: y
@@ -58685,8 +58637,8 @@ contains
       integer(c_long), value :: lda
       integer(c_long), value :: batchCount
       integer(c_int) :: ZgercBatched_64
-      ZgercBatched_64 = hipblasZgercBatched_64_raw(handle, m, n, c_loc(alpha(1)), x, incx, y, &
-        incy, AP, lda, batchCount)
+      ZgercBatched_64 = hipblasZgercBatched_64_raw(handle, m, n, c_loc(alpha), x, incx, y, incy, &
+        AP, lda, batchCount)
     end function hipblasZgercBatched_64_native
 
     function hipblasZgercBatched_64_typed(handle, m, n, alpha, x, incx, y, incy, AP, lda, &
@@ -58718,19 +58670,19 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       real(c_float) :: alpha
-      real(c_float), target :: x(*)
+      real(c_float), target :: x(..)
       integer(c_int), value :: incx
       integer(c_long), value :: stridex
-      real(c_float), target :: y(*)
+      real(c_float), target :: y(..)
       integer(c_int), value :: incy
       integer(c_long), value :: stridey
-      real(c_float), target :: AP(*)
+      real(c_float), target :: AP(..)
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
       integer(c_int), value :: batchCount
       integer(c_int) :: SgerStridedBatched
-      SgerStridedBatched = hipblasSgerStridedBatched_raw(handle, m, n, alpha, c_loc(x(1)), incx, &
-        stridex, c_loc(y(1)), incy, stridey, c_loc(AP(1)), lda, strideA, batchCount)
+      SgerStridedBatched = hipblasSgerStridedBatched_raw(handle, m, n, alpha, c_loc(x), incx, &
+        stridex, c_loc(y), incy, stridey, c_loc(AP), lda, strideA, batchCount)
     end function hipblasSgerStridedBatched_native
 
     function hipblasSgerStridedBatched_typed(handle, m, n, alpha, x, incx, stridex, y, incy, &
@@ -58765,19 +58717,19 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       real(c_double) :: alpha
-      real(c_double), target :: x(*)
+      real(c_double), target :: x(..)
       integer(c_int), value :: incx
       integer(c_long), value :: stridex
-      real(c_double), target :: y(*)
+      real(c_double), target :: y(..)
       integer(c_int), value :: incy
       integer(c_long), value :: stridey
-      real(c_double), target :: AP(*)
+      real(c_double), target :: AP(..)
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
       integer(c_int), value :: batchCount
       integer(c_int) :: DgerStridedBatched
-      DgerStridedBatched = hipblasDgerStridedBatched_raw(handle, m, n, alpha, c_loc(x(1)), incx, &
-        stridex, c_loc(y(1)), incy, stridey, c_loc(AP(1)), lda, strideA, batchCount)
+      DgerStridedBatched = hipblasDgerStridedBatched_raw(handle, m, n, alpha, c_loc(x), incx, &
+        stridex, c_loc(y), incy, stridey, c_loc(AP), lda, strideA, batchCount)
     end function hipblasDgerStridedBatched_native
 
     function hipblasDgerStridedBatched_typed(handle, m, n, alpha, x, incx, stridex, y, incy, &
@@ -58812,19 +58764,19 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       complex(c_float_complex) :: alpha
-      complex(c_float_complex), target :: x(*)
+      complex(c_float_complex), target :: x(..)
       integer(c_int), value :: incx
       integer(c_long), value :: stridex
-      complex(c_float_complex), target :: y(*)
+      complex(c_float_complex), target :: y(..)
       integer(c_int), value :: incy
       integer(c_long), value :: stridey
-      complex(c_float_complex), target :: AP(*)
+      complex(c_float_complex), target :: AP(..)
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
       integer(c_int), value :: batchCount
       integer(c_int) :: CgeruStridedBatched
-      CgeruStridedBatched = hipblasCgeruStridedBatched_raw(handle, m, n, alpha, c_loc(x(1)), incx, &
-        stridex, c_loc(y(1)), incy, stridey, c_loc(AP(1)), lda, strideA, batchCount)
+      CgeruStridedBatched = hipblasCgeruStridedBatched_raw(handle, m, n, alpha, c_loc(x), incx, &
+        stridex, c_loc(y), incy, stridey, c_loc(AP), lda, strideA, batchCount)
     end function hipblasCgeruStridedBatched_native
 
     function hipblasCgeruStridedBatched_typed(handle, m, n, alpha, x, incx, stridex, y, incy, &
@@ -58859,19 +58811,19 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       complex(c_float_complex) :: alpha
-      complex(c_float_complex), target :: x(*)
+      complex(c_float_complex), target :: x(..)
       integer(c_int), value :: incx
       integer(c_long), value :: stridex
-      complex(c_float_complex), target :: y(*)
+      complex(c_float_complex), target :: y(..)
       integer(c_int), value :: incy
       integer(c_long), value :: stridey
-      complex(c_float_complex), target :: AP(*)
+      complex(c_float_complex), target :: AP(..)
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
       integer(c_int), value :: batchCount
       integer(c_int) :: CgercStridedBatched
-      CgercStridedBatched = hipblasCgercStridedBatched_raw(handle, m, n, alpha, c_loc(x(1)), incx, &
-        stridex, c_loc(y(1)), incy, stridey, c_loc(AP(1)), lda, strideA, batchCount)
+      CgercStridedBatched = hipblasCgercStridedBatched_raw(handle, m, n, alpha, c_loc(x), incx, &
+        stridex, c_loc(y), incy, stridey, c_loc(AP), lda, strideA, batchCount)
     end function hipblasCgercStridedBatched_native
 
     function hipblasCgercStridedBatched_typed(handle, m, n, alpha, x, incx, stridex, y, incy, &
@@ -58906,19 +58858,19 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       complex(c_double_complex) :: alpha
-      complex(c_double_complex), target :: x(*)
+      complex(c_double_complex), target :: x(..)
       integer(c_int), value :: incx
       integer(c_long), value :: stridex
-      complex(c_double_complex), target :: y(*)
+      complex(c_double_complex), target :: y(..)
       integer(c_int), value :: incy
       integer(c_long), value :: stridey
-      complex(c_double_complex), target :: AP(*)
+      complex(c_double_complex), target :: AP(..)
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
       integer(c_int), value :: batchCount
       integer(c_int) :: ZgeruStridedBatched
-      ZgeruStridedBatched = hipblasZgeruStridedBatched_raw(handle, m, n, alpha, c_loc(x(1)), incx, &
-        stridex, c_loc(y(1)), incy, stridey, c_loc(AP(1)), lda, strideA, batchCount)
+      ZgeruStridedBatched = hipblasZgeruStridedBatched_raw(handle, m, n, alpha, c_loc(x), incx, &
+        stridex, c_loc(y), incy, stridey, c_loc(AP), lda, strideA, batchCount)
     end function hipblasZgeruStridedBatched_native
 
     function hipblasZgeruStridedBatched_typed(handle, m, n, alpha, x, incx, stridex, y, incy, &
@@ -58953,19 +58905,19 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       complex(c_double_complex) :: alpha
-      complex(c_double_complex), target :: x(*)
+      complex(c_double_complex), target :: x(..)
       integer(c_int), value :: incx
       integer(c_long), value :: stridex
-      complex(c_double_complex), target :: y(*)
+      complex(c_double_complex), target :: y(..)
       integer(c_int), value :: incy
       integer(c_long), value :: stridey
-      complex(c_double_complex), target :: AP(*)
+      complex(c_double_complex), target :: AP(..)
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
       integer(c_int), value :: batchCount
       integer(c_int) :: ZgercStridedBatched
-      ZgercStridedBatched = hipblasZgercStridedBatched_raw(handle, m, n, alpha, c_loc(x(1)), incx, &
-        stridex, c_loc(y(1)), incy, stridey, c_loc(AP(1)), lda, strideA, batchCount)
+      ZgercStridedBatched = hipblasZgercStridedBatched_raw(handle, m, n, alpha, c_loc(x), incx, &
+        stridex, c_loc(y), incy, stridey, c_loc(AP), lda, strideA, batchCount)
     end function hipblasZgercStridedBatched_native
 
     function hipblasZgercStridedBatched_typed(handle, m, n, alpha, x, incx, stridex, y, incy, &
@@ -58999,21 +58951,20 @@ contains
       type(c_ptr), value :: handle
       integer(c_long), value :: m
       integer(c_long), value :: n
-      real(c_float), target :: alpha(*)
-      real(c_float), target :: x(*)
+      real(c_float), target :: alpha(..)
+      real(c_float), target :: x(..)
       integer(c_long), value :: incx
       integer(c_long), value :: stridex
-      real(c_float), target :: y(*)
+      real(c_float), target :: y(..)
       integer(c_long), value :: incy
       integer(c_long), value :: stridey
-      real(c_float), target :: AP(*)
+      real(c_float), target :: AP(..)
       integer(c_long), value :: lda
       integer(c_long), value :: strideA
       integer(c_long), value :: batchCount
       integer(c_int) :: SgerStridedBatched_64
-      SgerStridedBatched_64 = hipblasSgerStridedBatched_64_raw(handle, m, n, c_loc(alpha(1)), &
-        c_loc(x(1)), incx, stridex, c_loc(y(1)), incy, stridey, c_loc(AP(1)), lda, strideA, &
-        batchCount)
+      SgerStridedBatched_64 = hipblasSgerStridedBatched_64_raw(handle, m, n, c_loc(alpha), c_loc( &
+        x), incx, stridex, c_loc(y), incy, stridey, c_loc(AP), lda, strideA, batchCount)
     end function hipblasSgerStridedBatched_64_native
 
     function hipblasSgerStridedBatched_64_typed(handle, m, n, alpha, x, incx, stridex, y, incy, &
@@ -59047,21 +58998,20 @@ contains
       type(c_ptr), value :: handle
       integer(c_long), value :: m
       integer(c_long), value :: n
-      real(c_double), target :: alpha(*)
-      real(c_double), target :: x(*)
+      real(c_double), target :: alpha(..)
+      real(c_double), target :: x(..)
       integer(c_long), value :: incx
       integer(c_long), value :: stridex
-      real(c_double), target :: y(*)
+      real(c_double), target :: y(..)
       integer(c_long), value :: incy
       integer(c_long), value :: stridey
-      real(c_double), target :: AP(*)
+      real(c_double), target :: AP(..)
       integer(c_long), value :: lda
       integer(c_long), value :: strideA
       integer(c_long), value :: batchCount
       integer(c_int) :: DgerStridedBatched_64
-      DgerStridedBatched_64 = hipblasDgerStridedBatched_64_raw(handle, m, n, c_loc(alpha(1)), &
-        c_loc(x(1)), incx, stridex, c_loc(y(1)), incy, stridey, c_loc(AP(1)), lda, strideA, &
-        batchCount)
+      DgerStridedBatched_64 = hipblasDgerStridedBatched_64_raw(handle, m, n, c_loc(alpha), c_loc( &
+        x), incx, stridex, c_loc(y), incy, stridey, c_loc(AP), lda, strideA, batchCount)
     end function hipblasDgerStridedBatched_64_native
 
     function hipblasDgerStridedBatched_64_typed(handle, m, n, alpha, x, incx, stridex, y, incy, &
@@ -59095,21 +59045,20 @@ contains
       type(c_ptr), value :: handle
       integer(c_long), value :: m
       integer(c_long), value :: n
-      complex(c_float_complex), target :: alpha(*)
-      complex(c_float_complex), target :: x(*)
+      complex(c_float_complex), target :: alpha(..)
+      complex(c_float_complex), target :: x(..)
       integer(c_long), value :: incx
       integer(c_long), value :: stridex
-      complex(c_float_complex), target :: y(*)
+      complex(c_float_complex), target :: y(..)
       integer(c_long), value :: incy
       integer(c_long), value :: stridey
-      complex(c_float_complex), target :: AP(*)
+      complex(c_float_complex), target :: AP(..)
       integer(c_long), value :: lda
       integer(c_long), value :: strideA
       integer(c_long), value :: batchCount
       integer(c_int) :: CgeruStridedBatched_64
-      CgeruStridedBatched_64 = hipblasCgeruStridedBatched_64_raw(handle, m, n, c_loc(alpha(1)), &
-        c_loc(x(1)), incx, stridex, c_loc(y(1)), incy, stridey, c_loc(AP(1)), lda, strideA, &
-        batchCount)
+      CgeruStridedBatched_64 = hipblasCgeruStridedBatched_64_raw(handle, m, n, c_loc(alpha), &
+        c_loc(x), incx, stridex, c_loc(y), incy, stridey, c_loc(AP), lda, strideA, batchCount)
     end function hipblasCgeruStridedBatched_64_native
 
     function hipblasCgeruStridedBatched_64_typed(handle, m, n, alpha, x, incx, stridex, y, incy, &
@@ -59143,21 +59092,20 @@ contains
       type(c_ptr), value :: handle
       integer(c_long), value :: m
       integer(c_long), value :: n
-      complex(c_float_complex), target :: alpha(*)
-      complex(c_float_complex), target :: x(*)
+      complex(c_float_complex), target :: alpha(..)
+      complex(c_float_complex), target :: x(..)
       integer(c_long), value :: incx
       integer(c_long), value :: stridex
-      complex(c_float_complex), target :: y(*)
+      complex(c_float_complex), target :: y(..)
       integer(c_long), value :: incy
       integer(c_long), value :: stridey
-      complex(c_float_complex), target :: AP(*)
+      complex(c_float_complex), target :: AP(..)
       integer(c_long), value :: lda
       integer(c_long), value :: strideA
       integer(c_long), value :: batchCount
       integer(c_int) :: CgercStridedBatched_64
-      CgercStridedBatched_64 = hipblasCgercStridedBatched_64_raw(handle, m, n, c_loc(alpha(1)), &
-        c_loc(x(1)), incx, stridex, c_loc(y(1)), incy, stridey, c_loc(AP(1)), lda, strideA, &
-        batchCount)
+      CgercStridedBatched_64 = hipblasCgercStridedBatched_64_raw(handle, m, n, c_loc(alpha), &
+        c_loc(x), incx, stridex, c_loc(y), incy, stridey, c_loc(AP), lda, strideA, batchCount)
     end function hipblasCgercStridedBatched_64_native
 
     function hipblasCgercStridedBatched_64_typed(handle, m, n, alpha, x, incx, stridex, y, incy, &
@@ -59191,21 +59139,20 @@ contains
       type(c_ptr), value :: handle
       integer(c_long), value :: m
       integer(c_long), value :: n
-      complex(c_double_complex), target :: alpha(*)
-      complex(c_double_complex), target :: x(*)
+      complex(c_double_complex), target :: alpha(..)
+      complex(c_double_complex), target :: x(..)
       integer(c_long), value :: incx
       integer(c_long), value :: stridex
-      complex(c_double_complex), target :: y(*)
+      complex(c_double_complex), target :: y(..)
       integer(c_long), value :: incy
       integer(c_long), value :: stridey
-      complex(c_double_complex), target :: AP(*)
+      complex(c_double_complex), target :: AP(..)
       integer(c_long), value :: lda
       integer(c_long), value :: strideA
       integer(c_long), value :: batchCount
       integer(c_int) :: ZgeruStridedBatched_64
-      ZgeruStridedBatched_64 = hipblasZgeruStridedBatched_64_raw(handle, m, n, c_loc(alpha(1)), &
-        c_loc(x(1)), incx, stridex, c_loc(y(1)), incy, stridey, c_loc(AP(1)), lda, strideA, &
-        batchCount)
+      ZgeruStridedBatched_64 = hipblasZgeruStridedBatched_64_raw(handle, m, n, c_loc(alpha), &
+        c_loc(x), incx, stridex, c_loc(y), incy, stridey, c_loc(AP), lda, strideA, batchCount)
     end function hipblasZgeruStridedBatched_64_native
 
     function hipblasZgeruStridedBatched_64_typed(handle, m, n, alpha, x, incx, stridex, y, incy, &
@@ -59239,21 +59186,20 @@ contains
       type(c_ptr), value :: handle
       integer(c_long), value :: m
       integer(c_long), value :: n
-      complex(c_double_complex), target :: alpha(*)
-      complex(c_double_complex), target :: x(*)
+      complex(c_double_complex), target :: alpha(..)
+      complex(c_double_complex), target :: x(..)
       integer(c_long), value :: incx
       integer(c_long), value :: stridex
-      complex(c_double_complex), target :: y(*)
+      complex(c_double_complex), target :: y(..)
       integer(c_long), value :: incy
       integer(c_long), value :: stridey
-      complex(c_double_complex), target :: AP(*)
+      complex(c_double_complex), target :: AP(..)
       integer(c_long), value :: lda
       integer(c_long), value :: strideA
       integer(c_long), value :: batchCount
       integer(c_int) :: ZgercStridedBatched_64
-      ZgercStridedBatched_64 = hipblasZgercStridedBatched_64_raw(handle, m, n, c_loc(alpha(1)), &
-        c_loc(x(1)), incx, stridex, c_loc(y(1)), incy, stridey, c_loc(AP(1)), lda, strideA, &
-        batchCount)
+      ZgercStridedBatched_64 = hipblasZgercStridedBatched_64_raw(handle, m, n, c_loc(alpha), &
+        c_loc(x), incx, stridex, c_loc(y), incy, stridey, c_loc(AP), lda, strideA, batchCount)
     end function hipblasZgercStridedBatched_64_native
 
     function hipblasZgercStridedBatched_64_typed(handle, m, n, alpha, x, incx, stridex, y, incy, &
@@ -59289,16 +59235,16 @@ contains
       integer(c_int), value :: n
       integer(c_int), value :: k
       complex(c_float_complex) :: alpha
-      complex(c_float_complex), target :: AP(*)
+      complex(c_float_complex), target :: AP(..)
       integer(c_int), value :: lda
-      complex(c_float_complex), target :: x(*)
+      complex(c_float_complex), target :: x(..)
       integer(c_int), value :: incx
       complex(c_float_complex) :: beta
-      complex(c_float_complex), target :: y(*)
+      complex(c_float_complex), target :: y(..)
       integer(c_int), value :: incy
       integer(c_int) :: Chbmv
-      Chbmv = hipblasChbmv_raw(handle, uplo, n, k, alpha, c_loc(AP(1)), lda, c_loc(x(1)), incx, &
-        beta, c_loc(y(1)), incy)
+      Chbmv = hipblasChbmv_raw(handle, uplo, n, k, alpha, c_loc(AP), lda, c_loc(x), incx, beta, &
+        c_loc(y), incy)
     end function hipblasChbmv_native
 
     function hipblasChbmv_typed(handle, uplo, n, k, alpha, AP, lda, x, incx, beta, y, &
@@ -59331,16 +59277,16 @@ contains
       integer(c_int), value :: n
       integer(c_int), value :: k
       complex(c_double_complex) :: alpha
-      complex(c_double_complex), target :: AP(*)
+      complex(c_double_complex), target :: AP(..)
       integer(c_int), value :: lda
-      complex(c_double_complex), target :: x(*)
+      complex(c_double_complex), target :: x(..)
       integer(c_int), value :: incx
       complex(c_double_complex) :: beta
-      complex(c_double_complex), target :: y(*)
+      complex(c_double_complex), target :: y(..)
       integer(c_int), value :: incy
       integer(c_int) :: Zhbmv
-      Zhbmv = hipblasZhbmv_raw(handle, uplo, n, k, alpha, c_loc(AP(1)), lda, c_loc(x(1)), incx, &
-        beta, c_loc(y(1)), incy)
+      Zhbmv = hipblasZhbmv_raw(handle, uplo, n, k, alpha, c_loc(AP), lda, c_loc(x), incx, beta, &
+        c_loc(y), incy)
     end function hipblasZhbmv_native
 
     function hipblasZhbmv_typed(handle, uplo, n, k, alpha, AP, lda, x, incx, beta, y, &
@@ -59372,17 +59318,17 @@ contains
       integer(c_int), value :: uplo
       integer(c_long), value :: n
       integer(c_long), value :: k
-      complex(c_float_complex), target :: alpha(*)
-      complex(c_float_complex), target :: AP(*)
+      complex(c_float_complex), target :: alpha(..)
+      complex(c_float_complex), target :: AP(..)
       integer(c_long), value :: lda
-      complex(c_float_complex), target :: x(*)
+      complex(c_float_complex), target :: x(..)
       integer(c_long), value :: incx
-      complex(c_float_complex), target :: beta(*)
-      complex(c_float_complex), target :: y(*)
+      complex(c_float_complex), target :: beta(..)
+      complex(c_float_complex), target :: y(..)
       integer(c_long), value :: incy
       integer(c_int) :: Chbmv_64
-      Chbmv_64 = hipblasChbmv_64_raw(handle, uplo, n, k, c_loc(alpha(1)), c_loc(AP(1)), lda, &
-        c_loc(x(1)), incx, c_loc(beta(1)), c_loc(y(1)), incy)
+      Chbmv_64 = hipblasChbmv_64_raw(handle, uplo, n, k, c_loc(alpha), c_loc(AP), lda, c_loc(x), &
+        incx, c_loc(beta), c_loc(y), incy)
     end function hipblasChbmv_64_native
 
     function hipblasChbmv_64_typed(handle, uplo, n, k, alpha, AP, lda, x, incx, beta, y, &
@@ -59414,17 +59360,17 @@ contains
       integer(c_int), value :: uplo
       integer(c_long), value :: n
       integer(c_long), value :: k
-      complex(c_double_complex), target :: alpha(*)
-      complex(c_double_complex), target :: AP(*)
+      complex(c_double_complex), target :: alpha(..)
+      complex(c_double_complex), target :: AP(..)
       integer(c_long), value :: lda
-      complex(c_double_complex), target :: x(*)
+      complex(c_double_complex), target :: x(..)
       integer(c_long), value :: incx
-      complex(c_double_complex), target :: beta(*)
-      complex(c_double_complex), target :: y(*)
+      complex(c_double_complex), target :: beta(..)
+      complex(c_double_complex), target :: y(..)
       integer(c_long), value :: incy
       integer(c_int) :: Zhbmv_64
-      Zhbmv_64 = hipblasZhbmv_64_raw(handle, uplo, n, k, c_loc(alpha(1)), c_loc(AP(1)), lda, &
-        c_loc(x(1)), incx, c_loc(beta(1)), c_loc(y(1)), incy)
+      Zhbmv_64 = hipblasZhbmv_64_raw(handle, uplo, n, k, c_loc(alpha), c_loc(AP), lda, c_loc(x), &
+        incx, c_loc(beta), c_loc(y), incy)
     end function hipblasZhbmv_64_native
 
     function hipblasZhbmv_64_typed(handle, uplo, n, k, alpha, AP, lda, x, incx, beta, y, &
@@ -59502,18 +59448,18 @@ contains
       integer(c_int), value :: uplo
       integer(c_long), value :: n
       integer(c_long), value :: k
-      complex(c_float_complex), target :: alpha(*)
+      complex(c_float_complex), target :: alpha(..)
       type(c_ptr), value :: AP
       integer(c_long), value :: lda
       type(c_ptr), value :: x
       integer(c_long), value :: incx
-      complex(c_float_complex), target :: beta(*)
+      complex(c_float_complex), target :: beta(..)
       type(c_ptr), value :: y
       integer(c_long), value :: incy
       integer(c_long), value :: batchCount
       integer(c_int) :: ChbmvBatched_64
-      ChbmvBatched_64 = hipblasChbmvBatched_64_raw(handle, uplo, n, k, c_loc(alpha(1)), AP, lda, &
-        x, incx, c_loc(beta(1)), y, incy, batchCount)
+      ChbmvBatched_64 = hipblasChbmvBatched_64_raw(handle, uplo, n, k, c_loc(alpha), AP, lda, x, &
+        incx, c_loc(beta), y, incy, batchCount)
     end function hipblasChbmvBatched_64_native
 
     function hipblasChbmvBatched_64_typed(handle, uplo, n, k, alpha, AP, lda, x, incx, beta, y, &
@@ -59547,18 +59493,18 @@ contains
       integer(c_int), value :: uplo
       integer(c_long), value :: n
       integer(c_long), value :: k
-      complex(c_double_complex), target :: alpha(*)
+      complex(c_double_complex), target :: alpha(..)
       type(c_ptr), value :: AP
       integer(c_long), value :: lda
       type(c_ptr), value :: x
       integer(c_long), value :: incx
-      complex(c_double_complex), target :: beta(*)
+      complex(c_double_complex), target :: beta(..)
       type(c_ptr), value :: y
       integer(c_long), value :: incy
       integer(c_long), value :: batchCount
       integer(c_int) :: ZhbmvBatched_64
-      ZhbmvBatched_64 = hipblasZhbmvBatched_64_raw(handle, uplo, n, k, c_loc(alpha(1)), AP, lda, &
-        x, incx, c_loc(beta(1)), y, incy, batchCount)
+      ZhbmvBatched_64 = hipblasZhbmvBatched_64_raw(handle, uplo, n, k, c_loc(alpha), AP, lda, x, &
+        incx, c_loc(beta), y, incy, batchCount)
     end function hipblasZhbmvBatched_64_native
 
     function hipblasZhbmvBatched_64_typed(handle, uplo, n, k, alpha, AP, lda, x, incx, beta, y, &
@@ -59593,20 +59539,20 @@ contains
       integer(c_int), value :: n
       integer(c_int), value :: k
       complex(c_float_complex) :: alpha
-      complex(c_float_complex), target :: AP(*)
+      complex(c_float_complex), target :: AP(..)
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
-      complex(c_float_complex), target :: x(*)
+      complex(c_float_complex), target :: x(..)
       integer(c_int), value :: incx
       integer(c_long), value :: stridex
       complex(c_float_complex) :: beta
-      complex(c_float_complex), target :: y(*)
+      complex(c_float_complex), target :: y(..)
       integer(c_int), value :: incy
       integer(c_long), value :: stridey
       integer(c_int), value :: batchCount
       integer(c_int) :: ChbmvStridedBatched
-      ChbmvStridedBatched = hipblasChbmvStridedBatched_raw(handle, uplo, n, k, alpha, c_loc(AP( &
-        1)), lda, strideA, c_loc(x(1)), incx, stridex, beta, c_loc(y(1)), incy, stridey, batchCount)
+      ChbmvStridedBatched = hipblasChbmvStridedBatched_raw(handle, uplo, n, k, alpha, c_loc(AP), &
+        lda, strideA, c_loc(x), incx, stridex, beta, c_loc(y), incy, stridey, batchCount)
     end function hipblasChbmvStridedBatched_native
 
     function hipblasChbmvStridedBatched_typed(handle, uplo, n, k, alpha, AP, lda, strideA, x, &
@@ -59644,20 +59590,20 @@ contains
       integer(c_int), value :: n
       integer(c_int), value :: k
       complex(c_double_complex) :: alpha
-      complex(c_double_complex), target :: AP(*)
+      complex(c_double_complex), target :: AP(..)
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
-      complex(c_double_complex), target :: x(*)
+      complex(c_double_complex), target :: x(..)
       integer(c_int), value :: incx
       integer(c_long), value :: stridex
       complex(c_double_complex) :: beta
-      complex(c_double_complex), target :: y(*)
+      complex(c_double_complex), target :: y(..)
       integer(c_int), value :: incy
       integer(c_long), value :: stridey
       integer(c_int), value :: batchCount
       integer(c_int) :: ZhbmvStridedBatched
-      ZhbmvStridedBatched = hipblasZhbmvStridedBatched_raw(handle, uplo, n, k, alpha, c_loc(AP( &
-        1)), lda, strideA, c_loc(x(1)), incx, stridex, beta, c_loc(y(1)), incy, stridey, batchCount)
+      ZhbmvStridedBatched = hipblasZhbmvStridedBatched_raw(handle, uplo, n, k, alpha, c_loc(AP), &
+        lda, strideA, c_loc(x), incx, stridex, beta, c_loc(y), incy, stridey, batchCount)
     end function hipblasZhbmvStridedBatched_native
 
     function hipblasZhbmvStridedBatched_typed(handle, uplo, n, k, alpha, AP, lda, strideA, x, &
@@ -59694,22 +59640,22 @@ contains
       integer(c_int), value :: uplo
       integer(c_long), value :: n
       integer(c_long), value :: k
-      complex(c_float_complex), target :: alpha(*)
-      complex(c_float_complex), target :: AP(*)
+      complex(c_float_complex), target :: alpha(..)
+      complex(c_float_complex), target :: AP(..)
       integer(c_long), value :: lda
       integer(c_long), value :: strideA
-      complex(c_float_complex), target :: x(*)
+      complex(c_float_complex), target :: x(..)
       integer(c_long), value :: incx
       integer(c_long), value :: stridex
-      complex(c_float_complex), target :: beta(*)
-      complex(c_float_complex), target :: y(*)
+      complex(c_float_complex), target :: beta(..)
+      complex(c_float_complex), target :: y(..)
       integer(c_long), value :: incy
       integer(c_long), value :: stridey
       integer(c_long), value :: batchCount
       integer(c_int) :: ChbmvStridedBatched_64
-      ChbmvStridedBatched_64 = hipblasChbmvStridedBatched_64_raw(handle, uplo, n, k, c_loc(alpha( &
-        1)), c_loc(AP(1)), lda, strideA, c_loc(x(1)), incx, stridex, c_loc(beta(1)), c_loc(y(1)), &
-        incy, stridey, batchCount)
+      ChbmvStridedBatched_64 = hipblasChbmvStridedBatched_64_raw(handle, uplo, n, k, c_loc(alpha), &
+        c_loc(AP), lda, strideA, c_loc(x), incx, stridex, c_loc(beta), c_loc(y), incy, stridey, &
+        batchCount)
     end function hipblasChbmvStridedBatched_64_native
 
     function hipblasChbmvStridedBatched_64_typed(handle, uplo, n, k, alpha, AP, lda, strideA, x, &
@@ -59746,22 +59692,22 @@ contains
       integer(c_int), value :: uplo
       integer(c_long), value :: n
       integer(c_long), value :: k
-      complex(c_double_complex), target :: alpha(*)
-      complex(c_double_complex), target :: AP(*)
+      complex(c_double_complex), target :: alpha(..)
+      complex(c_double_complex), target :: AP(..)
       integer(c_long), value :: lda
       integer(c_long), value :: strideA
-      complex(c_double_complex), target :: x(*)
+      complex(c_double_complex), target :: x(..)
       integer(c_long), value :: incx
       integer(c_long), value :: stridex
-      complex(c_double_complex), target :: beta(*)
-      complex(c_double_complex), target :: y(*)
+      complex(c_double_complex), target :: beta(..)
+      complex(c_double_complex), target :: y(..)
       integer(c_long), value :: incy
       integer(c_long), value :: stridey
       integer(c_long), value :: batchCount
       integer(c_int) :: ZhbmvStridedBatched_64
-      ZhbmvStridedBatched_64 = hipblasZhbmvStridedBatched_64_raw(handle, uplo, n, k, c_loc(alpha( &
-        1)), c_loc(AP(1)), lda, strideA, c_loc(x(1)), incx, stridex, c_loc(beta(1)), c_loc(y(1)), &
-        incy, stridey, batchCount)
+      ZhbmvStridedBatched_64 = hipblasZhbmvStridedBatched_64_raw(handle, uplo, n, k, c_loc(alpha), &
+        c_loc(AP), lda, strideA, c_loc(x), incx, stridex, c_loc(beta), c_loc(y), incy, stridey, &
+        batchCount)
     end function hipblasZhbmvStridedBatched_64_native
 
     function hipblasZhbmvStridedBatched_64_typed(handle, uplo, n, k, alpha, AP, lda, strideA, x, &
@@ -59798,16 +59744,16 @@ contains
       integer(c_int), value :: uplo
       integer(c_int), value :: n
       complex(c_float_complex) :: alpha
-      complex(c_float_complex), target :: AP(*)
+      complex(c_float_complex), target :: AP(..)
       integer(c_int), value :: lda
-      complex(c_float_complex), target :: x(*)
+      complex(c_float_complex), target :: x(..)
       integer(c_int), value :: incx
       complex(c_float_complex) :: beta
-      complex(c_float_complex), target :: y(*)
+      complex(c_float_complex), target :: y(..)
       integer(c_int), value :: incy
       integer(c_int) :: Chemv
-      Chemv = hipblasChemv_raw(handle, uplo, n, alpha, c_loc(AP(1)), lda, c_loc(x(1)), incx, beta, &
-        c_loc(y(1)), incy)
+      Chemv = hipblasChemv_raw(handle, uplo, n, alpha, c_loc(AP), lda, c_loc(x), incx, beta, &
+        c_loc(y), incy)
     end function hipblasChemv_native
 
     function hipblasChemv_typed(handle, uplo, n, alpha, AP, lda, x, incx, beta, y, incy) result( &
@@ -59838,16 +59784,16 @@ contains
       integer(c_int), value :: uplo
       integer(c_int), value :: n
       complex(c_double_complex) :: alpha
-      complex(c_double_complex), target :: AP(*)
+      complex(c_double_complex), target :: AP(..)
       integer(c_int), value :: lda
-      complex(c_double_complex), target :: x(*)
+      complex(c_double_complex), target :: x(..)
       integer(c_int), value :: incx
       complex(c_double_complex) :: beta
-      complex(c_double_complex), target :: y(*)
+      complex(c_double_complex), target :: y(..)
       integer(c_int), value :: incy
       integer(c_int) :: Zhemv
-      Zhemv = hipblasZhemv_raw(handle, uplo, n, alpha, c_loc(AP(1)), lda, c_loc(x(1)), incx, beta, &
-        c_loc(y(1)), incy)
+      Zhemv = hipblasZhemv_raw(handle, uplo, n, alpha, c_loc(AP), lda, c_loc(x), incx, beta, &
+        c_loc(y), incy)
     end function hipblasZhemv_native
 
     function hipblasZhemv_typed(handle, uplo, n, alpha, AP, lda, x, incx, beta, y, incy) result( &
@@ -59877,17 +59823,17 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: uplo
       integer(c_long), value :: n
-      complex(c_float_complex), target :: alpha(*)
-      complex(c_float_complex), target :: AP(*)
+      complex(c_float_complex), target :: alpha(..)
+      complex(c_float_complex), target :: AP(..)
       integer(c_long), value :: lda
-      complex(c_float_complex), target :: x(*)
+      complex(c_float_complex), target :: x(..)
       integer(c_long), value :: incx
-      complex(c_float_complex), target :: beta(*)
-      complex(c_float_complex), target :: y(*)
+      complex(c_float_complex), target :: beta(..)
+      complex(c_float_complex), target :: y(..)
       integer(c_long), value :: incy
       integer(c_int) :: Chemv_64
-      Chemv_64 = hipblasChemv_64_raw(handle, uplo, n, c_loc(alpha(1)), c_loc(AP(1)), lda, c_loc(x( &
-        1)), incx, c_loc(beta(1)), c_loc(y(1)), incy)
+      Chemv_64 = hipblasChemv_64_raw(handle, uplo, n, c_loc(alpha), c_loc(AP), lda, c_loc(x), &
+        incx, c_loc(beta), c_loc(y), incy)
     end function hipblasChemv_64_native
 
     function hipblasChemv_64_typed(handle, uplo, n, alpha, AP, lda, x, incx, beta, y, &
@@ -59917,17 +59863,17 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: uplo
       integer(c_long), value :: n
-      complex(c_double_complex), target :: alpha(*)
-      complex(c_double_complex), target :: AP(*)
+      complex(c_double_complex), target :: alpha(..)
+      complex(c_double_complex), target :: AP(..)
       integer(c_long), value :: lda
-      complex(c_double_complex), target :: x(*)
+      complex(c_double_complex), target :: x(..)
       integer(c_long), value :: incx
-      complex(c_double_complex), target :: beta(*)
-      complex(c_double_complex), target :: y(*)
+      complex(c_double_complex), target :: beta(..)
+      complex(c_double_complex), target :: y(..)
       integer(c_long), value :: incy
       integer(c_int) :: Zhemv_64
-      Zhemv_64 = hipblasZhemv_64_raw(handle, uplo, n, c_loc(alpha(1)), c_loc(AP(1)), lda, c_loc(x( &
-        1)), incx, c_loc(beta(1)), c_loc(y(1)), incy)
+      Zhemv_64 = hipblasZhemv_64_raw(handle, uplo, n, c_loc(alpha), c_loc(AP), lda, c_loc(x), &
+        incx, c_loc(beta), c_loc(y), incy)
     end function hipblasZhemv_64_native
 
     function hipblasZhemv_64_typed(handle, uplo, n, alpha, AP, lda, x, incx, beta, y, &
@@ -60001,18 +59947,18 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: uplo
       integer(c_long), value :: n
-      complex(c_float_complex), target :: alpha(*)
+      complex(c_float_complex), target :: alpha(..)
       type(c_ptr), value :: AP
       integer(c_long), value :: lda
       type(c_ptr), value :: x
       integer(c_long), value :: incx
-      complex(c_float_complex), target :: beta(*)
+      complex(c_float_complex), target :: beta(..)
       type(c_ptr), value :: y
       integer(c_long), value :: incy
       integer(c_long), value :: batchCount
       integer(c_int) :: ChemvBatched_64
-      ChemvBatched_64 = hipblasChemvBatched_64_raw(handle, uplo, n, c_loc(alpha(1)), AP, lda, x, &
-        incx, c_loc(beta(1)), y, incy, batchCount)
+      ChemvBatched_64 = hipblasChemvBatched_64_raw(handle, uplo, n, c_loc(alpha), AP, lda, x, &
+        incx, c_loc(beta), y, incy, batchCount)
     end function hipblasChemvBatched_64_native
 
     function hipblasChemvBatched_64_typed(handle, uplo, n, alpha, AP, lda, x, incx, beta, y, incy, &
@@ -60044,18 +59990,18 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: uplo
       integer(c_long), value :: n
-      complex(c_double_complex), target :: alpha(*)
+      complex(c_double_complex), target :: alpha(..)
       type(c_ptr), value :: AP
       integer(c_long), value :: lda
       type(c_ptr), value :: x
       integer(c_long), value :: incx
-      complex(c_double_complex), target :: beta(*)
+      complex(c_double_complex), target :: beta(..)
       type(c_ptr), value :: y
       integer(c_long), value :: incy
       integer(c_long), value :: batchCount
       integer(c_int) :: ZhemvBatched_64
-      ZhemvBatched_64 = hipblasZhemvBatched_64_raw(handle, uplo, n, c_loc(alpha(1)), AP, lda, x, &
-        incx, c_loc(beta(1)), y, incy, batchCount)
+      ZhemvBatched_64 = hipblasZhemvBatched_64_raw(handle, uplo, n, c_loc(alpha), AP, lda, x, &
+        incx, c_loc(beta), y, incy, batchCount)
     end function hipblasZhemvBatched_64_native
 
     function hipblasZhemvBatched_64_typed(handle, uplo, n, alpha, AP, lda, x, incx, beta, y, incy, &
@@ -60088,20 +60034,20 @@ contains
       integer(c_int), value :: uplo
       integer(c_int), value :: n
       complex(c_float_complex) :: alpha
-      complex(c_float_complex), target :: AP(*)
+      complex(c_float_complex), target :: AP(..)
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
-      complex(c_float_complex), target :: x(*)
+      complex(c_float_complex), target :: x(..)
       integer(c_int), value :: incx
       integer(c_long), value :: stridex
       complex(c_float_complex) :: beta
-      complex(c_float_complex), target :: y(*)
+      complex(c_float_complex), target :: y(..)
       integer(c_int), value :: incy
       integer(c_long), value :: stridey
       integer(c_int), value :: batchCount
       integer(c_int) :: ChemvStridedBatched
-      ChemvStridedBatched = hipblasChemvStridedBatched_raw(handle, uplo, n, alpha, c_loc(AP(1)), &
-        lda, strideA, c_loc(x(1)), incx, stridex, beta, c_loc(y(1)), incy, stridey, batchCount)
+      ChemvStridedBatched = hipblasChemvStridedBatched_raw(handle, uplo, n, alpha, c_loc(AP), lda, &
+        strideA, c_loc(x), incx, stridex, beta, c_loc(y), incy, stridey, batchCount)
     end function hipblasChemvStridedBatched_native
 
     function hipblasChemvStridedBatched_typed(handle, uplo, n, alpha, AP, lda, strideA, x, incx, &
@@ -60137,20 +60083,20 @@ contains
       integer(c_int), value :: uplo
       integer(c_int), value :: n
       complex(c_double_complex) :: alpha
-      complex(c_double_complex), target :: AP(*)
+      complex(c_double_complex), target :: AP(..)
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
-      complex(c_double_complex), target :: x(*)
+      complex(c_double_complex), target :: x(..)
       integer(c_int), value :: incx
       integer(c_long), value :: stridex
       complex(c_double_complex) :: beta
-      complex(c_double_complex), target :: y(*)
+      complex(c_double_complex), target :: y(..)
       integer(c_int), value :: incy
       integer(c_long), value :: stridey
       integer(c_int), value :: batchCount
       integer(c_int) :: ZhemvStridedBatched
-      ZhemvStridedBatched = hipblasZhemvStridedBatched_raw(handle, uplo, n, alpha, c_loc(AP(1)), &
-        lda, strideA, c_loc(x(1)), incx, stridex, beta, c_loc(y(1)), incy, stridey, batchCount)
+      ZhemvStridedBatched = hipblasZhemvStridedBatched_raw(handle, uplo, n, alpha, c_loc(AP), lda, &
+        strideA, c_loc(x), incx, stridex, beta, c_loc(y), incy, stridey, batchCount)
     end function hipblasZhemvStridedBatched_native
 
     function hipblasZhemvStridedBatched_typed(handle, uplo, n, alpha, AP, lda, strideA, x, incx, &
@@ -60185,22 +60131,22 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: uplo
       integer(c_long), value :: n
-      complex(c_float_complex), target :: alpha(*)
-      complex(c_float_complex), target :: AP(*)
+      complex(c_float_complex), target :: alpha(..)
+      complex(c_float_complex), target :: AP(..)
       integer(c_long), value :: lda
       integer(c_long), value :: strideA
-      complex(c_float_complex), target :: x(*)
+      complex(c_float_complex), target :: x(..)
       integer(c_long), value :: incx
       integer(c_long), value :: stridex
-      complex(c_float_complex), target :: beta(*)
-      complex(c_float_complex), target :: y(*)
+      complex(c_float_complex), target :: beta(..)
+      complex(c_float_complex), target :: y(..)
       integer(c_long), value :: incy
       integer(c_long), value :: stridey
       integer(c_long), value :: batchCount
       integer(c_int) :: ChemvStridedBatched_64
-      ChemvStridedBatched_64 = hipblasChemvStridedBatched_64_raw(handle, uplo, n, c_loc(alpha(1)), &
-        c_loc(AP(1)), lda, strideA, c_loc(x(1)), incx, stridex, c_loc(beta(1)), c_loc(y(1)), incy, &
-        stridey, batchCount)
+      ChemvStridedBatched_64 = hipblasChemvStridedBatched_64_raw(handle, uplo, n, c_loc(alpha), &
+        c_loc(AP), lda, strideA, c_loc(x), incx, stridex, c_loc(beta), c_loc(y), incy, stridey, &
+        batchCount)
     end function hipblasChemvStridedBatched_64_native
 
     function hipblasChemvStridedBatched_64_typed(handle, uplo, n, alpha, AP, lda, strideA, x, &
@@ -60235,22 +60181,22 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: uplo
       integer(c_long), value :: n
-      complex(c_double_complex), target :: alpha(*)
-      complex(c_double_complex), target :: AP(*)
+      complex(c_double_complex), target :: alpha(..)
+      complex(c_double_complex), target :: AP(..)
       integer(c_long), value :: lda
       integer(c_long), value :: strideA
-      complex(c_double_complex), target :: x(*)
+      complex(c_double_complex), target :: x(..)
       integer(c_long), value :: incx
       integer(c_long), value :: stridex
-      complex(c_double_complex), target :: beta(*)
-      complex(c_double_complex), target :: y(*)
+      complex(c_double_complex), target :: beta(..)
+      complex(c_double_complex), target :: y(..)
       integer(c_long), value :: incy
       integer(c_long), value :: stridey
       integer(c_long), value :: batchCount
       integer(c_int) :: ZhemvStridedBatched_64
-      ZhemvStridedBatched_64 = hipblasZhemvStridedBatched_64_raw(handle, uplo, n, c_loc(alpha(1)), &
-        c_loc(AP(1)), lda, strideA, c_loc(x(1)), incx, stridex, c_loc(beta(1)), c_loc(y(1)), incy, &
-        stridey, batchCount)
+      ZhemvStridedBatched_64 = hipblasZhemvStridedBatched_64_raw(handle, uplo, n, c_loc(alpha), &
+        c_loc(AP), lda, strideA, c_loc(x), incx, stridex, c_loc(beta), c_loc(y), incy, stridey, &
+        batchCount)
     end function hipblasZhemvStridedBatched_64_native
 
     function hipblasZhemvStridedBatched_64_typed(handle, uplo, n, alpha, AP, lda, strideA, x, &
@@ -60285,12 +60231,12 @@ contains
       integer(c_int), value :: uplo
       integer(c_int), value :: n
       real(c_float) :: alpha
-      complex(c_float_complex), target :: x(*)
+      complex(c_float_complex), target :: x(..)
       integer(c_int), value :: incx
-      complex(c_float_complex), target :: AP(*)
+      complex(c_float_complex), target :: AP(..)
       integer(c_int), value :: lda
       integer(c_int) :: Cher
-      Cher = hipblasCher_raw(handle, uplo, n, alpha, c_loc(x(1)), incx, c_loc(AP(1)), lda)
+      Cher = hipblasCher_raw(handle, uplo, n, alpha, c_loc(x), incx, c_loc(AP), lda)
     end function hipblasCher_native
 
     function hipblasCher_typed(handle, uplo, n, alpha, x, incx, AP, lda) result(Cher)
@@ -60316,12 +60262,12 @@ contains
       integer(c_int), value :: uplo
       integer(c_int), value :: n
       real(c_double) :: alpha
-      complex(c_double_complex), target :: x(*)
+      complex(c_double_complex), target :: x(..)
       integer(c_int), value :: incx
-      complex(c_double_complex), target :: AP(*)
+      complex(c_double_complex), target :: AP(..)
       integer(c_int), value :: lda
       integer(c_int) :: Zher
-      Zher = hipblasZher_raw(handle, uplo, n, alpha, c_loc(x(1)), incx, c_loc(AP(1)), lda)
+      Zher = hipblasZher_raw(handle, uplo, n, alpha, c_loc(x), incx, c_loc(AP), lda)
     end function hipblasZher_native
 
     function hipblasZher_typed(handle, uplo, n, alpha, x, incx, AP, lda) result(Zher)
@@ -60346,14 +60292,13 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: uplo
       integer(c_long), value :: n
-      real(c_float), target :: alpha(*)
-      complex(c_float_complex), target :: x(*)
+      real(c_float), target :: alpha(..)
+      complex(c_float_complex), target :: x(..)
       integer(c_long), value :: incx
-      complex(c_float_complex), target :: AP(*)
+      complex(c_float_complex), target :: AP(..)
       integer(c_long), value :: lda
       integer(c_int) :: Cher_64
-      Cher_64 = hipblasCher_64_raw(handle, uplo, n, c_loc(alpha(1)), c_loc(x(1)), incx, c_loc(AP( &
-        1)), lda)
+      Cher_64 = hipblasCher_64_raw(handle, uplo, n, c_loc(alpha), c_loc(x), incx, c_loc(AP), lda)
     end function hipblasCher_64_native
 
     function hipblasCher_64_typed(handle, uplo, n, alpha, x, incx, AP, lda) result(Cher_64)
@@ -60378,14 +60323,13 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: uplo
       integer(c_long), value :: n
-      real(c_double), target :: alpha(*)
-      complex(c_double_complex), target :: x(*)
+      real(c_double), target :: alpha(..)
+      complex(c_double_complex), target :: x(..)
       integer(c_long), value :: incx
-      complex(c_double_complex), target :: AP(*)
+      complex(c_double_complex), target :: AP(..)
       integer(c_long), value :: lda
       integer(c_int) :: Zher_64
-      Zher_64 = hipblasZher_64_raw(handle, uplo, n, c_loc(alpha(1)), c_loc(x(1)), incx, c_loc(AP( &
-        1)), lda)
+      Zher_64 = hipblasZher_64_raw(handle, uplo, n, c_loc(alpha), c_loc(x), incx, c_loc(AP), lda)
     end function hipblasZher_64_native
 
     function hipblasZher_64_typed(handle, uplo, n, alpha, x, incx, AP, lda) result(Zher_64)
@@ -60447,15 +60391,15 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: uplo
       integer(c_long), value :: n
-      real(c_float), target :: alpha(*)
+      real(c_float), target :: alpha(..)
       type(c_ptr), value :: x
       integer(c_long), value :: incx
       type(c_ptr), value :: AP
       integer(c_long), value :: lda
       integer(c_long), value :: batchCount
       integer(c_int) :: CherBatched_64
-      CherBatched_64 = hipblasCherBatched_64_raw(handle, uplo, n, c_loc(alpha(1)), x, incx, AP, &
-        lda, batchCount)
+      CherBatched_64 = hipblasCherBatched_64_raw(handle, uplo, n, c_loc(alpha), x, incx, AP, lda, &
+        batchCount)
     end function hipblasCherBatched_64_native
 
     function hipblasCherBatched_64_typed(handle, uplo, n, alpha, x, incx, AP, lda, &
@@ -60484,15 +60428,15 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: uplo
       integer(c_long), value :: n
-      real(c_double), target :: alpha(*)
+      real(c_double), target :: alpha(..)
       type(c_ptr), value :: x
       integer(c_long), value :: incx
       type(c_ptr), value :: AP
       integer(c_long), value :: lda
       integer(c_long), value :: batchCount
       integer(c_int) :: ZherBatched_64
-      ZherBatched_64 = hipblasZherBatched_64_raw(handle, uplo, n, c_loc(alpha(1)), x, incx, AP, &
-        lda, batchCount)
+      ZherBatched_64 = hipblasZherBatched_64_raw(handle, uplo, n, c_loc(alpha), x, incx, AP, lda, &
+        batchCount)
     end function hipblasZherBatched_64_native
 
     function hipblasZherBatched_64_typed(handle, uplo, n, alpha, x, incx, AP, lda, &
@@ -60522,16 +60466,16 @@ contains
       integer(c_int), value :: uplo
       integer(c_int), value :: n
       real(c_float) :: alpha
-      complex(c_float_complex), target :: x(*)
+      complex(c_float_complex), target :: x(..)
       integer(c_int), value :: incx
       integer(c_long), value :: stridex
-      complex(c_float_complex), target :: AP(*)
+      complex(c_float_complex), target :: AP(..)
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
       integer(c_int), value :: batchCount
       integer(c_int) :: CherStridedBatched
-      CherStridedBatched = hipblasCherStridedBatched_raw(handle, uplo, n, alpha, c_loc(x(1)), &
-        incx, stridex, c_loc(AP(1)), lda, strideA, batchCount)
+      CherStridedBatched = hipblasCherStridedBatched_raw(handle, uplo, n, alpha, c_loc(x), incx, &
+        stridex, c_loc(AP), lda, strideA, batchCount)
     end function hipblasCherStridedBatched_native
 
     function hipblasCherStridedBatched_typed(handle, uplo, n, alpha, x, incx, stridex, AP, lda, &
@@ -60563,16 +60507,16 @@ contains
       integer(c_int), value :: uplo
       integer(c_int), value :: n
       real(c_double) :: alpha
-      complex(c_double_complex), target :: x(*)
+      complex(c_double_complex), target :: x(..)
       integer(c_int), value :: incx
       integer(c_long), value :: stridex
-      complex(c_double_complex), target :: AP(*)
+      complex(c_double_complex), target :: AP(..)
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
       integer(c_int), value :: batchCount
       integer(c_int) :: ZherStridedBatched
-      ZherStridedBatched = hipblasZherStridedBatched_raw(handle, uplo, n, alpha, c_loc(x(1)), &
-        incx, stridex, c_loc(AP(1)), lda, strideA, batchCount)
+      ZherStridedBatched = hipblasZherStridedBatched_raw(handle, uplo, n, alpha, c_loc(x), incx, &
+        stridex, c_loc(AP), lda, strideA, batchCount)
     end function hipblasZherStridedBatched_native
 
     function hipblasZherStridedBatched_typed(handle, uplo, n, alpha, x, incx, stridex, AP, lda, &
@@ -60603,17 +60547,17 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: uplo
       integer(c_long), value :: n
-      real(c_float), target :: alpha(*)
-      complex(c_float_complex), target :: x(*)
+      real(c_float), target :: alpha(..)
+      complex(c_float_complex), target :: x(..)
       integer(c_long), value :: incx
       integer(c_long), value :: stridex
-      complex(c_float_complex), target :: AP(*)
+      complex(c_float_complex), target :: AP(..)
       integer(c_long), value :: lda
       integer(c_long), value :: strideA
       integer(c_long), value :: batchCount
       integer(c_int) :: CherStridedBatched_64
-      CherStridedBatched_64 = hipblasCherStridedBatched_64_raw(handle, uplo, n, c_loc(alpha(1)), &
-        c_loc(x(1)), incx, stridex, c_loc(AP(1)), lda, strideA, batchCount)
+      CherStridedBatched_64 = hipblasCherStridedBatched_64_raw(handle, uplo, n, c_loc(alpha), &
+        c_loc(x), incx, stridex, c_loc(AP), lda, strideA, batchCount)
     end function hipblasCherStridedBatched_64_native
 
     function hipblasCherStridedBatched_64_typed(handle, uplo, n, alpha, x, incx, stridex, AP, lda, &
@@ -60644,17 +60588,17 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: uplo
       integer(c_long), value :: n
-      real(c_double), target :: alpha(*)
-      complex(c_double_complex), target :: x(*)
+      real(c_double), target :: alpha(..)
+      complex(c_double_complex), target :: x(..)
       integer(c_long), value :: incx
       integer(c_long), value :: stridex
-      complex(c_double_complex), target :: AP(*)
+      complex(c_double_complex), target :: AP(..)
       integer(c_long), value :: lda
       integer(c_long), value :: strideA
       integer(c_long), value :: batchCount
       integer(c_int) :: ZherStridedBatched_64
-      ZherStridedBatched_64 = hipblasZherStridedBatched_64_raw(handle, uplo, n, c_loc(alpha(1)), &
-        c_loc(x(1)), incx, stridex, c_loc(AP(1)), lda, strideA, batchCount)
+      ZherStridedBatched_64 = hipblasZherStridedBatched_64_raw(handle, uplo, n, c_loc(alpha), &
+        c_loc(x), incx, stridex, c_loc(AP), lda, strideA, batchCount)
     end function hipblasZherStridedBatched_64_native
 
     function hipblasZherStridedBatched_64_typed(handle, uplo, n, alpha, x, incx, stridex, AP, lda, &
@@ -60685,15 +60629,15 @@ contains
       integer(c_int), value :: uplo
       integer(c_int), value :: n
       complex(c_float_complex) :: alpha
-      complex(c_float_complex), target :: x(*)
+      complex(c_float_complex), target :: x(..)
       integer(c_int), value :: incx
-      complex(c_float_complex), target :: y(*)
+      complex(c_float_complex), target :: y(..)
       integer(c_int), value :: incy
-      complex(c_float_complex), target :: AP(*)
+      complex(c_float_complex), target :: AP(..)
       integer(c_int), value :: lda
       integer(c_int) :: Cher2
-      Cher2 = hipblasCher2_raw(handle, uplo, n, alpha, c_loc(x(1)), incx, c_loc(y(1)), incy, &
-        c_loc(AP(1)), lda)
+      Cher2 = hipblasCher2_raw(handle, uplo, n, alpha, c_loc(x), incx, c_loc(y), incy, c_loc(AP), &
+        lda)
     end function hipblasCher2_native
 
     function hipblasCher2_typed(handle, uplo, n, alpha, x, incx, y, incy, AP, lda) result(Cher2)
@@ -60721,15 +60665,15 @@ contains
       integer(c_int), value :: uplo
       integer(c_int), value :: n
       complex(c_double_complex) :: alpha
-      complex(c_double_complex), target :: x(*)
+      complex(c_double_complex), target :: x(..)
       integer(c_int), value :: incx
-      complex(c_double_complex), target :: y(*)
+      complex(c_double_complex), target :: y(..)
       integer(c_int), value :: incy
-      complex(c_double_complex), target :: AP(*)
+      complex(c_double_complex), target :: AP(..)
       integer(c_int), value :: lda
       integer(c_int) :: Zher2
-      Zher2 = hipblasZher2_raw(handle, uplo, n, alpha, c_loc(x(1)), incx, c_loc(y(1)), incy, &
-        c_loc(AP(1)), lda)
+      Zher2 = hipblasZher2_raw(handle, uplo, n, alpha, c_loc(x), incx, c_loc(y), incy, c_loc(AP), &
+        lda)
     end function hipblasZher2_native
 
     function hipblasZher2_typed(handle, uplo, n, alpha, x, incx, y, incy, AP, lda) result(Zher2)
@@ -60757,16 +60701,16 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: uplo
       integer(c_long), value :: n
-      complex(c_float_complex), target :: alpha(*)
-      complex(c_float_complex), target :: x(*)
+      complex(c_float_complex), target :: alpha(..)
+      complex(c_float_complex), target :: x(..)
       integer(c_long), value :: incx
-      complex(c_float_complex), target :: y(*)
+      complex(c_float_complex), target :: y(..)
       integer(c_long), value :: incy
-      complex(c_float_complex), target :: AP(*)
+      complex(c_float_complex), target :: AP(..)
       integer(c_long), value :: lda
       integer(c_int) :: Cher2_64
-      Cher2_64 = hipblasCher2_64_raw(handle, uplo, n, c_loc(alpha(1)), c_loc(x(1)), incx, c_loc(y( &
-        1)), incy, c_loc(AP(1)), lda)
+      Cher2_64 = hipblasCher2_64_raw(handle, uplo, n, c_loc(alpha), c_loc(x), incx, c_loc(y), &
+        incy, c_loc(AP), lda)
     end function hipblasCher2_64_native
 
     function hipblasCher2_64_typed(handle, uplo, n, alpha, x, incx, y, incy, AP, lda) result( &
@@ -60795,16 +60739,16 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: uplo
       integer(c_long), value :: n
-      complex(c_double_complex), target :: alpha(*)
-      complex(c_double_complex), target :: x(*)
+      complex(c_double_complex), target :: alpha(..)
+      complex(c_double_complex), target :: x(..)
       integer(c_long), value :: incx
-      complex(c_double_complex), target :: y(*)
+      complex(c_double_complex), target :: y(..)
       integer(c_long), value :: incy
-      complex(c_double_complex), target :: AP(*)
+      complex(c_double_complex), target :: AP(..)
       integer(c_long), value :: lda
       integer(c_int) :: Zher2_64
-      Zher2_64 = hipblasZher2_64_raw(handle, uplo, n, c_loc(alpha(1)), c_loc(x(1)), incx, c_loc(y( &
-        1)), incy, c_loc(AP(1)), lda)
+      Zher2_64 = hipblasZher2_64_raw(handle, uplo, n, c_loc(alpha), c_loc(x), incx, c_loc(y), &
+        incy, c_loc(AP), lda)
     end function hipblasZher2_64_native
 
     function hipblasZher2_64_typed(handle, uplo, n, alpha, x, incx, y, incy, AP, lda) result( &
@@ -60875,7 +60819,7 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: uplo
       integer(c_long), value :: n
-      complex(c_float_complex), target :: alpha(*)
+      complex(c_float_complex), target :: alpha(..)
       type(c_ptr), value :: x
       integer(c_long), value :: incx
       type(c_ptr), value :: y
@@ -60884,7 +60828,7 @@ contains
       integer(c_long), value :: lda
       integer(c_long), value :: batchCount
       integer(c_int) :: Cher2Batched_64
-      Cher2Batched_64 = hipblasCher2Batched_64_raw(handle, uplo, n, c_loc(alpha(1)), x, incx, y, &
+      Cher2Batched_64 = hipblasCher2Batched_64_raw(handle, uplo, n, c_loc(alpha), x, incx, y, &
         incy, AP, lda, batchCount)
     end function hipblasCher2Batched_64_native
 
@@ -60916,7 +60860,7 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: uplo
       integer(c_long), value :: n
-      complex(c_double_complex), target :: alpha(*)
+      complex(c_double_complex), target :: alpha(..)
       type(c_ptr), value :: x
       integer(c_long), value :: incx
       type(c_ptr), value :: y
@@ -60925,7 +60869,7 @@ contains
       integer(c_long), value :: lda
       integer(c_long), value :: batchCount
       integer(c_int) :: Zher2Batched_64
-      Zher2Batched_64 = hipblasZher2Batched_64_raw(handle, uplo, n, c_loc(alpha(1)), x, incx, y, &
+      Zher2Batched_64 = hipblasZher2Batched_64_raw(handle, uplo, n, c_loc(alpha), x, incx, y, &
         incy, AP, lda, batchCount)
     end function hipblasZher2Batched_64_native
 
@@ -60958,19 +60902,19 @@ contains
       integer(c_int), value :: uplo
       integer(c_int), value :: n
       complex(c_float_complex) :: alpha
-      complex(c_float_complex), target :: x(*)
+      complex(c_float_complex), target :: x(..)
       integer(c_int), value :: incx
       integer(c_long), value :: stridex
-      complex(c_float_complex), target :: y(*)
+      complex(c_float_complex), target :: y(..)
       integer(c_int), value :: incy
       integer(c_long), value :: stridey
-      complex(c_float_complex), target :: AP(*)
+      complex(c_float_complex), target :: AP(..)
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
       integer(c_int), value :: batchCount
       integer(c_int) :: Cher2StridedBatched
-      Cher2StridedBatched = hipblasCher2StridedBatched_raw(handle, uplo, n, alpha, c_loc(x(1)), &
-        incx, stridex, c_loc(y(1)), incy, stridey, c_loc(AP(1)), lda, strideA, batchCount)
+      Cher2StridedBatched = hipblasCher2StridedBatched_raw(handle, uplo, n, alpha, c_loc(x), incx, &
+        stridex, c_loc(y), incy, stridey, c_loc(AP), lda, strideA, batchCount)
     end function hipblasCher2StridedBatched_native
 
     function hipblasCher2StridedBatched_typed(handle, uplo, n, alpha, x, incx, stridex, y, incy, &
@@ -61005,19 +60949,19 @@ contains
       integer(c_int), value :: uplo
       integer(c_int), value :: n
       complex(c_double_complex) :: alpha
-      complex(c_double_complex), target :: x(*)
+      complex(c_double_complex), target :: x(..)
       integer(c_int), value :: incx
       integer(c_long), value :: stridex
-      complex(c_double_complex), target :: y(*)
+      complex(c_double_complex), target :: y(..)
       integer(c_int), value :: incy
       integer(c_long), value :: stridey
-      complex(c_double_complex), target :: AP(*)
+      complex(c_double_complex), target :: AP(..)
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
       integer(c_int), value :: batchCount
       integer(c_int) :: Zher2StridedBatched
-      Zher2StridedBatched = hipblasZher2StridedBatched_raw(handle, uplo, n, alpha, c_loc(x(1)), &
-        incx, stridex, c_loc(y(1)), incy, stridey, c_loc(AP(1)), lda, strideA, batchCount)
+      Zher2StridedBatched = hipblasZher2StridedBatched_raw(handle, uplo, n, alpha, c_loc(x), incx, &
+        stridex, c_loc(y), incy, stridey, c_loc(AP), lda, strideA, batchCount)
     end function hipblasZher2StridedBatched_native
 
     function hipblasZher2StridedBatched_typed(handle, uplo, n, alpha, x, incx, stridex, y, incy, &
@@ -61051,21 +60995,20 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: uplo
       integer(c_long), value :: n
-      complex(c_float_complex), target :: alpha(*)
-      complex(c_float_complex), target :: x(*)
+      complex(c_float_complex), target :: alpha(..)
+      complex(c_float_complex), target :: x(..)
       integer(c_long), value :: incx
       integer(c_long), value :: stridex
-      complex(c_float_complex), target :: y(*)
+      complex(c_float_complex), target :: y(..)
       integer(c_long), value :: incy
       integer(c_long), value :: stridey
-      complex(c_float_complex), target :: AP(*)
+      complex(c_float_complex), target :: AP(..)
       integer(c_long), value :: lda
       integer(c_long), value :: strideA
       integer(c_long), value :: batchCount
       integer(c_int) :: Cher2StridedBatched_64
-      Cher2StridedBatched_64 = hipblasCher2StridedBatched_64_raw(handle, uplo, n, c_loc(alpha(1)), &
-        c_loc(x(1)), incx, stridex, c_loc(y(1)), incy, stridey, c_loc(AP(1)), lda, strideA, &
-        batchCount)
+      Cher2StridedBatched_64 = hipblasCher2StridedBatched_64_raw(handle, uplo, n, c_loc(alpha), &
+        c_loc(x), incx, stridex, c_loc(y), incy, stridey, c_loc(AP), lda, strideA, batchCount)
     end function hipblasCher2StridedBatched_64_native
 
     function hipblasCher2StridedBatched_64_typed(handle, uplo, n, alpha, x, incx, stridex, y, &
@@ -61099,21 +61042,20 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: uplo
       integer(c_long), value :: n
-      complex(c_double_complex), target :: alpha(*)
-      complex(c_double_complex), target :: x(*)
+      complex(c_double_complex), target :: alpha(..)
+      complex(c_double_complex), target :: x(..)
       integer(c_long), value :: incx
       integer(c_long), value :: stridex
-      complex(c_double_complex), target :: y(*)
+      complex(c_double_complex), target :: y(..)
       integer(c_long), value :: incy
       integer(c_long), value :: stridey
-      complex(c_double_complex), target :: AP(*)
+      complex(c_double_complex), target :: AP(..)
       integer(c_long), value :: lda
       integer(c_long), value :: strideA
       integer(c_long), value :: batchCount
       integer(c_int) :: Zher2StridedBatched_64
-      Zher2StridedBatched_64 = hipblasZher2StridedBatched_64_raw(handle, uplo, n, c_loc(alpha(1)), &
-        c_loc(x(1)), incx, stridex, c_loc(y(1)), incy, stridey, c_loc(AP(1)), lda, strideA, &
-        batchCount)
+      Zher2StridedBatched_64 = hipblasZher2StridedBatched_64_raw(handle, uplo, n, c_loc(alpha), &
+        c_loc(x), incx, stridex, c_loc(y), incy, stridey, c_loc(AP), lda, strideA, batchCount)
     end function hipblasZher2StridedBatched_64_native
 
     function hipblasZher2StridedBatched_64_typed(handle, uplo, n, alpha, x, incx, stridex, y, &
@@ -61147,15 +61089,15 @@ contains
       integer(c_int), value :: uplo
       integer(c_int), value :: n
       complex(c_float_complex) :: alpha
-      complex(c_float_complex), target :: AP(*)
-      complex(c_float_complex), target :: x(*)
+      complex(c_float_complex), target :: AP(..)
+      complex(c_float_complex), target :: x(..)
       integer(c_int), value :: incx
       complex(c_float_complex) :: beta
-      complex(c_float_complex), target :: y(*)
+      complex(c_float_complex), target :: y(..)
       integer(c_int), value :: incy
       integer(c_int) :: Chpmv
-      Chpmv = hipblasChpmv_raw(handle, uplo, n, alpha, c_loc(AP(1)), c_loc(x(1)), incx, beta, &
-        c_loc(y(1)), incy)
+      Chpmv = hipblasChpmv_raw(handle, uplo, n, alpha, c_loc(AP), c_loc(x), incx, beta, c_loc(y), &
+        incy)
     end function hipblasChpmv_native
 
     function hipblasChpmv_typed(handle, uplo, n, alpha, AP, x, incx, beta, y, incy) result(Chpmv)
@@ -61183,15 +61125,15 @@ contains
       integer(c_int), value :: uplo
       integer(c_int), value :: n
       complex(c_double_complex) :: alpha
-      complex(c_double_complex), target :: AP(*)
-      complex(c_double_complex), target :: x(*)
+      complex(c_double_complex), target :: AP(..)
+      complex(c_double_complex), target :: x(..)
       integer(c_int), value :: incx
       complex(c_double_complex) :: beta
-      complex(c_double_complex), target :: y(*)
+      complex(c_double_complex), target :: y(..)
       integer(c_int), value :: incy
       integer(c_int) :: Zhpmv
-      Zhpmv = hipblasZhpmv_raw(handle, uplo, n, alpha, c_loc(AP(1)), c_loc(x(1)), incx, beta, &
-        c_loc(y(1)), incy)
+      Zhpmv = hipblasZhpmv_raw(handle, uplo, n, alpha, c_loc(AP), c_loc(x), incx, beta, c_loc(y), &
+        incy)
     end function hipblasZhpmv_native
 
     function hipblasZhpmv_typed(handle, uplo, n, alpha, AP, x, incx, beta, y, incy) result(Zhpmv)
@@ -61219,16 +61161,16 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: uplo
       integer(c_long), value :: n
-      complex(c_float_complex), target :: alpha(*)
-      complex(c_float_complex), target :: AP(*)
-      complex(c_float_complex), target :: x(*)
+      complex(c_float_complex), target :: alpha(..)
+      complex(c_float_complex), target :: AP(..)
+      complex(c_float_complex), target :: x(..)
       integer(c_long), value :: incx
-      complex(c_float_complex), target :: beta(*)
-      complex(c_float_complex), target :: y(*)
+      complex(c_float_complex), target :: beta(..)
+      complex(c_float_complex), target :: y(..)
       integer(c_long), value :: incy
       integer(c_int) :: Chpmv_64
-      Chpmv_64 = hipblasChpmv_64_raw(handle, uplo, n, c_loc(alpha(1)), c_loc(AP(1)), c_loc(x(1)), &
-        incx, c_loc(beta(1)), c_loc(y(1)), incy)
+      Chpmv_64 = hipblasChpmv_64_raw(handle, uplo, n, c_loc(alpha), c_loc(AP), c_loc(x), incx, &
+        c_loc(beta), c_loc(y), incy)
     end function hipblasChpmv_64_native
 
     function hipblasChpmv_64_typed(handle, uplo, n, alpha, AP, x, incx, beta, y, incy) result( &
@@ -61257,16 +61199,16 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: uplo
       integer(c_long), value :: n
-      complex(c_double_complex), target :: alpha(*)
-      complex(c_double_complex), target :: AP(*)
-      complex(c_double_complex), target :: x(*)
+      complex(c_double_complex), target :: alpha(..)
+      complex(c_double_complex), target :: AP(..)
+      complex(c_double_complex), target :: x(..)
       integer(c_long), value :: incx
-      complex(c_double_complex), target :: beta(*)
-      complex(c_double_complex), target :: y(*)
+      complex(c_double_complex), target :: beta(..)
+      complex(c_double_complex), target :: y(..)
       integer(c_long), value :: incy
       integer(c_int) :: Zhpmv_64
-      Zhpmv_64 = hipblasZhpmv_64_raw(handle, uplo, n, c_loc(alpha(1)), c_loc(AP(1)), c_loc(x(1)), &
-        incx, c_loc(beta(1)), c_loc(y(1)), incy)
+      Zhpmv_64 = hipblasZhpmv_64_raw(handle, uplo, n, c_loc(alpha), c_loc(AP), c_loc(x), incx, &
+        c_loc(beta), c_loc(y), incy)
     end function hipblasZhpmv_64_native
 
     function hipblasZhpmv_64_typed(handle, uplo, n, alpha, AP, x, incx, beta, y, incy) result( &
@@ -61337,17 +61279,17 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: uplo
       integer(c_long), value :: n
-      complex(c_float_complex), target :: alpha(*)
+      complex(c_float_complex), target :: alpha(..)
       type(c_ptr), value :: AP
       type(c_ptr), value :: x
       integer(c_long), value :: incx
-      complex(c_float_complex), target :: beta(*)
+      complex(c_float_complex), target :: beta(..)
       type(c_ptr), value :: y
       integer(c_long), value :: incy
       integer(c_long), value :: batchCount
       integer(c_int) :: ChpmvBatched_64
-      ChpmvBatched_64 = hipblasChpmvBatched_64_raw(handle, uplo, n, c_loc(alpha(1)), AP, x, incx, &
-        c_loc(beta(1)), y, incy, batchCount)
+      ChpmvBatched_64 = hipblasChpmvBatched_64_raw(handle, uplo, n, c_loc(alpha), AP, x, incx, &
+        c_loc(beta), y, incy, batchCount)
     end function hipblasChpmvBatched_64_native
 
     function hipblasChpmvBatched_64_typed(handle, uplo, n, alpha, AP, x, incx, beta, y, incy, &
@@ -61378,17 +61320,17 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: uplo
       integer(c_long), value :: n
-      complex(c_double_complex), target :: alpha(*)
+      complex(c_double_complex), target :: alpha(..)
       type(c_ptr), value :: AP
       type(c_ptr), value :: x
       integer(c_long), value :: incx
-      complex(c_double_complex), target :: beta(*)
+      complex(c_double_complex), target :: beta(..)
       type(c_ptr), value :: y
       integer(c_long), value :: incy
       integer(c_long), value :: batchCount
       integer(c_int) :: ZhpmvBatched_64
-      ZhpmvBatched_64 = hipblasZhpmvBatched_64_raw(handle, uplo, n, c_loc(alpha(1)), AP, x, incx, &
-        c_loc(beta(1)), y, incy, batchCount)
+      ZhpmvBatched_64 = hipblasZhpmvBatched_64_raw(handle, uplo, n, c_loc(alpha), AP, x, incx, &
+        c_loc(beta), y, incy, batchCount)
     end function hipblasZhpmvBatched_64_native
 
     function hipblasZhpmvBatched_64_typed(handle, uplo, n, alpha, AP, x, incx, beta, y, incy, &
@@ -61420,19 +61362,19 @@ contains
       integer(c_int), value :: uplo
       integer(c_int), value :: n
       complex(c_float_complex) :: alpha
-      complex(c_float_complex), target :: AP(*)
+      complex(c_float_complex), target :: AP(..)
       integer(c_long), value :: strideA
-      complex(c_float_complex), target :: x(*)
+      complex(c_float_complex), target :: x(..)
       integer(c_int), value :: incx
       integer(c_long), value :: stridex
       complex(c_float_complex) :: beta
-      complex(c_float_complex), target :: y(*)
+      complex(c_float_complex), target :: y(..)
       integer(c_int), value :: incy
       integer(c_long), value :: stridey
       integer(c_int), value :: batchCount
       integer(c_int) :: ChpmvStridedBatched
-      ChpmvStridedBatched = hipblasChpmvStridedBatched_raw(handle, uplo, n, alpha, c_loc(AP(1)), &
-        strideA, c_loc(x(1)), incx, stridex, beta, c_loc(y(1)), incy, stridey, batchCount)
+      ChpmvStridedBatched = hipblasChpmvStridedBatched_raw(handle, uplo, n, alpha, c_loc(AP), &
+        strideA, c_loc(x), incx, stridex, beta, c_loc(y), incy, stridey, batchCount)
     end function hipblasChpmvStridedBatched_native
 
     function hipblasChpmvStridedBatched_typed(handle, uplo, n, alpha, AP, strideA, x, incx, &
@@ -61467,19 +61409,19 @@ contains
       integer(c_int), value :: uplo
       integer(c_int), value :: n
       complex(c_double_complex) :: alpha
-      complex(c_double_complex), target :: AP(*)
+      complex(c_double_complex), target :: AP(..)
       integer(c_long), value :: strideA
-      complex(c_double_complex), target :: x(*)
+      complex(c_double_complex), target :: x(..)
       integer(c_int), value :: incx
       integer(c_long), value :: stridex
       complex(c_double_complex) :: beta
-      complex(c_double_complex), target :: y(*)
+      complex(c_double_complex), target :: y(..)
       integer(c_int), value :: incy
       integer(c_long), value :: stridey
       integer(c_int), value :: batchCount
       integer(c_int) :: ZhpmvStridedBatched
-      ZhpmvStridedBatched = hipblasZhpmvStridedBatched_raw(handle, uplo, n, alpha, c_loc(AP(1)), &
-        strideA, c_loc(x(1)), incx, stridex, beta, c_loc(y(1)), incy, stridey, batchCount)
+      ZhpmvStridedBatched = hipblasZhpmvStridedBatched_raw(handle, uplo, n, alpha, c_loc(AP), &
+        strideA, c_loc(x), incx, stridex, beta, c_loc(y), incy, stridey, batchCount)
     end function hipblasZhpmvStridedBatched_native
 
     function hipblasZhpmvStridedBatched_typed(handle, uplo, n, alpha, AP, strideA, x, incx, &
@@ -61513,21 +61455,21 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: uplo
       integer(c_long), value :: n
-      complex(c_float_complex), target :: alpha(*)
-      complex(c_float_complex), target :: AP(*)
+      complex(c_float_complex), target :: alpha(..)
+      complex(c_float_complex), target :: AP(..)
       integer(c_long), value :: strideA
-      complex(c_float_complex), target :: x(*)
+      complex(c_float_complex), target :: x(..)
       integer(c_long), value :: incx
       integer(c_long), value :: stridex
-      complex(c_float_complex), target :: beta(*)
-      complex(c_float_complex), target :: y(*)
+      complex(c_float_complex), target :: beta(..)
+      complex(c_float_complex), target :: y(..)
       integer(c_long), value :: incy
       integer(c_long), value :: stridey
       integer(c_long), value :: batchCount
       integer(c_int) :: ChpmvStridedBatched_64
-      ChpmvStridedBatched_64 = hipblasChpmvStridedBatched_64_raw(handle, uplo, n, c_loc(alpha(1)), &
-        c_loc(AP(1)), strideA, c_loc(x(1)), incx, stridex, c_loc(beta(1)), c_loc(y(1)), incy, &
-        stridey, batchCount)
+      ChpmvStridedBatched_64 = hipblasChpmvStridedBatched_64_raw(handle, uplo, n, c_loc(alpha), &
+        c_loc(AP), strideA, c_loc(x), incx, stridex, c_loc(beta), c_loc(y), incy, stridey, &
+        batchCount)
     end function hipblasChpmvStridedBatched_64_native
 
     function hipblasChpmvStridedBatched_64_typed(handle, uplo, n, alpha, AP, strideA, x, incx, &
@@ -61561,21 +61503,21 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: uplo
       integer(c_long), value :: n
-      complex(c_double_complex), target :: alpha(*)
-      complex(c_double_complex), target :: AP(*)
+      complex(c_double_complex), target :: alpha(..)
+      complex(c_double_complex), target :: AP(..)
       integer(c_long), value :: strideA
-      complex(c_double_complex), target :: x(*)
+      complex(c_double_complex), target :: x(..)
       integer(c_long), value :: incx
       integer(c_long), value :: stridex
-      complex(c_double_complex), target :: beta(*)
-      complex(c_double_complex), target :: y(*)
+      complex(c_double_complex), target :: beta(..)
+      complex(c_double_complex), target :: y(..)
       integer(c_long), value :: incy
       integer(c_long), value :: stridey
       integer(c_long), value :: batchCount
       integer(c_int) :: ZhpmvStridedBatched_64
-      ZhpmvStridedBatched_64 = hipblasZhpmvStridedBatched_64_raw(handle, uplo, n, c_loc(alpha(1)), &
-        c_loc(AP(1)), strideA, c_loc(x(1)), incx, stridex, c_loc(beta(1)), c_loc(y(1)), incy, &
-        stridey, batchCount)
+      ZhpmvStridedBatched_64 = hipblasZhpmvStridedBatched_64_raw(handle, uplo, n, c_loc(alpha), &
+        c_loc(AP), strideA, c_loc(x), incx, stridex, c_loc(beta), c_loc(y), incy, stridey, &
+        batchCount)
     end function hipblasZhpmvStridedBatched_64_native
 
     function hipblasZhpmvStridedBatched_64_typed(handle, uplo, n, alpha, AP, strideA, x, incx, &
@@ -61609,11 +61551,11 @@ contains
       integer(c_int), value :: uplo
       integer(c_int), value :: n
       real(c_float) :: alpha
-      complex(c_float_complex), target :: x(*)
+      complex(c_float_complex), target :: x(..)
       integer(c_int), value :: incx
-      complex(c_float_complex), target :: AP(*)
+      complex(c_float_complex), target :: AP(..)
       integer(c_int) :: Chpr
-      Chpr = hipblasChpr_raw(handle, uplo, n, alpha, c_loc(x(1)), incx, c_loc(AP(1)))
+      Chpr = hipblasChpr_raw(handle, uplo, n, alpha, c_loc(x), incx, c_loc(AP))
     end function hipblasChpr_native
 
     function hipblasChpr_typed(handle, uplo, n, alpha, x, incx, AP) result(Chpr)
@@ -61638,11 +61580,11 @@ contains
       integer(c_int), value :: uplo
       integer(c_int), value :: n
       real(c_double) :: alpha
-      complex(c_double_complex), target :: x(*)
+      complex(c_double_complex), target :: x(..)
       integer(c_int), value :: incx
-      complex(c_double_complex), target :: AP(*)
+      complex(c_double_complex), target :: AP(..)
       integer(c_int) :: Zhpr
-      Zhpr = hipblasZhpr_raw(handle, uplo, n, alpha, c_loc(x(1)), incx, c_loc(AP(1)))
+      Zhpr = hipblasZhpr_raw(handle, uplo, n, alpha, c_loc(x), incx, c_loc(AP))
     end function hipblasZhpr_native
 
     function hipblasZhpr_typed(handle, uplo, n, alpha, x, incx, AP) result(Zhpr)
@@ -61666,13 +61608,12 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: uplo
       integer(c_long), value :: n
-      real(c_float), target :: alpha(*)
-      complex(c_float_complex), target :: x(*)
+      real(c_float), target :: alpha(..)
+      complex(c_float_complex), target :: x(..)
       integer(c_long), value :: incx
-      complex(c_float_complex), target :: AP(*)
+      complex(c_float_complex), target :: AP(..)
       integer(c_int) :: Chpr_64
-      Chpr_64 = hipblasChpr_64_raw(handle, uplo, n, c_loc(alpha(1)), c_loc(x(1)), incx, c_loc(AP( &
-        1)))
+      Chpr_64 = hipblasChpr_64_raw(handle, uplo, n, c_loc(alpha), c_loc(x), incx, c_loc(AP))
     end function hipblasChpr_64_native
 
     function hipblasChpr_64_typed(handle, uplo, n, alpha, x, incx, AP) result(Chpr_64)
@@ -61696,13 +61637,12 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: uplo
       integer(c_long), value :: n
-      real(c_double), target :: alpha(*)
-      complex(c_double_complex), target :: x(*)
+      real(c_double), target :: alpha(..)
+      complex(c_double_complex), target :: x(..)
       integer(c_long), value :: incx
-      complex(c_double_complex), target :: AP(*)
+      complex(c_double_complex), target :: AP(..)
       integer(c_int) :: Zhpr_64
-      Zhpr_64 = hipblasZhpr_64_raw(handle, uplo, n, c_loc(alpha(1)), c_loc(x(1)), incx, c_loc(AP( &
-        1)))
+      Zhpr_64 = hipblasZhpr_64_raw(handle, uplo, n, c_loc(alpha), c_loc(x), incx, c_loc(AP))
     end function hipblasZhpr_64_native
 
     function hipblasZhpr_64_typed(handle, uplo, n, alpha, x, incx, AP) result(Zhpr_64)
@@ -61761,13 +61701,13 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: uplo
       integer(c_long), value :: n
-      real(c_float), target :: alpha(*)
+      real(c_float), target :: alpha(..)
       type(c_ptr), value :: x
       integer(c_long), value :: incx
       type(c_ptr), value :: AP
       integer(c_long), value :: batchCount
       integer(c_int) :: ChprBatched_64
-      ChprBatched_64 = hipblasChprBatched_64_raw(handle, uplo, n, c_loc(alpha(1)), x, incx, AP, &
+      ChprBatched_64 = hipblasChprBatched_64_raw(handle, uplo, n, c_loc(alpha), x, incx, AP, &
         batchCount)
     end function hipblasChprBatched_64_native
 
@@ -61796,13 +61736,13 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: uplo
       integer(c_long), value :: n
-      real(c_double), target :: alpha(*)
+      real(c_double), target :: alpha(..)
       type(c_ptr), value :: x
       integer(c_long), value :: incx
       type(c_ptr), value :: AP
       integer(c_long), value :: batchCount
       integer(c_int) :: ZhprBatched_64
-      ZhprBatched_64 = hipblasZhprBatched_64_raw(handle, uplo, n, c_loc(alpha(1)), x, incx, AP, &
+      ZhprBatched_64 = hipblasZhprBatched_64_raw(handle, uplo, n, c_loc(alpha), x, incx, AP, &
         batchCount)
     end function hipblasZhprBatched_64_native
 
@@ -61832,15 +61772,15 @@ contains
       integer(c_int), value :: uplo
       integer(c_int), value :: n
       real(c_float) :: alpha
-      complex(c_float_complex), target :: x(*)
+      complex(c_float_complex), target :: x(..)
       integer(c_int), value :: incx
       integer(c_long), value :: stridex
-      complex(c_float_complex), target :: AP(*)
+      complex(c_float_complex), target :: AP(..)
       integer(c_long), value :: strideA
       integer(c_int), value :: batchCount
       integer(c_int) :: ChprStridedBatched
-      ChprStridedBatched = hipblasChprStridedBatched_raw(handle, uplo, n, alpha, c_loc(x(1)), &
-        incx, stridex, c_loc(AP(1)), strideA, batchCount)
+      ChprStridedBatched = hipblasChprStridedBatched_raw(handle, uplo, n, alpha, c_loc(x), incx, &
+        stridex, c_loc(AP), strideA, batchCount)
     end function hipblasChprStridedBatched_native
 
     function hipblasChprStridedBatched_typed(handle, uplo, n, alpha, x, incx, stridex, AP, &
@@ -61871,15 +61811,15 @@ contains
       integer(c_int), value :: uplo
       integer(c_int), value :: n
       real(c_double) :: alpha
-      complex(c_double_complex), target :: x(*)
+      complex(c_double_complex), target :: x(..)
       integer(c_int), value :: incx
       integer(c_long), value :: stridex
-      complex(c_double_complex), target :: AP(*)
+      complex(c_double_complex), target :: AP(..)
       integer(c_long), value :: strideA
       integer(c_int), value :: batchCount
       integer(c_int) :: ZhprStridedBatched
-      ZhprStridedBatched = hipblasZhprStridedBatched_raw(handle, uplo, n, alpha, c_loc(x(1)), &
-        incx, stridex, c_loc(AP(1)), strideA, batchCount)
+      ZhprStridedBatched = hipblasZhprStridedBatched_raw(handle, uplo, n, alpha, c_loc(x), incx, &
+        stridex, c_loc(AP), strideA, batchCount)
     end function hipblasZhprStridedBatched_native
 
     function hipblasZhprStridedBatched_typed(handle, uplo, n, alpha, x, incx, stridex, AP, &
@@ -61909,16 +61849,16 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: uplo
       integer(c_long), value :: n
-      real(c_float), target :: alpha(*)
-      complex(c_float_complex), target :: x(*)
+      real(c_float), target :: alpha(..)
+      complex(c_float_complex), target :: x(..)
       integer(c_long), value :: incx
       integer(c_long), value :: stridex
-      complex(c_float_complex), target :: AP(*)
+      complex(c_float_complex), target :: AP(..)
       integer(c_long), value :: strideA
       integer(c_long), value :: batchCount
       integer(c_int) :: ChprStridedBatched_64
-      ChprStridedBatched_64 = hipblasChprStridedBatched_64_raw(handle, uplo, n, c_loc(alpha(1)), &
-        c_loc(x(1)), incx, stridex, c_loc(AP(1)), strideA, batchCount)
+      ChprStridedBatched_64 = hipblasChprStridedBatched_64_raw(handle, uplo, n, c_loc(alpha), &
+        c_loc(x), incx, stridex, c_loc(AP), strideA, batchCount)
     end function hipblasChprStridedBatched_64_native
 
     function hipblasChprStridedBatched_64_typed(handle, uplo, n, alpha, x, incx, stridex, AP, &
@@ -61948,16 +61888,16 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: uplo
       integer(c_long), value :: n
-      real(c_double), target :: alpha(*)
-      complex(c_double_complex), target :: x(*)
+      real(c_double), target :: alpha(..)
+      complex(c_double_complex), target :: x(..)
       integer(c_long), value :: incx
       integer(c_long), value :: stridex
-      complex(c_double_complex), target :: AP(*)
+      complex(c_double_complex), target :: AP(..)
       integer(c_long), value :: strideA
       integer(c_long), value :: batchCount
       integer(c_int) :: ZhprStridedBatched_64
-      ZhprStridedBatched_64 = hipblasZhprStridedBatched_64_raw(handle, uplo, n, c_loc(alpha(1)), &
-        c_loc(x(1)), incx, stridex, c_loc(AP(1)), strideA, batchCount)
+      ZhprStridedBatched_64 = hipblasZhprStridedBatched_64_raw(handle, uplo, n, c_loc(alpha), &
+        c_loc(x), incx, stridex, c_loc(AP), strideA, batchCount)
     end function hipblasZhprStridedBatched_64_native
 
     function hipblasZhprStridedBatched_64_typed(handle, uplo, n, alpha, x, incx, stridex, AP, &
@@ -61987,14 +61927,13 @@ contains
       integer(c_int), value :: uplo
       integer(c_int), value :: n
       complex(c_float_complex) :: alpha
-      complex(c_float_complex), target :: x(*)
+      complex(c_float_complex), target :: x(..)
       integer(c_int), value :: incx
-      complex(c_float_complex), target :: y(*)
+      complex(c_float_complex), target :: y(..)
       integer(c_int), value :: incy
-      complex(c_float_complex), target :: AP(*)
+      complex(c_float_complex), target :: AP(..)
       integer(c_int) :: Chpr2
-      Chpr2 = hipblasChpr2_raw(handle, uplo, n, alpha, c_loc(x(1)), incx, c_loc(y(1)), incy, &
-        c_loc(AP(1)))
+      Chpr2 = hipblasChpr2_raw(handle, uplo, n, alpha, c_loc(x), incx, c_loc(y), incy, c_loc(AP))
     end function hipblasChpr2_native
 
     function hipblasChpr2_typed(handle, uplo, n, alpha, x, incx, y, incy, AP) result(Chpr2)
@@ -62021,14 +61960,13 @@ contains
       integer(c_int), value :: uplo
       integer(c_int), value :: n
       complex(c_double_complex) :: alpha
-      complex(c_double_complex), target :: x(*)
+      complex(c_double_complex), target :: x(..)
       integer(c_int), value :: incx
-      complex(c_double_complex), target :: y(*)
+      complex(c_double_complex), target :: y(..)
       integer(c_int), value :: incy
-      complex(c_double_complex), target :: AP(*)
+      complex(c_double_complex), target :: AP(..)
       integer(c_int) :: Zhpr2
-      Zhpr2 = hipblasZhpr2_raw(handle, uplo, n, alpha, c_loc(x(1)), incx, c_loc(y(1)), incy, &
-        c_loc(AP(1)))
+      Zhpr2 = hipblasZhpr2_raw(handle, uplo, n, alpha, c_loc(x), incx, c_loc(y), incy, c_loc(AP))
     end function hipblasZhpr2_native
 
     function hipblasZhpr2_typed(handle, uplo, n, alpha, x, incx, y, incy, AP) result(Zhpr2)
@@ -62054,15 +61992,15 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: uplo
       integer(c_long), value :: n
-      complex(c_float_complex), target :: alpha(*)
-      complex(c_float_complex), target :: x(*)
+      complex(c_float_complex), target :: alpha(..)
+      complex(c_float_complex), target :: x(..)
       integer(c_long), value :: incx
-      complex(c_float_complex), target :: y(*)
+      complex(c_float_complex), target :: y(..)
       integer(c_long), value :: incy
-      complex(c_float_complex), target :: AP(*)
+      complex(c_float_complex), target :: AP(..)
       integer(c_int) :: Chpr2_64
-      Chpr2_64 = hipblasChpr2_64_raw(handle, uplo, n, c_loc(alpha(1)), c_loc(x(1)), incx, c_loc(y( &
-        1)), incy, c_loc(AP(1)))
+      Chpr2_64 = hipblasChpr2_64_raw(handle, uplo, n, c_loc(alpha), c_loc(x), incx, c_loc(y), &
+        incy, c_loc(AP))
     end function hipblasChpr2_64_native
 
     function hipblasChpr2_64_typed(handle, uplo, n, alpha, x, incx, y, incy, AP) result(Chpr2_64)
@@ -62088,15 +62026,15 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: uplo
       integer(c_long), value :: n
-      complex(c_double_complex), target :: alpha(*)
-      complex(c_double_complex), target :: x(*)
+      complex(c_double_complex), target :: alpha(..)
+      complex(c_double_complex), target :: x(..)
       integer(c_long), value :: incx
-      complex(c_double_complex), target :: y(*)
+      complex(c_double_complex), target :: y(..)
       integer(c_long), value :: incy
-      complex(c_double_complex), target :: AP(*)
+      complex(c_double_complex), target :: AP(..)
       integer(c_int) :: Zhpr2_64
-      Zhpr2_64 = hipblasZhpr2_64_raw(handle, uplo, n, c_loc(alpha(1)), c_loc(x(1)), incx, c_loc(y( &
-        1)), incy, c_loc(AP(1)))
+      Zhpr2_64 = hipblasZhpr2_64_raw(handle, uplo, n, c_loc(alpha), c_loc(x), incx, c_loc(y), &
+        incy, c_loc(AP))
     end function hipblasZhpr2_64_native
 
     function hipblasZhpr2_64_typed(handle, uplo, n, alpha, x, incx, y, incy, AP) result(Zhpr2_64)
@@ -62163,7 +62101,7 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: uplo
       integer(c_long), value :: n
-      complex(c_float_complex), target :: alpha(*)
+      complex(c_float_complex), target :: alpha(..)
       type(c_ptr), value :: x
       integer(c_long), value :: incx
       type(c_ptr), value :: y
@@ -62171,7 +62109,7 @@ contains
       type(c_ptr), value :: AP
       integer(c_long), value :: batchCount
       integer(c_int) :: Chpr2Batched_64
-      Chpr2Batched_64 = hipblasChpr2Batched_64_raw(handle, uplo, n, c_loc(alpha(1)), x, incx, y, &
+      Chpr2Batched_64 = hipblasChpr2Batched_64_raw(handle, uplo, n, c_loc(alpha), x, incx, y, &
         incy, AP, batchCount)
     end function hipblasChpr2Batched_64_native
 
@@ -62202,7 +62140,7 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: uplo
       integer(c_long), value :: n
-      complex(c_double_complex), target :: alpha(*)
+      complex(c_double_complex), target :: alpha(..)
       type(c_ptr), value :: x
       integer(c_long), value :: incx
       type(c_ptr), value :: y
@@ -62210,7 +62148,7 @@ contains
       type(c_ptr), value :: AP
       integer(c_long), value :: batchCount
       integer(c_int) :: Zhpr2Batched_64
-      Zhpr2Batched_64 = hipblasZhpr2Batched_64_raw(handle, uplo, n, c_loc(alpha(1)), x, incx, y, &
+      Zhpr2Batched_64 = hipblasZhpr2Batched_64_raw(handle, uplo, n, c_loc(alpha), x, incx, y, &
         incy, AP, batchCount)
     end function hipblasZhpr2Batched_64_native
 
@@ -62242,18 +62180,18 @@ contains
       integer(c_int), value :: uplo
       integer(c_int), value :: n
       complex(c_float_complex) :: alpha
-      complex(c_float_complex), target :: x(*)
+      complex(c_float_complex), target :: x(..)
       integer(c_int), value :: incx
       integer(c_long), value :: stridex
-      complex(c_float_complex), target :: y(*)
+      complex(c_float_complex), target :: y(..)
       integer(c_int), value :: incy
       integer(c_long), value :: stridey
-      complex(c_float_complex), target :: AP(*)
+      complex(c_float_complex), target :: AP(..)
       integer(c_long), value :: strideA
       integer(c_int), value :: batchCount
       integer(c_int) :: Chpr2StridedBatched
-      Chpr2StridedBatched = hipblasChpr2StridedBatched_raw(handle, uplo, n, alpha, c_loc(x(1)), &
-        incx, stridex, c_loc(y(1)), incy, stridey, c_loc(AP(1)), strideA, batchCount)
+      Chpr2StridedBatched = hipblasChpr2StridedBatched_raw(handle, uplo, n, alpha, c_loc(x), incx, &
+        stridex, c_loc(y), incy, stridey, c_loc(AP), strideA, batchCount)
     end function hipblasChpr2StridedBatched_native
 
     function hipblasChpr2StridedBatched_typed(handle, uplo, n, alpha, x, incx, stridex, y, incy, &
@@ -62287,18 +62225,18 @@ contains
       integer(c_int), value :: uplo
       integer(c_int), value :: n
       complex(c_double_complex) :: alpha
-      complex(c_double_complex), target :: x(*)
+      complex(c_double_complex), target :: x(..)
       integer(c_int), value :: incx
       integer(c_long), value :: stridex
-      complex(c_double_complex), target :: y(*)
+      complex(c_double_complex), target :: y(..)
       integer(c_int), value :: incy
       integer(c_long), value :: stridey
-      complex(c_double_complex), target :: AP(*)
+      complex(c_double_complex), target :: AP(..)
       integer(c_long), value :: strideA
       integer(c_int), value :: batchCount
       integer(c_int) :: Zhpr2StridedBatched
-      Zhpr2StridedBatched = hipblasZhpr2StridedBatched_raw(handle, uplo, n, alpha, c_loc(x(1)), &
-        incx, stridex, c_loc(y(1)), incy, stridey, c_loc(AP(1)), strideA, batchCount)
+      Zhpr2StridedBatched = hipblasZhpr2StridedBatched_raw(handle, uplo, n, alpha, c_loc(x), incx, &
+        stridex, c_loc(y), incy, stridey, c_loc(AP), strideA, batchCount)
     end function hipblasZhpr2StridedBatched_native
 
     function hipblasZhpr2StridedBatched_typed(handle, uplo, n, alpha, x, incx, stridex, y, incy, &
@@ -62331,19 +62269,19 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: uplo
       integer(c_long), value :: n
-      complex(c_float_complex), target :: alpha(*)
-      complex(c_float_complex), target :: x(*)
+      complex(c_float_complex), target :: alpha(..)
+      complex(c_float_complex), target :: x(..)
       integer(c_long), value :: incx
       integer(c_long), value :: stridex
-      complex(c_float_complex), target :: y(*)
+      complex(c_float_complex), target :: y(..)
       integer(c_long), value :: incy
       integer(c_long), value :: stridey
-      complex(c_float_complex), target :: AP(*)
+      complex(c_float_complex), target :: AP(..)
       integer(c_long), value :: strideA
       integer(c_long), value :: batchCount
       integer(c_int) :: Chpr2StridedBatched_64
-      Chpr2StridedBatched_64 = hipblasChpr2StridedBatched_64_raw(handle, uplo, n, c_loc(alpha(1)), &
-        c_loc(x(1)), incx, stridex, c_loc(y(1)), incy, stridey, c_loc(AP(1)), strideA, batchCount)
+      Chpr2StridedBatched_64 = hipblasChpr2StridedBatched_64_raw(handle, uplo, n, c_loc(alpha), &
+        c_loc(x), incx, stridex, c_loc(y), incy, stridey, c_loc(AP), strideA, batchCount)
     end function hipblasChpr2StridedBatched_64_native
 
     function hipblasChpr2StridedBatched_64_typed(handle, uplo, n, alpha, x, incx, stridex, y, &
@@ -62376,19 +62314,19 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: uplo
       integer(c_long), value :: n
-      complex(c_double_complex), target :: alpha(*)
-      complex(c_double_complex), target :: x(*)
+      complex(c_double_complex), target :: alpha(..)
+      complex(c_double_complex), target :: x(..)
       integer(c_long), value :: incx
       integer(c_long), value :: stridex
-      complex(c_double_complex), target :: y(*)
+      complex(c_double_complex), target :: y(..)
       integer(c_long), value :: incy
       integer(c_long), value :: stridey
-      complex(c_double_complex), target :: AP(*)
+      complex(c_double_complex), target :: AP(..)
       integer(c_long), value :: strideA
       integer(c_long), value :: batchCount
       integer(c_int) :: Zhpr2StridedBatched_64
-      Zhpr2StridedBatched_64 = hipblasZhpr2StridedBatched_64_raw(handle, uplo, n, c_loc(alpha(1)), &
-        c_loc(x(1)), incx, stridex, c_loc(y(1)), incy, stridey, c_loc(AP(1)), strideA, batchCount)
+      Zhpr2StridedBatched_64 = hipblasZhpr2StridedBatched_64_raw(handle, uplo, n, c_loc(alpha), &
+        c_loc(x), incx, stridex, c_loc(y), incy, stridey, c_loc(AP), strideA, batchCount)
     end function hipblasZhpr2StridedBatched_64_native
 
     function hipblasZhpr2StridedBatched_64_typed(handle, uplo, n, alpha, x, incx, stridex, y, &
@@ -62423,16 +62361,16 @@ contains
       integer(c_int), value :: n
       integer(c_int), value :: k
       real(c_float) :: alpha
-      real(c_float), target :: AP(*)
+      real(c_float), target :: AP(..)
       integer(c_int), value :: lda
-      real(c_float), target :: x(*)
+      real(c_float), target :: x(..)
       integer(c_int), value :: incx
       real(c_float) :: beta
-      real(c_float), target :: y(*)
+      real(c_float), target :: y(..)
       integer(c_int), value :: incy
       integer(c_int) :: Ssbmv
-      Ssbmv = hipblasSsbmv_raw(handle, uplo, n, k, alpha, c_loc(AP(1)), lda, c_loc(x(1)), incx, &
-        beta, c_loc(y(1)), incy)
+      Ssbmv = hipblasSsbmv_raw(handle, uplo, n, k, alpha, c_loc(AP), lda, c_loc(x), incx, beta, &
+        c_loc(y), incy)
     end function hipblasSsbmv_native
 
     function hipblasSsbmv_typed(handle, uplo, n, k, alpha, AP, lda, x, incx, beta, y, &
@@ -62465,16 +62403,16 @@ contains
       integer(c_int), value :: n
       integer(c_int), value :: k
       real(c_double) :: alpha
-      real(c_double), target :: AP(*)
+      real(c_double), target :: AP(..)
       integer(c_int), value :: lda
-      real(c_double), target :: x(*)
+      real(c_double), target :: x(..)
       integer(c_int), value :: incx
       real(c_double) :: beta
-      real(c_double), target :: y(*)
+      real(c_double), target :: y(..)
       integer(c_int), value :: incy
       integer(c_int) :: Dsbmv
-      Dsbmv = hipblasDsbmv_raw(handle, uplo, n, k, alpha, c_loc(AP(1)), lda, c_loc(x(1)), incx, &
-        beta, c_loc(y(1)), incy)
+      Dsbmv = hipblasDsbmv_raw(handle, uplo, n, k, alpha, c_loc(AP), lda, c_loc(x), incx, beta, &
+        c_loc(y), incy)
     end function hipblasDsbmv_native
 
     function hipblasDsbmv_typed(handle, uplo, n, k, alpha, AP, lda, x, incx, beta, y, &
@@ -62506,17 +62444,17 @@ contains
       integer(c_int), value :: uplo
       integer(c_long), value :: n
       integer(c_long), value :: k
-      real(c_float), target :: alpha(*)
-      real(c_float), target :: AP(*)
+      real(c_float), target :: alpha(..)
+      real(c_float), target :: AP(..)
       integer(c_long), value :: lda
-      real(c_float), target :: x(*)
+      real(c_float), target :: x(..)
       integer(c_long), value :: incx
-      real(c_float), target :: beta(*)
-      real(c_float), target :: y(*)
+      real(c_float), target :: beta(..)
+      real(c_float), target :: y(..)
       integer(c_long), value :: incy
       integer(c_int) :: Ssbmv_64
-      Ssbmv_64 = hipblasSsbmv_64_raw(handle, uplo, n, k, c_loc(alpha(1)), c_loc(AP(1)), lda, &
-        c_loc(x(1)), incx, c_loc(beta(1)), c_loc(y(1)), incy)
+      Ssbmv_64 = hipblasSsbmv_64_raw(handle, uplo, n, k, c_loc(alpha), c_loc(AP), lda, c_loc(x), &
+        incx, c_loc(beta), c_loc(y), incy)
     end function hipblasSsbmv_64_native
 
     function hipblasSsbmv_64_typed(handle, uplo, n, k, alpha, AP, lda, x, incx, beta, y, &
@@ -62548,17 +62486,17 @@ contains
       integer(c_int), value :: uplo
       integer(c_long), value :: n
       integer(c_long), value :: k
-      real(c_double), target :: alpha(*)
-      real(c_double), target :: AP(*)
+      real(c_double), target :: alpha(..)
+      real(c_double), target :: AP(..)
       integer(c_long), value :: lda
-      real(c_double), target :: x(*)
+      real(c_double), target :: x(..)
       integer(c_long), value :: incx
-      real(c_double), target :: beta(*)
-      real(c_double), target :: y(*)
+      real(c_double), target :: beta(..)
+      real(c_double), target :: y(..)
       integer(c_long), value :: incy
       integer(c_int) :: Dsbmv_64
-      Dsbmv_64 = hipblasDsbmv_64_raw(handle, uplo, n, k, c_loc(alpha(1)), c_loc(AP(1)), lda, &
-        c_loc(x(1)), incx, c_loc(beta(1)), c_loc(y(1)), incy)
+      Dsbmv_64 = hipblasDsbmv_64_raw(handle, uplo, n, k, c_loc(alpha), c_loc(AP), lda, c_loc(x), &
+        incx, c_loc(beta), c_loc(y), incy)
     end function hipblasDsbmv_64_native
 
     function hipblasDsbmv_64_typed(handle, uplo, n, k, alpha, AP, lda, x, incx, beta, y, &
@@ -62636,18 +62574,18 @@ contains
       integer(c_int), value :: uplo
       integer(c_long), value :: n
       integer(c_long), value :: k
-      real(c_float), target :: alpha(*)
+      real(c_float), target :: alpha(..)
       type(c_ptr), value :: AP
       integer(c_long), value :: lda
       type(c_ptr), value :: x
       integer(c_long), value :: incx
-      real(c_float), target :: beta(*)
+      real(c_float), target :: beta(..)
       type(c_ptr), value :: y
       integer(c_long), value :: incy
       integer(c_long), value :: batchCount
       integer(c_int) :: SsbmvBatched_64
-      SsbmvBatched_64 = hipblasSsbmvBatched_64_raw(handle, uplo, n, k, c_loc(alpha(1)), AP, lda, &
-        x, incx, c_loc(beta(1)), y, incy, batchCount)
+      SsbmvBatched_64 = hipblasSsbmvBatched_64_raw(handle, uplo, n, k, c_loc(alpha), AP, lda, x, &
+        incx, c_loc(beta), y, incy, batchCount)
     end function hipblasSsbmvBatched_64_native
 
     function hipblasSsbmvBatched_64_typed(handle, uplo, n, k, alpha, AP, lda, x, incx, beta, y, &
@@ -62681,18 +62619,18 @@ contains
       integer(c_int), value :: uplo
       integer(c_long), value :: n
       integer(c_long), value :: k
-      real(c_double), target :: alpha(*)
+      real(c_double), target :: alpha(..)
       type(c_ptr), value :: AP
       integer(c_long), value :: lda
       type(c_ptr), value :: x
       integer(c_long), value :: incx
-      real(c_double), target :: beta(*)
+      real(c_double), target :: beta(..)
       type(c_ptr), value :: y
       integer(c_long), value :: incy
       integer(c_long), value :: batchCount
       integer(c_int) :: DsbmvBatched_64
-      DsbmvBatched_64 = hipblasDsbmvBatched_64_raw(handle, uplo, n, k, c_loc(alpha(1)), AP, lda, &
-        x, incx, c_loc(beta(1)), y, incy, batchCount)
+      DsbmvBatched_64 = hipblasDsbmvBatched_64_raw(handle, uplo, n, k, c_loc(alpha), AP, lda, x, &
+        incx, c_loc(beta), y, incy, batchCount)
     end function hipblasDsbmvBatched_64_native
 
     function hipblasDsbmvBatched_64_typed(handle, uplo, n, k, alpha, AP, lda, x, incx, beta, y, &
@@ -62727,20 +62665,20 @@ contains
       integer(c_int), value :: n
       integer(c_int), value :: k
       real(c_float) :: alpha
-      real(c_float), target :: AP(*)
+      real(c_float), target :: AP(..)
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
-      real(c_float), target :: x(*)
+      real(c_float), target :: x(..)
       integer(c_int), value :: incx
       integer(c_long), value :: stridex
       real(c_float) :: beta
-      real(c_float), target :: y(*)
+      real(c_float), target :: y(..)
       integer(c_int), value :: incy
       integer(c_long), value :: stridey
       integer(c_int), value :: batchCount
       integer(c_int) :: SsbmvStridedBatched
-      SsbmvStridedBatched = hipblasSsbmvStridedBatched_raw(handle, uplo, n, k, alpha, c_loc(AP( &
-        1)), lda, strideA, c_loc(x(1)), incx, stridex, beta, c_loc(y(1)), incy, stridey, batchCount)
+      SsbmvStridedBatched = hipblasSsbmvStridedBatched_raw(handle, uplo, n, k, alpha, c_loc(AP), &
+        lda, strideA, c_loc(x), incx, stridex, beta, c_loc(y), incy, stridey, batchCount)
     end function hipblasSsbmvStridedBatched_native
 
     function hipblasSsbmvStridedBatched_typed(handle, uplo, n, k, alpha, AP, lda, strideA, x, &
@@ -62778,20 +62716,20 @@ contains
       integer(c_int), value :: n
       integer(c_int), value :: k
       real(c_double) :: alpha
-      real(c_double), target :: AP(*)
+      real(c_double), target :: AP(..)
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
-      real(c_double), target :: x(*)
+      real(c_double), target :: x(..)
       integer(c_int), value :: incx
       integer(c_long), value :: stridex
       real(c_double) :: beta
-      real(c_double), target :: y(*)
+      real(c_double), target :: y(..)
       integer(c_int), value :: incy
       integer(c_long), value :: stridey
       integer(c_int), value :: batchCount
       integer(c_int) :: DsbmvStridedBatched
-      DsbmvStridedBatched = hipblasDsbmvStridedBatched_raw(handle, uplo, n, k, alpha, c_loc(AP( &
-        1)), lda, strideA, c_loc(x(1)), incx, stridex, beta, c_loc(y(1)), incy, stridey, batchCount)
+      DsbmvStridedBatched = hipblasDsbmvStridedBatched_raw(handle, uplo, n, k, alpha, c_loc(AP), &
+        lda, strideA, c_loc(x), incx, stridex, beta, c_loc(y), incy, stridey, batchCount)
     end function hipblasDsbmvStridedBatched_native
 
     function hipblasDsbmvStridedBatched_typed(handle, uplo, n, k, alpha, AP, lda, strideA, x, &
@@ -62828,22 +62766,22 @@ contains
       integer(c_int), value :: uplo
       integer(c_long), value :: n
       integer(c_long), value :: k
-      real(c_float), target :: alpha(*)
-      real(c_float), target :: AP(*)
+      real(c_float), target :: alpha(..)
+      real(c_float), target :: AP(..)
       integer(c_long), value :: lda
       integer(c_long), value :: strideA
-      real(c_float), target :: x(*)
+      real(c_float), target :: x(..)
       integer(c_long), value :: incx
       integer(c_long), value :: stridex
-      real(c_float), target :: beta(*)
-      real(c_float), target :: y(*)
+      real(c_float), target :: beta(..)
+      real(c_float), target :: y(..)
       integer(c_long), value :: incy
       integer(c_long), value :: stridey
       integer(c_long), value :: batchCount
       integer(c_int) :: SsbmvStridedBatched_64
-      SsbmvStridedBatched_64 = hipblasSsbmvStridedBatched_64_raw(handle, uplo, n, k, c_loc(alpha( &
-        1)), c_loc(AP(1)), lda, strideA, c_loc(x(1)), incx, stridex, c_loc(beta(1)), c_loc(y(1)), &
-        incy, stridey, batchCount)
+      SsbmvStridedBatched_64 = hipblasSsbmvStridedBatched_64_raw(handle, uplo, n, k, c_loc(alpha), &
+        c_loc(AP), lda, strideA, c_loc(x), incx, stridex, c_loc(beta), c_loc(y), incy, stridey, &
+        batchCount)
     end function hipblasSsbmvStridedBatched_64_native
 
     function hipblasSsbmvStridedBatched_64_typed(handle, uplo, n, k, alpha, AP, lda, strideA, x, &
@@ -62880,22 +62818,22 @@ contains
       integer(c_int), value :: uplo
       integer(c_long), value :: n
       integer(c_long), value :: k
-      real(c_double), target :: alpha(*)
-      real(c_double), target :: AP(*)
+      real(c_double), target :: alpha(..)
+      real(c_double), target :: AP(..)
       integer(c_long), value :: lda
       integer(c_long), value :: strideA
-      real(c_double), target :: x(*)
+      real(c_double), target :: x(..)
       integer(c_long), value :: incx
       integer(c_long), value :: stridex
-      real(c_double), target :: beta(*)
-      real(c_double), target :: y(*)
+      real(c_double), target :: beta(..)
+      real(c_double), target :: y(..)
       integer(c_long), value :: incy
       integer(c_long), value :: stridey
       integer(c_long), value :: batchCount
       integer(c_int) :: DsbmvStridedBatched_64
-      DsbmvStridedBatched_64 = hipblasDsbmvStridedBatched_64_raw(handle, uplo, n, k, c_loc(alpha( &
-        1)), c_loc(AP(1)), lda, strideA, c_loc(x(1)), incx, stridex, c_loc(beta(1)), c_loc(y(1)), &
-        incy, stridey, batchCount)
+      DsbmvStridedBatched_64 = hipblasDsbmvStridedBatched_64_raw(handle, uplo, n, k, c_loc(alpha), &
+        c_loc(AP), lda, strideA, c_loc(x), incx, stridex, c_loc(beta), c_loc(y), incy, stridey, &
+        batchCount)
     end function hipblasDsbmvStridedBatched_64_native
 
     function hipblasDsbmvStridedBatched_64_typed(handle, uplo, n, k, alpha, AP, lda, strideA, x, &
@@ -62931,15 +62869,15 @@ contains
       integer(c_int), value :: uplo
       integer(c_int), value :: n
       real(c_float) :: alpha
-      real(c_float), target :: AP(*)
-      real(c_float), target :: x(*)
+      real(c_float), target :: AP(..)
+      real(c_float), target :: x(..)
       integer(c_int), value :: incx
       real(c_float) :: beta
-      real(c_float), target :: y(*)
+      real(c_float), target :: y(..)
       integer(c_int), value :: incy
       integer(c_int) :: Sspmv
-      Sspmv = hipblasSspmv_raw(handle, uplo, n, alpha, c_loc(AP(1)), c_loc(x(1)), incx, beta, &
-        c_loc(y(1)), incy)
+      Sspmv = hipblasSspmv_raw(handle, uplo, n, alpha, c_loc(AP), c_loc(x), incx, beta, c_loc(y), &
+        incy)
     end function hipblasSspmv_native
 
     function hipblasSspmv_typed(handle, uplo, n, alpha, AP, x, incx, beta, y, incy) result(Sspmv)
@@ -62967,15 +62905,15 @@ contains
       integer(c_int), value :: uplo
       integer(c_int), value :: n
       real(c_double) :: alpha
-      real(c_double), target :: AP(*)
-      real(c_double), target :: x(*)
+      real(c_double), target :: AP(..)
+      real(c_double), target :: x(..)
       integer(c_int), value :: incx
       real(c_double) :: beta
-      real(c_double), target :: y(*)
+      real(c_double), target :: y(..)
       integer(c_int), value :: incy
       integer(c_int) :: Dspmv
-      Dspmv = hipblasDspmv_raw(handle, uplo, n, alpha, c_loc(AP(1)), c_loc(x(1)), incx, beta, &
-        c_loc(y(1)), incy)
+      Dspmv = hipblasDspmv_raw(handle, uplo, n, alpha, c_loc(AP), c_loc(x), incx, beta, c_loc(y), &
+        incy)
     end function hipblasDspmv_native
 
     function hipblasDspmv_typed(handle, uplo, n, alpha, AP, x, incx, beta, y, incy) result(Dspmv)
@@ -63003,16 +62941,16 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: uplo
       integer(c_long), value :: n
-      real(c_float), target :: alpha(*)
-      real(c_float), target :: AP(*)
-      real(c_float), target :: x(*)
+      real(c_float), target :: alpha(..)
+      real(c_float), target :: AP(..)
+      real(c_float), target :: x(..)
       integer(c_long), value :: incx
-      real(c_float), target :: beta(*)
-      real(c_float), target :: y(*)
+      real(c_float), target :: beta(..)
+      real(c_float), target :: y(..)
       integer(c_long), value :: incy
       integer(c_int) :: Sspmv_64
-      Sspmv_64 = hipblasSspmv_64_raw(handle, uplo, n, c_loc(alpha(1)), c_loc(AP(1)), c_loc(x(1)), &
-        incx, c_loc(beta(1)), c_loc(y(1)), incy)
+      Sspmv_64 = hipblasSspmv_64_raw(handle, uplo, n, c_loc(alpha), c_loc(AP), c_loc(x), incx, &
+        c_loc(beta), c_loc(y), incy)
     end function hipblasSspmv_64_native
 
     function hipblasSspmv_64_typed(handle, uplo, n, alpha, AP, x, incx, beta, y, incy) result( &
@@ -63041,16 +62979,16 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: uplo
       integer(c_long), value :: n
-      real(c_double), target :: alpha(*)
-      real(c_double), target :: AP(*)
-      real(c_double), target :: x(*)
+      real(c_double), target :: alpha(..)
+      real(c_double), target :: AP(..)
+      real(c_double), target :: x(..)
       integer(c_long), value :: incx
-      real(c_double), target :: beta(*)
-      real(c_double), target :: y(*)
+      real(c_double), target :: beta(..)
+      real(c_double), target :: y(..)
       integer(c_long), value :: incy
       integer(c_int) :: Dspmv_64
-      Dspmv_64 = hipblasDspmv_64_raw(handle, uplo, n, c_loc(alpha(1)), c_loc(AP(1)), c_loc(x(1)), &
-        incx, c_loc(beta(1)), c_loc(y(1)), incy)
+      Dspmv_64 = hipblasDspmv_64_raw(handle, uplo, n, c_loc(alpha), c_loc(AP), c_loc(x), incx, &
+        c_loc(beta), c_loc(y), incy)
     end function hipblasDspmv_64_native
 
     function hipblasDspmv_64_typed(handle, uplo, n, alpha, AP, x, incx, beta, y, incy) result( &
@@ -63121,17 +63059,17 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: uplo
       integer(c_long), value :: n
-      real(c_float), target :: alpha(*)
+      real(c_float), target :: alpha(..)
       type(c_ptr), value :: AP
       type(c_ptr), value :: x
       integer(c_long), value :: incx
-      real(c_float), target :: beta(*)
+      real(c_float), target :: beta(..)
       type(c_ptr), value :: y
       integer(c_long), value :: incy
       integer(c_long), value :: batchCount
       integer(c_int) :: SspmvBatched_64
-      SspmvBatched_64 = hipblasSspmvBatched_64_raw(handle, uplo, n, c_loc(alpha(1)), AP, x, incx, &
-        c_loc(beta(1)), y, incy, batchCount)
+      SspmvBatched_64 = hipblasSspmvBatched_64_raw(handle, uplo, n, c_loc(alpha), AP, x, incx, &
+        c_loc(beta), y, incy, batchCount)
     end function hipblasSspmvBatched_64_native
 
     function hipblasSspmvBatched_64_typed(handle, uplo, n, alpha, AP, x, incx, beta, y, incy, &
@@ -63162,17 +63100,17 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: uplo
       integer(c_long), value :: n
-      real(c_double), target :: alpha(*)
+      real(c_double), target :: alpha(..)
       type(c_ptr), value :: AP
       type(c_ptr), value :: x
       integer(c_long), value :: incx
-      real(c_double), target :: beta(*)
+      real(c_double), target :: beta(..)
       type(c_ptr), value :: y
       integer(c_long), value :: incy
       integer(c_long), value :: batchCount
       integer(c_int) :: DspmvBatched_64
-      DspmvBatched_64 = hipblasDspmvBatched_64_raw(handle, uplo, n, c_loc(alpha(1)), AP, x, incx, &
-        c_loc(beta(1)), y, incy, batchCount)
+      DspmvBatched_64 = hipblasDspmvBatched_64_raw(handle, uplo, n, c_loc(alpha), AP, x, incx, &
+        c_loc(beta), y, incy, batchCount)
     end function hipblasDspmvBatched_64_native
 
     function hipblasDspmvBatched_64_typed(handle, uplo, n, alpha, AP, x, incx, beta, y, incy, &
@@ -63204,19 +63142,19 @@ contains
       integer(c_int), value :: uplo
       integer(c_int), value :: n
       real(c_float) :: alpha
-      real(c_float), target :: AP(*)
+      real(c_float), target :: AP(..)
       integer(c_long), value :: strideA
-      real(c_float), target :: x(*)
+      real(c_float), target :: x(..)
       integer(c_int), value :: incx
       integer(c_long), value :: stridex
       real(c_float) :: beta
-      real(c_float), target :: y(*)
+      real(c_float), target :: y(..)
       integer(c_int), value :: incy
       integer(c_long), value :: stridey
       integer(c_int), value :: batchCount
       integer(c_int) :: SspmvStridedBatched
-      SspmvStridedBatched = hipblasSspmvStridedBatched_raw(handle, uplo, n, alpha, c_loc(AP(1)), &
-        strideA, c_loc(x(1)), incx, stridex, beta, c_loc(y(1)), incy, stridey, batchCount)
+      SspmvStridedBatched = hipblasSspmvStridedBatched_raw(handle, uplo, n, alpha, c_loc(AP), &
+        strideA, c_loc(x), incx, stridex, beta, c_loc(y), incy, stridey, batchCount)
     end function hipblasSspmvStridedBatched_native
 
     function hipblasSspmvStridedBatched_typed(handle, uplo, n, alpha, AP, strideA, x, incx, &
@@ -63251,19 +63189,19 @@ contains
       integer(c_int), value :: uplo
       integer(c_int), value :: n
       real(c_double) :: alpha
-      real(c_double), target :: AP(*)
+      real(c_double), target :: AP(..)
       integer(c_long), value :: strideA
-      real(c_double), target :: x(*)
+      real(c_double), target :: x(..)
       integer(c_int), value :: incx
       integer(c_long), value :: stridex
       real(c_double) :: beta
-      real(c_double), target :: y(*)
+      real(c_double), target :: y(..)
       integer(c_int), value :: incy
       integer(c_long), value :: stridey
       integer(c_int), value :: batchCount
       integer(c_int) :: DspmvStridedBatched
-      DspmvStridedBatched = hipblasDspmvStridedBatched_raw(handle, uplo, n, alpha, c_loc(AP(1)), &
-        strideA, c_loc(x(1)), incx, stridex, beta, c_loc(y(1)), incy, stridey, batchCount)
+      DspmvStridedBatched = hipblasDspmvStridedBatched_raw(handle, uplo, n, alpha, c_loc(AP), &
+        strideA, c_loc(x), incx, stridex, beta, c_loc(y), incy, stridey, batchCount)
     end function hipblasDspmvStridedBatched_native
 
     function hipblasDspmvStridedBatched_typed(handle, uplo, n, alpha, AP, strideA, x, incx, &
@@ -63297,21 +63235,21 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: uplo
       integer(c_long), value :: n
-      real(c_float), target :: alpha(*)
-      real(c_float), target :: AP(*)
+      real(c_float), target :: alpha(..)
+      real(c_float), target :: AP(..)
       integer(c_long), value :: strideA
-      real(c_float), target :: x(*)
+      real(c_float), target :: x(..)
       integer(c_long), value :: incx
       integer(c_long), value :: stridex
-      real(c_float), target :: beta(*)
-      real(c_float), target :: y(*)
+      real(c_float), target :: beta(..)
+      real(c_float), target :: y(..)
       integer(c_long), value :: incy
       integer(c_long), value :: stridey
       integer(c_long), value :: batchCount
       integer(c_int) :: SspmvStridedBatched_64
-      SspmvStridedBatched_64 = hipblasSspmvStridedBatched_64_raw(handle, uplo, n, c_loc(alpha(1)), &
-        c_loc(AP(1)), strideA, c_loc(x(1)), incx, stridex, c_loc(beta(1)), c_loc(y(1)), incy, &
-        stridey, batchCount)
+      SspmvStridedBatched_64 = hipblasSspmvStridedBatched_64_raw(handle, uplo, n, c_loc(alpha), &
+        c_loc(AP), strideA, c_loc(x), incx, stridex, c_loc(beta), c_loc(y), incy, stridey, &
+        batchCount)
     end function hipblasSspmvStridedBatched_64_native
 
     function hipblasSspmvStridedBatched_64_typed(handle, uplo, n, alpha, AP, strideA, x, incx, &
@@ -63345,21 +63283,21 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: uplo
       integer(c_long), value :: n
-      real(c_double), target :: alpha(*)
-      real(c_double), target :: AP(*)
+      real(c_double), target :: alpha(..)
+      real(c_double), target :: AP(..)
       integer(c_long), value :: strideA
-      real(c_double), target :: x(*)
+      real(c_double), target :: x(..)
       integer(c_long), value :: incx
       integer(c_long), value :: stridex
-      real(c_double), target :: beta(*)
-      real(c_double), target :: y(*)
+      real(c_double), target :: beta(..)
+      real(c_double), target :: y(..)
       integer(c_long), value :: incy
       integer(c_long), value :: stridey
       integer(c_long), value :: batchCount
       integer(c_int) :: DspmvStridedBatched_64
-      DspmvStridedBatched_64 = hipblasDspmvStridedBatched_64_raw(handle, uplo, n, c_loc(alpha(1)), &
-        c_loc(AP(1)), strideA, c_loc(x(1)), incx, stridex, c_loc(beta(1)), c_loc(y(1)), incy, &
-        stridey, batchCount)
+      DspmvStridedBatched_64 = hipblasDspmvStridedBatched_64_raw(handle, uplo, n, c_loc(alpha), &
+        c_loc(AP), strideA, c_loc(x), incx, stridex, c_loc(beta), c_loc(y), incy, stridey, &
+        batchCount)
     end function hipblasDspmvStridedBatched_64_native
 
     function hipblasDspmvStridedBatched_64_typed(handle, uplo, n, alpha, AP, strideA, x, incx, &
@@ -63393,11 +63331,11 @@ contains
       integer(c_int), value :: uplo
       integer(c_int), value :: n
       real(c_float) :: alpha
-      real(c_float), target :: x(*)
+      real(c_float), target :: x(..)
       integer(c_int), value :: incx
-      real(c_float), target :: AP(*)
+      real(c_float), target :: AP(..)
       integer(c_int) :: Sspr
-      Sspr = hipblasSspr_raw(handle, uplo, n, alpha, c_loc(x(1)), incx, c_loc(AP(1)))
+      Sspr = hipblasSspr_raw(handle, uplo, n, alpha, c_loc(x), incx, c_loc(AP))
     end function hipblasSspr_native
 
     function hipblasSspr_typed(handle, uplo, n, alpha, x, incx, AP) result(Sspr)
@@ -63422,11 +63360,11 @@ contains
       integer(c_int), value :: uplo
       integer(c_int), value :: n
       real(c_double) :: alpha
-      real(c_double), target :: x(*)
+      real(c_double), target :: x(..)
       integer(c_int), value :: incx
-      real(c_double), target :: AP(*)
+      real(c_double), target :: AP(..)
       integer(c_int) :: Dspr
-      Dspr = hipblasDspr_raw(handle, uplo, n, alpha, c_loc(x(1)), incx, c_loc(AP(1)))
+      Dspr = hipblasDspr_raw(handle, uplo, n, alpha, c_loc(x), incx, c_loc(AP))
     end function hipblasDspr_native
 
     function hipblasDspr_typed(handle, uplo, n, alpha, x, incx, AP) result(Dspr)
@@ -63451,11 +63389,11 @@ contains
       integer(c_int), value :: uplo
       integer(c_int), value :: n
       complex(c_float_complex) :: alpha
-      complex(c_float_complex), target :: x(*)
+      complex(c_float_complex), target :: x(..)
       integer(c_int), value :: incx
-      complex(c_float_complex), target :: AP(*)
+      complex(c_float_complex), target :: AP(..)
       integer(c_int) :: Cspr
-      Cspr = hipblasCspr_raw(handle, uplo, n, alpha, c_loc(x(1)), incx, c_loc(AP(1)))
+      Cspr = hipblasCspr_raw(handle, uplo, n, alpha, c_loc(x), incx, c_loc(AP))
     end function hipblasCspr_native
 
     function hipblasCspr_typed(handle, uplo, n, alpha, x, incx, AP) result(Cspr)
@@ -63480,11 +63418,11 @@ contains
       integer(c_int), value :: uplo
       integer(c_int), value :: n
       complex(c_double_complex) :: alpha
-      complex(c_double_complex), target :: x(*)
+      complex(c_double_complex), target :: x(..)
       integer(c_int), value :: incx
-      complex(c_double_complex), target :: AP(*)
+      complex(c_double_complex), target :: AP(..)
       integer(c_int) :: Zspr
-      Zspr = hipblasZspr_raw(handle, uplo, n, alpha, c_loc(x(1)), incx, c_loc(AP(1)))
+      Zspr = hipblasZspr_raw(handle, uplo, n, alpha, c_loc(x), incx, c_loc(AP))
     end function hipblasZspr_native
 
     function hipblasZspr_typed(handle, uplo, n, alpha, x, incx, AP) result(Zspr)
@@ -63508,13 +63446,12 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: uplo
       integer(c_long), value :: n
-      real(c_float), target :: alpha(*)
-      real(c_float), target :: x(*)
+      real(c_float), target :: alpha(..)
+      real(c_float), target :: x(..)
       integer(c_long), value :: incx
-      real(c_float), target :: AP(*)
+      real(c_float), target :: AP(..)
       integer(c_int) :: Sspr_64
-      Sspr_64 = hipblasSspr_64_raw(handle, uplo, n, c_loc(alpha(1)), c_loc(x(1)), incx, c_loc(AP( &
-        1)))
+      Sspr_64 = hipblasSspr_64_raw(handle, uplo, n, c_loc(alpha), c_loc(x), incx, c_loc(AP))
     end function hipblasSspr_64_native
 
     function hipblasSspr_64_typed(handle, uplo, n, alpha, x, incx, AP) result(Sspr_64)
@@ -63538,13 +63475,12 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: uplo
       integer(c_long), value :: n
-      real(c_double), target :: alpha(*)
-      real(c_double), target :: x(*)
+      real(c_double), target :: alpha(..)
+      real(c_double), target :: x(..)
       integer(c_long), value :: incx
-      real(c_double), target :: AP(*)
+      real(c_double), target :: AP(..)
       integer(c_int) :: Dspr_64
-      Dspr_64 = hipblasDspr_64_raw(handle, uplo, n, c_loc(alpha(1)), c_loc(x(1)), incx, c_loc(AP( &
-        1)))
+      Dspr_64 = hipblasDspr_64_raw(handle, uplo, n, c_loc(alpha), c_loc(x), incx, c_loc(AP))
     end function hipblasDspr_64_native
 
     function hipblasDspr_64_typed(handle, uplo, n, alpha, x, incx, AP) result(Dspr_64)
@@ -63568,13 +63504,12 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: uplo
       integer(c_long), value :: n
-      complex(c_float_complex), target :: alpha(*)
-      complex(c_float_complex), target :: x(*)
+      complex(c_float_complex), target :: alpha(..)
+      complex(c_float_complex), target :: x(..)
       integer(c_long), value :: incx
-      complex(c_float_complex), target :: AP(*)
+      complex(c_float_complex), target :: AP(..)
       integer(c_int) :: Cspr_64
-      Cspr_64 = hipblasCspr_64_raw(handle, uplo, n, c_loc(alpha(1)), c_loc(x(1)), incx, c_loc(AP( &
-        1)))
+      Cspr_64 = hipblasCspr_64_raw(handle, uplo, n, c_loc(alpha), c_loc(x), incx, c_loc(AP))
     end function hipblasCspr_64_native
 
     function hipblasCspr_64_typed(handle, uplo, n, alpha, x, incx, AP) result(Cspr_64)
@@ -63598,13 +63533,12 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: uplo
       integer(c_long), value :: n
-      complex(c_double_complex), target :: alpha(*)
-      complex(c_double_complex), target :: x(*)
+      complex(c_double_complex), target :: alpha(..)
+      complex(c_double_complex), target :: x(..)
       integer(c_long), value :: incx
-      complex(c_double_complex), target :: AP(*)
+      complex(c_double_complex), target :: AP(..)
       integer(c_int) :: Zspr_64
-      Zspr_64 = hipblasZspr_64_raw(handle, uplo, n, c_loc(alpha(1)), c_loc(x(1)), incx, c_loc(AP( &
-        1)))
+      Zspr_64 = hipblasZspr_64_raw(handle, uplo, n, c_loc(alpha), c_loc(x), incx, c_loc(AP))
     end function hipblasZspr_64_native
 
     function hipblasZspr_64_typed(handle, uplo, n, alpha, x, incx, AP) result(Zspr_64)
@@ -63697,13 +63631,13 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: uplo
       integer(c_long), value :: n
-      real(c_float), target :: alpha(*)
+      real(c_float), target :: alpha(..)
       type(c_ptr), value :: x
       integer(c_long), value :: incx
       type(c_ptr), value :: AP
       integer(c_long), value :: batchCount
       integer(c_int) :: SsprBatched_64
-      SsprBatched_64 = hipblasSsprBatched_64_raw(handle, uplo, n, c_loc(alpha(1)), x, incx, AP, &
+      SsprBatched_64 = hipblasSsprBatched_64_raw(handle, uplo, n, c_loc(alpha), x, incx, AP, &
         batchCount)
     end function hipblasSsprBatched_64_native
 
@@ -63732,13 +63666,13 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: uplo
       integer(c_long), value :: n
-      real(c_double), target :: alpha(*)
+      real(c_double), target :: alpha(..)
       type(c_ptr), value :: x
       integer(c_long), value :: incx
       type(c_ptr), value :: AP
       integer(c_long), value :: batchCount
       integer(c_int) :: DsprBatched_64
-      DsprBatched_64 = hipblasDsprBatched_64_raw(handle, uplo, n, c_loc(alpha(1)), x, incx, AP, &
+      DsprBatched_64 = hipblasDsprBatched_64_raw(handle, uplo, n, c_loc(alpha), x, incx, AP, &
         batchCount)
     end function hipblasDsprBatched_64_native
 
@@ -63767,13 +63701,13 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: uplo
       integer(c_long), value :: n
-      complex(c_float_complex), target :: alpha(*)
+      complex(c_float_complex), target :: alpha(..)
       type(c_ptr), value :: x
       integer(c_long), value :: incx
       type(c_ptr), value :: AP
       integer(c_long), value :: batchCount
       integer(c_int) :: CsprBatched_64
-      CsprBatched_64 = hipblasCsprBatched_64_raw(handle, uplo, n, c_loc(alpha(1)), x, incx, AP, &
+      CsprBatched_64 = hipblasCsprBatched_64_raw(handle, uplo, n, c_loc(alpha), x, incx, AP, &
         batchCount)
     end function hipblasCsprBatched_64_native
 
@@ -63802,13 +63736,13 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: uplo
       integer(c_long), value :: n
-      complex(c_double_complex), target :: alpha(*)
+      complex(c_double_complex), target :: alpha(..)
       type(c_ptr), value :: x
       integer(c_long), value :: incx
       type(c_ptr), value :: AP
       integer(c_long), value :: batchCount
       integer(c_int) :: ZsprBatched_64
-      ZsprBatched_64 = hipblasZsprBatched_64_raw(handle, uplo, n, c_loc(alpha(1)), x, incx, AP, &
+      ZsprBatched_64 = hipblasZsprBatched_64_raw(handle, uplo, n, c_loc(alpha), x, incx, AP, &
         batchCount)
     end function hipblasZsprBatched_64_native
 
@@ -63838,15 +63772,15 @@ contains
       integer(c_int), value :: uplo
       integer(c_int), value :: n
       real(c_float) :: alpha
-      real(c_float), target :: x(*)
+      real(c_float), target :: x(..)
       integer(c_int), value :: incx
       integer(c_long), value :: stridex
-      real(c_float), target :: AP(*)
+      real(c_float), target :: AP(..)
       integer(c_long), value :: strideA
       integer(c_int), value :: batchCount
       integer(c_int) :: SsprStridedBatched
-      SsprStridedBatched = hipblasSsprStridedBatched_raw(handle, uplo, n, alpha, c_loc(x(1)), &
-        incx, stridex, c_loc(AP(1)), strideA, batchCount)
+      SsprStridedBatched = hipblasSsprStridedBatched_raw(handle, uplo, n, alpha, c_loc(x), incx, &
+        stridex, c_loc(AP), strideA, batchCount)
     end function hipblasSsprStridedBatched_native
 
     function hipblasSsprStridedBatched_typed(handle, uplo, n, alpha, x, incx, stridex, AP, &
@@ -63877,15 +63811,15 @@ contains
       integer(c_int), value :: uplo
       integer(c_int), value :: n
       real(c_double) :: alpha
-      real(c_double), target :: x(*)
+      real(c_double), target :: x(..)
       integer(c_int), value :: incx
       integer(c_long), value :: stridex
-      real(c_double), target :: AP(*)
+      real(c_double), target :: AP(..)
       integer(c_long), value :: strideA
       integer(c_int), value :: batchCount
       integer(c_int) :: DsprStridedBatched
-      DsprStridedBatched = hipblasDsprStridedBatched_raw(handle, uplo, n, alpha, c_loc(x(1)), &
-        incx, stridex, c_loc(AP(1)), strideA, batchCount)
+      DsprStridedBatched = hipblasDsprStridedBatched_raw(handle, uplo, n, alpha, c_loc(x), incx, &
+        stridex, c_loc(AP), strideA, batchCount)
     end function hipblasDsprStridedBatched_native
 
     function hipblasDsprStridedBatched_typed(handle, uplo, n, alpha, x, incx, stridex, AP, &
@@ -63916,15 +63850,15 @@ contains
       integer(c_int), value :: uplo
       integer(c_int), value :: n
       complex(c_float_complex) :: alpha
-      complex(c_float_complex), target :: x(*)
+      complex(c_float_complex), target :: x(..)
       integer(c_int), value :: incx
       integer(c_long), value :: stridex
-      complex(c_float_complex), target :: AP(*)
+      complex(c_float_complex), target :: AP(..)
       integer(c_long), value :: strideA
       integer(c_int), value :: batchCount
       integer(c_int) :: CsprStridedBatched
-      CsprStridedBatched = hipblasCsprStridedBatched_raw(handle, uplo, n, alpha, c_loc(x(1)), &
-        incx, stridex, c_loc(AP(1)), strideA, batchCount)
+      CsprStridedBatched = hipblasCsprStridedBatched_raw(handle, uplo, n, alpha, c_loc(x), incx, &
+        stridex, c_loc(AP), strideA, batchCount)
     end function hipblasCsprStridedBatched_native
 
     function hipblasCsprStridedBatched_typed(handle, uplo, n, alpha, x, incx, stridex, AP, &
@@ -63955,15 +63889,15 @@ contains
       integer(c_int), value :: uplo
       integer(c_int), value :: n
       complex(c_double_complex) :: alpha
-      complex(c_double_complex), target :: x(*)
+      complex(c_double_complex), target :: x(..)
       integer(c_int), value :: incx
       integer(c_long), value :: stridex
-      complex(c_double_complex), target :: AP(*)
+      complex(c_double_complex), target :: AP(..)
       integer(c_long), value :: strideA
       integer(c_int), value :: batchCount
       integer(c_int) :: ZsprStridedBatched
-      ZsprStridedBatched = hipblasZsprStridedBatched_raw(handle, uplo, n, alpha, c_loc(x(1)), &
-        incx, stridex, c_loc(AP(1)), strideA, batchCount)
+      ZsprStridedBatched = hipblasZsprStridedBatched_raw(handle, uplo, n, alpha, c_loc(x), incx, &
+        stridex, c_loc(AP), strideA, batchCount)
     end function hipblasZsprStridedBatched_native
 
     function hipblasZsprStridedBatched_typed(handle, uplo, n, alpha, x, incx, stridex, AP, &
@@ -63993,16 +63927,16 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: uplo
       integer(c_long), value :: n
-      real(c_float), target :: alpha(*)
-      real(c_float), target :: x(*)
+      real(c_float), target :: alpha(..)
+      real(c_float), target :: x(..)
       integer(c_long), value :: incx
       integer(c_long), value :: stridex
-      real(c_float), target :: AP(*)
+      real(c_float), target :: AP(..)
       integer(c_long), value :: strideA
       integer(c_long), value :: batchCount
       integer(c_int) :: SsprStridedBatched_64
-      SsprStridedBatched_64 = hipblasSsprStridedBatched_64_raw(handle, uplo, n, c_loc(alpha(1)), &
-        c_loc(x(1)), incx, stridex, c_loc(AP(1)), strideA, batchCount)
+      SsprStridedBatched_64 = hipblasSsprStridedBatched_64_raw(handle, uplo, n, c_loc(alpha), &
+        c_loc(x), incx, stridex, c_loc(AP), strideA, batchCount)
     end function hipblasSsprStridedBatched_64_native
 
     function hipblasSsprStridedBatched_64_typed(handle, uplo, n, alpha, x, incx, stridex, AP, &
@@ -64032,16 +63966,16 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: uplo
       integer(c_long), value :: n
-      real(c_double), target :: alpha(*)
-      real(c_double), target :: x(*)
+      real(c_double), target :: alpha(..)
+      real(c_double), target :: x(..)
       integer(c_long), value :: incx
       integer(c_long), value :: stridex
-      real(c_double), target :: AP(*)
+      real(c_double), target :: AP(..)
       integer(c_long), value :: strideA
       integer(c_long), value :: batchCount
       integer(c_int) :: DsprStridedBatched_64
-      DsprStridedBatched_64 = hipblasDsprStridedBatched_64_raw(handle, uplo, n, c_loc(alpha(1)), &
-        c_loc(x(1)), incx, stridex, c_loc(AP(1)), strideA, batchCount)
+      DsprStridedBatched_64 = hipblasDsprStridedBatched_64_raw(handle, uplo, n, c_loc(alpha), &
+        c_loc(x), incx, stridex, c_loc(AP), strideA, batchCount)
     end function hipblasDsprStridedBatched_64_native
 
     function hipblasDsprStridedBatched_64_typed(handle, uplo, n, alpha, x, incx, stridex, AP, &
@@ -64071,16 +64005,16 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: uplo
       integer(c_long), value :: n
-      complex(c_float_complex), target :: alpha(*)
-      complex(c_float_complex), target :: x(*)
+      complex(c_float_complex), target :: alpha(..)
+      complex(c_float_complex), target :: x(..)
       integer(c_long), value :: incx
       integer(c_long), value :: stridex
-      complex(c_float_complex), target :: AP(*)
+      complex(c_float_complex), target :: AP(..)
       integer(c_long), value :: strideA
       integer(c_long), value :: batchCount
       integer(c_int) :: CsprStridedBatched_64
-      CsprStridedBatched_64 = hipblasCsprStridedBatched_64_raw(handle, uplo, n, c_loc(alpha(1)), &
-        c_loc(x(1)), incx, stridex, c_loc(AP(1)), strideA, batchCount)
+      CsprStridedBatched_64 = hipblasCsprStridedBatched_64_raw(handle, uplo, n, c_loc(alpha), &
+        c_loc(x), incx, stridex, c_loc(AP), strideA, batchCount)
     end function hipblasCsprStridedBatched_64_native
 
     function hipblasCsprStridedBatched_64_typed(handle, uplo, n, alpha, x, incx, stridex, AP, &
@@ -64110,16 +64044,16 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: uplo
       integer(c_long), value :: n
-      complex(c_double_complex), target :: alpha(*)
-      complex(c_double_complex), target :: x(*)
+      complex(c_double_complex), target :: alpha(..)
+      complex(c_double_complex), target :: x(..)
       integer(c_long), value :: incx
       integer(c_long), value :: stridex
-      complex(c_double_complex), target :: AP(*)
+      complex(c_double_complex), target :: AP(..)
       integer(c_long), value :: strideA
       integer(c_long), value :: batchCount
       integer(c_int) :: ZsprStridedBatched_64
-      ZsprStridedBatched_64 = hipblasZsprStridedBatched_64_raw(handle, uplo, n, c_loc(alpha(1)), &
-        c_loc(x(1)), incx, stridex, c_loc(AP(1)), strideA, batchCount)
+      ZsprStridedBatched_64 = hipblasZsprStridedBatched_64_raw(handle, uplo, n, c_loc(alpha), &
+        c_loc(x), incx, stridex, c_loc(AP), strideA, batchCount)
     end function hipblasZsprStridedBatched_64_native
 
     function hipblasZsprStridedBatched_64_typed(handle, uplo, n, alpha, x, incx, stridex, AP, &
@@ -64149,14 +64083,13 @@ contains
       integer(c_int), value :: uplo
       integer(c_int), value :: n
       real(c_float) :: alpha
-      real(c_float), target :: x(*)
+      real(c_float), target :: x(..)
       integer(c_int), value :: incx
-      real(c_float), target :: y(*)
+      real(c_float), target :: y(..)
       integer(c_int), value :: incy
-      real(c_float), target :: AP(*)
+      real(c_float), target :: AP(..)
       integer(c_int) :: Sspr2
-      Sspr2 = hipblasSspr2_raw(handle, uplo, n, alpha, c_loc(x(1)), incx, c_loc(y(1)), incy, &
-        c_loc(AP(1)))
+      Sspr2 = hipblasSspr2_raw(handle, uplo, n, alpha, c_loc(x), incx, c_loc(y), incy, c_loc(AP))
     end function hipblasSspr2_native
 
     function hipblasSspr2_typed(handle, uplo, n, alpha, x, incx, y, incy, AP) result(Sspr2)
@@ -64183,14 +64116,13 @@ contains
       integer(c_int), value :: uplo
       integer(c_int), value :: n
       real(c_double) :: alpha
-      real(c_double), target :: x(*)
+      real(c_double), target :: x(..)
       integer(c_int), value :: incx
-      real(c_double), target :: y(*)
+      real(c_double), target :: y(..)
       integer(c_int), value :: incy
-      real(c_double), target :: AP(*)
+      real(c_double), target :: AP(..)
       integer(c_int) :: Dspr2
-      Dspr2 = hipblasDspr2_raw(handle, uplo, n, alpha, c_loc(x(1)), incx, c_loc(y(1)), incy, &
-        c_loc(AP(1)))
+      Dspr2 = hipblasDspr2_raw(handle, uplo, n, alpha, c_loc(x), incx, c_loc(y), incy, c_loc(AP))
     end function hipblasDspr2_native
 
     function hipblasDspr2_typed(handle, uplo, n, alpha, x, incx, y, incy, AP) result(Dspr2)
@@ -64216,15 +64148,15 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: uplo
       integer(c_long), value :: n
-      real(c_float), target :: alpha(*)
-      real(c_float), target :: x(*)
+      real(c_float), target :: alpha(..)
+      real(c_float), target :: x(..)
       integer(c_long), value :: incx
-      real(c_float), target :: y(*)
+      real(c_float), target :: y(..)
       integer(c_long), value :: incy
-      real(c_float), target :: AP(*)
+      real(c_float), target :: AP(..)
       integer(c_int) :: Sspr2_64
-      Sspr2_64 = hipblasSspr2_64_raw(handle, uplo, n, c_loc(alpha(1)), c_loc(x(1)), incx, c_loc(y( &
-        1)), incy, c_loc(AP(1)))
+      Sspr2_64 = hipblasSspr2_64_raw(handle, uplo, n, c_loc(alpha), c_loc(x), incx, c_loc(y), &
+        incy, c_loc(AP))
     end function hipblasSspr2_64_native
 
     function hipblasSspr2_64_typed(handle, uplo, n, alpha, x, incx, y, incy, AP) result(Sspr2_64)
@@ -64250,15 +64182,15 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: uplo
       integer(c_long), value :: n
-      real(c_double), target :: alpha(*)
-      real(c_double), target :: x(*)
+      real(c_double), target :: alpha(..)
+      real(c_double), target :: x(..)
       integer(c_long), value :: incx
-      real(c_double), target :: y(*)
+      real(c_double), target :: y(..)
       integer(c_long), value :: incy
-      real(c_double), target :: AP(*)
+      real(c_double), target :: AP(..)
       integer(c_int) :: Dspr2_64
-      Dspr2_64 = hipblasDspr2_64_raw(handle, uplo, n, c_loc(alpha(1)), c_loc(x(1)), incx, c_loc(y( &
-        1)), incy, c_loc(AP(1)))
+      Dspr2_64 = hipblasDspr2_64_raw(handle, uplo, n, c_loc(alpha), c_loc(x), incx, c_loc(y), &
+        incy, c_loc(AP))
     end function hipblasDspr2_64_native
 
     function hipblasDspr2_64_typed(handle, uplo, n, alpha, x, incx, y, incy, AP) result(Dspr2_64)
@@ -64325,7 +64257,7 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: uplo
       integer(c_long), value :: n
-      real(c_float), target :: alpha(*)
+      real(c_float), target :: alpha(..)
       type(c_ptr), value :: x
       integer(c_long), value :: incx
       type(c_ptr), value :: y
@@ -64333,7 +64265,7 @@ contains
       type(c_ptr), value :: AP
       integer(c_long), value :: batchCount
       integer(c_int) :: Sspr2Batched_64
-      Sspr2Batched_64 = hipblasSspr2Batched_64_raw(handle, uplo, n, c_loc(alpha(1)), x, incx, y, &
+      Sspr2Batched_64 = hipblasSspr2Batched_64_raw(handle, uplo, n, c_loc(alpha), x, incx, y, &
         incy, AP, batchCount)
     end function hipblasSspr2Batched_64_native
 
@@ -64364,7 +64296,7 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: uplo
       integer(c_long), value :: n
-      real(c_double), target :: alpha(*)
+      real(c_double), target :: alpha(..)
       type(c_ptr), value :: x
       integer(c_long), value :: incx
       type(c_ptr), value :: y
@@ -64372,7 +64304,7 @@ contains
       type(c_ptr), value :: AP
       integer(c_long), value :: batchCount
       integer(c_int) :: Dspr2Batched_64
-      Dspr2Batched_64 = hipblasDspr2Batched_64_raw(handle, uplo, n, c_loc(alpha(1)), x, incx, y, &
+      Dspr2Batched_64 = hipblasDspr2Batched_64_raw(handle, uplo, n, c_loc(alpha), x, incx, y, &
         incy, AP, batchCount)
     end function hipblasDspr2Batched_64_native
 
@@ -64404,18 +64336,18 @@ contains
       integer(c_int), value :: uplo
       integer(c_int), value :: n
       real(c_float) :: alpha
-      real(c_float), target :: x(*)
+      real(c_float), target :: x(..)
       integer(c_int), value :: incx
       integer(c_long), value :: stridex
-      real(c_float), target :: y(*)
+      real(c_float), target :: y(..)
       integer(c_int), value :: incy
       integer(c_long), value :: stridey
-      real(c_float), target :: AP(*)
+      real(c_float), target :: AP(..)
       integer(c_long), value :: strideA
       integer(c_int), value :: batchCount
       integer(c_int) :: Sspr2StridedBatched
-      Sspr2StridedBatched = hipblasSspr2StridedBatched_raw(handle, uplo, n, alpha, c_loc(x(1)), &
-        incx, stridex, c_loc(y(1)), incy, stridey, c_loc(AP(1)), strideA, batchCount)
+      Sspr2StridedBatched = hipblasSspr2StridedBatched_raw(handle, uplo, n, alpha, c_loc(x), incx, &
+        stridex, c_loc(y), incy, stridey, c_loc(AP), strideA, batchCount)
     end function hipblasSspr2StridedBatched_native
 
     function hipblasSspr2StridedBatched_typed(handle, uplo, n, alpha, x, incx, stridex, y, incy, &
@@ -64449,18 +64381,18 @@ contains
       integer(c_int), value :: uplo
       integer(c_int), value :: n
       real(c_double) :: alpha
-      real(c_double), target :: x(*)
+      real(c_double), target :: x(..)
       integer(c_int), value :: incx
       integer(c_long), value :: stridex
-      real(c_double), target :: y(*)
+      real(c_double), target :: y(..)
       integer(c_int), value :: incy
       integer(c_long), value :: stridey
-      real(c_double), target :: AP(*)
+      real(c_double), target :: AP(..)
       integer(c_long), value :: strideA
       integer(c_int), value :: batchCount
       integer(c_int) :: Dspr2StridedBatched
-      Dspr2StridedBatched = hipblasDspr2StridedBatched_raw(handle, uplo, n, alpha, c_loc(x(1)), &
-        incx, stridex, c_loc(y(1)), incy, stridey, c_loc(AP(1)), strideA, batchCount)
+      Dspr2StridedBatched = hipblasDspr2StridedBatched_raw(handle, uplo, n, alpha, c_loc(x), incx, &
+        stridex, c_loc(y), incy, stridey, c_loc(AP), strideA, batchCount)
     end function hipblasDspr2StridedBatched_native
 
     function hipblasDspr2StridedBatched_typed(handle, uplo, n, alpha, x, incx, stridex, y, incy, &
@@ -64493,19 +64425,19 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: uplo
       integer(c_long), value :: n
-      real(c_float), target :: alpha(*)
-      real(c_float), target :: x(*)
+      real(c_float), target :: alpha(..)
+      real(c_float), target :: x(..)
       integer(c_long), value :: incx
       integer(c_long), value :: stridex
-      real(c_float), target :: y(*)
+      real(c_float), target :: y(..)
       integer(c_long), value :: incy
       integer(c_long), value :: stridey
-      real(c_float), target :: AP(*)
+      real(c_float), target :: AP(..)
       integer(c_long), value :: strideA
       integer(c_long), value :: batchCount
       integer(c_int) :: Sspr2StridedBatched_64
-      Sspr2StridedBatched_64 = hipblasSspr2StridedBatched_64_raw(handle, uplo, n, c_loc(alpha(1)), &
-        c_loc(x(1)), incx, stridex, c_loc(y(1)), incy, stridey, c_loc(AP(1)), strideA, batchCount)
+      Sspr2StridedBatched_64 = hipblasSspr2StridedBatched_64_raw(handle, uplo, n, c_loc(alpha), &
+        c_loc(x), incx, stridex, c_loc(y), incy, stridey, c_loc(AP), strideA, batchCount)
     end function hipblasSspr2StridedBatched_64_native
 
     function hipblasSspr2StridedBatched_64_typed(handle, uplo, n, alpha, x, incx, stridex, y, &
@@ -64538,19 +64470,19 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: uplo
       integer(c_long), value :: n
-      real(c_double), target :: alpha(*)
-      real(c_double), target :: x(*)
+      real(c_double), target :: alpha(..)
+      real(c_double), target :: x(..)
       integer(c_long), value :: incx
       integer(c_long), value :: stridex
-      real(c_double), target :: y(*)
+      real(c_double), target :: y(..)
       integer(c_long), value :: incy
       integer(c_long), value :: stridey
-      real(c_double), target :: AP(*)
+      real(c_double), target :: AP(..)
       integer(c_long), value :: strideA
       integer(c_long), value :: batchCount
       integer(c_int) :: Dspr2StridedBatched_64
-      Dspr2StridedBatched_64 = hipblasDspr2StridedBatched_64_raw(handle, uplo, n, c_loc(alpha(1)), &
-        c_loc(x(1)), incx, stridex, c_loc(y(1)), incy, stridey, c_loc(AP(1)), strideA, batchCount)
+      Dspr2StridedBatched_64 = hipblasDspr2StridedBatched_64_raw(handle, uplo, n, c_loc(alpha), &
+        c_loc(x), incx, stridex, c_loc(y), incy, stridey, c_loc(AP), strideA, batchCount)
     end function hipblasDspr2StridedBatched_64_native
 
     function hipblasDspr2StridedBatched_64_typed(handle, uplo, n, alpha, x, incx, stridex, y, &
@@ -64584,16 +64516,16 @@ contains
       integer(c_int), value :: uplo
       integer(c_int), value :: n
       real(c_float) :: alpha
-      real(c_float), target :: AP(*)
+      real(c_float), target :: AP(..)
       integer(c_int), value :: lda
-      real(c_float), target :: x(*)
+      real(c_float), target :: x(..)
       integer(c_int), value :: incx
       real(c_float) :: beta
-      real(c_float), target :: y(*)
+      real(c_float), target :: y(..)
       integer(c_int), value :: incy
       integer(c_int) :: Ssymv
-      Ssymv = hipblasSsymv_raw(handle, uplo, n, alpha, c_loc(AP(1)), lda, c_loc(x(1)), incx, beta, &
-        c_loc(y(1)), incy)
+      Ssymv = hipblasSsymv_raw(handle, uplo, n, alpha, c_loc(AP), lda, c_loc(x), incx, beta, &
+        c_loc(y), incy)
     end function hipblasSsymv_native
 
     function hipblasSsymv_typed(handle, uplo, n, alpha, AP, lda, x, incx, beta, y, incy) result( &
@@ -64624,16 +64556,16 @@ contains
       integer(c_int), value :: uplo
       integer(c_int), value :: n
       real(c_double) :: alpha
-      real(c_double), target :: AP(*)
+      real(c_double), target :: AP(..)
       integer(c_int), value :: lda
-      real(c_double), target :: x(*)
+      real(c_double), target :: x(..)
       integer(c_int), value :: incx
       real(c_double) :: beta
-      real(c_double), target :: y(*)
+      real(c_double), target :: y(..)
       integer(c_int), value :: incy
       integer(c_int) :: Dsymv
-      Dsymv = hipblasDsymv_raw(handle, uplo, n, alpha, c_loc(AP(1)), lda, c_loc(x(1)), incx, beta, &
-        c_loc(y(1)), incy)
+      Dsymv = hipblasDsymv_raw(handle, uplo, n, alpha, c_loc(AP), lda, c_loc(x), incx, beta, &
+        c_loc(y), incy)
     end function hipblasDsymv_native
 
     function hipblasDsymv_typed(handle, uplo, n, alpha, AP, lda, x, incx, beta, y, incy) result( &
@@ -64664,16 +64596,16 @@ contains
       integer(c_int), value :: uplo
       integer(c_int), value :: n
       complex(c_float_complex) :: alpha
-      complex(c_float_complex), target :: AP(*)
+      complex(c_float_complex), target :: AP(..)
       integer(c_int), value :: lda
-      complex(c_float_complex), target :: x(*)
+      complex(c_float_complex), target :: x(..)
       integer(c_int), value :: incx
       complex(c_float_complex) :: beta
-      complex(c_float_complex), target :: y(*)
+      complex(c_float_complex), target :: y(..)
       integer(c_int), value :: incy
       integer(c_int) :: Csymv
-      Csymv = hipblasCsymv_raw(handle, uplo, n, alpha, c_loc(AP(1)), lda, c_loc(x(1)), incx, beta, &
-        c_loc(y(1)), incy)
+      Csymv = hipblasCsymv_raw(handle, uplo, n, alpha, c_loc(AP), lda, c_loc(x), incx, beta, &
+        c_loc(y), incy)
     end function hipblasCsymv_native
 
     function hipblasCsymv_typed(handle, uplo, n, alpha, AP, lda, x, incx, beta, y, incy) result( &
@@ -64704,16 +64636,16 @@ contains
       integer(c_int), value :: uplo
       integer(c_int), value :: n
       complex(c_double_complex) :: alpha
-      complex(c_double_complex), target :: AP(*)
+      complex(c_double_complex), target :: AP(..)
       integer(c_int), value :: lda
-      complex(c_double_complex), target :: x(*)
+      complex(c_double_complex), target :: x(..)
       integer(c_int), value :: incx
       complex(c_double_complex) :: beta
-      complex(c_double_complex), target :: y(*)
+      complex(c_double_complex), target :: y(..)
       integer(c_int), value :: incy
       integer(c_int) :: Zsymv
-      Zsymv = hipblasZsymv_raw(handle, uplo, n, alpha, c_loc(AP(1)), lda, c_loc(x(1)), incx, beta, &
-        c_loc(y(1)), incy)
+      Zsymv = hipblasZsymv_raw(handle, uplo, n, alpha, c_loc(AP), lda, c_loc(x), incx, beta, &
+        c_loc(y), incy)
     end function hipblasZsymv_native
 
     function hipblasZsymv_typed(handle, uplo, n, alpha, AP, lda, x, incx, beta, y, incy) result( &
@@ -64743,17 +64675,17 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: uplo
       integer(c_long), value :: n
-      real(c_float), target :: alpha(*)
-      real(c_float), target :: AP(*)
+      real(c_float), target :: alpha(..)
+      real(c_float), target :: AP(..)
       integer(c_long), value :: lda
-      real(c_float), target :: x(*)
+      real(c_float), target :: x(..)
       integer(c_long), value :: incx
-      real(c_float), target :: beta(*)
-      real(c_float), target :: y(*)
+      real(c_float), target :: beta(..)
+      real(c_float), target :: y(..)
       integer(c_long), value :: incy
       integer(c_int) :: Ssymv_64
-      Ssymv_64 = hipblasSsymv_64_raw(handle, uplo, n, c_loc(alpha(1)), c_loc(AP(1)), lda, c_loc(x( &
-        1)), incx, c_loc(beta(1)), c_loc(y(1)), incy)
+      Ssymv_64 = hipblasSsymv_64_raw(handle, uplo, n, c_loc(alpha), c_loc(AP), lda, c_loc(x), &
+        incx, c_loc(beta), c_loc(y), incy)
     end function hipblasSsymv_64_native
 
     function hipblasSsymv_64_typed(handle, uplo, n, alpha, AP, lda, x, incx, beta, y, &
@@ -64783,17 +64715,17 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: uplo
       integer(c_long), value :: n
-      real(c_double), target :: alpha(*)
-      real(c_double), target :: AP(*)
+      real(c_double), target :: alpha(..)
+      real(c_double), target :: AP(..)
       integer(c_long), value :: lda
-      real(c_double), target :: x(*)
+      real(c_double), target :: x(..)
       integer(c_long), value :: incx
-      real(c_double), target :: beta(*)
-      real(c_double), target :: y(*)
+      real(c_double), target :: beta(..)
+      real(c_double), target :: y(..)
       integer(c_long), value :: incy
       integer(c_int) :: Dsymv_64
-      Dsymv_64 = hipblasDsymv_64_raw(handle, uplo, n, c_loc(alpha(1)), c_loc(AP(1)), lda, c_loc(x( &
-        1)), incx, c_loc(beta(1)), c_loc(y(1)), incy)
+      Dsymv_64 = hipblasDsymv_64_raw(handle, uplo, n, c_loc(alpha), c_loc(AP), lda, c_loc(x), &
+        incx, c_loc(beta), c_loc(y), incy)
     end function hipblasDsymv_64_native
 
     function hipblasDsymv_64_typed(handle, uplo, n, alpha, AP, lda, x, incx, beta, y, &
@@ -64823,17 +64755,17 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: uplo
       integer(c_long), value :: n
-      complex(c_float_complex), target :: alpha(*)
-      complex(c_float_complex), target :: AP(*)
+      complex(c_float_complex), target :: alpha(..)
+      complex(c_float_complex), target :: AP(..)
       integer(c_long), value :: lda
-      complex(c_float_complex), target :: x(*)
+      complex(c_float_complex), target :: x(..)
       integer(c_long), value :: incx
-      complex(c_float_complex), target :: beta(*)
-      complex(c_float_complex), target :: y(*)
+      complex(c_float_complex), target :: beta(..)
+      complex(c_float_complex), target :: y(..)
       integer(c_long), value :: incy
       integer(c_int) :: Csymv_64
-      Csymv_64 = hipblasCsymv_64_raw(handle, uplo, n, c_loc(alpha(1)), c_loc(AP(1)), lda, c_loc(x( &
-        1)), incx, c_loc(beta(1)), c_loc(y(1)), incy)
+      Csymv_64 = hipblasCsymv_64_raw(handle, uplo, n, c_loc(alpha), c_loc(AP), lda, c_loc(x), &
+        incx, c_loc(beta), c_loc(y), incy)
     end function hipblasCsymv_64_native
 
     function hipblasCsymv_64_typed(handle, uplo, n, alpha, AP, lda, x, incx, beta, y, &
@@ -64863,17 +64795,17 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: uplo
       integer(c_long), value :: n
-      complex(c_double_complex), target :: alpha(*)
-      complex(c_double_complex), target :: AP(*)
+      complex(c_double_complex), target :: alpha(..)
+      complex(c_double_complex), target :: AP(..)
       integer(c_long), value :: lda
-      complex(c_double_complex), target :: x(*)
+      complex(c_double_complex), target :: x(..)
       integer(c_long), value :: incx
-      complex(c_double_complex), target :: beta(*)
-      complex(c_double_complex), target :: y(*)
+      complex(c_double_complex), target :: beta(..)
+      complex(c_double_complex), target :: y(..)
       integer(c_long), value :: incy
       integer(c_int) :: Zsymv_64
-      Zsymv_64 = hipblasZsymv_64_raw(handle, uplo, n, c_loc(alpha(1)), c_loc(AP(1)), lda, c_loc(x( &
-        1)), incx, c_loc(beta(1)), c_loc(y(1)), incy)
+      Zsymv_64 = hipblasZsymv_64_raw(handle, uplo, n, c_loc(alpha), c_loc(AP), lda, c_loc(x), &
+        incx, c_loc(beta), c_loc(y), incy)
     end function hipblasZsymv_64_native
 
     function hipblasZsymv_64_typed(handle, uplo, n, alpha, AP, lda, x, incx, beta, y, &
@@ -64991,18 +64923,18 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: uplo
       integer(c_long), value :: n
-      real(c_float), target :: alpha(*)
+      real(c_float), target :: alpha(..)
       type(c_ptr), value :: AP
       integer(c_long), value :: lda
       type(c_ptr), value :: x
       integer(c_long), value :: incx
-      real(c_float), target :: beta(*)
+      real(c_float), target :: beta(..)
       type(c_ptr), value :: y
       integer(c_long), value :: incy
       integer(c_long), value :: batchCount
       integer(c_int) :: SsymvBatched_64
-      SsymvBatched_64 = hipblasSsymvBatched_64_raw(handle, uplo, n, c_loc(alpha(1)), AP, lda, x, &
-        incx, c_loc(beta(1)), y, incy, batchCount)
+      SsymvBatched_64 = hipblasSsymvBatched_64_raw(handle, uplo, n, c_loc(alpha), AP, lda, x, &
+        incx, c_loc(beta), y, incy, batchCount)
     end function hipblasSsymvBatched_64_native
 
     function hipblasSsymvBatched_64_typed(handle, uplo, n, alpha, AP, lda, x, incx, beta, y, incy, &
@@ -65034,18 +64966,18 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: uplo
       integer(c_long), value :: n
-      real(c_double), target :: alpha(*)
+      real(c_double), target :: alpha(..)
       type(c_ptr), value :: AP
       integer(c_long), value :: lda
       type(c_ptr), value :: x
       integer(c_long), value :: incx
-      real(c_double), target :: beta(*)
+      real(c_double), target :: beta(..)
       type(c_ptr), value :: y
       integer(c_long), value :: incy
       integer(c_long), value :: batchCount
       integer(c_int) :: DsymvBatched_64
-      DsymvBatched_64 = hipblasDsymvBatched_64_raw(handle, uplo, n, c_loc(alpha(1)), AP, lda, x, &
-        incx, c_loc(beta(1)), y, incy, batchCount)
+      DsymvBatched_64 = hipblasDsymvBatched_64_raw(handle, uplo, n, c_loc(alpha), AP, lda, x, &
+        incx, c_loc(beta), y, incy, batchCount)
     end function hipblasDsymvBatched_64_native
 
     function hipblasDsymvBatched_64_typed(handle, uplo, n, alpha, AP, lda, x, incx, beta, y, incy, &
@@ -65077,18 +65009,18 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: uplo
       integer(c_long), value :: n
-      complex(c_float_complex), target :: alpha(*)
+      complex(c_float_complex), target :: alpha(..)
       type(c_ptr), value :: AP
       integer(c_long), value :: lda
       type(c_ptr), value :: x
       integer(c_long), value :: incx
-      complex(c_float_complex), target :: beta(*)
+      complex(c_float_complex), target :: beta(..)
       type(c_ptr), value :: y
       integer(c_long), value :: incy
       integer(c_long), value :: batchCount
       integer(c_int) :: CsymvBatched_64
-      CsymvBatched_64 = hipblasCsymvBatched_64_raw(handle, uplo, n, c_loc(alpha(1)), AP, lda, x, &
-        incx, c_loc(beta(1)), y, incy, batchCount)
+      CsymvBatched_64 = hipblasCsymvBatched_64_raw(handle, uplo, n, c_loc(alpha), AP, lda, x, &
+        incx, c_loc(beta), y, incy, batchCount)
     end function hipblasCsymvBatched_64_native
 
     function hipblasCsymvBatched_64_typed(handle, uplo, n, alpha, AP, lda, x, incx, beta, y, incy, &
@@ -65120,18 +65052,18 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: uplo
       integer(c_long), value :: n
-      complex(c_double_complex), target :: alpha(*)
+      complex(c_double_complex), target :: alpha(..)
       type(c_ptr), value :: AP
       integer(c_long), value :: lda
       type(c_ptr), value :: x
       integer(c_long), value :: incx
-      complex(c_double_complex), target :: beta(*)
+      complex(c_double_complex), target :: beta(..)
       type(c_ptr), value :: y
       integer(c_long), value :: incy
       integer(c_long), value :: batchCount
       integer(c_int) :: ZsymvBatched_64
-      ZsymvBatched_64 = hipblasZsymvBatched_64_raw(handle, uplo, n, c_loc(alpha(1)), AP, lda, x, &
-        incx, c_loc(beta(1)), y, incy, batchCount)
+      ZsymvBatched_64 = hipblasZsymvBatched_64_raw(handle, uplo, n, c_loc(alpha), AP, lda, x, &
+        incx, c_loc(beta), y, incy, batchCount)
     end function hipblasZsymvBatched_64_native
 
     function hipblasZsymvBatched_64_typed(handle, uplo, n, alpha, AP, lda, x, incx, beta, y, incy, &
@@ -65164,20 +65096,20 @@ contains
       integer(c_int), value :: uplo
       integer(c_int), value :: n
       real(c_float) :: alpha
-      real(c_float), target :: AP(*)
+      real(c_float), target :: AP(..)
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
-      real(c_float), target :: x(*)
+      real(c_float), target :: x(..)
       integer(c_int), value :: incx
       integer(c_long), value :: stridex
       real(c_float) :: beta
-      real(c_float), target :: y(*)
+      real(c_float), target :: y(..)
       integer(c_int), value :: incy
       integer(c_long), value :: stridey
       integer(c_int), value :: batchCount
       integer(c_int) :: SsymvStridedBatched
-      SsymvStridedBatched = hipblasSsymvStridedBatched_raw(handle, uplo, n, alpha, c_loc(AP(1)), &
-        lda, strideA, c_loc(x(1)), incx, stridex, beta, c_loc(y(1)), incy, stridey, batchCount)
+      SsymvStridedBatched = hipblasSsymvStridedBatched_raw(handle, uplo, n, alpha, c_loc(AP), lda, &
+        strideA, c_loc(x), incx, stridex, beta, c_loc(y), incy, stridey, batchCount)
     end function hipblasSsymvStridedBatched_native
 
     function hipblasSsymvStridedBatched_typed(handle, uplo, n, alpha, AP, lda, strideA, x, incx, &
@@ -65213,20 +65145,20 @@ contains
       integer(c_int), value :: uplo
       integer(c_int), value :: n
       real(c_double) :: alpha
-      real(c_double), target :: AP(*)
+      real(c_double), target :: AP(..)
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
-      real(c_double), target :: x(*)
+      real(c_double), target :: x(..)
       integer(c_int), value :: incx
       integer(c_long), value :: stridex
       real(c_double) :: beta
-      real(c_double), target :: y(*)
+      real(c_double), target :: y(..)
       integer(c_int), value :: incy
       integer(c_long), value :: stridey
       integer(c_int), value :: batchCount
       integer(c_int) :: DsymvStridedBatched
-      DsymvStridedBatched = hipblasDsymvStridedBatched_raw(handle, uplo, n, alpha, c_loc(AP(1)), &
-        lda, strideA, c_loc(x(1)), incx, stridex, beta, c_loc(y(1)), incy, stridey, batchCount)
+      DsymvStridedBatched = hipblasDsymvStridedBatched_raw(handle, uplo, n, alpha, c_loc(AP), lda, &
+        strideA, c_loc(x), incx, stridex, beta, c_loc(y), incy, stridey, batchCount)
     end function hipblasDsymvStridedBatched_native
 
     function hipblasDsymvStridedBatched_typed(handle, uplo, n, alpha, AP, lda, strideA, x, incx, &
@@ -65262,20 +65194,20 @@ contains
       integer(c_int), value :: uplo
       integer(c_int), value :: n
       complex(c_float_complex) :: alpha
-      complex(c_float_complex), target :: AP(*)
+      complex(c_float_complex), target :: AP(..)
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
-      complex(c_float_complex), target :: x(*)
+      complex(c_float_complex), target :: x(..)
       integer(c_int), value :: incx
       integer(c_long), value :: stridex
       complex(c_float_complex) :: beta
-      complex(c_float_complex), target :: y(*)
+      complex(c_float_complex), target :: y(..)
       integer(c_int), value :: incy
       integer(c_long), value :: stridey
       integer(c_int), value :: batchCount
       integer(c_int) :: CsymvStridedBatched
-      CsymvStridedBatched = hipblasCsymvStridedBatched_raw(handle, uplo, n, alpha, c_loc(AP(1)), &
-        lda, strideA, c_loc(x(1)), incx, stridex, beta, c_loc(y(1)), incy, stridey, batchCount)
+      CsymvStridedBatched = hipblasCsymvStridedBatched_raw(handle, uplo, n, alpha, c_loc(AP), lda, &
+        strideA, c_loc(x), incx, stridex, beta, c_loc(y), incy, stridey, batchCount)
     end function hipblasCsymvStridedBatched_native
 
     function hipblasCsymvStridedBatched_typed(handle, uplo, n, alpha, AP, lda, strideA, x, incx, &
@@ -65311,20 +65243,20 @@ contains
       integer(c_int), value :: uplo
       integer(c_int), value :: n
       complex(c_double_complex) :: alpha
-      complex(c_double_complex), target :: AP(*)
+      complex(c_double_complex), target :: AP(..)
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
-      complex(c_double_complex), target :: x(*)
+      complex(c_double_complex), target :: x(..)
       integer(c_int), value :: incx
       integer(c_long), value :: stridex
       complex(c_double_complex) :: beta
-      complex(c_double_complex), target :: y(*)
+      complex(c_double_complex), target :: y(..)
       integer(c_int), value :: incy
       integer(c_long), value :: stridey
       integer(c_int), value :: batchCount
       integer(c_int) :: ZsymvStridedBatched
-      ZsymvStridedBatched = hipblasZsymvStridedBatched_raw(handle, uplo, n, alpha, c_loc(AP(1)), &
-        lda, strideA, c_loc(x(1)), incx, stridex, beta, c_loc(y(1)), incy, stridey, batchCount)
+      ZsymvStridedBatched = hipblasZsymvStridedBatched_raw(handle, uplo, n, alpha, c_loc(AP), lda, &
+        strideA, c_loc(x), incx, stridex, beta, c_loc(y), incy, stridey, batchCount)
     end function hipblasZsymvStridedBatched_native
 
     function hipblasZsymvStridedBatched_typed(handle, uplo, n, alpha, AP, lda, strideA, x, incx, &
@@ -65359,22 +65291,22 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: uplo
       integer(c_long), value :: n
-      real(c_float), target :: alpha(*)
-      real(c_float), target :: AP(*)
+      real(c_float), target :: alpha(..)
+      real(c_float), target :: AP(..)
       integer(c_long), value :: lda
       integer(c_long), value :: strideA
-      real(c_float), target :: x(*)
+      real(c_float), target :: x(..)
       integer(c_long), value :: incx
       integer(c_long), value :: stridex
-      real(c_float), target :: beta(*)
-      real(c_float), target :: y(*)
+      real(c_float), target :: beta(..)
+      real(c_float), target :: y(..)
       integer(c_long), value :: incy
       integer(c_long), value :: stridey
       integer(c_long), value :: batchCount
       integer(c_int) :: SsymvStridedBatched_64
-      SsymvStridedBatched_64 = hipblasSsymvStridedBatched_64_raw(handle, uplo, n, c_loc(alpha(1)), &
-        c_loc(AP(1)), lda, strideA, c_loc(x(1)), incx, stridex, c_loc(beta(1)), c_loc(y(1)), incy, &
-        stridey, batchCount)
+      SsymvStridedBatched_64 = hipblasSsymvStridedBatched_64_raw(handle, uplo, n, c_loc(alpha), &
+        c_loc(AP), lda, strideA, c_loc(x), incx, stridex, c_loc(beta), c_loc(y), incy, stridey, &
+        batchCount)
     end function hipblasSsymvStridedBatched_64_native
 
     function hipblasSsymvStridedBatched_64_typed(handle, uplo, n, alpha, AP, lda, strideA, x, &
@@ -65409,22 +65341,22 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: uplo
       integer(c_long), value :: n
-      real(c_double), target :: alpha(*)
-      real(c_double), target :: AP(*)
+      real(c_double), target :: alpha(..)
+      real(c_double), target :: AP(..)
       integer(c_long), value :: lda
       integer(c_long), value :: strideA
-      real(c_double), target :: x(*)
+      real(c_double), target :: x(..)
       integer(c_long), value :: incx
       integer(c_long), value :: stridex
-      real(c_double), target :: beta(*)
-      real(c_double), target :: y(*)
+      real(c_double), target :: beta(..)
+      real(c_double), target :: y(..)
       integer(c_long), value :: incy
       integer(c_long), value :: stridey
       integer(c_long), value :: batchCount
       integer(c_int) :: DsymvStridedBatched_64
-      DsymvStridedBatched_64 = hipblasDsymvStridedBatched_64_raw(handle, uplo, n, c_loc(alpha(1)), &
-        c_loc(AP(1)), lda, strideA, c_loc(x(1)), incx, stridex, c_loc(beta(1)), c_loc(y(1)), incy, &
-        stridey, batchCount)
+      DsymvStridedBatched_64 = hipblasDsymvStridedBatched_64_raw(handle, uplo, n, c_loc(alpha), &
+        c_loc(AP), lda, strideA, c_loc(x), incx, stridex, c_loc(beta), c_loc(y), incy, stridey, &
+        batchCount)
     end function hipblasDsymvStridedBatched_64_native
 
     function hipblasDsymvStridedBatched_64_typed(handle, uplo, n, alpha, AP, lda, strideA, x, &
@@ -65459,22 +65391,22 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: uplo
       integer(c_long), value :: n
-      complex(c_float_complex), target :: alpha(*)
-      complex(c_float_complex), target :: AP(*)
+      complex(c_float_complex), target :: alpha(..)
+      complex(c_float_complex), target :: AP(..)
       integer(c_long), value :: lda
       integer(c_long), value :: strideA
-      complex(c_float_complex), target :: x(*)
+      complex(c_float_complex), target :: x(..)
       integer(c_long), value :: incx
       integer(c_long), value :: stridex
-      complex(c_float_complex), target :: beta(*)
-      complex(c_float_complex), target :: y(*)
+      complex(c_float_complex), target :: beta(..)
+      complex(c_float_complex), target :: y(..)
       integer(c_long), value :: incy
       integer(c_long), value :: stridey
       integer(c_long), value :: batchCount
       integer(c_int) :: CsymvStridedBatched_64
-      CsymvStridedBatched_64 = hipblasCsymvStridedBatched_64_raw(handle, uplo, n, c_loc(alpha(1)), &
-        c_loc(AP(1)), lda, strideA, c_loc(x(1)), incx, stridex, c_loc(beta(1)), c_loc(y(1)), incy, &
-        stridey, batchCount)
+      CsymvStridedBatched_64 = hipblasCsymvStridedBatched_64_raw(handle, uplo, n, c_loc(alpha), &
+        c_loc(AP), lda, strideA, c_loc(x), incx, stridex, c_loc(beta), c_loc(y), incy, stridey, &
+        batchCount)
     end function hipblasCsymvStridedBatched_64_native
 
     function hipblasCsymvStridedBatched_64_typed(handle, uplo, n, alpha, AP, lda, strideA, x, &
@@ -65509,22 +65441,22 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: uplo
       integer(c_long), value :: n
-      complex(c_double_complex), target :: alpha(*)
-      complex(c_double_complex), target :: AP(*)
+      complex(c_double_complex), target :: alpha(..)
+      complex(c_double_complex), target :: AP(..)
       integer(c_long), value :: lda
       integer(c_long), value :: strideA
-      complex(c_double_complex), target :: x(*)
+      complex(c_double_complex), target :: x(..)
       integer(c_long), value :: incx
       integer(c_long), value :: stridex
-      complex(c_double_complex), target :: beta(*)
-      complex(c_double_complex), target :: y(*)
+      complex(c_double_complex), target :: beta(..)
+      complex(c_double_complex), target :: y(..)
       integer(c_long), value :: incy
       integer(c_long), value :: stridey
       integer(c_long), value :: batchCount
       integer(c_int) :: ZsymvStridedBatched_64
-      ZsymvStridedBatched_64 = hipblasZsymvStridedBatched_64_raw(handle, uplo, n, c_loc(alpha(1)), &
-        c_loc(AP(1)), lda, strideA, c_loc(x(1)), incx, stridex, c_loc(beta(1)), c_loc(y(1)), incy, &
-        stridey, batchCount)
+      ZsymvStridedBatched_64 = hipblasZsymvStridedBatched_64_raw(handle, uplo, n, c_loc(alpha), &
+        c_loc(AP), lda, strideA, c_loc(x), incx, stridex, c_loc(beta), c_loc(y), incy, stridey, &
+        batchCount)
     end function hipblasZsymvStridedBatched_64_native
 
     function hipblasZsymvStridedBatched_64_typed(handle, uplo, n, alpha, AP, lda, strideA, x, &
@@ -65559,12 +65491,12 @@ contains
       integer(c_int), value :: uplo
       integer(c_int), value :: n
       real(c_float) :: alpha
-      real(c_float), target :: x(*)
+      real(c_float), target :: x(..)
       integer(c_int), value :: incx
-      real(c_float), target :: AP(*)
+      real(c_float), target :: AP(..)
       integer(c_int), value :: lda
       integer(c_int) :: Ssyr
-      Ssyr = hipblasSsyr_raw(handle, uplo, n, alpha, c_loc(x(1)), incx, c_loc(AP(1)), lda)
+      Ssyr = hipblasSsyr_raw(handle, uplo, n, alpha, c_loc(x), incx, c_loc(AP), lda)
     end function hipblasSsyr_native
 
     function hipblasSsyr_typed(handle, uplo, n, alpha, x, incx, AP, lda) result(Ssyr)
@@ -65590,12 +65522,12 @@ contains
       integer(c_int), value :: uplo
       integer(c_int), value :: n
       real(c_double) :: alpha
-      real(c_double), target :: x(*)
+      real(c_double), target :: x(..)
       integer(c_int), value :: incx
-      real(c_double), target :: AP(*)
+      real(c_double), target :: AP(..)
       integer(c_int), value :: lda
       integer(c_int) :: Dsyr
-      Dsyr = hipblasDsyr_raw(handle, uplo, n, alpha, c_loc(x(1)), incx, c_loc(AP(1)), lda)
+      Dsyr = hipblasDsyr_raw(handle, uplo, n, alpha, c_loc(x), incx, c_loc(AP), lda)
     end function hipblasDsyr_native
 
     function hipblasDsyr_typed(handle, uplo, n, alpha, x, incx, AP, lda) result(Dsyr)
@@ -65621,12 +65553,12 @@ contains
       integer(c_int), value :: uplo
       integer(c_int), value :: n
       complex(c_float_complex) :: alpha
-      complex(c_float_complex), target :: x(*)
+      complex(c_float_complex), target :: x(..)
       integer(c_int), value :: incx
-      complex(c_float_complex), target :: AP(*)
+      complex(c_float_complex), target :: AP(..)
       integer(c_int), value :: lda
       integer(c_int) :: Csyr
-      Csyr = hipblasCsyr_raw(handle, uplo, n, alpha, c_loc(x(1)), incx, c_loc(AP(1)), lda)
+      Csyr = hipblasCsyr_raw(handle, uplo, n, alpha, c_loc(x), incx, c_loc(AP), lda)
     end function hipblasCsyr_native
 
     function hipblasCsyr_typed(handle, uplo, n, alpha, x, incx, AP, lda) result(Csyr)
@@ -65652,12 +65584,12 @@ contains
       integer(c_int), value :: uplo
       integer(c_int), value :: n
       complex(c_double_complex) :: alpha
-      complex(c_double_complex), target :: x(*)
+      complex(c_double_complex), target :: x(..)
       integer(c_int), value :: incx
-      complex(c_double_complex), target :: AP(*)
+      complex(c_double_complex), target :: AP(..)
       integer(c_int), value :: lda
       integer(c_int) :: Zsyr
-      Zsyr = hipblasZsyr_raw(handle, uplo, n, alpha, c_loc(x(1)), incx, c_loc(AP(1)), lda)
+      Zsyr = hipblasZsyr_raw(handle, uplo, n, alpha, c_loc(x), incx, c_loc(AP), lda)
     end function hipblasZsyr_native
 
     function hipblasZsyr_typed(handle, uplo, n, alpha, x, incx, AP, lda) result(Zsyr)
@@ -65682,14 +65614,13 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: uplo
       integer(c_long), value :: n
-      real(c_float), target :: alpha(*)
-      real(c_float), target :: x(*)
+      real(c_float), target :: alpha(..)
+      real(c_float), target :: x(..)
       integer(c_long), value :: incx
-      real(c_float), target :: AP(*)
+      real(c_float), target :: AP(..)
       integer(c_long), value :: lda
       integer(c_int) :: Ssyr_64
-      Ssyr_64 = hipblasSsyr_64_raw(handle, uplo, n, c_loc(alpha(1)), c_loc(x(1)), incx, c_loc(AP( &
-        1)), lda)
+      Ssyr_64 = hipblasSsyr_64_raw(handle, uplo, n, c_loc(alpha), c_loc(x), incx, c_loc(AP), lda)
     end function hipblasSsyr_64_native
 
     function hipblasSsyr_64_typed(handle, uplo, n, alpha, x, incx, AP, lda) result(Ssyr_64)
@@ -65714,14 +65645,13 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: uplo
       integer(c_long), value :: n
-      real(c_double), target :: alpha(*)
-      real(c_double), target :: x(*)
+      real(c_double), target :: alpha(..)
+      real(c_double), target :: x(..)
       integer(c_long), value :: incx
-      real(c_double), target :: AP(*)
+      real(c_double), target :: AP(..)
       integer(c_long), value :: lda
       integer(c_int) :: Dsyr_64
-      Dsyr_64 = hipblasDsyr_64_raw(handle, uplo, n, c_loc(alpha(1)), c_loc(x(1)), incx, c_loc(AP( &
-        1)), lda)
+      Dsyr_64 = hipblasDsyr_64_raw(handle, uplo, n, c_loc(alpha), c_loc(x), incx, c_loc(AP), lda)
     end function hipblasDsyr_64_native
 
     function hipblasDsyr_64_typed(handle, uplo, n, alpha, x, incx, AP, lda) result(Dsyr_64)
@@ -65746,14 +65676,13 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: uplo
       integer(c_long), value :: n
-      complex(c_float_complex), target :: alpha(*)
-      complex(c_float_complex), target :: x(*)
+      complex(c_float_complex), target :: alpha(..)
+      complex(c_float_complex), target :: x(..)
       integer(c_long), value :: incx
-      complex(c_float_complex), target :: AP(*)
+      complex(c_float_complex), target :: AP(..)
       integer(c_long), value :: lda
       integer(c_int) :: Csyr_64
-      Csyr_64 = hipblasCsyr_64_raw(handle, uplo, n, c_loc(alpha(1)), c_loc(x(1)), incx, c_loc(AP( &
-        1)), lda)
+      Csyr_64 = hipblasCsyr_64_raw(handle, uplo, n, c_loc(alpha), c_loc(x), incx, c_loc(AP), lda)
     end function hipblasCsyr_64_native
 
     function hipblasCsyr_64_typed(handle, uplo, n, alpha, x, incx, AP, lda) result(Csyr_64)
@@ -65778,14 +65707,13 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: uplo
       integer(c_long), value :: n
-      complex(c_double_complex), target :: alpha(*)
-      complex(c_double_complex), target :: x(*)
+      complex(c_double_complex), target :: alpha(..)
+      complex(c_double_complex), target :: x(..)
       integer(c_long), value :: incx
-      complex(c_double_complex), target :: AP(*)
+      complex(c_double_complex), target :: AP(..)
       integer(c_long), value :: lda
       integer(c_int) :: Zsyr_64
-      Zsyr_64 = hipblasZsyr_64_raw(handle, uplo, n, c_loc(alpha(1)), c_loc(x(1)), incx, c_loc(AP( &
-        1)), lda)
+      Zsyr_64 = hipblasZsyr_64_raw(handle, uplo, n, c_loc(alpha), c_loc(x), incx, c_loc(AP), lda)
     end function hipblasZsyr_64_native
 
     function hipblasZsyr_64_typed(handle, uplo, n, alpha, x, incx, AP, lda) result(Zsyr_64)
@@ -65883,15 +65811,15 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: uplo
       integer(c_long), value :: n
-      real(c_float), target :: alpha(*)
+      real(c_float), target :: alpha(..)
       type(c_ptr), value :: x
       integer(c_long), value :: incx
       type(c_ptr), value :: AP
       integer(c_long), value :: lda
       integer(c_long), value :: batchCount
       integer(c_int) :: SsyrBatched_64
-      SsyrBatched_64 = hipblasSsyrBatched_64_raw(handle, uplo, n, c_loc(alpha(1)), x, incx, AP, &
-        lda, batchCount)
+      SsyrBatched_64 = hipblasSsyrBatched_64_raw(handle, uplo, n, c_loc(alpha), x, incx, AP, lda, &
+        batchCount)
     end function hipblasSsyrBatched_64_native
 
     function hipblasSsyrBatched_64_typed(handle, uplo, n, alpha, x, incx, AP, lda, &
@@ -65920,15 +65848,15 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: uplo
       integer(c_long), value :: n
-      real(c_double), target :: alpha(*)
+      real(c_double), target :: alpha(..)
       type(c_ptr), value :: x
       integer(c_long), value :: incx
       type(c_ptr), value :: AP
       integer(c_long), value :: lda
       integer(c_long), value :: batchCount
       integer(c_int) :: DsyrBatched_64
-      DsyrBatched_64 = hipblasDsyrBatched_64_raw(handle, uplo, n, c_loc(alpha(1)), x, incx, AP, &
-        lda, batchCount)
+      DsyrBatched_64 = hipblasDsyrBatched_64_raw(handle, uplo, n, c_loc(alpha), x, incx, AP, lda, &
+        batchCount)
     end function hipblasDsyrBatched_64_native
 
     function hipblasDsyrBatched_64_typed(handle, uplo, n, alpha, x, incx, AP, lda, &
@@ -65957,15 +65885,15 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: uplo
       integer(c_long), value :: n
-      complex(c_float_complex), target :: alpha(*)
+      complex(c_float_complex), target :: alpha(..)
       type(c_ptr), value :: x
       integer(c_long), value :: incx
       type(c_ptr), value :: AP
       integer(c_long), value :: lda
       integer(c_long), value :: batchCount
       integer(c_int) :: CsyrBatched_64
-      CsyrBatched_64 = hipblasCsyrBatched_64_raw(handle, uplo, n, c_loc(alpha(1)), x, incx, AP, &
-        lda, batchCount)
+      CsyrBatched_64 = hipblasCsyrBatched_64_raw(handle, uplo, n, c_loc(alpha), x, incx, AP, lda, &
+        batchCount)
     end function hipblasCsyrBatched_64_native
 
     function hipblasCsyrBatched_64_typed(handle, uplo, n, alpha, x, incx, AP, lda, &
@@ -65994,15 +65922,15 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: uplo
       integer(c_long), value :: n
-      complex(c_double_complex), target :: alpha(*)
+      complex(c_double_complex), target :: alpha(..)
       type(c_ptr), value :: x
       integer(c_long), value :: incx
       type(c_ptr), value :: AP
       integer(c_long), value :: lda
       integer(c_long), value :: batchCount
       integer(c_int) :: ZsyrBatched_64
-      ZsyrBatched_64 = hipblasZsyrBatched_64_raw(handle, uplo, n, c_loc(alpha(1)), x, incx, AP, &
-        lda, batchCount)
+      ZsyrBatched_64 = hipblasZsyrBatched_64_raw(handle, uplo, n, c_loc(alpha), x, incx, AP, lda, &
+        batchCount)
     end function hipblasZsyrBatched_64_native
 
     function hipblasZsyrBatched_64_typed(handle, uplo, n, alpha, x, incx, AP, lda, &
@@ -66032,16 +65960,16 @@ contains
       integer(c_int), value :: uplo
       integer(c_int), value :: n
       real(c_float) :: alpha
-      real(c_float), target :: x(*)
+      real(c_float), target :: x(..)
       integer(c_int), value :: incx
       integer(c_long), value :: stridex
-      real(c_float), target :: AP(*)
+      real(c_float), target :: AP(..)
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
       integer(c_int), value :: batchCount
       integer(c_int) :: SsyrStridedBatched
-      SsyrStridedBatched = hipblasSsyrStridedBatched_raw(handle, uplo, n, alpha, c_loc(x(1)), &
-        incx, stridex, c_loc(AP(1)), lda, strideA, batchCount)
+      SsyrStridedBatched = hipblasSsyrStridedBatched_raw(handle, uplo, n, alpha, c_loc(x), incx, &
+        stridex, c_loc(AP), lda, strideA, batchCount)
     end function hipblasSsyrStridedBatched_native
 
     function hipblasSsyrStridedBatched_typed(handle, uplo, n, alpha, x, incx, stridex, AP, lda, &
@@ -66073,16 +66001,16 @@ contains
       integer(c_int), value :: uplo
       integer(c_int), value :: n
       real(c_double) :: alpha
-      real(c_double), target :: x(*)
+      real(c_double), target :: x(..)
       integer(c_int), value :: incx
       integer(c_long), value :: stridex
-      real(c_double), target :: AP(*)
+      real(c_double), target :: AP(..)
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
       integer(c_int), value :: batchCount
       integer(c_int) :: DsyrStridedBatched
-      DsyrStridedBatched = hipblasDsyrStridedBatched_raw(handle, uplo, n, alpha, c_loc(x(1)), &
-        incx, stridex, c_loc(AP(1)), lda, strideA, batchCount)
+      DsyrStridedBatched = hipblasDsyrStridedBatched_raw(handle, uplo, n, alpha, c_loc(x), incx, &
+        stridex, c_loc(AP), lda, strideA, batchCount)
     end function hipblasDsyrStridedBatched_native
 
     function hipblasDsyrStridedBatched_typed(handle, uplo, n, alpha, x, incx, stridex, AP, lda, &
@@ -66114,16 +66042,16 @@ contains
       integer(c_int), value :: uplo
       integer(c_int), value :: n
       complex(c_float_complex) :: alpha
-      complex(c_float_complex), target :: x(*)
+      complex(c_float_complex), target :: x(..)
       integer(c_int), value :: incx
       integer(c_long), value :: stridex
-      complex(c_float_complex), target :: AP(*)
+      complex(c_float_complex), target :: AP(..)
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
       integer(c_int), value :: batchCount
       integer(c_int) :: CsyrStridedBatched
-      CsyrStridedBatched = hipblasCsyrStridedBatched_raw(handle, uplo, n, alpha, c_loc(x(1)), &
-        incx, stridex, c_loc(AP(1)), lda, strideA, batchCount)
+      CsyrStridedBatched = hipblasCsyrStridedBatched_raw(handle, uplo, n, alpha, c_loc(x), incx, &
+        stridex, c_loc(AP), lda, strideA, batchCount)
     end function hipblasCsyrStridedBatched_native
 
     function hipblasCsyrStridedBatched_typed(handle, uplo, n, alpha, x, incx, stridex, AP, lda, &
@@ -66155,16 +66083,16 @@ contains
       integer(c_int), value :: uplo
       integer(c_int), value :: n
       complex(c_double_complex) :: alpha
-      complex(c_double_complex), target :: x(*)
+      complex(c_double_complex), target :: x(..)
       integer(c_int), value :: incx
       integer(c_long), value :: stridex
-      complex(c_double_complex), target :: AP(*)
+      complex(c_double_complex), target :: AP(..)
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
       integer(c_int), value :: batchCount
       integer(c_int) :: ZsyrStridedBatched
-      ZsyrStridedBatched = hipblasZsyrStridedBatched_raw(handle, uplo, n, alpha, c_loc(x(1)), &
-        incx, stridex, c_loc(AP(1)), lda, strideA, batchCount)
+      ZsyrStridedBatched = hipblasZsyrStridedBatched_raw(handle, uplo, n, alpha, c_loc(x), incx, &
+        stridex, c_loc(AP), lda, strideA, batchCount)
     end function hipblasZsyrStridedBatched_native
 
     function hipblasZsyrStridedBatched_typed(handle, uplo, n, alpha, x, incx, stridex, AP, lda, &
@@ -66195,17 +66123,17 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: uplo
       integer(c_long), value :: n
-      real(c_float), target :: alpha(*)
-      real(c_float), target :: x(*)
+      real(c_float), target :: alpha(..)
+      real(c_float), target :: x(..)
       integer(c_long), value :: incx
       integer(c_long), value :: stridex
-      real(c_float), target :: AP(*)
+      real(c_float), target :: AP(..)
       integer(c_long), value :: lda
       integer(c_long), value :: strideA
       integer(c_long), value :: batchCount
       integer(c_int) :: SsyrStridedBatched_64
-      SsyrStridedBatched_64 = hipblasSsyrStridedBatched_64_raw(handle, uplo, n, c_loc(alpha(1)), &
-        c_loc(x(1)), incx, stridex, c_loc(AP(1)), lda, strideA, batchCount)
+      SsyrStridedBatched_64 = hipblasSsyrStridedBatched_64_raw(handle, uplo, n, c_loc(alpha), &
+        c_loc(x), incx, stridex, c_loc(AP), lda, strideA, batchCount)
     end function hipblasSsyrStridedBatched_64_native
 
     function hipblasSsyrStridedBatched_64_typed(handle, uplo, n, alpha, x, incx, stridex, AP, lda, &
@@ -66236,17 +66164,17 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: uplo
       integer(c_long), value :: n
-      real(c_double), target :: alpha(*)
-      real(c_double), target :: x(*)
+      real(c_double), target :: alpha(..)
+      real(c_double), target :: x(..)
       integer(c_long), value :: incx
       integer(c_long), value :: stridex
-      real(c_double), target :: AP(*)
+      real(c_double), target :: AP(..)
       integer(c_long), value :: lda
       integer(c_long), value :: strideA
       integer(c_long), value :: batchCount
       integer(c_int) :: DsyrStridedBatched_64
-      DsyrStridedBatched_64 = hipblasDsyrStridedBatched_64_raw(handle, uplo, n, c_loc(alpha(1)), &
-        c_loc(x(1)), incx, stridex, c_loc(AP(1)), lda, strideA, batchCount)
+      DsyrStridedBatched_64 = hipblasDsyrStridedBatched_64_raw(handle, uplo, n, c_loc(alpha), &
+        c_loc(x), incx, stridex, c_loc(AP), lda, strideA, batchCount)
     end function hipblasDsyrStridedBatched_64_native
 
     function hipblasDsyrStridedBatched_64_typed(handle, uplo, n, alpha, x, incx, stridex, AP, lda, &
@@ -66277,17 +66205,17 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: uplo
       integer(c_long), value :: n
-      complex(c_float_complex), target :: alpha(*)
-      complex(c_float_complex), target :: x(*)
+      complex(c_float_complex), target :: alpha(..)
+      complex(c_float_complex), target :: x(..)
       integer(c_long), value :: incx
       integer(c_long), value :: stridex
-      complex(c_float_complex), target :: AP(*)
+      complex(c_float_complex), target :: AP(..)
       integer(c_long), value :: lda
       integer(c_long), value :: strideA
       integer(c_long), value :: batchCount
       integer(c_int) :: CsyrStridedBatched_64
-      CsyrStridedBatched_64 = hipblasCsyrStridedBatched_64_raw(handle, uplo, n, c_loc(alpha(1)), &
-        c_loc(x(1)), incx, stridex, c_loc(AP(1)), lda, strideA, batchCount)
+      CsyrStridedBatched_64 = hipblasCsyrStridedBatched_64_raw(handle, uplo, n, c_loc(alpha), &
+        c_loc(x), incx, stridex, c_loc(AP), lda, strideA, batchCount)
     end function hipblasCsyrStridedBatched_64_native
 
     function hipblasCsyrStridedBatched_64_typed(handle, uplo, n, alpha, x, incx, stridex, AP, lda, &
@@ -66318,17 +66246,17 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: uplo
       integer(c_long), value :: n
-      complex(c_double_complex), target :: alpha(*)
-      complex(c_double_complex), target :: x(*)
+      complex(c_double_complex), target :: alpha(..)
+      complex(c_double_complex), target :: x(..)
       integer(c_long), value :: incx
       integer(c_long), value :: stridex
-      complex(c_double_complex), target :: AP(*)
+      complex(c_double_complex), target :: AP(..)
       integer(c_long), value :: lda
       integer(c_long), value :: strideA
       integer(c_long), value :: batchCount
       integer(c_int) :: ZsyrStridedBatched_64
-      ZsyrStridedBatched_64 = hipblasZsyrStridedBatched_64_raw(handle, uplo, n, c_loc(alpha(1)), &
-        c_loc(x(1)), incx, stridex, c_loc(AP(1)), lda, strideA, batchCount)
+      ZsyrStridedBatched_64 = hipblasZsyrStridedBatched_64_raw(handle, uplo, n, c_loc(alpha), &
+        c_loc(x), incx, stridex, c_loc(AP), lda, strideA, batchCount)
     end function hipblasZsyrStridedBatched_64_native
 
     function hipblasZsyrStridedBatched_64_typed(handle, uplo, n, alpha, x, incx, stridex, AP, lda, &
@@ -66359,15 +66287,15 @@ contains
       integer(c_int), value :: uplo
       integer(c_int), value :: n
       real(c_float) :: alpha
-      real(c_float), target :: x(*)
+      real(c_float), target :: x(..)
       integer(c_int), value :: incx
-      real(c_float), target :: y(*)
+      real(c_float), target :: y(..)
       integer(c_int), value :: incy
-      real(c_float), target :: AP(*)
+      real(c_float), target :: AP(..)
       integer(c_int), value :: lda
       integer(c_int) :: Ssyr2
-      Ssyr2 = hipblasSsyr2_raw(handle, uplo, n, alpha, c_loc(x(1)), incx, c_loc(y(1)), incy, &
-        c_loc(AP(1)), lda)
+      Ssyr2 = hipblasSsyr2_raw(handle, uplo, n, alpha, c_loc(x), incx, c_loc(y), incy, c_loc(AP), &
+        lda)
     end function hipblasSsyr2_native
 
     function hipblasSsyr2_typed(handle, uplo, n, alpha, x, incx, y, incy, AP, lda) result(Ssyr2)
@@ -66395,15 +66323,15 @@ contains
       integer(c_int), value :: uplo
       integer(c_int), value :: n
       real(c_double) :: alpha
-      real(c_double), target :: x(*)
+      real(c_double), target :: x(..)
       integer(c_int), value :: incx
-      real(c_double), target :: y(*)
+      real(c_double), target :: y(..)
       integer(c_int), value :: incy
-      real(c_double), target :: AP(*)
+      real(c_double), target :: AP(..)
       integer(c_int), value :: lda
       integer(c_int) :: Dsyr2
-      Dsyr2 = hipblasDsyr2_raw(handle, uplo, n, alpha, c_loc(x(1)), incx, c_loc(y(1)), incy, &
-        c_loc(AP(1)), lda)
+      Dsyr2 = hipblasDsyr2_raw(handle, uplo, n, alpha, c_loc(x), incx, c_loc(y), incy, c_loc(AP), &
+        lda)
     end function hipblasDsyr2_native
 
     function hipblasDsyr2_typed(handle, uplo, n, alpha, x, incx, y, incy, AP, lda) result(Dsyr2)
@@ -66431,15 +66359,15 @@ contains
       integer(c_int), value :: uplo
       integer(c_int), value :: n
       complex(c_float_complex) :: alpha
-      complex(c_float_complex), target :: x(*)
+      complex(c_float_complex), target :: x(..)
       integer(c_int), value :: incx
-      complex(c_float_complex), target :: y(*)
+      complex(c_float_complex), target :: y(..)
       integer(c_int), value :: incy
-      complex(c_float_complex), target :: AP(*)
+      complex(c_float_complex), target :: AP(..)
       integer(c_int), value :: lda
       integer(c_int) :: Csyr2
-      Csyr2 = hipblasCsyr2_raw(handle, uplo, n, alpha, c_loc(x(1)), incx, c_loc(y(1)), incy, &
-        c_loc(AP(1)), lda)
+      Csyr2 = hipblasCsyr2_raw(handle, uplo, n, alpha, c_loc(x), incx, c_loc(y), incy, c_loc(AP), &
+        lda)
     end function hipblasCsyr2_native
 
     function hipblasCsyr2_typed(handle, uplo, n, alpha, x, incx, y, incy, AP, lda) result(Csyr2)
@@ -66467,15 +66395,15 @@ contains
       integer(c_int), value :: uplo
       integer(c_int), value :: n
       complex(c_double_complex) :: alpha
-      complex(c_double_complex), target :: x(*)
+      complex(c_double_complex), target :: x(..)
       integer(c_int), value :: incx
-      complex(c_double_complex), target :: y(*)
+      complex(c_double_complex), target :: y(..)
       integer(c_int), value :: incy
-      complex(c_double_complex), target :: AP(*)
+      complex(c_double_complex), target :: AP(..)
       integer(c_int), value :: lda
       integer(c_int) :: Zsyr2
-      Zsyr2 = hipblasZsyr2_raw(handle, uplo, n, alpha, c_loc(x(1)), incx, c_loc(y(1)), incy, &
-        c_loc(AP(1)), lda)
+      Zsyr2 = hipblasZsyr2_raw(handle, uplo, n, alpha, c_loc(x), incx, c_loc(y), incy, c_loc(AP), &
+        lda)
     end function hipblasZsyr2_native
 
     function hipblasZsyr2_typed(handle, uplo, n, alpha, x, incx, y, incy, AP, lda) result(Zsyr2)
@@ -66503,16 +66431,16 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: uplo
       integer(c_long), value :: n
-      real(c_float), target :: alpha(*)
-      real(c_float), target :: x(*)
+      real(c_float), target :: alpha(..)
+      real(c_float), target :: x(..)
       integer(c_long), value :: incx
-      real(c_float), target :: y(*)
+      real(c_float), target :: y(..)
       integer(c_long), value :: incy
-      real(c_float), target :: AP(*)
+      real(c_float), target :: AP(..)
       integer(c_long), value :: lda
       integer(c_int) :: Ssyr2_64
-      Ssyr2_64 = hipblasSsyr2_64_raw(handle, uplo, n, c_loc(alpha(1)), c_loc(x(1)), incx, c_loc(y( &
-        1)), incy, c_loc(AP(1)), lda)
+      Ssyr2_64 = hipblasSsyr2_64_raw(handle, uplo, n, c_loc(alpha), c_loc(x), incx, c_loc(y), &
+        incy, c_loc(AP), lda)
     end function hipblasSsyr2_64_native
 
     function hipblasSsyr2_64_typed(handle, uplo, n, alpha, x, incx, y, incy, AP, lda) result( &
@@ -66541,16 +66469,16 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: uplo
       integer(c_long), value :: n
-      real(c_double), target :: alpha(*)
-      real(c_double), target :: x(*)
+      real(c_double), target :: alpha(..)
+      real(c_double), target :: x(..)
       integer(c_long), value :: incx
-      real(c_double), target :: y(*)
+      real(c_double), target :: y(..)
       integer(c_long), value :: incy
-      real(c_double), target :: AP(*)
+      real(c_double), target :: AP(..)
       integer(c_long), value :: lda
       integer(c_int) :: Dsyr2_64
-      Dsyr2_64 = hipblasDsyr2_64_raw(handle, uplo, n, c_loc(alpha(1)), c_loc(x(1)), incx, c_loc(y( &
-        1)), incy, c_loc(AP(1)), lda)
+      Dsyr2_64 = hipblasDsyr2_64_raw(handle, uplo, n, c_loc(alpha), c_loc(x), incx, c_loc(y), &
+        incy, c_loc(AP), lda)
     end function hipblasDsyr2_64_native
 
     function hipblasDsyr2_64_typed(handle, uplo, n, alpha, x, incx, y, incy, AP, lda) result( &
@@ -66579,16 +66507,16 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: uplo
       integer(c_long), value :: n
-      complex(c_float_complex), target :: alpha(*)
-      complex(c_float_complex), target :: x(*)
+      complex(c_float_complex), target :: alpha(..)
+      complex(c_float_complex), target :: x(..)
       integer(c_long), value :: incx
-      complex(c_float_complex), target :: y(*)
+      complex(c_float_complex), target :: y(..)
       integer(c_long), value :: incy
-      complex(c_float_complex), target :: AP(*)
+      complex(c_float_complex), target :: AP(..)
       integer(c_long), value :: lda
       integer(c_int) :: Csyr2_64
-      Csyr2_64 = hipblasCsyr2_64_raw(handle, uplo, n, c_loc(alpha(1)), c_loc(x(1)), incx, c_loc(y( &
-        1)), incy, c_loc(AP(1)), lda)
+      Csyr2_64 = hipblasCsyr2_64_raw(handle, uplo, n, c_loc(alpha), c_loc(x), incx, c_loc(y), &
+        incy, c_loc(AP), lda)
     end function hipblasCsyr2_64_native
 
     function hipblasCsyr2_64_typed(handle, uplo, n, alpha, x, incx, y, incy, AP, lda) result( &
@@ -66617,16 +66545,16 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: uplo
       integer(c_long), value :: n
-      complex(c_double_complex), target :: alpha(*)
-      complex(c_double_complex), target :: x(*)
+      complex(c_double_complex), target :: alpha(..)
+      complex(c_double_complex), target :: x(..)
       integer(c_long), value :: incx
-      complex(c_double_complex), target :: y(*)
+      complex(c_double_complex), target :: y(..)
       integer(c_long), value :: incy
-      complex(c_double_complex), target :: AP(*)
+      complex(c_double_complex), target :: AP(..)
       integer(c_long), value :: lda
       integer(c_int) :: Zsyr2_64
-      Zsyr2_64 = hipblasZsyr2_64_raw(handle, uplo, n, c_loc(alpha(1)), c_loc(x(1)), incx, c_loc(y( &
-        1)), incy, c_loc(AP(1)), lda)
+      Zsyr2_64 = hipblasZsyr2_64_raw(handle, uplo, n, c_loc(alpha), c_loc(x), incx, c_loc(y), &
+        incy, c_loc(AP), lda)
     end function hipblasZsyr2_64_native
 
     function hipblasZsyr2_64_typed(handle, uplo, n, alpha, x, incx, y, incy, AP, lda) result( &
@@ -66739,7 +66667,7 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: uplo
       integer(c_long), value :: n
-      real(c_float), target :: alpha(*)
+      real(c_float), target :: alpha(..)
       type(c_ptr), value :: x
       integer(c_long), value :: incx
       type(c_ptr), value :: y
@@ -66748,7 +66676,7 @@ contains
       integer(c_long), value :: lda
       integer(c_long), value :: batchCount
       integer(c_int) :: Ssyr2Batched_64
-      Ssyr2Batched_64 = hipblasSsyr2Batched_64_raw(handle, uplo, n, c_loc(alpha(1)), x, incx, y, &
+      Ssyr2Batched_64 = hipblasSsyr2Batched_64_raw(handle, uplo, n, c_loc(alpha), x, incx, y, &
         incy, AP, lda, batchCount)
     end function hipblasSsyr2Batched_64_native
 
@@ -66780,7 +66708,7 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: uplo
       integer(c_long), value :: n
-      real(c_double), target :: alpha(*)
+      real(c_double), target :: alpha(..)
       type(c_ptr), value :: x
       integer(c_long), value :: incx
       type(c_ptr), value :: y
@@ -66789,7 +66717,7 @@ contains
       integer(c_long), value :: lda
       integer(c_long), value :: batchCount
       integer(c_int) :: Dsyr2Batched_64
-      Dsyr2Batched_64 = hipblasDsyr2Batched_64_raw(handle, uplo, n, c_loc(alpha(1)), x, incx, y, &
+      Dsyr2Batched_64 = hipblasDsyr2Batched_64_raw(handle, uplo, n, c_loc(alpha), x, incx, y, &
         incy, AP, lda, batchCount)
     end function hipblasDsyr2Batched_64_native
 
@@ -66821,7 +66749,7 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: uplo
       integer(c_long), value :: n
-      complex(c_float_complex), target :: alpha(*)
+      complex(c_float_complex), target :: alpha(..)
       type(c_ptr), value :: x
       integer(c_long), value :: incx
       type(c_ptr), value :: y
@@ -66830,7 +66758,7 @@ contains
       integer(c_long), value :: lda
       integer(c_long), value :: batchCount
       integer(c_int) :: Csyr2Batched_64
-      Csyr2Batched_64 = hipblasCsyr2Batched_64_raw(handle, uplo, n, c_loc(alpha(1)), x, incx, y, &
+      Csyr2Batched_64 = hipblasCsyr2Batched_64_raw(handle, uplo, n, c_loc(alpha), x, incx, y, &
         incy, AP, lda, batchCount)
     end function hipblasCsyr2Batched_64_native
 
@@ -66862,7 +66790,7 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: uplo
       integer(c_long), value :: n
-      complex(c_double_complex), target :: alpha(*)
+      complex(c_double_complex), target :: alpha(..)
       type(c_ptr), value :: x
       integer(c_long), value :: incx
       type(c_ptr), value :: y
@@ -66871,7 +66799,7 @@ contains
       integer(c_long), value :: lda
       integer(c_long), value :: batchCount
       integer(c_int) :: Zsyr2Batched_64
-      Zsyr2Batched_64 = hipblasZsyr2Batched_64_raw(handle, uplo, n, c_loc(alpha(1)), x, incx, y, &
+      Zsyr2Batched_64 = hipblasZsyr2Batched_64_raw(handle, uplo, n, c_loc(alpha), x, incx, y, &
         incy, AP, lda, batchCount)
     end function hipblasZsyr2Batched_64_native
 
@@ -66904,19 +66832,19 @@ contains
       integer(c_int), value :: uplo
       integer(c_int), value :: n
       real(c_float) :: alpha
-      real(c_float), target :: x(*)
+      real(c_float), target :: x(..)
       integer(c_int), value :: incx
       integer(c_long), value :: stridex
-      real(c_float), target :: y(*)
+      real(c_float), target :: y(..)
       integer(c_int), value :: incy
       integer(c_long), value :: stridey
-      real(c_float), target :: AP(*)
+      real(c_float), target :: AP(..)
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
       integer(c_int), value :: batchCount
       integer(c_int) :: Ssyr2StridedBatched
-      Ssyr2StridedBatched = hipblasSsyr2StridedBatched_raw(handle, uplo, n, alpha, c_loc(x(1)), &
-        incx, stridex, c_loc(y(1)), incy, stridey, c_loc(AP(1)), lda, strideA, batchCount)
+      Ssyr2StridedBatched = hipblasSsyr2StridedBatched_raw(handle, uplo, n, alpha, c_loc(x), incx, &
+        stridex, c_loc(y), incy, stridey, c_loc(AP), lda, strideA, batchCount)
     end function hipblasSsyr2StridedBatched_native
 
     function hipblasSsyr2StridedBatched_typed(handle, uplo, n, alpha, x, incx, stridex, y, incy, &
@@ -66951,19 +66879,19 @@ contains
       integer(c_int), value :: uplo
       integer(c_int), value :: n
       real(c_double) :: alpha
-      real(c_double), target :: x(*)
+      real(c_double), target :: x(..)
       integer(c_int), value :: incx
       integer(c_long), value :: stridex
-      real(c_double), target :: y(*)
+      real(c_double), target :: y(..)
       integer(c_int), value :: incy
       integer(c_long), value :: stridey
-      real(c_double), target :: AP(*)
+      real(c_double), target :: AP(..)
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
       integer(c_int), value :: batchCount
       integer(c_int) :: Dsyr2StridedBatched
-      Dsyr2StridedBatched = hipblasDsyr2StridedBatched_raw(handle, uplo, n, alpha, c_loc(x(1)), &
-        incx, stridex, c_loc(y(1)), incy, stridey, c_loc(AP(1)), lda, strideA, batchCount)
+      Dsyr2StridedBatched = hipblasDsyr2StridedBatched_raw(handle, uplo, n, alpha, c_loc(x), incx, &
+        stridex, c_loc(y), incy, stridey, c_loc(AP), lda, strideA, batchCount)
     end function hipblasDsyr2StridedBatched_native
 
     function hipblasDsyr2StridedBatched_typed(handle, uplo, n, alpha, x, incx, stridex, y, incy, &
@@ -66998,19 +66926,19 @@ contains
       integer(c_int), value :: uplo
       integer(c_int), value :: n
       complex(c_float_complex) :: alpha
-      complex(c_float_complex), target :: x(*)
+      complex(c_float_complex), target :: x(..)
       integer(c_int), value :: incx
       integer(c_long), value :: stridex
-      complex(c_float_complex), target :: y(*)
+      complex(c_float_complex), target :: y(..)
       integer(c_int), value :: incy
       integer(c_long), value :: stridey
-      complex(c_float_complex), target :: AP(*)
+      complex(c_float_complex), target :: AP(..)
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
       integer(c_int), value :: batchCount
       integer(c_int) :: Csyr2StridedBatched
-      Csyr2StridedBatched = hipblasCsyr2StridedBatched_raw(handle, uplo, n, alpha, c_loc(x(1)), &
-        incx, stridex, c_loc(y(1)), incy, stridey, c_loc(AP(1)), lda, strideA, batchCount)
+      Csyr2StridedBatched = hipblasCsyr2StridedBatched_raw(handle, uplo, n, alpha, c_loc(x), incx, &
+        stridex, c_loc(y), incy, stridey, c_loc(AP), lda, strideA, batchCount)
     end function hipblasCsyr2StridedBatched_native
 
     function hipblasCsyr2StridedBatched_typed(handle, uplo, n, alpha, x, incx, stridex, y, incy, &
@@ -67045,19 +66973,19 @@ contains
       integer(c_int), value :: uplo
       integer(c_int), value :: n
       complex(c_double_complex) :: alpha
-      complex(c_double_complex), target :: x(*)
+      complex(c_double_complex), target :: x(..)
       integer(c_int), value :: incx
       integer(c_long), value :: stridex
-      complex(c_double_complex), target :: y(*)
+      complex(c_double_complex), target :: y(..)
       integer(c_int), value :: incy
       integer(c_long), value :: stridey
-      complex(c_double_complex), target :: AP(*)
+      complex(c_double_complex), target :: AP(..)
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
       integer(c_int), value :: batchCount
       integer(c_int) :: Zsyr2StridedBatched
-      Zsyr2StridedBatched = hipblasZsyr2StridedBatched_raw(handle, uplo, n, alpha, c_loc(x(1)), &
-        incx, stridex, c_loc(y(1)), incy, stridey, c_loc(AP(1)), lda, strideA, batchCount)
+      Zsyr2StridedBatched = hipblasZsyr2StridedBatched_raw(handle, uplo, n, alpha, c_loc(x), incx, &
+        stridex, c_loc(y), incy, stridey, c_loc(AP), lda, strideA, batchCount)
     end function hipblasZsyr2StridedBatched_native
 
     function hipblasZsyr2StridedBatched_typed(handle, uplo, n, alpha, x, incx, stridex, y, incy, &
@@ -67091,21 +67019,20 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: uplo
       integer(c_long), value :: n
-      real(c_float), target :: alpha(*)
-      real(c_float), target :: x(*)
+      real(c_float), target :: alpha(..)
+      real(c_float), target :: x(..)
       integer(c_long), value :: incx
       integer(c_long), value :: stridex
-      real(c_float), target :: y(*)
+      real(c_float), target :: y(..)
       integer(c_long), value :: incy
       integer(c_long), value :: stridey
-      real(c_float), target :: AP(*)
+      real(c_float), target :: AP(..)
       integer(c_long), value :: lda
       integer(c_long), value :: strideA
       integer(c_long), value :: batchCount
       integer(c_int) :: Ssyr2StridedBatched_64
-      Ssyr2StridedBatched_64 = hipblasSsyr2StridedBatched_64_raw(handle, uplo, n, c_loc(alpha(1)), &
-        c_loc(x(1)), incx, stridex, c_loc(y(1)), incy, stridey, c_loc(AP(1)), lda, strideA, &
-        batchCount)
+      Ssyr2StridedBatched_64 = hipblasSsyr2StridedBatched_64_raw(handle, uplo, n, c_loc(alpha), &
+        c_loc(x), incx, stridex, c_loc(y), incy, stridey, c_loc(AP), lda, strideA, batchCount)
     end function hipblasSsyr2StridedBatched_64_native
 
     function hipblasSsyr2StridedBatched_64_typed(handle, uplo, n, alpha, x, incx, stridex, y, &
@@ -67139,21 +67066,20 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: uplo
       integer(c_long), value :: n
-      real(c_double), target :: alpha(*)
-      real(c_double), target :: x(*)
+      real(c_double), target :: alpha(..)
+      real(c_double), target :: x(..)
       integer(c_long), value :: incx
       integer(c_long), value :: stridex
-      real(c_double), target :: y(*)
+      real(c_double), target :: y(..)
       integer(c_long), value :: incy
       integer(c_long), value :: stridey
-      real(c_double), target :: AP(*)
+      real(c_double), target :: AP(..)
       integer(c_long), value :: lda
       integer(c_long), value :: strideA
       integer(c_long), value :: batchCount
       integer(c_int) :: Dsyr2StridedBatched_64
-      Dsyr2StridedBatched_64 = hipblasDsyr2StridedBatched_64_raw(handle, uplo, n, c_loc(alpha(1)), &
-        c_loc(x(1)), incx, stridex, c_loc(y(1)), incy, stridey, c_loc(AP(1)), lda, strideA, &
-        batchCount)
+      Dsyr2StridedBatched_64 = hipblasDsyr2StridedBatched_64_raw(handle, uplo, n, c_loc(alpha), &
+        c_loc(x), incx, stridex, c_loc(y), incy, stridey, c_loc(AP), lda, strideA, batchCount)
     end function hipblasDsyr2StridedBatched_64_native
 
     function hipblasDsyr2StridedBatched_64_typed(handle, uplo, n, alpha, x, incx, stridex, y, &
@@ -67187,21 +67113,20 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: uplo
       integer(c_long), value :: n
-      complex(c_float_complex), target :: alpha(*)
-      complex(c_float_complex), target :: x(*)
+      complex(c_float_complex), target :: alpha(..)
+      complex(c_float_complex), target :: x(..)
       integer(c_long), value :: incx
       integer(c_long), value :: stridex
-      complex(c_float_complex), target :: y(*)
+      complex(c_float_complex), target :: y(..)
       integer(c_long), value :: incy
       integer(c_long), value :: stridey
-      complex(c_float_complex), target :: AP(*)
+      complex(c_float_complex), target :: AP(..)
       integer(c_long), value :: lda
       integer(c_long), value :: strideA
       integer(c_long), value :: batchCount
       integer(c_int) :: Csyr2StridedBatched_64
-      Csyr2StridedBatched_64 = hipblasCsyr2StridedBatched_64_raw(handle, uplo, n, c_loc(alpha(1)), &
-        c_loc(x(1)), incx, stridex, c_loc(y(1)), incy, stridey, c_loc(AP(1)), lda, strideA, &
-        batchCount)
+      Csyr2StridedBatched_64 = hipblasCsyr2StridedBatched_64_raw(handle, uplo, n, c_loc(alpha), &
+        c_loc(x), incx, stridex, c_loc(y), incy, stridey, c_loc(AP), lda, strideA, batchCount)
     end function hipblasCsyr2StridedBatched_64_native
 
     function hipblasCsyr2StridedBatched_64_typed(handle, uplo, n, alpha, x, incx, stridex, y, &
@@ -67235,21 +67160,20 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: uplo
       integer(c_long), value :: n
-      complex(c_double_complex), target :: alpha(*)
-      complex(c_double_complex), target :: x(*)
+      complex(c_double_complex), target :: alpha(..)
+      complex(c_double_complex), target :: x(..)
       integer(c_long), value :: incx
       integer(c_long), value :: stridex
-      complex(c_double_complex), target :: y(*)
+      complex(c_double_complex), target :: y(..)
       integer(c_long), value :: incy
       integer(c_long), value :: stridey
-      complex(c_double_complex), target :: AP(*)
+      complex(c_double_complex), target :: AP(..)
       integer(c_long), value :: lda
       integer(c_long), value :: strideA
       integer(c_long), value :: batchCount
       integer(c_int) :: Zsyr2StridedBatched_64
-      Zsyr2StridedBatched_64 = hipblasZsyr2StridedBatched_64_raw(handle, uplo, n, c_loc(alpha(1)), &
-        c_loc(x(1)), incx, stridex, c_loc(y(1)), incy, stridey, c_loc(AP(1)), lda, strideA, &
-        batchCount)
+      Zsyr2StridedBatched_64 = hipblasZsyr2StridedBatched_64_raw(handle, uplo, n, c_loc(alpha), &
+        c_loc(x), incx, stridex, c_loc(y), incy, stridey, c_loc(AP), lda, strideA, batchCount)
     end function hipblasZsyr2StridedBatched_64_native
 
     function hipblasZsyr2StridedBatched_64_typed(handle, uplo, n, alpha, x, incx, stridex, y, &
@@ -67285,13 +67209,12 @@ contains
       integer(c_int), value :: diag
       integer(c_int), value :: n
       integer(c_int), value :: k
-      real(c_float), target :: AP(*)
+      real(c_float), target :: AP(..)
       integer(c_int), value :: lda
-      real(c_float), target :: x(*)
+      real(c_float), target :: x(..)
       integer(c_int), value :: incx
       integer(c_int) :: Stbmv
-      Stbmv = hipblasStbmv_raw(handle, uplo, transA, diag, n, k, c_loc(AP(1)), lda, c_loc(x(1)), &
-        incx)
+      Stbmv = hipblasStbmv_raw(handle, uplo, transA, diag, n, k, c_loc(AP), lda, c_loc(x), incx)
     end function hipblasStbmv_native
 
     function hipblasStbmv_typed(handle, uplo, transA, diag, n, k, AP, lda, x, incx) result(Stbmv)
@@ -67321,13 +67244,12 @@ contains
       integer(c_int), value :: diag
       integer(c_int), value :: n
       integer(c_int), value :: k
-      real(c_double), target :: AP(*)
+      real(c_double), target :: AP(..)
       integer(c_int), value :: lda
-      real(c_double), target :: x(*)
+      real(c_double), target :: x(..)
       integer(c_int), value :: incx
       integer(c_int) :: Dtbmv
-      Dtbmv = hipblasDtbmv_raw(handle, uplo, transA, diag, n, k, c_loc(AP(1)), lda, c_loc(x(1)), &
-        incx)
+      Dtbmv = hipblasDtbmv_raw(handle, uplo, transA, diag, n, k, c_loc(AP), lda, c_loc(x), incx)
     end function hipblasDtbmv_native
 
     function hipblasDtbmv_typed(handle, uplo, transA, diag, n, k, AP, lda, x, incx) result(Dtbmv)
@@ -67357,13 +67279,12 @@ contains
       integer(c_int), value :: diag
       integer(c_int), value :: n
       integer(c_int), value :: k
-      complex(c_float_complex), target :: AP(*)
+      complex(c_float_complex), target :: AP(..)
       integer(c_int), value :: lda
-      complex(c_float_complex), target :: x(*)
+      complex(c_float_complex), target :: x(..)
       integer(c_int), value :: incx
       integer(c_int) :: Ctbmv
-      Ctbmv = hipblasCtbmv_raw(handle, uplo, transA, diag, n, k, c_loc(AP(1)), lda, c_loc(x(1)), &
-        incx)
+      Ctbmv = hipblasCtbmv_raw(handle, uplo, transA, diag, n, k, c_loc(AP), lda, c_loc(x), incx)
     end function hipblasCtbmv_native
 
     function hipblasCtbmv_typed(handle, uplo, transA, diag, n, k, AP, lda, x, incx) result(Ctbmv)
@@ -67393,13 +67314,12 @@ contains
       integer(c_int), value :: diag
       integer(c_int), value :: n
       integer(c_int), value :: k
-      complex(c_double_complex), target :: AP(*)
+      complex(c_double_complex), target :: AP(..)
       integer(c_int), value :: lda
-      complex(c_double_complex), target :: x(*)
+      complex(c_double_complex), target :: x(..)
       integer(c_int), value :: incx
       integer(c_int) :: Ztbmv
-      Ztbmv = hipblasZtbmv_raw(handle, uplo, transA, diag, n, k, c_loc(AP(1)), lda, c_loc(x(1)), &
-        incx)
+      Ztbmv = hipblasZtbmv_raw(handle, uplo, transA, diag, n, k, c_loc(AP), lda, c_loc(x), incx)
     end function hipblasZtbmv_native
 
     function hipblasZtbmv_typed(handle, uplo, transA, diag, n, k, AP, lda, x, incx) result(Ztbmv)
@@ -67430,13 +67350,13 @@ contains
       integer(c_int), value :: diag
       integer(c_long), value :: n
       integer(c_long), value :: k
-      real(c_float), target :: AP(*)
+      real(c_float), target :: AP(..)
       integer(c_long), value :: lda
-      real(c_float), target :: x(*)
+      real(c_float), target :: x(..)
       integer(c_long), value :: incx
       integer(c_int) :: Stbmv_64
-      Stbmv_64 = hipblasStbmv_64_raw(handle, uplo, transA, diag, n, k, c_loc(AP(1)), lda, c_loc(x( &
-        1)), incx)
+      Stbmv_64 = hipblasStbmv_64_raw(handle, uplo, transA, diag, n, k, c_loc(AP), lda, c_loc(x), &
+        incx)
     end function hipblasStbmv_64_native
 
     function hipblasStbmv_64_typed(handle, uplo, transA, diag, n, k, AP, lda, x, incx) result( &
@@ -67468,13 +67388,13 @@ contains
       integer(c_int), value :: diag
       integer(c_long), value :: n
       integer(c_long), value :: k
-      real(c_double), target :: AP(*)
+      real(c_double), target :: AP(..)
       integer(c_long), value :: lda
-      real(c_double), target :: x(*)
+      real(c_double), target :: x(..)
       integer(c_long), value :: incx
       integer(c_int) :: Dtbmv_64
-      Dtbmv_64 = hipblasDtbmv_64_raw(handle, uplo, transA, diag, n, k, c_loc(AP(1)), lda, c_loc(x( &
-        1)), incx)
+      Dtbmv_64 = hipblasDtbmv_64_raw(handle, uplo, transA, diag, n, k, c_loc(AP), lda, c_loc(x), &
+        incx)
     end function hipblasDtbmv_64_native
 
     function hipblasDtbmv_64_typed(handle, uplo, transA, diag, n, k, AP, lda, x, incx) result( &
@@ -67506,13 +67426,13 @@ contains
       integer(c_int), value :: diag
       integer(c_long), value :: n
       integer(c_long), value :: k
-      complex(c_float_complex), target :: AP(*)
+      complex(c_float_complex), target :: AP(..)
       integer(c_long), value :: lda
-      complex(c_float_complex), target :: x(*)
+      complex(c_float_complex), target :: x(..)
       integer(c_long), value :: incx
       integer(c_int) :: Ctbmv_64
-      Ctbmv_64 = hipblasCtbmv_64_raw(handle, uplo, transA, diag, n, k, c_loc(AP(1)), lda, c_loc(x( &
-        1)), incx)
+      Ctbmv_64 = hipblasCtbmv_64_raw(handle, uplo, transA, diag, n, k, c_loc(AP), lda, c_loc(x), &
+        incx)
     end function hipblasCtbmv_64_native
 
     function hipblasCtbmv_64_typed(handle, uplo, transA, diag, n, k, AP, lda, x, incx) result( &
@@ -67544,13 +67464,13 @@ contains
       integer(c_int), value :: diag
       integer(c_long), value :: n
       integer(c_long), value :: k
-      complex(c_double_complex), target :: AP(*)
+      complex(c_double_complex), target :: AP(..)
       integer(c_long), value :: lda
-      complex(c_double_complex), target :: x(*)
+      complex(c_double_complex), target :: x(..)
       integer(c_long), value :: incx
       integer(c_int) :: Ztbmv_64
-      Ztbmv_64 = hipblasZtbmv_64_raw(handle, uplo, transA, diag, n, k, c_loc(AP(1)), lda, c_loc(x( &
-        1)), incx)
+      Ztbmv_64 = hipblasZtbmv_64_raw(handle, uplo, transA, diag, n, k, c_loc(AP), lda, c_loc(x), &
+        incx)
     end function hipblasZtbmv_64_native
 
     function hipblasZtbmv_64_typed(handle, uplo, transA, diag, n, k, AP, lda, x, incx) result( &
@@ -67750,16 +67670,16 @@ contains
       integer(c_int), value :: diag
       integer(c_int), value :: n
       integer(c_int), value :: k
-      real(c_float), target :: AP(*)
+      real(c_float), target :: AP(..)
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
-      real(c_float), target :: x(*)
+      real(c_float), target :: x(..)
       integer(c_int), value :: incx
       integer(c_long), value :: stridex
       integer(c_int), value :: batchCount
       integer(c_int) :: StbmvStridedBatched
       StbmvStridedBatched = hipblasStbmvStridedBatched_raw(handle, uplo, transA, diag, n, k, &
-        c_loc(AP(1)), lda, strideA, c_loc(x(1)), incx, stridex, batchCount)
+        c_loc(AP), lda, strideA, c_loc(x), incx, stridex, batchCount)
     end function hipblasStbmvStridedBatched_native
 
     function hipblasStbmvStridedBatched_typed(handle, uplo, transA, diag, n, k, AP, lda, strideA, &
@@ -67795,16 +67715,16 @@ contains
       integer(c_int), value :: diag
       integer(c_int), value :: n
       integer(c_int), value :: k
-      real(c_double), target :: AP(*)
+      real(c_double), target :: AP(..)
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
-      real(c_double), target :: x(*)
+      real(c_double), target :: x(..)
       integer(c_int), value :: incx
       integer(c_long), value :: stridex
       integer(c_int), value :: batchCount
       integer(c_int) :: DtbmvStridedBatched
       DtbmvStridedBatched = hipblasDtbmvStridedBatched_raw(handle, uplo, transA, diag, n, k, &
-        c_loc(AP(1)), lda, strideA, c_loc(x(1)), incx, stridex, batchCount)
+        c_loc(AP), lda, strideA, c_loc(x), incx, stridex, batchCount)
     end function hipblasDtbmvStridedBatched_native
 
     function hipblasDtbmvStridedBatched_typed(handle, uplo, transA, diag, n, k, AP, lda, strideA, &
@@ -67840,16 +67760,16 @@ contains
       integer(c_int), value :: diag
       integer(c_int), value :: n
       integer(c_int), value :: k
-      complex(c_float_complex), target :: AP(*)
+      complex(c_float_complex), target :: AP(..)
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
-      complex(c_float_complex), target :: x(*)
+      complex(c_float_complex), target :: x(..)
       integer(c_int), value :: incx
       integer(c_long), value :: stridex
       integer(c_int), value :: batchCount
       integer(c_int) :: CtbmvStridedBatched
       CtbmvStridedBatched = hipblasCtbmvStridedBatched_raw(handle, uplo, transA, diag, n, k, &
-        c_loc(AP(1)), lda, strideA, c_loc(x(1)), incx, stridex, batchCount)
+        c_loc(AP), lda, strideA, c_loc(x), incx, stridex, batchCount)
     end function hipblasCtbmvStridedBatched_native
 
     function hipblasCtbmvStridedBatched_typed(handle, uplo, transA, diag, n, k, AP, lda, strideA, &
@@ -67885,16 +67805,16 @@ contains
       integer(c_int), value :: diag
       integer(c_int), value :: n
       integer(c_int), value :: k
-      complex(c_double_complex), target :: AP(*)
+      complex(c_double_complex), target :: AP(..)
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
-      complex(c_double_complex), target :: x(*)
+      complex(c_double_complex), target :: x(..)
       integer(c_int), value :: incx
       integer(c_long), value :: stridex
       integer(c_int), value :: batchCount
       integer(c_int) :: ZtbmvStridedBatched
       ZtbmvStridedBatched = hipblasZtbmvStridedBatched_raw(handle, uplo, transA, diag, n, k, &
-        c_loc(AP(1)), lda, strideA, c_loc(x(1)), incx, stridex, batchCount)
+        c_loc(AP), lda, strideA, c_loc(x), incx, stridex, batchCount)
     end function hipblasZtbmvStridedBatched_native
 
     function hipblasZtbmvStridedBatched_typed(handle, uplo, transA, diag, n, k, AP, lda, strideA, &
@@ -67930,16 +67850,16 @@ contains
       integer(c_int), value :: diag
       integer(c_long), value :: n
       integer(c_long), value :: k
-      real(c_float), target :: AP(*)
+      real(c_float), target :: AP(..)
       integer(c_long), value :: lda
       integer(c_long), value :: strideA
-      real(c_float), target :: x(*)
+      real(c_float), target :: x(..)
       integer(c_long), value :: incx
       integer(c_long), value :: stridex
       integer(c_long), value :: batchCount
       integer(c_int) :: StbmvStridedBatched_64
       StbmvStridedBatched_64 = hipblasStbmvStridedBatched_64_raw(handle, uplo, transA, diag, n, k, &
-        c_loc(AP(1)), lda, strideA, c_loc(x(1)), incx, stridex, batchCount)
+        c_loc(AP), lda, strideA, c_loc(x), incx, stridex, batchCount)
     end function hipblasStbmvStridedBatched_64_native
 
     function hipblasStbmvStridedBatched_64_typed(handle, uplo, transA, diag, n, k, AP, lda, &
@@ -67975,16 +67895,16 @@ contains
       integer(c_int), value :: diag
       integer(c_long), value :: n
       integer(c_long), value :: k
-      real(c_double), target :: AP(*)
+      real(c_double), target :: AP(..)
       integer(c_long), value :: lda
       integer(c_long), value :: strideA
-      real(c_double), target :: x(*)
+      real(c_double), target :: x(..)
       integer(c_long), value :: incx
       integer(c_long), value :: stridex
       integer(c_long), value :: batchCount
       integer(c_int) :: DtbmvStridedBatched_64
       DtbmvStridedBatched_64 = hipblasDtbmvStridedBatched_64_raw(handle, uplo, transA, diag, n, k, &
-        c_loc(AP(1)), lda, strideA, c_loc(x(1)), incx, stridex, batchCount)
+        c_loc(AP), lda, strideA, c_loc(x), incx, stridex, batchCount)
     end function hipblasDtbmvStridedBatched_64_native
 
     function hipblasDtbmvStridedBatched_64_typed(handle, uplo, transA, diag, n, k, AP, lda, &
@@ -68020,16 +67940,16 @@ contains
       integer(c_int), value :: diag
       integer(c_long), value :: n
       integer(c_long), value :: k
-      complex(c_float_complex), target :: AP(*)
+      complex(c_float_complex), target :: AP(..)
       integer(c_long), value :: lda
       integer(c_long), value :: strideA
-      complex(c_float_complex), target :: x(*)
+      complex(c_float_complex), target :: x(..)
       integer(c_long), value :: incx
       integer(c_long), value :: stridex
       integer(c_long), value :: batchCount
       integer(c_int) :: CtbmvStridedBatched_64
       CtbmvStridedBatched_64 = hipblasCtbmvStridedBatched_64_raw(handle, uplo, transA, diag, n, k, &
-        c_loc(AP(1)), lda, strideA, c_loc(x(1)), incx, stridex, batchCount)
+        c_loc(AP), lda, strideA, c_loc(x), incx, stridex, batchCount)
     end function hipblasCtbmvStridedBatched_64_native
 
     function hipblasCtbmvStridedBatched_64_typed(handle, uplo, transA, diag, n, k, AP, lda, &
@@ -68065,16 +67985,16 @@ contains
       integer(c_int), value :: diag
       integer(c_long), value :: n
       integer(c_long), value :: k
-      complex(c_double_complex), target :: AP(*)
+      complex(c_double_complex), target :: AP(..)
       integer(c_long), value :: lda
       integer(c_long), value :: strideA
-      complex(c_double_complex), target :: x(*)
+      complex(c_double_complex), target :: x(..)
       integer(c_long), value :: incx
       integer(c_long), value :: stridex
       integer(c_long), value :: batchCount
       integer(c_int) :: ZtbmvStridedBatched_64
       ZtbmvStridedBatched_64 = hipblasZtbmvStridedBatched_64_raw(handle, uplo, transA, diag, n, k, &
-        c_loc(AP(1)), lda, strideA, c_loc(x(1)), incx, stridex, batchCount)
+        c_loc(AP), lda, strideA, c_loc(x), incx, stridex, batchCount)
     end function hipblasZtbmvStridedBatched_64_native
 
     function hipblasZtbmvStridedBatched_64_typed(handle, uplo, transA, diag, n, k, AP, lda, &
@@ -68109,13 +68029,12 @@ contains
       integer(c_int), value :: diag
       integer(c_int), value :: n
       integer(c_int), value :: k
-      real(c_float), target :: AP(*)
+      real(c_float), target :: AP(..)
       integer(c_int), value :: lda
-      real(c_float), target :: x(*)
+      real(c_float), target :: x(..)
       integer(c_int), value :: incx
       integer(c_int) :: Stbsv
-      Stbsv = hipblasStbsv_raw(handle, uplo, transA, diag, n, k, c_loc(AP(1)), lda, c_loc(x(1)), &
-        incx)
+      Stbsv = hipblasStbsv_raw(handle, uplo, transA, diag, n, k, c_loc(AP), lda, c_loc(x), incx)
     end function hipblasStbsv_native
 
     function hipblasStbsv_typed(handle, uplo, transA, diag, n, k, AP, lda, x, incx) result(Stbsv)
@@ -68145,13 +68064,12 @@ contains
       integer(c_int), value :: diag
       integer(c_int), value :: n
       integer(c_int), value :: k
-      real(c_double), target :: AP(*)
+      real(c_double), target :: AP(..)
       integer(c_int), value :: lda
-      real(c_double), target :: x(*)
+      real(c_double), target :: x(..)
       integer(c_int), value :: incx
       integer(c_int) :: Dtbsv
-      Dtbsv = hipblasDtbsv_raw(handle, uplo, transA, diag, n, k, c_loc(AP(1)), lda, c_loc(x(1)), &
-        incx)
+      Dtbsv = hipblasDtbsv_raw(handle, uplo, transA, diag, n, k, c_loc(AP), lda, c_loc(x), incx)
     end function hipblasDtbsv_native
 
     function hipblasDtbsv_typed(handle, uplo, transA, diag, n, k, AP, lda, x, incx) result(Dtbsv)
@@ -68181,13 +68099,12 @@ contains
       integer(c_int), value :: diag
       integer(c_int), value :: n
       integer(c_int), value :: k
-      complex(c_float_complex), target :: AP(*)
+      complex(c_float_complex), target :: AP(..)
       integer(c_int), value :: lda
-      complex(c_float_complex), target :: x(*)
+      complex(c_float_complex), target :: x(..)
       integer(c_int), value :: incx
       integer(c_int) :: Ctbsv
-      Ctbsv = hipblasCtbsv_raw(handle, uplo, transA, diag, n, k, c_loc(AP(1)), lda, c_loc(x(1)), &
-        incx)
+      Ctbsv = hipblasCtbsv_raw(handle, uplo, transA, diag, n, k, c_loc(AP), lda, c_loc(x), incx)
     end function hipblasCtbsv_native
 
     function hipblasCtbsv_typed(handle, uplo, transA, diag, n, k, AP, lda, x, incx) result(Ctbsv)
@@ -68217,13 +68134,12 @@ contains
       integer(c_int), value :: diag
       integer(c_int), value :: n
       integer(c_int), value :: k
-      complex(c_double_complex), target :: AP(*)
+      complex(c_double_complex), target :: AP(..)
       integer(c_int), value :: lda
-      complex(c_double_complex), target :: x(*)
+      complex(c_double_complex), target :: x(..)
       integer(c_int), value :: incx
       integer(c_int) :: Ztbsv
-      Ztbsv = hipblasZtbsv_raw(handle, uplo, transA, diag, n, k, c_loc(AP(1)), lda, c_loc(x(1)), &
-        incx)
+      Ztbsv = hipblasZtbsv_raw(handle, uplo, transA, diag, n, k, c_loc(AP), lda, c_loc(x), incx)
     end function hipblasZtbsv_native
 
     function hipblasZtbsv_typed(handle, uplo, transA, diag, n, k, AP, lda, x, incx) result(Ztbsv)
@@ -68254,13 +68170,13 @@ contains
       integer(c_int), value :: diag
       integer(c_long), value :: n
       integer(c_long), value :: k
-      real(c_float), target :: AP(*)
+      real(c_float), target :: AP(..)
       integer(c_long), value :: lda
-      real(c_float), target :: x(*)
+      real(c_float), target :: x(..)
       integer(c_long), value :: incx
       integer(c_int) :: Stbsv_64
-      Stbsv_64 = hipblasStbsv_64_raw(handle, uplo, transA, diag, n, k, c_loc(AP(1)), lda, c_loc(x( &
-        1)), incx)
+      Stbsv_64 = hipblasStbsv_64_raw(handle, uplo, transA, diag, n, k, c_loc(AP), lda, c_loc(x), &
+        incx)
     end function hipblasStbsv_64_native
 
     function hipblasStbsv_64_typed(handle, uplo, transA, diag, n, k, AP, lda, x, incx) result( &
@@ -68292,13 +68208,13 @@ contains
       integer(c_int), value :: diag
       integer(c_long), value :: n
       integer(c_long), value :: k
-      real(c_double), target :: AP(*)
+      real(c_double), target :: AP(..)
       integer(c_long), value :: lda
-      real(c_double), target :: x(*)
+      real(c_double), target :: x(..)
       integer(c_long), value :: incx
       integer(c_int) :: Dtbsv_64
-      Dtbsv_64 = hipblasDtbsv_64_raw(handle, uplo, transA, diag, n, k, c_loc(AP(1)), lda, c_loc(x( &
-        1)), incx)
+      Dtbsv_64 = hipblasDtbsv_64_raw(handle, uplo, transA, diag, n, k, c_loc(AP), lda, c_loc(x), &
+        incx)
     end function hipblasDtbsv_64_native
 
     function hipblasDtbsv_64_typed(handle, uplo, transA, diag, n, k, AP, lda, x, incx) result( &
@@ -68330,13 +68246,13 @@ contains
       integer(c_int), value :: diag
       integer(c_long), value :: n
       integer(c_long), value :: k
-      complex(c_float_complex), target :: AP(*)
+      complex(c_float_complex), target :: AP(..)
       integer(c_long), value :: lda
-      complex(c_float_complex), target :: x(*)
+      complex(c_float_complex), target :: x(..)
       integer(c_long), value :: incx
       integer(c_int) :: Ctbsv_64
-      Ctbsv_64 = hipblasCtbsv_64_raw(handle, uplo, transA, diag, n, k, c_loc(AP(1)), lda, c_loc(x( &
-        1)), incx)
+      Ctbsv_64 = hipblasCtbsv_64_raw(handle, uplo, transA, diag, n, k, c_loc(AP), lda, c_loc(x), &
+        incx)
     end function hipblasCtbsv_64_native
 
     function hipblasCtbsv_64_typed(handle, uplo, transA, diag, n, k, AP, lda, x, incx) result( &
@@ -68368,13 +68284,13 @@ contains
       integer(c_int), value :: diag
       integer(c_long), value :: n
       integer(c_long), value :: k
-      complex(c_double_complex), target :: AP(*)
+      complex(c_double_complex), target :: AP(..)
       integer(c_long), value :: lda
-      complex(c_double_complex), target :: x(*)
+      complex(c_double_complex), target :: x(..)
       integer(c_long), value :: incx
       integer(c_int) :: Ztbsv_64
-      Ztbsv_64 = hipblasZtbsv_64_raw(handle, uplo, transA, diag, n, k, c_loc(AP(1)), lda, c_loc(x( &
-        1)), incx)
+      Ztbsv_64 = hipblasZtbsv_64_raw(handle, uplo, transA, diag, n, k, c_loc(AP), lda, c_loc(x), &
+        incx)
     end function hipblasZtbsv_64_native
 
     function hipblasZtbsv_64_typed(handle, uplo, transA, diag, n, k, AP, lda, x, incx) result( &
@@ -68574,16 +68490,16 @@ contains
       integer(c_int), value :: diag
       integer(c_int), value :: n
       integer(c_int), value :: k
-      real(c_float), target :: AP(*)
+      real(c_float), target :: AP(..)
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
-      real(c_float), target :: x(*)
+      real(c_float), target :: x(..)
       integer(c_int), value :: incx
       integer(c_long), value :: stridex
       integer(c_int), value :: batchCount
       integer(c_int) :: StbsvStridedBatched
       StbsvStridedBatched = hipblasStbsvStridedBatched_raw(handle, uplo, transA, diag, n, k, &
-        c_loc(AP(1)), lda, strideA, c_loc(x(1)), incx, stridex, batchCount)
+        c_loc(AP), lda, strideA, c_loc(x), incx, stridex, batchCount)
     end function hipblasStbsvStridedBatched_native
 
     function hipblasStbsvStridedBatched_typed(handle, uplo, transA, diag, n, k, AP, lda, strideA, &
@@ -68619,16 +68535,16 @@ contains
       integer(c_int), value :: diag
       integer(c_int), value :: n
       integer(c_int), value :: k
-      real(c_double), target :: AP(*)
+      real(c_double), target :: AP(..)
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
-      real(c_double), target :: x(*)
+      real(c_double), target :: x(..)
       integer(c_int), value :: incx
       integer(c_long), value :: stridex
       integer(c_int), value :: batchCount
       integer(c_int) :: DtbsvStridedBatched
       DtbsvStridedBatched = hipblasDtbsvStridedBatched_raw(handle, uplo, transA, diag, n, k, &
-        c_loc(AP(1)), lda, strideA, c_loc(x(1)), incx, stridex, batchCount)
+        c_loc(AP), lda, strideA, c_loc(x), incx, stridex, batchCount)
     end function hipblasDtbsvStridedBatched_native
 
     function hipblasDtbsvStridedBatched_typed(handle, uplo, transA, diag, n, k, AP, lda, strideA, &
@@ -68664,16 +68580,16 @@ contains
       integer(c_int), value :: diag
       integer(c_int), value :: n
       integer(c_int), value :: k
-      complex(c_float_complex), target :: AP(*)
+      complex(c_float_complex), target :: AP(..)
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
-      complex(c_float_complex), target :: x(*)
+      complex(c_float_complex), target :: x(..)
       integer(c_int), value :: incx
       integer(c_long), value :: stridex
       integer(c_int), value :: batchCount
       integer(c_int) :: CtbsvStridedBatched
       CtbsvStridedBatched = hipblasCtbsvStridedBatched_raw(handle, uplo, transA, diag, n, k, &
-        c_loc(AP(1)), lda, strideA, c_loc(x(1)), incx, stridex, batchCount)
+        c_loc(AP), lda, strideA, c_loc(x), incx, stridex, batchCount)
     end function hipblasCtbsvStridedBatched_native
 
     function hipblasCtbsvStridedBatched_typed(handle, uplo, transA, diag, n, k, AP, lda, strideA, &
@@ -68709,16 +68625,16 @@ contains
       integer(c_int), value :: diag
       integer(c_int), value :: n
       integer(c_int), value :: k
-      complex(c_double_complex), target :: AP(*)
+      complex(c_double_complex), target :: AP(..)
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
-      complex(c_double_complex), target :: x(*)
+      complex(c_double_complex), target :: x(..)
       integer(c_int), value :: incx
       integer(c_long), value :: stridex
       integer(c_int), value :: batchCount
       integer(c_int) :: ZtbsvStridedBatched
       ZtbsvStridedBatched = hipblasZtbsvStridedBatched_raw(handle, uplo, transA, diag, n, k, &
-        c_loc(AP(1)), lda, strideA, c_loc(x(1)), incx, stridex, batchCount)
+        c_loc(AP), lda, strideA, c_loc(x), incx, stridex, batchCount)
     end function hipblasZtbsvStridedBatched_native
 
     function hipblasZtbsvStridedBatched_typed(handle, uplo, transA, diag, n, k, AP, lda, strideA, &
@@ -68754,16 +68670,16 @@ contains
       integer(c_int), value :: diag
       integer(c_long), value :: n
       integer(c_long), value :: k
-      real(c_float), target :: AP(*)
+      real(c_float), target :: AP(..)
       integer(c_long), value :: lda
       integer(c_long), value :: strideA
-      real(c_float), target :: x(*)
+      real(c_float), target :: x(..)
       integer(c_long), value :: incx
       integer(c_long), value :: stridex
       integer(c_long), value :: batchCount
       integer(c_int) :: StbsvStridedBatched_64
       StbsvStridedBatched_64 = hipblasStbsvStridedBatched_64_raw(handle, uplo, transA, diag, n, k, &
-        c_loc(AP(1)), lda, strideA, c_loc(x(1)), incx, stridex, batchCount)
+        c_loc(AP), lda, strideA, c_loc(x), incx, stridex, batchCount)
     end function hipblasStbsvStridedBatched_64_native
 
     function hipblasStbsvStridedBatched_64_typed(handle, uplo, transA, diag, n, k, AP, lda, &
@@ -68799,16 +68715,16 @@ contains
       integer(c_int), value :: diag
       integer(c_long), value :: n
       integer(c_long), value :: k
-      real(c_double), target :: AP(*)
+      real(c_double), target :: AP(..)
       integer(c_long), value :: lda
       integer(c_long), value :: strideA
-      real(c_double), target :: x(*)
+      real(c_double), target :: x(..)
       integer(c_long), value :: incx
       integer(c_long), value :: stridex
       integer(c_long), value :: batchCount
       integer(c_int) :: DtbsvStridedBatched_64
       DtbsvStridedBatched_64 = hipblasDtbsvStridedBatched_64_raw(handle, uplo, transA, diag, n, k, &
-        c_loc(AP(1)), lda, strideA, c_loc(x(1)), incx, stridex, batchCount)
+        c_loc(AP), lda, strideA, c_loc(x), incx, stridex, batchCount)
     end function hipblasDtbsvStridedBatched_64_native
 
     function hipblasDtbsvStridedBatched_64_typed(handle, uplo, transA, diag, n, k, AP, lda, &
@@ -68844,16 +68760,16 @@ contains
       integer(c_int), value :: diag
       integer(c_long), value :: n
       integer(c_long), value :: k
-      complex(c_float_complex), target :: AP(*)
+      complex(c_float_complex), target :: AP(..)
       integer(c_long), value :: lda
       integer(c_long), value :: strideA
-      complex(c_float_complex), target :: x(*)
+      complex(c_float_complex), target :: x(..)
       integer(c_long), value :: incx
       integer(c_long), value :: stridex
       integer(c_long), value :: batchCount
       integer(c_int) :: CtbsvStridedBatched_64
       CtbsvStridedBatched_64 = hipblasCtbsvStridedBatched_64_raw(handle, uplo, transA, diag, n, k, &
-        c_loc(AP(1)), lda, strideA, c_loc(x(1)), incx, stridex, batchCount)
+        c_loc(AP), lda, strideA, c_loc(x), incx, stridex, batchCount)
     end function hipblasCtbsvStridedBatched_64_native
 
     function hipblasCtbsvStridedBatched_64_typed(handle, uplo, transA, diag, n, k, AP, lda, &
@@ -68889,16 +68805,16 @@ contains
       integer(c_int), value :: diag
       integer(c_long), value :: n
       integer(c_long), value :: k
-      complex(c_double_complex), target :: AP(*)
+      complex(c_double_complex), target :: AP(..)
       integer(c_long), value :: lda
       integer(c_long), value :: strideA
-      complex(c_double_complex), target :: x(*)
+      complex(c_double_complex), target :: x(..)
       integer(c_long), value :: incx
       integer(c_long), value :: stridex
       integer(c_long), value :: batchCount
       integer(c_int) :: ZtbsvStridedBatched_64
       ZtbsvStridedBatched_64 = hipblasZtbsvStridedBatched_64_raw(handle, uplo, transA, diag, n, k, &
-        c_loc(AP(1)), lda, strideA, c_loc(x(1)), incx, stridex, batchCount)
+        c_loc(AP), lda, strideA, c_loc(x), incx, stridex, batchCount)
     end function hipblasZtbsvStridedBatched_64_native
 
     function hipblasZtbsvStridedBatched_64_typed(handle, uplo, transA, diag, n, k, AP, lda, &
@@ -68932,11 +68848,11 @@ contains
       integer(c_int), value :: transA
       integer(c_int), value :: diag
       integer(c_int), value :: n
-      real(c_float), target :: AP(*)
-      real(c_float), target :: x(*)
+      real(c_float), target :: AP(..)
+      real(c_float), target :: x(..)
       integer(c_int), value :: incx
       integer(c_int) :: Stpmv
-      Stpmv = hipblasStpmv_raw(handle, uplo, transA, diag, n, c_loc(AP(1)), c_loc(x(1)), incx)
+      Stpmv = hipblasStpmv_raw(handle, uplo, transA, diag, n, c_loc(AP), c_loc(x), incx)
     end function hipblasStpmv_native
 
     function hipblasStpmv_typed(handle, uplo, transA, diag, n, AP, x, incx) result(Stpmv)
@@ -68963,11 +68879,11 @@ contains
       integer(c_int), value :: transA
       integer(c_int), value :: diag
       integer(c_int), value :: n
-      real(c_double), target :: AP(*)
-      real(c_double), target :: x(*)
+      real(c_double), target :: AP(..)
+      real(c_double), target :: x(..)
       integer(c_int), value :: incx
       integer(c_int) :: Dtpmv
-      Dtpmv = hipblasDtpmv_raw(handle, uplo, transA, diag, n, c_loc(AP(1)), c_loc(x(1)), incx)
+      Dtpmv = hipblasDtpmv_raw(handle, uplo, transA, diag, n, c_loc(AP), c_loc(x), incx)
     end function hipblasDtpmv_native
 
     function hipblasDtpmv_typed(handle, uplo, transA, diag, n, AP, x, incx) result(Dtpmv)
@@ -68994,11 +68910,11 @@ contains
       integer(c_int), value :: transA
       integer(c_int), value :: diag
       integer(c_int), value :: n
-      complex(c_float_complex), target :: AP(*)
-      complex(c_float_complex), target :: x(*)
+      complex(c_float_complex), target :: AP(..)
+      complex(c_float_complex), target :: x(..)
       integer(c_int), value :: incx
       integer(c_int) :: Ctpmv
-      Ctpmv = hipblasCtpmv_raw(handle, uplo, transA, diag, n, c_loc(AP(1)), c_loc(x(1)), incx)
+      Ctpmv = hipblasCtpmv_raw(handle, uplo, transA, diag, n, c_loc(AP), c_loc(x), incx)
     end function hipblasCtpmv_native
 
     function hipblasCtpmv_typed(handle, uplo, transA, diag, n, AP, x, incx) result(Ctpmv)
@@ -69025,11 +68941,11 @@ contains
       integer(c_int), value :: transA
       integer(c_int), value :: diag
       integer(c_int), value :: n
-      complex(c_double_complex), target :: AP(*)
-      complex(c_double_complex), target :: x(*)
+      complex(c_double_complex), target :: AP(..)
+      complex(c_double_complex), target :: x(..)
       integer(c_int), value :: incx
       integer(c_int) :: Ztpmv
-      Ztpmv = hipblasZtpmv_raw(handle, uplo, transA, diag, n, c_loc(AP(1)), c_loc(x(1)), incx)
+      Ztpmv = hipblasZtpmv_raw(handle, uplo, transA, diag, n, c_loc(AP), c_loc(x), incx)
     end function hipblasZtpmv_native
 
     function hipblasZtpmv_typed(handle, uplo, transA, diag, n, AP, x, incx) result(Ztpmv)
@@ -69056,11 +68972,11 @@ contains
       integer(c_int), value :: transA
       integer(c_int), value :: diag
       integer(c_long), value :: n
-      real(c_float), target :: AP(*)
-      real(c_float), target :: x(*)
+      real(c_float), target :: AP(..)
+      real(c_float), target :: x(..)
       integer(c_long), value :: incx
       integer(c_int) :: Stpmv_64
-      Stpmv_64 = hipblasStpmv_64_raw(handle, uplo, transA, diag, n, c_loc(AP(1)), c_loc(x(1)), incx)
+      Stpmv_64 = hipblasStpmv_64_raw(handle, uplo, transA, diag, n, c_loc(AP), c_loc(x), incx)
     end function hipblasStpmv_64_native
 
     function hipblasStpmv_64_typed(handle, uplo, transA, diag, n, AP, x, incx) result(Stpmv_64)
@@ -69087,11 +69003,11 @@ contains
       integer(c_int), value :: transA
       integer(c_int), value :: diag
       integer(c_long), value :: n
-      real(c_double), target :: AP(*)
-      real(c_double), target :: x(*)
+      real(c_double), target :: AP(..)
+      real(c_double), target :: x(..)
       integer(c_long), value :: incx
       integer(c_int) :: Dtpmv_64
-      Dtpmv_64 = hipblasDtpmv_64_raw(handle, uplo, transA, diag, n, c_loc(AP(1)), c_loc(x(1)), incx)
+      Dtpmv_64 = hipblasDtpmv_64_raw(handle, uplo, transA, diag, n, c_loc(AP), c_loc(x), incx)
     end function hipblasDtpmv_64_native
 
     function hipblasDtpmv_64_typed(handle, uplo, transA, diag, n, AP, x, incx) result(Dtpmv_64)
@@ -69118,11 +69034,11 @@ contains
       integer(c_int), value :: transA
       integer(c_int), value :: diag
       integer(c_long), value :: n
-      complex(c_float_complex), target :: AP(*)
-      complex(c_float_complex), target :: x(*)
+      complex(c_float_complex), target :: AP(..)
+      complex(c_float_complex), target :: x(..)
       integer(c_long), value :: incx
       integer(c_int) :: Ctpmv_64
-      Ctpmv_64 = hipblasCtpmv_64_raw(handle, uplo, transA, diag, n, c_loc(AP(1)), c_loc(x(1)), incx)
+      Ctpmv_64 = hipblasCtpmv_64_raw(handle, uplo, transA, diag, n, c_loc(AP), c_loc(x), incx)
     end function hipblasCtpmv_64_native
 
     function hipblasCtpmv_64_typed(handle, uplo, transA, diag, n, AP, x, incx) result(Ctpmv_64)
@@ -69149,11 +69065,11 @@ contains
       integer(c_int), value :: transA
       integer(c_int), value :: diag
       integer(c_long), value :: n
-      complex(c_double_complex), target :: AP(*)
-      complex(c_double_complex), target :: x(*)
+      complex(c_double_complex), target :: AP(..)
+      complex(c_double_complex), target :: x(..)
       integer(c_long), value :: incx
       integer(c_int) :: Ztpmv_64
-      Ztpmv_64 = hipblasZtpmv_64_raw(handle, uplo, transA, diag, n, c_loc(AP(1)), c_loc(x(1)), incx)
+      Ztpmv_64 = hipblasZtpmv_64_raw(handle, uplo, transA, diag, n, c_loc(AP), c_loc(x), incx)
     end function hipblasZtpmv_64_native
 
     function hipblasZtpmv_64_typed(handle, uplo, transA, diag, n, AP, x, incx) result(Ztpmv_64)
@@ -69333,15 +69249,15 @@ contains
       integer(c_int), value :: transA
       integer(c_int), value :: diag
       integer(c_int), value :: n
-      real(c_float), target :: AP(*)
+      real(c_float), target :: AP(..)
       integer(c_long), value :: strideA
-      real(c_float), target :: x(*)
+      real(c_float), target :: x(..)
       integer(c_int), value :: incx
       integer(c_long), value :: stridex
       integer(c_int), value :: batchCount
       integer(c_int) :: StpmvStridedBatched
       StpmvStridedBatched = hipblasStpmvStridedBatched_raw(handle, uplo, transA, diag, n, c_loc( &
-        AP(1)), strideA, c_loc(x(1)), incx, stridex, batchCount)
+        AP), strideA, c_loc(x), incx, stridex, batchCount)
     end function hipblasStpmvStridedBatched_native
 
     function hipblasStpmvStridedBatched_typed(handle, uplo, transA, diag, n, AP, strideA, x, incx, &
@@ -69374,15 +69290,15 @@ contains
       integer(c_int), value :: transA
       integer(c_int), value :: diag
       integer(c_int), value :: n
-      real(c_double), target :: AP(*)
+      real(c_double), target :: AP(..)
       integer(c_long), value :: strideA
-      real(c_double), target :: x(*)
+      real(c_double), target :: x(..)
       integer(c_int), value :: incx
       integer(c_long), value :: stridex
       integer(c_int), value :: batchCount
       integer(c_int) :: DtpmvStridedBatched
       DtpmvStridedBatched = hipblasDtpmvStridedBatched_raw(handle, uplo, transA, diag, n, c_loc( &
-        AP(1)), strideA, c_loc(x(1)), incx, stridex, batchCount)
+        AP), strideA, c_loc(x), incx, stridex, batchCount)
     end function hipblasDtpmvStridedBatched_native
 
     function hipblasDtpmvStridedBatched_typed(handle, uplo, transA, diag, n, AP, strideA, x, incx, &
@@ -69415,15 +69331,15 @@ contains
       integer(c_int), value :: transA
       integer(c_int), value :: diag
       integer(c_int), value :: n
-      complex(c_float_complex), target :: AP(*)
+      complex(c_float_complex), target :: AP(..)
       integer(c_long), value :: strideA
-      complex(c_float_complex), target :: x(*)
+      complex(c_float_complex), target :: x(..)
       integer(c_int), value :: incx
       integer(c_long), value :: stridex
       integer(c_int), value :: batchCount
       integer(c_int) :: CtpmvStridedBatched
       CtpmvStridedBatched = hipblasCtpmvStridedBatched_raw(handle, uplo, transA, diag, n, c_loc( &
-        AP(1)), strideA, c_loc(x(1)), incx, stridex, batchCount)
+        AP), strideA, c_loc(x), incx, stridex, batchCount)
     end function hipblasCtpmvStridedBatched_native
 
     function hipblasCtpmvStridedBatched_typed(handle, uplo, transA, diag, n, AP, strideA, x, incx, &
@@ -69456,15 +69372,15 @@ contains
       integer(c_int), value :: transA
       integer(c_int), value :: diag
       integer(c_int), value :: n
-      complex(c_double_complex), target :: AP(*)
+      complex(c_double_complex), target :: AP(..)
       integer(c_long), value :: strideA
-      complex(c_double_complex), target :: x(*)
+      complex(c_double_complex), target :: x(..)
       integer(c_int), value :: incx
       integer(c_long), value :: stridex
       integer(c_int), value :: batchCount
       integer(c_int) :: ZtpmvStridedBatched
       ZtpmvStridedBatched = hipblasZtpmvStridedBatched_raw(handle, uplo, transA, diag, n, c_loc( &
-        AP(1)), strideA, c_loc(x(1)), incx, stridex, batchCount)
+        AP), strideA, c_loc(x), incx, stridex, batchCount)
     end function hipblasZtpmvStridedBatched_native
 
     function hipblasZtpmvStridedBatched_typed(handle, uplo, transA, diag, n, AP, strideA, x, incx, &
@@ -69497,15 +69413,15 @@ contains
       integer(c_int), value :: transA
       integer(c_int), value :: diag
       integer(c_long), value :: n
-      real(c_float), target :: AP(*)
+      real(c_float), target :: AP(..)
       integer(c_long), value :: strideA
-      real(c_float), target :: x(*)
+      real(c_float), target :: x(..)
       integer(c_long), value :: incx
       integer(c_long), value :: stridex
       integer(c_long), value :: batchCount
       integer(c_int) :: StpmvStridedBatched_64
       StpmvStridedBatched_64 = hipblasStpmvStridedBatched_64_raw(handle, uplo, transA, diag, n, &
-        c_loc(AP(1)), strideA, c_loc(x(1)), incx, stridex, batchCount)
+        c_loc(AP), strideA, c_loc(x), incx, stridex, batchCount)
     end function hipblasStpmvStridedBatched_64_native
 
     function hipblasStpmvStridedBatched_64_typed(handle, uplo, transA, diag, n, AP, strideA, x, &
@@ -69538,15 +69454,15 @@ contains
       integer(c_int), value :: transA
       integer(c_int), value :: diag
       integer(c_long), value :: n
-      real(c_double), target :: AP(*)
+      real(c_double), target :: AP(..)
       integer(c_long), value :: strideA
-      real(c_double), target :: x(*)
+      real(c_double), target :: x(..)
       integer(c_long), value :: incx
       integer(c_long), value :: stridex
       integer(c_long), value :: batchCount
       integer(c_int) :: DtpmvStridedBatched_64
       DtpmvStridedBatched_64 = hipblasDtpmvStridedBatched_64_raw(handle, uplo, transA, diag, n, &
-        c_loc(AP(1)), strideA, c_loc(x(1)), incx, stridex, batchCount)
+        c_loc(AP), strideA, c_loc(x), incx, stridex, batchCount)
     end function hipblasDtpmvStridedBatched_64_native
 
     function hipblasDtpmvStridedBatched_64_typed(handle, uplo, transA, diag, n, AP, strideA, x, &
@@ -69579,15 +69495,15 @@ contains
       integer(c_int), value :: transA
       integer(c_int), value :: diag
       integer(c_long), value :: n
-      complex(c_float_complex), target :: AP(*)
+      complex(c_float_complex), target :: AP(..)
       integer(c_long), value :: strideA
-      complex(c_float_complex), target :: x(*)
+      complex(c_float_complex), target :: x(..)
       integer(c_long), value :: incx
       integer(c_long), value :: stridex
       integer(c_long), value :: batchCount
       integer(c_int) :: CtpmvStridedBatched_64
       CtpmvStridedBatched_64 = hipblasCtpmvStridedBatched_64_raw(handle, uplo, transA, diag, n, &
-        c_loc(AP(1)), strideA, c_loc(x(1)), incx, stridex, batchCount)
+        c_loc(AP), strideA, c_loc(x), incx, stridex, batchCount)
     end function hipblasCtpmvStridedBatched_64_native
 
     function hipblasCtpmvStridedBatched_64_typed(handle, uplo, transA, diag, n, AP, strideA, x, &
@@ -69620,15 +69536,15 @@ contains
       integer(c_int), value :: transA
       integer(c_int), value :: diag
       integer(c_long), value :: n
-      complex(c_double_complex), target :: AP(*)
+      complex(c_double_complex), target :: AP(..)
       integer(c_long), value :: strideA
-      complex(c_double_complex), target :: x(*)
+      complex(c_double_complex), target :: x(..)
       integer(c_long), value :: incx
       integer(c_long), value :: stridex
       integer(c_long), value :: batchCount
       integer(c_int) :: ZtpmvStridedBatched_64
       ZtpmvStridedBatched_64 = hipblasZtpmvStridedBatched_64_raw(handle, uplo, transA, diag, n, &
-        c_loc(AP(1)), strideA, c_loc(x(1)), incx, stridex, batchCount)
+        c_loc(AP), strideA, c_loc(x), incx, stridex, batchCount)
     end function hipblasZtpmvStridedBatched_64_native
 
     function hipblasZtpmvStridedBatched_64_typed(handle, uplo, transA, diag, n, AP, strideA, x, &
@@ -69660,11 +69576,11 @@ contains
       integer(c_int), value :: transA
       integer(c_int), value :: diag
       integer(c_int), value :: n
-      real(c_float), target :: AP(*)
-      real(c_float), target :: x(*)
+      real(c_float), target :: AP(..)
+      real(c_float), target :: x(..)
       integer(c_int), value :: incx
       integer(c_int) :: Stpsv
-      Stpsv = hipblasStpsv_raw(handle, uplo, transA, diag, n, c_loc(AP(1)), c_loc(x(1)), incx)
+      Stpsv = hipblasStpsv_raw(handle, uplo, transA, diag, n, c_loc(AP), c_loc(x), incx)
     end function hipblasStpsv_native
 
     function hipblasStpsv_typed(handle, uplo, transA, diag, n, AP, x, incx) result(Stpsv)
@@ -69691,11 +69607,11 @@ contains
       integer(c_int), value :: transA
       integer(c_int), value :: diag
       integer(c_int), value :: n
-      real(c_double), target :: AP(*)
-      real(c_double), target :: x(*)
+      real(c_double), target :: AP(..)
+      real(c_double), target :: x(..)
       integer(c_int), value :: incx
       integer(c_int) :: Dtpsv
-      Dtpsv = hipblasDtpsv_raw(handle, uplo, transA, diag, n, c_loc(AP(1)), c_loc(x(1)), incx)
+      Dtpsv = hipblasDtpsv_raw(handle, uplo, transA, diag, n, c_loc(AP), c_loc(x), incx)
     end function hipblasDtpsv_native
 
     function hipblasDtpsv_typed(handle, uplo, transA, diag, n, AP, x, incx) result(Dtpsv)
@@ -69722,11 +69638,11 @@ contains
       integer(c_int), value :: transA
       integer(c_int), value :: diag
       integer(c_int), value :: n
-      complex(c_float_complex), target :: AP(*)
-      complex(c_float_complex), target :: x(*)
+      complex(c_float_complex), target :: AP(..)
+      complex(c_float_complex), target :: x(..)
       integer(c_int), value :: incx
       integer(c_int) :: Ctpsv
-      Ctpsv = hipblasCtpsv_raw(handle, uplo, transA, diag, n, c_loc(AP(1)), c_loc(x(1)), incx)
+      Ctpsv = hipblasCtpsv_raw(handle, uplo, transA, diag, n, c_loc(AP), c_loc(x), incx)
     end function hipblasCtpsv_native
 
     function hipblasCtpsv_typed(handle, uplo, transA, diag, n, AP, x, incx) result(Ctpsv)
@@ -69753,11 +69669,11 @@ contains
       integer(c_int), value :: transA
       integer(c_int), value :: diag
       integer(c_int), value :: n
-      complex(c_double_complex), target :: AP(*)
-      complex(c_double_complex), target :: x(*)
+      complex(c_double_complex), target :: AP(..)
+      complex(c_double_complex), target :: x(..)
       integer(c_int), value :: incx
       integer(c_int) :: Ztpsv
-      Ztpsv = hipblasZtpsv_raw(handle, uplo, transA, diag, n, c_loc(AP(1)), c_loc(x(1)), incx)
+      Ztpsv = hipblasZtpsv_raw(handle, uplo, transA, diag, n, c_loc(AP), c_loc(x), incx)
     end function hipblasZtpsv_native
 
     function hipblasZtpsv_typed(handle, uplo, transA, diag, n, AP, x, incx) result(Ztpsv)
@@ -69784,11 +69700,11 @@ contains
       integer(c_int), value :: transA
       integer(c_int), value :: diag
       integer(c_long), value :: n
-      real(c_float), target :: AP(*)
-      real(c_float), target :: x(*)
+      real(c_float), target :: AP(..)
+      real(c_float), target :: x(..)
       integer(c_long), value :: incx
       integer(c_int) :: Stpsv_64
-      Stpsv_64 = hipblasStpsv_64_raw(handle, uplo, transA, diag, n, c_loc(AP(1)), c_loc(x(1)), incx)
+      Stpsv_64 = hipblasStpsv_64_raw(handle, uplo, transA, diag, n, c_loc(AP), c_loc(x), incx)
     end function hipblasStpsv_64_native
 
     function hipblasStpsv_64_typed(handle, uplo, transA, diag, n, AP, x, incx) result(Stpsv_64)
@@ -69815,11 +69731,11 @@ contains
       integer(c_int), value :: transA
       integer(c_int), value :: diag
       integer(c_long), value :: n
-      real(c_double), target :: AP(*)
-      real(c_double), target :: x(*)
+      real(c_double), target :: AP(..)
+      real(c_double), target :: x(..)
       integer(c_long), value :: incx
       integer(c_int) :: Dtpsv_64
-      Dtpsv_64 = hipblasDtpsv_64_raw(handle, uplo, transA, diag, n, c_loc(AP(1)), c_loc(x(1)), incx)
+      Dtpsv_64 = hipblasDtpsv_64_raw(handle, uplo, transA, diag, n, c_loc(AP), c_loc(x), incx)
     end function hipblasDtpsv_64_native
 
     function hipblasDtpsv_64_typed(handle, uplo, transA, diag, n, AP, x, incx) result(Dtpsv_64)
@@ -69846,11 +69762,11 @@ contains
       integer(c_int), value :: transA
       integer(c_int), value :: diag
       integer(c_long), value :: n
-      complex(c_float_complex), target :: AP(*)
-      complex(c_float_complex), target :: x(*)
+      complex(c_float_complex), target :: AP(..)
+      complex(c_float_complex), target :: x(..)
       integer(c_long), value :: incx
       integer(c_int) :: Ctpsv_64
-      Ctpsv_64 = hipblasCtpsv_64_raw(handle, uplo, transA, diag, n, c_loc(AP(1)), c_loc(x(1)), incx)
+      Ctpsv_64 = hipblasCtpsv_64_raw(handle, uplo, transA, diag, n, c_loc(AP), c_loc(x), incx)
     end function hipblasCtpsv_64_native
 
     function hipblasCtpsv_64_typed(handle, uplo, transA, diag, n, AP, x, incx) result(Ctpsv_64)
@@ -69877,11 +69793,11 @@ contains
       integer(c_int), value :: transA
       integer(c_int), value :: diag
       integer(c_long), value :: n
-      complex(c_double_complex), target :: AP(*)
-      complex(c_double_complex), target :: x(*)
+      complex(c_double_complex), target :: AP(..)
+      complex(c_double_complex), target :: x(..)
       integer(c_long), value :: incx
       integer(c_int) :: Ztpsv_64
-      Ztpsv_64 = hipblasZtpsv_64_raw(handle, uplo, transA, diag, n, c_loc(AP(1)), c_loc(x(1)), incx)
+      Ztpsv_64 = hipblasZtpsv_64_raw(handle, uplo, transA, diag, n, c_loc(AP), c_loc(x), incx)
     end function hipblasZtpsv_64_native
 
     function hipblasZtpsv_64_typed(handle, uplo, transA, diag, n, AP, x, incx) result(Ztpsv_64)
@@ -70061,15 +69977,15 @@ contains
       integer(c_int), value :: transA
       integer(c_int), value :: diag
       integer(c_int), value :: n
-      real(c_float), target :: AP(*)
+      real(c_float), target :: AP(..)
       integer(c_long), value :: strideA
-      real(c_float), target :: x(*)
+      real(c_float), target :: x(..)
       integer(c_int), value :: incx
       integer(c_long), value :: stridex
       integer(c_int), value :: batchCount
       integer(c_int) :: StpsvStridedBatched
       StpsvStridedBatched = hipblasStpsvStridedBatched_raw(handle, uplo, transA, diag, n, c_loc( &
-        AP(1)), strideA, c_loc(x(1)), incx, stridex, batchCount)
+        AP), strideA, c_loc(x), incx, stridex, batchCount)
     end function hipblasStpsvStridedBatched_native
 
     function hipblasStpsvStridedBatched_typed(handle, uplo, transA, diag, n, AP, strideA, x, incx, &
@@ -70102,15 +70018,15 @@ contains
       integer(c_int), value :: transA
       integer(c_int), value :: diag
       integer(c_int), value :: n
-      real(c_double), target :: AP(*)
+      real(c_double), target :: AP(..)
       integer(c_long), value :: strideA
-      real(c_double), target :: x(*)
+      real(c_double), target :: x(..)
       integer(c_int), value :: incx
       integer(c_long), value :: stridex
       integer(c_int), value :: batchCount
       integer(c_int) :: DtpsvStridedBatched
       DtpsvStridedBatched = hipblasDtpsvStridedBatched_raw(handle, uplo, transA, diag, n, c_loc( &
-        AP(1)), strideA, c_loc(x(1)), incx, stridex, batchCount)
+        AP), strideA, c_loc(x), incx, stridex, batchCount)
     end function hipblasDtpsvStridedBatched_native
 
     function hipblasDtpsvStridedBatched_typed(handle, uplo, transA, diag, n, AP, strideA, x, incx, &
@@ -70143,15 +70059,15 @@ contains
       integer(c_int), value :: transA
       integer(c_int), value :: diag
       integer(c_int), value :: n
-      complex(c_float_complex), target :: AP(*)
+      complex(c_float_complex), target :: AP(..)
       integer(c_long), value :: strideA
-      complex(c_float_complex), target :: x(*)
+      complex(c_float_complex), target :: x(..)
       integer(c_int), value :: incx
       integer(c_long), value :: stridex
       integer(c_int), value :: batchCount
       integer(c_int) :: CtpsvStridedBatched
       CtpsvStridedBatched = hipblasCtpsvStridedBatched_raw(handle, uplo, transA, diag, n, c_loc( &
-        AP(1)), strideA, c_loc(x(1)), incx, stridex, batchCount)
+        AP), strideA, c_loc(x), incx, stridex, batchCount)
     end function hipblasCtpsvStridedBatched_native
 
     function hipblasCtpsvStridedBatched_typed(handle, uplo, transA, diag, n, AP, strideA, x, incx, &
@@ -70184,15 +70100,15 @@ contains
       integer(c_int), value :: transA
       integer(c_int), value :: diag
       integer(c_int), value :: n
-      complex(c_double_complex), target :: AP(*)
+      complex(c_double_complex), target :: AP(..)
       integer(c_long), value :: strideA
-      complex(c_double_complex), target :: x(*)
+      complex(c_double_complex), target :: x(..)
       integer(c_int), value :: incx
       integer(c_long), value :: stridex
       integer(c_int), value :: batchCount
       integer(c_int) :: ZtpsvStridedBatched
       ZtpsvStridedBatched = hipblasZtpsvStridedBatched_raw(handle, uplo, transA, diag, n, c_loc( &
-        AP(1)), strideA, c_loc(x(1)), incx, stridex, batchCount)
+        AP), strideA, c_loc(x), incx, stridex, batchCount)
     end function hipblasZtpsvStridedBatched_native
 
     function hipblasZtpsvStridedBatched_typed(handle, uplo, transA, diag, n, AP, strideA, x, incx, &
@@ -70225,15 +70141,15 @@ contains
       integer(c_int), value :: transA
       integer(c_int), value :: diag
       integer(c_long), value :: n
-      real(c_float), target :: AP(*)
+      real(c_float), target :: AP(..)
       integer(c_long), value :: strideA
-      real(c_float), target :: x(*)
+      real(c_float), target :: x(..)
       integer(c_long), value :: incx
       integer(c_long), value :: stridex
       integer(c_long), value :: batchCount
       integer(c_int) :: StpsvStridedBatched_64
       StpsvStridedBatched_64 = hipblasStpsvStridedBatched_64_raw(handle, uplo, transA, diag, n, &
-        c_loc(AP(1)), strideA, c_loc(x(1)), incx, stridex, batchCount)
+        c_loc(AP), strideA, c_loc(x), incx, stridex, batchCount)
     end function hipblasStpsvStridedBatched_64_native
 
     function hipblasStpsvStridedBatched_64_typed(handle, uplo, transA, diag, n, AP, strideA, x, &
@@ -70266,15 +70182,15 @@ contains
       integer(c_int), value :: transA
       integer(c_int), value :: diag
       integer(c_long), value :: n
-      real(c_double), target :: AP(*)
+      real(c_double), target :: AP(..)
       integer(c_long), value :: strideA
-      real(c_double), target :: x(*)
+      real(c_double), target :: x(..)
       integer(c_long), value :: incx
       integer(c_long), value :: stridex
       integer(c_long), value :: batchCount
       integer(c_int) :: DtpsvStridedBatched_64
       DtpsvStridedBatched_64 = hipblasDtpsvStridedBatched_64_raw(handle, uplo, transA, diag, n, &
-        c_loc(AP(1)), strideA, c_loc(x(1)), incx, stridex, batchCount)
+        c_loc(AP), strideA, c_loc(x), incx, stridex, batchCount)
     end function hipblasDtpsvStridedBatched_64_native
 
     function hipblasDtpsvStridedBatched_64_typed(handle, uplo, transA, diag, n, AP, strideA, x, &
@@ -70307,15 +70223,15 @@ contains
       integer(c_int), value :: transA
       integer(c_int), value :: diag
       integer(c_long), value :: n
-      complex(c_float_complex), target :: AP(*)
+      complex(c_float_complex), target :: AP(..)
       integer(c_long), value :: strideA
-      complex(c_float_complex), target :: x(*)
+      complex(c_float_complex), target :: x(..)
       integer(c_long), value :: incx
       integer(c_long), value :: stridex
       integer(c_long), value :: batchCount
       integer(c_int) :: CtpsvStridedBatched_64
       CtpsvStridedBatched_64 = hipblasCtpsvStridedBatched_64_raw(handle, uplo, transA, diag, n, &
-        c_loc(AP(1)), strideA, c_loc(x(1)), incx, stridex, batchCount)
+        c_loc(AP), strideA, c_loc(x), incx, stridex, batchCount)
     end function hipblasCtpsvStridedBatched_64_native
 
     function hipblasCtpsvStridedBatched_64_typed(handle, uplo, transA, diag, n, AP, strideA, x, &
@@ -70348,15 +70264,15 @@ contains
       integer(c_int), value :: transA
       integer(c_int), value :: diag
       integer(c_long), value :: n
-      complex(c_double_complex), target :: AP(*)
+      complex(c_double_complex), target :: AP(..)
       integer(c_long), value :: strideA
-      complex(c_double_complex), target :: x(*)
+      complex(c_double_complex), target :: x(..)
       integer(c_long), value :: incx
       integer(c_long), value :: stridex
       integer(c_long), value :: batchCount
       integer(c_int) :: ZtpsvStridedBatched_64
       ZtpsvStridedBatched_64 = hipblasZtpsvStridedBatched_64_raw(handle, uplo, transA, diag, n, &
-        c_loc(AP(1)), strideA, c_loc(x(1)), incx, stridex, batchCount)
+        c_loc(AP), strideA, c_loc(x), incx, stridex, batchCount)
     end function hipblasZtpsvStridedBatched_64_native
 
     function hipblasZtpsvStridedBatched_64_typed(handle, uplo, transA, diag, n, AP, strideA, x, &
@@ -70388,12 +70304,12 @@ contains
       integer(c_int), value :: transA
       integer(c_int), value :: diag
       integer(c_int), value :: n
-      real(c_float), target :: AP(*)
+      real(c_float), target :: AP(..)
       integer(c_int), value :: lda
-      real(c_float), target :: x(*)
+      real(c_float), target :: x(..)
       integer(c_int), value :: incx
       integer(c_int) :: Strmv
-      Strmv = hipblasStrmv_raw(handle, uplo, transA, diag, n, c_loc(AP(1)), lda, c_loc(x(1)), incx)
+      Strmv = hipblasStrmv_raw(handle, uplo, transA, diag, n, c_loc(AP), lda, c_loc(x), incx)
     end function hipblasStrmv_native
 
     function hipblasStrmv_typed(handle, uplo, transA, diag, n, AP, lda, x, incx) result(Strmv)
@@ -70421,12 +70337,12 @@ contains
       integer(c_int), value :: transA
       integer(c_int), value :: diag
       integer(c_int), value :: n
-      real(c_double), target :: AP(*)
+      real(c_double), target :: AP(..)
       integer(c_int), value :: lda
-      real(c_double), target :: x(*)
+      real(c_double), target :: x(..)
       integer(c_int), value :: incx
       integer(c_int) :: Dtrmv
-      Dtrmv = hipblasDtrmv_raw(handle, uplo, transA, diag, n, c_loc(AP(1)), lda, c_loc(x(1)), incx)
+      Dtrmv = hipblasDtrmv_raw(handle, uplo, transA, diag, n, c_loc(AP), lda, c_loc(x), incx)
     end function hipblasDtrmv_native
 
     function hipblasDtrmv_typed(handle, uplo, transA, diag, n, AP, lda, x, incx) result(Dtrmv)
@@ -70454,12 +70370,12 @@ contains
       integer(c_int), value :: transA
       integer(c_int), value :: diag
       integer(c_int), value :: n
-      complex(c_float_complex), target :: AP(*)
+      complex(c_float_complex), target :: AP(..)
       integer(c_int), value :: lda
-      complex(c_float_complex), target :: x(*)
+      complex(c_float_complex), target :: x(..)
       integer(c_int), value :: incx
       integer(c_int) :: Ctrmv
-      Ctrmv = hipblasCtrmv_raw(handle, uplo, transA, diag, n, c_loc(AP(1)), lda, c_loc(x(1)), incx)
+      Ctrmv = hipblasCtrmv_raw(handle, uplo, transA, diag, n, c_loc(AP), lda, c_loc(x), incx)
     end function hipblasCtrmv_native
 
     function hipblasCtrmv_typed(handle, uplo, transA, diag, n, AP, lda, x, incx) result(Ctrmv)
@@ -70487,12 +70403,12 @@ contains
       integer(c_int), value :: transA
       integer(c_int), value :: diag
       integer(c_int), value :: n
-      complex(c_double_complex), target :: AP(*)
+      complex(c_double_complex), target :: AP(..)
       integer(c_int), value :: lda
-      complex(c_double_complex), target :: x(*)
+      complex(c_double_complex), target :: x(..)
       integer(c_int), value :: incx
       integer(c_int) :: Ztrmv
-      Ztrmv = hipblasZtrmv_raw(handle, uplo, transA, diag, n, c_loc(AP(1)), lda, c_loc(x(1)), incx)
+      Ztrmv = hipblasZtrmv_raw(handle, uplo, transA, diag, n, c_loc(AP), lda, c_loc(x), incx)
     end function hipblasZtrmv_native
 
     function hipblasZtrmv_typed(handle, uplo, transA, diag, n, AP, lda, x, incx) result(Ztrmv)
@@ -70521,13 +70437,12 @@ contains
       integer(c_int), value :: transA
       integer(c_int), value :: diag
       integer(c_long), value :: n
-      real(c_float), target :: AP(*)
+      real(c_float), target :: AP(..)
       integer(c_long), value :: lda
-      real(c_float), target :: x(*)
+      real(c_float), target :: x(..)
       integer(c_long), value :: incx
       integer(c_int) :: Strmv_64
-      Strmv_64 = hipblasStrmv_64_raw(handle, uplo, transA, diag, n, c_loc(AP(1)), lda, c_loc(x( &
-        1)), incx)
+      Strmv_64 = hipblasStrmv_64_raw(handle, uplo, transA, diag, n, c_loc(AP), lda, c_loc(x), incx)
     end function hipblasStrmv_64_native
 
     function hipblasStrmv_64_typed(handle, uplo, transA, diag, n, AP, lda, x, incx) result(Strmv_64)
@@ -70556,13 +70471,12 @@ contains
       integer(c_int), value :: transA
       integer(c_int), value :: diag
       integer(c_long), value :: n
-      real(c_double), target :: AP(*)
+      real(c_double), target :: AP(..)
       integer(c_long), value :: lda
-      real(c_double), target :: x(*)
+      real(c_double), target :: x(..)
       integer(c_long), value :: incx
       integer(c_int) :: Dtrmv_64
-      Dtrmv_64 = hipblasDtrmv_64_raw(handle, uplo, transA, diag, n, c_loc(AP(1)), lda, c_loc(x( &
-        1)), incx)
+      Dtrmv_64 = hipblasDtrmv_64_raw(handle, uplo, transA, diag, n, c_loc(AP), lda, c_loc(x), incx)
     end function hipblasDtrmv_64_native
 
     function hipblasDtrmv_64_typed(handle, uplo, transA, diag, n, AP, lda, x, incx) result(Dtrmv_64)
@@ -70591,13 +70505,12 @@ contains
       integer(c_int), value :: transA
       integer(c_int), value :: diag
       integer(c_long), value :: n
-      complex(c_float_complex), target :: AP(*)
+      complex(c_float_complex), target :: AP(..)
       integer(c_long), value :: lda
-      complex(c_float_complex), target :: x(*)
+      complex(c_float_complex), target :: x(..)
       integer(c_long), value :: incx
       integer(c_int) :: Ctrmv_64
-      Ctrmv_64 = hipblasCtrmv_64_raw(handle, uplo, transA, diag, n, c_loc(AP(1)), lda, c_loc(x( &
-        1)), incx)
+      Ctrmv_64 = hipblasCtrmv_64_raw(handle, uplo, transA, diag, n, c_loc(AP), lda, c_loc(x), incx)
     end function hipblasCtrmv_64_native
 
     function hipblasCtrmv_64_typed(handle, uplo, transA, diag, n, AP, lda, x, incx) result(Ctrmv_64)
@@ -70626,13 +70539,12 @@ contains
       integer(c_int), value :: transA
       integer(c_int), value :: diag
       integer(c_long), value :: n
-      complex(c_double_complex), target :: AP(*)
+      complex(c_double_complex), target :: AP(..)
       integer(c_long), value :: lda
-      complex(c_double_complex), target :: x(*)
+      complex(c_double_complex), target :: x(..)
       integer(c_long), value :: incx
       integer(c_int) :: Ztrmv_64
-      Ztrmv_64 = hipblasZtrmv_64_raw(handle, uplo, transA, diag, n, c_loc(AP(1)), lda, c_loc(x( &
-        1)), incx)
+      Ztrmv_64 = hipblasZtrmv_64_raw(handle, uplo, transA, diag, n, c_loc(AP), lda, c_loc(x), incx)
     end function hipblasZtrmv_64_native
 
     function hipblasZtrmv_64_typed(handle, uplo, transA, diag, n, AP, lda, x, incx) result(Ztrmv_64)
@@ -70821,16 +70733,16 @@ contains
       integer(c_int), value :: transA
       integer(c_int), value :: diag
       integer(c_int), value :: n
-      real(c_float), target :: AP(*)
+      real(c_float), target :: AP(..)
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
-      real(c_float), target :: x(*)
+      real(c_float), target :: x(..)
       integer(c_int), value :: incx
       integer(c_long), value :: stridex
       integer(c_int), value :: batchCount
       integer(c_int) :: StrmvStridedBatched
       StrmvStridedBatched = hipblasStrmvStridedBatched_raw(handle, uplo, transA, diag, n, c_loc( &
-        AP(1)), lda, strideA, c_loc(x(1)), incx, stridex, batchCount)
+        AP), lda, strideA, c_loc(x), incx, stridex, batchCount)
     end function hipblasStrmvStridedBatched_native
 
     function hipblasStrmvStridedBatched_typed(handle, uplo, transA, diag, n, AP, lda, strideA, x, &
@@ -70864,16 +70776,16 @@ contains
       integer(c_int), value :: transA
       integer(c_int), value :: diag
       integer(c_int), value :: n
-      real(c_double), target :: AP(*)
+      real(c_double), target :: AP(..)
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
-      real(c_double), target :: x(*)
+      real(c_double), target :: x(..)
       integer(c_int), value :: incx
       integer(c_long), value :: stridex
       integer(c_int), value :: batchCount
       integer(c_int) :: DtrmvStridedBatched
       DtrmvStridedBatched = hipblasDtrmvStridedBatched_raw(handle, uplo, transA, diag, n, c_loc( &
-        AP(1)), lda, strideA, c_loc(x(1)), incx, stridex, batchCount)
+        AP), lda, strideA, c_loc(x), incx, stridex, batchCount)
     end function hipblasDtrmvStridedBatched_native
 
     function hipblasDtrmvStridedBatched_typed(handle, uplo, transA, diag, n, AP, lda, strideA, x, &
@@ -70907,16 +70819,16 @@ contains
       integer(c_int), value :: transA
       integer(c_int), value :: diag
       integer(c_int), value :: n
-      complex(c_float_complex), target :: AP(*)
+      complex(c_float_complex), target :: AP(..)
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
-      complex(c_float_complex), target :: x(*)
+      complex(c_float_complex), target :: x(..)
       integer(c_int), value :: incx
       integer(c_long), value :: stridex
       integer(c_int), value :: batchCount
       integer(c_int) :: CtrmvStridedBatched
       CtrmvStridedBatched = hipblasCtrmvStridedBatched_raw(handle, uplo, transA, diag, n, c_loc( &
-        AP(1)), lda, strideA, c_loc(x(1)), incx, stridex, batchCount)
+        AP), lda, strideA, c_loc(x), incx, stridex, batchCount)
     end function hipblasCtrmvStridedBatched_native
 
     function hipblasCtrmvStridedBatched_typed(handle, uplo, transA, diag, n, AP, lda, strideA, x, &
@@ -70950,16 +70862,16 @@ contains
       integer(c_int), value :: transA
       integer(c_int), value :: diag
       integer(c_int), value :: n
-      complex(c_double_complex), target :: AP(*)
+      complex(c_double_complex), target :: AP(..)
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
-      complex(c_double_complex), target :: x(*)
+      complex(c_double_complex), target :: x(..)
       integer(c_int), value :: incx
       integer(c_long), value :: stridex
       integer(c_int), value :: batchCount
       integer(c_int) :: ZtrmvStridedBatched
       ZtrmvStridedBatched = hipblasZtrmvStridedBatched_raw(handle, uplo, transA, diag, n, c_loc( &
-        AP(1)), lda, strideA, c_loc(x(1)), incx, stridex, batchCount)
+        AP), lda, strideA, c_loc(x), incx, stridex, batchCount)
     end function hipblasZtrmvStridedBatched_native
 
     function hipblasZtrmvStridedBatched_typed(handle, uplo, transA, diag, n, AP, lda, strideA, x, &
@@ -70993,16 +70905,16 @@ contains
       integer(c_int), value :: transA
       integer(c_int), value :: diag
       integer(c_long), value :: n
-      real(c_float), target :: AP(*)
+      real(c_float), target :: AP(..)
       integer(c_long), value :: lda
       integer(c_long), value :: strideA
-      real(c_float), target :: x(*)
+      real(c_float), target :: x(..)
       integer(c_long), value :: incx
       integer(c_long), value :: stridex
       integer(c_long), value :: batchCount
       integer(c_int) :: StrmvStridedBatched_64
       StrmvStridedBatched_64 = hipblasStrmvStridedBatched_64_raw(handle, uplo, transA, diag, n, &
-        c_loc(AP(1)), lda, strideA, c_loc(x(1)), incx, stridex, batchCount)
+        c_loc(AP), lda, strideA, c_loc(x), incx, stridex, batchCount)
     end function hipblasStrmvStridedBatched_64_native
 
     function hipblasStrmvStridedBatched_64_typed(handle, uplo, transA, diag, n, AP, lda, strideA, &
@@ -71036,16 +70948,16 @@ contains
       integer(c_int), value :: transA
       integer(c_int), value :: diag
       integer(c_long), value :: n
-      real(c_double), target :: AP(*)
+      real(c_double), target :: AP(..)
       integer(c_long), value :: lda
       integer(c_long), value :: strideA
-      real(c_double), target :: x(*)
+      real(c_double), target :: x(..)
       integer(c_long), value :: incx
       integer(c_long), value :: stridex
       integer(c_long), value :: batchCount
       integer(c_int) :: DtrmvStridedBatched_64
       DtrmvStridedBatched_64 = hipblasDtrmvStridedBatched_64_raw(handle, uplo, transA, diag, n, &
-        c_loc(AP(1)), lda, strideA, c_loc(x(1)), incx, stridex, batchCount)
+        c_loc(AP), lda, strideA, c_loc(x), incx, stridex, batchCount)
     end function hipblasDtrmvStridedBatched_64_native
 
     function hipblasDtrmvStridedBatched_64_typed(handle, uplo, transA, diag, n, AP, lda, strideA, &
@@ -71079,16 +70991,16 @@ contains
       integer(c_int), value :: transA
       integer(c_int), value :: diag
       integer(c_long), value :: n
-      complex(c_float_complex), target :: AP(*)
+      complex(c_float_complex), target :: AP(..)
       integer(c_long), value :: lda
       integer(c_long), value :: strideA
-      complex(c_float_complex), target :: x(*)
+      complex(c_float_complex), target :: x(..)
       integer(c_long), value :: incx
       integer(c_long), value :: stridex
       integer(c_long), value :: batchCount
       integer(c_int) :: CtrmvStridedBatched_64
       CtrmvStridedBatched_64 = hipblasCtrmvStridedBatched_64_raw(handle, uplo, transA, diag, n, &
-        c_loc(AP(1)), lda, strideA, c_loc(x(1)), incx, stridex, batchCount)
+        c_loc(AP), lda, strideA, c_loc(x), incx, stridex, batchCount)
     end function hipblasCtrmvStridedBatched_64_native
 
     function hipblasCtrmvStridedBatched_64_typed(handle, uplo, transA, diag, n, AP, lda, strideA, &
@@ -71122,16 +71034,16 @@ contains
       integer(c_int), value :: transA
       integer(c_int), value :: diag
       integer(c_long), value :: n
-      complex(c_double_complex), target :: AP(*)
+      complex(c_double_complex), target :: AP(..)
       integer(c_long), value :: lda
       integer(c_long), value :: strideA
-      complex(c_double_complex), target :: x(*)
+      complex(c_double_complex), target :: x(..)
       integer(c_long), value :: incx
       integer(c_long), value :: stridex
       integer(c_long), value :: batchCount
       integer(c_int) :: ZtrmvStridedBatched_64
       ZtrmvStridedBatched_64 = hipblasZtrmvStridedBatched_64_raw(handle, uplo, transA, diag, n, &
-        c_loc(AP(1)), lda, strideA, c_loc(x(1)), incx, stridex, batchCount)
+        c_loc(AP), lda, strideA, c_loc(x), incx, stridex, batchCount)
     end function hipblasZtrmvStridedBatched_64_native
 
     function hipblasZtrmvStridedBatched_64_typed(handle, uplo, transA, diag, n, AP, lda, strideA, &
@@ -71164,12 +71076,12 @@ contains
       integer(c_int), value :: transA
       integer(c_int), value :: diag
       integer(c_int), value :: n
-      real(c_float), target :: AP(*)
+      real(c_float), target :: AP(..)
       integer(c_int), value :: lda
-      real(c_float), target :: x(*)
+      real(c_float), target :: x(..)
       integer(c_int), value :: incx
       integer(c_int) :: Strsv
-      Strsv = hipblasStrsv_raw(handle, uplo, transA, diag, n, c_loc(AP(1)), lda, c_loc(x(1)), incx)
+      Strsv = hipblasStrsv_raw(handle, uplo, transA, diag, n, c_loc(AP), lda, c_loc(x), incx)
     end function hipblasStrsv_native
 
     function hipblasStrsv_typed(handle, uplo, transA, diag, n, AP, lda, x, incx) result(Strsv)
@@ -71197,12 +71109,12 @@ contains
       integer(c_int), value :: transA
       integer(c_int), value :: diag
       integer(c_int), value :: n
-      real(c_double), target :: AP(*)
+      real(c_double), target :: AP(..)
       integer(c_int), value :: lda
-      real(c_double), target :: x(*)
+      real(c_double), target :: x(..)
       integer(c_int), value :: incx
       integer(c_int) :: Dtrsv
-      Dtrsv = hipblasDtrsv_raw(handle, uplo, transA, diag, n, c_loc(AP(1)), lda, c_loc(x(1)), incx)
+      Dtrsv = hipblasDtrsv_raw(handle, uplo, transA, diag, n, c_loc(AP), lda, c_loc(x), incx)
     end function hipblasDtrsv_native
 
     function hipblasDtrsv_typed(handle, uplo, transA, diag, n, AP, lda, x, incx) result(Dtrsv)
@@ -71230,12 +71142,12 @@ contains
       integer(c_int), value :: transA
       integer(c_int), value :: diag
       integer(c_int), value :: n
-      complex(c_float_complex), target :: AP(*)
+      complex(c_float_complex), target :: AP(..)
       integer(c_int), value :: lda
-      complex(c_float_complex), target :: x(*)
+      complex(c_float_complex), target :: x(..)
       integer(c_int), value :: incx
       integer(c_int) :: Ctrsv
-      Ctrsv = hipblasCtrsv_raw(handle, uplo, transA, diag, n, c_loc(AP(1)), lda, c_loc(x(1)), incx)
+      Ctrsv = hipblasCtrsv_raw(handle, uplo, transA, diag, n, c_loc(AP), lda, c_loc(x), incx)
     end function hipblasCtrsv_native
 
     function hipblasCtrsv_typed(handle, uplo, transA, diag, n, AP, lda, x, incx) result(Ctrsv)
@@ -71263,12 +71175,12 @@ contains
       integer(c_int), value :: transA
       integer(c_int), value :: diag
       integer(c_int), value :: n
-      complex(c_double_complex), target :: AP(*)
+      complex(c_double_complex), target :: AP(..)
       integer(c_int), value :: lda
-      complex(c_double_complex), target :: x(*)
+      complex(c_double_complex), target :: x(..)
       integer(c_int), value :: incx
       integer(c_int) :: Ztrsv
-      Ztrsv = hipblasZtrsv_raw(handle, uplo, transA, diag, n, c_loc(AP(1)), lda, c_loc(x(1)), incx)
+      Ztrsv = hipblasZtrsv_raw(handle, uplo, transA, diag, n, c_loc(AP), lda, c_loc(x), incx)
     end function hipblasZtrsv_native
 
     function hipblasZtrsv_typed(handle, uplo, transA, diag, n, AP, lda, x, incx) result(Ztrsv)
@@ -71297,13 +71209,12 @@ contains
       integer(c_int), value :: transA
       integer(c_int), value :: diag
       integer(c_long), value :: n
-      real(c_float), target :: AP(*)
+      real(c_float), target :: AP(..)
       integer(c_long), value :: lda
-      real(c_float), target :: x(*)
+      real(c_float), target :: x(..)
       integer(c_long), value :: incx
       integer(c_int) :: Strsv_64
-      Strsv_64 = hipblasStrsv_64_raw(handle, uplo, transA, diag, n, c_loc(AP(1)), lda, c_loc(x( &
-        1)), incx)
+      Strsv_64 = hipblasStrsv_64_raw(handle, uplo, transA, diag, n, c_loc(AP), lda, c_loc(x), incx)
     end function hipblasStrsv_64_native
 
     function hipblasStrsv_64_typed(handle, uplo, transA, diag, n, AP, lda, x, incx) result(Strsv_64)
@@ -71332,13 +71243,12 @@ contains
       integer(c_int), value :: transA
       integer(c_int), value :: diag
       integer(c_long), value :: n
-      real(c_double), target :: AP(*)
+      real(c_double), target :: AP(..)
       integer(c_long), value :: lda
-      real(c_double), target :: x(*)
+      real(c_double), target :: x(..)
       integer(c_long), value :: incx
       integer(c_int) :: Dtrsv_64
-      Dtrsv_64 = hipblasDtrsv_64_raw(handle, uplo, transA, diag, n, c_loc(AP(1)), lda, c_loc(x( &
-        1)), incx)
+      Dtrsv_64 = hipblasDtrsv_64_raw(handle, uplo, transA, diag, n, c_loc(AP), lda, c_loc(x), incx)
     end function hipblasDtrsv_64_native
 
     function hipblasDtrsv_64_typed(handle, uplo, transA, diag, n, AP, lda, x, incx) result(Dtrsv_64)
@@ -71367,13 +71277,12 @@ contains
       integer(c_int), value :: transA
       integer(c_int), value :: diag
       integer(c_long), value :: n
-      complex(c_float_complex), target :: AP(*)
+      complex(c_float_complex), target :: AP(..)
       integer(c_long), value :: lda
-      complex(c_float_complex), target :: x(*)
+      complex(c_float_complex), target :: x(..)
       integer(c_long), value :: incx
       integer(c_int) :: Ctrsv_64
-      Ctrsv_64 = hipblasCtrsv_64_raw(handle, uplo, transA, diag, n, c_loc(AP(1)), lda, c_loc(x( &
-        1)), incx)
+      Ctrsv_64 = hipblasCtrsv_64_raw(handle, uplo, transA, diag, n, c_loc(AP), lda, c_loc(x), incx)
     end function hipblasCtrsv_64_native
 
     function hipblasCtrsv_64_typed(handle, uplo, transA, diag, n, AP, lda, x, incx) result(Ctrsv_64)
@@ -71402,13 +71311,12 @@ contains
       integer(c_int), value :: transA
       integer(c_int), value :: diag
       integer(c_long), value :: n
-      complex(c_double_complex), target :: AP(*)
+      complex(c_double_complex), target :: AP(..)
       integer(c_long), value :: lda
-      complex(c_double_complex), target :: x(*)
+      complex(c_double_complex), target :: x(..)
       integer(c_long), value :: incx
       integer(c_int) :: Ztrsv_64
-      Ztrsv_64 = hipblasZtrsv_64_raw(handle, uplo, transA, diag, n, c_loc(AP(1)), lda, c_loc(x( &
-        1)), incx)
+      Ztrsv_64 = hipblasZtrsv_64_raw(handle, uplo, transA, diag, n, c_loc(AP), lda, c_loc(x), incx)
     end function hipblasZtrsv_64_native
 
     function hipblasZtrsv_64_typed(handle, uplo, transA, diag, n, AP, lda, x, incx) result(Ztrsv_64)
@@ -71597,16 +71505,16 @@ contains
       integer(c_int), value :: transA
       integer(c_int), value :: diag
       integer(c_int), value :: n
-      real(c_float), target :: AP(*)
+      real(c_float), target :: AP(..)
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
-      real(c_float), target :: x(*)
+      real(c_float), target :: x(..)
       integer(c_int), value :: incx
       integer(c_long), value :: stridex
       integer(c_int), value :: batchCount
       integer(c_int) :: StrsvStridedBatched
       StrsvStridedBatched = hipblasStrsvStridedBatched_raw(handle, uplo, transA, diag, n, c_loc( &
-        AP(1)), lda, strideA, c_loc(x(1)), incx, stridex, batchCount)
+        AP), lda, strideA, c_loc(x), incx, stridex, batchCount)
     end function hipblasStrsvStridedBatched_native
 
     function hipblasStrsvStridedBatched_typed(handle, uplo, transA, diag, n, AP, lda, strideA, x, &
@@ -71640,16 +71548,16 @@ contains
       integer(c_int), value :: transA
       integer(c_int), value :: diag
       integer(c_int), value :: n
-      real(c_double), target :: AP(*)
+      real(c_double), target :: AP(..)
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
-      real(c_double), target :: x(*)
+      real(c_double), target :: x(..)
       integer(c_int), value :: incx
       integer(c_long), value :: stridex
       integer(c_int), value :: batchCount
       integer(c_int) :: DtrsvStridedBatched
       DtrsvStridedBatched = hipblasDtrsvStridedBatched_raw(handle, uplo, transA, diag, n, c_loc( &
-        AP(1)), lda, strideA, c_loc(x(1)), incx, stridex, batchCount)
+        AP), lda, strideA, c_loc(x), incx, stridex, batchCount)
     end function hipblasDtrsvStridedBatched_native
 
     function hipblasDtrsvStridedBatched_typed(handle, uplo, transA, diag, n, AP, lda, strideA, x, &
@@ -71683,16 +71591,16 @@ contains
       integer(c_int), value :: transA
       integer(c_int), value :: diag
       integer(c_int), value :: n
-      complex(c_float_complex), target :: AP(*)
+      complex(c_float_complex), target :: AP(..)
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
-      complex(c_float_complex), target :: x(*)
+      complex(c_float_complex), target :: x(..)
       integer(c_int), value :: incx
       integer(c_long), value :: stridex
       integer(c_int), value :: batchCount
       integer(c_int) :: CtrsvStridedBatched
       CtrsvStridedBatched = hipblasCtrsvStridedBatched_raw(handle, uplo, transA, diag, n, c_loc( &
-        AP(1)), lda, strideA, c_loc(x(1)), incx, stridex, batchCount)
+        AP), lda, strideA, c_loc(x), incx, stridex, batchCount)
     end function hipblasCtrsvStridedBatched_native
 
     function hipblasCtrsvStridedBatched_typed(handle, uplo, transA, diag, n, AP, lda, strideA, x, &
@@ -71726,16 +71634,16 @@ contains
       integer(c_int), value :: transA
       integer(c_int), value :: diag
       integer(c_int), value :: n
-      complex(c_double_complex), target :: AP(*)
+      complex(c_double_complex), target :: AP(..)
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
-      complex(c_double_complex), target :: x(*)
+      complex(c_double_complex), target :: x(..)
       integer(c_int), value :: incx
       integer(c_long), value :: stridex
       integer(c_int), value :: batchCount
       integer(c_int) :: ZtrsvStridedBatched
       ZtrsvStridedBatched = hipblasZtrsvStridedBatched_raw(handle, uplo, transA, diag, n, c_loc( &
-        AP(1)), lda, strideA, c_loc(x(1)), incx, stridex, batchCount)
+        AP), lda, strideA, c_loc(x), incx, stridex, batchCount)
     end function hipblasZtrsvStridedBatched_native
 
     function hipblasZtrsvStridedBatched_typed(handle, uplo, transA, diag, n, AP, lda, strideA, x, &
@@ -71769,16 +71677,16 @@ contains
       integer(c_int), value :: transA
       integer(c_int), value :: diag
       integer(c_long), value :: n
-      real(c_float), target :: AP(*)
+      real(c_float), target :: AP(..)
       integer(c_long), value :: lda
       integer(c_long), value :: strideA
-      real(c_float), target :: x(*)
+      real(c_float), target :: x(..)
       integer(c_long), value :: incx
       integer(c_long), value :: stridex
       integer(c_long), value :: batchCount
       integer(c_int) :: StrsvStridedBatched_64
       StrsvStridedBatched_64 = hipblasStrsvStridedBatched_64_raw(handle, uplo, transA, diag, n, &
-        c_loc(AP(1)), lda, strideA, c_loc(x(1)), incx, stridex, batchCount)
+        c_loc(AP), lda, strideA, c_loc(x), incx, stridex, batchCount)
     end function hipblasStrsvStridedBatched_64_native
 
     function hipblasStrsvStridedBatched_64_typed(handle, uplo, transA, diag, n, AP, lda, strideA, &
@@ -71812,16 +71720,16 @@ contains
       integer(c_int), value :: transA
       integer(c_int), value :: diag
       integer(c_long), value :: n
-      real(c_double), target :: AP(*)
+      real(c_double), target :: AP(..)
       integer(c_long), value :: lda
       integer(c_long), value :: strideA
-      real(c_double), target :: x(*)
+      real(c_double), target :: x(..)
       integer(c_long), value :: incx
       integer(c_long), value :: stridex
       integer(c_long), value :: batchCount
       integer(c_int) :: DtrsvStridedBatched_64
       DtrsvStridedBatched_64 = hipblasDtrsvStridedBatched_64_raw(handle, uplo, transA, diag, n, &
-        c_loc(AP(1)), lda, strideA, c_loc(x(1)), incx, stridex, batchCount)
+        c_loc(AP), lda, strideA, c_loc(x), incx, stridex, batchCount)
     end function hipblasDtrsvStridedBatched_64_native
 
     function hipblasDtrsvStridedBatched_64_typed(handle, uplo, transA, diag, n, AP, lda, strideA, &
@@ -71855,16 +71763,16 @@ contains
       integer(c_int), value :: transA
       integer(c_int), value :: diag
       integer(c_long), value :: n
-      complex(c_float_complex), target :: AP(*)
+      complex(c_float_complex), target :: AP(..)
       integer(c_long), value :: lda
       integer(c_long), value :: strideA
-      complex(c_float_complex), target :: x(*)
+      complex(c_float_complex), target :: x(..)
       integer(c_long), value :: incx
       integer(c_long), value :: stridex
       integer(c_long), value :: batchCount
       integer(c_int) :: CtrsvStridedBatched_64
       CtrsvStridedBatched_64 = hipblasCtrsvStridedBatched_64_raw(handle, uplo, transA, diag, n, &
-        c_loc(AP(1)), lda, strideA, c_loc(x(1)), incx, stridex, batchCount)
+        c_loc(AP), lda, strideA, c_loc(x), incx, stridex, batchCount)
     end function hipblasCtrsvStridedBatched_64_native
 
     function hipblasCtrsvStridedBatched_64_typed(handle, uplo, transA, diag, n, AP, lda, strideA, &
@@ -71898,16 +71806,16 @@ contains
       integer(c_int), value :: transA
       integer(c_int), value :: diag
       integer(c_long), value :: n
-      complex(c_double_complex), target :: AP(*)
+      complex(c_double_complex), target :: AP(..)
       integer(c_long), value :: lda
       integer(c_long), value :: strideA
-      complex(c_double_complex), target :: x(*)
+      complex(c_double_complex), target :: x(..)
       integer(c_long), value :: incx
       integer(c_long), value :: stridex
       integer(c_long), value :: batchCount
       integer(c_int) :: ZtrsvStridedBatched_64
       ZtrsvStridedBatched_64 = hipblasZtrsvStridedBatched_64_raw(handle, uplo, transA, diag, n, &
-        c_loc(AP(1)), lda, strideA, c_loc(x(1)), incx, stridex, batchCount)
+        c_loc(AP), lda, strideA, c_loc(x), incx, stridex, batchCount)
     end function hipblasZtrsvStridedBatched_64_native
 
     function hipblasZtrsvStridedBatched_64_typed(handle, uplo, transA, diag, n, AP, lda, strideA, &
@@ -71967,16 +71875,16 @@ contains
       integer(c_int), value :: n
       integer(c_int), value :: k
       real(c_float) :: alpha
-      real(c_float), target :: AP(*)
+      real(c_float), target :: AP(..)
       integer(c_int), value :: lda
-      real(c_float), target :: BP(*)
+      real(c_float), target :: BP(..)
       integer(c_int), value :: ldb
       real(c_float) :: beta
-      real(c_float), target :: CP(*)
+      real(c_float), target :: CP(..)
       integer(c_int), value :: ldc
       integer(c_int) :: Sgemm
-      Sgemm = hipblasSgemm_raw(handle, transA, transB, m, n, k, alpha, c_loc(AP(1)), lda, c_loc( &
-        BP(1)), ldb, beta, c_loc(CP(1)), ldc)
+      Sgemm = hipblasSgemm_raw(handle, transA, transB, m, n, k, alpha, c_loc(AP), lda, c_loc(BP), &
+        ldb, beta, c_loc(CP), ldc)
     end function hipblasSgemm_native
 
     function hipblasSgemm_typed(handle, transA, transB, m, n, k, alpha, AP, lda, BP, ldb, beta, &
@@ -72014,16 +71922,16 @@ contains
       integer(c_int), value :: n
       integer(c_int), value :: k
       real(c_double) :: alpha
-      real(c_double), target :: AP(*)
+      real(c_double), target :: AP(..)
       integer(c_int), value :: lda
-      real(c_double), target :: BP(*)
+      real(c_double), target :: BP(..)
       integer(c_int), value :: ldb
       real(c_double) :: beta
-      real(c_double), target :: CP(*)
+      real(c_double), target :: CP(..)
       integer(c_int), value :: ldc
       integer(c_int) :: Dgemm
-      Dgemm = hipblasDgemm_raw(handle, transA, transB, m, n, k, alpha, c_loc(AP(1)), lda, c_loc( &
-        BP(1)), ldb, beta, c_loc(CP(1)), ldc)
+      Dgemm = hipblasDgemm_raw(handle, transA, transB, m, n, k, alpha, c_loc(AP), lda, c_loc(BP), &
+        ldb, beta, c_loc(CP), ldc)
     end function hipblasDgemm_native
 
     function hipblasDgemm_typed(handle, transA, transB, m, n, k, alpha, AP, lda, BP, ldb, beta, &
@@ -72061,16 +71969,16 @@ contains
       integer(c_int), value :: n
       integer(c_int), value :: k
       complex(c_float_complex) :: alpha
-      complex(c_float_complex), target :: AP(*)
+      complex(c_float_complex), target :: AP(..)
       integer(c_int), value :: lda
-      complex(c_float_complex), target :: BP(*)
+      complex(c_float_complex), target :: BP(..)
       integer(c_int), value :: ldb
       complex(c_float_complex) :: beta
-      complex(c_float_complex), target :: CP(*)
+      complex(c_float_complex), target :: CP(..)
       integer(c_int), value :: ldc
       integer(c_int) :: Cgemm
-      Cgemm = hipblasCgemm_raw(handle, transA, transB, m, n, k, alpha, c_loc(AP(1)), lda, c_loc( &
-        BP(1)), ldb, beta, c_loc(CP(1)), ldc)
+      Cgemm = hipblasCgemm_raw(handle, transA, transB, m, n, k, alpha, c_loc(AP), lda, c_loc(BP), &
+        ldb, beta, c_loc(CP), ldc)
     end function hipblasCgemm_native
 
     function hipblasCgemm_typed(handle, transA, transB, m, n, k, alpha, AP, lda, BP, ldb, beta, &
@@ -72108,16 +72016,16 @@ contains
       integer(c_int), value :: n
       integer(c_int), value :: k
       complex(c_double_complex) :: alpha
-      complex(c_double_complex), target :: AP(*)
+      complex(c_double_complex), target :: AP(..)
       integer(c_int), value :: lda
-      complex(c_double_complex), target :: BP(*)
+      complex(c_double_complex), target :: BP(..)
       integer(c_int), value :: ldb
       complex(c_double_complex) :: beta
-      complex(c_double_complex), target :: CP(*)
+      complex(c_double_complex), target :: CP(..)
       integer(c_int), value :: ldc
       integer(c_int) :: Zgemm
-      Zgemm = hipblasZgemm_raw(handle, transA, transB, m, n, k, alpha, c_loc(AP(1)), lda, c_loc( &
-        BP(1)), ldb, beta, c_loc(CP(1)), ldc)
+      Zgemm = hipblasZgemm_raw(handle, transA, transB, m, n, k, alpha, c_loc(AP), lda, c_loc(BP), &
+        ldb, beta, c_loc(CP), ldc)
     end function hipblasZgemm_native
 
     function hipblasZgemm_typed(handle, transA, transB, m, n, k, alpha, AP, lda, BP, ldb, beta, &
@@ -72178,17 +72086,17 @@ contains
       integer(c_long), value :: m
       integer(c_long), value :: n
       integer(c_long), value :: k
-      real(c_float), target :: alpha(*)
-      real(c_float), target :: AP(*)
+      real(c_float), target :: alpha(..)
+      real(c_float), target :: AP(..)
       integer(c_long), value :: lda
-      real(c_float), target :: BP(*)
+      real(c_float), target :: BP(..)
       integer(c_long), value :: ldb
-      real(c_float), target :: beta(*)
-      real(c_float), target :: CP(*)
+      real(c_float), target :: beta(..)
+      real(c_float), target :: CP(..)
       integer(c_long), value :: ldc
       integer(c_int) :: Sgemm_64
-      Sgemm_64 = hipblasSgemm_64_raw(handle, transA, transB, m, n, k, c_loc(alpha(1)), c_loc(AP( &
-        1)), lda, c_loc(BP(1)), ldb, c_loc(beta(1)), c_loc(CP(1)), ldc)
+      Sgemm_64 = hipblasSgemm_64_raw(handle, transA, transB, m, n, k, c_loc(alpha), c_loc(AP), &
+        lda, c_loc(BP), ldb, c_loc(beta), c_loc(CP), ldc)
     end function hipblasSgemm_64_native
 
     function hipblasSgemm_64_typed(handle, transA, transB, m, n, k, alpha, AP, lda, BP, ldb, beta, &
@@ -72225,17 +72133,17 @@ contains
       integer(c_long), value :: m
       integer(c_long), value :: n
       integer(c_long), value :: k
-      real(c_double), target :: alpha(*)
-      real(c_double), target :: AP(*)
+      real(c_double), target :: alpha(..)
+      real(c_double), target :: AP(..)
       integer(c_long), value :: lda
-      real(c_double), target :: BP(*)
+      real(c_double), target :: BP(..)
       integer(c_long), value :: ldb
-      real(c_double), target :: beta(*)
-      real(c_double), target :: CP(*)
+      real(c_double), target :: beta(..)
+      real(c_double), target :: CP(..)
       integer(c_long), value :: ldc
       integer(c_int) :: Dgemm_64
-      Dgemm_64 = hipblasDgemm_64_raw(handle, transA, transB, m, n, k, c_loc(alpha(1)), c_loc(AP( &
-        1)), lda, c_loc(BP(1)), ldb, c_loc(beta(1)), c_loc(CP(1)), ldc)
+      Dgemm_64 = hipblasDgemm_64_raw(handle, transA, transB, m, n, k, c_loc(alpha), c_loc(AP), &
+        lda, c_loc(BP), ldb, c_loc(beta), c_loc(CP), ldc)
     end function hipblasDgemm_64_native
 
     function hipblasDgemm_64_typed(handle, transA, transB, m, n, k, alpha, AP, lda, BP, ldb, beta, &
@@ -72272,17 +72180,17 @@ contains
       integer(c_long), value :: m
       integer(c_long), value :: n
       integer(c_long), value :: k
-      complex(c_float_complex), target :: alpha(*)
-      complex(c_float_complex), target :: AP(*)
+      complex(c_float_complex), target :: alpha(..)
+      complex(c_float_complex), target :: AP(..)
       integer(c_long), value :: lda
-      complex(c_float_complex), target :: BP(*)
+      complex(c_float_complex), target :: BP(..)
       integer(c_long), value :: ldb
-      complex(c_float_complex), target :: beta(*)
-      complex(c_float_complex), target :: CP(*)
+      complex(c_float_complex), target :: beta(..)
+      complex(c_float_complex), target :: CP(..)
       integer(c_long), value :: ldc
       integer(c_int) :: Cgemm_64
-      Cgemm_64 = hipblasCgemm_64_raw(handle, transA, transB, m, n, k, c_loc(alpha(1)), c_loc(AP( &
-        1)), lda, c_loc(BP(1)), ldb, c_loc(beta(1)), c_loc(CP(1)), ldc)
+      Cgemm_64 = hipblasCgemm_64_raw(handle, transA, transB, m, n, k, c_loc(alpha), c_loc(AP), &
+        lda, c_loc(BP), ldb, c_loc(beta), c_loc(CP), ldc)
     end function hipblasCgemm_64_native
 
     function hipblasCgemm_64_typed(handle, transA, transB, m, n, k, alpha, AP, lda, BP, ldb, beta, &
@@ -72319,17 +72227,17 @@ contains
       integer(c_long), value :: m
       integer(c_long), value :: n
       integer(c_long), value :: k
-      complex(c_double_complex), target :: alpha(*)
-      complex(c_double_complex), target :: AP(*)
+      complex(c_double_complex), target :: alpha(..)
+      complex(c_double_complex), target :: AP(..)
       integer(c_long), value :: lda
-      complex(c_double_complex), target :: BP(*)
+      complex(c_double_complex), target :: BP(..)
       integer(c_long), value :: ldb
-      complex(c_double_complex), target :: beta(*)
-      complex(c_double_complex), target :: CP(*)
+      complex(c_double_complex), target :: beta(..)
+      complex(c_double_complex), target :: CP(..)
       integer(c_long), value :: ldc
       integer(c_int) :: Zgemm_64
-      Zgemm_64 = hipblasZgemm_64_raw(handle, transA, transB, m, n, k, c_loc(alpha(1)), c_loc(AP( &
-        1)), lda, c_loc(BP(1)), ldb, c_loc(beta(1)), c_loc(CP(1)), ldc)
+      Zgemm_64 = hipblasZgemm_64_raw(handle, transA, transB, m, n, k, c_loc(alpha), c_loc(AP), &
+        lda, c_loc(BP), ldb, c_loc(beta), c_loc(CP), ldc)
     end function hipblasZgemm_64_native
 
     function hipblasZgemm_64_typed(handle, transA, transB, m, n, k, alpha, AP, lda, BP, ldb, beta, &
@@ -72516,18 +72424,18 @@ contains
       integer(c_long), value :: m
       integer(c_long), value :: n
       integer(c_long), value :: k
-      real(c_float), target :: alpha(*)
+      real(c_float), target :: alpha(..)
       type(c_ptr), value :: AP
       integer(c_long), value :: lda
       type(c_ptr), value :: BP
       integer(c_long), value :: ldb
-      real(c_float), target :: beta(*)
+      real(c_float), target :: beta(..)
       type(c_ptr), value :: CP
       integer(c_long), value :: ldc
       integer(c_long), value :: batchCount
       integer(c_int) :: SgemmBatched_64
-      SgemmBatched_64 = hipblasSgemmBatched_64_raw(handle, transA, transB, m, n, k, c_loc(alpha( &
-        1)), AP, lda, BP, ldb, c_loc(beta(1)), CP, ldc, batchCount)
+      SgemmBatched_64 = hipblasSgemmBatched_64_raw(handle, transA, transB, m, n, k, c_loc(alpha), &
+        AP, lda, BP, ldb, c_loc(beta), CP, ldc, batchCount)
     end function hipblasSgemmBatched_64_native
 
     function hipblasSgemmBatched_64_typed(handle, transA, transB, m, n, k, alpha, AP, lda, BP, &
@@ -72565,18 +72473,18 @@ contains
       integer(c_long), value :: m
       integer(c_long), value :: n
       integer(c_long), value :: k
-      real(c_double), target :: alpha(*)
+      real(c_double), target :: alpha(..)
       type(c_ptr), value :: AP
       integer(c_long), value :: lda
       type(c_ptr), value :: BP
       integer(c_long), value :: ldb
-      real(c_double), target :: beta(*)
+      real(c_double), target :: beta(..)
       type(c_ptr), value :: CP
       integer(c_long), value :: ldc
       integer(c_long), value :: batchCount
       integer(c_int) :: DgemmBatched_64
-      DgemmBatched_64 = hipblasDgemmBatched_64_raw(handle, transA, transB, m, n, k, c_loc(alpha( &
-        1)), AP, lda, BP, ldb, c_loc(beta(1)), CP, ldc, batchCount)
+      DgemmBatched_64 = hipblasDgemmBatched_64_raw(handle, transA, transB, m, n, k, c_loc(alpha), &
+        AP, lda, BP, ldb, c_loc(beta), CP, ldc, batchCount)
     end function hipblasDgemmBatched_64_native
 
     function hipblasDgemmBatched_64_typed(handle, transA, transB, m, n, k, alpha, AP, lda, BP, &
@@ -72614,18 +72522,18 @@ contains
       integer(c_long), value :: m
       integer(c_long), value :: n
       integer(c_long), value :: k
-      complex(c_float_complex), target :: alpha(*)
+      complex(c_float_complex), target :: alpha(..)
       type(c_ptr), value :: AP
       integer(c_long), value :: lda
       type(c_ptr), value :: BP
       integer(c_long), value :: ldb
-      complex(c_float_complex), target :: beta(*)
+      complex(c_float_complex), target :: beta(..)
       type(c_ptr), value :: CP
       integer(c_long), value :: ldc
       integer(c_long), value :: batchCount
       integer(c_int) :: CgemmBatched_64
-      CgemmBatched_64 = hipblasCgemmBatched_64_raw(handle, transA, transB, m, n, k, c_loc(alpha( &
-        1)), AP, lda, BP, ldb, c_loc(beta(1)), CP, ldc, batchCount)
+      CgemmBatched_64 = hipblasCgemmBatched_64_raw(handle, transA, transB, m, n, k, c_loc(alpha), &
+        AP, lda, BP, ldb, c_loc(beta), CP, ldc, batchCount)
     end function hipblasCgemmBatched_64_native
 
     function hipblasCgemmBatched_64_typed(handle, transA, transB, m, n, k, alpha, AP, lda, BP, &
@@ -72663,18 +72571,18 @@ contains
       integer(c_long), value :: m
       integer(c_long), value :: n
       integer(c_long), value :: k
-      complex(c_double_complex), target :: alpha(*)
+      complex(c_double_complex), target :: alpha(..)
       type(c_ptr), value :: AP
       integer(c_long), value :: lda
       type(c_ptr), value :: BP
       integer(c_long), value :: ldb
-      complex(c_double_complex), target :: beta(*)
+      complex(c_double_complex), target :: beta(..)
       type(c_ptr), value :: CP
       integer(c_long), value :: ldc
       integer(c_long), value :: batchCount
       integer(c_int) :: ZgemmBatched_64
-      ZgemmBatched_64 = hipblasZgemmBatched_64_raw(handle, transA, transB, m, n, k, c_loc(alpha( &
-        1)), AP, lda, BP, ldb, c_loc(beta(1)), CP, ldc, batchCount)
+      ZgemmBatched_64 = hipblasZgemmBatched_64_raw(handle, transA, transB, m, n, k, c_loc(alpha), &
+        AP, lda, BP, ldb, c_loc(beta), CP, ldc, batchCount)
     end function hipblasZgemmBatched_64_native
 
     function hipblasZgemmBatched_64_typed(handle, transA, transB, m, n, k, alpha, AP, lda, BP, &
@@ -72741,21 +72649,20 @@ contains
       integer(c_int), value :: n
       integer(c_int), value :: k
       real(c_float) :: alpha
-      real(c_float), target :: AP(*)
+      real(c_float), target :: AP(..)
       integer(c_int), value :: lda
       integer(c_int64_t), value :: strideA
-      real(c_float), target :: BP(*)
+      real(c_float), target :: BP(..)
       integer(c_int), value :: ldb
       integer(c_int64_t), value :: strideB
       real(c_float) :: beta
-      real(c_float), target :: CP(*)
+      real(c_float), target :: CP(..)
       integer(c_int), value :: ldc
       integer(c_int64_t), value :: strideC
       integer(c_int), value :: batchCount
       integer(c_int) :: SgemmStridedBatched
       SgemmStridedBatched = hipblasSgemmStridedBatched_raw(handle, transA, transB, m, n, k, alpha, &
-        c_loc(AP(1)), lda, strideA, c_loc(BP(1)), ldb, strideB, beta, c_loc(CP(1)), ldc, strideC, &
-        batchCount)
+        c_loc(AP), lda, strideA, c_loc(BP), ldb, strideB, beta, c_loc(CP), ldc, strideC, batchCount)
     end function hipblasSgemmStridedBatched_native
 
     function hipblasSgemmStridedBatched_typed(handle, transA, transB, m, n, k, alpha, AP, lda, &
@@ -72797,21 +72704,20 @@ contains
       integer(c_int), value :: n
       integer(c_int), value :: k
       real(c_double) :: alpha
-      real(c_double), target :: AP(*)
+      real(c_double), target :: AP(..)
       integer(c_int), value :: lda
       integer(c_int64_t), value :: strideA
-      real(c_double), target :: BP(*)
+      real(c_double), target :: BP(..)
       integer(c_int), value :: ldb
       integer(c_int64_t), value :: strideB
       real(c_double) :: beta
-      real(c_double), target :: CP(*)
+      real(c_double), target :: CP(..)
       integer(c_int), value :: ldc
       integer(c_int64_t), value :: strideC
       integer(c_int), value :: batchCount
       integer(c_int) :: DgemmStridedBatched
       DgemmStridedBatched = hipblasDgemmStridedBatched_raw(handle, transA, transB, m, n, k, alpha, &
-        c_loc(AP(1)), lda, strideA, c_loc(BP(1)), ldb, strideB, beta, c_loc(CP(1)), ldc, strideC, &
-        batchCount)
+        c_loc(AP), lda, strideA, c_loc(BP), ldb, strideB, beta, c_loc(CP), ldc, strideC, batchCount)
     end function hipblasDgemmStridedBatched_native
 
     function hipblasDgemmStridedBatched_typed(handle, transA, transB, m, n, k, alpha, AP, lda, &
@@ -72853,21 +72759,20 @@ contains
       integer(c_int), value :: n
       integer(c_int), value :: k
       complex(c_float_complex) :: alpha
-      complex(c_float_complex), target :: AP(*)
+      complex(c_float_complex), target :: AP(..)
       integer(c_int), value :: lda
       integer(c_int64_t), value :: strideA
-      complex(c_float_complex), target :: BP(*)
+      complex(c_float_complex), target :: BP(..)
       integer(c_int), value :: ldb
       integer(c_int64_t), value :: strideB
       complex(c_float_complex) :: beta
-      complex(c_float_complex), target :: CP(*)
+      complex(c_float_complex), target :: CP(..)
       integer(c_int), value :: ldc
       integer(c_int64_t), value :: strideC
       integer(c_int), value :: batchCount
       integer(c_int) :: CgemmStridedBatched
       CgemmStridedBatched = hipblasCgemmStridedBatched_raw(handle, transA, transB, m, n, k, alpha, &
-        c_loc(AP(1)), lda, strideA, c_loc(BP(1)), ldb, strideB, beta, c_loc(CP(1)), ldc, strideC, &
-        batchCount)
+        c_loc(AP), lda, strideA, c_loc(BP), ldb, strideB, beta, c_loc(CP), ldc, strideC, batchCount)
     end function hipblasCgemmStridedBatched_native
 
     function hipblasCgemmStridedBatched_typed(handle, transA, transB, m, n, k, alpha, AP, lda, &
@@ -72909,21 +72814,20 @@ contains
       integer(c_int), value :: n
       integer(c_int), value :: k
       complex(c_double_complex) :: alpha
-      complex(c_double_complex), target :: AP(*)
+      complex(c_double_complex), target :: AP(..)
       integer(c_int), value :: lda
       integer(c_int64_t), value :: strideA
-      complex(c_double_complex), target :: BP(*)
+      complex(c_double_complex), target :: BP(..)
       integer(c_int), value :: ldb
       integer(c_int64_t), value :: strideB
       complex(c_double_complex) :: beta
-      complex(c_double_complex), target :: CP(*)
+      complex(c_double_complex), target :: CP(..)
       integer(c_int), value :: ldc
       integer(c_int64_t), value :: strideC
       integer(c_int), value :: batchCount
       integer(c_int) :: ZgemmStridedBatched
       ZgemmStridedBatched = hipblasZgemmStridedBatched_raw(handle, transA, transB, m, n, k, alpha, &
-        c_loc(AP(1)), lda, strideA, c_loc(BP(1)), ldb, strideB, beta, c_loc(CP(1)), ldc, strideC, &
-        batchCount)
+        c_loc(AP), lda, strideA, c_loc(BP), ldb, strideB, beta, c_loc(CP), ldc, strideC, batchCount)
     end function hipblasZgemmStridedBatched_native
 
     function hipblasZgemmStridedBatched_typed(handle, transA, transB, m, n, k, alpha, AP, lda, &
@@ -72994,22 +72898,22 @@ contains
       integer(c_long), value :: m
       integer(c_long), value :: n
       integer(c_long), value :: k
-      real(c_float), target :: alpha(*)
-      real(c_float), target :: AP(*)
+      real(c_float), target :: alpha(..)
+      real(c_float), target :: AP(..)
       integer(c_long), value :: lda
       integer(c_int64_t), value :: strideA
-      real(c_float), target :: BP(*)
+      real(c_float), target :: BP(..)
       integer(c_long), value :: ldb
       integer(c_int64_t), value :: strideB
-      real(c_float), target :: beta(*)
-      real(c_float), target :: CP(*)
+      real(c_float), target :: beta(..)
+      real(c_float), target :: CP(..)
       integer(c_long), value :: ldc
       integer(c_int64_t), value :: strideC
       integer(c_long), value :: batchCount
       integer(c_int) :: SgemmStridedBatched_64
       SgemmStridedBatched_64 = hipblasSgemmStridedBatched_64_raw(handle, transA, transB, m, n, k, &
-        c_loc(alpha(1)), c_loc(AP(1)), lda, strideA, c_loc(BP(1)), ldb, strideB, c_loc(beta(1)), &
-        c_loc(CP(1)), ldc, strideC, batchCount)
+        c_loc(alpha), c_loc(AP), lda, strideA, c_loc(BP), ldb, strideB, c_loc(beta), c_loc(CP), &
+        ldc, strideC, batchCount)
     end function hipblasSgemmStridedBatched_64_native
 
     function hipblasSgemmStridedBatched_64_typed(handle, transA, transB, m, n, k, alpha, AP, lda, &
@@ -73052,22 +72956,22 @@ contains
       integer(c_long), value :: m
       integer(c_long), value :: n
       integer(c_long), value :: k
-      real(c_double), target :: alpha(*)
-      real(c_double), target :: AP(*)
+      real(c_double), target :: alpha(..)
+      real(c_double), target :: AP(..)
       integer(c_long), value :: lda
       integer(c_int64_t), value :: strideA
-      real(c_double), target :: BP(*)
+      real(c_double), target :: BP(..)
       integer(c_long), value :: ldb
       integer(c_int64_t), value :: strideB
-      real(c_double), target :: beta(*)
-      real(c_double), target :: CP(*)
+      real(c_double), target :: beta(..)
+      real(c_double), target :: CP(..)
       integer(c_long), value :: ldc
       integer(c_int64_t), value :: strideC
       integer(c_long), value :: batchCount
       integer(c_int) :: DgemmStridedBatched_64
       DgemmStridedBatched_64 = hipblasDgemmStridedBatched_64_raw(handle, transA, transB, m, n, k, &
-        c_loc(alpha(1)), c_loc(AP(1)), lda, strideA, c_loc(BP(1)), ldb, strideB, c_loc(beta(1)), &
-        c_loc(CP(1)), ldc, strideC, batchCount)
+        c_loc(alpha), c_loc(AP), lda, strideA, c_loc(BP), ldb, strideB, c_loc(beta), c_loc(CP), &
+        ldc, strideC, batchCount)
     end function hipblasDgemmStridedBatched_64_native
 
     function hipblasDgemmStridedBatched_64_typed(handle, transA, transB, m, n, k, alpha, AP, lda, &
@@ -73110,22 +73014,22 @@ contains
       integer(c_long), value :: m
       integer(c_long), value :: n
       integer(c_long), value :: k
-      complex(c_float_complex), target :: alpha(*)
-      complex(c_float_complex), target :: AP(*)
+      complex(c_float_complex), target :: alpha(..)
+      complex(c_float_complex), target :: AP(..)
       integer(c_long), value :: lda
       integer(c_int64_t), value :: strideA
-      complex(c_float_complex), target :: BP(*)
+      complex(c_float_complex), target :: BP(..)
       integer(c_long), value :: ldb
       integer(c_int64_t), value :: strideB
-      complex(c_float_complex), target :: beta(*)
-      complex(c_float_complex), target :: CP(*)
+      complex(c_float_complex), target :: beta(..)
+      complex(c_float_complex), target :: CP(..)
       integer(c_long), value :: ldc
       integer(c_int64_t), value :: strideC
       integer(c_long), value :: batchCount
       integer(c_int) :: CgemmStridedBatched_64
       CgemmStridedBatched_64 = hipblasCgemmStridedBatched_64_raw(handle, transA, transB, m, n, k, &
-        c_loc(alpha(1)), c_loc(AP(1)), lda, strideA, c_loc(BP(1)), ldb, strideB, c_loc(beta(1)), &
-        c_loc(CP(1)), ldc, strideC, batchCount)
+        c_loc(alpha), c_loc(AP), lda, strideA, c_loc(BP), ldb, strideB, c_loc(beta), c_loc(CP), &
+        ldc, strideC, batchCount)
     end function hipblasCgemmStridedBatched_64_native
 
     function hipblasCgemmStridedBatched_64_typed(handle, transA, transB, m, n, k, alpha, AP, lda, &
@@ -73168,22 +73072,22 @@ contains
       integer(c_long), value :: m
       integer(c_long), value :: n
       integer(c_long), value :: k
-      complex(c_double_complex), target :: alpha(*)
-      complex(c_double_complex), target :: AP(*)
+      complex(c_double_complex), target :: alpha(..)
+      complex(c_double_complex), target :: AP(..)
       integer(c_long), value :: lda
       integer(c_int64_t), value :: strideA
-      complex(c_double_complex), target :: BP(*)
+      complex(c_double_complex), target :: BP(..)
       integer(c_long), value :: ldb
       integer(c_int64_t), value :: strideB
-      complex(c_double_complex), target :: beta(*)
-      complex(c_double_complex), target :: CP(*)
+      complex(c_double_complex), target :: beta(..)
+      complex(c_double_complex), target :: CP(..)
       integer(c_long), value :: ldc
       integer(c_int64_t), value :: strideC
       integer(c_long), value :: batchCount
       integer(c_int) :: ZgemmStridedBatched_64
       ZgemmStridedBatched_64 = hipblasZgemmStridedBatched_64_raw(handle, transA, transB, m, n, k, &
-        c_loc(alpha(1)), c_loc(AP(1)), lda, strideA, c_loc(BP(1)), ldb, strideB, c_loc(beta(1)), &
-        c_loc(CP(1)), ldc, strideC, batchCount)
+        c_loc(alpha), c_loc(AP), lda, strideA, c_loc(BP), ldb, strideB, c_loc(beta), c_loc(CP), &
+        ldc, strideC, batchCount)
     end function hipblasZgemmStridedBatched_64_native
 
     function hipblasZgemmStridedBatched_64_typed(handle, transA, transB, m, n, k, alpha, AP, lda, &
@@ -73225,14 +73129,14 @@ contains
       integer(c_int), value :: n
       integer(c_int), value :: k
       real(c_float) :: alpha
-      complex(c_float_complex), target :: AP(*)
+      complex(c_float_complex), target :: AP(..)
       integer(c_int), value :: lda
       real(c_float) :: beta
-      complex(c_float_complex), target :: CP(*)
+      complex(c_float_complex), target :: CP(..)
       integer(c_int), value :: ldc
       integer(c_int) :: Cherk
-      Cherk = hipblasCherk_raw(handle, uplo, transA, n, k, alpha, c_loc(AP(1)), lda, beta, c_loc( &
-        CP(1)), ldc)
+      Cherk = hipblasCherk_raw(handle, uplo, transA, n, k, alpha, c_loc(AP), lda, beta, c_loc(CP), &
+        ldc)
     end function hipblasCherk_native
 
     function hipblasCherk_typed(handle, uplo, transA, n, k, alpha, AP, lda, beta, CP, ldc) result( &
@@ -73265,14 +73169,14 @@ contains
       integer(c_int), value :: n
       integer(c_int), value :: k
       real(c_double) :: alpha
-      complex(c_double_complex), target :: AP(*)
+      complex(c_double_complex), target :: AP(..)
       integer(c_int), value :: lda
       real(c_double) :: beta
-      complex(c_double_complex), target :: CP(*)
+      complex(c_double_complex), target :: CP(..)
       integer(c_int), value :: ldc
       integer(c_int) :: Zherk
-      Zherk = hipblasZherk_raw(handle, uplo, transA, n, k, alpha, c_loc(AP(1)), lda, beta, c_loc( &
-        CP(1)), ldc)
+      Zherk = hipblasZherk_raw(handle, uplo, transA, n, k, alpha, c_loc(AP), lda, beta, c_loc(CP), &
+        ldc)
     end function hipblasZherk_native
 
     function hipblasZherk_typed(handle, uplo, transA, n, k, alpha, AP, lda, beta, CP, ldc) result( &
@@ -73304,15 +73208,15 @@ contains
       integer(c_int), value :: transA
       integer(c_long), value :: n
       integer(c_long), value :: k
-      real(c_float), target :: alpha(*)
-      complex(c_float_complex), target :: AP(*)
+      real(c_float), target :: alpha(..)
+      complex(c_float_complex), target :: AP(..)
       integer(c_long), value :: lda
-      real(c_float), target :: beta(*)
-      complex(c_float_complex), target :: CP(*)
+      real(c_float), target :: beta(..)
+      complex(c_float_complex), target :: CP(..)
       integer(c_long), value :: ldc
       integer(c_int) :: Cherk_64
-      Cherk_64 = hipblasCherk_64_raw(handle, uplo, transA, n, k, c_loc(alpha(1)), c_loc(AP(1)), &
-        lda, c_loc(beta(1)), c_loc(CP(1)), ldc)
+      Cherk_64 = hipblasCherk_64_raw(handle, uplo, transA, n, k, c_loc(alpha), c_loc(AP), lda, &
+        c_loc(beta), c_loc(CP), ldc)
     end function hipblasCherk_64_native
 
     function hipblasCherk_64_typed(handle, uplo, transA, n, k, alpha, AP, lda, beta, CP, &
@@ -73344,15 +73248,15 @@ contains
       integer(c_int), value :: transA
       integer(c_long), value :: n
       integer(c_long), value :: k
-      real(c_double), target :: alpha(*)
-      complex(c_double_complex), target :: AP(*)
+      real(c_double), target :: alpha(..)
+      complex(c_double_complex), target :: AP(..)
       integer(c_long), value :: lda
-      real(c_double), target :: beta(*)
-      complex(c_double_complex), target :: CP(*)
+      real(c_double), target :: beta(..)
+      complex(c_double_complex), target :: CP(..)
       integer(c_long), value :: ldc
       integer(c_int) :: Zherk_64
-      Zherk_64 = hipblasZherk_64_raw(handle, uplo, transA, n, k, c_loc(alpha(1)), c_loc(AP(1)), &
-        lda, c_loc(beta(1)), c_loc(CP(1)), ldc)
+      Zherk_64 = hipblasZherk_64_raw(handle, uplo, transA, n, k, c_loc(alpha), c_loc(AP), lda, &
+        c_loc(beta), c_loc(CP), ldc)
     end function hipblasZherk_64_native
 
     function hipblasZherk_64_typed(handle, uplo, transA, n, k, alpha, AP, lda, beta, CP, &
@@ -73428,16 +73332,16 @@ contains
       integer(c_int), value :: transA
       integer(c_long), value :: n
       integer(c_long), value :: k
-      real(c_float), target :: alpha(*)
+      real(c_float), target :: alpha(..)
       type(c_ptr), value :: AP
       integer(c_long), value :: lda
-      real(c_float), target :: beta(*)
+      real(c_float), target :: beta(..)
       type(c_ptr), value :: CP
       integer(c_long), value :: ldc
       integer(c_long), value :: batchCount
       integer(c_int) :: CherkBatched_64
-      CherkBatched_64 = hipblasCherkBatched_64_raw(handle, uplo, transA, n, k, c_loc(alpha(1)), &
-        AP, lda, c_loc(beta(1)), CP, ldc, batchCount)
+      CherkBatched_64 = hipblasCherkBatched_64_raw(handle, uplo, transA, n, k, c_loc(alpha), AP, &
+        lda, c_loc(beta), CP, ldc, batchCount)
     end function hipblasCherkBatched_64_native
 
     function hipblasCherkBatched_64_typed(handle, uplo, transA, n, k, alpha, AP, lda, beta, CP, &
@@ -73471,16 +73375,16 @@ contains
       integer(c_int), value :: transA
       integer(c_long), value :: n
       integer(c_long), value :: k
-      real(c_double), target :: alpha(*)
+      real(c_double), target :: alpha(..)
       type(c_ptr), value :: AP
       integer(c_long), value :: lda
-      real(c_double), target :: beta(*)
+      real(c_double), target :: beta(..)
       type(c_ptr), value :: CP
       integer(c_long), value :: ldc
       integer(c_long), value :: batchCount
       integer(c_int) :: ZherkBatched_64
-      ZherkBatched_64 = hipblasZherkBatched_64_raw(handle, uplo, transA, n, k, c_loc(alpha(1)), &
-        AP, lda, c_loc(beta(1)), CP, ldc, batchCount)
+      ZherkBatched_64 = hipblasZherkBatched_64_raw(handle, uplo, transA, n, k, c_loc(alpha), AP, &
+        lda, c_loc(beta), CP, ldc, batchCount)
     end function hipblasZherkBatched_64_native
 
     function hipblasZherkBatched_64_typed(handle, uplo, transA, n, k, alpha, AP, lda, beta, CP, &
@@ -73515,17 +73419,17 @@ contains
       integer(c_int), value :: n
       integer(c_int), value :: k
       real(c_float) :: alpha
-      complex(c_float_complex), target :: AP(*)
+      complex(c_float_complex), target :: AP(..)
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
       real(c_float) :: beta
-      complex(c_float_complex), target :: CP(*)
+      complex(c_float_complex), target :: CP(..)
       integer(c_int), value :: ldc
       integer(c_long), value :: strideC
       integer(c_int), value :: batchCount
       integer(c_int) :: CherkStridedBatched
       CherkStridedBatched = hipblasCherkStridedBatched_raw(handle, uplo, transA, n, k, alpha, &
-        c_loc(AP(1)), lda, strideA, beta, c_loc(CP(1)), ldc, strideC, batchCount)
+        c_loc(AP), lda, strideA, beta, c_loc(CP), ldc, strideC, batchCount)
     end function hipblasCherkStridedBatched_native
 
     function hipblasCherkStridedBatched_typed(handle, uplo, transA, n, k, alpha, AP, lda, strideA, &
@@ -73562,17 +73466,17 @@ contains
       integer(c_int), value :: n
       integer(c_int), value :: k
       real(c_double) :: alpha
-      complex(c_double_complex), target :: AP(*)
+      complex(c_double_complex), target :: AP(..)
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
       real(c_double) :: beta
-      complex(c_double_complex), target :: CP(*)
+      complex(c_double_complex), target :: CP(..)
       integer(c_int), value :: ldc
       integer(c_long), value :: strideC
       integer(c_int), value :: batchCount
       integer(c_int) :: ZherkStridedBatched
       ZherkStridedBatched = hipblasZherkStridedBatched_raw(handle, uplo, transA, n, k, alpha, &
-        c_loc(AP(1)), lda, strideA, beta, c_loc(CP(1)), ldc, strideC, batchCount)
+        c_loc(AP), lda, strideA, beta, c_loc(CP), ldc, strideC, batchCount)
     end function hipblasZherkStridedBatched_native
 
     function hipblasZherkStridedBatched_typed(handle, uplo, transA, n, k, alpha, AP, lda, strideA, &
@@ -73608,19 +73512,18 @@ contains
       integer(c_int), value :: transA
       integer(c_long), value :: n
       integer(c_long), value :: k
-      real(c_float), target :: alpha(*)
-      complex(c_float_complex), target :: AP(*)
+      real(c_float), target :: alpha(..)
+      complex(c_float_complex), target :: AP(..)
       integer(c_long), value :: lda
       integer(c_long), value :: strideA
-      real(c_float), target :: beta(*)
-      complex(c_float_complex), target :: CP(*)
+      real(c_float), target :: beta(..)
+      complex(c_float_complex), target :: CP(..)
       integer(c_long), value :: ldc
       integer(c_long), value :: strideC
       integer(c_long), value :: batchCount
       integer(c_int) :: CherkStridedBatched_64
       CherkStridedBatched_64 = hipblasCherkStridedBatched_64_raw(handle, uplo, transA, n, k, &
-        c_loc(alpha(1)), c_loc(AP(1)), lda, strideA, c_loc(beta(1)), c_loc(CP(1)), ldc, strideC, &
-        batchCount)
+        c_loc(alpha), c_loc(AP), lda, strideA, c_loc(beta), c_loc(CP), ldc, strideC, batchCount)
     end function hipblasCherkStridedBatched_64_native
 
     function hipblasCherkStridedBatched_64_typed(handle, uplo, transA, n, k, alpha, AP, lda, &
@@ -73656,19 +73559,18 @@ contains
       integer(c_int), value :: transA
       integer(c_long), value :: n
       integer(c_long), value :: k
-      real(c_double), target :: alpha(*)
-      complex(c_double_complex), target :: AP(*)
+      real(c_double), target :: alpha(..)
+      complex(c_double_complex), target :: AP(..)
       integer(c_long), value :: lda
       integer(c_long), value :: strideA
-      real(c_double), target :: beta(*)
-      complex(c_double_complex), target :: CP(*)
+      real(c_double), target :: beta(..)
+      complex(c_double_complex), target :: CP(..)
       integer(c_long), value :: ldc
       integer(c_long), value :: strideC
       integer(c_long), value :: batchCount
       integer(c_int) :: ZherkStridedBatched_64
       ZherkStridedBatched_64 = hipblasZherkStridedBatched_64_raw(handle, uplo, transA, n, k, &
-        c_loc(alpha(1)), c_loc(AP(1)), lda, strideA, c_loc(beta(1)), c_loc(CP(1)), ldc, strideC, &
-        batchCount)
+        c_loc(alpha), c_loc(AP), lda, strideA, c_loc(beta), c_loc(CP), ldc, strideC, batchCount)
     end function hipblasZherkStridedBatched_64_native
 
     function hipblasZherkStridedBatched_64_typed(handle, uplo, transA, n, k, alpha, AP, lda, &
@@ -73705,16 +73607,16 @@ contains
       integer(c_int), value :: n
       integer(c_int), value :: k
       complex(c_float_complex) :: alpha
-      complex(c_float_complex), target :: AP(*)
+      complex(c_float_complex), target :: AP(..)
       integer(c_int), value :: lda
-      complex(c_float_complex), target :: BP(*)
+      complex(c_float_complex), target :: BP(..)
       integer(c_int), value :: ldb
       real(c_float) :: beta
-      complex(c_float_complex), target :: CP(*)
+      complex(c_float_complex), target :: CP(..)
       integer(c_int), value :: ldc
       integer(c_int) :: Cherkx
-      Cherkx = hipblasCherkx_raw(handle, uplo, transA, n, k, alpha, c_loc(AP(1)), lda, c_loc(BP( &
-        1)), ldb, beta, c_loc(CP(1)), ldc)
+      Cherkx = hipblasCherkx_raw(handle, uplo, transA, n, k, alpha, c_loc(AP), lda, c_loc(BP), &
+        ldb, beta, c_loc(CP), ldc)
     end function hipblasCherkx_native
 
     function hipblasCherkx_typed(handle, uplo, transA, n, k, alpha, AP, lda, BP, ldb, beta, CP, &
@@ -73750,16 +73652,16 @@ contains
       integer(c_int), value :: n
       integer(c_int), value :: k
       complex(c_double_complex) :: alpha
-      complex(c_double_complex), target :: AP(*)
+      complex(c_double_complex), target :: AP(..)
       integer(c_int), value :: lda
-      complex(c_double_complex), target :: BP(*)
+      complex(c_double_complex), target :: BP(..)
       integer(c_int), value :: ldb
       real(c_double) :: beta
-      complex(c_double_complex), target :: CP(*)
+      complex(c_double_complex), target :: CP(..)
       integer(c_int), value :: ldc
       integer(c_int) :: Zherkx
-      Zherkx = hipblasZherkx_raw(handle, uplo, transA, n, k, alpha, c_loc(AP(1)), lda, c_loc(BP( &
-        1)), ldb, beta, c_loc(CP(1)), ldc)
+      Zherkx = hipblasZherkx_raw(handle, uplo, transA, n, k, alpha, c_loc(AP), lda, c_loc(BP), &
+        ldb, beta, c_loc(CP), ldc)
     end function hipblasZherkx_native
 
     function hipblasZherkx_typed(handle, uplo, transA, n, k, alpha, AP, lda, BP, ldb, beta, CP, &
@@ -73794,17 +73696,17 @@ contains
       integer(c_int), value :: transA
       integer(c_long), value :: n
       integer(c_long), value :: k
-      complex(c_float_complex), target :: alpha(*)
-      complex(c_float_complex), target :: AP(*)
+      complex(c_float_complex), target :: alpha(..)
+      complex(c_float_complex), target :: AP(..)
       integer(c_long), value :: lda
-      complex(c_float_complex), target :: BP(*)
+      complex(c_float_complex), target :: BP(..)
       integer(c_long), value :: ldb
-      real(c_float), target :: beta(*)
-      complex(c_float_complex), target :: CP(*)
+      real(c_float), target :: beta(..)
+      complex(c_float_complex), target :: CP(..)
       integer(c_long), value :: ldc
       integer(c_int) :: Cherkx_64
-      Cherkx_64 = hipblasCherkx_64_raw(handle, uplo, transA, n, k, c_loc(alpha(1)), c_loc(AP(1)), &
-        lda, c_loc(BP(1)), ldb, c_loc(beta(1)), c_loc(CP(1)), ldc)
+      Cherkx_64 = hipblasCherkx_64_raw(handle, uplo, transA, n, k, c_loc(alpha), c_loc(AP), lda, &
+        c_loc(BP), ldb, c_loc(beta), c_loc(CP), ldc)
     end function hipblasCherkx_64_native
 
     function hipblasCherkx_64_typed(handle, uplo, transA, n, k, alpha, AP, lda, BP, ldb, beta, CP, &
@@ -73839,17 +73741,17 @@ contains
       integer(c_int), value :: transA
       integer(c_long), value :: n
       integer(c_long), value :: k
-      complex(c_double_complex), target :: alpha(*)
-      complex(c_double_complex), target :: AP(*)
+      complex(c_double_complex), target :: alpha(..)
+      complex(c_double_complex), target :: AP(..)
       integer(c_long), value :: lda
-      complex(c_double_complex), target :: BP(*)
+      complex(c_double_complex), target :: BP(..)
       integer(c_long), value :: ldb
-      real(c_double), target :: beta(*)
-      complex(c_double_complex), target :: CP(*)
+      real(c_double), target :: beta(..)
+      complex(c_double_complex), target :: CP(..)
       integer(c_long), value :: ldc
       integer(c_int) :: Zherkx_64
-      Zherkx_64 = hipblasZherkx_64_raw(handle, uplo, transA, n, k, c_loc(alpha(1)), c_loc(AP(1)), &
-        lda, c_loc(BP(1)), ldb, c_loc(beta(1)), c_loc(CP(1)), ldc)
+      Zherkx_64 = hipblasZherkx_64_raw(handle, uplo, transA, n, k, c_loc(alpha), c_loc(AP), lda, &
+        c_loc(BP), ldb, c_loc(beta), c_loc(CP), ldc)
     end function hipblasZherkx_64_native
 
     function hipblasZherkx_64_typed(handle, uplo, transA, n, k, alpha, AP, lda, BP, ldb, beta, CP, &
@@ -73932,18 +73834,18 @@ contains
       integer(c_int), value :: transA
       integer(c_long), value :: n
       integer(c_long), value :: k
-      complex(c_float_complex), target :: alpha(*)
+      complex(c_float_complex), target :: alpha(..)
       type(c_ptr), value :: AP
       integer(c_long), value :: lda
       type(c_ptr), value :: BP
       integer(c_long), value :: ldb
-      real(c_float), target :: beta(*)
+      real(c_float), target :: beta(..)
       type(c_ptr), value :: CP
       integer(c_long), value :: ldc
       integer(c_long), value :: batchCount
       integer(c_int) :: CherkxBatched_64
-      CherkxBatched_64 = hipblasCherkxBatched_64_raw(handle, uplo, transA, n, k, c_loc(alpha(1)), &
-        AP, lda, BP, ldb, c_loc(beta(1)), CP, ldc, batchCount)
+      CherkxBatched_64 = hipblasCherkxBatched_64_raw(handle, uplo, transA, n, k, c_loc(alpha), AP, &
+        lda, BP, ldb, c_loc(beta), CP, ldc, batchCount)
     end function hipblasCherkxBatched_64_native
 
     function hipblasCherkxBatched_64_typed(handle, uplo, transA, n, k, alpha, AP, lda, BP, ldb, &
@@ -73979,18 +73881,18 @@ contains
       integer(c_int), value :: transA
       integer(c_long), value :: n
       integer(c_long), value :: k
-      complex(c_double_complex), target :: alpha(*)
+      complex(c_double_complex), target :: alpha(..)
       type(c_ptr), value :: AP
       integer(c_long), value :: lda
       type(c_ptr), value :: BP
       integer(c_long), value :: ldb
-      real(c_double), target :: beta(*)
+      real(c_double), target :: beta(..)
       type(c_ptr), value :: CP
       integer(c_long), value :: ldc
       integer(c_long), value :: batchCount
       integer(c_int) :: ZherkxBatched_64
-      ZherkxBatched_64 = hipblasZherkxBatched_64_raw(handle, uplo, transA, n, k, c_loc(alpha(1)), &
-        AP, lda, BP, ldb, c_loc(beta(1)), CP, ldc, batchCount)
+      ZherkxBatched_64 = hipblasZherkxBatched_64_raw(handle, uplo, transA, n, k, c_loc(alpha), AP, &
+        lda, BP, ldb, c_loc(beta), CP, ldc, batchCount)
     end function hipblasZherkxBatched_64_native
 
     function hipblasZherkxBatched_64_typed(handle, uplo, transA, n, k, alpha, AP, lda, BP, ldb, &
@@ -74027,21 +73929,20 @@ contains
       integer(c_int), value :: n
       integer(c_int), value :: k
       complex(c_float_complex) :: alpha
-      complex(c_float_complex), target :: AP(*)
+      complex(c_float_complex), target :: AP(..)
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
-      complex(c_float_complex), target :: BP(*)
+      complex(c_float_complex), target :: BP(..)
       integer(c_int), value :: ldb
       integer(c_long), value :: strideB
       real(c_float) :: beta
-      complex(c_float_complex), target :: CP(*)
+      complex(c_float_complex), target :: CP(..)
       integer(c_int), value :: ldc
       integer(c_long), value :: strideC
       integer(c_int), value :: batchCount
       integer(c_int) :: CherkxStridedBatched
       CherkxStridedBatched = hipblasCherkxStridedBatched_raw(handle, uplo, transA, n, k, alpha, &
-        c_loc(AP(1)), lda, strideA, c_loc(BP(1)), ldb, strideB, beta, c_loc(CP(1)), ldc, strideC, &
-        batchCount)
+        c_loc(AP), lda, strideA, c_loc(BP), ldb, strideB, beta, c_loc(CP), ldc, strideC, batchCount)
     end function hipblasCherkxStridedBatched_native
 
     function hipblasCherkxStridedBatched_typed(handle, uplo, transA, n, k, alpha, AP, lda, &
@@ -74081,21 +73982,20 @@ contains
       integer(c_int), value :: n
       integer(c_int), value :: k
       complex(c_double_complex) :: alpha
-      complex(c_double_complex), target :: AP(*)
+      complex(c_double_complex), target :: AP(..)
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
-      complex(c_double_complex), target :: BP(*)
+      complex(c_double_complex), target :: BP(..)
       integer(c_int), value :: ldb
       integer(c_long), value :: strideB
       real(c_double) :: beta
-      complex(c_double_complex), target :: CP(*)
+      complex(c_double_complex), target :: CP(..)
       integer(c_int), value :: ldc
       integer(c_long), value :: strideC
       integer(c_int), value :: batchCount
       integer(c_int) :: ZherkxStridedBatched
       ZherkxStridedBatched = hipblasZherkxStridedBatched_raw(handle, uplo, transA, n, k, alpha, &
-        c_loc(AP(1)), lda, strideA, c_loc(BP(1)), ldb, strideB, beta, c_loc(CP(1)), ldc, strideC, &
-        batchCount)
+        c_loc(AP), lda, strideA, c_loc(BP), ldb, strideB, beta, c_loc(CP), ldc, strideC, batchCount)
     end function hipblasZherkxStridedBatched_native
 
     function hipblasZherkxStridedBatched_typed(handle, uplo, transA, n, k, alpha, AP, lda, &
@@ -74135,22 +74035,22 @@ contains
       integer(c_int), value :: transA
       integer(c_long), value :: n
       integer(c_long), value :: k
-      complex(c_float_complex), target :: alpha(*)
-      complex(c_float_complex), target :: AP(*)
+      complex(c_float_complex), target :: alpha(..)
+      complex(c_float_complex), target :: AP(..)
       integer(c_long), value :: lda
       integer(c_long), value :: strideA
-      complex(c_float_complex), target :: BP(*)
+      complex(c_float_complex), target :: BP(..)
       integer(c_long), value :: ldb
       integer(c_long), value :: strideB
-      real(c_float), target :: beta(*)
-      complex(c_float_complex), target :: CP(*)
+      real(c_float), target :: beta(..)
+      complex(c_float_complex), target :: CP(..)
       integer(c_long), value :: ldc
       integer(c_long), value :: strideC
       integer(c_long), value :: batchCount
       integer(c_int) :: CherkxStridedBatched_64
       CherkxStridedBatched_64 = hipblasCherkxStridedBatched_64_raw(handle, uplo, transA, n, k, &
-        c_loc(alpha(1)), c_loc(AP(1)), lda, strideA, c_loc(BP(1)), ldb, strideB, c_loc(beta(1)), &
-        c_loc(CP(1)), ldc, strideC, batchCount)
+        c_loc(alpha), c_loc(AP), lda, strideA, c_loc(BP), ldb, strideB, c_loc(beta), c_loc(CP), &
+        ldc, strideC, batchCount)
     end function hipblasCherkxStridedBatched_64_native
 
     function hipblasCherkxStridedBatched_64_typed(handle, uplo, transA, n, k, alpha, AP, lda, &
@@ -74191,22 +74091,22 @@ contains
       integer(c_int), value :: transA
       integer(c_long), value :: n
       integer(c_long), value :: k
-      complex(c_double_complex), target :: alpha(*)
-      complex(c_double_complex), target :: AP(*)
+      complex(c_double_complex), target :: alpha(..)
+      complex(c_double_complex), target :: AP(..)
       integer(c_long), value :: lda
       integer(c_long), value :: strideA
-      complex(c_double_complex), target :: BP(*)
+      complex(c_double_complex), target :: BP(..)
       integer(c_long), value :: ldb
       integer(c_long), value :: strideB
-      real(c_double), target :: beta(*)
-      complex(c_double_complex), target :: CP(*)
+      real(c_double), target :: beta(..)
+      complex(c_double_complex), target :: CP(..)
       integer(c_long), value :: ldc
       integer(c_long), value :: strideC
       integer(c_long), value :: batchCount
       integer(c_int) :: ZherkxStridedBatched_64
       ZherkxStridedBatched_64 = hipblasZherkxStridedBatched_64_raw(handle, uplo, transA, n, k, &
-        c_loc(alpha(1)), c_loc(AP(1)), lda, strideA, c_loc(BP(1)), ldb, strideB, c_loc(beta(1)), &
-        c_loc(CP(1)), ldc, strideC, batchCount)
+        c_loc(alpha), c_loc(AP), lda, strideA, c_loc(BP), ldb, strideB, c_loc(beta), c_loc(CP), &
+        ldc, strideC, batchCount)
     end function hipblasZherkxStridedBatched_64_native
 
     function hipblasZherkxStridedBatched_64_typed(handle, uplo, transA, n, k, alpha, AP, lda, &
@@ -74247,16 +74147,16 @@ contains
       integer(c_int), value :: n
       integer(c_int), value :: k
       complex(c_float_complex) :: alpha
-      complex(c_float_complex), target :: AP(*)
+      complex(c_float_complex), target :: AP(..)
       integer(c_int), value :: lda
-      complex(c_float_complex), target :: BP(*)
+      complex(c_float_complex), target :: BP(..)
       integer(c_int), value :: ldb
       real(c_float) :: beta
-      complex(c_float_complex), target :: CP(*)
+      complex(c_float_complex), target :: CP(..)
       integer(c_int), value :: ldc
       integer(c_int) :: Cher2k
-      Cher2k = hipblasCher2k_raw(handle, uplo, transA, n, k, alpha, c_loc(AP(1)), lda, c_loc(BP( &
-        1)), ldb, beta, c_loc(CP(1)), ldc)
+      Cher2k = hipblasCher2k_raw(handle, uplo, transA, n, k, alpha, c_loc(AP), lda, c_loc(BP), &
+        ldb, beta, c_loc(CP), ldc)
     end function hipblasCher2k_native
 
     function hipblasCher2k_typed(handle, uplo, transA, n, k, alpha, AP, lda, BP, ldb, beta, CP, &
@@ -74292,16 +74192,16 @@ contains
       integer(c_int), value :: n
       integer(c_int), value :: k
       complex(c_double_complex) :: alpha
-      complex(c_double_complex), target :: AP(*)
+      complex(c_double_complex), target :: AP(..)
       integer(c_int), value :: lda
-      complex(c_double_complex), target :: BP(*)
+      complex(c_double_complex), target :: BP(..)
       integer(c_int), value :: ldb
       real(c_double) :: beta
-      complex(c_double_complex), target :: CP(*)
+      complex(c_double_complex), target :: CP(..)
       integer(c_int), value :: ldc
       integer(c_int) :: Zher2k
-      Zher2k = hipblasZher2k_raw(handle, uplo, transA, n, k, alpha, c_loc(AP(1)), lda, c_loc(BP( &
-        1)), ldb, beta, c_loc(CP(1)), ldc)
+      Zher2k = hipblasZher2k_raw(handle, uplo, transA, n, k, alpha, c_loc(AP), lda, c_loc(BP), &
+        ldb, beta, c_loc(CP), ldc)
     end function hipblasZher2k_native
 
     function hipblasZher2k_typed(handle, uplo, transA, n, k, alpha, AP, lda, BP, ldb, beta, CP, &
@@ -74336,17 +74236,17 @@ contains
       integer(c_int), value :: transA
       integer(c_long), value :: n
       integer(c_long), value :: k
-      complex(c_float_complex), target :: alpha(*)
-      complex(c_float_complex), target :: AP(*)
+      complex(c_float_complex), target :: alpha(..)
+      complex(c_float_complex), target :: AP(..)
       integer(c_long), value :: lda
-      complex(c_float_complex), target :: BP(*)
+      complex(c_float_complex), target :: BP(..)
       integer(c_long), value :: ldb
-      real(c_float), target :: beta(*)
-      complex(c_float_complex), target :: CP(*)
+      real(c_float), target :: beta(..)
+      complex(c_float_complex), target :: CP(..)
       integer(c_long), value :: ldc
       integer(c_int) :: Cher2k_64
-      Cher2k_64 = hipblasCher2k_64_raw(handle, uplo, transA, n, k, c_loc(alpha(1)), c_loc(AP(1)), &
-        lda, c_loc(BP(1)), ldb, c_loc(beta(1)), c_loc(CP(1)), ldc)
+      Cher2k_64 = hipblasCher2k_64_raw(handle, uplo, transA, n, k, c_loc(alpha), c_loc(AP), lda, &
+        c_loc(BP), ldb, c_loc(beta), c_loc(CP), ldc)
     end function hipblasCher2k_64_native
 
     function hipblasCher2k_64_typed(handle, uplo, transA, n, k, alpha, AP, lda, BP, ldb, beta, CP, &
@@ -74381,17 +74281,17 @@ contains
       integer(c_int), value :: transA
       integer(c_long), value :: n
       integer(c_long), value :: k
-      complex(c_double_complex), target :: alpha(*)
-      complex(c_double_complex), target :: AP(*)
+      complex(c_double_complex), target :: alpha(..)
+      complex(c_double_complex), target :: AP(..)
       integer(c_long), value :: lda
-      complex(c_double_complex), target :: BP(*)
+      complex(c_double_complex), target :: BP(..)
       integer(c_long), value :: ldb
-      real(c_double), target :: beta(*)
-      complex(c_double_complex), target :: CP(*)
+      real(c_double), target :: beta(..)
+      complex(c_double_complex), target :: CP(..)
       integer(c_long), value :: ldc
       integer(c_int) :: Zher2k_64
-      Zher2k_64 = hipblasZher2k_64_raw(handle, uplo, transA, n, k, c_loc(alpha(1)), c_loc(AP(1)), &
-        lda, c_loc(BP(1)), ldb, c_loc(beta(1)), c_loc(CP(1)), ldc)
+      Zher2k_64 = hipblasZher2k_64_raw(handle, uplo, transA, n, k, c_loc(alpha), c_loc(AP), lda, &
+        c_loc(BP), ldb, c_loc(beta), c_loc(CP), ldc)
     end function hipblasZher2k_64_native
 
     function hipblasZher2k_64_typed(handle, uplo, transA, n, k, alpha, AP, lda, BP, ldb, beta, CP, &
@@ -74474,18 +74374,18 @@ contains
       integer(c_int), value :: transA
       integer(c_long), value :: n
       integer(c_long), value :: k
-      complex(c_float_complex), target :: alpha(*)
+      complex(c_float_complex), target :: alpha(..)
       type(c_ptr), value :: AP
       integer(c_long), value :: lda
       type(c_ptr), value :: BP
       integer(c_long), value :: ldb
-      real(c_float), target :: beta(*)
+      real(c_float), target :: beta(..)
       type(c_ptr), value :: CP
       integer(c_long), value :: ldc
       integer(c_long), value :: batchCount
       integer(c_int) :: Cher2kBatched_64
-      Cher2kBatched_64 = hipblasCher2kBatched_64_raw(handle, uplo, transA, n, k, c_loc(alpha(1)), &
-        AP, lda, BP, ldb, c_loc(beta(1)), CP, ldc, batchCount)
+      Cher2kBatched_64 = hipblasCher2kBatched_64_raw(handle, uplo, transA, n, k, c_loc(alpha), AP, &
+        lda, BP, ldb, c_loc(beta), CP, ldc, batchCount)
     end function hipblasCher2kBatched_64_native
 
     function hipblasCher2kBatched_64_typed(handle, uplo, transA, n, k, alpha, AP, lda, BP, ldb, &
@@ -74521,18 +74421,18 @@ contains
       integer(c_int), value :: transA
       integer(c_long), value :: n
       integer(c_long), value :: k
-      complex(c_double_complex), target :: alpha(*)
+      complex(c_double_complex), target :: alpha(..)
       type(c_ptr), value :: AP
       integer(c_long), value :: lda
       type(c_ptr), value :: BP
       integer(c_long), value :: ldb
-      real(c_double), target :: beta(*)
+      real(c_double), target :: beta(..)
       type(c_ptr), value :: CP
       integer(c_long), value :: ldc
       integer(c_long), value :: batchCount
       integer(c_int) :: Zher2kBatched_64
-      Zher2kBatched_64 = hipblasZher2kBatched_64_raw(handle, uplo, transA, n, k, c_loc(alpha(1)), &
-        AP, lda, BP, ldb, c_loc(beta(1)), CP, ldc, batchCount)
+      Zher2kBatched_64 = hipblasZher2kBatched_64_raw(handle, uplo, transA, n, k, c_loc(alpha), AP, &
+        lda, BP, ldb, c_loc(beta), CP, ldc, batchCount)
     end function hipblasZher2kBatched_64_native
 
     function hipblasZher2kBatched_64_typed(handle, uplo, transA, n, k, alpha, AP, lda, BP, ldb, &
@@ -74569,21 +74469,20 @@ contains
       integer(c_int), value :: n
       integer(c_int), value :: k
       complex(c_float_complex) :: alpha
-      complex(c_float_complex), target :: AP(*)
+      complex(c_float_complex), target :: AP(..)
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
-      complex(c_float_complex), target :: BP(*)
+      complex(c_float_complex), target :: BP(..)
       integer(c_int), value :: ldb
       integer(c_long), value :: strideB
       real(c_float) :: beta
-      complex(c_float_complex), target :: CP(*)
+      complex(c_float_complex), target :: CP(..)
       integer(c_int), value :: ldc
       integer(c_long), value :: strideC
       integer(c_int), value :: batchCount
       integer(c_int) :: Cher2kStridedBatched
       Cher2kStridedBatched = hipblasCher2kStridedBatched_raw(handle, uplo, transA, n, k, alpha, &
-        c_loc(AP(1)), lda, strideA, c_loc(BP(1)), ldb, strideB, beta, c_loc(CP(1)), ldc, strideC, &
-        batchCount)
+        c_loc(AP), lda, strideA, c_loc(BP), ldb, strideB, beta, c_loc(CP), ldc, strideC, batchCount)
     end function hipblasCher2kStridedBatched_native
 
     function hipblasCher2kStridedBatched_typed(handle, uplo, transA, n, k, alpha, AP, lda, &
@@ -74623,21 +74522,20 @@ contains
       integer(c_int), value :: n
       integer(c_int), value :: k
       complex(c_double_complex) :: alpha
-      complex(c_double_complex), target :: AP(*)
+      complex(c_double_complex), target :: AP(..)
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
-      complex(c_double_complex), target :: BP(*)
+      complex(c_double_complex), target :: BP(..)
       integer(c_int), value :: ldb
       integer(c_long), value :: strideB
       real(c_double) :: beta
-      complex(c_double_complex), target :: CP(*)
+      complex(c_double_complex), target :: CP(..)
       integer(c_int), value :: ldc
       integer(c_long), value :: strideC
       integer(c_int), value :: batchCount
       integer(c_int) :: Zher2kStridedBatched
       Zher2kStridedBatched = hipblasZher2kStridedBatched_raw(handle, uplo, transA, n, k, alpha, &
-        c_loc(AP(1)), lda, strideA, c_loc(BP(1)), ldb, strideB, beta, c_loc(CP(1)), ldc, strideC, &
-        batchCount)
+        c_loc(AP), lda, strideA, c_loc(BP), ldb, strideB, beta, c_loc(CP), ldc, strideC, batchCount)
     end function hipblasZher2kStridedBatched_native
 
     function hipblasZher2kStridedBatched_typed(handle, uplo, transA, n, k, alpha, AP, lda, &
@@ -74677,22 +74575,22 @@ contains
       integer(c_int), value :: transA
       integer(c_long), value :: n
       integer(c_long), value :: k
-      complex(c_float_complex), target :: alpha(*)
-      complex(c_float_complex), target :: AP(*)
+      complex(c_float_complex), target :: alpha(..)
+      complex(c_float_complex), target :: AP(..)
       integer(c_long), value :: lda
       integer(c_long), value :: strideA
-      complex(c_float_complex), target :: BP(*)
+      complex(c_float_complex), target :: BP(..)
       integer(c_long), value :: ldb
       integer(c_long), value :: strideB
-      real(c_float), target :: beta(*)
-      complex(c_float_complex), target :: CP(*)
+      real(c_float), target :: beta(..)
+      complex(c_float_complex), target :: CP(..)
       integer(c_long), value :: ldc
       integer(c_long), value :: strideC
       integer(c_long), value :: batchCount
       integer(c_int) :: Cher2kStridedBatched_64
       Cher2kStridedBatched_64 = hipblasCher2kStridedBatched_64_raw(handle, uplo, transA, n, k, &
-        c_loc(alpha(1)), c_loc(AP(1)), lda, strideA, c_loc(BP(1)), ldb, strideB, c_loc(beta(1)), &
-        c_loc(CP(1)), ldc, strideC, batchCount)
+        c_loc(alpha), c_loc(AP), lda, strideA, c_loc(BP), ldb, strideB, c_loc(beta), c_loc(CP), &
+        ldc, strideC, batchCount)
     end function hipblasCher2kStridedBatched_64_native
 
     function hipblasCher2kStridedBatched_64_typed(handle, uplo, transA, n, k, alpha, AP, lda, &
@@ -74733,22 +74631,22 @@ contains
       integer(c_int), value :: transA
       integer(c_long), value :: n
       integer(c_long), value :: k
-      complex(c_double_complex), target :: alpha(*)
-      complex(c_double_complex), target :: AP(*)
+      complex(c_double_complex), target :: alpha(..)
+      complex(c_double_complex), target :: AP(..)
       integer(c_long), value :: lda
       integer(c_long), value :: strideA
-      complex(c_double_complex), target :: BP(*)
+      complex(c_double_complex), target :: BP(..)
       integer(c_long), value :: ldb
       integer(c_long), value :: strideB
-      real(c_double), target :: beta(*)
-      complex(c_double_complex), target :: CP(*)
+      real(c_double), target :: beta(..)
+      complex(c_double_complex), target :: CP(..)
       integer(c_long), value :: ldc
       integer(c_long), value :: strideC
       integer(c_long), value :: batchCount
       integer(c_int) :: Zher2kStridedBatched_64
       Zher2kStridedBatched_64 = hipblasZher2kStridedBatched_64_raw(handle, uplo, transA, n, k, &
-        c_loc(alpha(1)), c_loc(AP(1)), lda, strideA, c_loc(BP(1)), ldb, strideB, c_loc(beta(1)), &
-        c_loc(CP(1)), ldc, strideC, batchCount)
+        c_loc(alpha), c_loc(AP), lda, strideA, c_loc(BP), ldb, strideB, c_loc(beta), c_loc(CP), &
+        ldc, strideC, batchCount)
     end function hipblasZher2kStridedBatched_64_native
 
     function hipblasZher2kStridedBatched_64_typed(handle, uplo, transA, n, k, alpha, AP, lda, &
@@ -74789,16 +74687,16 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       real(c_float) :: alpha
-      real(c_float), target :: AP(*)
+      real(c_float), target :: AP(..)
       integer(c_int), value :: lda
-      real(c_float), target :: BP(*)
+      real(c_float), target :: BP(..)
       integer(c_int), value :: ldb
       real(c_float) :: beta
-      real(c_float), target :: CP(*)
+      real(c_float), target :: CP(..)
       integer(c_int), value :: ldc
       integer(c_int) :: Ssymm
-      Ssymm = hipblasSsymm_raw(handle, side, uplo, m, n, alpha, c_loc(AP(1)), lda, c_loc(BP(1)), &
-        ldb, beta, c_loc(CP(1)), ldc)
+      Ssymm = hipblasSsymm_raw(handle, side, uplo, m, n, alpha, c_loc(AP), lda, c_loc(BP), ldb, &
+        beta, c_loc(CP), ldc)
     end function hipblasSsymm_native
 
     function hipblasSsymm_typed(handle, side, uplo, m, n, alpha, AP, lda, BP, ldb, beta, CP, &
@@ -74833,16 +74731,16 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       real(c_double) :: alpha
-      real(c_double), target :: AP(*)
+      real(c_double), target :: AP(..)
       integer(c_int), value :: lda
-      real(c_double), target :: BP(*)
+      real(c_double), target :: BP(..)
       integer(c_int), value :: ldb
       real(c_double) :: beta
-      real(c_double), target :: CP(*)
+      real(c_double), target :: CP(..)
       integer(c_int), value :: ldc
       integer(c_int) :: Dsymm
-      Dsymm = hipblasDsymm_raw(handle, side, uplo, m, n, alpha, c_loc(AP(1)), lda, c_loc(BP(1)), &
-        ldb, beta, c_loc(CP(1)), ldc)
+      Dsymm = hipblasDsymm_raw(handle, side, uplo, m, n, alpha, c_loc(AP), lda, c_loc(BP), ldb, &
+        beta, c_loc(CP), ldc)
     end function hipblasDsymm_native
 
     function hipblasDsymm_typed(handle, side, uplo, m, n, alpha, AP, lda, BP, ldb, beta, CP, &
@@ -74877,16 +74775,16 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       complex(c_float_complex) :: alpha
-      complex(c_float_complex), target :: AP(*)
+      complex(c_float_complex), target :: AP(..)
       integer(c_int), value :: lda
-      complex(c_float_complex), target :: BP(*)
+      complex(c_float_complex), target :: BP(..)
       integer(c_int), value :: ldb
       complex(c_float_complex) :: beta
-      complex(c_float_complex), target :: CP(*)
+      complex(c_float_complex), target :: CP(..)
       integer(c_int), value :: ldc
       integer(c_int) :: Csymm
-      Csymm = hipblasCsymm_raw(handle, side, uplo, m, n, alpha, c_loc(AP(1)), lda, c_loc(BP(1)), &
-        ldb, beta, c_loc(CP(1)), ldc)
+      Csymm = hipblasCsymm_raw(handle, side, uplo, m, n, alpha, c_loc(AP), lda, c_loc(BP), ldb, &
+        beta, c_loc(CP), ldc)
     end function hipblasCsymm_native
 
     function hipblasCsymm_typed(handle, side, uplo, m, n, alpha, AP, lda, BP, ldb, beta, CP, &
@@ -74921,16 +74819,16 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       complex(c_double_complex) :: alpha
-      complex(c_double_complex), target :: AP(*)
+      complex(c_double_complex), target :: AP(..)
       integer(c_int), value :: lda
-      complex(c_double_complex), target :: BP(*)
+      complex(c_double_complex), target :: BP(..)
       integer(c_int), value :: ldb
       complex(c_double_complex) :: beta
-      complex(c_double_complex), target :: CP(*)
+      complex(c_double_complex), target :: CP(..)
       integer(c_int), value :: ldc
       integer(c_int) :: Zsymm
-      Zsymm = hipblasZsymm_raw(handle, side, uplo, m, n, alpha, c_loc(AP(1)), lda, c_loc(BP(1)), &
-        ldb, beta, c_loc(CP(1)), ldc)
+      Zsymm = hipblasZsymm_raw(handle, side, uplo, m, n, alpha, c_loc(AP), lda, c_loc(BP), ldb, &
+        beta, c_loc(CP), ldc)
     end function hipblasZsymm_native
 
     function hipblasZsymm_typed(handle, side, uplo, m, n, alpha, AP, lda, BP, ldb, beta, CP, &
@@ -74964,17 +74862,17 @@ contains
       integer(c_int), value :: uplo
       integer(c_long), value :: m
       integer(c_long), value :: n
-      real(c_float), target :: alpha(*)
-      real(c_float), target :: AP(*)
+      real(c_float), target :: alpha(..)
+      real(c_float), target :: AP(..)
       integer(c_long), value :: lda
-      real(c_float), target :: BP(*)
+      real(c_float), target :: BP(..)
       integer(c_long), value :: ldb
-      real(c_float), target :: beta(*)
-      real(c_float), target :: CP(*)
+      real(c_float), target :: beta(..)
+      real(c_float), target :: CP(..)
       integer(c_long), value :: ldc
       integer(c_int) :: Ssymm_64
-      Ssymm_64 = hipblasSsymm_64_raw(handle, side, uplo, m, n, c_loc(alpha(1)), c_loc(AP(1)), lda, &
-        c_loc(BP(1)), ldb, c_loc(beta(1)), c_loc(CP(1)), ldc)
+      Ssymm_64 = hipblasSsymm_64_raw(handle, side, uplo, m, n, c_loc(alpha), c_loc(AP), lda, &
+        c_loc(BP), ldb, c_loc(beta), c_loc(CP), ldc)
     end function hipblasSsymm_64_native
 
     function hipblasSsymm_64_typed(handle, side, uplo, m, n, alpha, AP, lda, BP, ldb, beta, CP, &
@@ -75009,17 +74907,17 @@ contains
       integer(c_int), value :: uplo
       integer(c_long), value :: m
       integer(c_long), value :: n
-      real(c_double), target :: alpha(*)
-      real(c_double), target :: AP(*)
+      real(c_double), target :: alpha(..)
+      real(c_double), target :: AP(..)
       integer(c_long), value :: lda
-      real(c_double), target :: BP(*)
+      real(c_double), target :: BP(..)
       integer(c_long), value :: ldb
-      real(c_double), target :: beta(*)
-      real(c_double), target :: CP(*)
+      real(c_double), target :: beta(..)
+      real(c_double), target :: CP(..)
       integer(c_long), value :: ldc
       integer(c_int) :: Dsymm_64
-      Dsymm_64 = hipblasDsymm_64_raw(handle, side, uplo, m, n, c_loc(alpha(1)), c_loc(AP(1)), lda, &
-        c_loc(BP(1)), ldb, c_loc(beta(1)), c_loc(CP(1)), ldc)
+      Dsymm_64 = hipblasDsymm_64_raw(handle, side, uplo, m, n, c_loc(alpha), c_loc(AP), lda, &
+        c_loc(BP), ldb, c_loc(beta), c_loc(CP), ldc)
     end function hipblasDsymm_64_native
 
     function hipblasDsymm_64_typed(handle, side, uplo, m, n, alpha, AP, lda, BP, ldb, beta, CP, &
@@ -75054,17 +74952,17 @@ contains
       integer(c_int), value :: uplo
       integer(c_long), value :: m
       integer(c_long), value :: n
-      complex(c_float_complex), target :: alpha(*)
-      complex(c_float_complex), target :: AP(*)
+      complex(c_float_complex), target :: alpha(..)
+      complex(c_float_complex), target :: AP(..)
       integer(c_long), value :: lda
-      complex(c_float_complex), target :: BP(*)
+      complex(c_float_complex), target :: BP(..)
       integer(c_long), value :: ldb
-      complex(c_float_complex), target :: beta(*)
-      complex(c_float_complex), target :: CP(*)
+      complex(c_float_complex), target :: beta(..)
+      complex(c_float_complex), target :: CP(..)
       integer(c_long), value :: ldc
       integer(c_int) :: Csymm_64
-      Csymm_64 = hipblasCsymm_64_raw(handle, side, uplo, m, n, c_loc(alpha(1)), c_loc(AP(1)), lda, &
-        c_loc(BP(1)), ldb, c_loc(beta(1)), c_loc(CP(1)), ldc)
+      Csymm_64 = hipblasCsymm_64_raw(handle, side, uplo, m, n, c_loc(alpha), c_loc(AP), lda, &
+        c_loc(BP), ldb, c_loc(beta), c_loc(CP), ldc)
     end function hipblasCsymm_64_native
 
     function hipblasCsymm_64_typed(handle, side, uplo, m, n, alpha, AP, lda, BP, ldb, beta, CP, &
@@ -75099,17 +74997,17 @@ contains
       integer(c_int), value :: uplo
       integer(c_long), value :: m
       integer(c_long), value :: n
-      complex(c_double_complex), target :: alpha(*)
-      complex(c_double_complex), target :: AP(*)
+      complex(c_double_complex), target :: alpha(..)
+      complex(c_double_complex), target :: AP(..)
       integer(c_long), value :: lda
-      complex(c_double_complex), target :: BP(*)
+      complex(c_double_complex), target :: BP(..)
       integer(c_long), value :: ldb
-      complex(c_double_complex), target :: beta(*)
-      complex(c_double_complex), target :: CP(*)
+      complex(c_double_complex), target :: beta(..)
+      complex(c_double_complex), target :: CP(..)
       integer(c_long), value :: ldc
       integer(c_int) :: Zsymm_64
-      Zsymm_64 = hipblasZsymm_64_raw(handle, side, uplo, m, n, c_loc(alpha(1)), c_loc(AP(1)), lda, &
-        c_loc(BP(1)), ldb, c_loc(beta(1)), c_loc(CP(1)), ldc)
+      Zsymm_64 = hipblasZsymm_64_raw(handle, side, uplo, m, n, c_loc(alpha), c_loc(AP), lda, &
+        c_loc(BP), ldb, c_loc(beta), c_loc(CP), ldc)
     end function hipblasZsymm_64_native
 
     function hipblasZsymm_64_typed(handle, side, uplo, m, n, alpha, AP, lda, BP, ldb, beta, CP, &
@@ -75240,18 +75138,18 @@ contains
       integer(c_int), value :: uplo
       integer(c_long), value :: m
       integer(c_long), value :: n
-      real(c_float), target :: alpha(*)
+      real(c_float), target :: alpha(..)
       type(c_ptr), value :: AP
       integer(c_long), value :: lda
       type(c_ptr), value :: BP
       integer(c_long), value :: ldb
-      real(c_float), target :: beta(*)
+      real(c_float), target :: beta(..)
       type(c_ptr), value :: CP
       integer(c_long), value :: ldc
       integer(c_long), value :: batchCount
       integer(c_int) :: SsymmBatched_64
-      SsymmBatched_64 = hipblasSsymmBatched_64_raw(handle, side, uplo, m, n, c_loc(alpha(1)), AP, &
-        lda, BP, ldb, c_loc(beta(1)), CP, ldc, batchCount)
+      SsymmBatched_64 = hipblasSsymmBatched_64_raw(handle, side, uplo, m, n, c_loc(alpha), AP, &
+        lda, BP, ldb, c_loc(beta), CP, ldc, batchCount)
     end function hipblasSsymmBatched_64_native
 
     function hipblasSsymmBatched_64_typed(handle, side, uplo, m, n, alpha, AP, lda, BP, ldb, beta, &
@@ -75287,18 +75185,18 @@ contains
       integer(c_int), value :: uplo
       integer(c_long), value :: m
       integer(c_long), value :: n
-      real(c_double), target :: alpha(*)
+      real(c_double), target :: alpha(..)
       type(c_ptr), value :: AP
       integer(c_long), value :: lda
       type(c_ptr), value :: BP
       integer(c_long), value :: ldb
-      real(c_double), target :: beta(*)
+      real(c_double), target :: beta(..)
       type(c_ptr), value :: CP
       integer(c_long), value :: ldc
       integer(c_long), value :: batchCount
       integer(c_int) :: DsymmBatched_64
-      DsymmBatched_64 = hipblasDsymmBatched_64_raw(handle, side, uplo, m, n, c_loc(alpha(1)), AP, &
-        lda, BP, ldb, c_loc(beta(1)), CP, ldc, batchCount)
+      DsymmBatched_64 = hipblasDsymmBatched_64_raw(handle, side, uplo, m, n, c_loc(alpha), AP, &
+        lda, BP, ldb, c_loc(beta), CP, ldc, batchCount)
     end function hipblasDsymmBatched_64_native
 
     function hipblasDsymmBatched_64_typed(handle, side, uplo, m, n, alpha, AP, lda, BP, ldb, beta, &
@@ -75334,18 +75232,18 @@ contains
       integer(c_int), value :: uplo
       integer(c_long), value :: m
       integer(c_long), value :: n
-      complex(c_float_complex), target :: alpha(*)
+      complex(c_float_complex), target :: alpha(..)
       type(c_ptr), value :: AP
       integer(c_long), value :: lda
       type(c_ptr), value :: BP
       integer(c_long), value :: ldb
-      complex(c_float_complex), target :: beta(*)
+      complex(c_float_complex), target :: beta(..)
       type(c_ptr), value :: CP
       integer(c_long), value :: ldc
       integer(c_long), value :: batchCount
       integer(c_int) :: CsymmBatched_64
-      CsymmBatched_64 = hipblasCsymmBatched_64_raw(handle, side, uplo, m, n, c_loc(alpha(1)), AP, &
-        lda, BP, ldb, c_loc(beta(1)), CP, ldc, batchCount)
+      CsymmBatched_64 = hipblasCsymmBatched_64_raw(handle, side, uplo, m, n, c_loc(alpha), AP, &
+        lda, BP, ldb, c_loc(beta), CP, ldc, batchCount)
     end function hipblasCsymmBatched_64_native
 
     function hipblasCsymmBatched_64_typed(handle, side, uplo, m, n, alpha, AP, lda, BP, ldb, beta, &
@@ -75381,18 +75279,18 @@ contains
       integer(c_int), value :: uplo
       integer(c_long), value :: m
       integer(c_long), value :: n
-      complex(c_double_complex), target :: alpha(*)
+      complex(c_double_complex), target :: alpha(..)
       type(c_ptr), value :: AP
       integer(c_long), value :: lda
       type(c_ptr), value :: BP
       integer(c_long), value :: ldb
-      complex(c_double_complex), target :: beta(*)
+      complex(c_double_complex), target :: beta(..)
       type(c_ptr), value :: CP
       integer(c_long), value :: ldc
       integer(c_long), value :: batchCount
       integer(c_int) :: ZsymmBatched_64
-      ZsymmBatched_64 = hipblasZsymmBatched_64_raw(handle, side, uplo, m, n, c_loc(alpha(1)), AP, &
-        lda, BP, ldb, c_loc(beta(1)), CP, ldc, batchCount)
+      ZsymmBatched_64 = hipblasZsymmBatched_64_raw(handle, side, uplo, m, n, c_loc(alpha), AP, &
+        lda, BP, ldb, c_loc(beta), CP, ldc, batchCount)
     end function hipblasZsymmBatched_64_native
 
     function hipblasZsymmBatched_64_typed(handle, side, uplo, m, n, alpha, AP, lda, BP, ldb, beta, &
@@ -75429,21 +75327,20 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       real(c_float) :: alpha
-      real(c_float), target :: AP(*)
+      real(c_float), target :: AP(..)
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
-      real(c_float), target :: BP(*)
+      real(c_float), target :: BP(..)
       integer(c_int), value :: ldb
       integer(c_long), value :: strideB
       real(c_float) :: beta
-      real(c_float), target :: CP(*)
+      real(c_float), target :: CP(..)
       integer(c_int), value :: ldc
       integer(c_long), value :: strideC
       integer(c_int), value :: batchCount
       integer(c_int) :: SsymmStridedBatched
       SsymmStridedBatched = hipblasSsymmStridedBatched_raw(handle, side, uplo, m, n, alpha, c_loc( &
-        AP(1)), lda, strideA, c_loc(BP(1)), ldb, strideB, beta, c_loc(CP(1)), ldc, strideC, &
-        batchCount)
+        AP), lda, strideA, c_loc(BP), ldb, strideB, beta, c_loc(CP), ldc, strideC, batchCount)
     end function hipblasSsymmStridedBatched_native
 
     function hipblasSsymmStridedBatched_typed(handle, side, uplo, m, n, alpha, AP, lda, strideA, &
@@ -75483,21 +75380,20 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       real(c_double) :: alpha
-      real(c_double), target :: AP(*)
+      real(c_double), target :: AP(..)
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
-      real(c_double), target :: BP(*)
+      real(c_double), target :: BP(..)
       integer(c_int), value :: ldb
       integer(c_long), value :: strideB
       real(c_double) :: beta
-      real(c_double), target :: CP(*)
+      real(c_double), target :: CP(..)
       integer(c_int), value :: ldc
       integer(c_long), value :: strideC
       integer(c_int), value :: batchCount
       integer(c_int) :: DsymmStridedBatched
       DsymmStridedBatched = hipblasDsymmStridedBatched_raw(handle, side, uplo, m, n, alpha, c_loc( &
-        AP(1)), lda, strideA, c_loc(BP(1)), ldb, strideB, beta, c_loc(CP(1)), ldc, strideC, &
-        batchCount)
+        AP), lda, strideA, c_loc(BP), ldb, strideB, beta, c_loc(CP), ldc, strideC, batchCount)
     end function hipblasDsymmStridedBatched_native
 
     function hipblasDsymmStridedBatched_typed(handle, side, uplo, m, n, alpha, AP, lda, strideA, &
@@ -75537,21 +75433,20 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       complex(c_float_complex) :: alpha
-      complex(c_float_complex), target :: AP(*)
+      complex(c_float_complex), target :: AP(..)
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
-      complex(c_float_complex), target :: BP(*)
+      complex(c_float_complex), target :: BP(..)
       integer(c_int), value :: ldb
       integer(c_long), value :: strideB
       complex(c_float_complex) :: beta
-      complex(c_float_complex), target :: CP(*)
+      complex(c_float_complex), target :: CP(..)
       integer(c_int), value :: ldc
       integer(c_long), value :: strideC
       integer(c_int), value :: batchCount
       integer(c_int) :: CsymmStridedBatched
       CsymmStridedBatched = hipblasCsymmStridedBatched_raw(handle, side, uplo, m, n, alpha, c_loc( &
-        AP(1)), lda, strideA, c_loc(BP(1)), ldb, strideB, beta, c_loc(CP(1)), ldc, strideC, &
-        batchCount)
+        AP), lda, strideA, c_loc(BP), ldb, strideB, beta, c_loc(CP), ldc, strideC, batchCount)
     end function hipblasCsymmStridedBatched_native
 
     function hipblasCsymmStridedBatched_typed(handle, side, uplo, m, n, alpha, AP, lda, strideA, &
@@ -75591,21 +75486,20 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       complex(c_double_complex) :: alpha
-      complex(c_double_complex), target :: AP(*)
+      complex(c_double_complex), target :: AP(..)
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
-      complex(c_double_complex), target :: BP(*)
+      complex(c_double_complex), target :: BP(..)
       integer(c_int), value :: ldb
       integer(c_long), value :: strideB
       complex(c_double_complex) :: beta
-      complex(c_double_complex), target :: CP(*)
+      complex(c_double_complex), target :: CP(..)
       integer(c_int), value :: ldc
       integer(c_long), value :: strideC
       integer(c_int), value :: batchCount
       integer(c_int) :: ZsymmStridedBatched
       ZsymmStridedBatched = hipblasZsymmStridedBatched_raw(handle, side, uplo, m, n, alpha, c_loc( &
-        AP(1)), lda, strideA, c_loc(BP(1)), ldb, strideB, beta, c_loc(CP(1)), ldc, strideC, &
-        batchCount)
+        AP), lda, strideA, c_loc(BP), ldb, strideB, beta, c_loc(CP), ldc, strideC, batchCount)
     end function hipblasZsymmStridedBatched_native
 
     function hipblasZsymmStridedBatched_typed(handle, side, uplo, m, n, alpha, AP, lda, strideA, &
@@ -75645,22 +75539,22 @@ contains
       integer(c_int), value :: uplo
       integer(c_long), value :: m
       integer(c_long), value :: n
-      real(c_float), target :: alpha(*)
-      real(c_float), target :: AP(*)
+      real(c_float), target :: alpha(..)
+      real(c_float), target :: AP(..)
       integer(c_long), value :: lda
       integer(c_long), value :: strideA
-      real(c_float), target :: BP(*)
+      real(c_float), target :: BP(..)
       integer(c_long), value :: ldb
       integer(c_long), value :: strideB
-      real(c_float), target :: beta(*)
-      real(c_float), target :: CP(*)
+      real(c_float), target :: beta(..)
+      real(c_float), target :: CP(..)
       integer(c_long), value :: ldc
       integer(c_long), value :: strideC
       integer(c_long), value :: batchCount
       integer(c_int) :: SsymmStridedBatched_64
       SsymmStridedBatched_64 = hipblasSsymmStridedBatched_64_raw(handle, side, uplo, m, n, c_loc( &
-        alpha(1)), c_loc(AP(1)), lda, strideA, c_loc(BP(1)), ldb, strideB, c_loc(beta(1)), c_loc( &
-        CP(1)), ldc, strideC, batchCount)
+        alpha), c_loc(AP), lda, strideA, c_loc(BP), ldb, strideB, c_loc(beta), c_loc(CP), ldc, &
+        strideC, batchCount)
     end function hipblasSsymmStridedBatched_64_native
 
     function hipblasSsymmStridedBatched_64_typed(handle, side, uplo, m, n, alpha, AP, lda, &
@@ -75701,22 +75595,22 @@ contains
       integer(c_int), value :: uplo
       integer(c_long), value :: m
       integer(c_long), value :: n
-      real(c_double), target :: alpha(*)
-      real(c_double), target :: AP(*)
+      real(c_double), target :: alpha(..)
+      real(c_double), target :: AP(..)
       integer(c_long), value :: lda
       integer(c_long), value :: strideA
-      real(c_double), target :: BP(*)
+      real(c_double), target :: BP(..)
       integer(c_long), value :: ldb
       integer(c_long), value :: strideB
-      real(c_double), target :: beta(*)
-      real(c_double), target :: CP(*)
+      real(c_double), target :: beta(..)
+      real(c_double), target :: CP(..)
       integer(c_long), value :: ldc
       integer(c_long), value :: strideC
       integer(c_long), value :: batchCount
       integer(c_int) :: DsymmStridedBatched_64
       DsymmStridedBatched_64 = hipblasDsymmStridedBatched_64_raw(handle, side, uplo, m, n, c_loc( &
-        alpha(1)), c_loc(AP(1)), lda, strideA, c_loc(BP(1)), ldb, strideB, c_loc(beta(1)), c_loc( &
-        CP(1)), ldc, strideC, batchCount)
+        alpha), c_loc(AP), lda, strideA, c_loc(BP), ldb, strideB, c_loc(beta), c_loc(CP), ldc, &
+        strideC, batchCount)
     end function hipblasDsymmStridedBatched_64_native
 
     function hipblasDsymmStridedBatched_64_typed(handle, side, uplo, m, n, alpha, AP, lda, &
@@ -75757,22 +75651,22 @@ contains
       integer(c_int), value :: uplo
       integer(c_long), value :: m
       integer(c_long), value :: n
-      complex(c_float_complex), target :: alpha(*)
-      complex(c_float_complex), target :: AP(*)
+      complex(c_float_complex), target :: alpha(..)
+      complex(c_float_complex), target :: AP(..)
       integer(c_long), value :: lda
       integer(c_long), value :: strideA
-      complex(c_float_complex), target :: BP(*)
+      complex(c_float_complex), target :: BP(..)
       integer(c_long), value :: ldb
       integer(c_long), value :: strideB
-      complex(c_float_complex), target :: beta(*)
-      complex(c_float_complex), target :: CP(*)
+      complex(c_float_complex), target :: beta(..)
+      complex(c_float_complex), target :: CP(..)
       integer(c_long), value :: ldc
       integer(c_long), value :: strideC
       integer(c_long), value :: batchCount
       integer(c_int) :: CsymmStridedBatched_64
       CsymmStridedBatched_64 = hipblasCsymmStridedBatched_64_raw(handle, side, uplo, m, n, c_loc( &
-        alpha(1)), c_loc(AP(1)), lda, strideA, c_loc(BP(1)), ldb, strideB, c_loc(beta(1)), c_loc( &
-        CP(1)), ldc, strideC, batchCount)
+        alpha), c_loc(AP), lda, strideA, c_loc(BP), ldb, strideB, c_loc(beta), c_loc(CP), ldc, &
+        strideC, batchCount)
     end function hipblasCsymmStridedBatched_64_native
 
     function hipblasCsymmStridedBatched_64_typed(handle, side, uplo, m, n, alpha, AP, lda, &
@@ -75813,22 +75707,22 @@ contains
       integer(c_int), value :: uplo
       integer(c_long), value :: m
       integer(c_long), value :: n
-      complex(c_double_complex), target :: alpha(*)
-      complex(c_double_complex), target :: AP(*)
+      complex(c_double_complex), target :: alpha(..)
+      complex(c_double_complex), target :: AP(..)
       integer(c_long), value :: lda
       integer(c_long), value :: strideA
-      complex(c_double_complex), target :: BP(*)
+      complex(c_double_complex), target :: BP(..)
       integer(c_long), value :: ldb
       integer(c_long), value :: strideB
-      complex(c_double_complex), target :: beta(*)
-      complex(c_double_complex), target :: CP(*)
+      complex(c_double_complex), target :: beta(..)
+      complex(c_double_complex), target :: CP(..)
       integer(c_long), value :: ldc
       integer(c_long), value :: strideC
       integer(c_long), value :: batchCount
       integer(c_int) :: ZsymmStridedBatched_64
       ZsymmStridedBatched_64 = hipblasZsymmStridedBatched_64_raw(handle, side, uplo, m, n, c_loc( &
-        alpha(1)), c_loc(AP(1)), lda, strideA, c_loc(BP(1)), ldb, strideB, c_loc(beta(1)), c_loc( &
-        CP(1)), ldc, strideC, batchCount)
+        alpha), c_loc(AP), lda, strideA, c_loc(BP), ldb, strideB, c_loc(beta), c_loc(CP), ldc, &
+        strideC, batchCount)
     end function hipblasZsymmStridedBatched_64_native
 
     function hipblasZsymmStridedBatched_64_typed(handle, side, uplo, m, n, alpha, AP, lda, &
@@ -75869,14 +75763,14 @@ contains
       integer(c_int), value :: n
       integer(c_int), value :: k
       real(c_float) :: alpha
-      real(c_float), target :: AP(*)
+      real(c_float), target :: AP(..)
       integer(c_int), value :: lda
       real(c_float) :: beta
-      real(c_float), target :: CP(*)
+      real(c_float), target :: CP(..)
       integer(c_int), value :: ldc
       integer(c_int) :: Ssyrk
-      Ssyrk = hipblasSsyrk_raw(handle, uplo, transA, n, k, alpha, c_loc(AP(1)), lda, beta, c_loc( &
-        CP(1)), ldc)
+      Ssyrk = hipblasSsyrk_raw(handle, uplo, transA, n, k, alpha, c_loc(AP), lda, beta, c_loc(CP), &
+        ldc)
     end function hipblasSsyrk_native
 
     function hipblasSsyrk_typed(handle, uplo, transA, n, k, alpha, AP, lda, beta, CP, ldc) result( &
@@ -75909,14 +75803,14 @@ contains
       integer(c_int), value :: n
       integer(c_int), value :: k
       real(c_double) :: alpha
-      real(c_double), target :: AP(*)
+      real(c_double), target :: AP(..)
       integer(c_int), value :: lda
       real(c_double) :: beta
-      real(c_double), target :: CP(*)
+      real(c_double), target :: CP(..)
       integer(c_int), value :: ldc
       integer(c_int) :: Dsyrk
-      Dsyrk = hipblasDsyrk_raw(handle, uplo, transA, n, k, alpha, c_loc(AP(1)), lda, beta, c_loc( &
-        CP(1)), ldc)
+      Dsyrk = hipblasDsyrk_raw(handle, uplo, transA, n, k, alpha, c_loc(AP), lda, beta, c_loc(CP), &
+        ldc)
     end function hipblasDsyrk_native
 
     function hipblasDsyrk_typed(handle, uplo, transA, n, k, alpha, AP, lda, beta, CP, ldc) result( &
@@ -75949,14 +75843,14 @@ contains
       integer(c_int), value :: n
       integer(c_int), value :: k
       complex(c_float_complex) :: alpha
-      complex(c_float_complex), target :: AP(*)
+      complex(c_float_complex), target :: AP(..)
       integer(c_int), value :: lda
       complex(c_float_complex) :: beta
-      complex(c_float_complex), target :: CP(*)
+      complex(c_float_complex), target :: CP(..)
       integer(c_int), value :: ldc
       integer(c_int) :: Csyrk
-      Csyrk = hipblasCsyrk_raw(handle, uplo, transA, n, k, alpha, c_loc(AP(1)), lda, beta, c_loc( &
-        CP(1)), ldc)
+      Csyrk = hipblasCsyrk_raw(handle, uplo, transA, n, k, alpha, c_loc(AP), lda, beta, c_loc(CP), &
+        ldc)
     end function hipblasCsyrk_native
 
     function hipblasCsyrk_typed(handle, uplo, transA, n, k, alpha, AP, lda, beta, CP, ldc) result( &
@@ -75989,14 +75883,14 @@ contains
       integer(c_int), value :: n
       integer(c_int), value :: k
       complex(c_double_complex) :: alpha
-      complex(c_double_complex), target :: AP(*)
+      complex(c_double_complex), target :: AP(..)
       integer(c_int), value :: lda
       complex(c_double_complex) :: beta
-      complex(c_double_complex), target :: CP(*)
+      complex(c_double_complex), target :: CP(..)
       integer(c_int), value :: ldc
       integer(c_int) :: Zsyrk
-      Zsyrk = hipblasZsyrk_raw(handle, uplo, transA, n, k, alpha, c_loc(AP(1)), lda, beta, c_loc( &
-        CP(1)), ldc)
+      Zsyrk = hipblasZsyrk_raw(handle, uplo, transA, n, k, alpha, c_loc(AP), lda, beta, c_loc(CP), &
+        ldc)
     end function hipblasZsyrk_native
 
     function hipblasZsyrk_typed(handle, uplo, transA, n, k, alpha, AP, lda, beta, CP, ldc) result( &
@@ -76028,15 +75922,15 @@ contains
       integer(c_int), value :: transA
       integer(c_long), value :: n
       integer(c_long), value :: k
-      real(c_float), target :: alpha(*)
-      real(c_float), target :: AP(*)
+      real(c_float), target :: alpha(..)
+      real(c_float), target :: AP(..)
       integer(c_long), value :: lda
-      real(c_float), target :: beta(*)
-      real(c_float), target :: CP(*)
+      real(c_float), target :: beta(..)
+      real(c_float), target :: CP(..)
       integer(c_long), value :: ldc
       integer(c_int) :: Ssyrk_64
-      Ssyrk_64 = hipblasSsyrk_64_raw(handle, uplo, transA, n, k, c_loc(alpha(1)), c_loc(AP(1)), &
-        lda, c_loc(beta(1)), c_loc(CP(1)), ldc)
+      Ssyrk_64 = hipblasSsyrk_64_raw(handle, uplo, transA, n, k, c_loc(alpha), c_loc(AP), lda, &
+        c_loc(beta), c_loc(CP), ldc)
     end function hipblasSsyrk_64_native
 
     function hipblasSsyrk_64_typed(handle, uplo, transA, n, k, alpha, AP, lda, beta, CP, &
@@ -76068,15 +75962,15 @@ contains
       integer(c_int), value :: transA
       integer(c_long), value :: n
       integer(c_long), value :: k
-      real(c_double), target :: alpha(*)
-      real(c_double), target :: AP(*)
+      real(c_double), target :: alpha(..)
+      real(c_double), target :: AP(..)
       integer(c_long), value :: lda
-      real(c_double), target :: beta(*)
-      real(c_double), target :: CP(*)
+      real(c_double), target :: beta(..)
+      real(c_double), target :: CP(..)
       integer(c_long), value :: ldc
       integer(c_int) :: Dsyrk_64
-      Dsyrk_64 = hipblasDsyrk_64_raw(handle, uplo, transA, n, k, c_loc(alpha(1)), c_loc(AP(1)), &
-        lda, c_loc(beta(1)), c_loc(CP(1)), ldc)
+      Dsyrk_64 = hipblasDsyrk_64_raw(handle, uplo, transA, n, k, c_loc(alpha), c_loc(AP), lda, &
+        c_loc(beta), c_loc(CP), ldc)
     end function hipblasDsyrk_64_native
 
     function hipblasDsyrk_64_typed(handle, uplo, transA, n, k, alpha, AP, lda, beta, CP, &
@@ -76108,15 +76002,15 @@ contains
       integer(c_int), value :: transA
       integer(c_long), value :: n
       integer(c_long), value :: k
-      complex(c_float_complex), target :: alpha(*)
-      complex(c_float_complex), target :: AP(*)
+      complex(c_float_complex), target :: alpha(..)
+      complex(c_float_complex), target :: AP(..)
       integer(c_long), value :: lda
-      complex(c_float_complex), target :: beta(*)
-      complex(c_float_complex), target :: CP(*)
+      complex(c_float_complex), target :: beta(..)
+      complex(c_float_complex), target :: CP(..)
       integer(c_long), value :: ldc
       integer(c_int) :: Csyrk_64
-      Csyrk_64 = hipblasCsyrk_64_raw(handle, uplo, transA, n, k, c_loc(alpha(1)), c_loc(AP(1)), &
-        lda, c_loc(beta(1)), c_loc(CP(1)), ldc)
+      Csyrk_64 = hipblasCsyrk_64_raw(handle, uplo, transA, n, k, c_loc(alpha), c_loc(AP), lda, &
+        c_loc(beta), c_loc(CP), ldc)
     end function hipblasCsyrk_64_native
 
     function hipblasCsyrk_64_typed(handle, uplo, transA, n, k, alpha, AP, lda, beta, CP, &
@@ -76148,15 +76042,15 @@ contains
       integer(c_int), value :: transA
       integer(c_long), value :: n
       integer(c_long), value :: k
-      complex(c_double_complex), target :: alpha(*)
-      complex(c_double_complex), target :: AP(*)
+      complex(c_double_complex), target :: alpha(..)
+      complex(c_double_complex), target :: AP(..)
       integer(c_long), value :: lda
-      complex(c_double_complex), target :: beta(*)
-      complex(c_double_complex), target :: CP(*)
+      complex(c_double_complex), target :: beta(..)
+      complex(c_double_complex), target :: CP(..)
       integer(c_long), value :: ldc
       integer(c_int) :: Zsyrk_64
-      Zsyrk_64 = hipblasZsyrk_64_raw(handle, uplo, transA, n, k, c_loc(alpha(1)), c_loc(AP(1)), &
-        lda, c_loc(beta(1)), c_loc(CP(1)), ldc)
+      Zsyrk_64 = hipblasZsyrk_64_raw(handle, uplo, transA, n, k, c_loc(alpha), c_loc(AP), lda, &
+        c_loc(beta), c_loc(CP), ldc)
     end function hipblasZsyrk_64_native
 
     function hipblasZsyrk_64_typed(handle, uplo, transA, n, k, alpha, AP, lda, beta, CP, &
@@ -76276,16 +76170,16 @@ contains
       integer(c_int), value :: transA
       integer(c_long), value :: n
       integer(c_long), value :: k
-      real(c_float), target :: alpha(*)
+      real(c_float), target :: alpha(..)
       type(c_ptr), value :: AP
       integer(c_long), value :: lda
-      real(c_float), target :: beta(*)
+      real(c_float), target :: beta(..)
       type(c_ptr), value :: CP
       integer(c_long), value :: ldc
       integer(c_long), value :: batchCount
       integer(c_int) :: SsyrkBatched_64
-      SsyrkBatched_64 = hipblasSsyrkBatched_64_raw(handle, uplo, transA, n, k, c_loc(alpha(1)), &
-        AP, lda, c_loc(beta(1)), CP, ldc, batchCount)
+      SsyrkBatched_64 = hipblasSsyrkBatched_64_raw(handle, uplo, transA, n, k, c_loc(alpha), AP, &
+        lda, c_loc(beta), CP, ldc, batchCount)
     end function hipblasSsyrkBatched_64_native
 
     function hipblasSsyrkBatched_64_typed(handle, uplo, transA, n, k, alpha, AP, lda, beta, CP, &
@@ -76319,16 +76213,16 @@ contains
       integer(c_int), value :: transA
       integer(c_long), value :: n
       integer(c_long), value :: k
-      real(c_double), target :: alpha(*)
+      real(c_double), target :: alpha(..)
       type(c_ptr), value :: AP
       integer(c_long), value :: lda
-      real(c_double), target :: beta(*)
+      real(c_double), target :: beta(..)
       type(c_ptr), value :: CP
       integer(c_long), value :: ldc
       integer(c_long), value :: batchCount
       integer(c_int) :: DsyrkBatched_64
-      DsyrkBatched_64 = hipblasDsyrkBatched_64_raw(handle, uplo, transA, n, k, c_loc(alpha(1)), &
-        AP, lda, c_loc(beta(1)), CP, ldc, batchCount)
+      DsyrkBatched_64 = hipblasDsyrkBatched_64_raw(handle, uplo, transA, n, k, c_loc(alpha), AP, &
+        lda, c_loc(beta), CP, ldc, batchCount)
     end function hipblasDsyrkBatched_64_native
 
     function hipblasDsyrkBatched_64_typed(handle, uplo, transA, n, k, alpha, AP, lda, beta, CP, &
@@ -76362,16 +76256,16 @@ contains
       integer(c_int), value :: transA
       integer(c_long), value :: n
       integer(c_long), value :: k
-      complex(c_float_complex), target :: alpha(*)
+      complex(c_float_complex), target :: alpha(..)
       type(c_ptr), value :: AP
       integer(c_long), value :: lda
-      complex(c_float_complex), target :: beta(*)
+      complex(c_float_complex), target :: beta(..)
       type(c_ptr), value :: CP
       integer(c_long), value :: ldc
       integer(c_long), value :: batchCount
       integer(c_int) :: CsyrkBatched_64
-      CsyrkBatched_64 = hipblasCsyrkBatched_64_raw(handle, uplo, transA, n, k, c_loc(alpha(1)), &
-        AP, lda, c_loc(beta(1)), CP, ldc, batchCount)
+      CsyrkBatched_64 = hipblasCsyrkBatched_64_raw(handle, uplo, transA, n, k, c_loc(alpha), AP, &
+        lda, c_loc(beta), CP, ldc, batchCount)
     end function hipblasCsyrkBatched_64_native
 
     function hipblasCsyrkBatched_64_typed(handle, uplo, transA, n, k, alpha, AP, lda, beta, CP, &
@@ -76405,16 +76299,16 @@ contains
       integer(c_int), value :: transA
       integer(c_long), value :: n
       integer(c_long), value :: k
-      complex(c_double_complex), target :: alpha(*)
+      complex(c_double_complex), target :: alpha(..)
       type(c_ptr), value :: AP
       integer(c_long), value :: lda
-      complex(c_double_complex), target :: beta(*)
+      complex(c_double_complex), target :: beta(..)
       type(c_ptr), value :: CP
       integer(c_long), value :: ldc
       integer(c_long), value :: batchCount
       integer(c_int) :: ZsyrkBatched_64
-      ZsyrkBatched_64 = hipblasZsyrkBatched_64_raw(handle, uplo, transA, n, k, c_loc(alpha(1)), &
-        AP, lda, c_loc(beta(1)), CP, ldc, batchCount)
+      ZsyrkBatched_64 = hipblasZsyrkBatched_64_raw(handle, uplo, transA, n, k, c_loc(alpha), AP, &
+        lda, c_loc(beta), CP, ldc, batchCount)
     end function hipblasZsyrkBatched_64_native
 
     function hipblasZsyrkBatched_64_typed(handle, uplo, transA, n, k, alpha, AP, lda, beta, CP, &
@@ -76449,17 +76343,17 @@ contains
       integer(c_int), value :: n
       integer(c_int), value :: k
       real(c_float) :: alpha
-      real(c_float), target :: AP(*)
+      real(c_float), target :: AP(..)
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
       real(c_float) :: beta
-      real(c_float), target :: CP(*)
+      real(c_float), target :: CP(..)
       integer(c_int), value :: ldc
       integer(c_long), value :: strideC
       integer(c_int), value :: batchCount
       integer(c_int) :: SsyrkStridedBatched
       SsyrkStridedBatched = hipblasSsyrkStridedBatched_raw(handle, uplo, transA, n, k, alpha, &
-        c_loc(AP(1)), lda, strideA, beta, c_loc(CP(1)), ldc, strideC, batchCount)
+        c_loc(AP), lda, strideA, beta, c_loc(CP), ldc, strideC, batchCount)
     end function hipblasSsyrkStridedBatched_native
 
     function hipblasSsyrkStridedBatched_typed(handle, uplo, transA, n, k, alpha, AP, lda, strideA, &
@@ -76496,17 +76390,17 @@ contains
       integer(c_int), value :: n
       integer(c_int), value :: k
       real(c_double) :: alpha
-      real(c_double), target :: AP(*)
+      real(c_double), target :: AP(..)
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
       real(c_double) :: beta
-      real(c_double), target :: CP(*)
+      real(c_double), target :: CP(..)
       integer(c_int), value :: ldc
       integer(c_long), value :: strideC
       integer(c_int), value :: batchCount
       integer(c_int) :: DsyrkStridedBatched
       DsyrkStridedBatched = hipblasDsyrkStridedBatched_raw(handle, uplo, transA, n, k, alpha, &
-        c_loc(AP(1)), lda, strideA, beta, c_loc(CP(1)), ldc, strideC, batchCount)
+        c_loc(AP), lda, strideA, beta, c_loc(CP), ldc, strideC, batchCount)
     end function hipblasDsyrkStridedBatched_native
 
     function hipblasDsyrkStridedBatched_typed(handle, uplo, transA, n, k, alpha, AP, lda, strideA, &
@@ -76543,17 +76437,17 @@ contains
       integer(c_int), value :: n
       integer(c_int), value :: k
       complex(c_float_complex) :: alpha
-      complex(c_float_complex), target :: AP(*)
+      complex(c_float_complex), target :: AP(..)
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
       complex(c_float_complex) :: beta
-      complex(c_float_complex), target :: CP(*)
+      complex(c_float_complex), target :: CP(..)
       integer(c_int), value :: ldc
       integer(c_long), value :: strideC
       integer(c_int), value :: batchCount
       integer(c_int) :: CsyrkStridedBatched
       CsyrkStridedBatched = hipblasCsyrkStridedBatched_raw(handle, uplo, transA, n, k, alpha, &
-        c_loc(AP(1)), lda, strideA, beta, c_loc(CP(1)), ldc, strideC, batchCount)
+        c_loc(AP), lda, strideA, beta, c_loc(CP), ldc, strideC, batchCount)
     end function hipblasCsyrkStridedBatched_native
 
     function hipblasCsyrkStridedBatched_typed(handle, uplo, transA, n, k, alpha, AP, lda, strideA, &
@@ -76590,17 +76484,17 @@ contains
       integer(c_int), value :: n
       integer(c_int), value :: k
       complex(c_double_complex) :: alpha
-      complex(c_double_complex), target :: AP(*)
+      complex(c_double_complex), target :: AP(..)
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
       complex(c_double_complex) :: beta
-      complex(c_double_complex), target :: CP(*)
+      complex(c_double_complex), target :: CP(..)
       integer(c_int), value :: ldc
       integer(c_long), value :: strideC
       integer(c_int), value :: batchCount
       integer(c_int) :: ZsyrkStridedBatched
       ZsyrkStridedBatched = hipblasZsyrkStridedBatched_raw(handle, uplo, transA, n, k, alpha, &
-        c_loc(AP(1)), lda, strideA, beta, c_loc(CP(1)), ldc, strideC, batchCount)
+        c_loc(AP), lda, strideA, beta, c_loc(CP), ldc, strideC, batchCount)
     end function hipblasZsyrkStridedBatched_native
 
     function hipblasZsyrkStridedBatched_typed(handle, uplo, transA, n, k, alpha, AP, lda, strideA, &
@@ -76636,19 +76530,18 @@ contains
       integer(c_int), value :: transA
       integer(c_long), value :: n
       integer(c_long), value :: k
-      real(c_float), target :: alpha(*)
-      real(c_float), target :: AP(*)
+      real(c_float), target :: alpha(..)
+      real(c_float), target :: AP(..)
       integer(c_long), value :: lda
       integer(c_long), value :: strideA
-      real(c_float), target :: beta(*)
-      real(c_float), target :: CP(*)
+      real(c_float), target :: beta(..)
+      real(c_float), target :: CP(..)
       integer(c_long), value :: ldc
       integer(c_long), value :: strideC
       integer(c_long), value :: batchCount
       integer(c_int) :: SsyrkStridedBatched_64
       SsyrkStridedBatched_64 = hipblasSsyrkStridedBatched_64_raw(handle, uplo, transA, n, k, &
-        c_loc(alpha(1)), c_loc(AP(1)), lda, strideA, c_loc(beta(1)), c_loc(CP(1)), ldc, strideC, &
-        batchCount)
+        c_loc(alpha), c_loc(AP), lda, strideA, c_loc(beta), c_loc(CP), ldc, strideC, batchCount)
     end function hipblasSsyrkStridedBatched_64_native
 
     function hipblasSsyrkStridedBatched_64_typed(handle, uplo, transA, n, k, alpha, AP, lda, &
@@ -76684,19 +76577,18 @@ contains
       integer(c_int), value :: transA
       integer(c_long), value :: n
       integer(c_long), value :: k
-      real(c_double), target :: alpha(*)
-      real(c_double), target :: AP(*)
+      real(c_double), target :: alpha(..)
+      real(c_double), target :: AP(..)
       integer(c_long), value :: lda
       integer(c_long), value :: strideA
-      real(c_double), target :: beta(*)
-      real(c_double), target :: CP(*)
+      real(c_double), target :: beta(..)
+      real(c_double), target :: CP(..)
       integer(c_long), value :: ldc
       integer(c_long), value :: strideC
       integer(c_long), value :: batchCount
       integer(c_int) :: DsyrkStridedBatched_64
       DsyrkStridedBatched_64 = hipblasDsyrkStridedBatched_64_raw(handle, uplo, transA, n, k, &
-        c_loc(alpha(1)), c_loc(AP(1)), lda, strideA, c_loc(beta(1)), c_loc(CP(1)), ldc, strideC, &
-        batchCount)
+        c_loc(alpha), c_loc(AP), lda, strideA, c_loc(beta), c_loc(CP), ldc, strideC, batchCount)
     end function hipblasDsyrkStridedBatched_64_native
 
     function hipblasDsyrkStridedBatched_64_typed(handle, uplo, transA, n, k, alpha, AP, lda, &
@@ -76732,19 +76624,18 @@ contains
       integer(c_int), value :: transA
       integer(c_long), value :: n
       integer(c_long), value :: k
-      complex(c_float_complex), target :: alpha(*)
-      complex(c_float_complex), target :: AP(*)
+      complex(c_float_complex), target :: alpha(..)
+      complex(c_float_complex), target :: AP(..)
       integer(c_long), value :: lda
       integer(c_long), value :: strideA
-      complex(c_float_complex), target :: beta(*)
-      complex(c_float_complex), target :: CP(*)
+      complex(c_float_complex), target :: beta(..)
+      complex(c_float_complex), target :: CP(..)
       integer(c_long), value :: ldc
       integer(c_long), value :: strideC
       integer(c_long), value :: batchCount
       integer(c_int) :: CsyrkStridedBatched_64
       CsyrkStridedBatched_64 = hipblasCsyrkStridedBatched_64_raw(handle, uplo, transA, n, k, &
-        c_loc(alpha(1)), c_loc(AP(1)), lda, strideA, c_loc(beta(1)), c_loc(CP(1)), ldc, strideC, &
-        batchCount)
+        c_loc(alpha), c_loc(AP), lda, strideA, c_loc(beta), c_loc(CP), ldc, strideC, batchCount)
     end function hipblasCsyrkStridedBatched_64_native
 
     function hipblasCsyrkStridedBatched_64_typed(handle, uplo, transA, n, k, alpha, AP, lda, &
@@ -76780,19 +76671,18 @@ contains
       integer(c_int), value :: transA
       integer(c_long), value :: n
       integer(c_long), value :: k
-      complex(c_double_complex), target :: alpha(*)
-      complex(c_double_complex), target :: AP(*)
+      complex(c_double_complex), target :: alpha(..)
+      complex(c_double_complex), target :: AP(..)
       integer(c_long), value :: lda
       integer(c_long), value :: strideA
-      complex(c_double_complex), target :: beta(*)
-      complex(c_double_complex), target :: CP(*)
+      complex(c_double_complex), target :: beta(..)
+      complex(c_double_complex), target :: CP(..)
       integer(c_long), value :: ldc
       integer(c_long), value :: strideC
       integer(c_long), value :: batchCount
       integer(c_int) :: ZsyrkStridedBatched_64
       ZsyrkStridedBatched_64 = hipblasZsyrkStridedBatched_64_raw(handle, uplo, transA, n, k, &
-        c_loc(alpha(1)), c_loc(AP(1)), lda, strideA, c_loc(beta(1)), c_loc(CP(1)), ldc, strideC, &
-        batchCount)
+        c_loc(alpha), c_loc(AP), lda, strideA, c_loc(beta), c_loc(CP), ldc, strideC, batchCount)
     end function hipblasZsyrkStridedBatched_64_native
 
     function hipblasZsyrkStridedBatched_64_typed(handle, uplo, transA, n, k, alpha, AP, lda, &
@@ -76829,16 +76719,16 @@ contains
       integer(c_int), value :: n
       integer(c_int), value :: k
       real(c_float) :: alpha
-      real(c_float), target :: AP(*)
+      real(c_float), target :: AP(..)
       integer(c_int), value :: lda
-      real(c_float), target :: BP(*)
+      real(c_float), target :: BP(..)
       integer(c_int), value :: ldb
       real(c_float) :: beta
-      real(c_float), target :: CP(*)
+      real(c_float), target :: CP(..)
       integer(c_int), value :: ldc
       integer(c_int) :: Ssyr2k
-      Ssyr2k = hipblasSsyr2k_raw(handle, uplo, transA, n, k, alpha, c_loc(AP(1)), lda, c_loc(BP( &
-        1)), ldb, beta, c_loc(CP(1)), ldc)
+      Ssyr2k = hipblasSsyr2k_raw(handle, uplo, transA, n, k, alpha, c_loc(AP), lda, c_loc(BP), &
+        ldb, beta, c_loc(CP), ldc)
     end function hipblasSsyr2k_native
 
     function hipblasSsyr2k_typed(handle, uplo, transA, n, k, alpha, AP, lda, BP, ldb, beta, CP, &
@@ -76874,16 +76764,16 @@ contains
       integer(c_int), value :: n
       integer(c_int), value :: k
       real(c_double) :: alpha
-      real(c_double), target :: AP(*)
+      real(c_double), target :: AP(..)
       integer(c_int), value :: lda
-      real(c_double), target :: BP(*)
+      real(c_double), target :: BP(..)
       integer(c_int), value :: ldb
       real(c_double) :: beta
-      real(c_double), target :: CP(*)
+      real(c_double), target :: CP(..)
       integer(c_int), value :: ldc
       integer(c_int) :: Dsyr2k
-      Dsyr2k = hipblasDsyr2k_raw(handle, uplo, transA, n, k, alpha, c_loc(AP(1)), lda, c_loc(BP( &
-        1)), ldb, beta, c_loc(CP(1)), ldc)
+      Dsyr2k = hipblasDsyr2k_raw(handle, uplo, transA, n, k, alpha, c_loc(AP), lda, c_loc(BP), &
+        ldb, beta, c_loc(CP), ldc)
     end function hipblasDsyr2k_native
 
     function hipblasDsyr2k_typed(handle, uplo, transA, n, k, alpha, AP, lda, BP, ldb, beta, CP, &
@@ -76919,16 +76809,16 @@ contains
       integer(c_int), value :: n
       integer(c_int), value :: k
       complex(c_float_complex) :: alpha
-      complex(c_float_complex), target :: AP(*)
+      complex(c_float_complex), target :: AP(..)
       integer(c_int), value :: lda
-      complex(c_float_complex), target :: BP(*)
+      complex(c_float_complex), target :: BP(..)
       integer(c_int), value :: ldb
       complex(c_float_complex) :: beta
-      complex(c_float_complex), target :: CP(*)
+      complex(c_float_complex), target :: CP(..)
       integer(c_int), value :: ldc
       integer(c_int) :: Csyr2k
-      Csyr2k = hipblasCsyr2k_raw(handle, uplo, transA, n, k, alpha, c_loc(AP(1)), lda, c_loc(BP( &
-        1)), ldb, beta, c_loc(CP(1)), ldc)
+      Csyr2k = hipblasCsyr2k_raw(handle, uplo, transA, n, k, alpha, c_loc(AP), lda, c_loc(BP), &
+        ldb, beta, c_loc(CP), ldc)
     end function hipblasCsyr2k_native
 
     function hipblasCsyr2k_typed(handle, uplo, transA, n, k, alpha, AP, lda, BP, ldb, beta, CP, &
@@ -76964,16 +76854,16 @@ contains
       integer(c_int), value :: n
       integer(c_int), value :: k
       complex(c_double_complex) :: alpha
-      complex(c_double_complex), target :: AP(*)
+      complex(c_double_complex), target :: AP(..)
       integer(c_int), value :: lda
-      complex(c_double_complex), target :: BP(*)
+      complex(c_double_complex), target :: BP(..)
       integer(c_int), value :: ldb
       complex(c_double_complex) :: beta
-      complex(c_double_complex), target :: CP(*)
+      complex(c_double_complex), target :: CP(..)
       integer(c_int), value :: ldc
       integer(c_int) :: Zsyr2k
-      Zsyr2k = hipblasZsyr2k_raw(handle, uplo, transA, n, k, alpha, c_loc(AP(1)), lda, c_loc(BP( &
-        1)), ldb, beta, c_loc(CP(1)), ldc)
+      Zsyr2k = hipblasZsyr2k_raw(handle, uplo, transA, n, k, alpha, c_loc(AP), lda, c_loc(BP), &
+        ldb, beta, c_loc(CP), ldc)
     end function hipblasZsyr2k_native
 
     function hipblasZsyr2k_typed(handle, uplo, transA, n, k, alpha, AP, lda, BP, ldb, beta, CP, &
@@ -77008,17 +76898,17 @@ contains
       integer(c_int), value :: transA
       integer(c_long), value :: n
       integer(c_long), value :: k
-      real(c_float), target :: alpha(*)
-      real(c_float), target :: AP(*)
+      real(c_float), target :: alpha(..)
+      real(c_float), target :: AP(..)
       integer(c_long), value :: lda
-      real(c_float), target :: BP(*)
+      real(c_float), target :: BP(..)
       integer(c_long), value :: ldb
-      real(c_float), target :: beta(*)
-      real(c_float), target :: CP(*)
+      real(c_float), target :: beta(..)
+      real(c_float), target :: CP(..)
       integer(c_long), value :: ldc
       integer(c_int) :: Ssyr2k_64
-      Ssyr2k_64 = hipblasSsyr2k_64_raw(handle, uplo, transA, n, k, c_loc(alpha(1)), c_loc(AP(1)), &
-        lda, c_loc(BP(1)), ldb, c_loc(beta(1)), c_loc(CP(1)), ldc)
+      Ssyr2k_64 = hipblasSsyr2k_64_raw(handle, uplo, transA, n, k, c_loc(alpha), c_loc(AP), lda, &
+        c_loc(BP), ldb, c_loc(beta), c_loc(CP), ldc)
     end function hipblasSsyr2k_64_native
 
     function hipblasSsyr2k_64_typed(handle, uplo, transA, n, k, alpha, AP, lda, BP, ldb, beta, CP, &
@@ -77053,17 +76943,17 @@ contains
       integer(c_int), value :: transA
       integer(c_long), value :: n
       integer(c_long), value :: k
-      real(c_double), target :: alpha(*)
-      real(c_double), target :: AP(*)
+      real(c_double), target :: alpha(..)
+      real(c_double), target :: AP(..)
       integer(c_long), value :: lda
-      real(c_double), target :: BP(*)
+      real(c_double), target :: BP(..)
       integer(c_long), value :: ldb
-      real(c_double), target :: beta(*)
-      real(c_double), target :: CP(*)
+      real(c_double), target :: beta(..)
+      real(c_double), target :: CP(..)
       integer(c_long), value :: ldc
       integer(c_int) :: Dsyr2k_64
-      Dsyr2k_64 = hipblasDsyr2k_64_raw(handle, uplo, transA, n, k, c_loc(alpha(1)), c_loc(AP(1)), &
-        lda, c_loc(BP(1)), ldb, c_loc(beta(1)), c_loc(CP(1)), ldc)
+      Dsyr2k_64 = hipblasDsyr2k_64_raw(handle, uplo, transA, n, k, c_loc(alpha), c_loc(AP), lda, &
+        c_loc(BP), ldb, c_loc(beta), c_loc(CP), ldc)
     end function hipblasDsyr2k_64_native
 
     function hipblasDsyr2k_64_typed(handle, uplo, transA, n, k, alpha, AP, lda, BP, ldb, beta, CP, &
@@ -77098,17 +76988,17 @@ contains
       integer(c_int), value :: transA
       integer(c_long), value :: n
       integer(c_long), value :: k
-      complex(c_float_complex), target :: alpha(*)
-      complex(c_float_complex), target :: AP(*)
+      complex(c_float_complex), target :: alpha(..)
+      complex(c_float_complex), target :: AP(..)
       integer(c_long), value :: lda
-      complex(c_float_complex), target :: BP(*)
+      complex(c_float_complex), target :: BP(..)
       integer(c_long), value :: ldb
-      complex(c_float_complex), target :: beta(*)
-      complex(c_float_complex), target :: CP(*)
+      complex(c_float_complex), target :: beta(..)
+      complex(c_float_complex), target :: CP(..)
       integer(c_long), value :: ldc
       integer(c_int) :: Csyr2k_64
-      Csyr2k_64 = hipblasCsyr2k_64_raw(handle, uplo, transA, n, k, c_loc(alpha(1)), c_loc(AP(1)), &
-        lda, c_loc(BP(1)), ldb, c_loc(beta(1)), c_loc(CP(1)), ldc)
+      Csyr2k_64 = hipblasCsyr2k_64_raw(handle, uplo, transA, n, k, c_loc(alpha), c_loc(AP), lda, &
+        c_loc(BP), ldb, c_loc(beta), c_loc(CP), ldc)
     end function hipblasCsyr2k_64_native
 
     function hipblasCsyr2k_64_typed(handle, uplo, transA, n, k, alpha, AP, lda, BP, ldb, beta, CP, &
@@ -77143,17 +77033,17 @@ contains
       integer(c_int), value :: transA
       integer(c_long), value :: n
       integer(c_long), value :: k
-      complex(c_double_complex), target :: alpha(*)
-      complex(c_double_complex), target :: AP(*)
+      complex(c_double_complex), target :: alpha(..)
+      complex(c_double_complex), target :: AP(..)
       integer(c_long), value :: lda
-      complex(c_double_complex), target :: BP(*)
+      complex(c_double_complex), target :: BP(..)
       integer(c_long), value :: ldb
-      complex(c_double_complex), target :: beta(*)
-      complex(c_double_complex), target :: CP(*)
+      complex(c_double_complex), target :: beta(..)
+      complex(c_double_complex), target :: CP(..)
       integer(c_long), value :: ldc
       integer(c_int) :: Zsyr2k_64
-      Zsyr2k_64 = hipblasZsyr2k_64_raw(handle, uplo, transA, n, k, c_loc(alpha(1)), c_loc(AP(1)), &
-        lda, c_loc(BP(1)), ldb, c_loc(beta(1)), c_loc(CP(1)), ldc)
+      Zsyr2k_64 = hipblasZsyr2k_64_raw(handle, uplo, transA, n, k, c_loc(alpha), c_loc(AP), lda, &
+        c_loc(BP), ldb, c_loc(beta), c_loc(CP), ldc)
     end function hipblasZsyr2k_64_native
 
     function hipblasZsyr2k_64_typed(handle, uplo, transA, n, k, alpha, AP, lda, BP, ldb, beta, CP, &
@@ -77284,18 +77174,18 @@ contains
       integer(c_int), value :: transA
       integer(c_long), value :: n
       integer(c_long), value :: k
-      real(c_float), target :: alpha(*)
+      real(c_float), target :: alpha(..)
       type(c_ptr), value :: AP
       integer(c_long), value :: lda
       type(c_ptr), value :: BP
       integer(c_long), value :: ldb
-      real(c_float), target :: beta(*)
+      real(c_float), target :: beta(..)
       type(c_ptr), value :: CP
       integer(c_long), value :: ldc
       integer(c_long), value :: batchCount
       integer(c_int) :: Ssyr2kBatched_64
-      Ssyr2kBatched_64 = hipblasSsyr2kBatched_64_raw(handle, uplo, transA, n, k, c_loc(alpha(1)), &
-        AP, lda, BP, ldb, c_loc(beta(1)), CP, ldc, batchCount)
+      Ssyr2kBatched_64 = hipblasSsyr2kBatched_64_raw(handle, uplo, transA, n, k, c_loc(alpha), AP, &
+        lda, BP, ldb, c_loc(beta), CP, ldc, batchCount)
     end function hipblasSsyr2kBatched_64_native
 
     function hipblasSsyr2kBatched_64_typed(handle, uplo, transA, n, k, alpha, AP, lda, BP, ldb, &
@@ -77331,18 +77221,18 @@ contains
       integer(c_int), value :: transA
       integer(c_long), value :: n
       integer(c_long), value :: k
-      real(c_double), target :: alpha(*)
+      real(c_double), target :: alpha(..)
       type(c_ptr), value :: AP
       integer(c_long), value :: lda
       type(c_ptr), value :: BP
       integer(c_long), value :: ldb
-      real(c_double), target :: beta(*)
+      real(c_double), target :: beta(..)
       type(c_ptr), value :: CP
       integer(c_long), value :: ldc
       integer(c_long), value :: batchCount
       integer(c_int) :: Dsyr2kBatched_64
-      Dsyr2kBatched_64 = hipblasDsyr2kBatched_64_raw(handle, uplo, transA, n, k, c_loc(alpha(1)), &
-        AP, lda, BP, ldb, c_loc(beta(1)), CP, ldc, batchCount)
+      Dsyr2kBatched_64 = hipblasDsyr2kBatched_64_raw(handle, uplo, transA, n, k, c_loc(alpha), AP, &
+        lda, BP, ldb, c_loc(beta), CP, ldc, batchCount)
     end function hipblasDsyr2kBatched_64_native
 
     function hipblasDsyr2kBatched_64_typed(handle, uplo, transA, n, k, alpha, AP, lda, BP, ldb, &
@@ -77378,18 +77268,18 @@ contains
       integer(c_int), value :: transA
       integer(c_long), value :: n
       integer(c_long), value :: k
-      complex(c_float_complex), target :: alpha(*)
+      complex(c_float_complex), target :: alpha(..)
       type(c_ptr), value :: AP
       integer(c_long), value :: lda
       type(c_ptr), value :: BP
       integer(c_long), value :: ldb
-      complex(c_float_complex), target :: beta(*)
+      complex(c_float_complex), target :: beta(..)
       type(c_ptr), value :: CP
       integer(c_long), value :: ldc
       integer(c_long), value :: batchCount
       integer(c_int) :: Csyr2kBatched_64
-      Csyr2kBatched_64 = hipblasCsyr2kBatched_64_raw(handle, uplo, transA, n, k, c_loc(alpha(1)), &
-        AP, lda, BP, ldb, c_loc(beta(1)), CP, ldc, batchCount)
+      Csyr2kBatched_64 = hipblasCsyr2kBatched_64_raw(handle, uplo, transA, n, k, c_loc(alpha), AP, &
+        lda, BP, ldb, c_loc(beta), CP, ldc, batchCount)
     end function hipblasCsyr2kBatched_64_native
 
     function hipblasCsyr2kBatched_64_typed(handle, uplo, transA, n, k, alpha, AP, lda, BP, ldb, &
@@ -77425,18 +77315,18 @@ contains
       integer(c_int), value :: transA
       integer(c_long), value :: n
       integer(c_long), value :: k
-      complex(c_double_complex), target :: alpha(*)
+      complex(c_double_complex), target :: alpha(..)
       type(c_ptr), value :: AP
       integer(c_long), value :: lda
       type(c_ptr), value :: BP
       integer(c_long), value :: ldb
-      complex(c_double_complex), target :: beta(*)
+      complex(c_double_complex), target :: beta(..)
       type(c_ptr), value :: CP
       integer(c_long), value :: ldc
       integer(c_long), value :: batchCount
       integer(c_int) :: Zsyr2kBatched_64
-      Zsyr2kBatched_64 = hipblasZsyr2kBatched_64_raw(handle, uplo, transA, n, k, c_loc(alpha(1)), &
-        AP, lda, BP, ldb, c_loc(beta(1)), CP, ldc, batchCount)
+      Zsyr2kBatched_64 = hipblasZsyr2kBatched_64_raw(handle, uplo, transA, n, k, c_loc(alpha), AP, &
+        lda, BP, ldb, c_loc(beta), CP, ldc, batchCount)
     end function hipblasZsyr2kBatched_64_native
 
     function hipblasZsyr2kBatched_64_typed(handle, uplo, transA, n, k, alpha, AP, lda, BP, ldb, &
@@ -77473,21 +77363,20 @@ contains
       integer(c_int), value :: n
       integer(c_int), value :: k
       real(c_float) :: alpha
-      real(c_float), target :: AP(*)
+      real(c_float), target :: AP(..)
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
-      real(c_float), target :: BP(*)
+      real(c_float), target :: BP(..)
       integer(c_int), value :: ldb
       integer(c_long), value :: strideB
       real(c_float) :: beta
-      real(c_float), target :: CP(*)
+      real(c_float), target :: CP(..)
       integer(c_int), value :: ldc
       integer(c_long), value :: strideC
       integer(c_int), value :: batchCount
       integer(c_int) :: Ssyr2kStridedBatched
       Ssyr2kStridedBatched = hipblasSsyr2kStridedBatched_raw(handle, uplo, transA, n, k, alpha, &
-        c_loc(AP(1)), lda, strideA, c_loc(BP(1)), ldb, strideB, beta, c_loc(CP(1)), ldc, strideC, &
-        batchCount)
+        c_loc(AP), lda, strideA, c_loc(BP), ldb, strideB, beta, c_loc(CP), ldc, strideC, batchCount)
     end function hipblasSsyr2kStridedBatched_native
 
     function hipblasSsyr2kStridedBatched_typed(handle, uplo, transA, n, k, alpha, AP, lda, &
@@ -77527,21 +77416,20 @@ contains
       integer(c_int), value :: n
       integer(c_int), value :: k
       real(c_double) :: alpha
-      real(c_double), target :: AP(*)
+      real(c_double), target :: AP(..)
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
-      real(c_double), target :: BP(*)
+      real(c_double), target :: BP(..)
       integer(c_int), value :: ldb
       integer(c_long), value :: strideB
       real(c_double) :: beta
-      real(c_double), target :: CP(*)
+      real(c_double), target :: CP(..)
       integer(c_int), value :: ldc
       integer(c_long), value :: strideC
       integer(c_int), value :: batchCount
       integer(c_int) :: Dsyr2kStridedBatched
       Dsyr2kStridedBatched = hipblasDsyr2kStridedBatched_raw(handle, uplo, transA, n, k, alpha, &
-        c_loc(AP(1)), lda, strideA, c_loc(BP(1)), ldb, strideB, beta, c_loc(CP(1)), ldc, strideC, &
-        batchCount)
+        c_loc(AP), lda, strideA, c_loc(BP), ldb, strideB, beta, c_loc(CP), ldc, strideC, batchCount)
     end function hipblasDsyr2kStridedBatched_native
 
     function hipblasDsyr2kStridedBatched_typed(handle, uplo, transA, n, k, alpha, AP, lda, &
@@ -77581,21 +77469,20 @@ contains
       integer(c_int), value :: n
       integer(c_int), value :: k
       complex(c_float_complex) :: alpha
-      complex(c_float_complex), target :: AP(*)
+      complex(c_float_complex), target :: AP(..)
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
-      complex(c_float_complex), target :: BP(*)
+      complex(c_float_complex), target :: BP(..)
       integer(c_int), value :: ldb
       integer(c_long), value :: strideB
       complex(c_float_complex) :: beta
-      complex(c_float_complex), target :: CP(*)
+      complex(c_float_complex), target :: CP(..)
       integer(c_int), value :: ldc
       integer(c_long), value :: strideC
       integer(c_int), value :: batchCount
       integer(c_int) :: Csyr2kStridedBatched
       Csyr2kStridedBatched = hipblasCsyr2kStridedBatched_raw(handle, uplo, transA, n, k, alpha, &
-        c_loc(AP(1)), lda, strideA, c_loc(BP(1)), ldb, strideB, beta, c_loc(CP(1)), ldc, strideC, &
-        batchCount)
+        c_loc(AP), lda, strideA, c_loc(BP), ldb, strideB, beta, c_loc(CP), ldc, strideC, batchCount)
     end function hipblasCsyr2kStridedBatched_native
 
     function hipblasCsyr2kStridedBatched_typed(handle, uplo, transA, n, k, alpha, AP, lda, &
@@ -77635,21 +77522,20 @@ contains
       integer(c_int), value :: n
       integer(c_int), value :: k
       complex(c_double_complex) :: alpha
-      complex(c_double_complex), target :: AP(*)
+      complex(c_double_complex), target :: AP(..)
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
-      complex(c_double_complex), target :: BP(*)
+      complex(c_double_complex), target :: BP(..)
       integer(c_int), value :: ldb
       integer(c_long), value :: strideB
       complex(c_double_complex) :: beta
-      complex(c_double_complex), target :: CP(*)
+      complex(c_double_complex), target :: CP(..)
       integer(c_int), value :: ldc
       integer(c_long), value :: strideC
       integer(c_int), value :: batchCount
       integer(c_int) :: Zsyr2kStridedBatched
       Zsyr2kStridedBatched = hipblasZsyr2kStridedBatched_raw(handle, uplo, transA, n, k, alpha, &
-        c_loc(AP(1)), lda, strideA, c_loc(BP(1)), ldb, strideB, beta, c_loc(CP(1)), ldc, strideC, &
-        batchCount)
+        c_loc(AP), lda, strideA, c_loc(BP), ldb, strideB, beta, c_loc(CP), ldc, strideC, batchCount)
     end function hipblasZsyr2kStridedBatched_native
 
     function hipblasZsyr2kStridedBatched_typed(handle, uplo, transA, n, k, alpha, AP, lda, &
@@ -77689,22 +77575,22 @@ contains
       integer(c_int), value :: transA
       integer(c_long), value :: n
       integer(c_long), value :: k
-      real(c_float), target :: alpha(*)
-      real(c_float), target :: AP(*)
+      real(c_float), target :: alpha(..)
+      real(c_float), target :: AP(..)
       integer(c_long), value :: lda
       integer(c_long), value :: strideA
-      real(c_float), target :: BP(*)
+      real(c_float), target :: BP(..)
       integer(c_long), value :: ldb
       integer(c_long), value :: strideB
-      real(c_float), target :: beta(*)
-      real(c_float), target :: CP(*)
+      real(c_float), target :: beta(..)
+      real(c_float), target :: CP(..)
       integer(c_long), value :: ldc
       integer(c_long), value :: strideC
       integer(c_long), value :: batchCount
       integer(c_int) :: Ssyr2kStridedBatched_64
       Ssyr2kStridedBatched_64 = hipblasSsyr2kStridedBatched_64_raw(handle, uplo, transA, n, k, &
-        c_loc(alpha(1)), c_loc(AP(1)), lda, strideA, c_loc(BP(1)), ldb, strideB, c_loc(beta(1)), &
-        c_loc(CP(1)), ldc, strideC, batchCount)
+        c_loc(alpha), c_loc(AP), lda, strideA, c_loc(BP), ldb, strideB, c_loc(beta), c_loc(CP), &
+        ldc, strideC, batchCount)
     end function hipblasSsyr2kStridedBatched_64_native
 
     function hipblasSsyr2kStridedBatched_64_typed(handle, uplo, transA, n, k, alpha, AP, lda, &
@@ -77745,22 +77631,22 @@ contains
       integer(c_int), value :: transA
       integer(c_long), value :: n
       integer(c_long), value :: k
-      real(c_double), target :: alpha(*)
-      real(c_double), target :: AP(*)
+      real(c_double), target :: alpha(..)
+      real(c_double), target :: AP(..)
       integer(c_long), value :: lda
       integer(c_long), value :: strideA
-      real(c_double), target :: BP(*)
+      real(c_double), target :: BP(..)
       integer(c_long), value :: ldb
       integer(c_long), value :: strideB
-      real(c_double), target :: beta(*)
-      real(c_double), target :: CP(*)
+      real(c_double), target :: beta(..)
+      real(c_double), target :: CP(..)
       integer(c_long), value :: ldc
       integer(c_long), value :: strideC
       integer(c_long), value :: batchCount
       integer(c_int) :: Dsyr2kStridedBatched_64
       Dsyr2kStridedBatched_64 = hipblasDsyr2kStridedBatched_64_raw(handle, uplo, transA, n, k, &
-        c_loc(alpha(1)), c_loc(AP(1)), lda, strideA, c_loc(BP(1)), ldb, strideB, c_loc(beta(1)), &
-        c_loc(CP(1)), ldc, strideC, batchCount)
+        c_loc(alpha), c_loc(AP), lda, strideA, c_loc(BP), ldb, strideB, c_loc(beta), c_loc(CP), &
+        ldc, strideC, batchCount)
     end function hipblasDsyr2kStridedBatched_64_native
 
     function hipblasDsyr2kStridedBatched_64_typed(handle, uplo, transA, n, k, alpha, AP, lda, &
@@ -77801,22 +77687,22 @@ contains
       integer(c_int), value :: transA
       integer(c_long), value :: n
       integer(c_long), value :: k
-      complex(c_float_complex), target :: alpha(*)
-      complex(c_float_complex), target :: AP(*)
+      complex(c_float_complex), target :: alpha(..)
+      complex(c_float_complex), target :: AP(..)
       integer(c_long), value :: lda
       integer(c_long), value :: strideA
-      complex(c_float_complex), target :: BP(*)
+      complex(c_float_complex), target :: BP(..)
       integer(c_long), value :: ldb
       integer(c_long), value :: strideB
-      complex(c_float_complex), target :: beta(*)
-      complex(c_float_complex), target :: CP(*)
+      complex(c_float_complex), target :: beta(..)
+      complex(c_float_complex), target :: CP(..)
       integer(c_long), value :: ldc
       integer(c_long), value :: strideC
       integer(c_long), value :: batchCount
       integer(c_int) :: Csyr2kStridedBatched_64
       Csyr2kStridedBatched_64 = hipblasCsyr2kStridedBatched_64_raw(handle, uplo, transA, n, k, &
-        c_loc(alpha(1)), c_loc(AP(1)), lda, strideA, c_loc(BP(1)), ldb, strideB, c_loc(beta(1)), &
-        c_loc(CP(1)), ldc, strideC, batchCount)
+        c_loc(alpha), c_loc(AP), lda, strideA, c_loc(BP), ldb, strideB, c_loc(beta), c_loc(CP), &
+        ldc, strideC, batchCount)
     end function hipblasCsyr2kStridedBatched_64_native
 
     function hipblasCsyr2kStridedBatched_64_typed(handle, uplo, transA, n, k, alpha, AP, lda, &
@@ -77857,22 +77743,22 @@ contains
       integer(c_int), value :: transA
       integer(c_long), value :: n
       integer(c_long), value :: k
-      complex(c_double_complex), target :: alpha(*)
-      complex(c_double_complex), target :: AP(*)
+      complex(c_double_complex), target :: alpha(..)
+      complex(c_double_complex), target :: AP(..)
       integer(c_long), value :: lda
       integer(c_long), value :: strideA
-      complex(c_double_complex), target :: BP(*)
+      complex(c_double_complex), target :: BP(..)
       integer(c_long), value :: ldb
       integer(c_long), value :: strideB
-      complex(c_double_complex), target :: beta(*)
-      complex(c_double_complex), target :: CP(*)
+      complex(c_double_complex), target :: beta(..)
+      complex(c_double_complex), target :: CP(..)
       integer(c_long), value :: ldc
       integer(c_long), value :: strideC
       integer(c_long), value :: batchCount
       integer(c_int) :: Zsyr2kStridedBatched_64
       Zsyr2kStridedBatched_64 = hipblasZsyr2kStridedBatched_64_raw(handle, uplo, transA, n, k, &
-        c_loc(alpha(1)), c_loc(AP(1)), lda, strideA, c_loc(BP(1)), ldb, strideB, c_loc(beta(1)), &
-        c_loc(CP(1)), ldc, strideC, batchCount)
+        c_loc(alpha), c_loc(AP), lda, strideA, c_loc(BP), ldb, strideB, c_loc(beta), c_loc(CP), &
+        ldc, strideC, batchCount)
     end function hipblasZsyr2kStridedBatched_64_native
 
     function hipblasZsyr2kStridedBatched_64_typed(handle, uplo, transA, n, k, alpha, AP, lda, &
@@ -77913,16 +77799,16 @@ contains
       integer(c_int), value :: n
       integer(c_int), value :: k
       real(c_float) :: alpha
-      real(c_float), target :: AP(*)
+      real(c_float), target :: AP(..)
       integer(c_int), value :: lda
-      real(c_float), target :: BP(*)
+      real(c_float), target :: BP(..)
       integer(c_int), value :: ldb
       real(c_float) :: beta
-      real(c_float), target :: CP(*)
+      real(c_float), target :: CP(..)
       integer(c_int), value :: ldc
       integer(c_int) :: Ssyrkx
-      Ssyrkx = hipblasSsyrkx_raw(handle, uplo, transA, n, k, alpha, c_loc(AP(1)), lda, c_loc(BP( &
-        1)), ldb, beta, c_loc(CP(1)), ldc)
+      Ssyrkx = hipblasSsyrkx_raw(handle, uplo, transA, n, k, alpha, c_loc(AP), lda, c_loc(BP), &
+        ldb, beta, c_loc(CP), ldc)
     end function hipblasSsyrkx_native
 
     function hipblasSsyrkx_typed(handle, uplo, transA, n, k, alpha, AP, lda, BP, ldb, beta, CP, &
@@ -77958,16 +77844,16 @@ contains
       integer(c_int), value :: n
       integer(c_int), value :: k
       real(c_double) :: alpha
-      real(c_double), target :: AP(*)
+      real(c_double), target :: AP(..)
       integer(c_int), value :: lda
-      real(c_double), target :: BP(*)
+      real(c_double), target :: BP(..)
       integer(c_int), value :: ldb
       real(c_double) :: beta
-      real(c_double), target :: CP(*)
+      real(c_double), target :: CP(..)
       integer(c_int), value :: ldc
       integer(c_int) :: Dsyrkx
-      Dsyrkx = hipblasDsyrkx_raw(handle, uplo, transA, n, k, alpha, c_loc(AP(1)), lda, c_loc(BP( &
-        1)), ldb, beta, c_loc(CP(1)), ldc)
+      Dsyrkx = hipblasDsyrkx_raw(handle, uplo, transA, n, k, alpha, c_loc(AP), lda, c_loc(BP), &
+        ldb, beta, c_loc(CP), ldc)
     end function hipblasDsyrkx_native
 
     function hipblasDsyrkx_typed(handle, uplo, transA, n, k, alpha, AP, lda, BP, ldb, beta, CP, &
@@ -78003,16 +77889,16 @@ contains
       integer(c_int), value :: n
       integer(c_int), value :: k
       complex(c_float_complex) :: alpha
-      complex(c_float_complex), target :: AP(*)
+      complex(c_float_complex), target :: AP(..)
       integer(c_int), value :: lda
-      complex(c_float_complex), target :: BP(*)
+      complex(c_float_complex), target :: BP(..)
       integer(c_int), value :: ldb
       complex(c_float_complex) :: beta
-      complex(c_float_complex), target :: CP(*)
+      complex(c_float_complex), target :: CP(..)
       integer(c_int), value :: ldc
       integer(c_int) :: Csyrkx
-      Csyrkx = hipblasCsyrkx_raw(handle, uplo, transA, n, k, alpha, c_loc(AP(1)), lda, c_loc(BP( &
-        1)), ldb, beta, c_loc(CP(1)), ldc)
+      Csyrkx = hipblasCsyrkx_raw(handle, uplo, transA, n, k, alpha, c_loc(AP), lda, c_loc(BP), &
+        ldb, beta, c_loc(CP), ldc)
     end function hipblasCsyrkx_native
 
     function hipblasCsyrkx_typed(handle, uplo, transA, n, k, alpha, AP, lda, BP, ldb, beta, CP, &
@@ -78048,16 +77934,16 @@ contains
       integer(c_int), value :: n
       integer(c_int), value :: k
       complex(c_double_complex) :: alpha
-      complex(c_double_complex), target :: AP(*)
+      complex(c_double_complex), target :: AP(..)
       integer(c_int), value :: lda
-      complex(c_double_complex), target :: BP(*)
+      complex(c_double_complex), target :: BP(..)
       integer(c_int), value :: ldb
       complex(c_double_complex) :: beta
-      complex(c_double_complex), target :: CP(*)
+      complex(c_double_complex), target :: CP(..)
       integer(c_int), value :: ldc
       integer(c_int) :: Zsyrkx
-      Zsyrkx = hipblasZsyrkx_raw(handle, uplo, transA, n, k, alpha, c_loc(AP(1)), lda, c_loc(BP( &
-        1)), ldb, beta, c_loc(CP(1)), ldc)
+      Zsyrkx = hipblasZsyrkx_raw(handle, uplo, transA, n, k, alpha, c_loc(AP), lda, c_loc(BP), &
+        ldb, beta, c_loc(CP), ldc)
     end function hipblasZsyrkx_native
 
     function hipblasZsyrkx_typed(handle, uplo, transA, n, k, alpha, AP, lda, BP, ldb, beta, CP, &
@@ -78092,17 +77978,17 @@ contains
       integer(c_int), value :: transA
       integer(c_long), value :: n
       integer(c_long), value :: k
-      real(c_float), target :: alpha(*)
-      real(c_float), target :: AP(*)
+      real(c_float), target :: alpha(..)
+      real(c_float), target :: AP(..)
       integer(c_long), value :: lda
-      real(c_float), target :: BP(*)
+      real(c_float), target :: BP(..)
       integer(c_long), value :: ldb
-      real(c_float), target :: beta(*)
-      real(c_float), target :: CP(*)
+      real(c_float), target :: beta(..)
+      real(c_float), target :: CP(..)
       integer(c_long), value :: ldc
       integer(c_int) :: Ssyrkx_64
-      Ssyrkx_64 = hipblasSsyrkx_64_raw(handle, uplo, transA, n, k, c_loc(alpha(1)), c_loc(AP(1)), &
-        lda, c_loc(BP(1)), ldb, c_loc(beta(1)), c_loc(CP(1)), ldc)
+      Ssyrkx_64 = hipblasSsyrkx_64_raw(handle, uplo, transA, n, k, c_loc(alpha), c_loc(AP), lda, &
+        c_loc(BP), ldb, c_loc(beta), c_loc(CP), ldc)
     end function hipblasSsyrkx_64_native
 
     function hipblasSsyrkx_64_typed(handle, uplo, transA, n, k, alpha, AP, lda, BP, ldb, beta, CP, &
@@ -78137,17 +78023,17 @@ contains
       integer(c_int), value :: transA
       integer(c_long), value :: n
       integer(c_long), value :: k
-      real(c_double), target :: alpha(*)
-      real(c_double), target :: AP(*)
+      real(c_double), target :: alpha(..)
+      real(c_double), target :: AP(..)
       integer(c_long), value :: lda
-      real(c_double), target :: BP(*)
+      real(c_double), target :: BP(..)
       integer(c_long), value :: ldb
-      real(c_double), target :: beta(*)
-      real(c_double), target :: CP(*)
+      real(c_double), target :: beta(..)
+      real(c_double), target :: CP(..)
       integer(c_long), value :: ldc
       integer(c_int) :: Dsyrkx_64
-      Dsyrkx_64 = hipblasDsyrkx_64_raw(handle, uplo, transA, n, k, c_loc(alpha(1)), c_loc(AP(1)), &
-        lda, c_loc(BP(1)), ldb, c_loc(beta(1)), c_loc(CP(1)), ldc)
+      Dsyrkx_64 = hipblasDsyrkx_64_raw(handle, uplo, transA, n, k, c_loc(alpha), c_loc(AP), lda, &
+        c_loc(BP), ldb, c_loc(beta), c_loc(CP), ldc)
     end function hipblasDsyrkx_64_native
 
     function hipblasDsyrkx_64_typed(handle, uplo, transA, n, k, alpha, AP, lda, BP, ldb, beta, CP, &
@@ -78182,17 +78068,17 @@ contains
       integer(c_int), value :: transA
       integer(c_long), value :: n
       integer(c_long), value :: k
-      complex(c_float_complex), target :: alpha(*)
-      complex(c_float_complex), target :: AP(*)
+      complex(c_float_complex), target :: alpha(..)
+      complex(c_float_complex), target :: AP(..)
       integer(c_long), value :: lda
-      complex(c_float_complex), target :: BP(*)
+      complex(c_float_complex), target :: BP(..)
       integer(c_long), value :: ldb
-      complex(c_float_complex), target :: beta(*)
-      complex(c_float_complex), target :: CP(*)
+      complex(c_float_complex), target :: beta(..)
+      complex(c_float_complex), target :: CP(..)
       integer(c_long), value :: ldc
       integer(c_int) :: Csyrkx_64
-      Csyrkx_64 = hipblasCsyrkx_64_raw(handle, uplo, transA, n, k, c_loc(alpha(1)), c_loc(AP(1)), &
-        lda, c_loc(BP(1)), ldb, c_loc(beta(1)), c_loc(CP(1)), ldc)
+      Csyrkx_64 = hipblasCsyrkx_64_raw(handle, uplo, transA, n, k, c_loc(alpha), c_loc(AP), lda, &
+        c_loc(BP), ldb, c_loc(beta), c_loc(CP), ldc)
     end function hipblasCsyrkx_64_native
 
     function hipblasCsyrkx_64_typed(handle, uplo, transA, n, k, alpha, AP, lda, BP, ldb, beta, CP, &
@@ -78227,17 +78113,17 @@ contains
       integer(c_int), value :: transA
       integer(c_long), value :: n
       integer(c_long), value :: k
-      complex(c_double_complex), target :: alpha(*)
-      complex(c_double_complex), target :: AP(*)
+      complex(c_double_complex), target :: alpha(..)
+      complex(c_double_complex), target :: AP(..)
       integer(c_long), value :: lda
-      complex(c_double_complex), target :: BP(*)
+      complex(c_double_complex), target :: BP(..)
       integer(c_long), value :: ldb
-      complex(c_double_complex), target :: beta(*)
-      complex(c_double_complex), target :: CP(*)
+      complex(c_double_complex), target :: beta(..)
+      complex(c_double_complex), target :: CP(..)
       integer(c_long), value :: ldc
       integer(c_int) :: Zsyrkx_64
-      Zsyrkx_64 = hipblasZsyrkx_64_raw(handle, uplo, transA, n, k, c_loc(alpha(1)), c_loc(AP(1)), &
-        lda, c_loc(BP(1)), ldb, c_loc(beta(1)), c_loc(CP(1)), ldc)
+      Zsyrkx_64 = hipblasZsyrkx_64_raw(handle, uplo, transA, n, k, c_loc(alpha), c_loc(AP), lda, &
+        c_loc(BP), ldb, c_loc(beta), c_loc(CP), ldc)
     end function hipblasZsyrkx_64_native
 
     function hipblasZsyrkx_64_typed(handle, uplo, transA, n, k, alpha, AP, lda, BP, ldb, beta, CP, &
@@ -78368,18 +78254,18 @@ contains
       integer(c_int), value :: transA
       integer(c_long), value :: n
       integer(c_long), value :: k
-      real(c_float), target :: alpha(*)
+      real(c_float), target :: alpha(..)
       type(c_ptr), value :: AP
       integer(c_long), value :: lda
       type(c_ptr), value :: BP
       integer(c_long), value :: ldb
-      real(c_float), target :: beta(*)
+      real(c_float), target :: beta(..)
       type(c_ptr), value :: CP
       integer(c_long), value :: ldc
       integer(c_long), value :: batchCount
       integer(c_int) :: SsyrkxBatched_64
-      SsyrkxBatched_64 = hipblasSsyrkxBatched_64_raw(handle, uplo, transA, n, k, c_loc(alpha(1)), &
-        AP, lda, BP, ldb, c_loc(beta(1)), CP, ldc, batchCount)
+      SsyrkxBatched_64 = hipblasSsyrkxBatched_64_raw(handle, uplo, transA, n, k, c_loc(alpha), AP, &
+        lda, BP, ldb, c_loc(beta), CP, ldc, batchCount)
     end function hipblasSsyrkxBatched_64_native
 
     function hipblasSsyrkxBatched_64_typed(handle, uplo, transA, n, k, alpha, AP, lda, BP, ldb, &
@@ -78415,18 +78301,18 @@ contains
       integer(c_int), value :: transA
       integer(c_long), value :: n
       integer(c_long), value :: k
-      real(c_double), target :: alpha(*)
+      real(c_double), target :: alpha(..)
       type(c_ptr), value :: AP
       integer(c_long), value :: lda
       type(c_ptr), value :: BP
       integer(c_long), value :: ldb
-      real(c_double), target :: beta(*)
+      real(c_double), target :: beta(..)
       type(c_ptr), value :: CP
       integer(c_long), value :: ldc
       integer(c_long), value :: batchCount
       integer(c_int) :: DsyrkxBatched_64
-      DsyrkxBatched_64 = hipblasDsyrkxBatched_64_raw(handle, uplo, transA, n, k, c_loc(alpha(1)), &
-        AP, lda, BP, ldb, c_loc(beta(1)), CP, ldc, batchCount)
+      DsyrkxBatched_64 = hipblasDsyrkxBatched_64_raw(handle, uplo, transA, n, k, c_loc(alpha), AP, &
+        lda, BP, ldb, c_loc(beta), CP, ldc, batchCount)
     end function hipblasDsyrkxBatched_64_native
 
     function hipblasDsyrkxBatched_64_typed(handle, uplo, transA, n, k, alpha, AP, lda, BP, ldb, &
@@ -78462,18 +78348,18 @@ contains
       integer(c_int), value :: transA
       integer(c_long), value :: n
       integer(c_long), value :: k
-      complex(c_float_complex), target :: alpha(*)
+      complex(c_float_complex), target :: alpha(..)
       type(c_ptr), value :: AP
       integer(c_long), value :: lda
       type(c_ptr), value :: BP
       integer(c_long), value :: ldb
-      complex(c_float_complex), target :: beta(*)
+      complex(c_float_complex), target :: beta(..)
       type(c_ptr), value :: CP
       integer(c_long), value :: ldc
       integer(c_long), value :: batchCount
       integer(c_int) :: CsyrkxBatched_64
-      CsyrkxBatched_64 = hipblasCsyrkxBatched_64_raw(handle, uplo, transA, n, k, c_loc(alpha(1)), &
-        AP, lda, BP, ldb, c_loc(beta(1)), CP, ldc, batchCount)
+      CsyrkxBatched_64 = hipblasCsyrkxBatched_64_raw(handle, uplo, transA, n, k, c_loc(alpha), AP, &
+        lda, BP, ldb, c_loc(beta), CP, ldc, batchCount)
     end function hipblasCsyrkxBatched_64_native
 
     function hipblasCsyrkxBatched_64_typed(handle, uplo, transA, n, k, alpha, AP, lda, BP, ldb, &
@@ -78509,18 +78395,18 @@ contains
       integer(c_int), value :: transA
       integer(c_long), value :: n
       integer(c_long), value :: k
-      complex(c_double_complex), target :: alpha(*)
+      complex(c_double_complex), target :: alpha(..)
       type(c_ptr), value :: AP
       integer(c_long), value :: lda
       type(c_ptr), value :: BP
       integer(c_long), value :: ldb
-      complex(c_double_complex), target :: beta(*)
+      complex(c_double_complex), target :: beta(..)
       type(c_ptr), value :: CP
       integer(c_long), value :: ldc
       integer(c_long), value :: batchCount
       integer(c_int) :: ZsyrkxBatched_64
-      ZsyrkxBatched_64 = hipblasZsyrkxBatched_64_raw(handle, uplo, transA, n, k, c_loc(alpha(1)), &
-        AP, lda, BP, ldb, c_loc(beta(1)), CP, ldc, batchCount)
+      ZsyrkxBatched_64 = hipblasZsyrkxBatched_64_raw(handle, uplo, transA, n, k, c_loc(alpha), AP, &
+        lda, BP, ldb, c_loc(beta), CP, ldc, batchCount)
     end function hipblasZsyrkxBatched_64_native
 
     function hipblasZsyrkxBatched_64_typed(handle, uplo, transA, n, k, alpha, AP, lda, BP, ldb, &
@@ -78557,21 +78443,20 @@ contains
       integer(c_int), value :: n
       integer(c_int), value :: k
       real(c_float) :: alpha
-      real(c_float), target :: AP(*)
+      real(c_float), target :: AP(..)
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
-      real(c_float), target :: BP(*)
+      real(c_float), target :: BP(..)
       integer(c_int), value :: ldb
       integer(c_long), value :: strideB
       real(c_float) :: beta
-      real(c_float), target :: CP(*)
+      real(c_float), target :: CP(..)
       integer(c_int), value :: ldc
       integer(c_long), value :: strideC
       integer(c_int), value :: batchCount
       integer(c_int) :: SsyrkxStridedBatched
       SsyrkxStridedBatched = hipblasSsyrkxStridedBatched_raw(handle, uplo, transA, n, k, alpha, &
-        c_loc(AP(1)), lda, strideA, c_loc(BP(1)), ldb, strideB, beta, c_loc(CP(1)), ldc, strideC, &
-        batchCount)
+        c_loc(AP), lda, strideA, c_loc(BP), ldb, strideB, beta, c_loc(CP), ldc, strideC, batchCount)
     end function hipblasSsyrkxStridedBatched_native
 
     function hipblasSsyrkxStridedBatched_typed(handle, uplo, transA, n, k, alpha, AP, lda, &
@@ -78611,21 +78496,20 @@ contains
       integer(c_int), value :: n
       integer(c_int), value :: k
       real(c_double) :: alpha
-      real(c_double), target :: AP(*)
+      real(c_double), target :: AP(..)
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
-      real(c_double), target :: BP(*)
+      real(c_double), target :: BP(..)
       integer(c_int), value :: ldb
       integer(c_long), value :: strideB
       real(c_double) :: beta
-      real(c_double), target :: CP(*)
+      real(c_double), target :: CP(..)
       integer(c_int), value :: ldc
       integer(c_long), value :: strideC
       integer(c_int), value :: batchCount
       integer(c_int) :: DsyrkxStridedBatched
       DsyrkxStridedBatched = hipblasDsyrkxStridedBatched_raw(handle, uplo, transA, n, k, alpha, &
-        c_loc(AP(1)), lda, strideA, c_loc(BP(1)), ldb, strideB, beta, c_loc(CP(1)), ldc, strideC, &
-        batchCount)
+        c_loc(AP), lda, strideA, c_loc(BP), ldb, strideB, beta, c_loc(CP), ldc, strideC, batchCount)
     end function hipblasDsyrkxStridedBatched_native
 
     function hipblasDsyrkxStridedBatched_typed(handle, uplo, transA, n, k, alpha, AP, lda, &
@@ -78665,21 +78549,20 @@ contains
       integer(c_int), value :: n
       integer(c_int), value :: k
       complex(c_float_complex) :: alpha
-      complex(c_float_complex), target :: AP(*)
+      complex(c_float_complex), target :: AP(..)
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
-      complex(c_float_complex), target :: BP(*)
+      complex(c_float_complex), target :: BP(..)
       integer(c_int), value :: ldb
       integer(c_long), value :: strideB
       complex(c_float_complex) :: beta
-      complex(c_float_complex), target :: CP(*)
+      complex(c_float_complex), target :: CP(..)
       integer(c_int), value :: ldc
       integer(c_long), value :: strideC
       integer(c_int), value :: batchCount
       integer(c_int) :: CsyrkxStridedBatched
       CsyrkxStridedBatched = hipblasCsyrkxStridedBatched_raw(handle, uplo, transA, n, k, alpha, &
-        c_loc(AP(1)), lda, strideA, c_loc(BP(1)), ldb, strideB, beta, c_loc(CP(1)), ldc, strideC, &
-        batchCount)
+        c_loc(AP), lda, strideA, c_loc(BP), ldb, strideB, beta, c_loc(CP), ldc, strideC, batchCount)
     end function hipblasCsyrkxStridedBatched_native
 
     function hipblasCsyrkxStridedBatched_typed(handle, uplo, transA, n, k, alpha, AP, lda, &
@@ -78719,21 +78602,20 @@ contains
       integer(c_int), value :: n
       integer(c_int), value :: k
       complex(c_double_complex) :: alpha
-      complex(c_double_complex), target :: AP(*)
+      complex(c_double_complex), target :: AP(..)
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
-      complex(c_double_complex), target :: BP(*)
+      complex(c_double_complex), target :: BP(..)
       integer(c_int), value :: ldb
       integer(c_long), value :: strideB
       complex(c_double_complex) :: beta
-      complex(c_double_complex), target :: CP(*)
+      complex(c_double_complex), target :: CP(..)
       integer(c_int), value :: ldc
       integer(c_long), value :: strideC
       integer(c_int), value :: batchCount
       integer(c_int) :: ZsyrkxStridedBatched
       ZsyrkxStridedBatched = hipblasZsyrkxStridedBatched_raw(handle, uplo, transA, n, k, alpha, &
-        c_loc(AP(1)), lda, strideA, c_loc(BP(1)), ldb, strideB, beta, c_loc(CP(1)), ldc, strideC, &
-        batchCount)
+        c_loc(AP), lda, strideA, c_loc(BP), ldb, strideB, beta, c_loc(CP), ldc, strideC, batchCount)
     end function hipblasZsyrkxStridedBatched_native
 
     function hipblasZsyrkxStridedBatched_typed(handle, uplo, transA, n, k, alpha, AP, lda, &
@@ -78773,22 +78655,22 @@ contains
       integer(c_int), value :: transA
       integer(c_long), value :: n
       integer(c_long), value :: k
-      real(c_float), target :: alpha(*)
-      real(c_float), target :: AP(*)
+      real(c_float), target :: alpha(..)
+      real(c_float), target :: AP(..)
       integer(c_long), value :: lda
       integer(c_long), value :: strideA
-      real(c_float), target :: BP(*)
+      real(c_float), target :: BP(..)
       integer(c_long), value :: ldb
       integer(c_long), value :: strideB
-      real(c_float), target :: beta(*)
-      real(c_float), target :: CP(*)
+      real(c_float), target :: beta(..)
+      real(c_float), target :: CP(..)
       integer(c_long), value :: ldc
       integer(c_long), value :: strideC
       integer(c_long), value :: batchCount
       integer(c_int) :: SsyrkxStridedBatched_64
       SsyrkxStridedBatched_64 = hipblasSsyrkxStridedBatched_64_raw(handle, uplo, transA, n, k, &
-        c_loc(alpha(1)), c_loc(AP(1)), lda, strideA, c_loc(BP(1)), ldb, strideB, c_loc(beta(1)), &
-        c_loc(CP(1)), ldc, strideC, batchCount)
+        c_loc(alpha), c_loc(AP), lda, strideA, c_loc(BP), ldb, strideB, c_loc(beta), c_loc(CP), &
+        ldc, strideC, batchCount)
     end function hipblasSsyrkxStridedBatched_64_native
 
     function hipblasSsyrkxStridedBatched_64_typed(handle, uplo, transA, n, k, alpha, AP, lda, &
@@ -78829,22 +78711,22 @@ contains
       integer(c_int), value :: transA
       integer(c_long), value :: n
       integer(c_long), value :: k
-      real(c_double), target :: alpha(*)
-      real(c_double), target :: AP(*)
+      real(c_double), target :: alpha(..)
+      real(c_double), target :: AP(..)
       integer(c_long), value :: lda
       integer(c_long), value :: strideA
-      real(c_double), target :: BP(*)
+      real(c_double), target :: BP(..)
       integer(c_long), value :: ldb
       integer(c_long), value :: strideB
-      real(c_double), target :: beta(*)
-      real(c_double), target :: CP(*)
+      real(c_double), target :: beta(..)
+      real(c_double), target :: CP(..)
       integer(c_long), value :: ldc
       integer(c_long), value :: strideC
       integer(c_long), value :: batchCount
       integer(c_int) :: DsyrkxStridedBatched_64
       DsyrkxStridedBatched_64 = hipblasDsyrkxStridedBatched_64_raw(handle, uplo, transA, n, k, &
-        c_loc(alpha(1)), c_loc(AP(1)), lda, strideA, c_loc(BP(1)), ldb, strideB, c_loc(beta(1)), &
-        c_loc(CP(1)), ldc, strideC, batchCount)
+        c_loc(alpha), c_loc(AP), lda, strideA, c_loc(BP), ldb, strideB, c_loc(beta), c_loc(CP), &
+        ldc, strideC, batchCount)
     end function hipblasDsyrkxStridedBatched_64_native
 
     function hipblasDsyrkxStridedBatched_64_typed(handle, uplo, transA, n, k, alpha, AP, lda, &
@@ -78885,22 +78767,22 @@ contains
       integer(c_int), value :: transA
       integer(c_long), value :: n
       integer(c_long), value :: k
-      complex(c_float_complex), target :: alpha(*)
-      complex(c_float_complex), target :: AP(*)
+      complex(c_float_complex), target :: alpha(..)
+      complex(c_float_complex), target :: AP(..)
       integer(c_long), value :: lda
       integer(c_long), value :: strideA
-      complex(c_float_complex), target :: BP(*)
+      complex(c_float_complex), target :: BP(..)
       integer(c_long), value :: ldb
       integer(c_long), value :: strideB
-      complex(c_float_complex), target :: beta(*)
-      complex(c_float_complex), target :: CP(*)
+      complex(c_float_complex), target :: beta(..)
+      complex(c_float_complex), target :: CP(..)
       integer(c_long), value :: ldc
       integer(c_long), value :: strideC
       integer(c_long), value :: batchCount
       integer(c_int) :: CsyrkxStridedBatched_64
       CsyrkxStridedBatched_64 = hipblasCsyrkxStridedBatched_64_raw(handle, uplo, transA, n, k, &
-        c_loc(alpha(1)), c_loc(AP(1)), lda, strideA, c_loc(BP(1)), ldb, strideB, c_loc(beta(1)), &
-        c_loc(CP(1)), ldc, strideC, batchCount)
+        c_loc(alpha), c_loc(AP), lda, strideA, c_loc(BP), ldb, strideB, c_loc(beta), c_loc(CP), &
+        ldc, strideC, batchCount)
     end function hipblasCsyrkxStridedBatched_64_native
 
     function hipblasCsyrkxStridedBatched_64_typed(handle, uplo, transA, n, k, alpha, AP, lda, &
@@ -78941,22 +78823,22 @@ contains
       integer(c_int), value :: transA
       integer(c_long), value :: n
       integer(c_long), value :: k
-      complex(c_double_complex), target :: alpha(*)
-      complex(c_double_complex), target :: AP(*)
+      complex(c_double_complex), target :: alpha(..)
+      complex(c_double_complex), target :: AP(..)
       integer(c_long), value :: lda
       integer(c_long), value :: strideA
-      complex(c_double_complex), target :: BP(*)
+      complex(c_double_complex), target :: BP(..)
       integer(c_long), value :: ldb
       integer(c_long), value :: strideB
-      complex(c_double_complex), target :: beta(*)
-      complex(c_double_complex), target :: CP(*)
+      complex(c_double_complex), target :: beta(..)
+      complex(c_double_complex), target :: CP(..)
       integer(c_long), value :: ldc
       integer(c_long), value :: strideC
       integer(c_long), value :: batchCount
       integer(c_int) :: ZsyrkxStridedBatched_64
       ZsyrkxStridedBatched_64 = hipblasZsyrkxStridedBatched_64_raw(handle, uplo, transA, n, k, &
-        c_loc(alpha(1)), c_loc(AP(1)), lda, strideA, c_loc(BP(1)), ldb, strideB, c_loc(beta(1)), &
-        c_loc(CP(1)), ldc, strideC, batchCount)
+        c_loc(alpha), c_loc(AP), lda, strideA, c_loc(BP), ldb, strideB, c_loc(beta), c_loc(CP), &
+        ldc, strideC, batchCount)
     end function hipblasZsyrkxStridedBatched_64_native
 
     function hipblasZsyrkxStridedBatched_64_typed(handle, uplo, transA, n, k, alpha, AP, lda, &
@@ -78997,16 +78879,16 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       real(c_float) :: alpha
-      real(c_float), target :: AP(*)
+      real(c_float), target :: AP(..)
       integer(c_int), value :: lda
       real(c_float) :: beta
-      real(c_float), target :: BP(*)
+      real(c_float), target :: BP(..)
       integer(c_int), value :: ldb
-      real(c_float), target :: CP(*)
+      real(c_float), target :: CP(..)
       integer(c_int), value :: ldc
       integer(c_int) :: Sgeam
-      Sgeam = hipblasSgeam_raw(handle, transA, transB, m, n, alpha, c_loc(AP(1)), lda, beta, &
-        c_loc(BP(1)), ldb, c_loc(CP(1)), ldc)
+      Sgeam = hipblasSgeam_raw(handle, transA, transB, m, n, alpha, c_loc(AP), lda, beta, c_loc( &
+        BP), ldb, c_loc(CP), ldc)
     end function hipblasSgeam_native
 
     function hipblasSgeam_typed(handle, transA, transB, m, n, alpha, AP, lda, beta, BP, ldb, CP, &
@@ -79042,16 +78924,16 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       real(c_double) :: alpha
-      real(c_double), target :: AP(*)
+      real(c_double), target :: AP(..)
       integer(c_int), value :: lda
       real(c_double) :: beta
-      real(c_double), target :: BP(*)
+      real(c_double), target :: BP(..)
       integer(c_int), value :: ldb
-      real(c_double), target :: CP(*)
+      real(c_double), target :: CP(..)
       integer(c_int), value :: ldc
       integer(c_int) :: Dgeam
-      Dgeam = hipblasDgeam_raw(handle, transA, transB, m, n, alpha, c_loc(AP(1)), lda, beta, &
-        c_loc(BP(1)), ldb, c_loc(CP(1)), ldc)
+      Dgeam = hipblasDgeam_raw(handle, transA, transB, m, n, alpha, c_loc(AP), lda, beta, c_loc( &
+        BP), ldb, c_loc(CP), ldc)
     end function hipblasDgeam_native
 
     function hipblasDgeam_typed(handle, transA, transB, m, n, alpha, AP, lda, beta, BP, ldb, CP, &
@@ -79087,16 +78969,16 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       complex(c_float_complex) :: alpha
-      complex(c_float_complex), target :: AP(*)
+      complex(c_float_complex), target :: AP(..)
       integer(c_int), value :: lda
       complex(c_float_complex) :: beta
-      complex(c_float_complex), target :: BP(*)
+      complex(c_float_complex), target :: BP(..)
       integer(c_int), value :: ldb
-      complex(c_float_complex), target :: CP(*)
+      complex(c_float_complex), target :: CP(..)
       integer(c_int), value :: ldc
       integer(c_int) :: Cgeam
-      Cgeam = hipblasCgeam_raw(handle, transA, transB, m, n, alpha, c_loc(AP(1)), lda, beta, &
-        c_loc(BP(1)), ldb, c_loc(CP(1)), ldc)
+      Cgeam = hipblasCgeam_raw(handle, transA, transB, m, n, alpha, c_loc(AP), lda, beta, c_loc( &
+        BP), ldb, c_loc(CP), ldc)
     end function hipblasCgeam_native
 
     function hipblasCgeam_typed(handle, transA, transB, m, n, alpha, AP, lda, beta, BP, ldb, CP, &
@@ -79132,16 +79014,16 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       complex(c_double_complex) :: alpha
-      complex(c_double_complex), target :: AP(*)
+      complex(c_double_complex), target :: AP(..)
       integer(c_int), value :: lda
       complex(c_double_complex) :: beta
-      complex(c_double_complex), target :: BP(*)
+      complex(c_double_complex), target :: BP(..)
       integer(c_int), value :: ldb
-      complex(c_double_complex), target :: CP(*)
+      complex(c_double_complex), target :: CP(..)
       integer(c_int), value :: ldc
       integer(c_int) :: Zgeam
-      Zgeam = hipblasZgeam_raw(handle, transA, transB, m, n, alpha, c_loc(AP(1)), lda, beta, &
-        c_loc(BP(1)), ldb, c_loc(CP(1)), ldc)
+      Zgeam = hipblasZgeam_raw(handle, transA, transB, m, n, alpha, c_loc(AP), lda, beta, c_loc( &
+        BP), ldb, c_loc(CP), ldc)
     end function hipblasZgeam_native
 
     function hipblasZgeam_typed(handle, transA, transB, m, n, alpha, AP, lda, beta, BP, ldb, CP, &
@@ -79176,17 +79058,17 @@ contains
       integer(c_int), value :: transB
       integer(c_long), value :: m
       integer(c_long), value :: n
-      real(c_float), target :: alpha(*)
-      real(c_float), target :: AP(*)
+      real(c_float), target :: alpha(..)
+      real(c_float), target :: AP(..)
       integer(c_long), value :: lda
-      real(c_float), target :: beta(*)
-      real(c_float), target :: BP(*)
+      real(c_float), target :: beta(..)
+      real(c_float), target :: BP(..)
       integer(c_long), value :: ldb
-      real(c_float), target :: CP(*)
+      real(c_float), target :: CP(..)
       integer(c_long), value :: ldc
       integer(c_int) :: Sgeam_64
-      Sgeam_64 = hipblasSgeam_64_raw(handle, transA, transB, m, n, c_loc(alpha(1)), c_loc(AP(1)), &
-        lda, c_loc(beta(1)), c_loc(BP(1)), ldb, c_loc(CP(1)), ldc)
+      Sgeam_64 = hipblasSgeam_64_raw(handle, transA, transB, m, n, c_loc(alpha), c_loc(AP), lda, &
+        c_loc(beta), c_loc(BP), ldb, c_loc(CP), ldc)
     end function hipblasSgeam_64_native
 
     function hipblasSgeam_64_typed(handle, transA, transB, m, n, alpha, AP, lda, beta, BP, ldb, &
@@ -79221,17 +79103,17 @@ contains
       integer(c_int), value :: transB
       integer(c_long), value :: m
       integer(c_long), value :: n
-      real(c_double), target :: alpha(*)
-      real(c_double), target :: AP(*)
+      real(c_double), target :: alpha(..)
+      real(c_double), target :: AP(..)
       integer(c_long), value :: lda
-      real(c_double), target :: beta(*)
-      real(c_double), target :: BP(*)
+      real(c_double), target :: beta(..)
+      real(c_double), target :: BP(..)
       integer(c_long), value :: ldb
-      real(c_double), target :: CP(*)
+      real(c_double), target :: CP(..)
       integer(c_long), value :: ldc
       integer(c_int) :: Dgeam_64
-      Dgeam_64 = hipblasDgeam_64_raw(handle, transA, transB, m, n, c_loc(alpha(1)), c_loc(AP(1)), &
-        lda, c_loc(beta(1)), c_loc(BP(1)), ldb, c_loc(CP(1)), ldc)
+      Dgeam_64 = hipblasDgeam_64_raw(handle, transA, transB, m, n, c_loc(alpha), c_loc(AP), lda, &
+        c_loc(beta), c_loc(BP), ldb, c_loc(CP), ldc)
     end function hipblasDgeam_64_native
 
     function hipblasDgeam_64_typed(handle, transA, transB, m, n, alpha, AP, lda, beta, BP, ldb, &
@@ -79266,17 +79148,17 @@ contains
       integer(c_int), value :: transB
       integer(c_long), value :: m
       integer(c_long), value :: n
-      complex(c_float_complex), target :: alpha(*)
-      complex(c_float_complex), target :: AP(*)
+      complex(c_float_complex), target :: alpha(..)
+      complex(c_float_complex), target :: AP(..)
       integer(c_long), value :: lda
-      complex(c_float_complex), target :: beta(*)
-      complex(c_float_complex), target :: BP(*)
+      complex(c_float_complex), target :: beta(..)
+      complex(c_float_complex), target :: BP(..)
       integer(c_long), value :: ldb
-      complex(c_float_complex), target :: CP(*)
+      complex(c_float_complex), target :: CP(..)
       integer(c_long), value :: ldc
       integer(c_int) :: Cgeam_64
-      Cgeam_64 = hipblasCgeam_64_raw(handle, transA, transB, m, n, c_loc(alpha(1)), c_loc(AP(1)), &
-        lda, c_loc(beta(1)), c_loc(BP(1)), ldb, c_loc(CP(1)), ldc)
+      Cgeam_64 = hipblasCgeam_64_raw(handle, transA, transB, m, n, c_loc(alpha), c_loc(AP), lda, &
+        c_loc(beta), c_loc(BP), ldb, c_loc(CP), ldc)
     end function hipblasCgeam_64_native
 
     function hipblasCgeam_64_typed(handle, transA, transB, m, n, alpha, AP, lda, beta, BP, ldb, &
@@ -79311,17 +79193,17 @@ contains
       integer(c_int), value :: transB
       integer(c_long), value :: m
       integer(c_long), value :: n
-      complex(c_double_complex), target :: alpha(*)
-      complex(c_double_complex), target :: AP(*)
+      complex(c_double_complex), target :: alpha(..)
+      complex(c_double_complex), target :: AP(..)
       integer(c_long), value :: lda
-      complex(c_double_complex), target :: beta(*)
-      complex(c_double_complex), target :: BP(*)
+      complex(c_double_complex), target :: beta(..)
+      complex(c_double_complex), target :: BP(..)
       integer(c_long), value :: ldb
-      complex(c_double_complex), target :: CP(*)
+      complex(c_double_complex), target :: CP(..)
       integer(c_long), value :: ldc
       integer(c_int) :: Zgeam_64
-      Zgeam_64 = hipblasZgeam_64_raw(handle, transA, transB, m, n, c_loc(alpha(1)), c_loc(AP(1)), &
-        lda, c_loc(beta(1)), c_loc(BP(1)), ldb, c_loc(CP(1)), ldc)
+      Zgeam_64 = hipblasZgeam_64_raw(handle, transA, transB, m, n, c_loc(alpha), c_loc(AP), lda, &
+        c_loc(beta), c_loc(BP), ldb, c_loc(CP), ldc)
     end function hipblasZgeam_64_native
 
     function hipblasZgeam_64_typed(handle, transA, transB, m, n, alpha, AP, lda, beta, BP, ldb, &
@@ -79452,18 +79334,18 @@ contains
       integer(c_int), value :: transB
       integer(c_long), value :: m
       integer(c_long), value :: n
-      real(c_float), target :: alpha(*)
+      real(c_float), target :: alpha(..)
       type(c_ptr), value :: AP
       integer(c_long), value :: lda
-      real(c_float), target :: beta(*)
+      real(c_float), target :: beta(..)
       type(c_ptr), value :: BP
       integer(c_long), value :: ldb
       type(c_ptr), value :: CP
       integer(c_long), value :: ldc
       integer(c_long), value :: batchCount
       integer(c_int) :: SgeamBatched_64
-      SgeamBatched_64 = hipblasSgeamBatched_64_raw(handle, transA, transB, m, n, c_loc(alpha(1)), &
-        AP, lda, c_loc(beta(1)), BP, ldb, CP, ldc, batchCount)
+      SgeamBatched_64 = hipblasSgeamBatched_64_raw(handle, transA, transB, m, n, c_loc(alpha), AP, &
+        lda, c_loc(beta), BP, ldb, CP, ldc, batchCount)
     end function hipblasSgeamBatched_64_native
 
     function hipblasSgeamBatched_64_typed(handle, transA, transB, m, n, alpha, AP, lda, beta, BP, &
@@ -79499,18 +79381,18 @@ contains
       integer(c_int), value :: transB
       integer(c_long), value :: m
       integer(c_long), value :: n
-      real(c_double), target :: alpha(*)
+      real(c_double), target :: alpha(..)
       type(c_ptr), value :: AP
       integer(c_long), value :: lda
-      real(c_double), target :: beta(*)
+      real(c_double), target :: beta(..)
       type(c_ptr), value :: BP
       integer(c_long), value :: ldb
       type(c_ptr), value :: CP
       integer(c_long), value :: ldc
       integer(c_long), value :: batchCount
       integer(c_int) :: DgeamBatched_64
-      DgeamBatched_64 = hipblasDgeamBatched_64_raw(handle, transA, transB, m, n, c_loc(alpha(1)), &
-        AP, lda, c_loc(beta(1)), BP, ldb, CP, ldc, batchCount)
+      DgeamBatched_64 = hipblasDgeamBatched_64_raw(handle, transA, transB, m, n, c_loc(alpha), AP, &
+        lda, c_loc(beta), BP, ldb, CP, ldc, batchCount)
     end function hipblasDgeamBatched_64_native
 
     function hipblasDgeamBatched_64_typed(handle, transA, transB, m, n, alpha, AP, lda, beta, BP, &
@@ -79546,18 +79428,18 @@ contains
       integer(c_int), value :: transB
       integer(c_long), value :: m
       integer(c_long), value :: n
-      complex(c_float_complex), target :: alpha(*)
+      complex(c_float_complex), target :: alpha(..)
       type(c_ptr), value :: AP
       integer(c_long), value :: lda
-      complex(c_float_complex), target :: beta(*)
+      complex(c_float_complex), target :: beta(..)
       type(c_ptr), value :: BP
       integer(c_long), value :: ldb
       type(c_ptr), value :: CP
       integer(c_long), value :: ldc
       integer(c_long), value :: batchCount
       integer(c_int) :: CgeamBatched_64
-      CgeamBatched_64 = hipblasCgeamBatched_64_raw(handle, transA, transB, m, n, c_loc(alpha(1)), &
-        AP, lda, c_loc(beta(1)), BP, ldb, CP, ldc, batchCount)
+      CgeamBatched_64 = hipblasCgeamBatched_64_raw(handle, transA, transB, m, n, c_loc(alpha), AP, &
+        lda, c_loc(beta), BP, ldb, CP, ldc, batchCount)
     end function hipblasCgeamBatched_64_native
 
     function hipblasCgeamBatched_64_typed(handle, transA, transB, m, n, alpha, AP, lda, beta, BP, &
@@ -79593,18 +79475,18 @@ contains
       integer(c_int), value :: transB
       integer(c_long), value :: m
       integer(c_long), value :: n
-      complex(c_double_complex), target :: alpha(*)
+      complex(c_double_complex), target :: alpha(..)
       type(c_ptr), value :: AP
       integer(c_long), value :: lda
-      complex(c_double_complex), target :: beta(*)
+      complex(c_double_complex), target :: beta(..)
       type(c_ptr), value :: BP
       integer(c_long), value :: ldb
       type(c_ptr), value :: CP
       integer(c_long), value :: ldc
       integer(c_long), value :: batchCount
       integer(c_int) :: ZgeamBatched_64
-      ZgeamBatched_64 = hipblasZgeamBatched_64_raw(handle, transA, transB, m, n, c_loc(alpha(1)), &
-        AP, lda, c_loc(beta(1)), BP, ldb, CP, ldc, batchCount)
+      ZgeamBatched_64 = hipblasZgeamBatched_64_raw(handle, transA, transB, m, n, c_loc(alpha), AP, &
+        lda, c_loc(beta), BP, ldb, CP, ldc, batchCount)
     end function hipblasZgeamBatched_64_native
 
     function hipblasZgeamBatched_64_typed(handle, transA, transB, m, n, alpha, AP, lda, beta, BP, &
@@ -79641,21 +79523,20 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       real(c_float) :: alpha
-      real(c_float), target :: AP(*)
+      real(c_float), target :: AP(..)
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
       real(c_float) :: beta
-      real(c_float), target :: BP(*)
+      real(c_float), target :: BP(..)
       integer(c_int), value :: ldb
       integer(c_long), value :: strideB
-      real(c_float), target :: CP(*)
+      real(c_float), target :: CP(..)
       integer(c_int), value :: ldc
       integer(c_long), value :: strideC
       integer(c_int), value :: batchCount
       integer(c_int) :: SgeamStridedBatched
       SgeamStridedBatched = hipblasSgeamStridedBatched_raw(handle, transA, transB, m, n, alpha, &
-        c_loc(AP(1)), lda, strideA, beta, c_loc(BP(1)), ldb, strideB, c_loc(CP(1)), ldc, strideC, &
-        batchCount)
+        c_loc(AP), lda, strideA, beta, c_loc(BP), ldb, strideB, c_loc(CP), ldc, strideC, batchCount)
     end function hipblasSgeamStridedBatched_native
 
     function hipblasSgeamStridedBatched_typed(handle, transA, transB, m, n, alpha, AP, lda, &
@@ -79695,21 +79576,20 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       real(c_double) :: alpha
-      real(c_double), target :: AP(*)
+      real(c_double), target :: AP(..)
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
       real(c_double) :: beta
-      real(c_double), target :: BP(*)
+      real(c_double), target :: BP(..)
       integer(c_int), value :: ldb
       integer(c_long), value :: strideB
-      real(c_double), target :: CP(*)
+      real(c_double), target :: CP(..)
       integer(c_int), value :: ldc
       integer(c_long), value :: strideC
       integer(c_int), value :: batchCount
       integer(c_int) :: DgeamStridedBatched
       DgeamStridedBatched = hipblasDgeamStridedBatched_raw(handle, transA, transB, m, n, alpha, &
-        c_loc(AP(1)), lda, strideA, beta, c_loc(BP(1)), ldb, strideB, c_loc(CP(1)), ldc, strideC, &
-        batchCount)
+        c_loc(AP), lda, strideA, beta, c_loc(BP), ldb, strideB, c_loc(CP), ldc, strideC, batchCount)
     end function hipblasDgeamStridedBatched_native
 
     function hipblasDgeamStridedBatched_typed(handle, transA, transB, m, n, alpha, AP, lda, &
@@ -79749,21 +79629,20 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       complex(c_float_complex) :: alpha
-      complex(c_float_complex), target :: AP(*)
+      complex(c_float_complex), target :: AP(..)
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
       complex(c_float_complex) :: beta
-      complex(c_float_complex), target :: BP(*)
+      complex(c_float_complex), target :: BP(..)
       integer(c_int), value :: ldb
       integer(c_long), value :: strideB
-      complex(c_float_complex), target :: CP(*)
+      complex(c_float_complex), target :: CP(..)
       integer(c_int), value :: ldc
       integer(c_long), value :: strideC
       integer(c_int), value :: batchCount
       integer(c_int) :: CgeamStridedBatched
       CgeamStridedBatched = hipblasCgeamStridedBatched_raw(handle, transA, transB, m, n, alpha, &
-        c_loc(AP(1)), lda, strideA, beta, c_loc(BP(1)), ldb, strideB, c_loc(CP(1)), ldc, strideC, &
-        batchCount)
+        c_loc(AP), lda, strideA, beta, c_loc(BP), ldb, strideB, c_loc(CP), ldc, strideC, batchCount)
     end function hipblasCgeamStridedBatched_native
 
     function hipblasCgeamStridedBatched_typed(handle, transA, transB, m, n, alpha, AP, lda, &
@@ -79803,21 +79682,20 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       complex(c_double_complex) :: alpha
-      complex(c_double_complex), target :: AP(*)
+      complex(c_double_complex), target :: AP(..)
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
       complex(c_double_complex) :: beta
-      complex(c_double_complex), target :: BP(*)
+      complex(c_double_complex), target :: BP(..)
       integer(c_int), value :: ldb
       integer(c_long), value :: strideB
-      complex(c_double_complex), target :: CP(*)
+      complex(c_double_complex), target :: CP(..)
       integer(c_int), value :: ldc
       integer(c_long), value :: strideC
       integer(c_int), value :: batchCount
       integer(c_int) :: ZgeamStridedBatched
       ZgeamStridedBatched = hipblasZgeamStridedBatched_raw(handle, transA, transB, m, n, alpha, &
-        c_loc(AP(1)), lda, strideA, beta, c_loc(BP(1)), ldb, strideB, c_loc(CP(1)), ldc, strideC, &
-        batchCount)
+        c_loc(AP), lda, strideA, beta, c_loc(BP), ldb, strideB, c_loc(CP), ldc, strideC, batchCount)
     end function hipblasZgeamStridedBatched_native
 
     function hipblasZgeamStridedBatched_typed(handle, transA, transB, m, n, alpha, AP, lda, &
@@ -79857,22 +79735,22 @@ contains
       integer(c_int), value :: transB
       integer(c_long), value :: m
       integer(c_long), value :: n
-      real(c_float), target :: alpha(*)
-      real(c_float), target :: AP(*)
+      real(c_float), target :: alpha(..)
+      real(c_float), target :: AP(..)
       integer(c_long), value :: lda
       integer(c_long), value :: strideA
-      real(c_float), target :: beta(*)
-      real(c_float), target :: BP(*)
+      real(c_float), target :: beta(..)
+      real(c_float), target :: BP(..)
       integer(c_long), value :: ldb
       integer(c_long), value :: strideB
-      real(c_float), target :: CP(*)
+      real(c_float), target :: CP(..)
       integer(c_long), value :: ldc
       integer(c_long), value :: strideC
       integer(c_long), value :: batchCount
       integer(c_int) :: SgeamStridedBatched_64
       SgeamStridedBatched_64 = hipblasSgeamStridedBatched_64_raw(handle, transA, transB, m, n, &
-        c_loc(alpha(1)), c_loc(AP(1)), lda, strideA, c_loc(beta(1)), c_loc(BP(1)), ldb, strideB, &
-        c_loc(CP(1)), ldc, strideC, batchCount)
+        c_loc(alpha), c_loc(AP), lda, strideA, c_loc(beta), c_loc(BP), ldb, strideB, c_loc(CP), &
+        ldc, strideC, batchCount)
     end function hipblasSgeamStridedBatched_64_native
 
     function hipblasSgeamStridedBatched_64_typed(handle, transA, transB, m, n, alpha, AP, lda, &
@@ -79913,22 +79791,22 @@ contains
       integer(c_int), value :: transB
       integer(c_long), value :: m
       integer(c_long), value :: n
-      real(c_double), target :: alpha(*)
-      real(c_double), target :: AP(*)
+      real(c_double), target :: alpha(..)
+      real(c_double), target :: AP(..)
       integer(c_long), value :: lda
       integer(c_long), value :: strideA
-      real(c_double), target :: beta(*)
-      real(c_double), target :: BP(*)
+      real(c_double), target :: beta(..)
+      real(c_double), target :: BP(..)
       integer(c_long), value :: ldb
       integer(c_long), value :: strideB
-      real(c_double), target :: CP(*)
+      real(c_double), target :: CP(..)
       integer(c_long), value :: ldc
       integer(c_long), value :: strideC
       integer(c_long), value :: batchCount
       integer(c_int) :: DgeamStridedBatched_64
       DgeamStridedBatched_64 = hipblasDgeamStridedBatched_64_raw(handle, transA, transB, m, n, &
-        c_loc(alpha(1)), c_loc(AP(1)), lda, strideA, c_loc(beta(1)), c_loc(BP(1)), ldb, strideB, &
-        c_loc(CP(1)), ldc, strideC, batchCount)
+        c_loc(alpha), c_loc(AP), lda, strideA, c_loc(beta), c_loc(BP), ldb, strideB, c_loc(CP), &
+        ldc, strideC, batchCount)
     end function hipblasDgeamStridedBatched_64_native
 
     function hipblasDgeamStridedBatched_64_typed(handle, transA, transB, m, n, alpha, AP, lda, &
@@ -79969,22 +79847,22 @@ contains
       integer(c_int), value :: transB
       integer(c_long), value :: m
       integer(c_long), value :: n
-      complex(c_float_complex), target :: alpha(*)
-      complex(c_float_complex), target :: AP(*)
+      complex(c_float_complex), target :: alpha(..)
+      complex(c_float_complex), target :: AP(..)
       integer(c_long), value :: lda
       integer(c_long), value :: strideA
-      complex(c_float_complex), target :: beta(*)
-      complex(c_float_complex), target :: BP(*)
+      complex(c_float_complex), target :: beta(..)
+      complex(c_float_complex), target :: BP(..)
       integer(c_long), value :: ldb
       integer(c_long), value :: strideB
-      complex(c_float_complex), target :: CP(*)
+      complex(c_float_complex), target :: CP(..)
       integer(c_long), value :: ldc
       integer(c_long), value :: strideC
       integer(c_long), value :: batchCount
       integer(c_int) :: CgeamStridedBatched_64
       CgeamStridedBatched_64 = hipblasCgeamStridedBatched_64_raw(handle, transA, transB, m, n, &
-        c_loc(alpha(1)), c_loc(AP(1)), lda, strideA, c_loc(beta(1)), c_loc(BP(1)), ldb, strideB, &
-        c_loc(CP(1)), ldc, strideC, batchCount)
+        c_loc(alpha), c_loc(AP), lda, strideA, c_loc(beta), c_loc(BP), ldb, strideB, c_loc(CP), &
+        ldc, strideC, batchCount)
     end function hipblasCgeamStridedBatched_64_native
 
     function hipblasCgeamStridedBatched_64_typed(handle, transA, transB, m, n, alpha, AP, lda, &
@@ -80025,22 +79903,22 @@ contains
       integer(c_int), value :: transB
       integer(c_long), value :: m
       integer(c_long), value :: n
-      complex(c_double_complex), target :: alpha(*)
-      complex(c_double_complex), target :: AP(*)
+      complex(c_double_complex), target :: alpha(..)
+      complex(c_double_complex), target :: AP(..)
       integer(c_long), value :: lda
       integer(c_long), value :: strideA
-      complex(c_double_complex), target :: beta(*)
-      complex(c_double_complex), target :: BP(*)
+      complex(c_double_complex), target :: beta(..)
+      complex(c_double_complex), target :: BP(..)
       integer(c_long), value :: ldb
       integer(c_long), value :: strideB
-      complex(c_double_complex), target :: CP(*)
+      complex(c_double_complex), target :: CP(..)
       integer(c_long), value :: ldc
       integer(c_long), value :: strideC
       integer(c_long), value :: batchCount
       integer(c_int) :: ZgeamStridedBatched_64
       ZgeamStridedBatched_64 = hipblasZgeamStridedBatched_64_raw(handle, transA, transB, m, n, &
-        c_loc(alpha(1)), c_loc(AP(1)), lda, strideA, c_loc(beta(1)), c_loc(BP(1)), ldb, strideB, &
-        c_loc(CP(1)), ldc, strideC, batchCount)
+        c_loc(alpha), c_loc(AP), lda, strideA, c_loc(beta), c_loc(BP), ldb, strideB, c_loc(CP), &
+        ldc, strideC, batchCount)
     end function hipblasZgeamStridedBatched_64_native
 
     function hipblasZgeamStridedBatched_64_typed(handle, transA, transB, m, n, alpha, AP, lda, &
@@ -80081,16 +79959,16 @@ contains
       integer(c_int), value :: n
       integer(c_int), value :: k
       complex(c_float_complex) :: alpha
-      complex(c_float_complex), target :: AP(*)
+      complex(c_float_complex), target :: AP(..)
       integer(c_int), value :: lda
-      complex(c_float_complex), target :: BP(*)
+      complex(c_float_complex), target :: BP(..)
       integer(c_int), value :: ldb
       complex(c_float_complex) :: beta
-      complex(c_float_complex), target :: CP(*)
+      complex(c_float_complex), target :: CP(..)
       integer(c_int), value :: ldc
       integer(c_int) :: Chemm
-      Chemm = hipblasChemm_raw(handle, side, uplo, n, k, alpha, c_loc(AP(1)), lda, c_loc(BP(1)), &
-        ldb, beta, c_loc(CP(1)), ldc)
+      Chemm = hipblasChemm_raw(handle, side, uplo, n, k, alpha, c_loc(AP), lda, c_loc(BP), ldb, &
+        beta, c_loc(CP), ldc)
     end function hipblasChemm_native
 
     function hipblasChemm_typed(handle, side, uplo, n, k, alpha, AP, lda, BP, ldb, beta, CP, &
@@ -80125,16 +80003,16 @@ contains
       integer(c_int), value :: n
       integer(c_int), value :: k
       complex(c_double_complex) :: alpha
-      complex(c_double_complex), target :: AP(*)
+      complex(c_double_complex), target :: AP(..)
       integer(c_int), value :: lda
-      complex(c_double_complex), target :: BP(*)
+      complex(c_double_complex), target :: BP(..)
       integer(c_int), value :: ldb
       complex(c_double_complex) :: beta
-      complex(c_double_complex), target :: CP(*)
+      complex(c_double_complex), target :: CP(..)
       integer(c_int), value :: ldc
       integer(c_int) :: Zhemm
-      Zhemm = hipblasZhemm_raw(handle, side, uplo, n, k, alpha, c_loc(AP(1)), lda, c_loc(BP(1)), &
-        ldb, beta, c_loc(CP(1)), ldc)
+      Zhemm = hipblasZhemm_raw(handle, side, uplo, n, k, alpha, c_loc(AP), lda, c_loc(BP), ldb, &
+        beta, c_loc(CP), ldc)
     end function hipblasZhemm_native
 
     function hipblasZhemm_typed(handle, side, uplo, n, k, alpha, AP, lda, BP, ldb, beta, CP, &
@@ -80168,17 +80046,17 @@ contains
       integer(c_int), value :: uplo
       integer(c_long), value :: n
       integer(c_long), value :: k
-      complex(c_float_complex), target :: alpha(*)
-      complex(c_float_complex), target :: AP(*)
+      complex(c_float_complex), target :: alpha(..)
+      complex(c_float_complex), target :: AP(..)
       integer(c_long), value :: lda
-      complex(c_float_complex), target :: BP(*)
+      complex(c_float_complex), target :: BP(..)
       integer(c_long), value :: ldb
-      complex(c_float_complex), target :: beta(*)
-      complex(c_float_complex), target :: CP(*)
+      complex(c_float_complex), target :: beta(..)
+      complex(c_float_complex), target :: CP(..)
       integer(c_long), value :: ldc
       integer(c_int) :: Chemm_64
-      Chemm_64 = hipblasChemm_64_raw(handle, side, uplo, n, k, c_loc(alpha(1)), c_loc(AP(1)), lda, &
-        c_loc(BP(1)), ldb, c_loc(beta(1)), c_loc(CP(1)), ldc)
+      Chemm_64 = hipblasChemm_64_raw(handle, side, uplo, n, k, c_loc(alpha), c_loc(AP), lda, &
+        c_loc(BP), ldb, c_loc(beta), c_loc(CP), ldc)
     end function hipblasChemm_64_native
 
     function hipblasChemm_64_typed(handle, side, uplo, n, k, alpha, AP, lda, BP, ldb, beta, CP, &
@@ -80213,17 +80091,17 @@ contains
       integer(c_int), value :: uplo
       integer(c_long), value :: n
       integer(c_long), value :: k
-      complex(c_double_complex), target :: alpha(*)
-      complex(c_double_complex), target :: AP(*)
+      complex(c_double_complex), target :: alpha(..)
+      complex(c_double_complex), target :: AP(..)
       integer(c_long), value :: lda
-      complex(c_double_complex), target :: BP(*)
+      complex(c_double_complex), target :: BP(..)
       integer(c_long), value :: ldb
-      complex(c_double_complex), target :: beta(*)
-      complex(c_double_complex), target :: CP(*)
+      complex(c_double_complex), target :: beta(..)
+      complex(c_double_complex), target :: CP(..)
       integer(c_long), value :: ldc
       integer(c_int) :: Zhemm_64
-      Zhemm_64 = hipblasZhemm_64_raw(handle, side, uplo, n, k, c_loc(alpha(1)), c_loc(AP(1)), lda, &
-        c_loc(BP(1)), ldb, c_loc(beta(1)), c_loc(CP(1)), ldc)
+      Zhemm_64 = hipblasZhemm_64_raw(handle, side, uplo, n, k, c_loc(alpha), c_loc(AP), lda, &
+        c_loc(BP), ldb, c_loc(beta), c_loc(CP), ldc)
     end function hipblasZhemm_64_native
 
     function hipblasZhemm_64_typed(handle, side, uplo, n, k, alpha, AP, lda, BP, ldb, beta, CP, &
@@ -80306,18 +80184,18 @@ contains
       integer(c_int), value :: uplo
       integer(c_long), value :: n
       integer(c_long), value :: k
-      complex(c_float_complex), target :: alpha(*)
+      complex(c_float_complex), target :: alpha(..)
       type(c_ptr), value :: AP
       integer(c_long), value :: lda
       type(c_ptr), value :: BP
       integer(c_long), value :: ldb
-      complex(c_float_complex), target :: beta(*)
+      complex(c_float_complex), target :: beta(..)
       type(c_ptr), value :: CP
       integer(c_long), value :: ldc
       integer(c_long), value :: batchCount
       integer(c_int) :: ChemmBatched_64
-      ChemmBatched_64 = hipblasChemmBatched_64_raw(handle, side, uplo, n, k, c_loc(alpha(1)), AP, &
-        lda, BP, ldb, c_loc(beta(1)), CP, ldc, batchCount)
+      ChemmBatched_64 = hipblasChemmBatched_64_raw(handle, side, uplo, n, k, c_loc(alpha), AP, &
+        lda, BP, ldb, c_loc(beta), CP, ldc, batchCount)
     end function hipblasChemmBatched_64_native
 
     function hipblasChemmBatched_64_typed(handle, side, uplo, n, k, alpha, AP, lda, BP, ldb, beta, &
@@ -80353,18 +80231,18 @@ contains
       integer(c_int), value :: uplo
       integer(c_long), value :: n
       integer(c_long), value :: k
-      complex(c_double_complex), target :: alpha(*)
+      complex(c_double_complex), target :: alpha(..)
       type(c_ptr), value :: AP
       integer(c_long), value :: lda
       type(c_ptr), value :: BP
       integer(c_long), value :: ldb
-      complex(c_double_complex), target :: beta(*)
+      complex(c_double_complex), target :: beta(..)
       type(c_ptr), value :: CP
       integer(c_long), value :: ldc
       integer(c_long), value :: batchCount
       integer(c_int) :: ZhemmBatched_64
-      ZhemmBatched_64 = hipblasZhemmBatched_64_raw(handle, side, uplo, n, k, c_loc(alpha(1)), AP, &
-        lda, BP, ldb, c_loc(beta(1)), CP, ldc, batchCount)
+      ZhemmBatched_64 = hipblasZhemmBatched_64_raw(handle, side, uplo, n, k, c_loc(alpha), AP, &
+        lda, BP, ldb, c_loc(beta), CP, ldc, batchCount)
     end function hipblasZhemmBatched_64_native
 
     function hipblasZhemmBatched_64_typed(handle, side, uplo, n, k, alpha, AP, lda, BP, ldb, beta, &
@@ -80401,21 +80279,20 @@ contains
       integer(c_int), value :: n
       integer(c_int), value :: k
       complex(c_float_complex) :: alpha
-      complex(c_float_complex), target :: AP(*)
+      complex(c_float_complex), target :: AP(..)
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
-      complex(c_float_complex), target :: BP(*)
+      complex(c_float_complex), target :: BP(..)
       integer(c_int), value :: ldb
       integer(c_long), value :: strideB
       complex(c_float_complex) :: beta
-      complex(c_float_complex), target :: CP(*)
+      complex(c_float_complex), target :: CP(..)
       integer(c_int), value :: ldc
       integer(c_long), value :: strideC
       integer(c_int), value :: batchCount
       integer(c_int) :: ChemmStridedBatched
       ChemmStridedBatched = hipblasChemmStridedBatched_raw(handle, side, uplo, n, k, alpha, c_loc( &
-        AP(1)), lda, strideA, c_loc(BP(1)), ldb, strideB, beta, c_loc(CP(1)), ldc, strideC, &
-        batchCount)
+        AP), lda, strideA, c_loc(BP), ldb, strideB, beta, c_loc(CP), ldc, strideC, batchCount)
     end function hipblasChemmStridedBatched_native
 
     function hipblasChemmStridedBatched_typed(handle, side, uplo, n, k, alpha, AP, lda, strideA, &
@@ -80455,21 +80332,20 @@ contains
       integer(c_int), value :: n
       integer(c_int), value :: k
       complex(c_double_complex) :: alpha
-      complex(c_double_complex), target :: AP(*)
+      complex(c_double_complex), target :: AP(..)
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
-      complex(c_double_complex), target :: BP(*)
+      complex(c_double_complex), target :: BP(..)
       integer(c_int), value :: ldb
       integer(c_long), value :: strideB
       complex(c_double_complex) :: beta
-      complex(c_double_complex), target :: CP(*)
+      complex(c_double_complex), target :: CP(..)
       integer(c_int), value :: ldc
       integer(c_long), value :: strideC
       integer(c_int), value :: batchCount
       integer(c_int) :: ZhemmStridedBatched
       ZhemmStridedBatched = hipblasZhemmStridedBatched_raw(handle, side, uplo, n, k, alpha, c_loc( &
-        AP(1)), lda, strideA, c_loc(BP(1)), ldb, strideB, beta, c_loc(CP(1)), ldc, strideC, &
-        batchCount)
+        AP), lda, strideA, c_loc(BP), ldb, strideB, beta, c_loc(CP), ldc, strideC, batchCount)
     end function hipblasZhemmStridedBatched_native
 
     function hipblasZhemmStridedBatched_typed(handle, side, uplo, n, k, alpha, AP, lda, strideA, &
@@ -80509,22 +80385,22 @@ contains
       integer(c_int), value :: uplo
       integer(c_long), value :: n
       integer(c_long), value :: k
-      complex(c_float_complex), target :: alpha(*)
-      complex(c_float_complex), target :: AP(*)
+      complex(c_float_complex), target :: alpha(..)
+      complex(c_float_complex), target :: AP(..)
       integer(c_long), value :: lda
       integer(c_long), value :: strideA
-      complex(c_float_complex), target :: BP(*)
+      complex(c_float_complex), target :: BP(..)
       integer(c_long), value :: ldb
       integer(c_long), value :: strideB
-      complex(c_float_complex), target :: beta(*)
-      complex(c_float_complex), target :: CP(*)
+      complex(c_float_complex), target :: beta(..)
+      complex(c_float_complex), target :: CP(..)
       integer(c_long), value :: ldc
       integer(c_long), value :: strideC
       integer(c_long), value :: batchCount
       integer(c_int) :: ChemmStridedBatched_64
       ChemmStridedBatched_64 = hipblasChemmStridedBatched_64_raw(handle, side, uplo, n, k, c_loc( &
-        alpha(1)), c_loc(AP(1)), lda, strideA, c_loc(BP(1)), ldb, strideB, c_loc(beta(1)), c_loc( &
-        CP(1)), ldc, strideC, batchCount)
+        alpha), c_loc(AP), lda, strideA, c_loc(BP), ldb, strideB, c_loc(beta), c_loc(CP), ldc, &
+        strideC, batchCount)
     end function hipblasChemmStridedBatched_64_native
 
     function hipblasChemmStridedBatched_64_typed(handle, side, uplo, n, k, alpha, AP, lda, &
@@ -80565,22 +80441,22 @@ contains
       integer(c_int), value :: uplo
       integer(c_long), value :: n
       integer(c_long), value :: k
-      complex(c_double_complex), target :: alpha(*)
-      complex(c_double_complex), target :: AP(*)
+      complex(c_double_complex), target :: alpha(..)
+      complex(c_double_complex), target :: AP(..)
       integer(c_long), value :: lda
       integer(c_long), value :: strideA
-      complex(c_double_complex), target :: BP(*)
+      complex(c_double_complex), target :: BP(..)
       integer(c_long), value :: ldb
       integer(c_long), value :: strideB
-      complex(c_double_complex), target :: beta(*)
-      complex(c_double_complex), target :: CP(*)
+      complex(c_double_complex), target :: beta(..)
+      complex(c_double_complex), target :: CP(..)
       integer(c_long), value :: ldc
       integer(c_long), value :: strideC
       integer(c_long), value :: batchCount
       integer(c_int) :: ZhemmStridedBatched_64
       ZhemmStridedBatched_64 = hipblasZhemmStridedBatched_64_raw(handle, side, uplo, n, k, c_loc( &
-        alpha(1)), c_loc(AP(1)), lda, strideA, c_loc(BP(1)), ldb, strideB, c_loc(beta(1)), c_loc( &
-        CP(1)), ldc, strideC, batchCount)
+        alpha), c_loc(AP), lda, strideA, c_loc(BP), ldb, strideB, c_loc(beta), c_loc(CP), ldc, &
+        strideC, batchCount)
     end function hipblasZhemmStridedBatched_64_native
 
     function hipblasZhemmStridedBatched_64_typed(handle, side, uplo, n, k, alpha, AP, lda, &
@@ -80623,15 +80499,15 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       real(c_float) :: alpha
-      real(c_float), target :: A(*)
+      real(c_float), target :: A(..)
       integer(c_int), value :: lda
-      real(c_float), target :: B(*)
+      real(c_float), target :: B(..)
       integer(c_int), value :: ldb
-      real(c_float), target :: C(*)
+      real(c_float), target :: C(..)
       integer(c_int), value :: ldc
       integer(c_int) :: Strmm
-      Strmm = hipblasStrmm_raw(handle, side, uplo, transA, diag, m, n, alpha, c_loc(A(1)), lda, &
-        c_loc(B(1)), ldb, c_loc(C(1)), ldc)
+      Strmm = hipblasStrmm_raw(handle, side, uplo, transA, diag, m, n, alpha, c_loc(A), lda, &
+        c_loc(B), ldb, c_loc(C), ldc)
     end function hipblasStrmm_native
 
     function hipblasStrmm_typed(handle, side, uplo, transA, diag, m, n, alpha, A, lda, B, ldb, C, &
@@ -80670,15 +80546,15 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       real(c_double) :: alpha
-      real(c_double), target :: A(*)
+      real(c_double), target :: A(..)
       integer(c_int), value :: lda
-      real(c_double), target :: B(*)
+      real(c_double), target :: B(..)
       integer(c_int), value :: ldb
-      real(c_double), target :: C(*)
+      real(c_double), target :: C(..)
       integer(c_int), value :: ldc
       integer(c_int) :: Dtrmm
-      Dtrmm = hipblasDtrmm_raw(handle, side, uplo, transA, diag, m, n, alpha, c_loc(A(1)), lda, &
-        c_loc(B(1)), ldb, c_loc(C(1)), ldc)
+      Dtrmm = hipblasDtrmm_raw(handle, side, uplo, transA, diag, m, n, alpha, c_loc(A), lda, &
+        c_loc(B), ldb, c_loc(C), ldc)
     end function hipblasDtrmm_native
 
     function hipblasDtrmm_typed(handle, side, uplo, transA, diag, m, n, alpha, A, lda, B, ldb, C, &
@@ -80717,15 +80593,15 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       complex(c_float_complex) :: alpha
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: A(..)
       integer(c_int), value :: lda
-      complex(c_float_complex), target :: B(*)
+      complex(c_float_complex), target :: B(..)
       integer(c_int), value :: ldb
-      complex(c_float_complex), target :: C(*)
+      complex(c_float_complex), target :: C(..)
       integer(c_int), value :: ldc
       integer(c_int) :: Ctrmm
-      Ctrmm = hipblasCtrmm_raw(handle, side, uplo, transA, diag, m, n, alpha, c_loc(A(1)), lda, &
-        c_loc(B(1)), ldb, c_loc(C(1)), ldc)
+      Ctrmm = hipblasCtrmm_raw(handle, side, uplo, transA, diag, m, n, alpha, c_loc(A), lda, &
+        c_loc(B), ldb, c_loc(C), ldc)
     end function hipblasCtrmm_native
 
     function hipblasCtrmm_typed(handle, side, uplo, transA, diag, m, n, alpha, A, lda, B, ldb, C, &
@@ -80764,15 +80640,15 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       complex(c_double_complex) :: alpha
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: A(..)
       integer(c_int), value :: lda
-      complex(c_double_complex), target :: B(*)
+      complex(c_double_complex), target :: B(..)
       integer(c_int), value :: ldb
-      complex(c_double_complex), target :: C(*)
+      complex(c_double_complex), target :: C(..)
       integer(c_int), value :: ldc
       integer(c_int) :: Ztrmm
-      Ztrmm = hipblasZtrmm_raw(handle, side, uplo, transA, diag, m, n, alpha, c_loc(A(1)), lda, &
-        c_loc(B(1)), ldb, c_loc(C(1)), ldc)
+      Ztrmm = hipblasZtrmm_raw(handle, side, uplo, transA, diag, m, n, alpha, c_loc(A), lda, &
+        c_loc(B), ldb, c_loc(C), ldc)
     end function hipblasZtrmm_native
 
     function hipblasZtrmm_typed(handle, side, uplo, transA, diag, m, n, alpha, A, lda, B, ldb, C, &
@@ -80810,16 +80686,16 @@ contains
       integer(c_int), value :: diag
       integer(c_long), value :: m
       integer(c_long), value :: n
-      real(c_float), target :: alpha(*)
-      real(c_float), target :: A(*)
+      real(c_float), target :: alpha(..)
+      real(c_float), target :: A(..)
       integer(c_long), value :: lda
-      real(c_float), target :: B(*)
+      real(c_float), target :: B(..)
       integer(c_long), value :: ldb
-      real(c_float), target :: C(*)
+      real(c_float), target :: C(..)
       integer(c_long), value :: ldc
       integer(c_int) :: Strmm_64
-      Strmm_64 = hipblasStrmm_64_raw(handle, side, uplo, transA, diag, m, n, c_loc(alpha(1)), &
-        c_loc(A(1)), lda, c_loc(B(1)), ldb, c_loc(C(1)), ldc)
+      Strmm_64 = hipblasStrmm_64_raw(handle, side, uplo, transA, diag, m, n, c_loc(alpha), c_loc( &
+        A), lda, c_loc(B), ldb, c_loc(C), ldc)
     end function hipblasStrmm_64_native
 
     function hipblasStrmm_64_typed(handle, side, uplo, transA, diag, m, n, alpha, A, lda, B, ldb, &
@@ -80857,16 +80733,16 @@ contains
       integer(c_int), value :: diag
       integer(c_long), value :: m
       integer(c_long), value :: n
-      real(c_double), target :: alpha(*)
-      real(c_double), target :: A(*)
+      real(c_double), target :: alpha(..)
+      real(c_double), target :: A(..)
       integer(c_long), value :: lda
-      real(c_double), target :: B(*)
+      real(c_double), target :: B(..)
       integer(c_long), value :: ldb
-      real(c_double), target :: C(*)
+      real(c_double), target :: C(..)
       integer(c_long), value :: ldc
       integer(c_int) :: Dtrmm_64
-      Dtrmm_64 = hipblasDtrmm_64_raw(handle, side, uplo, transA, diag, m, n, c_loc(alpha(1)), &
-        c_loc(A(1)), lda, c_loc(B(1)), ldb, c_loc(C(1)), ldc)
+      Dtrmm_64 = hipblasDtrmm_64_raw(handle, side, uplo, transA, diag, m, n, c_loc(alpha), c_loc( &
+        A), lda, c_loc(B), ldb, c_loc(C), ldc)
     end function hipblasDtrmm_64_native
 
     function hipblasDtrmm_64_typed(handle, side, uplo, transA, diag, m, n, alpha, A, lda, B, ldb, &
@@ -80904,16 +80780,16 @@ contains
       integer(c_int), value :: diag
       integer(c_long), value :: m
       integer(c_long), value :: n
-      complex(c_float_complex), target :: alpha(*)
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: alpha(..)
+      complex(c_float_complex), target :: A(..)
       integer(c_long), value :: lda
-      complex(c_float_complex), target :: B(*)
+      complex(c_float_complex), target :: B(..)
       integer(c_long), value :: ldb
-      complex(c_float_complex), target :: C(*)
+      complex(c_float_complex), target :: C(..)
       integer(c_long), value :: ldc
       integer(c_int) :: Ctrmm_64
-      Ctrmm_64 = hipblasCtrmm_64_raw(handle, side, uplo, transA, diag, m, n, c_loc(alpha(1)), &
-        c_loc(A(1)), lda, c_loc(B(1)), ldb, c_loc(C(1)), ldc)
+      Ctrmm_64 = hipblasCtrmm_64_raw(handle, side, uplo, transA, diag, m, n, c_loc(alpha), c_loc( &
+        A), lda, c_loc(B), ldb, c_loc(C), ldc)
     end function hipblasCtrmm_64_native
 
     function hipblasCtrmm_64_typed(handle, side, uplo, transA, diag, m, n, alpha, A, lda, B, ldb, &
@@ -80951,16 +80827,16 @@ contains
       integer(c_int), value :: diag
       integer(c_long), value :: m
       integer(c_long), value :: n
-      complex(c_double_complex), target :: alpha(*)
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: alpha(..)
+      complex(c_double_complex), target :: A(..)
       integer(c_long), value :: lda
-      complex(c_double_complex), target :: B(*)
+      complex(c_double_complex), target :: B(..)
       integer(c_long), value :: ldb
-      complex(c_double_complex), target :: C(*)
+      complex(c_double_complex), target :: C(..)
       integer(c_long), value :: ldc
       integer(c_int) :: Ztrmm_64
-      Ztrmm_64 = hipblasZtrmm_64_raw(handle, side, uplo, transA, diag, m, n, c_loc(alpha(1)), &
-        c_loc(A(1)), lda, c_loc(B(1)), ldb, c_loc(C(1)), ldc)
+      Ztrmm_64 = hipblasZtrmm_64_raw(handle, side, uplo, transA, diag, m, n, c_loc(alpha), c_loc( &
+        A), lda, c_loc(B), ldb, c_loc(C), ldc)
     end function hipblasZtrmm_64_native
 
     function hipblasZtrmm_64_typed(handle, side, uplo, transA, diag, m, n, alpha, A, lda, B, ldb, &
@@ -81098,7 +80974,7 @@ contains
       integer(c_int), value :: diag
       integer(c_long), value :: m
       integer(c_long), value :: n
-      real(c_float), target :: alpha(*)
+      real(c_float), target :: alpha(..)
       type(c_ptr), value :: A
       integer(c_long), value :: lda
       type(c_ptr), value :: B
@@ -81108,7 +80984,7 @@ contains
       integer(c_long), value :: batchCount
       integer(c_int) :: StrmmBatched_64
       StrmmBatched_64 = hipblasStrmmBatched_64_raw(handle, side, uplo, transA, diag, m, n, c_loc( &
-        alpha(1)), A, lda, B, ldb, C, ldc, batchCount)
+        alpha), A, lda, B, ldb, C, ldc, batchCount)
     end function hipblasStrmmBatched_64_native
 
     function hipblasStrmmBatched_64_typed(handle, side, uplo, transA, diag, m, n, alpha, A, lda, &
@@ -81147,7 +81023,7 @@ contains
       integer(c_int), value :: diag
       integer(c_long), value :: m
       integer(c_long), value :: n
-      real(c_double), target :: alpha(*)
+      real(c_double), target :: alpha(..)
       type(c_ptr), value :: A
       integer(c_long), value :: lda
       type(c_ptr), value :: B
@@ -81157,7 +81033,7 @@ contains
       integer(c_long), value :: batchCount
       integer(c_int) :: DtrmmBatched_64
       DtrmmBatched_64 = hipblasDtrmmBatched_64_raw(handle, side, uplo, transA, diag, m, n, c_loc( &
-        alpha(1)), A, lda, B, ldb, C, ldc, batchCount)
+        alpha), A, lda, B, ldb, C, ldc, batchCount)
     end function hipblasDtrmmBatched_64_native
 
     function hipblasDtrmmBatched_64_typed(handle, side, uplo, transA, diag, m, n, alpha, A, lda, &
@@ -81196,7 +81072,7 @@ contains
       integer(c_int), value :: diag
       integer(c_long), value :: m
       integer(c_long), value :: n
-      complex(c_float_complex), target :: alpha(*)
+      complex(c_float_complex), target :: alpha(..)
       type(c_ptr), value :: A
       integer(c_long), value :: lda
       type(c_ptr), value :: B
@@ -81206,7 +81082,7 @@ contains
       integer(c_long), value :: batchCount
       integer(c_int) :: CtrmmBatched_64
       CtrmmBatched_64 = hipblasCtrmmBatched_64_raw(handle, side, uplo, transA, diag, m, n, c_loc( &
-        alpha(1)), A, lda, B, ldb, C, ldc, batchCount)
+        alpha), A, lda, B, ldb, C, ldc, batchCount)
     end function hipblasCtrmmBatched_64_native
 
     function hipblasCtrmmBatched_64_typed(handle, side, uplo, transA, diag, m, n, alpha, A, lda, &
@@ -81245,7 +81121,7 @@ contains
       integer(c_int), value :: diag
       integer(c_long), value :: m
       integer(c_long), value :: n
-      complex(c_double_complex), target :: alpha(*)
+      complex(c_double_complex), target :: alpha(..)
       type(c_ptr), value :: A
       integer(c_long), value :: lda
       type(c_ptr), value :: B
@@ -81255,7 +81131,7 @@ contains
       integer(c_long), value :: batchCount
       integer(c_int) :: ZtrmmBatched_64
       ZtrmmBatched_64 = hipblasZtrmmBatched_64_raw(handle, side, uplo, transA, diag, m, n, c_loc( &
-        alpha(1)), A, lda, B, ldb, C, ldc, batchCount)
+        alpha), A, lda, B, ldb, C, ldc, batchCount)
     end function hipblasZtrmmBatched_64_native
 
     function hipblasZtrmmBatched_64_typed(handle, side, uplo, transA, diag, m, n, alpha, A, lda, &
@@ -81295,20 +81171,19 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       real(c_float) :: alpha
-      real(c_float), target :: A(*)
+      real(c_float), target :: A(..)
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
-      real(c_float), target :: B(*)
+      real(c_float), target :: B(..)
       integer(c_int), value :: ldb
       integer(c_long), value :: strideB
-      real(c_float), target :: C(*)
+      real(c_float), target :: C(..)
       integer(c_int), value :: ldc
       integer(c_long), value :: strideC
       integer(c_int), value :: batchCount
       integer(c_int) :: StrmmStridedBatched
       StrmmStridedBatched = hipblasStrmmStridedBatched_raw(handle, side, uplo, transA, diag, m, n, &
-        alpha, c_loc(A(1)), lda, strideA, c_loc(B(1)), ldb, strideB, c_loc(C(1)), ldc, strideC, &
-        batchCount)
+        alpha, c_loc(A), lda, strideA, c_loc(B), ldb, strideB, c_loc(C), ldc, strideC, batchCount)
     end function hipblasStrmmStridedBatched_native
 
     function hipblasStrmmStridedBatched_typed(handle, side, uplo, transA, diag, m, n, alpha, A, &
@@ -81351,20 +81226,19 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       real(c_double) :: alpha
-      real(c_double), target :: A(*)
+      real(c_double), target :: A(..)
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
-      real(c_double), target :: B(*)
+      real(c_double), target :: B(..)
       integer(c_int), value :: ldb
       integer(c_long), value :: strideB
-      real(c_double), target :: C(*)
+      real(c_double), target :: C(..)
       integer(c_int), value :: ldc
       integer(c_long), value :: strideC
       integer(c_int), value :: batchCount
       integer(c_int) :: DtrmmStridedBatched
       DtrmmStridedBatched = hipblasDtrmmStridedBatched_raw(handle, side, uplo, transA, diag, m, n, &
-        alpha, c_loc(A(1)), lda, strideA, c_loc(B(1)), ldb, strideB, c_loc(C(1)), ldc, strideC, &
-        batchCount)
+        alpha, c_loc(A), lda, strideA, c_loc(B), ldb, strideB, c_loc(C), ldc, strideC, batchCount)
     end function hipblasDtrmmStridedBatched_native
 
     function hipblasDtrmmStridedBatched_typed(handle, side, uplo, transA, diag, m, n, alpha, A, &
@@ -81407,20 +81281,19 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       complex(c_float_complex) :: alpha
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: A(..)
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
-      complex(c_float_complex), target :: B(*)
+      complex(c_float_complex), target :: B(..)
       integer(c_int), value :: ldb
       integer(c_long), value :: strideB
-      complex(c_float_complex), target :: C(*)
+      complex(c_float_complex), target :: C(..)
       integer(c_int), value :: ldc
       integer(c_long), value :: strideC
       integer(c_int), value :: batchCount
       integer(c_int) :: CtrmmStridedBatched
       CtrmmStridedBatched = hipblasCtrmmStridedBatched_raw(handle, side, uplo, transA, diag, m, n, &
-        alpha, c_loc(A(1)), lda, strideA, c_loc(B(1)), ldb, strideB, c_loc(C(1)), ldc, strideC, &
-        batchCount)
+        alpha, c_loc(A), lda, strideA, c_loc(B), ldb, strideB, c_loc(C), ldc, strideC, batchCount)
     end function hipblasCtrmmStridedBatched_native
 
     function hipblasCtrmmStridedBatched_typed(handle, side, uplo, transA, diag, m, n, alpha, A, &
@@ -81463,20 +81336,19 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       complex(c_double_complex) :: alpha
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: A(..)
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
-      complex(c_double_complex), target :: B(*)
+      complex(c_double_complex), target :: B(..)
       integer(c_int), value :: ldb
       integer(c_long), value :: strideB
-      complex(c_double_complex), target :: C(*)
+      complex(c_double_complex), target :: C(..)
       integer(c_int), value :: ldc
       integer(c_long), value :: strideC
       integer(c_int), value :: batchCount
       integer(c_int) :: ZtrmmStridedBatched
       ZtrmmStridedBatched = hipblasZtrmmStridedBatched_raw(handle, side, uplo, transA, diag, m, n, &
-        alpha, c_loc(A(1)), lda, strideA, c_loc(B(1)), ldb, strideB, c_loc(C(1)), ldc, strideC, &
-        batchCount)
+        alpha, c_loc(A), lda, strideA, c_loc(B), ldb, strideB, c_loc(C), ldc, strideC, batchCount)
     end function hipblasZtrmmStridedBatched_native
 
     function hipblasZtrmmStridedBatched_typed(handle, side, uplo, transA, diag, m, n, alpha, A, &
@@ -81519,21 +81391,21 @@ contains
       integer(c_int), value :: diag
       integer(c_long), value :: m
       integer(c_long), value :: n
-      real(c_float), target :: alpha(*)
-      real(c_float), target :: A(*)
+      real(c_float), target :: alpha(..)
+      real(c_float), target :: A(..)
       integer(c_long), value :: lda
       integer(c_long), value :: strideA
-      real(c_float), target :: B(*)
+      real(c_float), target :: B(..)
       integer(c_long), value :: ldb
       integer(c_long), value :: strideB
-      real(c_float), target :: C(*)
+      real(c_float), target :: C(..)
       integer(c_long), value :: ldc
       integer(c_long), value :: strideC
       integer(c_long), value :: batchCount
       integer(c_int) :: StrmmStridedBatched_64
       StrmmStridedBatched_64 = hipblasStrmmStridedBatched_64_raw(handle, side, uplo, transA, diag, &
-        m, n, c_loc(alpha(1)), c_loc(A(1)), lda, strideA, c_loc(B(1)), ldb, strideB, c_loc(C(1)), &
-        ldc, strideC, batchCount)
+        m, n, c_loc(alpha), c_loc(A), lda, strideA, c_loc(B), ldb, strideB, c_loc(C), ldc, &
+        strideC, batchCount)
     end function hipblasStrmmStridedBatched_64_native
 
     function hipblasStrmmStridedBatched_64_typed(handle, side, uplo, transA, diag, m, n, alpha, A, &
@@ -81576,21 +81448,21 @@ contains
       integer(c_int), value :: diag
       integer(c_long), value :: m
       integer(c_long), value :: n
-      real(c_double), target :: alpha(*)
-      real(c_double), target :: A(*)
+      real(c_double), target :: alpha(..)
+      real(c_double), target :: A(..)
       integer(c_long), value :: lda
       integer(c_long), value :: strideA
-      real(c_double), target :: B(*)
+      real(c_double), target :: B(..)
       integer(c_long), value :: ldb
       integer(c_long), value :: strideB
-      real(c_double), target :: C(*)
+      real(c_double), target :: C(..)
       integer(c_long), value :: ldc
       integer(c_long), value :: strideC
       integer(c_long), value :: batchCount
       integer(c_int) :: DtrmmStridedBatched_64
       DtrmmStridedBatched_64 = hipblasDtrmmStridedBatched_64_raw(handle, side, uplo, transA, diag, &
-        m, n, c_loc(alpha(1)), c_loc(A(1)), lda, strideA, c_loc(B(1)), ldb, strideB, c_loc(C(1)), &
-        ldc, strideC, batchCount)
+        m, n, c_loc(alpha), c_loc(A), lda, strideA, c_loc(B), ldb, strideB, c_loc(C), ldc, &
+        strideC, batchCount)
     end function hipblasDtrmmStridedBatched_64_native
 
     function hipblasDtrmmStridedBatched_64_typed(handle, side, uplo, transA, diag, m, n, alpha, A, &
@@ -81633,21 +81505,21 @@ contains
       integer(c_int), value :: diag
       integer(c_long), value :: m
       integer(c_long), value :: n
-      complex(c_float_complex), target :: alpha(*)
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: alpha(..)
+      complex(c_float_complex), target :: A(..)
       integer(c_long), value :: lda
       integer(c_long), value :: strideA
-      complex(c_float_complex), target :: B(*)
+      complex(c_float_complex), target :: B(..)
       integer(c_long), value :: ldb
       integer(c_long), value :: strideB
-      complex(c_float_complex), target :: C(*)
+      complex(c_float_complex), target :: C(..)
       integer(c_long), value :: ldc
       integer(c_long), value :: strideC
       integer(c_long), value :: batchCount
       integer(c_int) :: CtrmmStridedBatched_64
       CtrmmStridedBatched_64 = hipblasCtrmmStridedBatched_64_raw(handle, side, uplo, transA, diag, &
-        m, n, c_loc(alpha(1)), c_loc(A(1)), lda, strideA, c_loc(B(1)), ldb, strideB, c_loc(C(1)), &
-        ldc, strideC, batchCount)
+        m, n, c_loc(alpha), c_loc(A), lda, strideA, c_loc(B), ldb, strideB, c_loc(C), ldc, &
+        strideC, batchCount)
     end function hipblasCtrmmStridedBatched_64_native
 
     function hipblasCtrmmStridedBatched_64_typed(handle, side, uplo, transA, diag, m, n, alpha, A, &
@@ -81690,21 +81562,21 @@ contains
       integer(c_int), value :: diag
       integer(c_long), value :: m
       integer(c_long), value :: n
-      complex(c_double_complex), target :: alpha(*)
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: alpha(..)
+      complex(c_double_complex), target :: A(..)
       integer(c_long), value :: lda
       integer(c_long), value :: strideA
-      complex(c_double_complex), target :: B(*)
+      complex(c_double_complex), target :: B(..)
       integer(c_long), value :: ldb
       integer(c_long), value :: strideB
-      complex(c_double_complex), target :: C(*)
+      complex(c_double_complex), target :: C(..)
       integer(c_long), value :: ldc
       integer(c_long), value :: strideC
       integer(c_long), value :: batchCount
       integer(c_int) :: ZtrmmStridedBatched_64
       ZtrmmStridedBatched_64 = hipblasZtrmmStridedBatched_64_raw(handle, side, uplo, transA, diag, &
-        m, n, c_loc(alpha(1)), c_loc(A(1)), lda, strideA, c_loc(B(1)), ldb, strideB, c_loc(C(1)), &
-        ldc, strideC, batchCount)
+        m, n, c_loc(alpha), c_loc(A), lda, strideA, c_loc(B), ldb, strideB, c_loc(C), ldc, &
+        strideC, batchCount)
     end function hipblasZtrmmStridedBatched_64_native
 
     function hipblasZtrmmStridedBatched_64_typed(handle, side, uplo, transA, diag, m, n, alpha, A, &
@@ -81747,13 +81619,13 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       real(c_float) :: alpha
-      real(c_float), target :: AP(*)
+      real(c_float), target :: AP(..)
       integer(c_int), value :: lda
-      real(c_float), target :: BP(*)
+      real(c_float), target :: BP(..)
       integer(c_int), value :: ldb
       integer(c_int) :: Strsm
-      Strsm = hipblasStrsm_raw(handle, side, uplo, transA, diag, m, n, alpha, c_loc(AP(1)), lda, &
-        c_loc(BP(1)), ldb)
+      Strsm = hipblasStrsm_raw(handle, side, uplo, transA, diag, m, n, alpha, c_loc(AP), lda, &
+        c_loc(BP), ldb)
     end function hipblasStrsm_native
 
     function hipblasStrsm_typed(handle, side, uplo, transA, diag, m, n, alpha, AP, lda, BP, &
@@ -81789,13 +81661,13 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       real(c_double) :: alpha
-      real(c_double), target :: AP(*)
+      real(c_double), target :: AP(..)
       integer(c_int), value :: lda
-      real(c_double), target :: BP(*)
+      real(c_double), target :: BP(..)
       integer(c_int), value :: ldb
       integer(c_int) :: Dtrsm
-      Dtrsm = hipblasDtrsm_raw(handle, side, uplo, transA, diag, m, n, alpha, c_loc(AP(1)), lda, &
-        c_loc(BP(1)), ldb)
+      Dtrsm = hipblasDtrsm_raw(handle, side, uplo, transA, diag, m, n, alpha, c_loc(AP), lda, &
+        c_loc(BP), ldb)
     end function hipblasDtrsm_native
 
     function hipblasDtrsm_typed(handle, side, uplo, transA, diag, m, n, alpha, AP, lda, BP, &
@@ -81831,13 +81703,13 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       complex(c_float_complex) :: alpha
-      complex(c_float_complex), target :: AP(*)
+      complex(c_float_complex), target :: AP(..)
       integer(c_int), value :: lda
-      complex(c_float_complex), target :: BP(*)
+      complex(c_float_complex), target :: BP(..)
       integer(c_int), value :: ldb
       integer(c_int) :: Ctrsm
-      Ctrsm = hipblasCtrsm_raw(handle, side, uplo, transA, diag, m, n, alpha, c_loc(AP(1)), lda, &
-        c_loc(BP(1)), ldb)
+      Ctrsm = hipblasCtrsm_raw(handle, side, uplo, transA, diag, m, n, alpha, c_loc(AP), lda, &
+        c_loc(BP), ldb)
     end function hipblasCtrsm_native
 
     function hipblasCtrsm_typed(handle, side, uplo, transA, diag, m, n, alpha, AP, lda, BP, &
@@ -81873,13 +81745,13 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       complex(c_double_complex) :: alpha
-      complex(c_double_complex), target :: AP(*)
+      complex(c_double_complex), target :: AP(..)
       integer(c_int), value :: lda
-      complex(c_double_complex), target :: BP(*)
+      complex(c_double_complex), target :: BP(..)
       integer(c_int), value :: ldb
       integer(c_int) :: Ztrsm
-      Ztrsm = hipblasZtrsm_raw(handle, side, uplo, transA, diag, m, n, alpha, c_loc(AP(1)), lda, &
-        c_loc(BP(1)), ldb)
+      Ztrsm = hipblasZtrsm_raw(handle, side, uplo, transA, diag, m, n, alpha, c_loc(AP), lda, &
+        c_loc(BP), ldb)
     end function hipblasZtrsm_native
 
     function hipblasZtrsm_typed(handle, side, uplo, transA, diag, m, n, alpha, AP, lda, BP, &
@@ -81914,14 +81786,14 @@ contains
       integer(c_int), value :: diag
       integer(c_long), value :: m
       integer(c_long), value :: n
-      real(c_float), target :: alpha(*)
-      real(c_float), target :: AP(*)
+      real(c_float), target :: alpha(..)
+      real(c_float), target :: AP(..)
       integer(c_long), value :: lda
-      real(c_float), target :: BP(*)
+      real(c_float), target :: BP(..)
       integer(c_long), value :: ldb
       integer(c_int) :: Strsm_64
-      Strsm_64 = hipblasStrsm_64_raw(handle, side, uplo, transA, diag, m, n, c_loc(alpha(1)), &
-        c_loc(AP(1)), lda, c_loc(BP(1)), ldb)
+      Strsm_64 = hipblasStrsm_64_raw(handle, side, uplo, transA, diag, m, n, c_loc(alpha), c_loc( &
+        AP), lda, c_loc(BP), ldb)
     end function hipblasStrsm_64_native
 
     function hipblasStrsm_64_typed(handle, side, uplo, transA, diag, m, n, alpha, AP, lda, BP, &
@@ -81957,14 +81829,14 @@ contains
       integer(c_int), value :: diag
       integer(c_long), value :: m
       integer(c_long), value :: n
-      real(c_double), target :: alpha(*)
-      real(c_double), target :: AP(*)
+      real(c_double), target :: alpha(..)
+      real(c_double), target :: AP(..)
       integer(c_long), value :: lda
-      real(c_double), target :: BP(*)
+      real(c_double), target :: BP(..)
       integer(c_long), value :: ldb
       integer(c_int) :: Dtrsm_64
-      Dtrsm_64 = hipblasDtrsm_64_raw(handle, side, uplo, transA, diag, m, n, c_loc(alpha(1)), &
-        c_loc(AP(1)), lda, c_loc(BP(1)), ldb)
+      Dtrsm_64 = hipblasDtrsm_64_raw(handle, side, uplo, transA, diag, m, n, c_loc(alpha), c_loc( &
+        AP), lda, c_loc(BP), ldb)
     end function hipblasDtrsm_64_native
 
     function hipblasDtrsm_64_typed(handle, side, uplo, transA, diag, m, n, alpha, AP, lda, BP, &
@@ -82000,14 +81872,14 @@ contains
       integer(c_int), value :: diag
       integer(c_long), value :: m
       integer(c_long), value :: n
-      complex(c_float_complex), target :: alpha(*)
-      complex(c_float_complex), target :: AP(*)
+      complex(c_float_complex), target :: alpha(..)
+      complex(c_float_complex), target :: AP(..)
       integer(c_long), value :: lda
-      complex(c_float_complex), target :: BP(*)
+      complex(c_float_complex), target :: BP(..)
       integer(c_long), value :: ldb
       integer(c_int) :: Ctrsm_64
-      Ctrsm_64 = hipblasCtrsm_64_raw(handle, side, uplo, transA, diag, m, n, c_loc(alpha(1)), &
-        c_loc(AP(1)), lda, c_loc(BP(1)), ldb)
+      Ctrsm_64 = hipblasCtrsm_64_raw(handle, side, uplo, transA, diag, m, n, c_loc(alpha), c_loc( &
+        AP), lda, c_loc(BP), ldb)
     end function hipblasCtrsm_64_native
 
     function hipblasCtrsm_64_typed(handle, side, uplo, transA, diag, m, n, alpha, AP, lda, BP, &
@@ -82043,14 +81915,14 @@ contains
       integer(c_int), value :: diag
       integer(c_long), value :: m
       integer(c_long), value :: n
-      complex(c_double_complex), target :: alpha(*)
-      complex(c_double_complex), target :: AP(*)
+      complex(c_double_complex), target :: alpha(..)
+      complex(c_double_complex), target :: AP(..)
       integer(c_long), value :: lda
-      complex(c_double_complex), target :: BP(*)
+      complex(c_double_complex), target :: BP(..)
       integer(c_long), value :: ldb
       integer(c_int) :: Ztrsm_64
-      Ztrsm_64 = hipblasZtrsm_64_raw(handle, side, uplo, transA, diag, m, n, c_loc(alpha(1)), &
-        c_loc(AP(1)), lda, c_loc(BP(1)), ldb)
+      Ztrsm_64 = hipblasZtrsm_64_raw(handle, side, uplo, transA, diag, m, n, c_loc(alpha), c_loc( &
+        AP), lda, c_loc(BP), ldb)
     end function hipblasZtrsm_64_native
 
     function hipblasZtrsm_64_typed(handle, side, uplo, transA, diag, m, n, alpha, AP, lda, BP, &
@@ -82178,7 +82050,7 @@ contains
       integer(c_int), value :: diag
       integer(c_long), value :: m
       integer(c_long), value :: n
-      real(c_float), target :: alpha(*)
+      real(c_float), target :: alpha(..)
       type(c_ptr), value :: AP
       integer(c_long), value :: lda
       type(c_ptr), value :: BP
@@ -82186,7 +82058,7 @@ contains
       integer(c_long), value :: batchCount
       integer(c_int) :: StrsmBatched_64
       StrsmBatched_64 = hipblasStrsmBatched_64_raw(handle, side, uplo, transA, diag, m, n, c_loc( &
-        alpha(1)), AP, lda, BP, ldb, batchCount)
+        alpha), AP, lda, BP, ldb, batchCount)
     end function hipblasStrsmBatched_64_native
 
     function hipblasStrsmBatched_64_typed(handle, side, uplo, transA, diag, m, n, alpha, AP, lda, &
@@ -82223,7 +82095,7 @@ contains
       integer(c_int), value :: diag
       integer(c_long), value :: m
       integer(c_long), value :: n
-      real(c_double), target :: alpha(*)
+      real(c_double), target :: alpha(..)
       type(c_ptr), value :: AP
       integer(c_long), value :: lda
       type(c_ptr), value :: BP
@@ -82231,7 +82103,7 @@ contains
       integer(c_long), value :: batchCount
       integer(c_int) :: DtrsmBatched_64
       DtrsmBatched_64 = hipblasDtrsmBatched_64_raw(handle, side, uplo, transA, diag, m, n, c_loc( &
-        alpha(1)), AP, lda, BP, ldb, batchCount)
+        alpha), AP, lda, BP, ldb, batchCount)
     end function hipblasDtrsmBatched_64_native
 
     function hipblasDtrsmBatched_64_typed(handle, side, uplo, transA, diag, m, n, alpha, AP, lda, &
@@ -82268,7 +82140,7 @@ contains
       integer(c_int), value :: diag
       integer(c_long), value :: m
       integer(c_long), value :: n
-      complex(c_float_complex), target :: alpha(*)
+      complex(c_float_complex), target :: alpha(..)
       type(c_ptr), value :: AP
       integer(c_long), value :: lda
       type(c_ptr), value :: BP
@@ -82276,7 +82148,7 @@ contains
       integer(c_long), value :: batchCount
       integer(c_int) :: CtrsmBatched_64
       CtrsmBatched_64 = hipblasCtrsmBatched_64_raw(handle, side, uplo, transA, diag, m, n, c_loc( &
-        alpha(1)), AP, lda, BP, ldb, batchCount)
+        alpha), AP, lda, BP, ldb, batchCount)
     end function hipblasCtrsmBatched_64_native
 
     function hipblasCtrsmBatched_64_typed(handle, side, uplo, transA, diag, m, n, alpha, AP, lda, &
@@ -82313,7 +82185,7 @@ contains
       integer(c_int), value :: diag
       integer(c_long), value :: m
       integer(c_long), value :: n
-      complex(c_double_complex), target :: alpha(*)
+      complex(c_double_complex), target :: alpha(..)
       type(c_ptr), value :: AP
       integer(c_long), value :: lda
       type(c_ptr), value :: BP
@@ -82321,7 +82193,7 @@ contains
       integer(c_long), value :: batchCount
       integer(c_int) :: ZtrsmBatched_64
       ZtrsmBatched_64 = hipblasZtrsmBatched_64_raw(handle, side, uplo, transA, diag, m, n, c_loc( &
-        alpha(1)), AP, lda, BP, ldb, batchCount)
+        alpha), AP, lda, BP, ldb, batchCount)
     end function hipblasZtrsmBatched_64_native
 
     function hipblasZtrsmBatched_64_typed(handle, side, uplo, transA, diag, m, n, alpha, AP, lda, &
@@ -82359,16 +82231,16 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       real(c_float) :: alpha
-      real(c_float), target :: AP(*)
+      real(c_float), target :: AP(..)
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
-      real(c_float), target :: BP(*)
+      real(c_float), target :: BP(..)
       integer(c_int), value :: ldb
       integer(c_long), value :: strideB
       integer(c_int), value :: batchCount
       integer(c_int) :: StrsmStridedBatched
       StrsmStridedBatched = hipblasStrsmStridedBatched_raw(handle, side, uplo, transA, diag, m, n, &
-        alpha, c_loc(AP(1)), lda, strideA, c_loc(BP(1)), ldb, strideB, batchCount)
+        alpha, c_loc(AP), lda, strideA, c_loc(BP), ldb, strideB, batchCount)
     end function hipblasStrsmStridedBatched_native
 
     function hipblasStrsmStridedBatched_typed(handle, side, uplo, transA, diag, m, n, alpha, AP, &
@@ -82408,16 +82280,16 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       real(c_double) :: alpha
-      real(c_double), target :: AP(*)
+      real(c_double), target :: AP(..)
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
-      real(c_double), target :: BP(*)
+      real(c_double), target :: BP(..)
       integer(c_int), value :: ldb
       integer(c_long), value :: strideB
       integer(c_int), value :: batchCount
       integer(c_int) :: DtrsmStridedBatched
       DtrsmStridedBatched = hipblasDtrsmStridedBatched_raw(handle, side, uplo, transA, diag, m, n, &
-        alpha, c_loc(AP(1)), lda, strideA, c_loc(BP(1)), ldb, strideB, batchCount)
+        alpha, c_loc(AP), lda, strideA, c_loc(BP), ldb, strideB, batchCount)
     end function hipblasDtrsmStridedBatched_native
 
     function hipblasDtrsmStridedBatched_typed(handle, side, uplo, transA, diag, m, n, alpha, AP, &
@@ -82457,16 +82329,16 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       complex(c_float_complex) :: alpha
-      complex(c_float_complex), target :: AP(*)
+      complex(c_float_complex), target :: AP(..)
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
-      complex(c_float_complex), target :: BP(*)
+      complex(c_float_complex), target :: BP(..)
       integer(c_int), value :: ldb
       integer(c_long), value :: strideB
       integer(c_int), value :: batchCount
       integer(c_int) :: CtrsmStridedBatched
       CtrsmStridedBatched = hipblasCtrsmStridedBatched_raw(handle, side, uplo, transA, diag, m, n, &
-        alpha, c_loc(AP(1)), lda, strideA, c_loc(BP(1)), ldb, strideB, batchCount)
+        alpha, c_loc(AP), lda, strideA, c_loc(BP), ldb, strideB, batchCount)
     end function hipblasCtrsmStridedBatched_native
 
     function hipblasCtrsmStridedBatched_typed(handle, side, uplo, transA, diag, m, n, alpha, AP, &
@@ -82506,16 +82378,16 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       complex(c_double_complex) :: alpha
-      complex(c_double_complex), target :: AP(*)
+      complex(c_double_complex), target :: AP(..)
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
-      complex(c_double_complex), target :: BP(*)
+      complex(c_double_complex), target :: BP(..)
       integer(c_int), value :: ldb
       integer(c_long), value :: strideB
       integer(c_int), value :: batchCount
       integer(c_int) :: ZtrsmStridedBatched
       ZtrsmStridedBatched = hipblasZtrsmStridedBatched_raw(handle, side, uplo, transA, diag, m, n, &
-        alpha, c_loc(AP(1)), lda, strideA, c_loc(BP(1)), ldb, strideB, batchCount)
+        alpha, c_loc(AP), lda, strideA, c_loc(BP), ldb, strideB, batchCount)
     end function hipblasZtrsmStridedBatched_native
 
     function hipblasZtrsmStridedBatched_typed(handle, side, uplo, transA, diag, m, n, alpha, AP, &
@@ -82554,17 +82426,17 @@ contains
       integer(c_int), value :: diag
       integer(c_long), value :: m
       integer(c_long), value :: n
-      real(c_float), target :: alpha(*)
-      real(c_float), target :: AP(*)
+      real(c_float), target :: alpha(..)
+      real(c_float), target :: AP(..)
       integer(c_long), value :: lda
       integer(c_long), value :: strideA
-      real(c_float), target :: BP(*)
+      real(c_float), target :: BP(..)
       integer(c_long), value :: ldb
       integer(c_long), value :: strideB
       integer(c_long), value :: batchCount
       integer(c_int) :: StrsmStridedBatched_64
       StrsmStridedBatched_64 = hipblasStrsmStridedBatched_64_raw(handle, side, uplo, transA, diag, &
-        m, n, c_loc(alpha(1)), c_loc(AP(1)), lda, strideA, c_loc(BP(1)), ldb, strideB, batchCount)
+        m, n, c_loc(alpha), c_loc(AP), lda, strideA, c_loc(BP), ldb, strideB, batchCount)
     end function hipblasStrsmStridedBatched_64_native
 
     function hipblasStrsmStridedBatched_64_typed(handle, side, uplo, transA, diag, m, n, alpha, &
@@ -82603,17 +82475,17 @@ contains
       integer(c_int), value :: diag
       integer(c_long), value :: m
       integer(c_long), value :: n
-      real(c_double), target :: alpha(*)
-      real(c_double), target :: AP(*)
+      real(c_double), target :: alpha(..)
+      real(c_double), target :: AP(..)
       integer(c_long), value :: lda
       integer(c_long), value :: strideA
-      real(c_double), target :: BP(*)
+      real(c_double), target :: BP(..)
       integer(c_long), value :: ldb
       integer(c_long), value :: strideB
       integer(c_long), value :: batchCount
       integer(c_int) :: DtrsmStridedBatched_64
       DtrsmStridedBatched_64 = hipblasDtrsmStridedBatched_64_raw(handle, side, uplo, transA, diag, &
-        m, n, c_loc(alpha(1)), c_loc(AP(1)), lda, strideA, c_loc(BP(1)), ldb, strideB, batchCount)
+        m, n, c_loc(alpha), c_loc(AP), lda, strideA, c_loc(BP), ldb, strideB, batchCount)
     end function hipblasDtrsmStridedBatched_64_native
 
     function hipblasDtrsmStridedBatched_64_typed(handle, side, uplo, transA, diag, m, n, alpha, &
@@ -82652,17 +82524,17 @@ contains
       integer(c_int), value :: diag
       integer(c_long), value :: m
       integer(c_long), value :: n
-      complex(c_float_complex), target :: alpha(*)
-      complex(c_float_complex), target :: AP(*)
+      complex(c_float_complex), target :: alpha(..)
+      complex(c_float_complex), target :: AP(..)
       integer(c_long), value :: lda
       integer(c_long), value :: strideA
-      complex(c_float_complex), target :: BP(*)
+      complex(c_float_complex), target :: BP(..)
       integer(c_long), value :: ldb
       integer(c_long), value :: strideB
       integer(c_long), value :: batchCount
       integer(c_int) :: CtrsmStridedBatched_64
       CtrsmStridedBatched_64 = hipblasCtrsmStridedBatched_64_raw(handle, side, uplo, transA, diag, &
-        m, n, c_loc(alpha(1)), c_loc(AP(1)), lda, strideA, c_loc(BP(1)), ldb, strideB, batchCount)
+        m, n, c_loc(alpha), c_loc(AP), lda, strideA, c_loc(BP), ldb, strideB, batchCount)
     end function hipblasCtrsmStridedBatched_64_native
 
     function hipblasCtrsmStridedBatched_64_typed(handle, side, uplo, transA, diag, m, n, alpha, &
@@ -82701,17 +82573,17 @@ contains
       integer(c_int), value :: diag
       integer(c_long), value :: m
       integer(c_long), value :: n
-      complex(c_double_complex), target :: alpha(*)
-      complex(c_double_complex), target :: AP(*)
+      complex(c_double_complex), target :: alpha(..)
+      complex(c_double_complex), target :: AP(..)
       integer(c_long), value :: lda
       integer(c_long), value :: strideA
-      complex(c_double_complex), target :: BP(*)
+      complex(c_double_complex), target :: BP(..)
       integer(c_long), value :: ldb
       integer(c_long), value :: strideB
       integer(c_long), value :: batchCount
       integer(c_int) :: ZtrsmStridedBatched_64
       ZtrsmStridedBatched_64 = hipblasZtrsmStridedBatched_64_raw(handle, side, uplo, transA, diag, &
-        m, n, c_loc(alpha(1)), c_loc(AP(1)), lda, strideA, c_loc(BP(1)), ldb, strideB, batchCount)
+        m, n, c_loc(alpha), c_loc(AP), lda, strideA, c_loc(BP), ldb, strideB, batchCount)
     end function hipblasZtrsmStridedBatched_64_native
 
     function hipblasZtrsmStridedBatched_64_typed(handle, side, uplo, transA, diag, m, n, alpha, &
@@ -82746,12 +82618,12 @@ contains
       integer(c_int), value :: uplo
       integer(c_int), value :: diag
       integer(c_int), value :: n
-      real(c_float), target :: AP(*)
+      real(c_float), target :: AP(..)
       integer(c_int), value :: lda
-      real(c_float), target :: invA(*)
+      real(c_float), target :: invA(..)
       integer(c_int), value :: ldinvA
       integer(c_int) :: Strtri
-      Strtri = hipblasStrtri_raw(handle, uplo, diag, n, c_loc(AP(1)), lda, c_loc(invA(1)), ldinvA)
+      Strtri = hipblasStrtri_raw(handle, uplo, diag, n, c_loc(AP), lda, c_loc(invA), ldinvA)
     end function hipblasStrtri_native
 
     function hipblasStrtri_typed(handle, uplo, diag, n, AP, lda, invA, ldinvA) result(Strtri)
@@ -82777,12 +82649,12 @@ contains
       integer(c_int), value :: uplo
       integer(c_int), value :: diag
       integer(c_int), value :: n
-      real(c_double), target :: AP(*)
+      real(c_double), target :: AP(..)
       integer(c_int), value :: lda
-      real(c_double), target :: invA(*)
+      real(c_double), target :: invA(..)
       integer(c_int), value :: ldinvA
       integer(c_int) :: Dtrtri
-      Dtrtri = hipblasDtrtri_raw(handle, uplo, diag, n, c_loc(AP(1)), lda, c_loc(invA(1)), ldinvA)
+      Dtrtri = hipblasDtrtri_raw(handle, uplo, diag, n, c_loc(AP), lda, c_loc(invA), ldinvA)
     end function hipblasDtrtri_native
 
     function hipblasDtrtri_typed(handle, uplo, diag, n, AP, lda, invA, ldinvA) result(Dtrtri)
@@ -82808,12 +82680,12 @@ contains
       integer(c_int), value :: uplo
       integer(c_int), value :: diag
       integer(c_int), value :: n
-      complex(c_float_complex), target :: AP(*)
+      complex(c_float_complex), target :: AP(..)
       integer(c_int), value :: lda
-      complex(c_float_complex), target :: invA(*)
+      complex(c_float_complex), target :: invA(..)
       integer(c_int), value :: ldinvA
       integer(c_int) :: Ctrtri
-      Ctrtri = hipblasCtrtri_raw(handle, uplo, diag, n, c_loc(AP(1)), lda, c_loc(invA(1)), ldinvA)
+      Ctrtri = hipblasCtrtri_raw(handle, uplo, diag, n, c_loc(AP), lda, c_loc(invA), ldinvA)
     end function hipblasCtrtri_native
 
     function hipblasCtrtri_typed(handle, uplo, diag, n, AP, lda, invA, ldinvA) result(Ctrtri)
@@ -82839,12 +82711,12 @@ contains
       integer(c_int), value :: uplo
       integer(c_int), value :: diag
       integer(c_int), value :: n
-      complex(c_double_complex), target :: AP(*)
+      complex(c_double_complex), target :: AP(..)
       integer(c_int), value :: lda
-      complex(c_double_complex), target :: invA(*)
+      complex(c_double_complex), target :: invA(..)
       integer(c_int), value :: ldinvA
       integer(c_int) :: Ztrtri
-      Ztrtri = hipblasZtrtri_raw(handle, uplo, diag, n, c_loc(AP(1)), lda, c_loc(invA(1)), ldinvA)
+      Ztrtri = hipblasZtrtri_raw(handle, uplo, diag, n, c_loc(AP), lda, c_loc(invA), ldinvA)
     end function hipblasZtrtri_native
 
     function hipblasZtrtri_typed(handle, uplo, diag, n, AP, lda, invA, ldinvA) result(Ztrtri)
@@ -82947,16 +82819,16 @@ contains
       integer(c_int), value :: uplo
       integer(c_int), value :: diag
       integer(c_int), value :: n
-      real(c_float), target :: AP(*)
+      real(c_float), target :: AP(..)
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
-      real(c_float), target :: invA(*)
+      real(c_float), target :: invA(..)
       integer(c_int), value :: ldinvA
       integer(c_long), value :: stride_invA
       integer(c_int), value :: batchCount
       integer(c_int) :: StrtriStridedBatched
-      StrtriStridedBatched = hipblasStrtriStridedBatched_raw(handle, uplo, diag, n, c_loc(AP(1)), &
-        lda, strideA, c_loc(invA(1)), ldinvA, stride_invA, batchCount)
+      StrtriStridedBatched = hipblasStrtriStridedBatched_raw(handle, uplo, diag, n, c_loc(AP), &
+        lda, strideA, c_loc(invA), ldinvA, stride_invA, batchCount)
     end function hipblasStrtriStridedBatched_native
 
     function hipblasStrtriStridedBatched_typed(handle, uplo, diag, n, AP, lda, strideA, invA, &
@@ -82988,16 +82860,16 @@ contains
       integer(c_int), value :: uplo
       integer(c_int), value :: diag
       integer(c_int), value :: n
-      real(c_double), target :: AP(*)
+      real(c_double), target :: AP(..)
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
-      real(c_double), target :: invA(*)
+      real(c_double), target :: invA(..)
       integer(c_int), value :: ldinvA
       integer(c_long), value :: stride_invA
       integer(c_int), value :: batchCount
       integer(c_int) :: DtrtriStridedBatched
-      DtrtriStridedBatched = hipblasDtrtriStridedBatched_raw(handle, uplo, diag, n, c_loc(AP(1)), &
-        lda, strideA, c_loc(invA(1)), ldinvA, stride_invA, batchCount)
+      DtrtriStridedBatched = hipblasDtrtriStridedBatched_raw(handle, uplo, diag, n, c_loc(AP), &
+        lda, strideA, c_loc(invA), ldinvA, stride_invA, batchCount)
     end function hipblasDtrtriStridedBatched_native
 
     function hipblasDtrtriStridedBatched_typed(handle, uplo, diag, n, AP, lda, strideA, invA, &
@@ -83029,16 +82901,16 @@ contains
       integer(c_int), value :: uplo
       integer(c_int), value :: diag
       integer(c_int), value :: n
-      complex(c_float_complex), target :: AP(*)
+      complex(c_float_complex), target :: AP(..)
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
-      complex(c_float_complex), target :: invA(*)
+      complex(c_float_complex), target :: invA(..)
       integer(c_int), value :: ldinvA
       integer(c_long), value :: stride_invA
       integer(c_int), value :: batchCount
       integer(c_int) :: CtrtriStridedBatched
-      CtrtriStridedBatched = hipblasCtrtriStridedBatched_raw(handle, uplo, diag, n, c_loc(AP(1)), &
-        lda, strideA, c_loc(invA(1)), ldinvA, stride_invA, batchCount)
+      CtrtriStridedBatched = hipblasCtrtriStridedBatched_raw(handle, uplo, diag, n, c_loc(AP), &
+        lda, strideA, c_loc(invA), ldinvA, stride_invA, batchCount)
     end function hipblasCtrtriStridedBatched_native
 
     function hipblasCtrtriStridedBatched_typed(handle, uplo, diag, n, AP, lda, strideA, invA, &
@@ -83070,16 +82942,16 @@ contains
       integer(c_int), value :: uplo
       integer(c_int), value :: diag
       integer(c_int), value :: n
-      complex(c_double_complex), target :: AP(*)
+      complex(c_double_complex), target :: AP(..)
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
-      complex(c_double_complex), target :: invA(*)
+      complex(c_double_complex), target :: invA(..)
       integer(c_int), value :: ldinvA
       integer(c_long), value :: stride_invA
       integer(c_int), value :: batchCount
       integer(c_int) :: ZtrtriStridedBatched
-      ZtrtriStridedBatched = hipblasZtrtriStridedBatched_raw(handle, uplo, diag, n, c_loc(AP(1)), &
-        lda, strideA, c_loc(invA(1)), ldinvA, stride_invA, batchCount)
+      ZtrtriStridedBatched = hipblasZtrtriStridedBatched_raw(handle, uplo, diag, n, c_loc(AP), &
+        lda, strideA, c_loc(invA), ldinvA, stride_invA, batchCount)
     end function hipblasZtrtriStridedBatched_native
 
     function hipblasZtrtriStridedBatched_typed(handle, uplo, diag, n, AP, lda, strideA, invA, &
@@ -83110,15 +82982,14 @@ contains
       integer(c_int), value :: side
       integer(c_int), value :: m
       integer(c_int), value :: n
-      real(c_float), target :: AP(*)
+      real(c_float), target :: AP(..)
       integer(c_int), value :: lda
-      real(c_float), target :: x(*)
+      real(c_float), target :: x(..)
       integer(c_int), value :: incx
-      real(c_float), target :: CP(*)
+      real(c_float), target :: CP(..)
       integer(c_int), value :: ldc
       integer(c_int) :: Sdgmm
-      Sdgmm = hipblasSdgmm_raw(handle, side, m, n, c_loc(AP(1)), lda, c_loc(x(1)), incx, c_loc(CP( &
-        1)), ldc)
+      Sdgmm = hipblasSdgmm_raw(handle, side, m, n, c_loc(AP), lda, c_loc(x), incx, c_loc(CP), ldc)
     end function hipblasSdgmm_native
 
     function hipblasSdgmm_typed(handle, side, m, n, AP, lda, x, incx, CP, ldc) result(Sdgmm)
@@ -83146,15 +83017,14 @@ contains
       integer(c_int), value :: side
       integer(c_int), value :: m
       integer(c_int), value :: n
-      real(c_double), target :: AP(*)
+      real(c_double), target :: AP(..)
       integer(c_int), value :: lda
-      real(c_double), target :: x(*)
+      real(c_double), target :: x(..)
       integer(c_int), value :: incx
-      real(c_double), target :: CP(*)
+      real(c_double), target :: CP(..)
       integer(c_int), value :: ldc
       integer(c_int) :: Ddgmm
-      Ddgmm = hipblasDdgmm_raw(handle, side, m, n, c_loc(AP(1)), lda, c_loc(x(1)), incx, c_loc(CP( &
-        1)), ldc)
+      Ddgmm = hipblasDdgmm_raw(handle, side, m, n, c_loc(AP), lda, c_loc(x), incx, c_loc(CP), ldc)
     end function hipblasDdgmm_native
 
     function hipblasDdgmm_typed(handle, side, m, n, AP, lda, x, incx, CP, ldc) result(Ddgmm)
@@ -83182,15 +83052,14 @@ contains
       integer(c_int), value :: side
       integer(c_int), value :: m
       integer(c_int), value :: n
-      complex(c_float_complex), target :: AP(*)
+      complex(c_float_complex), target :: AP(..)
       integer(c_int), value :: lda
-      complex(c_float_complex), target :: x(*)
+      complex(c_float_complex), target :: x(..)
       integer(c_int), value :: incx
-      complex(c_float_complex), target :: CP(*)
+      complex(c_float_complex), target :: CP(..)
       integer(c_int), value :: ldc
       integer(c_int) :: Cdgmm
-      Cdgmm = hipblasCdgmm_raw(handle, side, m, n, c_loc(AP(1)), lda, c_loc(x(1)), incx, c_loc(CP( &
-        1)), ldc)
+      Cdgmm = hipblasCdgmm_raw(handle, side, m, n, c_loc(AP), lda, c_loc(x), incx, c_loc(CP), ldc)
     end function hipblasCdgmm_native
 
     function hipblasCdgmm_typed(handle, side, m, n, AP, lda, x, incx, CP, ldc) result(Cdgmm)
@@ -83218,15 +83087,14 @@ contains
       integer(c_int), value :: side
       integer(c_int), value :: m
       integer(c_int), value :: n
-      complex(c_double_complex), target :: AP(*)
+      complex(c_double_complex), target :: AP(..)
       integer(c_int), value :: lda
-      complex(c_double_complex), target :: x(*)
+      complex(c_double_complex), target :: x(..)
       integer(c_int), value :: incx
-      complex(c_double_complex), target :: CP(*)
+      complex(c_double_complex), target :: CP(..)
       integer(c_int), value :: ldc
       integer(c_int) :: Zdgmm
-      Zdgmm = hipblasZdgmm_raw(handle, side, m, n, c_loc(AP(1)), lda, c_loc(x(1)), incx, c_loc(CP( &
-        1)), ldc)
+      Zdgmm = hipblasZdgmm_raw(handle, side, m, n, c_loc(AP), lda, c_loc(x), incx, c_loc(CP), ldc)
     end function hipblasZdgmm_native
 
     function hipblasZdgmm_typed(handle, side, m, n, AP, lda, x, incx, CP, ldc) result(Zdgmm)
@@ -83254,15 +83122,15 @@ contains
       integer(c_int), value :: side
       integer(c_long), value :: m
       integer(c_long), value :: n
-      real(c_float), target :: AP(*)
+      real(c_float), target :: AP(..)
       integer(c_long), value :: lda
-      real(c_float), target :: x(*)
+      real(c_float), target :: x(..)
       integer(c_long), value :: incx
-      real(c_float), target :: CP(*)
+      real(c_float), target :: CP(..)
       integer(c_long), value :: ldc
       integer(c_int) :: Sdgmm_64
-      Sdgmm_64 = hipblasSdgmm_64_raw(handle, side, m, n, c_loc(AP(1)), lda, c_loc(x(1)), incx, &
-        c_loc(CP(1)), ldc)
+      Sdgmm_64 = hipblasSdgmm_64_raw(handle, side, m, n, c_loc(AP), lda, c_loc(x), incx, c_loc( &
+        CP), ldc)
     end function hipblasSdgmm_64_native
 
     function hipblasSdgmm_64_typed(handle, side, m, n, AP, lda, x, incx, CP, ldc) result(Sdgmm_64)
@@ -83290,15 +83158,15 @@ contains
       integer(c_int), value :: side
       integer(c_long), value :: m
       integer(c_long), value :: n
-      real(c_double), target :: AP(*)
+      real(c_double), target :: AP(..)
       integer(c_long), value :: lda
-      real(c_double), target :: x(*)
+      real(c_double), target :: x(..)
       integer(c_long), value :: incx
-      real(c_double), target :: CP(*)
+      real(c_double), target :: CP(..)
       integer(c_long), value :: ldc
       integer(c_int) :: Ddgmm_64
-      Ddgmm_64 = hipblasDdgmm_64_raw(handle, side, m, n, c_loc(AP(1)), lda, c_loc(x(1)), incx, &
-        c_loc(CP(1)), ldc)
+      Ddgmm_64 = hipblasDdgmm_64_raw(handle, side, m, n, c_loc(AP), lda, c_loc(x), incx, c_loc( &
+        CP), ldc)
     end function hipblasDdgmm_64_native
 
     function hipblasDdgmm_64_typed(handle, side, m, n, AP, lda, x, incx, CP, ldc) result(Ddgmm_64)
@@ -83326,15 +83194,15 @@ contains
       integer(c_int), value :: side
       integer(c_long), value :: m
       integer(c_long), value :: n
-      complex(c_float_complex), target :: AP(*)
+      complex(c_float_complex), target :: AP(..)
       integer(c_long), value :: lda
-      complex(c_float_complex), target :: x(*)
+      complex(c_float_complex), target :: x(..)
       integer(c_long), value :: incx
-      complex(c_float_complex), target :: CP(*)
+      complex(c_float_complex), target :: CP(..)
       integer(c_long), value :: ldc
       integer(c_int) :: Cdgmm_64
-      Cdgmm_64 = hipblasCdgmm_64_raw(handle, side, m, n, c_loc(AP(1)), lda, c_loc(x(1)), incx, &
-        c_loc(CP(1)), ldc)
+      Cdgmm_64 = hipblasCdgmm_64_raw(handle, side, m, n, c_loc(AP), lda, c_loc(x), incx, c_loc( &
+        CP), ldc)
     end function hipblasCdgmm_64_native
 
     function hipblasCdgmm_64_typed(handle, side, m, n, AP, lda, x, incx, CP, ldc) result(Cdgmm_64)
@@ -83362,15 +83230,15 @@ contains
       integer(c_int), value :: side
       integer(c_long), value :: m
       integer(c_long), value :: n
-      complex(c_double_complex), target :: AP(*)
+      complex(c_double_complex), target :: AP(..)
       integer(c_long), value :: lda
-      complex(c_double_complex), target :: x(*)
+      complex(c_double_complex), target :: x(..)
       integer(c_long), value :: incx
-      complex(c_double_complex), target :: CP(*)
+      complex(c_double_complex), target :: CP(..)
       integer(c_long), value :: ldc
       integer(c_int) :: Zdgmm_64
-      Zdgmm_64 = hipblasZdgmm_64_raw(handle, side, m, n, c_loc(AP(1)), lda, c_loc(x(1)), incx, &
-        c_loc(CP(1)), ldc)
+      Zdgmm_64 = hipblasZdgmm_64_raw(handle, side, m, n, c_loc(AP), lda, c_loc(x), incx, c_loc( &
+        CP), ldc)
     end function hipblasZdgmm_64_native
 
     function hipblasZdgmm_64_typed(handle, side, m, n, AP, lda, x, incx, CP, ldc) result(Zdgmm_64)
@@ -83567,19 +83435,19 @@ contains
       integer(c_int), value :: side
       integer(c_int), value :: m
       integer(c_int), value :: n
-      real(c_float), target :: AP(*)
+      real(c_float), target :: AP(..)
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
-      real(c_float), target :: x(*)
+      real(c_float), target :: x(..)
       integer(c_int), value :: incx
       integer(c_long), value :: stridex
-      real(c_float), target :: CP(*)
+      real(c_float), target :: CP(..)
       integer(c_int), value :: ldc
       integer(c_long), value :: strideC
       integer(c_int), value :: batchCount
       integer(c_int) :: SdgmmStridedBatched
-      SdgmmStridedBatched = hipblasSdgmmStridedBatched_raw(handle, side, m, n, c_loc(AP(1)), lda, &
-        strideA, c_loc(x(1)), incx, stridex, c_loc(CP(1)), ldc, strideC, batchCount)
+      SdgmmStridedBatched = hipblasSdgmmStridedBatched_raw(handle, side, m, n, c_loc(AP), lda, &
+        strideA, c_loc(x), incx, stridex, c_loc(CP), ldc, strideC, batchCount)
     end function hipblasSdgmmStridedBatched_native
 
     function hipblasSdgmmStridedBatched_typed(handle, side, m, n, AP, lda, strideA, x, incx, &
@@ -83614,19 +83482,19 @@ contains
       integer(c_int), value :: side
       integer(c_int), value :: m
       integer(c_int), value :: n
-      real(c_double), target :: AP(*)
+      real(c_double), target :: AP(..)
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
-      real(c_double), target :: x(*)
+      real(c_double), target :: x(..)
       integer(c_int), value :: incx
       integer(c_long), value :: stridex
-      real(c_double), target :: CP(*)
+      real(c_double), target :: CP(..)
       integer(c_int), value :: ldc
       integer(c_long), value :: strideC
       integer(c_int), value :: batchCount
       integer(c_int) :: DdgmmStridedBatched
-      DdgmmStridedBatched = hipblasDdgmmStridedBatched_raw(handle, side, m, n, c_loc(AP(1)), lda, &
-        strideA, c_loc(x(1)), incx, stridex, c_loc(CP(1)), ldc, strideC, batchCount)
+      DdgmmStridedBatched = hipblasDdgmmStridedBatched_raw(handle, side, m, n, c_loc(AP), lda, &
+        strideA, c_loc(x), incx, stridex, c_loc(CP), ldc, strideC, batchCount)
     end function hipblasDdgmmStridedBatched_native
 
     function hipblasDdgmmStridedBatched_typed(handle, side, m, n, AP, lda, strideA, x, incx, &
@@ -83661,19 +83529,19 @@ contains
       integer(c_int), value :: side
       integer(c_int), value :: m
       integer(c_int), value :: n
-      complex(c_float_complex), target :: AP(*)
+      complex(c_float_complex), target :: AP(..)
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
-      complex(c_float_complex), target :: x(*)
+      complex(c_float_complex), target :: x(..)
       integer(c_int), value :: incx
       integer(c_long), value :: stridex
-      complex(c_float_complex), target :: CP(*)
+      complex(c_float_complex), target :: CP(..)
       integer(c_int), value :: ldc
       integer(c_long), value :: strideC
       integer(c_int), value :: batchCount
       integer(c_int) :: CdgmmStridedBatched
-      CdgmmStridedBatched = hipblasCdgmmStridedBatched_raw(handle, side, m, n, c_loc(AP(1)), lda, &
-        strideA, c_loc(x(1)), incx, stridex, c_loc(CP(1)), ldc, strideC, batchCount)
+      CdgmmStridedBatched = hipblasCdgmmStridedBatched_raw(handle, side, m, n, c_loc(AP), lda, &
+        strideA, c_loc(x), incx, stridex, c_loc(CP), ldc, strideC, batchCount)
     end function hipblasCdgmmStridedBatched_native
 
     function hipblasCdgmmStridedBatched_typed(handle, side, m, n, AP, lda, strideA, x, incx, &
@@ -83708,19 +83576,19 @@ contains
       integer(c_int), value :: side
       integer(c_int), value :: m
       integer(c_int), value :: n
-      complex(c_double_complex), target :: AP(*)
+      complex(c_double_complex), target :: AP(..)
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
-      complex(c_double_complex), target :: x(*)
+      complex(c_double_complex), target :: x(..)
       integer(c_int), value :: incx
       integer(c_long), value :: stridex
-      complex(c_double_complex), target :: CP(*)
+      complex(c_double_complex), target :: CP(..)
       integer(c_int), value :: ldc
       integer(c_long), value :: strideC
       integer(c_int), value :: batchCount
       integer(c_int) :: ZdgmmStridedBatched
-      ZdgmmStridedBatched = hipblasZdgmmStridedBatched_raw(handle, side, m, n, c_loc(AP(1)), lda, &
-        strideA, c_loc(x(1)), incx, stridex, c_loc(CP(1)), ldc, strideC, batchCount)
+      ZdgmmStridedBatched = hipblasZdgmmStridedBatched_raw(handle, side, m, n, c_loc(AP), lda, &
+        strideA, c_loc(x), incx, stridex, c_loc(CP), ldc, strideC, batchCount)
     end function hipblasZdgmmStridedBatched_native
 
     function hipblasZdgmmStridedBatched_typed(handle, side, m, n, AP, lda, strideA, x, incx, &
@@ -83755,19 +83623,19 @@ contains
       integer(c_int), value :: side
       integer(c_long), value :: m
       integer(c_long), value :: n
-      real(c_float), target :: AP(*)
+      real(c_float), target :: AP(..)
       integer(c_long), value :: lda
       integer(c_long), value :: strideA
-      real(c_float), target :: x(*)
+      real(c_float), target :: x(..)
       integer(c_long), value :: incx
       integer(c_long), value :: stridex
-      real(c_float), target :: CP(*)
+      real(c_float), target :: CP(..)
       integer(c_long), value :: ldc
       integer(c_long), value :: strideC
       integer(c_long), value :: batchCount
       integer(c_int) :: SdgmmStridedBatched_64
-      SdgmmStridedBatched_64 = hipblasSdgmmStridedBatched_64_raw(handle, side, m, n, c_loc(AP(1)), &
-        lda, strideA, c_loc(x(1)), incx, stridex, c_loc(CP(1)), ldc, strideC, batchCount)
+      SdgmmStridedBatched_64 = hipblasSdgmmStridedBatched_64_raw(handle, side, m, n, c_loc(AP), &
+        lda, strideA, c_loc(x), incx, stridex, c_loc(CP), ldc, strideC, batchCount)
     end function hipblasSdgmmStridedBatched_64_native
 
     function hipblasSdgmmStridedBatched_64_typed(handle, side, m, n, AP, lda, strideA, x, incx, &
@@ -83802,19 +83670,19 @@ contains
       integer(c_int), value :: side
       integer(c_long), value :: m
       integer(c_long), value :: n
-      real(c_double), target :: AP(*)
+      real(c_double), target :: AP(..)
       integer(c_long), value :: lda
       integer(c_long), value :: strideA
-      real(c_double), target :: x(*)
+      real(c_double), target :: x(..)
       integer(c_long), value :: incx
       integer(c_long), value :: stridex
-      real(c_double), target :: CP(*)
+      real(c_double), target :: CP(..)
       integer(c_long), value :: ldc
       integer(c_long), value :: strideC
       integer(c_long), value :: batchCount
       integer(c_int) :: DdgmmStridedBatched_64
-      DdgmmStridedBatched_64 = hipblasDdgmmStridedBatched_64_raw(handle, side, m, n, c_loc(AP(1)), &
-        lda, strideA, c_loc(x(1)), incx, stridex, c_loc(CP(1)), ldc, strideC, batchCount)
+      DdgmmStridedBatched_64 = hipblasDdgmmStridedBatched_64_raw(handle, side, m, n, c_loc(AP), &
+        lda, strideA, c_loc(x), incx, stridex, c_loc(CP), ldc, strideC, batchCount)
     end function hipblasDdgmmStridedBatched_64_native
 
     function hipblasDdgmmStridedBatched_64_typed(handle, side, m, n, AP, lda, strideA, x, incx, &
@@ -83849,19 +83717,19 @@ contains
       integer(c_int), value :: side
       integer(c_long), value :: m
       integer(c_long), value :: n
-      complex(c_float_complex), target :: AP(*)
+      complex(c_float_complex), target :: AP(..)
       integer(c_long), value :: lda
       integer(c_long), value :: strideA
-      complex(c_float_complex), target :: x(*)
+      complex(c_float_complex), target :: x(..)
       integer(c_long), value :: incx
       integer(c_long), value :: stridex
-      complex(c_float_complex), target :: CP(*)
+      complex(c_float_complex), target :: CP(..)
       integer(c_long), value :: ldc
       integer(c_long), value :: strideC
       integer(c_long), value :: batchCount
       integer(c_int) :: CdgmmStridedBatched_64
-      CdgmmStridedBatched_64 = hipblasCdgmmStridedBatched_64_raw(handle, side, m, n, c_loc(AP(1)), &
-        lda, strideA, c_loc(x(1)), incx, stridex, c_loc(CP(1)), ldc, strideC, batchCount)
+      CdgmmStridedBatched_64 = hipblasCdgmmStridedBatched_64_raw(handle, side, m, n, c_loc(AP), &
+        lda, strideA, c_loc(x), incx, stridex, c_loc(CP), ldc, strideC, batchCount)
     end function hipblasCdgmmStridedBatched_64_native
 
     function hipblasCdgmmStridedBatched_64_typed(handle, side, m, n, AP, lda, strideA, x, incx, &
@@ -83896,19 +83764,19 @@ contains
       integer(c_int), value :: side
       integer(c_long), value :: m
       integer(c_long), value :: n
-      complex(c_double_complex), target :: AP(*)
+      complex(c_double_complex), target :: AP(..)
       integer(c_long), value :: lda
       integer(c_long), value :: strideA
-      complex(c_double_complex), target :: x(*)
+      complex(c_double_complex), target :: x(..)
       integer(c_long), value :: incx
       integer(c_long), value :: stridex
-      complex(c_double_complex), target :: CP(*)
+      complex(c_double_complex), target :: CP(..)
       integer(c_long), value :: ldc
       integer(c_long), value :: strideC
       integer(c_long), value :: batchCount
       integer(c_int) :: ZdgmmStridedBatched_64
-      ZdgmmStridedBatched_64 = hipblasZdgmmStridedBatched_64_raw(handle, side, m, n, c_loc(AP(1)), &
-        lda, strideA, c_loc(x(1)), incx, stridex, c_loc(CP(1)), ldc, strideC, batchCount)
+      ZdgmmStridedBatched_64 = hipblasZdgmmStridedBatched_64_raw(handle, side, m, n, c_loc(AP), &
+        lda, strideA, c_loc(x), incx, stridex, c_loc(CP), ldc, strideC, batchCount)
     end function hipblasZdgmmStridedBatched_64_native
 
     function hipblasZdgmmStridedBatched_64_typed(handle, side, m, n, AP, lda, strideA, x, incx, &
@@ -83940,12 +83808,12 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_int), value :: n
-      real(c_float), target :: A(*)
+      real(c_float), target :: A(..)
       integer(c_int), value :: lda
-      integer(c_int), target :: ipiv(*)
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: ipiv(..)
+      integer(c_int), target :: info(..)
       integer(c_int) :: Sgetrf
-      Sgetrf = hipblasSgetrf_raw(handle, n, c_loc(A(1)), lda, c_loc(ipiv(1)), c_loc(info(1)))
+      Sgetrf = hipblasSgetrf_raw(handle, n, c_loc(A), lda, c_loc(ipiv), c_loc(info))
     end function hipblasSgetrf_native
 
     function hipblasSgetrf_typed(handle, n, A, lda, ipiv, info) result(Sgetrf)
@@ -83967,12 +83835,12 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_int), value :: n
-      real(c_double), target :: A(*)
+      real(c_double), target :: A(..)
       integer(c_int), value :: lda
-      integer(c_int), target :: ipiv(*)
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: ipiv(..)
+      integer(c_int), target :: info(..)
       integer(c_int) :: Dgetrf
-      Dgetrf = hipblasDgetrf_raw(handle, n, c_loc(A(1)), lda, c_loc(ipiv(1)), c_loc(info(1)))
+      Dgetrf = hipblasDgetrf_raw(handle, n, c_loc(A), lda, c_loc(ipiv), c_loc(info))
     end function hipblasDgetrf_native
 
     function hipblasDgetrf_typed(handle, n, A, lda, ipiv, info) result(Dgetrf)
@@ -83994,12 +83862,12 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_int), value :: n
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: A(..)
       integer(c_int), value :: lda
-      integer(c_int), target :: ipiv(*)
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: ipiv(..)
+      integer(c_int), target :: info(..)
       integer(c_int) :: Cgetrf
-      Cgetrf = hipblasCgetrf_raw(handle, n, c_loc(A(1)), lda, c_loc(ipiv(1)), c_loc(info(1)))
+      Cgetrf = hipblasCgetrf_raw(handle, n, c_loc(A), lda, c_loc(ipiv), c_loc(info))
     end function hipblasCgetrf_native
 
     function hipblasCgetrf_typed(handle, n, A, lda, ipiv, info) result(Cgetrf)
@@ -84021,12 +83889,12 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_int), value :: n
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: A(..)
       integer(c_int), value :: lda
-      integer(c_int), target :: ipiv(*)
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: ipiv(..)
+      integer(c_int), target :: info(..)
       integer(c_int) :: Zgetrf
-      Zgetrf = hipblasZgetrf_raw(handle, n, c_loc(A(1)), lda, c_loc(ipiv(1)), c_loc(info(1)))
+      Zgetrf = hipblasZgetrf_raw(handle, n, c_loc(A), lda, c_loc(ipiv), c_loc(info))
     end function hipblasZgetrf_native
 
     function hipblasZgetrf_typed(handle, n, A, lda, ipiv, info) result(Zgetrf)
@@ -84051,11 +83919,11 @@ contains
       integer(c_int), value :: n
       type(c_ptr), value :: A
       integer(c_int), value :: lda
-      integer(c_int), target :: ipiv(*)
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: ipiv(..)
+      integer(c_int), target :: info(..)
       integer(c_int), value :: batchCount
       integer(c_int) :: SgetrfBatched
-      SgetrfBatched = hipblasSgetrfBatched_raw(handle, n, A, lda, c_loc(ipiv(1)), c_loc(info(1)), &
+      SgetrfBatched = hipblasSgetrfBatched_raw(handle, n, A, lda, c_loc(ipiv), c_loc(info), &
         batchCount)
     end function hipblasSgetrfBatched_native
 
@@ -84083,11 +83951,11 @@ contains
       integer(c_int), value :: n
       type(c_ptr), value :: A
       integer(c_int), value :: lda
-      integer(c_int), target :: ipiv(*)
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: ipiv(..)
+      integer(c_int), target :: info(..)
       integer(c_int), value :: batchCount
       integer(c_int) :: DgetrfBatched
-      DgetrfBatched = hipblasDgetrfBatched_raw(handle, n, A, lda, c_loc(ipiv(1)), c_loc(info(1)), &
+      DgetrfBatched = hipblasDgetrfBatched_raw(handle, n, A, lda, c_loc(ipiv), c_loc(info), &
         batchCount)
     end function hipblasDgetrfBatched_native
 
@@ -84115,11 +83983,11 @@ contains
       integer(c_int), value :: n
       type(c_ptr), value :: A
       integer(c_int), value :: lda
-      integer(c_int), target :: ipiv(*)
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: ipiv(..)
+      integer(c_int), target :: info(..)
       integer(c_int), value :: batchCount
       integer(c_int) :: CgetrfBatched
-      CgetrfBatched = hipblasCgetrfBatched_raw(handle, n, A, lda, c_loc(ipiv(1)), c_loc(info(1)), &
+      CgetrfBatched = hipblasCgetrfBatched_raw(handle, n, A, lda, c_loc(ipiv), c_loc(info), &
         batchCount)
     end function hipblasCgetrfBatched_native
 
@@ -84147,11 +84015,11 @@ contains
       integer(c_int), value :: n
       type(c_ptr), value :: A
       integer(c_int), value :: lda
-      integer(c_int), target :: ipiv(*)
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: ipiv(..)
+      integer(c_int), target :: info(..)
       integer(c_int), value :: batchCount
       integer(c_int) :: ZgetrfBatched
-      ZgetrfBatched = hipblasZgetrfBatched_raw(handle, n, A, lda, c_loc(ipiv(1)), c_loc(info(1)), &
+      ZgetrfBatched = hipblasZgetrfBatched_raw(handle, n, A, lda, c_loc(ipiv), c_loc(info), &
         batchCount)
     end function hipblasZgetrfBatched_native
 
@@ -84177,16 +84045,16 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_int), value :: n
-      real(c_float), target :: A(*)
+      real(c_float), target :: A(..)
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
-      integer(c_int), target :: ipiv(*)
+      integer(c_int), target :: ipiv(..)
       integer(c_long), value :: strideP
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int), value :: batchCount
       integer(c_int) :: SgetrfStridedBatched
-      SgetrfStridedBatched = hipblasSgetrfStridedBatched_raw(handle, n, c_loc(A(1)), lda, strideA, &
-        c_loc(ipiv(1)), strideP, c_loc(info(1)), batchCount)
+      SgetrfStridedBatched = hipblasSgetrfStridedBatched_raw(handle, n, c_loc(A), lda, strideA, &
+        c_loc(ipiv), strideP, c_loc(info), batchCount)
     end function hipblasSgetrfStridedBatched_native
 
     function hipblasSgetrfStridedBatched_typed(handle, n, A, lda, strideA, ipiv, strideP, info, &
@@ -84214,16 +84082,16 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_int), value :: n
-      real(c_double), target :: A(*)
+      real(c_double), target :: A(..)
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
-      integer(c_int), target :: ipiv(*)
+      integer(c_int), target :: ipiv(..)
       integer(c_long), value :: strideP
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int), value :: batchCount
       integer(c_int) :: DgetrfStridedBatched
-      DgetrfStridedBatched = hipblasDgetrfStridedBatched_raw(handle, n, c_loc(A(1)), lda, strideA, &
-        c_loc(ipiv(1)), strideP, c_loc(info(1)), batchCount)
+      DgetrfStridedBatched = hipblasDgetrfStridedBatched_raw(handle, n, c_loc(A), lda, strideA, &
+        c_loc(ipiv), strideP, c_loc(info), batchCount)
     end function hipblasDgetrfStridedBatched_native
 
     function hipblasDgetrfStridedBatched_typed(handle, n, A, lda, strideA, ipiv, strideP, info, &
@@ -84251,16 +84119,16 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_int), value :: n
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: A(..)
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
-      integer(c_int), target :: ipiv(*)
+      integer(c_int), target :: ipiv(..)
       integer(c_long), value :: strideP
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int), value :: batchCount
       integer(c_int) :: CgetrfStridedBatched
-      CgetrfStridedBatched = hipblasCgetrfStridedBatched_raw(handle, n, c_loc(A(1)), lda, strideA, &
-        c_loc(ipiv(1)), strideP, c_loc(info(1)), batchCount)
+      CgetrfStridedBatched = hipblasCgetrfStridedBatched_raw(handle, n, c_loc(A), lda, strideA, &
+        c_loc(ipiv), strideP, c_loc(info), batchCount)
     end function hipblasCgetrfStridedBatched_native
 
     function hipblasCgetrfStridedBatched_typed(handle, n, A, lda, strideA, ipiv, strideP, info, &
@@ -84288,16 +84156,16 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_int), value :: n
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: A(..)
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
-      integer(c_int), target :: ipiv(*)
+      integer(c_int), target :: ipiv(..)
       integer(c_long), value :: strideP
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int), value :: batchCount
       integer(c_int) :: ZgetrfStridedBatched
-      ZgetrfStridedBatched = hipblasZgetrfStridedBatched_raw(handle, n, c_loc(A(1)), lda, strideA, &
-        c_loc(ipiv(1)), strideP, c_loc(info(1)), batchCount)
+      ZgetrfStridedBatched = hipblasZgetrfStridedBatched_raw(handle, n, c_loc(A), lda, strideA, &
+        c_loc(ipiv), strideP, c_loc(info), batchCount)
     end function hipblasZgetrfStridedBatched_native
 
     function hipblasZgetrfStridedBatched_typed(handle, n, A, lda, strideA, ipiv, strideP, info, &
@@ -84326,15 +84194,15 @@ contains
       integer(c_int), value :: trans
       integer(c_int), value :: n
       integer(c_int), value :: nrhs
-      real(c_float), target :: A(*)
+      real(c_float), target :: A(..)
       integer(c_int), value :: lda
-      integer(c_int), target :: ipiv(*)
-      real(c_float), target :: B(*)
+      integer(c_int), target :: ipiv(..)
+      real(c_float), target :: B(..)
       integer(c_int), value :: ldb
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int) :: Sgetrs
-      Sgetrs = hipblasSgetrs_raw(handle, trans, n, nrhs, c_loc(A(1)), lda, c_loc(ipiv(1)), c_loc( &
-        B(1)), ldb, c_loc(info(1)))
+      Sgetrs = hipblasSgetrs_raw(handle, trans, n, nrhs, c_loc(A), lda, c_loc(ipiv), c_loc(B), &
+        ldb, c_loc(info))
     end function hipblasSgetrs_native
 
     function hipblasSgetrs_typed(handle, trans, n, nrhs, A, lda, ipiv, B, ldb, info) result(Sgetrs)
@@ -84362,15 +84230,15 @@ contains
       integer(c_int), value :: trans
       integer(c_int), value :: n
       integer(c_int), value :: nrhs
-      real(c_double), target :: A(*)
+      real(c_double), target :: A(..)
       integer(c_int), value :: lda
-      integer(c_int), target :: ipiv(*)
-      real(c_double), target :: B(*)
+      integer(c_int), target :: ipiv(..)
+      real(c_double), target :: B(..)
       integer(c_int), value :: ldb
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int) :: Dgetrs
-      Dgetrs = hipblasDgetrs_raw(handle, trans, n, nrhs, c_loc(A(1)), lda, c_loc(ipiv(1)), c_loc( &
-        B(1)), ldb, c_loc(info(1)))
+      Dgetrs = hipblasDgetrs_raw(handle, trans, n, nrhs, c_loc(A), lda, c_loc(ipiv), c_loc(B), &
+        ldb, c_loc(info))
     end function hipblasDgetrs_native
 
     function hipblasDgetrs_typed(handle, trans, n, nrhs, A, lda, ipiv, B, ldb, info) result(Dgetrs)
@@ -84398,15 +84266,15 @@ contains
       integer(c_int), value :: trans
       integer(c_int), value :: n
       integer(c_int), value :: nrhs
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: A(..)
       integer(c_int), value :: lda
-      integer(c_int), target :: ipiv(*)
-      complex(c_float_complex), target :: B(*)
+      integer(c_int), target :: ipiv(..)
+      complex(c_float_complex), target :: B(..)
       integer(c_int), value :: ldb
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int) :: Cgetrs
-      Cgetrs = hipblasCgetrs_raw(handle, trans, n, nrhs, c_loc(A(1)), lda, c_loc(ipiv(1)), c_loc( &
-        B(1)), ldb, c_loc(info(1)))
+      Cgetrs = hipblasCgetrs_raw(handle, trans, n, nrhs, c_loc(A), lda, c_loc(ipiv), c_loc(B), &
+        ldb, c_loc(info))
     end function hipblasCgetrs_native
 
     function hipblasCgetrs_typed(handle, trans, n, nrhs, A, lda, ipiv, B, ldb, info) result(Cgetrs)
@@ -84434,15 +84302,15 @@ contains
       integer(c_int), value :: trans
       integer(c_int), value :: n
       integer(c_int), value :: nrhs
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: A(..)
       integer(c_int), value :: lda
-      integer(c_int), target :: ipiv(*)
-      complex(c_double_complex), target :: B(*)
+      integer(c_int), target :: ipiv(..)
+      complex(c_double_complex), target :: B(..)
       integer(c_int), value :: ldb
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int) :: Zgetrs
-      Zgetrs = hipblasZgetrs_raw(handle, trans, n, nrhs, c_loc(A(1)), lda, c_loc(ipiv(1)), c_loc( &
-        B(1)), ldb, c_loc(info(1)))
+      Zgetrs = hipblasZgetrs_raw(handle, trans, n, nrhs, c_loc(A), lda, c_loc(ipiv), c_loc(B), &
+        ldb, c_loc(info))
     end function hipblasZgetrs_native
 
     function hipblasZgetrs_typed(handle, trans, n, nrhs, A, lda, ipiv, B, ldb, info) result(Zgetrs)
@@ -84473,14 +84341,14 @@ contains
       integer(c_int), value :: nrhs
       type(c_ptr), value :: A
       integer(c_int), value :: lda
-      integer(c_int), target :: ipiv(*)
+      integer(c_int), target :: ipiv(..)
       type(c_ptr), value :: B
       integer(c_int), value :: ldb
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int), value :: batchCount
       integer(c_int) :: SgetrsBatched
-      SgetrsBatched = hipblasSgetrsBatched_raw(handle, trans, n, nrhs, A, lda, c_loc(ipiv(1)), B, &
-        ldb, c_loc(info(1)), batchCount)
+      SgetrsBatched = hipblasSgetrsBatched_raw(handle, trans, n, nrhs, A, lda, c_loc(ipiv), B, &
+        ldb, c_loc(info), batchCount)
     end function hipblasSgetrsBatched_native
 
     function hipblasSgetrsBatched_typed(handle, trans, n, nrhs, A, lda, ipiv, B, ldb, info, &
@@ -84514,14 +84382,14 @@ contains
       integer(c_int), value :: nrhs
       type(c_ptr), value :: A
       integer(c_int), value :: lda
-      integer(c_int), target :: ipiv(*)
+      integer(c_int), target :: ipiv(..)
       type(c_ptr), value :: B
       integer(c_int), value :: ldb
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int), value :: batchCount
       integer(c_int) :: DgetrsBatched
-      DgetrsBatched = hipblasDgetrsBatched_raw(handle, trans, n, nrhs, A, lda, c_loc(ipiv(1)), B, &
-        ldb, c_loc(info(1)), batchCount)
+      DgetrsBatched = hipblasDgetrsBatched_raw(handle, trans, n, nrhs, A, lda, c_loc(ipiv), B, &
+        ldb, c_loc(info), batchCount)
     end function hipblasDgetrsBatched_native
 
     function hipblasDgetrsBatched_typed(handle, trans, n, nrhs, A, lda, ipiv, B, ldb, info, &
@@ -84555,14 +84423,14 @@ contains
       integer(c_int), value :: nrhs
       type(c_ptr), value :: A
       integer(c_int), value :: lda
-      integer(c_int), target :: ipiv(*)
+      integer(c_int), target :: ipiv(..)
       type(c_ptr), value :: B
       integer(c_int), value :: ldb
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int), value :: batchCount
       integer(c_int) :: CgetrsBatched
-      CgetrsBatched = hipblasCgetrsBatched_raw(handle, trans, n, nrhs, A, lda, c_loc(ipiv(1)), B, &
-        ldb, c_loc(info(1)), batchCount)
+      CgetrsBatched = hipblasCgetrsBatched_raw(handle, trans, n, nrhs, A, lda, c_loc(ipiv), B, &
+        ldb, c_loc(info), batchCount)
     end function hipblasCgetrsBatched_native
 
     function hipblasCgetrsBatched_typed(handle, trans, n, nrhs, A, lda, ipiv, B, ldb, info, &
@@ -84596,14 +84464,14 @@ contains
       integer(c_int), value :: nrhs
       type(c_ptr), value :: A
       integer(c_int), value :: lda
-      integer(c_int), target :: ipiv(*)
+      integer(c_int), target :: ipiv(..)
       type(c_ptr), value :: B
       integer(c_int), value :: ldb
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int), value :: batchCount
       integer(c_int) :: ZgetrsBatched
-      ZgetrsBatched = hipblasZgetrsBatched_raw(handle, trans, n, nrhs, A, lda, c_loc(ipiv(1)), B, &
-        ldb, c_loc(info(1)), batchCount)
+      ZgetrsBatched = hipblasZgetrsBatched_raw(handle, trans, n, nrhs, A, lda, c_loc(ipiv), B, &
+        ldb, c_loc(info), batchCount)
     end function hipblasZgetrsBatched_native
 
     function hipblasZgetrsBatched_typed(handle, trans, n, nrhs, A, lda, ipiv, B, ldb, info, &
@@ -84635,20 +84503,19 @@ contains
       integer(c_int), value :: trans
       integer(c_int), value :: n
       integer(c_int), value :: nrhs
-      real(c_float), target :: A(*)
+      real(c_float), target :: A(..)
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
-      integer(c_int), target :: ipiv(*)
+      integer(c_int), target :: ipiv(..)
       integer(c_long), value :: strideP
-      real(c_float), target :: B(*)
+      real(c_float), target :: B(..)
       integer(c_int), value :: ldb
       integer(c_long), value :: strideB
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int), value :: batchCount
       integer(c_int) :: SgetrsStridedBatched
-      SgetrsStridedBatched = hipblasSgetrsStridedBatched_raw(handle, trans, n, nrhs, c_loc(A(1)), &
-        lda, strideA, c_loc(ipiv(1)), strideP, c_loc(B(1)), ldb, strideB, c_loc(info(1)), &
-        batchCount)
+      SgetrsStridedBatched = hipblasSgetrsStridedBatched_raw(handle, trans, n, nrhs, c_loc(A), &
+        lda, strideA, c_loc(ipiv), strideP, c_loc(B), ldb, strideB, c_loc(info), batchCount)
     end function hipblasSgetrsStridedBatched_native
 
     function hipblasSgetrsStridedBatched_typed(handle, trans, n, nrhs, A, lda, strideA, ipiv, &
@@ -84683,20 +84550,19 @@ contains
       integer(c_int), value :: trans
       integer(c_int), value :: n
       integer(c_int), value :: nrhs
-      real(c_double), target :: A(*)
+      real(c_double), target :: A(..)
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
-      integer(c_int), target :: ipiv(*)
+      integer(c_int), target :: ipiv(..)
       integer(c_long), value :: strideP
-      real(c_double), target :: B(*)
+      real(c_double), target :: B(..)
       integer(c_int), value :: ldb
       integer(c_long), value :: strideB
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int), value :: batchCount
       integer(c_int) :: DgetrsStridedBatched
-      DgetrsStridedBatched = hipblasDgetrsStridedBatched_raw(handle, trans, n, nrhs, c_loc(A(1)), &
-        lda, strideA, c_loc(ipiv(1)), strideP, c_loc(B(1)), ldb, strideB, c_loc(info(1)), &
-        batchCount)
+      DgetrsStridedBatched = hipblasDgetrsStridedBatched_raw(handle, trans, n, nrhs, c_loc(A), &
+        lda, strideA, c_loc(ipiv), strideP, c_loc(B), ldb, strideB, c_loc(info), batchCount)
     end function hipblasDgetrsStridedBatched_native
 
     function hipblasDgetrsStridedBatched_typed(handle, trans, n, nrhs, A, lda, strideA, ipiv, &
@@ -84731,20 +84597,19 @@ contains
       integer(c_int), value :: trans
       integer(c_int), value :: n
       integer(c_int), value :: nrhs
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: A(..)
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
-      integer(c_int), target :: ipiv(*)
+      integer(c_int), target :: ipiv(..)
       integer(c_long), value :: strideP
-      complex(c_float_complex), target :: B(*)
+      complex(c_float_complex), target :: B(..)
       integer(c_int), value :: ldb
       integer(c_long), value :: strideB
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int), value :: batchCount
       integer(c_int) :: CgetrsStridedBatched
-      CgetrsStridedBatched = hipblasCgetrsStridedBatched_raw(handle, trans, n, nrhs, c_loc(A(1)), &
-        lda, strideA, c_loc(ipiv(1)), strideP, c_loc(B(1)), ldb, strideB, c_loc(info(1)), &
-        batchCount)
+      CgetrsStridedBatched = hipblasCgetrsStridedBatched_raw(handle, trans, n, nrhs, c_loc(A), &
+        lda, strideA, c_loc(ipiv), strideP, c_loc(B), ldb, strideB, c_loc(info), batchCount)
     end function hipblasCgetrsStridedBatched_native
 
     function hipblasCgetrsStridedBatched_typed(handle, trans, n, nrhs, A, lda, strideA, ipiv, &
@@ -84779,20 +84644,19 @@ contains
       integer(c_int), value :: trans
       integer(c_int), value :: n
       integer(c_int), value :: nrhs
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: A(..)
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
-      integer(c_int), target :: ipiv(*)
+      integer(c_int), target :: ipiv(..)
       integer(c_long), value :: strideP
-      complex(c_double_complex), target :: B(*)
+      complex(c_double_complex), target :: B(..)
       integer(c_int), value :: ldb
       integer(c_long), value :: strideB
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int), value :: batchCount
       integer(c_int) :: ZgetrsStridedBatched
-      ZgetrsStridedBatched = hipblasZgetrsStridedBatched_raw(handle, trans, n, nrhs, c_loc(A(1)), &
-        lda, strideA, c_loc(ipiv(1)), strideP, c_loc(B(1)), ldb, strideB, c_loc(info(1)), &
-        batchCount)
+      ZgetrsStridedBatched = hipblasZgetrsStridedBatched_raw(handle, trans, n, nrhs, c_loc(A), &
+        lda, strideA, c_loc(ipiv), strideP, c_loc(B), ldb, strideB, c_loc(info), batchCount)
     end function hipblasZgetrsStridedBatched_native
 
     function hipblasZgetrsStridedBatched_typed(handle, trans, n, nrhs, A, lda, strideA, ipiv, &
@@ -84827,14 +84691,14 @@ contains
       integer(c_int), value :: n
       type(c_ptr), value :: A
       integer(c_int), value :: lda
-      integer(c_int), target :: ipiv(*)
+      integer(c_int), target :: ipiv(..)
       type(c_ptr), value :: C
       integer(c_int), value :: ldc
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int), value :: batchCount
       integer(c_int) :: SgetriBatched
-      SgetriBatched = hipblasSgetriBatched_raw(handle, n, A, lda, c_loc(ipiv(1)), C, ldc, c_loc( &
-        info(1)), batchCount)
+      SgetriBatched = hipblasSgetriBatched_raw(handle, n, A, lda, c_loc(ipiv), C, ldc, c_loc( &
+        info), batchCount)
     end function hipblasSgetriBatched_native
 
     function hipblasSgetriBatched_typed(handle, n, A, lda, ipiv, C, ldc, info, batchCount) result( &
@@ -84864,14 +84728,14 @@ contains
       integer(c_int), value :: n
       type(c_ptr), value :: A
       integer(c_int), value :: lda
-      integer(c_int), target :: ipiv(*)
+      integer(c_int), target :: ipiv(..)
       type(c_ptr), value :: C
       integer(c_int), value :: ldc
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int), value :: batchCount
       integer(c_int) :: DgetriBatched
-      DgetriBatched = hipblasDgetriBatched_raw(handle, n, A, lda, c_loc(ipiv(1)), C, ldc, c_loc( &
-        info(1)), batchCount)
+      DgetriBatched = hipblasDgetriBatched_raw(handle, n, A, lda, c_loc(ipiv), C, ldc, c_loc( &
+        info), batchCount)
     end function hipblasDgetriBatched_native
 
     function hipblasDgetriBatched_typed(handle, n, A, lda, ipiv, C, ldc, info, batchCount) result( &
@@ -84901,14 +84765,14 @@ contains
       integer(c_int), value :: n
       type(c_ptr), value :: A
       integer(c_int), value :: lda
-      integer(c_int), target :: ipiv(*)
+      integer(c_int), target :: ipiv(..)
       type(c_ptr), value :: C
       integer(c_int), value :: ldc
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int), value :: batchCount
       integer(c_int) :: CgetriBatched
-      CgetriBatched = hipblasCgetriBatched_raw(handle, n, A, lda, c_loc(ipiv(1)), C, ldc, c_loc( &
-        info(1)), batchCount)
+      CgetriBatched = hipblasCgetriBatched_raw(handle, n, A, lda, c_loc(ipiv), C, ldc, c_loc( &
+        info), batchCount)
     end function hipblasCgetriBatched_native
 
     function hipblasCgetriBatched_typed(handle, n, A, lda, ipiv, C, ldc, info, batchCount) result( &
@@ -84938,14 +84802,14 @@ contains
       integer(c_int), value :: n
       type(c_ptr), value :: A
       integer(c_int), value :: lda
-      integer(c_int), target :: ipiv(*)
+      integer(c_int), target :: ipiv(..)
       type(c_ptr), value :: C
       integer(c_int), value :: ldc
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int), value :: batchCount
       integer(c_int) :: ZgetriBatched
-      ZgetriBatched = hipblasZgetriBatched_raw(handle, n, A, lda, c_loc(ipiv(1)), C, ldc, c_loc( &
-        info(1)), batchCount)
+      ZgetriBatched = hipblasZgetriBatched_raw(handle, n, A, lda, c_loc(ipiv), C, ldc, c_loc( &
+        info), batchCount)
     end function hipblasZgetriBatched_native
 
     function hipblasZgetriBatched_typed(handle, n, A, lda, ipiv, C, ldc, info, batchCount) result( &
@@ -84976,15 +84840,15 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       integer(c_int), value :: nrhs
-      real(c_float), target :: A(*)
+      real(c_float), target :: A(..)
       integer(c_int), value :: lda
-      real(c_float), target :: B(*)
+      real(c_float), target :: B(..)
       integer(c_int), value :: ldb
-      integer(c_int), target :: info(*)
-      integer(c_int), target :: deviceInfo(*)
+      integer(c_int), target :: info(..)
+      integer(c_int), target :: deviceInfo(..)
       integer(c_int) :: Sgels
-      Sgels = hipblasSgels_raw(handle, trans, m, n, nrhs, c_loc(A(1)), lda, c_loc(B(1)), ldb, &
-        c_loc(info(1)), c_loc(deviceInfo(1)))
+      Sgels = hipblasSgels_raw(handle, trans, m, n, nrhs, c_loc(A), lda, c_loc(B), ldb, c_loc( &
+        info), c_loc(deviceInfo))
     end function hipblasSgels_native
 
     function hipblasSgels_typed(handle, trans, m, n, nrhs, A, lda, B, ldb, info, &
@@ -85016,15 +84880,15 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       integer(c_int), value :: nrhs
-      real(c_double), target :: A(*)
+      real(c_double), target :: A(..)
       integer(c_int), value :: lda
-      real(c_double), target :: B(*)
+      real(c_double), target :: B(..)
       integer(c_int), value :: ldb
-      integer(c_int), target :: info(*)
-      integer(c_int), target :: deviceInfo(*)
+      integer(c_int), target :: info(..)
+      integer(c_int), target :: deviceInfo(..)
       integer(c_int) :: Dgels
-      Dgels = hipblasDgels_raw(handle, trans, m, n, nrhs, c_loc(A(1)), lda, c_loc(B(1)), ldb, &
-        c_loc(info(1)), c_loc(deviceInfo(1)))
+      Dgels = hipblasDgels_raw(handle, trans, m, n, nrhs, c_loc(A), lda, c_loc(B), ldb, c_loc( &
+        info), c_loc(deviceInfo))
     end function hipblasDgels_native
 
     function hipblasDgels_typed(handle, trans, m, n, nrhs, A, lda, B, ldb, info, &
@@ -85056,15 +84920,15 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       integer(c_int), value :: nrhs
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: A(..)
       integer(c_int), value :: lda
-      complex(c_float_complex), target :: B(*)
+      complex(c_float_complex), target :: B(..)
       integer(c_int), value :: ldb
-      integer(c_int), target :: info(*)
-      integer(c_int), target :: deviceInfo(*)
+      integer(c_int), target :: info(..)
+      integer(c_int), target :: deviceInfo(..)
       integer(c_int) :: Cgels
-      Cgels = hipblasCgels_raw(handle, trans, m, n, nrhs, c_loc(A(1)), lda, c_loc(B(1)), ldb, &
-        c_loc(info(1)), c_loc(deviceInfo(1)))
+      Cgels = hipblasCgels_raw(handle, trans, m, n, nrhs, c_loc(A), lda, c_loc(B), ldb, c_loc( &
+        info), c_loc(deviceInfo))
     end function hipblasCgels_native
 
     function hipblasCgels_typed(handle, trans, m, n, nrhs, A, lda, B, ldb, info, &
@@ -85096,15 +84960,15 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       integer(c_int), value :: nrhs
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: A(..)
       integer(c_int), value :: lda
-      complex(c_double_complex), target :: B(*)
+      complex(c_double_complex), target :: B(..)
       integer(c_int), value :: ldb
-      integer(c_int), target :: info(*)
-      integer(c_int), target :: deviceInfo(*)
+      integer(c_int), target :: info(..)
+      integer(c_int), target :: deviceInfo(..)
       integer(c_int) :: Zgels
-      Zgels = hipblasZgels_raw(handle, trans, m, n, nrhs, c_loc(A(1)), lda, c_loc(B(1)), ldb, &
-        c_loc(info(1)), c_loc(deviceInfo(1)))
+      Zgels = hipblasZgels_raw(handle, trans, m, n, nrhs, c_loc(A), lda, c_loc(B), ldb, c_loc( &
+        info), c_loc(deviceInfo))
     end function hipblasZgels_native
 
     function hipblasZgels_typed(handle, trans, m, n, nrhs, A, lda, B, ldb, info, &
@@ -85140,12 +85004,12 @@ contains
       integer(c_int), value :: lda
       type(c_ptr), value :: B
       integer(c_int), value :: ldb
-      integer(c_int), target :: info(*)
-      integer(c_int), target :: deviceInfo(*)
+      integer(c_int), target :: info(..)
+      integer(c_int), target :: deviceInfo(..)
       integer(c_int), value :: batchCount
       integer(c_int) :: SgelsBatched
       SgelsBatched = hipblasSgelsBatched_raw(handle, trans, m, n, nrhs, A, lda, B, ldb, c_loc( &
-        info(1)), c_loc(deviceInfo(1)), batchCount)
+        info), c_loc(deviceInfo), batchCount)
     end function hipblasSgelsBatched_native
 
     function hipblasSgelsBatched_typed(handle, trans, m, n, nrhs, A, lda, B, ldb, info, &
@@ -85183,12 +85047,12 @@ contains
       integer(c_int), value :: lda
       type(c_ptr), value :: B
       integer(c_int), value :: ldb
-      integer(c_int), target :: info(*)
-      integer(c_int), target :: deviceInfo(*)
+      integer(c_int), target :: info(..)
+      integer(c_int), target :: deviceInfo(..)
       integer(c_int), value :: batchCount
       integer(c_int) :: DgelsBatched
       DgelsBatched = hipblasDgelsBatched_raw(handle, trans, m, n, nrhs, A, lda, B, ldb, c_loc( &
-        info(1)), c_loc(deviceInfo(1)), batchCount)
+        info), c_loc(deviceInfo), batchCount)
     end function hipblasDgelsBatched_native
 
     function hipblasDgelsBatched_typed(handle, trans, m, n, nrhs, A, lda, B, ldb, info, &
@@ -85226,12 +85090,12 @@ contains
       integer(c_int), value :: lda
       type(c_ptr), value :: B
       integer(c_int), value :: ldb
-      integer(c_int), target :: info(*)
-      integer(c_int), target :: deviceInfo(*)
+      integer(c_int), target :: info(..)
+      integer(c_int), target :: deviceInfo(..)
       integer(c_int), value :: batchCount
       integer(c_int) :: CgelsBatched
       CgelsBatched = hipblasCgelsBatched_raw(handle, trans, m, n, nrhs, A, lda, B, ldb, c_loc( &
-        info(1)), c_loc(deviceInfo(1)), batchCount)
+        info), c_loc(deviceInfo), batchCount)
     end function hipblasCgelsBatched_native
 
     function hipblasCgelsBatched_typed(handle, trans, m, n, nrhs, A, lda, B, ldb, info, &
@@ -85269,12 +85133,12 @@ contains
       integer(c_int), value :: lda
       type(c_ptr), value :: B
       integer(c_int), value :: ldb
-      integer(c_int), target :: info(*)
-      integer(c_int), target :: deviceInfo(*)
+      integer(c_int), target :: info(..)
+      integer(c_int), target :: deviceInfo(..)
       integer(c_int), value :: batchCount
       integer(c_int) :: ZgelsBatched
       ZgelsBatched = hipblasZgelsBatched_raw(handle, trans, m, n, nrhs, A, lda, B, ldb, c_loc( &
-        info(1)), c_loc(deviceInfo(1)), batchCount)
+        info), c_loc(deviceInfo), batchCount)
     end function hipblasZgelsBatched_native
 
     function hipblasZgelsBatched_typed(handle, trans, m, n, nrhs, A, lda, B, ldb, info, &
@@ -85308,18 +85172,18 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       integer(c_int), value :: nrhs
-      real(c_float), target :: A(*)
+      real(c_float), target :: A(..)
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
-      real(c_float), target :: B(*)
+      real(c_float), target :: B(..)
       integer(c_int), value :: ldb
       integer(c_long), value :: strideB
-      integer(c_int), target :: info(*)
-      integer(c_int), target :: deviceInfo(*)
+      integer(c_int), target :: info(..)
+      integer(c_int), target :: deviceInfo(..)
       integer(c_int), value :: batchCount
       integer(c_int) :: SgelsStridedBatched
-      SgelsStridedBatched = hipblasSgelsStridedBatched_raw(handle, trans, m, n, nrhs, c_loc(A(1)), &
-        lda, strideA, c_loc(B(1)), ldb, strideB, c_loc(info(1)), c_loc(deviceInfo(1)), batchCount)
+      SgelsStridedBatched = hipblasSgelsStridedBatched_raw(handle, trans, m, n, nrhs, c_loc(A), &
+        lda, strideA, c_loc(B), ldb, strideB, c_loc(info), c_loc(deviceInfo), batchCount)
     end function hipblasSgelsStridedBatched_native
 
     function hipblasSgelsStridedBatched_typed(handle, trans, m, n, nrhs, A, lda, strideA, B, ldb, &
@@ -85355,18 +85219,18 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       integer(c_int), value :: nrhs
-      real(c_double), target :: A(*)
+      real(c_double), target :: A(..)
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
-      real(c_double), target :: B(*)
+      real(c_double), target :: B(..)
       integer(c_int), value :: ldb
       integer(c_long), value :: strideB
-      integer(c_int), target :: info(*)
-      integer(c_int), target :: deviceInfo(*)
+      integer(c_int), target :: info(..)
+      integer(c_int), target :: deviceInfo(..)
       integer(c_int), value :: batchCount
       integer(c_int) :: DgelsStridedBatched
-      DgelsStridedBatched = hipblasDgelsStridedBatched_raw(handle, trans, m, n, nrhs, c_loc(A(1)), &
-        lda, strideA, c_loc(B(1)), ldb, strideB, c_loc(info(1)), c_loc(deviceInfo(1)), batchCount)
+      DgelsStridedBatched = hipblasDgelsStridedBatched_raw(handle, trans, m, n, nrhs, c_loc(A), &
+        lda, strideA, c_loc(B), ldb, strideB, c_loc(info), c_loc(deviceInfo), batchCount)
     end function hipblasDgelsStridedBatched_native
 
     function hipblasDgelsStridedBatched_typed(handle, trans, m, n, nrhs, A, lda, strideA, B, ldb, &
@@ -85402,18 +85266,18 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       integer(c_int), value :: nrhs
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: A(..)
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
-      complex(c_float_complex), target :: B(*)
+      complex(c_float_complex), target :: B(..)
       integer(c_int), value :: ldb
       integer(c_long), value :: strideB
-      integer(c_int), target :: info(*)
-      integer(c_int), target :: deviceInfo(*)
+      integer(c_int), target :: info(..)
+      integer(c_int), target :: deviceInfo(..)
       integer(c_int), value :: batchCount
       integer(c_int) :: CgelsStridedBatched
-      CgelsStridedBatched = hipblasCgelsStridedBatched_raw(handle, trans, m, n, nrhs, c_loc(A(1)), &
-        lda, strideA, c_loc(B(1)), ldb, strideB, c_loc(info(1)), c_loc(deviceInfo(1)), batchCount)
+      CgelsStridedBatched = hipblasCgelsStridedBatched_raw(handle, trans, m, n, nrhs, c_loc(A), &
+        lda, strideA, c_loc(B), ldb, strideB, c_loc(info), c_loc(deviceInfo), batchCount)
     end function hipblasCgelsStridedBatched_native
 
     function hipblasCgelsStridedBatched_typed(handle, trans, m, n, nrhs, A, lda, strideA, B, ldb, &
@@ -85449,18 +85313,18 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       integer(c_int), value :: nrhs
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: A(..)
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
-      complex(c_double_complex), target :: B(*)
+      complex(c_double_complex), target :: B(..)
       integer(c_int), value :: ldb
       integer(c_long), value :: strideB
-      integer(c_int), target :: info(*)
-      integer(c_int), target :: deviceInfo(*)
+      integer(c_int), target :: info(..)
+      integer(c_int), target :: deviceInfo(..)
       integer(c_int), value :: batchCount
       integer(c_int) :: ZgelsStridedBatched
-      ZgelsStridedBatched = hipblasZgelsStridedBatched_raw(handle, trans, m, n, nrhs, c_loc(A(1)), &
-        lda, strideA, c_loc(B(1)), ldb, strideB, c_loc(info(1)), c_loc(deviceInfo(1)), batchCount)
+      ZgelsStridedBatched = hipblasZgelsStridedBatched_raw(handle, trans, m, n, nrhs, c_loc(A), &
+        lda, strideA, c_loc(B), ldb, strideB, c_loc(info), c_loc(deviceInfo), batchCount)
     end function hipblasZgelsStridedBatched_native
 
     function hipblasZgelsStridedBatched_typed(handle, trans, m, n, nrhs, A, lda, strideA, B, ldb, &
@@ -85493,12 +85357,12 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: m
       integer(c_int), value :: n
-      real(c_float), target :: A(*)
+      real(c_float), target :: A(..)
       integer(c_int), value :: lda
-      real(c_float), target :: ipiv(*)
-      integer(c_int), target :: info(*)
+      real(c_float), target :: ipiv(..)
+      integer(c_int), target :: info(..)
       integer(c_int) :: Sgeqrf
-      Sgeqrf = hipblasSgeqrf_raw(handle, m, n, c_loc(A(1)), lda, c_loc(ipiv(1)), c_loc(info(1)))
+      Sgeqrf = hipblasSgeqrf_raw(handle, m, n, c_loc(A), lda, c_loc(ipiv), c_loc(info))
     end function hipblasSgeqrf_native
 
     function hipblasSgeqrf_typed(handle, m, n, A, lda, ipiv, info) result(Sgeqrf)
@@ -85522,12 +85386,12 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: m
       integer(c_int), value :: n
-      real(c_double), target :: A(*)
+      real(c_double), target :: A(..)
       integer(c_int), value :: lda
-      real(c_double), target :: ipiv(*)
-      integer(c_int), target :: info(*)
+      real(c_double), target :: ipiv(..)
+      integer(c_int), target :: info(..)
       integer(c_int) :: Dgeqrf
-      Dgeqrf = hipblasDgeqrf_raw(handle, m, n, c_loc(A(1)), lda, c_loc(ipiv(1)), c_loc(info(1)))
+      Dgeqrf = hipblasDgeqrf_raw(handle, m, n, c_loc(A), lda, c_loc(ipiv), c_loc(info))
     end function hipblasDgeqrf_native
 
     function hipblasDgeqrf_typed(handle, m, n, A, lda, ipiv, info) result(Dgeqrf)
@@ -85551,12 +85415,12 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: m
       integer(c_int), value :: n
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: A(..)
       integer(c_int), value :: lda
-      complex(c_float_complex), target :: ipiv(*)
-      integer(c_int), target :: info(*)
+      complex(c_float_complex), target :: ipiv(..)
+      integer(c_int), target :: info(..)
       integer(c_int) :: Cgeqrf
-      Cgeqrf = hipblasCgeqrf_raw(handle, m, n, c_loc(A(1)), lda, c_loc(ipiv(1)), c_loc(info(1)))
+      Cgeqrf = hipblasCgeqrf_raw(handle, m, n, c_loc(A), lda, c_loc(ipiv), c_loc(info))
     end function hipblasCgeqrf_native
 
     function hipblasCgeqrf_typed(handle, m, n, A, lda, ipiv, info) result(Cgeqrf)
@@ -85580,12 +85444,12 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: m
       integer(c_int), value :: n
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: A(..)
       integer(c_int), value :: lda
-      complex(c_double_complex), target :: ipiv(*)
-      integer(c_int), target :: info(*)
+      complex(c_double_complex), target :: ipiv(..)
+      integer(c_int), target :: info(..)
       integer(c_int) :: Zgeqrf
-      Zgeqrf = hipblasZgeqrf_raw(handle, m, n, c_loc(A(1)), lda, c_loc(ipiv(1)), c_loc(info(1)))
+      Zgeqrf = hipblasZgeqrf_raw(handle, m, n, c_loc(A), lda, c_loc(ipiv), c_loc(info))
     end function hipblasZgeqrf_native
 
     function hipblasZgeqrf_typed(handle, m, n, A, lda, ipiv, info) result(Zgeqrf)
@@ -85613,11 +85477,10 @@ contains
       type(c_ptr), value :: A
       integer(c_int), value :: lda
       type(c_ptr), value :: ipiv
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int), value :: batchCount
       integer(c_int) :: SgeqrfBatched
-      SgeqrfBatched = hipblasSgeqrfBatched_raw(handle, m, n, A, lda, ipiv, c_loc(info(1)), &
-        batchCount)
+      SgeqrfBatched = hipblasSgeqrfBatched_raw(handle, m, n, A, lda, ipiv, c_loc(info), batchCount)
     end function hipblasSgeqrfBatched_native
 
     function hipblasSgeqrfBatched_typed(handle, m, n, A, lda, ipiv, info, batchCount) result( &
@@ -85647,11 +85510,10 @@ contains
       type(c_ptr), value :: A
       integer(c_int), value :: lda
       type(c_ptr), value :: ipiv
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int), value :: batchCount
       integer(c_int) :: DgeqrfBatched
-      DgeqrfBatched = hipblasDgeqrfBatched_raw(handle, m, n, A, lda, ipiv, c_loc(info(1)), &
-        batchCount)
+      DgeqrfBatched = hipblasDgeqrfBatched_raw(handle, m, n, A, lda, ipiv, c_loc(info), batchCount)
     end function hipblasDgeqrfBatched_native
 
     function hipblasDgeqrfBatched_typed(handle, m, n, A, lda, ipiv, info, batchCount) result( &
@@ -85681,11 +85543,10 @@ contains
       type(c_ptr), value :: A
       integer(c_int), value :: lda
       type(c_ptr), value :: ipiv
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int), value :: batchCount
       integer(c_int) :: CgeqrfBatched
-      CgeqrfBatched = hipblasCgeqrfBatched_raw(handle, m, n, A, lda, ipiv, c_loc(info(1)), &
-        batchCount)
+      CgeqrfBatched = hipblasCgeqrfBatched_raw(handle, m, n, A, lda, ipiv, c_loc(info), batchCount)
     end function hipblasCgeqrfBatched_native
 
     function hipblasCgeqrfBatched_typed(handle, m, n, A, lda, ipiv, info, batchCount) result( &
@@ -85715,11 +85576,10 @@ contains
       type(c_ptr), value :: A
       integer(c_int), value :: lda
       type(c_ptr), value :: ipiv
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int), value :: batchCount
       integer(c_int) :: ZgeqrfBatched
-      ZgeqrfBatched = hipblasZgeqrfBatched_raw(handle, m, n, A, lda, ipiv, c_loc(info(1)), &
-        batchCount)
+      ZgeqrfBatched = hipblasZgeqrfBatched_raw(handle, m, n, A, lda, ipiv, c_loc(info), batchCount)
     end function hipblasZgeqrfBatched_native
 
     function hipblasZgeqrfBatched_typed(handle, m, n, A, lda, ipiv, info, batchCount) result( &
@@ -85746,16 +85606,16 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: m
       integer(c_int), value :: n
-      real(c_float), target :: A(*)
+      real(c_float), target :: A(..)
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
-      real(c_float), target :: ipiv(*)
+      real(c_float), target :: ipiv(..)
       integer(c_long), value :: strideP
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int), value :: batchCount
       integer(c_int) :: SgeqrfStridedBatched
-      SgeqrfStridedBatched = hipblasSgeqrfStridedBatched_raw(handle, m, n, c_loc(A(1)), lda, &
-        strideA, c_loc(ipiv(1)), strideP, c_loc(info(1)), batchCount)
+      SgeqrfStridedBatched = hipblasSgeqrfStridedBatched_raw(handle, m, n, c_loc(A), lda, strideA, &
+        c_loc(ipiv), strideP, c_loc(info), batchCount)
     end function hipblasSgeqrfStridedBatched_native
 
     function hipblasSgeqrfStridedBatched_typed(handle, m, n, A, lda, strideA, ipiv, strideP, info, &
@@ -85785,16 +85645,16 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: m
       integer(c_int), value :: n
-      real(c_double), target :: A(*)
+      real(c_double), target :: A(..)
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
-      real(c_double), target :: ipiv(*)
+      real(c_double), target :: ipiv(..)
       integer(c_long), value :: strideP
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int), value :: batchCount
       integer(c_int) :: DgeqrfStridedBatched
-      DgeqrfStridedBatched = hipblasDgeqrfStridedBatched_raw(handle, m, n, c_loc(A(1)), lda, &
-        strideA, c_loc(ipiv(1)), strideP, c_loc(info(1)), batchCount)
+      DgeqrfStridedBatched = hipblasDgeqrfStridedBatched_raw(handle, m, n, c_loc(A), lda, strideA, &
+        c_loc(ipiv), strideP, c_loc(info), batchCount)
     end function hipblasDgeqrfStridedBatched_native
 
     function hipblasDgeqrfStridedBatched_typed(handle, m, n, A, lda, strideA, ipiv, strideP, info, &
@@ -85824,16 +85684,16 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: m
       integer(c_int), value :: n
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: A(..)
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
-      complex(c_float_complex), target :: ipiv(*)
+      complex(c_float_complex), target :: ipiv(..)
       integer(c_long), value :: strideP
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int), value :: batchCount
       integer(c_int) :: CgeqrfStridedBatched
-      CgeqrfStridedBatched = hipblasCgeqrfStridedBatched_raw(handle, m, n, c_loc(A(1)), lda, &
-        strideA, c_loc(ipiv(1)), strideP, c_loc(info(1)), batchCount)
+      CgeqrfStridedBatched = hipblasCgeqrfStridedBatched_raw(handle, m, n, c_loc(A), lda, strideA, &
+        c_loc(ipiv), strideP, c_loc(info), batchCount)
     end function hipblasCgeqrfStridedBatched_native
 
     function hipblasCgeqrfStridedBatched_typed(handle, m, n, A, lda, strideA, ipiv, strideP, info, &
@@ -85863,16 +85723,16 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: m
       integer(c_int), value :: n
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: A(..)
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
-      complex(c_double_complex), target :: ipiv(*)
+      complex(c_double_complex), target :: ipiv(..)
       integer(c_long), value :: strideP
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int), value :: batchCount
       integer(c_int) :: ZgeqrfStridedBatched
-      ZgeqrfStridedBatched = hipblasZgeqrfStridedBatched_raw(handle, m, n, c_loc(A(1)), lda, &
-        strideA, c_loc(ipiv(1)), strideP, c_loc(info(1)), batchCount)
+      ZgeqrfStridedBatched = hipblasZgeqrfStridedBatched_raw(handle, m, n, c_loc(A), lda, strideA, &
+        c_loc(ipiv), strideP, c_loc(info), batchCount)
     end function hipblasZgeqrfStridedBatched_native
 
     function hipblasZgeqrfStridedBatched_typed(handle, m, n, A, lda, strideA, ipiv, strideP, info, &

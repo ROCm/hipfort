@@ -572,8 +572,8 @@ module hipfort_rocsparse
     !> \f$\alpha\f$ and \f$\beta\f$ pointers as parameters. These can be either host memory pointers
     !> or device memory pointers, depending on what the pointer mode is set to. By default, all
     !> values are passed
-    !> using host pointer mode. Valid pointer modes are \ref rocsparse_pointer_mode_host
-    !> or \ref rocsparse_pointer_mode_device.
+    !> using host pointer mode. Valid pointer modes are `rocsparse_pointer_mode_host`
+    !> or `rocsparse_pointer_mode_device`.
     !>
     !> @param[in]
     !> handle          the handle to the rocSPARSE library context.
@@ -666,6 +666,42 @@ module hipfort_rocsparse
     module procedure rocsparse_get_version_typed
   end interface rocsparse_get_version
 
+  interface rocsparse_get_git_rev
+    !---------------------------------------------
+    ! rocsparse_get_git_rev
+    !---------------------------------------------
+    !> \ingroup aux_module
+    !> \brief Get the rocSPARSE git revision.
+    !>
+    !> \details
+    !> \p rocsparse_get_git_rev gets the rocSPARSE library git commit revision (SHA-1).
+    !>
+    !> @param[in]
+    !> handle  the handle to the rocSPARSE library context.
+    !> @param[out]
+    !> rev     the git commit revision (SHA-1).
+    !>
+    !> \retval rocsparse_status_success the operation completed successfully.
+    !> \retval rocsparse_status_invalid_handle \p handle is invalid.
+    !> \par Example
+    !> \code{.c}
+    !> rocsparse_handle handle;
+    !> rocsparse_create_handle(&handle);
+    !> rocsparse_get_git_rev(handle, rocsparse_rev);
+    !> rocsparse_destroy_handle(handle);
+    !> \endcode
+    function rocsparse_get_git_rev_raw(handle, rev) &
+       result(get_git_rev_raw) &
+       bind(C, name="rocsparse_get_git_rev")
+       import :: c_ptr, c_int
+       type(c_ptr), value :: handle
+       type(c_ptr), value :: rev
+       integer(c_int) :: get_git_rev_raw
+    end function rocsparse_get_git_rev_raw
+
+    module procedure rocsparse_get_git_rev_typed
+  end interface rocsparse_get_git_rev
+
   interface rocsparse_create_mat_descr
     !---------------------------------------------
     ! rocsparse_create_mat_descr
@@ -674,11 +710,10 @@ module hipfort_rocsparse
     !> \brief Create a matrix descriptor.
     !> \details
     !> \p rocsparse_create_mat_descr creates a matrix descriptor. It initializes
-    !> `rocsparse_matrix_type` to \ref rocsparse_matrix_type_general, `rocsparse_fill_mode`
-    !> to \ref rocsparse_fill_mode_lower, `rocsparse_diag_type` to \ref
-    !> rocsparse_diag_type_non_unit,
-    !> `rocsparse_index_base` to \ref rocsparse_index_base_zero, and `rocsparse_storage_mode`
-    !> to \ref rocsparse_storage_mode_sorted.  It should be destroyed at the end using
+    !> `rocsparse_matrix_type` to `rocsparse_matrix_type_general`, `rocsparse_fill_mode`
+    !> to `rocsparse_fill_mode_lower`, `rocsparse_diag_type` to `rocsparse_diag_type_non_unit`,
+    !> `rocsparse_index_base` to `rocsparse_index_base_zero`, and `rocsparse_storage_mode`
+    !> to `rocsparse_storage_mode_sorted`.  It should be destroyed at the end using
     !> `rocsparse_destroy_mat_descr`().
     !>
     !> The matrix type, fill mode, diag type, index base, and storage mode can be set using the
@@ -766,12 +801,12 @@ module hipfort_rocsparse
     !>
     !> \details
     !> \p rocsparse_set_mat_index_base sets the index base of a matrix descriptor. Valid
-    !> options are \ref rocsparse_index_base_zero or \ref rocsparse_index_base_one.
+    !> options are `rocsparse_index_base_zero` or `rocsparse_index_base_one`.
     !>
     !> @param[inout]
     !> descr   the matrix descriptor.
     !> @param[in]
-    !> base    \ref rocsparse_index_base_zero or \ref rocsparse_index_base_one.
+    !> base    `rocsparse_index_base_zero` or `rocsparse_index_base_one`.
     !>
     !> \retval rocsparse_status_success the operation completed successfully.
     !> \retval rocsparse_status_invalid_pointer \p descr pointer is invalid.
@@ -801,7 +836,7 @@ module hipfort_rocsparse
     !> @param[in]
     !> descr   the matrix descriptor.
     !>
-    !> \returns \ref rocsparse_index_base_zero or \ref rocsparse_index_base_one.
+    !> \returns `rocsparse_index_base_zero` or `rocsparse_index_base_one`.
     function rocsparse_get_mat_index_base_raw(descr) &
        result(get_mat_index_base_raw) &
        bind(C, name="rocsparse_get_mat_index_base")
@@ -822,16 +857,16 @@ module hipfort_rocsparse
     !>
     !> \details
     !> \p rocsparse_set_mat_type sets the matrix type of a matrix descriptor. Valid
-    !> matrix types are \ref rocsparse_matrix_type_general,
-    !> \ref rocsparse_matrix_type_symmetric, \ref rocsparse_matrix_type_hermitian, or
-    !> \ref rocsparse_matrix_type_triangular.
+    !> matrix types are `rocsparse_matrix_type_general`,
+    !> `rocsparse_matrix_type_symmetric`, `rocsparse_matrix_type_hermitian`, or
+    !> `rocsparse_matrix_type_triangular`.
     !>
     !> @param[inout]
     !> descr   the matrix descriptor.
     !> @param[in]
-    !> type    \ref rocsparse_matrix_type_general, \ref rocsparse_matrix_type_symmetric,
-    !> \ref rocsparse_matrix_type_hermitian, or
-    !> \ref rocsparse_matrix_type_triangular.
+    !> type    `rocsparse_matrix_type_general`, `rocsparse_matrix_type_symmetric`,
+    !> `rocsparse_matrix_type_hermitian`, or
+    !> `rocsparse_matrix_type_triangular`.
     !>
     !> \retval rocsparse_status_success the operation completed successfully.
     !> \retval rocsparse_status_invalid_pointer \p descr pointer is invalid.
@@ -861,9 +896,9 @@ module hipfort_rocsparse
     !> @param[in]
     !> descr   the matrix descriptor.
     !>
-    !> \returns    \ref rocsparse_matrix_type_general, \ref rocsparse_matrix_type_symmetric,
-    !> \ref rocsparse_matrix_type_hermitian, or
-    !> \ref rocsparse_matrix_type_triangular.
+    !> \returns    `rocsparse_matrix_type_general`, `rocsparse_matrix_type_symmetric`,
+    !> `rocsparse_matrix_type_hermitian`, or
+    !> `rocsparse_matrix_type_triangular`.
     function rocsparse_get_mat_type_raw(descr) &
        result(get_mat_type_raw) &
        bind(C, name="rocsparse_get_mat_type")
@@ -884,13 +919,13 @@ module hipfort_rocsparse
     !>
     !> \details
     !> \p rocsparse_set_mat_fill_mode sets the matrix fill mode of a matrix descriptor.
-    !> Valid fill modes are \ref rocsparse_fill_mode_lower or
-    !> \ref rocsparse_fill_mode_upper.
+    !> Valid fill modes are `rocsparse_fill_mode_lower` or
+    !> `rocsparse_fill_mode_upper`.
     !>
     !> @param[inout]
     !> descr       the matrix descriptor.
     !> @param[in]
-    !> fill_mode   \ref rocsparse_fill_mode_lower or \ref rocsparse_fill_mode_upper.
+    !> fill_mode   `rocsparse_fill_mode_lower` or `rocsparse_fill_mode_upper`.
     !>
     !> \retval rocsparse_status_success the operation completed successfully.
     !> \retval rocsparse_status_invalid_pointer \p descr pointer is invalid.
@@ -920,7 +955,7 @@ module hipfort_rocsparse
     !> @param[in]
     !> descr   the matrix descriptor.
     !>
-    !> \returns    \ref rocsparse_fill_mode_lower or \ref rocsparse_fill_mode_upper.
+    !> \returns    `rocsparse_fill_mode_lower` or `rocsparse_fill_mode_upper`.
     function rocsparse_get_mat_fill_mode_raw(descr) &
        result(get_mat_fill_mode_raw) &
        bind(C, name="rocsparse_get_mat_fill_mode")
@@ -941,13 +976,13 @@ module hipfort_rocsparse
     !>
     !> \details
     !> \p rocsparse_set_mat_diag_type sets the matrix diagonal type of a matrix
-    !> descriptor. Valid diagonal types are \ref rocsparse_diag_type_unit or
-    !> \ref rocsparse_diag_type_non_unit.
+    !> descriptor. Valid diagonal types are `rocsparse_diag_type_unit` or
+    !> `rocsparse_diag_type_non_unit`.
     !>
     !> @param[inout]
     !> descr       the matrix descriptor.
     !> @param[in]
-    !> diag_type   \ref rocsparse_diag_type_unit or \ref rocsparse_diag_type_non_unit.
+    !> diag_type   `rocsparse_diag_type_unit` or `rocsparse_diag_type_non_unit`.
     !>
     !> \retval rocsparse_status_success the operation completed successfully.
     !> \retval rocsparse_status_invalid_pointer \p descr pointer is invalid.
@@ -978,7 +1013,7 @@ module hipfort_rocsparse
     !> @param[in]
     !> descr   the matrix descriptor.
     !>
-    !> \returns \ref rocsparse_diag_type_unit or \ref rocsparse_diag_type_non_unit.
+    !> \returns `rocsparse_diag_type_unit` or `rocsparse_diag_type_non_unit`.
     function rocsparse_get_mat_diag_type_raw(descr) &
        result(get_mat_diag_type_raw) &
        bind(C, name="rocsparse_get_mat_diag_type")
@@ -999,14 +1034,14 @@ module hipfort_rocsparse
     !>
     !> \details
     !> \p rocsparse_set_mat_storage_mode sets the matrix storage mode of a matrix descriptor.
-    !> Valid fill modes are \ref rocsparse_storage_mode_sorted or
-    !> \ref rocsparse_storage_mode_unsorted.
+    !> Valid fill modes are `rocsparse_storage_mode_sorted` or
+    !> `rocsparse_storage_mode_unsorted`.
     !>
     !> @param[inout]
     !> descr           the matrix descriptor.
     !> @param[in]
-    !> storage_mode    \ref rocsparse_storage_mode_sorted or
-    !> \ref rocsparse_storage_mode_unsorted.
+    !> storage_mode    `rocsparse_storage_mode_sorted` or
+    !> `rocsparse_storage_mode_unsorted`.
     !>
     !> \retval rocsparse_status_success the operation completed successfully.
     !> \retval rocsparse_status_invalid_pointer \p descr pointer is invalid.
@@ -1036,7 +1071,7 @@ module hipfort_rocsparse
     !> @param[in]
     !> descr   the matrix descriptor.
     !>
-    !> \returns    \ref rocsparse_storage_mode_sorted or \ref rocsparse_storage_mode_unsorted.
+    !> \returns    `rocsparse_storage_mode_sorted` or `rocsparse_storage_mode_unsorted`.
     function rocsparse_get_mat_storage_mode_raw(descr) &
        result(get_mat_storage_mode_raw) &
        bind(C, name="rocsparse_get_mat_storage_mode")
@@ -1322,12 +1357,12 @@ module hipfort_rocsparse
     !> @param[in]
     !> values   non-zero values in the sparse vector. Must be an array of length \p nnz.
     !> @param[in]
-    !> idx_type   \ref rocsparse_indextype_i32 or \ref rocsparse_indextype_i64.
+    !> idx_type   `rocsparse_indextype_i32` or `rocsparse_indextype_i64`.
     !> @param[in]
-    !> idx_base   \ref rocsparse_index_base_zero or \ref rocsparse_index_base_one.
+    !> idx_base   `rocsparse_index_base_zero` or `rocsparse_index_base_one`.
     !> @param[in]
-    !> data_type   \ref rocsparse_datatype_f32_r, \ref rocsparse_datatype_f64_r,
-    !> \ref rocsparse_datatype_f32_c, or \ref rocsparse_datatype_f64_c.
+    !> data_type   `rocsparse_datatype_f32_r`, `rocsparse_datatype_f64_r`,
+    !> `rocsparse_datatype_f32_c`, or `rocsparse_datatype_f64_c`.
     !>
     !> \retval rocsparse_status_success the operation completed successfully.
     !> \retval rocsparse_status_invalid_pointer if \p descr, \p indices, or \p values is invalid.
@@ -1424,12 +1459,12 @@ module hipfort_rocsparse
     !> @param[out]
     !> values   non-zero values in the sparse vector. Must be an array of length \p nnz.
     !> @param[out]
-    !> idx_type   \ref rocsparse_indextype_i32 or \ref rocsparse_indextype_i64.
+    !> idx_type   `rocsparse_indextype_i32` or `rocsparse_indextype_i64`.
     !> @param[out]
-    !> idx_base   \ref rocsparse_index_base_zero or \ref rocsparse_index_base_one.
+    !> idx_base   `rocsparse_index_base_zero` or `rocsparse_index_base_one`.
     !> @param[out]
-    !> data_type   \ref rocsparse_datatype_f32_r, \ref rocsparse_datatype_f64_r,
-    !> \ref rocsparse_datatype_f32_c, or \ref rocsparse_datatype_f64_c.
+    !> data_type   `rocsparse_datatype_f32_r`, `rocsparse_datatype_f64_r`,
+    !> `rocsparse_datatype_f32_c`, or `rocsparse_datatype_f64_c`.
     !>
     !> \retval rocsparse_status_success the operation completed successfully.
     !> \retval rocsparse_status_invalid_pointer if \p descr, \p indices, or \p values is invalid.
@@ -1490,7 +1525,7 @@ module hipfort_rocsparse
     !> @param[in]
     !> descr   the pointer to the sparse vector descriptor.
     !> @param[out]
-    !> idx_base   \ref rocsparse_index_base_zero or \ref rocsparse_index_base_one.
+    !> idx_base   `rocsparse_index_base_zero` or `rocsparse_index_base_one`.
     !>
     !> \retval rocsparse_status_success the operation completed successfully.
     !> \retval rocsparse_status_invalid_pointer if \p descr is invalid.
@@ -1601,12 +1636,12 @@ module hipfort_rocsparse
     !> @param[in]
     !> coo_val     values of the COO matrix. Must be an array of length \p nnz.
     !> @param[in]
-    !> idx_type    \ref rocsparse_indextype_i32 or \ref rocsparse_indextype_i64.
+    !> idx_type    `rocsparse_indextype_i32` or `rocsparse_indextype_i64`.
     !> @param[in]
-    !> idx_base    \ref rocsparse_index_base_zero or \ref rocsparse_index_base_one.
+    !> idx_base    `rocsparse_index_base_zero` or `rocsparse_index_base_one`.
     !> @param[in]
-    !> data_type   \ref rocsparse_datatype_f32_r, \ref rocsparse_datatype_f64_r,
-    !> \ref rocsparse_datatype_f32_c, or \ref rocsparse_datatype_f64_c.
+    !> data_type   `rocsparse_datatype_f32_r`, `rocsparse_datatype_f64_r`,
+    !> `rocsparse_datatype_f32_c`, or `rocsparse_datatype_f64_c`.
     !>
     !> \retval rocsparse_status_success the operation completed successfully.
     !> \retval rocsparse_status_invalid_pointer if \p descr, \p coo_row_ind, \p coo_col_ind, or \p
@@ -1684,12 +1719,12 @@ module hipfort_rocsparse
     !> @param[in]
     !> coo_val     values of the COO AoS matrix. Must be an array of length \p nnz.
     !> @param[in]
-    !> idx_type    \ref rocsparse_indextype_i32 or \ref rocsparse_indextype_i64.
+    !> idx_type    `rocsparse_indextype_i32` or `rocsparse_indextype_i64`.
     !> @param[in]
-    !> idx_base    \ref rocsparse_index_base_zero or \ref rocsparse_index_base_one.
+    !> idx_base    `rocsparse_index_base_zero` or `rocsparse_index_base_one`.
     !> @param[in]
-    !> data_type   \ref rocsparse_datatype_f32_r, \ref rocsparse_datatype_f64_r,
-    !> \ref rocsparse_datatype_f32_c, or \ref rocsparse_datatype_f64_c.
+    !> data_type   `rocsparse_datatype_f32_r`, `rocsparse_datatype_f64_r`,
+    !> `rocsparse_datatype_f32_c`, or `rocsparse_datatype_f64_c`.
     !>
     !> \retval rocsparse_status_success the operation completed successfully.
     !> \retval rocsparse_status_invalid_pointer if \p descr, \p coo_ind, or \p coo_val is invalid.
@@ -1746,14 +1781,14 @@ module hipfort_rocsparse
     !> bsr_val values of the BSR matrix (must be array of length \p bnnz * \p block_dim * \p
     !> block_dim ).
     !> @param[in]
-    !> row_ptr_type \ref rocsparse_indextype_i32 or \ref rocsparse_indextype_i64.
+    !> row_ptr_type `rocsparse_indextype_i32` or `rocsparse_indextype_i64`.
     !> @param[in]
-    !> col_ind_type \ref rocsparse_indextype_i32 or \ref rocsparse_indextype_i64.
+    !> col_ind_type `rocsparse_indextype_i32` or `rocsparse_indextype_i64`.
     !> @param[in]
-    !> idx_base     \ref rocsparse_index_base_zero or \ref rocsparse_index_base_one.
+    !> idx_base     `rocsparse_index_base_zero` or `rocsparse_index_base_one`.
     !> @param[in]
-    !> data_type    \ref rocsparse_datatype_f32_r, \ref rocsparse_datatype_f64_r,
-    !> \ref rocsparse_datatype_f32_c, or \ref rocsparse_datatype_f64_c.
+    !> data_type    `rocsparse_datatype_f32_r`, `rocsparse_datatype_f64_r`,
+    !> `rocsparse_datatype_f32_c`, or `rocsparse_datatype_f64_c`.
     !>
     !> \retval rocsparse_status_success the operation completed successfully.
     !> \retval rocsparse_status_invalid_pointer if \p descr, \p bsr_row_ptr, \p bsr_col_ind, or \p
@@ -1841,14 +1876,14 @@ module hipfort_rocsparse
     !> @param[in]
     !> csr_val      values of the CSR matrix. Must be an array of length \p nnz.
     !> @param[in]
-    !> row_ptr_type \ref rocsparse_indextype_i32 or \ref rocsparse_indextype_i64.
+    !> row_ptr_type `rocsparse_indextype_i32` or `rocsparse_indextype_i64`.
     !> @param[in]
-    !> col_ind_type \ref rocsparse_indextype_i32 or \ref rocsparse_indextype_i64.
+    !> col_ind_type `rocsparse_indextype_i32` or `rocsparse_indextype_i64`.
     !> @param[in]
-    !> idx_base     \ref rocsparse_index_base_zero or \ref rocsparse_index_base_one.
+    !> idx_base     `rocsparse_index_base_zero` or `rocsparse_index_base_one`.
     !> @param[in]
-    !> data_type    \ref rocsparse_datatype_f32_r, \ref rocsparse_datatype_f64_r,
-    !> \ref rocsparse_datatype_f32_c, or \ref rocsparse_datatype_f64_c.
+    !> data_type    `rocsparse_datatype_f32_r`, `rocsparse_datatype_f64_r`,
+    !> `rocsparse_datatype_f32_c`, or `rocsparse_datatype_f64_c`.
     !>
     !> \retval rocsparse_status_success the operation completed successfully.
     !> \retval rocsparse_status_invalid_pointer if \p descr, \p csr_row_ptr, \p csr_col_ind, or \p
@@ -1931,14 +1966,14 @@ module hipfort_rocsparse
     !> @param[in]
     !> csc_val      values of the CSC matrix. Must be an array of length \p nnz.
     !> @param[in]
-    !> col_ptr_type \ref rocsparse_indextype_i32 or \ref rocsparse_indextype_i64.
+    !> col_ptr_type `rocsparse_indextype_i32` or `rocsparse_indextype_i64`.
     !> @param[in]
-    !> row_ind_type \ref rocsparse_indextype_i32 or \ref rocsparse_indextype_i64.
+    !> row_ind_type `rocsparse_indextype_i32` or `rocsparse_indextype_i64`.
     !> @param[in]
-    !> idx_base     \ref rocsparse_index_base_zero or \ref rocsparse_index_base_one.
+    !> idx_base     `rocsparse_index_base_zero` or `rocsparse_index_base_one`.
     !> @param[in]
-    !> data_type    \ref rocsparse_datatype_f32_r, \ref rocsparse_datatype_f64_r,
-    !> \ref rocsparse_datatype_f32_c, or \ref rocsparse_datatype_f64_c.
+    !> data_type    `rocsparse_datatype_f32_r`, `rocsparse_datatype_f64_r`,
+    !> `rocsparse_datatype_f32_c`, or `rocsparse_datatype_f64_c`.
     !>
     !> \retval rocsparse_status_success the operation completed successfully.
     !> \retval rocsparse_status_invalid_pointer if \p descr, \p csc_col_ptr, \p csc_row_ind, or \p
@@ -2019,12 +2054,12 @@ module hipfort_rocsparse
     !> @param[in]
     !> ell_width   width of the ELL matrix.
     !> @param[in]
-    !> idx_type    \ref rocsparse_indextype_i32 or \ref rocsparse_indextype_i64.
+    !> idx_type    `rocsparse_indextype_i32` or `rocsparse_indextype_i64`.
     !> @param[in]
-    !> idx_base    \ref rocsparse_index_base_zero or \ref rocsparse_index_base_one.
+    !> idx_base    `rocsparse_index_base_zero` or `rocsparse_index_base_one`.
     !> @param[in]
-    !> data_type   \ref rocsparse_datatype_f32_r, \ref rocsparse_datatype_f64_r,
-    !> \ref rocsparse_datatype_f32_c, or \ref rocsparse_datatype_f64_c.
+    !> data_type   `rocsparse_datatype_f32_r`, `rocsparse_datatype_f64_r`,
+    !> `rocsparse_datatype_f32_c`, or `rocsparse_datatype_f64_c`.
     !>
     !> \retval rocsparse_status_success the operation completed successfully.
     !> \retval rocsparse_status_invalid_pointer if \p descr, \p ell_col_ind, or \p ell_val is
@@ -2071,7 +2106,7 @@ module hipfort_rocsparse
     !> @param[in]
     !> cols          number of columns in the blocked ELL matrix
     !> @param[in]
-    !> ell_block_dir \ref rocsparse_direction_row or \ref rocsparse_direction_column.
+    !> ell_block_dir `rocsparse_direction_row` or `rocsparse_direction_column`.
     !> @param[in]
     !> ell_block_dim block dimension of the sparse blocked ELL matrix.
     !> @param[in]
@@ -2083,12 +2118,12 @@ module hipfort_rocsparse
     !> @param[in]
     !> ell_val       values of the blocked ELL matrix. Must be an array of length \p rows*ell_width.
     !> @param[in]
-    !> idx_type      \ref rocsparse_indextype_i32 or \ref rocsparse_indextype_i64.
+    !> idx_type      `rocsparse_indextype_i32` or `rocsparse_indextype_i64`.
     !> @param[in]
-    !> idx_base      \ref rocsparse_index_base_zero or \ref rocsparse_index_base_one.
+    !> idx_base      `rocsparse_index_base_zero` or `rocsparse_index_base_one`.
     !> @param[in]
-    !> data_type     \ref rocsparse_datatype_f32_r, \ref rocsparse_datatype_f64_r,
-    !> \ref rocsparse_datatype_f32_c, or \ref rocsparse_datatype_f64_c.
+    !> data_type     `rocsparse_datatype_f32_r`, `rocsparse_datatype_f64_r`,
+    !> `rocsparse_datatype_f32_c`, or `rocsparse_datatype_f64_c`.
     !>
     !> \retval rocsparse_status_success the operation completed successfully.
     !> \retval rocsparse_status_invalid_pointer if \p descr, \p ell_cols, \p ell_col_ind, or \p
@@ -2179,14 +2214,14 @@ module hipfort_rocsparse
     !> @param[in]
     !> sell_val values of the sliced ELL matrix. Must be an array of length \p sell_colval_size.
     !> @param[in]
-    !> sell_slice_offsets_type \ref rocsparse_indextype_i32 or \ref rocsparse_indextype_i64.
+    !> sell_slice_offsets_type `rocsparse_indextype_i32` or `rocsparse_indextype_i64`.
     !> @param[in]
-    !> sell_col_ind_type       \ref rocsparse_indextype_i32 or \ref rocsparse_indextype_i64.
+    !> sell_col_ind_type       `rocsparse_indextype_i32` or `rocsparse_indextype_i64`.
     !> @param[in]
-    !> idx_base                \ref rocsparse_index_base_zero or \ref rocsparse_index_base_one.
+    !> idx_base                `rocsparse_index_base_zero` or `rocsparse_index_base_one`.
     !> @param[in]
-    !> data_type               \ref rocsparse_datatype_f32_r, \ref rocsparse_datatype_f64_r,
-    !> \ref rocsparse_datatype_f32_c, or \ref rocsparse_datatype_f64_c.
+    !> data_type               `rocsparse_datatype_f32_r`, `rocsparse_datatype_f64_r`,
+    !> `rocsparse_datatype_f32_c`, or `rocsparse_datatype_f64_c`.
     !>
     !> \retval rocsparse_status_success the operation completed successfully.
     !> \retval rocsparse_status_invalid_pointer if \p descr, \p sell_slice_offsets, \p sell_col_ind,
@@ -2503,8 +2538,8 @@ module hipfort_rocsparse
     !> @param[in]
     !> data_size_in_bytes   input data size.
     !> @param[out]
-    !> p_error error descriptor created if the returned status is not \ref rocsparse_status_success.
-    !> A null pointer can be passed if an error descriptor is not required.
+    !> p_error error descriptor created if the returned status is not `rocsparse_status_success`. A
+    !> null pointer can be passed if an error descriptor is not required.
     !>
     !> \retval rocsparse_status_success the operation completed successfully.
     !> \retval rocsparse_status_invalid_pointer if \p descr or \p data is invalid.
@@ -2539,13 +2574,13 @@ module hipfort_rocsparse
     !> @param[inout]
     !> descr       the pointer to the SpGEAM descriptor.
     !> @param[in]
-    !> output      \ref rocsparse_spgeam_output_nnz.
+    !> output      `rocsparse_spgeam_output_nnz`.
     !> @param[in]
     !> data        output data.
     !> @param[in]
     !> data_size_in_bytes   output data size.
     !> @param[out]
-    !> error error descriptor created if the returned status is not \ref rocsparse_status_success. A
+    !> error error descriptor created if the returned status is not `rocsparse_status_success`. A
     !> null pointer can be passed if an error descriptor is not required.
     !>
     !> \retval rocsparse_status_success the operation completed successfully.
@@ -2641,7 +2676,7 @@ module hipfort_rocsparse
     !> @param[in]
     !> size_in_bytes input value size in bytes.
     !> @param[out]
-    !> error error descriptor created if the returned status is not \ref rocsparse_status_success. A
+    !> error error descriptor created if the returned status is not `rocsparse_status_success`. A
     !> null pointer can be passed if an error descriptor is not required.
     !>
     !> \retval rocsparse_status_success the operation completed successfully.
@@ -2681,8 +2716,8 @@ module hipfort_rocsparse
     !> @param[out]
     !> p_sptrsv_descr        pointer to the descriptor of the sptrsv routine.
     !> @param[out]
-    !> p_error error descriptor created if the returned status is not \ref rocsparse_status_success.
-    !> A null pointer can be passed if an error descriptor is not required.
+    !> p_error error descriptor created if the returned status is not `rocsparse_status_success`. A
+    !> null pointer can be passed if an error descriptor is not required.
     !>
     !> \retval      rocsparse_status_invalid_handle \p handle pointer is invalid.
     !> \retval      rocsparse_status_success the operation completed successfully.
@@ -2717,8 +2752,8 @@ module hipfort_rocsparse
     !> @param[in]
     !> sptrsv_descr        descriptor of the sptrsv routine.
     !> @param[out]
-    !> p_error error descriptor created if the returned status is not \ref rocsparse_status_success.
-    !> A null pointer can be passed if an error descriptor is not required.
+    !> p_error error descriptor created if the returned status is not `rocsparse_status_success`. A
+    !> null pointer can be passed if an error descriptor is not required.
     !>
     !> \retval      rocsparse_status_invalid_handle \p handle pointer is invalid.
     !> \retval      rocsparse_status_success the operation completed successfully.
@@ -2807,8 +2842,8 @@ module hipfort_rocsparse
     !> @param[in]
     !> data_size_in_bytes   input data size in bytes.
     !> @param[out]
-    !> p_error error descriptor created if the returned status is not \ref rocsparse_status_success.
-    !> A null pointer can be passed if an error descriptor is not required.
+    !> p_error error descriptor created if the returned status is not `rocsparse_status_success`. A
+    !> null pointer can be passed if an error descriptor is not required.
     !>
     !>
     !> \retval rocsparse_status_success the operation completed successfully.
@@ -2850,8 +2885,8 @@ module hipfort_rocsparse
     !> @param[in]
     !> data_size_in_bytes   output data size in bytes.
     !> @param[out]
-    !> p_error error descriptor created if the returned status is not \ref rocsparse_status_success.
-    !> A null pointer can be passed if an error descriptor is not required.
+    !> p_error error descriptor created if the returned status is not `rocsparse_status_success`. A
+    !> null pointer can be passed if an error descriptor is not required.
     !>
     !> \retval rocsparse_status_success the operation completed successfully.
     !> \retval rocsparse_status_invalid_pointer if \p descr or \p data is invalid.
@@ -2946,8 +2981,8 @@ module hipfort_rocsparse
     !> @param[in]
     !> data_size   input data size.
     !> @param[out]
-    !> p_error error descriptor created if the returned status is not \ref rocsparse_status_success.
-    !> A null pointer can be passed if an error descriptor is not required.
+    !> p_error error descriptor created if the returned status is not `rocsparse_status_success`. A
+    !> null pointer can be passed if an error descriptor is not required.
     !>
     !> \retval rocsparse_status_success the operation completed successfully.
     !> \retval rocsparse_status_invalid_pointer if \p descr or \p data is invalid.
@@ -2987,8 +3022,8 @@ module hipfort_rocsparse
     !> @param[in]
     !> data_size_in_bytes   output data size in bytes.
     !> @param[out]
-    !> p_error error descriptor created if the returned status is not \ref rocsparse_status_success.
-    !> A null pointer can be passed if an error descriptor is not required.
+    !> p_error error descriptor created if the returned status is not `rocsparse_status_success`. A
+    !> null pointer can be passed if an error descriptor is not required.
     !>
     !> \retval rocsparse_status_success the operation completed successfully.
     !> \retval rocsparse_status_invalid_pointer if \p descr or \p data is invalid.
@@ -3026,8 +3061,8 @@ module hipfort_rocsparse
     !> @param[out]
     !> p_spic0_descr        pointer to the descriptor of the Spic0 routine.
     !> @param[out]
-    !> p_error error descriptor created if the returned status is not \ref rocsparse_status_success.
-    !> A null pointer can be passed if an error descriptor is not required.
+    !> p_error error descriptor created if the returned status is not `rocsparse_status_success`. A
+    !> null pointer can be passed if an error descriptor is not required.
     !>
     !> \retval      rocsparse_status_invalid_handle \p handle pointer is invalid.
     !> \retval      rocsparse_status_success the operation completed successfully.
@@ -3061,8 +3096,8 @@ module hipfort_rocsparse
     !> @param[in]
     !> spic0_descr        descriptor of the spic0 routine.
     !> @param[out]
-    !> p_error error descriptor created if the returned status is not \ref rocsparse_status_success.
-    !> A null pointer can be passed if an error descriptor is not required.
+    !> p_error error descriptor created if the returned status is not `rocsparse_status_success`. A
+    !> null pointer can be passed if an error descriptor is not required.
     !> \retval      rocsparse_status_invalid_handle \p handle pointer is invalid.
     !> \retval      rocsparse_status_success the operation completed successfully.
     function rocsparse_spic0_descr_destroy_raw(handle, spic0_descr, p_error) &
@@ -3086,19 +3121,19 @@ module hipfort_rocsparse
     !> \brief Set the requested `rocsparse_spic0_input` data in the SpIC0 descriptor.
     !>
     !> \note
-    !> - \ref rocsparse_spic0_input_alg is `rocsparse_spic0_alg`. It can only be set before applying
+    !> - `rocsparse_spic0_input_alg` is `rocsparse_spic0_alg`. It can only be set before applying
     !> any phase.
-    !> - \ref rocsparse_spic0_input_compute_datatype is `rocsparse_datatype`. It can only be set
-    !> before applying any phase. For now, it must be of value type of A.
-    !> - \ref rocsparse_spic0_input_analysis_policy is `rocsparse_analysis_policy`. It can only be
-    !> set before applying any phase.
-    !> - \ref rocsparse_spic0_input_singularity_tolerance is a device/host double pointer. Its
-    !> device mode is determined from the `rocsparse_handle`.
-    !> -     \ref rocsparse_spic0_input_boost_enable is an \p int32_t.
-    !> - \ref rocsparse_spic0_input_boost_value is a pointer to a scalar of value type A. Its device
+    !> - `rocsparse_spic0_input_compute_datatype` is `rocsparse_datatype`. It can only be set before
+    !> applying any phase. For now, it must be of value type of A.
+    !> - `rocsparse_spic0_input_analysis_policy` is `rocsparse_analysis_policy`. It can only be set
+    !> before applying any phase.
+    !> - `rocsparse_spic0_input_singularity_tolerance` is a device/host double pointer. Its device
     !> mode is determined from the `rocsparse_handle`.
-    !> - \ref rocsparse_spic0_input_boost_tolerance is a double pointer. Its device mode is
-    !> determined from the `rocsparse_handle`.
+    !> -     `rocsparse_spic0_input_boost_enable` is an \p int32_t.
+    !> - `rocsparse_spic0_input_boost_value` is a pointer to a scalar of value type A. Its device
+    !> mode is determined from the `rocsparse_handle`.
+    !> - `rocsparse_spic0_input_boost_tolerance` is a double pointer. Its device mode is determined
+    !> from the `rocsparse_handle`.
     !>
     !> @param[in]
     !> handle      the pointer to the handle to the rocSPARSE library context.
@@ -3111,8 +3146,8 @@ module hipfort_rocsparse
     !> @param[in]
     !> input_size_in_bytes   input data size in bytes.
     !> @param[out]
-    !> p_error error descriptor created if the returned status is not \ref rocsparse_status_success.
-    !> A null pointer can be passed if an error descriptor is not required.
+    !> p_error error descriptor created if the returned status is not `rocsparse_status_success`. A
+    !> null pointer can be passed if an error descriptor is not required.
     !>
     !>
     !> \retval rocsparse_status_success the operation completed successfully.
@@ -3143,9 +3178,9 @@ module hipfort_rocsparse
     !> \ingroup aux_module
     !> \brief Get the requested `rocsparse_spic0_output` data from the SpIC0 descriptor.
     !> \note
-    !> - \ref rocsparse_spic0_output_singularity is `rocsparse_singularity`. It will be considered
-    !> as an array of size \p batch_count.
-    !> - \ref rocsparse_spic0_output_singularity_position is \p int64_t. It will be considered as an
+    !> - `rocsparse_spic0_output_singularity` is `rocsparse_singularity`. It will be considered as
+    !> an array of size \p batch_count.
+    !> - `rocsparse_spic0_output_singularity_position` is \p int64_t. It will be considered as an
     !> array of size \p batch_count.
     !> @param[in]
     !> handle      the pointer to the handle to the rocSPARSE library context.
@@ -3158,8 +3193,8 @@ module hipfort_rocsparse
     !> @param[in]
     !> output_size_in_bytes   output data size in bytes.
     !> @param[out]
-    !> p_error error descriptor created if the returned status is not \ref rocsparse_status_success.
-    !> A null pointer can be passed if an error descriptor is not required.
+    !> p_error error descriptor created if the returned status is not `rocsparse_status_success`. A
+    !> null pointer can be passed if an error descriptor is not required.
     !>
     !> \retval rocsparse_status_success the operation completed successfully.
     !> \retval rocsparse_status_invalid_pointer if \p descr or \p data is invalid.
@@ -3198,8 +3233,8 @@ module hipfort_rocsparse
     !> @param[out]
     !> p_spilu0_descr        pointer to the descriptor of the Spilu0 routine.
     !> @param[out]
-    !> p_error error descriptor created if the returned status is not \ref rocsparse_status_success.
-    !> A null pointer can be passed if an error descriptor is not required.
+    !> p_error error descriptor created if the returned status is not `rocsparse_status_success`. A
+    !> null pointer can be passed if an error descriptor is not required.
     !>
     !> \retval      rocsparse_status_invalid_handle \p handle pointer is invalid.
     !> \retval      rocsparse_status_success the operation completed successfully.
@@ -3233,8 +3268,8 @@ module hipfort_rocsparse
     !> @param[in]
     !> spilu0_descr        descriptor of the spilu0 routine.
     !> @param[out]
-    !> p_error error descriptor created if the returned status is not \ref rocsparse_status_success.
-    !> A null pointer can be passed if an error descriptor is not required.
+    !> p_error error descriptor created if the returned status is not `rocsparse_status_success`. A
+    !> null pointer can be passed if an error descriptor is not required.
     !> \retval      rocsparse_status_invalid_handle \p handle pointer is invalid.
     !> \retval      rocsparse_status_success the operation completed successfully.
     function rocsparse_spilu0_descr_destroy_raw(handle, spilu0_descr, p_error) &
@@ -3258,22 +3293,21 @@ module hipfort_rocsparse
     !> \brief Set the requested `rocsparse_spilu0_input` data in the SpILU0 descriptor.
     !>
     !> \note
-    !> - \ref rocsparse_spilu0_input_alg is `rocsparse_spilu0_alg`. It can only be set before
-    !> applying any phase.
-    !> - \ref rocsparse_spilu0_input_compute_datatype is `rocsparse_datatype`. It can only be set
+    !> - `rocsparse_spilu0_input_alg` is `rocsparse_spilu0_alg`. It can only be set before applying
+    !> any phase.
+    !> - `rocsparse_spilu0_input_compute_datatype` is `rocsparse_datatype`. It can only be set
     !> before applying any phase. For now, it must be of value type of A.
-    !> - \ref rocsparse_spilu0_input_analysis_policy is `rocsparse_analysis_policy`. It can only be
-    !> set before applying any phase.
-    !> - \ref rocsparse_spilu0_input_singularity_tolerance is a device/host double pointer. Its
-    !> device mode is determined from the `rocsparse_handle`. No batched tolerances can be
-    !> specified.
-    !> - \ref rocsparse_spilu0_input_boost_enable is a host \p int32_t. Set to 1 to enable and 0 to
+    !> - `rocsparse_spilu0_input_analysis_policy` is `rocsparse_analysis_policy`. It can only be set
+    !> before applying any phase.
+    !> - `rocsparse_spilu0_input_singularity_tolerance` is a device/host double pointer. Its device
+    !> mode is determined from the `rocsparse_handle`. No batched tolerances can be specified.
+    !> - `rocsparse_spilu0_input_boost_enable` is a host \p int32_t. Set to 1 to enable and 0 to
     !> disable.
-    !> - \ref rocsparse_spilu0_input_boost_value is a pointer to a scalar of value type of A. Its
+    !> - `rocsparse_spilu0_input_boost_value` is a pointer to a scalar of value type of A. Its
     !> device mode is determined from the `rocsparse_handle`. No batched boost values can be
     !> specified.
-    !> - \ref rocsparse_spilu0_input_boost_tolerance is a double pointer. Its device mode is
-    !> determined from the `rocsparse_handle`. No batched boost tolerances can be specified.
+    !> - `rocsparse_spilu0_input_boost_tolerance` is a double pointer. Its device mode is determined
+    !> from the `rocsparse_handle`. No batched boost tolerances can be specified.
     !>
     !> @param[in]
     !> handle      the pointer to the handle to the rocSPARSE library context.
@@ -3286,8 +3320,8 @@ module hipfort_rocsparse
     !> @param[in]
     !> input_size_in_bytes   input data size in bytes.
     !> @param[out]
-    !> p_error error descriptor created if the returned status is not \ref rocsparse_status_success.
-    !> A null pointer can be passed if an error descriptor is not required.
+    !> p_error error descriptor created if the returned status is not `rocsparse_status_success`. A
+    !> null pointer can be passed if an error descriptor is not required.
     !>
     !>
     !> \retval rocsparse_status_success the operation completed successfully.
@@ -3318,9 +3352,9 @@ module hipfort_rocsparse
     !> \ingroup aux_module
     !> \brief Get the requested `rocsparse_spilu0_output` data from the SpILU0 descriptor.
     !> \note
-    !> - \ref rocsparse_spilu0_output_singularity is `rocsparse_singularity`. It will be considered
-    !> as an array of size \p batch_count.
-    !> - \ref rocsparse_spilu0_output_singularity_position is int64_t. It will be considered as an
+    !> - `rocsparse_spilu0_output_singularity` is `rocsparse_singularity`. It will be considered as
+    !> an array of size \p batch_count.
+    !> - `rocsparse_spilu0_output_singularity_position` is int64_t. It will be considered as an
     !> array of size \p batch_count.
     !> @param[in]
     !> handle      the pointer to the handle to the rocSPARSE library context.
@@ -3333,8 +3367,8 @@ module hipfort_rocsparse
     !> @param[in]
     !> output_size_in_bytes   output data size in bytes.
     !> @param[out]
-    !> p_error error descriptor created if the returned status is not \ref rocsparse_status_success.
-    !> A null pointer can be passed if an error descriptor is not required.
+    !> p_error error descriptor created if the returned status is not `rocsparse_status_success`. A
+    !> null pointer can be passed if an error descriptor is not required.
     !>
     !> \retval rocsparse_status_success the operation completed successfully.
     !> \retval rocsparse_status_invalid_pointer if \p descr or \p data is invalid.
@@ -3381,12 +3415,12 @@ module hipfort_rocsparse
     !> @param[out]
     !> coo_val     values of the COO matrix. Must be an array of length \p nnz.
     !> @param[out]
-    !> idx_type    \ref rocsparse_indextype_i32 or \ref rocsparse_indextype_i64.
+    !> idx_type    `rocsparse_indextype_i32` or `rocsparse_indextype_i64`.
     !> @param[out]
-    !> idx_base    \ref rocsparse_index_base_zero or \ref rocsparse_index_base_one.
+    !> idx_base    `rocsparse_index_base_zero` or `rocsparse_index_base_one`.
     !> @param[out]
-    !> data_type   \ref rocsparse_datatype_f32_r, \ref rocsparse_datatype_f64_r,
-    !> \ref rocsparse_datatype_f32_c, or \ref rocsparse_datatype_f64_c.
+    !> data_type   `rocsparse_datatype_f32_r`, `rocsparse_datatype_f64_r`,
+    !> `rocsparse_datatype_f32_c`, or `rocsparse_datatype_f64_c`.
     !>
     !> \retval rocsparse_status_success the operation completed successfully.
     !> \retval rocsparse_status_invalid_pointer if \p descr, \p coo_row_ind, \p coo_col_ind, or \p
@@ -3464,12 +3498,12 @@ module hipfort_rocsparse
     !> @param[out]
     !> coo_val     values of the COO AoS matrix. Must be an array of length \p nnz.
     !> @param[out]
-    !> idx_type    \ref rocsparse_indextype_i32 or \ref rocsparse_indextype_i64.
+    !> idx_type    `rocsparse_indextype_i32` or `rocsparse_indextype_i64`.
     !> @param[out]
-    !> idx_base    \ref rocsparse_index_base_zero or \ref rocsparse_index_base_one.
+    !> idx_base    `rocsparse_index_base_zero` or `rocsparse_index_base_one`.
     !> @param[out]
-    !> data_type   \ref rocsparse_datatype_f32_r, \ref rocsparse_datatype_f64_r,
-    !> \ref rocsparse_datatype_f32_c, or \ref rocsparse_datatype_f64_c.
+    !> data_type   `rocsparse_datatype_f32_r`, `rocsparse_datatype_f64_r`,
+    !> `rocsparse_datatype_f32_c`, or `rocsparse_datatype_f64_c`.
     !>
     !> \retval rocsparse_status_success the operation completed successfully.
     !> \retval rocsparse_status_invalid_pointer if \p descr, \p coo_ind, or \p coo_val is invalid.
@@ -3546,14 +3580,14 @@ module hipfort_rocsparse
     !> @param[out]
     !> csr_val      values of the CSR matrix. Must be an array of length \p nnz.
     !> @param[out]
-    !> row_ptr_type \ref rocsparse_indextype_i32 or \ref rocsparse_indextype_i64.
+    !> row_ptr_type `rocsparse_indextype_i32` or `rocsparse_indextype_i64`.
     !> @param[out]
-    !> col_ind_type \ref rocsparse_indextype_i32 or \ref rocsparse_indextype_i64.
+    !> col_ind_type `rocsparse_indextype_i32` or `rocsparse_indextype_i64`.
     !> @param[out]
-    !> idx_base     \ref rocsparse_index_base_zero or \ref rocsparse_index_base_one.
+    !> idx_base     `rocsparse_index_base_zero` or `rocsparse_index_base_one`.
     !> @param[out]
-    !> data_type    \ref rocsparse_datatype_f32_r, \ref rocsparse_datatype_f64_r,
-    !> \ref rocsparse_datatype_f32_c, or \ref rocsparse_datatype_f64_c.
+    !> data_type    `rocsparse_datatype_f32_r`, `rocsparse_datatype_f64_r`,
+    !> `rocsparse_datatype_f32_c`, or `rocsparse_datatype_f64_c`.
     !>
     !> \retval rocsparse_status_success the operation completed successfully.
     !> \retval rocsparse_status_invalid_pointer if \p descr, \p csr_row_ptr, \p csr_col_ind, or \p
@@ -3635,14 +3669,14 @@ module hipfort_rocsparse
     !> @param[out]
     !> csc_val      values of the CSC matrix. Must be an array of length \p nnz.
     !> @param[out]
-    !> col_ptr_type \ref rocsparse_indextype_i32 or \ref rocsparse_indextype_i64.
+    !> col_ptr_type `rocsparse_indextype_i32` or `rocsparse_indextype_i64`.
     !> @param[out]
-    !> row_ind_type \ref rocsparse_indextype_i32 or \ref rocsparse_indextype_i64.
+    !> row_ind_type `rocsparse_indextype_i32` or `rocsparse_indextype_i64`.
     !> @param[out]
-    !> idx_base     \ref rocsparse_index_base_zero or \ref rocsparse_index_base_one.
+    !> idx_base     `rocsparse_index_base_zero` or `rocsparse_index_base_one`.
     !> @param[out]
-    !> data_type    \ref rocsparse_datatype_f32_r, \ref rocsparse_datatype_f64_r,
-    !> \ref rocsparse_datatype_f32_c, or \ref rocsparse_datatype_f64_c.
+    !> data_type    `rocsparse_datatype_f32_r`, `rocsparse_datatype_f64_r`,
+    !> `rocsparse_datatype_f32_c`, or `rocsparse_datatype_f64_c`.
     !>
     !> \retval rocsparse_status_success the operation completed successfully.
     !> \retval rocsparse_status_invalid_pointer if \p descr, \p csc_col_ptr, \p csc_row_ind, or \p
@@ -3722,12 +3756,12 @@ module hipfort_rocsparse
     !> @param[out]
     !> ell_width   width of the ELL matrix.
     !> @param[out]
-    !> idx_type    \ref rocsparse_indextype_i32 or \ref rocsparse_indextype_i64.
+    !> idx_type    `rocsparse_indextype_i32` or `rocsparse_indextype_i64`.
     !> @param[out]
-    !> idx_base    \ref rocsparse_index_base_zero or \ref rocsparse_index_base_one.
+    !> idx_base    `rocsparse_index_base_zero` or `rocsparse_index_base_one`.
     !> @param[out]
-    !> data_type   \ref rocsparse_datatype_f32_r, \ref rocsparse_datatype_f64_r,
-    !> \ref rocsparse_datatype_f32_c, or \ref rocsparse_datatype_f64_c.
+    !> data_type   `rocsparse_datatype_f32_r`, `rocsparse_datatype_f64_r`,
+    !> `rocsparse_datatype_f32_c`, or `rocsparse_datatype_f64_c`.
     !>
     !> \retval rocsparse_status_success the operation completed successfully.
     !> \retval rocsparse_status_invalid_pointer if \p descr, \p ell_col_ind, or \p ell_val is
@@ -3797,7 +3831,7 @@ module hipfort_rocsparse
     !> @param[out]
     !> cols          number of columns in the blocked ELL matrix.
     !> @param[out]
-    !> ell_block_dir \ref rocsparse_direction_row or \ref rocsparse_direction_column.
+    !> ell_block_dir `rocsparse_direction_row` or `rocsparse_direction_column`.
     !> @param[out]
     !> ell_block_dim block dimension of the sparse blocked ELL matrix.
     !> @param[out]
@@ -3809,12 +3843,12 @@ module hipfort_rocsparse
     !> @param[out]
     !> ell_val       values of the blocked ELL matrix. Must be an array of length \p rows*ell_width.
     !> @param[out]
-    !> idx_type      \ref rocsparse_indextype_i32 or \ref rocsparse_indextype_i64.
+    !> idx_type      `rocsparse_indextype_i32` or `rocsparse_indextype_i64`.
     !> @param[out]
-    !> idx_base      \ref rocsparse_index_base_zero or \ref rocsparse_index_base_one.
+    !> idx_base      `rocsparse_index_base_zero` or `rocsparse_index_base_one`.
     !> @param[out]
-    !> data_type     \ref rocsparse_datatype_f32_r, \ref rocsparse_datatype_f64_r,
-    !> \ref rocsparse_datatype_f32_c, or \ref rocsparse_datatype_f64_c.
+    !> data_type     `rocsparse_datatype_f32_r`, `rocsparse_datatype_f64_r`,
+    !> `rocsparse_datatype_f32_c`, or `rocsparse_datatype_f64_c`.
     !>
     !> \retval rocsparse_status_success the operation completed successfully.
     !> \retval rocsparse_status_invalid_pointer if \p descr, \p ell_cols, \p ell_col_ind, or \p
@@ -3904,14 +3938,14 @@ module hipfort_rocsparse
     !> @param[out]
     !> sell_val values of the sliced ELL matrix. Must be an array of length \p sell_colval_size.
     !> @param[out]
-    !> sell_slice_offsets_type \ref rocsparse_indextype_i32 or \ref rocsparse_indextype_i64.
+    !> sell_slice_offsets_type `rocsparse_indextype_i32` or `rocsparse_indextype_i64`.
     !> @param[out]
-    !> sell_col_ind_type       \ref rocsparse_indextype_i32 or \ref rocsparse_indextype_i64.
+    !> sell_col_ind_type       `rocsparse_indextype_i32` or `rocsparse_indextype_i64`.
     !> @param[out]
-    !> idx_base                \ref rocsparse_index_base_zero or \ref rocsparse_index_base_one.
+    !> idx_base                `rocsparse_index_base_zero` or `rocsparse_index_base_one`.
     !> @param[out]
-    !> data_type               \ref rocsparse_datatype_f32_r, \ref rocsparse_datatype_f64_r,
-    !> \ref rocsparse_datatype_f32_c, or \ref rocsparse_datatype_f64_c.
+    !> data_type               `rocsparse_datatype_f32_r`, `rocsparse_datatype_f64_r`,
+    !> `rocsparse_datatype_f32_c`, or `rocsparse_datatype_f64_c`.
     !>
     !> \retval rocsparse_status_success the operation completed successfully.
     !> \retval rocsparse_status_invalid_pointer if \p descr, \p sell_slice_offsets, \p sell_col_ind,
@@ -4007,14 +4041,14 @@ module hipfort_rocsparse
     !> bsr_val values of the BSR matrix (must be array of length \p bnnz * \p block_dim * \p
     !> block_dim ).
     !> @param[out]
-    !> row_ptr_type \ref rocsparse_indextype_i32 or \ref rocsparse_indextype_i64.
+    !> row_ptr_type `rocsparse_indextype_i32` or `rocsparse_indextype_i64`.
     !> @param[out]
-    !> col_ind_type \ref rocsparse_indextype_i32 or \ref rocsparse_indextype_i64.
+    !> col_ind_type `rocsparse_indextype_i32` or `rocsparse_indextype_i64`.
     !> @param[out]
-    !> idx_base     \ref rocsparse_index_base_zero or \ref rocsparse_index_base_one.
+    !> idx_base     `rocsparse_index_base_zero` or `rocsparse_index_base_one`.
     !> @param[out]
-    !> data_type    \ref rocsparse_datatype_f32_r, \ref rocsparse_datatype_f64_r,
-    !> \ref rocsparse_datatype_f32_c, or \ref rocsparse_datatype_f64_c.
+    !> data_type    `rocsparse_datatype_f32_r`, `rocsparse_datatype_f64_r`,
+    !> `rocsparse_datatype_f32_c`, or `rocsparse_datatype_f64_c`.
     !>
     !> \retval rocsparse_status_success the operation completed successfully.
     !> \retval rocsparse_status_invalid_pointer if \p descr, \p brows, \p bcols, \p bnnz,
@@ -4315,19 +4349,19 @@ module hipfort_rocsparse
     !> @param[in]
     !> descr       the pointer to the sparse matrix descriptor.
     !> @param[out]
-    !> format      \ref rocsparse_format_coo, \ref rocsparse_format_coo_aos,
-    !> \ref rocsparse_format_csr, \ref rocsparse_format_csc, or
-    !> \ref rocsparse_format_ell
+    !> format      `rocsparse_format_coo`, `rocsparse_format_coo_aos`,
+    !> `rocsparse_format_csr`, `rocsparse_format_csc`, or
+    !> `rocsparse_format_ell`
     !>
     !> \retval rocsparse_status_success the operation completed successfully.
     !> \retval rocsparse_status_invalid_pointer if \p descr is invalid.
     !> \retval rocsparse_status_invalid_value if \p format is invalid.
-    function rocsparse_spmat_get_format_raw(descr, format) &
+    function rocsparse_spmat_get_format_raw(descr, format_) &
        result(spmat_get_format_raw) &
        bind(C, name="rocsparse_spmat_get_format")
        import :: c_ptr, c_int
        type(c_ptr), value :: descr
-       type(c_ptr), value :: format
+       type(c_ptr), value :: format_
        integer(c_int) :: spmat_get_format_raw
     end function rocsparse_spmat_get_format_raw
 
@@ -4345,7 +4379,7 @@ module hipfort_rocsparse
     !> @param[in]
     !> descr       the pointer to the sparse matrix descriptor.
     !> @param[out]
-    !> idx_base    \ref rocsparse_index_base_zero or \ref rocsparse_index_base_one.
+    !> idx_base    `rocsparse_index_base_zero` or `rocsparse_index_base_one`.
     !>
     !> \retval rocsparse_status_success the operation completed successfully.
     !> \retval rocsparse_status_invalid_pointer if \p descr is invalid.
@@ -4467,12 +4501,12 @@ module hipfort_rocsparse
     !> \ingroup aux_module
     !> \brief Set the number of non-zeros in the sparse matrix descriptor.
     !>
-    !> \note In the case of a sparse matrix with the format \ref rocsparse_format_bsr, \p nnz is the
+    !> \note In the case of a sparse matrix with the format `rocsparse_format_bsr`, \p nnz is the
     !> number of blocks.
-    !> \note In the case of a sparse matrix with the format \ref rocsparse_format_ell, the operation
+    !> \note In the case of a sparse matrix with the format `rocsparse_format_ell`, the operation
     !> will return an error.
-    !> \note In the case of a sparse matrix with the format \ref rocsparse_format_bell, the
-    !> operation will return an error.
+    !> \note In the case of a sparse matrix with the format `rocsparse_format_bell`, the operation
+    !> will return an error.
     !>
     !> @param[in]
     !> descr       the pointer to the sparse matrix descriptor.
@@ -4661,8 +4695,8 @@ module hipfort_rocsparse
     !> @param[in]
     !> descr       the pointer to the sparse matrix descriptor.
     !> @param[in]
-    !> attribute \ref rocsparse_spmat_fill_mode, \ref rocsparse_spmat_diag_type,
-    !> \ref rocsparse_spmat_matrix_type, or \ref rocsparse_spmat_storage_mode.
+    !> attribute `rocsparse_spmat_fill_mode`, `rocsparse_spmat_diag_type`,
+    !> `rocsparse_spmat_matrix_type`, or `rocsparse_spmat_storage_mode`.
     !> @param[out]
     !> data      attribute data.
     !> @param[in]
@@ -4696,8 +4730,8 @@ module hipfort_rocsparse
     !> @param[inout]
     !> descr       the pointer to the sparse matrix descriptor.
     !> @param[in]
-    !> attribute \ref rocsparse_spmat_fill_mode, \ref rocsparse_spmat_diag_type,
-    !> \ref rocsparse_spmat_matrix_type, or \ref rocsparse_spmat_storage_mode.
+    !> attribute `rocsparse_spmat_fill_mode`, `rocsparse_spmat_diag_type`,
+    !> `rocsparse_spmat_matrix_type`, or `rocsparse_spmat_storage_mode`.
     !> @param[in]
     !> data      attribute data.
     !> @param[in]
@@ -4738,8 +4772,8 @@ module hipfort_rocsparse
     !> @param[in]
     !> values   non-zero values in the dense vector. Must be an array of length \p size.
     !> @param[in]
-    !> data_type   \ref rocsparse_datatype_f32_r, \ref rocsparse_datatype_f64_r,
-    !> \ref rocsparse_datatype_f32_c, or \ref rocsparse_datatype_f64_c.
+    !> data_type   `rocsparse_datatype_f32_r`, `rocsparse_datatype_f64_r`,
+    !> `rocsparse_datatype_f32_c`, or `rocsparse_datatype_f64_c`.
     !>
     !> \retval rocsparse_status_success the operation completed successfully.
     !> \retval rocsparse_status_invalid_pointer if \p descr or \p values is invalid.
@@ -4820,8 +4854,8 @@ module hipfort_rocsparse
     !> @param[out]
     !> values   non-zero values in the dense vector. Must be an array of length \p size.
     !> @param[out]
-    !> data_type   \ref rocsparse_datatype_f32_r, \ref rocsparse_datatype_f64_r,
-    !> \ref rocsparse_datatype_f32_c, or \ref rocsparse_datatype_f64_c.
+    !> data_type   `rocsparse_datatype_f32_r`, `rocsparse_datatype_f64_r`,
+    !> `rocsparse_datatype_f32_c`, or `rocsparse_datatype_f64_c`.
     !>
     !> \retval rocsparse_status_success the operation completed successfully.
     !> \retval rocsparse_status_invalid_pointer if \p descr or \p values is invalid.
@@ -4951,10 +4985,10 @@ module hipfort_rocsparse
     !> values    non-zero values in the dense vector. Must be an array of length
     !> \p ld*rows if \p order=rocsparse_order_column or \p ld*cols if \p order=rocsparse_order_row.
     !> @param[in]
-    !> data_type \ref rocsparse_datatype_f32_r, \ref rocsparse_datatype_f64_r,
-    !> \ref rocsparse_datatype_f32_c, or \ref rocsparse_datatype_f64_c.
+    !> data_type `rocsparse_datatype_f32_r`, `rocsparse_datatype_f64_r`,
+    !> `rocsparse_datatype_f32_c`, or `rocsparse_datatype_f64_c`.
     !> @param[in]
-    !> order     \ref rocsparse_order_row or \ref rocsparse_order_column.
+    !> order     `rocsparse_order_row` or `rocsparse_order_column`.
     !>
     !> \retval rocsparse_status_success the operation completed successfully.
     !> \retval rocsparse_status_invalid_pointer if \p descr or \p values is invalid.
@@ -5045,10 +5079,10 @@ module hipfort_rocsparse
     !> values    non-zero values in the dense matrix. Must be an array of length
     !> \p ld*rows if \p order=rocsparse_order_column or \p ld*cols if \p order=rocsparse_order_row.
     !> @param[out]
-    !> data_type   \ref rocsparse_datatype_f32_r, \ref rocsparse_datatype_f64_r,
-    !> \ref rocsparse_datatype_f32_c, or \ref rocsparse_datatype_f64_c.
+    !> data_type   `rocsparse_datatype_f32_r`, `rocsparse_datatype_f64_r`,
+    !> `rocsparse_datatype_f32_c`, or `rocsparse_datatype_f64_c`.
     !> @param[out]
-    !> order     \ref rocsparse_order_row or \ref rocsparse_order_column.
+    !> order     `rocsparse_order_row` or `rocsparse_order_column`.
     !>
     !> \retval rocsparse_status_success the operation completed successfully.
     !> \retval rocsparse_status_invalid_pointer if \p descr or \p values is invalid.
@@ -5317,15 +5351,15 @@ module hipfort_rocsparse
     !> @param[in]
     !> handle      handle to the rocSPARSE library context queue.
     !> @param[in]
-    !> dir the storage format of the blocks, \ref rocsparse_direction_row or \ref
-    !> rocsparse_direction_column.
+    !> dir the storage format of the blocks, `rocsparse_direction_row` or
+    !> `rocsparse_direction_column`.
     !> @param[in]
     !> mb          number of block rows in the sparse BSR matrix.
     !> @param[in]
     !> nb          number of block columns in the sparse BSR matrix.
     !> @param[in]
     !> bsr_descr   descriptor of the sparse BSR matrix. Currently, only
-    !> \ref rocsparse_matrix_type_general is supported.
+    !> `rocsparse_matrix_type_general` is supported.
     !> @param[in]
     !> bsr_val array of \p nnzb*block_dim*block_dim containing the values of the sparse BSR matrix.
     !> @param[in]
@@ -5338,7 +5372,7 @@ module hipfort_rocsparse
     !> block_dim   size of the blocks in the sparse BSR matrix.
     !> @param[in]
     !> csr_descr   descriptor of the sparse CSR matrix. Currently, only
-    !> \ref rocsparse_matrix_type_general is supported.
+    !> `rocsparse_matrix_type_general` is supported.
     !> @param[out]
     !> csr_val array of \p nnzb*block_dim*block_dim elements containing the values of the sparse CSR
     !> matrix.
@@ -5514,7 +5548,7 @@ module hipfort_rocsparse
     !> outside of \p m x \p m.
     !> @param[in]
     !> bsr_descr   descriptor of the sparse BSR matrix. Currently, only
-    !> \ref rocsparse_matrix_type_general is supported.
+    !> `rocsparse_matrix_type_general` is supported.
     !> @param[inout]
     !> bsr_val     array of \p nnzb blocks of the sparse BSR matrix.
     !> @param[in]
@@ -5666,7 +5700,7 @@ module hipfort_rocsparse
     !> csr_row_ptr array of \p m+1 elements that point to the start of every row of the
     !> sparse CSR matrix.
     !> @param[in]
-    !> idx_base    \ref rocsparse_index_base_zero or \ref rocsparse_index_base_one.
+    !> idx_base    `rocsparse_index_base_zero` or `rocsparse_index_base_one`.
     !>
     !> \retval     rocsparse_status_success the operation completed successfully.
     !> \retval     rocsparse_status_invalid_handle the library context was not initialized.
@@ -5718,7 +5752,7 @@ module hipfort_rocsparse
     !> nnz         number of non-zero entries of the sparse COO matrix.
     !> @param[in]
     !> descr the descriptor of the column-oriented dense matrix \p A. The supported matrix type is
-    !> \ref rocsparse_matrix_type_general and also any valid value of the `rocsparse_index_base`.
+    !> `rocsparse_matrix_type_general` and also any valid value of the `rocsparse_index_base`.
     !> @param[in]
     !> coo_val     array of \p nnz non-zero elements of matrix \p A.
     !> @param[in]
@@ -6075,7 +6109,7 @@ module hipfort_rocsparse
     !> n           number of columns of the column-oriented dense matrix \p A.
     !> @param[in]
     !> descr the descriptor of the column-oriented dense matrix \p A. The supported matrix type is
-    !> \ref rocsparse_matrix_type_general and also any valid value of the `rocsparse_index_base`.
+    !> `rocsparse_matrix_type_general` and also any valid value of the `rocsparse_index_base`.
     !> @param[in]
     !> csc_val array of nnz ( = \p csc_col_ptr[n] - \p csc_col_ptr[0] ) non-zero elements of matrix
     !> \p A.
@@ -6290,7 +6324,7 @@ module hipfort_rocsparse
     !> nnz             number of non-zero entries of the sparse CSC matrix.
     !> @param[in]
     !> descr           descriptor of the sparse CSC matrix. Currently, only
-    !> \ref rocsparse_matrix_type_general is supported.
+    !> `rocsparse_matrix_type_general` is supported.
     !> @param[in]
     !> csc_col_ptr     array of \p n+1 elements that point to the start of every column of
     !> the sparse CSC matrix.
@@ -6311,7 +6345,7 @@ module hipfort_rocsparse
     !> or \p temp_buffer pointer is invalid.
     !> \retval     rocsparse_status_internal_error an internal error occurred.
     !> \retval     rocsparse_status_not_implemented
-    !> `rocsparse_matrix_type` != \ref rocsparse_matrix_type_general.
+    !> `rocsparse_matrix_type` != `rocsparse_matrix_type_general`.
     !>
     !> \par Example
     !> The following example sorts a \f$3 \times 3\f$ CSC matrix.
@@ -6360,9 +6394,9 @@ module hipfort_rocsparse
     !> handle      handle to the rocSPARSE library context queue.
     !>
     !> @param[in]
-    !> dir direction that specifies whether to count non-zero elements by \ref
-    !> rocsparse_direction_row or by
-    !> \ref rocsparse_direction_column.
+    !> dir direction that specifies whether to count non-zero elements by `rocsparse_direction_row`
+    !> or by
+    !> `rocsparse_direction_column`.
     !>
     !> @param[in]
     !> m           number of rows of the sparse CSR matrix.
@@ -6372,7 +6406,7 @@ module hipfort_rocsparse
     !>
     !> @param[in]
     !> csr_descr    descriptor of the sparse CSR matrix. Currently, only
-    !> \ref rocsparse_matrix_type_general is supported.
+    !> `rocsparse_matrix_type_general` is supported.
     !> @param[in]
     !> csr_row_ptr integer array containing \p m+1 elements that point to the start of each row of
     !> the CSR matrix.
@@ -6385,7 +6419,7 @@ module hipfort_rocsparse
     !>
     !> @param[in]
     !> bsr_descr    descriptor of the sparse BSR matrix. Currently, only
-    !> \ref rocsparse_matrix_type_general is supported.
+    !> `rocsparse_matrix_type_general` is supported.
     !> @param[out]
     !> bsr_row_ptr integer array containing \p mb+1 elements that point to the start of each block
     !> row of the BSR matrix.
@@ -6462,15 +6496,15 @@ module hipfort_rocsparse
     !> @param[in]
     !> handle       handle to the rocSPARSE library context queue.
     !> @param[in]
-    !> dir the storage format of the blocks, \ref rocsparse_direction_row or \ref
-    !> rocsparse_direction_column.
+    !> dir the storage format of the blocks, `rocsparse_direction_row` or
+    !> `rocsparse_direction_column`.
     !> @param[in]
     !> m            number of rows in the sparse CSR matrix.
     !> @param[in]
     !> n            number of columns in the sparse CSR matrix.
     !> @param[in]
     !> csr_descr    descriptor of the sparse CSR matrix. Currently, only
-    !> \ref rocsparse_matrix_type_general is supported.
+    !> `rocsparse_matrix_type_general` is supported.
     !> @param[in]
     !> csr_val      array of \p nnz elements containing the values of the sparse CSR matrix.
     !> @param[in]
@@ -6482,7 +6516,7 @@ module hipfort_rocsparse
     !> block_dim    size of the blocks in the sparse BSR matrix.
     !> @param[in]
     !> bsr_descr    descriptor of the sparse BSR matrix. Currently, only
-    !> \ref rocsparse_matrix_type_general is supported.
+    !> `rocsparse_matrix_type_general` is supported.
     !> @param[out]
     !> bsr_val array of \p nnzb*block_dim*block_dim containing the values of the sparse BSR matrix.
     !> @param[out]
@@ -6651,7 +6685,7 @@ module hipfort_rocsparse
     !> coo_row_ind array of \p nnz elements containing the row indices of the sparse COO
     !> matrix.
     !> @param[in]
-    !> idx_base    \ref rocsparse_index_base_zero or \ref rocsparse_index_base_one.
+    !> idx_base    `rocsparse_index_base_zero` or `rocsparse_index_base_one`.
     !>
     !> \retval     rocsparse_status_success the operation completed successfully.
     !> \retval     rocsparse_status_invalid_handle the library context was not initialized.
@@ -6710,7 +6744,7 @@ module hipfort_rocsparse
     !> csr_col_ind array of \p nnz elements containing the column indices of the sparse
     !> CSR matrix.
     !> @param[in]
-    !> copy_values \ref rocsparse_action_symbolic or \ref rocsparse_action_numeric.
+    !> copy_values `rocsparse_action_symbolic` or `rocsparse_action_numeric`.
     !> @param[out]
     !> buffer_size number of bytes of the temporary storage buffer required by
     !> \ref rocsparse_scsr2csc "rocsparse_Xcsr2csc()".
@@ -6763,10 +6797,10 @@ module hipfort_rocsparse
     !> Both \ref rocsparse_csr2csc_buffer_size and \p rocsparse_csr2csc take a `rocsparse_action`
     !> parameter as input. This \p copy_values parameter decides whether \p csc_row_ind and \p
     !> csc_val
-    !> are filled during conversion (\ref rocsparse_action_numeric) or whether only \p csc_row_ind
-    !> is filled
-    !> (\ref rocsparse_action_symbolic). Using \ref rocsparse_action_symbolic can be useful, for
-    !> example, if only
+    !> are filled during conversion (`rocsparse_action_numeric`) or whether only \p csc_row_ind is
+    !> filled
+    !> (`rocsparse_action_symbolic`). Using `rocsparse_action_symbolic` can be useful, for example,
+    !> if only
     !> the sparsity pattern is required.
     !>
     !> \note
@@ -6801,9 +6835,9 @@ module hipfort_rocsparse
     !> csc_col_ptr array of \p n+1 elements that point to the start of every column of the
     !> sparse CSC matrix.
     !> @param[in]
-    !> copy_values \ref rocsparse_action_symbolic or \ref rocsparse_action_numeric.
+    !> copy_values `rocsparse_action_symbolic` or `rocsparse_action_numeric`.
     !> @param[in]
-    !> idx_base    \ref rocsparse_index_base_zero or \ref rocsparse_index_base_one.
+    !> idx_base    `rocsparse_index_base_zero` or `rocsparse_index_base_one`.
     !> @param[in]
     !> temp_buffer temporary storage buffer allocated by the user. The size is returned by
     !> rocsparse_csr2csc_buffer_size().
@@ -7203,7 +7237,7 @@ module hipfort_rocsparse
     !> n           number of columns of the column-oriented dense matrix \p A.
     !> @param[in]
     !> descr the descriptor of the column-oriented dense matrix \p A. The supported matrix type is
-    !> \ref rocsparse_matrix_type_general and also any valid value of the `rocsparse_index_base`.
+    !> `rocsparse_matrix_type_general` and also any valid value of the `rocsparse_index_base`.
     !> @param[in]
     !> csr_val array of nnz ( = \p csr_row_ptr[m] - \p csr_row_ptr[0] ) non-zero elements of matrix
     !> \p A.
@@ -7345,13 +7379,13 @@ module hipfort_rocsparse
     !> m           number of rows of the sparse CSR matrix.
     !> @param[in]
     !> csr_descr   descriptor of the sparse CSR matrix. Currently, only
-    !> \ref rocsparse_matrix_type_general is supported.
+    !> `rocsparse_matrix_type_general` is supported.
     !> @param[in]
     !> csr_row_ptr array of \p m+1 elements that point to the start of every row of the
     !> sparse CSR matrix.
     !> @param[in]
     !> ell_descr   descriptor of the sparse ELL matrix. Currently, only
-    !> \ref rocsparse_matrix_type_general is supported.
+    !> `rocsparse_matrix_type_general` is supported.
     !> @param[out]
     !> ell_width   pointer to the number of non-zero elements per row in ELL storage
     !> format.
@@ -7363,7 +7397,7 @@ module hipfort_rocsparse
     !> \p ell_width pointer is invalid.
     !> \retval     rocsparse_status_internal_error an internal error occurred.
     !> \retval     rocsparse_status_not_implemented
-    !> `rocsparse_matrix_type` != \ref rocsparse_matrix_type_general.
+    !> `rocsparse_matrix_type` != `rocsparse_matrix_type_general`.
     function rocsparse_csr2ell_width_raw(handle, m, csr_descr, csr_row_ptr, ell_descr, ell_width) &
        result(csr2ell_width_raw) &
        bind(C, name="rocsparse_csr2ell_width")
@@ -7408,7 +7442,7 @@ module hipfort_rocsparse
     !> m           number of rows of the sparse CSR matrix.
     !> @param[in]
     !> csr_descr   descriptor of the sparse CSR matrix. Currently, only
-    !> \ref rocsparse_matrix_type_general is supported.
+    !> `rocsparse_matrix_type_general` is supported.
     !> @param[in]
     !> csr_val     array containing the values of the sparse CSR matrix.
     !> @param[in]
@@ -7418,7 +7452,7 @@ module hipfort_rocsparse
     !> csr_col_ind array containing the column indices of the sparse CSR matrix.
     !> @param[in]
     !> ell_descr   descriptor of the sparse ELL matrix. Currently, only
-    !> \ref rocsparse_matrix_type_general is supported.
+    !> `rocsparse_matrix_type_general` is supported.
     !> @param[in]
     !> ell_width   number of non-zero elements per row in ELL storage format.
     !> @param[out]
@@ -7434,7 +7468,7 @@ module hipfort_rocsparse
     !> \p csr_row_ptr, \p csr_col_ind, \p ell_descr, \p ell_val, or
     !> \p ell_col_ind pointer is invalid.
     !> \retval     rocsparse_status_not_implemented
-    !> `rocsparse_matrix_type` != \ref rocsparse_matrix_type_general.
+    !> `rocsparse_matrix_type` != `rocsparse_matrix_type_general`.
     !>
     !> \par Example
     !> This example converts a CSR matrix into an ELL matrix.
@@ -7559,9 +7593,9 @@ module hipfort_rocsparse
     !> handle      handle to the rocSPARSE library context queue.
     !>
     !> @param[in]
-    !> dir direction that specifies whether to count non-zero elements by \ref
-    !> rocsparse_direction_row or by
-    !> \ref rocsparse_direction_column.
+    !> dir direction that specifies whether to count non-zero elements by `rocsparse_direction_row`
+    !> or by
+    !> `rocsparse_direction_column`.
     !>
     !> @param[in]
     !> m           number of rows of the sparse CSR matrix.
@@ -7571,7 +7605,7 @@ module hipfort_rocsparse
     !>
     !> @param[in]
     !> csr_descr    descriptor of the sparse CSR matrix. Currently, only
-    !> \ref rocsparse_matrix_type_general is supported.
+    !> `rocsparse_matrix_type_general` is supported.
     !>
     !> @param[in]
     !> csr_val      array of \p nnz elements containing the values of the sparse CSR matrix.
@@ -7737,16 +7771,16 @@ module hipfort_rocsparse
     !> @param[in]
     !> handle           handle to the rocSPARSE library context queue.
     !> @param[in]
-    !> dir direction that specifies whether to count non-zero elements by \ref
-    !> rocsparse_direction_row or by
-    !> \ref rocsparse_direction_column.
+    !> dir direction that specifies whether to count non-zero elements by `rocsparse_direction_row`
+    !> or by
+    !> `rocsparse_direction_column`.
     !> @param[in]
     !> m                number of rows of the sparse CSR matrix.
     !> @param[in]
     !> n                number of columns of the sparse CSR matrix.
     !> @param[in]
     !> csr_descr        descriptor of the sparse CSR matrix. Currently, only
-    !> \ref rocsparse_matrix_type_general is supported.
+    !> `rocsparse_matrix_type_general` is supported.
     !> @param[in]
     !> csr_row_ptr integer array containing \p m+1 elements that point to the start of each row of
     !> the CSR matrix.
@@ -7756,7 +7790,7 @@ module hipfort_rocsparse
     !>
     !> @param[in]
     !> bsr_descr        descriptor of the sparse general BSR matrix. Currently, only
-    !> \ref rocsparse_matrix_type_general is supported.
+    !> `rocsparse_matrix_type_general` is supported.
     !> @param[out]
     !> bsr_row_ptr integer array containing \p mb+1 elements that point to the start of each block
     !> row of the
@@ -7848,15 +7882,15 @@ module hipfort_rocsparse
     !> @param[in]
     !> handle         handle to the rocSPARSE library context queue.
     !> @param[in]
-    !> dir the storage format of the blocks, \ref rocsparse_direction_row or \ref
-    !> rocsparse_direction_column.
+    !> dir the storage format of the blocks, `rocsparse_direction_row` or
+    !> `rocsparse_direction_column`.
     !> @param[in]
     !> m              number of rows in the sparse CSR matrix.
     !> @param[in]
     !> n              number of columns in the sparse CSR matrix.
     !> @param[in]
     !> csr_descr      descriptor of the sparse CSR matrix. Currently, only
-    !> \ref rocsparse_matrix_type_general is supported.
+    !> `rocsparse_matrix_type_general` is supported.
     !> @param[in]
     !> csr_val        array of \p nnz elements containing the values of the sparse CSR matrix.
     !> @param[in]
@@ -7866,7 +7900,7 @@ module hipfort_rocsparse
     !> csr_col_ind array of \p nnz elements containing the column indices of the sparse CSR matrix.
     !> @param[in]
     !> bsr_descr      descriptor of the sparse BSR matrix. Currently, only
-    !> \ref rocsparse_matrix_type_general is supported.
+    !> `rocsparse_matrix_type_general` is supported.
     !> @param[out]
     !> bsr_val array of \p nnzb* \p row_block_dim* \p col_block_dim containing the values of the
     !> sparse BSR matrix.
@@ -8047,7 +8081,7 @@ module hipfort_rocsparse
     !> n               number of columns of the sparse CSR matrix.
     !> @param[in]
     !> descr           descriptor of the sparse CSR matrix. Currently, only
-    !> \ref rocsparse_matrix_type_general is supported.
+    !> `rocsparse_matrix_type_general` is supported.
     !> @param[in]
     !> csr_val         array containing the values of the sparse CSR matrix.
     !> @param[in]
@@ -8059,11 +8093,11 @@ module hipfort_rocsparse
     !> hyb             sparse matrix in HYB format.
     !> @param[in]
     !> user_ell_width  width of the ELL part of the HYB matrix (only required if
-    !> \p partition_type == \ref rocsparse_hyb_partition_user).
+    !> \p partition_type == `rocsparse_hyb_partition_user`).
     !> @param[in]
-    !> partition_type  \ref rocsparse_hyb_partition_auto (recommended),
-    !> \ref rocsparse_hyb_partition_user, or
-    !> \ref rocsparse_hyb_partition_max.
+    !> partition_type  `rocsparse_hyb_partition_auto` (recommended),
+    !> `rocsparse_hyb_partition_user`, or
+    !> `rocsparse_hyb_partition_max`.
     !>
     !> \retval     rocsparse_status_success the operation completed successfully.
     !> \retval     rocsparse_status_invalid_handle the library context was not initialized.
@@ -8075,7 +8109,7 @@ module hipfort_rocsparse
     !> allocated.
     !> \retval     rocsparse_status_internal_error an internal error occurred.
     !> \retval     rocsparse_status_not_implemented
-    !> `rocsparse_matrix_type` != \ref rocsparse_matrix_type_general.
+    !> `rocsparse_matrix_type` != `rocsparse_matrix_type_general`.
     !>
     !> \par Example
     !> This example converts a CSR matrix into a HYB matrix using user-defined partitioning.
@@ -8274,7 +8308,7 @@ module hipfort_rocsparse
     !> nnz             number of non-zero entries of the sparse CSR matrix.
     !> @param[in]
     !> descr           descriptor of the sparse CSR matrix. Currently, only
-    !> \ref rocsparse_matrix_type_general is supported.
+    !> `rocsparse_matrix_type_general` is supported.
     !> @param[in]
     !> csr_row_ptr     array of \p m+1 elements that point to the start of every row of the
     !> sparse CSR matrix.
@@ -8295,7 +8329,7 @@ module hipfort_rocsparse
     !> or \p temp_buffer pointer is invalid.
     !> \retval     rocsparse_status_internal_error an internal error occurred.
     !> \retval     rocsparse_status_not_implemented
-    !> `rocsparse_matrix_type` != \ref rocsparse_matrix_type_general.
+    !> `rocsparse_matrix_type` != `rocsparse_matrix_type_general`.
     !>
     !> \par Example
     !> The following example sorts a \f$3 \times 3\f$ CSR matrix.
@@ -8346,7 +8380,7 @@ module hipfort_rocsparse
     !> n            number of columns of the column-oriented dense matrix \p A.
     !> @param[in]
     !> descr the descriptor of the column-oriented dense matrix \p A. The supported matrix type is
-    !> \ref rocsparse_matrix_type_general and also any valid value of the `rocsparse_index_base`.
+    !> `rocsparse_matrix_type_general` and also any valid value of the `rocsparse_index_base`.
     !> @param[in]
     !> A            column-oriented dense matrix of dimensions (\p ld, \p n).
     !> @param[in]
@@ -8496,7 +8530,7 @@ module hipfort_rocsparse
     !> n                number of columns of the column-oriented dense matrix \p A.
     !> @param[in]
     !> descr the descriptor of the column-oriented dense matrix \p A. The supported matrix type is
-    !> \ref rocsparse_matrix_type_general and also any valid value of the `rocsparse_index_base`.
+    !> `rocsparse_matrix_type_general` and also any valid value of the `rocsparse_index_base`.
     !> @param[in]
     !> A                column-oriented dense matrix of dimensions (\p ld, \p n).
     !> @param[in]
@@ -8648,7 +8682,7 @@ module hipfort_rocsparse
     !> n             number of columns of the column-oriented dense dense matrix \p A.
     !> @param[in]
     !> descr the descriptor of the column-oriented dense matrix \p A. The supported matrix type is
-    !> \ref rocsparse_matrix_type_general and also any valid value of the `rocsparse_index_base`.
+    !> `rocsparse_matrix_type_general` and also any valid value of the `rocsparse_index_base`.
     !> @param[in]
     !> A             column-oriented dense matrix of dimensions (\p ld, \p n).
     !> @param[in]
@@ -8804,7 +8838,7 @@ module hipfort_rocsparse
     !> n           number of columns of the sparse ELL matrix.
     !> @param[in]
     !> ell_descr   descriptor of the sparse ELL matrix. Currently, only
-    !> \ref rocsparse_matrix_type_general is supported.
+    !> `rocsparse_matrix_type_general` is supported.
     !> @param[in]
     !> ell_width   number of non-zero elements per row in ELL storage format.
     !> @param[in]
@@ -8812,7 +8846,7 @@ module hipfort_rocsparse
     !> of the sparse ELL matrix.
     !> @param[in]
     !> csr_descr   descriptor of the sparse CSR matrix. Currently, only
-    !> \ref rocsparse_matrix_type_general is supported.
+    !> `rocsparse_matrix_type_general` is supported.
     !> @param[out]
     !> csr_row_ptr array of \p m+1 elements that point to the start of every row of the
     !> sparse CSR matrix.
@@ -8826,7 +8860,7 @@ module hipfort_rocsparse
     !> \retval     rocsparse_status_invalid_pointer \p ell_descr, \p ell_col_ind,
     !> \p csr_descr, \p csr_row_ptr, or \p csr_nnz pointer is invalid.
     !> \retval     rocsparse_status_not_implemented
-    !> `rocsparse_matrix_type` != \ref rocsparse_matrix_type_general.
+    !> `rocsparse_matrix_type` != `rocsparse_matrix_type_general`.
     function rocsparse_ell2csr_nnz_raw(handle, m, n, ell_descr, ell_width, ell_col_ind, csr_descr, &
                                        csr_row_ptr, csr_nnz) &
        result(ell2csr_nnz_raw) &
@@ -8877,7 +8911,7 @@ module hipfort_rocsparse
     !> n           number of columns of the sparse ELL matrix.
     !> @param[in]
     !> ell_descr   descriptor of the sparse ELL matrix. Currently, only
-    !> \ref rocsparse_matrix_type_general is supported.
+    !> `rocsparse_matrix_type_general` is supported.
     !> @param[in]
     !> ell_width   number of non-zero elements per row in ELL storage format.
     !> @param[in]
@@ -8887,7 +8921,7 @@ module hipfort_rocsparse
     !> of the sparse ELL matrix.
     !> @param[in]
     !> csr_descr   descriptor of the sparse CSR matrix. Currently, only
-    !> \ref rocsparse_matrix_type_general is supported.
+    !> `rocsparse_matrix_type_general` is supported.
     !> @param[out]
     !> csr_val     array containing the values of the sparse CSR matrix.
     !> @param[in]
@@ -8903,7 +8937,7 @@ module hipfort_rocsparse
     !> \p csr_row_ptr, \p csr_col_ind, \p ell_descr, \p ell_val, or
     !> \p ell_col_ind pointer is invalid.
     !> \retval     rocsparse_status_not_implemented
-    !> `rocsparse_matrix_type` != \ref rocsparse_matrix_type_general.
+    !> `rocsparse_matrix_type` != `rocsparse_matrix_type_general`.
     !>
     !> \par Example
     !> This example converts an ELL matrix into a CSR matrix.
@@ -9042,15 +9076,15 @@ module hipfort_rocsparse
     !> @param[in]
     !> handle      handle to the rocSPARSE library context queue.
     !> @param[in]
-    !> dir the storage format of the blocks, \ref rocsparse_direction_row or \ref
-    !> rocsparse_direction_column.
+    !> dir the storage format of the blocks, `rocsparse_direction_row` or
+    !> `rocsparse_direction_column`.
     !> @param[in]
     !> mb          number of block rows in the sparse general BSR matrix.
     !> @param[in]
     !> nb          number of block columns in the sparse general BSR matrix.
     !> @param[in]
     !> bsr_descr   descriptor of the sparse general BSR matrix. Currently, only
-    !> \ref rocsparse_matrix_type_general is supported.
+    !> `rocsparse_matrix_type_general` is supported.
     !> @param[in]
     !> bsr_val array of \p nnzb*row_block_dim*col_block_dim containing the values of the sparse BSR
     !> matrix.
@@ -9066,7 +9100,7 @@ module hipfort_rocsparse
     !> col_block_dim   column size of the blocks in the sparse general BSR matrix.
     !> @param[in]
     !> csr_descr   descriptor of the sparse CSR matrix. Currently, only
-    !> \ref rocsparse_matrix_type_general is supported.
+    !> `rocsparse_matrix_type_general` is supported.
     !> @param[out]
     !> csr_val array of \p nnzb*row_block_dim*col_block_dim elements containing the values of the
     !> sparse CSR matrix.
@@ -9385,10 +9419,10 @@ module hipfort_rocsparse
     !>
     !> \p rocsparse_gebsr2gebsc takes a `rocsparse_action` parameter as input. This \p copy_values
     !> parameter
-    !> decides whether \p bsc_row_ind and \p bsc_val are filled during conversion (\ref
-    !> rocsparse_action_numeric)
-    !> or whether only \p bsc_row_ind is filled (\ref rocsparse_action_symbolic). Using
-    !> \ref rocsparse_action_symbolic can be useful, for example, if only the sparsity pattern is
+    !> decides whether \p bsc_row_ind and \p bsc_val are filled during conversion
+    !> (`rocsparse_action_numeric`)
+    !> or whether only \p bsc_row_ind is filled (`rocsparse_action_symbolic`). Using
+    !> `rocsparse_action_symbolic` can be useful, for example, if only the sparsity pattern is
     !> required.
     !>
     !> \note
@@ -9431,9 +9465,9 @@ module hipfort_rocsparse
     !> bsc_col_ptr    array of \p nb+1 elements that point to the start of every column of the
     !> sparse BSC matrix.
     !> @param[in]
-    !> copy_values    \ref rocsparse_action_symbolic or \ref rocsparse_action_numeric.
+    !> copy_values    `rocsparse_action_symbolic` or `rocsparse_action_numeric`.
     !> @param[in]
-    !> idx_base       \ref rocsparse_index_base_zero or \ref rocsparse_index_base_one.
+    !> idx_base       `rocsparse_index_base_zero` or `rocsparse_index_base_one`.
     !> @param[in]
     !> temp_buffer    temporary storage buffer allocated by the user. The size is returned by
     !> \ref rocsparse_sgebsr2gebsc_buffer_size "rocsparse_Xgebsr2gebsc_buffer_size()".
@@ -9595,8 +9629,8 @@ module hipfort_rocsparse
     !> @param[in]
     !> handle           handle to the rocSPARSE library context queue.
     !> @param[in]
-    !> dir the storage format of the blocks, \ref rocsparse_direction_row or \ref
-    !> rocsparse_direction_column.
+    !> dir the storage format of the blocks, `rocsparse_direction_row` or
+    !> `rocsparse_direction_column`.
     !> @param[in]
     !> mb               number of block rows of the general BSR sparse matrix \f$A\f$.
     !> @param[in]
@@ -9605,7 +9639,7 @@ module hipfort_rocsparse
     !> nnzb             number of blocks in the general BSR sparse matrix \f$A\f$.
     !> @param[in]
     !> descr_A the descriptor of the general BSR sparse matrix \f$A\f$. The supported matrix type is
-    !> \ref rocsparse_matrix_type_general and also any valid value of the `rocsparse_index_base`.
+    !> `rocsparse_matrix_type_general` and also any valid value of the `rocsparse_index_base`.
     !> @param[in]
     !> bsr_val_A array of \p nnzb*row_block_dim_A*col_block_dim_A containing the values of the
     !> sparse general BSR
@@ -9789,8 +9823,8 @@ module hipfort_rocsparse
     !> @param[in]
     !> handle                  handle to the rocSPARSE library context queue.
     !> @param[in]
-    !> dir the storage format of the blocks, \ref rocsparse_direction_row or \ref
-    !> rocsparse_direction_column.
+    !> dir the storage format of the blocks, `rocsparse_direction_row` or
+    !> `rocsparse_direction_column`.
     !> @param[in]
     !> mb                      number of block rows of the general BSR sparse matrix \f$A\f$.
     !> @param[in]
@@ -9799,7 +9833,7 @@ module hipfort_rocsparse
     !> nnzb                    number of blocks in the general BSR sparse matrix \f$A\f$.
     !> @param[in]
     !> descr_A the descriptor of the general BSR sparse matrix \f$A\f$. The supported matrix type is
-    !> \ref rocsparse_matrix_type_general and also any valid value of the `rocsparse_index_base`.
+    !> `rocsparse_matrix_type_general` and also any valid value of the `rocsparse_index_base`.
     !> @param[in]
     !> bsr_row_ptr_A array of \p mb+1 elements that point to the start of every block row of the
     !> sparse general BSR matrix \f$A\f$.
@@ -9812,7 +9846,7 @@ module hipfort_rocsparse
     !> col_block_dim_A         column size of the blocks in the sparse general BSR matrix \f$A\f$.
     !> @param[in]
     !> descr_C the descriptor of the general BSR sparse matrix \f$C\f$. The supported matrix type is
-    !> \ref rocsparse_matrix_type_general and also any valid value of the `rocsparse_index_base`.
+    !> `rocsparse_matrix_type_general` and also any valid value of the `rocsparse_index_base`.
     !> @param[in]
     !> bsr_row_ptr_C array of \p mb_C+1 elements that point to the start of every block row of the
     !> sparse general BSR matrix \f$C\f$ where \p mb_C=(m+row_block_dim_C-1)/row_block_dim_C.
@@ -9922,8 +9956,8 @@ module hipfort_rocsparse
     !> @param[in]
     !> handle           handle to the rocSPARSE library context queue.
     !> @param[in]
-    !> dir the storage format of the blocks, \ref rocsparse_direction_row or \ref
-    !> rocsparse_direction_column.
+    !> dir the storage format of the blocks, `rocsparse_direction_row` or
+    !> `rocsparse_direction_column`.
     !> @param[in]
     !> mb               number of block rows of the general BSR sparse matrix \f$A\f$.
     !> @param[in]
@@ -9932,7 +9966,7 @@ module hipfort_rocsparse
     !> nnzb             number of blocks in the general BSR sparse matrix \f$A\f$.
     !> @param[in]
     !> descr_A the descriptor of the general BSR sparse matrix \f$A\f$. The supported matrix type is
-    !> \ref rocsparse_matrix_type_general and also any valid value of the `rocsparse_index_base`.
+    !> `rocsparse_matrix_type_general` and also any valid value of the `rocsparse_index_base`.
     !> @param[in]
     !> bsr_val_A array of \p nnzb*row_block_dim_A*col_block_dim_A containing the values of the
     !> sparse general BSR matrix \f$A\f$.
@@ -9948,7 +9982,7 @@ module hipfort_rocsparse
     !> col_block_dim_A  column size of the blocks in the sparse general BSR matrix \f$A\f$.
     !> @param[in]
     !> descr_C the descriptor of the general BSR sparse matrix \f$C\f$. The supported matrix type is
-    !> \ref rocsparse_matrix_type_general and also any valid value of the `rocsparse_index_base`.
+    !> `rocsparse_matrix_type_general` and also any valid value of the `rocsparse_index_base`.
     !> @param[in]
     !> bsr_val_C array of \p nnzb_C*row_block_dim_C*col_block_dim_C containing the values of the
     !> sparse general BSR matrix \f$C\f$.
@@ -10141,7 +10175,7 @@ module hipfort_rocsparse
     !> handle          handle to the rocSPARSE library context queue.
     !> @param[in]
     !> descr           descriptor of the sparse HYB matrix. Currently, only
-    !> \ref rocsparse_matrix_type_general is supported.
+    !> `rocsparse_matrix_type_general` is supported.
     !> @param[in]
     !> hyb             sparse matrix in HYB format.
     !> @param[in]
@@ -10157,7 +10191,7 @@ module hipfort_rocsparse
     !> \p buffer_size pointer is invalid.
     !> \retval     rocsparse_status_internal_error an internal error occurred.
     !> \retval     rocsparse_status_not_implemented
-    !> `rocsparse_matrix_type` != \ref rocsparse_matrix_type_general.
+    !> `rocsparse_matrix_type` != `rocsparse_matrix_type_general`.
     function rocsparse_hyb2csr_buffer_size_raw(handle, descr, hyb, csr_row_ptr, buffer_size) &
        result(hyb2csr_buffer_size_raw) &
        bind(C, name="rocsparse_hyb2csr_buffer_size")
@@ -10205,7 +10239,7 @@ module hipfort_rocsparse
     !> handle          handle to the rocSPARSE library context queue.
     !> @param[in]
     !> descr           descriptor of the sparse HYB matrix. Currently, only
-    !> \ref rocsparse_matrix_type_general is supported.
+    !> `rocsparse_matrix_type_general` is supported.
     !> @param[in]
     !> hyb             sparse matrix in HYB format.
     !> @param[out]
@@ -10225,7 +10259,7 @@ module hipfort_rocsparse
     !> \p csr_row_ptr, \p csr_col_ind, or \p temp_buffer pointer is invalid.
     !> \retval     rocsparse_status_internal_error an internal error occurred.
     !> \retval     rocsparse_status_not_implemented
-    !> `rocsparse_matrix_type` != \ref rocsparse_matrix_type_general.
+    !> `rocsparse_matrix_type` != `rocsparse_matrix_type_general`.
     !>
     !> \par Example
     !> This example converts a HYB matrix into a CSR matrix.
@@ -10403,7 +10437,7 @@ module hipfort_rocsparse
     !> @param[out]
     !> q           array of \p n integers containing the invsrse of the permutation vector.
     !> @param[in]
-    !> base        \ref rocsparse_index_base_zero or \ref rocsparse_index_base_one.
+    !> base        `rocsparse_index_base_zero` or `rocsparse_index_base_one`.
     !>
     !> \retval     rocsparse_status_success the operation completed successfully.
     !> \retval     rocsparse_status_invalid_handle the library context was not initialized.
@@ -10512,9 +10546,9 @@ module hipfort_rocsparse
     !> @param[in]
     !> handle                  handle to the rocSPARSE library context queue.
     !> @param[in]
-    !> dir direction that specifies whether to count non-zero elements by \ref
-    !> rocsparse_direction_row or by
-    !> \ref rocsparse_direction_column.
+    !> dir direction that specifies whether to count non-zero elements by `rocsparse_direction_row`
+    !> or by
+    !> `rocsparse_direction_column`.
     !> @param[in]
     !> m                       number of rows of the dense matrix \p A.
     !> @param[in]
@@ -10552,7 +10586,7 @@ module hipfort_rocsparse
        type(c_ptr), value :: A
        integer(c_int), value :: ld
        type(c_ptr), value :: nnz_per_row_columns
-       type(c_ptr), value :: nnz_total_dev_host_ptr
+       integer(c_int) :: nnz_total_dev_host_ptr
        integer(c_int) :: snnz_raw
     end function rocsparse_snnz_raw
 
@@ -10577,7 +10611,7 @@ module hipfort_rocsparse
        type(c_ptr), value :: A
        integer(c_int), value :: ld
        type(c_ptr), value :: nnz_per_row_columns
-       type(c_ptr), value :: nnz_total_dev_host_ptr
+       integer(c_int) :: nnz_total_dev_host_ptr
        integer(c_int) :: dnnz_raw
     end function rocsparse_dnnz_raw
 
@@ -10602,7 +10636,7 @@ module hipfort_rocsparse
        type(c_ptr), value :: A
        integer(c_int), value :: ld
        type(c_ptr), value :: nnz_per_row_columns
-       type(c_ptr), value :: nnz_total_dev_host_ptr
+       integer(c_int) :: nnz_total_dev_host_ptr
        integer(c_int) :: cnnz_raw
     end function rocsparse_cnnz_raw
 
@@ -10627,7 +10661,7 @@ module hipfort_rocsparse
        type(c_ptr), value :: A
        integer(c_int), value :: ld
        type(c_ptr), value :: nnz_per_row_columns
-       type(c_ptr), value :: nnz_total_dev_host_ptr
+       integer(c_int) :: nnz_total_dev_host_ptr
        integer(c_int) :: znnz_raw
     end function rocsparse_znnz_raw
 
@@ -10809,7 +10843,7 @@ module hipfort_rocsparse
     !> nnz_A         number of non-zeros in the sparse CSR matrix \f$A\f$.
     !> @param[in]
     !> csr_descr_A   descriptor of the sparse CSR matrix \f$A\f$. Currently, only
-    !> \ref rocsparse_matrix_type_general is supported.
+    !> `rocsparse_matrix_type_general` is supported.
     !> @param[in]
     !> csr_val_A array of \p nnz_A elements containing the values of the sparse CSR matrix \f$A\f$.
     !> @param[in]
@@ -10823,7 +10857,7 @@ module hipfort_rocsparse
     !> device memory.
     !> @param[in]
     !> csr_descr_C   descriptor of the sparse CSR matrix \f$C\f$. Currently, only
-    !> \ref rocsparse_matrix_type_general is supported.
+    !> `rocsparse_matrix_type_general` is supported.
     !> @param[in]
     !> csr_val_C array of \p nnz_C elements containing the values of the sparse CSR matrix \f$C\f$.
     !> @param[in]
@@ -10926,7 +10960,7 @@ module hipfort_rocsparse
     !> nnz_A                  number of non-zeros in the sparse CSR matrix \f$A\f$.
     !> @param[in]
     !> csr_descr_A            descriptor of the sparse CSR matrix \f$A\f$. Currently, only
-    !> \ref rocsparse_matrix_type_general is supported.
+    !> `rocsparse_matrix_type_general` is supported.
     !> @param[in]
     !> csr_val_A array of \p nnz_A elements containing the values of the sparse CSR matrix \f$A\f$.
     !> @param[in]
@@ -10940,7 +10974,7 @@ module hipfort_rocsparse
     !> device memory.
     !> @param[in]
     !> csr_descr_C            descriptor of the sparse CSR matrix \f$C\f$. Currently, only
-    !> \ref rocsparse_matrix_type_general is supported.
+    !> `rocsparse_matrix_type_general` is supported.
     !> @param[out]
     !> csr_row_ptr_C          array of \p m+1 elements that point to the start of every row of the
     !> sparse CSR matrix \f$C\f$.
@@ -11058,7 +11092,7 @@ module hipfort_rocsparse
     !> nnz_A         number of non-zeros in the sparse CSR matrix \f$A\f$.
     !> @param[in]
     !> csr_descr_A   descriptor of the sparse CSR matrix \f$A\f$. Currently, only
-    !> \ref rocsparse_matrix_type_general is supported.
+    !> `rocsparse_matrix_type_general` is supported.
     !> @param[in]
     !> csr_val_A array of \p nnz_A elements containing the values of the sparse CSR matrix \f$A\f$.
     !> @param[in]
@@ -11072,7 +11106,7 @@ module hipfort_rocsparse
     !> device memory.
     !> @param[in]
     !> csr_descr_C   descriptor of the sparse CSR matrix \f$C\f$. Currently, only
-    !> \ref rocsparse_matrix_type_general is supported.
+    !> `rocsparse_matrix_type_general` is supported.
     !> @param[out]
     !> csr_val_C array of \p nnz_C elements containing the values of the sparse CSR matrix \f$C\f$.
     !> @param[in]
@@ -11183,7 +11217,7 @@ module hipfort_rocsparse
     !> nnz_A         number of non-zeros in the sparse CSR matrix \f$A\f$.
     !> @param[in]
     !> csr_descr_A   descriptor of the sparse CSR matrix \f$A\f$. Currently, only
-    !> \ref rocsparse_matrix_type_general is supported.
+    !> `rocsparse_matrix_type_general` is supported.
     !> @param[in]
     !> csr_val_A array of \p nnz_A elements containing the values of the sparse CSR matrix \f$A\f$.
     !> @param[in]
@@ -11196,7 +11230,7 @@ module hipfort_rocsparse
     !> percentage    \p percentage>=0 and \p percentage<=100.
     !> @param[in]
     !> csr_descr_C   descriptor of the sparse CSR matrix \f$C\f$. Currently, only
-    !> \ref rocsparse_matrix_type_general is supported.
+    !> `rocsparse_matrix_type_general` is supported.
     !> @param[in]
     !> csr_val_C array of \p nnz_C elements containing the values of the sparse CSR matrix \f$C\f$.
     !> @param[in]
@@ -11315,7 +11349,7 @@ module hipfort_rocsparse
     !> nnz_A                  number of non-zeros in the sparse CSR matrix \f$A\f$.
     !> @param[in]
     !> csr_descr_A            descriptor of the sparse CSR matrix \f$A\f$. Currently, only
-    !> \ref rocsparse_matrix_type_general is supported.
+    !> `rocsparse_matrix_type_general` is supported.
     !> @param[in]
     !> csr_val_A array of \p nnz_A elements containing the values of the sparse CSR matrix \f$A\f$.
     !> @param[in]
@@ -11328,7 +11362,7 @@ module hipfort_rocsparse
     !> percentage             \p percentage>=0 and \p percentage<=100.
     !> @param[in]
     !> csr_descr_C            descriptor of the sparse CSR matrix \f$C\f$. Currently, only
-    !> \ref rocsparse_matrix_type_general is supported.
+    !> `rocsparse_matrix_type_general` is supported.
     !> @param[out]
     !> csr_row_ptr_C          array of \p m+1 elements that point to the start of every row of the
     !> sparse CSR matrix \f$C\f$.
@@ -11476,7 +11510,7 @@ module hipfort_rocsparse
     !> nnz_A         number of non-zeros in the sparse CSR matrix \f$A\f$.
     !> @param[in]
     !> csr_descr_A   descriptor of the sparse CSR matrix \f$A\f$. Currently, only
-    !> \ref rocsparse_matrix_type_general is supported.
+    !> `rocsparse_matrix_type_general` is supported.
     !> @param[in]
     !> csr_val_A array of \p nnz_A elements containing the values of the sparse CSR matrix \f$A\f$.
     !> @param[in]
@@ -11489,7 +11523,7 @@ module hipfort_rocsparse
     !> percentage    \p percentage>=0 and \p percentage<=100.
     !> @param[in]
     !> csr_descr_C   descriptor of the sparse CSR matrix \f$C\f$. Currently, only
-    !> \ref rocsparse_matrix_type_general is supported.
+    !> `rocsparse_matrix_type_general` is supported.
     !> @param[out]
     !> csr_val_C array of \p nnz_C elements containing the values of the sparse CSR matrix \f$C\f$.
     !> @param[in]
@@ -11609,8 +11643,8 @@ module hipfort_rocsparse
     !> threshold pointer to the pruning non-negative threshold which can exist in either host or
     !> device memory.
     !> @param[in]
-    !> descr the descriptor of the dense matrix \p A, the supported matrix type is \ref
-    !> rocsparse_matrix_type_general and
+    !> descr the descriptor of the dense matrix \p A, the supported matrix type is
+    !> `rocsparse_matrix_type_general` and
     !> also any valid value of the `rocsparse_index_base`.
     !> @param[in]
     !> csr_val array of nnz ( = \p csr_row_ptr[m] - \p csr_row_ptr[0] ) non-zero elements of matrix
@@ -11823,8 +11857,8 @@ module hipfort_rocsparse
     !> threshold pointer to the non-negative pruning threshold, which can exist in either host or
     !> device memory.
     !> @param[in]
-    !> descr the descriptor of the dense matrix \p A. The supported matrix type is \ref
-    !> rocsparse_matrix_type_general and
+    !> descr the descriptor of the dense matrix \p A. The supported matrix type is
+    !> `rocsparse_matrix_type_general` and
     !> also any valid value of the `rocsparse_index_base`.
     !> @param[out]
     !> csr_val array of nnz ( = \p csr_row_ptr[m] - \p csr_row_ptr[0] ) non-zero elements of matrix
@@ -11930,8 +11964,8 @@ module hipfort_rocsparse
     !> @param[in]
     !> percentage  \p percentage>=0 and \p percentage<=100.
     !> @param[in]
-    !> descr the descriptor of the dense matrix \p A. The supported matrix type is \ref
-    !> rocsparse_matrix_type_general
+    !> descr the descriptor of the dense matrix \p A. The supported matrix type is
+    !> `rocsparse_matrix_type_general`
     !> and also any valid value of the `rocsparse_index_base`.
     !> @param[in]
     !> csr_val array of nnz ( = \p csr_row_ptr[m] - \p csr_row_ptr[0] ) non-zero elements of matrix
@@ -12185,8 +12219,8 @@ module hipfort_rocsparse
     !> @param[in]
     !> percentage  \p percentage>=0 and \p percentage<=100.
     !> @param[in]
-    !> descr the descriptor of the dense matrix \p A. The supported matrix type is \ref
-    !> rocsparse_matrix_type_general and
+    !> descr the descriptor of the dense matrix \p A. The supported matrix type is
+    !> `rocsparse_matrix_type_general` and
     !> also any valid value of the `rocsparse_index_base`.
     !> @param[out]
     !> csr_val array of nnz ( = \p csr_row_ptr[m] - \p csr_row_ptr[0] ) non-zero elements of matrix
@@ -12280,7 +12314,7 @@ module hipfort_rocsparse
     !> This function is blocking with respect to the host.
     !>
     !> \note
-    !> Currently, only \ref rocsparse_matrix_type_general is supported.
+    !> Currently, only `rocsparse_matrix_type_general` is supported.
     !>
     !> \note
     !> This routine does not support execution in a hipGraph context.
@@ -12288,9 +12322,9 @@ module hipfort_rocsparse
     !> @param[in]
     !> handle          handle to the rocSPARSE library context queue.
     !> @param[in]
-    !> dir direction that specifies whether to count non-zero elements by \ref
-    !> rocsparse_direction_row or by
-    !> \ref rocsparse_direction_column in the BSR matrices \f$A\f$, \f$B\f$, and \f$C\f$.
+    !> dir direction that specifies whether to count non-zero elements by `rocsparse_direction_row`
+    !> or by
+    !> `rocsparse_direction_column` in the BSR matrices \f$A\f$, \f$B\f$, and \f$C\f$.
     !> @param[in]
     !> mb              number of block rows in the sparse BSR matrix \f$op(A)\f$ and \f$C\f$.
     !> @param[in]
@@ -12301,7 +12335,7 @@ module hipfort_rocsparse
     !> m=mb*block_dim.
     !> @param[in]
     !> descr_A         descriptor of the sparse BSR matrix \f$A\f$. Currently, only
-    !> \ref rocsparse_matrix_type_general is supported.
+    !> `rocsparse_matrix_type_general` is supported.
     !> @param[in]
     !> nnzb_A          number of non-zero block entries of the sparse BSR matrix \f$A\f$.
     !> @param[in]
@@ -12312,7 +12346,7 @@ module hipfort_rocsparse
     !> sparse BSR matrix \f$A\f$.
     !> @param[in]
     !> descr_B         descriptor of the sparse BSR matrix \f$B\f$. Currently, only
-    !> \ref rocsparse_matrix_type_general is supported.
+    !> `rocsparse_matrix_type_general` is supported.
     !> @param[in]
     !> nnzb_B          number of non-zero block entries of the sparse BSR matrix \f$B\f$.
     !> @param[in]
@@ -12323,7 +12357,7 @@ module hipfort_rocsparse
     !> sparse BSR matrix \f$B\f$.
     !> @param[in]
     !> descr_C         descriptor of the sparse BSR matrix \f$C\f$. Currently, only
-    !> \ref rocsparse_matrix_type_general is supported.
+    !> `rocsparse_matrix_type_general` is supported.
     !> @param[out]
     !> bsr_row_ptr_C   array of \p mb+1 elements that point to the start of every block row of the
     !> sparse BSR matrix \f$C\f$.
@@ -12339,7 +12373,7 @@ module hipfort_rocsparse
     !> \p bsr_col_ind_A, \p descr_B, \p bsr_row_ptr_B, \p bsr_col_ind_B,
     !> \p descr_C, \p bsr_row_ptr_C, or \p nnzb_C is invalid.
     !> \retval rocsparse_status_not_implemented
-    !> \p rocsparse_matrix_type != \ref rocsparse_matrix_type_general.
+    !> \p rocsparse_matrix_type != `rocsparse_matrix_type_general`.
     function rocsparse_bsrgeam_nnzb_raw(handle, dir, mb, nb, block_dim, descr_A, nnzb_A, &
                                         bsr_row_ptr_A, bsr_col_ind_A, descr_B, nnzb_B, &
                                         bsr_row_ptr_B, bsr_col_ind_B, descr_C, bsr_row_ptr_C, &
@@ -12394,7 +12428,7 @@ module hipfort_rocsparse
     !>
     !> \note Both scalars \f$\alpha\f$ and \f$beta\f$ have to be valid.
     !>
-    !> \note Currently, only \ref rocsparse_matrix_type_general is supported.
+    !> \note Currently, only `rocsparse_matrix_type_general` is supported.
     !>
     !> \note
     !> This function is blocking with respect to the host.
@@ -12405,9 +12439,9 @@ module hipfort_rocsparse
     !> @param[in]
     !> handle          handle to the rocSPARSE library context queue.
     !> @param[in]
-    !> dir direction that specifies whether to count non-zero elements by \ref
-    !> rocsparse_direction_row or by
-    !> \ref rocsparse_direction_column in the BSR matrices \f$A\f$, \f$B\f$, and \f$C\f$.
+    !> dir direction that specifies whether to count non-zero elements by `rocsparse_direction_row`
+    !> or by
+    !> `rocsparse_direction_column` in the BSR matrices \f$A\f$, \f$B\f$, and \f$C\f$.
     !> @param[in]
     !> mb               number of rows of the sparse BSR matrix \f$A\f$, \f$B\f$, and \f$C\f$.
     !> @param[in]
@@ -12419,7 +12453,7 @@ module hipfort_rocsparse
     !> alpha           scalar \f$\alpha\f$.
     !> @param[in]
     !> descr_A         descriptor of the sparse CSR matrix \f$A\f$. Currently, only
-    !> \ref rocsparse_matrix_type_general is supported.
+    !> `rocsparse_matrix_type_general` is supported.
     !> @param[in]
     !> nnzb_A           number of non-zero block entries of the sparse BSR matrix \f$A\f$.
     !> @param[in]
@@ -12435,7 +12469,7 @@ module hipfort_rocsparse
     !> beta            scalar \f$\beta\f$.
     !> @param[in]
     !> descr_B         descriptor of the sparse BSR matrix \f$B\f$. Currently, only
-    !> \ref rocsparse_matrix_type_general is supported.
+    !> `rocsparse_matrix_type_general` is supported.
     !> @param[in]
     !> nnzb_B          number of non-zero block entries of the sparse BSR matrix \f$B\f$.
     !> @param[in]
@@ -12449,7 +12483,7 @@ module hipfort_rocsparse
     !> sparse BSR matrix \f$B\f$.
     !> @param[in]
     !> descr_C         descriptor of the sparse BSR matrix \f$C\f$. Currently, only
-    !> \ref rocsparse_matrix_type_general is supported.
+    !> `rocsparse_matrix_type_general` is supported.
     !> @param[out]
     !> bsr_val_C       array of block elements of the sparse BSR matrix \f$C\f$.
     !> @param[in]
@@ -12468,7 +12502,7 @@ module hipfort_rocsparse
     !> \p bsr_row_ptr_B, \p bsr_col_ind_B, \p descr_C, \p csr_val_C,
     !> \p bsr_row_ptr_C, or \p bsr_col_ind_C is invalid.
     !> \retval rocsparse_status_not_implemented
-    !> \p rocsparse_matrix_type != \ref rocsparse_matrix_type_general.
+    !> \p rocsparse_matrix_type != `rocsparse_matrix_type_general`.
     !>
     !> \par Example
     !> This example adds two CSR matrices.
@@ -12638,19 +12672,19 @@ module hipfort_rocsparse
     !> \note
     !> This function is blocking with respect to the host.
     !> \note
-    !> Currently, only \p trans_A == \p trans_B == \ref rocsparse_operation_none is
+    !> Currently, only \p trans_A == \p trans_B == `rocsparse_operation_none` is
     !> supported.
     !> \note
-    !> Currently, only \ref rocsparse_matrix_type_general is supported.
+    !> Currently, only `rocsparse_matrix_type_general` is supported.
     !> \note
     !> This routine does not support execution in a hipGraph context.
     !>
     !> @param[in]
     !> handle          handle to the rocSPARSE library context queue.
     !> @param[in]
-    !> dir direction that specifies whether to count non-zero elements by \ref
-    !> rocsparse_direction_row or by
-    !> \ref rocsparse_direction_column in the BSR matrices \f$A\f$, \f$B\f$, \f$C\f$, and \f$D\f$.
+    !> dir direction that specifies whether to count non-zero elements by `rocsparse_direction_row`
+    !> or by
+    !> `rocsparse_direction_column` in the BSR matrices \f$A\f$, \f$B\f$, \f$C\f$, and \f$D\f$.
     !> @param[in]
     !> trans_A         matrix \f$A\f$ operation type.
     !> @param[in]
@@ -12669,7 +12703,7 @@ module hipfort_rocsparse
     !> alpha           scalar \f$\alpha\f$.
     !> @param[in]
     !> descr_A         descriptor of the sparse BSR matrix \f$A\f$. Currently, only
-    !> \ref rocsparse_matrix_type_general is supported.
+    !> `rocsparse_matrix_type_general` is supported.
     !> @param[in]
     !> nnzb_A          number of non-zero block entries of the sparse BSR matrix \f$A\f$.
     !> @param[in]
@@ -12681,7 +12715,7 @@ module hipfort_rocsparse
     !> sparse BSR matrix \f$A\f$.
     !> @param[in]
     !> descr_B         descriptor of the sparse BSR matrix \f$B\f$. Currently, only
-    !> \ref rocsparse_matrix_type_general is supported.
+    !> `rocsparse_matrix_type_general` is supported.
     !> @param[in]
     !> nnzb_B          number of non-zero block entries of the sparse BSR matrix \f$B\f$.
     !> @param[in]
@@ -12695,7 +12729,7 @@ module hipfort_rocsparse
     !> beta            scalar \f$\beta\f$.
     !> @param[in]
     !> descr_D         descriptor of the sparse BSR matrix \f$D\f$. Currently, only
-    !> \ref rocsparse_matrix_type_general is supported.
+    !> `rocsparse_matrix_type_general` is supported.
     !> @param[in]
     !> nnzb_D          number of non-zero block entries of the sparse BSR matrix \f$D\f$.
     !> @param[in]
@@ -12722,9 +12756,9 @@ module hipfort_rocsparse
     !> \p descr_D, \p bsr_row_ptr_D, or \p bsr_col_ind_D is invalid if \p beta is
     !> valid, or \p info_C or \p buffer_size are invalid.
     !> \retval rocsparse_status_not_implemented
-    !> \p trans_A != \ref rocsparse_operation_none,
-    !> \p trans_B != \ref rocsparse_operation_none, or
-    !> \p rocsparse_matrix_type != \ref rocsparse_matrix_type_general.
+    !> \p trans_A != `rocsparse_operation_none`,
+    !> \p trans_B != `rocsparse_operation_none`, or
+    !> \p rocsparse_matrix_type != `rocsparse_matrix_type_general`.
     function rocsparse_sbsrgemm_buffer_size_raw(handle, dir, trans_A, trans_B, mb, nb, kb, &
                                                 block_dim, alpha, descr_A, nnzb_A, bsr_row_ptr_A, &
                                                 bsr_col_ind_A, descr_B, nnzb_B, bsr_row_ptr_B, &
@@ -12910,19 +12944,19 @@ module hipfort_rocsparse
     !> \note
     !> This function is blocking with respect to the host.
     !> \note
-    !> Currently, only \p trans_A == \p trans_B == \ref rocsparse_operation_none is
+    !> Currently, only \p trans_A == \p trans_B == `rocsparse_operation_none` is
     !> supported.
     !> \note
-    !> Currently, only \ref rocsparse_matrix_type_general is supported.
+    !> Currently, only `rocsparse_matrix_type_general` is supported.
     !> \note
     !> This routine does not support execution in a hipGraph context.
     !>
     !> @param[in]
     !> handle          handle to the rocSPARSE library context queue.
     !> @param[in]
-    !> dir direction that specifies whether to count non-zero elements by \ref
-    !> rocsparse_direction_row or by
-    !> \ref rocsparse_direction_column in the BSR matrices \f$A\f$, \f$B\f$, \f$C\f$, and \f$D\f$.
+    !> dir direction that specifies whether to count non-zero elements by `rocsparse_direction_row`
+    !> or by
+    !> `rocsparse_direction_column` in the BSR matrices \f$A\f$, \f$B\f$, \f$C\f$, and \f$D\f$.
     !> @param[in]
     !> trans_A         matrix \f$A\f$ operation type.
     !> @param[in]
@@ -12939,7 +12973,7 @@ module hipfort_rocsparse
     !> block_dim       the block dimension of the BSR matrix \f$A\f$, \f$B\f$, \f$C\f$, and \f$D\f$.
     !> @param[in]
     !> descr_A         descriptor of the sparse BSR matrix \f$A\f$. Currently, only
-    !> \ref rocsparse_matrix_type_general is supported.
+    !> `rocsparse_matrix_type_general` is supported.
     !> @param[in]
     !> nnzb_A          number of non-zero block entries of the sparse BSR matrix \f$A\f$.
     !> @param[in]
@@ -12951,7 +12985,7 @@ module hipfort_rocsparse
     !> sparse BSR matrix \f$A\f$.
     !> @param[in]
     !> descr_B         descriptor of the sparse BSR matrix \f$B\f$. Currently, only
-    !> \ref rocsparse_matrix_type_general is supported.
+    !> `rocsparse_matrix_type_general` is supported.
     !> @param[in]
     !> nnzb_B          number of non-zero block entries of the sparse BSR matrix \f$B\f$.
     !> @param[in]
@@ -12963,7 +12997,7 @@ module hipfort_rocsparse
     !> sparse BSR matrix \f$B\f$.
     !> @param[in]
     !> descr_D         descriptor of the sparse BSR matrix \f$D\f$. Currently, only
-    !> \ref rocsparse_matrix_type_general is supported.
+    !> `rocsparse_matrix_type_general` is supported.
     !> @param[in]
     !> nnzb_D          number of non-zero block entries of the sparse BSR matrix \f$D\f$.
     !> @param[in]
@@ -12976,7 +13010,7 @@ module hipfort_rocsparse
     !> BSR matrix \f$D\f$.
     !> @param[in]
     !> descr_C         descriptor of the sparse BSR matrix \f$C\f$. Currently, only
-    !> \ref rocsparse_matrix_type_general is supported.
+    !> `rocsparse_matrix_type_general` is supported.
     !> @param[out]
     !> bsr_row_ptr_C array of \p mb+1 block elements that point to the start of every block row of
     !> the
@@ -13004,9 +13038,9 @@ module hipfort_rocsparse
     !> \retval rocsparse_status_memory_error additional buffer for long rows could not be
     !> allocated.
     !> \retval rocsparse_status_not_implemented
-    !> \p trans_A != \ref rocsparse_operation_none,
-    !> \p trans_B != \ref rocsparse_operation_none, or
-    !> \p rocsparse_matrix_type != \ref rocsparse_matrix_type_general.
+    !> \p trans_A != `rocsparse_operation_none`,
+    !> \p trans_B != `rocsparse_operation_none`, or
+    !> \p rocsparse_matrix_type != `rocsparse_matrix_type_general`.
     function rocsparse_bsrgemm_nnzb_raw(handle, dir, trans_A, trans_B, mb, nb, kb, block_dim, &
                                         descr_A, nnzb_A, bsr_row_ptr_A, bsr_col_ind_A, descr_B, &
                                         nnzb_B, bsr_row_ptr_B, bsr_col_ind_B, descr_D, nnzb_D, &
@@ -13099,9 +13133,9 @@ module hipfort_rocsparse
     !> \note If \f$\alpha == 0\f$, then \f$C = \beta \cdot D\f$ will be computed.
     !> \note If \f$\beta == 0\f$, then \f$C = \alpha \cdot op(A) \cdot op(B)\f$ will be computed.
     !> \note \f$\alpha == beta == 0\f$ is invalid.
-    !> \note Currently, only \p trans_A == \ref rocsparse_operation_none is supported.
-    !> \note Currently, only \p trans_B == \ref rocsparse_operation_none is supported.
-    !> \note Currently, only \ref rocsparse_matrix_type_general is supported.
+    !> \note Currently, only \p trans_A == `rocsparse_operation_none` is supported.
+    !> \note Currently, only \p trans_B == `rocsparse_operation_none` is supported.
+    !> \note Currently, only `rocsparse_matrix_type_general` is supported.
     !> \note This function is blocking with respect to the host.
     !> \note
     !> This routine does not support execution in a hipGraph context.
@@ -13109,9 +13143,9 @@ module hipfort_rocsparse
     !> @param[in]
     !> handle          handle to the rocSPARSE library context queue.
     !> @param[in]
-    !> dir direction that specifies whether to count non-zero elements by \ref
-    !> rocsparse_direction_row or by
-    !> \ref rocsparse_direction_column in the BSR matrices \f$A\f$, \f$B\f$, \f$C\f$, and \f$D\f$.
+    !> dir direction that specifies whether to count non-zero elements by `rocsparse_direction_row`
+    !> or by
+    !> `rocsparse_direction_column` in the BSR matrices \f$A\f$, \f$B\f$, \f$C\f$, and \f$D\f$.
     !> @param[in]
     !> trans_A         matrix \f$A\f$ operation type.
     !> @param[in]
@@ -13130,7 +13164,7 @@ module hipfort_rocsparse
     !> alpha           scalar \f$\alpha\f$.
     !> @param[in]
     !> descr_A         descriptor of the sparse BSR matrix \f$A\f$. Currently, only
-    !> \ref rocsparse_matrix_type_general is supported.
+    !> `rocsparse_matrix_type_general` is supported.
     !> @param[in]
     !> nnzb_A          number of non-zero block entries of the sparse BSR matrix \f$A\f$.
     !> @param[in]
@@ -13144,7 +13178,7 @@ module hipfort_rocsparse
     !> sparse BSR matrix \f$A\f$.
     !> @param[in]
     !> descr_B         descriptor of the sparse BSR matrix \f$B\f$. Currently, only
-    !> \ref rocsparse_matrix_type_general is supported.
+    !> `rocsparse_matrix_type_general` is supported.
     !> @param[in]
     !> nnzb_B          number of non-zero block entries of the sparse BSR matrix \f$B\f$.
     !> @param[in]
@@ -13160,7 +13194,7 @@ module hipfort_rocsparse
     !> beta            scalar \f$\beta\f$.
     !> @param[in]
     !> descr_D         descriptor of the sparse BSR matrix \f$D\f$. Currently, only
-    !> \ref rocsparse_matrix_type_general is supported.
+    !> `rocsparse_matrix_type_general` is supported.
     !> @param[in]
     !> nnzb_D          number of non-zero block entries of the sparse BSR matrix \f$D\f$.
     !> @param[in]
@@ -13174,7 +13208,7 @@ module hipfort_rocsparse
     !> sparse BSR matrix \f$D\f$.
     !> @param[in]
     !> descr_C         descriptor of the sparse BSR matrix \f$C\f$. Currently, only
-    !> \ref rocsparse_matrix_type_general is supported.
+    !> `rocsparse_matrix_type_general` is supported.
     !> @param[out]
     !> bsr_val_C       array of \p nnzb_C elements of the sparse BSR matrix \f$C\f$.
     !> @param[in]
@@ -13206,9 +13240,9 @@ module hipfort_rocsparse
     !> \retval rocsparse_status_memory_error additional buffer for long rows could not be
     !> allocated.
     !> \retval rocsparse_status_not_implemented
-    !> \p trans_A != \ref rocsparse_operation_none,
-    !> \p trans_B != \ref rocsparse_operation_none, or
-    !> \p rocsparse_matrix_type != \ref rocsparse_matrix_type_general.
+    !> \p trans_A != `rocsparse_operation_none`,
+    !> \p trans_B != `rocsparse_operation_none`, or
+    !> \p rocsparse_matrix_type != `rocsparse_matrix_type_general`.
     !>
     !> \par Example
     !> This example multiplies two BSR matrices with a scalar alpha and adds the result to
@@ -13428,7 +13462,7 @@ module hipfort_rocsparse
     !> This function is blocking with respect to the host.
     !>
     !> \note
-    !> Currently, only \ref rocsparse_matrix_type_general is supported.
+    !> Currently, only `rocsparse_matrix_type_general` is supported.
     !>
     !> \note
     !> This routine does not support execution in a hipGraph context.
@@ -13441,7 +13475,7 @@ module hipfort_rocsparse
     !> n               number of columns of the sparse CSR matrix \f$A\f$, \f$B\f$, and \f$C\f$.
     !> @param[in]
     !> descr_A         descriptor of the sparse CSR matrix \f$A\f$. Currently, only
-    !> \ref rocsparse_matrix_type_general is supported.
+    !> `rocsparse_matrix_type_general` is supported.
     !> @param[in]
     !> nnz_A           number of non-zero entries of the sparse CSR matrix \f$A\f$.
     !> @param[in]
@@ -13452,7 +13486,7 @@ module hipfort_rocsparse
     !> sparse CSR matrix \f$A\f$.
     !> @param[in]
     !> descr_B         descriptor of the sparse CSR matrix \f$B\f$. Currently, only
-    !> \ref rocsparse_matrix_type_general is supported.
+    !> `rocsparse_matrix_type_general` is supported.
     !> @param[in]
     !> nnz_B           number of non-zero entries of the sparse CSR matrix \f$B\f$.
     !> @param[in]
@@ -13463,7 +13497,7 @@ module hipfort_rocsparse
     !> sparse CSR matrix \f$B\f$.
     !> @param[in]
     !> descr_C         descriptor of the sparse CSR matrix \f$C\f$. Currently, only
-    !> \ref rocsparse_matrix_type_general is supported.
+    !> `rocsparse_matrix_type_general` is supported.
     !> @param[out]
     !> csr_row_ptr_C   array of \p m+1 elements that point to the start of every row of the
     !> sparse CSR matrix \f$C\f$.
@@ -13478,7 +13512,7 @@ module hipfort_rocsparse
     !> \p csr_col_ind_A, \p descr_B, \p csr_row_ptr_B, \p csr_col_ind_B,
     !> \p descr_C, \p csr_row_ptr_C, or \p nnz_C is invalid.
     !> \retval rocsparse_status_not_implemented
-    !> \p rocsparse_matrix_type != \ref rocsparse_matrix_type_general.
+    !> \p rocsparse_matrix_type != `rocsparse_matrix_type_general`.
     function rocsparse_csrgeam_nnz_raw(handle, m, n, descr_A, nnz_A, csr_row_ptr_A, csr_col_ind_A, &
                                        descr_B, nnz_B, csr_row_ptr_B, csr_col_ind_B, descr_C, &
                                        csr_row_ptr_C, nnz_C) &
@@ -13530,7 +13564,7 @@ module hipfort_rocsparse
     !>
     !> \note Both scalars \f$\alpha\f$ and \f$beta\f$ have to be valid.
     !>
-    !> \note Currently, only \ref rocsparse_matrix_type_general is supported.
+    !> \note Currently, only `rocsparse_matrix_type_general` is supported.
     !>
     !> \note
     !> This function is blocking with respect to the host.
@@ -13548,7 +13582,7 @@ module hipfort_rocsparse
     !> alpha           scalar \f$\alpha\f$.
     !> @param[in]
     !> descr_A         descriptor of the sparse CSR matrix \f$A\f$. Currently, only
-    !> \ref rocsparse_matrix_type_general is supported.
+    !> `rocsparse_matrix_type_general` is supported.
     !> @param[in]
     !> nnz_A           number of non-zero entries of the sparse CSR matrix \f$A\f$.
     !> @param[in]
@@ -13563,7 +13597,7 @@ module hipfort_rocsparse
     !> beta            scalar \f$\beta\f$.
     !> @param[in]
     !> descr_B         descriptor of the sparse CSR matrix \f$B\f$. Currently, only
-    !> \ref rocsparse_matrix_type_general is supported.
+    !> `rocsparse_matrix_type_general` is supported.
     !> @param[in]
     !> nnz_B           number of non-zero entries of the sparse CSR matrix \f$B\f$.
     !> @param[in]
@@ -13576,7 +13610,7 @@ module hipfort_rocsparse
     !> sparse CSR matrix \f$B\f$.
     !> @param[in]
     !> descr_C         descriptor of the sparse CSR matrix \f$C\f$. Currently, only
-    !> \ref rocsparse_matrix_type_general is supported.
+    !> `rocsparse_matrix_type_general` is supported.
     !> @param[out]
     !> csr_val_C       array of elements of the sparse CSR matrix \f$C\f$.
     !> @param[in]
@@ -13594,7 +13628,7 @@ module hipfort_rocsparse
     !> \p csr_row_ptr_B, \p csr_col_ind_B, \p descr_C, \p csr_val_C,
     !> \p csr_row_ptr_C, or \p csr_col_ind_C is invalid.
     !> \retval rocsparse_status_not_implemented
-    !> \p rocsparse_matrix_type != \ref rocsparse_matrix_type_general.
+    !> \p rocsparse_matrix_type != `rocsparse_matrix_type_general`.
     !>
     !> \par Example
     !> This example adds two CSR matrices.
@@ -13760,10 +13794,10 @@ module hipfort_rocsparse
     !> Note that for matrix products with more than 8192 intermediate products per
     !> row, an additional temporary storage buffer is allocated by the algorithm.
     !> \note
-    !> Currently, only \p trans_A == \p trans_B == \ref rocsparse_operation_none is
+    !> Currently, only \p trans_A == \p trans_B == `rocsparse_operation_none` is
     !> supported.
     !> \note
-    !> Currently, only \ref rocsparse_matrix_type_general is supported.
+    !> Currently, only `rocsparse_matrix_type_general` is supported.
     !> \note
     !> This routine does not support execution in a hipGraph context.
     !>
@@ -13785,7 +13819,7 @@ module hipfort_rocsparse
     !> alpha           scalar \f$\alpha\f$.
     !> @param[in]
     !> descr_A         descriptor of the sparse CSR matrix \f$A\f$. Currently, only
-    !> \ref rocsparse_matrix_type_general is supported.
+    !> `rocsparse_matrix_type_general` is supported.
     !> @param[in]
     !> nnz_A           number of non-zero entries of the sparse CSR matrix \f$A\f$.
     !> @param[in]
@@ -13797,7 +13831,7 @@ module hipfort_rocsparse
     !> sparse CSR matrix \f$A\f$.
     !> @param[in]
     !> descr_B         descriptor of the sparse CSR matrix \f$B\f$. Currently, only
-    !> \ref rocsparse_matrix_type_general is supported.
+    !> `rocsparse_matrix_type_general` is supported.
     !> @param[in]
     !> nnz_B           number of non-zero entries of the sparse CSR matrix \f$B\f$.
     !> @param[in]
@@ -13811,7 +13845,7 @@ module hipfort_rocsparse
     !> beta            scalar \f$\beta\f$.
     !> @param[in]
     !> descr_D         descriptor of the sparse CSR matrix \f$D\f$. Currently, only
-    !> \ref rocsparse_matrix_type_general is supported.
+    !> `rocsparse_matrix_type_general` is supported.
     !> @param[in]
     !> nnz_D           number of non-zero entries of the sparse CSR matrix \f$D\f$.
     !> @param[in]
@@ -13836,9 +13870,9 @@ module hipfort_rocsparse
     !> \p descr_D, \p csr_row_ptr_D, or \p csr_col_ind_D is invalid if \p beta is
     !> valid, \p info_C or \p buffer_size is invalid.
     !> \retval rocsparse_status_not_implemented
-    !> \p trans_A != \ref rocsparse_operation_none,
-    !> \p trans_B != \ref rocsparse_operation_none, or
-    !> \p rocsparse_matrix_type != \ref rocsparse_matrix_type_general.
+    !> \p trans_A != `rocsparse_operation_none`,
+    !> \p trans_B != `rocsparse_operation_none`, or
+    !> \p rocsparse_matrix_type != `rocsparse_matrix_type_general`.
     function rocsparse_scsrgemm_buffer_size_raw(handle, trans_A, trans_B, m, n, k, alpha, descr_A, &
                                                 nnz_A, csr_row_ptr_A, csr_col_ind_A, descr_B, &
                                                 nnz_B, csr_row_ptr_B, csr_col_ind_B, beta, &
@@ -14021,15 +14055,15 @@ module hipfort_rocsparse
     !> \note
     !> This function supports unsorted CSR matrices as input, while output will be sorted.
     !> Note that matrices B and D can only be unsorted up to 8192 intermediate
-    !> products per row. If this number is exceeded, \ref rocsparse_status_requires_sorted_storage
+    !> products per row. If this number is exceeded, `rocsparse_status_requires_sorted_storage`
     !> will be returned.
     !> \note
     !> This function is blocking with respect to the host.
     !> \note
-    !> Currently, only \p trans_A == \p trans_B == \ref rocsparse_operation_none is
+    !> Currently, only \p trans_A == \p trans_B == `rocsparse_operation_none` is
     !> supported.
     !> \note
-    !> Currently, only \ref rocsparse_matrix_type_general is supported.
+    !> Currently, only `rocsparse_matrix_type_general` is supported.
     !> \note
     !> This routine does not support execution in a hipGraph context.
     !>
@@ -14049,7 +14083,7 @@ module hipfort_rocsparse
     !> rows of the sparse CSR matrix \f$op(B)\f$.
     !> @param[in]
     !> descr_A         descriptor of the sparse CSR matrix \f$A\f$. Currently, only
-    !> \ref rocsparse_matrix_type_general is supported.
+    !> `rocsparse_matrix_type_general` is supported.
     !> @param[in]
     !> nnz_A           number of non-zero entries of the sparse CSR matrix \f$A\f$.
     !> @param[in]
@@ -14061,7 +14095,7 @@ module hipfort_rocsparse
     !> sparse CSR matrix \f$A\f$.
     !> @param[in]
     !> descr_B         descriptor of the sparse CSR matrix \f$B\f$. Currently, only
-    !> \ref rocsparse_matrix_type_general is supported.
+    !> `rocsparse_matrix_type_general` is supported.
     !> @param[in]
     !> nnz_B           number of non-zero entries of the sparse CSR matrix \f$B\f$.
     !> @param[in]
@@ -14073,7 +14107,7 @@ module hipfort_rocsparse
     !> sparse CSR matrix \f$B\f$.
     !> @param[in]
     !> descr_D         descriptor of the sparse CSR matrix \f$D\f$. Currently, only
-    !> \ref rocsparse_matrix_type_general is supported.
+    !> `rocsparse_matrix_type_general` is supported.
     !> @param[in]
     !> nnz_D           number of non-zero entries of the sparse CSR matrix \f$D\f$.
     !> @param[in]
@@ -14084,7 +14118,7 @@ module hipfort_rocsparse
     !> CSR matrix \f$D\f$.
     !> @param[in]
     !> descr_C         descriptor of the sparse CSR matrix \f$C\f$. Currently, only
-    !> \ref rocsparse_matrix_type_general is supported.
+    !> `rocsparse_matrix_type_general` is supported.
     !> @param[out]
     !> csr_row_ptr_C   array of \p m+1 elements that point to the start of every row of the
     !> sparse CSR matrix \f$C\f$.
@@ -14110,9 +14144,9 @@ module hipfort_rocsparse
     !> \retval rocsparse_status_memory_error additional buffer for long rows could not be
     !> allocated.
     !> \retval rocsparse_status_not_implemented
-    !> \p trans_A != \ref rocsparse_operation_none,
-    !> \p trans_B != \ref rocsparse_operation_none, or
-    !> \p rocsparse_matrix_type != \ref rocsparse_matrix_type_general.
+    !> \p trans_A != `rocsparse_operation_none`,
+    !> \p trans_B != `rocsparse_operation_none`, or
+    !> \p rocsparse_matrix_type != `rocsparse_matrix_type_general`.
     function rocsparse_csrgemm_nnz_raw(handle, trans_A, trans_B, m, n, k, descr_A, nnz_A, &
                                        csr_row_ptr_A, csr_col_ind_A, descr_B, nnz_B, &
                                        csr_row_ptr_B, csr_col_ind_B, descr_D, nnz_D, &
@@ -14204,15 +14238,15 @@ module hipfort_rocsparse
     !> \note If \f$\alpha == 0\f$, then \f$C = \beta \cdot D\f$ will be computed.
     !> \note If \f$\beta == 0\f$, then \f$C = \alpha \cdot op(A) \cdot op(B)\f$ will be computed.
     !> \note \f$\alpha == beta == 0\f$ is invalid.
-    !> \note Currently, only \p trans_A == \ref rocsparse_operation_none is supported.
-    !> \note Currently, only \p trans_B == \ref rocsparse_operation_none is supported.
-    !> \note Currently, only \ref rocsparse_matrix_type_general is supported.
+    !> \note Currently, only \p trans_A == `rocsparse_operation_none` is supported.
+    !> \note Currently, only \p trans_B == `rocsparse_operation_none` is supported.
+    !> \note Currently, only `rocsparse_matrix_type_general` is supported.
     !> \note Note that for matrix products with more than 4096 non-zero entries per
     !> row, an additional temporary storage buffer is allocated by the algorithm.
     !> \note
     !> This function supports unsorted CSR matrices as input, while output will be sorted.
     !> Note that matrices B and D can only be unsorted up to 4096 non-zero entries
-    !> per row. If this number is exceeded, \ref rocsparse_status_requires_sorted_storage
+    !> per row. If this number is exceeded, `rocsparse_status_requires_sorted_storage`
     !> will be returned.
     !> \note
     !> This function is blocking with respect to the host.
@@ -14237,7 +14271,7 @@ module hipfort_rocsparse
     !> alpha           scalar \f$\alpha\f$.
     !> @param[in]
     !> descr_A         descriptor of the sparse CSR matrix \f$A\f$. Currently, only
-    !> \ref rocsparse_matrix_type_general is supported.
+    !> `rocsparse_matrix_type_general` is supported.
     !> @param[in]
     !> nnz_A           number of non-zero entries of the sparse CSR matrix \f$A\f$.
     !> @param[in]
@@ -14251,7 +14285,7 @@ module hipfort_rocsparse
     !> sparse CSR matrix \f$A\f$.
     !> @param[in]
     !> descr_B         descriptor of the sparse CSR matrix \f$B\f$. Currently, only
-    !> \ref rocsparse_matrix_type_general is supported.
+    !> `rocsparse_matrix_type_general` is supported.
     !> @param[in]
     !> nnz_B           number of non-zero entries of the sparse CSR matrix \f$B\f$.
     !> @param[in]
@@ -14267,7 +14301,7 @@ module hipfort_rocsparse
     !> beta            scalar \f$\beta\f$.
     !> @param[in]
     !> descr_D         descriptor of the sparse CSR matrix \f$D\f$. Currently, only
-    !> \ref rocsparse_matrix_type_general is supported.
+    !> `rocsparse_matrix_type_general` is supported.
     !> @param[in]
     !> nnz_D           number of non-zero entries of the sparse CSR matrix \f$D\f$.
     !> @param[in]
@@ -14280,7 +14314,7 @@ module hipfort_rocsparse
     !> sparse CSR matrix \f$D\f$.
     !> @param[in]
     !> descr_C         descriptor of the sparse CSR matrix \f$C\f$. Currently, only
-    !> \ref rocsparse_matrix_type_general is supported.
+    !> `rocsparse_matrix_type_general` is supported.
     !> @param[out]
     !> csr_val_C       array of \p nnz_C elements of the sparse CSR matrix \f$C\f$.
     !> @param[in]
@@ -14310,9 +14344,9 @@ module hipfort_rocsparse
     !> \retval rocsparse_status_memory_error additional buffer for long rows could not be
     !> allocated.
     !> \retval rocsparse_status_not_implemented
-    !> \p trans_A != \ref rocsparse_operation_none,
-    !> \p trans_B != \ref rocsparse_operation_none, or
-    !> \p rocsparse_matrix_type != \ref rocsparse_matrix_type_general.
+    !> \p trans_A != `rocsparse_operation_none`,
+    !> \p trans_B != `rocsparse_operation_none`, or
+    !> \p rocsparse_matrix_type != `rocsparse_matrix_type_general`.
     !>
     !> \par Example
     !> This example multiplies two CSR matrices with a scalar alpha and adds the result to
@@ -14668,9 +14702,9 @@ module hipfort_rocsparse
     !> rocsparse_scsrgemm_buffer_size(), rocsparse_dcsrgemm_buffer_size(),
     !> rocsparse_ccsrgemm_buffer_size(), and rocsparse_zcsrgemm_buffer_size(), respectively.
     !>
-    !> \note Currently, only \p trans_A == \ref rocsparse_operation_none is supported.
-    !> \note Currently, only \p trans_B == \ref rocsparse_operation_none is supported.
-    !> \note Currently, only \ref rocsparse_matrix_type_general is supported.
+    !> \note Currently, only \p trans_A == `rocsparse_operation_none` is supported.
+    !> \note Currently, only \p trans_B == `rocsparse_operation_none` is supported.
+    !> \note Currently, only `rocsparse_matrix_type_general` is supported.
     !> \note Note that for matrix products with more than 4096 non-zero entries per
     !> row, an additional temporary storage buffer is allocated by the algorithm.
     !> \note This function is blocking with respect to the host.
@@ -14693,7 +14727,7 @@ module hipfort_rocsparse
     !> rows of the sparse CSR matrix \f$op(B)\f$.
     !> @param[in]
     !> descr_A         descriptor of the sparse CSR matrix \f$A\f$. Currently, only
-    !> \ref rocsparse_matrix_type_general is supported.
+    !> `rocsparse_matrix_type_general` is supported.
     !> @param[in]
     !> nnz_A           number of non-zero entries of the sparse CSR matrix \f$A\f$.
     !> @param[in]
@@ -14705,7 +14739,7 @@ module hipfort_rocsparse
     !> sparse CSR matrix \f$A\f$.
     !> @param[in]
     !> descr_B         descriptor of the sparse CSR matrix \f$B\f$. Currently, only
-    !> \ref rocsparse_matrix_type_general is supported.
+    !> `rocsparse_matrix_type_general` is supported.
     !> @param[in]
     !> nnz_B           number of non-zero entries of the sparse CSR matrix \f$B\f$.
     !> @param[in]
@@ -14717,7 +14751,7 @@ module hipfort_rocsparse
     !> sparse CSR matrix \f$B\f$.
     !> @param[in]
     !> descr_D         descriptor of the sparse CSR matrix \f$D\f$. Currently, only
-    !> \ref rocsparse_matrix_type_general is supported.
+    !> `rocsparse_matrix_type_general` is supported.
     !> @param[in]
     !> nnz_D           number of non-zero entries of the sparse CSR matrix \f$D\f$.
     !> @param[in]
@@ -14728,7 +14762,7 @@ module hipfort_rocsparse
     !> sparse CSR matrix \f$D\f$.
     !> @param[in]
     !> descr_C         descriptor of the sparse CSR matrix \f$C\f$. Currently, only
-    !> \ref rocsparse_matrix_type_general is supported.
+    !> `rocsparse_matrix_type_general` is supported.
     !> @param[in]
     !> nnz_C           number of non-zero entries of the sparse CSR matrix \f$C\f$.
     !> @param[in]
@@ -14757,9 +14791,9 @@ module hipfort_rocsparse
     !> \retval rocsparse_status_memory_error additional buffer for long rows could not be
     !> allocated.
     !> \retval rocsparse_status_not_implemented
-    !> \p trans_A != \ref rocsparse_operation_none,
-    !> \p trans_B != \ref rocsparse_operation_none, or
-    !> \p rocsparse_matrix_type != \ref rocsparse_matrix_type_general.
+    !> \p trans_A != `rocsparse_operation_none`,
+    !> \p trans_B != `rocsparse_operation_none`, or
+    !> \p rocsparse_matrix_type != `rocsparse_matrix_type_general`.
     !>
     !> \par Example
     !> This example multiplies symbolically two CSR matrices and adds the result to
@@ -14966,9 +15000,9 @@ module hipfort_rocsparse
     !> \note If \f$\alpha == 0\f$, then \f$C = \beta \cdot D\f$ will be computed.
     !> \note If \f$\beta == 0\f$, then \f$C = \alpha \cdot op(A) \cdot op(B)\f$ will be computed.
     !> \note \f$\alpha == beta == 0\f$ is invalid.
-    !> \note Currently, only \p trans_A == \ref rocsparse_operation_none is supported.
-    !> \note Currently, only \p trans_B == \ref rocsparse_operation_none is supported.
-    !> \note Currently, only \ref rocsparse_matrix_type_general is supported.
+    !> \note Currently, only \p trans_A == `rocsparse_operation_none` is supported.
+    !> \note Currently, only \p trans_B == `rocsparse_operation_none` is supported.
+    !> \note Currently, only `rocsparse_matrix_type_general` is supported.
     !> \note Note that for matrix products with more than 4096 non-zero entries per
     !> row, an additional temporary storage buffer is allocated by the algorithm.
     !> \note This function is blocking with respect to the host.
@@ -14993,7 +15027,7 @@ module hipfort_rocsparse
     !> alpha           scalar \f$\alpha\f$.
     !> @param[in]
     !> descr_A         descriptor of the sparse CSR matrix \f$A\f$. Currently, only
-    !> \ref rocsparse_matrix_type_general is supported.
+    !> `rocsparse_matrix_type_general` is supported.
     !> @param[in]
     !> nnz_A           number of non-zero entries of the sparse CSR matrix \f$A\f$.
     !> @param[in]
@@ -15007,7 +15041,7 @@ module hipfort_rocsparse
     !> sparse CSR matrix \f$A\f$.
     !> @param[in]
     !> descr_B         descriptor of the sparse CSR matrix \f$B\f$. Currently, only
-    !> \ref rocsparse_matrix_type_general is supported.
+    !> `rocsparse_matrix_type_general` is supported.
     !> @param[in]
     !> nnz_B           number of non-zero entries of the sparse CSR matrix \f$B\f$.
     !> @param[in]
@@ -15023,7 +15057,7 @@ module hipfort_rocsparse
     !> beta            scalar \f$\beta\f$.
     !> @param[in]
     !> descr_D         descriptor of the sparse CSR matrix \f$D\f$. Currently, only
-    !> \ref rocsparse_matrix_type_general is supported.
+    !> `rocsparse_matrix_type_general` is supported.
     !> @param[in]
     !> nnz_D           number of non-zero entries of the sparse CSR matrix \f$D\f$.
     !> @param[in]
@@ -15036,7 +15070,7 @@ module hipfort_rocsparse
     !> sparse CSR matrix \f$D\f$.
     !> @param[in]
     !> descr_C         descriptor of the sparse CSR matrix \f$C\f$. Currently, only
-    !> \ref rocsparse_matrix_type_general is supported.
+    !> `rocsparse_matrix_type_general` is supported.
     !> @param[in]
     !> nnz_C           number of non-zero entries of the sparse CSR matrix \f$C\f$.
     !> @param[out]
@@ -15068,9 +15102,9 @@ module hipfort_rocsparse
     !> \retval rocsparse_status_memory_error additional buffer for long rows could not be
     !> allocated.
     !> \retval rocsparse_status_not_implemented
-    !> \p trans_A != \ref rocsparse_operation_none,
-    !> \p trans_B != \ref rocsparse_operation_none, or
-    !> \p rocsparse_matrix_type != \ref rocsparse_matrix_type_general.
+    !> \p trans_A != `rocsparse_operation_none`,
+    !> \p trans_B != `rocsparse_operation_none`, or
+    !> \p rocsparse_matrix_type != `rocsparse_matrix_type_general`.
     !>
     !> \par Example
     !> This example multiplies two CSR matrices with a scalar alpha and adds the result to
@@ -15517,11 +15551,11 @@ module hipfort_rocsparse
     !> \p rocsparse_check_spmat checks whether the input matrix is valid.
     !>
     !> \p rocsparse_check_spmat requires two steps to complete. First, call \p rocsparse_check_spmat
-    !> with the stage parameter set to \ref rocsparse_check_spmat_stage_buffer_size, which
-    !> determines the
+    !> with the stage parameter set to `rocsparse_check_spmat_stage_buffer_size`, which determines
+    !> the
     !> size of the temporary buffer needed in the second step. Allocate this buffer and call
-    !> \p rocsparse_check_spmat with the stage parameter set to \ref
-    !> rocsparse_check_spmat_stage_compute,
+    !> \p rocsparse_check_spmat with the stage parameter set to
+    !> `rocsparse_check_spmat_stage_compute`,
     !> which checks the input matrix for errors. Any detected errors in the input matrix are
     !> reported in the
     !> \p data_status (passed to the function as a host pointer).
@@ -15539,7 +15573,7 @@ module hipfort_rocsparse
     !> \note
     !> This function writes the required allocation size (in bytes) to \p buffer_size and
     !> returns without performing the checking operation when \p stage is equal to
-    !> \ref rocsparse_check_spmat_stage_buffer_size.
+    !> `rocsparse_check_spmat_stage_buffer_size`.
     !>
     !> \note
     !> The sparse matrix formats currently supported are: \p rocsparse_format_coo, \p
@@ -15547,10 +15581,10 @@ module hipfort_rocsparse
     !> \p rocsparse_format_csc, \p rocsparse_format_ell, and \p rocsparse_format_bsr.
     !>
     !> \note check_spmat requires two stages to complete. The first stage
-    !> \ref rocsparse_check_spmat_stage_buffer_size will return the size of the temporary storage
+    !> `rocsparse_check_spmat_stage_buffer_size` will return the size of the temporary storage
     !> buffer
     !> that is required for subsequent calls to \ref rocsparse_check_spmat.
-    !> In the final stage \ref rocsparse_check_spmat_stage_compute, the actual computation is
+    !> In the final stage `rocsparse_check_spmat_stage_compute`, the actual computation is
     !> performed.
     !>
     !> \note
@@ -15659,18 +15693,18 @@ module hipfort_rocsparse
     !> &buffer_size,
     !> temp_buffer);
     !> \endcode
-    !> Currently, \p rocsparse_dense_to_sparse only supports the algorithm \ref
-    !> rocsparse_dense_to_sparse_alg_default.
+    !> Currently, \p rocsparse_dense_to_sparse only supports the algorithm
+    !> `rocsparse_dense_to_sparse_alg_default`.
     !> See the full example below.
     !>
-    !> \p rocsparse_dense_to_sparse supports \ref rocsparse_datatype_f16_r, \ref
-    !> rocsparse_datatype_bf16_r, \ref rocsparse_datatype_f32_r,
-    !> \ref rocsparse_datatype_f64_r, \ref rocsparse_datatype_f32_c, and \ref
-    !> rocsparse_datatype_f64_c for values arrays in the sparse matrix
+    !> \p rocsparse_dense_to_sparse supports `rocsparse_datatype_f16_r`,
+    !> `rocsparse_datatype_bf16_r`, `rocsparse_datatype_f32_r`,
+    !> `rocsparse_datatype_f64_r`, `rocsparse_datatype_f32_c`, and `rocsparse_datatype_f64_c` for
+    !> values arrays in the sparse matrix
     !> (stored in CSR, CSC, or COO format) and the dense matrix. For the row/column offset and
     !> row/column index arrays of the sparse matrix,
-    !> \p rocsparse_dense_to_sparse supports the precisions \ref rocsparse_indextype_i32 and \ref
-    !> rocsparse_indextype_i64.
+    !> \p rocsparse_dense_to_sparse supports the precisions `rocsparse_indextype_i32` and
+    !> `rocsparse_indextype_i64`.
     !>
     !> \par Uniform Precisions:
     !> <table>
@@ -15802,8 +15836,8 @@ module hipfort_rocsparse
     !> \details
     !> \p rocsparse_extract_nnz returns the number of non-zeros in the extracted matrix. The value
     !> is
-    !> available after the analysis phase \ref rocsparse_extract_stage_analysis has been executed.
-    !> This routine
+    !> available after the analysis phase `rocsparse_extract_stage_analysis` has been executed. This
+    !> routine
     !> is used in conjunction with \ref rocsparse_extract_buffer_size and \ref rocsparse_extract to
     !> extract a lower
     !> or upper triangular sparse matrix from an input sparse matrix. See \ref rocsparse_extract for
@@ -15884,9 +15918,9 @@ module hipfort_rocsparse
     !> \endcode
     !> Next, create the extraction descriptor and call \ref rocsparse_extract_buffer_size with the
     !> stage
-    !> \ref rocsparse_extract_stage_analysis to determine the amount of temporary storage required.
+    !> `rocsparse_extract_stage_analysis` to determine the amount of temporary storage required.
     !> Allocate this temporary storage buffer and pass it to \p rocsparse_extract with the stage
-    !> \ref rocsparse_extract_stage_analysis.
+    !> `rocsparse_extract_stage_analysis`.
     !> \code{.c}
     !> // Create descriptor
     !> rocsparse_extract_descr descr;
@@ -15929,13 +15963,13 @@ module hipfort_rocsparse
     !> hipMalloc(&dtarget_val, sizeof(float) * target_nnz);
     !> rocsparse_csr_set_pointers(target, dtarget_row_ptr, dtarget_col_ind, dtarget_val);
     !> \endcode
-    !> Finally, call \ref rocsparse_extract_buffer_size with the stage \ref
-    !> rocsparse_extract_stage_compute
+    !> Finally, call \ref rocsparse_extract_buffer_size with the stage
+    !> `rocsparse_extract_stage_compute`
     !> to determine the size of the temporary user-allocated storage needed for the computation of
     !> the column indices and values
     !> in the sparse target. Allocate this buffer and complete the conversion by calling \p
     !> rocsparse_extract using
-    !> the \ref rocsparse_extract_stage_compute stage:
+    !> the `rocsparse_extract_stage_compute` stage:
     !> \code{.c}
     !> // Calculation phase
     !> rocsparse_extract_buffer_size(handle,
@@ -15969,7 +16003,7 @@ module hipfort_rocsparse
     !> This routine is asynchronous with respect to the host.
     !> This routine supports execution in a hipGraph context.
     !> \note
-    !> Supported formats are \ref rocsparse_format_csr and  \ref rocsparse_format_csc.
+    !> Supported formats are `rocsparse_format_csr` and  `rocsparse_format_csc`.
     !>
     !> \note
     !> This routine does not support batched computation.
@@ -16277,8 +16311,8 @@ module hipfort_rocsparse
     !> \retval rocsparse_status_invalid_pointer \p alpha and \p beta are invalid,
     !> or the \p mat_A, \p mat_B, \p mat_C, or \p buffer_size pointer is invalid.
     !> \retval rocsparse_status_not_implemented
-    !> \p opA == \ref rocsparse_operation_conjugate_transpose or
-    !> \p opB == \ref rocsparse_operation_conjugate_transpose.
+    !> \p opA == `rocsparse_operation_conjugate_transpose` or
+    !> \p opB == `rocsparse_operation_conjugate_transpose`.
     function rocsparse_sddmm_buffer_size_raw(handle, opA, opB, alpha, mat_A, mat_B, beta, mat_C, &
                                              compute_type, alg, buffer_size) &
        result(sddmm_buffer_size_raw) &
@@ -16344,8 +16378,8 @@ module hipfort_rocsparse
     !> \retval rocsparse_status_invalid_pointer \p alpha and \p beta are invalid, or the
     !> \p mat_A, \p mat_B, \p mat_C, or \p temp_buffer pointer is invalid.
     !> \retval rocsparse_status_not_implemented
-    !> \p opA == \ref rocsparse_operation_conjugate_transpose or
-    !> \p opB == \ref rocsparse_operation_conjugate_transpose.
+    !> \p opA == `rocsparse_operation_conjugate_transpose` or
+    !> \p opB == `rocsparse_operation_conjugate_transpose`.
     function rocsparse_sddmm_preprocess_raw(handle, opA, opB, alpha, mat_A, mat_B, beta, mat_C, &
                                             compute_type, alg, temp_buffer) &
        result(sddmm_preprocess_raw) &
@@ -16436,7 +16470,7 @@ module hipfort_rocsparse
     !>
     !> Currently, \p rocsparse_sddmm only supports the uniform precisions indicated in the table
     !> below. For the sparse matrix \f$C\f$, \p rocsparse_sddmm supports the index types
-    !> \ref rocsparse_indextype_i32 and \ref rocsparse_indextype_i64.
+    !> `rocsparse_indextype_i32` and `rocsparse_indextype_i64`.
     !>
     !> \par Uniform Precisions:
     !> <table>
@@ -16460,16 +16494,16 @@ module hipfort_rocsparse
     !> </table>
     !>
     !> \note
-    !> The sparse matrix formats currently supported are: \ref rocsparse_format_csr,
-    !> \ref rocsparse_format_csc, \ref rocsparse_format_coo, \ref rocsparse_format_coo_aos,
-    !> and \ref rocsparse_format_ell.
+    !> The sparse matrix formats currently supported are: `rocsparse_format_csr`,
+    !> `rocsparse_format_csc`, `rocsparse_format_coo`, `rocsparse_format_coo_aos`,
+    !> and `rocsparse_format_ell`.
     !>
-    !> \note \p opA == \ref rocsparse_operation_conjugate_transpose is not supported.
-    !> \note \p opB == \ref rocsparse_operation_conjugate_transpose is not supported.
+    !> \note \p opA == `rocsparse_operation_conjugate_transpose` is not supported.
+    !> \note \p opB == `rocsparse_operation_conjugate_transpose` is not supported.
     !>
     !> \note
-    !> This routine supports execution in a hipGraph context only when \p alg == \ref
-    !> rocsparse_sddmm_alg_default.
+    !> This routine supports execution in a hipGraph context only when \p alg ==
+    !> `rocsparse_sddmm_alg_default`.
     !>
     !> \note
     !> This routine does not support batched computation.
@@ -16505,8 +16539,8 @@ module hipfort_rocsparse
     !> \retval rocsparse_status_invalid_pointer \p alpha and \p beta are invalid, or the
     !> \p mat_A, \p mat_B, \p mat_C, or \p temp_buffer pointer is invalid.
     !> \retval rocsparse_status_not_implemented
-    !> \p opA == \ref rocsparse_operation_conjugate_transpose or
-    !> \p opB == \ref rocsparse_operation_conjugate_transpose.
+    !> \p opA == `rocsparse_operation_conjugate_transpose` or
+    !> \p opB == `rocsparse_operation_conjugate_transpose`.
     !>
     !> \par Example
     !> This example performs a sampled dense-dense matrix product, \f$C := \alpha ( A \cdot B )
@@ -16571,19 +16605,19 @@ module hipfort_rocsparse
     !> &buffer_size,
     !> temp_buffer);
     !> \endcode
-    !> Currently, \p rocsparse_sparse_to_dense only supports the algorithm \ref
-    !> rocsparse_sparse_to_dense_alg_default.
+    !> Currently, \p rocsparse_sparse_to_dense only supports the algorithm
+    !> `rocsparse_sparse_to_dense_alg_default`.
     !> See the full example below.
     !>
-    !> \p rocsparse_sparse_to_dense supports \ref rocsparse_datatype_f16_r, \ref
-    !> rocsparse_datatype_bf16_r, \ref rocsparse_datatype_f32_r,
-    !> \ref rocsparse_datatype_f64_r, \ref rocsparse_datatype_f32_c, and \ref
-    !> rocsparse_datatype_f64_c for values arrays in the sparse matrix
+    !> \p rocsparse_sparse_to_dense supports `rocsparse_datatype_f16_r`,
+    !> `rocsparse_datatype_bf16_r`, `rocsparse_datatype_f32_r`,
+    !> `rocsparse_datatype_f64_r`, `rocsparse_datatype_f32_c`, and `rocsparse_datatype_f64_c` for
+    !> values arrays in the sparse matrix
     !> (stored in CSR, CSC, or COO format) and the dense matrix. For the row/column offset and
     !> row/column index arrays of the
-    !> sparse matrix, \p rocsparse_sparse_to_dense supports the precisions \ref
-    !> rocsparse_indextype_i32 and
-    !> \ref rocsparse_indextype_i64.
+    !> sparse matrix, \p rocsparse_sparse_to_dense supports the precisions `rocsparse_indextype_i32`
+    !> and
+    !> `rocsparse_indextype_i64`.
     !>
     !> \par Uniform Precisions:
     !> <table>
@@ -16712,7 +16746,7 @@ module hipfort_rocsparse
     !> for each stage. The required buffer size can be different between stages.
     !>
     !> \note
-    !> The \ref rocsparse_format_bell and \ref rocsparse_format_sell formats are not supported.
+    !> The `rocsparse_format_bell` and `rocsparse_format_sell` formats are not supported.
     !>
     !> \note
     !> This routine does not support batched computation.
@@ -16782,7 +16816,7 @@ module hipfort_rocsparse
     !> @param[out]
     !> buffer_size  number of bytes of the temporary storage buffer.
     !> @param[out]
-    !> error error descriptor created if the returned status is not \ref rocsparse_status_success. A
+    !> error error descriptor created if the returned status is not `rocsparse_status_success`. A
     !> null pointer can be passed if an error descriptor is not required.
     !>
     !> \retval rocsparse_status_success the operation completed successfully.
@@ -16845,52 +16879,52 @@ module hipfort_rocsparse
     !> \p rocsparse_spgeam requires multiple steps to complete. First, create a
     !> `rocsparse_spgeam_descr` by
     !> calling \ref rocsparse_create_spgeam_descr. Set the SpGEAM algorithm (currently only
-    !> \ref rocsparse_spgeam_alg_default supported) as well as the compute type and the transpose
+    !> `rocsparse_spgeam_alg_default` supported) as well as the compute type and the transpose
     !> operation type for the sparse
     !> matrices \f$op(A)\f$ and \f$op(B)\f$ using \ref rocsparse_spgeam_set_input. Next, calculate
     !> the total non-zeros
     !> that will exist in the sparse matrix \f$C\f$. To do so, call \ref
     !> rocsparse_spgeam_buffer_size with the stage set
-    !> to \ref rocsparse_spgeam_stage_analysis. This will fill the \p buffer_size parameter,
-    !> allowing allocation of this buffer.
-    !> After the buffer has been allocated, call \p rocsparse_spgeam with the same stage \ref
-    !> rocsparse_spgeam_stage_analysis.
+    !> to `rocsparse_spgeam_stage_analysis`. This will fill the \p buffer_size parameter, allowing
+    !> allocation of this buffer.
+    !> After the buffer has been allocated, call \p rocsparse_spgeam with the same stage
+    !> `rocsparse_spgeam_stage_analysis`.
     !> The total non-zeros and the row offset array for \f$C\f$ have now been calculated and are
     !> stored internally in the
     !> `rocsparse_spgeam_descr`. Now, retrieve the non-zero count using \ref
     !> rocsparse_spgeam_get_output and then
     !> allocate the \f$C\f$ matrix. To complete the computation, repeat the process (this time
     !> passing the stage
-    !> \ref rocsparse_spgeam_stage_compute) by calling \ref rocsparse_spgeam_buffer_size to
-    !> determine the required buffer size, then
+    !> `rocsparse_spgeam_stage_compute` ) by calling \ref rocsparse_spgeam_buffer_size to determine
+    !> the required buffer size, then
     !> allocate the buffer, and finally call \p rocsparse_spgeam. The user-allocated buffers can be
     !> freed after each call to
     !> \p rocsparse_spgeam. After the computation is complete and the SpGEAM descriptor is no longer
     !> needed, call
     !> \ref rocsparse_destroy_spgeam_descr. See the full code example below.
     !>
-    !> The stage \ref rocsparse_spgeam_stage_compute computes the symbolic part and the numeric of
-    !> the resulting matrix C. To perform multiple operations involving matrices of same sparsity
-    !> patterns but with different numerical values, the symbolic stages (\ref
-    !> rocsparse_spgeam_stage_symbolic_analysis and \ref rocsparse_spgeam_stage_symbolic_compute)
-    !> and the numeric stages (\ref rocsparse_spgeam_stage_numeric_analysis and \ref
-    !> rocsparse_spgeam_stage_numeric_compute) can be used to separate the symbolic calculation from
-    !> the numeric calculation.
+    !> The stage `rocsparse_spgeam_stage_compute` computes the symbolic part and the numeric of the
+    !> resulting matrix C. To perform multiple operations involving matrices of same sparsity
+    !> patterns but with different numerical values, the symbolic stages
+    !> (`rocsparse_spgeam_stage_symbolic_analysis` and `rocsparse_spgeam_stage_symbolic_compute` )
+    !> and the numeric stages (`rocsparse_spgeam_stage_numeric_analysis` and
+    !> `rocsparse_spgeam_stage_numeric_compute` ) can be used to separate the symbolic calculation
+    !> from the numeric calculation.
     !>
-    !> \note The stages \ref rocsparse_spgeam_stage_analysis and \ref rocsparse_spgeam_stage_compute
-    !> cannot be mixed with the stages \ref rocsparse_spgeam_stage_symbolic_analysis, \ref
-    !> rocsparse_spgeam_stage_symbolic_compute, \ref rocsparse_spgeam_stage_numeric_analysis, and
-    !> \ref rocsparse_spgeam_stage_numeric_compute.
-    !> \note The stage \ref rocsparse_spgeam_stage_analysis must precede the stage \ref
-    !> rocsparse_spgeam_stage_compute.
-    !> \note The stage \ref rocsparse_spgeam_stage_symbolic_analysis must precede the stage \ref
-    !> rocsparse_spgeam_stage_symbolic_compute.
-    !> \note The stage \ref rocsparse_spgeam_stage_numeric_analysis must precede the stage \ref
-    !> rocsparse_spgeam_stage_numeric_compute.
+    !> \note The stages `rocsparse_spgeam_stage_analysis` and `rocsparse_spgeam_stage_compute`
+    !> cannot be mixed with the stages `rocsparse_spgeam_stage_symbolic_analysis`,
+    !> `rocsparse_spgeam_stage_symbolic_compute`, `rocsparse_spgeam_stage_numeric_analysis`, and
+    !> `rocsparse_spgeam_stage_numeric_compute`.
+    !> \note The stage `rocsparse_spgeam_stage_analysis` must precede the stage
+    !> `rocsparse_spgeam_stage_compute`.
+    !> \note The stage `rocsparse_spgeam_stage_symbolic_analysis` must precede the stage
+    !> `rocsparse_spgeam_stage_symbolic_compute`.
+    !> \note The stage `rocsparse_spgeam_stage_numeric_analysis` must precede the stage
+    !> `rocsparse_spgeam_stage_numeric_compute`.
     !> \note The symbolic stages are not required to perform the numeric stages.
-    !> \note The stage \ref rocsparse_spgeam_stage_numeric_analysis must be reapplied if the numeric
+    !> \note The stage `rocsparse_spgeam_stage_numeric_analysis` must be reapplied if the numeric
     !> values of the input matrices \p mat_A and \p mat_B have changed between subsequent calls of
-    !> the stage \ref rocsparse_spgeam_stage_numeric_compute.
+    !> the stage `rocsparse_spgeam_stage_numeric_compute`.
     !>
     !> \p rocsparse_spgeam supports multiple combinations of index types, data types, and compute
     !> types. The tables below indicate
@@ -16932,25 +16966,25 @@ module hipfort_rocsparse
     !> In general, when adding two sparse matrices together, it is possible that the resulting
     !> matrix will require
     !> a larger index representation to store correctly. For example, when adding \f$A + B\f$ using
-    !> \ref rocsparse_indextype_i32 index types for the row pointer and column indices arrays, it
-    !> might be the case that the row pointer
-    !> of the resulting \f$C\f$ matrix would require index type \ref rocsparse_indextype_i64. This
-    !> is currently not supported. In this
+    !> `rocsparse_indextype_i32` index types for the row pointer and column indices arrays, it might
+    !> be the case that the row pointer
+    !> of the resulting \f$C\f$ matrix would require index type `rocsparse_indextype_i64`. This is
+    !> currently not supported. In this
     !> scenario, store the \f$A\f$, \f$B\f$, and \f$C\f$ matrices using the higher index precision.
     !>
     !> Additionally, all three matrices \f$A\f$, \f$B\f$, and \f$C\f$ must use the same index types.
     !> For example, if \f$A\f$ uses the
-    !> index type \ref rocsparse_indextype_i32 for the row offset array and the index type \ref
-    !> rocsparse_indextype_i32 for the column
+    !> index type `rocsparse_indextype_i32` for the row offset array and the index type
+    !> `rocsparse_indextype_i32` for the column
     !> indices array, then both \f$B\f$ and \f$C\f$ must also use these same index types for their
     !> respective row offset and column index
     !> arrays. In the scenario where \f$C\f$ requires a larger index type for the row offset array,
     !> store all three
-    !> matrices using the larger index type \ref rocsparse_indextype_i64 for the row offsets array.
+    !> matrices using the larger index type `rocsparse_indextype_i64` for the row offsets array.
     !>
     !> \note Currently only CSR format is supported.
-    !> \note Currently, only \p trans_A == \ref rocsparse_operation_none is supported.
-    !> \note Currently, only \p trans_B == \ref rocsparse_operation_none is supported.
+    !> \note Currently, only \p trans_A == `rocsparse_operation_none` is supported.
+    !> \note Currently, only \p trans_B == `rocsparse_operation_none` is supported.
     !>
     !> \note
     !> This routine does not support execution in a hipGraph context.
@@ -16973,7 +17007,7 @@ module hipfort_rocsparse
     !> @param[in]
     !> temp_buffer  temporary storage buffer allocated by the user.
     !> @param[out]
-    !> error error descriptor created if the returned status is not \ref rocsparse_status_success. A
+    !> error error descriptor created if the returned status is not `rocsparse_status_success`. A
     !> null pointer can be passed if an error descriptor is not required.
     !>
     !> \retval rocsparse_status_success the operation completed successfully.
@@ -17038,16 +17072,16 @@ module hipfort_rocsparse
     !> \right.
     !> \f]
     !>
-    !> \p rocsparse_spgemm requires three stages to complete. First, pass the \ref
-    !> rocsparse_spgemm_stage_buffer_size
+    !> \p rocsparse_spgemm requires three stages to complete. First, pass the
+    !> `rocsparse_spgemm_stage_buffer_size`
     !> stage to determine the size of the required temporary storage buffer. Next, allocate this
     !> buffer and call
-    !> \p rocsparse_spgemm again with the \ref rocsparse_spgemm_stage_nnz stage, which will
-    !> determine the number of non-zeros
+    !> \p rocsparse_spgemm again with the `rocsparse_spgemm_stage_nnz` stage, which will determine
+    !> the number of non-zeros
     !> in \f$C\f$. This stage will also fill in the row pointer array of \f$C\f$. Now that the
     !> number of non-zeros in \f$C\f$
     !> is known, allocate space for the column indices and values arrays of \f$C\f$. Finally, call
-    !> \p rocsparse_spgemm with the \ref rocsparse_spgemm_stage_compute stage to perform the actual
+    !> \p rocsparse_spgemm with the `rocsparse_spgemm_stage_compute` stage to perform the actual
     !> computation, which fills in
     !> the column indices and values arrays of \f$C\f$. After all calls to \p rocsparse_spgemm are
     !> complete, the temporary buffer
@@ -17057,20 +17091,20 @@ module hipfort_rocsparse
     !> having the same sparsity
     !> pattern with different values. In this scenario, the process begins like before. First, call
     !> \p rocsparse_spgemm
-    !> with stage \ref rocsparse_spgemm_stage_buffer_size to determine the required buffer size.
-    !> Then allocate this buffer
-    !> and call \p rocsparse_spgemm with the stage \ref rocsparse_spgemm_stage_nnz to determine the
+    !> with stage `rocsparse_spgemm_stage_buffer_size` to determine the required buffer size. Then
+    !> allocate this buffer
+    !> and call \p rocsparse_spgemm with the stage `rocsparse_spgemm_stage_nnz` to determine the
     !> number of non-zeros in \f$C\f$
     !> and allocate the \f$C\f$ column indices and values arrays. Now, however, call \p
     !> rocsparse_spgemm with the
-    !> \ref rocsparse_spgemm_stage_symbolic stage, which will fill in the column indices array of
+    !> `rocsparse_spgemm_stage_symbolic` stage, which will fill in the column indices array of
     !> \f$C\f$ but not the values array.
     !> It is then possible to repeatedly change the values of \f$A\f$, \f$B\f$, and \f$D\f$ and call
     !> \p rocsparse_spgemm with
-    !> the \ref rocsparse_spgemm_stage_numeric stage, which fills the values array of \f$C\f$. The
-    !> use of the extra
-    !> \ref rocsparse_spgemm_stage_symbolic and \ref rocsparse_spgemm_stage_numeric stages allows
-    !> users to compute the sparsity pattern
+    !> the `rocsparse_spgemm_stage_numeric` stage, which fills the values array of \f$C\f$. The use
+    !> of the extra
+    !> `rocsparse_spgemm_stage_symbolic` and `rocsparse_spgemm_stage_numeric` stages allows users to
+    !> compute the sparsity pattern
     !> of \f$C\f$ once, but compute the values multiple times.
     !>
     !> \p rocsparse_spgemm supports multiple combinations of data types and compute types. The
@@ -17094,18 +17128,18 @@ module hipfort_rocsparse
     !> <tr><td>rocsparse_datatype_f64_c
     !> </table>
     !>
-    !> \p rocsparse_spgemm supports \ref rocsparse_indextype_i32 and \ref rocsparse_indextype_i64
-    !> index precisions for storing the row
+    !> \p rocsparse_spgemm supports `rocsparse_indextype_i32` and `rocsparse_indextype_i64` index
+    !> precisions for storing the row
     !> pointer and column indices arrays of the sparse matrices.
     !>
     !> In general, when multiplying two sparse matrices together, it is possible that the resulting
     !> matrix will require a
     !> larger index representation to store correctly. For example, when multiplying \f$A \times
     !> B\f$ using
-    !> \ref rocsparse_indextype_i32 index types for the row pointer and column indices arrays, it
-    !> might be the case that the row pointer
-    !> of the resulting \f$C\f$ matrix would require index precision \ref rocsparse_indextype_i64.
-    !> This is currently not supported.
+    !> `rocsparse_indextype_i32` index types for the row pointer and column indices arrays, it might
+    !> be the case that the row pointer
+    !> of the resulting \f$C\f$ matrix would require index precision `rocsparse_indextype_i64`. This
+    !> is currently not supported.
     !> In this scenario, the \f$A\f$ and \f$B\f$ matrices need to be stored using the higher index
     !> precision.
     !>
@@ -17113,28 +17147,28 @@ module hipfort_rocsparse
     !> This function does not produce deterministic results.
     !>
     !> \note SpGEMM requires three stages to complete. The first stage,
-    !> \ref rocsparse_spgemm_stage_buffer_size, will return the size of the temporary storage buffer
+    !> `rocsparse_spgemm_stage_buffer_size`, will return the size of the temporary storage buffer
     !> that is required for subsequent calls to \ref rocsparse_spgemm. The second stage,
-    !> \ref rocsparse_spgemm_stage_nnz, will determine the number of non-zero elements of the
+    !> `rocsparse_spgemm_stage_nnz`, will determine the number of non-zero elements of the
     !> resulting \f$C\f$ matrix. If the sparsity pattern of \f$C\f$ is already known, this
-    !> stage can be skipped. In the final stage, \ref rocsparse_spgemm_stage_compute, the actual
+    !> stage can be skipped. In the final stage, `rocsparse_spgemm_stage_compute`, the actual
     !> computation is performed.
     !> \note If \f$\alpha == 0\f$, then \f$C = \beta \cdot D\f$ will be computed.
     !> \note If \f$\beta == 0\f$, then \f$C = \alpha \cdot op(A) \cdot op(B)\f$ will be
     !> computed.
     !> \note Currently only CSR and BSR formats are supported.
-    !> \note If \ref rocsparse_spgemm_stage_symbolic is selected, then only the symbolic computation
-    !> is performed.
-    !> \note If \ref rocsparse_spgemm_stage_numeric is selected, then only the numeric computation
-    !> is performed.
-    !> \note For the \ref rocsparse_spgemm_stage_symbolic and \ref rocsparse_spgemm_stage_numeric
-    !> stages, only the
+    !> \note If `rocsparse_spgemm_stage_symbolic` is selected, then only the symbolic computation is
+    !> performed.
+    !> \note If `rocsparse_spgemm_stage_numeric` is selected, then only the numeric computation is
+    !> performed.
+    !> \note For the `rocsparse_spgemm_stage_symbolic` and `rocsparse_spgemm_stage_numeric` stages,
+    !> only the
     !> CSR matrix format is currently supported.
     !> \note \f$\alpha == beta == 0\f$ is invalid.
     !> \note It is permissible to pass the same sparse matrix for \f$C\f$ and \f$D\f$ if both
     !> matrices have the same sparsity pattern.
-    !> \note Currently, only \p trans_A == \ref rocsparse_operation_none is supported.
-    !> \note Currently, only \p trans_B == \ref rocsparse_operation_none is supported.
+    !> \note Currently, only \p trans_A == `rocsparse_operation_none` is supported.
+    !> \note Currently, only \p trans_B == `rocsparse_operation_none` is supported.
     !> \note This function is non-blocking and executed asynchronously with respect to the
     !> host. It can return before the actual computation has finished.
     !> \note Note that for rare matrix products with more than 4096 non-zero entries
@@ -17185,8 +17219,8 @@ module hipfort_rocsparse
     !> \retval rocsparse_status_memory_error additional buffer for long rows could not be
     !> allocated.
     !> \retval rocsparse_status_not_implemented
-    !> \p trans_A != \ref rocsparse_operation_none or
-    !> \p trans_B != \ref rocsparse_operation_none.
+    !> \p trans_A != `rocsparse_operation_none` or
+    !> \p trans_B != `rocsparse_operation_none`.
     !>
     !> \par Example
     function rocsparse_spgemm_raw(handle, trans_A, trans_B, alpha, A, B, beta, D, C, compute_type, &
@@ -17236,7 +17270,7 @@ module hipfort_rocsparse
     !> but batched values of the matrices.
     !>
     !> \note
-    !> Supported formats are \ref rocsparse_format_csr and \ref rocsparse_format_bsr.
+    !> Supported formats are `rocsparse_format_csr` and `rocsparse_format_bsr`.
     !>
     !> @param[in]
     !> handle       handle to the rocSPARSE library context queue.
@@ -17251,8 +17285,8 @@ module hipfort_rocsparse
     !> @param[out]
     !> p_buffer_size_in_bytes  number of bytes of the buffer.
     !> @param[out]
-    !> p_error error descriptor created if the returned status is not \ref rocsparse_status_success.
-    !> A null pointer can be passed if error descriptor is not required.
+    !> p_error error descriptor created if the returned status is not `rocsparse_status_success`. A
+    !> null pointer can be passed if error descriptor is not required.
     !>
     !> \retval rocsparse_status_success the operation completed successfully.
     !> \retval rocsparse_status_invalid_handle the library context was not initialized.
@@ -17303,33 +17337,33 @@ module hipfort_rocsparse
     !> \f]
     !> for each entry found in the matrix \f$A\f$.
     !>
-    !> Performing the above operation requires two stages, the stage \ref
-    !> rocsparse_spic0_stage_analysis and the stage \ref rocsparse_spic0_stage_compute.
-    !> The stage \ref rocsparse_spic0_stage_analysis is required to perform the stage \ref
-    !> rocsparse_spic0_stage_compute and only needs to be called once for a given sparse matrix
-    !> \f$A\f$, while the stage \ref rocsparse_spic0_stage_compute can be repeatedly used with
+    !> Performing the above operation requires two stages, the stage
+    !> `rocsparse_spic0_stage_analysis` and the stage `rocsparse_spic0_stage_compute`.
+    !> The stage `rocsparse_spic0_stage_analysis` is required to perform the stage
+    !> `rocsparse_spic0_stage_compute` and only needs to be called once for a given sparse matrix
+    !> \f$A\f$, while the stage `rocsparse_spic0_stage_compute` can be repeatedly used with
     !> different matrices \f$A\f$ that have the same sparsity pattern.
     !>
     !> \p rocsparse_spic0 supports the following
-    !> data types for \p A : \ref rocsparse_datatype_f32_r, \ref rocsparse_datatype_f64_r, \ref
-    !> rocsparse_datatype_f32_c, and \ref rocsparse_datatype_f64_c.
+    !> data types for \p A : `rocsparse_datatype_f32_r`, `rocsparse_datatype_f64_r`,
+    !> `rocsparse_datatype_f32_c`, and `rocsparse_datatype_f64_c`.
     !>
     !> \note The descriptor \p spic0_descr needs to be configured with \ref
     !> rocsparse_spic0_set_input.
     !> \note
-    !> The sparse matrix formats currently supported are \ref rocsparse_format_csr and \ref
-    !> rocsparse_format_bsr.
+    !> The sparse matrix formats currently supported are `rocsparse_format_csr` and
+    !> `rocsparse_format_bsr`.
     !>
     !> \note
-    !> the \ref rocsparse_spic0_stage_compute stage is non-blocking
+    !> the `rocsparse_spic0_stage_compute` stage is non-blocking
     !> and executed asynchronously with respect to the host. It can return before the actual
     !> computation has finished.
-    !> The \ref rocsparse_spic0_stage_analysis stage is blocking with respect to the host.
+    !> The `rocsparse_spic0_stage_analysis` stage is blocking with respect to the host.
     !>
     !> \note
-    !> Only the \ref rocsparse_spic0_stage_compute stage
-    !> supports execution in a hipGraph context. The \ref rocsparse_spic0_stage_analysis stage does
-    !> not support hipGraph.
+    !> Only the `rocsparse_spic0_stage_compute` stage
+    !> supports execution in a hipGraph context. The `rocsparse_spic0_stage_analysis` stage does not
+    !> support hipGraph.
     !>
     !> \note
     !> This routine only supports uniform strided batched computation, that is, the same sparsity
@@ -17350,8 +17384,8 @@ module hipfort_rocsparse
     !> @param[in]
     !> buffer       buffer allocated by the user.
     !> @param[out]
-    !> p_error error descriptor created if the returned status is not \ref rocsparse_status_success.
-    !> A null pointer can be passed if an error descriptor is not required.
+    !> p_error error descriptor created if the returned status is not `rocsparse_status_success`. A
+    !> null pointer can be passed if an error descriptor is not required.
     !>
     !> \retval rocsparse_status_success the operation completed successfully.
     !> \retval rocsparse_status_invalid_handle the library context was not initialized.
@@ -17399,7 +17433,7 @@ module hipfort_rocsparse
     !> This routine supports execution in a hipGraph context.
     !>
     !> \note
-    !> Supported formats are \ref rocsparse_format_csr and \ref rocsparse_format_bsr.
+    !> Supported formats are `rocsparse_format_csr` and `rocsparse_format_bsr`.
     !>
     !> @param[in]
     !> handle       handle to the rocSPARSE library context queue.
@@ -17414,8 +17448,8 @@ module hipfort_rocsparse
     !> @param[out]
     !> p_buffer_size_in_bytes  number of bytes of the buffer.
     !> @param[out]
-    !> p_error error descriptor created if the returned status is not \ref rocsparse_status_success.
-    !> A null pointer can be passed if the user is not interested in obtaining an error descriptor.
+    !> p_error error descriptor created if the returned status is not `rocsparse_status_success`. A
+    !> null pointer can be passed if the user is not interested in obtaining an error descriptor.
     !>
     !> \retval rocsparse_status_success the operation completed successfully.
     !> \retval rocsparse_status_invalid_handle the library context was not initialized.
@@ -17466,31 +17500,31 @@ module hipfort_rocsparse
     !> \f]
     !> for each entry found in the matrix \f$A\f$.
     !>
-    !> Performing the above operation requires two stages, the stage \ref
-    !> rocsparse_spilu0_stage_analysis and the stage \ref rocsparse_spilu0_stage_compute.
-    !> The stage \ref rocsparse_spilu0_stage_analysis is required to perform the stage \ref
-    !> rocsparse_spilu0_stage_compute and only needs to be called once for a given sparse matrix
-    !> \f$A\f$, while the stage \ref rocsparse_spilu0_stage_compute can be repeatedly used with
+    !> Performing the above operation requires two stages, the stage
+    !> `rocsparse_spilu0_stage_analysis` and the stage `rocsparse_spilu0_stage_compute`.
+    !> The stage `rocsparse_spilu0_stage_analysis` is required to perform the stage
+    !> `rocsparse_spilu0_stage_compute` and only needs to be called once for a given sparse matrix
+    !> \f$A\f$, while the stage `rocsparse_spilu0_stage_compute` can be repeatedly used with
     !> different matrices \f$A\f$ that have the same sparsity pattern.
     !>
     !> \p rocsparse_spilu0 supports the following
-    !> data types for \p A : \ref rocsparse_datatype_f32_r, \ref rocsparse_datatype_f64_r, \ref
-    !> rocsparse_datatype_f32_c, and \ref rocsparse_datatype_f64_c.
+    !> data types for \p A : `rocsparse_datatype_f32_r`, `rocsparse_datatype_f64_r`,
+    !> `rocsparse_datatype_f32_c`, and `rocsparse_datatype_f64_c`.
     !>
     !> \note The descriptor \p spilu0_descr needs to be configured with \ref
     !> rocsparse_spilu0_set_input.
-    !> \note The sparse matrix formats currently supported are \ref rocsparse_format_csr and \ref
-    !> rocsparse_format_bsr.
+    !> \note The sparse matrix formats currently supported are `rocsparse_format_csr` and
+    !> `rocsparse_format_bsr`.
     !>
     !> \note
-    !> the \ref rocsparse_spilu0_stage_compute stage is non-blocking
+    !> the `rocsparse_spilu0_stage_compute` stage is non-blocking
     !> and executed asynchronously with respect to the host. It can return before the actual
     !> computation has finished.
-    !> The \ref rocsparse_spilu0_stage_analysis stage is blocking with respect to the host.
+    !> The `rocsparse_spilu0_stage_analysis` stage is blocking with respect to the host.
     !>
     !> \note
-    !> Only the \ref rocsparse_spilu0_stage_compute stage
-    !> supports execution in a hipGraph context. The \ref rocsparse_spilu0_stage_analysis stage does
+    !> Only the `rocsparse_spilu0_stage_compute` stage
+    !> supports execution in a hipGraph context. The `rocsparse_spilu0_stage_analysis` stage does
     !> not support hipGraph.
     !>
     !> \note
@@ -17512,8 +17546,8 @@ module hipfort_rocsparse
     !> @param[in]
     !> buffer       buffer allocated by the user.
     !> @param[out]
-    !> p_error error descriptor created if the returned status is not \ref rocsparse_status_success.
-    !> A null pointer can be passed if an error descriptor is not required.
+    !> p_error error descriptor created if the returned status is not `rocsparse_status_success`. A
+    !> null pointer can be passed if an error descriptor is not required.
     !>
     !> \retval rocsparse_status_success the operation completed successfully.
     !> \retval rocsparse_status_invalid_handle the library context was not initialized.
@@ -17591,20 +17625,20 @@ module hipfort_rocsparse
     !> \f]
     !> with \f$\epsilon\f$ = \p host_tol.
     !>
-    !> \p rocsparse_spitsv requires three stages to complete. First, pass the \ref
-    !> rocsparse_spitsv_stage_buffer_size
+    !> \p rocsparse_spitsv requires three stages to complete. First, pass the
+    !> `rocsparse_spitsv_stage_buffer_size`
     !> stage to determine the size of the required temporary storage buffer. Next, allocate this
     !> buffer and call
-    !> \p rocsparse_spitsv again with the \ref rocsparse_spitsv_stage_preprocess stage, which will
+    !> \p rocsparse_spitsv again with the `rocsparse_spitsv_stage_preprocess` stage, which will
     !> preprocess data and store it
-    !> in the temporary buffer. Finally, call \p rocsparse_spitsv with the \ref
-    !> rocsparse_spitsv_stage_compute stage to
+    !> in the temporary buffer. Finally, call \p rocsparse_spitsv with the
+    !> `rocsparse_spitsv_stage_compute` stage to
     !> perform the actual computation. After all calls to \p rocsparse_spitsv are complete, the
     !> temporary buffer
     !> can be deallocated.
     !>
-    !> \p rocsparse_spitsv supports \ref rocsparse_indextype_i32 and \ref rocsparse_indextype_i64
-    !> index precisions for storing the
+    !> \p rocsparse_spitsv supports `rocsparse_indextype_i32` and `rocsparse_indextype_i64` index
+    !> precisions for storing the
     !> row pointer and column indices arrays of the sparse matrix. \p rocsparse_spitsv supports the
     !> following data types for
     !> \f$op(A)\f$, \f$x\f$, \f$y\f$, and compute types for \f$\alpha\f$:
@@ -17736,14 +17770,14 @@ module hipfort_rocsparse
     !> \f]
     !> Both \f$B\f$ and \f$C\f$ can be in row or column order.
     !>
-    !> \p rocsparse_spmm requires three stages to complete. First, pass the \ref
-    !> rocsparse_spmm_stage_buffer_size
+    !> \p rocsparse_spmm requires three stages to complete. First, pass the
+    !> `rocsparse_spmm_stage_buffer_size`
     !> stage to determine the size of the required temporary storage buffer. Next, allocate this
     !> buffer and call
-    !> \p rocsparse_spmm again with the \ref rocsparse_spmm_stage_preprocess stage, which will
-    !> perform analysis on the sparse
-    !> matrix \f$op(A)\f$. Finally, call \p rocsparse_spmm with the \ref
-    !> rocsparse_spmm_stage_compute stage to perform
+    !> \p rocsparse_spmm again with the `rocsparse_spmm_stage_preprocess` stage, which will perform
+    !> analysis on the sparse
+    !> matrix \f$op(A)\f$. Finally, call \p rocsparse_spmm with the `rocsparse_spmm_stage_compute`
+    !> stage to perform
     !> the actual computation. The buffer size, buffer allocation, and preprocess stages only need
     !> to be called once for a given
     !> sparse matrix \f$op(A)\f$, while the computation stage can be repeatedly used with different
@@ -17800,18 +17834,18 @@ module hipfort_rocsparse
     !> <tr><td>rocsparse_spmm_alg_bsr</td>   <td>Yes</td>        <td>No</td>       <td></td>
     !> </table>
     !>
-    !> It is also possible to pass \ref rocsparse_spmm_alg_default, which will automatically select
+    !> It is also possible to pass `rocsparse_spmm_alg_default`, which will automatically select
     !> from the algorithms listed above
     !> based on the sparse matrix format. In the case of CSR or CSC matrices, this will set the
-    !> algorithm to be \ref rocsparse_spmm_alg_csr. In
-    !> the case of blocked ELL matrices, this will set the algorithm to be \ref
-    !> rocsparse_spmm_alg_bell. In the case of BSR matrices, this
-    !> will set the algorithm to be \ref rocsparse_spmm_alg_bsr, and for COO matrices, it will set
-    !> the algorithm to be
-    !> \ref rocsparse_spmm_alg_coo_atomic.
+    !> algorithm to be `rocsparse_spmm_alg_csr`. In
+    !> the case of blocked ELL matrices, this will set the algorithm to be
+    !> `rocsparse_spmm_alg_bell`. In the case of BSR matrices, this
+    !> will set the algorithm to be `rocsparse_spmm_alg_bsr`, and for COO matrices, it will set the
+    !> algorithm to be
+    !> `rocsparse_spmm_alg_coo_atomic`.
     !>
-    !> When A is transposed, \p rocsparse_spmm will revert to using \ref rocsparse_spmm_alg_csr
-    !> for CSR and CSC formats and \ref rocsparse_spmm_alg_coo_atomic for COO format, regardless of
+    !> When A is transposed, \p rocsparse_spmm will revert to using `rocsparse_spmm_alg_csr`
+    !> for CSR and CSC formats and `rocsparse_spmm_alg_coo_atomic` for COO format, regardless of
     !> algorithm selected.
     !>
     !> \p rocsparse_spmm supports multiple combinations of data types and compute types. The tables
@@ -17845,8 +17879,8 @@ module hipfort_rocsparse
     !> <tr><td>rocsparse_datatype_bf16_r <td>rocsparse_datatype_bf16_r <td>rocsparse_datatype_f32_r
     !> </table>
     !>
-    !> \p rocsparse_spmm supports \ref rocsparse_indextype_i32 and \ref rocsparse_indextype_i64
-    !> index precisions
+    !> \p rocsparse_spmm supports `rocsparse_indextype_i32` and `rocsparse_indextype_i64` index
+    !> precisions
     !> for storing the row pointer and column indices arrays of the sparse matrices.
     !>
     !> \p rocsparse_spmm also supports batched computation for CSR and COO matrices. There are three
@@ -17902,29 +17936,29 @@ module hipfort_rocsparse
     !> matrices.
     !>
     !> \note
-    !> The sparse matrix formats currently supported are: \ref rocsparse_format_coo, \ref
-    !> rocsparse_format_csr,
-    !> \ref rocsparse_format_csc, \ref rocsparse_format_bsr, and \ref rocsparse_format_bell.
+    !> The sparse matrix formats currently supported are: `rocsparse_format_coo`,
+    !> `rocsparse_format_csr`,
+    !> `rocsparse_format_csc`, `rocsparse_format_bsr`, and `rocsparse_format_bell`.
     !>
     !> \note
     !> Mixed precisions are only supported for BSR, CSR, CSC, and COO matrix formats.
     !>
     !> \note
-    !> Only the \ref rocsparse_spmm_stage_buffer_size stage and the \ref
-    !> rocsparse_spmm_stage_compute stage are non-blocking
+    !> Only the `rocsparse_spmm_stage_buffer_size` stage and the `rocsparse_spmm_stage_compute`
+    !> stage are non-blocking
     !> and executed asynchronously with respect to the host. They can return before the actual
     !> computation has finished.
-    !> The \ref rocsparse_spmm_stage_preprocess stage is blocking with respect to the host.
+    !> The `rocsparse_spmm_stage_preprocess` stage is blocking with respect to the host.
     !>
     !> \note
-    !> Currently, only \p trans_A == \ref rocsparse_operation_none is supported for the COO and
-    !> blocked ELL formats.
+    !> Currently, only \p trans_A == `rocsparse_operation_none` is supported for the COO and blocked
+    !> ELL formats.
     !>
     !> \note
-    !> Only the \ref rocsparse_spmm_stage_buffer_size stage and the \ref
-    !> rocsparse_spmm_stage_compute stage
-    !> support execution in a hipGraph context. The \ref rocsparse_spmm_stage_preprocess stage does
-    !> not support hipGraph.
+    !> Only the `rocsparse_spmm_stage_buffer_size` stage and the `rocsparse_spmm_stage_compute`
+    !> stage
+    !> support execution in a hipGraph context. The `rocsparse_spmm_stage_preprocess` stage does not
+    !> support hipGraph.
     !>
     !> \note
     !> Currently, only CSR, CSC, COO, BSR, and blocked ELL sparse formats are supported.
@@ -17955,7 +17989,7 @@ module hipfort_rocsparse
     !> buffer_size  number of bytes of the temporary storage buffer.
     !> @param[in]
     !> temp_buffer  temporary storage buffer allocated by the user. When the
-    !> \ref rocsparse_spmm_stage_buffer_size stage is passed in, the required
+    !> `rocsparse_spmm_stage_buffer_size` stage is passed in, the required
     !> allocation size (in bytes) is written to \p buffer_size and function
     !> returns without performing the SpMM operation.
     !>
@@ -18026,14 +18060,14 @@ module hipfort_rocsparse
     !>
     !> Performing the above operation involves multiple steps. First, call \p rocsparse_spmv with
     !> the stage parameter set to
-    !> \ref rocsparse_spmv_stage_buffer_size to determine the size of the required temporary storage
+    !> `rocsparse_spmv_stage_buffer_size` to determine the size of the required temporary storage
     !> buffer. Then allocate this
-    !> buffer and call \p rocsparse_spmv with the stage parameter set to \ref
-    !> rocsparse_spmv_stage_preprocess. Depending on the algorithm
+    !> buffer and call \p rocsparse_spmv with the stage parameter set to
+    !> `rocsparse_spmv_stage_preprocess`. Depending on the algorithm
     !> and sparse matrix format, this will perform analysis on the sparsity pattern of \f$op(A)\f$.
     !> Finally, complete the operation
-    !> by calling \p rocsparse_spmv with the stage parmeter set to \ref
-    !> rocsparse_spmv_stage_compute. The buffer size, buffer allocation, and
+    !> by calling \p rocsparse_spmv with the stage parmeter set to `rocsparse_spmv_stage_compute`.
+    !> The buffer size, buffer allocation, and
     !> preprocess stages only need to be called once for a given sparse matrix \f$op(A)\f$, while
     !> the computation stage can be repeatedly used
     !> with different \f$x\f$ and \f$y\f$ vectors. After all calls to \p rocsparse_spmv are
@@ -18138,31 +18172,31 @@ module hipfort_rocsparse
     !> <tr><td>rocsparse_datatype_f64_r <td>rocsparse_datatype_f64_c
     !> </table>
     !>
-    !> \p rocsparse_spmv supports \ref rocsparse_indextype_i32 and \ref rocsparse_indextype_i64
-    !> index precisions
+    !> \p rocsparse_spmv supports `rocsparse_indextype_i32` and `rocsparse_indextype_i64` index
+    !> precisions
     !> for storing the row pointer and column indices arrays of the sparse matrices.
     !>
     !> \note
     !> None of the algorithms above are deterministic when \f$A\f$ is transposed.
     !>
     !> \note
-    !> The sparse matrix formats currently supported are: \ref rocsparse_format_bsr, \ref
-    !> rocsparse_format_coo,
-    !> \ref rocsparse_format_coo_aos, \ref rocsparse_format_csr, \ref rocsparse_format_csc, and \ref
-    !> rocsparse_format_ell.
+    !> The sparse matrix formats currently supported are: `rocsparse_format_bsr`,
+    !> `rocsparse_format_coo`,
+    !> `rocsparse_format_coo_aos`, `rocsparse_format_csr`, `rocsparse_format_csc`, and
+    !> `rocsparse_format_ell`.
     !>
     !> \note
-    !> Only the \ref rocsparse_spmv_stage_buffer_size stage and the \ref
-    !> rocsparse_spmv_stage_compute stage are non-blocking
+    !> Only the `rocsparse_spmv_stage_buffer_size` stage and the `rocsparse_spmv_stage_compute`
+    !> stage are non-blocking
     !> and executed asynchronously with respect to the host. They can return before the actual
     !> computation has finished.
-    !> The \ref rocsparse_spmv_stage_preprocess stage is blocking with respect to the host.
+    !> The `rocsparse_spmv_stage_preprocess` stage is blocking with respect to the host.
     !>
     !> \note
-    !> Only the \ref rocsparse_spmv_stage_buffer_size stage and the \ref
-    !> rocsparse_spmv_stage_compute stage
-    !> support execution in a hipGraph context. The \ref rocsparse_spmv_stage_preprocess stage does
-    !> not support hipGraph.
+    !> Only the `rocsparse_spmv_stage_buffer_size` stage and the `rocsparse_spmv_stage_compute`
+    !> stage
+    !> support execution in a hipGraph context. The `rocsparse_spmv_stage_preprocess` stage does not
+    !> support hipGraph.
     !>
     !> @param[in]
     !> handle       handle to the rocSPARSE library context queue.
@@ -18189,7 +18223,7 @@ module hipfort_rocsparse
     !> \p temp_buffer is nullptr.
     !> @param[in]
     !> temp_buffer  temporary storage buffer allocated by the user. When the
-    !> \ref rocsparse_spmv_stage_buffer_size stage is passed,
+    !> `rocsparse_spmv_stage_buffer_size` stage is passed,
     !> the required allocation size (in bytes) is written to \p buffer_size and
     !> function returns without performing the SpMV operation.
     !>
@@ -18264,13 +18298,13 @@ module hipfort_rocsparse
     !>
     !> Performing the above operation requires three stages. First, \p rocsparse_spsm must be called
     !> with the stage
-    !> \ref rocsparse_spsm_stage_buffer_size, which will determine the size of the required
-    !> temporary storage buffer.
-    !> Then allocate this buffer and call \p rocsparse_spsm with the stage \ref
-    !> rocsparse_spsm_stage_preprocess,
+    !> `rocsparse_spsm_stage_buffer_size`, which will determine the size of the required temporary
+    !> storage buffer.
+    !> Then allocate this buffer and call \p rocsparse_spsm with the stage
+    !> `rocsparse_spsm_stage_preprocess`,
     !> which will perform analysis on the sparse matrix \f$op(A)\f$. Finally, complete the
     !> computation by calling
-    !> \p rocsparse_spsm with the stage \ref rocsparse_spsm_stage_compute. The buffer size, buffer
+    !> \p rocsparse_spsm with the stage `rocsparse_spsm_stage_compute`. The buffer size, buffer
     !> allocation, and preprocess
     !> stages only need to be called once for a given sparse triangular matrix \f$op(A)\f$, while
     !> the computation stage can be
@@ -18294,8 +18328,8 @@ module hipfort_rocsparse
     !> \f$B\f$ (or column order if
     !> \f$B\f$ is being transposed).
     !>
-    !> \p rocsparse_spsm supports \ref rocsparse_indextype_i32 and \ref rocsparse_indextype_i64
-    !> index precisions for storing the
+    !> \p rocsparse_spsm supports `rocsparse_indextype_i32` and `rocsparse_indextype_i64` index
+    !> precisions for storing the
     !> row pointer and column indices arrays of the sparse matrices. \p rocsparse_spsm supports the
     !> following data types for
     !> \f$op(A)\f$, \f$op(B)\f$, \f$C\f$, and compute types for \f$\alpha\f$:
@@ -18311,27 +18345,27 @@ module hipfort_rocsparse
     !> </table>
     !>
     !> \note
-    !> The sparse matrix formats currently supported are: \ref rocsparse_format_coo and \ref
-    !> rocsparse_format_csr.
+    !> The sparse matrix formats currently supported are: `rocsparse_format_coo` and
+    !> `rocsparse_format_csr`.
     !>
     !> \note
-    !> Only the \ref rocsparse_spsm_stage_buffer_size stage and the \ref
-    !> rocsparse_spsm_stage_compute stage are non-blocking
+    !> Only the `rocsparse_spsm_stage_buffer_size` stage and the `rocsparse_spsm_stage_compute`
+    !> stage are non-blocking
     !> and executed asynchronously with respect to the host. They can return before the actual
     !> computation has finished.
-    !> The \ref rocsparse_spsm_stage_preprocess stage is blocking with respect to the host.
+    !> The `rocsparse_spsm_stage_preprocess` stage is blocking with respect to the host.
     !>
     !> \note
-    !> Currently, only \p trans_A == \ref rocsparse_operation_none and \p trans_A == \ref
-    !> rocsparse_operation_transpose is supported.
-    !> Currently, only \p trans_B == \ref rocsparse_operation_none and \p trans_B == \ref
-    !> rocsparse_operation_transpose is supported.
+    !> Currently, only \p trans_A == `rocsparse_operation_none` and \p trans_A ==
+    !> `rocsparse_operation_transpose` is supported.
+    !> Currently, only \p trans_B == `rocsparse_operation_none` and \p trans_B ==
+    !> `rocsparse_operation_transpose` is supported.
     !>
     !> \note
-    !> Only the \ref rocsparse_spsm_stage_buffer_size stage and the \ref
-    !> rocsparse_spsm_stage_compute stage
-    !> support execution in a hipGraph context. The \ref rocsparse_spsm_stage_preprocess stage does
-    !> not support hipGraph.
+    !> Only the `rocsparse_spsm_stage_buffer_size` stage and the `rocsparse_spsm_stage_compute`
+    !> stage
+    !> support execution in a hipGraph context. The `rocsparse_spsm_stage_preprocess` stage does not
+    !> support hipGraph.
     !>
     !> \note
     !> This routine does not support batched computation.
@@ -18360,7 +18394,7 @@ module hipfort_rocsparse
     !> buffer_size  number of bytes of the temporary storage buffer.
     !> @param[in]
     !> temp_buffer  temporary storage buffer allocated by the user. When the
-    !> \ref rocsparse_spsm_stage_buffer_size stage is passed in,
+    !> `rocsparse_spsm_stage_buffer_size` stage is passed in,
     !> the required allocation size (in bytes) is written to \p buffer_size, and the
     !> function returns without performing the SpSM operation.
     !>
@@ -18424,20 +18458,20 @@ module hipfort_rocsparse
     !>
     !> Performing the above operation requires three stages. First, \p rocsparse_spsv must be called
     !> with the stage
-    !> \ref rocsparse_spsv_stage_buffer_size, which will determine the size of the required
-    !> temporary storage buffer.
-    !> The user then allocates this buffer and calls \p rocsparse_spsv with the stage \ref
-    !> rocsparse_spsv_stage_preprocess,
+    !> `rocsparse_spsv_stage_buffer_size`, which will determine the size of the required temporary
+    !> storage buffer.
+    !> The user then allocates this buffer and calls \p rocsparse_spsv with the stage
+    !> `rocsparse_spsv_stage_preprocess`,
     !> which will perform analysis on the sparse matrix \f$op(A)\f$. Finally, complete the
     !> computation by calling
-    !> \p rocsparse_spsv with the stage \ref rocsparse_spsv_stage_compute. The buffer size, buffer
+    !> \p rocsparse_spsv with the stage `rocsparse_spsv_stage_compute`. The buffer size, buffer
     !> allocation, and preprocess
     !> stages only need to be called once for a given sparse matrix \f$op(A)\f$, while the
     !> computation stage can be repeatedly
     !> used with different \f$x\f$ and \f$y\f$ vectors.
     !>
-    !> \p rocsparse_spsv supports \ref rocsparse_indextype_i32 and \ref rocsparse_indextype_i64
-    !> index types for
+    !> \p rocsparse_spsv supports `rocsparse_indextype_i32` and `rocsparse_indextype_i64` index
+    !> types for
     !> storing the row pointer and column indices arrays of the sparse matrices. \p rocsparse_spsv
     !> supports the following
     !> data types for \f$op(A)\f$, \f$x\f$, \f$y\f$ and compute types for \f$\alpha\f$:
@@ -18453,25 +18487,25 @@ module hipfort_rocsparse
     !> </table>
     !>
     !> \note
-    !> The sparse matrix formats currently supported are: \ref rocsparse_format_coo and \ref
-    !> rocsparse_format_csr.
+    !> The sparse matrix formats currently supported are: `rocsparse_format_coo` and
+    !> `rocsparse_format_csr`.
     !>
     !> \note
-    !> Only the \ref rocsparse_spsv_stage_buffer_size stage and the \ref
-    !> rocsparse_spsv_stage_compute stage are non-blocking
+    !> Only the `rocsparse_spsv_stage_buffer_size` stage and the `rocsparse_spsv_stage_compute`
+    !> stage are non-blocking
     !> and executed asynchronously with respect to the host. They can return before the actual
     !> computation has finished.
-    !> The \ref rocsparse_spsv_stage_preprocess stage is blocking with respect to the host.
+    !> The `rocsparse_spsv_stage_preprocess` stage is blocking with respect to the host.
     !>
     !> \note
-    !> Currently, only \p trans == \ref rocsparse_operation_none and \p trans == \ref
-    !> rocsparse_operation_transpose is supported.
+    !> Currently, only \p trans == `rocsparse_operation_none` and \p trans ==
+    !> `rocsparse_operation_transpose` is supported.
     !>
     !> \note
-    !> Only the \ref rocsparse_spsv_stage_buffer_size stage and the \ref
-    !> rocsparse_spsv_stage_compute stage
-    !> support execution in a hipGraph context. The \ref rocsparse_spsv_stage_preprocess stage does
-    !> not support hipGraph.
+    !> Only the `rocsparse_spsv_stage_buffer_size` stage and the `rocsparse_spsv_stage_compute`
+    !> stage
+    !> support execution in a hipGraph context. The `rocsparse_spsv_stage_preprocess` stage does not
+    !> support hipGraph.
     !>
     !> \note
     !> This routine does not support batched computation.
@@ -18498,7 +18532,7 @@ module hipfort_rocsparse
     !> buffer_size  number of bytes of the temporary storage buffer.
     !> @param[in]
     !> temp_buffer  temporary storage buffer allocated by the user. When the
-    !> \ref rocsparse_spsv_stage_buffer_size stage is passed,
+    !> `rocsparse_spsv_stage_buffer_size` stage is passed,
     !> the required allocation size (in bytes) is written to \p buffer_size and the
     !> function returns without performing the SpSV operation.
     !> This buffer is non-persistent, and no data is stored in it. Therefore, this memory
@@ -18566,8 +18600,8 @@ module hipfort_rocsparse
     !> @param[out]
     !> buffer_size_in_bytes  number of bytes of the buffer.
     !> @param[out]
-    !> p_error error descriptor created if the returned status is not \ref rocsparse_status_success.
-    !> A null pointer can be passed if an error descriptor is not required.
+    !> p_error error descriptor created if the returned status is not `rocsparse_status_success`. A
+    !> null pointer can be passed if an error descriptor is not required.
     !>
     !> \retval rocsparse_status_success the operation completed successfully.
     !> \retval rocsparse_status_invalid_handle the library context was not initialized.
@@ -18629,11 +18663,11 @@ module hipfort_rocsparse
     !> matrix. Both \f$X\f$
     !> and \f$Y\f$ can be in row or column order.
     !>
-    !> Performing the above operation requires two stages, the stage \ref
-    !> rocsparse_sptrsm_stage_analysis and the stage \ref rocsparse_sptrsm_stage_compute.
-    !> The stage \ref rocsparse_sptrsm_stage_analysis is required to perform the stage \ref
-    !> rocsparse_sptrsm_stage_compute and only needs to be called once for a given sparse matrix
-    !> \f$op(A)\f$, while the stage \ref rocsparse_sptrsm_stage_compute can be repeatedly used with
+    !> Performing the above operation requires two stages, the stage
+    !> `rocsparse_sptrsm_stage_analysis` and the stage `rocsparse_sptrsm_stage_compute`.
+    !> The stage `rocsparse_sptrsm_stage_analysis` is required to perform the stage
+    !> `rocsparse_sptrsm_stage_compute` and only needs to be called once for a given sparse matrix
+    !> \f$op(A)\f$, while the stage `rocsparse_sptrsm_stage_compute` can be repeatedly used with
     !> different \f$X\f$ and \f$Y\f$ matrices.
     !>
     !> As noted above, both \f$X\f$ and \f$Y\f$ can be in row or column order (this includes mixing
@@ -18654,8 +18688,8 @@ module hipfort_rocsparse
     !> \f$X\f$ (or column order if
     !> \f$X\f$ is being transposed).
     !>
-    !> \p rocsparse_sptrsm supports \ref rocsparse_indextype_i32 and \ref rocsparse_indextype_i64
-    !> index precisions for storing the
+    !> \p rocsparse_sptrsm supports `rocsparse_indextype_i32` and `rocsparse_indextype_i64` index
+    !> precisions for storing the
     !> row pointer and column indices arrays of the sparse matrices. \p rocsparse_sptrsm supports
     !> the following data types for
     !> \f$op(A)\f$, \f$op(X)\f$, \f$Y\f$, and compute types for \f$\alpha\f$:
@@ -18671,24 +18705,24 @@ module hipfort_rocsparse
     !> </table>
     !>
     !> \note
-    !> The sparse matrix formats currently supported are: \ref rocsparse_format_coo and \ref
-    !> rocsparse_format_csr.
+    !> The sparse matrix formats currently supported are: `rocsparse_format_coo` and
+    !> `rocsparse_format_csr`.
     !>
     !> \note
-    !> Only the \ref rocsparse_sptrsm_stage_compute stage is non-blocking
+    !> Only the `rocsparse_sptrsm_stage_compute` stage is non-blocking
     !> and executed asynchronously with respect to the host. It can return before the actual
     !> computation has finished.
-    !> The \ref rocsparse_sptrsm_stage_analysis stage is blocking with respect to the host.
+    !> The `rocsparse_sptrsm_stage_analysis` stage is blocking with respect to the host.
     !>
     !> \note
-    !> Currently, only \p trans_A == \ref rocsparse_operation_none and \p trans_A == \ref
-    !> rocsparse_operation_transpose are supported.
-    !> Currently, only \p trans_X == \ref rocsparse_operation_none and \p trans_X == \ref
-    !> rocsparse_operation_transpose are supported.
+    !> Currently, only \p trans_A == `rocsparse_operation_none` and \p trans_A ==
+    !> `rocsparse_operation_transpose` are supported.
+    !> Currently, only \p trans_X == `rocsparse_operation_none` and \p trans_X ==
+    !> `rocsparse_operation_transpose` are supported.
     !>
     !> \note
-    !> Only the stage \ref rocsparse_sptrsm_stage_compute
-    !> supports execution in a hipGraph context. The \ref rocsparse_sptrsm_stage_analysis stage does
+    !> Only the stage `rocsparse_sptrsm_stage_compute`
+    !> supports execution in a hipGraph context. The `rocsparse_sptrsm_stage_analysis` stage does
     !> not support hipGraph.
     !>
     !> \note
@@ -18711,8 +18745,8 @@ module hipfort_rocsparse
     !> @param[in]
     !> buffer  temporary storage buffer allocated by the user.
     !> @param[out]
-    !> p_error error descriptor created if the returned status is not \ref rocsparse_status_success.
-    !> A null pointer can be passed if an error descriptor is not required.
+    !> p_error error descriptor created if the returned status is not `rocsparse_status_success`. A
+    !> null pointer can be passed if an error descriptor is not required.
     !>
     !> \retval      rocsparse_status_success the operation completed successfully.
     !> \retval      rocsparse_status_invalid_handle the library context was not initialized.
@@ -18774,8 +18808,8 @@ module hipfort_rocsparse
     !> @param[out]
     !> buffer_size_in_bytes  number of bytes of the buffer.
     !> @param[out]
-    !> p_error error descriptor created if the returned status is not \ref rocsparse_status_success.
-    !> A null pointer can be passed if an error descriptor is not required.
+    !> p_error error descriptor created if the returned status is not `rocsparse_status_success`. A
+    !> null pointer can be passed if an error descriptor is not required.
     !>
     !> \retval rocsparse_status_success the operation completed successfully.
     !> \retval rocsparse_status_invalid_handle the library context was not initialized.
@@ -18828,11 +18862,11 @@ module hipfort_rocsparse
     !> and where \f$y\f$ is the dense solution vector and \f$x\f$ is the dense right-hand side
     !> vector.
     !>
-    !> Performing the above operation requires two stages, the stage \ref
-    !> rocsparse_sptrsv_stage_analysis and the stage \ref rocsparse_sptrsv_stage_compute.
-    !> The stage \ref rocsparse_sptrsv_stage_analysis is required to perform the stage \ref
-    !> rocsparse_sptrsv_stage_compute and only need to be called once for a given sparse matrix
-    !> \f$op(A)\f$, while the stage \ref rocsparse_sptrsv_stage_compute can be repeatedly used with
+    !> Performing the above operation requires two stages, the stage
+    !> `rocsparse_sptrsv_stage_analysis` and the stage `rocsparse_sptrsv_stage_compute`.
+    !> The stage `rocsparse_sptrsv_stage_analysis` is required to perform the stage
+    !> `rocsparse_sptrsv_stage_compute` and only need to be called once for a given sparse matrix
+    !> \f$op(A)\f$, while the stage `rocsparse_sptrsv_stage_compute` can be repeatedly used with
     !> different \f$x\f$ and \f$y\f$ vectors.
     !>
     !> \p rocsparse_sptrsv supports the following
@@ -18851,20 +18885,20 @@ module hipfort_rocsparse
     !> \note The descriptor \p rocsparse_sptrsv_descr needs to be configured with \ref
     !> rocsparse_sptrsv_set_input.
     !> \note
-    !> The sparse matrix formats currently supported are: \ref rocsparse_format_coo and \ref
-    !> rocsparse_format_csr.
+    !> The sparse matrix formats currently supported are: `rocsparse_format_coo` and
+    !> `rocsparse_format_csr`.
     !>
     !> \note
-    !> the \ref rocsparse_sptrsv_stage_compute stage is non-blocking
+    !> the `rocsparse_sptrsv_stage_compute` stage is non-blocking
     !> and executed asynchronously with respect to the host. It can return before the actual
     !> computation has finished.
-    !> The \ref rocsparse_sptrsv_stage_analysis stage is blocking with respect to the host.
+    !> The `rocsparse_sptrsv_stage_analysis` stage is blocking with respect to the host.
     !>
     !> \note
-    !> Currently, only \p trans == \ref rocsparse_operation_none and \p trans == \ref
-    !> rocsparse_operation_transpose are supported.
-    !> Only the \ref rocsparse_sptrsv_stage_compute stage
-    !> supports execution in a hipGraph context. The \ref rocsparse_sptrsv_stage_analysis stage does
+    !> Currently, only \p trans == `rocsparse_operation_none` and \p trans ==
+    !> `rocsparse_operation_transpose` are supported.
+    !> Only the `rocsparse_sptrsv_stage_compute` stage
+    !> supports execution in a hipGraph context. The `rocsparse_sptrsv_stage_analysis` stage does
     !> not support hipGraph.
     !>
     !> \note
@@ -18887,8 +18921,8 @@ module hipfort_rocsparse
     !> @param[in]
     !> buffer       buffer allocated by the user.
     !> @param[out]
-    !> p_error error descriptor created if the returned status is not \ref rocsparse_status_success.
-    !> A null pointer can be passed if the user is not interested in obtaining an error descriptor.
+    !> p_error error descriptor created if the returned status is not `rocsparse_status_success`. A
+    !> null pointer can be passed if the user is not interested in obtaining an error descriptor.
     !>
     !> \retval      rocsparse_status_success the operation completed successfully.
     !> \retval      rocsparse_status_invalid_handle the library context was not initialized.
@@ -19071,7 +19105,7 @@ module hipfort_rocsparse
     !> @param[out]
     !> buffer_size_in_bytes  number of bytes of the buffer.
     !> @param[out]
-    !> error error descriptor created if the returned status is not \ref rocsparse_status_success. A
+    !> error error descriptor created if the returned status is not `rocsparse_status_success`. A
     !> null pointer can be passed if an error descriptor is not required.
     !>
     !> \retval rocsparse_status_success the operation completed successfully.
@@ -19123,20 +19157,20 @@ module hipfort_rocsparse
     !> \right.
     !> \f]
     !>
-    !> \note The sparse matrix format \ref rocsparse_format_bell is not supported.
+    !> \note The sparse matrix format `rocsparse_format_bell` is not supported.
     !>
-    !> Performing the above operation involves two stages. The first stage is \ref
-    !> rocsparse_v2_spmv_stage_analysis. This will perform an analysis
-    !> of the symbolic information of \f$op(A)\f$. The second stage is \ref
-    !> rocsparse_v2_spmv_stage_compute, which corresponds to the actual calculation.
+    !> Performing the above operation involves two stages. The first stage is
+    !> `rocsparse_v2_spmv_stage_analysis`. This will perform an analysis
+    !> of the symbolic information of \f$op(A)\f$. The second stage is
+    !> `rocsparse_v2_spmv_stage_compute`, which corresponds to the actual calculation.
     !> The size of the buffer required for each stage is determined by calling the routine \ref
     !> rocsparse_v2_spmv_buffer_size.
-    !> The stage \ref rocsparse_v2_spmv_stage_analysis only needs to be called once for a given
-    !> sparse matrix \f$op(A)\f$, while the computation stage can be repeatedly used
+    !> The stage `rocsparse_v2_spmv_stage_analysis` only needs to be called once for a given sparse
+    !> matrix \f$op(A)\f$, while the computation stage can be repeatedly used
     !> with different \f$x\f$ and \f$y\f$ vectors.
     !>
-    !> \note The stage \ref rocsparse_v2_spmv_stage_analysis is mandatory. An error will be returned
-    !> if that stage was not executed before the stage \ref rocsparse_v2_spmv_stage_compute.
+    !> \note The stage `rocsparse_v2_spmv_stage_analysis` is mandatory. An error will be returned if
+    !> that stage was not executed before the stage `rocsparse_v2_spmv_stage_compute`.
     !>
     !> \p rocsparse_v2_spmv supports multiple algorithms. These algorithms have different trade-offs
     !> depending on the sparsity pattern of the matrix,
@@ -19242,26 +19276,26 @@ module hipfort_rocsparse
     !> <tr><td>rocsparse_datatype_f64_r <td>rocsparse_datatype_f64_c
     !> </table>
     !>
-    !> \p rocsparse_v2_spmv supports \ref rocsparse_indextype_i32 and \ref rocsparse_indextype_i64
-    !> index precisions
+    !> \p rocsparse_v2_spmv supports `rocsparse_indextype_i32` and `rocsparse_indextype_i64` index
+    !> precisions
     !> for storing the row pointer and column indices arrays of the sparse matrices.
     !>
     !> \note
     !> None of the algorithms above are deterministic when \f$A\f$ is transposed.
     !>
     !> \note
-    !> All the sparse matrix formats are supported except \ref rocsparse_format_bell.
+    !> All the sparse matrix formats are supported except `rocsparse_format_bell`.
     !>
     !> \note
-    !> The \ref rocsparse_v2_spmv_stage_compute stage is non-blocking
+    !> The `rocsparse_v2_spmv_stage_compute` stage is non-blocking
     !> and executed asynchronously with respect to the host. It can return before the actual
     !> computation has finished.
-    !> The stage \ref rocsparse_v2_spmv_stage_analysis is blocking with respect to the host.
+    !> The stage `rocsparse_v2_spmv_stage_analysis` is blocking with respect to the host.
     !>
     !> \note
-    !> Only the stage \ref rocsparse_v2_spmv_stage_compute
-    !> supports execution in a hipGraph context. The \ref rocsparse_v2_spmv_stage_analysis stage
-    !> does not support hipGraph.
+    !> Only the stage `rocsparse_v2_spmv_stage_compute`
+    !> supports execution in a hipGraph context. The `rocsparse_v2_spmv_stage_analysis` stage does
+    !> not support hipGraph.
     !>
     !> \note
     !> This routine does not support batched computation.
@@ -19288,7 +19322,7 @@ module hipfort_rocsparse
     !> @param[in]
     !> buffer       temporary buffer allocated by the user.
     !> @param[out]
-    !> error error descriptor created if the returned status is not \ref rocsparse_status_success. A
+    !> error error descriptor created if the returned status is not `rocsparse_status_success`. A
     !> null pointer can be passed if an error descriptor is not required.
     !>
     !> \retval      rocsparse_status_success the operation completed successfully.
@@ -19362,8 +19396,8 @@ module hipfort_rocsparse
     !> z_vecs          array of dense vector descriptors for z vectors. All vectors must have a
     !> data type matching the compute data type and have the same size.
     !> @param[out]
-    !> p_error error descriptor created if the returned status is not \ref rocsparse_status_success.
-    !> A null pointer can be passed if an error descriptor is not required.
+    !> p_error error descriptor created if the returned status is not `rocsparse_status_success`. A
+    !> null pointer can be passed if an error descriptor is not required.
     !>
     !> \retval rocsparse_status_success the operation completed successfully.
     !> \retval rocsparse_status_invalid_handle the library context was not initialized.
@@ -19406,8 +19440,8 @@ module hipfort_rocsparse
     !> @param[inout]
     !> descr           SpMV descriptor.
     !> @param[out]
-    !> p_error error descriptor created if the returned status is not \ref rocsparse_status_success.
-    !> A null pointer can be passed if an error descriptor is not required.
+    !> p_error error descriptor created if the returned status is not `rocsparse_status_success`. A
+    !> null pointer can be passed if an error descriptor is not required.
     !>
     !> \retval rocsparse_status_success the operation completed successfully.
     !> \retval rocsparse_status_invalid_handle the library context was not initialized.
@@ -19468,7 +19502,7 @@ module hipfort_rocsparse
     !> @param[inout]
     !> y           array of values in dense format.
     !> @param[in]
-    !> idx_base    \ref rocsparse_index_base_zero or \ref rocsparse_index_base_one.
+    !> idx_base    `rocsparse_index_base_zero` or `rocsparse_index_base_one`.
     !>
     !> \retval rocsparse_status_success the operation completed successfully.
     !> \retval rocsparse_status_invalid_handle the library context was not initialized.
@@ -19606,7 +19640,7 @@ module hipfort_rocsparse
     !> @param[out]
     !> result      pointer to the result, which can be in host or device memory.
     !> @param[in]
-    !> idx_base    \ref rocsparse_index_base_zero or \ref rocsparse_index_base_one.
+    !> idx_base    `rocsparse_index_base_zero` or `rocsparse_index_base_one`.
     !>
     !> \retval rocsparse_status_success the operation completed successfully.
     !> \retval rocsparse_status_invalid_handle the library context was not initialized.
@@ -19700,7 +19734,7 @@ module hipfort_rocsparse
     !> @param[out]
     !> result      pointer to the result, which can be in host or device memory.
     !> @param[in]
-    !> idx_base    \ref rocsparse_index_base_zero or \ref rocsparse_index_base_one.
+    !> idx_base    `rocsparse_index_base_zero` or `rocsparse_index_base_one`.
     !>
     !> \retval rocsparse_status_success the operation completed successfully.
     !> \retval rocsparse_status_invalid_handle the library context was not initialized.
@@ -19834,7 +19868,7 @@ module hipfort_rocsparse
     !> x_ind       array of \p nnz elements containing the indices of the non-zero
     !> values of \f$x\f$.
     !> @param[in]
-    !> idx_base    \ref rocsparse_index_base_zero or \ref rocsparse_index_base_one.
+    !> idx_base    `rocsparse_index_base_zero` or `rocsparse_index_base_one`.
     !>
     !> \retval     rocsparse_status_success the operation completed successfully.
     !> \retval     rocsparse_status_invalid_handle the library context was not initialized.
@@ -19964,7 +19998,7 @@ module hipfort_rocsparse
     !> x_ind       array of \p nnz elements containing the indices of the non-zero
     !> values of \f$x\f$.
     !> @param[in]
-    !> idx_base    \ref rocsparse_index_base_zero or \ref rocsparse_index_base_one.
+    !> idx_base    `rocsparse_index_base_zero` or `rocsparse_index_base_one`.
     !>
     !> \retval     rocsparse_status_success the operation completed successfully.
     !> \retval     rocsparse_status_invalid_handle the library context was not initialized.
@@ -20100,7 +20134,7 @@ module hipfort_rocsparse
     !> @param[in]
     !> s           pointer to the sine element of \f$G\f$, can be on the host or device.
     !> @param[in]
-    !> idx_base    \ref rocsparse_index_base_zero or \ref rocsparse_index_base_one.
+    !> idx_base    `rocsparse_index_base_zero` or `rocsparse_index_base_one`.
     !>
     !> \retval     rocsparse_status_success the operation completed successfully.
     !> \retval     rocsparse_status_invalid_handle the library context was not initialized.
@@ -20190,7 +20224,7 @@ module hipfort_rocsparse
     !> @param[inout]
     !> y           array of values in dense format.
     !> @param[in]
-    !> idx_base    \ref rocsparse_index_base_zero or \ref rocsparse_index_base_one.
+    !> idx_base    `rocsparse_index_base_zero` or `rocsparse_index_base_one`.
     !>
     !> \retval     rocsparse_status_success the operation completed successfully.
     !> \retval     rocsparse_status_invalid_handle the library context was not initialized.
@@ -20343,7 +20377,7 @@ module hipfort_rocsparse
     !> nnzb        number of non-zero blocks of the sparse BSR matrix.
     !> @param[in]
     !> descr       descriptor of the sparse BSR matrix. Currently, only
-    !> \ref rocsparse_matrix_type_general is supported.
+    !> `rocsparse_matrix_type_general` is supported.
     !> @param[in]
     !> bsr_val     array of \p nnzb blocks of the sparse BSR matrix.
     !> @param[in]
@@ -20366,8 +20400,8 @@ module hipfort_rocsparse
     !> could not be allocated.
     !> \retval     rocsparse_status_internal_error an internal error occurred.
     !> \retval     rocsparse_status_not_implemented
-    !> \p trans != \ref rocsparse_operation_none or
-    !> `rocsparse_matrix_type` != \ref rocsparse_matrix_type_general.
+    !> \p trans != `rocsparse_operation_none` or
+    !> `rocsparse_matrix_type` != `rocsparse_matrix_type_general`.
     function rocsparse_sbsrmv_analysis_raw(handle, dir, trans, mb, nb, nnzb, descr, bsr_val, &
                                            bsr_row_ptr, bsr_col_ind, block_dim, info) &
        result(sbsrmv_analysis_raw) &
@@ -20540,7 +20574,7 @@ module hipfort_rocsparse
     !> It can return before the actual computation has finished.
     !>
     !> \note
-    !> Currently, only \p trans == \ref rocsparse_operation_none is supported.
+    !> Currently, only \p trans == `rocsparse_operation_none` is supported.
     !>
     !> \note
     !> This routine supports execution in a hipGraph context.
@@ -20561,7 +20595,7 @@ module hipfort_rocsparse
     !> alpha       scalar \f$\alpha\f$.
     !> @param[in]
     !> descr       descriptor of the sparse BSR matrix. Currently, only
-    !> \ref rocsparse_matrix_type_general is supported.
+    !> `rocsparse_matrix_type_general` is supported.
     !> @param[in]
     !> bsr_val     array of \p nnzb blocks of the sparse BSR matrix.
     !> @param[in]
@@ -20591,8 +20625,8 @@ module hipfort_rocsparse
     !> \p bsr_row_ind, \p bsr_col_ind, \p x, \p beta, or \p y pointer is invalid.
     !> \retval     rocsparse_status_arch_mismatch the device is not supported.
     !> \retval     rocsparse_status_not_implemented
-    !> \p trans != \ref rocsparse_operation_none or
-    !> `rocsparse_matrix_type` != \ref rocsparse_matrix_type_general.
+    !> \p trans != `rocsparse_operation_none` or
+    !> `rocsparse_matrix_type` != `rocsparse_matrix_type_general`.
     !>
     !> \par Example
     !> This example performs a sparse matrix vector multiplication in BSR format.
@@ -20767,14 +20801,14 @@ module hipfort_rocsparse
     !---------------------------------------------
     !> \ingroup level2_module
     !> \details
-    !> \p rocsparse_bsrsv_zero_pivot returns \ref rocsparse_status_zero_pivot if either a
+    !> \p rocsparse_bsrsv_zero_pivot returns `rocsparse_status_zero_pivot` if either a
     !> structural or numerical zero has been found during \ref rocsparse_sbsrsv_solve
     !> "rocsparse_sbsrsv_solve()"
     !> computation. The first zero pivot \f$j\f$ at \f$A_{j,j}\f$ is stored in \p position,
     !> using the same index base as the BSR matrix.
     !>
     !> \p position can be in host or device memory. If no zero pivot has been found,
-    !> \p position is set to -1 and \ref rocsparse_status_success is returned instead.
+    !> \p position is set to -1 and `rocsparse_status_success` is returned instead.
     !>
     !> \note \p rocsparse_bsrsv_zero_pivot is a blocking function. It might negatively influence
     !> performance.
@@ -20801,11 +20835,10 @@ module hipfort_rocsparse
        import :: c_ptr, c_int
        type(c_ptr), value :: handle
        type(c_ptr), value :: info
-       type(c_ptr), value :: position
+       integer(c_int) :: position
        integer(c_int) :: bsrsv_zero_pivot_raw
     end function rocsparse_bsrsv_zero_pivot_raw
 
-    module procedure rocsparse_bsrsv_zero_pivot_native
     module procedure rocsparse_bsrsv_zero_pivot_typed
   end interface rocsparse_bsrsv_zero_pivot
 
@@ -20865,8 +20898,8 @@ module hipfort_rocsparse
     !> \p bsr_col_ind, \p info, or \p buffer_size pointer is invalid.
     !> \retval     rocsparse_status_internal_error an internal error occurred.
     !> \retval     rocsparse_status_not_implemented
-    !> \p trans == \ref rocsparse_operation_conjugate_transpose or
-    !> `rocsparse_matrix_type` != \ref rocsparse_matrix_type_general.
+    !> \p trans == `rocsparse_operation_conjugate_transpose` or
+    !> `rocsparse_matrix_type` != `rocsparse_matrix_type_general`.
     function rocsparse_sbsrsv_buffer_size_raw(handle, dir, trans, mb, nnzb, descr, bsr_val, &
                                               bsr_row_ptr, bsr_col_ind, block_dim, info, &
                                               buffer_size) &
@@ -20994,11 +21027,11 @@ module hipfort_rocsparse
     !> \p rocsparse_bsrsv_analysis can share its meta data with \ref rocsparse_sbsrsm_analysis
     !> "rocsparse_Xbsrsm_analysis()",
     !> \ref rocsparse_sbsrilu0_analysis "rocsparse_Xbsrilu0_analysis()", and
-    !> \ref rocsparse_sbsric0_analysis "rocsparse_Xbsric0_analysis()". Selecting \ref
-    !> rocsparse_analysis_policy_reuse policy
+    !> \ref rocsparse_sbsric0_analysis "rocsparse_Xbsric0_analysis()". Selecting
+    !> `rocsparse_analysis_policy_reuse` policy
     !> can greatly improve computation performance of metadata. However, the user needs to ensure
     !> that the sparsity
-    !> pattern remains unchanged. Otherwise, \ref rocsparse_analysis_policy_force has to be used.
+    !> pattern remains unchanged. Otherwise, `rocsparse_analysis_policy_force` has to be used.
     !>
     !> \note
     !> If the matrix sparsity pattern changes, the gathered information will become invalid.
@@ -21035,10 +21068,10 @@ module hipfort_rocsparse
     !> info        structure that holds the information collected during
     !> the analysis step.
     !> @param[in]
-    !> analysis    \ref rocsparse_analysis_policy_reuse or
-    !> \ref rocsparse_analysis_policy_force.
+    !> analysis    `rocsparse_analysis_policy_reuse` or
+    !> `rocsparse_analysis_policy_force`.
     !> @param[in]
-    !> solve       \ref rocsparse_solve_policy_auto.
+    !> solve       `rocsparse_solve_policy_auto`.
     !> @param[in]
     !> temp_buffer temporary storage buffer allocated by the user.
     !>
@@ -21049,8 +21082,8 @@ module hipfort_rocsparse
     !> \p bsr_col_ind, \p info, or \p temp_buffer pointer is invalid.
     !> \retval     rocsparse_status_internal_error an internal error occurred.
     !> \retval     rocsparse_status_not_implemented
-    !> \p trans == \ref rocsparse_operation_conjugate_transpose or
-    !> `rocsparse_matrix_type` != \ref rocsparse_matrix_type_general.
+    !> \p trans == `rocsparse_operation_conjugate_transpose` or
+    !> `rocsparse_matrix_type` != `rocsparse_matrix_type_general`.
     function rocsparse_sbsrsv_analysis_raw(handle, dir, trans, mb, nnzb, descr, bsr_val, &
                                            bsr_row_ptr, bsr_col_ind, block_dim, info, analysis, &
                                            solve, temp_buffer) &
@@ -21257,26 +21290,25 @@ module hipfort_rocsparse
     !> location of the first
     !> zero pivot (either numerical or structural zero). The zero pivot status can be checked by
     !> calling `rocsparse_bsrsv_zero_pivot` ().
-    !> If `rocsparse_bsrsv_zero_pivot` () returns \ref rocsparse_status_success, then no zero pivot
-    !> was found and therefore
+    !> If `rocsparse_bsrsv_zero_pivot` () returns `rocsparse_status_success`, then no zero pivot was
+    !> found and therefore
     !> the matrix does not have a structural or numerical zero.
     !>
     !> The user can specify that the sparse matrix should be interpreted as having identity blocks
     !> on the diagonal by setting the diagonal
-    !> type on the descriptor \p descr to \ref rocsparse_diag_type_unit using
+    !> type on the descriptor \p descr to `rocsparse_diag_type_unit` using
     !> `rocsparse_set_mat_diag_type`. If
-    !> `rocsparse_diag_type` == \ref rocsparse_diag_type_unit, no zero pivot will be reported, even
-    !> if the diagonal block \f$A_{j,j}\f$
+    !> `rocsparse_diag_type` == `rocsparse_diag_type_unit`, no zero pivot will be reported, even if
+    !> the diagonal block \f$A_{j,j}\f$
     !> for some \f$j\f$ is not invertible.
     !>
     !> The sparse CSR matrix passed to \p rocsparse_bsrsv_solve does not actually have to be a
     !> triangular matrix. Instead, the
     !> triangular upper or lower part of the sparse matrix is solved based on `rocsparse_fill_mode`
     !> set on the descriptor
-    !> \p descr. If the fill mode is set to \ref rocsparse_fill_mode_lower, then the lower
-    !> triangular matrix is solved. If the
-    !> fill mode is set to \ref rocsparse_fill_mode_upper, then the upper triangular matrix is
-    !> solved.
+    !> \p descr. If the fill mode is set to `rocsparse_fill_mode_lower`, then the lower triangular
+    !> matrix is solved. If the
+    !> fill mode is set to `rocsparse_fill_mode_upper`, then the upper triangular matrix is solved.
     !>
     !> \note
     !> The sparse BSR matrix has to be sorted.
@@ -21286,8 +21318,8 @@ module hipfort_rocsparse
     !> It can return before the actual computation has finished.
     !>
     !> \note
-    !> Currently, only \p trans == \ref rocsparse_operation_none and
-    !> \p trans == \ref rocsparse_operation_transpose are supported.
+    !> Currently, only \p trans == `rocsparse_operation_none` and
+    !> \p trans == `rocsparse_operation_transpose` are supported.
     !>
     !> \note
     !> This routine supports execution in a hipGraph context.
@@ -21323,7 +21355,7 @@ module hipfort_rocsparse
     !> @param[out]
     !> y           array of \p m elements, holding the solution.
     !> @param[in]
-    !> policy      \ref rocsparse_solve_policy_auto.
+    !> policy      `rocsparse_solve_policy_auto`.
     !> @param[in]
     !> temp_buffer temporary storage buffer allocated by the user.
     !>
@@ -21335,8 +21367,8 @@ module hipfort_rocsparse
     !> \retval     rocsparse_status_arch_mismatch the device is not supported.
     !> \retval     rocsparse_status_internal_error an internal error occurred.
     !> \retval     rocsparse_status_not_implemented
-    !> \p trans == \ref rocsparse_operation_conjugate_transpose or
-    !> `rocsparse_matrix_type` != \ref rocsparse_matrix_type_general.
+    !> \p trans == `rocsparse_operation_conjugate_transpose` or
+    !> `rocsparse_matrix_type` != `rocsparse_matrix_type_general`.
     !>
     !> \par Example
     !> Consider the lower triangular \f$m \times m\f$ matrix \f$L\f$, stored in BSR
@@ -21505,7 +21537,7 @@ module hipfort_rocsparse
     !> It can return before the actual computation has finished.
     !>
     !> \note
-    !> Currently, only \p trans == \ref rocsparse_operation_none is supported.
+    !> Currently, only \p trans == `rocsparse_operation_none` is supported.
     !> Currently, \p block_dim==1 is not supported.
     !>
     !> \note
@@ -21529,7 +21561,7 @@ module hipfort_rocsparse
     !> alpha       scalar \f$\alpha\f$.
     !> @param[in]
     !> descr       descriptor of the sparse BSR matrix. Currently, only
-    !> \ref rocsparse_matrix_type_general is supported.
+    !> `rocsparse_matrix_type_general` is supported.
     !> @param[in]
     !> bsr_val     array of \p nnzb blocks of the sparse BSR matrix.
     !>
@@ -21567,8 +21599,8 @@ module hipfort_rocsparse
     !> \p bsr_row_ind, \p bsr_col_ind, \p x, \p beta, or \p y pointer is invalid.
     !> \retval     rocsparse_status_arch_mismatch the device is not supported.
     !> \retval     rocsparse_status_not_implemented
-    !> \p block_dim==1, \p trans != \ref rocsparse_operation_none or
-    !> `rocsparse_matrix_type` != \ref rocsparse_matrix_type_general.
+    !> \p block_dim==1, \p trans != `rocsparse_operation_none` or
+    !> `rocsparse_matrix_type` != `rocsparse_matrix_type_general`.
     function rocsparse_sbsrxmv_raw(handle, dir, trans, size_of_mask, mb, nb, nnzb, alpha, descr, &
                                    bsr_val, bsr_mask_ptr, bsr_row_ptr, bsr_end_ptr, bsr_col_ind, &
                                    block_dim, x, beta, y) &
@@ -21770,7 +21802,7 @@ module hipfort_rocsparse
     !> alpha       scalar \f$\alpha\f$.
     !> @param[in]
     !> descr       descriptor of the sparse COO matrix. Currently, only
-    !> \ref rocsparse_matrix_type_general is supported.
+    !> `rocsparse_matrix_type_general` is supported.
     !> @param[in]
     !> coo_val     array of \p nnz elements of the sparse COO matrix.
     !> @param[in]
@@ -21795,7 +21827,7 @@ module hipfort_rocsparse
     !> \p coo_row_ind, \p coo_col_ind, \p x, \p beta, or \p y pointer is invalid.
     !> \retval     rocsparse_status_arch_mismatch the device is not supported.
     !> \retval     rocsparse_status_not_implemented
-    !> `rocsparse_matrix_type` != \ref rocsparse_matrix_type_general.
+    !> `rocsparse_matrix_type` != `rocsparse_matrix_type_general`.
     !>
     !> \par Example
     !> This example performs a sparse matrix vector multiplication in COO format.
@@ -21917,7 +21949,7 @@ module hipfort_rocsparse
     !---------------------------------------------
     !> \ingroup level2_module
     !> \details
-    !> \p rocsparse_csritsv_zero_pivot returns \ref rocsparse_status_zero_pivot if either a
+    !> \p rocsparse_csritsv_zero_pivot returns `rocsparse_status_zero_pivot` if either a
     !> structural or numerical zero has been found during
     !> \ref rocsparse_scsritsv_solve "rocsparse_Xcsritsv_solve()" and/or
     !> \ref rocsparse_scsritsv_analysis "rocsparse_Xcsritsv_analysis()" execution. The first zero
@@ -21925,7 +21957,7 @@ module hipfort_rocsparse
     !> \f$A_{j,j}\f$ is stored in \p position, using the same index base as the CSR matrix.
     !>
     !> \p position can be in host or device memory. If no zero pivot has been found,
-    !> \p position is set to -1 and \ref rocsparse_status_success is returned instead.
+    !> \p position is set to -1 and `rocsparse_status_success` is returned instead.
     !>
     !> \note \p rocsparse_csritsv_zero_pivot is a blocking function. It might negatively influence
     !> performance.
@@ -22009,8 +22041,8 @@ module hipfort_rocsparse
     !> \p csr_col_ind, \p info, or \p buffer_size pointer is invalid.
     !> \retval     rocsparse_status_internal_error an internal error occurred.
     !> \retval     rocsparse_status_not_implemented
-    !> `rocsparse_matrix_type` != \ref rocsparse_matrix_type_general and `rocsparse_matrix_type` !=
-    !> \ref rocsparse_matrix_type_triangular.
+    !> `rocsparse_matrix_type` != `rocsparse_matrix_type_general` and `rocsparse_matrix_type` !=
+    !> `rocsparse_matrix_type_triangular`.
     function rocsparse_scsritsv_buffer_size_raw(handle, trans, m, nnz, descr, csr_val, &
                                                 csr_row_ptr, csr_col_ind, info, buffer_size) &
        result(scsritsv_buffer_size_raw) &
@@ -22124,10 +22156,10 @@ module hipfort_rocsparse
     !> analysis meta data can be cleared by `rocsparse_csritsv_clear`().
     !>
     !> Selecting
-    !> \ref rocsparse_analysis_policy_reuse policy can greatly improve the computation
+    !> `rocsparse_analysis_policy_reuse` policy can greatly improve the computation
     !> performance of metadata. However, the user needs to ensure that the sparsity
     !> pattern remains unchanged. If this cannot be assured,
-    !> \ref rocsparse_analysis_policy_force has to be used.
+    !> `rocsparse_analysis_policy_force` has to be used.
     !>
     !> \note
     !> If the matrix sparsity pattern changes, the gathered information will become invalid.
@@ -22160,10 +22192,10 @@ module hipfort_rocsparse
     !> info        structure that holds the information collected during
     !> the analysis step.
     !> @param[in]
-    !> analysis    \ref rocsparse_analysis_policy_reuse or
-    !> \ref rocsparse_analysis_policy_force.
+    !> analysis    `rocsparse_analysis_policy_reuse` or
+    !> `rocsparse_analysis_policy_force`.
     !> @param[in]
-    !> solve       \ref rocsparse_solve_policy_auto.
+    !> solve       `rocsparse_solve_policy_auto`.
     !> @param[in]
     !> temp_buffer temporary storage buffer allocated by the user.
     !>
@@ -22174,8 +22206,8 @@ module hipfort_rocsparse
     !> \p csr_col_ind, \p info, or \p temp_buffer pointer is invalid.
     !> \retval     rocsparse_status_internal_error an internal error occurred.
     !> \retval     rocsparse_status_not_implemented
-    !> `rocsparse_matrix_type` != \ref rocsparse_matrix_type_general and `rocsparse_matrix_type` !=
-    !> \ref rocsparse_matrix_type_triangular.
+    !> `rocsparse_matrix_type` != `rocsparse_matrix_type_general` and `rocsparse_matrix_type` !=
+    !> `rocsparse_matrix_type_triangular`.
     function rocsparse_scsritsv_analysis_raw(handle, trans, m, nnz, descr, csr_val, csr_row_ptr, &
                                              csr_col_ind, info, analysis, solve, temp_buffer) &
        result(scsritsv_analysis_raw) &
@@ -22381,7 +22413,7 @@ module hipfort_rocsparse
     !> \ref rocsparse_scsritsv_analysis "rocsparse_Xcsritsv_analysis()". \p rocsparse_csritsv_solve
     !> reports the first zero pivot (either numerical or structural zero).
     !> The zero pivot status can be checked by calling `rocsparse_csritsv_zero_pivot`(). If
-    !> `rocsparse_diag_type` == \ref rocsparse_diag_type_unit, no zero pivot will be
+    !> `rocsparse_diag_type` == `rocsparse_diag_type_unit`, no zero pivot will be
     !> reported, even if \f$A_{j,j} = 0\f$ for some \f$j\f$.
     !>
     !> \note
@@ -22429,7 +22461,7 @@ module hipfort_rocsparse
     !> @param[inout]
     !> y              array of \p m elements, holding the solution.
     !> @param[in]
-    !> policy         \ref rocsparse_solve_policy_auto.
+    !> policy         `rocsparse_solve_policy_auto`.
     !> @param[in]
     !> temp_buffer    temporary storage buffer allocated by the user.
     !>
@@ -22441,8 +22473,8 @@ module hipfort_rocsparse
     !> \retval     rocsparse_status_arch_mismatch the device is not supported.
     !> \retval     rocsparse_status_internal_error an internal error occurred.
     !> \retval     rocsparse_status_not_implemented
-    !> `rocsparse_matrix_type` != \ref rocsparse_matrix_type_general and `rocsparse_matrix_type` !=
-    !> \ref rocsparse_matrix_type_triangular.
+    !> `rocsparse_matrix_type` != `rocsparse_matrix_type_general` and `rocsparse_matrix_type` !=
+    !> `rocsparse_matrix_type_triangular`.
     !>
     !> \par Example
     !> Consider the lower triangular \f$m \times m\f$ matrix \f$L\f$, stored in CSR
@@ -22735,7 +22767,7 @@ module hipfort_rocsparse
     !> rocsparse_csritsv_solve_ex
     !> reports the first zero pivot (either numerical or structural zero). The zero pivot status
     !> can be checked by calling `rocsparse_csritsv_zero_pivot()`. If
-    !> `rocsparse_diag_type` == \ref rocsparse_diag_type_unit, no zero pivot will be
+    !> `rocsparse_diag_type` == `rocsparse_diag_type_unit`, no zero pivot will be
     !> reported, even if \f$A_{j,j} = 0\f$ for some \f$j\f$.
     !>
     !> \note
@@ -22786,7 +22818,7 @@ module hipfort_rocsparse
     !> @param[inout]
     !> y           array of \p m elements, holding the solution.
     !> @param[in]
-    !> policy      \ref rocsparse_solve_policy_auto.
+    !> policy      `rocsparse_solve_policy_auto`.
     !> @param[in]
     !> temp_buffer temporary storage buffer allocated by the user.
     !>
@@ -22798,8 +22830,8 @@ module hipfort_rocsparse
     !> \retval     rocsparse_status_arch_mismatch the device is not supported.
     !> \retval     rocsparse_status_internal_error an internal error occurred.
     !> \retval     rocsparse_status_not_implemented
-    !> `rocsparse_matrix_type` != \ref rocsparse_matrix_type_general and `rocsparse_matrix_type` !=
-    !> \ref rocsparse_matrix_type_triangular.
+    !> `rocsparse_matrix_type` != `rocsparse_matrix_type_general` and `rocsparse_matrix_type` !=
+    !> `rocsparse_matrix_type_triangular`.
     !>
     !> \par Example
     !> Consider the lower triangular \f$m \times m\f$ matrix \f$L\f$, stored in CSR
@@ -23099,8 +23131,8 @@ module hipfort_rocsparse
     !> could not be allocated.
     !> \retval     rocsparse_status_internal_error an internal error occurred.
     !> \retval     rocsparse_status_not_implemented if `rocsparse_matrix_type` is not one of
-    !> \ref rocsparse_matrix_type_general, \ref rocsparse_matrix_type_symmetric, or
-    !> \ref rocsparse_matrix_type_triangular.
+    !> `rocsparse_matrix_type_general`, `rocsparse_matrix_type_symmetric`, or
+    !> `rocsparse_matrix_type_triangular`.
     function rocsparse_scsrmv_analysis_raw(handle, trans, m, n, nnz, descr, csr_val, csr_row_ptr, &
                                            csr_col_ind, info) &
        result(scsrmv_analysis_raw) &
@@ -23336,7 +23368,7 @@ module hipfort_rocsparse
     !> alpha       scalar \f$\alpha\f$.
     !> @param[in]
     !> descr       descriptor of the sparse CSR matrix. Currently, only
-    !> \ref rocsparse_matrix_type_general is supported.
+    !> `rocsparse_matrix_type_general` is supported.
     !> @param[in]
     !> csr_val     array of \p nnz elements of the sparse CSR matrix.
     !> @param[in]
@@ -23365,7 +23397,7 @@ module hipfort_rocsparse
     !> invalid.
     !> \retval     rocsparse_status_arch_mismatch the device is not supported.
     !> \retval     rocsparse_status_not_implemented
-    !> `rocsparse_matrix_type` != \ref rocsparse_matrix_type_general.
+    !> `rocsparse_matrix_type` != `rocsparse_matrix_type_general`.
     !>
     !> \par Example
     !> This example performs a sparse matrix vector multiplication in CSR format
@@ -23492,14 +23524,14 @@ module hipfort_rocsparse
     !---------------------------------------------
     !> \ingroup level2_module
     !> \details
-    !> \p rocsparse_csrsv_zero_pivot returns \ref rocsparse_status_zero_pivot if either a
+    !> \p rocsparse_csrsv_zero_pivot returns `rocsparse_status_zero_pivot` if either a
     !> structural or numerical zero has been found during \ref rocsparse_scsrsv_solve
     !> "rocsparse_Xcsrsv_solve()"
     !> computation. The first zero pivot \f$j\f$ at \f$A_{j,j}\f$ is stored in \p position,
     !> using the same index base as the CSR matrix.
     !>
     !> \p position can be in host or device memory. If no zero pivot has been found,
-    !> \p position is set to -1 and \ref rocsparse_status_success is returned instead.
+    !> \p position is set to -1 and `rocsparse_status_success` is returned instead.
     !>
     !> \note \p rocsparse_csrsv_zero_pivot is a blocking function. It might negatively influence
     !> performance.
@@ -23529,11 +23561,10 @@ module hipfort_rocsparse
        type(c_ptr), value :: handle
        type(c_ptr), value :: descr
        type(c_ptr), value :: info
-       type(c_ptr), value :: position
+       integer(c_int) :: position
        integer(c_int) :: csrsv_zero_pivot_raw
     end function rocsparse_csrsv_zero_pivot_raw
 
-    module procedure rocsparse_csrsv_zero_pivot_native
     module procedure rocsparse_csrsv_zero_pivot_typed
   end interface rocsparse_csrsv_zero_pivot
 
@@ -23592,8 +23623,8 @@ module hipfort_rocsparse
     !> \p csr_col_ind, \p info, or \p buffer_size pointer is invalid.
     !> \retval     rocsparse_status_internal_error an internal error occurred.
     !> \retval     rocsparse_status_not_implemented
-    !> \p trans == \ref rocsparse_operation_conjugate_transpose or
-    !> `rocsparse_matrix_type` != \ref rocsparse_matrix_type_general.
+    !> \p trans == `rocsparse_operation_conjugate_transpose` or
+    !> `rocsparse_matrix_type` != `rocsparse_matrix_type_general`.
     function rocsparse_scsrsv_buffer_size_raw(handle, trans, m, nnz, descr, csr_val, csr_row_ptr, &
                                               csr_col_ind, info, buffer_size) &
        result(scsrsv_buffer_size_raw) &
@@ -23715,10 +23746,10 @@ module hipfort_rocsparse
     !> \ref rocsparse_scsrsm_analysis "rocsparse_Xcsrsm_analysis()",
     !> \ref rocsparse_scsrilu0_analysis "rocsparse_Xcsrilu0_analysis()", and
     !> \ref rocsparse_scsric0_analysis "rocsparse_Xcsric0_analysis()". Selecting
-    !> \ref rocsparse_analysis_policy_reuse policy can greatly improve the computation
+    !> `rocsparse_analysis_policy_reuse` policy can greatly improve the computation
     !> performance of the metadata. However, the user needs to ensure that the sparsity
     !> pattern remains unchanged. If this cannot be assured,
-    !> \ref rocsparse_analysis_policy_force must be used.
+    !> `rocsparse_analysis_policy_force` must be used.
     !>
     !> \note
     !> If the matrix sparsity pattern changes, the gathered information will become invalid.
@@ -23751,10 +23782,10 @@ module hipfort_rocsparse
     !> info        structure that holds the information collected during
     !> the analysis step.
     !> @param[in]
-    !> analysis    \ref rocsparse_analysis_policy_reuse or
-    !> \ref rocsparse_analysis_policy_force.
+    !> analysis    `rocsparse_analysis_policy_reuse` or
+    !> `rocsparse_analysis_policy_force`.
     !> @param[in]
-    !> solve       \ref rocsparse_solve_policy_auto.
+    !> solve       `rocsparse_solve_policy_auto`.
     !> @param[in]
     !> temp_buffer temporary storage buffer allocated by the user.
     !>
@@ -23765,8 +23796,8 @@ module hipfort_rocsparse
     !> \p csr_col_ind, \p info, or \p temp_buffer pointer is invalid.
     !> \retval     rocsparse_status_internal_error an internal error occurred.
     !> \retval     rocsparse_status_not_implemented
-    !> \p trans == \ref rocsparse_operation_conjugate_transpose or
-    !> `rocsparse_matrix_type` != \ref rocsparse_matrix_type_general.
+    !> \p trans == `rocsparse_operation_conjugate_transpose` or
+    !> `rocsparse_matrix_type` != `rocsparse_matrix_type_general`.
     function rocsparse_scsrsv_analysis_raw(handle, trans, m, nnz, descr, csr_val, csr_row_ptr, &
                                            csr_col_ind, info, analysis, solve, temp_buffer) &
        result(scsrsv_analysis_raw) &
@@ -23967,26 +23998,25 @@ module hipfort_rocsparse
     !> first zero pivot (either numerical
     !> or structural zero). The zero pivot status can be checked by calling
     !> `rocsparse_csrsv_zero_pivot` (). If
-    !> `rocsparse_csrsv_zero_pivot` () returns \ref rocsparse_status_success, then no zero pivot was
+    !> `rocsparse_csrsv_zero_pivot` () returns `rocsparse_status_success`, then no zero pivot was
     !> found and therefore
     !> the matrix does not have a structural or numerical zero.
     !>
     !> The user can specify that the sparse matrix should be interpreted as having ones on the
     !> diagonal by setting the diagonal type
-    !> on the descriptor \p descr to \ref rocsparse_diag_type_unit using
-    !> `rocsparse_set_mat_diag_type`. If
-    !> `rocsparse_diag_type` == \ref rocsparse_diag_type_unit, no zero pivot will be reported, even
-    !> if \f$A_{j,j} = 0\f$ for
+    !> on the descriptor \p descr to `rocsparse_diag_type_unit` using `rocsparse_set_mat_diag_type`.
+    !> If
+    !> `rocsparse_diag_type` == `rocsparse_diag_type_unit`, no zero pivot will be reported, even if
+    !> \f$A_{j,j} = 0\f$ for
     !> some \f$j\f$.
     !>
     !> The sparse CSR matrix passed to \p rocsparse_csrsv_solve does not actually have to be a
     !> triangular matrix. Instead the
     !> triangular upper or lower part of the sparse matrix is solved based on `rocsparse_fill_mode`
     !> set on the descriptor
-    !> \p descr. If the fill mode is set to \ref rocsparse_fill_mode_lower, then the lower
-    !> triangular matrix is solved. If the
-    !> fill mode is set to \ref rocsparse_fill_mode_upper, then the upper triangular matrix is
-    !> solved.
+    !> \p descr. If the fill mode is set to `rocsparse_fill_mode_lower`, then the lower triangular
+    !> matrix is solved. If the
+    !> fill mode is set to `rocsparse_fill_mode_upper`, then the upper triangular matrix is solved.
     !>
     !> \note
     !> The sparse CSR matrix has to be sorted. This can be achieved by calling
@@ -23997,8 +24027,8 @@ module hipfort_rocsparse
     !> It can return before the actual computation has finished.
     !>
     !> \note
-    !> Currently, only \p trans == \ref rocsparse_operation_none and
-    !> \p trans == \ref rocsparse_operation_transpose is supported.
+    !> Currently, only \p trans == `rocsparse_operation_none` and
+    !> \p trans == `rocsparse_operation_transpose` is supported.
     !>
     !> \note
     !> This routine supports execution in a hipGraph context.
@@ -24030,7 +24060,7 @@ module hipfort_rocsparse
     !> @param[out]
     !> y           array of \p m elements, holding the solution.
     !> @param[in]
-    !> policy      \ref rocsparse_solve_policy_auto.
+    !> policy      `rocsparse_solve_policy_auto`.
     !> @param[in]
     !> temp_buffer temporary storage buffer allocated by the user.
     !>
@@ -24042,8 +24072,8 @@ module hipfort_rocsparse
     !> \retval     rocsparse_status_arch_mismatch the device is not supported.
     !> \retval     rocsparse_status_internal_error an internal error occurred.
     !> \retval     rocsparse_status_not_implemented
-    !> \p trans == \ref rocsparse_operation_conjugate_transpose or
-    !> `rocsparse_matrix_type` != \ref rocsparse_matrix_type_general.
+    !> \p trans == `rocsparse_operation_conjugate_transpose` or
+    !> `rocsparse_matrix_type` != `rocsparse_matrix_type_general`.
     !>
     !> \par Example
     !> Consider the lower triangular \f$m \times m\f$ matrix \f$L\f$, stored in CSR
@@ -24229,7 +24259,7 @@ module hipfort_rocsparse
     !> alpha       scalar \f$\alpha\f$.
     !> @param[in]
     !> descr       descriptor of the sparse ELL matrix. Currently, only
-    !> \ref rocsparse_matrix_type_general is supported.
+    !> `rocsparse_matrix_type_general` is supported.
     !> @param[in]
     !> ell_val     array that contains the elements of the sparse ELL matrix. Padded
     !> elements should be zero.
@@ -24253,7 +24283,7 @@ module hipfort_rocsparse
     !> \retval     rocsparse_status_invalid_pointer \p descr, \p alpha, \p ell_val,
     !> \p ell_col_ind, \p x, \p beta, or \p y pointer is invalid.
     !> \retval     rocsparse_status_not_implemented
-    !> `rocsparse_matrix_type` != \ref rocsparse_matrix_type_general.
+    !> `rocsparse_matrix_type` != `rocsparse_matrix_type_general`.
     !>
     !> \par Example
     !> This example performs a sparse matrix vector multiplication in ELL format. It also shows how
@@ -24397,7 +24427,7 @@ module hipfort_rocsparse
     !> It can return before the actual computation has finished.
     !>
     !> \note
-    !> Currently, only \p trans == \ref rocsparse_operation_none is supported.
+    !> Currently, only \p trans == `rocsparse_operation_none` is supported.
     !>
     !> \note
     !> This routine supports execution in a hipGraph context.
@@ -24418,7 +24448,7 @@ module hipfort_rocsparse
     !> alpha       scalar \f$\alpha\f$.
     !> @param[in]
     !> descr       descriptor of the sparse GEBSR matrix. Currently, only
-    !> \ref rocsparse_matrix_type_general is supported.
+    !> `rocsparse_matrix_type_general` is supported.
     !> @param[in]
     !> bsr_val     array of \p nnzb blocks of the sparse GEBSR matrix.
     !> @param[in]
@@ -24448,8 +24478,8 @@ module hipfort_rocsparse
     !> \p bsr_row_ind, \p bsr_col_ind, \p x, \p beta, or \p y pointer is invalid.
     !> \retval     rocsparse_status_arch_mismatch the device is not supported.
     !> \retval     rocsparse_status_not_implemented
-    !> \p trans != \ref rocsparse_operation_none or
-    !> `rocsparse_matrix_type` != \ref rocsparse_matrix_type_general.
+    !> \p trans != `rocsparse_operation_none` or
+    !> `rocsparse_matrix_type` != `rocsparse_matrix_type_general`.
     !>
     !> \par Example
     !> This example performs a sparse matrix vector multiplication in GEBSR format.
@@ -24616,8 +24646,8 @@ module hipfort_rocsparse
     !> \retval     rocsparse_status_invalid_size \p m, \p n, or \p nnz is invalid.
     !> \retval     rocsparse_status_invalid_pointer \p buffer_size pointer is invalid.
     !> \retval     rocsparse_status_not_implemented
-    !> \p trans != \ref rocsparse_operation_none or
-    !> `rocsparse_matrix_type` != \ref rocsparse_matrix_type_general.
+    !> \p trans != `rocsparse_operation_none` or
+    !> `rocsparse_matrix_type` != `rocsparse_matrix_type_general`.
     function rocsparse_sgemvi_buffer_size_raw(handle, trans, m, n, nnz, buffer_size) &
        result(sgemvi_buffer_size_raw) &
        bind(C, name="rocsparse_sgemvi_buffer_size")
@@ -24729,7 +24759,7 @@ module hipfort_rocsparse
     !> It can return before the actual computation has finished.
     !>
     !> \note
-    !> Currently, only \p trans == \ref rocsparse_operation_none is supported.
+    !> Currently, only \p trans == `rocsparse_operation_none` is supported.
     !>
     !> \note
     !> This routine supports execution in a hipGraph context.
@@ -24770,8 +24800,8 @@ module hipfort_rocsparse
     !> \retval     rocsparse_status_invalid_pointer \p alpha, \p A, \p x_val, \p x_ind,
     !> \p beta, \p y, or \p temp_buffer pointer is invalid.
     !> \retval     rocsparse_status_not_implemented
-    !> \p trans != \ref rocsparse_operation_none or
-    !> `rocsparse_matrix_type` != \ref rocsparse_matrix_type_general.
+    !> \p trans != `rocsparse_operation_none` or
+    !> `rocsparse_matrix_type` != `rocsparse_matrix_type_general`.
     !>
     !> \par Example
     function rocsparse_sgemvi_raw(handle, trans, m, n, alpha, A, lda, nnz, x_val, x_ind, beta, y, &
@@ -24929,7 +24959,7 @@ module hipfort_rocsparse
     !> alpha       scalar \f$\alpha\f$.
     !> @param[in]
     !> descr       descriptor of the sparse HYB matrix. Currently, only
-    !> \ref rocsparse_matrix_type_general is supported.
+    !> `rocsparse_matrix_type_general` is supported.
     !> @param[in]
     !> hyb         matrix in HYB storage format.
     !> @param[in]
@@ -24953,8 +24983,8 @@ module hipfort_rocsparse
     !> \retval     rocsparse_status_memory_error the buffer could not be allocated.
     !> \retval     rocsparse_status_internal_error an internal error occurred.
     !> \retval     rocsparse_status_not_implemented
-    !> \p trans != \ref rocsparse_operation_none or
-    !> `rocsparse_matrix_type` != \ref rocsparse_matrix_type_general.
+    !> \p trans != `rocsparse_operation_none` or
+    !> `rocsparse_matrix_type` != `rocsparse_matrix_type_general`.
     !>
     !> \par Example
     !> This example performs a sparse matrix vector multiplication in HYB format and
@@ -25087,7 +25117,7 @@ module hipfort_rocsparse
     !> It can return before the actual computation has finished.
     !>
     !> \note
-    !> Currently, only \p trans_A == \ref rocsparse_operation_none is supported.
+    !> Currently, only \p trans_A == `rocsparse_operation_none` is supported.
     !>
     !> \note
     !> This routine supports execution in a hipGraph context.
@@ -25095,13 +25125,13 @@ module hipfort_rocsparse
     !> @param[in]
     !> handle      handle to the rocSPARSE library context queue.
     !> @param[in]
-    !> dir the storage format of the blocks. Can be \ref rocsparse_direction_row or \ref
-    !> rocsparse_direction_column.
+    !> dir the storage format of the blocks. Can be `rocsparse_direction_row` or
+    !> `rocsparse_direction_column`.
     !> @param[in]
-    !> trans_A matrix \f$A\f$ operation type. Currently, only \ref rocsparse_operation_none is
+    !> trans_A matrix \f$A\f$ operation type. Currently, only `rocsparse_operation_none` is
     !> supported.
     !> @param[in]
-    !> trans_B matrix \f$B\f$ operation type. Currently, only \ref rocsparse_operation_none and
+    !> trans_B matrix \f$B\f$ operation type. Currently, only `rocsparse_operation_none` and
     !> rocsparse_operation_transpose
     !> are supported.
     !> @param[in]
@@ -25116,7 +25146,7 @@ module hipfort_rocsparse
     !> alpha       scalar \f$\alpha\f$.
     !> @param[in]
     !> descr       descriptor of the sparse BSR matrix \f$A\f$. Currently, only
-    !> \ref rocsparse_matrix_type_general is supported.
+    !> `rocsparse_matrix_type_general` is supported.
     !> @param[in]
     !> bsr_val     array of \p nnzb*block_dim*block_dim elements of the sparse BSR matrix \f$A\f$.
     !> @param[in]
@@ -25151,9 +25181,9 @@ module hipfort_rocsparse
     !> \p bsr_row_ptr, \p bsr_col_ind, \p B, \p beta, or \p C pointer is invalid.
     !> \retval     rocsparse_status_arch_mismatch the device is not supported.
     !> \retval     rocsparse_status_not_implemented
-    !> \p trans_A != \ref rocsparse_operation_none,
-    !> \p trans_B == \ref rocsparse_operation_conjugate_transpose, or
-    !> `rocsparse_matrix_type` != \ref rocsparse_matrix_type_general.
+    !> \p trans_A != `rocsparse_operation_none`,
+    !> \p trans_B == `rocsparse_operation_conjugate_transpose`, or
+    !> `rocsparse_matrix_type` != `rocsparse_matrix_type_general`.
     !>
     !> \par Example
     !> This example multiplies a BSR matrix with a column-oriented dense matrix.
@@ -25303,14 +25333,14 @@ module hipfort_rocsparse
     !---------------------------------------------
     !> \ingroup level3_module
     !> \details
-    !> \p rocsparse_bsrsm_zero_pivot returns \ref rocsparse_status_zero_pivot if either a
+    !> \p rocsparse_bsrsm_zero_pivot returns `rocsparse_status_zero_pivot` if either a
     !> structural or numerical zero has been found during
     !> \ref rocsparse_sbsrsm_solve "rocsparse_Xbsrsm_solve()" computation. The first zero
     !> pivot \f$j\f$ at \f$A_{j,j}\f$ is stored in \p position, using the same index base as
     !> the BSR matrix.
     !>
     !> \p position can be in the host or device memory. If no zero pivot has been found,
-    !> \p position is set to -1 and \ref rocsparse_status_success is returned instead.
+    !> \p position is set to -1 and `rocsparse_status_success` is returned instead.
     !>
     !> \note \p rocsparse_bsrsm_zero_pivot is a blocking function. It might negatively influence
     !> performance.
@@ -25337,11 +25367,10 @@ module hipfort_rocsparse
        import :: c_ptr, c_int
        type(c_ptr), value :: handle
        type(c_ptr), value :: info
-       type(c_ptr), value :: position
+       integer(c_int) :: position
        integer(c_int) :: bsrsm_zero_pivot_raw
     end function rocsparse_bsrsm_zero_pivot_raw
 
-    module procedure rocsparse_bsrsm_zero_pivot_native
     module procedure rocsparse_bsrsm_zero_pivot_typed
   end interface rocsparse_bsrsm_zero_pivot
 
@@ -25404,9 +25433,9 @@ module hipfort_rocsparse
     !> is invalid.
     !> \retval     rocsparse_status_internal_error an internal error occurred.
     !> \retval     rocsparse_status_not_implemented
-    !> \p trans_A == \ref rocsparse_operation_conjugate_transpose,
-    !> \p trans_X == \ref rocsparse_operation_conjugate_transpose, or
-    !> `rocsparse_matrix_type` != \ref rocsparse_matrix_type_general.
+    !> \p trans_A == `rocsparse_operation_conjugate_transpose`,
+    !> \p trans_X == `rocsparse_operation_conjugate_transpose`, or
+    !> `rocsparse_matrix_type` != `rocsparse_matrix_type_general`.
     function rocsparse_sbsrsm_buffer_size_raw(handle, dir, trans_A, trans_X, mb, nrhs, nnzb, &
                                               descr, bsr_val, bsr_row_ptr, bsr_col_ind, block_dim, &
                                               info, buffer_size) &
@@ -25542,10 +25571,10 @@ module hipfort_rocsparse
     !> \ref rocsparse_sbsrilu0_analysis "rocsparse_Xbsrilu0_analysis()",
     !> \ref rocsparse_sbsric0_analysis "rocsparse_Xbsric0_analysis()", and
     !> \ref rocsparse_sbsrsv_analysis "rocsparse_Xbsrsv_analysis()". Selecting
-    !> \ref rocsparse_analysis_policy_reuse policy can greatly improve the computation
+    !> `rocsparse_analysis_policy_reuse` policy can greatly improve the computation
     !> performance of the metadata. However, the user needs to ensure that the sparsity
     !> pattern remains unchanged. If this cannot be assured,
-    !> \ref rocsparse_analysis_policy_force has to be used.
+    !> `rocsparse_analysis_policy_force` has to be used.
     !>
     !> \note
     !> If the matrix sparsity pattern changes, the gathered information will become invalid.
@@ -25585,10 +25614,10 @@ module hipfort_rocsparse
     !> @param[out]
     !> info        structure that holds the information collected during the analysis step.
     !> @param[in]
-    !> analysis    \ref rocsparse_analysis_policy_reuse or
-    !> \ref rocsparse_analysis_policy_force.
+    !> analysis    `rocsparse_analysis_policy_reuse` or
+    !> `rocsparse_analysis_policy_force`.
     !> @param[in]
-    !> solve       \ref rocsparse_solve_policy_auto.
+    !> solve       `rocsparse_solve_policy_auto`.
     !> @param[in]
     !> temp_buffer temporary storage buffer allocated by the user.
     !>
@@ -25599,9 +25628,9 @@ module hipfort_rocsparse
     !> \p bsr_col_ind, \p info, or \p temp_buffer pointer is invalid.
     !> \retval     rocsparse_status_internal_error an internal error occurred.
     !> \retval     rocsparse_status_not_implemented
-    !> \p trans_A == \ref rocsparse_operation_conjugate_transpose,
-    !> \p trans_X == \ref rocsparse_operation_conjugate_transpose, or
-    !> `rocsparse_matrix_type` != \ref rocsparse_matrix_type_general.
+    !> \p trans_A == `rocsparse_operation_conjugate_transpose`,
+    !> \p trans_X == `rocsparse_operation_conjugate_transpose`, or
+    !> `rocsparse_matrix_type` != `rocsparse_matrix_type_general`.
     function rocsparse_sbsrsm_analysis_raw(handle, dir, trans_A, trans_X, mb, nrhs, nnzb, descr, &
                                            bsr_val, bsr_row_ptr, bsr_col_ind, block_dim, info, &
                                            analysis, solve, temp_buffer) &
@@ -25854,10 +25883,10 @@ module hipfort_rocsparse
     !> \p rocsparse_bsrsm_solve requires a user-allocated temporary buffer. Its size is returned by
     !> \ref rocsparse_sbsrsm_buffer_size "rocsparse_Xbsrsm_buffer_size()". The size of the required
     !> buffer is larger
-    !> when \p trans_A equals \ref rocsparse_operation_transpose or \ref
-    !> rocsparse_operation_conjugate_transpose and
-    !> when \p trans_X is \ref rocsparse_operation_none. The subsequent solve will also be faster
-    !> when \f$A\f$ is
+    !> when \p trans_A equals `rocsparse_operation_transpose` or
+    !> `rocsparse_operation_conjugate_transpose` and
+    !> when \p trans_X is `rocsparse_operation_none`. The subsequent solve will also be faster when
+    !> \f$A\f$ is
     !> non-transposed and \f$B\f$ is transposed (or conjugate transposed). For example, instead of
     !> solving:
     !>
@@ -25947,26 +25976,25 @@ module hipfort_rocsparse
     !> location of the first
     !> zero pivot (either numerical or structural zero). The zero pivot status can be checked by
     !> calling `rocsparse_bsrsm_zero_pivot` ().
-    !> If `rocsparse_bsrsm_zero_pivot` () returns \ref rocsparse_status_success, then no zero pivot
-    !> was found and therefore
+    !> If `rocsparse_bsrsm_zero_pivot` () returns `rocsparse_status_success`, then no zero pivot was
+    !> found and therefore
     !> the matrix does not have a structural or numerical zero.
     !>
     !> The user can specify that the sparse matrix should be interpreted as having identity blocks
     !> on the diagonal by setting the diagonal
-    !> type on the descriptor \p descr to \ref rocsparse_diag_type_unit using
+    !> type on the descriptor \p descr to `rocsparse_diag_type_unit` using
     !> `rocsparse_set_mat_diag_type`. If
-    !> `rocsparse_diag_type` == \ref rocsparse_diag_type_unit, no zero pivot will be reported, even
-    !> if the diagonal block \f$A_{j,j}\f$
+    !> `rocsparse_diag_type` == `rocsparse_diag_type_unit`, no zero pivot will be reported, even if
+    !> the diagonal block \f$A_{j,j}\f$
     !> for some \f$j\f$ is not invertible.
     !>
     !> The sparse CSR matrix passed to \p rocsparse_bsrsm_solve does not actually have to be a
     !> triangular matrix. Instead, the
     !> triangular upper or lower part of the sparse matrix is solved based on `rocsparse_fill_mode`
     !> set on the descriptor
-    !> \p descr. If the fill mode is set to \ref rocsparse_fill_mode_lower, then the lower
-    !> triangular matrix is solved. If the
-    !> fill mode is set to \ref rocsparse_fill_mode_upper, then the upper triangular matrix is
-    !> solved.
+    !> \p descr. If the fill mode is set to `rocsparse_fill_mode_lower`, then the lower triangular
+    !> matrix is solved. If the
+    !> fill mode is set to `rocsparse_fill_mode_upper`, then the upper triangular matrix is solved.
     !>
     !> \note
     !> The sparse BSR matrix has to be sorted.
@@ -25979,8 +26007,8 @@ module hipfort_rocsparse
     !> It can return before the actual computation has finished.
     !>
     !> \note
-    !> Currently, only \p trans_A != \ref rocsparse_operation_conjugate_transpose and
-    !> \p trans_X != \ref rocsparse_operation_conjugate_transpose is supported.
+    !> Currently, only \p trans_A != `rocsparse_operation_conjugate_transpose` and
+    !> \p trans_X != `rocsparse_operation_conjugate_transpose` is supported.
     !>
     !> \note
     !> This routine supports execution in a hipGraph context.
@@ -26024,7 +26052,7 @@ module hipfort_rocsparse
     !> @param[in]
     !> ldx         leading dimension of solution matrix X.
     !> @param[in]
-    !> policy      \ref rocsparse_solve_policy_auto.
+    !> policy      `rocsparse_solve_policy_auto`.
     !> @param[in]
     !> temp_buffer temporary storage buffer allocated by the user.
     !>
@@ -26036,9 +26064,9 @@ module hipfort_rocsparse
     !> is invalid.
     !> \retval     rocsparse_status_internal_error an internal error occurred.
     !> \retval     rocsparse_status_not_implemented
-    !> \p trans_A == \ref rocsparse_operation_conjugate_transpose,
-    !> \p trans_X == \ref rocsparse_operation_conjugate_transpose, or
-    !> `rocsparse_matrix_type` != \ref rocsparse_matrix_type_general.
+    !> \p trans_A == `rocsparse_operation_conjugate_transpose`,
+    !> \p trans_X == `rocsparse_operation_conjugate_transpose`, or
+    !> `rocsparse_matrix_type` != `rocsparse_matrix_type_general`.
     !>
     !> \par Example
     !> Consider the lower triangular \f$m \times m\f$ matrix \f$L\f$, stored in BSR
@@ -26267,7 +26295,7 @@ module hipfort_rocsparse
     !> alpha       scalar \f$\alpha\f$.
     !> @param[in]
     !> descr       descriptor of the sparse CSR matrix \f$A\f$. Currently, only
-    !> \ref rocsparse_matrix_type_general is supported.
+    !> `rocsparse_matrix_type_general` is supported.
     !> @param[in]
     !> csr_val     array of \p nnz elements of the sparse CSR matrix \f$A\f$.
     !> @param[in]
@@ -26298,7 +26326,7 @@ module hipfort_rocsparse
     !> \p csr_row_ptr, \p csr_col_ind, \p B, \p beta, or \p C pointer is invalid.
     !> \retval     rocsparse_status_arch_mismatch the device is not supported.
     !> \retval     rocsparse_status_not_implemented
-    !> `rocsparse_matrix_type` != \ref rocsparse_matrix_type_general.
+    !> `rocsparse_matrix_type` != `rocsparse_matrix_type_general`.
     !>
     !> \par Example
     !> This example multiplies a CSR matrix with a column-oriented dense matrix.
@@ -26436,14 +26464,14 @@ module hipfort_rocsparse
     !---------------------------------------------
     !> \ingroup level3_module
     !> \details
-    !> \p rocsparse_csrsm_zero_pivot returns \ref rocsparse_status_zero_pivot if either a
+    !> \p rocsparse_csrsm_zero_pivot returns `rocsparse_status_zero_pivot` if either a
     !> structural or numerical zero has been found during
     !> \ref rocsparse_scsrsm_solve "rocsparse_Xcsrsm_solve()" computation. The first zero
     !> pivot \f$j\f$ at \f$A_{j,j}\f$ is stored in \p position, using the same index base as
     !> the CSR matrix.
     !>
     !> \p position can be in host or device memory. If no zero pivot has been found,
-    !> \p position is set to -1 and \ref rocsparse_status_success is returned instead.
+    !> \p position is set to -1 and `rocsparse_status_success` is returned instead.
     !>
     !> \note \p rocsparse_csrsm_zero_pivot is a blocking function. It might negatively influence
     !> performance.
@@ -26470,11 +26498,10 @@ module hipfort_rocsparse
        import :: c_ptr, c_int
        type(c_ptr), value :: handle
        type(c_ptr), value :: info
-       type(c_ptr), value :: position
+       integer(c_int) :: position
        integer(c_int) :: csrsm_zero_pivot_raw
     end function rocsparse_csrsm_zero_pivot_raw
 
-    module procedure rocsparse_csrsm_zero_pivot_native
     module procedure rocsparse_csrsm_zero_pivot_typed
   end interface rocsparse_csrsm_zero_pivot
 
@@ -26528,7 +26555,7 @@ module hipfort_rocsparse
     !> @param[in]
     !> info        structure that holds the information collected during the analysis step.
     !> @param[in]
-    !> policy      \ref rocsparse_solve_policy_auto.
+    !> policy      `rocsparse_solve_policy_auto`.
     !> @param[out]
     !> buffer_size number of bytes of the temporary storage buffer required by
     !> rocsparse_scsrsm_analysis(), rocsparse_dcsrsm_analysis(),
@@ -26544,9 +26571,9 @@ module hipfort_rocsparse
     !> is invalid.
     !> \retval     rocsparse_status_internal_error an internal error occurred.
     !> \retval     rocsparse_status_not_implemented
-    !> \p trans_A == \ref rocsparse_operation_conjugate_transpose,
-    !> \p trans_B == \ref rocsparse_operation_conjugate_transpose, or
-    !> `rocsparse_matrix_type` != \ref rocsparse_matrix_type_general.
+    !> \p trans_A == `rocsparse_operation_conjugate_transpose`,
+    !> \p trans_B == `rocsparse_operation_conjugate_transpose`, or
+    !> `rocsparse_matrix_type` != `rocsparse_matrix_type_general`.
     function rocsparse_scsrsm_buffer_size_raw(handle, trans_A, trans_B, m, nrhs, nnz, alpha, &
                                               descr, csr_val, csr_row_ptr, csr_col_ind, B, ldb, &
                                               info, policy, buffer_size) &
@@ -26690,10 +26717,10 @@ module hipfort_rocsparse
     !> \ref rocsparse_scsrilu0_analysis "rocsparse_Xcsrilu0_analysis()",
     !> \ref rocsparse_scsric0_analysis "rocsparse_Xcsric0_analysis()", and
     !> \ref rocsparse_scsrsv_analysis "rocsparse_Xcsrsv_analysis()". Selecting
-    !> \ref rocsparse_analysis_policy_reuse policy can greatly improve computation
+    !> `rocsparse_analysis_policy_reuse` policy can greatly improve computation
     !> performance of the metadata. However, the user needs to ensure that the sparsity
     !> pattern remains unchanged. If this cannot be assured,
-    !> \ref rocsparse_analysis_policy_force has to be used.
+    !> `rocsparse_analysis_policy_force` has to be used.
     !>
     !> \note
     !> If the matrix sparsity pattern changes, the gathered information will become invalid.
@@ -26736,10 +26763,10 @@ module hipfort_rocsparse
     !> @param[out]
     !> info        structure that holds the information collected during the analysis step.
     !> @param[in]
-    !> analysis    \ref rocsparse_analysis_policy_reuse or
-    !> \ref rocsparse_analysis_policy_force.
+    !> analysis    `rocsparse_analysis_policy_reuse` or
+    !> `rocsparse_analysis_policy_force`.
     !> @param[in]
-    !> solve       \ref rocsparse_solve_policy_auto.
+    !> solve       `rocsparse_solve_policy_auto`.
     !> @param[in]
     !> temp_buffer temporary storage buffer allocated by the user.
     !>
@@ -26751,9 +26778,9 @@ module hipfort_rocsparse
     !> is invalid.
     !> \retval     rocsparse_status_internal_error an internal error occurred.
     !> \retval     rocsparse_status_not_implemented
-    !> \p trans_A == \ref rocsparse_operation_conjugate_transpose,
-    !> \p trans_B == \ref rocsparse_operation_conjugate_transpose, or
-    !> `rocsparse_matrix_type` != \ref rocsparse_matrix_type_general.
+    !> \p trans_A == `rocsparse_operation_conjugate_transpose`,
+    !> \p trans_B == `rocsparse_operation_conjugate_transpose`, or
+    !> `rocsparse_matrix_type` != `rocsparse_matrix_type_general`.
     function rocsparse_scsrsm_analysis_raw(handle, trans_A, trans_B, m, nrhs, nnz, alpha, descr, &
                                            csr_val, csr_row_ptr, csr_col_ind, B, ldb, info, &
                                            analysis, solve, temp_buffer) &
@@ -26994,10 +27021,10 @@ module hipfort_rocsparse
     !> \p rocsparse_csrsm_solve requires a user-allocated temporary buffer. Its size is returned by
     !> \ref rocsparse_scsrsm_buffer_size "rocsparse_Xcsrsm_buffer_size()". The size of the required
     !> buffer is
-    !> larger when \p trans_A equals \ref rocsparse_operation_transpose or \ref
-    !> rocsparse_operation_conjugate_transpose
-    !> and when \p trans_B is \ref rocsparse_operation_none. The subsequent solve will also be
-    !> faster when \f$A\f$
+    !> larger when \p trans_A equals `rocsparse_operation_transpose` or
+    !> `rocsparse_operation_conjugate_transpose`
+    !> and when \p trans_B is `rocsparse_operation_none`. The subsequent solve will also be faster
+    !> when \f$A\f$
     !> is non-transposed and \f$B\f$ is transposed (or conjugate transposed). For example, instead
     !> of solving:
     !>
@@ -27052,26 +27079,25 @@ module hipfort_rocsparse
     !> first zero pivot (either numerical
     !> or structural zero). The zero pivot status can be checked by calling
     !> `rocsparse_csrsm_zero_pivot` (). If
-    !> `rocsparse_csrsm_zero_pivot` () returns \ref rocsparse_status_success, then no zero pivot was
+    !> `rocsparse_csrsm_zero_pivot` () returns `rocsparse_status_success`, then no zero pivot was
     !> found and therefore
     !> the matrix does not have a structural or numerical zero.
     !>
     !> The user can specify that the sparse matrix should be interpreted as having ones on the
     !> diagonal by setting the diagonal type
-    !> on the descriptor \p descr to \ref rocsparse_diag_type_unit using
-    !> `rocsparse_set_mat_diag_type`. If
-    !> `rocsparse_diag_type` == \ref rocsparse_diag_type_unit, no zero pivot will be reported, even
-    !> if \f$A_{j,j} = 0\f$ for
+    !> on the descriptor \p descr to `rocsparse_diag_type_unit` using `rocsparse_set_mat_diag_type`.
+    !> If
+    !> `rocsparse_diag_type` == `rocsparse_diag_type_unit`, no zero pivot will be reported, even if
+    !> \f$A_{j,j} = 0\f$ for
     !> some \f$j\f$.
     !>
     !> The sparse CSR matrix passed to \p rocsparse_csrsm_solve does not actually have to be a
     !> triangular matrix. Instead, the
     !> triangular upper or lower part of the sparse matrix is solved based on the
     !> `rocsparse_fill_mode` setting on the descriptor
-    !> \p descr. If the fill mode is set to \ref rocsparse_fill_mode_lower, then the lower
-    !> triangular matrix is solved. If the
-    !> fill mode is set to \ref rocsparse_fill_mode_upper, then the upper triangular matrix is
-    !> solved.
+    !> \p descr. If the fill mode is set to `rocsparse_fill_mode_lower`, then the lower triangular
+    !> matrix is solved. If the
+    !> fill mode is set to `rocsparse_fill_mode_upper`, then the upper triangular matrix is solved.
     !>
     !> \note
     !> The sparse CSR matrix has to be sorted. This can be achieved by calling
@@ -27082,8 +27108,8 @@ module hipfort_rocsparse
     !> It can return before the actual computation has finished.
     !>
     !> \note
-    !> Currently, only \p trans_A != \ref rocsparse_operation_conjugate_transpose and
-    !> \p trans_B != \ref rocsparse_operation_conjugate_transpose is supported.
+    !> Currently, only \p trans_A != `rocsparse_operation_conjugate_transpose` and
+    !> \p trans_B != `rocsparse_operation_conjugate_transpose` is supported.
     !>
     !> \note
     !> This routine supports execution in a hipGraph context.
@@ -27120,7 +27146,7 @@ module hipfort_rocsparse
     !> @param[in]
     !> info        structure that holds the information collected during the analysis step.
     !> @param[in]
-    !> policy      \ref rocsparse_solve_policy_auto.
+    !> policy      `rocsparse_solve_policy_auto`.
     !> @param[in]
     !> temp_buffer temporary storage buffer allocated by the user.
     !>
@@ -27132,9 +27158,9 @@ module hipfort_rocsparse
     !> is invalid.
     !> \retval     rocsparse_status_internal_error an internal error occurred.
     !> \retval     rocsparse_status_not_implemented
-    !> \p trans_A == \ref rocsparse_operation_conjugate_transpose,
-    !> \p trans_B == \ref rocsparse_operation_conjugate_transpose, or
-    !> `rocsparse_matrix_type` != \ref rocsparse_matrix_type_general.
+    !> \p trans_A == `rocsparse_operation_conjugate_transpose`,
+    !> \p trans_B == `rocsparse_operation_conjugate_transpose`, or
+    !> `rocsparse_matrix_type` != `rocsparse_matrix_type_general`.
     !>
     !> \par Example
     !> Consider the lower triangular \f$m \times m\f$ matrix \f$L\f$, stored in CSR
@@ -27309,7 +27335,7 @@ module hipfort_rocsparse
     !> It can return before the actual computation has finished.
     !>
     !> \note
-    !> Currently, only \p trans_A == \ref rocsparse_operation_none is supported.
+    !> Currently, only \p trans_A == `rocsparse_operation_none` is supported.
     !>
     !> \note
     !> This routine supports execution in a hipGraph context.
@@ -27317,13 +27343,13 @@ module hipfort_rocsparse
     !> @param[in]
     !> handle      handle to the rocSPARSE library context queue.
     !> @param[in]
-    !> dir the storage format of the blocks. Can be \ref rocsparse_direction_row or \ref
-    !> rocsparse_direction_column.
+    !> dir the storage format of the blocks. Can be `rocsparse_direction_row` or
+    !> `rocsparse_direction_column`.
     !> @param[in]
-    !> trans_A matrix \f$A\f$ operation type. Currently, only \ref rocsparse_operation_none is
+    !> trans_A matrix \f$A\f$ operation type. Currently, only `rocsparse_operation_none` is
     !> supported.
     !> @param[in]
-    !> trans_B matrix \f$B\f$ operation type. Currently, only \ref rocsparse_operation_none and
+    !> trans_B matrix \f$B\f$ operation type. Currently, only `rocsparse_operation_none` and
     !> rocsparse_operation_transpose
     !> are supported.
     !> @param[in]
@@ -27338,7 +27364,7 @@ module hipfort_rocsparse
     !> alpha       scalar \f$\alpha\f$.
     !> @param[in]
     !> descr       descriptor of the sparse general BSR matrix \f$A\f$. Currently, only
-    !> \ref rocsparse_matrix_type_general is supported.
+    !> `rocsparse_matrix_type_general` is supported.
     !> @param[in]
     !> bsr_val array of \p nnzb*row_block_dim*col_block_dim elements of the sparse general BSR
     !> matrix \f$A\f$.
@@ -27377,9 +27403,9 @@ module hipfort_rocsparse
     !> \p bsr_row_ptr, \p bsr_col_ind, \p B, \p beta, or \p C pointer is invalid.
     !> \retval     rocsparse_status_arch_mismatch the device is not supported.
     !> \retval     rocsparse_status_not_implemented
-    !> \p trans_A != \ref rocsparse_operation_none,
-    !> \p trans_B == \ref rocsparse_operation_conjugate_transpose, or
-    !> `rocsparse_matrix_type` != \ref rocsparse_matrix_type_general.
+    !> \p trans_A != `rocsparse_operation_none`,
+    !> \p trans_B == `rocsparse_operation_conjugate_transpose`, or
+    !> `rocsparse_matrix_type` != `rocsparse_matrix_type_general`.
     !>
     !> \par Example
     !> This example multiplies a general BSR matrix with a column-oriented dense matrix.
@@ -27566,10 +27592,10 @@ module hipfort_rocsparse
     !> \f]
     !>
     !> \note
-    !> Currently, only \p trans_A == \ref rocsparse_operation_none is supported.
+    !> Currently, only \p trans_A == `rocsparse_operation_none` is supported.
     !>
     !> \note
-    !> Currently, only \p trans_B == \ref rocsparse_operation_transpose is supported.
+    !> Currently, only \p trans_B == `rocsparse_operation_transpose` is supported.
     !>
     !> \note
     !> This function is non-blocking and executed asynchronously with respect to the host.
@@ -27603,7 +27629,7 @@ module hipfort_rocsparse
     !> \f$op(A) == A^H\f$).
     !> @param[in]
     !> descr       descriptor of the sparse CSR matrix \f$B\f$. Currently, only
-    !> \ref rocsparse_matrix_type_general is supported.
+    !> `rocsparse_matrix_type_general` is supported.
     !> @param[in]
     !> csr_val     array of \p nnz elements of the sparse CSR matrix \f$B\f$.
     !> @param[in]
@@ -27763,7 +27789,7 @@ module hipfort_rocsparse
     !---------------------------------------------
     !> \ingroup precond_module
     !> \details
-    !> \p rocsparse_bsric0_zero_pivot returns \ref rocsparse_status_zero_pivot if either a
+    !> \p rocsparse_bsric0_zero_pivot returns `rocsparse_status_zero_pivot` if either a
     !> structural or numerical zero has been found during \ref rocsparse_sbsric0
     !> "rocsparse_Xbsric0()"
     !> computation. The first zero pivot \f$j\f$ at \f$A_{j,j}\f$ is stored in \p position, using
@@ -27771,7 +27797,7 @@ module hipfort_rocsparse
     !> index base as the BSR matrix.
     !>
     !> \p position can be in host or device memory. If no zero pivot has been found,
-    !> \p position is set to -1 and \ref rocsparse_status_success is returned instead.
+    !> \p position is set to -1 and `rocsparse_status_success` is returned instead.
     !>
     !> \note
     !> If a zero pivot is found, \p position=j means that either the diagonal block \p A(j,j)
@@ -27803,11 +27829,10 @@ module hipfort_rocsparse
        import :: c_ptr, c_int
        type(c_ptr), value :: handle
        type(c_ptr), value :: info
-       type(c_ptr), value :: position
+       integer(c_int) :: position
        integer(c_int) :: bsric0_zero_pivot_raw
     end function rocsparse_bsric0_zero_pivot_raw
 
-    module procedure rocsparse_bsric0_zero_pivot_native
     module procedure rocsparse_bsric0_zero_pivot_typed
   end interface rocsparse_bsric0_zero_pivot
 
@@ -27837,9 +27862,9 @@ module hipfort_rocsparse
     !> @param[in]
     !> handle      handle to the rocSPARSE library context queue.
     !> @param[in]
-    !> dir direction that specifies whether to count non-zero elements by \ref
-    !> rocsparse_direction_row or by
-    !> \ref rocsparse_direction_column.
+    !> dir direction that specifies whether to count non-zero elements by `rocsparse_direction_row`
+    !> or by
+    !> `rocsparse_direction_column`.
     !> @param[in]
     !> mb          number of block rows in the sparse BSR matrix.
     !> @param[in]
@@ -27871,7 +27896,7 @@ module hipfort_rocsparse
     !> \p bsr_col_ind, \p info, or \p buffer_size pointer is invalid.
     !> \retval     rocsparse_status_internal_error an internal error occurred.
     !> \retval     rocsparse_status_not_implemented
-    !> `rocsparse_matrix_type` != \ref rocsparse_matrix_type_general.
+    !> `rocsparse_matrix_type` != `rocsparse_matrix_type_general`.
     function rocsparse_sbsric0_buffer_size_raw(handle, dir, mb, nnzb, descr, bsr_val, bsr_row_ptr, &
                                                bsr_col_ind, block_dim, info, buffer_size) &
        result(sbsric0_buffer_size_raw) &
@@ -27991,10 +28016,10 @@ module hipfort_rocsparse
     !> \ref rocsparse_sbsrilu0_analysis "rocsparse_Xbsrilu0_analysis()",
     !> \ref rocsparse_sbsrsv_analysis "rocsparse_Xbsrsv_analysis()", and
     !> \ref rocsparse_sbsrsm_analysis "rocsparse_Xbsrsm_analysis()". Selecting
-    !> \ref rocsparse_analysis_policy_reuse policy can greatly improve the computation
+    !> `rocsparse_analysis_policy_reuse` policy can greatly improve the computation
     !> performance of metadata. However, the user needs to ensure that the sparsity
     !> pattern remains unchanged. If this cannot be assured,
-    !> \ref rocsparse_analysis_policy_force must be used.
+    !> `rocsparse_analysis_policy_force` must be used.
     !>
     !> \note
     !> If the matrix sparsity pattern changes, the gathered information will become invalid.
@@ -28008,9 +28033,9 @@ module hipfort_rocsparse
     !> @param[in]
     !> handle      handle to the rocSPARSE library context queue.
     !> @param[in]
-    !> dir direction that specified whether to count non-zero elements by \ref
-    !> rocsparse_direction_row or by
-    !> \ref rocsparse_direction_column.
+    !> dir direction that specified whether to count non-zero elements by `rocsparse_direction_row`
+    !> or by
+    !> `rocsparse_direction_column`.
     !> @param[in]
     !> mb          number of block rows in the sparse BSR matrix.
     !> @param[in]
@@ -28032,10 +28057,10 @@ module hipfort_rocsparse
     !> info        structure that holds the information collected during
     !> the analysis step.
     !> @param[in]
-    !> analysis    \ref rocsparse_analysis_policy_reuse or
-    !> \ref rocsparse_analysis_policy_force.
+    !> analysis    `rocsparse_analysis_policy_reuse` or
+    !> `rocsparse_analysis_policy_force`.
     !> @param[in]
-    !> solve       \ref rocsparse_solve_policy_auto.
+    !> solve       `rocsparse_solve_policy_auto`.
     !> @param[in]
     !> temp_buffer temporary storage buffer allocated by the user.
     !>
@@ -28046,7 +28071,7 @@ module hipfort_rocsparse
     !> \p bsr_col_ind, \p info, or \p temp_buffer pointer is invalid.
     !> \retval     rocsparse_status_internal_error an internal error occurred.
     !> \retval     rocsparse_status_not_implemented
-    !> `rocsparse_matrix_type` != \ref rocsparse_matrix_type_general.
+    !> `rocsparse_matrix_type` != `rocsparse_matrix_type_general`.
     function rocsparse_sbsric0_analysis_raw(handle, dir, mb, nnzb, descr, bsr_val, bsr_row_ptr, &
                                             bsr_col_ind, block_dim, info, analysis, solve, &
                                             temp_buffer) &
@@ -28252,9 +28277,9 @@ module hipfort_rocsparse
     !> @param[in]
     !> handle      handle to the rocSPARSE library context queue.
     !> @param[in]
-    !> dir direction that specified whether to count non-zero elements by \ref
-    !> rocsparse_direction_row or by
-    !> \ref rocsparse_direction_column.
+    !> dir direction that specified whether to count non-zero elements by `rocsparse_direction_row`
+    !> or by
+    !> `rocsparse_direction_column`.
     !> @param[in]
     !> mb          number of block rows in the sparse BSR matrix.
     !> @param[in]
@@ -28275,7 +28300,7 @@ module hipfort_rocsparse
     !> @param[in]
     !> info        structure that holds the information collected during the analysis step.
     !> @param[in]
-    !> policy      \ref rocsparse_solve_policy_auto.
+    !> policy      `rocsparse_solve_policy_auto`.
     !> @param[in]
     !> temp_buffer temporary storage buffer allocated by the user.
     !>
@@ -28287,7 +28312,7 @@ module hipfort_rocsparse
     !> \retval     rocsparse_status_arch_mismatch the device is not supported.
     !> \retval     rocsparse_status_internal_error an internal error occurred.
     !> \retval     rocsparse_status_not_implemented
-    !> `rocsparse_matrix_type` != \ref rocsparse_matrix_type_general.
+    !> `rocsparse_matrix_type` != `rocsparse_matrix_type_general`.
     !>
     !> \par Example
     !> Consider the sparse \f$m \times m\f$ matrix \f$A\f$, stored in BSR
@@ -28407,7 +28432,7 @@ module hipfort_rocsparse
     !---------------------------------------------
     !> \ingroup precond_module
     !> \details
-    !> \p rocsparse_bsrilu0_zero_pivot returns \ref rocsparse_status_zero_pivot if either a
+    !> \p rocsparse_bsrilu0_zero_pivot returns `rocsparse_status_zero_pivot` if either a
     !> structural or numerical zero has been found during \ref rocsparse_sbsrilu0
     !> "rocsparse_Xbsrilu0()"
     !> computation. The first zero pivot \f$j\f$ at \f$A_{j,j}\f$ is stored in \p position, using
@@ -28415,7 +28440,7 @@ module hipfort_rocsparse
     !> index base as the BSR matrix.
     !>
     !> \p position can be in host or device memory. If no zero pivot has been found,
-    !> \p position is set to -1 and \ref rocsparse_status_success is returned instead.
+    !> \p position is set to -1 and `rocsparse_status_success` is returned instead.
     !>
     !> \note
     !> If a zero pivot is found, \p position \f$=j\f$ means that either the diagonal block
@@ -28447,11 +28472,10 @@ module hipfort_rocsparse
        import :: c_ptr, c_int
        type(c_ptr), value :: handle
        type(c_ptr), value :: info
-       type(c_ptr), value :: position
+       integer(c_int) :: position
        integer(c_int) :: bsrilu0_zero_pivot_raw
     end function rocsparse_bsrilu0_zero_pivot_raw
 
-    module procedure rocsparse_bsrilu0_zero_pivot_native
     module procedure rocsparse_bsrilu0_zero_pivot_typed
   end interface rocsparse_bsrilu0_zero_pivot
 
@@ -28503,11 +28527,10 @@ module hipfort_rocsparse
        type(c_ptr), value :: info
        integer(c_int), value :: enable_boost
        real(c_float) :: boost_tol
-       type(c_ptr), value :: boost_val
+       real(c_float) :: boost_val
        integer(c_int) :: sbsrilu0_numeric_boost_raw
     end function rocsparse_sbsrilu0_numeric_boost_raw
 
-    module procedure rocsparse_sbsrilu0_numeric_boost_native
     module procedure rocsparse_sbsrilu0_numeric_boost_typed
   end interface rocsparse_sbsrilu0_numeric_boost
 
@@ -28524,11 +28547,10 @@ module hipfort_rocsparse
        type(c_ptr), value :: info
        integer(c_int), value :: enable_boost
        real(c_double) :: boost_tol
-       type(c_ptr), value :: boost_val
+       real(c_double) :: boost_val
        integer(c_int) :: dbsrilu0_numeric_boost_raw
     end function rocsparse_dbsrilu0_numeric_boost_raw
 
-    module procedure rocsparse_dbsrilu0_numeric_boost_native
     module procedure rocsparse_dbsrilu0_numeric_boost_typed
   end interface rocsparse_dbsrilu0_numeric_boost
 
@@ -28540,16 +28562,15 @@ module hipfort_rocsparse
                                                   boost_val) &
        result(cbsrilu0_numeric_boost_raw) &
        bind(C, name="rocsparse_cbsrilu0_numeric_boost")
-       import :: c_ptr, c_int, c_float
+       import :: c_ptr, c_int, c_float, c_float_complex
        type(c_ptr), value :: handle
        type(c_ptr), value :: info
        integer(c_int), value :: enable_boost
        real(c_float) :: boost_tol
-       type(c_ptr), value :: boost_val
+       complex(c_float_complex) :: boost_val
        integer(c_int) :: cbsrilu0_numeric_boost_raw
     end function rocsparse_cbsrilu0_numeric_boost_raw
 
-    module procedure rocsparse_cbsrilu0_numeric_boost_native
     module procedure rocsparse_cbsrilu0_numeric_boost_typed
   end interface rocsparse_cbsrilu0_numeric_boost
 
@@ -28561,16 +28582,15 @@ module hipfort_rocsparse
                                                   boost_val) &
        result(zbsrilu0_numeric_boost_raw) &
        bind(C, name="rocsparse_zbsrilu0_numeric_boost")
-       import :: c_ptr, c_int, c_double
+       import :: c_ptr, c_int, c_double, c_double_complex
        type(c_ptr), value :: handle
        type(c_ptr), value :: info
        integer(c_int), value :: enable_boost
        real(c_double) :: boost_tol
-       type(c_ptr), value :: boost_val
+       complex(c_double_complex) :: boost_val
        integer(c_int) :: zbsrilu0_numeric_boost_raw
     end function rocsparse_zbsrilu0_numeric_boost_raw
 
-    module procedure rocsparse_zbsrilu0_numeric_boost_native
     module procedure rocsparse_zbsrilu0_numeric_boost_typed
   end interface rocsparse_zbsrilu0_numeric_boost
 
@@ -28582,16 +28602,15 @@ module hipfort_rocsparse
                                                    boost_val) &
        result(dsbsrilu0_numeric_boost_raw) &
        bind(C, name="rocsparse_dsbsrilu0_numeric_boost")
-       import :: c_ptr, c_int, c_double
+       import :: c_ptr, c_int, c_double, c_float
        type(c_ptr), value :: handle
        type(c_ptr), value :: info
        integer(c_int), value :: enable_boost
        real(c_double) :: boost_tol
-       type(c_ptr), value :: boost_val
+       real(c_float) :: boost_val
        integer(c_int) :: dsbsrilu0_numeric_boost_raw
     end function rocsparse_dsbsrilu0_numeric_boost_raw
 
-    module procedure rocsparse_dsbsrilu0_numeric_boost_native
     module procedure rocsparse_dsbsrilu0_numeric_boost_typed
   end interface rocsparse_dsbsrilu0_numeric_boost
 
@@ -28603,16 +28622,15 @@ module hipfort_rocsparse
                                                    boost_val) &
        result(dcbsrilu0_numeric_boost_raw) &
        bind(C, name="rocsparse_dcbsrilu0_numeric_boost")
-       import :: c_ptr, c_int, c_double
+       import :: c_ptr, c_int, c_double, c_float_complex
        type(c_ptr), value :: handle
        type(c_ptr), value :: info
        integer(c_int), value :: enable_boost
        real(c_double) :: boost_tol
-       type(c_ptr), value :: boost_val
+       complex(c_float_complex) :: boost_val
        integer(c_int) :: dcbsrilu0_numeric_boost_raw
     end function rocsparse_dcbsrilu0_numeric_boost_raw
 
-    module procedure rocsparse_dcbsrilu0_numeric_boost_native
     module procedure rocsparse_dcbsrilu0_numeric_boost_typed
   end interface rocsparse_dcbsrilu0_numeric_boost
 
@@ -28643,9 +28661,9 @@ module hipfort_rocsparse
     !> @param[in]
     !> handle      handle to the rocSPARSE library context queue.
     !> @param[in]
-    !> dir direction that specifies whether to count non-zero elements by \ref
-    !> rocsparse_direction_row or by
-    !> \ref rocsparse_direction_column.
+    !> dir direction that specifies whether to count non-zero elements by `rocsparse_direction_row`
+    !> or by
+    !> `rocsparse_direction_column`.
     !> @param[in]
     !> mb          number of block rows in the sparse BSR matrix.
     !> @param[in]
@@ -28677,7 +28695,7 @@ module hipfort_rocsparse
     !> \p bsr_col_ind, \p info, or \p buffer_size pointer is invalid.
     !> \retval     rocsparse_status_internal_error an internal error occurred.
     !> \retval     rocsparse_status_not_implemented
-    !> `rocsparse_matrix_type` != \ref rocsparse_matrix_type_general.
+    !> `rocsparse_matrix_type` != `rocsparse_matrix_type_general`.
     function rocsparse_sbsrilu0_buffer_size_raw(handle, dir, mb, nnzb, descr, bsr_val, &
                                                 bsr_row_ptr, bsr_col_ind, block_dim, info, &
                                                 buffer_size) &
@@ -28801,10 +28819,10 @@ module hipfort_rocsparse
     !> \ref rocsparse_sbsric0_analysis "rocsparse_Xbsric0_analysis()",
     !> \ref rocsparse_sbsrsv_analysis "rocsparse_Xbsrsv_analysis()", and
     !> \ref rocsparse_sbsrsm_analysis "rocsparse_Xbsrsm_analysis()". Selecting
-    !> \ref rocsparse_analysis_policy_reuse policy can greatly improve the computation
+    !> `rocsparse_analysis_policy_reuse` policy can greatly improve the computation
     !> performance of metadata. However, the user needs to ensure that the sparsity
     !> pattern remains unchanged. If this cannot be assured,
-    !> \ref rocsparse_analysis_policy_force must be used.
+    !> `rocsparse_analysis_policy_force` must be used.
     !>
     !> \note
     !> If the matrix sparsity pattern changes, the gathered information will become invalid.
@@ -28819,7 +28837,7 @@ module hipfort_rocsparse
     !> handle      handle to the rocSPARSE library context queue.
     !> @param[in]
     !> dir         direction that specified whether to count non-zero elements by
-    !> \ref rocsparse_direction_row or by \ref rocsparse_direction_column.
+    !> `rocsparse_direction_row` or by `rocsparse_direction_column`.
     !> @param[in]
     !> mb          number of block rows in the sparse BSR matrix.
     !> @param[in]
@@ -28841,10 +28859,10 @@ module hipfort_rocsparse
     !> info        structure that holds the information collected during
     !> the analysis step.
     !> @param[in]
-    !> analysis    \ref rocsparse_analysis_policy_reuse or
-    !> \ref rocsparse_analysis_policy_force.
+    !> analysis    `rocsparse_analysis_policy_reuse` or
+    !> `rocsparse_analysis_policy_force`.
     !> @param[in]
-    !> solve       \ref rocsparse_solve_policy_auto.
+    !> solve       `rocsparse_solve_policy_auto`.
     !> @param[in]
     !> temp_buffer temporary storage buffer allocated by the user.
     !>
@@ -28855,7 +28873,7 @@ module hipfort_rocsparse
     !> \p bsr_col_ind, \p info, or \p temp_buffer pointer is invalid.
     !> \retval     rocsparse_status_internal_error an internal error occurred.
     !> \retval     rocsparse_status_not_implemented
-    !> `rocsparse_matrix_type` != \ref rocsparse_matrix_type_general.
+    !> `rocsparse_matrix_type` != `rocsparse_matrix_type_general`.
     function rocsparse_sbsrilu0_analysis_raw(handle, dir, mb, nnzb, descr, bsr_val, bsr_row_ptr, &
                                              bsr_col_ind, block_dim, info, analysis, solve, &
                                              temp_buffer) &
@@ -29061,7 +29079,7 @@ module hipfort_rocsparse
     !> handle      handle to the rocSPARSE library context queue.
     !> @param[in]
     !> dir         direction that specified whether to count non-zero elements by
-    !> \ref rocsparse_direction_row or by \ref rocsparse_direction_column.
+    !> `rocsparse_direction_row` or by `rocsparse_direction_column`.
     !> @param[in]
     !> mb          number of block rows in the sparse BSR matrix.
     !> @param[in]
@@ -29082,7 +29100,7 @@ module hipfort_rocsparse
     !> @param[in]
     !> info        structure that holds the information collected during the analysis step.
     !> @param[in]
-    !> policy      \ref rocsparse_solve_policy_auto.
+    !> policy      `rocsparse_solve_policy_auto`.
     !> @param[in]
     !> temp_buffer temporary storage buffer allocated by the user.
     !>
@@ -29094,7 +29112,7 @@ module hipfort_rocsparse
     !> \retval     rocsparse_status_arch_mismatch the device is not supported.
     !> \retval     rocsparse_status_internal_error an internal error occurred.
     !> \retval     rocsparse_status_not_implemented
-    !> `rocsparse_matrix_type` != \ref rocsparse_matrix_type_general.
+    !> `rocsparse_matrix_type` != `rocsparse_matrix_type_general`.
     !>
     !> \par Example
     !> Consider the sparse \f$m \times m\f$ matrix \f$A\f$, stored in the BSR
@@ -29214,14 +29232,14 @@ module hipfort_rocsparse
     !---------------------------------------------
     !> \ingroup precond_module
     !> \details
-    !> \p rocsparse_csric_zero_pivot returns \ref rocsparse_status_zero_pivot if either a
+    !> \p rocsparse_csric_zero_pivot returns `rocsparse_status_zero_pivot` if either a
     !> structural or numerical zero has been found during \ref rocsparse_scsric0
     !> "rocsparse_Xcsric0()"
     !> computation. The first zero pivot \f$j\f$ at \f$A_{j,j}\f$ is stored in \p position, using
     !> the same index base as the CSR matrix.
     !>
     !> \p position can be in host or device memory. If no zero pivot has been found,
-    !> \p position is set to -1 and \ref rocsparse_status_success is returned instead.
+    !> \p position is set to -1 and `rocsparse_status_success` is returned instead.
     !>
     !> \note \p rocsparse_csric0_zero_pivot is a blocking function. It might negatively influence
     !> performance.
@@ -29248,11 +29266,10 @@ module hipfort_rocsparse
        import :: c_ptr, c_int
        type(c_ptr), value :: handle
        type(c_ptr), value :: info
-       type(c_ptr), value :: position
+       integer(c_int) :: position
        integer(c_int) :: csric0_zero_pivot_raw
     end function rocsparse_csric0_zero_pivot_raw
 
-    module procedure rocsparse_csric0_zero_pivot_native
     module procedure rocsparse_csric0_zero_pivot_typed
   end interface rocsparse_csric0_zero_pivot
 
@@ -29439,7 +29456,7 @@ module hipfort_rocsparse
     !> \p csr_col_ind, \p info, or \p buffer_size pointer is invalid.
     !> \retval     rocsparse_status_internal_error an internal error occurred.
     !> \retval     rocsparse_status_not_implemented
-    !> `rocsparse_matrix_type` != \ref rocsparse_matrix_type_general.
+    !> `rocsparse_matrix_type` != `rocsparse_matrix_type_general`.
     function rocsparse_scsric0_buffer_size_raw(handle, m, nnz, descr, csr_val, csr_row_ptr, &
                                                csr_col_ind, info, buffer_size) &
        result(scsric0_buffer_size_raw) &
@@ -29551,10 +29568,10 @@ module hipfort_rocsparse
     !> \ref rocsparse_scsrilu0_analysis "rocsparse_Xcsrilu0_analysis()",
     !> \ref rocsparse_scsrsv_analysis "rocsparse_Xcsrsv_analysis()", and
     !> \ref rocsparse_scsrsm_analysis "rocsparse_Xcsrsm_analysis()". Selecting
-    !> \ref rocsparse_analysis_policy_reuse policy can greatly improve the computation
+    !> `rocsparse_analysis_policy_reuse` policy can greatly improve the computation
     !> performance of metadata. However, the user needs to ensure that the sparsity
     !> pattern remains unchanged. If this cannot be assured,
-    !> \ref rocsparse_analysis_policy_force has to be used.
+    !> `rocsparse_analysis_policy_force` has to be used.
     !>
     !> \note
     !> If the matrix sparsity pattern changes, the gathered information will become invalid.
@@ -29585,10 +29602,10 @@ module hipfort_rocsparse
     !> info        structure that holds the information collected during
     !> the analysis step.
     !> @param[in]
-    !> analysis    \ref rocsparse_analysis_policy_reuse or
-    !> \ref rocsparse_analysis_policy_force.
+    !> analysis    `rocsparse_analysis_policy_reuse` or
+    !> `rocsparse_analysis_policy_force`.
     !> @param[in]
-    !> solve       \ref rocsparse_solve_policy_auto.
+    !> solve       `rocsparse_solve_policy_auto`.
     !> @param[in]
     !> temp_buffer temporary storage buffer allocated by the user.
     !>
@@ -29599,7 +29616,7 @@ module hipfort_rocsparse
     !> \p csr_col_ind, \p info, or \p temp_buffer pointer is invalid.
     !> \retval     rocsparse_status_internal_error an internal error occurred.
     !> \retval     rocsparse_status_not_implemented
-    !> `rocsparse_matrix_type` != \ref rocsparse_matrix_type_general.
+    !> `rocsparse_matrix_type` != `rocsparse_matrix_type_general`.
     function rocsparse_scsric0_analysis_raw(handle, m, nnz, descr, csr_val, csr_row_ptr, &
                                             csr_col_ind, info, analysis, solve, temp_buffer) &
        result(scsric0_analysis_raw) &
@@ -29911,7 +29928,7 @@ module hipfort_rocsparse
     !> @param[in]
     !> info        structure that holds the information collected during the analysis step.
     !> @param[in]
-    !> policy      \ref rocsparse_solve_policy_auto.
+    !> policy      `rocsparse_solve_policy_auto`.
     !> @param[in]
     !> temp_buffer temporary storage buffer allocated by the user.
     !>
@@ -29923,7 +29940,7 @@ module hipfort_rocsparse
     !> \retval     rocsparse_status_arch_mismatch the device is not supported.
     !> \retval     rocsparse_status_internal_error an internal error occurred.
     !> \retval     rocsparse_status_not_implemented
-    !> `rocsparse_matrix_type` != \ref rocsparse_matrix_type_general.
+    !> `rocsparse_matrix_type` != `rocsparse_matrix_type_general`.
     !>
     !> \par Example
     !> Consider the sparse \f$m \times m\f$ matrix \f$A\f$, stored in the CSR
@@ -30035,7 +30052,7 @@ module hipfort_rocsparse
     !---------------------------------------------
     !> \ingroup precond_module
     !> \details
-    !> \p rocsparse_csrilu0_zero_pivot returns \ref rocsparse_status_zero_pivot if either a
+    !> \p rocsparse_csrilu0_zero_pivot returns `rocsparse_status_zero_pivot` if either a
     !> structural or numerical zero has been found during \ref rocsparse_scsrilu0
     !> "rocsparse_Xcsrilu0()"
     !> computation. The first zero pivot \f$j\f$ at \f$A_{j,j}\f$ is stored in \p position, using
@@ -30043,7 +30060,7 @@ module hipfort_rocsparse
     !> base as the CSR matrix.
     !>
     !> \p position can be in host or device memory. If no zero pivot has been found,
-    !> \p position is set to -1 and \ref rocsparse_status_success is returned instead.
+    !> \p position is set to -1 and `rocsparse_status_success` is returned instead.
     !>
     !> \note \p rocsparse_csrilu0_zero_pivot is a blocking function. It might negatively influence
     !> performance.
@@ -30070,11 +30087,10 @@ module hipfort_rocsparse
        import :: c_ptr, c_int
        type(c_ptr), value :: handle
        type(c_ptr), value :: info
-       type(c_ptr), value :: position
+       integer(c_int) :: position
        integer(c_int) :: csrilu0_zero_pivot_raw
     end function rocsparse_csrilu0_zero_pivot_raw
 
-    module procedure rocsparse_csrilu0_zero_pivot_native
     module procedure rocsparse_csrilu0_zero_pivot_typed
   end interface rocsparse_csrilu0_zero_pivot
 
@@ -30259,11 +30275,10 @@ module hipfort_rocsparse
        type(c_ptr), value :: info
        integer(c_int), value :: enable_boost
        real(c_float) :: boost_tol
-       type(c_ptr), value :: boost_val
+       real(c_float) :: boost_val
        integer(c_int) :: scsrilu0_numeric_boost_raw
     end function rocsparse_scsrilu0_numeric_boost_raw
 
-    module procedure rocsparse_scsrilu0_numeric_boost_native
     module procedure rocsparse_scsrilu0_numeric_boost_typed
   end interface rocsparse_scsrilu0_numeric_boost
 
@@ -30280,11 +30295,10 @@ module hipfort_rocsparse
        type(c_ptr), value :: info
        integer(c_int), value :: enable_boost
        real(c_double) :: boost_tol
-       type(c_ptr), value :: boost_val
+       real(c_double) :: boost_val
        integer(c_int) :: dcsrilu0_numeric_boost_raw
     end function rocsparse_dcsrilu0_numeric_boost_raw
 
-    module procedure rocsparse_dcsrilu0_numeric_boost_native
     module procedure rocsparse_dcsrilu0_numeric_boost_typed
   end interface rocsparse_dcsrilu0_numeric_boost
 
@@ -30296,16 +30310,15 @@ module hipfort_rocsparse
                                                   boost_val) &
        result(ccsrilu0_numeric_boost_raw) &
        bind(C, name="rocsparse_ccsrilu0_numeric_boost")
-       import :: c_ptr, c_int, c_float
+       import :: c_ptr, c_int, c_float, c_float_complex
        type(c_ptr), value :: handle
        type(c_ptr), value :: info
        integer(c_int), value :: enable_boost
        real(c_float) :: boost_tol
-       type(c_ptr), value :: boost_val
+       complex(c_float_complex) :: boost_val
        integer(c_int) :: ccsrilu0_numeric_boost_raw
     end function rocsparse_ccsrilu0_numeric_boost_raw
 
-    module procedure rocsparse_ccsrilu0_numeric_boost_native
     module procedure rocsparse_ccsrilu0_numeric_boost_typed
   end interface rocsparse_ccsrilu0_numeric_boost
 
@@ -30317,16 +30330,15 @@ module hipfort_rocsparse
                                                   boost_val) &
        result(zcsrilu0_numeric_boost_raw) &
        bind(C, name="rocsparse_zcsrilu0_numeric_boost")
-       import :: c_ptr, c_int, c_double
+       import :: c_ptr, c_int, c_double, c_double_complex
        type(c_ptr), value :: handle
        type(c_ptr), value :: info
        integer(c_int), value :: enable_boost
        real(c_double) :: boost_tol
-       type(c_ptr), value :: boost_val
+       complex(c_double_complex) :: boost_val
        integer(c_int) :: zcsrilu0_numeric_boost_raw
     end function rocsparse_zcsrilu0_numeric_boost_raw
 
-    module procedure rocsparse_zcsrilu0_numeric_boost_native
     module procedure rocsparse_zcsrilu0_numeric_boost_typed
   end interface rocsparse_zcsrilu0_numeric_boost
 
@@ -30338,16 +30350,15 @@ module hipfort_rocsparse
                                                    boost_val) &
        result(dscsrilu0_numeric_boost_raw) &
        bind(C, name="rocsparse_dscsrilu0_numeric_boost")
-       import :: c_ptr, c_int, c_double
+       import :: c_ptr, c_int, c_double, c_float
        type(c_ptr), value :: handle
        type(c_ptr), value :: info
        integer(c_int), value :: enable_boost
        real(c_double) :: boost_tol
-       type(c_ptr), value :: boost_val
+       real(c_float) :: boost_val
        integer(c_int) :: dscsrilu0_numeric_boost_raw
     end function rocsparse_dscsrilu0_numeric_boost_raw
 
-    module procedure rocsparse_dscsrilu0_numeric_boost_native
     module procedure rocsparse_dscsrilu0_numeric_boost_typed
   end interface rocsparse_dscsrilu0_numeric_boost
 
@@ -30359,16 +30370,15 @@ module hipfort_rocsparse
                                                    boost_val) &
        result(dccsrilu0_numeric_boost_raw) &
        bind(C, name="rocsparse_dccsrilu0_numeric_boost")
-       import :: c_ptr, c_int, c_double
+       import :: c_ptr, c_int, c_double, c_float_complex
        type(c_ptr), value :: handle
        type(c_ptr), value :: info
        integer(c_int), value :: enable_boost
        real(c_double) :: boost_tol
-       type(c_ptr), value :: boost_val
+       complex(c_float_complex) :: boost_val
        integer(c_int) :: dccsrilu0_numeric_boost_raw
     end function rocsparse_dccsrilu0_numeric_boost_raw
 
-    module procedure rocsparse_dccsrilu0_numeric_boost_native
     module procedure rocsparse_dccsrilu0_numeric_boost_typed
   end interface rocsparse_dccsrilu0_numeric_boost
 
@@ -30425,7 +30435,7 @@ module hipfort_rocsparse
     !> \p csr_col_ind, \p info, or \p buffer_size pointer is invalid.
     !> \retval     rocsparse_status_internal_error an internal error occurred.
     !> \retval     rocsparse_status_not_implemented
-    !> `rocsparse_matrix_type` != \ref rocsparse_matrix_type_general.
+    !> `rocsparse_matrix_type` != `rocsparse_matrix_type_general`.
     function rocsparse_scsrilu0_buffer_size_raw(handle, m, nnz, descr, csr_val, csr_row_ptr, &
                                                 csr_col_ind, info, buffer_size) &
        result(scsrilu0_buffer_size_raw) &
@@ -30538,10 +30548,10 @@ module hipfort_rocsparse
     !> \ref rocsparse_scsric0_analysis "rocsparse_Xcsric0_analysis()",
     !> \ref rocsparse_scsrsv_analysis "rocsparse_Xcsrsv_analysis()", and
     !> \ref rocsparse_scsrsm_analysis "rocsparse_Xcsrsm_analysis()". Selecting
-    !> \ref rocsparse_analysis_policy_reuse policy can greatly improve the computation
+    !> `rocsparse_analysis_policy_reuse` policy can greatly improve the computation
     !> performance of metadata. However, the user needs to ensure that the sparsity
     !> pattern remains unchanged. If this cannot be assured,
-    !> \ref rocsparse_analysis_policy_force must be used.
+    !> `rocsparse_analysis_policy_force` must be used.
     !>
     !> \note
     !> If the matrix sparsity pattern changes, the gathered information will become invalid.
@@ -30572,10 +30582,10 @@ module hipfort_rocsparse
     !> info        structure that holds the information collected during
     !> the analysis step.
     !> @param[in]
-    !> analysis    \ref rocsparse_analysis_policy_reuse or
-    !> \ref rocsparse_analysis_policy_force.
+    !> analysis    `rocsparse_analysis_policy_reuse` or
+    !> `rocsparse_analysis_policy_force`.
     !> @param[in]
-    !> solve       \ref rocsparse_solve_policy_auto.
+    !> solve       `rocsparse_solve_policy_auto`.
     !> @param[in]
     !> temp_buffer temporary storage buffer allocated by the user.
     !>
@@ -30586,7 +30596,7 @@ module hipfort_rocsparse
     !> \p csr_col_ind, \p info, or \p temp_buffer pointer is invalid.
     !> \retval     rocsparse_status_internal_error an internal error occurred.
     !> \retval     rocsparse_status_not_implemented
-    !> `rocsparse_matrix_type` != \ref rocsparse_matrix_type_general.
+    !> `rocsparse_matrix_type` != `rocsparse_matrix_type_general`.
     function rocsparse_scsrilu0_analysis_raw(handle, m, nnz, descr, csr_val, csr_row_ptr, &
                                              csr_col_ind, info, analysis, solve, temp_buffer) &
        result(scsrilu0_analysis_raw) &
@@ -30881,7 +30891,7 @@ module hipfort_rocsparse
     !> @param[in]
     !> info        structure that holds the information collected during the analysis step.
     !> @param[in]
-    !> policy      \ref rocsparse_solve_policy_auto.
+    !> policy      `rocsparse_solve_policy_auto`.
     !> @param[in]
     !> temp_buffer temporary storage buffer allocated by the user.
     !>
@@ -30893,7 +30903,7 @@ module hipfort_rocsparse
     !> \retval     rocsparse_status_arch_mismatch the device is not supported.
     !> \retval     rocsparse_status_internal_error an internal error occurred.
     !> \retval     rocsparse_status_not_implemented
-    !> `rocsparse_matrix_type` != \ref rocsparse_matrix_type_general.
+    !> `rocsparse_matrix_type` != `rocsparse_matrix_type_general`.
     !>
     !> \par Example
     !> Consider the sparse \f$m \times m\f$ matrix \f$A\f$, stored in CSR
@@ -31041,7 +31051,7 @@ module hipfort_rocsparse
     !> csr_col_ind array of \p nnz elements containing the column indices of the sparse
     !> CSR matrix.
     !> @param[in]
-    !> idx_base    \ref rocsparse_index_base_zero or \ref rocsparse_index_base_one.
+    !> idx_base    `rocsparse_index_base_zero` or `rocsparse_index_base_one`.
     !> @param[in]
     !> datatype    Type of numerical values, `rocsparse_datatype`.
     !> @param[out]
@@ -31119,7 +31129,7 @@ module hipfort_rocsparse
     !> csr_col_ind array of \p nnz elements containing the column indices of the sparse
     !> CSR matrix.
     !> @param[in]
-    !> idx_base    \ref rocsparse_index_base_zero or \ref rocsparse_index_base_one.
+    !> idx_base    `rocsparse_index_base_zero` or `rocsparse_index_base_one`.
     !> @param[in]
     !> datatype    type of numerical values, `rocsparse_datatype`.
     !> @param[in]
@@ -31271,7 +31281,7 @@ module hipfort_rocsparse
     !> @param[out]
     !> ilu0        incomplete factorization.
     !> @param[in]
-    !> idx_base    \ref rocsparse_index_base_zero or \ref rocsparse_index_base_one.
+    !> idx_base    `rocsparse_index_base_zero` or `rocsparse_index_base_one`.
     !> @param[in]
     !> buffer_size size of the storage buffer allocated by the user.
     !> @param[in]
@@ -31493,7 +31503,7 @@ module hipfort_rocsparse
     !> @param[out]
     !> ilu0        incomplete factorization.
     !> @param[in]
-    !> idx_base    \ref rocsparse_index_base_zero or \ref rocsparse_index_base_one.
+    !> idx_base    `rocsparse_index_base_zero` or `rocsparse_index_base_one`.
     !> @param[in]
     !> buffer_size size of the storage buffer allocated by the user.
     !> @param[in]
@@ -31637,7 +31647,7 @@ module hipfort_rocsparse
     !> \ingroup precond_module
     !> \details
     !> \p rocsparse_csritilu0_history fetches convergence history data if
-    !> \ref rocsparse_itilu0_option_convergence_history has been set when calling
+    !> `rocsparse_itilu0_option_convergence_history` has been set when calling
     !> \ref rocsparse_scsritilu0_compute "rocsparse_Xcsritilu0_compute" or
     !> \ref rocsparse_scsritilu0_compute_ex "rocsparse_Xcsritilu0_compute_ex":
     !>
@@ -33151,11 +33161,11 @@ module hipfort_rocsparse
     !> @param[in]
     !> handle      handle to the rocSPARSE library context queue.
     !> @param[in]
-    !> alg algorithm to use when solving tridiagonal systems. Options are Thomas ( \ref
-    !> rocsparse_gtsv_interleaved_alg_thomas ),
-    !> LU ( \ref rocsparse_gtsv_interleaved_alg_lu ), or QR ( \ref rocsparse_gtsv_interleaved_alg_qr
-    !> ). Passing
-    !> \ref rocsparse_gtsv_interleaved_alg_default defaults to using the QR algorithm. The Thomas
+    !> alg algorithm to use when solving tridiagonal systems. Options are Thomas (
+    !> `rocsparse_gtsv_interleaved_alg_thomas` ),
+    !> LU ( `rocsparse_gtsv_interleaved_alg_lu` ), or QR ( `rocsparse_gtsv_interleaved_alg_qr` ).
+    !> Passing
+    !> `rocsparse_gtsv_interleaved_alg_default` defaults to using the QR algorithm. The Thomas
     !> algorithm is the fastest but is not
     !> stable, while LU and QR are slower but are stable.
     !> @param[in]
@@ -33324,10 +33334,9 @@ module hipfort_rocsparse
     !> \ref rocsparse_sgtsv_interleaved_batch "rocsparse_Xgtsv_interleaved_batch()".
     !>
     !> The user can specify different algorithms for \p rocsparse_gtsv_interleaved_batch
-    !> to use. Options are Thomas ( \ref rocsparse_gtsv_interleaved_alg_thomas ),
-    !> LU ( \ref rocsparse_gtsv_interleaved_alg_lu ), or QR ( \ref rocsparse_gtsv_interleaved_alg_qr
-    !> ).
-    !> Passing \ref rocsparse_gtsv_interleaved_alg_default defaults to using the QR algorithm.
+    !> to use. Options are Thomas ( `rocsparse_gtsv_interleaved_alg_thomas` ),
+    !> LU ( `rocsparse_gtsv_interleaved_alg_lu` ), or QR ( `rocsparse_gtsv_interleaved_alg_qr` ).
+    !> Passing `rocsparse_gtsv_interleaved_alg_default` defaults to using the QR algorithm.
     !>
     !> Unlike the strided batch routines, which write each batch matrix one after the other in
     !> memory, the interleaved
@@ -33378,11 +33387,11 @@ module hipfort_rocsparse
     !> @param[in]
     !> handle      handle to the rocSPARSE library context queue.
     !> @param[in]
-    !> alg algorithm to use when solving tridiagonal systems. Options are Thomas ( \ref
-    !> rocsparse_gtsv_interleaved_alg_thomas ),
-    !> LU ( \ref rocsparse_gtsv_interleaved_alg_lu ), or QR ( \ref rocsparse_gtsv_interleaved_alg_qr
-    !> ). Passing
-    !> \ref rocsparse_gtsv_interleaved_alg_default defaults to using the QR algorithm. The Thomas
+    !> alg algorithm to use when solving tridiagonal systems. Options are Thomas (
+    !> `rocsparse_gtsv_interleaved_alg_thomas` ),
+    !> LU ( `rocsparse_gtsv_interleaved_alg_lu` ), or QR ( `rocsparse_gtsv_interleaved_alg_qr` ).
+    !> Passing
+    !> `rocsparse_gtsv_interleaved_alg_default` defaults to using the QR algorithm. The Thomas
     !> algorithm is the fastest but is not
     !> stable, while LU and QR are slower but are stable.
     !> @param[in]
@@ -33710,14 +33719,14 @@ module hipfort_rocsparse
     !> coo_col_ind array of \p nnz elements containing the column indices of the sparse
     !> COO matrix.
     !> @param[in]
-    !> idx_base    \ref rocsparse_index_base_zero or \ref rocsparse_index_base_one.
+    !> idx_base    `rocsparse_index_base_zero` or `rocsparse_index_base_one`.
     !> @param[in]
-    !> matrix_type \ref rocsparse_matrix_type_general, \ref rocsparse_matrix_type_symmetric,
-    !> \ref rocsparse_matrix_type_hermitian, or \ref rocsparse_matrix_type_triangular.
+    !> matrix_type `rocsparse_matrix_type_general`, `rocsparse_matrix_type_symmetric`,
+    !> `rocsparse_matrix_type_hermitian`, or `rocsparse_matrix_type_triangular`.
     !> @param[in]
-    !> uplo        \ref rocsparse_fill_mode_lower or \ref rocsparse_fill_mode_upper.
+    !> uplo        `rocsparse_fill_mode_lower` or `rocsparse_fill_mode_upper`.
     !> @param[in]
-    !> storage     \ref rocsparse_storage_mode_sorted or \ref rocsparse_storage_mode_sorted.
+    !> storage     `rocsparse_storage_mode_sorted` or `rocsparse_storage_mode_sorted`.
     !> @param[out]
     !> buffer_size number of bytes of the temporary storage buffer required by
     !> \ref rocsparse_scheck_matrix_coo "rocsparse_Xcheck_matrix_coo()".
@@ -33892,14 +33901,14 @@ module hipfort_rocsparse
     !> coo_col_ind array of \p nnz elements containing the column indices of the sparse
     !> COO matrix.
     !> @param[in]
-    !> idx_base    \ref rocsparse_index_base_zero or \ref rocsparse_index_base_one.
+    !> idx_base    `rocsparse_index_base_zero` or `rocsparse_index_base_one`.
     !> @param[in]
-    !> matrix_type \ref rocsparse_matrix_type_general, \ref rocsparse_matrix_type_symmetric,
-    !> \ref rocsparse_matrix_type_hermitian, or \ref rocsparse_matrix_type_triangular.
+    !> matrix_type `rocsparse_matrix_type_general`, `rocsparse_matrix_type_symmetric`,
+    !> `rocsparse_matrix_type_hermitian`, or `rocsparse_matrix_type_triangular`.
     !> @param[in]
-    !> uplo        \ref rocsparse_fill_mode_lower or \ref rocsparse_fill_mode_upper.
+    !> uplo        `rocsparse_fill_mode_lower` or `rocsparse_fill_mode_upper`.
     !> @param[in]
-    !> storage     \ref rocsparse_storage_mode_sorted or \ref rocsparse_storage_mode_sorted.
+    !> storage     `rocsparse_storage_mode_sorted` or `rocsparse_storage_mode_sorted`.
     !> @param[out]
     !> data_status modified to indicate the status of the data.
     !> @param[in]
@@ -34115,14 +34124,14 @@ module hipfort_rocsparse
     !> csc_row_ind array of \p nnz elements containing the row indices of the sparse
     !> CSC matrix.
     !> @param[in]
-    !> idx_base    \ref rocsparse_index_base_zero or \ref rocsparse_index_base_one.
+    !> idx_base    `rocsparse_index_base_zero` or `rocsparse_index_base_one`.
     !> @param[in]
-    !> matrix_type \ref rocsparse_matrix_type_general, \ref rocsparse_matrix_type_symmetric,
-    !> \ref rocsparse_matrix_type_hermitian, or \ref rocsparse_matrix_type_triangular.
+    !> matrix_type `rocsparse_matrix_type_general`, `rocsparse_matrix_type_symmetric`,
+    !> `rocsparse_matrix_type_hermitian`, or `rocsparse_matrix_type_triangular`.
     !> @param[in]
-    !> uplo        \ref rocsparse_fill_mode_lower or \ref rocsparse_fill_mode_upper.
+    !> uplo        `rocsparse_fill_mode_lower` or `rocsparse_fill_mode_upper`.
     !> @param[in]
-    !> storage     \ref rocsparse_storage_mode_sorted or \ref rocsparse_storage_mode_sorted.
+    !> storage     `rocsparse_storage_mode_sorted` or `rocsparse_storage_mode_sorted`.
     !> @param[out]
     !> buffer_size number of bytes of the temporary storage buffer required by
     !> \ref rocsparse_scheck_matrix_csc "rocsparse_Xcheck_matrix_csc()".
@@ -34297,14 +34306,14 @@ module hipfort_rocsparse
     !> csc_row_ind array of \p nnz elements containing the row indices of the sparse
     !> CSC matrix.
     !> @param[in]
-    !> idx_base    \ref rocsparse_index_base_zero or \ref rocsparse_index_base_one.
+    !> idx_base    `rocsparse_index_base_zero` or `rocsparse_index_base_one`.
     !> @param[in]
-    !> matrix_type \ref rocsparse_matrix_type_general, \ref rocsparse_matrix_type_symmetric,
-    !> \ref rocsparse_matrix_type_hermitian, or \ref rocsparse_matrix_type_triangular.
+    !> matrix_type `rocsparse_matrix_type_general`, `rocsparse_matrix_type_symmetric`,
+    !> `rocsparse_matrix_type_hermitian`, or `rocsparse_matrix_type_triangular`.
     !> @param[in]
-    !> uplo        \ref rocsparse_fill_mode_lower or \ref rocsparse_fill_mode_upper.
+    !> uplo        `rocsparse_fill_mode_lower` or `rocsparse_fill_mode_upper`.
     !> @param[in]
-    !> storage     \ref rocsparse_storage_mode_sorted or \ref rocsparse_storage_mode_sorted.
+    !> storage     `rocsparse_storage_mode_sorted` or `rocsparse_storage_mode_sorted`.
     !> @param[out]
     !> data_status modified to indicate the status of the data.
     !> @param[in]
@@ -34522,14 +34531,14 @@ module hipfort_rocsparse
     !> csr_col_ind array of \p nnz elements containing the column indices of the sparse
     !> CSR matrix.
     !> @param[in]
-    !> idx_base    \ref rocsparse_index_base_zero or \ref rocsparse_index_base_one.
+    !> idx_base    `rocsparse_index_base_zero` or `rocsparse_index_base_one`.
     !> @param[in]
-    !> matrix_type \ref rocsparse_matrix_type_general, \ref rocsparse_matrix_type_symmetric,
-    !> \ref rocsparse_matrix_type_hermitian, or \ref rocsparse_matrix_type_triangular.
+    !> matrix_type `rocsparse_matrix_type_general`, `rocsparse_matrix_type_symmetric`,
+    !> `rocsparse_matrix_type_hermitian`, or `rocsparse_matrix_type_triangular`.
     !> @param[in]
-    !> uplo        \ref rocsparse_fill_mode_lower or \ref rocsparse_fill_mode_upper.
+    !> uplo        `rocsparse_fill_mode_lower` or `rocsparse_fill_mode_upper`.
     !> @param[in]
-    !> storage     \ref rocsparse_storage_mode_sorted or \ref rocsparse_storage_mode_sorted.
+    !> storage     `rocsparse_storage_mode_sorted` or `rocsparse_storage_mode_sorted`.
     !> @param[out]
     !> buffer_size number of bytes of the temporary storage buffer required by
     !> rocsparse_scheck_matrix_csr(), rocsparse_dcheck_matrix_csr(),
@@ -34705,14 +34714,14 @@ module hipfort_rocsparse
     !> csr_col_ind array of \p nnz elements containing the column indices of the sparse
     !> CSR matrix.
     !> @param[in]
-    !> idx_base    \ref rocsparse_index_base_zero or \ref rocsparse_index_base_one.
+    !> idx_base    `rocsparse_index_base_zero` or `rocsparse_index_base_one`.
     !> @param[in]
-    !> matrix_type \ref rocsparse_matrix_type_general, \ref rocsparse_matrix_type_symmetric,
-    !> \ref rocsparse_matrix_type_hermitian, or \ref rocsparse_matrix_type_triangular.
+    !> matrix_type `rocsparse_matrix_type_general`, `rocsparse_matrix_type_symmetric`,
+    !> `rocsparse_matrix_type_hermitian`, or `rocsparse_matrix_type_triangular`.
     !> @param[in]
-    !> uplo        \ref rocsparse_fill_mode_lower or \ref rocsparse_fill_mode_upper.
+    !> uplo        `rocsparse_fill_mode_lower` or `rocsparse_fill_mode_upper`.
     !> @param[in]
-    !> storage     \ref rocsparse_storage_mode_sorted or \ref rocsparse_storage_mode_sorted.
+    !> storage     `rocsparse_storage_mode_sorted` or `rocsparse_storage_mode_sorted`.
     !> @param[out]
     !> data_status modified to indicate the status of the data.
     !> @param[in]
@@ -34926,14 +34935,14 @@ module hipfort_rocsparse
     !> ell_col_ind array that contains the column indices of the sparse ELL matrix.
     !> Padded column indices should be -1.
     !> @param[in]
-    !> idx_base    \ref rocsparse_index_base_zero or \ref rocsparse_index_base_one.
+    !> idx_base    `rocsparse_index_base_zero` or `rocsparse_index_base_one`.
     !> @param[in]
-    !> matrix_type \ref rocsparse_matrix_type_general, \ref rocsparse_matrix_type_symmetric,
-    !> \ref rocsparse_matrix_type_hermitian, or \ref rocsparse_matrix_type_triangular.
+    !> matrix_type `rocsparse_matrix_type_general`, `rocsparse_matrix_type_symmetric`,
+    !> `rocsparse_matrix_type_hermitian`, or `rocsparse_matrix_type_triangular`.
     !> @param[in]
-    !> uplo        \ref rocsparse_fill_mode_lower or \ref rocsparse_fill_mode_upper.
+    !> uplo        `rocsparse_fill_mode_lower` or `rocsparse_fill_mode_upper`.
     !> @param[in]
-    !> storage     \ref rocsparse_storage_mode_sorted or \ref rocsparse_storage_mode_sorted.
+    !> storage     `rocsparse_storage_mode_sorted` or `rocsparse_storage_mode_sorted`.
     !> @param[out]
     !> buffer_size number of bytes of the temporary storage buffer required by
     !> rocsparse_scheck_matrix_ell(), rocsparse_dcheck_matrix_ell(),
@@ -35096,14 +35105,14 @@ module hipfort_rocsparse
     !> ell_col_ind array that contains the column indices of the sparse ELL matrix.
     !> Padded column indices should be -1.
     !> @param[in]
-    !> idx_base    \ref rocsparse_index_base_zero or \ref rocsparse_index_base_one.
+    !> idx_base    `rocsparse_index_base_zero` or `rocsparse_index_base_one`.
     !> @param[in]
-    !> matrix_type \ref rocsparse_matrix_type_general, \ref rocsparse_matrix_type_symmetric,
-    !> \ref rocsparse_matrix_type_hermitian, or \ref rocsparse_matrix_type_triangular.
+    !> matrix_type `rocsparse_matrix_type_general`, `rocsparse_matrix_type_symmetric`,
+    !> `rocsparse_matrix_type_hermitian`, or `rocsparse_matrix_type_triangular`.
     !> @param[in]
-    !> uplo        \ref rocsparse_fill_mode_lower or \ref rocsparse_fill_mode_upper.
+    !> uplo        `rocsparse_fill_mode_lower` or `rocsparse_fill_mode_upper`.
     !> @param[in]
-    !> storage     \ref rocsparse_storage_mode_sorted or \ref rocsparse_storage_mode_sorted.
+    !> storage     `rocsparse_storage_mode_sorted` or `rocsparse_storage_mode_sorted`.
     !> @param[out]
     !> data_status modified to indicate the status of the data.
     !> @param[in]
@@ -35264,14 +35273,14 @@ module hipfort_rocsparse
     !> bsc_row_ind array of \p nnzb elements containing the row indices of the sparse
     !> GEBSC matrix.
     !> @param[in]
-    !> idx_base    \ref rocsparse_index_base_zero or \ref rocsparse_index_base_one.
+    !> idx_base    `rocsparse_index_base_zero` or `rocsparse_index_base_one`.
     !> @param[in]
-    !> matrix_type \ref rocsparse_matrix_type_general, \ref rocsparse_matrix_type_symmetric,
-    !> \ref rocsparse_matrix_type_hermitian, or \ref rocsparse_matrix_type_triangular.
+    !> matrix_type `rocsparse_matrix_type_general`, `rocsparse_matrix_type_symmetric`,
+    !> `rocsparse_matrix_type_hermitian`, or `rocsparse_matrix_type_triangular`.
     !> @param[in]
-    !> uplo        \ref rocsparse_fill_mode_lower or \ref rocsparse_fill_mode_upper.
+    !> uplo        `rocsparse_fill_mode_lower` or `rocsparse_fill_mode_upper`.
     !> @param[in]
-    !> storage     \ref rocsparse_storage_mode_sorted or \ref rocsparse_storage_mode_sorted.
+    !> storage     `rocsparse_storage_mode_sorted` or `rocsparse_storage_mode_sorted`.
     !> @param[out]
     !> buffer_size number of bytes of the temporary storage buffer required by
     !> rocsparse_scheck_matrix_gebsc(), rocsparse_dcheck_matrix_gebsc(),
@@ -35469,14 +35478,14 @@ module hipfort_rocsparse
     !> bsc_row_ind array of \p nnzb elements containing the row indices of the sparse
     !> GEBSC matrix.
     !> @param[in]
-    !> idx_base    \ref rocsparse_index_base_zero or \ref rocsparse_index_base_one.
+    !> idx_base    `rocsparse_index_base_zero` or `rocsparse_index_base_one`.
     !> @param[in]
-    !> matrix_type \ref rocsparse_matrix_type_general, \ref rocsparse_matrix_type_symmetric,
-    !> \ref rocsparse_matrix_type_hermitian, or \ref rocsparse_matrix_type_triangular.
+    !> matrix_type `rocsparse_matrix_type_general`, `rocsparse_matrix_type_symmetric`,
+    !> `rocsparse_matrix_type_hermitian`, or `rocsparse_matrix_type_triangular`.
     !> @param[in]
-    !> uplo        \ref rocsparse_fill_mode_lower or \ref rocsparse_fill_mode_upper.
+    !> uplo        `rocsparse_fill_mode_lower` or `rocsparse_fill_mode_upper`.
     !> @param[in]
-    !> storage     \ref rocsparse_storage_mode_sorted or \ref rocsparse_storage_mode_sorted.
+    !> storage     `rocsparse_storage_mode_sorted` or `rocsparse_storage_mode_sorted`.
     !> @param[out]
     !> data_status modified to indicate the status of the data.
     !> @param[in]
@@ -35660,14 +35669,14 @@ module hipfort_rocsparse
     !> bsr_col_ind array of \p nnzb elements containing the column indices of the sparse
     !> GEBSR matrix.
     !> @param[in]
-    !> idx_base    \ref rocsparse_index_base_zero or \ref rocsparse_index_base_one.
+    !> idx_base    `rocsparse_index_base_zero` or `rocsparse_index_base_one`.
     !> @param[in]
-    !> matrix_type \ref rocsparse_matrix_type_general, \ref rocsparse_matrix_type_symmetric,
-    !> \ref rocsparse_matrix_type_hermitian, or \ref rocsparse_matrix_type_triangular.
+    !> matrix_type `rocsparse_matrix_type_general`, `rocsparse_matrix_type_symmetric`,
+    !> `rocsparse_matrix_type_hermitian`, or `rocsparse_matrix_type_triangular`.
     !> @param[in]
-    !> uplo        \ref rocsparse_fill_mode_lower or \ref rocsparse_fill_mode_upper.
+    !> uplo        `rocsparse_fill_mode_lower` or `rocsparse_fill_mode_upper`.
     !> @param[in]
-    !> storage     \ref rocsparse_storage_mode_sorted or \ref rocsparse_storage_mode_sorted.
+    !> storage     `rocsparse_storage_mode_sorted` or `rocsparse_storage_mode_sorted`.
     !> @param[out]
     !> buffer_size number of bytes of the temporary storage buffer required by
     !> rocsparse_scheck_matrix_gebsr(), rocsparse_dcheck_matrix_gebsr(),
@@ -35870,14 +35879,14 @@ module hipfort_rocsparse
     !> bsr_col_ind array of \p nnzb elements containing the column indices of the sparse
     !> GEBSR matrix.
     !> @param[in]
-    !> idx_base    \ref rocsparse_index_base_zero or \ref rocsparse_index_base_one.
+    !> idx_base    `rocsparse_index_base_zero` or `rocsparse_index_base_one`.
     !> @param[in]
-    !> matrix_type \ref rocsparse_matrix_type_general, \ref rocsparse_matrix_type_symmetric,
-    !> \ref rocsparse_matrix_type_hermitian, or \ref rocsparse_matrix_type_triangular.
+    !> matrix_type `rocsparse_matrix_type_general`, `rocsparse_matrix_type_symmetric`,
+    !> `rocsparse_matrix_type_hermitian`, or `rocsparse_matrix_type_triangular`.
     !> @param[in]
-    !> uplo        \ref rocsparse_fill_mode_lower or \ref rocsparse_fill_mode_upper.
+    !> uplo        `rocsparse_fill_mode_lower` or `rocsparse_fill_mode_upper`.
     !> @param[in]
-    !> storage     \ref rocsparse_storage_mode_sorted or \ref rocsparse_storage_mode_sorted.
+    !> storage     `rocsparse_storage_mode_sorted` or `rocsparse_storage_mode_sorted`.
     !> @param[out]
     !> data_status modified to indicate the status of the data.
     !> @param[in]
@@ -36106,14 +36115,14 @@ module hipfort_rocsparse
     !> @param[in]
     !> hyb         matrix in HYB storage format.
     !> @param[in]
-    !> idx_base    \ref rocsparse_index_base_zero or \ref rocsparse_index_base_one.
+    !> idx_base    `rocsparse_index_base_zero` or `rocsparse_index_base_one`.
     !> @param[in]
-    !> matrix_type \ref rocsparse_matrix_type_general, \ref rocsparse_matrix_type_symmetric,
-    !> \ref rocsparse_matrix_type_hermitian, or \ref rocsparse_matrix_type_triangular.
+    !> matrix_type `rocsparse_matrix_type_general`, `rocsparse_matrix_type_symmetric`,
+    !> `rocsparse_matrix_type_hermitian`, or `rocsparse_matrix_type_triangular`.
     !> @param[in]
-    !> uplo        \ref rocsparse_fill_mode_lower or \ref rocsparse_fill_mode_upper.
+    !> uplo        `rocsparse_fill_mode_lower` or `rocsparse_fill_mode_upper`.
     !> @param[in]
-    !> storage     \ref rocsparse_storage_mode_sorted or \ref rocsparse_storage_mode_sorted.
+    !> storage     `rocsparse_storage_mode_sorted` or `rocsparse_storage_mode_sorted`.
     !> @param[out]
     !> buffer_size number of bytes of the temporary storage buffer required by
     !> rocsparse_check_matrix_hyb().
@@ -36174,14 +36183,14 @@ module hipfort_rocsparse
     !> @param[in]
     !> hyb         matrix in HYB storage format.
     !> @param[in]
-    !> idx_base    \ref rocsparse_index_base_zero or \ref rocsparse_index_base_one.
+    !> idx_base    `rocsparse_index_base_zero` or `rocsparse_index_base_one`.
     !> @param[in]
-    !> matrix_type \ref rocsparse_matrix_type_general, \ref rocsparse_matrix_type_symmetric,
-    !> \ref rocsparse_matrix_type_hermitian, or \ref rocsparse_matrix_type_triangular.
+    !> matrix_type `rocsparse_matrix_type_general`, `rocsparse_matrix_type_symmetric`,
+    !> `rocsparse_matrix_type_hermitian`, or `rocsparse_matrix_type_triangular`.
     !> @param[in]
-    !> uplo        \ref rocsparse_fill_mode_lower or \ref rocsparse_fill_mode_upper.
+    !> uplo        `rocsparse_fill_mode_lower` or `rocsparse_fill_mode_upper`.
     !> @param[in]
-    !> storage     \ref rocsparse_storage_mode_sorted or \ref rocsparse_storage_mode_sorted.
+    !> storage     `rocsparse_storage_mode_sorted` or `rocsparse_storage_mode_sorted`.
     !> @param[out]
     !> data_status modified to indicate the status of the data.
     !> @param[in]
@@ -36285,9 +36294,9 @@ contains
       use, intrinsic :: iso_c_binding
       implicit none
       type(c_ptr), value :: handle
-      integer(c_int), target :: pointer_mode(*)
+      integer(c_int), target :: pointer_mode(..)
       integer(c_int) :: get_pointer_mode
-      get_pointer_mode = rocsparse_get_pointer_mode_raw(handle, c_loc(pointer_mode(1)))
+      get_pointer_mode = rocsparse_get_pointer_mode_raw(handle, c_loc(pointer_mode))
     end function rocsparse_get_pointer_mode_native
 
     function rocsparse_get_pointer_mode_typed(handle, pointer_mode) result(get_pointer_mode)
@@ -36304,9 +36313,9 @@ contains
       use, intrinsic :: iso_c_binding
       implicit none
       type(c_ptr), value :: handle
-      integer(c_int), target :: version(*)
+      integer(c_int), target :: version(..)
       integer(c_int) :: get_version
-      get_version = rocsparse_get_version_raw(handle, c_loc(version(1)))
+      get_version = rocsparse_get_version_raw(handle, c_loc(version))
     end function rocsparse_get_version_native
 
     function rocsparse_get_version_typed(handle, version) result(get_version)
@@ -36318,6 +36327,16 @@ contains
       integer(c_int) :: get_version
       get_version = rocsparse_get_version_raw(handle%ptr, version)
     end function rocsparse_get_version_typed
+
+    function rocsparse_get_git_rev_typed(handle, rev) result(get_git_rev)
+      use, intrinsic :: iso_c_binding
+      use hipfort_handles
+      implicit none
+      type(rocsparse_handle_t), value :: handle
+      type(c_ptr), value :: rev
+      integer(c_int) :: get_git_rev
+      get_git_rev = rocsparse_get_git_rev_raw(handle%ptr, rev)
+    end function rocsparse_get_git_rev_typed
 
     function rocsparse_create_mat_descr_typed(descr) result(create_mat_descr)
       use, intrinsic :: iso_c_binding
@@ -36580,12 +36599,12 @@ contains
       type(c_ptr), value :: nnz
       type(c_ptr) :: indices
       type(c_ptr) :: values
-      integer(c_int), target :: idx_type(*)
-      integer(c_int), target :: idx_base(*)
-      integer(c_int), target :: data_type(*)
+      integer(c_int), target :: idx_type(..)
+      integer(c_int), target :: idx_base(..)
+      integer(c_int), target :: data_type(..)
       integer(c_int) :: spvec_get
-      spvec_get = rocsparse_spvec_get_raw(descr, size, nnz, indices, values, c_loc(idx_type(1)), &
-        c_loc(idx_base(1)), c_loc(data_type(1)))
+      spvec_get = rocsparse_spvec_get_raw(descr, size, nnz, indices, values, c_loc(idx_type), &
+        c_loc(idx_base), c_loc(data_type))
     end function rocsparse_spvec_get_native
 
     function rocsparse_spvec_get_typed(descr, size, nnz, indices, values, idx_type, idx_base, &
@@ -36615,12 +36634,12 @@ contains
       type(c_ptr), value :: nnz
       type(c_ptr) :: indices
       type(c_ptr) :: values
-      integer(c_int), target :: idx_type(*)
-      integer(c_int), target :: idx_base(*)
-      integer(c_int), target :: data_type(*)
+      integer(c_int), target :: idx_type(..)
+      integer(c_int), target :: idx_base(..)
+      integer(c_int), target :: data_type(..)
       integer(c_int) :: const_spvec_get
       const_spvec_get = rocsparse_const_spvec_get_raw(descr, size, nnz, indices, values, c_loc( &
-        idx_type(1)), c_loc(idx_base(1)), c_loc(data_type(1)))
+        idx_type), c_loc(idx_base), c_loc(data_type))
     end function rocsparse_const_spvec_get_native
 
     function rocsparse_const_spvec_get_typed(descr, size, nnz, indices, values, idx_type, &
@@ -36645,9 +36664,9 @@ contains
       use, intrinsic :: iso_c_binding
       implicit none
       type(c_ptr), value :: descr
-      integer(c_int), target :: idx_base(*)
+      integer(c_int), target :: idx_base(..)
       integer(c_int) :: spvec_get_index_base
-      spvec_get_index_base = rocsparse_spvec_get_index_base_raw(descr, c_loc(idx_base(1)))
+      spvec_get_index_base = rocsparse_spvec_get_index_base_raw(descr, c_loc(idx_base))
     end function rocsparse_spvec_get_index_base_native
 
     function rocsparse_spvec_get_index_base_typed(descr, idx_base) result(spvec_get_index_base)
@@ -37399,12 +37418,12 @@ contains
       type(c_ptr) :: coo_row_ind
       type(c_ptr) :: coo_col_ind
       type(c_ptr) :: coo_val
-      integer(c_int), target :: idx_type(*)
-      integer(c_int), target :: idx_base(*)
-      integer(c_int), target :: data_type(*)
+      integer(c_int), target :: idx_type(..)
+      integer(c_int), target :: idx_base(..)
+      integer(c_int), target :: data_type(..)
       integer(c_int) :: coo_get
       coo_get = rocsparse_coo_get_raw(descr, rows, cols, nnz, coo_row_ind, coo_col_ind, coo_val, &
-        c_loc(idx_type(1)), c_loc(idx_base(1)), c_loc(data_type(1)))
+        c_loc(idx_type), c_loc(idx_base), c_loc(data_type))
     end function rocsparse_coo_get_native
 
     function rocsparse_coo_get_typed(descr, rows, cols, nnz, coo_row_ind, coo_col_ind, coo_val, &
@@ -37438,12 +37457,12 @@ contains
       type(c_ptr) :: coo_row_ind
       type(c_ptr) :: coo_col_ind
       type(c_ptr) :: coo_val
-      integer(c_int), target :: idx_type(*)
-      integer(c_int), target :: idx_base(*)
-      integer(c_int), target :: data_type(*)
+      integer(c_int), target :: idx_type(..)
+      integer(c_int), target :: idx_base(..)
+      integer(c_int), target :: data_type(..)
       integer(c_int) :: const_coo_get
       const_coo_get = rocsparse_const_coo_get_raw(descr, rows, cols, nnz, coo_row_ind, &
-        coo_col_ind, coo_val, c_loc(idx_type(1)), c_loc(idx_base(1)), c_loc(data_type(1)))
+        coo_col_ind, coo_val, c_loc(idx_type), c_loc(idx_base), c_loc(data_type))
     end function rocsparse_const_coo_get_native
 
     function rocsparse_const_coo_get_typed(descr, rows, cols, nnz, coo_row_ind, coo_col_ind, &
@@ -37476,12 +37495,12 @@ contains
       type(c_ptr), value :: nnz
       type(c_ptr) :: coo_ind
       type(c_ptr) :: coo_val
-      integer(c_int), target :: idx_type(*)
-      integer(c_int), target :: idx_base(*)
-      integer(c_int), target :: data_type(*)
+      integer(c_int), target :: idx_type(..)
+      integer(c_int), target :: idx_base(..)
+      integer(c_int), target :: data_type(..)
       integer(c_int) :: coo_aos_get
       coo_aos_get = rocsparse_coo_aos_get_raw(descr, rows, cols, nnz, coo_ind, coo_val, c_loc( &
-        idx_type(1)), c_loc(idx_base(1)), c_loc(data_type(1)))
+        idx_type), c_loc(idx_base), c_loc(data_type))
     end function rocsparse_coo_aos_get_native
 
     function rocsparse_coo_aos_get_typed(descr, rows, cols, nnz, coo_ind, coo_val, idx_type, &
@@ -37513,12 +37532,12 @@ contains
       type(c_ptr), value :: nnz
       type(c_ptr) :: coo_ind
       type(c_ptr) :: coo_val
-      integer(c_int), target :: idx_type(*)
-      integer(c_int), target :: idx_base(*)
-      integer(c_int), target :: data_type(*)
+      integer(c_int), target :: idx_type(..)
+      integer(c_int), target :: idx_base(..)
+      integer(c_int), target :: data_type(..)
       integer(c_int) :: const_coo_aos_get
       const_coo_aos_get = rocsparse_const_coo_aos_get_raw(descr, rows, cols, nnz, coo_ind, &
-        coo_val, c_loc(idx_type(1)), c_loc(idx_base(1)), c_loc(data_type(1)))
+        coo_val, c_loc(idx_type), c_loc(idx_base), c_loc(data_type))
     end function rocsparse_const_coo_aos_get_native
 
     function rocsparse_const_coo_aos_get_typed(descr, rows, cols, nnz, coo_ind, coo_val, idx_type, &
@@ -37551,13 +37570,13 @@ contains
       type(c_ptr) :: csr_row_ptr
       type(c_ptr) :: csr_col_ind
       type(c_ptr) :: csr_val
-      integer(c_int), target :: row_ptr_type(*)
-      integer(c_int), target :: col_ind_type(*)
-      integer(c_int), target :: idx_base(*)
-      integer(c_int), target :: data_type(*)
+      integer(c_int), target :: row_ptr_type(..)
+      integer(c_int), target :: col_ind_type(..)
+      integer(c_int), target :: idx_base(..)
+      integer(c_int), target :: data_type(..)
       integer(c_int) :: csr_get
       csr_get = rocsparse_csr_get_raw(descr, rows, cols, nnz, csr_row_ptr, csr_col_ind, csr_val, &
-        c_loc(row_ptr_type(1)), c_loc(col_ind_type(1)), c_loc(idx_base(1)), c_loc(data_type(1)))
+        c_loc(row_ptr_type), c_loc(col_ind_type), c_loc(idx_base), c_loc(data_type))
     end function rocsparse_csr_get_native
 
     function rocsparse_csr_get_typed(descr, rows, cols, nnz, csr_row_ptr, csr_col_ind, csr_val, &
@@ -37592,14 +37611,14 @@ contains
       type(c_ptr) :: csr_row_ptr
       type(c_ptr) :: csr_col_ind
       type(c_ptr) :: csr_val
-      integer(c_int), target :: row_ptr_type(*)
-      integer(c_int), target :: col_ind_type(*)
-      integer(c_int), target :: idx_base(*)
-      integer(c_int), target :: data_type(*)
+      integer(c_int), target :: row_ptr_type(..)
+      integer(c_int), target :: col_ind_type(..)
+      integer(c_int), target :: idx_base(..)
+      integer(c_int), target :: data_type(..)
       integer(c_int) :: const_csr_get
       const_csr_get = rocsparse_const_csr_get_raw(descr, rows, cols, nnz, csr_row_ptr, &
-        csr_col_ind, csr_val, c_loc(row_ptr_type(1)), c_loc(col_ind_type(1)), c_loc(idx_base(1)), &
-        c_loc(data_type(1)))
+        csr_col_ind, csr_val, c_loc(row_ptr_type), c_loc(col_ind_type), c_loc(idx_base), c_loc( &
+        data_type))
     end function rocsparse_const_csr_get_native
 
     function rocsparse_const_csr_get_typed(descr, rows, cols, nnz, csr_row_ptr, csr_col_ind, &
@@ -37634,13 +37653,13 @@ contains
       type(c_ptr) :: csc_col_ptr
       type(c_ptr) :: csc_row_ind
       type(c_ptr) :: csc_val
-      integer(c_int), target :: col_ptr_type(*)
-      integer(c_int), target :: row_ind_type(*)
-      integer(c_int), target :: idx_base(*)
-      integer(c_int), target :: data_type(*)
+      integer(c_int), target :: col_ptr_type(..)
+      integer(c_int), target :: row_ind_type(..)
+      integer(c_int), target :: idx_base(..)
+      integer(c_int), target :: data_type(..)
       integer(c_int) :: csc_get
       csc_get = rocsparse_csc_get_raw(descr, rows, cols, nnz, csc_col_ptr, csc_row_ind, csc_val, &
-        c_loc(col_ptr_type(1)), c_loc(row_ind_type(1)), c_loc(idx_base(1)), c_loc(data_type(1)))
+        c_loc(col_ptr_type), c_loc(row_ind_type), c_loc(idx_base), c_loc(data_type))
     end function rocsparse_csc_get_native
 
     function rocsparse_csc_get_typed(descr, rows, cols, nnz, csc_col_ptr, csc_row_ind, csc_val, &
@@ -37675,14 +37694,14 @@ contains
       type(c_ptr) :: csc_col_ptr
       type(c_ptr) :: csc_row_ind
       type(c_ptr) :: csc_val
-      integer(c_int), target :: col_ptr_type(*)
-      integer(c_int), target :: row_ind_type(*)
-      integer(c_int), target :: idx_base(*)
-      integer(c_int), target :: data_type(*)
+      integer(c_int), target :: col_ptr_type(..)
+      integer(c_int), target :: row_ind_type(..)
+      integer(c_int), target :: idx_base(..)
+      integer(c_int), target :: data_type(..)
       integer(c_int) :: const_csc_get
       const_csc_get = rocsparse_const_csc_get_raw(descr, rows, cols, nnz, csc_col_ptr, &
-        csc_row_ind, csc_val, c_loc(col_ptr_type(1)), c_loc(row_ind_type(1)), c_loc(idx_base(1)), &
-        c_loc(data_type(1)))
+        csc_row_ind, csc_val, c_loc(col_ptr_type), c_loc(row_ind_type), c_loc(idx_base), c_loc( &
+        data_type))
     end function rocsparse_const_csc_get_native
 
     function rocsparse_const_csc_get_typed(descr, rows, cols, nnz, csc_col_ptr, csc_row_ind, &
@@ -37716,12 +37735,12 @@ contains
       type(c_ptr) :: ell_col_ind
       type(c_ptr) :: ell_val
       type(c_ptr), value :: ell_width
-      integer(c_int), target :: idx_type(*)
-      integer(c_int), target :: idx_base(*)
-      integer(c_int), target :: data_type(*)
+      integer(c_int), target :: idx_type(..)
+      integer(c_int), target :: idx_base(..)
+      integer(c_int), target :: data_type(..)
       integer(c_int) :: ell_get
       ell_get = rocsparse_ell_get_raw(descr, rows, cols, ell_col_ind, ell_val, ell_width, c_loc( &
-        idx_type(1)), c_loc(idx_base(1)), c_loc(data_type(1)))
+        idx_type), c_loc(idx_base), c_loc(data_type))
     end function rocsparse_ell_get_native
 
     function rocsparse_ell_get_typed(descr, rows, cols, ell_col_ind, ell_val, ell_width, idx_type, &
@@ -37753,12 +37772,12 @@ contains
       type(c_ptr) :: ell_col_ind
       type(c_ptr) :: ell_val
       type(c_ptr), value :: ell_width
-      integer(c_int), target :: idx_type(*)
-      integer(c_int), target :: idx_base(*)
-      integer(c_int), target :: data_type(*)
+      integer(c_int), target :: idx_type(..)
+      integer(c_int), target :: idx_base(..)
+      integer(c_int), target :: data_type(..)
       integer(c_int) :: const_ell_get
       const_ell_get = rocsparse_const_ell_get_raw(descr, rows, cols, ell_col_ind, ell_val, &
-        ell_width, c_loc(idx_type(1)), c_loc(idx_base(1)), c_loc(data_type(1)))
+        ell_width, c_loc(idx_type), c_loc(idx_base), c_loc(data_type))
     end function rocsparse_const_ell_get_native
 
     function rocsparse_const_ell_get_typed(descr, rows, cols, ell_col_ind, ell_val, ell_width, &
@@ -37787,17 +37806,17 @@ contains
       type(c_ptr), value :: descr
       type(c_ptr), value :: rows
       type(c_ptr), value :: cols
-      integer(c_int), target :: ell_block_dir(*)
+      integer(c_int), target :: ell_block_dir(..)
       type(c_ptr), value :: ell_block_dim
       type(c_ptr), value :: ell_cols
       type(c_ptr) :: ell_col_ind
       type(c_ptr) :: ell_val
-      integer(c_int), target :: idx_type(*)
-      integer(c_int), target :: idx_base(*)
-      integer(c_int), target :: data_type(*)
+      integer(c_int), target :: idx_type(..)
+      integer(c_int), target :: idx_base(..)
+      integer(c_int), target :: data_type(..)
       integer(c_int) :: bell_get
-      bell_get = rocsparse_bell_get_raw(descr, rows, cols, c_loc(ell_block_dir(1)), ell_block_dim, &
-        ell_cols, ell_col_ind, ell_val, c_loc(idx_type(1)), c_loc(idx_base(1)), c_loc(data_type(1)))
+      bell_get = rocsparse_bell_get_raw(descr, rows, cols, c_loc(ell_block_dir), ell_block_dim, &
+        ell_cols, ell_col_ind, ell_val, c_loc(idx_type), c_loc(idx_base), c_loc(data_type))
     end function rocsparse_bell_get_native
 
     function rocsparse_bell_get_typed(descr, rows, cols, ell_block_dir, ell_block_dim, ell_cols, &
@@ -37828,18 +37847,18 @@ contains
       type(c_ptr), value :: descr
       type(c_ptr), value :: rows
       type(c_ptr), value :: cols
-      integer(c_int), target :: ell_block_dir(*)
+      integer(c_int), target :: ell_block_dir(..)
       type(c_ptr), value :: ell_block_dim
       type(c_ptr), value :: ell_cols
       type(c_ptr) :: ell_col_ind
       type(c_ptr) :: ell_val
-      integer(c_int), target :: idx_type(*)
-      integer(c_int), target :: idx_base(*)
-      integer(c_int), target :: data_type(*)
+      integer(c_int), target :: idx_type(..)
+      integer(c_int), target :: idx_base(..)
+      integer(c_int), target :: data_type(..)
       integer(c_int) :: const_bell_get
-      const_bell_get = rocsparse_const_bell_get_raw(descr, rows, cols, c_loc(ell_block_dir(1)), &
-        ell_block_dim, ell_cols, ell_col_ind, ell_val, c_loc(idx_type(1)), c_loc(idx_base(1)), &
-        c_loc(data_type(1)))
+      const_bell_get = rocsparse_const_bell_get_raw(descr, rows, cols, c_loc(ell_block_dir), &
+        ell_block_dim, ell_cols, ell_col_ind, ell_val, c_loc(idx_type), c_loc(idx_base), c_loc( &
+        data_type))
     end function rocsparse_const_bell_get_native
 
     function rocsparse_const_bell_get_typed(descr, rows, cols, ell_block_dir, ell_block_dim, &
@@ -37877,14 +37896,14 @@ contains
       type(c_ptr) :: sell_slice_offsets
       type(c_ptr) :: sell_col_ind
       type(c_ptr) :: sell_val
-      integer(c_int), target :: sell_slice_offsets_type(*)
-      integer(c_int), target :: sell_col_ind_type(*)
-      integer(c_int), target :: idx_base(*)
-      integer(c_int), target :: data_type(*)
+      integer(c_int), target :: sell_slice_offsets_type(..)
+      integer(c_int), target :: sell_col_ind_type(..)
+      integer(c_int), target :: idx_base(..)
+      integer(c_int), target :: data_type(..)
       integer(c_int) :: sell_get
       sell_get = rocsparse_sell_get_raw(descr, rows, cols, nnz, sell_slice_size, sell_colval_size, &
-        sell_slice_offsets, sell_col_ind, sell_val, c_loc(sell_slice_offsets_type(1)), c_loc( &
-        sell_col_ind_type(1)), c_loc(idx_base(1)), c_loc(data_type(1)))
+        sell_slice_offsets, sell_col_ind, sell_val, c_loc(sell_slice_offsets_type), c_loc( &
+        sell_col_ind_type), c_loc(idx_base), c_loc(data_type))
     end function rocsparse_sell_get_native
 
     function rocsparse_sell_get_typed(descr, rows, cols, nnz, sell_slice_size, sell_colval_size, &
@@ -37926,15 +37945,14 @@ contains
       type(c_ptr) :: sell_slice_offsets
       type(c_ptr) :: sell_col_ind
       type(c_ptr) :: sell_val
-      integer(c_int), target :: sell_slice_offsets_type(*)
-      integer(c_int), target :: sell_col_ind_type(*)
-      integer(c_int), target :: idx_base(*)
-      integer(c_int), target :: data_type(*)
+      integer(c_int), target :: sell_slice_offsets_type(..)
+      integer(c_int), target :: sell_col_ind_type(..)
+      integer(c_int), target :: idx_base(..)
+      integer(c_int), target :: data_type(..)
       integer(c_int) :: const_sell_get
       const_sell_get = rocsparse_const_sell_get_raw(descr, rows, cols, nnz, sell_slice_size, &
         sell_colval_size, sell_slice_offsets, sell_col_ind, sell_val, c_loc( &
-        sell_slice_offsets_type(1)), c_loc(sell_col_ind_type(1)), c_loc(idx_base(1)), c_loc( &
-        data_type(1)))
+        sell_slice_offsets_type), c_loc(sell_col_ind_type), c_loc(idx_base), c_loc(data_type))
     end function rocsparse_const_sell_get_native
 
     function rocsparse_const_sell_get_typed(descr, rows, cols, nnz, sell_slice_size, &
@@ -37971,19 +37989,19 @@ contains
       type(c_ptr), value :: brows
       type(c_ptr), value :: bcols
       type(c_ptr), value :: bnnz
-      integer(c_int), target :: block_dir(*)
+      integer(c_int), target :: block_dir(..)
       type(c_ptr), value :: block_dim
       type(c_ptr) :: bsr_row_ptr
       type(c_ptr) :: bsr_col_ind
       type(c_ptr) :: bsr_val
-      integer(c_int), target :: row_ptr_type(*)
-      integer(c_int), target :: col_ind_type(*)
-      integer(c_int), target :: idx_base(*)
-      integer(c_int), target :: data_type(*)
+      integer(c_int), target :: row_ptr_type(..)
+      integer(c_int), target :: col_ind_type(..)
+      integer(c_int), target :: idx_base(..)
+      integer(c_int), target :: data_type(..)
       integer(c_int) :: bsr_get
-      bsr_get = rocsparse_bsr_get_raw(descr, brows, bcols, bnnz, c_loc(block_dir(1)), block_dim, &
-        bsr_row_ptr, bsr_col_ind, bsr_val, c_loc(row_ptr_type(1)), c_loc(col_ind_type(1)), c_loc( &
-        idx_base(1)), c_loc(data_type(1)))
+      bsr_get = rocsparse_bsr_get_raw(descr, brows, bcols, bnnz, c_loc(block_dir), block_dim, &
+        bsr_row_ptr, bsr_col_ind, bsr_val, c_loc(row_ptr_type), c_loc(col_ind_type), c_loc( &
+        idx_base), c_loc(data_type))
     end function rocsparse_bsr_get_native
 
     function rocsparse_bsr_get_typed(descr, brows, bcols, bnnz, block_dir, block_dim, bsr_row_ptr, &
@@ -38018,19 +38036,19 @@ contains
       type(c_ptr), value :: brows
       type(c_ptr), value :: bcols
       type(c_ptr), value :: bnnz
-      integer(c_int), target :: block_dir(*)
+      integer(c_int), target :: block_dir(..)
       type(c_ptr), value :: block_dim
       type(c_ptr) :: bsr_row_ptr
       type(c_ptr) :: bsr_col_ind
       type(c_ptr) :: bsr_val
-      integer(c_int), target :: row_ptr_type(*)
-      integer(c_int), target :: col_ind_type(*)
-      integer(c_int), target :: idx_base(*)
-      integer(c_int), target :: data_type(*)
+      integer(c_int), target :: row_ptr_type(..)
+      integer(c_int), target :: col_ind_type(..)
+      integer(c_int), target :: idx_base(..)
+      integer(c_int), target :: data_type(..)
       integer(c_int) :: const_bsr_get
-      const_bsr_get = rocsparse_const_bsr_get_raw(descr, brows, bcols, bnnz, c_loc(block_dir(1)), &
-        block_dim, bsr_row_ptr, bsr_col_ind, bsr_val, c_loc(row_ptr_type(1)), c_loc(col_ind_type( &
-        1)), c_loc(idx_base(1)), c_loc(data_type(1)))
+      const_bsr_get = rocsparse_const_bsr_get_raw(descr, brows, bcols, bnnz, c_loc(block_dir), &
+        block_dim, bsr_row_ptr, bsr_col_ind, bsr_val, c_loc(row_ptr_type), c_loc(col_ind_type), &
+        c_loc(idx_base), c_loc(data_type))
     end function rocsparse_const_bsr_get_native
 
     function rocsparse_const_bsr_get_typed(descr, brows, bcols, bnnz, block_dir, block_dim, &
@@ -38149,32 +38167,32 @@ contains
       spmat_get_size = rocsparse_spmat_get_size_raw(descr%ptr, rows, cols, nnz)
     end function rocsparse_spmat_get_size_typed
 
-    function rocsparse_spmat_get_format_native(descr, format) result(spmat_get_format)
+    function rocsparse_spmat_get_format_native(descr, format_) result(spmat_get_format)
       use, intrinsic :: iso_c_binding
       implicit none
       type(c_ptr), value :: descr
-      integer(c_int), target :: format(*)
+      integer(c_int), target :: format_(..)
       integer(c_int) :: spmat_get_format
-      spmat_get_format = rocsparse_spmat_get_format_raw(descr, c_loc(format(1)))
+      spmat_get_format = rocsparse_spmat_get_format_raw(descr, c_loc(format_))
     end function rocsparse_spmat_get_format_native
 
-    function rocsparse_spmat_get_format_typed(descr, format) result(spmat_get_format)
+    function rocsparse_spmat_get_format_typed(descr, format_) result(spmat_get_format)
       use, intrinsic :: iso_c_binding
       use hipfort_handles
       implicit none
       type(rocsparse_const_spmat_descr_t), value :: descr
-      type(c_ptr), value :: format
+      type(c_ptr), value :: format_
       integer(c_int) :: spmat_get_format
-      spmat_get_format = rocsparse_spmat_get_format_raw(descr%ptr, format)
+      spmat_get_format = rocsparse_spmat_get_format_raw(descr%ptr, format_)
     end function rocsparse_spmat_get_format_typed
 
     function rocsparse_spmat_get_index_base_native(descr, idx_base) result(spmat_get_index_base)
       use, intrinsic :: iso_c_binding
       implicit none
       type(c_ptr), value :: descr
-      integer(c_int), target :: idx_base(*)
+      integer(c_int), target :: idx_base(..)
       integer(c_int) :: spmat_get_index_base
-      spmat_get_index_base = rocsparse_spmat_get_index_base_raw(descr, c_loc(idx_base(1)))
+      spmat_get_index_base = rocsparse_spmat_get_index_base_raw(descr, c_loc(idx_base))
     end function rocsparse_spmat_get_index_base_native
 
     function rocsparse_spmat_get_index_base_typed(descr, idx_base) result(spmat_get_index_base)
@@ -38242,9 +38260,9 @@ contains
       use, intrinsic :: iso_c_binding
       implicit none
       type(c_ptr), value :: descr
-      integer(c_int), target :: batch_count(*)
+      integer(c_int), target :: batch_count(..)
       integer(c_int) :: spmat_get_strided_batch
-      spmat_get_strided_batch = rocsparse_spmat_get_strided_batch_raw(descr, c_loc(batch_count(1)))
+      spmat_get_strided_batch = rocsparse_spmat_get_strided_batch_raw(descr, c_loc(batch_count))
     end function rocsparse_spmat_get_strided_batch_native
 
     function rocsparse_spmat_get_strided_batch_typed(descr, batch_count) result( &
@@ -38378,9 +38396,9 @@ contains
       type(c_ptr), value :: descr
       type(c_ptr), value :: size
       type(c_ptr) :: values
-      integer(c_int), target :: data_type(*)
+      integer(c_int), target :: data_type(..)
       integer(c_int) :: dnvec_get
-      dnvec_get = rocsparse_dnvec_get_raw(descr, size, values, c_loc(data_type(1)))
+      dnvec_get = rocsparse_dnvec_get_raw(descr, size, values, c_loc(data_type))
     end function rocsparse_dnvec_get_native
 
     function rocsparse_dnvec_get_typed(descr, size, values, data_type) result(dnvec_get)
@@ -38402,9 +38420,9 @@ contains
       type(c_ptr), value :: descr
       type(c_ptr), value :: size
       type(c_ptr) :: values
-      integer(c_int), target :: data_type(*)
+      integer(c_int), target :: data_type(..)
       integer(c_int) :: const_dnvec_get
-      const_dnvec_get = rocsparse_const_dnvec_get_raw(descr, size, values, c_loc(data_type(1)))
+      const_dnvec_get = rocsparse_const_dnvec_get_raw(descr, size, values, c_loc(data_type))
     end function rocsparse_const_dnvec_get_native
 
     function rocsparse_const_dnvec_get_typed(descr, size, values, data_type) result(const_dnvec_get)
@@ -38501,11 +38519,11 @@ contains
       type(c_ptr), value :: cols
       type(c_ptr), value :: ld
       type(c_ptr) :: values
-      integer(c_int), target :: data_type(*)
-      integer(c_int), target :: order(*)
+      integer(c_int), target :: data_type(..)
+      integer(c_int), target :: order(..)
       integer(c_int) :: dnmat_get
-      dnmat_get = rocsparse_dnmat_get_raw(descr, rows, cols, ld, values, c_loc(data_type(1)), &
-        c_loc(order(1)))
+      dnmat_get = rocsparse_dnmat_get_raw(descr, rows, cols, ld, values, c_loc(data_type), c_loc( &
+        order))
     end function rocsparse_dnmat_get_native
 
     function rocsparse_dnmat_get_typed(descr, rows, cols, ld, values, data_type, order) result( &
@@ -38533,11 +38551,11 @@ contains
       type(c_ptr), value :: cols
       type(c_ptr), value :: ld
       type(c_ptr) :: values
-      integer(c_int), target :: data_type(*)
-      integer(c_int), target :: order(*)
+      integer(c_int), target :: data_type(..)
+      integer(c_int), target :: order(..)
       integer(c_int) :: const_dnmat_get
       const_dnmat_get = rocsparse_const_dnmat_get_raw(descr, rows, cols, ld, values, c_loc( &
-        data_type(1)), c_loc(order(1)))
+        data_type), c_loc(order))
     end function rocsparse_const_dnmat_get_native
 
     function rocsparse_const_dnmat_get_typed(descr, rows, cols, ld, values, data_type, &
@@ -38592,11 +38610,11 @@ contains
       use, intrinsic :: iso_c_binding
       implicit none
       type(c_ptr), value :: descr
-      integer(c_int), target :: batch_count(*)
+      integer(c_int), target :: batch_count(..)
       type(c_ptr), value :: batch_stride
       integer(c_int) :: dnmat_get_strided_batch
-      dnmat_get_strided_batch = rocsparse_dnmat_get_strided_batch_raw(descr, c_loc(batch_count( &
-        1)), batch_stride)
+      dnmat_get_strided_batch = rocsparse_dnmat_get_strided_batch_raw(descr, c_loc(batch_count), &
+        batch_stride)
     end function rocsparse_dnmat_get_strided_batch_native
 
     function rocsparse_dnmat_get_strided_batch_typed(descr, batch_count, batch_stride) result( &
@@ -38630,11 +38648,11 @@ contains
       use, intrinsic :: iso_c_binding
       implicit none
       type(c_ptr), value :: descr
-      integer(c_int), target :: batch_count(*)
+      integer(c_int), target :: batch_count(..)
       type(c_ptr), value :: batch_stride
       integer(c_int) :: dnvec_get_strided_batch
-      dnvec_get_strided_batch = rocsparse_dnvec_get_strided_batch_raw(descr, c_loc(batch_count( &
-        1)), batch_stride)
+      dnvec_get_strided_batch = rocsparse_dnvec_get_strided_batch_raw(descr, c_loc(batch_count), &
+        batch_stride)
     end function rocsparse_dnvec_get_strided_batch_native
 
     function rocsparse_dnvec_get_strided_batch_typed(descr, batch_count, batch_stride) result( &
@@ -38672,18 +38690,18 @@ contains
       integer(c_int), value :: mb
       integer(c_int), value :: nb
       type(c_ptr), value :: bsr_descr
-      real(c_float), target :: bsr_val(*)
-      integer(c_int), target :: bsr_row_ptr(*)
-      integer(c_int), target :: bsr_col_ind(*)
+      real(c_float), target :: bsr_val(..)
+      integer(c_int), target :: bsr_row_ptr(..)
+      integer(c_int), target :: bsr_col_ind(..)
       integer(c_int), value :: block_dim
       type(c_ptr), value :: csr_descr
-      real(c_float), target :: csr_val(*)
-      integer(c_int), target :: csr_row_ptr(*)
-      integer(c_int), target :: csr_col_ind(*)
+      real(c_float), target :: csr_val(..)
+      integer(c_int), target :: csr_row_ptr(..)
+      integer(c_int), target :: csr_col_ind(..)
       integer(c_int) :: sbsr2csr
-      sbsr2csr = rocsparse_sbsr2csr_raw(handle, dir, mb, nb, bsr_descr, c_loc(bsr_val(1)), c_loc( &
-        bsr_row_ptr(1)), c_loc(bsr_col_ind(1)), block_dim, csr_descr, c_loc(csr_val(1)), c_loc( &
-        csr_row_ptr(1)), c_loc(csr_col_ind(1)))
+      sbsr2csr = rocsparse_sbsr2csr_raw(handle, dir, mb, nb, bsr_descr, c_loc(bsr_val), c_loc( &
+        bsr_row_ptr), c_loc(bsr_col_ind), block_dim, csr_descr, c_loc(csr_val), c_loc( &
+        csr_row_ptr), c_loc(csr_col_ind))
     end function rocsparse_sbsr2csr_native
 
     function rocsparse_sbsr2csr_typed(handle, dir, mb, nb, bsr_descr, bsr_val, bsr_row_ptr, &
@@ -38718,18 +38736,18 @@ contains
       integer(c_int), value :: mb
       integer(c_int), value :: nb
       type(c_ptr), value :: bsr_descr
-      real(c_double), target :: bsr_val(*)
-      integer(c_int), target :: bsr_row_ptr(*)
-      integer(c_int), target :: bsr_col_ind(*)
+      real(c_double), target :: bsr_val(..)
+      integer(c_int), target :: bsr_row_ptr(..)
+      integer(c_int), target :: bsr_col_ind(..)
       integer(c_int), value :: block_dim
       type(c_ptr), value :: csr_descr
-      real(c_double), target :: csr_val(*)
-      integer(c_int), target :: csr_row_ptr(*)
-      integer(c_int), target :: csr_col_ind(*)
+      real(c_double), target :: csr_val(..)
+      integer(c_int), target :: csr_row_ptr(..)
+      integer(c_int), target :: csr_col_ind(..)
       integer(c_int) :: dbsr2csr
-      dbsr2csr = rocsparse_dbsr2csr_raw(handle, dir, mb, nb, bsr_descr, c_loc(bsr_val(1)), c_loc( &
-        bsr_row_ptr(1)), c_loc(bsr_col_ind(1)), block_dim, csr_descr, c_loc(csr_val(1)), c_loc( &
-        csr_row_ptr(1)), c_loc(csr_col_ind(1)))
+      dbsr2csr = rocsparse_dbsr2csr_raw(handle, dir, mb, nb, bsr_descr, c_loc(bsr_val), c_loc( &
+        bsr_row_ptr), c_loc(bsr_col_ind), block_dim, csr_descr, c_loc(csr_val), c_loc( &
+        csr_row_ptr), c_loc(csr_col_ind))
     end function rocsparse_dbsr2csr_native
 
     function rocsparse_dbsr2csr_typed(handle, dir, mb, nb, bsr_descr, bsr_val, bsr_row_ptr, &
@@ -38764,18 +38782,18 @@ contains
       integer(c_int), value :: mb
       integer(c_int), value :: nb
       type(c_ptr), value :: bsr_descr
-      complex(c_float_complex), target :: bsr_val(*)
-      integer(c_int), target :: bsr_row_ptr(*)
-      integer(c_int), target :: bsr_col_ind(*)
+      complex(c_float_complex), target :: bsr_val(..)
+      integer(c_int), target :: bsr_row_ptr(..)
+      integer(c_int), target :: bsr_col_ind(..)
       integer(c_int), value :: block_dim
       type(c_ptr), value :: csr_descr
-      complex(c_float_complex), target :: csr_val(*)
-      integer(c_int), target :: csr_row_ptr(*)
-      integer(c_int), target :: csr_col_ind(*)
+      complex(c_float_complex), target :: csr_val(..)
+      integer(c_int), target :: csr_row_ptr(..)
+      integer(c_int), target :: csr_col_ind(..)
       integer(c_int) :: cbsr2csr
-      cbsr2csr = rocsparse_cbsr2csr_raw(handle, dir, mb, nb, bsr_descr, c_loc(bsr_val(1)), c_loc( &
-        bsr_row_ptr(1)), c_loc(bsr_col_ind(1)), block_dim, csr_descr, c_loc(csr_val(1)), c_loc( &
-        csr_row_ptr(1)), c_loc(csr_col_ind(1)))
+      cbsr2csr = rocsparse_cbsr2csr_raw(handle, dir, mb, nb, bsr_descr, c_loc(bsr_val), c_loc( &
+        bsr_row_ptr), c_loc(bsr_col_ind), block_dim, csr_descr, c_loc(csr_val), c_loc( &
+        csr_row_ptr), c_loc(csr_col_ind))
     end function rocsparse_cbsr2csr_native
 
     function rocsparse_cbsr2csr_typed(handle, dir, mb, nb, bsr_descr, bsr_val, bsr_row_ptr, &
@@ -38810,18 +38828,18 @@ contains
       integer(c_int), value :: mb
       integer(c_int), value :: nb
       type(c_ptr), value :: bsr_descr
-      complex(c_double_complex), target :: bsr_val(*)
-      integer(c_int), target :: bsr_row_ptr(*)
-      integer(c_int), target :: bsr_col_ind(*)
+      complex(c_double_complex), target :: bsr_val(..)
+      integer(c_int), target :: bsr_row_ptr(..)
+      integer(c_int), target :: bsr_col_ind(..)
       integer(c_int), value :: block_dim
       type(c_ptr), value :: csr_descr
-      complex(c_double_complex), target :: csr_val(*)
-      integer(c_int), target :: csr_row_ptr(*)
-      integer(c_int), target :: csr_col_ind(*)
+      complex(c_double_complex), target :: csr_val(..)
+      integer(c_int), target :: csr_row_ptr(..)
+      integer(c_int), target :: csr_col_ind(..)
       integer(c_int) :: zbsr2csr
-      zbsr2csr = rocsparse_zbsr2csr_raw(handle, dir, mb, nb, bsr_descr, c_loc(bsr_val(1)), c_loc( &
-        bsr_row_ptr(1)), c_loc(bsr_col_ind(1)), block_dim, csr_descr, c_loc(csr_val(1)), c_loc( &
-        csr_row_ptr(1)), c_loc(csr_col_ind(1)))
+      zbsr2csr = rocsparse_zbsr2csr_raw(handle, dir, mb, nb, bsr_descr, c_loc(bsr_val), c_loc( &
+        bsr_row_ptr), c_loc(bsr_col_ind), block_dim, csr_descr, c_loc(csr_val), c_loc( &
+        csr_row_ptr), c_loc(csr_col_ind))
     end function rocsparse_zbsr2csr_native
 
     function rocsparse_zbsr2csr_typed(handle, dir, mb, nb, bsr_descr, bsr_val, bsr_row_ptr, &
@@ -38858,12 +38876,12 @@ contains
       integer(c_int), value :: block_dim
       real(c_float), value :: value
       type(c_ptr), value :: bsr_descr
-      real(c_float), target :: bsr_val(*)
-      integer(c_int), target :: bsr_row_ptr(*)
-      integer(c_int), target :: bsr_col_ind(*)
+      real(c_float), target :: bsr_val(..)
+      integer(c_int), target :: bsr_row_ptr(..)
+      integer(c_int), target :: bsr_col_ind(..)
       integer(c_int) :: sbsrpad_value
       sbsrpad_value = rocsparse_sbsrpad_value_raw(handle, m, mb, nnzb, block_dim, value, &
-        bsr_descr, c_loc(bsr_val(1)), c_loc(bsr_row_ptr(1)), c_loc(bsr_col_ind(1)))
+        bsr_descr, c_loc(bsr_val), c_loc(bsr_row_ptr), c_loc(bsr_col_ind))
     end function rocsparse_sbsrpad_value_native
 
     function rocsparse_sbsrpad_value_typed(handle, m, mb, nnzb, block_dim, value, bsr_descr, &
@@ -38897,12 +38915,12 @@ contains
       integer(c_int), value :: block_dim
       real(c_double), value :: value
       type(c_ptr), value :: bsr_descr
-      real(c_double), target :: bsr_val(*)
-      integer(c_int), target :: bsr_row_ptr(*)
-      integer(c_int), target :: bsr_col_ind(*)
+      real(c_double), target :: bsr_val(..)
+      integer(c_int), target :: bsr_row_ptr(..)
+      integer(c_int), target :: bsr_col_ind(..)
       integer(c_int) :: dbsrpad_value
       dbsrpad_value = rocsparse_dbsrpad_value_raw(handle, m, mb, nnzb, block_dim, value, &
-        bsr_descr, c_loc(bsr_val(1)), c_loc(bsr_row_ptr(1)), c_loc(bsr_col_ind(1)))
+        bsr_descr, c_loc(bsr_val), c_loc(bsr_row_ptr), c_loc(bsr_col_ind))
     end function rocsparse_dbsrpad_value_native
 
     function rocsparse_dbsrpad_value_typed(handle, m, mb, nnzb, block_dim, value, bsr_descr, &
@@ -38936,12 +38954,12 @@ contains
       integer(c_int), value :: block_dim
       complex(c_float_complex), value :: value
       type(c_ptr), value :: bsr_descr
-      complex(c_float_complex), target :: bsr_val(*)
-      integer(c_int), target :: bsr_row_ptr(*)
-      integer(c_int), target :: bsr_col_ind(*)
+      complex(c_float_complex), target :: bsr_val(..)
+      integer(c_int), target :: bsr_row_ptr(..)
+      integer(c_int), target :: bsr_col_ind(..)
       integer(c_int) :: cbsrpad_value
       cbsrpad_value = rocsparse_cbsrpad_value_raw(handle, m, mb, nnzb, block_dim, value, &
-        bsr_descr, c_loc(bsr_val(1)), c_loc(bsr_row_ptr(1)), c_loc(bsr_col_ind(1)))
+        bsr_descr, c_loc(bsr_val), c_loc(bsr_row_ptr), c_loc(bsr_col_ind))
     end function rocsparse_cbsrpad_value_native
 
     function rocsparse_cbsrpad_value_typed(handle, m, mb, nnzb, block_dim, value, bsr_descr, &
@@ -38975,12 +38993,12 @@ contains
       integer(c_int), value :: block_dim
       complex(c_double_complex), value :: value
       type(c_ptr), value :: bsr_descr
-      complex(c_double_complex), target :: bsr_val(*)
-      integer(c_int), target :: bsr_row_ptr(*)
-      integer(c_int), target :: bsr_col_ind(*)
+      complex(c_double_complex), target :: bsr_val(..)
+      integer(c_int), target :: bsr_row_ptr(..)
+      integer(c_int), target :: bsr_col_ind(..)
       integer(c_int) :: zbsrpad_value
       zbsrpad_value = rocsparse_zbsrpad_value_raw(handle, m, mb, nnzb, block_dim, value, &
-        bsr_descr, c_loc(bsr_val(1)), c_loc(bsr_row_ptr(1)), c_loc(bsr_col_ind(1)))
+        bsr_descr, c_loc(bsr_val), c_loc(bsr_row_ptr), c_loc(bsr_col_ind))
     end function rocsparse_zbsrpad_value_native
 
     function rocsparse_zbsrpad_value_typed(handle, m, mb, nnzb, block_dim, value, bsr_descr, &
@@ -39008,14 +39026,14 @@ contains
       use, intrinsic :: iso_c_binding
       implicit none
       type(c_ptr), value :: handle
-      integer(c_int), target :: coo_row_ind(*)
+      integer(c_int), target :: coo_row_ind(..)
       integer(c_int), value :: nnz
       integer(c_int), value :: m
-      integer(c_int), target :: csr_row_ptr(*)
+      integer(c_int), target :: csr_row_ptr(..)
       integer(c_int), value :: idx_base
       integer(c_int) :: coo2csr
-      coo2csr = rocsparse_coo2csr_raw(handle, c_loc(coo_row_ind(1)), nnz, m, c_loc(csr_row_ptr( &
-        1)), idx_base)
+      coo2csr = rocsparse_coo2csr_raw(handle, c_loc(coo_row_ind), nnz, m, c_loc(csr_row_ptr), &
+        idx_base)
     end function rocsparse_coo2csr_native
 
     function rocsparse_coo2csr_typed(handle, coo_row_ind, nnz, m, csr_row_ptr, idx_base) result( &
@@ -39042,14 +39060,14 @@ contains
       integer(c_int), value :: n
       integer(c_int), value :: nnz
       type(c_ptr), value :: descr
-      real(c_float), target :: coo_val(*)
-      integer(c_int), target :: coo_row_ind(*)
-      integer(c_int), target :: coo_col_ind(*)
-      real(c_float), target :: A(*)
+      real(c_float), target :: coo_val(..)
+      integer(c_int), target :: coo_row_ind(..)
+      integer(c_int), target :: coo_col_ind(..)
+      real(c_float), target :: A(..)
       integer(c_int), value :: ld
       integer(c_int) :: scoo2dense
-      scoo2dense = rocsparse_scoo2dense_raw(handle, m, n, nnz, descr, c_loc(coo_val(1)), c_loc( &
-        coo_row_ind(1)), c_loc(coo_col_ind(1)), c_loc(A(1)), ld)
+      scoo2dense = rocsparse_scoo2dense_raw(handle, m, n, nnz, descr, c_loc(coo_val), c_loc( &
+        coo_row_ind), c_loc(coo_col_ind), c_loc(A), ld)
     end function rocsparse_scoo2dense_native
 
     function rocsparse_scoo2dense_typed(handle, m, n, nnz, descr, coo_val, coo_row_ind, &
@@ -39081,14 +39099,14 @@ contains
       integer(c_int), value :: n
       integer(c_int), value :: nnz
       type(c_ptr), value :: descr
-      real(c_double), target :: coo_val(*)
-      integer(c_int), target :: coo_row_ind(*)
-      integer(c_int), target :: coo_col_ind(*)
-      real(c_double), target :: A(*)
+      real(c_double), target :: coo_val(..)
+      integer(c_int), target :: coo_row_ind(..)
+      integer(c_int), target :: coo_col_ind(..)
+      real(c_double), target :: A(..)
       integer(c_int), value :: ld
       integer(c_int) :: dcoo2dense
-      dcoo2dense = rocsparse_dcoo2dense_raw(handle, m, n, nnz, descr, c_loc(coo_val(1)), c_loc( &
-        coo_row_ind(1)), c_loc(coo_col_ind(1)), c_loc(A(1)), ld)
+      dcoo2dense = rocsparse_dcoo2dense_raw(handle, m, n, nnz, descr, c_loc(coo_val), c_loc( &
+        coo_row_ind), c_loc(coo_col_ind), c_loc(A), ld)
     end function rocsparse_dcoo2dense_native
 
     function rocsparse_dcoo2dense_typed(handle, m, n, nnz, descr, coo_val, coo_row_ind, &
@@ -39120,14 +39138,14 @@ contains
       integer(c_int), value :: n
       integer(c_int), value :: nnz
       type(c_ptr), value :: descr
-      complex(c_float_complex), target :: coo_val(*)
-      integer(c_int), target :: coo_row_ind(*)
-      integer(c_int), target :: coo_col_ind(*)
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: coo_val(..)
+      integer(c_int), target :: coo_row_ind(..)
+      integer(c_int), target :: coo_col_ind(..)
+      complex(c_float_complex), target :: A(..)
       integer(c_int), value :: ld
       integer(c_int) :: ccoo2dense
-      ccoo2dense = rocsparse_ccoo2dense_raw(handle, m, n, nnz, descr, c_loc(coo_val(1)), c_loc( &
-        coo_row_ind(1)), c_loc(coo_col_ind(1)), c_loc(A(1)), ld)
+      ccoo2dense = rocsparse_ccoo2dense_raw(handle, m, n, nnz, descr, c_loc(coo_val), c_loc( &
+        coo_row_ind), c_loc(coo_col_ind), c_loc(A), ld)
     end function rocsparse_ccoo2dense_native
 
     function rocsparse_ccoo2dense_typed(handle, m, n, nnz, descr, coo_val, coo_row_ind, &
@@ -39159,14 +39177,14 @@ contains
       integer(c_int), value :: n
       integer(c_int), value :: nnz
       type(c_ptr), value :: descr
-      complex(c_double_complex), target :: coo_val(*)
-      integer(c_int), target :: coo_row_ind(*)
-      integer(c_int), target :: coo_col_ind(*)
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: coo_val(..)
+      integer(c_int), target :: coo_row_ind(..)
+      integer(c_int), target :: coo_col_ind(..)
+      complex(c_double_complex), target :: A(..)
       integer(c_int), value :: ld
       integer(c_int) :: zcoo2dense
-      zcoo2dense = rocsparse_zcoo2dense_raw(handle, m, n, nnz, descr, c_loc(coo_val(1)), c_loc( &
-        coo_row_ind(1)), c_loc(coo_col_ind(1)), c_loc(A(1)), ld)
+      zcoo2dense = rocsparse_zcoo2dense_raw(handle, m, n, nnz, descr, c_loc(coo_val), c_loc( &
+        coo_row_ind), c_loc(coo_col_ind), c_loc(A), ld)
     end function rocsparse_zcoo2dense_native
 
     function rocsparse_zcoo2dense_typed(handle, m, n, nnz, descr, coo_val, coo_row_ind, &
@@ -39197,12 +39215,12 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       integer(c_int), value :: nnz
-      integer(c_int), target :: coo_row_ind(*)
-      integer(c_int), target :: coo_col_ind(*)
+      integer(c_int), target :: coo_row_ind(..)
+      integer(c_int), target :: coo_col_ind(..)
       type(c_ptr), value :: buffer_size
       integer(c_int) :: coosort_buffer_size
       coosort_buffer_size = rocsparse_coosort_buffer_size_raw(handle, m, n, nnz, c_loc( &
-        coo_row_ind(1)), c_loc(coo_col_ind(1)), buffer_size)
+        coo_row_ind), c_loc(coo_col_ind), buffer_size)
     end function rocsparse_coosort_buffer_size_native
 
     function rocsparse_coosort_buffer_size_typed(handle, m, n, nnz, coo_row_ind, coo_col_ind, &
@@ -39230,13 +39248,13 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       integer(c_int), value :: nnz
-      integer(c_int), target :: coo_row_ind(*)
-      integer(c_int), target :: coo_col_ind(*)
-      integer(c_int), target :: perm(*)
+      integer(c_int), target :: coo_row_ind(..)
+      integer(c_int), target :: coo_col_ind(..)
+      integer(c_int), target :: perm(..)
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: coosort_by_row
-      coosort_by_row = rocsparse_coosort_by_row_raw(handle, m, n, nnz, c_loc(coo_row_ind(1)), &
-        c_loc(coo_col_ind(1)), c_loc(perm(1)), temp_buffer)
+      coosort_by_row = rocsparse_coosort_by_row_raw(handle, m, n, nnz, c_loc(coo_row_ind), c_loc( &
+        coo_col_ind), c_loc(perm), temp_buffer)
     end function rocsparse_coosort_by_row_native
 
     function rocsparse_coosort_by_row_typed(handle, m, n, nnz, coo_row_ind, coo_col_ind, perm, &
@@ -39265,13 +39283,13 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       integer(c_int), value :: nnz
-      integer(c_int), target :: coo_row_ind(*)
-      integer(c_int), target :: coo_col_ind(*)
-      integer(c_int), target :: perm(*)
+      integer(c_int), target :: coo_row_ind(..)
+      integer(c_int), target :: coo_col_ind(..)
+      integer(c_int), target :: perm(..)
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: coosort_by_column
-      coosort_by_column = rocsparse_coosort_by_column_raw(handle, m, n, nnz, c_loc(coo_row_ind( &
-        1)), c_loc(coo_col_ind(1)), c_loc(perm(1)), temp_buffer)
+      coosort_by_column = rocsparse_coosort_by_column_raw(handle, m, n, nnz, c_loc(coo_row_ind), &
+        c_loc(coo_col_ind), c_loc(perm), temp_buffer)
     end function rocsparse_coosort_by_column_native
 
     function rocsparse_coosort_by_column_typed(handle, m, n, nnz, coo_row_ind, coo_col_ind, perm, &
@@ -39300,14 +39318,14 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       type(c_ptr), value :: descr
-      real(c_float), target :: csc_val(*)
-      integer(c_int), target :: csc_col_ptr(*)
-      integer(c_int), target :: csc_row_ind(*)
-      real(c_float), target :: A(*)
+      real(c_float), target :: csc_val(..)
+      integer(c_int), target :: csc_col_ptr(..)
+      integer(c_int), target :: csc_row_ind(..)
+      real(c_float), target :: A(..)
       integer(c_int), value :: ld
       integer(c_int) :: scsc2dense
-      scsc2dense = rocsparse_scsc2dense_raw(handle, m, n, descr, c_loc(csc_val(1)), c_loc( &
-        csc_col_ptr(1)), c_loc(csc_row_ind(1)), c_loc(A(1)), ld)
+      scsc2dense = rocsparse_scsc2dense_raw(handle, m, n, descr, c_loc(csc_val), c_loc( &
+        csc_col_ptr), c_loc(csc_row_ind), c_loc(A), ld)
     end function rocsparse_scsc2dense_native
 
     function rocsparse_scsc2dense_typed(handle, m, n, descr, csc_val, csc_col_ptr, csc_row_ind, A, &
@@ -39337,14 +39355,14 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       type(c_ptr), value :: descr
-      real(c_double), target :: csc_val(*)
-      integer(c_int), target :: csc_col_ptr(*)
-      integer(c_int), target :: csc_row_ind(*)
-      real(c_double), target :: A(*)
+      real(c_double), target :: csc_val(..)
+      integer(c_int), target :: csc_col_ptr(..)
+      integer(c_int), target :: csc_row_ind(..)
+      real(c_double), target :: A(..)
       integer(c_int), value :: ld
       integer(c_int) :: dcsc2dense
-      dcsc2dense = rocsparse_dcsc2dense_raw(handle, m, n, descr, c_loc(csc_val(1)), c_loc( &
-        csc_col_ptr(1)), c_loc(csc_row_ind(1)), c_loc(A(1)), ld)
+      dcsc2dense = rocsparse_dcsc2dense_raw(handle, m, n, descr, c_loc(csc_val), c_loc( &
+        csc_col_ptr), c_loc(csc_row_ind), c_loc(A), ld)
     end function rocsparse_dcsc2dense_native
 
     function rocsparse_dcsc2dense_typed(handle, m, n, descr, csc_val, csc_col_ptr, csc_row_ind, A, &
@@ -39374,14 +39392,14 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       type(c_ptr), value :: descr
-      complex(c_float_complex), target :: csc_val(*)
-      integer(c_int), target :: csc_col_ptr(*)
-      integer(c_int), target :: csc_row_ind(*)
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: csc_val(..)
+      integer(c_int), target :: csc_col_ptr(..)
+      integer(c_int), target :: csc_row_ind(..)
+      complex(c_float_complex), target :: A(..)
       integer(c_int), value :: ld
       integer(c_int) :: ccsc2dense
-      ccsc2dense = rocsparse_ccsc2dense_raw(handle, m, n, descr, c_loc(csc_val(1)), c_loc( &
-        csc_col_ptr(1)), c_loc(csc_row_ind(1)), c_loc(A(1)), ld)
+      ccsc2dense = rocsparse_ccsc2dense_raw(handle, m, n, descr, c_loc(csc_val), c_loc( &
+        csc_col_ptr), c_loc(csc_row_ind), c_loc(A), ld)
     end function rocsparse_ccsc2dense_native
 
     function rocsparse_ccsc2dense_typed(handle, m, n, descr, csc_val, csc_col_ptr, csc_row_ind, A, &
@@ -39411,14 +39429,14 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       type(c_ptr), value :: descr
-      complex(c_double_complex), target :: csc_val(*)
-      integer(c_int), target :: csc_col_ptr(*)
-      integer(c_int), target :: csc_row_ind(*)
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: csc_val(..)
+      integer(c_int), target :: csc_col_ptr(..)
+      integer(c_int), target :: csc_row_ind(..)
+      complex(c_double_complex), target :: A(..)
       integer(c_int), value :: ld
       integer(c_int) :: zcsc2dense
-      zcsc2dense = rocsparse_zcsc2dense_raw(handle, m, n, descr, c_loc(csc_val(1)), c_loc( &
-        csc_col_ptr(1)), c_loc(csc_row_ind(1)), c_loc(A(1)), ld)
+      zcsc2dense = rocsparse_zcsc2dense_raw(handle, m, n, descr, c_loc(csc_val), c_loc( &
+        csc_col_ptr), c_loc(csc_row_ind), c_loc(A), ld)
     end function rocsparse_zcsc2dense_native
 
     function rocsparse_zcsc2dense_typed(handle, m, n, descr, csc_val, csc_col_ptr, csc_row_ind, A, &
@@ -39448,12 +39466,12 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       integer(c_int), value :: nnz
-      integer(c_int), target :: csc_col_ptr(*)
-      integer(c_int), target :: csc_row_ind(*)
+      integer(c_int), target :: csc_col_ptr(..)
+      integer(c_int), target :: csc_row_ind(..)
       type(c_ptr), value :: buffer_size
       integer(c_int) :: cscsort_buffer_size
       cscsort_buffer_size = rocsparse_cscsort_buffer_size_raw(handle, m, n, nnz, c_loc( &
-        csc_col_ptr(1)), c_loc(csc_row_ind(1)), buffer_size)
+        csc_col_ptr), c_loc(csc_row_ind), buffer_size)
     end function rocsparse_cscsort_buffer_size_native
 
     function rocsparse_cscsort_buffer_size_typed(handle, m, n, nnz, csc_col_ptr, csc_row_ind, &
@@ -39482,13 +39500,13 @@ contains
       integer(c_int), value :: n
       integer(c_int), value :: nnz
       type(c_ptr), value :: descr
-      integer(c_int), target :: csc_col_ptr(*)
-      integer(c_int), target :: csc_row_ind(*)
-      integer(c_int), target :: perm(*)
+      integer(c_int), target :: csc_col_ptr(..)
+      integer(c_int), target :: csc_row_ind(..)
+      integer(c_int), target :: perm(..)
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: cscsort
-      cscsort = rocsparse_cscsort_raw(handle, m, n, nnz, descr, c_loc(csc_col_ptr(1)), c_loc( &
-        csc_row_ind(1)), c_loc(perm(1)), temp_buffer)
+      cscsort = rocsparse_cscsort_raw(handle, m, n, nnz, descr, c_loc(csc_col_ptr), c_loc( &
+        csc_row_ind), c_loc(perm), temp_buffer)
     end function rocsparse_cscsort_native
 
     function rocsparse_cscsort_typed(handle, m, n, nnz, descr, csc_col_ptr, csc_row_ind, perm, &
@@ -39519,15 +39537,15 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       type(c_ptr), value :: csr_descr
-      integer(c_int), target :: csr_row_ptr(*)
-      integer(c_int), target :: csr_col_ind(*)
+      integer(c_int), target :: csr_row_ptr(..)
+      integer(c_int), target :: csr_col_ind(..)
       integer(c_int), value :: block_dim
       type(c_ptr), value :: bsr_descr
-      integer(c_int), target :: bsr_row_ptr(*)
-      integer(c_int), target :: bsr_nnz(*)
+      integer(c_int), target :: bsr_row_ptr(..)
+      integer(c_int), target :: bsr_nnz(..)
       integer(c_int) :: csr2bsr_nnz
-      csr2bsr_nnz = rocsparse_csr2bsr_nnz_raw(handle, dir, m, n, csr_descr, c_loc(csr_row_ptr(1)), &
-        c_loc(csr_col_ind(1)), block_dim, bsr_descr, c_loc(bsr_row_ptr(1)), c_loc(bsr_nnz(1)))
+      csr2bsr_nnz = rocsparse_csr2bsr_nnz_raw(handle, dir, m, n, csr_descr, c_loc(csr_row_ptr), &
+        c_loc(csr_col_ind), block_dim, bsr_descr, c_loc(bsr_row_ptr), c_loc(bsr_nnz))
     end function rocsparse_csr2bsr_nnz_native
 
     function rocsparse_csr2bsr_nnz_typed(handle, dir, m, n, csr_descr, csr_row_ptr, csr_col_ind, &
@@ -39560,18 +39578,18 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       type(c_ptr), value :: csr_descr
-      real(c_float), target :: csr_val(*)
-      integer(c_int), target :: csr_row_ptr(*)
-      integer(c_int), target :: csr_col_ind(*)
+      real(c_float), target :: csr_val(..)
+      integer(c_int), target :: csr_row_ptr(..)
+      integer(c_int), target :: csr_col_ind(..)
       integer(c_int), value :: block_dim
       type(c_ptr), value :: bsr_descr
-      real(c_float), target :: bsr_val(*)
-      integer(c_int), target :: bsr_row_ptr(*)
-      integer(c_int), target :: bsr_col_ind(*)
+      real(c_float), target :: bsr_val(..)
+      integer(c_int), target :: bsr_row_ptr(..)
+      integer(c_int), target :: bsr_col_ind(..)
       integer(c_int) :: scsr2bsr
-      scsr2bsr = rocsparse_scsr2bsr_raw(handle, dir, m, n, csr_descr, c_loc(csr_val(1)), c_loc( &
-        csr_row_ptr(1)), c_loc(csr_col_ind(1)), block_dim, bsr_descr, c_loc(bsr_val(1)), c_loc( &
-        bsr_row_ptr(1)), c_loc(bsr_col_ind(1)))
+      scsr2bsr = rocsparse_scsr2bsr_raw(handle, dir, m, n, csr_descr, c_loc(csr_val), c_loc( &
+        csr_row_ptr), c_loc(csr_col_ind), block_dim, bsr_descr, c_loc(bsr_val), c_loc( &
+        bsr_row_ptr), c_loc(bsr_col_ind))
     end function rocsparse_scsr2bsr_native
 
     function rocsparse_scsr2bsr_typed(handle, dir, m, n, csr_descr, csr_val, csr_row_ptr, &
@@ -39606,18 +39624,18 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       type(c_ptr), value :: csr_descr
-      real(c_double), target :: csr_val(*)
-      integer(c_int), target :: csr_row_ptr(*)
-      integer(c_int), target :: csr_col_ind(*)
+      real(c_double), target :: csr_val(..)
+      integer(c_int), target :: csr_row_ptr(..)
+      integer(c_int), target :: csr_col_ind(..)
       integer(c_int), value :: block_dim
       type(c_ptr), value :: bsr_descr
-      real(c_double), target :: bsr_val(*)
-      integer(c_int), target :: bsr_row_ptr(*)
-      integer(c_int), target :: bsr_col_ind(*)
+      real(c_double), target :: bsr_val(..)
+      integer(c_int), target :: bsr_row_ptr(..)
+      integer(c_int), target :: bsr_col_ind(..)
       integer(c_int) :: dcsr2bsr
-      dcsr2bsr = rocsparse_dcsr2bsr_raw(handle, dir, m, n, csr_descr, c_loc(csr_val(1)), c_loc( &
-        csr_row_ptr(1)), c_loc(csr_col_ind(1)), block_dim, bsr_descr, c_loc(bsr_val(1)), c_loc( &
-        bsr_row_ptr(1)), c_loc(bsr_col_ind(1)))
+      dcsr2bsr = rocsparse_dcsr2bsr_raw(handle, dir, m, n, csr_descr, c_loc(csr_val), c_loc( &
+        csr_row_ptr), c_loc(csr_col_ind), block_dim, bsr_descr, c_loc(bsr_val), c_loc( &
+        bsr_row_ptr), c_loc(bsr_col_ind))
     end function rocsparse_dcsr2bsr_native
 
     function rocsparse_dcsr2bsr_typed(handle, dir, m, n, csr_descr, csr_val, csr_row_ptr, &
@@ -39652,18 +39670,18 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       type(c_ptr), value :: csr_descr
-      complex(c_float_complex), target :: csr_val(*)
-      integer(c_int), target :: csr_row_ptr(*)
-      integer(c_int), target :: csr_col_ind(*)
+      complex(c_float_complex), target :: csr_val(..)
+      integer(c_int), target :: csr_row_ptr(..)
+      integer(c_int), target :: csr_col_ind(..)
       integer(c_int), value :: block_dim
       type(c_ptr), value :: bsr_descr
-      complex(c_float_complex), target :: bsr_val(*)
-      integer(c_int), target :: bsr_row_ptr(*)
-      integer(c_int), target :: bsr_col_ind(*)
+      complex(c_float_complex), target :: bsr_val(..)
+      integer(c_int), target :: bsr_row_ptr(..)
+      integer(c_int), target :: bsr_col_ind(..)
       integer(c_int) :: ccsr2bsr
-      ccsr2bsr = rocsparse_ccsr2bsr_raw(handle, dir, m, n, csr_descr, c_loc(csr_val(1)), c_loc( &
-        csr_row_ptr(1)), c_loc(csr_col_ind(1)), block_dim, bsr_descr, c_loc(bsr_val(1)), c_loc( &
-        bsr_row_ptr(1)), c_loc(bsr_col_ind(1)))
+      ccsr2bsr = rocsparse_ccsr2bsr_raw(handle, dir, m, n, csr_descr, c_loc(csr_val), c_loc( &
+        csr_row_ptr), c_loc(csr_col_ind), block_dim, bsr_descr, c_loc(bsr_val), c_loc( &
+        bsr_row_ptr), c_loc(bsr_col_ind))
     end function rocsparse_ccsr2bsr_native
 
     function rocsparse_ccsr2bsr_typed(handle, dir, m, n, csr_descr, csr_val, csr_row_ptr, &
@@ -39698,18 +39716,18 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       type(c_ptr), value :: csr_descr
-      complex(c_double_complex), target :: csr_val(*)
-      integer(c_int), target :: csr_row_ptr(*)
-      integer(c_int), target :: csr_col_ind(*)
+      complex(c_double_complex), target :: csr_val(..)
+      integer(c_int), target :: csr_row_ptr(..)
+      integer(c_int), target :: csr_col_ind(..)
       integer(c_int), value :: block_dim
       type(c_ptr), value :: bsr_descr
-      complex(c_double_complex), target :: bsr_val(*)
-      integer(c_int), target :: bsr_row_ptr(*)
-      integer(c_int), target :: bsr_col_ind(*)
+      complex(c_double_complex), target :: bsr_val(..)
+      integer(c_int), target :: bsr_row_ptr(..)
+      integer(c_int), target :: bsr_col_ind(..)
       integer(c_int) :: zcsr2bsr
-      zcsr2bsr = rocsparse_zcsr2bsr_raw(handle, dir, m, n, csr_descr, c_loc(csr_val(1)), c_loc( &
-        csr_row_ptr(1)), c_loc(csr_col_ind(1)), block_dim, bsr_descr, c_loc(bsr_val(1)), c_loc( &
-        bsr_row_ptr(1)), c_loc(bsr_col_ind(1)))
+      zcsr2bsr = rocsparse_zcsr2bsr_raw(handle, dir, m, n, csr_descr, c_loc(csr_val), c_loc( &
+        csr_row_ptr), c_loc(csr_col_ind), block_dim, bsr_descr, c_loc(bsr_val), c_loc( &
+        bsr_row_ptr), c_loc(bsr_col_ind))
     end function rocsparse_zcsr2bsr_native
 
     function rocsparse_zcsr2bsr_typed(handle, dir, m, n, csr_descr, csr_val, csr_row_ptr, &
@@ -39740,14 +39758,14 @@ contains
       use, intrinsic :: iso_c_binding
       implicit none
       type(c_ptr), value :: handle
-      integer(c_int), target :: csr_row_ptr(*)
+      integer(c_int), target :: csr_row_ptr(..)
       integer(c_int), value :: nnz
       integer(c_int), value :: m
-      integer(c_int), target :: coo_row_ind(*)
+      integer(c_int), target :: coo_row_ind(..)
       integer(c_int), value :: idx_base
       integer(c_int) :: csr2coo
-      csr2coo = rocsparse_csr2coo_raw(handle, c_loc(csr_row_ptr(1)), nnz, m, c_loc(coo_row_ind( &
-        1)), idx_base)
+      csr2coo = rocsparse_csr2coo_raw(handle, c_loc(csr_row_ptr), nnz, m, c_loc(coo_row_ind), &
+        idx_base)
     end function rocsparse_csr2coo_native
 
     function rocsparse_csr2coo_typed(handle, csr_row_ptr, nnz, m, coo_row_ind, idx_base) result( &
@@ -39773,13 +39791,13 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       integer(c_int), value :: nnz
-      integer(c_int), target :: csr_row_ptr(*)
-      integer(c_int), target :: csr_col_ind(*)
+      integer(c_int), target :: csr_row_ptr(..)
+      integer(c_int), target :: csr_col_ind(..)
       integer(c_int), value :: copy_values
       type(c_ptr), value :: buffer_size
       integer(c_int) :: csr2csc_buffer_size
       csr2csc_buffer_size = rocsparse_csr2csc_buffer_size_raw(handle, m, n, nnz, c_loc( &
-        csr_row_ptr(1)), c_loc(csr_col_ind(1)), copy_values, buffer_size)
+        csr_row_ptr), c_loc(csr_col_ind), copy_values, buffer_size)
     end function rocsparse_csr2csc_buffer_size_native
 
     function rocsparse_csr2csc_buffer_size_typed(handle, m, n, nnz, csr_row_ptr, csr_col_ind, &
@@ -39808,19 +39826,19 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       integer(c_int), value :: nnz
-      real(c_float), target :: csr_val(*)
-      integer(c_int), target :: csr_row_ptr(*)
-      integer(c_int), target :: csr_col_ind(*)
-      real(c_float), target :: csc_val(*)
-      integer(c_int), target :: csc_row_ind(*)
-      integer(c_int), target :: csc_col_ptr(*)
+      real(c_float), target :: csr_val(..)
+      integer(c_int), target :: csr_row_ptr(..)
+      integer(c_int), target :: csr_col_ind(..)
+      real(c_float), target :: csc_val(..)
+      integer(c_int), target :: csc_row_ind(..)
+      integer(c_int), target :: csc_col_ptr(..)
       integer(c_int), value :: copy_values
       integer(c_int), value :: idx_base
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: scsr2csc
-      scsr2csc = rocsparse_scsr2csc_raw(handle, m, n, nnz, c_loc(csr_val(1)), c_loc(csr_row_ptr( &
-        1)), c_loc(csr_col_ind(1)), c_loc(csc_val(1)), c_loc(csc_row_ind(1)), c_loc(csc_col_ptr( &
-        1)), copy_values, idx_base, temp_buffer)
+      scsr2csc = rocsparse_scsr2csc_raw(handle, m, n, nnz, c_loc(csr_val), c_loc(csr_row_ptr), &
+        c_loc(csr_col_ind), c_loc(csc_val), c_loc(csc_row_ind), c_loc(csc_col_ptr), copy_values, &
+        idx_base, temp_buffer)
     end function rocsparse_scsr2csc_native
 
     function rocsparse_scsr2csc_typed(handle, m, n, nnz, csr_val, csr_row_ptr, csr_col_ind, &
@@ -39854,19 +39872,19 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       integer(c_int), value :: nnz
-      real(c_double), target :: csr_val(*)
-      integer(c_int), target :: csr_row_ptr(*)
-      integer(c_int), target :: csr_col_ind(*)
-      real(c_double), target :: csc_val(*)
-      integer(c_int), target :: csc_row_ind(*)
-      integer(c_int), target :: csc_col_ptr(*)
+      real(c_double), target :: csr_val(..)
+      integer(c_int), target :: csr_row_ptr(..)
+      integer(c_int), target :: csr_col_ind(..)
+      real(c_double), target :: csc_val(..)
+      integer(c_int), target :: csc_row_ind(..)
+      integer(c_int), target :: csc_col_ptr(..)
       integer(c_int), value :: copy_values
       integer(c_int), value :: idx_base
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: dcsr2csc
-      dcsr2csc = rocsparse_dcsr2csc_raw(handle, m, n, nnz, c_loc(csr_val(1)), c_loc(csr_row_ptr( &
-        1)), c_loc(csr_col_ind(1)), c_loc(csc_val(1)), c_loc(csc_row_ind(1)), c_loc(csc_col_ptr( &
-        1)), copy_values, idx_base, temp_buffer)
+      dcsr2csc = rocsparse_dcsr2csc_raw(handle, m, n, nnz, c_loc(csr_val), c_loc(csr_row_ptr), &
+        c_loc(csr_col_ind), c_loc(csc_val), c_loc(csc_row_ind), c_loc(csc_col_ptr), copy_values, &
+        idx_base, temp_buffer)
     end function rocsparse_dcsr2csc_native
 
     function rocsparse_dcsr2csc_typed(handle, m, n, nnz, csr_val, csr_row_ptr, csr_col_ind, &
@@ -39900,19 +39918,19 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       integer(c_int), value :: nnz
-      complex(c_float_complex), target :: csr_val(*)
-      integer(c_int), target :: csr_row_ptr(*)
-      integer(c_int), target :: csr_col_ind(*)
-      complex(c_float_complex), target :: csc_val(*)
-      integer(c_int), target :: csc_row_ind(*)
-      integer(c_int), target :: csc_col_ptr(*)
+      complex(c_float_complex), target :: csr_val(..)
+      integer(c_int), target :: csr_row_ptr(..)
+      integer(c_int), target :: csr_col_ind(..)
+      complex(c_float_complex), target :: csc_val(..)
+      integer(c_int), target :: csc_row_ind(..)
+      integer(c_int), target :: csc_col_ptr(..)
       integer(c_int), value :: copy_values
       integer(c_int), value :: idx_base
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: ccsr2csc
-      ccsr2csc = rocsparse_ccsr2csc_raw(handle, m, n, nnz, c_loc(csr_val(1)), c_loc(csr_row_ptr( &
-        1)), c_loc(csr_col_ind(1)), c_loc(csc_val(1)), c_loc(csc_row_ind(1)), c_loc(csc_col_ptr( &
-        1)), copy_values, idx_base, temp_buffer)
+      ccsr2csc = rocsparse_ccsr2csc_raw(handle, m, n, nnz, c_loc(csr_val), c_loc(csr_row_ptr), &
+        c_loc(csr_col_ind), c_loc(csc_val), c_loc(csc_row_ind), c_loc(csc_col_ptr), copy_values, &
+        idx_base, temp_buffer)
     end function rocsparse_ccsr2csc_native
 
     function rocsparse_ccsr2csc_typed(handle, m, n, nnz, csr_val, csr_row_ptr, csr_col_ind, &
@@ -39946,19 +39964,19 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       integer(c_int), value :: nnz
-      complex(c_double_complex), target :: csr_val(*)
-      integer(c_int), target :: csr_row_ptr(*)
-      integer(c_int), target :: csr_col_ind(*)
-      complex(c_double_complex), target :: csc_val(*)
-      integer(c_int), target :: csc_row_ind(*)
-      integer(c_int), target :: csc_col_ptr(*)
+      complex(c_double_complex), target :: csr_val(..)
+      integer(c_int), target :: csr_row_ptr(..)
+      integer(c_int), target :: csr_col_ind(..)
+      complex(c_double_complex), target :: csc_val(..)
+      integer(c_int), target :: csc_row_ind(..)
+      integer(c_int), target :: csc_col_ptr(..)
       integer(c_int), value :: copy_values
       integer(c_int), value :: idx_base
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: zcsr2csc
-      zcsr2csc = rocsparse_zcsr2csc_raw(handle, m, n, nnz, c_loc(csr_val(1)), c_loc(csr_row_ptr( &
-        1)), c_loc(csr_col_ind(1)), c_loc(csc_val(1)), c_loc(csc_row_ind(1)), c_loc(csc_col_ptr( &
-        1)), copy_values, idx_base, temp_buffer)
+      zcsr2csc = rocsparse_zcsr2csc_raw(handle, m, n, nnz, c_loc(csr_val), c_loc(csr_row_ptr), &
+        c_loc(csr_col_ind), c_loc(csc_val), c_loc(csc_row_ind), c_loc(csc_col_ptr), copy_values, &
+        idx_base, temp_buffer)
     end function rocsparse_zcsr2csc_native
 
     function rocsparse_zcsr2csc_typed(handle, m, n, nnz, csr_val, csr_row_ptr, csr_col_ind, &
@@ -39993,19 +40011,19 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       type(c_ptr), value :: descr_A
-      real(c_float), target :: csr_val_A(*)
-      integer(c_int), target :: csr_row_ptr_A(*)
-      integer(c_int), target :: csr_col_ind_A(*)
+      real(c_float), target :: csr_val_A(..)
+      integer(c_int), target :: csr_row_ptr_A(..)
+      integer(c_int), target :: csr_col_ind_A(..)
       integer(c_int), value :: nnz_A
-      integer(c_int), target :: nnz_per_row(*)
-      real(c_float), target :: csr_val_C(*)
-      integer(c_int), target :: csr_row_ptr_C(*)
-      integer(c_int), target :: csr_col_ind_C(*)
+      integer(c_int), target :: nnz_per_row(..)
+      real(c_float), target :: csr_val_C(..)
+      integer(c_int), target :: csr_row_ptr_C(..)
+      integer(c_int), target :: csr_col_ind_C(..)
       real(c_float), value :: tol
       integer(c_int) :: scsr2csr_compress
-      scsr2csr_compress = rocsparse_scsr2csr_compress_raw(handle, m, n, descr_A, c_loc(csr_val_A( &
-        1)), c_loc(csr_row_ptr_A(1)), c_loc(csr_col_ind_A(1)), nnz_A, c_loc(nnz_per_row(1)), &
-        c_loc(csr_val_C(1)), c_loc(csr_row_ptr_C(1)), c_loc(csr_col_ind_C(1)), tol)
+      scsr2csr_compress = rocsparse_scsr2csr_compress_raw(handle, m, n, descr_A, c_loc(csr_val_A), &
+        c_loc(csr_row_ptr_A), c_loc(csr_col_ind_A), nnz_A, c_loc(nnz_per_row), c_loc(csr_val_C), &
+        c_loc(csr_row_ptr_C), c_loc(csr_col_ind_C), tol)
     end function rocsparse_scsr2csr_compress_native
 
     function rocsparse_scsr2csr_compress_typed(handle, m, n, descr_A, csr_val_A, csr_row_ptr_A, &
@@ -40042,19 +40060,19 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       type(c_ptr), value :: descr_A
-      real(c_double), target :: csr_val_A(*)
-      integer(c_int), target :: csr_row_ptr_A(*)
-      integer(c_int), target :: csr_col_ind_A(*)
+      real(c_double), target :: csr_val_A(..)
+      integer(c_int), target :: csr_row_ptr_A(..)
+      integer(c_int), target :: csr_col_ind_A(..)
       integer(c_int), value :: nnz_A
-      integer(c_int), target :: nnz_per_row(*)
-      real(c_double), target :: csr_val_C(*)
-      integer(c_int), target :: csr_row_ptr_C(*)
-      integer(c_int), target :: csr_col_ind_C(*)
+      integer(c_int), target :: nnz_per_row(..)
+      real(c_double), target :: csr_val_C(..)
+      integer(c_int), target :: csr_row_ptr_C(..)
+      integer(c_int), target :: csr_col_ind_C(..)
       real(c_double), value :: tol
       integer(c_int) :: dcsr2csr_compress
-      dcsr2csr_compress = rocsparse_dcsr2csr_compress_raw(handle, m, n, descr_A, c_loc(csr_val_A( &
-        1)), c_loc(csr_row_ptr_A(1)), c_loc(csr_col_ind_A(1)), nnz_A, c_loc(nnz_per_row(1)), &
-        c_loc(csr_val_C(1)), c_loc(csr_row_ptr_C(1)), c_loc(csr_col_ind_C(1)), tol)
+      dcsr2csr_compress = rocsparse_dcsr2csr_compress_raw(handle, m, n, descr_A, c_loc(csr_val_A), &
+        c_loc(csr_row_ptr_A), c_loc(csr_col_ind_A), nnz_A, c_loc(nnz_per_row), c_loc(csr_val_C), &
+        c_loc(csr_row_ptr_C), c_loc(csr_col_ind_C), tol)
     end function rocsparse_dcsr2csr_compress_native
 
     function rocsparse_dcsr2csr_compress_typed(handle, m, n, descr_A, csr_val_A, csr_row_ptr_A, &
@@ -40091,19 +40109,19 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       type(c_ptr), value :: descr_A
-      complex(c_float_complex), target :: csr_val_A(*)
-      integer(c_int), target :: csr_row_ptr_A(*)
-      integer(c_int), target :: csr_col_ind_A(*)
+      complex(c_float_complex), target :: csr_val_A(..)
+      integer(c_int), target :: csr_row_ptr_A(..)
+      integer(c_int), target :: csr_col_ind_A(..)
       integer(c_int), value :: nnz_A
-      integer(c_int), target :: nnz_per_row(*)
-      complex(c_float_complex), target :: csr_val_C(*)
-      integer(c_int), target :: csr_row_ptr_C(*)
-      integer(c_int), target :: csr_col_ind_C(*)
+      integer(c_int), target :: nnz_per_row(..)
+      complex(c_float_complex), target :: csr_val_C(..)
+      integer(c_int), target :: csr_row_ptr_C(..)
+      integer(c_int), target :: csr_col_ind_C(..)
       complex(c_float_complex), value :: tol
       integer(c_int) :: ccsr2csr_compress
-      ccsr2csr_compress = rocsparse_ccsr2csr_compress_raw(handle, m, n, descr_A, c_loc(csr_val_A( &
-        1)), c_loc(csr_row_ptr_A(1)), c_loc(csr_col_ind_A(1)), nnz_A, c_loc(nnz_per_row(1)), &
-        c_loc(csr_val_C(1)), c_loc(csr_row_ptr_C(1)), c_loc(csr_col_ind_C(1)), tol)
+      ccsr2csr_compress = rocsparse_ccsr2csr_compress_raw(handle, m, n, descr_A, c_loc(csr_val_A), &
+        c_loc(csr_row_ptr_A), c_loc(csr_col_ind_A), nnz_A, c_loc(nnz_per_row), c_loc(csr_val_C), &
+        c_loc(csr_row_ptr_C), c_loc(csr_col_ind_C), tol)
     end function rocsparse_ccsr2csr_compress_native
 
     function rocsparse_ccsr2csr_compress_typed(handle, m, n, descr_A, csr_val_A, csr_row_ptr_A, &
@@ -40140,19 +40158,19 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       type(c_ptr), value :: descr_A
-      complex(c_double_complex), target :: csr_val_A(*)
-      integer(c_int), target :: csr_row_ptr_A(*)
-      integer(c_int), target :: csr_col_ind_A(*)
+      complex(c_double_complex), target :: csr_val_A(..)
+      integer(c_int), target :: csr_row_ptr_A(..)
+      integer(c_int), target :: csr_col_ind_A(..)
       integer(c_int), value :: nnz_A
-      integer(c_int), target :: nnz_per_row(*)
-      complex(c_double_complex), target :: csr_val_C(*)
-      integer(c_int), target :: csr_row_ptr_C(*)
-      integer(c_int), target :: csr_col_ind_C(*)
+      integer(c_int), target :: nnz_per_row(..)
+      complex(c_double_complex), target :: csr_val_C(..)
+      integer(c_int), target :: csr_row_ptr_C(..)
+      integer(c_int), target :: csr_col_ind_C(..)
       complex(c_double_complex), value :: tol
       integer(c_int) :: zcsr2csr_compress
-      zcsr2csr_compress = rocsparse_zcsr2csr_compress_raw(handle, m, n, descr_A, c_loc(csr_val_A( &
-        1)), c_loc(csr_row_ptr_A(1)), c_loc(csr_col_ind_A(1)), nnz_A, c_loc(nnz_per_row(1)), &
-        c_loc(csr_val_C(1)), c_loc(csr_row_ptr_C(1)), c_loc(csr_col_ind_C(1)), tol)
+      zcsr2csr_compress = rocsparse_zcsr2csr_compress_raw(handle, m, n, descr_A, c_loc(csr_val_A), &
+        c_loc(csr_row_ptr_A), c_loc(csr_col_ind_A), nnz_A, c_loc(nnz_per_row), c_loc(csr_val_C), &
+        c_loc(csr_row_ptr_C), c_loc(csr_col_ind_C), tol)
     end function rocsparse_zcsr2csr_compress_native
 
     function rocsparse_zcsr2csr_compress_typed(handle, m, n, descr_A, csr_val_A, csr_row_ptr_A, &
@@ -40188,14 +40206,14 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       type(c_ptr), value :: descr
-      real(c_float), target :: csr_val(*)
-      integer(c_int), target :: csr_row_ptr(*)
-      integer(c_int), target :: csr_col_ind(*)
-      real(c_float), target :: A(*)
+      real(c_float), target :: csr_val(..)
+      integer(c_int), target :: csr_row_ptr(..)
+      integer(c_int), target :: csr_col_ind(..)
+      real(c_float), target :: A(..)
       integer(c_int), value :: ld
       integer(c_int) :: scsr2dense
-      scsr2dense = rocsparse_scsr2dense_raw(handle, m, n, descr, c_loc(csr_val(1)), c_loc( &
-        csr_row_ptr(1)), c_loc(csr_col_ind(1)), c_loc(A(1)), ld)
+      scsr2dense = rocsparse_scsr2dense_raw(handle, m, n, descr, c_loc(csr_val), c_loc( &
+        csr_row_ptr), c_loc(csr_col_ind), c_loc(A), ld)
     end function rocsparse_scsr2dense_native
 
     function rocsparse_scsr2dense_typed(handle, m, n, descr, csr_val, csr_row_ptr, csr_col_ind, A, &
@@ -40225,14 +40243,14 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       type(c_ptr), value :: descr
-      real(c_double), target :: csr_val(*)
-      integer(c_int), target :: csr_row_ptr(*)
-      integer(c_int), target :: csr_col_ind(*)
-      real(c_double), target :: A(*)
+      real(c_double), target :: csr_val(..)
+      integer(c_int), target :: csr_row_ptr(..)
+      integer(c_int), target :: csr_col_ind(..)
+      real(c_double), target :: A(..)
       integer(c_int), value :: ld
       integer(c_int) :: dcsr2dense
-      dcsr2dense = rocsparse_dcsr2dense_raw(handle, m, n, descr, c_loc(csr_val(1)), c_loc( &
-        csr_row_ptr(1)), c_loc(csr_col_ind(1)), c_loc(A(1)), ld)
+      dcsr2dense = rocsparse_dcsr2dense_raw(handle, m, n, descr, c_loc(csr_val), c_loc( &
+        csr_row_ptr), c_loc(csr_col_ind), c_loc(A), ld)
     end function rocsparse_dcsr2dense_native
 
     function rocsparse_dcsr2dense_typed(handle, m, n, descr, csr_val, csr_row_ptr, csr_col_ind, A, &
@@ -40262,14 +40280,14 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       type(c_ptr), value :: descr
-      complex(c_float_complex), target :: csr_val(*)
-      integer(c_int), target :: csr_row_ptr(*)
-      integer(c_int), target :: csr_col_ind(*)
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: csr_val(..)
+      integer(c_int), target :: csr_row_ptr(..)
+      integer(c_int), target :: csr_col_ind(..)
+      complex(c_float_complex), target :: A(..)
       integer(c_int), value :: ld
       integer(c_int) :: ccsr2dense
-      ccsr2dense = rocsparse_ccsr2dense_raw(handle, m, n, descr, c_loc(csr_val(1)), c_loc( &
-        csr_row_ptr(1)), c_loc(csr_col_ind(1)), c_loc(A(1)), ld)
+      ccsr2dense = rocsparse_ccsr2dense_raw(handle, m, n, descr, c_loc(csr_val), c_loc( &
+        csr_row_ptr), c_loc(csr_col_ind), c_loc(A), ld)
     end function rocsparse_ccsr2dense_native
 
     function rocsparse_ccsr2dense_typed(handle, m, n, descr, csr_val, csr_row_ptr, csr_col_ind, A, &
@@ -40299,14 +40317,14 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       type(c_ptr), value :: descr
-      complex(c_double_complex), target :: csr_val(*)
-      integer(c_int), target :: csr_row_ptr(*)
-      integer(c_int), target :: csr_col_ind(*)
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: csr_val(..)
+      integer(c_int), target :: csr_row_ptr(..)
+      integer(c_int), target :: csr_col_ind(..)
+      complex(c_double_complex), target :: A(..)
       integer(c_int), value :: ld
       integer(c_int) :: zcsr2dense
-      zcsr2dense = rocsparse_zcsr2dense_raw(handle, m, n, descr, c_loc(csr_val(1)), c_loc( &
-        csr_row_ptr(1)), c_loc(csr_col_ind(1)), c_loc(A(1)), ld)
+      zcsr2dense = rocsparse_zcsr2dense_raw(handle, m, n, descr, c_loc(csr_val), c_loc( &
+        csr_row_ptr), c_loc(csr_col_ind), c_loc(A), ld)
     end function rocsparse_zcsr2dense_native
 
     function rocsparse_zcsr2dense_typed(handle, m, n, descr, csr_val, csr_row_ptr, csr_col_ind, A, &
@@ -40335,12 +40353,12 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: m
       type(c_ptr), value :: csr_descr
-      integer(c_int), target :: csr_row_ptr(*)
+      integer(c_int), target :: csr_row_ptr(..)
       type(c_ptr), value :: ell_descr
-      integer(c_int), target :: ell_width(*)
+      integer(c_int), target :: ell_width(..)
       integer(c_int) :: csr2ell_width
-      csr2ell_width = rocsparse_csr2ell_width_raw(handle, m, csr_descr, c_loc(csr_row_ptr(1)), &
-        ell_descr, c_loc(ell_width(1)))
+      csr2ell_width = rocsparse_csr2ell_width_raw(handle, m, csr_descr, c_loc(csr_row_ptr), &
+        ell_descr, c_loc(ell_width))
     end function rocsparse_csr2ell_width_native
 
     function rocsparse_csr2ell_width_typed(handle, m, csr_descr, csr_row_ptr, ell_descr, &
@@ -40366,17 +40384,16 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: m
       type(c_ptr), value :: csr_descr
-      real(c_float), target :: csr_val(*)
-      integer(c_int), target :: csr_row_ptr(*)
-      integer(c_int), target :: csr_col_ind(*)
+      real(c_float), target :: csr_val(..)
+      integer(c_int), target :: csr_row_ptr(..)
+      integer(c_int), target :: csr_col_ind(..)
       type(c_ptr), value :: ell_descr
       integer(c_int), value :: ell_width
-      real(c_float), target :: ell_val(*)
-      integer(c_int), target :: ell_col_ind(*)
+      real(c_float), target :: ell_val(..)
+      integer(c_int), target :: ell_col_ind(..)
       integer(c_int) :: scsr2ell
-      scsr2ell = rocsparse_scsr2ell_raw(handle, m, csr_descr, c_loc(csr_val(1)), c_loc( &
-        csr_row_ptr(1)), c_loc(csr_col_ind(1)), ell_descr, ell_width, c_loc(ell_val(1)), c_loc( &
-        ell_col_ind(1)))
+      scsr2ell = rocsparse_scsr2ell_raw(handle, m, csr_descr, c_loc(csr_val), c_loc(csr_row_ptr), &
+        c_loc(csr_col_ind), ell_descr, ell_width, c_loc(ell_val), c_loc(ell_col_ind))
     end function rocsparse_scsr2ell_native
 
     function rocsparse_scsr2ell_typed(handle, m, csr_descr, csr_val, csr_row_ptr, csr_col_ind, &
@@ -40406,17 +40423,16 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: m
       type(c_ptr), value :: csr_descr
-      real(c_double), target :: csr_val(*)
-      integer(c_int), target :: csr_row_ptr(*)
-      integer(c_int), target :: csr_col_ind(*)
+      real(c_double), target :: csr_val(..)
+      integer(c_int), target :: csr_row_ptr(..)
+      integer(c_int), target :: csr_col_ind(..)
       type(c_ptr), value :: ell_descr
       integer(c_int), value :: ell_width
-      real(c_double), target :: ell_val(*)
-      integer(c_int), target :: ell_col_ind(*)
+      real(c_double), target :: ell_val(..)
+      integer(c_int), target :: ell_col_ind(..)
       integer(c_int) :: dcsr2ell
-      dcsr2ell = rocsparse_dcsr2ell_raw(handle, m, csr_descr, c_loc(csr_val(1)), c_loc( &
-        csr_row_ptr(1)), c_loc(csr_col_ind(1)), ell_descr, ell_width, c_loc(ell_val(1)), c_loc( &
-        ell_col_ind(1)))
+      dcsr2ell = rocsparse_dcsr2ell_raw(handle, m, csr_descr, c_loc(csr_val), c_loc(csr_row_ptr), &
+        c_loc(csr_col_ind), ell_descr, ell_width, c_loc(ell_val), c_loc(ell_col_ind))
     end function rocsparse_dcsr2ell_native
 
     function rocsparse_dcsr2ell_typed(handle, m, csr_descr, csr_val, csr_row_ptr, csr_col_ind, &
@@ -40446,17 +40462,16 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: m
       type(c_ptr), value :: csr_descr
-      complex(c_float_complex), target :: csr_val(*)
-      integer(c_int), target :: csr_row_ptr(*)
-      integer(c_int), target :: csr_col_ind(*)
+      complex(c_float_complex), target :: csr_val(..)
+      integer(c_int), target :: csr_row_ptr(..)
+      integer(c_int), target :: csr_col_ind(..)
       type(c_ptr), value :: ell_descr
       integer(c_int), value :: ell_width
-      complex(c_float_complex), target :: ell_val(*)
-      integer(c_int), target :: ell_col_ind(*)
+      complex(c_float_complex), target :: ell_val(..)
+      integer(c_int), target :: ell_col_ind(..)
       integer(c_int) :: ccsr2ell
-      ccsr2ell = rocsparse_ccsr2ell_raw(handle, m, csr_descr, c_loc(csr_val(1)), c_loc( &
-        csr_row_ptr(1)), c_loc(csr_col_ind(1)), ell_descr, ell_width, c_loc(ell_val(1)), c_loc( &
-        ell_col_ind(1)))
+      ccsr2ell = rocsparse_ccsr2ell_raw(handle, m, csr_descr, c_loc(csr_val), c_loc(csr_row_ptr), &
+        c_loc(csr_col_ind), ell_descr, ell_width, c_loc(ell_val), c_loc(ell_col_ind))
     end function rocsparse_ccsr2ell_native
 
     function rocsparse_ccsr2ell_typed(handle, m, csr_descr, csr_val, csr_row_ptr, csr_col_ind, &
@@ -40486,17 +40501,16 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: m
       type(c_ptr), value :: csr_descr
-      complex(c_double_complex), target :: csr_val(*)
-      integer(c_int), target :: csr_row_ptr(*)
-      integer(c_int), target :: csr_col_ind(*)
+      complex(c_double_complex), target :: csr_val(..)
+      integer(c_int), target :: csr_row_ptr(..)
+      integer(c_int), target :: csr_col_ind(..)
       type(c_ptr), value :: ell_descr
       integer(c_int), value :: ell_width
-      complex(c_double_complex), target :: ell_val(*)
-      integer(c_int), target :: ell_col_ind(*)
+      complex(c_double_complex), target :: ell_val(..)
+      integer(c_int), target :: ell_col_ind(..)
       integer(c_int) :: zcsr2ell
-      zcsr2ell = rocsparse_zcsr2ell_raw(handle, m, csr_descr, c_loc(csr_val(1)), c_loc( &
-        csr_row_ptr(1)), c_loc(csr_col_ind(1)), ell_descr, ell_width, c_loc(ell_val(1)), c_loc( &
-        ell_col_ind(1)))
+      zcsr2ell = rocsparse_zcsr2ell_raw(handle, m, csr_descr, c_loc(csr_val), c_loc(csr_row_ptr), &
+        c_loc(csr_col_ind), ell_descr, ell_width, c_loc(ell_val), c_loc(ell_col_ind))
     end function rocsparse_zcsr2ell_native
 
     function rocsparse_zcsr2ell_typed(handle, m, csr_descr, csr_val, csr_row_ptr, csr_col_ind, &
@@ -40529,16 +40543,16 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       type(c_ptr), value :: csr_descr
-      real(c_float), target :: csr_val(*)
-      integer(c_int), target :: csr_row_ptr(*)
-      integer(c_int), target :: csr_col_ind(*)
+      real(c_float), target :: csr_val(..)
+      integer(c_int), target :: csr_row_ptr(..)
+      integer(c_int), target :: csr_col_ind(..)
       integer(c_int), value :: row_block_dim
       integer(c_int), value :: col_block_dim
       type(c_ptr), value :: buffer_size
       integer(c_int) :: scsr2gebsr_buffer_size
       scsr2gebsr_buffer_size = rocsparse_scsr2gebsr_buffer_size_raw(handle, dir, m, n, csr_descr, &
-        c_loc(csr_val(1)), c_loc(csr_row_ptr(1)), c_loc(csr_col_ind(1)), row_block_dim, &
-        col_block_dim, buffer_size)
+        c_loc(csr_val), c_loc(csr_row_ptr), c_loc(csr_col_ind), row_block_dim, col_block_dim, &
+        buffer_size)
     end function rocsparse_scsr2gebsr_buffer_size_native
 
     function rocsparse_scsr2gebsr_buffer_size_typed(handle, dir, m, n, csr_descr, csr_val, &
@@ -40573,16 +40587,16 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       type(c_ptr), value :: csr_descr
-      real(c_double), target :: csr_val(*)
-      integer(c_int), target :: csr_row_ptr(*)
-      integer(c_int), target :: csr_col_ind(*)
+      real(c_double), target :: csr_val(..)
+      integer(c_int), target :: csr_row_ptr(..)
+      integer(c_int), target :: csr_col_ind(..)
       integer(c_int), value :: row_block_dim
       integer(c_int), value :: col_block_dim
       type(c_ptr), value :: buffer_size
       integer(c_int) :: dcsr2gebsr_buffer_size
       dcsr2gebsr_buffer_size = rocsparse_dcsr2gebsr_buffer_size_raw(handle, dir, m, n, csr_descr, &
-        c_loc(csr_val(1)), c_loc(csr_row_ptr(1)), c_loc(csr_col_ind(1)), row_block_dim, &
-        col_block_dim, buffer_size)
+        c_loc(csr_val), c_loc(csr_row_ptr), c_loc(csr_col_ind), row_block_dim, col_block_dim, &
+        buffer_size)
     end function rocsparse_dcsr2gebsr_buffer_size_native
 
     function rocsparse_dcsr2gebsr_buffer_size_typed(handle, dir, m, n, csr_descr, csr_val, &
@@ -40617,16 +40631,16 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       type(c_ptr), value :: csr_descr
-      complex(c_float_complex), target :: csr_val(*)
-      integer(c_int), target :: csr_row_ptr(*)
-      integer(c_int), target :: csr_col_ind(*)
+      complex(c_float_complex), target :: csr_val(..)
+      integer(c_int), target :: csr_row_ptr(..)
+      integer(c_int), target :: csr_col_ind(..)
       integer(c_int), value :: row_block_dim
       integer(c_int), value :: col_block_dim
       type(c_ptr), value :: buffer_size
       integer(c_int) :: ccsr2gebsr_buffer_size
       ccsr2gebsr_buffer_size = rocsparse_ccsr2gebsr_buffer_size_raw(handle, dir, m, n, csr_descr, &
-        c_loc(csr_val(1)), c_loc(csr_row_ptr(1)), c_loc(csr_col_ind(1)), row_block_dim, &
-        col_block_dim, buffer_size)
+        c_loc(csr_val), c_loc(csr_row_ptr), c_loc(csr_col_ind), row_block_dim, col_block_dim, &
+        buffer_size)
     end function rocsparse_ccsr2gebsr_buffer_size_native
 
     function rocsparse_ccsr2gebsr_buffer_size_typed(handle, dir, m, n, csr_descr, csr_val, &
@@ -40661,16 +40675,16 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       type(c_ptr), value :: csr_descr
-      complex(c_double_complex), target :: csr_val(*)
-      integer(c_int), target :: csr_row_ptr(*)
-      integer(c_int), target :: csr_col_ind(*)
+      complex(c_double_complex), target :: csr_val(..)
+      integer(c_int), target :: csr_row_ptr(..)
+      integer(c_int), target :: csr_col_ind(..)
       integer(c_int), value :: row_block_dim
       integer(c_int), value :: col_block_dim
       type(c_ptr), value :: buffer_size
       integer(c_int) :: zcsr2gebsr_buffer_size
       zcsr2gebsr_buffer_size = rocsparse_zcsr2gebsr_buffer_size_raw(handle, dir, m, n, csr_descr, &
-        c_loc(csr_val(1)), c_loc(csr_row_ptr(1)), c_loc(csr_col_ind(1)), row_block_dim, &
-        col_block_dim, buffer_size)
+        c_loc(csr_val), c_loc(csr_row_ptr), c_loc(csr_col_ind), row_block_dim, col_block_dim, &
+        buffer_size)
     end function rocsparse_zcsr2gebsr_buffer_size_native
 
     function rocsparse_zcsr2gebsr_buffer_size_typed(handle, dir, m, n, csr_descr, csr_val, &
@@ -40705,18 +40719,18 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       type(c_ptr), value :: csr_descr
-      integer(c_int), target :: csr_row_ptr(*)
-      integer(c_int), target :: csr_col_ind(*)
+      integer(c_int), target :: csr_row_ptr(..)
+      integer(c_int), target :: csr_col_ind(..)
       type(c_ptr), value :: bsr_descr
-      integer(c_int), target :: bsr_row_ptr(*)
+      integer(c_int), target :: bsr_row_ptr(..)
       integer(c_int), value :: row_block_dim
       integer(c_int), value :: col_block_dim
-      integer(c_int), target :: bsr_nnz_devhost(*)
+      integer(c_int), target :: bsr_nnz_devhost(..)
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: csr2gebsr_nnz
-      csr2gebsr_nnz = rocsparse_csr2gebsr_nnz_raw(handle, dir, m, n, csr_descr, c_loc(csr_row_ptr( &
-        1)), c_loc(csr_col_ind(1)), bsr_descr, c_loc(bsr_row_ptr(1)), row_block_dim, &
-        col_block_dim, c_loc(bsr_nnz_devhost(1)), temp_buffer)
+      csr2gebsr_nnz = rocsparse_csr2gebsr_nnz_raw(handle, dir, m, n, csr_descr, c_loc( &
+        csr_row_ptr), c_loc(csr_col_ind), bsr_descr, c_loc(bsr_row_ptr), row_block_dim, &
+        col_block_dim, c_loc(bsr_nnz_devhost), temp_buffer)
     end function rocsparse_csr2gebsr_nnz_native
 
     function rocsparse_csr2gebsr_nnz_typed(handle, dir, m, n, csr_descr, csr_row_ptr, csr_col_ind, &
@@ -40754,20 +40768,20 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       type(c_ptr), value :: csr_descr
-      real(c_float), target :: csr_val(*)
-      integer(c_int), target :: csr_row_ptr(*)
-      integer(c_int), target :: csr_col_ind(*)
+      real(c_float), target :: csr_val(..)
+      integer(c_int), target :: csr_row_ptr(..)
+      integer(c_int), target :: csr_col_ind(..)
       type(c_ptr), value :: bsr_descr
-      real(c_float), target :: bsr_val(*)
-      integer(c_int), target :: bsr_row_ptr(*)
-      integer(c_int), target :: bsr_col_ind(*)
+      real(c_float), target :: bsr_val(..)
+      integer(c_int), target :: bsr_row_ptr(..)
+      integer(c_int), target :: bsr_col_ind(..)
       integer(c_int), value :: row_block_dim
       integer(c_int), value :: col_block_dim
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: scsr2gebsr
-      scsr2gebsr = rocsparse_scsr2gebsr_raw(handle, dir, m, n, csr_descr, c_loc(csr_val(1)), &
-        c_loc(csr_row_ptr(1)), c_loc(csr_col_ind(1)), bsr_descr, c_loc(bsr_val(1)), c_loc( &
-        bsr_row_ptr(1)), c_loc(bsr_col_ind(1)), row_block_dim, col_block_dim, temp_buffer)
+      scsr2gebsr = rocsparse_scsr2gebsr_raw(handle, dir, m, n, csr_descr, c_loc(csr_val), c_loc( &
+        csr_row_ptr), c_loc(csr_col_ind), bsr_descr, c_loc(bsr_val), c_loc(bsr_row_ptr), c_loc( &
+        bsr_col_ind), row_block_dim, col_block_dim, temp_buffer)
     end function rocsparse_scsr2gebsr_native
 
     function rocsparse_scsr2gebsr_typed(handle, dir, m, n, csr_descr, csr_val, csr_row_ptr, &
@@ -40807,20 +40821,20 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       type(c_ptr), value :: csr_descr
-      real(c_double), target :: csr_val(*)
-      integer(c_int), target :: csr_row_ptr(*)
-      integer(c_int), target :: csr_col_ind(*)
+      real(c_double), target :: csr_val(..)
+      integer(c_int), target :: csr_row_ptr(..)
+      integer(c_int), target :: csr_col_ind(..)
       type(c_ptr), value :: bsr_descr
-      real(c_double), target :: bsr_val(*)
-      integer(c_int), target :: bsr_row_ptr(*)
-      integer(c_int), target :: bsr_col_ind(*)
+      real(c_double), target :: bsr_val(..)
+      integer(c_int), target :: bsr_row_ptr(..)
+      integer(c_int), target :: bsr_col_ind(..)
       integer(c_int), value :: row_block_dim
       integer(c_int), value :: col_block_dim
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: dcsr2gebsr
-      dcsr2gebsr = rocsparse_dcsr2gebsr_raw(handle, dir, m, n, csr_descr, c_loc(csr_val(1)), &
-        c_loc(csr_row_ptr(1)), c_loc(csr_col_ind(1)), bsr_descr, c_loc(bsr_val(1)), c_loc( &
-        bsr_row_ptr(1)), c_loc(bsr_col_ind(1)), row_block_dim, col_block_dim, temp_buffer)
+      dcsr2gebsr = rocsparse_dcsr2gebsr_raw(handle, dir, m, n, csr_descr, c_loc(csr_val), c_loc( &
+        csr_row_ptr), c_loc(csr_col_ind), bsr_descr, c_loc(bsr_val), c_loc(bsr_row_ptr), c_loc( &
+        bsr_col_ind), row_block_dim, col_block_dim, temp_buffer)
     end function rocsparse_dcsr2gebsr_native
 
     function rocsparse_dcsr2gebsr_typed(handle, dir, m, n, csr_descr, csr_val, csr_row_ptr, &
@@ -40860,20 +40874,20 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       type(c_ptr), value :: csr_descr
-      complex(c_float_complex), target :: csr_val(*)
-      integer(c_int), target :: csr_row_ptr(*)
-      integer(c_int), target :: csr_col_ind(*)
+      complex(c_float_complex), target :: csr_val(..)
+      integer(c_int), target :: csr_row_ptr(..)
+      integer(c_int), target :: csr_col_ind(..)
       type(c_ptr), value :: bsr_descr
-      complex(c_float_complex), target :: bsr_val(*)
-      integer(c_int), target :: bsr_row_ptr(*)
-      integer(c_int), target :: bsr_col_ind(*)
+      complex(c_float_complex), target :: bsr_val(..)
+      integer(c_int), target :: bsr_row_ptr(..)
+      integer(c_int), target :: bsr_col_ind(..)
       integer(c_int), value :: row_block_dim
       integer(c_int), value :: col_block_dim
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: ccsr2gebsr
-      ccsr2gebsr = rocsparse_ccsr2gebsr_raw(handle, dir, m, n, csr_descr, c_loc(csr_val(1)), &
-        c_loc(csr_row_ptr(1)), c_loc(csr_col_ind(1)), bsr_descr, c_loc(bsr_val(1)), c_loc( &
-        bsr_row_ptr(1)), c_loc(bsr_col_ind(1)), row_block_dim, col_block_dim, temp_buffer)
+      ccsr2gebsr = rocsparse_ccsr2gebsr_raw(handle, dir, m, n, csr_descr, c_loc(csr_val), c_loc( &
+        csr_row_ptr), c_loc(csr_col_ind), bsr_descr, c_loc(bsr_val), c_loc(bsr_row_ptr), c_loc( &
+        bsr_col_ind), row_block_dim, col_block_dim, temp_buffer)
     end function rocsparse_ccsr2gebsr_native
 
     function rocsparse_ccsr2gebsr_typed(handle, dir, m, n, csr_descr, csr_val, csr_row_ptr, &
@@ -40913,20 +40927,20 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       type(c_ptr), value :: csr_descr
-      complex(c_double_complex), target :: csr_val(*)
-      integer(c_int), target :: csr_row_ptr(*)
-      integer(c_int), target :: csr_col_ind(*)
+      complex(c_double_complex), target :: csr_val(..)
+      integer(c_int), target :: csr_row_ptr(..)
+      integer(c_int), target :: csr_col_ind(..)
       type(c_ptr), value :: bsr_descr
-      complex(c_double_complex), target :: bsr_val(*)
-      integer(c_int), target :: bsr_row_ptr(*)
-      integer(c_int), target :: bsr_col_ind(*)
+      complex(c_double_complex), target :: bsr_val(..)
+      integer(c_int), target :: bsr_row_ptr(..)
+      integer(c_int), target :: bsr_col_ind(..)
       integer(c_int), value :: row_block_dim
       integer(c_int), value :: col_block_dim
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: zcsr2gebsr
-      zcsr2gebsr = rocsparse_zcsr2gebsr_raw(handle, dir, m, n, csr_descr, c_loc(csr_val(1)), &
-        c_loc(csr_row_ptr(1)), c_loc(csr_col_ind(1)), bsr_descr, c_loc(bsr_val(1)), c_loc( &
-        bsr_row_ptr(1)), c_loc(bsr_col_ind(1)), row_block_dim, col_block_dim, temp_buffer)
+      zcsr2gebsr = rocsparse_zcsr2gebsr_raw(handle, dir, m, n, csr_descr, c_loc(csr_val), c_loc( &
+        csr_row_ptr), c_loc(csr_col_ind), bsr_descr, c_loc(bsr_val), c_loc(bsr_row_ptr), c_loc( &
+        bsr_col_ind), row_block_dim, col_block_dim, temp_buffer)
     end function rocsparse_zcsr2gebsr_native
 
     function rocsparse_zcsr2gebsr_typed(handle, dir, m, n, csr_descr, csr_val, csr_row_ptr, &
@@ -40964,15 +40978,15 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       type(c_ptr), value :: descr
-      real(c_float), target :: csr_val(*)
-      integer(c_int), target :: csr_row_ptr(*)
-      integer(c_int), target :: csr_col_ind(*)
+      real(c_float), target :: csr_val(..)
+      integer(c_int), target :: csr_row_ptr(..)
+      integer(c_int), target :: csr_col_ind(..)
       type(c_ptr), value :: hyb
       integer(c_int), value :: user_ell_width
       integer(c_int), value :: partition_type
       integer(c_int) :: scsr2hyb
-      scsr2hyb = rocsparse_scsr2hyb_raw(handle, m, n, descr, c_loc(csr_val(1)), c_loc(csr_row_ptr( &
-        1)), c_loc(csr_col_ind(1)), hyb, user_ell_width, partition_type)
+      scsr2hyb = rocsparse_scsr2hyb_raw(handle, m, n, descr, c_loc(csr_val), c_loc(csr_row_ptr), &
+        c_loc(csr_col_ind), hyb, user_ell_width, partition_type)
     end function rocsparse_scsr2hyb_native
 
     function rocsparse_scsr2hyb_typed(handle, m, n, descr, csr_val, csr_row_ptr, csr_col_ind, hyb, &
@@ -41003,15 +41017,15 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       type(c_ptr), value :: descr
-      real(c_double), target :: csr_val(*)
-      integer(c_int), target :: csr_row_ptr(*)
-      integer(c_int), target :: csr_col_ind(*)
+      real(c_double), target :: csr_val(..)
+      integer(c_int), target :: csr_row_ptr(..)
+      integer(c_int), target :: csr_col_ind(..)
       type(c_ptr), value :: hyb
       integer(c_int), value :: user_ell_width
       integer(c_int), value :: partition_type
       integer(c_int) :: dcsr2hyb
-      dcsr2hyb = rocsparse_dcsr2hyb_raw(handle, m, n, descr, c_loc(csr_val(1)), c_loc(csr_row_ptr( &
-        1)), c_loc(csr_col_ind(1)), hyb, user_ell_width, partition_type)
+      dcsr2hyb = rocsparse_dcsr2hyb_raw(handle, m, n, descr, c_loc(csr_val), c_loc(csr_row_ptr), &
+        c_loc(csr_col_ind), hyb, user_ell_width, partition_type)
     end function rocsparse_dcsr2hyb_native
 
     function rocsparse_dcsr2hyb_typed(handle, m, n, descr, csr_val, csr_row_ptr, csr_col_ind, hyb, &
@@ -41042,15 +41056,15 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       type(c_ptr), value :: descr
-      complex(c_float_complex), target :: csr_val(*)
-      integer(c_int), target :: csr_row_ptr(*)
-      integer(c_int), target :: csr_col_ind(*)
+      complex(c_float_complex), target :: csr_val(..)
+      integer(c_int), target :: csr_row_ptr(..)
+      integer(c_int), target :: csr_col_ind(..)
       type(c_ptr), value :: hyb
       integer(c_int), value :: user_ell_width
       integer(c_int), value :: partition_type
       integer(c_int) :: ccsr2hyb
-      ccsr2hyb = rocsparse_ccsr2hyb_raw(handle, m, n, descr, c_loc(csr_val(1)), c_loc(csr_row_ptr( &
-        1)), c_loc(csr_col_ind(1)), hyb, user_ell_width, partition_type)
+      ccsr2hyb = rocsparse_ccsr2hyb_raw(handle, m, n, descr, c_loc(csr_val), c_loc(csr_row_ptr), &
+        c_loc(csr_col_ind), hyb, user_ell_width, partition_type)
     end function rocsparse_ccsr2hyb_native
 
     function rocsparse_ccsr2hyb_typed(handle, m, n, descr, csr_val, csr_row_ptr, csr_col_ind, hyb, &
@@ -41081,15 +41095,15 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       type(c_ptr), value :: descr
-      complex(c_double_complex), target :: csr_val(*)
-      integer(c_int), target :: csr_row_ptr(*)
-      integer(c_int), target :: csr_col_ind(*)
+      complex(c_double_complex), target :: csr_val(..)
+      integer(c_int), target :: csr_row_ptr(..)
+      integer(c_int), target :: csr_col_ind(..)
       type(c_ptr), value :: hyb
       integer(c_int), value :: user_ell_width
       integer(c_int), value :: partition_type
       integer(c_int) :: zcsr2hyb
-      zcsr2hyb = rocsparse_zcsr2hyb_raw(handle, m, n, descr, c_loc(csr_val(1)), c_loc(csr_row_ptr( &
-        1)), c_loc(csr_col_ind(1)), hyb, user_ell_width, partition_type)
+      zcsr2hyb = rocsparse_zcsr2hyb_raw(handle, m, n, descr, c_loc(csr_val), c_loc(csr_row_ptr), &
+        c_loc(csr_col_ind), hyb, user_ell_width, partition_type)
     end function rocsparse_zcsr2hyb_native
 
     function rocsparse_zcsr2hyb_typed(handle, m, n, descr, csr_val, csr_row_ptr, csr_col_ind, hyb, &
@@ -41120,12 +41134,12 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       integer(c_int), value :: nnz
-      integer(c_int), target :: csr_row_ptr(*)
-      integer(c_int), target :: csr_col_ind(*)
+      integer(c_int), target :: csr_row_ptr(..)
+      integer(c_int), target :: csr_col_ind(..)
       type(c_ptr), value :: buffer_size
       integer(c_int) :: csrsort_buffer_size
       csrsort_buffer_size = rocsparse_csrsort_buffer_size_raw(handle, m, n, nnz, c_loc( &
-        csr_row_ptr(1)), c_loc(csr_col_ind(1)), buffer_size)
+        csr_row_ptr), c_loc(csr_col_ind), buffer_size)
     end function rocsparse_csrsort_buffer_size_native
 
     function rocsparse_csrsort_buffer_size_typed(handle, m, n, nnz, csr_row_ptr, csr_col_ind, &
@@ -41154,13 +41168,13 @@ contains
       integer(c_int), value :: n
       integer(c_int), value :: nnz
       type(c_ptr), value :: descr
-      integer(c_int), target :: csr_row_ptr(*)
-      integer(c_int), target :: csr_col_ind(*)
-      integer(c_int), target :: perm(*)
+      integer(c_int), target :: csr_row_ptr(..)
+      integer(c_int), target :: csr_col_ind(..)
+      integer(c_int), target :: perm(..)
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: csrsort
-      csrsort = rocsparse_csrsort_raw(handle, m, n, nnz, descr, c_loc(csr_row_ptr(1)), c_loc( &
-        csr_col_ind(1)), c_loc(perm(1)), temp_buffer)
+      csrsort = rocsparse_csrsort_raw(handle, m, n, nnz, descr, c_loc(csr_row_ptr), c_loc( &
+        csr_col_ind), c_loc(perm), temp_buffer)
     end function rocsparse_csrsort_native
 
     function rocsparse_csrsort_typed(handle, m, n, nnz, descr, csr_row_ptr, csr_col_ind, perm, &
@@ -41190,15 +41204,15 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       type(c_ptr), value :: descr
-      real(c_float), target :: A(*)
+      real(c_float), target :: A(..)
       integer(c_int), value :: ld
-      integer(c_int), target :: nnz_per_rows(*)
-      real(c_float), target :: coo_val(*)
-      integer(c_int), target :: coo_row_ind(*)
-      integer(c_int), target :: coo_col_ind(*)
+      integer(c_int), target :: nnz_per_rows(..)
+      real(c_float), target :: coo_val(..)
+      integer(c_int), target :: coo_row_ind(..)
+      integer(c_int), target :: coo_col_ind(..)
       integer(c_int) :: sdense2coo
-      sdense2coo = rocsparse_sdense2coo_raw(handle, m, n, descr, c_loc(A(1)), ld, c_loc( &
-        nnz_per_rows(1)), c_loc(coo_val(1)), c_loc(coo_row_ind(1)), c_loc(coo_col_ind(1)))
+      sdense2coo = rocsparse_sdense2coo_raw(handle, m, n, descr, c_loc(A), ld, c_loc( &
+        nnz_per_rows), c_loc(coo_val), c_loc(coo_row_ind), c_loc(coo_col_ind))
     end function rocsparse_sdense2coo_native
 
     function rocsparse_sdense2coo_typed(handle, m, n, descr, A, ld, nnz_per_rows, coo_val, &
@@ -41229,15 +41243,15 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       type(c_ptr), value :: descr
-      real(c_double), target :: A(*)
+      real(c_double), target :: A(..)
       integer(c_int), value :: ld
-      integer(c_int), target :: nnz_per_rows(*)
-      real(c_double), target :: coo_val(*)
-      integer(c_int), target :: coo_row_ind(*)
-      integer(c_int), target :: coo_col_ind(*)
+      integer(c_int), target :: nnz_per_rows(..)
+      real(c_double), target :: coo_val(..)
+      integer(c_int), target :: coo_row_ind(..)
+      integer(c_int), target :: coo_col_ind(..)
       integer(c_int) :: ddense2coo
-      ddense2coo = rocsparse_ddense2coo_raw(handle, m, n, descr, c_loc(A(1)), ld, c_loc( &
-        nnz_per_rows(1)), c_loc(coo_val(1)), c_loc(coo_row_ind(1)), c_loc(coo_col_ind(1)))
+      ddense2coo = rocsparse_ddense2coo_raw(handle, m, n, descr, c_loc(A), ld, c_loc( &
+        nnz_per_rows), c_loc(coo_val), c_loc(coo_row_ind), c_loc(coo_col_ind))
     end function rocsparse_ddense2coo_native
 
     function rocsparse_ddense2coo_typed(handle, m, n, descr, A, ld, nnz_per_rows, coo_val, &
@@ -41268,15 +41282,15 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       type(c_ptr), value :: descr
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: A(..)
       integer(c_int), value :: ld
-      integer(c_int), target :: nnz_per_rows(*)
-      complex(c_float_complex), target :: coo_val(*)
-      integer(c_int), target :: coo_row_ind(*)
-      integer(c_int), target :: coo_col_ind(*)
+      integer(c_int), target :: nnz_per_rows(..)
+      complex(c_float_complex), target :: coo_val(..)
+      integer(c_int), target :: coo_row_ind(..)
+      integer(c_int), target :: coo_col_ind(..)
       integer(c_int) :: cdense2coo
-      cdense2coo = rocsparse_cdense2coo_raw(handle, m, n, descr, c_loc(A(1)), ld, c_loc( &
-        nnz_per_rows(1)), c_loc(coo_val(1)), c_loc(coo_row_ind(1)), c_loc(coo_col_ind(1)))
+      cdense2coo = rocsparse_cdense2coo_raw(handle, m, n, descr, c_loc(A), ld, c_loc( &
+        nnz_per_rows), c_loc(coo_val), c_loc(coo_row_ind), c_loc(coo_col_ind))
     end function rocsparse_cdense2coo_native
 
     function rocsparse_cdense2coo_typed(handle, m, n, descr, A, ld, nnz_per_rows, coo_val, &
@@ -41307,15 +41321,15 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       type(c_ptr), value :: descr
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: A(..)
       integer(c_int), value :: ld
-      integer(c_int), target :: nnz_per_rows(*)
-      complex(c_double_complex), target :: coo_val(*)
-      integer(c_int), target :: coo_row_ind(*)
-      integer(c_int), target :: coo_col_ind(*)
+      integer(c_int), target :: nnz_per_rows(..)
+      complex(c_double_complex), target :: coo_val(..)
+      integer(c_int), target :: coo_row_ind(..)
+      integer(c_int), target :: coo_col_ind(..)
       integer(c_int) :: zdense2coo
-      zdense2coo = rocsparse_zdense2coo_raw(handle, m, n, descr, c_loc(A(1)), ld, c_loc( &
-        nnz_per_rows(1)), c_loc(coo_val(1)), c_loc(coo_row_ind(1)), c_loc(coo_col_ind(1)))
+      zdense2coo = rocsparse_zdense2coo_raw(handle, m, n, descr, c_loc(A), ld, c_loc( &
+        nnz_per_rows), c_loc(coo_val), c_loc(coo_row_ind), c_loc(coo_col_ind))
     end function rocsparse_zdense2coo_native
 
     function rocsparse_zdense2coo_typed(handle, m, n, descr, A, ld, nnz_per_rows, coo_val, &
@@ -41346,15 +41360,15 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       type(c_ptr), value :: descr
-      real(c_float), target :: A(*)
+      real(c_float), target :: A(..)
       integer(c_int), value :: ld
-      integer(c_int), target :: nnz_per_columns(*)
-      real(c_float), target :: csc_val(*)
-      integer(c_int), target :: csc_col_ptr(*)
-      integer(c_int), target :: csc_row_ind(*)
+      integer(c_int), target :: nnz_per_columns(..)
+      real(c_float), target :: csc_val(..)
+      integer(c_int), target :: csc_col_ptr(..)
+      integer(c_int), target :: csc_row_ind(..)
       integer(c_int) :: sdense2csc
-      sdense2csc = rocsparse_sdense2csc_raw(handle, m, n, descr, c_loc(A(1)), ld, c_loc( &
-        nnz_per_columns(1)), c_loc(csc_val(1)), c_loc(csc_col_ptr(1)), c_loc(csc_row_ind(1)))
+      sdense2csc = rocsparse_sdense2csc_raw(handle, m, n, descr, c_loc(A), ld, c_loc( &
+        nnz_per_columns), c_loc(csc_val), c_loc(csc_col_ptr), c_loc(csc_row_ind))
     end function rocsparse_sdense2csc_native
 
     function rocsparse_sdense2csc_typed(handle, m, n, descr, A, ld, nnz_per_columns, csc_val, &
@@ -41385,15 +41399,15 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       type(c_ptr), value :: descr
-      real(c_double), target :: A(*)
+      real(c_double), target :: A(..)
       integer(c_int), value :: ld
-      integer(c_int), target :: nnz_per_columns(*)
-      real(c_double), target :: csc_val(*)
-      integer(c_int), target :: csc_col_ptr(*)
-      integer(c_int), target :: csc_row_ind(*)
+      integer(c_int), target :: nnz_per_columns(..)
+      real(c_double), target :: csc_val(..)
+      integer(c_int), target :: csc_col_ptr(..)
+      integer(c_int), target :: csc_row_ind(..)
       integer(c_int) :: ddense2csc
-      ddense2csc = rocsparse_ddense2csc_raw(handle, m, n, descr, c_loc(A(1)), ld, c_loc( &
-        nnz_per_columns(1)), c_loc(csc_val(1)), c_loc(csc_col_ptr(1)), c_loc(csc_row_ind(1)))
+      ddense2csc = rocsparse_ddense2csc_raw(handle, m, n, descr, c_loc(A), ld, c_loc( &
+        nnz_per_columns), c_loc(csc_val), c_loc(csc_col_ptr), c_loc(csc_row_ind))
     end function rocsparse_ddense2csc_native
 
     function rocsparse_ddense2csc_typed(handle, m, n, descr, A, ld, nnz_per_columns, csc_val, &
@@ -41424,15 +41438,15 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       type(c_ptr), value :: descr
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: A(..)
       integer(c_int), value :: ld
-      integer(c_int), target :: nnz_per_columns(*)
-      complex(c_float_complex), target :: csc_val(*)
-      integer(c_int), target :: csc_col_ptr(*)
-      integer(c_int), target :: csc_row_ind(*)
+      integer(c_int), target :: nnz_per_columns(..)
+      complex(c_float_complex), target :: csc_val(..)
+      integer(c_int), target :: csc_col_ptr(..)
+      integer(c_int), target :: csc_row_ind(..)
       integer(c_int) :: cdense2csc
-      cdense2csc = rocsparse_cdense2csc_raw(handle, m, n, descr, c_loc(A(1)), ld, c_loc( &
-        nnz_per_columns(1)), c_loc(csc_val(1)), c_loc(csc_col_ptr(1)), c_loc(csc_row_ind(1)))
+      cdense2csc = rocsparse_cdense2csc_raw(handle, m, n, descr, c_loc(A), ld, c_loc( &
+        nnz_per_columns), c_loc(csc_val), c_loc(csc_col_ptr), c_loc(csc_row_ind))
     end function rocsparse_cdense2csc_native
 
     function rocsparse_cdense2csc_typed(handle, m, n, descr, A, ld, nnz_per_columns, csc_val, &
@@ -41463,15 +41477,15 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       type(c_ptr), value :: descr
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: A(..)
       integer(c_int), value :: ld
-      integer(c_int), target :: nnz_per_columns(*)
-      complex(c_double_complex), target :: csc_val(*)
-      integer(c_int), target :: csc_col_ptr(*)
-      integer(c_int), target :: csc_row_ind(*)
+      integer(c_int), target :: nnz_per_columns(..)
+      complex(c_double_complex), target :: csc_val(..)
+      integer(c_int), target :: csc_col_ptr(..)
+      integer(c_int), target :: csc_row_ind(..)
       integer(c_int) :: zdense2csc
-      zdense2csc = rocsparse_zdense2csc_raw(handle, m, n, descr, c_loc(A(1)), ld, c_loc( &
-        nnz_per_columns(1)), c_loc(csc_val(1)), c_loc(csc_col_ptr(1)), c_loc(csc_row_ind(1)))
+      zdense2csc = rocsparse_zdense2csc_raw(handle, m, n, descr, c_loc(A), ld, c_loc( &
+        nnz_per_columns), c_loc(csc_val), c_loc(csc_col_ptr), c_loc(csc_row_ind))
     end function rocsparse_zdense2csc_native
 
     function rocsparse_zdense2csc_typed(handle, m, n, descr, A, ld, nnz_per_columns, csc_val, &
@@ -41502,15 +41516,15 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       type(c_ptr), value :: descr
-      real(c_float), target :: A(*)
+      real(c_float), target :: A(..)
       integer(c_int), value :: ld
-      integer(c_int), target :: nnz_per_rows(*)
-      real(c_float), target :: csr_val(*)
-      integer(c_int), target :: csr_row_ptr(*)
-      integer(c_int), target :: csr_col_ind(*)
+      integer(c_int), target :: nnz_per_rows(..)
+      real(c_float), target :: csr_val(..)
+      integer(c_int), target :: csr_row_ptr(..)
+      integer(c_int), target :: csr_col_ind(..)
       integer(c_int) :: sdense2csr
-      sdense2csr = rocsparse_sdense2csr_raw(handle, m, n, descr, c_loc(A(1)), ld, c_loc( &
-        nnz_per_rows(1)), c_loc(csr_val(1)), c_loc(csr_row_ptr(1)), c_loc(csr_col_ind(1)))
+      sdense2csr = rocsparse_sdense2csr_raw(handle, m, n, descr, c_loc(A), ld, c_loc( &
+        nnz_per_rows), c_loc(csr_val), c_loc(csr_row_ptr), c_loc(csr_col_ind))
     end function rocsparse_sdense2csr_native
 
     function rocsparse_sdense2csr_typed(handle, m, n, descr, A, ld, nnz_per_rows, csr_val, &
@@ -41541,15 +41555,15 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       type(c_ptr), value :: descr
-      real(c_double), target :: A(*)
+      real(c_double), target :: A(..)
       integer(c_int), value :: ld
-      integer(c_int), target :: nnz_per_rows(*)
-      real(c_double), target :: csr_val(*)
-      integer(c_int), target :: csr_row_ptr(*)
-      integer(c_int), target :: csr_col_ind(*)
+      integer(c_int), target :: nnz_per_rows(..)
+      real(c_double), target :: csr_val(..)
+      integer(c_int), target :: csr_row_ptr(..)
+      integer(c_int), target :: csr_col_ind(..)
       integer(c_int) :: ddense2csr
-      ddense2csr = rocsparse_ddense2csr_raw(handle, m, n, descr, c_loc(A(1)), ld, c_loc( &
-        nnz_per_rows(1)), c_loc(csr_val(1)), c_loc(csr_row_ptr(1)), c_loc(csr_col_ind(1)))
+      ddense2csr = rocsparse_ddense2csr_raw(handle, m, n, descr, c_loc(A), ld, c_loc( &
+        nnz_per_rows), c_loc(csr_val), c_loc(csr_row_ptr), c_loc(csr_col_ind))
     end function rocsparse_ddense2csr_native
 
     function rocsparse_ddense2csr_typed(handle, m, n, descr, A, ld, nnz_per_rows, csr_val, &
@@ -41580,15 +41594,15 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       type(c_ptr), value :: descr
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: A(..)
       integer(c_int), value :: ld
-      integer(c_int), target :: nnz_per_rows(*)
-      complex(c_float_complex), target :: csr_val(*)
-      integer(c_int), target :: csr_row_ptr(*)
-      integer(c_int), target :: csr_col_ind(*)
+      integer(c_int), target :: nnz_per_rows(..)
+      complex(c_float_complex), target :: csr_val(..)
+      integer(c_int), target :: csr_row_ptr(..)
+      integer(c_int), target :: csr_col_ind(..)
       integer(c_int) :: cdense2csr
-      cdense2csr = rocsparse_cdense2csr_raw(handle, m, n, descr, c_loc(A(1)), ld, c_loc( &
-        nnz_per_rows(1)), c_loc(csr_val(1)), c_loc(csr_row_ptr(1)), c_loc(csr_col_ind(1)))
+      cdense2csr = rocsparse_cdense2csr_raw(handle, m, n, descr, c_loc(A), ld, c_loc( &
+        nnz_per_rows), c_loc(csr_val), c_loc(csr_row_ptr), c_loc(csr_col_ind))
     end function rocsparse_cdense2csr_native
 
     function rocsparse_cdense2csr_typed(handle, m, n, descr, A, ld, nnz_per_rows, csr_val, &
@@ -41619,15 +41633,15 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       type(c_ptr), value :: descr
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: A(..)
       integer(c_int), value :: ld
-      integer(c_int), target :: nnz_per_rows(*)
-      complex(c_double_complex), target :: csr_val(*)
-      integer(c_int), target :: csr_row_ptr(*)
-      integer(c_int), target :: csr_col_ind(*)
+      integer(c_int), target :: nnz_per_rows(..)
+      complex(c_double_complex), target :: csr_val(..)
+      integer(c_int), target :: csr_row_ptr(..)
+      integer(c_int), target :: csr_col_ind(..)
       integer(c_int) :: zdense2csr
-      zdense2csr = rocsparse_zdense2csr_raw(handle, m, n, descr, c_loc(A(1)), ld, c_loc( &
-        nnz_per_rows(1)), c_loc(csr_val(1)), c_loc(csr_row_ptr(1)), c_loc(csr_col_ind(1)))
+      zdense2csr = rocsparse_zdense2csr_raw(handle, m, n, descr, c_loc(A), ld, c_loc( &
+        nnz_per_rows), c_loc(csr_val), c_loc(csr_row_ptr), c_loc(csr_col_ind))
     end function rocsparse_zdense2csr_native
 
     function rocsparse_zdense2csr_typed(handle, m, n, descr, A, ld, nnz_per_rows, csr_val, &
@@ -41659,13 +41673,13 @@ contains
       integer(c_int), value :: n
       type(c_ptr), value :: ell_descr
       integer(c_int), value :: ell_width
-      integer(c_int), target :: ell_col_ind(*)
+      integer(c_int), target :: ell_col_ind(..)
       type(c_ptr), value :: csr_descr
-      integer(c_int), target :: csr_row_ptr(*)
-      integer(c_int), target :: csr_nnz(*)
+      integer(c_int), target :: csr_row_ptr(..)
+      integer(c_int), target :: csr_nnz(..)
       integer(c_int) :: ell2csr_nnz
       ell2csr_nnz = rocsparse_ell2csr_nnz_raw(handle, m, n, ell_descr, ell_width, c_loc( &
-        ell_col_ind(1)), csr_descr, c_loc(csr_row_ptr(1)), c_loc(csr_nnz(1)))
+        ell_col_ind), csr_descr, c_loc(csr_row_ptr), c_loc(csr_nnz))
     end function rocsparse_ell2csr_nnz_native
 
     function rocsparse_ell2csr_nnz_typed(handle, m, n, ell_descr, ell_width, ell_col_ind, &
@@ -41696,16 +41710,15 @@ contains
       integer(c_int), value :: n
       type(c_ptr), value :: ell_descr
       integer(c_int), value :: ell_width
-      real(c_float), target :: ell_val(*)
-      integer(c_int), target :: ell_col_ind(*)
+      real(c_float), target :: ell_val(..)
+      integer(c_int), target :: ell_col_ind(..)
       type(c_ptr), value :: csr_descr
-      real(c_float), target :: csr_val(*)
-      integer(c_int), target :: csr_row_ptr(*)
-      integer(c_int), target :: csr_col_ind(*)
+      real(c_float), target :: csr_val(..)
+      integer(c_int), target :: csr_row_ptr(..)
+      integer(c_int), target :: csr_col_ind(..)
       integer(c_int) :: sell2csr
-      sell2csr = rocsparse_sell2csr_raw(handle, m, n, ell_descr, ell_width, c_loc(ell_val(1)), &
-        c_loc(ell_col_ind(1)), csr_descr, c_loc(csr_val(1)), c_loc(csr_row_ptr(1)), c_loc( &
-        csr_col_ind(1)))
+      sell2csr = rocsparse_sell2csr_raw(handle, m, n, ell_descr, ell_width, c_loc(ell_val), c_loc( &
+        ell_col_ind), csr_descr, c_loc(csr_val), c_loc(csr_row_ptr), c_loc(csr_col_ind))
     end function rocsparse_sell2csr_native
 
     function rocsparse_sell2csr_typed(handle, m, n, ell_descr, ell_width, ell_val, ell_col_ind, &
@@ -41738,16 +41751,15 @@ contains
       integer(c_int), value :: n
       type(c_ptr), value :: ell_descr
       integer(c_int), value :: ell_width
-      real(c_double), target :: ell_val(*)
-      integer(c_int), target :: ell_col_ind(*)
+      real(c_double), target :: ell_val(..)
+      integer(c_int), target :: ell_col_ind(..)
       type(c_ptr), value :: csr_descr
-      real(c_double), target :: csr_val(*)
-      integer(c_int), target :: csr_row_ptr(*)
-      integer(c_int), target :: csr_col_ind(*)
+      real(c_double), target :: csr_val(..)
+      integer(c_int), target :: csr_row_ptr(..)
+      integer(c_int), target :: csr_col_ind(..)
       integer(c_int) :: dell2csr
-      dell2csr = rocsparse_dell2csr_raw(handle, m, n, ell_descr, ell_width, c_loc(ell_val(1)), &
-        c_loc(ell_col_ind(1)), csr_descr, c_loc(csr_val(1)), c_loc(csr_row_ptr(1)), c_loc( &
-        csr_col_ind(1)))
+      dell2csr = rocsparse_dell2csr_raw(handle, m, n, ell_descr, ell_width, c_loc(ell_val), c_loc( &
+        ell_col_ind), csr_descr, c_loc(csr_val), c_loc(csr_row_ptr), c_loc(csr_col_ind))
     end function rocsparse_dell2csr_native
 
     function rocsparse_dell2csr_typed(handle, m, n, ell_descr, ell_width, ell_val, ell_col_ind, &
@@ -41780,16 +41792,15 @@ contains
       integer(c_int), value :: n
       type(c_ptr), value :: ell_descr
       integer(c_int), value :: ell_width
-      complex(c_float_complex), target :: ell_val(*)
-      integer(c_int), target :: ell_col_ind(*)
+      complex(c_float_complex), target :: ell_val(..)
+      integer(c_int), target :: ell_col_ind(..)
       type(c_ptr), value :: csr_descr
-      complex(c_float_complex), target :: csr_val(*)
-      integer(c_int), target :: csr_row_ptr(*)
-      integer(c_int), target :: csr_col_ind(*)
+      complex(c_float_complex), target :: csr_val(..)
+      integer(c_int), target :: csr_row_ptr(..)
+      integer(c_int), target :: csr_col_ind(..)
       integer(c_int) :: cell2csr
-      cell2csr = rocsparse_cell2csr_raw(handle, m, n, ell_descr, ell_width, c_loc(ell_val(1)), &
-        c_loc(ell_col_ind(1)), csr_descr, c_loc(csr_val(1)), c_loc(csr_row_ptr(1)), c_loc( &
-        csr_col_ind(1)))
+      cell2csr = rocsparse_cell2csr_raw(handle, m, n, ell_descr, ell_width, c_loc(ell_val), c_loc( &
+        ell_col_ind), csr_descr, c_loc(csr_val), c_loc(csr_row_ptr), c_loc(csr_col_ind))
     end function rocsparse_cell2csr_native
 
     function rocsparse_cell2csr_typed(handle, m, n, ell_descr, ell_width, ell_val, ell_col_ind, &
@@ -41822,16 +41833,15 @@ contains
       integer(c_int), value :: n
       type(c_ptr), value :: ell_descr
       integer(c_int), value :: ell_width
-      complex(c_double_complex), target :: ell_val(*)
-      integer(c_int), target :: ell_col_ind(*)
+      complex(c_double_complex), target :: ell_val(..)
+      integer(c_int), target :: ell_col_ind(..)
       type(c_ptr), value :: csr_descr
-      complex(c_double_complex), target :: csr_val(*)
-      integer(c_int), target :: csr_row_ptr(*)
-      integer(c_int), target :: csr_col_ind(*)
+      complex(c_double_complex), target :: csr_val(..)
+      integer(c_int), target :: csr_row_ptr(..)
+      integer(c_int), target :: csr_col_ind(..)
       integer(c_int) :: zell2csr
-      zell2csr = rocsparse_zell2csr_raw(handle, m, n, ell_descr, ell_width, c_loc(ell_val(1)), &
-        c_loc(ell_col_ind(1)), csr_descr, c_loc(csr_val(1)), c_loc(csr_row_ptr(1)), c_loc( &
-        csr_col_ind(1)))
+      zell2csr = rocsparse_zell2csr_raw(handle, m, n, ell_descr, ell_width, c_loc(ell_val), c_loc( &
+        ell_col_ind), csr_descr, c_loc(csr_val), c_loc(csr_row_ptr), c_loc(csr_col_ind))
     end function rocsparse_zell2csr_native
 
     function rocsparse_zell2csr_typed(handle, m, n, ell_descr, ell_width, ell_val, ell_col_ind, &
@@ -41865,19 +41875,19 @@ contains
       integer(c_int), value :: mb
       integer(c_int), value :: nb
       type(c_ptr), value :: bsr_descr
-      real(c_float), target :: bsr_val(*)
-      integer(c_int), target :: bsr_row_ptr(*)
-      integer(c_int), target :: bsr_col_ind(*)
+      real(c_float), target :: bsr_val(..)
+      integer(c_int), target :: bsr_row_ptr(..)
+      integer(c_int), target :: bsr_col_ind(..)
       integer(c_int), value :: row_block_dim
       integer(c_int), value :: col_block_dim
       type(c_ptr), value :: csr_descr
-      real(c_float), target :: csr_val(*)
-      integer(c_int), target :: csr_row_ptr(*)
-      integer(c_int), target :: csr_col_ind(*)
+      real(c_float), target :: csr_val(..)
+      integer(c_int), target :: csr_row_ptr(..)
+      integer(c_int), target :: csr_col_ind(..)
       integer(c_int) :: sgebsr2csr
-      sgebsr2csr = rocsparse_sgebsr2csr_raw(handle, dir, mb, nb, bsr_descr, c_loc(bsr_val(1)), &
-        c_loc(bsr_row_ptr(1)), c_loc(bsr_col_ind(1)), row_block_dim, col_block_dim, csr_descr, &
-        c_loc(csr_val(1)), c_loc(csr_row_ptr(1)), c_loc(csr_col_ind(1)))
+      sgebsr2csr = rocsparse_sgebsr2csr_raw(handle, dir, mb, nb, bsr_descr, c_loc(bsr_val), c_loc( &
+        bsr_row_ptr), c_loc(bsr_col_ind), row_block_dim, col_block_dim, csr_descr, c_loc(csr_val), &
+        c_loc(csr_row_ptr), c_loc(csr_col_ind))
     end function rocsparse_sgebsr2csr_native
 
     function rocsparse_sgebsr2csr_typed(handle, dir, mb, nb, bsr_descr, bsr_val, bsr_row_ptr, &
@@ -41916,19 +41926,19 @@ contains
       integer(c_int), value :: mb
       integer(c_int), value :: nb
       type(c_ptr), value :: bsr_descr
-      real(c_double), target :: bsr_val(*)
-      integer(c_int), target :: bsr_row_ptr(*)
-      integer(c_int), target :: bsr_col_ind(*)
+      real(c_double), target :: bsr_val(..)
+      integer(c_int), target :: bsr_row_ptr(..)
+      integer(c_int), target :: bsr_col_ind(..)
       integer(c_int), value :: row_block_dim
       integer(c_int), value :: col_block_dim
       type(c_ptr), value :: csr_descr
-      real(c_double), target :: csr_val(*)
-      integer(c_int), target :: csr_row_ptr(*)
-      integer(c_int), target :: csr_col_ind(*)
+      real(c_double), target :: csr_val(..)
+      integer(c_int), target :: csr_row_ptr(..)
+      integer(c_int), target :: csr_col_ind(..)
       integer(c_int) :: dgebsr2csr
-      dgebsr2csr = rocsparse_dgebsr2csr_raw(handle, dir, mb, nb, bsr_descr, c_loc(bsr_val(1)), &
-        c_loc(bsr_row_ptr(1)), c_loc(bsr_col_ind(1)), row_block_dim, col_block_dim, csr_descr, &
-        c_loc(csr_val(1)), c_loc(csr_row_ptr(1)), c_loc(csr_col_ind(1)))
+      dgebsr2csr = rocsparse_dgebsr2csr_raw(handle, dir, mb, nb, bsr_descr, c_loc(bsr_val), c_loc( &
+        bsr_row_ptr), c_loc(bsr_col_ind), row_block_dim, col_block_dim, csr_descr, c_loc(csr_val), &
+        c_loc(csr_row_ptr), c_loc(csr_col_ind))
     end function rocsparse_dgebsr2csr_native
 
     function rocsparse_dgebsr2csr_typed(handle, dir, mb, nb, bsr_descr, bsr_val, bsr_row_ptr, &
@@ -41967,19 +41977,19 @@ contains
       integer(c_int), value :: mb
       integer(c_int), value :: nb
       type(c_ptr), value :: bsr_descr
-      complex(c_float_complex), target :: bsr_val(*)
-      integer(c_int), target :: bsr_row_ptr(*)
-      integer(c_int), target :: bsr_col_ind(*)
+      complex(c_float_complex), target :: bsr_val(..)
+      integer(c_int), target :: bsr_row_ptr(..)
+      integer(c_int), target :: bsr_col_ind(..)
       integer(c_int), value :: row_block_dim
       integer(c_int), value :: col_block_dim
       type(c_ptr), value :: csr_descr
-      complex(c_float_complex), target :: csr_val(*)
-      integer(c_int), target :: csr_row_ptr(*)
-      integer(c_int), target :: csr_col_ind(*)
+      complex(c_float_complex), target :: csr_val(..)
+      integer(c_int), target :: csr_row_ptr(..)
+      integer(c_int), target :: csr_col_ind(..)
       integer(c_int) :: cgebsr2csr
-      cgebsr2csr = rocsparse_cgebsr2csr_raw(handle, dir, mb, nb, bsr_descr, c_loc(bsr_val(1)), &
-        c_loc(bsr_row_ptr(1)), c_loc(bsr_col_ind(1)), row_block_dim, col_block_dim, csr_descr, &
-        c_loc(csr_val(1)), c_loc(csr_row_ptr(1)), c_loc(csr_col_ind(1)))
+      cgebsr2csr = rocsparse_cgebsr2csr_raw(handle, dir, mb, nb, bsr_descr, c_loc(bsr_val), c_loc( &
+        bsr_row_ptr), c_loc(bsr_col_ind), row_block_dim, col_block_dim, csr_descr, c_loc(csr_val), &
+        c_loc(csr_row_ptr), c_loc(csr_col_ind))
     end function rocsparse_cgebsr2csr_native
 
     function rocsparse_cgebsr2csr_typed(handle, dir, mb, nb, bsr_descr, bsr_val, bsr_row_ptr, &
@@ -42018,19 +42028,19 @@ contains
       integer(c_int), value :: mb
       integer(c_int), value :: nb
       type(c_ptr), value :: bsr_descr
-      complex(c_double_complex), target :: bsr_val(*)
-      integer(c_int), target :: bsr_row_ptr(*)
-      integer(c_int), target :: bsr_col_ind(*)
+      complex(c_double_complex), target :: bsr_val(..)
+      integer(c_int), target :: bsr_row_ptr(..)
+      integer(c_int), target :: bsr_col_ind(..)
       integer(c_int), value :: row_block_dim
       integer(c_int), value :: col_block_dim
       type(c_ptr), value :: csr_descr
-      complex(c_double_complex), target :: csr_val(*)
-      integer(c_int), target :: csr_row_ptr(*)
-      integer(c_int), target :: csr_col_ind(*)
+      complex(c_double_complex), target :: csr_val(..)
+      integer(c_int), target :: csr_row_ptr(..)
+      integer(c_int), target :: csr_col_ind(..)
       integer(c_int) :: zgebsr2csr
-      zgebsr2csr = rocsparse_zgebsr2csr_raw(handle, dir, mb, nb, bsr_descr, c_loc(bsr_val(1)), &
-        c_loc(bsr_row_ptr(1)), c_loc(bsr_col_ind(1)), row_block_dim, col_block_dim, csr_descr, &
-        c_loc(csr_val(1)), c_loc(csr_row_ptr(1)), c_loc(csr_col_ind(1)))
+      zgebsr2csr = rocsparse_zgebsr2csr_raw(handle, dir, mb, nb, bsr_descr, c_loc(bsr_val), c_loc( &
+        bsr_row_ptr), c_loc(bsr_col_ind), row_block_dim, col_block_dim, csr_descr, c_loc(csr_val), &
+        c_loc(csr_row_ptr), c_loc(csr_col_ind))
     end function rocsparse_zgebsr2csr_native
 
     function rocsparse_zgebsr2csr_typed(handle, dir, mb, nb, bsr_descr, bsr_val, bsr_row_ptr, &
@@ -42067,16 +42077,16 @@ contains
       integer(c_int), value :: mb
       integer(c_int), value :: nb
       integer(c_int), value :: nnzb
-      real(c_float), target :: bsr_val(*)
-      integer(c_int), target :: bsr_row_ptr(*)
-      integer(c_int), target :: bsr_col_ind(*)
+      real(c_float), target :: bsr_val(..)
+      integer(c_int), target :: bsr_row_ptr(..)
+      integer(c_int), target :: bsr_col_ind(..)
       integer(c_int), value :: row_block_dim
       integer(c_int), value :: col_block_dim
       type(c_ptr), value :: p_buffer_size
       integer(c_int) :: sgebsr2gebsc_buffer_size
       sgebsr2gebsc_buffer_size = rocsparse_sgebsr2gebsc_buffer_size_raw(handle, mb, nb, nnzb, &
-        c_loc(bsr_val(1)), c_loc(bsr_row_ptr(1)), c_loc(bsr_col_ind(1)), row_block_dim, &
-        col_block_dim, p_buffer_size)
+        c_loc(bsr_val), c_loc(bsr_row_ptr), c_loc(bsr_col_ind), row_block_dim, col_block_dim, &
+        p_buffer_size)
     end function rocsparse_sgebsr2gebsc_buffer_size_native
 
     function rocsparse_sgebsr2gebsc_buffer_size_typed(handle, mb, nb, nnzb, bsr_val, bsr_row_ptr, &
@@ -42107,16 +42117,16 @@ contains
       integer(c_int), value :: mb
       integer(c_int), value :: nb
       integer(c_int), value :: nnzb
-      real(c_double), target :: bsr_val(*)
-      integer(c_int), target :: bsr_row_ptr(*)
-      integer(c_int), target :: bsr_col_ind(*)
+      real(c_double), target :: bsr_val(..)
+      integer(c_int), target :: bsr_row_ptr(..)
+      integer(c_int), target :: bsr_col_ind(..)
       integer(c_int), value :: row_block_dim
       integer(c_int), value :: col_block_dim
       type(c_ptr), value :: p_buffer_size
       integer(c_int) :: dgebsr2gebsc_buffer_size
       dgebsr2gebsc_buffer_size = rocsparse_dgebsr2gebsc_buffer_size_raw(handle, mb, nb, nnzb, &
-        c_loc(bsr_val(1)), c_loc(bsr_row_ptr(1)), c_loc(bsr_col_ind(1)), row_block_dim, &
-        col_block_dim, p_buffer_size)
+        c_loc(bsr_val), c_loc(bsr_row_ptr), c_loc(bsr_col_ind), row_block_dim, col_block_dim, &
+        p_buffer_size)
     end function rocsparse_dgebsr2gebsc_buffer_size_native
 
     function rocsparse_dgebsr2gebsc_buffer_size_typed(handle, mb, nb, nnzb, bsr_val, bsr_row_ptr, &
@@ -42147,16 +42157,16 @@ contains
       integer(c_int), value :: mb
       integer(c_int), value :: nb
       integer(c_int), value :: nnzb
-      complex(c_float_complex), target :: bsr_val(*)
-      integer(c_int), target :: bsr_row_ptr(*)
-      integer(c_int), target :: bsr_col_ind(*)
+      complex(c_float_complex), target :: bsr_val(..)
+      integer(c_int), target :: bsr_row_ptr(..)
+      integer(c_int), target :: bsr_col_ind(..)
       integer(c_int), value :: row_block_dim
       integer(c_int), value :: col_block_dim
       type(c_ptr), value :: p_buffer_size
       integer(c_int) :: cgebsr2gebsc_buffer_size
       cgebsr2gebsc_buffer_size = rocsparse_cgebsr2gebsc_buffer_size_raw(handle, mb, nb, nnzb, &
-        c_loc(bsr_val(1)), c_loc(bsr_row_ptr(1)), c_loc(bsr_col_ind(1)), row_block_dim, &
-        col_block_dim, p_buffer_size)
+        c_loc(bsr_val), c_loc(bsr_row_ptr), c_loc(bsr_col_ind), row_block_dim, col_block_dim, &
+        p_buffer_size)
     end function rocsparse_cgebsr2gebsc_buffer_size_native
 
     function rocsparse_cgebsr2gebsc_buffer_size_typed(handle, mb, nb, nnzb, bsr_val, bsr_row_ptr, &
@@ -42187,16 +42197,16 @@ contains
       integer(c_int), value :: mb
       integer(c_int), value :: nb
       integer(c_int), value :: nnzb
-      complex(c_double_complex), target :: bsr_val(*)
-      integer(c_int), target :: bsr_row_ptr(*)
-      integer(c_int), target :: bsr_col_ind(*)
+      complex(c_double_complex), target :: bsr_val(..)
+      integer(c_int), target :: bsr_row_ptr(..)
+      integer(c_int), target :: bsr_col_ind(..)
       integer(c_int), value :: row_block_dim
       integer(c_int), value :: col_block_dim
       type(c_ptr), value :: p_buffer_size
       integer(c_int) :: zgebsr2gebsc_buffer_size
       zgebsr2gebsc_buffer_size = rocsparse_zgebsr2gebsc_buffer_size_raw(handle, mb, nb, nnzb, &
-        c_loc(bsr_val(1)), c_loc(bsr_row_ptr(1)), c_loc(bsr_col_ind(1)), row_block_dim, &
-        col_block_dim, p_buffer_size)
+        c_loc(bsr_val), c_loc(bsr_row_ptr), c_loc(bsr_col_ind), row_block_dim, col_block_dim, &
+        p_buffer_size)
     end function rocsparse_zgebsr2gebsc_buffer_size_native
 
     function rocsparse_zgebsr2gebsc_buffer_size_typed(handle, mb, nb, nnzb, bsr_val, bsr_row_ptr, &
@@ -42228,21 +42238,21 @@ contains
       integer(c_int), value :: mb
       integer(c_int), value :: nb
       integer(c_int), value :: nnzb
-      real(c_float), target :: bsr_val(*)
-      integer(c_int), target :: bsr_row_ptr(*)
-      integer(c_int), target :: bsr_col_ind(*)
+      real(c_float), target :: bsr_val(..)
+      integer(c_int), target :: bsr_row_ptr(..)
+      integer(c_int), target :: bsr_col_ind(..)
       integer(c_int), value :: row_block_dim
       integer(c_int), value :: col_block_dim
-      real(c_float), target :: bsc_val(*)
-      integer(c_int), target :: bsc_row_ind(*)
-      integer(c_int), target :: bsc_col_ptr(*)
+      real(c_float), target :: bsc_val(..)
+      integer(c_int), target :: bsc_row_ind(..)
+      integer(c_int), target :: bsc_col_ptr(..)
       integer(c_int), value :: copy_values
       integer(c_int), value :: idx_base
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: sgebsr2gebsc
-      sgebsr2gebsc = rocsparse_sgebsr2gebsc_raw(handle, mb, nb, nnzb, c_loc(bsr_val(1)), c_loc( &
-        bsr_row_ptr(1)), c_loc(bsr_col_ind(1)), row_block_dim, col_block_dim, c_loc(bsc_val(1)), &
-        c_loc(bsc_row_ind(1)), c_loc(bsc_col_ptr(1)), copy_values, idx_base, temp_buffer)
+      sgebsr2gebsc = rocsparse_sgebsr2gebsc_raw(handle, mb, nb, nnzb, c_loc(bsr_val), c_loc( &
+        bsr_row_ptr), c_loc(bsr_col_ind), row_block_dim, col_block_dim, c_loc(bsc_val), c_loc( &
+        bsc_row_ind), c_loc(bsc_col_ptr), copy_values, idx_base, temp_buffer)
     end function rocsparse_sgebsr2gebsc_native
 
     function rocsparse_sgebsr2gebsc_typed(handle, mb, nb, nnzb, bsr_val, bsr_row_ptr, bsr_col_ind, &
@@ -42281,21 +42291,21 @@ contains
       integer(c_int), value :: mb
       integer(c_int), value :: nb
       integer(c_int), value :: nnzb
-      real(c_double), target :: bsr_val(*)
-      integer(c_int), target :: bsr_row_ptr(*)
-      integer(c_int), target :: bsr_col_ind(*)
+      real(c_double), target :: bsr_val(..)
+      integer(c_int), target :: bsr_row_ptr(..)
+      integer(c_int), target :: bsr_col_ind(..)
       integer(c_int), value :: row_block_dim
       integer(c_int), value :: col_block_dim
-      real(c_double), target :: bsc_val(*)
-      integer(c_int), target :: bsc_row_ind(*)
-      integer(c_int), target :: bsc_col_ptr(*)
+      real(c_double), target :: bsc_val(..)
+      integer(c_int), target :: bsc_row_ind(..)
+      integer(c_int), target :: bsc_col_ptr(..)
       integer(c_int), value :: copy_values
       integer(c_int), value :: idx_base
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: dgebsr2gebsc
-      dgebsr2gebsc = rocsparse_dgebsr2gebsc_raw(handle, mb, nb, nnzb, c_loc(bsr_val(1)), c_loc( &
-        bsr_row_ptr(1)), c_loc(bsr_col_ind(1)), row_block_dim, col_block_dim, c_loc(bsc_val(1)), &
-        c_loc(bsc_row_ind(1)), c_loc(bsc_col_ptr(1)), copy_values, idx_base, temp_buffer)
+      dgebsr2gebsc = rocsparse_dgebsr2gebsc_raw(handle, mb, nb, nnzb, c_loc(bsr_val), c_loc( &
+        bsr_row_ptr), c_loc(bsr_col_ind), row_block_dim, col_block_dim, c_loc(bsc_val), c_loc( &
+        bsc_row_ind), c_loc(bsc_col_ptr), copy_values, idx_base, temp_buffer)
     end function rocsparse_dgebsr2gebsc_native
 
     function rocsparse_dgebsr2gebsc_typed(handle, mb, nb, nnzb, bsr_val, bsr_row_ptr, bsr_col_ind, &
@@ -42334,21 +42344,21 @@ contains
       integer(c_int), value :: mb
       integer(c_int), value :: nb
       integer(c_int), value :: nnzb
-      complex(c_float_complex), target :: bsr_val(*)
-      integer(c_int), target :: bsr_row_ptr(*)
-      integer(c_int), target :: bsr_col_ind(*)
+      complex(c_float_complex), target :: bsr_val(..)
+      integer(c_int), target :: bsr_row_ptr(..)
+      integer(c_int), target :: bsr_col_ind(..)
       integer(c_int), value :: row_block_dim
       integer(c_int), value :: col_block_dim
-      complex(c_float_complex), target :: bsc_val(*)
-      integer(c_int), target :: bsc_row_ind(*)
-      integer(c_int), target :: bsc_col_ptr(*)
+      complex(c_float_complex), target :: bsc_val(..)
+      integer(c_int), target :: bsc_row_ind(..)
+      integer(c_int), target :: bsc_col_ptr(..)
       integer(c_int), value :: copy_values
       integer(c_int), value :: idx_base
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: cgebsr2gebsc
-      cgebsr2gebsc = rocsparse_cgebsr2gebsc_raw(handle, mb, nb, nnzb, c_loc(bsr_val(1)), c_loc( &
-        bsr_row_ptr(1)), c_loc(bsr_col_ind(1)), row_block_dim, col_block_dim, c_loc(bsc_val(1)), &
-        c_loc(bsc_row_ind(1)), c_loc(bsc_col_ptr(1)), copy_values, idx_base, temp_buffer)
+      cgebsr2gebsc = rocsparse_cgebsr2gebsc_raw(handle, mb, nb, nnzb, c_loc(bsr_val), c_loc( &
+        bsr_row_ptr), c_loc(bsr_col_ind), row_block_dim, col_block_dim, c_loc(bsc_val), c_loc( &
+        bsc_row_ind), c_loc(bsc_col_ptr), copy_values, idx_base, temp_buffer)
     end function rocsparse_cgebsr2gebsc_native
 
     function rocsparse_cgebsr2gebsc_typed(handle, mb, nb, nnzb, bsr_val, bsr_row_ptr, bsr_col_ind, &
@@ -42387,21 +42397,21 @@ contains
       integer(c_int), value :: mb
       integer(c_int), value :: nb
       integer(c_int), value :: nnzb
-      complex(c_double_complex), target :: bsr_val(*)
-      integer(c_int), target :: bsr_row_ptr(*)
-      integer(c_int), target :: bsr_col_ind(*)
+      complex(c_double_complex), target :: bsr_val(..)
+      integer(c_int), target :: bsr_row_ptr(..)
+      integer(c_int), target :: bsr_col_ind(..)
       integer(c_int), value :: row_block_dim
       integer(c_int), value :: col_block_dim
-      complex(c_double_complex), target :: bsc_val(*)
-      integer(c_int), target :: bsc_row_ind(*)
-      integer(c_int), target :: bsc_col_ptr(*)
+      complex(c_double_complex), target :: bsc_val(..)
+      integer(c_int), target :: bsc_row_ind(..)
+      integer(c_int), target :: bsc_col_ptr(..)
       integer(c_int), value :: copy_values
       integer(c_int), value :: idx_base
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: zgebsr2gebsc
-      zgebsr2gebsc = rocsparse_zgebsr2gebsc_raw(handle, mb, nb, nnzb, c_loc(bsr_val(1)), c_loc( &
-        bsr_row_ptr(1)), c_loc(bsr_col_ind(1)), row_block_dim, col_block_dim, c_loc(bsc_val(1)), &
-        c_loc(bsc_row_ind(1)), c_loc(bsc_col_ptr(1)), copy_values, idx_base, temp_buffer)
+      zgebsr2gebsc = rocsparse_zgebsr2gebsc_raw(handle, mb, nb, nnzb, c_loc(bsr_val), c_loc( &
+        bsr_row_ptr), c_loc(bsr_col_ind), row_block_dim, col_block_dim, c_loc(bsc_val), c_loc( &
+        bsc_row_ind), c_loc(bsc_col_ptr), copy_values, idx_base, temp_buffer)
     end function rocsparse_zgebsr2gebsc_native
 
     function rocsparse_zgebsr2gebsc_typed(handle, mb, nb, nnzb, bsr_val, bsr_row_ptr, bsr_col_ind, &
@@ -42442,9 +42452,9 @@ contains
       integer(c_int), value :: nb
       integer(c_int), value :: nnzb
       type(c_ptr), value :: descr_A
-      real(c_float), target :: bsr_val_A(*)
-      integer(c_int), target :: bsr_row_ptr_A(*)
-      integer(c_int), target :: bsr_col_ind_A(*)
+      real(c_float), target :: bsr_val_A(..)
+      integer(c_int), target :: bsr_row_ptr_A(..)
+      integer(c_int), target :: bsr_col_ind_A(..)
       integer(c_int), value :: row_block_dim_A
       integer(c_int), value :: col_block_dim_A
       integer(c_int), value :: row_block_dim_C
@@ -42452,8 +42462,8 @@ contains
       type(c_ptr), value :: buffer_size
       integer(c_int) :: sgebsr2gebsr_buffer_size
       sgebsr2gebsr_buffer_size = rocsparse_sgebsr2gebsr_buffer_size_raw(handle, dir, mb, nb, nnzb, &
-        descr_A, c_loc(bsr_val_A(1)), c_loc(bsr_row_ptr_A(1)), c_loc(bsr_col_ind_A(1)), &
-        row_block_dim_A, col_block_dim_A, row_block_dim_C, col_block_dim_C, buffer_size)
+        descr_A, c_loc(bsr_val_A), c_loc(bsr_row_ptr_A), c_loc(bsr_col_ind_A), row_block_dim_A, &
+        col_block_dim_A, row_block_dim_C, col_block_dim_C, buffer_size)
     end function rocsparse_sgebsr2gebsr_buffer_size_native
 
     function rocsparse_sgebsr2gebsr_buffer_size_typed(handle, dir, mb, nb, nnzb, descr_A, &
@@ -42493,9 +42503,9 @@ contains
       integer(c_int), value :: nb
       integer(c_int), value :: nnzb
       type(c_ptr), value :: descr_A
-      real(c_double), target :: bsr_val_A(*)
-      integer(c_int), target :: bsr_row_ptr_A(*)
-      integer(c_int), target :: bsr_col_ind_A(*)
+      real(c_double), target :: bsr_val_A(..)
+      integer(c_int), target :: bsr_row_ptr_A(..)
+      integer(c_int), target :: bsr_col_ind_A(..)
       integer(c_int), value :: row_block_dim_A
       integer(c_int), value :: col_block_dim_A
       integer(c_int), value :: row_block_dim_C
@@ -42503,8 +42513,8 @@ contains
       type(c_ptr), value :: buffer_size
       integer(c_int) :: dgebsr2gebsr_buffer_size
       dgebsr2gebsr_buffer_size = rocsparse_dgebsr2gebsr_buffer_size_raw(handle, dir, mb, nb, nnzb, &
-        descr_A, c_loc(bsr_val_A(1)), c_loc(bsr_row_ptr_A(1)), c_loc(bsr_col_ind_A(1)), &
-        row_block_dim_A, col_block_dim_A, row_block_dim_C, col_block_dim_C, buffer_size)
+        descr_A, c_loc(bsr_val_A), c_loc(bsr_row_ptr_A), c_loc(bsr_col_ind_A), row_block_dim_A, &
+        col_block_dim_A, row_block_dim_C, col_block_dim_C, buffer_size)
     end function rocsparse_dgebsr2gebsr_buffer_size_native
 
     function rocsparse_dgebsr2gebsr_buffer_size_typed(handle, dir, mb, nb, nnzb, descr_A, &
@@ -42544,9 +42554,9 @@ contains
       integer(c_int), value :: nb
       integer(c_int), value :: nnzb
       type(c_ptr), value :: descr_A
-      complex(c_float_complex), target :: bsr_val_A(*)
-      integer(c_int), target :: bsr_row_ptr_A(*)
-      integer(c_int), target :: bsr_col_ind_A(*)
+      complex(c_float_complex), target :: bsr_val_A(..)
+      integer(c_int), target :: bsr_row_ptr_A(..)
+      integer(c_int), target :: bsr_col_ind_A(..)
       integer(c_int), value :: row_block_dim_A
       integer(c_int), value :: col_block_dim_A
       integer(c_int), value :: row_block_dim_C
@@ -42554,8 +42564,8 @@ contains
       type(c_ptr), value :: buffer_size
       integer(c_int) :: cgebsr2gebsr_buffer_size
       cgebsr2gebsr_buffer_size = rocsparse_cgebsr2gebsr_buffer_size_raw(handle, dir, mb, nb, nnzb, &
-        descr_A, c_loc(bsr_val_A(1)), c_loc(bsr_row_ptr_A(1)), c_loc(bsr_col_ind_A(1)), &
-        row_block_dim_A, col_block_dim_A, row_block_dim_C, col_block_dim_C, buffer_size)
+        descr_A, c_loc(bsr_val_A), c_loc(bsr_row_ptr_A), c_loc(bsr_col_ind_A), row_block_dim_A, &
+        col_block_dim_A, row_block_dim_C, col_block_dim_C, buffer_size)
     end function rocsparse_cgebsr2gebsr_buffer_size_native
 
     function rocsparse_cgebsr2gebsr_buffer_size_typed(handle, dir, mb, nb, nnzb, descr_A, &
@@ -42595,9 +42605,9 @@ contains
       integer(c_int), value :: nb
       integer(c_int), value :: nnzb
       type(c_ptr), value :: descr_A
-      complex(c_double_complex), target :: bsr_val_A(*)
-      integer(c_int), target :: bsr_row_ptr_A(*)
-      integer(c_int), target :: bsr_col_ind_A(*)
+      complex(c_double_complex), target :: bsr_val_A(..)
+      integer(c_int), target :: bsr_row_ptr_A(..)
+      integer(c_int), target :: bsr_col_ind_A(..)
       integer(c_int), value :: row_block_dim_A
       integer(c_int), value :: col_block_dim_A
       integer(c_int), value :: row_block_dim_C
@@ -42605,8 +42615,8 @@ contains
       type(c_ptr), value :: buffer_size
       integer(c_int) :: zgebsr2gebsr_buffer_size
       zgebsr2gebsr_buffer_size = rocsparse_zgebsr2gebsr_buffer_size_raw(handle, dir, mb, nb, nnzb, &
-        descr_A, c_loc(bsr_val_A(1)), c_loc(bsr_row_ptr_A(1)), c_loc(bsr_col_ind_A(1)), &
-        row_block_dim_A, col_block_dim_A, row_block_dim_C, col_block_dim_C, buffer_size)
+        descr_A, c_loc(bsr_val_A), c_loc(bsr_row_ptr_A), c_loc(bsr_col_ind_A), row_block_dim_A, &
+        col_block_dim_A, row_block_dim_C, col_block_dim_C, buffer_size)
     end function rocsparse_zgebsr2gebsr_buffer_size_native
 
     function rocsparse_zgebsr2gebsr_buffer_size_typed(handle, dir, mb, nb, nnzb, descr_A, &
@@ -42646,21 +42656,20 @@ contains
       integer(c_int), value :: nb
       integer(c_int), value :: nnzb
       type(c_ptr), value :: descr_A
-      integer(c_int), target :: bsr_row_ptr_A(*)
-      integer(c_int), target :: bsr_col_ind_A(*)
+      integer(c_int), target :: bsr_row_ptr_A(..)
+      integer(c_int), target :: bsr_col_ind_A(..)
       integer(c_int), value :: row_block_dim_A
       integer(c_int), value :: col_block_dim_A
       type(c_ptr), value :: descr_C
-      integer(c_int), target :: bsr_row_ptr_C(*)
+      integer(c_int), target :: bsr_row_ptr_C(..)
       integer(c_int), value :: row_block_dim_C
       integer(c_int), value :: col_block_dim_C
       integer(c_int) :: nnz_total_dev_host_ptr
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: gebsr2gebsr_nnz
       gebsr2gebsr_nnz = rocsparse_gebsr2gebsr_nnz_raw(handle, dir, mb, nb, nnzb, descr_A, c_loc( &
-        bsr_row_ptr_A(1)), c_loc(bsr_col_ind_A(1)), row_block_dim_A, col_block_dim_A, descr_C, &
-        c_loc(bsr_row_ptr_C(1)), row_block_dim_C, col_block_dim_C, nnz_total_dev_host_ptr, &
-        temp_buffer)
+        bsr_row_ptr_A), c_loc(bsr_col_ind_A), row_block_dim_A, col_block_dim_A, descr_C, c_loc( &
+        bsr_row_ptr_C), row_block_dim_C, col_block_dim_C, nnz_total_dev_host_ptr, temp_buffer)
     end function rocsparse_gebsr2gebsr_nnz_native
 
     function rocsparse_gebsr2gebsr_nnz_typed(handle, dir, mb, nb, nnzb, descr_A, bsr_row_ptr_A, &
@@ -42703,23 +42712,23 @@ contains
       integer(c_int), value :: nb
       integer(c_int), value :: nnzb
       type(c_ptr), value :: descr_A
-      real(c_float), target :: bsr_val_A(*)
-      integer(c_int), target :: bsr_row_ptr_A(*)
-      integer(c_int), target :: bsr_col_ind_A(*)
+      real(c_float), target :: bsr_val_A(..)
+      integer(c_int), target :: bsr_row_ptr_A(..)
+      integer(c_int), target :: bsr_col_ind_A(..)
       integer(c_int), value :: row_block_dim_A
       integer(c_int), value :: col_block_dim_A
       type(c_ptr), value :: descr_C
-      real(c_float), target :: bsr_val_C(*)
-      integer(c_int), target :: bsr_row_ptr_C(*)
-      integer(c_int), target :: bsr_col_ind_C(*)
+      real(c_float), target :: bsr_val_C(..)
+      integer(c_int), target :: bsr_row_ptr_C(..)
+      integer(c_int), target :: bsr_col_ind_C(..)
       integer(c_int), value :: row_block_dim_C
       integer(c_int), value :: col_block_dim_C
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: sgebsr2gebsr
       sgebsr2gebsr = rocsparse_sgebsr2gebsr_raw(handle, dir, mb, nb, nnzb, descr_A, c_loc( &
-        bsr_val_A(1)), c_loc(bsr_row_ptr_A(1)), c_loc(bsr_col_ind_A(1)), row_block_dim_A, &
-        col_block_dim_A, descr_C, c_loc(bsr_val_C(1)), c_loc(bsr_row_ptr_C(1)), c_loc( &
-        bsr_col_ind_C(1)), row_block_dim_C, col_block_dim_C, temp_buffer)
+        bsr_val_A), c_loc(bsr_row_ptr_A), c_loc(bsr_col_ind_A), row_block_dim_A, col_block_dim_A, &
+        descr_C, c_loc(bsr_val_C), c_loc(bsr_row_ptr_C), c_loc(bsr_col_ind_C), row_block_dim_C, &
+        col_block_dim_C, temp_buffer)
     end function rocsparse_sgebsr2gebsr_native
 
     function rocsparse_sgebsr2gebsr_typed(handle, dir, mb, nb, nnzb, descr_A, bsr_val_A, &
@@ -42765,23 +42774,23 @@ contains
       integer(c_int), value :: nb
       integer(c_int), value :: nnzb
       type(c_ptr), value :: descr_A
-      real(c_double), target :: bsr_val_A(*)
-      integer(c_int), target :: bsr_row_ptr_A(*)
-      integer(c_int), target :: bsr_col_ind_A(*)
+      real(c_double), target :: bsr_val_A(..)
+      integer(c_int), target :: bsr_row_ptr_A(..)
+      integer(c_int), target :: bsr_col_ind_A(..)
       integer(c_int), value :: row_block_dim_A
       integer(c_int), value :: col_block_dim_A
       type(c_ptr), value :: descr_C
-      real(c_double), target :: bsr_val_C(*)
-      integer(c_int), target :: bsr_row_ptr_C(*)
-      integer(c_int), target :: bsr_col_ind_C(*)
+      real(c_double), target :: bsr_val_C(..)
+      integer(c_int), target :: bsr_row_ptr_C(..)
+      integer(c_int), target :: bsr_col_ind_C(..)
       integer(c_int), value :: row_block_dim_C
       integer(c_int), value :: col_block_dim_C
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: dgebsr2gebsr
       dgebsr2gebsr = rocsparse_dgebsr2gebsr_raw(handle, dir, mb, nb, nnzb, descr_A, c_loc( &
-        bsr_val_A(1)), c_loc(bsr_row_ptr_A(1)), c_loc(bsr_col_ind_A(1)), row_block_dim_A, &
-        col_block_dim_A, descr_C, c_loc(bsr_val_C(1)), c_loc(bsr_row_ptr_C(1)), c_loc( &
-        bsr_col_ind_C(1)), row_block_dim_C, col_block_dim_C, temp_buffer)
+        bsr_val_A), c_loc(bsr_row_ptr_A), c_loc(bsr_col_ind_A), row_block_dim_A, col_block_dim_A, &
+        descr_C, c_loc(bsr_val_C), c_loc(bsr_row_ptr_C), c_loc(bsr_col_ind_C), row_block_dim_C, &
+        col_block_dim_C, temp_buffer)
     end function rocsparse_dgebsr2gebsr_native
 
     function rocsparse_dgebsr2gebsr_typed(handle, dir, mb, nb, nnzb, descr_A, bsr_val_A, &
@@ -42827,23 +42836,23 @@ contains
       integer(c_int), value :: nb
       integer(c_int), value :: nnzb
       type(c_ptr), value :: descr_A
-      complex(c_float_complex), target :: bsr_val_A(*)
-      integer(c_int), target :: bsr_row_ptr_A(*)
-      integer(c_int), target :: bsr_col_ind_A(*)
+      complex(c_float_complex), target :: bsr_val_A(..)
+      integer(c_int), target :: bsr_row_ptr_A(..)
+      integer(c_int), target :: bsr_col_ind_A(..)
       integer(c_int), value :: row_block_dim_A
       integer(c_int), value :: col_block_dim_A
       type(c_ptr), value :: descr_C
-      complex(c_float_complex), target :: bsr_val_C(*)
-      integer(c_int), target :: bsr_row_ptr_C(*)
-      integer(c_int), target :: bsr_col_ind_C(*)
+      complex(c_float_complex), target :: bsr_val_C(..)
+      integer(c_int), target :: bsr_row_ptr_C(..)
+      integer(c_int), target :: bsr_col_ind_C(..)
       integer(c_int), value :: row_block_dim_C
       integer(c_int), value :: col_block_dim_C
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: cgebsr2gebsr
       cgebsr2gebsr = rocsparse_cgebsr2gebsr_raw(handle, dir, mb, nb, nnzb, descr_A, c_loc( &
-        bsr_val_A(1)), c_loc(bsr_row_ptr_A(1)), c_loc(bsr_col_ind_A(1)), row_block_dim_A, &
-        col_block_dim_A, descr_C, c_loc(bsr_val_C(1)), c_loc(bsr_row_ptr_C(1)), c_loc( &
-        bsr_col_ind_C(1)), row_block_dim_C, col_block_dim_C, temp_buffer)
+        bsr_val_A), c_loc(bsr_row_ptr_A), c_loc(bsr_col_ind_A), row_block_dim_A, col_block_dim_A, &
+        descr_C, c_loc(bsr_val_C), c_loc(bsr_row_ptr_C), c_loc(bsr_col_ind_C), row_block_dim_C, &
+        col_block_dim_C, temp_buffer)
     end function rocsparse_cgebsr2gebsr_native
 
     function rocsparse_cgebsr2gebsr_typed(handle, dir, mb, nb, nnzb, descr_A, bsr_val_A, &
@@ -42889,23 +42898,23 @@ contains
       integer(c_int), value :: nb
       integer(c_int), value :: nnzb
       type(c_ptr), value :: descr_A
-      complex(c_double_complex), target :: bsr_val_A(*)
-      integer(c_int), target :: bsr_row_ptr_A(*)
-      integer(c_int), target :: bsr_col_ind_A(*)
+      complex(c_double_complex), target :: bsr_val_A(..)
+      integer(c_int), target :: bsr_row_ptr_A(..)
+      integer(c_int), target :: bsr_col_ind_A(..)
       integer(c_int), value :: row_block_dim_A
       integer(c_int), value :: col_block_dim_A
       type(c_ptr), value :: descr_C
-      complex(c_double_complex), target :: bsr_val_C(*)
-      integer(c_int), target :: bsr_row_ptr_C(*)
-      integer(c_int), target :: bsr_col_ind_C(*)
+      complex(c_double_complex), target :: bsr_val_C(..)
+      integer(c_int), target :: bsr_row_ptr_C(..)
+      integer(c_int), target :: bsr_col_ind_C(..)
       integer(c_int), value :: row_block_dim_C
       integer(c_int), value :: col_block_dim_C
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: zgebsr2gebsr
       zgebsr2gebsr = rocsparse_zgebsr2gebsr_raw(handle, dir, mb, nb, nnzb, descr_A, c_loc( &
-        bsr_val_A(1)), c_loc(bsr_row_ptr_A(1)), c_loc(bsr_col_ind_A(1)), row_block_dim_A, &
-        col_block_dim_A, descr_C, c_loc(bsr_val_C(1)), c_loc(bsr_row_ptr_C(1)), c_loc( &
-        bsr_col_ind_C(1)), row_block_dim_C, col_block_dim_C, temp_buffer)
+        bsr_val_A), c_loc(bsr_row_ptr_A), c_loc(bsr_col_ind_A), row_block_dim_A, col_block_dim_A, &
+        descr_C, c_loc(bsr_val_C), c_loc(bsr_row_ptr_C), c_loc(bsr_col_ind_C), row_block_dim_C, &
+        col_block_dim_C, temp_buffer)
     end function rocsparse_zgebsr2gebsr_native
 
     function rocsparse_zgebsr2gebsr_typed(handle, dir, mb, nb, nnzb, descr_A, bsr_val_A, &
@@ -42946,11 +42955,11 @@ contains
       type(c_ptr), value :: handle
       type(c_ptr), value :: descr
       type(c_ptr), value :: hyb
-      integer(c_int), target :: csr_row_ptr(*)
+      integer(c_int), target :: csr_row_ptr(..)
       type(c_ptr), value :: buffer_size
       integer(c_int) :: hyb2csr_buffer_size
       hyb2csr_buffer_size = rocsparse_hyb2csr_buffer_size_raw(handle, descr, hyb, c_loc( &
-        csr_row_ptr(1)), buffer_size)
+        csr_row_ptr), buffer_size)
     end function rocsparse_hyb2csr_buffer_size_native
 
     function rocsparse_hyb2csr_buffer_size_typed(handle, descr, hyb, csr_row_ptr, &
@@ -42975,13 +42984,13 @@ contains
       type(c_ptr), value :: handle
       type(c_ptr), value :: descr
       type(c_ptr), value :: hyb
-      real(c_float), target :: csr_val(*)
-      integer(c_int), target :: csr_row_ptr(*)
-      integer(c_int), target :: csr_col_ind(*)
+      real(c_float), target :: csr_val(..)
+      integer(c_int), target :: csr_row_ptr(..)
+      integer(c_int), target :: csr_col_ind(..)
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: shyb2csr
-      shyb2csr = rocsparse_shyb2csr_raw(handle, descr, hyb, c_loc(csr_val(1)), c_loc(csr_row_ptr( &
-        1)), c_loc(csr_col_ind(1)), temp_buffer)
+      shyb2csr = rocsparse_shyb2csr_raw(handle, descr, hyb, c_loc(csr_val), c_loc(csr_row_ptr), &
+        c_loc(csr_col_ind), temp_buffer)
     end function rocsparse_shyb2csr_native
 
     function rocsparse_shyb2csr_typed(handle, descr, hyb, csr_val, csr_row_ptr, csr_col_ind, &
@@ -43008,13 +43017,13 @@ contains
       type(c_ptr), value :: handle
       type(c_ptr), value :: descr
       type(c_ptr), value :: hyb
-      real(c_double), target :: csr_val(*)
-      integer(c_int), target :: csr_row_ptr(*)
-      integer(c_int), target :: csr_col_ind(*)
+      real(c_double), target :: csr_val(..)
+      integer(c_int), target :: csr_row_ptr(..)
+      integer(c_int), target :: csr_col_ind(..)
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: dhyb2csr
-      dhyb2csr = rocsparse_dhyb2csr_raw(handle, descr, hyb, c_loc(csr_val(1)), c_loc(csr_row_ptr( &
-        1)), c_loc(csr_col_ind(1)), temp_buffer)
+      dhyb2csr = rocsparse_dhyb2csr_raw(handle, descr, hyb, c_loc(csr_val), c_loc(csr_row_ptr), &
+        c_loc(csr_col_ind), temp_buffer)
     end function rocsparse_dhyb2csr_native
 
     function rocsparse_dhyb2csr_typed(handle, descr, hyb, csr_val, csr_row_ptr, csr_col_ind, &
@@ -43041,13 +43050,13 @@ contains
       type(c_ptr), value :: handle
       type(c_ptr), value :: descr
       type(c_ptr), value :: hyb
-      complex(c_float_complex), target :: csr_val(*)
-      integer(c_int), target :: csr_row_ptr(*)
-      integer(c_int), target :: csr_col_ind(*)
+      complex(c_float_complex), target :: csr_val(..)
+      integer(c_int), target :: csr_row_ptr(..)
+      integer(c_int), target :: csr_col_ind(..)
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: chyb2csr
-      chyb2csr = rocsparse_chyb2csr_raw(handle, descr, hyb, c_loc(csr_val(1)), c_loc(csr_row_ptr( &
-        1)), c_loc(csr_col_ind(1)), temp_buffer)
+      chyb2csr = rocsparse_chyb2csr_raw(handle, descr, hyb, c_loc(csr_val), c_loc(csr_row_ptr), &
+        c_loc(csr_col_ind), temp_buffer)
     end function rocsparse_chyb2csr_native
 
     function rocsparse_chyb2csr_typed(handle, descr, hyb, csr_val, csr_row_ptr, csr_col_ind, &
@@ -43074,13 +43083,13 @@ contains
       type(c_ptr), value :: handle
       type(c_ptr), value :: descr
       type(c_ptr), value :: hyb
-      complex(c_double_complex), target :: csr_val(*)
-      integer(c_int), target :: csr_row_ptr(*)
-      integer(c_int), target :: csr_col_ind(*)
+      complex(c_double_complex), target :: csr_val(..)
+      integer(c_int), target :: csr_row_ptr(..)
+      integer(c_int), target :: csr_col_ind(..)
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: zhyb2csr
-      zhyb2csr = rocsparse_zhyb2csr_raw(handle, descr, hyb, c_loc(csr_val(1)), c_loc(csr_row_ptr( &
-        1)), c_loc(csr_col_ind(1)), temp_buffer)
+      zhyb2csr = rocsparse_zhyb2csr_raw(handle, descr, hyb, c_loc(csr_val), c_loc(csr_row_ptr), &
+        c_loc(csr_col_ind), temp_buffer)
     end function rocsparse_zhyb2csr_native
 
     function rocsparse_zhyb2csr_typed(handle, descr, hyb, csr_val, csr_row_ptr, csr_col_ind, &
@@ -43106,10 +43115,9 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_int), value :: n
-      integer(c_int), target :: p(*)
+      integer(c_int), target :: p(..)
       integer(c_int) :: create_identity_permutation
-      create_identity_permutation = rocsparse_create_identity_permutation_raw(handle, n, c_loc(p( &
-        1)))
+      create_identity_permutation = rocsparse_create_identity_permutation_raw(handle, n, c_loc(p))
     end function rocsparse_create_identity_permutation_native
 
     function rocsparse_create_identity_permutation_typed(handle, n, p) result( &
@@ -43129,12 +43137,11 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_int), value :: n
-      integer(c_int), target :: p(*)
-      integer(c_int), target :: q(*)
+      integer(c_int), target :: p(..)
+      integer(c_int), target :: q(..)
       integer(c_int), value :: base
       integer(c_int) :: inverse_permutation
-      inverse_permutation = rocsparse_inverse_permutation_raw(handle, n, c_loc(p(1)), c_loc(q(1)), &
-        base)
+      inverse_permutation = rocsparse_inverse_permutation_raw(handle, n, c_loc(p), c_loc(q), base)
     end function rocsparse_inverse_permutation_native
 
     function rocsparse_inverse_permutation_typed(handle, n, p, q, base) result(inverse_permutation)
@@ -43172,13 +43179,13 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       type(c_ptr), value :: descr
-      real(c_float), target :: A(*)
+      real(c_float), target :: A(..)
       integer(c_int), value :: ld
-      integer(c_int), target :: nnz_per_row_columns(*)
-      integer(c_int), target :: nnz_total_dev_host_ptr(*)
+      integer(c_int), target :: nnz_per_row_columns(..)
+      integer(c_int) :: nnz_total_dev_host_ptr
       integer(c_int) :: snnz
-      snnz = rocsparse_snnz_raw(handle, dir, m, n, descr, c_loc(A(1)), ld, c_loc( &
-        nnz_per_row_columns(1)), c_loc(nnz_total_dev_host_ptr(1)))
+      snnz = rocsparse_snnz_raw(handle, dir, m, n, descr, c_loc(A), ld, c_loc( &
+        nnz_per_row_columns), nnz_total_dev_host_ptr)
     end function rocsparse_snnz_native
 
     function rocsparse_snnz_typed(handle, dir, m, n, descr, A, ld, nnz_per_row_columns, &
@@ -43194,7 +43201,7 @@ contains
       type(c_ptr), value :: A
       integer(c_int), value :: ld
       type(c_ptr), value :: nnz_per_row_columns
-      type(c_ptr), value :: nnz_total_dev_host_ptr
+      integer(c_int) :: nnz_total_dev_host_ptr
       integer(c_int) :: snnz
       snnz = rocsparse_snnz_raw(handle%ptr, dir, m, n, descr%ptr, A, ld, nnz_per_row_columns, &
         nnz_total_dev_host_ptr)
@@ -43209,13 +43216,13 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       type(c_ptr), value :: descr
-      real(c_double), target :: A(*)
+      real(c_double), target :: A(..)
       integer(c_int), value :: ld
-      integer(c_int), target :: nnz_per_row_columns(*)
-      integer(c_int), target :: nnz_total_dev_host_ptr(*)
+      integer(c_int), target :: nnz_per_row_columns(..)
+      integer(c_int) :: nnz_total_dev_host_ptr
       integer(c_int) :: dnnz
-      dnnz = rocsparse_dnnz_raw(handle, dir, m, n, descr, c_loc(A(1)), ld, c_loc( &
-        nnz_per_row_columns(1)), c_loc(nnz_total_dev_host_ptr(1)))
+      dnnz = rocsparse_dnnz_raw(handle, dir, m, n, descr, c_loc(A), ld, c_loc( &
+        nnz_per_row_columns), nnz_total_dev_host_ptr)
     end function rocsparse_dnnz_native
 
     function rocsparse_dnnz_typed(handle, dir, m, n, descr, A, ld, nnz_per_row_columns, &
@@ -43231,7 +43238,7 @@ contains
       type(c_ptr), value :: A
       integer(c_int), value :: ld
       type(c_ptr), value :: nnz_per_row_columns
-      type(c_ptr), value :: nnz_total_dev_host_ptr
+      integer(c_int) :: nnz_total_dev_host_ptr
       integer(c_int) :: dnnz
       dnnz = rocsparse_dnnz_raw(handle%ptr, dir, m, n, descr%ptr, A, ld, nnz_per_row_columns, &
         nnz_total_dev_host_ptr)
@@ -43246,13 +43253,13 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       type(c_ptr), value :: descr
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: A(..)
       integer(c_int), value :: ld
-      integer(c_int), target :: nnz_per_row_columns(*)
-      integer(c_int), target :: nnz_total_dev_host_ptr(*)
+      integer(c_int), target :: nnz_per_row_columns(..)
+      integer(c_int) :: nnz_total_dev_host_ptr
       integer(c_int) :: cnnz
-      cnnz = rocsparse_cnnz_raw(handle, dir, m, n, descr, c_loc(A(1)), ld, c_loc( &
-        nnz_per_row_columns(1)), c_loc(nnz_total_dev_host_ptr(1)))
+      cnnz = rocsparse_cnnz_raw(handle, dir, m, n, descr, c_loc(A), ld, c_loc( &
+        nnz_per_row_columns), nnz_total_dev_host_ptr)
     end function rocsparse_cnnz_native
 
     function rocsparse_cnnz_typed(handle, dir, m, n, descr, A, ld, nnz_per_row_columns, &
@@ -43268,7 +43275,7 @@ contains
       type(c_ptr), value :: A
       integer(c_int), value :: ld
       type(c_ptr), value :: nnz_per_row_columns
-      type(c_ptr), value :: nnz_total_dev_host_ptr
+      integer(c_int) :: nnz_total_dev_host_ptr
       integer(c_int) :: cnnz
       cnnz = rocsparse_cnnz_raw(handle%ptr, dir, m, n, descr%ptr, A, ld, nnz_per_row_columns, &
         nnz_total_dev_host_ptr)
@@ -43283,13 +43290,13 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       type(c_ptr), value :: descr
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: A(..)
       integer(c_int), value :: ld
-      integer(c_int), target :: nnz_per_row_columns(*)
-      integer(c_int), target :: nnz_total_dev_host_ptr(*)
+      integer(c_int), target :: nnz_per_row_columns(..)
+      integer(c_int) :: nnz_total_dev_host_ptr
       integer(c_int) :: znnz
-      znnz = rocsparse_znnz_raw(handle, dir, m, n, descr, c_loc(A(1)), ld, c_loc( &
-        nnz_per_row_columns(1)), c_loc(nnz_total_dev_host_ptr(1)))
+      znnz = rocsparse_znnz_raw(handle, dir, m, n, descr, c_loc(A), ld, c_loc( &
+        nnz_per_row_columns), nnz_total_dev_host_ptr)
     end function rocsparse_znnz_native
 
     function rocsparse_znnz_typed(handle, dir, m, n, descr, A, ld, nnz_per_row_columns, &
@@ -43305,7 +43312,7 @@ contains
       type(c_ptr), value :: A
       integer(c_int), value :: ld
       type(c_ptr), value :: nnz_per_row_columns
-      type(c_ptr), value :: nnz_total_dev_host_ptr
+      integer(c_int) :: nnz_total_dev_host_ptr
       integer(c_int) :: znnz
       znnz = rocsparse_znnz_raw(handle%ptr, dir, m, n, descr%ptr, A, ld, nnz_per_row_columns, &
         nnz_total_dev_host_ptr)
@@ -43318,14 +43325,14 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: m
       type(c_ptr), value :: descr_A
-      real(c_float), target :: csr_val_A(*)
-      integer(c_int), target :: csr_row_ptr_A(*)
-      integer(c_int), target :: nnz_per_row(*)
-      integer(c_int), target :: nnz_C(*)
+      real(c_float), target :: csr_val_A(..)
+      integer(c_int), target :: csr_row_ptr_A(..)
+      integer(c_int), target :: nnz_per_row(..)
+      integer(c_int), target :: nnz_C(..)
       real(c_float), value :: tol
       integer(c_int) :: snnz_compress
-      snnz_compress = rocsparse_snnz_compress_raw(handle, m, descr_A, c_loc(csr_val_A(1)), c_loc( &
-        csr_row_ptr_A(1)), c_loc(nnz_per_row(1)), c_loc(nnz_C(1)), tol)
+      snnz_compress = rocsparse_snnz_compress_raw(handle, m, descr_A, c_loc(csr_val_A), c_loc( &
+        csr_row_ptr_A), c_loc(nnz_per_row), c_loc(nnz_C), tol)
     end function rocsparse_snnz_compress_native
 
     function rocsparse_snnz_compress_typed(handle, m, descr_A, csr_val_A, csr_row_ptr_A, &
@@ -43353,14 +43360,14 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: m
       type(c_ptr), value :: descr_A
-      real(c_double), target :: csr_val_A(*)
-      integer(c_int), target :: csr_row_ptr_A(*)
-      integer(c_int), target :: nnz_per_row(*)
-      integer(c_int), target :: nnz_C(*)
+      real(c_double), target :: csr_val_A(..)
+      integer(c_int), target :: csr_row_ptr_A(..)
+      integer(c_int), target :: nnz_per_row(..)
+      integer(c_int), target :: nnz_C(..)
       real(c_double), value :: tol
       integer(c_int) :: dnnz_compress
-      dnnz_compress = rocsparse_dnnz_compress_raw(handle, m, descr_A, c_loc(csr_val_A(1)), c_loc( &
-        csr_row_ptr_A(1)), c_loc(nnz_per_row(1)), c_loc(nnz_C(1)), tol)
+      dnnz_compress = rocsparse_dnnz_compress_raw(handle, m, descr_A, c_loc(csr_val_A), c_loc( &
+        csr_row_ptr_A), c_loc(nnz_per_row), c_loc(nnz_C), tol)
     end function rocsparse_dnnz_compress_native
 
     function rocsparse_dnnz_compress_typed(handle, m, descr_A, csr_val_A, csr_row_ptr_A, &
@@ -43388,14 +43395,14 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: m
       type(c_ptr), value :: descr_A
-      complex(c_float_complex), target :: csr_val_A(*)
-      integer(c_int), target :: csr_row_ptr_A(*)
-      integer(c_int), target :: nnz_per_row(*)
-      integer(c_int), target :: nnz_C(*)
+      complex(c_float_complex), target :: csr_val_A(..)
+      integer(c_int), target :: csr_row_ptr_A(..)
+      integer(c_int), target :: nnz_per_row(..)
+      integer(c_int), target :: nnz_C(..)
       complex(c_float_complex), value :: tol
       integer(c_int) :: cnnz_compress
-      cnnz_compress = rocsparse_cnnz_compress_raw(handle, m, descr_A, c_loc(csr_val_A(1)), c_loc( &
-        csr_row_ptr_A(1)), c_loc(nnz_per_row(1)), c_loc(nnz_C(1)), tol)
+      cnnz_compress = rocsparse_cnnz_compress_raw(handle, m, descr_A, c_loc(csr_val_A), c_loc( &
+        csr_row_ptr_A), c_loc(nnz_per_row), c_loc(nnz_C), tol)
     end function rocsparse_cnnz_compress_native
 
     function rocsparse_cnnz_compress_typed(handle, m, descr_A, csr_val_A, csr_row_ptr_A, &
@@ -43423,14 +43430,14 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: m
       type(c_ptr), value :: descr_A
-      complex(c_double_complex), target :: csr_val_A(*)
-      integer(c_int), target :: csr_row_ptr_A(*)
-      integer(c_int), target :: nnz_per_row(*)
-      integer(c_int), target :: nnz_C(*)
+      complex(c_double_complex), target :: csr_val_A(..)
+      integer(c_int), target :: csr_row_ptr_A(..)
+      integer(c_int), target :: nnz_per_row(..)
+      integer(c_int), target :: nnz_C(..)
       complex(c_double_complex), value :: tol
       integer(c_int) :: znnz_compress
-      znnz_compress = rocsparse_znnz_compress_raw(handle, m, descr_A, c_loc(csr_val_A(1)), c_loc( &
-        csr_row_ptr_A(1)), c_loc(nnz_per_row(1)), c_loc(nnz_C(1)), tol)
+      znnz_compress = rocsparse_znnz_compress_raw(handle, m, descr_A, c_loc(csr_val_A), c_loc( &
+        csr_row_ptr_A), c_loc(nnz_per_row), c_loc(nnz_C), tol)
     end function rocsparse_znnz_compress_native
 
     function rocsparse_znnz_compress_typed(handle, m, descr_A, csr_val_A, csr_row_ptr_A, &
@@ -43461,20 +43468,19 @@ contains
       integer(c_int), value :: n
       integer(c_int), value :: nnz_A
       type(c_ptr), value :: csr_descr_A
-      real(c_float), target :: csr_val_A(*)
-      integer(c_int), target :: csr_row_ptr_A(*)
-      integer(c_int), target :: csr_col_ind_A(*)
+      real(c_float), target :: csr_val_A(..)
+      integer(c_int), target :: csr_row_ptr_A(..)
+      integer(c_int), target :: csr_col_ind_A(..)
       real(c_float) :: threshold
       type(c_ptr), value :: csr_descr_C
-      real(c_float), target :: csr_val_C(*)
-      integer(c_int), target :: csr_row_ptr_C(*)
-      integer(c_int), target :: csr_col_ind_C(*)
+      real(c_float), target :: csr_val_C(..)
+      integer(c_int), target :: csr_row_ptr_C(..)
+      integer(c_int), target :: csr_col_ind_C(..)
       type(c_ptr), value :: buffer_size
       integer(c_int) :: sprune_csr2csr_buffer_size
       sprune_csr2csr_buffer_size = rocsparse_sprune_csr2csr_buffer_size_raw(handle, m, n, nnz_A, &
-        csr_descr_A, c_loc(csr_val_A(1)), c_loc(csr_row_ptr_A(1)), c_loc(csr_col_ind_A(1)), &
-        threshold, csr_descr_C, c_loc(csr_val_C(1)), c_loc(csr_row_ptr_C(1)), c_loc(csr_col_ind_C( &
-        1)), buffer_size)
+        csr_descr_A, c_loc(csr_val_A), c_loc(csr_row_ptr_A), c_loc(csr_col_ind_A), threshold, &
+        csr_descr_C, c_loc(csr_val_C), c_loc(csr_row_ptr_C), c_loc(csr_col_ind_C), buffer_size)
     end function rocsparse_sprune_csr2csr_buffer_size_native
 
     function rocsparse_sprune_csr2csr_buffer_size_typed(handle, m, n, nnz_A, csr_descr_A, &
@@ -43513,20 +43519,19 @@ contains
       integer(c_int), value :: n
       integer(c_int), value :: nnz_A
       type(c_ptr), value :: csr_descr_A
-      real(c_double), target :: csr_val_A(*)
-      integer(c_int), target :: csr_row_ptr_A(*)
-      integer(c_int), target :: csr_col_ind_A(*)
+      real(c_double), target :: csr_val_A(..)
+      integer(c_int), target :: csr_row_ptr_A(..)
+      integer(c_int), target :: csr_col_ind_A(..)
       real(c_double) :: threshold
       type(c_ptr), value :: csr_descr_C
-      real(c_double), target :: csr_val_C(*)
-      integer(c_int), target :: csr_row_ptr_C(*)
-      integer(c_int), target :: csr_col_ind_C(*)
+      real(c_double), target :: csr_val_C(..)
+      integer(c_int), target :: csr_row_ptr_C(..)
+      integer(c_int), target :: csr_col_ind_C(..)
       type(c_ptr), value :: buffer_size
       integer(c_int) :: dprune_csr2csr_buffer_size
       dprune_csr2csr_buffer_size = rocsparse_dprune_csr2csr_buffer_size_raw(handle, m, n, nnz_A, &
-        csr_descr_A, c_loc(csr_val_A(1)), c_loc(csr_row_ptr_A(1)), c_loc(csr_col_ind_A(1)), &
-        threshold, csr_descr_C, c_loc(csr_val_C(1)), c_loc(csr_row_ptr_C(1)), c_loc(csr_col_ind_C( &
-        1)), buffer_size)
+        csr_descr_A, c_loc(csr_val_A), c_loc(csr_row_ptr_A), c_loc(csr_col_ind_A), threshold, &
+        csr_descr_C, c_loc(csr_val_C), c_loc(csr_row_ptr_C), c_loc(csr_col_ind_C), buffer_size)
     end function rocsparse_dprune_csr2csr_buffer_size_native
 
     function rocsparse_dprune_csr2csr_buffer_size_typed(handle, m, n, nnz_A, csr_descr_A, &
@@ -43565,18 +43570,18 @@ contains
       integer(c_int), value :: n
       integer(c_int), value :: nnz_A
       type(c_ptr), value :: csr_descr_A
-      real(c_float), target :: csr_val_A(*)
-      integer(c_int), target :: csr_row_ptr_A(*)
-      integer(c_int), target :: csr_col_ind_A(*)
+      real(c_float), target :: csr_val_A(..)
+      integer(c_int), target :: csr_row_ptr_A(..)
+      integer(c_int), target :: csr_col_ind_A(..)
       real(c_float) :: threshold
       type(c_ptr), value :: csr_descr_C
-      integer(c_int), target :: csr_row_ptr_C(*)
+      integer(c_int), target :: csr_row_ptr_C(..)
       integer(c_int) :: nnz_total_dev_host_ptr
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: sprune_csr2csr_nnz
       sprune_csr2csr_nnz = rocsparse_sprune_csr2csr_nnz_raw(handle, m, n, nnz_A, csr_descr_A, &
-        c_loc(csr_val_A(1)), c_loc(csr_row_ptr_A(1)), c_loc(csr_col_ind_A(1)), threshold, &
-        csr_descr_C, c_loc(csr_row_ptr_C(1)), nnz_total_dev_host_ptr, temp_buffer)
+        c_loc(csr_val_A), c_loc(csr_row_ptr_A), c_loc(csr_col_ind_A), threshold, csr_descr_C, &
+        c_loc(csr_row_ptr_C), nnz_total_dev_host_ptr, temp_buffer)
     end function rocsparse_sprune_csr2csr_nnz_native
 
     function rocsparse_sprune_csr2csr_nnz_typed(handle, m, n, nnz_A, csr_descr_A, csr_val_A, &
@@ -43614,18 +43619,18 @@ contains
       integer(c_int), value :: n
       integer(c_int), value :: nnz_A
       type(c_ptr), value :: csr_descr_A
-      real(c_double), target :: csr_val_A(*)
-      integer(c_int), target :: csr_row_ptr_A(*)
-      integer(c_int), target :: csr_col_ind_A(*)
+      real(c_double), target :: csr_val_A(..)
+      integer(c_int), target :: csr_row_ptr_A(..)
+      integer(c_int), target :: csr_col_ind_A(..)
       real(c_double) :: threshold
       type(c_ptr), value :: csr_descr_C
-      integer(c_int), target :: csr_row_ptr_C(*)
+      integer(c_int), target :: csr_row_ptr_C(..)
       integer(c_int) :: nnz_total_dev_host_ptr
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: dprune_csr2csr_nnz
       dprune_csr2csr_nnz = rocsparse_dprune_csr2csr_nnz_raw(handle, m, n, nnz_A, csr_descr_A, &
-        c_loc(csr_val_A(1)), c_loc(csr_row_ptr_A(1)), c_loc(csr_col_ind_A(1)), threshold, &
-        csr_descr_C, c_loc(csr_row_ptr_C(1)), nnz_total_dev_host_ptr, temp_buffer)
+        c_loc(csr_val_A), c_loc(csr_row_ptr_A), c_loc(csr_col_ind_A), threshold, csr_descr_C, &
+        c_loc(csr_row_ptr_C), nnz_total_dev_host_ptr, temp_buffer)
     end function rocsparse_dprune_csr2csr_nnz_native
 
     function rocsparse_dprune_csr2csr_nnz_typed(handle, m, n, nnz_A, csr_descr_A, csr_val_A, &
@@ -43663,19 +43668,19 @@ contains
       integer(c_int), value :: n
       integer(c_int), value :: nnz_A
       type(c_ptr), value :: csr_descr_A
-      real(c_float), target :: csr_val_A(*)
-      integer(c_int), target :: csr_row_ptr_A(*)
-      integer(c_int), target :: csr_col_ind_A(*)
+      real(c_float), target :: csr_val_A(..)
+      integer(c_int), target :: csr_row_ptr_A(..)
+      integer(c_int), target :: csr_col_ind_A(..)
       real(c_float) :: threshold
       type(c_ptr), value :: csr_descr_C
-      real(c_float), target :: csr_val_C(*)
-      integer(c_int), target :: csr_row_ptr_C(*)
-      integer(c_int), target :: csr_col_ind_C(*)
+      real(c_float), target :: csr_val_C(..)
+      integer(c_int), target :: csr_row_ptr_C(..)
+      integer(c_int), target :: csr_col_ind_C(..)
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: sprune_csr2csr
       sprune_csr2csr = rocsparse_sprune_csr2csr_raw(handle, m, n, nnz_A, csr_descr_A, c_loc( &
-        csr_val_A(1)), c_loc(csr_row_ptr_A(1)), c_loc(csr_col_ind_A(1)), threshold, csr_descr_C, &
-        c_loc(csr_val_C(1)), c_loc(csr_row_ptr_C(1)), c_loc(csr_col_ind_C(1)), temp_buffer)
+        csr_val_A), c_loc(csr_row_ptr_A), c_loc(csr_col_ind_A), threshold, csr_descr_C, c_loc( &
+        csr_val_C), c_loc(csr_row_ptr_C), c_loc(csr_col_ind_C), temp_buffer)
     end function rocsparse_sprune_csr2csr_native
 
     function rocsparse_sprune_csr2csr_typed(handle, m, n, nnz_A, csr_descr_A, csr_val_A, &
@@ -43714,19 +43719,19 @@ contains
       integer(c_int), value :: n
       integer(c_int), value :: nnz_A
       type(c_ptr), value :: csr_descr_A
-      real(c_double), target :: csr_val_A(*)
-      integer(c_int), target :: csr_row_ptr_A(*)
-      integer(c_int), target :: csr_col_ind_A(*)
+      real(c_double), target :: csr_val_A(..)
+      integer(c_int), target :: csr_row_ptr_A(..)
+      integer(c_int), target :: csr_col_ind_A(..)
       real(c_double) :: threshold
       type(c_ptr), value :: csr_descr_C
-      real(c_double), target :: csr_val_C(*)
-      integer(c_int), target :: csr_row_ptr_C(*)
-      integer(c_int), target :: csr_col_ind_C(*)
+      real(c_double), target :: csr_val_C(..)
+      integer(c_int), target :: csr_row_ptr_C(..)
+      integer(c_int), target :: csr_col_ind_C(..)
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: dprune_csr2csr
       dprune_csr2csr = rocsparse_dprune_csr2csr_raw(handle, m, n, nnz_A, csr_descr_A, c_loc( &
-        csr_val_A(1)), c_loc(csr_row_ptr_A(1)), c_loc(csr_col_ind_A(1)), threshold, csr_descr_C, &
-        c_loc(csr_val_C(1)), c_loc(csr_row_ptr_C(1)), c_loc(csr_col_ind_C(1)), temp_buffer)
+        csr_val_A), c_loc(csr_row_ptr_A), c_loc(csr_col_ind_A), threshold, csr_descr_C, c_loc( &
+        csr_val_C), c_loc(csr_row_ptr_C), c_loc(csr_col_ind_C), temp_buffer)
     end function rocsparse_dprune_csr2csr_native
 
     function rocsparse_dprune_csr2csr_typed(handle, m, n, nnz_A, csr_descr_A, csr_val_A, &
@@ -43766,21 +43771,21 @@ contains
       integer(c_int), value :: n
       integer(c_int), value :: nnz_A
       type(c_ptr), value :: csr_descr_A
-      real(c_float), target :: csr_val_A(*)
-      integer(c_int), target :: csr_row_ptr_A(*)
-      integer(c_int), target :: csr_col_ind_A(*)
+      real(c_float), target :: csr_val_A(..)
+      integer(c_int), target :: csr_row_ptr_A(..)
+      integer(c_int), target :: csr_col_ind_A(..)
       real(c_float), value :: percentage
       type(c_ptr), value :: csr_descr_C
-      real(c_float), target :: csr_val_C(*)
-      integer(c_int), target :: csr_row_ptr_C(*)
-      integer(c_int), target :: csr_col_ind_C(*)
+      real(c_float), target :: csr_val_C(..)
+      integer(c_int), target :: csr_row_ptr_C(..)
+      integer(c_int), target :: csr_col_ind_C(..)
       type(c_ptr), value :: info
       type(c_ptr), value :: buffer_size
       integer(c_int) :: sprune_csr2csr_by_percentage_buffer_size
       sprune_csr2csr_by_percentage_buffer_size = rocsparse_sprune_csr2csr_by_percentage_buffer_size_raw( &
-        handle, m, n, nnz_A, csr_descr_A, c_loc(csr_val_A(1)), c_loc(csr_row_ptr_A(1)), c_loc( &
-        csr_col_ind_A(1)), percentage, csr_descr_C, c_loc(csr_val_C(1)), c_loc(csr_row_ptr_C(1)), &
-        c_loc(csr_col_ind_C(1)), info, buffer_size)
+        handle, m, n, nnz_A, csr_descr_A, c_loc(csr_val_A), c_loc(csr_row_ptr_A), c_loc( &
+        csr_col_ind_A), percentage, csr_descr_C, c_loc(csr_val_C), c_loc(csr_row_ptr_C), c_loc( &
+        csr_col_ind_C), info, buffer_size)
     end function rocsparse_sprune_csr2csr_by_percentage_buffer_size_native
 
     function rocsparse_sprune_csr2csr_by_percentage_buffer_size_typed(handle, m, n, nnz_A, &
@@ -43822,21 +43827,21 @@ contains
       integer(c_int), value :: n
       integer(c_int), value :: nnz_A
       type(c_ptr), value :: csr_descr_A
-      real(c_double), target :: csr_val_A(*)
-      integer(c_int), target :: csr_row_ptr_A(*)
-      integer(c_int), target :: csr_col_ind_A(*)
+      real(c_double), target :: csr_val_A(..)
+      integer(c_int), target :: csr_row_ptr_A(..)
+      integer(c_int), target :: csr_col_ind_A(..)
       real(c_double), value :: percentage
       type(c_ptr), value :: csr_descr_C
-      real(c_double), target :: csr_val_C(*)
-      integer(c_int), target :: csr_row_ptr_C(*)
-      integer(c_int), target :: csr_col_ind_C(*)
+      real(c_double), target :: csr_val_C(..)
+      integer(c_int), target :: csr_row_ptr_C(..)
+      integer(c_int), target :: csr_col_ind_C(..)
       type(c_ptr), value :: info
       type(c_ptr), value :: buffer_size
       integer(c_int) :: dprune_csr2csr_by_percentage_buffer_size
       dprune_csr2csr_by_percentage_buffer_size = rocsparse_dprune_csr2csr_by_percentage_buffer_size_raw( &
-        handle, m, n, nnz_A, csr_descr_A, c_loc(csr_val_A(1)), c_loc(csr_row_ptr_A(1)), c_loc( &
-        csr_col_ind_A(1)), percentage, csr_descr_C, c_loc(csr_val_C(1)), c_loc(csr_row_ptr_C(1)), &
-        c_loc(csr_col_ind_C(1)), info, buffer_size)
+        handle, m, n, nnz_A, csr_descr_A, c_loc(csr_val_A), c_loc(csr_row_ptr_A), c_loc( &
+        csr_col_ind_A), percentage, csr_descr_C, c_loc(csr_val_C), c_loc(csr_row_ptr_C), c_loc( &
+        csr_col_ind_C), info, buffer_size)
     end function rocsparse_dprune_csr2csr_by_percentage_buffer_size_native
 
     function rocsparse_dprune_csr2csr_by_percentage_buffer_size_typed(handle, m, n, nnz_A, &
@@ -43877,20 +43882,19 @@ contains
       integer(c_int), value :: n
       integer(c_int), value :: nnz_A
       type(c_ptr), value :: csr_descr_A
-      real(c_float), target :: csr_val_A(*)
-      integer(c_int), target :: csr_row_ptr_A(*)
-      integer(c_int), target :: csr_col_ind_A(*)
+      real(c_float), target :: csr_val_A(..)
+      integer(c_int), target :: csr_row_ptr_A(..)
+      integer(c_int), target :: csr_col_ind_A(..)
       real(c_float), value :: percentage
       type(c_ptr), value :: csr_descr_C
-      integer(c_int), target :: csr_row_ptr_C(*)
+      integer(c_int), target :: csr_row_ptr_C(..)
       integer(c_int) :: nnz_total_dev_host_ptr
       type(c_ptr), value :: info
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: sprune_csr2csr_nnz_by_percentage
       sprune_csr2csr_nnz_by_percentage = rocsparse_sprune_csr2csr_nnz_by_percentage_raw(handle, m, &
-        n, nnz_A, csr_descr_A, c_loc(csr_val_A(1)), c_loc(csr_row_ptr_A(1)), c_loc(csr_col_ind_A( &
-        1)), percentage, csr_descr_C, c_loc(csr_row_ptr_C(1)), nnz_total_dev_host_ptr, info, &
-        temp_buffer)
+        n, nnz_A, csr_descr_A, c_loc(csr_val_A), c_loc(csr_row_ptr_A), c_loc(csr_col_ind_A), &
+        percentage, csr_descr_C, c_loc(csr_row_ptr_C), nnz_total_dev_host_ptr, info, temp_buffer)
     end function rocsparse_sprune_csr2csr_nnz_by_percentage_native
 
     function rocsparse_sprune_csr2csr_nnz_by_percentage_typed(handle, m, n, nnz_A, csr_descr_A, &
@@ -43929,20 +43933,19 @@ contains
       integer(c_int), value :: n
       integer(c_int), value :: nnz_A
       type(c_ptr), value :: csr_descr_A
-      real(c_double), target :: csr_val_A(*)
-      integer(c_int), target :: csr_row_ptr_A(*)
-      integer(c_int), target :: csr_col_ind_A(*)
+      real(c_double), target :: csr_val_A(..)
+      integer(c_int), target :: csr_row_ptr_A(..)
+      integer(c_int), target :: csr_col_ind_A(..)
       real(c_double), value :: percentage
       type(c_ptr), value :: csr_descr_C
-      integer(c_int), target :: csr_row_ptr_C(*)
+      integer(c_int), target :: csr_row_ptr_C(..)
       integer(c_int) :: nnz_total_dev_host_ptr
       type(c_ptr), value :: info
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: dprune_csr2csr_nnz_by_percentage
       dprune_csr2csr_nnz_by_percentage = rocsparse_dprune_csr2csr_nnz_by_percentage_raw(handle, m, &
-        n, nnz_A, csr_descr_A, c_loc(csr_val_A(1)), c_loc(csr_row_ptr_A(1)), c_loc(csr_col_ind_A( &
-        1)), percentage, csr_descr_C, c_loc(csr_row_ptr_C(1)), nnz_total_dev_host_ptr, info, &
-        temp_buffer)
+        n, nnz_A, csr_descr_A, c_loc(csr_val_A), c_loc(csr_row_ptr_A), c_loc(csr_col_ind_A), &
+        percentage, csr_descr_C, c_loc(csr_row_ptr_C), nnz_total_dev_host_ptr, info, temp_buffer)
     end function rocsparse_dprune_csr2csr_nnz_by_percentage_native
 
     function rocsparse_dprune_csr2csr_nnz_by_percentage_typed(handle, m, n, nnz_A, csr_descr_A, &
@@ -43981,21 +43984,21 @@ contains
       integer(c_int), value :: n
       integer(c_int), value :: nnz_A
       type(c_ptr), value :: csr_descr_A
-      real(c_float), target :: csr_val_A(*)
-      integer(c_int), target :: csr_row_ptr_A(*)
-      integer(c_int), target :: csr_col_ind_A(*)
+      real(c_float), target :: csr_val_A(..)
+      integer(c_int), target :: csr_row_ptr_A(..)
+      integer(c_int), target :: csr_col_ind_A(..)
       real(c_float), value :: percentage
       type(c_ptr), value :: csr_descr_C
-      real(c_float), target :: csr_val_C(*)
-      integer(c_int), target :: csr_row_ptr_C(*)
-      integer(c_int), target :: csr_col_ind_C(*)
+      real(c_float), target :: csr_val_C(..)
+      integer(c_int), target :: csr_row_ptr_C(..)
+      integer(c_int), target :: csr_col_ind_C(..)
       type(c_ptr), value :: info
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: sprune_csr2csr_by_percentage
       sprune_csr2csr_by_percentage = rocsparse_sprune_csr2csr_by_percentage_raw(handle, m, n, &
-        nnz_A, csr_descr_A, c_loc(csr_val_A(1)), c_loc(csr_row_ptr_A(1)), c_loc(csr_col_ind_A(1)), &
-        percentage, csr_descr_C, c_loc(csr_val_C(1)), c_loc(csr_row_ptr_C(1)), c_loc( &
-        csr_col_ind_C(1)), info, temp_buffer)
+        nnz_A, csr_descr_A, c_loc(csr_val_A), c_loc(csr_row_ptr_A), c_loc(csr_col_ind_A), &
+        percentage, csr_descr_C, c_loc(csr_val_C), c_loc(csr_row_ptr_C), c_loc(csr_col_ind_C), &
+        info, temp_buffer)
     end function rocsparse_sprune_csr2csr_by_percentage_native
 
     function rocsparse_sprune_csr2csr_by_percentage_typed(handle, m, n, nnz_A, csr_descr_A, &
@@ -44035,21 +44038,21 @@ contains
       integer(c_int), value :: n
       integer(c_int), value :: nnz_A
       type(c_ptr), value :: csr_descr_A
-      real(c_double), target :: csr_val_A(*)
-      integer(c_int), target :: csr_row_ptr_A(*)
-      integer(c_int), target :: csr_col_ind_A(*)
+      real(c_double), target :: csr_val_A(..)
+      integer(c_int), target :: csr_row_ptr_A(..)
+      integer(c_int), target :: csr_col_ind_A(..)
       real(c_double), value :: percentage
       type(c_ptr), value :: csr_descr_C
-      real(c_double), target :: csr_val_C(*)
-      integer(c_int), target :: csr_row_ptr_C(*)
-      integer(c_int), target :: csr_col_ind_C(*)
+      real(c_double), target :: csr_val_C(..)
+      integer(c_int), target :: csr_row_ptr_C(..)
+      integer(c_int), target :: csr_col_ind_C(..)
       type(c_ptr), value :: info
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: dprune_csr2csr_by_percentage
       dprune_csr2csr_by_percentage = rocsparse_dprune_csr2csr_by_percentage_raw(handle, m, n, &
-        nnz_A, csr_descr_A, c_loc(csr_val_A(1)), c_loc(csr_row_ptr_A(1)), c_loc(csr_col_ind_A(1)), &
-        percentage, csr_descr_C, c_loc(csr_val_C(1)), c_loc(csr_row_ptr_C(1)), c_loc( &
-        csr_col_ind_C(1)), info, temp_buffer)
+        nnz_A, csr_descr_A, c_loc(csr_val_A), c_loc(csr_row_ptr_A), c_loc(csr_col_ind_A), &
+        percentage, csr_descr_C, c_loc(csr_val_C), c_loc(csr_row_ptr_C), c_loc(csr_col_ind_C), &
+        info, temp_buffer)
     end function rocsparse_dprune_csr2csr_by_percentage_native
 
     function rocsparse_dprune_csr2csr_by_percentage_typed(handle, m, n, nnz_A, csr_descr_A, &
@@ -44086,18 +44089,18 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: m
       integer(c_int), value :: n
-      real(c_float), target :: A(*)
+      real(c_float), target :: A(..)
       integer(c_int), value :: lda
       real(c_float) :: threshold
       type(c_ptr), value :: descr
-      real(c_float), target :: csr_val(*)
-      integer(c_int), target :: csr_row_ptr(*)
-      integer(c_int), target :: csr_col_ind(*)
+      real(c_float), target :: csr_val(..)
+      integer(c_int), target :: csr_row_ptr(..)
+      integer(c_int), target :: csr_col_ind(..)
       type(c_ptr), value :: buffer_size
       integer(c_int) :: sprune_dense2csr_buffer_size
       sprune_dense2csr_buffer_size = rocsparse_sprune_dense2csr_buffer_size_raw(handle, m, n, &
-        c_loc(A(1)), lda, threshold, descr, c_loc(csr_val(1)), c_loc(csr_row_ptr(1)), c_loc( &
-        csr_col_ind(1)), buffer_size)
+        c_loc(A), lda, threshold, descr, c_loc(csr_val), c_loc(csr_row_ptr), c_loc(csr_col_ind), &
+        buffer_size)
     end function rocsparse_sprune_dense2csr_buffer_size_native
 
     function rocsparse_sprune_dense2csr_buffer_size_typed(handle, m, n, A, lda, threshold, descr, &
@@ -44128,18 +44131,18 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: m
       integer(c_int), value :: n
-      real(c_double), target :: A(*)
+      real(c_double), target :: A(..)
       integer(c_int), value :: lda
       real(c_double) :: threshold
       type(c_ptr), value :: descr
-      real(c_double), target :: csr_val(*)
-      integer(c_int), target :: csr_row_ptr(*)
-      integer(c_int), target :: csr_col_ind(*)
+      real(c_double), target :: csr_val(..)
+      integer(c_int), target :: csr_row_ptr(..)
+      integer(c_int), target :: csr_col_ind(..)
       type(c_ptr), value :: buffer_size
       integer(c_int) :: dprune_dense2csr_buffer_size
       dprune_dense2csr_buffer_size = rocsparse_dprune_dense2csr_buffer_size_raw(handle, m, n, &
-        c_loc(A(1)), lda, threshold, descr, c_loc(csr_val(1)), c_loc(csr_row_ptr(1)), c_loc( &
-        csr_col_ind(1)), buffer_size)
+        c_loc(A), lda, threshold, descr, c_loc(csr_val), c_loc(csr_row_ptr), c_loc(csr_col_ind), &
+        buffer_size)
     end function rocsparse_dprune_dense2csr_buffer_size_native
 
     function rocsparse_dprune_dense2csr_buffer_size_typed(handle, m, n, A, lda, threshold, descr, &
@@ -44170,16 +44173,16 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: m
       integer(c_int), value :: n
-      real(c_float), target :: A(*)
+      real(c_float), target :: A(..)
       integer(c_int), value :: lda
       real(c_float) :: threshold
       type(c_ptr), value :: descr
-      integer(c_int), target :: csr_row_ptr(*)
+      integer(c_int), target :: csr_row_ptr(..)
       integer(c_int) :: nnz_total_dev_host_ptr
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: sprune_dense2csr_nnz
-      sprune_dense2csr_nnz = rocsparse_sprune_dense2csr_nnz_raw(handle, m, n, c_loc(A(1)), lda, &
-        threshold, descr, c_loc(csr_row_ptr(1)), nnz_total_dev_host_ptr, temp_buffer)
+      sprune_dense2csr_nnz = rocsparse_sprune_dense2csr_nnz_raw(handle, m, n, c_loc(A), lda, &
+        threshold, descr, c_loc(csr_row_ptr), nnz_total_dev_host_ptr, temp_buffer)
     end function rocsparse_sprune_dense2csr_nnz_native
 
     function rocsparse_sprune_dense2csr_nnz_typed(handle, m, n, A, lda, threshold, descr, &
@@ -44209,16 +44212,16 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: m
       integer(c_int), value :: n
-      real(c_double), target :: A(*)
+      real(c_double), target :: A(..)
       integer(c_int), value :: lda
       real(c_double) :: threshold
       type(c_ptr), value :: descr
-      integer(c_int), target :: csr_row_ptr(*)
+      integer(c_int), target :: csr_row_ptr(..)
       integer(c_int) :: nnz_total_dev_host_ptr
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: dprune_dense2csr_nnz
-      dprune_dense2csr_nnz = rocsparse_dprune_dense2csr_nnz_raw(handle, m, n, c_loc(A(1)), lda, &
-        threshold, descr, c_loc(csr_row_ptr(1)), nnz_total_dev_host_ptr, temp_buffer)
+      dprune_dense2csr_nnz = rocsparse_dprune_dense2csr_nnz_raw(handle, m, n, c_loc(A), lda, &
+        threshold, descr, c_loc(csr_row_ptr), nnz_total_dev_host_ptr, temp_buffer)
     end function rocsparse_dprune_dense2csr_nnz_native
 
     function rocsparse_dprune_dense2csr_nnz_typed(handle, m, n, A, lda, threshold, descr, &
@@ -44248,17 +44251,17 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: m
       integer(c_int), value :: n
-      real(c_float), target :: A(*)
+      real(c_float), target :: A(..)
       integer(c_int), value :: lda
       real(c_float) :: threshold
       type(c_ptr), value :: descr
-      real(c_float), target :: csr_val(*)
-      integer(c_int), target :: csr_row_ptr(*)
-      integer(c_int), target :: csr_col_ind(*)
+      real(c_float), target :: csr_val(..)
+      integer(c_int), target :: csr_row_ptr(..)
+      integer(c_int), target :: csr_col_ind(..)
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: sprune_dense2csr
-      sprune_dense2csr = rocsparse_sprune_dense2csr_raw(handle, m, n, c_loc(A(1)), lda, threshold, &
-        descr, c_loc(csr_val(1)), c_loc(csr_row_ptr(1)), c_loc(csr_col_ind(1)), temp_buffer)
+      sprune_dense2csr = rocsparse_sprune_dense2csr_raw(handle, m, n, c_loc(A), lda, threshold, &
+        descr, c_loc(csr_val), c_loc(csr_row_ptr), c_loc(csr_col_ind), temp_buffer)
     end function rocsparse_sprune_dense2csr_native
 
     function rocsparse_sprune_dense2csr_typed(handle, m, n, A, lda, threshold, descr, csr_val, &
@@ -44289,17 +44292,17 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: m
       integer(c_int), value :: n
-      real(c_double), target :: A(*)
+      real(c_double), target :: A(..)
       integer(c_int), value :: lda
       real(c_double) :: threshold
       type(c_ptr), value :: descr
-      real(c_double), target :: csr_val(*)
-      integer(c_int), target :: csr_row_ptr(*)
-      integer(c_int), target :: csr_col_ind(*)
+      real(c_double), target :: csr_val(..)
+      integer(c_int), target :: csr_row_ptr(..)
+      integer(c_int), target :: csr_col_ind(..)
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: dprune_dense2csr
-      dprune_dense2csr = rocsparse_dprune_dense2csr_raw(handle, m, n, c_loc(A(1)), lda, threshold, &
-        descr, c_loc(csr_val(1)), c_loc(csr_row_ptr(1)), c_loc(csr_col_ind(1)), temp_buffer)
+      dprune_dense2csr = rocsparse_dprune_dense2csr_raw(handle, m, n, c_loc(A), lda, threshold, &
+        descr, c_loc(csr_val), c_loc(csr_row_ptr), c_loc(csr_col_ind), temp_buffer)
     end function rocsparse_dprune_dense2csr_native
 
     function rocsparse_dprune_dense2csr_typed(handle, m, n, A, lda, threshold, descr, csr_val, &
@@ -44331,19 +44334,19 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: m
       integer(c_int), value :: n
-      real(c_float), target :: A(*)
+      real(c_float), target :: A(..)
       integer(c_int), value :: lda
       real(c_float), value :: percentage
       type(c_ptr), value :: descr
-      real(c_float), target :: csr_val(*)
-      integer(c_int), target :: csr_row_ptr(*)
-      integer(c_int), target :: csr_col_ind(*)
+      real(c_float), target :: csr_val(..)
+      integer(c_int), target :: csr_row_ptr(..)
+      integer(c_int), target :: csr_col_ind(..)
       type(c_ptr), value :: info
       type(c_ptr), value :: buffer_size
       integer(c_int) :: sprune_dense2csr_by_percentage_buffer_size
       sprune_dense2csr_by_percentage_buffer_size = rocsparse_sprune_dense2csr_by_percentage_buffer_size_raw( &
-        handle, m, n, c_loc(A(1)), lda, percentage, descr, c_loc(csr_val(1)), c_loc(csr_row_ptr( &
-        1)), c_loc(csr_col_ind(1)), info, buffer_size)
+        handle, m, n, c_loc(A), lda, percentage, descr, c_loc(csr_val), c_loc(csr_row_ptr), c_loc( &
+        csr_col_ind), info, buffer_size)
     end function rocsparse_sprune_dense2csr_by_percentage_buffer_size_native
 
     function rocsparse_sprune_dense2csr_by_percentage_buffer_size_typed(handle, m, n, A, lda, &
@@ -44378,19 +44381,19 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: m
       integer(c_int), value :: n
-      real(c_double), target :: A(*)
+      real(c_double), target :: A(..)
       integer(c_int), value :: lda
       real(c_double), value :: percentage
       type(c_ptr), value :: descr
-      real(c_double), target :: csr_val(*)
-      integer(c_int), target :: csr_row_ptr(*)
-      integer(c_int), target :: csr_col_ind(*)
+      real(c_double), target :: csr_val(..)
+      integer(c_int), target :: csr_row_ptr(..)
+      integer(c_int), target :: csr_col_ind(..)
       type(c_ptr), value :: info
       type(c_ptr), value :: buffer_size
       integer(c_int) :: dprune_dense2csr_by_percentage_buffer_size
       dprune_dense2csr_by_percentage_buffer_size = rocsparse_dprune_dense2csr_by_percentage_buffer_size_raw( &
-        handle, m, n, c_loc(A(1)), lda, percentage, descr, c_loc(csr_val(1)), c_loc(csr_row_ptr( &
-        1)), c_loc(csr_col_ind(1)), info, buffer_size)
+        handle, m, n, c_loc(A), lda, percentage, descr, c_loc(csr_val), c_loc(csr_row_ptr), c_loc( &
+        csr_col_ind), info, buffer_size)
     end function rocsparse_dprune_dense2csr_by_percentage_buffer_size_native
 
     function rocsparse_dprune_dense2csr_by_percentage_buffer_size_typed(handle, m, n, A, lda, &
@@ -44425,17 +44428,17 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: m
       integer(c_int), value :: n
-      real(c_float), target :: A(*)
+      real(c_float), target :: A(..)
       integer(c_int), value :: lda
       real(c_float), value :: percentage
       type(c_ptr), value :: descr
-      integer(c_int), target :: csr_row_ptr(*)
+      integer(c_int), target :: csr_row_ptr(..)
       integer(c_int) :: nnz_total_dev_host_ptr
       type(c_ptr), value :: info
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: sprune_dense2csr_nnz_by_percentage
       sprune_dense2csr_nnz_by_percentage = rocsparse_sprune_dense2csr_nnz_by_percentage_raw( &
-        handle, m, n, c_loc(A(1)), lda, percentage, descr, c_loc(csr_row_ptr(1)), &
+        handle, m, n, c_loc(A), lda, percentage, descr, c_loc(csr_row_ptr), &
         nnz_total_dev_host_ptr, info, temp_buffer)
     end function rocsparse_sprune_dense2csr_nnz_by_percentage_native
 
@@ -44470,17 +44473,17 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: m
       integer(c_int), value :: n
-      real(c_double), target :: A(*)
+      real(c_double), target :: A(..)
       integer(c_int), value :: lda
       real(c_double), value :: percentage
       type(c_ptr), value :: descr
-      integer(c_int), target :: csr_row_ptr(*)
+      integer(c_int), target :: csr_row_ptr(..)
       integer(c_int) :: nnz_total_dev_host_ptr
       type(c_ptr), value :: info
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: dprune_dense2csr_nnz_by_percentage
       dprune_dense2csr_nnz_by_percentage = rocsparse_dprune_dense2csr_nnz_by_percentage_raw( &
-        handle, m, n, c_loc(A(1)), lda, percentage, descr, c_loc(csr_row_ptr(1)), &
+        handle, m, n, c_loc(A), lda, percentage, descr, c_loc(csr_row_ptr), &
         nnz_total_dev_host_ptr, info, temp_buffer)
     end function rocsparse_dprune_dense2csr_nnz_by_percentage_native
 
@@ -44515,19 +44518,19 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: m
       integer(c_int), value :: n
-      real(c_float), target :: A(*)
+      real(c_float), target :: A(..)
       integer(c_int), value :: lda
       real(c_float), value :: percentage
       type(c_ptr), value :: descr
-      real(c_float), target :: csr_val(*)
-      integer(c_int), target :: csr_row_ptr(*)
-      integer(c_int), target :: csr_col_ind(*)
+      real(c_float), target :: csr_val(..)
+      integer(c_int), target :: csr_row_ptr(..)
+      integer(c_int), target :: csr_col_ind(..)
       type(c_ptr), value :: info
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: sprune_dense2csr_by_percentage
       sprune_dense2csr_by_percentage = rocsparse_sprune_dense2csr_by_percentage_raw(handle, m, n, &
-        c_loc(A(1)), lda, percentage, descr, c_loc(csr_val(1)), c_loc(csr_row_ptr(1)), c_loc( &
-        csr_col_ind(1)), info, temp_buffer)
+        c_loc(A), lda, percentage, descr, c_loc(csr_val), c_loc(csr_row_ptr), c_loc(csr_col_ind), &
+        info, temp_buffer)
     end function rocsparse_sprune_dense2csr_by_percentage_native
 
     function rocsparse_sprune_dense2csr_by_percentage_typed(handle, m, n, A, lda, percentage, &
@@ -44561,19 +44564,19 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: m
       integer(c_int), value :: n
-      real(c_double), target :: A(*)
+      real(c_double), target :: A(..)
       integer(c_int), value :: lda
       real(c_double), value :: percentage
       type(c_ptr), value :: descr
-      real(c_double), target :: csr_val(*)
-      integer(c_int), target :: csr_row_ptr(*)
-      integer(c_int), target :: csr_col_ind(*)
+      real(c_double), target :: csr_val(..)
+      integer(c_int), target :: csr_row_ptr(..)
+      integer(c_int), target :: csr_col_ind(..)
       type(c_ptr), value :: info
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: dprune_dense2csr_by_percentage
       dprune_dense2csr_by_percentage = rocsparse_dprune_dense2csr_by_percentage_raw(handle, m, n, &
-        c_loc(A(1)), lda, percentage, descr, c_loc(csr_val(1)), c_loc(csr_row_ptr(1)), c_loc( &
-        csr_col_ind(1)), info, temp_buffer)
+        c_loc(A), lda, percentage, descr, c_loc(csr_val), c_loc(csr_row_ptr), c_loc(csr_col_ind), &
+        info, temp_buffer)
     end function rocsparse_dprune_dense2csr_by_percentage_native
 
     function rocsparse_dprune_dense2csr_by_percentage_typed(handle, m, n, A, lda, percentage, &
@@ -44611,19 +44614,19 @@ contains
       integer(c_int), value :: block_dim
       type(c_ptr), value :: descr_A
       integer(c_int), value :: nnzb_A
-      integer(c_int), target :: bsr_row_ptr_A(*)
-      integer(c_int), target :: bsr_col_ind_A(*)
+      integer(c_int), target :: bsr_row_ptr_A(..)
+      integer(c_int), target :: bsr_col_ind_A(..)
       type(c_ptr), value :: descr_B
       integer(c_int), value :: nnzb_B
-      integer(c_int), target :: bsr_row_ptr_B(*)
-      integer(c_int), target :: bsr_col_ind_B(*)
+      integer(c_int), target :: bsr_row_ptr_B(..)
+      integer(c_int), target :: bsr_col_ind_B(..)
       type(c_ptr), value :: descr_C
-      integer(c_int), target :: bsr_row_ptr_C(*)
-      integer(c_int), target :: nnzb_C(*)
+      integer(c_int), target :: bsr_row_ptr_C(..)
+      integer(c_int), target :: nnzb_C(..)
       integer(c_int) :: bsrgeam_nnzb
       bsrgeam_nnzb = rocsparse_bsrgeam_nnzb_raw(handle, dir, mb, nb, block_dim, descr_A, nnzb_A, &
-        c_loc(bsr_row_ptr_A(1)), c_loc(bsr_col_ind_A(1)), descr_B, nnzb_B, c_loc(bsr_row_ptr_B( &
-        1)), c_loc(bsr_col_ind_B(1)), descr_C, c_loc(bsr_row_ptr_C(1)), c_loc(nnzb_C(1)))
+        c_loc(bsr_row_ptr_A), c_loc(bsr_col_ind_A), descr_B, nnzb_B, c_loc(bsr_row_ptr_B), c_loc( &
+        bsr_col_ind_B), descr_C, c_loc(bsr_row_ptr_C), c_loc(nnzb_C))
     end function rocsparse_bsrgeam_nnzb_native
 
     function rocsparse_bsrgeam_nnzb_typed(handle, dir, mb, nb, block_dim, descr_A, nnzb_A, &
@@ -44664,27 +44667,27 @@ contains
       integer(c_int), value :: mb
       integer(c_int), value :: nb
       integer(c_int), value :: block_dim
-      real(c_float), target :: alpha(*)
+      real(c_float), target :: alpha(..)
       type(c_ptr), value :: descr_A
       integer(c_int), value :: nnzb_A
-      real(c_float), target :: bsr_val_A(*)
-      integer(c_int), target :: bsr_row_ptr_A(*)
-      integer(c_int), target :: bsr_col_ind_A(*)
-      real(c_float), target :: beta(*)
+      real(c_float), target :: bsr_val_A(..)
+      integer(c_int), target :: bsr_row_ptr_A(..)
+      integer(c_int), target :: bsr_col_ind_A(..)
+      real(c_float), target :: beta(..)
       type(c_ptr), value :: descr_B
       integer(c_int), value :: nnzb_B
-      real(c_float), target :: bsr_val_B(*)
-      integer(c_int), target :: bsr_row_ptr_B(*)
-      integer(c_int), target :: bsr_col_ind_B(*)
+      real(c_float), target :: bsr_val_B(..)
+      integer(c_int), target :: bsr_row_ptr_B(..)
+      integer(c_int), target :: bsr_col_ind_B(..)
       type(c_ptr), value :: descr_C
-      real(c_float), target :: bsr_val_C(*)
-      integer(c_int), target :: bsr_row_ptr_C(*)
-      integer(c_int), target :: bsr_col_ind_C(*)
+      real(c_float), target :: bsr_val_C(..)
+      integer(c_int), target :: bsr_row_ptr_C(..)
+      integer(c_int), target :: bsr_col_ind_C(..)
       integer(c_int) :: sbsrgeam
-      sbsrgeam = rocsparse_sbsrgeam_raw(handle, dir, mb, nb, block_dim, c_loc(alpha(1)), descr_A, &
-        nnzb_A, c_loc(bsr_val_A(1)), c_loc(bsr_row_ptr_A(1)), c_loc(bsr_col_ind_A(1)), c_loc(beta( &
-        1)), descr_B, nnzb_B, c_loc(bsr_val_B(1)), c_loc(bsr_row_ptr_B(1)), c_loc(bsr_col_ind_B( &
-        1)), descr_C, c_loc(bsr_val_C(1)), c_loc(bsr_row_ptr_C(1)), c_loc(bsr_col_ind_C(1)))
+      sbsrgeam = rocsparse_sbsrgeam_raw(handle, dir, mb, nb, block_dim, c_loc(alpha), descr_A, &
+        nnzb_A, c_loc(bsr_val_A), c_loc(bsr_row_ptr_A), c_loc(bsr_col_ind_A), c_loc(beta), &
+        descr_B, nnzb_B, c_loc(bsr_val_B), c_loc(bsr_row_ptr_B), c_loc(bsr_col_ind_B), descr_C, &
+        c_loc(bsr_val_C), c_loc(bsr_row_ptr_C), c_loc(bsr_col_ind_C))
     end function rocsparse_sbsrgeam_native
 
     function rocsparse_sbsrgeam_typed(handle, dir, mb, nb, block_dim, alpha, descr_A, nnzb_A, &
@@ -44730,27 +44733,27 @@ contains
       integer(c_int), value :: mb
       integer(c_int), value :: nb
       integer(c_int), value :: block_dim
-      real(c_double), target :: alpha(*)
+      real(c_double), target :: alpha(..)
       type(c_ptr), value :: descr_A
       integer(c_int), value :: nnzb_A
-      real(c_double), target :: bsr_val_A(*)
-      integer(c_int), target :: bsr_row_ptr_A(*)
-      integer(c_int), target :: bsr_col_ind_A(*)
-      real(c_double), target :: beta(*)
+      real(c_double), target :: bsr_val_A(..)
+      integer(c_int), target :: bsr_row_ptr_A(..)
+      integer(c_int), target :: bsr_col_ind_A(..)
+      real(c_double), target :: beta(..)
       type(c_ptr), value :: descr_B
       integer(c_int), value :: nnzb_B
-      real(c_double), target :: bsr_val_B(*)
-      integer(c_int), target :: bsr_row_ptr_B(*)
-      integer(c_int), target :: bsr_col_ind_B(*)
+      real(c_double), target :: bsr_val_B(..)
+      integer(c_int), target :: bsr_row_ptr_B(..)
+      integer(c_int), target :: bsr_col_ind_B(..)
       type(c_ptr), value :: descr_C
-      real(c_double), target :: bsr_val_C(*)
-      integer(c_int), target :: bsr_row_ptr_C(*)
-      integer(c_int), target :: bsr_col_ind_C(*)
+      real(c_double), target :: bsr_val_C(..)
+      integer(c_int), target :: bsr_row_ptr_C(..)
+      integer(c_int), target :: bsr_col_ind_C(..)
       integer(c_int) :: dbsrgeam
-      dbsrgeam = rocsparse_dbsrgeam_raw(handle, dir, mb, nb, block_dim, c_loc(alpha(1)), descr_A, &
-        nnzb_A, c_loc(bsr_val_A(1)), c_loc(bsr_row_ptr_A(1)), c_loc(bsr_col_ind_A(1)), c_loc(beta( &
-        1)), descr_B, nnzb_B, c_loc(bsr_val_B(1)), c_loc(bsr_row_ptr_B(1)), c_loc(bsr_col_ind_B( &
-        1)), descr_C, c_loc(bsr_val_C(1)), c_loc(bsr_row_ptr_C(1)), c_loc(bsr_col_ind_C(1)))
+      dbsrgeam = rocsparse_dbsrgeam_raw(handle, dir, mb, nb, block_dim, c_loc(alpha), descr_A, &
+        nnzb_A, c_loc(bsr_val_A), c_loc(bsr_row_ptr_A), c_loc(bsr_col_ind_A), c_loc(beta), &
+        descr_B, nnzb_B, c_loc(bsr_val_B), c_loc(bsr_row_ptr_B), c_loc(bsr_col_ind_B), descr_C, &
+        c_loc(bsr_val_C), c_loc(bsr_row_ptr_C), c_loc(bsr_col_ind_C))
     end function rocsparse_dbsrgeam_native
 
     function rocsparse_dbsrgeam_typed(handle, dir, mb, nb, block_dim, alpha, descr_A, nnzb_A, &
@@ -44796,27 +44799,27 @@ contains
       integer(c_int), value :: mb
       integer(c_int), value :: nb
       integer(c_int), value :: block_dim
-      complex(c_float_complex), target :: alpha(*)
+      complex(c_float_complex), target :: alpha(..)
       type(c_ptr), value :: descr_A
       integer(c_int), value :: nnzb_A
-      complex(c_float_complex), target :: bsr_val_A(*)
-      integer(c_int), target :: bsr_row_ptr_A(*)
-      integer(c_int), target :: bsr_col_ind_A(*)
-      complex(c_float_complex), target :: beta(*)
+      complex(c_float_complex), target :: bsr_val_A(..)
+      integer(c_int), target :: bsr_row_ptr_A(..)
+      integer(c_int), target :: bsr_col_ind_A(..)
+      complex(c_float_complex), target :: beta(..)
       type(c_ptr), value :: descr_B
       integer(c_int), value :: nnzb_B
-      complex(c_float_complex), target :: bsr_val_B(*)
-      integer(c_int), target :: bsr_row_ptr_B(*)
-      integer(c_int), target :: bsr_col_ind_B(*)
+      complex(c_float_complex), target :: bsr_val_B(..)
+      integer(c_int), target :: bsr_row_ptr_B(..)
+      integer(c_int), target :: bsr_col_ind_B(..)
       type(c_ptr), value :: descr_C
-      complex(c_float_complex), target :: bsr_val_C(*)
-      integer(c_int), target :: bsr_row_ptr_C(*)
-      integer(c_int), target :: bsr_col_ind_C(*)
+      complex(c_float_complex), target :: bsr_val_C(..)
+      integer(c_int), target :: bsr_row_ptr_C(..)
+      integer(c_int), target :: bsr_col_ind_C(..)
       integer(c_int) :: cbsrgeam
-      cbsrgeam = rocsparse_cbsrgeam_raw(handle, dir, mb, nb, block_dim, c_loc(alpha(1)), descr_A, &
-        nnzb_A, c_loc(bsr_val_A(1)), c_loc(bsr_row_ptr_A(1)), c_loc(bsr_col_ind_A(1)), c_loc(beta( &
-        1)), descr_B, nnzb_B, c_loc(bsr_val_B(1)), c_loc(bsr_row_ptr_B(1)), c_loc(bsr_col_ind_B( &
-        1)), descr_C, c_loc(bsr_val_C(1)), c_loc(bsr_row_ptr_C(1)), c_loc(bsr_col_ind_C(1)))
+      cbsrgeam = rocsparse_cbsrgeam_raw(handle, dir, mb, nb, block_dim, c_loc(alpha), descr_A, &
+        nnzb_A, c_loc(bsr_val_A), c_loc(bsr_row_ptr_A), c_loc(bsr_col_ind_A), c_loc(beta), &
+        descr_B, nnzb_B, c_loc(bsr_val_B), c_loc(bsr_row_ptr_B), c_loc(bsr_col_ind_B), descr_C, &
+        c_loc(bsr_val_C), c_loc(bsr_row_ptr_C), c_loc(bsr_col_ind_C))
     end function rocsparse_cbsrgeam_native
 
     function rocsparse_cbsrgeam_typed(handle, dir, mb, nb, block_dim, alpha, descr_A, nnzb_A, &
@@ -44862,27 +44865,27 @@ contains
       integer(c_int), value :: mb
       integer(c_int), value :: nb
       integer(c_int), value :: block_dim
-      complex(c_double_complex), target :: alpha(*)
+      complex(c_double_complex), target :: alpha(..)
       type(c_ptr), value :: descr_A
       integer(c_int), value :: nnzb_A
-      complex(c_double_complex), target :: bsr_val_A(*)
-      integer(c_int), target :: bsr_row_ptr_A(*)
-      integer(c_int), target :: bsr_col_ind_A(*)
-      complex(c_double_complex), target :: beta(*)
+      complex(c_double_complex), target :: bsr_val_A(..)
+      integer(c_int), target :: bsr_row_ptr_A(..)
+      integer(c_int), target :: bsr_col_ind_A(..)
+      complex(c_double_complex), target :: beta(..)
       type(c_ptr), value :: descr_B
       integer(c_int), value :: nnzb_B
-      complex(c_double_complex), target :: bsr_val_B(*)
-      integer(c_int), target :: bsr_row_ptr_B(*)
-      integer(c_int), target :: bsr_col_ind_B(*)
+      complex(c_double_complex), target :: bsr_val_B(..)
+      integer(c_int), target :: bsr_row_ptr_B(..)
+      integer(c_int), target :: bsr_col_ind_B(..)
       type(c_ptr), value :: descr_C
-      complex(c_double_complex), target :: bsr_val_C(*)
-      integer(c_int), target :: bsr_row_ptr_C(*)
-      integer(c_int), target :: bsr_col_ind_C(*)
+      complex(c_double_complex), target :: bsr_val_C(..)
+      integer(c_int), target :: bsr_row_ptr_C(..)
+      integer(c_int), target :: bsr_col_ind_C(..)
       integer(c_int) :: zbsrgeam
-      zbsrgeam = rocsparse_zbsrgeam_raw(handle, dir, mb, nb, block_dim, c_loc(alpha(1)), descr_A, &
-        nnzb_A, c_loc(bsr_val_A(1)), c_loc(bsr_row_ptr_A(1)), c_loc(bsr_col_ind_A(1)), c_loc(beta( &
-        1)), descr_B, nnzb_B, c_loc(bsr_val_B(1)), c_loc(bsr_row_ptr_B(1)), c_loc(bsr_col_ind_B( &
-        1)), descr_C, c_loc(bsr_val_C(1)), c_loc(bsr_row_ptr_C(1)), c_loc(bsr_col_ind_C(1)))
+      zbsrgeam = rocsparse_zbsrgeam_raw(handle, dir, mb, nb, block_dim, c_loc(alpha), descr_A, &
+        nnzb_A, c_loc(bsr_val_A), c_loc(bsr_row_ptr_A), c_loc(bsr_col_ind_A), c_loc(beta), &
+        descr_B, nnzb_B, c_loc(bsr_val_B), c_loc(bsr_row_ptr_B), c_loc(bsr_col_ind_B), descr_C, &
+        c_loc(bsr_val_C), c_loc(bsr_row_ptr_C), c_loc(bsr_col_ind_C))
     end function rocsparse_zbsrgeam_native
 
     function rocsparse_zbsrgeam_typed(handle, dir, mb, nb, block_dim, alpha, descr_A, nnzb_A, &
@@ -44932,28 +44935,27 @@ contains
       integer(c_int), value :: nb
       integer(c_int), value :: kb
       integer(c_int), value :: block_dim
-      real(c_float), target :: alpha(*)
+      real(c_float), target :: alpha(..)
       type(c_ptr), value :: descr_A
       integer(c_int), value :: nnzb_A
-      integer(c_int), target :: bsr_row_ptr_A(*)
-      integer(c_int), target :: bsr_col_ind_A(*)
+      integer(c_int), target :: bsr_row_ptr_A(..)
+      integer(c_int), target :: bsr_col_ind_A(..)
       type(c_ptr), value :: descr_B
       integer(c_int), value :: nnzb_B
-      integer(c_int), target :: bsr_row_ptr_B(*)
-      integer(c_int), target :: bsr_col_ind_B(*)
-      real(c_float), target :: beta(*)
+      integer(c_int), target :: bsr_row_ptr_B(..)
+      integer(c_int), target :: bsr_col_ind_B(..)
+      real(c_float), target :: beta(..)
       type(c_ptr), value :: descr_D
       integer(c_int), value :: nnzb_D
-      integer(c_int), target :: bsr_row_ptr_D(*)
-      integer(c_int), target :: bsr_col_ind_D(*)
+      integer(c_int), target :: bsr_row_ptr_D(..)
+      integer(c_int), target :: bsr_col_ind_D(..)
       type(c_ptr), value :: info_C
       type(c_ptr), value :: buffer_size
       integer(c_int) :: sbsrgemm_buffer_size
       sbsrgemm_buffer_size = rocsparse_sbsrgemm_buffer_size_raw(handle, dir, trans_A, trans_B, mb, &
-        nb, kb, block_dim, c_loc(alpha(1)), descr_A, nnzb_A, c_loc(bsr_row_ptr_A(1)), c_loc( &
-        bsr_col_ind_A(1)), descr_B, nnzb_B, c_loc(bsr_row_ptr_B(1)), c_loc(bsr_col_ind_B(1)), &
-        c_loc(beta(1)), descr_D, nnzb_D, c_loc(bsr_row_ptr_D(1)), c_loc(bsr_col_ind_D(1)), info_C, &
-        buffer_size)
+        nb, kb, block_dim, c_loc(alpha), descr_A, nnzb_A, c_loc(bsr_row_ptr_A), c_loc( &
+        bsr_col_ind_A), descr_B, nnzb_B, c_loc(bsr_row_ptr_B), c_loc(bsr_col_ind_B), c_loc(beta), &
+        descr_D, nnzb_D, c_loc(bsr_row_ptr_D), c_loc(bsr_col_ind_D), info_C, buffer_size)
     end function rocsparse_sbsrgemm_buffer_size_native
 
     function rocsparse_sbsrgemm_buffer_size_typed(handle, dir, trans_A, trans_B, mb, nb, kb, &
@@ -45008,28 +45010,27 @@ contains
       integer(c_int), value :: nb
       integer(c_int), value :: kb
       integer(c_int), value :: block_dim
-      real(c_double), target :: alpha(*)
+      real(c_double), target :: alpha(..)
       type(c_ptr), value :: descr_A
       integer(c_int), value :: nnzb_A
-      integer(c_int), target :: bsr_row_ptr_A(*)
-      integer(c_int), target :: bsr_col_ind_A(*)
+      integer(c_int), target :: bsr_row_ptr_A(..)
+      integer(c_int), target :: bsr_col_ind_A(..)
       type(c_ptr), value :: descr_B
       integer(c_int), value :: nnzb_B
-      integer(c_int), target :: bsr_row_ptr_B(*)
-      integer(c_int), target :: bsr_col_ind_B(*)
-      real(c_double), target :: beta(*)
+      integer(c_int), target :: bsr_row_ptr_B(..)
+      integer(c_int), target :: bsr_col_ind_B(..)
+      real(c_double), target :: beta(..)
       type(c_ptr), value :: descr_D
       integer(c_int), value :: nnzb_D
-      integer(c_int), target :: bsr_row_ptr_D(*)
-      integer(c_int), target :: bsr_col_ind_D(*)
+      integer(c_int), target :: bsr_row_ptr_D(..)
+      integer(c_int), target :: bsr_col_ind_D(..)
       type(c_ptr), value :: info_C
       type(c_ptr), value :: buffer_size
       integer(c_int) :: dbsrgemm_buffer_size
       dbsrgemm_buffer_size = rocsparse_dbsrgemm_buffer_size_raw(handle, dir, trans_A, trans_B, mb, &
-        nb, kb, block_dim, c_loc(alpha(1)), descr_A, nnzb_A, c_loc(bsr_row_ptr_A(1)), c_loc( &
-        bsr_col_ind_A(1)), descr_B, nnzb_B, c_loc(bsr_row_ptr_B(1)), c_loc(bsr_col_ind_B(1)), &
-        c_loc(beta(1)), descr_D, nnzb_D, c_loc(bsr_row_ptr_D(1)), c_loc(bsr_col_ind_D(1)), info_C, &
-        buffer_size)
+        nb, kb, block_dim, c_loc(alpha), descr_A, nnzb_A, c_loc(bsr_row_ptr_A), c_loc( &
+        bsr_col_ind_A), descr_B, nnzb_B, c_loc(bsr_row_ptr_B), c_loc(bsr_col_ind_B), c_loc(beta), &
+        descr_D, nnzb_D, c_loc(bsr_row_ptr_D), c_loc(bsr_col_ind_D), info_C, buffer_size)
     end function rocsparse_dbsrgemm_buffer_size_native
 
     function rocsparse_dbsrgemm_buffer_size_typed(handle, dir, trans_A, trans_B, mb, nb, kb, &
@@ -45084,28 +45085,27 @@ contains
       integer(c_int), value :: nb
       integer(c_int), value :: kb
       integer(c_int), value :: block_dim
-      complex(c_float_complex), target :: alpha(*)
+      complex(c_float_complex), target :: alpha(..)
       type(c_ptr), value :: descr_A
       integer(c_int), value :: nnzb_A
-      integer(c_int), target :: bsr_row_ptr_A(*)
-      integer(c_int), target :: bsr_col_ind_A(*)
+      integer(c_int), target :: bsr_row_ptr_A(..)
+      integer(c_int), target :: bsr_col_ind_A(..)
       type(c_ptr), value :: descr_B
       integer(c_int), value :: nnzb_B
-      integer(c_int), target :: bsr_row_ptr_B(*)
-      integer(c_int), target :: bsr_col_ind_B(*)
-      complex(c_float_complex), target :: beta(*)
+      integer(c_int), target :: bsr_row_ptr_B(..)
+      integer(c_int), target :: bsr_col_ind_B(..)
+      complex(c_float_complex), target :: beta(..)
       type(c_ptr), value :: descr_D
       integer(c_int), value :: nnzb_D
-      integer(c_int), target :: bsr_row_ptr_D(*)
-      integer(c_int), target :: bsr_col_ind_D(*)
+      integer(c_int), target :: bsr_row_ptr_D(..)
+      integer(c_int), target :: bsr_col_ind_D(..)
       type(c_ptr), value :: info_C
       type(c_ptr), value :: buffer_size
       integer(c_int) :: cbsrgemm_buffer_size
       cbsrgemm_buffer_size = rocsparse_cbsrgemm_buffer_size_raw(handle, dir, trans_A, trans_B, mb, &
-        nb, kb, block_dim, c_loc(alpha(1)), descr_A, nnzb_A, c_loc(bsr_row_ptr_A(1)), c_loc( &
-        bsr_col_ind_A(1)), descr_B, nnzb_B, c_loc(bsr_row_ptr_B(1)), c_loc(bsr_col_ind_B(1)), &
-        c_loc(beta(1)), descr_D, nnzb_D, c_loc(bsr_row_ptr_D(1)), c_loc(bsr_col_ind_D(1)), info_C, &
-        buffer_size)
+        nb, kb, block_dim, c_loc(alpha), descr_A, nnzb_A, c_loc(bsr_row_ptr_A), c_loc( &
+        bsr_col_ind_A), descr_B, nnzb_B, c_loc(bsr_row_ptr_B), c_loc(bsr_col_ind_B), c_loc(beta), &
+        descr_D, nnzb_D, c_loc(bsr_row_ptr_D), c_loc(bsr_col_ind_D), info_C, buffer_size)
     end function rocsparse_cbsrgemm_buffer_size_native
 
     function rocsparse_cbsrgemm_buffer_size_typed(handle, dir, trans_A, trans_B, mb, nb, kb, &
@@ -45160,28 +45160,27 @@ contains
       integer(c_int), value :: nb
       integer(c_int), value :: kb
       integer(c_int), value :: block_dim
-      complex(c_double_complex), target :: alpha(*)
+      complex(c_double_complex), target :: alpha(..)
       type(c_ptr), value :: descr_A
       integer(c_int), value :: nnzb_A
-      integer(c_int), target :: bsr_row_ptr_A(*)
-      integer(c_int), target :: bsr_col_ind_A(*)
+      integer(c_int), target :: bsr_row_ptr_A(..)
+      integer(c_int), target :: bsr_col_ind_A(..)
       type(c_ptr), value :: descr_B
       integer(c_int), value :: nnzb_B
-      integer(c_int), target :: bsr_row_ptr_B(*)
-      integer(c_int), target :: bsr_col_ind_B(*)
-      complex(c_double_complex), target :: beta(*)
+      integer(c_int), target :: bsr_row_ptr_B(..)
+      integer(c_int), target :: bsr_col_ind_B(..)
+      complex(c_double_complex), target :: beta(..)
       type(c_ptr), value :: descr_D
       integer(c_int), value :: nnzb_D
-      integer(c_int), target :: bsr_row_ptr_D(*)
-      integer(c_int), target :: bsr_col_ind_D(*)
+      integer(c_int), target :: bsr_row_ptr_D(..)
+      integer(c_int), target :: bsr_col_ind_D(..)
       type(c_ptr), value :: info_C
       type(c_ptr), value :: buffer_size
       integer(c_int) :: zbsrgemm_buffer_size
       zbsrgemm_buffer_size = rocsparse_zbsrgemm_buffer_size_raw(handle, dir, trans_A, trans_B, mb, &
-        nb, kb, block_dim, c_loc(alpha(1)), descr_A, nnzb_A, c_loc(bsr_row_ptr_A(1)), c_loc( &
-        bsr_col_ind_A(1)), descr_B, nnzb_B, c_loc(bsr_row_ptr_B(1)), c_loc(bsr_col_ind_B(1)), &
-        c_loc(beta(1)), descr_D, nnzb_D, c_loc(bsr_row_ptr_D(1)), c_loc(bsr_col_ind_D(1)), info_C, &
-        buffer_size)
+        nb, kb, block_dim, c_loc(alpha), descr_A, nnzb_A, c_loc(bsr_row_ptr_A), c_loc( &
+        bsr_col_ind_A), descr_B, nnzb_B, c_loc(bsr_row_ptr_B), c_loc(bsr_col_ind_B), c_loc(beta), &
+        descr_D, nnzb_D, c_loc(bsr_row_ptr_D), c_loc(bsr_col_ind_D), info_C, buffer_size)
     end function rocsparse_zbsrgemm_buffer_size_native
 
     function rocsparse_zbsrgemm_buffer_size_typed(handle, dir, trans_A, trans_B, mb, nb, kb, &
@@ -45238,27 +45237,26 @@ contains
       integer(c_int), value :: block_dim
       type(c_ptr), value :: descr_A
       integer(c_int), value :: nnzb_A
-      integer(c_int), target :: bsr_row_ptr_A(*)
-      integer(c_int), target :: bsr_col_ind_A(*)
+      integer(c_int), target :: bsr_row_ptr_A(..)
+      integer(c_int), target :: bsr_col_ind_A(..)
       type(c_ptr), value :: descr_B
       integer(c_int), value :: nnzb_B
-      integer(c_int), target :: bsr_row_ptr_B(*)
-      integer(c_int), target :: bsr_col_ind_B(*)
+      integer(c_int), target :: bsr_row_ptr_B(..)
+      integer(c_int), target :: bsr_col_ind_B(..)
       type(c_ptr), value :: descr_D
       integer(c_int), value :: nnzb_D
-      integer(c_int), target :: bsr_row_ptr_D(*)
-      integer(c_int), target :: bsr_col_ind_D(*)
+      integer(c_int), target :: bsr_row_ptr_D(..)
+      integer(c_int), target :: bsr_col_ind_D(..)
       type(c_ptr), value :: descr_C
-      integer(c_int), target :: bsr_row_ptr_C(*)
-      integer(c_int), target :: nnzb_C(*)
+      integer(c_int), target :: bsr_row_ptr_C(..)
+      integer(c_int), target :: nnzb_C(..)
       type(c_ptr), value :: info_C
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: bsrgemm_nnzb
       bsrgemm_nnzb = rocsparse_bsrgemm_nnzb_raw(handle, dir, trans_A, trans_B, mb, nb, kb, &
-        block_dim, descr_A, nnzb_A, c_loc(bsr_row_ptr_A(1)), c_loc(bsr_col_ind_A(1)), descr_B, &
-        nnzb_B, c_loc(bsr_row_ptr_B(1)), c_loc(bsr_col_ind_B(1)), descr_D, nnzb_D, c_loc( &
-        bsr_row_ptr_D(1)), c_loc(bsr_col_ind_D(1)), descr_C, c_loc(bsr_row_ptr_C(1)), c_loc( &
-        nnzb_C(1)), info_C, temp_buffer)
+        block_dim, descr_A, nnzb_A, c_loc(bsr_row_ptr_A), c_loc(bsr_col_ind_A), descr_B, nnzb_B, &
+        c_loc(bsr_row_ptr_B), c_loc(bsr_col_ind_B), descr_D, nnzb_D, c_loc(bsr_row_ptr_D), c_loc( &
+        bsr_col_ind_D), descr_C, c_loc(bsr_row_ptr_C), c_loc(nnzb_C), info_C, temp_buffer)
     end function rocsparse_bsrgemm_nnzb_native
 
     function rocsparse_bsrgemm_nnzb_typed(handle, dir, trans_A, trans_B, mb, nb, kb, block_dim, &
@@ -45315,36 +45313,36 @@ contains
       integer(c_int), value :: nb
       integer(c_int), value :: kb
       integer(c_int), value :: block_dim
-      real(c_float), target :: alpha(*)
+      real(c_float), target :: alpha(..)
       type(c_ptr), value :: descr_A
       integer(c_int), value :: nnzb_A
-      real(c_float), target :: bsr_val_A(*)
-      integer(c_int), target :: bsr_row_ptr_A(*)
-      integer(c_int), target :: bsr_col_ind_A(*)
+      real(c_float), target :: bsr_val_A(..)
+      integer(c_int), target :: bsr_row_ptr_A(..)
+      integer(c_int), target :: bsr_col_ind_A(..)
       type(c_ptr), value :: descr_B
       integer(c_int), value :: nnzb_B
-      real(c_float), target :: bsr_val_B(*)
-      integer(c_int), target :: bsr_row_ptr_B(*)
-      integer(c_int), target :: bsr_col_ind_B(*)
-      real(c_float), target :: beta(*)
+      real(c_float), target :: bsr_val_B(..)
+      integer(c_int), target :: bsr_row_ptr_B(..)
+      integer(c_int), target :: bsr_col_ind_B(..)
+      real(c_float), target :: beta(..)
       type(c_ptr), value :: descr_D
       integer(c_int), value :: nnzb_D
-      real(c_float), target :: bsr_val_D(*)
-      integer(c_int), target :: bsr_row_ptr_D(*)
-      integer(c_int), target :: bsr_col_ind_D(*)
+      real(c_float), target :: bsr_val_D(..)
+      integer(c_int), target :: bsr_row_ptr_D(..)
+      integer(c_int), target :: bsr_col_ind_D(..)
       type(c_ptr), value :: descr_C
-      real(c_float), target :: bsr_val_C(*)
-      integer(c_int), target :: bsr_row_ptr_C(*)
-      integer(c_int), target :: bsr_col_ind_C(*)
+      real(c_float), target :: bsr_val_C(..)
+      integer(c_int), target :: bsr_row_ptr_C(..)
+      integer(c_int), target :: bsr_col_ind_C(..)
       type(c_ptr), value :: info_C
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: sbsrgemm
       sbsrgemm = rocsparse_sbsrgemm_raw(handle, dir, trans_A, trans_B, mb, nb, kb, block_dim, &
-        c_loc(alpha(1)), descr_A, nnzb_A, c_loc(bsr_val_A(1)), c_loc(bsr_row_ptr_A(1)), c_loc( &
-        bsr_col_ind_A(1)), descr_B, nnzb_B, c_loc(bsr_val_B(1)), c_loc(bsr_row_ptr_B(1)), c_loc( &
-        bsr_col_ind_B(1)), c_loc(beta(1)), descr_D, nnzb_D, c_loc(bsr_val_D(1)), c_loc( &
-        bsr_row_ptr_D(1)), c_loc(bsr_col_ind_D(1)), descr_C, c_loc(bsr_val_C(1)), c_loc( &
-        bsr_row_ptr_C(1)), c_loc(bsr_col_ind_C(1)), info_C, temp_buffer)
+        c_loc(alpha), descr_A, nnzb_A, c_loc(bsr_val_A), c_loc(bsr_row_ptr_A), c_loc( &
+        bsr_col_ind_A), descr_B, nnzb_B, c_loc(bsr_val_B), c_loc(bsr_row_ptr_B), c_loc( &
+        bsr_col_ind_B), c_loc(beta), descr_D, nnzb_D, c_loc(bsr_val_D), c_loc(bsr_row_ptr_D), &
+        c_loc(bsr_col_ind_D), descr_C, c_loc(bsr_val_C), c_loc(bsr_row_ptr_C), c_loc( &
+        bsr_col_ind_C), info_C, temp_buffer)
     end function rocsparse_sbsrgemm_native
 
     function rocsparse_sbsrgemm_typed(handle, dir, trans_A, trans_B, mb, nb, kb, block_dim, alpha, &
@@ -45409,36 +45407,36 @@ contains
       integer(c_int), value :: nb
       integer(c_int), value :: kb
       integer(c_int), value :: block_dim
-      real(c_double), target :: alpha(*)
+      real(c_double), target :: alpha(..)
       type(c_ptr), value :: descr_A
       integer(c_int), value :: nnzb_A
-      real(c_double), target :: bsr_val_A(*)
-      integer(c_int), target :: bsr_row_ptr_A(*)
-      integer(c_int), target :: bsr_col_ind_A(*)
+      real(c_double), target :: bsr_val_A(..)
+      integer(c_int), target :: bsr_row_ptr_A(..)
+      integer(c_int), target :: bsr_col_ind_A(..)
       type(c_ptr), value :: descr_B
       integer(c_int), value :: nnzb_B
-      real(c_double), target :: bsr_val_B(*)
-      integer(c_int), target :: bsr_row_ptr_B(*)
-      integer(c_int), target :: bsr_col_ind_B(*)
-      real(c_double), target :: beta(*)
+      real(c_double), target :: bsr_val_B(..)
+      integer(c_int), target :: bsr_row_ptr_B(..)
+      integer(c_int), target :: bsr_col_ind_B(..)
+      real(c_double), target :: beta(..)
       type(c_ptr), value :: descr_D
       integer(c_int), value :: nnzb_D
-      real(c_double), target :: bsr_val_D(*)
-      integer(c_int), target :: bsr_row_ptr_D(*)
-      integer(c_int), target :: bsr_col_ind_D(*)
+      real(c_double), target :: bsr_val_D(..)
+      integer(c_int), target :: bsr_row_ptr_D(..)
+      integer(c_int), target :: bsr_col_ind_D(..)
       type(c_ptr), value :: descr_C
-      real(c_double), target :: bsr_val_C(*)
-      integer(c_int), target :: bsr_row_ptr_C(*)
-      integer(c_int), target :: bsr_col_ind_C(*)
+      real(c_double), target :: bsr_val_C(..)
+      integer(c_int), target :: bsr_row_ptr_C(..)
+      integer(c_int), target :: bsr_col_ind_C(..)
       type(c_ptr), value :: info_C
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: dbsrgemm
       dbsrgemm = rocsparse_dbsrgemm_raw(handle, dir, trans_A, trans_B, mb, nb, kb, block_dim, &
-        c_loc(alpha(1)), descr_A, nnzb_A, c_loc(bsr_val_A(1)), c_loc(bsr_row_ptr_A(1)), c_loc( &
-        bsr_col_ind_A(1)), descr_B, nnzb_B, c_loc(bsr_val_B(1)), c_loc(bsr_row_ptr_B(1)), c_loc( &
-        bsr_col_ind_B(1)), c_loc(beta(1)), descr_D, nnzb_D, c_loc(bsr_val_D(1)), c_loc( &
-        bsr_row_ptr_D(1)), c_loc(bsr_col_ind_D(1)), descr_C, c_loc(bsr_val_C(1)), c_loc( &
-        bsr_row_ptr_C(1)), c_loc(bsr_col_ind_C(1)), info_C, temp_buffer)
+        c_loc(alpha), descr_A, nnzb_A, c_loc(bsr_val_A), c_loc(bsr_row_ptr_A), c_loc( &
+        bsr_col_ind_A), descr_B, nnzb_B, c_loc(bsr_val_B), c_loc(bsr_row_ptr_B), c_loc( &
+        bsr_col_ind_B), c_loc(beta), descr_D, nnzb_D, c_loc(bsr_val_D), c_loc(bsr_row_ptr_D), &
+        c_loc(bsr_col_ind_D), descr_C, c_loc(bsr_val_C), c_loc(bsr_row_ptr_C), c_loc( &
+        bsr_col_ind_C), info_C, temp_buffer)
     end function rocsparse_dbsrgemm_native
 
     function rocsparse_dbsrgemm_typed(handle, dir, trans_A, trans_B, mb, nb, kb, block_dim, alpha, &
@@ -45503,36 +45501,36 @@ contains
       integer(c_int), value :: nb
       integer(c_int), value :: kb
       integer(c_int), value :: block_dim
-      complex(c_float_complex), target :: alpha(*)
+      complex(c_float_complex), target :: alpha(..)
       type(c_ptr), value :: descr_A
       integer(c_int), value :: nnzb_A
-      complex(c_float_complex), target :: bsr_val_A(*)
-      integer(c_int), target :: bsr_row_ptr_A(*)
-      integer(c_int), target :: bsr_col_ind_A(*)
+      complex(c_float_complex), target :: bsr_val_A(..)
+      integer(c_int), target :: bsr_row_ptr_A(..)
+      integer(c_int), target :: bsr_col_ind_A(..)
       type(c_ptr), value :: descr_B
       integer(c_int), value :: nnzb_B
-      complex(c_float_complex), target :: bsr_val_B(*)
-      integer(c_int), target :: bsr_row_ptr_B(*)
-      integer(c_int), target :: bsr_col_ind_B(*)
-      complex(c_float_complex), target :: beta(*)
+      complex(c_float_complex), target :: bsr_val_B(..)
+      integer(c_int), target :: bsr_row_ptr_B(..)
+      integer(c_int), target :: bsr_col_ind_B(..)
+      complex(c_float_complex), target :: beta(..)
       type(c_ptr), value :: descr_D
       integer(c_int), value :: nnzb_D
-      complex(c_float_complex), target :: bsr_val_D(*)
-      integer(c_int), target :: bsr_row_ptr_D(*)
-      integer(c_int), target :: bsr_col_ind_D(*)
+      complex(c_float_complex), target :: bsr_val_D(..)
+      integer(c_int), target :: bsr_row_ptr_D(..)
+      integer(c_int), target :: bsr_col_ind_D(..)
       type(c_ptr), value :: descr_C
-      complex(c_float_complex), target :: bsr_val_C(*)
-      integer(c_int), target :: bsr_row_ptr_C(*)
-      integer(c_int), target :: bsr_col_ind_C(*)
+      complex(c_float_complex), target :: bsr_val_C(..)
+      integer(c_int), target :: bsr_row_ptr_C(..)
+      integer(c_int), target :: bsr_col_ind_C(..)
       type(c_ptr), value :: info_C
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: cbsrgemm
       cbsrgemm = rocsparse_cbsrgemm_raw(handle, dir, trans_A, trans_B, mb, nb, kb, block_dim, &
-        c_loc(alpha(1)), descr_A, nnzb_A, c_loc(bsr_val_A(1)), c_loc(bsr_row_ptr_A(1)), c_loc( &
-        bsr_col_ind_A(1)), descr_B, nnzb_B, c_loc(bsr_val_B(1)), c_loc(bsr_row_ptr_B(1)), c_loc( &
-        bsr_col_ind_B(1)), c_loc(beta(1)), descr_D, nnzb_D, c_loc(bsr_val_D(1)), c_loc( &
-        bsr_row_ptr_D(1)), c_loc(bsr_col_ind_D(1)), descr_C, c_loc(bsr_val_C(1)), c_loc( &
-        bsr_row_ptr_C(1)), c_loc(bsr_col_ind_C(1)), info_C, temp_buffer)
+        c_loc(alpha), descr_A, nnzb_A, c_loc(bsr_val_A), c_loc(bsr_row_ptr_A), c_loc( &
+        bsr_col_ind_A), descr_B, nnzb_B, c_loc(bsr_val_B), c_loc(bsr_row_ptr_B), c_loc( &
+        bsr_col_ind_B), c_loc(beta), descr_D, nnzb_D, c_loc(bsr_val_D), c_loc(bsr_row_ptr_D), &
+        c_loc(bsr_col_ind_D), descr_C, c_loc(bsr_val_C), c_loc(bsr_row_ptr_C), c_loc( &
+        bsr_col_ind_C), info_C, temp_buffer)
     end function rocsparse_cbsrgemm_native
 
     function rocsparse_cbsrgemm_typed(handle, dir, trans_A, trans_B, mb, nb, kb, block_dim, alpha, &
@@ -45597,36 +45595,36 @@ contains
       integer(c_int), value :: nb
       integer(c_int), value :: kb
       integer(c_int), value :: block_dim
-      complex(c_double_complex), target :: alpha(*)
+      complex(c_double_complex), target :: alpha(..)
       type(c_ptr), value :: descr_A
       integer(c_int), value :: nnzb_A
-      complex(c_double_complex), target :: bsr_val_A(*)
-      integer(c_int), target :: bsr_row_ptr_A(*)
-      integer(c_int), target :: bsr_col_ind_A(*)
+      complex(c_double_complex), target :: bsr_val_A(..)
+      integer(c_int), target :: bsr_row_ptr_A(..)
+      integer(c_int), target :: bsr_col_ind_A(..)
       type(c_ptr), value :: descr_B
       integer(c_int), value :: nnzb_B
-      complex(c_double_complex), target :: bsr_val_B(*)
-      integer(c_int), target :: bsr_row_ptr_B(*)
-      integer(c_int), target :: bsr_col_ind_B(*)
-      complex(c_double_complex), target :: beta(*)
+      complex(c_double_complex), target :: bsr_val_B(..)
+      integer(c_int), target :: bsr_row_ptr_B(..)
+      integer(c_int), target :: bsr_col_ind_B(..)
+      complex(c_double_complex), target :: beta(..)
       type(c_ptr), value :: descr_D
       integer(c_int), value :: nnzb_D
-      complex(c_double_complex), target :: bsr_val_D(*)
-      integer(c_int), target :: bsr_row_ptr_D(*)
-      integer(c_int), target :: bsr_col_ind_D(*)
+      complex(c_double_complex), target :: bsr_val_D(..)
+      integer(c_int), target :: bsr_row_ptr_D(..)
+      integer(c_int), target :: bsr_col_ind_D(..)
       type(c_ptr), value :: descr_C
-      complex(c_double_complex), target :: bsr_val_C(*)
-      integer(c_int), target :: bsr_row_ptr_C(*)
-      integer(c_int), target :: bsr_col_ind_C(*)
+      complex(c_double_complex), target :: bsr_val_C(..)
+      integer(c_int), target :: bsr_row_ptr_C(..)
+      integer(c_int), target :: bsr_col_ind_C(..)
       type(c_ptr), value :: info_C
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: zbsrgemm
       zbsrgemm = rocsparse_zbsrgemm_raw(handle, dir, trans_A, trans_B, mb, nb, kb, block_dim, &
-        c_loc(alpha(1)), descr_A, nnzb_A, c_loc(bsr_val_A(1)), c_loc(bsr_row_ptr_A(1)), c_loc( &
-        bsr_col_ind_A(1)), descr_B, nnzb_B, c_loc(bsr_val_B(1)), c_loc(bsr_row_ptr_B(1)), c_loc( &
-        bsr_col_ind_B(1)), c_loc(beta(1)), descr_D, nnzb_D, c_loc(bsr_val_D(1)), c_loc( &
-        bsr_row_ptr_D(1)), c_loc(bsr_col_ind_D(1)), descr_C, c_loc(bsr_val_C(1)), c_loc( &
-        bsr_row_ptr_C(1)), c_loc(bsr_col_ind_C(1)), info_C, temp_buffer)
+        c_loc(alpha), descr_A, nnzb_A, c_loc(bsr_val_A), c_loc(bsr_row_ptr_A), c_loc( &
+        bsr_col_ind_A), descr_B, nnzb_B, c_loc(bsr_val_B), c_loc(bsr_row_ptr_B), c_loc( &
+        bsr_col_ind_B), c_loc(beta), descr_D, nnzb_D, c_loc(bsr_val_D), c_loc(bsr_row_ptr_D), &
+        c_loc(bsr_col_ind_D), descr_C, c_loc(bsr_val_C), c_loc(bsr_row_ptr_C), c_loc( &
+        bsr_col_ind_C), info_C, temp_buffer)
     end function rocsparse_zbsrgemm_native
 
     function rocsparse_zbsrgemm_typed(handle, dir, trans_A, trans_B, mb, nb, kb, block_dim, alpha, &
@@ -45686,19 +45684,19 @@ contains
       integer(c_int), value :: n
       type(c_ptr), value :: descr_A
       integer(c_int), value :: nnz_A
-      integer(c_int), target :: csr_row_ptr_A(*)
-      integer(c_int), target :: csr_col_ind_A(*)
+      integer(c_int), target :: csr_row_ptr_A(..)
+      integer(c_int), target :: csr_col_ind_A(..)
       type(c_ptr), value :: descr_B
       integer(c_int), value :: nnz_B
-      integer(c_int), target :: csr_row_ptr_B(*)
-      integer(c_int), target :: csr_col_ind_B(*)
+      integer(c_int), target :: csr_row_ptr_B(..)
+      integer(c_int), target :: csr_col_ind_B(..)
       type(c_ptr), value :: descr_C
-      integer(c_int), target :: csr_row_ptr_C(*)
-      integer(c_int), target :: nnz_C(*)
+      integer(c_int), target :: csr_row_ptr_C(..)
+      integer(c_int), target :: nnz_C(..)
       integer(c_int) :: csrgeam_nnz
-      csrgeam_nnz = rocsparse_csrgeam_nnz_raw(handle, m, n, descr_A, nnz_A, c_loc(csr_row_ptr_A( &
-        1)), c_loc(csr_col_ind_A(1)), descr_B, nnz_B, c_loc(csr_row_ptr_B(1)), c_loc( &
-        csr_col_ind_B(1)), descr_C, c_loc(csr_row_ptr_C(1)), c_loc(nnz_C(1)))
+      csrgeam_nnz = rocsparse_csrgeam_nnz_raw(handle, m, n, descr_A, nnz_A, c_loc(csr_row_ptr_A), &
+        c_loc(csr_col_ind_A), descr_B, nnz_B, c_loc(csr_row_ptr_B), c_loc(csr_col_ind_B), descr_C, &
+        c_loc(csr_row_ptr_C), c_loc(nnz_C))
     end function rocsparse_csrgeam_nnz_native
 
     function rocsparse_csrgeam_nnz_typed(handle, m, n, descr_A, nnz_A, csr_row_ptr_A, &
@@ -45738,24 +45736,24 @@ contains
       real(c_float) :: alpha
       type(c_ptr), value :: descr_A
       integer(c_int), value :: nnz_A
-      real(c_float), target :: csr_val_A(*)
-      integer(c_int), target :: csr_row_ptr_A(*)
-      integer(c_int), target :: csr_col_ind_A(*)
+      real(c_float), target :: csr_val_A(..)
+      integer(c_int), target :: csr_row_ptr_A(..)
+      integer(c_int), target :: csr_col_ind_A(..)
       real(c_float) :: beta
       type(c_ptr), value :: descr_B
       integer(c_int), value :: nnz_B
-      real(c_float), target :: csr_val_B(*)
-      integer(c_int), target :: csr_row_ptr_B(*)
-      integer(c_int), target :: csr_col_ind_B(*)
+      real(c_float), target :: csr_val_B(..)
+      integer(c_int), target :: csr_row_ptr_B(..)
+      integer(c_int), target :: csr_col_ind_B(..)
       type(c_ptr), value :: descr_C
-      real(c_float), target :: csr_val_C(*)
-      integer(c_int), target :: csr_row_ptr_C(*)
-      integer(c_int), target :: csr_col_ind_C(*)
+      real(c_float), target :: csr_val_C(..)
+      integer(c_int), target :: csr_row_ptr_C(..)
+      integer(c_int), target :: csr_col_ind_C(..)
       integer(c_int) :: scsrgeam
-      scsrgeam = rocsparse_scsrgeam_raw(handle, m, n, alpha, descr_A, nnz_A, c_loc(csr_val_A(1)), &
-        c_loc(csr_row_ptr_A(1)), c_loc(csr_col_ind_A(1)), beta, descr_B, nnz_B, c_loc(csr_val_B( &
-        1)), c_loc(csr_row_ptr_B(1)), c_loc(csr_col_ind_B(1)), descr_C, c_loc(csr_val_C(1)), &
-        c_loc(csr_row_ptr_C(1)), c_loc(csr_col_ind_C(1)))
+      scsrgeam = rocsparse_scsrgeam_raw(handle, m, n, alpha, descr_A, nnz_A, c_loc(csr_val_A), &
+        c_loc(csr_row_ptr_A), c_loc(csr_col_ind_A), beta, descr_B, nnz_B, c_loc(csr_val_B), c_loc( &
+        csr_row_ptr_B), c_loc(csr_col_ind_B), descr_C, c_loc(csr_val_C), c_loc(csr_row_ptr_C), &
+        c_loc(csr_col_ind_C))
     end function rocsparse_scsrgeam_native
 
     function rocsparse_scsrgeam_typed(handle, m, n, alpha, descr_A, nnz_A, csr_val_A, &
@@ -45800,24 +45798,24 @@ contains
       real(c_double) :: alpha
       type(c_ptr), value :: descr_A
       integer(c_int), value :: nnz_A
-      real(c_double), target :: csr_val_A(*)
-      integer(c_int), target :: csr_row_ptr_A(*)
-      integer(c_int), target :: csr_col_ind_A(*)
+      real(c_double), target :: csr_val_A(..)
+      integer(c_int), target :: csr_row_ptr_A(..)
+      integer(c_int), target :: csr_col_ind_A(..)
       real(c_double) :: beta
       type(c_ptr), value :: descr_B
       integer(c_int), value :: nnz_B
-      real(c_double), target :: csr_val_B(*)
-      integer(c_int), target :: csr_row_ptr_B(*)
-      integer(c_int), target :: csr_col_ind_B(*)
+      real(c_double), target :: csr_val_B(..)
+      integer(c_int), target :: csr_row_ptr_B(..)
+      integer(c_int), target :: csr_col_ind_B(..)
       type(c_ptr), value :: descr_C
-      real(c_double), target :: csr_val_C(*)
-      integer(c_int), target :: csr_row_ptr_C(*)
-      integer(c_int), target :: csr_col_ind_C(*)
+      real(c_double), target :: csr_val_C(..)
+      integer(c_int), target :: csr_row_ptr_C(..)
+      integer(c_int), target :: csr_col_ind_C(..)
       integer(c_int) :: dcsrgeam
-      dcsrgeam = rocsparse_dcsrgeam_raw(handle, m, n, alpha, descr_A, nnz_A, c_loc(csr_val_A(1)), &
-        c_loc(csr_row_ptr_A(1)), c_loc(csr_col_ind_A(1)), beta, descr_B, nnz_B, c_loc(csr_val_B( &
-        1)), c_loc(csr_row_ptr_B(1)), c_loc(csr_col_ind_B(1)), descr_C, c_loc(csr_val_C(1)), &
-        c_loc(csr_row_ptr_C(1)), c_loc(csr_col_ind_C(1)))
+      dcsrgeam = rocsparse_dcsrgeam_raw(handle, m, n, alpha, descr_A, nnz_A, c_loc(csr_val_A), &
+        c_loc(csr_row_ptr_A), c_loc(csr_col_ind_A), beta, descr_B, nnz_B, c_loc(csr_val_B), c_loc( &
+        csr_row_ptr_B), c_loc(csr_col_ind_B), descr_C, c_loc(csr_val_C), c_loc(csr_row_ptr_C), &
+        c_loc(csr_col_ind_C))
     end function rocsparse_dcsrgeam_native
 
     function rocsparse_dcsrgeam_typed(handle, m, n, alpha, descr_A, nnz_A, csr_val_A, &
@@ -45862,24 +45860,24 @@ contains
       complex(c_float_complex) :: alpha
       type(c_ptr), value :: descr_A
       integer(c_int), value :: nnz_A
-      complex(c_float_complex), target :: csr_val_A(*)
-      integer(c_int), target :: csr_row_ptr_A(*)
-      integer(c_int), target :: csr_col_ind_A(*)
+      complex(c_float_complex), target :: csr_val_A(..)
+      integer(c_int), target :: csr_row_ptr_A(..)
+      integer(c_int), target :: csr_col_ind_A(..)
       complex(c_float_complex) :: beta
       type(c_ptr), value :: descr_B
       integer(c_int), value :: nnz_B
-      complex(c_float_complex), target :: csr_val_B(*)
-      integer(c_int), target :: csr_row_ptr_B(*)
-      integer(c_int), target :: csr_col_ind_B(*)
+      complex(c_float_complex), target :: csr_val_B(..)
+      integer(c_int), target :: csr_row_ptr_B(..)
+      integer(c_int), target :: csr_col_ind_B(..)
       type(c_ptr), value :: descr_C
-      complex(c_float_complex), target :: csr_val_C(*)
-      integer(c_int), target :: csr_row_ptr_C(*)
-      integer(c_int), target :: csr_col_ind_C(*)
+      complex(c_float_complex), target :: csr_val_C(..)
+      integer(c_int), target :: csr_row_ptr_C(..)
+      integer(c_int), target :: csr_col_ind_C(..)
       integer(c_int) :: ccsrgeam
-      ccsrgeam = rocsparse_ccsrgeam_raw(handle, m, n, alpha, descr_A, nnz_A, c_loc(csr_val_A(1)), &
-        c_loc(csr_row_ptr_A(1)), c_loc(csr_col_ind_A(1)), beta, descr_B, nnz_B, c_loc(csr_val_B( &
-        1)), c_loc(csr_row_ptr_B(1)), c_loc(csr_col_ind_B(1)), descr_C, c_loc(csr_val_C(1)), &
-        c_loc(csr_row_ptr_C(1)), c_loc(csr_col_ind_C(1)))
+      ccsrgeam = rocsparse_ccsrgeam_raw(handle, m, n, alpha, descr_A, nnz_A, c_loc(csr_val_A), &
+        c_loc(csr_row_ptr_A), c_loc(csr_col_ind_A), beta, descr_B, nnz_B, c_loc(csr_val_B), c_loc( &
+        csr_row_ptr_B), c_loc(csr_col_ind_B), descr_C, c_loc(csr_val_C), c_loc(csr_row_ptr_C), &
+        c_loc(csr_col_ind_C))
     end function rocsparse_ccsrgeam_native
 
     function rocsparse_ccsrgeam_typed(handle, m, n, alpha, descr_A, nnz_A, csr_val_A, &
@@ -45924,24 +45922,24 @@ contains
       complex(c_double_complex) :: alpha
       type(c_ptr), value :: descr_A
       integer(c_int), value :: nnz_A
-      complex(c_double_complex), target :: csr_val_A(*)
-      integer(c_int), target :: csr_row_ptr_A(*)
-      integer(c_int), target :: csr_col_ind_A(*)
+      complex(c_double_complex), target :: csr_val_A(..)
+      integer(c_int), target :: csr_row_ptr_A(..)
+      integer(c_int), target :: csr_col_ind_A(..)
       complex(c_double_complex) :: beta
       type(c_ptr), value :: descr_B
       integer(c_int), value :: nnz_B
-      complex(c_double_complex), target :: csr_val_B(*)
-      integer(c_int), target :: csr_row_ptr_B(*)
-      integer(c_int), target :: csr_col_ind_B(*)
+      complex(c_double_complex), target :: csr_val_B(..)
+      integer(c_int), target :: csr_row_ptr_B(..)
+      integer(c_int), target :: csr_col_ind_B(..)
       type(c_ptr), value :: descr_C
-      complex(c_double_complex), target :: csr_val_C(*)
-      integer(c_int), target :: csr_row_ptr_C(*)
-      integer(c_int), target :: csr_col_ind_C(*)
+      complex(c_double_complex), target :: csr_val_C(..)
+      integer(c_int), target :: csr_row_ptr_C(..)
+      integer(c_int), target :: csr_col_ind_C(..)
       integer(c_int) :: zcsrgeam
-      zcsrgeam = rocsparse_zcsrgeam_raw(handle, m, n, alpha, descr_A, nnz_A, c_loc(csr_val_A(1)), &
-        c_loc(csr_row_ptr_A(1)), c_loc(csr_col_ind_A(1)), beta, descr_B, nnz_B, c_loc(csr_val_B( &
-        1)), c_loc(csr_row_ptr_B(1)), c_loc(csr_col_ind_B(1)), descr_C, c_loc(csr_val_C(1)), &
-        c_loc(csr_row_ptr_C(1)), c_loc(csr_col_ind_C(1)))
+      zcsrgeam = rocsparse_zcsrgeam_raw(handle, m, n, alpha, descr_A, nnz_A, c_loc(csr_val_A), &
+        c_loc(csr_row_ptr_A), c_loc(csr_col_ind_A), beta, descr_B, nnz_B, c_loc(csr_val_B), c_loc( &
+        csr_row_ptr_B), c_loc(csr_col_ind_B), descr_C, c_loc(csr_val_C), c_loc(csr_row_ptr_C), &
+        c_loc(csr_col_ind_C))
     end function rocsparse_zcsrgeam_native
 
     function rocsparse_zcsrgeam_typed(handle, m, n, alpha, descr_A, nnz_A, csr_val_A, &
@@ -45990,24 +45988,24 @@ contains
       real(c_float) :: alpha
       type(c_ptr), value :: descr_A
       integer(c_int), value :: nnz_A
-      integer(c_int), target :: csr_row_ptr_A(*)
-      integer(c_int), target :: csr_col_ind_A(*)
+      integer(c_int), target :: csr_row_ptr_A(..)
+      integer(c_int), target :: csr_col_ind_A(..)
       type(c_ptr), value :: descr_B
       integer(c_int), value :: nnz_B
-      integer(c_int), target :: csr_row_ptr_B(*)
-      integer(c_int), target :: csr_col_ind_B(*)
+      integer(c_int), target :: csr_row_ptr_B(..)
+      integer(c_int), target :: csr_col_ind_B(..)
       real(c_float) :: beta
       type(c_ptr), value :: descr_D
       integer(c_int), value :: nnz_D
-      integer(c_int), target :: csr_row_ptr_D(*)
-      integer(c_int), target :: csr_col_ind_D(*)
+      integer(c_int), target :: csr_row_ptr_D(..)
+      integer(c_int), target :: csr_col_ind_D(..)
       type(c_ptr), value :: info_C
       type(c_ptr), value :: buffer_size
       integer(c_int) :: scsrgemm_buffer_size
       scsrgemm_buffer_size = rocsparse_scsrgemm_buffer_size_raw(handle, trans_A, trans_B, m, n, k, &
-        alpha, descr_A, nnz_A, c_loc(csr_row_ptr_A(1)), c_loc(csr_col_ind_A(1)), descr_B, nnz_B, &
-        c_loc(csr_row_ptr_B(1)), c_loc(csr_col_ind_B(1)), beta, descr_D, nnz_D, c_loc( &
-        csr_row_ptr_D(1)), c_loc(csr_col_ind_D(1)), info_C, buffer_size)
+        alpha, descr_A, nnz_A, c_loc(csr_row_ptr_A), c_loc(csr_col_ind_A), descr_B, nnz_B, c_loc( &
+        csr_row_ptr_B), c_loc(csr_col_ind_B), beta, descr_D, nnz_D, c_loc(csr_row_ptr_D), c_loc( &
+        csr_col_ind_D), info_C, buffer_size)
     end function rocsparse_scsrgemm_buffer_size_native
 
     function rocsparse_scsrgemm_buffer_size_typed(handle, trans_A, trans_B, m, n, k, alpha, &
@@ -46061,24 +46059,24 @@ contains
       real(c_double) :: alpha
       type(c_ptr), value :: descr_A
       integer(c_int), value :: nnz_A
-      integer(c_int), target :: csr_row_ptr_A(*)
-      integer(c_int), target :: csr_col_ind_A(*)
+      integer(c_int), target :: csr_row_ptr_A(..)
+      integer(c_int), target :: csr_col_ind_A(..)
       type(c_ptr), value :: descr_B
       integer(c_int), value :: nnz_B
-      integer(c_int), target :: csr_row_ptr_B(*)
-      integer(c_int), target :: csr_col_ind_B(*)
+      integer(c_int), target :: csr_row_ptr_B(..)
+      integer(c_int), target :: csr_col_ind_B(..)
       real(c_double) :: beta
       type(c_ptr), value :: descr_D
       integer(c_int), value :: nnz_D
-      integer(c_int), target :: csr_row_ptr_D(*)
-      integer(c_int), target :: csr_col_ind_D(*)
+      integer(c_int), target :: csr_row_ptr_D(..)
+      integer(c_int), target :: csr_col_ind_D(..)
       type(c_ptr), value :: info_C
       type(c_ptr), value :: buffer_size
       integer(c_int) :: dcsrgemm_buffer_size
       dcsrgemm_buffer_size = rocsparse_dcsrgemm_buffer_size_raw(handle, trans_A, trans_B, m, n, k, &
-        alpha, descr_A, nnz_A, c_loc(csr_row_ptr_A(1)), c_loc(csr_col_ind_A(1)), descr_B, nnz_B, &
-        c_loc(csr_row_ptr_B(1)), c_loc(csr_col_ind_B(1)), beta, descr_D, nnz_D, c_loc( &
-        csr_row_ptr_D(1)), c_loc(csr_col_ind_D(1)), info_C, buffer_size)
+        alpha, descr_A, nnz_A, c_loc(csr_row_ptr_A), c_loc(csr_col_ind_A), descr_B, nnz_B, c_loc( &
+        csr_row_ptr_B), c_loc(csr_col_ind_B), beta, descr_D, nnz_D, c_loc(csr_row_ptr_D), c_loc( &
+        csr_col_ind_D), info_C, buffer_size)
     end function rocsparse_dcsrgemm_buffer_size_native
 
     function rocsparse_dcsrgemm_buffer_size_typed(handle, trans_A, trans_B, m, n, k, alpha, &
@@ -46132,24 +46130,24 @@ contains
       complex(c_float_complex) :: alpha
       type(c_ptr), value :: descr_A
       integer(c_int), value :: nnz_A
-      integer(c_int), target :: csr_row_ptr_A(*)
-      integer(c_int), target :: csr_col_ind_A(*)
+      integer(c_int), target :: csr_row_ptr_A(..)
+      integer(c_int), target :: csr_col_ind_A(..)
       type(c_ptr), value :: descr_B
       integer(c_int), value :: nnz_B
-      integer(c_int), target :: csr_row_ptr_B(*)
-      integer(c_int), target :: csr_col_ind_B(*)
+      integer(c_int), target :: csr_row_ptr_B(..)
+      integer(c_int), target :: csr_col_ind_B(..)
       complex(c_float_complex) :: beta
       type(c_ptr), value :: descr_D
       integer(c_int), value :: nnz_D
-      integer(c_int), target :: csr_row_ptr_D(*)
-      integer(c_int), target :: csr_col_ind_D(*)
+      integer(c_int), target :: csr_row_ptr_D(..)
+      integer(c_int), target :: csr_col_ind_D(..)
       type(c_ptr), value :: info_C
       type(c_ptr), value :: buffer_size
       integer(c_int) :: ccsrgemm_buffer_size
       ccsrgemm_buffer_size = rocsparse_ccsrgemm_buffer_size_raw(handle, trans_A, trans_B, m, n, k, &
-        alpha, descr_A, nnz_A, c_loc(csr_row_ptr_A(1)), c_loc(csr_col_ind_A(1)), descr_B, nnz_B, &
-        c_loc(csr_row_ptr_B(1)), c_loc(csr_col_ind_B(1)), beta, descr_D, nnz_D, c_loc( &
-        csr_row_ptr_D(1)), c_loc(csr_col_ind_D(1)), info_C, buffer_size)
+        alpha, descr_A, nnz_A, c_loc(csr_row_ptr_A), c_loc(csr_col_ind_A), descr_B, nnz_B, c_loc( &
+        csr_row_ptr_B), c_loc(csr_col_ind_B), beta, descr_D, nnz_D, c_loc(csr_row_ptr_D), c_loc( &
+        csr_col_ind_D), info_C, buffer_size)
     end function rocsparse_ccsrgemm_buffer_size_native
 
     function rocsparse_ccsrgemm_buffer_size_typed(handle, trans_A, trans_B, m, n, k, alpha, &
@@ -46203,24 +46201,24 @@ contains
       complex(c_double_complex) :: alpha
       type(c_ptr), value :: descr_A
       integer(c_int), value :: nnz_A
-      integer(c_int), target :: csr_row_ptr_A(*)
-      integer(c_int), target :: csr_col_ind_A(*)
+      integer(c_int), target :: csr_row_ptr_A(..)
+      integer(c_int), target :: csr_col_ind_A(..)
       type(c_ptr), value :: descr_B
       integer(c_int), value :: nnz_B
-      integer(c_int), target :: csr_row_ptr_B(*)
-      integer(c_int), target :: csr_col_ind_B(*)
+      integer(c_int), target :: csr_row_ptr_B(..)
+      integer(c_int), target :: csr_col_ind_B(..)
       complex(c_double_complex) :: beta
       type(c_ptr), value :: descr_D
       integer(c_int), value :: nnz_D
-      integer(c_int), target :: csr_row_ptr_D(*)
-      integer(c_int), target :: csr_col_ind_D(*)
+      integer(c_int), target :: csr_row_ptr_D(..)
+      integer(c_int), target :: csr_col_ind_D(..)
       type(c_ptr), value :: info_C
       type(c_ptr), value :: buffer_size
       integer(c_int) :: zcsrgemm_buffer_size
       zcsrgemm_buffer_size = rocsparse_zcsrgemm_buffer_size_raw(handle, trans_A, trans_B, m, n, k, &
-        alpha, descr_A, nnz_A, c_loc(csr_row_ptr_A(1)), c_loc(csr_col_ind_A(1)), descr_B, nnz_B, &
-        c_loc(csr_row_ptr_B(1)), c_loc(csr_col_ind_B(1)), beta, descr_D, nnz_D, c_loc( &
-        csr_row_ptr_D(1)), c_loc(csr_col_ind_D(1)), info_C, buffer_size)
+        alpha, descr_A, nnz_A, c_loc(csr_row_ptr_A), c_loc(csr_col_ind_A), descr_B, nnz_B, c_loc( &
+        csr_row_ptr_B), c_loc(csr_col_ind_B), beta, descr_D, nnz_D, c_loc(csr_row_ptr_D), c_loc( &
+        csr_col_ind_D), info_C, buffer_size)
     end function rocsparse_zcsrgemm_buffer_size_native
 
     function rocsparse_zcsrgemm_buffer_size_typed(handle, trans_A, trans_B, m, n, k, alpha, &
@@ -46273,26 +46271,26 @@ contains
       integer(c_int), value :: k
       type(c_ptr), value :: descr_A
       integer(c_int), value :: nnz_A
-      integer(c_int), target :: csr_row_ptr_A(*)
-      integer(c_int), target :: csr_col_ind_A(*)
+      integer(c_int), target :: csr_row_ptr_A(..)
+      integer(c_int), target :: csr_col_ind_A(..)
       type(c_ptr), value :: descr_B
       integer(c_int), value :: nnz_B
-      integer(c_int), target :: csr_row_ptr_B(*)
-      integer(c_int), target :: csr_col_ind_B(*)
+      integer(c_int), target :: csr_row_ptr_B(..)
+      integer(c_int), target :: csr_col_ind_B(..)
       type(c_ptr), value :: descr_D
       integer(c_int), value :: nnz_D
-      integer(c_int), target :: csr_row_ptr_D(*)
-      integer(c_int), target :: csr_col_ind_D(*)
+      integer(c_int), target :: csr_row_ptr_D(..)
+      integer(c_int), target :: csr_col_ind_D(..)
       type(c_ptr), value :: descr_C
-      integer(c_int), target :: csr_row_ptr_C(*)
-      integer(c_int), target :: nnz_C(*)
+      integer(c_int), target :: csr_row_ptr_C(..)
+      integer(c_int), target :: nnz_C(..)
       type(c_ptr), value :: info_C
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: csrgemm_nnz
       csrgemm_nnz = rocsparse_csrgemm_nnz_raw(handle, trans_A, trans_B, m, n, k, descr_A, nnz_A, &
-        c_loc(csr_row_ptr_A(1)), c_loc(csr_col_ind_A(1)), descr_B, nnz_B, c_loc(csr_row_ptr_B(1)), &
-        c_loc(csr_col_ind_B(1)), descr_D, nnz_D, c_loc(csr_row_ptr_D(1)), c_loc(csr_col_ind_D(1)), &
-        descr_C, c_loc(csr_row_ptr_C(1)), c_loc(nnz_C(1)), info_C, temp_buffer)
+        c_loc(csr_row_ptr_A), c_loc(csr_col_ind_A), descr_B, nnz_B, c_loc(csr_row_ptr_B), c_loc( &
+        csr_col_ind_B), descr_D, nnz_D, c_loc(csr_row_ptr_D), c_loc(csr_col_ind_D), descr_C, &
+        c_loc(csr_row_ptr_C), c_loc(nnz_C), info_C, temp_buffer)
     end function rocsparse_csrgemm_nnz_native
 
     function rocsparse_csrgemm_nnz_typed(handle, trans_A, trans_B, m, n, k, descr_A, nnz_A, &
@@ -46347,32 +46345,32 @@ contains
       real(c_float) :: alpha
       type(c_ptr), value :: descr_A
       integer(c_int), value :: nnz_A
-      real(c_float), target :: csr_val_A(*)
-      integer(c_int), target :: csr_row_ptr_A(*)
-      integer(c_int), target :: csr_col_ind_A(*)
+      real(c_float), target :: csr_val_A(..)
+      integer(c_int), target :: csr_row_ptr_A(..)
+      integer(c_int), target :: csr_col_ind_A(..)
       type(c_ptr), value :: descr_B
       integer(c_int), value :: nnz_B
-      real(c_float), target :: csr_val_B(*)
-      integer(c_int), target :: csr_row_ptr_B(*)
-      integer(c_int), target :: csr_col_ind_B(*)
+      real(c_float), target :: csr_val_B(..)
+      integer(c_int), target :: csr_row_ptr_B(..)
+      integer(c_int), target :: csr_col_ind_B(..)
       real(c_float) :: beta
       type(c_ptr), value :: descr_D
       integer(c_int), value :: nnz_D
-      real(c_float), target :: csr_val_D(*)
-      integer(c_int), target :: csr_row_ptr_D(*)
-      integer(c_int), target :: csr_col_ind_D(*)
+      real(c_float), target :: csr_val_D(..)
+      integer(c_int), target :: csr_row_ptr_D(..)
+      integer(c_int), target :: csr_col_ind_D(..)
       type(c_ptr), value :: descr_C
-      real(c_float), target :: csr_val_C(*)
-      integer(c_int), target :: csr_row_ptr_C(*)
-      integer(c_int), target :: csr_col_ind_C(*)
+      real(c_float), target :: csr_val_C(..)
+      integer(c_int), target :: csr_row_ptr_C(..)
+      integer(c_int), target :: csr_col_ind_C(..)
       type(c_ptr), value :: info_C
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: scsrgemm
       scsrgemm = rocsparse_scsrgemm_raw(handle, trans_A, trans_B, m, n, k, alpha, descr_A, nnz_A, &
-        c_loc(csr_val_A(1)), c_loc(csr_row_ptr_A(1)), c_loc(csr_col_ind_A(1)), descr_B, nnz_B, &
-        c_loc(csr_val_B(1)), c_loc(csr_row_ptr_B(1)), c_loc(csr_col_ind_B(1)), beta, descr_D, &
-        nnz_D, c_loc(csr_val_D(1)), c_loc(csr_row_ptr_D(1)), c_loc(csr_col_ind_D(1)), descr_C, &
-        c_loc(csr_val_C(1)), c_loc(csr_row_ptr_C(1)), c_loc(csr_col_ind_C(1)), info_C, temp_buffer)
+        c_loc(csr_val_A), c_loc(csr_row_ptr_A), c_loc(csr_col_ind_A), descr_B, nnz_B, c_loc( &
+        csr_val_B), c_loc(csr_row_ptr_B), c_loc(csr_col_ind_B), beta, descr_D, nnz_D, c_loc( &
+        csr_val_D), c_loc(csr_row_ptr_D), c_loc(csr_col_ind_D), descr_C, c_loc(csr_val_C), c_loc( &
+        csr_row_ptr_C), c_loc(csr_col_ind_C), info_C, temp_buffer)
     end function rocsparse_scsrgemm_native
 
     function rocsparse_scsrgemm_typed(handle, trans_A, trans_B, m, n, k, alpha, descr_A, nnz_A, &
@@ -46434,32 +46432,32 @@ contains
       real(c_double) :: alpha
       type(c_ptr), value :: descr_A
       integer(c_int), value :: nnz_A
-      real(c_double), target :: csr_val_A(*)
-      integer(c_int), target :: csr_row_ptr_A(*)
-      integer(c_int), target :: csr_col_ind_A(*)
+      real(c_double), target :: csr_val_A(..)
+      integer(c_int), target :: csr_row_ptr_A(..)
+      integer(c_int), target :: csr_col_ind_A(..)
       type(c_ptr), value :: descr_B
       integer(c_int), value :: nnz_B
-      real(c_double), target :: csr_val_B(*)
-      integer(c_int), target :: csr_row_ptr_B(*)
-      integer(c_int), target :: csr_col_ind_B(*)
+      real(c_double), target :: csr_val_B(..)
+      integer(c_int), target :: csr_row_ptr_B(..)
+      integer(c_int), target :: csr_col_ind_B(..)
       real(c_double) :: beta
       type(c_ptr), value :: descr_D
       integer(c_int), value :: nnz_D
-      real(c_double), target :: csr_val_D(*)
-      integer(c_int), target :: csr_row_ptr_D(*)
-      integer(c_int), target :: csr_col_ind_D(*)
+      real(c_double), target :: csr_val_D(..)
+      integer(c_int), target :: csr_row_ptr_D(..)
+      integer(c_int), target :: csr_col_ind_D(..)
       type(c_ptr), value :: descr_C
-      real(c_double), target :: csr_val_C(*)
-      integer(c_int), target :: csr_row_ptr_C(*)
-      integer(c_int), target :: csr_col_ind_C(*)
+      real(c_double), target :: csr_val_C(..)
+      integer(c_int), target :: csr_row_ptr_C(..)
+      integer(c_int), target :: csr_col_ind_C(..)
       type(c_ptr), value :: info_C
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: dcsrgemm
       dcsrgemm = rocsparse_dcsrgemm_raw(handle, trans_A, trans_B, m, n, k, alpha, descr_A, nnz_A, &
-        c_loc(csr_val_A(1)), c_loc(csr_row_ptr_A(1)), c_loc(csr_col_ind_A(1)), descr_B, nnz_B, &
-        c_loc(csr_val_B(1)), c_loc(csr_row_ptr_B(1)), c_loc(csr_col_ind_B(1)), beta, descr_D, &
-        nnz_D, c_loc(csr_val_D(1)), c_loc(csr_row_ptr_D(1)), c_loc(csr_col_ind_D(1)), descr_C, &
-        c_loc(csr_val_C(1)), c_loc(csr_row_ptr_C(1)), c_loc(csr_col_ind_C(1)), info_C, temp_buffer)
+        c_loc(csr_val_A), c_loc(csr_row_ptr_A), c_loc(csr_col_ind_A), descr_B, nnz_B, c_loc( &
+        csr_val_B), c_loc(csr_row_ptr_B), c_loc(csr_col_ind_B), beta, descr_D, nnz_D, c_loc( &
+        csr_val_D), c_loc(csr_row_ptr_D), c_loc(csr_col_ind_D), descr_C, c_loc(csr_val_C), c_loc( &
+        csr_row_ptr_C), c_loc(csr_col_ind_C), info_C, temp_buffer)
     end function rocsparse_dcsrgemm_native
 
     function rocsparse_dcsrgemm_typed(handle, trans_A, trans_B, m, n, k, alpha, descr_A, nnz_A, &
@@ -46521,32 +46519,32 @@ contains
       complex(c_float_complex) :: alpha
       type(c_ptr), value :: descr_A
       integer(c_int), value :: nnz_A
-      complex(c_float_complex), target :: csr_val_A(*)
-      integer(c_int), target :: csr_row_ptr_A(*)
-      integer(c_int), target :: csr_col_ind_A(*)
+      complex(c_float_complex), target :: csr_val_A(..)
+      integer(c_int), target :: csr_row_ptr_A(..)
+      integer(c_int), target :: csr_col_ind_A(..)
       type(c_ptr), value :: descr_B
       integer(c_int), value :: nnz_B
-      complex(c_float_complex), target :: csr_val_B(*)
-      integer(c_int), target :: csr_row_ptr_B(*)
-      integer(c_int), target :: csr_col_ind_B(*)
+      complex(c_float_complex), target :: csr_val_B(..)
+      integer(c_int), target :: csr_row_ptr_B(..)
+      integer(c_int), target :: csr_col_ind_B(..)
       complex(c_float_complex) :: beta
       type(c_ptr), value :: descr_D
       integer(c_int), value :: nnz_D
-      complex(c_float_complex), target :: csr_val_D(*)
-      integer(c_int), target :: csr_row_ptr_D(*)
-      integer(c_int), target :: csr_col_ind_D(*)
+      complex(c_float_complex), target :: csr_val_D(..)
+      integer(c_int), target :: csr_row_ptr_D(..)
+      integer(c_int), target :: csr_col_ind_D(..)
       type(c_ptr), value :: descr_C
-      complex(c_float_complex), target :: csr_val_C(*)
-      integer(c_int), target :: csr_row_ptr_C(*)
-      integer(c_int), target :: csr_col_ind_C(*)
+      complex(c_float_complex), target :: csr_val_C(..)
+      integer(c_int), target :: csr_row_ptr_C(..)
+      integer(c_int), target :: csr_col_ind_C(..)
       type(c_ptr), value :: info_C
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: ccsrgemm
       ccsrgemm = rocsparse_ccsrgemm_raw(handle, trans_A, trans_B, m, n, k, alpha, descr_A, nnz_A, &
-        c_loc(csr_val_A(1)), c_loc(csr_row_ptr_A(1)), c_loc(csr_col_ind_A(1)), descr_B, nnz_B, &
-        c_loc(csr_val_B(1)), c_loc(csr_row_ptr_B(1)), c_loc(csr_col_ind_B(1)), beta, descr_D, &
-        nnz_D, c_loc(csr_val_D(1)), c_loc(csr_row_ptr_D(1)), c_loc(csr_col_ind_D(1)), descr_C, &
-        c_loc(csr_val_C(1)), c_loc(csr_row_ptr_C(1)), c_loc(csr_col_ind_C(1)), info_C, temp_buffer)
+        c_loc(csr_val_A), c_loc(csr_row_ptr_A), c_loc(csr_col_ind_A), descr_B, nnz_B, c_loc( &
+        csr_val_B), c_loc(csr_row_ptr_B), c_loc(csr_col_ind_B), beta, descr_D, nnz_D, c_loc( &
+        csr_val_D), c_loc(csr_row_ptr_D), c_loc(csr_col_ind_D), descr_C, c_loc(csr_val_C), c_loc( &
+        csr_row_ptr_C), c_loc(csr_col_ind_C), info_C, temp_buffer)
     end function rocsparse_ccsrgemm_native
 
     function rocsparse_ccsrgemm_typed(handle, trans_A, trans_B, m, n, k, alpha, descr_A, nnz_A, &
@@ -46608,32 +46606,32 @@ contains
       complex(c_double_complex) :: alpha
       type(c_ptr), value :: descr_A
       integer(c_int), value :: nnz_A
-      complex(c_double_complex), target :: csr_val_A(*)
-      integer(c_int), target :: csr_row_ptr_A(*)
-      integer(c_int), target :: csr_col_ind_A(*)
+      complex(c_double_complex), target :: csr_val_A(..)
+      integer(c_int), target :: csr_row_ptr_A(..)
+      integer(c_int), target :: csr_col_ind_A(..)
       type(c_ptr), value :: descr_B
       integer(c_int), value :: nnz_B
-      complex(c_double_complex), target :: csr_val_B(*)
-      integer(c_int), target :: csr_row_ptr_B(*)
-      integer(c_int), target :: csr_col_ind_B(*)
+      complex(c_double_complex), target :: csr_val_B(..)
+      integer(c_int), target :: csr_row_ptr_B(..)
+      integer(c_int), target :: csr_col_ind_B(..)
       complex(c_double_complex) :: beta
       type(c_ptr), value :: descr_D
       integer(c_int), value :: nnz_D
-      complex(c_double_complex), target :: csr_val_D(*)
-      integer(c_int), target :: csr_row_ptr_D(*)
-      integer(c_int), target :: csr_col_ind_D(*)
+      complex(c_double_complex), target :: csr_val_D(..)
+      integer(c_int), target :: csr_row_ptr_D(..)
+      integer(c_int), target :: csr_col_ind_D(..)
       type(c_ptr), value :: descr_C
-      complex(c_double_complex), target :: csr_val_C(*)
-      integer(c_int), target :: csr_row_ptr_C(*)
-      integer(c_int), target :: csr_col_ind_C(*)
+      complex(c_double_complex), target :: csr_val_C(..)
+      integer(c_int), target :: csr_row_ptr_C(..)
+      integer(c_int), target :: csr_col_ind_C(..)
       type(c_ptr), value :: info_C
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: zcsrgemm
       zcsrgemm = rocsparse_zcsrgemm_raw(handle, trans_A, trans_B, m, n, k, alpha, descr_A, nnz_A, &
-        c_loc(csr_val_A(1)), c_loc(csr_row_ptr_A(1)), c_loc(csr_col_ind_A(1)), descr_B, nnz_B, &
-        c_loc(csr_val_B(1)), c_loc(csr_row_ptr_B(1)), c_loc(csr_col_ind_B(1)), beta, descr_D, &
-        nnz_D, c_loc(csr_val_D(1)), c_loc(csr_row_ptr_D(1)), c_loc(csr_col_ind_D(1)), descr_C, &
-        c_loc(csr_val_C(1)), c_loc(csr_row_ptr_C(1)), c_loc(csr_col_ind_C(1)), info_C, temp_buffer)
+        c_loc(csr_val_A), c_loc(csr_row_ptr_A), c_loc(csr_col_ind_A), descr_B, nnz_B, c_loc( &
+        csr_val_B), c_loc(csr_row_ptr_B), c_loc(csr_col_ind_B), beta, descr_D, nnz_D, c_loc( &
+        csr_val_D), c_loc(csr_row_ptr_D), c_loc(csr_col_ind_D), descr_C, c_loc(csr_val_C), c_loc( &
+        csr_row_ptr_C), c_loc(csr_col_ind_C), info_C, temp_buffer)
     end function rocsparse_zcsrgemm_native
 
     function rocsparse_zcsrgemm_typed(handle, trans_A, trans_B, m, n, k, alpha, descr_A, nnz_A, &
@@ -46694,28 +46692,28 @@ contains
       integer(c_int), value :: k
       type(c_ptr), value :: descr_A
       integer(c_int), value :: nnz_A
-      integer(c_int), target :: csr_row_ptr_A(*)
-      integer(c_int), target :: csr_col_ind_A(*)
+      integer(c_int), target :: csr_row_ptr_A(..)
+      integer(c_int), target :: csr_col_ind_A(..)
       type(c_ptr), value :: descr_B
       integer(c_int), value :: nnz_B
-      integer(c_int), target :: csr_row_ptr_B(*)
-      integer(c_int), target :: csr_col_ind_B(*)
+      integer(c_int), target :: csr_row_ptr_B(..)
+      integer(c_int), target :: csr_col_ind_B(..)
       type(c_ptr), value :: descr_D
       integer(c_int), value :: nnz_D
-      integer(c_int), target :: csr_row_ptr_D(*)
-      integer(c_int), target :: csr_col_ind_D(*)
+      integer(c_int), target :: csr_row_ptr_D(..)
+      integer(c_int), target :: csr_col_ind_D(..)
       type(c_ptr), value :: descr_C
       integer(c_int), value :: nnz_C
-      integer(c_int), target :: csr_row_ptr_C(*)
-      integer(c_int), target :: csr_col_ind_C(*)
+      integer(c_int), target :: csr_row_ptr_C(..)
+      integer(c_int), target :: csr_col_ind_C(..)
       type(c_ptr), value :: info_C
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: csrgemm_symbolic
       csrgemm_symbolic = rocsparse_csrgemm_symbolic_raw(handle, trans_A, trans_B, m, n, k, &
-        descr_A, nnz_A, c_loc(csr_row_ptr_A(1)), c_loc(csr_col_ind_A(1)), descr_B, nnz_B, c_loc( &
-        csr_row_ptr_B(1)), c_loc(csr_col_ind_B(1)), descr_D, nnz_D, c_loc(csr_row_ptr_D(1)), &
-        c_loc(csr_col_ind_D(1)), descr_C, nnz_C, c_loc(csr_row_ptr_C(1)), c_loc(csr_col_ind_C(1)), &
-        info_C, temp_buffer)
+        descr_A, nnz_A, c_loc(csr_row_ptr_A), c_loc(csr_col_ind_A), descr_B, nnz_B, c_loc( &
+        csr_row_ptr_B), c_loc(csr_col_ind_B), descr_D, nnz_D, c_loc(csr_row_ptr_D), c_loc( &
+        csr_col_ind_D), descr_C, nnz_C, c_loc(csr_row_ptr_C), c_loc(csr_col_ind_C), info_C, &
+        temp_buffer)
     end function rocsparse_csrgemm_symbolic_native
 
     function rocsparse_csrgemm_symbolic_typed(handle, trans_A, trans_B, m, n, k, descr_A, nnz_A, &
@@ -46769,37 +46767,36 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       integer(c_int), value :: k
-      real(c_float), target :: alpha(*)
+      real(c_float), target :: alpha(..)
       type(c_ptr), value :: descr_A
       integer(c_int), value :: nnz_A
-      real(c_float), target :: csr_val_A(*)
-      integer(c_int), target :: csr_row_ptr_A(*)
-      integer(c_int), target :: csr_col_ind_A(*)
+      real(c_float), target :: csr_val_A(..)
+      integer(c_int), target :: csr_row_ptr_A(..)
+      integer(c_int), target :: csr_col_ind_A(..)
       type(c_ptr), value :: descr_B
       integer(c_int), value :: nnz_B
-      real(c_float), target :: csr_val_B(*)
-      integer(c_int), target :: csr_row_ptr_B(*)
-      integer(c_int), target :: csr_col_ind_B(*)
-      real(c_float), target :: beta(*)
+      real(c_float), target :: csr_val_B(..)
+      integer(c_int), target :: csr_row_ptr_B(..)
+      integer(c_int), target :: csr_col_ind_B(..)
+      real(c_float), target :: beta(..)
       type(c_ptr), value :: descr_D
       integer(c_int), value :: nnz_D
-      real(c_float), target :: csr_val_D(*)
-      integer(c_int), target :: csr_row_ptr_D(*)
-      integer(c_int), target :: csr_col_ind_D(*)
+      real(c_float), target :: csr_val_D(..)
+      integer(c_int), target :: csr_row_ptr_D(..)
+      integer(c_int), target :: csr_col_ind_D(..)
       type(c_ptr), value :: descr_C
       integer(c_int), value :: nnz_C
-      real(c_float), target :: csr_val_C(*)
-      integer(c_int), target :: csr_row_ptr_C(*)
-      integer(c_int), target :: csr_col_ind_C(*)
+      real(c_float), target :: csr_val_C(..)
+      integer(c_int), target :: csr_row_ptr_C(..)
+      integer(c_int), target :: csr_col_ind_C(..)
       type(c_ptr), value :: info_C
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: scsrgemm_numeric
       scsrgemm_numeric = rocsparse_scsrgemm_numeric_raw(handle, trans_A, trans_B, m, n, k, c_loc( &
-        alpha(1)), descr_A, nnz_A, c_loc(csr_val_A(1)), c_loc(csr_row_ptr_A(1)), c_loc( &
-        csr_col_ind_A(1)), descr_B, nnz_B, c_loc(csr_val_B(1)), c_loc(csr_row_ptr_B(1)), c_loc( &
-        csr_col_ind_B(1)), c_loc(beta(1)), descr_D, nnz_D, c_loc(csr_val_D(1)), c_loc( &
-        csr_row_ptr_D(1)), c_loc(csr_col_ind_D(1)), descr_C, nnz_C, c_loc(csr_val_C(1)), c_loc( &
-        csr_row_ptr_C(1)), c_loc(csr_col_ind_C(1)), info_C, temp_buffer)
+        alpha), descr_A, nnz_A, c_loc(csr_val_A), c_loc(csr_row_ptr_A), c_loc(csr_col_ind_A), &
+        descr_B, nnz_B, c_loc(csr_val_B), c_loc(csr_row_ptr_B), c_loc(csr_col_ind_B), c_loc(beta), &
+        descr_D, nnz_D, c_loc(csr_val_D), c_loc(csr_row_ptr_D), c_loc(csr_col_ind_D), descr_C, &
+        nnz_C, c_loc(csr_val_C), c_loc(csr_row_ptr_C), c_loc(csr_col_ind_C), info_C, temp_buffer)
     end function rocsparse_scsrgemm_numeric_native
 
     function rocsparse_scsrgemm_numeric_typed(handle, trans_A, trans_B, m, n, k, alpha, descr_A, &
@@ -46861,37 +46858,36 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       integer(c_int), value :: k
-      real(c_double), target :: alpha(*)
+      real(c_double), target :: alpha(..)
       type(c_ptr), value :: descr_A
       integer(c_int), value :: nnz_A
-      real(c_double), target :: csr_val_A(*)
-      integer(c_int), target :: csr_row_ptr_A(*)
-      integer(c_int), target :: csr_col_ind_A(*)
+      real(c_double), target :: csr_val_A(..)
+      integer(c_int), target :: csr_row_ptr_A(..)
+      integer(c_int), target :: csr_col_ind_A(..)
       type(c_ptr), value :: descr_B
       integer(c_int), value :: nnz_B
-      real(c_double), target :: csr_val_B(*)
-      integer(c_int), target :: csr_row_ptr_B(*)
-      integer(c_int), target :: csr_col_ind_B(*)
-      real(c_double), target :: beta(*)
+      real(c_double), target :: csr_val_B(..)
+      integer(c_int), target :: csr_row_ptr_B(..)
+      integer(c_int), target :: csr_col_ind_B(..)
+      real(c_double), target :: beta(..)
       type(c_ptr), value :: descr_D
       integer(c_int), value :: nnz_D
-      real(c_double), target :: csr_val_D(*)
-      integer(c_int), target :: csr_row_ptr_D(*)
-      integer(c_int), target :: csr_col_ind_D(*)
+      real(c_double), target :: csr_val_D(..)
+      integer(c_int), target :: csr_row_ptr_D(..)
+      integer(c_int), target :: csr_col_ind_D(..)
       type(c_ptr), value :: descr_C
       integer(c_int), value :: nnz_C
-      real(c_double), target :: csr_val_C(*)
-      integer(c_int), target :: csr_row_ptr_C(*)
-      integer(c_int), target :: csr_col_ind_C(*)
+      real(c_double), target :: csr_val_C(..)
+      integer(c_int), target :: csr_row_ptr_C(..)
+      integer(c_int), target :: csr_col_ind_C(..)
       type(c_ptr), value :: info_C
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: dcsrgemm_numeric
       dcsrgemm_numeric = rocsparse_dcsrgemm_numeric_raw(handle, trans_A, trans_B, m, n, k, c_loc( &
-        alpha(1)), descr_A, nnz_A, c_loc(csr_val_A(1)), c_loc(csr_row_ptr_A(1)), c_loc( &
-        csr_col_ind_A(1)), descr_B, nnz_B, c_loc(csr_val_B(1)), c_loc(csr_row_ptr_B(1)), c_loc( &
-        csr_col_ind_B(1)), c_loc(beta(1)), descr_D, nnz_D, c_loc(csr_val_D(1)), c_loc( &
-        csr_row_ptr_D(1)), c_loc(csr_col_ind_D(1)), descr_C, nnz_C, c_loc(csr_val_C(1)), c_loc( &
-        csr_row_ptr_C(1)), c_loc(csr_col_ind_C(1)), info_C, temp_buffer)
+        alpha), descr_A, nnz_A, c_loc(csr_val_A), c_loc(csr_row_ptr_A), c_loc(csr_col_ind_A), &
+        descr_B, nnz_B, c_loc(csr_val_B), c_loc(csr_row_ptr_B), c_loc(csr_col_ind_B), c_loc(beta), &
+        descr_D, nnz_D, c_loc(csr_val_D), c_loc(csr_row_ptr_D), c_loc(csr_col_ind_D), descr_C, &
+        nnz_C, c_loc(csr_val_C), c_loc(csr_row_ptr_C), c_loc(csr_col_ind_C), info_C, temp_buffer)
     end function rocsparse_dcsrgemm_numeric_native
 
     function rocsparse_dcsrgemm_numeric_typed(handle, trans_A, trans_B, m, n, k, alpha, descr_A, &
@@ -46953,37 +46949,36 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       integer(c_int), value :: k
-      complex(c_float_complex), target :: alpha(*)
+      complex(c_float_complex), target :: alpha(..)
       type(c_ptr), value :: descr_A
       integer(c_int), value :: nnz_A
-      complex(c_float_complex), target :: csr_val_A(*)
-      integer(c_int), target :: csr_row_ptr_A(*)
-      integer(c_int), target :: csr_col_ind_A(*)
+      complex(c_float_complex), target :: csr_val_A(..)
+      integer(c_int), target :: csr_row_ptr_A(..)
+      integer(c_int), target :: csr_col_ind_A(..)
       type(c_ptr), value :: descr_B
       integer(c_int), value :: nnz_B
-      complex(c_float_complex), target :: csr_val_B(*)
-      integer(c_int), target :: csr_row_ptr_B(*)
-      integer(c_int), target :: csr_col_ind_B(*)
-      complex(c_float_complex), target :: beta(*)
+      complex(c_float_complex), target :: csr_val_B(..)
+      integer(c_int), target :: csr_row_ptr_B(..)
+      integer(c_int), target :: csr_col_ind_B(..)
+      complex(c_float_complex), target :: beta(..)
       type(c_ptr), value :: descr_D
       integer(c_int), value :: nnz_D
-      complex(c_float_complex), target :: csr_val_D(*)
-      integer(c_int), target :: csr_row_ptr_D(*)
-      integer(c_int), target :: csr_col_ind_D(*)
+      complex(c_float_complex), target :: csr_val_D(..)
+      integer(c_int), target :: csr_row_ptr_D(..)
+      integer(c_int), target :: csr_col_ind_D(..)
       type(c_ptr), value :: descr_C
       integer(c_int), value :: nnz_C
-      complex(c_float_complex), target :: csr_val_C(*)
-      integer(c_int), target :: csr_row_ptr_C(*)
-      integer(c_int), target :: csr_col_ind_C(*)
+      complex(c_float_complex), target :: csr_val_C(..)
+      integer(c_int), target :: csr_row_ptr_C(..)
+      integer(c_int), target :: csr_col_ind_C(..)
       type(c_ptr), value :: info_C
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: ccsrgemm_numeric
       ccsrgemm_numeric = rocsparse_ccsrgemm_numeric_raw(handle, trans_A, trans_B, m, n, k, c_loc( &
-        alpha(1)), descr_A, nnz_A, c_loc(csr_val_A(1)), c_loc(csr_row_ptr_A(1)), c_loc( &
-        csr_col_ind_A(1)), descr_B, nnz_B, c_loc(csr_val_B(1)), c_loc(csr_row_ptr_B(1)), c_loc( &
-        csr_col_ind_B(1)), c_loc(beta(1)), descr_D, nnz_D, c_loc(csr_val_D(1)), c_loc( &
-        csr_row_ptr_D(1)), c_loc(csr_col_ind_D(1)), descr_C, nnz_C, c_loc(csr_val_C(1)), c_loc( &
-        csr_row_ptr_C(1)), c_loc(csr_col_ind_C(1)), info_C, temp_buffer)
+        alpha), descr_A, nnz_A, c_loc(csr_val_A), c_loc(csr_row_ptr_A), c_loc(csr_col_ind_A), &
+        descr_B, nnz_B, c_loc(csr_val_B), c_loc(csr_row_ptr_B), c_loc(csr_col_ind_B), c_loc(beta), &
+        descr_D, nnz_D, c_loc(csr_val_D), c_loc(csr_row_ptr_D), c_loc(csr_col_ind_D), descr_C, &
+        nnz_C, c_loc(csr_val_C), c_loc(csr_row_ptr_C), c_loc(csr_col_ind_C), info_C, temp_buffer)
     end function rocsparse_ccsrgemm_numeric_native
 
     function rocsparse_ccsrgemm_numeric_typed(handle, trans_A, trans_B, m, n, k, alpha, descr_A, &
@@ -47045,37 +47040,36 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       integer(c_int), value :: k
-      complex(c_double_complex), target :: alpha(*)
+      complex(c_double_complex), target :: alpha(..)
       type(c_ptr), value :: descr_A
       integer(c_int), value :: nnz_A
-      complex(c_double_complex), target :: csr_val_A(*)
-      integer(c_int), target :: csr_row_ptr_A(*)
-      integer(c_int), target :: csr_col_ind_A(*)
+      complex(c_double_complex), target :: csr_val_A(..)
+      integer(c_int), target :: csr_row_ptr_A(..)
+      integer(c_int), target :: csr_col_ind_A(..)
       type(c_ptr), value :: descr_B
       integer(c_int), value :: nnz_B
-      complex(c_double_complex), target :: csr_val_B(*)
-      integer(c_int), target :: csr_row_ptr_B(*)
-      integer(c_int), target :: csr_col_ind_B(*)
-      complex(c_double_complex), target :: beta(*)
+      complex(c_double_complex), target :: csr_val_B(..)
+      integer(c_int), target :: csr_row_ptr_B(..)
+      integer(c_int), target :: csr_col_ind_B(..)
+      complex(c_double_complex), target :: beta(..)
       type(c_ptr), value :: descr_D
       integer(c_int), value :: nnz_D
-      complex(c_double_complex), target :: csr_val_D(*)
-      integer(c_int), target :: csr_row_ptr_D(*)
-      integer(c_int), target :: csr_col_ind_D(*)
+      complex(c_double_complex), target :: csr_val_D(..)
+      integer(c_int), target :: csr_row_ptr_D(..)
+      integer(c_int), target :: csr_col_ind_D(..)
       type(c_ptr), value :: descr_C
       integer(c_int), value :: nnz_C
-      complex(c_double_complex), target :: csr_val_C(*)
-      integer(c_int), target :: csr_row_ptr_C(*)
-      integer(c_int), target :: csr_col_ind_C(*)
+      complex(c_double_complex), target :: csr_val_C(..)
+      integer(c_int), target :: csr_row_ptr_C(..)
+      integer(c_int), target :: csr_col_ind_C(..)
       type(c_ptr), value :: info_C
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: zcsrgemm_numeric
       zcsrgemm_numeric = rocsparse_zcsrgemm_numeric_raw(handle, trans_A, trans_B, m, n, k, c_loc( &
-        alpha(1)), descr_A, nnz_A, c_loc(csr_val_A(1)), c_loc(csr_row_ptr_A(1)), c_loc( &
-        csr_col_ind_A(1)), descr_B, nnz_B, c_loc(csr_val_B(1)), c_loc(csr_row_ptr_B(1)), c_loc( &
-        csr_col_ind_B(1)), c_loc(beta(1)), descr_D, nnz_D, c_loc(csr_val_D(1)), c_loc( &
-        csr_row_ptr_D(1)), c_loc(csr_col_ind_D(1)), descr_C, nnz_C, c_loc(csr_val_C(1)), c_loc( &
-        csr_row_ptr_C(1)), c_loc(csr_col_ind_C(1)), info_C, temp_buffer)
+        alpha), descr_A, nnz_A, c_loc(csr_val_A), c_loc(csr_row_ptr_A), c_loc(csr_col_ind_A), &
+        descr_B, nnz_B, c_loc(csr_val_B), c_loc(csr_row_ptr_B), c_loc(csr_col_ind_B), c_loc(beta), &
+        descr_D, nnz_D, c_loc(csr_val_D), c_loc(csr_row_ptr_D), c_loc(csr_col_ind_D), descr_C, &
+        nnz_C, c_loc(csr_val_C), c_loc(csr_row_ptr_C), c_loc(csr_col_ind_C), info_C, temp_buffer)
     end function rocsparse_zcsrgemm_numeric_native
 
     function rocsparse_zcsrgemm_numeric_typed(handle, trans_A, trans_B, m, n, k, alpha, descr_A, &
@@ -47143,13 +47137,13 @@ contains
       implicit none
       type(c_ptr), value :: handle
       type(c_ptr), value :: mat
-      integer(c_int), target :: data_status(*)
+      integer(c_int), target :: data_status(..)
       integer(c_int), value :: stage
       type(c_ptr), value :: buffer_size
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: check_spmat
-      check_spmat = rocsparse_check_spmat_raw(handle, mat, c_loc(data_status(1)), stage, &
-        buffer_size, temp_buffer)
+      check_spmat = rocsparse_check_spmat_raw(handle, mat, c_loc(data_status), stage, buffer_size, &
+        temp_buffer)
     end function rocsparse_check_spmat_native
 
     function rocsparse_check_spmat_typed(handle, mat, data_status, stage, buffer_size, &
@@ -47511,7 +47505,7 @@ contains
       use, intrinsic :: iso_c_binding
       implicit none
       type(c_ptr), value :: handle
-      integer(c_int), target :: host_nmaxiter(*)
+      integer(c_int), target :: host_nmaxiter(..)
       type(c_ptr), value :: host_tol
       type(c_ptr), value :: host_history
       integer(c_int), value :: trans
@@ -47525,8 +47519,8 @@ contains
       type(c_ptr), value :: buffer_size
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: spitsv
-      spitsv = rocsparse_spitsv_raw(handle, c_loc(host_nmaxiter(1)), host_tol, host_history, &
-        trans, alpha, mat, x, y, compute_type, alg, stage, buffer_size, temp_buffer)
+      spitsv = rocsparse_spitsv_raw(handle, c_loc(host_nmaxiter), host_tol, host_history, trans, &
+        alpha, mat, x, y, compute_type, alg, stage, buffer_size, temp_buffer)
     end function rocsparse_spitsv_native
 
     function rocsparse_spitsv_typed(handle, host_nmaxiter, host_tol, host_history, trans, alpha, &
@@ -47805,13 +47799,13 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: nnz
       real(c_float) :: alpha
-      real(c_float), target :: x_val(*)
-      integer(c_int), target :: x_ind(*)
-      real(c_float), target :: y(*)
+      real(c_float), target :: x_val(..)
+      integer(c_int), target :: x_ind(..)
+      real(c_float), target :: y(..)
       integer(c_int), value :: idx_base
       integer(c_int) :: saxpyi
-      saxpyi = rocsparse_saxpyi_raw(handle, nnz, alpha, c_loc(x_val(1)), c_loc(x_ind(1)), c_loc(y( &
-        1)), idx_base)
+      saxpyi = rocsparse_saxpyi_raw(handle, nnz, alpha, c_loc(x_val), c_loc(x_ind), c_loc(y), &
+        idx_base)
     end function rocsparse_saxpyi_native
 
     function rocsparse_saxpyi_typed(handle, nnz, alpha, x_val, x_ind, y, idx_base) result(saxpyi)
@@ -47835,13 +47829,13 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: nnz
       real(c_double) :: alpha
-      real(c_double), target :: x_val(*)
-      integer(c_int), target :: x_ind(*)
-      real(c_double), target :: y(*)
+      real(c_double), target :: x_val(..)
+      integer(c_int), target :: x_ind(..)
+      real(c_double), target :: y(..)
       integer(c_int), value :: idx_base
       integer(c_int) :: daxpyi
-      daxpyi = rocsparse_daxpyi_raw(handle, nnz, alpha, c_loc(x_val(1)), c_loc(x_ind(1)), c_loc(y( &
-        1)), idx_base)
+      daxpyi = rocsparse_daxpyi_raw(handle, nnz, alpha, c_loc(x_val), c_loc(x_ind), c_loc(y), &
+        idx_base)
     end function rocsparse_daxpyi_native
 
     function rocsparse_daxpyi_typed(handle, nnz, alpha, x_val, x_ind, y, idx_base) result(daxpyi)
@@ -47865,13 +47859,13 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: nnz
       complex(c_float_complex) :: alpha
-      complex(c_float_complex), target :: x_val(*)
-      integer(c_int), target :: x_ind(*)
-      complex(c_float_complex), target :: y(*)
+      complex(c_float_complex), target :: x_val(..)
+      integer(c_int), target :: x_ind(..)
+      complex(c_float_complex), target :: y(..)
       integer(c_int), value :: idx_base
       integer(c_int) :: caxpyi
-      caxpyi = rocsparse_caxpyi_raw(handle, nnz, alpha, c_loc(x_val(1)), c_loc(x_ind(1)), c_loc(y( &
-        1)), idx_base)
+      caxpyi = rocsparse_caxpyi_raw(handle, nnz, alpha, c_loc(x_val), c_loc(x_ind), c_loc(y), &
+        idx_base)
     end function rocsparse_caxpyi_native
 
     function rocsparse_caxpyi_typed(handle, nnz, alpha, x_val, x_ind, y, idx_base) result(caxpyi)
@@ -47895,13 +47889,13 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: nnz
       complex(c_double_complex) :: alpha
-      complex(c_double_complex), target :: x_val(*)
-      integer(c_int), target :: x_ind(*)
-      complex(c_double_complex), target :: y(*)
+      complex(c_double_complex), target :: x_val(..)
+      integer(c_int), target :: x_ind(..)
+      complex(c_double_complex), target :: y(..)
       integer(c_int), value :: idx_base
       integer(c_int) :: zaxpyi
-      zaxpyi = rocsparse_zaxpyi_raw(handle, nnz, alpha, c_loc(x_val(1)), c_loc(x_ind(1)), c_loc(y( &
-        1)), idx_base)
+      zaxpyi = rocsparse_zaxpyi_raw(handle, nnz, alpha, c_loc(x_val), c_loc(x_ind), c_loc(y), &
+        idx_base)
     end function rocsparse_zaxpyi_native
 
     function rocsparse_zaxpyi_typed(handle, nnz, alpha, x_val, x_ind, y, idx_base) result(zaxpyi)
@@ -47924,14 +47918,14 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_int), value :: nnz
-      complex(c_float_complex), target :: x_val(*)
-      integer(c_int), target :: x_ind(*)
-      complex(c_float_complex), target :: y(*)
-      complex(c_float_complex), target :: result(*)
+      complex(c_float_complex), target :: x_val(..)
+      integer(c_int), target :: x_ind(..)
+      complex(c_float_complex), target :: y(..)
+      complex(c_float_complex), target :: result(..)
       integer(c_int), value :: idx_base
       integer(c_int) :: cdotci
-      cdotci = rocsparse_cdotci_raw(handle, nnz, c_loc(x_val(1)), c_loc(x_ind(1)), c_loc(y(1)), &
-        c_loc(result(1)), idx_base)
+      cdotci = rocsparse_cdotci_raw(handle, nnz, c_loc(x_val), c_loc(x_ind), c_loc(y), c_loc( &
+        result), idx_base)
     end function rocsparse_cdotci_native
 
     function rocsparse_cdotci_typed(handle, nnz, x_val, x_ind, y, result, idx_base) result(cdotci)
@@ -47954,14 +47948,14 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_int), value :: nnz
-      complex(c_double_complex), target :: x_val(*)
-      integer(c_int), target :: x_ind(*)
-      complex(c_double_complex), target :: y(*)
-      complex(c_double_complex), target :: result(*)
+      complex(c_double_complex), target :: x_val(..)
+      integer(c_int), target :: x_ind(..)
+      complex(c_double_complex), target :: y(..)
+      complex(c_double_complex), target :: result(..)
       integer(c_int), value :: idx_base
       integer(c_int) :: zdotci
-      zdotci = rocsparse_zdotci_raw(handle, nnz, c_loc(x_val(1)), c_loc(x_ind(1)), c_loc(y(1)), &
-        c_loc(result(1)), idx_base)
+      zdotci = rocsparse_zdotci_raw(handle, nnz, c_loc(x_val), c_loc(x_ind), c_loc(y), c_loc( &
+        result), idx_base)
     end function rocsparse_zdotci_native
 
     function rocsparse_zdotci_typed(handle, nnz, x_val, x_ind, y, result, idx_base) result(zdotci)
@@ -47984,14 +47978,14 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_int), value :: nnz
-      real(c_float), target :: x_val(*)
-      integer(c_int), target :: x_ind(*)
-      real(c_float), target :: y(*)
-      real(c_float), target :: result(*)
+      real(c_float), target :: x_val(..)
+      integer(c_int), target :: x_ind(..)
+      real(c_float), target :: y(..)
+      real(c_float), target :: result(..)
       integer(c_int), value :: idx_base
       integer(c_int) :: sdoti
-      sdoti = rocsparse_sdoti_raw(handle, nnz, c_loc(x_val(1)), c_loc(x_ind(1)), c_loc(y(1)), &
-        c_loc(result(1)), idx_base)
+      sdoti = rocsparse_sdoti_raw(handle, nnz, c_loc(x_val), c_loc(x_ind), c_loc(y), c_loc( &
+        result), idx_base)
     end function rocsparse_sdoti_native
 
     function rocsparse_sdoti_typed(handle, nnz, x_val, x_ind, y, result, idx_base) result(sdoti)
@@ -48014,14 +48008,14 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_int), value :: nnz
-      real(c_double), target :: x_val(*)
-      integer(c_int), target :: x_ind(*)
-      real(c_double), target :: y(*)
-      real(c_double), target :: result(*)
+      real(c_double), target :: x_val(..)
+      integer(c_int), target :: x_ind(..)
+      real(c_double), target :: y(..)
+      real(c_double), target :: result(..)
       integer(c_int), value :: idx_base
       integer(c_int) :: ddoti
-      ddoti = rocsparse_ddoti_raw(handle, nnz, c_loc(x_val(1)), c_loc(x_ind(1)), c_loc(y(1)), &
-        c_loc(result(1)), idx_base)
+      ddoti = rocsparse_ddoti_raw(handle, nnz, c_loc(x_val), c_loc(x_ind), c_loc(y), c_loc( &
+        result), idx_base)
     end function rocsparse_ddoti_native
 
     function rocsparse_ddoti_typed(handle, nnz, x_val, x_ind, y, result, idx_base) result(ddoti)
@@ -48044,14 +48038,14 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_int), value :: nnz
-      complex(c_float_complex), target :: x_val(*)
-      integer(c_int), target :: x_ind(*)
-      complex(c_float_complex), target :: y(*)
-      complex(c_float_complex), target :: result(*)
+      complex(c_float_complex), target :: x_val(..)
+      integer(c_int), target :: x_ind(..)
+      complex(c_float_complex), target :: y(..)
+      complex(c_float_complex), target :: result(..)
       integer(c_int), value :: idx_base
       integer(c_int) :: cdoti
-      cdoti = rocsparse_cdoti_raw(handle, nnz, c_loc(x_val(1)), c_loc(x_ind(1)), c_loc(y(1)), &
-        c_loc(result(1)), idx_base)
+      cdoti = rocsparse_cdoti_raw(handle, nnz, c_loc(x_val), c_loc(x_ind), c_loc(y), c_loc( &
+        result), idx_base)
     end function rocsparse_cdoti_native
 
     function rocsparse_cdoti_typed(handle, nnz, x_val, x_ind, y, result, idx_base) result(cdoti)
@@ -48074,14 +48068,14 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_int), value :: nnz
-      complex(c_double_complex), target :: x_val(*)
-      integer(c_int), target :: x_ind(*)
-      complex(c_double_complex), target :: y(*)
-      complex(c_double_complex), target :: result(*)
+      complex(c_double_complex), target :: x_val(..)
+      integer(c_int), target :: x_ind(..)
+      complex(c_double_complex), target :: y(..)
+      complex(c_double_complex), target :: result(..)
       integer(c_int), value :: idx_base
       integer(c_int) :: zdoti
-      zdoti = rocsparse_zdoti_raw(handle, nnz, c_loc(x_val(1)), c_loc(x_ind(1)), c_loc(y(1)), &
-        c_loc(result(1)), idx_base)
+      zdoti = rocsparse_zdoti_raw(handle, nnz, c_loc(x_val), c_loc(x_ind), c_loc(y), c_loc( &
+        result), idx_base)
     end function rocsparse_zdoti_native
 
     function rocsparse_zdoti_typed(handle, nnz, x_val, x_ind, y, result, idx_base) result(zdoti)
@@ -48104,13 +48098,12 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_int), value :: nnz
-      real(c_float), target :: y(*)
-      real(c_float), target :: x_val(*)
-      integer(c_int), target :: x_ind(*)
+      real(c_float), target :: y(..)
+      real(c_float), target :: x_val(..)
+      integer(c_int), target :: x_ind(..)
       integer(c_int), value :: idx_base
       integer(c_int) :: sgthr
-      sgthr = rocsparse_sgthr_raw(handle, nnz, c_loc(y(1)), c_loc(x_val(1)), c_loc(x_ind(1)), &
-        idx_base)
+      sgthr = rocsparse_sgthr_raw(handle, nnz, c_loc(y), c_loc(x_val), c_loc(x_ind), idx_base)
     end function rocsparse_sgthr_native
 
     function rocsparse_sgthr_typed(handle, nnz, y, x_val, x_ind, idx_base) result(sgthr)
@@ -48132,13 +48125,12 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_int), value :: nnz
-      real(c_double), target :: y(*)
-      real(c_double), target :: x_val(*)
-      integer(c_int), target :: x_ind(*)
+      real(c_double), target :: y(..)
+      real(c_double), target :: x_val(..)
+      integer(c_int), target :: x_ind(..)
       integer(c_int), value :: idx_base
       integer(c_int) :: dgthr
-      dgthr = rocsparse_dgthr_raw(handle, nnz, c_loc(y(1)), c_loc(x_val(1)), c_loc(x_ind(1)), &
-        idx_base)
+      dgthr = rocsparse_dgthr_raw(handle, nnz, c_loc(y), c_loc(x_val), c_loc(x_ind), idx_base)
     end function rocsparse_dgthr_native
 
     function rocsparse_dgthr_typed(handle, nnz, y, x_val, x_ind, idx_base) result(dgthr)
@@ -48160,13 +48152,12 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_int), value :: nnz
-      complex(c_float_complex), target :: y(*)
-      complex(c_float_complex), target :: x_val(*)
-      integer(c_int), target :: x_ind(*)
+      complex(c_float_complex), target :: y(..)
+      complex(c_float_complex), target :: x_val(..)
+      integer(c_int), target :: x_ind(..)
       integer(c_int), value :: idx_base
       integer(c_int) :: cgthr
-      cgthr = rocsparse_cgthr_raw(handle, nnz, c_loc(y(1)), c_loc(x_val(1)), c_loc(x_ind(1)), &
-        idx_base)
+      cgthr = rocsparse_cgthr_raw(handle, nnz, c_loc(y), c_loc(x_val), c_loc(x_ind), idx_base)
     end function rocsparse_cgthr_native
 
     function rocsparse_cgthr_typed(handle, nnz, y, x_val, x_ind, idx_base) result(cgthr)
@@ -48188,13 +48179,12 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_int), value :: nnz
-      complex(c_double_complex), target :: y(*)
-      complex(c_double_complex), target :: x_val(*)
-      integer(c_int), target :: x_ind(*)
+      complex(c_double_complex), target :: y(..)
+      complex(c_double_complex), target :: x_val(..)
+      integer(c_int), target :: x_ind(..)
       integer(c_int), value :: idx_base
       integer(c_int) :: zgthr
-      zgthr = rocsparse_zgthr_raw(handle, nnz, c_loc(y(1)), c_loc(x_val(1)), c_loc(x_ind(1)), &
-        idx_base)
+      zgthr = rocsparse_zgthr_raw(handle, nnz, c_loc(y), c_loc(x_val), c_loc(x_ind), idx_base)
     end function rocsparse_zgthr_native
 
     function rocsparse_zgthr_typed(handle, nnz, y, x_val, x_ind, idx_base) result(zgthr)
@@ -48216,13 +48206,12 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_int), value :: nnz
-      real(c_float), target :: y(*)
-      real(c_float), target :: x_val(*)
-      integer(c_int), target :: x_ind(*)
+      real(c_float), target :: y(..)
+      real(c_float), target :: x_val(..)
+      integer(c_int), target :: x_ind(..)
       integer(c_int), value :: idx_base
       integer(c_int) :: sgthrz
-      sgthrz = rocsparse_sgthrz_raw(handle, nnz, c_loc(y(1)), c_loc(x_val(1)), c_loc(x_ind(1)), &
-        idx_base)
+      sgthrz = rocsparse_sgthrz_raw(handle, nnz, c_loc(y), c_loc(x_val), c_loc(x_ind), idx_base)
     end function rocsparse_sgthrz_native
 
     function rocsparse_sgthrz_typed(handle, nnz, y, x_val, x_ind, idx_base) result(sgthrz)
@@ -48244,13 +48233,12 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_int), value :: nnz
-      real(c_double), target :: y(*)
-      real(c_double), target :: x_val(*)
-      integer(c_int), target :: x_ind(*)
+      real(c_double), target :: y(..)
+      real(c_double), target :: x_val(..)
+      integer(c_int), target :: x_ind(..)
       integer(c_int), value :: idx_base
       integer(c_int) :: dgthrz
-      dgthrz = rocsparse_dgthrz_raw(handle, nnz, c_loc(y(1)), c_loc(x_val(1)), c_loc(x_ind(1)), &
-        idx_base)
+      dgthrz = rocsparse_dgthrz_raw(handle, nnz, c_loc(y), c_loc(x_val), c_loc(x_ind), idx_base)
     end function rocsparse_dgthrz_native
 
     function rocsparse_dgthrz_typed(handle, nnz, y, x_val, x_ind, idx_base) result(dgthrz)
@@ -48272,13 +48260,12 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_int), value :: nnz
-      complex(c_float_complex), target :: y(*)
-      complex(c_float_complex), target :: x_val(*)
-      integer(c_int), target :: x_ind(*)
+      complex(c_float_complex), target :: y(..)
+      complex(c_float_complex), target :: x_val(..)
+      integer(c_int), target :: x_ind(..)
       integer(c_int), value :: idx_base
       integer(c_int) :: cgthrz
-      cgthrz = rocsparse_cgthrz_raw(handle, nnz, c_loc(y(1)), c_loc(x_val(1)), c_loc(x_ind(1)), &
-        idx_base)
+      cgthrz = rocsparse_cgthrz_raw(handle, nnz, c_loc(y), c_loc(x_val), c_loc(x_ind), idx_base)
     end function rocsparse_cgthrz_native
 
     function rocsparse_cgthrz_typed(handle, nnz, y, x_val, x_ind, idx_base) result(cgthrz)
@@ -48300,13 +48287,12 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_int), value :: nnz
-      complex(c_double_complex), target :: y(*)
-      complex(c_double_complex), target :: x_val(*)
-      integer(c_int), target :: x_ind(*)
+      complex(c_double_complex), target :: y(..)
+      complex(c_double_complex), target :: x_val(..)
+      integer(c_int), target :: x_ind(..)
       integer(c_int), value :: idx_base
       integer(c_int) :: zgthrz
-      zgthrz = rocsparse_zgthrz_raw(handle, nnz, c_loc(y(1)), c_loc(x_val(1)), c_loc(x_ind(1)), &
-        idx_base)
+      zgthrz = rocsparse_zgthrz_raw(handle, nnz, c_loc(y), c_loc(x_val), c_loc(x_ind), idx_base)
     end function rocsparse_zgthrz_native
 
     function rocsparse_zgthrz_typed(handle, nnz, y, x_val, x_ind, idx_base) result(zgthrz)
@@ -48328,15 +48314,14 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_int), value :: nnz
-      real(c_float), target :: x_val(*)
-      integer(c_int), target :: x_ind(*)
-      real(c_float), target :: y(*)
+      real(c_float), target :: x_val(..)
+      integer(c_int), target :: x_ind(..)
+      real(c_float), target :: y(..)
       real(c_float) :: c
       real(c_float) :: s
       integer(c_int), value :: idx_base
       integer(c_int) :: sroti
-      sroti = rocsparse_sroti_raw(handle, nnz, c_loc(x_val(1)), c_loc(x_ind(1)), c_loc(y(1)), c, &
-        s, idx_base)
+      sroti = rocsparse_sroti_raw(handle, nnz, c_loc(x_val), c_loc(x_ind), c_loc(y), c, s, idx_base)
     end function rocsparse_sroti_native
 
     function rocsparse_sroti_typed(handle, nnz, x_val, x_ind, y, c, s, idx_base) result(sroti)
@@ -48360,15 +48345,14 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_int), value :: nnz
-      real(c_double), target :: x_val(*)
-      integer(c_int), target :: x_ind(*)
-      real(c_double), target :: y(*)
+      real(c_double), target :: x_val(..)
+      integer(c_int), target :: x_ind(..)
+      real(c_double), target :: y(..)
       real(c_double) :: c
       real(c_double) :: s
       integer(c_int), value :: idx_base
       integer(c_int) :: droti
-      droti = rocsparse_droti_raw(handle, nnz, c_loc(x_val(1)), c_loc(x_ind(1)), c_loc(y(1)), c, &
-        s, idx_base)
+      droti = rocsparse_droti_raw(handle, nnz, c_loc(x_val), c_loc(x_ind), c_loc(y), c, s, idx_base)
     end function rocsparse_droti_native
 
     function rocsparse_droti_typed(handle, nnz, x_val, x_ind, y, c, s, idx_base) result(droti)
@@ -48392,13 +48376,12 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_int), value :: nnz
-      real(c_float), target :: x_val(*)
-      integer(c_int), target :: x_ind(*)
-      real(c_float), target :: y(*)
+      real(c_float), target :: x_val(..)
+      integer(c_int), target :: x_ind(..)
+      real(c_float), target :: y(..)
       integer(c_int), value :: idx_base
       integer(c_int) :: ssctr
-      ssctr = rocsparse_ssctr_raw(handle, nnz, c_loc(x_val(1)), c_loc(x_ind(1)), c_loc(y(1)), &
-        idx_base)
+      ssctr = rocsparse_ssctr_raw(handle, nnz, c_loc(x_val), c_loc(x_ind), c_loc(y), idx_base)
     end function rocsparse_ssctr_native
 
     function rocsparse_ssctr_typed(handle, nnz, x_val, x_ind, y, idx_base) result(ssctr)
@@ -48420,13 +48403,12 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_int), value :: nnz
-      real(c_double), target :: x_val(*)
-      integer(c_int), target :: x_ind(*)
-      real(c_double), target :: y(*)
+      real(c_double), target :: x_val(..)
+      integer(c_int), target :: x_ind(..)
+      real(c_double), target :: y(..)
       integer(c_int), value :: idx_base
       integer(c_int) :: dsctr
-      dsctr = rocsparse_dsctr_raw(handle, nnz, c_loc(x_val(1)), c_loc(x_ind(1)), c_loc(y(1)), &
-        idx_base)
+      dsctr = rocsparse_dsctr_raw(handle, nnz, c_loc(x_val), c_loc(x_ind), c_loc(y), idx_base)
     end function rocsparse_dsctr_native
 
     function rocsparse_dsctr_typed(handle, nnz, x_val, x_ind, y, idx_base) result(dsctr)
@@ -48448,13 +48430,12 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_int), value :: nnz
-      complex(c_float_complex), target :: x_val(*)
-      integer(c_int), target :: x_ind(*)
-      complex(c_float_complex), target :: y(*)
+      complex(c_float_complex), target :: x_val(..)
+      integer(c_int), target :: x_ind(..)
+      complex(c_float_complex), target :: y(..)
       integer(c_int), value :: idx_base
       integer(c_int) :: csctr
-      csctr = rocsparse_csctr_raw(handle, nnz, c_loc(x_val(1)), c_loc(x_ind(1)), c_loc(y(1)), &
-        idx_base)
+      csctr = rocsparse_csctr_raw(handle, nnz, c_loc(x_val), c_loc(x_ind), c_loc(y), idx_base)
     end function rocsparse_csctr_native
 
     function rocsparse_csctr_typed(handle, nnz, x_val, x_ind, y, idx_base) result(csctr)
@@ -48476,13 +48457,12 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_int), value :: nnz
-      complex(c_double_complex), target :: x_val(*)
-      integer(c_int), target :: x_ind(*)
-      complex(c_double_complex), target :: y(*)
+      complex(c_double_complex), target :: x_val(..)
+      integer(c_int), target :: x_ind(..)
+      complex(c_double_complex), target :: y(..)
       integer(c_int), value :: idx_base
       integer(c_int) :: zsctr
-      zsctr = rocsparse_zsctr_raw(handle, nnz, c_loc(x_val(1)), c_loc(x_ind(1)), c_loc(y(1)), &
-        idx_base)
+      zsctr = rocsparse_zsctr_raw(handle, nnz, c_loc(x_val), c_loc(x_ind), c_loc(y), idx_base)
     end function rocsparse_zsctr_native
 
     function rocsparse_zsctr_typed(handle, nnz, x_val, x_ind, y, idx_base) result(zsctr)
@@ -48504,13 +48484,12 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_int), value :: nnz
-      integer(c_int), target :: x_val(*)
-      integer(c_int), target :: x_ind(*)
-      integer(c_int), target :: y(*)
+      integer(c_int), target :: x_val(..)
+      integer(c_int), target :: x_ind(..)
+      integer(c_int), target :: y(..)
       integer(c_int), value :: idx_base
       integer(c_int) :: isctr
-      isctr = rocsparse_isctr_raw(handle, nnz, c_loc(x_val(1)), c_loc(x_ind(1)), c_loc(y(1)), &
-        idx_base)
+      isctr = rocsparse_isctr_raw(handle, nnz, c_loc(x_val), c_loc(x_ind), c_loc(y), idx_base)
     end function rocsparse_isctr_native
 
     function rocsparse_isctr_typed(handle, nnz, x_val, x_ind, y, idx_base) result(isctr)
@@ -48538,14 +48517,14 @@ contains
       integer(c_int), value :: nb
       integer(c_int), value :: nnzb
       type(c_ptr), value :: descr
-      real(c_float), target :: bsr_val(*)
-      integer(c_int), target :: bsr_row_ptr(*)
-      integer(c_int), target :: bsr_col_ind(*)
+      real(c_float), target :: bsr_val(..)
+      integer(c_int), target :: bsr_row_ptr(..)
+      integer(c_int), target :: bsr_col_ind(..)
       integer(c_int), value :: block_dim
       type(c_ptr), value :: info
       integer(c_int) :: sbsrmv_analysis
       sbsrmv_analysis = rocsparse_sbsrmv_analysis_raw(handle, dir, trans, mb, nb, nnzb, descr, &
-        c_loc(bsr_val(1)), c_loc(bsr_row_ptr(1)), c_loc(bsr_col_ind(1)), block_dim, info)
+        c_loc(bsr_val), c_loc(bsr_row_ptr), c_loc(bsr_col_ind), block_dim, info)
     end function rocsparse_sbsrmv_analysis_native
 
     function rocsparse_sbsrmv_analysis_typed(handle, dir, trans, mb, nb, nnzb, descr, bsr_val, &
@@ -48581,14 +48560,14 @@ contains
       integer(c_int), value :: nb
       integer(c_int), value :: nnzb
       type(c_ptr), value :: descr
-      real(c_double), target :: bsr_val(*)
-      integer(c_int), target :: bsr_row_ptr(*)
-      integer(c_int), target :: bsr_col_ind(*)
+      real(c_double), target :: bsr_val(..)
+      integer(c_int), target :: bsr_row_ptr(..)
+      integer(c_int), target :: bsr_col_ind(..)
       integer(c_int), value :: block_dim
       type(c_ptr), value :: info
       integer(c_int) :: dbsrmv_analysis
       dbsrmv_analysis = rocsparse_dbsrmv_analysis_raw(handle, dir, trans, mb, nb, nnzb, descr, &
-        c_loc(bsr_val(1)), c_loc(bsr_row_ptr(1)), c_loc(bsr_col_ind(1)), block_dim, info)
+        c_loc(bsr_val), c_loc(bsr_row_ptr), c_loc(bsr_col_ind), block_dim, info)
     end function rocsparse_dbsrmv_analysis_native
 
     function rocsparse_dbsrmv_analysis_typed(handle, dir, trans, mb, nb, nnzb, descr, bsr_val, &
@@ -48624,14 +48603,14 @@ contains
       integer(c_int), value :: nb
       integer(c_int), value :: nnzb
       type(c_ptr), value :: descr
-      complex(c_float_complex), target :: bsr_val(*)
-      integer(c_int), target :: bsr_row_ptr(*)
-      integer(c_int), target :: bsr_col_ind(*)
+      complex(c_float_complex), target :: bsr_val(..)
+      integer(c_int), target :: bsr_row_ptr(..)
+      integer(c_int), target :: bsr_col_ind(..)
       integer(c_int), value :: block_dim
       type(c_ptr), value :: info
       integer(c_int) :: cbsrmv_analysis
       cbsrmv_analysis = rocsparse_cbsrmv_analysis_raw(handle, dir, trans, mb, nb, nnzb, descr, &
-        c_loc(bsr_val(1)), c_loc(bsr_row_ptr(1)), c_loc(bsr_col_ind(1)), block_dim, info)
+        c_loc(bsr_val), c_loc(bsr_row_ptr), c_loc(bsr_col_ind), block_dim, info)
     end function rocsparse_cbsrmv_analysis_native
 
     function rocsparse_cbsrmv_analysis_typed(handle, dir, trans, mb, nb, nnzb, descr, bsr_val, &
@@ -48667,14 +48646,14 @@ contains
       integer(c_int), value :: nb
       integer(c_int), value :: nnzb
       type(c_ptr), value :: descr
-      complex(c_double_complex), target :: bsr_val(*)
-      integer(c_int), target :: bsr_row_ptr(*)
-      integer(c_int), target :: bsr_col_ind(*)
+      complex(c_double_complex), target :: bsr_val(..)
+      integer(c_int), target :: bsr_row_ptr(..)
+      integer(c_int), target :: bsr_col_ind(..)
       integer(c_int), value :: block_dim
       type(c_ptr), value :: info
       integer(c_int) :: zbsrmv_analysis
       zbsrmv_analysis = rocsparse_zbsrmv_analysis_raw(handle, dir, trans, mb, nb, nnzb, descr, &
-        c_loc(bsr_val(1)), c_loc(bsr_row_ptr(1)), c_loc(bsr_col_ind(1)), block_dim, info)
+        c_loc(bsr_val), c_loc(bsr_row_ptr), c_loc(bsr_col_ind), block_dim, info)
     end function rocsparse_zbsrmv_analysis_native
 
     function rocsparse_zbsrmv_analysis_typed(handle, dir, trans, mb, nb, nnzb, descr, bsr_val, &
@@ -48711,18 +48690,17 @@ contains
       integer(c_int), value :: nnzb
       real(c_float) :: alpha
       type(c_ptr), value :: descr
-      real(c_float), target :: bsr_val(*)
-      integer(c_int), target :: bsr_row_ptr(*)
-      integer(c_int), target :: bsr_col_ind(*)
+      real(c_float), target :: bsr_val(..)
+      integer(c_int), target :: bsr_row_ptr(..)
+      integer(c_int), target :: bsr_col_ind(..)
       integer(c_int), value :: block_dim
       type(c_ptr), value :: info
-      real(c_float), target :: x(*)
+      real(c_float), target :: x(..)
       real(c_float) :: beta
-      real(c_float), target :: y(*)
+      real(c_float), target :: y(..)
       integer(c_int) :: sbsrmv
-      sbsrmv = rocsparse_sbsrmv_raw(handle, dir, trans, mb, nb, nnzb, alpha, descr, c_loc(bsr_val( &
-        1)), c_loc(bsr_row_ptr(1)), c_loc(bsr_col_ind(1)), block_dim, info, c_loc(x(1)), beta, &
-        c_loc(y(1)))
+      sbsrmv = rocsparse_sbsrmv_raw(handle, dir, trans, mb, nb, nnzb, alpha, descr, c_loc( &
+        bsr_val), c_loc(bsr_row_ptr), c_loc(bsr_col_ind), block_dim, info, c_loc(x), beta, c_loc(y))
     end function rocsparse_sbsrmv_native
 
     function rocsparse_sbsrmv_typed(handle, dir, trans, mb, nb, nnzb, alpha, descr, bsr_val, &
@@ -48763,18 +48741,17 @@ contains
       integer(c_int), value :: nnzb
       real(c_double) :: alpha
       type(c_ptr), value :: descr
-      real(c_double), target :: bsr_val(*)
-      integer(c_int), target :: bsr_row_ptr(*)
-      integer(c_int), target :: bsr_col_ind(*)
+      real(c_double), target :: bsr_val(..)
+      integer(c_int), target :: bsr_row_ptr(..)
+      integer(c_int), target :: bsr_col_ind(..)
       integer(c_int), value :: block_dim
       type(c_ptr), value :: info
-      real(c_double), target :: x(*)
+      real(c_double), target :: x(..)
       real(c_double) :: beta
-      real(c_double), target :: y(*)
+      real(c_double), target :: y(..)
       integer(c_int) :: dbsrmv
-      dbsrmv = rocsparse_dbsrmv_raw(handle, dir, trans, mb, nb, nnzb, alpha, descr, c_loc(bsr_val( &
-        1)), c_loc(bsr_row_ptr(1)), c_loc(bsr_col_ind(1)), block_dim, info, c_loc(x(1)), beta, &
-        c_loc(y(1)))
+      dbsrmv = rocsparse_dbsrmv_raw(handle, dir, trans, mb, nb, nnzb, alpha, descr, c_loc( &
+        bsr_val), c_loc(bsr_row_ptr), c_loc(bsr_col_ind), block_dim, info, c_loc(x), beta, c_loc(y))
     end function rocsparse_dbsrmv_native
 
     function rocsparse_dbsrmv_typed(handle, dir, trans, mb, nb, nnzb, alpha, descr, bsr_val, &
@@ -48815,18 +48792,17 @@ contains
       integer(c_int), value :: nnzb
       complex(c_float_complex) :: alpha
       type(c_ptr), value :: descr
-      complex(c_float_complex), target :: bsr_val(*)
-      integer(c_int), target :: bsr_row_ptr(*)
-      integer(c_int), target :: bsr_col_ind(*)
+      complex(c_float_complex), target :: bsr_val(..)
+      integer(c_int), target :: bsr_row_ptr(..)
+      integer(c_int), target :: bsr_col_ind(..)
       integer(c_int), value :: block_dim
       type(c_ptr), value :: info
-      complex(c_float_complex), target :: x(*)
+      complex(c_float_complex), target :: x(..)
       complex(c_float_complex) :: beta
-      complex(c_float_complex), target :: y(*)
+      complex(c_float_complex), target :: y(..)
       integer(c_int) :: cbsrmv
-      cbsrmv = rocsparse_cbsrmv_raw(handle, dir, trans, mb, nb, nnzb, alpha, descr, c_loc(bsr_val( &
-        1)), c_loc(bsr_row_ptr(1)), c_loc(bsr_col_ind(1)), block_dim, info, c_loc(x(1)), beta, &
-        c_loc(y(1)))
+      cbsrmv = rocsparse_cbsrmv_raw(handle, dir, trans, mb, nb, nnzb, alpha, descr, c_loc( &
+        bsr_val), c_loc(bsr_row_ptr), c_loc(bsr_col_ind), block_dim, info, c_loc(x), beta, c_loc(y))
     end function rocsparse_cbsrmv_native
 
     function rocsparse_cbsrmv_typed(handle, dir, trans, mb, nb, nnzb, alpha, descr, bsr_val, &
@@ -48867,18 +48843,17 @@ contains
       integer(c_int), value :: nnzb
       complex(c_double_complex) :: alpha
       type(c_ptr), value :: descr
-      complex(c_double_complex), target :: bsr_val(*)
-      integer(c_int), target :: bsr_row_ptr(*)
-      integer(c_int), target :: bsr_col_ind(*)
+      complex(c_double_complex), target :: bsr_val(..)
+      integer(c_int), target :: bsr_row_ptr(..)
+      integer(c_int), target :: bsr_col_ind(..)
       integer(c_int), value :: block_dim
       type(c_ptr), value :: info
-      complex(c_double_complex), target :: x(*)
+      complex(c_double_complex), target :: x(..)
       complex(c_double_complex) :: beta
-      complex(c_double_complex), target :: y(*)
+      complex(c_double_complex), target :: y(..)
       integer(c_int) :: zbsrmv
-      zbsrmv = rocsparse_zbsrmv_raw(handle, dir, trans, mb, nb, nnzb, alpha, descr, c_loc(bsr_val( &
-        1)), c_loc(bsr_row_ptr(1)), c_loc(bsr_col_ind(1)), block_dim, info, c_loc(x(1)), beta, &
-        c_loc(y(1)))
+      zbsrmv = rocsparse_zbsrmv_raw(handle, dir, trans, mb, nb, nnzb, alpha, descr, c_loc( &
+        bsr_val), c_loc(bsr_row_ptr), c_loc(bsr_col_ind), block_dim, info, c_loc(x), beta, c_loc(y))
     end function rocsparse_zbsrmv_native
 
     function rocsparse_zbsrmv_typed(handle, dir, trans, mb, nb, nnzb, alpha, descr, bsr_val, &
@@ -48917,23 +48892,13 @@ contains
       bsrmv_clear = rocsparse_bsrmv_clear_raw(handle%ptr, info%ptr)
     end function rocsparse_bsrmv_clear_typed
 
-    function rocsparse_bsrsv_zero_pivot_native(handle, info, position) result(bsrsv_zero_pivot)
-      use, intrinsic :: iso_c_binding
-      implicit none
-      type(c_ptr), value :: handle
-      type(c_ptr), value :: info
-      integer(c_int), target :: position(*)
-      integer(c_int) :: bsrsv_zero_pivot
-      bsrsv_zero_pivot = rocsparse_bsrsv_zero_pivot_raw(handle, info, c_loc(position(1)))
-    end function rocsparse_bsrsv_zero_pivot_native
-
     function rocsparse_bsrsv_zero_pivot_typed(handle, info, position) result(bsrsv_zero_pivot)
       use, intrinsic :: iso_c_binding
       use hipfort_handles
       implicit none
       type(rocsparse_handle_t), value :: handle
       type(rocsparse_mat_info_t), value :: info
-      type(c_ptr), value :: position
+      integer(c_int) :: position
       integer(c_int) :: bsrsv_zero_pivot
       bsrsv_zero_pivot = rocsparse_bsrsv_zero_pivot_raw(handle%ptr, info%ptr, position)
     end function rocsparse_bsrsv_zero_pivot_typed
@@ -48948,16 +48913,15 @@ contains
       integer(c_int), value :: mb
       integer(c_int), value :: nnzb
       type(c_ptr), value :: descr
-      real(c_float), target :: bsr_val(*)
-      integer(c_int), target :: bsr_row_ptr(*)
-      integer(c_int), target :: bsr_col_ind(*)
+      real(c_float), target :: bsr_val(..)
+      integer(c_int), target :: bsr_row_ptr(..)
+      integer(c_int), target :: bsr_col_ind(..)
       integer(c_int), value :: block_dim
       type(c_ptr), value :: info
       type(c_ptr), value :: buffer_size
       integer(c_int) :: sbsrsv_buffer_size
       sbsrsv_buffer_size = rocsparse_sbsrsv_buffer_size_raw(handle, dir, trans, mb, nnzb, descr, &
-        c_loc(bsr_val(1)), c_loc(bsr_row_ptr(1)), c_loc(bsr_col_ind(1)), block_dim, info, &
-        buffer_size)
+        c_loc(bsr_val), c_loc(bsr_row_ptr), c_loc(bsr_col_ind), block_dim, info, buffer_size)
     end function rocsparse_sbsrsv_buffer_size_native
 
     function rocsparse_sbsrsv_buffer_size_typed(handle, dir, trans, mb, nnzb, descr, bsr_val, &
@@ -48992,16 +48956,15 @@ contains
       integer(c_int), value :: mb
       integer(c_int), value :: nnzb
       type(c_ptr), value :: descr
-      real(c_double), target :: bsr_val(*)
-      integer(c_int), target :: bsr_row_ptr(*)
-      integer(c_int), target :: bsr_col_ind(*)
+      real(c_double), target :: bsr_val(..)
+      integer(c_int), target :: bsr_row_ptr(..)
+      integer(c_int), target :: bsr_col_ind(..)
       integer(c_int), value :: block_dim
       type(c_ptr), value :: info
       type(c_ptr), value :: buffer_size
       integer(c_int) :: dbsrsv_buffer_size
       dbsrsv_buffer_size = rocsparse_dbsrsv_buffer_size_raw(handle, dir, trans, mb, nnzb, descr, &
-        c_loc(bsr_val(1)), c_loc(bsr_row_ptr(1)), c_loc(bsr_col_ind(1)), block_dim, info, &
-        buffer_size)
+        c_loc(bsr_val), c_loc(bsr_row_ptr), c_loc(bsr_col_ind), block_dim, info, buffer_size)
     end function rocsparse_dbsrsv_buffer_size_native
 
     function rocsparse_dbsrsv_buffer_size_typed(handle, dir, trans, mb, nnzb, descr, bsr_val, &
@@ -49036,16 +48999,15 @@ contains
       integer(c_int), value :: mb
       integer(c_int), value :: nnzb
       type(c_ptr), value :: descr
-      complex(c_float_complex), target :: bsr_val(*)
-      integer(c_int), target :: bsr_row_ptr(*)
-      integer(c_int), target :: bsr_col_ind(*)
+      complex(c_float_complex), target :: bsr_val(..)
+      integer(c_int), target :: bsr_row_ptr(..)
+      integer(c_int), target :: bsr_col_ind(..)
       integer(c_int), value :: block_dim
       type(c_ptr), value :: info
       type(c_ptr), value :: buffer_size
       integer(c_int) :: cbsrsv_buffer_size
       cbsrsv_buffer_size = rocsparse_cbsrsv_buffer_size_raw(handle, dir, trans, mb, nnzb, descr, &
-        c_loc(bsr_val(1)), c_loc(bsr_row_ptr(1)), c_loc(bsr_col_ind(1)), block_dim, info, &
-        buffer_size)
+        c_loc(bsr_val), c_loc(bsr_row_ptr), c_loc(bsr_col_ind), block_dim, info, buffer_size)
     end function rocsparse_cbsrsv_buffer_size_native
 
     function rocsparse_cbsrsv_buffer_size_typed(handle, dir, trans, mb, nnzb, descr, bsr_val, &
@@ -49080,16 +49042,15 @@ contains
       integer(c_int), value :: mb
       integer(c_int), value :: nnzb
       type(c_ptr), value :: descr
-      complex(c_double_complex), target :: bsr_val(*)
-      integer(c_int), target :: bsr_row_ptr(*)
-      integer(c_int), target :: bsr_col_ind(*)
+      complex(c_double_complex), target :: bsr_val(..)
+      integer(c_int), target :: bsr_row_ptr(..)
+      integer(c_int), target :: bsr_col_ind(..)
       integer(c_int), value :: block_dim
       type(c_ptr), value :: info
       type(c_ptr), value :: buffer_size
       integer(c_int) :: zbsrsv_buffer_size
       zbsrsv_buffer_size = rocsparse_zbsrsv_buffer_size_raw(handle, dir, trans, mb, nnzb, descr, &
-        c_loc(bsr_val(1)), c_loc(bsr_row_ptr(1)), c_loc(bsr_col_ind(1)), block_dim, info, &
-        buffer_size)
+        c_loc(bsr_val), c_loc(bsr_row_ptr), c_loc(bsr_col_ind), block_dim, info, buffer_size)
     end function rocsparse_zbsrsv_buffer_size_native
 
     function rocsparse_zbsrsv_buffer_size_typed(handle, dir, trans, mb, nnzb, descr, bsr_val, &
@@ -49125,9 +49086,9 @@ contains
       integer(c_int), value :: mb
       integer(c_int), value :: nnzb
       type(c_ptr), value :: descr
-      real(c_float), target :: bsr_val(*)
-      integer(c_int), target :: bsr_row_ptr(*)
-      integer(c_int), target :: bsr_col_ind(*)
+      real(c_float), target :: bsr_val(..)
+      integer(c_int), target :: bsr_row_ptr(..)
+      integer(c_int), target :: bsr_col_ind(..)
       integer(c_int), value :: block_dim
       type(c_ptr), value :: info
       integer(c_int), value :: analysis
@@ -49135,8 +49096,8 @@ contains
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: sbsrsv_analysis
       sbsrsv_analysis = rocsparse_sbsrsv_analysis_raw(handle, dir, trans, mb, nnzb, descr, c_loc( &
-        bsr_val(1)), c_loc(bsr_row_ptr(1)), c_loc(bsr_col_ind(1)), block_dim, info, analysis, &
-        solve, temp_buffer)
+        bsr_val), c_loc(bsr_row_ptr), c_loc(bsr_col_ind), block_dim, info, analysis, solve, &
+        temp_buffer)
     end function rocsparse_sbsrsv_analysis_native
 
     function rocsparse_sbsrsv_analysis_typed(handle, dir, trans, mb, nnzb, descr, bsr_val, &
@@ -49175,9 +49136,9 @@ contains
       integer(c_int), value :: mb
       integer(c_int), value :: nnzb
       type(c_ptr), value :: descr
-      real(c_double), target :: bsr_val(*)
-      integer(c_int), target :: bsr_row_ptr(*)
-      integer(c_int), target :: bsr_col_ind(*)
+      real(c_double), target :: bsr_val(..)
+      integer(c_int), target :: bsr_row_ptr(..)
+      integer(c_int), target :: bsr_col_ind(..)
       integer(c_int), value :: block_dim
       type(c_ptr), value :: info
       integer(c_int), value :: analysis
@@ -49185,8 +49146,8 @@ contains
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: dbsrsv_analysis
       dbsrsv_analysis = rocsparse_dbsrsv_analysis_raw(handle, dir, trans, mb, nnzb, descr, c_loc( &
-        bsr_val(1)), c_loc(bsr_row_ptr(1)), c_loc(bsr_col_ind(1)), block_dim, info, analysis, &
-        solve, temp_buffer)
+        bsr_val), c_loc(bsr_row_ptr), c_loc(bsr_col_ind), block_dim, info, analysis, solve, &
+        temp_buffer)
     end function rocsparse_dbsrsv_analysis_native
 
     function rocsparse_dbsrsv_analysis_typed(handle, dir, trans, mb, nnzb, descr, bsr_val, &
@@ -49225,9 +49186,9 @@ contains
       integer(c_int), value :: mb
       integer(c_int), value :: nnzb
       type(c_ptr), value :: descr
-      complex(c_float_complex), target :: bsr_val(*)
-      integer(c_int), target :: bsr_row_ptr(*)
-      integer(c_int), target :: bsr_col_ind(*)
+      complex(c_float_complex), target :: bsr_val(..)
+      integer(c_int), target :: bsr_row_ptr(..)
+      integer(c_int), target :: bsr_col_ind(..)
       integer(c_int), value :: block_dim
       type(c_ptr), value :: info
       integer(c_int), value :: analysis
@@ -49235,8 +49196,8 @@ contains
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: cbsrsv_analysis
       cbsrsv_analysis = rocsparse_cbsrsv_analysis_raw(handle, dir, trans, mb, nnzb, descr, c_loc( &
-        bsr_val(1)), c_loc(bsr_row_ptr(1)), c_loc(bsr_col_ind(1)), block_dim, info, analysis, &
-        solve, temp_buffer)
+        bsr_val), c_loc(bsr_row_ptr), c_loc(bsr_col_ind), block_dim, info, analysis, solve, &
+        temp_buffer)
     end function rocsparse_cbsrsv_analysis_native
 
     function rocsparse_cbsrsv_analysis_typed(handle, dir, trans, mb, nnzb, descr, bsr_val, &
@@ -49275,9 +49236,9 @@ contains
       integer(c_int), value :: mb
       integer(c_int), value :: nnzb
       type(c_ptr), value :: descr
-      complex(c_double_complex), target :: bsr_val(*)
-      integer(c_int), target :: bsr_row_ptr(*)
-      integer(c_int), target :: bsr_col_ind(*)
+      complex(c_double_complex), target :: bsr_val(..)
+      integer(c_int), target :: bsr_row_ptr(..)
+      integer(c_int), target :: bsr_col_ind(..)
       integer(c_int), value :: block_dim
       type(c_ptr), value :: info
       integer(c_int), value :: analysis
@@ -49285,8 +49246,8 @@ contains
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: zbsrsv_analysis
       zbsrsv_analysis = rocsparse_zbsrsv_analysis_raw(handle, dir, trans, mb, nnzb, descr, c_loc( &
-        bsr_val(1)), c_loc(bsr_row_ptr(1)), c_loc(bsr_col_ind(1)), block_dim, info, analysis, &
-        solve, temp_buffer)
+        bsr_val), c_loc(bsr_row_ptr), c_loc(bsr_col_ind), block_dim, info, analysis, solve, &
+        temp_buffer)
     end function rocsparse_zbsrsv_analysis_native
 
     function rocsparse_zbsrsv_analysis_typed(handle, dir, trans, mb, nnzb, descr, bsr_val, &
@@ -49335,19 +49296,19 @@ contains
       integer(c_int), value :: nnzb
       real(c_float) :: alpha
       type(c_ptr), value :: descr
-      real(c_float), target :: bsr_val(*)
-      integer(c_int), target :: bsr_row_ptr(*)
-      integer(c_int), target :: bsr_col_ind(*)
+      real(c_float), target :: bsr_val(..)
+      integer(c_int), target :: bsr_row_ptr(..)
+      integer(c_int), target :: bsr_col_ind(..)
       integer(c_int), value :: block_dim
       type(c_ptr), value :: info
-      real(c_float), target :: x(*)
-      real(c_float), target :: y(*)
+      real(c_float), target :: x(..)
+      real(c_float), target :: y(..)
       integer(c_int), value :: policy
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: sbsrsv_solve
       sbsrsv_solve = rocsparse_sbsrsv_solve_raw(handle, dir, trans, mb, nnzb, alpha, descr, c_loc( &
-        bsr_val(1)), c_loc(bsr_row_ptr(1)), c_loc(bsr_col_ind(1)), block_dim, info, c_loc(x(1)), &
-        c_loc(y(1)), policy, temp_buffer)
+        bsr_val), c_loc(bsr_row_ptr), c_loc(bsr_col_ind), block_dim, info, c_loc(x), c_loc(y), &
+        policy, temp_buffer)
     end function rocsparse_sbsrsv_solve_native
 
     function rocsparse_sbsrsv_solve_typed(handle, dir, trans, mb, nnzb, alpha, descr, bsr_val, &
@@ -49388,19 +49349,19 @@ contains
       integer(c_int), value :: nnzb
       real(c_double) :: alpha
       type(c_ptr), value :: descr
-      real(c_double), target :: bsr_val(*)
-      integer(c_int), target :: bsr_row_ptr(*)
-      integer(c_int), target :: bsr_col_ind(*)
+      real(c_double), target :: bsr_val(..)
+      integer(c_int), target :: bsr_row_ptr(..)
+      integer(c_int), target :: bsr_col_ind(..)
       integer(c_int), value :: block_dim
       type(c_ptr), value :: info
-      real(c_double), target :: x(*)
-      real(c_double), target :: y(*)
+      real(c_double), target :: x(..)
+      real(c_double), target :: y(..)
       integer(c_int), value :: policy
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: dbsrsv_solve
       dbsrsv_solve = rocsparse_dbsrsv_solve_raw(handle, dir, trans, mb, nnzb, alpha, descr, c_loc( &
-        bsr_val(1)), c_loc(bsr_row_ptr(1)), c_loc(bsr_col_ind(1)), block_dim, info, c_loc(x(1)), &
-        c_loc(y(1)), policy, temp_buffer)
+        bsr_val), c_loc(bsr_row_ptr), c_loc(bsr_col_ind), block_dim, info, c_loc(x), c_loc(y), &
+        policy, temp_buffer)
     end function rocsparse_dbsrsv_solve_native
 
     function rocsparse_dbsrsv_solve_typed(handle, dir, trans, mb, nnzb, alpha, descr, bsr_val, &
@@ -49441,19 +49402,19 @@ contains
       integer(c_int), value :: nnzb
       complex(c_float_complex) :: alpha
       type(c_ptr), value :: descr
-      complex(c_float_complex), target :: bsr_val(*)
-      integer(c_int), target :: bsr_row_ptr(*)
-      integer(c_int), target :: bsr_col_ind(*)
+      complex(c_float_complex), target :: bsr_val(..)
+      integer(c_int), target :: bsr_row_ptr(..)
+      integer(c_int), target :: bsr_col_ind(..)
       integer(c_int), value :: block_dim
       type(c_ptr), value :: info
-      complex(c_float_complex), target :: x(*)
-      complex(c_float_complex), target :: y(*)
+      complex(c_float_complex), target :: x(..)
+      complex(c_float_complex), target :: y(..)
       integer(c_int), value :: policy
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: cbsrsv_solve
       cbsrsv_solve = rocsparse_cbsrsv_solve_raw(handle, dir, trans, mb, nnzb, alpha, descr, c_loc( &
-        bsr_val(1)), c_loc(bsr_row_ptr(1)), c_loc(bsr_col_ind(1)), block_dim, info, c_loc(x(1)), &
-        c_loc(y(1)), policy, temp_buffer)
+        bsr_val), c_loc(bsr_row_ptr), c_loc(bsr_col_ind), block_dim, info, c_loc(x), c_loc(y), &
+        policy, temp_buffer)
     end function rocsparse_cbsrsv_solve_native
 
     function rocsparse_cbsrsv_solve_typed(handle, dir, trans, mb, nnzb, alpha, descr, bsr_val, &
@@ -49494,19 +49455,19 @@ contains
       integer(c_int), value :: nnzb
       complex(c_double_complex) :: alpha
       type(c_ptr), value :: descr
-      complex(c_double_complex), target :: bsr_val(*)
-      integer(c_int), target :: bsr_row_ptr(*)
-      integer(c_int), target :: bsr_col_ind(*)
+      complex(c_double_complex), target :: bsr_val(..)
+      integer(c_int), target :: bsr_row_ptr(..)
+      integer(c_int), target :: bsr_col_ind(..)
       integer(c_int), value :: block_dim
       type(c_ptr), value :: info
-      complex(c_double_complex), target :: x(*)
-      complex(c_double_complex), target :: y(*)
+      complex(c_double_complex), target :: x(..)
+      complex(c_double_complex), target :: y(..)
       integer(c_int), value :: policy
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: zbsrsv_solve
       zbsrsv_solve = rocsparse_zbsrsv_solve_raw(handle, dir, trans, mb, nnzb, alpha, descr, c_loc( &
-        bsr_val(1)), c_loc(bsr_row_ptr(1)), c_loc(bsr_col_ind(1)), block_dim, info, c_loc(x(1)), &
-        c_loc(y(1)), policy, temp_buffer)
+        bsr_val), c_loc(bsr_row_ptr), c_loc(bsr_col_ind), block_dim, info, c_loc(x), c_loc(y), &
+        policy, temp_buffer)
     end function rocsparse_zbsrsv_solve_native
 
     function rocsparse_zbsrsv_solve_typed(handle, dir, trans, mb, nnzb, alpha, descr, bsr_val, &
@@ -49550,19 +49511,19 @@ contains
       integer(c_int), value :: nnzb
       real(c_float) :: alpha
       type(c_ptr), value :: descr
-      real(c_float), target :: bsr_val(*)
-      integer(c_int), target :: bsr_mask_ptr(*)
-      integer(c_int), target :: bsr_row_ptr(*)
-      integer(c_int), target :: bsr_end_ptr(*)
-      integer(c_int), target :: bsr_col_ind(*)
+      real(c_float), target :: bsr_val(..)
+      integer(c_int), target :: bsr_mask_ptr(..)
+      integer(c_int), target :: bsr_row_ptr(..)
+      integer(c_int), target :: bsr_end_ptr(..)
+      integer(c_int), target :: bsr_col_ind(..)
       integer(c_int), value :: block_dim
-      real(c_float), target :: x(*)
+      real(c_float), target :: x(..)
       real(c_float) :: beta
-      real(c_float), target :: y(*)
+      real(c_float), target :: y(..)
       integer(c_int) :: sbsrxmv
       sbsrxmv = rocsparse_sbsrxmv_raw(handle, dir, trans, size_of_mask, mb, nb, nnzb, alpha, &
-        descr, c_loc(bsr_val(1)), c_loc(bsr_mask_ptr(1)), c_loc(bsr_row_ptr(1)), c_loc( &
-        bsr_end_ptr(1)), c_loc(bsr_col_ind(1)), block_dim, c_loc(x(1)), beta, c_loc(y(1)))
+        descr, c_loc(bsr_val), c_loc(bsr_mask_ptr), c_loc(bsr_row_ptr), c_loc(bsr_end_ptr), c_loc( &
+        bsr_col_ind), block_dim, c_loc(x), beta, c_loc(y))
     end function rocsparse_sbsrxmv_native
 
     function rocsparse_sbsrxmv_typed(handle, dir, trans, size_of_mask, mb, nb, nnzb, alpha, descr, &
@@ -49609,19 +49570,19 @@ contains
       integer(c_int), value :: nnzb
       real(c_double) :: alpha
       type(c_ptr), value :: descr
-      real(c_double), target :: bsr_val(*)
-      integer(c_int), target :: bsr_mask_ptr(*)
-      integer(c_int), target :: bsr_row_ptr(*)
-      integer(c_int), target :: bsr_end_ptr(*)
-      integer(c_int), target :: bsr_col_ind(*)
+      real(c_double), target :: bsr_val(..)
+      integer(c_int), target :: bsr_mask_ptr(..)
+      integer(c_int), target :: bsr_row_ptr(..)
+      integer(c_int), target :: bsr_end_ptr(..)
+      integer(c_int), target :: bsr_col_ind(..)
       integer(c_int), value :: block_dim
-      real(c_double), target :: x(*)
+      real(c_double), target :: x(..)
       real(c_double) :: beta
-      real(c_double), target :: y(*)
+      real(c_double), target :: y(..)
       integer(c_int) :: dbsrxmv
       dbsrxmv = rocsparse_dbsrxmv_raw(handle, dir, trans, size_of_mask, mb, nb, nnzb, alpha, &
-        descr, c_loc(bsr_val(1)), c_loc(bsr_mask_ptr(1)), c_loc(bsr_row_ptr(1)), c_loc( &
-        bsr_end_ptr(1)), c_loc(bsr_col_ind(1)), block_dim, c_loc(x(1)), beta, c_loc(y(1)))
+        descr, c_loc(bsr_val), c_loc(bsr_mask_ptr), c_loc(bsr_row_ptr), c_loc(bsr_end_ptr), c_loc( &
+        bsr_col_ind), block_dim, c_loc(x), beta, c_loc(y))
     end function rocsparse_dbsrxmv_native
 
     function rocsparse_dbsrxmv_typed(handle, dir, trans, size_of_mask, mb, nb, nnzb, alpha, descr, &
@@ -49668,19 +49629,19 @@ contains
       integer(c_int), value :: nnzb
       complex(c_float_complex) :: alpha
       type(c_ptr), value :: descr
-      complex(c_float_complex), target :: bsr_val(*)
-      integer(c_int), target :: bsr_mask_ptr(*)
-      integer(c_int), target :: bsr_row_ptr(*)
-      integer(c_int), target :: bsr_end_ptr(*)
-      integer(c_int), target :: bsr_col_ind(*)
+      complex(c_float_complex), target :: bsr_val(..)
+      integer(c_int), target :: bsr_mask_ptr(..)
+      integer(c_int), target :: bsr_row_ptr(..)
+      integer(c_int), target :: bsr_end_ptr(..)
+      integer(c_int), target :: bsr_col_ind(..)
       integer(c_int), value :: block_dim
-      complex(c_float_complex), target :: x(*)
+      complex(c_float_complex), target :: x(..)
       complex(c_float_complex) :: beta
-      complex(c_float_complex), target :: y(*)
+      complex(c_float_complex), target :: y(..)
       integer(c_int) :: cbsrxmv
       cbsrxmv = rocsparse_cbsrxmv_raw(handle, dir, trans, size_of_mask, mb, nb, nnzb, alpha, &
-        descr, c_loc(bsr_val(1)), c_loc(bsr_mask_ptr(1)), c_loc(bsr_row_ptr(1)), c_loc( &
-        bsr_end_ptr(1)), c_loc(bsr_col_ind(1)), block_dim, c_loc(x(1)), beta, c_loc(y(1)))
+        descr, c_loc(bsr_val), c_loc(bsr_mask_ptr), c_loc(bsr_row_ptr), c_loc(bsr_end_ptr), c_loc( &
+        bsr_col_ind), block_dim, c_loc(x), beta, c_loc(y))
     end function rocsparse_cbsrxmv_native
 
     function rocsparse_cbsrxmv_typed(handle, dir, trans, size_of_mask, mb, nb, nnzb, alpha, descr, &
@@ -49727,19 +49688,19 @@ contains
       integer(c_int), value :: nnzb
       complex(c_double_complex) :: alpha
       type(c_ptr), value :: descr
-      complex(c_double_complex), target :: bsr_val(*)
-      integer(c_int), target :: bsr_mask_ptr(*)
-      integer(c_int), target :: bsr_row_ptr(*)
-      integer(c_int), target :: bsr_end_ptr(*)
-      integer(c_int), target :: bsr_col_ind(*)
+      complex(c_double_complex), target :: bsr_val(..)
+      integer(c_int), target :: bsr_mask_ptr(..)
+      integer(c_int), target :: bsr_row_ptr(..)
+      integer(c_int), target :: bsr_end_ptr(..)
+      integer(c_int), target :: bsr_col_ind(..)
       integer(c_int), value :: block_dim
-      complex(c_double_complex), target :: x(*)
+      complex(c_double_complex), target :: x(..)
       complex(c_double_complex) :: beta
-      complex(c_double_complex), target :: y(*)
+      complex(c_double_complex), target :: y(..)
       integer(c_int) :: zbsrxmv
       zbsrxmv = rocsparse_zbsrxmv_raw(handle, dir, trans, size_of_mask, mb, nb, nnzb, alpha, &
-        descr, c_loc(bsr_val(1)), c_loc(bsr_mask_ptr(1)), c_loc(bsr_row_ptr(1)), c_loc( &
-        bsr_end_ptr(1)), c_loc(bsr_col_ind(1)), block_dim, c_loc(x(1)), beta, c_loc(y(1)))
+        descr, c_loc(bsr_val), c_loc(bsr_mask_ptr), c_loc(bsr_row_ptr), c_loc(bsr_end_ptr), c_loc( &
+        bsr_col_ind), block_dim, c_loc(x), beta, c_loc(y))
     end function rocsparse_zbsrxmv_native
 
     function rocsparse_zbsrxmv_typed(handle, dir, trans, size_of_mask, mb, nb, nnzb, alpha, descr, &
@@ -49783,15 +49744,15 @@ contains
       integer(c_int), value :: nnz
       real(c_float) :: alpha
       type(c_ptr), value :: descr
-      real(c_float), target :: coo_val(*)
-      integer(c_int), target :: coo_row_ind(*)
-      integer(c_int), target :: coo_col_ind(*)
-      real(c_float), target :: x(*)
+      real(c_float), target :: coo_val(..)
+      integer(c_int), target :: coo_row_ind(..)
+      integer(c_int), target :: coo_col_ind(..)
+      real(c_float), target :: x(..)
       real(c_float) :: beta
-      real(c_float), target :: y(*)
+      real(c_float), target :: y(..)
       integer(c_int) :: scoomv
-      scoomv = rocsparse_scoomv_raw(handle, trans, m, n, nnz, alpha, descr, c_loc(coo_val(1)), &
-        c_loc(coo_row_ind(1)), c_loc(coo_col_ind(1)), c_loc(x(1)), beta, c_loc(y(1)))
+      scoomv = rocsparse_scoomv_raw(handle, trans, m, n, nnz, alpha, descr, c_loc(coo_val), c_loc( &
+        coo_row_ind), c_loc(coo_col_ind), c_loc(x), beta, c_loc(y))
     end function rocsparse_scoomv_native
 
     function rocsparse_scoomv_typed(handle, trans, m, n, nnz, alpha, descr, coo_val, coo_row_ind, &
@@ -49828,15 +49789,15 @@ contains
       integer(c_int), value :: nnz
       real(c_double) :: alpha
       type(c_ptr), value :: descr
-      real(c_double), target :: coo_val(*)
-      integer(c_int), target :: coo_row_ind(*)
-      integer(c_int), target :: coo_col_ind(*)
-      real(c_double), target :: x(*)
+      real(c_double), target :: coo_val(..)
+      integer(c_int), target :: coo_row_ind(..)
+      integer(c_int), target :: coo_col_ind(..)
+      real(c_double), target :: x(..)
       real(c_double) :: beta
-      real(c_double), target :: y(*)
+      real(c_double), target :: y(..)
       integer(c_int) :: dcoomv
-      dcoomv = rocsparse_dcoomv_raw(handle, trans, m, n, nnz, alpha, descr, c_loc(coo_val(1)), &
-        c_loc(coo_row_ind(1)), c_loc(coo_col_ind(1)), c_loc(x(1)), beta, c_loc(y(1)))
+      dcoomv = rocsparse_dcoomv_raw(handle, trans, m, n, nnz, alpha, descr, c_loc(coo_val), c_loc( &
+        coo_row_ind), c_loc(coo_col_ind), c_loc(x), beta, c_loc(y))
     end function rocsparse_dcoomv_native
 
     function rocsparse_dcoomv_typed(handle, trans, m, n, nnz, alpha, descr, coo_val, coo_row_ind, &
@@ -49873,15 +49834,15 @@ contains
       integer(c_int), value :: nnz
       complex(c_float_complex) :: alpha
       type(c_ptr), value :: descr
-      complex(c_float_complex), target :: coo_val(*)
-      integer(c_int), target :: coo_row_ind(*)
-      integer(c_int), target :: coo_col_ind(*)
-      complex(c_float_complex), target :: x(*)
+      complex(c_float_complex), target :: coo_val(..)
+      integer(c_int), target :: coo_row_ind(..)
+      integer(c_int), target :: coo_col_ind(..)
+      complex(c_float_complex), target :: x(..)
       complex(c_float_complex) :: beta
-      complex(c_float_complex), target :: y(*)
+      complex(c_float_complex), target :: y(..)
       integer(c_int) :: ccoomv
-      ccoomv = rocsparse_ccoomv_raw(handle, trans, m, n, nnz, alpha, descr, c_loc(coo_val(1)), &
-        c_loc(coo_row_ind(1)), c_loc(coo_col_ind(1)), c_loc(x(1)), beta, c_loc(y(1)))
+      ccoomv = rocsparse_ccoomv_raw(handle, trans, m, n, nnz, alpha, descr, c_loc(coo_val), c_loc( &
+        coo_row_ind), c_loc(coo_col_ind), c_loc(x), beta, c_loc(y))
     end function rocsparse_ccoomv_native
 
     function rocsparse_ccoomv_typed(handle, trans, m, n, nnz, alpha, descr, coo_val, coo_row_ind, &
@@ -49918,15 +49879,15 @@ contains
       integer(c_int), value :: nnz
       complex(c_double_complex) :: alpha
       type(c_ptr), value :: descr
-      complex(c_double_complex), target :: coo_val(*)
-      integer(c_int), target :: coo_row_ind(*)
-      integer(c_int), target :: coo_col_ind(*)
-      complex(c_double_complex), target :: x(*)
+      complex(c_double_complex), target :: coo_val(..)
+      integer(c_int), target :: coo_row_ind(..)
+      integer(c_int), target :: coo_col_ind(..)
+      complex(c_double_complex), target :: x(..)
       complex(c_double_complex) :: beta
-      complex(c_double_complex), target :: y(*)
+      complex(c_double_complex), target :: y(..)
       integer(c_int) :: zcoomv
-      zcoomv = rocsparse_zcoomv_raw(handle, trans, m, n, nnz, alpha, descr, c_loc(coo_val(1)), &
-        c_loc(coo_row_ind(1)), c_loc(coo_col_ind(1)), c_loc(x(1)), beta, c_loc(y(1)))
+      zcoomv = rocsparse_zcoomv_raw(handle, trans, m, n, nnz, alpha, descr, c_loc(coo_val), c_loc( &
+        coo_row_ind), c_loc(coo_col_ind), c_loc(x), beta, c_loc(y))
     end function rocsparse_zcoomv_native
 
     function rocsparse_zcoomv_typed(handle, trans, m, n, nnz, alpha, descr, coo_val, coo_row_ind, &
@@ -49959,9 +49920,9 @@ contains
       type(c_ptr), value :: handle
       type(c_ptr), value :: descr
       type(c_ptr), value :: info
-      integer(c_int), target :: position(*)
+      integer(c_int), target :: position(..)
       integer(c_int) :: csritsv_zero_pivot
-      csritsv_zero_pivot = rocsparse_csritsv_zero_pivot_raw(handle, descr, info, c_loc(position(1)))
+      csritsv_zero_pivot = rocsparse_csritsv_zero_pivot_raw(handle, descr, info, c_loc(position))
     end function rocsparse_csritsv_zero_pivot_native
 
     function rocsparse_csritsv_zero_pivot_typed(handle, descr, info, position) result( &
@@ -49987,14 +49948,14 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: nnz
       type(c_ptr), value :: descr
-      real(c_float), target :: csr_val(*)
-      integer(c_int), target :: csr_row_ptr(*)
-      integer(c_int), target :: csr_col_ind(*)
+      real(c_float), target :: csr_val(..)
+      integer(c_int), target :: csr_row_ptr(..)
+      integer(c_int), target :: csr_col_ind(..)
       type(c_ptr), value :: info
       type(c_ptr), value :: buffer_size
       integer(c_int) :: scsritsv_buffer_size
       scsritsv_buffer_size = rocsparse_scsritsv_buffer_size_raw(handle, trans, m, nnz, descr, &
-        c_loc(csr_val(1)), c_loc(csr_row_ptr(1)), c_loc(csr_col_ind(1)), info, buffer_size)
+        c_loc(csr_val), c_loc(csr_row_ptr), c_loc(csr_col_ind), info, buffer_size)
     end function rocsparse_scsritsv_buffer_size_native
 
     function rocsparse_scsritsv_buffer_size_typed(handle, trans, m, nnz, descr, csr_val, &
@@ -50026,14 +49987,14 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: nnz
       type(c_ptr), value :: descr
-      real(c_double), target :: csr_val(*)
-      integer(c_int), target :: csr_row_ptr(*)
-      integer(c_int), target :: csr_col_ind(*)
+      real(c_double), target :: csr_val(..)
+      integer(c_int), target :: csr_row_ptr(..)
+      integer(c_int), target :: csr_col_ind(..)
       type(c_ptr), value :: info
       type(c_ptr), value :: buffer_size
       integer(c_int) :: dcsritsv_buffer_size
       dcsritsv_buffer_size = rocsparse_dcsritsv_buffer_size_raw(handle, trans, m, nnz, descr, &
-        c_loc(csr_val(1)), c_loc(csr_row_ptr(1)), c_loc(csr_col_ind(1)), info, buffer_size)
+        c_loc(csr_val), c_loc(csr_row_ptr), c_loc(csr_col_ind), info, buffer_size)
     end function rocsparse_dcsritsv_buffer_size_native
 
     function rocsparse_dcsritsv_buffer_size_typed(handle, trans, m, nnz, descr, csr_val, &
@@ -50065,14 +50026,14 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: nnz
       type(c_ptr), value :: descr
-      complex(c_float_complex), target :: csr_val(*)
-      integer(c_int), target :: csr_row_ptr(*)
-      integer(c_int), target :: csr_col_ind(*)
+      complex(c_float_complex), target :: csr_val(..)
+      integer(c_int), target :: csr_row_ptr(..)
+      integer(c_int), target :: csr_col_ind(..)
       type(c_ptr), value :: info
       type(c_ptr), value :: buffer_size
       integer(c_int) :: ccsritsv_buffer_size
       ccsritsv_buffer_size = rocsparse_ccsritsv_buffer_size_raw(handle, trans, m, nnz, descr, &
-        c_loc(csr_val(1)), c_loc(csr_row_ptr(1)), c_loc(csr_col_ind(1)), info, buffer_size)
+        c_loc(csr_val), c_loc(csr_row_ptr), c_loc(csr_col_ind), info, buffer_size)
     end function rocsparse_ccsritsv_buffer_size_native
 
     function rocsparse_ccsritsv_buffer_size_typed(handle, trans, m, nnz, descr, csr_val, &
@@ -50104,14 +50065,14 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: nnz
       type(c_ptr), value :: descr
-      complex(c_double_complex), target :: csr_val(*)
-      integer(c_int), target :: csr_row_ptr(*)
-      integer(c_int), target :: csr_col_ind(*)
+      complex(c_double_complex), target :: csr_val(..)
+      integer(c_int), target :: csr_row_ptr(..)
+      integer(c_int), target :: csr_col_ind(..)
       type(c_ptr), value :: info
       type(c_ptr), value :: buffer_size
       integer(c_int) :: zcsritsv_buffer_size
       zcsritsv_buffer_size = rocsparse_zcsritsv_buffer_size_raw(handle, trans, m, nnz, descr, &
-        c_loc(csr_val(1)), c_loc(csr_row_ptr(1)), c_loc(csr_col_ind(1)), info, buffer_size)
+        c_loc(csr_val), c_loc(csr_row_ptr), c_loc(csr_col_ind), info, buffer_size)
     end function rocsparse_zcsritsv_buffer_size_native
 
     function rocsparse_zcsritsv_buffer_size_typed(handle, trans, m, nnz, descr, csr_val, &
@@ -50143,17 +50104,16 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: nnz
       type(c_ptr), value :: descr
-      real(c_float), target :: csr_val(*)
-      integer(c_int), target :: csr_row_ptr(*)
-      integer(c_int), target :: csr_col_ind(*)
+      real(c_float), target :: csr_val(..)
+      integer(c_int), target :: csr_row_ptr(..)
+      integer(c_int), target :: csr_col_ind(..)
       type(c_ptr), value :: info
       integer(c_int), value :: analysis
       integer(c_int), value :: solve
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: scsritsv_analysis
       scsritsv_analysis = rocsparse_scsritsv_analysis_raw(handle, trans, m, nnz, descr, c_loc( &
-        csr_val(1)), c_loc(csr_row_ptr(1)), c_loc(csr_col_ind(1)), info, analysis, solve, &
-        temp_buffer)
+        csr_val), c_loc(csr_row_ptr), c_loc(csr_col_ind), info, analysis, solve, temp_buffer)
     end function rocsparse_scsritsv_analysis_native
 
     function rocsparse_scsritsv_analysis_typed(handle, trans, m, nnz, descr, csr_val, csr_row_ptr, &
@@ -50187,17 +50147,16 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: nnz
       type(c_ptr), value :: descr
-      real(c_double), target :: csr_val(*)
-      integer(c_int), target :: csr_row_ptr(*)
-      integer(c_int), target :: csr_col_ind(*)
+      real(c_double), target :: csr_val(..)
+      integer(c_int), target :: csr_row_ptr(..)
+      integer(c_int), target :: csr_col_ind(..)
       type(c_ptr), value :: info
       integer(c_int), value :: analysis
       integer(c_int), value :: solve
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: dcsritsv_analysis
       dcsritsv_analysis = rocsparse_dcsritsv_analysis_raw(handle, trans, m, nnz, descr, c_loc( &
-        csr_val(1)), c_loc(csr_row_ptr(1)), c_loc(csr_col_ind(1)), info, analysis, solve, &
-        temp_buffer)
+        csr_val), c_loc(csr_row_ptr), c_loc(csr_col_ind), info, analysis, solve, temp_buffer)
     end function rocsparse_dcsritsv_analysis_native
 
     function rocsparse_dcsritsv_analysis_typed(handle, trans, m, nnz, descr, csr_val, csr_row_ptr, &
@@ -50231,17 +50190,16 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: nnz
       type(c_ptr), value :: descr
-      complex(c_float_complex), target :: csr_val(*)
-      integer(c_int), target :: csr_row_ptr(*)
-      integer(c_int), target :: csr_col_ind(*)
+      complex(c_float_complex), target :: csr_val(..)
+      integer(c_int), target :: csr_row_ptr(..)
+      integer(c_int), target :: csr_col_ind(..)
       type(c_ptr), value :: info
       integer(c_int), value :: analysis
       integer(c_int), value :: solve
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: ccsritsv_analysis
       ccsritsv_analysis = rocsparse_ccsritsv_analysis_raw(handle, trans, m, nnz, descr, c_loc( &
-        csr_val(1)), c_loc(csr_row_ptr(1)), c_loc(csr_col_ind(1)), info, analysis, solve, &
-        temp_buffer)
+        csr_val), c_loc(csr_row_ptr), c_loc(csr_col_ind), info, analysis, solve, temp_buffer)
     end function rocsparse_ccsritsv_analysis_native
 
     function rocsparse_ccsritsv_analysis_typed(handle, trans, m, nnz, descr, csr_val, csr_row_ptr, &
@@ -50275,17 +50233,16 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: nnz
       type(c_ptr), value :: descr
-      complex(c_double_complex), target :: csr_val(*)
-      integer(c_int), target :: csr_row_ptr(*)
-      integer(c_int), target :: csr_col_ind(*)
+      complex(c_double_complex), target :: csr_val(..)
+      integer(c_int), target :: csr_row_ptr(..)
+      integer(c_int), target :: csr_col_ind(..)
       type(c_ptr), value :: info
       integer(c_int), value :: analysis
       integer(c_int), value :: solve
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: zcsritsv_analysis
       zcsritsv_analysis = rocsparse_zcsritsv_analysis_raw(handle, trans, m, nnz, descr, c_loc( &
-        csr_val(1)), c_loc(csr_row_ptr(1)), c_loc(csr_col_ind(1)), info, analysis, solve, &
-        temp_buffer)
+        csr_val), c_loc(csr_row_ptr), c_loc(csr_col_ind), info, analysis, solve, temp_buffer)
     end function rocsparse_zcsritsv_analysis_native
 
     function rocsparse_zcsritsv_analysis_typed(handle, trans, m, nnz, descr, csr_val, csr_row_ptr, &
@@ -50327,27 +50284,26 @@ contains
       use, intrinsic :: iso_c_binding
       implicit none
       type(c_ptr), value :: handle
-      integer(c_int), target :: host_nmaxiter(*)
-      real(c_float), target :: host_tol(*)
-      real(c_float), target :: host_history(*)
+      integer(c_int), target :: host_nmaxiter(..)
+      real(c_float), target :: host_tol(..)
+      real(c_float), target :: host_history(..)
       integer(c_int), value :: trans
       integer(c_int), value :: m
       integer(c_int), value :: nnz
-      real(c_float), target :: alpha(*)
+      real(c_float), target :: alpha(..)
       type(c_ptr), value :: descr
-      real(c_float), target :: csr_val(*)
-      integer(c_int), target :: csr_row_ptr(*)
-      integer(c_int), target :: csr_col_ind(*)
+      real(c_float), target :: csr_val(..)
+      integer(c_int), target :: csr_row_ptr(..)
+      integer(c_int), target :: csr_col_ind(..)
       type(c_ptr), value :: info
-      real(c_float), target :: x(*)
-      real(c_float), target :: y(*)
+      real(c_float), target :: x(..)
+      real(c_float), target :: y(..)
       integer(c_int), value :: policy
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: scsritsv_solve
-      scsritsv_solve = rocsparse_scsritsv_solve_raw(handle, c_loc(host_nmaxiter(1)), c_loc( &
-        host_tol(1)), c_loc(host_history(1)), trans, m, nnz, c_loc(alpha(1)), descr, c_loc( &
-        csr_val(1)), c_loc(csr_row_ptr(1)), c_loc(csr_col_ind(1)), info, c_loc(x(1)), c_loc(y(1)), &
-        policy, temp_buffer)
+      scsritsv_solve = rocsparse_scsritsv_solve_raw(handle, c_loc(host_nmaxiter), c_loc(host_tol), &
+        c_loc(host_history), trans, m, nnz, c_loc(alpha), descr, c_loc(csr_val), c_loc( &
+        csr_row_ptr), c_loc(csr_col_ind), info, c_loc(x), c_loc(y), policy, temp_buffer)
     end function rocsparse_scsritsv_solve_native
 
     function rocsparse_scsritsv_solve_typed(handle, host_nmaxiter, host_tol, host_history, trans, &
@@ -50385,27 +50341,26 @@ contains
       use, intrinsic :: iso_c_binding
       implicit none
       type(c_ptr), value :: handle
-      integer(c_int), target :: host_nmaxiter(*)
-      real(c_double), target :: host_tol(*)
-      real(c_double), target :: host_history(*)
+      integer(c_int), target :: host_nmaxiter(..)
+      real(c_double), target :: host_tol(..)
+      real(c_double), target :: host_history(..)
       integer(c_int), value :: trans
       integer(c_int), value :: m
       integer(c_int), value :: nnz
-      real(c_double), target :: alpha(*)
+      real(c_double), target :: alpha(..)
       type(c_ptr), value :: descr
-      real(c_double), target :: csr_val(*)
-      integer(c_int), target :: csr_row_ptr(*)
-      integer(c_int), target :: csr_col_ind(*)
+      real(c_double), target :: csr_val(..)
+      integer(c_int), target :: csr_row_ptr(..)
+      integer(c_int), target :: csr_col_ind(..)
       type(c_ptr), value :: info
-      real(c_double), target :: x(*)
-      real(c_double), target :: y(*)
+      real(c_double), target :: x(..)
+      real(c_double), target :: y(..)
       integer(c_int), value :: policy
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: dcsritsv_solve
-      dcsritsv_solve = rocsparse_dcsritsv_solve_raw(handle, c_loc(host_nmaxiter(1)), c_loc( &
-        host_tol(1)), c_loc(host_history(1)), trans, m, nnz, c_loc(alpha(1)), descr, c_loc( &
-        csr_val(1)), c_loc(csr_row_ptr(1)), c_loc(csr_col_ind(1)), info, c_loc(x(1)), c_loc(y(1)), &
-        policy, temp_buffer)
+      dcsritsv_solve = rocsparse_dcsritsv_solve_raw(handle, c_loc(host_nmaxiter), c_loc(host_tol), &
+        c_loc(host_history), trans, m, nnz, c_loc(alpha), descr, c_loc(csr_val), c_loc( &
+        csr_row_ptr), c_loc(csr_col_ind), info, c_loc(x), c_loc(y), policy, temp_buffer)
     end function rocsparse_dcsritsv_solve_native
 
     function rocsparse_dcsritsv_solve_typed(handle, host_nmaxiter, host_tol, host_history, trans, &
@@ -50443,27 +50398,26 @@ contains
       use, intrinsic :: iso_c_binding
       implicit none
       type(c_ptr), value :: handle
-      integer(c_int), target :: host_nmaxiter(*)
-      real(c_float), target :: host_tol(*)
-      real(c_float), target :: host_history(*)
+      integer(c_int), target :: host_nmaxiter(..)
+      real(c_float), target :: host_tol(..)
+      real(c_float), target :: host_history(..)
       integer(c_int), value :: trans
       integer(c_int), value :: m
       integer(c_int), value :: nnz
-      complex(c_float_complex), target :: alpha(*)
+      complex(c_float_complex), target :: alpha(..)
       type(c_ptr), value :: descr
-      complex(c_float_complex), target :: csr_val(*)
-      integer(c_int), target :: csr_row_ptr(*)
-      integer(c_int), target :: csr_col_ind(*)
+      complex(c_float_complex), target :: csr_val(..)
+      integer(c_int), target :: csr_row_ptr(..)
+      integer(c_int), target :: csr_col_ind(..)
       type(c_ptr), value :: info
-      complex(c_float_complex), target :: x(*)
-      complex(c_float_complex), target :: y(*)
+      complex(c_float_complex), target :: x(..)
+      complex(c_float_complex), target :: y(..)
       integer(c_int), value :: policy
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: ccsritsv_solve
-      ccsritsv_solve = rocsparse_ccsritsv_solve_raw(handle, c_loc(host_nmaxiter(1)), c_loc( &
-        host_tol(1)), c_loc(host_history(1)), trans, m, nnz, c_loc(alpha(1)), descr, c_loc( &
-        csr_val(1)), c_loc(csr_row_ptr(1)), c_loc(csr_col_ind(1)), info, c_loc(x(1)), c_loc(y(1)), &
-        policy, temp_buffer)
+      ccsritsv_solve = rocsparse_ccsritsv_solve_raw(handle, c_loc(host_nmaxiter), c_loc(host_tol), &
+        c_loc(host_history), trans, m, nnz, c_loc(alpha), descr, c_loc(csr_val), c_loc( &
+        csr_row_ptr), c_loc(csr_col_ind), info, c_loc(x), c_loc(y), policy, temp_buffer)
     end function rocsparse_ccsritsv_solve_native
 
     function rocsparse_ccsritsv_solve_typed(handle, host_nmaxiter, host_tol, host_history, trans, &
@@ -50501,27 +50455,26 @@ contains
       use, intrinsic :: iso_c_binding
       implicit none
       type(c_ptr), value :: handle
-      integer(c_int), target :: host_nmaxiter(*)
-      real(c_double), target :: host_tol(*)
-      real(c_double), target :: host_history(*)
+      integer(c_int), target :: host_nmaxiter(..)
+      real(c_double), target :: host_tol(..)
+      real(c_double), target :: host_history(..)
       integer(c_int), value :: trans
       integer(c_int), value :: m
       integer(c_int), value :: nnz
-      complex(c_double_complex), target :: alpha(*)
+      complex(c_double_complex), target :: alpha(..)
       type(c_ptr), value :: descr
-      complex(c_double_complex), target :: csr_val(*)
-      integer(c_int), target :: csr_row_ptr(*)
-      integer(c_int), target :: csr_col_ind(*)
+      complex(c_double_complex), target :: csr_val(..)
+      integer(c_int), target :: csr_row_ptr(..)
+      integer(c_int), target :: csr_col_ind(..)
       type(c_ptr), value :: info
-      complex(c_double_complex), target :: x(*)
-      complex(c_double_complex), target :: y(*)
+      complex(c_double_complex), target :: x(..)
+      complex(c_double_complex), target :: y(..)
       integer(c_int), value :: policy
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: zcsritsv_solve
-      zcsritsv_solve = rocsparse_zcsritsv_solve_raw(handle, c_loc(host_nmaxiter(1)), c_loc( &
-        host_tol(1)), c_loc(host_history(1)), trans, m, nnz, c_loc(alpha(1)), descr, c_loc( &
-        csr_val(1)), c_loc(csr_row_ptr(1)), c_loc(csr_col_ind(1)), info, c_loc(x(1)), c_loc(y(1)), &
-        policy, temp_buffer)
+      zcsritsv_solve = rocsparse_zcsritsv_solve_raw(handle, c_loc(host_nmaxiter), c_loc(host_tol), &
+        c_loc(host_history), trans, m, nnz, c_loc(alpha), descr, c_loc(csr_val), c_loc( &
+        csr_row_ptr), c_loc(csr_col_ind), info, c_loc(x), c_loc(y), policy, temp_buffer)
     end function rocsparse_zcsritsv_solve_native
 
     function rocsparse_zcsritsv_solve_typed(handle, host_nmaxiter, host_tol, host_history, trans, &
@@ -50559,28 +50512,28 @@ contains
       use, intrinsic :: iso_c_binding
       implicit none
       type(c_ptr), value :: handle
-      integer(c_int), target :: host_nmaxiter(*)
+      integer(c_int), target :: host_nmaxiter(..)
       integer(c_int), value :: host_nfreeiter
-      real(c_float), target :: host_tol(*)
-      real(c_float), target :: host_history(*)
+      real(c_float), target :: host_tol(..)
+      real(c_float), target :: host_history(..)
       integer(c_int), value :: trans
       integer(c_int), value :: m
       integer(c_int), value :: nnz
-      real(c_float), target :: alpha(*)
+      real(c_float), target :: alpha(..)
       type(c_ptr), value :: descr
-      real(c_float), target :: csr_val(*)
-      integer(c_int), target :: csr_row_ptr(*)
-      integer(c_int), target :: csr_col_ind(*)
+      real(c_float), target :: csr_val(..)
+      integer(c_int), target :: csr_row_ptr(..)
+      integer(c_int), target :: csr_col_ind(..)
       type(c_ptr), value :: info
-      real(c_float), target :: x(*)
-      real(c_float), target :: y(*)
+      real(c_float), target :: x(..)
+      real(c_float), target :: y(..)
       integer(c_int), value :: policy
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: scsritsv_solve_ex
-      scsritsv_solve_ex = rocsparse_scsritsv_solve_ex_raw(handle, c_loc(host_nmaxiter(1)), &
-        host_nfreeiter, c_loc(host_tol(1)), c_loc(host_history(1)), trans, m, nnz, c_loc(alpha( &
-        1)), descr, c_loc(csr_val(1)), c_loc(csr_row_ptr(1)), c_loc(csr_col_ind(1)), info, c_loc( &
-        x(1)), c_loc(y(1)), policy, temp_buffer)
+      scsritsv_solve_ex = rocsparse_scsritsv_solve_ex_raw(handle, c_loc(host_nmaxiter), &
+        host_nfreeiter, c_loc(host_tol), c_loc(host_history), trans, m, nnz, c_loc(alpha), descr, &
+        c_loc(csr_val), c_loc(csr_row_ptr), c_loc(csr_col_ind), info, c_loc(x), c_loc(y), policy, &
+        temp_buffer)
     end function rocsparse_scsritsv_solve_ex_native
 
     function rocsparse_scsritsv_solve_ex_typed(handle, host_nmaxiter, host_nfreeiter, host_tol, &
@@ -50619,28 +50572,28 @@ contains
       use, intrinsic :: iso_c_binding
       implicit none
       type(c_ptr), value :: handle
-      integer(c_int), target :: host_nmaxiter(*)
+      integer(c_int), target :: host_nmaxiter(..)
       integer(c_int), value :: host_nfreeiter
-      real(c_double), target :: host_tol(*)
-      real(c_double), target :: host_history(*)
+      real(c_double), target :: host_tol(..)
+      real(c_double), target :: host_history(..)
       integer(c_int), value :: trans
       integer(c_int), value :: m
       integer(c_int), value :: nnz
-      real(c_double), target :: alpha(*)
+      real(c_double), target :: alpha(..)
       type(c_ptr), value :: descr
-      real(c_double), target :: csr_val(*)
-      integer(c_int), target :: csr_row_ptr(*)
-      integer(c_int), target :: csr_col_ind(*)
+      real(c_double), target :: csr_val(..)
+      integer(c_int), target :: csr_row_ptr(..)
+      integer(c_int), target :: csr_col_ind(..)
       type(c_ptr), value :: info
-      real(c_double), target :: x(*)
-      real(c_double), target :: y(*)
+      real(c_double), target :: x(..)
+      real(c_double), target :: y(..)
       integer(c_int), value :: policy
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: dcsritsv_solve_ex
-      dcsritsv_solve_ex = rocsparse_dcsritsv_solve_ex_raw(handle, c_loc(host_nmaxiter(1)), &
-        host_nfreeiter, c_loc(host_tol(1)), c_loc(host_history(1)), trans, m, nnz, c_loc(alpha( &
-        1)), descr, c_loc(csr_val(1)), c_loc(csr_row_ptr(1)), c_loc(csr_col_ind(1)), info, c_loc( &
-        x(1)), c_loc(y(1)), policy, temp_buffer)
+      dcsritsv_solve_ex = rocsparse_dcsritsv_solve_ex_raw(handle, c_loc(host_nmaxiter), &
+        host_nfreeiter, c_loc(host_tol), c_loc(host_history), trans, m, nnz, c_loc(alpha), descr, &
+        c_loc(csr_val), c_loc(csr_row_ptr), c_loc(csr_col_ind), info, c_loc(x), c_loc(y), policy, &
+        temp_buffer)
     end function rocsparse_dcsritsv_solve_ex_native
 
     function rocsparse_dcsritsv_solve_ex_typed(handle, host_nmaxiter, host_nfreeiter, host_tol, &
@@ -50679,28 +50632,28 @@ contains
       use, intrinsic :: iso_c_binding
       implicit none
       type(c_ptr), value :: handle
-      integer(c_int), target :: host_nmaxiter(*)
+      integer(c_int), target :: host_nmaxiter(..)
       integer(c_int), value :: host_nfreeiter
-      real(c_float), target :: host_tol(*)
-      real(c_float), target :: host_history(*)
+      real(c_float), target :: host_tol(..)
+      real(c_float), target :: host_history(..)
       integer(c_int), value :: trans
       integer(c_int), value :: m
       integer(c_int), value :: nnz
-      complex(c_float_complex), target :: alpha(*)
+      complex(c_float_complex), target :: alpha(..)
       type(c_ptr), value :: descr
-      complex(c_float_complex), target :: csr_val(*)
-      integer(c_int), target :: csr_row_ptr(*)
-      integer(c_int), target :: csr_col_ind(*)
+      complex(c_float_complex), target :: csr_val(..)
+      integer(c_int), target :: csr_row_ptr(..)
+      integer(c_int), target :: csr_col_ind(..)
       type(c_ptr), value :: info
-      complex(c_float_complex), target :: x(*)
-      complex(c_float_complex), target :: y(*)
+      complex(c_float_complex), target :: x(..)
+      complex(c_float_complex), target :: y(..)
       integer(c_int), value :: policy
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: ccsritsv_solve_ex
-      ccsritsv_solve_ex = rocsparse_ccsritsv_solve_ex_raw(handle, c_loc(host_nmaxiter(1)), &
-        host_nfreeiter, c_loc(host_tol(1)), c_loc(host_history(1)), trans, m, nnz, c_loc(alpha( &
-        1)), descr, c_loc(csr_val(1)), c_loc(csr_row_ptr(1)), c_loc(csr_col_ind(1)), info, c_loc( &
-        x(1)), c_loc(y(1)), policy, temp_buffer)
+      ccsritsv_solve_ex = rocsparse_ccsritsv_solve_ex_raw(handle, c_loc(host_nmaxiter), &
+        host_nfreeiter, c_loc(host_tol), c_loc(host_history), trans, m, nnz, c_loc(alpha), descr, &
+        c_loc(csr_val), c_loc(csr_row_ptr), c_loc(csr_col_ind), info, c_loc(x), c_loc(y), policy, &
+        temp_buffer)
     end function rocsparse_ccsritsv_solve_ex_native
 
     function rocsparse_ccsritsv_solve_ex_typed(handle, host_nmaxiter, host_nfreeiter, host_tol, &
@@ -50739,28 +50692,28 @@ contains
       use, intrinsic :: iso_c_binding
       implicit none
       type(c_ptr), value :: handle
-      integer(c_int), target :: host_nmaxiter(*)
+      integer(c_int), target :: host_nmaxiter(..)
       integer(c_int), value :: host_nfreeiter
-      real(c_double), target :: host_tol(*)
-      real(c_double), target :: host_history(*)
+      real(c_double), target :: host_tol(..)
+      real(c_double), target :: host_history(..)
       integer(c_int), value :: trans
       integer(c_int), value :: m
       integer(c_int), value :: nnz
-      complex(c_double_complex), target :: alpha(*)
+      complex(c_double_complex), target :: alpha(..)
       type(c_ptr), value :: descr
-      complex(c_double_complex), target :: csr_val(*)
-      integer(c_int), target :: csr_row_ptr(*)
-      integer(c_int), target :: csr_col_ind(*)
+      complex(c_double_complex), target :: csr_val(..)
+      integer(c_int), target :: csr_row_ptr(..)
+      integer(c_int), target :: csr_col_ind(..)
       type(c_ptr), value :: info
-      complex(c_double_complex), target :: x(*)
-      complex(c_double_complex), target :: y(*)
+      complex(c_double_complex), target :: x(..)
+      complex(c_double_complex), target :: y(..)
       integer(c_int), value :: policy
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: zcsritsv_solve_ex
-      zcsritsv_solve_ex = rocsparse_zcsritsv_solve_ex_raw(handle, c_loc(host_nmaxiter(1)), &
-        host_nfreeiter, c_loc(host_tol(1)), c_loc(host_history(1)), trans, m, nnz, c_loc(alpha( &
-        1)), descr, c_loc(csr_val(1)), c_loc(csr_row_ptr(1)), c_loc(csr_col_ind(1)), info, c_loc( &
-        x(1)), c_loc(y(1)), policy, temp_buffer)
+      zcsritsv_solve_ex = rocsparse_zcsritsv_solve_ex_raw(handle, c_loc(host_nmaxiter), &
+        host_nfreeiter, c_loc(host_tol), c_loc(host_history), trans, m, nnz, c_loc(alpha), descr, &
+        c_loc(csr_val), c_loc(csr_row_ptr), c_loc(csr_col_ind), info, c_loc(x), c_loc(y), policy, &
+        temp_buffer)
     end function rocsparse_zcsritsv_solve_ex_native
 
     function rocsparse_zcsritsv_solve_ex_typed(handle, host_nmaxiter, host_nfreeiter, host_tol, &
@@ -50803,13 +50756,13 @@ contains
       integer(c_int), value :: n
       integer(c_int), value :: nnz
       type(c_ptr), value :: descr
-      real(c_float), target :: csr_val(*)
-      integer(c_int), target :: csr_row_ptr(*)
-      integer(c_int), target :: csr_col_ind(*)
+      real(c_float), target :: csr_val(..)
+      integer(c_int), target :: csr_row_ptr(..)
+      integer(c_int), target :: csr_col_ind(..)
       type(c_ptr), value :: info
       integer(c_int) :: scsrmv_analysis
       scsrmv_analysis = rocsparse_scsrmv_analysis_raw(handle, trans, m, n, nnz, descr, c_loc( &
-        csr_val(1)), c_loc(csr_row_ptr(1)), c_loc(csr_col_ind(1)), info)
+        csr_val), c_loc(csr_row_ptr), c_loc(csr_col_ind), info)
     end function rocsparse_scsrmv_analysis_native
 
     function rocsparse_scsrmv_analysis_typed(handle, trans, m, n, nnz, descr, csr_val, &
@@ -50842,13 +50795,13 @@ contains
       integer(c_int), value :: n
       integer(c_int), value :: nnz
       type(c_ptr), value :: descr
-      real(c_double), target :: csr_val(*)
-      integer(c_int), target :: csr_row_ptr(*)
-      integer(c_int), target :: csr_col_ind(*)
+      real(c_double), target :: csr_val(..)
+      integer(c_int), target :: csr_row_ptr(..)
+      integer(c_int), target :: csr_col_ind(..)
       type(c_ptr), value :: info
       integer(c_int) :: dcsrmv_analysis
       dcsrmv_analysis = rocsparse_dcsrmv_analysis_raw(handle, trans, m, n, nnz, descr, c_loc( &
-        csr_val(1)), c_loc(csr_row_ptr(1)), c_loc(csr_col_ind(1)), info)
+        csr_val), c_loc(csr_row_ptr), c_loc(csr_col_ind), info)
     end function rocsparse_dcsrmv_analysis_native
 
     function rocsparse_dcsrmv_analysis_typed(handle, trans, m, n, nnz, descr, csr_val, &
@@ -50881,13 +50834,13 @@ contains
       integer(c_int), value :: n
       integer(c_int), value :: nnz
       type(c_ptr), value :: descr
-      complex(c_float_complex), target :: csr_val(*)
-      integer(c_int), target :: csr_row_ptr(*)
-      integer(c_int), target :: csr_col_ind(*)
+      complex(c_float_complex), target :: csr_val(..)
+      integer(c_int), target :: csr_row_ptr(..)
+      integer(c_int), target :: csr_col_ind(..)
       type(c_ptr), value :: info
       integer(c_int) :: ccsrmv_analysis
       ccsrmv_analysis = rocsparse_ccsrmv_analysis_raw(handle, trans, m, n, nnz, descr, c_loc( &
-        csr_val(1)), c_loc(csr_row_ptr(1)), c_loc(csr_col_ind(1)), info)
+        csr_val), c_loc(csr_row_ptr), c_loc(csr_col_ind), info)
     end function rocsparse_ccsrmv_analysis_native
 
     function rocsparse_ccsrmv_analysis_typed(handle, trans, m, n, nnz, descr, csr_val, &
@@ -50920,13 +50873,13 @@ contains
       integer(c_int), value :: n
       integer(c_int), value :: nnz
       type(c_ptr), value :: descr
-      complex(c_double_complex), target :: csr_val(*)
-      integer(c_int), target :: csr_row_ptr(*)
-      integer(c_int), target :: csr_col_ind(*)
+      complex(c_double_complex), target :: csr_val(..)
+      integer(c_int), target :: csr_row_ptr(..)
+      integer(c_int), target :: csr_col_ind(..)
       type(c_ptr), value :: info
       integer(c_int) :: zcsrmv_analysis
       zcsrmv_analysis = rocsparse_zcsrmv_analysis_raw(handle, trans, m, n, nnz, descr, c_loc( &
-        csr_val(1)), c_loc(csr_row_ptr(1)), c_loc(csr_col_ind(1)), info)
+        csr_val), c_loc(csr_row_ptr), c_loc(csr_col_ind), info)
     end function rocsparse_zcsrmv_analysis_native
 
     function rocsparse_zcsrmv_analysis_typed(handle, trans, m, n, nnz, descr, csr_val, &
@@ -50970,16 +50923,16 @@ contains
       integer(c_int), value :: nnz
       real(c_float) :: alpha
       type(c_ptr), value :: descr
-      real(c_float), target :: csr_val(*)
-      integer(c_int), target :: csr_row_ptr(*)
-      integer(c_int), target :: csr_col_ind(*)
+      real(c_float), target :: csr_val(..)
+      integer(c_int), target :: csr_row_ptr(..)
+      integer(c_int), target :: csr_col_ind(..)
       type(c_ptr), value :: info
-      real(c_float), target :: x(*)
+      real(c_float), target :: x(..)
       real(c_float) :: beta
-      real(c_float), target :: y(*)
+      real(c_float), target :: y(..)
       integer(c_int) :: scsrmv
-      scsrmv = rocsparse_scsrmv_raw(handle, trans, m, n, nnz, alpha, descr, c_loc(csr_val(1)), &
-        c_loc(csr_row_ptr(1)), c_loc(csr_col_ind(1)), info, c_loc(x(1)), beta, c_loc(y(1)))
+      scsrmv = rocsparse_scsrmv_raw(handle, trans, m, n, nnz, alpha, descr, c_loc(csr_val), c_loc( &
+        csr_row_ptr), c_loc(csr_col_ind), info, c_loc(x), beta, c_loc(y))
     end function rocsparse_scsrmv_native
 
     function rocsparse_scsrmv_typed(handle, trans, m, n, nnz, alpha, descr, csr_val, csr_row_ptr, &
@@ -51017,16 +50970,16 @@ contains
       integer(c_int), value :: nnz
       real(c_double) :: alpha
       type(c_ptr), value :: descr
-      real(c_double), target :: csr_val(*)
-      integer(c_int), target :: csr_row_ptr(*)
-      integer(c_int), target :: csr_col_ind(*)
+      real(c_double), target :: csr_val(..)
+      integer(c_int), target :: csr_row_ptr(..)
+      integer(c_int), target :: csr_col_ind(..)
       type(c_ptr), value :: info
-      real(c_double), target :: x(*)
+      real(c_double), target :: x(..)
       real(c_double) :: beta
-      real(c_double), target :: y(*)
+      real(c_double), target :: y(..)
       integer(c_int) :: dcsrmv
-      dcsrmv = rocsparse_dcsrmv_raw(handle, trans, m, n, nnz, alpha, descr, c_loc(csr_val(1)), &
-        c_loc(csr_row_ptr(1)), c_loc(csr_col_ind(1)), info, c_loc(x(1)), beta, c_loc(y(1)))
+      dcsrmv = rocsparse_dcsrmv_raw(handle, trans, m, n, nnz, alpha, descr, c_loc(csr_val), c_loc( &
+        csr_row_ptr), c_loc(csr_col_ind), info, c_loc(x), beta, c_loc(y))
     end function rocsparse_dcsrmv_native
 
     function rocsparse_dcsrmv_typed(handle, trans, m, n, nnz, alpha, descr, csr_val, csr_row_ptr, &
@@ -51064,16 +51017,16 @@ contains
       integer(c_int), value :: nnz
       complex(c_float_complex) :: alpha
       type(c_ptr), value :: descr
-      complex(c_float_complex), target :: csr_val(*)
-      integer(c_int), target :: csr_row_ptr(*)
-      integer(c_int), target :: csr_col_ind(*)
+      complex(c_float_complex), target :: csr_val(..)
+      integer(c_int), target :: csr_row_ptr(..)
+      integer(c_int), target :: csr_col_ind(..)
       type(c_ptr), value :: info
-      complex(c_float_complex), target :: x(*)
+      complex(c_float_complex), target :: x(..)
       complex(c_float_complex) :: beta
-      complex(c_float_complex), target :: y(*)
+      complex(c_float_complex), target :: y(..)
       integer(c_int) :: ccsrmv
-      ccsrmv = rocsparse_ccsrmv_raw(handle, trans, m, n, nnz, alpha, descr, c_loc(csr_val(1)), &
-        c_loc(csr_row_ptr(1)), c_loc(csr_col_ind(1)), info, c_loc(x(1)), beta, c_loc(y(1)))
+      ccsrmv = rocsparse_ccsrmv_raw(handle, trans, m, n, nnz, alpha, descr, c_loc(csr_val), c_loc( &
+        csr_row_ptr), c_loc(csr_col_ind), info, c_loc(x), beta, c_loc(y))
     end function rocsparse_ccsrmv_native
 
     function rocsparse_ccsrmv_typed(handle, trans, m, n, nnz, alpha, descr, csr_val, csr_row_ptr, &
@@ -51111,16 +51064,16 @@ contains
       integer(c_int), value :: nnz
       complex(c_double_complex) :: alpha
       type(c_ptr), value :: descr
-      complex(c_double_complex), target :: csr_val(*)
-      integer(c_int), target :: csr_row_ptr(*)
-      integer(c_int), target :: csr_col_ind(*)
+      complex(c_double_complex), target :: csr_val(..)
+      integer(c_int), target :: csr_row_ptr(..)
+      integer(c_int), target :: csr_col_ind(..)
       type(c_ptr), value :: info
-      complex(c_double_complex), target :: x(*)
+      complex(c_double_complex), target :: x(..)
       complex(c_double_complex) :: beta
-      complex(c_double_complex), target :: y(*)
+      complex(c_double_complex), target :: y(..)
       integer(c_int) :: zcsrmv
-      zcsrmv = rocsparse_zcsrmv_raw(handle, trans, m, n, nnz, alpha, descr, c_loc(csr_val(1)), &
-        c_loc(csr_row_ptr(1)), c_loc(csr_col_ind(1)), info, c_loc(x(1)), beta, c_loc(y(1)))
+      zcsrmv = rocsparse_zcsrmv_raw(handle, trans, m, n, nnz, alpha, descr, c_loc(csr_val), c_loc( &
+        csr_row_ptr), c_loc(csr_col_ind), info, c_loc(x), beta, c_loc(y))
     end function rocsparse_zcsrmv_native
 
     function rocsparse_zcsrmv_typed(handle, trans, m, n, nnz, alpha, descr, csr_val, csr_row_ptr, &
@@ -51147,18 +51100,6 @@ contains
         csr_row_ptr, csr_col_ind, info%ptr, x, beta, y)
     end function rocsparse_zcsrmv_typed
 
-    function rocsparse_csrsv_zero_pivot_native(handle, descr, info, position) result( &
-        csrsv_zero_pivot)
-      use, intrinsic :: iso_c_binding
-      implicit none
-      type(c_ptr), value :: handle
-      type(c_ptr), value :: descr
-      type(c_ptr), value :: info
-      integer(c_int), target :: position(*)
-      integer(c_int) :: csrsv_zero_pivot
-      csrsv_zero_pivot = rocsparse_csrsv_zero_pivot_raw(handle, descr, info, c_loc(position(1)))
-    end function rocsparse_csrsv_zero_pivot_native
-
     function rocsparse_csrsv_zero_pivot_typed(handle, descr, info, position) result( &
         csrsv_zero_pivot)
       use, intrinsic :: iso_c_binding
@@ -51167,7 +51108,7 @@ contains
       type(rocsparse_handle_t), value :: handle
       type(rocsparse_mat_descr_t), value :: descr
       type(rocsparse_mat_info_t), value :: info
-      type(c_ptr), value :: position
+      integer(c_int) :: position
       integer(c_int) :: csrsv_zero_pivot
       csrsv_zero_pivot = rocsparse_csrsv_zero_pivot_raw(handle%ptr, descr%ptr, info%ptr, position)
     end function rocsparse_csrsv_zero_pivot_typed
@@ -51181,14 +51122,14 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: nnz
       type(c_ptr), value :: descr
-      real(c_float), target :: csr_val(*)
-      integer(c_int), target :: csr_row_ptr(*)
-      integer(c_int), target :: csr_col_ind(*)
+      real(c_float), target :: csr_val(..)
+      integer(c_int), target :: csr_row_ptr(..)
+      integer(c_int), target :: csr_col_ind(..)
       type(c_ptr), value :: info
       type(c_ptr), value :: buffer_size
       integer(c_int) :: scsrsv_buffer_size
       scsrsv_buffer_size = rocsparse_scsrsv_buffer_size_raw(handle, trans, m, nnz, descr, c_loc( &
-        csr_val(1)), c_loc(csr_row_ptr(1)), c_loc(csr_col_ind(1)), info, buffer_size)
+        csr_val), c_loc(csr_row_ptr), c_loc(csr_col_ind), info, buffer_size)
     end function rocsparse_scsrsv_buffer_size_native
 
     function rocsparse_scsrsv_buffer_size_typed(handle, trans, m, nnz, descr, csr_val, &
@@ -51220,14 +51161,14 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: nnz
       type(c_ptr), value :: descr
-      real(c_double), target :: csr_val(*)
-      integer(c_int), target :: csr_row_ptr(*)
-      integer(c_int), target :: csr_col_ind(*)
+      real(c_double), target :: csr_val(..)
+      integer(c_int), target :: csr_row_ptr(..)
+      integer(c_int), target :: csr_col_ind(..)
       type(c_ptr), value :: info
       type(c_ptr), value :: buffer_size
       integer(c_int) :: dcsrsv_buffer_size
       dcsrsv_buffer_size = rocsparse_dcsrsv_buffer_size_raw(handle, trans, m, nnz, descr, c_loc( &
-        csr_val(1)), c_loc(csr_row_ptr(1)), c_loc(csr_col_ind(1)), info, buffer_size)
+        csr_val), c_loc(csr_row_ptr), c_loc(csr_col_ind), info, buffer_size)
     end function rocsparse_dcsrsv_buffer_size_native
 
     function rocsparse_dcsrsv_buffer_size_typed(handle, trans, m, nnz, descr, csr_val, &
@@ -51259,14 +51200,14 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: nnz
       type(c_ptr), value :: descr
-      complex(c_float_complex), target :: csr_val(*)
-      integer(c_int), target :: csr_row_ptr(*)
-      integer(c_int), target :: csr_col_ind(*)
+      complex(c_float_complex), target :: csr_val(..)
+      integer(c_int), target :: csr_row_ptr(..)
+      integer(c_int), target :: csr_col_ind(..)
       type(c_ptr), value :: info
       type(c_ptr), value :: buffer_size
       integer(c_int) :: ccsrsv_buffer_size
       ccsrsv_buffer_size = rocsparse_ccsrsv_buffer_size_raw(handle, trans, m, nnz, descr, c_loc( &
-        csr_val(1)), c_loc(csr_row_ptr(1)), c_loc(csr_col_ind(1)), info, buffer_size)
+        csr_val), c_loc(csr_row_ptr), c_loc(csr_col_ind), info, buffer_size)
     end function rocsparse_ccsrsv_buffer_size_native
 
     function rocsparse_ccsrsv_buffer_size_typed(handle, trans, m, nnz, descr, csr_val, &
@@ -51298,14 +51239,14 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: nnz
       type(c_ptr), value :: descr
-      complex(c_double_complex), target :: csr_val(*)
-      integer(c_int), target :: csr_row_ptr(*)
-      integer(c_int), target :: csr_col_ind(*)
+      complex(c_double_complex), target :: csr_val(..)
+      integer(c_int), target :: csr_row_ptr(..)
+      integer(c_int), target :: csr_col_ind(..)
       type(c_ptr), value :: info
       type(c_ptr), value :: buffer_size
       integer(c_int) :: zcsrsv_buffer_size
       zcsrsv_buffer_size = rocsparse_zcsrsv_buffer_size_raw(handle, trans, m, nnz, descr, c_loc( &
-        csr_val(1)), c_loc(csr_row_ptr(1)), c_loc(csr_col_ind(1)), info, buffer_size)
+        csr_val), c_loc(csr_row_ptr), c_loc(csr_col_ind), info, buffer_size)
     end function rocsparse_zcsrsv_buffer_size_native
 
     function rocsparse_zcsrsv_buffer_size_typed(handle, trans, m, nnz, descr, csr_val, &
@@ -51337,16 +51278,16 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: nnz
       type(c_ptr), value :: descr
-      real(c_float), target :: csr_val(*)
-      integer(c_int), target :: csr_row_ptr(*)
-      integer(c_int), target :: csr_col_ind(*)
+      real(c_float), target :: csr_val(..)
+      integer(c_int), target :: csr_row_ptr(..)
+      integer(c_int), target :: csr_col_ind(..)
       type(c_ptr), value :: info
       integer(c_int), value :: analysis
       integer(c_int), value :: solve
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: scsrsv_analysis
-      scsrsv_analysis = rocsparse_scsrsv_analysis_raw(handle, trans, m, nnz, descr, c_loc(csr_val( &
-        1)), c_loc(csr_row_ptr(1)), c_loc(csr_col_ind(1)), info, analysis, solve, temp_buffer)
+      scsrsv_analysis = rocsparse_scsrsv_analysis_raw(handle, trans, m, nnz, descr, c_loc( &
+        csr_val), c_loc(csr_row_ptr), c_loc(csr_col_ind), info, analysis, solve, temp_buffer)
     end function rocsparse_scsrsv_analysis_native
 
     function rocsparse_scsrsv_analysis_typed(handle, trans, m, nnz, descr, csr_val, csr_row_ptr, &
@@ -51380,16 +51321,16 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: nnz
       type(c_ptr), value :: descr
-      real(c_double), target :: csr_val(*)
-      integer(c_int), target :: csr_row_ptr(*)
-      integer(c_int), target :: csr_col_ind(*)
+      real(c_double), target :: csr_val(..)
+      integer(c_int), target :: csr_row_ptr(..)
+      integer(c_int), target :: csr_col_ind(..)
       type(c_ptr), value :: info
       integer(c_int), value :: analysis
       integer(c_int), value :: solve
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: dcsrsv_analysis
-      dcsrsv_analysis = rocsparse_dcsrsv_analysis_raw(handle, trans, m, nnz, descr, c_loc(csr_val( &
-        1)), c_loc(csr_row_ptr(1)), c_loc(csr_col_ind(1)), info, analysis, solve, temp_buffer)
+      dcsrsv_analysis = rocsparse_dcsrsv_analysis_raw(handle, trans, m, nnz, descr, c_loc( &
+        csr_val), c_loc(csr_row_ptr), c_loc(csr_col_ind), info, analysis, solve, temp_buffer)
     end function rocsparse_dcsrsv_analysis_native
 
     function rocsparse_dcsrsv_analysis_typed(handle, trans, m, nnz, descr, csr_val, csr_row_ptr, &
@@ -51423,16 +51364,16 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: nnz
       type(c_ptr), value :: descr
-      complex(c_float_complex), target :: csr_val(*)
-      integer(c_int), target :: csr_row_ptr(*)
-      integer(c_int), target :: csr_col_ind(*)
+      complex(c_float_complex), target :: csr_val(..)
+      integer(c_int), target :: csr_row_ptr(..)
+      integer(c_int), target :: csr_col_ind(..)
       type(c_ptr), value :: info
       integer(c_int), value :: analysis
       integer(c_int), value :: solve
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: ccsrsv_analysis
-      ccsrsv_analysis = rocsparse_ccsrsv_analysis_raw(handle, trans, m, nnz, descr, c_loc(csr_val( &
-        1)), c_loc(csr_row_ptr(1)), c_loc(csr_col_ind(1)), info, analysis, solve, temp_buffer)
+      ccsrsv_analysis = rocsparse_ccsrsv_analysis_raw(handle, trans, m, nnz, descr, c_loc( &
+        csr_val), c_loc(csr_row_ptr), c_loc(csr_col_ind), info, analysis, solve, temp_buffer)
     end function rocsparse_ccsrsv_analysis_native
 
     function rocsparse_ccsrsv_analysis_typed(handle, trans, m, nnz, descr, csr_val, csr_row_ptr, &
@@ -51466,16 +51407,16 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: nnz
       type(c_ptr), value :: descr
-      complex(c_double_complex), target :: csr_val(*)
-      integer(c_int), target :: csr_row_ptr(*)
-      integer(c_int), target :: csr_col_ind(*)
+      complex(c_double_complex), target :: csr_val(..)
+      integer(c_int), target :: csr_row_ptr(..)
+      integer(c_int), target :: csr_col_ind(..)
       type(c_ptr), value :: info
       integer(c_int), value :: analysis
       integer(c_int), value :: solve
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: zcsrsv_analysis
-      zcsrsv_analysis = rocsparse_zcsrsv_analysis_raw(handle, trans, m, nnz, descr, c_loc(csr_val( &
-        1)), c_loc(csr_row_ptr(1)), c_loc(csr_col_ind(1)), info, analysis, solve, temp_buffer)
+      zcsrsv_analysis = rocsparse_zcsrsv_analysis_raw(handle, trans, m, nnz, descr, c_loc( &
+        csr_val), c_loc(csr_row_ptr), c_loc(csr_col_ind), info, analysis, solve, temp_buffer)
     end function rocsparse_zcsrsv_analysis_native
 
     function rocsparse_zcsrsv_analysis_typed(handle, trans, m, nnz, descr, csr_val, csr_row_ptr, &
@@ -51521,18 +51462,18 @@ contains
       integer(c_int), value :: nnz
       real(c_float) :: alpha
       type(c_ptr), value :: descr
-      real(c_float), target :: csr_val(*)
-      integer(c_int), target :: csr_row_ptr(*)
-      integer(c_int), target :: csr_col_ind(*)
+      real(c_float), target :: csr_val(..)
+      integer(c_int), target :: csr_row_ptr(..)
+      integer(c_int), target :: csr_col_ind(..)
       type(c_ptr), value :: info
-      real(c_float), target :: x(*)
-      real(c_float), target :: y(*)
+      real(c_float), target :: x(..)
+      real(c_float), target :: y(..)
       integer(c_int), value :: policy
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: scsrsv_solve
       scsrsv_solve = rocsparse_scsrsv_solve_raw(handle, trans, m, nnz, alpha, descr, c_loc( &
-        csr_val(1)), c_loc(csr_row_ptr(1)), c_loc(csr_col_ind(1)), info, c_loc(x(1)), c_loc(y(1)), &
-        policy, temp_buffer)
+        csr_val), c_loc(csr_row_ptr), c_loc(csr_col_ind), info, c_loc(x), c_loc(y), policy, &
+        temp_buffer)
     end function rocsparse_scsrsv_solve_native
 
     function rocsparse_scsrsv_solve_typed(handle, trans, m, nnz, alpha, descr, csr_val, &
@@ -51569,18 +51510,18 @@ contains
       integer(c_int), value :: nnz
       real(c_double) :: alpha
       type(c_ptr), value :: descr
-      real(c_double), target :: csr_val(*)
-      integer(c_int), target :: csr_row_ptr(*)
-      integer(c_int), target :: csr_col_ind(*)
+      real(c_double), target :: csr_val(..)
+      integer(c_int), target :: csr_row_ptr(..)
+      integer(c_int), target :: csr_col_ind(..)
       type(c_ptr), value :: info
-      real(c_double), target :: x(*)
-      real(c_double), target :: y(*)
+      real(c_double), target :: x(..)
+      real(c_double), target :: y(..)
       integer(c_int), value :: policy
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: dcsrsv_solve
       dcsrsv_solve = rocsparse_dcsrsv_solve_raw(handle, trans, m, nnz, alpha, descr, c_loc( &
-        csr_val(1)), c_loc(csr_row_ptr(1)), c_loc(csr_col_ind(1)), info, c_loc(x(1)), c_loc(y(1)), &
-        policy, temp_buffer)
+        csr_val), c_loc(csr_row_ptr), c_loc(csr_col_ind), info, c_loc(x), c_loc(y), policy, &
+        temp_buffer)
     end function rocsparse_dcsrsv_solve_native
 
     function rocsparse_dcsrsv_solve_typed(handle, trans, m, nnz, alpha, descr, csr_val, &
@@ -51617,18 +51558,18 @@ contains
       integer(c_int), value :: nnz
       complex(c_float_complex) :: alpha
       type(c_ptr), value :: descr
-      complex(c_float_complex), target :: csr_val(*)
-      integer(c_int), target :: csr_row_ptr(*)
-      integer(c_int), target :: csr_col_ind(*)
+      complex(c_float_complex), target :: csr_val(..)
+      integer(c_int), target :: csr_row_ptr(..)
+      integer(c_int), target :: csr_col_ind(..)
       type(c_ptr), value :: info
-      complex(c_float_complex), target :: x(*)
-      complex(c_float_complex), target :: y(*)
+      complex(c_float_complex), target :: x(..)
+      complex(c_float_complex), target :: y(..)
       integer(c_int), value :: policy
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: ccsrsv_solve
       ccsrsv_solve = rocsparse_ccsrsv_solve_raw(handle, trans, m, nnz, alpha, descr, c_loc( &
-        csr_val(1)), c_loc(csr_row_ptr(1)), c_loc(csr_col_ind(1)), info, c_loc(x(1)), c_loc(y(1)), &
-        policy, temp_buffer)
+        csr_val), c_loc(csr_row_ptr), c_loc(csr_col_ind), info, c_loc(x), c_loc(y), policy, &
+        temp_buffer)
     end function rocsparse_ccsrsv_solve_native
 
     function rocsparse_ccsrsv_solve_typed(handle, trans, m, nnz, alpha, descr, csr_val, &
@@ -51665,18 +51606,18 @@ contains
       integer(c_int), value :: nnz
       complex(c_double_complex) :: alpha
       type(c_ptr), value :: descr
-      complex(c_double_complex), target :: csr_val(*)
-      integer(c_int), target :: csr_row_ptr(*)
-      integer(c_int), target :: csr_col_ind(*)
+      complex(c_double_complex), target :: csr_val(..)
+      integer(c_int), target :: csr_row_ptr(..)
+      integer(c_int), target :: csr_col_ind(..)
       type(c_ptr), value :: info
-      complex(c_double_complex), target :: x(*)
-      complex(c_double_complex), target :: y(*)
+      complex(c_double_complex), target :: x(..)
+      complex(c_double_complex), target :: y(..)
       integer(c_int), value :: policy
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: zcsrsv_solve
       zcsrsv_solve = rocsparse_zcsrsv_solve_raw(handle, trans, m, nnz, alpha, descr, c_loc( &
-        csr_val(1)), c_loc(csr_row_ptr(1)), c_loc(csr_col_ind(1)), info, c_loc(x(1)), c_loc(y(1)), &
-        policy, temp_buffer)
+        csr_val), c_loc(csr_row_ptr), c_loc(csr_col_ind), info, c_loc(x), c_loc(y), policy, &
+        temp_buffer)
     end function rocsparse_zcsrsv_solve_native
 
     function rocsparse_zcsrsv_solve_typed(handle, trans, m, nnz, alpha, descr, csr_val, &
@@ -51713,15 +51654,15 @@ contains
       integer(c_int), value :: n
       real(c_float) :: alpha
       type(c_ptr), value :: descr
-      real(c_float), target :: ell_val(*)
-      integer(c_int), target :: ell_col_ind(*)
+      real(c_float), target :: ell_val(..)
+      integer(c_int), target :: ell_col_ind(..)
       integer(c_int), value :: ell_width
-      real(c_float), target :: x(*)
+      real(c_float), target :: x(..)
       real(c_float) :: beta
-      real(c_float), target :: y(*)
+      real(c_float), target :: y(..)
       integer(c_int) :: sellmv
-      sellmv = rocsparse_sellmv_raw(handle, trans, m, n, alpha, descr, c_loc(ell_val(1)), c_loc( &
-        ell_col_ind(1)), ell_width, c_loc(x(1)), beta, c_loc(y(1)))
+      sellmv = rocsparse_sellmv_raw(handle, trans, m, n, alpha, descr, c_loc(ell_val), c_loc( &
+        ell_col_ind), ell_width, c_loc(x), beta, c_loc(y))
     end function rocsparse_sellmv_native
 
     function rocsparse_sellmv_typed(handle, trans, m, n, alpha, descr, ell_val, ell_col_ind, &
@@ -51756,15 +51697,15 @@ contains
       integer(c_int), value :: n
       real(c_double) :: alpha
       type(c_ptr), value :: descr
-      real(c_double), target :: ell_val(*)
-      integer(c_int), target :: ell_col_ind(*)
+      real(c_double), target :: ell_val(..)
+      integer(c_int), target :: ell_col_ind(..)
       integer(c_int), value :: ell_width
-      real(c_double), target :: x(*)
+      real(c_double), target :: x(..)
       real(c_double) :: beta
-      real(c_double), target :: y(*)
+      real(c_double), target :: y(..)
       integer(c_int) :: dellmv
-      dellmv = rocsparse_dellmv_raw(handle, trans, m, n, alpha, descr, c_loc(ell_val(1)), c_loc( &
-        ell_col_ind(1)), ell_width, c_loc(x(1)), beta, c_loc(y(1)))
+      dellmv = rocsparse_dellmv_raw(handle, trans, m, n, alpha, descr, c_loc(ell_val), c_loc( &
+        ell_col_ind), ell_width, c_loc(x), beta, c_loc(y))
     end function rocsparse_dellmv_native
 
     function rocsparse_dellmv_typed(handle, trans, m, n, alpha, descr, ell_val, ell_col_ind, &
@@ -51799,15 +51740,15 @@ contains
       integer(c_int), value :: n
       complex(c_float_complex) :: alpha
       type(c_ptr), value :: descr
-      complex(c_float_complex), target :: ell_val(*)
-      integer(c_int), target :: ell_col_ind(*)
+      complex(c_float_complex), target :: ell_val(..)
+      integer(c_int), target :: ell_col_ind(..)
       integer(c_int), value :: ell_width
-      complex(c_float_complex), target :: x(*)
+      complex(c_float_complex), target :: x(..)
       complex(c_float_complex) :: beta
-      complex(c_float_complex), target :: y(*)
+      complex(c_float_complex), target :: y(..)
       integer(c_int) :: cellmv
-      cellmv = rocsparse_cellmv_raw(handle, trans, m, n, alpha, descr, c_loc(ell_val(1)), c_loc( &
-        ell_col_ind(1)), ell_width, c_loc(x(1)), beta, c_loc(y(1)))
+      cellmv = rocsparse_cellmv_raw(handle, trans, m, n, alpha, descr, c_loc(ell_val), c_loc( &
+        ell_col_ind), ell_width, c_loc(x), beta, c_loc(y))
     end function rocsparse_cellmv_native
 
     function rocsparse_cellmv_typed(handle, trans, m, n, alpha, descr, ell_val, ell_col_ind, &
@@ -51842,15 +51783,15 @@ contains
       integer(c_int), value :: n
       complex(c_double_complex) :: alpha
       type(c_ptr), value :: descr
-      complex(c_double_complex), target :: ell_val(*)
-      integer(c_int), target :: ell_col_ind(*)
+      complex(c_double_complex), target :: ell_val(..)
+      integer(c_int), target :: ell_col_ind(..)
       integer(c_int), value :: ell_width
-      complex(c_double_complex), target :: x(*)
+      complex(c_double_complex), target :: x(..)
       complex(c_double_complex) :: beta
-      complex(c_double_complex), target :: y(*)
+      complex(c_double_complex), target :: y(..)
       integer(c_int) :: zellmv
-      zellmv = rocsparse_zellmv_raw(handle, trans, m, n, alpha, descr, c_loc(ell_val(1)), c_loc( &
-        ell_col_ind(1)), ell_width, c_loc(x(1)), beta, c_loc(y(1)))
+      zellmv = rocsparse_zellmv_raw(handle, trans, m, n, alpha, descr, c_loc(ell_val), c_loc( &
+        ell_col_ind), ell_width, c_loc(x), beta, c_loc(y))
     end function rocsparse_zellmv_native
 
     function rocsparse_zellmv_typed(handle, trans, m, n, alpha, descr, ell_val, ell_col_ind, &
@@ -51887,18 +51828,18 @@ contains
       integer(c_int), value :: nnzb
       real(c_float) :: alpha
       type(c_ptr), value :: descr
-      real(c_float), target :: bsr_val(*)
-      integer(c_int), target :: bsr_row_ptr(*)
-      integer(c_int), target :: bsr_col_ind(*)
+      real(c_float), target :: bsr_val(..)
+      integer(c_int), target :: bsr_row_ptr(..)
+      integer(c_int), target :: bsr_col_ind(..)
       integer(c_int), value :: row_block_dim
       integer(c_int), value :: col_block_dim
-      real(c_float), target :: x(*)
+      real(c_float), target :: x(..)
       real(c_float) :: beta
-      real(c_float), target :: y(*)
+      real(c_float), target :: y(..)
       integer(c_int) :: sgebsrmv
       sgebsrmv = rocsparse_sgebsrmv_raw(handle, dir, trans, mb, nb, nnzb, alpha, descr, c_loc( &
-        bsr_val(1)), c_loc(bsr_row_ptr(1)), c_loc(bsr_col_ind(1)), row_block_dim, col_block_dim, &
-        c_loc(x(1)), beta, c_loc(y(1)))
+        bsr_val), c_loc(bsr_row_ptr), c_loc(bsr_col_ind), row_block_dim, col_block_dim, c_loc(x), &
+        beta, c_loc(y))
     end function rocsparse_sgebsrmv_native
 
     function rocsparse_sgebsrmv_typed(handle, dir, trans, mb, nb, nnzb, alpha, descr, bsr_val, &
@@ -51939,18 +51880,18 @@ contains
       integer(c_int), value :: nnzb
       real(c_double) :: alpha
       type(c_ptr), value :: descr
-      real(c_double), target :: bsr_val(*)
-      integer(c_int), target :: bsr_row_ptr(*)
-      integer(c_int), target :: bsr_col_ind(*)
+      real(c_double), target :: bsr_val(..)
+      integer(c_int), target :: bsr_row_ptr(..)
+      integer(c_int), target :: bsr_col_ind(..)
       integer(c_int), value :: row_block_dim
       integer(c_int), value :: col_block_dim
-      real(c_double), target :: x(*)
+      real(c_double), target :: x(..)
       real(c_double) :: beta
-      real(c_double), target :: y(*)
+      real(c_double), target :: y(..)
       integer(c_int) :: dgebsrmv
       dgebsrmv = rocsparse_dgebsrmv_raw(handle, dir, trans, mb, nb, nnzb, alpha, descr, c_loc( &
-        bsr_val(1)), c_loc(bsr_row_ptr(1)), c_loc(bsr_col_ind(1)), row_block_dim, col_block_dim, &
-        c_loc(x(1)), beta, c_loc(y(1)))
+        bsr_val), c_loc(bsr_row_ptr), c_loc(bsr_col_ind), row_block_dim, col_block_dim, c_loc(x), &
+        beta, c_loc(y))
     end function rocsparse_dgebsrmv_native
 
     function rocsparse_dgebsrmv_typed(handle, dir, trans, mb, nb, nnzb, alpha, descr, bsr_val, &
@@ -51991,18 +51932,18 @@ contains
       integer(c_int), value :: nnzb
       complex(c_float_complex) :: alpha
       type(c_ptr), value :: descr
-      complex(c_float_complex), target :: bsr_val(*)
-      integer(c_int), target :: bsr_row_ptr(*)
-      integer(c_int), target :: bsr_col_ind(*)
+      complex(c_float_complex), target :: bsr_val(..)
+      integer(c_int), target :: bsr_row_ptr(..)
+      integer(c_int), target :: bsr_col_ind(..)
       integer(c_int), value :: row_block_dim
       integer(c_int), value :: col_block_dim
-      complex(c_float_complex), target :: x(*)
+      complex(c_float_complex), target :: x(..)
       complex(c_float_complex) :: beta
-      complex(c_float_complex), target :: y(*)
+      complex(c_float_complex), target :: y(..)
       integer(c_int) :: cgebsrmv
       cgebsrmv = rocsparse_cgebsrmv_raw(handle, dir, trans, mb, nb, nnzb, alpha, descr, c_loc( &
-        bsr_val(1)), c_loc(bsr_row_ptr(1)), c_loc(bsr_col_ind(1)), row_block_dim, col_block_dim, &
-        c_loc(x(1)), beta, c_loc(y(1)))
+        bsr_val), c_loc(bsr_row_ptr), c_loc(bsr_col_ind), row_block_dim, col_block_dim, c_loc(x), &
+        beta, c_loc(y))
     end function rocsparse_cgebsrmv_native
 
     function rocsparse_cgebsrmv_typed(handle, dir, trans, mb, nb, nnzb, alpha, descr, bsr_val, &
@@ -52043,18 +51984,18 @@ contains
       integer(c_int), value :: nnzb
       complex(c_double_complex) :: alpha
       type(c_ptr), value :: descr
-      complex(c_double_complex), target :: bsr_val(*)
-      integer(c_int), target :: bsr_row_ptr(*)
-      integer(c_int), target :: bsr_col_ind(*)
+      complex(c_double_complex), target :: bsr_val(..)
+      integer(c_int), target :: bsr_row_ptr(..)
+      integer(c_int), target :: bsr_col_ind(..)
       integer(c_int), value :: row_block_dim
       integer(c_int), value :: col_block_dim
-      complex(c_double_complex), target :: x(*)
+      complex(c_double_complex), target :: x(..)
       complex(c_double_complex) :: beta
-      complex(c_double_complex), target :: y(*)
+      complex(c_double_complex), target :: y(..)
       integer(c_int) :: zgebsrmv
       zgebsrmv = rocsparse_zgebsrmv_raw(handle, dir, trans, mb, nb, nnzb, alpha, descr, c_loc( &
-        bsr_val(1)), c_loc(bsr_row_ptr(1)), c_loc(bsr_col_ind(1)), row_block_dim, col_block_dim, &
-        c_loc(x(1)), beta, c_loc(y(1)))
+        bsr_val), c_loc(bsr_row_ptr), c_loc(bsr_col_ind), row_block_dim, col_block_dim, c_loc(x), &
+        beta, c_loc(y))
     end function rocsparse_zgebsrmv_native
 
     function rocsparse_zgebsrmv_typed(handle, dir, trans, mb, nb, nnzb, alpha, descr, bsr_val, &
@@ -52156,18 +52097,18 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       real(c_float) :: alpha
-      real(c_float), target :: A(*)
+      real(c_float), target :: A(..)
       integer(c_int), value :: lda
       integer(c_int), value :: nnz
-      real(c_float), target :: x_val(*)
-      integer(c_int), target :: x_ind(*)
+      real(c_float), target :: x_val(..)
+      integer(c_int), target :: x_ind(..)
       real(c_float) :: beta
-      real(c_float), target :: y(*)
+      real(c_float), target :: y(..)
       integer(c_int), value :: idx_base
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: sgemvi
-      sgemvi = rocsparse_sgemvi_raw(handle, trans, m, n, alpha, c_loc(A(1)), lda, nnz, c_loc( &
-        x_val(1)), c_loc(x_ind(1)), beta, c_loc(y(1)), idx_base, temp_buffer)
+      sgemvi = rocsparse_sgemvi_raw(handle, trans, m, n, alpha, c_loc(A), lda, nnz, c_loc(x_val), &
+        c_loc(x_ind), beta, c_loc(y), idx_base, temp_buffer)
     end function rocsparse_sgemvi_native
 
     function rocsparse_sgemvi_typed(handle, trans, m, n, alpha, A, lda, nnz, x_val, x_ind, beta, &
@@ -52203,18 +52144,18 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       real(c_double) :: alpha
-      real(c_double), target :: A(*)
+      real(c_double), target :: A(..)
       integer(c_int), value :: lda
       integer(c_int), value :: nnz
-      real(c_double), target :: x_val(*)
-      integer(c_int), target :: x_ind(*)
+      real(c_double), target :: x_val(..)
+      integer(c_int), target :: x_ind(..)
       real(c_double) :: beta
-      real(c_double), target :: y(*)
+      real(c_double), target :: y(..)
       integer(c_int), value :: idx_base
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: dgemvi
-      dgemvi = rocsparse_dgemvi_raw(handle, trans, m, n, alpha, c_loc(A(1)), lda, nnz, c_loc( &
-        x_val(1)), c_loc(x_ind(1)), beta, c_loc(y(1)), idx_base, temp_buffer)
+      dgemvi = rocsparse_dgemvi_raw(handle, trans, m, n, alpha, c_loc(A), lda, nnz, c_loc(x_val), &
+        c_loc(x_ind), beta, c_loc(y), idx_base, temp_buffer)
     end function rocsparse_dgemvi_native
 
     function rocsparse_dgemvi_typed(handle, trans, m, n, alpha, A, lda, nnz, x_val, x_ind, beta, &
@@ -52250,18 +52191,18 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       complex(c_float_complex) :: alpha
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: A(..)
       integer(c_int), value :: lda
       integer(c_int), value :: nnz
-      complex(c_float_complex), target :: x_val(*)
-      integer(c_int), target :: x_ind(*)
+      complex(c_float_complex), target :: x_val(..)
+      integer(c_int), target :: x_ind(..)
       complex(c_float_complex) :: beta
-      complex(c_float_complex), target :: y(*)
+      complex(c_float_complex), target :: y(..)
       integer(c_int), value :: idx_base
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: cgemvi
-      cgemvi = rocsparse_cgemvi_raw(handle, trans, m, n, alpha, c_loc(A(1)), lda, nnz, c_loc( &
-        x_val(1)), c_loc(x_ind(1)), beta, c_loc(y(1)), idx_base, temp_buffer)
+      cgemvi = rocsparse_cgemvi_raw(handle, trans, m, n, alpha, c_loc(A), lda, nnz, c_loc(x_val), &
+        c_loc(x_ind), beta, c_loc(y), idx_base, temp_buffer)
     end function rocsparse_cgemvi_native
 
     function rocsparse_cgemvi_typed(handle, trans, m, n, alpha, A, lda, nnz, x_val, x_ind, beta, &
@@ -52297,18 +52238,18 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       complex(c_double_complex) :: alpha
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: A(..)
       integer(c_int), value :: lda
       integer(c_int), value :: nnz
-      complex(c_double_complex), target :: x_val(*)
-      integer(c_int), target :: x_ind(*)
+      complex(c_double_complex), target :: x_val(..)
+      integer(c_int), target :: x_ind(..)
       complex(c_double_complex) :: beta
-      complex(c_double_complex), target :: y(*)
+      complex(c_double_complex), target :: y(..)
       integer(c_int), value :: idx_base
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: zgemvi
-      zgemvi = rocsparse_zgemvi_raw(handle, trans, m, n, alpha, c_loc(A(1)), lda, nnz, c_loc( &
-        x_val(1)), c_loc(x_ind(1)), beta, c_loc(y(1)), idx_base, temp_buffer)
+      zgemvi = rocsparse_zgemvi_raw(handle, trans, m, n, alpha, c_loc(A), lda, nnz, c_loc(x_val), &
+        c_loc(x_ind), beta, c_loc(y), idx_base, temp_buffer)
     end function rocsparse_zgemvi_native
 
     function rocsparse_zgemvi_typed(handle, trans, m, n, alpha, A, lda, nnz, x_val, x_ind, beta, &
@@ -52343,12 +52284,11 @@ contains
       real(c_float) :: alpha
       type(c_ptr), value :: descr
       type(c_ptr), value :: hyb
-      real(c_float), target :: x(*)
+      real(c_float), target :: x(..)
       real(c_float) :: beta
-      real(c_float), target :: y(*)
+      real(c_float), target :: y(..)
       integer(c_int) :: shybmv
-      shybmv = rocsparse_shybmv_raw(handle, trans, alpha, descr, hyb, c_loc(x(1)), beta, c_loc(y( &
-        1)))
+      shybmv = rocsparse_shybmv_raw(handle, trans, alpha, descr, hyb, c_loc(x), beta, c_loc(y))
     end function rocsparse_shybmv_native
 
     function rocsparse_shybmv_typed(handle, trans, alpha, descr, hyb, x, beta, y) result(shybmv)
@@ -52375,12 +52315,11 @@ contains
       real(c_double) :: alpha
       type(c_ptr), value :: descr
       type(c_ptr), value :: hyb
-      real(c_double), target :: x(*)
+      real(c_double), target :: x(..)
       real(c_double) :: beta
-      real(c_double), target :: y(*)
+      real(c_double), target :: y(..)
       integer(c_int) :: dhybmv
-      dhybmv = rocsparse_dhybmv_raw(handle, trans, alpha, descr, hyb, c_loc(x(1)), beta, c_loc(y( &
-        1)))
+      dhybmv = rocsparse_dhybmv_raw(handle, trans, alpha, descr, hyb, c_loc(x), beta, c_loc(y))
     end function rocsparse_dhybmv_native
 
     function rocsparse_dhybmv_typed(handle, trans, alpha, descr, hyb, x, beta, y) result(dhybmv)
@@ -52407,12 +52346,11 @@ contains
       complex(c_float_complex) :: alpha
       type(c_ptr), value :: descr
       type(c_ptr), value :: hyb
-      complex(c_float_complex), target :: x(*)
+      complex(c_float_complex), target :: x(..)
       complex(c_float_complex) :: beta
-      complex(c_float_complex), target :: y(*)
+      complex(c_float_complex), target :: y(..)
       integer(c_int) :: chybmv
-      chybmv = rocsparse_chybmv_raw(handle, trans, alpha, descr, hyb, c_loc(x(1)), beta, c_loc(y( &
-        1)))
+      chybmv = rocsparse_chybmv_raw(handle, trans, alpha, descr, hyb, c_loc(x), beta, c_loc(y))
     end function rocsparse_chybmv_native
 
     function rocsparse_chybmv_typed(handle, trans, alpha, descr, hyb, x, beta, y) result(chybmv)
@@ -52439,12 +52377,11 @@ contains
       complex(c_double_complex) :: alpha
       type(c_ptr), value :: descr
       type(c_ptr), value :: hyb
-      complex(c_double_complex), target :: x(*)
+      complex(c_double_complex), target :: x(..)
       complex(c_double_complex) :: beta
-      complex(c_double_complex), target :: y(*)
+      complex(c_double_complex), target :: y(..)
       integer(c_int) :: zhybmv
-      zhybmv = rocsparse_zhybmv_raw(handle, trans, alpha, descr, hyb, c_loc(x(1)), beta, c_loc(y( &
-        1)))
+      zhybmv = rocsparse_zhybmv_raw(handle, trans, alpha, descr, hyb, c_loc(x), beta, c_loc(y))
     end function rocsparse_zhybmv_native
 
     function rocsparse_zhybmv_typed(handle, trans, alpha, descr, hyb, x, beta, y) result(zhybmv)
@@ -52477,19 +52414,19 @@ contains
       integer(c_int), value :: nnzb
       real(c_float) :: alpha
       type(c_ptr), value :: descr
-      real(c_float), target :: bsr_val(*)
-      integer(c_int), target :: bsr_row_ptr(*)
-      integer(c_int), target :: bsr_col_ind(*)
+      real(c_float), target :: bsr_val(..)
+      integer(c_int), target :: bsr_row_ptr(..)
+      integer(c_int), target :: bsr_col_ind(..)
       integer(c_int), value :: block_dim
-      real(c_float), target :: B(*)
+      real(c_float), target :: B(..)
       integer(c_int), value :: ldb
       real(c_float) :: beta
-      real(c_float), target :: C(*)
+      real(c_float), target :: C(..)
       integer(c_int), value :: ldc
       integer(c_int) :: sbsrmm
       sbsrmm = rocsparse_sbsrmm_raw(handle, dir, trans_A, trans_B, mb, n, kb, nnzb, alpha, descr, &
-        c_loc(bsr_val(1)), c_loc(bsr_row_ptr(1)), c_loc(bsr_col_ind(1)), block_dim, c_loc(B(1)), &
-        ldb, beta, c_loc(C(1)), ldc)
+        c_loc(bsr_val), c_loc(bsr_row_ptr), c_loc(bsr_col_ind), block_dim, c_loc(B), ldb, beta, &
+        c_loc(C), ldc)
     end function rocsparse_sbsrmm_native
 
     function rocsparse_sbsrmm_typed(handle, dir, trans_A, trans_B, mb, n, kb, nnzb, alpha, descr, &
@@ -52535,19 +52472,19 @@ contains
       integer(c_int), value :: nnzb
       real(c_double) :: alpha
       type(c_ptr), value :: descr
-      real(c_double), target :: bsr_val(*)
-      integer(c_int), target :: bsr_row_ptr(*)
-      integer(c_int), target :: bsr_col_ind(*)
+      real(c_double), target :: bsr_val(..)
+      integer(c_int), target :: bsr_row_ptr(..)
+      integer(c_int), target :: bsr_col_ind(..)
       integer(c_int), value :: block_dim
-      real(c_double), target :: B(*)
+      real(c_double), target :: B(..)
       integer(c_int), value :: ldb
       real(c_double) :: beta
-      real(c_double), target :: C(*)
+      real(c_double), target :: C(..)
       integer(c_int), value :: ldc
       integer(c_int) :: dbsrmm
       dbsrmm = rocsparse_dbsrmm_raw(handle, dir, trans_A, trans_B, mb, n, kb, nnzb, alpha, descr, &
-        c_loc(bsr_val(1)), c_loc(bsr_row_ptr(1)), c_loc(bsr_col_ind(1)), block_dim, c_loc(B(1)), &
-        ldb, beta, c_loc(C(1)), ldc)
+        c_loc(bsr_val), c_loc(bsr_row_ptr), c_loc(bsr_col_ind), block_dim, c_loc(B), ldb, beta, &
+        c_loc(C), ldc)
     end function rocsparse_dbsrmm_native
 
     function rocsparse_dbsrmm_typed(handle, dir, trans_A, trans_B, mb, n, kb, nnzb, alpha, descr, &
@@ -52593,19 +52530,19 @@ contains
       integer(c_int), value :: nnzb
       complex(c_float_complex) :: alpha
       type(c_ptr), value :: descr
-      complex(c_float_complex), target :: bsr_val(*)
-      integer(c_int), target :: bsr_row_ptr(*)
-      integer(c_int), target :: bsr_col_ind(*)
+      complex(c_float_complex), target :: bsr_val(..)
+      integer(c_int), target :: bsr_row_ptr(..)
+      integer(c_int), target :: bsr_col_ind(..)
       integer(c_int), value :: block_dim
-      complex(c_float_complex), target :: B(*)
+      complex(c_float_complex), target :: B(..)
       integer(c_int), value :: ldb
       complex(c_float_complex) :: beta
-      complex(c_float_complex), target :: C(*)
+      complex(c_float_complex), target :: C(..)
       integer(c_int), value :: ldc
       integer(c_int) :: cbsrmm
       cbsrmm = rocsparse_cbsrmm_raw(handle, dir, trans_A, trans_B, mb, n, kb, nnzb, alpha, descr, &
-        c_loc(bsr_val(1)), c_loc(bsr_row_ptr(1)), c_loc(bsr_col_ind(1)), block_dim, c_loc(B(1)), &
-        ldb, beta, c_loc(C(1)), ldc)
+        c_loc(bsr_val), c_loc(bsr_row_ptr), c_loc(bsr_col_ind), block_dim, c_loc(B), ldb, beta, &
+        c_loc(C), ldc)
     end function rocsparse_cbsrmm_native
 
     function rocsparse_cbsrmm_typed(handle, dir, trans_A, trans_B, mb, n, kb, nnzb, alpha, descr, &
@@ -52651,19 +52588,19 @@ contains
       integer(c_int), value :: nnzb
       complex(c_double_complex) :: alpha
       type(c_ptr), value :: descr
-      complex(c_double_complex), target :: bsr_val(*)
-      integer(c_int), target :: bsr_row_ptr(*)
-      integer(c_int), target :: bsr_col_ind(*)
+      complex(c_double_complex), target :: bsr_val(..)
+      integer(c_int), target :: bsr_row_ptr(..)
+      integer(c_int), target :: bsr_col_ind(..)
       integer(c_int), value :: block_dim
-      complex(c_double_complex), target :: B(*)
+      complex(c_double_complex), target :: B(..)
       integer(c_int), value :: ldb
       complex(c_double_complex) :: beta
-      complex(c_double_complex), target :: C(*)
+      complex(c_double_complex), target :: C(..)
       integer(c_int), value :: ldc
       integer(c_int) :: zbsrmm
       zbsrmm = rocsparse_zbsrmm_raw(handle, dir, trans_A, trans_B, mb, n, kb, nnzb, alpha, descr, &
-        c_loc(bsr_val(1)), c_loc(bsr_row_ptr(1)), c_loc(bsr_col_ind(1)), block_dim, c_loc(B(1)), &
-        ldb, beta, c_loc(C(1)), ldc)
+        c_loc(bsr_val), c_loc(bsr_row_ptr), c_loc(bsr_col_ind), block_dim, c_loc(B), ldb, beta, &
+        c_loc(C), ldc)
     end function rocsparse_zbsrmm_native
 
     function rocsparse_zbsrmm_typed(handle, dir, trans_A, trans_B, mb, n, kb, nnzb, alpha, descr, &
@@ -52695,23 +52632,13 @@ contains
         descr%ptr, bsr_val, bsr_row_ptr, bsr_col_ind, block_dim, B, ldb, beta, C, ldc)
     end function rocsparse_zbsrmm_typed
 
-    function rocsparse_bsrsm_zero_pivot_native(handle, info, position) result(bsrsm_zero_pivot)
-      use, intrinsic :: iso_c_binding
-      implicit none
-      type(c_ptr), value :: handle
-      type(c_ptr), value :: info
-      integer(c_int), target :: position(*)
-      integer(c_int) :: bsrsm_zero_pivot
-      bsrsm_zero_pivot = rocsparse_bsrsm_zero_pivot_raw(handle, info, c_loc(position(1)))
-    end function rocsparse_bsrsm_zero_pivot_native
-
     function rocsparse_bsrsm_zero_pivot_typed(handle, info, position) result(bsrsm_zero_pivot)
       use, intrinsic :: iso_c_binding
       use hipfort_handles
       implicit none
       type(rocsparse_handle_t), value :: handle
       type(rocsparse_mat_info_t), value :: info
-      type(c_ptr), value :: position
+      integer(c_int) :: position
       integer(c_int) :: bsrsm_zero_pivot
       bsrsm_zero_pivot = rocsparse_bsrsm_zero_pivot_raw(handle%ptr, info%ptr, position)
     end function rocsparse_bsrsm_zero_pivot_typed
@@ -52729,16 +52656,16 @@ contains
       integer(c_int), value :: nrhs
       integer(c_int), value :: nnzb
       type(c_ptr), value :: descr
-      real(c_float), target :: bsr_val(*)
-      integer(c_int), target :: bsr_row_ptr(*)
-      integer(c_int), target :: bsr_col_ind(*)
+      real(c_float), target :: bsr_val(..)
+      integer(c_int), target :: bsr_row_ptr(..)
+      integer(c_int), target :: bsr_col_ind(..)
       integer(c_int), value :: block_dim
       type(c_ptr), value :: info
       type(c_ptr), value :: buffer_size
       integer(c_int) :: sbsrsm_buffer_size
       sbsrsm_buffer_size = rocsparse_sbsrsm_buffer_size_raw(handle, dir, trans_A, trans_X, mb, &
-        nrhs, nnzb, descr, c_loc(bsr_val(1)), c_loc(bsr_row_ptr(1)), c_loc(bsr_col_ind(1)), &
-        block_dim, info, buffer_size)
+        nrhs, nnzb, descr, c_loc(bsr_val), c_loc(bsr_row_ptr), c_loc(bsr_col_ind), block_dim, &
+        info, buffer_size)
     end function rocsparse_sbsrsm_buffer_size_native
 
     function rocsparse_sbsrsm_buffer_size_typed(handle, dir, trans_A, trans_X, mb, nrhs, nnzb, &
@@ -52779,16 +52706,16 @@ contains
       integer(c_int), value :: nrhs
       integer(c_int), value :: nnzb
       type(c_ptr), value :: descr
-      real(c_double), target :: bsr_val(*)
-      integer(c_int), target :: bsr_row_ptr(*)
-      integer(c_int), target :: bsr_col_ind(*)
+      real(c_double), target :: bsr_val(..)
+      integer(c_int), target :: bsr_row_ptr(..)
+      integer(c_int), target :: bsr_col_ind(..)
       integer(c_int), value :: block_dim
       type(c_ptr), value :: info
       type(c_ptr), value :: buffer_size
       integer(c_int) :: dbsrsm_buffer_size
       dbsrsm_buffer_size = rocsparse_dbsrsm_buffer_size_raw(handle, dir, trans_A, trans_X, mb, &
-        nrhs, nnzb, descr, c_loc(bsr_val(1)), c_loc(bsr_row_ptr(1)), c_loc(bsr_col_ind(1)), &
-        block_dim, info, buffer_size)
+        nrhs, nnzb, descr, c_loc(bsr_val), c_loc(bsr_row_ptr), c_loc(bsr_col_ind), block_dim, &
+        info, buffer_size)
     end function rocsparse_dbsrsm_buffer_size_native
 
     function rocsparse_dbsrsm_buffer_size_typed(handle, dir, trans_A, trans_X, mb, nrhs, nnzb, &
@@ -52829,16 +52756,16 @@ contains
       integer(c_int), value :: nrhs
       integer(c_int), value :: nnzb
       type(c_ptr), value :: descr
-      complex(c_float_complex), target :: bsr_val(*)
-      integer(c_int), target :: bsr_row_ptr(*)
-      integer(c_int), target :: bsr_col_ind(*)
+      complex(c_float_complex), target :: bsr_val(..)
+      integer(c_int), target :: bsr_row_ptr(..)
+      integer(c_int), target :: bsr_col_ind(..)
       integer(c_int), value :: block_dim
       type(c_ptr), value :: info
       type(c_ptr), value :: buffer_size
       integer(c_int) :: cbsrsm_buffer_size
       cbsrsm_buffer_size = rocsparse_cbsrsm_buffer_size_raw(handle, dir, trans_A, trans_X, mb, &
-        nrhs, nnzb, descr, c_loc(bsr_val(1)), c_loc(bsr_row_ptr(1)), c_loc(bsr_col_ind(1)), &
-        block_dim, info, buffer_size)
+        nrhs, nnzb, descr, c_loc(bsr_val), c_loc(bsr_row_ptr), c_loc(bsr_col_ind), block_dim, &
+        info, buffer_size)
     end function rocsparse_cbsrsm_buffer_size_native
 
     function rocsparse_cbsrsm_buffer_size_typed(handle, dir, trans_A, trans_X, mb, nrhs, nnzb, &
@@ -52879,16 +52806,16 @@ contains
       integer(c_int), value :: nrhs
       integer(c_int), value :: nnzb
       type(c_ptr), value :: descr
-      complex(c_double_complex), target :: bsr_val(*)
-      integer(c_int), target :: bsr_row_ptr(*)
-      integer(c_int), target :: bsr_col_ind(*)
+      complex(c_double_complex), target :: bsr_val(..)
+      integer(c_int), target :: bsr_row_ptr(..)
+      integer(c_int), target :: bsr_col_ind(..)
       integer(c_int), value :: block_dim
       type(c_ptr), value :: info
       type(c_ptr), value :: buffer_size
       integer(c_int) :: zbsrsm_buffer_size
       zbsrsm_buffer_size = rocsparse_zbsrsm_buffer_size_raw(handle, dir, trans_A, trans_X, mb, &
-        nrhs, nnzb, descr, c_loc(bsr_val(1)), c_loc(bsr_row_ptr(1)), c_loc(bsr_col_ind(1)), &
-        block_dim, info, buffer_size)
+        nrhs, nnzb, descr, c_loc(bsr_val), c_loc(bsr_row_ptr), c_loc(bsr_col_ind), block_dim, &
+        info, buffer_size)
     end function rocsparse_zbsrsm_buffer_size_native
 
     function rocsparse_zbsrsm_buffer_size_typed(handle, dir, trans_A, trans_X, mb, nrhs, nnzb, &
@@ -52929,9 +52856,9 @@ contains
       integer(c_int), value :: nrhs
       integer(c_int), value :: nnzb
       type(c_ptr), value :: descr
-      real(c_float), target :: bsr_val(*)
-      integer(c_int), target :: bsr_row_ptr(*)
-      integer(c_int), target :: bsr_col_ind(*)
+      real(c_float), target :: bsr_val(..)
+      integer(c_int), target :: bsr_row_ptr(..)
+      integer(c_int), target :: bsr_col_ind(..)
       integer(c_int), value :: block_dim
       type(c_ptr), value :: info
       integer(c_int), value :: analysis
@@ -52939,8 +52866,8 @@ contains
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: sbsrsm_analysis
       sbsrsm_analysis = rocsparse_sbsrsm_analysis_raw(handle, dir, trans_A, trans_X, mb, nrhs, &
-        nnzb, descr, c_loc(bsr_val(1)), c_loc(bsr_row_ptr(1)), c_loc(bsr_col_ind(1)), block_dim, &
-        info, analysis, solve, temp_buffer)
+        nnzb, descr, c_loc(bsr_val), c_loc(bsr_row_ptr), c_loc(bsr_col_ind), block_dim, info, &
+        analysis, solve, temp_buffer)
     end function rocsparse_sbsrsm_analysis_native
 
     function rocsparse_sbsrsm_analysis_typed(handle, dir, trans_A, trans_X, mb, nrhs, nnzb, descr, &
@@ -52984,9 +52911,9 @@ contains
       integer(c_int), value :: nrhs
       integer(c_int), value :: nnzb
       type(c_ptr), value :: descr
-      real(c_double), target :: bsr_val(*)
-      integer(c_int), target :: bsr_row_ptr(*)
-      integer(c_int), target :: bsr_col_ind(*)
+      real(c_double), target :: bsr_val(..)
+      integer(c_int), target :: bsr_row_ptr(..)
+      integer(c_int), target :: bsr_col_ind(..)
       integer(c_int), value :: block_dim
       type(c_ptr), value :: info
       integer(c_int), value :: analysis
@@ -52994,8 +52921,8 @@ contains
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: dbsrsm_analysis
       dbsrsm_analysis = rocsparse_dbsrsm_analysis_raw(handle, dir, trans_A, trans_X, mb, nrhs, &
-        nnzb, descr, c_loc(bsr_val(1)), c_loc(bsr_row_ptr(1)), c_loc(bsr_col_ind(1)), block_dim, &
-        info, analysis, solve, temp_buffer)
+        nnzb, descr, c_loc(bsr_val), c_loc(bsr_row_ptr), c_loc(bsr_col_ind), block_dim, info, &
+        analysis, solve, temp_buffer)
     end function rocsparse_dbsrsm_analysis_native
 
     function rocsparse_dbsrsm_analysis_typed(handle, dir, trans_A, trans_X, mb, nrhs, nnzb, descr, &
@@ -53039,9 +52966,9 @@ contains
       integer(c_int), value :: nrhs
       integer(c_int), value :: nnzb
       type(c_ptr), value :: descr
-      complex(c_float_complex), target :: bsr_val(*)
-      integer(c_int), target :: bsr_row_ptr(*)
-      integer(c_int), target :: bsr_col_ind(*)
+      complex(c_float_complex), target :: bsr_val(..)
+      integer(c_int), target :: bsr_row_ptr(..)
+      integer(c_int), target :: bsr_col_ind(..)
       integer(c_int), value :: block_dim
       type(c_ptr), value :: info
       integer(c_int), value :: analysis
@@ -53049,8 +52976,8 @@ contains
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: cbsrsm_analysis
       cbsrsm_analysis = rocsparse_cbsrsm_analysis_raw(handle, dir, trans_A, trans_X, mb, nrhs, &
-        nnzb, descr, c_loc(bsr_val(1)), c_loc(bsr_row_ptr(1)), c_loc(bsr_col_ind(1)), block_dim, &
-        info, analysis, solve, temp_buffer)
+        nnzb, descr, c_loc(bsr_val), c_loc(bsr_row_ptr), c_loc(bsr_col_ind), block_dim, info, &
+        analysis, solve, temp_buffer)
     end function rocsparse_cbsrsm_analysis_native
 
     function rocsparse_cbsrsm_analysis_typed(handle, dir, trans_A, trans_X, mb, nrhs, nnzb, descr, &
@@ -53094,9 +53021,9 @@ contains
       integer(c_int), value :: nrhs
       integer(c_int), value :: nnzb
       type(c_ptr), value :: descr
-      complex(c_double_complex), target :: bsr_val(*)
-      integer(c_int), target :: bsr_row_ptr(*)
-      integer(c_int), target :: bsr_col_ind(*)
+      complex(c_double_complex), target :: bsr_val(..)
+      integer(c_int), target :: bsr_row_ptr(..)
+      integer(c_int), target :: bsr_col_ind(..)
       integer(c_int), value :: block_dim
       type(c_ptr), value :: info
       integer(c_int), value :: analysis
@@ -53104,8 +53031,8 @@ contains
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: zbsrsm_analysis
       zbsrsm_analysis = rocsparse_zbsrsm_analysis_raw(handle, dir, trans_A, trans_X, mb, nrhs, &
-        nnzb, descr, c_loc(bsr_val(1)), c_loc(bsr_row_ptr(1)), c_loc(bsr_col_ind(1)), block_dim, &
-        info, analysis, solve, temp_buffer)
+        nnzb, descr, c_loc(bsr_val), c_loc(bsr_row_ptr), c_loc(bsr_col_ind), block_dim, info, &
+        analysis, solve, temp_buffer)
     end function rocsparse_zbsrsm_analysis_native
 
     function rocsparse_zbsrsm_analysis_typed(handle, dir, trans_A, trans_X, mb, nrhs, nnzb, descr, &
@@ -53160,21 +53087,21 @@ contains
       integer(c_int), value :: nnzb
       real(c_float) :: alpha
       type(c_ptr), value :: descr
-      real(c_float), target :: bsr_val(*)
-      integer(c_int), target :: bsr_row_ptr(*)
-      integer(c_int), target :: bsr_col_ind(*)
+      real(c_float), target :: bsr_val(..)
+      integer(c_int), target :: bsr_row_ptr(..)
+      integer(c_int), target :: bsr_col_ind(..)
       integer(c_int), value :: block_dim
       type(c_ptr), value :: info
-      real(c_float), target :: B(*)
+      real(c_float), target :: B(..)
       integer(c_int), value :: ldb
-      real(c_float), target :: X(*)
+      real(c_float), target :: X(..)
       integer(c_int), value :: ldx
       integer(c_int), value :: policy
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: sbsrsm_solve
       sbsrsm_solve = rocsparse_sbsrsm_solve_raw(handle, dir, trans_A, trans_X, mb, nrhs, nnzb, &
-        alpha, descr, c_loc(bsr_val(1)), c_loc(bsr_row_ptr(1)), c_loc(bsr_col_ind(1)), block_dim, &
-        info, c_loc(B(1)), ldb, c_loc(X(1)), ldx, policy, temp_buffer)
+        alpha, descr, c_loc(bsr_val), c_loc(bsr_row_ptr), c_loc(bsr_col_ind), block_dim, info, &
+        c_loc(B), ldb, c_loc(X), ldx, policy, temp_buffer)
     end function rocsparse_sbsrsm_solve_native
 
     function rocsparse_sbsrsm_solve_typed(handle, dir, trans_A, trans_X, mb, nrhs, nnzb, alpha, &
@@ -53223,21 +53150,21 @@ contains
       integer(c_int), value :: nnzb
       real(c_double) :: alpha
       type(c_ptr), value :: descr
-      real(c_double), target :: bsr_val(*)
-      integer(c_int), target :: bsr_row_ptr(*)
-      integer(c_int), target :: bsr_col_ind(*)
+      real(c_double), target :: bsr_val(..)
+      integer(c_int), target :: bsr_row_ptr(..)
+      integer(c_int), target :: bsr_col_ind(..)
       integer(c_int), value :: block_dim
       type(c_ptr), value :: info
-      real(c_double), target :: B(*)
+      real(c_double), target :: B(..)
       integer(c_int), value :: ldb
-      real(c_double), target :: X(*)
+      real(c_double), target :: X(..)
       integer(c_int), value :: ldx
       integer(c_int), value :: policy
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: dbsrsm_solve
       dbsrsm_solve = rocsparse_dbsrsm_solve_raw(handle, dir, trans_A, trans_X, mb, nrhs, nnzb, &
-        alpha, descr, c_loc(bsr_val(1)), c_loc(bsr_row_ptr(1)), c_loc(bsr_col_ind(1)), block_dim, &
-        info, c_loc(B(1)), ldb, c_loc(X(1)), ldx, policy, temp_buffer)
+        alpha, descr, c_loc(bsr_val), c_loc(bsr_row_ptr), c_loc(bsr_col_ind), block_dim, info, &
+        c_loc(B), ldb, c_loc(X), ldx, policy, temp_buffer)
     end function rocsparse_dbsrsm_solve_native
 
     function rocsparse_dbsrsm_solve_typed(handle, dir, trans_A, trans_X, mb, nrhs, nnzb, alpha, &
@@ -53286,21 +53213,21 @@ contains
       integer(c_int), value :: nnzb
       complex(c_float_complex) :: alpha
       type(c_ptr), value :: descr
-      complex(c_float_complex), target :: bsr_val(*)
-      integer(c_int), target :: bsr_row_ptr(*)
-      integer(c_int), target :: bsr_col_ind(*)
+      complex(c_float_complex), target :: bsr_val(..)
+      integer(c_int), target :: bsr_row_ptr(..)
+      integer(c_int), target :: bsr_col_ind(..)
       integer(c_int), value :: block_dim
       type(c_ptr), value :: info
-      complex(c_float_complex), target :: B(*)
+      complex(c_float_complex), target :: B(..)
       integer(c_int), value :: ldb
-      complex(c_float_complex), target :: X(*)
+      complex(c_float_complex), target :: X(..)
       integer(c_int), value :: ldx
       integer(c_int), value :: policy
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: cbsrsm_solve
       cbsrsm_solve = rocsparse_cbsrsm_solve_raw(handle, dir, trans_A, trans_X, mb, nrhs, nnzb, &
-        alpha, descr, c_loc(bsr_val(1)), c_loc(bsr_row_ptr(1)), c_loc(bsr_col_ind(1)), block_dim, &
-        info, c_loc(B(1)), ldb, c_loc(X(1)), ldx, policy, temp_buffer)
+        alpha, descr, c_loc(bsr_val), c_loc(bsr_row_ptr), c_loc(bsr_col_ind), block_dim, info, &
+        c_loc(B), ldb, c_loc(X), ldx, policy, temp_buffer)
     end function rocsparse_cbsrsm_solve_native
 
     function rocsparse_cbsrsm_solve_typed(handle, dir, trans_A, trans_X, mb, nrhs, nnzb, alpha, &
@@ -53349,21 +53276,21 @@ contains
       integer(c_int), value :: nnzb
       complex(c_double_complex) :: alpha
       type(c_ptr), value :: descr
-      complex(c_double_complex), target :: bsr_val(*)
-      integer(c_int), target :: bsr_row_ptr(*)
-      integer(c_int), target :: bsr_col_ind(*)
+      complex(c_double_complex), target :: bsr_val(..)
+      integer(c_int), target :: bsr_row_ptr(..)
+      integer(c_int), target :: bsr_col_ind(..)
       integer(c_int), value :: block_dim
       type(c_ptr), value :: info
-      complex(c_double_complex), target :: B(*)
+      complex(c_double_complex), target :: B(..)
       integer(c_int), value :: ldb
-      complex(c_double_complex), target :: X(*)
+      complex(c_double_complex), target :: X(..)
       integer(c_int), value :: ldx
       integer(c_int), value :: policy
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: zbsrsm_solve
       zbsrsm_solve = rocsparse_zbsrsm_solve_raw(handle, dir, trans_A, trans_X, mb, nrhs, nnzb, &
-        alpha, descr, c_loc(bsr_val(1)), c_loc(bsr_row_ptr(1)), c_loc(bsr_col_ind(1)), block_dim, &
-        info, c_loc(B(1)), ldb, c_loc(X(1)), ldx, policy, temp_buffer)
+        alpha, descr, c_loc(bsr_val), c_loc(bsr_row_ptr), c_loc(bsr_col_ind), block_dim, info, &
+        c_loc(B), ldb, c_loc(X), ldx, policy, temp_buffer)
     end function rocsparse_zbsrsm_solve_native
 
     function rocsparse_zbsrsm_solve_typed(handle, dir, trans_A, trans_X, mb, nrhs, nnzb, alpha, &
@@ -53411,18 +53338,17 @@ contains
       integer(c_int), value :: nnz
       real(c_float) :: alpha
       type(c_ptr), value :: descr
-      real(c_float), target :: csr_val(*)
-      integer(c_int), target :: csr_row_ptr(*)
-      integer(c_int), target :: csr_col_ind(*)
-      real(c_float), target :: B(*)
+      real(c_float), target :: csr_val(..)
+      integer(c_int), target :: csr_row_ptr(..)
+      integer(c_int), target :: csr_col_ind(..)
+      real(c_float), target :: B(..)
       integer(c_int), value :: ldb
       real(c_float) :: beta
-      real(c_float), target :: C(*)
+      real(c_float), target :: C(..)
       integer(c_int), value :: ldc
       integer(c_int) :: scsrmm
       scsrmm = rocsparse_scsrmm_raw(handle, trans_A, trans_B, m, n, k, nnz, alpha, descr, c_loc( &
-        csr_val(1)), c_loc(csr_row_ptr(1)), c_loc(csr_col_ind(1)), c_loc(B(1)), ldb, beta, c_loc( &
-        C(1)), ldc)
+        csr_val), c_loc(csr_row_ptr), c_loc(csr_col_ind), c_loc(B), ldb, beta, c_loc(C), ldc)
     end function rocsparse_scsrmm_native
 
     function rocsparse_scsrmm_typed(handle, trans_A, trans_B, m, n, k, nnz, alpha, descr, csr_val, &
@@ -53465,18 +53391,17 @@ contains
       integer(c_int), value :: nnz
       real(c_double) :: alpha
       type(c_ptr), value :: descr
-      real(c_double), target :: csr_val(*)
-      integer(c_int), target :: csr_row_ptr(*)
-      integer(c_int), target :: csr_col_ind(*)
-      real(c_double), target :: B(*)
+      real(c_double), target :: csr_val(..)
+      integer(c_int), target :: csr_row_ptr(..)
+      integer(c_int), target :: csr_col_ind(..)
+      real(c_double), target :: B(..)
       integer(c_int), value :: ldb
       real(c_double) :: beta
-      real(c_double), target :: C(*)
+      real(c_double), target :: C(..)
       integer(c_int), value :: ldc
       integer(c_int) :: dcsrmm
       dcsrmm = rocsparse_dcsrmm_raw(handle, trans_A, trans_B, m, n, k, nnz, alpha, descr, c_loc( &
-        csr_val(1)), c_loc(csr_row_ptr(1)), c_loc(csr_col_ind(1)), c_loc(B(1)), ldb, beta, c_loc( &
-        C(1)), ldc)
+        csr_val), c_loc(csr_row_ptr), c_loc(csr_col_ind), c_loc(B), ldb, beta, c_loc(C), ldc)
     end function rocsparse_dcsrmm_native
 
     function rocsparse_dcsrmm_typed(handle, trans_A, trans_B, m, n, k, nnz, alpha, descr, csr_val, &
@@ -53519,18 +53444,17 @@ contains
       integer(c_int), value :: nnz
       complex(c_float_complex) :: alpha
       type(c_ptr), value :: descr
-      complex(c_float_complex), target :: csr_val(*)
-      integer(c_int), target :: csr_row_ptr(*)
-      integer(c_int), target :: csr_col_ind(*)
-      complex(c_float_complex), target :: B(*)
+      complex(c_float_complex), target :: csr_val(..)
+      integer(c_int), target :: csr_row_ptr(..)
+      integer(c_int), target :: csr_col_ind(..)
+      complex(c_float_complex), target :: B(..)
       integer(c_int), value :: ldb
       complex(c_float_complex) :: beta
-      complex(c_float_complex), target :: C(*)
+      complex(c_float_complex), target :: C(..)
       integer(c_int), value :: ldc
       integer(c_int) :: ccsrmm
       ccsrmm = rocsparse_ccsrmm_raw(handle, trans_A, trans_B, m, n, k, nnz, alpha, descr, c_loc( &
-        csr_val(1)), c_loc(csr_row_ptr(1)), c_loc(csr_col_ind(1)), c_loc(B(1)), ldb, beta, c_loc( &
-        C(1)), ldc)
+        csr_val), c_loc(csr_row_ptr), c_loc(csr_col_ind), c_loc(B), ldb, beta, c_loc(C), ldc)
     end function rocsparse_ccsrmm_native
 
     function rocsparse_ccsrmm_typed(handle, trans_A, trans_B, m, n, k, nnz, alpha, descr, csr_val, &
@@ -53573,18 +53497,17 @@ contains
       integer(c_int), value :: nnz
       complex(c_double_complex) :: alpha
       type(c_ptr), value :: descr
-      complex(c_double_complex), target :: csr_val(*)
-      integer(c_int), target :: csr_row_ptr(*)
-      integer(c_int), target :: csr_col_ind(*)
-      complex(c_double_complex), target :: B(*)
+      complex(c_double_complex), target :: csr_val(..)
+      integer(c_int), target :: csr_row_ptr(..)
+      integer(c_int), target :: csr_col_ind(..)
+      complex(c_double_complex), target :: B(..)
       integer(c_int), value :: ldb
       complex(c_double_complex) :: beta
-      complex(c_double_complex), target :: C(*)
+      complex(c_double_complex), target :: C(..)
       integer(c_int), value :: ldc
       integer(c_int) :: zcsrmm
       zcsrmm = rocsparse_zcsrmm_raw(handle, trans_A, trans_B, m, n, k, nnz, alpha, descr, c_loc( &
-        csr_val(1)), c_loc(csr_row_ptr(1)), c_loc(csr_col_ind(1)), c_loc(B(1)), ldb, beta, c_loc( &
-        C(1)), ldc)
+        csr_val), c_loc(csr_row_ptr), c_loc(csr_col_ind), c_loc(B), ldb, beta, c_loc(C), ldc)
     end function rocsparse_zcsrmm_native
 
     function rocsparse_zcsrmm_typed(handle, trans_A, trans_B, m, n, k, nnz, alpha, descr, csr_val, &
@@ -53614,23 +53537,13 @@ contains
         csr_val, csr_row_ptr, csr_col_ind, B, ldb, beta, C, ldc)
     end function rocsparse_zcsrmm_typed
 
-    function rocsparse_csrsm_zero_pivot_native(handle, info, position) result(csrsm_zero_pivot)
-      use, intrinsic :: iso_c_binding
-      implicit none
-      type(c_ptr), value :: handle
-      type(c_ptr), value :: info
-      integer(c_int), target :: position(*)
-      integer(c_int) :: csrsm_zero_pivot
-      csrsm_zero_pivot = rocsparse_csrsm_zero_pivot_raw(handle, info, c_loc(position(1)))
-    end function rocsparse_csrsm_zero_pivot_native
-
     function rocsparse_csrsm_zero_pivot_typed(handle, info, position) result(csrsm_zero_pivot)
       use, intrinsic :: iso_c_binding
       use hipfort_handles
       implicit none
       type(rocsparse_handle_t), value :: handle
       type(rocsparse_mat_info_t), value :: info
-      type(c_ptr), value :: position
+      integer(c_int) :: position
       integer(c_int) :: csrsm_zero_pivot
       csrsm_zero_pivot = rocsparse_csrsm_zero_pivot_raw(handle%ptr, info%ptr, position)
     end function rocsparse_csrsm_zero_pivot_typed
@@ -53648,18 +53561,18 @@ contains
       integer(c_int), value :: nnz
       real(c_float) :: alpha
       type(c_ptr), value :: descr
-      real(c_float), target :: csr_val(*)
-      integer(c_int), target :: csr_row_ptr(*)
-      integer(c_int), target :: csr_col_ind(*)
-      real(c_float), target :: B(*)
+      real(c_float), target :: csr_val(..)
+      integer(c_int), target :: csr_row_ptr(..)
+      integer(c_int), target :: csr_col_ind(..)
+      real(c_float), target :: B(..)
       integer(c_int), value :: ldb
       type(c_ptr), value :: info
       integer(c_int), value :: policy
       type(c_ptr), value :: buffer_size
       integer(c_int) :: scsrsm_buffer_size
       scsrsm_buffer_size = rocsparse_scsrsm_buffer_size_raw(handle, trans_A, trans_B, m, nrhs, &
-        nnz, alpha, descr, c_loc(csr_val(1)), c_loc(csr_row_ptr(1)), c_loc(csr_col_ind(1)), c_loc( &
-        B(1)), ldb, info, policy, buffer_size)
+        nnz, alpha, descr, c_loc(csr_val), c_loc(csr_row_ptr), c_loc(csr_col_ind), c_loc(B), ldb, &
+        info, policy, buffer_size)
     end function rocsparse_scsrsm_buffer_size_native
 
     function rocsparse_scsrsm_buffer_size_typed(handle, trans_A, trans_B, m, nrhs, nnz, alpha, &
@@ -53703,18 +53616,18 @@ contains
       integer(c_int), value :: nnz
       real(c_double) :: alpha
       type(c_ptr), value :: descr
-      real(c_double), target :: csr_val(*)
-      integer(c_int), target :: csr_row_ptr(*)
-      integer(c_int), target :: csr_col_ind(*)
-      real(c_double), target :: B(*)
+      real(c_double), target :: csr_val(..)
+      integer(c_int), target :: csr_row_ptr(..)
+      integer(c_int), target :: csr_col_ind(..)
+      real(c_double), target :: B(..)
       integer(c_int), value :: ldb
       type(c_ptr), value :: info
       integer(c_int), value :: policy
       type(c_ptr), value :: buffer_size
       integer(c_int) :: dcsrsm_buffer_size
       dcsrsm_buffer_size = rocsparse_dcsrsm_buffer_size_raw(handle, trans_A, trans_B, m, nrhs, &
-        nnz, alpha, descr, c_loc(csr_val(1)), c_loc(csr_row_ptr(1)), c_loc(csr_col_ind(1)), c_loc( &
-        B(1)), ldb, info, policy, buffer_size)
+        nnz, alpha, descr, c_loc(csr_val), c_loc(csr_row_ptr), c_loc(csr_col_ind), c_loc(B), ldb, &
+        info, policy, buffer_size)
     end function rocsparse_dcsrsm_buffer_size_native
 
     function rocsparse_dcsrsm_buffer_size_typed(handle, trans_A, trans_B, m, nrhs, nnz, alpha, &
@@ -53758,18 +53671,18 @@ contains
       integer(c_int), value :: nnz
       complex(c_float_complex) :: alpha
       type(c_ptr), value :: descr
-      complex(c_float_complex), target :: csr_val(*)
-      integer(c_int), target :: csr_row_ptr(*)
-      integer(c_int), target :: csr_col_ind(*)
-      complex(c_float_complex), target :: B(*)
+      complex(c_float_complex), target :: csr_val(..)
+      integer(c_int), target :: csr_row_ptr(..)
+      integer(c_int), target :: csr_col_ind(..)
+      complex(c_float_complex), target :: B(..)
       integer(c_int), value :: ldb
       type(c_ptr), value :: info
       integer(c_int), value :: policy
       type(c_ptr), value :: buffer_size
       integer(c_int) :: ccsrsm_buffer_size
       ccsrsm_buffer_size = rocsparse_ccsrsm_buffer_size_raw(handle, trans_A, trans_B, m, nrhs, &
-        nnz, alpha, descr, c_loc(csr_val(1)), c_loc(csr_row_ptr(1)), c_loc(csr_col_ind(1)), c_loc( &
-        B(1)), ldb, info, policy, buffer_size)
+        nnz, alpha, descr, c_loc(csr_val), c_loc(csr_row_ptr), c_loc(csr_col_ind), c_loc(B), ldb, &
+        info, policy, buffer_size)
     end function rocsparse_ccsrsm_buffer_size_native
 
     function rocsparse_ccsrsm_buffer_size_typed(handle, trans_A, trans_B, m, nrhs, nnz, alpha, &
@@ -53813,18 +53726,18 @@ contains
       integer(c_int), value :: nnz
       complex(c_double_complex) :: alpha
       type(c_ptr), value :: descr
-      complex(c_double_complex), target :: csr_val(*)
-      integer(c_int), target :: csr_row_ptr(*)
-      integer(c_int), target :: csr_col_ind(*)
-      complex(c_double_complex), target :: B(*)
+      complex(c_double_complex), target :: csr_val(..)
+      integer(c_int), target :: csr_row_ptr(..)
+      integer(c_int), target :: csr_col_ind(..)
+      complex(c_double_complex), target :: B(..)
       integer(c_int), value :: ldb
       type(c_ptr), value :: info
       integer(c_int), value :: policy
       type(c_ptr), value :: buffer_size
       integer(c_int) :: zcsrsm_buffer_size
       zcsrsm_buffer_size = rocsparse_zcsrsm_buffer_size_raw(handle, trans_A, trans_B, m, nrhs, &
-        nnz, alpha, descr, c_loc(csr_val(1)), c_loc(csr_row_ptr(1)), c_loc(csr_col_ind(1)), c_loc( &
-        B(1)), ldb, info, policy, buffer_size)
+        nnz, alpha, descr, c_loc(csr_val), c_loc(csr_row_ptr), c_loc(csr_col_ind), c_loc(B), ldb, &
+        info, policy, buffer_size)
     end function rocsparse_zcsrsm_buffer_size_native
 
     function rocsparse_zcsrsm_buffer_size_typed(handle, trans_A, trans_B, m, nrhs, nnz, alpha, &
@@ -53868,10 +53781,10 @@ contains
       integer(c_int), value :: nnz
       real(c_float) :: alpha
       type(c_ptr), value :: descr
-      real(c_float), target :: csr_val(*)
-      integer(c_int), target :: csr_row_ptr(*)
-      integer(c_int), target :: csr_col_ind(*)
-      real(c_float), target :: B(*)
+      real(c_float), target :: csr_val(..)
+      integer(c_int), target :: csr_row_ptr(..)
+      integer(c_int), target :: csr_col_ind(..)
+      real(c_float), target :: B(..)
       integer(c_int), value :: ldb
       type(c_ptr), value :: info
       integer(c_int), value :: analysis
@@ -53879,8 +53792,8 @@ contains
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: scsrsm_analysis
       scsrsm_analysis = rocsparse_scsrsm_analysis_raw(handle, trans_A, trans_B, m, nrhs, nnz, &
-        alpha, descr, c_loc(csr_val(1)), c_loc(csr_row_ptr(1)), c_loc(csr_col_ind(1)), c_loc(B( &
-        1)), ldb, info, analysis, solve, temp_buffer)
+        alpha, descr, c_loc(csr_val), c_loc(csr_row_ptr), c_loc(csr_col_ind), c_loc(B), ldb, info, &
+        analysis, solve, temp_buffer)
     end function rocsparse_scsrsm_analysis_native
 
     function rocsparse_scsrsm_analysis_typed(handle, trans_A, trans_B, m, nrhs, nnz, alpha, descr, &
@@ -53925,10 +53838,10 @@ contains
       integer(c_int), value :: nnz
       real(c_double) :: alpha
       type(c_ptr), value :: descr
-      real(c_double), target :: csr_val(*)
-      integer(c_int), target :: csr_row_ptr(*)
-      integer(c_int), target :: csr_col_ind(*)
-      real(c_double), target :: B(*)
+      real(c_double), target :: csr_val(..)
+      integer(c_int), target :: csr_row_ptr(..)
+      integer(c_int), target :: csr_col_ind(..)
+      real(c_double), target :: B(..)
       integer(c_int), value :: ldb
       type(c_ptr), value :: info
       integer(c_int), value :: analysis
@@ -53936,8 +53849,8 @@ contains
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: dcsrsm_analysis
       dcsrsm_analysis = rocsparse_dcsrsm_analysis_raw(handle, trans_A, trans_B, m, nrhs, nnz, &
-        alpha, descr, c_loc(csr_val(1)), c_loc(csr_row_ptr(1)), c_loc(csr_col_ind(1)), c_loc(B( &
-        1)), ldb, info, analysis, solve, temp_buffer)
+        alpha, descr, c_loc(csr_val), c_loc(csr_row_ptr), c_loc(csr_col_ind), c_loc(B), ldb, info, &
+        analysis, solve, temp_buffer)
     end function rocsparse_dcsrsm_analysis_native
 
     function rocsparse_dcsrsm_analysis_typed(handle, trans_A, trans_B, m, nrhs, nnz, alpha, descr, &
@@ -53982,10 +53895,10 @@ contains
       integer(c_int), value :: nnz
       complex(c_float_complex) :: alpha
       type(c_ptr), value :: descr
-      complex(c_float_complex), target :: csr_val(*)
-      integer(c_int), target :: csr_row_ptr(*)
-      integer(c_int), target :: csr_col_ind(*)
-      complex(c_float_complex), target :: B(*)
+      complex(c_float_complex), target :: csr_val(..)
+      integer(c_int), target :: csr_row_ptr(..)
+      integer(c_int), target :: csr_col_ind(..)
+      complex(c_float_complex), target :: B(..)
       integer(c_int), value :: ldb
       type(c_ptr), value :: info
       integer(c_int), value :: analysis
@@ -53993,8 +53906,8 @@ contains
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: ccsrsm_analysis
       ccsrsm_analysis = rocsparse_ccsrsm_analysis_raw(handle, trans_A, trans_B, m, nrhs, nnz, &
-        alpha, descr, c_loc(csr_val(1)), c_loc(csr_row_ptr(1)), c_loc(csr_col_ind(1)), c_loc(B( &
-        1)), ldb, info, analysis, solve, temp_buffer)
+        alpha, descr, c_loc(csr_val), c_loc(csr_row_ptr), c_loc(csr_col_ind), c_loc(B), ldb, info, &
+        analysis, solve, temp_buffer)
     end function rocsparse_ccsrsm_analysis_native
 
     function rocsparse_ccsrsm_analysis_typed(handle, trans_A, trans_B, m, nrhs, nnz, alpha, descr, &
@@ -54039,10 +53952,10 @@ contains
       integer(c_int), value :: nnz
       complex(c_double_complex) :: alpha
       type(c_ptr), value :: descr
-      complex(c_double_complex), target :: csr_val(*)
-      integer(c_int), target :: csr_row_ptr(*)
-      integer(c_int), target :: csr_col_ind(*)
-      complex(c_double_complex), target :: B(*)
+      complex(c_double_complex), target :: csr_val(..)
+      integer(c_int), target :: csr_row_ptr(..)
+      integer(c_int), target :: csr_col_ind(..)
+      complex(c_double_complex), target :: B(..)
       integer(c_int), value :: ldb
       type(c_ptr), value :: info
       integer(c_int), value :: analysis
@@ -54050,8 +53963,8 @@ contains
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: zcsrsm_analysis
       zcsrsm_analysis = rocsparse_zcsrsm_analysis_raw(handle, trans_A, trans_B, m, nrhs, nnz, &
-        alpha, descr, c_loc(csr_val(1)), c_loc(csr_row_ptr(1)), c_loc(csr_col_ind(1)), c_loc(B( &
-        1)), ldb, info, analysis, solve, temp_buffer)
+        alpha, descr, c_loc(csr_val), c_loc(csr_row_ptr), c_loc(csr_col_ind), c_loc(B), ldb, info, &
+        analysis, solve, temp_buffer)
     end function rocsparse_zcsrsm_analysis_native
 
     function rocsparse_zcsrsm_analysis_typed(handle, trans_A, trans_B, m, nrhs, nnz, alpha, descr, &
@@ -54105,18 +54018,18 @@ contains
       integer(c_int), value :: nnz
       real(c_float) :: alpha
       type(c_ptr), value :: descr
-      real(c_float), target :: csr_val(*)
-      integer(c_int), target :: csr_row_ptr(*)
-      integer(c_int), target :: csr_col_ind(*)
-      real(c_float), target :: B(*)
+      real(c_float), target :: csr_val(..)
+      integer(c_int), target :: csr_row_ptr(..)
+      integer(c_int), target :: csr_col_ind(..)
+      real(c_float), target :: B(..)
       integer(c_int), value :: ldb
       type(c_ptr), value :: info
       integer(c_int), value :: policy
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: scsrsm_solve
       scsrsm_solve = rocsparse_scsrsm_solve_raw(handle, trans_A, trans_B, m, nrhs, nnz, alpha, &
-        descr, c_loc(csr_val(1)), c_loc(csr_row_ptr(1)), c_loc(csr_col_ind(1)), c_loc(B(1)), ldb, &
-        info, policy, temp_buffer)
+        descr, c_loc(csr_val), c_loc(csr_row_ptr), c_loc(csr_col_ind), c_loc(B), ldb, info, &
+        policy, temp_buffer)
     end function rocsparse_scsrsm_solve_native
 
     function rocsparse_scsrsm_solve_typed(handle, trans_A, trans_B, m, nrhs, nnz, alpha, descr, &
@@ -54157,18 +54070,18 @@ contains
       integer(c_int), value :: nnz
       real(c_double) :: alpha
       type(c_ptr), value :: descr
-      real(c_double), target :: csr_val(*)
-      integer(c_int), target :: csr_row_ptr(*)
-      integer(c_int), target :: csr_col_ind(*)
-      real(c_double), target :: B(*)
+      real(c_double), target :: csr_val(..)
+      integer(c_int), target :: csr_row_ptr(..)
+      integer(c_int), target :: csr_col_ind(..)
+      real(c_double), target :: B(..)
       integer(c_int), value :: ldb
       type(c_ptr), value :: info
       integer(c_int), value :: policy
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: dcsrsm_solve
       dcsrsm_solve = rocsparse_dcsrsm_solve_raw(handle, trans_A, trans_B, m, nrhs, nnz, alpha, &
-        descr, c_loc(csr_val(1)), c_loc(csr_row_ptr(1)), c_loc(csr_col_ind(1)), c_loc(B(1)), ldb, &
-        info, policy, temp_buffer)
+        descr, c_loc(csr_val), c_loc(csr_row_ptr), c_loc(csr_col_ind), c_loc(B), ldb, info, &
+        policy, temp_buffer)
     end function rocsparse_dcsrsm_solve_native
 
     function rocsparse_dcsrsm_solve_typed(handle, trans_A, trans_B, m, nrhs, nnz, alpha, descr, &
@@ -54209,18 +54122,18 @@ contains
       integer(c_int), value :: nnz
       complex(c_float_complex) :: alpha
       type(c_ptr), value :: descr
-      complex(c_float_complex), target :: csr_val(*)
-      integer(c_int), target :: csr_row_ptr(*)
-      integer(c_int), target :: csr_col_ind(*)
-      complex(c_float_complex), target :: B(*)
+      complex(c_float_complex), target :: csr_val(..)
+      integer(c_int), target :: csr_row_ptr(..)
+      integer(c_int), target :: csr_col_ind(..)
+      complex(c_float_complex), target :: B(..)
       integer(c_int), value :: ldb
       type(c_ptr), value :: info
       integer(c_int), value :: policy
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: ccsrsm_solve
       ccsrsm_solve = rocsparse_ccsrsm_solve_raw(handle, trans_A, trans_B, m, nrhs, nnz, alpha, &
-        descr, c_loc(csr_val(1)), c_loc(csr_row_ptr(1)), c_loc(csr_col_ind(1)), c_loc(B(1)), ldb, &
-        info, policy, temp_buffer)
+        descr, c_loc(csr_val), c_loc(csr_row_ptr), c_loc(csr_col_ind), c_loc(B), ldb, info, &
+        policy, temp_buffer)
     end function rocsparse_ccsrsm_solve_native
 
     function rocsparse_ccsrsm_solve_typed(handle, trans_A, trans_B, m, nrhs, nnz, alpha, descr, &
@@ -54261,18 +54174,18 @@ contains
       integer(c_int), value :: nnz
       complex(c_double_complex) :: alpha
       type(c_ptr), value :: descr
-      complex(c_double_complex), target :: csr_val(*)
-      integer(c_int), target :: csr_row_ptr(*)
-      integer(c_int), target :: csr_col_ind(*)
-      complex(c_double_complex), target :: B(*)
+      complex(c_double_complex), target :: csr_val(..)
+      integer(c_int), target :: csr_row_ptr(..)
+      integer(c_int), target :: csr_col_ind(..)
+      complex(c_double_complex), target :: B(..)
       integer(c_int), value :: ldb
       type(c_ptr), value :: info
       integer(c_int), value :: policy
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: zcsrsm_solve
       zcsrsm_solve = rocsparse_zcsrsm_solve_raw(handle, trans_A, trans_B, m, nrhs, nnz, alpha, &
-        descr, c_loc(csr_val(1)), c_loc(csr_row_ptr(1)), c_loc(csr_col_ind(1)), c_loc(B(1)), ldb, &
-        info, policy, temp_buffer)
+        descr, c_loc(csr_val), c_loc(csr_row_ptr), c_loc(csr_col_ind), c_loc(B), ldb, info, &
+        policy, temp_buffer)
     end function rocsparse_zcsrsm_solve_native
 
     function rocsparse_zcsrsm_solve_typed(handle, trans_A, trans_B, m, nrhs, nnz, alpha, descr, &
@@ -54316,20 +54229,20 @@ contains
       integer(c_int), value :: nnzb
       real(c_float) :: alpha
       type(c_ptr), value :: descr
-      real(c_float), target :: bsr_val(*)
-      integer(c_int), target :: bsr_row_ptr(*)
-      integer(c_int), target :: bsr_col_ind(*)
+      real(c_float), target :: bsr_val(..)
+      integer(c_int), target :: bsr_row_ptr(..)
+      integer(c_int), target :: bsr_col_ind(..)
       integer(c_int), value :: row_block_dim
       integer(c_int), value :: col_block_dim
-      real(c_float), target :: B(*)
+      real(c_float), target :: B(..)
       integer(c_int), value :: ldb
       real(c_float) :: beta
-      real(c_float), target :: C(*)
+      real(c_float), target :: C(..)
       integer(c_int), value :: ldc
       integer(c_int) :: sgebsrmm
       sgebsrmm = rocsparse_sgebsrmm_raw(handle, dir, trans_A, trans_B, mb, n, kb, nnzb, alpha, &
-        descr, c_loc(bsr_val(1)), c_loc(bsr_row_ptr(1)), c_loc(bsr_col_ind(1)), row_block_dim, &
-        col_block_dim, c_loc(B(1)), ldb, beta, c_loc(C(1)), ldc)
+        descr, c_loc(bsr_val), c_loc(bsr_row_ptr), c_loc(bsr_col_ind), row_block_dim, &
+        col_block_dim, c_loc(B), ldb, beta, c_loc(C), ldc)
     end function rocsparse_sgebsrmm_native
 
     function rocsparse_sgebsrmm_typed(handle, dir, trans_A, trans_B, mb, n, kb, nnzb, alpha, &
@@ -54379,20 +54292,20 @@ contains
       integer(c_int), value :: nnzb
       real(c_double) :: alpha
       type(c_ptr), value :: descr
-      real(c_double), target :: bsr_val(*)
-      integer(c_int), target :: bsr_row_ptr(*)
-      integer(c_int), target :: bsr_col_ind(*)
+      real(c_double), target :: bsr_val(..)
+      integer(c_int), target :: bsr_row_ptr(..)
+      integer(c_int), target :: bsr_col_ind(..)
       integer(c_int), value :: row_block_dim
       integer(c_int), value :: col_block_dim
-      real(c_double), target :: B(*)
+      real(c_double), target :: B(..)
       integer(c_int), value :: ldb
       real(c_double) :: beta
-      real(c_double), target :: C(*)
+      real(c_double), target :: C(..)
       integer(c_int), value :: ldc
       integer(c_int) :: dgebsrmm
       dgebsrmm = rocsparse_dgebsrmm_raw(handle, dir, trans_A, trans_B, mb, n, kb, nnzb, alpha, &
-        descr, c_loc(bsr_val(1)), c_loc(bsr_row_ptr(1)), c_loc(bsr_col_ind(1)), row_block_dim, &
-        col_block_dim, c_loc(B(1)), ldb, beta, c_loc(C(1)), ldc)
+        descr, c_loc(bsr_val), c_loc(bsr_row_ptr), c_loc(bsr_col_ind), row_block_dim, &
+        col_block_dim, c_loc(B), ldb, beta, c_loc(C), ldc)
     end function rocsparse_dgebsrmm_native
 
     function rocsparse_dgebsrmm_typed(handle, dir, trans_A, trans_B, mb, n, kb, nnzb, alpha, &
@@ -54442,20 +54355,20 @@ contains
       integer(c_int), value :: nnzb
       complex(c_float_complex) :: alpha
       type(c_ptr), value :: descr
-      complex(c_float_complex), target :: bsr_val(*)
-      integer(c_int), target :: bsr_row_ptr(*)
-      integer(c_int), target :: bsr_col_ind(*)
+      complex(c_float_complex), target :: bsr_val(..)
+      integer(c_int), target :: bsr_row_ptr(..)
+      integer(c_int), target :: bsr_col_ind(..)
       integer(c_int), value :: row_block_dim
       integer(c_int), value :: col_block_dim
-      complex(c_float_complex), target :: B(*)
+      complex(c_float_complex), target :: B(..)
       integer(c_int), value :: ldb
       complex(c_float_complex) :: beta
-      complex(c_float_complex), target :: C(*)
+      complex(c_float_complex), target :: C(..)
       integer(c_int), value :: ldc
       integer(c_int) :: cgebsrmm
       cgebsrmm = rocsparse_cgebsrmm_raw(handle, dir, trans_A, trans_B, mb, n, kb, nnzb, alpha, &
-        descr, c_loc(bsr_val(1)), c_loc(bsr_row_ptr(1)), c_loc(bsr_col_ind(1)), row_block_dim, &
-        col_block_dim, c_loc(B(1)), ldb, beta, c_loc(C(1)), ldc)
+        descr, c_loc(bsr_val), c_loc(bsr_row_ptr), c_loc(bsr_col_ind), row_block_dim, &
+        col_block_dim, c_loc(B), ldb, beta, c_loc(C), ldc)
     end function rocsparse_cgebsrmm_native
 
     function rocsparse_cgebsrmm_typed(handle, dir, trans_A, trans_B, mb, n, kb, nnzb, alpha, &
@@ -54505,20 +54418,20 @@ contains
       integer(c_int), value :: nnzb
       complex(c_double_complex) :: alpha
       type(c_ptr), value :: descr
-      complex(c_double_complex), target :: bsr_val(*)
-      integer(c_int), target :: bsr_row_ptr(*)
-      integer(c_int), target :: bsr_col_ind(*)
+      complex(c_double_complex), target :: bsr_val(..)
+      integer(c_int), target :: bsr_row_ptr(..)
+      integer(c_int), target :: bsr_col_ind(..)
       integer(c_int), value :: row_block_dim
       integer(c_int), value :: col_block_dim
-      complex(c_double_complex), target :: B(*)
+      complex(c_double_complex), target :: B(..)
       integer(c_int), value :: ldb
       complex(c_double_complex) :: beta
-      complex(c_double_complex), target :: C(*)
+      complex(c_double_complex), target :: C(..)
       integer(c_int), value :: ldc
       integer(c_int) :: zgebsrmm
       zgebsrmm = rocsparse_zgebsrmm_raw(handle, dir, trans_A, trans_B, mb, n, kb, nnzb, alpha, &
-        descr, c_loc(bsr_val(1)), c_loc(bsr_row_ptr(1)), c_loc(bsr_col_ind(1)), row_block_dim, &
-        col_block_dim, c_loc(B(1)), ldb, beta, c_loc(C(1)), ldc)
+        descr, c_loc(bsr_val), c_loc(bsr_row_ptr), c_loc(bsr_col_ind), row_block_dim, &
+        col_block_dim, c_loc(B), ldb, beta, c_loc(C), ldc)
     end function rocsparse_zgebsrmm_native
 
     function rocsparse_zgebsrmm_typed(handle, dir, trans_A, trans_B, mb, n, kb, nnzb, alpha, &
@@ -54565,19 +54478,18 @@ contains
       integer(c_int), value :: k
       integer(c_int), value :: nnz
       real(c_float) :: alpha
-      real(c_float), target :: A(*)
+      real(c_float), target :: A(..)
       integer(c_int), value :: lda
       type(c_ptr), value :: descr
-      real(c_float), target :: csr_val(*)
-      integer(c_int), target :: csr_row_ptr(*)
-      integer(c_int), target :: csr_col_ind(*)
+      real(c_float), target :: csr_val(..)
+      integer(c_int), target :: csr_row_ptr(..)
+      integer(c_int), target :: csr_col_ind(..)
       real(c_float) :: beta
-      real(c_float), target :: C(*)
+      real(c_float), target :: C(..)
       integer(c_int), value :: ldc
       integer(c_int) :: sgemmi
-      sgemmi = rocsparse_sgemmi_raw(handle, trans_A, trans_B, m, n, k, nnz, alpha, c_loc(A(1)), &
-        lda, descr, c_loc(csr_val(1)), c_loc(csr_row_ptr(1)), c_loc(csr_col_ind(1)), beta, c_loc( &
-        C(1)), ldc)
+      sgemmi = rocsparse_sgemmi_raw(handle, trans_A, trans_B, m, n, k, nnz, alpha, c_loc(A), lda, &
+        descr, c_loc(csr_val), c_loc(csr_row_ptr), c_loc(csr_col_ind), beta, c_loc(C), ldc)
     end function rocsparse_sgemmi_native
 
     function rocsparse_sgemmi_typed(handle, trans_A, trans_B, m, n, k, nnz, alpha, A, lda, descr, &
@@ -54619,19 +54531,18 @@ contains
       integer(c_int), value :: k
       integer(c_int), value :: nnz
       real(c_double) :: alpha
-      real(c_double), target :: A(*)
+      real(c_double), target :: A(..)
       integer(c_int), value :: lda
       type(c_ptr), value :: descr
-      real(c_double), target :: csr_val(*)
-      integer(c_int), target :: csr_row_ptr(*)
-      integer(c_int), target :: csr_col_ind(*)
+      real(c_double), target :: csr_val(..)
+      integer(c_int), target :: csr_row_ptr(..)
+      integer(c_int), target :: csr_col_ind(..)
       real(c_double) :: beta
-      real(c_double), target :: C(*)
+      real(c_double), target :: C(..)
       integer(c_int), value :: ldc
       integer(c_int) :: dgemmi
-      dgemmi = rocsparse_dgemmi_raw(handle, trans_A, trans_B, m, n, k, nnz, alpha, c_loc(A(1)), &
-        lda, descr, c_loc(csr_val(1)), c_loc(csr_row_ptr(1)), c_loc(csr_col_ind(1)), beta, c_loc( &
-        C(1)), ldc)
+      dgemmi = rocsparse_dgemmi_raw(handle, trans_A, trans_B, m, n, k, nnz, alpha, c_loc(A), lda, &
+        descr, c_loc(csr_val), c_loc(csr_row_ptr), c_loc(csr_col_ind), beta, c_loc(C), ldc)
     end function rocsparse_dgemmi_native
 
     function rocsparse_dgemmi_typed(handle, trans_A, trans_B, m, n, k, nnz, alpha, A, lda, descr, &
@@ -54673,19 +54584,18 @@ contains
       integer(c_int), value :: k
       integer(c_int), value :: nnz
       complex(c_float_complex) :: alpha
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: A(..)
       integer(c_int), value :: lda
       type(c_ptr), value :: descr
-      complex(c_float_complex), target :: csr_val(*)
-      integer(c_int), target :: csr_row_ptr(*)
-      integer(c_int), target :: csr_col_ind(*)
+      complex(c_float_complex), target :: csr_val(..)
+      integer(c_int), target :: csr_row_ptr(..)
+      integer(c_int), target :: csr_col_ind(..)
       complex(c_float_complex) :: beta
-      complex(c_float_complex), target :: C(*)
+      complex(c_float_complex), target :: C(..)
       integer(c_int), value :: ldc
       integer(c_int) :: cgemmi
-      cgemmi = rocsparse_cgemmi_raw(handle, trans_A, trans_B, m, n, k, nnz, alpha, c_loc(A(1)), &
-        lda, descr, c_loc(csr_val(1)), c_loc(csr_row_ptr(1)), c_loc(csr_col_ind(1)), beta, c_loc( &
-        C(1)), ldc)
+      cgemmi = rocsparse_cgemmi_raw(handle, trans_A, trans_B, m, n, k, nnz, alpha, c_loc(A), lda, &
+        descr, c_loc(csr_val), c_loc(csr_row_ptr), c_loc(csr_col_ind), beta, c_loc(C), ldc)
     end function rocsparse_cgemmi_native
 
     function rocsparse_cgemmi_typed(handle, trans_A, trans_B, m, n, k, nnz, alpha, A, lda, descr, &
@@ -54727,19 +54637,18 @@ contains
       integer(c_int), value :: k
       integer(c_int), value :: nnz
       complex(c_double_complex) :: alpha
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: A(..)
       integer(c_int), value :: lda
       type(c_ptr), value :: descr
-      complex(c_double_complex), target :: csr_val(*)
-      integer(c_int), target :: csr_row_ptr(*)
-      integer(c_int), target :: csr_col_ind(*)
+      complex(c_double_complex), target :: csr_val(..)
+      integer(c_int), target :: csr_row_ptr(..)
+      integer(c_int), target :: csr_col_ind(..)
       complex(c_double_complex) :: beta
-      complex(c_double_complex), target :: C(*)
+      complex(c_double_complex), target :: C(..)
       integer(c_int), value :: ldc
       integer(c_int) :: zgemmi
-      zgemmi = rocsparse_zgemmi_raw(handle, trans_A, trans_B, m, n, k, nnz, alpha, c_loc(A(1)), &
-        lda, descr, c_loc(csr_val(1)), c_loc(csr_row_ptr(1)), c_loc(csr_col_ind(1)), beta, c_loc( &
-        C(1)), ldc)
+      zgemmi = rocsparse_zgemmi_raw(handle, trans_A, trans_B, m, n, k, nnz, alpha, c_loc(A), lda, &
+        descr, c_loc(csr_val), c_loc(csr_row_ptr), c_loc(csr_col_ind), beta, c_loc(C), ldc)
     end function rocsparse_zgemmi_native
 
     function rocsparse_zgemmi_typed(handle, trans_A, trans_B, m, n, k, nnz, alpha, A, lda, descr, &
@@ -54769,23 +54678,13 @@ contains
         descr%ptr, csr_val, csr_row_ptr, csr_col_ind, beta, C, ldc)
     end function rocsparse_zgemmi_typed
 
-    function rocsparse_bsric0_zero_pivot_native(handle, info, position) result(bsric0_zero_pivot)
-      use, intrinsic :: iso_c_binding
-      implicit none
-      type(c_ptr), value :: handle
-      type(c_ptr), value :: info
-      integer(c_int), target :: position(*)
-      integer(c_int) :: bsric0_zero_pivot
-      bsric0_zero_pivot = rocsparse_bsric0_zero_pivot_raw(handle, info, c_loc(position(1)))
-    end function rocsparse_bsric0_zero_pivot_native
-
     function rocsparse_bsric0_zero_pivot_typed(handle, info, position) result(bsric0_zero_pivot)
       use, intrinsic :: iso_c_binding
       use hipfort_handles
       implicit none
       type(rocsparse_handle_t), value :: handle
       type(rocsparse_mat_info_t), value :: info
-      type(c_ptr), value :: position
+      integer(c_int) :: position
       integer(c_int) :: bsric0_zero_pivot
       bsric0_zero_pivot = rocsparse_bsric0_zero_pivot_raw(handle%ptr, info%ptr, position)
     end function rocsparse_bsric0_zero_pivot_typed
@@ -54799,15 +54698,15 @@ contains
       integer(c_int), value :: mb
       integer(c_int), value :: nnzb
       type(c_ptr), value :: descr
-      real(c_float), target :: bsr_val(*)
-      integer(c_int), target :: bsr_row_ptr(*)
-      integer(c_int), target :: bsr_col_ind(*)
+      real(c_float), target :: bsr_val(..)
+      integer(c_int), target :: bsr_row_ptr(..)
+      integer(c_int), target :: bsr_col_ind(..)
       integer(c_int), value :: block_dim
       type(c_ptr), value :: info
       type(c_ptr), value :: buffer_size
       integer(c_int) :: sbsric0_buffer_size
       sbsric0_buffer_size = rocsparse_sbsric0_buffer_size_raw(handle, dir, mb, nnzb, descr, c_loc( &
-        bsr_val(1)), c_loc(bsr_row_ptr(1)), c_loc(bsr_col_ind(1)), block_dim, info, buffer_size)
+        bsr_val), c_loc(bsr_row_ptr), c_loc(bsr_col_ind), block_dim, info, buffer_size)
     end function rocsparse_sbsric0_buffer_size_native
 
     function rocsparse_sbsric0_buffer_size_typed(handle, dir, mb, nnzb, descr, bsr_val, &
@@ -54840,15 +54739,15 @@ contains
       integer(c_int), value :: mb
       integer(c_int), value :: nnzb
       type(c_ptr), value :: descr
-      real(c_double), target :: bsr_val(*)
-      integer(c_int), target :: bsr_row_ptr(*)
-      integer(c_int), target :: bsr_col_ind(*)
+      real(c_double), target :: bsr_val(..)
+      integer(c_int), target :: bsr_row_ptr(..)
+      integer(c_int), target :: bsr_col_ind(..)
       integer(c_int), value :: block_dim
       type(c_ptr), value :: info
       type(c_ptr), value :: buffer_size
       integer(c_int) :: dbsric0_buffer_size
       dbsric0_buffer_size = rocsparse_dbsric0_buffer_size_raw(handle, dir, mb, nnzb, descr, c_loc( &
-        bsr_val(1)), c_loc(bsr_row_ptr(1)), c_loc(bsr_col_ind(1)), block_dim, info, buffer_size)
+        bsr_val), c_loc(bsr_row_ptr), c_loc(bsr_col_ind), block_dim, info, buffer_size)
     end function rocsparse_dbsric0_buffer_size_native
 
     function rocsparse_dbsric0_buffer_size_typed(handle, dir, mb, nnzb, descr, bsr_val, &
@@ -54881,15 +54780,15 @@ contains
       integer(c_int), value :: mb
       integer(c_int), value :: nnzb
       type(c_ptr), value :: descr
-      complex(c_float_complex), target :: bsr_val(*)
-      integer(c_int), target :: bsr_row_ptr(*)
-      integer(c_int), target :: bsr_col_ind(*)
+      complex(c_float_complex), target :: bsr_val(..)
+      integer(c_int), target :: bsr_row_ptr(..)
+      integer(c_int), target :: bsr_col_ind(..)
       integer(c_int), value :: block_dim
       type(c_ptr), value :: info
       type(c_ptr), value :: buffer_size
       integer(c_int) :: cbsric0_buffer_size
       cbsric0_buffer_size = rocsparse_cbsric0_buffer_size_raw(handle, dir, mb, nnzb, descr, c_loc( &
-        bsr_val(1)), c_loc(bsr_row_ptr(1)), c_loc(bsr_col_ind(1)), block_dim, info, buffer_size)
+        bsr_val), c_loc(bsr_row_ptr), c_loc(bsr_col_ind), block_dim, info, buffer_size)
     end function rocsparse_cbsric0_buffer_size_native
 
     function rocsparse_cbsric0_buffer_size_typed(handle, dir, mb, nnzb, descr, bsr_val, &
@@ -54922,15 +54821,15 @@ contains
       integer(c_int), value :: mb
       integer(c_int), value :: nnzb
       type(c_ptr), value :: descr
-      complex(c_double_complex), target :: bsr_val(*)
-      integer(c_int), target :: bsr_row_ptr(*)
-      integer(c_int), target :: bsr_col_ind(*)
+      complex(c_double_complex), target :: bsr_val(..)
+      integer(c_int), target :: bsr_row_ptr(..)
+      integer(c_int), target :: bsr_col_ind(..)
       integer(c_int), value :: block_dim
       type(c_ptr), value :: info
       type(c_ptr), value :: buffer_size
       integer(c_int) :: zbsric0_buffer_size
       zbsric0_buffer_size = rocsparse_zbsric0_buffer_size_raw(handle, dir, mb, nnzb, descr, c_loc( &
-        bsr_val(1)), c_loc(bsr_row_ptr(1)), c_loc(bsr_col_ind(1)), block_dim, info, buffer_size)
+        bsr_val), c_loc(bsr_row_ptr), c_loc(bsr_col_ind), block_dim, info, buffer_size)
     end function rocsparse_zbsric0_buffer_size_native
 
     function rocsparse_zbsric0_buffer_size_typed(handle, dir, mb, nnzb, descr, bsr_val, &
@@ -54963,9 +54862,9 @@ contains
       integer(c_int), value :: mb
       integer(c_int), value :: nnzb
       type(c_ptr), value :: descr
-      real(c_float), target :: bsr_val(*)
-      integer(c_int), target :: bsr_row_ptr(*)
-      integer(c_int), target :: bsr_col_ind(*)
+      real(c_float), target :: bsr_val(..)
+      integer(c_int), target :: bsr_row_ptr(..)
+      integer(c_int), target :: bsr_col_ind(..)
       integer(c_int), value :: block_dim
       type(c_ptr), value :: info
       integer(c_int), value :: analysis
@@ -54973,8 +54872,8 @@ contains
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: sbsric0_analysis
       sbsric0_analysis = rocsparse_sbsric0_analysis_raw(handle, dir, mb, nnzb, descr, c_loc( &
-        bsr_val(1)), c_loc(bsr_row_ptr(1)), c_loc(bsr_col_ind(1)), block_dim, info, analysis, &
-        solve, temp_buffer)
+        bsr_val), c_loc(bsr_row_ptr), c_loc(bsr_col_ind), block_dim, info, analysis, solve, &
+        temp_buffer)
     end function rocsparse_sbsric0_analysis_native
 
     function rocsparse_sbsric0_analysis_typed(handle, dir, mb, nnzb, descr, bsr_val, bsr_row_ptr, &
@@ -55009,9 +54908,9 @@ contains
       integer(c_int), value :: mb
       integer(c_int), value :: nnzb
       type(c_ptr), value :: descr
-      real(c_double), target :: bsr_val(*)
-      integer(c_int), target :: bsr_row_ptr(*)
-      integer(c_int), target :: bsr_col_ind(*)
+      real(c_double), target :: bsr_val(..)
+      integer(c_int), target :: bsr_row_ptr(..)
+      integer(c_int), target :: bsr_col_ind(..)
       integer(c_int), value :: block_dim
       type(c_ptr), value :: info
       integer(c_int), value :: analysis
@@ -55019,8 +54918,8 @@ contains
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: dbsric0_analysis
       dbsric0_analysis = rocsparse_dbsric0_analysis_raw(handle, dir, mb, nnzb, descr, c_loc( &
-        bsr_val(1)), c_loc(bsr_row_ptr(1)), c_loc(bsr_col_ind(1)), block_dim, info, analysis, &
-        solve, temp_buffer)
+        bsr_val), c_loc(bsr_row_ptr), c_loc(bsr_col_ind), block_dim, info, analysis, solve, &
+        temp_buffer)
     end function rocsparse_dbsric0_analysis_native
 
     function rocsparse_dbsric0_analysis_typed(handle, dir, mb, nnzb, descr, bsr_val, bsr_row_ptr, &
@@ -55055,9 +54954,9 @@ contains
       integer(c_int), value :: mb
       integer(c_int), value :: nnzb
       type(c_ptr), value :: descr
-      complex(c_float_complex), target :: bsr_val(*)
-      integer(c_int), target :: bsr_row_ptr(*)
-      integer(c_int), target :: bsr_col_ind(*)
+      complex(c_float_complex), target :: bsr_val(..)
+      integer(c_int), target :: bsr_row_ptr(..)
+      integer(c_int), target :: bsr_col_ind(..)
       integer(c_int), value :: block_dim
       type(c_ptr), value :: info
       integer(c_int), value :: analysis
@@ -55065,8 +54964,8 @@ contains
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: cbsric0_analysis
       cbsric0_analysis = rocsparse_cbsric0_analysis_raw(handle, dir, mb, nnzb, descr, c_loc( &
-        bsr_val(1)), c_loc(bsr_row_ptr(1)), c_loc(bsr_col_ind(1)), block_dim, info, analysis, &
-        solve, temp_buffer)
+        bsr_val), c_loc(bsr_row_ptr), c_loc(bsr_col_ind), block_dim, info, analysis, solve, &
+        temp_buffer)
     end function rocsparse_cbsric0_analysis_native
 
     function rocsparse_cbsric0_analysis_typed(handle, dir, mb, nnzb, descr, bsr_val, bsr_row_ptr, &
@@ -55101,9 +55000,9 @@ contains
       integer(c_int), value :: mb
       integer(c_int), value :: nnzb
       type(c_ptr), value :: descr
-      complex(c_double_complex), target :: bsr_val(*)
-      integer(c_int), target :: bsr_row_ptr(*)
-      integer(c_int), target :: bsr_col_ind(*)
+      complex(c_double_complex), target :: bsr_val(..)
+      integer(c_int), target :: bsr_row_ptr(..)
+      integer(c_int), target :: bsr_col_ind(..)
       integer(c_int), value :: block_dim
       type(c_ptr), value :: info
       integer(c_int), value :: analysis
@@ -55111,8 +55010,8 @@ contains
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: zbsric0_analysis
       zbsric0_analysis = rocsparse_zbsric0_analysis_raw(handle, dir, mb, nnzb, descr, c_loc( &
-        bsr_val(1)), c_loc(bsr_row_ptr(1)), c_loc(bsr_col_ind(1)), block_dim, info, analysis, &
-        solve, temp_buffer)
+        bsr_val), c_loc(bsr_row_ptr), c_loc(bsr_col_ind), block_dim, info, analysis, solve, &
+        temp_buffer)
     end function rocsparse_zbsric0_analysis_native
 
     function rocsparse_zbsric0_analysis_typed(handle, dir, mb, nnzb, descr, bsr_val, bsr_row_ptr, &
@@ -55157,16 +55056,16 @@ contains
       integer(c_int), value :: mb
       integer(c_int), value :: nnzb
       type(c_ptr), value :: descr
-      real(c_float), target :: bsr_val(*)
-      integer(c_int), target :: bsr_row_ptr(*)
-      integer(c_int), target :: bsr_col_ind(*)
+      real(c_float), target :: bsr_val(..)
+      integer(c_int), target :: bsr_row_ptr(..)
+      integer(c_int), target :: bsr_col_ind(..)
       integer(c_int), value :: block_dim
       type(c_ptr), value :: info
       integer(c_int), value :: policy
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: sbsric0
-      sbsric0 = rocsparse_sbsric0_raw(handle, dir, mb, nnzb, descr, c_loc(bsr_val(1)), c_loc( &
-        bsr_row_ptr(1)), c_loc(bsr_col_ind(1)), block_dim, info, policy, temp_buffer)
+      sbsric0 = rocsparse_sbsric0_raw(handle, dir, mb, nnzb, descr, c_loc(bsr_val), c_loc( &
+        bsr_row_ptr), c_loc(bsr_col_ind), block_dim, info, policy, temp_buffer)
     end function rocsparse_sbsric0_native
 
     function rocsparse_sbsric0_typed(handle, dir, mb, nnzb, descr, bsr_val, bsr_row_ptr, &
@@ -55200,16 +55099,16 @@ contains
       integer(c_int), value :: mb
       integer(c_int), value :: nnzb
       type(c_ptr), value :: descr
-      real(c_double), target :: bsr_val(*)
-      integer(c_int), target :: bsr_row_ptr(*)
-      integer(c_int), target :: bsr_col_ind(*)
+      real(c_double), target :: bsr_val(..)
+      integer(c_int), target :: bsr_row_ptr(..)
+      integer(c_int), target :: bsr_col_ind(..)
       integer(c_int), value :: block_dim
       type(c_ptr), value :: info
       integer(c_int), value :: policy
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: dbsric0
-      dbsric0 = rocsparse_dbsric0_raw(handle, dir, mb, nnzb, descr, c_loc(bsr_val(1)), c_loc( &
-        bsr_row_ptr(1)), c_loc(bsr_col_ind(1)), block_dim, info, policy, temp_buffer)
+      dbsric0 = rocsparse_dbsric0_raw(handle, dir, mb, nnzb, descr, c_loc(bsr_val), c_loc( &
+        bsr_row_ptr), c_loc(bsr_col_ind), block_dim, info, policy, temp_buffer)
     end function rocsparse_dbsric0_native
 
     function rocsparse_dbsric0_typed(handle, dir, mb, nnzb, descr, bsr_val, bsr_row_ptr, &
@@ -55243,16 +55142,16 @@ contains
       integer(c_int), value :: mb
       integer(c_int), value :: nnzb
       type(c_ptr), value :: descr
-      complex(c_float_complex), target :: bsr_val(*)
-      integer(c_int), target :: bsr_row_ptr(*)
-      integer(c_int), target :: bsr_col_ind(*)
+      complex(c_float_complex), target :: bsr_val(..)
+      integer(c_int), target :: bsr_row_ptr(..)
+      integer(c_int), target :: bsr_col_ind(..)
       integer(c_int), value :: block_dim
       type(c_ptr), value :: info
       integer(c_int), value :: policy
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: cbsric0
-      cbsric0 = rocsparse_cbsric0_raw(handle, dir, mb, nnzb, descr, c_loc(bsr_val(1)), c_loc( &
-        bsr_row_ptr(1)), c_loc(bsr_col_ind(1)), block_dim, info, policy, temp_buffer)
+      cbsric0 = rocsparse_cbsric0_raw(handle, dir, mb, nnzb, descr, c_loc(bsr_val), c_loc( &
+        bsr_row_ptr), c_loc(bsr_col_ind), block_dim, info, policy, temp_buffer)
     end function rocsparse_cbsric0_native
 
     function rocsparse_cbsric0_typed(handle, dir, mb, nnzb, descr, bsr_val, bsr_row_ptr, &
@@ -55286,16 +55185,16 @@ contains
       integer(c_int), value :: mb
       integer(c_int), value :: nnzb
       type(c_ptr), value :: descr
-      complex(c_double_complex), target :: bsr_val(*)
-      integer(c_int), target :: bsr_row_ptr(*)
-      integer(c_int), target :: bsr_col_ind(*)
+      complex(c_double_complex), target :: bsr_val(..)
+      integer(c_int), target :: bsr_row_ptr(..)
+      integer(c_int), target :: bsr_col_ind(..)
       integer(c_int), value :: block_dim
       type(c_ptr), value :: info
       integer(c_int), value :: policy
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: zbsric0
-      zbsric0 = rocsparse_zbsric0_raw(handle, dir, mb, nnzb, descr, c_loc(bsr_val(1)), c_loc( &
-        bsr_row_ptr(1)), c_loc(bsr_col_ind(1)), block_dim, info, policy, temp_buffer)
+      zbsric0 = rocsparse_zbsric0_raw(handle, dir, mb, nnzb, descr, c_loc(bsr_val), c_loc( &
+        bsr_row_ptr), c_loc(bsr_col_ind), block_dim, info, policy, temp_buffer)
     end function rocsparse_zbsric0_native
 
     function rocsparse_zbsric0_typed(handle, dir, mb, nnzb, descr, bsr_val, bsr_row_ptr, &
@@ -55320,40 +55219,16 @@ contains
         bsr_col_ind, block_dim, info%ptr, policy, temp_buffer)
     end function rocsparse_zbsric0_typed
 
-    function rocsparse_bsrilu0_zero_pivot_native(handle, info, position) result(bsrilu0_zero_pivot)
-      use, intrinsic :: iso_c_binding
-      implicit none
-      type(c_ptr), value :: handle
-      type(c_ptr), value :: info
-      integer(c_int), target :: position(*)
-      integer(c_int) :: bsrilu0_zero_pivot
-      bsrilu0_zero_pivot = rocsparse_bsrilu0_zero_pivot_raw(handle, info, c_loc(position(1)))
-    end function rocsparse_bsrilu0_zero_pivot_native
-
     function rocsparse_bsrilu0_zero_pivot_typed(handle, info, position) result(bsrilu0_zero_pivot)
       use, intrinsic :: iso_c_binding
       use hipfort_handles
       implicit none
       type(rocsparse_handle_t), value :: handle
       type(rocsparse_mat_info_t), value :: info
-      type(c_ptr), value :: position
+      integer(c_int) :: position
       integer(c_int) :: bsrilu0_zero_pivot
       bsrilu0_zero_pivot = rocsparse_bsrilu0_zero_pivot_raw(handle%ptr, info%ptr, position)
     end function rocsparse_bsrilu0_zero_pivot_typed
-
-    function rocsparse_sbsrilu0_numeric_boost_native(handle, info, enable_boost, boost_tol, &
-        boost_val) result(sbsrilu0_numeric_boost)
-      use, intrinsic :: iso_c_binding
-      implicit none
-      type(c_ptr), value :: handle
-      type(c_ptr), value :: info
-      integer(c_int), value :: enable_boost
-      real(c_float) :: boost_tol
-      real(c_float), target :: boost_val(*)
-      integer(c_int) :: sbsrilu0_numeric_boost
-      sbsrilu0_numeric_boost = rocsparse_sbsrilu0_numeric_boost_raw(handle, info, enable_boost, &
-        boost_tol, c_loc(boost_val(1)))
-    end function rocsparse_sbsrilu0_numeric_boost_native
 
     function rocsparse_sbsrilu0_numeric_boost_typed(handle, info, enable_boost, boost_tol, &
         boost_val) result(sbsrilu0_numeric_boost)
@@ -55364,25 +55239,11 @@ contains
       type(rocsparse_mat_info_t), value :: info
       integer(c_int), value :: enable_boost
       real(c_float) :: boost_tol
-      type(c_ptr), value :: boost_val
+      real(c_float) :: boost_val
       integer(c_int) :: sbsrilu0_numeric_boost
       sbsrilu0_numeric_boost = rocsparse_sbsrilu0_numeric_boost_raw(handle%ptr, info%ptr, &
         enable_boost, boost_tol, boost_val)
     end function rocsparse_sbsrilu0_numeric_boost_typed
-
-    function rocsparse_dbsrilu0_numeric_boost_native(handle, info, enable_boost, boost_tol, &
-        boost_val) result(dbsrilu0_numeric_boost)
-      use, intrinsic :: iso_c_binding
-      implicit none
-      type(c_ptr), value :: handle
-      type(c_ptr), value :: info
-      integer(c_int), value :: enable_boost
-      real(c_double) :: boost_tol
-      real(c_double), target :: boost_val(*)
-      integer(c_int) :: dbsrilu0_numeric_boost
-      dbsrilu0_numeric_boost = rocsparse_dbsrilu0_numeric_boost_raw(handle, info, enable_boost, &
-        boost_tol, c_loc(boost_val(1)))
-    end function rocsparse_dbsrilu0_numeric_boost_native
 
     function rocsparse_dbsrilu0_numeric_boost_typed(handle, info, enable_boost, boost_tol, &
         boost_val) result(dbsrilu0_numeric_boost)
@@ -55393,25 +55254,11 @@ contains
       type(rocsparse_mat_info_t), value :: info
       integer(c_int), value :: enable_boost
       real(c_double) :: boost_tol
-      type(c_ptr), value :: boost_val
+      real(c_double) :: boost_val
       integer(c_int) :: dbsrilu0_numeric_boost
       dbsrilu0_numeric_boost = rocsparse_dbsrilu0_numeric_boost_raw(handle%ptr, info%ptr, &
         enable_boost, boost_tol, boost_val)
     end function rocsparse_dbsrilu0_numeric_boost_typed
-
-    function rocsparse_cbsrilu0_numeric_boost_native(handle, info, enable_boost, boost_tol, &
-        boost_val) result(cbsrilu0_numeric_boost)
-      use, intrinsic :: iso_c_binding
-      implicit none
-      type(c_ptr), value :: handle
-      type(c_ptr), value :: info
-      integer(c_int), value :: enable_boost
-      real(c_float) :: boost_tol
-      complex(c_float_complex), target :: boost_val(*)
-      integer(c_int) :: cbsrilu0_numeric_boost
-      cbsrilu0_numeric_boost = rocsparse_cbsrilu0_numeric_boost_raw(handle, info, enable_boost, &
-        boost_tol, c_loc(boost_val(1)))
-    end function rocsparse_cbsrilu0_numeric_boost_native
 
     function rocsparse_cbsrilu0_numeric_boost_typed(handle, info, enable_boost, boost_tol, &
         boost_val) result(cbsrilu0_numeric_boost)
@@ -55422,25 +55269,11 @@ contains
       type(rocsparse_mat_info_t), value :: info
       integer(c_int), value :: enable_boost
       real(c_float) :: boost_tol
-      type(c_ptr), value :: boost_val
+      complex(c_float_complex) :: boost_val
       integer(c_int) :: cbsrilu0_numeric_boost
       cbsrilu0_numeric_boost = rocsparse_cbsrilu0_numeric_boost_raw(handle%ptr, info%ptr, &
         enable_boost, boost_tol, boost_val)
     end function rocsparse_cbsrilu0_numeric_boost_typed
-
-    function rocsparse_zbsrilu0_numeric_boost_native(handle, info, enable_boost, boost_tol, &
-        boost_val) result(zbsrilu0_numeric_boost)
-      use, intrinsic :: iso_c_binding
-      implicit none
-      type(c_ptr), value :: handle
-      type(c_ptr), value :: info
-      integer(c_int), value :: enable_boost
-      real(c_double) :: boost_tol
-      complex(c_double_complex), target :: boost_val(*)
-      integer(c_int) :: zbsrilu0_numeric_boost
-      zbsrilu0_numeric_boost = rocsparse_zbsrilu0_numeric_boost_raw(handle, info, enable_boost, &
-        boost_tol, c_loc(boost_val(1)))
-    end function rocsparse_zbsrilu0_numeric_boost_native
 
     function rocsparse_zbsrilu0_numeric_boost_typed(handle, info, enable_boost, boost_tol, &
         boost_val) result(zbsrilu0_numeric_boost)
@@ -55451,25 +55284,11 @@ contains
       type(rocsparse_mat_info_t), value :: info
       integer(c_int), value :: enable_boost
       real(c_double) :: boost_tol
-      type(c_ptr), value :: boost_val
+      complex(c_double_complex) :: boost_val
       integer(c_int) :: zbsrilu0_numeric_boost
       zbsrilu0_numeric_boost = rocsparse_zbsrilu0_numeric_boost_raw(handle%ptr, info%ptr, &
         enable_boost, boost_tol, boost_val)
     end function rocsparse_zbsrilu0_numeric_boost_typed
-
-    function rocsparse_dsbsrilu0_numeric_boost_native(handle, info, enable_boost, boost_tol, &
-        boost_val) result(dsbsrilu0_numeric_boost)
-      use, intrinsic :: iso_c_binding
-      implicit none
-      type(c_ptr), value :: handle
-      type(c_ptr), value :: info
-      integer(c_int), value :: enable_boost
-      real(c_double) :: boost_tol
-      real(c_float), target :: boost_val(*)
-      integer(c_int) :: dsbsrilu0_numeric_boost
-      dsbsrilu0_numeric_boost = rocsparse_dsbsrilu0_numeric_boost_raw(handle, info, enable_boost, &
-        boost_tol, c_loc(boost_val(1)))
-    end function rocsparse_dsbsrilu0_numeric_boost_native
 
     function rocsparse_dsbsrilu0_numeric_boost_typed(handle, info, enable_boost, boost_tol, &
         boost_val) result(dsbsrilu0_numeric_boost)
@@ -55480,25 +55299,11 @@ contains
       type(rocsparse_mat_info_t), value :: info
       integer(c_int), value :: enable_boost
       real(c_double) :: boost_tol
-      type(c_ptr), value :: boost_val
+      real(c_float) :: boost_val
       integer(c_int) :: dsbsrilu0_numeric_boost
       dsbsrilu0_numeric_boost = rocsparse_dsbsrilu0_numeric_boost_raw(handle%ptr, info%ptr, &
         enable_boost, boost_tol, boost_val)
     end function rocsparse_dsbsrilu0_numeric_boost_typed
-
-    function rocsparse_dcbsrilu0_numeric_boost_native(handle, info, enable_boost, boost_tol, &
-        boost_val) result(dcbsrilu0_numeric_boost)
-      use, intrinsic :: iso_c_binding
-      implicit none
-      type(c_ptr), value :: handle
-      type(c_ptr), value :: info
-      integer(c_int), value :: enable_boost
-      real(c_double) :: boost_tol
-      complex(c_float_complex), target :: boost_val(*)
-      integer(c_int) :: dcbsrilu0_numeric_boost
-      dcbsrilu0_numeric_boost = rocsparse_dcbsrilu0_numeric_boost_raw(handle, info, enable_boost, &
-        boost_tol, c_loc(boost_val(1)))
-    end function rocsparse_dcbsrilu0_numeric_boost_native
 
     function rocsparse_dcbsrilu0_numeric_boost_typed(handle, info, enable_boost, boost_tol, &
         boost_val) result(dcbsrilu0_numeric_boost)
@@ -55509,7 +55314,7 @@ contains
       type(rocsparse_mat_info_t), value :: info
       integer(c_int), value :: enable_boost
       real(c_double) :: boost_tol
-      type(c_ptr), value :: boost_val
+      complex(c_float_complex) :: boost_val
       integer(c_int) :: dcbsrilu0_numeric_boost
       dcbsrilu0_numeric_boost = rocsparse_dcbsrilu0_numeric_boost_raw(handle%ptr, info%ptr, &
         enable_boost, boost_tol, boost_val)
@@ -55524,16 +55329,15 @@ contains
       integer(c_int), value :: mb
       integer(c_int), value :: nnzb
       type(c_ptr), value :: descr
-      real(c_float), target :: bsr_val(*)
-      integer(c_int), target :: bsr_row_ptr(*)
-      integer(c_int), target :: bsr_col_ind(*)
+      real(c_float), target :: bsr_val(..)
+      integer(c_int), target :: bsr_row_ptr(..)
+      integer(c_int), target :: bsr_col_ind(..)
       integer(c_int), value :: block_dim
       type(c_ptr), value :: info
       type(c_ptr), value :: buffer_size
       integer(c_int) :: sbsrilu0_buffer_size
       sbsrilu0_buffer_size = rocsparse_sbsrilu0_buffer_size_raw(handle, dir, mb, nnzb, descr, &
-        c_loc(bsr_val(1)), c_loc(bsr_row_ptr(1)), c_loc(bsr_col_ind(1)), block_dim, info, &
-        buffer_size)
+        c_loc(bsr_val), c_loc(bsr_row_ptr), c_loc(bsr_col_ind), block_dim, info, buffer_size)
     end function rocsparse_sbsrilu0_buffer_size_native
 
     function rocsparse_sbsrilu0_buffer_size_typed(handle, dir, mb, nnzb, descr, bsr_val, &
@@ -55566,16 +55370,15 @@ contains
       integer(c_int), value :: mb
       integer(c_int), value :: nnzb
       type(c_ptr), value :: descr
-      real(c_double), target :: bsr_val(*)
-      integer(c_int), target :: bsr_row_ptr(*)
-      integer(c_int), target :: bsr_col_ind(*)
+      real(c_double), target :: bsr_val(..)
+      integer(c_int), target :: bsr_row_ptr(..)
+      integer(c_int), target :: bsr_col_ind(..)
       integer(c_int), value :: block_dim
       type(c_ptr), value :: info
       type(c_ptr), value :: buffer_size
       integer(c_int) :: dbsrilu0_buffer_size
       dbsrilu0_buffer_size = rocsparse_dbsrilu0_buffer_size_raw(handle, dir, mb, nnzb, descr, &
-        c_loc(bsr_val(1)), c_loc(bsr_row_ptr(1)), c_loc(bsr_col_ind(1)), block_dim, info, &
-        buffer_size)
+        c_loc(bsr_val), c_loc(bsr_row_ptr), c_loc(bsr_col_ind), block_dim, info, buffer_size)
     end function rocsparse_dbsrilu0_buffer_size_native
 
     function rocsparse_dbsrilu0_buffer_size_typed(handle, dir, mb, nnzb, descr, bsr_val, &
@@ -55608,16 +55411,15 @@ contains
       integer(c_int), value :: mb
       integer(c_int), value :: nnzb
       type(c_ptr), value :: descr
-      complex(c_float_complex), target :: bsr_val(*)
-      integer(c_int), target :: bsr_row_ptr(*)
-      integer(c_int), target :: bsr_col_ind(*)
+      complex(c_float_complex), target :: bsr_val(..)
+      integer(c_int), target :: bsr_row_ptr(..)
+      integer(c_int), target :: bsr_col_ind(..)
       integer(c_int), value :: block_dim
       type(c_ptr), value :: info
       type(c_ptr), value :: buffer_size
       integer(c_int) :: cbsrilu0_buffer_size
       cbsrilu0_buffer_size = rocsparse_cbsrilu0_buffer_size_raw(handle, dir, mb, nnzb, descr, &
-        c_loc(bsr_val(1)), c_loc(bsr_row_ptr(1)), c_loc(bsr_col_ind(1)), block_dim, info, &
-        buffer_size)
+        c_loc(bsr_val), c_loc(bsr_row_ptr), c_loc(bsr_col_ind), block_dim, info, buffer_size)
     end function rocsparse_cbsrilu0_buffer_size_native
 
     function rocsparse_cbsrilu0_buffer_size_typed(handle, dir, mb, nnzb, descr, bsr_val, &
@@ -55650,16 +55452,15 @@ contains
       integer(c_int), value :: mb
       integer(c_int), value :: nnzb
       type(c_ptr), value :: descr
-      complex(c_double_complex), target :: bsr_val(*)
-      integer(c_int), target :: bsr_row_ptr(*)
-      integer(c_int), target :: bsr_col_ind(*)
+      complex(c_double_complex), target :: bsr_val(..)
+      integer(c_int), target :: bsr_row_ptr(..)
+      integer(c_int), target :: bsr_col_ind(..)
       integer(c_int), value :: block_dim
       type(c_ptr), value :: info
       type(c_ptr), value :: buffer_size
       integer(c_int) :: zbsrilu0_buffer_size
       zbsrilu0_buffer_size = rocsparse_zbsrilu0_buffer_size_raw(handle, dir, mb, nnzb, descr, &
-        c_loc(bsr_val(1)), c_loc(bsr_row_ptr(1)), c_loc(bsr_col_ind(1)), block_dim, info, &
-        buffer_size)
+        c_loc(bsr_val), c_loc(bsr_row_ptr), c_loc(bsr_col_ind), block_dim, info, buffer_size)
     end function rocsparse_zbsrilu0_buffer_size_native
 
     function rocsparse_zbsrilu0_buffer_size_typed(handle, dir, mb, nnzb, descr, bsr_val, &
@@ -55693,9 +55494,9 @@ contains
       integer(c_int), value :: mb
       integer(c_int), value :: nnzb
       type(c_ptr), value :: descr
-      real(c_float), target :: bsr_val(*)
-      integer(c_int), target :: bsr_row_ptr(*)
-      integer(c_int), target :: bsr_col_ind(*)
+      real(c_float), target :: bsr_val(..)
+      integer(c_int), target :: bsr_row_ptr(..)
+      integer(c_int), target :: bsr_col_ind(..)
       integer(c_int), value :: block_dim
       type(c_ptr), value :: info
       integer(c_int), value :: analysis
@@ -55703,8 +55504,8 @@ contains
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: sbsrilu0_analysis
       sbsrilu0_analysis = rocsparse_sbsrilu0_analysis_raw(handle, dir, mb, nnzb, descr, c_loc( &
-        bsr_val(1)), c_loc(bsr_row_ptr(1)), c_loc(bsr_col_ind(1)), block_dim, info, analysis, &
-        solve, temp_buffer)
+        bsr_val), c_loc(bsr_row_ptr), c_loc(bsr_col_ind), block_dim, info, analysis, solve, &
+        temp_buffer)
     end function rocsparse_sbsrilu0_analysis_native
 
     function rocsparse_sbsrilu0_analysis_typed(handle, dir, mb, nnzb, descr, bsr_val, bsr_row_ptr, &
@@ -55740,9 +55541,9 @@ contains
       integer(c_int), value :: mb
       integer(c_int), value :: nnzb
       type(c_ptr), value :: descr
-      real(c_double), target :: bsr_val(*)
-      integer(c_int), target :: bsr_row_ptr(*)
-      integer(c_int), target :: bsr_col_ind(*)
+      real(c_double), target :: bsr_val(..)
+      integer(c_int), target :: bsr_row_ptr(..)
+      integer(c_int), target :: bsr_col_ind(..)
       integer(c_int), value :: block_dim
       type(c_ptr), value :: info
       integer(c_int), value :: analysis
@@ -55750,8 +55551,8 @@ contains
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: dbsrilu0_analysis
       dbsrilu0_analysis = rocsparse_dbsrilu0_analysis_raw(handle, dir, mb, nnzb, descr, c_loc( &
-        bsr_val(1)), c_loc(bsr_row_ptr(1)), c_loc(bsr_col_ind(1)), block_dim, info, analysis, &
-        solve, temp_buffer)
+        bsr_val), c_loc(bsr_row_ptr), c_loc(bsr_col_ind), block_dim, info, analysis, solve, &
+        temp_buffer)
     end function rocsparse_dbsrilu0_analysis_native
 
     function rocsparse_dbsrilu0_analysis_typed(handle, dir, mb, nnzb, descr, bsr_val, bsr_row_ptr, &
@@ -55787,9 +55588,9 @@ contains
       integer(c_int), value :: mb
       integer(c_int), value :: nnzb
       type(c_ptr), value :: descr
-      complex(c_float_complex), target :: bsr_val(*)
-      integer(c_int), target :: bsr_row_ptr(*)
-      integer(c_int), target :: bsr_col_ind(*)
+      complex(c_float_complex), target :: bsr_val(..)
+      integer(c_int), target :: bsr_row_ptr(..)
+      integer(c_int), target :: bsr_col_ind(..)
       integer(c_int), value :: block_dim
       type(c_ptr), value :: info
       integer(c_int), value :: analysis
@@ -55797,8 +55598,8 @@ contains
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: cbsrilu0_analysis
       cbsrilu0_analysis = rocsparse_cbsrilu0_analysis_raw(handle, dir, mb, nnzb, descr, c_loc( &
-        bsr_val(1)), c_loc(bsr_row_ptr(1)), c_loc(bsr_col_ind(1)), block_dim, info, analysis, &
-        solve, temp_buffer)
+        bsr_val), c_loc(bsr_row_ptr), c_loc(bsr_col_ind), block_dim, info, analysis, solve, &
+        temp_buffer)
     end function rocsparse_cbsrilu0_analysis_native
 
     function rocsparse_cbsrilu0_analysis_typed(handle, dir, mb, nnzb, descr, bsr_val, bsr_row_ptr, &
@@ -55834,9 +55635,9 @@ contains
       integer(c_int), value :: mb
       integer(c_int), value :: nnzb
       type(c_ptr), value :: descr
-      complex(c_double_complex), target :: bsr_val(*)
-      integer(c_int), target :: bsr_row_ptr(*)
-      integer(c_int), target :: bsr_col_ind(*)
+      complex(c_double_complex), target :: bsr_val(..)
+      integer(c_int), target :: bsr_row_ptr(..)
+      integer(c_int), target :: bsr_col_ind(..)
       integer(c_int), value :: block_dim
       type(c_ptr), value :: info
       integer(c_int), value :: analysis
@@ -55844,8 +55645,8 @@ contains
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: zbsrilu0_analysis
       zbsrilu0_analysis = rocsparse_zbsrilu0_analysis_raw(handle, dir, mb, nnzb, descr, c_loc( &
-        bsr_val(1)), c_loc(bsr_row_ptr(1)), c_loc(bsr_col_ind(1)), block_dim, info, analysis, &
-        solve, temp_buffer)
+        bsr_val), c_loc(bsr_row_ptr), c_loc(bsr_col_ind), block_dim, info, analysis, solve, &
+        temp_buffer)
     end function rocsparse_zbsrilu0_analysis_native
 
     function rocsparse_zbsrilu0_analysis_typed(handle, dir, mb, nnzb, descr, bsr_val, bsr_row_ptr, &
@@ -55890,16 +55691,16 @@ contains
       integer(c_int), value :: mb
       integer(c_int), value :: nnzb
       type(c_ptr), value :: descr
-      real(c_float), target :: bsr_val(*)
-      integer(c_int), target :: bsr_row_ptr(*)
-      integer(c_int), target :: bsr_col_ind(*)
+      real(c_float), target :: bsr_val(..)
+      integer(c_int), target :: bsr_row_ptr(..)
+      integer(c_int), target :: bsr_col_ind(..)
       integer(c_int), value :: block_dim
       type(c_ptr), value :: info
       integer(c_int), value :: policy
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: sbsrilu0
-      sbsrilu0 = rocsparse_sbsrilu0_raw(handle, dir, mb, nnzb, descr, c_loc(bsr_val(1)), c_loc( &
-        bsr_row_ptr(1)), c_loc(bsr_col_ind(1)), block_dim, info, policy, temp_buffer)
+      sbsrilu0 = rocsparse_sbsrilu0_raw(handle, dir, mb, nnzb, descr, c_loc(bsr_val), c_loc( &
+        bsr_row_ptr), c_loc(bsr_col_ind), block_dim, info, policy, temp_buffer)
     end function rocsparse_sbsrilu0_native
 
     function rocsparse_sbsrilu0_typed(handle, dir, mb, nnzb, descr, bsr_val, bsr_row_ptr, &
@@ -55933,16 +55734,16 @@ contains
       integer(c_int), value :: mb
       integer(c_int), value :: nnzb
       type(c_ptr), value :: descr
-      real(c_double), target :: bsr_val(*)
-      integer(c_int), target :: bsr_row_ptr(*)
-      integer(c_int), target :: bsr_col_ind(*)
+      real(c_double), target :: bsr_val(..)
+      integer(c_int), target :: bsr_row_ptr(..)
+      integer(c_int), target :: bsr_col_ind(..)
       integer(c_int), value :: block_dim
       type(c_ptr), value :: info
       integer(c_int), value :: policy
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: dbsrilu0
-      dbsrilu0 = rocsparse_dbsrilu0_raw(handle, dir, mb, nnzb, descr, c_loc(bsr_val(1)), c_loc( &
-        bsr_row_ptr(1)), c_loc(bsr_col_ind(1)), block_dim, info, policy, temp_buffer)
+      dbsrilu0 = rocsparse_dbsrilu0_raw(handle, dir, mb, nnzb, descr, c_loc(bsr_val), c_loc( &
+        bsr_row_ptr), c_loc(bsr_col_ind), block_dim, info, policy, temp_buffer)
     end function rocsparse_dbsrilu0_native
 
     function rocsparse_dbsrilu0_typed(handle, dir, mb, nnzb, descr, bsr_val, bsr_row_ptr, &
@@ -55976,16 +55777,16 @@ contains
       integer(c_int), value :: mb
       integer(c_int), value :: nnzb
       type(c_ptr), value :: descr
-      complex(c_float_complex), target :: bsr_val(*)
-      integer(c_int), target :: bsr_row_ptr(*)
-      integer(c_int), target :: bsr_col_ind(*)
+      complex(c_float_complex), target :: bsr_val(..)
+      integer(c_int), target :: bsr_row_ptr(..)
+      integer(c_int), target :: bsr_col_ind(..)
       integer(c_int), value :: block_dim
       type(c_ptr), value :: info
       integer(c_int), value :: policy
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: cbsrilu0
-      cbsrilu0 = rocsparse_cbsrilu0_raw(handle, dir, mb, nnzb, descr, c_loc(bsr_val(1)), c_loc( &
-        bsr_row_ptr(1)), c_loc(bsr_col_ind(1)), block_dim, info, policy, temp_buffer)
+      cbsrilu0 = rocsparse_cbsrilu0_raw(handle, dir, mb, nnzb, descr, c_loc(bsr_val), c_loc( &
+        bsr_row_ptr), c_loc(bsr_col_ind), block_dim, info, policy, temp_buffer)
     end function rocsparse_cbsrilu0_native
 
     function rocsparse_cbsrilu0_typed(handle, dir, mb, nnzb, descr, bsr_val, bsr_row_ptr, &
@@ -56019,16 +55820,16 @@ contains
       integer(c_int), value :: mb
       integer(c_int), value :: nnzb
       type(c_ptr), value :: descr
-      complex(c_double_complex), target :: bsr_val(*)
-      integer(c_int), target :: bsr_row_ptr(*)
-      integer(c_int), target :: bsr_col_ind(*)
+      complex(c_double_complex), target :: bsr_val(..)
+      integer(c_int), target :: bsr_row_ptr(..)
+      integer(c_int), target :: bsr_col_ind(..)
       integer(c_int), value :: block_dim
       type(c_ptr), value :: info
       integer(c_int), value :: policy
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: zbsrilu0
-      zbsrilu0 = rocsparse_zbsrilu0_raw(handle, dir, mb, nnzb, descr, c_loc(bsr_val(1)), c_loc( &
-        bsr_row_ptr(1)), c_loc(bsr_col_ind(1)), block_dim, info, policy, temp_buffer)
+      zbsrilu0 = rocsparse_zbsrilu0_raw(handle, dir, mb, nnzb, descr, c_loc(bsr_val), c_loc( &
+        bsr_row_ptr), c_loc(bsr_col_ind), block_dim, info, policy, temp_buffer)
     end function rocsparse_zbsrilu0_native
 
     function rocsparse_zbsrilu0_typed(handle, dir, mb, nnzb, descr, bsr_val, bsr_row_ptr, &
@@ -56053,23 +55854,13 @@ contains
         bsr_row_ptr, bsr_col_ind, block_dim, info%ptr, policy, temp_buffer)
     end function rocsparse_zbsrilu0_typed
 
-    function rocsparse_csric0_zero_pivot_native(handle, info, position) result(csric0_zero_pivot)
-      use, intrinsic :: iso_c_binding
-      implicit none
-      type(c_ptr), value :: handle
-      type(c_ptr), value :: info
-      integer(c_int), target :: position(*)
-      integer(c_int) :: csric0_zero_pivot
-      csric0_zero_pivot = rocsparse_csric0_zero_pivot_raw(handle, info, c_loc(position(1)))
-    end function rocsparse_csric0_zero_pivot_native
-
     function rocsparse_csric0_zero_pivot_typed(handle, info, position) result(csric0_zero_pivot)
       use, intrinsic :: iso_c_binding
       use hipfort_handles
       implicit none
       type(rocsparse_handle_t), value :: handle
       type(rocsparse_mat_info_t), value :: info
-      type(c_ptr), value :: position
+      integer(c_int) :: position
       integer(c_int) :: csric0_zero_pivot
       csric0_zero_pivot = rocsparse_csric0_zero_pivot_raw(handle%ptr, info%ptr, position)
     end function rocsparse_csric0_zero_pivot_typed
@@ -56080,9 +55871,9 @@ contains
       implicit none
       type(c_ptr), value :: handle
       type(c_ptr), value :: info
-      integer(c_int), target :: position(*)
+      integer(c_int), target :: position(..)
       integer(c_int) :: csric0_singular_pivot
-      csric0_singular_pivot = rocsparse_csric0_singular_pivot_raw(handle, info, c_loc(position(1)))
+      csric0_singular_pivot = rocsparse_csric0_singular_pivot_raw(handle, info, c_loc(position))
     end function rocsparse_csric0_singular_pivot_native
 
     function rocsparse_csric0_singular_pivot_typed(handle, info, position) result( &
@@ -56115,9 +55906,9 @@ contains
       implicit none
       type(c_ptr), value :: handle
       type(c_ptr), value :: info
-      real(c_double), target :: tolerance(*)
+      real(c_double), target :: tolerance(..)
       integer(c_int) :: csric0_get_tolerance
-      csric0_get_tolerance = rocsparse_csric0_get_tolerance_raw(handle, info, c_loc(tolerance(1)))
+      csric0_get_tolerance = rocsparse_csric0_get_tolerance_raw(handle, info, c_loc(tolerance))
     end function rocsparse_csric0_get_tolerance_native
 
     function rocsparse_csric0_get_tolerance_typed(handle, info, tolerance) result( &
@@ -56140,14 +55931,14 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: nnz
       type(c_ptr), value :: descr
-      real(c_float), target :: csr_val(*)
-      integer(c_int), target :: csr_row_ptr(*)
-      integer(c_int), target :: csr_col_ind(*)
+      real(c_float), target :: csr_val(..)
+      integer(c_int), target :: csr_row_ptr(..)
+      integer(c_int), target :: csr_col_ind(..)
       type(c_ptr), value :: info
       type(c_ptr), value :: buffer_size
       integer(c_int) :: scsric0_buffer_size
       scsric0_buffer_size = rocsparse_scsric0_buffer_size_raw(handle, m, nnz, descr, c_loc( &
-        csr_val(1)), c_loc(csr_row_ptr(1)), c_loc(csr_col_ind(1)), info, buffer_size)
+        csr_val), c_loc(csr_row_ptr), c_loc(csr_col_ind), info, buffer_size)
     end function rocsparse_scsric0_buffer_size_native
 
     function rocsparse_scsric0_buffer_size_typed(handle, m, nnz, descr, csr_val, csr_row_ptr, &
@@ -56177,14 +55968,14 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: nnz
       type(c_ptr), value :: descr
-      real(c_double), target :: csr_val(*)
-      integer(c_int), target :: csr_row_ptr(*)
-      integer(c_int), target :: csr_col_ind(*)
+      real(c_double), target :: csr_val(..)
+      integer(c_int), target :: csr_row_ptr(..)
+      integer(c_int), target :: csr_col_ind(..)
       type(c_ptr), value :: info
       type(c_ptr), value :: buffer_size
       integer(c_int) :: dcsric0_buffer_size
       dcsric0_buffer_size = rocsparse_dcsric0_buffer_size_raw(handle, m, nnz, descr, c_loc( &
-        csr_val(1)), c_loc(csr_row_ptr(1)), c_loc(csr_col_ind(1)), info, buffer_size)
+        csr_val), c_loc(csr_row_ptr), c_loc(csr_col_ind), info, buffer_size)
     end function rocsparse_dcsric0_buffer_size_native
 
     function rocsparse_dcsric0_buffer_size_typed(handle, m, nnz, descr, csr_val, csr_row_ptr, &
@@ -56214,14 +56005,14 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: nnz
       type(c_ptr), value :: descr
-      complex(c_float_complex), target :: csr_val(*)
-      integer(c_int), target :: csr_row_ptr(*)
-      integer(c_int), target :: csr_col_ind(*)
+      complex(c_float_complex), target :: csr_val(..)
+      integer(c_int), target :: csr_row_ptr(..)
+      integer(c_int), target :: csr_col_ind(..)
       type(c_ptr), value :: info
       type(c_ptr), value :: buffer_size
       integer(c_int) :: ccsric0_buffer_size
       ccsric0_buffer_size = rocsparse_ccsric0_buffer_size_raw(handle, m, nnz, descr, c_loc( &
-        csr_val(1)), c_loc(csr_row_ptr(1)), c_loc(csr_col_ind(1)), info, buffer_size)
+        csr_val), c_loc(csr_row_ptr), c_loc(csr_col_ind), info, buffer_size)
     end function rocsparse_ccsric0_buffer_size_native
 
     function rocsparse_ccsric0_buffer_size_typed(handle, m, nnz, descr, csr_val, csr_row_ptr, &
@@ -56251,14 +56042,14 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: nnz
       type(c_ptr), value :: descr
-      complex(c_double_complex), target :: csr_val(*)
-      integer(c_int), target :: csr_row_ptr(*)
-      integer(c_int), target :: csr_col_ind(*)
+      complex(c_double_complex), target :: csr_val(..)
+      integer(c_int), target :: csr_row_ptr(..)
+      integer(c_int), target :: csr_col_ind(..)
       type(c_ptr), value :: info
       type(c_ptr), value :: buffer_size
       integer(c_int) :: zcsric0_buffer_size
       zcsric0_buffer_size = rocsparse_zcsric0_buffer_size_raw(handle, m, nnz, descr, c_loc( &
-        csr_val(1)), c_loc(csr_row_ptr(1)), c_loc(csr_col_ind(1)), info, buffer_size)
+        csr_val), c_loc(csr_row_ptr), c_loc(csr_col_ind), info, buffer_size)
     end function rocsparse_zcsric0_buffer_size_native
 
     function rocsparse_zcsric0_buffer_size_typed(handle, m, nnz, descr, csr_val, csr_row_ptr, &
@@ -56288,16 +56079,16 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: nnz
       type(c_ptr), value :: descr
-      real(c_float), target :: csr_val(*)
-      integer(c_int), target :: csr_row_ptr(*)
-      integer(c_int), target :: csr_col_ind(*)
+      real(c_float), target :: csr_val(..)
+      integer(c_int), target :: csr_row_ptr(..)
+      integer(c_int), target :: csr_col_ind(..)
       type(c_ptr), value :: info
       integer(c_int), value :: analysis
       integer(c_int), value :: solve
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: scsric0_analysis
-      scsric0_analysis = rocsparse_scsric0_analysis_raw(handle, m, nnz, descr, c_loc(csr_val(1)), &
-        c_loc(csr_row_ptr(1)), c_loc(csr_col_ind(1)), info, analysis, solve, temp_buffer)
+      scsric0_analysis = rocsparse_scsric0_analysis_raw(handle, m, nnz, descr, c_loc(csr_val), &
+        c_loc(csr_row_ptr), c_loc(csr_col_ind), info, analysis, solve, temp_buffer)
     end function rocsparse_scsric0_analysis_native
 
     function rocsparse_scsric0_analysis_typed(handle, m, nnz, descr, csr_val, csr_row_ptr, &
@@ -56329,16 +56120,16 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: nnz
       type(c_ptr), value :: descr
-      real(c_double), target :: csr_val(*)
-      integer(c_int), target :: csr_row_ptr(*)
-      integer(c_int), target :: csr_col_ind(*)
+      real(c_double), target :: csr_val(..)
+      integer(c_int), target :: csr_row_ptr(..)
+      integer(c_int), target :: csr_col_ind(..)
       type(c_ptr), value :: info
       integer(c_int), value :: analysis
       integer(c_int), value :: solve
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: dcsric0_analysis
-      dcsric0_analysis = rocsparse_dcsric0_analysis_raw(handle, m, nnz, descr, c_loc(csr_val(1)), &
-        c_loc(csr_row_ptr(1)), c_loc(csr_col_ind(1)), info, analysis, solve, temp_buffer)
+      dcsric0_analysis = rocsparse_dcsric0_analysis_raw(handle, m, nnz, descr, c_loc(csr_val), &
+        c_loc(csr_row_ptr), c_loc(csr_col_ind), info, analysis, solve, temp_buffer)
     end function rocsparse_dcsric0_analysis_native
 
     function rocsparse_dcsric0_analysis_typed(handle, m, nnz, descr, csr_val, csr_row_ptr, &
@@ -56370,16 +56161,16 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: nnz
       type(c_ptr), value :: descr
-      complex(c_float_complex), target :: csr_val(*)
-      integer(c_int), target :: csr_row_ptr(*)
-      integer(c_int), target :: csr_col_ind(*)
+      complex(c_float_complex), target :: csr_val(..)
+      integer(c_int), target :: csr_row_ptr(..)
+      integer(c_int), target :: csr_col_ind(..)
       type(c_ptr), value :: info
       integer(c_int), value :: analysis
       integer(c_int), value :: solve
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: ccsric0_analysis
-      ccsric0_analysis = rocsparse_ccsric0_analysis_raw(handle, m, nnz, descr, c_loc(csr_val(1)), &
-        c_loc(csr_row_ptr(1)), c_loc(csr_col_ind(1)), info, analysis, solve, temp_buffer)
+      ccsric0_analysis = rocsparse_ccsric0_analysis_raw(handle, m, nnz, descr, c_loc(csr_val), &
+        c_loc(csr_row_ptr), c_loc(csr_col_ind), info, analysis, solve, temp_buffer)
     end function rocsparse_ccsric0_analysis_native
 
     function rocsparse_ccsric0_analysis_typed(handle, m, nnz, descr, csr_val, csr_row_ptr, &
@@ -56411,16 +56202,16 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: nnz
       type(c_ptr), value :: descr
-      complex(c_double_complex), target :: csr_val(*)
-      integer(c_int), target :: csr_row_ptr(*)
-      integer(c_int), target :: csr_col_ind(*)
+      complex(c_double_complex), target :: csr_val(..)
+      integer(c_int), target :: csr_row_ptr(..)
+      integer(c_int), target :: csr_col_ind(..)
       type(c_ptr), value :: info
       integer(c_int), value :: analysis
       integer(c_int), value :: solve
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: zcsric0_analysis
-      zcsric0_analysis = rocsparse_zcsric0_analysis_raw(handle, m, nnz, descr, c_loc(csr_val(1)), &
-        c_loc(csr_row_ptr(1)), c_loc(csr_col_ind(1)), info, analysis, solve, temp_buffer)
+      zcsric0_analysis = rocsparse_zcsric0_analysis_raw(handle, m, nnz, descr, c_loc(csr_val), &
+        c_loc(csr_row_ptr), c_loc(csr_col_ind), info, analysis, solve, temp_buffer)
     end function rocsparse_zcsric0_analysis_native
 
     function rocsparse_zcsric0_analysis_typed(handle, m, nnz, descr, csr_val, csr_row_ptr, &
@@ -56462,15 +56253,15 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: nnz
       type(c_ptr), value :: descr
-      real(c_float), target :: csr_val(*)
-      integer(c_int), target :: csr_row_ptr(*)
-      integer(c_int), target :: csr_col_ind(*)
+      real(c_float), target :: csr_val(..)
+      integer(c_int), target :: csr_row_ptr(..)
+      integer(c_int), target :: csr_col_ind(..)
       type(c_ptr), value :: info
       integer(c_int), value :: policy
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: scsric0
-      scsric0 = rocsparse_scsric0_raw(handle, m, nnz, descr, c_loc(csr_val(1)), c_loc(csr_row_ptr( &
-        1)), c_loc(csr_col_ind(1)), info, policy, temp_buffer)
+      scsric0 = rocsparse_scsric0_raw(handle, m, nnz, descr, c_loc(csr_val), c_loc(csr_row_ptr), &
+        c_loc(csr_col_ind), info, policy, temp_buffer)
     end function rocsparse_scsric0_native
 
     function rocsparse_scsric0_typed(handle, m, nnz, descr, csr_val, csr_row_ptr, csr_col_ind, &
@@ -56501,15 +56292,15 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: nnz
       type(c_ptr), value :: descr
-      real(c_double), target :: csr_val(*)
-      integer(c_int), target :: csr_row_ptr(*)
-      integer(c_int), target :: csr_col_ind(*)
+      real(c_double), target :: csr_val(..)
+      integer(c_int), target :: csr_row_ptr(..)
+      integer(c_int), target :: csr_col_ind(..)
       type(c_ptr), value :: info
       integer(c_int), value :: policy
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: dcsric0
-      dcsric0 = rocsparse_dcsric0_raw(handle, m, nnz, descr, c_loc(csr_val(1)), c_loc(csr_row_ptr( &
-        1)), c_loc(csr_col_ind(1)), info, policy, temp_buffer)
+      dcsric0 = rocsparse_dcsric0_raw(handle, m, nnz, descr, c_loc(csr_val), c_loc(csr_row_ptr), &
+        c_loc(csr_col_ind), info, policy, temp_buffer)
     end function rocsparse_dcsric0_native
 
     function rocsparse_dcsric0_typed(handle, m, nnz, descr, csr_val, csr_row_ptr, csr_col_ind, &
@@ -56540,15 +56331,15 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: nnz
       type(c_ptr), value :: descr
-      complex(c_float_complex), target :: csr_val(*)
-      integer(c_int), target :: csr_row_ptr(*)
-      integer(c_int), target :: csr_col_ind(*)
+      complex(c_float_complex), target :: csr_val(..)
+      integer(c_int), target :: csr_row_ptr(..)
+      integer(c_int), target :: csr_col_ind(..)
       type(c_ptr), value :: info
       integer(c_int), value :: policy
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: ccsric0
-      ccsric0 = rocsparse_ccsric0_raw(handle, m, nnz, descr, c_loc(csr_val(1)), c_loc(csr_row_ptr( &
-        1)), c_loc(csr_col_ind(1)), info, policy, temp_buffer)
+      ccsric0 = rocsparse_ccsric0_raw(handle, m, nnz, descr, c_loc(csr_val), c_loc(csr_row_ptr), &
+        c_loc(csr_col_ind), info, policy, temp_buffer)
     end function rocsparse_ccsric0_native
 
     function rocsparse_ccsric0_typed(handle, m, nnz, descr, csr_val, csr_row_ptr, csr_col_ind, &
@@ -56579,15 +56370,15 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: nnz
       type(c_ptr), value :: descr
-      complex(c_double_complex), target :: csr_val(*)
-      integer(c_int), target :: csr_row_ptr(*)
-      integer(c_int), target :: csr_col_ind(*)
+      complex(c_double_complex), target :: csr_val(..)
+      integer(c_int), target :: csr_row_ptr(..)
+      integer(c_int), target :: csr_col_ind(..)
       type(c_ptr), value :: info
       integer(c_int), value :: policy
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: zcsric0
-      zcsric0 = rocsparse_zcsric0_raw(handle, m, nnz, descr, c_loc(csr_val(1)), c_loc(csr_row_ptr( &
-        1)), c_loc(csr_col_ind(1)), info, policy, temp_buffer)
+      zcsric0 = rocsparse_zcsric0_raw(handle, m, nnz, descr, c_loc(csr_val), c_loc(csr_row_ptr), &
+        c_loc(csr_col_ind), info, policy, temp_buffer)
     end function rocsparse_zcsric0_native
 
     function rocsparse_zcsric0_typed(handle, m, nnz, descr, csr_val, csr_row_ptr, csr_col_ind, &
@@ -56610,23 +56401,13 @@ contains
         csr_col_ind, info%ptr, policy, temp_buffer)
     end function rocsparse_zcsric0_typed
 
-    function rocsparse_csrilu0_zero_pivot_native(handle, info, position) result(csrilu0_zero_pivot)
-      use, intrinsic :: iso_c_binding
-      implicit none
-      type(c_ptr), value :: handle
-      type(c_ptr), value :: info
-      integer(c_int), target :: position(*)
-      integer(c_int) :: csrilu0_zero_pivot
-      csrilu0_zero_pivot = rocsparse_csrilu0_zero_pivot_raw(handle, info, c_loc(position(1)))
-    end function rocsparse_csrilu0_zero_pivot_native
-
     function rocsparse_csrilu0_zero_pivot_typed(handle, info, position) result(csrilu0_zero_pivot)
       use, intrinsic :: iso_c_binding
       use hipfort_handles
       implicit none
       type(rocsparse_handle_t), value :: handle
       type(rocsparse_mat_info_t), value :: info
-      type(c_ptr), value :: position
+      integer(c_int) :: position
       integer(c_int) :: csrilu0_zero_pivot
       csrilu0_zero_pivot = rocsparse_csrilu0_zero_pivot_raw(handle%ptr, info%ptr, position)
     end function rocsparse_csrilu0_zero_pivot_typed
@@ -56649,9 +56430,9 @@ contains
       implicit none
       type(c_ptr), value :: handle
       type(c_ptr), value :: info
-      real(c_double), target :: tolerance(*)
+      real(c_double), target :: tolerance(..)
       integer(c_int) :: csrilu0_get_tolerance
-      csrilu0_get_tolerance = rocsparse_csrilu0_get_tolerance_raw(handle, info, c_loc(tolerance(1)))
+      csrilu0_get_tolerance = rocsparse_csrilu0_get_tolerance_raw(handle, info, c_loc(tolerance))
     end function rocsparse_csrilu0_get_tolerance_native
 
     function rocsparse_csrilu0_get_tolerance_typed(handle, info, tolerance) result( &
@@ -56672,10 +56453,9 @@ contains
       implicit none
       type(c_ptr), value :: handle
       type(c_ptr), value :: info
-      integer(c_int), target :: position(*)
+      integer(c_int), target :: position(..)
       integer(c_int) :: csrilu0_singular_pivot
-      csrilu0_singular_pivot = rocsparse_csrilu0_singular_pivot_raw(handle, info, c_loc(position( &
-        1)))
+      csrilu0_singular_pivot = rocsparse_csrilu0_singular_pivot_raw(handle, info, c_loc(position))
     end function rocsparse_csrilu0_singular_pivot_native
 
     function rocsparse_csrilu0_singular_pivot_typed(handle, info, position) result( &
@@ -56690,20 +56470,6 @@ contains
       csrilu0_singular_pivot = rocsparse_csrilu0_singular_pivot_raw(handle%ptr, info%ptr, position)
     end function rocsparse_csrilu0_singular_pivot_typed
 
-    function rocsparse_scsrilu0_numeric_boost_native(handle, info, enable_boost, boost_tol, &
-        boost_val) result(scsrilu0_numeric_boost)
-      use, intrinsic :: iso_c_binding
-      implicit none
-      type(c_ptr), value :: handle
-      type(c_ptr), value :: info
-      integer(c_int), value :: enable_boost
-      real(c_float) :: boost_tol
-      real(c_float), target :: boost_val(*)
-      integer(c_int) :: scsrilu0_numeric_boost
-      scsrilu0_numeric_boost = rocsparse_scsrilu0_numeric_boost_raw(handle, info, enable_boost, &
-        boost_tol, c_loc(boost_val(1)))
-    end function rocsparse_scsrilu0_numeric_boost_native
-
     function rocsparse_scsrilu0_numeric_boost_typed(handle, info, enable_boost, boost_tol, &
         boost_val) result(scsrilu0_numeric_boost)
       use, intrinsic :: iso_c_binding
@@ -56713,25 +56479,11 @@ contains
       type(rocsparse_mat_info_t), value :: info
       integer(c_int), value :: enable_boost
       real(c_float) :: boost_tol
-      type(c_ptr), value :: boost_val
+      real(c_float) :: boost_val
       integer(c_int) :: scsrilu0_numeric_boost
       scsrilu0_numeric_boost = rocsparse_scsrilu0_numeric_boost_raw(handle%ptr, info%ptr, &
         enable_boost, boost_tol, boost_val)
     end function rocsparse_scsrilu0_numeric_boost_typed
-
-    function rocsparse_dcsrilu0_numeric_boost_native(handle, info, enable_boost, boost_tol, &
-        boost_val) result(dcsrilu0_numeric_boost)
-      use, intrinsic :: iso_c_binding
-      implicit none
-      type(c_ptr), value :: handle
-      type(c_ptr), value :: info
-      integer(c_int), value :: enable_boost
-      real(c_double) :: boost_tol
-      real(c_double), target :: boost_val(*)
-      integer(c_int) :: dcsrilu0_numeric_boost
-      dcsrilu0_numeric_boost = rocsparse_dcsrilu0_numeric_boost_raw(handle, info, enable_boost, &
-        boost_tol, c_loc(boost_val(1)))
-    end function rocsparse_dcsrilu0_numeric_boost_native
 
     function rocsparse_dcsrilu0_numeric_boost_typed(handle, info, enable_boost, boost_tol, &
         boost_val) result(dcsrilu0_numeric_boost)
@@ -56742,25 +56494,11 @@ contains
       type(rocsparse_mat_info_t), value :: info
       integer(c_int), value :: enable_boost
       real(c_double) :: boost_tol
-      type(c_ptr), value :: boost_val
+      real(c_double) :: boost_val
       integer(c_int) :: dcsrilu0_numeric_boost
       dcsrilu0_numeric_boost = rocsparse_dcsrilu0_numeric_boost_raw(handle%ptr, info%ptr, &
         enable_boost, boost_tol, boost_val)
     end function rocsparse_dcsrilu0_numeric_boost_typed
-
-    function rocsparse_ccsrilu0_numeric_boost_native(handle, info, enable_boost, boost_tol, &
-        boost_val) result(ccsrilu0_numeric_boost)
-      use, intrinsic :: iso_c_binding
-      implicit none
-      type(c_ptr), value :: handle
-      type(c_ptr), value :: info
-      integer(c_int), value :: enable_boost
-      real(c_float) :: boost_tol
-      complex(c_float_complex), target :: boost_val(*)
-      integer(c_int) :: ccsrilu0_numeric_boost
-      ccsrilu0_numeric_boost = rocsparse_ccsrilu0_numeric_boost_raw(handle, info, enable_boost, &
-        boost_tol, c_loc(boost_val(1)))
-    end function rocsparse_ccsrilu0_numeric_boost_native
 
     function rocsparse_ccsrilu0_numeric_boost_typed(handle, info, enable_boost, boost_tol, &
         boost_val) result(ccsrilu0_numeric_boost)
@@ -56771,25 +56509,11 @@ contains
       type(rocsparse_mat_info_t), value :: info
       integer(c_int), value :: enable_boost
       real(c_float) :: boost_tol
-      type(c_ptr), value :: boost_val
+      complex(c_float_complex) :: boost_val
       integer(c_int) :: ccsrilu0_numeric_boost
       ccsrilu0_numeric_boost = rocsparse_ccsrilu0_numeric_boost_raw(handle%ptr, info%ptr, &
         enable_boost, boost_tol, boost_val)
     end function rocsparse_ccsrilu0_numeric_boost_typed
-
-    function rocsparse_zcsrilu0_numeric_boost_native(handle, info, enable_boost, boost_tol, &
-        boost_val) result(zcsrilu0_numeric_boost)
-      use, intrinsic :: iso_c_binding
-      implicit none
-      type(c_ptr), value :: handle
-      type(c_ptr), value :: info
-      integer(c_int), value :: enable_boost
-      real(c_double) :: boost_tol
-      complex(c_double_complex), target :: boost_val(*)
-      integer(c_int) :: zcsrilu0_numeric_boost
-      zcsrilu0_numeric_boost = rocsparse_zcsrilu0_numeric_boost_raw(handle, info, enable_boost, &
-        boost_tol, c_loc(boost_val(1)))
-    end function rocsparse_zcsrilu0_numeric_boost_native
 
     function rocsparse_zcsrilu0_numeric_boost_typed(handle, info, enable_boost, boost_tol, &
         boost_val) result(zcsrilu0_numeric_boost)
@@ -56800,25 +56524,11 @@ contains
       type(rocsparse_mat_info_t), value :: info
       integer(c_int), value :: enable_boost
       real(c_double) :: boost_tol
-      type(c_ptr), value :: boost_val
+      complex(c_double_complex) :: boost_val
       integer(c_int) :: zcsrilu0_numeric_boost
       zcsrilu0_numeric_boost = rocsparse_zcsrilu0_numeric_boost_raw(handle%ptr, info%ptr, &
         enable_boost, boost_tol, boost_val)
     end function rocsparse_zcsrilu0_numeric_boost_typed
-
-    function rocsparse_dscsrilu0_numeric_boost_native(handle, info, enable_boost, boost_tol, &
-        boost_val) result(dscsrilu0_numeric_boost)
-      use, intrinsic :: iso_c_binding
-      implicit none
-      type(c_ptr), value :: handle
-      type(c_ptr), value :: info
-      integer(c_int), value :: enable_boost
-      real(c_double) :: boost_tol
-      real(c_float), target :: boost_val(*)
-      integer(c_int) :: dscsrilu0_numeric_boost
-      dscsrilu0_numeric_boost = rocsparse_dscsrilu0_numeric_boost_raw(handle, info, enable_boost, &
-        boost_tol, c_loc(boost_val(1)))
-    end function rocsparse_dscsrilu0_numeric_boost_native
 
     function rocsparse_dscsrilu0_numeric_boost_typed(handle, info, enable_boost, boost_tol, &
         boost_val) result(dscsrilu0_numeric_boost)
@@ -56829,25 +56539,11 @@ contains
       type(rocsparse_mat_info_t), value :: info
       integer(c_int), value :: enable_boost
       real(c_double) :: boost_tol
-      type(c_ptr), value :: boost_val
+      real(c_float) :: boost_val
       integer(c_int) :: dscsrilu0_numeric_boost
       dscsrilu0_numeric_boost = rocsparse_dscsrilu0_numeric_boost_raw(handle%ptr, info%ptr, &
         enable_boost, boost_tol, boost_val)
     end function rocsparse_dscsrilu0_numeric_boost_typed
-
-    function rocsparse_dccsrilu0_numeric_boost_native(handle, info, enable_boost, boost_tol, &
-        boost_val) result(dccsrilu0_numeric_boost)
-      use, intrinsic :: iso_c_binding
-      implicit none
-      type(c_ptr), value :: handle
-      type(c_ptr), value :: info
-      integer(c_int), value :: enable_boost
-      real(c_double) :: boost_tol
-      complex(c_float_complex), target :: boost_val(*)
-      integer(c_int) :: dccsrilu0_numeric_boost
-      dccsrilu0_numeric_boost = rocsparse_dccsrilu0_numeric_boost_raw(handle, info, enable_boost, &
-        boost_tol, c_loc(boost_val(1)))
-    end function rocsparse_dccsrilu0_numeric_boost_native
 
     function rocsparse_dccsrilu0_numeric_boost_typed(handle, info, enable_boost, boost_tol, &
         boost_val) result(dccsrilu0_numeric_boost)
@@ -56858,7 +56554,7 @@ contains
       type(rocsparse_mat_info_t), value :: info
       integer(c_int), value :: enable_boost
       real(c_double) :: boost_tol
-      type(c_ptr), value :: boost_val
+      complex(c_float_complex) :: boost_val
       integer(c_int) :: dccsrilu0_numeric_boost
       dccsrilu0_numeric_boost = rocsparse_dccsrilu0_numeric_boost_raw(handle%ptr, info%ptr, &
         enable_boost, boost_tol, boost_val)
@@ -56872,14 +56568,14 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: nnz
       type(c_ptr), value :: descr
-      real(c_float), target :: csr_val(*)
-      integer(c_int), target :: csr_row_ptr(*)
-      integer(c_int), target :: csr_col_ind(*)
+      real(c_float), target :: csr_val(..)
+      integer(c_int), target :: csr_row_ptr(..)
+      integer(c_int), target :: csr_col_ind(..)
       type(c_ptr), value :: info
       type(c_ptr), value :: buffer_size
       integer(c_int) :: scsrilu0_buffer_size
       scsrilu0_buffer_size = rocsparse_scsrilu0_buffer_size_raw(handle, m, nnz, descr, c_loc( &
-        csr_val(1)), c_loc(csr_row_ptr(1)), c_loc(csr_col_ind(1)), info, buffer_size)
+        csr_val), c_loc(csr_row_ptr), c_loc(csr_col_ind), info, buffer_size)
     end function rocsparse_scsrilu0_buffer_size_native
 
     function rocsparse_scsrilu0_buffer_size_typed(handle, m, nnz, descr, csr_val, csr_row_ptr, &
@@ -56909,14 +56605,14 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: nnz
       type(c_ptr), value :: descr
-      real(c_double), target :: csr_val(*)
-      integer(c_int), target :: csr_row_ptr(*)
-      integer(c_int), target :: csr_col_ind(*)
+      real(c_double), target :: csr_val(..)
+      integer(c_int), target :: csr_row_ptr(..)
+      integer(c_int), target :: csr_col_ind(..)
       type(c_ptr), value :: info
       type(c_ptr), value :: buffer_size
       integer(c_int) :: dcsrilu0_buffer_size
       dcsrilu0_buffer_size = rocsparse_dcsrilu0_buffer_size_raw(handle, m, nnz, descr, c_loc( &
-        csr_val(1)), c_loc(csr_row_ptr(1)), c_loc(csr_col_ind(1)), info, buffer_size)
+        csr_val), c_loc(csr_row_ptr), c_loc(csr_col_ind), info, buffer_size)
     end function rocsparse_dcsrilu0_buffer_size_native
 
     function rocsparse_dcsrilu0_buffer_size_typed(handle, m, nnz, descr, csr_val, csr_row_ptr, &
@@ -56946,14 +56642,14 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: nnz
       type(c_ptr), value :: descr
-      complex(c_float_complex), target :: csr_val(*)
-      integer(c_int), target :: csr_row_ptr(*)
-      integer(c_int), target :: csr_col_ind(*)
+      complex(c_float_complex), target :: csr_val(..)
+      integer(c_int), target :: csr_row_ptr(..)
+      integer(c_int), target :: csr_col_ind(..)
       type(c_ptr), value :: info
       type(c_ptr), value :: buffer_size
       integer(c_int) :: ccsrilu0_buffer_size
       ccsrilu0_buffer_size = rocsparse_ccsrilu0_buffer_size_raw(handle, m, nnz, descr, c_loc( &
-        csr_val(1)), c_loc(csr_row_ptr(1)), c_loc(csr_col_ind(1)), info, buffer_size)
+        csr_val), c_loc(csr_row_ptr), c_loc(csr_col_ind), info, buffer_size)
     end function rocsparse_ccsrilu0_buffer_size_native
 
     function rocsparse_ccsrilu0_buffer_size_typed(handle, m, nnz, descr, csr_val, csr_row_ptr, &
@@ -56983,14 +56679,14 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: nnz
       type(c_ptr), value :: descr
-      complex(c_double_complex), target :: csr_val(*)
-      integer(c_int), target :: csr_row_ptr(*)
-      integer(c_int), target :: csr_col_ind(*)
+      complex(c_double_complex), target :: csr_val(..)
+      integer(c_int), target :: csr_row_ptr(..)
+      integer(c_int), target :: csr_col_ind(..)
       type(c_ptr), value :: info
       type(c_ptr), value :: buffer_size
       integer(c_int) :: zcsrilu0_buffer_size
       zcsrilu0_buffer_size = rocsparse_zcsrilu0_buffer_size_raw(handle, m, nnz, descr, c_loc( &
-        csr_val(1)), c_loc(csr_row_ptr(1)), c_loc(csr_col_ind(1)), info, buffer_size)
+        csr_val), c_loc(csr_row_ptr), c_loc(csr_col_ind), info, buffer_size)
     end function rocsparse_zcsrilu0_buffer_size_native
 
     function rocsparse_zcsrilu0_buffer_size_typed(handle, m, nnz, descr, csr_val, csr_row_ptr, &
@@ -57020,16 +56716,16 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: nnz
       type(c_ptr), value :: descr
-      real(c_float), target :: csr_val(*)
-      integer(c_int), target :: csr_row_ptr(*)
-      integer(c_int), target :: csr_col_ind(*)
+      real(c_float), target :: csr_val(..)
+      integer(c_int), target :: csr_row_ptr(..)
+      integer(c_int), target :: csr_col_ind(..)
       type(c_ptr), value :: info
       integer(c_int), value :: analysis
       integer(c_int), value :: solve
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: scsrilu0_analysis
-      scsrilu0_analysis = rocsparse_scsrilu0_analysis_raw(handle, m, nnz, descr, c_loc(csr_val( &
-        1)), c_loc(csr_row_ptr(1)), c_loc(csr_col_ind(1)), info, analysis, solve, temp_buffer)
+      scsrilu0_analysis = rocsparse_scsrilu0_analysis_raw(handle, m, nnz, descr, c_loc(csr_val), &
+        c_loc(csr_row_ptr), c_loc(csr_col_ind), info, analysis, solve, temp_buffer)
     end function rocsparse_scsrilu0_analysis_native
 
     function rocsparse_scsrilu0_analysis_typed(handle, m, nnz, descr, csr_val, csr_row_ptr, &
@@ -57061,16 +56757,16 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: nnz
       type(c_ptr), value :: descr
-      real(c_double), target :: csr_val(*)
-      integer(c_int), target :: csr_row_ptr(*)
-      integer(c_int), target :: csr_col_ind(*)
+      real(c_double), target :: csr_val(..)
+      integer(c_int), target :: csr_row_ptr(..)
+      integer(c_int), target :: csr_col_ind(..)
       type(c_ptr), value :: info
       integer(c_int), value :: analysis
       integer(c_int), value :: solve
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: dcsrilu0_analysis
-      dcsrilu0_analysis = rocsparse_dcsrilu0_analysis_raw(handle, m, nnz, descr, c_loc(csr_val( &
-        1)), c_loc(csr_row_ptr(1)), c_loc(csr_col_ind(1)), info, analysis, solve, temp_buffer)
+      dcsrilu0_analysis = rocsparse_dcsrilu0_analysis_raw(handle, m, nnz, descr, c_loc(csr_val), &
+        c_loc(csr_row_ptr), c_loc(csr_col_ind), info, analysis, solve, temp_buffer)
     end function rocsparse_dcsrilu0_analysis_native
 
     function rocsparse_dcsrilu0_analysis_typed(handle, m, nnz, descr, csr_val, csr_row_ptr, &
@@ -57102,16 +56798,16 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: nnz
       type(c_ptr), value :: descr
-      complex(c_float_complex), target :: csr_val(*)
-      integer(c_int), target :: csr_row_ptr(*)
-      integer(c_int), target :: csr_col_ind(*)
+      complex(c_float_complex), target :: csr_val(..)
+      integer(c_int), target :: csr_row_ptr(..)
+      integer(c_int), target :: csr_col_ind(..)
       type(c_ptr), value :: info
       integer(c_int), value :: analysis
       integer(c_int), value :: solve
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: ccsrilu0_analysis
-      ccsrilu0_analysis = rocsparse_ccsrilu0_analysis_raw(handle, m, nnz, descr, c_loc(csr_val( &
-        1)), c_loc(csr_row_ptr(1)), c_loc(csr_col_ind(1)), info, analysis, solve, temp_buffer)
+      ccsrilu0_analysis = rocsparse_ccsrilu0_analysis_raw(handle, m, nnz, descr, c_loc(csr_val), &
+        c_loc(csr_row_ptr), c_loc(csr_col_ind), info, analysis, solve, temp_buffer)
     end function rocsparse_ccsrilu0_analysis_native
 
     function rocsparse_ccsrilu0_analysis_typed(handle, m, nnz, descr, csr_val, csr_row_ptr, &
@@ -57143,16 +56839,16 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: nnz
       type(c_ptr), value :: descr
-      complex(c_double_complex), target :: csr_val(*)
-      integer(c_int), target :: csr_row_ptr(*)
-      integer(c_int), target :: csr_col_ind(*)
+      complex(c_double_complex), target :: csr_val(..)
+      integer(c_int), target :: csr_row_ptr(..)
+      integer(c_int), target :: csr_col_ind(..)
       type(c_ptr), value :: info
       integer(c_int), value :: analysis
       integer(c_int), value :: solve
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: zcsrilu0_analysis
-      zcsrilu0_analysis = rocsparse_zcsrilu0_analysis_raw(handle, m, nnz, descr, c_loc(csr_val( &
-        1)), c_loc(csr_row_ptr(1)), c_loc(csr_col_ind(1)), info, analysis, solve, temp_buffer)
+      zcsrilu0_analysis = rocsparse_zcsrilu0_analysis_raw(handle, m, nnz, descr, c_loc(csr_val), &
+        c_loc(csr_row_ptr), c_loc(csr_col_ind), info, analysis, solve, temp_buffer)
     end function rocsparse_zcsrilu0_analysis_native
 
     function rocsparse_zcsrilu0_analysis_typed(handle, m, nnz, descr, csr_val, csr_row_ptr, &
@@ -57194,15 +56890,15 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: nnz
       type(c_ptr), value :: descr
-      real(c_float), target :: csr_val(*)
-      integer(c_int), target :: csr_row_ptr(*)
-      integer(c_int), target :: csr_col_ind(*)
+      real(c_float), target :: csr_val(..)
+      integer(c_int), target :: csr_row_ptr(..)
+      integer(c_int), target :: csr_col_ind(..)
       type(c_ptr), value :: info
       integer(c_int), value :: policy
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: scsrilu0
-      scsrilu0 = rocsparse_scsrilu0_raw(handle, m, nnz, descr, c_loc(csr_val(1)), c_loc( &
-        csr_row_ptr(1)), c_loc(csr_col_ind(1)), info, policy, temp_buffer)
+      scsrilu0 = rocsparse_scsrilu0_raw(handle, m, nnz, descr, c_loc(csr_val), c_loc(csr_row_ptr), &
+        c_loc(csr_col_ind), info, policy, temp_buffer)
     end function rocsparse_scsrilu0_native
 
     function rocsparse_scsrilu0_typed(handle, m, nnz, descr, csr_val, csr_row_ptr, csr_col_ind, &
@@ -57233,15 +56929,15 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: nnz
       type(c_ptr), value :: descr
-      real(c_double), target :: csr_val(*)
-      integer(c_int), target :: csr_row_ptr(*)
-      integer(c_int), target :: csr_col_ind(*)
+      real(c_double), target :: csr_val(..)
+      integer(c_int), target :: csr_row_ptr(..)
+      integer(c_int), target :: csr_col_ind(..)
       type(c_ptr), value :: info
       integer(c_int), value :: policy
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: dcsrilu0
-      dcsrilu0 = rocsparse_dcsrilu0_raw(handle, m, nnz, descr, c_loc(csr_val(1)), c_loc( &
-        csr_row_ptr(1)), c_loc(csr_col_ind(1)), info, policy, temp_buffer)
+      dcsrilu0 = rocsparse_dcsrilu0_raw(handle, m, nnz, descr, c_loc(csr_val), c_loc(csr_row_ptr), &
+        c_loc(csr_col_ind), info, policy, temp_buffer)
     end function rocsparse_dcsrilu0_native
 
     function rocsparse_dcsrilu0_typed(handle, m, nnz, descr, csr_val, csr_row_ptr, csr_col_ind, &
@@ -57272,15 +56968,15 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: nnz
       type(c_ptr), value :: descr
-      complex(c_float_complex), target :: csr_val(*)
-      integer(c_int), target :: csr_row_ptr(*)
-      integer(c_int), target :: csr_col_ind(*)
+      complex(c_float_complex), target :: csr_val(..)
+      integer(c_int), target :: csr_row_ptr(..)
+      integer(c_int), target :: csr_col_ind(..)
       type(c_ptr), value :: info
       integer(c_int), value :: policy
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: ccsrilu0
-      ccsrilu0 = rocsparse_ccsrilu0_raw(handle, m, nnz, descr, c_loc(csr_val(1)), c_loc( &
-        csr_row_ptr(1)), c_loc(csr_col_ind(1)), info, policy, temp_buffer)
+      ccsrilu0 = rocsparse_ccsrilu0_raw(handle, m, nnz, descr, c_loc(csr_val), c_loc(csr_row_ptr), &
+        c_loc(csr_col_ind), info, policy, temp_buffer)
     end function rocsparse_ccsrilu0_native
 
     function rocsparse_ccsrilu0_typed(handle, m, nnz, descr, csr_val, csr_row_ptr, csr_col_ind, &
@@ -57311,15 +57007,15 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: nnz
       type(c_ptr), value :: descr
-      complex(c_double_complex), target :: csr_val(*)
-      integer(c_int), target :: csr_row_ptr(*)
-      integer(c_int), target :: csr_col_ind(*)
+      complex(c_double_complex), target :: csr_val(..)
+      integer(c_int), target :: csr_row_ptr(..)
+      integer(c_int), target :: csr_col_ind(..)
       type(c_ptr), value :: info
       integer(c_int), value :: policy
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: zcsrilu0
-      zcsrilu0 = rocsparse_zcsrilu0_raw(handle, m, nnz, descr, c_loc(csr_val(1)), c_loc( &
-        csr_row_ptr(1)), c_loc(csr_col_ind(1)), info, policy, temp_buffer)
+      zcsrilu0 = rocsparse_zcsrilu0_raw(handle, m, nnz, descr, c_loc(csr_val), c_loc(csr_row_ptr), &
+        c_loc(csr_col_ind), info, policy, temp_buffer)
     end function rocsparse_zcsrilu0_native
 
     function rocsparse_zcsrilu0_typed(handle, m, nnz, descr, csr_val, csr_row_ptr, csr_col_ind, &
@@ -57352,14 +57048,14 @@ contains
       integer(c_int), value :: nmaxiter
       integer(c_int), value :: m
       integer(c_int), value :: nnz
-      integer(c_int), target :: csr_row_ptr(*)
-      integer(c_int), target :: csr_col_ind(*)
+      integer(c_int), target :: csr_row_ptr(..)
+      integer(c_int), target :: csr_col_ind(..)
       integer(c_int), value :: idx_base
       integer(c_int), value :: datatype
       type(c_ptr), value :: buffer_size
       integer(c_int) :: csritilu0_buffer_size
       csritilu0_buffer_size = rocsparse_csritilu0_buffer_size_raw(handle, alg, option, nmaxiter, &
-        m, nnz, c_loc(csr_row_ptr(1)), c_loc(csr_col_ind(1)), idx_base, datatype, buffer_size)
+        m, nnz, c_loc(csr_row_ptr), c_loc(csr_col_ind), idx_base, datatype, buffer_size)
     end function rocsparse_csritilu0_buffer_size_native
 
     function rocsparse_csritilu0_buffer_size_typed(handle, alg, option, nmaxiter, m, nnz, &
@@ -57394,15 +57090,15 @@ contains
       integer(c_int), value :: nmaxiter
       integer(c_int), value :: m
       integer(c_int), value :: nnz
-      integer(c_int), target :: csr_row_ptr(*)
-      integer(c_int), target :: csr_col_ind(*)
+      integer(c_int), target :: csr_row_ptr(..)
+      integer(c_int), target :: csr_col_ind(..)
       integer(c_int), value :: idx_base
       integer(c_int), value :: datatype
       integer(c_long), value :: buffer_size
       type(c_ptr), value :: buffer
       integer(c_int) :: csritilu0_preprocess
       csritilu0_preprocess = rocsparse_csritilu0_preprocess_raw(handle, alg, option, nmaxiter, m, &
-        nnz, c_loc(csr_row_ptr(1)), c_loc(csr_col_ind(1)), idx_base, datatype, buffer_size, buffer)
+        nnz, c_loc(csr_row_ptr), c_loc(csr_col_ind), idx_base, datatype, buffer_size, buffer)
     end function rocsparse_csritilu0_preprocess_native
 
     function rocsparse_csritilu0_preprocess_typed(handle, alg, option, nmaxiter, m, nnz, &
@@ -57436,21 +57132,21 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: alg
       integer(c_int), value :: option
-      integer(c_int), target :: nmaxiter(*)
+      integer(c_int), target :: nmaxiter(..)
       real(c_float), value :: tol
       integer(c_int), value :: m
       integer(c_int), value :: nnz
-      integer(c_int), target :: csr_row_ptr(*)
-      integer(c_int), target :: csr_col_ind(*)
-      real(c_float), target :: csr_val(*)
-      real(c_float), target :: ilu0(*)
+      integer(c_int), target :: csr_row_ptr(..)
+      integer(c_int), target :: csr_col_ind(..)
+      real(c_float), target :: csr_val(..)
+      real(c_float), target :: ilu0(..)
       integer(c_int), value :: idx_base
       integer(c_long), value :: buffer_size
       type(c_ptr), value :: buffer
       integer(c_int) :: scsritilu0_compute
-      scsritilu0_compute = rocsparse_scsritilu0_compute_raw(handle, alg, option, c_loc(nmaxiter( &
-        1)), tol, m, nnz, c_loc(csr_row_ptr(1)), c_loc(csr_col_ind(1)), c_loc(csr_val(1)), c_loc( &
-        ilu0(1)), idx_base, buffer_size, buffer)
+      scsritilu0_compute = rocsparse_scsritilu0_compute_raw(handle, alg, option, c_loc(nmaxiter), &
+        tol, m, nnz, c_loc(csr_row_ptr), c_loc(csr_col_ind), c_loc(csr_val), c_loc(ilu0), &
+        idx_base, buffer_size, buffer)
     end function rocsparse_scsritilu0_compute_native
 
     function rocsparse_scsritilu0_compute_typed(handle, alg, option, nmaxiter, tol, m, nnz, &
@@ -57486,21 +57182,21 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: alg
       integer(c_int), value :: option
-      integer(c_int), target :: nmaxiter(*)
+      integer(c_int), target :: nmaxiter(..)
       real(c_double), value :: tol
       integer(c_int), value :: m
       integer(c_int), value :: nnz
-      integer(c_int), target :: csr_row_ptr(*)
-      integer(c_int), target :: csr_col_ind(*)
-      real(c_double), target :: csr_val(*)
-      real(c_double), target :: ilu0(*)
+      integer(c_int), target :: csr_row_ptr(..)
+      integer(c_int), target :: csr_col_ind(..)
+      real(c_double), target :: csr_val(..)
+      real(c_double), target :: ilu0(..)
       integer(c_int), value :: idx_base
       integer(c_long), value :: buffer_size
       type(c_ptr), value :: buffer
       integer(c_int) :: dcsritilu0_compute
-      dcsritilu0_compute = rocsparse_dcsritilu0_compute_raw(handle, alg, option, c_loc(nmaxiter( &
-        1)), tol, m, nnz, c_loc(csr_row_ptr(1)), c_loc(csr_col_ind(1)), c_loc(csr_val(1)), c_loc( &
-        ilu0(1)), idx_base, buffer_size, buffer)
+      dcsritilu0_compute = rocsparse_dcsritilu0_compute_raw(handle, alg, option, c_loc(nmaxiter), &
+        tol, m, nnz, c_loc(csr_row_ptr), c_loc(csr_col_ind), c_loc(csr_val), c_loc(ilu0), &
+        idx_base, buffer_size, buffer)
     end function rocsparse_dcsritilu0_compute_native
 
     function rocsparse_dcsritilu0_compute_typed(handle, alg, option, nmaxiter, tol, m, nnz, &
@@ -57536,21 +57232,21 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: alg
       integer(c_int), value :: option
-      integer(c_int), target :: nmaxiter(*)
+      integer(c_int), target :: nmaxiter(..)
       real(c_float), value :: tol
       integer(c_int), value :: m
       integer(c_int), value :: nnz
-      integer(c_int), target :: csr_row_ptr(*)
-      integer(c_int), target :: csr_col_ind(*)
-      complex(c_float_complex), target :: csr_val(*)
-      complex(c_float_complex), target :: ilu0(*)
+      integer(c_int), target :: csr_row_ptr(..)
+      integer(c_int), target :: csr_col_ind(..)
+      complex(c_float_complex), target :: csr_val(..)
+      complex(c_float_complex), target :: ilu0(..)
       integer(c_int), value :: idx_base
       integer(c_long), value :: buffer_size
       type(c_ptr), value :: buffer
       integer(c_int) :: ccsritilu0_compute
-      ccsritilu0_compute = rocsparse_ccsritilu0_compute_raw(handle, alg, option, c_loc(nmaxiter( &
-        1)), tol, m, nnz, c_loc(csr_row_ptr(1)), c_loc(csr_col_ind(1)), c_loc(csr_val(1)), c_loc( &
-        ilu0(1)), idx_base, buffer_size, buffer)
+      ccsritilu0_compute = rocsparse_ccsritilu0_compute_raw(handle, alg, option, c_loc(nmaxiter), &
+        tol, m, nnz, c_loc(csr_row_ptr), c_loc(csr_col_ind), c_loc(csr_val), c_loc(ilu0), &
+        idx_base, buffer_size, buffer)
     end function rocsparse_ccsritilu0_compute_native
 
     function rocsparse_ccsritilu0_compute_typed(handle, alg, option, nmaxiter, tol, m, nnz, &
@@ -57586,21 +57282,21 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: alg
       integer(c_int), value :: option
-      integer(c_int), target :: nmaxiter(*)
+      integer(c_int), target :: nmaxiter(..)
       real(c_double), value :: tol
       integer(c_int), value :: m
       integer(c_int), value :: nnz
-      integer(c_int), target :: csr_row_ptr(*)
-      integer(c_int), target :: csr_col_ind(*)
-      complex(c_double_complex), target :: csr_val(*)
-      complex(c_double_complex), target :: ilu0(*)
+      integer(c_int), target :: csr_row_ptr(..)
+      integer(c_int), target :: csr_col_ind(..)
+      complex(c_double_complex), target :: csr_val(..)
+      complex(c_double_complex), target :: ilu0(..)
       integer(c_int), value :: idx_base
       integer(c_long), value :: buffer_size
       type(c_ptr), value :: buffer
       integer(c_int) :: zcsritilu0_compute
-      zcsritilu0_compute = rocsparse_zcsritilu0_compute_raw(handle, alg, option, c_loc(nmaxiter( &
-        1)), tol, m, nnz, c_loc(csr_row_ptr(1)), c_loc(csr_col_ind(1)), c_loc(csr_val(1)), c_loc( &
-        ilu0(1)), idx_base, buffer_size, buffer)
+      zcsritilu0_compute = rocsparse_zcsritilu0_compute_raw(handle, alg, option, c_loc(nmaxiter), &
+        tol, m, nnz, c_loc(csr_row_ptr), c_loc(csr_col_ind), c_loc(csr_val), c_loc(ilu0), &
+        idx_base, buffer_size, buffer)
     end function rocsparse_zcsritilu0_compute_native
 
     function rocsparse_zcsritilu0_compute_typed(handle, alg, option, nmaxiter, tol, m, nnz, &
@@ -57636,22 +57332,22 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: alg
       integer(c_int), value :: option
-      integer(c_int), target :: nmaxiter(*)
+      integer(c_int), target :: nmaxiter(..)
       integer(c_int), value :: nfreeiter
       real(c_float), value :: tol
       integer(c_int), value :: m
       integer(c_int), value :: nnz
-      integer(c_int), target :: csr_row_ptr(*)
-      integer(c_int), target :: csr_col_ind(*)
-      real(c_float), target :: csr_val(*)
-      real(c_float), target :: ilu0(*)
+      integer(c_int), target :: csr_row_ptr(..)
+      integer(c_int), target :: csr_col_ind(..)
+      real(c_float), target :: csr_val(..)
+      real(c_float), target :: ilu0(..)
       integer(c_int), value :: idx_base
       integer(c_long), value :: buffer_size
       type(c_ptr), value :: buffer
       integer(c_int) :: scsritilu0_compute_ex
       scsritilu0_compute_ex = rocsparse_scsritilu0_compute_ex_raw(handle, alg, option, c_loc( &
-        nmaxiter(1)), nfreeiter, tol, m, nnz, c_loc(csr_row_ptr(1)), c_loc(csr_col_ind(1)), c_loc( &
-        csr_val(1)), c_loc(ilu0(1)), idx_base, buffer_size, buffer)
+        nmaxiter), nfreeiter, tol, m, nnz, c_loc(csr_row_ptr), c_loc(csr_col_ind), c_loc(csr_val), &
+        c_loc(ilu0), idx_base, buffer_size, buffer)
     end function rocsparse_scsritilu0_compute_ex_native
 
     function rocsparse_scsritilu0_compute_ex_typed(handle, alg, option, nmaxiter, nfreeiter, tol, &
@@ -57689,22 +57385,22 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: alg
       integer(c_int), value :: option
-      integer(c_int), target :: nmaxiter(*)
+      integer(c_int), target :: nmaxiter(..)
       integer(c_int), value :: nfreeiter
       real(c_double), value :: tol
       integer(c_int), value :: m
       integer(c_int), value :: nnz
-      integer(c_int), target :: csr_row_ptr(*)
-      integer(c_int), target :: csr_col_ind(*)
-      real(c_double), target :: csr_val(*)
-      real(c_double), target :: ilu0(*)
+      integer(c_int), target :: csr_row_ptr(..)
+      integer(c_int), target :: csr_col_ind(..)
+      real(c_double), target :: csr_val(..)
+      real(c_double), target :: ilu0(..)
       integer(c_int), value :: idx_base
       integer(c_long), value :: buffer_size
       type(c_ptr), value :: buffer
       integer(c_int) :: dcsritilu0_compute_ex
       dcsritilu0_compute_ex = rocsparse_dcsritilu0_compute_ex_raw(handle, alg, option, c_loc( &
-        nmaxiter(1)), nfreeiter, tol, m, nnz, c_loc(csr_row_ptr(1)), c_loc(csr_col_ind(1)), c_loc( &
-        csr_val(1)), c_loc(ilu0(1)), idx_base, buffer_size, buffer)
+        nmaxiter), nfreeiter, tol, m, nnz, c_loc(csr_row_ptr), c_loc(csr_col_ind), c_loc(csr_val), &
+        c_loc(ilu0), idx_base, buffer_size, buffer)
     end function rocsparse_dcsritilu0_compute_ex_native
 
     function rocsparse_dcsritilu0_compute_ex_typed(handle, alg, option, nmaxiter, nfreeiter, tol, &
@@ -57742,22 +57438,22 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: alg
       integer(c_int), value :: option
-      integer(c_int), target :: nmaxiter(*)
+      integer(c_int), target :: nmaxiter(..)
       integer(c_int), value :: nfreeiter
       real(c_float), value :: tol
       integer(c_int), value :: m
       integer(c_int), value :: nnz
-      integer(c_int), target :: csr_row_ptr(*)
-      integer(c_int), target :: csr_col_ind(*)
-      complex(c_float_complex), target :: csr_val(*)
-      complex(c_float_complex), target :: ilu0(*)
+      integer(c_int), target :: csr_row_ptr(..)
+      integer(c_int), target :: csr_col_ind(..)
+      complex(c_float_complex), target :: csr_val(..)
+      complex(c_float_complex), target :: ilu0(..)
       integer(c_int), value :: idx_base
       integer(c_long), value :: buffer_size
       type(c_ptr), value :: buffer
       integer(c_int) :: ccsritilu0_compute_ex
       ccsritilu0_compute_ex = rocsparse_ccsritilu0_compute_ex_raw(handle, alg, option, c_loc( &
-        nmaxiter(1)), nfreeiter, tol, m, nnz, c_loc(csr_row_ptr(1)), c_loc(csr_col_ind(1)), c_loc( &
-        csr_val(1)), c_loc(ilu0(1)), idx_base, buffer_size, buffer)
+        nmaxiter), nfreeiter, tol, m, nnz, c_loc(csr_row_ptr), c_loc(csr_col_ind), c_loc(csr_val), &
+        c_loc(ilu0), idx_base, buffer_size, buffer)
     end function rocsparse_ccsritilu0_compute_ex_native
 
     function rocsparse_ccsritilu0_compute_ex_typed(handle, alg, option, nmaxiter, nfreeiter, tol, &
@@ -57795,22 +57491,22 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: alg
       integer(c_int), value :: option
-      integer(c_int), target :: nmaxiter(*)
+      integer(c_int), target :: nmaxiter(..)
       integer(c_int), value :: nfreeiter
       real(c_double), value :: tol
       integer(c_int), value :: m
       integer(c_int), value :: nnz
-      integer(c_int), target :: csr_row_ptr(*)
-      integer(c_int), target :: csr_col_ind(*)
-      complex(c_double_complex), target :: csr_val(*)
-      complex(c_double_complex), target :: ilu0(*)
+      integer(c_int), target :: csr_row_ptr(..)
+      integer(c_int), target :: csr_col_ind(..)
+      complex(c_double_complex), target :: csr_val(..)
+      complex(c_double_complex), target :: ilu0(..)
       integer(c_int), value :: idx_base
       integer(c_long), value :: buffer_size
       type(c_ptr), value :: buffer
       integer(c_int) :: zcsritilu0_compute_ex
       zcsritilu0_compute_ex = rocsparse_zcsritilu0_compute_ex_raw(handle, alg, option, c_loc( &
-        nmaxiter(1)), nfreeiter, tol, m, nnz, c_loc(csr_row_ptr(1)), c_loc(csr_col_ind(1)), c_loc( &
-        csr_val(1)), c_loc(ilu0(1)), idx_base, buffer_size, buffer)
+        nmaxiter), nfreeiter, tol, m, nnz, c_loc(csr_row_ptr), c_loc(csr_col_ind), c_loc(csr_val), &
+        c_loc(ilu0), idx_base, buffer_size, buffer)
     end function rocsparse_zcsritilu0_compute_ex_native
 
     function rocsparse_zcsritilu0_compute_ex_typed(handle, alg, option, nmaxiter, nfreeiter, tol, &
@@ -57846,13 +57542,13 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_int), value :: alg
-      integer(c_int), target :: niter(*)
-      real(c_float), target :: data(*)
+      integer(c_int), target :: niter(..)
+      real(c_float), target :: data(..)
       integer(c_long), value :: buffer_size
       type(c_ptr), value :: buffer
       integer(c_int) :: scsritilu0_history
-      scsritilu0_history = rocsparse_scsritilu0_history_raw(handle, alg, c_loc(niter(1)), c_loc( &
-        data(1)), buffer_size, buffer)
+      scsritilu0_history = rocsparse_scsritilu0_history_raw(handle, alg, c_loc(niter), c_loc( &
+        data), buffer_size, buffer)
     end function rocsparse_scsritilu0_history_native
 
     function rocsparse_scsritilu0_history_typed(handle, alg, niter, data, buffer_size, &
@@ -57877,13 +57573,13 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_int), value :: alg
-      integer(c_int), target :: niter(*)
-      real(c_double), target :: data(*)
+      integer(c_int), target :: niter(..)
+      real(c_double), target :: data(..)
       integer(c_long), value :: buffer_size
       type(c_ptr), value :: buffer
       integer(c_int) :: dcsritilu0_history
-      dcsritilu0_history = rocsparse_dcsritilu0_history_raw(handle, alg, c_loc(niter(1)), c_loc( &
-        data(1)), buffer_size, buffer)
+      dcsritilu0_history = rocsparse_dcsritilu0_history_raw(handle, alg, c_loc(niter), c_loc( &
+        data), buffer_size, buffer)
     end function rocsparse_dcsritilu0_history_native
 
     function rocsparse_dcsritilu0_history_typed(handle, alg, niter, data, buffer_size, &
@@ -57908,13 +57604,13 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_int), value :: alg
-      integer(c_int), target :: niter(*)
-      real(c_float), target :: data(*)
+      integer(c_int), target :: niter(..)
+      real(c_float), target :: data(..)
       integer(c_long), value :: buffer_size
       type(c_ptr), value :: buffer
       integer(c_int) :: ccsritilu0_history
-      ccsritilu0_history = rocsparse_ccsritilu0_history_raw(handle, alg, c_loc(niter(1)), c_loc( &
-        data(1)), buffer_size, buffer)
+      ccsritilu0_history = rocsparse_ccsritilu0_history_raw(handle, alg, c_loc(niter), c_loc( &
+        data), buffer_size, buffer)
     end function rocsparse_ccsritilu0_history_native
 
     function rocsparse_ccsritilu0_history_typed(handle, alg, niter, data, buffer_size, &
@@ -57939,13 +57635,13 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_int), value :: alg
-      integer(c_int), target :: niter(*)
-      real(c_double), target :: data(*)
+      integer(c_int), target :: niter(..)
+      real(c_double), target :: data(..)
       integer(c_long), value :: buffer_size
       type(c_ptr), value :: buffer
       integer(c_int) :: zcsritilu0_history
-      zcsritilu0_history = rocsparse_zcsritilu0_history_raw(handle, alg, c_loc(niter(1)), c_loc( &
-        data(1)), buffer_size, buffer)
+      zcsritilu0_history = rocsparse_zcsritilu0_history_raw(handle, alg, c_loc(niter), c_loc( &
+        data), buffer_size, buffer)
     end function rocsparse_zcsritilu0_history_native
 
     function rocsparse_zcsritilu0_history_typed(handle, alg, niter, data, buffer_size, &
@@ -57971,19 +57667,19 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: alg
       integer(c_int), value :: m
-      real(c_float), target :: ds(*)
-      real(c_float), target :: dl(*)
-      real(c_float), target :: d(*)
-      real(c_float), target :: du(*)
-      real(c_float), target :: dw(*)
-      real(c_float), target :: x(*)
+      real(c_float), target :: ds(..)
+      real(c_float), target :: dl(..)
+      real(c_float), target :: d(..)
+      real(c_float), target :: du(..)
+      real(c_float), target :: dw(..)
+      real(c_float), target :: x(..)
       integer(c_int), value :: batch_count
       integer(c_int), value :: batch_stride
       type(c_ptr), value :: buffer_size
       integer(c_int) :: sgpsv_interleaved_batch_buffer_size
       sgpsv_interleaved_batch_buffer_size = rocsparse_sgpsv_interleaved_batch_buffer_size_raw( &
-        handle, alg, m, c_loc(ds(1)), c_loc(dl(1)), c_loc(d(1)), c_loc(du(1)), c_loc(dw(1)), &
-        c_loc(x(1)), batch_count, batch_stride, buffer_size)
+        handle, alg, m, c_loc(ds), c_loc(dl), c_loc(d), c_loc(du), c_loc(dw), c_loc(x), &
+        batch_count, batch_stride, buffer_size)
     end function rocsparse_sgpsv_interleaved_batch_buffer_size_native
 
     function rocsparse_sgpsv_interleaved_batch_buffer_size_typed(handle, alg, m, ds, dl, d, du, &
@@ -58015,19 +57711,19 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: alg
       integer(c_int), value :: m
-      real(c_double), target :: ds(*)
-      real(c_double), target :: dl(*)
-      real(c_double), target :: d(*)
-      real(c_double), target :: du(*)
-      real(c_double), target :: dw(*)
-      real(c_double), target :: x(*)
+      real(c_double), target :: ds(..)
+      real(c_double), target :: dl(..)
+      real(c_double), target :: d(..)
+      real(c_double), target :: du(..)
+      real(c_double), target :: dw(..)
+      real(c_double), target :: x(..)
       integer(c_int), value :: batch_count
       integer(c_int), value :: batch_stride
       type(c_ptr), value :: buffer_size
       integer(c_int) :: dgpsv_interleaved_batch_buffer_size
       dgpsv_interleaved_batch_buffer_size = rocsparse_dgpsv_interleaved_batch_buffer_size_raw( &
-        handle, alg, m, c_loc(ds(1)), c_loc(dl(1)), c_loc(d(1)), c_loc(du(1)), c_loc(dw(1)), &
-        c_loc(x(1)), batch_count, batch_stride, buffer_size)
+        handle, alg, m, c_loc(ds), c_loc(dl), c_loc(d), c_loc(du), c_loc(dw), c_loc(x), &
+        batch_count, batch_stride, buffer_size)
     end function rocsparse_dgpsv_interleaved_batch_buffer_size_native
 
     function rocsparse_dgpsv_interleaved_batch_buffer_size_typed(handle, alg, m, ds, dl, d, du, &
@@ -58059,19 +57755,19 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: alg
       integer(c_int), value :: m
-      complex(c_float_complex), target :: ds(*)
-      complex(c_float_complex), target :: dl(*)
-      complex(c_float_complex), target :: d(*)
-      complex(c_float_complex), target :: du(*)
-      complex(c_float_complex), target :: dw(*)
-      complex(c_float_complex), target :: x(*)
+      complex(c_float_complex), target :: ds(..)
+      complex(c_float_complex), target :: dl(..)
+      complex(c_float_complex), target :: d(..)
+      complex(c_float_complex), target :: du(..)
+      complex(c_float_complex), target :: dw(..)
+      complex(c_float_complex), target :: x(..)
       integer(c_int), value :: batch_count
       integer(c_int), value :: batch_stride
       type(c_ptr), value :: buffer_size
       integer(c_int) :: cgpsv_interleaved_batch_buffer_size
       cgpsv_interleaved_batch_buffer_size = rocsparse_cgpsv_interleaved_batch_buffer_size_raw( &
-        handle, alg, m, c_loc(ds(1)), c_loc(dl(1)), c_loc(d(1)), c_loc(du(1)), c_loc(dw(1)), &
-        c_loc(x(1)), batch_count, batch_stride, buffer_size)
+        handle, alg, m, c_loc(ds), c_loc(dl), c_loc(d), c_loc(du), c_loc(dw), c_loc(x), &
+        batch_count, batch_stride, buffer_size)
     end function rocsparse_cgpsv_interleaved_batch_buffer_size_native
 
     function rocsparse_cgpsv_interleaved_batch_buffer_size_typed(handle, alg, m, ds, dl, d, du, &
@@ -58103,19 +57799,19 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: alg
       integer(c_int), value :: m
-      complex(c_double_complex), target :: ds(*)
-      complex(c_double_complex), target :: dl(*)
-      complex(c_double_complex), target :: d(*)
-      complex(c_double_complex), target :: du(*)
-      complex(c_double_complex), target :: dw(*)
-      complex(c_double_complex), target :: x(*)
+      complex(c_double_complex), target :: ds(..)
+      complex(c_double_complex), target :: dl(..)
+      complex(c_double_complex), target :: d(..)
+      complex(c_double_complex), target :: du(..)
+      complex(c_double_complex), target :: dw(..)
+      complex(c_double_complex), target :: x(..)
       integer(c_int), value :: batch_count
       integer(c_int), value :: batch_stride
       type(c_ptr), value :: buffer_size
       integer(c_int) :: zgpsv_interleaved_batch_buffer_size
       zgpsv_interleaved_batch_buffer_size = rocsparse_zgpsv_interleaved_batch_buffer_size_raw( &
-        handle, alg, m, c_loc(ds(1)), c_loc(dl(1)), c_loc(d(1)), c_loc(du(1)), c_loc(dw(1)), &
-        c_loc(x(1)), batch_count, batch_stride, buffer_size)
+        handle, alg, m, c_loc(ds), c_loc(dl), c_loc(d), c_loc(du), c_loc(dw), c_loc(x), &
+        batch_count, batch_stride, buffer_size)
     end function rocsparse_zgpsv_interleaved_batch_buffer_size_native
 
     function rocsparse_zgpsv_interleaved_batch_buffer_size_typed(handle, alg, m, ds, dl, d, du, &
@@ -58147,19 +57843,18 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: alg
       integer(c_int), value :: m
-      real(c_float), target :: ds(*)
-      real(c_float), target :: dl(*)
-      real(c_float), target :: d(*)
-      real(c_float), target :: du(*)
-      real(c_float), target :: dw(*)
-      real(c_float), target :: x(*)
+      real(c_float), target :: ds(..)
+      real(c_float), target :: dl(..)
+      real(c_float), target :: d(..)
+      real(c_float), target :: du(..)
+      real(c_float), target :: dw(..)
+      real(c_float), target :: x(..)
       integer(c_int), value :: batch_count
       integer(c_int), value :: batch_stride
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: sgpsv_interleaved_batch
-      sgpsv_interleaved_batch = rocsparse_sgpsv_interleaved_batch_raw(handle, alg, m, c_loc(ds( &
-        1)), c_loc(dl(1)), c_loc(d(1)), c_loc(du(1)), c_loc(dw(1)), c_loc(x(1)), batch_count, &
-        batch_stride, temp_buffer)
+      sgpsv_interleaved_batch = rocsparse_sgpsv_interleaved_batch_raw(handle, alg, m, c_loc(ds), &
+        c_loc(dl), c_loc(d), c_loc(du), c_loc(dw), c_loc(x), batch_count, batch_stride, temp_buffer)
     end function rocsparse_sgpsv_interleaved_batch_native
 
     function rocsparse_sgpsv_interleaved_batch_typed(handle, alg, m, ds, dl, d, du, dw, x, &
@@ -58191,19 +57886,18 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: alg
       integer(c_int), value :: m
-      real(c_double), target :: ds(*)
-      real(c_double), target :: dl(*)
-      real(c_double), target :: d(*)
-      real(c_double), target :: du(*)
-      real(c_double), target :: dw(*)
-      real(c_double), target :: x(*)
+      real(c_double), target :: ds(..)
+      real(c_double), target :: dl(..)
+      real(c_double), target :: d(..)
+      real(c_double), target :: du(..)
+      real(c_double), target :: dw(..)
+      real(c_double), target :: x(..)
       integer(c_int), value :: batch_count
       integer(c_int), value :: batch_stride
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: dgpsv_interleaved_batch
-      dgpsv_interleaved_batch = rocsparse_dgpsv_interleaved_batch_raw(handle, alg, m, c_loc(ds( &
-        1)), c_loc(dl(1)), c_loc(d(1)), c_loc(du(1)), c_loc(dw(1)), c_loc(x(1)), batch_count, &
-        batch_stride, temp_buffer)
+      dgpsv_interleaved_batch = rocsparse_dgpsv_interleaved_batch_raw(handle, alg, m, c_loc(ds), &
+        c_loc(dl), c_loc(d), c_loc(du), c_loc(dw), c_loc(x), batch_count, batch_stride, temp_buffer)
     end function rocsparse_dgpsv_interleaved_batch_native
 
     function rocsparse_dgpsv_interleaved_batch_typed(handle, alg, m, ds, dl, d, du, dw, x, &
@@ -58235,19 +57929,18 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: alg
       integer(c_int), value :: m
-      complex(c_float_complex), target :: ds(*)
-      complex(c_float_complex), target :: dl(*)
-      complex(c_float_complex), target :: d(*)
-      complex(c_float_complex), target :: du(*)
-      complex(c_float_complex), target :: dw(*)
-      complex(c_float_complex), target :: x(*)
+      complex(c_float_complex), target :: ds(..)
+      complex(c_float_complex), target :: dl(..)
+      complex(c_float_complex), target :: d(..)
+      complex(c_float_complex), target :: du(..)
+      complex(c_float_complex), target :: dw(..)
+      complex(c_float_complex), target :: x(..)
       integer(c_int), value :: batch_count
       integer(c_int), value :: batch_stride
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: cgpsv_interleaved_batch
-      cgpsv_interleaved_batch = rocsparse_cgpsv_interleaved_batch_raw(handle, alg, m, c_loc(ds( &
-        1)), c_loc(dl(1)), c_loc(d(1)), c_loc(du(1)), c_loc(dw(1)), c_loc(x(1)), batch_count, &
-        batch_stride, temp_buffer)
+      cgpsv_interleaved_batch = rocsparse_cgpsv_interleaved_batch_raw(handle, alg, m, c_loc(ds), &
+        c_loc(dl), c_loc(d), c_loc(du), c_loc(dw), c_loc(x), batch_count, batch_stride, temp_buffer)
     end function rocsparse_cgpsv_interleaved_batch_native
 
     function rocsparse_cgpsv_interleaved_batch_typed(handle, alg, m, ds, dl, d, du, dw, x, &
@@ -58279,19 +57972,18 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: alg
       integer(c_int), value :: m
-      complex(c_double_complex), target :: ds(*)
-      complex(c_double_complex), target :: dl(*)
-      complex(c_double_complex), target :: d(*)
-      complex(c_double_complex), target :: du(*)
-      complex(c_double_complex), target :: dw(*)
-      complex(c_double_complex), target :: x(*)
+      complex(c_double_complex), target :: ds(..)
+      complex(c_double_complex), target :: dl(..)
+      complex(c_double_complex), target :: d(..)
+      complex(c_double_complex), target :: du(..)
+      complex(c_double_complex), target :: dw(..)
+      complex(c_double_complex), target :: x(..)
       integer(c_int), value :: batch_count
       integer(c_int), value :: batch_stride
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: zgpsv_interleaved_batch
-      zgpsv_interleaved_batch = rocsparse_zgpsv_interleaved_batch_raw(handle, alg, m, c_loc(ds( &
-        1)), c_loc(dl(1)), c_loc(d(1)), c_loc(du(1)), c_loc(dw(1)), c_loc(x(1)), batch_count, &
-        batch_stride, temp_buffer)
+      zgpsv_interleaved_batch = rocsparse_zgpsv_interleaved_batch_raw(handle, alg, m, c_loc(ds), &
+        c_loc(dl), c_loc(d), c_loc(du), c_loc(dw), c_loc(x), batch_count, batch_stride, temp_buffer)
     end function rocsparse_zgpsv_interleaved_batch_native
 
     function rocsparse_zgpsv_interleaved_batch_typed(handle, alg, m, ds, dl, d, du, dw, x, &
@@ -58323,15 +58015,15 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: m
       integer(c_int), value :: n
-      real(c_float), target :: dl(*)
-      real(c_float), target :: d(*)
-      real(c_float), target :: du(*)
-      real(c_float), target :: B(*)
+      real(c_float), target :: dl(..)
+      real(c_float), target :: d(..)
+      real(c_float), target :: du(..)
+      real(c_float), target :: B(..)
       integer(c_int), value :: ldb
       type(c_ptr), value :: buffer_size
       integer(c_int) :: sgtsv_buffer_size
-      sgtsv_buffer_size = rocsparse_sgtsv_buffer_size_raw(handle, m, n, c_loc(dl(1)), c_loc(d(1)), &
-        c_loc(du(1)), c_loc(B(1)), ldb, buffer_size)
+      sgtsv_buffer_size = rocsparse_sgtsv_buffer_size_raw(handle, m, n, c_loc(dl), c_loc(d), &
+        c_loc(du), c_loc(B), ldb, buffer_size)
     end function rocsparse_sgtsv_buffer_size_native
 
     function rocsparse_sgtsv_buffer_size_typed(handle, m, n, dl, d, du, B, ldb, &
@@ -58360,15 +58052,15 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: m
       integer(c_int), value :: n
-      real(c_double), target :: dl(*)
-      real(c_double), target :: d(*)
-      real(c_double), target :: du(*)
-      real(c_double), target :: B(*)
+      real(c_double), target :: dl(..)
+      real(c_double), target :: d(..)
+      real(c_double), target :: du(..)
+      real(c_double), target :: B(..)
       integer(c_int), value :: ldb
       type(c_ptr), value :: buffer_size
       integer(c_int) :: dgtsv_buffer_size
-      dgtsv_buffer_size = rocsparse_dgtsv_buffer_size_raw(handle, m, n, c_loc(dl(1)), c_loc(d(1)), &
-        c_loc(du(1)), c_loc(B(1)), ldb, buffer_size)
+      dgtsv_buffer_size = rocsparse_dgtsv_buffer_size_raw(handle, m, n, c_loc(dl), c_loc(d), &
+        c_loc(du), c_loc(B), ldb, buffer_size)
     end function rocsparse_dgtsv_buffer_size_native
 
     function rocsparse_dgtsv_buffer_size_typed(handle, m, n, dl, d, du, B, ldb, &
@@ -58397,15 +58089,15 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: m
       integer(c_int), value :: n
-      complex(c_float_complex), target :: dl(*)
-      complex(c_float_complex), target :: d(*)
-      complex(c_float_complex), target :: du(*)
-      complex(c_float_complex), target :: B(*)
+      complex(c_float_complex), target :: dl(..)
+      complex(c_float_complex), target :: d(..)
+      complex(c_float_complex), target :: du(..)
+      complex(c_float_complex), target :: B(..)
       integer(c_int), value :: ldb
       type(c_ptr), value :: buffer_size
       integer(c_int) :: cgtsv_buffer_size
-      cgtsv_buffer_size = rocsparse_cgtsv_buffer_size_raw(handle, m, n, c_loc(dl(1)), c_loc(d(1)), &
-        c_loc(du(1)), c_loc(B(1)), ldb, buffer_size)
+      cgtsv_buffer_size = rocsparse_cgtsv_buffer_size_raw(handle, m, n, c_loc(dl), c_loc(d), &
+        c_loc(du), c_loc(B), ldb, buffer_size)
     end function rocsparse_cgtsv_buffer_size_native
 
     function rocsparse_cgtsv_buffer_size_typed(handle, m, n, dl, d, du, B, ldb, &
@@ -58434,15 +58126,15 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: m
       integer(c_int), value :: n
-      complex(c_double_complex), target :: dl(*)
-      complex(c_double_complex), target :: d(*)
-      complex(c_double_complex), target :: du(*)
-      complex(c_double_complex), target :: B(*)
+      complex(c_double_complex), target :: dl(..)
+      complex(c_double_complex), target :: d(..)
+      complex(c_double_complex), target :: du(..)
+      complex(c_double_complex), target :: B(..)
       integer(c_int), value :: ldb
       type(c_ptr), value :: buffer_size
       integer(c_int) :: zgtsv_buffer_size
-      zgtsv_buffer_size = rocsparse_zgtsv_buffer_size_raw(handle, m, n, c_loc(dl(1)), c_loc(d(1)), &
-        c_loc(du(1)), c_loc(B(1)), ldb, buffer_size)
+      zgtsv_buffer_size = rocsparse_zgtsv_buffer_size_raw(handle, m, n, c_loc(dl), c_loc(d), &
+        c_loc(du), c_loc(B), ldb, buffer_size)
     end function rocsparse_zgtsv_buffer_size_native
 
     function rocsparse_zgtsv_buffer_size_typed(handle, m, n, dl, d, du, B, ldb, &
@@ -58470,15 +58162,15 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: m
       integer(c_int), value :: n
-      real(c_float), target :: dl(*)
-      real(c_float), target :: d(*)
-      real(c_float), target :: du(*)
-      real(c_float), target :: B(*)
+      real(c_float), target :: dl(..)
+      real(c_float), target :: d(..)
+      real(c_float), target :: du(..)
+      real(c_float), target :: B(..)
       integer(c_int), value :: ldb
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: sgtsv
-      sgtsv = rocsparse_sgtsv_raw(handle, m, n, c_loc(dl(1)), c_loc(d(1)), c_loc(du(1)), c_loc(B( &
-        1)), ldb, temp_buffer)
+      sgtsv = rocsparse_sgtsv_raw(handle, m, n, c_loc(dl), c_loc(d), c_loc(du), c_loc(B), ldb, &
+        temp_buffer)
     end function rocsparse_sgtsv_native
 
     function rocsparse_sgtsv_typed(handle, m, n, dl, d, du, B, ldb, temp_buffer) result(sgtsv)
@@ -58504,15 +58196,15 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: m
       integer(c_int), value :: n
-      real(c_double), target :: dl(*)
-      real(c_double), target :: d(*)
-      real(c_double), target :: du(*)
-      real(c_double), target :: B(*)
+      real(c_double), target :: dl(..)
+      real(c_double), target :: d(..)
+      real(c_double), target :: du(..)
+      real(c_double), target :: B(..)
       integer(c_int), value :: ldb
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: dgtsv
-      dgtsv = rocsparse_dgtsv_raw(handle, m, n, c_loc(dl(1)), c_loc(d(1)), c_loc(du(1)), c_loc(B( &
-        1)), ldb, temp_buffer)
+      dgtsv = rocsparse_dgtsv_raw(handle, m, n, c_loc(dl), c_loc(d), c_loc(du), c_loc(B), ldb, &
+        temp_buffer)
     end function rocsparse_dgtsv_native
 
     function rocsparse_dgtsv_typed(handle, m, n, dl, d, du, B, ldb, temp_buffer) result(dgtsv)
@@ -58538,15 +58230,15 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: m
       integer(c_int), value :: n
-      complex(c_float_complex), target :: dl(*)
-      complex(c_float_complex), target :: d(*)
-      complex(c_float_complex), target :: du(*)
-      complex(c_float_complex), target :: B(*)
+      complex(c_float_complex), target :: dl(..)
+      complex(c_float_complex), target :: d(..)
+      complex(c_float_complex), target :: du(..)
+      complex(c_float_complex), target :: B(..)
       integer(c_int), value :: ldb
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: cgtsv
-      cgtsv = rocsparse_cgtsv_raw(handle, m, n, c_loc(dl(1)), c_loc(d(1)), c_loc(du(1)), c_loc(B( &
-        1)), ldb, temp_buffer)
+      cgtsv = rocsparse_cgtsv_raw(handle, m, n, c_loc(dl), c_loc(d), c_loc(du), c_loc(B), ldb, &
+        temp_buffer)
     end function rocsparse_cgtsv_native
 
     function rocsparse_cgtsv_typed(handle, m, n, dl, d, du, B, ldb, temp_buffer) result(cgtsv)
@@ -58572,15 +58264,15 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: m
       integer(c_int), value :: n
-      complex(c_double_complex), target :: dl(*)
-      complex(c_double_complex), target :: d(*)
-      complex(c_double_complex), target :: du(*)
-      complex(c_double_complex), target :: B(*)
+      complex(c_double_complex), target :: dl(..)
+      complex(c_double_complex), target :: d(..)
+      complex(c_double_complex), target :: du(..)
+      complex(c_double_complex), target :: B(..)
       integer(c_int), value :: ldb
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: zgtsv
-      zgtsv = rocsparse_zgtsv_raw(handle, m, n, c_loc(dl(1)), c_loc(d(1)), c_loc(du(1)), c_loc(B( &
-        1)), ldb, temp_buffer)
+      zgtsv = rocsparse_zgtsv_raw(handle, m, n, c_loc(dl), c_loc(d), c_loc(du), c_loc(B), ldb, &
+        temp_buffer)
     end function rocsparse_zgtsv_native
 
     function rocsparse_zgtsv_typed(handle, m, n, dl, d, du, B, ldb, temp_buffer) result(zgtsv)
@@ -58607,15 +58299,15 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: m
       integer(c_int), value :: n
-      real(c_float), target :: dl(*)
-      real(c_float), target :: d(*)
-      real(c_float), target :: du(*)
-      real(c_float), target :: B(*)
+      real(c_float), target :: dl(..)
+      real(c_float), target :: d(..)
+      real(c_float), target :: du(..)
+      real(c_float), target :: B(..)
       integer(c_int), value :: ldb
       type(c_ptr), value :: buffer_size
       integer(c_int) :: sgtsv_no_pivot_buffer_size
       sgtsv_no_pivot_buffer_size = rocsparse_sgtsv_no_pivot_buffer_size_raw(handle, m, n, c_loc( &
-        dl(1)), c_loc(d(1)), c_loc(du(1)), c_loc(B(1)), ldb, buffer_size)
+        dl), c_loc(d), c_loc(du), c_loc(B), ldb, buffer_size)
     end function rocsparse_sgtsv_no_pivot_buffer_size_native
 
     function rocsparse_sgtsv_no_pivot_buffer_size_typed(handle, m, n, dl, d, du, B, ldb, &
@@ -58644,15 +58336,15 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: m
       integer(c_int), value :: n
-      real(c_double), target :: dl(*)
-      real(c_double), target :: d(*)
-      real(c_double), target :: du(*)
-      real(c_double), target :: B(*)
+      real(c_double), target :: dl(..)
+      real(c_double), target :: d(..)
+      real(c_double), target :: du(..)
+      real(c_double), target :: B(..)
       integer(c_int), value :: ldb
       type(c_ptr), value :: buffer_size
       integer(c_int) :: dgtsv_no_pivot_buffer_size
       dgtsv_no_pivot_buffer_size = rocsparse_dgtsv_no_pivot_buffer_size_raw(handle, m, n, c_loc( &
-        dl(1)), c_loc(d(1)), c_loc(du(1)), c_loc(B(1)), ldb, buffer_size)
+        dl), c_loc(d), c_loc(du), c_loc(B), ldb, buffer_size)
     end function rocsparse_dgtsv_no_pivot_buffer_size_native
 
     function rocsparse_dgtsv_no_pivot_buffer_size_typed(handle, m, n, dl, d, du, B, ldb, &
@@ -58681,15 +58373,15 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: m
       integer(c_int), value :: n
-      complex(c_float_complex), target :: dl(*)
-      complex(c_float_complex), target :: d(*)
-      complex(c_float_complex), target :: du(*)
-      complex(c_float_complex), target :: B(*)
+      complex(c_float_complex), target :: dl(..)
+      complex(c_float_complex), target :: d(..)
+      complex(c_float_complex), target :: du(..)
+      complex(c_float_complex), target :: B(..)
       integer(c_int), value :: ldb
       type(c_ptr), value :: buffer_size
       integer(c_int) :: cgtsv_no_pivot_buffer_size
       cgtsv_no_pivot_buffer_size = rocsparse_cgtsv_no_pivot_buffer_size_raw(handle, m, n, c_loc( &
-        dl(1)), c_loc(d(1)), c_loc(du(1)), c_loc(B(1)), ldb, buffer_size)
+        dl), c_loc(d), c_loc(du), c_loc(B), ldb, buffer_size)
     end function rocsparse_cgtsv_no_pivot_buffer_size_native
 
     function rocsparse_cgtsv_no_pivot_buffer_size_typed(handle, m, n, dl, d, du, B, ldb, &
@@ -58718,15 +58410,15 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: m
       integer(c_int), value :: n
-      complex(c_double_complex), target :: dl(*)
-      complex(c_double_complex), target :: d(*)
-      complex(c_double_complex), target :: du(*)
-      complex(c_double_complex), target :: B(*)
+      complex(c_double_complex), target :: dl(..)
+      complex(c_double_complex), target :: d(..)
+      complex(c_double_complex), target :: du(..)
+      complex(c_double_complex), target :: B(..)
       integer(c_int), value :: ldb
       type(c_ptr), value :: buffer_size
       integer(c_int) :: zgtsv_no_pivot_buffer_size
       zgtsv_no_pivot_buffer_size = rocsparse_zgtsv_no_pivot_buffer_size_raw(handle, m, n, c_loc( &
-        dl(1)), c_loc(d(1)), c_loc(du(1)), c_loc(B(1)), ldb, buffer_size)
+        dl), c_loc(d), c_loc(du), c_loc(B), ldb, buffer_size)
     end function rocsparse_zgtsv_no_pivot_buffer_size_native
 
     function rocsparse_zgtsv_no_pivot_buffer_size_typed(handle, m, n, dl, d, du, B, ldb, &
@@ -58755,15 +58447,15 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: m
       integer(c_int), value :: n
-      real(c_float), target :: dl(*)
-      real(c_float), target :: d(*)
-      real(c_float), target :: du(*)
-      real(c_float), target :: B(*)
+      real(c_float), target :: dl(..)
+      real(c_float), target :: d(..)
+      real(c_float), target :: du(..)
+      real(c_float), target :: B(..)
       integer(c_int), value :: ldb
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: sgtsv_no_pivot
-      sgtsv_no_pivot = rocsparse_sgtsv_no_pivot_raw(handle, m, n, c_loc(dl(1)), c_loc(d(1)), &
-        c_loc(du(1)), c_loc(B(1)), ldb, temp_buffer)
+      sgtsv_no_pivot = rocsparse_sgtsv_no_pivot_raw(handle, m, n, c_loc(dl), c_loc(d), c_loc(du), &
+        c_loc(B), ldb, temp_buffer)
     end function rocsparse_sgtsv_no_pivot_native
 
     function rocsparse_sgtsv_no_pivot_typed(handle, m, n, dl, d, du, B, ldb, temp_buffer) result( &
@@ -58792,15 +58484,15 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: m
       integer(c_int), value :: n
-      real(c_double), target :: dl(*)
-      real(c_double), target :: d(*)
-      real(c_double), target :: du(*)
-      real(c_double), target :: B(*)
+      real(c_double), target :: dl(..)
+      real(c_double), target :: d(..)
+      real(c_double), target :: du(..)
+      real(c_double), target :: B(..)
       integer(c_int), value :: ldb
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: dgtsv_no_pivot
-      dgtsv_no_pivot = rocsparse_dgtsv_no_pivot_raw(handle, m, n, c_loc(dl(1)), c_loc(d(1)), &
-        c_loc(du(1)), c_loc(B(1)), ldb, temp_buffer)
+      dgtsv_no_pivot = rocsparse_dgtsv_no_pivot_raw(handle, m, n, c_loc(dl), c_loc(d), c_loc(du), &
+        c_loc(B), ldb, temp_buffer)
     end function rocsparse_dgtsv_no_pivot_native
 
     function rocsparse_dgtsv_no_pivot_typed(handle, m, n, dl, d, du, B, ldb, temp_buffer) result( &
@@ -58829,15 +58521,15 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: m
       integer(c_int), value :: n
-      complex(c_float_complex), target :: dl(*)
-      complex(c_float_complex), target :: d(*)
-      complex(c_float_complex), target :: du(*)
-      complex(c_float_complex), target :: B(*)
+      complex(c_float_complex), target :: dl(..)
+      complex(c_float_complex), target :: d(..)
+      complex(c_float_complex), target :: du(..)
+      complex(c_float_complex), target :: B(..)
       integer(c_int), value :: ldb
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: cgtsv_no_pivot
-      cgtsv_no_pivot = rocsparse_cgtsv_no_pivot_raw(handle, m, n, c_loc(dl(1)), c_loc(d(1)), &
-        c_loc(du(1)), c_loc(B(1)), ldb, temp_buffer)
+      cgtsv_no_pivot = rocsparse_cgtsv_no_pivot_raw(handle, m, n, c_loc(dl), c_loc(d), c_loc(du), &
+        c_loc(B), ldb, temp_buffer)
     end function rocsparse_cgtsv_no_pivot_native
 
     function rocsparse_cgtsv_no_pivot_typed(handle, m, n, dl, d, du, B, ldb, temp_buffer) result( &
@@ -58866,15 +58558,15 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: m
       integer(c_int), value :: n
-      complex(c_double_complex), target :: dl(*)
-      complex(c_double_complex), target :: d(*)
-      complex(c_double_complex), target :: du(*)
-      complex(c_double_complex), target :: B(*)
+      complex(c_double_complex), target :: dl(..)
+      complex(c_double_complex), target :: d(..)
+      complex(c_double_complex), target :: du(..)
+      complex(c_double_complex), target :: B(..)
       integer(c_int), value :: ldb
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: zgtsv_no_pivot
-      zgtsv_no_pivot = rocsparse_zgtsv_no_pivot_raw(handle, m, n, c_loc(dl(1)), c_loc(d(1)), &
-        c_loc(du(1)), c_loc(B(1)), ldb, temp_buffer)
+      zgtsv_no_pivot = rocsparse_zgtsv_no_pivot_raw(handle, m, n, c_loc(dl), c_loc(d), c_loc(du), &
+        c_loc(B), ldb, temp_buffer)
     end function rocsparse_zgtsv_no_pivot_native
 
     function rocsparse_zgtsv_no_pivot_typed(handle, m, n, dl, d, du, B, ldb, temp_buffer) result( &
@@ -58902,17 +58594,16 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_int), value :: m
-      real(c_float), target :: dl(*)
-      real(c_float), target :: d(*)
-      real(c_float), target :: du(*)
-      real(c_float), target :: x(*)
+      real(c_float), target :: dl(..)
+      real(c_float), target :: d(..)
+      real(c_float), target :: du(..)
+      real(c_float), target :: x(..)
       integer(c_int), value :: batch_count
       integer(c_int), value :: batch_stride
       type(c_ptr), value :: buffer_size
       integer(c_int) :: sgtsv_no_pivot_strided_batch_buffer_size
       sgtsv_no_pivot_strided_batch_buffer_size = rocsparse_sgtsv_no_pivot_strided_batch_buffer_size_raw( &
-        handle, m, c_loc(dl(1)), c_loc(d(1)), c_loc(du(1)), c_loc(x(1)), batch_count, &
-        batch_stride, buffer_size)
+        handle, m, c_loc(dl), c_loc(d), c_loc(du), c_loc(x), batch_count, batch_stride, buffer_size)
     end function rocsparse_sgtsv_no_pivot_strided_batch_buffer_size_native
 
     function rocsparse_sgtsv_no_pivot_strided_batch_buffer_size_typed(handle, m, dl, d, du, x, &
@@ -58940,17 +58631,16 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_int), value :: m
-      real(c_double), target :: dl(*)
-      real(c_double), target :: d(*)
-      real(c_double), target :: du(*)
-      real(c_double), target :: x(*)
+      real(c_double), target :: dl(..)
+      real(c_double), target :: d(..)
+      real(c_double), target :: du(..)
+      real(c_double), target :: x(..)
       integer(c_int), value :: batch_count
       integer(c_int), value :: batch_stride
       type(c_ptr), value :: buffer_size
       integer(c_int) :: dgtsv_no_pivot_strided_batch_buffer_size
       dgtsv_no_pivot_strided_batch_buffer_size = rocsparse_dgtsv_no_pivot_strided_batch_buffer_size_raw( &
-        handle, m, c_loc(dl(1)), c_loc(d(1)), c_loc(du(1)), c_loc(x(1)), batch_count, &
-        batch_stride, buffer_size)
+        handle, m, c_loc(dl), c_loc(d), c_loc(du), c_loc(x), batch_count, batch_stride, buffer_size)
     end function rocsparse_dgtsv_no_pivot_strided_batch_buffer_size_native
 
     function rocsparse_dgtsv_no_pivot_strided_batch_buffer_size_typed(handle, m, dl, d, du, x, &
@@ -58978,17 +58668,16 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_int), value :: m
-      complex(c_float_complex), target :: dl(*)
-      complex(c_float_complex), target :: d(*)
-      complex(c_float_complex), target :: du(*)
-      complex(c_float_complex), target :: x(*)
+      complex(c_float_complex), target :: dl(..)
+      complex(c_float_complex), target :: d(..)
+      complex(c_float_complex), target :: du(..)
+      complex(c_float_complex), target :: x(..)
       integer(c_int), value :: batch_count
       integer(c_int), value :: batch_stride
       type(c_ptr), value :: buffer_size
       integer(c_int) :: cgtsv_no_pivot_strided_batch_buffer_size
       cgtsv_no_pivot_strided_batch_buffer_size = rocsparse_cgtsv_no_pivot_strided_batch_buffer_size_raw( &
-        handle, m, c_loc(dl(1)), c_loc(d(1)), c_loc(du(1)), c_loc(x(1)), batch_count, &
-        batch_stride, buffer_size)
+        handle, m, c_loc(dl), c_loc(d), c_loc(du), c_loc(x), batch_count, batch_stride, buffer_size)
     end function rocsparse_cgtsv_no_pivot_strided_batch_buffer_size_native
 
     function rocsparse_cgtsv_no_pivot_strided_batch_buffer_size_typed(handle, m, dl, d, du, x, &
@@ -59016,17 +58705,16 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_int), value :: m
-      complex(c_double_complex), target :: dl(*)
-      complex(c_double_complex), target :: d(*)
-      complex(c_double_complex), target :: du(*)
-      complex(c_double_complex), target :: x(*)
+      complex(c_double_complex), target :: dl(..)
+      complex(c_double_complex), target :: d(..)
+      complex(c_double_complex), target :: du(..)
+      complex(c_double_complex), target :: x(..)
       integer(c_int), value :: batch_count
       integer(c_int), value :: batch_stride
       type(c_ptr), value :: buffer_size
       integer(c_int) :: zgtsv_no_pivot_strided_batch_buffer_size
       zgtsv_no_pivot_strided_batch_buffer_size = rocsparse_zgtsv_no_pivot_strided_batch_buffer_size_raw( &
-        handle, m, c_loc(dl(1)), c_loc(d(1)), c_loc(du(1)), c_loc(x(1)), batch_count, &
-        batch_stride, buffer_size)
+        handle, m, c_loc(dl), c_loc(d), c_loc(du), c_loc(x), batch_count, batch_stride, buffer_size)
     end function rocsparse_zgtsv_no_pivot_strided_batch_buffer_size_native
 
     function rocsparse_zgtsv_no_pivot_strided_batch_buffer_size_typed(handle, m, dl, d, du, x, &
@@ -59054,16 +58742,16 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_int), value :: m
-      real(c_float), target :: dl(*)
-      real(c_float), target :: d(*)
-      real(c_float), target :: du(*)
-      real(c_float), target :: x(*)
+      real(c_float), target :: dl(..)
+      real(c_float), target :: d(..)
+      real(c_float), target :: du(..)
+      real(c_float), target :: x(..)
       integer(c_int), value :: batch_count
       integer(c_int), value :: batch_stride
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: sgtsv_no_pivot_strided_batch
       sgtsv_no_pivot_strided_batch = rocsparse_sgtsv_no_pivot_strided_batch_raw(handle, m, c_loc( &
-        dl(1)), c_loc(d(1)), c_loc(du(1)), c_loc(x(1)), batch_count, batch_stride, temp_buffer)
+        dl), c_loc(d), c_loc(du), c_loc(x), batch_count, batch_stride, temp_buffer)
     end function rocsparse_sgtsv_no_pivot_strided_batch_native
 
     function rocsparse_sgtsv_no_pivot_strided_batch_typed(handle, m, dl, d, du, x, batch_count, &
@@ -59091,16 +58779,16 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_int), value :: m
-      real(c_double), target :: dl(*)
-      real(c_double), target :: d(*)
-      real(c_double), target :: du(*)
-      real(c_double), target :: x(*)
+      real(c_double), target :: dl(..)
+      real(c_double), target :: d(..)
+      real(c_double), target :: du(..)
+      real(c_double), target :: x(..)
       integer(c_int), value :: batch_count
       integer(c_int), value :: batch_stride
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: dgtsv_no_pivot_strided_batch
       dgtsv_no_pivot_strided_batch = rocsparse_dgtsv_no_pivot_strided_batch_raw(handle, m, c_loc( &
-        dl(1)), c_loc(d(1)), c_loc(du(1)), c_loc(x(1)), batch_count, batch_stride, temp_buffer)
+        dl), c_loc(d), c_loc(du), c_loc(x), batch_count, batch_stride, temp_buffer)
     end function rocsparse_dgtsv_no_pivot_strided_batch_native
 
     function rocsparse_dgtsv_no_pivot_strided_batch_typed(handle, m, dl, d, du, x, batch_count, &
@@ -59128,16 +58816,16 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_int), value :: m
-      complex(c_float_complex), target :: dl(*)
-      complex(c_float_complex), target :: d(*)
-      complex(c_float_complex), target :: du(*)
-      complex(c_float_complex), target :: x(*)
+      complex(c_float_complex), target :: dl(..)
+      complex(c_float_complex), target :: d(..)
+      complex(c_float_complex), target :: du(..)
+      complex(c_float_complex), target :: x(..)
       integer(c_int), value :: batch_count
       integer(c_int), value :: batch_stride
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: cgtsv_no_pivot_strided_batch
       cgtsv_no_pivot_strided_batch = rocsparse_cgtsv_no_pivot_strided_batch_raw(handle, m, c_loc( &
-        dl(1)), c_loc(d(1)), c_loc(du(1)), c_loc(x(1)), batch_count, batch_stride, temp_buffer)
+        dl), c_loc(d), c_loc(du), c_loc(x), batch_count, batch_stride, temp_buffer)
     end function rocsparse_cgtsv_no_pivot_strided_batch_native
 
     function rocsparse_cgtsv_no_pivot_strided_batch_typed(handle, m, dl, d, du, x, batch_count, &
@@ -59165,16 +58853,16 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_int), value :: m
-      complex(c_double_complex), target :: dl(*)
-      complex(c_double_complex), target :: d(*)
-      complex(c_double_complex), target :: du(*)
-      complex(c_double_complex), target :: x(*)
+      complex(c_double_complex), target :: dl(..)
+      complex(c_double_complex), target :: d(..)
+      complex(c_double_complex), target :: du(..)
+      complex(c_double_complex), target :: x(..)
       integer(c_int), value :: batch_count
       integer(c_int), value :: batch_stride
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: zgtsv_no_pivot_strided_batch
       zgtsv_no_pivot_strided_batch = rocsparse_zgtsv_no_pivot_strided_batch_raw(handle, m, c_loc( &
-        dl(1)), c_loc(d(1)), c_loc(du(1)), c_loc(x(1)), batch_count, batch_stride, temp_buffer)
+        dl), c_loc(d), c_loc(du), c_loc(x), batch_count, batch_stride, temp_buffer)
     end function rocsparse_zgtsv_no_pivot_strided_batch_native
 
     function rocsparse_zgtsv_no_pivot_strided_batch_typed(handle, m, dl, d, du, x, batch_count, &
@@ -59203,17 +58891,17 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: alg
       integer(c_int), value :: m
-      real(c_float), target :: dl(*)
-      real(c_float), target :: d(*)
-      real(c_float), target :: du(*)
-      real(c_float), target :: x(*)
+      real(c_float), target :: dl(..)
+      real(c_float), target :: d(..)
+      real(c_float), target :: du(..)
+      real(c_float), target :: x(..)
       integer(c_int), value :: batch_count
       integer(c_int), value :: batch_stride
       type(c_ptr), value :: buffer_size
       integer(c_int) :: sgtsv_interleaved_batch_buffer_size
       sgtsv_interleaved_batch_buffer_size = rocsparse_sgtsv_interleaved_batch_buffer_size_raw( &
-        handle, alg, m, c_loc(dl(1)), c_loc(d(1)), c_loc(du(1)), c_loc(x(1)), batch_count, &
-        batch_stride, buffer_size)
+        handle, alg, m, c_loc(dl), c_loc(d), c_loc(du), c_loc(x), batch_count, batch_stride, &
+        buffer_size)
     end function rocsparse_sgtsv_interleaved_batch_buffer_size_native
 
     function rocsparse_sgtsv_interleaved_batch_buffer_size_typed(handle, alg, m, dl, d, du, x, &
@@ -59243,17 +58931,17 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: alg
       integer(c_int), value :: m
-      real(c_double), target :: dl(*)
-      real(c_double), target :: d(*)
-      real(c_double), target :: du(*)
-      real(c_double), target :: x(*)
+      real(c_double), target :: dl(..)
+      real(c_double), target :: d(..)
+      real(c_double), target :: du(..)
+      real(c_double), target :: x(..)
       integer(c_int), value :: batch_count
       integer(c_int), value :: batch_stride
       type(c_ptr), value :: buffer_size
       integer(c_int) :: dgtsv_interleaved_batch_buffer_size
       dgtsv_interleaved_batch_buffer_size = rocsparse_dgtsv_interleaved_batch_buffer_size_raw( &
-        handle, alg, m, c_loc(dl(1)), c_loc(d(1)), c_loc(du(1)), c_loc(x(1)), batch_count, &
-        batch_stride, buffer_size)
+        handle, alg, m, c_loc(dl), c_loc(d), c_loc(du), c_loc(x), batch_count, batch_stride, &
+        buffer_size)
     end function rocsparse_dgtsv_interleaved_batch_buffer_size_native
 
     function rocsparse_dgtsv_interleaved_batch_buffer_size_typed(handle, alg, m, dl, d, du, x, &
@@ -59283,17 +58971,17 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: alg
       integer(c_int), value :: m
-      complex(c_float_complex), target :: dl(*)
-      complex(c_float_complex), target :: d(*)
-      complex(c_float_complex), target :: du(*)
-      complex(c_float_complex), target :: x(*)
+      complex(c_float_complex), target :: dl(..)
+      complex(c_float_complex), target :: d(..)
+      complex(c_float_complex), target :: du(..)
+      complex(c_float_complex), target :: x(..)
       integer(c_int), value :: batch_count
       integer(c_int), value :: batch_stride
       type(c_ptr), value :: buffer_size
       integer(c_int) :: cgtsv_interleaved_batch_buffer_size
       cgtsv_interleaved_batch_buffer_size = rocsparse_cgtsv_interleaved_batch_buffer_size_raw( &
-        handle, alg, m, c_loc(dl(1)), c_loc(d(1)), c_loc(du(1)), c_loc(x(1)), batch_count, &
-        batch_stride, buffer_size)
+        handle, alg, m, c_loc(dl), c_loc(d), c_loc(du), c_loc(x), batch_count, batch_stride, &
+        buffer_size)
     end function rocsparse_cgtsv_interleaved_batch_buffer_size_native
 
     function rocsparse_cgtsv_interleaved_batch_buffer_size_typed(handle, alg, m, dl, d, du, x, &
@@ -59323,17 +59011,17 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: alg
       integer(c_int), value :: m
-      complex(c_double_complex), target :: dl(*)
-      complex(c_double_complex), target :: d(*)
-      complex(c_double_complex), target :: du(*)
-      complex(c_double_complex), target :: x(*)
+      complex(c_double_complex), target :: dl(..)
+      complex(c_double_complex), target :: d(..)
+      complex(c_double_complex), target :: du(..)
+      complex(c_double_complex), target :: x(..)
       integer(c_int), value :: batch_count
       integer(c_int), value :: batch_stride
       type(c_ptr), value :: buffer_size
       integer(c_int) :: zgtsv_interleaved_batch_buffer_size
       zgtsv_interleaved_batch_buffer_size = rocsparse_zgtsv_interleaved_batch_buffer_size_raw( &
-        handle, alg, m, c_loc(dl(1)), c_loc(d(1)), c_loc(du(1)), c_loc(x(1)), batch_count, &
-        batch_stride, buffer_size)
+        handle, alg, m, c_loc(dl), c_loc(d), c_loc(du), c_loc(x), batch_count, batch_stride, &
+        buffer_size)
     end function rocsparse_zgtsv_interleaved_batch_buffer_size_native
 
     function rocsparse_zgtsv_interleaved_batch_buffer_size_typed(handle, alg, m, dl, d, du, x, &
@@ -59363,16 +59051,16 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: alg
       integer(c_int), value :: m
-      real(c_float), target :: dl(*)
-      real(c_float), target :: d(*)
-      real(c_float), target :: du(*)
-      real(c_float), target :: x(*)
+      real(c_float), target :: dl(..)
+      real(c_float), target :: d(..)
+      real(c_float), target :: du(..)
+      real(c_float), target :: x(..)
       integer(c_int), value :: batch_count
       integer(c_int), value :: batch_stride
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: sgtsv_interleaved_batch
-      sgtsv_interleaved_batch = rocsparse_sgtsv_interleaved_batch_raw(handle, alg, m, c_loc(dl( &
-        1)), c_loc(d(1)), c_loc(du(1)), c_loc(x(1)), batch_count, batch_stride, temp_buffer)
+      sgtsv_interleaved_batch = rocsparse_sgtsv_interleaved_batch_raw(handle, alg, m, c_loc(dl), &
+        c_loc(d), c_loc(du), c_loc(x), batch_count, batch_stride, temp_buffer)
     end function rocsparse_sgtsv_interleaved_batch_native
 
     function rocsparse_sgtsv_interleaved_batch_typed(handle, alg, m, dl, d, du, x, batch_count, &
@@ -59402,16 +59090,16 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: alg
       integer(c_int), value :: m
-      real(c_double), target :: dl(*)
-      real(c_double), target :: d(*)
-      real(c_double), target :: du(*)
-      real(c_double), target :: x(*)
+      real(c_double), target :: dl(..)
+      real(c_double), target :: d(..)
+      real(c_double), target :: du(..)
+      real(c_double), target :: x(..)
       integer(c_int), value :: batch_count
       integer(c_int), value :: batch_stride
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: dgtsv_interleaved_batch
-      dgtsv_interleaved_batch = rocsparse_dgtsv_interleaved_batch_raw(handle, alg, m, c_loc(dl( &
-        1)), c_loc(d(1)), c_loc(du(1)), c_loc(x(1)), batch_count, batch_stride, temp_buffer)
+      dgtsv_interleaved_batch = rocsparse_dgtsv_interleaved_batch_raw(handle, alg, m, c_loc(dl), &
+        c_loc(d), c_loc(du), c_loc(x), batch_count, batch_stride, temp_buffer)
     end function rocsparse_dgtsv_interleaved_batch_native
 
     function rocsparse_dgtsv_interleaved_batch_typed(handle, alg, m, dl, d, du, x, batch_count, &
@@ -59441,16 +59129,16 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: alg
       integer(c_int), value :: m
-      complex(c_float_complex), target :: dl(*)
-      complex(c_float_complex), target :: d(*)
-      complex(c_float_complex), target :: du(*)
-      complex(c_float_complex), target :: x(*)
+      complex(c_float_complex), target :: dl(..)
+      complex(c_float_complex), target :: d(..)
+      complex(c_float_complex), target :: du(..)
+      complex(c_float_complex), target :: x(..)
       integer(c_int), value :: batch_count
       integer(c_int), value :: batch_stride
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: cgtsv_interleaved_batch
-      cgtsv_interleaved_batch = rocsparse_cgtsv_interleaved_batch_raw(handle, alg, m, c_loc(dl( &
-        1)), c_loc(d(1)), c_loc(du(1)), c_loc(x(1)), batch_count, batch_stride, temp_buffer)
+      cgtsv_interleaved_batch = rocsparse_cgtsv_interleaved_batch_raw(handle, alg, m, c_loc(dl), &
+        c_loc(d), c_loc(du), c_loc(x), batch_count, batch_stride, temp_buffer)
     end function rocsparse_cgtsv_interleaved_batch_native
 
     function rocsparse_cgtsv_interleaved_batch_typed(handle, alg, m, dl, d, du, x, batch_count, &
@@ -59480,16 +59168,16 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: alg
       integer(c_int), value :: m
-      complex(c_double_complex), target :: dl(*)
-      complex(c_double_complex), target :: d(*)
-      complex(c_double_complex), target :: du(*)
-      complex(c_double_complex), target :: x(*)
+      complex(c_double_complex), target :: dl(..)
+      complex(c_double_complex), target :: d(..)
+      complex(c_double_complex), target :: du(..)
+      complex(c_double_complex), target :: x(..)
       integer(c_int), value :: batch_count
       integer(c_int), value :: batch_stride
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: zgtsv_interleaved_batch
-      zgtsv_interleaved_batch = rocsparse_zgtsv_interleaved_batch_raw(handle, alg, m, c_loc(dl( &
-        1)), c_loc(d(1)), c_loc(du(1)), c_loc(x(1)), batch_count, batch_stride, temp_buffer)
+      zgtsv_interleaved_batch = rocsparse_zgtsv_interleaved_batch_raw(handle, alg, m, c_loc(dl), &
+        c_loc(d), c_loc(du), c_loc(x), batch_count, batch_stride, temp_buffer)
     end function rocsparse_zgtsv_interleaved_batch_native
 
     function rocsparse_zgtsv_interleaved_batch_typed(handle, alg, m, dl, d, du, x, batch_count, &
@@ -59520,18 +59208,17 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: nnz
       type(c_ptr), value :: descr
-      real(c_float), target :: csr_val(*)
-      integer(c_int), target :: csr_row_ptr(*)
-      integer(c_int), target :: csr_col_ind(*)
+      real(c_float), target :: csr_val(..)
+      integer(c_int), target :: csr_row_ptr(..)
+      integer(c_int), target :: csr_col_ind(..)
       real(c_float) :: fraction_to_color
       integer(c_int) :: ncolors
       integer(c_int) :: coloring
       integer(c_int) :: reordering
       type(c_ptr), value :: info
       integer(c_int) :: scsrcolor
-      scsrcolor = rocsparse_scsrcolor_raw(handle, m, nnz, descr, c_loc(csr_val(1)), c_loc( &
-        csr_row_ptr(1)), c_loc(csr_col_ind(1)), fraction_to_color, ncolors, coloring, reordering, &
-        info)
+      scsrcolor = rocsparse_scsrcolor_raw(handle, m, nnz, descr, c_loc(csr_val), c_loc( &
+        csr_row_ptr), c_loc(csr_col_ind), fraction_to_color, ncolors, coloring, reordering, info)
     end function rocsparse_scsrcolor_native
 
     function rocsparse_scsrcolor_typed(handle, m, nnz, descr, csr_val, csr_row_ptr, csr_col_ind, &
@@ -59564,18 +59251,17 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: nnz
       type(c_ptr), value :: descr
-      real(c_double), target :: csr_val(*)
-      integer(c_int), target :: csr_row_ptr(*)
-      integer(c_int), target :: csr_col_ind(*)
+      real(c_double), target :: csr_val(..)
+      integer(c_int), target :: csr_row_ptr(..)
+      integer(c_int), target :: csr_col_ind(..)
       real(c_double) :: fraction_to_color
       integer(c_int) :: ncolors
       integer(c_int) :: coloring
       integer(c_int) :: reordering
       type(c_ptr), value :: info
       integer(c_int) :: dcsrcolor
-      dcsrcolor = rocsparse_dcsrcolor_raw(handle, m, nnz, descr, c_loc(csr_val(1)), c_loc( &
-        csr_row_ptr(1)), c_loc(csr_col_ind(1)), fraction_to_color, ncolors, coloring, reordering, &
-        info)
+      dcsrcolor = rocsparse_dcsrcolor_raw(handle, m, nnz, descr, c_loc(csr_val), c_loc( &
+        csr_row_ptr), c_loc(csr_col_ind), fraction_to_color, ncolors, coloring, reordering, info)
     end function rocsparse_dcsrcolor_native
 
     function rocsparse_dcsrcolor_typed(handle, m, nnz, descr, csr_val, csr_row_ptr, csr_col_ind, &
@@ -59608,18 +59294,17 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: nnz
       type(c_ptr), value :: descr
-      complex(c_float_complex), target :: csr_val(*)
-      integer(c_int), target :: csr_row_ptr(*)
-      integer(c_int), target :: csr_col_ind(*)
+      complex(c_float_complex), target :: csr_val(..)
+      integer(c_int), target :: csr_row_ptr(..)
+      integer(c_int), target :: csr_col_ind(..)
       real(c_float) :: fraction_to_color
       integer(c_int) :: ncolors
       integer(c_int) :: coloring
       integer(c_int) :: reordering
       type(c_ptr), value :: info
       integer(c_int) :: ccsrcolor
-      ccsrcolor = rocsparse_ccsrcolor_raw(handle, m, nnz, descr, c_loc(csr_val(1)), c_loc( &
-        csr_row_ptr(1)), c_loc(csr_col_ind(1)), fraction_to_color, ncolors, coloring, reordering, &
-        info)
+      ccsrcolor = rocsparse_ccsrcolor_raw(handle, m, nnz, descr, c_loc(csr_val), c_loc( &
+        csr_row_ptr), c_loc(csr_col_ind), fraction_to_color, ncolors, coloring, reordering, info)
     end function rocsparse_ccsrcolor_native
 
     function rocsparse_ccsrcolor_typed(handle, m, nnz, descr, csr_val, csr_row_ptr, csr_col_ind, &
@@ -59652,18 +59337,17 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: nnz
       type(c_ptr), value :: descr
-      complex(c_double_complex), target :: csr_val(*)
-      integer(c_int), target :: csr_row_ptr(*)
-      integer(c_int), target :: csr_col_ind(*)
+      complex(c_double_complex), target :: csr_val(..)
+      integer(c_int), target :: csr_row_ptr(..)
+      integer(c_int), target :: csr_col_ind(..)
       real(c_double) :: fraction_to_color
       integer(c_int) :: ncolors
       integer(c_int) :: coloring
       integer(c_int) :: reordering
       type(c_ptr), value :: info
       integer(c_int) :: zcsrcolor
-      zcsrcolor = rocsparse_zcsrcolor_raw(handle, m, nnz, descr, c_loc(csr_val(1)), c_loc( &
-        csr_row_ptr(1)), c_loc(csr_col_ind(1)), fraction_to_color, ncolors, coloring, reordering, &
-        info)
+      zcsrcolor = rocsparse_zcsrcolor_raw(handle, m, nnz, descr, c_loc(csr_val), c_loc( &
+        csr_row_ptr), c_loc(csr_col_ind), fraction_to_color, ncolors, coloring, reordering, info)
     end function rocsparse_zcsrcolor_native
 
     function rocsparse_zcsrcolor_typed(handle, m, nnz, descr, csr_val, csr_row_ptr, csr_col_ind, &
@@ -59697,9 +59381,9 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       integer(c_int), value :: nnz
-      real(c_float), target :: coo_val(*)
-      integer(c_int), target :: coo_row_ind(*)
-      integer(c_int), target :: coo_col_ind(*)
+      real(c_float), target :: coo_val(..)
+      integer(c_int), target :: coo_row_ind(..)
+      integer(c_int), target :: coo_col_ind(..)
       integer(c_int), value :: idx_base
       integer(c_int), value :: matrix_type
       integer(c_int), value :: uplo
@@ -59707,8 +59391,8 @@ contains
       type(c_ptr), value :: buffer_size
       integer(c_int) :: scheck_matrix_coo_buffer_size
       scheck_matrix_coo_buffer_size = rocsparse_scheck_matrix_coo_buffer_size_raw(handle, m, n, &
-        nnz, c_loc(coo_val(1)), c_loc(coo_row_ind(1)), c_loc(coo_col_ind(1)), idx_base, &
-        matrix_type, uplo, storage, buffer_size)
+        nnz, c_loc(coo_val), c_loc(coo_row_ind), c_loc(coo_col_ind), idx_base, matrix_type, uplo, &
+        storage, buffer_size)
     end function rocsparse_scheck_matrix_coo_buffer_size_native
 
     function rocsparse_scheck_matrix_coo_buffer_size_typed(handle, m, n, nnz, coo_val, &
@@ -59744,9 +59428,9 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       integer(c_int), value :: nnz
-      real(c_double), target :: coo_val(*)
-      integer(c_int), target :: coo_row_ind(*)
-      integer(c_int), target :: coo_col_ind(*)
+      real(c_double), target :: coo_val(..)
+      integer(c_int), target :: coo_row_ind(..)
+      integer(c_int), target :: coo_col_ind(..)
       integer(c_int), value :: idx_base
       integer(c_int), value :: matrix_type
       integer(c_int), value :: uplo
@@ -59754,8 +59438,8 @@ contains
       type(c_ptr), value :: buffer_size
       integer(c_int) :: dcheck_matrix_coo_buffer_size
       dcheck_matrix_coo_buffer_size = rocsparse_dcheck_matrix_coo_buffer_size_raw(handle, m, n, &
-        nnz, c_loc(coo_val(1)), c_loc(coo_row_ind(1)), c_loc(coo_col_ind(1)), idx_base, &
-        matrix_type, uplo, storage, buffer_size)
+        nnz, c_loc(coo_val), c_loc(coo_row_ind), c_loc(coo_col_ind), idx_base, matrix_type, uplo, &
+        storage, buffer_size)
     end function rocsparse_dcheck_matrix_coo_buffer_size_native
 
     function rocsparse_dcheck_matrix_coo_buffer_size_typed(handle, m, n, nnz, coo_val, &
@@ -59791,9 +59475,9 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       integer(c_int), value :: nnz
-      complex(c_float_complex), target :: coo_val(*)
-      integer(c_int), target :: coo_row_ind(*)
-      integer(c_int), target :: coo_col_ind(*)
+      complex(c_float_complex), target :: coo_val(..)
+      integer(c_int), target :: coo_row_ind(..)
+      integer(c_int), target :: coo_col_ind(..)
       integer(c_int), value :: idx_base
       integer(c_int), value :: matrix_type
       integer(c_int), value :: uplo
@@ -59801,8 +59485,8 @@ contains
       type(c_ptr), value :: buffer_size
       integer(c_int) :: ccheck_matrix_coo_buffer_size
       ccheck_matrix_coo_buffer_size = rocsparse_ccheck_matrix_coo_buffer_size_raw(handle, m, n, &
-        nnz, c_loc(coo_val(1)), c_loc(coo_row_ind(1)), c_loc(coo_col_ind(1)), idx_base, &
-        matrix_type, uplo, storage, buffer_size)
+        nnz, c_loc(coo_val), c_loc(coo_row_ind), c_loc(coo_col_ind), idx_base, matrix_type, uplo, &
+        storage, buffer_size)
     end function rocsparse_ccheck_matrix_coo_buffer_size_native
 
     function rocsparse_ccheck_matrix_coo_buffer_size_typed(handle, m, n, nnz, coo_val, &
@@ -59838,9 +59522,9 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       integer(c_int), value :: nnz
-      complex(c_double_complex), target :: coo_val(*)
-      integer(c_int), target :: coo_row_ind(*)
-      integer(c_int), target :: coo_col_ind(*)
+      complex(c_double_complex), target :: coo_val(..)
+      integer(c_int), target :: coo_row_ind(..)
+      integer(c_int), target :: coo_col_ind(..)
       integer(c_int), value :: idx_base
       integer(c_int), value :: matrix_type
       integer(c_int), value :: uplo
@@ -59848,8 +59532,8 @@ contains
       type(c_ptr), value :: buffer_size
       integer(c_int) :: zcheck_matrix_coo_buffer_size
       zcheck_matrix_coo_buffer_size = rocsparse_zcheck_matrix_coo_buffer_size_raw(handle, m, n, &
-        nnz, c_loc(coo_val(1)), c_loc(coo_row_ind(1)), c_loc(coo_col_ind(1)), idx_base, &
-        matrix_type, uplo, storage, buffer_size)
+        nnz, c_loc(coo_val), c_loc(coo_row_ind), c_loc(coo_col_ind), idx_base, matrix_type, uplo, &
+        storage, buffer_size)
     end function rocsparse_zcheck_matrix_coo_buffer_size_native
 
     function rocsparse_zcheck_matrix_coo_buffer_size_typed(handle, m, n, nnz, coo_val, &
@@ -59885,19 +59569,19 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       integer(c_int), value :: nnz
-      real(c_float), target :: coo_val(*)
-      integer(c_int), target :: coo_row_ind(*)
-      integer(c_int), target :: coo_col_ind(*)
+      real(c_float), target :: coo_val(..)
+      integer(c_int), target :: coo_row_ind(..)
+      integer(c_int), target :: coo_col_ind(..)
       integer(c_int), value :: idx_base
       integer(c_int), value :: matrix_type
       integer(c_int), value :: uplo
       integer(c_int), value :: storage
-      integer(c_int), target :: data_status(*)
+      integer(c_int), target :: data_status(..)
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: scheck_matrix_coo
-      scheck_matrix_coo = rocsparse_scheck_matrix_coo_raw(handle, m, n, nnz, c_loc(coo_val(1)), &
-        c_loc(coo_row_ind(1)), c_loc(coo_col_ind(1)), idx_base, matrix_type, uplo, storage, c_loc( &
-        data_status(1)), temp_buffer)
+      scheck_matrix_coo = rocsparse_scheck_matrix_coo_raw(handle, m, n, nnz, c_loc(coo_val), &
+        c_loc(coo_row_ind), c_loc(coo_col_ind), idx_base, matrix_type, uplo, storage, c_loc( &
+        data_status), temp_buffer)
     end function rocsparse_scheck_matrix_coo_native
 
     function rocsparse_scheck_matrix_coo_typed(handle, m, n, nnz, coo_val, coo_row_ind, &
@@ -59933,19 +59617,19 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       integer(c_int), value :: nnz
-      real(c_double), target :: coo_val(*)
-      integer(c_int), target :: coo_row_ind(*)
-      integer(c_int), target :: coo_col_ind(*)
+      real(c_double), target :: coo_val(..)
+      integer(c_int), target :: coo_row_ind(..)
+      integer(c_int), target :: coo_col_ind(..)
       integer(c_int), value :: idx_base
       integer(c_int), value :: matrix_type
       integer(c_int), value :: uplo
       integer(c_int), value :: storage
-      integer(c_int), target :: data_status(*)
+      integer(c_int), target :: data_status(..)
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: dcheck_matrix_coo
-      dcheck_matrix_coo = rocsparse_dcheck_matrix_coo_raw(handle, m, n, nnz, c_loc(coo_val(1)), &
-        c_loc(coo_row_ind(1)), c_loc(coo_col_ind(1)), idx_base, matrix_type, uplo, storage, c_loc( &
-        data_status(1)), temp_buffer)
+      dcheck_matrix_coo = rocsparse_dcheck_matrix_coo_raw(handle, m, n, nnz, c_loc(coo_val), &
+        c_loc(coo_row_ind), c_loc(coo_col_ind), idx_base, matrix_type, uplo, storage, c_loc( &
+        data_status), temp_buffer)
     end function rocsparse_dcheck_matrix_coo_native
 
     function rocsparse_dcheck_matrix_coo_typed(handle, m, n, nnz, coo_val, coo_row_ind, &
@@ -59981,19 +59665,19 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       integer(c_int), value :: nnz
-      complex(c_float_complex), target :: coo_val(*)
-      integer(c_int), target :: coo_row_ind(*)
-      integer(c_int), target :: coo_col_ind(*)
+      complex(c_float_complex), target :: coo_val(..)
+      integer(c_int), target :: coo_row_ind(..)
+      integer(c_int), target :: coo_col_ind(..)
       integer(c_int), value :: idx_base
       integer(c_int), value :: matrix_type
       integer(c_int), value :: uplo
       integer(c_int), value :: storage
-      integer(c_int), target :: data_status(*)
+      integer(c_int), target :: data_status(..)
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: ccheck_matrix_coo
-      ccheck_matrix_coo = rocsparse_ccheck_matrix_coo_raw(handle, m, n, nnz, c_loc(coo_val(1)), &
-        c_loc(coo_row_ind(1)), c_loc(coo_col_ind(1)), idx_base, matrix_type, uplo, storage, c_loc( &
-        data_status(1)), temp_buffer)
+      ccheck_matrix_coo = rocsparse_ccheck_matrix_coo_raw(handle, m, n, nnz, c_loc(coo_val), &
+        c_loc(coo_row_ind), c_loc(coo_col_ind), idx_base, matrix_type, uplo, storage, c_loc( &
+        data_status), temp_buffer)
     end function rocsparse_ccheck_matrix_coo_native
 
     function rocsparse_ccheck_matrix_coo_typed(handle, m, n, nnz, coo_val, coo_row_ind, &
@@ -60029,19 +59713,19 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       integer(c_int), value :: nnz
-      complex(c_double_complex), target :: coo_val(*)
-      integer(c_int), target :: coo_row_ind(*)
-      integer(c_int), target :: coo_col_ind(*)
+      complex(c_double_complex), target :: coo_val(..)
+      integer(c_int), target :: coo_row_ind(..)
+      integer(c_int), target :: coo_col_ind(..)
       integer(c_int), value :: idx_base
       integer(c_int), value :: matrix_type
       integer(c_int), value :: uplo
       integer(c_int), value :: storage
-      integer(c_int), target :: data_status(*)
+      integer(c_int), target :: data_status(..)
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: zcheck_matrix_coo
-      zcheck_matrix_coo = rocsparse_zcheck_matrix_coo_raw(handle, m, n, nnz, c_loc(coo_val(1)), &
-        c_loc(coo_row_ind(1)), c_loc(coo_col_ind(1)), idx_base, matrix_type, uplo, storage, c_loc( &
-        data_status(1)), temp_buffer)
+      zcheck_matrix_coo = rocsparse_zcheck_matrix_coo_raw(handle, m, n, nnz, c_loc(coo_val), &
+        c_loc(coo_row_ind), c_loc(coo_col_ind), idx_base, matrix_type, uplo, storage, c_loc( &
+        data_status), temp_buffer)
     end function rocsparse_zcheck_matrix_coo_native
 
     function rocsparse_zcheck_matrix_coo_typed(handle, m, n, nnz, coo_val, coo_row_ind, &
@@ -60077,9 +59761,9 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       integer(c_int), value :: nnz
-      real(c_float), target :: csc_val(*)
-      integer(c_int), target :: csc_col_ptr(*)
-      integer(c_int), target :: csc_row_ind(*)
+      real(c_float), target :: csc_val(..)
+      integer(c_int), target :: csc_col_ptr(..)
+      integer(c_int), target :: csc_row_ind(..)
       integer(c_int), value :: idx_base
       integer(c_int), value :: matrix_type
       integer(c_int), value :: uplo
@@ -60087,8 +59771,8 @@ contains
       type(c_ptr), value :: buffer_size
       integer(c_int) :: scheck_matrix_csc_buffer_size
       scheck_matrix_csc_buffer_size = rocsparse_scheck_matrix_csc_buffer_size_raw(handle, m, n, &
-        nnz, c_loc(csc_val(1)), c_loc(csc_col_ptr(1)), c_loc(csc_row_ind(1)), idx_base, &
-        matrix_type, uplo, storage, buffer_size)
+        nnz, c_loc(csc_val), c_loc(csc_col_ptr), c_loc(csc_row_ind), idx_base, matrix_type, uplo, &
+        storage, buffer_size)
     end function rocsparse_scheck_matrix_csc_buffer_size_native
 
     function rocsparse_scheck_matrix_csc_buffer_size_typed(handle, m, n, nnz, csc_val, &
@@ -60124,9 +59808,9 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       integer(c_int), value :: nnz
-      real(c_double), target :: csc_val(*)
-      integer(c_int), target :: csc_col_ptr(*)
-      integer(c_int), target :: csc_row_ind(*)
+      real(c_double), target :: csc_val(..)
+      integer(c_int), target :: csc_col_ptr(..)
+      integer(c_int), target :: csc_row_ind(..)
       integer(c_int), value :: idx_base
       integer(c_int), value :: matrix_type
       integer(c_int), value :: uplo
@@ -60134,8 +59818,8 @@ contains
       type(c_ptr), value :: buffer_size
       integer(c_int) :: dcheck_matrix_csc_buffer_size
       dcheck_matrix_csc_buffer_size = rocsparse_dcheck_matrix_csc_buffer_size_raw(handle, m, n, &
-        nnz, c_loc(csc_val(1)), c_loc(csc_col_ptr(1)), c_loc(csc_row_ind(1)), idx_base, &
-        matrix_type, uplo, storage, buffer_size)
+        nnz, c_loc(csc_val), c_loc(csc_col_ptr), c_loc(csc_row_ind), idx_base, matrix_type, uplo, &
+        storage, buffer_size)
     end function rocsparse_dcheck_matrix_csc_buffer_size_native
 
     function rocsparse_dcheck_matrix_csc_buffer_size_typed(handle, m, n, nnz, csc_val, &
@@ -60171,9 +59855,9 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       integer(c_int), value :: nnz
-      complex(c_float_complex), target :: csc_val(*)
-      integer(c_int), target :: csc_col_ptr(*)
-      integer(c_int), target :: csc_row_ind(*)
+      complex(c_float_complex), target :: csc_val(..)
+      integer(c_int), target :: csc_col_ptr(..)
+      integer(c_int), target :: csc_row_ind(..)
       integer(c_int), value :: idx_base
       integer(c_int), value :: matrix_type
       integer(c_int), value :: uplo
@@ -60181,8 +59865,8 @@ contains
       type(c_ptr), value :: buffer_size
       integer(c_int) :: ccheck_matrix_csc_buffer_size
       ccheck_matrix_csc_buffer_size = rocsparse_ccheck_matrix_csc_buffer_size_raw(handle, m, n, &
-        nnz, c_loc(csc_val(1)), c_loc(csc_col_ptr(1)), c_loc(csc_row_ind(1)), idx_base, &
-        matrix_type, uplo, storage, buffer_size)
+        nnz, c_loc(csc_val), c_loc(csc_col_ptr), c_loc(csc_row_ind), idx_base, matrix_type, uplo, &
+        storage, buffer_size)
     end function rocsparse_ccheck_matrix_csc_buffer_size_native
 
     function rocsparse_ccheck_matrix_csc_buffer_size_typed(handle, m, n, nnz, csc_val, &
@@ -60218,9 +59902,9 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       integer(c_int), value :: nnz
-      complex(c_double_complex), target :: csc_val(*)
-      integer(c_int), target :: csc_col_ptr(*)
-      integer(c_int), target :: csc_row_ind(*)
+      complex(c_double_complex), target :: csc_val(..)
+      integer(c_int), target :: csc_col_ptr(..)
+      integer(c_int), target :: csc_row_ind(..)
       integer(c_int), value :: idx_base
       integer(c_int), value :: matrix_type
       integer(c_int), value :: uplo
@@ -60228,8 +59912,8 @@ contains
       type(c_ptr), value :: buffer_size
       integer(c_int) :: zcheck_matrix_csc_buffer_size
       zcheck_matrix_csc_buffer_size = rocsparse_zcheck_matrix_csc_buffer_size_raw(handle, m, n, &
-        nnz, c_loc(csc_val(1)), c_loc(csc_col_ptr(1)), c_loc(csc_row_ind(1)), idx_base, &
-        matrix_type, uplo, storage, buffer_size)
+        nnz, c_loc(csc_val), c_loc(csc_col_ptr), c_loc(csc_row_ind), idx_base, matrix_type, uplo, &
+        storage, buffer_size)
     end function rocsparse_zcheck_matrix_csc_buffer_size_native
 
     function rocsparse_zcheck_matrix_csc_buffer_size_typed(handle, m, n, nnz, csc_val, &
@@ -60265,19 +59949,19 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       integer(c_int), value :: nnz
-      real(c_float), target :: csc_val(*)
-      integer(c_int), target :: csc_col_ptr(*)
-      integer(c_int), target :: csc_row_ind(*)
+      real(c_float), target :: csc_val(..)
+      integer(c_int), target :: csc_col_ptr(..)
+      integer(c_int), target :: csc_row_ind(..)
       integer(c_int), value :: idx_base
       integer(c_int), value :: matrix_type
       integer(c_int), value :: uplo
       integer(c_int), value :: storage
-      integer(c_int), target :: data_status(*)
+      integer(c_int), target :: data_status(..)
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: scheck_matrix_csc
-      scheck_matrix_csc = rocsparse_scheck_matrix_csc_raw(handle, m, n, nnz, c_loc(csc_val(1)), &
-        c_loc(csc_col_ptr(1)), c_loc(csc_row_ind(1)), idx_base, matrix_type, uplo, storage, c_loc( &
-        data_status(1)), temp_buffer)
+      scheck_matrix_csc = rocsparse_scheck_matrix_csc_raw(handle, m, n, nnz, c_loc(csc_val), &
+        c_loc(csc_col_ptr), c_loc(csc_row_ind), idx_base, matrix_type, uplo, storage, c_loc( &
+        data_status), temp_buffer)
     end function rocsparse_scheck_matrix_csc_native
 
     function rocsparse_scheck_matrix_csc_typed(handle, m, n, nnz, csc_val, csc_col_ptr, &
@@ -60313,19 +59997,19 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       integer(c_int), value :: nnz
-      real(c_double), target :: csc_val(*)
-      integer(c_int), target :: csc_col_ptr(*)
-      integer(c_int), target :: csc_row_ind(*)
+      real(c_double), target :: csc_val(..)
+      integer(c_int), target :: csc_col_ptr(..)
+      integer(c_int), target :: csc_row_ind(..)
       integer(c_int), value :: idx_base
       integer(c_int), value :: matrix_type
       integer(c_int), value :: uplo
       integer(c_int), value :: storage
-      integer(c_int), target :: data_status(*)
+      integer(c_int), target :: data_status(..)
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: dcheck_matrix_csc
-      dcheck_matrix_csc = rocsparse_dcheck_matrix_csc_raw(handle, m, n, nnz, c_loc(csc_val(1)), &
-        c_loc(csc_col_ptr(1)), c_loc(csc_row_ind(1)), idx_base, matrix_type, uplo, storage, c_loc( &
-        data_status(1)), temp_buffer)
+      dcheck_matrix_csc = rocsparse_dcheck_matrix_csc_raw(handle, m, n, nnz, c_loc(csc_val), &
+        c_loc(csc_col_ptr), c_loc(csc_row_ind), idx_base, matrix_type, uplo, storage, c_loc( &
+        data_status), temp_buffer)
     end function rocsparse_dcheck_matrix_csc_native
 
     function rocsparse_dcheck_matrix_csc_typed(handle, m, n, nnz, csc_val, csc_col_ptr, &
@@ -60361,19 +60045,19 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       integer(c_int), value :: nnz
-      complex(c_float_complex), target :: csc_val(*)
-      integer(c_int), target :: csc_col_ptr(*)
-      integer(c_int), target :: csc_row_ind(*)
+      complex(c_float_complex), target :: csc_val(..)
+      integer(c_int), target :: csc_col_ptr(..)
+      integer(c_int), target :: csc_row_ind(..)
       integer(c_int), value :: idx_base
       integer(c_int), value :: matrix_type
       integer(c_int), value :: uplo
       integer(c_int), value :: storage
-      integer(c_int), target :: data_status(*)
+      integer(c_int), target :: data_status(..)
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: ccheck_matrix_csc
-      ccheck_matrix_csc = rocsparse_ccheck_matrix_csc_raw(handle, m, n, nnz, c_loc(csc_val(1)), &
-        c_loc(csc_col_ptr(1)), c_loc(csc_row_ind(1)), idx_base, matrix_type, uplo, storage, c_loc( &
-        data_status(1)), temp_buffer)
+      ccheck_matrix_csc = rocsparse_ccheck_matrix_csc_raw(handle, m, n, nnz, c_loc(csc_val), &
+        c_loc(csc_col_ptr), c_loc(csc_row_ind), idx_base, matrix_type, uplo, storage, c_loc( &
+        data_status), temp_buffer)
     end function rocsparse_ccheck_matrix_csc_native
 
     function rocsparse_ccheck_matrix_csc_typed(handle, m, n, nnz, csc_val, csc_col_ptr, &
@@ -60409,19 +60093,19 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       integer(c_int), value :: nnz
-      complex(c_double_complex), target :: csc_val(*)
-      integer(c_int), target :: csc_col_ptr(*)
-      integer(c_int), target :: csc_row_ind(*)
+      complex(c_double_complex), target :: csc_val(..)
+      integer(c_int), target :: csc_col_ptr(..)
+      integer(c_int), target :: csc_row_ind(..)
       integer(c_int), value :: idx_base
       integer(c_int), value :: matrix_type
       integer(c_int), value :: uplo
       integer(c_int), value :: storage
-      integer(c_int), target :: data_status(*)
+      integer(c_int), target :: data_status(..)
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: zcheck_matrix_csc
-      zcheck_matrix_csc = rocsparse_zcheck_matrix_csc_raw(handle, m, n, nnz, c_loc(csc_val(1)), &
-        c_loc(csc_col_ptr(1)), c_loc(csc_row_ind(1)), idx_base, matrix_type, uplo, storage, c_loc( &
-        data_status(1)), temp_buffer)
+      zcheck_matrix_csc = rocsparse_zcheck_matrix_csc_raw(handle, m, n, nnz, c_loc(csc_val), &
+        c_loc(csc_col_ptr), c_loc(csc_row_ind), idx_base, matrix_type, uplo, storage, c_loc( &
+        data_status), temp_buffer)
     end function rocsparse_zcheck_matrix_csc_native
 
     function rocsparse_zcheck_matrix_csc_typed(handle, m, n, nnz, csc_val, csc_col_ptr, &
@@ -60457,9 +60141,9 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       integer(c_int), value :: nnz
-      real(c_float), target :: csr_val(*)
-      integer(c_int), target :: csr_row_ptr(*)
-      integer(c_int), target :: csr_col_ind(*)
+      real(c_float), target :: csr_val(..)
+      integer(c_int), target :: csr_row_ptr(..)
+      integer(c_int), target :: csr_col_ind(..)
       integer(c_int), value :: idx_base
       integer(c_int), value :: matrix_type
       integer(c_int), value :: uplo
@@ -60467,8 +60151,8 @@ contains
       type(c_ptr), value :: buffer_size
       integer(c_int) :: scheck_matrix_csr_buffer_size
       scheck_matrix_csr_buffer_size = rocsparse_scheck_matrix_csr_buffer_size_raw(handle, m, n, &
-        nnz, c_loc(csr_val(1)), c_loc(csr_row_ptr(1)), c_loc(csr_col_ind(1)), idx_base, &
-        matrix_type, uplo, storage, buffer_size)
+        nnz, c_loc(csr_val), c_loc(csr_row_ptr), c_loc(csr_col_ind), idx_base, matrix_type, uplo, &
+        storage, buffer_size)
     end function rocsparse_scheck_matrix_csr_buffer_size_native
 
     function rocsparse_scheck_matrix_csr_buffer_size_typed(handle, m, n, nnz, csr_val, &
@@ -60504,9 +60188,9 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       integer(c_int), value :: nnz
-      real(c_double), target :: csr_val(*)
-      integer(c_int), target :: csr_row_ptr(*)
-      integer(c_int), target :: csr_col_ind(*)
+      real(c_double), target :: csr_val(..)
+      integer(c_int), target :: csr_row_ptr(..)
+      integer(c_int), target :: csr_col_ind(..)
       integer(c_int), value :: idx_base
       integer(c_int), value :: matrix_type
       integer(c_int), value :: uplo
@@ -60514,8 +60198,8 @@ contains
       type(c_ptr), value :: buffer_size
       integer(c_int) :: dcheck_matrix_csr_buffer_size
       dcheck_matrix_csr_buffer_size = rocsparse_dcheck_matrix_csr_buffer_size_raw(handle, m, n, &
-        nnz, c_loc(csr_val(1)), c_loc(csr_row_ptr(1)), c_loc(csr_col_ind(1)), idx_base, &
-        matrix_type, uplo, storage, buffer_size)
+        nnz, c_loc(csr_val), c_loc(csr_row_ptr), c_loc(csr_col_ind), idx_base, matrix_type, uplo, &
+        storage, buffer_size)
     end function rocsparse_dcheck_matrix_csr_buffer_size_native
 
     function rocsparse_dcheck_matrix_csr_buffer_size_typed(handle, m, n, nnz, csr_val, &
@@ -60551,9 +60235,9 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       integer(c_int), value :: nnz
-      complex(c_float_complex), target :: csr_val(*)
-      integer(c_int), target :: csr_row_ptr(*)
-      integer(c_int), target :: csr_col_ind(*)
+      complex(c_float_complex), target :: csr_val(..)
+      integer(c_int), target :: csr_row_ptr(..)
+      integer(c_int), target :: csr_col_ind(..)
       integer(c_int), value :: idx_base
       integer(c_int), value :: matrix_type
       integer(c_int), value :: uplo
@@ -60561,8 +60245,8 @@ contains
       type(c_ptr), value :: buffer_size
       integer(c_int) :: ccheck_matrix_csr_buffer_size
       ccheck_matrix_csr_buffer_size = rocsparse_ccheck_matrix_csr_buffer_size_raw(handle, m, n, &
-        nnz, c_loc(csr_val(1)), c_loc(csr_row_ptr(1)), c_loc(csr_col_ind(1)), idx_base, &
-        matrix_type, uplo, storage, buffer_size)
+        nnz, c_loc(csr_val), c_loc(csr_row_ptr), c_loc(csr_col_ind), idx_base, matrix_type, uplo, &
+        storage, buffer_size)
     end function rocsparse_ccheck_matrix_csr_buffer_size_native
 
     function rocsparse_ccheck_matrix_csr_buffer_size_typed(handle, m, n, nnz, csr_val, &
@@ -60598,9 +60282,9 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       integer(c_int), value :: nnz
-      complex(c_double_complex), target :: csr_val(*)
-      integer(c_int), target :: csr_row_ptr(*)
-      integer(c_int), target :: csr_col_ind(*)
+      complex(c_double_complex), target :: csr_val(..)
+      integer(c_int), target :: csr_row_ptr(..)
+      integer(c_int), target :: csr_col_ind(..)
       integer(c_int), value :: idx_base
       integer(c_int), value :: matrix_type
       integer(c_int), value :: uplo
@@ -60608,8 +60292,8 @@ contains
       type(c_ptr), value :: buffer_size
       integer(c_int) :: zcheck_matrix_csr_buffer_size
       zcheck_matrix_csr_buffer_size = rocsparse_zcheck_matrix_csr_buffer_size_raw(handle, m, n, &
-        nnz, c_loc(csr_val(1)), c_loc(csr_row_ptr(1)), c_loc(csr_col_ind(1)), idx_base, &
-        matrix_type, uplo, storage, buffer_size)
+        nnz, c_loc(csr_val), c_loc(csr_row_ptr), c_loc(csr_col_ind), idx_base, matrix_type, uplo, &
+        storage, buffer_size)
     end function rocsparse_zcheck_matrix_csr_buffer_size_native
 
     function rocsparse_zcheck_matrix_csr_buffer_size_typed(handle, m, n, nnz, csr_val, &
@@ -60645,19 +60329,19 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       integer(c_int), value :: nnz
-      real(c_float), target :: csr_val(*)
-      integer(c_int), target :: csr_row_ptr(*)
-      integer(c_int), target :: csr_col_ind(*)
+      real(c_float), target :: csr_val(..)
+      integer(c_int), target :: csr_row_ptr(..)
+      integer(c_int), target :: csr_col_ind(..)
       integer(c_int), value :: idx_base
       integer(c_int), value :: matrix_type
       integer(c_int), value :: uplo
       integer(c_int), value :: storage
-      integer(c_int), target :: data_status(*)
+      integer(c_int), target :: data_status(..)
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: scheck_matrix_csr
-      scheck_matrix_csr = rocsparse_scheck_matrix_csr_raw(handle, m, n, nnz, c_loc(csr_val(1)), &
-        c_loc(csr_row_ptr(1)), c_loc(csr_col_ind(1)), idx_base, matrix_type, uplo, storage, c_loc( &
-        data_status(1)), temp_buffer)
+      scheck_matrix_csr = rocsparse_scheck_matrix_csr_raw(handle, m, n, nnz, c_loc(csr_val), &
+        c_loc(csr_row_ptr), c_loc(csr_col_ind), idx_base, matrix_type, uplo, storage, c_loc( &
+        data_status), temp_buffer)
     end function rocsparse_scheck_matrix_csr_native
 
     function rocsparse_scheck_matrix_csr_typed(handle, m, n, nnz, csr_val, csr_row_ptr, &
@@ -60693,19 +60377,19 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       integer(c_int), value :: nnz
-      real(c_double), target :: csr_val(*)
-      integer(c_int), target :: csr_row_ptr(*)
-      integer(c_int), target :: csr_col_ind(*)
+      real(c_double), target :: csr_val(..)
+      integer(c_int), target :: csr_row_ptr(..)
+      integer(c_int), target :: csr_col_ind(..)
       integer(c_int), value :: idx_base
       integer(c_int), value :: matrix_type
       integer(c_int), value :: uplo
       integer(c_int), value :: storage
-      integer(c_int), target :: data_status(*)
+      integer(c_int), target :: data_status(..)
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: dcheck_matrix_csr
-      dcheck_matrix_csr = rocsparse_dcheck_matrix_csr_raw(handle, m, n, nnz, c_loc(csr_val(1)), &
-        c_loc(csr_row_ptr(1)), c_loc(csr_col_ind(1)), idx_base, matrix_type, uplo, storage, c_loc( &
-        data_status(1)), temp_buffer)
+      dcheck_matrix_csr = rocsparse_dcheck_matrix_csr_raw(handle, m, n, nnz, c_loc(csr_val), &
+        c_loc(csr_row_ptr), c_loc(csr_col_ind), idx_base, matrix_type, uplo, storage, c_loc( &
+        data_status), temp_buffer)
     end function rocsparse_dcheck_matrix_csr_native
 
     function rocsparse_dcheck_matrix_csr_typed(handle, m, n, nnz, csr_val, csr_row_ptr, &
@@ -60741,19 +60425,19 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       integer(c_int), value :: nnz
-      complex(c_float_complex), target :: csr_val(*)
-      integer(c_int), target :: csr_row_ptr(*)
-      integer(c_int), target :: csr_col_ind(*)
+      complex(c_float_complex), target :: csr_val(..)
+      integer(c_int), target :: csr_row_ptr(..)
+      integer(c_int), target :: csr_col_ind(..)
       integer(c_int), value :: idx_base
       integer(c_int), value :: matrix_type
       integer(c_int), value :: uplo
       integer(c_int), value :: storage
-      integer(c_int), target :: data_status(*)
+      integer(c_int), target :: data_status(..)
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: ccheck_matrix_csr
-      ccheck_matrix_csr = rocsparse_ccheck_matrix_csr_raw(handle, m, n, nnz, c_loc(csr_val(1)), &
-        c_loc(csr_row_ptr(1)), c_loc(csr_col_ind(1)), idx_base, matrix_type, uplo, storage, c_loc( &
-        data_status(1)), temp_buffer)
+      ccheck_matrix_csr = rocsparse_ccheck_matrix_csr_raw(handle, m, n, nnz, c_loc(csr_val), &
+        c_loc(csr_row_ptr), c_loc(csr_col_ind), idx_base, matrix_type, uplo, storage, c_loc( &
+        data_status), temp_buffer)
     end function rocsparse_ccheck_matrix_csr_native
 
     function rocsparse_ccheck_matrix_csr_typed(handle, m, n, nnz, csr_val, csr_row_ptr, &
@@ -60789,19 +60473,19 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       integer(c_int), value :: nnz
-      complex(c_double_complex), target :: csr_val(*)
-      integer(c_int), target :: csr_row_ptr(*)
-      integer(c_int), target :: csr_col_ind(*)
+      complex(c_double_complex), target :: csr_val(..)
+      integer(c_int), target :: csr_row_ptr(..)
+      integer(c_int), target :: csr_col_ind(..)
       integer(c_int), value :: idx_base
       integer(c_int), value :: matrix_type
       integer(c_int), value :: uplo
       integer(c_int), value :: storage
-      integer(c_int), target :: data_status(*)
+      integer(c_int), target :: data_status(..)
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: zcheck_matrix_csr
-      zcheck_matrix_csr = rocsparse_zcheck_matrix_csr_raw(handle, m, n, nnz, c_loc(csr_val(1)), &
-        c_loc(csr_row_ptr(1)), c_loc(csr_col_ind(1)), idx_base, matrix_type, uplo, storage, c_loc( &
-        data_status(1)), temp_buffer)
+      zcheck_matrix_csr = rocsparse_zcheck_matrix_csr_raw(handle, m, n, nnz, c_loc(csr_val), &
+        c_loc(csr_row_ptr), c_loc(csr_col_ind), idx_base, matrix_type, uplo, storage, c_loc( &
+        data_status), temp_buffer)
     end function rocsparse_zcheck_matrix_csr_native
 
     function rocsparse_zcheck_matrix_csr_typed(handle, m, n, nnz, csr_val, csr_row_ptr, &
@@ -60837,8 +60521,8 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       integer(c_int), value :: ell_width
-      real(c_float), target :: ell_val(*)
-      integer(c_int), target :: ell_col_ind(*)
+      real(c_float), target :: ell_val(..)
+      integer(c_int), target :: ell_col_ind(..)
       integer(c_int), value :: idx_base
       integer(c_int), value :: matrix_type
       integer(c_int), value :: uplo
@@ -60846,7 +60530,7 @@ contains
       type(c_ptr), value :: buffer_size
       integer(c_int) :: scheck_matrix_ell_buffer_size
       scheck_matrix_ell_buffer_size = rocsparse_scheck_matrix_ell_buffer_size_raw(handle, m, n, &
-        ell_width, c_loc(ell_val(1)), c_loc(ell_col_ind(1)), idx_base, matrix_type, uplo, storage, &
+        ell_width, c_loc(ell_val), c_loc(ell_col_ind), idx_base, matrix_type, uplo, storage, &
         buffer_size)
     end function rocsparse_scheck_matrix_ell_buffer_size_native
 
@@ -60881,8 +60565,8 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       integer(c_int), value :: ell_width
-      real(c_double), target :: ell_val(*)
-      integer(c_int), target :: ell_col_ind(*)
+      real(c_double), target :: ell_val(..)
+      integer(c_int), target :: ell_col_ind(..)
       integer(c_int), value :: idx_base
       integer(c_int), value :: matrix_type
       integer(c_int), value :: uplo
@@ -60890,7 +60574,7 @@ contains
       type(c_ptr), value :: buffer_size
       integer(c_int) :: dcheck_matrix_ell_buffer_size
       dcheck_matrix_ell_buffer_size = rocsparse_dcheck_matrix_ell_buffer_size_raw(handle, m, n, &
-        ell_width, c_loc(ell_val(1)), c_loc(ell_col_ind(1)), idx_base, matrix_type, uplo, storage, &
+        ell_width, c_loc(ell_val), c_loc(ell_col_ind), idx_base, matrix_type, uplo, storage, &
         buffer_size)
     end function rocsparse_dcheck_matrix_ell_buffer_size_native
 
@@ -60925,8 +60609,8 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       integer(c_int), value :: ell_width
-      complex(c_float_complex), target :: ell_val(*)
-      integer(c_int), target :: ell_col_ind(*)
+      complex(c_float_complex), target :: ell_val(..)
+      integer(c_int), target :: ell_col_ind(..)
       integer(c_int), value :: idx_base
       integer(c_int), value :: matrix_type
       integer(c_int), value :: uplo
@@ -60934,7 +60618,7 @@ contains
       type(c_ptr), value :: buffer_size
       integer(c_int) :: ccheck_matrix_ell_buffer_size
       ccheck_matrix_ell_buffer_size = rocsparse_ccheck_matrix_ell_buffer_size_raw(handle, m, n, &
-        ell_width, c_loc(ell_val(1)), c_loc(ell_col_ind(1)), idx_base, matrix_type, uplo, storage, &
+        ell_width, c_loc(ell_val), c_loc(ell_col_ind), idx_base, matrix_type, uplo, storage, &
         buffer_size)
     end function rocsparse_ccheck_matrix_ell_buffer_size_native
 
@@ -60969,8 +60653,8 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       integer(c_int), value :: ell_width
-      complex(c_double_complex), target :: ell_val(*)
-      integer(c_int), target :: ell_col_ind(*)
+      complex(c_double_complex), target :: ell_val(..)
+      integer(c_int), target :: ell_col_ind(..)
       integer(c_int), value :: idx_base
       integer(c_int), value :: matrix_type
       integer(c_int), value :: uplo
@@ -60978,7 +60662,7 @@ contains
       type(c_ptr), value :: buffer_size
       integer(c_int) :: zcheck_matrix_ell_buffer_size
       zcheck_matrix_ell_buffer_size = rocsparse_zcheck_matrix_ell_buffer_size_raw(handle, m, n, &
-        ell_width, c_loc(ell_val(1)), c_loc(ell_col_ind(1)), idx_base, matrix_type, uplo, storage, &
+        ell_width, c_loc(ell_val), c_loc(ell_col_ind), idx_base, matrix_type, uplo, storage, &
         buffer_size)
     end function rocsparse_zcheck_matrix_ell_buffer_size_native
 
@@ -61012,18 +60696,17 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       integer(c_int), value :: ell_width
-      real(c_float), target :: ell_val(*)
-      integer(c_int), target :: ell_col_ind(*)
+      real(c_float), target :: ell_val(..)
+      integer(c_int), target :: ell_col_ind(..)
       integer(c_int), value :: idx_base
       integer(c_int), value :: matrix_type
       integer(c_int), value :: uplo
       integer(c_int), value :: storage
-      integer(c_int), target :: data_status(*)
+      integer(c_int), target :: data_status(..)
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: scheck_matrix_ell
-      scheck_matrix_ell = rocsparse_scheck_matrix_ell_raw(handle, m, n, ell_width, c_loc(ell_val( &
-        1)), c_loc(ell_col_ind(1)), idx_base, matrix_type, uplo, storage, c_loc(data_status(1)), &
-        temp_buffer)
+      scheck_matrix_ell = rocsparse_scheck_matrix_ell_raw(handle, m, n, ell_width, c_loc(ell_val), &
+        c_loc(ell_col_ind), idx_base, matrix_type, uplo, storage, c_loc(data_status), temp_buffer)
     end function rocsparse_scheck_matrix_ell_native
 
     function rocsparse_scheck_matrix_ell_typed(handle, m, n, ell_width, ell_val, ell_col_ind, &
@@ -61056,18 +60739,17 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       integer(c_int), value :: ell_width
-      real(c_double), target :: ell_val(*)
-      integer(c_int), target :: ell_col_ind(*)
+      real(c_double), target :: ell_val(..)
+      integer(c_int), target :: ell_col_ind(..)
       integer(c_int), value :: idx_base
       integer(c_int), value :: matrix_type
       integer(c_int), value :: uplo
       integer(c_int), value :: storage
-      integer(c_int), target :: data_status(*)
+      integer(c_int), target :: data_status(..)
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: dcheck_matrix_ell
-      dcheck_matrix_ell = rocsparse_dcheck_matrix_ell_raw(handle, m, n, ell_width, c_loc(ell_val( &
-        1)), c_loc(ell_col_ind(1)), idx_base, matrix_type, uplo, storage, c_loc(data_status(1)), &
-        temp_buffer)
+      dcheck_matrix_ell = rocsparse_dcheck_matrix_ell_raw(handle, m, n, ell_width, c_loc(ell_val), &
+        c_loc(ell_col_ind), idx_base, matrix_type, uplo, storage, c_loc(data_status), temp_buffer)
     end function rocsparse_dcheck_matrix_ell_native
 
     function rocsparse_dcheck_matrix_ell_typed(handle, m, n, ell_width, ell_val, ell_col_ind, &
@@ -61100,18 +60782,17 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       integer(c_int), value :: ell_width
-      complex(c_float_complex), target :: ell_val(*)
-      integer(c_int), target :: ell_col_ind(*)
+      complex(c_float_complex), target :: ell_val(..)
+      integer(c_int), target :: ell_col_ind(..)
       integer(c_int), value :: idx_base
       integer(c_int), value :: matrix_type
       integer(c_int), value :: uplo
       integer(c_int), value :: storage
-      integer(c_int), target :: data_status(*)
+      integer(c_int), target :: data_status(..)
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: ccheck_matrix_ell
-      ccheck_matrix_ell = rocsparse_ccheck_matrix_ell_raw(handle, m, n, ell_width, c_loc(ell_val( &
-        1)), c_loc(ell_col_ind(1)), idx_base, matrix_type, uplo, storage, c_loc(data_status(1)), &
-        temp_buffer)
+      ccheck_matrix_ell = rocsparse_ccheck_matrix_ell_raw(handle, m, n, ell_width, c_loc(ell_val), &
+        c_loc(ell_col_ind), idx_base, matrix_type, uplo, storage, c_loc(data_status), temp_buffer)
     end function rocsparse_ccheck_matrix_ell_native
 
     function rocsparse_ccheck_matrix_ell_typed(handle, m, n, ell_width, ell_val, ell_col_ind, &
@@ -61144,18 +60825,17 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       integer(c_int), value :: ell_width
-      complex(c_double_complex), target :: ell_val(*)
-      integer(c_int), target :: ell_col_ind(*)
+      complex(c_double_complex), target :: ell_val(..)
+      integer(c_int), target :: ell_col_ind(..)
       integer(c_int), value :: idx_base
       integer(c_int), value :: matrix_type
       integer(c_int), value :: uplo
       integer(c_int), value :: storage
-      integer(c_int), target :: data_status(*)
+      integer(c_int), target :: data_status(..)
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: zcheck_matrix_ell
-      zcheck_matrix_ell = rocsparse_zcheck_matrix_ell_raw(handle, m, n, ell_width, c_loc(ell_val( &
-        1)), c_loc(ell_col_ind(1)), idx_base, matrix_type, uplo, storage, c_loc(data_status(1)), &
-        temp_buffer)
+      zcheck_matrix_ell = rocsparse_zcheck_matrix_ell_raw(handle, m, n, ell_width, c_loc(ell_val), &
+        c_loc(ell_col_ind), idx_base, matrix_type, uplo, storage, c_loc(data_status), temp_buffer)
     end function rocsparse_zcheck_matrix_ell_native
 
     function rocsparse_zcheck_matrix_ell_typed(handle, m, n, ell_width, ell_val, ell_col_ind, &
@@ -61192,9 +60872,9 @@ contains
       integer(c_int), value :: nnzb
       integer(c_int), value :: row_block_dim
       integer(c_int), value :: col_block_dim
-      real(c_float), target :: bsc_val(*)
-      integer(c_int), target :: bsc_col_ptr(*)
-      integer(c_int), target :: bsc_row_ind(*)
+      real(c_float), target :: bsc_val(..)
+      integer(c_int), target :: bsc_col_ptr(..)
+      integer(c_int), target :: bsc_row_ind(..)
       integer(c_int), value :: idx_base
       integer(c_int), value :: matrix_type
       integer(c_int), value :: uplo
@@ -61202,8 +60882,8 @@ contains
       type(c_ptr), value :: buffer_size
       integer(c_int) :: scheck_matrix_gebsc_buffer_size
       scheck_matrix_gebsc_buffer_size = rocsparse_scheck_matrix_gebsc_buffer_size_raw(handle, dir, &
-        mb, nb, nnzb, row_block_dim, col_block_dim, c_loc(bsc_val(1)), c_loc(bsc_col_ptr(1)), &
-        c_loc(bsc_row_ind(1)), idx_base, matrix_type, uplo, storage, buffer_size)
+        mb, nb, nnzb, row_block_dim, col_block_dim, c_loc(bsc_val), c_loc(bsc_col_ptr), c_loc( &
+        bsc_row_ind), idx_base, matrix_type, uplo, storage, buffer_size)
     end function rocsparse_scheck_matrix_gebsc_buffer_size_native
 
     function rocsparse_scheck_matrix_gebsc_buffer_size_typed(handle, dir, mb, nb, nnzb, &
@@ -61245,9 +60925,9 @@ contains
       integer(c_int), value :: nnzb
       integer(c_int), value :: row_block_dim
       integer(c_int), value :: col_block_dim
-      real(c_double), target :: bsc_val(*)
-      integer(c_int), target :: bsc_col_ptr(*)
-      integer(c_int), target :: bsc_row_ind(*)
+      real(c_double), target :: bsc_val(..)
+      integer(c_int), target :: bsc_col_ptr(..)
+      integer(c_int), target :: bsc_row_ind(..)
       integer(c_int), value :: idx_base
       integer(c_int), value :: matrix_type
       integer(c_int), value :: uplo
@@ -61255,8 +60935,8 @@ contains
       type(c_ptr), value :: buffer_size
       integer(c_int) :: dcheck_matrix_gebsc_buffer_size
       dcheck_matrix_gebsc_buffer_size = rocsparse_dcheck_matrix_gebsc_buffer_size_raw(handle, dir, &
-        mb, nb, nnzb, row_block_dim, col_block_dim, c_loc(bsc_val(1)), c_loc(bsc_col_ptr(1)), &
-        c_loc(bsc_row_ind(1)), idx_base, matrix_type, uplo, storage, buffer_size)
+        mb, nb, nnzb, row_block_dim, col_block_dim, c_loc(bsc_val), c_loc(bsc_col_ptr), c_loc( &
+        bsc_row_ind), idx_base, matrix_type, uplo, storage, buffer_size)
     end function rocsparse_dcheck_matrix_gebsc_buffer_size_native
 
     function rocsparse_dcheck_matrix_gebsc_buffer_size_typed(handle, dir, mb, nb, nnzb, &
@@ -61298,9 +60978,9 @@ contains
       integer(c_int), value :: nnzb
       integer(c_int), value :: row_block_dim
       integer(c_int), value :: col_block_dim
-      complex(c_float_complex), target :: bsc_val(*)
-      integer(c_int), target :: bsc_col_ptr(*)
-      integer(c_int), target :: bsc_row_ind(*)
+      complex(c_float_complex), target :: bsc_val(..)
+      integer(c_int), target :: bsc_col_ptr(..)
+      integer(c_int), target :: bsc_row_ind(..)
       integer(c_int), value :: idx_base
       integer(c_int), value :: matrix_type
       integer(c_int), value :: uplo
@@ -61308,8 +60988,8 @@ contains
       type(c_ptr), value :: buffer_size
       integer(c_int) :: ccheck_matrix_gebsc_buffer_size
       ccheck_matrix_gebsc_buffer_size = rocsparse_ccheck_matrix_gebsc_buffer_size_raw(handle, dir, &
-        mb, nb, nnzb, row_block_dim, col_block_dim, c_loc(bsc_val(1)), c_loc(bsc_col_ptr(1)), &
-        c_loc(bsc_row_ind(1)), idx_base, matrix_type, uplo, storage, buffer_size)
+        mb, nb, nnzb, row_block_dim, col_block_dim, c_loc(bsc_val), c_loc(bsc_col_ptr), c_loc( &
+        bsc_row_ind), idx_base, matrix_type, uplo, storage, buffer_size)
     end function rocsparse_ccheck_matrix_gebsc_buffer_size_native
 
     function rocsparse_ccheck_matrix_gebsc_buffer_size_typed(handle, dir, mb, nb, nnzb, &
@@ -61351,9 +61031,9 @@ contains
       integer(c_int), value :: nnzb
       integer(c_int), value :: row_block_dim
       integer(c_int), value :: col_block_dim
-      complex(c_double_complex), target :: bsc_val(*)
-      integer(c_int), target :: bsc_col_ptr(*)
-      integer(c_int), target :: bsc_row_ind(*)
+      complex(c_double_complex), target :: bsc_val(..)
+      integer(c_int), target :: bsc_col_ptr(..)
+      integer(c_int), target :: bsc_row_ind(..)
       integer(c_int), value :: idx_base
       integer(c_int), value :: matrix_type
       integer(c_int), value :: uplo
@@ -61361,8 +61041,8 @@ contains
       type(c_ptr), value :: buffer_size
       integer(c_int) :: zcheck_matrix_gebsc_buffer_size
       zcheck_matrix_gebsc_buffer_size = rocsparse_zcheck_matrix_gebsc_buffer_size_raw(handle, dir, &
-        mb, nb, nnzb, row_block_dim, col_block_dim, c_loc(bsc_val(1)), c_loc(bsc_col_ptr(1)), &
-        c_loc(bsc_row_ind(1)), idx_base, matrix_type, uplo, storage, buffer_size)
+        mb, nb, nnzb, row_block_dim, col_block_dim, c_loc(bsc_val), c_loc(bsc_col_ptr), c_loc( &
+        bsc_row_ind), idx_base, matrix_type, uplo, storage, buffer_size)
     end function rocsparse_zcheck_matrix_gebsc_buffer_size_native
 
     function rocsparse_zcheck_matrix_gebsc_buffer_size_typed(handle, dir, mb, nb, nnzb, &
@@ -61404,19 +61084,19 @@ contains
       integer(c_int), value :: nnzb
       integer(c_int), value :: row_block_dim
       integer(c_int), value :: col_block_dim
-      real(c_float), target :: bsc_val(*)
-      integer(c_int), target :: bsc_col_ptr(*)
-      integer(c_int), target :: bsc_row_ind(*)
+      real(c_float), target :: bsc_val(..)
+      integer(c_int), target :: bsc_col_ptr(..)
+      integer(c_int), target :: bsc_row_ind(..)
       integer(c_int), value :: idx_base
       integer(c_int), value :: matrix_type
       integer(c_int), value :: uplo
       integer(c_int), value :: storage
-      integer(c_int), target :: data_status(*)
+      integer(c_int), target :: data_status(..)
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: scheck_matrix_gebsc
       scheck_matrix_gebsc = rocsparse_scheck_matrix_gebsc_raw(handle, dir, mb, nb, nnzb, &
-        row_block_dim, col_block_dim, c_loc(bsc_val(1)), c_loc(bsc_col_ptr(1)), c_loc(bsc_row_ind( &
-        1)), idx_base, matrix_type, uplo, storage, c_loc(data_status(1)), temp_buffer)
+        row_block_dim, col_block_dim, c_loc(bsc_val), c_loc(bsc_col_ptr), c_loc(bsc_row_ind), &
+        idx_base, matrix_type, uplo, storage, c_loc(data_status), temp_buffer)
     end function rocsparse_scheck_matrix_gebsc_native
 
     function rocsparse_scheck_matrix_gebsc_typed(handle, dir, mb, nb, nnzb, row_block_dim, &
@@ -61459,19 +61139,19 @@ contains
       integer(c_int), value :: nnzb
       integer(c_int), value :: row_block_dim
       integer(c_int), value :: col_block_dim
-      real(c_double), target :: bsc_val(*)
-      integer(c_int), target :: bsc_col_ptr(*)
-      integer(c_int), target :: bsc_row_ind(*)
+      real(c_double), target :: bsc_val(..)
+      integer(c_int), target :: bsc_col_ptr(..)
+      integer(c_int), target :: bsc_row_ind(..)
       integer(c_int), value :: idx_base
       integer(c_int), value :: matrix_type
       integer(c_int), value :: uplo
       integer(c_int), value :: storage
-      integer(c_int), target :: data_status(*)
+      integer(c_int), target :: data_status(..)
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: dcheck_matrix_gebsc
       dcheck_matrix_gebsc = rocsparse_dcheck_matrix_gebsc_raw(handle, dir, mb, nb, nnzb, &
-        row_block_dim, col_block_dim, c_loc(bsc_val(1)), c_loc(bsc_col_ptr(1)), c_loc(bsc_row_ind( &
-        1)), idx_base, matrix_type, uplo, storage, c_loc(data_status(1)), temp_buffer)
+        row_block_dim, col_block_dim, c_loc(bsc_val), c_loc(bsc_col_ptr), c_loc(bsc_row_ind), &
+        idx_base, matrix_type, uplo, storage, c_loc(data_status), temp_buffer)
     end function rocsparse_dcheck_matrix_gebsc_native
 
     function rocsparse_dcheck_matrix_gebsc_typed(handle, dir, mb, nb, nnzb, row_block_dim, &
@@ -61514,19 +61194,19 @@ contains
       integer(c_int), value :: nnzb
       integer(c_int), value :: row_block_dim
       integer(c_int), value :: col_block_dim
-      complex(c_float_complex), target :: bsc_val(*)
-      integer(c_int), target :: bsc_col_ptr(*)
-      integer(c_int), target :: bsc_row_ind(*)
+      complex(c_float_complex), target :: bsc_val(..)
+      integer(c_int), target :: bsc_col_ptr(..)
+      integer(c_int), target :: bsc_row_ind(..)
       integer(c_int), value :: idx_base
       integer(c_int), value :: matrix_type
       integer(c_int), value :: uplo
       integer(c_int), value :: storage
-      integer(c_int), target :: data_status(*)
+      integer(c_int), target :: data_status(..)
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: ccheck_matrix_gebsc
       ccheck_matrix_gebsc = rocsparse_ccheck_matrix_gebsc_raw(handle, dir, mb, nb, nnzb, &
-        row_block_dim, col_block_dim, c_loc(bsc_val(1)), c_loc(bsc_col_ptr(1)), c_loc(bsc_row_ind( &
-        1)), idx_base, matrix_type, uplo, storage, c_loc(data_status(1)), temp_buffer)
+        row_block_dim, col_block_dim, c_loc(bsc_val), c_loc(bsc_col_ptr), c_loc(bsc_row_ind), &
+        idx_base, matrix_type, uplo, storage, c_loc(data_status), temp_buffer)
     end function rocsparse_ccheck_matrix_gebsc_native
 
     function rocsparse_ccheck_matrix_gebsc_typed(handle, dir, mb, nb, nnzb, row_block_dim, &
@@ -61569,19 +61249,19 @@ contains
       integer(c_int), value :: nnzb
       integer(c_int), value :: row_block_dim
       integer(c_int), value :: col_block_dim
-      complex(c_double_complex), target :: bsc_val(*)
-      integer(c_int), target :: bsc_col_ptr(*)
-      integer(c_int), target :: bsc_row_ind(*)
+      complex(c_double_complex), target :: bsc_val(..)
+      integer(c_int), target :: bsc_col_ptr(..)
+      integer(c_int), target :: bsc_row_ind(..)
       integer(c_int), value :: idx_base
       integer(c_int), value :: matrix_type
       integer(c_int), value :: uplo
       integer(c_int), value :: storage
-      integer(c_int), target :: data_status(*)
+      integer(c_int), target :: data_status(..)
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: zcheck_matrix_gebsc
       zcheck_matrix_gebsc = rocsparse_zcheck_matrix_gebsc_raw(handle, dir, mb, nb, nnzb, &
-        row_block_dim, col_block_dim, c_loc(bsc_val(1)), c_loc(bsc_col_ptr(1)), c_loc(bsc_row_ind( &
-        1)), idx_base, matrix_type, uplo, storage, c_loc(data_status(1)), temp_buffer)
+        row_block_dim, col_block_dim, c_loc(bsc_val), c_loc(bsc_col_ptr), c_loc(bsc_row_ind), &
+        idx_base, matrix_type, uplo, storage, c_loc(data_status), temp_buffer)
     end function rocsparse_zcheck_matrix_gebsc_native
 
     function rocsparse_zcheck_matrix_gebsc_typed(handle, dir, mb, nb, nnzb, row_block_dim, &
@@ -61624,9 +61304,9 @@ contains
       integer(c_int), value :: nnzb
       integer(c_int), value :: row_block_dim
       integer(c_int), value :: col_block_dim
-      real(c_float), target :: bsr_val(*)
-      integer(c_int), target :: bsr_row_ptr(*)
-      integer(c_int), target :: bsr_col_ind(*)
+      real(c_float), target :: bsr_val(..)
+      integer(c_int), target :: bsr_row_ptr(..)
+      integer(c_int), target :: bsr_col_ind(..)
       integer(c_int), value :: idx_base
       integer(c_int), value :: matrix_type
       integer(c_int), value :: uplo
@@ -61634,8 +61314,8 @@ contains
       type(c_ptr), value :: buffer_size
       integer(c_int) :: scheck_matrix_gebsr_buffer_size
       scheck_matrix_gebsr_buffer_size = rocsparse_scheck_matrix_gebsr_buffer_size_raw(handle, dir, &
-        mb, nb, nnzb, row_block_dim, col_block_dim, c_loc(bsr_val(1)), c_loc(bsr_row_ptr(1)), &
-        c_loc(bsr_col_ind(1)), idx_base, matrix_type, uplo, storage, buffer_size)
+        mb, nb, nnzb, row_block_dim, col_block_dim, c_loc(bsr_val), c_loc(bsr_row_ptr), c_loc( &
+        bsr_col_ind), idx_base, matrix_type, uplo, storage, buffer_size)
     end function rocsparse_scheck_matrix_gebsr_buffer_size_native
 
     function rocsparse_scheck_matrix_gebsr_buffer_size_typed(handle, dir, mb, nb, nnzb, &
@@ -61677,9 +61357,9 @@ contains
       integer(c_int), value :: nnzb
       integer(c_int), value :: row_block_dim
       integer(c_int), value :: col_block_dim
-      real(c_double), target :: bsr_val(*)
-      integer(c_int), target :: bsr_row_ptr(*)
-      integer(c_int), target :: bsr_col_ind(*)
+      real(c_double), target :: bsr_val(..)
+      integer(c_int), target :: bsr_row_ptr(..)
+      integer(c_int), target :: bsr_col_ind(..)
       integer(c_int), value :: idx_base
       integer(c_int), value :: matrix_type
       integer(c_int), value :: uplo
@@ -61687,8 +61367,8 @@ contains
       type(c_ptr), value :: buffer_size
       integer(c_int) :: dcheck_matrix_gebsr_buffer_size
       dcheck_matrix_gebsr_buffer_size = rocsparse_dcheck_matrix_gebsr_buffer_size_raw(handle, dir, &
-        mb, nb, nnzb, row_block_dim, col_block_dim, c_loc(bsr_val(1)), c_loc(bsr_row_ptr(1)), &
-        c_loc(bsr_col_ind(1)), idx_base, matrix_type, uplo, storage, buffer_size)
+        mb, nb, nnzb, row_block_dim, col_block_dim, c_loc(bsr_val), c_loc(bsr_row_ptr), c_loc( &
+        bsr_col_ind), idx_base, matrix_type, uplo, storage, buffer_size)
     end function rocsparse_dcheck_matrix_gebsr_buffer_size_native
 
     function rocsparse_dcheck_matrix_gebsr_buffer_size_typed(handle, dir, mb, nb, nnzb, &
@@ -61730,9 +61410,9 @@ contains
       integer(c_int), value :: nnzb
       integer(c_int), value :: row_block_dim
       integer(c_int), value :: col_block_dim
-      complex(c_float_complex), target :: bsr_val(*)
-      integer(c_int), target :: bsr_row_ptr(*)
-      integer(c_int), target :: bsr_col_ind(*)
+      complex(c_float_complex), target :: bsr_val(..)
+      integer(c_int), target :: bsr_row_ptr(..)
+      integer(c_int), target :: bsr_col_ind(..)
       integer(c_int), value :: idx_base
       integer(c_int), value :: matrix_type
       integer(c_int), value :: uplo
@@ -61740,8 +61420,8 @@ contains
       type(c_ptr), value :: buffer_size
       integer(c_int) :: ccheck_matrix_gebsr_buffer_size
       ccheck_matrix_gebsr_buffer_size = rocsparse_ccheck_matrix_gebsr_buffer_size_raw(handle, dir, &
-        mb, nb, nnzb, row_block_dim, col_block_dim, c_loc(bsr_val(1)), c_loc(bsr_row_ptr(1)), &
-        c_loc(bsr_col_ind(1)), idx_base, matrix_type, uplo, storage, buffer_size)
+        mb, nb, nnzb, row_block_dim, col_block_dim, c_loc(bsr_val), c_loc(bsr_row_ptr), c_loc( &
+        bsr_col_ind), idx_base, matrix_type, uplo, storage, buffer_size)
     end function rocsparse_ccheck_matrix_gebsr_buffer_size_native
 
     function rocsparse_ccheck_matrix_gebsr_buffer_size_typed(handle, dir, mb, nb, nnzb, &
@@ -61783,9 +61463,9 @@ contains
       integer(c_int), value :: nnzb
       integer(c_int), value :: row_block_dim
       integer(c_int), value :: col_block_dim
-      complex(c_double_complex), target :: bsr_val(*)
-      integer(c_int), target :: bsr_row_ptr(*)
-      integer(c_int), target :: bsr_col_ind(*)
+      complex(c_double_complex), target :: bsr_val(..)
+      integer(c_int), target :: bsr_row_ptr(..)
+      integer(c_int), target :: bsr_col_ind(..)
       integer(c_int), value :: idx_base
       integer(c_int), value :: matrix_type
       integer(c_int), value :: uplo
@@ -61793,8 +61473,8 @@ contains
       type(c_ptr), value :: buffer_size
       integer(c_int) :: zcheck_matrix_gebsr_buffer_size
       zcheck_matrix_gebsr_buffer_size = rocsparse_zcheck_matrix_gebsr_buffer_size_raw(handle, dir, &
-        mb, nb, nnzb, row_block_dim, col_block_dim, c_loc(bsr_val(1)), c_loc(bsr_row_ptr(1)), &
-        c_loc(bsr_col_ind(1)), idx_base, matrix_type, uplo, storage, buffer_size)
+        mb, nb, nnzb, row_block_dim, col_block_dim, c_loc(bsr_val), c_loc(bsr_row_ptr), c_loc( &
+        bsr_col_ind), idx_base, matrix_type, uplo, storage, buffer_size)
     end function rocsparse_zcheck_matrix_gebsr_buffer_size_native
 
     function rocsparse_zcheck_matrix_gebsr_buffer_size_typed(handle, dir, mb, nb, nnzb, &
@@ -61836,19 +61516,19 @@ contains
       integer(c_int), value :: nnzb
       integer(c_int), value :: row_block_dim
       integer(c_int), value :: col_block_dim
-      real(c_float), target :: bsr_val(*)
-      integer(c_int), target :: bsr_row_ptr(*)
-      integer(c_int), target :: bsr_col_ind(*)
+      real(c_float), target :: bsr_val(..)
+      integer(c_int), target :: bsr_row_ptr(..)
+      integer(c_int), target :: bsr_col_ind(..)
       integer(c_int), value :: idx_base
       integer(c_int), value :: matrix_type
       integer(c_int), value :: uplo
       integer(c_int), value :: storage
-      integer(c_int), target :: data_status(*)
+      integer(c_int), target :: data_status(..)
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: scheck_matrix_gebsr
       scheck_matrix_gebsr = rocsparse_scheck_matrix_gebsr_raw(handle, dir, mb, nb, nnzb, &
-        row_block_dim, col_block_dim, c_loc(bsr_val(1)), c_loc(bsr_row_ptr(1)), c_loc(bsr_col_ind( &
-        1)), idx_base, matrix_type, uplo, storage, c_loc(data_status(1)), temp_buffer)
+        row_block_dim, col_block_dim, c_loc(bsr_val), c_loc(bsr_row_ptr), c_loc(bsr_col_ind), &
+        idx_base, matrix_type, uplo, storage, c_loc(data_status), temp_buffer)
     end function rocsparse_scheck_matrix_gebsr_native
 
     function rocsparse_scheck_matrix_gebsr_typed(handle, dir, mb, nb, nnzb, row_block_dim, &
@@ -61891,19 +61571,19 @@ contains
       integer(c_int), value :: nnzb
       integer(c_int), value :: row_block_dim
       integer(c_int), value :: col_block_dim
-      real(c_double), target :: bsr_val(*)
-      integer(c_int), target :: bsr_row_ptr(*)
-      integer(c_int), target :: bsr_col_ind(*)
+      real(c_double), target :: bsr_val(..)
+      integer(c_int), target :: bsr_row_ptr(..)
+      integer(c_int), target :: bsr_col_ind(..)
       integer(c_int), value :: idx_base
       integer(c_int), value :: matrix_type
       integer(c_int), value :: uplo
       integer(c_int), value :: storage
-      integer(c_int), target :: data_status(*)
+      integer(c_int), target :: data_status(..)
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: dcheck_matrix_gebsr
       dcheck_matrix_gebsr = rocsparse_dcheck_matrix_gebsr_raw(handle, dir, mb, nb, nnzb, &
-        row_block_dim, col_block_dim, c_loc(bsr_val(1)), c_loc(bsr_row_ptr(1)), c_loc(bsr_col_ind( &
-        1)), idx_base, matrix_type, uplo, storage, c_loc(data_status(1)), temp_buffer)
+        row_block_dim, col_block_dim, c_loc(bsr_val), c_loc(bsr_row_ptr), c_loc(bsr_col_ind), &
+        idx_base, matrix_type, uplo, storage, c_loc(data_status), temp_buffer)
     end function rocsparse_dcheck_matrix_gebsr_native
 
     function rocsparse_dcheck_matrix_gebsr_typed(handle, dir, mb, nb, nnzb, row_block_dim, &
@@ -61946,19 +61626,19 @@ contains
       integer(c_int), value :: nnzb
       integer(c_int), value :: row_block_dim
       integer(c_int), value :: col_block_dim
-      complex(c_float_complex), target :: bsr_val(*)
-      integer(c_int), target :: bsr_row_ptr(*)
-      integer(c_int), target :: bsr_col_ind(*)
+      complex(c_float_complex), target :: bsr_val(..)
+      integer(c_int), target :: bsr_row_ptr(..)
+      integer(c_int), target :: bsr_col_ind(..)
       integer(c_int), value :: idx_base
       integer(c_int), value :: matrix_type
       integer(c_int), value :: uplo
       integer(c_int), value :: storage
-      integer(c_int), target :: data_status(*)
+      integer(c_int), target :: data_status(..)
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: ccheck_matrix_gebsr
       ccheck_matrix_gebsr = rocsparse_ccheck_matrix_gebsr_raw(handle, dir, mb, nb, nnzb, &
-        row_block_dim, col_block_dim, c_loc(bsr_val(1)), c_loc(bsr_row_ptr(1)), c_loc(bsr_col_ind( &
-        1)), idx_base, matrix_type, uplo, storage, c_loc(data_status(1)), temp_buffer)
+        row_block_dim, col_block_dim, c_loc(bsr_val), c_loc(bsr_row_ptr), c_loc(bsr_col_ind), &
+        idx_base, matrix_type, uplo, storage, c_loc(data_status), temp_buffer)
     end function rocsparse_ccheck_matrix_gebsr_native
 
     function rocsparse_ccheck_matrix_gebsr_typed(handle, dir, mb, nb, nnzb, row_block_dim, &
@@ -62001,19 +61681,19 @@ contains
       integer(c_int), value :: nnzb
       integer(c_int), value :: row_block_dim
       integer(c_int), value :: col_block_dim
-      complex(c_double_complex), target :: bsr_val(*)
-      integer(c_int), target :: bsr_row_ptr(*)
-      integer(c_int), target :: bsr_col_ind(*)
+      complex(c_double_complex), target :: bsr_val(..)
+      integer(c_int), target :: bsr_row_ptr(..)
+      integer(c_int), target :: bsr_col_ind(..)
       integer(c_int), value :: idx_base
       integer(c_int), value :: matrix_type
       integer(c_int), value :: uplo
       integer(c_int), value :: storage
-      integer(c_int), target :: data_status(*)
+      integer(c_int), target :: data_status(..)
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: zcheck_matrix_gebsr
       zcheck_matrix_gebsr = rocsparse_zcheck_matrix_gebsr_raw(handle, dir, mb, nb, nnzb, &
-        row_block_dim, col_block_dim, c_loc(bsr_val(1)), c_loc(bsr_row_ptr(1)), c_loc(bsr_col_ind( &
-        1)), idx_base, matrix_type, uplo, storage, c_loc(data_status(1)), temp_buffer)
+        row_block_dim, col_block_dim, c_loc(bsr_val), c_loc(bsr_row_ptr), c_loc(bsr_col_ind), &
+        idx_base, matrix_type, uplo, storage, c_loc(data_status), temp_buffer)
     end function rocsparse_zcheck_matrix_gebsr_native
 
     function rocsparse_zcheck_matrix_gebsr_typed(handle, dir, mb, nb, nnzb, row_block_dim, &
@@ -62071,11 +61751,11 @@ contains
       integer(c_int), value :: matrix_type
       integer(c_int), value :: uplo
       integer(c_int), value :: storage
-      integer(c_int), target :: data_status(*)
+      integer(c_int), target :: data_status(..)
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: check_matrix_hyb
       check_matrix_hyb = rocsparse_check_matrix_hyb_raw(handle, hyb, idx_base, matrix_type, uplo, &
-        storage, c_loc(data_status(1)), temp_buffer)
+        storage, c_loc(data_status), temp_buffer)
     end function rocsparse_check_matrix_hyb_native
 
     function rocsparse_check_matrix_hyb_typed(handle, hyb, idx_base, matrix_type, uplo, storage, &

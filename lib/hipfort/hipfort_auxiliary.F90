@@ -40,6 +40,7 @@ module hipfort_auxiliary
       type(c_ptr) :: ptr
       integer(c_size_t), value :: sizeBytes
     end function hipMalloc_b
+    module procedure hipMalloc_i4_0_opt
     module procedure hipMalloc_i4_1
     module procedure hipMalloc_i4_1_opt
     module procedure hipMalloc_i4_2
@@ -54,6 +55,7 @@ module hipfort_auxiliary
     module procedure hipMalloc_i4_6_opt
     module procedure hipMalloc_i4_7
     module procedure hipMalloc_i4_7_opt
+    module procedure hipMalloc_i8_0_opt
     module procedure hipMalloc_i8_1
     module procedure hipMalloc_i8_1_opt
     module procedure hipMalloc_i8_2
@@ -68,6 +70,7 @@ module hipfort_auxiliary
     module procedure hipMalloc_i8_6_opt
     module procedure hipMalloc_i8_7
     module procedure hipMalloc_i8_7_opt
+    module procedure hipMalloc_r4_0_opt
     module procedure hipMalloc_r4_1
     module procedure hipMalloc_r4_1_opt
     module procedure hipMalloc_r4_2
@@ -82,6 +85,7 @@ module hipfort_auxiliary
     module procedure hipMalloc_r4_6_opt
     module procedure hipMalloc_r4_7
     module procedure hipMalloc_r4_7_opt
+    module procedure hipMalloc_r8_0_opt
     module procedure hipMalloc_r8_1
     module procedure hipMalloc_r8_1_opt
     module procedure hipMalloc_r8_2
@@ -96,6 +100,7 @@ module hipfort_auxiliary
     module procedure hipMalloc_r8_6_opt
     module procedure hipMalloc_r8_7
     module procedure hipMalloc_r8_7_opt
+    module procedure hipMalloc_c4_0_opt
     module procedure hipMalloc_c4_1
     module procedure hipMalloc_c4_1_opt
     module procedure hipMalloc_c4_2
@@ -110,6 +115,7 @@ module hipfort_auxiliary
     module procedure hipMalloc_c4_6_opt
     module procedure hipMalloc_c4_7
     module procedure hipMalloc_c4_7_opt
+    module procedure hipMalloc_c8_0_opt
     module procedure hipMalloc_c8_1
     module procedure hipMalloc_c8_1_opt
     module procedure hipMalloc_c8_2
@@ -137,6 +143,7 @@ module hipfort_auxiliary
       integer(c_int) :: hipFree_b
       type(c_ptr), value :: ptr
     end function hipFree_b
+    module procedure hipFree_i4_0
     module procedure hipFree_i4_1
     module procedure hipFree_i4_2
     module procedure hipFree_i4_3
@@ -144,6 +151,7 @@ module hipfort_auxiliary
     module procedure hipFree_i4_5
     module procedure hipFree_i4_6
     module procedure hipFree_i4_7
+    module procedure hipFree_i8_0
     module procedure hipFree_i8_1
     module procedure hipFree_i8_2
     module procedure hipFree_i8_3
@@ -151,6 +159,7 @@ module hipfort_auxiliary
     module procedure hipFree_i8_5
     module procedure hipFree_i8_6
     module procedure hipFree_i8_7
+    module procedure hipFree_r4_0
     module procedure hipFree_r4_1
     module procedure hipFree_r4_2
     module procedure hipFree_r4_3
@@ -158,6 +167,7 @@ module hipfort_auxiliary
     module procedure hipFree_r4_5
     module procedure hipFree_r4_6
     module procedure hipFree_r4_7
+    module procedure hipFree_r8_0
     module procedure hipFree_r8_1
     module procedure hipFree_r8_2
     module procedure hipFree_r8_3
@@ -165,6 +175,7 @@ module hipfort_auxiliary
     module procedure hipFree_r8_5
     module procedure hipFree_r8_6
     module procedure hipFree_r8_7
+    module procedure hipFree_c4_0
     module procedure hipFree_c4_1
     module procedure hipFree_c4_2
     module procedure hipFree_c4_3
@@ -172,6 +183,7 @@ module hipfort_auxiliary
     module procedure hipFree_c4_5
     module procedure hipFree_c4_6
     module procedure hipFree_c4_7
+    module procedure hipFree_c8_0
     module procedure hipFree_c8_1
     module procedure hipFree_c8_2
     module procedure hipFree_c8_3
@@ -195,89 +207,149 @@ module hipfort_auxiliary
       integer(c_size_t), value :: sizeBytes
       integer(c_int), value :: myKind
     end function hipMemcpy_b
+    module procedure hipMemcpy_i4_0
+    module procedure hipMemcpy_i4_0_ci
+    module procedure hipMemcpy_i4_0_auto
     module procedure hipMemcpy_i4_1
+    module procedure hipMemcpy_i4_1_ci
     module procedure hipMemcpy_i4_1_auto
     module procedure hipMemcpy_i4_2
+    module procedure hipMemcpy_i4_2_ci
     module procedure hipMemcpy_i4_2_auto
     module procedure hipMemcpy_i4_3
+    module procedure hipMemcpy_i4_3_ci
     module procedure hipMemcpy_i4_3_auto
     module procedure hipMemcpy_i4_4
+    module procedure hipMemcpy_i4_4_ci
     module procedure hipMemcpy_i4_4_auto
     module procedure hipMemcpy_i4_5
+    module procedure hipMemcpy_i4_5_ci
     module procedure hipMemcpy_i4_5_auto
     module procedure hipMemcpy_i4_6
+    module procedure hipMemcpy_i4_6_ci
     module procedure hipMemcpy_i4_6_auto
     module procedure hipMemcpy_i4_7
+    module procedure hipMemcpy_i4_7_ci
     module procedure hipMemcpy_i4_7_auto
+    module procedure hipMemcpy_i8_0
+    module procedure hipMemcpy_i8_0_ci
+    module procedure hipMemcpy_i8_0_auto
     module procedure hipMemcpy_i8_1
+    module procedure hipMemcpy_i8_1_ci
     module procedure hipMemcpy_i8_1_auto
     module procedure hipMemcpy_i8_2
+    module procedure hipMemcpy_i8_2_ci
     module procedure hipMemcpy_i8_2_auto
     module procedure hipMemcpy_i8_3
+    module procedure hipMemcpy_i8_3_ci
     module procedure hipMemcpy_i8_3_auto
     module procedure hipMemcpy_i8_4
+    module procedure hipMemcpy_i8_4_ci
     module procedure hipMemcpy_i8_4_auto
     module procedure hipMemcpy_i8_5
+    module procedure hipMemcpy_i8_5_ci
     module procedure hipMemcpy_i8_5_auto
     module procedure hipMemcpy_i8_6
+    module procedure hipMemcpy_i8_6_ci
     module procedure hipMemcpy_i8_6_auto
     module procedure hipMemcpy_i8_7
+    module procedure hipMemcpy_i8_7_ci
     module procedure hipMemcpy_i8_7_auto
+    module procedure hipMemcpy_r4_0
+    module procedure hipMemcpy_r4_0_ci
+    module procedure hipMemcpy_r4_0_auto
     module procedure hipMemcpy_r4_1
+    module procedure hipMemcpy_r4_1_ci
     module procedure hipMemcpy_r4_1_auto
     module procedure hipMemcpy_r4_2
+    module procedure hipMemcpy_r4_2_ci
     module procedure hipMemcpy_r4_2_auto
     module procedure hipMemcpy_r4_3
+    module procedure hipMemcpy_r4_3_ci
     module procedure hipMemcpy_r4_3_auto
     module procedure hipMemcpy_r4_4
+    module procedure hipMemcpy_r4_4_ci
     module procedure hipMemcpy_r4_4_auto
     module procedure hipMemcpy_r4_5
+    module procedure hipMemcpy_r4_5_ci
     module procedure hipMemcpy_r4_5_auto
     module procedure hipMemcpy_r4_6
+    module procedure hipMemcpy_r4_6_ci
     module procedure hipMemcpy_r4_6_auto
     module procedure hipMemcpy_r4_7
+    module procedure hipMemcpy_r4_7_ci
     module procedure hipMemcpy_r4_7_auto
+    module procedure hipMemcpy_r8_0
+    module procedure hipMemcpy_r8_0_ci
+    module procedure hipMemcpy_r8_0_auto
     module procedure hipMemcpy_r8_1
+    module procedure hipMemcpy_r8_1_ci
     module procedure hipMemcpy_r8_1_auto
     module procedure hipMemcpy_r8_2
+    module procedure hipMemcpy_r8_2_ci
     module procedure hipMemcpy_r8_2_auto
     module procedure hipMemcpy_r8_3
+    module procedure hipMemcpy_r8_3_ci
     module procedure hipMemcpy_r8_3_auto
     module procedure hipMemcpy_r8_4
+    module procedure hipMemcpy_r8_4_ci
     module procedure hipMemcpy_r8_4_auto
     module procedure hipMemcpy_r8_5
+    module procedure hipMemcpy_r8_5_ci
     module procedure hipMemcpy_r8_5_auto
     module procedure hipMemcpy_r8_6
+    module procedure hipMemcpy_r8_6_ci
     module procedure hipMemcpy_r8_6_auto
     module procedure hipMemcpy_r8_7
+    module procedure hipMemcpy_r8_7_ci
     module procedure hipMemcpy_r8_7_auto
+    module procedure hipMemcpy_c4_0
+    module procedure hipMemcpy_c4_0_ci
+    module procedure hipMemcpy_c4_0_auto
     module procedure hipMemcpy_c4_1
+    module procedure hipMemcpy_c4_1_ci
     module procedure hipMemcpy_c4_1_auto
     module procedure hipMemcpy_c4_2
+    module procedure hipMemcpy_c4_2_ci
     module procedure hipMemcpy_c4_2_auto
     module procedure hipMemcpy_c4_3
+    module procedure hipMemcpy_c4_3_ci
     module procedure hipMemcpy_c4_3_auto
     module procedure hipMemcpy_c4_4
+    module procedure hipMemcpy_c4_4_ci
     module procedure hipMemcpy_c4_4_auto
     module procedure hipMemcpy_c4_5
+    module procedure hipMemcpy_c4_5_ci
     module procedure hipMemcpy_c4_5_auto
     module procedure hipMemcpy_c4_6
+    module procedure hipMemcpy_c4_6_ci
     module procedure hipMemcpy_c4_6_auto
     module procedure hipMemcpy_c4_7
+    module procedure hipMemcpy_c4_7_ci
     module procedure hipMemcpy_c4_7_auto
+    module procedure hipMemcpy_c8_0
+    module procedure hipMemcpy_c8_0_ci
+    module procedure hipMemcpy_c8_0_auto
     module procedure hipMemcpy_c8_1
+    module procedure hipMemcpy_c8_1_ci
     module procedure hipMemcpy_c8_1_auto
     module procedure hipMemcpy_c8_2
+    module procedure hipMemcpy_c8_2_ci
     module procedure hipMemcpy_c8_2_auto
     module procedure hipMemcpy_c8_3
+    module procedure hipMemcpy_c8_3_ci
     module procedure hipMemcpy_c8_3_auto
     module procedure hipMemcpy_c8_4
+    module procedure hipMemcpy_c8_4_ci
     module procedure hipMemcpy_c8_4_auto
     module procedure hipMemcpy_c8_5
+    module procedure hipMemcpy_c8_5_ci
     module procedure hipMemcpy_c8_5_auto
     module procedure hipMemcpy_c8_6
+    module procedure hipMemcpy_c8_6_ci
     module procedure hipMemcpy_c8_6_auto
     module procedure hipMemcpy_c8_7
+    module procedure hipMemcpy_c8_7_ci
     module procedure hipMemcpy_c8_7_auto
   end interface hipMemcpy
 
@@ -296,6 +368,8 @@ module hipfort_auxiliary
       integer(c_int), value :: myKind
       type(c_ptr), value :: stream
     end function hipMemcpyAsync_b
+    module procedure hipMemcpyAsync_i4_0
+    module procedure hipMemcpyAsync_i4_0_auto
     module procedure hipMemcpyAsync_i4_1
     module procedure hipMemcpyAsync_i4_1_auto
     module procedure hipMemcpyAsync_i4_2
@@ -310,6 +384,8 @@ module hipfort_auxiliary
     module procedure hipMemcpyAsync_i4_6_auto
     module procedure hipMemcpyAsync_i4_7
     module procedure hipMemcpyAsync_i4_7_auto
+    module procedure hipMemcpyAsync_i8_0
+    module procedure hipMemcpyAsync_i8_0_auto
     module procedure hipMemcpyAsync_i8_1
     module procedure hipMemcpyAsync_i8_1_auto
     module procedure hipMemcpyAsync_i8_2
@@ -324,6 +400,8 @@ module hipfort_auxiliary
     module procedure hipMemcpyAsync_i8_6_auto
     module procedure hipMemcpyAsync_i8_7
     module procedure hipMemcpyAsync_i8_7_auto
+    module procedure hipMemcpyAsync_r4_0
+    module procedure hipMemcpyAsync_r4_0_auto
     module procedure hipMemcpyAsync_r4_1
     module procedure hipMemcpyAsync_r4_1_auto
     module procedure hipMemcpyAsync_r4_2
@@ -338,6 +416,8 @@ module hipfort_auxiliary
     module procedure hipMemcpyAsync_r4_6_auto
     module procedure hipMemcpyAsync_r4_7
     module procedure hipMemcpyAsync_r4_7_auto
+    module procedure hipMemcpyAsync_r8_0
+    module procedure hipMemcpyAsync_r8_0_auto
     module procedure hipMemcpyAsync_r8_1
     module procedure hipMemcpyAsync_r8_1_auto
     module procedure hipMemcpyAsync_r8_2
@@ -352,6 +432,8 @@ module hipfort_auxiliary
     module procedure hipMemcpyAsync_r8_6_auto
     module procedure hipMemcpyAsync_r8_7
     module procedure hipMemcpyAsync_r8_7_auto
+    module procedure hipMemcpyAsync_c4_0
+    module procedure hipMemcpyAsync_c4_0_auto
     module procedure hipMemcpyAsync_c4_1
     module procedure hipMemcpyAsync_c4_1_auto
     module procedure hipMemcpyAsync_c4_2
@@ -366,6 +448,8 @@ module hipfort_auxiliary
     module procedure hipMemcpyAsync_c4_6_auto
     module procedure hipMemcpyAsync_c4_7
     module procedure hipMemcpyAsync_c4_7_auto
+    module procedure hipMemcpyAsync_c8_0
+    module procedure hipMemcpyAsync_c8_0_auto
     module procedure hipMemcpyAsync_c8_1
     module procedure hipMemcpyAsync_c8_1_auto
     module procedure hipMemcpyAsync_c8_2
@@ -395,6 +479,7 @@ module hipfort_auxiliary
       integer(c_size_t), value :: sizeBytes
       integer(c_int), value :: flags
     end function hipHostRegister_b
+    module procedure hipHostRegister_i4_0
     module procedure hipHostRegister_i4_1
     module procedure hipHostRegister_i4_2
     module procedure hipHostRegister_i4_3
@@ -402,6 +487,7 @@ module hipfort_auxiliary
     module procedure hipHostRegister_i4_5
     module procedure hipHostRegister_i4_6
     module procedure hipHostRegister_i4_7
+    module procedure hipHostRegister_i8_0
     module procedure hipHostRegister_i8_1
     module procedure hipHostRegister_i8_2
     module procedure hipHostRegister_i8_3
@@ -409,6 +495,7 @@ module hipfort_auxiliary
     module procedure hipHostRegister_i8_5
     module procedure hipHostRegister_i8_6
     module procedure hipHostRegister_i8_7
+    module procedure hipHostRegister_r4_0
     module procedure hipHostRegister_r4_1
     module procedure hipHostRegister_r4_2
     module procedure hipHostRegister_r4_3
@@ -416,6 +503,7 @@ module hipfort_auxiliary
     module procedure hipHostRegister_r4_5
     module procedure hipHostRegister_r4_6
     module procedure hipHostRegister_r4_7
+    module procedure hipHostRegister_r8_0
     module procedure hipHostRegister_r8_1
     module procedure hipHostRegister_r8_2
     module procedure hipHostRegister_r8_3
@@ -423,6 +511,7 @@ module hipfort_auxiliary
     module procedure hipHostRegister_r8_5
     module procedure hipHostRegister_r8_6
     module procedure hipHostRegister_r8_7
+    module procedure hipHostRegister_c4_0
     module procedure hipHostRegister_c4_1
     module procedure hipHostRegister_c4_2
     module procedure hipHostRegister_c4_3
@@ -430,6 +519,7 @@ module hipfort_auxiliary
     module procedure hipHostRegister_c4_5
     module procedure hipHostRegister_c4_6
     module procedure hipHostRegister_c4_7
+    module procedure hipHostRegister_c8_0
     module procedure hipHostRegister_c8_1
     module procedure hipHostRegister_c8_2
     module procedure hipHostRegister_c8_3
@@ -450,6 +540,7 @@ module hipfort_auxiliary
       integer(c_int) :: hipHostUnregister_b
       type(c_ptr), value :: hostPtr
     end function hipHostUnregister_b
+    module procedure hipHostUnregister_i4_0
     module procedure hipHostUnregister_i4_1
     module procedure hipHostUnregister_i4_2
     module procedure hipHostUnregister_i4_3
@@ -457,6 +548,7 @@ module hipfort_auxiliary
     module procedure hipHostUnregister_i4_5
     module procedure hipHostUnregister_i4_6
     module procedure hipHostUnregister_i4_7
+    module procedure hipHostUnregister_i8_0
     module procedure hipHostUnregister_i8_1
     module procedure hipHostUnregister_i8_2
     module procedure hipHostUnregister_i8_3
@@ -464,6 +556,7 @@ module hipfort_auxiliary
     module procedure hipHostUnregister_i8_5
     module procedure hipHostUnregister_i8_6
     module procedure hipHostUnregister_i8_7
+    module procedure hipHostUnregister_r4_0
     module procedure hipHostUnregister_r4_1
     module procedure hipHostUnregister_r4_2
     module procedure hipHostUnregister_r4_3
@@ -471,6 +564,7 @@ module hipfort_auxiliary
     module procedure hipHostUnregister_r4_5
     module procedure hipHostUnregister_r4_6
     module procedure hipHostUnregister_r4_7
+    module procedure hipHostUnregister_r8_0
     module procedure hipHostUnregister_r8_1
     module procedure hipHostUnregister_r8_2
     module procedure hipHostUnregister_r8_3
@@ -478,6 +572,7 @@ module hipfort_auxiliary
     module procedure hipHostUnregister_r8_5
     module procedure hipHostUnregister_r8_6
     module procedure hipHostUnregister_r8_7
+    module procedure hipHostUnregister_c4_0
     module procedure hipHostUnregister_c4_1
     module procedure hipHostUnregister_c4_2
     module procedure hipHostUnregister_c4_3
@@ -485,6 +580,7 @@ module hipfort_auxiliary
     module procedure hipHostUnregister_c4_5
     module procedure hipHostUnregister_c4_6
     module procedure hipHostUnregister_c4_7
+    module procedure hipHostUnregister_c8_0
     module procedure hipHostUnregister_c8_1
     module procedure hipHostUnregister_c8_2
     module procedure hipHostUnregister_c8_3
@@ -507,6 +603,7 @@ module hipfort_auxiliary
       type(c_ptr), value :: hstPtr
       integer(c_int), value :: flags
     end function hipHostGetDevicePointer_b
+    module procedure hipHostGetDevicePointer_i4_0
     module procedure hipHostGetDevicePointer_i4_1
     module procedure hipHostGetDevicePointer_i4_2
     module procedure hipHostGetDevicePointer_i4_3
@@ -514,6 +611,7 @@ module hipfort_auxiliary
     module procedure hipHostGetDevicePointer_i4_5
     module procedure hipHostGetDevicePointer_i4_6
     module procedure hipHostGetDevicePointer_i4_7
+    module procedure hipHostGetDevicePointer_i8_0
     module procedure hipHostGetDevicePointer_i8_1
     module procedure hipHostGetDevicePointer_i8_2
     module procedure hipHostGetDevicePointer_i8_3
@@ -521,6 +619,7 @@ module hipfort_auxiliary
     module procedure hipHostGetDevicePointer_i8_5
     module procedure hipHostGetDevicePointer_i8_6
     module procedure hipHostGetDevicePointer_i8_7
+    module procedure hipHostGetDevicePointer_r4_0
     module procedure hipHostGetDevicePointer_r4_1
     module procedure hipHostGetDevicePointer_r4_2
     module procedure hipHostGetDevicePointer_r4_3
@@ -528,6 +627,7 @@ module hipfort_auxiliary
     module procedure hipHostGetDevicePointer_r4_5
     module procedure hipHostGetDevicePointer_r4_6
     module procedure hipHostGetDevicePointer_r4_7
+    module procedure hipHostGetDevicePointer_r8_0
     module procedure hipHostGetDevicePointer_r8_1
     module procedure hipHostGetDevicePointer_r8_2
     module procedure hipHostGetDevicePointer_r8_3
@@ -535,6 +635,7 @@ module hipfort_auxiliary
     module procedure hipHostGetDevicePointer_r8_5
     module procedure hipHostGetDevicePointer_r8_6
     module procedure hipHostGetDevicePointer_r8_7
+    module procedure hipHostGetDevicePointer_c4_0
     module procedure hipHostGetDevicePointer_c4_1
     module procedure hipHostGetDevicePointer_c4_2
     module procedure hipHostGetDevicePointer_c4_3
@@ -542,6 +643,7 @@ module hipfort_auxiliary
     module procedure hipHostGetDevicePointer_c4_5
     module procedure hipHostGetDevicePointer_c4_6
     module procedure hipHostGetDevicePointer_c4_7
+    module procedure hipHostGetDevicePointer_c8_0
     module procedure hipHostGetDevicePointer_c8_1
     module procedure hipHostGetDevicePointer_c8_2
     module procedure hipHostGetDevicePointer_c8_3
@@ -563,6 +665,7 @@ module hipfort_auxiliary
       integer(c_int) :: flags
       type(c_ptr), value :: hostPtr
     end function hipHostGetFlags_b
+    module procedure hipHostGetFlags_i4_0
     module procedure hipHostGetFlags_i4_1
     module procedure hipHostGetFlags_i4_2
     module procedure hipHostGetFlags_i4_3
@@ -570,6 +673,7 @@ module hipfort_auxiliary
     module procedure hipHostGetFlags_i4_5
     module procedure hipHostGetFlags_i4_6
     module procedure hipHostGetFlags_i4_7
+    module procedure hipHostGetFlags_i8_0
     module procedure hipHostGetFlags_i8_1
     module procedure hipHostGetFlags_i8_2
     module procedure hipHostGetFlags_i8_3
@@ -577,6 +681,7 @@ module hipfort_auxiliary
     module procedure hipHostGetFlags_i8_5
     module procedure hipHostGetFlags_i8_6
     module procedure hipHostGetFlags_i8_7
+    module procedure hipHostGetFlags_r4_0
     module procedure hipHostGetFlags_r4_1
     module procedure hipHostGetFlags_r4_2
     module procedure hipHostGetFlags_r4_3
@@ -584,6 +689,7 @@ module hipfort_auxiliary
     module procedure hipHostGetFlags_r4_5
     module procedure hipHostGetFlags_r4_6
     module procedure hipHostGetFlags_r4_7
+    module procedure hipHostGetFlags_r8_0
     module procedure hipHostGetFlags_r8_1
     module procedure hipHostGetFlags_r8_2
     module procedure hipHostGetFlags_r8_3
@@ -591,6 +697,7 @@ module hipfort_auxiliary
     module procedure hipHostGetFlags_r8_5
     module procedure hipHostGetFlags_r8_6
     module procedure hipHostGetFlags_r8_7
+    module procedure hipHostGetFlags_c4_0
     module procedure hipHostGetFlags_c4_1
     module procedure hipHostGetFlags_c4_2
     module procedure hipHostGetFlags_c4_3
@@ -598,6 +705,7 @@ module hipfort_auxiliary
     module procedure hipHostGetFlags_c4_5
     module procedure hipHostGetFlags_c4_6
     module procedure hipHostGetFlags_c4_7
+    module procedure hipHostGetFlags_c8_0
     module procedure hipHostGetFlags_c8_1
     module procedure hipHostGetFlags_c8_2
     module procedure hipHostGetFlags_c8_3
@@ -1323,6 +1431,41 @@ contains
     call c_f_pointer(cptr, ptr, shape=[length1,length2,length3,length4,length5,length6,length7])
   end function hipMalloc_c8_7
 
+  function hipMalloc_i4_0_opt(ptr, dims, source, mold, dsource) result(res)
+    use iso_c_binding
+    use hipfort_enums, only: hipMemcpyHostToDevice, hipMemcpyDeviceToDevice
+    implicit none
+    integer(c_int), pointer, intent(inout) :: ptr
+    integer, dimension(:), intent(in), optional :: dims
+    integer(c_int), target, intent(in), optional :: source, mold, dsource
+    integer(c_int) :: res
+    integer(c_size_t) :: nbytes
+    type(c_ptr) :: cptr
+    if (present(dims)) then
+      res = hipMalloc_b(cptr, 4_c_size_t * int(product(dims), c_size_t))
+      if (res == 0) call c_f_pointer(cptr, ptr)
+    else if (present(source)) then
+      nbytes = 4_c_size_t * int(1, c_size_t)
+      res = hipMalloc_b(cptr, nbytes)
+      if (res == 0) then
+        call c_f_pointer(cptr, ptr)
+        res = hipMemcpy_b(cptr, c_loc(source), nbytes, hipMemcpyHostToDevice)
+      end if
+    else if (present(dsource)) then
+      nbytes = 4_c_size_t * int(1, c_size_t)
+      res = hipMalloc_b(cptr, nbytes)
+      if (res == 0) then
+        call c_f_pointer(cptr, ptr)
+        res = hipMemcpy_b(cptr, c_loc(dsource), nbytes, hipMemcpyDeviceToDevice)
+      end if
+    else if (present(mold)) then
+      res = hipMalloc_b(cptr, 4_c_size_t * int(1, c_size_t))
+      if (res == 0) call c_f_pointer(cptr, ptr)
+    else
+      res = hipMalloc_b(cptr, 0_c_size_t)
+    end if
+  end function hipMalloc_i4_0_opt
+
   function hipMalloc_i4_1_opt(ptr, dims, source, mold, dsource) result(res)
     use iso_c_binding
     use hipfort_enums, only: hipMemcpyHostToDevice, hipMemcpyDeviceToDevice
@@ -1567,6 +1710,41 @@ contains
       res = hipMalloc_b(cptr, 0_c_size_t)
     end if
   end function hipMalloc_i4_7_opt
+
+  function hipMalloc_i8_0_opt(ptr, dims, source, mold, dsource) result(res)
+    use iso_c_binding
+    use hipfort_enums, only: hipMemcpyHostToDevice, hipMemcpyDeviceToDevice
+    implicit none
+    integer(c_int64_t), pointer, intent(inout) :: ptr
+    integer, dimension(:), intent(in), optional :: dims
+    integer(c_int64_t), target, intent(in), optional :: source, mold, dsource
+    integer(c_int) :: res
+    integer(c_size_t) :: nbytes
+    type(c_ptr) :: cptr
+    if (present(dims)) then
+      res = hipMalloc_b(cptr, 8_c_size_t * int(product(dims), c_size_t))
+      if (res == 0) call c_f_pointer(cptr, ptr)
+    else if (present(source)) then
+      nbytes = 8_c_size_t * int(1, c_size_t)
+      res = hipMalloc_b(cptr, nbytes)
+      if (res == 0) then
+        call c_f_pointer(cptr, ptr)
+        res = hipMemcpy_b(cptr, c_loc(source), nbytes, hipMemcpyHostToDevice)
+      end if
+    else if (present(dsource)) then
+      nbytes = 8_c_size_t * int(1, c_size_t)
+      res = hipMalloc_b(cptr, nbytes)
+      if (res == 0) then
+        call c_f_pointer(cptr, ptr)
+        res = hipMemcpy_b(cptr, c_loc(dsource), nbytes, hipMemcpyDeviceToDevice)
+      end if
+    else if (present(mold)) then
+      res = hipMalloc_b(cptr, 8_c_size_t * int(1, c_size_t))
+      if (res == 0) call c_f_pointer(cptr, ptr)
+    else
+      res = hipMalloc_b(cptr, 0_c_size_t)
+    end if
+  end function hipMalloc_i8_0_opt
 
   function hipMalloc_i8_1_opt(ptr, dims, source, mold, dsource) result(res)
     use iso_c_binding
@@ -1813,6 +1991,41 @@ contains
     end if
   end function hipMalloc_i8_7_opt
 
+  function hipMalloc_r4_0_opt(ptr, dims, source, mold, dsource) result(res)
+    use iso_c_binding
+    use hipfort_enums, only: hipMemcpyHostToDevice, hipMemcpyDeviceToDevice
+    implicit none
+    real(c_float), pointer, intent(inout) :: ptr
+    integer, dimension(:), intent(in), optional :: dims
+    real(c_float), target, intent(in), optional :: source, mold, dsource
+    integer(c_int) :: res
+    integer(c_size_t) :: nbytes
+    type(c_ptr) :: cptr
+    if (present(dims)) then
+      res = hipMalloc_b(cptr, 4_c_size_t * int(product(dims), c_size_t))
+      if (res == 0) call c_f_pointer(cptr, ptr)
+    else if (present(source)) then
+      nbytes = 4_c_size_t * int(1, c_size_t)
+      res = hipMalloc_b(cptr, nbytes)
+      if (res == 0) then
+        call c_f_pointer(cptr, ptr)
+        res = hipMemcpy_b(cptr, c_loc(source), nbytes, hipMemcpyHostToDevice)
+      end if
+    else if (present(dsource)) then
+      nbytes = 4_c_size_t * int(1, c_size_t)
+      res = hipMalloc_b(cptr, nbytes)
+      if (res == 0) then
+        call c_f_pointer(cptr, ptr)
+        res = hipMemcpy_b(cptr, c_loc(dsource), nbytes, hipMemcpyDeviceToDevice)
+      end if
+    else if (present(mold)) then
+      res = hipMalloc_b(cptr, 4_c_size_t * int(1, c_size_t))
+      if (res == 0) call c_f_pointer(cptr, ptr)
+    else
+      res = hipMalloc_b(cptr, 0_c_size_t)
+    end if
+  end function hipMalloc_r4_0_opt
+
   function hipMalloc_r4_1_opt(ptr, dims, source, mold, dsource) result(res)
     use iso_c_binding
     use hipfort_enums, only: hipMemcpyHostToDevice, hipMemcpyDeviceToDevice
@@ -2057,6 +2270,41 @@ contains
       res = hipMalloc_b(cptr, 0_c_size_t)
     end if
   end function hipMalloc_r4_7_opt
+
+  function hipMalloc_r8_0_opt(ptr, dims, source, mold, dsource) result(res)
+    use iso_c_binding
+    use hipfort_enums, only: hipMemcpyHostToDevice, hipMemcpyDeviceToDevice
+    implicit none
+    real(c_double), pointer, intent(inout) :: ptr
+    integer, dimension(:), intent(in), optional :: dims
+    real(c_double), target, intent(in), optional :: source, mold, dsource
+    integer(c_int) :: res
+    integer(c_size_t) :: nbytes
+    type(c_ptr) :: cptr
+    if (present(dims)) then
+      res = hipMalloc_b(cptr, 8_c_size_t * int(product(dims), c_size_t))
+      if (res == 0) call c_f_pointer(cptr, ptr)
+    else if (present(source)) then
+      nbytes = 8_c_size_t * int(1, c_size_t)
+      res = hipMalloc_b(cptr, nbytes)
+      if (res == 0) then
+        call c_f_pointer(cptr, ptr)
+        res = hipMemcpy_b(cptr, c_loc(source), nbytes, hipMemcpyHostToDevice)
+      end if
+    else if (present(dsource)) then
+      nbytes = 8_c_size_t * int(1, c_size_t)
+      res = hipMalloc_b(cptr, nbytes)
+      if (res == 0) then
+        call c_f_pointer(cptr, ptr)
+        res = hipMemcpy_b(cptr, c_loc(dsource), nbytes, hipMemcpyDeviceToDevice)
+      end if
+    else if (present(mold)) then
+      res = hipMalloc_b(cptr, 8_c_size_t * int(1, c_size_t))
+      if (res == 0) call c_f_pointer(cptr, ptr)
+    else
+      res = hipMalloc_b(cptr, 0_c_size_t)
+    end if
+  end function hipMalloc_r8_0_opt
 
   function hipMalloc_r8_1_opt(ptr, dims, source, mold, dsource) result(res)
     use iso_c_binding
@@ -2303,6 +2551,41 @@ contains
     end if
   end function hipMalloc_r8_7_opt
 
+  function hipMalloc_c4_0_opt(ptr, dims, source, mold, dsource) result(res)
+    use iso_c_binding
+    use hipfort_enums, only: hipMemcpyHostToDevice, hipMemcpyDeviceToDevice
+    implicit none
+    complex(c_float_complex), pointer, intent(inout) :: ptr
+    integer, dimension(:), intent(in), optional :: dims
+    complex(c_float_complex), target, intent(in), optional :: source, mold, dsource
+    integer(c_int) :: res
+    integer(c_size_t) :: nbytes
+    type(c_ptr) :: cptr
+    if (present(dims)) then
+      res = hipMalloc_b(cptr, 8_c_size_t * int(product(dims), c_size_t))
+      if (res == 0) call c_f_pointer(cptr, ptr)
+    else if (present(source)) then
+      nbytes = 8_c_size_t * int(1, c_size_t)
+      res = hipMalloc_b(cptr, nbytes)
+      if (res == 0) then
+        call c_f_pointer(cptr, ptr)
+        res = hipMemcpy_b(cptr, c_loc(source), nbytes, hipMemcpyHostToDevice)
+      end if
+    else if (present(dsource)) then
+      nbytes = 8_c_size_t * int(1, c_size_t)
+      res = hipMalloc_b(cptr, nbytes)
+      if (res == 0) then
+        call c_f_pointer(cptr, ptr)
+        res = hipMemcpy_b(cptr, c_loc(dsource), nbytes, hipMemcpyDeviceToDevice)
+      end if
+    else if (present(mold)) then
+      res = hipMalloc_b(cptr, 8_c_size_t * int(1, c_size_t))
+      if (res == 0) call c_f_pointer(cptr, ptr)
+    else
+      res = hipMalloc_b(cptr, 0_c_size_t)
+    end if
+  end function hipMalloc_c4_0_opt
+
   function hipMalloc_c4_1_opt(ptr, dims, source, mold, dsource) result(res)
     use iso_c_binding
     use hipfort_enums, only: hipMemcpyHostToDevice, hipMemcpyDeviceToDevice
@@ -2547,6 +2830,41 @@ contains
       res = hipMalloc_b(cptr, 0_c_size_t)
     end if
   end function hipMalloc_c4_7_opt
+
+  function hipMalloc_c8_0_opt(ptr, dims, source, mold, dsource) result(res)
+    use iso_c_binding
+    use hipfort_enums, only: hipMemcpyHostToDevice, hipMemcpyDeviceToDevice
+    implicit none
+    complex(c_double_complex), pointer, intent(inout) :: ptr
+    integer, dimension(:), intent(in), optional :: dims
+    complex(c_double_complex), target, intent(in), optional :: source, mold, dsource
+    integer(c_int) :: res
+    integer(c_size_t) :: nbytes
+    type(c_ptr) :: cptr
+    if (present(dims)) then
+      res = hipMalloc_b(cptr, 16_c_size_t * int(product(dims), c_size_t))
+      if (res == 0) call c_f_pointer(cptr, ptr)
+    else if (present(source)) then
+      nbytes = 16_c_size_t * int(1, c_size_t)
+      res = hipMalloc_b(cptr, nbytes)
+      if (res == 0) then
+        call c_f_pointer(cptr, ptr)
+        res = hipMemcpy_b(cptr, c_loc(source), nbytes, hipMemcpyHostToDevice)
+      end if
+    else if (present(dsource)) then
+      nbytes = 16_c_size_t * int(1, c_size_t)
+      res = hipMalloc_b(cptr, nbytes)
+      if (res == 0) then
+        call c_f_pointer(cptr, ptr)
+        res = hipMemcpy_b(cptr, c_loc(dsource), nbytes, hipMemcpyDeviceToDevice)
+      end if
+    else if (present(mold)) then
+      res = hipMalloc_b(cptr, 16_c_size_t * int(1, c_size_t))
+      if (res == 0) call c_f_pointer(cptr, ptr)
+    else
+      res = hipMalloc_b(cptr, 0_c_size_t)
+    end if
+  end function hipMalloc_c8_0_opt
 
   function hipMalloc_c8_1_opt(ptr, dims, source, mold, dsource) result(res)
     use iso_c_binding
@@ -2793,6 +3111,15 @@ contains
     end if
   end function hipMalloc_c8_7_opt
 
+  function hipFree_i4_0(ptr) result(res)
+    use iso_c_binding
+    implicit none
+    integer(c_int), pointer, intent(inout) :: ptr
+    integer(c_int) :: res
+    res = hipFree_b(c_loc(ptr))
+    ptr => null()
+  end function hipFree_i4_0
+
   function hipFree_i4_1(ptr) result(res)
     use iso_c_binding
     implicit none
@@ -2855,6 +3182,15 @@ contains
     res = hipFree_b(c_loc(ptr(1,1,1,1,1,1,1)))
     ptr => null()
   end function hipFree_i4_7
+
+  function hipFree_i8_0(ptr) result(res)
+    use iso_c_binding
+    implicit none
+    integer(c_int64_t), pointer, intent(inout) :: ptr
+    integer(c_int) :: res
+    res = hipFree_b(c_loc(ptr))
+    ptr => null()
+  end function hipFree_i8_0
 
   function hipFree_i8_1(ptr) result(res)
     use iso_c_binding
@@ -2919,6 +3255,15 @@ contains
     ptr => null()
   end function hipFree_i8_7
 
+  function hipFree_r4_0(ptr) result(res)
+    use iso_c_binding
+    implicit none
+    real(c_float), pointer, intent(inout) :: ptr
+    integer(c_int) :: res
+    res = hipFree_b(c_loc(ptr))
+    ptr => null()
+  end function hipFree_r4_0
+
   function hipFree_r4_1(ptr) result(res)
     use iso_c_binding
     implicit none
@@ -2981,6 +3326,15 @@ contains
     res = hipFree_b(c_loc(ptr(1,1,1,1,1,1,1)))
     ptr => null()
   end function hipFree_r4_7
+
+  function hipFree_r8_0(ptr) result(res)
+    use iso_c_binding
+    implicit none
+    real(c_double), pointer, intent(inout) :: ptr
+    integer(c_int) :: res
+    res = hipFree_b(c_loc(ptr))
+    ptr => null()
+  end function hipFree_r8_0
 
   function hipFree_r8_1(ptr) result(res)
     use iso_c_binding
@@ -3045,6 +3399,15 @@ contains
     ptr => null()
   end function hipFree_r8_7
 
+  function hipFree_c4_0(ptr) result(res)
+    use iso_c_binding
+    implicit none
+    complex(c_float_complex), pointer, intent(inout) :: ptr
+    integer(c_int) :: res
+    res = hipFree_b(c_loc(ptr))
+    ptr => null()
+  end function hipFree_c4_0
+
   function hipFree_c4_1(ptr) result(res)
     use iso_c_binding
     implicit none
@@ -3107,6 +3470,15 @@ contains
     res = hipFree_b(c_loc(ptr(1,1,1,1,1,1,1)))
     ptr => null()
   end function hipFree_c4_7
+
+  function hipFree_c8_0(ptr) result(res)
+    use iso_c_binding
+    implicit none
+    complex(c_double_complex), pointer, intent(inout) :: ptr
+    integer(c_int) :: res
+    res = hipFree_b(c_loc(ptr))
+    ptr => null()
+  end function hipFree_c8_0
 
   function hipFree_c8_1(ptr) result(res)
     use iso_c_binding
@@ -3171,6 +3543,44 @@ contains
     ptr => null()
   end function hipFree_c8_7
 
+  function hipMemcpy_i4_0(dest, src, count, myKind) result(res)
+    use iso_c_binding
+    implicit none
+    integer(c_int), target, intent(inout) :: dest
+    integer(c_int), target, intent(in)    :: src
+    integer(c_size_t), value :: count
+    integer(c_int), value :: myKind
+    integer(c_int) :: res
+    integer(c_size_t) :: nbytes
+    nbytes = int(count, c_size_t) * 4_c_size_t
+    res = hipMemcpy_b(c_loc(dest), c_loc(src), nbytes, myKind)
+  end function hipMemcpy_i4_0
+
+  function hipMemcpy_i4_0_ci(dest, src, count, myKind) result(res)
+    use iso_c_binding
+    implicit none
+    integer(c_int), target, intent(inout) :: dest
+    integer(c_int), target, intent(in)    :: src
+    integer(c_int), value :: count
+    integer(c_int), value :: myKind
+    integer(c_int) :: res
+    integer(c_size_t) :: nbytes
+    nbytes = int(count, c_size_t) * 4_c_size_t
+    res = hipMemcpy_b(c_loc(dest), c_loc(src), nbytes, myKind)
+  end function hipMemcpy_i4_0_ci
+
+  function hipMemcpy_i4_0_auto(dest, src, myKind) result(res)
+    use iso_c_binding
+    implicit none
+    integer(c_int), target, intent(inout) :: dest
+    integer(c_int), target, intent(in)    :: src
+    integer(c_int), value :: myKind
+    integer(c_int) :: res
+    integer(c_size_t) :: nbytes
+    nbytes = int(1, c_size_t) * 4_c_size_t
+    res = hipMemcpy_b(c_loc(dest), c_loc(src), nbytes, myKind)
+  end function hipMemcpy_i4_0_auto
+
   function hipMemcpy_i4_1(dest, src, count, myKind) result(res)
     use iso_c_binding
     implicit none
@@ -3180,9 +3590,22 @@ contains
     integer(c_int), value :: myKind
     integer(c_int) :: res
     integer(c_size_t) :: nbytes
-    nbytes = count * 4_c_size_t
+    nbytes = int(count, c_size_t) * 4_c_size_t
     res = hipMemcpy_b(c_loc(dest(1)), c_loc(src(1)), nbytes, myKind)
   end function hipMemcpy_i4_1
+
+  function hipMemcpy_i4_1_ci(dest, src, count, myKind) result(res)
+    use iso_c_binding
+    implicit none
+    integer(c_int), target, dimension(:), intent(inout) :: dest
+    integer(c_int), target, dimension(:), intent(in)    :: src
+    integer(c_int), value :: count
+    integer(c_int), value :: myKind
+    integer(c_int) :: res
+    integer(c_size_t) :: nbytes
+    nbytes = int(count, c_size_t) * 4_c_size_t
+    res = hipMemcpy_b(c_loc(dest(1)), c_loc(src(1)), nbytes, myKind)
+  end function hipMemcpy_i4_1_ci
 
   function hipMemcpy_i4_1_auto(dest, src, myKind) result(res)
     use iso_c_binding
@@ -3205,9 +3628,22 @@ contains
     integer(c_int), value :: myKind
     integer(c_int) :: res
     integer(c_size_t) :: nbytes
-    nbytes = count * 4_c_size_t
+    nbytes = int(count, c_size_t) * 4_c_size_t
     res = hipMemcpy_b(c_loc(dest(1,1)), c_loc(src(1,1)), nbytes, myKind)
   end function hipMemcpy_i4_2
+
+  function hipMemcpy_i4_2_ci(dest, src, count, myKind) result(res)
+    use iso_c_binding
+    implicit none
+    integer(c_int), target, dimension(:,:), intent(inout) :: dest
+    integer(c_int), target, dimension(:,:), intent(in)    :: src
+    integer(c_int), value :: count
+    integer(c_int), value :: myKind
+    integer(c_int) :: res
+    integer(c_size_t) :: nbytes
+    nbytes = int(count, c_size_t) * 4_c_size_t
+    res = hipMemcpy_b(c_loc(dest(1,1)), c_loc(src(1,1)), nbytes, myKind)
+  end function hipMemcpy_i4_2_ci
 
   function hipMemcpy_i4_2_auto(dest, src, myKind) result(res)
     use iso_c_binding
@@ -3230,9 +3666,22 @@ contains
     integer(c_int), value :: myKind
     integer(c_int) :: res
     integer(c_size_t) :: nbytes
-    nbytes = count * 4_c_size_t
+    nbytes = int(count, c_size_t) * 4_c_size_t
     res = hipMemcpy_b(c_loc(dest(1,1,1)), c_loc(src(1,1,1)), nbytes, myKind)
   end function hipMemcpy_i4_3
+
+  function hipMemcpy_i4_3_ci(dest, src, count, myKind) result(res)
+    use iso_c_binding
+    implicit none
+    integer(c_int), target, dimension(:,:,:), intent(inout) :: dest
+    integer(c_int), target, dimension(:,:,:), intent(in)    :: src
+    integer(c_int), value :: count
+    integer(c_int), value :: myKind
+    integer(c_int) :: res
+    integer(c_size_t) :: nbytes
+    nbytes = int(count, c_size_t) * 4_c_size_t
+    res = hipMemcpy_b(c_loc(dest(1,1,1)), c_loc(src(1,1,1)), nbytes, myKind)
+  end function hipMemcpy_i4_3_ci
 
   function hipMemcpy_i4_3_auto(dest, src, myKind) result(res)
     use iso_c_binding
@@ -3255,9 +3704,22 @@ contains
     integer(c_int), value :: myKind
     integer(c_int) :: res
     integer(c_size_t) :: nbytes
-    nbytes = count * 4_c_size_t
+    nbytes = int(count, c_size_t) * 4_c_size_t
     res = hipMemcpy_b(c_loc(dest(1,1,1,1)), c_loc(src(1,1,1,1)), nbytes, myKind)
   end function hipMemcpy_i4_4
+
+  function hipMemcpy_i4_4_ci(dest, src, count, myKind) result(res)
+    use iso_c_binding
+    implicit none
+    integer(c_int), target, dimension(:,:,:,:), intent(inout) :: dest
+    integer(c_int), target, dimension(:,:,:,:), intent(in)    :: src
+    integer(c_int), value :: count
+    integer(c_int), value :: myKind
+    integer(c_int) :: res
+    integer(c_size_t) :: nbytes
+    nbytes = int(count, c_size_t) * 4_c_size_t
+    res = hipMemcpy_b(c_loc(dest(1,1,1,1)), c_loc(src(1,1,1,1)), nbytes, myKind)
+  end function hipMemcpy_i4_4_ci
 
   function hipMemcpy_i4_4_auto(dest, src, myKind) result(res)
     use iso_c_binding
@@ -3280,9 +3742,22 @@ contains
     integer(c_int), value :: myKind
     integer(c_int) :: res
     integer(c_size_t) :: nbytes
-    nbytes = count * 4_c_size_t
+    nbytes = int(count, c_size_t) * 4_c_size_t
     res = hipMemcpy_b(c_loc(dest(1,1,1,1,1)), c_loc(src(1,1,1,1,1)), nbytes, myKind)
   end function hipMemcpy_i4_5
+
+  function hipMemcpy_i4_5_ci(dest, src, count, myKind) result(res)
+    use iso_c_binding
+    implicit none
+    integer(c_int), target, dimension(:,:,:,:,:), intent(inout) :: dest
+    integer(c_int), target, dimension(:,:,:,:,:), intent(in)    :: src
+    integer(c_int), value :: count
+    integer(c_int), value :: myKind
+    integer(c_int) :: res
+    integer(c_size_t) :: nbytes
+    nbytes = int(count, c_size_t) * 4_c_size_t
+    res = hipMemcpy_b(c_loc(dest(1,1,1,1,1)), c_loc(src(1,1,1,1,1)), nbytes, myKind)
+  end function hipMemcpy_i4_5_ci
 
   function hipMemcpy_i4_5_auto(dest, src, myKind) result(res)
     use iso_c_binding
@@ -3305,9 +3780,22 @@ contains
     integer(c_int), value :: myKind
     integer(c_int) :: res
     integer(c_size_t) :: nbytes
-    nbytes = count * 4_c_size_t
+    nbytes = int(count, c_size_t) * 4_c_size_t
     res = hipMemcpy_b(c_loc(dest(1,1,1,1,1,1)), c_loc(src(1,1,1,1,1,1)), nbytes, myKind)
   end function hipMemcpy_i4_6
+
+  function hipMemcpy_i4_6_ci(dest, src, count, myKind) result(res)
+    use iso_c_binding
+    implicit none
+    integer(c_int), target, dimension(:,:,:,:,:,:), intent(inout) :: dest
+    integer(c_int), target, dimension(:,:,:,:,:,:), intent(in)    :: src
+    integer(c_int), value :: count
+    integer(c_int), value :: myKind
+    integer(c_int) :: res
+    integer(c_size_t) :: nbytes
+    nbytes = int(count, c_size_t) * 4_c_size_t
+    res = hipMemcpy_b(c_loc(dest(1,1,1,1,1,1)), c_loc(src(1,1,1,1,1,1)), nbytes, myKind)
+  end function hipMemcpy_i4_6_ci
 
   function hipMemcpy_i4_6_auto(dest, src, myKind) result(res)
     use iso_c_binding
@@ -3330,9 +3818,22 @@ contains
     integer(c_int), value :: myKind
     integer(c_int) :: res
     integer(c_size_t) :: nbytes
-    nbytes = count * 4_c_size_t
+    nbytes = int(count, c_size_t) * 4_c_size_t
     res = hipMemcpy_b(c_loc(dest(1,1,1,1,1,1,1)), c_loc(src(1,1,1,1,1,1,1)), nbytes, myKind)
   end function hipMemcpy_i4_7
+
+  function hipMemcpy_i4_7_ci(dest, src, count, myKind) result(res)
+    use iso_c_binding
+    implicit none
+    integer(c_int), target, dimension(:,:,:,:,:,:,:), intent(inout) :: dest
+    integer(c_int), target, dimension(:,:,:,:,:,:,:), intent(in)    :: src
+    integer(c_int), value :: count
+    integer(c_int), value :: myKind
+    integer(c_int) :: res
+    integer(c_size_t) :: nbytes
+    nbytes = int(count, c_size_t) * 4_c_size_t
+    res = hipMemcpy_b(c_loc(dest(1,1,1,1,1,1,1)), c_loc(src(1,1,1,1,1,1,1)), nbytes, myKind)
+  end function hipMemcpy_i4_7_ci
 
   function hipMemcpy_i4_7_auto(dest, src, myKind) result(res)
     use iso_c_binding
@@ -3346,6 +3847,44 @@ contains
     res = hipMemcpy_b(c_loc(dest(1,1,1,1,1,1,1)), c_loc(src(1,1,1,1,1,1,1)), nbytes, myKind)
   end function hipMemcpy_i4_7_auto
 
+  function hipMemcpy_i8_0(dest, src, count, myKind) result(res)
+    use iso_c_binding
+    implicit none
+    integer(c_int64_t), target, intent(inout) :: dest
+    integer(c_int64_t), target, intent(in)    :: src
+    integer(c_size_t), value :: count
+    integer(c_int), value :: myKind
+    integer(c_int) :: res
+    integer(c_size_t) :: nbytes
+    nbytes = int(count, c_size_t) * 8_c_size_t
+    res = hipMemcpy_b(c_loc(dest), c_loc(src), nbytes, myKind)
+  end function hipMemcpy_i8_0
+
+  function hipMemcpy_i8_0_ci(dest, src, count, myKind) result(res)
+    use iso_c_binding
+    implicit none
+    integer(c_int64_t), target, intent(inout) :: dest
+    integer(c_int64_t), target, intent(in)    :: src
+    integer(c_int), value :: count
+    integer(c_int), value :: myKind
+    integer(c_int) :: res
+    integer(c_size_t) :: nbytes
+    nbytes = int(count, c_size_t) * 8_c_size_t
+    res = hipMemcpy_b(c_loc(dest), c_loc(src), nbytes, myKind)
+  end function hipMemcpy_i8_0_ci
+
+  function hipMemcpy_i8_0_auto(dest, src, myKind) result(res)
+    use iso_c_binding
+    implicit none
+    integer(c_int64_t), target, intent(inout) :: dest
+    integer(c_int64_t), target, intent(in)    :: src
+    integer(c_int), value :: myKind
+    integer(c_int) :: res
+    integer(c_size_t) :: nbytes
+    nbytes = int(1, c_size_t) * 8_c_size_t
+    res = hipMemcpy_b(c_loc(dest), c_loc(src), nbytes, myKind)
+  end function hipMemcpy_i8_0_auto
+
   function hipMemcpy_i8_1(dest, src, count, myKind) result(res)
     use iso_c_binding
     implicit none
@@ -3355,9 +3894,22 @@ contains
     integer(c_int), value :: myKind
     integer(c_int) :: res
     integer(c_size_t) :: nbytes
-    nbytes = count * 8_c_size_t
+    nbytes = int(count, c_size_t) * 8_c_size_t
     res = hipMemcpy_b(c_loc(dest(1)), c_loc(src(1)), nbytes, myKind)
   end function hipMemcpy_i8_1
+
+  function hipMemcpy_i8_1_ci(dest, src, count, myKind) result(res)
+    use iso_c_binding
+    implicit none
+    integer(c_int64_t), target, dimension(:), intent(inout) :: dest
+    integer(c_int64_t), target, dimension(:), intent(in)    :: src
+    integer(c_int), value :: count
+    integer(c_int), value :: myKind
+    integer(c_int) :: res
+    integer(c_size_t) :: nbytes
+    nbytes = int(count, c_size_t) * 8_c_size_t
+    res = hipMemcpy_b(c_loc(dest(1)), c_loc(src(1)), nbytes, myKind)
+  end function hipMemcpy_i8_1_ci
 
   function hipMemcpy_i8_1_auto(dest, src, myKind) result(res)
     use iso_c_binding
@@ -3380,9 +3932,22 @@ contains
     integer(c_int), value :: myKind
     integer(c_int) :: res
     integer(c_size_t) :: nbytes
-    nbytes = count * 8_c_size_t
+    nbytes = int(count, c_size_t) * 8_c_size_t
     res = hipMemcpy_b(c_loc(dest(1,1)), c_loc(src(1,1)), nbytes, myKind)
   end function hipMemcpy_i8_2
+
+  function hipMemcpy_i8_2_ci(dest, src, count, myKind) result(res)
+    use iso_c_binding
+    implicit none
+    integer(c_int64_t), target, dimension(:,:), intent(inout) :: dest
+    integer(c_int64_t), target, dimension(:,:), intent(in)    :: src
+    integer(c_int), value :: count
+    integer(c_int), value :: myKind
+    integer(c_int) :: res
+    integer(c_size_t) :: nbytes
+    nbytes = int(count, c_size_t) * 8_c_size_t
+    res = hipMemcpy_b(c_loc(dest(1,1)), c_loc(src(1,1)), nbytes, myKind)
+  end function hipMemcpy_i8_2_ci
 
   function hipMemcpy_i8_2_auto(dest, src, myKind) result(res)
     use iso_c_binding
@@ -3405,9 +3970,22 @@ contains
     integer(c_int), value :: myKind
     integer(c_int) :: res
     integer(c_size_t) :: nbytes
-    nbytes = count * 8_c_size_t
+    nbytes = int(count, c_size_t) * 8_c_size_t
     res = hipMemcpy_b(c_loc(dest(1,1,1)), c_loc(src(1,1,1)), nbytes, myKind)
   end function hipMemcpy_i8_3
+
+  function hipMemcpy_i8_3_ci(dest, src, count, myKind) result(res)
+    use iso_c_binding
+    implicit none
+    integer(c_int64_t), target, dimension(:,:,:), intent(inout) :: dest
+    integer(c_int64_t), target, dimension(:,:,:), intent(in)    :: src
+    integer(c_int), value :: count
+    integer(c_int), value :: myKind
+    integer(c_int) :: res
+    integer(c_size_t) :: nbytes
+    nbytes = int(count, c_size_t) * 8_c_size_t
+    res = hipMemcpy_b(c_loc(dest(1,1,1)), c_loc(src(1,1,1)), nbytes, myKind)
+  end function hipMemcpy_i8_3_ci
 
   function hipMemcpy_i8_3_auto(dest, src, myKind) result(res)
     use iso_c_binding
@@ -3430,9 +4008,22 @@ contains
     integer(c_int), value :: myKind
     integer(c_int) :: res
     integer(c_size_t) :: nbytes
-    nbytes = count * 8_c_size_t
+    nbytes = int(count, c_size_t) * 8_c_size_t
     res = hipMemcpy_b(c_loc(dest(1,1,1,1)), c_loc(src(1,1,1,1)), nbytes, myKind)
   end function hipMemcpy_i8_4
+
+  function hipMemcpy_i8_4_ci(dest, src, count, myKind) result(res)
+    use iso_c_binding
+    implicit none
+    integer(c_int64_t), target, dimension(:,:,:,:), intent(inout) :: dest
+    integer(c_int64_t), target, dimension(:,:,:,:), intent(in)    :: src
+    integer(c_int), value :: count
+    integer(c_int), value :: myKind
+    integer(c_int) :: res
+    integer(c_size_t) :: nbytes
+    nbytes = int(count, c_size_t) * 8_c_size_t
+    res = hipMemcpy_b(c_loc(dest(1,1,1,1)), c_loc(src(1,1,1,1)), nbytes, myKind)
+  end function hipMemcpy_i8_4_ci
 
   function hipMemcpy_i8_4_auto(dest, src, myKind) result(res)
     use iso_c_binding
@@ -3455,9 +4046,22 @@ contains
     integer(c_int), value :: myKind
     integer(c_int) :: res
     integer(c_size_t) :: nbytes
-    nbytes = count * 8_c_size_t
+    nbytes = int(count, c_size_t) * 8_c_size_t
     res = hipMemcpy_b(c_loc(dest(1,1,1,1,1)), c_loc(src(1,1,1,1,1)), nbytes, myKind)
   end function hipMemcpy_i8_5
+
+  function hipMemcpy_i8_5_ci(dest, src, count, myKind) result(res)
+    use iso_c_binding
+    implicit none
+    integer(c_int64_t), target, dimension(:,:,:,:,:), intent(inout) :: dest
+    integer(c_int64_t), target, dimension(:,:,:,:,:), intent(in)    :: src
+    integer(c_int), value :: count
+    integer(c_int), value :: myKind
+    integer(c_int) :: res
+    integer(c_size_t) :: nbytes
+    nbytes = int(count, c_size_t) * 8_c_size_t
+    res = hipMemcpy_b(c_loc(dest(1,1,1,1,1)), c_loc(src(1,1,1,1,1)), nbytes, myKind)
+  end function hipMemcpy_i8_5_ci
 
   function hipMemcpy_i8_5_auto(dest, src, myKind) result(res)
     use iso_c_binding
@@ -3480,9 +4084,22 @@ contains
     integer(c_int), value :: myKind
     integer(c_int) :: res
     integer(c_size_t) :: nbytes
-    nbytes = count * 8_c_size_t
+    nbytes = int(count, c_size_t) * 8_c_size_t
     res = hipMemcpy_b(c_loc(dest(1,1,1,1,1,1)), c_loc(src(1,1,1,1,1,1)), nbytes, myKind)
   end function hipMemcpy_i8_6
+
+  function hipMemcpy_i8_6_ci(dest, src, count, myKind) result(res)
+    use iso_c_binding
+    implicit none
+    integer(c_int64_t), target, dimension(:,:,:,:,:,:), intent(inout) :: dest
+    integer(c_int64_t), target, dimension(:,:,:,:,:,:), intent(in)    :: src
+    integer(c_int), value :: count
+    integer(c_int), value :: myKind
+    integer(c_int) :: res
+    integer(c_size_t) :: nbytes
+    nbytes = int(count, c_size_t) * 8_c_size_t
+    res = hipMemcpy_b(c_loc(dest(1,1,1,1,1,1)), c_loc(src(1,1,1,1,1,1)), nbytes, myKind)
+  end function hipMemcpy_i8_6_ci
 
   function hipMemcpy_i8_6_auto(dest, src, myKind) result(res)
     use iso_c_binding
@@ -3505,9 +4122,22 @@ contains
     integer(c_int), value :: myKind
     integer(c_int) :: res
     integer(c_size_t) :: nbytes
-    nbytes = count * 8_c_size_t
+    nbytes = int(count, c_size_t) * 8_c_size_t
     res = hipMemcpy_b(c_loc(dest(1,1,1,1,1,1,1)), c_loc(src(1,1,1,1,1,1,1)), nbytes, myKind)
   end function hipMemcpy_i8_7
+
+  function hipMemcpy_i8_7_ci(dest, src, count, myKind) result(res)
+    use iso_c_binding
+    implicit none
+    integer(c_int64_t), target, dimension(:,:,:,:,:,:,:), intent(inout) :: dest
+    integer(c_int64_t), target, dimension(:,:,:,:,:,:,:), intent(in)    :: src
+    integer(c_int), value :: count
+    integer(c_int), value :: myKind
+    integer(c_int) :: res
+    integer(c_size_t) :: nbytes
+    nbytes = int(count, c_size_t) * 8_c_size_t
+    res = hipMemcpy_b(c_loc(dest(1,1,1,1,1,1,1)), c_loc(src(1,1,1,1,1,1,1)), nbytes, myKind)
+  end function hipMemcpy_i8_7_ci
 
   function hipMemcpy_i8_7_auto(dest, src, myKind) result(res)
     use iso_c_binding
@@ -3521,6 +4151,44 @@ contains
     res = hipMemcpy_b(c_loc(dest(1,1,1,1,1,1,1)), c_loc(src(1,1,1,1,1,1,1)), nbytes, myKind)
   end function hipMemcpy_i8_7_auto
 
+  function hipMemcpy_r4_0(dest, src, count, myKind) result(res)
+    use iso_c_binding
+    implicit none
+    real(c_float), target, intent(inout) :: dest
+    real(c_float), target, intent(in)    :: src
+    integer(c_size_t), value :: count
+    integer(c_int), value :: myKind
+    integer(c_int) :: res
+    integer(c_size_t) :: nbytes
+    nbytes = int(count, c_size_t) * 4_c_size_t
+    res = hipMemcpy_b(c_loc(dest), c_loc(src), nbytes, myKind)
+  end function hipMemcpy_r4_0
+
+  function hipMemcpy_r4_0_ci(dest, src, count, myKind) result(res)
+    use iso_c_binding
+    implicit none
+    real(c_float), target, intent(inout) :: dest
+    real(c_float), target, intent(in)    :: src
+    integer(c_int), value :: count
+    integer(c_int), value :: myKind
+    integer(c_int) :: res
+    integer(c_size_t) :: nbytes
+    nbytes = int(count, c_size_t) * 4_c_size_t
+    res = hipMemcpy_b(c_loc(dest), c_loc(src), nbytes, myKind)
+  end function hipMemcpy_r4_0_ci
+
+  function hipMemcpy_r4_0_auto(dest, src, myKind) result(res)
+    use iso_c_binding
+    implicit none
+    real(c_float), target, intent(inout) :: dest
+    real(c_float), target, intent(in)    :: src
+    integer(c_int), value :: myKind
+    integer(c_int) :: res
+    integer(c_size_t) :: nbytes
+    nbytes = int(1, c_size_t) * 4_c_size_t
+    res = hipMemcpy_b(c_loc(dest), c_loc(src), nbytes, myKind)
+  end function hipMemcpy_r4_0_auto
+
   function hipMemcpy_r4_1(dest, src, count, myKind) result(res)
     use iso_c_binding
     implicit none
@@ -3530,9 +4198,22 @@ contains
     integer(c_int), value :: myKind
     integer(c_int) :: res
     integer(c_size_t) :: nbytes
-    nbytes = count * 4_c_size_t
+    nbytes = int(count, c_size_t) * 4_c_size_t
     res = hipMemcpy_b(c_loc(dest(1)), c_loc(src(1)), nbytes, myKind)
   end function hipMemcpy_r4_1
+
+  function hipMemcpy_r4_1_ci(dest, src, count, myKind) result(res)
+    use iso_c_binding
+    implicit none
+    real(c_float), target, dimension(:), intent(inout) :: dest
+    real(c_float), target, dimension(:), intent(in)    :: src
+    integer(c_int), value :: count
+    integer(c_int), value :: myKind
+    integer(c_int) :: res
+    integer(c_size_t) :: nbytes
+    nbytes = int(count, c_size_t) * 4_c_size_t
+    res = hipMemcpy_b(c_loc(dest(1)), c_loc(src(1)), nbytes, myKind)
+  end function hipMemcpy_r4_1_ci
 
   function hipMemcpy_r4_1_auto(dest, src, myKind) result(res)
     use iso_c_binding
@@ -3555,9 +4236,22 @@ contains
     integer(c_int), value :: myKind
     integer(c_int) :: res
     integer(c_size_t) :: nbytes
-    nbytes = count * 4_c_size_t
+    nbytes = int(count, c_size_t) * 4_c_size_t
     res = hipMemcpy_b(c_loc(dest(1,1)), c_loc(src(1,1)), nbytes, myKind)
   end function hipMemcpy_r4_2
+
+  function hipMemcpy_r4_2_ci(dest, src, count, myKind) result(res)
+    use iso_c_binding
+    implicit none
+    real(c_float), target, dimension(:,:), intent(inout) :: dest
+    real(c_float), target, dimension(:,:), intent(in)    :: src
+    integer(c_int), value :: count
+    integer(c_int), value :: myKind
+    integer(c_int) :: res
+    integer(c_size_t) :: nbytes
+    nbytes = int(count, c_size_t) * 4_c_size_t
+    res = hipMemcpy_b(c_loc(dest(1,1)), c_loc(src(1,1)), nbytes, myKind)
+  end function hipMemcpy_r4_2_ci
 
   function hipMemcpy_r4_2_auto(dest, src, myKind) result(res)
     use iso_c_binding
@@ -3580,9 +4274,22 @@ contains
     integer(c_int), value :: myKind
     integer(c_int) :: res
     integer(c_size_t) :: nbytes
-    nbytes = count * 4_c_size_t
+    nbytes = int(count, c_size_t) * 4_c_size_t
     res = hipMemcpy_b(c_loc(dest(1,1,1)), c_loc(src(1,1,1)), nbytes, myKind)
   end function hipMemcpy_r4_3
+
+  function hipMemcpy_r4_3_ci(dest, src, count, myKind) result(res)
+    use iso_c_binding
+    implicit none
+    real(c_float), target, dimension(:,:,:), intent(inout) :: dest
+    real(c_float), target, dimension(:,:,:), intent(in)    :: src
+    integer(c_int), value :: count
+    integer(c_int), value :: myKind
+    integer(c_int) :: res
+    integer(c_size_t) :: nbytes
+    nbytes = int(count, c_size_t) * 4_c_size_t
+    res = hipMemcpy_b(c_loc(dest(1,1,1)), c_loc(src(1,1,1)), nbytes, myKind)
+  end function hipMemcpy_r4_3_ci
 
   function hipMemcpy_r4_3_auto(dest, src, myKind) result(res)
     use iso_c_binding
@@ -3605,9 +4312,22 @@ contains
     integer(c_int), value :: myKind
     integer(c_int) :: res
     integer(c_size_t) :: nbytes
-    nbytes = count * 4_c_size_t
+    nbytes = int(count, c_size_t) * 4_c_size_t
     res = hipMemcpy_b(c_loc(dest(1,1,1,1)), c_loc(src(1,1,1,1)), nbytes, myKind)
   end function hipMemcpy_r4_4
+
+  function hipMemcpy_r4_4_ci(dest, src, count, myKind) result(res)
+    use iso_c_binding
+    implicit none
+    real(c_float), target, dimension(:,:,:,:), intent(inout) :: dest
+    real(c_float), target, dimension(:,:,:,:), intent(in)    :: src
+    integer(c_int), value :: count
+    integer(c_int), value :: myKind
+    integer(c_int) :: res
+    integer(c_size_t) :: nbytes
+    nbytes = int(count, c_size_t) * 4_c_size_t
+    res = hipMemcpy_b(c_loc(dest(1,1,1,1)), c_loc(src(1,1,1,1)), nbytes, myKind)
+  end function hipMemcpy_r4_4_ci
 
   function hipMemcpy_r4_4_auto(dest, src, myKind) result(res)
     use iso_c_binding
@@ -3630,9 +4350,22 @@ contains
     integer(c_int), value :: myKind
     integer(c_int) :: res
     integer(c_size_t) :: nbytes
-    nbytes = count * 4_c_size_t
+    nbytes = int(count, c_size_t) * 4_c_size_t
     res = hipMemcpy_b(c_loc(dest(1,1,1,1,1)), c_loc(src(1,1,1,1,1)), nbytes, myKind)
   end function hipMemcpy_r4_5
+
+  function hipMemcpy_r4_5_ci(dest, src, count, myKind) result(res)
+    use iso_c_binding
+    implicit none
+    real(c_float), target, dimension(:,:,:,:,:), intent(inout) :: dest
+    real(c_float), target, dimension(:,:,:,:,:), intent(in)    :: src
+    integer(c_int), value :: count
+    integer(c_int), value :: myKind
+    integer(c_int) :: res
+    integer(c_size_t) :: nbytes
+    nbytes = int(count, c_size_t) * 4_c_size_t
+    res = hipMemcpy_b(c_loc(dest(1,1,1,1,1)), c_loc(src(1,1,1,1,1)), nbytes, myKind)
+  end function hipMemcpy_r4_5_ci
 
   function hipMemcpy_r4_5_auto(dest, src, myKind) result(res)
     use iso_c_binding
@@ -3655,9 +4388,22 @@ contains
     integer(c_int), value :: myKind
     integer(c_int) :: res
     integer(c_size_t) :: nbytes
-    nbytes = count * 4_c_size_t
+    nbytes = int(count, c_size_t) * 4_c_size_t
     res = hipMemcpy_b(c_loc(dest(1,1,1,1,1,1)), c_loc(src(1,1,1,1,1,1)), nbytes, myKind)
   end function hipMemcpy_r4_6
+
+  function hipMemcpy_r4_6_ci(dest, src, count, myKind) result(res)
+    use iso_c_binding
+    implicit none
+    real(c_float), target, dimension(:,:,:,:,:,:), intent(inout) :: dest
+    real(c_float), target, dimension(:,:,:,:,:,:), intent(in)    :: src
+    integer(c_int), value :: count
+    integer(c_int), value :: myKind
+    integer(c_int) :: res
+    integer(c_size_t) :: nbytes
+    nbytes = int(count, c_size_t) * 4_c_size_t
+    res = hipMemcpy_b(c_loc(dest(1,1,1,1,1,1)), c_loc(src(1,1,1,1,1,1)), nbytes, myKind)
+  end function hipMemcpy_r4_6_ci
 
   function hipMemcpy_r4_6_auto(dest, src, myKind) result(res)
     use iso_c_binding
@@ -3680,9 +4426,22 @@ contains
     integer(c_int), value :: myKind
     integer(c_int) :: res
     integer(c_size_t) :: nbytes
-    nbytes = count * 4_c_size_t
+    nbytes = int(count, c_size_t) * 4_c_size_t
     res = hipMemcpy_b(c_loc(dest(1,1,1,1,1,1,1)), c_loc(src(1,1,1,1,1,1,1)), nbytes, myKind)
   end function hipMemcpy_r4_7
+
+  function hipMemcpy_r4_7_ci(dest, src, count, myKind) result(res)
+    use iso_c_binding
+    implicit none
+    real(c_float), target, dimension(:,:,:,:,:,:,:), intent(inout) :: dest
+    real(c_float), target, dimension(:,:,:,:,:,:,:), intent(in)    :: src
+    integer(c_int), value :: count
+    integer(c_int), value :: myKind
+    integer(c_int) :: res
+    integer(c_size_t) :: nbytes
+    nbytes = int(count, c_size_t) * 4_c_size_t
+    res = hipMemcpy_b(c_loc(dest(1,1,1,1,1,1,1)), c_loc(src(1,1,1,1,1,1,1)), nbytes, myKind)
+  end function hipMemcpy_r4_7_ci
 
   function hipMemcpy_r4_7_auto(dest, src, myKind) result(res)
     use iso_c_binding
@@ -3696,6 +4455,44 @@ contains
     res = hipMemcpy_b(c_loc(dest(1,1,1,1,1,1,1)), c_loc(src(1,1,1,1,1,1,1)), nbytes, myKind)
   end function hipMemcpy_r4_7_auto
 
+  function hipMemcpy_r8_0(dest, src, count, myKind) result(res)
+    use iso_c_binding
+    implicit none
+    real(c_double), target, intent(inout) :: dest
+    real(c_double), target, intent(in)    :: src
+    integer(c_size_t), value :: count
+    integer(c_int), value :: myKind
+    integer(c_int) :: res
+    integer(c_size_t) :: nbytes
+    nbytes = int(count, c_size_t) * 8_c_size_t
+    res = hipMemcpy_b(c_loc(dest), c_loc(src), nbytes, myKind)
+  end function hipMemcpy_r8_0
+
+  function hipMemcpy_r8_0_ci(dest, src, count, myKind) result(res)
+    use iso_c_binding
+    implicit none
+    real(c_double), target, intent(inout) :: dest
+    real(c_double), target, intent(in)    :: src
+    integer(c_int), value :: count
+    integer(c_int), value :: myKind
+    integer(c_int) :: res
+    integer(c_size_t) :: nbytes
+    nbytes = int(count, c_size_t) * 8_c_size_t
+    res = hipMemcpy_b(c_loc(dest), c_loc(src), nbytes, myKind)
+  end function hipMemcpy_r8_0_ci
+
+  function hipMemcpy_r8_0_auto(dest, src, myKind) result(res)
+    use iso_c_binding
+    implicit none
+    real(c_double), target, intent(inout) :: dest
+    real(c_double), target, intent(in)    :: src
+    integer(c_int), value :: myKind
+    integer(c_int) :: res
+    integer(c_size_t) :: nbytes
+    nbytes = int(1, c_size_t) * 8_c_size_t
+    res = hipMemcpy_b(c_loc(dest), c_loc(src), nbytes, myKind)
+  end function hipMemcpy_r8_0_auto
+
   function hipMemcpy_r8_1(dest, src, count, myKind) result(res)
     use iso_c_binding
     implicit none
@@ -3705,9 +4502,22 @@ contains
     integer(c_int), value :: myKind
     integer(c_int) :: res
     integer(c_size_t) :: nbytes
-    nbytes = count * 8_c_size_t
+    nbytes = int(count, c_size_t) * 8_c_size_t
     res = hipMemcpy_b(c_loc(dest(1)), c_loc(src(1)), nbytes, myKind)
   end function hipMemcpy_r8_1
+
+  function hipMemcpy_r8_1_ci(dest, src, count, myKind) result(res)
+    use iso_c_binding
+    implicit none
+    real(c_double), target, dimension(:), intent(inout) :: dest
+    real(c_double), target, dimension(:), intent(in)    :: src
+    integer(c_int), value :: count
+    integer(c_int), value :: myKind
+    integer(c_int) :: res
+    integer(c_size_t) :: nbytes
+    nbytes = int(count, c_size_t) * 8_c_size_t
+    res = hipMemcpy_b(c_loc(dest(1)), c_loc(src(1)), nbytes, myKind)
+  end function hipMemcpy_r8_1_ci
 
   function hipMemcpy_r8_1_auto(dest, src, myKind) result(res)
     use iso_c_binding
@@ -3730,9 +4540,22 @@ contains
     integer(c_int), value :: myKind
     integer(c_int) :: res
     integer(c_size_t) :: nbytes
-    nbytes = count * 8_c_size_t
+    nbytes = int(count, c_size_t) * 8_c_size_t
     res = hipMemcpy_b(c_loc(dest(1,1)), c_loc(src(1,1)), nbytes, myKind)
   end function hipMemcpy_r8_2
+
+  function hipMemcpy_r8_2_ci(dest, src, count, myKind) result(res)
+    use iso_c_binding
+    implicit none
+    real(c_double), target, dimension(:,:), intent(inout) :: dest
+    real(c_double), target, dimension(:,:), intent(in)    :: src
+    integer(c_int), value :: count
+    integer(c_int), value :: myKind
+    integer(c_int) :: res
+    integer(c_size_t) :: nbytes
+    nbytes = int(count, c_size_t) * 8_c_size_t
+    res = hipMemcpy_b(c_loc(dest(1,1)), c_loc(src(1,1)), nbytes, myKind)
+  end function hipMemcpy_r8_2_ci
 
   function hipMemcpy_r8_2_auto(dest, src, myKind) result(res)
     use iso_c_binding
@@ -3755,9 +4578,22 @@ contains
     integer(c_int), value :: myKind
     integer(c_int) :: res
     integer(c_size_t) :: nbytes
-    nbytes = count * 8_c_size_t
+    nbytes = int(count, c_size_t) * 8_c_size_t
     res = hipMemcpy_b(c_loc(dest(1,1,1)), c_loc(src(1,1,1)), nbytes, myKind)
   end function hipMemcpy_r8_3
+
+  function hipMemcpy_r8_3_ci(dest, src, count, myKind) result(res)
+    use iso_c_binding
+    implicit none
+    real(c_double), target, dimension(:,:,:), intent(inout) :: dest
+    real(c_double), target, dimension(:,:,:), intent(in)    :: src
+    integer(c_int), value :: count
+    integer(c_int), value :: myKind
+    integer(c_int) :: res
+    integer(c_size_t) :: nbytes
+    nbytes = int(count, c_size_t) * 8_c_size_t
+    res = hipMemcpy_b(c_loc(dest(1,1,1)), c_loc(src(1,1,1)), nbytes, myKind)
+  end function hipMemcpy_r8_3_ci
 
   function hipMemcpy_r8_3_auto(dest, src, myKind) result(res)
     use iso_c_binding
@@ -3780,9 +4616,22 @@ contains
     integer(c_int), value :: myKind
     integer(c_int) :: res
     integer(c_size_t) :: nbytes
-    nbytes = count * 8_c_size_t
+    nbytes = int(count, c_size_t) * 8_c_size_t
     res = hipMemcpy_b(c_loc(dest(1,1,1,1)), c_loc(src(1,1,1,1)), nbytes, myKind)
   end function hipMemcpy_r8_4
+
+  function hipMemcpy_r8_4_ci(dest, src, count, myKind) result(res)
+    use iso_c_binding
+    implicit none
+    real(c_double), target, dimension(:,:,:,:), intent(inout) :: dest
+    real(c_double), target, dimension(:,:,:,:), intent(in)    :: src
+    integer(c_int), value :: count
+    integer(c_int), value :: myKind
+    integer(c_int) :: res
+    integer(c_size_t) :: nbytes
+    nbytes = int(count, c_size_t) * 8_c_size_t
+    res = hipMemcpy_b(c_loc(dest(1,1,1,1)), c_loc(src(1,1,1,1)), nbytes, myKind)
+  end function hipMemcpy_r8_4_ci
 
   function hipMemcpy_r8_4_auto(dest, src, myKind) result(res)
     use iso_c_binding
@@ -3805,9 +4654,22 @@ contains
     integer(c_int), value :: myKind
     integer(c_int) :: res
     integer(c_size_t) :: nbytes
-    nbytes = count * 8_c_size_t
+    nbytes = int(count, c_size_t) * 8_c_size_t
     res = hipMemcpy_b(c_loc(dest(1,1,1,1,1)), c_loc(src(1,1,1,1,1)), nbytes, myKind)
   end function hipMemcpy_r8_5
+
+  function hipMemcpy_r8_5_ci(dest, src, count, myKind) result(res)
+    use iso_c_binding
+    implicit none
+    real(c_double), target, dimension(:,:,:,:,:), intent(inout) :: dest
+    real(c_double), target, dimension(:,:,:,:,:), intent(in)    :: src
+    integer(c_int), value :: count
+    integer(c_int), value :: myKind
+    integer(c_int) :: res
+    integer(c_size_t) :: nbytes
+    nbytes = int(count, c_size_t) * 8_c_size_t
+    res = hipMemcpy_b(c_loc(dest(1,1,1,1,1)), c_loc(src(1,1,1,1,1)), nbytes, myKind)
+  end function hipMemcpy_r8_5_ci
 
   function hipMemcpy_r8_5_auto(dest, src, myKind) result(res)
     use iso_c_binding
@@ -3830,9 +4692,22 @@ contains
     integer(c_int), value :: myKind
     integer(c_int) :: res
     integer(c_size_t) :: nbytes
-    nbytes = count * 8_c_size_t
+    nbytes = int(count, c_size_t) * 8_c_size_t
     res = hipMemcpy_b(c_loc(dest(1,1,1,1,1,1)), c_loc(src(1,1,1,1,1,1)), nbytes, myKind)
   end function hipMemcpy_r8_6
+
+  function hipMemcpy_r8_6_ci(dest, src, count, myKind) result(res)
+    use iso_c_binding
+    implicit none
+    real(c_double), target, dimension(:,:,:,:,:,:), intent(inout) :: dest
+    real(c_double), target, dimension(:,:,:,:,:,:), intent(in)    :: src
+    integer(c_int), value :: count
+    integer(c_int), value :: myKind
+    integer(c_int) :: res
+    integer(c_size_t) :: nbytes
+    nbytes = int(count, c_size_t) * 8_c_size_t
+    res = hipMemcpy_b(c_loc(dest(1,1,1,1,1,1)), c_loc(src(1,1,1,1,1,1)), nbytes, myKind)
+  end function hipMemcpy_r8_6_ci
 
   function hipMemcpy_r8_6_auto(dest, src, myKind) result(res)
     use iso_c_binding
@@ -3855,9 +4730,22 @@ contains
     integer(c_int), value :: myKind
     integer(c_int) :: res
     integer(c_size_t) :: nbytes
-    nbytes = count * 8_c_size_t
+    nbytes = int(count, c_size_t) * 8_c_size_t
     res = hipMemcpy_b(c_loc(dest(1,1,1,1,1,1,1)), c_loc(src(1,1,1,1,1,1,1)), nbytes, myKind)
   end function hipMemcpy_r8_7
+
+  function hipMemcpy_r8_7_ci(dest, src, count, myKind) result(res)
+    use iso_c_binding
+    implicit none
+    real(c_double), target, dimension(:,:,:,:,:,:,:), intent(inout) :: dest
+    real(c_double), target, dimension(:,:,:,:,:,:,:), intent(in)    :: src
+    integer(c_int), value :: count
+    integer(c_int), value :: myKind
+    integer(c_int) :: res
+    integer(c_size_t) :: nbytes
+    nbytes = int(count, c_size_t) * 8_c_size_t
+    res = hipMemcpy_b(c_loc(dest(1,1,1,1,1,1,1)), c_loc(src(1,1,1,1,1,1,1)), nbytes, myKind)
+  end function hipMemcpy_r8_7_ci
 
   function hipMemcpy_r8_7_auto(dest, src, myKind) result(res)
     use iso_c_binding
@@ -3871,6 +4759,44 @@ contains
     res = hipMemcpy_b(c_loc(dest(1,1,1,1,1,1,1)), c_loc(src(1,1,1,1,1,1,1)), nbytes, myKind)
   end function hipMemcpy_r8_7_auto
 
+  function hipMemcpy_c4_0(dest, src, count, myKind) result(res)
+    use iso_c_binding
+    implicit none
+    complex(c_float_complex), target, intent(inout) :: dest
+    complex(c_float_complex), target, intent(in)    :: src
+    integer(c_size_t), value :: count
+    integer(c_int), value :: myKind
+    integer(c_int) :: res
+    integer(c_size_t) :: nbytes
+    nbytes = int(count, c_size_t) * 8_c_size_t
+    res = hipMemcpy_b(c_loc(dest), c_loc(src), nbytes, myKind)
+  end function hipMemcpy_c4_0
+
+  function hipMemcpy_c4_0_ci(dest, src, count, myKind) result(res)
+    use iso_c_binding
+    implicit none
+    complex(c_float_complex), target, intent(inout) :: dest
+    complex(c_float_complex), target, intent(in)    :: src
+    integer(c_int), value :: count
+    integer(c_int), value :: myKind
+    integer(c_int) :: res
+    integer(c_size_t) :: nbytes
+    nbytes = int(count, c_size_t) * 8_c_size_t
+    res = hipMemcpy_b(c_loc(dest), c_loc(src), nbytes, myKind)
+  end function hipMemcpy_c4_0_ci
+
+  function hipMemcpy_c4_0_auto(dest, src, myKind) result(res)
+    use iso_c_binding
+    implicit none
+    complex(c_float_complex), target, intent(inout) :: dest
+    complex(c_float_complex), target, intent(in)    :: src
+    integer(c_int), value :: myKind
+    integer(c_int) :: res
+    integer(c_size_t) :: nbytes
+    nbytes = int(1, c_size_t) * 8_c_size_t
+    res = hipMemcpy_b(c_loc(dest), c_loc(src), nbytes, myKind)
+  end function hipMemcpy_c4_0_auto
+
   function hipMemcpy_c4_1(dest, src, count, myKind) result(res)
     use iso_c_binding
     implicit none
@@ -3880,9 +4806,22 @@ contains
     integer(c_int), value :: myKind
     integer(c_int) :: res
     integer(c_size_t) :: nbytes
-    nbytes = count * 8_c_size_t
+    nbytes = int(count, c_size_t) * 8_c_size_t
     res = hipMemcpy_b(c_loc(dest(1)), c_loc(src(1)), nbytes, myKind)
   end function hipMemcpy_c4_1
+
+  function hipMemcpy_c4_1_ci(dest, src, count, myKind) result(res)
+    use iso_c_binding
+    implicit none
+    complex(c_float_complex), target, dimension(:), intent(inout) :: dest
+    complex(c_float_complex), target, dimension(:), intent(in)    :: src
+    integer(c_int), value :: count
+    integer(c_int), value :: myKind
+    integer(c_int) :: res
+    integer(c_size_t) :: nbytes
+    nbytes = int(count, c_size_t) * 8_c_size_t
+    res = hipMemcpy_b(c_loc(dest(1)), c_loc(src(1)), nbytes, myKind)
+  end function hipMemcpy_c4_1_ci
 
   function hipMemcpy_c4_1_auto(dest, src, myKind) result(res)
     use iso_c_binding
@@ -3905,9 +4844,22 @@ contains
     integer(c_int), value :: myKind
     integer(c_int) :: res
     integer(c_size_t) :: nbytes
-    nbytes = count * 8_c_size_t
+    nbytes = int(count, c_size_t) * 8_c_size_t
     res = hipMemcpy_b(c_loc(dest(1,1)), c_loc(src(1,1)), nbytes, myKind)
   end function hipMemcpy_c4_2
+
+  function hipMemcpy_c4_2_ci(dest, src, count, myKind) result(res)
+    use iso_c_binding
+    implicit none
+    complex(c_float_complex), target, dimension(:,:), intent(inout) :: dest
+    complex(c_float_complex), target, dimension(:,:), intent(in)    :: src
+    integer(c_int), value :: count
+    integer(c_int), value :: myKind
+    integer(c_int) :: res
+    integer(c_size_t) :: nbytes
+    nbytes = int(count, c_size_t) * 8_c_size_t
+    res = hipMemcpy_b(c_loc(dest(1,1)), c_loc(src(1,1)), nbytes, myKind)
+  end function hipMemcpy_c4_2_ci
 
   function hipMemcpy_c4_2_auto(dest, src, myKind) result(res)
     use iso_c_binding
@@ -3930,9 +4882,22 @@ contains
     integer(c_int), value :: myKind
     integer(c_int) :: res
     integer(c_size_t) :: nbytes
-    nbytes = count * 8_c_size_t
+    nbytes = int(count, c_size_t) * 8_c_size_t
     res = hipMemcpy_b(c_loc(dest(1,1,1)), c_loc(src(1,1,1)), nbytes, myKind)
   end function hipMemcpy_c4_3
+
+  function hipMemcpy_c4_3_ci(dest, src, count, myKind) result(res)
+    use iso_c_binding
+    implicit none
+    complex(c_float_complex), target, dimension(:,:,:), intent(inout) :: dest
+    complex(c_float_complex), target, dimension(:,:,:), intent(in)    :: src
+    integer(c_int), value :: count
+    integer(c_int), value :: myKind
+    integer(c_int) :: res
+    integer(c_size_t) :: nbytes
+    nbytes = int(count, c_size_t) * 8_c_size_t
+    res = hipMemcpy_b(c_loc(dest(1,1,1)), c_loc(src(1,1,1)), nbytes, myKind)
+  end function hipMemcpy_c4_3_ci
 
   function hipMemcpy_c4_3_auto(dest, src, myKind) result(res)
     use iso_c_binding
@@ -3955,9 +4920,22 @@ contains
     integer(c_int), value :: myKind
     integer(c_int) :: res
     integer(c_size_t) :: nbytes
-    nbytes = count * 8_c_size_t
+    nbytes = int(count, c_size_t) * 8_c_size_t
     res = hipMemcpy_b(c_loc(dest(1,1,1,1)), c_loc(src(1,1,1,1)), nbytes, myKind)
   end function hipMemcpy_c4_4
+
+  function hipMemcpy_c4_4_ci(dest, src, count, myKind) result(res)
+    use iso_c_binding
+    implicit none
+    complex(c_float_complex), target, dimension(:,:,:,:), intent(inout) :: dest
+    complex(c_float_complex), target, dimension(:,:,:,:), intent(in)    :: src
+    integer(c_int), value :: count
+    integer(c_int), value :: myKind
+    integer(c_int) :: res
+    integer(c_size_t) :: nbytes
+    nbytes = int(count, c_size_t) * 8_c_size_t
+    res = hipMemcpy_b(c_loc(dest(1,1,1,1)), c_loc(src(1,1,1,1)), nbytes, myKind)
+  end function hipMemcpy_c4_4_ci
 
   function hipMemcpy_c4_4_auto(dest, src, myKind) result(res)
     use iso_c_binding
@@ -3980,9 +4958,22 @@ contains
     integer(c_int), value :: myKind
     integer(c_int) :: res
     integer(c_size_t) :: nbytes
-    nbytes = count * 8_c_size_t
+    nbytes = int(count, c_size_t) * 8_c_size_t
     res = hipMemcpy_b(c_loc(dest(1,1,1,1,1)), c_loc(src(1,1,1,1,1)), nbytes, myKind)
   end function hipMemcpy_c4_5
+
+  function hipMemcpy_c4_5_ci(dest, src, count, myKind) result(res)
+    use iso_c_binding
+    implicit none
+    complex(c_float_complex), target, dimension(:,:,:,:,:), intent(inout) :: dest
+    complex(c_float_complex), target, dimension(:,:,:,:,:), intent(in)    :: src
+    integer(c_int), value :: count
+    integer(c_int), value :: myKind
+    integer(c_int) :: res
+    integer(c_size_t) :: nbytes
+    nbytes = int(count, c_size_t) * 8_c_size_t
+    res = hipMemcpy_b(c_loc(dest(1,1,1,1,1)), c_loc(src(1,1,1,1,1)), nbytes, myKind)
+  end function hipMemcpy_c4_5_ci
 
   function hipMemcpy_c4_5_auto(dest, src, myKind) result(res)
     use iso_c_binding
@@ -4005,9 +4996,22 @@ contains
     integer(c_int), value :: myKind
     integer(c_int) :: res
     integer(c_size_t) :: nbytes
-    nbytes = count * 8_c_size_t
+    nbytes = int(count, c_size_t) * 8_c_size_t
     res = hipMemcpy_b(c_loc(dest(1,1,1,1,1,1)), c_loc(src(1,1,1,1,1,1)), nbytes, myKind)
   end function hipMemcpy_c4_6
+
+  function hipMemcpy_c4_6_ci(dest, src, count, myKind) result(res)
+    use iso_c_binding
+    implicit none
+    complex(c_float_complex), target, dimension(:,:,:,:,:,:), intent(inout) :: dest
+    complex(c_float_complex), target, dimension(:,:,:,:,:,:), intent(in)    :: src
+    integer(c_int), value :: count
+    integer(c_int), value :: myKind
+    integer(c_int) :: res
+    integer(c_size_t) :: nbytes
+    nbytes = int(count, c_size_t) * 8_c_size_t
+    res = hipMemcpy_b(c_loc(dest(1,1,1,1,1,1)), c_loc(src(1,1,1,1,1,1)), nbytes, myKind)
+  end function hipMemcpy_c4_6_ci
 
   function hipMemcpy_c4_6_auto(dest, src, myKind) result(res)
     use iso_c_binding
@@ -4030,9 +5034,22 @@ contains
     integer(c_int), value :: myKind
     integer(c_int) :: res
     integer(c_size_t) :: nbytes
-    nbytes = count * 8_c_size_t
+    nbytes = int(count, c_size_t) * 8_c_size_t
     res = hipMemcpy_b(c_loc(dest(1,1,1,1,1,1,1)), c_loc(src(1,1,1,1,1,1,1)), nbytes, myKind)
   end function hipMemcpy_c4_7
+
+  function hipMemcpy_c4_7_ci(dest, src, count, myKind) result(res)
+    use iso_c_binding
+    implicit none
+    complex(c_float_complex), target, dimension(:,:,:,:,:,:,:), intent(inout) :: dest
+    complex(c_float_complex), target, dimension(:,:,:,:,:,:,:), intent(in)    :: src
+    integer(c_int), value :: count
+    integer(c_int), value :: myKind
+    integer(c_int) :: res
+    integer(c_size_t) :: nbytes
+    nbytes = int(count, c_size_t) * 8_c_size_t
+    res = hipMemcpy_b(c_loc(dest(1,1,1,1,1,1,1)), c_loc(src(1,1,1,1,1,1,1)), nbytes, myKind)
+  end function hipMemcpy_c4_7_ci
 
   function hipMemcpy_c4_7_auto(dest, src, myKind) result(res)
     use iso_c_binding
@@ -4046,6 +5063,44 @@ contains
     res = hipMemcpy_b(c_loc(dest(1,1,1,1,1,1,1)), c_loc(src(1,1,1,1,1,1,1)), nbytes, myKind)
   end function hipMemcpy_c4_7_auto
 
+  function hipMemcpy_c8_0(dest, src, count, myKind) result(res)
+    use iso_c_binding
+    implicit none
+    complex(c_double_complex), target, intent(inout) :: dest
+    complex(c_double_complex), target, intent(in)    :: src
+    integer(c_size_t), value :: count
+    integer(c_int), value :: myKind
+    integer(c_int) :: res
+    integer(c_size_t) :: nbytes
+    nbytes = int(count, c_size_t) * 16_c_size_t
+    res = hipMemcpy_b(c_loc(dest), c_loc(src), nbytes, myKind)
+  end function hipMemcpy_c8_0
+
+  function hipMemcpy_c8_0_ci(dest, src, count, myKind) result(res)
+    use iso_c_binding
+    implicit none
+    complex(c_double_complex), target, intent(inout) :: dest
+    complex(c_double_complex), target, intent(in)    :: src
+    integer(c_int), value :: count
+    integer(c_int), value :: myKind
+    integer(c_int) :: res
+    integer(c_size_t) :: nbytes
+    nbytes = int(count, c_size_t) * 16_c_size_t
+    res = hipMemcpy_b(c_loc(dest), c_loc(src), nbytes, myKind)
+  end function hipMemcpy_c8_0_ci
+
+  function hipMemcpy_c8_0_auto(dest, src, myKind) result(res)
+    use iso_c_binding
+    implicit none
+    complex(c_double_complex), target, intent(inout) :: dest
+    complex(c_double_complex), target, intent(in)    :: src
+    integer(c_int), value :: myKind
+    integer(c_int) :: res
+    integer(c_size_t) :: nbytes
+    nbytes = int(1, c_size_t) * 16_c_size_t
+    res = hipMemcpy_b(c_loc(dest), c_loc(src), nbytes, myKind)
+  end function hipMemcpy_c8_0_auto
+
   function hipMemcpy_c8_1(dest, src, count, myKind) result(res)
     use iso_c_binding
     implicit none
@@ -4055,9 +5110,22 @@ contains
     integer(c_int), value :: myKind
     integer(c_int) :: res
     integer(c_size_t) :: nbytes
-    nbytes = count * 16_c_size_t
+    nbytes = int(count, c_size_t) * 16_c_size_t
     res = hipMemcpy_b(c_loc(dest(1)), c_loc(src(1)), nbytes, myKind)
   end function hipMemcpy_c8_1
+
+  function hipMemcpy_c8_1_ci(dest, src, count, myKind) result(res)
+    use iso_c_binding
+    implicit none
+    complex(c_double_complex), target, dimension(:), intent(inout) :: dest
+    complex(c_double_complex), target, dimension(:), intent(in)    :: src
+    integer(c_int), value :: count
+    integer(c_int), value :: myKind
+    integer(c_int) :: res
+    integer(c_size_t) :: nbytes
+    nbytes = int(count, c_size_t) * 16_c_size_t
+    res = hipMemcpy_b(c_loc(dest(1)), c_loc(src(1)), nbytes, myKind)
+  end function hipMemcpy_c8_1_ci
 
   function hipMemcpy_c8_1_auto(dest, src, myKind) result(res)
     use iso_c_binding
@@ -4080,9 +5148,22 @@ contains
     integer(c_int), value :: myKind
     integer(c_int) :: res
     integer(c_size_t) :: nbytes
-    nbytes = count * 16_c_size_t
+    nbytes = int(count, c_size_t) * 16_c_size_t
     res = hipMemcpy_b(c_loc(dest(1,1)), c_loc(src(1,1)), nbytes, myKind)
   end function hipMemcpy_c8_2
+
+  function hipMemcpy_c8_2_ci(dest, src, count, myKind) result(res)
+    use iso_c_binding
+    implicit none
+    complex(c_double_complex), target, dimension(:,:), intent(inout) :: dest
+    complex(c_double_complex), target, dimension(:,:), intent(in)    :: src
+    integer(c_int), value :: count
+    integer(c_int), value :: myKind
+    integer(c_int) :: res
+    integer(c_size_t) :: nbytes
+    nbytes = int(count, c_size_t) * 16_c_size_t
+    res = hipMemcpy_b(c_loc(dest(1,1)), c_loc(src(1,1)), nbytes, myKind)
+  end function hipMemcpy_c8_2_ci
 
   function hipMemcpy_c8_2_auto(dest, src, myKind) result(res)
     use iso_c_binding
@@ -4105,9 +5186,22 @@ contains
     integer(c_int), value :: myKind
     integer(c_int) :: res
     integer(c_size_t) :: nbytes
-    nbytes = count * 16_c_size_t
+    nbytes = int(count, c_size_t) * 16_c_size_t
     res = hipMemcpy_b(c_loc(dest(1,1,1)), c_loc(src(1,1,1)), nbytes, myKind)
   end function hipMemcpy_c8_3
+
+  function hipMemcpy_c8_3_ci(dest, src, count, myKind) result(res)
+    use iso_c_binding
+    implicit none
+    complex(c_double_complex), target, dimension(:,:,:), intent(inout) :: dest
+    complex(c_double_complex), target, dimension(:,:,:), intent(in)    :: src
+    integer(c_int), value :: count
+    integer(c_int), value :: myKind
+    integer(c_int) :: res
+    integer(c_size_t) :: nbytes
+    nbytes = int(count, c_size_t) * 16_c_size_t
+    res = hipMemcpy_b(c_loc(dest(1,1,1)), c_loc(src(1,1,1)), nbytes, myKind)
+  end function hipMemcpy_c8_3_ci
 
   function hipMemcpy_c8_3_auto(dest, src, myKind) result(res)
     use iso_c_binding
@@ -4130,9 +5224,22 @@ contains
     integer(c_int), value :: myKind
     integer(c_int) :: res
     integer(c_size_t) :: nbytes
-    nbytes = count * 16_c_size_t
+    nbytes = int(count, c_size_t) * 16_c_size_t
     res = hipMemcpy_b(c_loc(dest(1,1,1,1)), c_loc(src(1,1,1,1)), nbytes, myKind)
   end function hipMemcpy_c8_4
+
+  function hipMemcpy_c8_4_ci(dest, src, count, myKind) result(res)
+    use iso_c_binding
+    implicit none
+    complex(c_double_complex), target, dimension(:,:,:,:), intent(inout) :: dest
+    complex(c_double_complex), target, dimension(:,:,:,:), intent(in)    :: src
+    integer(c_int), value :: count
+    integer(c_int), value :: myKind
+    integer(c_int) :: res
+    integer(c_size_t) :: nbytes
+    nbytes = int(count, c_size_t) * 16_c_size_t
+    res = hipMemcpy_b(c_loc(dest(1,1,1,1)), c_loc(src(1,1,1,1)), nbytes, myKind)
+  end function hipMemcpy_c8_4_ci
 
   function hipMemcpy_c8_4_auto(dest, src, myKind) result(res)
     use iso_c_binding
@@ -4155,9 +5262,22 @@ contains
     integer(c_int), value :: myKind
     integer(c_int) :: res
     integer(c_size_t) :: nbytes
-    nbytes = count * 16_c_size_t
+    nbytes = int(count, c_size_t) * 16_c_size_t
     res = hipMemcpy_b(c_loc(dest(1,1,1,1,1)), c_loc(src(1,1,1,1,1)), nbytes, myKind)
   end function hipMemcpy_c8_5
+
+  function hipMemcpy_c8_5_ci(dest, src, count, myKind) result(res)
+    use iso_c_binding
+    implicit none
+    complex(c_double_complex), target, dimension(:,:,:,:,:), intent(inout) :: dest
+    complex(c_double_complex), target, dimension(:,:,:,:,:), intent(in)    :: src
+    integer(c_int), value :: count
+    integer(c_int), value :: myKind
+    integer(c_int) :: res
+    integer(c_size_t) :: nbytes
+    nbytes = int(count, c_size_t) * 16_c_size_t
+    res = hipMemcpy_b(c_loc(dest(1,1,1,1,1)), c_loc(src(1,1,1,1,1)), nbytes, myKind)
+  end function hipMemcpy_c8_5_ci
 
   function hipMemcpy_c8_5_auto(dest, src, myKind) result(res)
     use iso_c_binding
@@ -4180,9 +5300,22 @@ contains
     integer(c_int), value :: myKind
     integer(c_int) :: res
     integer(c_size_t) :: nbytes
-    nbytes = count * 16_c_size_t
+    nbytes = int(count, c_size_t) * 16_c_size_t
     res = hipMemcpy_b(c_loc(dest(1,1,1,1,1,1)), c_loc(src(1,1,1,1,1,1)), nbytes, myKind)
   end function hipMemcpy_c8_6
+
+  function hipMemcpy_c8_6_ci(dest, src, count, myKind) result(res)
+    use iso_c_binding
+    implicit none
+    complex(c_double_complex), target, dimension(:,:,:,:,:,:), intent(inout) :: dest
+    complex(c_double_complex), target, dimension(:,:,:,:,:,:), intent(in)    :: src
+    integer(c_int), value :: count
+    integer(c_int), value :: myKind
+    integer(c_int) :: res
+    integer(c_size_t) :: nbytes
+    nbytes = int(count, c_size_t) * 16_c_size_t
+    res = hipMemcpy_b(c_loc(dest(1,1,1,1,1,1)), c_loc(src(1,1,1,1,1,1)), nbytes, myKind)
+  end function hipMemcpy_c8_6_ci
 
   function hipMemcpy_c8_6_auto(dest, src, myKind) result(res)
     use iso_c_binding
@@ -4205,9 +5338,22 @@ contains
     integer(c_int), value :: myKind
     integer(c_int) :: res
     integer(c_size_t) :: nbytes
-    nbytes = count * 16_c_size_t
+    nbytes = int(count, c_size_t) * 16_c_size_t
     res = hipMemcpy_b(c_loc(dest(1,1,1,1,1,1,1)), c_loc(src(1,1,1,1,1,1,1)), nbytes, myKind)
   end function hipMemcpy_c8_7
+
+  function hipMemcpy_c8_7_ci(dest, src, count, myKind) result(res)
+    use iso_c_binding
+    implicit none
+    complex(c_double_complex), target, dimension(:,:,:,:,:,:,:), intent(inout) :: dest
+    complex(c_double_complex), target, dimension(:,:,:,:,:,:,:), intent(in)    :: src
+    integer(c_int), value :: count
+    integer(c_int), value :: myKind
+    integer(c_int) :: res
+    integer(c_size_t) :: nbytes
+    nbytes = int(count, c_size_t) * 16_c_size_t
+    res = hipMemcpy_b(c_loc(dest(1,1,1,1,1,1,1)), c_loc(src(1,1,1,1,1,1,1)), nbytes, myKind)
+  end function hipMemcpy_c8_7_ci
 
   function hipMemcpy_c8_7_auto(dest, src, myKind) result(res)
     use iso_c_binding
@@ -4220,6 +5366,33 @@ contains
     nbytes = int(size(dest), c_size_t) * 16_c_size_t
     res = hipMemcpy_b(c_loc(dest(1,1,1,1,1,1,1)), c_loc(src(1,1,1,1,1,1,1)), nbytes, myKind)
   end function hipMemcpy_c8_7_auto
+
+  function hipMemcpyAsync_i4_0(dest, src, count, myKind, stream) result(res)
+    use iso_c_binding
+    implicit none
+    integer(c_int), target, intent(inout) :: dest
+    integer(c_int), target, intent(in)    :: src
+    integer(c_size_t), value :: count
+    integer(c_int), value :: myKind
+    type(c_ptr), value :: stream
+    integer(c_int) :: res
+    integer(c_size_t) :: nbytes
+    nbytes = count * 4_c_size_t
+    res = hipMemcpyAsync_b(c_loc(dest), c_loc(src), nbytes, myKind, stream)
+  end function hipMemcpyAsync_i4_0
+
+  function hipMemcpyAsync_i4_0_auto(dest, src, myKind, stream) result(res)
+    use iso_c_binding
+    implicit none
+    integer(c_int), target, intent(inout) :: dest
+    integer(c_int), target, intent(in)    :: src
+    integer(c_int), value :: myKind
+    type(c_ptr), value :: stream
+    integer(c_int) :: res
+    integer(c_size_t) :: nbytes
+    nbytes = int(1, c_size_t) * 4_c_size_t
+    res = hipMemcpyAsync_b(c_loc(dest), c_loc(src), nbytes, myKind, stream)
+  end function hipMemcpyAsync_i4_0_auto
 
   function hipMemcpyAsync_i4_1(dest, src, count, myKind, stream) result(res)
     use iso_c_binding
@@ -4410,6 +5583,33 @@ contains
     res = hipMemcpyAsync_b(c_loc(dest(1,1,1,1,1,1,1)), c_loc(src(1,1,1,1,1,1,1)), nbytes, myKind, stream)
   end function hipMemcpyAsync_i4_7_auto
 
+  function hipMemcpyAsync_i8_0(dest, src, count, myKind, stream) result(res)
+    use iso_c_binding
+    implicit none
+    integer(c_int64_t), target, intent(inout) :: dest
+    integer(c_int64_t), target, intent(in)    :: src
+    integer(c_size_t), value :: count
+    integer(c_int), value :: myKind
+    type(c_ptr), value :: stream
+    integer(c_int) :: res
+    integer(c_size_t) :: nbytes
+    nbytes = count * 8_c_size_t
+    res = hipMemcpyAsync_b(c_loc(dest), c_loc(src), nbytes, myKind, stream)
+  end function hipMemcpyAsync_i8_0
+
+  function hipMemcpyAsync_i8_0_auto(dest, src, myKind, stream) result(res)
+    use iso_c_binding
+    implicit none
+    integer(c_int64_t), target, intent(inout) :: dest
+    integer(c_int64_t), target, intent(in)    :: src
+    integer(c_int), value :: myKind
+    type(c_ptr), value :: stream
+    integer(c_int) :: res
+    integer(c_size_t) :: nbytes
+    nbytes = int(1, c_size_t) * 8_c_size_t
+    res = hipMemcpyAsync_b(c_loc(dest), c_loc(src), nbytes, myKind, stream)
+  end function hipMemcpyAsync_i8_0_auto
+
   function hipMemcpyAsync_i8_1(dest, src, count, myKind, stream) result(res)
     use iso_c_binding
     implicit none
@@ -4598,6 +5798,33 @@ contains
     nbytes = int(size(dest), c_size_t) * 8_c_size_t
     res = hipMemcpyAsync_b(c_loc(dest(1,1,1,1,1,1,1)), c_loc(src(1,1,1,1,1,1,1)), nbytes, myKind, stream)
   end function hipMemcpyAsync_i8_7_auto
+
+  function hipMemcpyAsync_r4_0(dest, src, count, myKind, stream) result(res)
+    use iso_c_binding
+    implicit none
+    real(c_float), target, intent(inout) :: dest
+    real(c_float), target, intent(in)    :: src
+    integer(c_size_t), value :: count
+    integer(c_int), value :: myKind
+    type(c_ptr), value :: stream
+    integer(c_int) :: res
+    integer(c_size_t) :: nbytes
+    nbytes = count * 4_c_size_t
+    res = hipMemcpyAsync_b(c_loc(dest), c_loc(src), nbytes, myKind, stream)
+  end function hipMemcpyAsync_r4_0
+
+  function hipMemcpyAsync_r4_0_auto(dest, src, myKind, stream) result(res)
+    use iso_c_binding
+    implicit none
+    real(c_float), target, intent(inout) :: dest
+    real(c_float), target, intent(in)    :: src
+    integer(c_int), value :: myKind
+    type(c_ptr), value :: stream
+    integer(c_int) :: res
+    integer(c_size_t) :: nbytes
+    nbytes = int(1, c_size_t) * 4_c_size_t
+    res = hipMemcpyAsync_b(c_loc(dest), c_loc(src), nbytes, myKind, stream)
+  end function hipMemcpyAsync_r4_0_auto
 
   function hipMemcpyAsync_r4_1(dest, src, count, myKind, stream) result(res)
     use iso_c_binding
@@ -4788,6 +6015,33 @@ contains
     res = hipMemcpyAsync_b(c_loc(dest(1,1,1,1,1,1,1)), c_loc(src(1,1,1,1,1,1,1)), nbytes, myKind, stream)
   end function hipMemcpyAsync_r4_7_auto
 
+  function hipMemcpyAsync_r8_0(dest, src, count, myKind, stream) result(res)
+    use iso_c_binding
+    implicit none
+    real(c_double), target, intent(inout) :: dest
+    real(c_double), target, intent(in)    :: src
+    integer(c_size_t), value :: count
+    integer(c_int), value :: myKind
+    type(c_ptr), value :: stream
+    integer(c_int) :: res
+    integer(c_size_t) :: nbytes
+    nbytes = count * 8_c_size_t
+    res = hipMemcpyAsync_b(c_loc(dest), c_loc(src), nbytes, myKind, stream)
+  end function hipMemcpyAsync_r8_0
+
+  function hipMemcpyAsync_r8_0_auto(dest, src, myKind, stream) result(res)
+    use iso_c_binding
+    implicit none
+    real(c_double), target, intent(inout) :: dest
+    real(c_double), target, intent(in)    :: src
+    integer(c_int), value :: myKind
+    type(c_ptr), value :: stream
+    integer(c_int) :: res
+    integer(c_size_t) :: nbytes
+    nbytes = int(1, c_size_t) * 8_c_size_t
+    res = hipMemcpyAsync_b(c_loc(dest), c_loc(src), nbytes, myKind, stream)
+  end function hipMemcpyAsync_r8_0_auto
+
   function hipMemcpyAsync_r8_1(dest, src, count, myKind, stream) result(res)
     use iso_c_binding
     implicit none
@@ -4976,6 +6230,33 @@ contains
     nbytes = int(size(dest), c_size_t) * 8_c_size_t
     res = hipMemcpyAsync_b(c_loc(dest(1,1,1,1,1,1,1)), c_loc(src(1,1,1,1,1,1,1)), nbytes, myKind, stream)
   end function hipMemcpyAsync_r8_7_auto
+
+  function hipMemcpyAsync_c4_0(dest, src, count, myKind, stream) result(res)
+    use iso_c_binding
+    implicit none
+    complex(c_float_complex), target, intent(inout) :: dest
+    complex(c_float_complex), target, intent(in)    :: src
+    integer(c_size_t), value :: count
+    integer(c_int), value :: myKind
+    type(c_ptr), value :: stream
+    integer(c_int) :: res
+    integer(c_size_t) :: nbytes
+    nbytes = count * 8_c_size_t
+    res = hipMemcpyAsync_b(c_loc(dest), c_loc(src), nbytes, myKind, stream)
+  end function hipMemcpyAsync_c4_0
+
+  function hipMemcpyAsync_c4_0_auto(dest, src, myKind, stream) result(res)
+    use iso_c_binding
+    implicit none
+    complex(c_float_complex), target, intent(inout) :: dest
+    complex(c_float_complex), target, intent(in)    :: src
+    integer(c_int), value :: myKind
+    type(c_ptr), value :: stream
+    integer(c_int) :: res
+    integer(c_size_t) :: nbytes
+    nbytes = int(1, c_size_t) * 8_c_size_t
+    res = hipMemcpyAsync_b(c_loc(dest), c_loc(src), nbytes, myKind, stream)
+  end function hipMemcpyAsync_c4_0_auto
 
   function hipMemcpyAsync_c4_1(dest, src, count, myKind, stream) result(res)
     use iso_c_binding
@@ -5166,6 +6447,33 @@ contains
     res = hipMemcpyAsync_b(c_loc(dest(1,1,1,1,1,1,1)), c_loc(src(1,1,1,1,1,1,1)), nbytes, myKind, stream)
   end function hipMemcpyAsync_c4_7_auto
 
+  function hipMemcpyAsync_c8_0(dest, src, count, myKind, stream) result(res)
+    use iso_c_binding
+    implicit none
+    complex(c_double_complex), target, intent(inout) :: dest
+    complex(c_double_complex), target, intent(in)    :: src
+    integer(c_size_t), value :: count
+    integer(c_int), value :: myKind
+    type(c_ptr), value :: stream
+    integer(c_int) :: res
+    integer(c_size_t) :: nbytes
+    nbytes = count * 16_c_size_t
+    res = hipMemcpyAsync_b(c_loc(dest), c_loc(src), nbytes, myKind, stream)
+  end function hipMemcpyAsync_c8_0
+
+  function hipMemcpyAsync_c8_0_auto(dest, src, myKind, stream) result(res)
+    use iso_c_binding
+    implicit none
+    complex(c_double_complex), target, intent(inout) :: dest
+    complex(c_double_complex), target, intent(in)    :: src
+    integer(c_int), value :: myKind
+    type(c_ptr), value :: stream
+    integer(c_int) :: res
+    integer(c_size_t) :: nbytes
+    nbytes = int(1, c_size_t) * 16_c_size_t
+    res = hipMemcpyAsync_b(c_loc(dest), c_loc(src), nbytes, myKind, stream)
+  end function hipMemcpyAsync_c8_0_auto
+
   function hipMemcpyAsync_c8_1(dest, src, count, myKind, stream) result(res)
     use iso_c_binding
     implicit none
@@ -5355,6 +6663,16 @@ contains
     res = hipMemcpyAsync_b(c_loc(dest(1,1,1,1,1,1,1)), c_loc(src(1,1,1,1,1,1,1)), nbytes, myKind, stream)
   end function hipMemcpyAsync_c8_7_auto
 
+  function hipHostRegister_i4_0(hostPtr, sizeBytes, flags) result(res)
+    use iso_c_binding
+    implicit none
+    integer(c_int), target, intent(inout) :: hostPtr
+    integer(c_size_t), value :: sizeBytes
+    integer(c_int), value :: flags
+    integer(c_int) :: res
+    res = hipHostRegister_b(c_loc(hostPtr), sizeBytes, flags)
+  end function hipHostRegister_i4_0
+
   function hipHostRegister_i4_1(hostPtr, sizeBytes, flags) result(res)
     use iso_c_binding
     implicit none
@@ -5424,6 +6742,16 @@ contains
     integer(c_int) :: res
     res = hipHostRegister_b(c_loc(hostPtr(1,1,1,1,1,1,1)), sizeBytes, flags)
   end function hipHostRegister_i4_7
+
+  function hipHostRegister_i8_0(hostPtr, sizeBytes, flags) result(res)
+    use iso_c_binding
+    implicit none
+    integer(c_int64_t), target, intent(inout) :: hostPtr
+    integer(c_size_t), value :: sizeBytes
+    integer(c_int), value :: flags
+    integer(c_int) :: res
+    res = hipHostRegister_b(c_loc(hostPtr), sizeBytes, flags)
+  end function hipHostRegister_i8_0
 
   function hipHostRegister_i8_1(hostPtr, sizeBytes, flags) result(res)
     use iso_c_binding
@@ -5495,6 +6823,16 @@ contains
     res = hipHostRegister_b(c_loc(hostPtr(1,1,1,1,1,1,1)), sizeBytes, flags)
   end function hipHostRegister_i8_7
 
+  function hipHostRegister_r4_0(hostPtr, sizeBytes, flags) result(res)
+    use iso_c_binding
+    implicit none
+    real(c_float), target, intent(inout) :: hostPtr
+    integer(c_size_t), value :: sizeBytes
+    integer(c_int), value :: flags
+    integer(c_int) :: res
+    res = hipHostRegister_b(c_loc(hostPtr), sizeBytes, flags)
+  end function hipHostRegister_r4_0
+
   function hipHostRegister_r4_1(hostPtr, sizeBytes, flags) result(res)
     use iso_c_binding
     implicit none
@@ -5564,6 +6902,16 @@ contains
     integer(c_int) :: res
     res = hipHostRegister_b(c_loc(hostPtr(1,1,1,1,1,1,1)), sizeBytes, flags)
   end function hipHostRegister_r4_7
+
+  function hipHostRegister_r8_0(hostPtr, sizeBytes, flags) result(res)
+    use iso_c_binding
+    implicit none
+    real(c_double), target, intent(inout) :: hostPtr
+    integer(c_size_t), value :: sizeBytes
+    integer(c_int), value :: flags
+    integer(c_int) :: res
+    res = hipHostRegister_b(c_loc(hostPtr), sizeBytes, flags)
+  end function hipHostRegister_r8_0
 
   function hipHostRegister_r8_1(hostPtr, sizeBytes, flags) result(res)
     use iso_c_binding
@@ -5635,6 +6983,16 @@ contains
     res = hipHostRegister_b(c_loc(hostPtr(1,1,1,1,1,1,1)), sizeBytes, flags)
   end function hipHostRegister_r8_7
 
+  function hipHostRegister_c4_0(hostPtr, sizeBytes, flags) result(res)
+    use iso_c_binding
+    implicit none
+    complex(c_float_complex), target, intent(inout) :: hostPtr
+    integer(c_size_t), value :: sizeBytes
+    integer(c_int), value :: flags
+    integer(c_int) :: res
+    res = hipHostRegister_b(c_loc(hostPtr), sizeBytes, flags)
+  end function hipHostRegister_c4_0
+
   function hipHostRegister_c4_1(hostPtr, sizeBytes, flags) result(res)
     use iso_c_binding
     implicit none
@@ -5704,6 +7062,16 @@ contains
     integer(c_int) :: res
     res = hipHostRegister_b(c_loc(hostPtr(1,1,1,1,1,1,1)), sizeBytes, flags)
   end function hipHostRegister_c4_7
+
+  function hipHostRegister_c8_0(hostPtr, sizeBytes, flags) result(res)
+    use iso_c_binding
+    implicit none
+    complex(c_double_complex), target, intent(inout) :: hostPtr
+    integer(c_size_t), value :: sizeBytes
+    integer(c_int), value :: flags
+    integer(c_int) :: res
+    res = hipHostRegister_b(c_loc(hostPtr), sizeBytes, flags)
+  end function hipHostRegister_c8_0
 
   function hipHostRegister_c8_1(hostPtr, sizeBytes, flags) result(res)
     use iso_c_binding
@@ -5775,6 +7143,14 @@ contains
     res = hipHostRegister_b(c_loc(hostPtr(1,1,1,1,1,1,1)), sizeBytes, flags)
   end function hipHostRegister_c8_7
 
+  function hipHostUnregister_i4_0(hostPtr) result(res)
+    use iso_c_binding
+    implicit none
+    integer(c_int), target, intent(inout) :: hostPtr
+    integer(c_int) :: res
+    res = hipHostUnregister_b(c_loc(hostPtr))
+  end function hipHostUnregister_i4_0
+
   function hipHostUnregister_i4_1(hostPtr) result(res)
     use iso_c_binding
     implicit none
@@ -5830,6 +7206,14 @@ contains
     integer(c_int) :: res
     res = hipHostUnregister_b(c_loc(hostPtr(1,1,1,1,1,1,1)))
   end function hipHostUnregister_i4_7
+
+  function hipHostUnregister_i8_0(hostPtr) result(res)
+    use iso_c_binding
+    implicit none
+    integer(c_int64_t), target, intent(inout) :: hostPtr
+    integer(c_int) :: res
+    res = hipHostUnregister_b(c_loc(hostPtr))
+  end function hipHostUnregister_i8_0
 
   function hipHostUnregister_i8_1(hostPtr) result(res)
     use iso_c_binding
@@ -5887,6 +7271,14 @@ contains
     res = hipHostUnregister_b(c_loc(hostPtr(1,1,1,1,1,1,1)))
   end function hipHostUnregister_i8_7
 
+  function hipHostUnregister_r4_0(hostPtr) result(res)
+    use iso_c_binding
+    implicit none
+    real(c_float), target, intent(inout) :: hostPtr
+    integer(c_int) :: res
+    res = hipHostUnregister_b(c_loc(hostPtr))
+  end function hipHostUnregister_r4_0
+
   function hipHostUnregister_r4_1(hostPtr) result(res)
     use iso_c_binding
     implicit none
@@ -5942,6 +7334,14 @@ contains
     integer(c_int) :: res
     res = hipHostUnregister_b(c_loc(hostPtr(1,1,1,1,1,1,1)))
   end function hipHostUnregister_r4_7
+
+  function hipHostUnregister_r8_0(hostPtr) result(res)
+    use iso_c_binding
+    implicit none
+    real(c_double), target, intent(inout) :: hostPtr
+    integer(c_int) :: res
+    res = hipHostUnregister_b(c_loc(hostPtr))
+  end function hipHostUnregister_r8_0
 
   function hipHostUnregister_r8_1(hostPtr) result(res)
     use iso_c_binding
@@ -5999,6 +7399,14 @@ contains
     res = hipHostUnregister_b(c_loc(hostPtr(1,1,1,1,1,1,1)))
   end function hipHostUnregister_r8_7
 
+  function hipHostUnregister_c4_0(hostPtr) result(res)
+    use iso_c_binding
+    implicit none
+    complex(c_float_complex), target, intent(inout) :: hostPtr
+    integer(c_int) :: res
+    res = hipHostUnregister_b(c_loc(hostPtr))
+  end function hipHostUnregister_c4_0
+
   function hipHostUnregister_c4_1(hostPtr) result(res)
     use iso_c_binding
     implicit none
@@ -6055,6 +7463,14 @@ contains
     res = hipHostUnregister_b(c_loc(hostPtr(1,1,1,1,1,1,1)))
   end function hipHostUnregister_c4_7
 
+  function hipHostUnregister_c8_0(hostPtr) result(res)
+    use iso_c_binding
+    implicit none
+    complex(c_double_complex), target, intent(inout) :: hostPtr
+    integer(c_int) :: res
+    res = hipHostUnregister_b(c_loc(hostPtr))
+  end function hipHostUnregister_c8_0
+
   function hipHostUnregister_c8_1(hostPtr) result(res)
     use iso_c_binding
     implicit none
@@ -6110,6 +7526,16 @@ contains
     integer(c_int) :: res
     res = hipHostUnregister_b(c_loc(hostPtr(1,1,1,1,1,1,1)))
   end function hipHostUnregister_c8_7
+
+  function hipHostGetDevicePointer_i4_0(devPtr, hstPtr, flags) result(res)
+    use iso_c_binding
+    implicit none
+    type(c_ptr) :: devPtr
+    integer(c_int), target, intent(inout) :: hstPtr
+    integer(c_int), value :: flags
+    integer(c_int) :: res
+    res = hipHostGetDevicePointer_b(devPtr, c_loc(hstPtr), flags)
+  end function hipHostGetDevicePointer_i4_0
 
   function hipHostGetDevicePointer_i4_1(devPtr, hstPtr, flags) result(res)
     use iso_c_binding
@@ -6181,6 +7607,16 @@ contains
     res = hipHostGetDevicePointer_b(devPtr, c_loc(hstPtr(1,1,1,1,1,1,1)), flags)
   end function hipHostGetDevicePointer_i4_7
 
+  function hipHostGetDevicePointer_i8_0(devPtr, hstPtr, flags) result(res)
+    use iso_c_binding
+    implicit none
+    type(c_ptr) :: devPtr
+    integer(c_int64_t), target, intent(inout) :: hstPtr
+    integer(c_int), value :: flags
+    integer(c_int) :: res
+    res = hipHostGetDevicePointer_b(devPtr, c_loc(hstPtr), flags)
+  end function hipHostGetDevicePointer_i8_0
+
   function hipHostGetDevicePointer_i8_1(devPtr, hstPtr, flags) result(res)
     use iso_c_binding
     implicit none
@@ -6250,6 +7686,16 @@ contains
     integer(c_int) :: res
     res = hipHostGetDevicePointer_b(devPtr, c_loc(hstPtr(1,1,1,1,1,1,1)), flags)
   end function hipHostGetDevicePointer_i8_7
+
+  function hipHostGetDevicePointer_r4_0(devPtr, hstPtr, flags) result(res)
+    use iso_c_binding
+    implicit none
+    type(c_ptr) :: devPtr
+    real(c_float), target, intent(inout) :: hstPtr
+    integer(c_int), value :: flags
+    integer(c_int) :: res
+    res = hipHostGetDevicePointer_b(devPtr, c_loc(hstPtr), flags)
+  end function hipHostGetDevicePointer_r4_0
 
   function hipHostGetDevicePointer_r4_1(devPtr, hstPtr, flags) result(res)
     use iso_c_binding
@@ -6321,6 +7767,16 @@ contains
     res = hipHostGetDevicePointer_b(devPtr, c_loc(hstPtr(1,1,1,1,1,1,1)), flags)
   end function hipHostGetDevicePointer_r4_7
 
+  function hipHostGetDevicePointer_r8_0(devPtr, hstPtr, flags) result(res)
+    use iso_c_binding
+    implicit none
+    type(c_ptr) :: devPtr
+    real(c_double), target, intent(inout) :: hstPtr
+    integer(c_int), value :: flags
+    integer(c_int) :: res
+    res = hipHostGetDevicePointer_b(devPtr, c_loc(hstPtr), flags)
+  end function hipHostGetDevicePointer_r8_0
+
   function hipHostGetDevicePointer_r8_1(devPtr, hstPtr, flags) result(res)
     use iso_c_binding
     implicit none
@@ -6390,6 +7846,16 @@ contains
     integer(c_int) :: res
     res = hipHostGetDevicePointer_b(devPtr, c_loc(hstPtr(1,1,1,1,1,1,1)), flags)
   end function hipHostGetDevicePointer_r8_7
+
+  function hipHostGetDevicePointer_c4_0(devPtr, hstPtr, flags) result(res)
+    use iso_c_binding
+    implicit none
+    type(c_ptr) :: devPtr
+    complex(c_float_complex), target, intent(inout) :: hstPtr
+    integer(c_int), value :: flags
+    integer(c_int) :: res
+    res = hipHostGetDevicePointer_b(devPtr, c_loc(hstPtr), flags)
+  end function hipHostGetDevicePointer_c4_0
 
   function hipHostGetDevicePointer_c4_1(devPtr, hstPtr, flags) result(res)
     use iso_c_binding
@@ -6461,6 +7927,16 @@ contains
     res = hipHostGetDevicePointer_b(devPtr, c_loc(hstPtr(1,1,1,1,1,1,1)), flags)
   end function hipHostGetDevicePointer_c4_7
 
+  function hipHostGetDevicePointer_c8_0(devPtr, hstPtr, flags) result(res)
+    use iso_c_binding
+    implicit none
+    type(c_ptr) :: devPtr
+    complex(c_double_complex), target, intent(inout) :: hstPtr
+    integer(c_int), value :: flags
+    integer(c_int) :: res
+    res = hipHostGetDevicePointer_b(devPtr, c_loc(hstPtr), flags)
+  end function hipHostGetDevicePointer_c8_0
+
   function hipHostGetDevicePointer_c8_1(devPtr, hstPtr, flags) result(res)
     use iso_c_binding
     implicit none
@@ -6531,6 +8007,15 @@ contains
     res = hipHostGetDevicePointer_b(devPtr, c_loc(hstPtr(1,1,1,1,1,1,1)), flags)
   end function hipHostGetDevicePointer_c8_7
 
+  function hipHostGetFlags_i4_0(flags, hostPtr) result(res)
+    use iso_c_binding
+    implicit none
+    integer(c_int) :: flags
+    integer(c_int), target, intent(inout) :: hostPtr
+    integer(c_int) :: res
+    res = hipHostGetFlags_b(flags, c_loc(hostPtr))
+  end function hipHostGetFlags_i4_0
+
   function hipHostGetFlags_i4_1(flags, hostPtr) result(res)
     use iso_c_binding
     implicit none
@@ -6593,6 +8078,15 @@ contains
     integer(c_int) :: res
     res = hipHostGetFlags_b(flags, c_loc(hostPtr(1,1,1,1,1,1,1)))
   end function hipHostGetFlags_i4_7
+
+  function hipHostGetFlags_i8_0(flags, hostPtr) result(res)
+    use iso_c_binding
+    implicit none
+    integer(c_int) :: flags
+    integer(c_int64_t), target, intent(inout) :: hostPtr
+    integer(c_int) :: res
+    res = hipHostGetFlags_b(flags, c_loc(hostPtr))
+  end function hipHostGetFlags_i8_0
 
   function hipHostGetFlags_i8_1(flags, hostPtr) result(res)
     use iso_c_binding
@@ -6657,6 +8151,15 @@ contains
     res = hipHostGetFlags_b(flags, c_loc(hostPtr(1,1,1,1,1,1,1)))
   end function hipHostGetFlags_i8_7
 
+  function hipHostGetFlags_r4_0(flags, hostPtr) result(res)
+    use iso_c_binding
+    implicit none
+    integer(c_int) :: flags
+    real(c_float), target, intent(inout) :: hostPtr
+    integer(c_int) :: res
+    res = hipHostGetFlags_b(flags, c_loc(hostPtr))
+  end function hipHostGetFlags_r4_0
+
   function hipHostGetFlags_r4_1(flags, hostPtr) result(res)
     use iso_c_binding
     implicit none
@@ -6719,6 +8222,15 @@ contains
     integer(c_int) :: res
     res = hipHostGetFlags_b(flags, c_loc(hostPtr(1,1,1,1,1,1,1)))
   end function hipHostGetFlags_r4_7
+
+  function hipHostGetFlags_r8_0(flags, hostPtr) result(res)
+    use iso_c_binding
+    implicit none
+    integer(c_int) :: flags
+    real(c_double), target, intent(inout) :: hostPtr
+    integer(c_int) :: res
+    res = hipHostGetFlags_b(flags, c_loc(hostPtr))
+  end function hipHostGetFlags_r8_0
 
   function hipHostGetFlags_r8_1(flags, hostPtr) result(res)
     use iso_c_binding
@@ -6783,6 +8295,15 @@ contains
     res = hipHostGetFlags_b(flags, c_loc(hostPtr(1,1,1,1,1,1,1)))
   end function hipHostGetFlags_r8_7
 
+  function hipHostGetFlags_c4_0(flags, hostPtr) result(res)
+    use iso_c_binding
+    implicit none
+    integer(c_int) :: flags
+    complex(c_float_complex), target, intent(inout) :: hostPtr
+    integer(c_int) :: res
+    res = hipHostGetFlags_b(flags, c_loc(hostPtr))
+  end function hipHostGetFlags_c4_0
+
   function hipHostGetFlags_c4_1(flags, hostPtr) result(res)
     use iso_c_binding
     implicit none
@@ -6845,6 +8366,15 @@ contains
     integer(c_int) :: res
     res = hipHostGetFlags_b(flags, c_loc(hostPtr(1,1,1,1,1,1,1)))
   end function hipHostGetFlags_c4_7
+
+  function hipHostGetFlags_c8_0(flags, hostPtr) result(res)
+    use iso_c_binding
+    implicit none
+    integer(c_int) :: flags
+    complex(c_double_complex), target, intent(inout) :: hostPtr
+    integer(c_int) :: res
+    res = hipHostGetFlags_b(flags, c_loc(hostPtr))
+  end function hipHostGetFlags_c8_0
 
   function hipHostGetFlags_c8_1(flags, hostPtr) result(res)
     use iso_c_binding

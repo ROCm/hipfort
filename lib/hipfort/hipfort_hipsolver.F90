@@ -504,7 +504,7 @@ module hipfort_hipsolver
        type(c_ptr), value :: A
        integer(c_int), value :: lda
        real(c_float) :: tau
-       type(c_ptr), value :: lwork
+       integer(c_int) :: lwork
        integer(c_int) :: Sorgbr_bufferSize_raw
     end function hipsolverSorgbr_bufferSize_raw
 
@@ -532,7 +532,7 @@ module hipfort_hipsolver
        type(c_ptr), value :: A
        integer(c_int), value :: lda
        real(c_double) :: tau
-       type(c_ptr), value :: lwork
+       integer(c_int) :: lwork
        integer(c_int) :: Dorgbr_bufferSize_raw
     end function hipsolverDorgbr_bufferSize_raw
 
@@ -560,7 +560,7 @@ module hipfort_hipsolver
        type(c_ptr), value :: A
        integer(c_int), value :: lda
        complex(c_float_complex) :: tau
-       type(c_ptr), value :: lwork
+       integer(c_int) :: lwork
        integer(c_int) :: Cungbr_bufferSize_raw
     end function hipsolverCungbr_bufferSize_raw
 
@@ -588,7 +588,7 @@ module hipfort_hipsolver
        type(c_ptr), value :: A
        integer(c_int), value :: lda
        complex(c_double_complex) :: tau
-       type(c_ptr), value :: lwork
+       integer(c_int) :: lwork
        integer(c_int) :: Zungbr_bufferSize_raw
     end function hipsolverZungbr_bufferSize_raw
 
@@ -618,7 +618,7 @@ module hipfort_hipsolver
        real(c_float) :: tau
        type(c_ptr), value :: work
        integer(c_int), value :: lwork
-       type(c_ptr), value :: devInfo
+       integer(c_int) :: devInfo
        integer(c_int) :: Sorgbr_raw
     end function hipsolverSorgbr_raw
 
@@ -648,7 +648,7 @@ module hipfort_hipsolver
        real(c_double) :: tau
        type(c_ptr), value :: work
        integer(c_int), value :: lwork
-       type(c_ptr), value :: devInfo
+       integer(c_int) :: devInfo
        integer(c_int) :: Dorgbr_raw
     end function hipsolverDorgbr_raw
 
@@ -678,7 +678,7 @@ module hipfort_hipsolver
        complex(c_float_complex) :: tau
        type(c_ptr), value :: work
        integer(c_int), value :: lwork
-       type(c_ptr), value :: devInfo
+       integer(c_int) :: devInfo
        integer(c_int) :: Cungbr_raw
     end function hipsolverCungbr_raw
 
@@ -708,7 +708,7 @@ module hipfort_hipsolver
        complex(c_double_complex) :: tau
        type(c_ptr), value :: work
        integer(c_int), value :: lwork
-       type(c_ptr), value :: devInfo
+       integer(c_int) :: devInfo
        integer(c_int) :: Zungbr_raw
     end function hipsolverZungbr_raw
 
@@ -735,7 +735,7 @@ module hipfort_hipsolver
        type(c_ptr), value :: A
        integer(c_int), value :: lda
        real(c_float) :: tau
-       type(c_ptr), value :: lwork
+       integer(c_int) :: lwork
        integer(c_int) :: Sorgqr_bufferSize_raw
     end function hipsolverSorgqr_bufferSize_raw
 
@@ -762,7 +762,7 @@ module hipfort_hipsolver
        type(c_ptr), value :: A
        integer(c_int), value :: lda
        real(c_double) :: tau
-       type(c_ptr), value :: lwork
+       integer(c_int) :: lwork
        integer(c_int) :: Dorgqr_bufferSize_raw
     end function hipsolverDorgqr_bufferSize_raw
 
@@ -789,7 +789,7 @@ module hipfort_hipsolver
        type(c_ptr), value :: A
        integer(c_int), value :: lda
        complex(c_float_complex) :: tau
-       type(c_ptr), value :: lwork
+       integer(c_int) :: lwork
        integer(c_int) :: Cungqr_bufferSize_raw
     end function hipsolverCungqr_bufferSize_raw
 
@@ -816,7 +816,7 @@ module hipfort_hipsolver
        type(c_ptr), value :: A
        integer(c_int), value :: lda
        complex(c_double_complex) :: tau
-       type(c_ptr), value :: lwork
+       integer(c_int) :: lwork
        integer(c_int) :: Zungqr_bufferSize_raw
     end function hipsolverZungqr_bufferSize_raw
 
@@ -845,7 +845,7 @@ module hipfort_hipsolver
        real(c_float) :: tau
        type(c_ptr), value :: work
        integer(c_int), value :: lwork
-       type(c_ptr), value :: devInfo
+       integer(c_int) :: devInfo
        integer(c_int) :: Sorgqr_raw
     end function hipsolverSorgqr_raw
 
@@ -874,7 +874,7 @@ module hipfort_hipsolver
        real(c_double) :: tau
        type(c_ptr), value :: work
        integer(c_int), value :: lwork
-       type(c_ptr), value :: devInfo
+       integer(c_int) :: devInfo
        integer(c_int) :: Dorgqr_raw
     end function hipsolverDorgqr_raw
 
@@ -903,7 +903,7 @@ module hipfort_hipsolver
        complex(c_float_complex) :: tau
        type(c_ptr), value :: work
        integer(c_int), value :: lwork
-       type(c_ptr), value :: devInfo
+       integer(c_int) :: devInfo
        integer(c_int) :: Cungqr_raw
     end function hipsolverCungqr_raw
 
@@ -932,7 +932,7 @@ module hipfort_hipsolver
        complex(c_double_complex) :: tau
        type(c_ptr), value :: work
        integer(c_int), value :: lwork
-       type(c_ptr), value :: devInfo
+       integer(c_int) :: devInfo
        integer(c_int) :: Zungqr_raw
     end function hipsolverZungqr_raw
 
@@ -958,7 +958,7 @@ module hipfort_hipsolver
        type(c_ptr), value :: A
        integer(c_int), value :: lda
        real(c_float) :: tau
-       type(c_ptr), value :: lwork
+       integer(c_int) :: lwork
        integer(c_int) :: Sorgtr_bufferSize_raw
     end function hipsolverSorgtr_bufferSize_raw
 
@@ -984,7 +984,7 @@ module hipfort_hipsolver
        type(c_ptr), value :: A
        integer(c_int), value :: lda
        real(c_double) :: tau
-       type(c_ptr), value :: lwork
+       integer(c_int) :: lwork
        integer(c_int) :: Dorgtr_bufferSize_raw
     end function hipsolverDorgtr_bufferSize_raw
 
@@ -1010,7 +1010,7 @@ module hipfort_hipsolver
        type(c_ptr), value :: A
        integer(c_int), value :: lda
        complex(c_float_complex) :: tau
-       type(c_ptr), value :: lwork
+       integer(c_int) :: lwork
        integer(c_int) :: Cungtr_bufferSize_raw
     end function hipsolverCungtr_bufferSize_raw
 
@@ -1036,7 +1036,7 @@ module hipfort_hipsolver
        type(c_ptr), value :: A
        integer(c_int), value :: lda
        complex(c_double_complex) :: tau
-       type(c_ptr), value :: lwork
+       integer(c_int) :: lwork
        integer(c_int) :: Zungtr_bufferSize_raw
     end function hipsolverZungtr_bufferSize_raw
 
@@ -1064,7 +1064,7 @@ module hipfort_hipsolver
        real(c_float) :: tau
        type(c_ptr), value :: work
        integer(c_int), value :: lwork
-       type(c_ptr), value :: devInfo
+       integer(c_int) :: devInfo
        integer(c_int) :: Sorgtr_raw
     end function hipsolverSorgtr_raw
 
@@ -1092,7 +1092,7 @@ module hipfort_hipsolver
        real(c_double) :: tau
        type(c_ptr), value :: work
        integer(c_int), value :: lwork
-       type(c_ptr), value :: devInfo
+       integer(c_int) :: devInfo
        integer(c_int) :: Dorgtr_raw
     end function hipsolverDorgtr_raw
 
@@ -1120,7 +1120,7 @@ module hipfort_hipsolver
        complex(c_float_complex) :: tau
        type(c_ptr), value :: work
        integer(c_int), value :: lwork
-       type(c_ptr), value :: devInfo
+       integer(c_int) :: devInfo
        integer(c_int) :: Cungtr_raw
     end function hipsolverCungtr_raw
 
@@ -1148,7 +1148,7 @@ module hipfort_hipsolver
        complex(c_double_complex) :: tau
        type(c_ptr), value :: work
        integer(c_int), value :: lwork
-       type(c_ptr), value :: devInfo
+       integer(c_int) :: devInfo
        integer(c_int) :: Zungtr_raw
     end function hipsolverZungtr_raw
 
@@ -1180,7 +1180,7 @@ module hipfort_hipsolver
        real(c_float) :: tau
        type(c_ptr), value :: C
        integer(c_int), value :: ldc
-       type(c_ptr), value :: lwork
+       integer(c_int) :: lwork
        integer(c_int) :: Sormqr_bufferSize_raw
     end function hipsolverSormqr_bufferSize_raw
 
@@ -1212,7 +1212,7 @@ module hipfort_hipsolver
        real(c_double) :: tau
        type(c_ptr), value :: C
        integer(c_int), value :: ldc
-       type(c_ptr), value :: lwork
+       integer(c_int) :: lwork
        integer(c_int) :: Dormqr_bufferSize_raw
     end function hipsolverDormqr_bufferSize_raw
 
@@ -1244,7 +1244,7 @@ module hipfort_hipsolver
        complex(c_float_complex) :: tau
        type(c_ptr), value :: C
        integer(c_int), value :: ldc
-       type(c_ptr), value :: lwork
+       integer(c_int) :: lwork
        integer(c_int) :: Cunmqr_bufferSize_raw
     end function hipsolverCunmqr_bufferSize_raw
 
@@ -1276,7 +1276,7 @@ module hipfort_hipsolver
        complex(c_double_complex) :: tau
        type(c_ptr), value :: C
        integer(c_int), value :: ldc
-       type(c_ptr), value :: lwork
+       integer(c_int) :: lwork
        integer(c_int) :: Zunmqr_bufferSize_raw
     end function hipsolverZunmqr_bufferSize_raw
 
@@ -1310,7 +1310,7 @@ module hipfort_hipsolver
        integer(c_int), value :: ldc
        type(c_ptr), value :: work
        integer(c_int), value :: lwork
-       type(c_ptr), value :: devInfo
+       integer(c_int) :: devInfo
        integer(c_int) :: Sormqr_raw
     end function hipsolverSormqr_raw
 
@@ -1344,7 +1344,7 @@ module hipfort_hipsolver
        integer(c_int), value :: ldc
        type(c_ptr), value :: work
        integer(c_int), value :: lwork
-       type(c_ptr), value :: devInfo
+       integer(c_int) :: devInfo
        integer(c_int) :: Dormqr_raw
     end function hipsolverDormqr_raw
 
@@ -1378,7 +1378,7 @@ module hipfort_hipsolver
        integer(c_int), value :: ldc
        type(c_ptr), value :: work
        integer(c_int), value :: lwork
-       type(c_ptr), value :: devInfo
+       integer(c_int) :: devInfo
        integer(c_int) :: Cunmqr_raw
     end function hipsolverCunmqr_raw
 
@@ -1412,7 +1412,7 @@ module hipfort_hipsolver
        integer(c_int), value :: ldc
        type(c_ptr), value :: work
        integer(c_int), value :: lwork
-       type(c_ptr), value :: devInfo
+       integer(c_int) :: devInfo
        integer(c_int) :: Zunmqr_raw
     end function hipsolverZunmqr_raw
 
@@ -1444,7 +1444,7 @@ module hipfort_hipsolver
        real(c_float) :: tau
        type(c_ptr), value :: C
        integer(c_int), value :: ldc
-       type(c_ptr), value :: lwork
+       integer(c_int) :: lwork
        integer(c_int) :: Sormtr_bufferSize_raw
     end function hipsolverSormtr_bufferSize_raw
 
@@ -1476,7 +1476,7 @@ module hipfort_hipsolver
        real(c_double) :: tau
        type(c_ptr), value :: C
        integer(c_int), value :: ldc
-       type(c_ptr), value :: lwork
+       integer(c_int) :: lwork
        integer(c_int) :: Dormtr_bufferSize_raw
     end function hipsolverDormtr_bufferSize_raw
 
@@ -1508,7 +1508,7 @@ module hipfort_hipsolver
        complex(c_float_complex) :: tau
        type(c_ptr), value :: C
        integer(c_int), value :: ldc
-       type(c_ptr), value :: lwork
+       integer(c_int) :: lwork
        integer(c_int) :: Cunmtr_bufferSize_raw
     end function hipsolverCunmtr_bufferSize_raw
 
@@ -1540,7 +1540,7 @@ module hipfort_hipsolver
        complex(c_double_complex) :: tau
        type(c_ptr), value :: C
        integer(c_int), value :: ldc
-       type(c_ptr), value :: lwork
+       integer(c_int) :: lwork
        integer(c_int) :: Zunmtr_bufferSize_raw
     end function hipsolverZunmtr_bufferSize_raw
 
@@ -1574,7 +1574,7 @@ module hipfort_hipsolver
        integer(c_int), value :: ldc
        type(c_ptr), value :: work
        integer(c_int), value :: lwork
-       type(c_ptr), value :: devInfo
+       integer(c_int) :: devInfo
        integer(c_int) :: Sormtr_raw
     end function hipsolverSormtr_raw
 
@@ -1608,7 +1608,7 @@ module hipfort_hipsolver
        integer(c_int), value :: ldc
        type(c_ptr), value :: work
        integer(c_int), value :: lwork
-       type(c_ptr), value :: devInfo
+       integer(c_int) :: devInfo
        integer(c_int) :: Dormtr_raw
     end function hipsolverDormtr_raw
 
@@ -1642,7 +1642,7 @@ module hipfort_hipsolver
        integer(c_int), value :: ldc
        type(c_ptr), value :: work
        integer(c_int), value :: lwork
-       type(c_ptr), value :: devInfo
+       integer(c_int) :: devInfo
        integer(c_int) :: Cunmtr_raw
     end function hipsolverCunmtr_raw
 
@@ -1676,7 +1676,7 @@ module hipfort_hipsolver
        integer(c_int), value :: ldc
        type(c_ptr), value :: work
        integer(c_int), value :: lwork
-       type(c_ptr), value :: devInfo
+       integer(c_int) :: devInfo
        integer(c_int) :: Zunmtr_raw
     end function hipsolverZunmtr_raw
 
@@ -1699,11 +1699,10 @@ module hipfort_hipsolver
        type(c_ptr), value :: handle
        integer(c_int), value :: m
        integer(c_int), value :: n
-       type(c_ptr), value :: lwork
+       integer(c_int) :: lwork
        integer(c_int) :: Sgebrd_bufferSize_raw
     end function hipsolverSgebrd_bufferSize_raw
 
-    module procedure hipsolverSgebrd_bufferSize_native
     module procedure hipsolverSgebrd_bufferSize_typed
   end interface hipsolverSgebrd_bufferSize
 
@@ -1722,11 +1721,10 @@ module hipfort_hipsolver
        type(c_ptr), value :: handle
        integer(c_int), value :: m
        integer(c_int), value :: n
-       type(c_ptr), value :: lwork
+       integer(c_int) :: lwork
        integer(c_int) :: Dgebrd_bufferSize_raw
     end function hipsolverDgebrd_bufferSize_raw
 
-    module procedure hipsolverDgebrd_bufferSize_native
     module procedure hipsolverDgebrd_bufferSize_typed
   end interface hipsolverDgebrd_bufferSize
 
@@ -1745,11 +1743,10 @@ module hipfort_hipsolver
        type(c_ptr), value :: handle
        integer(c_int), value :: m
        integer(c_int), value :: n
-       type(c_ptr), value :: lwork
+       integer(c_int) :: lwork
        integer(c_int) :: Cgebrd_bufferSize_raw
     end function hipsolverCgebrd_bufferSize_raw
 
-    module procedure hipsolverCgebrd_bufferSize_native
     module procedure hipsolverCgebrd_bufferSize_typed
   end interface hipsolverCgebrd_bufferSize
 
@@ -1768,11 +1765,10 @@ module hipfort_hipsolver
        type(c_ptr), value :: handle
        integer(c_int), value :: m
        integer(c_int), value :: n
-       type(c_ptr), value :: lwork
+       integer(c_int) :: lwork
        integer(c_int) :: Zgebrd_bufferSize_raw
     end function hipsolverZgebrd_bufferSize_raw
 
-    module procedure hipsolverZgebrd_bufferSize_native
     module procedure hipsolverZgebrd_bufferSize_typed
   end interface hipsolverZgebrd_bufferSize
 
@@ -1799,7 +1795,7 @@ module hipfort_hipsolver
        type(c_ptr), value :: taup
        type(c_ptr), value :: work
        integer(c_int), value :: lwork
-       type(c_ptr), value :: devInfo
+       integer(c_int) :: devInfo
        integer(c_int) :: Sgebrd_raw
     end function hipsolverSgebrd_raw
 
@@ -1830,7 +1826,7 @@ module hipfort_hipsolver
        type(c_ptr), value :: taup
        type(c_ptr), value :: work
        integer(c_int), value :: lwork
-       type(c_ptr), value :: devInfo
+       integer(c_int) :: devInfo
        integer(c_int) :: Dgebrd_raw
     end function hipsolverDgebrd_raw
 
@@ -1861,7 +1857,7 @@ module hipfort_hipsolver
        type(c_ptr), value :: taup
        type(c_ptr), value :: work
        integer(c_int), value :: lwork
-       type(c_ptr), value :: devInfo
+       integer(c_int) :: devInfo
        integer(c_int) :: Cgebrd_raw
     end function hipsolverCgebrd_raw
 
@@ -1892,7 +1888,7 @@ module hipfort_hipsolver
        type(c_ptr), value :: taup
        type(c_ptr), value :: work
        integer(c_int), value :: lwork
-       type(c_ptr), value :: devInfo
+       integer(c_int) :: devInfo
        integer(c_int) :: Zgebrd_raw
     end function hipsolverZgebrd_raw
 
@@ -2173,7 +2169,7 @@ module hipfort_hipsolver
        integer(c_int), value :: n
        type(c_ptr), value :: A
        integer(c_int), value :: lda
-       type(c_ptr), value :: lwork
+       integer(c_int) :: lwork
        integer(c_int) :: Sgeqrf_bufferSize_raw
     end function hipsolverSgeqrf_bufferSize_raw
 
@@ -2198,7 +2194,7 @@ module hipfort_hipsolver
        integer(c_int), value :: n
        type(c_ptr), value :: A
        integer(c_int), value :: lda
-       type(c_ptr), value :: lwork
+       integer(c_int) :: lwork
        integer(c_int) :: Dgeqrf_bufferSize_raw
     end function hipsolverDgeqrf_bufferSize_raw
 
@@ -2223,7 +2219,7 @@ module hipfort_hipsolver
        integer(c_int), value :: n
        type(c_ptr), value :: A
        integer(c_int), value :: lda
-       type(c_ptr), value :: lwork
+       integer(c_int) :: lwork
        integer(c_int) :: Cgeqrf_bufferSize_raw
     end function hipsolverCgeqrf_bufferSize_raw
 
@@ -2248,7 +2244,7 @@ module hipfort_hipsolver
        integer(c_int), value :: n
        type(c_ptr), value :: A
        integer(c_int), value :: lda
-       type(c_ptr), value :: lwork
+       integer(c_int) :: lwork
        integer(c_int) :: Zgeqrf_bufferSize_raw
     end function hipsolverZgeqrf_bufferSize_raw
 
@@ -2276,7 +2272,7 @@ module hipfort_hipsolver
        real(c_float) :: tau
        type(c_ptr), value :: work
        integer(c_int), value :: lwork
-       type(c_ptr), value :: devInfo
+       integer(c_int) :: devInfo
        integer(c_int) :: Sgeqrf_raw
     end function hipsolverSgeqrf_raw
 
@@ -2304,7 +2300,7 @@ module hipfort_hipsolver
        real(c_double) :: tau
        type(c_ptr), value :: work
        integer(c_int), value :: lwork
-       type(c_ptr), value :: devInfo
+       integer(c_int) :: devInfo
        integer(c_int) :: Dgeqrf_raw
     end function hipsolverDgeqrf_raw
 
@@ -2332,7 +2328,7 @@ module hipfort_hipsolver
        complex(c_float_complex) :: tau
        type(c_ptr), value :: work
        integer(c_int), value :: lwork
-       type(c_ptr), value :: devInfo
+       integer(c_int) :: devInfo
        integer(c_int) :: Cgeqrf_raw
     end function hipsolverCgeqrf_raw
 
@@ -2360,7 +2356,7 @@ module hipfort_hipsolver
        complex(c_double_complex) :: tau
        type(c_ptr), value :: work
        integer(c_int), value :: lwork
-       type(c_ptr), value :: devInfo
+       integer(c_int) :: devInfo
        integer(c_int) :: Zgeqrf_raw
     end function hipsolverZgeqrf_raw
 
@@ -2518,7 +2514,7 @@ module hipfort_hipsolver
        type(c_ptr), value :: work
        integer(c_long), value :: lwork
        type(c_ptr), value :: niters
-       type(c_ptr), value :: devInfo
+       integer(c_int) :: devInfo
        integer(c_int) :: SSgesv_raw
     end function hipsolverSSgesv_raw
 
@@ -2552,7 +2548,7 @@ module hipfort_hipsolver
        type(c_ptr), value :: work
        integer(c_long), value :: lwork
        type(c_ptr), value :: niters
-       type(c_ptr), value :: devInfo
+       integer(c_int) :: devInfo
        integer(c_int) :: DDgesv_raw
     end function hipsolverDDgesv_raw
 
@@ -2586,7 +2582,7 @@ module hipfort_hipsolver
        type(c_ptr), value :: work
        integer(c_long), value :: lwork
        type(c_ptr), value :: niters
-       type(c_ptr), value :: devInfo
+       integer(c_int) :: devInfo
        integer(c_int) :: CCgesv_raw
     end function hipsolverCCgesv_raw
 
@@ -2620,7 +2616,7 @@ module hipfort_hipsolver
        type(c_ptr), value :: work
        integer(c_long), value :: lwork
        type(c_ptr), value :: niters
-       type(c_ptr), value :: devInfo
+       integer(c_int) :: devInfo
        integer(c_int) :: ZZgesv_raw
     end function hipsolverZZgesv_raw
 
@@ -3449,7 +3445,7 @@ module hipfort_hipsolver
        integer(c_int), value :: n
        type(c_ptr), value :: A
        integer(c_int), value :: lda
-       type(c_ptr), value :: lwork
+       integer(c_int) :: lwork
        integer(c_int) :: Sgetrf_bufferSize_raw
     end function hipsolverSgetrf_bufferSize_raw
 
@@ -3474,7 +3470,7 @@ module hipfort_hipsolver
        integer(c_int), value :: n
        type(c_ptr), value :: A
        integer(c_int), value :: lda
-       type(c_ptr), value :: lwork
+       integer(c_int) :: lwork
        integer(c_int) :: Dgetrf_bufferSize_raw
     end function hipsolverDgetrf_bufferSize_raw
 
@@ -3499,7 +3495,7 @@ module hipfort_hipsolver
        integer(c_int), value :: n
        type(c_ptr), value :: A
        integer(c_int), value :: lda
-       type(c_ptr), value :: lwork
+       integer(c_int) :: lwork
        integer(c_int) :: Cgetrf_bufferSize_raw
     end function hipsolverCgetrf_bufferSize_raw
 
@@ -3524,7 +3520,7 @@ module hipfort_hipsolver
        integer(c_int), value :: n
        type(c_ptr), value :: A
        integer(c_int), value :: lda
-       type(c_ptr), value :: lwork
+       integer(c_int) :: lwork
        integer(c_int) :: Zgetrf_bufferSize_raw
     end function hipsolverZgetrf_bufferSize_raw
 
@@ -3552,7 +3548,7 @@ module hipfort_hipsolver
        type(c_ptr), value :: work
        integer(c_int), value :: lwork
        type(c_ptr), value :: devIpiv
-       type(c_ptr), value :: devInfo
+       integer(c_int) :: devInfo
        integer(c_int) :: Sgetrf_raw
     end function hipsolverSgetrf_raw
 
@@ -3580,7 +3576,7 @@ module hipfort_hipsolver
        type(c_ptr), value :: work
        integer(c_int), value :: lwork
        type(c_ptr), value :: devIpiv
-       type(c_ptr), value :: devInfo
+       integer(c_int) :: devInfo
        integer(c_int) :: Dgetrf_raw
     end function hipsolverDgetrf_raw
 
@@ -3608,7 +3604,7 @@ module hipfort_hipsolver
        type(c_ptr), value :: work
        integer(c_int), value :: lwork
        type(c_ptr), value :: devIpiv
-       type(c_ptr), value :: devInfo
+       integer(c_int) :: devInfo
        integer(c_int) :: Cgetrf_raw
     end function hipsolverCgetrf_raw
 
@@ -3636,7 +3632,7 @@ module hipfort_hipsolver
        type(c_ptr), value :: work
        integer(c_int), value :: lwork
        type(c_ptr), value :: devIpiv
-       type(c_ptr), value :: devInfo
+       integer(c_int) :: devInfo
        integer(c_int) :: Zgetrf_raw
     end function hipsolverZgetrf_raw
 
@@ -3666,7 +3662,7 @@ module hipfort_hipsolver
        type(c_ptr), value :: devIpiv
        type(c_ptr), value :: B
        integer(c_int), value :: ldb
-       type(c_ptr), value :: lwork
+       integer(c_int) :: lwork
        integer(c_int) :: Sgetrs_bufferSize_raw
     end function hipsolverSgetrs_bufferSize_raw
 
@@ -3696,7 +3692,7 @@ module hipfort_hipsolver
        type(c_ptr), value :: devIpiv
        type(c_ptr), value :: B
        integer(c_int), value :: ldb
-       type(c_ptr), value :: lwork
+       integer(c_int) :: lwork
        integer(c_int) :: Dgetrs_bufferSize_raw
     end function hipsolverDgetrs_bufferSize_raw
 
@@ -3726,7 +3722,7 @@ module hipfort_hipsolver
        type(c_ptr), value :: devIpiv
        type(c_ptr), value :: B
        integer(c_int), value :: ldb
-       type(c_ptr), value :: lwork
+       integer(c_int) :: lwork
        integer(c_int) :: Cgetrs_bufferSize_raw
     end function hipsolverCgetrs_bufferSize_raw
 
@@ -3756,7 +3752,7 @@ module hipfort_hipsolver
        type(c_ptr), value :: devIpiv
        type(c_ptr), value :: B
        integer(c_int), value :: ldb
-       type(c_ptr), value :: lwork
+       integer(c_int) :: lwork
        integer(c_int) :: Zgetrs_bufferSize_raw
     end function hipsolverZgetrs_bufferSize_raw
 
@@ -3788,7 +3784,7 @@ module hipfort_hipsolver
        integer(c_int), value :: ldb
        type(c_ptr), value :: work
        integer(c_int), value :: lwork
-       type(c_ptr), value :: devInfo
+       integer(c_int) :: devInfo
        integer(c_int) :: Sgetrs_raw
     end function hipsolverSgetrs_raw
 
@@ -3820,7 +3816,7 @@ module hipfort_hipsolver
        integer(c_int), value :: ldb
        type(c_ptr), value :: work
        integer(c_int), value :: lwork
-       type(c_ptr), value :: devInfo
+       integer(c_int) :: devInfo
        integer(c_int) :: Dgetrs_raw
     end function hipsolverDgetrs_raw
 
@@ -3852,7 +3848,7 @@ module hipfort_hipsolver
        integer(c_int), value :: ldb
        type(c_ptr), value :: work
        integer(c_int), value :: lwork
-       type(c_ptr), value :: devInfo
+       integer(c_int) :: devInfo
        integer(c_int) :: Cgetrs_raw
     end function hipsolverCgetrs_raw
 
@@ -3884,7 +3880,7 @@ module hipfort_hipsolver
        integer(c_int), value :: ldb
        type(c_ptr), value :: work
        integer(c_int), value :: lwork
-       type(c_ptr), value :: devInfo
+       integer(c_int) :: devInfo
        integer(c_int) :: Zgetrs_raw
     end function hipsolverZgetrs_raw
 
@@ -3909,7 +3905,7 @@ module hipfort_hipsolver
        integer(c_int), value :: n
        type(c_ptr), value :: A
        integer(c_int), value :: lda
-       type(c_ptr), value :: lwork
+       integer(c_int) :: lwork
        integer(c_int) :: Spotrf_bufferSize_raw
     end function hipsolverSpotrf_bufferSize_raw
 
@@ -3934,7 +3930,7 @@ module hipfort_hipsolver
        integer(c_int), value :: n
        type(c_ptr), value :: A
        integer(c_int), value :: lda
-       type(c_ptr), value :: lwork
+       integer(c_int) :: lwork
        integer(c_int) :: Dpotrf_bufferSize_raw
     end function hipsolverDpotrf_bufferSize_raw
 
@@ -3959,7 +3955,7 @@ module hipfort_hipsolver
        integer(c_int), value :: n
        type(c_ptr), value :: A
        integer(c_int), value :: lda
-       type(c_ptr), value :: lwork
+       integer(c_int) :: lwork
        integer(c_int) :: Cpotrf_bufferSize_raw
     end function hipsolverCpotrf_bufferSize_raw
 
@@ -3984,7 +3980,7 @@ module hipfort_hipsolver
        integer(c_int), value :: n
        type(c_ptr), value :: A
        integer(c_int), value :: lda
-       type(c_ptr), value :: lwork
+       integer(c_int) :: lwork
        integer(c_int) :: Zpotrf_bufferSize_raw
     end function hipsolverZpotrf_bufferSize_raw
 
@@ -4011,7 +4007,7 @@ module hipfort_hipsolver
        integer(c_int), value :: lda
        type(c_ptr), value :: work
        integer(c_int), value :: lwork
-       type(c_ptr), value :: devInfo
+       integer(c_int) :: devInfo
        integer(c_int) :: Spotrf_raw
     end function hipsolverSpotrf_raw
 
@@ -4038,7 +4034,7 @@ module hipfort_hipsolver
        integer(c_int), value :: lda
        type(c_ptr), value :: work
        integer(c_int), value :: lwork
-       type(c_ptr), value :: devInfo
+       integer(c_int) :: devInfo
        integer(c_int) :: Dpotrf_raw
     end function hipsolverDpotrf_raw
 
@@ -4065,7 +4061,7 @@ module hipfort_hipsolver
        integer(c_int), value :: lda
        type(c_ptr), value :: work
        integer(c_int), value :: lwork
-       type(c_ptr), value :: devInfo
+       integer(c_int) :: devInfo
        integer(c_int) :: Cpotrf_raw
     end function hipsolverCpotrf_raw
 
@@ -4092,7 +4088,7 @@ module hipfort_hipsolver
        integer(c_int), value :: lda
        type(c_ptr), value :: work
        integer(c_int), value :: lwork
-       type(c_ptr), value :: devInfo
+       integer(c_int) :: devInfo
        integer(c_int) :: Zpotrf_raw
     end function hipsolverZpotrf_raw
 
@@ -4225,7 +4221,6 @@ module hipfort_hipsolver
        integer(c_int) :: SpotrfBatched_raw
     end function hipsolverSpotrfBatched_raw
 
-    module procedure hipsolverSpotrfBatched_native
     module procedure hipsolverSpotrfBatched_typed
   end interface hipsolverSpotrfBatched
 
@@ -4254,7 +4249,6 @@ module hipfort_hipsolver
        integer(c_int) :: DpotrfBatched_raw
     end function hipsolverDpotrfBatched_raw
 
-    module procedure hipsolverDpotrfBatched_native
     module procedure hipsolverDpotrfBatched_typed
   end interface hipsolverDpotrfBatched
 
@@ -4283,7 +4277,6 @@ module hipfort_hipsolver
        integer(c_int) :: CpotrfBatched_raw
     end function hipsolverCpotrfBatched_raw
 
-    module procedure hipsolverCpotrfBatched_native
     module procedure hipsolverCpotrfBatched_typed
   end interface hipsolverCpotrfBatched
 
@@ -4312,7 +4305,6 @@ module hipfort_hipsolver
        integer(c_int) :: ZpotrfBatched_raw
     end function hipsolverZpotrfBatched_raw
 
-    module procedure hipsolverZpotrfBatched_native
     module procedure hipsolverZpotrfBatched_typed
   end interface hipsolverZpotrfBatched
 
@@ -4333,7 +4325,7 @@ module hipfort_hipsolver
        integer(c_int), value :: n
        type(c_ptr), value :: A
        integer(c_int), value :: lda
-       type(c_ptr), value :: lwork
+       integer(c_int) :: lwork
        integer(c_int) :: Spotri_bufferSize_raw
     end function hipsolverSpotri_bufferSize_raw
 
@@ -4358,7 +4350,7 @@ module hipfort_hipsolver
        integer(c_int), value :: n
        type(c_ptr), value :: A
        integer(c_int), value :: lda
-       type(c_ptr), value :: lwork
+       integer(c_int) :: lwork
        integer(c_int) :: Dpotri_bufferSize_raw
     end function hipsolverDpotri_bufferSize_raw
 
@@ -4383,7 +4375,7 @@ module hipfort_hipsolver
        integer(c_int), value :: n
        type(c_ptr), value :: A
        integer(c_int), value :: lda
-       type(c_ptr), value :: lwork
+       integer(c_int) :: lwork
        integer(c_int) :: Cpotri_bufferSize_raw
     end function hipsolverCpotri_bufferSize_raw
 
@@ -4408,7 +4400,7 @@ module hipfort_hipsolver
        integer(c_int), value :: n
        type(c_ptr), value :: A
        integer(c_int), value :: lda
-       type(c_ptr), value :: lwork
+       integer(c_int) :: lwork
        integer(c_int) :: Zpotri_bufferSize_raw
     end function hipsolverZpotri_bufferSize_raw
 
@@ -4435,7 +4427,7 @@ module hipfort_hipsolver
        integer(c_int), value :: lda
        type(c_ptr), value :: work
        integer(c_int), value :: lwork
-       type(c_ptr), value :: devInfo
+       integer(c_int) :: devInfo
        integer(c_int) :: Spotri_raw
     end function hipsolverSpotri_raw
 
@@ -4462,7 +4454,7 @@ module hipfort_hipsolver
        integer(c_int), value :: lda
        type(c_ptr), value :: work
        integer(c_int), value :: lwork
-       type(c_ptr), value :: devInfo
+       integer(c_int) :: devInfo
        integer(c_int) :: Dpotri_raw
     end function hipsolverDpotri_raw
 
@@ -4489,7 +4481,7 @@ module hipfort_hipsolver
        integer(c_int), value :: lda
        type(c_ptr), value :: work
        integer(c_int), value :: lwork
-       type(c_ptr), value :: devInfo
+       integer(c_int) :: devInfo
        integer(c_int) :: Cpotri_raw
     end function hipsolverCpotri_raw
 
@@ -4516,7 +4508,7 @@ module hipfort_hipsolver
        integer(c_int), value :: lda
        type(c_ptr), value :: work
        integer(c_int), value :: lwork
-       type(c_ptr), value :: devInfo
+       integer(c_int) :: devInfo
        integer(c_int) :: Zpotri_raw
     end function hipsolverZpotri_raw
 
@@ -4544,7 +4536,7 @@ module hipfort_hipsolver
        integer(c_int), value :: lda
        type(c_ptr), value :: B
        integer(c_int), value :: ldb
-       type(c_ptr), value :: lwork
+       integer(c_int) :: lwork
        integer(c_int) :: Spotrs_bufferSize_raw
     end function hipsolverSpotrs_bufferSize_raw
 
@@ -4572,7 +4564,7 @@ module hipfort_hipsolver
        integer(c_int), value :: lda
        type(c_ptr), value :: B
        integer(c_int), value :: ldb
-       type(c_ptr), value :: lwork
+       integer(c_int) :: lwork
        integer(c_int) :: Dpotrs_bufferSize_raw
     end function hipsolverDpotrs_bufferSize_raw
 
@@ -4600,7 +4592,7 @@ module hipfort_hipsolver
        integer(c_int), value :: lda
        type(c_ptr), value :: B
        integer(c_int), value :: ldb
-       type(c_ptr), value :: lwork
+       integer(c_int) :: lwork
        integer(c_int) :: Cpotrs_bufferSize_raw
     end function hipsolverCpotrs_bufferSize_raw
 
@@ -4628,7 +4620,7 @@ module hipfort_hipsolver
        integer(c_int), value :: lda
        type(c_ptr), value :: B
        integer(c_int), value :: ldb
-       type(c_ptr), value :: lwork
+       integer(c_int) :: lwork
        integer(c_int) :: Zpotrs_bufferSize_raw
     end function hipsolverZpotrs_bufferSize_raw
 
@@ -4658,7 +4650,7 @@ module hipfort_hipsolver
        integer(c_int), value :: ldb
        type(c_ptr), value :: work
        integer(c_int), value :: lwork
-       type(c_ptr), value :: devInfo
+       integer(c_int) :: devInfo
        integer(c_int) :: Spotrs_raw
     end function hipsolverSpotrs_raw
 
@@ -4688,7 +4680,7 @@ module hipfort_hipsolver
        integer(c_int), value :: ldb
        type(c_ptr), value :: work
        integer(c_int), value :: lwork
-       type(c_ptr), value :: devInfo
+       integer(c_int) :: devInfo
        integer(c_int) :: Dpotrs_raw
     end function hipsolverDpotrs_raw
 
@@ -4718,7 +4710,7 @@ module hipfort_hipsolver
        integer(c_int), value :: ldb
        type(c_ptr), value :: work
        integer(c_int), value :: lwork
-       type(c_ptr), value :: devInfo
+       integer(c_int) :: devInfo
        integer(c_int) :: Cpotrs_raw
     end function hipsolverCpotrs_raw
 
@@ -4748,7 +4740,7 @@ module hipfort_hipsolver
        integer(c_int), value :: ldb
        type(c_ptr), value :: work
        integer(c_int), value :: lwork
-       type(c_ptr), value :: devInfo
+       integer(c_int) :: devInfo
        integer(c_int) :: Zpotrs_raw
     end function hipsolverZpotrs_raw
 
@@ -4900,7 +4892,6 @@ module hipfort_hipsolver
        integer(c_int) :: SpotrsBatched_raw
     end function hipsolverSpotrsBatched_raw
 
-    module procedure hipsolverSpotrsBatched_native
     module procedure hipsolverSpotrsBatched_typed
   end interface hipsolverSpotrsBatched
 
@@ -4932,7 +4923,6 @@ module hipfort_hipsolver
        integer(c_int) :: DpotrsBatched_raw
     end function hipsolverDpotrsBatched_raw
 
-    module procedure hipsolverDpotrsBatched_native
     module procedure hipsolverDpotrsBatched_typed
   end interface hipsolverDpotrsBatched
 
@@ -4964,7 +4954,6 @@ module hipfort_hipsolver
        integer(c_int) :: CpotrsBatched_raw
     end function hipsolverCpotrsBatched_raw
 
-    module procedure hipsolverCpotrsBatched_native
     module procedure hipsolverCpotrsBatched_typed
   end interface hipsolverCpotrsBatched
 
@@ -4996,7 +4985,6 @@ module hipfort_hipsolver
        integer(c_int) :: ZpotrsBatched_raw
     end function hipsolverZpotrsBatched_raw
 
-    module procedure hipsolverZpotrsBatched_native
     module procedure hipsolverZpotrsBatched_typed
   end interface hipsolverZpotrsBatched
 
@@ -5019,7 +5007,7 @@ module hipfort_hipsolver
        type(c_ptr), value :: A
        integer(c_int), value :: lda
        type(c_ptr), value :: D
-       type(c_ptr), value :: lwork
+       integer(c_int) :: lwork
        integer(c_int) :: Ssyevd_bufferSize_raw
     end function hipsolverSsyevd_bufferSize_raw
 
@@ -5046,7 +5034,7 @@ module hipfort_hipsolver
        type(c_ptr), value :: A
        integer(c_int), value :: lda
        type(c_ptr), value :: D
-       type(c_ptr), value :: lwork
+       integer(c_int) :: lwork
        integer(c_int) :: Dsyevd_bufferSize_raw
     end function hipsolverDsyevd_bufferSize_raw
 
@@ -5073,7 +5061,7 @@ module hipfort_hipsolver
        type(c_ptr), value :: A
        integer(c_int), value :: lda
        type(c_ptr), value :: D
-       type(c_ptr), value :: lwork
+       integer(c_int) :: lwork
        integer(c_int) :: Cheevd_bufferSize_raw
     end function hipsolverCheevd_bufferSize_raw
 
@@ -5100,7 +5088,7 @@ module hipfort_hipsolver
        type(c_ptr), value :: A
        integer(c_int), value :: lda
        type(c_ptr), value :: D
-       type(c_ptr), value :: lwork
+       integer(c_int) :: lwork
        integer(c_int) :: Zheevd_bufferSize_raw
     end function hipsolverZheevd_bufferSize_raw
 
@@ -5129,7 +5117,7 @@ module hipfort_hipsolver
        type(c_ptr), value :: D
        type(c_ptr), value :: work
        integer(c_int), value :: lwork
-       type(c_ptr), value :: devInfo
+       integer(c_int) :: devInfo
        integer(c_int) :: Ssyevd_raw
     end function hipsolverSsyevd_raw
 
@@ -5158,7 +5146,7 @@ module hipfort_hipsolver
        type(c_ptr), value :: D
        type(c_ptr), value :: work
        integer(c_int), value :: lwork
-       type(c_ptr), value :: devInfo
+       integer(c_int) :: devInfo
        integer(c_int) :: Dsyevd_raw
     end function hipsolverDsyevd_raw
 
@@ -5187,7 +5175,7 @@ module hipfort_hipsolver
        type(c_ptr), value :: D
        type(c_ptr), value :: work
        integer(c_int), value :: lwork
-       type(c_ptr), value :: devInfo
+       integer(c_int) :: devInfo
        integer(c_int) :: Cheevd_raw
     end function hipsolverCheevd_raw
 
@@ -5216,7 +5204,7 @@ module hipfort_hipsolver
        type(c_ptr), value :: D
        type(c_ptr), value :: work
        integer(c_int), value :: lwork
-       type(c_ptr), value :: devInfo
+       integer(c_int) :: devInfo
        integer(c_int) :: Zheevd_raw
     end function hipsolverZheevd_raw
 
@@ -5250,7 +5238,7 @@ module hipfort_hipsolver
        integer(c_int), value :: iu
        integer(c_int) :: nev
        type(c_ptr), value :: W
-       type(c_ptr), value :: lwork
+       integer(c_int) :: lwork
        integer(c_int) :: Ssyevdx_bufferSize_raw
     end function hipsolverSsyevdx_bufferSize_raw
 
@@ -5318,7 +5306,7 @@ module hipfort_hipsolver
        integer(c_int), value :: iu
        integer(c_int) :: nev
        type(c_ptr), value :: W
-       type(c_ptr), value :: lwork
+       integer(c_int) :: lwork
        integer(c_int) :: Cheevdx_bufferSize_raw
     end function hipsolverCheevdx_bufferSize_raw
 
@@ -5352,7 +5340,7 @@ module hipfort_hipsolver
        integer(c_int), value :: iu
        integer(c_int) :: nev
        type(c_ptr), value :: W
-       type(c_ptr), value :: lwork
+       integer(c_int) :: lwork
        integer(c_int) :: Zheevdx_bufferSize_raw
     end function hipsolverZheevdx_bufferSize_raw
 
@@ -5460,7 +5448,7 @@ module hipfort_hipsolver
        type(c_ptr), value :: W
        type(c_ptr), value :: work
        integer(c_int), value :: lwork
-       type(c_ptr), value :: devInfo
+       integer(c_int) :: devInfo
        integer(c_int) :: Cheevdx_raw
     end function hipsolverCheevdx_raw
 
@@ -5496,7 +5484,7 @@ module hipfort_hipsolver
        type(c_ptr), value :: W
        type(c_ptr), value :: work
        integer(c_int), value :: lwork
-       type(c_ptr), value :: devInfo
+       integer(c_int) :: devInfo
        integer(c_int) :: Zheevdx_raw
     end function hipsolverZheevdx_raw
 
@@ -6007,7 +5995,7 @@ module hipfort_hipsolver
        type(c_ptr), value :: B
        integer(c_int), value :: ldb
        type(c_ptr), value :: W
-       type(c_ptr), value :: lwork
+       integer(c_int) :: lwork
        integer(c_int) :: Ssygvd_bufferSize_raw
     end function hipsolverSsygvd_bufferSize_raw
 
@@ -6038,7 +6026,7 @@ module hipfort_hipsolver
        type(c_ptr), value :: B
        integer(c_int), value :: ldb
        type(c_ptr), value :: W
-       type(c_ptr), value :: lwork
+       integer(c_int) :: lwork
        integer(c_int) :: Dsygvd_bufferSize_raw
     end function hipsolverDsygvd_bufferSize_raw
 
@@ -6069,7 +6057,7 @@ module hipfort_hipsolver
        type(c_ptr), value :: B
        integer(c_int), value :: ldb
        type(c_ptr), value :: W
-       type(c_ptr), value :: lwork
+       integer(c_int) :: lwork
        integer(c_int) :: Chegvd_bufferSize_raw
     end function hipsolverChegvd_bufferSize_raw
 
@@ -6100,7 +6088,7 @@ module hipfort_hipsolver
        type(c_ptr), value :: B
        integer(c_int), value :: ldb
        type(c_ptr), value :: W
-       type(c_ptr), value :: lwork
+       integer(c_int) :: lwork
        integer(c_int) :: Zhegvd_bufferSize_raw
     end function hipsolverZhegvd_bufferSize_raw
 
@@ -6133,7 +6121,7 @@ module hipfort_hipsolver
        type(c_ptr), value :: W
        type(c_ptr), value :: work
        integer(c_int), value :: lwork
-       type(c_ptr), value :: devInfo
+       integer(c_int) :: devInfo
        integer(c_int) :: Ssygvd_raw
     end function hipsolverSsygvd_raw
 
@@ -6166,7 +6154,7 @@ module hipfort_hipsolver
        type(c_ptr), value :: W
        type(c_ptr), value :: work
        integer(c_int), value :: lwork
-       type(c_ptr), value :: devInfo
+       integer(c_int) :: devInfo
        integer(c_int) :: Dsygvd_raw
     end function hipsolverDsygvd_raw
 
@@ -6199,7 +6187,7 @@ module hipfort_hipsolver
        type(c_ptr), value :: W
        type(c_ptr), value :: work
        integer(c_int), value :: lwork
-       type(c_ptr), value :: devInfo
+       integer(c_int) :: devInfo
        integer(c_int) :: Chegvd_raw
     end function hipsolverChegvd_raw
 
@@ -6232,7 +6220,7 @@ module hipfort_hipsolver
        type(c_ptr), value :: W
        type(c_ptr), value :: work
        integer(c_int), value :: lwork
-       type(c_ptr), value :: devInfo
+       integer(c_int) :: devInfo
        integer(c_int) :: Zhegvd_raw
     end function hipsolverZhegvd_raw
 
@@ -6269,7 +6257,7 @@ module hipfort_hipsolver
        integer(c_int), value :: iu
        integer(c_int) :: nev
        type(c_ptr), value :: W
-       type(c_ptr), value :: lwork
+       integer(c_int) :: lwork
        integer(c_int) :: Ssygvdx_bufferSize_raw
     end function hipsolverSsygvdx_bufferSize_raw
 
@@ -6306,7 +6294,7 @@ module hipfort_hipsolver
        integer(c_int), value :: iu
        integer(c_int) :: nev
        type(c_ptr), value :: W
-       type(c_ptr), value :: lwork
+       integer(c_int) :: lwork
        integer(c_int) :: Dsygvdx_bufferSize_raw
     end function hipsolverDsygvdx_bufferSize_raw
 
@@ -6343,7 +6331,7 @@ module hipfort_hipsolver
        integer(c_int), value :: iu
        integer(c_int) :: nev
        type(c_ptr), value :: W
-       type(c_ptr), value :: lwork
+       integer(c_int) :: lwork
        integer(c_int) :: Chegvdx_bufferSize_raw
     end function hipsolverChegvdx_bufferSize_raw
 
@@ -6380,7 +6368,7 @@ module hipfort_hipsolver
        integer(c_int), value :: iu
        integer(c_int) :: nev
        type(c_ptr), value :: W
-       type(c_ptr), value :: lwork
+       integer(c_int) :: lwork
        integer(c_int) :: Zhegvdx_bufferSize_raw
     end function hipsolverZhegvdx_bufferSize_raw
 
@@ -6419,7 +6407,7 @@ module hipfort_hipsolver
        type(c_ptr), value :: W
        type(c_ptr), value :: work
        integer(c_int), value :: lwork
-       type(c_ptr), value :: devInfo
+       integer(c_int) :: devInfo
        integer(c_int) :: Ssygvdx_raw
     end function hipsolverSsygvdx_raw
 
@@ -6458,7 +6446,7 @@ module hipfort_hipsolver
        type(c_ptr), value :: W
        type(c_ptr), value :: work
        integer(c_int), value :: lwork
-       type(c_ptr), value :: devInfo
+       integer(c_int) :: devInfo
        integer(c_int) :: Dsygvdx_raw
     end function hipsolverDsygvdx_raw
 
@@ -6497,7 +6485,7 @@ module hipfort_hipsolver
        type(c_ptr), value :: W
        type(c_ptr), value :: work
        integer(c_int), value :: lwork
-       type(c_ptr), value :: devInfo
+       integer(c_int) :: devInfo
        integer(c_int) :: Chegvdx_raw
     end function hipsolverChegvdx_raw
 
@@ -6536,7 +6524,7 @@ module hipfort_hipsolver
        type(c_ptr), value :: W
        type(c_ptr), value :: work
        integer(c_int), value :: lwork
-       type(c_ptr), value :: devInfo
+       integer(c_int) :: devInfo
        integer(c_int) :: Zhegvdx_raw
     end function hipsolverZhegvdx_raw
 
@@ -6828,7 +6816,7 @@ module hipfort_hipsolver
        type(c_ptr), value :: D
        type(c_ptr), value :: E
        real(c_float) :: tau
-       type(c_ptr), value :: lwork
+       integer(c_int) :: lwork
        integer(c_int) :: Ssytrd_bufferSize_raw
     end function hipsolverSsytrd_bufferSize_raw
 
@@ -6856,7 +6844,7 @@ module hipfort_hipsolver
        type(c_ptr), value :: D
        type(c_ptr), value :: E
        real(c_double) :: tau
-       type(c_ptr), value :: lwork
+       integer(c_int) :: lwork
        integer(c_int) :: Dsytrd_bufferSize_raw
     end function hipsolverDsytrd_bufferSize_raw
 
@@ -6884,7 +6872,7 @@ module hipfort_hipsolver
        type(c_ptr), value :: D
        type(c_ptr), value :: E
        complex(c_float_complex) :: tau
-       type(c_ptr), value :: lwork
+       integer(c_int) :: lwork
        integer(c_int) :: Chetrd_bufferSize_raw
     end function hipsolverChetrd_bufferSize_raw
 
@@ -6912,7 +6900,7 @@ module hipfort_hipsolver
        type(c_ptr), value :: D
        type(c_ptr), value :: E
        complex(c_double_complex) :: tau
-       type(c_ptr), value :: lwork
+       integer(c_int) :: lwork
        integer(c_int) :: Zhetrd_bufferSize_raw
     end function hipsolverZhetrd_bufferSize_raw
 
@@ -6942,7 +6930,7 @@ module hipfort_hipsolver
        real(c_float) :: tau
        type(c_ptr), value :: work
        integer(c_int), value :: lwork
-       type(c_ptr), value :: devInfo
+       integer(c_int) :: devInfo
        integer(c_int) :: Ssytrd_raw
     end function hipsolverSsytrd_raw
 
@@ -6972,7 +6960,7 @@ module hipfort_hipsolver
        real(c_double) :: tau
        type(c_ptr), value :: work
        integer(c_int), value :: lwork
-       type(c_ptr), value :: devInfo
+       integer(c_int) :: devInfo
        integer(c_int) :: Dsytrd_raw
     end function hipsolverDsytrd_raw
 
@@ -7002,7 +6990,7 @@ module hipfort_hipsolver
        complex(c_float_complex) :: tau
        type(c_ptr), value :: work
        integer(c_int), value :: lwork
-       type(c_ptr), value :: devInfo
+       integer(c_int) :: devInfo
        integer(c_int) :: Chetrd_raw
     end function hipsolverChetrd_raw
 
@@ -7032,7 +7020,7 @@ module hipfort_hipsolver
        complex(c_double_complex) :: tau
        type(c_ptr), value :: work
        integer(c_int), value :: lwork
-       type(c_ptr), value :: devInfo
+       integer(c_int) :: devInfo
        integer(c_int) :: Zhetrd_raw
     end function hipsolverZhetrd_raw
 
@@ -7056,7 +7044,7 @@ module hipfort_hipsolver
        integer(c_int), value :: n
        type(c_ptr), value :: A
        integer(c_int), value :: lda
-       type(c_ptr), value :: lwork
+       integer(c_int) :: lwork
        integer(c_int) :: Ssytrf_bufferSize_raw
     end function hipsolverSsytrf_bufferSize_raw
 
@@ -7080,7 +7068,7 @@ module hipfort_hipsolver
        integer(c_int), value :: n
        type(c_ptr), value :: A
        integer(c_int), value :: lda
-       type(c_ptr), value :: lwork
+       integer(c_int) :: lwork
        integer(c_int) :: Dsytrf_bufferSize_raw
     end function hipsolverDsytrf_bufferSize_raw
 
@@ -7104,7 +7092,7 @@ module hipfort_hipsolver
        integer(c_int), value :: n
        type(c_ptr), value :: A
        integer(c_int), value :: lda
-       type(c_ptr), value :: lwork
+       integer(c_int) :: lwork
        integer(c_int) :: Csytrf_bufferSize_raw
     end function hipsolverCsytrf_bufferSize_raw
 
@@ -7128,7 +7116,7 @@ module hipfort_hipsolver
        integer(c_int), value :: n
        type(c_ptr), value :: A
        integer(c_int), value :: lda
-       type(c_ptr), value :: lwork
+       integer(c_int) :: lwork
        integer(c_int) :: Zsytrf_bufferSize_raw
     end function hipsolverZsytrf_bufferSize_raw
 
@@ -7156,7 +7144,7 @@ module hipfort_hipsolver
        type(c_ptr), value :: ipiv
        type(c_ptr), value :: work
        integer(c_int), value :: lwork
-       type(c_ptr), value :: devInfo
+       integer(c_int) :: devInfo
        integer(c_int) :: Ssytrf_raw
     end function hipsolverSsytrf_raw
 
@@ -7184,7 +7172,7 @@ module hipfort_hipsolver
        type(c_ptr), value :: ipiv
        type(c_ptr), value :: work
        integer(c_int), value :: lwork
-       type(c_ptr), value :: devInfo
+       integer(c_int) :: devInfo
        integer(c_int) :: Dsytrf_raw
     end function hipsolverDsytrf_raw
 
@@ -7212,7 +7200,7 @@ module hipfort_hipsolver
        type(c_ptr), value :: ipiv
        type(c_ptr), value :: work
        integer(c_int), value :: lwork
-       type(c_ptr), value :: devInfo
+       integer(c_int) :: devInfo
        integer(c_int) :: Csytrf_raw
     end function hipsolverCsytrf_raw
 
@@ -7240,7 +7228,7 @@ module hipfort_hipsolver
        type(c_ptr), value :: ipiv
        type(c_ptr), value :: work
        integer(c_int), value :: lwork
-       type(c_ptr), value :: devInfo
+       integer(c_int) :: devInfo
        integer(c_int) :: Zsytrf_raw
     end function hipsolverZsytrf_raw
 
@@ -14462,11 +14450,10 @@ module hipfort_hipsolver
        integer(c_long), value :: lworkOnDevice
        type(c_ptr), value :: workOnHost
        integer(c_long), value :: lworkOnHost
-       type(c_ptr), value :: devInfo
+       integer(c_int) :: devInfo
        integer(c_int) :: DnXgetrf_raw
     end function hipsolverDnXgetrf_raw
 
-    module procedure hipsolverDnXgetrf_native
     module procedure hipsolverDnXgetrf_typed
   end interface hipsolverDnXgetrf
 
@@ -14495,11 +14482,10 @@ module hipfort_hipsolver
        integer(c_int), value :: dataTypeB
        type(c_ptr), value :: B
        integer(c_long), value :: ldb
-       type(c_ptr), value :: devInfo
+       integer(c_int) :: devInfo
        integer(c_int) :: DnXgetrs_raw
     end function hipsolverDnXgetrs_raw
 
-    module procedure hipsolverDnXgetrs_native
     module procedure hipsolverDnXgetrs_typed
   end interface hipsolverDnXgetrs
 
@@ -15039,7 +15025,7 @@ module hipfort_hipsolver
     !---------------------------------------------
     ! hipsolverRfGetMatrixFormat
     !---------------------------------------------
-    function hipsolverRfGetMatrixFormat_raw(handle, format, diag) &
+    function hipsolverRfGetMatrixFormat_raw(handle, format_, diag) &
        result(RfGetMatrixFormat_raw) &
 #ifdef USE_CUDA_NAMES
        bind(C, name="cusolverRfGetMatrixFormat")
@@ -15048,7 +15034,7 @@ module hipfort_hipsolver
 #endif
        import :: c_ptr, c_int
        type(c_ptr), value :: handle
-       type(c_ptr), value :: format
+       type(c_ptr), value :: format_
        type(c_ptr), value :: diag
        integer(c_int) :: RfGetMatrixFormat_raw
     end function hipsolverRfGetMatrixFormat_raw
@@ -15092,11 +15078,10 @@ module hipfort_hipsolver
        import :: c_ptr, c_double, c_int
        type(c_ptr), value :: handle
        real(c_double) :: zero
-       type(c_ptr), value :: boost
+       real(c_double) :: boost
        integer(c_int) :: RfGetNumericProperties_raw
     end function hipsolverRfGetNumericProperties_raw
 
-    module procedure hipsolverRfGetNumericProperties_native
     module procedure hipsolverRfGetNumericProperties_typed
   end interface hipsolverRfGetNumericProperties
 
@@ -15192,7 +15177,7 @@ module hipfort_hipsolver
     !---------------------------------------------
     ! hipsolverRfSetMatrixFormat
     !---------------------------------------------
-    function hipsolverRfSetMatrixFormat_raw(handle, format, diag) &
+    function hipsolverRfSetMatrixFormat_raw(handle, format_, diag) &
        result(RfSetMatrixFormat_raw) &
 #ifdef USE_CUDA_NAMES
        bind(C, name="cusolverRfSetMatrixFormat")
@@ -15201,7 +15186,7 @@ module hipfort_hipsolver
 #endif
        import :: c_ptr, c_int
        type(c_ptr), value :: handle
-       integer(c_int), value :: format
+       integer(c_int), value :: format_
        integer(c_int), value :: diag
        integer(c_int) :: RfSetMatrixFormat_raw
     end function hipsolverRfSetMatrixFormat_raw
@@ -15513,7 +15498,7 @@ module hipfort_hipsolver
        real(c_float), value :: tolerance
        integer(c_int), value :: reorder
        type(c_ptr), value :: x
-       type(c_ptr), value :: singularity
+       integer(c_int) :: singularity
        integer(c_int) :: SpScsrlsvchol_raw
     end function hipsolverSpScsrlsvchol_raw
 
@@ -15545,7 +15530,7 @@ module hipfort_hipsolver
        real(c_double), value :: tolerance
        integer(c_int), value :: reorder
        type(c_ptr), value :: x
-       type(c_ptr), value :: singularity
+       integer(c_int) :: singularity
        integer(c_int) :: SpDcsrlsvchol_raw
     end function hipsolverSpDcsrlsvchol_raw
 
@@ -15577,7 +15562,7 @@ module hipfort_hipsolver
        real(c_float), value :: tolerance
        integer(c_int), value :: reorder
        type(c_ptr), value :: x
-       type(c_ptr), value :: singularity
+       integer(c_int) :: singularity
        integer(c_int) :: SpScsrlsvcholHost_raw
     end function hipsolverSpScsrlsvcholHost_raw
 
@@ -15800,9 +15785,9 @@ contains
       use, intrinsic :: iso_c_binding
       implicit none
       type(c_ptr), value :: handle
-      integer(c_int), target :: mode(*)
+      integer(c_int), target :: mode(..)
       integer(c_int) :: GetDeterministicMode
-      GetDeterministicMode = hipsolverGetDeterministicMode_raw(handle, c_loc(mode(1)))
+      GetDeterministicMode = hipsolverGetDeterministicMode_raw(handle, c_loc(mode))
     end function hipsolverGetDeterministicMode_native
 
     function hipsolverGetDeterministicMode_typed(handle, mode) result(GetDeterministicMode)
@@ -15868,9 +15853,9 @@ contains
       implicit none
       type(c_ptr), value :: handle
       type(c_ptr), value :: info
-      real(c_double), target :: residual(*)
+      real(c_double), target :: residual(..)
       integer(c_int) :: XgesvdjGetResidual
-      XgesvdjGetResidual = hipsolverXgesvdjGetResidual_raw(handle, info, c_loc(residual(1)))
+      XgesvdjGetResidual = hipsolverXgesvdjGetResidual_raw(handle, info, c_loc(residual))
     end function hipsolverXgesvdjGetResidual_native
 
     function hipsolverXgesvdjGetResidual_typed(handle, info, residual) result(XgesvdjGetResidual)
@@ -15890,9 +15875,9 @@ contains
       implicit none
       type(c_ptr), value :: handle
       type(c_ptr), value :: info
-      integer(c_int), target :: executed_sweeps(*)
+      integer(c_int), target :: executed_sweeps(..)
       integer(c_int) :: XgesvdjGetSweeps
-      XgesvdjGetSweeps = hipsolverXgesvdjGetSweeps_raw(handle, info, c_loc(executed_sweeps(1)))
+      XgesvdjGetSweeps = hipsolverXgesvdjGetSweeps_raw(handle, info, c_loc(executed_sweeps))
     end function hipsolverXgesvdjGetSweeps_native
 
     function hipsolverXgesvdjGetSweeps_typed(handle, info, executed_sweeps) result(XgesvdjGetSweeps)
@@ -15959,9 +15944,9 @@ contains
       implicit none
       type(c_ptr), value :: handle
       type(c_ptr), value :: info
-      real(c_double), target :: residual(*)
+      real(c_double), target :: residual(..)
       integer(c_int) :: XsyevjGetResidual
-      XsyevjGetResidual = hipsolverXsyevjGetResidual_raw(handle, info, c_loc(residual(1)))
+      XsyevjGetResidual = hipsolverXsyevjGetResidual_raw(handle, info, c_loc(residual))
     end function hipsolverXsyevjGetResidual_native
 
     function hipsolverXsyevjGetResidual_typed(handle, info, residual) result(XsyevjGetResidual)
@@ -15980,9 +15965,9 @@ contains
       implicit none
       type(c_ptr), value :: handle
       type(c_ptr), value :: info
-      integer(c_int), target :: executed_sweeps(*)
+      integer(c_int), target :: executed_sweeps(..)
       integer(c_int) :: XsyevjGetSweeps
-      XsyevjGetSweeps = hipsolverXsyevjGetSweeps_raw(handle, info, c_loc(executed_sweeps(1)))
+      XsyevjGetSweeps = hipsolverXsyevjGetSweeps_raw(handle, info, c_loc(executed_sweeps))
     end function hipsolverXsyevjGetSweeps_native
 
     function hipsolverXsyevjGetSweeps_typed(handle, info, executed_sweeps) result(XsyevjGetSweeps)
@@ -16005,13 +15990,13 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       integer(c_int), value :: k
-      real(c_float), target :: A(*)
+      real(c_float), target :: A(..)
       integer(c_int), value :: lda
       real(c_float) :: tau
-      integer(c_int), target :: lwork(*)
+      integer(c_int) :: lwork
       integer(c_int) :: Sorgbr_bufferSize
-      Sorgbr_bufferSize = hipsolverSorgbr_bufferSize_raw(handle, side, m, n, k, c_loc(A(1)), lda, &
-        tau, c_loc(lwork(1)))
+      Sorgbr_bufferSize = hipsolverSorgbr_bufferSize_raw(handle, side, m, n, k, c_loc(A), lda, &
+        tau, lwork)
     end function hipsolverSorgbr_bufferSize_native
 
     function hipsolverSorgbr_bufferSize_typed(handle, side, m, n, k, A, lda, tau, lwork) result( &
@@ -16027,7 +16012,7 @@ contains
       type(c_ptr), value :: A
       integer(c_int), value :: lda
       real(c_float) :: tau
-      type(c_ptr), value :: lwork
+      integer(c_int) :: lwork
       integer(c_int) :: Sorgbr_bufferSize
       Sorgbr_bufferSize = hipsolverSorgbr_bufferSize_raw(handle%ptr, side, m, n, k, A, lda, tau, &
         lwork)
@@ -16042,13 +16027,13 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       integer(c_int), value :: k
-      real(c_double), target :: A(*)
+      real(c_double), target :: A(..)
       integer(c_int), value :: lda
       real(c_double) :: tau
-      integer(c_int), target :: lwork(*)
+      integer(c_int) :: lwork
       integer(c_int) :: Dorgbr_bufferSize
-      Dorgbr_bufferSize = hipsolverDorgbr_bufferSize_raw(handle, side, m, n, k, c_loc(A(1)), lda, &
-        tau, c_loc(lwork(1)))
+      Dorgbr_bufferSize = hipsolverDorgbr_bufferSize_raw(handle, side, m, n, k, c_loc(A), lda, &
+        tau, lwork)
     end function hipsolverDorgbr_bufferSize_native
 
     function hipsolverDorgbr_bufferSize_typed(handle, side, m, n, k, A, lda, tau, lwork) result( &
@@ -16064,7 +16049,7 @@ contains
       type(c_ptr), value :: A
       integer(c_int), value :: lda
       real(c_double) :: tau
-      type(c_ptr), value :: lwork
+      integer(c_int) :: lwork
       integer(c_int) :: Dorgbr_bufferSize
       Dorgbr_bufferSize = hipsolverDorgbr_bufferSize_raw(handle%ptr, side, m, n, k, A, lda, tau, &
         lwork)
@@ -16079,13 +16064,13 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       integer(c_int), value :: k
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: A(..)
       integer(c_int), value :: lda
       complex(c_float_complex) :: tau
-      integer(c_int), target :: lwork(*)
+      integer(c_int) :: lwork
       integer(c_int) :: Cungbr_bufferSize
-      Cungbr_bufferSize = hipsolverCungbr_bufferSize_raw(handle, side, m, n, k, c_loc(A(1)), lda, &
-        tau, c_loc(lwork(1)))
+      Cungbr_bufferSize = hipsolverCungbr_bufferSize_raw(handle, side, m, n, k, c_loc(A), lda, &
+        tau, lwork)
     end function hipsolverCungbr_bufferSize_native
 
     function hipsolverCungbr_bufferSize_typed(handle, side, m, n, k, A, lda, tau, lwork) result( &
@@ -16101,7 +16086,7 @@ contains
       type(c_ptr), value :: A
       integer(c_int), value :: lda
       complex(c_float_complex) :: tau
-      type(c_ptr), value :: lwork
+      integer(c_int) :: lwork
       integer(c_int) :: Cungbr_bufferSize
       Cungbr_bufferSize = hipsolverCungbr_bufferSize_raw(handle%ptr, side, m, n, k, A, lda, tau, &
         lwork)
@@ -16116,13 +16101,13 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       integer(c_int), value :: k
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: A(..)
       integer(c_int), value :: lda
       complex(c_double_complex) :: tau
-      integer(c_int), target :: lwork(*)
+      integer(c_int) :: lwork
       integer(c_int) :: Zungbr_bufferSize
-      Zungbr_bufferSize = hipsolverZungbr_bufferSize_raw(handle, side, m, n, k, c_loc(A(1)), lda, &
-        tau, c_loc(lwork(1)))
+      Zungbr_bufferSize = hipsolverZungbr_bufferSize_raw(handle, side, m, n, k, c_loc(A), lda, &
+        tau, lwork)
     end function hipsolverZungbr_bufferSize_native
 
     function hipsolverZungbr_bufferSize_typed(handle, side, m, n, k, A, lda, tau, lwork) result( &
@@ -16138,7 +16123,7 @@ contains
       type(c_ptr), value :: A
       integer(c_int), value :: lda
       complex(c_double_complex) :: tau
-      type(c_ptr), value :: lwork
+      integer(c_int) :: lwork
       integer(c_int) :: Zungbr_bufferSize
       Zungbr_bufferSize = hipsolverZungbr_bufferSize_raw(handle%ptr, side, m, n, k, A, lda, tau, &
         lwork)
@@ -16153,15 +16138,14 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       integer(c_int), value :: k
-      real(c_float), target :: A(*)
+      real(c_float), target :: A(..)
       integer(c_int), value :: lda
       real(c_float) :: tau
-      real(c_float), target :: work(*)
+      type(c_ptr), value :: work
       integer(c_int), value :: lwork
-      integer(c_int), target :: devInfo(*)
+      integer(c_int) :: devInfo
       integer(c_int) :: Sorgbr
-      Sorgbr = hipsolverSorgbr_raw(handle, side, m, n, k, c_loc(A(1)), lda, tau, c_loc(work(1)), &
-        lwork, c_loc(devInfo(1)))
+      Sorgbr = hipsolverSorgbr_raw(handle, side, m, n, k, c_loc(A), lda, tau, work, lwork, devInfo)
     end function hipsolverSorgbr_native
 
     function hipsolverSorgbr_typed(handle, side, m, n, k, A, lda, tau, work, lwork, &
@@ -16179,7 +16163,7 @@ contains
       real(c_float) :: tau
       type(c_ptr), value :: work
       integer(c_int), value :: lwork
-      type(c_ptr), value :: devInfo
+      integer(c_int) :: devInfo
       integer(c_int) :: Sorgbr
       Sorgbr = hipsolverSorgbr_raw(handle%ptr, side, m, n, k, A, lda, tau, work, lwork, devInfo)
     end function hipsolverSorgbr_typed
@@ -16193,15 +16177,14 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       integer(c_int), value :: k
-      real(c_double), target :: A(*)
+      real(c_double), target :: A(..)
       integer(c_int), value :: lda
       real(c_double) :: tau
-      real(c_double), target :: work(*)
+      type(c_ptr), value :: work
       integer(c_int), value :: lwork
-      integer(c_int), target :: devInfo(*)
+      integer(c_int) :: devInfo
       integer(c_int) :: Dorgbr
-      Dorgbr = hipsolverDorgbr_raw(handle, side, m, n, k, c_loc(A(1)), lda, tau, c_loc(work(1)), &
-        lwork, c_loc(devInfo(1)))
+      Dorgbr = hipsolverDorgbr_raw(handle, side, m, n, k, c_loc(A), lda, tau, work, lwork, devInfo)
     end function hipsolverDorgbr_native
 
     function hipsolverDorgbr_typed(handle, side, m, n, k, A, lda, tau, work, lwork, &
@@ -16219,7 +16202,7 @@ contains
       real(c_double) :: tau
       type(c_ptr), value :: work
       integer(c_int), value :: lwork
-      type(c_ptr), value :: devInfo
+      integer(c_int) :: devInfo
       integer(c_int) :: Dorgbr
       Dorgbr = hipsolverDorgbr_raw(handle%ptr, side, m, n, k, A, lda, tau, work, lwork, devInfo)
     end function hipsolverDorgbr_typed
@@ -16233,15 +16216,14 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       integer(c_int), value :: k
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: A(..)
       integer(c_int), value :: lda
       complex(c_float_complex) :: tau
-      complex(c_float_complex), target :: work(*)
+      type(c_ptr), value :: work
       integer(c_int), value :: lwork
-      integer(c_int), target :: devInfo(*)
+      integer(c_int) :: devInfo
       integer(c_int) :: Cungbr
-      Cungbr = hipsolverCungbr_raw(handle, side, m, n, k, c_loc(A(1)), lda, tau, c_loc(work(1)), &
-        lwork, c_loc(devInfo(1)))
+      Cungbr = hipsolverCungbr_raw(handle, side, m, n, k, c_loc(A), lda, tau, work, lwork, devInfo)
     end function hipsolverCungbr_native
 
     function hipsolverCungbr_typed(handle, side, m, n, k, A, lda, tau, work, lwork, &
@@ -16259,7 +16241,7 @@ contains
       complex(c_float_complex) :: tau
       type(c_ptr), value :: work
       integer(c_int), value :: lwork
-      type(c_ptr), value :: devInfo
+      integer(c_int) :: devInfo
       integer(c_int) :: Cungbr
       Cungbr = hipsolverCungbr_raw(handle%ptr, side, m, n, k, A, lda, tau, work, lwork, devInfo)
     end function hipsolverCungbr_typed
@@ -16273,15 +16255,14 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       integer(c_int), value :: k
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: A(..)
       integer(c_int), value :: lda
       complex(c_double_complex) :: tau
-      complex(c_double_complex), target :: work(*)
+      type(c_ptr), value :: work
       integer(c_int), value :: lwork
-      integer(c_int), target :: devInfo(*)
+      integer(c_int) :: devInfo
       integer(c_int) :: Zungbr
-      Zungbr = hipsolverZungbr_raw(handle, side, m, n, k, c_loc(A(1)), lda, tau, c_loc(work(1)), &
-        lwork, c_loc(devInfo(1)))
+      Zungbr = hipsolverZungbr_raw(handle, side, m, n, k, c_loc(A), lda, tau, work, lwork, devInfo)
     end function hipsolverZungbr_native
 
     function hipsolverZungbr_typed(handle, side, m, n, k, A, lda, tau, work, lwork, &
@@ -16299,7 +16280,7 @@ contains
       complex(c_double_complex) :: tau
       type(c_ptr), value :: work
       integer(c_int), value :: lwork
-      type(c_ptr), value :: devInfo
+      integer(c_int) :: devInfo
       integer(c_int) :: Zungbr
       Zungbr = hipsolverZungbr_raw(handle%ptr, side, m, n, k, A, lda, tau, work, lwork, devInfo)
     end function hipsolverZungbr_typed
@@ -16312,13 +16293,12 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       integer(c_int), value :: k
-      real(c_float), target :: A(*)
+      real(c_float), target :: A(..)
       integer(c_int), value :: lda
       real(c_float) :: tau
-      integer(c_int), target :: lwork(*)
+      integer(c_int) :: lwork
       integer(c_int) :: Sorgqr_bufferSize
-      Sorgqr_bufferSize = hipsolverSorgqr_bufferSize_raw(handle, m, n, k, c_loc(A(1)), lda, tau, &
-        c_loc(lwork(1)))
+      Sorgqr_bufferSize = hipsolverSorgqr_bufferSize_raw(handle, m, n, k, c_loc(A), lda, tau, lwork)
     end function hipsolverSorgqr_bufferSize_native
 
     function hipsolverSorgqr_bufferSize_typed(handle, m, n, k, A, lda, tau, lwork) result( &
@@ -16333,7 +16313,7 @@ contains
       type(c_ptr), value :: A
       integer(c_int), value :: lda
       real(c_float) :: tau
-      type(c_ptr), value :: lwork
+      integer(c_int) :: lwork
       integer(c_int) :: Sorgqr_bufferSize
       Sorgqr_bufferSize = hipsolverSorgqr_bufferSize_raw(handle%ptr, m, n, k, A, lda, tau, lwork)
     end function hipsolverSorgqr_bufferSize_typed
@@ -16346,13 +16326,12 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       integer(c_int), value :: k
-      real(c_double), target :: A(*)
+      real(c_double), target :: A(..)
       integer(c_int), value :: lda
       real(c_double) :: tau
-      integer(c_int), target :: lwork(*)
+      integer(c_int) :: lwork
       integer(c_int) :: Dorgqr_bufferSize
-      Dorgqr_bufferSize = hipsolverDorgqr_bufferSize_raw(handle, m, n, k, c_loc(A(1)), lda, tau, &
-        c_loc(lwork(1)))
+      Dorgqr_bufferSize = hipsolverDorgqr_bufferSize_raw(handle, m, n, k, c_loc(A), lda, tau, lwork)
     end function hipsolverDorgqr_bufferSize_native
 
     function hipsolverDorgqr_bufferSize_typed(handle, m, n, k, A, lda, tau, lwork) result( &
@@ -16367,7 +16346,7 @@ contains
       type(c_ptr), value :: A
       integer(c_int), value :: lda
       real(c_double) :: tau
-      type(c_ptr), value :: lwork
+      integer(c_int) :: lwork
       integer(c_int) :: Dorgqr_bufferSize
       Dorgqr_bufferSize = hipsolverDorgqr_bufferSize_raw(handle%ptr, m, n, k, A, lda, tau, lwork)
     end function hipsolverDorgqr_bufferSize_typed
@@ -16380,13 +16359,12 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       integer(c_int), value :: k
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: A(..)
       integer(c_int), value :: lda
       complex(c_float_complex) :: tau
-      integer(c_int), target :: lwork(*)
+      integer(c_int) :: lwork
       integer(c_int) :: Cungqr_bufferSize
-      Cungqr_bufferSize = hipsolverCungqr_bufferSize_raw(handle, m, n, k, c_loc(A(1)), lda, tau, &
-        c_loc(lwork(1)))
+      Cungqr_bufferSize = hipsolverCungqr_bufferSize_raw(handle, m, n, k, c_loc(A), lda, tau, lwork)
     end function hipsolverCungqr_bufferSize_native
 
     function hipsolverCungqr_bufferSize_typed(handle, m, n, k, A, lda, tau, lwork) result( &
@@ -16401,7 +16379,7 @@ contains
       type(c_ptr), value :: A
       integer(c_int), value :: lda
       complex(c_float_complex) :: tau
-      type(c_ptr), value :: lwork
+      integer(c_int) :: lwork
       integer(c_int) :: Cungqr_bufferSize
       Cungqr_bufferSize = hipsolverCungqr_bufferSize_raw(handle%ptr, m, n, k, A, lda, tau, lwork)
     end function hipsolverCungqr_bufferSize_typed
@@ -16414,13 +16392,12 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       integer(c_int), value :: k
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: A(..)
       integer(c_int), value :: lda
       complex(c_double_complex) :: tau
-      integer(c_int), target :: lwork(*)
+      integer(c_int) :: lwork
       integer(c_int) :: Zungqr_bufferSize
-      Zungqr_bufferSize = hipsolverZungqr_bufferSize_raw(handle, m, n, k, c_loc(A(1)), lda, tau, &
-        c_loc(lwork(1)))
+      Zungqr_bufferSize = hipsolverZungqr_bufferSize_raw(handle, m, n, k, c_loc(A), lda, tau, lwork)
     end function hipsolverZungqr_bufferSize_native
 
     function hipsolverZungqr_bufferSize_typed(handle, m, n, k, A, lda, tau, lwork) result( &
@@ -16435,7 +16412,7 @@ contains
       type(c_ptr), value :: A
       integer(c_int), value :: lda
       complex(c_double_complex) :: tau
-      type(c_ptr), value :: lwork
+      integer(c_int) :: lwork
       integer(c_int) :: Zungqr_bufferSize
       Zungqr_bufferSize = hipsolverZungqr_bufferSize_raw(handle%ptr, m, n, k, A, lda, tau, lwork)
     end function hipsolverZungqr_bufferSize_typed
@@ -16448,15 +16425,14 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       integer(c_int), value :: k
-      real(c_float), target :: A(*)
+      real(c_float), target :: A(..)
       integer(c_int), value :: lda
       real(c_float) :: tau
-      real(c_float), target :: work(*)
+      type(c_ptr), value :: work
       integer(c_int), value :: lwork
-      integer(c_int), target :: devInfo(*)
+      integer(c_int) :: devInfo
       integer(c_int) :: Sorgqr
-      Sorgqr = hipsolverSorgqr_raw(handle, m, n, k, c_loc(A(1)), lda, tau, c_loc(work(1)), lwork, &
-        c_loc(devInfo(1)))
+      Sorgqr = hipsolverSorgqr_raw(handle, m, n, k, c_loc(A), lda, tau, work, lwork, devInfo)
     end function hipsolverSorgqr_native
 
     function hipsolverSorgqr_typed(handle, m, n, k, A, lda, tau, work, lwork, devInfo) result( &
@@ -16473,7 +16449,7 @@ contains
       real(c_float) :: tau
       type(c_ptr), value :: work
       integer(c_int), value :: lwork
-      type(c_ptr), value :: devInfo
+      integer(c_int) :: devInfo
       integer(c_int) :: Sorgqr
       Sorgqr = hipsolverSorgqr_raw(handle%ptr, m, n, k, A, lda, tau, work, lwork, devInfo)
     end function hipsolverSorgqr_typed
@@ -16486,15 +16462,14 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       integer(c_int), value :: k
-      real(c_double), target :: A(*)
+      real(c_double), target :: A(..)
       integer(c_int), value :: lda
       real(c_double) :: tau
-      real(c_double), target :: work(*)
+      type(c_ptr), value :: work
       integer(c_int), value :: lwork
-      integer(c_int), target :: devInfo(*)
+      integer(c_int) :: devInfo
       integer(c_int) :: Dorgqr
-      Dorgqr = hipsolverDorgqr_raw(handle, m, n, k, c_loc(A(1)), lda, tau, c_loc(work(1)), lwork, &
-        c_loc(devInfo(1)))
+      Dorgqr = hipsolverDorgqr_raw(handle, m, n, k, c_loc(A), lda, tau, work, lwork, devInfo)
     end function hipsolverDorgqr_native
 
     function hipsolverDorgqr_typed(handle, m, n, k, A, lda, tau, work, lwork, devInfo) result( &
@@ -16511,7 +16486,7 @@ contains
       real(c_double) :: tau
       type(c_ptr), value :: work
       integer(c_int), value :: lwork
-      type(c_ptr), value :: devInfo
+      integer(c_int) :: devInfo
       integer(c_int) :: Dorgqr
       Dorgqr = hipsolverDorgqr_raw(handle%ptr, m, n, k, A, lda, tau, work, lwork, devInfo)
     end function hipsolverDorgqr_typed
@@ -16524,15 +16499,14 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       integer(c_int), value :: k
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: A(..)
       integer(c_int), value :: lda
       complex(c_float_complex) :: tau
-      complex(c_float_complex), target :: work(*)
+      type(c_ptr), value :: work
       integer(c_int), value :: lwork
-      integer(c_int), target :: devInfo(*)
+      integer(c_int) :: devInfo
       integer(c_int) :: Cungqr
-      Cungqr = hipsolverCungqr_raw(handle, m, n, k, c_loc(A(1)), lda, tau, c_loc(work(1)), lwork, &
-        c_loc(devInfo(1)))
+      Cungqr = hipsolverCungqr_raw(handle, m, n, k, c_loc(A), lda, tau, work, lwork, devInfo)
     end function hipsolverCungqr_native
 
     function hipsolverCungqr_typed(handle, m, n, k, A, lda, tau, work, lwork, devInfo) result( &
@@ -16549,7 +16523,7 @@ contains
       complex(c_float_complex) :: tau
       type(c_ptr), value :: work
       integer(c_int), value :: lwork
-      type(c_ptr), value :: devInfo
+      integer(c_int) :: devInfo
       integer(c_int) :: Cungqr
       Cungqr = hipsolverCungqr_raw(handle%ptr, m, n, k, A, lda, tau, work, lwork, devInfo)
     end function hipsolverCungqr_typed
@@ -16562,15 +16536,14 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       integer(c_int), value :: k
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: A(..)
       integer(c_int), value :: lda
       complex(c_double_complex) :: tau
-      complex(c_double_complex), target :: work(*)
+      type(c_ptr), value :: work
       integer(c_int), value :: lwork
-      integer(c_int), target :: devInfo(*)
+      integer(c_int) :: devInfo
       integer(c_int) :: Zungqr
-      Zungqr = hipsolverZungqr_raw(handle, m, n, k, c_loc(A(1)), lda, tau, c_loc(work(1)), lwork, &
-        c_loc(devInfo(1)))
+      Zungqr = hipsolverZungqr_raw(handle, m, n, k, c_loc(A), lda, tau, work, lwork, devInfo)
     end function hipsolverZungqr_native
 
     function hipsolverZungqr_typed(handle, m, n, k, A, lda, tau, work, lwork, devInfo) result( &
@@ -16587,7 +16560,7 @@ contains
       complex(c_double_complex) :: tau
       type(c_ptr), value :: work
       integer(c_int), value :: lwork
-      type(c_ptr), value :: devInfo
+      integer(c_int) :: devInfo
       integer(c_int) :: Zungqr
       Zungqr = hipsolverZungqr_raw(handle%ptr, m, n, k, A, lda, tau, work, lwork, devInfo)
     end function hipsolverZungqr_typed
@@ -16599,13 +16572,12 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: uplo
       integer(c_int), value :: n
-      real(c_float), target :: A(*)
+      real(c_float), target :: A(..)
       integer(c_int), value :: lda
       real(c_float) :: tau
-      integer(c_int), target :: lwork(*)
+      integer(c_int) :: lwork
       integer(c_int) :: Sorgtr_bufferSize
-      Sorgtr_bufferSize = hipsolverSorgtr_bufferSize_raw(handle, uplo, n, c_loc(A(1)), lda, tau, &
-        c_loc(lwork(1)))
+      Sorgtr_bufferSize = hipsolverSorgtr_bufferSize_raw(handle, uplo, n, c_loc(A), lda, tau, lwork)
     end function hipsolverSorgtr_bufferSize_native
 
     function hipsolverSorgtr_bufferSize_typed(handle, uplo, n, A, lda, tau, lwork) result( &
@@ -16619,7 +16591,7 @@ contains
       type(c_ptr), value :: A
       integer(c_int), value :: lda
       real(c_float) :: tau
-      type(c_ptr), value :: lwork
+      integer(c_int) :: lwork
       integer(c_int) :: Sorgtr_bufferSize
       Sorgtr_bufferSize = hipsolverSorgtr_bufferSize_raw(handle%ptr, uplo, n, A, lda, tau, lwork)
     end function hipsolverSorgtr_bufferSize_typed
@@ -16631,13 +16603,12 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: uplo
       integer(c_int), value :: n
-      real(c_double), target :: A(*)
+      real(c_double), target :: A(..)
       integer(c_int), value :: lda
       real(c_double) :: tau
-      integer(c_int), target :: lwork(*)
+      integer(c_int) :: lwork
       integer(c_int) :: Dorgtr_bufferSize
-      Dorgtr_bufferSize = hipsolverDorgtr_bufferSize_raw(handle, uplo, n, c_loc(A(1)), lda, tau, &
-        c_loc(lwork(1)))
+      Dorgtr_bufferSize = hipsolverDorgtr_bufferSize_raw(handle, uplo, n, c_loc(A), lda, tau, lwork)
     end function hipsolverDorgtr_bufferSize_native
 
     function hipsolverDorgtr_bufferSize_typed(handle, uplo, n, A, lda, tau, lwork) result( &
@@ -16651,7 +16622,7 @@ contains
       type(c_ptr), value :: A
       integer(c_int), value :: lda
       real(c_double) :: tau
-      type(c_ptr), value :: lwork
+      integer(c_int) :: lwork
       integer(c_int) :: Dorgtr_bufferSize
       Dorgtr_bufferSize = hipsolverDorgtr_bufferSize_raw(handle%ptr, uplo, n, A, lda, tau, lwork)
     end function hipsolverDorgtr_bufferSize_typed
@@ -16663,13 +16634,12 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: uplo
       integer(c_int), value :: n
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: A(..)
       integer(c_int), value :: lda
       complex(c_float_complex) :: tau
-      integer(c_int), target :: lwork(*)
+      integer(c_int) :: lwork
       integer(c_int) :: Cungtr_bufferSize
-      Cungtr_bufferSize = hipsolverCungtr_bufferSize_raw(handle, uplo, n, c_loc(A(1)), lda, tau, &
-        c_loc(lwork(1)))
+      Cungtr_bufferSize = hipsolverCungtr_bufferSize_raw(handle, uplo, n, c_loc(A), lda, tau, lwork)
     end function hipsolverCungtr_bufferSize_native
 
     function hipsolverCungtr_bufferSize_typed(handle, uplo, n, A, lda, tau, lwork) result( &
@@ -16683,7 +16653,7 @@ contains
       type(c_ptr), value :: A
       integer(c_int), value :: lda
       complex(c_float_complex) :: tau
-      type(c_ptr), value :: lwork
+      integer(c_int) :: lwork
       integer(c_int) :: Cungtr_bufferSize
       Cungtr_bufferSize = hipsolverCungtr_bufferSize_raw(handle%ptr, uplo, n, A, lda, tau, lwork)
     end function hipsolverCungtr_bufferSize_typed
@@ -16695,13 +16665,12 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: uplo
       integer(c_int), value :: n
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: A(..)
       integer(c_int), value :: lda
       complex(c_double_complex) :: tau
-      integer(c_int), target :: lwork(*)
+      integer(c_int) :: lwork
       integer(c_int) :: Zungtr_bufferSize
-      Zungtr_bufferSize = hipsolverZungtr_bufferSize_raw(handle, uplo, n, c_loc(A(1)), lda, tau, &
-        c_loc(lwork(1)))
+      Zungtr_bufferSize = hipsolverZungtr_bufferSize_raw(handle, uplo, n, c_loc(A), lda, tau, lwork)
     end function hipsolverZungtr_bufferSize_native
 
     function hipsolverZungtr_bufferSize_typed(handle, uplo, n, A, lda, tau, lwork) result( &
@@ -16715,7 +16684,7 @@ contains
       type(c_ptr), value :: A
       integer(c_int), value :: lda
       complex(c_double_complex) :: tau
-      type(c_ptr), value :: lwork
+      integer(c_int) :: lwork
       integer(c_int) :: Zungtr_bufferSize
       Zungtr_bufferSize = hipsolverZungtr_bufferSize_raw(handle%ptr, uplo, n, A, lda, tau, lwork)
     end function hipsolverZungtr_bufferSize_typed
@@ -16727,15 +16696,14 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: uplo
       integer(c_int), value :: n
-      real(c_float), target :: A(*)
+      real(c_float), target :: A(..)
       integer(c_int), value :: lda
       real(c_float) :: tau
-      real(c_float), target :: work(*)
+      type(c_ptr), value :: work
       integer(c_int), value :: lwork
-      integer(c_int), target :: devInfo(*)
+      integer(c_int) :: devInfo
       integer(c_int) :: Sorgtr
-      Sorgtr = hipsolverSorgtr_raw(handle, uplo, n, c_loc(A(1)), lda, tau, c_loc(work(1)), lwork, &
-        c_loc(devInfo(1)))
+      Sorgtr = hipsolverSorgtr_raw(handle, uplo, n, c_loc(A), lda, tau, work, lwork, devInfo)
     end function hipsolverSorgtr_native
 
     function hipsolverSorgtr_typed(handle, uplo, n, A, lda, tau, work, lwork, devInfo) result( &
@@ -16751,7 +16719,7 @@ contains
       real(c_float) :: tau
       type(c_ptr), value :: work
       integer(c_int), value :: lwork
-      type(c_ptr), value :: devInfo
+      integer(c_int) :: devInfo
       integer(c_int) :: Sorgtr
       Sorgtr = hipsolverSorgtr_raw(handle%ptr, uplo, n, A, lda, tau, work, lwork, devInfo)
     end function hipsolverSorgtr_typed
@@ -16763,15 +16731,14 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: uplo
       integer(c_int), value :: n
-      real(c_double), target :: A(*)
+      real(c_double), target :: A(..)
       integer(c_int), value :: lda
       real(c_double) :: tau
-      real(c_double), target :: work(*)
+      type(c_ptr), value :: work
       integer(c_int), value :: lwork
-      integer(c_int), target :: devInfo(*)
+      integer(c_int) :: devInfo
       integer(c_int) :: Dorgtr
-      Dorgtr = hipsolverDorgtr_raw(handle, uplo, n, c_loc(A(1)), lda, tau, c_loc(work(1)), lwork, &
-        c_loc(devInfo(1)))
+      Dorgtr = hipsolverDorgtr_raw(handle, uplo, n, c_loc(A), lda, tau, work, lwork, devInfo)
     end function hipsolverDorgtr_native
 
     function hipsolverDorgtr_typed(handle, uplo, n, A, lda, tau, work, lwork, devInfo) result( &
@@ -16787,7 +16754,7 @@ contains
       real(c_double) :: tau
       type(c_ptr), value :: work
       integer(c_int), value :: lwork
-      type(c_ptr), value :: devInfo
+      integer(c_int) :: devInfo
       integer(c_int) :: Dorgtr
       Dorgtr = hipsolverDorgtr_raw(handle%ptr, uplo, n, A, lda, tau, work, lwork, devInfo)
     end function hipsolverDorgtr_typed
@@ -16799,15 +16766,14 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: uplo
       integer(c_int), value :: n
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: A(..)
       integer(c_int), value :: lda
       complex(c_float_complex) :: tau
-      complex(c_float_complex), target :: work(*)
+      type(c_ptr), value :: work
       integer(c_int), value :: lwork
-      integer(c_int), target :: devInfo(*)
+      integer(c_int) :: devInfo
       integer(c_int) :: Cungtr
-      Cungtr = hipsolverCungtr_raw(handle, uplo, n, c_loc(A(1)), lda, tau, c_loc(work(1)), lwork, &
-        c_loc(devInfo(1)))
+      Cungtr = hipsolverCungtr_raw(handle, uplo, n, c_loc(A), lda, tau, work, lwork, devInfo)
     end function hipsolverCungtr_native
 
     function hipsolverCungtr_typed(handle, uplo, n, A, lda, tau, work, lwork, devInfo) result( &
@@ -16823,7 +16789,7 @@ contains
       complex(c_float_complex) :: tau
       type(c_ptr), value :: work
       integer(c_int), value :: lwork
-      type(c_ptr), value :: devInfo
+      integer(c_int) :: devInfo
       integer(c_int) :: Cungtr
       Cungtr = hipsolverCungtr_raw(handle%ptr, uplo, n, A, lda, tau, work, lwork, devInfo)
     end function hipsolverCungtr_typed
@@ -16835,15 +16801,14 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: uplo
       integer(c_int), value :: n
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: A(..)
       integer(c_int), value :: lda
       complex(c_double_complex) :: tau
-      complex(c_double_complex), target :: work(*)
+      type(c_ptr), value :: work
       integer(c_int), value :: lwork
-      integer(c_int), target :: devInfo(*)
+      integer(c_int) :: devInfo
       integer(c_int) :: Zungtr
-      Zungtr = hipsolverZungtr_raw(handle, uplo, n, c_loc(A(1)), lda, tau, c_loc(work(1)), lwork, &
-        c_loc(devInfo(1)))
+      Zungtr = hipsolverZungtr_raw(handle, uplo, n, c_loc(A), lda, tau, work, lwork, devInfo)
     end function hipsolverZungtr_native
 
     function hipsolverZungtr_typed(handle, uplo, n, A, lda, tau, work, lwork, devInfo) result( &
@@ -16859,7 +16824,7 @@ contains
       complex(c_double_complex) :: tau
       type(c_ptr), value :: work
       integer(c_int), value :: lwork
-      type(c_ptr), value :: devInfo
+      integer(c_int) :: devInfo
       integer(c_int) :: Zungtr
       Zungtr = hipsolverZungtr_raw(handle%ptr, uplo, n, A, lda, tau, work, lwork, devInfo)
     end function hipsolverZungtr_typed
@@ -16874,15 +16839,15 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       integer(c_int), value :: k
-      real(c_float), target :: A(*)
+      real(c_float), target :: A(..)
       integer(c_int), value :: lda
       real(c_float) :: tau
-      real(c_float), target :: C(*)
+      real(c_float), target :: C(..)
       integer(c_int), value :: ldc
-      integer(c_int), target :: lwork(*)
+      integer(c_int) :: lwork
       integer(c_int) :: Sormqr_bufferSize
-      Sormqr_bufferSize = hipsolverSormqr_bufferSize_raw(handle, side, trans, m, n, k, c_loc(A( &
-        1)), lda, tau, c_loc(C(1)), ldc, c_loc(lwork(1)))
+      Sormqr_bufferSize = hipsolverSormqr_bufferSize_raw(handle, side, trans, m, n, k, c_loc(A), &
+        lda, tau, c_loc(C), ldc, lwork)
     end function hipsolverSormqr_bufferSize_native
 
     function hipsolverSormqr_bufferSize_typed(handle, side, trans, m, n, k, A, lda, tau, C, ldc, &
@@ -16901,7 +16866,7 @@ contains
       real(c_float) :: tau
       type(c_ptr), value :: C
       integer(c_int), value :: ldc
-      type(c_ptr), value :: lwork
+      integer(c_int) :: lwork
       integer(c_int) :: Sormqr_bufferSize
       Sormqr_bufferSize = hipsolverSormqr_bufferSize_raw(handle%ptr, side, trans, m, n, k, A, lda, &
         tau, C, ldc, lwork)
@@ -16917,15 +16882,15 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       integer(c_int), value :: k
-      real(c_double), target :: A(*)
+      real(c_double), target :: A(..)
       integer(c_int), value :: lda
       real(c_double) :: tau
-      real(c_double), target :: C(*)
+      real(c_double), target :: C(..)
       integer(c_int), value :: ldc
-      integer(c_int), target :: lwork(*)
+      integer(c_int) :: lwork
       integer(c_int) :: Dormqr_bufferSize
-      Dormqr_bufferSize = hipsolverDormqr_bufferSize_raw(handle, side, trans, m, n, k, c_loc(A( &
-        1)), lda, tau, c_loc(C(1)), ldc, c_loc(lwork(1)))
+      Dormqr_bufferSize = hipsolverDormqr_bufferSize_raw(handle, side, trans, m, n, k, c_loc(A), &
+        lda, tau, c_loc(C), ldc, lwork)
     end function hipsolverDormqr_bufferSize_native
 
     function hipsolverDormqr_bufferSize_typed(handle, side, trans, m, n, k, A, lda, tau, C, ldc, &
@@ -16944,7 +16909,7 @@ contains
       real(c_double) :: tau
       type(c_ptr), value :: C
       integer(c_int), value :: ldc
-      type(c_ptr), value :: lwork
+      integer(c_int) :: lwork
       integer(c_int) :: Dormqr_bufferSize
       Dormqr_bufferSize = hipsolverDormqr_bufferSize_raw(handle%ptr, side, trans, m, n, k, A, lda, &
         tau, C, ldc, lwork)
@@ -16960,15 +16925,15 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       integer(c_int), value :: k
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: A(..)
       integer(c_int), value :: lda
       complex(c_float_complex) :: tau
-      complex(c_float_complex), target :: C(*)
+      complex(c_float_complex), target :: C(..)
       integer(c_int), value :: ldc
-      integer(c_int), target :: lwork(*)
+      integer(c_int) :: lwork
       integer(c_int) :: Cunmqr_bufferSize
-      Cunmqr_bufferSize = hipsolverCunmqr_bufferSize_raw(handle, side, trans, m, n, k, c_loc(A( &
-        1)), lda, tau, c_loc(C(1)), ldc, c_loc(lwork(1)))
+      Cunmqr_bufferSize = hipsolverCunmqr_bufferSize_raw(handle, side, trans, m, n, k, c_loc(A), &
+        lda, tau, c_loc(C), ldc, lwork)
     end function hipsolverCunmqr_bufferSize_native
 
     function hipsolverCunmqr_bufferSize_typed(handle, side, trans, m, n, k, A, lda, tau, C, ldc, &
@@ -16987,7 +16952,7 @@ contains
       complex(c_float_complex) :: tau
       type(c_ptr), value :: C
       integer(c_int), value :: ldc
-      type(c_ptr), value :: lwork
+      integer(c_int) :: lwork
       integer(c_int) :: Cunmqr_bufferSize
       Cunmqr_bufferSize = hipsolverCunmqr_bufferSize_raw(handle%ptr, side, trans, m, n, k, A, lda, &
         tau, C, ldc, lwork)
@@ -17003,15 +16968,15 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       integer(c_int), value :: k
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: A(..)
       integer(c_int), value :: lda
       complex(c_double_complex) :: tau
-      complex(c_double_complex), target :: C(*)
+      complex(c_double_complex), target :: C(..)
       integer(c_int), value :: ldc
-      integer(c_int), target :: lwork(*)
+      integer(c_int) :: lwork
       integer(c_int) :: Zunmqr_bufferSize
-      Zunmqr_bufferSize = hipsolverZunmqr_bufferSize_raw(handle, side, trans, m, n, k, c_loc(A( &
-        1)), lda, tau, c_loc(C(1)), ldc, c_loc(lwork(1)))
+      Zunmqr_bufferSize = hipsolverZunmqr_bufferSize_raw(handle, side, trans, m, n, k, c_loc(A), &
+        lda, tau, c_loc(C), ldc, lwork)
     end function hipsolverZunmqr_bufferSize_native
 
     function hipsolverZunmqr_bufferSize_typed(handle, side, trans, m, n, k, A, lda, tau, C, ldc, &
@@ -17030,7 +16995,7 @@ contains
       complex(c_double_complex) :: tau
       type(c_ptr), value :: C
       integer(c_int), value :: ldc
-      type(c_ptr), value :: lwork
+      integer(c_int) :: lwork
       integer(c_int) :: Zunmqr_bufferSize
       Zunmqr_bufferSize = hipsolverZunmqr_bufferSize_raw(handle%ptr, side, trans, m, n, k, A, lda, &
         tau, C, ldc, lwork)
@@ -17046,17 +17011,17 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       integer(c_int), value :: k
-      real(c_float), target :: A(*)
+      real(c_float), target :: A(..)
       integer(c_int), value :: lda
       real(c_float) :: tau
-      real(c_float), target :: C(*)
+      real(c_float), target :: C(..)
       integer(c_int), value :: ldc
-      real(c_float), target :: work(*)
+      type(c_ptr), value :: work
       integer(c_int), value :: lwork
-      integer(c_int), target :: devInfo(*)
+      integer(c_int) :: devInfo
       integer(c_int) :: Sormqr
-      Sormqr = hipsolverSormqr_raw(handle, side, trans, m, n, k, c_loc(A(1)), lda, tau, c_loc(C( &
-        1)), ldc, c_loc(work(1)), lwork, c_loc(devInfo(1)))
+      Sormqr = hipsolverSormqr_raw(handle, side, trans, m, n, k, c_loc(A), lda, tau, c_loc(C), &
+        ldc, work, lwork, devInfo)
     end function hipsolverSormqr_native
 
     function hipsolverSormqr_typed(handle, side, trans, m, n, k, A, lda, tau, C, ldc, work, lwork, &
@@ -17077,7 +17042,7 @@ contains
       integer(c_int), value :: ldc
       type(c_ptr), value :: work
       integer(c_int), value :: lwork
-      type(c_ptr), value :: devInfo
+      integer(c_int) :: devInfo
       integer(c_int) :: Sormqr
       Sormqr = hipsolverSormqr_raw(handle%ptr, side, trans, m, n, k, A, lda, tau, C, ldc, work, &
         lwork, devInfo)
@@ -17093,17 +17058,17 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       integer(c_int), value :: k
-      real(c_double), target :: A(*)
+      real(c_double), target :: A(..)
       integer(c_int), value :: lda
       real(c_double) :: tau
-      real(c_double), target :: C(*)
+      real(c_double), target :: C(..)
       integer(c_int), value :: ldc
-      real(c_double), target :: work(*)
+      type(c_ptr), value :: work
       integer(c_int), value :: lwork
-      integer(c_int), target :: devInfo(*)
+      integer(c_int) :: devInfo
       integer(c_int) :: Dormqr
-      Dormqr = hipsolverDormqr_raw(handle, side, trans, m, n, k, c_loc(A(1)), lda, tau, c_loc(C( &
-        1)), ldc, c_loc(work(1)), lwork, c_loc(devInfo(1)))
+      Dormqr = hipsolverDormqr_raw(handle, side, trans, m, n, k, c_loc(A), lda, tau, c_loc(C), &
+        ldc, work, lwork, devInfo)
     end function hipsolverDormqr_native
 
     function hipsolverDormqr_typed(handle, side, trans, m, n, k, A, lda, tau, C, ldc, work, lwork, &
@@ -17124,7 +17089,7 @@ contains
       integer(c_int), value :: ldc
       type(c_ptr), value :: work
       integer(c_int), value :: lwork
-      type(c_ptr), value :: devInfo
+      integer(c_int) :: devInfo
       integer(c_int) :: Dormqr
       Dormqr = hipsolverDormqr_raw(handle%ptr, side, trans, m, n, k, A, lda, tau, C, ldc, work, &
         lwork, devInfo)
@@ -17140,17 +17105,17 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       integer(c_int), value :: k
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: A(..)
       integer(c_int), value :: lda
       complex(c_float_complex) :: tau
-      complex(c_float_complex), target :: C(*)
+      complex(c_float_complex), target :: C(..)
       integer(c_int), value :: ldc
-      complex(c_float_complex), target :: work(*)
+      type(c_ptr), value :: work
       integer(c_int), value :: lwork
-      integer(c_int), target :: devInfo(*)
+      integer(c_int) :: devInfo
       integer(c_int) :: Cunmqr
-      Cunmqr = hipsolverCunmqr_raw(handle, side, trans, m, n, k, c_loc(A(1)), lda, tau, c_loc(C( &
-        1)), ldc, c_loc(work(1)), lwork, c_loc(devInfo(1)))
+      Cunmqr = hipsolverCunmqr_raw(handle, side, trans, m, n, k, c_loc(A), lda, tau, c_loc(C), &
+        ldc, work, lwork, devInfo)
     end function hipsolverCunmqr_native
 
     function hipsolverCunmqr_typed(handle, side, trans, m, n, k, A, lda, tau, C, ldc, work, lwork, &
@@ -17171,7 +17136,7 @@ contains
       integer(c_int), value :: ldc
       type(c_ptr), value :: work
       integer(c_int), value :: lwork
-      type(c_ptr), value :: devInfo
+      integer(c_int) :: devInfo
       integer(c_int) :: Cunmqr
       Cunmqr = hipsolverCunmqr_raw(handle%ptr, side, trans, m, n, k, A, lda, tau, C, ldc, work, &
         lwork, devInfo)
@@ -17187,17 +17152,17 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       integer(c_int), value :: k
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: A(..)
       integer(c_int), value :: lda
       complex(c_double_complex) :: tau
-      complex(c_double_complex), target :: C(*)
+      complex(c_double_complex), target :: C(..)
       integer(c_int), value :: ldc
-      complex(c_double_complex), target :: work(*)
+      type(c_ptr), value :: work
       integer(c_int), value :: lwork
-      integer(c_int), target :: devInfo(*)
+      integer(c_int) :: devInfo
       integer(c_int) :: Zunmqr
-      Zunmqr = hipsolverZunmqr_raw(handle, side, trans, m, n, k, c_loc(A(1)), lda, tau, c_loc(C( &
-        1)), ldc, c_loc(work(1)), lwork, c_loc(devInfo(1)))
+      Zunmqr = hipsolverZunmqr_raw(handle, side, trans, m, n, k, c_loc(A), lda, tau, c_loc(C), &
+        ldc, work, lwork, devInfo)
     end function hipsolverZunmqr_native
 
     function hipsolverZunmqr_typed(handle, side, trans, m, n, k, A, lda, tau, C, ldc, work, lwork, &
@@ -17218,7 +17183,7 @@ contains
       integer(c_int), value :: ldc
       type(c_ptr), value :: work
       integer(c_int), value :: lwork
-      type(c_ptr), value :: devInfo
+      integer(c_int) :: devInfo
       integer(c_int) :: Zunmqr
       Zunmqr = hipsolverZunmqr_raw(handle%ptr, side, trans, m, n, k, A, lda, tau, C, ldc, work, &
         lwork, devInfo)
@@ -17234,15 +17199,15 @@ contains
       integer(c_int), value :: trans
       integer(c_int), value :: m
       integer(c_int), value :: n
-      real(c_float), target :: A(*)
+      real(c_float), target :: A(..)
       integer(c_int), value :: lda
       real(c_float) :: tau
-      real(c_float), target :: C(*)
+      real(c_float), target :: C(..)
       integer(c_int), value :: ldc
-      integer(c_int), target :: lwork(*)
+      integer(c_int) :: lwork
       integer(c_int) :: Sormtr_bufferSize
-      Sormtr_bufferSize = hipsolverSormtr_bufferSize_raw(handle, side, uplo, trans, m, n, c_loc(A( &
-        1)), lda, tau, c_loc(C(1)), ldc, c_loc(lwork(1)))
+      Sormtr_bufferSize = hipsolverSormtr_bufferSize_raw(handle, side, uplo, trans, m, n, c_loc( &
+        A), lda, tau, c_loc(C), ldc, lwork)
     end function hipsolverSormtr_bufferSize_native
 
     function hipsolverSormtr_bufferSize_typed(handle, side, uplo, trans, m, n, A, lda, tau, C, &
@@ -17261,7 +17226,7 @@ contains
       real(c_float) :: tau
       type(c_ptr), value :: C
       integer(c_int), value :: ldc
-      type(c_ptr), value :: lwork
+      integer(c_int) :: lwork
       integer(c_int) :: Sormtr_bufferSize
       Sormtr_bufferSize = hipsolverSormtr_bufferSize_raw(handle%ptr, side, uplo, trans, m, n, A, &
         lda, tau, C, ldc, lwork)
@@ -17277,15 +17242,15 @@ contains
       integer(c_int), value :: trans
       integer(c_int), value :: m
       integer(c_int), value :: n
-      real(c_double), target :: A(*)
+      real(c_double), target :: A(..)
       integer(c_int), value :: lda
       real(c_double) :: tau
-      real(c_double), target :: C(*)
+      real(c_double), target :: C(..)
       integer(c_int), value :: ldc
-      integer(c_int), target :: lwork(*)
+      integer(c_int) :: lwork
       integer(c_int) :: Dormtr_bufferSize
-      Dormtr_bufferSize = hipsolverDormtr_bufferSize_raw(handle, side, uplo, trans, m, n, c_loc(A( &
-        1)), lda, tau, c_loc(C(1)), ldc, c_loc(lwork(1)))
+      Dormtr_bufferSize = hipsolverDormtr_bufferSize_raw(handle, side, uplo, trans, m, n, c_loc( &
+        A), lda, tau, c_loc(C), ldc, lwork)
     end function hipsolverDormtr_bufferSize_native
 
     function hipsolverDormtr_bufferSize_typed(handle, side, uplo, trans, m, n, A, lda, tau, C, &
@@ -17304,7 +17269,7 @@ contains
       real(c_double) :: tau
       type(c_ptr), value :: C
       integer(c_int), value :: ldc
-      type(c_ptr), value :: lwork
+      integer(c_int) :: lwork
       integer(c_int) :: Dormtr_bufferSize
       Dormtr_bufferSize = hipsolverDormtr_bufferSize_raw(handle%ptr, side, uplo, trans, m, n, A, &
         lda, tau, C, ldc, lwork)
@@ -17320,15 +17285,15 @@ contains
       integer(c_int), value :: trans
       integer(c_int), value :: m
       integer(c_int), value :: n
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: A(..)
       integer(c_int), value :: lda
       complex(c_float_complex) :: tau
-      complex(c_float_complex), target :: C(*)
+      complex(c_float_complex), target :: C(..)
       integer(c_int), value :: ldc
-      integer(c_int), target :: lwork(*)
+      integer(c_int) :: lwork
       integer(c_int) :: Cunmtr_bufferSize
-      Cunmtr_bufferSize = hipsolverCunmtr_bufferSize_raw(handle, side, uplo, trans, m, n, c_loc(A( &
-        1)), lda, tau, c_loc(C(1)), ldc, c_loc(lwork(1)))
+      Cunmtr_bufferSize = hipsolverCunmtr_bufferSize_raw(handle, side, uplo, trans, m, n, c_loc( &
+        A), lda, tau, c_loc(C), ldc, lwork)
     end function hipsolverCunmtr_bufferSize_native
 
     function hipsolverCunmtr_bufferSize_typed(handle, side, uplo, trans, m, n, A, lda, tau, C, &
@@ -17347,7 +17312,7 @@ contains
       complex(c_float_complex) :: tau
       type(c_ptr), value :: C
       integer(c_int), value :: ldc
-      type(c_ptr), value :: lwork
+      integer(c_int) :: lwork
       integer(c_int) :: Cunmtr_bufferSize
       Cunmtr_bufferSize = hipsolverCunmtr_bufferSize_raw(handle%ptr, side, uplo, trans, m, n, A, &
         lda, tau, C, ldc, lwork)
@@ -17363,15 +17328,15 @@ contains
       integer(c_int), value :: trans
       integer(c_int), value :: m
       integer(c_int), value :: n
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: A(..)
       integer(c_int), value :: lda
       complex(c_double_complex) :: tau
-      complex(c_double_complex), target :: C(*)
+      complex(c_double_complex), target :: C(..)
       integer(c_int), value :: ldc
-      integer(c_int), target :: lwork(*)
+      integer(c_int) :: lwork
       integer(c_int) :: Zunmtr_bufferSize
-      Zunmtr_bufferSize = hipsolverZunmtr_bufferSize_raw(handle, side, uplo, trans, m, n, c_loc(A( &
-        1)), lda, tau, c_loc(C(1)), ldc, c_loc(lwork(1)))
+      Zunmtr_bufferSize = hipsolverZunmtr_bufferSize_raw(handle, side, uplo, trans, m, n, c_loc( &
+        A), lda, tau, c_loc(C), ldc, lwork)
     end function hipsolverZunmtr_bufferSize_native
 
     function hipsolverZunmtr_bufferSize_typed(handle, side, uplo, trans, m, n, A, lda, tau, C, &
@@ -17390,7 +17355,7 @@ contains
       complex(c_double_complex) :: tau
       type(c_ptr), value :: C
       integer(c_int), value :: ldc
-      type(c_ptr), value :: lwork
+      integer(c_int) :: lwork
       integer(c_int) :: Zunmtr_bufferSize
       Zunmtr_bufferSize = hipsolverZunmtr_bufferSize_raw(handle%ptr, side, uplo, trans, m, n, A, &
         lda, tau, C, ldc, lwork)
@@ -17406,17 +17371,17 @@ contains
       integer(c_int), value :: trans
       integer(c_int), value :: m
       integer(c_int), value :: n
-      real(c_float), target :: A(*)
+      real(c_float), target :: A(..)
       integer(c_int), value :: lda
       real(c_float) :: tau
-      real(c_float), target :: C(*)
+      real(c_float), target :: C(..)
       integer(c_int), value :: ldc
-      real(c_float), target :: work(*)
+      type(c_ptr), value :: work
       integer(c_int), value :: lwork
-      integer(c_int), target :: devInfo(*)
+      integer(c_int) :: devInfo
       integer(c_int) :: Sormtr
-      Sormtr = hipsolverSormtr_raw(handle, side, uplo, trans, m, n, c_loc(A(1)), lda, tau, c_loc( &
-        C(1)), ldc, c_loc(work(1)), lwork, c_loc(devInfo(1)))
+      Sormtr = hipsolverSormtr_raw(handle, side, uplo, trans, m, n, c_loc(A), lda, tau, c_loc(C), &
+        ldc, work, lwork, devInfo)
     end function hipsolverSormtr_native
 
     function hipsolverSormtr_typed(handle, side, uplo, trans, m, n, A, lda, tau, C, ldc, work, &
@@ -17437,7 +17402,7 @@ contains
       integer(c_int), value :: ldc
       type(c_ptr), value :: work
       integer(c_int), value :: lwork
-      type(c_ptr), value :: devInfo
+      integer(c_int) :: devInfo
       integer(c_int) :: Sormtr
       Sormtr = hipsolverSormtr_raw(handle%ptr, side, uplo, trans, m, n, A, lda, tau, C, ldc, work, &
         lwork, devInfo)
@@ -17453,17 +17418,17 @@ contains
       integer(c_int), value :: trans
       integer(c_int), value :: m
       integer(c_int), value :: n
-      real(c_double), target :: A(*)
+      real(c_double), target :: A(..)
       integer(c_int), value :: lda
       real(c_double) :: tau
-      real(c_double), target :: C(*)
+      real(c_double), target :: C(..)
       integer(c_int), value :: ldc
-      real(c_double), target :: work(*)
+      type(c_ptr), value :: work
       integer(c_int), value :: lwork
-      integer(c_int), target :: devInfo(*)
+      integer(c_int) :: devInfo
       integer(c_int) :: Dormtr
-      Dormtr = hipsolverDormtr_raw(handle, side, uplo, trans, m, n, c_loc(A(1)), lda, tau, c_loc( &
-        C(1)), ldc, c_loc(work(1)), lwork, c_loc(devInfo(1)))
+      Dormtr = hipsolverDormtr_raw(handle, side, uplo, trans, m, n, c_loc(A), lda, tau, c_loc(C), &
+        ldc, work, lwork, devInfo)
     end function hipsolverDormtr_native
 
     function hipsolverDormtr_typed(handle, side, uplo, trans, m, n, A, lda, tau, C, ldc, work, &
@@ -17484,7 +17449,7 @@ contains
       integer(c_int), value :: ldc
       type(c_ptr), value :: work
       integer(c_int), value :: lwork
-      type(c_ptr), value :: devInfo
+      integer(c_int) :: devInfo
       integer(c_int) :: Dormtr
       Dormtr = hipsolverDormtr_raw(handle%ptr, side, uplo, trans, m, n, A, lda, tau, C, ldc, work, &
         lwork, devInfo)
@@ -17500,17 +17465,17 @@ contains
       integer(c_int), value :: trans
       integer(c_int), value :: m
       integer(c_int), value :: n
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: A(..)
       integer(c_int), value :: lda
       complex(c_float_complex) :: tau
-      complex(c_float_complex), target :: C(*)
+      complex(c_float_complex), target :: C(..)
       integer(c_int), value :: ldc
-      complex(c_float_complex), target :: work(*)
+      type(c_ptr), value :: work
       integer(c_int), value :: lwork
-      integer(c_int), target :: devInfo(*)
+      integer(c_int) :: devInfo
       integer(c_int) :: Cunmtr
-      Cunmtr = hipsolverCunmtr_raw(handle, side, uplo, trans, m, n, c_loc(A(1)), lda, tau, c_loc( &
-        C(1)), ldc, c_loc(work(1)), lwork, c_loc(devInfo(1)))
+      Cunmtr = hipsolverCunmtr_raw(handle, side, uplo, trans, m, n, c_loc(A), lda, tau, c_loc(C), &
+        ldc, work, lwork, devInfo)
     end function hipsolverCunmtr_native
 
     function hipsolverCunmtr_typed(handle, side, uplo, trans, m, n, A, lda, tau, C, ldc, work, &
@@ -17531,7 +17496,7 @@ contains
       integer(c_int), value :: ldc
       type(c_ptr), value :: work
       integer(c_int), value :: lwork
-      type(c_ptr), value :: devInfo
+      integer(c_int) :: devInfo
       integer(c_int) :: Cunmtr
       Cunmtr = hipsolverCunmtr_raw(handle%ptr, side, uplo, trans, m, n, A, lda, tau, C, ldc, work, &
         lwork, devInfo)
@@ -17547,17 +17512,17 @@ contains
       integer(c_int), value :: trans
       integer(c_int), value :: m
       integer(c_int), value :: n
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: A(..)
       integer(c_int), value :: lda
       complex(c_double_complex) :: tau
-      complex(c_double_complex), target :: C(*)
+      complex(c_double_complex), target :: C(..)
       integer(c_int), value :: ldc
-      complex(c_double_complex), target :: work(*)
+      type(c_ptr), value :: work
       integer(c_int), value :: lwork
-      integer(c_int), target :: devInfo(*)
+      integer(c_int) :: devInfo
       integer(c_int) :: Zunmtr
-      Zunmtr = hipsolverZunmtr_raw(handle, side, uplo, trans, m, n, c_loc(A(1)), lda, tau, c_loc( &
-        C(1)), ldc, c_loc(work(1)), lwork, c_loc(devInfo(1)))
+      Zunmtr = hipsolverZunmtr_raw(handle, side, uplo, trans, m, n, c_loc(A), lda, tau, c_loc(C), &
+        ldc, work, lwork, devInfo)
     end function hipsolverZunmtr_native
 
     function hipsolverZunmtr_typed(handle, side, uplo, trans, m, n, A, lda, tau, C, ldc, work, &
@@ -17578,22 +17543,11 @@ contains
       integer(c_int), value :: ldc
       type(c_ptr), value :: work
       integer(c_int), value :: lwork
-      type(c_ptr), value :: devInfo
+      integer(c_int) :: devInfo
       integer(c_int) :: Zunmtr
       Zunmtr = hipsolverZunmtr_raw(handle%ptr, side, uplo, trans, m, n, A, lda, tau, C, ldc, work, &
         lwork, devInfo)
     end function hipsolverZunmtr_typed
-
-    function hipsolverSgebrd_bufferSize_native(handle, m, n, lwork) result(Sgebrd_bufferSize)
-      use, intrinsic :: iso_c_binding
-      implicit none
-      type(c_ptr), value :: handle
-      integer(c_int), value :: m
-      integer(c_int), value :: n
-      integer(c_int), target :: lwork(*)
-      integer(c_int) :: Sgebrd_bufferSize
-      Sgebrd_bufferSize = hipsolverSgebrd_bufferSize_raw(handle, m, n, c_loc(lwork(1)))
-    end function hipsolverSgebrd_bufferSize_native
 
     function hipsolverSgebrd_bufferSize_typed(handle, m, n, lwork) result(Sgebrd_bufferSize)
       use, intrinsic :: iso_c_binding
@@ -17602,21 +17556,10 @@ contains
       type(hipsolverHandle_t), value :: handle
       integer(c_int), value :: m
       integer(c_int), value :: n
-      type(c_ptr), value :: lwork
+      integer(c_int) :: lwork
       integer(c_int) :: Sgebrd_bufferSize
       Sgebrd_bufferSize = hipsolverSgebrd_bufferSize_raw(handle%ptr, m, n, lwork)
     end function hipsolverSgebrd_bufferSize_typed
-
-    function hipsolverDgebrd_bufferSize_native(handle, m, n, lwork) result(Dgebrd_bufferSize)
-      use, intrinsic :: iso_c_binding
-      implicit none
-      type(c_ptr), value :: handle
-      integer(c_int), value :: m
-      integer(c_int), value :: n
-      integer(c_int), target :: lwork(*)
-      integer(c_int) :: Dgebrd_bufferSize
-      Dgebrd_bufferSize = hipsolverDgebrd_bufferSize_raw(handle, m, n, c_loc(lwork(1)))
-    end function hipsolverDgebrd_bufferSize_native
 
     function hipsolverDgebrd_bufferSize_typed(handle, m, n, lwork) result(Dgebrd_bufferSize)
       use, intrinsic :: iso_c_binding
@@ -17625,21 +17568,10 @@ contains
       type(hipsolverHandle_t), value :: handle
       integer(c_int), value :: m
       integer(c_int), value :: n
-      type(c_ptr), value :: lwork
+      integer(c_int) :: lwork
       integer(c_int) :: Dgebrd_bufferSize
       Dgebrd_bufferSize = hipsolverDgebrd_bufferSize_raw(handle%ptr, m, n, lwork)
     end function hipsolverDgebrd_bufferSize_typed
-
-    function hipsolverCgebrd_bufferSize_native(handle, m, n, lwork) result(Cgebrd_bufferSize)
-      use, intrinsic :: iso_c_binding
-      implicit none
-      type(c_ptr), value :: handle
-      integer(c_int), value :: m
-      integer(c_int), value :: n
-      integer(c_int), target :: lwork(*)
-      integer(c_int) :: Cgebrd_bufferSize
-      Cgebrd_bufferSize = hipsolverCgebrd_bufferSize_raw(handle, m, n, c_loc(lwork(1)))
-    end function hipsolverCgebrd_bufferSize_native
 
     function hipsolverCgebrd_bufferSize_typed(handle, m, n, lwork) result(Cgebrd_bufferSize)
       use, intrinsic :: iso_c_binding
@@ -17648,21 +17580,10 @@ contains
       type(hipsolverHandle_t), value :: handle
       integer(c_int), value :: m
       integer(c_int), value :: n
-      type(c_ptr), value :: lwork
+      integer(c_int) :: lwork
       integer(c_int) :: Cgebrd_bufferSize
       Cgebrd_bufferSize = hipsolverCgebrd_bufferSize_raw(handle%ptr, m, n, lwork)
     end function hipsolverCgebrd_bufferSize_typed
-
-    function hipsolverZgebrd_bufferSize_native(handle, m, n, lwork) result(Zgebrd_bufferSize)
-      use, intrinsic :: iso_c_binding
-      implicit none
-      type(c_ptr), value :: handle
-      integer(c_int), value :: m
-      integer(c_int), value :: n
-      integer(c_int), target :: lwork(*)
-      integer(c_int) :: Zgebrd_bufferSize
-      Zgebrd_bufferSize = hipsolverZgebrd_bufferSize_raw(handle, m, n, c_loc(lwork(1)))
-    end function hipsolverZgebrd_bufferSize_native
 
     function hipsolverZgebrd_bufferSize_typed(handle, m, n, lwork) result(Zgebrd_bufferSize)
       use, intrinsic :: iso_c_binding
@@ -17671,7 +17592,7 @@ contains
       type(hipsolverHandle_t), value :: handle
       integer(c_int), value :: m
       integer(c_int), value :: n
-      type(c_ptr), value :: lwork
+      integer(c_int) :: lwork
       integer(c_int) :: Zgebrd_bufferSize
       Zgebrd_bufferSize = hipsolverZgebrd_bufferSize_raw(handle%ptr, m, n, lwork)
     end function hipsolverZgebrd_bufferSize_typed
@@ -17683,18 +17604,18 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: m
       integer(c_int), value :: n
-      real(c_float), target :: A(*)
+      real(c_float), target :: A(..)
       integer(c_int), value :: lda
-      real(c_float), target :: D(*)
-      real(c_float), target :: E(*)
-      real(c_float), target :: tauq(*)
-      real(c_float), target :: taup(*)
-      real(c_float), target :: work(*)
+      real(c_float), target :: D(..)
+      real(c_float), target :: E(..)
+      real(c_float), target :: tauq(..)
+      real(c_float), target :: taup(..)
+      type(c_ptr), value :: work
       integer(c_int), value :: lwork
-      integer(c_int), target :: devInfo(*)
+      integer(c_int) :: devInfo
       integer(c_int) :: Sgebrd
-      Sgebrd = hipsolverSgebrd_raw(handle, m, n, c_loc(A(1)), lda, c_loc(D(1)), c_loc(E(1)), &
-        c_loc(tauq(1)), c_loc(taup(1)), c_loc(work(1)), lwork, c_loc(devInfo(1)))
+      Sgebrd = hipsolverSgebrd_raw(handle, m, n, c_loc(A), lda, c_loc(D), c_loc(E), c_loc(tauq), &
+        c_loc(taup), work, lwork, devInfo)
     end function hipsolverSgebrd_native
 
     function hipsolverSgebrd_typed(handle, m, n, A, lda, D, E, tauq, taup, work, lwork, &
@@ -17713,7 +17634,7 @@ contains
       type(c_ptr), value :: taup
       type(c_ptr), value :: work
       integer(c_int), value :: lwork
-      type(c_ptr), value :: devInfo
+      integer(c_int) :: devInfo
       integer(c_int) :: Sgebrd
       Sgebrd = hipsolverSgebrd_raw(handle%ptr, m, n, A, lda, D, E, tauq, taup, work, lwork, devInfo)
     end function hipsolverSgebrd_typed
@@ -17725,18 +17646,18 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: m
       integer(c_int), value :: n
-      real(c_double), target :: A(*)
+      real(c_double), target :: A(..)
       integer(c_int), value :: lda
-      real(c_double), target :: D(*)
-      real(c_double), target :: E(*)
-      real(c_double), target :: tauq(*)
-      real(c_double), target :: taup(*)
-      real(c_double), target :: work(*)
+      real(c_double), target :: D(..)
+      real(c_double), target :: E(..)
+      real(c_double), target :: tauq(..)
+      real(c_double), target :: taup(..)
+      type(c_ptr), value :: work
       integer(c_int), value :: lwork
-      integer(c_int), target :: devInfo(*)
+      integer(c_int) :: devInfo
       integer(c_int) :: Dgebrd
-      Dgebrd = hipsolverDgebrd_raw(handle, m, n, c_loc(A(1)), lda, c_loc(D(1)), c_loc(E(1)), &
-        c_loc(tauq(1)), c_loc(taup(1)), c_loc(work(1)), lwork, c_loc(devInfo(1)))
+      Dgebrd = hipsolverDgebrd_raw(handle, m, n, c_loc(A), lda, c_loc(D), c_loc(E), c_loc(tauq), &
+        c_loc(taup), work, lwork, devInfo)
     end function hipsolverDgebrd_native
 
     function hipsolverDgebrd_typed(handle, m, n, A, lda, D, E, tauq, taup, work, lwork, &
@@ -17755,7 +17676,7 @@ contains
       type(c_ptr), value :: taup
       type(c_ptr), value :: work
       integer(c_int), value :: lwork
-      type(c_ptr), value :: devInfo
+      integer(c_int) :: devInfo
       integer(c_int) :: Dgebrd
       Dgebrd = hipsolverDgebrd_raw(handle%ptr, m, n, A, lda, D, E, tauq, taup, work, lwork, devInfo)
     end function hipsolverDgebrd_typed
@@ -17767,18 +17688,18 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: m
       integer(c_int), value :: n
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: A(..)
       integer(c_int), value :: lda
-      real(c_float), target :: D(*)
-      real(c_float), target :: E(*)
-      complex(c_float_complex), target :: tauq(*)
-      complex(c_float_complex), target :: taup(*)
-      complex(c_float_complex), target :: work(*)
+      real(c_float), target :: D(..)
+      real(c_float), target :: E(..)
+      complex(c_float_complex), target :: tauq(..)
+      complex(c_float_complex), target :: taup(..)
+      type(c_ptr), value :: work
       integer(c_int), value :: lwork
-      integer(c_int), target :: devInfo(*)
+      integer(c_int) :: devInfo
       integer(c_int) :: Cgebrd
-      Cgebrd = hipsolverCgebrd_raw(handle, m, n, c_loc(A(1)), lda, c_loc(D(1)), c_loc(E(1)), &
-        c_loc(tauq(1)), c_loc(taup(1)), c_loc(work(1)), lwork, c_loc(devInfo(1)))
+      Cgebrd = hipsolverCgebrd_raw(handle, m, n, c_loc(A), lda, c_loc(D), c_loc(E), c_loc(tauq), &
+        c_loc(taup), work, lwork, devInfo)
     end function hipsolverCgebrd_native
 
     function hipsolverCgebrd_typed(handle, m, n, A, lda, D, E, tauq, taup, work, lwork, &
@@ -17797,7 +17718,7 @@ contains
       type(c_ptr), value :: taup
       type(c_ptr), value :: work
       integer(c_int), value :: lwork
-      type(c_ptr), value :: devInfo
+      integer(c_int) :: devInfo
       integer(c_int) :: Cgebrd
       Cgebrd = hipsolverCgebrd_raw(handle%ptr, m, n, A, lda, D, E, tauq, taup, work, lwork, devInfo)
     end function hipsolverCgebrd_typed
@@ -17809,18 +17730,18 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: m
       integer(c_int), value :: n
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: A(..)
       integer(c_int), value :: lda
-      real(c_double), target :: D(*)
-      real(c_double), target :: E(*)
-      complex(c_double_complex), target :: tauq(*)
-      complex(c_double_complex), target :: taup(*)
-      complex(c_double_complex), target :: work(*)
+      real(c_double), target :: D(..)
+      real(c_double), target :: E(..)
+      complex(c_double_complex), target :: tauq(..)
+      complex(c_double_complex), target :: taup(..)
+      type(c_ptr), value :: work
       integer(c_int), value :: lwork
-      integer(c_int), target :: devInfo(*)
+      integer(c_int) :: devInfo
       integer(c_int) :: Zgebrd
-      Zgebrd = hipsolverZgebrd_raw(handle, m, n, c_loc(A(1)), lda, c_loc(D(1)), c_loc(E(1)), &
-        c_loc(tauq(1)), c_loc(taup(1)), c_loc(work(1)), lwork, c_loc(devInfo(1)))
+      Zgebrd = hipsolverZgebrd_raw(handle, m, n, c_loc(A), lda, c_loc(D), c_loc(E), c_loc(tauq), &
+        c_loc(taup), work, lwork, devInfo)
     end function hipsolverZgebrd_native
 
     function hipsolverZgebrd_typed(handle, m, n, A, lda, D, E, tauq, taup, work, lwork, &
@@ -17839,7 +17760,7 @@ contains
       type(c_ptr), value :: taup
       type(c_ptr), value :: work
       integer(c_int), value :: lwork
-      type(c_ptr), value :: devInfo
+      integer(c_int) :: devInfo
       integer(c_int) :: Zgebrd
       Zgebrd = hipsolverZgebrd_raw(handle%ptr, m, n, A, lda, D, E, tauq, taup, work, lwork, devInfo)
     end function hipsolverZgebrd_typed
@@ -17852,16 +17773,16 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       integer(c_int), value :: nrhs
-      real(c_float), target :: A(*)
+      real(c_float), target :: A(..)
       integer(c_int), value :: lda
-      real(c_float), target :: B(*)
+      real(c_float), target :: B(..)
       integer(c_int), value :: ldb
-      real(c_float), target :: X(*)
+      real(c_float), target :: X(..)
       integer(c_int), value :: ldx
       type(c_ptr), value :: lwork
       integer(c_int) :: SSgels_bufferSize
-      SSgels_bufferSize = hipsolverSSgels_bufferSize_raw(handle, m, n, nrhs, c_loc(A(1)), lda, &
-        c_loc(B(1)), ldb, c_loc(X(1)), ldx, lwork)
+      SSgels_bufferSize = hipsolverSSgels_bufferSize_raw(handle, m, n, nrhs, c_loc(A), lda, c_loc( &
+        B), ldb, c_loc(X), ldx, lwork)
     end function hipsolverSSgels_bufferSize_native
 
     function hipsolverSSgels_bufferSize_typed(handle, m, n, nrhs, A, lda, B, ldb, X, ldx, &
@@ -17893,16 +17814,16 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       integer(c_int), value :: nrhs
-      real(c_double), target :: A(*)
+      real(c_double), target :: A(..)
       integer(c_int), value :: lda
-      real(c_double), target :: B(*)
+      real(c_double), target :: B(..)
       integer(c_int), value :: ldb
-      real(c_double), target :: X(*)
+      real(c_double), target :: X(..)
       integer(c_int), value :: ldx
       type(c_ptr), value :: lwork
       integer(c_int) :: DDgels_bufferSize
-      DDgels_bufferSize = hipsolverDDgels_bufferSize_raw(handle, m, n, nrhs, c_loc(A(1)), lda, &
-        c_loc(B(1)), ldb, c_loc(X(1)), ldx, lwork)
+      DDgels_bufferSize = hipsolverDDgels_bufferSize_raw(handle, m, n, nrhs, c_loc(A), lda, c_loc( &
+        B), ldb, c_loc(X), ldx, lwork)
     end function hipsolverDDgels_bufferSize_native
 
     function hipsolverDDgels_bufferSize_typed(handle, m, n, nrhs, A, lda, B, ldb, X, ldx, &
@@ -17934,16 +17855,16 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       integer(c_int), value :: nrhs
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: A(..)
       integer(c_int), value :: lda
-      complex(c_float_complex), target :: B(*)
+      complex(c_float_complex), target :: B(..)
       integer(c_int), value :: ldb
-      complex(c_float_complex), target :: X(*)
+      complex(c_float_complex), target :: X(..)
       integer(c_int), value :: ldx
       type(c_ptr), value :: lwork
       integer(c_int) :: CCgels_bufferSize
-      CCgels_bufferSize = hipsolverCCgels_bufferSize_raw(handle, m, n, nrhs, c_loc(A(1)), lda, &
-        c_loc(B(1)), ldb, c_loc(X(1)), ldx, lwork)
+      CCgels_bufferSize = hipsolverCCgels_bufferSize_raw(handle, m, n, nrhs, c_loc(A), lda, c_loc( &
+        B), ldb, c_loc(X), ldx, lwork)
     end function hipsolverCCgels_bufferSize_native
 
     function hipsolverCCgels_bufferSize_typed(handle, m, n, nrhs, A, lda, B, ldb, X, ldx, &
@@ -17975,16 +17896,16 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       integer(c_int), value :: nrhs
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: A(..)
       integer(c_int), value :: lda
-      complex(c_double_complex), target :: B(*)
+      complex(c_double_complex), target :: B(..)
       integer(c_int), value :: ldb
-      complex(c_double_complex), target :: X(*)
+      complex(c_double_complex), target :: X(..)
       integer(c_int), value :: ldx
       type(c_ptr), value :: lwork
       integer(c_int) :: ZZgels_bufferSize
-      ZZgels_bufferSize = hipsolverZZgels_bufferSize_raw(handle, m, n, nrhs, c_loc(A(1)), lda, &
-        c_loc(B(1)), ldb, c_loc(X(1)), ldx, lwork)
+      ZZgels_bufferSize = hipsolverZZgels_bufferSize_raw(handle, m, n, nrhs, c_loc(A), lda, c_loc( &
+        B), ldb, c_loc(X), ldx, lwork)
     end function hipsolverZZgels_bufferSize_native
 
     function hipsolverZZgels_bufferSize_typed(handle, m, n, nrhs, A, lda, B, ldb, X, ldx, &
@@ -18016,19 +17937,19 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       integer(c_int), value :: nrhs
-      real(c_float), target :: A(*)
+      real(c_float), target :: A(..)
       integer(c_int), value :: lda
-      real(c_float), target :: B(*)
+      real(c_float), target :: B(..)
       integer(c_int), value :: ldb
-      real(c_float), target :: X(*)
+      real(c_float), target :: X(..)
       integer(c_int), value :: ldx
       type(c_ptr), value :: work
       integer(c_long), value :: lwork
-      integer(c_int), target :: niters(*)
-      integer(c_int), target :: devInfo(*)
+      integer(c_int), target :: niters(..)
+      integer(c_int), target :: devInfo(..)
       integer(c_int) :: SSgels
-      SSgels = hipsolverSSgels_raw(handle, m, n, nrhs, c_loc(A(1)), lda, c_loc(B(1)), ldb, c_loc( &
-        X(1)), ldx, work, lwork, c_loc(niters(1)), c_loc(devInfo(1)))
+      SSgels = hipsolverSSgels_raw(handle, m, n, nrhs, c_loc(A), lda, c_loc(B), ldb, c_loc(X), &
+        ldx, work, lwork, c_loc(niters), c_loc(devInfo))
     end function hipsolverSSgels_native
 
     function hipsolverSSgels_typed(handle, m, n, nrhs, A, lda, B, ldb, X, ldx, work, lwork, &
@@ -18063,19 +17984,19 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       integer(c_int), value :: nrhs
-      real(c_double), target :: A(*)
+      real(c_double), target :: A(..)
       integer(c_int), value :: lda
-      real(c_double), target :: B(*)
+      real(c_double), target :: B(..)
       integer(c_int), value :: ldb
-      real(c_double), target :: X(*)
+      real(c_double), target :: X(..)
       integer(c_int), value :: ldx
       type(c_ptr), value :: work
       integer(c_long), value :: lwork
-      integer(c_int), target :: niters(*)
-      integer(c_int), target :: devInfo(*)
+      integer(c_int), target :: niters(..)
+      integer(c_int), target :: devInfo(..)
       integer(c_int) :: DDgels
-      DDgels = hipsolverDDgels_raw(handle, m, n, nrhs, c_loc(A(1)), lda, c_loc(B(1)), ldb, c_loc( &
-        X(1)), ldx, work, lwork, c_loc(niters(1)), c_loc(devInfo(1)))
+      DDgels = hipsolverDDgels_raw(handle, m, n, nrhs, c_loc(A), lda, c_loc(B), ldb, c_loc(X), &
+        ldx, work, lwork, c_loc(niters), c_loc(devInfo))
     end function hipsolverDDgels_native
 
     function hipsolverDDgels_typed(handle, m, n, nrhs, A, lda, B, ldb, X, ldx, work, lwork, &
@@ -18110,19 +18031,19 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       integer(c_int), value :: nrhs
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: A(..)
       integer(c_int), value :: lda
-      complex(c_float_complex), target :: B(*)
+      complex(c_float_complex), target :: B(..)
       integer(c_int), value :: ldb
-      complex(c_float_complex), target :: X(*)
+      complex(c_float_complex), target :: X(..)
       integer(c_int), value :: ldx
       type(c_ptr), value :: work
       integer(c_long), value :: lwork
-      integer(c_int), target :: niters(*)
-      integer(c_int), target :: devInfo(*)
+      integer(c_int), target :: niters(..)
+      integer(c_int), target :: devInfo(..)
       integer(c_int) :: CCgels
-      CCgels = hipsolverCCgels_raw(handle, m, n, nrhs, c_loc(A(1)), lda, c_loc(B(1)), ldb, c_loc( &
-        X(1)), ldx, work, lwork, c_loc(niters(1)), c_loc(devInfo(1)))
+      CCgels = hipsolverCCgels_raw(handle, m, n, nrhs, c_loc(A), lda, c_loc(B), ldb, c_loc(X), &
+        ldx, work, lwork, c_loc(niters), c_loc(devInfo))
     end function hipsolverCCgels_native
 
     function hipsolverCCgels_typed(handle, m, n, nrhs, A, lda, B, ldb, X, ldx, work, lwork, &
@@ -18157,19 +18078,19 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       integer(c_int), value :: nrhs
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: A(..)
       integer(c_int), value :: lda
-      complex(c_double_complex), target :: B(*)
+      complex(c_double_complex), target :: B(..)
       integer(c_int), value :: ldb
-      complex(c_double_complex), target :: X(*)
+      complex(c_double_complex), target :: X(..)
       integer(c_int), value :: ldx
       type(c_ptr), value :: work
       integer(c_long), value :: lwork
-      integer(c_int), target :: niters(*)
-      integer(c_int), target :: devInfo(*)
+      integer(c_int), target :: niters(..)
+      integer(c_int), target :: devInfo(..)
       integer(c_int) :: ZZgels
-      ZZgels = hipsolverZZgels_raw(handle, m, n, nrhs, c_loc(A(1)), lda, c_loc(B(1)), ldb, c_loc( &
-        X(1)), ldx, work, lwork, c_loc(niters(1)), c_loc(devInfo(1)))
+      ZZgels = hipsolverZZgels_raw(handle, m, n, nrhs, c_loc(A), lda, c_loc(B), ldb, c_loc(X), &
+        ldx, work, lwork, c_loc(niters), c_loc(devInfo))
     end function hipsolverZZgels_native
 
     function hipsolverZZgels_typed(handle, m, n, nrhs, A, lda, B, ldb, X, ldx, work, lwork, &
@@ -18203,12 +18124,11 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: m
       integer(c_int), value :: n
-      real(c_float), target :: A(*)
+      real(c_float), target :: A(..)
       integer(c_int), value :: lda
-      integer(c_int), target :: lwork(*)
+      integer(c_int) :: lwork
       integer(c_int) :: Sgeqrf_bufferSize
-      Sgeqrf_bufferSize = hipsolverSgeqrf_bufferSize_raw(handle, m, n, c_loc(A(1)), lda, c_loc( &
-        lwork(1)))
+      Sgeqrf_bufferSize = hipsolverSgeqrf_bufferSize_raw(handle, m, n, c_loc(A), lda, lwork)
     end function hipsolverSgeqrf_bufferSize_native
 
     function hipsolverSgeqrf_bufferSize_typed(handle, m, n, A, lda, lwork) result(Sgeqrf_bufferSize)
@@ -18220,7 +18140,7 @@ contains
       integer(c_int), value :: n
       type(c_ptr), value :: A
       integer(c_int), value :: lda
-      type(c_ptr), value :: lwork
+      integer(c_int) :: lwork
       integer(c_int) :: Sgeqrf_bufferSize
       Sgeqrf_bufferSize = hipsolverSgeqrf_bufferSize_raw(handle%ptr, m, n, A, lda, lwork)
     end function hipsolverSgeqrf_bufferSize_typed
@@ -18232,12 +18152,11 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: m
       integer(c_int), value :: n
-      real(c_double), target :: A(*)
+      real(c_double), target :: A(..)
       integer(c_int), value :: lda
-      integer(c_int), target :: lwork(*)
+      integer(c_int) :: lwork
       integer(c_int) :: Dgeqrf_bufferSize
-      Dgeqrf_bufferSize = hipsolverDgeqrf_bufferSize_raw(handle, m, n, c_loc(A(1)), lda, c_loc( &
-        lwork(1)))
+      Dgeqrf_bufferSize = hipsolverDgeqrf_bufferSize_raw(handle, m, n, c_loc(A), lda, lwork)
     end function hipsolverDgeqrf_bufferSize_native
 
     function hipsolverDgeqrf_bufferSize_typed(handle, m, n, A, lda, lwork) result(Dgeqrf_bufferSize)
@@ -18249,7 +18168,7 @@ contains
       integer(c_int), value :: n
       type(c_ptr), value :: A
       integer(c_int), value :: lda
-      type(c_ptr), value :: lwork
+      integer(c_int) :: lwork
       integer(c_int) :: Dgeqrf_bufferSize
       Dgeqrf_bufferSize = hipsolverDgeqrf_bufferSize_raw(handle%ptr, m, n, A, lda, lwork)
     end function hipsolverDgeqrf_bufferSize_typed
@@ -18261,12 +18180,11 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: m
       integer(c_int), value :: n
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: A(..)
       integer(c_int), value :: lda
-      integer(c_int), target :: lwork(*)
+      integer(c_int) :: lwork
       integer(c_int) :: Cgeqrf_bufferSize
-      Cgeqrf_bufferSize = hipsolverCgeqrf_bufferSize_raw(handle, m, n, c_loc(A(1)), lda, c_loc( &
-        lwork(1)))
+      Cgeqrf_bufferSize = hipsolverCgeqrf_bufferSize_raw(handle, m, n, c_loc(A), lda, lwork)
     end function hipsolverCgeqrf_bufferSize_native
 
     function hipsolverCgeqrf_bufferSize_typed(handle, m, n, A, lda, lwork) result(Cgeqrf_bufferSize)
@@ -18278,7 +18196,7 @@ contains
       integer(c_int), value :: n
       type(c_ptr), value :: A
       integer(c_int), value :: lda
-      type(c_ptr), value :: lwork
+      integer(c_int) :: lwork
       integer(c_int) :: Cgeqrf_bufferSize
       Cgeqrf_bufferSize = hipsolverCgeqrf_bufferSize_raw(handle%ptr, m, n, A, lda, lwork)
     end function hipsolverCgeqrf_bufferSize_typed
@@ -18290,12 +18208,11 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: m
       integer(c_int), value :: n
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: A(..)
       integer(c_int), value :: lda
-      integer(c_int), target :: lwork(*)
+      integer(c_int) :: lwork
       integer(c_int) :: Zgeqrf_bufferSize
-      Zgeqrf_bufferSize = hipsolverZgeqrf_bufferSize_raw(handle, m, n, c_loc(A(1)), lda, c_loc( &
-        lwork(1)))
+      Zgeqrf_bufferSize = hipsolverZgeqrf_bufferSize_raw(handle, m, n, c_loc(A), lda, lwork)
     end function hipsolverZgeqrf_bufferSize_native
 
     function hipsolverZgeqrf_bufferSize_typed(handle, m, n, A, lda, lwork) result(Zgeqrf_bufferSize)
@@ -18307,7 +18224,7 @@ contains
       integer(c_int), value :: n
       type(c_ptr), value :: A
       integer(c_int), value :: lda
-      type(c_ptr), value :: lwork
+      integer(c_int) :: lwork
       integer(c_int) :: Zgeqrf_bufferSize
       Zgeqrf_bufferSize = hipsolverZgeqrf_bufferSize_raw(handle%ptr, m, n, A, lda, lwork)
     end function hipsolverZgeqrf_bufferSize_typed
@@ -18318,15 +18235,14 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: m
       integer(c_int), value :: n
-      real(c_float), target :: A(*)
+      real(c_float), target :: A(..)
       integer(c_int), value :: lda
       real(c_float) :: tau
-      real(c_float), target :: work(*)
+      type(c_ptr), value :: work
       integer(c_int), value :: lwork
-      integer(c_int), target :: devInfo(*)
+      integer(c_int) :: devInfo
       integer(c_int) :: Sgeqrf
-      Sgeqrf = hipsolverSgeqrf_raw(handle, m, n, c_loc(A(1)), lda, tau, c_loc(work(1)), lwork, &
-        c_loc(devInfo(1)))
+      Sgeqrf = hipsolverSgeqrf_raw(handle, m, n, c_loc(A), lda, tau, work, lwork, devInfo)
     end function hipsolverSgeqrf_native
 
     function hipsolverSgeqrf_typed(handle, m, n, A, lda, tau, work, lwork, devInfo) result(Sgeqrf)
@@ -18341,7 +18257,7 @@ contains
       real(c_float) :: tau
       type(c_ptr), value :: work
       integer(c_int), value :: lwork
-      type(c_ptr), value :: devInfo
+      integer(c_int) :: devInfo
       integer(c_int) :: Sgeqrf
       Sgeqrf = hipsolverSgeqrf_raw(handle%ptr, m, n, A, lda, tau, work, lwork, devInfo)
     end function hipsolverSgeqrf_typed
@@ -18352,15 +18268,14 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: m
       integer(c_int), value :: n
-      real(c_double), target :: A(*)
+      real(c_double), target :: A(..)
       integer(c_int), value :: lda
       real(c_double) :: tau
-      real(c_double), target :: work(*)
+      type(c_ptr), value :: work
       integer(c_int), value :: lwork
-      integer(c_int), target :: devInfo(*)
+      integer(c_int) :: devInfo
       integer(c_int) :: Dgeqrf
-      Dgeqrf = hipsolverDgeqrf_raw(handle, m, n, c_loc(A(1)), lda, tau, c_loc(work(1)), lwork, &
-        c_loc(devInfo(1)))
+      Dgeqrf = hipsolverDgeqrf_raw(handle, m, n, c_loc(A), lda, tau, work, lwork, devInfo)
     end function hipsolverDgeqrf_native
 
     function hipsolverDgeqrf_typed(handle, m, n, A, lda, tau, work, lwork, devInfo) result(Dgeqrf)
@@ -18375,7 +18290,7 @@ contains
       real(c_double) :: tau
       type(c_ptr), value :: work
       integer(c_int), value :: lwork
-      type(c_ptr), value :: devInfo
+      integer(c_int) :: devInfo
       integer(c_int) :: Dgeqrf
       Dgeqrf = hipsolverDgeqrf_raw(handle%ptr, m, n, A, lda, tau, work, lwork, devInfo)
     end function hipsolverDgeqrf_typed
@@ -18386,15 +18301,14 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: m
       integer(c_int), value :: n
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: A(..)
       integer(c_int), value :: lda
       complex(c_float_complex) :: tau
-      complex(c_float_complex), target :: work(*)
+      type(c_ptr), value :: work
       integer(c_int), value :: lwork
-      integer(c_int), target :: devInfo(*)
+      integer(c_int) :: devInfo
       integer(c_int) :: Cgeqrf
-      Cgeqrf = hipsolverCgeqrf_raw(handle, m, n, c_loc(A(1)), lda, tau, c_loc(work(1)), lwork, &
-        c_loc(devInfo(1)))
+      Cgeqrf = hipsolverCgeqrf_raw(handle, m, n, c_loc(A), lda, tau, work, lwork, devInfo)
     end function hipsolverCgeqrf_native
 
     function hipsolverCgeqrf_typed(handle, m, n, A, lda, tau, work, lwork, devInfo) result(Cgeqrf)
@@ -18409,7 +18323,7 @@ contains
       complex(c_float_complex) :: tau
       type(c_ptr), value :: work
       integer(c_int), value :: lwork
-      type(c_ptr), value :: devInfo
+      integer(c_int) :: devInfo
       integer(c_int) :: Cgeqrf
       Cgeqrf = hipsolverCgeqrf_raw(handle%ptr, m, n, A, lda, tau, work, lwork, devInfo)
     end function hipsolverCgeqrf_typed
@@ -18420,15 +18334,14 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: m
       integer(c_int), value :: n
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: A(..)
       integer(c_int), value :: lda
       complex(c_double_complex) :: tau
-      complex(c_double_complex), target :: work(*)
+      type(c_ptr), value :: work
       integer(c_int), value :: lwork
-      integer(c_int), target :: devInfo(*)
+      integer(c_int) :: devInfo
       integer(c_int) :: Zgeqrf
-      Zgeqrf = hipsolverZgeqrf_raw(handle, m, n, c_loc(A(1)), lda, tau, c_loc(work(1)), lwork, &
-        c_loc(devInfo(1)))
+      Zgeqrf = hipsolverZgeqrf_raw(handle, m, n, c_loc(A), lda, tau, work, lwork, devInfo)
     end function hipsolverZgeqrf_native
 
     function hipsolverZgeqrf_typed(handle, m, n, A, lda, tau, work, lwork, devInfo) result(Zgeqrf)
@@ -18443,7 +18356,7 @@ contains
       complex(c_double_complex) :: tau
       type(c_ptr), value :: work
       integer(c_int), value :: lwork
-      type(c_ptr), value :: devInfo
+      integer(c_int) :: devInfo
       integer(c_int) :: Zgeqrf
       Zgeqrf = hipsolverZgeqrf_raw(handle%ptr, m, n, A, lda, tau, work, lwork, devInfo)
     end function hipsolverZgeqrf_typed
@@ -18455,17 +18368,17 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: n
       integer(c_int), value :: nrhs
-      real(c_float), target :: A(*)
+      real(c_float), target :: A(..)
       integer(c_int), value :: lda
-      integer(c_int), target :: devIpiv(*)
-      real(c_float), target :: B(*)
+      integer(c_int), target :: devIpiv(..)
+      real(c_float), target :: B(..)
       integer(c_int), value :: ldb
-      real(c_float), target :: X(*)
+      real(c_float), target :: X(..)
       integer(c_int), value :: ldx
       type(c_ptr), value :: lwork
       integer(c_int) :: SSgesv_bufferSize
-      SSgesv_bufferSize = hipsolverSSgesv_bufferSize_raw(handle, n, nrhs, c_loc(A(1)), lda, c_loc( &
-        devIpiv(1)), c_loc(B(1)), ldb, c_loc(X(1)), ldx, lwork)
+      SSgesv_bufferSize = hipsolverSSgesv_bufferSize_raw(handle, n, nrhs, c_loc(A), lda, c_loc( &
+        devIpiv), c_loc(B), ldb, c_loc(X), ldx, lwork)
     end function hipsolverSSgesv_bufferSize_native
 
     function hipsolverSSgesv_bufferSize_typed(handle, n, nrhs, A, lda, devIpiv, B, ldb, X, ldx, &
@@ -18496,17 +18409,17 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: n
       integer(c_int), value :: nrhs
-      real(c_double), target :: A(*)
+      real(c_double), target :: A(..)
       integer(c_int), value :: lda
-      integer(c_int), target :: devIpiv(*)
-      real(c_double), target :: B(*)
+      integer(c_int), target :: devIpiv(..)
+      real(c_double), target :: B(..)
       integer(c_int), value :: ldb
-      real(c_double), target :: X(*)
+      real(c_double), target :: X(..)
       integer(c_int), value :: ldx
       type(c_ptr), value :: lwork
       integer(c_int) :: DDgesv_bufferSize
-      DDgesv_bufferSize = hipsolverDDgesv_bufferSize_raw(handle, n, nrhs, c_loc(A(1)), lda, c_loc( &
-        devIpiv(1)), c_loc(B(1)), ldb, c_loc(X(1)), ldx, lwork)
+      DDgesv_bufferSize = hipsolverDDgesv_bufferSize_raw(handle, n, nrhs, c_loc(A), lda, c_loc( &
+        devIpiv), c_loc(B), ldb, c_loc(X), ldx, lwork)
     end function hipsolverDDgesv_bufferSize_native
 
     function hipsolverDDgesv_bufferSize_typed(handle, n, nrhs, A, lda, devIpiv, B, ldb, X, ldx, &
@@ -18537,17 +18450,17 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: n
       integer(c_int), value :: nrhs
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: A(..)
       integer(c_int), value :: lda
-      integer(c_int), target :: devIpiv(*)
-      complex(c_float_complex), target :: B(*)
+      integer(c_int), target :: devIpiv(..)
+      complex(c_float_complex), target :: B(..)
       integer(c_int), value :: ldb
-      complex(c_float_complex), target :: X(*)
+      complex(c_float_complex), target :: X(..)
       integer(c_int), value :: ldx
       type(c_ptr), value :: lwork
       integer(c_int) :: CCgesv_bufferSize
-      CCgesv_bufferSize = hipsolverCCgesv_bufferSize_raw(handle, n, nrhs, c_loc(A(1)), lda, c_loc( &
-        devIpiv(1)), c_loc(B(1)), ldb, c_loc(X(1)), ldx, lwork)
+      CCgesv_bufferSize = hipsolverCCgesv_bufferSize_raw(handle, n, nrhs, c_loc(A), lda, c_loc( &
+        devIpiv), c_loc(B), ldb, c_loc(X), ldx, lwork)
     end function hipsolverCCgesv_bufferSize_native
 
     function hipsolverCCgesv_bufferSize_typed(handle, n, nrhs, A, lda, devIpiv, B, ldb, X, ldx, &
@@ -18578,17 +18491,17 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: n
       integer(c_int), value :: nrhs
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: A(..)
       integer(c_int), value :: lda
-      integer(c_int), target :: devIpiv(*)
-      complex(c_double_complex), target :: B(*)
+      integer(c_int), target :: devIpiv(..)
+      complex(c_double_complex), target :: B(..)
       integer(c_int), value :: ldb
-      complex(c_double_complex), target :: X(*)
+      complex(c_double_complex), target :: X(..)
       integer(c_int), value :: ldx
       type(c_ptr), value :: lwork
       integer(c_int) :: ZZgesv_bufferSize
-      ZZgesv_bufferSize = hipsolverZZgesv_bufferSize_raw(handle, n, nrhs, c_loc(A(1)), lda, c_loc( &
-        devIpiv(1)), c_loc(B(1)), ldb, c_loc(X(1)), ldx, lwork)
+      ZZgesv_bufferSize = hipsolverZZgesv_bufferSize_raw(handle, n, nrhs, c_loc(A), lda, c_loc( &
+        devIpiv), c_loc(B), ldb, c_loc(X), ldx, lwork)
     end function hipsolverZZgesv_bufferSize_native
 
     function hipsolverZZgesv_bufferSize_typed(handle, n, nrhs, A, lda, devIpiv, B, ldb, X, ldx, &
@@ -18619,20 +18532,20 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: n
       integer(c_int), value :: nrhs
-      real(c_float), target :: A(*)
+      real(c_float), target :: A(..)
       integer(c_int), value :: lda
-      integer(c_int), target :: devIpiv(*)
-      real(c_float), target :: B(*)
+      integer(c_int), target :: devIpiv(..)
+      real(c_float), target :: B(..)
       integer(c_int), value :: ldb
-      real(c_float), target :: X(*)
+      real(c_float), target :: X(..)
       integer(c_int), value :: ldx
       type(c_ptr), value :: work
       integer(c_long), value :: lwork
-      integer(c_int), target :: niters(*)
-      integer(c_int), target :: devInfo(*)
+      integer(c_int), target :: niters(..)
+      integer(c_int) :: devInfo
       integer(c_int) :: SSgesv
-      SSgesv = hipsolverSSgesv_raw(handle, n, nrhs, c_loc(A(1)), lda, c_loc(devIpiv(1)), c_loc(B( &
-        1)), ldb, c_loc(X(1)), ldx, work, lwork, c_loc(niters(1)), c_loc(devInfo(1)))
+      SSgesv = hipsolverSSgesv_raw(handle, n, nrhs, c_loc(A), lda, c_loc(devIpiv), c_loc(B), ldb, &
+        c_loc(X), ldx, work, lwork, c_loc(niters), devInfo)
     end function hipsolverSSgesv_native
 
     function hipsolverSSgesv_typed(handle, n, nrhs, A, lda, devIpiv, B, ldb, X, ldx, work, lwork, &
@@ -18653,7 +18566,7 @@ contains
       type(c_ptr), value :: work
       integer(c_long), value :: lwork
       type(c_ptr), value :: niters
-      type(c_ptr), value :: devInfo
+      integer(c_int) :: devInfo
       integer(c_int) :: SSgesv
       SSgesv = hipsolverSSgesv_raw(handle%ptr, n, nrhs, A, lda, devIpiv, B, ldb, X, ldx, work, &
         lwork, niters, devInfo)
@@ -18666,20 +18579,20 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: n
       integer(c_int), value :: nrhs
-      real(c_double), target :: A(*)
+      real(c_double), target :: A(..)
       integer(c_int), value :: lda
-      integer(c_int), target :: devIpiv(*)
-      real(c_double), target :: B(*)
+      integer(c_int), target :: devIpiv(..)
+      real(c_double), target :: B(..)
       integer(c_int), value :: ldb
-      real(c_double), target :: X(*)
+      real(c_double), target :: X(..)
       integer(c_int), value :: ldx
       type(c_ptr), value :: work
       integer(c_long), value :: lwork
-      integer(c_int), target :: niters(*)
-      integer(c_int), target :: devInfo(*)
+      integer(c_int), target :: niters(..)
+      integer(c_int) :: devInfo
       integer(c_int) :: DDgesv
-      DDgesv = hipsolverDDgesv_raw(handle, n, nrhs, c_loc(A(1)), lda, c_loc(devIpiv(1)), c_loc(B( &
-        1)), ldb, c_loc(X(1)), ldx, work, lwork, c_loc(niters(1)), c_loc(devInfo(1)))
+      DDgesv = hipsolverDDgesv_raw(handle, n, nrhs, c_loc(A), lda, c_loc(devIpiv), c_loc(B), ldb, &
+        c_loc(X), ldx, work, lwork, c_loc(niters), devInfo)
     end function hipsolverDDgesv_native
 
     function hipsolverDDgesv_typed(handle, n, nrhs, A, lda, devIpiv, B, ldb, X, ldx, work, lwork, &
@@ -18700,7 +18613,7 @@ contains
       type(c_ptr), value :: work
       integer(c_long), value :: lwork
       type(c_ptr), value :: niters
-      type(c_ptr), value :: devInfo
+      integer(c_int) :: devInfo
       integer(c_int) :: DDgesv
       DDgesv = hipsolverDDgesv_raw(handle%ptr, n, nrhs, A, lda, devIpiv, B, ldb, X, ldx, work, &
         lwork, niters, devInfo)
@@ -18713,20 +18626,20 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: n
       integer(c_int), value :: nrhs
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: A(..)
       integer(c_int), value :: lda
-      integer(c_int), target :: devIpiv(*)
-      complex(c_float_complex), target :: B(*)
+      integer(c_int), target :: devIpiv(..)
+      complex(c_float_complex), target :: B(..)
       integer(c_int), value :: ldb
-      complex(c_float_complex), target :: X(*)
+      complex(c_float_complex), target :: X(..)
       integer(c_int), value :: ldx
       type(c_ptr), value :: work
       integer(c_long), value :: lwork
-      integer(c_int), target :: niters(*)
-      integer(c_int), target :: devInfo(*)
+      integer(c_int), target :: niters(..)
+      integer(c_int) :: devInfo
       integer(c_int) :: CCgesv
-      CCgesv = hipsolverCCgesv_raw(handle, n, nrhs, c_loc(A(1)), lda, c_loc(devIpiv(1)), c_loc(B( &
-        1)), ldb, c_loc(X(1)), ldx, work, lwork, c_loc(niters(1)), c_loc(devInfo(1)))
+      CCgesv = hipsolverCCgesv_raw(handle, n, nrhs, c_loc(A), lda, c_loc(devIpiv), c_loc(B), ldb, &
+        c_loc(X), ldx, work, lwork, c_loc(niters), devInfo)
     end function hipsolverCCgesv_native
 
     function hipsolverCCgesv_typed(handle, n, nrhs, A, lda, devIpiv, B, ldb, X, ldx, work, lwork, &
@@ -18747,7 +18660,7 @@ contains
       type(c_ptr), value :: work
       integer(c_long), value :: lwork
       type(c_ptr), value :: niters
-      type(c_ptr), value :: devInfo
+      integer(c_int) :: devInfo
       integer(c_int) :: CCgesv
       CCgesv = hipsolverCCgesv_raw(handle%ptr, n, nrhs, A, lda, devIpiv, B, ldb, X, ldx, work, &
         lwork, niters, devInfo)
@@ -18760,20 +18673,20 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: n
       integer(c_int), value :: nrhs
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: A(..)
       integer(c_int), value :: lda
-      integer(c_int), target :: devIpiv(*)
-      complex(c_double_complex), target :: B(*)
+      integer(c_int), target :: devIpiv(..)
+      complex(c_double_complex), target :: B(..)
       integer(c_int), value :: ldb
-      complex(c_double_complex), target :: X(*)
+      complex(c_double_complex), target :: X(..)
       integer(c_int), value :: ldx
       type(c_ptr), value :: work
       integer(c_long), value :: lwork
-      integer(c_int), target :: niters(*)
-      integer(c_int), target :: devInfo(*)
+      integer(c_int), target :: niters(..)
+      integer(c_int) :: devInfo
       integer(c_int) :: ZZgesv
-      ZZgesv = hipsolverZZgesv_raw(handle, n, nrhs, c_loc(A(1)), lda, c_loc(devIpiv(1)), c_loc(B( &
-        1)), ldb, c_loc(X(1)), ldx, work, lwork, c_loc(niters(1)), c_loc(devInfo(1)))
+      ZZgesv = hipsolverZZgesv_raw(handle, n, nrhs, c_loc(A), lda, c_loc(devIpiv), c_loc(B), ldb, &
+        c_loc(X), ldx, work, lwork, c_loc(niters), devInfo)
     end function hipsolverZZgesv_native
 
     function hipsolverZZgesv_typed(handle, n, nrhs, A, lda, devIpiv, B, ldb, X, ldx, work, lwork, &
@@ -18794,7 +18707,7 @@ contains
       type(c_ptr), value :: work
       integer(c_long), value :: lwork
       type(c_ptr), value :: niters
-      type(c_ptr), value :: devInfo
+      integer(c_int) :: devInfo
       integer(c_int) :: ZZgesv
       ZZgesv = hipsolverZZgesv_raw(handle%ptr, n, nrhs, A, lda, devIpiv, B, ldb, X, ldx, work, &
         lwork, niters, devInfo)
@@ -18809,9 +18722,9 @@ contains
       type(c_ptr), value :: jobv
       integer(c_int), value :: m
       integer(c_int), value :: n
-      integer(c_int), target :: lwork(*)
+      integer(c_int), target :: lwork(..)
       integer(c_int) :: Sgesvd_bufferSize
-      Sgesvd_bufferSize = hipsolverSgesvd_bufferSize_raw(handle, jobu, jobv, m, n, c_loc(lwork(1)))
+      Sgesvd_bufferSize = hipsolverSgesvd_bufferSize_raw(handle, jobu, jobv, m, n, c_loc(lwork))
     end function hipsolverSgesvd_bufferSize_native
 
     function hipsolverSgesvd_bufferSize_typed(handle, jobu, jobv, m, n, lwork) result( &
@@ -18838,9 +18751,9 @@ contains
       type(c_ptr), value :: jobv
       integer(c_int), value :: m
       integer(c_int), value :: n
-      integer(c_int), target :: lwork(*)
+      integer(c_int), target :: lwork(..)
       integer(c_int) :: Dgesvd_bufferSize
-      Dgesvd_bufferSize = hipsolverDgesvd_bufferSize_raw(handle, jobu, jobv, m, n, c_loc(lwork(1)))
+      Dgesvd_bufferSize = hipsolverDgesvd_bufferSize_raw(handle, jobu, jobv, m, n, c_loc(lwork))
     end function hipsolverDgesvd_bufferSize_native
 
     function hipsolverDgesvd_bufferSize_typed(handle, jobu, jobv, m, n, lwork) result( &
@@ -18867,9 +18780,9 @@ contains
       type(c_ptr), value :: jobv
       integer(c_int), value :: m
       integer(c_int), value :: n
-      integer(c_int), target :: lwork(*)
+      integer(c_int), target :: lwork(..)
       integer(c_int) :: Cgesvd_bufferSize
-      Cgesvd_bufferSize = hipsolverCgesvd_bufferSize_raw(handle, jobu, jobv, m, n, c_loc(lwork(1)))
+      Cgesvd_bufferSize = hipsolverCgesvd_bufferSize_raw(handle, jobu, jobv, m, n, c_loc(lwork))
     end function hipsolverCgesvd_bufferSize_native
 
     function hipsolverCgesvd_bufferSize_typed(handle, jobu, jobv, m, n, lwork) result( &
@@ -18896,9 +18809,9 @@ contains
       type(c_ptr), value :: jobv
       integer(c_int), value :: m
       integer(c_int), value :: n
-      integer(c_int), target :: lwork(*)
+      integer(c_int), target :: lwork(..)
       integer(c_int) :: Zgesvd_bufferSize
-      Zgesvd_bufferSize = hipsolverZgesvd_bufferSize_raw(handle, jobu, jobv, m, n, c_loc(lwork(1)))
+      Zgesvd_bufferSize = hipsolverZgesvd_bufferSize_raw(handle, jobu, jobv, m, n, c_loc(lwork))
     end function hipsolverZgesvd_bufferSize_native
 
     function hipsolverZgesvd_bufferSize_typed(handle, jobu, jobv, m, n, lwork) result( &
@@ -18925,20 +18838,20 @@ contains
       type(c_ptr), value :: jobv
       integer(c_int), value :: m
       integer(c_int), value :: n
-      real(c_float), target :: A(*)
+      real(c_float), target :: A(..)
       integer(c_int), value :: lda
-      real(c_float), target :: S(*)
-      real(c_float), target :: U(*)
+      real(c_float), target :: S(..)
+      real(c_float), target :: U(..)
       integer(c_int), value :: ldu
-      real(c_float), target :: V(*)
+      real(c_float), target :: V(..)
       integer(c_int), value :: ldv
-      real(c_float), target :: work(*)
+      type(c_ptr), value :: work
       integer(c_int), value :: lwork
-      real(c_float), target :: rwork(*)
-      integer(c_int), target :: devInfo(*)
+      real(c_float), target :: rwork(..)
+      integer(c_int), target :: devInfo(..)
       integer(c_int) :: Sgesvd
-      Sgesvd = hipsolverSgesvd_raw(handle, jobu, jobv, m, n, c_loc(A(1)), lda, c_loc(S(1)), c_loc( &
-        U(1)), ldu, c_loc(V(1)), ldv, c_loc(work(1)), lwork, c_loc(rwork(1)), c_loc(devInfo(1)))
+      Sgesvd = hipsolverSgesvd_raw(handle, jobu, jobv, m, n, c_loc(A), lda, c_loc(S), c_loc(U), &
+        ldu, c_loc(V), ldv, work, lwork, c_loc(rwork), c_loc(devInfo))
     end function hipsolverSgesvd_native
 
     function hipsolverSgesvd_typed(handle, jobu, jobv, m, n, A, lda, S, U, ldu, V, ldv, work, &
@@ -18976,20 +18889,20 @@ contains
       type(c_ptr), value :: jobv
       integer(c_int), value :: m
       integer(c_int), value :: n
-      real(c_double), target :: A(*)
+      real(c_double), target :: A(..)
       integer(c_int), value :: lda
-      real(c_double), target :: S(*)
-      real(c_double), target :: U(*)
+      real(c_double), target :: S(..)
+      real(c_double), target :: U(..)
       integer(c_int), value :: ldu
-      real(c_double), target :: V(*)
+      real(c_double), target :: V(..)
       integer(c_int), value :: ldv
-      real(c_double), target :: work(*)
+      type(c_ptr), value :: work
       integer(c_int), value :: lwork
-      real(c_double), target :: rwork(*)
-      integer(c_int), target :: devInfo(*)
+      real(c_double), target :: rwork(..)
+      integer(c_int), target :: devInfo(..)
       integer(c_int) :: Dgesvd
-      Dgesvd = hipsolverDgesvd_raw(handle, jobu, jobv, m, n, c_loc(A(1)), lda, c_loc(S(1)), c_loc( &
-        U(1)), ldu, c_loc(V(1)), ldv, c_loc(work(1)), lwork, c_loc(rwork(1)), c_loc(devInfo(1)))
+      Dgesvd = hipsolverDgesvd_raw(handle, jobu, jobv, m, n, c_loc(A), lda, c_loc(S), c_loc(U), &
+        ldu, c_loc(V), ldv, work, lwork, c_loc(rwork), c_loc(devInfo))
     end function hipsolverDgesvd_native
 
     function hipsolverDgesvd_typed(handle, jobu, jobv, m, n, A, lda, S, U, ldu, V, ldv, work, &
@@ -19027,20 +18940,20 @@ contains
       type(c_ptr), value :: jobv
       integer(c_int), value :: m
       integer(c_int), value :: n
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: A(..)
       integer(c_int), value :: lda
-      real(c_float), target :: S(*)
-      complex(c_float_complex), target :: U(*)
+      real(c_float), target :: S(..)
+      complex(c_float_complex), target :: U(..)
       integer(c_int), value :: ldu
-      complex(c_float_complex), target :: V(*)
+      complex(c_float_complex), target :: V(..)
       integer(c_int), value :: ldv
-      complex(c_float_complex), target :: work(*)
+      type(c_ptr), value :: work
       integer(c_int), value :: lwork
-      real(c_float), target :: rwork(*)
-      integer(c_int), target :: devInfo(*)
+      real(c_float), target :: rwork(..)
+      integer(c_int), target :: devInfo(..)
       integer(c_int) :: Cgesvd
-      Cgesvd = hipsolverCgesvd_raw(handle, jobu, jobv, m, n, c_loc(A(1)), lda, c_loc(S(1)), c_loc( &
-        U(1)), ldu, c_loc(V(1)), ldv, c_loc(work(1)), lwork, c_loc(rwork(1)), c_loc(devInfo(1)))
+      Cgesvd = hipsolverCgesvd_raw(handle, jobu, jobv, m, n, c_loc(A), lda, c_loc(S), c_loc(U), &
+        ldu, c_loc(V), ldv, work, lwork, c_loc(rwork), c_loc(devInfo))
     end function hipsolverCgesvd_native
 
     function hipsolverCgesvd_typed(handle, jobu, jobv, m, n, A, lda, S, U, ldu, V, ldv, work, &
@@ -19078,20 +18991,20 @@ contains
       type(c_ptr), value :: jobv
       integer(c_int), value :: m
       integer(c_int), value :: n
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: A(..)
       integer(c_int), value :: lda
-      real(c_double), target :: S(*)
-      complex(c_double_complex), target :: U(*)
+      real(c_double), target :: S(..)
+      complex(c_double_complex), target :: U(..)
       integer(c_int), value :: ldu
-      complex(c_double_complex), target :: V(*)
+      complex(c_double_complex), target :: V(..)
       integer(c_int), value :: ldv
-      complex(c_double_complex), target :: work(*)
+      type(c_ptr), value :: work
       integer(c_int), value :: lwork
-      real(c_double), target :: rwork(*)
-      integer(c_int), target :: devInfo(*)
+      real(c_double), target :: rwork(..)
+      integer(c_int), target :: devInfo(..)
       integer(c_int) :: Zgesvd
-      Zgesvd = hipsolverZgesvd_raw(handle, jobu, jobv, m, n, c_loc(A(1)), lda, c_loc(S(1)), c_loc( &
-        U(1)), ldu, c_loc(V(1)), ldv, c_loc(work(1)), lwork, c_loc(rwork(1)), c_loc(devInfo(1)))
+      Zgesvd = hipsolverZgesvd_raw(handle, jobu, jobv, m, n, c_loc(A), lda, c_loc(S), c_loc(U), &
+        ldu, c_loc(V), ldv, work, lwork, c_loc(rwork), c_loc(devInfo))
     end function hipsolverZgesvd_native
 
     function hipsolverZgesvd_typed(handle, jobu, jobv, m, n, A, lda, S, U, ldu, V, ldv, work, &
@@ -19129,18 +19042,18 @@ contains
       integer(c_int), value :: econ
       integer(c_int), value :: m
       integer(c_int), value :: n
-      real(c_float), target :: A(*)
+      real(c_float), target :: A(..)
       integer(c_int), value :: lda
-      real(c_float), target :: S(*)
-      real(c_float), target :: U(*)
+      real(c_float), target :: S(..)
+      real(c_float), target :: U(..)
       integer(c_int), value :: ldu
-      real(c_float), target :: V(*)
+      real(c_float), target :: V(..)
       integer(c_int), value :: ldv
       integer(c_int) :: lwork
       type(c_ptr), value :: params
       integer(c_int) :: Sgesvdj_bufferSize
-      Sgesvdj_bufferSize = hipsolverSgesvdj_bufferSize_raw(handle, jobz, econ, m, n, c_loc(A(1)), &
-        lda, c_loc(S(1)), c_loc(U(1)), ldu, c_loc(V(1)), ldv, lwork, params)
+      Sgesvdj_bufferSize = hipsolverSgesvdj_bufferSize_raw(handle, jobz, econ, m, n, c_loc(A), &
+        lda, c_loc(S), c_loc(U), ldu, c_loc(V), ldv, lwork, params)
     end function hipsolverSgesvdj_bufferSize_native
 
     function hipsolverSgesvdj_bufferSize_typed(handle, jobz, econ, m, n, A, lda, S, U, ldu, V, &
@@ -19176,18 +19089,18 @@ contains
       integer(c_int), value :: econ
       integer(c_int), value :: m
       integer(c_int), value :: n
-      real(c_double), target :: A(*)
+      real(c_double), target :: A(..)
       integer(c_int), value :: lda
-      real(c_double), target :: S(*)
-      real(c_double), target :: U(*)
+      real(c_double), target :: S(..)
+      real(c_double), target :: U(..)
       integer(c_int), value :: ldu
-      real(c_double), target :: V(*)
+      real(c_double), target :: V(..)
       integer(c_int), value :: ldv
       integer(c_int) :: lwork
       type(c_ptr), value :: params
       integer(c_int) :: Dgesvdj_bufferSize
-      Dgesvdj_bufferSize = hipsolverDgesvdj_bufferSize_raw(handle, jobz, econ, m, n, c_loc(A(1)), &
-        lda, c_loc(S(1)), c_loc(U(1)), ldu, c_loc(V(1)), ldv, lwork, params)
+      Dgesvdj_bufferSize = hipsolverDgesvdj_bufferSize_raw(handle, jobz, econ, m, n, c_loc(A), &
+        lda, c_loc(S), c_loc(U), ldu, c_loc(V), ldv, lwork, params)
     end function hipsolverDgesvdj_bufferSize_native
 
     function hipsolverDgesvdj_bufferSize_typed(handle, jobz, econ, m, n, A, lda, S, U, ldu, V, &
@@ -19223,18 +19136,18 @@ contains
       integer(c_int), value :: econ
       integer(c_int), value :: m
       integer(c_int), value :: n
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: A(..)
       integer(c_int), value :: lda
-      real(c_float), target :: S(*)
-      complex(c_float_complex), target :: U(*)
+      real(c_float), target :: S(..)
+      complex(c_float_complex), target :: U(..)
       integer(c_int), value :: ldu
-      complex(c_float_complex), target :: V(*)
+      complex(c_float_complex), target :: V(..)
       integer(c_int), value :: ldv
       integer(c_int) :: lwork
       type(c_ptr), value :: params
       integer(c_int) :: Cgesvdj_bufferSize
-      Cgesvdj_bufferSize = hipsolverCgesvdj_bufferSize_raw(handle, jobz, econ, m, n, c_loc(A(1)), &
-        lda, c_loc(S(1)), c_loc(U(1)), ldu, c_loc(V(1)), ldv, lwork, params)
+      Cgesvdj_bufferSize = hipsolverCgesvdj_bufferSize_raw(handle, jobz, econ, m, n, c_loc(A), &
+        lda, c_loc(S), c_loc(U), ldu, c_loc(V), ldv, lwork, params)
     end function hipsolverCgesvdj_bufferSize_native
 
     function hipsolverCgesvdj_bufferSize_typed(handle, jobz, econ, m, n, A, lda, S, U, ldu, V, &
@@ -19270,18 +19183,18 @@ contains
       integer(c_int), value :: econ
       integer(c_int), value :: m
       integer(c_int), value :: n
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: A(..)
       integer(c_int), value :: lda
-      real(c_double), target :: S(*)
-      complex(c_double_complex), target :: U(*)
+      real(c_double), target :: S(..)
+      complex(c_double_complex), target :: U(..)
       integer(c_int), value :: ldu
-      complex(c_double_complex), target :: V(*)
+      complex(c_double_complex), target :: V(..)
       integer(c_int), value :: ldv
       integer(c_int) :: lwork
       type(c_ptr), value :: params
       integer(c_int) :: Zgesvdj_bufferSize
-      Zgesvdj_bufferSize = hipsolverZgesvdj_bufferSize_raw(handle, jobz, econ, m, n, c_loc(A(1)), &
-        lda, c_loc(S(1)), c_loc(U(1)), ldu, c_loc(V(1)), ldv, lwork, params)
+      Zgesvdj_bufferSize = hipsolverZgesvdj_bufferSize_raw(handle, jobz, econ, m, n, c_loc(A), &
+        lda, c_loc(S), c_loc(U), ldu, c_loc(V), ldv, lwork, params)
     end function hipsolverZgesvdj_bufferSize_native
 
     function hipsolverZgesvdj_bufferSize_typed(handle, jobz, econ, m, n, A, lda, S, U, ldu, V, &
@@ -19317,20 +19230,20 @@ contains
       integer(c_int), value :: econ
       integer(c_int), value :: m
       integer(c_int), value :: n
-      real(c_float), target :: A(*)
+      real(c_float), target :: A(..)
       integer(c_int), value :: lda
-      real(c_float), target :: S(*)
-      real(c_float), target :: U(*)
+      real(c_float), target :: S(..)
+      real(c_float), target :: U(..)
       integer(c_int), value :: ldu
-      real(c_float), target :: V(*)
+      real(c_float), target :: V(..)
       integer(c_int), value :: ldv
-      real(c_float), target :: work(*)
+      type(c_ptr), value :: work
       integer(c_int), value :: lwork
       integer(c_int) :: devInfo
       type(c_ptr), value :: params
       integer(c_int) :: Sgesvdj
-      Sgesvdj = hipsolverSgesvdj_raw(handle, jobz, econ, m, n, c_loc(A(1)), lda, c_loc(S(1)), &
-        c_loc(U(1)), ldu, c_loc(V(1)), ldv, c_loc(work(1)), lwork, devInfo, params)
+      Sgesvdj = hipsolverSgesvdj_raw(handle, jobz, econ, m, n, c_loc(A), lda, c_loc(S), c_loc(U), &
+        ldu, c_loc(V), ldv, work, lwork, devInfo, params)
     end function hipsolverSgesvdj_native
 
     function hipsolverSgesvdj_typed(handle, jobz, econ, m, n, A, lda, S, U, ldu, V, ldv, work, &
@@ -19368,20 +19281,20 @@ contains
       integer(c_int), value :: econ
       integer(c_int), value :: m
       integer(c_int), value :: n
-      real(c_double), target :: A(*)
+      real(c_double), target :: A(..)
       integer(c_int), value :: lda
-      real(c_double), target :: S(*)
-      real(c_double), target :: U(*)
+      real(c_double), target :: S(..)
+      real(c_double), target :: U(..)
       integer(c_int), value :: ldu
-      real(c_double), target :: V(*)
+      real(c_double), target :: V(..)
       integer(c_int), value :: ldv
-      real(c_double), target :: work(*)
+      type(c_ptr), value :: work
       integer(c_int), value :: lwork
       integer(c_int) :: devInfo
       type(c_ptr), value :: params
       integer(c_int) :: Dgesvdj
-      Dgesvdj = hipsolverDgesvdj_raw(handle, jobz, econ, m, n, c_loc(A(1)), lda, c_loc(S(1)), &
-        c_loc(U(1)), ldu, c_loc(V(1)), ldv, c_loc(work(1)), lwork, devInfo, params)
+      Dgesvdj = hipsolverDgesvdj_raw(handle, jobz, econ, m, n, c_loc(A), lda, c_loc(S), c_loc(U), &
+        ldu, c_loc(V), ldv, work, lwork, devInfo, params)
     end function hipsolverDgesvdj_native
 
     function hipsolverDgesvdj_typed(handle, jobz, econ, m, n, A, lda, S, U, ldu, V, ldv, work, &
@@ -19419,20 +19332,20 @@ contains
       integer(c_int), value :: econ
       integer(c_int), value :: m
       integer(c_int), value :: n
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: A(..)
       integer(c_int), value :: lda
-      real(c_float), target :: S(*)
-      complex(c_float_complex), target :: U(*)
+      real(c_float), target :: S(..)
+      complex(c_float_complex), target :: U(..)
       integer(c_int), value :: ldu
-      complex(c_float_complex), target :: V(*)
+      complex(c_float_complex), target :: V(..)
       integer(c_int), value :: ldv
-      complex(c_float_complex), target :: work(*)
+      type(c_ptr), value :: work
       integer(c_int), value :: lwork
       integer(c_int) :: devInfo
       type(c_ptr), value :: params
       integer(c_int) :: Cgesvdj
-      Cgesvdj = hipsolverCgesvdj_raw(handle, jobz, econ, m, n, c_loc(A(1)), lda, c_loc(S(1)), &
-        c_loc(U(1)), ldu, c_loc(V(1)), ldv, c_loc(work(1)), lwork, devInfo, params)
+      Cgesvdj = hipsolverCgesvdj_raw(handle, jobz, econ, m, n, c_loc(A), lda, c_loc(S), c_loc(U), &
+        ldu, c_loc(V), ldv, work, lwork, devInfo, params)
     end function hipsolverCgesvdj_native
 
     function hipsolverCgesvdj_typed(handle, jobz, econ, m, n, A, lda, S, U, ldu, V, ldv, work, &
@@ -19470,20 +19383,20 @@ contains
       integer(c_int), value :: econ
       integer(c_int), value :: m
       integer(c_int), value :: n
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: A(..)
       integer(c_int), value :: lda
-      real(c_double), target :: S(*)
-      complex(c_double_complex), target :: U(*)
+      real(c_double), target :: S(..)
+      complex(c_double_complex), target :: U(..)
       integer(c_int), value :: ldu
-      complex(c_double_complex), target :: V(*)
+      complex(c_double_complex), target :: V(..)
       integer(c_int), value :: ldv
-      complex(c_double_complex), target :: work(*)
+      type(c_ptr), value :: work
       integer(c_int), value :: lwork
       integer(c_int) :: devInfo
       type(c_ptr), value :: params
       integer(c_int) :: Zgesvdj
-      Zgesvdj = hipsolverZgesvdj_raw(handle, jobz, econ, m, n, c_loc(A(1)), lda, c_loc(S(1)), &
-        c_loc(U(1)), ldu, c_loc(V(1)), ldv, c_loc(work(1)), lwork, devInfo, params)
+      Zgesvdj = hipsolverZgesvdj_raw(handle, jobz, econ, m, n, c_loc(A), lda, c_loc(S), c_loc(U), &
+        ldu, c_loc(V), ldv, work, lwork, devInfo, params)
     end function hipsolverZgesvdj_native
 
     function hipsolverZgesvdj_typed(handle, jobz, econ, m, n, A, lda, S, U, ldu, V, ldv, work, &
@@ -19520,20 +19433,19 @@ contains
       integer(c_int), value :: jobz
       integer(c_int), value :: m
       integer(c_int), value :: n
-      real(c_float), target :: A(*)
+      real(c_float), target :: A(..)
       integer(c_int), value :: lda
-      real(c_float), target :: S(*)
-      real(c_float), target :: U(*)
+      real(c_float), target :: S(..)
+      real(c_float), target :: U(..)
       integer(c_int), value :: ldu
-      real(c_float), target :: V(*)
+      real(c_float), target :: V(..)
       integer(c_int), value :: ldv
       integer(c_int) :: lwork
       type(c_ptr), value :: params
       integer(c_int), value :: batch_count
       integer(c_int) :: SgesvdjBatched_bufferSize
       SgesvdjBatched_bufferSize = hipsolverSgesvdjBatched_bufferSize_raw(handle, jobz, m, n, &
-        c_loc(A(1)), lda, c_loc(S(1)), c_loc(U(1)), ldu, c_loc(V(1)), ldv, lwork, params, &
-        batch_count)
+        c_loc(A), lda, c_loc(S), c_loc(U), ldu, c_loc(V), ldv, lwork, params, batch_count)
     end function hipsolverSgesvdjBatched_bufferSize_native
 
     function hipsolverSgesvdjBatched_bufferSize_typed(handle, jobz, m, n, A, lda, S, U, ldu, V, &
@@ -19568,20 +19480,19 @@ contains
       integer(c_int), value :: jobz
       integer(c_int), value :: m
       integer(c_int), value :: n
-      real(c_double), target :: A(*)
+      real(c_double), target :: A(..)
       integer(c_int), value :: lda
-      real(c_double), target :: S(*)
-      real(c_double), target :: U(*)
+      real(c_double), target :: S(..)
+      real(c_double), target :: U(..)
       integer(c_int), value :: ldu
-      real(c_double), target :: V(*)
+      real(c_double), target :: V(..)
       integer(c_int), value :: ldv
       integer(c_int) :: lwork
       type(c_ptr), value :: params
       integer(c_int), value :: batch_count
       integer(c_int) :: DgesvdjBatched_bufferSize
       DgesvdjBatched_bufferSize = hipsolverDgesvdjBatched_bufferSize_raw(handle, jobz, m, n, &
-        c_loc(A(1)), lda, c_loc(S(1)), c_loc(U(1)), ldu, c_loc(V(1)), ldv, lwork, params, &
-        batch_count)
+        c_loc(A), lda, c_loc(S), c_loc(U), ldu, c_loc(V), ldv, lwork, params, batch_count)
     end function hipsolverDgesvdjBatched_bufferSize_native
 
     function hipsolverDgesvdjBatched_bufferSize_typed(handle, jobz, m, n, A, lda, S, U, ldu, V, &
@@ -19616,20 +19527,19 @@ contains
       integer(c_int), value :: jobz
       integer(c_int), value :: m
       integer(c_int), value :: n
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: A(..)
       integer(c_int), value :: lda
-      real(c_float), target :: S(*)
-      complex(c_float_complex), target :: U(*)
+      real(c_float), target :: S(..)
+      complex(c_float_complex), target :: U(..)
       integer(c_int), value :: ldu
-      complex(c_float_complex), target :: V(*)
+      complex(c_float_complex), target :: V(..)
       integer(c_int), value :: ldv
       integer(c_int) :: lwork
       type(c_ptr), value :: params
       integer(c_int), value :: batch_count
       integer(c_int) :: CgesvdjBatched_bufferSize
       CgesvdjBatched_bufferSize = hipsolverCgesvdjBatched_bufferSize_raw(handle, jobz, m, n, &
-        c_loc(A(1)), lda, c_loc(S(1)), c_loc(U(1)), ldu, c_loc(V(1)), ldv, lwork, params, &
-        batch_count)
+        c_loc(A), lda, c_loc(S), c_loc(U), ldu, c_loc(V), ldv, lwork, params, batch_count)
     end function hipsolverCgesvdjBatched_bufferSize_native
 
     function hipsolverCgesvdjBatched_bufferSize_typed(handle, jobz, m, n, A, lda, S, U, ldu, V, &
@@ -19664,20 +19574,19 @@ contains
       integer(c_int), value :: jobz
       integer(c_int), value :: m
       integer(c_int), value :: n
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: A(..)
       integer(c_int), value :: lda
-      real(c_double), target :: S(*)
-      complex(c_double_complex), target :: U(*)
+      real(c_double), target :: S(..)
+      complex(c_double_complex), target :: U(..)
       integer(c_int), value :: ldu
-      complex(c_double_complex), target :: V(*)
+      complex(c_double_complex), target :: V(..)
       integer(c_int), value :: ldv
       integer(c_int) :: lwork
       type(c_ptr), value :: params
       integer(c_int), value :: batch_count
       integer(c_int) :: ZgesvdjBatched_bufferSize
       ZgesvdjBatched_bufferSize = hipsolverZgesvdjBatched_bufferSize_raw(handle, jobz, m, n, &
-        c_loc(A(1)), lda, c_loc(S(1)), c_loc(U(1)), ldu, c_loc(V(1)), ldv, lwork, params, &
-        batch_count)
+        c_loc(A), lda, c_loc(S), c_loc(U), ldu, c_loc(V), ldv, lwork, params, batch_count)
     end function hipsolverZgesvdjBatched_bufferSize_native
 
     function hipsolverZgesvdjBatched_bufferSize_typed(handle, jobz, m, n, A, lda, S, U, ldu, V, &
@@ -19712,22 +19621,21 @@ contains
       integer(c_int), value :: jobz
       integer(c_int), value :: m
       integer(c_int), value :: n
-      real(c_float), target :: A(*)
+      real(c_float), target :: A(..)
       integer(c_int), value :: lda
-      real(c_float), target :: S(*)
-      real(c_float), target :: U(*)
+      real(c_float), target :: S(..)
+      real(c_float), target :: U(..)
       integer(c_int), value :: ldu
-      real(c_float), target :: V(*)
+      real(c_float), target :: V(..)
       integer(c_int), value :: ldv
-      real(c_float), target :: work(*)
+      type(c_ptr), value :: work
       integer(c_int), value :: lwork
       integer(c_int) :: devInfo
       type(c_ptr), value :: params
       integer(c_int), value :: batch_count
       integer(c_int) :: SgesvdjBatched
-      SgesvdjBatched = hipsolverSgesvdjBatched_raw(handle, jobz, m, n, c_loc(A(1)), lda, c_loc(S( &
-        1)), c_loc(U(1)), ldu, c_loc(V(1)), ldv, c_loc(work(1)), lwork, devInfo, params, &
-        batch_count)
+      SgesvdjBatched = hipsolverSgesvdjBatched_raw(handle, jobz, m, n, c_loc(A), lda, c_loc(S), &
+        c_loc(U), ldu, c_loc(V), ldv, work, lwork, devInfo, params, batch_count)
     end function hipsolverSgesvdjBatched_native
 
     function hipsolverSgesvdjBatched_typed(handle, jobz, m, n, A, lda, S, U, ldu, V, ldv, work, &
@@ -19764,22 +19672,21 @@ contains
       integer(c_int), value :: jobz
       integer(c_int), value :: m
       integer(c_int), value :: n
-      real(c_double), target :: A(*)
+      real(c_double), target :: A(..)
       integer(c_int), value :: lda
-      real(c_double), target :: S(*)
-      real(c_double), target :: U(*)
+      real(c_double), target :: S(..)
+      real(c_double), target :: U(..)
       integer(c_int), value :: ldu
-      real(c_double), target :: V(*)
+      real(c_double), target :: V(..)
       integer(c_int), value :: ldv
-      real(c_double), target :: work(*)
+      type(c_ptr), value :: work
       integer(c_int), value :: lwork
       integer(c_int) :: devInfo
       type(c_ptr), value :: params
       integer(c_int), value :: batch_count
       integer(c_int) :: DgesvdjBatched
-      DgesvdjBatched = hipsolverDgesvdjBatched_raw(handle, jobz, m, n, c_loc(A(1)), lda, c_loc(S( &
-        1)), c_loc(U(1)), ldu, c_loc(V(1)), ldv, c_loc(work(1)), lwork, devInfo, params, &
-        batch_count)
+      DgesvdjBatched = hipsolverDgesvdjBatched_raw(handle, jobz, m, n, c_loc(A), lda, c_loc(S), &
+        c_loc(U), ldu, c_loc(V), ldv, work, lwork, devInfo, params, batch_count)
     end function hipsolverDgesvdjBatched_native
 
     function hipsolverDgesvdjBatched_typed(handle, jobz, m, n, A, lda, S, U, ldu, V, ldv, work, &
@@ -19816,22 +19723,21 @@ contains
       integer(c_int), value :: jobz
       integer(c_int), value :: m
       integer(c_int), value :: n
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: A(..)
       integer(c_int), value :: lda
-      real(c_float), target :: S(*)
-      complex(c_float_complex), target :: U(*)
+      real(c_float), target :: S(..)
+      complex(c_float_complex), target :: U(..)
       integer(c_int), value :: ldu
-      complex(c_float_complex), target :: V(*)
+      complex(c_float_complex), target :: V(..)
       integer(c_int), value :: ldv
-      complex(c_float_complex), target :: work(*)
+      type(c_ptr), value :: work
       integer(c_int), value :: lwork
       integer(c_int) :: devInfo
       type(c_ptr), value :: params
       integer(c_int), value :: batch_count
       integer(c_int) :: CgesvdjBatched
-      CgesvdjBatched = hipsolverCgesvdjBatched_raw(handle, jobz, m, n, c_loc(A(1)), lda, c_loc(S( &
-        1)), c_loc(U(1)), ldu, c_loc(V(1)), ldv, c_loc(work(1)), lwork, devInfo, params, &
-        batch_count)
+      CgesvdjBatched = hipsolverCgesvdjBatched_raw(handle, jobz, m, n, c_loc(A), lda, c_loc(S), &
+        c_loc(U), ldu, c_loc(V), ldv, work, lwork, devInfo, params, batch_count)
     end function hipsolverCgesvdjBatched_native
 
     function hipsolverCgesvdjBatched_typed(handle, jobz, m, n, A, lda, S, U, ldu, V, ldv, work, &
@@ -19868,22 +19774,21 @@ contains
       integer(c_int), value :: jobz
       integer(c_int), value :: m
       integer(c_int), value :: n
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: A(..)
       integer(c_int), value :: lda
-      real(c_double), target :: S(*)
-      complex(c_double_complex), target :: U(*)
+      real(c_double), target :: S(..)
+      complex(c_double_complex), target :: U(..)
       integer(c_int), value :: ldu
-      complex(c_double_complex), target :: V(*)
+      complex(c_double_complex), target :: V(..)
       integer(c_int), value :: ldv
-      complex(c_double_complex), target :: work(*)
+      type(c_ptr), value :: work
       integer(c_int), value :: lwork
       integer(c_int) :: devInfo
       type(c_ptr), value :: params
       integer(c_int), value :: batch_count
       integer(c_int) :: ZgesvdjBatched
-      ZgesvdjBatched = hipsolverZgesvdjBatched_raw(handle, jobz, m, n, c_loc(A(1)), lda, c_loc(S( &
-        1)), c_loc(U(1)), ldu, c_loc(V(1)), ldv, c_loc(work(1)), lwork, devInfo, params, &
-        batch_count)
+      ZgesvdjBatched = hipsolverZgesvdjBatched_raw(handle, jobz, m, n, c_loc(A), lda, c_loc(S), &
+        c_loc(U), ldu, c_loc(V), ldv, work, lwork, devInfo, params, batch_count)
     end function hipsolverZgesvdjBatched_native
 
     function hipsolverZgesvdjBatched_typed(handle, jobz, m, n, A, lda, S, U, ldu, V, ldv, work, &
@@ -19919,12 +19824,11 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: m
       integer(c_int), value :: n
-      real(c_float), target :: A(*)
+      real(c_float), target :: A(..)
       integer(c_int), value :: lda
-      integer(c_int), target :: lwork(*)
+      integer(c_int) :: lwork
       integer(c_int) :: Sgetrf_bufferSize
-      Sgetrf_bufferSize = hipsolverSgetrf_bufferSize_raw(handle, m, n, c_loc(A(1)), lda, c_loc( &
-        lwork(1)))
+      Sgetrf_bufferSize = hipsolverSgetrf_bufferSize_raw(handle, m, n, c_loc(A), lda, lwork)
     end function hipsolverSgetrf_bufferSize_native
 
     function hipsolverSgetrf_bufferSize_typed(handle, m, n, A, lda, lwork) result(Sgetrf_bufferSize)
@@ -19936,7 +19840,7 @@ contains
       integer(c_int), value :: n
       type(c_ptr), value :: A
       integer(c_int), value :: lda
-      type(c_ptr), value :: lwork
+      integer(c_int) :: lwork
       integer(c_int) :: Sgetrf_bufferSize
       Sgetrf_bufferSize = hipsolverSgetrf_bufferSize_raw(handle%ptr, m, n, A, lda, lwork)
     end function hipsolverSgetrf_bufferSize_typed
@@ -19948,12 +19852,11 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: m
       integer(c_int), value :: n
-      real(c_double), target :: A(*)
+      real(c_double), target :: A(..)
       integer(c_int), value :: lda
-      integer(c_int), target :: lwork(*)
+      integer(c_int) :: lwork
       integer(c_int) :: Dgetrf_bufferSize
-      Dgetrf_bufferSize = hipsolverDgetrf_bufferSize_raw(handle, m, n, c_loc(A(1)), lda, c_loc( &
-        lwork(1)))
+      Dgetrf_bufferSize = hipsolverDgetrf_bufferSize_raw(handle, m, n, c_loc(A), lda, lwork)
     end function hipsolverDgetrf_bufferSize_native
 
     function hipsolverDgetrf_bufferSize_typed(handle, m, n, A, lda, lwork) result(Dgetrf_bufferSize)
@@ -19965,7 +19868,7 @@ contains
       integer(c_int), value :: n
       type(c_ptr), value :: A
       integer(c_int), value :: lda
-      type(c_ptr), value :: lwork
+      integer(c_int) :: lwork
       integer(c_int) :: Dgetrf_bufferSize
       Dgetrf_bufferSize = hipsolverDgetrf_bufferSize_raw(handle%ptr, m, n, A, lda, lwork)
     end function hipsolverDgetrf_bufferSize_typed
@@ -19977,12 +19880,11 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: m
       integer(c_int), value :: n
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: A(..)
       integer(c_int), value :: lda
-      integer(c_int), target :: lwork(*)
+      integer(c_int) :: lwork
       integer(c_int) :: Cgetrf_bufferSize
-      Cgetrf_bufferSize = hipsolverCgetrf_bufferSize_raw(handle, m, n, c_loc(A(1)), lda, c_loc( &
-        lwork(1)))
+      Cgetrf_bufferSize = hipsolverCgetrf_bufferSize_raw(handle, m, n, c_loc(A), lda, lwork)
     end function hipsolverCgetrf_bufferSize_native
 
     function hipsolverCgetrf_bufferSize_typed(handle, m, n, A, lda, lwork) result(Cgetrf_bufferSize)
@@ -19994,7 +19896,7 @@ contains
       integer(c_int), value :: n
       type(c_ptr), value :: A
       integer(c_int), value :: lda
-      type(c_ptr), value :: lwork
+      integer(c_int) :: lwork
       integer(c_int) :: Cgetrf_bufferSize
       Cgetrf_bufferSize = hipsolverCgetrf_bufferSize_raw(handle%ptr, m, n, A, lda, lwork)
     end function hipsolverCgetrf_bufferSize_typed
@@ -20006,12 +19908,11 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: m
       integer(c_int), value :: n
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: A(..)
       integer(c_int), value :: lda
-      integer(c_int), target :: lwork(*)
+      integer(c_int) :: lwork
       integer(c_int) :: Zgetrf_bufferSize
-      Zgetrf_bufferSize = hipsolverZgetrf_bufferSize_raw(handle, m, n, c_loc(A(1)), lda, c_loc( &
-        lwork(1)))
+      Zgetrf_bufferSize = hipsolverZgetrf_bufferSize_raw(handle, m, n, c_loc(A), lda, lwork)
     end function hipsolverZgetrf_bufferSize_native
 
     function hipsolverZgetrf_bufferSize_typed(handle, m, n, A, lda, lwork) result(Zgetrf_bufferSize)
@@ -20023,7 +19924,7 @@ contains
       integer(c_int), value :: n
       type(c_ptr), value :: A
       integer(c_int), value :: lda
-      type(c_ptr), value :: lwork
+      integer(c_int) :: lwork
       integer(c_int) :: Zgetrf_bufferSize
       Zgetrf_bufferSize = hipsolverZgetrf_bufferSize_raw(handle%ptr, m, n, A, lda, lwork)
     end function hipsolverZgetrf_bufferSize_typed
@@ -20035,15 +19936,15 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: m
       integer(c_int), value :: n
-      real(c_float), target :: A(*)
+      real(c_float), target :: A(..)
       integer(c_int), value :: lda
-      real(c_float), target :: work(*)
+      type(c_ptr), value :: work
       integer(c_int), value :: lwork
-      integer(c_int), target :: devIpiv(*)
-      integer(c_int), target :: devInfo(*)
+      integer(c_int), target :: devIpiv(..)
+      integer(c_int) :: devInfo
       integer(c_int) :: Sgetrf
-      Sgetrf = hipsolverSgetrf_raw(handle, m, n, c_loc(A(1)), lda, c_loc(work(1)), lwork, c_loc( &
-        devIpiv(1)), c_loc(devInfo(1)))
+      Sgetrf = hipsolverSgetrf_raw(handle, m, n, c_loc(A), lda, work, lwork, c_loc(devIpiv), &
+        devInfo)
     end function hipsolverSgetrf_native
 
     function hipsolverSgetrf_typed(handle, m, n, A, lda, work, lwork, devIpiv, devInfo) result( &
@@ -20059,7 +19960,7 @@ contains
       type(c_ptr), value :: work
       integer(c_int), value :: lwork
       type(c_ptr), value :: devIpiv
-      type(c_ptr), value :: devInfo
+      integer(c_int) :: devInfo
       integer(c_int) :: Sgetrf
       Sgetrf = hipsolverSgetrf_raw(handle%ptr, m, n, A, lda, work, lwork, devIpiv, devInfo)
     end function hipsolverSgetrf_typed
@@ -20071,15 +19972,15 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: m
       integer(c_int), value :: n
-      real(c_double), target :: A(*)
+      real(c_double), target :: A(..)
       integer(c_int), value :: lda
-      real(c_double), target :: work(*)
+      type(c_ptr), value :: work
       integer(c_int), value :: lwork
-      integer(c_int), target :: devIpiv(*)
-      integer(c_int), target :: devInfo(*)
+      integer(c_int), target :: devIpiv(..)
+      integer(c_int) :: devInfo
       integer(c_int) :: Dgetrf
-      Dgetrf = hipsolverDgetrf_raw(handle, m, n, c_loc(A(1)), lda, c_loc(work(1)), lwork, c_loc( &
-        devIpiv(1)), c_loc(devInfo(1)))
+      Dgetrf = hipsolverDgetrf_raw(handle, m, n, c_loc(A), lda, work, lwork, c_loc(devIpiv), &
+        devInfo)
     end function hipsolverDgetrf_native
 
     function hipsolverDgetrf_typed(handle, m, n, A, lda, work, lwork, devIpiv, devInfo) result( &
@@ -20095,7 +19996,7 @@ contains
       type(c_ptr), value :: work
       integer(c_int), value :: lwork
       type(c_ptr), value :: devIpiv
-      type(c_ptr), value :: devInfo
+      integer(c_int) :: devInfo
       integer(c_int) :: Dgetrf
       Dgetrf = hipsolverDgetrf_raw(handle%ptr, m, n, A, lda, work, lwork, devIpiv, devInfo)
     end function hipsolverDgetrf_typed
@@ -20107,15 +20008,15 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: m
       integer(c_int), value :: n
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: A(..)
       integer(c_int), value :: lda
-      complex(c_float_complex), target :: work(*)
+      type(c_ptr), value :: work
       integer(c_int), value :: lwork
-      integer(c_int), target :: devIpiv(*)
-      integer(c_int), target :: devInfo(*)
+      integer(c_int), target :: devIpiv(..)
+      integer(c_int) :: devInfo
       integer(c_int) :: Cgetrf
-      Cgetrf = hipsolverCgetrf_raw(handle, m, n, c_loc(A(1)), lda, c_loc(work(1)), lwork, c_loc( &
-        devIpiv(1)), c_loc(devInfo(1)))
+      Cgetrf = hipsolverCgetrf_raw(handle, m, n, c_loc(A), lda, work, lwork, c_loc(devIpiv), &
+        devInfo)
     end function hipsolverCgetrf_native
 
     function hipsolverCgetrf_typed(handle, m, n, A, lda, work, lwork, devIpiv, devInfo) result( &
@@ -20131,7 +20032,7 @@ contains
       type(c_ptr), value :: work
       integer(c_int), value :: lwork
       type(c_ptr), value :: devIpiv
-      type(c_ptr), value :: devInfo
+      integer(c_int) :: devInfo
       integer(c_int) :: Cgetrf
       Cgetrf = hipsolverCgetrf_raw(handle%ptr, m, n, A, lda, work, lwork, devIpiv, devInfo)
     end function hipsolverCgetrf_typed
@@ -20143,15 +20044,15 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: m
       integer(c_int), value :: n
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: A(..)
       integer(c_int), value :: lda
-      complex(c_double_complex), target :: work(*)
+      type(c_ptr), value :: work
       integer(c_int), value :: lwork
-      integer(c_int), target :: devIpiv(*)
-      integer(c_int), target :: devInfo(*)
+      integer(c_int), target :: devIpiv(..)
+      integer(c_int) :: devInfo
       integer(c_int) :: Zgetrf
-      Zgetrf = hipsolverZgetrf_raw(handle, m, n, c_loc(A(1)), lda, c_loc(work(1)), lwork, c_loc( &
-        devIpiv(1)), c_loc(devInfo(1)))
+      Zgetrf = hipsolverZgetrf_raw(handle, m, n, c_loc(A), lda, work, lwork, c_loc(devIpiv), &
+        devInfo)
     end function hipsolverZgetrf_native
 
     function hipsolverZgetrf_typed(handle, m, n, A, lda, work, lwork, devIpiv, devInfo) result( &
@@ -20167,7 +20068,7 @@ contains
       type(c_ptr), value :: work
       integer(c_int), value :: lwork
       type(c_ptr), value :: devIpiv
-      type(c_ptr), value :: devInfo
+      integer(c_int) :: devInfo
       integer(c_int) :: Zgetrf
       Zgetrf = hipsolverZgetrf_raw(handle%ptr, m, n, A, lda, work, lwork, devIpiv, devInfo)
     end function hipsolverZgetrf_typed
@@ -20180,15 +20081,15 @@ contains
       integer(c_int), value :: trans
       integer(c_int), value :: n
       integer(c_int), value :: nrhs
-      real(c_float), target :: A(*)
+      real(c_float), target :: A(..)
       integer(c_int), value :: lda
-      integer(c_int), target :: devIpiv(*)
-      real(c_float), target :: B(*)
+      integer(c_int), target :: devIpiv(..)
+      real(c_float), target :: B(..)
       integer(c_int), value :: ldb
-      integer(c_int), target :: lwork(*)
+      integer(c_int) :: lwork
       integer(c_int) :: Sgetrs_bufferSize
-      Sgetrs_bufferSize = hipsolverSgetrs_bufferSize_raw(handle, trans, n, nrhs, c_loc(A(1)), lda, &
-        c_loc(devIpiv(1)), c_loc(B(1)), ldb, c_loc(lwork(1)))
+      Sgetrs_bufferSize = hipsolverSgetrs_bufferSize_raw(handle, trans, n, nrhs, c_loc(A), lda, &
+        c_loc(devIpiv), c_loc(B), ldb, lwork)
     end function hipsolverSgetrs_bufferSize_native
 
     function hipsolverSgetrs_bufferSize_typed(handle, trans, n, nrhs, A, lda, devIpiv, B, ldb, &
@@ -20205,7 +20106,7 @@ contains
       type(c_ptr), value :: devIpiv
       type(c_ptr), value :: B
       integer(c_int), value :: ldb
-      type(c_ptr), value :: lwork
+      integer(c_int) :: lwork
       integer(c_int) :: Sgetrs_bufferSize
       Sgetrs_bufferSize = hipsolverSgetrs_bufferSize_raw(handle%ptr, trans, n, nrhs, A, lda, &
         devIpiv, B, ldb, lwork)
@@ -20219,15 +20120,15 @@ contains
       integer(c_int), value :: trans
       integer(c_int), value :: n
       integer(c_int), value :: nrhs
-      real(c_double), target :: A(*)
+      real(c_double), target :: A(..)
       integer(c_int), value :: lda
-      integer(c_int), target :: devIpiv(*)
-      real(c_double), target :: B(*)
+      integer(c_int), target :: devIpiv(..)
+      real(c_double), target :: B(..)
       integer(c_int), value :: ldb
-      integer(c_int), target :: lwork(*)
+      integer(c_int) :: lwork
       integer(c_int) :: Dgetrs_bufferSize
-      Dgetrs_bufferSize = hipsolverDgetrs_bufferSize_raw(handle, trans, n, nrhs, c_loc(A(1)), lda, &
-        c_loc(devIpiv(1)), c_loc(B(1)), ldb, c_loc(lwork(1)))
+      Dgetrs_bufferSize = hipsolverDgetrs_bufferSize_raw(handle, trans, n, nrhs, c_loc(A), lda, &
+        c_loc(devIpiv), c_loc(B), ldb, lwork)
     end function hipsolverDgetrs_bufferSize_native
 
     function hipsolverDgetrs_bufferSize_typed(handle, trans, n, nrhs, A, lda, devIpiv, B, ldb, &
@@ -20244,7 +20145,7 @@ contains
       type(c_ptr), value :: devIpiv
       type(c_ptr), value :: B
       integer(c_int), value :: ldb
-      type(c_ptr), value :: lwork
+      integer(c_int) :: lwork
       integer(c_int) :: Dgetrs_bufferSize
       Dgetrs_bufferSize = hipsolverDgetrs_bufferSize_raw(handle%ptr, trans, n, nrhs, A, lda, &
         devIpiv, B, ldb, lwork)
@@ -20258,15 +20159,15 @@ contains
       integer(c_int), value :: trans
       integer(c_int), value :: n
       integer(c_int), value :: nrhs
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: A(..)
       integer(c_int), value :: lda
-      integer(c_int), target :: devIpiv(*)
-      complex(c_float_complex), target :: B(*)
+      integer(c_int), target :: devIpiv(..)
+      complex(c_float_complex), target :: B(..)
       integer(c_int), value :: ldb
-      integer(c_int), target :: lwork(*)
+      integer(c_int) :: lwork
       integer(c_int) :: Cgetrs_bufferSize
-      Cgetrs_bufferSize = hipsolverCgetrs_bufferSize_raw(handle, trans, n, nrhs, c_loc(A(1)), lda, &
-        c_loc(devIpiv(1)), c_loc(B(1)), ldb, c_loc(lwork(1)))
+      Cgetrs_bufferSize = hipsolverCgetrs_bufferSize_raw(handle, trans, n, nrhs, c_loc(A), lda, &
+        c_loc(devIpiv), c_loc(B), ldb, lwork)
     end function hipsolverCgetrs_bufferSize_native
 
     function hipsolverCgetrs_bufferSize_typed(handle, trans, n, nrhs, A, lda, devIpiv, B, ldb, &
@@ -20283,7 +20184,7 @@ contains
       type(c_ptr), value :: devIpiv
       type(c_ptr), value :: B
       integer(c_int), value :: ldb
-      type(c_ptr), value :: lwork
+      integer(c_int) :: lwork
       integer(c_int) :: Cgetrs_bufferSize
       Cgetrs_bufferSize = hipsolverCgetrs_bufferSize_raw(handle%ptr, trans, n, nrhs, A, lda, &
         devIpiv, B, ldb, lwork)
@@ -20297,15 +20198,15 @@ contains
       integer(c_int), value :: trans
       integer(c_int), value :: n
       integer(c_int), value :: nrhs
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: A(..)
       integer(c_int), value :: lda
-      integer(c_int), target :: devIpiv(*)
-      complex(c_double_complex), target :: B(*)
+      integer(c_int), target :: devIpiv(..)
+      complex(c_double_complex), target :: B(..)
       integer(c_int), value :: ldb
-      integer(c_int), target :: lwork(*)
+      integer(c_int) :: lwork
       integer(c_int) :: Zgetrs_bufferSize
-      Zgetrs_bufferSize = hipsolverZgetrs_bufferSize_raw(handle, trans, n, nrhs, c_loc(A(1)), lda, &
-        c_loc(devIpiv(1)), c_loc(B(1)), ldb, c_loc(lwork(1)))
+      Zgetrs_bufferSize = hipsolverZgetrs_bufferSize_raw(handle, trans, n, nrhs, c_loc(A), lda, &
+        c_loc(devIpiv), c_loc(B), ldb, lwork)
     end function hipsolverZgetrs_bufferSize_native
 
     function hipsolverZgetrs_bufferSize_typed(handle, trans, n, nrhs, A, lda, devIpiv, B, ldb, &
@@ -20322,7 +20223,7 @@ contains
       type(c_ptr), value :: devIpiv
       type(c_ptr), value :: B
       integer(c_int), value :: ldb
-      type(c_ptr), value :: lwork
+      integer(c_int) :: lwork
       integer(c_int) :: Zgetrs_bufferSize
       Zgetrs_bufferSize = hipsolverZgetrs_bufferSize_raw(handle%ptr, trans, n, nrhs, A, lda, &
         devIpiv, B, ldb, lwork)
@@ -20336,17 +20237,17 @@ contains
       integer(c_int), value :: trans
       integer(c_int), value :: n
       integer(c_int), value :: nrhs
-      real(c_float), target :: A(*)
+      real(c_float), target :: A(..)
       integer(c_int), value :: lda
-      integer(c_int), target :: devIpiv(*)
-      real(c_float), target :: B(*)
+      integer(c_int), target :: devIpiv(..)
+      real(c_float), target :: B(..)
       integer(c_int), value :: ldb
-      real(c_float), target :: work(*)
+      type(c_ptr), value :: work
       integer(c_int), value :: lwork
-      integer(c_int), target :: devInfo(*)
+      integer(c_int) :: devInfo
       integer(c_int) :: Sgetrs
-      Sgetrs = hipsolverSgetrs_raw(handle, trans, n, nrhs, c_loc(A(1)), lda, c_loc(devIpiv(1)), &
-        c_loc(B(1)), ldb, c_loc(work(1)), lwork, c_loc(devInfo(1)))
+      Sgetrs = hipsolverSgetrs_raw(handle, trans, n, nrhs, c_loc(A), lda, c_loc(devIpiv), c_loc( &
+        B), ldb, work, lwork, devInfo)
     end function hipsolverSgetrs_native
 
     function hipsolverSgetrs_typed(handle, trans, n, nrhs, A, lda, devIpiv, B, ldb, work, lwork, &
@@ -20365,7 +20266,7 @@ contains
       integer(c_int), value :: ldb
       type(c_ptr), value :: work
       integer(c_int), value :: lwork
-      type(c_ptr), value :: devInfo
+      integer(c_int) :: devInfo
       integer(c_int) :: Sgetrs
       Sgetrs = hipsolverSgetrs_raw(handle%ptr, trans, n, nrhs, A, lda, devIpiv, B, ldb, work, &
         lwork, devInfo)
@@ -20379,17 +20280,17 @@ contains
       integer(c_int), value :: trans
       integer(c_int), value :: n
       integer(c_int), value :: nrhs
-      real(c_double), target :: A(*)
+      real(c_double), target :: A(..)
       integer(c_int), value :: lda
-      integer(c_int), target :: devIpiv(*)
-      real(c_double), target :: B(*)
+      integer(c_int), target :: devIpiv(..)
+      real(c_double), target :: B(..)
       integer(c_int), value :: ldb
-      real(c_double), target :: work(*)
+      type(c_ptr), value :: work
       integer(c_int), value :: lwork
-      integer(c_int), target :: devInfo(*)
+      integer(c_int) :: devInfo
       integer(c_int) :: Dgetrs
-      Dgetrs = hipsolverDgetrs_raw(handle, trans, n, nrhs, c_loc(A(1)), lda, c_loc(devIpiv(1)), &
-        c_loc(B(1)), ldb, c_loc(work(1)), lwork, c_loc(devInfo(1)))
+      Dgetrs = hipsolverDgetrs_raw(handle, trans, n, nrhs, c_loc(A), lda, c_loc(devIpiv), c_loc( &
+        B), ldb, work, lwork, devInfo)
     end function hipsolverDgetrs_native
 
     function hipsolverDgetrs_typed(handle, trans, n, nrhs, A, lda, devIpiv, B, ldb, work, lwork, &
@@ -20408,7 +20309,7 @@ contains
       integer(c_int), value :: ldb
       type(c_ptr), value :: work
       integer(c_int), value :: lwork
-      type(c_ptr), value :: devInfo
+      integer(c_int) :: devInfo
       integer(c_int) :: Dgetrs
       Dgetrs = hipsolverDgetrs_raw(handle%ptr, trans, n, nrhs, A, lda, devIpiv, B, ldb, work, &
         lwork, devInfo)
@@ -20422,17 +20323,17 @@ contains
       integer(c_int), value :: trans
       integer(c_int), value :: n
       integer(c_int), value :: nrhs
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: A(..)
       integer(c_int), value :: lda
-      integer(c_int), target :: devIpiv(*)
-      complex(c_float_complex), target :: B(*)
+      integer(c_int), target :: devIpiv(..)
+      complex(c_float_complex), target :: B(..)
       integer(c_int), value :: ldb
-      complex(c_float_complex), target :: work(*)
+      type(c_ptr), value :: work
       integer(c_int), value :: lwork
-      integer(c_int), target :: devInfo(*)
+      integer(c_int) :: devInfo
       integer(c_int) :: Cgetrs
-      Cgetrs = hipsolverCgetrs_raw(handle, trans, n, nrhs, c_loc(A(1)), lda, c_loc(devIpiv(1)), &
-        c_loc(B(1)), ldb, c_loc(work(1)), lwork, c_loc(devInfo(1)))
+      Cgetrs = hipsolverCgetrs_raw(handle, trans, n, nrhs, c_loc(A), lda, c_loc(devIpiv), c_loc( &
+        B), ldb, work, lwork, devInfo)
     end function hipsolverCgetrs_native
 
     function hipsolverCgetrs_typed(handle, trans, n, nrhs, A, lda, devIpiv, B, ldb, work, lwork, &
@@ -20451,7 +20352,7 @@ contains
       integer(c_int), value :: ldb
       type(c_ptr), value :: work
       integer(c_int), value :: lwork
-      type(c_ptr), value :: devInfo
+      integer(c_int) :: devInfo
       integer(c_int) :: Cgetrs
       Cgetrs = hipsolverCgetrs_raw(handle%ptr, trans, n, nrhs, A, lda, devIpiv, B, ldb, work, &
         lwork, devInfo)
@@ -20465,17 +20366,17 @@ contains
       integer(c_int), value :: trans
       integer(c_int), value :: n
       integer(c_int), value :: nrhs
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: A(..)
       integer(c_int), value :: lda
-      integer(c_int), target :: devIpiv(*)
-      complex(c_double_complex), target :: B(*)
+      integer(c_int), target :: devIpiv(..)
+      complex(c_double_complex), target :: B(..)
       integer(c_int), value :: ldb
-      complex(c_double_complex), target :: work(*)
+      type(c_ptr), value :: work
       integer(c_int), value :: lwork
-      integer(c_int), target :: devInfo(*)
+      integer(c_int) :: devInfo
       integer(c_int) :: Zgetrs
-      Zgetrs = hipsolverZgetrs_raw(handle, trans, n, nrhs, c_loc(A(1)), lda, c_loc(devIpiv(1)), &
-        c_loc(B(1)), ldb, c_loc(work(1)), lwork, c_loc(devInfo(1)))
+      Zgetrs = hipsolverZgetrs_raw(handle, trans, n, nrhs, c_loc(A), lda, c_loc(devIpiv), c_loc( &
+        B), ldb, work, lwork, devInfo)
     end function hipsolverZgetrs_native
 
     function hipsolverZgetrs_typed(handle, trans, n, nrhs, A, lda, devIpiv, B, ldb, work, lwork, &
@@ -20494,7 +20395,7 @@ contains
       integer(c_int), value :: ldb
       type(c_ptr), value :: work
       integer(c_int), value :: lwork
-      type(c_ptr), value :: devInfo
+      integer(c_int) :: devInfo
       integer(c_int) :: Zgetrs
       Zgetrs = hipsolverZgetrs_raw(handle%ptr, trans, n, nrhs, A, lda, devIpiv, B, ldb, work, &
         lwork, devInfo)
@@ -20507,12 +20408,11 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: uplo
       integer(c_int), value :: n
-      real(c_float), target :: A(*)
+      real(c_float), target :: A(..)
       integer(c_int), value :: lda
-      integer(c_int), target :: lwork(*)
+      integer(c_int) :: lwork
       integer(c_int) :: Spotrf_bufferSize
-      Spotrf_bufferSize = hipsolverSpotrf_bufferSize_raw(handle, uplo, n, c_loc(A(1)), lda, c_loc( &
-        lwork(1)))
+      Spotrf_bufferSize = hipsolverSpotrf_bufferSize_raw(handle, uplo, n, c_loc(A), lda, lwork)
     end function hipsolverSpotrf_bufferSize_native
 
     function hipsolverSpotrf_bufferSize_typed(handle, uplo, n, A, lda, lwork) result( &
@@ -20525,7 +20425,7 @@ contains
       integer(c_int), value :: n
       type(c_ptr), value :: A
       integer(c_int), value :: lda
-      type(c_ptr), value :: lwork
+      integer(c_int) :: lwork
       integer(c_int) :: Spotrf_bufferSize
       Spotrf_bufferSize = hipsolverSpotrf_bufferSize_raw(handle%ptr, uplo, n, A, lda, lwork)
     end function hipsolverSpotrf_bufferSize_typed
@@ -20537,12 +20437,11 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: uplo
       integer(c_int), value :: n
-      real(c_double), target :: A(*)
+      real(c_double), target :: A(..)
       integer(c_int), value :: lda
-      integer(c_int), target :: lwork(*)
+      integer(c_int) :: lwork
       integer(c_int) :: Dpotrf_bufferSize
-      Dpotrf_bufferSize = hipsolverDpotrf_bufferSize_raw(handle, uplo, n, c_loc(A(1)), lda, c_loc( &
-        lwork(1)))
+      Dpotrf_bufferSize = hipsolverDpotrf_bufferSize_raw(handle, uplo, n, c_loc(A), lda, lwork)
     end function hipsolverDpotrf_bufferSize_native
 
     function hipsolverDpotrf_bufferSize_typed(handle, uplo, n, A, lda, lwork) result( &
@@ -20555,7 +20454,7 @@ contains
       integer(c_int), value :: n
       type(c_ptr), value :: A
       integer(c_int), value :: lda
-      type(c_ptr), value :: lwork
+      integer(c_int) :: lwork
       integer(c_int) :: Dpotrf_bufferSize
       Dpotrf_bufferSize = hipsolverDpotrf_bufferSize_raw(handle%ptr, uplo, n, A, lda, lwork)
     end function hipsolverDpotrf_bufferSize_typed
@@ -20567,12 +20466,11 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: uplo
       integer(c_int), value :: n
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: A(..)
       integer(c_int), value :: lda
-      integer(c_int), target :: lwork(*)
+      integer(c_int) :: lwork
       integer(c_int) :: Cpotrf_bufferSize
-      Cpotrf_bufferSize = hipsolverCpotrf_bufferSize_raw(handle, uplo, n, c_loc(A(1)), lda, c_loc( &
-        lwork(1)))
+      Cpotrf_bufferSize = hipsolverCpotrf_bufferSize_raw(handle, uplo, n, c_loc(A), lda, lwork)
     end function hipsolverCpotrf_bufferSize_native
 
     function hipsolverCpotrf_bufferSize_typed(handle, uplo, n, A, lda, lwork) result( &
@@ -20585,7 +20483,7 @@ contains
       integer(c_int), value :: n
       type(c_ptr), value :: A
       integer(c_int), value :: lda
-      type(c_ptr), value :: lwork
+      integer(c_int) :: lwork
       integer(c_int) :: Cpotrf_bufferSize
       Cpotrf_bufferSize = hipsolverCpotrf_bufferSize_raw(handle%ptr, uplo, n, A, lda, lwork)
     end function hipsolverCpotrf_bufferSize_typed
@@ -20597,12 +20495,11 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: uplo
       integer(c_int), value :: n
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: A(..)
       integer(c_int), value :: lda
-      integer(c_int), target :: lwork(*)
+      integer(c_int) :: lwork
       integer(c_int) :: Zpotrf_bufferSize
-      Zpotrf_bufferSize = hipsolverZpotrf_bufferSize_raw(handle, uplo, n, c_loc(A(1)), lda, c_loc( &
-        lwork(1)))
+      Zpotrf_bufferSize = hipsolverZpotrf_bufferSize_raw(handle, uplo, n, c_loc(A), lda, lwork)
     end function hipsolverZpotrf_bufferSize_native
 
     function hipsolverZpotrf_bufferSize_typed(handle, uplo, n, A, lda, lwork) result( &
@@ -20615,7 +20512,7 @@ contains
       integer(c_int), value :: n
       type(c_ptr), value :: A
       integer(c_int), value :: lda
-      type(c_ptr), value :: lwork
+      integer(c_int) :: lwork
       integer(c_int) :: Zpotrf_bufferSize
       Zpotrf_bufferSize = hipsolverZpotrf_bufferSize_raw(handle%ptr, uplo, n, A, lda, lwork)
     end function hipsolverZpotrf_bufferSize_typed
@@ -20626,14 +20523,13 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: uplo
       integer(c_int), value :: n
-      real(c_float), target :: A(*)
+      real(c_float), target :: A(..)
       integer(c_int), value :: lda
-      real(c_float), target :: work(*)
+      type(c_ptr), value :: work
       integer(c_int), value :: lwork
-      integer(c_int), target :: devInfo(*)
+      integer(c_int) :: devInfo
       integer(c_int) :: Spotrf
-      Spotrf = hipsolverSpotrf_raw(handle, uplo, n, c_loc(A(1)), lda, c_loc(work(1)), lwork, &
-        c_loc(devInfo(1)))
+      Spotrf = hipsolverSpotrf_raw(handle, uplo, n, c_loc(A), lda, work, lwork, devInfo)
     end function hipsolverSpotrf_native
 
     function hipsolverSpotrf_typed(handle, uplo, n, A, lda, work, lwork, devInfo) result(Spotrf)
@@ -20647,7 +20543,7 @@ contains
       integer(c_int), value :: lda
       type(c_ptr), value :: work
       integer(c_int), value :: lwork
-      type(c_ptr), value :: devInfo
+      integer(c_int) :: devInfo
       integer(c_int) :: Spotrf
       Spotrf = hipsolverSpotrf_raw(handle%ptr, uplo, n, A, lda, work, lwork, devInfo)
     end function hipsolverSpotrf_typed
@@ -20658,14 +20554,13 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: uplo
       integer(c_int), value :: n
-      real(c_double), target :: A(*)
+      real(c_double), target :: A(..)
       integer(c_int), value :: lda
-      real(c_double), target :: work(*)
+      type(c_ptr), value :: work
       integer(c_int), value :: lwork
-      integer(c_int), target :: devInfo(*)
+      integer(c_int) :: devInfo
       integer(c_int) :: Dpotrf
-      Dpotrf = hipsolverDpotrf_raw(handle, uplo, n, c_loc(A(1)), lda, c_loc(work(1)), lwork, &
-        c_loc(devInfo(1)))
+      Dpotrf = hipsolverDpotrf_raw(handle, uplo, n, c_loc(A), lda, work, lwork, devInfo)
     end function hipsolverDpotrf_native
 
     function hipsolverDpotrf_typed(handle, uplo, n, A, lda, work, lwork, devInfo) result(Dpotrf)
@@ -20679,7 +20574,7 @@ contains
       integer(c_int), value :: lda
       type(c_ptr), value :: work
       integer(c_int), value :: lwork
-      type(c_ptr), value :: devInfo
+      integer(c_int) :: devInfo
       integer(c_int) :: Dpotrf
       Dpotrf = hipsolverDpotrf_raw(handle%ptr, uplo, n, A, lda, work, lwork, devInfo)
     end function hipsolverDpotrf_typed
@@ -20690,14 +20585,13 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: uplo
       integer(c_int), value :: n
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: A(..)
       integer(c_int), value :: lda
-      complex(c_float_complex), target :: work(*)
+      type(c_ptr), value :: work
       integer(c_int), value :: lwork
-      integer(c_int), target :: devInfo(*)
+      integer(c_int) :: devInfo
       integer(c_int) :: Cpotrf
-      Cpotrf = hipsolverCpotrf_raw(handle, uplo, n, c_loc(A(1)), lda, c_loc(work(1)), lwork, &
-        c_loc(devInfo(1)))
+      Cpotrf = hipsolverCpotrf_raw(handle, uplo, n, c_loc(A), lda, work, lwork, devInfo)
     end function hipsolverCpotrf_native
 
     function hipsolverCpotrf_typed(handle, uplo, n, A, lda, work, lwork, devInfo) result(Cpotrf)
@@ -20711,7 +20605,7 @@ contains
       integer(c_int), value :: lda
       type(c_ptr), value :: work
       integer(c_int), value :: lwork
-      type(c_ptr), value :: devInfo
+      integer(c_int) :: devInfo
       integer(c_int) :: Cpotrf
       Cpotrf = hipsolverCpotrf_raw(handle%ptr, uplo, n, A, lda, work, lwork, devInfo)
     end function hipsolverCpotrf_typed
@@ -20722,14 +20616,13 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: uplo
       integer(c_int), value :: n
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: A(..)
       integer(c_int), value :: lda
-      complex(c_double_complex), target :: work(*)
+      type(c_ptr), value :: work
       integer(c_int), value :: lwork
-      integer(c_int), target :: devInfo(*)
+      integer(c_int) :: devInfo
       integer(c_int) :: Zpotrf
-      Zpotrf = hipsolverZpotrf_raw(handle, uplo, n, c_loc(A(1)), lda, c_loc(work(1)), lwork, &
-        c_loc(devInfo(1)))
+      Zpotrf = hipsolverZpotrf_raw(handle, uplo, n, c_loc(A), lda, work, lwork, devInfo)
     end function hipsolverZpotrf_native
 
     function hipsolverZpotrf_typed(handle, uplo, n, A, lda, work, lwork, devInfo) result(Zpotrf)
@@ -20743,7 +20636,7 @@ contains
       integer(c_int), value :: lda
       type(c_ptr), value :: work
       integer(c_int), value :: lwork
-      type(c_ptr), value :: devInfo
+      integer(c_int) :: devInfo
       integer(c_int) :: Zpotrf
       Zpotrf = hipsolverZpotrf_raw(handle%ptr, uplo, n, A, lda, work, lwork, devInfo)
     end function hipsolverZpotrf_typed
@@ -20816,24 +20709,6 @@ contains
         lda, lwork, batch_count)
     end function hipsolverZpotrfBatched_bufferSize_typed
 
-    function hipsolverSpotrfBatched_native(handle, uplo, n, A, lda, work, lwork, devInfo, &
-        batch_count) result(SpotrfBatched)
-      use, intrinsic :: iso_c_binding
-      implicit none
-      type(c_ptr), value :: handle
-      integer(c_int), value :: uplo
-      integer(c_int), value :: n
-      type(c_ptr), value :: A
-      integer(c_int), value :: lda
-      real(c_float), target :: work(*)
-      integer(c_int), value :: lwork
-      integer(c_int) :: devInfo
-      integer(c_int), value :: batch_count
-      integer(c_int) :: SpotrfBatched
-      SpotrfBatched = hipsolverSpotrfBatched_raw(handle, uplo, n, A, lda, c_loc(work(1)), lwork, &
-        devInfo, batch_count)
-    end function hipsolverSpotrfBatched_native
-
     function hipsolverSpotrfBatched_typed(handle, uplo, n, A, lda, work, lwork, devInfo, &
         batch_count) result(SpotrfBatched)
       use, intrinsic :: iso_c_binding
@@ -20852,24 +20727,6 @@ contains
       SpotrfBatched = hipsolverSpotrfBatched_raw(handle%ptr, uplo, n, A, lda, work, lwork, &
         devInfo, batch_count)
     end function hipsolverSpotrfBatched_typed
-
-    function hipsolverDpotrfBatched_native(handle, uplo, n, A, lda, work, lwork, devInfo, &
-        batch_count) result(DpotrfBatched)
-      use, intrinsic :: iso_c_binding
-      implicit none
-      type(c_ptr), value :: handle
-      integer(c_int), value :: uplo
-      integer(c_int), value :: n
-      type(c_ptr), value :: A
-      integer(c_int), value :: lda
-      real(c_double), target :: work(*)
-      integer(c_int), value :: lwork
-      integer(c_int) :: devInfo
-      integer(c_int), value :: batch_count
-      integer(c_int) :: DpotrfBatched
-      DpotrfBatched = hipsolverDpotrfBatched_raw(handle, uplo, n, A, lda, c_loc(work(1)), lwork, &
-        devInfo, batch_count)
-    end function hipsolverDpotrfBatched_native
 
     function hipsolverDpotrfBatched_typed(handle, uplo, n, A, lda, work, lwork, devInfo, &
         batch_count) result(DpotrfBatched)
@@ -20890,24 +20747,6 @@ contains
         devInfo, batch_count)
     end function hipsolverDpotrfBatched_typed
 
-    function hipsolverCpotrfBatched_native(handle, uplo, n, A, lda, work, lwork, devInfo, &
-        batch_count) result(CpotrfBatched)
-      use, intrinsic :: iso_c_binding
-      implicit none
-      type(c_ptr), value :: handle
-      integer(c_int), value :: uplo
-      integer(c_int), value :: n
-      type(c_ptr), value :: A
-      integer(c_int), value :: lda
-      complex(c_float_complex), target :: work(*)
-      integer(c_int), value :: lwork
-      integer(c_int) :: devInfo
-      integer(c_int), value :: batch_count
-      integer(c_int) :: CpotrfBatched
-      CpotrfBatched = hipsolverCpotrfBatched_raw(handle, uplo, n, A, lda, c_loc(work(1)), lwork, &
-        devInfo, batch_count)
-    end function hipsolverCpotrfBatched_native
-
     function hipsolverCpotrfBatched_typed(handle, uplo, n, A, lda, work, lwork, devInfo, &
         batch_count) result(CpotrfBatched)
       use, intrinsic :: iso_c_binding
@@ -20926,24 +20765,6 @@ contains
       CpotrfBatched = hipsolverCpotrfBatched_raw(handle%ptr, uplo, n, A, lda, work, lwork, &
         devInfo, batch_count)
     end function hipsolverCpotrfBatched_typed
-
-    function hipsolverZpotrfBatched_native(handle, uplo, n, A, lda, work, lwork, devInfo, &
-        batch_count) result(ZpotrfBatched)
-      use, intrinsic :: iso_c_binding
-      implicit none
-      type(c_ptr), value :: handle
-      integer(c_int), value :: uplo
-      integer(c_int), value :: n
-      type(c_ptr), value :: A
-      integer(c_int), value :: lda
-      complex(c_double_complex), target :: work(*)
-      integer(c_int), value :: lwork
-      integer(c_int) :: devInfo
-      integer(c_int), value :: batch_count
-      integer(c_int) :: ZpotrfBatched
-      ZpotrfBatched = hipsolverZpotrfBatched_raw(handle, uplo, n, A, lda, c_loc(work(1)), lwork, &
-        devInfo, batch_count)
-    end function hipsolverZpotrfBatched_native
 
     function hipsolverZpotrfBatched_typed(handle, uplo, n, A, lda, work, lwork, devInfo, &
         batch_count) result(ZpotrfBatched)
@@ -20971,12 +20792,11 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: uplo
       integer(c_int), value :: n
-      real(c_float), target :: A(*)
+      real(c_float), target :: A(..)
       integer(c_int), value :: lda
-      integer(c_int), target :: lwork(*)
+      integer(c_int) :: lwork
       integer(c_int) :: Spotri_bufferSize
-      Spotri_bufferSize = hipsolverSpotri_bufferSize_raw(handle, uplo, n, c_loc(A(1)), lda, c_loc( &
-        lwork(1)))
+      Spotri_bufferSize = hipsolverSpotri_bufferSize_raw(handle, uplo, n, c_loc(A), lda, lwork)
     end function hipsolverSpotri_bufferSize_native
 
     function hipsolverSpotri_bufferSize_typed(handle, uplo, n, A, lda, lwork) result( &
@@ -20989,7 +20809,7 @@ contains
       integer(c_int), value :: n
       type(c_ptr), value :: A
       integer(c_int), value :: lda
-      type(c_ptr), value :: lwork
+      integer(c_int) :: lwork
       integer(c_int) :: Spotri_bufferSize
       Spotri_bufferSize = hipsolverSpotri_bufferSize_raw(handle%ptr, uplo, n, A, lda, lwork)
     end function hipsolverSpotri_bufferSize_typed
@@ -21001,12 +20821,11 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: uplo
       integer(c_int), value :: n
-      real(c_double), target :: A(*)
+      real(c_double), target :: A(..)
       integer(c_int), value :: lda
-      integer(c_int), target :: lwork(*)
+      integer(c_int) :: lwork
       integer(c_int) :: Dpotri_bufferSize
-      Dpotri_bufferSize = hipsolverDpotri_bufferSize_raw(handle, uplo, n, c_loc(A(1)), lda, c_loc( &
-        lwork(1)))
+      Dpotri_bufferSize = hipsolverDpotri_bufferSize_raw(handle, uplo, n, c_loc(A), lda, lwork)
     end function hipsolverDpotri_bufferSize_native
 
     function hipsolverDpotri_bufferSize_typed(handle, uplo, n, A, lda, lwork) result( &
@@ -21019,7 +20838,7 @@ contains
       integer(c_int), value :: n
       type(c_ptr), value :: A
       integer(c_int), value :: lda
-      type(c_ptr), value :: lwork
+      integer(c_int) :: lwork
       integer(c_int) :: Dpotri_bufferSize
       Dpotri_bufferSize = hipsolverDpotri_bufferSize_raw(handle%ptr, uplo, n, A, lda, lwork)
     end function hipsolverDpotri_bufferSize_typed
@@ -21031,12 +20850,11 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: uplo
       integer(c_int), value :: n
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: A(..)
       integer(c_int), value :: lda
-      integer(c_int), target :: lwork(*)
+      integer(c_int) :: lwork
       integer(c_int) :: Cpotri_bufferSize
-      Cpotri_bufferSize = hipsolverCpotri_bufferSize_raw(handle, uplo, n, c_loc(A(1)), lda, c_loc( &
-        lwork(1)))
+      Cpotri_bufferSize = hipsolverCpotri_bufferSize_raw(handle, uplo, n, c_loc(A), lda, lwork)
     end function hipsolverCpotri_bufferSize_native
 
     function hipsolverCpotri_bufferSize_typed(handle, uplo, n, A, lda, lwork) result( &
@@ -21049,7 +20867,7 @@ contains
       integer(c_int), value :: n
       type(c_ptr), value :: A
       integer(c_int), value :: lda
-      type(c_ptr), value :: lwork
+      integer(c_int) :: lwork
       integer(c_int) :: Cpotri_bufferSize
       Cpotri_bufferSize = hipsolverCpotri_bufferSize_raw(handle%ptr, uplo, n, A, lda, lwork)
     end function hipsolverCpotri_bufferSize_typed
@@ -21061,12 +20879,11 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: uplo
       integer(c_int), value :: n
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: A(..)
       integer(c_int), value :: lda
-      integer(c_int), target :: lwork(*)
+      integer(c_int) :: lwork
       integer(c_int) :: Zpotri_bufferSize
-      Zpotri_bufferSize = hipsolverZpotri_bufferSize_raw(handle, uplo, n, c_loc(A(1)), lda, c_loc( &
-        lwork(1)))
+      Zpotri_bufferSize = hipsolverZpotri_bufferSize_raw(handle, uplo, n, c_loc(A), lda, lwork)
     end function hipsolverZpotri_bufferSize_native
 
     function hipsolverZpotri_bufferSize_typed(handle, uplo, n, A, lda, lwork) result( &
@@ -21079,7 +20896,7 @@ contains
       integer(c_int), value :: n
       type(c_ptr), value :: A
       integer(c_int), value :: lda
-      type(c_ptr), value :: lwork
+      integer(c_int) :: lwork
       integer(c_int) :: Zpotri_bufferSize
       Zpotri_bufferSize = hipsolverZpotri_bufferSize_raw(handle%ptr, uplo, n, A, lda, lwork)
     end function hipsolverZpotri_bufferSize_typed
@@ -21090,14 +20907,13 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: uplo
       integer(c_int), value :: n
-      real(c_float), target :: A(*)
+      real(c_float), target :: A(..)
       integer(c_int), value :: lda
-      real(c_float), target :: work(*)
+      type(c_ptr), value :: work
       integer(c_int), value :: lwork
-      integer(c_int), target :: devInfo(*)
+      integer(c_int) :: devInfo
       integer(c_int) :: Spotri
-      Spotri = hipsolverSpotri_raw(handle, uplo, n, c_loc(A(1)), lda, c_loc(work(1)), lwork, &
-        c_loc(devInfo(1)))
+      Spotri = hipsolverSpotri_raw(handle, uplo, n, c_loc(A), lda, work, lwork, devInfo)
     end function hipsolverSpotri_native
 
     function hipsolverSpotri_typed(handle, uplo, n, A, lda, work, lwork, devInfo) result(Spotri)
@@ -21111,7 +20927,7 @@ contains
       integer(c_int), value :: lda
       type(c_ptr), value :: work
       integer(c_int), value :: lwork
-      type(c_ptr), value :: devInfo
+      integer(c_int) :: devInfo
       integer(c_int) :: Spotri
       Spotri = hipsolverSpotri_raw(handle%ptr, uplo, n, A, lda, work, lwork, devInfo)
     end function hipsolverSpotri_typed
@@ -21122,14 +20938,13 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: uplo
       integer(c_int), value :: n
-      real(c_double), target :: A(*)
+      real(c_double), target :: A(..)
       integer(c_int), value :: lda
-      real(c_double), target :: work(*)
+      type(c_ptr), value :: work
       integer(c_int), value :: lwork
-      integer(c_int), target :: devInfo(*)
+      integer(c_int) :: devInfo
       integer(c_int) :: Dpotri
-      Dpotri = hipsolverDpotri_raw(handle, uplo, n, c_loc(A(1)), lda, c_loc(work(1)), lwork, &
-        c_loc(devInfo(1)))
+      Dpotri = hipsolverDpotri_raw(handle, uplo, n, c_loc(A), lda, work, lwork, devInfo)
     end function hipsolverDpotri_native
 
     function hipsolverDpotri_typed(handle, uplo, n, A, lda, work, lwork, devInfo) result(Dpotri)
@@ -21143,7 +20958,7 @@ contains
       integer(c_int), value :: lda
       type(c_ptr), value :: work
       integer(c_int), value :: lwork
-      type(c_ptr), value :: devInfo
+      integer(c_int) :: devInfo
       integer(c_int) :: Dpotri
       Dpotri = hipsolverDpotri_raw(handle%ptr, uplo, n, A, lda, work, lwork, devInfo)
     end function hipsolverDpotri_typed
@@ -21154,14 +20969,13 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: uplo
       integer(c_int), value :: n
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: A(..)
       integer(c_int), value :: lda
-      complex(c_float_complex), target :: work(*)
+      type(c_ptr), value :: work
       integer(c_int), value :: lwork
-      integer(c_int), target :: devInfo(*)
+      integer(c_int) :: devInfo
       integer(c_int) :: Cpotri
-      Cpotri = hipsolverCpotri_raw(handle, uplo, n, c_loc(A(1)), lda, c_loc(work(1)), lwork, &
-        c_loc(devInfo(1)))
+      Cpotri = hipsolverCpotri_raw(handle, uplo, n, c_loc(A), lda, work, lwork, devInfo)
     end function hipsolverCpotri_native
 
     function hipsolverCpotri_typed(handle, uplo, n, A, lda, work, lwork, devInfo) result(Cpotri)
@@ -21175,7 +20989,7 @@ contains
       integer(c_int), value :: lda
       type(c_ptr), value :: work
       integer(c_int), value :: lwork
-      type(c_ptr), value :: devInfo
+      integer(c_int) :: devInfo
       integer(c_int) :: Cpotri
       Cpotri = hipsolverCpotri_raw(handle%ptr, uplo, n, A, lda, work, lwork, devInfo)
     end function hipsolverCpotri_typed
@@ -21186,14 +21000,13 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: uplo
       integer(c_int), value :: n
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: A(..)
       integer(c_int), value :: lda
-      complex(c_double_complex), target :: work(*)
+      type(c_ptr), value :: work
       integer(c_int), value :: lwork
-      integer(c_int), target :: devInfo(*)
+      integer(c_int) :: devInfo
       integer(c_int) :: Zpotri
-      Zpotri = hipsolverZpotri_raw(handle, uplo, n, c_loc(A(1)), lda, c_loc(work(1)), lwork, &
-        c_loc(devInfo(1)))
+      Zpotri = hipsolverZpotri_raw(handle, uplo, n, c_loc(A), lda, work, lwork, devInfo)
     end function hipsolverZpotri_native
 
     function hipsolverZpotri_typed(handle, uplo, n, A, lda, work, lwork, devInfo) result(Zpotri)
@@ -21207,7 +21020,7 @@ contains
       integer(c_int), value :: lda
       type(c_ptr), value :: work
       integer(c_int), value :: lwork
-      type(c_ptr), value :: devInfo
+      integer(c_int) :: devInfo
       integer(c_int) :: Zpotri
       Zpotri = hipsolverZpotri_raw(handle%ptr, uplo, n, A, lda, work, lwork, devInfo)
     end function hipsolverZpotri_typed
@@ -21220,14 +21033,14 @@ contains
       integer(c_int), value :: uplo
       integer(c_int), value :: n
       integer(c_int), value :: nrhs
-      real(c_float), target :: A(*)
+      real(c_float), target :: A(..)
       integer(c_int), value :: lda
-      real(c_float), target :: B(*)
+      real(c_float), target :: B(..)
       integer(c_int), value :: ldb
-      integer(c_int), target :: lwork(*)
+      integer(c_int) :: lwork
       integer(c_int) :: Spotrs_bufferSize
-      Spotrs_bufferSize = hipsolverSpotrs_bufferSize_raw(handle, uplo, n, nrhs, c_loc(A(1)), lda, &
-        c_loc(B(1)), ldb, c_loc(lwork(1)))
+      Spotrs_bufferSize = hipsolverSpotrs_bufferSize_raw(handle, uplo, n, nrhs, c_loc(A), lda, &
+        c_loc(B), ldb, lwork)
     end function hipsolverSpotrs_bufferSize_native
 
     function hipsolverSpotrs_bufferSize_typed(handle, uplo, n, nrhs, A, lda, B, ldb, &
@@ -21243,7 +21056,7 @@ contains
       integer(c_int), value :: lda
       type(c_ptr), value :: B
       integer(c_int), value :: ldb
-      type(c_ptr), value :: lwork
+      integer(c_int) :: lwork
       integer(c_int) :: Spotrs_bufferSize
       Spotrs_bufferSize = hipsolverSpotrs_bufferSize_raw(handle%ptr, uplo, n, nrhs, A, lda, B, &
         ldb, lwork)
@@ -21257,14 +21070,14 @@ contains
       integer(c_int), value :: uplo
       integer(c_int), value :: n
       integer(c_int), value :: nrhs
-      real(c_double), target :: A(*)
+      real(c_double), target :: A(..)
       integer(c_int), value :: lda
-      real(c_double), target :: B(*)
+      real(c_double), target :: B(..)
       integer(c_int), value :: ldb
-      integer(c_int), target :: lwork(*)
+      integer(c_int) :: lwork
       integer(c_int) :: Dpotrs_bufferSize
-      Dpotrs_bufferSize = hipsolverDpotrs_bufferSize_raw(handle, uplo, n, nrhs, c_loc(A(1)), lda, &
-        c_loc(B(1)), ldb, c_loc(lwork(1)))
+      Dpotrs_bufferSize = hipsolverDpotrs_bufferSize_raw(handle, uplo, n, nrhs, c_loc(A), lda, &
+        c_loc(B), ldb, lwork)
     end function hipsolverDpotrs_bufferSize_native
 
     function hipsolverDpotrs_bufferSize_typed(handle, uplo, n, nrhs, A, lda, B, ldb, &
@@ -21280,7 +21093,7 @@ contains
       integer(c_int), value :: lda
       type(c_ptr), value :: B
       integer(c_int), value :: ldb
-      type(c_ptr), value :: lwork
+      integer(c_int) :: lwork
       integer(c_int) :: Dpotrs_bufferSize
       Dpotrs_bufferSize = hipsolverDpotrs_bufferSize_raw(handle%ptr, uplo, n, nrhs, A, lda, B, &
         ldb, lwork)
@@ -21294,14 +21107,14 @@ contains
       integer(c_int), value :: uplo
       integer(c_int), value :: n
       integer(c_int), value :: nrhs
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: A(..)
       integer(c_int), value :: lda
-      complex(c_float_complex), target :: B(*)
+      complex(c_float_complex), target :: B(..)
       integer(c_int), value :: ldb
-      integer(c_int), target :: lwork(*)
+      integer(c_int) :: lwork
       integer(c_int) :: Cpotrs_bufferSize
-      Cpotrs_bufferSize = hipsolverCpotrs_bufferSize_raw(handle, uplo, n, nrhs, c_loc(A(1)), lda, &
-        c_loc(B(1)), ldb, c_loc(lwork(1)))
+      Cpotrs_bufferSize = hipsolverCpotrs_bufferSize_raw(handle, uplo, n, nrhs, c_loc(A), lda, &
+        c_loc(B), ldb, lwork)
     end function hipsolverCpotrs_bufferSize_native
 
     function hipsolverCpotrs_bufferSize_typed(handle, uplo, n, nrhs, A, lda, B, ldb, &
@@ -21317,7 +21130,7 @@ contains
       integer(c_int), value :: lda
       type(c_ptr), value :: B
       integer(c_int), value :: ldb
-      type(c_ptr), value :: lwork
+      integer(c_int) :: lwork
       integer(c_int) :: Cpotrs_bufferSize
       Cpotrs_bufferSize = hipsolverCpotrs_bufferSize_raw(handle%ptr, uplo, n, nrhs, A, lda, B, &
         ldb, lwork)
@@ -21331,14 +21144,14 @@ contains
       integer(c_int), value :: uplo
       integer(c_int), value :: n
       integer(c_int), value :: nrhs
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: A(..)
       integer(c_int), value :: lda
-      complex(c_double_complex), target :: B(*)
+      complex(c_double_complex), target :: B(..)
       integer(c_int), value :: ldb
-      integer(c_int), target :: lwork(*)
+      integer(c_int) :: lwork
       integer(c_int) :: Zpotrs_bufferSize
-      Zpotrs_bufferSize = hipsolverZpotrs_bufferSize_raw(handle, uplo, n, nrhs, c_loc(A(1)), lda, &
-        c_loc(B(1)), ldb, c_loc(lwork(1)))
+      Zpotrs_bufferSize = hipsolverZpotrs_bufferSize_raw(handle, uplo, n, nrhs, c_loc(A), lda, &
+        c_loc(B), ldb, lwork)
     end function hipsolverZpotrs_bufferSize_native
 
     function hipsolverZpotrs_bufferSize_typed(handle, uplo, n, nrhs, A, lda, B, ldb, &
@@ -21354,7 +21167,7 @@ contains
       integer(c_int), value :: lda
       type(c_ptr), value :: B
       integer(c_int), value :: ldb
-      type(c_ptr), value :: lwork
+      integer(c_int) :: lwork
       integer(c_int) :: Zpotrs_bufferSize
       Zpotrs_bufferSize = hipsolverZpotrs_bufferSize_raw(handle%ptr, uplo, n, nrhs, A, lda, B, &
         ldb, lwork)
@@ -21368,16 +21181,16 @@ contains
       integer(c_int), value :: uplo
       integer(c_int), value :: n
       integer(c_int), value :: nrhs
-      real(c_float), target :: A(*)
+      real(c_float), target :: A(..)
       integer(c_int), value :: lda
-      real(c_float), target :: B(*)
+      real(c_float), target :: B(..)
       integer(c_int), value :: ldb
-      real(c_float), target :: work(*)
+      type(c_ptr), value :: work
       integer(c_int), value :: lwork
-      integer(c_int), target :: devInfo(*)
+      integer(c_int) :: devInfo
       integer(c_int) :: Spotrs
-      Spotrs = hipsolverSpotrs_raw(handle, uplo, n, nrhs, c_loc(A(1)), lda, c_loc(B(1)), ldb, &
-        c_loc(work(1)), lwork, c_loc(devInfo(1)))
+      Spotrs = hipsolverSpotrs_raw(handle, uplo, n, nrhs, c_loc(A), lda, c_loc(B), ldb, work, &
+        lwork, devInfo)
     end function hipsolverSpotrs_native
 
     function hipsolverSpotrs_typed(handle, uplo, n, nrhs, A, lda, B, ldb, work, lwork, &
@@ -21395,7 +21208,7 @@ contains
       integer(c_int), value :: ldb
       type(c_ptr), value :: work
       integer(c_int), value :: lwork
-      type(c_ptr), value :: devInfo
+      integer(c_int) :: devInfo
       integer(c_int) :: Spotrs
       Spotrs = hipsolverSpotrs_raw(handle%ptr, uplo, n, nrhs, A, lda, B, ldb, work, lwork, devInfo)
     end function hipsolverSpotrs_typed
@@ -21408,16 +21221,16 @@ contains
       integer(c_int), value :: uplo
       integer(c_int), value :: n
       integer(c_int), value :: nrhs
-      real(c_double), target :: A(*)
+      real(c_double), target :: A(..)
       integer(c_int), value :: lda
-      real(c_double), target :: B(*)
+      real(c_double), target :: B(..)
       integer(c_int), value :: ldb
-      real(c_double), target :: work(*)
+      type(c_ptr), value :: work
       integer(c_int), value :: lwork
-      integer(c_int), target :: devInfo(*)
+      integer(c_int) :: devInfo
       integer(c_int) :: Dpotrs
-      Dpotrs = hipsolverDpotrs_raw(handle, uplo, n, nrhs, c_loc(A(1)), lda, c_loc(B(1)), ldb, &
-        c_loc(work(1)), lwork, c_loc(devInfo(1)))
+      Dpotrs = hipsolverDpotrs_raw(handle, uplo, n, nrhs, c_loc(A), lda, c_loc(B), ldb, work, &
+        lwork, devInfo)
     end function hipsolverDpotrs_native
 
     function hipsolverDpotrs_typed(handle, uplo, n, nrhs, A, lda, B, ldb, work, lwork, &
@@ -21435,7 +21248,7 @@ contains
       integer(c_int), value :: ldb
       type(c_ptr), value :: work
       integer(c_int), value :: lwork
-      type(c_ptr), value :: devInfo
+      integer(c_int) :: devInfo
       integer(c_int) :: Dpotrs
       Dpotrs = hipsolverDpotrs_raw(handle%ptr, uplo, n, nrhs, A, lda, B, ldb, work, lwork, devInfo)
     end function hipsolverDpotrs_typed
@@ -21448,16 +21261,16 @@ contains
       integer(c_int), value :: uplo
       integer(c_int), value :: n
       integer(c_int), value :: nrhs
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: A(..)
       integer(c_int), value :: lda
-      complex(c_float_complex), target :: B(*)
+      complex(c_float_complex), target :: B(..)
       integer(c_int), value :: ldb
-      complex(c_float_complex), target :: work(*)
+      type(c_ptr), value :: work
       integer(c_int), value :: lwork
-      integer(c_int), target :: devInfo(*)
+      integer(c_int) :: devInfo
       integer(c_int) :: Cpotrs
-      Cpotrs = hipsolverCpotrs_raw(handle, uplo, n, nrhs, c_loc(A(1)), lda, c_loc(B(1)), ldb, &
-        c_loc(work(1)), lwork, c_loc(devInfo(1)))
+      Cpotrs = hipsolverCpotrs_raw(handle, uplo, n, nrhs, c_loc(A), lda, c_loc(B), ldb, work, &
+        lwork, devInfo)
     end function hipsolverCpotrs_native
 
     function hipsolverCpotrs_typed(handle, uplo, n, nrhs, A, lda, B, ldb, work, lwork, &
@@ -21475,7 +21288,7 @@ contains
       integer(c_int), value :: ldb
       type(c_ptr), value :: work
       integer(c_int), value :: lwork
-      type(c_ptr), value :: devInfo
+      integer(c_int) :: devInfo
       integer(c_int) :: Cpotrs
       Cpotrs = hipsolverCpotrs_raw(handle%ptr, uplo, n, nrhs, A, lda, B, ldb, work, lwork, devInfo)
     end function hipsolverCpotrs_typed
@@ -21488,16 +21301,16 @@ contains
       integer(c_int), value :: uplo
       integer(c_int), value :: n
       integer(c_int), value :: nrhs
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: A(..)
       integer(c_int), value :: lda
-      complex(c_double_complex), target :: B(*)
+      complex(c_double_complex), target :: B(..)
       integer(c_int), value :: ldb
-      complex(c_double_complex), target :: work(*)
+      type(c_ptr), value :: work
       integer(c_int), value :: lwork
-      integer(c_int), target :: devInfo(*)
+      integer(c_int) :: devInfo
       integer(c_int) :: Zpotrs
-      Zpotrs = hipsolverZpotrs_raw(handle, uplo, n, nrhs, c_loc(A(1)), lda, c_loc(B(1)), ldb, &
-        c_loc(work(1)), lwork, c_loc(devInfo(1)))
+      Zpotrs = hipsolverZpotrs_raw(handle, uplo, n, nrhs, c_loc(A), lda, c_loc(B), ldb, work, &
+        lwork, devInfo)
     end function hipsolverZpotrs_native
 
     function hipsolverZpotrs_typed(handle, uplo, n, nrhs, A, lda, B, ldb, work, lwork, &
@@ -21515,7 +21328,7 @@ contains
       integer(c_int), value :: ldb
       type(c_ptr), value :: work
       integer(c_int), value :: lwork
-      type(c_ptr), value :: devInfo
+      integer(c_int) :: devInfo
       integer(c_int) :: Zpotrs
       Zpotrs = hipsolverZpotrs_raw(handle%ptr, uplo, n, nrhs, A, lda, B, ldb, work, lwork, devInfo)
     end function hipsolverZpotrs_typed
@@ -21600,27 +21413,6 @@ contains
         A, lda, B, ldb, lwork, batch_count)
     end function hipsolverZpotrsBatched_bufferSize_typed
 
-    function hipsolverSpotrsBatched_native(handle, uplo, n, nrhs, A, lda, B, ldb, work, lwork, &
-        devInfo, batch_count) result(SpotrsBatched)
-      use, intrinsic :: iso_c_binding
-      implicit none
-      type(c_ptr), value :: handle
-      integer(c_int), value :: uplo
-      integer(c_int), value :: n
-      integer(c_int), value :: nrhs
-      type(c_ptr), value :: A
-      integer(c_int), value :: lda
-      type(c_ptr), value :: B
-      integer(c_int), value :: ldb
-      real(c_float), target :: work(*)
-      integer(c_int), value :: lwork
-      integer(c_int) :: devInfo
-      integer(c_int), value :: batch_count
-      integer(c_int) :: SpotrsBatched
-      SpotrsBatched = hipsolverSpotrsBatched_raw(handle, uplo, n, nrhs, A, lda, B, ldb, c_loc( &
-        work(1)), lwork, devInfo, batch_count)
-    end function hipsolverSpotrsBatched_native
-
     function hipsolverSpotrsBatched_typed(handle, uplo, n, nrhs, A, lda, B, ldb, work, lwork, &
         devInfo, batch_count) result(SpotrsBatched)
       use, intrinsic :: iso_c_binding
@@ -21642,27 +21434,6 @@ contains
       SpotrsBatched = hipsolverSpotrsBatched_raw(handle%ptr, uplo, n, nrhs, A, lda, B, ldb, work, &
         lwork, devInfo, batch_count)
     end function hipsolverSpotrsBatched_typed
-
-    function hipsolverDpotrsBatched_native(handle, uplo, n, nrhs, A, lda, B, ldb, work, lwork, &
-        devInfo, batch_count) result(DpotrsBatched)
-      use, intrinsic :: iso_c_binding
-      implicit none
-      type(c_ptr), value :: handle
-      integer(c_int), value :: uplo
-      integer(c_int), value :: n
-      integer(c_int), value :: nrhs
-      type(c_ptr), value :: A
-      integer(c_int), value :: lda
-      type(c_ptr), value :: B
-      integer(c_int), value :: ldb
-      real(c_double), target :: work(*)
-      integer(c_int), value :: lwork
-      integer(c_int) :: devInfo
-      integer(c_int), value :: batch_count
-      integer(c_int) :: DpotrsBatched
-      DpotrsBatched = hipsolverDpotrsBatched_raw(handle, uplo, n, nrhs, A, lda, B, ldb, c_loc( &
-        work(1)), lwork, devInfo, batch_count)
-    end function hipsolverDpotrsBatched_native
 
     function hipsolverDpotrsBatched_typed(handle, uplo, n, nrhs, A, lda, B, ldb, work, lwork, &
         devInfo, batch_count) result(DpotrsBatched)
@@ -21686,27 +21457,6 @@ contains
         lwork, devInfo, batch_count)
     end function hipsolverDpotrsBatched_typed
 
-    function hipsolverCpotrsBatched_native(handle, uplo, n, nrhs, A, lda, B, ldb, work, lwork, &
-        devInfo, batch_count) result(CpotrsBatched)
-      use, intrinsic :: iso_c_binding
-      implicit none
-      type(c_ptr), value :: handle
-      integer(c_int), value :: uplo
-      integer(c_int), value :: n
-      integer(c_int), value :: nrhs
-      type(c_ptr), value :: A
-      integer(c_int), value :: lda
-      type(c_ptr), value :: B
-      integer(c_int), value :: ldb
-      complex(c_float_complex), target :: work(*)
-      integer(c_int), value :: lwork
-      integer(c_int) :: devInfo
-      integer(c_int), value :: batch_count
-      integer(c_int) :: CpotrsBatched
-      CpotrsBatched = hipsolverCpotrsBatched_raw(handle, uplo, n, nrhs, A, lda, B, ldb, c_loc( &
-        work(1)), lwork, devInfo, batch_count)
-    end function hipsolverCpotrsBatched_native
-
     function hipsolverCpotrsBatched_typed(handle, uplo, n, nrhs, A, lda, B, ldb, work, lwork, &
         devInfo, batch_count) result(CpotrsBatched)
       use, intrinsic :: iso_c_binding
@@ -21728,27 +21478,6 @@ contains
       CpotrsBatched = hipsolverCpotrsBatched_raw(handle%ptr, uplo, n, nrhs, A, lda, B, ldb, work, &
         lwork, devInfo, batch_count)
     end function hipsolverCpotrsBatched_typed
-
-    function hipsolverZpotrsBatched_native(handle, uplo, n, nrhs, A, lda, B, ldb, work, lwork, &
-        devInfo, batch_count) result(ZpotrsBatched)
-      use, intrinsic :: iso_c_binding
-      implicit none
-      type(c_ptr), value :: handle
-      integer(c_int), value :: uplo
-      integer(c_int), value :: n
-      integer(c_int), value :: nrhs
-      type(c_ptr), value :: A
-      integer(c_int), value :: lda
-      type(c_ptr), value :: B
-      integer(c_int), value :: ldb
-      complex(c_double_complex), target :: work(*)
-      integer(c_int), value :: lwork
-      integer(c_int) :: devInfo
-      integer(c_int), value :: batch_count
-      integer(c_int) :: ZpotrsBatched
-      ZpotrsBatched = hipsolverZpotrsBatched_raw(handle, uplo, n, nrhs, A, lda, B, ldb, c_loc( &
-        work(1)), lwork, devInfo, batch_count)
-    end function hipsolverZpotrsBatched_native
 
     function hipsolverZpotrsBatched_typed(handle, uplo, n, nrhs, A, lda, B, ldb, work, lwork, &
         devInfo, batch_count) result(ZpotrsBatched)
@@ -21780,13 +21509,13 @@ contains
       integer(c_int), value :: jobz
       integer(c_int), value :: uplo
       integer(c_int), value :: n
-      real(c_float), target :: A(*)
+      real(c_float), target :: A(..)
       integer(c_int), value :: lda
-      real(c_float), target :: D(*)
-      integer(c_int), target :: lwork(*)
+      real(c_float), target :: D(..)
+      integer(c_int) :: lwork
       integer(c_int) :: Ssyevd_bufferSize
-      Ssyevd_bufferSize = hipsolverSsyevd_bufferSize_raw(handle, jobz, uplo, n, c_loc(A(1)), lda, &
-        c_loc(D(1)), c_loc(lwork(1)))
+      Ssyevd_bufferSize = hipsolverSsyevd_bufferSize_raw(handle, jobz, uplo, n, c_loc(A), lda, &
+        c_loc(D), lwork)
     end function hipsolverSsyevd_bufferSize_native
 
     function hipsolverSsyevd_bufferSize_typed(handle, jobz, uplo, n, A, lda, D, lwork) result( &
@@ -21801,7 +21530,7 @@ contains
       type(c_ptr), value :: A
       integer(c_int), value :: lda
       type(c_ptr), value :: D
-      type(c_ptr), value :: lwork
+      integer(c_int) :: lwork
       integer(c_int) :: Ssyevd_bufferSize
       Ssyevd_bufferSize = hipsolverSsyevd_bufferSize_raw(handle%ptr, jobz, uplo, n, A, lda, D, &
         lwork)
@@ -21815,13 +21544,13 @@ contains
       integer(c_int), value :: jobz
       integer(c_int), value :: uplo
       integer(c_int), value :: n
-      real(c_double), target :: A(*)
+      real(c_double), target :: A(..)
       integer(c_int), value :: lda
-      real(c_double), target :: D(*)
-      integer(c_int), target :: lwork(*)
+      real(c_double), target :: D(..)
+      integer(c_int) :: lwork
       integer(c_int) :: Dsyevd_bufferSize
-      Dsyevd_bufferSize = hipsolverDsyevd_bufferSize_raw(handle, jobz, uplo, n, c_loc(A(1)), lda, &
-        c_loc(D(1)), c_loc(lwork(1)))
+      Dsyevd_bufferSize = hipsolverDsyevd_bufferSize_raw(handle, jobz, uplo, n, c_loc(A), lda, &
+        c_loc(D), lwork)
     end function hipsolverDsyevd_bufferSize_native
 
     function hipsolverDsyevd_bufferSize_typed(handle, jobz, uplo, n, A, lda, D, lwork) result( &
@@ -21836,7 +21565,7 @@ contains
       type(c_ptr), value :: A
       integer(c_int), value :: lda
       type(c_ptr), value :: D
-      type(c_ptr), value :: lwork
+      integer(c_int) :: lwork
       integer(c_int) :: Dsyevd_bufferSize
       Dsyevd_bufferSize = hipsolverDsyevd_bufferSize_raw(handle%ptr, jobz, uplo, n, A, lda, D, &
         lwork)
@@ -21850,13 +21579,13 @@ contains
       integer(c_int), value :: jobz
       integer(c_int), value :: uplo
       integer(c_int), value :: n
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: A(..)
       integer(c_int), value :: lda
-      real(c_float), target :: D(*)
-      integer(c_int), target :: lwork(*)
+      real(c_float), target :: D(..)
+      integer(c_int) :: lwork
       integer(c_int) :: Cheevd_bufferSize
-      Cheevd_bufferSize = hipsolverCheevd_bufferSize_raw(handle, jobz, uplo, n, c_loc(A(1)), lda, &
-        c_loc(D(1)), c_loc(lwork(1)))
+      Cheevd_bufferSize = hipsolverCheevd_bufferSize_raw(handle, jobz, uplo, n, c_loc(A), lda, &
+        c_loc(D), lwork)
     end function hipsolverCheevd_bufferSize_native
 
     function hipsolverCheevd_bufferSize_typed(handle, jobz, uplo, n, A, lda, D, lwork) result( &
@@ -21871,7 +21600,7 @@ contains
       type(c_ptr), value :: A
       integer(c_int), value :: lda
       type(c_ptr), value :: D
-      type(c_ptr), value :: lwork
+      integer(c_int) :: lwork
       integer(c_int) :: Cheevd_bufferSize
       Cheevd_bufferSize = hipsolverCheevd_bufferSize_raw(handle%ptr, jobz, uplo, n, A, lda, D, &
         lwork)
@@ -21885,13 +21614,13 @@ contains
       integer(c_int), value :: jobz
       integer(c_int), value :: uplo
       integer(c_int), value :: n
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: A(..)
       integer(c_int), value :: lda
-      real(c_double), target :: D(*)
-      integer(c_int), target :: lwork(*)
+      real(c_double), target :: D(..)
+      integer(c_int) :: lwork
       integer(c_int) :: Zheevd_bufferSize
-      Zheevd_bufferSize = hipsolverZheevd_bufferSize_raw(handle, jobz, uplo, n, c_loc(A(1)), lda, &
-        c_loc(D(1)), c_loc(lwork(1)))
+      Zheevd_bufferSize = hipsolverZheevd_bufferSize_raw(handle, jobz, uplo, n, c_loc(A), lda, &
+        c_loc(D), lwork)
     end function hipsolverZheevd_bufferSize_native
 
     function hipsolverZheevd_bufferSize_typed(handle, jobz, uplo, n, A, lda, D, lwork) result( &
@@ -21906,7 +21635,7 @@ contains
       type(c_ptr), value :: A
       integer(c_int), value :: lda
       type(c_ptr), value :: D
-      type(c_ptr), value :: lwork
+      integer(c_int) :: lwork
       integer(c_int) :: Zheevd_bufferSize
       Zheevd_bufferSize = hipsolverZheevd_bufferSize_raw(handle%ptr, jobz, uplo, n, A, lda, D, &
         lwork)
@@ -21920,15 +21649,15 @@ contains
       integer(c_int), value :: jobz
       integer(c_int), value :: uplo
       integer(c_int), value :: n
-      real(c_float), target :: A(*)
+      real(c_float), target :: A(..)
       integer(c_int), value :: lda
-      real(c_float), target :: D(*)
-      real(c_float), target :: work(*)
+      real(c_float), target :: D(..)
+      type(c_ptr), value :: work
       integer(c_int), value :: lwork
-      integer(c_int), target :: devInfo(*)
+      integer(c_int) :: devInfo
       integer(c_int) :: Ssyevd
-      Ssyevd = hipsolverSsyevd_raw(handle, jobz, uplo, n, c_loc(A(1)), lda, c_loc(D(1)), c_loc( &
-        work(1)), lwork, c_loc(devInfo(1)))
+      Ssyevd = hipsolverSsyevd_raw(handle, jobz, uplo, n, c_loc(A), lda, c_loc(D), work, lwork, &
+        devInfo)
     end function hipsolverSsyevd_native
 
     function hipsolverSsyevd_typed(handle, jobz, uplo, n, A, lda, D, work, lwork, devInfo) result( &
@@ -21945,7 +21674,7 @@ contains
       type(c_ptr), value :: D
       type(c_ptr), value :: work
       integer(c_int), value :: lwork
-      type(c_ptr), value :: devInfo
+      integer(c_int) :: devInfo
       integer(c_int) :: Ssyevd
       Ssyevd = hipsolverSsyevd_raw(handle%ptr, jobz, uplo, n, A, lda, D, work, lwork, devInfo)
     end function hipsolverSsyevd_typed
@@ -21958,15 +21687,15 @@ contains
       integer(c_int), value :: jobz
       integer(c_int), value :: uplo
       integer(c_int), value :: n
-      real(c_double), target :: A(*)
+      real(c_double), target :: A(..)
       integer(c_int), value :: lda
-      real(c_double), target :: D(*)
-      real(c_double), target :: work(*)
+      real(c_double), target :: D(..)
+      type(c_ptr), value :: work
       integer(c_int), value :: lwork
-      integer(c_int), target :: devInfo(*)
+      integer(c_int) :: devInfo
       integer(c_int) :: Dsyevd
-      Dsyevd = hipsolverDsyevd_raw(handle, jobz, uplo, n, c_loc(A(1)), lda, c_loc(D(1)), c_loc( &
-        work(1)), lwork, c_loc(devInfo(1)))
+      Dsyevd = hipsolverDsyevd_raw(handle, jobz, uplo, n, c_loc(A), lda, c_loc(D), work, lwork, &
+        devInfo)
     end function hipsolverDsyevd_native
 
     function hipsolverDsyevd_typed(handle, jobz, uplo, n, A, lda, D, work, lwork, devInfo) result( &
@@ -21983,7 +21712,7 @@ contains
       type(c_ptr), value :: D
       type(c_ptr), value :: work
       integer(c_int), value :: lwork
-      type(c_ptr), value :: devInfo
+      integer(c_int) :: devInfo
       integer(c_int) :: Dsyevd
       Dsyevd = hipsolverDsyevd_raw(handle%ptr, jobz, uplo, n, A, lda, D, work, lwork, devInfo)
     end function hipsolverDsyevd_typed
@@ -21996,15 +21725,15 @@ contains
       integer(c_int), value :: jobz
       integer(c_int), value :: uplo
       integer(c_int), value :: n
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: A(..)
       integer(c_int), value :: lda
-      real(c_float), target :: D(*)
-      complex(c_float_complex), target :: work(*)
+      real(c_float), target :: D(..)
+      type(c_ptr), value :: work
       integer(c_int), value :: lwork
-      integer(c_int), target :: devInfo(*)
+      integer(c_int) :: devInfo
       integer(c_int) :: Cheevd
-      Cheevd = hipsolverCheevd_raw(handle, jobz, uplo, n, c_loc(A(1)), lda, c_loc(D(1)), c_loc( &
-        work(1)), lwork, c_loc(devInfo(1)))
+      Cheevd = hipsolverCheevd_raw(handle, jobz, uplo, n, c_loc(A), lda, c_loc(D), work, lwork, &
+        devInfo)
     end function hipsolverCheevd_native
 
     function hipsolverCheevd_typed(handle, jobz, uplo, n, A, lda, D, work, lwork, devInfo) result( &
@@ -22021,7 +21750,7 @@ contains
       type(c_ptr), value :: D
       type(c_ptr), value :: work
       integer(c_int), value :: lwork
-      type(c_ptr), value :: devInfo
+      integer(c_int) :: devInfo
       integer(c_int) :: Cheevd
       Cheevd = hipsolverCheevd_raw(handle%ptr, jobz, uplo, n, A, lda, D, work, lwork, devInfo)
     end function hipsolverCheevd_typed
@@ -22034,15 +21763,15 @@ contains
       integer(c_int), value :: jobz
       integer(c_int), value :: uplo
       integer(c_int), value :: n
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: A(..)
       integer(c_int), value :: lda
-      real(c_double), target :: D(*)
-      complex(c_double_complex), target :: work(*)
+      real(c_double), target :: D(..)
+      type(c_ptr), value :: work
       integer(c_int), value :: lwork
-      integer(c_int), target :: devInfo(*)
+      integer(c_int) :: devInfo
       integer(c_int) :: Zheevd
-      Zheevd = hipsolverZheevd_raw(handle, jobz, uplo, n, c_loc(A(1)), lda, c_loc(D(1)), c_loc( &
-        work(1)), lwork, c_loc(devInfo(1)))
+      Zheevd = hipsolverZheevd_raw(handle, jobz, uplo, n, c_loc(A), lda, c_loc(D), work, lwork, &
+        devInfo)
     end function hipsolverZheevd_native
 
     function hipsolverZheevd_typed(handle, jobz, uplo, n, A, lda, D, work, lwork, devInfo) result( &
@@ -22059,7 +21788,7 @@ contains
       type(c_ptr), value :: D
       type(c_ptr), value :: work
       integer(c_int), value :: lwork
-      type(c_ptr), value :: devInfo
+      integer(c_int) :: devInfo
       integer(c_int) :: Zheevd
       Zheevd = hipsolverZheevd_raw(handle%ptr, jobz, uplo, n, A, lda, D, work, lwork, devInfo)
     end function hipsolverZheevd_typed
@@ -22073,18 +21802,18 @@ contains
       integer(c_int), value :: range
       integer(c_int), value :: uplo
       integer(c_int), value :: n
-      real(c_float), target :: A(*)
+      real(c_float), target :: A(..)
       integer(c_int), value :: lda
       real(c_float), value :: vl
       real(c_float), value :: vu
       integer(c_int), value :: il
       integer(c_int), value :: iu
       integer(c_int) :: nev
-      real(c_float), target :: W(*)
-      integer(c_int), target :: lwork(*)
+      real(c_float), target :: W(..)
+      integer(c_int) :: lwork
       integer(c_int) :: Ssyevdx_bufferSize
-      Ssyevdx_bufferSize = hipsolverSsyevdx_bufferSize_raw(handle, jobz, range, uplo, n, c_loc(A( &
-        1)), lda, vl, vu, il, iu, nev, c_loc(W(1)), c_loc(lwork(1)))
+      Ssyevdx_bufferSize = hipsolverSsyevdx_bufferSize_raw(handle, jobz, range, uplo, n, c_loc(A), &
+        lda, vl, vu, il, iu, nev, c_loc(W), lwork)
     end function hipsolverSsyevdx_bufferSize_native
 
     function hipsolverSsyevdx_bufferSize_typed(handle, jobz, range, uplo, n, A, lda, vl, vu, il, &
@@ -22105,7 +21834,7 @@ contains
       integer(c_int), value :: iu
       integer(c_int) :: nev
       type(c_ptr), value :: W
-      type(c_ptr), value :: lwork
+      integer(c_int) :: lwork
       integer(c_int) :: Ssyevdx_bufferSize
       Ssyevdx_bufferSize = hipsolverSsyevdx_bufferSize_raw(handle%ptr, jobz, range, uplo, n, A, &
         lda, vl, vu, il, iu, nev, W, lwork)
@@ -22120,18 +21849,18 @@ contains
       integer(c_int), value :: range
       integer(c_int), value :: uplo
       integer(c_int), value :: n
-      real(c_double), target :: A(*)
+      real(c_double), target :: A(..)
       integer(c_int), value :: lda
       real(c_double), value :: vl
       real(c_double), value :: vu
       integer(c_int), value :: il
       integer(c_int), value :: iu
-      integer(c_int), target :: nev(*)
-      real(c_double), target :: W(*)
-      integer(c_int), target :: lwork(*)
+      integer(c_int), target :: nev(..)
+      real(c_double), target :: W(..)
+      integer(c_int), target :: lwork(..)
       integer(c_int) :: Dsyevdx_bufferSize
-      Dsyevdx_bufferSize = hipsolverDsyevdx_bufferSize_raw(handle, jobz, range, uplo, n, c_loc(A( &
-        1)), lda, vl, vu, il, iu, c_loc(nev(1)), c_loc(W(1)), c_loc(lwork(1)))
+      Dsyevdx_bufferSize = hipsolverDsyevdx_bufferSize_raw(handle, jobz, range, uplo, n, c_loc(A), &
+        lda, vl, vu, il, iu, c_loc(nev), c_loc(W), c_loc(lwork))
     end function hipsolverDsyevdx_bufferSize_native
 
     function hipsolverDsyevdx_bufferSize_typed(handle, jobz, range, uplo, n, A, lda, vl, vu, il, &
@@ -22167,18 +21896,18 @@ contains
       integer(c_int), value :: range
       integer(c_int), value :: uplo
       integer(c_int), value :: n
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: A(..)
       integer(c_int), value :: lda
       real(c_float), value :: vl
       real(c_float), value :: vu
       integer(c_int), value :: il
       integer(c_int), value :: iu
       integer(c_int) :: nev
-      real(c_float), target :: W(*)
-      integer(c_int), target :: lwork(*)
+      real(c_float), target :: W(..)
+      integer(c_int) :: lwork
       integer(c_int) :: Cheevdx_bufferSize
-      Cheevdx_bufferSize = hipsolverCheevdx_bufferSize_raw(handle, jobz, range, uplo, n, c_loc(A( &
-        1)), lda, vl, vu, il, iu, nev, c_loc(W(1)), c_loc(lwork(1)))
+      Cheevdx_bufferSize = hipsolverCheevdx_bufferSize_raw(handle, jobz, range, uplo, n, c_loc(A), &
+        lda, vl, vu, il, iu, nev, c_loc(W), lwork)
     end function hipsolverCheevdx_bufferSize_native
 
     function hipsolverCheevdx_bufferSize_typed(handle, jobz, range, uplo, n, A, lda, vl, vu, il, &
@@ -22199,7 +21928,7 @@ contains
       integer(c_int), value :: iu
       integer(c_int) :: nev
       type(c_ptr), value :: W
-      type(c_ptr), value :: lwork
+      integer(c_int) :: lwork
       integer(c_int) :: Cheevdx_bufferSize
       Cheevdx_bufferSize = hipsolverCheevdx_bufferSize_raw(handle%ptr, jobz, range, uplo, n, A, &
         lda, vl, vu, il, iu, nev, W, lwork)
@@ -22214,18 +21943,18 @@ contains
       integer(c_int), value :: range
       integer(c_int), value :: uplo
       integer(c_int), value :: n
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: A(..)
       integer(c_int), value :: lda
       real(c_double), value :: vl
       real(c_double), value :: vu
       integer(c_int), value :: il
       integer(c_int), value :: iu
       integer(c_int) :: nev
-      real(c_double), target :: W(*)
-      integer(c_int), target :: lwork(*)
+      real(c_double), target :: W(..)
+      integer(c_int) :: lwork
       integer(c_int) :: Zheevdx_bufferSize
-      Zheevdx_bufferSize = hipsolverZheevdx_bufferSize_raw(handle, jobz, range, uplo, n, c_loc(A( &
-        1)), lda, vl, vu, il, iu, nev, c_loc(W(1)), c_loc(lwork(1)))
+      Zheevdx_bufferSize = hipsolverZheevdx_bufferSize_raw(handle, jobz, range, uplo, n, c_loc(A), &
+        lda, vl, vu, il, iu, nev, c_loc(W), lwork)
     end function hipsolverZheevdx_bufferSize_native
 
     function hipsolverZheevdx_bufferSize_typed(handle, jobz, range, uplo, n, A, lda, vl, vu, il, &
@@ -22246,7 +21975,7 @@ contains
       integer(c_int), value :: iu
       integer(c_int) :: nev
       type(c_ptr), value :: W
-      type(c_ptr), value :: lwork
+      integer(c_int) :: lwork
       integer(c_int) :: Zheevdx_bufferSize
       Zheevdx_bufferSize = hipsolverZheevdx_bufferSize_raw(handle%ptr, jobz, range, uplo, n, A, &
         lda, vl, vu, il, iu, nev, W, lwork)
@@ -22261,20 +21990,20 @@ contains
       integer(c_int), value :: range
       integer(c_int), value :: uplo
       integer(c_int), value :: n
-      real(c_float), target :: A(*)
+      real(c_float), target :: A(..)
       integer(c_int), value :: lda
       real(c_float), value :: vl
       real(c_float), value :: vu
       integer(c_int), value :: il
       integer(c_int), value :: iu
-      integer(c_int), target :: nev(*)
-      real(c_float), target :: W(*)
-      real(c_float), target :: work(*)
+      integer(c_int), target :: nev(..)
+      real(c_float), target :: W(..)
+      type(c_ptr), value :: work
       integer(c_int), value :: lwork
-      integer(c_int), target :: devInfo(*)
+      integer(c_int), target :: devInfo(..)
       integer(c_int) :: Ssyevdx
-      Ssyevdx = hipsolverSsyevdx_raw(handle, jobz, range, uplo, n, c_loc(A(1)), lda, vl, vu, il, &
-        iu, c_loc(nev(1)), c_loc(W(1)), c_loc(work(1)), lwork, c_loc(devInfo(1)))
+      Ssyevdx = hipsolverSsyevdx_raw(handle, jobz, range, uplo, n, c_loc(A), lda, vl, vu, il, iu, &
+        c_loc(nev), c_loc(W), work, lwork, c_loc(devInfo))
     end function hipsolverSsyevdx_native
 
     function hipsolverSsyevdx_typed(handle, jobz, range, uplo, n, A, lda, vl, vu, il, iu, nev, W, &
@@ -22312,20 +22041,20 @@ contains
       integer(c_int), value :: range
       integer(c_int), value :: uplo
       integer(c_int), value :: n
-      real(c_double), target :: A(*)
+      real(c_double), target :: A(..)
       integer(c_int), value :: lda
       real(c_double), value :: vl
       real(c_double), value :: vu
       integer(c_int), value :: il
       integer(c_int), value :: iu
-      integer(c_int), target :: nev(*)
-      real(c_double), target :: W(*)
-      real(c_double), target :: work(*)
+      integer(c_int), target :: nev(..)
+      real(c_double), target :: W(..)
+      type(c_ptr), value :: work
       integer(c_int), value :: lwork
-      integer(c_int), target :: devInfo(*)
+      integer(c_int), target :: devInfo(..)
       integer(c_int) :: Dsyevdx
-      Dsyevdx = hipsolverDsyevdx_raw(handle, jobz, range, uplo, n, c_loc(A(1)), lda, vl, vu, il, &
-        iu, c_loc(nev(1)), c_loc(W(1)), c_loc(work(1)), lwork, c_loc(devInfo(1)))
+      Dsyevdx = hipsolverDsyevdx_raw(handle, jobz, range, uplo, n, c_loc(A), lda, vl, vu, il, iu, &
+        c_loc(nev), c_loc(W), work, lwork, c_loc(devInfo))
     end function hipsolverDsyevdx_native
 
     function hipsolverDsyevdx_typed(handle, jobz, range, uplo, n, A, lda, vl, vu, il, iu, nev, W, &
@@ -22363,20 +22092,20 @@ contains
       integer(c_int), value :: range
       integer(c_int), value :: uplo
       integer(c_int), value :: n
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: A(..)
       integer(c_int), value :: lda
       real(c_float), value :: vl
       real(c_float), value :: vu
       integer(c_int), value :: il
       integer(c_int), value :: iu
       integer(c_int) :: nev
-      real(c_float), target :: W(*)
-      complex(c_float_complex), target :: work(*)
+      real(c_float), target :: W(..)
+      type(c_ptr), value :: work
       integer(c_int), value :: lwork
-      integer(c_int), target :: devInfo(*)
+      integer(c_int) :: devInfo
       integer(c_int) :: Cheevdx
-      Cheevdx = hipsolverCheevdx_raw(handle, jobz, range, uplo, n, c_loc(A(1)), lda, vl, vu, il, &
-        iu, nev, c_loc(W(1)), c_loc(work(1)), lwork, c_loc(devInfo(1)))
+      Cheevdx = hipsolverCheevdx_raw(handle, jobz, range, uplo, n, c_loc(A), lda, vl, vu, il, iu, &
+        nev, c_loc(W), work, lwork, devInfo)
     end function hipsolverCheevdx_native
 
     function hipsolverCheevdx_typed(handle, jobz, range, uplo, n, A, lda, vl, vu, il, iu, nev, W, &
@@ -22399,7 +22128,7 @@ contains
       type(c_ptr), value :: W
       type(c_ptr), value :: work
       integer(c_int), value :: lwork
-      type(c_ptr), value :: devInfo
+      integer(c_int) :: devInfo
       integer(c_int) :: Cheevdx
       Cheevdx = hipsolverCheevdx_raw(handle%ptr, jobz, range, uplo, n, A, lda, vl, vu, il, iu, &
         nev, W, work, lwork, devInfo)
@@ -22414,20 +22143,20 @@ contains
       integer(c_int), value :: range
       integer(c_int), value :: uplo
       integer(c_int), value :: n
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: A(..)
       integer(c_int), value :: lda
       real(c_double), value :: vl
       real(c_double), value :: vu
       integer(c_int), value :: il
       integer(c_int), value :: iu
       integer(c_int) :: nev
-      real(c_double), target :: W(*)
-      complex(c_double_complex), target :: work(*)
+      real(c_double), target :: W(..)
+      type(c_ptr), value :: work
       integer(c_int), value :: lwork
-      integer(c_int), target :: devInfo(*)
+      integer(c_int) :: devInfo
       integer(c_int) :: Zheevdx
-      Zheevdx = hipsolverZheevdx_raw(handle, jobz, range, uplo, n, c_loc(A(1)), lda, vl, vu, il, &
-        iu, nev, c_loc(W(1)), c_loc(work(1)), lwork, c_loc(devInfo(1)))
+      Zheevdx = hipsolverZheevdx_raw(handle, jobz, range, uplo, n, c_loc(A), lda, vl, vu, il, iu, &
+        nev, c_loc(W), work, lwork, devInfo)
     end function hipsolverZheevdx_native
 
     function hipsolverZheevdx_typed(handle, jobz, range, uplo, n, A, lda, vl, vu, il, iu, nev, W, &
@@ -22450,7 +22179,7 @@ contains
       type(c_ptr), value :: W
       type(c_ptr), value :: work
       integer(c_int), value :: lwork
-      type(c_ptr), value :: devInfo
+      integer(c_int) :: devInfo
       integer(c_int) :: Zheevdx
       Zheevdx = hipsolverZheevdx_raw(handle%ptr, jobz, range, uplo, n, A, lda, vl, vu, il, iu, &
         nev, W, work, lwork, devInfo)
@@ -22464,14 +22193,14 @@ contains
       integer(c_int), value :: jobz
       integer(c_int), value :: uplo
       integer(c_int), value :: n
-      real(c_float), target :: A(*)
+      real(c_float), target :: A(..)
       integer(c_int), value :: lda
-      real(c_float), target :: W(*)
+      real(c_float), target :: W(..)
       integer(c_int) :: lwork
       type(c_ptr), value :: params
       integer(c_int) :: Ssyevj_bufferSize
-      Ssyevj_bufferSize = hipsolverSsyevj_bufferSize_raw(handle, jobz, uplo, n, c_loc(A(1)), lda, &
-        c_loc(W(1)), lwork, params)
+      Ssyevj_bufferSize = hipsolverSsyevj_bufferSize_raw(handle, jobz, uplo, n, c_loc(A), lda, &
+        c_loc(W), lwork, params)
     end function hipsolverSsyevj_bufferSize_native
 
     function hipsolverSsyevj_bufferSize_typed(handle, jobz, uplo, n, A, lda, W, lwork, &
@@ -22501,14 +22230,14 @@ contains
       integer(c_int), value :: jobz
       integer(c_int), value :: uplo
       integer(c_int), value :: n
-      real(c_double), target :: A(*)
+      real(c_double), target :: A(..)
       integer(c_int), value :: lda
-      real(c_double), target :: W(*)
+      real(c_double), target :: W(..)
       integer(c_int) :: lwork
       type(c_ptr), value :: params
       integer(c_int) :: Dsyevj_bufferSize
-      Dsyevj_bufferSize = hipsolverDsyevj_bufferSize_raw(handle, jobz, uplo, n, c_loc(A(1)), lda, &
-        c_loc(W(1)), lwork, params)
+      Dsyevj_bufferSize = hipsolverDsyevj_bufferSize_raw(handle, jobz, uplo, n, c_loc(A), lda, &
+        c_loc(W), lwork, params)
     end function hipsolverDsyevj_bufferSize_native
 
     function hipsolverDsyevj_bufferSize_typed(handle, jobz, uplo, n, A, lda, W, lwork, &
@@ -22538,14 +22267,14 @@ contains
       integer(c_int), value :: jobz
       integer(c_int), value :: uplo
       integer(c_int), value :: n
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: A(..)
       integer(c_int), value :: lda
-      real(c_float), target :: W(*)
+      real(c_float), target :: W(..)
       integer(c_int) :: lwork
       type(c_ptr), value :: params
       integer(c_int) :: Cheevj_bufferSize
-      Cheevj_bufferSize = hipsolverCheevj_bufferSize_raw(handle, jobz, uplo, n, c_loc(A(1)), lda, &
-        c_loc(W(1)), lwork, params)
+      Cheevj_bufferSize = hipsolverCheevj_bufferSize_raw(handle, jobz, uplo, n, c_loc(A), lda, &
+        c_loc(W), lwork, params)
     end function hipsolverCheevj_bufferSize_native
 
     function hipsolverCheevj_bufferSize_typed(handle, jobz, uplo, n, A, lda, W, lwork, &
@@ -22575,14 +22304,14 @@ contains
       integer(c_int), value :: jobz
       integer(c_int), value :: uplo
       integer(c_int), value :: n
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: A(..)
       integer(c_int), value :: lda
-      real(c_double), target :: W(*)
+      real(c_double), target :: W(..)
       integer(c_int) :: lwork
       type(c_ptr), value :: params
       integer(c_int) :: Zheevj_bufferSize
-      Zheevj_bufferSize = hipsolverZheevj_bufferSize_raw(handle, jobz, uplo, n, c_loc(A(1)), lda, &
-        c_loc(W(1)), lwork, params)
+      Zheevj_bufferSize = hipsolverZheevj_bufferSize_raw(handle, jobz, uplo, n, c_loc(A), lda, &
+        c_loc(W), lwork, params)
     end function hipsolverZheevj_bufferSize_native
 
     function hipsolverZheevj_bufferSize_typed(handle, jobz, uplo, n, A, lda, W, lwork, &
@@ -22612,16 +22341,16 @@ contains
       integer(c_int), value :: jobz
       integer(c_int), value :: uplo
       integer(c_int), value :: n
-      real(c_float), target :: A(*)
+      real(c_float), target :: A(..)
       integer(c_int), value :: lda
-      real(c_float), target :: W(*)
-      real(c_float), target :: work(*)
+      real(c_float), target :: W(..)
+      type(c_ptr), value :: work
       integer(c_int), value :: lwork
       integer(c_int) :: devInfo
       type(c_ptr), value :: params
       integer(c_int) :: Ssyevj
-      Ssyevj = hipsolverSsyevj_raw(handle, jobz, uplo, n, c_loc(A(1)), lda, c_loc(W(1)), c_loc( &
-        work(1)), lwork, devInfo, params)
+      Ssyevj = hipsolverSsyevj_raw(handle, jobz, uplo, n, c_loc(A), lda, c_loc(W), work, lwork, &
+        devInfo, params)
     end function hipsolverSsyevj_native
 
     function hipsolverSsyevj_typed(handle, jobz, uplo, n, A, lda, W, work, lwork, devInfo, &
@@ -22653,16 +22382,16 @@ contains
       integer(c_int), value :: jobz
       integer(c_int), value :: uplo
       integer(c_int), value :: n
-      real(c_double), target :: A(*)
+      real(c_double), target :: A(..)
       integer(c_int), value :: lda
-      real(c_double), target :: W(*)
-      real(c_double), target :: work(*)
+      real(c_double), target :: W(..)
+      type(c_ptr), value :: work
       integer(c_int), value :: lwork
       integer(c_int) :: devInfo
       type(c_ptr), value :: params
       integer(c_int) :: Dsyevj
-      Dsyevj = hipsolverDsyevj_raw(handle, jobz, uplo, n, c_loc(A(1)), lda, c_loc(W(1)), c_loc( &
-        work(1)), lwork, devInfo, params)
+      Dsyevj = hipsolverDsyevj_raw(handle, jobz, uplo, n, c_loc(A), lda, c_loc(W), work, lwork, &
+        devInfo, params)
     end function hipsolverDsyevj_native
 
     function hipsolverDsyevj_typed(handle, jobz, uplo, n, A, lda, W, work, lwork, devInfo, &
@@ -22694,16 +22423,16 @@ contains
       integer(c_int), value :: jobz
       integer(c_int), value :: uplo
       integer(c_int), value :: n
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: A(..)
       integer(c_int), value :: lda
-      real(c_float), target :: W(*)
-      complex(c_float_complex), target :: work(*)
+      real(c_float), target :: W(..)
+      type(c_ptr), value :: work
       integer(c_int), value :: lwork
       integer(c_int) :: devInfo
       type(c_ptr), value :: params
       integer(c_int) :: Cheevj
-      Cheevj = hipsolverCheevj_raw(handle, jobz, uplo, n, c_loc(A(1)), lda, c_loc(W(1)), c_loc( &
-        work(1)), lwork, devInfo, params)
+      Cheevj = hipsolverCheevj_raw(handle, jobz, uplo, n, c_loc(A), lda, c_loc(W), work, lwork, &
+        devInfo, params)
     end function hipsolverCheevj_native
 
     function hipsolverCheevj_typed(handle, jobz, uplo, n, A, lda, W, work, lwork, devInfo, &
@@ -22735,16 +22464,16 @@ contains
       integer(c_int), value :: jobz
       integer(c_int), value :: uplo
       integer(c_int), value :: n
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: A(..)
       integer(c_int), value :: lda
-      real(c_double), target :: W(*)
-      complex(c_double_complex), target :: work(*)
+      real(c_double), target :: W(..)
+      type(c_ptr), value :: work
       integer(c_int), value :: lwork
       integer(c_int) :: devInfo
       type(c_ptr), value :: params
       integer(c_int) :: Zheevj
-      Zheevj = hipsolverZheevj_raw(handle, jobz, uplo, n, c_loc(A(1)), lda, c_loc(W(1)), c_loc( &
-        work(1)), lwork, devInfo, params)
+      Zheevj = hipsolverZheevj_raw(handle, jobz, uplo, n, c_loc(A), lda, c_loc(W), work, lwork, &
+        devInfo, params)
     end function hipsolverZheevj_native
 
     function hipsolverZheevj_typed(handle, jobz, uplo, n, A, lda, W, work, lwork, devInfo, &
@@ -22776,15 +22505,15 @@ contains
       integer(c_int), value :: jobz
       integer(c_int), value :: uplo
       integer(c_int), value :: n
-      real(c_float), target :: A(*)
+      real(c_float), target :: A(..)
       integer(c_int), value :: lda
-      real(c_float), target :: W(*)
+      real(c_float), target :: W(..)
       integer(c_int) :: lwork
       type(c_ptr), value :: params
       integer(c_int), value :: batch_count
       integer(c_int) :: SsyevjBatched_bufferSize
       SsyevjBatched_bufferSize = hipsolverSsyevjBatched_bufferSize_raw(handle, jobz, uplo, n, &
-        c_loc(A(1)), lda, c_loc(W(1)), lwork, params, batch_count)
+        c_loc(A), lda, c_loc(W), lwork, params, batch_count)
     end function hipsolverSsyevjBatched_bufferSize_native
 
     function hipsolverSsyevjBatched_bufferSize_typed(handle, jobz, uplo, n, A, lda, W, lwork, &
@@ -22815,15 +22544,15 @@ contains
       integer(c_int), value :: jobz
       integer(c_int), value :: uplo
       integer(c_int), value :: n
-      real(c_double), target :: A(*)
+      real(c_double), target :: A(..)
       integer(c_int), value :: lda
-      real(c_double), target :: W(*)
+      real(c_double), target :: W(..)
       integer(c_int) :: lwork
       type(c_ptr), value :: params
       integer(c_int), value :: batch_count
       integer(c_int) :: DsyevjBatched_bufferSize
       DsyevjBatched_bufferSize = hipsolverDsyevjBatched_bufferSize_raw(handle, jobz, uplo, n, &
-        c_loc(A(1)), lda, c_loc(W(1)), lwork, params, batch_count)
+        c_loc(A), lda, c_loc(W), lwork, params, batch_count)
     end function hipsolverDsyevjBatched_bufferSize_native
 
     function hipsolverDsyevjBatched_bufferSize_typed(handle, jobz, uplo, n, A, lda, W, lwork, &
@@ -22854,15 +22583,15 @@ contains
       integer(c_int), value :: jobz
       integer(c_int), value :: uplo
       integer(c_int), value :: n
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: A(..)
       integer(c_int), value :: lda
-      real(c_float), target :: W(*)
+      real(c_float), target :: W(..)
       integer(c_int) :: lwork
       type(c_ptr), value :: params
       integer(c_int), value :: batch_count
       integer(c_int) :: CheevjBatched_bufferSize
       CheevjBatched_bufferSize = hipsolverCheevjBatched_bufferSize_raw(handle, jobz, uplo, n, &
-        c_loc(A(1)), lda, c_loc(W(1)), lwork, params, batch_count)
+        c_loc(A), lda, c_loc(W), lwork, params, batch_count)
     end function hipsolverCheevjBatched_bufferSize_native
 
     function hipsolverCheevjBatched_bufferSize_typed(handle, jobz, uplo, n, A, lda, W, lwork, &
@@ -22893,15 +22622,15 @@ contains
       integer(c_int), value :: jobz
       integer(c_int), value :: uplo
       integer(c_int), value :: n
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: A(..)
       integer(c_int), value :: lda
-      real(c_double), target :: W(*)
+      real(c_double), target :: W(..)
       integer(c_int) :: lwork
       type(c_ptr), value :: params
       integer(c_int), value :: batch_count
       integer(c_int) :: ZheevjBatched_bufferSize
       ZheevjBatched_bufferSize = hipsolverZheevjBatched_bufferSize_raw(handle, jobz, uplo, n, &
-        c_loc(A(1)), lda, c_loc(W(1)), lwork, params, batch_count)
+        c_loc(A), lda, c_loc(W), lwork, params, batch_count)
     end function hipsolverZheevjBatched_bufferSize_native
 
     function hipsolverZheevjBatched_bufferSize_typed(handle, jobz, uplo, n, A, lda, W, lwork, &
@@ -22932,17 +22661,17 @@ contains
       integer(c_int), value :: jobz
       integer(c_int), value :: uplo
       integer(c_int), value :: n
-      real(c_float), target :: A(*)
+      real(c_float), target :: A(..)
       integer(c_int), value :: lda
-      real(c_float), target :: W(*)
-      real(c_float), target :: work(*)
+      real(c_float), target :: W(..)
+      type(c_ptr), value :: work
       integer(c_int), value :: lwork
       integer(c_int) :: devInfo
       type(c_ptr), value :: params
       integer(c_int), value :: batch_count
       integer(c_int) :: SsyevjBatched
-      SsyevjBatched = hipsolverSsyevjBatched_raw(handle, jobz, uplo, n, c_loc(A(1)), lda, c_loc(W( &
-        1)), c_loc(work(1)), lwork, devInfo, params, batch_count)
+      SsyevjBatched = hipsolverSsyevjBatched_raw(handle, jobz, uplo, n, c_loc(A), lda, c_loc(W), &
+        work, lwork, devInfo, params, batch_count)
     end function hipsolverSsyevjBatched_native
 
     function hipsolverSsyevjBatched_typed(handle, jobz, uplo, n, A, lda, W, work, lwork, devInfo, &
@@ -22975,17 +22704,17 @@ contains
       integer(c_int), value :: jobz
       integer(c_int), value :: uplo
       integer(c_int), value :: n
-      real(c_double), target :: A(*)
+      real(c_double), target :: A(..)
       integer(c_int), value :: lda
-      real(c_double), target :: W(*)
-      real(c_double), target :: work(*)
+      real(c_double), target :: W(..)
+      type(c_ptr), value :: work
       integer(c_int), value :: lwork
-      integer(c_int), target :: devInfo(*)
+      integer(c_int), target :: devInfo(..)
       type(c_ptr), value :: params
       integer(c_int), value :: batch_count
       integer(c_int) :: DsyevjBatched
-      DsyevjBatched = hipsolverDsyevjBatched_raw(handle, jobz, uplo, n, c_loc(A(1)), lda, c_loc(W( &
-        1)), c_loc(work(1)), lwork, c_loc(devInfo(1)), params, batch_count)
+      DsyevjBatched = hipsolverDsyevjBatched_raw(handle, jobz, uplo, n, c_loc(A), lda, c_loc(W), &
+        work, lwork, c_loc(devInfo), params, batch_count)
     end function hipsolverDsyevjBatched_native
 
     function hipsolverDsyevjBatched_typed(handle, jobz, uplo, n, A, lda, W, work, lwork, devInfo, &
@@ -23018,17 +22747,17 @@ contains
       integer(c_int), value :: jobz
       integer(c_int), value :: uplo
       integer(c_int), value :: n
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: A(..)
       integer(c_int), value :: lda
-      real(c_float), target :: W(*)
-      complex(c_float_complex), target :: work(*)
+      real(c_float), target :: W(..)
+      type(c_ptr), value :: work
       integer(c_int), value :: lwork
       integer(c_int) :: devInfo
       type(c_ptr), value :: params
       integer(c_int), value :: batch_count
       integer(c_int) :: CheevjBatched
-      CheevjBatched = hipsolverCheevjBatched_raw(handle, jobz, uplo, n, c_loc(A(1)), lda, c_loc(W( &
-        1)), c_loc(work(1)), lwork, devInfo, params, batch_count)
+      CheevjBatched = hipsolverCheevjBatched_raw(handle, jobz, uplo, n, c_loc(A), lda, c_loc(W), &
+        work, lwork, devInfo, params, batch_count)
     end function hipsolverCheevjBatched_native
 
     function hipsolverCheevjBatched_typed(handle, jobz, uplo, n, A, lda, W, work, lwork, devInfo, &
@@ -23061,17 +22790,17 @@ contains
       integer(c_int), value :: jobz
       integer(c_int), value :: uplo
       integer(c_int), value :: n
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: A(..)
       integer(c_int), value :: lda
-      real(c_double), target :: W(*)
-      complex(c_double_complex), target :: work(*)
+      real(c_double), target :: W(..)
+      type(c_ptr), value :: work
       integer(c_int), value :: lwork
       integer(c_int) :: devInfo
       type(c_ptr), value :: params
       integer(c_int), value :: batch_count
       integer(c_int) :: ZheevjBatched
-      ZheevjBatched = hipsolverZheevjBatched_raw(handle, jobz, uplo, n, c_loc(A(1)), lda, c_loc(W( &
-        1)), c_loc(work(1)), lwork, devInfo, params, batch_count)
+      ZheevjBatched = hipsolverZheevjBatched_raw(handle, jobz, uplo, n, c_loc(A), lda, c_loc(W), &
+        work, lwork, devInfo, params, batch_count)
     end function hipsolverZheevjBatched_native
 
     function hipsolverZheevjBatched_typed(handle, jobz, uplo, n, A, lda, W, work, lwork, devInfo, &
@@ -23105,15 +22834,15 @@ contains
       integer(c_int), value :: jobz
       integer(c_int), value :: uplo
       integer(c_int), value :: n
-      real(c_float), target :: A(*)
+      real(c_float), target :: A(..)
       integer(c_int), value :: lda
-      real(c_float), target :: B(*)
+      real(c_float), target :: B(..)
       integer(c_int), value :: ldb
-      real(c_float), target :: W(*)
-      integer(c_int), target :: lwork(*)
+      real(c_float), target :: W(..)
+      integer(c_int) :: lwork
       integer(c_int) :: Ssygvd_bufferSize
-      Ssygvd_bufferSize = hipsolverSsygvd_bufferSize_raw(handle, itype, jobz, uplo, n, c_loc(A( &
-        1)), lda, c_loc(B(1)), ldb, c_loc(W(1)), c_loc(lwork(1)))
+      Ssygvd_bufferSize = hipsolverSsygvd_bufferSize_raw(handle, itype, jobz, uplo, n, c_loc(A), &
+        lda, c_loc(B), ldb, c_loc(W), lwork)
     end function hipsolverSsygvd_bufferSize_native
 
     function hipsolverSsygvd_bufferSize_typed(handle, itype, jobz, uplo, n, A, lda, B, ldb, W, &
@@ -23131,7 +22860,7 @@ contains
       type(c_ptr), value :: B
       integer(c_int), value :: ldb
       type(c_ptr), value :: W
-      type(c_ptr), value :: lwork
+      integer(c_int) :: lwork
       integer(c_int) :: Ssygvd_bufferSize
       Ssygvd_bufferSize = hipsolverSsygvd_bufferSize_raw(handle%ptr, itype, jobz, uplo, n, A, lda, &
         B, ldb, W, lwork)
@@ -23146,15 +22875,15 @@ contains
       integer(c_int), value :: jobz
       integer(c_int), value :: uplo
       integer(c_int), value :: n
-      real(c_double), target :: A(*)
+      real(c_double), target :: A(..)
       integer(c_int), value :: lda
-      real(c_double), target :: B(*)
+      real(c_double), target :: B(..)
       integer(c_int), value :: ldb
-      real(c_double), target :: W(*)
-      integer(c_int), target :: lwork(*)
+      real(c_double), target :: W(..)
+      integer(c_int) :: lwork
       integer(c_int) :: Dsygvd_bufferSize
-      Dsygvd_bufferSize = hipsolverDsygvd_bufferSize_raw(handle, itype, jobz, uplo, n, c_loc(A( &
-        1)), lda, c_loc(B(1)), ldb, c_loc(W(1)), c_loc(lwork(1)))
+      Dsygvd_bufferSize = hipsolverDsygvd_bufferSize_raw(handle, itype, jobz, uplo, n, c_loc(A), &
+        lda, c_loc(B), ldb, c_loc(W), lwork)
     end function hipsolverDsygvd_bufferSize_native
 
     function hipsolverDsygvd_bufferSize_typed(handle, itype, jobz, uplo, n, A, lda, B, ldb, W, &
@@ -23172,7 +22901,7 @@ contains
       type(c_ptr), value :: B
       integer(c_int), value :: ldb
       type(c_ptr), value :: W
-      type(c_ptr), value :: lwork
+      integer(c_int) :: lwork
       integer(c_int) :: Dsygvd_bufferSize
       Dsygvd_bufferSize = hipsolverDsygvd_bufferSize_raw(handle%ptr, itype, jobz, uplo, n, A, lda, &
         B, ldb, W, lwork)
@@ -23187,15 +22916,15 @@ contains
       integer(c_int), value :: jobz
       integer(c_int), value :: uplo
       integer(c_int), value :: n
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: A(..)
       integer(c_int), value :: lda
-      complex(c_float_complex), target :: B(*)
+      complex(c_float_complex), target :: B(..)
       integer(c_int), value :: ldb
-      real(c_float), target :: W(*)
-      integer(c_int), target :: lwork(*)
+      real(c_float), target :: W(..)
+      integer(c_int) :: lwork
       integer(c_int) :: Chegvd_bufferSize
-      Chegvd_bufferSize = hipsolverChegvd_bufferSize_raw(handle, itype, jobz, uplo, n, c_loc(A( &
-        1)), lda, c_loc(B(1)), ldb, c_loc(W(1)), c_loc(lwork(1)))
+      Chegvd_bufferSize = hipsolverChegvd_bufferSize_raw(handle, itype, jobz, uplo, n, c_loc(A), &
+        lda, c_loc(B), ldb, c_loc(W), lwork)
     end function hipsolverChegvd_bufferSize_native
 
     function hipsolverChegvd_bufferSize_typed(handle, itype, jobz, uplo, n, A, lda, B, ldb, W, &
@@ -23213,7 +22942,7 @@ contains
       type(c_ptr), value :: B
       integer(c_int), value :: ldb
       type(c_ptr), value :: W
-      type(c_ptr), value :: lwork
+      integer(c_int) :: lwork
       integer(c_int) :: Chegvd_bufferSize
       Chegvd_bufferSize = hipsolverChegvd_bufferSize_raw(handle%ptr, itype, jobz, uplo, n, A, lda, &
         B, ldb, W, lwork)
@@ -23228,15 +22957,15 @@ contains
       integer(c_int), value :: jobz
       integer(c_int), value :: uplo
       integer(c_int), value :: n
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: A(..)
       integer(c_int), value :: lda
-      complex(c_double_complex), target :: B(*)
+      complex(c_double_complex), target :: B(..)
       integer(c_int), value :: ldb
-      real(c_double), target :: W(*)
-      integer(c_int), target :: lwork(*)
+      real(c_double), target :: W(..)
+      integer(c_int) :: lwork
       integer(c_int) :: Zhegvd_bufferSize
-      Zhegvd_bufferSize = hipsolverZhegvd_bufferSize_raw(handle, itype, jobz, uplo, n, c_loc(A( &
-        1)), lda, c_loc(B(1)), ldb, c_loc(W(1)), c_loc(lwork(1)))
+      Zhegvd_bufferSize = hipsolverZhegvd_bufferSize_raw(handle, itype, jobz, uplo, n, c_loc(A), &
+        lda, c_loc(B), ldb, c_loc(W), lwork)
     end function hipsolverZhegvd_bufferSize_native
 
     function hipsolverZhegvd_bufferSize_typed(handle, itype, jobz, uplo, n, A, lda, B, ldb, W, &
@@ -23254,7 +22983,7 @@ contains
       type(c_ptr), value :: B
       integer(c_int), value :: ldb
       type(c_ptr), value :: W
-      type(c_ptr), value :: lwork
+      integer(c_int) :: lwork
       integer(c_int) :: Zhegvd_bufferSize
       Zhegvd_bufferSize = hipsolverZhegvd_bufferSize_raw(handle%ptr, itype, jobz, uplo, n, A, lda, &
         B, ldb, W, lwork)
@@ -23269,17 +22998,17 @@ contains
       integer(c_int), value :: jobz
       integer(c_int), value :: uplo
       integer(c_int), value :: n
-      real(c_float), target :: A(*)
+      real(c_float), target :: A(..)
       integer(c_int), value :: lda
-      real(c_float), target :: B(*)
+      real(c_float), target :: B(..)
       integer(c_int), value :: ldb
-      real(c_float), target :: W(*)
-      real(c_float), target :: work(*)
+      real(c_float), target :: W(..)
+      type(c_ptr), value :: work
       integer(c_int), value :: lwork
-      integer(c_int), target :: devInfo(*)
+      integer(c_int) :: devInfo
       integer(c_int) :: Ssygvd
-      Ssygvd = hipsolverSsygvd_raw(handle, itype, jobz, uplo, n, c_loc(A(1)), lda, c_loc(B(1)), &
-        ldb, c_loc(W(1)), c_loc(work(1)), lwork, c_loc(devInfo(1)))
+      Ssygvd = hipsolverSsygvd_raw(handle, itype, jobz, uplo, n, c_loc(A), lda, c_loc(B), ldb, &
+        c_loc(W), work, lwork, devInfo)
     end function hipsolverSsygvd_native
 
     function hipsolverSsygvd_typed(handle, itype, jobz, uplo, n, A, lda, B, ldb, W, work, lwork, &
@@ -23299,7 +23028,7 @@ contains
       type(c_ptr), value :: W
       type(c_ptr), value :: work
       integer(c_int), value :: lwork
-      type(c_ptr), value :: devInfo
+      integer(c_int) :: devInfo
       integer(c_int) :: Ssygvd
       Ssygvd = hipsolverSsygvd_raw(handle%ptr, itype, jobz, uplo, n, A, lda, B, ldb, W, work, &
         lwork, devInfo)
@@ -23314,17 +23043,17 @@ contains
       integer(c_int), value :: jobz
       integer(c_int), value :: uplo
       integer(c_int), value :: n
-      real(c_double), target :: A(*)
+      real(c_double), target :: A(..)
       integer(c_int), value :: lda
-      real(c_double), target :: B(*)
+      real(c_double), target :: B(..)
       integer(c_int), value :: ldb
-      real(c_double), target :: W(*)
-      real(c_double), target :: work(*)
+      real(c_double), target :: W(..)
+      type(c_ptr), value :: work
       integer(c_int), value :: lwork
-      integer(c_int), target :: devInfo(*)
+      integer(c_int) :: devInfo
       integer(c_int) :: Dsygvd
-      Dsygvd = hipsolverDsygvd_raw(handle, itype, jobz, uplo, n, c_loc(A(1)), lda, c_loc(B(1)), &
-        ldb, c_loc(W(1)), c_loc(work(1)), lwork, c_loc(devInfo(1)))
+      Dsygvd = hipsolverDsygvd_raw(handle, itype, jobz, uplo, n, c_loc(A), lda, c_loc(B), ldb, &
+        c_loc(W), work, lwork, devInfo)
     end function hipsolverDsygvd_native
 
     function hipsolverDsygvd_typed(handle, itype, jobz, uplo, n, A, lda, B, ldb, W, work, lwork, &
@@ -23344,7 +23073,7 @@ contains
       type(c_ptr), value :: W
       type(c_ptr), value :: work
       integer(c_int), value :: lwork
-      type(c_ptr), value :: devInfo
+      integer(c_int) :: devInfo
       integer(c_int) :: Dsygvd
       Dsygvd = hipsolverDsygvd_raw(handle%ptr, itype, jobz, uplo, n, A, lda, B, ldb, W, work, &
         lwork, devInfo)
@@ -23359,17 +23088,17 @@ contains
       integer(c_int), value :: jobz
       integer(c_int), value :: uplo
       integer(c_int), value :: n
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: A(..)
       integer(c_int), value :: lda
-      complex(c_float_complex), target :: B(*)
+      complex(c_float_complex), target :: B(..)
       integer(c_int), value :: ldb
-      real(c_float), target :: W(*)
-      complex(c_float_complex), target :: work(*)
+      real(c_float), target :: W(..)
+      type(c_ptr), value :: work
       integer(c_int), value :: lwork
-      integer(c_int), target :: devInfo(*)
+      integer(c_int) :: devInfo
       integer(c_int) :: Chegvd
-      Chegvd = hipsolverChegvd_raw(handle, itype, jobz, uplo, n, c_loc(A(1)), lda, c_loc(B(1)), &
-        ldb, c_loc(W(1)), c_loc(work(1)), lwork, c_loc(devInfo(1)))
+      Chegvd = hipsolverChegvd_raw(handle, itype, jobz, uplo, n, c_loc(A), lda, c_loc(B), ldb, &
+        c_loc(W), work, lwork, devInfo)
     end function hipsolverChegvd_native
 
     function hipsolverChegvd_typed(handle, itype, jobz, uplo, n, A, lda, B, ldb, W, work, lwork, &
@@ -23389,7 +23118,7 @@ contains
       type(c_ptr), value :: W
       type(c_ptr), value :: work
       integer(c_int), value :: lwork
-      type(c_ptr), value :: devInfo
+      integer(c_int) :: devInfo
       integer(c_int) :: Chegvd
       Chegvd = hipsolverChegvd_raw(handle%ptr, itype, jobz, uplo, n, A, lda, B, ldb, W, work, &
         lwork, devInfo)
@@ -23404,17 +23133,17 @@ contains
       integer(c_int), value :: jobz
       integer(c_int), value :: uplo
       integer(c_int), value :: n
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: A(..)
       integer(c_int), value :: lda
-      complex(c_double_complex), target :: B(*)
+      complex(c_double_complex), target :: B(..)
       integer(c_int), value :: ldb
-      real(c_double), target :: W(*)
-      complex(c_double_complex), target :: work(*)
+      real(c_double), target :: W(..)
+      type(c_ptr), value :: work
       integer(c_int), value :: lwork
-      integer(c_int), target :: devInfo(*)
+      integer(c_int) :: devInfo
       integer(c_int) :: Zhegvd
-      Zhegvd = hipsolverZhegvd_raw(handle, itype, jobz, uplo, n, c_loc(A(1)), lda, c_loc(B(1)), &
-        ldb, c_loc(W(1)), c_loc(work(1)), lwork, c_loc(devInfo(1)))
+      Zhegvd = hipsolverZhegvd_raw(handle, itype, jobz, uplo, n, c_loc(A), lda, c_loc(B), ldb, &
+        c_loc(W), work, lwork, devInfo)
     end function hipsolverZhegvd_native
 
     function hipsolverZhegvd_typed(handle, itype, jobz, uplo, n, A, lda, B, ldb, W, work, lwork, &
@@ -23434,7 +23163,7 @@ contains
       type(c_ptr), value :: W
       type(c_ptr), value :: work
       integer(c_int), value :: lwork
-      type(c_ptr), value :: devInfo
+      integer(c_int) :: devInfo
       integer(c_int) :: Zhegvd
       Zhegvd = hipsolverZhegvd_raw(handle%ptr, itype, jobz, uplo, n, A, lda, B, ldb, W, work, &
         lwork, devInfo)
@@ -23450,20 +23179,20 @@ contains
       integer(c_int), value :: range
       integer(c_int), value :: uplo
       integer(c_int), value :: n
-      real(c_float), target :: A(*)
+      real(c_float), target :: A(..)
       integer(c_int), value :: lda
-      real(c_float), target :: B(*)
+      real(c_float), target :: B(..)
       integer(c_int), value :: ldb
       real(c_float), value :: vl
       real(c_float), value :: vu
       integer(c_int), value :: il
       integer(c_int), value :: iu
       integer(c_int) :: nev
-      real(c_float), target :: W(*)
-      integer(c_int), target :: lwork(*)
+      real(c_float), target :: W(..)
+      integer(c_int) :: lwork
       integer(c_int) :: Ssygvdx_bufferSize
       Ssygvdx_bufferSize = hipsolverSsygvdx_bufferSize_raw(handle, itype, jobz, range, uplo, n, &
-        c_loc(A(1)), lda, c_loc(B(1)), ldb, vl, vu, il, iu, nev, c_loc(W(1)), c_loc(lwork(1)))
+        c_loc(A), lda, c_loc(B), ldb, vl, vu, il, iu, nev, c_loc(W), lwork)
     end function hipsolverSsygvdx_bufferSize_native
 
     function hipsolverSsygvdx_bufferSize_typed(handle, itype, jobz, range, uplo, n, A, lda, B, &
@@ -23487,7 +23216,7 @@ contains
       integer(c_int), value :: iu
       integer(c_int) :: nev
       type(c_ptr), value :: W
-      type(c_ptr), value :: lwork
+      integer(c_int) :: lwork
       integer(c_int) :: Ssygvdx_bufferSize
       Ssygvdx_bufferSize = hipsolverSsygvdx_bufferSize_raw(handle%ptr, itype, jobz, range, uplo, &
         n, A, lda, B, ldb, vl, vu, il, iu, nev, W, lwork)
@@ -23503,20 +23232,20 @@ contains
       integer(c_int), value :: range
       integer(c_int), value :: uplo
       integer(c_int), value :: n
-      real(c_double), target :: A(*)
+      real(c_double), target :: A(..)
       integer(c_int), value :: lda
-      real(c_double), target :: B(*)
+      real(c_double), target :: B(..)
       integer(c_int), value :: ldb
       real(c_double), value :: vl
       real(c_double), value :: vu
       integer(c_int), value :: il
       integer(c_int), value :: iu
       integer(c_int) :: nev
-      real(c_double), target :: W(*)
-      integer(c_int), target :: lwork(*)
+      real(c_double), target :: W(..)
+      integer(c_int) :: lwork
       integer(c_int) :: Dsygvdx_bufferSize
       Dsygvdx_bufferSize = hipsolverDsygvdx_bufferSize_raw(handle, itype, jobz, range, uplo, n, &
-        c_loc(A(1)), lda, c_loc(B(1)), ldb, vl, vu, il, iu, nev, c_loc(W(1)), c_loc(lwork(1)))
+        c_loc(A), lda, c_loc(B), ldb, vl, vu, il, iu, nev, c_loc(W), lwork)
     end function hipsolverDsygvdx_bufferSize_native
 
     function hipsolverDsygvdx_bufferSize_typed(handle, itype, jobz, range, uplo, n, A, lda, B, &
@@ -23540,7 +23269,7 @@ contains
       integer(c_int), value :: iu
       integer(c_int) :: nev
       type(c_ptr), value :: W
-      type(c_ptr), value :: lwork
+      integer(c_int) :: lwork
       integer(c_int) :: Dsygvdx_bufferSize
       Dsygvdx_bufferSize = hipsolverDsygvdx_bufferSize_raw(handle%ptr, itype, jobz, range, uplo, &
         n, A, lda, B, ldb, vl, vu, il, iu, nev, W, lwork)
@@ -23556,20 +23285,20 @@ contains
       integer(c_int), value :: range
       integer(c_int), value :: uplo
       integer(c_int), value :: n
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: A(..)
       integer(c_int), value :: lda
-      complex(c_float_complex), target :: B(*)
+      complex(c_float_complex), target :: B(..)
       integer(c_int), value :: ldb
       real(c_float), value :: vl
       real(c_float), value :: vu
       integer(c_int), value :: il
       integer(c_int), value :: iu
       integer(c_int) :: nev
-      real(c_float), target :: W(*)
-      integer(c_int), target :: lwork(*)
+      real(c_float), target :: W(..)
+      integer(c_int) :: lwork
       integer(c_int) :: Chegvdx_bufferSize
       Chegvdx_bufferSize = hipsolverChegvdx_bufferSize_raw(handle, itype, jobz, range, uplo, n, &
-        c_loc(A(1)), lda, c_loc(B(1)), ldb, vl, vu, il, iu, nev, c_loc(W(1)), c_loc(lwork(1)))
+        c_loc(A), lda, c_loc(B), ldb, vl, vu, il, iu, nev, c_loc(W), lwork)
     end function hipsolverChegvdx_bufferSize_native
 
     function hipsolverChegvdx_bufferSize_typed(handle, itype, jobz, range, uplo, n, A, lda, B, &
@@ -23593,7 +23322,7 @@ contains
       integer(c_int), value :: iu
       integer(c_int) :: nev
       type(c_ptr), value :: W
-      type(c_ptr), value :: lwork
+      integer(c_int) :: lwork
       integer(c_int) :: Chegvdx_bufferSize
       Chegvdx_bufferSize = hipsolverChegvdx_bufferSize_raw(handle%ptr, itype, jobz, range, uplo, &
         n, A, lda, B, ldb, vl, vu, il, iu, nev, W, lwork)
@@ -23609,20 +23338,20 @@ contains
       integer(c_int), value :: range
       integer(c_int), value :: uplo
       integer(c_int), value :: n
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: A(..)
       integer(c_int), value :: lda
-      complex(c_double_complex), target :: B(*)
+      complex(c_double_complex), target :: B(..)
       integer(c_int), value :: ldb
       real(c_double), value :: vl
       real(c_double), value :: vu
       integer(c_int), value :: il
       integer(c_int), value :: iu
       integer(c_int) :: nev
-      real(c_double), target :: W(*)
-      integer(c_int), target :: lwork(*)
+      real(c_double), target :: W(..)
+      integer(c_int) :: lwork
       integer(c_int) :: Zhegvdx_bufferSize
       Zhegvdx_bufferSize = hipsolverZhegvdx_bufferSize_raw(handle, itype, jobz, range, uplo, n, &
-        c_loc(A(1)), lda, c_loc(B(1)), ldb, vl, vu, il, iu, nev, c_loc(W(1)), c_loc(lwork(1)))
+        c_loc(A), lda, c_loc(B), ldb, vl, vu, il, iu, nev, c_loc(W), lwork)
     end function hipsolverZhegvdx_bufferSize_native
 
     function hipsolverZhegvdx_bufferSize_typed(handle, itype, jobz, range, uplo, n, A, lda, B, &
@@ -23646,7 +23375,7 @@ contains
       integer(c_int), value :: iu
       integer(c_int) :: nev
       type(c_ptr), value :: W
-      type(c_ptr), value :: lwork
+      integer(c_int) :: lwork
       integer(c_int) :: Zhegvdx_bufferSize
       Zhegvdx_bufferSize = hipsolverZhegvdx_bufferSize_raw(handle%ptr, itype, jobz, range, uplo, &
         n, A, lda, B, ldb, vl, vu, il, iu, nev, W, lwork)
@@ -23662,22 +23391,22 @@ contains
       integer(c_int), value :: range
       integer(c_int), value :: uplo
       integer(c_int), value :: n
-      real(c_float), target :: A(*)
+      real(c_float), target :: A(..)
       integer(c_int), value :: lda
-      real(c_float), target :: B(*)
+      real(c_float), target :: B(..)
       integer(c_int), value :: ldb
       real(c_float), value :: vl
       real(c_float), value :: vu
       integer(c_int), value :: il
       integer(c_int), value :: iu
       integer(c_int) :: nev
-      real(c_float), target :: W(*)
-      real(c_float), target :: work(*)
+      real(c_float), target :: W(..)
+      type(c_ptr), value :: work
       integer(c_int), value :: lwork
-      integer(c_int), target :: devInfo(*)
+      integer(c_int) :: devInfo
       integer(c_int) :: Ssygvdx
-      Ssygvdx = hipsolverSsygvdx_raw(handle, itype, jobz, range, uplo, n, c_loc(A(1)), lda, c_loc( &
-        B(1)), ldb, vl, vu, il, iu, nev, c_loc(W(1)), c_loc(work(1)), lwork, c_loc(devInfo(1)))
+      Ssygvdx = hipsolverSsygvdx_raw(handle, itype, jobz, range, uplo, n, c_loc(A), lda, c_loc(B), &
+        ldb, vl, vu, il, iu, nev, c_loc(W), work, lwork, devInfo)
     end function hipsolverSsygvdx_native
 
     function hipsolverSsygvdx_typed(handle, itype, jobz, range, uplo, n, A, lda, B, ldb, vl, vu, &
@@ -23703,7 +23432,7 @@ contains
       type(c_ptr), value :: W
       type(c_ptr), value :: work
       integer(c_int), value :: lwork
-      type(c_ptr), value :: devInfo
+      integer(c_int) :: devInfo
       integer(c_int) :: Ssygvdx
       Ssygvdx = hipsolverSsygvdx_raw(handle%ptr, itype, jobz, range, uplo, n, A, lda, B, ldb, vl, &
         vu, il, iu, nev, W, work, lwork, devInfo)
@@ -23719,22 +23448,22 @@ contains
       integer(c_int), value :: range
       integer(c_int), value :: uplo
       integer(c_int), value :: n
-      real(c_double), target :: A(*)
+      real(c_double), target :: A(..)
       integer(c_int), value :: lda
-      real(c_double), target :: B(*)
+      real(c_double), target :: B(..)
       integer(c_int), value :: ldb
       real(c_double), value :: vl
       real(c_double), value :: vu
       integer(c_int), value :: il
       integer(c_int), value :: iu
       integer(c_int) :: nev
-      real(c_double), target :: W(*)
-      real(c_double), target :: work(*)
+      real(c_double), target :: W(..)
+      type(c_ptr), value :: work
       integer(c_int), value :: lwork
-      integer(c_int), target :: devInfo(*)
+      integer(c_int) :: devInfo
       integer(c_int) :: Dsygvdx
-      Dsygvdx = hipsolverDsygvdx_raw(handle, itype, jobz, range, uplo, n, c_loc(A(1)), lda, c_loc( &
-        B(1)), ldb, vl, vu, il, iu, nev, c_loc(W(1)), c_loc(work(1)), lwork, c_loc(devInfo(1)))
+      Dsygvdx = hipsolverDsygvdx_raw(handle, itype, jobz, range, uplo, n, c_loc(A), lda, c_loc(B), &
+        ldb, vl, vu, il, iu, nev, c_loc(W), work, lwork, devInfo)
     end function hipsolverDsygvdx_native
 
     function hipsolverDsygvdx_typed(handle, itype, jobz, range, uplo, n, A, lda, B, ldb, vl, vu, &
@@ -23760,7 +23489,7 @@ contains
       type(c_ptr), value :: W
       type(c_ptr), value :: work
       integer(c_int), value :: lwork
-      type(c_ptr), value :: devInfo
+      integer(c_int) :: devInfo
       integer(c_int) :: Dsygvdx
       Dsygvdx = hipsolverDsygvdx_raw(handle%ptr, itype, jobz, range, uplo, n, A, lda, B, ldb, vl, &
         vu, il, iu, nev, W, work, lwork, devInfo)
@@ -23776,22 +23505,22 @@ contains
       integer(c_int), value :: range
       integer(c_int), value :: uplo
       integer(c_int), value :: n
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: A(..)
       integer(c_int), value :: lda
-      complex(c_float_complex), target :: B(*)
+      complex(c_float_complex), target :: B(..)
       integer(c_int), value :: ldb
       real(c_float), value :: vl
       real(c_float), value :: vu
       integer(c_int), value :: il
       integer(c_int), value :: iu
       integer(c_int) :: nev
-      real(c_float), target :: W(*)
-      complex(c_float_complex), target :: work(*)
+      real(c_float), target :: W(..)
+      type(c_ptr), value :: work
       integer(c_int), value :: lwork
-      integer(c_int), target :: devInfo(*)
+      integer(c_int) :: devInfo
       integer(c_int) :: Chegvdx
-      Chegvdx = hipsolverChegvdx_raw(handle, itype, jobz, range, uplo, n, c_loc(A(1)), lda, c_loc( &
-        B(1)), ldb, vl, vu, il, iu, nev, c_loc(W(1)), c_loc(work(1)), lwork, c_loc(devInfo(1)))
+      Chegvdx = hipsolverChegvdx_raw(handle, itype, jobz, range, uplo, n, c_loc(A), lda, c_loc(B), &
+        ldb, vl, vu, il, iu, nev, c_loc(W), work, lwork, devInfo)
     end function hipsolverChegvdx_native
 
     function hipsolverChegvdx_typed(handle, itype, jobz, range, uplo, n, A, lda, B, ldb, vl, vu, &
@@ -23817,7 +23546,7 @@ contains
       type(c_ptr), value :: W
       type(c_ptr), value :: work
       integer(c_int), value :: lwork
-      type(c_ptr), value :: devInfo
+      integer(c_int) :: devInfo
       integer(c_int) :: Chegvdx
       Chegvdx = hipsolverChegvdx_raw(handle%ptr, itype, jobz, range, uplo, n, A, lda, B, ldb, vl, &
         vu, il, iu, nev, W, work, lwork, devInfo)
@@ -23833,22 +23562,22 @@ contains
       integer(c_int), value :: range
       integer(c_int), value :: uplo
       integer(c_int), value :: n
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: A(..)
       integer(c_int), value :: lda
-      complex(c_double_complex), target :: B(*)
+      complex(c_double_complex), target :: B(..)
       integer(c_int), value :: ldb
       real(c_double), value :: vl
       real(c_double), value :: vu
       integer(c_int), value :: il
       integer(c_int), value :: iu
       integer(c_int) :: nev
-      real(c_double), target :: W(*)
-      complex(c_double_complex), target :: work(*)
+      real(c_double), target :: W(..)
+      type(c_ptr), value :: work
       integer(c_int), value :: lwork
-      integer(c_int), target :: devInfo(*)
+      integer(c_int) :: devInfo
       integer(c_int) :: Zhegvdx
-      Zhegvdx = hipsolverZhegvdx_raw(handle, itype, jobz, range, uplo, n, c_loc(A(1)), lda, c_loc( &
-        B(1)), ldb, vl, vu, il, iu, nev, c_loc(W(1)), c_loc(work(1)), lwork, c_loc(devInfo(1)))
+      Zhegvdx = hipsolverZhegvdx_raw(handle, itype, jobz, range, uplo, n, c_loc(A), lda, c_loc(B), &
+        ldb, vl, vu, il, iu, nev, c_loc(W), work, lwork, devInfo)
     end function hipsolverZhegvdx_native
 
     function hipsolverZhegvdx_typed(handle, itype, jobz, range, uplo, n, A, lda, B, ldb, vl, vu, &
@@ -23874,7 +23603,7 @@ contains
       type(c_ptr), value :: W
       type(c_ptr), value :: work
       integer(c_int), value :: lwork
-      type(c_ptr), value :: devInfo
+      integer(c_int) :: devInfo
       integer(c_int) :: Zhegvdx
       Zhegvdx = hipsolverZhegvdx_raw(handle%ptr, itype, jobz, range, uplo, n, A, lda, B, ldb, vl, &
         vu, il, iu, nev, W, work, lwork, devInfo)
@@ -23889,16 +23618,16 @@ contains
       integer(c_int), value :: jobz
       integer(c_int), value :: uplo
       integer(c_int), value :: n
-      real(c_float), target :: A(*)
+      real(c_float), target :: A(..)
       integer(c_int), value :: lda
-      real(c_float), target :: B(*)
+      real(c_float), target :: B(..)
       integer(c_int), value :: ldb
-      real(c_float), target :: W(*)
+      real(c_float), target :: W(..)
       integer(c_int) :: lwork
       type(c_ptr), value :: params
       integer(c_int) :: Ssygvj_bufferSize
-      Ssygvj_bufferSize = hipsolverSsygvj_bufferSize_raw(handle, itype, jobz, uplo, n, c_loc(A( &
-        1)), lda, c_loc(B(1)), ldb, c_loc(W(1)), lwork, params)
+      Ssygvj_bufferSize = hipsolverSsygvj_bufferSize_raw(handle, itype, jobz, uplo, n, c_loc(A), &
+        lda, c_loc(B), ldb, c_loc(W), lwork, params)
     end function hipsolverSsygvj_bufferSize_native
 
     function hipsolverSsygvj_bufferSize_typed(handle, itype, jobz, uplo, n, A, lda, B, ldb, W, &
@@ -23932,16 +23661,16 @@ contains
       integer(c_int), value :: jobz
       integer(c_int), value :: uplo
       integer(c_int), value :: n
-      real(c_double), target :: A(*)
+      real(c_double), target :: A(..)
       integer(c_int), value :: lda
-      real(c_double), target :: B(*)
+      real(c_double), target :: B(..)
       integer(c_int), value :: ldb
-      real(c_double), target :: W(*)
+      real(c_double), target :: W(..)
       integer(c_int) :: lwork
       type(c_ptr), value :: params
       integer(c_int) :: Dsygvj_bufferSize
-      Dsygvj_bufferSize = hipsolverDsygvj_bufferSize_raw(handle, itype, jobz, uplo, n, c_loc(A( &
-        1)), lda, c_loc(B(1)), ldb, c_loc(W(1)), lwork, params)
+      Dsygvj_bufferSize = hipsolverDsygvj_bufferSize_raw(handle, itype, jobz, uplo, n, c_loc(A), &
+        lda, c_loc(B), ldb, c_loc(W), lwork, params)
     end function hipsolverDsygvj_bufferSize_native
 
     function hipsolverDsygvj_bufferSize_typed(handle, itype, jobz, uplo, n, A, lda, B, ldb, W, &
@@ -23975,16 +23704,16 @@ contains
       integer(c_int), value :: jobz
       integer(c_int), value :: uplo
       integer(c_int), value :: n
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: A(..)
       integer(c_int), value :: lda
-      complex(c_float_complex), target :: B(*)
+      complex(c_float_complex), target :: B(..)
       integer(c_int), value :: ldb
-      real(c_float), target :: W(*)
+      real(c_float), target :: W(..)
       integer(c_int) :: lwork
       type(c_ptr), value :: params
       integer(c_int) :: Chegvj_bufferSize
-      Chegvj_bufferSize = hipsolverChegvj_bufferSize_raw(handle, itype, jobz, uplo, n, c_loc(A( &
-        1)), lda, c_loc(B(1)), ldb, c_loc(W(1)), lwork, params)
+      Chegvj_bufferSize = hipsolverChegvj_bufferSize_raw(handle, itype, jobz, uplo, n, c_loc(A), &
+        lda, c_loc(B), ldb, c_loc(W), lwork, params)
     end function hipsolverChegvj_bufferSize_native
 
     function hipsolverChegvj_bufferSize_typed(handle, itype, jobz, uplo, n, A, lda, B, ldb, W, &
@@ -24018,16 +23747,16 @@ contains
       integer(c_int), value :: jobz
       integer(c_int), value :: uplo
       integer(c_int), value :: n
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: A(..)
       integer(c_int), value :: lda
-      complex(c_double_complex), target :: B(*)
+      complex(c_double_complex), target :: B(..)
       integer(c_int), value :: ldb
-      real(c_double), target :: W(*)
+      real(c_double), target :: W(..)
       integer(c_int) :: lwork
       type(c_ptr), value :: params
       integer(c_int) :: Zhegvj_bufferSize
-      Zhegvj_bufferSize = hipsolverZhegvj_bufferSize_raw(handle, itype, jobz, uplo, n, c_loc(A( &
-        1)), lda, c_loc(B(1)), ldb, c_loc(W(1)), lwork, params)
+      Zhegvj_bufferSize = hipsolverZhegvj_bufferSize_raw(handle, itype, jobz, uplo, n, c_loc(A), &
+        lda, c_loc(B), ldb, c_loc(W), lwork, params)
     end function hipsolverZhegvj_bufferSize_native
 
     function hipsolverZhegvj_bufferSize_typed(handle, itype, jobz, uplo, n, A, lda, B, ldb, W, &
@@ -24061,18 +23790,18 @@ contains
       integer(c_int), value :: jobz
       integer(c_int), value :: uplo
       integer(c_int), value :: n
-      real(c_float), target :: A(*)
+      real(c_float), target :: A(..)
       integer(c_int), value :: lda
-      real(c_float), target :: B(*)
+      real(c_float), target :: B(..)
       integer(c_int), value :: ldb
-      real(c_float), target :: W(*)
-      real(c_float), target :: work(*)
+      real(c_float), target :: W(..)
+      type(c_ptr), value :: work
       integer(c_int), value :: lwork
       integer(c_int) :: devInfo
       type(c_ptr), value :: params
       integer(c_int) :: Ssygvj
-      Ssygvj = hipsolverSsygvj_raw(handle, itype, jobz, uplo, n, c_loc(A(1)), lda, c_loc(B(1)), &
-        ldb, c_loc(W(1)), c_loc(work(1)), lwork, devInfo, params)
+      Ssygvj = hipsolverSsygvj_raw(handle, itype, jobz, uplo, n, c_loc(A), lda, c_loc(B), ldb, &
+        c_loc(W), work, lwork, devInfo, params)
     end function hipsolverSsygvj_native
 
     function hipsolverSsygvj_typed(handle, itype, jobz, uplo, n, A, lda, B, ldb, W, work, lwork, &
@@ -24108,18 +23837,18 @@ contains
       integer(c_int), value :: jobz
       integer(c_int), value :: uplo
       integer(c_int), value :: n
-      real(c_double), target :: A(*)
+      real(c_double), target :: A(..)
       integer(c_int), value :: lda
-      real(c_double), target :: B(*)
+      real(c_double), target :: B(..)
       integer(c_int), value :: ldb
-      real(c_double), target :: W(*)
-      real(c_double), target :: work(*)
+      real(c_double), target :: W(..)
+      type(c_ptr), value :: work
       integer(c_int), value :: lwork
       integer(c_int) :: devInfo
       type(c_ptr), value :: params
       integer(c_int) :: Dsygvj
-      Dsygvj = hipsolverDsygvj_raw(handle, itype, jobz, uplo, n, c_loc(A(1)), lda, c_loc(B(1)), &
-        ldb, c_loc(W(1)), c_loc(work(1)), lwork, devInfo, params)
+      Dsygvj = hipsolverDsygvj_raw(handle, itype, jobz, uplo, n, c_loc(A), lda, c_loc(B), ldb, &
+        c_loc(W), work, lwork, devInfo, params)
     end function hipsolverDsygvj_native
 
     function hipsolverDsygvj_typed(handle, itype, jobz, uplo, n, A, lda, B, ldb, W, work, lwork, &
@@ -24155,18 +23884,18 @@ contains
       integer(c_int), value :: jobz
       integer(c_int), value :: uplo
       integer(c_int), value :: n
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: A(..)
       integer(c_int), value :: lda
-      complex(c_float_complex), target :: B(*)
+      complex(c_float_complex), target :: B(..)
       integer(c_int), value :: ldb
-      real(c_float), target :: W(*)
-      complex(c_float_complex), target :: work(*)
+      real(c_float), target :: W(..)
+      type(c_ptr), value :: work
       integer(c_int), value :: lwork
       integer(c_int) :: devInfo
       type(c_ptr), value :: params
       integer(c_int) :: Chegvj
-      Chegvj = hipsolverChegvj_raw(handle, itype, jobz, uplo, n, c_loc(A(1)), lda, c_loc(B(1)), &
-        ldb, c_loc(W(1)), c_loc(work(1)), lwork, devInfo, params)
+      Chegvj = hipsolverChegvj_raw(handle, itype, jobz, uplo, n, c_loc(A), lda, c_loc(B), ldb, &
+        c_loc(W), work, lwork, devInfo, params)
     end function hipsolverChegvj_native
 
     function hipsolverChegvj_typed(handle, itype, jobz, uplo, n, A, lda, B, ldb, W, work, lwork, &
@@ -24202,18 +23931,18 @@ contains
       integer(c_int), value :: jobz
       integer(c_int), value :: uplo
       integer(c_int), value :: n
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: A(..)
       integer(c_int), value :: lda
-      complex(c_double_complex), target :: B(*)
+      complex(c_double_complex), target :: B(..)
       integer(c_int), value :: ldb
-      real(c_double), target :: W(*)
-      complex(c_double_complex), target :: work(*)
+      real(c_double), target :: W(..)
+      type(c_ptr), value :: work
       integer(c_int), value :: lwork
       integer(c_int) :: devInfo
       type(c_ptr), value :: params
       integer(c_int) :: Zhegvj
-      Zhegvj = hipsolverZhegvj_raw(handle, itype, jobz, uplo, n, c_loc(A(1)), lda, c_loc(B(1)), &
-        ldb, c_loc(W(1)), c_loc(work(1)), lwork, devInfo, params)
+      Zhegvj = hipsolverZhegvj_raw(handle, itype, jobz, uplo, n, c_loc(A), lda, c_loc(B), ldb, &
+        c_loc(W), work, lwork, devInfo, params)
     end function hipsolverZhegvj_native
 
     function hipsolverZhegvj_typed(handle, itype, jobz, uplo, n, A, lda, B, ldb, W, work, lwork, &
@@ -24247,15 +23976,15 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: uplo
       integer(c_int), value :: n
-      real(c_float), target :: A(*)
+      real(c_float), target :: A(..)
       integer(c_int), value :: lda
-      real(c_float), target :: D(*)
-      real(c_float), target :: E(*)
+      real(c_float), target :: D(..)
+      real(c_float), target :: E(..)
       real(c_float) :: tau
-      integer(c_int), target :: lwork(*)
+      integer(c_int) :: lwork
       integer(c_int) :: Ssytrd_bufferSize
-      Ssytrd_bufferSize = hipsolverSsytrd_bufferSize_raw(handle, uplo, n, c_loc(A(1)), lda, c_loc( &
-        D(1)), c_loc(E(1)), tau, c_loc(lwork(1)))
+      Ssytrd_bufferSize = hipsolverSsytrd_bufferSize_raw(handle, uplo, n, c_loc(A), lda, c_loc(D), &
+        c_loc(E), tau, lwork)
     end function hipsolverSsytrd_bufferSize_native
 
     function hipsolverSsytrd_bufferSize_typed(handle, uplo, n, A, lda, D, E, tau, lwork) result( &
@@ -24271,7 +24000,7 @@ contains
       type(c_ptr), value :: D
       type(c_ptr), value :: E
       real(c_float) :: tau
-      type(c_ptr), value :: lwork
+      integer(c_int) :: lwork
       integer(c_int) :: Ssytrd_bufferSize
       Ssytrd_bufferSize = hipsolverSsytrd_bufferSize_raw(handle%ptr, uplo, n, A, lda, D, E, tau, &
         lwork)
@@ -24284,15 +24013,15 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: uplo
       integer(c_int), value :: n
-      real(c_double), target :: A(*)
+      real(c_double), target :: A(..)
       integer(c_int), value :: lda
-      real(c_double), target :: D(*)
-      real(c_double), target :: E(*)
+      real(c_double), target :: D(..)
+      real(c_double), target :: E(..)
       real(c_double) :: tau
-      integer(c_int), target :: lwork(*)
+      integer(c_int) :: lwork
       integer(c_int) :: Dsytrd_bufferSize
-      Dsytrd_bufferSize = hipsolverDsytrd_bufferSize_raw(handle, uplo, n, c_loc(A(1)), lda, c_loc( &
-        D(1)), c_loc(E(1)), tau, c_loc(lwork(1)))
+      Dsytrd_bufferSize = hipsolverDsytrd_bufferSize_raw(handle, uplo, n, c_loc(A), lda, c_loc(D), &
+        c_loc(E), tau, lwork)
     end function hipsolverDsytrd_bufferSize_native
 
     function hipsolverDsytrd_bufferSize_typed(handle, uplo, n, A, lda, D, E, tau, lwork) result( &
@@ -24308,7 +24037,7 @@ contains
       type(c_ptr), value :: D
       type(c_ptr), value :: E
       real(c_double) :: tau
-      type(c_ptr), value :: lwork
+      integer(c_int) :: lwork
       integer(c_int) :: Dsytrd_bufferSize
       Dsytrd_bufferSize = hipsolverDsytrd_bufferSize_raw(handle%ptr, uplo, n, A, lda, D, E, tau, &
         lwork)
@@ -24321,15 +24050,15 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: uplo
       integer(c_int), value :: n
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: A(..)
       integer(c_int), value :: lda
-      real(c_float), target :: D(*)
-      real(c_float), target :: E(*)
+      real(c_float), target :: D(..)
+      real(c_float), target :: E(..)
       complex(c_float_complex) :: tau
-      integer(c_int), target :: lwork(*)
+      integer(c_int) :: lwork
       integer(c_int) :: Chetrd_bufferSize
-      Chetrd_bufferSize = hipsolverChetrd_bufferSize_raw(handle, uplo, n, c_loc(A(1)), lda, c_loc( &
-        D(1)), c_loc(E(1)), tau, c_loc(lwork(1)))
+      Chetrd_bufferSize = hipsolverChetrd_bufferSize_raw(handle, uplo, n, c_loc(A), lda, c_loc(D), &
+        c_loc(E), tau, lwork)
     end function hipsolverChetrd_bufferSize_native
 
     function hipsolverChetrd_bufferSize_typed(handle, uplo, n, A, lda, D, E, tau, lwork) result( &
@@ -24345,7 +24074,7 @@ contains
       type(c_ptr), value :: D
       type(c_ptr), value :: E
       complex(c_float_complex) :: tau
-      type(c_ptr), value :: lwork
+      integer(c_int) :: lwork
       integer(c_int) :: Chetrd_bufferSize
       Chetrd_bufferSize = hipsolverChetrd_bufferSize_raw(handle%ptr, uplo, n, A, lda, D, E, tau, &
         lwork)
@@ -24358,15 +24087,15 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: uplo
       integer(c_int), value :: n
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: A(..)
       integer(c_int), value :: lda
-      real(c_double), target :: D(*)
-      real(c_double), target :: E(*)
+      real(c_double), target :: D(..)
+      real(c_double), target :: E(..)
       complex(c_double_complex) :: tau
-      integer(c_int), target :: lwork(*)
+      integer(c_int) :: lwork
       integer(c_int) :: Zhetrd_bufferSize
-      Zhetrd_bufferSize = hipsolverZhetrd_bufferSize_raw(handle, uplo, n, c_loc(A(1)), lda, c_loc( &
-        D(1)), c_loc(E(1)), tau, c_loc(lwork(1)))
+      Zhetrd_bufferSize = hipsolverZhetrd_bufferSize_raw(handle, uplo, n, c_loc(A), lda, c_loc(D), &
+        c_loc(E), tau, lwork)
     end function hipsolverZhetrd_bufferSize_native
 
     function hipsolverZhetrd_bufferSize_typed(handle, uplo, n, A, lda, D, E, tau, lwork) result( &
@@ -24382,7 +24111,7 @@ contains
       type(c_ptr), value :: D
       type(c_ptr), value :: E
       complex(c_double_complex) :: tau
-      type(c_ptr), value :: lwork
+      integer(c_int) :: lwork
       integer(c_int) :: Zhetrd_bufferSize
       Zhetrd_bufferSize = hipsolverZhetrd_bufferSize_raw(handle%ptr, uplo, n, A, lda, D, E, tau, &
         lwork)
@@ -24395,17 +24124,17 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: uplo
       integer(c_int), value :: n
-      real(c_float), target :: A(*)
+      real(c_float), target :: A(..)
       integer(c_int), value :: lda
-      real(c_float), target :: D(*)
-      real(c_float), target :: E(*)
+      real(c_float), target :: D(..)
+      real(c_float), target :: E(..)
       real(c_float) :: tau
-      real(c_float), target :: work(*)
+      type(c_ptr), value :: work
       integer(c_int), value :: lwork
-      integer(c_int), target :: devInfo(*)
+      integer(c_int) :: devInfo
       integer(c_int) :: Ssytrd
-      Ssytrd = hipsolverSsytrd_raw(handle, uplo, n, c_loc(A(1)), lda, c_loc(D(1)), c_loc(E(1)), &
-        tau, c_loc(work(1)), lwork, c_loc(devInfo(1)))
+      Ssytrd = hipsolverSsytrd_raw(handle, uplo, n, c_loc(A), lda, c_loc(D), c_loc(E), tau, work, &
+        lwork, devInfo)
     end function hipsolverSsytrd_native
 
     function hipsolverSsytrd_typed(handle, uplo, n, A, lda, D, E, tau, work, lwork, &
@@ -24423,7 +24152,7 @@ contains
       real(c_float) :: tau
       type(c_ptr), value :: work
       integer(c_int), value :: lwork
-      type(c_ptr), value :: devInfo
+      integer(c_int) :: devInfo
       integer(c_int) :: Ssytrd
       Ssytrd = hipsolverSsytrd_raw(handle%ptr, uplo, n, A, lda, D, E, tau, work, lwork, devInfo)
     end function hipsolverSsytrd_typed
@@ -24435,17 +24164,17 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: uplo
       integer(c_int), value :: n
-      real(c_double), target :: A(*)
+      real(c_double), target :: A(..)
       integer(c_int), value :: lda
-      real(c_double), target :: D(*)
-      real(c_double), target :: E(*)
+      real(c_double), target :: D(..)
+      real(c_double), target :: E(..)
       real(c_double) :: tau
-      real(c_double), target :: work(*)
+      type(c_ptr), value :: work
       integer(c_int), value :: lwork
-      integer(c_int), target :: devInfo(*)
+      integer(c_int) :: devInfo
       integer(c_int) :: Dsytrd
-      Dsytrd = hipsolverDsytrd_raw(handle, uplo, n, c_loc(A(1)), lda, c_loc(D(1)), c_loc(E(1)), &
-        tau, c_loc(work(1)), lwork, c_loc(devInfo(1)))
+      Dsytrd = hipsolverDsytrd_raw(handle, uplo, n, c_loc(A), lda, c_loc(D), c_loc(E), tau, work, &
+        lwork, devInfo)
     end function hipsolverDsytrd_native
 
     function hipsolverDsytrd_typed(handle, uplo, n, A, lda, D, E, tau, work, lwork, &
@@ -24463,7 +24192,7 @@ contains
       real(c_double) :: tau
       type(c_ptr), value :: work
       integer(c_int), value :: lwork
-      type(c_ptr), value :: devInfo
+      integer(c_int) :: devInfo
       integer(c_int) :: Dsytrd
       Dsytrd = hipsolverDsytrd_raw(handle%ptr, uplo, n, A, lda, D, E, tau, work, lwork, devInfo)
     end function hipsolverDsytrd_typed
@@ -24475,17 +24204,17 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: uplo
       integer(c_int), value :: n
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: A(..)
       integer(c_int), value :: lda
-      real(c_float), target :: D(*)
-      real(c_float), target :: E(*)
+      real(c_float), target :: D(..)
+      real(c_float), target :: E(..)
       complex(c_float_complex) :: tau
-      complex(c_float_complex), target :: work(*)
+      type(c_ptr), value :: work
       integer(c_int), value :: lwork
-      integer(c_int), target :: devInfo(*)
+      integer(c_int) :: devInfo
       integer(c_int) :: Chetrd
-      Chetrd = hipsolverChetrd_raw(handle, uplo, n, c_loc(A(1)), lda, c_loc(D(1)), c_loc(E(1)), &
-        tau, c_loc(work(1)), lwork, c_loc(devInfo(1)))
+      Chetrd = hipsolverChetrd_raw(handle, uplo, n, c_loc(A), lda, c_loc(D), c_loc(E), tau, work, &
+        lwork, devInfo)
     end function hipsolverChetrd_native
 
     function hipsolverChetrd_typed(handle, uplo, n, A, lda, D, E, tau, work, lwork, &
@@ -24503,7 +24232,7 @@ contains
       complex(c_float_complex) :: tau
       type(c_ptr), value :: work
       integer(c_int), value :: lwork
-      type(c_ptr), value :: devInfo
+      integer(c_int) :: devInfo
       integer(c_int) :: Chetrd
       Chetrd = hipsolverChetrd_raw(handle%ptr, uplo, n, A, lda, D, E, tau, work, lwork, devInfo)
     end function hipsolverChetrd_typed
@@ -24515,17 +24244,17 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: uplo
       integer(c_int), value :: n
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: A(..)
       integer(c_int), value :: lda
-      real(c_double), target :: D(*)
-      real(c_double), target :: E(*)
+      real(c_double), target :: D(..)
+      real(c_double), target :: E(..)
       complex(c_double_complex) :: tau
-      complex(c_double_complex), target :: work(*)
+      type(c_ptr), value :: work
       integer(c_int), value :: lwork
-      integer(c_int), target :: devInfo(*)
+      integer(c_int) :: devInfo
       integer(c_int) :: Zhetrd
-      Zhetrd = hipsolverZhetrd_raw(handle, uplo, n, c_loc(A(1)), lda, c_loc(D(1)), c_loc(E(1)), &
-        tau, c_loc(work(1)), lwork, c_loc(devInfo(1)))
+      Zhetrd = hipsolverZhetrd_raw(handle, uplo, n, c_loc(A), lda, c_loc(D), c_loc(E), tau, work, &
+        lwork, devInfo)
     end function hipsolverZhetrd_native
 
     function hipsolverZhetrd_typed(handle, uplo, n, A, lda, D, E, tau, work, lwork, &
@@ -24543,7 +24272,7 @@ contains
       complex(c_double_complex) :: tau
       type(c_ptr), value :: work
       integer(c_int), value :: lwork
-      type(c_ptr), value :: devInfo
+      integer(c_int) :: devInfo
       integer(c_int) :: Zhetrd
       Zhetrd = hipsolverZhetrd_raw(handle%ptr, uplo, n, A, lda, D, E, tau, work, lwork, devInfo)
     end function hipsolverZhetrd_typed
@@ -24553,12 +24282,11 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_int), value :: n
-      real(c_float), target :: A(*)
+      real(c_float), target :: A(..)
       integer(c_int), value :: lda
-      integer(c_int), target :: lwork(*)
+      integer(c_int) :: lwork
       integer(c_int) :: Ssytrf_bufferSize
-      Ssytrf_bufferSize = hipsolverSsytrf_bufferSize_raw(handle, n, c_loc(A(1)), lda, c_loc(lwork( &
-        1)))
+      Ssytrf_bufferSize = hipsolverSsytrf_bufferSize_raw(handle, n, c_loc(A), lda, lwork)
     end function hipsolverSsytrf_bufferSize_native
 
     function hipsolverSsytrf_bufferSize_typed(handle, n, A, lda, lwork) result(Ssytrf_bufferSize)
@@ -24569,7 +24297,7 @@ contains
       integer(c_int), value :: n
       type(c_ptr), value :: A
       integer(c_int), value :: lda
-      type(c_ptr), value :: lwork
+      integer(c_int) :: lwork
       integer(c_int) :: Ssytrf_bufferSize
       Ssytrf_bufferSize = hipsolverSsytrf_bufferSize_raw(handle%ptr, n, A, lda, lwork)
     end function hipsolverSsytrf_bufferSize_typed
@@ -24579,12 +24307,11 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_int), value :: n
-      real(c_double), target :: A(*)
+      real(c_double), target :: A(..)
       integer(c_int), value :: lda
-      integer(c_int), target :: lwork(*)
+      integer(c_int) :: lwork
       integer(c_int) :: Dsytrf_bufferSize
-      Dsytrf_bufferSize = hipsolverDsytrf_bufferSize_raw(handle, n, c_loc(A(1)), lda, c_loc(lwork( &
-        1)))
+      Dsytrf_bufferSize = hipsolverDsytrf_bufferSize_raw(handle, n, c_loc(A), lda, lwork)
     end function hipsolverDsytrf_bufferSize_native
 
     function hipsolverDsytrf_bufferSize_typed(handle, n, A, lda, lwork) result(Dsytrf_bufferSize)
@@ -24595,7 +24322,7 @@ contains
       integer(c_int), value :: n
       type(c_ptr), value :: A
       integer(c_int), value :: lda
-      type(c_ptr), value :: lwork
+      integer(c_int) :: lwork
       integer(c_int) :: Dsytrf_bufferSize
       Dsytrf_bufferSize = hipsolverDsytrf_bufferSize_raw(handle%ptr, n, A, lda, lwork)
     end function hipsolverDsytrf_bufferSize_typed
@@ -24605,12 +24332,11 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_int), value :: n
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: A(..)
       integer(c_int), value :: lda
-      integer(c_int), target :: lwork(*)
+      integer(c_int) :: lwork
       integer(c_int) :: Csytrf_bufferSize
-      Csytrf_bufferSize = hipsolverCsytrf_bufferSize_raw(handle, n, c_loc(A(1)), lda, c_loc(lwork( &
-        1)))
+      Csytrf_bufferSize = hipsolverCsytrf_bufferSize_raw(handle, n, c_loc(A), lda, lwork)
     end function hipsolverCsytrf_bufferSize_native
 
     function hipsolverCsytrf_bufferSize_typed(handle, n, A, lda, lwork) result(Csytrf_bufferSize)
@@ -24621,7 +24347,7 @@ contains
       integer(c_int), value :: n
       type(c_ptr), value :: A
       integer(c_int), value :: lda
-      type(c_ptr), value :: lwork
+      integer(c_int) :: lwork
       integer(c_int) :: Csytrf_bufferSize
       Csytrf_bufferSize = hipsolverCsytrf_bufferSize_raw(handle%ptr, n, A, lda, lwork)
     end function hipsolverCsytrf_bufferSize_typed
@@ -24631,12 +24357,11 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_int), value :: n
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: A(..)
       integer(c_int), value :: lda
-      integer(c_int), target :: lwork(*)
+      integer(c_int) :: lwork
       integer(c_int) :: Zsytrf_bufferSize
-      Zsytrf_bufferSize = hipsolverZsytrf_bufferSize_raw(handle, n, c_loc(A(1)), lda, c_loc(lwork( &
-        1)))
+      Zsytrf_bufferSize = hipsolverZsytrf_bufferSize_raw(handle, n, c_loc(A), lda, lwork)
     end function hipsolverZsytrf_bufferSize_native
 
     function hipsolverZsytrf_bufferSize_typed(handle, n, A, lda, lwork) result(Zsytrf_bufferSize)
@@ -24647,7 +24372,7 @@ contains
       integer(c_int), value :: n
       type(c_ptr), value :: A
       integer(c_int), value :: lda
-      type(c_ptr), value :: lwork
+      integer(c_int) :: lwork
       integer(c_int) :: Zsytrf_bufferSize
       Zsytrf_bufferSize = hipsolverZsytrf_bufferSize_raw(handle%ptr, n, A, lda, lwork)
     end function hipsolverZsytrf_bufferSize_typed
@@ -24659,15 +24384,15 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: uplo
       integer(c_int), value :: n
-      real(c_float), target :: A(*)
+      real(c_float), target :: A(..)
       integer(c_int), value :: lda
-      integer(c_int), target :: ipiv(*)
-      real(c_float), target :: work(*)
+      integer(c_int), target :: ipiv(..)
+      type(c_ptr), value :: work
       integer(c_int), value :: lwork
-      integer(c_int), target :: devInfo(*)
+      integer(c_int) :: devInfo
       integer(c_int) :: Ssytrf
-      Ssytrf = hipsolverSsytrf_raw(handle, uplo, n, c_loc(A(1)), lda, c_loc(ipiv(1)), c_loc(work( &
-        1)), lwork, c_loc(devInfo(1)))
+      Ssytrf = hipsolverSsytrf_raw(handle, uplo, n, c_loc(A), lda, c_loc(ipiv), work, lwork, &
+        devInfo)
     end function hipsolverSsytrf_native
 
     function hipsolverSsytrf_typed(handle, uplo, n, A, lda, ipiv, work, lwork, devInfo) result( &
@@ -24683,7 +24408,7 @@ contains
       type(c_ptr), value :: ipiv
       type(c_ptr), value :: work
       integer(c_int), value :: lwork
-      type(c_ptr), value :: devInfo
+      integer(c_int) :: devInfo
       integer(c_int) :: Ssytrf
       Ssytrf = hipsolverSsytrf_raw(handle%ptr, uplo, n, A, lda, ipiv, work, lwork, devInfo)
     end function hipsolverSsytrf_typed
@@ -24695,15 +24420,15 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: uplo
       integer(c_int), value :: n
-      real(c_double), target :: A(*)
+      real(c_double), target :: A(..)
       integer(c_int), value :: lda
-      integer(c_int), target :: ipiv(*)
-      real(c_double), target :: work(*)
+      integer(c_int), target :: ipiv(..)
+      type(c_ptr), value :: work
       integer(c_int), value :: lwork
-      integer(c_int), target :: devInfo(*)
+      integer(c_int) :: devInfo
       integer(c_int) :: Dsytrf
-      Dsytrf = hipsolverDsytrf_raw(handle, uplo, n, c_loc(A(1)), lda, c_loc(ipiv(1)), c_loc(work( &
-        1)), lwork, c_loc(devInfo(1)))
+      Dsytrf = hipsolverDsytrf_raw(handle, uplo, n, c_loc(A), lda, c_loc(ipiv), work, lwork, &
+        devInfo)
     end function hipsolverDsytrf_native
 
     function hipsolverDsytrf_typed(handle, uplo, n, A, lda, ipiv, work, lwork, devInfo) result( &
@@ -24719,7 +24444,7 @@ contains
       type(c_ptr), value :: ipiv
       type(c_ptr), value :: work
       integer(c_int), value :: lwork
-      type(c_ptr), value :: devInfo
+      integer(c_int) :: devInfo
       integer(c_int) :: Dsytrf
       Dsytrf = hipsolverDsytrf_raw(handle%ptr, uplo, n, A, lda, ipiv, work, lwork, devInfo)
     end function hipsolverDsytrf_typed
@@ -24731,15 +24456,15 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: uplo
       integer(c_int), value :: n
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: A(..)
       integer(c_int), value :: lda
-      integer(c_int), target :: ipiv(*)
-      complex(c_float_complex), target :: work(*)
+      integer(c_int), target :: ipiv(..)
+      type(c_ptr), value :: work
       integer(c_int), value :: lwork
-      integer(c_int), target :: devInfo(*)
+      integer(c_int) :: devInfo
       integer(c_int) :: Csytrf
-      Csytrf = hipsolverCsytrf_raw(handle, uplo, n, c_loc(A(1)), lda, c_loc(ipiv(1)), c_loc(work( &
-        1)), lwork, c_loc(devInfo(1)))
+      Csytrf = hipsolverCsytrf_raw(handle, uplo, n, c_loc(A), lda, c_loc(ipiv), work, lwork, &
+        devInfo)
     end function hipsolverCsytrf_native
 
     function hipsolverCsytrf_typed(handle, uplo, n, A, lda, ipiv, work, lwork, devInfo) result( &
@@ -24755,7 +24480,7 @@ contains
       type(c_ptr), value :: ipiv
       type(c_ptr), value :: work
       integer(c_int), value :: lwork
-      type(c_ptr), value :: devInfo
+      integer(c_int) :: devInfo
       integer(c_int) :: Csytrf
       Csytrf = hipsolverCsytrf_raw(handle%ptr, uplo, n, A, lda, ipiv, work, lwork, devInfo)
     end function hipsolverCsytrf_typed
@@ -24767,15 +24492,15 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: uplo
       integer(c_int), value :: n
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: A(..)
       integer(c_int), value :: lda
-      integer(c_int), target :: ipiv(*)
-      complex(c_double_complex), target :: work(*)
+      integer(c_int), target :: ipiv(..)
+      type(c_ptr), value :: work
       integer(c_int), value :: lwork
-      integer(c_int), target :: devInfo(*)
+      integer(c_int) :: devInfo
       integer(c_int) :: Zsytrf
-      Zsytrf = hipsolverZsytrf_raw(handle, uplo, n, c_loc(A(1)), lda, c_loc(ipiv(1)), c_loc(work( &
-        1)), lwork, c_loc(devInfo(1)))
+      Zsytrf = hipsolverZsytrf_raw(handle, uplo, n, c_loc(A), lda, c_loc(ipiv), work, lwork, &
+        devInfo)
     end function hipsolverZsytrf_native
 
     function hipsolverZsytrf_typed(handle, uplo, n, A, lda, ipiv, work, lwork, devInfo) result( &
@@ -24791,7 +24516,7 @@ contains
       type(c_ptr), value :: ipiv
       type(c_ptr), value :: work
       integer(c_int), value :: lwork
-      type(c_ptr), value :: devInfo
+      integer(c_int) :: devInfo
       integer(c_int) :: Zsytrf
       Zsytrf = hipsolverZsytrf_raw(handle%ptr, uplo, n, A, lda, ipiv, work, lwork, devInfo)
     end function hipsolverZsytrf_typed
@@ -24848,9 +24573,9 @@ contains
       use, intrinsic :: iso_c_binding
       implicit none
       type(c_ptr), value :: handle
-      integer(c_int), target :: mode(*)
+      integer(c_int), target :: mode(..)
       integer(c_int) :: DnGetDeterministicMode
-      DnGetDeterministicMode = hipsolverDnGetDeterministicMode_raw(handle, c_loc(mode(1)))
+      DnGetDeterministicMode = hipsolverDnGetDeterministicMode_raw(handle, c_loc(mode))
     end function hipsolverDnGetDeterministicMode_native
 
     function hipsolverDnGetDeterministicMode_typed(handle, mode) result(DnGetDeterministicMode)
@@ -24917,9 +24642,9 @@ contains
       implicit none
       type(c_ptr), value :: handle
       type(c_ptr), value :: info
-      real(c_double), target :: residual(*)
+      real(c_double), target :: residual(..)
       integer(c_int) :: DnXgesvdjGetResidual
-      DnXgesvdjGetResidual = hipsolverDnXgesvdjGetResidual_raw(handle, info, c_loc(residual(1)))
+      DnXgesvdjGetResidual = hipsolverDnXgesvdjGetResidual_raw(handle, info, c_loc(residual))
     end function hipsolverDnXgesvdjGetResidual_native
 
     function hipsolverDnXgesvdjGetResidual_typed(handle, info, residual) result( &
@@ -24940,9 +24665,9 @@ contains
       implicit none
       type(c_ptr), value :: handle
       type(c_ptr), value :: info
-      integer(c_int), target :: executed_sweeps(*)
+      integer(c_int), target :: executed_sweeps(..)
       integer(c_int) :: DnXgesvdjGetSweeps
-      DnXgesvdjGetSweeps = hipsolverDnXgesvdjGetSweeps_raw(handle, info, c_loc(executed_sweeps(1)))
+      DnXgesvdjGetSweeps = hipsolverDnXgesvdjGetSweeps_raw(handle, info, c_loc(executed_sweeps))
     end function hipsolverDnXgesvdjGetSweeps_native
 
     function hipsolverDnXgesvdjGetSweeps_typed(handle, info, executed_sweeps) result( &
@@ -25010,9 +24735,9 @@ contains
       implicit none
       type(c_ptr), value :: handle
       type(c_ptr), value :: info
-      real(c_double), target :: residual(*)
+      real(c_double), target :: residual(..)
       integer(c_int) :: DnXsyevjGetResidual
-      DnXsyevjGetResidual = hipsolverDnXsyevjGetResidual_raw(handle, info, c_loc(residual(1)))
+      DnXsyevjGetResidual = hipsolverDnXsyevjGetResidual_raw(handle, info, c_loc(residual))
     end function hipsolverDnXsyevjGetResidual_native
 
     function hipsolverDnXsyevjGetResidual_typed(handle, info, residual) result(DnXsyevjGetResidual)
@@ -25032,9 +24757,9 @@ contains
       implicit none
       type(c_ptr), value :: handle
       type(c_ptr), value :: info
-      integer(c_int), target :: executed_sweeps(*)
+      integer(c_int), target :: executed_sweeps(..)
       integer(c_int) :: DnXsyevjGetSweeps
-      DnXsyevjGetSweeps = hipsolverDnXsyevjGetSweeps_raw(handle, info, c_loc(executed_sweeps(1)))
+      DnXsyevjGetSweeps = hipsolverDnXsyevjGetSweeps_raw(handle, info, c_loc(executed_sweeps))
     end function hipsolverDnXsyevjGetSweeps_native
 
     function hipsolverDnXsyevjGetSweeps_typed(handle, info, executed_sweeps) result( &
@@ -25058,13 +24783,13 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       integer(c_int), value :: k
-      real(c_float), target :: A(*)
+      real(c_float), target :: A(..)
       integer(c_int), value :: lda
-      real(c_float), target :: tau(*)
-      integer(c_int), target :: lwork(*)
+      real(c_float), target :: tau(..)
+      integer(c_int), target :: lwork(..)
       integer(c_int) :: DnSorgbr_bufferSize
-      DnSorgbr_bufferSize = hipsolverDnSorgbr_bufferSize_raw(handle, side, m, n, k, c_loc(A(1)), &
-        lda, c_loc(tau(1)), c_loc(lwork(1)))
+      DnSorgbr_bufferSize = hipsolverDnSorgbr_bufferSize_raw(handle, side, m, n, k, c_loc(A), lda, &
+        c_loc(tau), c_loc(lwork))
     end function hipsolverDnSorgbr_bufferSize_native
 
     function hipsolverDnSorgbr_bufferSize_typed(handle, side, m, n, k, A, lda, tau, lwork) result( &
@@ -25095,13 +24820,13 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       integer(c_int), value :: k
-      real(c_double), target :: A(*)
+      real(c_double), target :: A(..)
       integer(c_int), value :: lda
-      real(c_double), target :: tau(*)
-      integer(c_int), target :: lwork(*)
+      real(c_double), target :: tau(..)
+      integer(c_int), target :: lwork(..)
       integer(c_int) :: DnDorgbr_bufferSize
-      DnDorgbr_bufferSize = hipsolverDnDorgbr_bufferSize_raw(handle, side, m, n, k, c_loc(A(1)), &
-        lda, c_loc(tau(1)), c_loc(lwork(1)))
+      DnDorgbr_bufferSize = hipsolverDnDorgbr_bufferSize_raw(handle, side, m, n, k, c_loc(A), lda, &
+        c_loc(tau), c_loc(lwork))
     end function hipsolverDnDorgbr_bufferSize_native
 
     function hipsolverDnDorgbr_bufferSize_typed(handle, side, m, n, k, A, lda, tau, lwork) result( &
@@ -25132,13 +24857,13 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       integer(c_int), value :: k
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: A(..)
       integer(c_int), value :: lda
-      complex(c_float_complex), target :: tau(*)
-      integer(c_int), target :: lwork(*)
+      complex(c_float_complex), target :: tau(..)
+      integer(c_int), target :: lwork(..)
       integer(c_int) :: DnCungbr_bufferSize
-      DnCungbr_bufferSize = hipsolverDnCungbr_bufferSize_raw(handle, side, m, n, k, c_loc(A(1)), &
-        lda, c_loc(tau(1)), c_loc(lwork(1)))
+      DnCungbr_bufferSize = hipsolverDnCungbr_bufferSize_raw(handle, side, m, n, k, c_loc(A), lda, &
+        c_loc(tau), c_loc(lwork))
     end function hipsolverDnCungbr_bufferSize_native
 
     function hipsolverDnCungbr_bufferSize_typed(handle, side, m, n, k, A, lda, tau, lwork) result( &
@@ -25169,13 +24894,13 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       integer(c_int), value :: k
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: A(..)
       integer(c_int), value :: lda
-      complex(c_double_complex), target :: tau(*)
-      integer(c_int), target :: lwork(*)
+      complex(c_double_complex), target :: tau(..)
+      integer(c_int), target :: lwork(..)
       integer(c_int) :: DnZungbr_bufferSize
-      DnZungbr_bufferSize = hipsolverDnZungbr_bufferSize_raw(handle, side, m, n, k, c_loc(A(1)), &
-        lda, c_loc(tau(1)), c_loc(lwork(1)))
+      DnZungbr_bufferSize = hipsolverDnZungbr_bufferSize_raw(handle, side, m, n, k, c_loc(A), lda, &
+        c_loc(tau), c_loc(lwork))
     end function hipsolverDnZungbr_bufferSize_native
 
     function hipsolverDnZungbr_bufferSize_typed(handle, side, m, n, k, A, lda, tau, lwork) result( &
@@ -25206,15 +24931,15 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       integer(c_int), value :: k
-      real(c_float), target :: A(*)
+      real(c_float), target :: A(..)
       integer(c_int), value :: lda
-      real(c_float), target :: tau(*)
-      real(c_float), target :: work(*)
+      real(c_float), target :: tau(..)
+      type(c_ptr), value :: work
       integer(c_int), value :: lwork
-      integer(c_int), target :: devInfo(*)
+      integer(c_int), target :: devInfo(..)
       integer(c_int) :: DnSorgbr
-      DnSorgbr = hipsolverDnSorgbr_raw(handle, side, m, n, k, c_loc(A(1)), lda, c_loc(tau(1)), &
-        c_loc(work(1)), lwork, c_loc(devInfo(1)))
+      DnSorgbr = hipsolverDnSorgbr_raw(handle, side, m, n, k, c_loc(A), lda, c_loc(tau), work, &
+        lwork, c_loc(devInfo))
     end function hipsolverDnSorgbr_native
 
     function hipsolverDnSorgbr_typed(handle, side, m, n, k, A, lda, tau, work, lwork, &
@@ -25246,15 +24971,15 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       integer(c_int), value :: k
-      real(c_double), target :: A(*)
+      real(c_double), target :: A(..)
       integer(c_int), value :: lda
-      real(c_double), target :: tau(*)
-      real(c_double), target :: work(*)
+      real(c_double), target :: tau(..)
+      type(c_ptr), value :: work
       integer(c_int), value :: lwork
-      integer(c_int), target :: devInfo(*)
+      integer(c_int), target :: devInfo(..)
       integer(c_int) :: DnDorgbr
-      DnDorgbr = hipsolverDnDorgbr_raw(handle, side, m, n, k, c_loc(A(1)), lda, c_loc(tau(1)), &
-        c_loc(work(1)), lwork, c_loc(devInfo(1)))
+      DnDorgbr = hipsolverDnDorgbr_raw(handle, side, m, n, k, c_loc(A), lda, c_loc(tau), work, &
+        lwork, c_loc(devInfo))
     end function hipsolverDnDorgbr_native
 
     function hipsolverDnDorgbr_typed(handle, side, m, n, k, A, lda, tau, work, lwork, &
@@ -25286,15 +25011,15 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       integer(c_int), value :: k
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: A(..)
       integer(c_int), value :: lda
-      complex(c_float_complex), target :: tau(*)
-      complex(c_float_complex), target :: work(*)
+      complex(c_float_complex), target :: tau(..)
+      type(c_ptr), value :: work
       integer(c_int), value :: lwork
-      integer(c_int), target :: devInfo(*)
+      integer(c_int), target :: devInfo(..)
       integer(c_int) :: DnCungbr
-      DnCungbr = hipsolverDnCungbr_raw(handle, side, m, n, k, c_loc(A(1)), lda, c_loc(tau(1)), &
-        c_loc(work(1)), lwork, c_loc(devInfo(1)))
+      DnCungbr = hipsolverDnCungbr_raw(handle, side, m, n, k, c_loc(A), lda, c_loc(tau), work, &
+        lwork, c_loc(devInfo))
     end function hipsolverDnCungbr_native
 
     function hipsolverDnCungbr_typed(handle, side, m, n, k, A, lda, tau, work, lwork, &
@@ -25326,15 +25051,15 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       integer(c_int), value :: k
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: A(..)
       integer(c_int), value :: lda
-      complex(c_double_complex), target :: tau(*)
-      complex(c_double_complex), target :: work(*)
+      complex(c_double_complex), target :: tau(..)
+      type(c_ptr), value :: work
       integer(c_int), value :: lwork
-      integer(c_int), target :: devInfo(*)
+      integer(c_int), target :: devInfo(..)
       integer(c_int) :: DnZungbr
-      DnZungbr = hipsolverDnZungbr_raw(handle, side, m, n, k, c_loc(A(1)), lda, c_loc(tau(1)), &
-        c_loc(work(1)), lwork, c_loc(devInfo(1)))
+      DnZungbr = hipsolverDnZungbr_raw(handle, side, m, n, k, c_loc(A), lda, c_loc(tau), work, &
+        lwork, c_loc(devInfo))
     end function hipsolverDnZungbr_native
 
     function hipsolverDnZungbr_typed(handle, side, m, n, k, A, lda, tau, work, lwork, &
@@ -25365,13 +25090,13 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       integer(c_int), value :: k
-      real(c_float), target :: A(*)
+      real(c_float), target :: A(..)
       integer(c_int), value :: lda
-      real(c_float), target :: tau(*)
-      integer(c_int), target :: lwork(*)
+      real(c_float), target :: tau(..)
+      integer(c_int), target :: lwork(..)
       integer(c_int) :: DnSorgqr_bufferSize
-      DnSorgqr_bufferSize = hipsolverDnSorgqr_bufferSize_raw(handle, m, n, k, c_loc(A(1)), lda, &
-        c_loc(tau(1)), c_loc(lwork(1)))
+      DnSorgqr_bufferSize = hipsolverDnSorgqr_bufferSize_raw(handle, m, n, k, c_loc(A), lda, &
+        c_loc(tau), c_loc(lwork))
     end function hipsolverDnSorgqr_bufferSize_native
 
     function hipsolverDnSorgqr_bufferSize_typed(handle, m, n, k, A, lda, tau, lwork) result( &
@@ -25400,13 +25125,13 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       integer(c_int), value :: k
-      real(c_double), target :: A(*)
+      real(c_double), target :: A(..)
       integer(c_int), value :: lda
-      real(c_double), target :: tau(*)
-      integer(c_int), target :: lwork(*)
+      real(c_double), target :: tau(..)
+      integer(c_int), target :: lwork(..)
       integer(c_int) :: DnDorgqr_bufferSize
-      DnDorgqr_bufferSize = hipsolverDnDorgqr_bufferSize_raw(handle, m, n, k, c_loc(A(1)), lda, &
-        c_loc(tau(1)), c_loc(lwork(1)))
+      DnDorgqr_bufferSize = hipsolverDnDorgqr_bufferSize_raw(handle, m, n, k, c_loc(A), lda, &
+        c_loc(tau), c_loc(lwork))
     end function hipsolverDnDorgqr_bufferSize_native
 
     function hipsolverDnDorgqr_bufferSize_typed(handle, m, n, k, A, lda, tau, lwork) result( &
@@ -25435,13 +25160,13 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       integer(c_int), value :: k
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: A(..)
       integer(c_int), value :: lda
-      complex(c_float_complex), target :: tau(*)
-      integer(c_int), target :: lwork(*)
+      complex(c_float_complex), target :: tau(..)
+      integer(c_int), target :: lwork(..)
       integer(c_int) :: DnCungqr_bufferSize
-      DnCungqr_bufferSize = hipsolverDnCungqr_bufferSize_raw(handle, m, n, k, c_loc(A(1)), lda, &
-        c_loc(tau(1)), c_loc(lwork(1)))
+      DnCungqr_bufferSize = hipsolverDnCungqr_bufferSize_raw(handle, m, n, k, c_loc(A), lda, &
+        c_loc(tau), c_loc(lwork))
     end function hipsolverDnCungqr_bufferSize_native
 
     function hipsolverDnCungqr_bufferSize_typed(handle, m, n, k, A, lda, tau, lwork) result( &
@@ -25470,13 +25195,13 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       integer(c_int), value :: k
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: A(..)
       integer(c_int), value :: lda
-      complex(c_double_complex), target :: tau(*)
-      integer(c_int), target :: lwork(*)
+      complex(c_double_complex), target :: tau(..)
+      integer(c_int), target :: lwork(..)
       integer(c_int) :: DnZungqr_bufferSize
-      DnZungqr_bufferSize = hipsolverDnZungqr_bufferSize_raw(handle, m, n, k, c_loc(A(1)), lda, &
-        c_loc(tau(1)), c_loc(lwork(1)))
+      DnZungqr_bufferSize = hipsolverDnZungqr_bufferSize_raw(handle, m, n, k, c_loc(A), lda, &
+        c_loc(tau), c_loc(lwork))
     end function hipsolverDnZungqr_bufferSize_native
 
     function hipsolverDnZungqr_bufferSize_typed(handle, m, n, k, A, lda, tau, lwork) result( &
@@ -25505,15 +25230,15 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       integer(c_int), value :: k
-      real(c_float), target :: A(*)
+      real(c_float), target :: A(..)
       integer(c_int), value :: lda
-      real(c_float), target :: tau(*)
-      real(c_float), target :: work(*)
+      real(c_float), target :: tau(..)
+      type(c_ptr), value :: work
       integer(c_int), value :: lwork
-      integer(c_int), target :: devInfo(*)
+      integer(c_int), target :: devInfo(..)
       integer(c_int) :: DnSorgqr
-      DnSorgqr = hipsolverDnSorgqr_raw(handle, m, n, k, c_loc(A(1)), lda, c_loc(tau(1)), c_loc( &
-        work(1)), lwork, c_loc(devInfo(1)))
+      DnSorgqr = hipsolverDnSorgqr_raw(handle, m, n, k, c_loc(A), lda, c_loc(tau), work, lwork, &
+        c_loc(devInfo))
     end function hipsolverDnSorgqr_native
 
     function hipsolverDnSorgqr_typed(handle, m, n, k, A, lda, tau, work, lwork, devInfo) result( &
@@ -25543,15 +25268,15 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       integer(c_int), value :: k
-      real(c_double), target :: A(*)
+      real(c_double), target :: A(..)
       integer(c_int), value :: lda
-      real(c_double), target :: tau(*)
-      real(c_double), target :: work(*)
+      real(c_double), target :: tau(..)
+      type(c_ptr), value :: work
       integer(c_int), value :: lwork
-      integer(c_int), target :: devInfo(*)
+      integer(c_int), target :: devInfo(..)
       integer(c_int) :: DnDorgqr
-      DnDorgqr = hipsolverDnDorgqr_raw(handle, m, n, k, c_loc(A(1)), lda, c_loc(tau(1)), c_loc( &
-        work(1)), lwork, c_loc(devInfo(1)))
+      DnDorgqr = hipsolverDnDorgqr_raw(handle, m, n, k, c_loc(A), lda, c_loc(tau), work, lwork, &
+        c_loc(devInfo))
     end function hipsolverDnDorgqr_native
 
     function hipsolverDnDorgqr_typed(handle, m, n, k, A, lda, tau, work, lwork, devInfo) result( &
@@ -25581,15 +25306,15 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       integer(c_int), value :: k
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: A(..)
       integer(c_int), value :: lda
-      complex(c_float_complex), target :: tau(*)
-      complex(c_float_complex), target :: work(*)
+      complex(c_float_complex), target :: tau(..)
+      type(c_ptr), value :: work
       integer(c_int), value :: lwork
-      integer(c_int), target :: devInfo(*)
+      integer(c_int), target :: devInfo(..)
       integer(c_int) :: DnCungqr
-      DnCungqr = hipsolverDnCungqr_raw(handle, m, n, k, c_loc(A(1)), lda, c_loc(tau(1)), c_loc( &
-        work(1)), lwork, c_loc(devInfo(1)))
+      DnCungqr = hipsolverDnCungqr_raw(handle, m, n, k, c_loc(A), lda, c_loc(tau), work, lwork, &
+        c_loc(devInfo))
     end function hipsolverDnCungqr_native
 
     function hipsolverDnCungqr_typed(handle, m, n, k, A, lda, tau, work, lwork, devInfo) result( &
@@ -25619,15 +25344,15 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       integer(c_int), value :: k
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: A(..)
       integer(c_int), value :: lda
-      complex(c_double_complex), target :: tau(*)
-      complex(c_double_complex), target :: work(*)
+      complex(c_double_complex), target :: tau(..)
+      type(c_ptr), value :: work
       integer(c_int), value :: lwork
-      integer(c_int), target :: devInfo(*)
+      integer(c_int), target :: devInfo(..)
       integer(c_int) :: DnZungqr
-      DnZungqr = hipsolverDnZungqr_raw(handle, m, n, k, c_loc(A(1)), lda, c_loc(tau(1)), c_loc( &
-        work(1)), lwork, c_loc(devInfo(1)))
+      DnZungqr = hipsolverDnZungqr_raw(handle, m, n, k, c_loc(A), lda, c_loc(tau), work, lwork, &
+        c_loc(devInfo))
     end function hipsolverDnZungqr_native
 
     function hipsolverDnZungqr_typed(handle, m, n, k, A, lda, tau, work, lwork, devInfo) result( &
@@ -25656,13 +25381,13 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: uplo
       integer(c_int), value :: n
-      real(c_float), target :: A(*)
+      real(c_float), target :: A(..)
       integer(c_int), value :: lda
-      real(c_float), target :: tau(*)
-      integer(c_int), target :: lwork(*)
+      real(c_float), target :: tau(..)
+      integer(c_int), target :: lwork(..)
       integer(c_int) :: DnSorgtr_bufferSize
-      DnSorgtr_bufferSize = hipsolverDnSorgtr_bufferSize_raw(handle, uplo, n, c_loc(A(1)), lda, &
-        c_loc(tau(1)), c_loc(lwork(1)))
+      DnSorgtr_bufferSize = hipsolverDnSorgtr_bufferSize_raw(handle, uplo, n, c_loc(A), lda, &
+        c_loc(tau), c_loc(lwork))
     end function hipsolverDnSorgtr_bufferSize_native
 
     function hipsolverDnSorgtr_bufferSize_typed(handle, uplo, n, A, lda, tau, lwork) result( &
@@ -25689,13 +25414,13 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: uplo
       integer(c_int), value :: n
-      real(c_double), target :: A(*)
+      real(c_double), target :: A(..)
       integer(c_int), value :: lda
-      real(c_double), target :: tau(*)
-      integer(c_int), target :: lwork(*)
+      real(c_double), target :: tau(..)
+      integer(c_int), target :: lwork(..)
       integer(c_int) :: DnDorgtr_bufferSize
-      DnDorgtr_bufferSize = hipsolverDnDorgtr_bufferSize_raw(handle, uplo, n, c_loc(A(1)), lda, &
-        c_loc(tau(1)), c_loc(lwork(1)))
+      DnDorgtr_bufferSize = hipsolverDnDorgtr_bufferSize_raw(handle, uplo, n, c_loc(A), lda, &
+        c_loc(tau), c_loc(lwork))
     end function hipsolverDnDorgtr_bufferSize_native
 
     function hipsolverDnDorgtr_bufferSize_typed(handle, uplo, n, A, lda, tau, lwork) result( &
@@ -25722,13 +25447,13 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: uplo
       integer(c_int), value :: n
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: A(..)
       integer(c_int), value :: lda
-      complex(c_float_complex), target :: tau(*)
-      integer(c_int), target :: lwork(*)
+      complex(c_float_complex), target :: tau(..)
+      integer(c_int), target :: lwork(..)
       integer(c_int) :: DnCungtr_bufferSize
-      DnCungtr_bufferSize = hipsolverDnCungtr_bufferSize_raw(handle, uplo, n, c_loc(A(1)), lda, &
-        c_loc(tau(1)), c_loc(lwork(1)))
+      DnCungtr_bufferSize = hipsolverDnCungtr_bufferSize_raw(handle, uplo, n, c_loc(A), lda, &
+        c_loc(tau), c_loc(lwork))
     end function hipsolverDnCungtr_bufferSize_native
 
     function hipsolverDnCungtr_bufferSize_typed(handle, uplo, n, A, lda, tau, lwork) result( &
@@ -25755,13 +25480,13 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: uplo
       integer(c_int), value :: n
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: A(..)
       integer(c_int), value :: lda
-      complex(c_double_complex), target :: tau(*)
-      integer(c_int), target :: lwork(*)
+      complex(c_double_complex), target :: tau(..)
+      integer(c_int), target :: lwork(..)
       integer(c_int) :: DnZungtr_bufferSize
-      DnZungtr_bufferSize = hipsolverDnZungtr_bufferSize_raw(handle, uplo, n, c_loc(A(1)), lda, &
-        c_loc(tau(1)), c_loc(lwork(1)))
+      DnZungtr_bufferSize = hipsolverDnZungtr_bufferSize_raw(handle, uplo, n, c_loc(A), lda, &
+        c_loc(tau), c_loc(lwork))
     end function hipsolverDnZungtr_bufferSize_native
 
     function hipsolverDnZungtr_bufferSize_typed(handle, uplo, n, A, lda, tau, lwork) result( &
@@ -25788,15 +25513,15 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: uplo
       integer(c_int), value :: n
-      real(c_float), target :: A(*)
+      real(c_float), target :: A(..)
       integer(c_int), value :: lda
-      real(c_float), target :: tau(*)
-      real(c_float), target :: work(*)
+      real(c_float), target :: tau(..)
+      type(c_ptr), value :: work
       integer(c_int), value :: lwork
-      integer(c_int), target :: devInfo(*)
+      integer(c_int), target :: devInfo(..)
       integer(c_int) :: DnSorgtr
-      DnSorgtr = hipsolverDnSorgtr_raw(handle, uplo, n, c_loc(A(1)), lda, c_loc(tau(1)), c_loc( &
-        work(1)), lwork, c_loc(devInfo(1)))
+      DnSorgtr = hipsolverDnSorgtr_raw(handle, uplo, n, c_loc(A), lda, c_loc(tau), work, lwork, &
+        c_loc(devInfo))
     end function hipsolverDnSorgtr_native
 
     function hipsolverDnSorgtr_typed(handle, uplo, n, A, lda, tau, work, lwork, devInfo) result( &
@@ -25824,15 +25549,15 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: uplo
       integer(c_int), value :: n
-      real(c_double), target :: A(*)
+      real(c_double), target :: A(..)
       integer(c_int), value :: lda
-      real(c_double), target :: tau(*)
-      real(c_double), target :: work(*)
+      real(c_double), target :: tau(..)
+      type(c_ptr), value :: work
       integer(c_int), value :: lwork
-      integer(c_int), target :: devInfo(*)
+      integer(c_int), target :: devInfo(..)
       integer(c_int) :: DnDorgtr
-      DnDorgtr = hipsolverDnDorgtr_raw(handle, uplo, n, c_loc(A(1)), lda, c_loc(tau(1)), c_loc( &
-        work(1)), lwork, c_loc(devInfo(1)))
+      DnDorgtr = hipsolverDnDorgtr_raw(handle, uplo, n, c_loc(A), lda, c_loc(tau), work, lwork, &
+        c_loc(devInfo))
     end function hipsolverDnDorgtr_native
 
     function hipsolverDnDorgtr_typed(handle, uplo, n, A, lda, tau, work, lwork, devInfo) result( &
@@ -25860,15 +25585,15 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: uplo
       integer(c_int), value :: n
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: A(..)
       integer(c_int), value :: lda
-      complex(c_float_complex), target :: tau(*)
-      complex(c_float_complex), target :: work(*)
+      complex(c_float_complex), target :: tau(..)
+      type(c_ptr), value :: work
       integer(c_int), value :: lwork
-      integer(c_int), target :: devInfo(*)
+      integer(c_int), target :: devInfo(..)
       integer(c_int) :: DnCungtr
-      DnCungtr = hipsolverDnCungtr_raw(handle, uplo, n, c_loc(A(1)), lda, c_loc(tau(1)), c_loc( &
-        work(1)), lwork, c_loc(devInfo(1)))
+      DnCungtr = hipsolverDnCungtr_raw(handle, uplo, n, c_loc(A), lda, c_loc(tau), work, lwork, &
+        c_loc(devInfo))
     end function hipsolverDnCungtr_native
 
     function hipsolverDnCungtr_typed(handle, uplo, n, A, lda, tau, work, lwork, devInfo) result( &
@@ -25896,15 +25621,15 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: uplo
       integer(c_int), value :: n
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: A(..)
       integer(c_int), value :: lda
-      complex(c_double_complex), target :: tau(*)
-      complex(c_double_complex), target :: work(*)
+      complex(c_double_complex), target :: tau(..)
+      type(c_ptr), value :: work
       integer(c_int), value :: lwork
-      integer(c_int), target :: devInfo(*)
+      integer(c_int), target :: devInfo(..)
       integer(c_int) :: DnZungtr
-      DnZungtr = hipsolverDnZungtr_raw(handle, uplo, n, c_loc(A(1)), lda, c_loc(tau(1)), c_loc( &
-        work(1)), lwork, c_loc(devInfo(1)))
+      DnZungtr = hipsolverDnZungtr_raw(handle, uplo, n, c_loc(A), lda, c_loc(tau), work, lwork, &
+        c_loc(devInfo))
     end function hipsolverDnZungtr_native
 
     function hipsolverDnZungtr_typed(handle, uplo, n, A, lda, tau, work, lwork, devInfo) result( &
@@ -25935,15 +25660,15 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       integer(c_int), value :: k
-      real(c_float), target :: A(*)
+      real(c_float), target :: A(..)
       integer(c_int), value :: lda
-      real(c_float), target :: tau(*)
-      real(c_float), target :: C(*)
+      real(c_float), target :: tau(..)
+      real(c_float), target :: C(..)
       integer(c_int), value :: ldc
-      integer(c_int), target :: lwork(*)
+      integer(c_int), target :: lwork(..)
       integer(c_int) :: DnSormqr_bufferSize
       DnSormqr_bufferSize = hipsolverDnSormqr_bufferSize_raw(handle, side, trans, m, n, k, c_loc( &
-        A(1)), lda, c_loc(tau(1)), c_loc(C(1)), ldc, c_loc(lwork(1)))
+        A), lda, c_loc(tau), c_loc(C), ldc, c_loc(lwork))
     end function hipsolverDnSormqr_bufferSize_native
 
     function hipsolverDnSormqr_bufferSize_typed(handle, side, trans, m, n, k, A, lda, tau, C, ldc, &
@@ -25978,15 +25703,15 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       integer(c_int), value :: k
-      real(c_double), target :: A(*)
+      real(c_double), target :: A(..)
       integer(c_int), value :: lda
-      real(c_double), target :: tau(*)
-      real(c_double), target :: C(*)
+      real(c_double), target :: tau(..)
+      real(c_double), target :: C(..)
       integer(c_int), value :: ldc
-      integer(c_int), target :: lwork(*)
+      integer(c_int), target :: lwork(..)
       integer(c_int) :: DnDormqr_bufferSize
       DnDormqr_bufferSize = hipsolverDnDormqr_bufferSize_raw(handle, side, trans, m, n, k, c_loc( &
-        A(1)), lda, c_loc(tau(1)), c_loc(C(1)), ldc, c_loc(lwork(1)))
+        A), lda, c_loc(tau), c_loc(C), ldc, c_loc(lwork))
     end function hipsolverDnDormqr_bufferSize_native
 
     function hipsolverDnDormqr_bufferSize_typed(handle, side, trans, m, n, k, A, lda, tau, C, ldc, &
@@ -26021,15 +25746,15 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       integer(c_int), value :: k
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: A(..)
       integer(c_int), value :: lda
-      complex(c_float_complex), target :: tau(*)
-      complex(c_float_complex), target :: C(*)
+      complex(c_float_complex), target :: tau(..)
+      complex(c_float_complex), target :: C(..)
       integer(c_int), value :: ldc
-      integer(c_int), target :: lwork(*)
+      integer(c_int), target :: lwork(..)
       integer(c_int) :: DnCunmqr_bufferSize
       DnCunmqr_bufferSize = hipsolverDnCunmqr_bufferSize_raw(handle, side, trans, m, n, k, c_loc( &
-        A(1)), lda, c_loc(tau(1)), c_loc(C(1)), ldc, c_loc(lwork(1)))
+        A), lda, c_loc(tau), c_loc(C), ldc, c_loc(lwork))
     end function hipsolverDnCunmqr_bufferSize_native
 
     function hipsolverDnCunmqr_bufferSize_typed(handle, side, trans, m, n, k, A, lda, tau, C, ldc, &
@@ -26064,15 +25789,15 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       integer(c_int), value :: k
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: A(..)
       integer(c_int), value :: lda
-      complex(c_double_complex), target :: tau(*)
-      complex(c_double_complex), target :: C(*)
+      complex(c_double_complex), target :: tau(..)
+      complex(c_double_complex), target :: C(..)
       integer(c_int), value :: ldc
-      integer(c_int), target :: lwork(*)
+      integer(c_int), target :: lwork(..)
       integer(c_int) :: DnZunmqr_bufferSize
       DnZunmqr_bufferSize = hipsolverDnZunmqr_bufferSize_raw(handle, side, trans, m, n, k, c_loc( &
-        A(1)), lda, c_loc(tau(1)), c_loc(C(1)), ldc, c_loc(lwork(1)))
+        A), lda, c_loc(tau), c_loc(C), ldc, c_loc(lwork))
     end function hipsolverDnZunmqr_bufferSize_native
 
     function hipsolverDnZunmqr_bufferSize_typed(handle, side, trans, m, n, k, A, lda, tau, C, ldc, &
@@ -26107,17 +25832,17 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       integer(c_int), value :: k
-      real(c_float), target :: A(*)
+      real(c_float), target :: A(..)
       integer(c_int), value :: lda
-      real(c_float), target :: tau(*)
-      real(c_float), target :: C(*)
+      real(c_float), target :: tau(..)
+      real(c_float), target :: C(..)
       integer(c_int), value :: ldc
-      real(c_float), target :: work(*)
+      type(c_ptr), value :: work
       integer(c_int), value :: lwork
-      integer(c_int), target :: devInfo(*)
+      integer(c_int), target :: devInfo(..)
       integer(c_int) :: DnSormqr
-      DnSormqr = hipsolverDnSormqr_raw(handle, side, trans, m, n, k, c_loc(A(1)), lda, c_loc(tau( &
-        1)), c_loc(C(1)), ldc, c_loc(work(1)), lwork, c_loc(devInfo(1)))
+      DnSormqr = hipsolverDnSormqr_raw(handle, side, trans, m, n, k, c_loc(A), lda, c_loc(tau), &
+        c_loc(C), ldc, work, lwork, c_loc(devInfo))
     end function hipsolverDnSormqr_native
 
     function hipsolverDnSormqr_typed(handle, side, trans, m, n, k, A, lda, tau, C, ldc, work, &
@@ -26154,17 +25879,17 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       integer(c_int), value :: k
-      real(c_double), target :: A(*)
+      real(c_double), target :: A(..)
       integer(c_int), value :: lda
-      real(c_double), target :: tau(*)
-      real(c_double), target :: C(*)
+      real(c_double), target :: tau(..)
+      real(c_double), target :: C(..)
       integer(c_int), value :: ldc
-      real(c_double), target :: work(*)
+      type(c_ptr), value :: work
       integer(c_int), value :: lwork
-      integer(c_int), target :: devInfo(*)
+      integer(c_int), target :: devInfo(..)
       integer(c_int) :: DnDormqr
-      DnDormqr = hipsolverDnDormqr_raw(handle, side, trans, m, n, k, c_loc(A(1)), lda, c_loc(tau( &
-        1)), c_loc(C(1)), ldc, c_loc(work(1)), lwork, c_loc(devInfo(1)))
+      DnDormqr = hipsolverDnDormqr_raw(handle, side, trans, m, n, k, c_loc(A), lda, c_loc(tau), &
+        c_loc(C), ldc, work, lwork, c_loc(devInfo))
     end function hipsolverDnDormqr_native
 
     function hipsolverDnDormqr_typed(handle, side, trans, m, n, k, A, lda, tau, C, ldc, work, &
@@ -26201,17 +25926,17 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       integer(c_int), value :: k
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: A(..)
       integer(c_int), value :: lda
-      complex(c_float_complex), target :: tau(*)
-      complex(c_float_complex), target :: C(*)
+      complex(c_float_complex), target :: tau(..)
+      complex(c_float_complex), target :: C(..)
       integer(c_int), value :: ldc
-      complex(c_float_complex), target :: work(*)
+      type(c_ptr), value :: work
       integer(c_int), value :: lwork
-      integer(c_int), target :: devInfo(*)
+      integer(c_int), target :: devInfo(..)
       integer(c_int) :: DnCunmqr
-      DnCunmqr = hipsolverDnCunmqr_raw(handle, side, trans, m, n, k, c_loc(A(1)), lda, c_loc(tau( &
-        1)), c_loc(C(1)), ldc, c_loc(work(1)), lwork, c_loc(devInfo(1)))
+      DnCunmqr = hipsolverDnCunmqr_raw(handle, side, trans, m, n, k, c_loc(A), lda, c_loc(tau), &
+        c_loc(C), ldc, work, lwork, c_loc(devInfo))
     end function hipsolverDnCunmqr_native
 
     function hipsolverDnCunmqr_typed(handle, side, trans, m, n, k, A, lda, tau, C, ldc, work, &
@@ -26248,17 +25973,17 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       integer(c_int), value :: k
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: A(..)
       integer(c_int), value :: lda
-      complex(c_double_complex), target :: tau(*)
-      complex(c_double_complex), target :: C(*)
+      complex(c_double_complex), target :: tau(..)
+      complex(c_double_complex), target :: C(..)
       integer(c_int), value :: ldc
-      complex(c_double_complex), target :: work(*)
+      type(c_ptr), value :: work
       integer(c_int), value :: lwork
-      integer(c_int), target :: devInfo(*)
+      integer(c_int), target :: devInfo(..)
       integer(c_int) :: DnZunmqr
-      DnZunmqr = hipsolverDnZunmqr_raw(handle, side, trans, m, n, k, c_loc(A(1)), lda, c_loc(tau( &
-        1)), c_loc(C(1)), ldc, c_loc(work(1)), lwork, c_loc(devInfo(1)))
+      DnZunmqr = hipsolverDnZunmqr_raw(handle, side, trans, m, n, k, c_loc(A), lda, c_loc(tau), &
+        c_loc(C), ldc, work, lwork, c_loc(devInfo))
     end function hipsolverDnZunmqr_native
 
     function hipsolverDnZunmqr_typed(handle, side, trans, m, n, k, A, lda, tau, C, ldc, work, &
@@ -26295,15 +26020,15 @@ contains
       integer(c_int), value :: trans
       integer(c_int), value :: m
       integer(c_int), value :: n
-      real(c_float), target :: A(*)
+      real(c_float), target :: A(..)
       integer(c_int), value :: lda
-      real(c_float), target :: tau(*)
-      real(c_float), target :: C(*)
+      real(c_float), target :: tau(..)
+      real(c_float), target :: C(..)
       integer(c_int), value :: ldc
-      integer(c_int), target :: lwork(*)
+      integer(c_int), target :: lwork(..)
       integer(c_int) :: DnSormtr_bufferSize
       DnSormtr_bufferSize = hipsolverDnSormtr_bufferSize_raw(handle, side, uplo, trans, m, n, &
-        c_loc(A(1)), lda, c_loc(tau(1)), c_loc(C(1)), ldc, c_loc(lwork(1)))
+        c_loc(A), lda, c_loc(tau), c_loc(C), ldc, c_loc(lwork))
     end function hipsolverDnSormtr_bufferSize_native
 
     function hipsolverDnSormtr_bufferSize_typed(handle, side, uplo, trans, m, n, A, lda, tau, C, &
@@ -26338,15 +26063,15 @@ contains
       integer(c_int), value :: trans
       integer(c_int), value :: m
       integer(c_int), value :: n
-      real(c_double), target :: A(*)
+      real(c_double), target :: A(..)
       integer(c_int), value :: lda
-      real(c_double), target :: tau(*)
-      real(c_double), target :: C(*)
+      real(c_double), target :: tau(..)
+      real(c_double), target :: C(..)
       integer(c_int), value :: ldc
-      integer(c_int), target :: lwork(*)
+      integer(c_int), target :: lwork(..)
       integer(c_int) :: DnDormtr_bufferSize
       DnDormtr_bufferSize = hipsolverDnDormtr_bufferSize_raw(handle, side, uplo, trans, m, n, &
-        c_loc(A(1)), lda, c_loc(tau(1)), c_loc(C(1)), ldc, c_loc(lwork(1)))
+        c_loc(A), lda, c_loc(tau), c_loc(C), ldc, c_loc(lwork))
     end function hipsolverDnDormtr_bufferSize_native
 
     function hipsolverDnDormtr_bufferSize_typed(handle, side, uplo, trans, m, n, A, lda, tau, C, &
@@ -26381,15 +26106,15 @@ contains
       integer(c_int), value :: trans
       integer(c_int), value :: m
       integer(c_int), value :: n
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: A(..)
       integer(c_int), value :: lda
-      complex(c_float_complex), target :: tau(*)
-      complex(c_float_complex), target :: C(*)
+      complex(c_float_complex), target :: tau(..)
+      complex(c_float_complex), target :: C(..)
       integer(c_int), value :: ldc
-      integer(c_int), target :: lwork(*)
+      integer(c_int), target :: lwork(..)
       integer(c_int) :: DnCunmtr_bufferSize
       DnCunmtr_bufferSize = hipsolverDnCunmtr_bufferSize_raw(handle, side, uplo, trans, m, n, &
-        c_loc(A(1)), lda, c_loc(tau(1)), c_loc(C(1)), ldc, c_loc(lwork(1)))
+        c_loc(A), lda, c_loc(tau), c_loc(C), ldc, c_loc(lwork))
     end function hipsolverDnCunmtr_bufferSize_native
 
     function hipsolverDnCunmtr_bufferSize_typed(handle, side, uplo, trans, m, n, A, lda, tau, C, &
@@ -26424,15 +26149,15 @@ contains
       integer(c_int), value :: trans
       integer(c_int), value :: m
       integer(c_int), value :: n
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: A(..)
       integer(c_int), value :: lda
-      complex(c_double_complex), target :: tau(*)
-      complex(c_double_complex), target :: C(*)
+      complex(c_double_complex), target :: tau(..)
+      complex(c_double_complex), target :: C(..)
       integer(c_int), value :: ldc
-      integer(c_int), target :: lwork(*)
+      integer(c_int), target :: lwork(..)
       integer(c_int) :: DnZunmtr_bufferSize
       DnZunmtr_bufferSize = hipsolverDnZunmtr_bufferSize_raw(handle, side, uplo, trans, m, n, &
-        c_loc(A(1)), lda, c_loc(tau(1)), c_loc(C(1)), ldc, c_loc(lwork(1)))
+        c_loc(A), lda, c_loc(tau), c_loc(C), ldc, c_loc(lwork))
     end function hipsolverDnZunmtr_bufferSize_native
 
     function hipsolverDnZunmtr_bufferSize_typed(handle, side, uplo, trans, m, n, A, lda, tau, C, &
@@ -26467,17 +26192,17 @@ contains
       integer(c_int), value :: trans
       integer(c_int), value :: m
       integer(c_int), value :: n
-      real(c_float), target :: A(*)
+      real(c_float), target :: A(..)
       integer(c_int), value :: lda
-      real(c_float), target :: tau(*)
-      real(c_float), target :: C(*)
+      real(c_float), target :: tau(..)
+      real(c_float), target :: C(..)
       integer(c_int), value :: ldc
-      real(c_float), target :: work(*)
+      type(c_ptr), value :: work
       integer(c_int), value :: lwork
-      integer(c_int), target :: devInfo(*)
+      integer(c_int), target :: devInfo(..)
       integer(c_int) :: DnSormtr
-      DnSormtr = hipsolverDnSormtr_raw(handle, side, uplo, trans, m, n, c_loc(A(1)), lda, c_loc( &
-        tau(1)), c_loc(C(1)), ldc, c_loc(work(1)), lwork, c_loc(devInfo(1)))
+      DnSormtr = hipsolverDnSormtr_raw(handle, side, uplo, trans, m, n, c_loc(A), lda, c_loc(tau), &
+        c_loc(C), ldc, work, lwork, c_loc(devInfo))
     end function hipsolverDnSormtr_native
 
     function hipsolverDnSormtr_typed(handle, side, uplo, trans, m, n, A, lda, tau, C, ldc, work, &
@@ -26514,17 +26239,17 @@ contains
       integer(c_int), value :: trans
       integer(c_int), value :: m
       integer(c_int), value :: n
-      real(c_double), target :: A(*)
+      real(c_double), target :: A(..)
       integer(c_int), value :: lda
-      real(c_double), target :: tau(*)
-      real(c_double), target :: C(*)
+      real(c_double), target :: tau(..)
+      real(c_double), target :: C(..)
       integer(c_int), value :: ldc
-      real(c_double), target :: work(*)
+      type(c_ptr), value :: work
       integer(c_int), value :: lwork
-      integer(c_int), target :: devInfo(*)
+      integer(c_int), target :: devInfo(..)
       integer(c_int) :: DnDormtr
-      DnDormtr = hipsolverDnDormtr_raw(handle, side, uplo, trans, m, n, c_loc(A(1)), lda, c_loc( &
-        tau(1)), c_loc(C(1)), ldc, c_loc(work(1)), lwork, c_loc(devInfo(1)))
+      DnDormtr = hipsolverDnDormtr_raw(handle, side, uplo, trans, m, n, c_loc(A), lda, c_loc(tau), &
+        c_loc(C), ldc, work, lwork, c_loc(devInfo))
     end function hipsolverDnDormtr_native
 
     function hipsolverDnDormtr_typed(handle, side, uplo, trans, m, n, A, lda, tau, C, ldc, work, &
@@ -26561,17 +26286,17 @@ contains
       integer(c_int), value :: trans
       integer(c_int), value :: m
       integer(c_int), value :: n
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: A(..)
       integer(c_int), value :: lda
-      complex(c_float_complex), target :: tau(*)
-      complex(c_float_complex), target :: C(*)
+      complex(c_float_complex), target :: tau(..)
+      complex(c_float_complex), target :: C(..)
       integer(c_int), value :: ldc
-      complex(c_float_complex), target :: work(*)
+      type(c_ptr), value :: work
       integer(c_int), value :: lwork
-      integer(c_int), target :: devInfo(*)
+      integer(c_int), target :: devInfo(..)
       integer(c_int) :: DnCunmtr
-      DnCunmtr = hipsolverDnCunmtr_raw(handle, side, uplo, trans, m, n, c_loc(A(1)), lda, c_loc( &
-        tau(1)), c_loc(C(1)), ldc, c_loc(work(1)), lwork, c_loc(devInfo(1)))
+      DnCunmtr = hipsolverDnCunmtr_raw(handle, side, uplo, trans, m, n, c_loc(A), lda, c_loc(tau), &
+        c_loc(C), ldc, work, lwork, c_loc(devInfo))
     end function hipsolverDnCunmtr_native
 
     function hipsolverDnCunmtr_typed(handle, side, uplo, trans, m, n, A, lda, tau, C, ldc, work, &
@@ -26608,17 +26333,17 @@ contains
       integer(c_int), value :: trans
       integer(c_int), value :: m
       integer(c_int), value :: n
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: A(..)
       integer(c_int), value :: lda
-      complex(c_double_complex), target :: tau(*)
-      complex(c_double_complex), target :: C(*)
+      complex(c_double_complex), target :: tau(..)
+      complex(c_double_complex), target :: C(..)
       integer(c_int), value :: ldc
-      complex(c_double_complex), target :: work(*)
+      type(c_ptr), value :: work
       integer(c_int), value :: lwork
-      integer(c_int), target :: devInfo(*)
+      integer(c_int), target :: devInfo(..)
       integer(c_int) :: DnZunmtr
-      DnZunmtr = hipsolverDnZunmtr_raw(handle, side, uplo, trans, m, n, c_loc(A(1)), lda, c_loc( &
-        tau(1)), c_loc(C(1)), ldc, c_loc(work(1)), lwork, c_loc(devInfo(1)))
+      DnZunmtr = hipsolverDnZunmtr_raw(handle, side, uplo, trans, m, n, c_loc(A), lda, c_loc(tau), &
+        c_loc(C), ldc, work, lwork, c_loc(devInfo))
     end function hipsolverDnZunmtr_native
 
     function hipsolverDnZunmtr_typed(handle, side, uplo, trans, m, n, A, lda, tau, C, ldc, work, &
@@ -26651,9 +26376,9 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: m
       integer(c_int), value :: n
-      integer(c_int), target :: lwork(*)
+      integer(c_int), target :: lwork(..)
       integer(c_int) :: DnSgebrd_bufferSize
-      DnSgebrd_bufferSize = hipsolverDnSgebrd_bufferSize_raw(handle, m, n, c_loc(lwork(1)))
+      DnSgebrd_bufferSize = hipsolverDnSgebrd_bufferSize_raw(handle, m, n, c_loc(lwork))
     end function hipsolverDnSgebrd_bufferSize_native
 
     function hipsolverDnSgebrd_bufferSize_typed(handle, m, n, lwork) result(DnSgebrd_bufferSize)
@@ -26674,9 +26399,9 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: m
       integer(c_int), value :: n
-      integer(c_int), target :: lwork(*)
+      integer(c_int), target :: lwork(..)
       integer(c_int) :: DnDgebrd_bufferSize
-      DnDgebrd_bufferSize = hipsolverDnDgebrd_bufferSize_raw(handle, m, n, c_loc(lwork(1)))
+      DnDgebrd_bufferSize = hipsolverDnDgebrd_bufferSize_raw(handle, m, n, c_loc(lwork))
     end function hipsolverDnDgebrd_bufferSize_native
 
     function hipsolverDnDgebrd_bufferSize_typed(handle, m, n, lwork) result(DnDgebrd_bufferSize)
@@ -26697,9 +26422,9 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: m
       integer(c_int), value :: n
-      integer(c_int), target :: lwork(*)
+      integer(c_int), target :: lwork(..)
       integer(c_int) :: DnCgebrd_bufferSize
-      DnCgebrd_bufferSize = hipsolverDnCgebrd_bufferSize_raw(handle, m, n, c_loc(lwork(1)))
+      DnCgebrd_bufferSize = hipsolverDnCgebrd_bufferSize_raw(handle, m, n, c_loc(lwork))
     end function hipsolverDnCgebrd_bufferSize_native
 
     function hipsolverDnCgebrd_bufferSize_typed(handle, m, n, lwork) result(DnCgebrd_bufferSize)
@@ -26720,9 +26445,9 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: m
       integer(c_int), value :: n
-      integer(c_int), target :: lwork(*)
+      integer(c_int), target :: lwork(..)
       integer(c_int) :: DnZgebrd_bufferSize
-      DnZgebrd_bufferSize = hipsolverDnZgebrd_bufferSize_raw(handle, m, n, c_loc(lwork(1)))
+      DnZgebrd_bufferSize = hipsolverDnZgebrd_bufferSize_raw(handle, m, n, c_loc(lwork))
     end function hipsolverDnZgebrd_bufferSize_native
 
     function hipsolverDnZgebrd_bufferSize_typed(handle, m, n, lwork) result(DnZgebrd_bufferSize)
@@ -26744,18 +26469,18 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: m
       integer(c_int), value :: n
-      real(c_float), target :: A(*)
+      real(c_float), target :: A(..)
       integer(c_int), value :: lda
-      real(c_float), target :: D(*)
-      real(c_float), target :: E(*)
-      real(c_float), target :: tauq(*)
-      real(c_float), target :: taup(*)
-      real(c_float), target :: work(*)
+      real(c_float), target :: D(..)
+      real(c_float), target :: E(..)
+      real(c_float), target :: tauq(..)
+      real(c_float), target :: taup(..)
+      type(c_ptr), value :: work
       integer(c_int), value :: lwork
-      integer(c_int), target :: devInfo(*)
+      integer(c_int), target :: devInfo(..)
       integer(c_int) :: DnSgebrd
-      DnSgebrd = hipsolverDnSgebrd_raw(handle, m, n, c_loc(A(1)), lda, c_loc(D(1)), c_loc(E(1)), &
-        c_loc(tauq(1)), c_loc(taup(1)), c_loc(work(1)), lwork, c_loc(devInfo(1)))
+      DnSgebrd = hipsolverDnSgebrd_raw(handle, m, n, c_loc(A), lda, c_loc(D), c_loc(E), c_loc( &
+        tauq), c_loc(taup), work, lwork, c_loc(devInfo))
     end function hipsolverDnSgebrd_native
 
     function hipsolverDnSgebrd_typed(handle, m, n, A, lda, D, E, tauq, taup, work, lwork, &
@@ -26787,18 +26512,18 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: m
       integer(c_int), value :: n
-      real(c_double), target :: A(*)
+      real(c_double), target :: A(..)
       integer(c_int), value :: lda
-      real(c_double), target :: D(*)
-      real(c_double), target :: E(*)
-      real(c_double), target :: tauq(*)
-      real(c_double), target :: taup(*)
-      real(c_double), target :: work(*)
+      real(c_double), target :: D(..)
+      real(c_double), target :: E(..)
+      real(c_double), target :: tauq(..)
+      real(c_double), target :: taup(..)
+      type(c_ptr), value :: work
       integer(c_int), value :: lwork
-      integer(c_int), target :: devInfo(*)
+      integer(c_int), target :: devInfo(..)
       integer(c_int) :: DnDgebrd
-      DnDgebrd = hipsolverDnDgebrd_raw(handle, m, n, c_loc(A(1)), lda, c_loc(D(1)), c_loc(E(1)), &
-        c_loc(tauq(1)), c_loc(taup(1)), c_loc(work(1)), lwork, c_loc(devInfo(1)))
+      DnDgebrd = hipsolverDnDgebrd_raw(handle, m, n, c_loc(A), lda, c_loc(D), c_loc(E), c_loc( &
+        tauq), c_loc(taup), work, lwork, c_loc(devInfo))
     end function hipsolverDnDgebrd_native
 
     function hipsolverDnDgebrd_typed(handle, m, n, A, lda, D, E, tauq, taup, work, lwork, &
@@ -26830,18 +26555,18 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: m
       integer(c_int), value :: n
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: A(..)
       integer(c_int), value :: lda
-      real(c_float), target :: D(*)
-      real(c_float), target :: E(*)
-      complex(c_float_complex), target :: tauq(*)
-      complex(c_float_complex), target :: taup(*)
-      complex(c_float_complex), target :: work(*)
+      real(c_float), target :: D(..)
+      real(c_float), target :: E(..)
+      complex(c_float_complex), target :: tauq(..)
+      complex(c_float_complex), target :: taup(..)
+      type(c_ptr), value :: work
       integer(c_int), value :: lwork
-      integer(c_int), target :: devInfo(*)
+      integer(c_int), target :: devInfo(..)
       integer(c_int) :: DnCgebrd
-      DnCgebrd = hipsolverDnCgebrd_raw(handle, m, n, c_loc(A(1)), lda, c_loc(D(1)), c_loc(E(1)), &
-        c_loc(tauq(1)), c_loc(taup(1)), c_loc(work(1)), lwork, c_loc(devInfo(1)))
+      DnCgebrd = hipsolverDnCgebrd_raw(handle, m, n, c_loc(A), lda, c_loc(D), c_loc(E), c_loc( &
+        tauq), c_loc(taup), work, lwork, c_loc(devInfo))
     end function hipsolverDnCgebrd_native
 
     function hipsolverDnCgebrd_typed(handle, m, n, A, lda, D, E, tauq, taup, work, lwork, &
@@ -26873,18 +26598,18 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: m
       integer(c_int), value :: n
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: A(..)
       integer(c_int), value :: lda
-      real(c_double), target :: D(*)
-      real(c_double), target :: E(*)
-      complex(c_double_complex), target :: tauq(*)
-      complex(c_double_complex), target :: taup(*)
-      complex(c_double_complex), target :: work(*)
+      real(c_double), target :: D(..)
+      real(c_double), target :: E(..)
+      complex(c_double_complex), target :: tauq(..)
+      complex(c_double_complex), target :: taup(..)
+      type(c_ptr), value :: work
       integer(c_int), value :: lwork
-      integer(c_int), target :: devInfo(*)
+      integer(c_int), target :: devInfo(..)
       integer(c_int) :: DnZgebrd
-      DnZgebrd = hipsolverDnZgebrd_raw(handle, m, n, c_loc(A(1)), lda, c_loc(D(1)), c_loc(E(1)), &
-        c_loc(tauq(1)), c_loc(taup(1)), c_loc(work(1)), lwork, c_loc(devInfo(1)))
+      DnZgebrd = hipsolverDnZgebrd_raw(handle, m, n, c_loc(A), lda, c_loc(D), c_loc(E), c_loc( &
+        tauq), c_loc(taup), work, lwork, c_loc(devInfo))
     end function hipsolverDnZgebrd_native
 
     function hipsolverDnZgebrd_typed(handle, m, n, A, lda, D, E, tauq, taup, work, lwork, &
@@ -26917,17 +26642,17 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       integer(c_int), value :: nrhs
-      real(c_float), target :: A(*)
+      real(c_float), target :: A(..)
       integer(c_int), value :: lda
-      real(c_float), target :: B(*)
+      real(c_float), target :: B(..)
       integer(c_int), value :: ldb
-      real(c_float), target :: X(*)
+      real(c_float), target :: X(..)
       integer(c_int), value :: ldx
       type(c_ptr), value :: work
       type(c_ptr), value :: lwork
       integer(c_int) :: DnSSgels_bufferSize
-      DnSSgels_bufferSize = hipsolverDnSSgels_bufferSize_raw(handle, m, n, nrhs, c_loc(A(1)), lda, &
-        c_loc(B(1)), ldb, c_loc(X(1)), ldx, work, lwork)
+      DnSSgels_bufferSize = hipsolverDnSSgels_bufferSize_raw(handle, m, n, nrhs, c_loc(A), lda, &
+        c_loc(B), ldb, c_loc(X), ldx, work, lwork)
     end function hipsolverDnSSgels_bufferSize_native
 
     function hipsolverDnSSgels_bufferSize_typed(handle, m, n, nrhs, A, lda, B, ldb, X, ldx, work, &
@@ -26960,17 +26685,17 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       integer(c_int), value :: nrhs
-      real(c_double), target :: A(*)
+      real(c_double), target :: A(..)
       integer(c_int), value :: lda
-      real(c_double), target :: B(*)
+      real(c_double), target :: B(..)
       integer(c_int), value :: ldb
-      real(c_double), target :: X(*)
+      real(c_double), target :: X(..)
       integer(c_int), value :: ldx
       type(c_ptr), value :: work
       type(c_ptr), value :: lwork
       integer(c_int) :: DnDDgels_bufferSize
-      DnDDgels_bufferSize = hipsolverDnDDgels_bufferSize_raw(handle, m, n, nrhs, c_loc(A(1)), lda, &
-        c_loc(B(1)), ldb, c_loc(X(1)), ldx, work, lwork)
+      DnDDgels_bufferSize = hipsolverDnDDgels_bufferSize_raw(handle, m, n, nrhs, c_loc(A), lda, &
+        c_loc(B), ldb, c_loc(X), ldx, work, lwork)
     end function hipsolverDnDDgels_bufferSize_native
 
     function hipsolverDnDDgels_bufferSize_typed(handle, m, n, nrhs, A, lda, B, ldb, X, ldx, work, &
@@ -27003,17 +26728,17 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       integer(c_int), value :: nrhs
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: A(..)
       integer(c_int), value :: lda
-      complex(c_float_complex), target :: B(*)
+      complex(c_float_complex), target :: B(..)
       integer(c_int), value :: ldb
-      complex(c_float_complex), target :: X(*)
+      complex(c_float_complex), target :: X(..)
       integer(c_int), value :: ldx
       type(c_ptr), value :: work
       type(c_ptr), value :: lwork
       integer(c_int) :: DnCCgels_bufferSize
-      DnCCgels_bufferSize = hipsolverDnCCgels_bufferSize_raw(handle, m, n, nrhs, c_loc(A(1)), lda, &
-        c_loc(B(1)), ldb, c_loc(X(1)), ldx, work, lwork)
+      DnCCgels_bufferSize = hipsolverDnCCgels_bufferSize_raw(handle, m, n, nrhs, c_loc(A), lda, &
+        c_loc(B), ldb, c_loc(X), ldx, work, lwork)
     end function hipsolverDnCCgels_bufferSize_native
 
     function hipsolverDnCCgels_bufferSize_typed(handle, m, n, nrhs, A, lda, B, ldb, X, ldx, work, &
@@ -27046,17 +26771,17 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       integer(c_int), value :: nrhs
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: A(..)
       integer(c_int), value :: lda
-      complex(c_double_complex), target :: B(*)
+      complex(c_double_complex), target :: B(..)
       integer(c_int), value :: ldb
-      complex(c_double_complex), target :: X(*)
+      complex(c_double_complex), target :: X(..)
       integer(c_int), value :: ldx
       type(c_ptr), value :: work
       type(c_ptr), value :: lwork
       integer(c_int) :: DnZZgels_bufferSize
-      DnZZgels_bufferSize = hipsolverDnZZgels_bufferSize_raw(handle, m, n, nrhs, c_loc(A(1)), lda, &
-        c_loc(B(1)), ldb, c_loc(X(1)), ldx, work, lwork)
+      DnZZgels_bufferSize = hipsolverDnZZgels_bufferSize_raw(handle, m, n, nrhs, c_loc(A), lda, &
+        c_loc(B), ldb, c_loc(X), ldx, work, lwork)
     end function hipsolverDnZZgels_bufferSize_native
 
     function hipsolverDnZZgels_bufferSize_typed(handle, m, n, nrhs, A, lda, B, ldb, X, ldx, work, &
@@ -27089,19 +26814,19 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       integer(c_int), value :: nrhs
-      real(c_float), target :: A(*)
+      real(c_float), target :: A(..)
       integer(c_int), value :: lda
-      real(c_float), target :: B(*)
+      real(c_float), target :: B(..)
       integer(c_int), value :: ldb
-      real(c_float), target :: X(*)
+      real(c_float), target :: X(..)
       integer(c_int), value :: ldx
       type(c_ptr), value :: work
       integer(c_long), value :: lwork
-      integer(c_int), target :: niters(*)
-      integer(c_int), target :: devInfo(*)
+      integer(c_int), target :: niters(..)
+      integer(c_int), target :: devInfo(..)
       integer(c_int) :: DnSSgels
-      DnSSgels = hipsolverDnSSgels_raw(handle, m, n, nrhs, c_loc(A(1)), lda, c_loc(B(1)), ldb, &
-        c_loc(X(1)), ldx, work, lwork, c_loc(niters(1)), c_loc(devInfo(1)))
+      DnSSgels = hipsolverDnSSgels_raw(handle, m, n, nrhs, c_loc(A), lda, c_loc(B), ldb, c_loc(X), &
+        ldx, work, lwork, c_loc(niters), c_loc(devInfo))
     end function hipsolverDnSSgels_native
 
     function hipsolverDnSSgels_typed(handle, m, n, nrhs, A, lda, B, ldb, X, ldx, work, lwork, &
@@ -27136,19 +26861,19 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       integer(c_int), value :: nrhs
-      real(c_double), target :: A(*)
+      real(c_double), target :: A(..)
       integer(c_int), value :: lda
-      real(c_double), target :: B(*)
+      real(c_double), target :: B(..)
       integer(c_int), value :: ldb
-      real(c_double), target :: X(*)
+      real(c_double), target :: X(..)
       integer(c_int), value :: ldx
       type(c_ptr), value :: work
       integer(c_long), value :: lwork
-      integer(c_int), target :: niters(*)
-      integer(c_int), target :: devInfo(*)
+      integer(c_int), target :: niters(..)
+      integer(c_int), target :: devInfo(..)
       integer(c_int) :: DnDDgels
-      DnDDgels = hipsolverDnDDgels_raw(handle, m, n, nrhs, c_loc(A(1)), lda, c_loc(B(1)), ldb, &
-        c_loc(X(1)), ldx, work, lwork, c_loc(niters(1)), c_loc(devInfo(1)))
+      DnDDgels = hipsolverDnDDgels_raw(handle, m, n, nrhs, c_loc(A), lda, c_loc(B), ldb, c_loc(X), &
+        ldx, work, lwork, c_loc(niters), c_loc(devInfo))
     end function hipsolverDnDDgels_native
 
     function hipsolverDnDDgels_typed(handle, m, n, nrhs, A, lda, B, ldb, X, ldx, work, lwork, &
@@ -27183,19 +26908,19 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       integer(c_int), value :: nrhs
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: A(..)
       integer(c_int), value :: lda
-      complex(c_float_complex), target :: B(*)
+      complex(c_float_complex), target :: B(..)
       integer(c_int), value :: ldb
-      complex(c_float_complex), target :: X(*)
+      complex(c_float_complex), target :: X(..)
       integer(c_int), value :: ldx
       type(c_ptr), value :: work
       integer(c_long), value :: lwork
-      integer(c_int), target :: niters(*)
-      integer(c_int), target :: devInfo(*)
+      integer(c_int), target :: niters(..)
+      integer(c_int), target :: devInfo(..)
       integer(c_int) :: DnCCgels
-      DnCCgels = hipsolverDnCCgels_raw(handle, m, n, nrhs, c_loc(A(1)), lda, c_loc(B(1)), ldb, &
-        c_loc(X(1)), ldx, work, lwork, c_loc(niters(1)), c_loc(devInfo(1)))
+      DnCCgels = hipsolverDnCCgels_raw(handle, m, n, nrhs, c_loc(A), lda, c_loc(B), ldb, c_loc(X), &
+        ldx, work, lwork, c_loc(niters), c_loc(devInfo))
     end function hipsolverDnCCgels_native
 
     function hipsolverDnCCgels_typed(handle, m, n, nrhs, A, lda, B, ldb, X, ldx, work, lwork, &
@@ -27230,19 +26955,19 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       integer(c_int), value :: nrhs
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: A(..)
       integer(c_int), value :: lda
-      complex(c_double_complex), target :: B(*)
+      complex(c_double_complex), target :: B(..)
       integer(c_int), value :: ldb
-      complex(c_double_complex), target :: X(*)
+      complex(c_double_complex), target :: X(..)
       integer(c_int), value :: ldx
       type(c_ptr), value :: work
       integer(c_long), value :: lwork
-      integer(c_int), target :: niters(*)
-      integer(c_int), target :: devInfo(*)
+      integer(c_int), target :: niters(..)
+      integer(c_int), target :: devInfo(..)
       integer(c_int) :: DnZZgels
-      DnZZgels = hipsolverDnZZgels_raw(handle, m, n, nrhs, c_loc(A(1)), lda, c_loc(B(1)), ldb, &
-        c_loc(X(1)), ldx, work, lwork, c_loc(niters(1)), c_loc(devInfo(1)))
+      DnZZgels = hipsolverDnZZgels_raw(handle, m, n, nrhs, c_loc(A), lda, c_loc(B), ldb, c_loc(X), &
+        ldx, work, lwork, c_loc(niters), c_loc(devInfo))
     end function hipsolverDnZZgels_native
 
     function hipsolverDnZZgels_typed(handle, m, n, nrhs, A, lda, B, ldb, X, ldx, work, lwork, &
@@ -27276,12 +27001,12 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: m
       integer(c_int), value :: n
-      real(c_float), target :: A(*)
+      real(c_float), target :: A(..)
       integer(c_int), value :: lda
-      integer(c_int), target :: lwork(*)
+      integer(c_int), target :: lwork(..)
       integer(c_int) :: DnSgeqrf_bufferSize
-      DnSgeqrf_bufferSize = hipsolverDnSgeqrf_bufferSize_raw(handle, m, n, c_loc(A(1)), lda, &
-        c_loc(lwork(1)))
+      DnSgeqrf_bufferSize = hipsolverDnSgeqrf_bufferSize_raw(handle, m, n, c_loc(A), lda, c_loc( &
+        lwork))
     end function hipsolverDnSgeqrf_bufferSize_native
 
     function hipsolverDnSgeqrf_bufferSize_typed(handle, m, n, A, lda, lwork) result( &
@@ -27306,12 +27031,12 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: m
       integer(c_int), value :: n
-      real(c_double), target :: A(*)
+      real(c_double), target :: A(..)
       integer(c_int), value :: lda
-      integer(c_int), target :: lwork(*)
+      integer(c_int), target :: lwork(..)
       integer(c_int) :: DnDgeqrf_bufferSize
-      DnDgeqrf_bufferSize = hipsolverDnDgeqrf_bufferSize_raw(handle, m, n, c_loc(A(1)), lda, &
-        c_loc(lwork(1)))
+      DnDgeqrf_bufferSize = hipsolverDnDgeqrf_bufferSize_raw(handle, m, n, c_loc(A), lda, c_loc( &
+        lwork))
     end function hipsolverDnDgeqrf_bufferSize_native
 
     function hipsolverDnDgeqrf_bufferSize_typed(handle, m, n, A, lda, lwork) result( &
@@ -27336,12 +27061,12 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: m
       integer(c_int), value :: n
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: A(..)
       integer(c_int), value :: lda
-      integer(c_int), target :: lwork(*)
+      integer(c_int), target :: lwork(..)
       integer(c_int) :: DnCgeqrf_bufferSize
-      DnCgeqrf_bufferSize = hipsolverDnCgeqrf_bufferSize_raw(handle, m, n, c_loc(A(1)), lda, &
-        c_loc(lwork(1)))
+      DnCgeqrf_bufferSize = hipsolverDnCgeqrf_bufferSize_raw(handle, m, n, c_loc(A), lda, c_loc( &
+        lwork))
     end function hipsolverDnCgeqrf_bufferSize_native
 
     function hipsolverDnCgeqrf_bufferSize_typed(handle, m, n, A, lda, lwork) result( &
@@ -27366,12 +27091,12 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: m
       integer(c_int), value :: n
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: A(..)
       integer(c_int), value :: lda
-      integer(c_int), target :: lwork(*)
+      integer(c_int), target :: lwork(..)
       integer(c_int) :: DnZgeqrf_bufferSize
-      DnZgeqrf_bufferSize = hipsolverDnZgeqrf_bufferSize_raw(handle, m, n, c_loc(A(1)), lda, &
-        c_loc(lwork(1)))
+      DnZgeqrf_bufferSize = hipsolverDnZgeqrf_bufferSize_raw(handle, m, n, c_loc(A), lda, c_loc( &
+        lwork))
     end function hipsolverDnZgeqrf_bufferSize_native
 
     function hipsolverDnZgeqrf_bufferSize_typed(handle, m, n, A, lda, lwork) result( &
@@ -27396,15 +27121,15 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: m
       integer(c_int), value :: n
-      real(c_float), target :: A(*)
+      real(c_float), target :: A(..)
       integer(c_int), value :: lda
-      real(c_float), target :: tau(*)
-      real(c_float), target :: work(*)
+      real(c_float), target :: tau(..)
+      type(c_ptr), value :: work
       integer(c_int), value :: lwork
-      integer(c_int), target :: devInfo(*)
+      integer(c_int), target :: devInfo(..)
       integer(c_int) :: DnSgeqrf
-      DnSgeqrf = hipsolverDnSgeqrf_raw(handle, m, n, c_loc(A(1)), lda, c_loc(tau(1)), c_loc(work( &
-        1)), lwork, c_loc(devInfo(1)))
+      DnSgeqrf = hipsolverDnSgeqrf_raw(handle, m, n, c_loc(A), lda, c_loc(tau), work, lwork, &
+        c_loc(devInfo))
     end function hipsolverDnSgeqrf_native
 
     function hipsolverDnSgeqrf_typed(handle, m, n, A, lda, tau, work, lwork, devInfo) result( &
@@ -27432,15 +27157,15 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: m
       integer(c_int), value :: n
-      real(c_double), target :: A(*)
+      real(c_double), target :: A(..)
       integer(c_int), value :: lda
-      real(c_double), target :: tau(*)
-      real(c_double), target :: work(*)
+      real(c_double), target :: tau(..)
+      type(c_ptr), value :: work
       integer(c_int), value :: lwork
-      integer(c_int), target :: devInfo(*)
+      integer(c_int), target :: devInfo(..)
       integer(c_int) :: DnDgeqrf
-      DnDgeqrf = hipsolverDnDgeqrf_raw(handle, m, n, c_loc(A(1)), lda, c_loc(tau(1)), c_loc(work( &
-        1)), lwork, c_loc(devInfo(1)))
+      DnDgeqrf = hipsolverDnDgeqrf_raw(handle, m, n, c_loc(A), lda, c_loc(tau), work, lwork, &
+        c_loc(devInfo))
     end function hipsolverDnDgeqrf_native
 
     function hipsolverDnDgeqrf_typed(handle, m, n, A, lda, tau, work, lwork, devInfo) result( &
@@ -27468,15 +27193,15 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: m
       integer(c_int), value :: n
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: A(..)
       integer(c_int), value :: lda
-      complex(c_float_complex), target :: tau(*)
-      complex(c_float_complex), target :: work(*)
+      complex(c_float_complex), target :: tau(..)
+      type(c_ptr), value :: work
       integer(c_int), value :: lwork
-      integer(c_int), target :: devInfo(*)
+      integer(c_int), target :: devInfo(..)
       integer(c_int) :: DnCgeqrf
-      DnCgeqrf = hipsolverDnCgeqrf_raw(handle, m, n, c_loc(A(1)), lda, c_loc(tau(1)), c_loc(work( &
-        1)), lwork, c_loc(devInfo(1)))
+      DnCgeqrf = hipsolverDnCgeqrf_raw(handle, m, n, c_loc(A), lda, c_loc(tau), work, lwork, &
+        c_loc(devInfo))
     end function hipsolverDnCgeqrf_native
 
     function hipsolverDnCgeqrf_typed(handle, m, n, A, lda, tau, work, lwork, devInfo) result( &
@@ -27504,15 +27229,15 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: m
       integer(c_int), value :: n
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: A(..)
       integer(c_int), value :: lda
-      complex(c_double_complex), target :: tau(*)
-      complex(c_double_complex), target :: work(*)
+      complex(c_double_complex), target :: tau(..)
+      type(c_ptr), value :: work
       integer(c_int), value :: lwork
-      integer(c_int), target :: devInfo(*)
+      integer(c_int), target :: devInfo(..)
       integer(c_int) :: DnZgeqrf
-      DnZgeqrf = hipsolverDnZgeqrf_raw(handle, m, n, c_loc(A(1)), lda, c_loc(tau(1)), c_loc(work( &
-        1)), lwork, c_loc(devInfo(1)))
+      DnZgeqrf = hipsolverDnZgeqrf_raw(handle, m, n, c_loc(A), lda, c_loc(tau), work, lwork, &
+        c_loc(devInfo))
     end function hipsolverDnZgeqrf_native
 
     function hipsolverDnZgeqrf_typed(handle, m, n, A, lda, tau, work, lwork, devInfo) result( &
@@ -27540,18 +27265,18 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: n
       integer(c_int), value :: nrhs
-      real(c_float), target :: A(*)
+      real(c_float), target :: A(..)
       integer(c_int), value :: lda
-      integer(c_int), target :: devIpiv(*)
-      real(c_float), target :: B(*)
+      integer(c_int), target :: devIpiv(..)
+      real(c_float), target :: B(..)
       integer(c_int), value :: ldb
-      real(c_float), target :: X(*)
+      real(c_float), target :: X(..)
       integer(c_int), value :: ldx
       type(c_ptr), value :: work
       type(c_ptr), value :: lwork
       integer(c_int) :: DnSSgesv_bufferSize
-      DnSSgesv_bufferSize = hipsolverDnSSgesv_bufferSize_raw(handle, n, nrhs, c_loc(A(1)), lda, &
-        c_loc(devIpiv(1)), c_loc(B(1)), ldb, c_loc(X(1)), ldx, work, lwork)
+      DnSSgesv_bufferSize = hipsolverDnSSgesv_bufferSize_raw(handle, n, nrhs, c_loc(A), lda, &
+        c_loc(devIpiv), c_loc(B), ldb, c_loc(X), ldx, work, lwork)
     end function hipsolverDnSSgesv_bufferSize_native
 
     function hipsolverDnSSgesv_bufferSize_typed(handle, n, nrhs, A, lda, devIpiv, B, ldb, X, ldx, &
@@ -27583,18 +27308,18 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: n
       integer(c_int), value :: nrhs
-      real(c_double), target :: A(*)
+      real(c_double), target :: A(..)
       integer(c_int), value :: lda
-      integer(c_int), target :: devIpiv(*)
-      real(c_double), target :: B(*)
+      integer(c_int), target :: devIpiv(..)
+      real(c_double), target :: B(..)
       integer(c_int), value :: ldb
-      real(c_double), target :: X(*)
+      real(c_double), target :: X(..)
       integer(c_int), value :: ldx
       type(c_ptr), value :: work
       type(c_ptr), value :: lwork
       integer(c_int) :: DnDDgesv_bufferSize
-      DnDDgesv_bufferSize = hipsolverDnDDgesv_bufferSize_raw(handle, n, nrhs, c_loc(A(1)), lda, &
-        c_loc(devIpiv(1)), c_loc(B(1)), ldb, c_loc(X(1)), ldx, work, lwork)
+      DnDDgesv_bufferSize = hipsolverDnDDgesv_bufferSize_raw(handle, n, nrhs, c_loc(A), lda, &
+        c_loc(devIpiv), c_loc(B), ldb, c_loc(X), ldx, work, lwork)
     end function hipsolverDnDDgesv_bufferSize_native
 
     function hipsolverDnDDgesv_bufferSize_typed(handle, n, nrhs, A, lda, devIpiv, B, ldb, X, ldx, &
@@ -27626,18 +27351,18 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: n
       integer(c_int), value :: nrhs
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: A(..)
       integer(c_int), value :: lda
-      integer(c_int), target :: devIpiv(*)
-      complex(c_float_complex), target :: B(*)
+      integer(c_int), target :: devIpiv(..)
+      complex(c_float_complex), target :: B(..)
       integer(c_int), value :: ldb
-      complex(c_float_complex), target :: X(*)
+      complex(c_float_complex), target :: X(..)
       integer(c_int), value :: ldx
       type(c_ptr), value :: work
       type(c_ptr), value :: lwork
       integer(c_int) :: DnCCgesv_bufferSize
-      DnCCgesv_bufferSize = hipsolverDnCCgesv_bufferSize_raw(handle, n, nrhs, c_loc(A(1)), lda, &
-        c_loc(devIpiv(1)), c_loc(B(1)), ldb, c_loc(X(1)), ldx, work, lwork)
+      DnCCgesv_bufferSize = hipsolverDnCCgesv_bufferSize_raw(handle, n, nrhs, c_loc(A), lda, &
+        c_loc(devIpiv), c_loc(B), ldb, c_loc(X), ldx, work, lwork)
     end function hipsolverDnCCgesv_bufferSize_native
 
     function hipsolverDnCCgesv_bufferSize_typed(handle, n, nrhs, A, lda, devIpiv, B, ldb, X, ldx, &
@@ -27669,18 +27394,18 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: n
       integer(c_int), value :: nrhs
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: A(..)
       integer(c_int), value :: lda
-      integer(c_int), target :: devIpiv(*)
-      complex(c_double_complex), target :: B(*)
+      integer(c_int), target :: devIpiv(..)
+      complex(c_double_complex), target :: B(..)
       integer(c_int), value :: ldb
-      complex(c_double_complex), target :: X(*)
+      complex(c_double_complex), target :: X(..)
       integer(c_int), value :: ldx
       type(c_ptr), value :: work
       type(c_ptr), value :: lwork
       integer(c_int) :: DnZZgesv_bufferSize
-      DnZZgesv_bufferSize = hipsolverDnZZgesv_bufferSize_raw(handle, n, nrhs, c_loc(A(1)), lda, &
-        c_loc(devIpiv(1)), c_loc(B(1)), ldb, c_loc(X(1)), ldx, work, lwork)
+      DnZZgesv_bufferSize = hipsolverDnZZgesv_bufferSize_raw(handle, n, nrhs, c_loc(A), lda, &
+        c_loc(devIpiv), c_loc(B), ldb, c_loc(X), ldx, work, lwork)
     end function hipsolverDnZZgesv_bufferSize_native
 
     function hipsolverDnZZgesv_bufferSize_typed(handle, n, nrhs, A, lda, devIpiv, B, ldb, X, ldx, &
@@ -27712,20 +27437,20 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: n
       integer(c_int), value :: nrhs
-      real(c_float), target :: A(*)
+      real(c_float), target :: A(..)
       integer(c_int), value :: lda
-      integer(c_int), target :: devIpiv(*)
-      real(c_float), target :: B(*)
+      integer(c_int), target :: devIpiv(..)
+      real(c_float), target :: B(..)
       integer(c_int), value :: ldb
-      real(c_float), target :: X(*)
+      real(c_float), target :: X(..)
       integer(c_int), value :: ldx
       type(c_ptr), value :: work
       integer(c_long), value :: lwork
-      integer(c_int), target :: niters(*)
-      integer(c_int), target :: devInfo(*)
+      integer(c_int), target :: niters(..)
+      integer(c_int), target :: devInfo(..)
       integer(c_int) :: DnSSgesv
-      DnSSgesv = hipsolverDnSSgesv_raw(handle, n, nrhs, c_loc(A(1)), lda, c_loc(devIpiv(1)), &
-        c_loc(B(1)), ldb, c_loc(X(1)), ldx, work, lwork, c_loc(niters(1)), c_loc(devInfo(1)))
+      DnSSgesv = hipsolverDnSSgesv_raw(handle, n, nrhs, c_loc(A), lda, c_loc(devIpiv), c_loc(B), &
+        ldb, c_loc(X), ldx, work, lwork, c_loc(niters), c_loc(devInfo))
     end function hipsolverDnSSgesv_native
 
     function hipsolverDnSSgesv_typed(handle, n, nrhs, A, lda, devIpiv, B, ldb, X, ldx, work, &
@@ -27759,20 +27484,20 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: n
       integer(c_int), value :: nrhs
-      real(c_double), target :: A(*)
+      real(c_double), target :: A(..)
       integer(c_int), value :: lda
-      integer(c_int), target :: devIpiv(*)
-      real(c_double), target :: B(*)
+      integer(c_int), target :: devIpiv(..)
+      real(c_double), target :: B(..)
       integer(c_int), value :: ldb
-      real(c_double), target :: X(*)
+      real(c_double), target :: X(..)
       integer(c_int), value :: ldx
       type(c_ptr), value :: work
       integer(c_long), value :: lwork
-      integer(c_int), target :: niters(*)
-      integer(c_int), target :: devInfo(*)
+      integer(c_int), target :: niters(..)
+      integer(c_int), target :: devInfo(..)
       integer(c_int) :: DnDDgesv
-      DnDDgesv = hipsolverDnDDgesv_raw(handle, n, nrhs, c_loc(A(1)), lda, c_loc(devIpiv(1)), &
-        c_loc(B(1)), ldb, c_loc(X(1)), ldx, work, lwork, c_loc(niters(1)), c_loc(devInfo(1)))
+      DnDDgesv = hipsolverDnDDgesv_raw(handle, n, nrhs, c_loc(A), lda, c_loc(devIpiv), c_loc(B), &
+        ldb, c_loc(X), ldx, work, lwork, c_loc(niters), c_loc(devInfo))
     end function hipsolverDnDDgesv_native
 
     function hipsolverDnDDgesv_typed(handle, n, nrhs, A, lda, devIpiv, B, ldb, X, ldx, work, &
@@ -27806,20 +27531,20 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: n
       integer(c_int), value :: nrhs
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: A(..)
       integer(c_int), value :: lda
-      integer(c_int), target :: devIpiv(*)
-      complex(c_float_complex), target :: B(*)
+      integer(c_int), target :: devIpiv(..)
+      complex(c_float_complex), target :: B(..)
       integer(c_int), value :: ldb
-      complex(c_float_complex), target :: X(*)
+      complex(c_float_complex), target :: X(..)
       integer(c_int), value :: ldx
       type(c_ptr), value :: work
       integer(c_long), value :: lwork
-      integer(c_int), target :: niters(*)
-      integer(c_int), target :: devInfo(*)
+      integer(c_int), target :: niters(..)
+      integer(c_int), target :: devInfo(..)
       integer(c_int) :: DnCCgesv
-      DnCCgesv = hipsolverDnCCgesv_raw(handle, n, nrhs, c_loc(A(1)), lda, c_loc(devIpiv(1)), &
-        c_loc(B(1)), ldb, c_loc(X(1)), ldx, work, lwork, c_loc(niters(1)), c_loc(devInfo(1)))
+      DnCCgesv = hipsolverDnCCgesv_raw(handle, n, nrhs, c_loc(A), lda, c_loc(devIpiv), c_loc(B), &
+        ldb, c_loc(X), ldx, work, lwork, c_loc(niters), c_loc(devInfo))
     end function hipsolverDnCCgesv_native
 
     function hipsolverDnCCgesv_typed(handle, n, nrhs, A, lda, devIpiv, B, ldb, X, ldx, work, &
@@ -27853,20 +27578,20 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: n
       integer(c_int), value :: nrhs
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: A(..)
       integer(c_int), value :: lda
-      integer(c_int), target :: devIpiv(*)
-      complex(c_double_complex), target :: B(*)
+      integer(c_int), target :: devIpiv(..)
+      complex(c_double_complex), target :: B(..)
       integer(c_int), value :: ldb
-      complex(c_double_complex), target :: X(*)
+      complex(c_double_complex), target :: X(..)
       integer(c_int), value :: ldx
       type(c_ptr), value :: work
       integer(c_long), value :: lwork
-      integer(c_int), target :: niters(*)
-      integer(c_int), target :: devInfo(*)
+      integer(c_int), target :: niters(..)
+      integer(c_int), target :: devInfo(..)
       integer(c_int) :: DnZZgesv
-      DnZZgesv = hipsolverDnZZgesv_raw(handle, n, nrhs, c_loc(A(1)), lda, c_loc(devIpiv(1)), &
-        c_loc(B(1)), ldb, c_loc(X(1)), ldx, work, lwork, c_loc(niters(1)), c_loc(devInfo(1)))
+      DnZZgesv = hipsolverDnZZgesv_raw(handle, n, nrhs, c_loc(A), lda, c_loc(devIpiv), c_loc(B), &
+        ldb, c_loc(X), ldx, work, lwork, c_loc(niters), c_loc(devInfo))
     end function hipsolverDnZZgesv_native
 
     function hipsolverDnZZgesv_typed(handle, n, nrhs, A, lda, devIpiv, B, ldb, X, ldx, work, &
@@ -27899,9 +27624,9 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: m
       integer(c_int), value :: n
-      integer(c_int), target :: lwork(*)
+      integer(c_int), target :: lwork(..)
       integer(c_int) :: DnSgesvd_bufferSize
-      DnSgesvd_bufferSize = hipsolverDnSgesvd_bufferSize_raw(handle, m, n, c_loc(lwork(1)))
+      DnSgesvd_bufferSize = hipsolverDnSgesvd_bufferSize_raw(handle, m, n, c_loc(lwork))
     end function hipsolverDnSgesvd_bufferSize_native
 
     function hipsolverDnSgesvd_bufferSize_typed(handle, m, n, lwork) result(DnSgesvd_bufferSize)
@@ -27922,9 +27647,9 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: m
       integer(c_int), value :: n
-      integer(c_int), target :: lwork(*)
+      integer(c_int), target :: lwork(..)
       integer(c_int) :: DnDgesvd_bufferSize
-      DnDgesvd_bufferSize = hipsolverDnDgesvd_bufferSize_raw(handle, m, n, c_loc(lwork(1)))
+      DnDgesvd_bufferSize = hipsolverDnDgesvd_bufferSize_raw(handle, m, n, c_loc(lwork))
     end function hipsolverDnDgesvd_bufferSize_native
 
     function hipsolverDnDgesvd_bufferSize_typed(handle, m, n, lwork) result(DnDgesvd_bufferSize)
@@ -27945,9 +27670,9 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: m
       integer(c_int), value :: n
-      integer(c_int), target :: lwork(*)
+      integer(c_int), target :: lwork(..)
       integer(c_int) :: DnCgesvd_bufferSize
-      DnCgesvd_bufferSize = hipsolverDnCgesvd_bufferSize_raw(handle, m, n, c_loc(lwork(1)))
+      DnCgesvd_bufferSize = hipsolverDnCgesvd_bufferSize_raw(handle, m, n, c_loc(lwork))
     end function hipsolverDnCgesvd_bufferSize_native
 
     function hipsolverDnCgesvd_bufferSize_typed(handle, m, n, lwork) result(DnCgesvd_bufferSize)
@@ -27968,9 +27693,9 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: m
       integer(c_int), value :: n
-      integer(c_int), target :: lwork(*)
+      integer(c_int), target :: lwork(..)
       integer(c_int) :: DnZgesvd_bufferSize
-      DnZgesvd_bufferSize = hipsolverDnZgesvd_bufferSize_raw(handle, m, n, c_loc(lwork(1)))
+      DnZgesvd_bufferSize = hipsolverDnZgesvd_bufferSize_raw(handle, m, n, c_loc(lwork))
     end function hipsolverDnZgesvd_bufferSize_native
 
     function hipsolverDnZgesvd_bufferSize_typed(handle, m, n, lwork) result(DnZgesvd_bufferSize)
@@ -27994,21 +27719,20 @@ contains
       type(c_ptr), value :: jobv
       integer(c_int), value :: m
       integer(c_int), value :: n
-      real(c_float), target :: A(*)
+      real(c_float), target :: A(..)
       integer(c_int), value :: lda
-      real(c_float), target :: S(*)
-      real(c_float), target :: U(*)
+      real(c_float), target :: S(..)
+      real(c_float), target :: U(..)
       integer(c_int), value :: ldu
-      real(c_float), target :: V(*)
+      real(c_float), target :: V(..)
       integer(c_int), value :: ldv
-      real(c_float), target :: work(*)
+      type(c_ptr), value :: work
       integer(c_int), value :: lwork
-      real(c_float), target :: rwork(*)
-      integer(c_int), target :: devInfo(*)
+      real(c_float), target :: rwork(..)
+      integer(c_int), target :: devInfo(..)
       integer(c_int) :: DnSgesvd
-      DnSgesvd = hipsolverDnSgesvd_raw(handle, jobu, jobv, m, n, c_loc(A(1)), lda, c_loc(S(1)), &
-        c_loc(U(1)), ldu, c_loc(V(1)), ldv, c_loc(work(1)), lwork, c_loc(rwork(1)), c_loc(devInfo( &
-        1)))
+      DnSgesvd = hipsolverDnSgesvd_raw(handle, jobu, jobv, m, n, c_loc(A), lda, c_loc(S), c_loc( &
+        U), ldu, c_loc(V), ldv, work, lwork, c_loc(rwork), c_loc(devInfo))
     end function hipsolverDnSgesvd_native
 
     function hipsolverDnSgesvd_typed(handle, jobu, jobv, m, n, A, lda, S, U, ldu, V, ldv, work, &
@@ -28046,21 +27770,20 @@ contains
       type(c_ptr), value :: jobv
       integer(c_int), value :: m
       integer(c_int), value :: n
-      real(c_double), target :: A(*)
+      real(c_double), target :: A(..)
       integer(c_int), value :: lda
-      real(c_double), target :: S(*)
-      real(c_double), target :: U(*)
+      real(c_double), target :: S(..)
+      real(c_double), target :: U(..)
       integer(c_int), value :: ldu
-      real(c_double), target :: V(*)
+      real(c_double), target :: V(..)
       integer(c_int), value :: ldv
-      real(c_double), target :: work(*)
+      type(c_ptr), value :: work
       integer(c_int), value :: lwork
-      real(c_double), target :: rwork(*)
-      integer(c_int), target :: devInfo(*)
+      real(c_double), target :: rwork(..)
+      integer(c_int), target :: devInfo(..)
       integer(c_int) :: DnDgesvd
-      DnDgesvd = hipsolverDnDgesvd_raw(handle, jobu, jobv, m, n, c_loc(A(1)), lda, c_loc(S(1)), &
-        c_loc(U(1)), ldu, c_loc(V(1)), ldv, c_loc(work(1)), lwork, c_loc(rwork(1)), c_loc(devInfo( &
-        1)))
+      DnDgesvd = hipsolverDnDgesvd_raw(handle, jobu, jobv, m, n, c_loc(A), lda, c_loc(S), c_loc( &
+        U), ldu, c_loc(V), ldv, work, lwork, c_loc(rwork), c_loc(devInfo))
     end function hipsolverDnDgesvd_native
 
     function hipsolverDnDgesvd_typed(handle, jobu, jobv, m, n, A, lda, S, U, ldu, V, ldv, work, &
@@ -28098,21 +27821,20 @@ contains
       type(c_ptr), value :: jobv
       integer(c_int), value :: m
       integer(c_int), value :: n
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: A(..)
       integer(c_int), value :: lda
-      real(c_float), target :: S(*)
-      complex(c_float_complex), target :: U(*)
+      real(c_float), target :: S(..)
+      complex(c_float_complex), target :: U(..)
       integer(c_int), value :: ldu
-      complex(c_float_complex), target :: V(*)
+      complex(c_float_complex), target :: V(..)
       integer(c_int), value :: ldv
-      complex(c_float_complex), target :: work(*)
+      type(c_ptr), value :: work
       integer(c_int), value :: lwork
-      real(c_float), target :: rwork(*)
-      integer(c_int), target :: devInfo(*)
+      real(c_float), target :: rwork(..)
+      integer(c_int), target :: devInfo(..)
       integer(c_int) :: DnCgesvd
-      DnCgesvd = hipsolverDnCgesvd_raw(handle, jobu, jobv, m, n, c_loc(A(1)), lda, c_loc(S(1)), &
-        c_loc(U(1)), ldu, c_loc(V(1)), ldv, c_loc(work(1)), lwork, c_loc(rwork(1)), c_loc(devInfo( &
-        1)))
+      DnCgesvd = hipsolverDnCgesvd_raw(handle, jobu, jobv, m, n, c_loc(A), lda, c_loc(S), c_loc( &
+        U), ldu, c_loc(V), ldv, work, lwork, c_loc(rwork), c_loc(devInfo))
     end function hipsolverDnCgesvd_native
 
     function hipsolverDnCgesvd_typed(handle, jobu, jobv, m, n, A, lda, S, U, ldu, V, ldv, work, &
@@ -28150,21 +27872,20 @@ contains
       type(c_ptr), value :: jobv
       integer(c_int), value :: m
       integer(c_int), value :: n
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: A(..)
       integer(c_int), value :: lda
-      real(c_double), target :: S(*)
-      complex(c_double_complex), target :: U(*)
+      real(c_double), target :: S(..)
+      complex(c_double_complex), target :: U(..)
       integer(c_int), value :: ldu
-      complex(c_double_complex), target :: V(*)
+      complex(c_double_complex), target :: V(..)
       integer(c_int), value :: ldv
-      complex(c_double_complex), target :: work(*)
+      type(c_ptr), value :: work
       integer(c_int), value :: lwork
-      real(c_double), target :: rwork(*)
-      integer(c_int), target :: devInfo(*)
+      real(c_double), target :: rwork(..)
+      integer(c_int), target :: devInfo(..)
       integer(c_int) :: DnZgesvd
-      DnZgesvd = hipsolverDnZgesvd_raw(handle, jobu, jobv, m, n, c_loc(A(1)), lda, c_loc(S(1)), &
-        c_loc(U(1)), ldu, c_loc(V(1)), ldv, c_loc(work(1)), lwork, c_loc(rwork(1)), c_loc(devInfo( &
-        1)))
+      DnZgesvd = hipsolverDnZgesvd_raw(handle, jobu, jobv, m, n, c_loc(A), lda, c_loc(S), c_loc( &
+        U), ldu, c_loc(V), ldv, work, lwork, c_loc(rwork), c_loc(devInfo))
     end function hipsolverDnZgesvd_native
 
     function hipsolverDnZgesvd_typed(handle, jobu, jobv, m, n, A, lda, S, U, ldu, V, ldv, work, &
@@ -28202,18 +27923,18 @@ contains
       integer(c_int), value :: econ
       integer(c_int), value :: m
       integer(c_int), value :: n
-      real(c_float), target :: A(*)
+      real(c_float), target :: A(..)
       integer(c_int), value :: lda
-      real(c_float), target :: S(*)
-      real(c_float), target :: U(*)
+      real(c_float), target :: S(..)
+      real(c_float), target :: U(..)
       integer(c_int), value :: ldu
-      real(c_float), target :: V(*)
+      real(c_float), target :: V(..)
       integer(c_int), value :: ldv
-      integer(c_int), target :: lwork(*)
+      integer(c_int), target :: lwork(..)
       type(c_ptr), value :: params
       integer(c_int) :: DnSgesvdj_bufferSize
-      DnSgesvdj_bufferSize = hipsolverDnSgesvdj_bufferSize_raw(handle, jobz, econ, m, n, c_loc(A( &
-        1)), lda, c_loc(S(1)), c_loc(U(1)), ldu, c_loc(V(1)), ldv, c_loc(lwork(1)), params)
+      DnSgesvdj_bufferSize = hipsolverDnSgesvdj_bufferSize_raw(handle, jobz, econ, m, n, c_loc(A), &
+        lda, c_loc(S), c_loc(U), ldu, c_loc(V), ldv, c_loc(lwork), params)
     end function hipsolverDnSgesvdj_bufferSize_native
 
     function hipsolverDnSgesvdj_bufferSize_typed(handle, jobz, econ, m, n, A, lda, S, U, ldu, V, &
@@ -28249,18 +27970,18 @@ contains
       integer(c_int), value :: econ
       integer(c_int), value :: m
       integer(c_int), value :: n
-      real(c_double), target :: A(*)
+      real(c_double), target :: A(..)
       integer(c_int), value :: lda
-      real(c_double), target :: S(*)
-      real(c_double), target :: U(*)
+      real(c_double), target :: S(..)
+      real(c_double), target :: U(..)
       integer(c_int), value :: ldu
-      real(c_double), target :: V(*)
+      real(c_double), target :: V(..)
       integer(c_int), value :: ldv
-      integer(c_int), target :: lwork(*)
+      integer(c_int), target :: lwork(..)
       type(c_ptr), value :: params
       integer(c_int) :: DnDgesvdj_bufferSize
-      DnDgesvdj_bufferSize = hipsolverDnDgesvdj_bufferSize_raw(handle, jobz, econ, m, n, c_loc(A( &
-        1)), lda, c_loc(S(1)), c_loc(U(1)), ldu, c_loc(V(1)), ldv, c_loc(lwork(1)), params)
+      DnDgesvdj_bufferSize = hipsolverDnDgesvdj_bufferSize_raw(handle, jobz, econ, m, n, c_loc(A), &
+        lda, c_loc(S), c_loc(U), ldu, c_loc(V), ldv, c_loc(lwork), params)
     end function hipsolverDnDgesvdj_bufferSize_native
 
     function hipsolverDnDgesvdj_bufferSize_typed(handle, jobz, econ, m, n, A, lda, S, U, ldu, V, &
@@ -28296,18 +28017,18 @@ contains
       integer(c_int), value :: econ
       integer(c_int), value :: m
       integer(c_int), value :: n
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: A(..)
       integer(c_int), value :: lda
-      real(c_float), target :: S(*)
-      complex(c_float_complex), target :: U(*)
+      real(c_float), target :: S(..)
+      complex(c_float_complex), target :: U(..)
       integer(c_int), value :: ldu
-      complex(c_float_complex), target :: V(*)
+      complex(c_float_complex), target :: V(..)
       integer(c_int), value :: ldv
-      integer(c_int), target :: lwork(*)
+      integer(c_int), target :: lwork(..)
       type(c_ptr), value :: params
       integer(c_int) :: DnCgesvdj_bufferSize
-      DnCgesvdj_bufferSize = hipsolverDnCgesvdj_bufferSize_raw(handle, jobz, econ, m, n, c_loc(A( &
-        1)), lda, c_loc(S(1)), c_loc(U(1)), ldu, c_loc(V(1)), ldv, c_loc(lwork(1)), params)
+      DnCgesvdj_bufferSize = hipsolverDnCgesvdj_bufferSize_raw(handle, jobz, econ, m, n, c_loc(A), &
+        lda, c_loc(S), c_loc(U), ldu, c_loc(V), ldv, c_loc(lwork), params)
     end function hipsolverDnCgesvdj_bufferSize_native
 
     function hipsolverDnCgesvdj_bufferSize_typed(handle, jobz, econ, m, n, A, lda, S, U, ldu, V, &
@@ -28343,18 +28064,18 @@ contains
       integer(c_int), value :: econ
       integer(c_int), value :: m
       integer(c_int), value :: n
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: A(..)
       integer(c_int), value :: lda
-      real(c_double), target :: S(*)
-      complex(c_double_complex), target :: U(*)
+      real(c_double), target :: S(..)
+      complex(c_double_complex), target :: U(..)
       integer(c_int), value :: ldu
-      complex(c_double_complex), target :: V(*)
+      complex(c_double_complex), target :: V(..)
       integer(c_int), value :: ldv
-      integer(c_int), target :: lwork(*)
+      integer(c_int), target :: lwork(..)
       type(c_ptr), value :: params
       integer(c_int) :: DnZgesvdj_bufferSize
-      DnZgesvdj_bufferSize = hipsolverDnZgesvdj_bufferSize_raw(handle, jobz, econ, m, n, c_loc(A( &
-        1)), lda, c_loc(S(1)), c_loc(U(1)), ldu, c_loc(V(1)), ldv, c_loc(lwork(1)), params)
+      DnZgesvdj_bufferSize = hipsolverDnZgesvdj_bufferSize_raw(handle, jobz, econ, m, n, c_loc(A), &
+        lda, c_loc(S), c_loc(U), ldu, c_loc(V), ldv, c_loc(lwork), params)
     end function hipsolverDnZgesvdj_bufferSize_native
 
     function hipsolverDnZgesvdj_bufferSize_typed(handle, jobz, econ, m, n, A, lda, S, U, ldu, V, &
@@ -28390,20 +28111,20 @@ contains
       integer(c_int), value :: econ
       integer(c_int), value :: m
       integer(c_int), value :: n
-      real(c_float), target :: A(*)
+      real(c_float), target :: A(..)
       integer(c_int), value :: lda
-      real(c_float), target :: S(*)
-      real(c_float), target :: U(*)
+      real(c_float), target :: S(..)
+      real(c_float), target :: U(..)
       integer(c_int), value :: ldu
-      real(c_float), target :: V(*)
+      real(c_float), target :: V(..)
       integer(c_int), value :: ldv
-      real(c_float), target :: work(*)
+      type(c_ptr), value :: work
       integer(c_int), value :: lwork
-      integer(c_int), target :: devInfo(*)
+      integer(c_int), target :: devInfo(..)
       type(c_ptr), value :: params
       integer(c_int) :: DnSgesvdj
-      DnSgesvdj = hipsolverDnSgesvdj_raw(handle, jobz, econ, m, n, c_loc(A(1)), lda, c_loc(S(1)), &
-        c_loc(U(1)), ldu, c_loc(V(1)), ldv, c_loc(work(1)), lwork, c_loc(devInfo(1)), params)
+      DnSgesvdj = hipsolverDnSgesvdj_raw(handle, jobz, econ, m, n, c_loc(A), lda, c_loc(S), c_loc( &
+        U), ldu, c_loc(V), ldv, work, lwork, c_loc(devInfo), params)
     end function hipsolverDnSgesvdj_native
 
     function hipsolverDnSgesvdj_typed(handle, jobz, econ, m, n, A, lda, S, U, ldu, V, ldv, work, &
@@ -28441,20 +28162,20 @@ contains
       integer(c_int), value :: econ
       integer(c_int), value :: m
       integer(c_int), value :: n
-      real(c_double), target :: A(*)
+      real(c_double), target :: A(..)
       integer(c_int), value :: lda
-      real(c_double), target :: S(*)
-      real(c_double), target :: U(*)
+      real(c_double), target :: S(..)
+      real(c_double), target :: U(..)
       integer(c_int), value :: ldu
-      real(c_double), target :: V(*)
+      real(c_double), target :: V(..)
       integer(c_int), value :: ldv
-      real(c_double), target :: work(*)
+      type(c_ptr), value :: work
       integer(c_int), value :: lwork
-      integer(c_int), target :: devInfo(*)
+      integer(c_int), target :: devInfo(..)
       type(c_ptr), value :: params
       integer(c_int) :: DnDgesvdj
-      DnDgesvdj = hipsolverDnDgesvdj_raw(handle, jobz, econ, m, n, c_loc(A(1)), lda, c_loc(S(1)), &
-        c_loc(U(1)), ldu, c_loc(V(1)), ldv, c_loc(work(1)), lwork, c_loc(devInfo(1)), params)
+      DnDgesvdj = hipsolverDnDgesvdj_raw(handle, jobz, econ, m, n, c_loc(A), lda, c_loc(S), c_loc( &
+        U), ldu, c_loc(V), ldv, work, lwork, c_loc(devInfo), params)
     end function hipsolverDnDgesvdj_native
 
     function hipsolverDnDgesvdj_typed(handle, jobz, econ, m, n, A, lda, S, U, ldu, V, ldv, work, &
@@ -28492,20 +28213,20 @@ contains
       integer(c_int), value :: econ
       integer(c_int), value :: m
       integer(c_int), value :: n
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: A(..)
       integer(c_int), value :: lda
-      real(c_float), target :: S(*)
-      complex(c_float_complex), target :: U(*)
+      real(c_float), target :: S(..)
+      complex(c_float_complex), target :: U(..)
       integer(c_int), value :: ldu
-      complex(c_float_complex), target :: V(*)
+      complex(c_float_complex), target :: V(..)
       integer(c_int), value :: ldv
-      complex(c_float_complex), target :: work(*)
+      type(c_ptr), value :: work
       integer(c_int), value :: lwork
-      integer(c_int), target :: devInfo(*)
+      integer(c_int), target :: devInfo(..)
       type(c_ptr), value :: params
       integer(c_int) :: DnCgesvdj
-      DnCgesvdj = hipsolverDnCgesvdj_raw(handle, jobz, econ, m, n, c_loc(A(1)), lda, c_loc(S(1)), &
-        c_loc(U(1)), ldu, c_loc(V(1)), ldv, c_loc(work(1)), lwork, c_loc(devInfo(1)), params)
+      DnCgesvdj = hipsolverDnCgesvdj_raw(handle, jobz, econ, m, n, c_loc(A), lda, c_loc(S), c_loc( &
+        U), ldu, c_loc(V), ldv, work, lwork, c_loc(devInfo), params)
     end function hipsolverDnCgesvdj_native
 
     function hipsolverDnCgesvdj_typed(handle, jobz, econ, m, n, A, lda, S, U, ldu, V, ldv, work, &
@@ -28543,20 +28264,20 @@ contains
       integer(c_int), value :: econ
       integer(c_int), value :: m
       integer(c_int), value :: n
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: A(..)
       integer(c_int), value :: lda
-      real(c_double), target :: S(*)
-      complex(c_double_complex), target :: U(*)
+      real(c_double), target :: S(..)
+      complex(c_double_complex), target :: U(..)
       integer(c_int), value :: ldu
-      complex(c_double_complex), target :: V(*)
+      complex(c_double_complex), target :: V(..)
       integer(c_int), value :: ldv
-      complex(c_double_complex), target :: work(*)
+      type(c_ptr), value :: work
       integer(c_int), value :: lwork
-      integer(c_int), target :: devInfo(*)
+      integer(c_int), target :: devInfo(..)
       type(c_ptr), value :: params
       integer(c_int) :: DnZgesvdj
-      DnZgesvdj = hipsolverDnZgesvdj_raw(handle, jobz, econ, m, n, c_loc(A(1)), lda, c_loc(S(1)), &
-        c_loc(U(1)), ldu, c_loc(V(1)), ldv, c_loc(work(1)), lwork, c_loc(devInfo(1)), params)
+      DnZgesvdj = hipsolverDnZgesvdj_raw(handle, jobz, econ, m, n, c_loc(A), lda, c_loc(S), c_loc( &
+        U), ldu, c_loc(V), ldv, work, lwork, c_loc(devInfo), params)
     end function hipsolverDnZgesvdj_native
 
     function hipsolverDnZgesvdj_typed(handle, jobz, econ, m, n, A, lda, S, U, ldu, V, ldv, work, &
@@ -28593,20 +28314,19 @@ contains
       integer(c_int), value :: jobz
       integer(c_int), value :: m
       integer(c_int), value :: n
-      real(c_float), target :: A(*)
+      real(c_float), target :: A(..)
       integer(c_int), value :: lda
-      real(c_float), target :: S(*)
-      real(c_float), target :: U(*)
+      real(c_float), target :: S(..)
+      real(c_float), target :: U(..)
       integer(c_int), value :: ldu
-      real(c_float), target :: V(*)
+      real(c_float), target :: V(..)
       integer(c_int), value :: ldv
-      integer(c_int), target :: lwork(*)
+      integer(c_int), target :: lwork(..)
       type(c_ptr), value :: params
       integer(c_int), value :: batch_count
       integer(c_int) :: DnSgesvdjBatched_bufferSize
       DnSgesvdjBatched_bufferSize = hipsolverDnSgesvdjBatched_bufferSize_raw(handle, jobz, m, n, &
-        c_loc(A(1)), lda, c_loc(S(1)), c_loc(U(1)), ldu, c_loc(V(1)), ldv, c_loc(lwork(1)), &
-        params, batch_count)
+        c_loc(A), lda, c_loc(S), c_loc(U), ldu, c_loc(V), ldv, c_loc(lwork), params, batch_count)
     end function hipsolverDnSgesvdjBatched_bufferSize_native
 
     function hipsolverDnSgesvdjBatched_bufferSize_typed(handle, jobz, m, n, A, lda, S, U, ldu, V, &
@@ -28641,20 +28361,19 @@ contains
       integer(c_int), value :: jobz
       integer(c_int), value :: m
       integer(c_int), value :: n
-      real(c_double), target :: A(*)
+      real(c_double), target :: A(..)
       integer(c_int), value :: lda
-      real(c_double), target :: S(*)
-      real(c_double), target :: U(*)
+      real(c_double), target :: S(..)
+      real(c_double), target :: U(..)
       integer(c_int), value :: ldu
-      real(c_double), target :: V(*)
+      real(c_double), target :: V(..)
       integer(c_int), value :: ldv
-      integer(c_int), target :: lwork(*)
+      integer(c_int), target :: lwork(..)
       type(c_ptr), value :: params
       integer(c_int), value :: batch_count
       integer(c_int) :: DnDgesvdjBatched_bufferSize
       DnDgesvdjBatched_bufferSize = hipsolverDnDgesvdjBatched_bufferSize_raw(handle, jobz, m, n, &
-        c_loc(A(1)), lda, c_loc(S(1)), c_loc(U(1)), ldu, c_loc(V(1)), ldv, c_loc(lwork(1)), &
-        params, batch_count)
+        c_loc(A), lda, c_loc(S), c_loc(U), ldu, c_loc(V), ldv, c_loc(lwork), params, batch_count)
     end function hipsolverDnDgesvdjBatched_bufferSize_native
 
     function hipsolverDnDgesvdjBatched_bufferSize_typed(handle, jobz, m, n, A, lda, S, U, ldu, V, &
@@ -28689,20 +28408,19 @@ contains
       integer(c_int), value :: jobz
       integer(c_int), value :: m
       integer(c_int), value :: n
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: A(..)
       integer(c_int), value :: lda
-      real(c_float), target :: S(*)
-      complex(c_float_complex), target :: U(*)
+      real(c_float), target :: S(..)
+      complex(c_float_complex), target :: U(..)
       integer(c_int), value :: ldu
-      complex(c_float_complex), target :: V(*)
+      complex(c_float_complex), target :: V(..)
       integer(c_int), value :: ldv
-      integer(c_int), target :: lwork(*)
+      integer(c_int), target :: lwork(..)
       type(c_ptr), value :: params
       integer(c_int), value :: batch_count
       integer(c_int) :: DnCgesvdjBatched_bufferSize
       DnCgesvdjBatched_bufferSize = hipsolverDnCgesvdjBatched_bufferSize_raw(handle, jobz, m, n, &
-        c_loc(A(1)), lda, c_loc(S(1)), c_loc(U(1)), ldu, c_loc(V(1)), ldv, c_loc(lwork(1)), &
-        params, batch_count)
+        c_loc(A), lda, c_loc(S), c_loc(U), ldu, c_loc(V), ldv, c_loc(lwork), params, batch_count)
     end function hipsolverDnCgesvdjBatched_bufferSize_native
 
     function hipsolverDnCgesvdjBatched_bufferSize_typed(handle, jobz, m, n, A, lda, S, U, ldu, V, &
@@ -28737,20 +28455,19 @@ contains
       integer(c_int), value :: jobz
       integer(c_int), value :: m
       integer(c_int), value :: n
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: A(..)
       integer(c_int), value :: lda
-      real(c_double), target :: S(*)
-      complex(c_double_complex), target :: U(*)
+      real(c_double), target :: S(..)
+      complex(c_double_complex), target :: U(..)
       integer(c_int), value :: ldu
-      complex(c_double_complex), target :: V(*)
+      complex(c_double_complex), target :: V(..)
       integer(c_int), value :: ldv
-      integer(c_int), target :: lwork(*)
+      integer(c_int), target :: lwork(..)
       type(c_ptr), value :: params
       integer(c_int), value :: batch_count
       integer(c_int) :: DnZgesvdjBatched_bufferSize
       DnZgesvdjBatched_bufferSize = hipsolverDnZgesvdjBatched_bufferSize_raw(handle, jobz, m, n, &
-        c_loc(A(1)), lda, c_loc(S(1)), c_loc(U(1)), ldu, c_loc(V(1)), ldv, c_loc(lwork(1)), &
-        params, batch_count)
+        c_loc(A), lda, c_loc(S), c_loc(U), ldu, c_loc(V), ldv, c_loc(lwork), params, batch_count)
     end function hipsolverDnZgesvdjBatched_bufferSize_native
 
     function hipsolverDnZgesvdjBatched_bufferSize_typed(handle, jobz, m, n, A, lda, S, U, ldu, V, &
@@ -28785,22 +28502,21 @@ contains
       integer(c_int), value :: jobz
       integer(c_int), value :: m
       integer(c_int), value :: n
-      real(c_float), target :: A(*)
+      real(c_float), target :: A(..)
       integer(c_int), value :: lda
-      real(c_float), target :: S(*)
-      real(c_float), target :: U(*)
+      real(c_float), target :: S(..)
+      real(c_float), target :: U(..)
       integer(c_int), value :: ldu
-      real(c_float), target :: V(*)
+      real(c_float), target :: V(..)
       integer(c_int), value :: ldv
-      real(c_float), target :: work(*)
+      type(c_ptr), value :: work
       integer(c_int), value :: lwork
-      integer(c_int), target :: devInfo(*)
+      integer(c_int), target :: devInfo(..)
       type(c_ptr), value :: params
       integer(c_int), value :: batch_count
       integer(c_int) :: DnSgesvdjBatched
-      DnSgesvdjBatched = hipsolverDnSgesvdjBatched_raw(handle, jobz, m, n, c_loc(A(1)), lda, &
-        c_loc(S(1)), c_loc(U(1)), ldu, c_loc(V(1)), ldv, c_loc(work(1)), lwork, c_loc(devInfo(1)), &
-        params, batch_count)
+      DnSgesvdjBatched = hipsolverDnSgesvdjBatched_raw(handle, jobz, m, n, c_loc(A), lda, c_loc( &
+        S), c_loc(U), ldu, c_loc(V), ldv, work, lwork, c_loc(devInfo), params, batch_count)
     end function hipsolverDnSgesvdjBatched_native
 
     function hipsolverDnSgesvdjBatched_typed(handle, jobz, m, n, A, lda, S, U, ldu, V, ldv, work, &
@@ -28837,22 +28553,21 @@ contains
       integer(c_int), value :: jobz
       integer(c_int), value :: m
       integer(c_int), value :: n
-      real(c_double), target :: A(*)
+      real(c_double), target :: A(..)
       integer(c_int), value :: lda
-      real(c_double), target :: S(*)
-      real(c_double), target :: U(*)
+      real(c_double), target :: S(..)
+      real(c_double), target :: U(..)
       integer(c_int), value :: ldu
-      real(c_double), target :: V(*)
+      real(c_double), target :: V(..)
       integer(c_int), value :: ldv
-      real(c_double), target :: work(*)
+      type(c_ptr), value :: work
       integer(c_int), value :: lwork
-      integer(c_int), target :: devInfo(*)
+      integer(c_int), target :: devInfo(..)
       type(c_ptr), value :: params
       integer(c_int), value :: batch_count
       integer(c_int) :: DnDgesvdjBatched
-      DnDgesvdjBatched = hipsolverDnDgesvdjBatched_raw(handle, jobz, m, n, c_loc(A(1)), lda, &
-        c_loc(S(1)), c_loc(U(1)), ldu, c_loc(V(1)), ldv, c_loc(work(1)), lwork, c_loc(devInfo(1)), &
-        params, batch_count)
+      DnDgesvdjBatched = hipsolverDnDgesvdjBatched_raw(handle, jobz, m, n, c_loc(A), lda, c_loc( &
+        S), c_loc(U), ldu, c_loc(V), ldv, work, lwork, c_loc(devInfo), params, batch_count)
     end function hipsolverDnDgesvdjBatched_native
 
     function hipsolverDnDgesvdjBatched_typed(handle, jobz, m, n, A, lda, S, U, ldu, V, ldv, work, &
@@ -28889,22 +28604,21 @@ contains
       integer(c_int), value :: jobz
       integer(c_int), value :: m
       integer(c_int), value :: n
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: A(..)
       integer(c_int), value :: lda
-      real(c_float), target :: S(*)
-      complex(c_float_complex), target :: U(*)
+      real(c_float), target :: S(..)
+      complex(c_float_complex), target :: U(..)
       integer(c_int), value :: ldu
-      complex(c_float_complex), target :: V(*)
+      complex(c_float_complex), target :: V(..)
       integer(c_int), value :: ldv
-      complex(c_float_complex), target :: work(*)
+      type(c_ptr), value :: work
       integer(c_int), value :: lwork
-      integer(c_int), target :: devInfo(*)
+      integer(c_int), target :: devInfo(..)
       type(c_ptr), value :: params
       integer(c_int), value :: batch_count
       integer(c_int) :: DnCgesvdjBatched
-      DnCgesvdjBatched = hipsolverDnCgesvdjBatched_raw(handle, jobz, m, n, c_loc(A(1)), lda, &
-        c_loc(S(1)), c_loc(U(1)), ldu, c_loc(V(1)), ldv, c_loc(work(1)), lwork, c_loc(devInfo(1)), &
-        params, batch_count)
+      DnCgesvdjBatched = hipsolverDnCgesvdjBatched_raw(handle, jobz, m, n, c_loc(A), lda, c_loc( &
+        S), c_loc(U), ldu, c_loc(V), ldv, work, lwork, c_loc(devInfo), params, batch_count)
     end function hipsolverDnCgesvdjBatched_native
 
     function hipsolverDnCgesvdjBatched_typed(handle, jobz, m, n, A, lda, S, U, ldu, V, ldv, work, &
@@ -28941,22 +28655,21 @@ contains
       integer(c_int), value :: jobz
       integer(c_int), value :: m
       integer(c_int), value :: n
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: A(..)
       integer(c_int), value :: lda
-      real(c_double), target :: S(*)
-      complex(c_double_complex), target :: U(*)
+      real(c_double), target :: S(..)
+      complex(c_double_complex), target :: U(..)
       integer(c_int), value :: ldu
-      complex(c_double_complex), target :: V(*)
+      complex(c_double_complex), target :: V(..)
       integer(c_int), value :: ldv
-      complex(c_double_complex), target :: work(*)
+      type(c_ptr), value :: work
       integer(c_int), value :: lwork
-      integer(c_int), target :: devInfo(*)
+      integer(c_int), target :: devInfo(..)
       type(c_ptr), value :: params
       integer(c_int), value :: batch_count
       integer(c_int) :: DnZgesvdjBatched
-      DnZgesvdjBatched = hipsolverDnZgesvdjBatched_raw(handle, jobz, m, n, c_loc(A(1)), lda, &
-        c_loc(S(1)), c_loc(U(1)), ldu, c_loc(V(1)), ldv, c_loc(work(1)), lwork, c_loc(devInfo(1)), &
-        params, batch_count)
+      DnZgesvdjBatched = hipsolverDnZgesvdjBatched_raw(handle, jobz, m, n, c_loc(A), lda, c_loc( &
+        S), c_loc(U), ldu, c_loc(V), ldv, work, lwork, c_loc(devInfo), params, batch_count)
     end function hipsolverDnZgesvdjBatched_native
 
     function hipsolverDnZgesvdjBatched_typed(handle, jobz, m, n, A, lda, S, U, ldu, V, ldv, work, &
@@ -28995,23 +28708,23 @@ contains
       integer(c_int), value :: rank
       integer(c_int), value :: m
       integer(c_int), value :: n
-      real(c_float), target :: A(*)
+      real(c_float), target :: A(..)
       integer(c_int), value :: lda
       integer(c_int64_t), value :: strideA
-      real(c_float), target :: S(*)
+      real(c_float), target :: S(..)
       integer(c_int64_t), value :: strideS
-      real(c_float), target :: U(*)
+      real(c_float), target :: U(..)
       integer(c_int), value :: ldu
       integer(c_int64_t), value :: strideU
-      real(c_float), target :: V(*)
+      real(c_float), target :: V(..)
       integer(c_int), value :: ldv
       integer(c_int64_t), value :: strideV
-      integer(c_int), target :: lwork(*)
+      integer(c_int), target :: lwork(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: DnSgesvdaStridedBatched_bufferSize
       DnSgesvdaStridedBatched_bufferSize = hipsolverDnSgesvdaStridedBatched_bufferSize_raw(handle, &
-        jobz, rank, m, n, c_loc(A(1)), lda, strideA, c_loc(S(1)), strideS, c_loc(U(1)), ldu, &
-        strideU, c_loc(V(1)), ldv, strideV, c_loc(lwork(1)), batch_count)
+        jobz, rank, m, n, c_loc(A), lda, strideA, c_loc(S), strideS, c_loc(U), ldu, strideU, &
+        c_loc(V), ldv, strideV, c_loc(lwork), batch_count)
     end function hipsolverDnSgesvdaStridedBatched_bufferSize_native
 
     function hipsolverDnSgesvdaStridedBatched_bufferSize_typed(handle, jobz, rank, m, n, A, lda, &
@@ -29054,23 +28767,23 @@ contains
       integer(c_int), value :: rank
       integer(c_int), value :: m
       integer(c_int), value :: n
-      real(c_double), target :: A(*)
+      real(c_double), target :: A(..)
       integer(c_int), value :: lda
       integer(c_int64_t), value :: strideA
-      real(c_double), target :: S(*)
+      real(c_double), target :: S(..)
       integer(c_int64_t), value :: strideS
-      real(c_double), target :: U(*)
+      real(c_double), target :: U(..)
       integer(c_int), value :: ldu
       integer(c_int64_t), value :: strideU
-      real(c_double), target :: V(*)
+      real(c_double), target :: V(..)
       integer(c_int), value :: ldv
       integer(c_int64_t), value :: strideV
-      integer(c_int), target :: lwork(*)
+      integer(c_int), target :: lwork(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: DnDgesvdaStridedBatched_bufferSize
       DnDgesvdaStridedBatched_bufferSize = hipsolverDnDgesvdaStridedBatched_bufferSize_raw(handle, &
-        jobz, rank, m, n, c_loc(A(1)), lda, strideA, c_loc(S(1)), strideS, c_loc(U(1)), ldu, &
-        strideU, c_loc(V(1)), ldv, strideV, c_loc(lwork(1)), batch_count)
+        jobz, rank, m, n, c_loc(A), lda, strideA, c_loc(S), strideS, c_loc(U), ldu, strideU, &
+        c_loc(V), ldv, strideV, c_loc(lwork), batch_count)
     end function hipsolverDnDgesvdaStridedBatched_bufferSize_native
 
     function hipsolverDnDgesvdaStridedBatched_bufferSize_typed(handle, jobz, rank, m, n, A, lda, &
@@ -29113,23 +28826,23 @@ contains
       integer(c_int), value :: rank
       integer(c_int), value :: m
       integer(c_int), value :: n
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: A(..)
       integer(c_int), value :: lda
       integer(c_int64_t), value :: strideA
-      real(c_float), target :: S(*)
+      real(c_float), target :: S(..)
       integer(c_int64_t), value :: strideS
-      complex(c_float_complex), target :: U(*)
+      complex(c_float_complex), target :: U(..)
       integer(c_int), value :: ldu
       integer(c_int64_t), value :: strideU
-      complex(c_float_complex), target :: V(*)
+      complex(c_float_complex), target :: V(..)
       integer(c_int), value :: ldv
       integer(c_int64_t), value :: strideV
-      integer(c_int), target :: lwork(*)
+      integer(c_int), target :: lwork(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: DnCgesvdaStridedBatched_bufferSize
       DnCgesvdaStridedBatched_bufferSize = hipsolverDnCgesvdaStridedBatched_bufferSize_raw(handle, &
-        jobz, rank, m, n, c_loc(A(1)), lda, strideA, c_loc(S(1)), strideS, c_loc(U(1)), ldu, &
-        strideU, c_loc(V(1)), ldv, strideV, c_loc(lwork(1)), batch_count)
+        jobz, rank, m, n, c_loc(A), lda, strideA, c_loc(S), strideS, c_loc(U), ldu, strideU, &
+        c_loc(V), ldv, strideV, c_loc(lwork), batch_count)
     end function hipsolverDnCgesvdaStridedBatched_bufferSize_native
 
     function hipsolverDnCgesvdaStridedBatched_bufferSize_typed(handle, jobz, rank, m, n, A, lda, &
@@ -29172,23 +28885,23 @@ contains
       integer(c_int), value :: rank
       integer(c_int), value :: m
       integer(c_int), value :: n
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: A(..)
       integer(c_int), value :: lda
       integer(c_int64_t), value :: strideA
-      real(c_double), target :: S(*)
+      real(c_double), target :: S(..)
       integer(c_int64_t), value :: strideS
-      complex(c_double_complex), target :: U(*)
+      complex(c_double_complex), target :: U(..)
       integer(c_int), value :: ldu
       integer(c_int64_t), value :: strideU
-      complex(c_double_complex), target :: V(*)
+      complex(c_double_complex), target :: V(..)
       integer(c_int), value :: ldv
       integer(c_int64_t), value :: strideV
-      integer(c_int), target :: lwork(*)
+      integer(c_int), target :: lwork(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: DnZgesvdaStridedBatched_bufferSize
       DnZgesvdaStridedBatched_bufferSize = hipsolverDnZgesvdaStridedBatched_bufferSize_raw(handle, &
-        jobz, rank, m, n, c_loc(A(1)), lda, strideA, c_loc(S(1)), strideS, c_loc(U(1)), ldu, &
-        strideU, c_loc(V(1)), ldv, strideV, c_loc(lwork(1)), batch_count)
+        jobz, rank, m, n, c_loc(A), lda, strideA, c_loc(S), strideS, c_loc(U), ldu, strideU, &
+        c_loc(V), ldv, strideV, c_loc(lwork), batch_count)
     end function hipsolverDnZgesvdaStridedBatched_bufferSize_native
 
     function hipsolverDnZgesvdaStridedBatched_bufferSize_typed(handle, jobz, rank, m, n, A, lda, &
@@ -29231,26 +28944,26 @@ contains
       integer(c_int), value :: rank
       integer(c_int), value :: m
       integer(c_int), value :: n
-      real(c_float), target :: A(*)
+      real(c_float), target :: A(..)
       integer(c_int), value :: lda
       integer(c_int64_t), value :: strideA
-      real(c_float), target :: S(*)
+      real(c_float), target :: S(..)
       integer(c_int64_t), value :: strideS
-      real(c_float), target :: U(*)
+      real(c_float), target :: U(..)
       integer(c_int), value :: ldu
       integer(c_int64_t), value :: strideU
-      real(c_float), target :: V(*)
+      real(c_float), target :: V(..)
       integer(c_int), value :: ldv
       integer(c_int64_t), value :: strideV
-      real(c_float), target :: work(*)
+      type(c_ptr), value :: work
       integer(c_int), value :: lwork
-      integer(c_int), target :: devInfo(*)
-      real(c_double), target :: hRnrmF(*)
+      integer(c_int), target :: devInfo(..)
+      real(c_double), target :: hRnrmF(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: DnSgesvdaStridedBatched
       DnSgesvdaStridedBatched = hipsolverDnSgesvdaStridedBatched_raw(handle, jobz, rank, m, n, &
-        c_loc(A(1)), lda, strideA, c_loc(S(1)), strideS, c_loc(U(1)), ldu, strideU, c_loc(V(1)), &
-        ldv, strideV, c_loc(work(1)), lwork, c_loc(devInfo(1)), c_loc(hRnrmF(1)), batch_count)
+        c_loc(A), lda, strideA, c_loc(S), strideS, c_loc(U), ldu, strideU, c_loc(V), ldv, strideV, &
+        work, lwork, c_loc(devInfo), c_loc(hRnrmF), batch_count)
     end function hipsolverDnSgesvdaStridedBatched_native
 
     function hipsolverDnSgesvdaStridedBatched_typed(handle, jobz, rank, m, n, A, lda, strideA, S, &
@@ -29296,26 +29009,26 @@ contains
       integer(c_int), value :: rank
       integer(c_int), value :: m
       integer(c_int), value :: n
-      real(c_double), target :: A(*)
+      real(c_double), target :: A(..)
       integer(c_int), value :: lda
       integer(c_int64_t), value :: strideA
-      real(c_double), target :: S(*)
+      real(c_double), target :: S(..)
       integer(c_int64_t), value :: strideS
-      real(c_double), target :: U(*)
+      real(c_double), target :: U(..)
       integer(c_int), value :: ldu
       integer(c_int64_t), value :: strideU
-      real(c_double), target :: V(*)
+      real(c_double), target :: V(..)
       integer(c_int), value :: ldv
       integer(c_int64_t), value :: strideV
-      real(c_double), target :: work(*)
+      type(c_ptr), value :: work
       integer(c_int), value :: lwork
-      integer(c_int), target :: devInfo(*)
-      real(c_double), target :: hRnrmF(*)
+      integer(c_int), target :: devInfo(..)
+      real(c_double), target :: hRnrmF(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: DnDgesvdaStridedBatched
       DnDgesvdaStridedBatched = hipsolverDnDgesvdaStridedBatched_raw(handle, jobz, rank, m, n, &
-        c_loc(A(1)), lda, strideA, c_loc(S(1)), strideS, c_loc(U(1)), ldu, strideU, c_loc(V(1)), &
-        ldv, strideV, c_loc(work(1)), lwork, c_loc(devInfo(1)), c_loc(hRnrmF(1)), batch_count)
+        c_loc(A), lda, strideA, c_loc(S), strideS, c_loc(U), ldu, strideU, c_loc(V), ldv, strideV, &
+        work, lwork, c_loc(devInfo), c_loc(hRnrmF), batch_count)
     end function hipsolverDnDgesvdaStridedBatched_native
 
     function hipsolverDnDgesvdaStridedBatched_typed(handle, jobz, rank, m, n, A, lda, strideA, S, &
@@ -29361,26 +29074,26 @@ contains
       integer(c_int), value :: rank
       integer(c_int), value :: m
       integer(c_int), value :: n
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: A(..)
       integer(c_int), value :: lda
       integer(c_int64_t), value :: strideA
-      real(c_float), target :: S(*)
+      real(c_float), target :: S(..)
       integer(c_int64_t), value :: strideS
-      complex(c_float_complex), target :: U(*)
+      complex(c_float_complex), target :: U(..)
       integer(c_int), value :: ldu
       integer(c_int64_t), value :: strideU
-      complex(c_float_complex), target :: V(*)
+      complex(c_float_complex), target :: V(..)
       integer(c_int), value :: ldv
       integer(c_int64_t), value :: strideV
-      complex(c_float_complex), target :: work(*)
+      type(c_ptr), value :: work
       integer(c_int), value :: lwork
-      integer(c_int), target :: devInfo(*)
-      real(c_double), target :: hRnrmF(*)
+      integer(c_int), target :: devInfo(..)
+      real(c_double), target :: hRnrmF(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: DnCgesvdaStridedBatched
       DnCgesvdaStridedBatched = hipsolverDnCgesvdaStridedBatched_raw(handle, jobz, rank, m, n, &
-        c_loc(A(1)), lda, strideA, c_loc(S(1)), strideS, c_loc(U(1)), ldu, strideU, c_loc(V(1)), &
-        ldv, strideV, c_loc(work(1)), lwork, c_loc(devInfo(1)), c_loc(hRnrmF(1)), batch_count)
+        c_loc(A), lda, strideA, c_loc(S), strideS, c_loc(U), ldu, strideU, c_loc(V), ldv, strideV, &
+        work, lwork, c_loc(devInfo), c_loc(hRnrmF), batch_count)
     end function hipsolverDnCgesvdaStridedBatched_native
 
     function hipsolverDnCgesvdaStridedBatched_typed(handle, jobz, rank, m, n, A, lda, strideA, S, &
@@ -29426,26 +29139,26 @@ contains
       integer(c_int), value :: rank
       integer(c_int), value :: m
       integer(c_int), value :: n
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: A(..)
       integer(c_int), value :: lda
       integer(c_int64_t), value :: strideA
-      real(c_double), target :: S(*)
+      real(c_double), target :: S(..)
       integer(c_int64_t), value :: strideS
-      complex(c_double_complex), target :: U(*)
+      complex(c_double_complex), target :: U(..)
       integer(c_int), value :: ldu
       integer(c_int64_t), value :: strideU
-      complex(c_double_complex), target :: V(*)
+      complex(c_double_complex), target :: V(..)
       integer(c_int), value :: ldv
       integer(c_int64_t), value :: strideV
-      complex(c_double_complex), target :: work(*)
+      type(c_ptr), value :: work
       integer(c_int), value :: lwork
-      integer(c_int), target :: devInfo(*)
-      real(c_double), target :: hRnrmF(*)
+      integer(c_int), target :: devInfo(..)
+      real(c_double), target :: hRnrmF(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: DnZgesvdaStridedBatched
       DnZgesvdaStridedBatched = hipsolverDnZgesvdaStridedBatched_raw(handle, jobz, rank, m, n, &
-        c_loc(A(1)), lda, strideA, c_loc(S(1)), strideS, c_loc(U(1)), ldu, strideU, c_loc(V(1)), &
-        ldv, strideV, c_loc(work(1)), lwork, c_loc(devInfo(1)), c_loc(hRnrmF(1)), batch_count)
+        c_loc(A), lda, strideA, c_loc(S), strideS, c_loc(U), ldu, strideU, c_loc(V), ldv, strideV, &
+        work, lwork, c_loc(devInfo), c_loc(hRnrmF), batch_count)
     end function hipsolverDnZgesvdaStridedBatched_native
 
     function hipsolverDnZgesvdaStridedBatched_typed(handle, jobz, rank, m, n, A, lda, strideA, S, &
@@ -29488,12 +29201,12 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: m
       integer(c_int), value :: n
-      real(c_float), target :: A(*)
+      real(c_float), target :: A(..)
       integer(c_int), value :: lda
-      integer(c_int), target :: lwork(*)
+      integer(c_int), target :: lwork(..)
       integer(c_int) :: DnSgetrf_bufferSize
-      DnSgetrf_bufferSize = hipsolverDnSgetrf_bufferSize_raw(handle, m, n, c_loc(A(1)), lda, &
-        c_loc(lwork(1)))
+      DnSgetrf_bufferSize = hipsolverDnSgetrf_bufferSize_raw(handle, m, n, c_loc(A), lda, c_loc( &
+        lwork))
     end function hipsolverDnSgetrf_bufferSize_native
 
     function hipsolverDnSgetrf_bufferSize_typed(handle, m, n, A, lda, lwork) result( &
@@ -29518,12 +29231,12 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: m
       integer(c_int), value :: n
-      real(c_double), target :: A(*)
+      real(c_double), target :: A(..)
       integer(c_int), value :: lda
-      integer(c_int), target :: lwork(*)
+      integer(c_int), target :: lwork(..)
       integer(c_int) :: DnDgetrf_bufferSize
-      DnDgetrf_bufferSize = hipsolverDnDgetrf_bufferSize_raw(handle, m, n, c_loc(A(1)), lda, &
-        c_loc(lwork(1)))
+      DnDgetrf_bufferSize = hipsolverDnDgetrf_bufferSize_raw(handle, m, n, c_loc(A), lda, c_loc( &
+        lwork))
     end function hipsolverDnDgetrf_bufferSize_native
 
     function hipsolverDnDgetrf_bufferSize_typed(handle, m, n, A, lda, lwork) result( &
@@ -29548,12 +29261,12 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: m
       integer(c_int), value :: n
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: A(..)
       integer(c_int), value :: lda
-      integer(c_int), target :: lwork(*)
+      integer(c_int), target :: lwork(..)
       integer(c_int) :: DnCgetrf_bufferSize
-      DnCgetrf_bufferSize = hipsolverDnCgetrf_bufferSize_raw(handle, m, n, c_loc(A(1)), lda, &
-        c_loc(lwork(1)))
+      DnCgetrf_bufferSize = hipsolverDnCgetrf_bufferSize_raw(handle, m, n, c_loc(A), lda, c_loc( &
+        lwork))
     end function hipsolverDnCgetrf_bufferSize_native
 
     function hipsolverDnCgetrf_bufferSize_typed(handle, m, n, A, lda, lwork) result( &
@@ -29578,12 +29291,12 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: m
       integer(c_int), value :: n
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: A(..)
       integer(c_int), value :: lda
-      integer(c_int), target :: lwork(*)
+      integer(c_int), target :: lwork(..)
       integer(c_int) :: DnZgetrf_bufferSize
-      DnZgetrf_bufferSize = hipsolverDnZgetrf_bufferSize_raw(handle, m, n, c_loc(A(1)), lda, &
-        c_loc(lwork(1)))
+      DnZgetrf_bufferSize = hipsolverDnZgetrf_bufferSize_raw(handle, m, n, c_loc(A), lda, c_loc( &
+        lwork))
     end function hipsolverDnZgetrf_bufferSize_native
 
     function hipsolverDnZgetrf_bufferSize_typed(handle, m, n, A, lda, lwork) result( &
@@ -29607,14 +29320,14 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: m
       integer(c_int), value :: n
-      real(c_float), target :: A(*)
+      real(c_float), target :: A(..)
       integer(c_int), value :: lda
-      real(c_float), target :: work(*)
-      integer(c_int), target :: devIpiv(*)
-      integer(c_int), target :: devInfo(*)
+      type(c_ptr), value :: work
+      integer(c_int), target :: devIpiv(..)
+      integer(c_int), target :: devInfo(..)
       integer(c_int) :: DnSgetrf
-      DnSgetrf = hipsolverDnSgetrf_raw(handle, m, n, c_loc(A(1)), lda, c_loc(work(1)), c_loc( &
-        devIpiv(1)), c_loc(devInfo(1)))
+      DnSgetrf = hipsolverDnSgetrf_raw(handle, m, n, c_loc(A), lda, work, c_loc(devIpiv), c_loc( &
+        devInfo))
     end function hipsolverDnSgetrf_native
 
     function hipsolverDnSgetrf_typed(handle, m, n, A, lda, work, devIpiv, devInfo) result(DnSgetrf)
@@ -29639,14 +29352,14 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: m
       integer(c_int), value :: n
-      real(c_double), target :: A(*)
+      real(c_double), target :: A(..)
       integer(c_int), value :: lda
-      real(c_double), target :: work(*)
-      integer(c_int), target :: devIpiv(*)
-      integer(c_int), target :: devInfo(*)
+      type(c_ptr), value :: work
+      integer(c_int), target :: devIpiv(..)
+      integer(c_int), target :: devInfo(..)
       integer(c_int) :: DnDgetrf
-      DnDgetrf = hipsolverDnDgetrf_raw(handle, m, n, c_loc(A(1)), lda, c_loc(work(1)), c_loc( &
-        devIpiv(1)), c_loc(devInfo(1)))
+      DnDgetrf = hipsolverDnDgetrf_raw(handle, m, n, c_loc(A), lda, work, c_loc(devIpiv), c_loc( &
+        devInfo))
     end function hipsolverDnDgetrf_native
 
     function hipsolverDnDgetrf_typed(handle, m, n, A, lda, work, devIpiv, devInfo) result(DnDgetrf)
@@ -29671,14 +29384,14 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: m
       integer(c_int), value :: n
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: A(..)
       integer(c_int), value :: lda
-      complex(c_float_complex), target :: work(*)
-      integer(c_int), target :: devIpiv(*)
-      integer(c_int), target :: devInfo(*)
+      type(c_ptr), value :: work
+      integer(c_int), target :: devIpiv(..)
+      integer(c_int), target :: devInfo(..)
       integer(c_int) :: DnCgetrf
-      DnCgetrf = hipsolverDnCgetrf_raw(handle, m, n, c_loc(A(1)), lda, c_loc(work(1)), c_loc( &
-        devIpiv(1)), c_loc(devInfo(1)))
+      DnCgetrf = hipsolverDnCgetrf_raw(handle, m, n, c_loc(A), lda, work, c_loc(devIpiv), c_loc( &
+        devInfo))
     end function hipsolverDnCgetrf_native
 
     function hipsolverDnCgetrf_typed(handle, m, n, A, lda, work, devIpiv, devInfo) result(DnCgetrf)
@@ -29703,14 +29416,14 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: m
       integer(c_int), value :: n
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: A(..)
       integer(c_int), value :: lda
-      complex(c_double_complex), target :: work(*)
-      integer(c_int), target :: devIpiv(*)
-      integer(c_int), target :: devInfo(*)
+      type(c_ptr), value :: work
+      integer(c_int), target :: devIpiv(..)
+      integer(c_int), target :: devInfo(..)
       integer(c_int) :: DnZgetrf
-      DnZgetrf = hipsolverDnZgetrf_raw(handle, m, n, c_loc(A(1)), lda, c_loc(work(1)), c_loc( &
-        devIpiv(1)), c_loc(devInfo(1)))
+      DnZgetrf = hipsolverDnZgetrf_raw(handle, m, n, c_loc(A), lda, work, c_loc(devIpiv), c_loc( &
+        devInfo))
     end function hipsolverDnZgetrf_native
 
     function hipsolverDnZgetrf_typed(handle, m, n, A, lda, work, devIpiv, devInfo) result(DnZgetrf)
@@ -29737,15 +29450,15 @@ contains
       integer(c_int), value :: trans
       integer(c_int), value :: n
       integer(c_int), value :: nrhs
-      real(c_float), target :: A(*)
+      real(c_float), target :: A(..)
       integer(c_int), value :: lda
-      integer(c_int), target :: devIpiv(*)
-      real(c_float), target :: B(*)
+      integer(c_int), target :: devIpiv(..)
+      real(c_float), target :: B(..)
       integer(c_int), value :: ldb
-      integer(c_int), target :: devInfo(*)
+      integer(c_int), target :: devInfo(..)
       integer(c_int) :: DnSgetrs
-      DnSgetrs = hipsolverDnSgetrs_raw(handle, trans, n, nrhs, c_loc(A(1)), lda, c_loc(devIpiv( &
-        1)), c_loc(B(1)), ldb, c_loc(devInfo(1)))
+      DnSgetrs = hipsolverDnSgetrs_raw(handle, trans, n, nrhs, c_loc(A), lda, c_loc(devIpiv), &
+        c_loc(B), ldb, c_loc(devInfo))
     end function hipsolverDnSgetrs_native
 
     function hipsolverDnSgetrs_typed(handle, trans, n, nrhs, A, lda, devIpiv, B, ldb, &
@@ -29775,15 +29488,15 @@ contains
       integer(c_int), value :: trans
       integer(c_int), value :: n
       integer(c_int), value :: nrhs
-      real(c_double), target :: A(*)
+      real(c_double), target :: A(..)
       integer(c_int), value :: lda
-      integer(c_int), target :: devIpiv(*)
-      real(c_double), target :: B(*)
+      integer(c_int), target :: devIpiv(..)
+      real(c_double), target :: B(..)
       integer(c_int), value :: ldb
-      integer(c_int), target :: devInfo(*)
+      integer(c_int), target :: devInfo(..)
       integer(c_int) :: DnDgetrs
-      DnDgetrs = hipsolverDnDgetrs_raw(handle, trans, n, nrhs, c_loc(A(1)), lda, c_loc(devIpiv( &
-        1)), c_loc(B(1)), ldb, c_loc(devInfo(1)))
+      DnDgetrs = hipsolverDnDgetrs_raw(handle, trans, n, nrhs, c_loc(A), lda, c_loc(devIpiv), &
+        c_loc(B), ldb, c_loc(devInfo))
     end function hipsolverDnDgetrs_native
 
     function hipsolverDnDgetrs_typed(handle, trans, n, nrhs, A, lda, devIpiv, B, ldb, &
@@ -29813,15 +29526,15 @@ contains
       integer(c_int), value :: trans
       integer(c_int), value :: n
       integer(c_int), value :: nrhs
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: A(..)
       integer(c_int), value :: lda
-      integer(c_int), target :: devIpiv(*)
-      complex(c_float_complex), target :: B(*)
+      integer(c_int), target :: devIpiv(..)
+      complex(c_float_complex), target :: B(..)
       integer(c_int), value :: ldb
-      integer(c_int), target :: devInfo(*)
+      integer(c_int), target :: devInfo(..)
       integer(c_int) :: DnCgetrs
-      DnCgetrs = hipsolverDnCgetrs_raw(handle, trans, n, nrhs, c_loc(A(1)), lda, c_loc(devIpiv( &
-        1)), c_loc(B(1)), ldb, c_loc(devInfo(1)))
+      DnCgetrs = hipsolverDnCgetrs_raw(handle, trans, n, nrhs, c_loc(A), lda, c_loc(devIpiv), &
+        c_loc(B), ldb, c_loc(devInfo))
     end function hipsolverDnCgetrs_native
 
     function hipsolverDnCgetrs_typed(handle, trans, n, nrhs, A, lda, devIpiv, B, ldb, &
@@ -29851,15 +29564,15 @@ contains
       integer(c_int), value :: trans
       integer(c_int), value :: n
       integer(c_int), value :: nrhs
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: A(..)
       integer(c_int), value :: lda
-      integer(c_int), target :: devIpiv(*)
-      complex(c_double_complex), target :: B(*)
+      integer(c_int), target :: devIpiv(..)
+      complex(c_double_complex), target :: B(..)
       integer(c_int), value :: ldb
-      integer(c_int), target :: devInfo(*)
+      integer(c_int), target :: devInfo(..)
       integer(c_int) :: DnZgetrs
-      DnZgetrs = hipsolverDnZgetrs_raw(handle, trans, n, nrhs, c_loc(A(1)), lda, c_loc(devIpiv( &
-        1)), c_loc(B(1)), ldb, c_loc(devInfo(1)))
+      DnZgetrs = hipsolverDnZgetrs_raw(handle, trans, n, nrhs, c_loc(A), lda, c_loc(devIpiv), &
+        c_loc(B), ldb, c_loc(devInfo))
     end function hipsolverDnZgetrs_native
 
     function hipsolverDnZgetrs_typed(handle, trans, n, nrhs, A, lda, devIpiv, B, ldb, &
@@ -29888,12 +29601,12 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: uplo
       integer(c_int), value :: n
-      real(c_float), target :: A(*)
+      real(c_float), target :: A(..)
       integer(c_int), value :: lda
-      integer(c_int), target :: lwork(*)
+      integer(c_int), target :: lwork(..)
       integer(c_int) :: DnSpotrf_bufferSize
-      DnSpotrf_bufferSize = hipsolverDnSpotrf_bufferSize_raw(handle, uplo, n, c_loc(A(1)), lda, &
-        c_loc(lwork(1)))
+      DnSpotrf_bufferSize = hipsolverDnSpotrf_bufferSize_raw(handle, uplo, n, c_loc(A), lda, &
+        c_loc(lwork))
     end function hipsolverDnSpotrf_bufferSize_native
 
     function hipsolverDnSpotrf_bufferSize_typed(handle, uplo, n, A, lda, lwork) result( &
@@ -29918,12 +29631,12 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: uplo
       integer(c_int), value :: n
-      real(c_double), target :: A(*)
+      real(c_double), target :: A(..)
       integer(c_int), value :: lda
-      integer(c_int), target :: lwork(*)
+      integer(c_int), target :: lwork(..)
       integer(c_int) :: DnDpotrf_bufferSize
-      DnDpotrf_bufferSize = hipsolverDnDpotrf_bufferSize_raw(handle, uplo, n, c_loc(A(1)), lda, &
-        c_loc(lwork(1)))
+      DnDpotrf_bufferSize = hipsolverDnDpotrf_bufferSize_raw(handle, uplo, n, c_loc(A), lda, &
+        c_loc(lwork))
     end function hipsolverDnDpotrf_bufferSize_native
 
     function hipsolverDnDpotrf_bufferSize_typed(handle, uplo, n, A, lda, lwork) result( &
@@ -29948,12 +29661,12 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: uplo
       integer(c_int), value :: n
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: A(..)
       integer(c_int), value :: lda
-      integer(c_int), target :: lwork(*)
+      integer(c_int), target :: lwork(..)
       integer(c_int) :: DnCpotrf_bufferSize
-      DnCpotrf_bufferSize = hipsolverDnCpotrf_bufferSize_raw(handle, uplo, n, c_loc(A(1)), lda, &
-        c_loc(lwork(1)))
+      DnCpotrf_bufferSize = hipsolverDnCpotrf_bufferSize_raw(handle, uplo, n, c_loc(A), lda, &
+        c_loc(lwork))
     end function hipsolverDnCpotrf_bufferSize_native
 
     function hipsolverDnCpotrf_bufferSize_typed(handle, uplo, n, A, lda, lwork) result( &
@@ -29978,12 +29691,12 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: uplo
       integer(c_int), value :: n
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: A(..)
       integer(c_int), value :: lda
-      integer(c_int), target :: lwork(*)
+      integer(c_int), target :: lwork(..)
       integer(c_int) :: DnZpotrf_bufferSize
-      DnZpotrf_bufferSize = hipsolverDnZpotrf_bufferSize_raw(handle, uplo, n, c_loc(A(1)), lda, &
-        c_loc(lwork(1)))
+      DnZpotrf_bufferSize = hipsolverDnZpotrf_bufferSize_raw(handle, uplo, n, c_loc(A), lda, &
+        c_loc(lwork))
     end function hipsolverDnZpotrf_bufferSize_native
 
     function hipsolverDnZpotrf_bufferSize_typed(handle, uplo, n, A, lda, lwork) result( &
@@ -30008,14 +29721,13 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: uplo
       integer(c_int), value :: n
-      real(c_float), target :: A(*)
+      real(c_float), target :: A(..)
       integer(c_int), value :: lda
-      real(c_float), target :: work(*)
+      type(c_ptr), value :: work
       integer(c_int), value :: lwork
-      integer(c_int), target :: devInfo(*)
+      integer(c_int), target :: devInfo(..)
       integer(c_int) :: DnSpotrf
-      DnSpotrf = hipsolverDnSpotrf_raw(handle, uplo, n, c_loc(A(1)), lda, c_loc(work(1)), lwork, &
-        c_loc(devInfo(1)))
+      DnSpotrf = hipsolverDnSpotrf_raw(handle, uplo, n, c_loc(A), lda, work, lwork, c_loc(devInfo))
     end function hipsolverDnSpotrf_native
 
     function hipsolverDnSpotrf_typed(handle, uplo, n, A, lda, work, lwork, devInfo) result(DnSpotrf)
@@ -30041,14 +29753,13 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: uplo
       integer(c_int), value :: n
-      real(c_double), target :: A(*)
+      real(c_double), target :: A(..)
       integer(c_int), value :: lda
-      real(c_double), target :: work(*)
+      type(c_ptr), value :: work
       integer(c_int), value :: lwork
-      integer(c_int), target :: devInfo(*)
+      integer(c_int), target :: devInfo(..)
       integer(c_int) :: DnDpotrf
-      DnDpotrf = hipsolverDnDpotrf_raw(handle, uplo, n, c_loc(A(1)), lda, c_loc(work(1)), lwork, &
-        c_loc(devInfo(1)))
+      DnDpotrf = hipsolverDnDpotrf_raw(handle, uplo, n, c_loc(A), lda, work, lwork, c_loc(devInfo))
     end function hipsolverDnDpotrf_native
 
     function hipsolverDnDpotrf_typed(handle, uplo, n, A, lda, work, lwork, devInfo) result(DnDpotrf)
@@ -30074,14 +29785,13 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: uplo
       integer(c_int), value :: n
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: A(..)
       integer(c_int), value :: lda
-      complex(c_float_complex), target :: work(*)
+      type(c_ptr), value :: work
       integer(c_int), value :: lwork
-      integer(c_int), target :: devInfo(*)
+      integer(c_int), target :: devInfo(..)
       integer(c_int) :: DnCpotrf
-      DnCpotrf = hipsolverDnCpotrf_raw(handle, uplo, n, c_loc(A(1)), lda, c_loc(work(1)), lwork, &
-        c_loc(devInfo(1)))
+      DnCpotrf = hipsolverDnCpotrf_raw(handle, uplo, n, c_loc(A), lda, work, lwork, c_loc(devInfo))
     end function hipsolverDnCpotrf_native
 
     function hipsolverDnCpotrf_typed(handle, uplo, n, A, lda, work, lwork, devInfo) result(DnCpotrf)
@@ -30107,14 +29817,13 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: uplo
       integer(c_int), value :: n
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: A(..)
       integer(c_int), value :: lda
-      complex(c_double_complex), target :: work(*)
+      type(c_ptr), value :: work
       integer(c_int), value :: lwork
-      integer(c_int), target :: devInfo(*)
+      integer(c_int), target :: devInfo(..)
       integer(c_int) :: DnZpotrf
-      DnZpotrf = hipsolverDnZpotrf_raw(handle, uplo, n, c_loc(A(1)), lda, c_loc(work(1)), lwork, &
-        c_loc(devInfo(1)))
+      DnZpotrf = hipsolverDnZpotrf_raw(handle, uplo, n, c_loc(A), lda, work, lwork, c_loc(devInfo))
     end function hipsolverDnZpotrf_native
 
     function hipsolverDnZpotrf_typed(handle, uplo, n, A, lda, work, lwork, devInfo) result(DnZpotrf)
@@ -30142,10 +29851,10 @@ contains
       integer(c_int), value :: n
       type(c_ptr), value :: A
       integer(c_int), value :: lda
-      integer(c_int), target :: devInfo(*)
+      integer(c_int), target :: devInfo(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: DnSpotrfBatched
-      DnSpotrfBatched = hipsolverDnSpotrfBatched_raw(handle, uplo, n, A, lda, c_loc(devInfo(1)), &
+      DnSpotrfBatched = hipsolverDnSpotrfBatched_raw(handle, uplo, n, A, lda, c_loc(devInfo), &
         batch_count)
     end function hipsolverDnSpotrfBatched_native
 
@@ -30175,10 +29884,10 @@ contains
       integer(c_int), value :: n
       type(c_ptr), value :: A
       integer(c_int), value :: lda
-      integer(c_int), target :: devInfo(*)
+      integer(c_int), target :: devInfo(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: DnDpotrfBatched
-      DnDpotrfBatched = hipsolverDnDpotrfBatched_raw(handle, uplo, n, A, lda, c_loc(devInfo(1)), &
+      DnDpotrfBatched = hipsolverDnDpotrfBatched_raw(handle, uplo, n, A, lda, c_loc(devInfo), &
         batch_count)
     end function hipsolverDnDpotrfBatched_native
 
@@ -30208,10 +29917,10 @@ contains
       integer(c_int), value :: n
       type(c_ptr), value :: A
       integer(c_int), value :: lda
-      integer(c_int), target :: devInfo(*)
+      integer(c_int), target :: devInfo(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: DnCpotrfBatched
-      DnCpotrfBatched = hipsolverDnCpotrfBatched_raw(handle, uplo, n, A, lda, c_loc(devInfo(1)), &
+      DnCpotrfBatched = hipsolverDnCpotrfBatched_raw(handle, uplo, n, A, lda, c_loc(devInfo), &
         batch_count)
     end function hipsolverDnCpotrfBatched_native
 
@@ -30241,10 +29950,10 @@ contains
       integer(c_int), value :: n
       type(c_ptr), value :: A
       integer(c_int), value :: lda
-      integer(c_int), target :: devInfo(*)
+      integer(c_int), target :: devInfo(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: DnZpotrfBatched
-      DnZpotrfBatched = hipsolverDnZpotrfBatched_raw(handle, uplo, n, A, lda, c_loc(devInfo(1)), &
+      DnZpotrfBatched = hipsolverDnZpotrfBatched_raw(handle, uplo, n, A, lda, c_loc(devInfo), &
         batch_count)
     end function hipsolverDnZpotrfBatched_native
 
@@ -30272,12 +29981,12 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: uplo
       integer(c_int), value :: n
-      real(c_float), target :: A(*)
+      real(c_float), target :: A(..)
       integer(c_int), value :: lda
-      integer(c_int), target :: lwork(*)
+      integer(c_int), target :: lwork(..)
       integer(c_int) :: DnSpotri_bufferSize
-      DnSpotri_bufferSize = hipsolverDnSpotri_bufferSize_raw(handle, uplo, n, c_loc(A(1)), lda, &
-        c_loc(lwork(1)))
+      DnSpotri_bufferSize = hipsolverDnSpotri_bufferSize_raw(handle, uplo, n, c_loc(A), lda, &
+        c_loc(lwork))
     end function hipsolverDnSpotri_bufferSize_native
 
     function hipsolverDnSpotri_bufferSize_typed(handle, uplo, n, A, lda, lwork) result( &
@@ -30302,12 +30011,12 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: uplo
       integer(c_int), value :: n
-      real(c_double), target :: A(*)
+      real(c_double), target :: A(..)
       integer(c_int), value :: lda
-      integer(c_int), target :: lwork(*)
+      integer(c_int), target :: lwork(..)
       integer(c_int) :: DnDpotri_bufferSize
-      DnDpotri_bufferSize = hipsolverDnDpotri_bufferSize_raw(handle, uplo, n, c_loc(A(1)), lda, &
-        c_loc(lwork(1)))
+      DnDpotri_bufferSize = hipsolverDnDpotri_bufferSize_raw(handle, uplo, n, c_loc(A), lda, &
+        c_loc(lwork))
     end function hipsolverDnDpotri_bufferSize_native
 
     function hipsolverDnDpotri_bufferSize_typed(handle, uplo, n, A, lda, lwork) result( &
@@ -30332,12 +30041,12 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: uplo
       integer(c_int), value :: n
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: A(..)
       integer(c_int), value :: lda
-      integer(c_int), target :: lwork(*)
+      integer(c_int), target :: lwork(..)
       integer(c_int) :: DnCpotri_bufferSize
-      DnCpotri_bufferSize = hipsolverDnCpotri_bufferSize_raw(handle, uplo, n, c_loc(A(1)), lda, &
-        c_loc(lwork(1)))
+      DnCpotri_bufferSize = hipsolverDnCpotri_bufferSize_raw(handle, uplo, n, c_loc(A), lda, &
+        c_loc(lwork))
     end function hipsolverDnCpotri_bufferSize_native
 
     function hipsolverDnCpotri_bufferSize_typed(handle, uplo, n, A, lda, lwork) result( &
@@ -30362,12 +30071,12 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: uplo
       integer(c_int), value :: n
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: A(..)
       integer(c_int), value :: lda
-      integer(c_int), target :: lwork(*)
+      integer(c_int), target :: lwork(..)
       integer(c_int) :: DnZpotri_bufferSize
-      DnZpotri_bufferSize = hipsolverDnZpotri_bufferSize_raw(handle, uplo, n, c_loc(A(1)), lda, &
-        c_loc(lwork(1)))
+      DnZpotri_bufferSize = hipsolverDnZpotri_bufferSize_raw(handle, uplo, n, c_loc(A), lda, &
+        c_loc(lwork))
     end function hipsolverDnZpotri_bufferSize_native
 
     function hipsolverDnZpotri_bufferSize_typed(handle, uplo, n, A, lda, lwork) result( &
@@ -30392,14 +30101,13 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: uplo
       integer(c_int), value :: n
-      real(c_float), target :: A(*)
+      real(c_float), target :: A(..)
       integer(c_int), value :: lda
-      real(c_float), target :: work(*)
+      type(c_ptr), value :: work
       integer(c_int), value :: lwork
-      integer(c_int), target :: devInfo(*)
+      integer(c_int), target :: devInfo(..)
       integer(c_int) :: DnSpotri
-      DnSpotri = hipsolverDnSpotri_raw(handle, uplo, n, c_loc(A(1)), lda, c_loc(work(1)), lwork, &
-        c_loc(devInfo(1)))
+      DnSpotri = hipsolverDnSpotri_raw(handle, uplo, n, c_loc(A), lda, work, lwork, c_loc(devInfo))
     end function hipsolverDnSpotri_native
 
     function hipsolverDnSpotri_typed(handle, uplo, n, A, lda, work, lwork, devInfo) result(DnSpotri)
@@ -30425,14 +30133,13 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: uplo
       integer(c_int), value :: n
-      real(c_double), target :: A(*)
+      real(c_double), target :: A(..)
       integer(c_int), value :: lda
-      real(c_double), target :: work(*)
+      type(c_ptr), value :: work
       integer(c_int), value :: lwork
-      integer(c_int), target :: devInfo(*)
+      integer(c_int), target :: devInfo(..)
       integer(c_int) :: DnDpotri
-      DnDpotri = hipsolverDnDpotri_raw(handle, uplo, n, c_loc(A(1)), lda, c_loc(work(1)), lwork, &
-        c_loc(devInfo(1)))
+      DnDpotri = hipsolverDnDpotri_raw(handle, uplo, n, c_loc(A), lda, work, lwork, c_loc(devInfo))
     end function hipsolverDnDpotri_native
 
     function hipsolverDnDpotri_typed(handle, uplo, n, A, lda, work, lwork, devInfo) result(DnDpotri)
@@ -30458,14 +30165,13 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: uplo
       integer(c_int), value :: n
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: A(..)
       integer(c_int), value :: lda
-      complex(c_float_complex), target :: work(*)
+      type(c_ptr), value :: work
       integer(c_int), value :: lwork
-      integer(c_int), target :: devInfo(*)
+      integer(c_int), target :: devInfo(..)
       integer(c_int) :: DnCpotri
-      DnCpotri = hipsolverDnCpotri_raw(handle, uplo, n, c_loc(A(1)), lda, c_loc(work(1)), lwork, &
-        c_loc(devInfo(1)))
+      DnCpotri = hipsolverDnCpotri_raw(handle, uplo, n, c_loc(A), lda, work, lwork, c_loc(devInfo))
     end function hipsolverDnCpotri_native
 
     function hipsolverDnCpotri_typed(handle, uplo, n, A, lda, work, lwork, devInfo) result(DnCpotri)
@@ -30491,14 +30197,13 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: uplo
       integer(c_int), value :: n
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: A(..)
       integer(c_int), value :: lda
-      complex(c_double_complex), target :: work(*)
+      type(c_ptr), value :: work
       integer(c_int), value :: lwork
-      integer(c_int), target :: devInfo(*)
+      integer(c_int), target :: devInfo(..)
       integer(c_int) :: DnZpotri
-      DnZpotri = hipsolverDnZpotri_raw(handle, uplo, n, c_loc(A(1)), lda, c_loc(work(1)), lwork, &
-        c_loc(devInfo(1)))
+      DnZpotri = hipsolverDnZpotri_raw(handle, uplo, n, c_loc(A), lda, work, lwork, c_loc(devInfo))
     end function hipsolverDnZpotri_native
 
     function hipsolverDnZpotri_typed(handle, uplo, n, A, lda, work, lwork, devInfo) result(DnZpotri)
@@ -30525,14 +30230,14 @@ contains
       integer(c_int), value :: uplo
       integer(c_int), value :: n
       integer(c_int), value :: nrhs
-      real(c_float), target :: A(*)
+      real(c_float), target :: A(..)
       integer(c_int), value :: lda
-      real(c_float), target :: B(*)
+      real(c_float), target :: B(..)
       integer(c_int), value :: ldb
-      integer(c_int), target :: devInfo(*)
+      integer(c_int), target :: devInfo(..)
       integer(c_int) :: DnSpotrs
-      DnSpotrs = hipsolverDnSpotrs_raw(handle, uplo, n, nrhs, c_loc(A(1)), lda, c_loc(B(1)), ldb, &
-        c_loc(devInfo(1)))
+      DnSpotrs = hipsolverDnSpotrs_raw(handle, uplo, n, nrhs, c_loc(A), lda, c_loc(B), ldb, c_loc( &
+        devInfo))
     end function hipsolverDnSpotrs_native
 
     function hipsolverDnSpotrs_typed(handle, uplo, n, nrhs, A, lda, B, ldb, devInfo) result( &
@@ -30561,14 +30266,14 @@ contains
       integer(c_int), value :: uplo
       integer(c_int), value :: n
       integer(c_int), value :: nrhs
-      real(c_double), target :: A(*)
+      real(c_double), target :: A(..)
       integer(c_int), value :: lda
-      real(c_double), target :: B(*)
+      real(c_double), target :: B(..)
       integer(c_int), value :: ldb
-      integer(c_int), target :: devInfo(*)
+      integer(c_int), target :: devInfo(..)
       integer(c_int) :: DnDpotrs
-      DnDpotrs = hipsolverDnDpotrs_raw(handle, uplo, n, nrhs, c_loc(A(1)), lda, c_loc(B(1)), ldb, &
-        c_loc(devInfo(1)))
+      DnDpotrs = hipsolverDnDpotrs_raw(handle, uplo, n, nrhs, c_loc(A), lda, c_loc(B), ldb, c_loc( &
+        devInfo))
     end function hipsolverDnDpotrs_native
 
     function hipsolverDnDpotrs_typed(handle, uplo, n, nrhs, A, lda, B, ldb, devInfo) result( &
@@ -30597,14 +30302,14 @@ contains
       integer(c_int), value :: uplo
       integer(c_int), value :: n
       integer(c_int), value :: nrhs
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: A(..)
       integer(c_int), value :: lda
-      complex(c_float_complex), target :: B(*)
+      complex(c_float_complex), target :: B(..)
       integer(c_int), value :: ldb
-      integer(c_int), target :: devInfo(*)
+      integer(c_int), target :: devInfo(..)
       integer(c_int) :: DnCpotrs
-      DnCpotrs = hipsolverDnCpotrs_raw(handle, uplo, n, nrhs, c_loc(A(1)), lda, c_loc(B(1)), ldb, &
-        c_loc(devInfo(1)))
+      DnCpotrs = hipsolverDnCpotrs_raw(handle, uplo, n, nrhs, c_loc(A), lda, c_loc(B), ldb, c_loc( &
+        devInfo))
     end function hipsolverDnCpotrs_native
 
     function hipsolverDnCpotrs_typed(handle, uplo, n, nrhs, A, lda, B, ldb, devInfo) result( &
@@ -30633,14 +30338,14 @@ contains
       integer(c_int), value :: uplo
       integer(c_int), value :: n
       integer(c_int), value :: nrhs
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: A(..)
       integer(c_int), value :: lda
-      complex(c_double_complex), target :: B(*)
+      complex(c_double_complex), target :: B(..)
       integer(c_int), value :: ldb
-      integer(c_int), target :: devInfo(*)
+      integer(c_int), target :: devInfo(..)
       integer(c_int) :: DnZpotrs
-      DnZpotrs = hipsolverDnZpotrs_raw(handle, uplo, n, nrhs, c_loc(A(1)), lda, c_loc(B(1)), ldb, &
-        c_loc(devInfo(1)))
+      DnZpotrs = hipsolverDnZpotrs_raw(handle, uplo, n, nrhs, c_loc(A), lda, c_loc(B), ldb, c_loc( &
+        devInfo))
     end function hipsolverDnZpotrs_native
 
     function hipsolverDnZpotrs_typed(handle, uplo, n, nrhs, A, lda, B, ldb, devInfo) result( &
@@ -30673,11 +30378,11 @@ contains
       integer(c_int), value :: lda
       type(c_ptr), value :: B
       integer(c_int), value :: ldb
-      integer(c_int), target :: devInfo(*)
+      integer(c_int), target :: devInfo(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: DnSpotrsBatched
       DnSpotrsBatched = hipsolverDnSpotrsBatched_raw(handle, uplo, n, nrhs, A, lda, B, ldb, c_loc( &
-        devInfo(1)), batch_count)
+        devInfo), batch_count)
     end function hipsolverDnSpotrsBatched_native
 
     function hipsolverDnSpotrsBatched_typed(handle, uplo, n, nrhs, A, lda, B, ldb, devInfo, &
@@ -30712,11 +30417,11 @@ contains
       integer(c_int), value :: lda
       type(c_ptr), value :: B
       integer(c_int), value :: ldb
-      integer(c_int), target :: devInfo(*)
+      integer(c_int), target :: devInfo(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: DnDpotrsBatched
       DnDpotrsBatched = hipsolverDnDpotrsBatched_raw(handle, uplo, n, nrhs, A, lda, B, ldb, c_loc( &
-        devInfo(1)), batch_count)
+        devInfo), batch_count)
     end function hipsolverDnDpotrsBatched_native
 
     function hipsolverDnDpotrsBatched_typed(handle, uplo, n, nrhs, A, lda, B, ldb, devInfo, &
@@ -30751,11 +30456,11 @@ contains
       integer(c_int), value :: lda
       type(c_ptr), value :: B
       integer(c_int), value :: ldb
-      integer(c_int), target :: devInfo(*)
+      integer(c_int), target :: devInfo(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: DnCpotrsBatched
       DnCpotrsBatched = hipsolverDnCpotrsBatched_raw(handle, uplo, n, nrhs, A, lda, B, ldb, c_loc( &
-        devInfo(1)), batch_count)
+        devInfo), batch_count)
     end function hipsolverDnCpotrsBatched_native
 
     function hipsolverDnCpotrsBatched_typed(handle, uplo, n, nrhs, A, lda, B, ldb, devInfo, &
@@ -30790,11 +30495,11 @@ contains
       integer(c_int), value :: lda
       type(c_ptr), value :: B
       integer(c_int), value :: ldb
-      integer(c_int), target :: devInfo(*)
+      integer(c_int), target :: devInfo(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: DnZpotrsBatched
       DnZpotrsBatched = hipsolverDnZpotrsBatched_raw(handle, uplo, n, nrhs, A, lda, B, ldb, c_loc( &
-        devInfo(1)), batch_count)
+        devInfo), batch_count)
     end function hipsolverDnZpotrsBatched_native
 
     function hipsolverDnZpotrsBatched_typed(handle, uplo, n, nrhs, A, lda, B, ldb, devInfo, &
@@ -30825,13 +30530,13 @@ contains
       integer(c_int), value :: jobz
       integer(c_int), value :: uplo
       integer(c_int), value :: n
-      real(c_float), target :: A(*)
+      real(c_float), target :: A(..)
       integer(c_int), value :: lda
-      real(c_float), target :: W(*)
-      integer(c_int), target :: lwork(*)
+      real(c_float), target :: W(..)
+      integer(c_int), target :: lwork(..)
       integer(c_int) :: DnSsyevd_bufferSize
-      DnSsyevd_bufferSize = hipsolverDnSsyevd_bufferSize_raw(handle, jobz, uplo, n, c_loc(A(1)), &
-        lda, c_loc(W(1)), c_loc(lwork(1)))
+      DnSsyevd_bufferSize = hipsolverDnSsyevd_bufferSize_raw(handle, jobz, uplo, n, c_loc(A), lda, &
+        c_loc(W), c_loc(lwork))
     end function hipsolverDnSsyevd_bufferSize_native
 
     function hipsolverDnSsyevd_bufferSize_typed(handle, jobz, uplo, n, A, lda, W, lwork) result( &
@@ -30860,13 +30565,13 @@ contains
       integer(c_int), value :: jobz
       integer(c_int), value :: uplo
       integer(c_int), value :: n
-      real(c_double), target :: A(*)
+      real(c_double), target :: A(..)
       integer(c_int), value :: lda
-      real(c_double), target :: W(*)
-      integer(c_int), target :: lwork(*)
+      real(c_double), target :: W(..)
+      integer(c_int), target :: lwork(..)
       integer(c_int) :: DnDsyevd_bufferSize
-      DnDsyevd_bufferSize = hipsolverDnDsyevd_bufferSize_raw(handle, jobz, uplo, n, c_loc(A(1)), &
-        lda, c_loc(W(1)), c_loc(lwork(1)))
+      DnDsyevd_bufferSize = hipsolverDnDsyevd_bufferSize_raw(handle, jobz, uplo, n, c_loc(A), lda, &
+        c_loc(W), c_loc(lwork))
     end function hipsolverDnDsyevd_bufferSize_native
 
     function hipsolverDnDsyevd_bufferSize_typed(handle, jobz, uplo, n, A, lda, W, lwork) result( &
@@ -30895,13 +30600,13 @@ contains
       integer(c_int), value :: jobz
       integer(c_int), value :: uplo
       integer(c_int), value :: n
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: A(..)
       integer(c_int), value :: lda
-      real(c_float), target :: W(*)
-      integer(c_int), target :: lwork(*)
+      real(c_float), target :: W(..)
+      integer(c_int), target :: lwork(..)
       integer(c_int) :: DnCheevd_bufferSize
-      DnCheevd_bufferSize = hipsolverDnCheevd_bufferSize_raw(handle, jobz, uplo, n, c_loc(A(1)), &
-        lda, c_loc(W(1)), c_loc(lwork(1)))
+      DnCheevd_bufferSize = hipsolverDnCheevd_bufferSize_raw(handle, jobz, uplo, n, c_loc(A), lda, &
+        c_loc(W), c_loc(lwork))
     end function hipsolverDnCheevd_bufferSize_native
 
     function hipsolverDnCheevd_bufferSize_typed(handle, jobz, uplo, n, A, lda, W, lwork) result( &
@@ -30930,13 +30635,13 @@ contains
       integer(c_int), value :: jobz
       integer(c_int), value :: uplo
       integer(c_int), value :: n
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: A(..)
       integer(c_int), value :: lda
-      real(c_double), target :: W(*)
-      integer(c_int), target :: lwork(*)
+      real(c_double), target :: W(..)
+      integer(c_int), target :: lwork(..)
       integer(c_int) :: DnZheevd_bufferSize
-      DnZheevd_bufferSize = hipsolverDnZheevd_bufferSize_raw(handle, jobz, uplo, n, c_loc(A(1)), &
-        lda, c_loc(W(1)), c_loc(lwork(1)))
+      DnZheevd_bufferSize = hipsolverDnZheevd_bufferSize_raw(handle, jobz, uplo, n, c_loc(A), lda, &
+        c_loc(W), c_loc(lwork))
     end function hipsolverDnZheevd_bufferSize_native
 
     function hipsolverDnZheevd_bufferSize_typed(handle, jobz, uplo, n, A, lda, W, lwork) result( &
@@ -30965,15 +30670,15 @@ contains
       integer(c_int), value :: jobz
       integer(c_int), value :: uplo
       integer(c_int), value :: n
-      real(c_float), target :: A(*)
+      real(c_float), target :: A(..)
       integer(c_int), value :: lda
-      real(c_float), target :: W(*)
-      real(c_float), target :: work(*)
+      real(c_float), target :: W(..)
+      type(c_ptr), value :: work
       integer(c_int), value :: lwork
-      integer(c_int), target :: devInfo(*)
+      integer(c_int), target :: devInfo(..)
       integer(c_int) :: DnSsyevd
-      DnSsyevd = hipsolverDnSsyevd_raw(handle, jobz, uplo, n, c_loc(A(1)), lda, c_loc(W(1)), &
-        c_loc(work(1)), lwork, c_loc(devInfo(1)))
+      DnSsyevd = hipsolverDnSsyevd_raw(handle, jobz, uplo, n, c_loc(A), lda, c_loc(W), work, &
+        lwork, c_loc(devInfo))
     end function hipsolverDnSsyevd_native
 
     function hipsolverDnSsyevd_typed(handle, jobz, uplo, n, A, lda, W, work, lwork, &
@@ -31003,15 +30708,15 @@ contains
       integer(c_int), value :: jobz
       integer(c_int), value :: uplo
       integer(c_int), value :: n
-      real(c_double), target :: A(*)
+      real(c_double), target :: A(..)
       integer(c_int), value :: lda
-      real(c_double), target :: W(*)
-      real(c_double), target :: work(*)
+      real(c_double), target :: W(..)
+      type(c_ptr), value :: work
       integer(c_int), value :: lwork
-      integer(c_int), target :: devInfo(*)
+      integer(c_int), target :: devInfo(..)
       integer(c_int) :: DnDsyevd
-      DnDsyevd = hipsolverDnDsyevd_raw(handle, jobz, uplo, n, c_loc(A(1)), lda, c_loc(W(1)), &
-        c_loc(work(1)), lwork, c_loc(devInfo(1)))
+      DnDsyevd = hipsolverDnDsyevd_raw(handle, jobz, uplo, n, c_loc(A), lda, c_loc(W), work, &
+        lwork, c_loc(devInfo))
     end function hipsolverDnDsyevd_native
 
     function hipsolverDnDsyevd_typed(handle, jobz, uplo, n, A, lda, W, work, lwork, &
@@ -31041,15 +30746,15 @@ contains
       integer(c_int), value :: jobz
       integer(c_int), value :: uplo
       integer(c_int), value :: n
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: A(..)
       integer(c_int), value :: lda
-      real(c_float), target :: W(*)
-      complex(c_float_complex), target :: work(*)
+      real(c_float), target :: W(..)
+      type(c_ptr), value :: work
       integer(c_int), value :: lwork
-      integer(c_int), target :: devInfo(*)
+      integer(c_int), target :: devInfo(..)
       integer(c_int) :: DnCheevd
-      DnCheevd = hipsolverDnCheevd_raw(handle, jobz, uplo, n, c_loc(A(1)), lda, c_loc(W(1)), &
-        c_loc(work(1)), lwork, c_loc(devInfo(1)))
+      DnCheevd = hipsolverDnCheevd_raw(handle, jobz, uplo, n, c_loc(A), lda, c_loc(W), work, &
+        lwork, c_loc(devInfo))
     end function hipsolverDnCheevd_native
 
     function hipsolverDnCheevd_typed(handle, jobz, uplo, n, A, lda, W, work, lwork, &
@@ -31079,15 +30784,15 @@ contains
       integer(c_int), value :: jobz
       integer(c_int), value :: uplo
       integer(c_int), value :: n
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: A(..)
       integer(c_int), value :: lda
-      real(c_double), target :: W(*)
-      complex(c_double_complex), target :: work(*)
+      real(c_double), target :: W(..)
+      type(c_ptr), value :: work
       integer(c_int), value :: lwork
-      integer(c_int), target :: devInfo(*)
+      integer(c_int), target :: devInfo(..)
       integer(c_int) :: DnZheevd
-      DnZheevd = hipsolverDnZheevd_raw(handle, jobz, uplo, n, c_loc(A(1)), lda, c_loc(W(1)), &
-        c_loc(work(1)), lwork, c_loc(devInfo(1)))
+      DnZheevd = hipsolverDnZheevd_raw(handle, jobz, uplo, n, c_loc(A), lda, c_loc(W), work, &
+        lwork, c_loc(devInfo))
     end function hipsolverDnZheevd_native
 
     function hipsolverDnZheevd_typed(handle, jobz, uplo, n, A, lda, W, work, lwork, &
@@ -31118,18 +30823,18 @@ contains
       integer(c_int), value :: range
       integer(c_int), value :: uplo
       integer(c_int), value :: n
-      real(c_float), target :: A(*)
+      real(c_float), target :: A(..)
       integer(c_int), value :: lda
       real(c_float), value :: vl
       real(c_float), value :: vu
       integer(c_int), value :: il
       integer(c_int), value :: iu
-      integer(c_int), target :: nev(*)
-      real(c_float), target :: W(*)
-      integer(c_int), target :: lwork(*)
+      integer(c_int), target :: nev(..)
+      real(c_float), target :: W(..)
+      integer(c_int), target :: lwork(..)
       integer(c_int) :: DnSsyevdx_bufferSize
       DnSsyevdx_bufferSize = hipsolverDnSsyevdx_bufferSize_raw(handle, jobz, range, uplo, n, &
-        c_loc(A(1)), lda, vl, vu, il, iu, c_loc(nev(1)), c_loc(W(1)), c_loc(lwork(1)))
+        c_loc(A), lda, vl, vu, il, iu, c_loc(nev), c_loc(W), c_loc(lwork))
     end function hipsolverDnSsyevdx_bufferSize_native
 
     function hipsolverDnSsyevdx_bufferSize_typed(handle, jobz, range, uplo, n, A, lda, vl, vu, il, &
@@ -31165,18 +30870,18 @@ contains
       integer(c_int), value :: range
       integer(c_int), value :: uplo
       integer(c_int), value :: n
-      real(c_double), target :: A(*)
+      real(c_double), target :: A(..)
       integer(c_int), value :: lda
       real(c_double), value :: vl
       real(c_double), value :: vu
       integer(c_int), value :: il
       integer(c_int), value :: iu
-      integer(c_int), target :: nev(*)
-      real(c_double), target :: W(*)
-      integer(c_int), target :: lwork(*)
+      integer(c_int), target :: nev(..)
+      real(c_double), target :: W(..)
+      integer(c_int), target :: lwork(..)
       integer(c_int) :: DnDsyevdx_bufferSize
       DnDsyevdx_bufferSize = hipsolverDnDsyevdx_bufferSize_raw(handle, jobz, range, uplo, n, &
-        c_loc(A(1)), lda, vl, vu, il, iu, c_loc(nev(1)), c_loc(W(1)), c_loc(lwork(1)))
+        c_loc(A), lda, vl, vu, il, iu, c_loc(nev), c_loc(W), c_loc(lwork))
     end function hipsolverDnDsyevdx_bufferSize_native
 
     function hipsolverDnDsyevdx_bufferSize_typed(handle, jobz, range, uplo, n, A, lda, vl, vu, il, &
@@ -31212,18 +30917,18 @@ contains
       integer(c_int), value :: range
       integer(c_int), value :: uplo
       integer(c_int), value :: n
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: A(..)
       integer(c_int), value :: lda
       real(c_float), value :: vl
       real(c_float), value :: vu
       integer(c_int), value :: il
       integer(c_int), value :: iu
-      integer(c_int), target :: nev(*)
-      real(c_float), target :: W(*)
-      integer(c_int), target :: lwork(*)
+      integer(c_int), target :: nev(..)
+      real(c_float), target :: W(..)
+      integer(c_int), target :: lwork(..)
       integer(c_int) :: DnCheevdx_bufferSize
       DnCheevdx_bufferSize = hipsolverDnCheevdx_bufferSize_raw(handle, jobz, range, uplo, n, &
-        c_loc(A(1)), lda, vl, vu, il, iu, c_loc(nev(1)), c_loc(W(1)), c_loc(lwork(1)))
+        c_loc(A), lda, vl, vu, il, iu, c_loc(nev), c_loc(W), c_loc(lwork))
     end function hipsolverDnCheevdx_bufferSize_native
 
     function hipsolverDnCheevdx_bufferSize_typed(handle, jobz, range, uplo, n, A, lda, vl, vu, il, &
@@ -31259,18 +30964,18 @@ contains
       integer(c_int), value :: range
       integer(c_int), value :: uplo
       integer(c_int), value :: n
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: A(..)
       integer(c_int), value :: lda
       real(c_double), value :: vl
       real(c_double), value :: vu
       integer(c_int), value :: il
       integer(c_int), value :: iu
-      integer(c_int), target :: nev(*)
-      real(c_double), target :: W(*)
-      integer(c_int), target :: lwork(*)
+      integer(c_int), target :: nev(..)
+      real(c_double), target :: W(..)
+      integer(c_int), target :: lwork(..)
       integer(c_int) :: DnZheevdx_bufferSize
       DnZheevdx_bufferSize = hipsolverDnZheevdx_bufferSize_raw(handle, jobz, range, uplo, n, &
-        c_loc(A(1)), lda, vl, vu, il, iu, c_loc(nev(1)), c_loc(W(1)), c_loc(lwork(1)))
+        c_loc(A), lda, vl, vu, il, iu, c_loc(nev), c_loc(W), c_loc(lwork))
     end function hipsolverDnZheevdx_bufferSize_native
 
     function hipsolverDnZheevdx_bufferSize_typed(handle, jobz, range, uplo, n, A, lda, vl, vu, il, &
@@ -31306,20 +31011,20 @@ contains
       integer(c_int), value :: range
       integer(c_int), value :: uplo
       integer(c_int), value :: n
-      real(c_float), target :: A(*)
+      real(c_float), target :: A(..)
       integer(c_int), value :: lda
       real(c_float), value :: vl
       real(c_float), value :: vu
       integer(c_int), value :: il
       integer(c_int), value :: iu
-      integer(c_int), target :: nev(*)
-      real(c_float), target :: W(*)
-      real(c_float), target :: work(*)
+      integer(c_int), target :: nev(..)
+      real(c_float), target :: W(..)
+      type(c_ptr), value :: work
       integer(c_int), value :: lwork
-      integer(c_int), target :: devInfo(*)
+      integer(c_int), target :: devInfo(..)
       integer(c_int) :: DnSsyevdx
-      DnSsyevdx = hipsolverDnSsyevdx_raw(handle, jobz, range, uplo, n, c_loc(A(1)), lda, vl, vu, &
-        il, iu, c_loc(nev(1)), c_loc(W(1)), c_loc(work(1)), lwork, c_loc(devInfo(1)))
+      DnSsyevdx = hipsolverDnSsyevdx_raw(handle, jobz, range, uplo, n, c_loc(A), lda, vl, vu, il, &
+        iu, c_loc(nev), c_loc(W), work, lwork, c_loc(devInfo))
     end function hipsolverDnSsyevdx_native
 
     function hipsolverDnSsyevdx_typed(handle, jobz, range, uplo, n, A, lda, vl, vu, il, iu, nev, &
@@ -31357,20 +31062,20 @@ contains
       integer(c_int), value :: range
       integer(c_int), value :: uplo
       integer(c_int), value :: n
-      real(c_double), target :: A(*)
+      real(c_double), target :: A(..)
       integer(c_int), value :: lda
       real(c_double), value :: vl
       real(c_double), value :: vu
       integer(c_int), value :: il
       integer(c_int), value :: iu
-      integer(c_int), target :: nev(*)
-      real(c_double), target :: W(*)
-      real(c_double), target :: work(*)
+      integer(c_int), target :: nev(..)
+      real(c_double), target :: W(..)
+      type(c_ptr), value :: work
       integer(c_int), value :: lwork
-      integer(c_int), target :: devInfo(*)
+      integer(c_int), target :: devInfo(..)
       integer(c_int) :: DnDsyevdx
-      DnDsyevdx = hipsolverDnDsyevdx_raw(handle, jobz, range, uplo, n, c_loc(A(1)), lda, vl, vu, &
-        il, iu, c_loc(nev(1)), c_loc(W(1)), c_loc(work(1)), lwork, c_loc(devInfo(1)))
+      DnDsyevdx = hipsolverDnDsyevdx_raw(handle, jobz, range, uplo, n, c_loc(A), lda, vl, vu, il, &
+        iu, c_loc(nev), c_loc(W), work, lwork, c_loc(devInfo))
     end function hipsolverDnDsyevdx_native
 
     function hipsolverDnDsyevdx_typed(handle, jobz, range, uplo, n, A, lda, vl, vu, il, iu, nev, &
@@ -31408,20 +31113,20 @@ contains
       integer(c_int), value :: range
       integer(c_int), value :: uplo
       integer(c_int), value :: n
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: A(..)
       integer(c_int), value :: lda
       real(c_float), value :: vl
       real(c_float), value :: vu
       integer(c_int), value :: il
       integer(c_int), value :: iu
-      integer(c_int), target :: nev(*)
-      real(c_float), target :: W(*)
-      complex(c_float_complex), target :: work(*)
+      integer(c_int), target :: nev(..)
+      real(c_float), target :: W(..)
+      type(c_ptr), value :: work
       integer(c_int), value :: lwork
-      integer(c_int), target :: devInfo(*)
+      integer(c_int), target :: devInfo(..)
       integer(c_int) :: DnCheevdx
-      DnCheevdx = hipsolverDnCheevdx_raw(handle, jobz, range, uplo, n, c_loc(A(1)), lda, vl, vu, &
-        il, iu, c_loc(nev(1)), c_loc(W(1)), c_loc(work(1)), lwork, c_loc(devInfo(1)))
+      DnCheevdx = hipsolverDnCheevdx_raw(handle, jobz, range, uplo, n, c_loc(A), lda, vl, vu, il, &
+        iu, c_loc(nev), c_loc(W), work, lwork, c_loc(devInfo))
     end function hipsolverDnCheevdx_native
 
     function hipsolverDnCheevdx_typed(handle, jobz, range, uplo, n, A, lda, vl, vu, il, iu, nev, &
@@ -31459,20 +31164,20 @@ contains
       integer(c_int), value :: range
       integer(c_int), value :: uplo
       integer(c_int), value :: n
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: A(..)
       integer(c_int), value :: lda
       real(c_double), value :: vl
       real(c_double), value :: vu
       integer(c_int), value :: il
       integer(c_int), value :: iu
-      integer(c_int), target :: nev(*)
-      real(c_double), target :: W(*)
-      complex(c_double_complex), target :: work(*)
+      integer(c_int), target :: nev(..)
+      real(c_double), target :: W(..)
+      type(c_ptr), value :: work
       integer(c_int), value :: lwork
-      integer(c_int), target :: devInfo(*)
+      integer(c_int), target :: devInfo(..)
       integer(c_int) :: DnZheevdx
-      DnZheevdx = hipsolverDnZheevdx_raw(handle, jobz, range, uplo, n, c_loc(A(1)), lda, vl, vu, &
-        il, iu, c_loc(nev(1)), c_loc(W(1)), c_loc(work(1)), lwork, c_loc(devInfo(1)))
+      DnZheevdx = hipsolverDnZheevdx_raw(handle, jobz, range, uplo, n, c_loc(A), lda, vl, vu, il, &
+        iu, c_loc(nev), c_loc(W), work, lwork, c_loc(devInfo))
     end function hipsolverDnZheevdx_native
 
     function hipsolverDnZheevdx_typed(handle, jobz, range, uplo, n, A, lda, vl, vu, il, iu, nev, &
@@ -31509,14 +31214,14 @@ contains
       integer(c_int), value :: jobz
       integer(c_int), value :: uplo
       integer(c_int), value :: n
-      real(c_float), target :: A(*)
+      real(c_float), target :: A(..)
       integer(c_int), value :: lda
-      real(c_float), target :: W(*)
-      integer(c_int), target :: lwork(*)
+      real(c_float), target :: W(..)
+      integer(c_int), target :: lwork(..)
       type(c_ptr), value :: params
       integer(c_int) :: DnSsyevj_bufferSize
-      DnSsyevj_bufferSize = hipsolverDnSsyevj_bufferSize_raw(handle, jobz, uplo, n, c_loc(A(1)), &
-        lda, c_loc(W(1)), c_loc(lwork(1)), params)
+      DnSsyevj_bufferSize = hipsolverDnSsyevj_bufferSize_raw(handle, jobz, uplo, n, c_loc(A), lda, &
+        c_loc(W), c_loc(lwork), params)
     end function hipsolverDnSsyevj_bufferSize_native
 
     function hipsolverDnSsyevj_bufferSize_typed(handle, jobz, uplo, n, A, lda, W, lwork, &
@@ -31546,14 +31251,14 @@ contains
       integer(c_int), value :: jobz
       integer(c_int), value :: uplo
       integer(c_int), value :: n
-      real(c_double), target :: A(*)
+      real(c_double), target :: A(..)
       integer(c_int), value :: lda
-      real(c_double), target :: W(*)
-      integer(c_int), target :: lwork(*)
+      real(c_double), target :: W(..)
+      integer(c_int), target :: lwork(..)
       type(c_ptr), value :: params
       integer(c_int) :: DnDsyevj_bufferSize
-      DnDsyevj_bufferSize = hipsolverDnDsyevj_bufferSize_raw(handle, jobz, uplo, n, c_loc(A(1)), &
-        lda, c_loc(W(1)), c_loc(lwork(1)), params)
+      DnDsyevj_bufferSize = hipsolverDnDsyevj_bufferSize_raw(handle, jobz, uplo, n, c_loc(A), lda, &
+        c_loc(W), c_loc(lwork), params)
     end function hipsolverDnDsyevj_bufferSize_native
 
     function hipsolverDnDsyevj_bufferSize_typed(handle, jobz, uplo, n, A, lda, W, lwork, &
@@ -31583,14 +31288,14 @@ contains
       integer(c_int), value :: jobz
       integer(c_int), value :: uplo
       integer(c_int), value :: n
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: A(..)
       integer(c_int), value :: lda
-      real(c_float), target :: W(*)
-      integer(c_int), target :: lwork(*)
+      real(c_float), target :: W(..)
+      integer(c_int), target :: lwork(..)
       type(c_ptr), value :: params
       integer(c_int) :: DnCheevj_bufferSize
-      DnCheevj_bufferSize = hipsolverDnCheevj_bufferSize_raw(handle, jobz, uplo, n, c_loc(A(1)), &
-        lda, c_loc(W(1)), c_loc(lwork(1)), params)
+      DnCheevj_bufferSize = hipsolverDnCheevj_bufferSize_raw(handle, jobz, uplo, n, c_loc(A), lda, &
+        c_loc(W), c_loc(lwork), params)
     end function hipsolverDnCheevj_bufferSize_native
 
     function hipsolverDnCheevj_bufferSize_typed(handle, jobz, uplo, n, A, lda, W, lwork, &
@@ -31620,14 +31325,14 @@ contains
       integer(c_int), value :: jobz
       integer(c_int), value :: uplo
       integer(c_int), value :: n
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: A(..)
       integer(c_int), value :: lda
-      real(c_double), target :: W(*)
-      integer(c_int), target :: lwork(*)
+      real(c_double), target :: W(..)
+      integer(c_int), target :: lwork(..)
       type(c_ptr), value :: params
       integer(c_int) :: DnZheevj_bufferSize
-      DnZheevj_bufferSize = hipsolverDnZheevj_bufferSize_raw(handle, jobz, uplo, n, c_loc(A(1)), &
-        lda, c_loc(W(1)), c_loc(lwork(1)), params)
+      DnZheevj_bufferSize = hipsolverDnZheevj_bufferSize_raw(handle, jobz, uplo, n, c_loc(A), lda, &
+        c_loc(W), c_loc(lwork), params)
     end function hipsolverDnZheevj_bufferSize_native
 
     function hipsolverDnZheevj_bufferSize_typed(handle, jobz, uplo, n, A, lda, W, lwork, &
@@ -31657,16 +31362,16 @@ contains
       integer(c_int), value :: jobz
       integer(c_int), value :: uplo
       integer(c_int), value :: n
-      real(c_float), target :: A(*)
+      real(c_float), target :: A(..)
       integer(c_int), value :: lda
-      real(c_float), target :: W(*)
-      real(c_float), target :: work(*)
+      real(c_float), target :: W(..)
+      type(c_ptr), value :: work
       integer(c_int), value :: lwork
-      integer(c_int), target :: devInfo(*)
+      integer(c_int), target :: devInfo(..)
       type(c_ptr), value :: params
       integer(c_int) :: DnSsyevj
-      DnSsyevj = hipsolverDnSsyevj_raw(handle, jobz, uplo, n, c_loc(A(1)), lda, c_loc(W(1)), &
-        c_loc(work(1)), lwork, c_loc(devInfo(1)), params)
+      DnSsyevj = hipsolverDnSsyevj_raw(handle, jobz, uplo, n, c_loc(A), lda, c_loc(W), work, &
+        lwork, c_loc(devInfo), params)
     end function hipsolverDnSsyevj_native
 
     function hipsolverDnSsyevj_typed(handle, jobz, uplo, n, A, lda, W, work, lwork, devInfo, &
@@ -31698,16 +31403,16 @@ contains
       integer(c_int), value :: jobz
       integer(c_int), value :: uplo
       integer(c_int), value :: n
-      real(c_double), target :: A(*)
+      real(c_double), target :: A(..)
       integer(c_int), value :: lda
-      real(c_double), target :: W(*)
-      real(c_double), target :: work(*)
+      real(c_double), target :: W(..)
+      type(c_ptr), value :: work
       integer(c_int), value :: lwork
-      integer(c_int), target :: devInfo(*)
+      integer(c_int), target :: devInfo(..)
       type(c_ptr), value :: params
       integer(c_int) :: DnDsyevj
-      DnDsyevj = hipsolverDnDsyevj_raw(handle, jobz, uplo, n, c_loc(A(1)), lda, c_loc(W(1)), &
-        c_loc(work(1)), lwork, c_loc(devInfo(1)), params)
+      DnDsyevj = hipsolverDnDsyevj_raw(handle, jobz, uplo, n, c_loc(A), lda, c_loc(W), work, &
+        lwork, c_loc(devInfo), params)
     end function hipsolverDnDsyevj_native
 
     function hipsolverDnDsyevj_typed(handle, jobz, uplo, n, A, lda, W, work, lwork, devInfo, &
@@ -31739,16 +31444,16 @@ contains
       integer(c_int), value :: jobz
       integer(c_int), value :: uplo
       integer(c_int), value :: n
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: A(..)
       integer(c_int), value :: lda
-      real(c_float), target :: W(*)
-      complex(c_float_complex), target :: work(*)
+      real(c_float), target :: W(..)
+      type(c_ptr), value :: work
       integer(c_int), value :: lwork
-      integer(c_int), target :: devInfo(*)
+      integer(c_int), target :: devInfo(..)
       type(c_ptr), value :: params
       integer(c_int) :: DnCheevj
-      DnCheevj = hipsolverDnCheevj_raw(handle, jobz, uplo, n, c_loc(A(1)), lda, c_loc(W(1)), &
-        c_loc(work(1)), lwork, c_loc(devInfo(1)), params)
+      DnCheevj = hipsolverDnCheevj_raw(handle, jobz, uplo, n, c_loc(A), lda, c_loc(W), work, &
+        lwork, c_loc(devInfo), params)
     end function hipsolverDnCheevj_native
 
     function hipsolverDnCheevj_typed(handle, jobz, uplo, n, A, lda, W, work, lwork, devInfo, &
@@ -31780,16 +31485,16 @@ contains
       integer(c_int), value :: jobz
       integer(c_int), value :: uplo
       integer(c_int), value :: n
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: A(..)
       integer(c_int), value :: lda
-      real(c_double), target :: W(*)
-      complex(c_double_complex), target :: work(*)
+      real(c_double), target :: W(..)
+      type(c_ptr), value :: work
       integer(c_int), value :: lwork
-      integer(c_int), target :: devInfo(*)
+      integer(c_int), target :: devInfo(..)
       type(c_ptr), value :: params
       integer(c_int) :: DnZheevj
-      DnZheevj = hipsolverDnZheevj_raw(handle, jobz, uplo, n, c_loc(A(1)), lda, c_loc(W(1)), &
-        c_loc(work(1)), lwork, c_loc(devInfo(1)), params)
+      DnZheevj = hipsolverDnZheevj_raw(handle, jobz, uplo, n, c_loc(A), lda, c_loc(W), work, &
+        lwork, c_loc(devInfo), params)
     end function hipsolverDnZheevj_native
 
     function hipsolverDnZheevj_typed(handle, jobz, uplo, n, A, lda, W, work, lwork, devInfo, &
@@ -31821,15 +31526,15 @@ contains
       integer(c_int), value :: jobz
       integer(c_int), value :: uplo
       integer(c_int), value :: n
-      real(c_float), target :: A(*)
+      real(c_float), target :: A(..)
       integer(c_int), value :: lda
-      real(c_float), target :: W(*)
-      integer(c_int), target :: lwork(*)
+      real(c_float), target :: W(..)
+      integer(c_int), target :: lwork(..)
       type(c_ptr), value :: params
       integer(c_int), value :: batch_count
       integer(c_int) :: DnSsyevjBatched_bufferSize
       DnSsyevjBatched_bufferSize = hipsolverDnSsyevjBatched_bufferSize_raw(handle, jobz, uplo, n, &
-        c_loc(A(1)), lda, c_loc(W(1)), c_loc(lwork(1)), params, batch_count)
+        c_loc(A), lda, c_loc(W), c_loc(lwork), params, batch_count)
     end function hipsolverDnSsyevjBatched_bufferSize_native
 
     function hipsolverDnSsyevjBatched_bufferSize_typed(handle, jobz, uplo, n, A, lda, W, lwork, &
@@ -31860,15 +31565,15 @@ contains
       integer(c_int), value :: jobz
       integer(c_int), value :: uplo
       integer(c_int), value :: n
-      real(c_double), target :: A(*)
+      real(c_double), target :: A(..)
       integer(c_int), value :: lda
-      real(c_double), target :: W(*)
-      integer(c_int), target :: lwork(*)
+      real(c_double), target :: W(..)
+      integer(c_int), target :: lwork(..)
       type(c_ptr), value :: params
       integer(c_int), value :: batch_count
       integer(c_int) :: DnDsyevjBatched_bufferSize
       DnDsyevjBatched_bufferSize = hipsolverDnDsyevjBatched_bufferSize_raw(handle, jobz, uplo, n, &
-        c_loc(A(1)), lda, c_loc(W(1)), c_loc(lwork(1)), params, batch_count)
+        c_loc(A), lda, c_loc(W), c_loc(lwork), params, batch_count)
     end function hipsolverDnDsyevjBatched_bufferSize_native
 
     function hipsolverDnDsyevjBatched_bufferSize_typed(handle, jobz, uplo, n, A, lda, W, lwork, &
@@ -31899,15 +31604,15 @@ contains
       integer(c_int), value :: jobz
       integer(c_int), value :: uplo
       integer(c_int), value :: n
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: A(..)
       integer(c_int), value :: lda
-      real(c_float), target :: W(*)
-      integer(c_int), target :: lwork(*)
+      real(c_float), target :: W(..)
+      integer(c_int), target :: lwork(..)
       type(c_ptr), value :: params
       integer(c_int), value :: batch_count
       integer(c_int) :: DnCheevjBatched_bufferSize
       DnCheevjBatched_bufferSize = hipsolverDnCheevjBatched_bufferSize_raw(handle, jobz, uplo, n, &
-        c_loc(A(1)), lda, c_loc(W(1)), c_loc(lwork(1)), params, batch_count)
+        c_loc(A), lda, c_loc(W), c_loc(lwork), params, batch_count)
     end function hipsolverDnCheevjBatched_bufferSize_native
 
     function hipsolverDnCheevjBatched_bufferSize_typed(handle, jobz, uplo, n, A, lda, W, lwork, &
@@ -31938,15 +31643,15 @@ contains
       integer(c_int), value :: jobz
       integer(c_int), value :: uplo
       integer(c_int), value :: n
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: A(..)
       integer(c_int), value :: lda
-      real(c_double), target :: W(*)
-      integer(c_int), target :: lwork(*)
+      real(c_double), target :: W(..)
+      integer(c_int), target :: lwork(..)
       type(c_ptr), value :: params
       integer(c_int), value :: batch_count
       integer(c_int) :: DnZheevjBatched_bufferSize
       DnZheevjBatched_bufferSize = hipsolverDnZheevjBatched_bufferSize_raw(handle, jobz, uplo, n, &
-        c_loc(A(1)), lda, c_loc(W(1)), c_loc(lwork(1)), params, batch_count)
+        c_loc(A), lda, c_loc(W), c_loc(lwork), params, batch_count)
     end function hipsolverDnZheevjBatched_bufferSize_native
 
     function hipsolverDnZheevjBatched_bufferSize_typed(handle, jobz, uplo, n, A, lda, W, lwork, &
@@ -31977,17 +31682,17 @@ contains
       integer(c_int), value :: jobz
       integer(c_int), value :: uplo
       integer(c_int), value :: n
-      real(c_float), target :: A(*)
+      real(c_float), target :: A(..)
       integer(c_int), value :: lda
-      real(c_float), target :: W(*)
-      real(c_float), target :: work(*)
+      real(c_float), target :: W(..)
+      type(c_ptr), value :: work
       integer(c_int), value :: lwork
-      integer(c_int), target :: devInfo(*)
+      integer(c_int), target :: devInfo(..)
       type(c_ptr), value :: params
       integer(c_int), value :: batch_count
       integer(c_int) :: DnSsyevjBatched
-      DnSsyevjBatched = hipsolverDnSsyevjBatched_raw(handle, jobz, uplo, n, c_loc(A(1)), lda, &
-        c_loc(W(1)), c_loc(work(1)), lwork, c_loc(devInfo(1)), params, batch_count)
+      DnSsyevjBatched = hipsolverDnSsyevjBatched_raw(handle, jobz, uplo, n, c_loc(A), lda, c_loc( &
+        W), work, lwork, c_loc(devInfo), params, batch_count)
     end function hipsolverDnSsyevjBatched_native
 
     function hipsolverDnSsyevjBatched_typed(handle, jobz, uplo, n, A, lda, W, work, lwork, &
@@ -32020,17 +31725,17 @@ contains
       integer(c_int), value :: jobz
       integer(c_int), value :: uplo
       integer(c_int), value :: n
-      real(c_double), target :: A(*)
+      real(c_double), target :: A(..)
       integer(c_int), value :: lda
-      real(c_double), target :: W(*)
-      real(c_double), target :: work(*)
+      real(c_double), target :: W(..)
+      type(c_ptr), value :: work
       integer(c_int), value :: lwork
-      integer(c_int), target :: devInfo(*)
+      integer(c_int), target :: devInfo(..)
       type(c_ptr), value :: params
       integer(c_int), value :: batch_count
       integer(c_int) :: DnDsyevjBatched
-      DnDsyevjBatched = hipsolverDnDsyevjBatched_raw(handle, jobz, uplo, n, c_loc(A(1)), lda, &
-        c_loc(W(1)), c_loc(work(1)), lwork, c_loc(devInfo(1)), params, batch_count)
+      DnDsyevjBatched = hipsolverDnDsyevjBatched_raw(handle, jobz, uplo, n, c_loc(A), lda, c_loc( &
+        W), work, lwork, c_loc(devInfo), params, batch_count)
     end function hipsolverDnDsyevjBatched_native
 
     function hipsolverDnDsyevjBatched_typed(handle, jobz, uplo, n, A, lda, W, work, lwork, &
@@ -32063,17 +31768,17 @@ contains
       integer(c_int), value :: jobz
       integer(c_int), value :: uplo
       integer(c_int), value :: n
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: A(..)
       integer(c_int), value :: lda
-      real(c_float), target :: W(*)
-      complex(c_float_complex), target :: work(*)
+      real(c_float), target :: W(..)
+      type(c_ptr), value :: work
       integer(c_int), value :: lwork
-      integer(c_int), target :: devInfo(*)
+      integer(c_int), target :: devInfo(..)
       type(c_ptr), value :: params
       integer(c_int), value :: batch_count
       integer(c_int) :: DnCheevjBatched
-      DnCheevjBatched = hipsolverDnCheevjBatched_raw(handle, jobz, uplo, n, c_loc(A(1)), lda, &
-        c_loc(W(1)), c_loc(work(1)), lwork, c_loc(devInfo(1)), params, batch_count)
+      DnCheevjBatched = hipsolverDnCheevjBatched_raw(handle, jobz, uplo, n, c_loc(A), lda, c_loc( &
+        W), work, lwork, c_loc(devInfo), params, batch_count)
     end function hipsolverDnCheevjBatched_native
 
     function hipsolverDnCheevjBatched_typed(handle, jobz, uplo, n, A, lda, W, work, lwork, &
@@ -32106,17 +31811,17 @@ contains
       integer(c_int), value :: jobz
       integer(c_int), value :: uplo
       integer(c_int), value :: n
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: A(..)
       integer(c_int), value :: lda
-      real(c_double), target :: W(*)
-      complex(c_double_complex), target :: work(*)
+      real(c_double), target :: W(..)
+      type(c_ptr), value :: work
       integer(c_int), value :: lwork
-      integer(c_int), target :: devInfo(*)
+      integer(c_int), target :: devInfo(..)
       type(c_ptr), value :: params
       integer(c_int), value :: batch_count
       integer(c_int) :: DnZheevjBatched
-      DnZheevjBatched = hipsolverDnZheevjBatched_raw(handle, jobz, uplo, n, c_loc(A(1)), lda, &
-        c_loc(W(1)), c_loc(work(1)), lwork, c_loc(devInfo(1)), params, batch_count)
+      DnZheevjBatched = hipsolverDnZheevjBatched_raw(handle, jobz, uplo, n, c_loc(A), lda, c_loc( &
+        W), work, lwork, c_loc(devInfo), params, batch_count)
     end function hipsolverDnZheevjBatched_native
 
     function hipsolverDnZheevjBatched_typed(handle, jobz, uplo, n, A, lda, W, work, lwork, &
@@ -32150,15 +31855,15 @@ contains
       integer(c_int), value :: jobz
       integer(c_int), value :: uplo
       integer(c_int), value :: n
-      real(c_float), target :: A(*)
+      real(c_float), target :: A(..)
       integer(c_int), value :: lda
-      real(c_float), target :: B(*)
+      real(c_float), target :: B(..)
       integer(c_int), value :: ldb
-      real(c_float), target :: W(*)
-      integer(c_int), target :: lwork(*)
+      real(c_float), target :: W(..)
+      integer(c_int), target :: lwork(..)
       integer(c_int) :: DnSsygvd_bufferSize
       DnSsygvd_bufferSize = hipsolverDnSsygvd_bufferSize_raw(handle, itype, jobz, uplo, n, c_loc( &
-        A(1)), lda, c_loc(B(1)), ldb, c_loc(W(1)), c_loc(lwork(1)))
+        A), lda, c_loc(B), ldb, c_loc(W), c_loc(lwork))
     end function hipsolverDnSsygvd_bufferSize_native
 
     function hipsolverDnSsygvd_bufferSize_typed(handle, itype, jobz, uplo, n, A, lda, B, ldb, W, &
@@ -32191,15 +31896,15 @@ contains
       integer(c_int), value :: jobz
       integer(c_int), value :: uplo
       integer(c_int), value :: n
-      real(c_double), target :: A(*)
+      real(c_double), target :: A(..)
       integer(c_int), value :: lda
-      real(c_double), target :: B(*)
+      real(c_double), target :: B(..)
       integer(c_int), value :: ldb
-      real(c_double), target :: W(*)
-      integer(c_int), target :: lwork(*)
+      real(c_double), target :: W(..)
+      integer(c_int), target :: lwork(..)
       integer(c_int) :: DnDsygvd_bufferSize
       DnDsygvd_bufferSize = hipsolverDnDsygvd_bufferSize_raw(handle, itype, jobz, uplo, n, c_loc( &
-        A(1)), lda, c_loc(B(1)), ldb, c_loc(W(1)), c_loc(lwork(1)))
+        A), lda, c_loc(B), ldb, c_loc(W), c_loc(lwork))
     end function hipsolverDnDsygvd_bufferSize_native
 
     function hipsolverDnDsygvd_bufferSize_typed(handle, itype, jobz, uplo, n, A, lda, B, ldb, W, &
@@ -32232,15 +31937,15 @@ contains
       integer(c_int), value :: jobz
       integer(c_int), value :: uplo
       integer(c_int), value :: n
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: A(..)
       integer(c_int), value :: lda
-      complex(c_float_complex), target :: B(*)
+      complex(c_float_complex), target :: B(..)
       integer(c_int), value :: ldb
-      real(c_float), target :: W(*)
-      integer(c_int), target :: lwork(*)
+      real(c_float), target :: W(..)
+      integer(c_int), target :: lwork(..)
       integer(c_int) :: DnChegvd_bufferSize
       DnChegvd_bufferSize = hipsolverDnChegvd_bufferSize_raw(handle, itype, jobz, uplo, n, c_loc( &
-        A(1)), lda, c_loc(B(1)), ldb, c_loc(W(1)), c_loc(lwork(1)))
+        A), lda, c_loc(B), ldb, c_loc(W), c_loc(lwork))
     end function hipsolverDnChegvd_bufferSize_native
 
     function hipsolverDnChegvd_bufferSize_typed(handle, itype, jobz, uplo, n, A, lda, B, ldb, W, &
@@ -32273,15 +31978,15 @@ contains
       integer(c_int), value :: jobz
       integer(c_int), value :: uplo
       integer(c_int), value :: n
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: A(..)
       integer(c_int), value :: lda
-      complex(c_double_complex), target :: B(*)
+      complex(c_double_complex), target :: B(..)
       integer(c_int), value :: ldb
-      real(c_double), target :: W(*)
-      integer(c_int), target :: lwork(*)
+      real(c_double), target :: W(..)
+      integer(c_int), target :: lwork(..)
       integer(c_int) :: DnZhegvd_bufferSize
       DnZhegvd_bufferSize = hipsolverDnZhegvd_bufferSize_raw(handle, itype, jobz, uplo, n, c_loc( &
-        A(1)), lda, c_loc(B(1)), ldb, c_loc(W(1)), c_loc(lwork(1)))
+        A), lda, c_loc(B), ldb, c_loc(W), c_loc(lwork))
     end function hipsolverDnZhegvd_bufferSize_native
 
     function hipsolverDnZhegvd_bufferSize_typed(handle, itype, jobz, uplo, n, A, lda, B, ldb, W, &
@@ -32314,17 +32019,17 @@ contains
       integer(c_int), value :: jobz
       integer(c_int), value :: uplo
       integer(c_int), value :: n
-      real(c_float), target :: A(*)
+      real(c_float), target :: A(..)
       integer(c_int), value :: lda
-      real(c_float), target :: B(*)
+      real(c_float), target :: B(..)
       integer(c_int), value :: ldb
-      real(c_float), target :: W(*)
-      real(c_float), target :: work(*)
+      real(c_float), target :: W(..)
+      type(c_ptr), value :: work
       integer(c_int), value :: lwork
-      integer(c_int), target :: devInfo(*)
+      integer(c_int), target :: devInfo(..)
       integer(c_int) :: DnSsygvd
-      DnSsygvd = hipsolverDnSsygvd_raw(handle, itype, jobz, uplo, n, c_loc(A(1)), lda, c_loc(B( &
-        1)), ldb, c_loc(W(1)), c_loc(work(1)), lwork, c_loc(devInfo(1)))
+      DnSsygvd = hipsolverDnSsygvd_raw(handle, itype, jobz, uplo, n, c_loc(A), lda, c_loc(B), ldb, &
+        c_loc(W), work, lwork, c_loc(devInfo))
     end function hipsolverDnSsygvd_native
 
     function hipsolverDnSsygvd_typed(handle, itype, jobz, uplo, n, A, lda, B, ldb, W, work, lwork, &
@@ -32359,17 +32064,17 @@ contains
       integer(c_int), value :: jobz
       integer(c_int), value :: uplo
       integer(c_int), value :: n
-      real(c_double), target :: A(*)
+      real(c_double), target :: A(..)
       integer(c_int), value :: lda
-      real(c_double), target :: B(*)
+      real(c_double), target :: B(..)
       integer(c_int), value :: ldb
-      real(c_double), target :: W(*)
-      real(c_double), target :: work(*)
+      real(c_double), target :: W(..)
+      type(c_ptr), value :: work
       integer(c_int), value :: lwork
-      integer(c_int), target :: devInfo(*)
+      integer(c_int), target :: devInfo(..)
       integer(c_int) :: DnDsygvd
-      DnDsygvd = hipsolverDnDsygvd_raw(handle, itype, jobz, uplo, n, c_loc(A(1)), lda, c_loc(B( &
-        1)), ldb, c_loc(W(1)), c_loc(work(1)), lwork, c_loc(devInfo(1)))
+      DnDsygvd = hipsolverDnDsygvd_raw(handle, itype, jobz, uplo, n, c_loc(A), lda, c_loc(B), ldb, &
+        c_loc(W), work, lwork, c_loc(devInfo))
     end function hipsolverDnDsygvd_native
 
     function hipsolverDnDsygvd_typed(handle, itype, jobz, uplo, n, A, lda, B, ldb, W, work, lwork, &
@@ -32404,17 +32109,17 @@ contains
       integer(c_int), value :: jobz
       integer(c_int), value :: uplo
       integer(c_int), value :: n
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: A(..)
       integer(c_int), value :: lda
-      complex(c_float_complex), target :: B(*)
+      complex(c_float_complex), target :: B(..)
       integer(c_int), value :: ldb
-      real(c_float), target :: W(*)
-      complex(c_float_complex), target :: work(*)
+      real(c_float), target :: W(..)
+      type(c_ptr), value :: work
       integer(c_int), value :: lwork
-      integer(c_int), target :: devInfo(*)
+      integer(c_int), target :: devInfo(..)
       integer(c_int) :: DnChegvd
-      DnChegvd = hipsolverDnChegvd_raw(handle, itype, jobz, uplo, n, c_loc(A(1)), lda, c_loc(B( &
-        1)), ldb, c_loc(W(1)), c_loc(work(1)), lwork, c_loc(devInfo(1)))
+      DnChegvd = hipsolverDnChegvd_raw(handle, itype, jobz, uplo, n, c_loc(A), lda, c_loc(B), ldb, &
+        c_loc(W), work, lwork, c_loc(devInfo))
     end function hipsolverDnChegvd_native
 
     function hipsolverDnChegvd_typed(handle, itype, jobz, uplo, n, A, lda, B, ldb, W, work, lwork, &
@@ -32449,17 +32154,17 @@ contains
       integer(c_int), value :: jobz
       integer(c_int), value :: uplo
       integer(c_int), value :: n
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: A(..)
       integer(c_int), value :: lda
-      complex(c_double_complex), target :: B(*)
+      complex(c_double_complex), target :: B(..)
       integer(c_int), value :: ldb
-      real(c_double), target :: W(*)
-      complex(c_double_complex), target :: work(*)
+      real(c_double), target :: W(..)
+      type(c_ptr), value :: work
       integer(c_int), value :: lwork
-      integer(c_int), target :: devInfo(*)
+      integer(c_int), target :: devInfo(..)
       integer(c_int) :: DnZhegvd
-      DnZhegvd = hipsolverDnZhegvd_raw(handle, itype, jobz, uplo, n, c_loc(A(1)), lda, c_loc(B( &
-        1)), ldb, c_loc(W(1)), c_loc(work(1)), lwork, c_loc(devInfo(1)))
+      DnZhegvd = hipsolverDnZhegvd_raw(handle, itype, jobz, uplo, n, c_loc(A), lda, c_loc(B), ldb, &
+        c_loc(W), work, lwork, c_loc(devInfo))
     end function hipsolverDnZhegvd_native
 
     function hipsolverDnZhegvd_typed(handle, itype, jobz, uplo, n, A, lda, B, ldb, W, work, lwork, &
@@ -32495,21 +32200,20 @@ contains
       integer(c_int), value :: range
       integer(c_int), value :: uplo
       integer(c_int), value :: n
-      real(c_float), target :: A(*)
+      real(c_float), target :: A(..)
       integer(c_int), value :: lda
-      real(c_float), target :: B(*)
+      real(c_float), target :: B(..)
       integer(c_int), value :: ldb
       real(c_float), value :: vl
       real(c_float), value :: vu
       integer(c_int), value :: il
       integer(c_int), value :: iu
-      integer(c_int), target :: nev(*)
-      real(c_float), target :: W(*)
-      integer(c_int), target :: lwork(*)
+      integer(c_int), target :: nev(..)
+      real(c_float), target :: W(..)
+      integer(c_int), target :: lwork(..)
       integer(c_int) :: DnSsygvdx_bufferSize
       DnSsygvdx_bufferSize = hipsolverDnSsygvdx_bufferSize_raw(handle, itype, jobz, range, uplo, &
-        n, c_loc(A(1)), lda, c_loc(B(1)), ldb, vl, vu, il, iu, c_loc(nev(1)), c_loc(W(1)), c_loc( &
-        lwork(1)))
+        n, c_loc(A), lda, c_loc(B), ldb, vl, vu, il, iu, c_loc(nev), c_loc(W), c_loc(lwork))
     end function hipsolverDnSsygvdx_bufferSize_native
 
     function hipsolverDnSsygvdx_bufferSize_typed(handle, itype, jobz, range, uplo, n, A, lda, B, &
@@ -32549,21 +32253,20 @@ contains
       integer(c_int), value :: range
       integer(c_int), value :: uplo
       integer(c_int), value :: n
-      real(c_double), target :: A(*)
+      real(c_double), target :: A(..)
       integer(c_int), value :: lda
-      real(c_double), target :: B(*)
+      real(c_double), target :: B(..)
       integer(c_int), value :: ldb
       real(c_double), value :: vl
       real(c_double), value :: vu
       integer(c_int), value :: il
       integer(c_int), value :: iu
-      integer(c_int), target :: nev(*)
-      real(c_double), target :: W(*)
-      integer(c_int), target :: lwork(*)
+      integer(c_int), target :: nev(..)
+      real(c_double), target :: W(..)
+      integer(c_int), target :: lwork(..)
       integer(c_int) :: DnDsygvdx_bufferSize
       DnDsygvdx_bufferSize = hipsolverDnDsygvdx_bufferSize_raw(handle, itype, jobz, range, uplo, &
-        n, c_loc(A(1)), lda, c_loc(B(1)), ldb, vl, vu, il, iu, c_loc(nev(1)), c_loc(W(1)), c_loc( &
-        lwork(1)))
+        n, c_loc(A), lda, c_loc(B), ldb, vl, vu, il, iu, c_loc(nev), c_loc(W), c_loc(lwork))
     end function hipsolverDnDsygvdx_bufferSize_native
 
     function hipsolverDnDsygvdx_bufferSize_typed(handle, itype, jobz, range, uplo, n, A, lda, B, &
@@ -32603,21 +32306,20 @@ contains
       integer(c_int), value :: range
       integer(c_int), value :: uplo
       integer(c_int), value :: n
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: A(..)
       integer(c_int), value :: lda
-      complex(c_float_complex), target :: B(*)
+      complex(c_float_complex), target :: B(..)
       integer(c_int), value :: ldb
       real(c_float), value :: vl
       real(c_float), value :: vu
       integer(c_int), value :: il
       integer(c_int), value :: iu
-      integer(c_int), target :: nev(*)
-      real(c_float), target :: W(*)
-      integer(c_int), target :: lwork(*)
+      integer(c_int), target :: nev(..)
+      real(c_float), target :: W(..)
+      integer(c_int), target :: lwork(..)
       integer(c_int) :: DnChegvdx_bufferSize
       DnChegvdx_bufferSize = hipsolverDnChegvdx_bufferSize_raw(handle, itype, jobz, range, uplo, &
-        n, c_loc(A(1)), lda, c_loc(B(1)), ldb, vl, vu, il, iu, c_loc(nev(1)), c_loc(W(1)), c_loc( &
-        lwork(1)))
+        n, c_loc(A), lda, c_loc(B), ldb, vl, vu, il, iu, c_loc(nev), c_loc(W), c_loc(lwork))
     end function hipsolverDnChegvdx_bufferSize_native
 
     function hipsolverDnChegvdx_bufferSize_typed(handle, itype, jobz, range, uplo, n, A, lda, B, &
@@ -32657,21 +32359,20 @@ contains
       integer(c_int), value :: range
       integer(c_int), value :: uplo
       integer(c_int), value :: n
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: A(..)
       integer(c_int), value :: lda
-      complex(c_double_complex), target :: B(*)
+      complex(c_double_complex), target :: B(..)
       integer(c_int), value :: ldb
       real(c_double), value :: vl
       real(c_double), value :: vu
       integer(c_int), value :: il
       integer(c_int), value :: iu
-      integer(c_int), target :: nev(*)
-      real(c_double), target :: W(*)
-      integer(c_int), target :: lwork(*)
+      integer(c_int), target :: nev(..)
+      real(c_double), target :: W(..)
+      integer(c_int), target :: lwork(..)
       integer(c_int) :: DnZhegvdx_bufferSize
       DnZhegvdx_bufferSize = hipsolverDnZhegvdx_bufferSize_raw(handle, itype, jobz, range, uplo, &
-        n, c_loc(A(1)), lda, c_loc(B(1)), ldb, vl, vu, il, iu, c_loc(nev(1)), c_loc(W(1)), c_loc( &
-        lwork(1)))
+        n, c_loc(A), lda, c_loc(B), ldb, vl, vu, il, iu, c_loc(nev), c_loc(W), c_loc(lwork))
     end function hipsolverDnZhegvdx_bufferSize_native
 
     function hipsolverDnZhegvdx_bufferSize_typed(handle, itype, jobz, range, uplo, n, A, lda, B, &
@@ -32711,23 +32412,22 @@ contains
       integer(c_int), value :: range
       integer(c_int), value :: uplo
       integer(c_int), value :: n
-      real(c_float), target :: A(*)
+      real(c_float), target :: A(..)
       integer(c_int), value :: lda
-      real(c_float), target :: B(*)
+      real(c_float), target :: B(..)
       integer(c_int), value :: ldb
       real(c_float), value :: vl
       real(c_float), value :: vu
       integer(c_int), value :: il
       integer(c_int), value :: iu
-      integer(c_int), target :: nev(*)
-      real(c_float), target :: W(*)
-      real(c_float), target :: work(*)
+      integer(c_int), target :: nev(..)
+      real(c_float), target :: W(..)
+      type(c_ptr), value :: work
       integer(c_int), value :: lwork
-      integer(c_int), target :: devInfo(*)
+      integer(c_int), target :: devInfo(..)
       integer(c_int) :: DnSsygvdx
-      DnSsygvdx = hipsolverDnSsygvdx_raw(handle, itype, jobz, range, uplo, n, c_loc(A(1)), lda, &
-        c_loc(B(1)), ldb, vl, vu, il, iu, c_loc(nev(1)), c_loc(W(1)), c_loc(work(1)), lwork, &
-        c_loc(devInfo(1)))
+      DnSsygvdx = hipsolverDnSsygvdx_raw(handle, itype, jobz, range, uplo, n, c_loc(A), lda, &
+        c_loc(B), ldb, vl, vu, il, iu, c_loc(nev), c_loc(W), work, lwork, c_loc(devInfo))
     end function hipsolverDnSsygvdx_native
 
     function hipsolverDnSsygvdx_typed(handle, itype, jobz, range, uplo, n, A, lda, B, ldb, vl, vu, &
@@ -32769,23 +32469,22 @@ contains
       integer(c_int), value :: range
       integer(c_int), value :: uplo
       integer(c_int), value :: n
-      real(c_double), target :: A(*)
+      real(c_double), target :: A(..)
       integer(c_int), value :: lda
-      real(c_double), target :: B(*)
+      real(c_double), target :: B(..)
       integer(c_int), value :: ldb
       real(c_double), value :: vl
       real(c_double), value :: vu
       integer(c_int), value :: il
       integer(c_int), value :: iu
-      integer(c_int), target :: nev(*)
-      real(c_double), target :: W(*)
-      real(c_double), target :: work(*)
+      integer(c_int), target :: nev(..)
+      real(c_double), target :: W(..)
+      type(c_ptr), value :: work
       integer(c_int), value :: lwork
-      integer(c_int), target :: devInfo(*)
+      integer(c_int), target :: devInfo(..)
       integer(c_int) :: DnDsygvdx
-      DnDsygvdx = hipsolverDnDsygvdx_raw(handle, itype, jobz, range, uplo, n, c_loc(A(1)), lda, &
-        c_loc(B(1)), ldb, vl, vu, il, iu, c_loc(nev(1)), c_loc(W(1)), c_loc(work(1)), lwork, &
-        c_loc(devInfo(1)))
+      DnDsygvdx = hipsolverDnDsygvdx_raw(handle, itype, jobz, range, uplo, n, c_loc(A), lda, &
+        c_loc(B), ldb, vl, vu, il, iu, c_loc(nev), c_loc(W), work, lwork, c_loc(devInfo))
     end function hipsolverDnDsygvdx_native
 
     function hipsolverDnDsygvdx_typed(handle, itype, jobz, range, uplo, n, A, lda, B, ldb, vl, vu, &
@@ -32827,23 +32526,22 @@ contains
       integer(c_int), value :: range
       integer(c_int), value :: uplo
       integer(c_int), value :: n
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: A(..)
       integer(c_int), value :: lda
-      complex(c_float_complex), target :: B(*)
+      complex(c_float_complex), target :: B(..)
       integer(c_int), value :: ldb
       real(c_float), value :: vl
       real(c_float), value :: vu
       integer(c_int), value :: il
       integer(c_int), value :: iu
-      integer(c_int), target :: nev(*)
-      real(c_float), target :: W(*)
-      complex(c_float_complex), target :: work(*)
+      integer(c_int), target :: nev(..)
+      real(c_float), target :: W(..)
+      type(c_ptr), value :: work
       integer(c_int), value :: lwork
-      integer(c_int), target :: devInfo(*)
+      integer(c_int), target :: devInfo(..)
       integer(c_int) :: DnChegvdx
-      DnChegvdx = hipsolverDnChegvdx_raw(handle, itype, jobz, range, uplo, n, c_loc(A(1)), lda, &
-        c_loc(B(1)), ldb, vl, vu, il, iu, c_loc(nev(1)), c_loc(W(1)), c_loc(work(1)), lwork, &
-        c_loc(devInfo(1)))
+      DnChegvdx = hipsolverDnChegvdx_raw(handle, itype, jobz, range, uplo, n, c_loc(A), lda, &
+        c_loc(B), ldb, vl, vu, il, iu, c_loc(nev), c_loc(W), work, lwork, c_loc(devInfo))
     end function hipsolverDnChegvdx_native
 
     function hipsolverDnChegvdx_typed(handle, itype, jobz, range, uplo, n, A, lda, B, ldb, vl, vu, &
@@ -32885,23 +32583,22 @@ contains
       integer(c_int), value :: range
       integer(c_int), value :: uplo
       integer(c_int), value :: n
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: A(..)
       integer(c_int), value :: lda
-      complex(c_double_complex), target :: B(*)
+      complex(c_double_complex), target :: B(..)
       integer(c_int), value :: ldb
       real(c_double), value :: vl
       real(c_double), value :: vu
       integer(c_int), value :: il
       integer(c_int), value :: iu
-      integer(c_int), target :: nev(*)
-      real(c_double), target :: W(*)
-      complex(c_double_complex), target :: work(*)
+      integer(c_int), target :: nev(..)
+      real(c_double), target :: W(..)
+      type(c_ptr), value :: work
       integer(c_int), value :: lwork
-      integer(c_int), target :: devInfo(*)
+      integer(c_int), target :: devInfo(..)
       integer(c_int) :: DnZhegvdx
-      DnZhegvdx = hipsolverDnZhegvdx_raw(handle, itype, jobz, range, uplo, n, c_loc(A(1)), lda, &
-        c_loc(B(1)), ldb, vl, vu, il, iu, c_loc(nev(1)), c_loc(W(1)), c_loc(work(1)), lwork, &
-        c_loc(devInfo(1)))
+      DnZhegvdx = hipsolverDnZhegvdx_raw(handle, itype, jobz, range, uplo, n, c_loc(A), lda, &
+        c_loc(B), ldb, vl, vu, il, iu, c_loc(nev), c_loc(W), work, lwork, c_loc(devInfo))
     end function hipsolverDnZhegvdx_native
 
     function hipsolverDnZhegvdx_typed(handle, itype, jobz, range, uplo, n, A, lda, B, ldb, vl, vu, &
@@ -32942,16 +32639,16 @@ contains
       integer(c_int), value :: jobz
       integer(c_int), value :: uplo
       integer(c_int), value :: n
-      real(c_float), target :: A(*)
+      real(c_float), target :: A(..)
       integer(c_int), value :: lda
-      real(c_float), target :: B(*)
+      real(c_float), target :: B(..)
       integer(c_int), value :: ldb
-      real(c_float), target :: W(*)
-      integer(c_int), target :: lwork(*)
+      real(c_float), target :: W(..)
+      integer(c_int), target :: lwork(..)
       type(c_ptr), value :: params
       integer(c_int) :: DnSsygvj_bufferSize
       DnSsygvj_bufferSize = hipsolverDnSsygvj_bufferSize_raw(handle, itype, jobz, uplo, n, c_loc( &
-        A(1)), lda, c_loc(B(1)), ldb, c_loc(W(1)), c_loc(lwork(1)), params)
+        A), lda, c_loc(B), ldb, c_loc(W), c_loc(lwork), params)
     end function hipsolverDnSsygvj_bufferSize_native
 
     function hipsolverDnSsygvj_bufferSize_typed(handle, itype, jobz, uplo, n, A, lda, B, ldb, W, &
@@ -32985,16 +32682,16 @@ contains
       integer(c_int), value :: jobz
       integer(c_int), value :: uplo
       integer(c_int), value :: n
-      real(c_double), target :: A(*)
+      real(c_double), target :: A(..)
       integer(c_int), value :: lda
-      real(c_double), target :: B(*)
+      real(c_double), target :: B(..)
       integer(c_int), value :: ldb
-      real(c_double), target :: W(*)
-      integer(c_int), target :: lwork(*)
+      real(c_double), target :: W(..)
+      integer(c_int), target :: lwork(..)
       type(c_ptr), value :: params
       integer(c_int) :: DnDsygvj_bufferSize
       DnDsygvj_bufferSize = hipsolverDnDsygvj_bufferSize_raw(handle, itype, jobz, uplo, n, c_loc( &
-        A(1)), lda, c_loc(B(1)), ldb, c_loc(W(1)), c_loc(lwork(1)), params)
+        A), lda, c_loc(B), ldb, c_loc(W), c_loc(lwork), params)
     end function hipsolverDnDsygvj_bufferSize_native
 
     function hipsolverDnDsygvj_bufferSize_typed(handle, itype, jobz, uplo, n, A, lda, B, ldb, W, &
@@ -33028,16 +32725,16 @@ contains
       integer(c_int), value :: jobz
       integer(c_int), value :: uplo
       integer(c_int), value :: n
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: A(..)
       integer(c_int), value :: lda
-      complex(c_float_complex), target :: B(*)
+      complex(c_float_complex), target :: B(..)
       integer(c_int), value :: ldb
-      real(c_float), target :: W(*)
-      integer(c_int), target :: lwork(*)
+      real(c_float), target :: W(..)
+      integer(c_int), target :: lwork(..)
       type(c_ptr), value :: params
       integer(c_int) :: DnChegvj_bufferSize
       DnChegvj_bufferSize = hipsolverDnChegvj_bufferSize_raw(handle, itype, jobz, uplo, n, c_loc( &
-        A(1)), lda, c_loc(B(1)), ldb, c_loc(W(1)), c_loc(lwork(1)), params)
+        A), lda, c_loc(B), ldb, c_loc(W), c_loc(lwork), params)
     end function hipsolverDnChegvj_bufferSize_native
 
     function hipsolverDnChegvj_bufferSize_typed(handle, itype, jobz, uplo, n, A, lda, B, ldb, W, &
@@ -33071,16 +32768,16 @@ contains
       integer(c_int), value :: jobz
       integer(c_int), value :: uplo
       integer(c_int), value :: n
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: A(..)
       integer(c_int), value :: lda
-      complex(c_double_complex), target :: B(*)
+      complex(c_double_complex), target :: B(..)
       integer(c_int), value :: ldb
-      real(c_double), target :: W(*)
-      integer(c_int), target :: lwork(*)
+      real(c_double), target :: W(..)
+      integer(c_int), target :: lwork(..)
       type(c_ptr), value :: params
       integer(c_int) :: DnZhegvj_bufferSize
       DnZhegvj_bufferSize = hipsolverDnZhegvj_bufferSize_raw(handle, itype, jobz, uplo, n, c_loc( &
-        A(1)), lda, c_loc(B(1)), ldb, c_loc(W(1)), c_loc(lwork(1)), params)
+        A), lda, c_loc(B), ldb, c_loc(W), c_loc(lwork), params)
     end function hipsolverDnZhegvj_bufferSize_native
 
     function hipsolverDnZhegvj_bufferSize_typed(handle, itype, jobz, uplo, n, A, lda, B, ldb, W, &
@@ -33114,18 +32811,18 @@ contains
       integer(c_int), value :: jobz
       integer(c_int), value :: uplo
       integer(c_int), value :: n
-      real(c_float), target :: A(*)
+      real(c_float), target :: A(..)
       integer(c_int), value :: lda
-      real(c_float), target :: B(*)
+      real(c_float), target :: B(..)
       integer(c_int), value :: ldb
-      real(c_float), target :: W(*)
-      real(c_float), target :: work(*)
+      real(c_float), target :: W(..)
+      type(c_ptr), value :: work
       integer(c_int), value :: lwork
-      integer(c_int), target :: devInfo(*)
+      integer(c_int), target :: devInfo(..)
       type(c_ptr), value :: params
       integer(c_int) :: DnSsygvj
-      DnSsygvj = hipsolverDnSsygvj_raw(handle, itype, jobz, uplo, n, c_loc(A(1)), lda, c_loc(B( &
-        1)), ldb, c_loc(W(1)), c_loc(work(1)), lwork, c_loc(devInfo(1)), params)
+      DnSsygvj = hipsolverDnSsygvj_raw(handle, itype, jobz, uplo, n, c_loc(A), lda, c_loc(B), ldb, &
+        c_loc(W), work, lwork, c_loc(devInfo), params)
     end function hipsolverDnSsygvj_native
 
     function hipsolverDnSsygvj_typed(handle, itype, jobz, uplo, n, A, lda, B, ldb, W, work, lwork, &
@@ -33161,18 +32858,18 @@ contains
       integer(c_int), value :: jobz
       integer(c_int), value :: uplo
       integer(c_int), value :: n
-      real(c_double), target :: A(*)
+      real(c_double), target :: A(..)
       integer(c_int), value :: lda
-      real(c_double), target :: B(*)
+      real(c_double), target :: B(..)
       integer(c_int), value :: ldb
-      real(c_double), target :: W(*)
-      real(c_double), target :: work(*)
+      real(c_double), target :: W(..)
+      type(c_ptr), value :: work
       integer(c_int), value :: lwork
-      integer(c_int), target :: devInfo(*)
+      integer(c_int), target :: devInfo(..)
       type(c_ptr), value :: params
       integer(c_int) :: DnDsygvj
-      DnDsygvj = hipsolverDnDsygvj_raw(handle, itype, jobz, uplo, n, c_loc(A(1)), lda, c_loc(B( &
-        1)), ldb, c_loc(W(1)), c_loc(work(1)), lwork, c_loc(devInfo(1)), params)
+      DnDsygvj = hipsolverDnDsygvj_raw(handle, itype, jobz, uplo, n, c_loc(A), lda, c_loc(B), ldb, &
+        c_loc(W), work, lwork, c_loc(devInfo), params)
     end function hipsolverDnDsygvj_native
 
     function hipsolverDnDsygvj_typed(handle, itype, jobz, uplo, n, A, lda, B, ldb, W, work, lwork, &
@@ -33208,18 +32905,18 @@ contains
       integer(c_int), value :: jobz
       integer(c_int), value :: uplo
       integer(c_int), value :: n
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: A(..)
       integer(c_int), value :: lda
-      complex(c_float_complex), target :: B(*)
+      complex(c_float_complex), target :: B(..)
       integer(c_int), value :: ldb
-      real(c_float), target :: W(*)
-      complex(c_float_complex), target :: work(*)
+      real(c_float), target :: W(..)
+      type(c_ptr), value :: work
       integer(c_int), value :: lwork
-      integer(c_int), target :: devInfo(*)
+      integer(c_int), target :: devInfo(..)
       type(c_ptr), value :: params
       integer(c_int) :: DnChegvj
-      DnChegvj = hipsolverDnChegvj_raw(handle, itype, jobz, uplo, n, c_loc(A(1)), lda, c_loc(B( &
-        1)), ldb, c_loc(W(1)), c_loc(work(1)), lwork, c_loc(devInfo(1)), params)
+      DnChegvj = hipsolverDnChegvj_raw(handle, itype, jobz, uplo, n, c_loc(A), lda, c_loc(B), ldb, &
+        c_loc(W), work, lwork, c_loc(devInfo), params)
     end function hipsolverDnChegvj_native
 
     function hipsolverDnChegvj_typed(handle, itype, jobz, uplo, n, A, lda, B, ldb, W, work, lwork, &
@@ -33255,18 +32952,18 @@ contains
       integer(c_int), value :: jobz
       integer(c_int), value :: uplo
       integer(c_int), value :: n
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: A(..)
       integer(c_int), value :: lda
-      complex(c_double_complex), target :: B(*)
+      complex(c_double_complex), target :: B(..)
       integer(c_int), value :: ldb
-      real(c_double), target :: W(*)
-      complex(c_double_complex), target :: work(*)
+      real(c_double), target :: W(..)
+      type(c_ptr), value :: work
       integer(c_int), value :: lwork
-      integer(c_int), target :: devInfo(*)
+      integer(c_int), target :: devInfo(..)
       type(c_ptr), value :: params
       integer(c_int) :: DnZhegvj
-      DnZhegvj = hipsolverDnZhegvj_raw(handle, itype, jobz, uplo, n, c_loc(A(1)), lda, c_loc(B( &
-        1)), ldb, c_loc(W(1)), c_loc(work(1)), lwork, c_loc(devInfo(1)), params)
+      DnZhegvj = hipsolverDnZhegvj_raw(handle, itype, jobz, uplo, n, c_loc(A), lda, c_loc(B), ldb, &
+        c_loc(W), work, lwork, c_loc(devInfo), params)
     end function hipsolverDnZhegvj_native
 
     function hipsolverDnZhegvj_typed(handle, itype, jobz, uplo, n, A, lda, B, ldb, W, work, lwork, &
@@ -33300,15 +32997,15 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: uplo
       integer(c_int), value :: n
-      real(c_float), target :: A(*)
+      real(c_float), target :: A(..)
       integer(c_int), value :: lda
-      real(c_float), target :: D(*)
-      real(c_float), target :: E(*)
-      real(c_float), target :: tau(*)
-      integer(c_int), target :: lwork(*)
+      real(c_float), target :: D(..)
+      real(c_float), target :: E(..)
+      real(c_float), target :: tau(..)
+      integer(c_int), target :: lwork(..)
       integer(c_int) :: DnSsytrd_bufferSize
-      DnSsytrd_bufferSize = hipsolverDnSsytrd_bufferSize_raw(handle, uplo, n, c_loc(A(1)), lda, &
-        c_loc(D(1)), c_loc(E(1)), c_loc(tau(1)), c_loc(lwork(1)))
+      DnSsytrd_bufferSize = hipsolverDnSsytrd_bufferSize_raw(handle, uplo, n, c_loc(A), lda, &
+        c_loc(D), c_loc(E), c_loc(tau), c_loc(lwork))
     end function hipsolverDnSsytrd_bufferSize_native
 
     function hipsolverDnSsytrd_bufferSize_typed(handle, uplo, n, A, lda, D, E, tau, lwork) result( &
@@ -33337,15 +33034,15 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: uplo
       integer(c_int), value :: n
-      real(c_double), target :: A(*)
+      real(c_double), target :: A(..)
       integer(c_int), value :: lda
-      real(c_double), target :: D(*)
-      real(c_double), target :: E(*)
-      real(c_double), target :: tau(*)
-      integer(c_int), target :: lwork(*)
+      real(c_double), target :: D(..)
+      real(c_double), target :: E(..)
+      real(c_double), target :: tau(..)
+      integer(c_int), target :: lwork(..)
       integer(c_int) :: DnDsytrd_bufferSize
-      DnDsytrd_bufferSize = hipsolverDnDsytrd_bufferSize_raw(handle, uplo, n, c_loc(A(1)), lda, &
-        c_loc(D(1)), c_loc(E(1)), c_loc(tau(1)), c_loc(lwork(1)))
+      DnDsytrd_bufferSize = hipsolverDnDsytrd_bufferSize_raw(handle, uplo, n, c_loc(A), lda, &
+        c_loc(D), c_loc(E), c_loc(tau), c_loc(lwork))
     end function hipsolverDnDsytrd_bufferSize_native
 
     function hipsolverDnDsytrd_bufferSize_typed(handle, uplo, n, A, lda, D, E, tau, lwork) result( &
@@ -33374,15 +33071,15 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: uplo
       integer(c_int), value :: n
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: A(..)
       integer(c_int), value :: lda
-      real(c_float), target :: D(*)
-      real(c_float), target :: E(*)
-      complex(c_float_complex), target :: tau(*)
-      integer(c_int), target :: lwork(*)
+      real(c_float), target :: D(..)
+      real(c_float), target :: E(..)
+      complex(c_float_complex), target :: tau(..)
+      integer(c_int), target :: lwork(..)
       integer(c_int) :: DnChetrd_bufferSize
-      DnChetrd_bufferSize = hipsolverDnChetrd_bufferSize_raw(handle, uplo, n, c_loc(A(1)), lda, &
-        c_loc(D(1)), c_loc(E(1)), c_loc(tau(1)), c_loc(lwork(1)))
+      DnChetrd_bufferSize = hipsolverDnChetrd_bufferSize_raw(handle, uplo, n, c_loc(A), lda, &
+        c_loc(D), c_loc(E), c_loc(tau), c_loc(lwork))
     end function hipsolverDnChetrd_bufferSize_native
 
     function hipsolverDnChetrd_bufferSize_typed(handle, uplo, n, A, lda, D, E, tau, lwork) result( &
@@ -33411,15 +33108,15 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: uplo
       integer(c_int), value :: n
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: A(..)
       integer(c_int), value :: lda
-      real(c_double), target :: D(*)
-      real(c_double), target :: E(*)
-      complex(c_double_complex), target :: tau(*)
-      integer(c_int), target :: lwork(*)
+      real(c_double), target :: D(..)
+      real(c_double), target :: E(..)
+      complex(c_double_complex), target :: tau(..)
+      integer(c_int), target :: lwork(..)
       integer(c_int) :: DnZhetrd_bufferSize
-      DnZhetrd_bufferSize = hipsolverDnZhetrd_bufferSize_raw(handle, uplo, n, c_loc(A(1)), lda, &
-        c_loc(D(1)), c_loc(E(1)), c_loc(tau(1)), c_loc(lwork(1)))
+      DnZhetrd_bufferSize = hipsolverDnZhetrd_bufferSize_raw(handle, uplo, n, c_loc(A), lda, &
+        c_loc(D), c_loc(E), c_loc(tau), c_loc(lwork))
     end function hipsolverDnZhetrd_bufferSize_native
 
     function hipsolverDnZhetrd_bufferSize_typed(handle, uplo, n, A, lda, D, E, tau, lwork) result( &
@@ -33448,17 +33145,17 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: uplo
       integer(c_int), value :: n
-      real(c_float), target :: A(*)
+      real(c_float), target :: A(..)
       integer(c_int), value :: lda
-      real(c_float), target :: D(*)
-      real(c_float), target :: E(*)
-      real(c_float), target :: tau(*)
-      real(c_float), target :: work(*)
+      real(c_float), target :: D(..)
+      real(c_float), target :: E(..)
+      real(c_float), target :: tau(..)
+      type(c_ptr), value :: work
       integer(c_int), value :: lwork
-      integer(c_int), target :: devInfo(*)
+      integer(c_int), target :: devInfo(..)
       integer(c_int) :: DnSsytrd
-      DnSsytrd = hipsolverDnSsytrd_raw(handle, uplo, n, c_loc(A(1)), lda, c_loc(D(1)), c_loc(E( &
-        1)), c_loc(tau(1)), c_loc(work(1)), lwork, c_loc(devInfo(1)))
+      DnSsytrd = hipsolverDnSsytrd_raw(handle, uplo, n, c_loc(A), lda, c_loc(D), c_loc(E), c_loc( &
+        tau), work, lwork, c_loc(devInfo))
     end function hipsolverDnSsytrd_native
 
     function hipsolverDnSsytrd_typed(handle, uplo, n, A, lda, D, E, tau, work, lwork, &
@@ -33488,17 +33185,17 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: uplo
       integer(c_int), value :: n
-      real(c_double), target :: A(*)
+      real(c_double), target :: A(..)
       integer(c_int), value :: lda
-      real(c_double), target :: D(*)
-      real(c_double), target :: E(*)
-      real(c_double), target :: tau(*)
-      real(c_double), target :: work(*)
+      real(c_double), target :: D(..)
+      real(c_double), target :: E(..)
+      real(c_double), target :: tau(..)
+      type(c_ptr), value :: work
       integer(c_int), value :: lwork
-      integer(c_int), target :: devInfo(*)
+      integer(c_int), target :: devInfo(..)
       integer(c_int) :: DnDsytrd
-      DnDsytrd = hipsolverDnDsytrd_raw(handle, uplo, n, c_loc(A(1)), lda, c_loc(D(1)), c_loc(E( &
-        1)), c_loc(tau(1)), c_loc(work(1)), lwork, c_loc(devInfo(1)))
+      DnDsytrd = hipsolverDnDsytrd_raw(handle, uplo, n, c_loc(A), lda, c_loc(D), c_loc(E), c_loc( &
+        tau), work, lwork, c_loc(devInfo))
     end function hipsolverDnDsytrd_native
 
     function hipsolverDnDsytrd_typed(handle, uplo, n, A, lda, D, E, tau, work, lwork, &
@@ -33528,17 +33225,17 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: uplo
       integer(c_int), value :: n
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: A(..)
       integer(c_int), value :: lda
-      real(c_float), target :: D(*)
-      real(c_float), target :: E(*)
-      complex(c_float_complex), target :: tau(*)
-      complex(c_float_complex), target :: work(*)
+      real(c_float), target :: D(..)
+      real(c_float), target :: E(..)
+      complex(c_float_complex), target :: tau(..)
+      type(c_ptr), value :: work
       integer(c_int), value :: lwork
-      integer(c_int), target :: devInfo(*)
+      integer(c_int), target :: devInfo(..)
       integer(c_int) :: DnChetrd
-      DnChetrd = hipsolverDnChetrd_raw(handle, uplo, n, c_loc(A(1)), lda, c_loc(D(1)), c_loc(E( &
-        1)), c_loc(tau(1)), c_loc(work(1)), lwork, c_loc(devInfo(1)))
+      DnChetrd = hipsolverDnChetrd_raw(handle, uplo, n, c_loc(A), lda, c_loc(D), c_loc(E), c_loc( &
+        tau), work, lwork, c_loc(devInfo))
     end function hipsolverDnChetrd_native
 
     function hipsolverDnChetrd_typed(handle, uplo, n, A, lda, D, E, tau, work, lwork, &
@@ -33568,17 +33265,17 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: uplo
       integer(c_int), value :: n
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: A(..)
       integer(c_int), value :: lda
-      real(c_double), target :: D(*)
-      real(c_double), target :: E(*)
-      complex(c_double_complex), target :: tau(*)
-      complex(c_double_complex), target :: work(*)
+      real(c_double), target :: D(..)
+      real(c_double), target :: E(..)
+      complex(c_double_complex), target :: tau(..)
+      type(c_ptr), value :: work
       integer(c_int), value :: lwork
-      integer(c_int), target :: devInfo(*)
+      integer(c_int), target :: devInfo(..)
       integer(c_int) :: DnZhetrd
-      DnZhetrd = hipsolverDnZhetrd_raw(handle, uplo, n, c_loc(A(1)), lda, c_loc(D(1)), c_loc(E( &
-        1)), c_loc(tau(1)), c_loc(work(1)), lwork, c_loc(devInfo(1)))
+      DnZhetrd = hipsolverDnZhetrd_raw(handle, uplo, n, c_loc(A), lda, c_loc(D), c_loc(E), c_loc( &
+        tau), work, lwork, c_loc(devInfo))
     end function hipsolverDnZhetrd_native
 
     function hipsolverDnZhetrd_typed(handle, uplo, n, A, lda, D, E, tau, work, lwork, &
@@ -33607,12 +33304,11 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_int), value :: n
-      real(c_float), target :: A(*)
+      real(c_float), target :: A(..)
       integer(c_int), value :: lda
-      integer(c_int), target :: lwork(*)
+      integer(c_int), target :: lwork(..)
       integer(c_int) :: DnSsytrf_bufferSize
-      DnSsytrf_bufferSize = hipsolverDnSsytrf_bufferSize_raw(handle, n, c_loc(A(1)), lda, c_loc( &
-        lwork(1)))
+      DnSsytrf_bufferSize = hipsolverDnSsytrf_bufferSize_raw(handle, n, c_loc(A), lda, c_loc(lwork))
     end function hipsolverDnSsytrf_bufferSize_native
 
     function hipsolverDnSsytrf_bufferSize_typed(handle, n, A, lda, lwork) result( &
@@ -33635,12 +33331,11 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_int), value :: n
-      real(c_double), target :: A(*)
+      real(c_double), target :: A(..)
       integer(c_int), value :: lda
-      integer(c_int), target :: lwork(*)
+      integer(c_int), target :: lwork(..)
       integer(c_int) :: DnDsytrf_bufferSize
-      DnDsytrf_bufferSize = hipsolverDnDsytrf_bufferSize_raw(handle, n, c_loc(A(1)), lda, c_loc( &
-        lwork(1)))
+      DnDsytrf_bufferSize = hipsolverDnDsytrf_bufferSize_raw(handle, n, c_loc(A), lda, c_loc(lwork))
     end function hipsolverDnDsytrf_bufferSize_native
 
     function hipsolverDnDsytrf_bufferSize_typed(handle, n, A, lda, lwork) result( &
@@ -33663,12 +33358,11 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_int), value :: n
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: A(..)
       integer(c_int), value :: lda
-      integer(c_int), target :: lwork(*)
+      integer(c_int), target :: lwork(..)
       integer(c_int) :: DnCsytrf_bufferSize
-      DnCsytrf_bufferSize = hipsolverDnCsytrf_bufferSize_raw(handle, n, c_loc(A(1)), lda, c_loc( &
-        lwork(1)))
+      DnCsytrf_bufferSize = hipsolverDnCsytrf_bufferSize_raw(handle, n, c_loc(A), lda, c_loc(lwork))
     end function hipsolverDnCsytrf_bufferSize_native
 
     function hipsolverDnCsytrf_bufferSize_typed(handle, n, A, lda, lwork) result( &
@@ -33691,12 +33385,11 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_int), value :: n
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: A(..)
       integer(c_int), value :: lda
-      integer(c_int), target :: lwork(*)
+      integer(c_int), target :: lwork(..)
       integer(c_int) :: DnZsytrf_bufferSize
-      DnZsytrf_bufferSize = hipsolverDnZsytrf_bufferSize_raw(handle, n, c_loc(A(1)), lda, c_loc( &
-        lwork(1)))
+      DnZsytrf_bufferSize = hipsolverDnZsytrf_bufferSize_raw(handle, n, c_loc(A), lda, c_loc(lwork))
     end function hipsolverDnZsytrf_bufferSize_native
 
     function hipsolverDnZsytrf_bufferSize_typed(handle, n, A, lda, lwork) result( &
@@ -33720,15 +33413,15 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: uplo
       integer(c_int), value :: n
-      real(c_float), target :: A(*)
+      real(c_float), target :: A(..)
       integer(c_int), value :: lda
-      integer(c_int), target :: ipiv(*)
-      real(c_float), target :: work(*)
+      integer(c_int), target :: ipiv(..)
+      type(c_ptr), value :: work
       integer(c_int), value :: lwork
-      integer(c_int), target :: devInfo(*)
+      integer(c_int), target :: devInfo(..)
       integer(c_int) :: DnSsytrf
-      DnSsytrf = hipsolverDnSsytrf_raw(handle, uplo, n, c_loc(A(1)), lda, c_loc(ipiv(1)), c_loc( &
-        work(1)), lwork, c_loc(devInfo(1)))
+      DnSsytrf = hipsolverDnSsytrf_raw(handle, uplo, n, c_loc(A), lda, c_loc(ipiv), work, lwork, &
+        c_loc(devInfo))
     end function hipsolverDnSsytrf_native
 
     function hipsolverDnSsytrf_typed(handle, uplo, n, A, lda, ipiv, work, lwork, devInfo) result( &
@@ -33756,15 +33449,15 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: uplo
       integer(c_int), value :: n
-      real(c_double), target :: A(*)
+      real(c_double), target :: A(..)
       integer(c_int), value :: lda
-      integer(c_int), target :: ipiv(*)
-      real(c_double), target :: work(*)
+      integer(c_int), target :: ipiv(..)
+      type(c_ptr), value :: work
       integer(c_int), value :: lwork
-      integer(c_int), target :: devInfo(*)
+      integer(c_int), target :: devInfo(..)
       integer(c_int) :: DnDsytrf
-      DnDsytrf = hipsolverDnDsytrf_raw(handle, uplo, n, c_loc(A(1)), lda, c_loc(ipiv(1)), c_loc( &
-        work(1)), lwork, c_loc(devInfo(1)))
+      DnDsytrf = hipsolverDnDsytrf_raw(handle, uplo, n, c_loc(A), lda, c_loc(ipiv), work, lwork, &
+        c_loc(devInfo))
     end function hipsolverDnDsytrf_native
 
     function hipsolverDnDsytrf_typed(handle, uplo, n, A, lda, ipiv, work, lwork, devInfo) result( &
@@ -33792,15 +33485,15 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: uplo
       integer(c_int), value :: n
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: A(..)
       integer(c_int), value :: lda
-      integer(c_int), target :: ipiv(*)
-      complex(c_float_complex), target :: work(*)
+      integer(c_int), target :: ipiv(..)
+      type(c_ptr), value :: work
       integer(c_int), value :: lwork
-      integer(c_int), target :: devInfo(*)
+      integer(c_int), target :: devInfo(..)
       integer(c_int) :: DnCsytrf
-      DnCsytrf = hipsolverDnCsytrf_raw(handle, uplo, n, c_loc(A(1)), lda, c_loc(ipiv(1)), c_loc( &
-        work(1)), lwork, c_loc(devInfo(1)))
+      DnCsytrf = hipsolverDnCsytrf_raw(handle, uplo, n, c_loc(A), lda, c_loc(ipiv), work, lwork, &
+        c_loc(devInfo))
     end function hipsolverDnCsytrf_native
 
     function hipsolverDnCsytrf_typed(handle, uplo, n, A, lda, ipiv, work, lwork, devInfo) result( &
@@ -33828,15 +33521,15 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: uplo
       integer(c_int), value :: n
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: A(..)
       integer(c_int), value :: lda
-      integer(c_int), target :: ipiv(*)
-      complex(c_double_complex), target :: work(*)
+      integer(c_int), target :: ipiv(..)
+      type(c_ptr), value :: work
       integer(c_int), value :: lwork
-      integer(c_int), target :: devInfo(*)
+      integer(c_int), target :: devInfo(..)
       integer(c_int) :: DnZsytrf
-      DnZsytrf = hipsolverDnZsytrf_raw(handle, uplo, n, c_loc(A(1)), lda, c_loc(ipiv(1)), c_loc( &
-        work(1)), lwork, c_loc(devInfo(1)))
+      DnZsytrf = hipsolverDnZsytrf_raw(handle, uplo, n, c_loc(A), lda, c_loc(ipiv), work, lwork, &
+        c_loc(devInfo))
     end function hipsolverDnZsytrf_native
 
     function hipsolverDnZsytrf_typed(handle, uplo, n, A, lda, ipiv, work, lwork, devInfo) result( &
@@ -33914,11 +33607,11 @@ contains
       integer(c_long), value :: lworkOnDevice
       type(c_ptr), value :: workOnHost
       integer(c_long), value :: lworkOnHost
-      integer(c_int), target :: devInfo(*)
+      integer(c_int), target :: devInfo(..)
       integer(c_int) :: DnXgeev
       DnXgeev = hipsolverDnXgeev_raw(handle, params, jobvl, jobvr, n, dataTypeA, A, lda, &
         dataTypeW, W, dataTypeVL, VL, ldvl, dataTypeVR, VR, ldvr, computeType, workOnDevice, &
-        lworkOnDevice, workOnHost, lworkOnHost, c_loc(devInfo(1)))
+        lworkOnDevice, workOnHost, lworkOnHost, c_loc(devInfo))
     end function hipsolverDnXgeev_native
 
     function hipsolverDnXgeev_typed(handle, params, jobvl, jobvr, n, dataTypeA, A, lda, dataTypeW, &
@@ -33995,10 +33688,10 @@ contains
       integer(c_long), value :: lworkOnDevice
       type(c_ptr), value :: workOnHost
       integer(c_long), value :: lworkOnHost
-      integer(c_int), target :: devInfo(*)
+      integer(c_int), target :: devInfo(..)
       integer(c_int) :: DnXgeqrf
       DnXgeqrf = hipsolverDnXgeqrf_raw(handle, params, m, n, dataTypeA, A, lda, dataTypeTau, tau, &
-        computeType, workOnDevice, lworkOnDevice, workOnHost, lworkOnHost, c_loc(devInfo(1)))
+        computeType, workOnDevice, lworkOnDevice, workOnHost, lworkOnHost, c_loc(devInfo))
     end function hipsolverDnXgeqrf_native
 
     function hipsolverDnXgeqrf_typed(handle, params, m, n, dataTypeA, A, lda, dataTypeTau, tau, &
@@ -34046,29 +33739,6 @@ contains
         A, lda, computeType, lworkOnDevice, lworkOnHost)
     end function hipsolverDnXgetrf_bufferSize_typed
 
-    function hipsolverDnXgetrf_native(handle, params, m, n, dataTypeA, A, lda, devIpiv, &
-        computeType, workOnDevice, lworkOnDevice, workOnHost, lworkOnHost, devInfo) result(DnXgetrf)
-      use, intrinsic :: iso_c_binding
-      implicit none
-      type(c_ptr), value :: handle
-      type(c_ptr), value :: params
-      integer(c_long), value :: m
-      integer(c_long), value :: n
-      integer(c_int), value :: dataTypeA
-      type(c_ptr), value :: A
-      integer(c_long), value :: lda
-      type(c_ptr), value :: devIpiv
-      integer(c_int), value :: computeType
-      type(c_ptr), value :: workOnDevice
-      integer(c_long), value :: lworkOnDevice
-      type(c_ptr), value :: workOnHost
-      integer(c_long), value :: lworkOnHost
-      integer(c_int), target :: devInfo(*)
-      integer(c_int) :: DnXgetrf
-      DnXgetrf = hipsolverDnXgetrf_raw(handle, params, m, n, dataTypeA, A, lda, devIpiv, &
-        computeType, workOnDevice, lworkOnDevice, workOnHost, lworkOnHost, c_loc(devInfo(1)))
-    end function hipsolverDnXgetrf_native
-
     function hipsolverDnXgetrf_typed(handle, params, m, n, dataTypeA, A, lda, devIpiv, &
         computeType, workOnDevice, lworkOnDevice, workOnHost, lworkOnHost, devInfo) result(DnXgetrf)
       use, intrinsic :: iso_c_binding
@@ -34087,33 +33757,11 @@ contains
       integer(c_long), value :: lworkOnDevice
       type(c_ptr), value :: workOnHost
       integer(c_long), value :: lworkOnHost
-      type(c_ptr), value :: devInfo
+      integer(c_int) :: devInfo
       integer(c_int) :: DnXgetrf
       DnXgetrf = hipsolverDnXgetrf_raw(handle%ptr, params, m, n, dataTypeA, A, lda, devIpiv, &
         computeType, workOnDevice, lworkOnDevice, workOnHost, lworkOnHost, devInfo)
     end function hipsolverDnXgetrf_typed
-
-    function hipsolverDnXgetrs_native(handle, params, trans, n, nrhs, dataTypeA, A, lda, devIpiv, &
-        dataTypeB, B, ldb, devInfo) result(DnXgetrs)
-      use, intrinsic :: iso_c_binding
-      implicit none
-      type(c_ptr), value :: handle
-      type(c_ptr), value :: params
-      integer(c_int), value :: trans
-      integer(c_long), value :: n
-      integer(c_long), value :: nrhs
-      integer(c_int), value :: dataTypeA
-      type(c_ptr), value :: A
-      integer(c_long), value :: lda
-      type(c_ptr), value :: devIpiv
-      integer(c_int), value :: dataTypeB
-      type(c_ptr), value :: B
-      integer(c_long), value :: ldb
-      integer(c_int), target :: devInfo(*)
-      integer(c_int) :: DnXgetrs
-      DnXgetrs = hipsolverDnXgetrs_raw(handle, params, trans, n, nrhs, dataTypeA, A, lda, devIpiv, &
-        dataTypeB, B, ldb, c_loc(devInfo(1)))
-    end function hipsolverDnXgetrs_native
 
     function hipsolverDnXgetrs_typed(handle, params, trans, n, nrhs, dataTypeA, A, lda, devIpiv, &
         dataTypeB, B, ldb, devInfo) result(DnXgetrs)
@@ -34132,7 +33780,7 @@ contains
       integer(c_int), value :: dataTypeB
       type(c_ptr), value :: B
       integer(c_long), value :: ldb
-      type(c_ptr), value :: devInfo
+      integer(c_int) :: devInfo
       integer(c_int) :: DnXgetrs
       DnXgetrs = hipsolverDnXgetrs_raw(handle%ptr, params, trans, n, nrhs, dataTypeA, A, lda, &
         devIpiv, dataTypeB, B, ldb, devInfo)
@@ -34174,10 +33822,10 @@ contains
       integer(c_long), value :: lworkOnDevice
       type(c_ptr), value :: workOnHost
       integer(c_long), value :: lworkOnHost
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int) :: DnXpotrf
       DnXpotrf = hipsolverDnXpotrf_raw(handle, params, uplo, n, dataTypeA, A, lda, computeType, &
-        workOnDevice, lworkOnDevice, workOnHost, lworkOnHost, c_loc(info(1)))
+        workOnDevice, lworkOnDevice, workOnHost, lworkOnHost, c_loc(info))
     end function hipsolverDnXpotrf_native
 
     function hipsolverDnXpotrf_typed(handle, params, uplo, n, dataTypeA, A, lda, computeType, &
@@ -34218,10 +33866,10 @@ contains
       integer(c_int), value :: dataTypeB
       type(c_ptr), value :: B
       integer(c_long), value :: ldb
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int) :: DnXpotrs
       DnXpotrs = hipsolverDnXpotrs_raw(handle, params, uplo, n, nrhs, dataTypeA, A, lda, &
-        dataTypeB, B, ldb, c_loc(info(1)))
+        dataTypeB, B, ldb, c_loc(info))
     end function hipsolverDnXpotrs_native
 
     function hipsolverDnXpotrs_typed(handle, params, uplo, n, nrhs, dataTypeA, A, lda, dataTypeB, &
@@ -34289,11 +33937,11 @@ contains
       integer(c_long), value :: lworkOnDevice
       type(c_ptr), value :: workOnHost
       integer(c_long), value :: lworkOnHost
-      integer(c_int), target :: devInfo(*)
+      integer(c_int), target :: devInfo(..)
       integer(c_int) :: DnXsyevd
       DnXsyevd = hipsolverDnXsyevd_raw(handle, params, jobz, uplo, n, dataTypeA, A, lda, &
         dataTypeW, W, computeType, workOnDevice, lworkOnDevice, workOnHost, lworkOnHost, c_loc( &
-        devInfo(1)))
+        devInfo))
     end function hipsolverDnXsyevd_native
 
     function hipsolverDnXsyevd_typed(handle, params, jobz, uplo, n, dataTypeA, A, lda, dataTypeW, &
@@ -34369,12 +34017,12 @@ contains
       integer(c_long), value :: lworkOnDevice
       type(c_ptr), value :: workOnHost
       integer(c_long), value :: lworkOnHost
-      integer(c_int), target :: devInfo(*)
+      integer(c_int), target :: devInfo(..)
       integer(c_long), value :: batchSize
       integer(c_int) :: DnXsyevBatched
       DnXsyevBatched = hipsolverDnXsyevBatched_raw(handle, params, jobz, uplo, n, dataTypeA, A, &
         lda, dataTypeW, W, computeType, workOnDevice, lworkOnDevice, workOnHost, lworkOnHost, &
-        c_loc(devInfo(1)), batchSize)
+        c_loc(devInfo), batchSize)
     end function hipsolverDnXsyevBatched_native
 
     function hipsolverDnXsyevBatched_typed(handle, params, jobz, uplo, n, dataTypeA, A, lda, &
@@ -34449,10 +34097,10 @@ contains
       integer(c_long), value :: lworkOnDevice
       type(c_ptr), value :: workOnHost
       integer(c_long), value :: lworkOnHost
-      integer(c_int), target :: devInfo(*)
+      integer(c_int), target :: devInfo(..)
       integer(c_int) :: DnXsytrs
       DnXsytrs = hipsolverDnXsytrs_raw(handle, uplo, n, nrhs, dataTypeA, A, lda, devIpiv, &
-        dataTypeB, B, ldb, workOnDevice, lworkOnDevice, workOnHost, lworkOnHost, c_loc(devInfo(1)))
+        dataTypeB, B, ldb, workOnDevice, lworkOnDevice, workOnHost, lworkOnHost, c_loc(devInfo))
     end function hipsolverDnXsytrs_native
 
     function hipsolverDnXsytrs_typed(handle, uplo, n, nrhs, dataTypeA, A, lda, devIpiv, dataTypeB, &
@@ -34506,25 +34154,24 @@ contains
       implicit none
       integer(c_int), value :: n
       integer(c_int), value :: nnzA
-      integer(c_int), target :: csrRowPtrA(*)
-      integer(c_int), target :: csrColIndA(*)
-      real(c_double), target :: csrValA(*)
+      integer(c_int), target :: csrRowPtrA(..)
+      integer(c_int), target :: csrColIndA(..)
+      real(c_double), target :: csrValA(..)
       integer(c_int), value :: nnzL
-      integer(c_int), target :: csrRowPtrL(*)
-      integer(c_int), target :: csrColIndL(*)
-      real(c_double), target :: csrValL(*)
+      integer(c_int), target :: csrRowPtrL(..)
+      integer(c_int), target :: csrColIndL(..)
+      real(c_double), target :: csrValL(..)
       integer(c_int), value :: nnzU
-      integer(c_int), target :: csrRowPtrU(*)
-      integer(c_int), target :: csrColIndU(*)
-      real(c_double), target :: csrValU(*)
-      integer(c_int), target :: P(*)
-      integer(c_int), target :: Q(*)
+      integer(c_int), target :: csrRowPtrU(..)
+      integer(c_int), target :: csrColIndU(..)
+      real(c_double), target :: csrValU(..)
+      integer(c_int), target :: P(..)
+      integer(c_int), target :: Q(..)
       type(c_ptr), value :: handle
       integer(c_int) :: RfSetupDevice
-      RfSetupDevice = hipsolverRfSetupDevice_raw(n, nnzA, c_loc(csrRowPtrA(1)), c_loc(csrColIndA( &
-        1)), c_loc(csrValA(1)), nnzL, c_loc(csrRowPtrL(1)), c_loc(csrColIndL(1)), c_loc(csrValL( &
-        1)), nnzU, c_loc(csrRowPtrU(1)), c_loc(csrColIndU(1)), c_loc(csrValU(1)), c_loc(P(1)), &
-        c_loc(Q(1)), handle)
+      RfSetupDevice = hipsolverRfSetupDevice_raw(n, nnzA, c_loc(csrRowPtrA), c_loc(csrColIndA), &
+        c_loc(csrValA), nnzL, c_loc(csrRowPtrL), c_loc(csrColIndL), c_loc(csrValL), nnzU, c_loc( &
+        csrRowPtrU), c_loc(csrColIndU), c_loc(csrValU), c_loc(P), c_loc(Q), handle)
     end function hipsolverRfSetupDevice_native
 
     function hipsolverRfSetupDevice_typed(n, nnzA, csrRowPtrA, csrColIndA, csrValA, nnzL, &
@@ -34561,25 +34208,24 @@ contains
       implicit none
       integer(c_int), value :: n
       integer(c_int), value :: nnzA
-      integer(c_int), target :: h_csrRowPtrA(*)
-      integer(c_int), target :: h_csrColIndA(*)
-      real(c_double), target :: h_csrValA(*)
+      integer(c_int), target :: h_csrRowPtrA(..)
+      integer(c_int), target :: h_csrColIndA(..)
+      real(c_double), target :: h_csrValA(..)
       integer(c_int), value :: nnzL
-      integer(c_int), target :: h_csrRowPtrL(*)
-      integer(c_int), target :: h_csrColIndL(*)
-      real(c_double), target :: h_csrValL(*)
+      integer(c_int), target :: h_csrRowPtrL(..)
+      integer(c_int), target :: h_csrColIndL(..)
+      real(c_double), target :: h_csrValL(..)
       integer(c_int), value :: nnzU
-      integer(c_int), target :: h_csrRowPtrU(*)
-      integer(c_int), target :: h_csrColIndU(*)
-      real(c_double), target :: h_csrValU(*)
-      integer(c_int), target :: h_P(*)
-      integer(c_int), target :: h_Q(*)
+      integer(c_int), target :: h_csrRowPtrU(..)
+      integer(c_int), target :: h_csrColIndU(..)
+      real(c_double), target :: h_csrValU(..)
+      integer(c_int), target :: h_P(..)
+      integer(c_int), target :: h_Q(..)
       type(c_ptr), value :: handle
       integer(c_int) :: RfSetupHost
-      RfSetupHost = hipsolverRfSetupHost_raw(n, nnzA, c_loc(h_csrRowPtrA(1)), c_loc(h_csrColIndA( &
-        1)), c_loc(h_csrValA(1)), nnzL, c_loc(h_csrRowPtrL(1)), c_loc(h_csrColIndL(1)), c_loc( &
-        h_csrValL(1)), nnzU, c_loc(h_csrRowPtrU(1)), c_loc(h_csrColIndU(1)), c_loc(h_csrValU(1)), &
-        c_loc(h_P(1)), c_loc(h_Q(1)), handle)
+      RfSetupHost = hipsolverRfSetupHost_raw(n, nnzA, c_loc(h_csrRowPtrA), c_loc(h_csrColIndA), &
+        c_loc(h_csrValA), nnzL, c_loc(h_csrRowPtrL), c_loc(h_csrColIndL), c_loc(h_csrValL), nnzU, &
+        c_loc(h_csrRowPtrU), c_loc(h_csrColIndU), c_loc(h_csrValU), c_loc(h_P), c_loc(h_Q), handle)
     end function hipsolverRfSetupHost_native
 
     function hipsolverRfSetupHost_typed(n, nnzA, h_csrRowPtrA, h_csrColIndA, h_csrValA, nnzL, &
@@ -34672,10 +34318,10 @@ contains
       use, intrinsic :: iso_c_binding
       implicit none
       type(c_ptr), value :: handle
-      integer(c_int), target :: fact_alg(*)
-      integer(c_int), target :: solve_alg(*)
+      integer(c_int), target :: fact_alg(..)
+      integer(c_int), target :: solve_alg(..)
       integer(c_int) :: RfGet_Algs
-      RfGet_Algs = hipsolverRfGet_Algs_raw(handle, c_loc(fact_alg(1)), c_loc(solve_alg(1)))
+      RfGet_Algs = hipsolverRfGet_Algs_raw(handle, c_loc(fact_alg), c_loc(solve_alg))
     end function hipsolverRfGet_Algs_native
 
     function hipsolverRfGet_Algs_typed(handle, fact_alg, solve_alg) result(RfGet_Algs)
@@ -34689,34 +34335,34 @@ contains
       RfGet_Algs = hipsolverRfGet_Algs_raw(handle%ptr, fact_alg, solve_alg)
     end function hipsolverRfGet_Algs_typed
 
-    function hipsolverRfGetMatrixFormat_native(handle, format, diag) result(RfGetMatrixFormat)
+    function hipsolverRfGetMatrixFormat_native(handle, format_, diag) result(RfGetMatrixFormat)
       use, intrinsic :: iso_c_binding
       implicit none
       type(c_ptr), value :: handle
-      integer(c_int), target :: format(*)
-      integer(c_int), target :: diag(*)
+      integer(c_int), target :: format_(..)
+      integer(c_int), target :: diag(..)
       integer(c_int) :: RfGetMatrixFormat
-      RfGetMatrixFormat = hipsolverRfGetMatrixFormat_raw(handle, c_loc(format(1)), c_loc(diag(1)))
+      RfGetMatrixFormat = hipsolverRfGetMatrixFormat_raw(handle, c_loc(format_), c_loc(diag))
     end function hipsolverRfGetMatrixFormat_native
 
-    function hipsolverRfGetMatrixFormat_typed(handle, format, diag) result(RfGetMatrixFormat)
+    function hipsolverRfGetMatrixFormat_typed(handle, format_, diag) result(RfGetMatrixFormat)
       use, intrinsic :: iso_c_binding
       use hipfort_handles
       implicit none
       type(hipsolverRfHandle_t), value :: handle
-      type(c_ptr), value :: format
+      type(c_ptr), value :: format_
       type(c_ptr), value :: diag
       integer(c_int) :: RfGetMatrixFormat
-      RfGetMatrixFormat = hipsolverRfGetMatrixFormat_raw(handle%ptr, format, diag)
+      RfGetMatrixFormat = hipsolverRfGetMatrixFormat_raw(handle%ptr, format_, diag)
     end function hipsolverRfGetMatrixFormat_typed
 
     function hipsolverRfGetNumericBoostReport_native(handle, report) result(RfGetNumericBoostReport)
       use, intrinsic :: iso_c_binding
       implicit none
       type(c_ptr), value :: handle
-      integer(c_int), target :: report(*)
+      integer(c_int), target :: report(..)
       integer(c_int) :: RfGetNumericBoostReport
-      RfGetNumericBoostReport = hipsolverRfGetNumericBoostReport_raw(handle, c_loc(report(1)))
+      RfGetNumericBoostReport = hipsolverRfGetNumericBoostReport_raw(handle, c_loc(report))
     end function hipsolverRfGetNumericBoostReport_native
 
     function hipsolverRfGetNumericBoostReport_typed(handle, report) result(RfGetNumericBoostReport)
@@ -34729,17 +34375,6 @@ contains
       RfGetNumericBoostReport = hipsolverRfGetNumericBoostReport_raw(handle%ptr, report)
     end function hipsolverRfGetNumericBoostReport_typed
 
-    function hipsolverRfGetNumericProperties_native(handle, zero, boost) result( &
-        RfGetNumericProperties)
-      use, intrinsic :: iso_c_binding
-      implicit none
-      type(c_ptr), value :: handle
-      real(c_double) :: zero
-      real(c_double), target :: boost(*)
-      integer(c_int) :: RfGetNumericProperties
-      RfGetNumericProperties = hipsolverRfGetNumericProperties_raw(handle, zero, c_loc(boost(1)))
-    end function hipsolverRfGetNumericProperties_native
-
     function hipsolverRfGetNumericProperties_typed(handle, zero, boost) result( &
         RfGetNumericProperties)
       use, intrinsic :: iso_c_binding
@@ -34747,7 +34382,7 @@ contains
       implicit none
       type(hipsolverRfHandle_t), value :: handle
       real(c_double) :: zero
-      type(c_ptr), value :: boost
+      real(c_double) :: boost
       integer(c_int) :: RfGetNumericProperties
       RfGetNumericProperties = hipsolverRfGetNumericProperties_raw(handle%ptr, zero, boost)
     end function hipsolverRfGetNumericProperties_typed
@@ -34757,9 +34392,9 @@ contains
       use, intrinsic :: iso_c_binding
       implicit none
       type(c_ptr), value :: handle
-      integer(c_int), target :: fastMode(*)
+      integer(c_int), target :: fastMode(..)
       integer(c_int) :: RfGetResetValuesFastMode
-      RfGetResetValuesFastMode = hipsolverRfGetResetValuesFastMode_raw(handle, c_loc(fastMode(1)))
+      RfGetResetValuesFastMode = hipsolverRfGetResetValuesFastMode_raw(handle, c_loc(fastMode))
     end function hipsolverRfGetResetValuesFastMode_native
 
     function hipsolverRfGetResetValuesFastMode_typed(handle, fastMode) result( &
@@ -34788,15 +34423,15 @@ contains
       implicit none
       integer(c_int), value :: n
       integer(c_int), value :: nnzA
-      integer(c_int), target :: csrRowPtrA(*)
-      integer(c_int), target :: csrColIndA(*)
-      real(c_double), target :: csrValA(*)
-      integer(c_int), target :: P(*)
-      integer(c_int), target :: Q(*)
+      integer(c_int), target :: csrRowPtrA(..)
+      integer(c_int), target :: csrColIndA(..)
+      real(c_double), target :: csrValA(..)
+      integer(c_int), target :: P(..)
+      integer(c_int), target :: Q(..)
       type(c_ptr), value :: handle
       integer(c_int) :: RfResetValues
-      RfResetValues = hipsolverRfResetValues_raw(n, nnzA, c_loc(csrRowPtrA(1)), c_loc(csrColIndA( &
-        1)), c_loc(csrValA(1)), c_loc(P(1)), c_loc(Q(1)), handle)
+      RfResetValues = hipsolverRfResetValues_raw(n, nnzA, c_loc(csrRowPtrA), c_loc(csrColIndA), &
+        c_loc(csrValA), c_loc(P), c_loc(Q), handle)
     end function hipsolverRfResetValues_native
 
     function hipsolverRfResetValues_typed(n, nnzA, csrRowPtrA, csrColIndA, csrValA, P, Q, &
@@ -34828,15 +34463,15 @@ contains
       RfSetAlgs = hipsolverRfSetAlgs_raw(handle%ptr, fact_alg, solve_alg)
     end function hipsolverRfSetAlgs_typed
 
-    function hipsolverRfSetMatrixFormat_typed(handle, format, diag) result(RfSetMatrixFormat)
+    function hipsolverRfSetMatrixFormat_typed(handle, format_, diag) result(RfSetMatrixFormat)
       use, intrinsic :: iso_c_binding
       use hipfort_handles
       implicit none
       type(hipsolverRfHandle_t), value :: handle
-      integer(c_int), value :: format
+      integer(c_int), value :: format_
       integer(c_int), value :: diag
       integer(c_int) :: RfSetMatrixFormat
-      RfSetMatrixFormat = hipsolverRfSetMatrixFormat_raw(handle%ptr, format, diag)
+      RfSetMatrixFormat = hipsolverRfSetMatrixFormat_raw(handle%ptr, format_, diag)
     end function hipsolverRfSetMatrixFormat_typed
 
     function hipsolverRfSetNumericProperties_typed(handle, effective_zero, boost_val) result( &
@@ -34867,16 +34502,16 @@ contains
       use, intrinsic :: iso_c_binding
       implicit none
       type(c_ptr), value :: handle
-      integer(c_int), target :: P(*)
-      integer(c_int), target :: Q(*)
+      integer(c_int), target :: P(..)
+      integer(c_int), target :: Q(..)
       integer(c_int), value :: nrhs
-      real(c_double), target :: Temp(*)
+      real(c_double), target :: Temp(..)
       integer(c_int), value :: ldt
-      real(c_double), target :: XF(*)
+      real(c_double), target :: XF(..)
       integer(c_int), value :: ldxf
       integer(c_int) :: RfSolve
-      RfSolve = hipsolverRfSolve_raw(handle, c_loc(P(1)), c_loc(Q(1)), nrhs, c_loc(Temp(1)), ldt, &
-        c_loc(XF(1)), ldxf)
+      RfSolve = hipsolverRfSolve_raw(handle, c_loc(P), c_loc(Q), nrhs, c_loc(Temp), ldt, c_loc( &
+        XF), ldxf)
     end function hipsolverRfSolve_native
 
     function hipsolverRfSolve_typed(handle, P, Q, nrhs, Temp, ldt, XF, ldxf) result(RfSolve)
@@ -34903,25 +34538,25 @@ contains
       integer(c_int), value :: batchSize
       integer(c_int), value :: n
       integer(c_int), value :: nnzA
-      integer(c_int), target :: h_csrRowPtrA(*)
-      integer(c_int), target :: h_csrColIndA(*)
+      integer(c_int), target :: h_csrRowPtrA(..)
+      integer(c_int), target :: h_csrColIndA(..)
       type(c_ptr), value :: h_csrValA_array
       integer(c_int), value :: nnzL
-      integer(c_int), target :: h_csrRowPtrL(*)
-      integer(c_int), target :: h_csrColIndL(*)
-      real(c_double), target :: h_csrValL(*)
+      integer(c_int), target :: h_csrRowPtrL(..)
+      integer(c_int), target :: h_csrColIndL(..)
+      real(c_double), target :: h_csrValL(..)
       integer(c_int), value :: nnzU
-      integer(c_int), target :: h_csrRowPtrU(*)
-      integer(c_int), target :: h_csrColIndU(*)
-      real(c_double), target :: h_csrValU(*)
-      integer(c_int), target :: h_P(*)
-      integer(c_int), target :: h_Q(*)
+      integer(c_int), target :: h_csrRowPtrU(..)
+      integer(c_int), target :: h_csrColIndU(..)
+      real(c_double), target :: h_csrValU(..)
+      integer(c_int), target :: h_P(..)
+      integer(c_int), target :: h_Q(..)
       type(c_ptr), value :: handle
       integer(c_int) :: RfBatchSetupHost
-      RfBatchSetupHost = hipsolverRfBatchSetupHost_raw(batchSize, n, nnzA, c_loc(h_csrRowPtrA(1)), &
-        c_loc(h_csrColIndA(1)), h_csrValA_array, nnzL, c_loc(h_csrRowPtrL(1)), c_loc(h_csrColIndL( &
-        1)), c_loc(h_csrValL(1)), nnzU, c_loc(h_csrRowPtrU(1)), c_loc(h_csrColIndU(1)), c_loc( &
-        h_csrValU(1)), c_loc(h_P(1)), c_loc(h_Q(1)), handle)
+      RfBatchSetupHost = hipsolverRfBatchSetupHost_raw(batchSize, n, nnzA, c_loc(h_csrRowPtrA), &
+        c_loc(h_csrColIndA), h_csrValA_array, nnzL, c_loc(h_csrRowPtrL), c_loc(h_csrColIndL), &
+        c_loc(h_csrValL), nnzU, c_loc(h_csrRowPtrU), c_loc(h_csrColIndU), c_loc(h_csrValU), c_loc( &
+        h_P), c_loc(h_Q), handle)
     end function hipsolverRfBatchSetupHost_native
 
     function hipsolverRfBatchSetupHost_typed(batchSize, n, nnzA, h_csrRowPtrA, h_csrColIndA, &
@@ -34978,15 +34613,15 @@ contains
       integer(c_int), value :: batchSize
       integer(c_int), value :: n
       integer(c_int), value :: nnzA
-      integer(c_int), target :: csrRowPtrA(*)
-      integer(c_int), target :: csrColIndA(*)
+      integer(c_int), target :: csrRowPtrA(..)
+      integer(c_int), target :: csrColIndA(..)
       type(c_ptr), value :: csrValA_array
-      integer(c_int), target :: P(*)
-      integer(c_int), target :: Q(*)
+      integer(c_int), target :: P(..)
+      integer(c_int), target :: Q(..)
       type(c_ptr), value :: handle
       integer(c_int) :: RfBatchResetValues
-      RfBatchResetValues = hipsolverRfBatchResetValues_raw(batchSize, n, nnzA, c_loc(csrRowPtrA( &
-        1)), c_loc(csrColIndA(1)), csrValA_array, c_loc(P(1)), c_loc(Q(1)), handle)
+      RfBatchResetValues = hipsolverRfBatchResetValues_raw(batchSize, n, nnzA, c_loc(csrRowPtrA), &
+        c_loc(csrColIndA), csrValA_array, c_loc(P), c_loc(Q), handle)
     end function hipsolverRfBatchResetValues_native
 
     function hipsolverRfBatchResetValues_typed(batchSize, n, nnzA, csrRowPtrA, csrColIndA, &
@@ -35013,16 +34648,16 @@ contains
       use, intrinsic :: iso_c_binding
       implicit none
       type(c_ptr), value :: handle
-      integer(c_int), target :: P(*)
-      integer(c_int), target :: Q(*)
+      integer(c_int), target :: P(..)
+      integer(c_int), target :: Q(..)
       integer(c_int), value :: nrhs
-      real(c_double), target :: Temp(*)
+      real(c_double), target :: Temp(..)
       integer(c_int), value :: ldt
       type(c_ptr), value :: XF_array
       integer(c_int), value :: ldxf
       integer(c_int) :: RfBatchSolve
-      RfBatchSolve = hipsolverRfBatchSolve_raw(handle, c_loc(P(1)), c_loc(Q(1)), nrhs, c_loc(Temp( &
-        1)), ldt, XF_array, ldxf)
+      RfBatchSolve = hipsolverRfBatchSolve_raw(handle, c_loc(P), c_loc(Q), nrhs, c_loc(Temp), ldt, &
+        XF_array, ldxf)
     end function hipsolverRfBatchSolve_native
 
     function hipsolverRfBatchSolve_typed(handle, P, Q, nrhs, Temp, ldt, XF_array, ldxf) result( &
@@ -35046,9 +34681,9 @@ contains
       use, intrinsic :: iso_c_binding
       implicit none
       type(c_ptr), value :: handle
-      integer(c_int), target :: position(*)
+      integer(c_int), target :: position(..)
       integer(c_int) :: RfBatchZeroPivot
-      RfBatchZeroPivot = hipsolverRfBatchZeroPivot_raw(handle, c_loc(position(1)))
+      RfBatchZeroPivot = hipsolverRfBatchZeroPivot_raw(handle, c_loc(position))
     end function hipsolverRfBatchZeroPivot_native
 
     function hipsolverRfBatchZeroPivot_typed(handle, position) result(RfBatchZeroPivot)
@@ -35097,18 +34732,17 @@ contains
       integer(c_int), value :: n
       integer(c_int), value :: nnzA
       type(c_ptr), value :: descrA
-      real(c_float), target :: csrVal(*)
-      integer(c_int), target :: csrRowPtr(*)
-      integer(c_int), target :: csrColInd(*)
-      real(c_float), target :: b(*)
+      real(c_float), target :: csrVal(..)
+      integer(c_int), target :: csrRowPtr(..)
+      integer(c_int), target :: csrColInd(..)
+      real(c_float), target :: b(..)
       real(c_float), value :: tolerance
       integer(c_int), value :: reorder
-      real(c_float), target :: x(*)
-      integer(c_int), target :: singularity(*)
+      real(c_float), target :: x(..)
+      integer(c_int) :: singularity
       integer(c_int) :: SpScsrlsvchol
-      SpScsrlsvchol = hipsolverSpScsrlsvchol_raw(handle, n, nnzA, descrA, c_loc(csrVal(1)), c_loc( &
-        csrRowPtr(1)), c_loc(csrColInd(1)), c_loc(b(1)), tolerance, reorder, c_loc(x(1)), c_loc( &
-        singularity(1)))
+      SpScsrlsvchol = hipsolverSpScsrlsvchol_raw(handle, n, nnzA, descrA, c_loc(csrVal), c_loc( &
+        csrRowPtr), c_loc(csrColInd), c_loc(b), tolerance, reorder, c_loc(x), singularity)
     end function hipsolverSpScsrlsvchol_native
 
     function hipsolverSpScsrlsvchol_typed(handle, n, nnzA, descrA, csrVal, csrRowPtr, csrColInd, &
@@ -35127,7 +34761,7 @@ contains
       real(c_float), value :: tolerance
       integer(c_int), value :: reorder
       type(c_ptr), value :: x
-      type(c_ptr), value :: singularity
+      integer(c_int) :: singularity
       integer(c_int) :: SpScsrlsvchol
       SpScsrlsvchol = hipsolverSpScsrlsvchol_raw(handle%ptr, n, nnzA, descrA, csrVal, csrRowPtr, &
         csrColInd, b, tolerance, reorder, x, singularity)
@@ -35141,18 +34775,17 @@ contains
       integer(c_int), value :: n
       integer(c_int), value :: nnzA
       type(c_ptr), value :: descrA
-      real(c_double), target :: csrVal(*)
-      integer(c_int), target :: csrRowPtr(*)
-      integer(c_int), target :: csrColInd(*)
-      real(c_double), target :: b(*)
+      real(c_double), target :: csrVal(..)
+      integer(c_int), target :: csrRowPtr(..)
+      integer(c_int), target :: csrColInd(..)
+      real(c_double), target :: b(..)
       real(c_double), value :: tolerance
       integer(c_int), value :: reorder
-      real(c_double), target :: x(*)
-      integer(c_int), target :: singularity(*)
+      real(c_double), target :: x(..)
+      integer(c_int) :: singularity
       integer(c_int) :: SpDcsrlsvchol
-      SpDcsrlsvchol = hipsolverSpDcsrlsvchol_raw(handle, n, nnzA, descrA, c_loc(csrVal(1)), c_loc( &
-        csrRowPtr(1)), c_loc(csrColInd(1)), c_loc(b(1)), tolerance, reorder, c_loc(x(1)), c_loc( &
-        singularity(1)))
+      SpDcsrlsvchol = hipsolverSpDcsrlsvchol_raw(handle, n, nnzA, descrA, c_loc(csrVal), c_loc( &
+        csrRowPtr), c_loc(csrColInd), c_loc(b), tolerance, reorder, c_loc(x), singularity)
     end function hipsolverSpDcsrlsvchol_native
 
     function hipsolverSpDcsrlsvchol_typed(handle, n, nnzA, descrA, csrVal, csrRowPtr, csrColInd, &
@@ -35171,7 +34804,7 @@ contains
       real(c_double), value :: tolerance
       integer(c_int), value :: reorder
       type(c_ptr), value :: x
-      type(c_ptr), value :: singularity
+      integer(c_int) :: singularity
       integer(c_int) :: SpDcsrlsvchol
       SpDcsrlsvchol = hipsolverSpDcsrlsvchol_raw(handle%ptr, n, nnzA, descrA, csrVal, csrRowPtr, &
         csrColInd, b, tolerance, reorder, x, singularity)
@@ -35185,18 +34818,17 @@ contains
       integer(c_int), value :: n
       integer(c_int), value :: nnzA
       type(c_ptr), value :: descrA
-      real(c_float), target :: csrVal(*)
-      integer(c_int), target :: csrRowPtr(*)
-      integer(c_int), target :: csrColInd(*)
-      real(c_float), target :: b(*)
+      real(c_float), target :: csrVal(..)
+      integer(c_int), target :: csrRowPtr(..)
+      integer(c_int), target :: csrColInd(..)
+      real(c_float), target :: b(..)
       real(c_float), value :: tolerance
       integer(c_int), value :: reorder
-      real(c_float), target :: x(*)
-      integer(c_int), target :: singularity(*)
+      real(c_float), target :: x(..)
+      integer(c_int) :: singularity
       integer(c_int) :: SpScsrlsvcholHost
-      SpScsrlsvcholHost = hipsolverSpScsrlsvcholHost_raw(handle, n, nnzA, descrA, c_loc(csrVal( &
-        1)), c_loc(csrRowPtr(1)), c_loc(csrColInd(1)), c_loc(b(1)), tolerance, reorder, c_loc(x( &
-        1)), c_loc(singularity(1)))
+      SpScsrlsvcholHost = hipsolverSpScsrlsvcholHost_raw(handle, n, nnzA, descrA, c_loc(csrVal), &
+        c_loc(csrRowPtr), c_loc(csrColInd), c_loc(b), tolerance, reorder, c_loc(x), singularity)
     end function hipsolverSpScsrlsvcholHost_native
 
     function hipsolverSpScsrlsvcholHost_typed(handle, n, nnzA, descrA, csrVal, csrRowPtr, &
@@ -35215,7 +34847,7 @@ contains
       real(c_float), value :: tolerance
       integer(c_int), value :: reorder
       type(c_ptr), value :: x
-      type(c_ptr), value :: singularity
+      integer(c_int) :: singularity
       integer(c_int) :: SpScsrlsvcholHost
       SpScsrlsvcholHost = hipsolverSpScsrlsvcholHost_raw(handle%ptr, n, nnzA, descrA, csrVal, &
         csrRowPtr, csrColInd, b, tolerance, reorder, x, singularity)
@@ -35229,18 +34861,18 @@ contains
       integer(c_int), value :: n
       integer(c_int), value :: nnzA
       type(c_ptr), value :: descrA
-      real(c_double), target :: csrVal(*)
-      integer(c_int), target :: csrRowPtr(*)
-      integer(c_int), target :: csrColInd(*)
-      real(c_double), target :: b(*)
+      real(c_double), target :: csrVal(..)
+      integer(c_int), target :: csrRowPtr(..)
+      integer(c_int), target :: csrColInd(..)
+      real(c_double), target :: b(..)
       real(c_double), value :: tolerance
       integer(c_int), value :: reorder
-      real(c_double), target :: x(*)
-      integer(c_int), target :: singularity(*)
+      real(c_double), target :: x(..)
+      integer(c_int), target :: singularity(..)
       integer(c_int) :: SpDcsrlsvcholHost
-      SpDcsrlsvcholHost = hipsolverSpDcsrlsvcholHost_raw(handle, n, nnzA, descrA, c_loc(csrVal( &
-        1)), c_loc(csrRowPtr(1)), c_loc(csrColInd(1)), c_loc(b(1)), tolerance, reorder, c_loc(x( &
-        1)), c_loc(singularity(1)))
+      SpDcsrlsvcholHost = hipsolverSpDcsrlsvcholHost_raw(handle, n, nnzA, descrA, c_loc(csrVal), &
+        c_loc(csrRowPtr), c_loc(csrColInd), c_loc(b), tolerance, reorder, c_loc(x), c_loc( &
+        singularity))
     end function hipsolverSpDcsrlsvcholHost_native
 
     function hipsolverSpDcsrlsvcholHost_typed(handle, n, nnzA, descrA, csrVal, csrRowPtr, &
@@ -35273,18 +34905,17 @@ contains
       integer(c_int), value :: n
       integer(c_int), value :: nnz
       type(c_ptr), value :: descrA
-      real(c_float), target :: csrVal(*)
-      integer(c_int), target :: csrRowPts(*)
-      integer(c_int), target :: csrColInd(*)
-      real(c_float), target :: b(*)
+      real(c_float), target :: csrVal(..)
+      integer(c_int), target :: csrRowPts(..)
+      integer(c_int), target :: csrColInd(..)
+      real(c_float), target :: b(..)
       real(c_double), value :: tolerance
       integer(c_int), value :: reorder
-      real(c_float), target :: x(*)
-      integer(c_int), target :: singularity(*)
+      real(c_float), target :: x(..)
+      integer(c_int), target :: singularity(..)
       integer(c_int) :: SpScsrlsvqr
-      SpScsrlsvqr = hipsolverSpScsrlsvqr_raw(handle, n, nnz, descrA, c_loc(csrVal(1)), c_loc( &
-        csrRowPts(1)), c_loc(csrColInd(1)), c_loc(b(1)), tolerance, reorder, c_loc(x(1)), c_loc( &
-        singularity(1)))
+      SpScsrlsvqr = hipsolverSpScsrlsvqr_raw(handle, n, nnz, descrA, c_loc(csrVal), c_loc( &
+        csrRowPts), c_loc(csrColInd), c_loc(b), tolerance, reorder, c_loc(x), c_loc(singularity))
     end function hipsolverSpScsrlsvqr_native
 
     function hipsolverSpScsrlsvqr_typed(handle, n, nnz, descrA, csrVal, csrRowPts, csrColInd, b, &
@@ -35317,18 +34948,17 @@ contains
       integer(c_int), value :: n
       integer(c_int), value :: nnz
       type(c_ptr), value :: descrA
-      real(c_double), target :: csrVal(*)
-      integer(c_int), target :: csrRowPts(*)
-      integer(c_int), target :: csrColInd(*)
-      real(c_double), target :: b(*)
+      real(c_double), target :: csrVal(..)
+      integer(c_int), target :: csrRowPts(..)
+      integer(c_int), target :: csrColInd(..)
+      real(c_double), target :: b(..)
       real(c_double), value :: tolerance
       integer(c_int), value :: reorder
-      real(c_double), target :: x(*)
-      integer(c_int), target :: singularity(*)
+      real(c_double), target :: x(..)
+      integer(c_int), target :: singularity(..)
       integer(c_int) :: SpDcsrlsvqr
-      SpDcsrlsvqr = hipsolverSpDcsrlsvqr_raw(handle, n, nnz, descrA, c_loc(csrVal(1)), c_loc( &
-        csrRowPts(1)), c_loc(csrColInd(1)), c_loc(b(1)), tolerance, reorder, c_loc(x(1)), c_loc( &
-        singularity(1)))
+      SpDcsrlsvqr = hipsolverSpDcsrlsvqr_raw(handle, n, nnz, descrA, c_loc(csrVal), c_loc( &
+        csrRowPts), c_loc(csrColInd), c_loc(b), tolerance, reorder, c_loc(x), c_loc(singularity))
     end function hipsolverSpDcsrlsvqr_native
 
     function hipsolverSpDcsrlsvqr_typed(handle, n, nnz, descrA, csrVal, csrRowPts, csrColInd, b, &
@@ -35361,18 +34991,17 @@ contains
       integer(c_int), value :: n
       integer(c_int), value :: nnz
       type(c_ptr), value :: descrA
-      complex(c_float_complex), target :: csrVal(*)
-      integer(c_int), target :: csrRowPts(*)
-      integer(c_int), target :: csrColInd(*)
-      complex(c_float_complex), target :: b(*)
+      complex(c_float_complex), target :: csrVal(..)
+      integer(c_int), target :: csrRowPts(..)
+      integer(c_int), target :: csrColInd(..)
+      complex(c_float_complex), target :: b(..)
       real(c_double), value :: tolerance
       integer(c_int), value :: reorder
-      complex(c_float_complex), target :: x(*)
-      integer(c_int), target :: singularity(*)
+      complex(c_float_complex), target :: x(..)
+      integer(c_int), target :: singularity(..)
       integer(c_int) :: SpCcsrlsvqr
-      SpCcsrlsvqr = hipsolverSpCcsrlsvqr_raw(handle, n, nnz, descrA, c_loc(csrVal(1)), c_loc( &
-        csrRowPts(1)), c_loc(csrColInd(1)), c_loc(b(1)), tolerance, reorder, c_loc(x(1)), c_loc( &
-        singularity(1)))
+      SpCcsrlsvqr = hipsolverSpCcsrlsvqr_raw(handle, n, nnz, descrA, c_loc(csrVal), c_loc( &
+        csrRowPts), c_loc(csrColInd), c_loc(b), tolerance, reorder, c_loc(x), c_loc(singularity))
     end function hipsolverSpCcsrlsvqr_native
 
     function hipsolverSpCcsrlsvqr_typed(handle, n, nnz, descrA, csrVal, csrRowPts, csrColInd, b, &
@@ -35405,18 +35034,17 @@ contains
       integer(c_int), value :: n
       integer(c_int), value :: nnz
       type(c_ptr), value :: descrA
-      complex(c_double_complex), target :: csrVal(*)
-      integer(c_int), target :: csrRowPts(*)
-      integer(c_int), target :: csrColInd(*)
-      complex(c_double_complex), target :: b(*)
+      complex(c_double_complex), target :: csrVal(..)
+      integer(c_int), target :: csrRowPts(..)
+      integer(c_int), target :: csrColInd(..)
+      complex(c_double_complex), target :: b(..)
       real(c_double), value :: tolerance
       integer(c_int), value :: reorder
-      complex(c_double_complex), target :: x(*)
-      integer(c_int), target :: singularity(*)
+      complex(c_double_complex), target :: x(..)
+      integer(c_int), target :: singularity(..)
       integer(c_int) :: SpZcsrlsvqr
-      SpZcsrlsvqr = hipsolverSpZcsrlsvqr_raw(handle, n, nnz, descrA, c_loc(csrVal(1)), c_loc( &
-        csrRowPts(1)), c_loc(csrColInd(1)), c_loc(b(1)), tolerance, reorder, c_loc(x(1)), c_loc( &
-        singularity(1)))
+      SpZcsrlsvqr = hipsolverSpZcsrlsvqr_raw(handle, n, nnz, descrA, c_loc(csrVal), c_loc( &
+        csrRowPts), c_loc(csrColInd), c_loc(b), tolerance, reorder, c_loc(x), c_loc(singularity))
     end function hipsolverSpZcsrlsvqr_native
 
     function hipsolverSpZcsrlsvqr_typed(handle, n, nnz, descrA, csrVal, csrRowPts, csrColInd, b, &

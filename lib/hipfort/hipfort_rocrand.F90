@@ -1134,10 +1134,10 @@ contains
       use, intrinsic :: iso_c_binding
       implicit none
       type(c_ptr), value :: generator
-      integer(c_int), target :: output_data(*)
+      integer(c_int), target :: output_data(..)
       integer(c_long), value :: n
       integer(c_int) :: generate
-      generate = rocrand_generate_raw(generator, c_loc(output_data(1)), n)
+      generate = rocrand_generate_raw(generator, c_loc(output_data), n)
     end function rocrand_generate_native
 
     function rocrand_generate_typed(generator, output_data, n) result(generate)
@@ -1155,10 +1155,10 @@ contains
       use, intrinsic :: iso_c_binding
       implicit none
       type(c_ptr), value :: generator
-      integer(c_int64_t), target :: output_data(*)
+      integer(c_int64_t), target :: output_data(..)
       integer(c_long), value :: n
       integer(c_int) :: generate_long_long
-      generate_long_long = rocrand_generate_long_long_raw(generator, c_loc(output_data(1)), n)
+      generate_long_long = rocrand_generate_long_long_raw(generator, c_loc(output_data), n)
     end function rocrand_generate_long_long_native
 
     function rocrand_generate_long_long_typed(generator, output_data, n) result(generate_long_long)
@@ -1198,10 +1198,10 @@ contains
       use, intrinsic :: iso_c_binding
       implicit none
       type(c_ptr), value :: generator
-      real(c_float), target :: output_data(*)
+      real(c_float), target :: output_data(..)
       integer(c_long), value :: n
       integer(c_int) :: generate_uniform
-      generate_uniform = rocrand_generate_uniform_raw(generator, c_loc(output_data(1)), n)
+      generate_uniform = rocrand_generate_uniform_raw(generator, c_loc(output_data), n)
     end function rocrand_generate_uniform_native
 
     function rocrand_generate_uniform_typed(generator, output_data, n) result(generate_uniform)
@@ -1220,11 +1220,11 @@ contains
       use, intrinsic :: iso_c_binding
       implicit none
       type(c_ptr), value :: generator
-      real(c_double), target :: output_data(*)
+      real(c_double), target :: output_data(..)
       integer(c_long), value :: n
       integer(c_int) :: generate_uniform_double
-      generate_uniform_double = rocrand_generate_uniform_double_raw(generator, c_loc(output_data( &
-        1)), n)
+      generate_uniform_double = rocrand_generate_uniform_double_raw(generator, c_loc(output_data), &
+        n)
     end function rocrand_generate_uniform_double_native
 
     function rocrand_generate_uniform_double_typed(generator, output_data, n) result( &
@@ -1256,13 +1256,12 @@ contains
       use, intrinsic :: iso_c_binding
       implicit none
       type(c_ptr), value :: generator
-      real(c_float), target :: output_data(*)
+      real(c_float), target :: output_data(..)
       integer(c_long), value :: n
       real(c_float), value :: mean
       real(c_float), value :: stddev
       integer(c_int) :: generate_normal
-      generate_normal = rocrand_generate_normal_raw(generator, c_loc(output_data(1)), n, mean, &
-        stddev)
+      generate_normal = rocrand_generate_normal_raw(generator, c_loc(output_data), n, mean, stddev)
     end function rocrand_generate_normal_native
 
     function rocrand_generate_normal_typed(generator, output_data, n, mean, stddev) result( &
@@ -1284,13 +1283,13 @@ contains
       use, intrinsic :: iso_c_binding
       implicit none
       type(c_ptr), value :: generator
-      real(c_double), target :: output_data(*)
+      real(c_double), target :: output_data(..)
       integer(c_long), value :: n
       real(c_double), value :: mean
       real(c_double), value :: stddev
       integer(c_int) :: generate_normal_double
-      generate_normal_double = rocrand_generate_normal_double_raw(generator, c_loc(output_data( &
-        1)), n, mean, stddev)
+      generate_normal_double = rocrand_generate_normal_double_raw(generator, c_loc(output_data), &
+        n, mean, stddev)
     end function rocrand_generate_normal_double_native
 
     function rocrand_generate_normal_double_typed(generator, output_data, n, mean, stddev) result( &
@@ -1328,12 +1327,12 @@ contains
       use, intrinsic :: iso_c_binding
       implicit none
       type(c_ptr), value :: generator
-      real(c_float), target :: output_data(*)
+      real(c_float), target :: output_data(..)
       integer(c_long), value :: n
       real(c_float), value :: mean
       real(c_float), value :: stddev
       integer(c_int) :: generate_log_normal
-      generate_log_normal = rocrand_generate_log_normal_raw(generator, c_loc(output_data(1)), n, &
+      generate_log_normal = rocrand_generate_log_normal_raw(generator, c_loc(output_data), n, &
         mean, stddev)
     end function rocrand_generate_log_normal_native
 
@@ -1357,13 +1356,13 @@ contains
       use, intrinsic :: iso_c_binding
       implicit none
       type(c_ptr), value :: generator
-      real(c_double), target :: output_data(*)
+      real(c_double), target :: output_data(..)
       integer(c_long), value :: n
       real(c_double), value :: mean
       real(c_double), value :: stddev
       integer(c_int) :: generate_log_normal_double
       generate_log_normal_double = rocrand_generate_log_normal_double_raw(generator, c_loc( &
-        output_data(1)), n, mean, stddev)
+        output_data), n, mean, stddev)
     end function rocrand_generate_log_normal_double_native
 
     function rocrand_generate_log_normal_double_typed(generator, output_data, n, mean, &
@@ -1401,11 +1400,11 @@ contains
       use, intrinsic :: iso_c_binding
       implicit none
       type(c_ptr), value :: generator
-      integer(c_int), target :: output_data(*)
+      integer(c_int), target :: output_data(..)
       integer(c_long), value :: n
       real(c_double), value :: lambda
       integer(c_int) :: generate_poisson
-      generate_poisson = rocrand_generate_poisson_raw(generator, c_loc(output_data(1)), n, lambda)
+      generate_poisson = rocrand_generate_poisson_raw(generator, c_loc(output_data), n, lambda)
     end function rocrand_generate_poisson_native
 
     function rocrand_generate_poisson_typed(generator, output_data, n, lambda) result( &
@@ -1495,22 +1494,22 @@ contains
     function rocrand_get_version_native(version) result(get_version)
       use, intrinsic :: iso_c_binding
       implicit none
-      integer(c_int), target :: version(*)
+      integer(c_int), target :: version(..)
       integer(c_int) :: get_version
-      get_version = rocrand_get_version_raw(c_loc(version(1)))
+      get_version = rocrand_get_version_raw(c_loc(version))
     end function rocrand_get_version_native
 
     function rocrand_create_discrete_distribution_native(probabilities, size, offset, &
         discrete_distribution) result(create_discrete_distribution)
       use, intrinsic :: iso_c_binding
       implicit none
-      real(c_double), target :: probabilities(*)
+      real(c_double), target :: probabilities(..)
       integer(c_int), value :: size
       integer(c_int), value :: offset
       type(c_ptr) :: discrete_distribution
       integer(c_int) :: create_discrete_distribution
-      create_discrete_distribution = rocrand_create_discrete_distribution_raw(c_loc(probabilities( &
-        1)), size, offset, discrete_distribution)
+      create_discrete_distribution = rocrand_create_discrete_distribution_raw(c_loc( &
+        probabilities), size, offset, discrete_distribution)
     end function rocrand_create_discrete_distribution_native
 
 end module hipfort_rocrand

@@ -34,6 +34,25 @@ module hipfort_rocsolver
   interface
 
     !---------------------------------------------
+    ! rocsolver_get_version_string
+    !---------------------------------------------
+    !> \brief The GET_VERSION_STRING function queries the library version.
+    !>
+    !> \details
+    !> @param[out]
+    !> buf         A buffer that the version string will be written into.
+    !> @param[in]
+    !> len         The size of the given buffer in bytes.
+    function rocsolver_get_version_string(buf, len) &
+       result(get_version_string) &
+       bind(C, name="rocsolver_get_version_string")
+       import :: c_ptr, c_long, c_int
+       type(c_ptr), value :: buf
+       integer(c_long), value :: len
+       integer(c_int) :: get_version_string
+    end function rocsolver_get_version_string
+
+    !---------------------------------------------
     ! rocsolver_get_version_string_size
     !---------------------------------------------
     !> \brief The GET_VERSION_STRING_SIZE function queries the minimum buffer size for a
@@ -952,7 +971,7 @@ module hipfort_rocsolver
        real(c_float) :: alpha
        type(c_ptr), value :: x
        integer(c_int), value :: incx
-       type(c_ptr), value :: tau
+       real(c_float) :: tau
        integer(c_int) :: slarfg_raw
     end function rocsolver_slarfg_raw
 
@@ -973,7 +992,7 @@ module hipfort_rocsolver
        real(c_double) :: alpha
        type(c_ptr), value :: x
        integer(c_int), value :: incx
-       type(c_ptr), value :: tau
+       real(c_double) :: tau
        integer(c_int) :: dlarfg_raw
     end function rocsolver_dlarfg_raw
 
@@ -994,7 +1013,7 @@ module hipfort_rocsolver
        complex(c_float_complex) :: alpha
        type(c_ptr), value :: x
        integer(c_int), value :: incx
-       type(c_ptr), value :: tau
+       complex(c_float_complex) :: tau
        integer(c_int) :: clarfg_raw
     end function rocsolver_clarfg_raw
 
@@ -1015,7 +1034,7 @@ module hipfort_rocsolver
        complex(c_double_complex) :: alpha
        type(c_ptr), value :: x
        integer(c_int), value :: incx
-       type(c_ptr), value :: tau
+       complex(c_double_complex) :: tau
        integer(c_int) :: zlarfg_raw
     end function rocsolver_zlarfg_raw
 
@@ -25519,7 +25538,7 @@ module hipfort_rocsolver
     function rocsolver_ssytd2_raw(handle, uplo, n, A, lda, D, E, tau) &
        result(ssytd2_raw) &
        bind(C, name="rocsolver_ssytd2")
-       import :: c_ptr, c_int
+       import :: c_ptr, c_int, c_float
        type(c_ptr), value :: handle
        integer(c_int), value :: uplo
        integer(c_int), value :: n
@@ -25527,7 +25546,7 @@ module hipfort_rocsolver
        integer(c_int), value :: lda
        type(c_ptr), value :: D
        type(c_ptr), value :: E
-       type(c_ptr), value :: tau
+       real(c_float) :: tau
        integer(c_int) :: ssytd2_raw
     end function rocsolver_ssytd2_raw
 
@@ -25542,7 +25561,7 @@ module hipfort_rocsolver
     function rocsolver_dsytd2_raw(handle, uplo, n, A, lda, D, E, tau) &
        result(dsytd2_raw) &
        bind(C, name="rocsolver_dsytd2")
-       import :: c_ptr, c_int
+       import :: c_ptr, c_int, c_double
        type(c_ptr), value :: handle
        integer(c_int), value :: uplo
        integer(c_int), value :: n
@@ -25550,7 +25569,7 @@ module hipfort_rocsolver
        integer(c_int), value :: lda
        type(c_ptr), value :: D
        type(c_ptr), value :: E
-       type(c_ptr), value :: tau
+       real(c_double) :: tau
        integer(c_int) :: dsytd2_raw
     end function rocsolver_dsytd2_raw
 
@@ -25629,7 +25648,7 @@ module hipfort_rocsolver
     function rocsolver_chetd2_raw(handle, uplo, n, A, lda, D, E, tau) &
        result(chetd2_raw) &
        bind(C, name="rocsolver_chetd2")
-       import :: c_ptr, c_int
+       import :: c_ptr, c_int, c_float_complex
        type(c_ptr), value :: handle
        integer(c_int), value :: uplo
        integer(c_int), value :: n
@@ -25637,7 +25656,7 @@ module hipfort_rocsolver
        integer(c_int), value :: lda
        type(c_ptr), value :: D
        type(c_ptr), value :: E
-       type(c_ptr), value :: tau
+       complex(c_float_complex) :: tau
        integer(c_int) :: chetd2_raw
     end function rocsolver_chetd2_raw
 
@@ -25652,7 +25671,7 @@ module hipfort_rocsolver
     function rocsolver_zhetd2_raw(handle, uplo, n, A, lda, D, E, tau) &
        result(zhetd2_raw) &
        bind(C, name="rocsolver_zhetd2")
-       import :: c_ptr, c_int
+       import :: c_ptr, c_int, c_double_complex
        type(c_ptr), value :: handle
        integer(c_int), value :: uplo
        integer(c_int), value :: n
@@ -25660,7 +25679,7 @@ module hipfort_rocsolver
        integer(c_int), value :: lda
        type(c_ptr), value :: D
        type(c_ptr), value :: E
-       type(c_ptr), value :: tau
+       complex(c_double_complex) :: tau
        integer(c_int) :: zhetd2_raw
     end function rocsolver_zhetd2_raw
 
@@ -26307,7 +26326,7 @@ module hipfort_rocsolver
     function rocsolver_ssytrd_raw(handle, uplo, n, A, lda, D, E, tau) &
        result(ssytrd_raw) &
        bind(C, name="rocsolver_ssytrd")
-       import :: c_ptr, c_int
+       import :: c_ptr, c_int, c_float
        type(c_ptr), value :: handle
        integer(c_int), value :: uplo
        integer(c_int), value :: n
@@ -26315,7 +26334,7 @@ module hipfort_rocsolver
        integer(c_int), value :: lda
        type(c_ptr), value :: D
        type(c_ptr), value :: E
-       type(c_ptr), value :: tau
+       real(c_float) :: tau
        integer(c_int) :: ssytrd_raw
     end function rocsolver_ssytrd_raw
 
@@ -26330,7 +26349,7 @@ module hipfort_rocsolver
     function rocsolver_dsytrd_raw(handle, uplo, n, A, lda, D, E, tau) &
        result(dsytrd_raw) &
        bind(C, name="rocsolver_dsytrd")
-       import :: c_ptr, c_int
+       import :: c_ptr, c_int, c_double
        type(c_ptr), value :: handle
        integer(c_int), value :: uplo
        integer(c_int), value :: n
@@ -26338,7 +26357,7 @@ module hipfort_rocsolver
        integer(c_int), value :: lda
        type(c_ptr), value :: D
        type(c_ptr), value :: E
-       type(c_ptr), value :: tau
+       real(c_double) :: tau
        integer(c_int) :: dsytrd_raw
     end function rocsolver_dsytrd_raw
 
@@ -26417,7 +26436,7 @@ module hipfort_rocsolver
     function rocsolver_chetrd_raw(handle, uplo, n, A, lda, D, E, tau) &
        result(chetrd_raw) &
        bind(C, name="rocsolver_chetrd")
-       import :: c_ptr, c_int
+       import :: c_ptr, c_int, c_float_complex
        type(c_ptr), value :: handle
        integer(c_int), value :: uplo
        integer(c_int), value :: n
@@ -26425,7 +26444,7 @@ module hipfort_rocsolver
        integer(c_int), value :: lda
        type(c_ptr), value :: D
        type(c_ptr), value :: E
-       type(c_ptr), value :: tau
+       complex(c_float_complex) :: tau
        integer(c_int) :: chetrd_raw
     end function rocsolver_chetrd_raw
 
@@ -26440,7 +26459,7 @@ module hipfort_rocsolver
     function rocsolver_zhetrd_raw(handle, uplo, n, A, lda, D, E, tau) &
        result(zhetrd_raw) &
        bind(C, name="rocsolver_zhetrd")
-       import :: c_ptr, c_int
+       import :: c_ptr, c_int, c_double_complex
        type(c_ptr), value :: handle
        integer(c_int), value :: uplo
        integer(c_int), value :: n
@@ -26448,7 +26467,7 @@ module hipfort_rocsolver
        integer(c_int), value :: lda
        type(c_ptr), value :: D
        type(c_ptr), value :: E
-       type(c_ptr), value :: tau
+       complex(c_double_complex) :: tau
        integer(c_int) :: zhetrd_raw
     end function rocsolver_zhetrd_raw
 
@@ -43512,7 +43531,7 @@ module hipfort_rocsolver
        type(c_ptr), value :: W
        type(c_ptr), value :: Z
        integer(c_int), value :: ldz
-       type(c_ptr), value :: info
+       integer(c_int) :: info
        integer(c_int) :: chegvdx_raw
     end function rocsolver_chegvdx_raw
 
@@ -43547,7 +43566,7 @@ module hipfort_rocsolver
        type(c_ptr), value :: W
        type(c_ptr), value :: Z
        integer(c_int), value :: ldz
-       type(c_ptr), value :: info
+       integer(c_int) :: info
        integer(c_int) :: zhegvdx_raw
     end function rocsolver_zhegvdx_raw
 
@@ -44388,9 +44407,9 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_int), value :: func
-      integer(c_int), target :: mode(*)
+      integer(c_int), target :: mode(..)
       integer(c_int) :: get_alg_mode
-      get_alg_mode = rocsolver_get_alg_mode_raw(handle, func, c_loc(mode(1)))
+      get_alg_mode = rocsolver_get_alg_mode_raw(handle, func, c_loc(mode))
     end function rocsolver_get_alg_mode_native
 
     function rocsolver_get_alg_mode_typed(handle, func, mode) result(get_alg_mode)
@@ -44409,10 +44428,10 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_int), value :: n
-      complex(c_float_complex), target :: x(*)
+      complex(c_float_complex), target :: x(..)
       integer(c_int), value :: incx
       integer(c_int) :: clacgv
-      clacgv = rocsolver_clacgv_raw(handle, n, c_loc(x(1)), incx)
+      clacgv = rocsolver_clacgv_raw(handle, n, c_loc(x), incx)
     end function rocsolver_clacgv_native
 
     function rocsolver_clacgv_typed(handle, n, x, incx) result(clacgv)
@@ -44432,10 +44451,10 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_int), value :: n
-      complex(c_double_complex), target :: x(*)
+      complex(c_double_complex), target :: x(..)
       integer(c_int), value :: incx
       integer(c_int) :: zlacgv
-      zlacgv = rocsolver_zlacgv_raw(handle, n, c_loc(x(1)), incx)
+      zlacgv = rocsolver_zlacgv_raw(handle, n, c_loc(x), incx)
     end function rocsolver_zlacgv_native
 
     function rocsolver_zlacgv_typed(handle, n, x, incx) result(zlacgv)
@@ -44455,10 +44474,10 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_long), value :: n
-      complex(c_float_complex), target :: x(*)
+      complex(c_float_complex), target :: x(..)
       integer(c_long), value :: incx
       integer(c_int) :: clacgv_64
-      clacgv_64 = rocsolver_clacgv_64_raw(handle, n, c_loc(x(1)), incx)
+      clacgv_64 = rocsolver_clacgv_64_raw(handle, n, c_loc(x), incx)
     end function rocsolver_clacgv_64_native
 
     function rocsolver_clacgv_64_typed(handle, n, x, incx) result(clacgv_64)
@@ -44478,10 +44497,10 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_long), value :: n
-      complex(c_double_complex), target :: x(*)
+      complex(c_double_complex), target :: x(..)
       integer(c_long), value :: incx
       integer(c_int) :: zlacgv_64
-      zlacgv_64 = rocsolver_zlacgv_64_raw(handle, n, c_loc(x(1)), incx)
+      zlacgv_64 = rocsolver_zlacgv_64_raw(handle, n, c_loc(x), incx)
     end function rocsolver_zlacgv_64_native
 
     function rocsolver_zlacgv_64_typed(handle, n, x, incx) result(zlacgv_64)
@@ -44503,11 +44522,11 @@ contains
       integer(c_int), value :: norm_type
       integer(c_int), value :: m
       integer(c_int), value :: n
-      real(c_float), target :: A(*)
+      real(c_float), target :: A(..)
       integer(c_int), value :: lda
-      real(c_float), target :: norm(*)
+      real(c_float), target :: norm(..)
       integer(c_int) :: slange
-      slange = rocsolver_slange_raw(handle, norm_type, m, n, c_loc(A(1)), lda, c_loc(norm(1)))
+      slange = rocsolver_slange_raw(handle, norm_type, m, n, c_loc(A), lda, c_loc(norm))
     end function rocsolver_slange_native
 
     function rocsolver_slange_typed(handle, norm_type, m, n, A, lda, norm) result(slange)
@@ -44532,11 +44551,11 @@ contains
       integer(c_int), value :: norm_type
       integer(c_int), value :: m
       integer(c_int), value :: n
-      real(c_double), target :: A(*)
+      real(c_double), target :: A(..)
       integer(c_int), value :: lda
-      real(c_double), target :: norm(*)
+      real(c_double), target :: norm(..)
       integer(c_int) :: dlange
-      dlange = rocsolver_dlange_raw(handle, norm_type, m, n, c_loc(A(1)), lda, c_loc(norm(1)))
+      dlange = rocsolver_dlange_raw(handle, norm_type, m, n, c_loc(A), lda, c_loc(norm))
     end function rocsolver_dlange_native
 
     function rocsolver_dlange_typed(handle, norm_type, m, n, A, lda, norm) result(dlange)
@@ -44561,11 +44580,11 @@ contains
       integer(c_int), value :: norm_type
       integer(c_int), value :: m
       integer(c_int), value :: n
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: A(..)
       integer(c_int), value :: lda
-      real(c_float), target :: norm(*)
+      real(c_float), target :: norm(..)
       integer(c_int) :: clange
-      clange = rocsolver_clange_raw(handle, norm_type, m, n, c_loc(A(1)), lda, c_loc(norm(1)))
+      clange = rocsolver_clange_raw(handle, norm_type, m, n, c_loc(A), lda, c_loc(norm))
     end function rocsolver_clange_native
 
     function rocsolver_clange_typed(handle, norm_type, m, n, A, lda, norm) result(clange)
@@ -44590,11 +44609,11 @@ contains
       integer(c_int), value :: norm_type
       integer(c_int), value :: m
       integer(c_int), value :: n
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: A(..)
       integer(c_int), value :: lda
-      real(c_double), target :: norm(*)
+      real(c_double), target :: norm(..)
       integer(c_int) :: zlange
-      zlange = rocsolver_zlange_raw(handle, norm_type, m, n, c_loc(A(1)), lda, c_loc(norm(1)))
+      zlange = rocsolver_zlange_raw(handle, norm_type, m, n, c_loc(A), lda, c_loc(norm))
     end function rocsolver_zlange_native
 
     function rocsolver_zlange_typed(handle, norm_type, m, n, A, lda, norm) result(zlange)
@@ -44619,11 +44638,11 @@ contains
       integer(c_int), value :: norm_type
       integer(c_long), value :: m
       integer(c_long), value :: n
-      real(c_float), target :: A(*)
+      real(c_float), target :: A(..)
       integer(c_long), value :: lda
-      real(c_float), target :: norm(*)
+      real(c_float), target :: norm(..)
       integer(c_int) :: slange_64
-      slange_64 = rocsolver_slange_64_raw(handle, norm_type, m, n, c_loc(A(1)), lda, c_loc(norm(1)))
+      slange_64 = rocsolver_slange_64_raw(handle, norm_type, m, n, c_loc(A), lda, c_loc(norm))
     end function rocsolver_slange_64_native
 
     function rocsolver_slange_64_typed(handle, norm_type, m, n, A, lda, norm) result(slange_64)
@@ -44648,11 +44667,11 @@ contains
       integer(c_int), value :: norm_type
       integer(c_long), value :: m
       integer(c_long), value :: n
-      real(c_double), target :: A(*)
+      real(c_double), target :: A(..)
       integer(c_long), value :: lda
-      real(c_double), target :: norm(*)
+      real(c_double), target :: norm(..)
       integer(c_int) :: dlange_64
-      dlange_64 = rocsolver_dlange_64_raw(handle, norm_type, m, n, c_loc(A(1)), lda, c_loc(norm(1)))
+      dlange_64 = rocsolver_dlange_64_raw(handle, norm_type, m, n, c_loc(A), lda, c_loc(norm))
     end function rocsolver_dlange_64_native
 
     function rocsolver_dlange_64_typed(handle, norm_type, m, n, A, lda, norm) result(dlange_64)
@@ -44677,11 +44696,11 @@ contains
       integer(c_int), value :: norm_type
       integer(c_long), value :: m
       integer(c_long), value :: n
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: A(..)
       integer(c_long), value :: lda
-      real(c_float), target :: norm(*)
+      real(c_float), target :: norm(..)
       integer(c_int) :: clange_64
-      clange_64 = rocsolver_clange_64_raw(handle, norm_type, m, n, c_loc(A(1)), lda, c_loc(norm(1)))
+      clange_64 = rocsolver_clange_64_raw(handle, norm_type, m, n, c_loc(A), lda, c_loc(norm))
     end function rocsolver_clange_64_native
 
     function rocsolver_clange_64_typed(handle, norm_type, m, n, A, lda, norm) result(clange_64)
@@ -44706,11 +44725,11 @@ contains
       integer(c_int), value :: norm_type
       integer(c_long), value :: m
       integer(c_long), value :: n
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: A(..)
       integer(c_long), value :: lda
-      real(c_double), target :: norm(*)
+      real(c_double), target :: norm(..)
       integer(c_int) :: zlange_64
-      zlange_64 = rocsolver_zlange_64_raw(handle, norm_type, m, n, c_loc(A(1)), lda, c_loc(norm(1)))
+      zlange_64 = rocsolver_zlange_64_raw(handle, norm_type, m, n, c_loc(A), lda, c_loc(norm))
     end function rocsolver_zlange_64_native
 
     function rocsolver_zlange_64_typed(handle, norm_type, m, n, A, lda, norm) result(zlange_64)
@@ -44734,13 +44753,12 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: norm_type
       integer(c_int), value :: n
-      real(c_float), target :: A(*)
+      real(c_float), target :: A(..)
       integer(c_int), value :: lda
-      real(c_float), target :: anorm(*)
-      real(c_float), target :: rcond(*)
+      real(c_float), target :: anorm(..)
+      real(c_float), target :: rcond(..)
       integer(c_int) :: sgecon
-      sgecon = rocsolver_sgecon_raw(handle, norm_type, n, c_loc(A(1)), lda, c_loc(anorm(1)), &
-        c_loc(rcond(1)))
+      sgecon = rocsolver_sgecon_raw(handle, norm_type, n, c_loc(A), lda, c_loc(anorm), c_loc(rcond))
     end function rocsolver_sgecon_native
 
     function rocsolver_sgecon_typed(handle, norm_type, n, A, lda, anorm, rcond) result(sgecon)
@@ -44764,13 +44782,12 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: norm_type
       integer(c_int), value :: n
-      real(c_double), target :: A(*)
+      real(c_double), target :: A(..)
       integer(c_int), value :: lda
-      real(c_double), target :: anorm(*)
-      real(c_double), target :: rcond(*)
+      real(c_double), target :: anorm(..)
+      real(c_double), target :: rcond(..)
       integer(c_int) :: dgecon
-      dgecon = rocsolver_dgecon_raw(handle, norm_type, n, c_loc(A(1)), lda, c_loc(anorm(1)), &
-        c_loc(rcond(1)))
+      dgecon = rocsolver_dgecon_raw(handle, norm_type, n, c_loc(A), lda, c_loc(anorm), c_loc(rcond))
     end function rocsolver_dgecon_native
 
     function rocsolver_dgecon_typed(handle, norm_type, n, A, lda, anorm, rcond) result(dgecon)
@@ -44794,13 +44811,12 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: norm_type
       integer(c_int), value :: n
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: A(..)
       integer(c_int), value :: lda
-      real(c_float), target :: anorm(*)
-      real(c_float), target :: rcond(*)
+      real(c_float), target :: anorm(..)
+      real(c_float), target :: rcond(..)
       integer(c_int) :: cgecon
-      cgecon = rocsolver_cgecon_raw(handle, norm_type, n, c_loc(A(1)), lda, c_loc(anorm(1)), &
-        c_loc(rcond(1)))
+      cgecon = rocsolver_cgecon_raw(handle, norm_type, n, c_loc(A), lda, c_loc(anorm), c_loc(rcond))
     end function rocsolver_cgecon_native
 
     function rocsolver_cgecon_typed(handle, norm_type, n, A, lda, anorm, rcond) result(cgecon)
@@ -44824,13 +44840,12 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: norm_type
       integer(c_int), value :: n
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: A(..)
       integer(c_int), value :: lda
-      real(c_double), target :: anorm(*)
-      real(c_double), target :: rcond(*)
+      real(c_double), target :: anorm(..)
+      real(c_double), target :: rcond(..)
       integer(c_int) :: zgecon
-      zgecon = rocsolver_zgecon_raw(handle, norm_type, n, c_loc(A(1)), lda, c_loc(anorm(1)), &
-        c_loc(rcond(1)))
+      zgecon = rocsolver_zgecon_raw(handle, norm_type, n, c_loc(A), lda, c_loc(anorm), c_loc(rcond))
     end function rocsolver_zgecon_native
 
     function rocsolver_zgecon_typed(handle, norm_type, n, A, lda, anorm, rcond) result(zgecon)
@@ -44855,13 +44870,13 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: norm_type
       integer(c_long), value :: n
-      real(c_float), target :: A(*)
+      real(c_float), target :: A(..)
       integer(c_long), value :: lda
-      real(c_float), target :: anorm(*)
-      real(c_float), target :: rcond(*)
+      real(c_float), target :: anorm(..)
+      real(c_float), target :: rcond(..)
       integer(c_int) :: sgecon_64
-      sgecon_64 = rocsolver_sgecon_64_raw(handle, norm_type, n, c_loc(A(1)), lda, c_loc(anorm(1)), &
-        c_loc(rcond(1)))
+      sgecon_64 = rocsolver_sgecon_64_raw(handle, norm_type, n, c_loc(A), lda, c_loc(anorm), &
+        c_loc(rcond))
     end function rocsolver_sgecon_64_native
 
     function rocsolver_sgecon_64_typed(handle, norm_type, n, A, lda, anorm, rcond) result(sgecon_64)
@@ -44886,13 +44901,13 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: norm_type
       integer(c_long), value :: n
-      real(c_double), target :: A(*)
+      real(c_double), target :: A(..)
       integer(c_long), value :: lda
-      real(c_double), target :: anorm(*)
-      real(c_double), target :: rcond(*)
+      real(c_double), target :: anorm(..)
+      real(c_double), target :: rcond(..)
       integer(c_int) :: dgecon_64
-      dgecon_64 = rocsolver_dgecon_64_raw(handle, norm_type, n, c_loc(A(1)), lda, c_loc(anorm(1)), &
-        c_loc(rcond(1)))
+      dgecon_64 = rocsolver_dgecon_64_raw(handle, norm_type, n, c_loc(A), lda, c_loc(anorm), &
+        c_loc(rcond))
     end function rocsolver_dgecon_64_native
 
     function rocsolver_dgecon_64_typed(handle, norm_type, n, A, lda, anorm, rcond) result(dgecon_64)
@@ -44917,13 +44932,13 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: norm_type
       integer(c_long), value :: n
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: A(..)
       integer(c_long), value :: lda
-      real(c_float), target :: anorm(*)
-      real(c_float), target :: rcond(*)
+      real(c_float), target :: anorm(..)
+      real(c_float), target :: rcond(..)
       integer(c_int) :: cgecon_64
-      cgecon_64 = rocsolver_cgecon_64_raw(handle, norm_type, n, c_loc(A(1)), lda, c_loc(anorm(1)), &
-        c_loc(rcond(1)))
+      cgecon_64 = rocsolver_cgecon_64_raw(handle, norm_type, n, c_loc(A), lda, c_loc(anorm), &
+        c_loc(rcond))
     end function rocsolver_cgecon_64_native
 
     function rocsolver_cgecon_64_typed(handle, norm_type, n, A, lda, anorm, rcond) result(cgecon_64)
@@ -44948,13 +44963,13 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: norm_type
       integer(c_long), value :: n
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: A(..)
       integer(c_long), value :: lda
-      real(c_double), target :: anorm(*)
-      real(c_double), target :: rcond(*)
+      real(c_double), target :: anorm(..)
+      real(c_double), target :: rcond(..)
       integer(c_int) :: zgecon_64
-      zgecon_64 = rocsolver_zgecon_64_raw(handle, norm_type, n, c_loc(A(1)), lda, c_loc(anorm(1)), &
-        c_loc(rcond(1)))
+      zgecon_64 = rocsolver_zgecon_64_raw(handle, norm_type, n, c_loc(A), lda, c_loc(anorm), &
+        c_loc(rcond))
     end function rocsolver_zgecon_64_native
 
     function rocsolver_zgecon_64_typed(handle, norm_type, n, A, lda, anorm, rcond) result(zgecon_64)
@@ -44977,14 +44992,14 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_int), value :: n
-      real(c_float), target :: A(*)
+      real(c_float), target :: A(..)
       integer(c_int), value :: lda
       integer(c_int), value :: k1
       integer(c_int), value :: k2
-      integer(c_int), target :: ipiv(*)
+      integer(c_int), target :: ipiv(..)
       integer(c_int), value :: incx
       integer(c_int) :: slaswp
-      slaswp = rocsolver_slaswp_raw(handle, n, c_loc(A(1)), lda, k1, k2, c_loc(ipiv(1)), incx)
+      slaswp = rocsolver_slaswp_raw(handle, n, c_loc(A), lda, k1, k2, c_loc(ipiv), incx)
     end function rocsolver_slaswp_native
 
     function rocsolver_slaswp_typed(handle, n, A, lda, k1, k2, ipiv, incx) result(slaswp)
@@ -45008,14 +45023,14 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_int), value :: n
-      real(c_double), target :: A(*)
+      real(c_double), target :: A(..)
       integer(c_int), value :: lda
       integer(c_int), value :: k1
       integer(c_int), value :: k2
-      integer(c_int), target :: ipiv(*)
+      integer(c_int), target :: ipiv(..)
       integer(c_int), value :: incx
       integer(c_int) :: dlaswp
-      dlaswp = rocsolver_dlaswp_raw(handle, n, c_loc(A(1)), lda, k1, k2, c_loc(ipiv(1)), incx)
+      dlaswp = rocsolver_dlaswp_raw(handle, n, c_loc(A), lda, k1, k2, c_loc(ipiv), incx)
     end function rocsolver_dlaswp_native
 
     function rocsolver_dlaswp_typed(handle, n, A, lda, k1, k2, ipiv, incx) result(dlaswp)
@@ -45039,14 +45054,14 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_int), value :: n
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: A(..)
       integer(c_int), value :: lda
       integer(c_int), value :: k1
       integer(c_int), value :: k2
-      integer(c_int), target :: ipiv(*)
+      integer(c_int), target :: ipiv(..)
       integer(c_int), value :: incx
       integer(c_int) :: claswp
-      claswp = rocsolver_claswp_raw(handle, n, c_loc(A(1)), lda, k1, k2, c_loc(ipiv(1)), incx)
+      claswp = rocsolver_claswp_raw(handle, n, c_loc(A), lda, k1, k2, c_loc(ipiv), incx)
     end function rocsolver_claswp_native
 
     function rocsolver_claswp_typed(handle, n, A, lda, k1, k2, ipiv, incx) result(claswp)
@@ -45070,14 +45085,14 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_int), value :: n
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: A(..)
       integer(c_int), value :: lda
       integer(c_int), value :: k1
       integer(c_int), value :: k2
-      integer(c_int), target :: ipiv(*)
+      integer(c_int), target :: ipiv(..)
       integer(c_int), value :: incx
       integer(c_int) :: zlaswp
-      zlaswp = rocsolver_zlaswp_raw(handle, n, c_loc(A(1)), lda, k1, k2, c_loc(ipiv(1)), incx)
+      zlaswp = rocsolver_zlaswp_raw(handle, n, c_loc(A), lda, k1, k2, c_loc(ipiv), incx)
     end function rocsolver_zlaswp_native
 
     function rocsolver_zlaswp_typed(handle, n, A, lda, k1, k2, ipiv, incx) result(zlaswp)
@@ -45102,11 +45117,11 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: n
       real(c_float) :: alpha
-      real(c_float), target :: x(*)
+      real(c_float), target :: x(..)
       integer(c_int), value :: incx
-      real(c_float), target :: tau(*)
+      real(c_float) :: tau
       integer(c_int) :: slarfg
-      slarfg = rocsolver_slarfg_raw(handle, n, alpha, c_loc(x(1)), incx, c_loc(tau(1)))
+      slarfg = rocsolver_slarfg_raw(handle, n, alpha, c_loc(x), incx, tau)
     end function rocsolver_slarfg_native
 
     function rocsolver_slarfg_typed(handle, n, alpha, x, incx, tau) result(slarfg)
@@ -45118,7 +45133,7 @@ contains
       real(c_float) :: alpha
       type(c_ptr), value :: x
       integer(c_int), value :: incx
-      type(c_ptr), value :: tau
+      real(c_float) :: tau
       integer(c_int) :: slarfg
       slarfg = rocsolver_slarfg_raw(handle%ptr, n, alpha, x, incx, tau)
     end function rocsolver_slarfg_typed
@@ -45129,11 +45144,11 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: n
       real(c_double) :: alpha
-      real(c_double), target :: x(*)
+      real(c_double), target :: x(..)
       integer(c_int), value :: incx
-      real(c_double), target :: tau(*)
+      real(c_double) :: tau
       integer(c_int) :: dlarfg
-      dlarfg = rocsolver_dlarfg_raw(handle, n, alpha, c_loc(x(1)), incx, c_loc(tau(1)))
+      dlarfg = rocsolver_dlarfg_raw(handle, n, alpha, c_loc(x), incx, tau)
     end function rocsolver_dlarfg_native
 
     function rocsolver_dlarfg_typed(handle, n, alpha, x, incx, tau) result(dlarfg)
@@ -45145,7 +45160,7 @@ contains
       real(c_double) :: alpha
       type(c_ptr), value :: x
       integer(c_int), value :: incx
-      type(c_ptr), value :: tau
+      real(c_double) :: tau
       integer(c_int) :: dlarfg
       dlarfg = rocsolver_dlarfg_raw(handle%ptr, n, alpha, x, incx, tau)
     end function rocsolver_dlarfg_typed
@@ -45156,11 +45171,11 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: n
       complex(c_float_complex) :: alpha
-      complex(c_float_complex), target :: x(*)
+      complex(c_float_complex), target :: x(..)
       integer(c_int), value :: incx
-      complex(c_float_complex), target :: tau(*)
+      complex(c_float_complex) :: tau
       integer(c_int) :: clarfg
-      clarfg = rocsolver_clarfg_raw(handle, n, alpha, c_loc(x(1)), incx, c_loc(tau(1)))
+      clarfg = rocsolver_clarfg_raw(handle, n, alpha, c_loc(x), incx, tau)
     end function rocsolver_clarfg_native
 
     function rocsolver_clarfg_typed(handle, n, alpha, x, incx, tau) result(clarfg)
@@ -45172,7 +45187,7 @@ contains
       complex(c_float_complex) :: alpha
       type(c_ptr), value :: x
       integer(c_int), value :: incx
-      type(c_ptr), value :: tau
+      complex(c_float_complex) :: tau
       integer(c_int) :: clarfg
       clarfg = rocsolver_clarfg_raw(handle%ptr, n, alpha, x, incx, tau)
     end function rocsolver_clarfg_typed
@@ -45183,11 +45198,11 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: n
       complex(c_double_complex) :: alpha
-      complex(c_double_complex), target :: x(*)
+      complex(c_double_complex), target :: x(..)
       integer(c_int), value :: incx
-      complex(c_double_complex), target :: tau(*)
+      complex(c_double_complex) :: tau
       integer(c_int) :: zlarfg
-      zlarfg = rocsolver_zlarfg_raw(handle, n, alpha, c_loc(x(1)), incx, c_loc(tau(1)))
+      zlarfg = rocsolver_zlarfg_raw(handle, n, alpha, c_loc(x), incx, tau)
     end function rocsolver_zlarfg_native
 
     function rocsolver_zlarfg_typed(handle, n, alpha, x, incx, tau) result(zlarfg)
@@ -45199,7 +45214,7 @@ contains
       complex(c_double_complex) :: alpha
       type(c_ptr), value :: x
       integer(c_int), value :: incx
-      type(c_ptr), value :: tau
+      complex(c_double_complex) :: tau
       integer(c_int) :: zlarfg
       zlarfg = rocsolver_zlarfg_raw(handle%ptr, n, alpha, x, incx, tau)
     end function rocsolver_zlarfg_typed
@@ -45209,13 +45224,12 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_long), value :: n
-      real(c_float), target :: alpha(*)
-      real(c_float), target :: x(*)
+      real(c_float), target :: alpha(..)
+      real(c_float), target :: x(..)
       integer(c_long), value :: incx
-      real(c_float), target :: tau(*)
+      real(c_float), target :: tau(..)
       integer(c_int) :: slarfg_64
-      slarfg_64 = rocsolver_slarfg_64_raw(handle, n, c_loc(alpha(1)), c_loc(x(1)), incx, c_loc( &
-        tau(1)))
+      slarfg_64 = rocsolver_slarfg_64_raw(handle, n, c_loc(alpha), c_loc(x), incx, c_loc(tau))
     end function rocsolver_slarfg_64_native
 
     function rocsolver_slarfg_64_typed(handle, n, alpha, x, incx, tau) result(slarfg_64)
@@ -45237,13 +45251,12 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_long), value :: n
-      real(c_double), target :: alpha(*)
-      real(c_double), target :: x(*)
+      real(c_double), target :: alpha(..)
+      real(c_double), target :: x(..)
       integer(c_long), value :: incx
-      real(c_double), target :: tau(*)
+      real(c_double), target :: tau(..)
       integer(c_int) :: dlarfg_64
-      dlarfg_64 = rocsolver_dlarfg_64_raw(handle, n, c_loc(alpha(1)), c_loc(x(1)), incx, c_loc( &
-        tau(1)))
+      dlarfg_64 = rocsolver_dlarfg_64_raw(handle, n, c_loc(alpha), c_loc(x), incx, c_loc(tau))
     end function rocsolver_dlarfg_64_native
 
     function rocsolver_dlarfg_64_typed(handle, n, alpha, x, incx, tau) result(dlarfg_64)
@@ -45265,13 +45278,12 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_long), value :: n
-      complex(c_float_complex), target :: alpha(*)
-      complex(c_float_complex), target :: x(*)
+      complex(c_float_complex), target :: alpha(..)
+      complex(c_float_complex), target :: x(..)
       integer(c_long), value :: incx
-      complex(c_float_complex), target :: tau(*)
+      complex(c_float_complex), target :: tau(..)
       integer(c_int) :: clarfg_64
-      clarfg_64 = rocsolver_clarfg_64_raw(handle, n, c_loc(alpha(1)), c_loc(x(1)), incx, c_loc( &
-        tau(1)))
+      clarfg_64 = rocsolver_clarfg_64_raw(handle, n, c_loc(alpha), c_loc(x), incx, c_loc(tau))
     end function rocsolver_clarfg_64_native
 
     function rocsolver_clarfg_64_typed(handle, n, alpha, x, incx, tau) result(clarfg_64)
@@ -45293,13 +45305,12 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_long), value :: n
-      complex(c_double_complex), target :: alpha(*)
-      complex(c_double_complex), target :: x(*)
+      complex(c_double_complex), target :: alpha(..)
+      complex(c_double_complex), target :: x(..)
       integer(c_long), value :: incx
-      complex(c_double_complex), target :: tau(*)
+      complex(c_double_complex), target :: tau(..)
       integer(c_int) :: zlarfg_64
-      zlarfg_64 = rocsolver_zlarfg_64_raw(handle, n, c_loc(alpha(1)), c_loc(x(1)), incx, c_loc( &
-        tau(1)))
+      zlarfg_64 = rocsolver_zlarfg_64_raw(handle, n, c_loc(alpha), c_loc(x), incx, c_loc(tau))
     end function rocsolver_zlarfg_64_native
 
     function rocsolver_zlarfg_64_typed(handle, n, alpha, x, incx, tau) result(zlarfg_64)
@@ -45325,14 +45336,13 @@ contains
       integer(c_int), value :: storev
       integer(c_int), value :: n
       integer(c_int), value :: k
-      real(c_float), target :: V(*)
+      real(c_float), target :: V(..)
       integer(c_int), value :: ldv
       real(c_float) :: tau
-      real(c_float), target :: T(*)
+      real(c_float), target :: T(..)
       integer(c_int), value :: ldt
       integer(c_int) :: slarft
-      slarft = rocsolver_slarft_raw(handle, direct, storev, n, k, c_loc(V(1)), ldv, tau, c_loc(T( &
-        1)), ldt)
+      slarft = rocsolver_slarft_raw(handle, direct, storev, n, k, c_loc(V), ldv, tau, c_loc(T), ldt)
     end function rocsolver_slarft_native
 
     function rocsolver_slarft_typed(handle, direct, storev, n, k, V, ldv, tau, T, ldt) result( &
@@ -45363,14 +45373,13 @@ contains
       integer(c_int), value :: storev
       integer(c_int), value :: n
       integer(c_int), value :: k
-      real(c_double), target :: V(*)
+      real(c_double), target :: V(..)
       integer(c_int), value :: ldv
       real(c_double) :: tau
-      real(c_double), target :: T(*)
+      real(c_double), target :: T(..)
       integer(c_int), value :: ldt
       integer(c_int) :: dlarft
-      dlarft = rocsolver_dlarft_raw(handle, direct, storev, n, k, c_loc(V(1)), ldv, tau, c_loc(T( &
-        1)), ldt)
+      dlarft = rocsolver_dlarft_raw(handle, direct, storev, n, k, c_loc(V), ldv, tau, c_loc(T), ldt)
     end function rocsolver_dlarft_native
 
     function rocsolver_dlarft_typed(handle, direct, storev, n, k, V, ldv, tau, T, ldt) result( &
@@ -45401,14 +45410,13 @@ contains
       integer(c_int), value :: storev
       integer(c_int), value :: n
       integer(c_int), value :: k
-      complex(c_float_complex), target :: V(*)
+      complex(c_float_complex), target :: V(..)
       integer(c_int), value :: ldv
       complex(c_float_complex) :: tau
-      complex(c_float_complex), target :: T(*)
+      complex(c_float_complex), target :: T(..)
       integer(c_int), value :: ldt
       integer(c_int) :: clarft
-      clarft = rocsolver_clarft_raw(handle, direct, storev, n, k, c_loc(V(1)), ldv, tau, c_loc(T( &
-        1)), ldt)
+      clarft = rocsolver_clarft_raw(handle, direct, storev, n, k, c_loc(V), ldv, tau, c_loc(T), ldt)
     end function rocsolver_clarft_native
 
     function rocsolver_clarft_typed(handle, direct, storev, n, k, V, ldv, tau, T, ldt) result( &
@@ -45439,14 +45447,13 @@ contains
       integer(c_int), value :: storev
       integer(c_int), value :: n
       integer(c_int), value :: k
-      complex(c_double_complex), target :: V(*)
+      complex(c_double_complex), target :: V(..)
       integer(c_int), value :: ldv
       complex(c_double_complex) :: tau
-      complex(c_double_complex), target :: T(*)
+      complex(c_double_complex), target :: T(..)
       integer(c_int), value :: ldt
       integer(c_int) :: zlarft
-      zlarft = rocsolver_zlarft_raw(handle, direct, storev, n, k, c_loc(V(1)), ldv, tau, c_loc(T( &
-        1)), ldt)
+      zlarft = rocsolver_zlarft_raw(handle, direct, storev, n, k, c_loc(V), ldv, tau, c_loc(T), ldt)
     end function rocsolver_zlarft_native
 
     function rocsolver_zlarft_typed(handle, direct, storev, n, k, V, ldv, tau, T, ldt) result( &
@@ -45475,13 +45482,13 @@ contains
       integer(c_int), value :: side
       integer(c_int), value :: m
       integer(c_int), value :: n
-      real(c_float), target :: x(*)
+      real(c_float), target :: x(..)
       integer(c_int), value :: incx
       real(c_float) :: alpha
-      real(c_float), target :: A(*)
+      real(c_float), target :: A(..)
       integer(c_int), value :: lda
       integer(c_int) :: slarf
-      slarf = rocsolver_slarf_raw(handle, side, m, n, c_loc(x(1)), incx, alpha, c_loc(A(1)), lda)
+      slarf = rocsolver_slarf_raw(handle, side, m, n, c_loc(x), incx, alpha, c_loc(A), lda)
     end function rocsolver_slarf_native
 
     function rocsolver_slarf_typed(handle, side, m, n, x, incx, alpha, A, lda) result(slarf)
@@ -45508,13 +45515,13 @@ contains
       integer(c_int), value :: side
       integer(c_int), value :: m
       integer(c_int), value :: n
-      real(c_double), target :: x(*)
+      real(c_double), target :: x(..)
       integer(c_int), value :: incx
       real(c_double) :: alpha
-      real(c_double), target :: A(*)
+      real(c_double), target :: A(..)
       integer(c_int), value :: lda
       integer(c_int) :: dlarf
-      dlarf = rocsolver_dlarf_raw(handle, side, m, n, c_loc(x(1)), incx, alpha, c_loc(A(1)), lda)
+      dlarf = rocsolver_dlarf_raw(handle, side, m, n, c_loc(x), incx, alpha, c_loc(A), lda)
     end function rocsolver_dlarf_native
 
     function rocsolver_dlarf_typed(handle, side, m, n, x, incx, alpha, A, lda) result(dlarf)
@@ -45541,13 +45548,13 @@ contains
       integer(c_int), value :: side
       integer(c_int), value :: m
       integer(c_int), value :: n
-      complex(c_float_complex), target :: x(*)
+      complex(c_float_complex), target :: x(..)
       integer(c_int), value :: incx
       complex(c_float_complex) :: alpha
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: A(..)
       integer(c_int), value :: lda
       integer(c_int) :: clarf
-      clarf = rocsolver_clarf_raw(handle, side, m, n, c_loc(x(1)), incx, alpha, c_loc(A(1)), lda)
+      clarf = rocsolver_clarf_raw(handle, side, m, n, c_loc(x), incx, alpha, c_loc(A), lda)
     end function rocsolver_clarf_native
 
     function rocsolver_clarf_typed(handle, side, m, n, x, incx, alpha, A, lda) result(clarf)
@@ -45574,13 +45581,13 @@ contains
       integer(c_int), value :: side
       integer(c_int), value :: m
       integer(c_int), value :: n
-      complex(c_double_complex), target :: x(*)
+      complex(c_double_complex), target :: x(..)
       integer(c_int), value :: incx
       complex(c_double_complex) :: alpha
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: A(..)
       integer(c_int), value :: lda
       integer(c_int) :: zlarf
-      zlarf = rocsolver_zlarf_raw(handle, side, m, n, c_loc(x(1)), incx, alpha, c_loc(A(1)), lda)
+      zlarf = rocsolver_zlarf_raw(handle, side, m, n, c_loc(x), incx, alpha, c_loc(A), lda)
     end function rocsolver_zlarf_native
 
     function rocsolver_zlarf_typed(handle, side, m, n, x, incx, alpha, A, lda) result(zlarf)
@@ -45607,14 +45614,14 @@ contains
       integer(c_int), value :: side
       integer(c_long), value :: m
       integer(c_long), value :: n
-      real(c_float), target :: x(*)
+      real(c_float), target :: x(..)
       integer(c_long), value :: incx
-      real(c_float), target :: alpha(*)
-      real(c_float), target :: A(*)
+      real(c_float), target :: alpha(..)
+      real(c_float), target :: A(..)
       integer(c_long), value :: lda
       integer(c_int) :: slarf_64
-      slarf_64 = rocsolver_slarf_64_raw(handle, side, m, n, c_loc(x(1)), incx, c_loc(alpha(1)), &
-        c_loc(A(1)), lda)
+      slarf_64 = rocsolver_slarf_64_raw(handle, side, m, n, c_loc(x), incx, c_loc(alpha), c_loc( &
+        A), lda)
     end function rocsolver_slarf_64_native
 
     function rocsolver_slarf_64_typed(handle, side, m, n, x, incx, alpha, A, lda) result(slarf_64)
@@ -45641,14 +45648,14 @@ contains
       integer(c_int), value :: side
       integer(c_long), value :: m
       integer(c_long), value :: n
-      real(c_double), target :: x(*)
+      real(c_double), target :: x(..)
       integer(c_long), value :: incx
-      real(c_double), target :: alpha(*)
-      real(c_double), target :: A(*)
+      real(c_double), target :: alpha(..)
+      real(c_double), target :: A(..)
       integer(c_long), value :: lda
       integer(c_int) :: dlarf_64
-      dlarf_64 = rocsolver_dlarf_64_raw(handle, side, m, n, c_loc(x(1)), incx, c_loc(alpha(1)), &
-        c_loc(A(1)), lda)
+      dlarf_64 = rocsolver_dlarf_64_raw(handle, side, m, n, c_loc(x), incx, c_loc(alpha), c_loc( &
+        A), lda)
     end function rocsolver_dlarf_64_native
 
     function rocsolver_dlarf_64_typed(handle, side, m, n, x, incx, alpha, A, lda) result(dlarf_64)
@@ -45675,14 +45682,14 @@ contains
       integer(c_int), value :: side
       integer(c_long), value :: m
       integer(c_long), value :: n
-      complex(c_float_complex), target :: x(*)
+      complex(c_float_complex), target :: x(..)
       integer(c_long), value :: incx
-      complex(c_float_complex), target :: alpha(*)
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: alpha(..)
+      complex(c_float_complex), target :: A(..)
       integer(c_long), value :: lda
       integer(c_int) :: clarf_64
-      clarf_64 = rocsolver_clarf_64_raw(handle, side, m, n, c_loc(x(1)), incx, c_loc(alpha(1)), &
-        c_loc(A(1)), lda)
+      clarf_64 = rocsolver_clarf_64_raw(handle, side, m, n, c_loc(x), incx, c_loc(alpha), c_loc( &
+        A), lda)
     end function rocsolver_clarf_64_native
 
     function rocsolver_clarf_64_typed(handle, side, m, n, x, incx, alpha, A, lda) result(clarf_64)
@@ -45709,14 +45716,14 @@ contains
       integer(c_int), value :: side
       integer(c_long), value :: m
       integer(c_long), value :: n
-      complex(c_double_complex), target :: x(*)
+      complex(c_double_complex), target :: x(..)
       integer(c_long), value :: incx
-      complex(c_double_complex), target :: alpha(*)
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: alpha(..)
+      complex(c_double_complex), target :: A(..)
       integer(c_long), value :: lda
       integer(c_int) :: zlarf_64
-      zlarf_64 = rocsolver_zlarf_64_raw(handle, side, m, n, c_loc(x(1)), incx, c_loc(alpha(1)), &
-        c_loc(A(1)), lda)
+      zlarf_64 = rocsolver_zlarf_64_raw(handle, side, m, n, c_loc(x), incx, c_loc(alpha), c_loc( &
+        A), lda)
     end function rocsolver_zlarf_64_native
 
     function rocsolver_zlarf_64_typed(handle, side, m, n, x, incx, alpha, A, lda) result(zlarf_64)
@@ -45748,15 +45755,15 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       integer(c_int), value :: k
-      real(c_float), target :: V(*)
+      real(c_float), target :: V(..)
       integer(c_int), value :: ldv
-      real(c_float), target :: T(*)
+      real(c_float), target :: T(..)
       integer(c_int), value :: ldt
-      real(c_float), target :: A(*)
+      real(c_float), target :: A(..)
       integer(c_int), value :: lda
       integer(c_int) :: slarfb
-      slarfb = rocsolver_slarfb_raw(handle, side, trans, direct, storev, m, n, k, c_loc(V(1)), &
-        ldv, c_loc(T(1)), ldt, c_loc(A(1)), lda)
+      slarfb = rocsolver_slarfb_raw(handle, side, trans, direct, storev, m, n, k, c_loc(V), ldv, &
+        c_loc(T), ldt, c_loc(A), lda)
     end function rocsolver_slarfb_native
 
     function rocsolver_slarfb_typed(handle, side, trans, direct, storev, m, n, k, V, ldv, T, ldt, &
@@ -45795,15 +45802,15 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       integer(c_int), value :: k
-      real(c_double), target :: V(*)
+      real(c_double), target :: V(..)
       integer(c_int), value :: ldv
-      real(c_double), target :: T(*)
+      real(c_double), target :: T(..)
       integer(c_int), value :: ldt
-      real(c_double), target :: A(*)
+      real(c_double), target :: A(..)
       integer(c_int), value :: lda
       integer(c_int) :: dlarfb
-      dlarfb = rocsolver_dlarfb_raw(handle, side, trans, direct, storev, m, n, k, c_loc(V(1)), &
-        ldv, c_loc(T(1)), ldt, c_loc(A(1)), lda)
+      dlarfb = rocsolver_dlarfb_raw(handle, side, trans, direct, storev, m, n, k, c_loc(V), ldv, &
+        c_loc(T), ldt, c_loc(A), lda)
     end function rocsolver_dlarfb_native
 
     function rocsolver_dlarfb_typed(handle, side, trans, direct, storev, m, n, k, V, ldv, T, ldt, &
@@ -45842,15 +45849,15 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       integer(c_int), value :: k
-      complex(c_float_complex), target :: V(*)
+      complex(c_float_complex), target :: V(..)
       integer(c_int), value :: ldv
-      complex(c_float_complex), target :: T(*)
+      complex(c_float_complex), target :: T(..)
       integer(c_int), value :: ldt
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: A(..)
       integer(c_int), value :: lda
       integer(c_int) :: clarfb
-      clarfb = rocsolver_clarfb_raw(handle, side, trans, direct, storev, m, n, k, c_loc(V(1)), &
-        ldv, c_loc(T(1)), ldt, c_loc(A(1)), lda)
+      clarfb = rocsolver_clarfb_raw(handle, side, trans, direct, storev, m, n, k, c_loc(V), ldv, &
+        c_loc(T), ldt, c_loc(A), lda)
     end function rocsolver_clarfb_native
 
     function rocsolver_clarfb_typed(handle, side, trans, direct, storev, m, n, k, V, ldv, T, ldt, &
@@ -45889,15 +45896,15 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       integer(c_int), value :: k
-      complex(c_double_complex), target :: V(*)
+      complex(c_double_complex), target :: V(..)
       integer(c_int), value :: ldv
-      complex(c_double_complex), target :: T(*)
+      complex(c_double_complex), target :: T(..)
       integer(c_int), value :: ldt
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: A(..)
       integer(c_int), value :: lda
       integer(c_int) :: zlarfb
-      zlarfb = rocsolver_zlarfb_raw(handle, side, trans, direct, storev, m, n, k, c_loc(V(1)), &
-        ldv, c_loc(T(1)), ldt, c_loc(A(1)), lda)
+      zlarfb = rocsolver_zlarfb_raw(handle, side, trans, direct, storev, m, n, k, c_loc(V), ldv, &
+        c_loc(T), ldt, c_loc(A), lda)
     end function rocsolver_zlarfb_native
 
     function rocsolver_zlarfb_typed(handle, side, trans, direct, storev, m, n, k, V, ldv, T, ldt, &
@@ -45933,13 +45940,13 @@ contains
       integer(c_int), value :: direct
       integer(c_int), value :: m
       integer(c_int), value :: n
-      real(c_float), target :: C(*)
-      real(c_float), target :: S(*)
-      real(c_float), target :: A(*)
+      real(c_float), target :: C(..)
+      real(c_float), target :: S(..)
+      real(c_float), target :: A(..)
       integer(c_int), value :: lda
       integer(c_int) :: slasr
-      slasr = rocsolver_slasr_raw(handle, side, pivot, direct, m, n, c_loc(C(1)), c_loc(S(1)), &
-        c_loc(A(1)), lda)
+      slasr = rocsolver_slasr_raw(handle, side, pivot, direct, m, n, c_loc(C), c_loc(S), c_loc(A), &
+        lda)
     end function rocsolver_slasr_native
 
     function rocsolver_slasr_typed(handle, side, pivot, direct, m, n, C, S, A, lda) result(slasr)
@@ -45969,13 +45976,13 @@ contains
       integer(c_int), value :: direct
       integer(c_int), value :: m
       integer(c_int), value :: n
-      real(c_double), target :: C(*)
-      real(c_double), target :: S(*)
-      real(c_double), target :: A(*)
+      real(c_double), target :: C(..)
+      real(c_double), target :: S(..)
+      real(c_double), target :: A(..)
       integer(c_int), value :: lda
       integer(c_int) :: dlasr
-      dlasr = rocsolver_dlasr_raw(handle, side, pivot, direct, m, n, c_loc(C(1)), c_loc(S(1)), &
-        c_loc(A(1)), lda)
+      dlasr = rocsolver_dlasr_raw(handle, side, pivot, direct, m, n, c_loc(C), c_loc(S), c_loc(A), &
+        lda)
     end function rocsolver_dlasr_native
 
     function rocsolver_dlasr_typed(handle, side, pivot, direct, m, n, C, S, A, lda) result(dlasr)
@@ -46005,13 +46012,13 @@ contains
       integer(c_int), value :: direct
       integer(c_int), value :: m
       integer(c_int), value :: n
-      real(c_float), target :: C(*)
-      real(c_float), target :: S(*)
-      complex(c_float_complex), target :: A(*)
+      real(c_float), target :: C(..)
+      real(c_float), target :: S(..)
+      complex(c_float_complex), target :: A(..)
       integer(c_int), value :: lda
       integer(c_int) :: clasr
-      clasr = rocsolver_clasr_raw(handle, side, pivot, direct, m, n, c_loc(C(1)), c_loc(S(1)), &
-        c_loc(A(1)), lda)
+      clasr = rocsolver_clasr_raw(handle, side, pivot, direct, m, n, c_loc(C), c_loc(S), c_loc(A), &
+        lda)
     end function rocsolver_clasr_native
 
     function rocsolver_clasr_typed(handle, side, pivot, direct, m, n, C, S, A, lda) result(clasr)
@@ -46041,13 +46048,13 @@ contains
       integer(c_int), value :: direct
       integer(c_int), value :: m
       integer(c_int), value :: n
-      real(c_double), target :: C(*)
-      real(c_double), target :: S(*)
-      complex(c_double_complex), target :: A(*)
+      real(c_double), target :: C(..)
+      real(c_double), target :: S(..)
+      complex(c_double_complex), target :: A(..)
       integer(c_int), value :: lda
       integer(c_int) :: zlasr
-      zlasr = rocsolver_zlasr_raw(handle, side, pivot, direct, m, n, c_loc(C(1)), c_loc(S(1)), &
-        c_loc(A(1)), lda)
+      zlasr = rocsolver_zlasr_raw(handle, side, pivot, direct, m, n, c_loc(C), c_loc(S), c_loc(A), &
+        lda)
     end function rocsolver_zlasr_native
 
     function rocsolver_zlasr_typed(handle, side, pivot, direct, m, n, C, S, A, lda) result(zlasr)
@@ -46076,19 +46083,19 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       integer(c_int), value :: k
-      real(c_float), target :: A(*)
+      real(c_float), target :: A(..)
       integer(c_int), value :: lda
-      real(c_float), target :: D(*)
-      real(c_float), target :: E(*)
-      real(c_float), target :: tauq(*)
-      real(c_float), target :: taup(*)
-      real(c_float), target :: X(*)
+      real(c_float), target :: D(..)
+      real(c_float), target :: E(..)
+      real(c_float), target :: tauq(..)
+      real(c_float), target :: taup(..)
+      real(c_float), target :: X(..)
       integer(c_int), value :: ldx
-      real(c_float), target :: Y(*)
+      real(c_float), target :: Y(..)
       integer(c_int), value :: ldy
       integer(c_int) :: slabrd
-      slabrd = rocsolver_slabrd_raw(handle, m, n, k, c_loc(A(1)), lda, c_loc(D(1)), c_loc(E(1)), &
-        c_loc(tauq(1)), c_loc(taup(1)), c_loc(X(1)), ldx, c_loc(Y(1)), ldy)
+      slabrd = rocsolver_slabrd_raw(handle, m, n, k, c_loc(A), lda, c_loc(D), c_loc(E), c_loc( &
+        tauq), c_loc(taup), c_loc(X), ldx, c_loc(Y), ldy)
     end function rocsolver_slabrd_native
 
     function rocsolver_slabrd_typed(handle, m, n, k, A, lda, D, E, tauq, taup, X, ldx, Y, &
@@ -46122,19 +46129,19 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       integer(c_int), value :: k
-      real(c_double), target :: A(*)
+      real(c_double), target :: A(..)
       integer(c_int), value :: lda
-      real(c_double), target :: D(*)
-      real(c_double), target :: E(*)
-      real(c_double), target :: tauq(*)
-      real(c_double), target :: taup(*)
-      real(c_double), target :: X(*)
+      real(c_double), target :: D(..)
+      real(c_double), target :: E(..)
+      real(c_double), target :: tauq(..)
+      real(c_double), target :: taup(..)
+      real(c_double), target :: X(..)
       integer(c_int), value :: ldx
-      real(c_double), target :: Y(*)
+      real(c_double), target :: Y(..)
       integer(c_int), value :: ldy
       integer(c_int) :: dlabrd
-      dlabrd = rocsolver_dlabrd_raw(handle, m, n, k, c_loc(A(1)), lda, c_loc(D(1)), c_loc(E(1)), &
-        c_loc(tauq(1)), c_loc(taup(1)), c_loc(X(1)), ldx, c_loc(Y(1)), ldy)
+      dlabrd = rocsolver_dlabrd_raw(handle, m, n, k, c_loc(A), lda, c_loc(D), c_loc(E), c_loc( &
+        tauq), c_loc(taup), c_loc(X), ldx, c_loc(Y), ldy)
     end function rocsolver_dlabrd_native
 
     function rocsolver_dlabrd_typed(handle, m, n, k, A, lda, D, E, tauq, taup, X, ldx, Y, &
@@ -46168,19 +46175,19 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       integer(c_int), value :: k
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: A(..)
       integer(c_int), value :: lda
-      real(c_float), target :: D(*)
-      real(c_float), target :: E(*)
-      complex(c_float_complex), target :: tauq(*)
-      complex(c_float_complex), target :: taup(*)
-      complex(c_float_complex), target :: X(*)
+      real(c_float), target :: D(..)
+      real(c_float), target :: E(..)
+      complex(c_float_complex), target :: tauq(..)
+      complex(c_float_complex), target :: taup(..)
+      complex(c_float_complex), target :: X(..)
       integer(c_int), value :: ldx
-      complex(c_float_complex), target :: Y(*)
+      complex(c_float_complex), target :: Y(..)
       integer(c_int), value :: ldy
       integer(c_int) :: clabrd
-      clabrd = rocsolver_clabrd_raw(handle, m, n, k, c_loc(A(1)), lda, c_loc(D(1)), c_loc(E(1)), &
-        c_loc(tauq(1)), c_loc(taup(1)), c_loc(X(1)), ldx, c_loc(Y(1)), ldy)
+      clabrd = rocsolver_clabrd_raw(handle, m, n, k, c_loc(A), lda, c_loc(D), c_loc(E), c_loc( &
+        tauq), c_loc(taup), c_loc(X), ldx, c_loc(Y), ldy)
     end function rocsolver_clabrd_native
 
     function rocsolver_clabrd_typed(handle, m, n, k, A, lda, D, E, tauq, taup, X, ldx, Y, &
@@ -46214,19 +46221,19 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       integer(c_int), value :: k
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: A(..)
       integer(c_int), value :: lda
-      real(c_double), target :: D(*)
-      real(c_double), target :: E(*)
-      complex(c_double_complex), target :: tauq(*)
-      complex(c_double_complex), target :: taup(*)
-      complex(c_double_complex), target :: X(*)
+      real(c_double), target :: D(..)
+      real(c_double), target :: E(..)
+      complex(c_double_complex), target :: tauq(..)
+      complex(c_double_complex), target :: taup(..)
+      complex(c_double_complex), target :: X(..)
       integer(c_int), value :: ldx
-      complex(c_double_complex), target :: Y(*)
+      complex(c_double_complex), target :: Y(..)
       integer(c_int), value :: ldy
       integer(c_int) :: zlabrd
-      zlabrd = rocsolver_zlabrd_raw(handle, m, n, k, c_loc(A(1)), lda, c_loc(D(1)), c_loc(E(1)), &
-        c_loc(tauq(1)), c_loc(taup(1)), c_loc(X(1)), ldx, c_loc(Y(1)), ldy)
+      zlabrd = rocsolver_zlabrd_raw(handle, m, n, k, c_loc(A), lda, c_loc(D), c_loc(E), c_loc( &
+        tauq), c_loc(taup), c_loc(X), ldx, c_loc(Y), ldy)
     end function rocsolver_zlabrd_native
 
     function rocsolver_zlabrd_typed(handle, m, n, k, A, lda, D, E, tauq, taup, X, ldx, Y, &
@@ -46259,15 +46266,14 @@ contains
       integer(c_int), value :: uplo
       integer(c_int), value :: n
       integer(c_int), value :: k
-      real(c_float), target :: A(*)
+      real(c_float), target :: A(..)
       integer(c_int), value :: lda
-      real(c_float), target :: E(*)
+      real(c_float), target :: E(..)
       real(c_float) :: tau
-      real(c_float), target :: W(*)
+      real(c_float), target :: W(..)
       integer(c_int), value :: ldw
       integer(c_int) :: slatrd
-      slatrd = rocsolver_slatrd_raw(handle, uplo, n, k, c_loc(A(1)), lda, c_loc(E(1)), tau, c_loc( &
-        W(1)), ldw)
+      slatrd = rocsolver_slatrd_raw(handle, uplo, n, k, c_loc(A), lda, c_loc(E), tau, c_loc(W), ldw)
     end function rocsolver_slatrd_native
 
     function rocsolver_slatrd_typed(handle, uplo, n, k, A, lda, E, tau, W, ldw) result(slatrd)
@@ -46295,15 +46301,14 @@ contains
       integer(c_int), value :: uplo
       integer(c_int), value :: n
       integer(c_int), value :: k
-      real(c_double), target :: A(*)
+      real(c_double), target :: A(..)
       integer(c_int), value :: lda
-      real(c_double), target :: E(*)
+      real(c_double), target :: E(..)
       real(c_double) :: tau
-      real(c_double), target :: W(*)
+      real(c_double), target :: W(..)
       integer(c_int), value :: ldw
       integer(c_int) :: dlatrd
-      dlatrd = rocsolver_dlatrd_raw(handle, uplo, n, k, c_loc(A(1)), lda, c_loc(E(1)), tau, c_loc( &
-        W(1)), ldw)
+      dlatrd = rocsolver_dlatrd_raw(handle, uplo, n, k, c_loc(A), lda, c_loc(E), tau, c_loc(W), ldw)
     end function rocsolver_dlatrd_native
 
     function rocsolver_dlatrd_typed(handle, uplo, n, k, A, lda, E, tau, W, ldw) result(dlatrd)
@@ -46331,15 +46336,14 @@ contains
       integer(c_int), value :: uplo
       integer(c_int), value :: n
       integer(c_int), value :: k
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: A(..)
       integer(c_int), value :: lda
-      real(c_float), target :: E(*)
+      real(c_float), target :: E(..)
       complex(c_float_complex) :: tau
-      complex(c_float_complex), target :: W(*)
+      complex(c_float_complex), target :: W(..)
       integer(c_int), value :: ldw
       integer(c_int) :: clatrd
-      clatrd = rocsolver_clatrd_raw(handle, uplo, n, k, c_loc(A(1)), lda, c_loc(E(1)), tau, c_loc( &
-        W(1)), ldw)
+      clatrd = rocsolver_clatrd_raw(handle, uplo, n, k, c_loc(A), lda, c_loc(E), tau, c_loc(W), ldw)
     end function rocsolver_clatrd_native
 
     function rocsolver_clatrd_typed(handle, uplo, n, k, A, lda, E, tau, W, ldw) result(clatrd)
@@ -46367,15 +46371,14 @@ contains
       integer(c_int), value :: uplo
       integer(c_int), value :: n
       integer(c_int), value :: k
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: A(..)
       integer(c_int), value :: lda
-      real(c_double), target :: E(*)
+      real(c_double), target :: E(..)
       complex(c_double_complex) :: tau
-      complex(c_double_complex), target :: W(*)
+      complex(c_double_complex), target :: W(..)
       integer(c_int), value :: ldw
       integer(c_int) :: zlatrd
-      zlatrd = rocsolver_zlatrd_raw(handle, uplo, n, k, c_loc(A(1)), lda, c_loc(E(1)), tau, c_loc( &
-        W(1)), ldw)
+      zlatrd = rocsolver_zlatrd_raw(handle, uplo, n, k, c_loc(A), lda, c_loc(E), tau, c_loc(W), ldw)
     end function rocsolver_zlatrd_native
 
     function rocsolver_zlatrd_typed(handle, uplo, n, k, A, lda, E, tau, W, ldw) result(zlatrd)
@@ -46403,14 +46406,14 @@ contains
       integer(c_int), value :: uplo
       integer(c_int), value :: n
       integer(c_int), value :: nb
-      integer(c_int), target :: kb(*)
-      real(c_float), target :: A(*)
+      integer(c_int), target :: kb(..)
+      real(c_float), target :: A(..)
       integer(c_int), value :: lda
-      integer(c_int), target :: ipiv(*)
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: ipiv(..)
+      integer(c_int), target :: info(..)
       integer(c_int) :: slasyf
-      slasyf = rocsolver_slasyf_raw(handle, uplo, n, nb, c_loc(kb(1)), c_loc(A(1)), lda, c_loc( &
-        ipiv(1)), c_loc(info(1)))
+      slasyf = rocsolver_slasyf_raw(handle, uplo, n, nb, c_loc(kb), c_loc(A), lda, c_loc(ipiv), &
+        c_loc(info))
     end function rocsolver_slasyf_native
 
     function rocsolver_slasyf_typed(handle, uplo, n, nb, kb, A, lda, ipiv, info) result(slasyf)
@@ -46437,14 +46440,14 @@ contains
       integer(c_int), value :: uplo
       integer(c_int), value :: n
       integer(c_int), value :: nb
-      integer(c_int), target :: kb(*)
-      real(c_double), target :: A(*)
+      integer(c_int), target :: kb(..)
+      real(c_double), target :: A(..)
       integer(c_int), value :: lda
-      integer(c_int), target :: ipiv(*)
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: ipiv(..)
+      integer(c_int), target :: info(..)
       integer(c_int) :: dlasyf
-      dlasyf = rocsolver_dlasyf_raw(handle, uplo, n, nb, c_loc(kb(1)), c_loc(A(1)), lda, c_loc( &
-        ipiv(1)), c_loc(info(1)))
+      dlasyf = rocsolver_dlasyf_raw(handle, uplo, n, nb, c_loc(kb), c_loc(A), lda, c_loc(ipiv), &
+        c_loc(info))
     end function rocsolver_dlasyf_native
 
     function rocsolver_dlasyf_typed(handle, uplo, n, nb, kb, A, lda, ipiv, info) result(dlasyf)
@@ -46471,14 +46474,14 @@ contains
       integer(c_int), value :: uplo
       integer(c_int), value :: n
       integer(c_int), value :: nb
-      integer(c_int), target :: kb(*)
-      complex(c_float_complex), target :: A(*)
+      integer(c_int), target :: kb(..)
+      complex(c_float_complex), target :: A(..)
       integer(c_int), value :: lda
-      integer(c_int), target :: ipiv(*)
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: ipiv(..)
+      integer(c_int), target :: info(..)
       integer(c_int) :: clasyf
-      clasyf = rocsolver_clasyf_raw(handle, uplo, n, nb, c_loc(kb(1)), c_loc(A(1)), lda, c_loc( &
-        ipiv(1)), c_loc(info(1)))
+      clasyf = rocsolver_clasyf_raw(handle, uplo, n, nb, c_loc(kb), c_loc(A), lda, c_loc(ipiv), &
+        c_loc(info))
     end function rocsolver_clasyf_native
 
     function rocsolver_clasyf_typed(handle, uplo, n, nb, kb, A, lda, ipiv, info) result(clasyf)
@@ -46505,14 +46508,14 @@ contains
       integer(c_int), value :: uplo
       integer(c_int), value :: n
       integer(c_int), value :: nb
-      integer(c_int), target :: kb(*)
-      complex(c_double_complex), target :: A(*)
+      integer(c_int), target :: kb(..)
+      complex(c_double_complex), target :: A(..)
       integer(c_int), value :: lda
-      integer(c_int), target :: ipiv(*)
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: ipiv(..)
+      integer(c_int), target :: info(..)
       integer(c_int) :: zlasyf
-      zlasyf = rocsolver_zlasyf_raw(handle, uplo, n, nb, c_loc(kb(1)), c_loc(A(1)), lda, c_loc( &
-        ipiv(1)), c_loc(info(1)))
+      zlasyf = rocsolver_zlasyf_raw(handle, uplo, n, nb, c_loc(kb), c_loc(A), lda, c_loc(ipiv), &
+        c_loc(info))
     end function rocsolver_zlasyf_native
 
     function rocsolver_zlasyf_typed(handle, uplo, n, nb, kb, A, lda, ipiv, info) result(zlasyf)
@@ -46538,10 +46541,10 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: uplo
       integer(c_int), value :: n
-      real(c_float), target :: A(*)
+      real(c_float), target :: A(..)
       integer(c_int), value :: lda
       integer(c_int) :: slauum
-      slauum = rocsolver_slauum_raw(handle, uplo, n, c_loc(A(1)), lda)
+      slauum = rocsolver_slauum_raw(handle, uplo, n, c_loc(A), lda)
     end function rocsolver_slauum_native
 
     function rocsolver_slauum_typed(handle, uplo, n, A, lda) result(slauum)
@@ -46563,10 +46566,10 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: uplo
       integer(c_int), value :: n
-      real(c_double), target :: A(*)
+      real(c_double), target :: A(..)
       integer(c_int), value :: lda
       integer(c_int) :: dlauum
-      dlauum = rocsolver_dlauum_raw(handle, uplo, n, c_loc(A(1)), lda)
+      dlauum = rocsolver_dlauum_raw(handle, uplo, n, c_loc(A), lda)
     end function rocsolver_dlauum_native
 
     function rocsolver_dlauum_typed(handle, uplo, n, A, lda) result(dlauum)
@@ -46588,10 +46591,10 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: uplo
       integer(c_int), value :: n
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: A(..)
       integer(c_int), value :: lda
       integer(c_int) :: clauum
-      clauum = rocsolver_clauum_raw(handle, uplo, n, c_loc(A(1)), lda)
+      clauum = rocsolver_clauum_raw(handle, uplo, n, c_loc(A), lda)
     end function rocsolver_clauum_native
 
     function rocsolver_clauum_typed(handle, uplo, n, A, lda) result(clauum)
@@ -46613,10 +46616,10 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: uplo
       integer(c_int), value :: n
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: A(..)
       integer(c_int), value :: lda
       integer(c_int) :: zlauum
-      zlauum = rocsolver_zlauum_raw(handle, uplo, n, c_loc(A(1)), lda)
+      zlauum = rocsolver_zlauum_raw(handle, uplo, n, c_loc(A), lda)
     end function rocsolver_zlauum_native
 
     function rocsolver_zlauum_typed(handle, uplo, n, A, lda) result(zlauum)
@@ -46639,11 +46642,11 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       integer(c_int), value :: k
-      real(c_float), target :: A(*)
+      real(c_float), target :: A(..)
       integer(c_int), value :: lda
-      real(c_float), target :: ipiv(*)
+      real(c_float), target :: ipiv(..)
       integer(c_int) :: sorg2r
-      sorg2r = rocsolver_sorg2r_raw(handle, m, n, k, c_loc(A(1)), lda, c_loc(ipiv(1)))
+      sorg2r = rocsolver_sorg2r_raw(handle, m, n, k, c_loc(A), lda, c_loc(ipiv))
     end function rocsolver_sorg2r_native
 
     function rocsolver_sorg2r_typed(handle, m, n, k, A, lda, ipiv) result(sorg2r)
@@ -46668,11 +46671,11 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       integer(c_int), value :: k
-      real(c_double), target :: A(*)
+      real(c_double), target :: A(..)
       integer(c_int), value :: lda
-      real(c_double), target :: ipiv(*)
+      real(c_double), target :: ipiv(..)
       integer(c_int) :: dorg2r
-      dorg2r = rocsolver_dorg2r_raw(handle, m, n, k, c_loc(A(1)), lda, c_loc(ipiv(1)))
+      dorg2r = rocsolver_dorg2r_raw(handle, m, n, k, c_loc(A), lda, c_loc(ipiv))
     end function rocsolver_dorg2r_native
 
     function rocsolver_dorg2r_typed(handle, m, n, k, A, lda, ipiv) result(dorg2r)
@@ -46697,11 +46700,11 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       integer(c_int), value :: k
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: A(..)
       integer(c_int), value :: lda
-      complex(c_float_complex), target :: ipiv(*)
+      complex(c_float_complex), target :: ipiv(..)
       integer(c_int) :: cung2r
-      cung2r = rocsolver_cung2r_raw(handle, m, n, k, c_loc(A(1)), lda, c_loc(ipiv(1)))
+      cung2r = rocsolver_cung2r_raw(handle, m, n, k, c_loc(A), lda, c_loc(ipiv))
     end function rocsolver_cung2r_native
 
     function rocsolver_cung2r_typed(handle, m, n, k, A, lda, ipiv) result(cung2r)
@@ -46726,11 +46729,11 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       integer(c_int), value :: k
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: A(..)
       integer(c_int), value :: lda
-      complex(c_double_complex), target :: ipiv(*)
+      complex(c_double_complex), target :: ipiv(..)
       integer(c_int) :: zung2r
-      zung2r = rocsolver_zung2r_raw(handle, m, n, k, c_loc(A(1)), lda, c_loc(ipiv(1)))
+      zung2r = rocsolver_zung2r_raw(handle, m, n, k, c_loc(A), lda, c_loc(ipiv))
     end function rocsolver_zung2r_native
 
     function rocsolver_zung2r_typed(handle, m, n, k, A, lda, ipiv) result(zung2r)
@@ -46755,11 +46758,11 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       integer(c_int), value :: k
-      real(c_float), target :: A(*)
+      real(c_float), target :: A(..)
       integer(c_int), value :: lda
-      real(c_float), target :: ipiv(*)
+      real(c_float), target :: ipiv(..)
       integer(c_int) :: sorgqr
-      sorgqr = rocsolver_sorgqr_raw(handle, m, n, k, c_loc(A(1)), lda, c_loc(ipiv(1)))
+      sorgqr = rocsolver_sorgqr_raw(handle, m, n, k, c_loc(A), lda, c_loc(ipiv))
     end function rocsolver_sorgqr_native
 
     function rocsolver_sorgqr_typed(handle, m, n, k, A, lda, ipiv) result(sorgqr)
@@ -46784,11 +46787,11 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       integer(c_int), value :: k
-      real(c_double), target :: A(*)
+      real(c_double), target :: A(..)
       integer(c_int), value :: lda
-      real(c_double), target :: ipiv(*)
+      real(c_double), target :: ipiv(..)
       integer(c_int) :: dorgqr
-      dorgqr = rocsolver_dorgqr_raw(handle, m, n, k, c_loc(A(1)), lda, c_loc(ipiv(1)))
+      dorgqr = rocsolver_dorgqr_raw(handle, m, n, k, c_loc(A), lda, c_loc(ipiv))
     end function rocsolver_dorgqr_native
 
     function rocsolver_dorgqr_typed(handle, m, n, k, A, lda, ipiv) result(dorgqr)
@@ -46813,11 +46816,11 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       integer(c_int), value :: k
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: A(..)
       integer(c_int), value :: lda
-      complex(c_float_complex), target :: ipiv(*)
+      complex(c_float_complex), target :: ipiv(..)
       integer(c_int) :: cungqr
-      cungqr = rocsolver_cungqr_raw(handle, m, n, k, c_loc(A(1)), lda, c_loc(ipiv(1)))
+      cungqr = rocsolver_cungqr_raw(handle, m, n, k, c_loc(A), lda, c_loc(ipiv))
     end function rocsolver_cungqr_native
 
     function rocsolver_cungqr_typed(handle, m, n, k, A, lda, ipiv) result(cungqr)
@@ -46842,11 +46845,11 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       integer(c_int), value :: k
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: A(..)
       integer(c_int), value :: lda
-      complex(c_double_complex), target :: ipiv(*)
+      complex(c_double_complex), target :: ipiv(..)
       integer(c_int) :: zungqr
-      zungqr = rocsolver_zungqr_raw(handle, m, n, k, c_loc(A(1)), lda, c_loc(ipiv(1)))
+      zungqr = rocsolver_zungqr_raw(handle, m, n, k, c_loc(A), lda, c_loc(ipiv))
     end function rocsolver_zungqr_native
 
     function rocsolver_zungqr_typed(handle, m, n, k, A, lda, ipiv) result(zungqr)
@@ -46871,11 +46874,11 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       integer(c_int), value :: k
-      real(c_float), target :: A(*)
+      real(c_float), target :: A(..)
       integer(c_int), value :: lda
-      real(c_float), target :: ipiv(*)
+      real(c_float), target :: ipiv(..)
       integer(c_int) :: sorgl2
-      sorgl2 = rocsolver_sorgl2_raw(handle, m, n, k, c_loc(A(1)), lda, c_loc(ipiv(1)))
+      sorgl2 = rocsolver_sorgl2_raw(handle, m, n, k, c_loc(A), lda, c_loc(ipiv))
     end function rocsolver_sorgl2_native
 
     function rocsolver_sorgl2_typed(handle, m, n, k, A, lda, ipiv) result(sorgl2)
@@ -46900,11 +46903,11 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       integer(c_int), value :: k
-      real(c_double), target :: A(*)
+      real(c_double), target :: A(..)
       integer(c_int), value :: lda
-      real(c_double), target :: ipiv(*)
+      real(c_double), target :: ipiv(..)
       integer(c_int) :: dorgl2
-      dorgl2 = rocsolver_dorgl2_raw(handle, m, n, k, c_loc(A(1)), lda, c_loc(ipiv(1)))
+      dorgl2 = rocsolver_dorgl2_raw(handle, m, n, k, c_loc(A), lda, c_loc(ipiv))
     end function rocsolver_dorgl2_native
 
     function rocsolver_dorgl2_typed(handle, m, n, k, A, lda, ipiv) result(dorgl2)
@@ -46929,11 +46932,11 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       integer(c_int), value :: k
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: A(..)
       integer(c_int), value :: lda
-      complex(c_float_complex), target :: ipiv(*)
+      complex(c_float_complex), target :: ipiv(..)
       integer(c_int) :: cungl2
-      cungl2 = rocsolver_cungl2_raw(handle, m, n, k, c_loc(A(1)), lda, c_loc(ipiv(1)))
+      cungl2 = rocsolver_cungl2_raw(handle, m, n, k, c_loc(A), lda, c_loc(ipiv))
     end function rocsolver_cungl2_native
 
     function rocsolver_cungl2_typed(handle, m, n, k, A, lda, ipiv) result(cungl2)
@@ -46958,11 +46961,11 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       integer(c_int), value :: k
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: A(..)
       integer(c_int), value :: lda
-      complex(c_double_complex), target :: ipiv(*)
+      complex(c_double_complex), target :: ipiv(..)
       integer(c_int) :: zungl2
-      zungl2 = rocsolver_zungl2_raw(handle, m, n, k, c_loc(A(1)), lda, c_loc(ipiv(1)))
+      zungl2 = rocsolver_zungl2_raw(handle, m, n, k, c_loc(A), lda, c_loc(ipiv))
     end function rocsolver_zungl2_native
 
     function rocsolver_zungl2_typed(handle, m, n, k, A, lda, ipiv) result(zungl2)
@@ -46987,11 +46990,11 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       integer(c_int), value :: k
-      real(c_float), target :: A(*)
+      real(c_float), target :: A(..)
       integer(c_int), value :: lda
-      real(c_float), target :: ipiv(*)
+      real(c_float), target :: ipiv(..)
       integer(c_int) :: sorglq
-      sorglq = rocsolver_sorglq_raw(handle, m, n, k, c_loc(A(1)), lda, c_loc(ipiv(1)))
+      sorglq = rocsolver_sorglq_raw(handle, m, n, k, c_loc(A), lda, c_loc(ipiv))
     end function rocsolver_sorglq_native
 
     function rocsolver_sorglq_typed(handle, m, n, k, A, lda, ipiv) result(sorglq)
@@ -47016,11 +47019,11 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       integer(c_int), value :: k
-      real(c_double), target :: A(*)
+      real(c_double), target :: A(..)
       integer(c_int), value :: lda
-      real(c_double), target :: ipiv(*)
+      real(c_double), target :: ipiv(..)
       integer(c_int) :: dorglq
-      dorglq = rocsolver_dorglq_raw(handle, m, n, k, c_loc(A(1)), lda, c_loc(ipiv(1)))
+      dorglq = rocsolver_dorglq_raw(handle, m, n, k, c_loc(A), lda, c_loc(ipiv))
     end function rocsolver_dorglq_native
 
     function rocsolver_dorglq_typed(handle, m, n, k, A, lda, ipiv) result(dorglq)
@@ -47045,11 +47048,11 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       integer(c_int), value :: k
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: A(..)
       integer(c_int), value :: lda
-      complex(c_float_complex), target :: ipiv(*)
+      complex(c_float_complex), target :: ipiv(..)
       integer(c_int) :: cunglq
-      cunglq = rocsolver_cunglq_raw(handle, m, n, k, c_loc(A(1)), lda, c_loc(ipiv(1)))
+      cunglq = rocsolver_cunglq_raw(handle, m, n, k, c_loc(A), lda, c_loc(ipiv))
     end function rocsolver_cunglq_native
 
     function rocsolver_cunglq_typed(handle, m, n, k, A, lda, ipiv) result(cunglq)
@@ -47074,11 +47077,11 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       integer(c_int), value :: k
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: A(..)
       integer(c_int), value :: lda
-      complex(c_double_complex), target :: ipiv(*)
+      complex(c_double_complex), target :: ipiv(..)
       integer(c_int) :: zunglq
-      zunglq = rocsolver_zunglq_raw(handle, m, n, k, c_loc(A(1)), lda, c_loc(ipiv(1)))
+      zunglq = rocsolver_zunglq_raw(handle, m, n, k, c_loc(A), lda, c_loc(ipiv))
     end function rocsolver_zunglq_native
 
     function rocsolver_zunglq_typed(handle, m, n, k, A, lda, ipiv) result(zunglq)
@@ -47103,11 +47106,11 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       integer(c_int), value :: k
-      real(c_float), target :: A(*)
+      real(c_float), target :: A(..)
       integer(c_int), value :: lda
-      real(c_float), target :: ipiv(*)
+      real(c_float), target :: ipiv(..)
       integer(c_int) :: sorg2l
-      sorg2l = rocsolver_sorg2l_raw(handle, m, n, k, c_loc(A(1)), lda, c_loc(ipiv(1)))
+      sorg2l = rocsolver_sorg2l_raw(handle, m, n, k, c_loc(A), lda, c_loc(ipiv))
     end function rocsolver_sorg2l_native
 
     function rocsolver_sorg2l_typed(handle, m, n, k, A, lda, ipiv) result(sorg2l)
@@ -47132,11 +47135,11 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       integer(c_int), value :: k
-      real(c_double), target :: A(*)
+      real(c_double), target :: A(..)
       integer(c_int), value :: lda
-      real(c_double), target :: ipiv(*)
+      real(c_double), target :: ipiv(..)
       integer(c_int) :: dorg2l
-      dorg2l = rocsolver_dorg2l_raw(handle, m, n, k, c_loc(A(1)), lda, c_loc(ipiv(1)))
+      dorg2l = rocsolver_dorg2l_raw(handle, m, n, k, c_loc(A), lda, c_loc(ipiv))
     end function rocsolver_dorg2l_native
 
     function rocsolver_dorg2l_typed(handle, m, n, k, A, lda, ipiv) result(dorg2l)
@@ -47161,11 +47164,11 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       integer(c_int), value :: k
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: A(..)
       integer(c_int), value :: lda
-      complex(c_float_complex), target :: ipiv(*)
+      complex(c_float_complex), target :: ipiv(..)
       integer(c_int) :: cung2l
-      cung2l = rocsolver_cung2l_raw(handle, m, n, k, c_loc(A(1)), lda, c_loc(ipiv(1)))
+      cung2l = rocsolver_cung2l_raw(handle, m, n, k, c_loc(A), lda, c_loc(ipiv))
     end function rocsolver_cung2l_native
 
     function rocsolver_cung2l_typed(handle, m, n, k, A, lda, ipiv) result(cung2l)
@@ -47190,11 +47193,11 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       integer(c_int), value :: k
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: A(..)
       integer(c_int), value :: lda
-      complex(c_double_complex), target :: ipiv(*)
+      complex(c_double_complex), target :: ipiv(..)
       integer(c_int) :: zung2l
-      zung2l = rocsolver_zung2l_raw(handle, m, n, k, c_loc(A(1)), lda, c_loc(ipiv(1)))
+      zung2l = rocsolver_zung2l_raw(handle, m, n, k, c_loc(A), lda, c_loc(ipiv))
     end function rocsolver_zung2l_native
 
     function rocsolver_zung2l_typed(handle, m, n, k, A, lda, ipiv) result(zung2l)
@@ -47219,11 +47222,11 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       integer(c_int), value :: k
-      real(c_float), target :: A(*)
+      real(c_float), target :: A(..)
       integer(c_int), value :: lda
-      real(c_float), target :: ipiv(*)
+      real(c_float), target :: ipiv(..)
       integer(c_int) :: sorgql
-      sorgql = rocsolver_sorgql_raw(handle, m, n, k, c_loc(A(1)), lda, c_loc(ipiv(1)))
+      sorgql = rocsolver_sorgql_raw(handle, m, n, k, c_loc(A), lda, c_loc(ipiv))
     end function rocsolver_sorgql_native
 
     function rocsolver_sorgql_typed(handle, m, n, k, A, lda, ipiv) result(sorgql)
@@ -47248,11 +47251,11 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       integer(c_int), value :: k
-      real(c_double), target :: A(*)
+      real(c_double), target :: A(..)
       integer(c_int), value :: lda
-      real(c_double), target :: ipiv(*)
+      real(c_double), target :: ipiv(..)
       integer(c_int) :: dorgql
-      dorgql = rocsolver_dorgql_raw(handle, m, n, k, c_loc(A(1)), lda, c_loc(ipiv(1)))
+      dorgql = rocsolver_dorgql_raw(handle, m, n, k, c_loc(A), lda, c_loc(ipiv))
     end function rocsolver_dorgql_native
 
     function rocsolver_dorgql_typed(handle, m, n, k, A, lda, ipiv) result(dorgql)
@@ -47277,11 +47280,11 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       integer(c_int), value :: k
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: A(..)
       integer(c_int), value :: lda
-      complex(c_float_complex), target :: ipiv(*)
+      complex(c_float_complex), target :: ipiv(..)
       integer(c_int) :: cungql
-      cungql = rocsolver_cungql_raw(handle, m, n, k, c_loc(A(1)), lda, c_loc(ipiv(1)))
+      cungql = rocsolver_cungql_raw(handle, m, n, k, c_loc(A), lda, c_loc(ipiv))
     end function rocsolver_cungql_native
 
     function rocsolver_cungql_typed(handle, m, n, k, A, lda, ipiv) result(cungql)
@@ -47306,11 +47309,11 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       integer(c_int), value :: k
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: A(..)
       integer(c_int), value :: lda
-      complex(c_double_complex), target :: ipiv(*)
+      complex(c_double_complex), target :: ipiv(..)
       integer(c_int) :: zungql
-      zungql = rocsolver_zungql_raw(handle, m, n, k, c_loc(A(1)), lda, c_loc(ipiv(1)))
+      zungql = rocsolver_zungql_raw(handle, m, n, k, c_loc(A), lda, c_loc(ipiv))
     end function rocsolver_zungql_native
 
     function rocsolver_zungql_typed(handle, m, n, k, A, lda, ipiv) result(zungql)
@@ -47336,11 +47339,11 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       integer(c_int), value :: k
-      real(c_float), target :: A(*)
+      real(c_float), target :: A(..)
       integer(c_int), value :: lda
-      real(c_float), target :: ipiv(*)
+      real(c_float), target :: ipiv(..)
       integer(c_int) :: sorgbr
-      sorgbr = rocsolver_sorgbr_raw(handle, storev, m, n, k, c_loc(A(1)), lda, c_loc(ipiv(1)))
+      sorgbr = rocsolver_sorgbr_raw(handle, storev, m, n, k, c_loc(A), lda, c_loc(ipiv))
     end function rocsolver_sorgbr_native
 
     function rocsolver_sorgbr_typed(handle, storev, m, n, k, A, lda, ipiv) result(sorgbr)
@@ -47367,11 +47370,11 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       integer(c_int), value :: k
-      real(c_double), target :: A(*)
+      real(c_double), target :: A(..)
       integer(c_int), value :: lda
-      real(c_double), target :: ipiv(*)
+      real(c_double), target :: ipiv(..)
       integer(c_int) :: dorgbr
-      dorgbr = rocsolver_dorgbr_raw(handle, storev, m, n, k, c_loc(A(1)), lda, c_loc(ipiv(1)))
+      dorgbr = rocsolver_dorgbr_raw(handle, storev, m, n, k, c_loc(A), lda, c_loc(ipiv))
     end function rocsolver_dorgbr_native
 
     function rocsolver_dorgbr_typed(handle, storev, m, n, k, A, lda, ipiv) result(dorgbr)
@@ -47398,11 +47401,11 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       integer(c_int), value :: k
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: A(..)
       integer(c_int), value :: lda
-      complex(c_float_complex), target :: ipiv(*)
+      complex(c_float_complex), target :: ipiv(..)
       integer(c_int) :: cungbr
-      cungbr = rocsolver_cungbr_raw(handle, storev, m, n, k, c_loc(A(1)), lda, c_loc(ipiv(1)))
+      cungbr = rocsolver_cungbr_raw(handle, storev, m, n, k, c_loc(A), lda, c_loc(ipiv))
     end function rocsolver_cungbr_native
 
     function rocsolver_cungbr_typed(handle, storev, m, n, k, A, lda, ipiv) result(cungbr)
@@ -47429,11 +47432,11 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       integer(c_int), value :: k
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: A(..)
       integer(c_int), value :: lda
-      complex(c_double_complex), target :: ipiv(*)
+      complex(c_double_complex), target :: ipiv(..)
       integer(c_int) :: zungbr
-      zungbr = rocsolver_zungbr_raw(handle, storev, m, n, k, c_loc(A(1)), lda, c_loc(ipiv(1)))
+      zungbr = rocsolver_zungbr_raw(handle, storev, m, n, k, c_loc(A), lda, c_loc(ipiv))
     end function rocsolver_zungbr_native
 
     function rocsolver_zungbr_typed(handle, storev, m, n, k, A, lda, ipiv) result(zungbr)
@@ -47458,11 +47461,11 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: uplo
       integer(c_int), value :: n
-      real(c_float), target :: A(*)
+      real(c_float), target :: A(..)
       integer(c_int), value :: lda
-      real(c_float), target :: ipiv(*)
+      real(c_float), target :: ipiv(..)
       integer(c_int) :: sorgtr
-      sorgtr = rocsolver_sorgtr_raw(handle, uplo, n, c_loc(A(1)), lda, c_loc(ipiv(1)))
+      sorgtr = rocsolver_sorgtr_raw(handle, uplo, n, c_loc(A), lda, c_loc(ipiv))
     end function rocsolver_sorgtr_native
 
     function rocsolver_sorgtr_typed(handle, uplo, n, A, lda, ipiv) result(sorgtr)
@@ -47485,11 +47488,11 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: uplo
       integer(c_int), value :: n
-      real(c_double), target :: A(*)
+      real(c_double), target :: A(..)
       integer(c_int), value :: lda
-      real(c_double), target :: ipiv(*)
+      real(c_double), target :: ipiv(..)
       integer(c_int) :: dorgtr
-      dorgtr = rocsolver_dorgtr_raw(handle, uplo, n, c_loc(A(1)), lda, c_loc(ipiv(1)))
+      dorgtr = rocsolver_dorgtr_raw(handle, uplo, n, c_loc(A), lda, c_loc(ipiv))
     end function rocsolver_dorgtr_native
 
     function rocsolver_dorgtr_typed(handle, uplo, n, A, lda, ipiv) result(dorgtr)
@@ -47512,11 +47515,11 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: uplo
       integer(c_int), value :: n
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: A(..)
       integer(c_int), value :: lda
-      complex(c_float_complex), target :: ipiv(*)
+      complex(c_float_complex), target :: ipiv(..)
       integer(c_int) :: cungtr
-      cungtr = rocsolver_cungtr_raw(handle, uplo, n, c_loc(A(1)), lda, c_loc(ipiv(1)))
+      cungtr = rocsolver_cungtr_raw(handle, uplo, n, c_loc(A), lda, c_loc(ipiv))
     end function rocsolver_cungtr_native
 
     function rocsolver_cungtr_typed(handle, uplo, n, A, lda, ipiv) result(cungtr)
@@ -47539,11 +47542,11 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: uplo
       integer(c_int), value :: n
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: A(..)
       integer(c_int), value :: lda
-      complex(c_double_complex), target :: ipiv(*)
+      complex(c_double_complex), target :: ipiv(..)
       integer(c_int) :: zungtr
-      zungtr = rocsolver_zungtr_raw(handle, uplo, n, c_loc(A(1)), lda, c_loc(ipiv(1)))
+      zungtr = rocsolver_zungtr_raw(handle, uplo, n, c_loc(A), lda, c_loc(ipiv))
     end function rocsolver_zungtr_native
 
     function rocsolver_zungtr_typed(handle, uplo, n, A, lda, ipiv) result(zungtr)
@@ -47570,14 +47573,14 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       integer(c_int), value :: k
-      real(c_float), target :: A(*)
+      real(c_float), target :: A(..)
       integer(c_int), value :: lda
-      real(c_float), target :: ipiv(*)
-      real(c_float), target :: C(*)
+      real(c_float), target :: ipiv(..)
+      real(c_float), target :: C(..)
       integer(c_int), value :: ldc
       integer(c_int) :: sorm2r
-      sorm2r = rocsolver_sorm2r_raw(handle, side, trans, m, n, k, c_loc(A(1)), lda, c_loc(ipiv( &
-        1)), c_loc(C(1)), ldc)
+      sorm2r = rocsolver_sorm2r_raw(handle, side, trans, m, n, k, c_loc(A), lda, c_loc(ipiv), &
+        c_loc(C), ldc)
     end function rocsolver_sorm2r_native
 
     function rocsolver_sorm2r_typed(handle, side, trans, m, n, k, A, lda, ipiv, C, ldc) result( &
@@ -47610,14 +47613,14 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       integer(c_int), value :: k
-      real(c_double), target :: A(*)
+      real(c_double), target :: A(..)
       integer(c_int), value :: lda
-      real(c_double), target :: ipiv(*)
-      real(c_double), target :: C(*)
+      real(c_double), target :: ipiv(..)
+      real(c_double), target :: C(..)
       integer(c_int), value :: ldc
       integer(c_int) :: dorm2r
-      dorm2r = rocsolver_dorm2r_raw(handle, side, trans, m, n, k, c_loc(A(1)), lda, c_loc(ipiv( &
-        1)), c_loc(C(1)), ldc)
+      dorm2r = rocsolver_dorm2r_raw(handle, side, trans, m, n, k, c_loc(A), lda, c_loc(ipiv), &
+        c_loc(C), ldc)
     end function rocsolver_dorm2r_native
 
     function rocsolver_dorm2r_typed(handle, side, trans, m, n, k, A, lda, ipiv, C, ldc) result( &
@@ -47650,14 +47653,14 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       integer(c_int), value :: k
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: A(..)
       integer(c_int), value :: lda
-      complex(c_float_complex), target :: ipiv(*)
-      complex(c_float_complex), target :: C(*)
+      complex(c_float_complex), target :: ipiv(..)
+      complex(c_float_complex), target :: C(..)
       integer(c_int), value :: ldc
       integer(c_int) :: cunm2r
-      cunm2r = rocsolver_cunm2r_raw(handle, side, trans, m, n, k, c_loc(A(1)), lda, c_loc(ipiv( &
-        1)), c_loc(C(1)), ldc)
+      cunm2r = rocsolver_cunm2r_raw(handle, side, trans, m, n, k, c_loc(A), lda, c_loc(ipiv), &
+        c_loc(C), ldc)
     end function rocsolver_cunm2r_native
 
     function rocsolver_cunm2r_typed(handle, side, trans, m, n, k, A, lda, ipiv, C, ldc) result( &
@@ -47690,14 +47693,14 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       integer(c_int), value :: k
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: A(..)
       integer(c_int), value :: lda
-      complex(c_double_complex), target :: ipiv(*)
-      complex(c_double_complex), target :: C(*)
+      complex(c_double_complex), target :: ipiv(..)
+      complex(c_double_complex), target :: C(..)
       integer(c_int), value :: ldc
       integer(c_int) :: zunm2r
-      zunm2r = rocsolver_zunm2r_raw(handle, side, trans, m, n, k, c_loc(A(1)), lda, c_loc(ipiv( &
-        1)), c_loc(C(1)), ldc)
+      zunm2r = rocsolver_zunm2r_raw(handle, side, trans, m, n, k, c_loc(A), lda, c_loc(ipiv), &
+        c_loc(C), ldc)
     end function rocsolver_zunm2r_native
 
     function rocsolver_zunm2r_typed(handle, side, trans, m, n, k, A, lda, ipiv, C, ldc) result( &
@@ -47730,14 +47733,14 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       integer(c_int), value :: k
-      real(c_float), target :: A(*)
+      real(c_float), target :: A(..)
       integer(c_int), value :: lda
-      real(c_float), target :: ipiv(*)
-      real(c_float), target :: C(*)
+      real(c_float), target :: ipiv(..)
+      real(c_float), target :: C(..)
       integer(c_int), value :: ldc
       integer(c_int) :: sormqr
-      sormqr = rocsolver_sormqr_raw(handle, side, trans, m, n, k, c_loc(A(1)), lda, c_loc(ipiv( &
-        1)), c_loc(C(1)), ldc)
+      sormqr = rocsolver_sormqr_raw(handle, side, trans, m, n, k, c_loc(A), lda, c_loc(ipiv), &
+        c_loc(C), ldc)
     end function rocsolver_sormqr_native
 
     function rocsolver_sormqr_typed(handle, side, trans, m, n, k, A, lda, ipiv, C, ldc) result( &
@@ -47770,14 +47773,14 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       integer(c_int), value :: k
-      real(c_double), target :: A(*)
+      real(c_double), target :: A(..)
       integer(c_int), value :: lda
-      real(c_double), target :: ipiv(*)
-      real(c_double), target :: C(*)
+      real(c_double), target :: ipiv(..)
+      real(c_double), target :: C(..)
       integer(c_int), value :: ldc
       integer(c_int) :: dormqr
-      dormqr = rocsolver_dormqr_raw(handle, side, trans, m, n, k, c_loc(A(1)), lda, c_loc(ipiv( &
-        1)), c_loc(C(1)), ldc)
+      dormqr = rocsolver_dormqr_raw(handle, side, trans, m, n, k, c_loc(A), lda, c_loc(ipiv), &
+        c_loc(C), ldc)
     end function rocsolver_dormqr_native
 
     function rocsolver_dormqr_typed(handle, side, trans, m, n, k, A, lda, ipiv, C, ldc) result( &
@@ -47810,14 +47813,14 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       integer(c_int), value :: k
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: A(..)
       integer(c_int), value :: lda
-      complex(c_float_complex), target :: ipiv(*)
-      complex(c_float_complex), target :: C(*)
+      complex(c_float_complex), target :: ipiv(..)
+      complex(c_float_complex), target :: C(..)
       integer(c_int), value :: ldc
       integer(c_int) :: cunmqr
-      cunmqr = rocsolver_cunmqr_raw(handle, side, trans, m, n, k, c_loc(A(1)), lda, c_loc(ipiv( &
-        1)), c_loc(C(1)), ldc)
+      cunmqr = rocsolver_cunmqr_raw(handle, side, trans, m, n, k, c_loc(A), lda, c_loc(ipiv), &
+        c_loc(C), ldc)
     end function rocsolver_cunmqr_native
 
     function rocsolver_cunmqr_typed(handle, side, trans, m, n, k, A, lda, ipiv, C, ldc) result( &
@@ -47850,14 +47853,14 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       integer(c_int), value :: k
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: A(..)
       integer(c_int), value :: lda
-      complex(c_double_complex), target :: ipiv(*)
-      complex(c_double_complex), target :: C(*)
+      complex(c_double_complex), target :: ipiv(..)
+      complex(c_double_complex), target :: C(..)
       integer(c_int), value :: ldc
       integer(c_int) :: zunmqr
-      zunmqr = rocsolver_zunmqr_raw(handle, side, trans, m, n, k, c_loc(A(1)), lda, c_loc(ipiv( &
-        1)), c_loc(C(1)), ldc)
+      zunmqr = rocsolver_zunmqr_raw(handle, side, trans, m, n, k, c_loc(A), lda, c_loc(ipiv), &
+        c_loc(C), ldc)
     end function rocsolver_zunmqr_native
 
     function rocsolver_zunmqr_typed(handle, side, trans, m, n, k, A, lda, ipiv, C, ldc) result( &
@@ -47890,14 +47893,14 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       integer(c_int), value :: k
-      real(c_float), target :: A(*)
+      real(c_float), target :: A(..)
       integer(c_int), value :: lda
-      real(c_float), target :: ipiv(*)
-      real(c_float), target :: C(*)
+      real(c_float), target :: ipiv(..)
+      real(c_float), target :: C(..)
       integer(c_int), value :: ldc
       integer(c_int) :: sorml2
-      sorml2 = rocsolver_sorml2_raw(handle, side, trans, m, n, k, c_loc(A(1)), lda, c_loc(ipiv( &
-        1)), c_loc(C(1)), ldc)
+      sorml2 = rocsolver_sorml2_raw(handle, side, trans, m, n, k, c_loc(A), lda, c_loc(ipiv), &
+        c_loc(C), ldc)
     end function rocsolver_sorml2_native
 
     function rocsolver_sorml2_typed(handle, side, trans, m, n, k, A, lda, ipiv, C, ldc) result( &
@@ -47930,14 +47933,14 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       integer(c_int), value :: k
-      real(c_double), target :: A(*)
+      real(c_double), target :: A(..)
       integer(c_int), value :: lda
-      real(c_double), target :: ipiv(*)
-      real(c_double), target :: C(*)
+      real(c_double), target :: ipiv(..)
+      real(c_double), target :: C(..)
       integer(c_int), value :: ldc
       integer(c_int) :: dorml2
-      dorml2 = rocsolver_dorml2_raw(handle, side, trans, m, n, k, c_loc(A(1)), lda, c_loc(ipiv( &
-        1)), c_loc(C(1)), ldc)
+      dorml2 = rocsolver_dorml2_raw(handle, side, trans, m, n, k, c_loc(A), lda, c_loc(ipiv), &
+        c_loc(C), ldc)
     end function rocsolver_dorml2_native
 
     function rocsolver_dorml2_typed(handle, side, trans, m, n, k, A, lda, ipiv, C, ldc) result( &
@@ -47970,14 +47973,14 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       integer(c_int), value :: k
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: A(..)
       integer(c_int), value :: lda
-      complex(c_float_complex), target :: ipiv(*)
-      complex(c_float_complex), target :: C(*)
+      complex(c_float_complex), target :: ipiv(..)
+      complex(c_float_complex), target :: C(..)
       integer(c_int), value :: ldc
       integer(c_int) :: cunml2
-      cunml2 = rocsolver_cunml2_raw(handle, side, trans, m, n, k, c_loc(A(1)), lda, c_loc(ipiv( &
-        1)), c_loc(C(1)), ldc)
+      cunml2 = rocsolver_cunml2_raw(handle, side, trans, m, n, k, c_loc(A), lda, c_loc(ipiv), &
+        c_loc(C), ldc)
     end function rocsolver_cunml2_native
 
     function rocsolver_cunml2_typed(handle, side, trans, m, n, k, A, lda, ipiv, C, ldc) result( &
@@ -48010,14 +48013,14 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       integer(c_int), value :: k
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: A(..)
       integer(c_int), value :: lda
-      complex(c_double_complex), target :: ipiv(*)
-      complex(c_double_complex), target :: C(*)
+      complex(c_double_complex), target :: ipiv(..)
+      complex(c_double_complex), target :: C(..)
       integer(c_int), value :: ldc
       integer(c_int) :: zunml2
-      zunml2 = rocsolver_zunml2_raw(handle, side, trans, m, n, k, c_loc(A(1)), lda, c_loc(ipiv( &
-        1)), c_loc(C(1)), ldc)
+      zunml2 = rocsolver_zunml2_raw(handle, side, trans, m, n, k, c_loc(A), lda, c_loc(ipiv), &
+        c_loc(C), ldc)
     end function rocsolver_zunml2_native
 
     function rocsolver_zunml2_typed(handle, side, trans, m, n, k, A, lda, ipiv, C, ldc) result( &
@@ -48050,14 +48053,14 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       integer(c_int), value :: k
-      real(c_float), target :: A(*)
+      real(c_float), target :: A(..)
       integer(c_int), value :: lda
-      real(c_float), target :: ipiv(*)
-      real(c_float), target :: C(*)
+      real(c_float), target :: ipiv(..)
+      real(c_float), target :: C(..)
       integer(c_int), value :: ldc
       integer(c_int) :: sormlq
-      sormlq = rocsolver_sormlq_raw(handle, side, trans, m, n, k, c_loc(A(1)), lda, c_loc(ipiv( &
-        1)), c_loc(C(1)), ldc)
+      sormlq = rocsolver_sormlq_raw(handle, side, trans, m, n, k, c_loc(A), lda, c_loc(ipiv), &
+        c_loc(C), ldc)
     end function rocsolver_sormlq_native
 
     function rocsolver_sormlq_typed(handle, side, trans, m, n, k, A, lda, ipiv, C, ldc) result( &
@@ -48090,14 +48093,14 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       integer(c_int), value :: k
-      real(c_double), target :: A(*)
+      real(c_double), target :: A(..)
       integer(c_int), value :: lda
-      real(c_double), target :: ipiv(*)
-      real(c_double), target :: C(*)
+      real(c_double), target :: ipiv(..)
+      real(c_double), target :: C(..)
       integer(c_int), value :: ldc
       integer(c_int) :: dormlq
-      dormlq = rocsolver_dormlq_raw(handle, side, trans, m, n, k, c_loc(A(1)), lda, c_loc(ipiv( &
-        1)), c_loc(C(1)), ldc)
+      dormlq = rocsolver_dormlq_raw(handle, side, trans, m, n, k, c_loc(A), lda, c_loc(ipiv), &
+        c_loc(C), ldc)
     end function rocsolver_dormlq_native
 
     function rocsolver_dormlq_typed(handle, side, trans, m, n, k, A, lda, ipiv, C, ldc) result( &
@@ -48130,14 +48133,14 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       integer(c_int), value :: k
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: A(..)
       integer(c_int), value :: lda
-      complex(c_float_complex), target :: ipiv(*)
-      complex(c_float_complex), target :: C(*)
+      complex(c_float_complex), target :: ipiv(..)
+      complex(c_float_complex), target :: C(..)
       integer(c_int), value :: ldc
       integer(c_int) :: cunmlq
-      cunmlq = rocsolver_cunmlq_raw(handle, side, trans, m, n, k, c_loc(A(1)), lda, c_loc(ipiv( &
-        1)), c_loc(C(1)), ldc)
+      cunmlq = rocsolver_cunmlq_raw(handle, side, trans, m, n, k, c_loc(A), lda, c_loc(ipiv), &
+        c_loc(C), ldc)
     end function rocsolver_cunmlq_native
 
     function rocsolver_cunmlq_typed(handle, side, trans, m, n, k, A, lda, ipiv, C, ldc) result( &
@@ -48170,14 +48173,14 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       integer(c_int), value :: k
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: A(..)
       integer(c_int), value :: lda
-      complex(c_double_complex), target :: ipiv(*)
-      complex(c_double_complex), target :: C(*)
+      complex(c_double_complex), target :: ipiv(..)
+      complex(c_double_complex), target :: C(..)
       integer(c_int), value :: ldc
       integer(c_int) :: zunmlq
-      zunmlq = rocsolver_zunmlq_raw(handle, side, trans, m, n, k, c_loc(A(1)), lda, c_loc(ipiv( &
-        1)), c_loc(C(1)), ldc)
+      zunmlq = rocsolver_zunmlq_raw(handle, side, trans, m, n, k, c_loc(A), lda, c_loc(ipiv), &
+        c_loc(C), ldc)
     end function rocsolver_zunmlq_native
 
     function rocsolver_zunmlq_typed(handle, side, trans, m, n, k, A, lda, ipiv, C, ldc) result( &
@@ -48210,14 +48213,14 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       integer(c_int), value :: k
-      real(c_float), target :: A(*)
+      real(c_float), target :: A(..)
       integer(c_int), value :: lda
-      real(c_float), target :: ipiv(*)
-      real(c_float), target :: C(*)
+      real(c_float), target :: ipiv(..)
+      real(c_float), target :: C(..)
       integer(c_int), value :: ldc
       integer(c_int) :: sorm2l
-      sorm2l = rocsolver_sorm2l_raw(handle, side, trans, m, n, k, c_loc(A(1)), lda, c_loc(ipiv( &
-        1)), c_loc(C(1)), ldc)
+      sorm2l = rocsolver_sorm2l_raw(handle, side, trans, m, n, k, c_loc(A), lda, c_loc(ipiv), &
+        c_loc(C), ldc)
     end function rocsolver_sorm2l_native
 
     function rocsolver_sorm2l_typed(handle, side, trans, m, n, k, A, lda, ipiv, C, ldc) result( &
@@ -48250,14 +48253,14 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       integer(c_int), value :: k
-      real(c_double), target :: A(*)
+      real(c_double), target :: A(..)
       integer(c_int), value :: lda
-      real(c_double), target :: ipiv(*)
-      real(c_double), target :: C(*)
+      real(c_double), target :: ipiv(..)
+      real(c_double), target :: C(..)
       integer(c_int), value :: ldc
       integer(c_int) :: dorm2l
-      dorm2l = rocsolver_dorm2l_raw(handle, side, trans, m, n, k, c_loc(A(1)), lda, c_loc(ipiv( &
-        1)), c_loc(C(1)), ldc)
+      dorm2l = rocsolver_dorm2l_raw(handle, side, trans, m, n, k, c_loc(A), lda, c_loc(ipiv), &
+        c_loc(C), ldc)
     end function rocsolver_dorm2l_native
 
     function rocsolver_dorm2l_typed(handle, side, trans, m, n, k, A, lda, ipiv, C, ldc) result( &
@@ -48290,14 +48293,14 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       integer(c_int), value :: k
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: A(..)
       integer(c_int), value :: lda
-      complex(c_float_complex), target :: ipiv(*)
-      complex(c_float_complex), target :: C(*)
+      complex(c_float_complex), target :: ipiv(..)
+      complex(c_float_complex), target :: C(..)
       integer(c_int), value :: ldc
       integer(c_int) :: cunm2l
-      cunm2l = rocsolver_cunm2l_raw(handle, side, trans, m, n, k, c_loc(A(1)), lda, c_loc(ipiv( &
-        1)), c_loc(C(1)), ldc)
+      cunm2l = rocsolver_cunm2l_raw(handle, side, trans, m, n, k, c_loc(A), lda, c_loc(ipiv), &
+        c_loc(C), ldc)
     end function rocsolver_cunm2l_native
 
     function rocsolver_cunm2l_typed(handle, side, trans, m, n, k, A, lda, ipiv, C, ldc) result( &
@@ -48330,14 +48333,14 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       integer(c_int), value :: k
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: A(..)
       integer(c_int), value :: lda
-      complex(c_double_complex), target :: ipiv(*)
-      complex(c_double_complex), target :: C(*)
+      complex(c_double_complex), target :: ipiv(..)
+      complex(c_double_complex), target :: C(..)
       integer(c_int), value :: ldc
       integer(c_int) :: zunm2l
-      zunm2l = rocsolver_zunm2l_raw(handle, side, trans, m, n, k, c_loc(A(1)), lda, c_loc(ipiv( &
-        1)), c_loc(C(1)), ldc)
+      zunm2l = rocsolver_zunm2l_raw(handle, side, trans, m, n, k, c_loc(A), lda, c_loc(ipiv), &
+        c_loc(C), ldc)
     end function rocsolver_zunm2l_native
 
     function rocsolver_zunm2l_typed(handle, side, trans, m, n, k, A, lda, ipiv, C, ldc) result( &
@@ -48370,14 +48373,14 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       integer(c_int), value :: k
-      real(c_float), target :: A(*)
+      real(c_float), target :: A(..)
       integer(c_int), value :: lda
-      real(c_float), target :: ipiv(*)
-      real(c_float), target :: C(*)
+      real(c_float), target :: ipiv(..)
+      real(c_float), target :: C(..)
       integer(c_int), value :: ldc
       integer(c_int) :: sormql
-      sormql = rocsolver_sormql_raw(handle, side, trans, m, n, k, c_loc(A(1)), lda, c_loc(ipiv( &
-        1)), c_loc(C(1)), ldc)
+      sormql = rocsolver_sormql_raw(handle, side, trans, m, n, k, c_loc(A), lda, c_loc(ipiv), &
+        c_loc(C), ldc)
     end function rocsolver_sormql_native
 
     function rocsolver_sormql_typed(handle, side, trans, m, n, k, A, lda, ipiv, C, ldc) result( &
@@ -48410,14 +48413,14 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       integer(c_int), value :: k
-      real(c_double), target :: A(*)
+      real(c_double), target :: A(..)
       integer(c_int), value :: lda
-      real(c_double), target :: ipiv(*)
-      real(c_double), target :: C(*)
+      real(c_double), target :: ipiv(..)
+      real(c_double), target :: C(..)
       integer(c_int), value :: ldc
       integer(c_int) :: dormql
-      dormql = rocsolver_dormql_raw(handle, side, trans, m, n, k, c_loc(A(1)), lda, c_loc(ipiv( &
-        1)), c_loc(C(1)), ldc)
+      dormql = rocsolver_dormql_raw(handle, side, trans, m, n, k, c_loc(A), lda, c_loc(ipiv), &
+        c_loc(C), ldc)
     end function rocsolver_dormql_native
 
     function rocsolver_dormql_typed(handle, side, trans, m, n, k, A, lda, ipiv, C, ldc) result( &
@@ -48450,14 +48453,14 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       integer(c_int), value :: k
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: A(..)
       integer(c_int), value :: lda
-      complex(c_float_complex), target :: ipiv(*)
-      complex(c_float_complex), target :: C(*)
+      complex(c_float_complex), target :: ipiv(..)
+      complex(c_float_complex), target :: C(..)
       integer(c_int), value :: ldc
       integer(c_int) :: cunmql
-      cunmql = rocsolver_cunmql_raw(handle, side, trans, m, n, k, c_loc(A(1)), lda, c_loc(ipiv( &
-        1)), c_loc(C(1)), ldc)
+      cunmql = rocsolver_cunmql_raw(handle, side, trans, m, n, k, c_loc(A), lda, c_loc(ipiv), &
+        c_loc(C), ldc)
     end function rocsolver_cunmql_native
 
     function rocsolver_cunmql_typed(handle, side, trans, m, n, k, A, lda, ipiv, C, ldc) result( &
@@ -48490,14 +48493,14 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       integer(c_int), value :: k
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: A(..)
       integer(c_int), value :: lda
-      complex(c_double_complex), target :: ipiv(*)
-      complex(c_double_complex), target :: C(*)
+      complex(c_double_complex), target :: ipiv(..)
+      complex(c_double_complex), target :: C(..)
       integer(c_int), value :: ldc
       integer(c_int) :: zunmql
-      zunmql = rocsolver_zunmql_raw(handle, side, trans, m, n, k, c_loc(A(1)), lda, c_loc(ipiv( &
-        1)), c_loc(C(1)), ldc)
+      zunmql = rocsolver_zunmql_raw(handle, side, trans, m, n, k, c_loc(A), lda, c_loc(ipiv), &
+        c_loc(C), ldc)
     end function rocsolver_zunmql_native
 
     function rocsolver_zunmql_typed(handle, side, trans, m, n, k, A, lda, ipiv, C, ldc) result( &
@@ -48531,14 +48534,14 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       integer(c_int), value :: k
-      real(c_float), target :: A(*)
+      real(c_float), target :: A(..)
       integer(c_int), value :: lda
-      real(c_float), target :: ipiv(*)
-      real(c_float), target :: C(*)
+      real(c_float), target :: ipiv(..)
+      real(c_float), target :: C(..)
       integer(c_int), value :: ldc
       integer(c_int) :: sormbr
-      sormbr = rocsolver_sormbr_raw(handle, storev, side, trans, m, n, k, c_loc(A(1)), lda, c_loc( &
-        ipiv(1)), c_loc(C(1)), ldc)
+      sormbr = rocsolver_sormbr_raw(handle, storev, side, trans, m, n, k, c_loc(A), lda, c_loc( &
+        ipiv), c_loc(C), ldc)
     end function rocsolver_sormbr_native
 
     function rocsolver_sormbr_typed(handle, storev, side, trans, m, n, k, A, lda, ipiv, C, &
@@ -48573,14 +48576,14 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       integer(c_int), value :: k
-      real(c_double), target :: A(*)
+      real(c_double), target :: A(..)
       integer(c_int), value :: lda
-      real(c_double), target :: ipiv(*)
-      real(c_double), target :: C(*)
+      real(c_double), target :: ipiv(..)
+      real(c_double), target :: C(..)
       integer(c_int), value :: ldc
       integer(c_int) :: dormbr
-      dormbr = rocsolver_dormbr_raw(handle, storev, side, trans, m, n, k, c_loc(A(1)), lda, c_loc( &
-        ipiv(1)), c_loc(C(1)), ldc)
+      dormbr = rocsolver_dormbr_raw(handle, storev, side, trans, m, n, k, c_loc(A), lda, c_loc( &
+        ipiv), c_loc(C), ldc)
     end function rocsolver_dormbr_native
 
     function rocsolver_dormbr_typed(handle, storev, side, trans, m, n, k, A, lda, ipiv, C, &
@@ -48615,14 +48618,14 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       integer(c_int), value :: k
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: A(..)
       integer(c_int), value :: lda
-      complex(c_float_complex), target :: ipiv(*)
-      complex(c_float_complex), target :: C(*)
+      complex(c_float_complex), target :: ipiv(..)
+      complex(c_float_complex), target :: C(..)
       integer(c_int), value :: ldc
       integer(c_int) :: cunmbr
-      cunmbr = rocsolver_cunmbr_raw(handle, storev, side, trans, m, n, k, c_loc(A(1)), lda, c_loc( &
-        ipiv(1)), c_loc(C(1)), ldc)
+      cunmbr = rocsolver_cunmbr_raw(handle, storev, side, trans, m, n, k, c_loc(A), lda, c_loc( &
+        ipiv), c_loc(C), ldc)
     end function rocsolver_cunmbr_native
 
     function rocsolver_cunmbr_typed(handle, storev, side, trans, m, n, k, A, lda, ipiv, C, &
@@ -48657,14 +48660,14 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       integer(c_int), value :: k
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: A(..)
       integer(c_int), value :: lda
-      complex(c_double_complex), target :: ipiv(*)
-      complex(c_double_complex), target :: C(*)
+      complex(c_double_complex), target :: ipiv(..)
+      complex(c_double_complex), target :: C(..)
       integer(c_int), value :: ldc
       integer(c_int) :: zunmbr
-      zunmbr = rocsolver_zunmbr_raw(handle, storev, side, trans, m, n, k, c_loc(A(1)), lda, c_loc( &
-        ipiv(1)), c_loc(C(1)), ldc)
+      zunmbr = rocsolver_zunmbr_raw(handle, storev, side, trans, m, n, k, c_loc(A), lda, c_loc( &
+        ipiv), c_loc(C), ldc)
     end function rocsolver_zunmbr_native
 
     function rocsolver_zunmbr_typed(handle, storev, side, trans, m, n, k, A, lda, ipiv, C, &
@@ -48698,14 +48701,14 @@ contains
       integer(c_int), value :: trans
       integer(c_int), value :: m
       integer(c_int), value :: n
-      real(c_float), target :: A(*)
+      real(c_float), target :: A(..)
       integer(c_int), value :: lda
-      real(c_float), target :: ipiv(*)
-      real(c_float), target :: C(*)
+      real(c_float), target :: ipiv(..)
+      real(c_float), target :: C(..)
       integer(c_int), value :: ldc
       integer(c_int) :: sormtr
-      sormtr = rocsolver_sormtr_raw(handle, side, uplo, trans, m, n, c_loc(A(1)), lda, c_loc(ipiv( &
-        1)), c_loc(C(1)), ldc)
+      sormtr = rocsolver_sormtr_raw(handle, side, uplo, trans, m, n, c_loc(A), lda, c_loc(ipiv), &
+        c_loc(C), ldc)
     end function rocsolver_sormtr_native
 
     function rocsolver_sormtr_typed(handle, side, uplo, trans, m, n, A, lda, ipiv, C, ldc) result( &
@@ -48738,14 +48741,14 @@ contains
       integer(c_int), value :: trans
       integer(c_int), value :: m
       integer(c_int), value :: n
-      real(c_double), target :: A(*)
+      real(c_double), target :: A(..)
       integer(c_int), value :: lda
-      real(c_double), target :: ipiv(*)
-      real(c_double), target :: C(*)
+      real(c_double), target :: ipiv(..)
+      real(c_double), target :: C(..)
       integer(c_int), value :: ldc
       integer(c_int) :: dormtr
-      dormtr = rocsolver_dormtr_raw(handle, side, uplo, trans, m, n, c_loc(A(1)), lda, c_loc(ipiv( &
-        1)), c_loc(C(1)), ldc)
+      dormtr = rocsolver_dormtr_raw(handle, side, uplo, trans, m, n, c_loc(A), lda, c_loc(ipiv), &
+        c_loc(C), ldc)
     end function rocsolver_dormtr_native
 
     function rocsolver_dormtr_typed(handle, side, uplo, trans, m, n, A, lda, ipiv, C, ldc) result( &
@@ -48778,14 +48781,14 @@ contains
       integer(c_int), value :: trans
       integer(c_int), value :: m
       integer(c_int), value :: n
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: A(..)
       integer(c_int), value :: lda
-      complex(c_float_complex), target :: ipiv(*)
-      complex(c_float_complex), target :: C(*)
+      complex(c_float_complex), target :: ipiv(..)
+      complex(c_float_complex), target :: C(..)
       integer(c_int), value :: ldc
       integer(c_int) :: cunmtr
-      cunmtr = rocsolver_cunmtr_raw(handle, side, uplo, trans, m, n, c_loc(A(1)), lda, c_loc(ipiv( &
-        1)), c_loc(C(1)), ldc)
+      cunmtr = rocsolver_cunmtr_raw(handle, side, uplo, trans, m, n, c_loc(A), lda, c_loc(ipiv), &
+        c_loc(C), ldc)
     end function rocsolver_cunmtr_native
 
     function rocsolver_cunmtr_typed(handle, side, uplo, trans, m, n, A, lda, ipiv, C, ldc) result( &
@@ -48818,14 +48821,14 @@ contains
       integer(c_int), value :: trans
       integer(c_int), value :: m
       integer(c_int), value :: n
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: A(..)
       integer(c_int), value :: lda
-      complex(c_double_complex), target :: ipiv(*)
-      complex(c_double_complex), target :: C(*)
+      complex(c_double_complex), target :: ipiv(..)
+      complex(c_double_complex), target :: C(..)
       integer(c_int), value :: ldc
       integer(c_int) :: zunmtr
-      zunmtr = rocsolver_zunmtr_raw(handle, side, uplo, trans, m, n, c_loc(A(1)), lda, c_loc(ipiv( &
-        1)), c_loc(C(1)), ldc)
+      zunmtr = rocsolver_zunmtr_raw(handle, side, uplo, trans, m, n, c_loc(A), lda, c_loc(ipiv), &
+        c_loc(C), ldc)
     end function rocsolver_zunmtr_native
 
     function rocsolver_zunmtr_typed(handle, side, uplo, trans, m, n, A, lda, ipiv, C, ldc) result( &
@@ -48858,18 +48861,18 @@ contains
       integer(c_int), value :: nv
       integer(c_int), value :: nu
       integer(c_int), value :: nc
-      real(c_float), target :: D(*)
-      real(c_float), target :: E(*)
-      real(c_float), target :: V(*)
+      real(c_float), target :: D(..)
+      real(c_float), target :: E(..)
+      real(c_float), target :: V(..)
       integer(c_int), value :: ldv
-      real(c_float), target :: U(*)
+      real(c_float), target :: U(..)
       integer(c_int), value :: ldu
-      real(c_float), target :: C(*)
+      real(c_float), target :: C(..)
       integer(c_int), value :: ldc
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int) :: sbdsqr
-      sbdsqr = rocsolver_sbdsqr_raw(handle, uplo, n, nv, nu, nc, c_loc(D(1)), c_loc(E(1)), c_loc( &
-        V(1)), ldv, c_loc(U(1)), ldu, c_loc(C(1)), ldc, c_loc(info(1)))
+      sbdsqr = rocsolver_sbdsqr_raw(handle, uplo, n, nv, nu, nc, c_loc(D), c_loc(E), c_loc(V), &
+        ldv, c_loc(U), ldu, c_loc(C), ldc, c_loc(info))
     end function rocsolver_sbdsqr_native
 
     function rocsolver_sbdsqr_typed(handle, uplo, n, nv, nu, nc, D, E, V, ldv, U, ldu, C, ldc, &
@@ -48907,18 +48910,18 @@ contains
       integer(c_int), value :: nv
       integer(c_int), value :: nu
       integer(c_int), value :: nc
-      real(c_double), target :: D(*)
-      real(c_double), target :: E(*)
-      real(c_double), target :: V(*)
+      real(c_double), target :: D(..)
+      real(c_double), target :: E(..)
+      real(c_double), target :: V(..)
       integer(c_int), value :: ldv
-      real(c_double), target :: U(*)
+      real(c_double), target :: U(..)
       integer(c_int), value :: ldu
-      real(c_double), target :: C(*)
+      real(c_double), target :: C(..)
       integer(c_int), value :: ldc
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int) :: dbdsqr
-      dbdsqr = rocsolver_dbdsqr_raw(handle, uplo, n, nv, nu, nc, c_loc(D(1)), c_loc(E(1)), c_loc( &
-        V(1)), ldv, c_loc(U(1)), ldu, c_loc(C(1)), ldc, c_loc(info(1)))
+      dbdsqr = rocsolver_dbdsqr_raw(handle, uplo, n, nv, nu, nc, c_loc(D), c_loc(E), c_loc(V), &
+        ldv, c_loc(U), ldu, c_loc(C), ldc, c_loc(info))
     end function rocsolver_dbdsqr_native
 
     function rocsolver_dbdsqr_typed(handle, uplo, n, nv, nu, nc, D, E, V, ldv, U, ldu, C, ldc, &
@@ -48956,18 +48959,18 @@ contains
       integer(c_int), value :: nv
       integer(c_int), value :: nu
       integer(c_int), value :: nc
-      real(c_float), target :: D(*)
-      real(c_float), target :: E(*)
-      complex(c_float_complex), target :: V(*)
+      real(c_float), target :: D(..)
+      real(c_float), target :: E(..)
+      complex(c_float_complex), target :: V(..)
       integer(c_int), value :: ldv
-      complex(c_float_complex), target :: U(*)
+      complex(c_float_complex), target :: U(..)
       integer(c_int), value :: ldu
-      complex(c_float_complex), target :: C(*)
+      complex(c_float_complex), target :: C(..)
       integer(c_int), value :: ldc
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int) :: cbdsqr
-      cbdsqr = rocsolver_cbdsqr_raw(handle, uplo, n, nv, nu, nc, c_loc(D(1)), c_loc(E(1)), c_loc( &
-        V(1)), ldv, c_loc(U(1)), ldu, c_loc(C(1)), ldc, c_loc(info(1)))
+      cbdsqr = rocsolver_cbdsqr_raw(handle, uplo, n, nv, nu, nc, c_loc(D), c_loc(E), c_loc(V), &
+        ldv, c_loc(U), ldu, c_loc(C), ldc, c_loc(info))
     end function rocsolver_cbdsqr_native
 
     function rocsolver_cbdsqr_typed(handle, uplo, n, nv, nu, nc, D, E, V, ldv, U, ldu, C, ldc, &
@@ -49005,18 +49008,18 @@ contains
       integer(c_int), value :: nv
       integer(c_int), value :: nu
       integer(c_int), value :: nc
-      real(c_double), target :: D(*)
-      real(c_double), target :: E(*)
-      complex(c_double_complex), target :: V(*)
+      real(c_double), target :: D(..)
+      real(c_double), target :: E(..)
+      complex(c_double_complex), target :: V(..)
       integer(c_int), value :: ldv
-      complex(c_double_complex), target :: U(*)
+      complex(c_double_complex), target :: U(..)
       integer(c_int), value :: ldu
-      complex(c_double_complex), target :: C(*)
+      complex(c_double_complex), target :: C(..)
       integer(c_int), value :: ldc
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int) :: zbdsqr
-      zbdsqr = rocsolver_zbdsqr_raw(handle, uplo, n, nv, nu, nc, c_loc(D(1)), c_loc(E(1)), c_loc( &
-        V(1)), ldv, c_loc(U(1)), ldu, c_loc(C(1)), ldc, c_loc(info(1)))
+      zbdsqr = rocsolver_zbdsqr_raw(handle, uplo, n, nv, nu, nc, c_loc(D), c_loc(E), c_loc(V), &
+        ldv, c_loc(U), ldu, c_loc(C), ldc, c_loc(info))
     end function rocsolver_zbdsqr_native
 
     function rocsolver_zbdsqr_typed(handle, uplo, n, nv, nu, nc, D, E, V, ldv, U, ldu, C, ldc, &
@@ -49049,11 +49052,11 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_int), value :: n
-      real(c_float), target :: D(*)
-      real(c_float), target :: E(*)
-      integer(c_int), target :: info(*)
+      real(c_float), target :: D(..)
+      real(c_float), target :: E(..)
+      integer(c_int), target :: info(..)
       integer(c_int) :: ssterf
-      ssterf = rocsolver_ssterf_raw(handle, n, c_loc(D(1)), c_loc(E(1)), c_loc(info(1)))
+      ssterf = rocsolver_ssterf_raw(handle, n, c_loc(D), c_loc(E), c_loc(info))
     end function rocsolver_ssterf_native
 
     function rocsolver_ssterf_typed(handle, n, D, E, info) result(ssterf)
@@ -49074,11 +49077,11 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_int), value :: n
-      real(c_double), target :: D(*)
-      real(c_double), target :: E(*)
-      integer(c_int), target :: info(*)
+      real(c_double), target :: D(..)
+      real(c_double), target :: E(..)
+      integer(c_int), target :: info(..)
       integer(c_int) :: dsterf
-      dsterf = rocsolver_dsterf_raw(handle, n, c_loc(D(1)), c_loc(E(1)), c_loc(info(1)))
+      dsterf = rocsolver_dsterf_raw(handle, n, c_loc(D), c_loc(E), c_loc(info))
     end function rocsolver_dsterf_native
 
     function rocsolver_dsterf_typed(handle, n, D, E, info) result(dsterf)
@@ -49100,14 +49103,14 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: evect
       integer(c_int), value :: n
-      real(c_float), target :: D(*)
-      real(c_float), target :: E(*)
-      real(c_float), target :: C(*)
+      real(c_float), target :: D(..)
+      real(c_float), target :: E(..)
+      real(c_float), target :: C(..)
       integer(c_int), value :: ldc
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int) :: ssteqr
-      ssteqr = rocsolver_ssteqr_raw(handle, evect, n, c_loc(D(1)), c_loc(E(1)), c_loc(C(1)), ldc, &
-        c_loc(info(1)))
+      ssteqr = rocsolver_ssteqr_raw(handle, evect, n, c_loc(D), c_loc(E), c_loc(C), ldc, c_loc( &
+        info))
     end function rocsolver_ssteqr_native
 
     function rocsolver_ssteqr_typed(handle, evect, n, D, E, C, ldc, info) result(ssteqr)
@@ -49132,14 +49135,14 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: evect
       integer(c_int), value :: n
-      real(c_double), target :: D(*)
-      real(c_double), target :: E(*)
-      real(c_double), target :: C(*)
+      real(c_double), target :: D(..)
+      real(c_double), target :: E(..)
+      real(c_double), target :: C(..)
       integer(c_int), value :: ldc
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int) :: dsteqr
-      dsteqr = rocsolver_dsteqr_raw(handle, evect, n, c_loc(D(1)), c_loc(E(1)), c_loc(C(1)), ldc, &
-        c_loc(info(1)))
+      dsteqr = rocsolver_dsteqr_raw(handle, evect, n, c_loc(D), c_loc(E), c_loc(C), ldc, c_loc( &
+        info))
     end function rocsolver_dsteqr_native
 
     function rocsolver_dsteqr_typed(handle, evect, n, D, E, C, ldc, info) result(dsteqr)
@@ -49164,14 +49167,14 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: evect
       integer(c_int), value :: n
-      real(c_float), target :: D(*)
-      real(c_float), target :: E(*)
-      complex(c_float_complex), target :: C(*)
+      real(c_float), target :: D(..)
+      real(c_float), target :: E(..)
+      complex(c_float_complex), target :: C(..)
       integer(c_int), value :: ldc
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int) :: csteqr
-      csteqr = rocsolver_csteqr_raw(handle, evect, n, c_loc(D(1)), c_loc(E(1)), c_loc(C(1)), ldc, &
-        c_loc(info(1)))
+      csteqr = rocsolver_csteqr_raw(handle, evect, n, c_loc(D), c_loc(E), c_loc(C), ldc, c_loc( &
+        info))
     end function rocsolver_csteqr_native
 
     function rocsolver_csteqr_typed(handle, evect, n, D, E, C, ldc, info) result(csteqr)
@@ -49196,14 +49199,14 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: evect
       integer(c_int), value :: n
-      real(c_double), target :: D(*)
-      real(c_double), target :: E(*)
-      complex(c_double_complex), target :: C(*)
+      real(c_double), target :: D(..)
+      real(c_double), target :: E(..)
+      complex(c_double_complex), target :: C(..)
       integer(c_int), value :: ldc
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int) :: zsteqr
-      zsteqr = rocsolver_zsteqr_raw(handle, evect, n, c_loc(D(1)), c_loc(E(1)), c_loc(C(1)), ldc, &
-        c_loc(info(1)))
+      zsteqr = rocsolver_zsteqr_raw(handle, evect, n, c_loc(D), c_loc(E), c_loc(C), ldc, c_loc( &
+        info))
     end function rocsolver_zsteqr_native
 
     function rocsolver_zsteqr_typed(handle, evect, n, D, E, C, ldc, info) result(zsteqr)
@@ -49228,14 +49231,14 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: evect
       integer(c_int), value :: n
-      real(c_float), target :: D(*)
-      real(c_float), target :: E(*)
-      real(c_float), target :: C(*)
+      real(c_float), target :: D(..)
+      real(c_float), target :: E(..)
+      real(c_float), target :: C(..)
       integer(c_int), value :: ldc
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int) :: sstedc
-      sstedc = rocsolver_sstedc_raw(handle, evect, n, c_loc(D(1)), c_loc(E(1)), c_loc(C(1)), ldc, &
-        c_loc(info(1)))
+      sstedc = rocsolver_sstedc_raw(handle, evect, n, c_loc(D), c_loc(E), c_loc(C), ldc, c_loc( &
+        info))
     end function rocsolver_sstedc_native
 
     function rocsolver_sstedc_typed(handle, evect, n, D, E, C, ldc, info) result(sstedc)
@@ -49260,14 +49263,14 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: evect
       integer(c_int), value :: n
-      real(c_double), target :: D(*)
-      real(c_double), target :: E(*)
-      real(c_double), target :: C(*)
+      real(c_double), target :: D(..)
+      real(c_double), target :: E(..)
+      real(c_double), target :: C(..)
       integer(c_int), value :: ldc
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int) :: dstedc
-      dstedc = rocsolver_dstedc_raw(handle, evect, n, c_loc(D(1)), c_loc(E(1)), c_loc(C(1)), ldc, &
-        c_loc(info(1)))
+      dstedc = rocsolver_dstedc_raw(handle, evect, n, c_loc(D), c_loc(E), c_loc(C), ldc, c_loc( &
+        info))
     end function rocsolver_dstedc_native
 
     function rocsolver_dstedc_typed(handle, evect, n, D, E, C, ldc, info) result(dstedc)
@@ -49292,14 +49295,14 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: evect
       integer(c_int), value :: n
-      real(c_float), target :: D(*)
-      real(c_float), target :: E(*)
-      complex(c_float_complex), target :: C(*)
+      real(c_float), target :: D(..)
+      real(c_float), target :: E(..)
+      complex(c_float_complex), target :: C(..)
       integer(c_int), value :: ldc
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int) :: cstedc
-      cstedc = rocsolver_cstedc_raw(handle, evect, n, c_loc(D(1)), c_loc(E(1)), c_loc(C(1)), ldc, &
-        c_loc(info(1)))
+      cstedc = rocsolver_cstedc_raw(handle, evect, n, c_loc(D), c_loc(E), c_loc(C), ldc, c_loc( &
+        info))
     end function rocsolver_cstedc_native
 
     function rocsolver_cstedc_typed(handle, evect, n, D, E, C, ldc, info) result(cstedc)
@@ -49324,14 +49327,14 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: evect
       integer(c_int), value :: n
-      real(c_double), target :: D(*)
-      real(c_double), target :: E(*)
-      complex(c_double_complex), target :: C(*)
+      real(c_double), target :: D(..)
+      real(c_double), target :: E(..)
+      complex(c_double_complex), target :: C(..)
       integer(c_int), value :: ldc
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int) :: zstedc
-      zstedc = rocsolver_zstedc_raw(handle, evect, n, c_loc(D(1)), c_loc(E(1)), c_loc(C(1)), ldc, &
-        c_loc(info(1)))
+      zstedc = rocsolver_zstedc_raw(handle, evect, n, c_loc(D), c_loc(E), c_loc(C), ldc, c_loc( &
+        info))
     end function rocsolver_zstedc_native
 
     function rocsolver_zstedc_typed(handle, evect, n, D, E, C, ldc, info) result(zstedc)
@@ -49363,18 +49366,17 @@ contains
       integer(c_int), value :: il
       integer(c_int), value :: iu
       real(c_float), value :: abstol
-      real(c_float), target :: D(*)
-      real(c_float), target :: E(*)
-      integer(c_int), target :: nev(*)
-      integer(c_int), target :: nsplit(*)
-      real(c_float), target :: W(*)
-      integer(c_int), target :: iblock(*)
-      integer(c_int), target :: isplit(*)
-      integer(c_int), target :: info(*)
+      real(c_float), target :: D(..)
+      real(c_float), target :: E(..)
+      integer(c_int), target :: nev(..)
+      integer(c_int), target :: nsplit(..)
+      real(c_float), target :: W(..)
+      integer(c_int), target :: iblock(..)
+      integer(c_int), target :: isplit(..)
+      integer(c_int), target :: info(..)
       integer(c_int) :: sstebz
-      sstebz = rocsolver_sstebz_raw(handle, erange, eorder, n, vl, vu, il, iu, abstol, c_loc(D( &
-        1)), c_loc(E(1)), c_loc(nev(1)), c_loc(nsplit(1)), c_loc(W(1)), c_loc(iblock(1)), c_loc( &
-        isplit(1)), c_loc(info(1)))
+      sstebz = rocsolver_sstebz_raw(handle, erange, eorder, n, vl, vu, il, iu, abstol, c_loc(D), &
+        c_loc(E), c_loc(nev), c_loc(nsplit), c_loc(W), c_loc(iblock), c_loc(isplit), c_loc(info))
     end function rocsolver_sstebz_native
 
     function rocsolver_sstebz_typed(handle, erange, eorder, n, vl, vu, il, iu, abstol, D, E, nev, &
@@ -49417,18 +49419,17 @@ contains
       integer(c_int), value :: il
       integer(c_int), value :: iu
       real(c_double), value :: abstol
-      real(c_double), target :: D(*)
-      real(c_double), target :: E(*)
-      integer(c_int), target :: nev(*)
-      integer(c_int), target :: nsplit(*)
-      real(c_double), target :: W(*)
-      integer(c_int), target :: iblock(*)
-      integer(c_int), target :: isplit(*)
-      integer(c_int), target :: info(*)
+      real(c_double), target :: D(..)
+      real(c_double), target :: E(..)
+      integer(c_int), target :: nev(..)
+      integer(c_int), target :: nsplit(..)
+      real(c_double), target :: W(..)
+      integer(c_int), target :: iblock(..)
+      integer(c_int), target :: isplit(..)
+      integer(c_int), target :: info(..)
       integer(c_int) :: dstebz
-      dstebz = rocsolver_dstebz_raw(handle, erange, eorder, n, vl, vu, il, iu, abstol, c_loc(D( &
-        1)), c_loc(E(1)), c_loc(nev(1)), c_loc(nsplit(1)), c_loc(W(1)), c_loc(iblock(1)), c_loc( &
-        isplit(1)), c_loc(info(1)))
+      dstebz = rocsolver_dstebz_raw(handle, erange, eorder, n, vl, vu, il, iu, abstol, c_loc(D), &
+        c_loc(E), c_loc(nev), c_loc(nsplit), c_loc(W), c_loc(iblock), c_loc(isplit), c_loc(info))
     end function rocsolver_dstebz_native
 
     function rocsolver_dstebz_typed(handle, erange, eorder, n, vl, vu, il, iu, abstol, D, E, nev, &
@@ -49464,19 +49465,19 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_int), value :: n
-      real(c_float), target :: D(*)
-      real(c_float), target :: E(*)
-      integer(c_int), target :: nev(*)
-      real(c_float), target :: W(*)
-      integer(c_int), target :: iblock(*)
-      integer(c_int), target :: isplit(*)
-      real(c_float), target :: Z(*)
+      real(c_float), target :: D(..)
+      real(c_float), target :: E(..)
+      integer(c_int), target :: nev(..)
+      real(c_float), target :: W(..)
+      integer(c_int), target :: iblock(..)
+      integer(c_int), target :: isplit(..)
+      real(c_float), target :: Z(..)
       integer(c_int), value :: ldz
-      integer(c_int), target :: ifail(*)
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: ifail(..)
+      integer(c_int), target :: info(..)
       integer(c_int) :: sstein
-      sstein = rocsolver_sstein_raw(handle, n, c_loc(D(1)), c_loc(E(1)), c_loc(nev(1)), c_loc(W( &
-        1)), c_loc(iblock(1)), c_loc(isplit(1)), c_loc(Z(1)), ldz, c_loc(ifail(1)), c_loc(info(1)))
+      sstein = rocsolver_sstein_raw(handle, n, c_loc(D), c_loc(E), c_loc(nev), c_loc(W), c_loc( &
+        iblock), c_loc(isplit), c_loc(Z), ldz, c_loc(ifail), c_loc(info))
     end function rocsolver_sstein_native
 
     function rocsolver_sstein_typed(handle, n, D, E, nev, W, iblock, isplit, Z, ldz, ifail, &
@@ -49507,19 +49508,19 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_int), value :: n
-      real(c_double), target :: D(*)
-      real(c_double), target :: E(*)
-      integer(c_int), target :: nev(*)
-      real(c_double), target :: W(*)
-      integer(c_int), target :: iblock(*)
-      integer(c_int), target :: isplit(*)
-      real(c_double), target :: Z(*)
+      real(c_double), target :: D(..)
+      real(c_double), target :: E(..)
+      integer(c_int), target :: nev(..)
+      real(c_double), target :: W(..)
+      integer(c_int), target :: iblock(..)
+      integer(c_int), target :: isplit(..)
+      real(c_double), target :: Z(..)
       integer(c_int), value :: ldz
-      integer(c_int), target :: ifail(*)
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: ifail(..)
+      integer(c_int), target :: info(..)
       integer(c_int) :: dstein
-      dstein = rocsolver_dstein_raw(handle, n, c_loc(D(1)), c_loc(E(1)), c_loc(nev(1)), c_loc(W( &
-        1)), c_loc(iblock(1)), c_loc(isplit(1)), c_loc(Z(1)), ldz, c_loc(ifail(1)), c_loc(info(1)))
+      dstein = rocsolver_dstein_raw(handle, n, c_loc(D), c_loc(E), c_loc(nev), c_loc(W), c_loc( &
+        iblock), c_loc(isplit), c_loc(Z), ldz, c_loc(ifail), c_loc(info))
     end function rocsolver_dstein_native
 
     function rocsolver_dstein_typed(handle, n, D, E, nev, W, iblock, isplit, Z, ldz, ifail, &
@@ -49550,19 +49551,19 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_int), value :: n
-      real(c_float), target :: D(*)
-      real(c_float), target :: E(*)
-      integer(c_int), target :: nev(*)
-      real(c_float), target :: W(*)
-      integer(c_int), target :: iblock(*)
-      integer(c_int), target :: isplit(*)
-      complex(c_float_complex), target :: Z(*)
+      real(c_float), target :: D(..)
+      real(c_float), target :: E(..)
+      integer(c_int), target :: nev(..)
+      real(c_float), target :: W(..)
+      integer(c_int), target :: iblock(..)
+      integer(c_int), target :: isplit(..)
+      complex(c_float_complex), target :: Z(..)
       integer(c_int), value :: ldz
-      integer(c_int), target :: ifail(*)
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: ifail(..)
+      integer(c_int), target :: info(..)
       integer(c_int) :: cstein
-      cstein = rocsolver_cstein_raw(handle, n, c_loc(D(1)), c_loc(E(1)), c_loc(nev(1)), c_loc(W( &
-        1)), c_loc(iblock(1)), c_loc(isplit(1)), c_loc(Z(1)), ldz, c_loc(ifail(1)), c_loc(info(1)))
+      cstein = rocsolver_cstein_raw(handle, n, c_loc(D), c_loc(E), c_loc(nev), c_loc(W), c_loc( &
+        iblock), c_loc(isplit), c_loc(Z), ldz, c_loc(ifail), c_loc(info))
     end function rocsolver_cstein_native
 
     function rocsolver_cstein_typed(handle, n, D, E, nev, W, iblock, isplit, Z, ldz, ifail, &
@@ -49593,19 +49594,19 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_int), value :: n
-      real(c_double), target :: D(*)
-      real(c_double), target :: E(*)
-      integer(c_int), target :: nev(*)
-      real(c_double), target :: W(*)
-      integer(c_int), target :: iblock(*)
-      integer(c_int), target :: isplit(*)
-      complex(c_double_complex), target :: Z(*)
+      real(c_double), target :: D(..)
+      real(c_double), target :: E(..)
+      integer(c_int), target :: nev(..)
+      real(c_double), target :: W(..)
+      integer(c_int), target :: iblock(..)
+      integer(c_int), target :: isplit(..)
+      complex(c_double_complex), target :: Z(..)
       integer(c_int), value :: ldz
-      integer(c_int), target :: ifail(*)
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: ifail(..)
+      integer(c_int), target :: info(..)
       integer(c_int) :: zstein
-      zstein = rocsolver_zstein_raw(handle, n, c_loc(D(1)), c_loc(E(1)), c_loc(nev(1)), c_loc(W( &
-        1)), c_loc(iblock(1)), c_loc(isplit(1)), c_loc(Z(1)), ldz, c_loc(ifail(1)), c_loc(info(1)))
+      zstein = rocsolver_zstein_raw(handle, n, c_loc(D), c_loc(E), c_loc(nev), c_loc(W), c_loc( &
+        iblock), c_loc(isplit), c_loc(Z), ldz, c_loc(ifail), c_loc(info))
     end function rocsolver_zstein_native
 
     function rocsolver_zstein_typed(handle, n, D, E, nev, W, iblock, isplit, Z, ldz, ifail, &
@@ -49639,22 +49640,21 @@ contains
       integer(c_int), value :: svect
       integer(c_int), value :: srange
       integer(c_int), value :: n
-      real(c_float), target :: D(*)
-      real(c_float), target :: E(*)
+      real(c_float), target :: D(..)
+      real(c_float), target :: E(..)
       real(c_float), value :: vl
       real(c_float), value :: vu
       integer(c_int), value :: il
       integer(c_int), value :: iu
-      integer(c_int), target :: nsv(*)
-      real(c_float), target :: S(*)
-      real(c_float), target :: Z(*)
+      integer(c_int), target :: nsv(..)
+      real(c_float), target :: S(..)
+      real(c_float), target :: Z(..)
       integer(c_int), value :: ldz
-      integer(c_int), target :: ifail(*)
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: ifail(..)
+      integer(c_int), target :: info(..)
       integer(c_int) :: sbdsvdx
-      sbdsvdx = rocsolver_sbdsvdx_raw(handle, uplo, svect, srange, n, c_loc(D(1)), c_loc(E(1)), &
-        vl, vu, il, iu, c_loc(nsv(1)), c_loc(S(1)), c_loc(Z(1)), ldz, c_loc(ifail(1)), c_loc(info( &
-        1)))
+      sbdsvdx = rocsolver_sbdsvdx_raw(handle, uplo, svect, srange, n, c_loc(D), c_loc(E), vl, vu, &
+        il, iu, c_loc(nsv), c_loc(S), c_loc(Z), ldz, c_loc(ifail), c_loc(info))
     end function rocsolver_sbdsvdx_native
 
     function rocsolver_sbdsvdx_typed(handle, uplo, svect, srange, n, D, E, vl, vu, il, iu, nsv, S, &
@@ -49693,22 +49693,21 @@ contains
       integer(c_int), value :: svect
       integer(c_int), value :: srange
       integer(c_int), value :: n
-      real(c_double), target :: D(*)
-      real(c_double), target :: E(*)
+      real(c_double), target :: D(..)
+      real(c_double), target :: E(..)
       real(c_double), value :: vl
       real(c_double), value :: vu
       integer(c_int), value :: il
       integer(c_int), value :: iu
-      integer(c_int), target :: nsv(*)
-      real(c_double), target :: S(*)
-      real(c_double), target :: Z(*)
+      integer(c_int), target :: nsv(..)
+      real(c_double), target :: S(..)
+      real(c_double), target :: Z(..)
       integer(c_int), value :: ldz
-      integer(c_int), target :: ifail(*)
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: ifail(..)
+      integer(c_int), target :: info(..)
       integer(c_int) :: dbdsvdx
-      dbdsvdx = rocsolver_dbdsvdx_raw(handle, uplo, svect, srange, n, c_loc(D(1)), c_loc(E(1)), &
-        vl, vu, il, iu, c_loc(nsv(1)), c_loc(S(1)), c_loc(Z(1)), ldz, c_loc(ifail(1)), c_loc(info( &
-        1)))
+      dbdsvdx = rocsolver_dbdsvdx_raw(handle, uplo, svect, srange, n, c_loc(D), c_loc(E), vl, vu, &
+        il, iu, c_loc(nsv), c_loc(S), c_loc(Z), ldz, c_loc(ifail), c_loc(info))
     end function rocsolver_dbdsvdx_native
 
     function rocsolver_dbdsvdx_typed(handle, uplo, svect, srange, n, D, E, vl, vu, il, iu, nsv, S, &
@@ -49744,11 +49743,11 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: m
       integer(c_int), value :: n
-      real(c_float), target :: A(*)
+      real(c_float), target :: A(..)
       integer(c_int), value :: lda
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int) :: sgetf2_npvt
-      sgetf2_npvt = rocsolver_sgetf2_npvt_raw(handle, m, n, c_loc(A(1)), lda, c_loc(info(1)))
+      sgetf2_npvt = rocsolver_sgetf2_npvt_raw(handle, m, n, c_loc(A), lda, c_loc(info))
     end function rocsolver_sgetf2_npvt_native
 
     function rocsolver_sgetf2_npvt_typed(handle, m, n, A, lda, info) result(sgetf2_npvt)
@@ -49771,11 +49770,11 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: m
       integer(c_int), value :: n
-      real(c_double), target :: A(*)
+      real(c_double), target :: A(..)
       integer(c_int), value :: lda
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int) :: dgetf2_npvt
-      dgetf2_npvt = rocsolver_dgetf2_npvt_raw(handle, m, n, c_loc(A(1)), lda, c_loc(info(1)))
+      dgetf2_npvt = rocsolver_dgetf2_npvt_raw(handle, m, n, c_loc(A), lda, c_loc(info))
     end function rocsolver_dgetf2_npvt_native
 
     function rocsolver_dgetf2_npvt_typed(handle, m, n, A, lda, info) result(dgetf2_npvt)
@@ -49798,11 +49797,11 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: m
       integer(c_int), value :: n
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: A(..)
       integer(c_int), value :: lda
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int) :: cgetf2_npvt
-      cgetf2_npvt = rocsolver_cgetf2_npvt_raw(handle, m, n, c_loc(A(1)), lda, c_loc(info(1)))
+      cgetf2_npvt = rocsolver_cgetf2_npvt_raw(handle, m, n, c_loc(A), lda, c_loc(info))
     end function rocsolver_cgetf2_npvt_native
 
     function rocsolver_cgetf2_npvt_typed(handle, m, n, A, lda, info) result(cgetf2_npvt)
@@ -49825,11 +49824,11 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: m
       integer(c_int), value :: n
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: A(..)
       integer(c_int), value :: lda
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int) :: zgetf2_npvt
-      zgetf2_npvt = rocsolver_zgetf2_npvt_raw(handle, m, n, c_loc(A(1)), lda, c_loc(info(1)))
+      zgetf2_npvt = rocsolver_zgetf2_npvt_raw(handle, m, n, c_loc(A), lda, c_loc(info))
     end function rocsolver_zgetf2_npvt_native
 
     function rocsolver_zgetf2_npvt_typed(handle, m, n, A, lda, info) result(zgetf2_npvt)
@@ -49852,11 +49851,11 @@ contains
       type(c_ptr), value :: handle
       integer(c_long), value :: m
       integer(c_long), value :: n
-      real(c_float), target :: A(*)
+      real(c_float), target :: A(..)
       integer(c_long), value :: lda
       type(c_ptr), value :: info
       integer(c_int) :: sgetf2_npvt_64
-      sgetf2_npvt_64 = rocsolver_sgetf2_npvt_64_raw(handle, m, n, c_loc(A(1)), lda, info)
+      sgetf2_npvt_64 = rocsolver_sgetf2_npvt_64_raw(handle, m, n, c_loc(A), lda, info)
     end function rocsolver_sgetf2_npvt_64_native
 
     function rocsolver_sgetf2_npvt_64_typed(handle, m, n, A, lda, info) result(sgetf2_npvt_64)
@@ -49879,11 +49878,11 @@ contains
       type(c_ptr), value :: handle
       integer(c_long), value :: m
       integer(c_long), value :: n
-      real(c_double), target :: A(*)
+      real(c_double), target :: A(..)
       integer(c_long), value :: lda
       type(c_ptr), value :: info
       integer(c_int) :: dgetf2_npvt_64
-      dgetf2_npvt_64 = rocsolver_dgetf2_npvt_64_raw(handle, m, n, c_loc(A(1)), lda, info)
+      dgetf2_npvt_64 = rocsolver_dgetf2_npvt_64_raw(handle, m, n, c_loc(A), lda, info)
     end function rocsolver_dgetf2_npvt_64_native
 
     function rocsolver_dgetf2_npvt_64_typed(handle, m, n, A, lda, info) result(dgetf2_npvt_64)
@@ -49906,11 +49905,11 @@ contains
       type(c_ptr), value :: handle
       integer(c_long), value :: m
       integer(c_long), value :: n
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: A(..)
       integer(c_long), value :: lda
       type(c_ptr), value :: info
       integer(c_int) :: cgetf2_npvt_64
-      cgetf2_npvt_64 = rocsolver_cgetf2_npvt_64_raw(handle, m, n, c_loc(A(1)), lda, info)
+      cgetf2_npvt_64 = rocsolver_cgetf2_npvt_64_raw(handle, m, n, c_loc(A), lda, info)
     end function rocsolver_cgetf2_npvt_64_native
 
     function rocsolver_cgetf2_npvt_64_typed(handle, m, n, A, lda, info) result(cgetf2_npvt_64)
@@ -49933,11 +49932,11 @@ contains
       type(c_ptr), value :: handle
       integer(c_long), value :: m
       integer(c_long), value :: n
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: A(..)
       integer(c_long), value :: lda
       type(c_ptr), value :: info
       integer(c_int) :: zgetf2_npvt_64
-      zgetf2_npvt_64 = rocsolver_zgetf2_npvt_64_raw(handle, m, n, c_loc(A(1)), lda, info)
+      zgetf2_npvt_64 = rocsolver_zgetf2_npvt_64_raw(handle, m, n, c_loc(A), lda, info)
     end function rocsolver_zgetf2_npvt_64_native
 
     function rocsolver_zgetf2_npvt_64_typed(handle, m, n, A, lda, info) result(zgetf2_npvt_64)
@@ -49963,11 +49962,11 @@ contains
       integer(c_int), value :: n
       type(c_ptr), value :: A
       integer(c_int), value :: lda
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: sgetf2_npvt_batched
-      sgetf2_npvt_batched = rocsolver_sgetf2_npvt_batched_raw(handle, m, n, A, lda, c_loc(info( &
-        1)), batch_count)
+      sgetf2_npvt_batched = rocsolver_sgetf2_npvt_batched_raw(handle, m, n, A, lda, c_loc(info), &
+        batch_count)
     end function rocsolver_sgetf2_npvt_batched_native
 
     function rocsolver_sgetf2_npvt_batched_typed(handle, m, n, A, lda, info, batch_count) result( &
@@ -49996,11 +49995,11 @@ contains
       integer(c_int), value :: n
       type(c_ptr), value :: A
       integer(c_int), value :: lda
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: dgetf2_npvt_batched
-      dgetf2_npvt_batched = rocsolver_dgetf2_npvt_batched_raw(handle, m, n, A, lda, c_loc(info( &
-        1)), batch_count)
+      dgetf2_npvt_batched = rocsolver_dgetf2_npvt_batched_raw(handle, m, n, A, lda, c_loc(info), &
+        batch_count)
     end function rocsolver_dgetf2_npvt_batched_native
 
     function rocsolver_dgetf2_npvt_batched_typed(handle, m, n, A, lda, info, batch_count) result( &
@@ -50029,11 +50028,11 @@ contains
       integer(c_int), value :: n
       type(c_ptr), value :: A
       integer(c_int), value :: lda
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: cgetf2_npvt_batched
-      cgetf2_npvt_batched = rocsolver_cgetf2_npvt_batched_raw(handle, m, n, A, lda, c_loc(info( &
-        1)), batch_count)
+      cgetf2_npvt_batched = rocsolver_cgetf2_npvt_batched_raw(handle, m, n, A, lda, c_loc(info), &
+        batch_count)
     end function rocsolver_cgetf2_npvt_batched_native
 
     function rocsolver_cgetf2_npvt_batched_typed(handle, m, n, A, lda, info, batch_count) result( &
@@ -50062,11 +50061,11 @@ contains
       integer(c_int), value :: n
       type(c_ptr), value :: A
       integer(c_int), value :: lda
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: zgetf2_npvt_batched
-      zgetf2_npvt_batched = rocsolver_zgetf2_npvt_batched_raw(handle, m, n, A, lda, c_loc(info( &
-        1)), batch_count)
+      zgetf2_npvt_batched = rocsolver_zgetf2_npvt_batched_raw(handle, m, n, A, lda, c_loc(info), &
+        batch_count)
     end function rocsolver_zgetf2_npvt_batched_native
 
     function rocsolver_zgetf2_npvt_batched_typed(handle, m, n, A, lda, info, batch_count) result( &
@@ -50161,14 +50160,14 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: m
       integer(c_int), value :: n
-      real(c_float), target :: A(*)
+      real(c_float), target :: A(..)
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: sgetf2_npvt_strided_batched
       sgetf2_npvt_strided_batched = rocsolver_sgetf2_npvt_strided_batched_raw(handle, m, n, c_loc( &
-        A(1)), lda, strideA, c_loc(info(1)), batch_count)
+        A), lda, strideA, c_loc(info), batch_count)
     end function rocsolver_sgetf2_npvt_strided_batched_native
 
     function rocsolver_sgetf2_npvt_strided_batched_typed(handle, m, n, A, lda, strideA, info, &
@@ -50196,14 +50195,14 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: m
       integer(c_int), value :: n
-      real(c_double), target :: A(*)
+      real(c_double), target :: A(..)
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: dgetf2_npvt_strided_batched
       dgetf2_npvt_strided_batched = rocsolver_dgetf2_npvt_strided_batched_raw(handle, m, n, c_loc( &
-        A(1)), lda, strideA, c_loc(info(1)), batch_count)
+        A), lda, strideA, c_loc(info), batch_count)
     end function rocsolver_dgetf2_npvt_strided_batched_native
 
     function rocsolver_dgetf2_npvt_strided_batched_typed(handle, m, n, A, lda, strideA, info, &
@@ -50231,14 +50230,14 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: m
       integer(c_int), value :: n
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: A(..)
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: cgetf2_npvt_strided_batched
       cgetf2_npvt_strided_batched = rocsolver_cgetf2_npvt_strided_batched_raw(handle, m, n, c_loc( &
-        A(1)), lda, strideA, c_loc(info(1)), batch_count)
+        A), lda, strideA, c_loc(info), batch_count)
     end function rocsolver_cgetf2_npvt_strided_batched_native
 
     function rocsolver_cgetf2_npvt_strided_batched_typed(handle, m, n, A, lda, strideA, info, &
@@ -50266,14 +50265,14 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: m
       integer(c_int), value :: n
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: A(..)
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: zgetf2_npvt_strided_batched
       zgetf2_npvt_strided_batched = rocsolver_zgetf2_npvt_strided_batched_raw(handle, m, n, c_loc( &
-        A(1)), lda, strideA, c_loc(info(1)), batch_count)
+        A), lda, strideA, c_loc(info), batch_count)
     end function rocsolver_zgetf2_npvt_strided_batched_native
 
     function rocsolver_zgetf2_npvt_strided_batched_typed(handle, m, n, A, lda, strideA, info, &
@@ -50301,14 +50300,14 @@ contains
       type(c_ptr), value :: handle
       integer(c_long), value :: m
       integer(c_long), value :: n
-      real(c_float), target :: A(*)
+      real(c_float), target :: A(..)
       integer(c_long), value :: lda
       integer(c_long), value :: strideA
       type(c_ptr), value :: info
       integer(c_long), value :: batch_count
       integer(c_int) :: sgetf2_npvt_strided_batched_64
       sgetf2_npvt_strided_batched_64 = rocsolver_sgetf2_npvt_strided_batched_64_raw(handle, m, n, &
-        c_loc(A(1)), lda, strideA, info, batch_count)
+        c_loc(A), lda, strideA, info, batch_count)
     end function rocsolver_sgetf2_npvt_strided_batched_64_native
 
     function rocsolver_sgetf2_npvt_strided_batched_64_typed(handle, m, n, A, lda, strideA, info, &
@@ -50336,14 +50335,14 @@ contains
       type(c_ptr), value :: handle
       integer(c_long), value :: m
       integer(c_long), value :: n
-      real(c_double), target :: A(*)
+      real(c_double), target :: A(..)
       integer(c_long), value :: lda
       integer(c_long), value :: strideA
       type(c_ptr), value :: info
       integer(c_long), value :: batch_count
       integer(c_int) :: dgetf2_npvt_strided_batched_64
       dgetf2_npvt_strided_batched_64 = rocsolver_dgetf2_npvt_strided_batched_64_raw(handle, m, n, &
-        c_loc(A(1)), lda, strideA, info, batch_count)
+        c_loc(A), lda, strideA, info, batch_count)
     end function rocsolver_dgetf2_npvt_strided_batched_64_native
 
     function rocsolver_dgetf2_npvt_strided_batched_64_typed(handle, m, n, A, lda, strideA, info, &
@@ -50371,14 +50370,14 @@ contains
       type(c_ptr), value :: handle
       integer(c_long), value :: m
       integer(c_long), value :: n
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: A(..)
       integer(c_long), value :: lda
       integer(c_long), value :: strideA
       type(c_ptr), value :: info
       integer(c_long), value :: batch_count
       integer(c_int) :: cgetf2_npvt_strided_batched_64
       cgetf2_npvt_strided_batched_64 = rocsolver_cgetf2_npvt_strided_batched_64_raw(handle, m, n, &
-        c_loc(A(1)), lda, strideA, info, batch_count)
+        c_loc(A), lda, strideA, info, batch_count)
     end function rocsolver_cgetf2_npvt_strided_batched_64_native
 
     function rocsolver_cgetf2_npvt_strided_batched_64_typed(handle, m, n, A, lda, strideA, info, &
@@ -50406,14 +50405,14 @@ contains
       type(c_ptr), value :: handle
       integer(c_long), value :: m
       integer(c_long), value :: n
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: A(..)
       integer(c_long), value :: lda
       integer(c_long), value :: strideA
       type(c_ptr), value :: info
       integer(c_long), value :: batch_count
       integer(c_int) :: zgetf2_npvt_strided_batched_64
       zgetf2_npvt_strided_batched_64 = rocsolver_zgetf2_npvt_strided_batched_64_raw(handle, m, n, &
-        c_loc(A(1)), lda, strideA, info, batch_count)
+        c_loc(A), lda, strideA, info, batch_count)
     end function rocsolver_zgetf2_npvt_strided_batched_64_native
 
     function rocsolver_zgetf2_npvt_strided_batched_64_typed(handle, m, n, A, lda, strideA, info, &
@@ -50440,11 +50439,11 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: m
       integer(c_int), value :: n
-      real(c_float), target :: A(*)
+      real(c_float), target :: A(..)
       integer(c_int), value :: lda
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int) :: sgetrf_npvt
-      sgetrf_npvt = rocsolver_sgetrf_npvt_raw(handle, m, n, c_loc(A(1)), lda, c_loc(info(1)))
+      sgetrf_npvt = rocsolver_sgetrf_npvt_raw(handle, m, n, c_loc(A), lda, c_loc(info))
     end function rocsolver_sgetrf_npvt_native
 
     function rocsolver_sgetrf_npvt_typed(handle, m, n, A, lda, info) result(sgetrf_npvt)
@@ -50467,11 +50466,11 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: m
       integer(c_int), value :: n
-      real(c_double), target :: A(*)
+      real(c_double), target :: A(..)
       integer(c_int), value :: lda
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int) :: dgetrf_npvt
-      dgetrf_npvt = rocsolver_dgetrf_npvt_raw(handle, m, n, c_loc(A(1)), lda, c_loc(info(1)))
+      dgetrf_npvt = rocsolver_dgetrf_npvt_raw(handle, m, n, c_loc(A), lda, c_loc(info))
     end function rocsolver_dgetrf_npvt_native
 
     function rocsolver_dgetrf_npvt_typed(handle, m, n, A, lda, info) result(dgetrf_npvt)
@@ -50494,11 +50493,11 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: m
       integer(c_int), value :: n
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: A(..)
       integer(c_int), value :: lda
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int) :: cgetrf_npvt
-      cgetrf_npvt = rocsolver_cgetrf_npvt_raw(handle, m, n, c_loc(A(1)), lda, c_loc(info(1)))
+      cgetrf_npvt = rocsolver_cgetrf_npvt_raw(handle, m, n, c_loc(A), lda, c_loc(info))
     end function rocsolver_cgetrf_npvt_native
 
     function rocsolver_cgetrf_npvt_typed(handle, m, n, A, lda, info) result(cgetrf_npvt)
@@ -50521,11 +50520,11 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: m
       integer(c_int), value :: n
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: A(..)
       integer(c_int), value :: lda
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int) :: zgetrf_npvt
-      zgetrf_npvt = rocsolver_zgetrf_npvt_raw(handle, m, n, c_loc(A(1)), lda, c_loc(info(1)))
+      zgetrf_npvt = rocsolver_zgetrf_npvt_raw(handle, m, n, c_loc(A), lda, c_loc(info))
     end function rocsolver_zgetrf_npvt_native
 
     function rocsolver_zgetrf_npvt_typed(handle, m, n, A, lda, info) result(zgetrf_npvt)
@@ -50548,11 +50547,11 @@ contains
       type(c_ptr), value :: handle
       integer(c_long), value :: m
       integer(c_long), value :: n
-      real(c_float), target :: A(*)
+      real(c_float), target :: A(..)
       integer(c_long), value :: lda
       type(c_ptr), value :: info
       integer(c_int) :: sgetrf_npvt_64
-      sgetrf_npvt_64 = rocsolver_sgetrf_npvt_64_raw(handle, m, n, c_loc(A(1)), lda, info)
+      sgetrf_npvt_64 = rocsolver_sgetrf_npvt_64_raw(handle, m, n, c_loc(A), lda, info)
     end function rocsolver_sgetrf_npvt_64_native
 
     function rocsolver_sgetrf_npvt_64_typed(handle, m, n, A, lda, info) result(sgetrf_npvt_64)
@@ -50575,11 +50574,11 @@ contains
       type(c_ptr), value :: handle
       integer(c_long), value :: m
       integer(c_long), value :: n
-      real(c_double), target :: A(*)
+      real(c_double), target :: A(..)
       integer(c_long), value :: lda
       type(c_ptr), value :: info
       integer(c_int) :: dgetrf_npvt_64
-      dgetrf_npvt_64 = rocsolver_dgetrf_npvt_64_raw(handle, m, n, c_loc(A(1)), lda, info)
+      dgetrf_npvt_64 = rocsolver_dgetrf_npvt_64_raw(handle, m, n, c_loc(A), lda, info)
     end function rocsolver_dgetrf_npvt_64_native
 
     function rocsolver_dgetrf_npvt_64_typed(handle, m, n, A, lda, info) result(dgetrf_npvt_64)
@@ -50602,11 +50601,11 @@ contains
       type(c_ptr), value :: handle
       integer(c_long), value :: m
       integer(c_long), value :: n
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: A(..)
       integer(c_long), value :: lda
       type(c_ptr), value :: info
       integer(c_int) :: cgetrf_npvt_64
-      cgetrf_npvt_64 = rocsolver_cgetrf_npvt_64_raw(handle, m, n, c_loc(A(1)), lda, info)
+      cgetrf_npvt_64 = rocsolver_cgetrf_npvt_64_raw(handle, m, n, c_loc(A), lda, info)
     end function rocsolver_cgetrf_npvt_64_native
 
     function rocsolver_cgetrf_npvt_64_typed(handle, m, n, A, lda, info) result(cgetrf_npvt_64)
@@ -50629,11 +50628,11 @@ contains
       type(c_ptr), value :: handle
       integer(c_long), value :: m
       integer(c_long), value :: n
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: A(..)
       integer(c_long), value :: lda
       type(c_ptr), value :: info
       integer(c_int) :: zgetrf_npvt_64
-      zgetrf_npvt_64 = rocsolver_zgetrf_npvt_64_raw(handle, m, n, c_loc(A(1)), lda, info)
+      zgetrf_npvt_64 = rocsolver_zgetrf_npvt_64_raw(handle, m, n, c_loc(A), lda, info)
     end function rocsolver_zgetrf_npvt_64_native
 
     function rocsolver_zgetrf_npvt_64_typed(handle, m, n, A, lda, info) result(zgetrf_npvt_64)
@@ -50659,11 +50658,11 @@ contains
       integer(c_int), value :: n
       type(c_ptr), value :: A
       integer(c_int), value :: lda
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: sgetrf_npvt_batched
-      sgetrf_npvt_batched = rocsolver_sgetrf_npvt_batched_raw(handle, m, n, A, lda, c_loc(info( &
-        1)), batch_count)
+      sgetrf_npvt_batched = rocsolver_sgetrf_npvt_batched_raw(handle, m, n, A, lda, c_loc(info), &
+        batch_count)
     end function rocsolver_sgetrf_npvt_batched_native
 
     function rocsolver_sgetrf_npvt_batched_typed(handle, m, n, A, lda, info, batch_count) result( &
@@ -50692,11 +50691,11 @@ contains
       integer(c_int), value :: n
       type(c_ptr), value :: A
       integer(c_int), value :: lda
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: dgetrf_npvt_batched
-      dgetrf_npvt_batched = rocsolver_dgetrf_npvt_batched_raw(handle, m, n, A, lda, c_loc(info( &
-        1)), batch_count)
+      dgetrf_npvt_batched = rocsolver_dgetrf_npvt_batched_raw(handle, m, n, A, lda, c_loc(info), &
+        batch_count)
     end function rocsolver_dgetrf_npvt_batched_native
 
     function rocsolver_dgetrf_npvt_batched_typed(handle, m, n, A, lda, info, batch_count) result( &
@@ -50725,11 +50724,11 @@ contains
       integer(c_int), value :: n
       type(c_ptr), value :: A
       integer(c_int), value :: lda
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: cgetrf_npvt_batched
-      cgetrf_npvt_batched = rocsolver_cgetrf_npvt_batched_raw(handle, m, n, A, lda, c_loc(info( &
-        1)), batch_count)
+      cgetrf_npvt_batched = rocsolver_cgetrf_npvt_batched_raw(handle, m, n, A, lda, c_loc(info), &
+        batch_count)
     end function rocsolver_cgetrf_npvt_batched_native
 
     function rocsolver_cgetrf_npvt_batched_typed(handle, m, n, A, lda, info, batch_count) result( &
@@ -50758,11 +50757,11 @@ contains
       integer(c_int), value :: n
       type(c_ptr), value :: A
       integer(c_int), value :: lda
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: zgetrf_npvt_batched
-      zgetrf_npvt_batched = rocsolver_zgetrf_npvt_batched_raw(handle, m, n, A, lda, c_loc(info( &
-        1)), batch_count)
+      zgetrf_npvt_batched = rocsolver_zgetrf_npvt_batched_raw(handle, m, n, A, lda, c_loc(info), &
+        batch_count)
     end function rocsolver_zgetrf_npvt_batched_native
 
     function rocsolver_zgetrf_npvt_batched_typed(handle, m, n, A, lda, info, batch_count) result( &
@@ -50857,14 +50856,14 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: m
       integer(c_int), value :: n
-      real(c_float), target :: A(*)
+      real(c_float), target :: A(..)
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: sgetrf_npvt_strided_batched
       sgetrf_npvt_strided_batched = rocsolver_sgetrf_npvt_strided_batched_raw(handle, m, n, c_loc( &
-        A(1)), lda, strideA, c_loc(info(1)), batch_count)
+        A), lda, strideA, c_loc(info), batch_count)
     end function rocsolver_sgetrf_npvt_strided_batched_native
 
     function rocsolver_sgetrf_npvt_strided_batched_typed(handle, m, n, A, lda, strideA, info, &
@@ -50892,14 +50891,14 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: m
       integer(c_int), value :: n
-      real(c_double), target :: A(*)
+      real(c_double), target :: A(..)
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: dgetrf_npvt_strided_batched
       dgetrf_npvt_strided_batched = rocsolver_dgetrf_npvt_strided_batched_raw(handle, m, n, c_loc( &
-        A(1)), lda, strideA, c_loc(info(1)), batch_count)
+        A), lda, strideA, c_loc(info), batch_count)
     end function rocsolver_dgetrf_npvt_strided_batched_native
 
     function rocsolver_dgetrf_npvt_strided_batched_typed(handle, m, n, A, lda, strideA, info, &
@@ -50927,14 +50926,14 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: m
       integer(c_int), value :: n
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: A(..)
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: cgetrf_npvt_strided_batched
       cgetrf_npvt_strided_batched = rocsolver_cgetrf_npvt_strided_batched_raw(handle, m, n, c_loc( &
-        A(1)), lda, strideA, c_loc(info(1)), batch_count)
+        A), lda, strideA, c_loc(info), batch_count)
     end function rocsolver_cgetrf_npvt_strided_batched_native
 
     function rocsolver_cgetrf_npvt_strided_batched_typed(handle, m, n, A, lda, strideA, info, &
@@ -50962,14 +50961,14 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: m
       integer(c_int), value :: n
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: A(..)
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: zgetrf_npvt_strided_batched
       zgetrf_npvt_strided_batched = rocsolver_zgetrf_npvt_strided_batched_raw(handle, m, n, c_loc( &
-        A(1)), lda, strideA, c_loc(info(1)), batch_count)
+        A), lda, strideA, c_loc(info), batch_count)
     end function rocsolver_zgetrf_npvt_strided_batched_native
 
     function rocsolver_zgetrf_npvt_strided_batched_typed(handle, m, n, A, lda, strideA, info, &
@@ -50997,14 +50996,14 @@ contains
       type(c_ptr), value :: handle
       integer(c_long), value :: m
       integer(c_long), value :: n
-      real(c_float), target :: A(*)
+      real(c_float), target :: A(..)
       integer(c_long), value :: lda
       integer(c_long), value :: strideA
       type(c_ptr), value :: info
       integer(c_long), value :: batch_count
       integer(c_int) :: sgetrf_npvt_strided_batched_64
       sgetrf_npvt_strided_batched_64 = rocsolver_sgetrf_npvt_strided_batched_64_raw(handle, m, n, &
-        c_loc(A(1)), lda, strideA, info, batch_count)
+        c_loc(A), lda, strideA, info, batch_count)
     end function rocsolver_sgetrf_npvt_strided_batched_64_native
 
     function rocsolver_sgetrf_npvt_strided_batched_64_typed(handle, m, n, A, lda, strideA, info, &
@@ -51032,14 +51031,14 @@ contains
       type(c_ptr), value :: handle
       integer(c_long), value :: m
       integer(c_long), value :: n
-      real(c_double), target :: A(*)
+      real(c_double), target :: A(..)
       integer(c_long), value :: lda
       integer(c_long), value :: strideA
       type(c_ptr), value :: info
       integer(c_long), value :: batch_count
       integer(c_int) :: dgetrf_npvt_strided_batched_64
       dgetrf_npvt_strided_batched_64 = rocsolver_dgetrf_npvt_strided_batched_64_raw(handle, m, n, &
-        c_loc(A(1)), lda, strideA, info, batch_count)
+        c_loc(A), lda, strideA, info, batch_count)
     end function rocsolver_dgetrf_npvt_strided_batched_64_native
 
     function rocsolver_dgetrf_npvt_strided_batched_64_typed(handle, m, n, A, lda, strideA, info, &
@@ -51067,14 +51066,14 @@ contains
       type(c_ptr), value :: handle
       integer(c_long), value :: m
       integer(c_long), value :: n
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: A(..)
       integer(c_long), value :: lda
       integer(c_long), value :: strideA
       type(c_ptr), value :: info
       integer(c_long), value :: batch_count
       integer(c_int) :: cgetrf_npvt_strided_batched_64
       cgetrf_npvt_strided_batched_64 = rocsolver_cgetrf_npvt_strided_batched_64_raw(handle, m, n, &
-        c_loc(A(1)), lda, strideA, info, batch_count)
+        c_loc(A), lda, strideA, info, batch_count)
     end function rocsolver_cgetrf_npvt_strided_batched_64_native
 
     function rocsolver_cgetrf_npvt_strided_batched_64_typed(handle, m, n, A, lda, strideA, info, &
@@ -51102,14 +51101,14 @@ contains
       type(c_ptr), value :: handle
       integer(c_long), value :: m
       integer(c_long), value :: n
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: A(..)
       integer(c_long), value :: lda
       integer(c_long), value :: strideA
       type(c_ptr), value :: info
       integer(c_long), value :: batch_count
       integer(c_int) :: zgetrf_npvt_strided_batched_64
       zgetrf_npvt_strided_batched_64 = rocsolver_zgetrf_npvt_strided_batched_64_raw(handle, m, n, &
-        c_loc(A(1)), lda, strideA, info, batch_count)
+        c_loc(A), lda, strideA, info, batch_count)
     end function rocsolver_zgetrf_npvt_strided_batched_64_native
 
     function rocsolver_zgetrf_npvt_strided_batched_64_typed(handle, m, n, A, lda, strideA, info, &
@@ -51136,12 +51135,12 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: m
       integer(c_int), value :: n
-      real(c_float), target :: A(*)
+      real(c_float), target :: A(..)
       integer(c_int), value :: lda
-      integer(c_int), target :: ipiv(*)
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: ipiv(..)
+      integer(c_int), target :: info(..)
       integer(c_int) :: sgetf2
-      sgetf2 = rocsolver_sgetf2_raw(handle, m, n, c_loc(A(1)), lda, c_loc(ipiv(1)), c_loc(info(1)))
+      sgetf2 = rocsolver_sgetf2_raw(handle, m, n, c_loc(A), lda, c_loc(ipiv), c_loc(info))
     end function rocsolver_sgetf2_native
 
     function rocsolver_sgetf2_typed(handle, m, n, A, lda, ipiv, info) result(sgetf2)
@@ -51165,12 +51164,12 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: m
       integer(c_int), value :: n
-      real(c_double), target :: A(*)
+      real(c_double), target :: A(..)
       integer(c_int), value :: lda
-      integer(c_int), target :: ipiv(*)
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: ipiv(..)
+      integer(c_int), target :: info(..)
       integer(c_int) :: dgetf2
-      dgetf2 = rocsolver_dgetf2_raw(handle, m, n, c_loc(A(1)), lda, c_loc(ipiv(1)), c_loc(info(1)))
+      dgetf2 = rocsolver_dgetf2_raw(handle, m, n, c_loc(A), lda, c_loc(ipiv), c_loc(info))
     end function rocsolver_dgetf2_native
 
     function rocsolver_dgetf2_typed(handle, m, n, A, lda, ipiv, info) result(dgetf2)
@@ -51194,12 +51193,12 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: m
       integer(c_int), value :: n
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: A(..)
       integer(c_int), value :: lda
-      integer(c_int), target :: ipiv(*)
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: ipiv(..)
+      integer(c_int), target :: info(..)
       integer(c_int) :: cgetf2
-      cgetf2 = rocsolver_cgetf2_raw(handle, m, n, c_loc(A(1)), lda, c_loc(ipiv(1)), c_loc(info(1)))
+      cgetf2 = rocsolver_cgetf2_raw(handle, m, n, c_loc(A), lda, c_loc(ipiv), c_loc(info))
     end function rocsolver_cgetf2_native
 
     function rocsolver_cgetf2_typed(handle, m, n, A, lda, ipiv, info) result(cgetf2)
@@ -51223,12 +51222,12 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: m
       integer(c_int), value :: n
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: A(..)
       integer(c_int), value :: lda
-      integer(c_int), target :: ipiv(*)
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: ipiv(..)
+      integer(c_int), target :: info(..)
       integer(c_int) :: zgetf2
-      zgetf2 = rocsolver_zgetf2_raw(handle, m, n, c_loc(A(1)), lda, c_loc(ipiv(1)), c_loc(info(1)))
+      zgetf2 = rocsolver_zgetf2_raw(handle, m, n, c_loc(A), lda, c_loc(ipiv), c_loc(info))
     end function rocsolver_zgetf2_native
 
     function rocsolver_zgetf2_typed(handle, m, n, A, lda, ipiv, info) result(zgetf2)
@@ -51252,12 +51251,12 @@ contains
       type(c_ptr), value :: handle
       integer(c_long), value :: m
       integer(c_long), value :: n
-      real(c_float), target :: A(*)
+      real(c_float), target :: A(..)
       integer(c_long), value :: lda
       type(c_ptr), value :: ipiv
       type(c_ptr), value :: info
       integer(c_int) :: sgetf2_64
-      sgetf2_64 = rocsolver_sgetf2_64_raw(handle, m, n, c_loc(A(1)), lda, ipiv, info)
+      sgetf2_64 = rocsolver_sgetf2_64_raw(handle, m, n, c_loc(A), lda, ipiv, info)
     end function rocsolver_sgetf2_64_native
 
     function rocsolver_sgetf2_64_typed(handle, m, n, A, lda, ipiv, info) result(sgetf2_64)
@@ -51281,12 +51280,12 @@ contains
       type(c_ptr), value :: handle
       integer(c_long), value :: m
       integer(c_long), value :: n
-      real(c_double), target :: A(*)
+      real(c_double), target :: A(..)
       integer(c_long), value :: lda
       type(c_ptr), value :: ipiv
       type(c_ptr), value :: info
       integer(c_int) :: dgetf2_64
-      dgetf2_64 = rocsolver_dgetf2_64_raw(handle, m, n, c_loc(A(1)), lda, ipiv, info)
+      dgetf2_64 = rocsolver_dgetf2_64_raw(handle, m, n, c_loc(A), lda, ipiv, info)
     end function rocsolver_dgetf2_64_native
 
     function rocsolver_dgetf2_64_typed(handle, m, n, A, lda, ipiv, info) result(dgetf2_64)
@@ -51310,12 +51309,12 @@ contains
       type(c_ptr), value :: handle
       integer(c_long), value :: m
       integer(c_long), value :: n
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: A(..)
       integer(c_long), value :: lda
       type(c_ptr), value :: ipiv
       type(c_ptr), value :: info
       integer(c_int) :: cgetf2_64
-      cgetf2_64 = rocsolver_cgetf2_64_raw(handle, m, n, c_loc(A(1)), lda, ipiv, info)
+      cgetf2_64 = rocsolver_cgetf2_64_raw(handle, m, n, c_loc(A), lda, ipiv, info)
     end function rocsolver_cgetf2_64_native
 
     function rocsolver_cgetf2_64_typed(handle, m, n, A, lda, ipiv, info) result(cgetf2_64)
@@ -51339,12 +51338,12 @@ contains
       type(c_ptr), value :: handle
       integer(c_long), value :: m
       integer(c_long), value :: n
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: A(..)
       integer(c_long), value :: lda
       type(c_ptr), value :: ipiv
       type(c_ptr), value :: info
       integer(c_int) :: zgetf2_64
-      zgetf2_64 = rocsolver_zgetf2_64_raw(handle, m, n, c_loc(A(1)), lda, ipiv, info)
+      zgetf2_64 = rocsolver_zgetf2_64_raw(handle, m, n, c_loc(A), lda, ipiv, info)
     end function rocsolver_zgetf2_64_native
 
     function rocsolver_zgetf2_64_typed(handle, m, n, A, lda, ipiv, info) result(zgetf2_64)
@@ -51371,13 +51370,13 @@ contains
       integer(c_int), value :: n
       type(c_ptr), value :: A
       integer(c_int), value :: lda
-      integer(c_int), target :: ipiv(*)
+      integer(c_int), target :: ipiv(..)
       integer(c_long), value :: strideP
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: sgetf2_batched
-      sgetf2_batched = rocsolver_sgetf2_batched_raw(handle, m, n, A, lda, c_loc(ipiv(1)), strideP, &
-        c_loc(info(1)), batch_count)
+      sgetf2_batched = rocsolver_sgetf2_batched_raw(handle, m, n, A, lda, c_loc(ipiv), strideP, &
+        c_loc(info), batch_count)
     end function rocsolver_sgetf2_batched_native
 
     function rocsolver_sgetf2_batched_typed(handle, m, n, A, lda, ipiv, strideP, info, &
@@ -51408,13 +51407,13 @@ contains
       integer(c_int), value :: n
       type(c_ptr), value :: A
       integer(c_int), value :: lda
-      integer(c_int), target :: ipiv(*)
+      integer(c_int), target :: ipiv(..)
       integer(c_long), value :: strideP
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: dgetf2_batched
-      dgetf2_batched = rocsolver_dgetf2_batched_raw(handle, m, n, A, lda, c_loc(ipiv(1)), strideP, &
-        c_loc(info(1)), batch_count)
+      dgetf2_batched = rocsolver_dgetf2_batched_raw(handle, m, n, A, lda, c_loc(ipiv), strideP, &
+        c_loc(info), batch_count)
     end function rocsolver_dgetf2_batched_native
 
     function rocsolver_dgetf2_batched_typed(handle, m, n, A, lda, ipiv, strideP, info, &
@@ -51445,13 +51444,13 @@ contains
       integer(c_int), value :: n
       type(c_ptr), value :: A
       integer(c_int), value :: lda
-      integer(c_int), target :: ipiv(*)
+      integer(c_int), target :: ipiv(..)
       integer(c_long), value :: strideP
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: cgetf2_batched
-      cgetf2_batched = rocsolver_cgetf2_batched_raw(handle, m, n, A, lda, c_loc(ipiv(1)), strideP, &
-        c_loc(info(1)), batch_count)
+      cgetf2_batched = rocsolver_cgetf2_batched_raw(handle, m, n, A, lda, c_loc(ipiv), strideP, &
+        c_loc(info), batch_count)
     end function rocsolver_cgetf2_batched_native
 
     function rocsolver_cgetf2_batched_typed(handle, m, n, A, lda, ipiv, strideP, info, &
@@ -51482,13 +51481,13 @@ contains
       integer(c_int), value :: n
       type(c_ptr), value :: A
       integer(c_int), value :: lda
-      integer(c_int), target :: ipiv(*)
+      integer(c_int), target :: ipiv(..)
       integer(c_long), value :: strideP
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: zgetf2_batched
-      zgetf2_batched = rocsolver_zgetf2_batched_raw(handle, m, n, A, lda, c_loc(ipiv(1)), strideP, &
-        c_loc(info(1)), batch_count)
+      zgetf2_batched = rocsolver_zgetf2_batched_raw(handle, m, n, A, lda, c_loc(ipiv), strideP, &
+        c_loc(info), batch_count)
     end function rocsolver_zgetf2_batched_native
 
     function rocsolver_zgetf2_batched_typed(handle, m, n, A, lda, ipiv, strideP, info, &
@@ -51593,16 +51592,16 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: m
       integer(c_int), value :: n
-      real(c_float), target :: A(*)
+      real(c_float), target :: A(..)
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
-      integer(c_int), target :: ipiv(*)
+      integer(c_int), target :: ipiv(..)
       integer(c_long), value :: strideP
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: sgetf2_strided_batched
-      sgetf2_strided_batched = rocsolver_sgetf2_strided_batched_raw(handle, m, n, c_loc(A(1)), &
-        lda, strideA, c_loc(ipiv(1)), strideP, c_loc(info(1)), batch_count)
+      sgetf2_strided_batched = rocsolver_sgetf2_strided_batched_raw(handle, m, n, c_loc(A), lda, &
+        strideA, c_loc(ipiv), strideP, c_loc(info), batch_count)
     end function rocsolver_sgetf2_strided_batched_native
 
     function rocsolver_sgetf2_strided_batched_typed(handle, m, n, A, lda, strideA, ipiv, strideP, &
@@ -51632,16 +51631,16 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: m
       integer(c_int), value :: n
-      real(c_double), target :: A(*)
+      real(c_double), target :: A(..)
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
-      integer(c_int), target :: ipiv(*)
+      integer(c_int), target :: ipiv(..)
       integer(c_long), value :: strideP
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: dgetf2_strided_batched
-      dgetf2_strided_batched = rocsolver_dgetf2_strided_batched_raw(handle, m, n, c_loc(A(1)), &
-        lda, strideA, c_loc(ipiv(1)), strideP, c_loc(info(1)), batch_count)
+      dgetf2_strided_batched = rocsolver_dgetf2_strided_batched_raw(handle, m, n, c_loc(A), lda, &
+        strideA, c_loc(ipiv), strideP, c_loc(info), batch_count)
     end function rocsolver_dgetf2_strided_batched_native
 
     function rocsolver_dgetf2_strided_batched_typed(handle, m, n, A, lda, strideA, ipiv, strideP, &
@@ -51671,16 +51670,16 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: m
       integer(c_int), value :: n
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: A(..)
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
-      integer(c_int), target :: ipiv(*)
+      integer(c_int), target :: ipiv(..)
       integer(c_long), value :: strideP
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: cgetf2_strided_batched
-      cgetf2_strided_batched = rocsolver_cgetf2_strided_batched_raw(handle, m, n, c_loc(A(1)), &
-        lda, strideA, c_loc(ipiv(1)), strideP, c_loc(info(1)), batch_count)
+      cgetf2_strided_batched = rocsolver_cgetf2_strided_batched_raw(handle, m, n, c_loc(A), lda, &
+        strideA, c_loc(ipiv), strideP, c_loc(info), batch_count)
     end function rocsolver_cgetf2_strided_batched_native
 
     function rocsolver_cgetf2_strided_batched_typed(handle, m, n, A, lda, strideA, ipiv, strideP, &
@@ -51710,16 +51709,16 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: m
       integer(c_int), value :: n
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: A(..)
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
-      integer(c_int), target :: ipiv(*)
+      integer(c_int), target :: ipiv(..)
       integer(c_long), value :: strideP
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: zgetf2_strided_batched
-      zgetf2_strided_batched = rocsolver_zgetf2_strided_batched_raw(handle, m, n, c_loc(A(1)), &
-        lda, strideA, c_loc(ipiv(1)), strideP, c_loc(info(1)), batch_count)
+      zgetf2_strided_batched = rocsolver_zgetf2_strided_batched_raw(handle, m, n, c_loc(A), lda, &
+        strideA, c_loc(ipiv), strideP, c_loc(info), batch_count)
     end function rocsolver_zgetf2_strided_batched_native
 
     function rocsolver_zgetf2_strided_batched_typed(handle, m, n, A, lda, strideA, ipiv, strideP, &
@@ -51749,7 +51748,7 @@ contains
       type(c_ptr), value :: handle
       integer(c_long), value :: m
       integer(c_long), value :: n
-      real(c_float), target :: A(*)
+      real(c_float), target :: A(..)
       integer(c_long), value :: lda
       integer(c_long), value :: strideA
       type(c_ptr), value :: ipiv
@@ -51757,8 +51756,8 @@ contains
       type(c_ptr), value :: info
       integer(c_long), value :: batch_count
       integer(c_int) :: sgetf2_strided_batched_64
-      sgetf2_strided_batched_64 = rocsolver_sgetf2_strided_batched_64_raw(handle, m, n, c_loc(A( &
-        1)), lda, strideA, ipiv, strideP, info, batch_count)
+      sgetf2_strided_batched_64 = rocsolver_sgetf2_strided_batched_64_raw(handle, m, n, c_loc(A), &
+        lda, strideA, ipiv, strideP, info, batch_count)
     end function rocsolver_sgetf2_strided_batched_64_native
 
     function rocsolver_sgetf2_strided_batched_64_typed(handle, m, n, A, lda, strideA, ipiv, &
@@ -51788,7 +51787,7 @@ contains
       type(c_ptr), value :: handle
       integer(c_long), value :: m
       integer(c_long), value :: n
-      real(c_double), target :: A(*)
+      real(c_double), target :: A(..)
       integer(c_long), value :: lda
       integer(c_long), value :: strideA
       type(c_ptr), value :: ipiv
@@ -51796,8 +51795,8 @@ contains
       type(c_ptr), value :: info
       integer(c_long), value :: batch_count
       integer(c_int) :: dgetf2_strided_batched_64
-      dgetf2_strided_batched_64 = rocsolver_dgetf2_strided_batched_64_raw(handle, m, n, c_loc(A( &
-        1)), lda, strideA, ipiv, strideP, info, batch_count)
+      dgetf2_strided_batched_64 = rocsolver_dgetf2_strided_batched_64_raw(handle, m, n, c_loc(A), &
+        lda, strideA, ipiv, strideP, info, batch_count)
     end function rocsolver_dgetf2_strided_batched_64_native
 
     function rocsolver_dgetf2_strided_batched_64_typed(handle, m, n, A, lda, strideA, ipiv, &
@@ -51827,7 +51826,7 @@ contains
       type(c_ptr), value :: handle
       integer(c_long), value :: m
       integer(c_long), value :: n
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: A(..)
       integer(c_long), value :: lda
       integer(c_long), value :: strideA
       type(c_ptr), value :: ipiv
@@ -51835,8 +51834,8 @@ contains
       type(c_ptr), value :: info
       integer(c_long), value :: batch_count
       integer(c_int) :: cgetf2_strided_batched_64
-      cgetf2_strided_batched_64 = rocsolver_cgetf2_strided_batched_64_raw(handle, m, n, c_loc(A( &
-        1)), lda, strideA, ipiv, strideP, info, batch_count)
+      cgetf2_strided_batched_64 = rocsolver_cgetf2_strided_batched_64_raw(handle, m, n, c_loc(A), &
+        lda, strideA, ipiv, strideP, info, batch_count)
     end function rocsolver_cgetf2_strided_batched_64_native
 
     function rocsolver_cgetf2_strided_batched_64_typed(handle, m, n, A, lda, strideA, ipiv, &
@@ -51866,7 +51865,7 @@ contains
       type(c_ptr), value :: handle
       integer(c_long), value :: m
       integer(c_long), value :: n
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: A(..)
       integer(c_long), value :: lda
       integer(c_long), value :: strideA
       type(c_ptr), value :: ipiv
@@ -51874,8 +51873,8 @@ contains
       type(c_ptr), value :: info
       integer(c_long), value :: batch_count
       integer(c_int) :: zgetf2_strided_batched_64
-      zgetf2_strided_batched_64 = rocsolver_zgetf2_strided_batched_64_raw(handle, m, n, c_loc(A( &
-        1)), lda, strideA, ipiv, strideP, info, batch_count)
+      zgetf2_strided_batched_64 = rocsolver_zgetf2_strided_batched_64_raw(handle, m, n, c_loc(A), &
+        lda, strideA, ipiv, strideP, info, batch_count)
     end function rocsolver_zgetf2_strided_batched_64_native
 
     function rocsolver_zgetf2_strided_batched_64_typed(handle, m, n, A, lda, strideA, ipiv, &
@@ -51904,12 +51903,12 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: m
       integer(c_int), value :: n
-      real(c_float), target :: A(*)
+      real(c_float), target :: A(..)
       integer(c_int), value :: lda
-      integer(c_int), target :: ipiv(*)
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: ipiv(..)
+      integer(c_int), target :: info(..)
       integer(c_int) :: sgetrf
-      sgetrf = rocsolver_sgetrf_raw(handle, m, n, c_loc(A(1)), lda, c_loc(ipiv(1)), c_loc(info(1)))
+      sgetrf = rocsolver_sgetrf_raw(handle, m, n, c_loc(A), lda, c_loc(ipiv), c_loc(info))
     end function rocsolver_sgetrf_native
 
     function rocsolver_sgetrf_typed(handle, m, n, A, lda, ipiv, info) result(sgetrf)
@@ -51933,12 +51932,12 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: m
       integer(c_int), value :: n
-      real(c_double), target :: A(*)
+      real(c_double), target :: A(..)
       integer(c_int), value :: lda
-      integer(c_int), target :: ipiv(*)
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: ipiv(..)
+      integer(c_int), target :: info(..)
       integer(c_int) :: dgetrf
-      dgetrf = rocsolver_dgetrf_raw(handle, m, n, c_loc(A(1)), lda, c_loc(ipiv(1)), c_loc(info(1)))
+      dgetrf = rocsolver_dgetrf_raw(handle, m, n, c_loc(A), lda, c_loc(ipiv), c_loc(info))
     end function rocsolver_dgetrf_native
 
     function rocsolver_dgetrf_typed(handle, m, n, A, lda, ipiv, info) result(dgetrf)
@@ -51962,12 +51961,12 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: m
       integer(c_int), value :: n
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: A(..)
       integer(c_int), value :: lda
-      integer(c_int), target :: ipiv(*)
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: ipiv(..)
+      integer(c_int), target :: info(..)
       integer(c_int) :: cgetrf
-      cgetrf = rocsolver_cgetrf_raw(handle, m, n, c_loc(A(1)), lda, c_loc(ipiv(1)), c_loc(info(1)))
+      cgetrf = rocsolver_cgetrf_raw(handle, m, n, c_loc(A), lda, c_loc(ipiv), c_loc(info))
     end function rocsolver_cgetrf_native
 
     function rocsolver_cgetrf_typed(handle, m, n, A, lda, ipiv, info) result(cgetrf)
@@ -51991,12 +51990,12 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: m
       integer(c_int), value :: n
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: A(..)
       integer(c_int), value :: lda
-      integer(c_int), target :: ipiv(*)
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: ipiv(..)
+      integer(c_int), target :: info(..)
       integer(c_int) :: zgetrf
-      zgetrf = rocsolver_zgetrf_raw(handle, m, n, c_loc(A(1)), lda, c_loc(ipiv(1)), c_loc(info(1)))
+      zgetrf = rocsolver_zgetrf_raw(handle, m, n, c_loc(A), lda, c_loc(ipiv), c_loc(info))
     end function rocsolver_zgetrf_native
 
     function rocsolver_zgetrf_typed(handle, m, n, A, lda, ipiv, info) result(zgetrf)
@@ -52020,12 +52019,12 @@ contains
       type(c_ptr), value :: handle
       integer(c_long), value :: m
       integer(c_long), value :: n
-      real(c_float), target :: A(*)
+      real(c_float), target :: A(..)
       integer(c_long), value :: lda
       type(c_ptr), value :: ipiv
       type(c_ptr), value :: info
       integer(c_int) :: sgetrf_64
-      sgetrf_64 = rocsolver_sgetrf_64_raw(handle, m, n, c_loc(A(1)), lda, ipiv, info)
+      sgetrf_64 = rocsolver_sgetrf_64_raw(handle, m, n, c_loc(A), lda, ipiv, info)
     end function rocsolver_sgetrf_64_native
 
     function rocsolver_sgetrf_64_typed(handle, m, n, A, lda, ipiv, info) result(sgetrf_64)
@@ -52049,12 +52048,12 @@ contains
       type(c_ptr), value :: handle
       integer(c_long), value :: m
       integer(c_long), value :: n
-      real(c_double), target :: A(*)
+      real(c_double), target :: A(..)
       integer(c_long), value :: lda
       type(c_ptr), value :: ipiv
       type(c_ptr), value :: info
       integer(c_int) :: dgetrf_64
-      dgetrf_64 = rocsolver_dgetrf_64_raw(handle, m, n, c_loc(A(1)), lda, ipiv, info)
+      dgetrf_64 = rocsolver_dgetrf_64_raw(handle, m, n, c_loc(A), lda, ipiv, info)
     end function rocsolver_dgetrf_64_native
 
     function rocsolver_dgetrf_64_typed(handle, m, n, A, lda, ipiv, info) result(dgetrf_64)
@@ -52078,12 +52077,12 @@ contains
       type(c_ptr), value :: handle
       integer(c_long), value :: m
       integer(c_long), value :: n
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: A(..)
       integer(c_long), value :: lda
       type(c_ptr), value :: ipiv
       type(c_ptr), value :: info
       integer(c_int) :: cgetrf_64
-      cgetrf_64 = rocsolver_cgetrf_64_raw(handle, m, n, c_loc(A(1)), lda, ipiv, info)
+      cgetrf_64 = rocsolver_cgetrf_64_raw(handle, m, n, c_loc(A), lda, ipiv, info)
     end function rocsolver_cgetrf_64_native
 
     function rocsolver_cgetrf_64_typed(handle, m, n, A, lda, ipiv, info) result(cgetrf_64)
@@ -52107,12 +52106,12 @@ contains
       type(c_ptr), value :: handle
       integer(c_long), value :: m
       integer(c_long), value :: n
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: A(..)
       integer(c_long), value :: lda
       type(c_ptr), value :: ipiv
       type(c_ptr), value :: info
       integer(c_int) :: zgetrf_64
-      zgetrf_64 = rocsolver_zgetrf_64_raw(handle, m, n, c_loc(A(1)), lda, ipiv, info)
+      zgetrf_64 = rocsolver_zgetrf_64_raw(handle, m, n, c_loc(A), lda, ipiv, info)
     end function rocsolver_zgetrf_64_native
 
     function rocsolver_zgetrf_64_typed(handle, m, n, A, lda, ipiv, info) result(zgetrf_64)
@@ -52139,13 +52138,13 @@ contains
       integer(c_int), value :: n
       type(c_ptr), value :: A
       integer(c_int), value :: lda
-      integer(c_int), target :: ipiv(*)
+      integer(c_int), target :: ipiv(..)
       integer(c_long), value :: strideP
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: sgetrf_batched
-      sgetrf_batched = rocsolver_sgetrf_batched_raw(handle, m, n, A, lda, c_loc(ipiv(1)), strideP, &
-        c_loc(info(1)), batch_count)
+      sgetrf_batched = rocsolver_sgetrf_batched_raw(handle, m, n, A, lda, c_loc(ipiv), strideP, &
+        c_loc(info), batch_count)
     end function rocsolver_sgetrf_batched_native
 
     function rocsolver_sgetrf_batched_typed(handle, m, n, A, lda, ipiv, strideP, info, &
@@ -52176,13 +52175,13 @@ contains
       integer(c_int), value :: n
       type(c_ptr), value :: A
       integer(c_int), value :: lda
-      integer(c_int), target :: ipiv(*)
+      integer(c_int), target :: ipiv(..)
       integer(c_long), value :: strideP
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: dgetrf_batched
-      dgetrf_batched = rocsolver_dgetrf_batched_raw(handle, m, n, A, lda, c_loc(ipiv(1)), strideP, &
-        c_loc(info(1)), batch_count)
+      dgetrf_batched = rocsolver_dgetrf_batched_raw(handle, m, n, A, lda, c_loc(ipiv), strideP, &
+        c_loc(info), batch_count)
     end function rocsolver_dgetrf_batched_native
 
     function rocsolver_dgetrf_batched_typed(handle, m, n, A, lda, ipiv, strideP, info, &
@@ -52213,13 +52212,13 @@ contains
       integer(c_int), value :: n
       type(c_ptr), value :: A
       integer(c_int), value :: lda
-      integer(c_int), target :: ipiv(*)
+      integer(c_int), target :: ipiv(..)
       integer(c_long), value :: strideP
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: cgetrf_batched
-      cgetrf_batched = rocsolver_cgetrf_batched_raw(handle, m, n, A, lda, c_loc(ipiv(1)), strideP, &
-        c_loc(info(1)), batch_count)
+      cgetrf_batched = rocsolver_cgetrf_batched_raw(handle, m, n, A, lda, c_loc(ipiv), strideP, &
+        c_loc(info), batch_count)
     end function rocsolver_cgetrf_batched_native
 
     function rocsolver_cgetrf_batched_typed(handle, m, n, A, lda, ipiv, strideP, info, &
@@ -52250,13 +52249,13 @@ contains
       integer(c_int), value :: n
       type(c_ptr), value :: A
       integer(c_int), value :: lda
-      integer(c_int), target :: ipiv(*)
+      integer(c_int), target :: ipiv(..)
       integer(c_long), value :: strideP
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: zgetrf_batched
-      zgetrf_batched = rocsolver_zgetrf_batched_raw(handle, m, n, A, lda, c_loc(ipiv(1)), strideP, &
-        c_loc(info(1)), batch_count)
+      zgetrf_batched = rocsolver_zgetrf_batched_raw(handle, m, n, A, lda, c_loc(ipiv), strideP, &
+        c_loc(info), batch_count)
     end function rocsolver_zgetrf_batched_native
 
     function rocsolver_zgetrf_batched_typed(handle, m, n, A, lda, ipiv, strideP, info, &
@@ -52361,16 +52360,16 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: m
       integer(c_int), value :: n
-      real(c_float), target :: A(*)
+      real(c_float), target :: A(..)
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
-      integer(c_int), target :: ipiv(*)
+      integer(c_int), target :: ipiv(..)
       integer(c_long), value :: strideP
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: sgetrf_strided_batched
-      sgetrf_strided_batched = rocsolver_sgetrf_strided_batched_raw(handle, m, n, c_loc(A(1)), &
-        lda, strideA, c_loc(ipiv(1)), strideP, c_loc(info(1)), batch_count)
+      sgetrf_strided_batched = rocsolver_sgetrf_strided_batched_raw(handle, m, n, c_loc(A), lda, &
+        strideA, c_loc(ipiv), strideP, c_loc(info), batch_count)
     end function rocsolver_sgetrf_strided_batched_native
 
     function rocsolver_sgetrf_strided_batched_typed(handle, m, n, A, lda, strideA, ipiv, strideP, &
@@ -52400,16 +52399,16 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: m
       integer(c_int), value :: n
-      real(c_double), target :: A(*)
+      real(c_double), target :: A(..)
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
-      integer(c_int), target :: ipiv(*)
+      integer(c_int), target :: ipiv(..)
       integer(c_long), value :: strideP
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: dgetrf_strided_batched
-      dgetrf_strided_batched = rocsolver_dgetrf_strided_batched_raw(handle, m, n, c_loc(A(1)), &
-        lda, strideA, c_loc(ipiv(1)), strideP, c_loc(info(1)), batch_count)
+      dgetrf_strided_batched = rocsolver_dgetrf_strided_batched_raw(handle, m, n, c_loc(A), lda, &
+        strideA, c_loc(ipiv), strideP, c_loc(info), batch_count)
     end function rocsolver_dgetrf_strided_batched_native
 
     function rocsolver_dgetrf_strided_batched_typed(handle, m, n, A, lda, strideA, ipiv, strideP, &
@@ -52439,16 +52438,16 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: m
       integer(c_int), value :: n
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: A(..)
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
-      integer(c_int), target :: ipiv(*)
+      integer(c_int), target :: ipiv(..)
       integer(c_long), value :: strideP
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: cgetrf_strided_batched
-      cgetrf_strided_batched = rocsolver_cgetrf_strided_batched_raw(handle, m, n, c_loc(A(1)), &
-        lda, strideA, c_loc(ipiv(1)), strideP, c_loc(info(1)), batch_count)
+      cgetrf_strided_batched = rocsolver_cgetrf_strided_batched_raw(handle, m, n, c_loc(A), lda, &
+        strideA, c_loc(ipiv), strideP, c_loc(info), batch_count)
     end function rocsolver_cgetrf_strided_batched_native
 
     function rocsolver_cgetrf_strided_batched_typed(handle, m, n, A, lda, strideA, ipiv, strideP, &
@@ -52478,16 +52477,16 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: m
       integer(c_int), value :: n
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: A(..)
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
-      integer(c_int), target :: ipiv(*)
+      integer(c_int), target :: ipiv(..)
       integer(c_long), value :: strideP
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: zgetrf_strided_batched
-      zgetrf_strided_batched = rocsolver_zgetrf_strided_batched_raw(handle, m, n, c_loc(A(1)), &
-        lda, strideA, c_loc(ipiv(1)), strideP, c_loc(info(1)), batch_count)
+      zgetrf_strided_batched = rocsolver_zgetrf_strided_batched_raw(handle, m, n, c_loc(A), lda, &
+        strideA, c_loc(ipiv), strideP, c_loc(info), batch_count)
     end function rocsolver_zgetrf_strided_batched_native
 
     function rocsolver_zgetrf_strided_batched_typed(handle, m, n, A, lda, strideA, ipiv, strideP, &
@@ -52517,7 +52516,7 @@ contains
       type(c_ptr), value :: handle
       integer(c_long), value :: m
       integer(c_long), value :: n
-      real(c_float), target :: A(*)
+      real(c_float), target :: A(..)
       integer(c_long), value :: lda
       integer(c_long), value :: strideA
       type(c_ptr), value :: ipiv
@@ -52525,8 +52524,8 @@ contains
       type(c_ptr), value :: info
       integer(c_long), value :: batch_count
       integer(c_int) :: sgetrf_strided_batched_64
-      sgetrf_strided_batched_64 = rocsolver_sgetrf_strided_batched_64_raw(handle, m, n, c_loc(A( &
-        1)), lda, strideA, ipiv, strideP, info, batch_count)
+      sgetrf_strided_batched_64 = rocsolver_sgetrf_strided_batched_64_raw(handle, m, n, c_loc(A), &
+        lda, strideA, ipiv, strideP, info, batch_count)
     end function rocsolver_sgetrf_strided_batched_64_native
 
     function rocsolver_sgetrf_strided_batched_64_typed(handle, m, n, A, lda, strideA, ipiv, &
@@ -52556,7 +52555,7 @@ contains
       type(c_ptr), value :: handle
       integer(c_long), value :: m
       integer(c_long), value :: n
-      real(c_double), target :: A(*)
+      real(c_double), target :: A(..)
       integer(c_long), value :: lda
       integer(c_long), value :: strideA
       type(c_ptr), value :: ipiv
@@ -52564,8 +52563,8 @@ contains
       type(c_ptr), value :: info
       integer(c_long), value :: batch_count
       integer(c_int) :: dgetrf_strided_batched_64
-      dgetrf_strided_batched_64 = rocsolver_dgetrf_strided_batched_64_raw(handle, m, n, c_loc(A( &
-        1)), lda, strideA, ipiv, strideP, info, batch_count)
+      dgetrf_strided_batched_64 = rocsolver_dgetrf_strided_batched_64_raw(handle, m, n, c_loc(A), &
+        lda, strideA, ipiv, strideP, info, batch_count)
     end function rocsolver_dgetrf_strided_batched_64_native
 
     function rocsolver_dgetrf_strided_batched_64_typed(handle, m, n, A, lda, strideA, ipiv, &
@@ -52595,7 +52594,7 @@ contains
       type(c_ptr), value :: handle
       integer(c_long), value :: m
       integer(c_long), value :: n
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: A(..)
       integer(c_long), value :: lda
       integer(c_long), value :: strideA
       type(c_ptr), value :: ipiv
@@ -52603,8 +52602,8 @@ contains
       type(c_ptr), value :: info
       integer(c_long), value :: batch_count
       integer(c_int) :: cgetrf_strided_batched_64
-      cgetrf_strided_batched_64 = rocsolver_cgetrf_strided_batched_64_raw(handle, m, n, c_loc(A( &
-        1)), lda, strideA, ipiv, strideP, info, batch_count)
+      cgetrf_strided_batched_64 = rocsolver_cgetrf_strided_batched_64_raw(handle, m, n, c_loc(A), &
+        lda, strideA, ipiv, strideP, info, batch_count)
     end function rocsolver_cgetrf_strided_batched_64_native
 
     function rocsolver_cgetrf_strided_batched_64_typed(handle, m, n, A, lda, strideA, ipiv, &
@@ -52634,7 +52633,7 @@ contains
       type(c_ptr), value :: handle
       integer(c_long), value :: m
       integer(c_long), value :: n
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: A(..)
       integer(c_long), value :: lda
       integer(c_long), value :: strideA
       type(c_ptr), value :: ipiv
@@ -52642,8 +52641,8 @@ contains
       type(c_ptr), value :: info
       integer(c_long), value :: batch_count
       integer(c_int) :: zgetrf_strided_batched_64
-      zgetrf_strided_batched_64 = rocsolver_zgetrf_strided_batched_64_raw(handle, m, n, c_loc(A( &
-        1)), lda, strideA, ipiv, strideP, info, batch_count)
+      zgetrf_strided_batched_64 = rocsolver_zgetrf_strided_batched_64_raw(handle, m, n, c_loc(A), &
+        lda, strideA, ipiv, strideP, info, batch_count)
     end function rocsolver_zgetrf_strided_batched_64_native
 
     function rocsolver_zgetrf_strided_batched_64_typed(handle, m, n, A, lda, strideA, ipiv, &
@@ -52672,11 +52671,11 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: m
       integer(c_int), value :: n
-      real(c_float), target :: A(*)
+      real(c_float), target :: A(..)
       integer(c_int), value :: lda
-      real(c_float), target :: ipiv(*)
+      real(c_float), target :: ipiv(..)
       integer(c_int) :: sgeqr2
-      sgeqr2 = rocsolver_sgeqr2_raw(handle, m, n, c_loc(A(1)), lda, c_loc(ipiv(1)))
+      sgeqr2 = rocsolver_sgeqr2_raw(handle, m, n, c_loc(A), lda, c_loc(ipiv))
     end function rocsolver_sgeqr2_native
 
     function rocsolver_sgeqr2_typed(handle, m, n, A, lda, ipiv) result(sgeqr2)
@@ -52699,11 +52698,11 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: m
       integer(c_int), value :: n
-      real(c_double), target :: A(*)
+      real(c_double), target :: A(..)
       integer(c_int), value :: lda
-      real(c_double), target :: ipiv(*)
+      real(c_double), target :: ipiv(..)
       integer(c_int) :: dgeqr2
-      dgeqr2 = rocsolver_dgeqr2_raw(handle, m, n, c_loc(A(1)), lda, c_loc(ipiv(1)))
+      dgeqr2 = rocsolver_dgeqr2_raw(handle, m, n, c_loc(A), lda, c_loc(ipiv))
     end function rocsolver_dgeqr2_native
 
     function rocsolver_dgeqr2_typed(handle, m, n, A, lda, ipiv) result(dgeqr2)
@@ -52726,11 +52725,11 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: m
       integer(c_int), value :: n
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: A(..)
       integer(c_int), value :: lda
-      complex(c_float_complex), target :: ipiv(*)
+      complex(c_float_complex), target :: ipiv(..)
       integer(c_int) :: cgeqr2
-      cgeqr2 = rocsolver_cgeqr2_raw(handle, m, n, c_loc(A(1)), lda, c_loc(ipiv(1)))
+      cgeqr2 = rocsolver_cgeqr2_raw(handle, m, n, c_loc(A), lda, c_loc(ipiv))
     end function rocsolver_cgeqr2_native
 
     function rocsolver_cgeqr2_typed(handle, m, n, A, lda, ipiv) result(cgeqr2)
@@ -52753,11 +52752,11 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: m
       integer(c_int), value :: n
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: A(..)
       integer(c_int), value :: lda
-      complex(c_double_complex), target :: ipiv(*)
+      complex(c_double_complex), target :: ipiv(..)
       integer(c_int) :: zgeqr2
-      zgeqr2 = rocsolver_zgeqr2_raw(handle, m, n, c_loc(A(1)), lda, c_loc(ipiv(1)))
+      zgeqr2 = rocsolver_zgeqr2_raw(handle, m, n, c_loc(A), lda, c_loc(ipiv))
     end function rocsolver_zgeqr2_native
 
     function rocsolver_zgeqr2_typed(handle, m, n, A, lda, ipiv) result(zgeqr2)
@@ -52780,11 +52779,11 @@ contains
       type(c_ptr), value :: handle
       integer(c_long), value :: m
       integer(c_long), value :: n
-      real(c_float), target :: A(*)
+      real(c_float), target :: A(..)
       integer(c_long), value :: lda
-      real(c_float), target :: ipiv(*)
+      real(c_float), target :: ipiv(..)
       integer(c_int) :: sgeqr2_64
-      sgeqr2_64 = rocsolver_sgeqr2_64_raw(handle, m, n, c_loc(A(1)), lda, c_loc(ipiv(1)))
+      sgeqr2_64 = rocsolver_sgeqr2_64_raw(handle, m, n, c_loc(A), lda, c_loc(ipiv))
     end function rocsolver_sgeqr2_64_native
 
     function rocsolver_sgeqr2_64_typed(handle, m, n, A, lda, ipiv) result(sgeqr2_64)
@@ -52807,11 +52806,11 @@ contains
       type(c_ptr), value :: handle
       integer(c_long), value :: m
       integer(c_long), value :: n
-      real(c_double), target :: A(*)
+      real(c_double), target :: A(..)
       integer(c_long), value :: lda
-      real(c_double), target :: ipiv(*)
+      real(c_double), target :: ipiv(..)
       integer(c_int) :: dgeqr2_64
-      dgeqr2_64 = rocsolver_dgeqr2_64_raw(handle, m, n, c_loc(A(1)), lda, c_loc(ipiv(1)))
+      dgeqr2_64 = rocsolver_dgeqr2_64_raw(handle, m, n, c_loc(A), lda, c_loc(ipiv))
     end function rocsolver_dgeqr2_64_native
 
     function rocsolver_dgeqr2_64_typed(handle, m, n, A, lda, ipiv) result(dgeqr2_64)
@@ -52834,11 +52833,11 @@ contains
       type(c_ptr), value :: handle
       integer(c_long), value :: m
       integer(c_long), value :: n
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: A(..)
       integer(c_long), value :: lda
-      complex(c_float_complex), target :: ipiv(*)
+      complex(c_float_complex), target :: ipiv(..)
       integer(c_int) :: cgeqr2_64
-      cgeqr2_64 = rocsolver_cgeqr2_64_raw(handle, m, n, c_loc(A(1)), lda, c_loc(ipiv(1)))
+      cgeqr2_64 = rocsolver_cgeqr2_64_raw(handle, m, n, c_loc(A), lda, c_loc(ipiv))
     end function rocsolver_cgeqr2_64_native
 
     function rocsolver_cgeqr2_64_typed(handle, m, n, A, lda, ipiv) result(cgeqr2_64)
@@ -52861,11 +52860,11 @@ contains
       type(c_ptr), value :: handle
       integer(c_long), value :: m
       integer(c_long), value :: n
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: A(..)
       integer(c_long), value :: lda
-      complex(c_double_complex), target :: ipiv(*)
+      complex(c_double_complex), target :: ipiv(..)
       integer(c_int) :: zgeqr2_64
-      zgeqr2_64 = rocsolver_zgeqr2_64_raw(handle, m, n, c_loc(A(1)), lda, c_loc(ipiv(1)))
+      zgeqr2_64 = rocsolver_zgeqr2_64_raw(handle, m, n, c_loc(A), lda, c_loc(ipiv))
     end function rocsolver_zgeqr2_64_native
 
     function rocsolver_zgeqr2_64_typed(handle, m, n, A, lda, ipiv) result(zgeqr2_64)
@@ -52891,11 +52890,11 @@ contains
       integer(c_int), value :: n
       type(c_ptr), value :: A
       integer(c_int), value :: lda
-      real(c_float), target :: ipiv(*)
+      real(c_float), target :: ipiv(..)
       integer(c_long), value :: strideP
       integer(c_int), value :: batch_count
       integer(c_int) :: sgeqr2_batched
-      sgeqr2_batched = rocsolver_sgeqr2_batched_raw(handle, m, n, A, lda, c_loc(ipiv(1)), strideP, &
+      sgeqr2_batched = rocsolver_sgeqr2_batched_raw(handle, m, n, A, lda, c_loc(ipiv), strideP, &
         batch_count)
     end function rocsolver_sgeqr2_batched_native
 
@@ -52926,11 +52925,11 @@ contains
       integer(c_int), value :: n
       type(c_ptr), value :: A
       integer(c_int), value :: lda
-      real(c_double), target :: ipiv(*)
+      real(c_double), target :: ipiv(..)
       integer(c_long), value :: strideP
       integer(c_int), value :: batch_count
       integer(c_int) :: dgeqr2_batched
-      dgeqr2_batched = rocsolver_dgeqr2_batched_raw(handle, m, n, A, lda, c_loc(ipiv(1)), strideP, &
+      dgeqr2_batched = rocsolver_dgeqr2_batched_raw(handle, m, n, A, lda, c_loc(ipiv), strideP, &
         batch_count)
     end function rocsolver_dgeqr2_batched_native
 
@@ -52961,11 +52960,11 @@ contains
       integer(c_int), value :: n
       type(c_ptr), value :: A
       integer(c_int), value :: lda
-      complex(c_float_complex), target :: ipiv(*)
+      complex(c_float_complex), target :: ipiv(..)
       integer(c_long), value :: strideP
       integer(c_int), value :: batch_count
       integer(c_int) :: cgeqr2_batched
-      cgeqr2_batched = rocsolver_cgeqr2_batched_raw(handle, m, n, A, lda, c_loc(ipiv(1)), strideP, &
+      cgeqr2_batched = rocsolver_cgeqr2_batched_raw(handle, m, n, A, lda, c_loc(ipiv), strideP, &
         batch_count)
     end function rocsolver_cgeqr2_batched_native
 
@@ -52996,11 +52995,11 @@ contains
       integer(c_int), value :: n
       type(c_ptr), value :: A
       integer(c_int), value :: lda
-      complex(c_double_complex), target :: ipiv(*)
+      complex(c_double_complex), target :: ipiv(..)
       integer(c_long), value :: strideP
       integer(c_int), value :: batch_count
       integer(c_int) :: zgeqr2_batched
-      zgeqr2_batched = rocsolver_zgeqr2_batched_raw(handle, m, n, A, lda, c_loc(ipiv(1)), strideP, &
+      zgeqr2_batched = rocsolver_zgeqr2_batched_raw(handle, m, n, A, lda, c_loc(ipiv), strideP, &
         batch_count)
     end function rocsolver_zgeqr2_batched_native
 
@@ -53031,11 +53030,11 @@ contains
       integer(c_long), value :: n
       type(c_ptr), value :: A
       integer(c_long), value :: lda
-      real(c_float), target :: ipiv(*)
+      real(c_float), target :: ipiv(..)
       integer(c_long), value :: strideP
       integer(c_long), value :: batch_count
       integer(c_int) :: sgeqr2_batched_64
-      sgeqr2_batched_64 = rocsolver_sgeqr2_batched_64_raw(handle, m, n, A, lda, c_loc(ipiv(1)), &
+      sgeqr2_batched_64 = rocsolver_sgeqr2_batched_64_raw(handle, m, n, A, lda, c_loc(ipiv), &
         strideP, batch_count)
     end function rocsolver_sgeqr2_batched_64_native
 
@@ -53066,11 +53065,11 @@ contains
       integer(c_long), value :: n
       type(c_ptr), value :: A
       integer(c_long), value :: lda
-      real(c_double), target :: ipiv(*)
+      real(c_double), target :: ipiv(..)
       integer(c_long), value :: strideP
       integer(c_long), value :: batch_count
       integer(c_int) :: dgeqr2_batched_64
-      dgeqr2_batched_64 = rocsolver_dgeqr2_batched_64_raw(handle, m, n, A, lda, c_loc(ipiv(1)), &
+      dgeqr2_batched_64 = rocsolver_dgeqr2_batched_64_raw(handle, m, n, A, lda, c_loc(ipiv), &
         strideP, batch_count)
     end function rocsolver_dgeqr2_batched_64_native
 
@@ -53101,11 +53100,11 @@ contains
       integer(c_long), value :: n
       type(c_ptr), value :: A
       integer(c_long), value :: lda
-      complex(c_float_complex), target :: ipiv(*)
+      complex(c_float_complex), target :: ipiv(..)
       integer(c_long), value :: strideP
       integer(c_long), value :: batch_count
       integer(c_int) :: cgeqr2_batched_64
-      cgeqr2_batched_64 = rocsolver_cgeqr2_batched_64_raw(handle, m, n, A, lda, c_loc(ipiv(1)), &
+      cgeqr2_batched_64 = rocsolver_cgeqr2_batched_64_raw(handle, m, n, A, lda, c_loc(ipiv), &
         strideP, batch_count)
     end function rocsolver_cgeqr2_batched_64_native
 
@@ -53136,11 +53135,11 @@ contains
       integer(c_long), value :: n
       type(c_ptr), value :: A
       integer(c_long), value :: lda
-      complex(c_double_complex), target :: ipiv(*)
+      complex(c_double_complex), target :: ipiv(..)
       integer(c_long), value :: strideP
       integer(c_long), value :: batch_count
       integer(c_int) :: zgeqr2_batched_64
-      zgeqr2_batched_64 = rocsolver_zgeqr2_batched_64_raw(handle, m, n, A, lda, c_loc(ipiv(1)), &
+      zgeqr2_batched_64 = rocsolver_zgeqr2_batched_64_raw(handle, m, n, A, lda, c_loc(ipiv), &
         strideP, batch_count)
     end function rocsolver_zgeqr2_batched_64_native
 
@@ -53169,15 +53168,15 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: m
       integer(c_int), value :: n
-      real(c_float), target :: A(*)
+      real(c_float), target :: A(..)
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
-      real(c_float), target :: ipiv(*)
+      real(c_float), target :: ipiv(..)
       integer(c_long), value :: strideP
       integer(c_int), value :: batch_count
       integer(c_int) :: sgeqr2_strided_batched
-      sgeqr2_strided_batched = rocsolver_sgeqr2_strided_batched_raw(handle, m, n, c_loc(A(1)), &
-        lda, strideA, c_loc(ipiv(1)), strideP, batch_count)
+      sgeqr2_strided_batched = rocsolver_sgeqr2_strided_batched_raw(handle, m, n, c_loc(A), lda, &
+        strideA, c_loc(ipiv), strideP, batch_count)
     end function rocsolver_sgeqr2_strided_batched_native
 
     function rocsolver_sgeqr2_strided_batched_typed(handle, m, n, A, lda, strideA, ipiv, strideP, &
@@ -53206,15 +53205,15 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: m
       integer(c_int), value :: n
-      real(c_double), target :: A(*)
+      real(c_double), target :: A(..)
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
-      real(c_double), target :: ipiv(*)
+      real(c_double), target :: ipiv(..)
       integer(c_long), value :: strideP
       integer(c_int), value :: batch_count
       integer(c_int) :: dgeqr2_strided_batched
-      dgeqr2_strided_batched = rocsolver_dgeqr2_strided_batched_raw(handle, m, n, c_loc(A(1)), &
-        lda, strideA, c_loc(ipiv(1)), strideP, batch_count)
+      dgeqr2_strided_batched = rocsolver_dgeqr2_strided_batched_raw(handle, m, n, c_loc(A), lda, &
+        strideA, c_loc(ipiv), strideP, batch_count)
     end function rocsolver_dgeqr2_strided_batched_native
 
     function rocsolver_dgeqr2_strided_batched_typed(handle, m, n, A, lda, strideA, ipiv, strideP, &
@@ -53243,15 +53242,15 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: m
       integer(c_int), value :: n
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: A(..)
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
-      complex(c_float_complex), target :: ipiv(*)
+      complex(c_float_complex), target :: ipiv(..)
       integer(c_long), value :: strideP
       integer(c_int), value :: batch_count
       integer(c_int) :: cgeqr2_strided_batched
-      cgeqr2_strided_batched = rocsolver_cgeqr2_strided_batched_raw(handle, m, n, c_loc(A(1)), &
-        lda, strideA, c_loc(ipiv(1)), strideP, batch_count)
+      cgeqr2_strided_batched = rocsolver_cgeqr2_strided_batched_raw(handle, m, n, c_loc(A), lda, &
+        strideA, c_loc(ipiv), strideP, batch_count)
     end function rocsolver_cgeqr2_strided_batched_native
 
     function rocsolver_cgeqr2_strided_batched_typed(handle, m, n, A, lda, strideA, ipiv, strideP, &
@@ -53280,15 +53279,15 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: m
       integer(c_int), value :: n
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: A(..)
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
-      complex(c_double_complex), target :: ipiv(*)
+      complex(c_double_complex), target :: ipiv(..)
       integer(c_long), value :: strideP
       integer(c_int), value :: batch_count
       integer(c_int) :: zgeqr2_strided_batched
-      zgeqr2_strided_batched = rocsolver_zgeqr2_strided_batched_raw(handle, m, n, c_loc(A(1)), &
-        lda, strideA, c_loc(ipiv(1)), strideP, batch_count)
+      zgeqr2_strided_batched = rocsolver_zgeqr2_strided_batched_raw(handle, m, n, c_loc(A), lda, &
+        strideA, c_loc(ipiv), strideP, batch_count)
     end function rocsolver_zgeqr2_strided_batched_native
 
     function rocsolver_zgeqr2_strided_batched_typed(handle, m, n, A, lda, strideA, ipiv, strideP, &
@@ -53317,15 +53316,15 @@ contains
       type(c_ptr), value :: handle
       integer(c_long), value :: m
       integer(c_long), value :: n
-      real(c_float), target :: A(*)
+      real(c_float), target :: A(..)
       integer(c_long), value :: lda
       integer(c_long), value :: strideA
-      real(c_float), target :: ipiv(*)
+      real(c_float), target :: ipiv(..)
       integer(c_long), value :: strideP
       integer(c_long), value :: batch_count
       integer(c_int) :: sgeqr2_strided_batched_64
-      sgeqr2_strided_batched_64 = rocsolver_sgeqr2_strided_batched_64_raw(handle, m, n, c_loc(A( &
-        1)), lda, strideA, c_loc(ipiv(1)), strideP, batch_count)
+      sgeqr2_strided_batched_64 = rocsolver_sgeqr2_strided_batched_64_raw(handle, m, n, c_loc(A), &
+        lda, strideA, c_loc(ipiv), strideP, batch_count)
     end function rocsolver_sgeqr2_strided_batched_64_native
 
     function rocsolver_sgeqr2_strided_batched_64_typed(handle, m, n, A, lda, strideA, ipiv, &
@@ -53354,15 +53353,15 @@ contains
       type(c_ptr), value :: handle
       integer(c_long), value :: m
       integer(c_long), value :: n
-      real(c_double), target :: A(*)
+      real(c_double), target :: A(..)
       integer(c_long), value :: lda
       integer(c_long), value :: strideA
-      real(c_double), target :: ipiv(*)
+      real(c_double), target :: ipiv(..)
       integer(c_long), value :: strideP
       integer(c_long), value :: batch_count
       integer(c_int) :: dgeqr2_strided_batched_64
-      dgeqr2_strided_batched_64 = rocsolver_dgeqr2_strided_batched_64_raw(handle, m, n, c_loc(A( &
-        1)), lda, strideA, c_loc(ipiv(1)), strideP, batch_count)
+      dgeqr2_strided_batched_64 = rocsolver_dgeqr2_strided_batched_64_raw(handle, m, n, c_loc(A), &
+        lda, strideA, c_loc(ipiv), strideP, batch_count)
     end function rocsolver_dgeqr2_strided_batched_64_native
 
     function rocsolver_dgeqr2_strided_batched_64_typed(handle, m, n, A, lda, strideA, ipiv, &
@@ -53391,15 +53390,15 @@ contains
       type(c_ptr), value :: handle
       integer(c_long), value :: m
       integer(c_long), value :: n
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: A(..)
       integer(c_long), value :: lda
       integer(c_long), value :: strideA
-      complex(c_float_complex), target :: ipiv(*)
+      complex(c_float_complex), target :: ipiv(..)
       integer(c_long), value :: strideP
       integer(c_long), value :: batch_count
       integer(c_int) :: cgeqr2_strided_batched_64
-      cgeqr2_strided_batched_64 = rocsolver_cgeqr2_strided_batched_64_raw(handle, m, n, c_loc(A( &
-        1)), lda, strideA, c_loc(ipiv(1)), strideP, batch_count)
+      cgeqr2_strided_batched_64 = rocsolver_cgeqr2_strided_batched_64_raw(handle, m, n, c_loc(A), &
+        lda, strideA, c_loc(ipiv), strideP, batch_count)
     end function rocsolver_cgeqr2_strided_batched_64_native
 
     function rocsolver_cgeqr2_strided_batched_64_typed(handle, m, n, A, lda, strideA, ipiv, &
@@ -53428,15 +53427,15 @@ contains
       type(c_ptr), value :: handle
       integer(c_long), value :: m
       integer(c_long), value :: n
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: A(..)
       integer(c_long), value :: lda
       integer(c_long), value :: strideA
-      complex(c_double_complex), target :: ipiv(*)
+      complex(c_double_complex), target :: ipiv(..)
       integer(c_long), value :: strideP
       integer(c_long), value :: batch_count
       integer(c_int) :: zgeqr2_strided_batched_64
-      zgeqr2_strided_batched_64 = rocsolver_zgeqr2_strided_batched_64_raw(handle, m, n, c_loc(A( &
-        1)), lda, strideA, c_loc(ipiv(1)), strideP, batch_count)
+      zgeqr2_strided_batched_64 = rocsolver_zgeqr2_strided_batched_64_raw(handle, m, n, c_loc(A), &
+        lda, strideA, c_loc(ipiv), strideP, batch_count)
     end function rocsolver_zgeqr2_strided_batched_64_native
 
     function rocsolver_zgeqr2_strided_batched_64_typed(handle, m, n, A, lda, strideA, ipiv, &
@@ -53464,11 +53463,11 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: m
       integer(c_int), value :: n
-      real(c_float), target :: A(*)
+      real(c_float), target :: A(..)
       integer(c_int), value :: lda
-      real(c_float), target :: ipiv(*)
+      real(c_float), target :: ipiv(..)
       integer(c_int) :: sgerq2
-      sgerq2 = rocsolver_sgerq2_raw(handle, m, n, c_loc(A(1)), lda, c_loc(ipiv(1)))
+      sgerq2 = rocsolver_sgerq2_raw(handle, m, n, c_loc(A), lda, c_loc(ipiv))
     end function rocsolver_sgerq2_native
 
     function rocsolver_sgerq2_typed(handle, m, n, A, lda, ipiv) result(sgerq2)
@@ -53491,11 +53490,11 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: m
       integer(c_int), value :: n
-      real(c_double), target :: A(*)
+      real(c_double), target :: A(..)
       integer(c_int), value :: lda
-      real(c_double), target :: ipiv(*)
+      real(c_double), target :: ipiv(..)
       integer(c_int) :: dgerq2
-      dgerq2 = rocsolver_dgerq2_raw(handle, m, n, c_loc(A(1)), lda, c_loc(ipiv(1)))
+      dgerq2 = rocsolver_dgerq2_raw(handle, m, n, c_loc(A), lda, c_loc(ipiv))
     end function rocsolver_dgerq2_native
 
     function rocsolver_dgerq2_typed(handle, m, n, A, lda, ipiv) result(dgerq2)
@@ -53518,11 +53517,11 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: m
       integer(c_int), value :: n
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: A(..)
       integer(c_int), value :: lda
-      complex(c_float_complex), target :: ipiv(*)
+      complex(c_float_complex), target :: ipiv(..)
       integer(c_int) :: cgerq2
-      cgerq2 = rocsolver_cgerq2_raw(handle, m, n, c_loc(A(1)), lda, c_loc(ipiv(1)))
+      cgerq2 = rocsolver_cgerq2_raw(handle, m, n, c_loc(A), lda, c_loc(ipiv))
     end function rocsolver_cgerq2_native
 
     function rocsolver_cgerq2_typed(handle, m, n, A, lda, ipiv) result(cgerq2)
@@ -53545,11 +53544,11 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: m
       integer(c_int), value :: n
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: A(..)
       integer(c_int), value :: lda
-      complex(c_double_complex), target :: ipiv(*)
+      complex(c_double_complex), target :: ipiv(..)
       integer(c_int) :: zgerq2
-      zgerq2 = rocsolver_zgerq2_raw(handle, m, n, c_loc(A(1)), lda, c_loc(ipiv(1)))
+      zgerq2 = rocsolver_zgerq2_raw(handle, m, n, c_loc(A), lda, c_loc(ipiv))
     end function rocsolver_zgerq2_native
 
     function rocsolver_zgerq2_typed(handle, m, n, A, lda, ipiv) result(zgerq2)
@@ -53575,11 +53574,11 @@ contains
       integer(c_int), value :: n
       type(c_ptr), value :: A
       integer(c_int), value :: lda
-      real(c_float), target :: ipiv(*)
+      real(c_float), target :: ipiv(..)
       integer(c_long), value :: strideP
       integer(c_int), value :: batch_count
       integer(c_int) :: sgerq2_batched
-      sgerq2_batched = rocsolver_sgerq2_batched_raw(handle, m, n, A, lda, c_loc(ipiv(1)), strideP, &
+      sgerq2_batched = rocsolver_sgerq2_batched_raw(handle, m, n, A, lda, c_loc(ipiv), strideP, &
         batch_count)
     end function rocsolver_sgerq2_batched_native
 
@@ -53610,11 +53609,11 @@ contains
       integer(c_int), value :: n
       type(c_ptr), value :: A
       integer(c_int), value :: lda
-      real(c_double), target :: ipiv(*)
+      real(c_double), target :: ipiv(..)
       integer(c_long), value :: strideP
       integer(c_int), value :: batch_count
       integer(c_int) :: dgerq2_batched
-      dgerq2_batched = rocsolver_dgerq2_batched_raw(handle, m, n, A, lda, c_loc(ipiv(1)), strideP, &
+      dgerq2_batched = rocsolver_dgerq2_batched_raw(handle, m, n, A, lda, c_loc(ipiv), strideP, &
         batch_count)
     end function rocsolver_dgerq2_batched_native
 
@@ -53645,11 +53644,11 @@ contains
       integer(c_int), value :: n
       type(c_ptr), value :: A
       integer(c_int), value :: lda
-      complex(c_float_complex), target :: ipiv(*)
+      complex(c_float_complex), target :: ipiv(..)
       integer(c_long), value :: strideP
       integer(c_int), value :: batch_count
       integer(c_int) :: cgerq2_batched
-      cgerq2_batched = rocsolver_cgerq2_batched_raw(handle, m, n, A, lda, c_loc(ipiv(1)), strideP, &
+      cgerq2_batched = rocsolver_cgerq2_batched_raw(handle, m, n, A, lda, c_loc(ipiv), strideP, &
         batch_count)
     end function rocsolver_cgerq2_batched_native
 
@@ -53680,11 +53679,11 @@ contains
       integer(c_int), value :: n
       type(c_ptr), value :: A
       integer(c_int), value :: lda
-      complex(c_double_complex), target :: ipiv(*)
+      complex(c_double_complex), target :: ipiv(..)
       integer(c_long), value :: strideP
       integer(c_int), value :: batch_count
       integer(c_int) :: zgerq2_batched
-      zgerq2_batched = rocsolver_zgerq2_batched_raw(handle, m, n, A, lda, c_loc(ipiv(1)), strideP, &
+      zgerq2_batched = rocsolver_zgerq2_batched_raw(handle, m, n, A, lda, c_loc(ipiv), strideP, &
         batch_count)
     end function rocsolver_zgerq2_batched_native
 
@@ -53713,15 +53712,15 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: m
       integer(c_int), value :: n
-      real(c_float), target :: A(*)
+      real(c_float), target :: A(..)
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
-      real(c_float), target :: ipiv(*)
+      real(c_float), target :: ipiv(..)
       integer(c_long), value :: strideP
       integer(c_int), value :: batch_count
       integer(c_int) :: sgerq2_strided_batched
-      sgerq2_strided_batched = rocsolver_sgerq2_strided_batched_raw(handle, m, n, c_loc(A(1)), &
-        lda, strideA, c_loc(ipiv(1)), strideP, batch_count)
+      sgerq2_strided_batched = rocsolver_sgerq2_strided_batched_raw(handle, m, n, c_loc(A), lda, &
+        strideA, c_loc(ipiv), strideP, batch_count)
     end function rocsolver_sgerq2_strided_batched_native
 
     function rocsolver_sgerq2_strided_batched_typed(handle, m, n, A, lda, strideA, ipiv, strideP, &
@@ -53750,15 +53749,15 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: m
       integer(c_int), value :: n
-      real(c_double), target :: A(*)
+      real(c_double), target :: A(..)
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
-      real(c_double), target :: ipiv(*)
+      real(c_double), target :: ipiv(..)
       integer(c_long), value :: strideP
       integer(c_int), value :: batch_count
       integer(c_int) :: dgerq2_strided_batched
-      dgerq2_strided_batched = rocsolver_dgerq2_strided_batched_raw(handle, m, n, c_loc(A(1)), &
-        lda, strideA, c_loc(ipiv(1)), strideP, batch_count)
+      dgerq2_strided_batched = rocsolver_dgerq2_strided_batched_raw(handle, m, n, c_loc(A), lda, &
+        strideA, c_loc(ipiv), strideP, batch_count)
     end function rocsolver_dgerq2_strided_batched_native
 
     function rocsolver_dgerq2_strided_batched_typed(handle, m, n, A, lda, strideA, ipiv, strideP, &
@@ -53787,15 +53786,15 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: m
       integer(c_int), value :: n
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: A(..)
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
-      complex(c_float_complex), target :: ipiv(*)
+      complex(c_float_complex), target :: ipiv(..)
       integer(c_long), value :: strideP
       integer(c_int), value :: batch_count
       integer(c_int) :: cgerq2_strided_batched
-      cgerq2_strided_batched = rocsolver_cgerq2_strided_batched_raw(handle, m, n, c_loc(A(1)), &
-        lda, strideA, c_loc(ipiv(1)), strideP, batch_count)
+      cgerq2_strided_batched = rocsolver_cgerq2_strided_batched_raw(handle, m, n, c_loc(A), lda, &
+        strideA, c_loc(ipiv), strideP, batch_count)
     end function rocsolver_cgerq2_strided_batched_native
 
     function rocsolver_cgerq2_strided_batched_typed(handle, m, n, A, lda, strideA, ipiv, strideP, &
@@ -53824,15 +53823,15 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: m
       integer(c_int), value :: n
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: A(..)
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
-      complex(c_double_complex), target :: ipiv(*)
+      complex(c_double_complex), target :: ipiv(..)
       integer(c_long), value :: strideP
       integer(c_int), value :: batch_count
       integer(c_int) :: zgerq2_strided_batched
-      zgerq2_strided_batched = rocsolver_zgerq2_strided_batched_raw(handle, m, n, c_loc(A(1)), &
-        lda, strideA, c_loc(ipiv(1)), strideP, batch_count)
+      zgerq2_strided_batched = rocsolver_zgerq2_strided_batched_raw(handle, m, n, c_loc(A), lda, &
+        strideA, c_loc(ipiv), strideP, batch_count)
     end function rocsolver_zgerq2_strided_batched_native
 
     function rocsolver_zgerq2_strided_batched_typed(handle, m, n, A, lda, strideA, ipiv, strideP, &
@@ -53860,11 +53859,11 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: m
       integer(c_int), value :: n
-      real(c_float), target :: A(*)
+      real(c_float), target :: A(..)
       integer(c_int), value :: lda
-      real(c_float), target :: ipiv(*)
+      real(c_float), target :: ipiv(..)
       integer(c_int) :: sgeql2
-      sgeql2 = rocsolver_sgeql2_raw(handle, m, n, c_loc(A(1)), lda, c_loc(ipiv(1)))
+      sgeql2 = rocsolver_sgeql2_raw(handle, m, n, c_loc(A), lda, c_loc(ipiv))
     end function rocsolver_sgeql2_native
 
     function rocsolver_sgeql2_typed(handle, m, n, A, lda, ipiv) result(sgeql2)
@@ -53887,11 +53886,11 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: m
       integer(c_int), value :: n
-      real(c_double), target :: A(*)
+      real(c_double), target :: A(..)
       integer(c_int), value :: lda
-      real(c_double), target :: ipiv(*)
+      real(c_double), target :: ipiv(..)
       integer(c_int) :: dgeql2
-      dgeql2 = rocsolver_dgeql2_raw(handle, m, n, c_loc(A(1)), lda, c_loc(ipiv(1)))
+      dgeql2 = rocsolver_dgeql2_raw(handle, m, n, c_loc(A), lda, c_loc(ipiv))
     end function rocsolver_dgeql2_native
 
     function rocsolver_dgeql2_typed(handle, m, n, A, lda, ipiv) result(dgeql2)
@@ -53914,11 +53913,11 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: m
       integer(c_int), value :: n
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: A(..)
       integer(c_int), value :: lda
-      complex(c_float_complex), target :: ipiv(*)
+      complex(c_float_complex), target :: ipiv(..)
       integer(c_int) :: cgeql2
-      cgeql2 = rocsolver_cgeql2_raw(handle, m, n, c_loc(A(1)), lda, c_loc(ipiv(1)))
+      cgeql2 = rocsolver_cgeql2_raw(handle, m, n, c_loc(A), lda, c_loc(ipiv))
     end function rocsolver_cgeql2_native
 
     function rocsolver_cgeql2_typed(handle, m, n, A, lda, ipiv) result(cgeql2)
@@ -53941,11 +53940,11 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: m
       integer(c_int), value :: n
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: A(..)
       integer(c_int), value :: lda
-      complex(c_double_complex), target :: ipiv(*)
+      complex(c_double_complex), target :: ipiv(..)
       integer(c_int) :: zgeql2
-      zgeql2 = rocsolver_zgeql2_raw(handle, m, n, c_loc(A(1)), lda, c_loc(ipiv(1)))
+      zgeql2 = rocsolver_zgeql2_raw(handle, m, n, c_loc(A), lda, c_loc(ipiv))
     end function rocsolver_zgeql2_native
 
     function rocsolver_zgeql2_typed(handle, m, n, A, lda, ipiv) result(zgeql2)
@@ -53971,11 +53970,11 @@ contains
       integer(c_int), value :: n
       type(c_ptr), value :: A
       integer(c_int), value :: lda
-      real(c_float), target :: ipiv(*)
+      real(c_float), target :: ipiv(..)
       integer(c_long), value :: strideP
       integer(c_int), value :: batch_count
       integer(c_int) :: sgeql2_batched
-      sgeql2_batched = rocsolver_sgeql2_batched_raw(handle, m, n, A, lda, c_loc(ipiv(1)), strideP, &
+      sgeql2_batched = rocsolver_sgeql2_batched_raw(handle, m, n, A, lda, c_loc(ipiv), strideP, &
         batch_count)
     end function rocsolver_sgeql2_batched_native
 
@@ -54006,11 +54005,11 @@ contains
       integer(c_int), value :: n
       type(c_ptr), value :: A
       integer(c_int), value :: lda
-      real(c_double), target :: ipiv(*)
+      real(c_double), target :: ipiv(..)
       integer(c_long), value :: strideP
       integer(c_int), value :: batch_count
       integer(c_int) :: dgeql2_batched
-      dgeql2_batched = rocsolver_dgeql2_batched_raw(handle, m, n, A, lda, c_loc(ipiv(1)), strideP, &
+      dgeql2_batched = rocsolver_dgeql2_batched_raw(handle, m, n, A, lda, c_loc(ipiv), strideP, &
         batch_count)
     end function rocsolver_dgeql2_batched_native
 
@@ -54041,11 +54040,11 @@ contains
       integer(c_int), value :: n
       type(c_ptr), value :: A
       integer(c_int), value :: lda
-      complex(c_float_complex), target :: ipiv(*)
+      complex(c_float_complex), target :: ipiv(..)
       integer(c_long), value :: strideP
       integer(c_int), value :: batch_count
       integer(c_int) :: cgeql2_batched
-      cgeql2_batched = rocsolver_cgeql2_batched_raw(handle, m, n, A, lda, c_loc(ipiv(1)), strideP, &
+      cgeql2_batched = rocsolver_cgeql2_batched_raw(handle, m, n, A, lda, c_loc(ipiv), strideP, &
         batch_count)
     end function rocsolver_cgeql2_batched_native
 
@@ -54076,11 +54075,11 @@ contains
       integer(c_int), value :: n
       type(c_ptr), value :: A
       integer(c_int), value :: lda
-      complex(c_double_complex), target :: ipiv(*)
+      complex(c_double_complex), target :: ipiv(..)
       integer(c_long), value :: strideP
       integer(c_int), value :: batch_count
       integer(c_int) :: zgeql2_batched
-      zgeql2_batched = rocsolver_zgeql2_batched_raw(handle, m, n, A, lda, c_loc(ipiv(1)), strideP, &
+      zgeql2_batched = rocsolver_zgeql2_batched_raw(handle, m, n, A, lda, c_loc(ipiv), strideP, &
         batch_count)
     end function rocsolver_zgeql2_batched_native
 
@@ -54109,15 +54108,15 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: m
       integer(c_int), value :: n
-      real(c_float), target :: A(*)
+      real(c_float), target :: A(..)
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
-      real(c_float), target :: ipiv(*)
+      real(c_float), target :: ipiv(..)
       integer(c_long), value :: strideP
       integer(c_int), value :: batch_count
       integer(c_int) :: sgeql2_strided_batched
-      sgeql2_strided_batched = rocsolver_sgeql2_strided_batched_raw(handle, m, n, c_loc(A(1)), &
-        lda, strideA, c_loc(ipiv(1)), strideP, batch_count)
+      sgeql2_strided_batched = rocsolver_sgeql2_strided_batched_raw(handle, m, n, c_loc(A), lda, &
+        strideA, c_loc(ipiv), strideP, batch_count)
     end function rocsolver_sgeql2_strided_batched_native
 
     function rocsolver_sgeql2_strided_batched_typed(handle, m, n, A, lda, strideA, ipiv, strideP, &
@@ -54146,15 +54145,15 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: m
       integer(c_int), value :: n
-      real(c_double), target :: A(*)
+      real(c_double), target :: A(..)
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
-      real(c_double), target :: ipiv(*)
+      real(c_double), target :: ipiv(..)
       integer(c_long), value :: strideP
       integer(c_int), value :: batch_count
       integer(c_int) :: dgeql2_strided_batched
-      dgeql2_strided_batched = rocsolver_dgeql2_strided_batched_raw(handle, m, n, c_loc(A(1)), &
-        lda, strideA, c_loc(ipiv(1)), strideP, batch_count)
+      dgeql2_strided_batched = rocsolver_dgeql2_strided_batched_raw(handle, m, n, c_loc(A), lda, &
+        strideA, c_loc(ipiv), strideP, batch_count)
     end function rocsolver_dgeql2_strided_batched_native
 
     function rocsolver_dgeql2_strided_batched_typed(handle, m, n, A, lda, strideA, ipiv, strideP, &
@@ -54183,15 +54182,15 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: m
       integer(c_int), value :: n
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: A(..)
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
-      complex(c_float_complex), target :: ipiv(*)
+      complex(c_float_complex), target :: ipiv(..)
       integer(c_long), value :: strideP
       integer(c_int), value :: batch_count
       integer(c_int) :: cgeql2_strided_batched
-      cgeql2_strided_batched = rocsolver_cgeql2_strided_batched_raw(handle, m, n, c_loc(A(1)), &
-        lda, strideA, c_loc(ipiv(1)), strideP, batch_count)
+      cgeql2_strided_batched = rocsolver_cgeql2_strided_batched_raw(handle, m, n, c_loc(A), lda, &
+        strideA, c_loc(ipiv), strideP, batch_count)
     end function rocsolver_cgeql2_strided_batched_native
 
     function rocsolver_cgeql2_strided_batched_typed(handle, m, n, A, lda, strideA, ipiv, strideP, &
@@ -54220,15 +54219,15 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: m
       integer(c_int), value :: n
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: A(..)
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
-      complex(c_double_complex), target :: ipiv(*)
+      complex(c_double_complex), target :: ipiv(..)
       integer(c_long), value :: strideP
       integer(c_int), value :: batch_count
       integer(c_int) :: zgeql2_strided_batched
-      zgeql2_strided_batched = rocsolver_zgeql2_strided_batched_raw(handle, m, n, c_loc(A(1)), &
-        lda, strideA, c_loc(ipiv(1)), strideP, batch_count)
+      zgeql2_strided_batched = rocsolver_zgeql2_strided_batched_raw(handle, m, n, c_loc(A), lda, &
+        strideA, c_loc(ipiv), strideP, batch_count)
     end function rocsolver_zgeql2_strided_batched_native
 
     function rocsolver_zgeql2_strided_batched_typed(handle, m, n, A, lda, strideA, ipiv, strideP, &
@@ -54256,11 +54255,11 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: m
       integer(c_int), value :: n
-      real(c_float), target :: A(*)
+      real(c_float), target :: A(..)
       integer(c_int), value :: lda
-      real(c_float), target :: ipiv(*)
+      real(c_float), target :: ipiv(..)
       integer(c_int) :: sgelq2
-      sgelq2 = rocsolver_sgelq2_raw(handle, m, n, c_loc(A(1)), lda, c_loc(ipiv(1)))
+      sgelq2 = rocsolver_sgelq2_raw(handle, m, n, c_loc(A), lda, c_loc(ipiv))
     end function rocsolver_sgelq2_native
 
     function rocsolver_sgelq2_typed(handle, m, n, A, lda, ipiv) result(sgelq2)
@@ -54283,11 +54282,11 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: m
       integer(c_int), value :: n
-      real(c_double), target :: A(*)
+      real(c_double), target :: A(..)
       integer(c_int), value :: lda
-      real(c_double), target :: ipiv(*)
+      real(c_double), target :: ipiv(..)
       integer(c_int) :: dgelq2
-      dgelq2 = rocsolver_dgelq2_raw(handle, m, n, c_loc(A(1)), lda, c_loc(ipiv(1)))
+      dgelq2 = rocsolver_dgelq2_raw(handle, m, n, c_loc(A), lda, c_loc(ipiv))
     end function rocsolver_dgelq2_native
 
     function rocsolver_dgelq2_typed(handle, m, n, A, lda, ipiv) result(dgelq2)
@@ -54310,11 +54309,11 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: m
       integer(c_int), value :: n
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: A(..)
       integer(c_int), value :: lda
-      complex(c_float_complex), target :: ipiv(*)
+      complex(c_float_complex), target :: ipiv(..)
       integer(c_int) :: cgelq2
-      cgelq2 = rocsolver_cgelq2_raw(handle, m, n, c_loc(A(1)), lda, c_loc(ipiv(1)))
+      cgelq2 = rocsolver_cgelq2_raw(handle, m, n, c_loc(A), lda, c_loc(ipiv))
     end function rocsolver_cgelq2_native
 
     function rocsolver_cgelq2_typed(handle, m, n, A, lda, ipiv) result(cgelq2)
@@ -54337,11 +54336,11 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: m
       integer(c_int), value :: n
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: A(..)
       integer(c_int), value :: lda
-      complex(c_double_complex), target :: ipiv(*)
+      complex(c_double_complex), target :: ipiv(..)
       integer(c_int) :: zgelq2
-      zgelq2 = rocsolver_zgelq2_raw(handle, m, n, c_loc(A(1)), lda, c_loc(ipiv(1)))
+      zgelq2 = rocsolver_zgelq2_raw(handle, m, n, c_loc(A), lda, c_loc(ipiv))
     end function rocsolver_zgelq2_native
 
     function rocsolver_zgelq2_typed(handle, m, n, A, lda, ipiv) result(zgelq2)
@@ -54367,11 +54366,11 @@ contains
       integer(c_int), value :: n
       type(c_ptr), value :: A
       integer(c_int), value :: lda
-      real(c_float), target :: ipiv(*)
+      real(c_float), target :: ipiv(..)
       integer(c_long), value :: strideP
       integer(c_int), value :: batch_count
       integer(c_int) :: sgelq2_batched
-      sgelq2_batched = rocsolver_sgelq2_batched_raw(handle, m, n, A, lda, c_loc(ipiv(1)), strideP, &
+      sgelq2_batched = rocsolver_sgelq2_batched_raw(handle, m, n, A, lda, c_loc(ipiv), strideP, &
         batch_count)
     end function rocsolver_sgelq2_batched_native
 
@@ -54402,11 +54401,11 @@ contains
       integer(c_int), value :: n
       type(c_ptr), value :: A
       integer(c_int), value :: lda
-      real(c_double), target :: ipiv(*)
+      real(c_double), target :: ipiv(..)
       integer(c_long), value :: strideP
       integer(c_int), value :: batch_count
       integer(c_int) :: dgelq2_batched
-      dgelq2_batched = rocsolver_dgelq2_batched_raw(handle, m, n, A, lda, c_loc(ipiv(1)), strideP, &
+      dgelq2_batched = rocsolver_dgelq2_batched_raw(handle, m, n, A, lda, c_loc(ipiv), strideP, &
         batch_count)
     end function rocsolver_dgelq2_batched_native
 
@@ -54437,11 +54436,11 @@ contains
       integer(c_int), value :: n
       type(c_ptr), value :: A
       integer(c_int), value :: lda
-      complex(c_float_complex), target :: ipiv(*)
+      complex(c_float_complex), target :: ipiv(..)
       integer(c_long), value :: strideP
       integer(c_int), value :: batch_count
       integer(c_int) :: cgelq2_batched
-      cgelq2_batched = rocsolver_cgelq2_batched_raw(handle, m, n, A, lda, c_loc(ipiv(1)), strideP, &
+      cgelq2_batched = rocsolver_cgelq2_batched_raw(handle, m, n, A, lda, c_loc(ipiv), strideP, &
         batch_count)
     end function rocsolver_cgelq2_batched_native
 
@@ -54472,11 +54471,11 @@ contains
       integer(c_int), value :: n
       type(c_ptr), value :: A
       integer(c_int), value :: lda
-      complex(c_double_complex), target :: ipiv(*)
+      complex(c_double_complex), target :: ipiv(..)
       integer(c_long), value :: strideP
       integer(c_int), value :: batch_count
       integer(c_int) :: zgelq2_batched
-      zgelq2_batched = rocsolver_zgelq2_batched_raw(handle, m, n, A, lda, c_loc(ipiv(1)), strideP, &
+      zgelq2_batched = rocsolver_zgelq2_batched_raw(handle, m, n, A, lda, c_loc(ipiv), strideP, &
         batch_count)
     end function rocsolver_zgelq2_batched_native
 
@@ -54505,15 +54504,15 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: m
       integer(c_int), value :: n
-      real(c_float), target :: A(*)
+      real(c_float), target :: A(..)
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
-      real(c_float), target :: ipiv(*)
+      real(c_float), target :: ipiv(..)
       integer(c_long), value :: strideP
       integer(c_int), value :: batch_count
       integer(c_int) :: sgelq2_strided_batched
-      sgelq2_strided_batched = rocsolver_sgelq2_strided_batched_raw(handle, m, n, c_loc(A(1)), &
-        lda, strideA, c_loc(ipiv(1)), strideP, batch_count)
+      sgelq2_strided_batched = rocsolver_sgelq2_strided_batched_raw(handle, m, n, c_loc(A), lda, &
+        strideA, c_loc(ipiv), strideP, batch_count)
     end function rocsolver_sgelq2_strided_batched_native
 
     function rocsolver_sgelq2_strided_batched_typed(handle, m, n, A, lda, strideA, ipiv, strideP, &
@@ -54542,15 +54541,15 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: m
       integer(c_int), value :: n
-      real(c_double), target :: A(*)
+      real(c_double), target :: A(..)
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
-      real(c_double), target :: ipiv(*)
+      real(c_double), target :: ipiv(..)
       integer(c_long), value :: strideP
       integer(c_int), value :: batch_count
       integer(c_int) :: dgelq2_strided_batched
-      dgelq2_strided_batched = rocsolver_dgelq2_strided_batched_raw(handle, m, n, c_loc(A(1)), &
-        lda, strideA, c_loc(ipiv(1)), strideP, batch_count)
+      dgelq2_strided_batched = rocsolver_dgelq2_strided_batched_raw(handle, m, n, c_loc(A), lda, &
+        strideA, c_loc(ipiv), strideP, batch_count)
     end function rocsolver_dgelq2_strided_batched_native
 
     function rocsolver_dgelq2_strided_batched_typed(handle, m, n, A, lda, strideA, ipiv, strideP, &
@@ -54579,15 +54578,15 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: m
       integer(c_int), value :: n
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: A(..)
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
-      complex(c_float_complex), target :: ipiv(*)
+      complex(c_float_complex), target :: ipiv(..)
       integer(c_long), value :: strideP
       integer(c_int), value :: batch_count
       integer(c_int) :: cgelq2_strided_batched
-      cgelq2_strided_batched = rocsolver_cgelq2_strided_batched_raw(handle, m, n, c_loc(A(1)), &
-        lda, strideA, c_loc(ipiv(1)), strideP, batch_count)
+      cgelq2_strided_batched = rocsolver_cgelq2_strided_batched_raw(handle, m, n, c_loc(A), lda, &
+        strideA, c_loc(ipiv), strideP, batch_count)
     end function rocsolver_cgelq2_strided_batched_native
 
     function rocsolver_cgelq2_strided_batched_typed(handle, m, n, A, lda, strideA, ipiv, strideP, &
@@ -54616,15 +54615,15 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: m
       integer(c_int), value :: n
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: A(..)
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
-      complex(c_double_complex), target :: ipiv(*)
+      complex(c_double_complex), target :: ipiv(..)
       integer(c_long), value :: strideP
       integer(c_int), value :: batch_count
       integer(c_int) :: zgelq2_strided_batched
-      zgelq2_strided_batched = rocsolver_zgelq2_strided_batched_raw(handle, m, n, c_loc(A(1)), &
-        lda, strideA, c_loc(ipiv(1)), strideP, batch_count)
+      zgelq2_strided_batched = rocsolver_zgelq2_strided_batched_raw(handle, m, n, c_loc(A), lda, &
+        strideA, c_loc(ipiv), strideP, batch_count)
     end function rocsolver_zgelq2_strided_batched_native
 
     function rocsolver_zgelq2_strided_batched_typed(handle, m, n, A, lda, strideA, ipiv, strideP, &
@@ -54652,11 +54651,11 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: m
       integer(c_int), value :: n
-      real(c_float), target :: A(*)
+      real(c_float), target :: A(..)
       integer(c_int), value :: lda
-      real(c_float), target :: ipiv(*)
+      real(c_float), target :: ipiv(..)
       integer(c_int) :: sgeqrf
-      sgeqrf = rocsolver_sgeqrf_raw(handle, m, n, c_loc(A(1)), lda, c_loc(ipiv(1)))
+      sgeqrf = rocsolver_sgeqrf_raw(handle, m, n, c_loc(A), lda, c_loc(ipiv))
     end function rocsolver_sgeqrf_native
 
     function rocsolver_sgeqrf_typed(handle, m, n, A, lda, ipiv) result(sgeqrf)
@@ -54679,11 +54678,11 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: m
       integer(c_int), value :: n
-      real(c_double), target :: A(*)
+      real(c_double), target :: A(..)
       integer(c_int), value :: lda
-      real(c_double), target :: ipiv(*)
+      real(c_double), target :: ipiv(..)
       integer(c_int) :: dgeqrf
-      dgeqrf = rocsolver_dgeqrf_raw(handle, m, n, c_loc(A(1)), lda, c_loc(ipiv(1)))
+      dgeqrf = rocsolver_dgeqrf_raw(handle, m, n, c_loc(A), lda, c_loc(ipiv))
     end function rocsolver_dgeqrf_native
 
     function rocsolver_dgeqrf_typed(handle, m, n, A, lda, ipiv) result(dgeqrf)
@@ -54706,11 +54705,11 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: m
       integer(c_int), value :: n
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: A(..)
       integer(c_int), value :: lda
-      complex(c_float_complex), target :: ipiv(*)
+      complex(c_float_complex), target :: ipiv(..)
       integer(c_int) :: cgeqrf
-      cgeqrf = rocsolver_cgeqrf_raw(handle, m, n, c_loc(A(1)), lda, c_loc(ipiv(1)))
+      cgeqrf = rocsolver_cgeqrf_raw(handle, m, n, c_loc(A), lda, c_loc(ipiv))
     end function rocsolver_cgeqrf_native
 
     function rocsolver_cgeqrf_typed(handle, m, n, A, lda, ipiv) result(cgeqrf)
@@ -54733,11 +54732,11 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: m
       integer(c_int), value :: n
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: A(..)
       integer(c_int), value :: lda
-      complex(c_double_complex), target :: ipiv(*)
+      complex(c_double_complex), target :: ipiv(..)
       integer(c_int) :: zgeqrf
-      zgeqrf = rocsolver_zgeqrf_raw(handle, m, n, c_loc(A(1)), lda, c_loc(ipiv(1)))
+      zgeqrf = rocsolver_zgeqrf_raw(handle, m, n, c_loc(A), lda, c_loc(ipiv))
     end function rocsolver_zgeqrf_native
 
     function rocsolver_zgeqrf_typed(handle, m, n, A, lda, ipiv) result(zgeqrf)
@@ -54760,11 +54759,11 @@ contains
       type(c_ptr), value :: handle
       integer(c_long), value :: m
       integer(c_long), value :: n
-      real(c_float), target :: A(*)
+      real(c_float), target :: A(..)
       integer(c_long), value :: lda
-      real(c_float), target :: ipiv(*)
+      real(c_float), target :: ipiv(..)
       integer(c_int) :: sgeqrf_64
-      sgeqrf_64 = rocsolver_sgeqrf_64_raw(handle, m, n, c_loc(A(1)), lda, c_loc(ipiv(1)))
+      sgeqrf_64 = rocsolver_sgeqrf_64_raw(handle, m, n, c_loc(A), lda, c_loc(ipiv))
     end function rocsolver_sgeqrf_64_native
 
     function rocsolver_sgeqrf_64_typed(handle, m, n, A, lda, ipiv) result(sgeqrf_64)
@@ -54787,11 +54786,11 @@ contains
       type(c_ptr), value :: handle
       integer(c_long), value :: m
       integer(c_long), value :: n
-      real(c_double), target :: A(*)
+      real(c_double), target :: A(..)
       integer(c_long), value :: lda
-      real(c_double), target :: ipiv(*)
+      real(c_double), target :: ipiv(..)
       integer(c_int) :: dgeqrf_64
-      dgeqrf_64 = rocsolver_dgeqrf_64_raw(handle, m, n, c_loc(A(1)), lda, c_loc(ipiv(1)))
+      dgeqrf_64 = rocsolver_dgeqrf_64_raw(handle, m, n, c_loc(A), lda, c_loc(ipiv))
     end function rocsolver_dgeqrf_64_native
 
     function rocsolver_dgeqrf_64_typed(handle, m, n, A, lda, ipiv) result(dgeqrf_64)
@@ -54814,11 +54813,11 @@ contains
       type(c_ptr), value :: handle
       integer(c_long), value :: m
       integer(c_long), value :: n
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: A(..)
       integer(c_long), value :: lda
-      complex(c_float_complex), target :: ipiv(*)
+      complex(c_float_complex), target :: ipiv(..)
       integer(c_int) :: cgeqrf_64
-      cgeqrf_64 = rocsolver_cgeqrf_64_raw(handle, m, n, c_loc(A(1)), lda, c_loc(ipiv(1)))
+      cgeqrf_64 = rocsolver_cgeqrf_64_raw(handle, m, n, c_loc(A), lda, c_loc(ipiv))
     end function rocsolver_cgeqrf_64_native
 
     function rocsolver_cgeqrf_64_typed(handle, m, n, A, lda, ipiv) result(cgeqrf_64)
@@ -54841,11 +54840,11 @@ contains
       type(c_ptr), value :: handle
       integer(c_long), value :: m
       integer(c_long), value :: n
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: A(..)
       integer(c_long), value :: lda
-      complex(c_double_complex), target :: ipiv(*)
+      complex(c_double_complex), target :: ipiv(..)
       integer(c_int) :: zgeqrf_64
-      zgeqrf_64 = rocsolver_zgeqrf_64_raw(handle, m, n, c_loc(A(1)), lda, c_loc(ipiv(1)))
+      zgeqrf_64 = rocsolver_zgeqrf_64_raw(handle, m, n, c_loc(A), lda, c_loc(ipiv))
     end function rocsolver_zgeqrf_64_native
 
     function rocsolver_zgeqrf_64_typed(handle, m, n, A, lda, ipiv) result(zgeqrf_64)
@@ -54871,11 +54870,11 @@ contains
       integer(c_int), value :: n
       type(c_ptr), value :: A
       integer(c_int), value :: lda
-      real(c_float), target :: ipiv(*)
+      real(c_float), target :: ipiv(..)
       integer(c_long), value :: strideP
       integer(c_int), value :: batch_count
       integer(c_int) :: sgeqrf_batched
-      sgeqrf_batched = rocsolver_sgeqrf_batched_raw(handle, m, n, A, lda, c_loc(ipiv(1)), strideP, &
+      sgeqrf_batched = rocsolver_sgeqrf_batched_raw(handle, m, n, A, lda, c_loc(ipiv), strideP, &
         batch_count)
     end function rocsolver_sgeqrf_batched_native
 
@@ -54906,11 +54905,11 @@ contains
       integer(c_int), value :: n
       type(c_ptr), value :: A
       integer(c_int), value :: lda
-      real(c_double), target :: ipiv(*)
+      real(c_double), target :: ipiv(..)
       integer(c_long), value :: strideP
       integer(c_int), value :: batch_count
       integer(c_int) :: dgeqrf_batched
-      dgeqrf_batched = rocsolver_dgeqrf_batched_raw(handle, m, n, A, lda, c_loc(ipiv(1)), strideP, &
+      dgeqrf_batched = rocsolver_dgeqrf_batched_raw(handle, m, n, A, lda, c_loc(ipiv), strideP, &
         batch_count)
     end function rocsolver_dgeqrf_batched_native
 
@@ -54941,11 +54940,11 @@ contains
       integer(c_int), value :: n
       type(c_ptr), value :: A
       integer(c_int), value :: lda
-      complex(c_float_complex), target :: ipiv(*)
+      complex(c_float_complex), target :: ipiv(..)
       integer(c_long), value :: strideP
       integer(c_int), value :: batch_count
       integer(c_int) :: cgeqrf_batched
-      cgeqrf_batched = rocsolver_cgeqrf_batched_raw(handle, m, n, A, lda, c_loc(ipiv(1)), strideP, &
+      cgeqrf_batched = rocsolver_cgeqrf_batched_raw(handle, m, n, A, lda, c_loc(ipiv), strideP, &
         batch_count)
     end function rocsolver_cgeqrf_batched_native
 
@@ -54976,11 +54975,11 @@ contains
       integer(c_int), value :: n
       type(c_ptr), value :: A
       integer(c_int), value :: lda
-      complex(c_double_complex), target :: ipiv(*)
+      complex(c_double_complex), target :: ipiv(..)
       integer(c_long), value :: strideP
       integer(c_int), value :: batch_count
       integer(c_int) :: zgeqrf_batched
-      zgeqrf_batched = rocsolver_zgeqrf_batched_raw(handle, m, n, A, lda, c_loc(ipiv(1)), strideP, &
+      zgeqrf_batched = rocsolver_zgeqrf_batched_raw(handle, m, n, A, lda, c_loc(ipiv), strideP, &
         batch_count)
     end function rocsolver_zgeqrf_batched_native
 
@@ -55011,11 +55010,11 @@ contains
       integer(c_long), value :: n
       type(c_ptr), value :: A
       integer(c_long), value :: lda
-      real(c_float), target :: ipiv(*)
+      real(c_float), target :: ipiv(..)
       integer(c_long), value :: strideP
       integer(c_long), value :: batch_count
       integer(c_int) :: sgeqrf_batched_64
-      sgeqrf_batched_64 = rocsolver_sgeqrf_batched_64_raw(handle, m, n, A, lda, c_loc(ipiv(1)), &
+      sgeqrf_batched_64 = rocsolver_sgeqrf_batched_64_raw(handle, m, n, A, lda, c_loc(ipiv), &
         strideP, batch_count)
     end function rocsolver_sgeqrf_batched_64_native
 
@@ -55046,11 +55045,11 @@ contains
       integer(c_long), value :: n
       type(c_ptr), value :: A
       integer(c_long), value :: lda
-      real(c_double), target :: ipiv(*)
+      real(c_double), target :: ipiv(..)
       integer(c_long), value :: strideP
       integer(c_long), value :: batch_count
       integer(c_int) :: dgeqrf_batched_64
-      dgeqrf_batched_64 = rocsolver_dgeqrf_batched_64_raw(handle, m, n, A, lda, c_loc(ipiv(1)), &
+      dgeqrf_batched_64 = rocsolver_dgeqrf_batched_64_raw(handle, m, n, A, lda, c_loc(ipiv), &
         strideP, batch_count)
     end function rocsolver_dgeqrf_batched_64_native
 
@@ -55081,11 +55080,11 @@ contains
       integer(c_long), value :: n
       type(c_ptr), value :: A
       integer(c_long), value :: lda
-      complex(c_float_complex), target :: ipiv(*)
+      complex(c_float_complex), target :: ipiv(..)
       integer(c_long), value :: strideP
       integer(c_long), value :: batch_count
       integer(c_int) :: cgeqrf_batched_64
-      cgeqrf_batched_64 = rocsolver_cgeqrf_batched_64_raw(handle, m, n, A, lda, c_loc(ipiv(1)), &
+      cgeqrf_batched_64 = rocsolver_cgeqrf_batched_64_raw(handle, m, n, A, lda, c_loc(ipiv), &
         strideP, batch_count)
     end function rocsolver_cgeqrf_batched_64_native
 
@@ -55116,11 +55115,11 @@ contains
       integer(c_long), value :: n
       type(c_ptr), value :: A
       integer(c_long), value :: lda
-      complex(c_double_complex), target :: ipiv(*)
+      complex(c_double_complex), target :: ipiv(..)
       integer(c_long), value :: strideP
       integer(c_long), value :: batch_count
       integer(c_int) :: zgeqrf_batched_64
-      zgeqrf_batched_64 = rocsolver_zgeqrf_batched_64_raw(handle, m, n, A, lda, c_loc(ipiv(1)), &
+      zgeqrf_batched_64 = rocsolver_zgeqrf_batched_64_raw(handle, m, n, A, lda, c_loc(ipiv), &
         strideP, batch_count)
     end function rocsolver_zgeqrf_batched_64_native
 
@@ -55149,15 +55148,15 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: m
       integer(c_int), value :: n
-      real(c_float), target :: A(*)
+      real(c_float), target :: A(..)
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
-      real(c_float), target :: ipiv(*)
+      real(c_float), target :: ipiv(..)
       integer(c_long), value :: strideP
       integer(c_int), value :: batch_count
       integer(c_int) :: sgeqrf_strided_batched
-      sgeqrf_strided_batched = rocsolver_sgeqrf_strided_batched_raw(handle, m, n, c_loc(A(1)), &
-        lda, strideA, c_loc(ipiv(1)), strideP, batch_count)
+      sgeqrf_strided_batched = rocsolver_sgeqrf_strided_batched_raw(handle, m, n, c_loc(A), lda, &
+        strideA, c_loc(ipiv), strideP, batch_count)
     end function rocsolver_sgeqrf_strided_batched_native
 
     function rocsolver_sgeqrf_strided_batched_typed(handle, m, n, A, lda, strideA, ipiv, strideP, &
@@ -55186,15 +55185,15 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: m
       integer(c_int), value :: n
-      real(c_double), target :: A(*)
+      real(c_double), target :: A(..)
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
-      real(c_double), target :: ipiv(*)
+      real(c_double), target :: ipiv(..)
       integer(c_long), value :: strideP
       integer(c_int), value :: batch_count
       integer(c_int) :: dgeqrf_strided_batched
-      dgeqrf_strided_batched = rocsolver_dgeqrf_strided_batched_raw(handle, m, n, c_loc(A(1)), &
-        lda, strideA, c_loc(ipiv(1)), strideP, batch_count)
+      dgeqrf_strided_batched = rocsolver_dgeqrf_strided_batched_raw(handle, m, n, c_loc(A), lda, &
+        strideA, c_loc(ipiv), strideP, batch_count)
     end function rocsolver_dgeqrf_strided_batched_native
 
     function rocsolver_dgeqrf_strided_batched_typed(handle, m, n, A, lda, strideA, ipiv, strideP, &
@@ -55223,15 +55222,15 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: m
       integer(c_int), value :: n
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: A(..)
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
-      complex(c_float_complex), target :: ipiv(*)
+      complex(c_float_complex), target :: ipiv(..)
       integer(c_long), value :: strideP
       integer(c_int), value :: batch_count
       integer(c_int) :: cgeqrf_strided_batched
-      cgeqrf_strided_batched = rocsolver_cgeqrf_strided_batched_raw(handle, m, n, c_loc(A(1)), &
-        lda, strideA, c_loc(ipiv(1)), strideP, batch_count)
+      cgeqrf_strided_batched = rocsolver_cgeqrf_strided_batched_raw(handle, m, n, c_loc(A), lda, &
+        strideA, c_loc(ipiv), strideP, batch_count)
     end function rocsolver_cgeqrf_strided_batched_native
 
     function rocsolver_cgeqrf_strided_batched_typed(handle, m, n, A, lda, strideA, ipiv, strideP, &
@@ -55260,15 +55259,15 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: m
       integer(c_int), value :: n
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: A(..)
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
-      complex(c_double_complex), target :: ipiv(*)
+      complex(c_double_complex), target :: ipiv(..)
       integer(c_long), value :: strideP
       integer(c_int), value :: batch_count
       integer(c_int) :: zgeqrf_strided_batched
-      zgeqrf_strided_batched = rocsolver_zgeqrf_strided_batched_raw(handle, m, n, c_loc(A(1)), &
-        lda, strideA, c_loc(ipiv(1)), strideP, batch_count)
+      zgeqrf_strided_batched = rocsolver_zgeqrf_strided_batched_raw(handle, m, n, c_loc(A), lda, &
+        strideA, c_loc(ipiv), strideP, batch_count)
     end function rocsolver_zgeqrf_strided_batched_native
 
     function rocsolver_zgeqrf_strided_batched_typed(handle, m, n, A, lda, strideA, ipiv, strideP, &
@@ -55297,15 +55296,15 @@ contains
       type(c_ptr), value :: handle
       integer(c_long), value :: m
       integer(c_long), value :: n
-      real(c_float), target :: A(*)
+      real(c_float), target :: A(..)
       integer(c_long), value :: lda
       integer(c_long), value :: strideA
-      real(c_float), target :: ipiv(*)
+      real(c_float), target :: ipiv(..)
       integer(c_long), value :: strideP
       integer(c_long), value :: batch_count
       integer(c_int) :: sgeqrf_strided_batched_64
-      sgeqrf_strided_batched_64 = rocsolver_sgeqrf_strided_batched_64_raw(handle, m, n, c_loc(A( &
-        1)), lda, strideA, c_loc(ipiv(1)), strideP, batch_count)
+      sgeqrf_strided_batched_64 = rocsolver_sgeqrf_strided_batched_64_raw(handle, m, n, c_loc(A), &
+        lda, strideA, c_loc(ipiv), strideP, batch_count)
     end function rocsolver_sgeqrf_strided_batched_64_native
 
     function rocsolver_sgeqrf_strided_batched_64_typed(handle, m, n, A, lda, strideA, ipiv, &
@@ -55334,15 +55333,15 @@ contains
       type(c_ptr), value :: handle
       integer(c_long), value :: m
       integer(c_long), value :: n
-      real(c_double), target :: A(*)
+      real(c_double), target :: A(..)
       integer(c_long), value :: lda
       integer(c_long), value :: strideA
-      real(c_double), target :: ipiv(*)
+      real(c_double), target :: ipiv(..)
       integer(c_long), value :: strideP
       integer(c_long), value :: batch_count
       integer(c_int) :: dgeqrf_strided_batched_64
-      dgeqrf_strided_batched_64 = rocsolver_dgeqrf_strided_batched_64_raw(handle, m, n, c_loc(A( &
-        1)), lda, strideA, c_loc(ipiv(1)), strideP, batch_count)
+      dgeqrf_strided_batched_64 = rocsolver_dgeqrf_strided_batched_64_raw(handle, m, n, c_loc(A), &
+        lda, strideA, c_loc(ipiv), strideP, batch_count)
     end function rocsolver_dgeqrf_strided_batched_64_native
 
     function rocsolver_dgeqrf_strided_batched_64_typed(handle, m, n, A, lda, strideA, ipiv, &
@@ -55371,15 +55370,15 @@ contains
       type(c_ptr), value :: handle
       integer(c_long), value :: m
       integer(c_long), value :: n
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: A(..)
       integer(c_long), value :: lda
       integer(c_long), value :: strideA
-      complex(c_float_complex), target :: ipiv(*)
+      complex(c_float_complex), target :: ipiv(..)
       integer(c_long), value :: strideP
       integer(c_long), value :: batch_count
       integer(c_int) :: cgeqrf_strided_batched_64
-      cgeqrf_strided_batched_64 = rocsolver_cgeqrf_strided_batched_64_raw(handle, m, n, c_loc(A( &
-        1)), lda, strideA, c_loc(ipiv(1)), strideP, batch_count)
+      cgeqrf_strided_batched_64 = rocsolver_cgeqrf_strided_batched_64_raw(handle, m, n, c_loc(A), &
+        lda, strideA, c_loc(ipiv), strideP, batch_count)
     end function rocsolver_cgeqrf_strided_batched_64_native
 
     function rocsolver_cgeqrf_strided_batched_64_typed(handle, m, n, A, lda, strideA, ipiv, &
@@ -55408,15 +55407,15 @@ contains
       type(c_ptr), value :: handle
       integer(c_long), value :: m
       integer(c_long), value :: n
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: A(..)
       integer(c_long), value :: lda
       integer(c_long), value :: strideA
-      complex(c_double_complex), target :: ipiv(*)
+      complex(c_double_complex), target :: ipiv(..)
       integer(c_long), value :: strideP
       integer(c_long), value :: batch_count
       integer(c_int) :: zgeqrf_strided_batched_64
-      zgeqrf_strided_batched_64 = rocsolver_zgeqrf_strided_batched_64_raw(handle, m, n, c_loc(A( &
-        1)), lda, strideA, c_loc(ipiv(1)), strideP, batch_count)
+      zgeqrf_strided_batched_64 = rocsolver_zgeqrf_strided_batched_64_raw(handle, m, n, c_loc(A), &
+        lda, strideA, c_loc(ipiv), strideP, batch_count)
     end function rocsolver_zgeqrf_strided_batched_64_native
 
     function rocsolver_zgeqrf_strided_batched_64_typed(handle, m, n, A, lda, strideA, ipiv, &
@@ -55444,11 +55443,11 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: m
       integer(c_int), value :: n
-      real(c_float), target :: A(*)
+      real(c_float), target :: A(..)
       integer(c_int), value :: lda
-      real(c_float), target :: ipiv(*)
+      real(c_float), target :: ipiv(..)
       integer(c_int) :: sgerqf
-      sgerqf = rocsolver_sgerqf_raw(handle, m, n, c_loc(A(1)), lda, c_loc(ipiv(1)))
+      sgerqf = rocsolver_sgerqf_raw(handle, m, n, c_loc(A), lda, c_loc(ipiv))
     end function rocsolver_sgerqf_native
 
     function rocsolver_sgerqf_typed(handle, m, n, A, lda, ipiv) result(sgerqf)
@@ -55471,11 +55470,11 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: m
       integer(c_int), value :: n
-      real(c_double), target :: A(*)
+      real(c_double), target :: A(..)
       integer(c_int), value :: lda
-      real(c_double), target :: ipiv(*)
+      real(c_double), target :: ipiv(..)
       integer(c_int) :: dgerqf
-      dgerqf = rocsolver_dgerqf_raw(handle, m, n, c_loc(A(1)), lda, c_loc(ipiv(1)))
+      dgerqf = rocsolver_dgerqf_raw(handle, m, n, c_loc(A), lda, c_loc(ipiv))
     end function rocsolver_dgerqf_native
 
     function rocsolver_dgerqf_typed(handle, m, n, A, lda, ipiv) result(dgerqf)
@@ -55498,11 +55497,11 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: m
       integer(c_int), value :: n
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: A(..)
       integer(c_int), value :: lda
-      complex(c_float_complex), target :: ipiv(*)
+      complex(c_float_complex), target :: ipiv(..)
       integer(c_int) :: cgerqf
-      cgerqf = rocsolver_cgerqf_raw(handle, m, n, c_loc(A(1)), lda, c_loc(ipiv(1)))
+      cgerqf = rocsolver_cgerqf_raw(handle, m, n, c_loc(A), lda, c_loc(ipiv))
     end function rocsolver_cgerqf_native
 
     function rocsolver_cgerqf_typed(handle, m, n, A, lda, ipiv) result(cgerqf)
@@ -55525,11 +55524,11 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: m
       integer(c_int), value :: n
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: A(..)
       integer(c_int), value :: lda
-      complex(c_double_complex), target :: ipiv(*)
+      complex(c_double_complex), target :: ipiv(..)
       integer(c_int) :: zgerqf
-      zgerqf = rocsolver_zgerqf_raw(handle, m, n, c_loc(A(1)), lda, c_loc(ipiv(1)))
+      zgerqf = rocsolver_zgerqf_raw(handle, m, n, c_loc(A), lda, c_loc(ipiv))
     end function rocsolver_zgerqf_native
 
     function rocsolver_zgerqf_typed(handle, m, n, A, lda, ipiv) result(zgerqf)
@@ -55555,11 +55554,11 @@ contains
       integer(c_int), value :: n
       type(c_ptr), value :: A
       integer(c_int), value :: lda
-      real(c_float), target :: ipiv(*)
+      real(c_float), target :: ipiv(..)
       integer(c_long), value :: strideP
       integer(c_int), value :: batch_count
       integer(c_int) :: sgerqf_batched
-      sgerqf_batched = rocsolver_sgerqf_batched_raw(handle, m, n, A, lda, c_loc(ipiv(1)), strideP, &
+      sgerqf_batched = rocsolver_sgerqf_batched_raw(handle, m, n, A, lda, c_loc(ipiv), strideP, &
         batch_count)
     end function rocsolver_sgerqf_batched_native
 
@@ -55590,11 +55589,11 @@ contains
       integer(c_int), value :: n
       type(c_ptr), value :: A
       integer(c_int), value :: lda
-      real(c_double), target :: ipiv(*)
+      real(c_double), target :: ipiv(..)
       integer(c_long), value :: strideP
       integer(c_int), value :: batch_count
       integer(c_int) :: dgerqf_batched
-      dgerqf_batched = rocsolver_dgerqf_batched_raw(handle, m, n, A, lda, c_loc(ipiv(1)), strideP, &
+      dgerqf_batched = rocsolver_dgerqf_batched_raw(handle, m, n, A, lda, c_loc(ipiv), strideP, &
         batch_count)
     end function rocsolver_dgerqf_batched_native
 
@@ -55625,11 +55624,11 @@ contains
       integer(c_int), value :: n
       type(c_ptr), value :: A
       integer(c_int), value :: lda
-      complex(c_float_complex), target :: ipiv(*)
+      complex(c_float_complex), target :: ipiv(..)
       integer(c_long), value :: strideP
       integer(c_int), value :: batch_count
       integer(c_int) :: cgerqf_batched
-      cgerqf_batched = rocsolver_cgerqf_batched_raw(handle, m, n, A, lda, c_loc(ipiv(1)), strideP, &
+      cgerqf_batched = rocsolver_cgerqf_batched_raw(handle, m, n, A, lda, c_loc(ipiv), strideP, &
         batch_count)
     end function rocsolver_cgerqf_batched_native
 
@@ -55660,11 +55659,11 @@ contains
       integer(c_int), value :: n
       type(c_ptr), value :: A
       integer(c_int), value :: lda
-      complex(c_double_complex), target :: ipiv(*)
+      complex(c_double_complex), target :: ipiv(..)
       integer(c_long), value :: strideP
       integer(c_int), value :: batch_count
       integer(c_int) :: zgerqf_batched
-      zgerqf_batched = rocsolver_zgerqf_batched_raw(handle, m, n, A, lda, c_loc(ipiv(1)), strideP, &
+      zgerqf_batched = rocsolver_zgerqf_batched_raw(handle, m, n, A, lda, c_loc(ipiv), strideP, &
         batch_count)
     end function rocsolver_zgerqf_batched_native
 
@@ -55693,15 +55692,15 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: m
       integer(c_int), value :: n
-      real(c_float), target :: A(*)
+      real(c_float), target :: A(..)
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
-      real(c_float), target :: ipiv(*)
+      real(c_float), target :: ipiv(..)
       integer(c_long), value :: strideP
       integer(c_int), value :: batch_count
       integer(c_int) :: sgerqf_strided_batched
-      sgerqf_strided_batched = rocsolver_sgerqf_strided_batched_raw(handle, m, n, c_loc(A(1)), &
-        lda, strideA, c_loc(ipiv(1)), strideP, batch_count)
+      sgerqf_strided_batched = rocsolver_sgerqf_strided_batched_raw(handle, m, n, c_loc(A), lda, &
+        strideA, c_loc(ipiv), strideP, batch_count)
     end function rocsolver_sgerqf_strided_batched_native
 
     function rocsolver_sgerqf_strided_batched_typed(handle, m, n, A, lda, strideA, ipiv, strideP, &
@@ -55730,15 +55729,15 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: m
       integer(c_int), value :: n
-      real(c_double), target :: A(*)
+      real(c_double), target :: A(..)
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
-      real(c_double), target :: ipiv(*)
+      real(c_double), target :: ipiv(..)
       integer(c_long), value :: strideP
       integer(c_int), value :: batch_count
       integer(c_int) :: dgerqf_strided_batched
-      dgerqf_strided_batched = rocsolver_dgerqf_strided_batched_raw(handle, m, n, c_loc(A(1)), &
-        lda, strideA, c_loc(ipiv(1)), strideP, batch_count)
+      dgerqf_strided_batched = rocsolver_dgerqf_strided_batched_raw(handle, m, n, c_loc(A), lda, &
+        strideA, c_loc(ipiv), strideP, batch_count)
     end function rocsolver_dgerqf_strided_batched_native
 
     function rocsolver_dgerqf_strided_batched_typed(handle, m, n, A, lda, strideA, ipiv, strideP, &
@@ -55767,15 +55766,15 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: m
       integer(c_int), value :: n
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: A(..)
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
-      complex(c_float_complex), target :: ipiv(*)
+      complex(c_float_complex), target :: ipiv(..)
       integer(c_long), value :: strideP
       integer(c_int), value :: batch_count
       integer(c_int) :: cgerqf_strided_batched
-      cgerqf_strided_batched = rocsolver_cgerqf_strided_batched_raw(handle, m, n, c_loc(A(1)), &
-        lda, strideA, c_loc(ipiv(1)), strideP, batch_count)
+      cgerqf_strided_batched = rocsolver_cgerqf_strided_batched_raw(handle, m, n, c_loc(A), lda, &
+        strideA, c_loc(ipiv), strideP, batch_count)
     end function rocsolver_cgerqf_strided_batched_native
 
     function rocsolver_cgerqf_strided_batched_typed(handle, m, n, A, lda, strideA, ipiv, strideP, &
@@ -55804,15 +55803,15 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: m
       integer(c_int), value :: n
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: A(..)
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
-      complex(c_double_complex), target :: ipiv(*)
+      complex(c_double_complex), target :: ipiv(..)
       integer(c_long), value :: strideP
       integer(c_int), value :: batch_count
       integer(c_int) :: zgerqf_strided_batched
-      zgerqf_strided_batched = rocsolver_zgerqf_strided_batched_raw(handle, m, n, c_loc(A(1)), &
-        lda, strideA, c_loc(ipiv(1)), strideP, batch_count)
+      zgerqf_strided_batched = rocsolver_zgerqf_strided_batched_raw(handle, m, n, c_loc(A), lda, &
+        strideA, c_loc(ipiv), strideP, batch_count)
     end function rocsolver_zgerqf_strided_batched_native
 
     function rocsolver_zgerqf_strided_batched_typed(handle, m, n, A, lda, strideA, ipiv, strideP, &
@@ -55840,11 +55839,11 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: m
       integer(c_int), value :: n
-      real(c_float), target :: A(*)
+      real(c_float), target :: A(..)
       integer(c_int), value :: lda
-      real(c_float), target :: ipiv(*)
+      real(c_float), target :: ipiv(..)
       integer(c_int) :: sgeqlf
-      sgeqlf = rocsolver_sgeqlf_raw(handle, m, n, c_loc(A(1)), lda, c_loc(ipiv(1)))
+      sgeqlf = rocsolver_sgeqlf_raw(handle, m, n, c_loc(A), lda, c_loc(ipiv))
     end function rocsolver_sgeqlf_native
 
     function rocsolver_sgeqlf_typed(handle, m, n, A, lda, ipiv) result(sgeqlf)
@@ -55867,11 +55866,11 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: m
       integer(c_int), value :: n
-      real(c_double), target :: A(*)
+      real(c_double), target :: A(..)
       integer(c_int), value :: lda
-      real(c_double), target :: ipiv(*)
+      real(c_double), target :: ipiv(..)
       integer(c_int) :: dgeqlf
-      dgeqlf = rocsolver_dgeqlf_raw(handle, m, n, c_loc(A(1)), lda, c_loc(ipiv(1)))
+      dgeqlf = rocsolver_dgeqlf_raw(handle, m, n, c_loc(A), lda, c_loc(ipiv))
     end function rocsolver_dgeqlf_native
 
     function rocsolver_dgeqlf_typed(handle, m, n, A, lda, ipiv) result(dgeqlf)
@@ -55894,11 +55893,11 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: m
       integer(c_int), value :: n
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: A(..)
       integer(c_int), value :: lda
-      complex(c_float_complex), target :: ipiv(*)
+      complex(c_float_complex), target :: ipiv(..)
       integer(c_int) :: cgeqlf
-      cgeqlf = rocsolver_cgeqlf_raw(handle, m, n, c_loc(A(1)), lda, c_loc(ipiv(1)))
+      cgeqlf = rocsolver_cgeqlf_raw(handle, m, n, c_loc(A), lda, c_loc(ipiv))
     end function rocsolver_cgeqlf_native
 
     function rocsolver_cgeqlf_typed(handle, m, n, A, lda, ipiv) result(cgeqlf)
@@ -55921,11 +55920,11 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: m
       integer(c_int), value :: n
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: A(..)
       integer(c_int), value :: lda
-      complex(c_double_complex), target :: ipiv(*)
+      complex(c_double_complex), target :: ipiv(..)
       integer(c_int) :: zgeqlf
-      zgeqlf = rocsolver_zgeqlf_raw(handle, m, n, c_loc(A(1)), lda, c_loc(ipiv(1)))
+      zgeqlf = rocsolver_zgeqlf_raw(handle, m, n, c_loc(A), lda, c_loc(ipiv))
     end function rocsolver_zgeqlf_native
 
     function rocsolver_zgeqlf_typed(handle, m, n, A, lda, ipiv) result(zgeqlf)
@@ -55951,11 +55950,11 @@ contains
       integer(c_int), value :: n
       type(c_ptr), value :: A
       integer(c_int), value :: lda
-      real(c_float), target :: ipiv(*)
+      real(c_float), target :: ipiv(..)
       integer(c_long), value :: strideP
       integer(c_int), value :: batch_count
       integer(c_int) :: sgeqlf_batched
-      sgeqlf_batched = rocsolver_sgeqlf_batched_raw(handle, m, n, A, lda, c_loc(ipiv(1)), strideP, &
+      sgeqlf_batched = rocsolver_sgeqlf_batched_raw(handle, m, n, A, lda, c_loc(ipiv), strideP, &
         batch_count)
     end function rocsolver_sgeqlf_batched_native
 
@@ -55986,11 +55985,11 @@ contains
       integer(c_int), value :: n
       type(c_ptr), value :: A
       integer(c_int), value :: lda
-      real(c_double), target :: ipiv(*)
+      real(c_double), target :: ipiv(..)
       integer(c_long), value :: strideP
       integer(c_int), value :: batch_count
       integer(c_int) :: dgeqlf_batched
-      dgeqlf_batched = rocsolver_dgeqlf_batched_raw(handle, m, n, A, lda, c_loc(ipiv(1)), strideP, &
+      dgeqlf_batched = rocsolver_dgeqlf_batched_raw(handle, m, n, A, lda, c_loc(ipiv), strideP, &
         batch_count)
     end function rocsolver_dgeqlf_batched_native
 
@@ -56021,11 +56020,11 @@ contains
       integer(c_int), value :: n
       type(c_ptr), value :: A
       integer(c_int), value :: lda
-      complex(c_float_complex), target :: ipiv(*)
+      complex(c_float_complex), target :: ipiv(..)
       integer(c_long), value :: strideP
       integer(c_int), value :: batch_count
       integer(c_int) :: cgeqlf_batched
-      cgeqlf_batched = rocsolver_cgeqlf_batched_raw(handle, m, n, A, lda, c_loc(ipiv(1)), strideP, &
+      cgeqlf_batched = rocsolver_cgeqlf_batched_raw(handle, m, n, A, lda, c_loc(ipiv), strideP, &
         batch_count)
     end function rocsolver_cgeqlf_batched_native
 
@@ -56056,11 +56055,11 @@ contains
       integer(c_int), value :: n
       type(c_ptr), value :: A
       integer(c_int), value :: lda
-      complex(c_double_complex), target :: ipiv(*)
+      complex(c_double_complex), target :: ipiv(..)
       integer(c_long), value :: strideP
       integer(c_int), value :: batch_count
       integer(c_int) :: zgeqlf_batched
-      zgeqlf_batched = rocsolver_zgeqlf_batched_raw(handle, m, n, A, lda, c_loc(ipiv(1)), strideP, &
+      zgeqlf_batched = rocsolver_zgeqlf_batched_raw(handle, m, n, A, lda, c_loc(ipiv), strideP, &
         batch_count)
     end function rocsolver_zgeqlf_batched_native
 
@@ -56089,15 +56088,15 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: m
       integer(c_int), value :: n
-      real(c_float), target :: A(*)
+      real(c_float), target :: A(..)
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
-      real(c_float), target :: ipiv(*)
+      real(c_float), target :: ipiv(..)
       integer(c_long), value :: strideP
       integer(c_int), value :: batch_count
       integer(c_int) :: sgeqlf_strided_batched
-      sgeqlf_strided_batched = rocsolver_sgeqlf_strided_batched_raw(handle, m, n, c_loc(A(1)), &
-        lda, strideA, c_loc(ipiv(1)), strideP, batch_count)
+      sgeqlf_strided_batched = rocsolver_sgeqlf_strided_batched_raw(handle, m, n, c_loc(A), lda, &
+        strideA, c_loc(ipiv), strideP, batch_count)
     end function rocsolver_sgeqlf_strided_batched_native
 
     function rocsolver_sgeqlf_strided_batched_typed(handle, m, n, A, lda, strideA, ipiv, strideP, &
@@ -56126,15 +56125,15 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: m
       integer(c_int), value :: n
-      real(c_double), target :: A(*)
+      real(c_double), target :: A(..)
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
-      real(c_double), target :: ipiv(*)
+      real(c_double), target :: ipiv(..)
       integer(c_long), value :: strideP
       integer(c_int), value :: batch_count
       integer(c_int) :: dgeqlf_strided_batched
-      dgeqlf_strided_batched = rocsolver_dgeqlf_strided_batched_raw(handle, m, n, c_loc(A(1)), &
-        lda, strideA, c_loc(ipiv(1)), strideP, batch_count)
+      dgeqlf_strided_batched = rocsolver_dgeqlf_strided_batched_raw(handle, m, n, c_loc(A), lda, &
+        strideA, c_loc(ipiv), strideP, batch_count)
     end function rocsolver_dgeqlf_strided_batched_native
 
     function rocsolver_dgeqlf_strided_batched_typed(handle, m, n, A, lda, strideA, ipiv, strideP, &
@@ -56163,15 +56162,15 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: m
       integer(c_int), value :: n
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: A(..)
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
-      complex(c_float_complex), target :: ipiv(*)
+      complex(c_float_complex), target :: ipiv(..)
       integer(c_long), value :: strideP
       integer(c_int), value :: batch_count
       integer(c_int) :: cgeqlf_strided_batched
-      cgeqlf_strided_batched = rocsolver_cgeqlf_strided_batched_raw(handle, m, n, c_loc(A(1)), &
-        lda, strideA, c_loc(ipiv(1)), strideP, batch_count)
+      cgeqlf_strided_batched = rocsolver_cgeqlf_strided_batched_raw(handle, m, n, c_loc(A), lda, &
+        strideA, c_loc(ipiv), strideP, batch_count)
     end function rocsolver_cgeqlf_strided_batched_native
 
     function rocsolver_cgeqlf_strided_batched_typed(handle, m, n, A, lda, strideA, ipiv, strideP, &
@@ -56200,15 +56199,15 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: m
       integer(c_int), value :: n
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: A(..)
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
-      complex(c_double_complex), target :: ipiv(*)
+      complex(c_double_complex), target :: ipiv(..)
       integer(c_long), value :: strideP
       integer(c_int), value :: batch_count
       integer(c_int) :: zgeqlf_strided_batched
-      zgeqlf_strided_batched = rocsolver_zgeqlf_strided_batched_raw(handle, m, n, c_loc(A(1)), &
-        lda, strideA, c_loc(ipiv(1)), strideP, batch_count)
+      zgeqlf_strided_batched = rocsolver_zgeqlf_strided_batched_raw(handle, m, n, c_loc(A), lda, &
+        strideA, c_loc(ipiv), strideP, batch_count)
     end function rocsolver_zgeqlf_strided_batched_native
 
     function rocsolver_zgeqlf_strided_batched_typed(handle, m, n, A, lda, strideA, ipiv, strideP, &
@@ -56236,11 +56235,11 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: m
       integer(c_int), value :: n
-      real(c_float), target :: A(*)
+      real(c_float), target :: A(..)
       integer(c_int), value :: lda
-      real(c_float), target :: ipiv(*)
+      real(c_float), target :: ipiv(..)
       integer(c_int) :: sgelqf
-      sgelqf = rocsolver_sgelqf_raw(handle, m, n, c_loc(A(1)), lda, c_loc(ipiv(1)))
+      sgelqf = rocsolver_sgelqf_raw(handle, m, n, c_loc(A), lda, c_loc(ipiv))
     end function rocsolver_sgelqf_native
 
     function rocsolver_sgelqf_typed(handle, m, n, A, lda, ipiv) result(sgelqf)
@@ -56263,11 +56262,11 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: m
       integer(c_int), value :: n
-      real(c_double), target :: A(*)
+      real(c_double), target :: A(..)
       integer(c_int), value :: lda
-      real(c_double), target :: ipiv(*)
+      real(c_double), target :: ipiv(..)
       integer(c_int) :: dgelqf
-      dgelqf = rocsolver_dgelqf_raw(handle, m, n, c_loc(A(1)), lda, c_loc(ipiv(1)))
+      dgelqf = rocsolver_dgelqf_raw(handle, m, n, c_loc(A), lda, c_loc(ipiv))
     end function rocsolver_dgelqf_native
 
     function rocsolver_dgelqf_typed(handle, m, n, A, lda, ipiv) result(dgelqf)
@@ -56290,11 +56289,11 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: m
       integer(c_int), value :: n
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: A(..)
       integer(c_int), value :: lda
-      complex(c_float_complex), target :: ipiv(*)
+      complex(c_float_complex), target :: ipiv(..)
       integer(c_int) :: cgelqf
-      cgelqf = rocsolver_cgelqf_raw(handle, m, n, c_loc(A(1)), lda, c_loc(ipiv(1)))
+      cgelqf = rocsolver_cgelqf_raw(handle, m, n, c_loc(A), lda, c_loc(ipiv))
     end function rocsolver_cgelqf_native
 
     function rocsolver_cgelqf_typed(handle, m, n, A, lda, ipiv) result(cgelqf)
@@ -56317,11 +56316,11 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: m
       integer(c_int), value :: n
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: A(..)
       integer(c_int), value :: lda
-      complex(c_double_complex), target :: ipiv(*)
+      complex(c_double_complex), target :: ipiv(..)
       integer(c_int) :: zgelqf
-      zgelqf = rocsolver_zgelqf_raw(handle, m, n, c_loc(A(1)), lda, c_loc(ipiv(1)))
+      zgelqf = rocsolver_zgelqf_raw(handle, m, n, c_loc(A), lda, c_loc(ipiv))
     end function rocsolver_zgelqf_native
 
     function rocsolver_zgelqf_typed(handle, m, n, A, lda, ipiv) result(zgelqf)
@@ -56347,11 +56346,11 @@ contains
       integer(c_int), value :: n
       type(c_ptr), value :: A
       integer(c_int), value :: lda
-      real(c_float), target :: ipiv(*)
+      real(c_float), target :: ipiv(..)
       integer(c_long), value :: strideP
       integer(c_int), value :: batch_count
       integer(c_int) :: sgelqf_batched
-      sgelqf_batched = rocsolver_sgelqf_batched_raw(handle, m, n, A, lda, c_loc(ipiv(1)), strideP, &
+      sgelqf_batched = rocsolver_sgelqf_batched_raw(handle, m, n, A, lda, c_loc(ipiv), strideP, &
         batch_count)
     end function rocsolver_sgelqf_batched_native
 
@@ -56382,11 +56381,11 @@ contains
       integer(c_int), value :: n
       type(c_ptr), value :: A
       integer(c_int), value :: lda
-      real(c_double), target :: ipiv(*)
+      real(c_double), target :: ipiv(..)
       integer(c_long), value :: strideP
       integer(c_int), value :: batch_count
       integer(c_int) :: dgelqf_batched
-      dgelqf_batched = rocsolver_dgelqf_batched_raw(handle, m, n, A, lda, c_loc(ipiv(1)), strideP, &
+      dgelqf_batched = rocsolver_dgelqf_batched_raw(handle, m, n, A, lda, c_loc(ipiv), strideP, &
         batch_count)
     end function rocsolver_dgelqf_batched_native
 
@@ -56417,11 +56416,11 @@ contains
       integer(c_int), value :: n
       type(c_ptr), value :: A
       integer(c_int), value :: lda
-      complex(c_float_complex), target :: ipiv(*)
+      complex(c_float_complex), target :: ipiv(..)
       integer(c_long), value :: strideP
       integer(c_int), value :: batch_count
       integer(c_int) :: cgelqf_batched
-      cgelqf_batched = rocsolver_cgelqf_batched_raw(handle, m, n, A, lda, c_loc(ipiv(1)), strideP, &
+      cgelqf_batched = rocsolver_cgelqf_batched_raw(handle, m, n, A, lda, c_loc(ipiv), strideP, &
         batch_count)
     end function rocsolver_cgelqf_batched_native
 
@@ -56452,11 +56451,11 @@ contains
       integer(c_int), value :: n
       type(c_ptr), value :: A
       integer(c_int), value :: lda
-      complex(c_double_complex), target :: ipiv(*)
+      complex(c_double_complex), target :: ipiv(..)
       integer(c_long), value :: strideP
       integer(c_int), value :: batch_count
       integer(c_int) :: zgelqf_batched
-      zgelqf_batched = rocsolver_zgelqf_batched_raw(handle, m, n, A, lda, c_loc(ipiv(1)), strideP, &
+      zgelqf_batched = rocsolver_zgelqf_batched_raw(handle, m, n, A, lda, c_loc(ipiv), strideP, &
         batch_count)
     end function rocsolver_zgelqf_batched_native
 
@@ -56485,15 +56484,15 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: m
       integer(c_int), value :: n
-      real(c_float), target :: A(*)
+      real(c_float), target :: A(..)
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
-      real(c_float), target :: ipiv(*)
+      real(c_float), target :: ipiv(..)
       integer(c_long), value :: strideP
       integer(c_int), value :: batch_count
       integer(c_int) :: sgelqf_strided_batched
-      sgelqf_strided_batched = rocsolver_sgelqf_strided_batched_raw(handle, m, n, c_loc(A(1)), &
-        lda, strideA, c_loc(ipiv(1)), strideP, batch_count)
+      sgelqf_strided_batched = rocsolver_sgelqf_strided_batched_raw(handle, m, n, c_loc(A), lda, &
+        strideA, c_loc(ipiv), strideP, batch_count)
     end function rocsolver_sgelqf_strided_batched_native
 
     function rocsolver_sgelqf_strided_batched_typed(handle, m, n, A, lda, strideA, ipiv, strideP, &
@@ -56522,15 +56521,15 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: m
       integer(c_int), value :: n
-      real(c_double), target :: A(*)
+      real(c_double), target :: A(..)
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
-      real(c_double), target :: ipiv(*)
+      real(c_double), target :: ipiv(..)
       integer(c_long), value :: strideP
       integer(c_int), value :: batch_count
       integer(c_int) :: dgelqf_strided_batched
-      dgelqf_strided_batched = rocsolver_dgelqf_strided_batched_raw(handle, m, n, c_loc(A(1)), &
-        lda, strideA, c_loc(ipiv(1)), strideP, batch_count)
+      dgelqf_strided_batched = rocsolver_dgelqf_strided_batched_raw(handle, m, n, c_loc(A), lda, &
+        strideA, c_loc(ipiv), strideP, batch_count)
     end function rocsolver_dgelqf_strided_batched_native
 
     function rocsolver_dgelqf_strided_batched_typed(handle, m, n, A, lda, strideA, ipiv, strideP, &
@@ -56559,15 +56558,15 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: m
       integer(c_int), value :: n
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: A(..)
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
-      complex(c_float_complex), target :: ipiv(*)
+      complex(c_float_complex), target :: ipiv(..)
       integer(c_long), value :: strideP
       integer(c_int), value :: batch_count
       integer(c_int) :: cgelqf_strided_batched
-      cgelqf_strided_batched = rocsolver_cgelqf_strided_batched_raw(handle, m, n, c_loc(A(1)), &
-        lda, strideA, c_loc(ipiv(1)), strideP, batch_count)
+      cgelqf_strided_batched = rocsolver_cgelqf_strided_batched_raw(handle, m, n, c_loc(A), lda, &
+        strideA, c_loc(ipiv), strideP, batch_count)
     end function rocsolver_cgelqf_strided_batched_native
 
     function rocsolver_cgelqf_strided_batched_typed(handle, m, n, A, lda, strideA, ipiv, strideP, &
@@ -56596,15 +56595,15 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: m
       integer(c_int), value :: n
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: A(..)
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
-      complex(c_double_complex), target :: ipiv(*)
+      complex(c_double_complex), target :: ipiv(..)
       integer(c_long), value :: strideP
       integer(c_int), value :: batch_count
       integer(c_int) :: zgelqf_strided_batched
-      zgelqf_strided_batched = rocsolver_zgelqf_strided_batched_raw(handle, m, n, c_loc(A(1)), &
-        lda, strideA, c_loc(ipiv(1)), strideP, batch_count)
+      zgelqf_strided_batched = rocsolver_zgelqf_strided_batched_raw(handle, m, n, c_loc(A), lda, &
+        strideA, c_loc(ipiv), strideP, batch_count)
     end function rocsolver_zgelqf_strided_batched_native
 
     function rocsolver_zgelqf_strided_batched_typed(handle, m, n, A, lda, strideA, ipiv, strideP, &
@@ -56632,15 +56631,15 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: m
       integer(c_int), value :: n
-      real(c_float), target :: A(*)
+      real(c_float), target :: A(..)
       integer(c_int), value :: lda
-      real(c_float), target :: D(*)
-      real(c_float), target :: E(*)
-      real(c_float), target :: tauq(*)
-      real(c_float), target :: taup(*)
+      real(c_float), target :: D(..)
+      real(c_float), target :: E(..)
+      real(c_float), target :: tauq(..)
+      real(c_float), target :: taup(..)
       integer(c_int) :: sgebd2
-      sgebd2 = rocsolver_sgebd2_raw(handle, m, n, c_loc(A(1)), lda, c_loc(D(1)), c_loc(E(1)), &
-        c_loc(tauq(1)), c_loc(taup(1)))
+      sgebd2 = rocsolver_sgebd2_raw(handle, m, n, c_loc(A), lda, c_loc(D), c_loc(E), c_loc(tauq), &
+        c_loc(taup))
     end function rocsolver_sgebd2_native
 
     function rocsolver_sgebd2_typed(handle, m, n, A, lda, D, E, tauq, taup) result(sgebd2)
@@ -56666,15 +56665,15 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: m
       integer(c_int), value :: n
-      real(c_double), target :: A(*)
+      real(c_double), target :: A(..)
       integer(c_int), value :: lda
-      real(c_double), target :: D(*)
-      real(c_double), target :: E(*)
-      real(c_double), target :: tauq(*)
-      real(c_double), target :: taup(*)
+      real(c_double), target :: D(..)
+      real(c_double), target :: E(..)
+      real(c_double), target :: tauq(..)
+      real(c_double), target :: taup(..)
       integer(c_int) :: dgebd2
-      dgebd2 = rocsolver_dgebd2_raw(handle, m, n, c_loc(A(1)), lda, c_loc(D(1)), c_loc(E(1)), &
-        c_loc(tauq(1)), c_loc(taup(1)))
+      dgebd2 = rocsolver_dgebd2_raw(handle, m, n, c_loc(A), lda, c_loc(D), c_loc(E), c_loc(tauq), &
+        c_loc(taup))
     end function rocsolver_dgebd2_native
 
     function rocsolver_dgebd2_typed(handle, m, n, A, lda, D, E, tauq, taup) result(dgebd2)
@@ -56700,15 +56699,15 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: m
       integer(c_int), value :: n
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: A(..)
       integer(c_int), value :: lda
-      real(c_float), target :: D(*)
-      real(c_float), target :: E(*)
-      complex(c_float_complex), target :: tauq(*)
-      complex(c_float_complex), target :: taup(*)
+      real(c_float), target :: D(..)
+      real(c_float), target :: E(..)
+      complex(c_float_complex), target :: tauq(..)
+      complex(c_float_complex), target :: taup(..)
       integer(c_int) :: cgebd2
-      cgebd2 = rocsolver_cgebd2_raw(handle, m, n, c_loc(A(1)), lda, c_loc(D(1)), c_loc(E(1)), &
-        c_loc(tauq(1)), c_loc(taup(1)))
+      cgebd2 = rocsolver_cgebd2_raw(handle, m, n, c_loc(A), lda, c_loc(D), c_loc(E), c_loc(tauq), &
+        c_loc(taup))
     end function rocsolver_cgebd2_native
 
     function rocsolver_cgebd2_typed(handle, m, n, A, lda, D, E, tauq, taup) result(cgebd2)
@@ -56734,15 +56733,15 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: m
       integer(c_int), value :: n
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: A(..)
       integer(c_int), value :: lda
-      real(c_double), target :: D(*)
-      real(c_double), target :: E(*)
-      complex(c_double_complex), target :: tauq(*)
-      complex(c_double_complex), target :: taup(*)
+      real(c_double), target :: D(..)
+      real(c_double), target :: E(..)
+      complex(c_double_complex), target :: tauq(..)
+      complex(c_double_complex), target :: taup(..)
       integer(c_int) :: zgebd2
-      zgebd2 = rocsolver_zgebd2_raw(handle, m, n, c_loc(A(1)), lda, c_loc(D(1)), c_loc(E(1)), &
-        c_loc(tauq(1)), c_loc(taup(1)))
+      zgebd2 = rocsolver_zgebd2_raw(handle, m, n, c_loc(A), lda, c_loc(D), c_loc(E), c_loc(tauq), &
+        c_loc(taup))
     end function rocsolver_zgebd2_native
 
     function rocsolver_zgebd2_typed(handle, m, n, A, lda, D, E, tauq, taup) result(zgebd2)
@@ -56771,18 +56770,18 @@ contains
       integer(c_int), value :: n
       type(c_ptr), value :: A
       integer(c_int), value :: lda
-      real(c_float), target :: D(*)
+      real(c_float), target :: D(..)
       integer(c_long), value :: strideD
-      real(c_float), target :: E(*)
+      real(c_float), target :: E(..)
       integer(c_long), value :: strideE
-      real(c_float), target :: tauq(*)
+      real(c_float), target :: tauq(..)
       integer(c_long), value :: strideQ
-      real(c_float), target :: taup(*)
+      real(c_float), target :: taup(..)
       integer(c_long), value :: strideP
       integer(c_int), value :: batch_count
       integer(c_int) :: sgebd2_batched
-      sgebd2_batched = rocsolver_sgebd2_batched_raw(handle, m, n, A, lda, c_loc(D(1)), strideD, &
-        c_loc(E(1)), strideE, c_loc(tauq(1)), strideQ, c_loc(taup(1)), strideP, batch_count)
+      sgebd2_batched = rocsolver_sgebd2_batched_raw(handle, m, n, A, lda, c_loc(D), strideD, &
+        c_loc(E), strideE, c_loc(tauq), strideQ, c_loc(taup), strideP, batch_count)
     end function rocsolver_sgebd2_batched_native
 
     function rocsolver_sgebd2_batched_typed(handle, m, n, A, lda, D, strideD, E, strideE, tauq, &
@@ -56818,18 +56817,18 @@ contains
       integer(c_int), value :: n
       type(c_ptr), value :: A
       integer(c_int), value :: lda
-      real(c_double), target :: D(*)
+      real(c_double), target :: D(..)
       integer(c_long), value :: strideD
-      real(c_double), target :: E(*)
+      real(c_double), target :: E(..)
       integer(c_long), value :: strideE
-      real(c_double), target :: tauq(*)
+      real(c_double), target :: tauq(..)
       integer(c_long), value :: strideQ
-      real(c_double), target :: taup(*)
+      real(c_double), target :: taup(..)
       integer(c_long), value :: strideP
       integer(c_int), value :: batch_count
       integer(c_int) :: dgebd2_batched
-      dgebd2_batched = rocsolver_dgebd2_batched_raw(handle, m, n, A, lda, c_loc(D(1)), strideD, &
-        c_loc(E(1)), strideE, c_loc(tauq(1)), strideQ, c_loc(taup(1)), strideP, batch_count)
+      dgebd2_batched = rocsolver_dgebd2_batched_raw(handle, m, n, A, lda, c_loc(D), strideD, &
+        c_loc(E), strideE, c_loc(tauq), strideQ, c_loc(taup), strideP, batch_count)
     end function rocsolver_dgebd2_batched_native
 
     function rocsolver_dgebd2_batched_typed(handle, m, n, A, lda, D, strideD, E, strideE, tauq, &
@@ -56865,18 +56864,18 @@ contains
       integer(c_int), value :: n
       type(c_ptr), value :: A
       integer(c_int), value :: lda
-      real(c_float), target :: D(*)
+      real(c_float), target :: D(..)
       integer(c_long), value :: strideD
-      real(c_float), target :: E(*)
+      real(c_float), target :: E(..)
       integer(c_long), value :: strideE
-      complex(c_float_complex), target :: tauq(*)
+      complex(c_float_complex), target :: tauq(..)
       integer(c_long), value :: strideQ
-      complex(c_float_complex), target :: taup(*)
+      complex(c_float_complex), target :: taup(..)
       integer(c_long), value :: strideP
       integer(c_int), value :: batch_count
       integer(c_int) :: cgebd2_batched
-      cgebd2_batched = rocsolver_cgebd2_batched_raw(handle, m, n, A, lda, c_loc(D(1)), strideD, &
-        c_loc(E(1)), strideE, c_loc(tauq(1)), strideQ, c_loc(taup(1)), strideP, batch_count)
+      cgebd2_batched = rocsolver_cgebd2_batched_raw(handle, m, n, A, lda, c_loc(D), strideD, &
+        c_loc(E), strideE, c_loc(tauq), strideQ, c_loc(taup), strideP, batch_count)
     end function rocsolver_cgebd2_batched_native
 
     function rocsolver_cgebd2_batched_typed(handle, m, n, A, lda, D, strideD, E, strideE, tauq, &
@@ -56912,18 +56911,18 @@ contains
       integer(c_int), value :: n
       type(c_ptr), value :: A
       integer(c_int), value :: lda
-      real(c_double), target :: D(*)
+      real(c_double), target :: D(..)
       integer(c_long), value :: strideD
-      real(c_double), target :: E(*)
+      real(c_double), target :: E(..)
       integer(c_long), value :: strideE
-      complex(c_double_complex), target :: tauq(*)
+      complex(c_double_complex), target :: tauq(..)
       integer(c_long), value :: strideQ
-      complex(c_double_complex), target :: taup(*)
+      complex(c_double_complex), target :: taup(..)
       integer(c_long), value :: strideP
       integer(c_int), value :: batch_count
       integer(c_int) :: zgebd2_batched
-      zgebd2_batched = rocsolver_zgebd2_batched_raw(handle, m, n, A, lda, c_loc(D(1)), strideD, &
-        c_loc(E(1)), strideE, c_loc(tauq(1)), strideQ, c_loc(taup(1)), strideP, batch_count)
+      zgebd2_batched = rocsolver_zgebd2_batched_raw(handle, m, n, A, lda, c_loc(D), strideD, &
+        c_loc(E), strideE, c_loc(tauq), strideQ, c_loc(taup), strideP, batch_count)
     end function rocsolver_zgebd2_batched_native
 
     function rocsolver_zgebd2_batched_typed(handle, m, n, A, lda, D, strideD, E, strideE, tauq, &
@@ -56957,22 +56956,22 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: m
       integer(c_int), value :: n
-      real(c_float), target :: A(*)
+      real(c_float), target :: A(..)
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
-      real(c_float), target :: D(*)
+      real(c_float), target :: D(..)
       integer(c_long), value :: strideD
-      real(c_float), target :: E(*)
+      real(c_float), target :: E(..)
       integer(c_long), value :: strideE
-      real(c_float), target :: tauq(*)
+      real(c_float), target :: tauq(..)
       integer(c_long), value :: strideQ
-      real(c_float), target :: taup(*)
+      real(c_float), target :: taup(..)
       integer(c_long), value :: strideP
       integer(c_int), value :: batch_count
       integer(c_int) :: sgebd2_strided_batched
-      sgebd2_strided_batched = rocsolver_sgebd2_strided_batched_raw(handle, m, n, c_loc(A(1)), &
-        lda, strideA, c_loc(D(1)), strideD, c_loc(E(1)), strideE, c_loc(tauq(1)), strideQ, c_loc( &
-        taup(1)), strideP, batch_count)
+      sgebd2_strided_batched = rocsolver_sgebd2_strided_batched_raw(handle, m, n, c_loc(A), lda, &
+        strideA, c_loc(D), strideD, c_loc(E), strideE, c_loc(tauq), strideQ, c_loc(taup), strideP, &
+        batch_count)
     end function rocsolver_sgebd2_strided_batched_native
 
     function rocsolver_sgebd2_strided_batched_typed(handle, m, n, A, lda, strideA, D, strideD, E, &
@@ -57007,22 +57006,22 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: m
       integer(c_int), value :: n
-      real(c_double), target :: A(*)
+      real(c_double), target :: A(..)
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
-      real(c_double), target :: D(*)
+      real(c_double), target :: D(..)
       integer(c_long), value :: strideD
-      real(c_double), target :: E(*)
+      real(c_double), target :: E(..)
       integer(c_long), value :: strideE
-      real(c_double), target :: tauq(*)
+      real(c_double), target :: tauq(..)
       integer(c_long), value :: strideQ
-      real(c_double), target :: taup(*)
+      real(c_double), target :: taup(..)
       integer(c_long), value :: strideP
       integer(c_int), value :: batch_count
       integer(c_int) :: dgebd2_strided_batched
-      dgebd2_strided_batched = rocsolver_dgebd2_strided_batched_raw(handle, m, n, c_loc(A(1)), &
-        lda, strideA, c_loc(D(1)), strideD, c_loc(E(1)), strideE, c_loc(tauq(1)), strideQ, c_loc( &
-        taup(1)), strideP, batch_count)
+      dgebd2_strided_batched = rocsolver_dgebd2_strided_batched_raw(handle, m, n, c_loc(A), lda, &
+        strideA, c_loc(D), strideD, c_loc(E), strideE, c_loc(tauq), strideQ, c_loc(taup), strideP, &
+        batch_count)
     end function rocsolver_dgebd2_strided_batched_native
 
     function rocsolver_dgebd2_strided_batched_typed(handle, m, n, A, lda, strideA, D, strideD, E, &
@@ -57057,22 +57056,22 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: m
       integer(c_int), value :: n
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: A(..)
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
-      real(c_float), target :: D(*)
+      real(c_float), target :: D(..)
       integer(c_long), value :: strideD
-      real(c_float), target :: E(*)
+      real(c_float), target :: E(..)
       integer(c_long), value :: strideE
-      complex(c_float_complex), target :: tauq(*)
+      complex(c_float_complex), target :: tauq(..)
       integer(c_long), value :: strideQ
-      complex(c_float_complex), target :: taup(*)
+      complex(c_float_complex), target :: taup(..)
       integer(c_long), value :: strideP
       integer(c_int), value :: batch_count
       integer(c_int) :: cgebd2_strided_batched
-      cgebd2_strided_batched = rocsolver_cgebd2_strided_batched_raw(handle, m, n, c_loc(A(1)), &
-        lda, strideA, c_loc(D(1)), strideD, c_loc(E(1)), strideE, c_loc(tauq(1)), strideQ, c_loc( &
-        taup(1)), strideP, batch_count)
+      cgebd2_strided_batched = rocsolver_cgebd2_strided_batched_raw(handle, m, n, c_loc(A), lda, &
+        strideA, c_loc(D), strideD, c_loc(E), strideE, c_loc(tauq), strideQ, c_loc(taup), strideP, &
+        batch_count)
     end function rocsolver_cgebd2_strided_batched_native
 
     function rocsolver_cgebd2_strided_batched_typed(handle, m, n, A, lda, strideA, D, strideD, E, &
@@ -57107,22 +57106,22 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: m
       integer(c_int), value :: n
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: A(..)
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
-      real(c_double), target :: D(*)
+      real(c_double), target :: D(..)
       integer(c_long), value :: strideD
-      real(c_double), target :: E(*)
+      real(c_double), target :: E(..)
       integer(c_long), value :: strideE
-      complex(c_double_complex), target :: tauq(*)
+      complex(c_double_complex), target :: tauq(..)
       integer(c_long), value :: strideQ
-      complex(c_double_complex), target :: taup(*)
+      complex(c_double_complex), target :: taup(..)
       integer(c_long), value :: strideP
       integer(c_int), value :: batch_count
       integer(c_int) :: zgebd2_strided_batched
-      zgebd2_strided_batched = rocsolver_zgebd2_strided_batched_raw(handle, m, n, c_loc(A(1)), &
-        lda, strideA, c_loc(D(1)), strideD, c_loc(E(1)), strideE, c_loc(tauq(1)), strideQ, c_loc( &
-        taup(1)), strideP, batch_count)
+      zgebd2_strided_batched = rocsolver_zgebd2_strided_batched_raw(handle, m, n, c_loc(A), lda, &
+        strideA, c_loc(D), strideD, c_loc(E), strideE, c_loc(tauq), strideQ, c_loc(taup), strideP, &
+        batch_count)
     end function rocsolver_zgebd2_strided_batched_native
 
     function rocsolver_zgebd2_strided_batched_typed(handle, m, n, A, lda, strideA, D, strideD, E, &
@@ -57156,15 +57155,15 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: m
       integer(c_int), value :: n
-      real(c_float), target :: A(*)
+      real(c_float), target :: A(..)
       integer(c_int), value :: lda
-      real(c_float), target :: D(*)
-      real(c_float), target :: E(*)
-      real(c_float), target :: tauq(*)
-      real(c_float), target :: taup(*)
+      real(c_float), target :: D(..)
+      real(c_float), target :: E(..)
+      real(c_float), target :: tauq(..)
+      real(c_float), target :: taup(..)
       integer(c_int) :: sgebrd
-      sgebrd = rocsolver_sgebrd_raw(handle, m, n, c_loc(A(1)), lda, c_loc(D(1)), c_loc(E(1)), &
-        c_loc(tauq(1)), c_loc(taup(1)))
+      sgebrd = rocsolver_sgebrd_raw(handle, m, n, c_loc(A), lda, c_loc(D), c_loc(E), c_loc(tauq), &
+        c_loc(taup))
     end function rocsolver_sgebrd_native
 
     function rocsolver_sgebrd_typed(handle, m, n, A, lda, D, E, tauq, taup) result(sgebrd)
@@ -57190,15 +57189,15 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: m
       integer(c_int), value :: n
-      real(c_double), target :: A(*)
+      real(c_double), target :: A(..)
       integer(c_int), value :: lda
-      real(c_double), target :: D(*)
-      real(c_double), target :: E(*)
-      real(c_double), target :: tauq(*)
-      real(c_double), target :: taup(*)
+      real(c_double), target :: D(..)
+      real(c_double), target :: E(..)
+      real(c_double), target :: tauq(..)
+      real(c_double), target :: taup(..)
       integer(c_int) :: dgebrd
-      dgebrd = rocsolver_dgebrd_raw(handle, m, n, c_loc(A(1)), lda, c_loc(D(1)), c_loc(E(1)), &
-        c_loc(tauq(1)), c_loc(taup(1)))
+      dgebrd = rocsolver_dgebrd_raw(handle, m, n, c_loc(A), lda, c_loc(D), c_loc(E), c_loc(tauq), &
+        c_loc(taup))
     end function rocsolver_dgebrd_native
 
     function rocsolver_dgebrd_typed(handle, m, n, A, lda, D, E, tauq, taup) result(dgebrd)
@@ -57224,15 +57223,15 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: m
       integer(c_int), value :: n
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: A(..)
       integer(c_int), value :: lda
-      real(c_float), target :: D(*)
-      real(c_float), target :: E(*)
-      complex(c_float_complex), target :: tauq(*)
-      complex(c_float_complex), target :: taup(*)
+      real(c_float), target :: D(..)
+      real(c_float), target :: E(..)
+      complex(c_float_complex), target :: tauq(..)
+      complex(c_float_complex), target :: taup(..)
       integer(c_int) :: cgebrd
-      cgebrd = rocsolver_cgebrd_raw(handle, m, n, c_loc(A(1)), lda, c_loc(D(1)), c_loc(E(1)), &
-        c_loc(tauq(1)), c_loc(taup(1)))
+      cgebrd = rocsolver_cgebrd_raw(handle, m, n, c_loc(A), lda, c_loc(D), c_loc(E), c_loc(tauq), &
+        c_loc(taup))
     end function rocsolver_cgebrd_native
 
     function rocsolver_cgebrd_typed(handle, m, n, A, lda, D, E, tauq, taup) result(cgebrd)
@@ -57258,15 +57257,15 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: m
       integer(c_int), value :: n
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: A(..)
       integer(c_int), value :: lda
-      real(c_double), target :: D(*)
-      real(c_double), target :: E(*)
-      complex(c_double_complex), target :: tauq(*)
-      complex(c_double_complex), target :: taup(*)
+      real(c_double), target :: D(..)
+      real(c_double), target :: E(..)
+      complex(c_double_complex), target :: tauq(..)
+      complex(c_double_complex), target :: taup(..)
       integer(c_int) :: zgebrd
-      zgebrd = rocsolver_zgebrd_raw(handle, m, n, c_loc(A(1)), lda, c_loc(D(1)), c_loc(E(1)), &
-        c_loc(tauq(1)), c_loc(taup(1)))
+      zgebrd = rocsolver_zgebrd_raw(handle, m, n, c_loc(A), lda, c_loc(D), c_loc(E), c_loc(tauq), &
+        c_loc(taup))
     end function rocsolver_zgebrd_native
 
     function rocsolver_zgebrd_typed(handle, m, n, A, lda, D, E, tauq, taup) result(zgebrd)
@@ -57295,18 +57294,18 @@ contains
       integer(c_int), value :: n
       type(c_ptr), value :: A
       integer(c_int), value :: lda
-      real(c_float), target :: D(*)
+      real(c_float), target :: D(..)
       integer(c_long), value :: strideD
-      real(c_float), target :: E(*)
+      real(c_float), target :: E(..)
       integer(c_long), value :: strideE
-      real(c_float), target :: tauq(*)
+      real(c_float), target :: tauq(..)
       integer(c_long), value :: strideQ
-      real(c_float), target :: taup(*)
+      real(c_float), target :: taup(..)
       integer(c_long), value :: strideP
       integer(c_int), value :: batch_count
       integer(c_int) :: sgebrd_batched
-      sgebrd_batched = rocsolver_sgebrd_batched_raw(handle, m, n, A, lda, c_loc(D(1)), strideD, &
-        c_loc(E(1)), strideE, c_loc(tauq(1)), strideQ, c_loc(taup(1)), strideP, batch_count)
+      sgebrd_batched = rocsolver_sgebrd_batched_raw(handle, m, n, A, lda, c_loc(D), strideD, &
+        c_loc(E), strideE, c_loc(tauq), strideQ, c_loc(taup), strideP, batch_count)
     end function rocsolver_sgebrd_batched_native
 
     function rocsolver_sgebrd_batched_typed(handle, m, n, A, lda, D, strideD, E, strideE, tauq, &
@@ -57342,18 +57341,18 @@ contains
       integer(c_int), value :: n
       type(c_ptr), value :: A
       integer(c_int), value :: lda
-      real(c_double), target :: D(*)
+      real(c_double), target :: D(..)
       integer(c_long), value :: strideD
-      real(c_double), target :: E(*)
+      real(c_double), target :: E(..)
       integer(c_long), value :: strideE
-      real(c_double), target :: tauq(*)
+      real(c_double), target :: tauq(..)
       integer(c_long), value :: strideQ
-      real(c_double), target :: taup(*)
+      real(c_double), target :: taup(..)
       integer(c_long), value :: strideP
       integer(c_int), value :: batch_count
       integer(c_int) :: dgebrd_batched
-      dgebrd_batched = rocsolver_dgebrd_batched_raw(handle, m, n, A, lda, c_loc(D(1)), strideD, &
-        c_loc(E(1)), strideE, c_loc(tauq(1)), strideQ, c_loc(taup(1)), strideP, batch_count)
+      dgebrd_batched = rocsolver_dgebrd_batched_raw(handle, m, n, A, lda, c_loc(D), strideD, &
+        c_loc(E), strideE, c_loc(tauq), strideQ, c_loc(taup), strideP, batch_count)
     end function rocsolver_dgebrd_batched_native
 
     function rocsolver_dgebrd_batched_typed(handle, m, n, A, lda, D, strideD, E, strideE, tauq, &
@@ -57389,18 +57388,18 @@ contains
       integer(c_int), value :: n
       type(c_ptr), value :: A
       integer(c_int), value :: lda
-      real(c_float), target :: D(*)
+      real(c_float), target :: D(..)
       integer(c_long), value :: strideD
-      real(c_float), target :: E(*)
+      real(c_float), target :: E(..)
       integer(c_long), value :: strideE
-      complex(c_float_complex), target :: tauq(*)
+      complex(c_float_complex), target :: tauq(..)
       integer(c_long), value :: strideQ
-      complex(c_float_complex), target :: taup(*)
+      complex(c_float_complex), target :: taup(..)
       integer(c_long), value :: strideP
       integer(c_int), value :: batch_count
       integer(c_int) :: cgebrd_batched
-      cgebrd_batched = rocsolver_cgebrd_batched_raw(handle, m, n, A, lda, c_loc(D(1)), strideD, &
-        c_loc(E(1)), strideE, c_loc(tauq(1)), strideQ, c_loc(taup(1)), strideP, batch_count)
+      cgebrd_batched = rocsolver_cgebrd_batched_raw(handle, m, n, A, lda, c_loc(D), strideD, &
+        c_loc(E), strideE, c_loc(tauq), strideQ, c_loc(taup), strideP, batch_count)
     end function rocsolver_cgebrd_batched_native
 
     function rocsolver_cgebrd_batched_typed(handle, m, n, A, lda, D, strideD, E, strideE, tauq, &
@@ -57436,18 +57435,18 @@ contains
       integer(c_int), value :: n
       type(c_ptr), value :: A
       integer(c_int), value :: lda
-      real(c_double), target :: D(*)
+      real(c_double), target :: D(..)
       integer(c_long), value :: strideD
-      real(c_double), target :: E(*)
+      real(c_double), target :: E(..)
       integer(c_long), value :: strideE
-      complex(c_double_complex), target :: tauq(*)
+      complex(c_double_complex), target :: tauq(..)
       integer(c_long), value :: strideQ
-      complex(c_double_complex), target :: taup(*)
+      complex(c_double_complex), target :: taup(..)
       integer(c_long), value :: strideP
       integer(c_int), value :: batch_count
       integer(c_int) :: zgebrd_batched
-      zgebrd_batched = rocsolver_zgebrd_batched_raw(handle, m, n, A, lda, c_loc(D(1)), strideD, &
-        c_loc(E(1)), strideE, c_loc(tauq(1)), strideQ, c_loc(taup(1)), strideP, batch_count)
+      zgebrd_batched = rocsolver_zgebrd_batched_raw(handle, m, n, A, lda, c_loc(D), strideD, &
+        c_loc(E), strideE, c_loc(tauq), strideQ, c_loc(taup), strideP, batch_count)
     end function rocsolver_zgebrd_batched_native
 
     function rocsolver_zgebrd_batched_typed(handle, m, n, A, lda, D, strideD, E, strideE, tauq, &
@@ -57481,22 +57480,22 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: m
       integer(c_int), value :: n
-      real(c_float), target :: A(*)
+      real(c_float), target :: A(..)
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
-      real(c_float), target :: D(*)
+      real(c_float), target :: D(..)
       integer(c_long), value :: strideD
-      real(c_float), target :: E(*)
+      real(c_float), target :: E(..)
       integer(c_long), value :: strideE
-      real(c_float), target :: tauq(*)
+      real(c_float), target :: tauq(..)
       integer(c_long), value :: strideQ
-      real(c_float), target :: taup(*)
+      real(c_float), target :: taup(..)
       integer(c_long), value :: strideP
       integer(c_int), value :: batch_count
       integer(c_int) :: sgebrd_strided_batched
-      sgebrd_strided_batched = rocsolver_sgebrd_strided_batched_raw(handle, m, n, c_loc(A(1)), &
-        lda, strideA, c_loc(D(1)), strideD, c_loc(E(1)), strideE, c_loc(tauq(1)), strideQ, c_loc( &
-        taup(1)), strideP, batch_count)
+      sgebrd_strided_batched = rocsolver_sgebrd_strided_batched_raw(handle, m, n, c_loc(A), lda, &
+        strideA, c_loc(D), strideD, c_loc(E), strideE, c_loc(tauq), strideQ, c_loc(taup), strideP, &
+        batch_count)
     end function rocsolver_sgebrd_strided_batched_native
 
     function rocsolver_sgebrd_strided_batched_typed(handle, m, n, A, lda, strideA, D, strideD, E, &
@@ -57531,22 +57530,22 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: m
       integer(c_int), value :: n
-      real(c_double), target :: A(*)
+      real(c_double), target :: A(..)
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
-      real(c_double), target :: D(*)
+      real(c_double), target :: D(..)
       integer(c_long), value :: strideD
-      real(c_double), target :: E(*)
+      real(c_double), target :: E(..)
       integer(c_long), value :: strideE
-      real(c_double), target :: tauq(*)
+      real(c_double), target :: tauq(..)
       integer(c_long), value :: strideQ
-      real(c_double), target :: taup(*)
+      real(c_double), target :: taup(..)
       integer(c_long), value :: strideP
       integer(c_int), value :: batch_count
       integer(c_int) :: dgebrd_strided_batched
-      dgebrd_strided_batched = rocsolver_dgebrd_strided_batched_raw(handle, m, n, c_loc(A(1)), &
-        lda, strideA, c_loc(D(1)), strideD, c_loc(E(1)), strideE, c_loc(tauq(1)), strideQ, c_loc( &
-        taup(1)), strideP, batch_count)
+      dgebrd_strided_batched = rocsolver_dgebrd_strided_batched_raw(handle, m, n, c_loc(A), lda, &
+        strideA, c_loc(D), strideD, c_loc(E), strideE, c_loc(tauq), strideQ, c_loc(taup), strideP, &
+        batch_count)
     end function rocsolver_dgebrd_strided_batched_native
 
     function rocsolver_dgebrd_strided_batched_typed(handle, m, n, A, lda, strideA, D, strideD, E, &
@@ -57581,22 +57580,22 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: m
       integer(c_int), value :: n
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: A(..)
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
-      real(c_float), target :: D(*)
+      real(c_float), target :: D(..)
       integer(c_long), value :: strideD
-      real(c_float), target :: E(*)
+      real(c_float), target :: E(..)
       integer(c_long), value :: strideE
-      complex(c_float_complex), target :: tauq(*)
+      complex(c_float_complex), target :: tauq(..)
       integer(c_long), value :: strideQ
-      complex(c_float_complex), target :: taup(*)
+      complex(c_float_complex), target :: taup(..)
       integer(c_long), value :: strideP
       integer(c_int), value :: batch_count
       integer(c_int) :: cgebrd_strided_batched
-      cgebrd_strided_batched = rocsolver_cgebrd_strided_batched_raw(handle, m, n, c_loc(A(1)), &
-        lda, strideA, c_loc(D(1)), strideD, c_loc(E(1)), strideE, c_loc(tauq(1)), strideQ, c_loc( &
-        taup(1)), strideP, batch_count)
+      cgebrd_strided_batched = rocsolver_cgebrd_strided_batched_raw(handle, m, n, c_loc(A), lda, &
+        strideA, c_loc(D), strideD, c_loc(E), strideE, c_loc(tauq), strideQ, c_loc(taup), strideP, &
+        batch_count)
     end function rocsolver_cgebrd_strided_batched_native
 
     function rocsolver_cgebrd_strided_batched_typed(handle, m, n, A, lda, strideA, D, strideD, E, &
@@ -57631,22 +57630,22 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: m
       integer(c_int), value :: n
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: A(..)
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
-      real(c_double), target :: D(*)
+      real(c_double), target :: D(..)
       integer(c_long), value :: strideD
-      real(c_double), target :: E(*)
+      real(c_double), target :: E(..)
       integer(c_long), value :: strideE
-      complex(c_double_complex), target :: tauq(*)
+      complex(c_double_complex), target :: tauq(..)
       integer(c_long), value :: strideQ
-      complex(c_double_complex), target :: taup(*)
+      complex(c_double_complex), target :: taup(..)
       integer(c_long), value :: strideP
       integer(c_int), value :: batch_count
       integer(c_int) :: zgebrd_strided_batched
-      zgebrd_strided_batched = rocsolver_zgebrd_strided_batched_raw(handle, m, n, c_loc(A(1)), &
-        lda, strideA, c_loc(D(1)), strideD, c_loc(E(1)), strideE, c_loc(tauq(1)), strideQ, c_loc( &
-        taup(1)), strideP, batch_count)
+      zgebrd_strided_batched = rocsolver_zgebrd_strided_batched_raw(handle, m, n, c_loc(A), lda, &
+        strideA, c_loc(D), strideD, c_loc(E), strideE, c_loc(tauq), strideQ, c_loc(taup), strideP, &
+        batch_count)
     end function rocsolver_zgebrd_strided_batched_native
 
     function rocsolver_zgebrd_strided_batched_typed(handle, m, n, A, lda, strideA, D, strideD, E, &
@@ -57681,14 +57680,14 @@ contains
       integer(c_int), value :: trans
       integer(c_int), value :: n
       integer(c_int), value :: nrhs
-      real(c_float), target :: A(*)
+      real(c_float), target :: A(..)
       integer(c_int), value :: lda
-      integer(c_int), target :: ipiv(*)
-      real(c_float), target :: B(*)
+      integer(c_int), target :: ipiv(..)
+      real(c_float), target :: B(..)
       integer(c_int), value :: ldb
       integer(c_int) :: sgetrs
-      sgetrs = rocsolver_sgetrs_raw(handle, trans, n, nrhs, c_loc(A(1)), lda, c_loc(ipiv(1)), &
-        c_loc(B(1)), ldb)
+      sgetrs = rocsolver_sgetrs_raw(handle, trans, n, nrhs, c_loc(A), lda, c_loc(ipiv), c_loc(B), &
+        ldb)
     end function rocsolver_sgetrs_native
 
     function rocsolver_sgetrs_typed(handle, trans, n, nrhs, A, lda, ipiv, B, ldb) result(sgetrs)
@@ -57715,14 +57714,14 @@ contains
       integer(c_int), value :: trans
       integer(c_int), value :: n
       integer(c_int), value :: nrhs
-      real(c_double), target :: A(*)
+      real(c_double), target :: A(..)
       integer(c_int), value :: lda
-      integer(c_int), target :: ipiv(*)
-      real(c_double), target :: B(*)
+      integer(c_int), target :: ipiv(..)
+      real(c_double), target :: B(..)
       integer(c_int), value :: ldb
       integer(c_int) :: dgetrs
-      dgetrs = rocsolver_dgetrs_raw(handle, trans, n, nrhs, c_loc(A(1)), lda, c_loc(ipiv(1)), &
-        c_loc(B(1)), ldb)
+      dgetrs = rocsolver_dgetrs_raw(handle, trans, n, nrhs, c_loc(A), lda, c_loc(ipiv), c_loc(B), &
+        ldb)
     end function rocsolver_dgetrs_native
 
     function rocsolver_dgetrs_typed(handle, trans, n, nrhs, A, lda, ipiv, B, ldb) result(dgetrs)
@@ -57749,14 +57748,14 @@ contains
       integer(c_int), value :: trans
       integer(c_int), value :: n
       integer(c_int), value :: nrhs
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: A(..)
       integer(c_int), value :: lda
-      integer(c_int), target :: ipiv(*)
-      complex(c_float_complex), target :: B(*)
+      integer(c_int), target :: ipiv(..)
+      complex(c_float_complex), target :: B(..)
       integer(c_int), value :: ldb
       integer(c_int) :: cgetrs
-      cgetrs = rocsolver_cgetrs_raw(handle, trans, n, nrhs, c_loc(A(1)), lda, c_loc(ipiv(1)), &
-        c_loc(B(1)), ldb)
+      cgetrs = rocsolver_cgetrs_raw(handle, trans, n, nrhs, c_loc(A), lda, c_loc(ipiv), c_loc(B), &
+        ldb)
     end function rocsolver_cgetrs_native
 
     function rocsolver_cgetrs_typed(handle, trans, n, nrhs, A, lda, ipiv, B, ldb) result(cgetrs)
@@ -57783,14 +57782,14 @@ contains
       integer(c_int), value :: trans
       integer(c_int), value :: n
       integer(c_int), value :: nrhs
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: A(..)
       integer(c_int), value :: lda
-      integer(c_int), target :: ipiv(*)
-      complex(c_double_complex), target :: B(*)
+      integer(c_int), target :: ipiv(..)
+      complex(c_double_complex), target :: B(..)
       integer(c_int), value :: ldb
       integer(c_int) :: zgetrs
-      zgetrs = rocsolver_zgetrs_raw(handle, trans, n, nrhs, c_loc(A(1)), lda, c_loc(ipiv(1)), &
-        c_loc(B(1)), ldb)
+      zgetrs = rocsolver_zgetrs_raw(handle, trans, n, nrhs, c_loc(A), lda, c_loc(ipiv), c_loc(B), &
+        ldb)
     end function rocsolver_zgetrs_native
 
     function rocsolver_zgetrs_typed(handle, trans, n, nrhs, A, lda, ipiv, B, ldb) result(zgetrs)
@@ -57818,14 +57817,14 @@ contains
       integer(c_int), value :: trans
       integer(c_long), value :: n
       integer(c_long), value :: nrhs
-      real(c_float), target :: A(*)
+      real(c_float), target :: A(..)
       integer(c_long), value :: lda
       type(c_ptr), value :: ipiv
-      real(c_float), target :: B(*)
+      real(c_float), target :: B(..)
       integer(c_long), value :: ldb
       integer(c_int) :: sgetrs_64
-      sgetrs_64 = rocsolver_sgetrs_64_raw(handle, trans, n, nrhs, c_loc(A(1)), lda, ipiv, c_loc(B( &
-        1)), ldb)
+      sgetrs_64 = rocsolver_sgetrs_64_raw(handle, trans, n, nrhs, c_loc(A), lda, ipiv, c_loc(B), &
+        ldb)
     end function rocsolver_sgetrs_64_native
 
     function rocsolver_sgetrs_64_typed(handle, trans, n, nrhs, A, lda, ipiv, B, ldb) result( &
@@ -57854,14 +57853,14 @@ contains
       integer(c_int), value :: trans
       integer(c_long), value :: n
       integer(c_long), value :: nrhs
-      real(c_double), target :: A(*)
+      real(c_double), target :: A(..)
       integer(c_long), value :: lda
       type(c_ptr), value :: ipiv
-      real(c_double), target :: B(*)
+      real(c_double), target :: B(..)
       integer(c_long), value :: ldb
       integer(c_int) :: dgetrs_64
-      dgetrs_64 = rocsolver_dgetrs_64_raw(handle, trans, n, nrhs, c_loc(A(1)), lda, ipiv, c_loc(B( &
-        1)), ldb)
+      dgetrs_64 = rocsolver_dgetrs_64_raw(handle, trans, n, nrhs, c_loc(A), lda, ipiv, c_loc(B), &
+        ldb)
     end function rocsolver_dgetrs_64_native
 
     function rocsolver_dgetrs_64_typed(handle, trans, n, nrhs, A, lda, ipiv, B, ldb) result( &
@@ -57890,14 +57889,14 @@ contains
       integer(c_int), value :: trans
       integer(c_long), value :: n
       integer(c_long), value :: nrhs
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: A(..)
       integer(c_long), value :: lda
       type(c_ptr), value :: ipiv
-      complex(c_float_complex), target :: B(*)
+      complex(c_float_complex), target :: B(..)
       integer(c_long), value :: ldb
       integer(c_int) :: cgetrs_64
-      cgetrs_64 = rocsolver_cgetrs_64_raw(handle, trans, n, nrhs, c_loc(A(1)), lda, ipiv, c_loc(B( &
-        1)), ldb)
+      cgetrs_64 = rocsolver_cgetrs_64_raw(handle, trans, n, nrhs, c_loc(A), lda, ipiv, c_loc(B), &
+        ldb)
     end function rocsolver_cgetrs_64_native
 
     function rocsolver_cgetrs_64_typed(handle, trans, n, nrhs, A, lda, ipiv, B, ldb) result( &
@@ -57926,14 +57925,14 @@ contains
       integer(c_int), value :: trans
       integer(c_long), value :: n
       integer(c_long), value :: nrhs
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: A(..)
       integer(c_long), value :: lda
       type(c_ptr), value :: ipiv
-      complex(c_double_complex), target :: B(*)
+      complex(c_double_complex), target :: B(..)
       integer(c_long), value :: ldb
       integer(c_int) :: zgetrs_64
-      zgetrs_64 = rocsolver_zgetrs_64_raw(handle, trans, n, nrhs, c_loc(A(1)), lda, ipiv, c_loc(B( &
-        1)), ldb)
+      zgetrs_64 = rocsolver_zgetrs_64_raw(handle, trans, n, nrhs, c_loc(A), lda, ipiv, c_loc(B), &
+        ldb)
     end function rocsolver_zgetrs_64_native
 
     function rocsolver_zgetrs_64_typed(handle, trans, n, nrhs, A, lda, ipiv, B, ldb) result( &
@@ -57964,14 +57963,14 @@ contains
       integer(c_int), value :: nrhs
       type(c_ptr), value :: A
       integer(c_int), value :: lda
-      integer(c_int), target :: ipiv(*)
+      integer(c_int), target :: ipiv(..)
       integer(c_long), value :: strideP
       type(c_ptr), value :: B
       integer(c_int), value :: ldb
       integer(c_int), value :: batch_count
       integer(c_int) :: sgetrs_batched
-      sgetrs_batched = rocsolver_sgetrs_batched_raw(handle, trans, n, nrhs, A, lda, c_loc(ipiv( &
-        1)), strideP, B, ldb, batch_count)
+      sgetrs_batched = rocsolver_sgetrs_batched_raw(handle, trans, n, nrhs, A, lda, c_loc(ipiv), &
+        strideP, B, ldb, batch_count)
     end function rocsolver_sgetrs_batched_native
 
     function rocsolver_sgetrs_batched_typed(handle, trans, n, nrhs, A, lda, ipiv, strideP, B, ldb, &
@@ -58005,14 +58004,14 @@ contains
       integer(c_int), value :: nrhs
       type(c_ptr), value :: A
       integer(c_int), value :: lda
-      integer(c_int), target :: ipiv(*)
+      integer(c_int), target :: ipiv(..)
       integer(c_long), value :: strideP
       type(c_ptr), value :: B
       integer(c_int), value :: ldb
       integer(c_int), value :: batch_count
       integer(c_int) :: dgetrs_batched
-      dgetrs_batched = rocsolver_dgetrs_batched_raw(handle, trans, n, nrhs, A, lda, c_loc(ipiv( &
-        1)), strideP, B, ldb, batch_count)
+      dgetrs_batched = rocsolver_dgetrs_batched_raw(handle, trans, n, nrhs, A, lda, c_loc(ipiv), &
+        strideP, B, ldb, batch_count)
     end function rocsolver_dgetrs_batched_native
 
     function rocsolver_dgetrs_batched_typed(handle, trans, n, nrhs, A, lda, ipiv, strideP, B, ldb, &
@@ -58046,14 +58045,14 @@ contains
       integer(c_int), value :: nrhs
       type(c_ptr), value :: A
       integer(c_int), value :: lda
-      integer(c_int), target :: ipiv(*)
+      integer(c_int), target :: ipiv(..)
       integer(c_long), value :: strideP
       type(c_ptr), value :: B
       integer(c_int), value :: ldb
       integer(c_int), value :: batch_count
       integer(c_int) :: cgetrs_batched
-      cgetrs_batched = rocsolver_cgetrs_batched_raw(handle, trans, n, nrhs, A, lda, c_loc(ipiv( &
-        1)), strideP, B, ldb, batch_count)
+      cgetrs_batched = rocsolver_cgetrs_batched_raw(handle, trans, n, nrhs, A, lda, c_loc(ipiv), &
+        strideP, B, ldb, batch_count)
     end function rocsolver_cgetrs_batched_native
 
     function rocsolver_cgetrs_batched_typed(handle, trans, n, nrhs, A, lda, ipiv, strideP, B, ldb, &
@@ -58087,14 +58086,14 @@ contains
       integer(c_int), value :: nrhs
       type(c_ptr), value :: A
       integer(c_int), value :: lda
-      integer(c_int), target :: ipiv(*)
+      integer(c_int), target :: ipiv(..)
       integer(c_long), value :: strideP
       type(c_ptr), value :: B
       integer(c_int), value :: ldb
       integer(c_int), value :: batch_count
       integer(c_int) :: zgetrs_batched
-      zgetrs_batched = rocsolver_zgetrs_batched_raw(handle, trans, n, nrhs, A, lda, c_loc(ipiv( &
-        1)), strideP, B, ldb, batch_count)
+      zgetrs_batched = rocsolver_zgetrs_batched_raw(handle, trans, n, nrhs, A, lda, c_loc(ipiv), &
+        strideP, B, ldb, batch_count)
     end function rocsolver_zgetrs_batched_native
 
     function rocsolver_zgetrs_batched_typed(handle, trans, n, nrhs, A, lda, ipiv, strideP, B, ldb, &
@@ -58210,18 +58209,18 @@ contains
       integer(c_int), value :: trans
       integer(c_int), value :: n
       integer(c_int), value :: nrhs
-      real(c_float), target :: A(*)
+      real(c_float), target :: A(..)
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
-      integer(c_int), target :: ipiv(*)
+      integer(c_int), target :: ipiv(..)
       integer(c_long), value :: strideP
-      real(c_float), target :: B(*)
+      real(c_float), target :: B(..)
       integer(c_int), value :: ldb
       integer(c_long), value :: strideB
       integer(c_int), value :: batch_count
       integer(c_int) :: sgetrs_strided_batched
       sgetrs_strided_batched = rocsolver_sgetrs_strided_batched_raw(handle, trans, n, nrhs, c_loc( &
-        A(1)), lda, strideA, c_loc(ipiv(1)), strideP, c_loc(B(1)), ldb, strideB, batch_count)
+        A), lda, strideA, c_loc(ipiv), strideP, c_loc(B), ldb, strideB, batch_count)
     end function rocsolver_sgetrs_strided_batched_native
 
     function rocsolver_sgetrs_strided_batched_typed(handle, trans, n, nrhs, A, lda, strideA, ipiv, &
@@ -58255,18 +58254,18 @@ contains
       integer(c_int), value :: trans
       integer(c_int), value :: n
       integer(c_int), value :: nrhs
-      real(c_double), target :: A(*)
+      real(c_double), target :: A(..)
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
-      integer(c_int), target :: ipiv(*)
+      integer(c_int), target :: ipiv(..)
       integer(c_long), value :: strideP
-      real(c_double), target :: B(*)
+      real(c_double), target :: B(..)
       integer(c_int), value :: ldb
       integer(c_long), value :: strideB
       integer(c_int), value :: batch_count
       integer(c_int) :: dgetrs_strided_batched
       dgetrs_strided_batched = rocsolver_dgetrs_strided_batched_raw(handle, trans, n, nrhs, c_loc( &
-        A(1)), lda, strideA, c_loc(ipiv(1)), strideP, c_loc(B(1)), ldb, strideB, batch_count)
+        A), lda, strideA, c_loc(ipiv), strideP, c_loc(B), ldb, strideB, batch_count)
     end function rocsolver_dgetrs_strided_batched_native
 
     function rocsolver_dgetrs_strided_batched_typed(handle, trans, n, nrhs, A, lda, strideA, ipiv, &
@@ -58300,18 +58299,18 @@ contains
       integer(c_int), value :: trans
       integer(c_int), value :: n
       integer(c_int), value :: nrhs
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: A(..)
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
-      integer(c_int), target :: ipiv(*)
+      integer(c_int), target :: ipiv(..)
       integer(c_long), value :: strideP
-      complex(c_float_complex), target :: B(*)
+      complex(c_float_complex), target :: B(..)
       integer(c_int), value :: ldb
       integer(c_long), value :: strideB
       integer(c_int), value :: batch_count
       integer(c_int) :: cgetrs_strided_batched
       cgetrs_strided_batched = rocsolver_cgetrs_strided_batched_raw(handle, trans, n, nrhs, c_loc( &
-        A(1)), lda, strideA, c_loc(ipiv(1)), strideP, c_loc(B(1)), ldb, strideB, batch_count)
+        A), lda, strideA, c_loc(ipiv), strideP, c_loc(B), ldb, strideB, batch_count)
     end function rocsolver_cgetrs_strided_batched_native
 
     function rocsolver_cgetrs_strided_batched_typed(handle, trans, n, nrhs, A, lda, strideA, ipiv, &
@@ -58345,18 +58344,18 @@ contains
       integer(c_int), value :: trans
       integer(c_int), value :: n
       integer(c_int), value :: nrhs
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: A(..)
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
-      integer(c_int), target :: ipiv(*)
+      integer(c_int), target :: ipiv(..)
       integer(c_long), value :: strideP
-      complex(c_double_complex), target :: B(*)
+      complex(c_double_complex), target :: B(..)
       integer(c_int), value :: ldb
       integer(c_long), value :: strideB
       integer(c_int), value :: batch_count
       integer(c_int) :: zgetrs_strided_batched
       zgetrs_strided_batched = rocsolver_zgetrs_strided_batched_raw(handle, trans, n, nrhs, c_loc( &
-        A(1)), lda, strideA, c_loc(ipiv(1)), strideP, c_loc(B(1)), ldb, strideB, batch_count)
+        A), lda, strideA, c_loc(ipiv), strideP, c_loc(B), ldb, strideB, batch_count)
     end function rocsolver_zgetrs_strided_batched_native
 
     function rocsolver_zgetrs_strided_batched_typed(handle, trans, n, nrhs, A, lda, strideA, ipiv, &
@@ -58390,18 +58389,18 @@ contains
       integer(c_int), value :: trans
       integer(c_long), value :: n
       integer(c_long), value :: nrhs
-      real(c_float), target :: A(*)
+      real(c_float), target :: A(..)
       integer(c_long), value :: lda
       integer(c_long), value :: strideA
       type(c_ptr), value :: ipiv
       integer(c_long), value :: strideP
-      real(c_float), target :: B(*)
+      real(c_float), target :: B(..)
       integer(c_long), value :: ldb
       integer(c_long), value :: strideB
       integer(c_long), value :: batch_count
       integer(c_int) :: sgetrs_strided_batched_64
       sgetrs_strided_batched_64 = rocsolver_sgetrs_strided_batched_64_raw(handle, trans, n, nrhs, &
-        c_loc(A(1)), lda, strideA, ipiv, strideP, c_loc(B(1)), ldb, strideB, batch_count)
+        c_loc(A), lda, strideA, ipiv, strideP, c_loc(B), ldb, strideB, batch_count)
     end function rocsolver_sgetrs_strided_batched_64_native
 
     function rocsolver_sgetrs_strided_batched_64_typed(handle, trans, n, nrhs, A, lda, strideA, &
@@ -58435,18 +58434,18 @@ contains
       integer(c_int), value :: trans
       integer(c_long), value :: n
       integer(c_long), value :: nrhs
-      real(c_double), target :: A(*)
+      real(c_double), target :: A(..)
       integer(c_long), value :: lda
       integer(c_long), value :: strideA
       type(c_ptr), value :: ipiv
       integer(c_long), value :: strideP
-      real(c_double), target :: B(*)
+      real(c_double), target :: B(..)
       integer(c_long), value :: ldb
       integer(c_long), value :: strideB
       integer(c_long), value :: batch_count
       integer(c_int) :: dgetrs_strided_batched_64
       dgetrs_strided_batched_64 = rocsolver_dgetrs_strided_batched_64_raw(handle, trans, n, nrhs, &
-        c_loc(A(1)), lda, strideA, ipiv, strideP, c_loc(B(1)), ldb, strideB, batch_count)
+        c_loc(A), lda, strideA, ipiv, strideP, c_loc(B), ldb, strideB, batch_count)
     end function rocsolver_dgetrs_strided_batched_64_native
 
     function rocsolver_dgetrs_strided_batched_64_typed(handle, trans, n, nrhs, A, lda, strideA, &
@@ -58480,18 +58479,18 @@ contains
       integer(c_int), value :: trans
       integer(c_long), value :: n
       integer(c_long), value :: nrhs
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: A(..)
       integer(c_long), value :: lda
       integer(c_long), value :: strideA
       type(c_ptr), value :: ipiv
       integer(c_long), value :: strideP
-      complex(c_float_complex), target :: B(*)
+      complex(c_float_complex), target :: B(..)
       integer(c_long), value :: ldb
       integer(c_long), value :: strideB
       integer(c_long), value :: batch_count
       integer(c_int) :: cgetrs_strided_batched_64
       cgetrs_strided_batched_64 = rocsolver_cgetrs_strided_batched_64_raw(handle, trans, n, nrhs, &
-        c_loc(A(1)), lda, strideA, ipiv, strideP, c_loc(B(1)), ldb, strideB, batch_count)
+        c_loc(A), lda, strideA, ipiv, strideP, c_loc(B), ldb, strideB, batch_count)
     end function rocsolver_cgetrs_strided_batched_64_native
 
     function rocsolver_cgetrs_strided_batched_64_typed(handle, trans, n, nrhs, A, lda, strideA, &
@@ -58525,18 +58524,18 @@ contains
       integer(c_int), value :: trans
       integer(c_long), value :: n
       integer(c_long), value :: nrhs
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: A(..)
       integer(c_long), value :: lda
       integer(c_long), value :: strideA
       type(c_ptr), value :: ipiv
       integer(c_long), value :: strideP
-      complex(c_double_complex), target :: B(*)
+      complex(c_double_complex), target :: B(..)
       integer(c_long), value :: ldb
       integer(c_long), value :: strideB
       integer(c_long), value :: batch_count
       integer(c_int) :: zgetrs_strided_batched_64
       zgetrs_strided_batched_64 = rocsolver_zgetrs_strided_batched_64_raw(handle, trans, n, nrhs, &
-        c_loc(A(1)), lda, strideA, ipiv, strideP, c_loc(B(1)), ldb, strideB, batch_count)
+        c_loc(A), lda, strideA, ipiv, strideP, c_loc(B), ldb, strideB, batch_count)
     end function rocsolver_zgetrs_strided_batched_64_native
 
     function rocsolver_zgetrs_strided_batched_64_typed(handle, trans, n, nrhs, A, lda, strideA, &
@@ -58569,14 +58568,14 @@ contains
       integer(c_int), value :: uplo
       integer(c_int), value :: n
       integer(c_int), value :: nrhs
-      real(c_float), target :: A(*)
+      real(c_float), target :: A(..)
       integer(c_int), value :: lda
-      integer(c_int), target :: ipiv(*)
-      real(c_float), target :: B(*)
+      integer(c_int), target :: ipiv(..)
+      real(c_float), target :: B(..)
       integer(c_int), value :: ldb
       integer(c_int) :: ssytrs
-      ssytrs = rocsolver_ssytrs_raw(handle, uplo, n, nrhs, c_loc(A(1)), lda, c_loc(ipiv(1)), &
-        c_loc(B(1)), ldb)
+      ssytrs = rocsolver_ssytrs_raw(handle, uplo, n, nrhs, c_loc(A), lda, c_loc(ipiv), c_loc(B), &
+        ldb)
     end function rocsolver_ssytrs_native
 
     function rocsolver_ssytrs_typed(handle, uplo, n, nrhs, A, lda, ipiv, B, ldb) result(ssytrs)
@@ -58603,14 +58602,14 @@ contains
       integer(c_int), value :: uplo
       integer(c_int), value :: n
       integer(c_int), value :: nrhs
-      real(c_double), target :: A(*)
+      real(c_double), target :: A(..)
       integer(c_int), value :: lda
-      integer(c_int), target :: ipiv(*)
-      real(c_double), target :: B(*)
+      integer(c_int), target :: ipiv(..)
+      real(c_double), target :: B(..)
       integer(c_int), value :: ldb
       integer(c_int) :: dsytrs
-      dsytrs = rocsolver_dsytrs_raw(handle, uplo, n, nrhs, c_loc(A(1)), lda, c_loc(ipiv(1)), &
-        c_loc(B(1)), ldb)
+      dsytrs = rocsolver_dsytrs_raw(handle, uplo, n, nrhs, c_loc(A), lda, c_loc(ipiv), c_loc(B), &
+        ldb)
     end function rocsolver_dsytrs_native
 
     function rocsolver_dsytrs_typed(handle, uplo, n, nrhs, A, lda, ipiv, B, ldb) result(dsytrs)
@@ -58637,14 +58636,14 @@ contains
       integer(c_int), value :: uplo
       integer(c_int), value :: n
       integer(c_int), value :: nrhs
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: A(..)
       integer(c_int), value :: lda
-      integer(c_int), target :: ipiv(*)
-      complex(c_float_complex), target :: B(*)
+      integer(c_int), target :: ipiv(..)
+      complex(c_float_complex), target :: B(..)
       integer(c_int), value :: ldb
       integer(c_int) :: csytrs
-      csytrs = rocsolver_csytrs_raw(handle, uplo, n, nrhs, c_loc(A(1)), lda, c_loc(ipiv(1)), &
-        c_loc(B(1)), ldb)
+      csytrs = rocsolver_csytrs_raw(handle, uplo, n, nrhs, c_loc(A), lda, c_loc(ipiv), c_loc(B), &
+        ldb)
     end function rocsolver_csytrs_native
 
     function rocsolver_csytrs_typed(handle, uplo, n, nrhs, A, lda, ipiv, B, ldb) result(csytrs)
@@ -58671,14 +58670,14 @@ contains
       integer(c_int), value :: uplo
       integer(c_int), value :: n
       integer(c_int), value :: nrhs
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: A(..)
       integer(c_int), value :: lda
-      integer(c_int), target :: ipiv(*)
-      complex(c_double_complex), target :: B(*)
+      integer(c_int), target :: ipiv(..)
+      complex(c_double_complex), target :: B(..)
       integer(c_int), value :: ldb
       integer(c_int) :: zsytrs
-      zsytrs = rocsolver_zsytrs_raw(handle, uplo, n, nrhs, c_loc(A(1)), lda, c_loc(ipiv(1)), &
-        c_loc(B(1)), ldb)
+      zsytrs = rocsolver_zsytrs_raw(handle, uplo, n, nrhs, c_loc(A), lda, c_loc(ipiv), c_loc(B), &
+        ldb)
     end function rocsolver_zsytrs_native
 
     function rocsolver_zsytrs_typed(handle, uplo, n, nrhs, A, lda, ipiv, B, ldb) result(zsytrs)
@@ -58706,14 +58705,13 @@ contains
       integer(c_int), value :: uplo
       integer(c_long), value :: n
       integer(c_long), value :: nrhs
-      real(c_float), target :: A(*)
+      real(c_float), target :: A(..)
       integer(c_long), value :: lda
       type(c_ptr), value :: ipiv
-      real(c_float), target :: B(*)
+      real(c_float), target :: B(..)
       integer(c_long), value :: ldb
       integer(c_int) :: ssytrs_64
-      ssytrs_64 = rocsolver_ssytrs_64_raw(handle, uplo, n, nrhs, c_loc(A(1)), lda, ipiv, c_loc(B( &
-        1)), ldb)
+      ssytrs_64 = rocsolver_ssytrs_64_raw(handle, uplo, n, nrhs, c_loc(A), lda, ipiv, c_loc(B), ldb)
     end function rocsolver_ssytrs_64_native
 
     function rocsolver_ssytrs_64_typed(handle, uplo, n, nrhs, A, lda, ipiv, B, ldb) result( &
@@ -58742,14 +58740,13 @@ contains
       integer(c_int), value :: uplo
       integer(c_long), value :: n
       integer(c_long), value :: nrhs
-      real(c_double), target :: A(*)
+      real(c_double), target :: A(..)
       integer(c_long), value :: lda
       type(c_ptr), value :: ipiv
-      real(c_double), target :: B(*)
+      real(c_double), target :: B(..)
       integer(c_long), value :: ldb
       integer(c_int) :: dsytrs_64
-      dsytrs_64 = rocsolver_dsytrs_64_raw(handle, uplo, n, nrhs, c_loc(A(1)), lda, ipiv, c_loc(B( &
-        1)), ldb)
+      dsytrs_64 = rocsolver_dsytrs_64_raw(handle, uplo, n, nrhs, c_loc(A), lda, ipiv, c_loc(B), ldb)
     end function rocsolver_dsytrs_64_native
 
     function rocsolver_dsytrs_64_typed(handle, uplo, n, nrhs, A, lda, ipiv, B, ldb) result( &
@@ -58778,14 +58775,13 @@ contains
       integer(c_int), value :: uplo
       integer(c_long), value :: n
       integer(c_long), value :: nrhs
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: A(..)
       integer(c_long), value :: lda
       type(c_ptr), value :: ipiv
-      complex(c_float_complex), target :: B(*)
+      complex(c_float_complex), target :: B(..)
       integer(c_long), value :: ldb
       integer(c_int) :: csytrs_64
-      csytrs_64 = rocsolver_csytrs_64_raw(handle, uplo, n, nrhs, c_loc(A(1)), lda, ipiv, c_loc(B( &
-        1)), ldb)
+      csytrs_64 = rocsolver_csytrs_64_raw(handle, uplo, n, nrhs, c_loc(A), lda, ipiv, c_loc(B), ldb)
     end function rocsolver_csytrs_64_native
 
     function rocsolver_csytrs_64_typed(handle, uplo, n, nrhs, A, lda, ipiv, B, ldb) result( &
@@ -58814,14 +58810,13 @@ contains
       integer(c_int), value :: uplo
       integer(c_long), value :: n
       integer(c_long), value :: nrhs
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: A(..)
       integer(c_long), value :: lda
       type(c_ptr), value :: ipiv
-      complex(c_double_complex), target :: B(*)
+      complex(c_double_complex), target :: B(..)
       integer(c_long), value :: ldb
       integer(c_int) :: zsytrs_64
-      zsytrs_64 = rocsolver_zsytrs_64_raw(handle, uplo, n, nrhs, c_loc(A(1)), lda, ipiv, c_loc(B( &
-        1)), ldb)
+      zsytrs_64 = rocsolver_zsytrs_64_raw(handle, uplo, n, nrhs, c_loc(A), lda, ipiv, c_loc(B), ldb)
     end function rocsolver_zsytrs_64_native
 
     function rocsolver_zsytrs_64_typed(handle, uplo, n, nrhs, A, lda, ipiv, B, ldb) result( &
@@ -58852,13 +58847,13 @@ contains
       integer(c_int), value :: nrhs
       type(c_ptr), value :: A
       integer(c_int), value :: lda
-      integer(c_int), target :: ipiv(*)
+      integer(c_int), target :: ipiv(..)
       integer(c_long), value :: strideP
       type(c_ptr), value :: B
       integer(c_int), value :: ldb
       integer(c_int), value :: batch_count
       integer(c_int) :: ssytrs_batched
-      ssytrs_batched = rocsolver_ssytrs_batched_raw(handle, uplo, n, nrhs, A, lda, c_loc(ipiv(1)), &
+      ssytrs_batched = rocsolver_ssytrs_batched_raw(handle, uplo, n, nrhs, A, lda, c_loc(ipiv), &
         strideP, B, ldb, batch_count)
     end function rocsolver_ssytrs_batched_native
 
@@ -58893,13 +58888,13 @@ contains
       integer(c_int), value :: nrhs
       type(c_ptr), value :: A
       integer(c_int), value :: lda
-      integer(c_int), target :: ipiv(*)
+      integer(c_int), target :: ipiv(..)
       integer(c_long), value :: strideP
       type(c_ptr), value :: B
       integer(c_int), value :: ldb
       integer(c_int), value :: batch_count
       integer(c_int) :: dsytrs_batched
-      dsytrs_batched = rocsolver_dsytrs_batched_raw(handle, uplo, n, nrhs, A, lda, c_loc(ipiv(1)), &
+      dsytrs_batched = rocsolver_dsytrs_batched_raw(handle, uplo, n, nrhs, A, lda, c_loc(ipiv), &
         strideP, B, ldb, batch_count)
     end function rocsolver_dsytrs_batched_native
 
@@ -58934,13 +58929,13 @@ contains
       integer(c_int), value :: nrhs
       type(c_ptr), value :: A
       integer(c_int), value :: lda
-      integer(c_int), target :: ipiv(*)
+      integer(c_int), target :: ipiv(..)
       integer(c_long), value :: strideP
       type(c_ptr), value :: B
       integer(c_int), value :: ldb
       integer(c_int), value :: batch_count
       integer(c_int) :: csytrs_batched
-      csytrs_batched = rocsolver_csytrs_batched_raw(handle, uplo, n, nrhs, A, lda, c_loc(ipiv(1)), &
+      csytrs_batched = rocsolver_csytrs_batched_raw(handle, uplo, n, nrhs, A, lda, c_loc(ipiv), &
         strideP, B, ldb, batch_count)
     end function rocsolver_csytrs_batched_native
 
@@ -58975,13 +58970,13 @@ contains
       integer(c_int), value :: nrhs
       type(c_ptr), value :: A
       integer(c_int), value :: lda
-      integer(c_int), target :: ipiv(*)
+      integer(c_int), target :: ipiv(..)
       integer(c_long), value :: strideP
       type(c_ptr), value :: B
       integer(c_int), value :: ldb
       integer(c_int), value :: batch_count
       integer(c_int) :: zsytrs_batched
-      zsytrs_batched = rocsolver_zsytrs_batched_raw(handle, uplo, n, nrhs, A, lda, c_loc(ipiv(1)), &
+      zsytrs_batched = rocsolver_zsytrs_batched_raw(handle, uplo, n, nrhs, A, lda, c_loc(ipiv), &
         strideP, B, ldb, batch_count)
     end function rocsolver_zsytrs_batched_native
 
@@ -59098,18 +59093,18 @@ contains
       integer(c_int), value :: uplo
       integer(c_int), value :: n
       integer(c_int), value :: nrhs
-      real(c_float), target :: A(*)
+      real(c_float), target :: A(..)
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
-      integer(c_int), target :: ipiv(*)
+      integer(c_int), target :: ipiv(..)
       integer(c_long), value :: strideP
-      real(c_float), target :: B(*)
+      real(c_float), target :: B(..)
       integer(c_int), value :: ldb
       integer(c_long), value :: strideB
       integer(c_int), value :: batch_count
       integer(c_int) :: ssytrs_strided_batched
       ssytrs_strided_batched = rocsolver_ssytrs_strided_batched_raw(handle, uplo, n, nrhs, c_loc( &
-        A(1)), lda, strideA, c_loc(ipiv(1)), strideP, c_loc(B(1)), ldb, strideB, batch_count)
+        A), lda, strideA, c_loc(ipiv), strideP, c_loc(B), ldb, strideB, batch_count)
     end function rocsolver_ssytrs_strided_batched_native
 
     function rocsolver_ssytrs_strided_batched_typed(handle, uplo, n, nrhs, A, lda, strideA, ipiv, &
@@ -59143,18 +59138,18 @@ contains
       integer(c_int), value :: uplo
       integer(c_int), value :: n
       integer(c_int), value :: nrhs
-      real(c_double), target :: A(*)
+      real(c_double), target :: A(..)
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
-      integer(c_int), target :: ipiv(*)
+      integer(c_int), target :: ipiv(..)
       integer(c_long), value :: strideP
-      real(c_double), target :: B(*)
+      real(c_double), target :: B(..)
       integer(c_int), value :: ldb
       integer(c_long), value :: strideB
       integer(c_int), value :: batch_count
       integer(c_int) :: dsytrs_strided_batched
       dsytrs_strided_batched = rocsolver_dsytrs_strided_batched_raw(handle, uplo, n, nrhs, c_loc( &
-        A(1)), lda, strideA, c_loc(ipiv(1)), strideP, c_loc(B(1)), ldb, strideB, batch_count)
+        A), lda, strideA, c_loc(ipiv), strideP, c_loc(B), ldb, strideB, batch_count)
     end function rocsolver_dsytrs_strided_batched_native
 
     function rocsolver_dsytrs_strided_batched_typed(handle, uplo, n, nrhs, A, lda, strideA, ipiv, &
@@ -59188,18 +59183,18 @@ contains
       integer(c_int), value :: uplo
       integer(c_int), value :: n
       integer(c_int), value :: nrhs
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: A(..)
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
-      integer(c_int), target :: ipiv(*)
+      integer(c_int), target :: ipiv(..)
       integer(c_long), value :: strideP
-      complex(c_float_complex), target :: B(*)
+      complex(c_float_complex), target :: B(..)
       integer(c_int), value :: ldb
       integer(c_long), value :: strideB
       integer(c_int), value :: batch_count
       integer(c_int) :: csytrs_strided_batched
       csytrs_strided_batched = rocsolver_csytrs_strided_batched_raw(handle, uplo, n, nrhs, c_loc( &
-        A(1)), lda, strideA, c_loc(ipiv(1)), strideP, c_loc(B(1)), ldb, strideB, batch_count)
+        A), lda, strideA, c_loc(ipiv), strideP, c_loc(B), ldb, strideB, batch_count)
     end function rocsolver_csytrs_strided_batched_native
 
     function rocsolver_csytrs_strided_batched_typed(handle, uplo, n, nrhs, A, lda, strideA, ipiv, &
@@ -59233,18 +59228,18 @@ contains
       integer(c_int), value :: uplo
       integer(c_int), value :: n
       integer(c_int), value :: nrhs
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: A(..)
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
-      integer(c_int), target :: ipiv(*)
+      integer(c_int), target :: ipiv(..)
       integer(c_long), value :: strideP
-      complex(c_double_complex), target :: B(*)
+      complex(c_double_complex), target :: B(..)
       integer(c_int), value :: ldb
       integer(c_long), value :: strideB
       integer(c_int), value :: batch_count
       integer(c_int) :: zsytrs_strided_batched
       zsytrs_strided_batched = rocsolver_zsytrs_strided_batched_raw(handle, uplo, n, nrhs, c_loc( &
-        A(1)), lda, strideA, c_loc(ipiv(1)), strideP, c_loc(B(1)), ldb, strideB, batch_count)
+        A), lda, strideA, c_loc(ipiv), strideP, c_loc(B), ldb, strideB, batch_count)
     end function rocsolver_zsytrs_strided_batched_native
 
     function rocsolver_zsytrs_strided_batched_typed(handle, uplo, n, nrhs, A, lda, strideA, ipiv, &
@@ -59278,18 +59273,18 @@ contains
       integer(c_int), value :: uplo
       integer(c_long), value :: n
       integer(c_long), value :: nrhs
-      real(c_float), target :: A(*)
+      real(c_float), target :: A(..)
       integer(c_long), value :: lda
       integer(c_long), value :: strideA
       type(c_ptr), value :: ipiv
       integer(c_long), value :: strideP
-      real(c_float), target :: B(*)
+      real(c_float), target :: B(..)
       integer(c_long), value :: ldb
       integer(c_long), value :: strideB
       integer(c_long), value :: batch_count
       integer(c_int) :: ssytrs_strided_batched_64
       ssytrs_strided_batched_64 = rocsolver_ssytrs_strided_batched_64_raw(handle, uplo, n, nrhs, &
-        c_loc(A(1)), lda, strideA, ipiv, strideP, c_loc(B(1)), ldb, strideB, batch_count)
+        c_loc(A), lda, strideA, ipiv, strideP, c_loc(B), ldb, strideB, batch_count)
     end function rocsolver_ssytrs_strided_batched_64_native
 
     function rocsolver_ssytrs_strided_batched_64_typed(handle, uplo, n, nrhs, A, lda, strideA, &
@@ -59323,18 +59318,18 @@ contains
       integer(c_int), value :: uplo
       integer(c_long), value :: n
       integer(c_long), value :: nrhs
-      real(c_double), target :: A(*)
+      real(c_double), target :: A(..)
       integer(c_long), value :: lda
       integer(c_long), value :: strideA
       type(c_ptr), value :: ipiv
       integer(c_long), value :: strideP
-      real(c_double), target :: B(*)
+      real(c_double), target :: B(..)
       integer(c_long), value :: ldb
       integer(c_long), value :: strideB
       integer(c_long), value :: batch_count
       integer(c_int) :: dsytrs_strided_batched_64
       dsytrs_strided_batched_64 = rocsolver_dsytrs_strided_batched_64_raw(handle, uplo, n, nrhs, &
-        c_loc(A(1)), lda, strideA, ipiv, strideP, c_loc(B(1)), ldb, strideB, batch_count)
+        c_loc(A), lda, strideA, ipiv, strideP, c_loc(B), ldb, strideB, batch_count)
     end function rocsolver_dsytrs_strided_batched_64_native
 
     function rocsolver_dsytrs_strided_batched_64_typed(handle, uplo, n, nrhs, A, lda, strideA, &
@@ -59368,18 +59363,18 @@ contains
       integer(c_int), value :: uplo
       integer(c_long), value :: n
       integer(c_long), value :: nrhs
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: A(..)
       integer(c_long), value :: lda
       integer(c_long), value :: strideA
       type(c_ptr), value :: ipiv
       integer(c_long), value :: strideP
-      complex(c_float_complex), target :: B(*)
+      complex(c_float_complex), target :: B(..)
       integer(c_long), value :: ldb
       integer(c_long), value :: strideB
       integer(c_long), value :: batch_count
       integer(c_int) :: csytrs_strided_batched_64
       csytrs_strided_batched_64 = rocsolver_csytrs_strided_batched_64_raw(handle, uplo, n, nrhs, &
-        c_loc(A(1)), lda, strideA, ipiv, strideP, c_loc(B(1)), ldb, strideB, batch_count)
+        c_loc(A), lda, strideA, ipiv, strideP, c_loc(B), ldb, strideB, batch_count)
     end function rocsolver_csytrs_strided_batched_64_native
 
     function rocsolver_csytrs_strided_batched_64_typed(handle, uplo, n, nrhs, A, lda, strideA, &
@@ -59413,18 +59408,18 @@ contains
       integer(c_int), value :: uplo
       integer(c_long), value :: n
       integer(c_long), value :: nrhs
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: A(..)
       integer(c_long), value :: lda
       integer(c_long), value :: strideA
       type(c_ptr), value :: ipiv
       integer(c_long), value :: strideP
-      complex(c_double_complex), target :: B(*)
+      complex(c_double_complex), target :: B(..)
       integer(c_long), value :: ldb
       integer(c_long), value :: strideB
       integer(c_long), value :: batch_count
       integer(c_int) :: zsytrs_strided_batched_64
       zsytrs_strided_batched_64 = rocsolver_zsytrs_strided_batched_64_raw(handle, uplo, n, nrhs, &
-        c_loc(A(1)), lda, strideA, ipiv, strideP, c_loc(B(1)), ldb, strideB, batch_count)
+        c_loc(A), lda, strideA, ipiv, strideP, c_loc(B), ldb, strideB, batch_count)
     end function rocsolver_zsytrs_strided_batched_64_native
 
     function rocsolver_zsytrs_strided_batched_64_typed(handle, uplo, n, nrhs, A, lda, strideA, &
@@ -59456,15 +59451,15 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: n
       integer(c_int), value :: nrhs
-      real(c_float), target :: A(*)
+      real(c_float), target :: A(..)
       integer(c_int), value :: lda
-      integer(c_int), target :: ipiv(*)
-      real(c_float), target :: B(*)
+      integer(c_int), target :: ipiv(..)
+      real(c_float), target :: B(..)
       integer(c_int), value :: ldb
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int) :: sgesv
-      sgesv = rocsolver_sgesv_raw(handle, n, nrhs, c_loc(A(1)), lda, c_loc(ipiv(1)), c_loc(B(1)), &
-        ldb, c_loc(info(1)))
+      sgesv = rocsolver_sgesv_raw(handle, n, nrhs, c_loc(A), lda, c_loc(ipiv), c_loc(B), ldb, &
+        c_loc(info))
     end function rocsolver_sgesv_native
 
     function rocsolver_sgesv_typed(handle, n, nrhs, A, lda, ipiv, B, ldb, info) result(sgesv)
@@ -59490,15 +59485,15 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: n
       integer(c_int), value :: nrhs
-      real(c_double), target :: A(*)
+      real(c_double), target :: A(..)
       integer(c_int), value :: lda
-      integer(c_int), target :: ipiv(*)
-      real(c_double), target :: B(*)
+      integer(c_int), target :: ipiv(..)
+      real(c_double), target :: B(..)
       integer(c_int), value :: ldb
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int) :: dgesv
-      dgesv = rocsolver_dgesv_raw(handle, n, nrhs, c_loc(A(1)), lda, c_loc(ipiv(1)), c_loc(B(1)), &
-        ldb, c_loc(info(1)))
+      dgesv = rocsolver_dgesv_raw(handle, n, nrhs, c_loc(A), lda, c_loc(ipiv), c_loc(B), ldb, &
+        c_loc(info))
     end function rocsolver_dgesv_native
 
     function rocsolver_dgesv_typed(handle, n, nrhs, A, lda, ipiv, B, ldb, info) result(dgesv)
@@ -59524,15 +59519,15 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: n
       integer(c_int), value :: nrhs
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: A(..)
       integer(c_int), value :: lda
-      integer(c_int), target :: ipiv(*)
-      complex(c_float_complex), target :: B(*)
+      integer(c_int), target :: ipiv(..)
+      complex(c_float_complex), target :: B(..)
       integer(c_int), value :: ldb
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int) :: cgesv
-      cgesv = rocsolver_cgesv_raw(handle, n, nrhs, c_loc(A(1)), lda, c_loc(ipiv(1)), c_loc(B(1)), &
-        ldb, c_loc(info(1)))
+      cgesv = rocsolver_cgesv_raw(handle, n, nrhs, c_loc(A), lda, c_loc(ipiv), c_loc(B), ldb, &
+        c_loc(info))
     end function rocsolver_cgesv_native
 
     function rocsolver_cgesv_typed(handle, n, nrhs, A, lda, ipiv, B, ldb, info) result(cgesv)
@@ -59558,15 +59553,15 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: n
       integer(c_int), value :: nrhs
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: A(..)
       integer(c_int), value :: lda
-      integer(c_int), target :: ipiv(*)
-      complex(c_double_complex), target :: B(*)
+      integer(c_int), target :: ipiv(..)
+      complex(c_double_complex), target :: B(..)
       integer(c_int), value :: ldb
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int) :: zgesv
-      zgesv = rocsolver_zgesv_raw(handle, n, nrhs, c_loc(A(1)), lda, c_loc(ipiv(1)), c_loc(B(1)), &
-        ldb, c_loc(info(1)))
+      zgesv = rocsolver_zgesv_raw(handle, n, nrhs, c_loc(A), lda, c_loc(ipiv), c_loc(B), ldb, &
+        c_loc(info))
     end function rocsolver_zgesv_native
 
     function rocsolver_zgesv_typed(handle, n, nrhs, A, lda, ipiv, B, ldb, info) result(zgesv)
@@ -59595,15 +59590,15 @@ contains
       integer(c_int), value :: nrhs
       type(c_ptr), value :: A
       integer(c_int), value :: lda
-      integer(c_int), target :: ipiv(*)
+      integer(c_int), target :: ipiv(..)
       integer(c_long), value :: strideP
       type(c_ptr), value :: B
       integer(c_int), value :: ldb
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: sgesv_batched
-      sgesv_batched = rocsolver_sgesv_batched_raw(handle, n, nrhs, A, lda, c_loc(ipiv(1)), &
-        strideP, B, ldb, c_loc(info(1)), batch_count)
+      sgesv_batched = rocsolver_sgesv_batched_raw(handle, n, nrhs, A, lda, c_loc(ipiv), strideP, &
+        B, ldb, c_loc(info), batch_count)
     end function rocsolver_sgesv_batched_native
 
     function rocsolver_sgesv_batched_typed(handle, n, nrhs, A, lda, ipiv, strideP, B, ldb, info, &
@@ -59636,15 +59631,15 @@ contains
       integer(c_int), value :: nrhs
       type(c_ptr), value :: A
       integer(c_int), value :: lda
-      integer(c_int), target :: ipiv(*)
+      integer(c_int), target :: ipiv(..)
       integer(c_long), value :: strideP
       type(c_ptr), value :: B
       integer(c_int), value :: ldb
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: dgesv_batched
-      dgesv_batched = rocsolver_dgesv_batched_raw(handle, n, nrhs, A, lda, c_loc(ipiv(1)), &
-        strideP, B, ldb, c_loc(info(1)), batch_count)
+      dgesv_batched = rocsolver_dgesv_batched_raw(handle, n, nrhs, A, lda, c_loc(ipiv), strideP, &
+        B, ldb, c_loc(info), batch_count)
     end function rocsolver_dgesv_batched_native
 
     function rocsolver_dgesv_batched_typed(handle, n, nrhs, A, lda, ipiv, strideP, B, ldb, info, &
@@ -59677,15 +59672,15 @@ contains
       integer(c_int), value :: nrhs
       type(c_ptr), value :: A
       integer(c_int), value :: lda
-      integer(c_int), target :: ipiv(*)
+      integer(c_int), target :: ipiv(..)
       integer(c_long), value :: strideP
       type(c_ptr), value :: B
       integer(c_int), value :: ldb
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: cgesv_batched
-      cgesv_batched = rocsolver_cgesv_batched_raw(handle, n, nrhs, A, lda, c_loc(ipiv(1)), &
-        strideP, B, ldb, c_loc(info(1)), batch_count)
+      cgesv_batched = rocsolver_cgesv_batched_raw(handle, n, nrhs, A, lda, c_loc(ipiv), strideP, &
+        B, ldb, c_loc(info), batch_count)
     end function rocsolver_cgesv_batched_native
 
     function rocsolver_cgesv_batched_typed(handle, n, nrhs, A, lda, ipiv, strideP, B, ldb, info, &
@@ -59718,15 +59713,15 @@ contains
       integer(c_int), value :: nrhs
       type(c_ptr), value :: A
       integer(c_int), value :: lda
-      integer(c_int), target :: ipiv(*)
+      integer(c_int), target :: ipiv(..)
       integer(c_long), value :: strideP
       type(c_ptr), value :: B
       integer(c_int), value :: ldb
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: zgesv_batched
-      zgesv_batched = rocsolver_zgesv_batched_raw(handle, n, nrhs, A, lda, c_loc(ipiv(1)), &
-        strideP, B, ldb, c_loc(info(1)), batch_count)
+      zgesv_batched = rocsolver_zgesv_batched_raw(handle, n, nrhs, A, lda, c_loc(ipiv), strideP, &
+        B, ldb, c_loc(info), batch_count)
     end function rocsolver_zgesv_batched_native
 
     function rocsolver_zgesv_batched_typed(handle, n, nrhs, A, lda, ipiv, strideP, B, ldb, info, &
@@ -59757,20 +59752,19 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: n
       integer(c_int), value :: nrhs
-      real(c_float), target :: A(*)
+      real(c_float), target :: A(..)
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
-      integer(c_int), target :: ipiv(*)
+      integer(c_int), target :: ipiv(..)
       integer(c_long), value :: strideP
-      real(c_float), target :: B(*)
+      real(c_float), target :: B(..)
       integer(c_int), value :: ldb
       integer(c_long), value :: strideB
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: sgesv_strided_batched
-      sgesv_strided_batched = rocsolver_sgesv_strided_batched_raw(handle, n, nrhs, c_loc(A(1)), &
-        lda, strideA, c_loc(ipiv(1)), strideP, c_loc(B(1)), ldb, strideB, c_loc(info(1)), &
-        batch_count)
+      sgesv_strided_batched = rocsolver_sgesv_strided_batched_raw(handle, n, nrhs, c_loc(A), lda, &
+        strideA, c_loc(ipiv), strideP, c_loc(B), ldb, strideB, c_loc(info), batch_count)
     end function rocsolver_sgesv_strided_batched_native
 
     function rocsolver_sgesv_strided_batched_typed(handle, n, nrhs, A, lda, strideA, ipiv, &
@@ -59803,20 +59797,19 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: n
       integer(c_int), value :: nrhs
-      real(c_double), target :: A(*)
+      real(c_double), target :: A(..)
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
-      integer(c_int), target :: ipiv(*)
+      integer(c_int), target :: ipiv(..)
       integer(c_long), value :: strideP
-      real(c_double), target :: B(*)
+      real(c_double), target :: B(..)
       integer(c_int), value :: ldb
       integer(c_long), value :: strideB
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: dgesv_strided_batched
-      dgesv_strided_batched = rocsolver_dgesv_strided_batched_raw(handle, n, nrhs, c_loc(A(1)), &
-        lda, strideA, c_loc(ipiv(1)), strideP, c_loc(B(1)), ldb, strideB, c_loc(info(1)), &
-        batch_count)
+      dgesv_strided_batched = rocsolver_dgesv_strided_batched_raw(handle, n, nrhs, c_loc(A), lda, &
+        strideA, c_loc(ipiv), strideP, c_loc(B), ldb, strideB, c_loc(info), batch_count)
     end function rocsolver_dgesv_strided_batched_native
 
     function rocsolver_dgesv_strided_batched_typed(handle, n, nrhs, A, lda, strideA, ipiv, &
@@ -59849,20 +59842,19 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: n
       integer(c_int), value :: nrhs
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: A(..)
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
-      integer(c_int), target :: ipiv(*)
+      integer(c_int), target :: ipiv(..)
       integer(c_long), value :: strideP
-      complex(c_float_complex), target :: B(*)
+      complex(c_float_complex), target :: B(..)
       integer(c_int), value :: ldb
       integer(c_long), value :: strideB
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: cgesv_strided_batched
-      cgesv_strided_batched = rocsolver_cgesv_strided_batched_raw(handle, n, nrhs, c_loc(A(1)), &
-        lda, strideA, c_loc(ipiv(1)), strideP, c_loc(B(1)), ldb, strideB, c_loc(info(1)), &
-        batch_count)
+      cgesv_strided_batched = rocsolver_cgesv_strided_batched_raw(handle, n, nrhs, c_loc(A), lda, &
+        strideA, c_loc(ipiv), strideP, c_loc(B), ldb, strideB, c_loc(info), batch_count)
     end function rocsolver_cgesv_strided_batched_native
 
     function rocsolver_cgesv_strided_batched_typed(handle, n, nrhs, A, lda, strideA, ipiv, &
@@ -59895,20 +59887,19 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: n
       integer(c_int), value :: nrhs
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: A(..)
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
-      integer(c_int), target :: ipiv(*)
+      integer(c_int), target :: ipiv(..)
       integer(c_long), value :: strideP
-      complex(c_double_complex), target :: B(*)
+      complex(c_double_complex), target :: B(..)
       integer(c_int), value :: ldb
       integer(c_long), value :: strideB
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: zgesv_strided_batched
-      zgesv_strided_batched = rocsolver_zgesv_strided_batched_raw(handle, n, nrhs, c_loc(A(1)), &
-        lda, strideA, c_loc(ipiv(1)), strideP, c_loc(B(1)), ldb, strideB, c_loc(info(1)), &
-        batch_count)
+      zgesv_strided_batched = rocsolver_zgesv_strided_batched_raw(handle, n, nrhs, c_loc(A), lda, &
+        strideA, c_loc(ipiv), strideP, c_loc(B), ldb, strideB, c_loc(info), batch_count)
     end function rocsolver_zgesv_strided_batched_native
 
     function rocsolver_zgesv_strided_batched_typed(handle, n, nrhs, A, lda, strideA, ipiv, &
@@ -59942,13 +59933,12 @@ contains
       integer(c_int), value :: trans
       integer(c_int), value :: n
       integer(c_int), value :: nrhs
-      real(c_float), target :: A(*)
+      real(c_float), target :: A(..)
       integer(c_int), value :: lda
-      real(c_float), target :: B(*)
+      real(c_float), target :: B(..)
       integer(c_int), value :: ldb
       integer(c_int) :: sgetrs_npvt
-      sgetrs_npvt = rocsolver_sgetrs_npvt_raw(handle, trans, n, nrhs, c_loc(A(1)), lda, c_loc(B( &
-        1)), ldb)
+      sgetrs_npvt = rocsolver_sgetrs_npvt_raw(handle, trans, n, nrhs, c_loc(A), lda, c_loc(B), ldb)
     end function rocsolver_sgetrs_npvt_native
 
     function rocsolver_sgetrs_npvt_typed(handle, trans, n, nrhs, A, lda, B, ldb) result(sgetrs_npvt)
@@ -59975,13 +59965,12 @@ contains
       integer(c_int), value :: trans
       integer(c_int), value :: n
       integer(c_int), value :: nrhs
-      real(c_double), target :: A(*)
+      real(c_double), target :: A(..)
       integer(c_int), value :: lda
-      real(c_double), target :: B(*)
+      real(c_double), target :: B(..)
       integer(c_int), value :: ldb
       integer(c_int) :: dgetrs_npvt
-      dgetrs_npvt = rocsolver_dgetrs_npvt_raw(handle, trans, n, nrhs, c_loc(A(1)), lda, c_loc(B( &
-        1)), ldb)
+      dgetrs_npvt = rocsolver_dgetrs_npvt_raw(handle, trans, n, nrhs, c_loc(A), lda, c_loc(B), ldb)
     end function rocsolver_dgetrs_npvt_native
 
     function rocsolver_dgetrs_npvt_typed(handle, trans, n, nrhs, A, lda, B, ldb) result(dgetrs_npvt)
@@ -60008,13 +59997,12 @@ contains
       integer(c_int), value :: trans
       integer(c_int), value :: n
       integer(c_int), value :: nrhs
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: A(..)
       integer(c_int), value :: lda
-      complex(c_float_complex), target :: B(*)
+      complex(c_float_complex), target :: B(..)
       integer(c_int), value :: ldb
       integer(c_int) :: cgetrs_npvt
-      cgetrs_npvt = rocsolver_cgetrs_npvt_raw(handle, trans, n, nrhs, c_loc(A(1)), lda, c_loc(B( &
-        1)), ldb)
+      cgetrs_npvt = rocsolver_cgetrs_npvt_raw(handle, trans, n, nrhs, c_loc(A), lda, c_loc(B), ldb)
     end function rocsolver_cgetrs_npvt_native
 
     function rocsolver_cgetrs_npvt_typed(handle, trans, n, nrhs, A, lda, B, ldb) result(cgetrs_npvt)
@@ -60041,13 +60029,12 @@ contains
       integer(c_int), value :: trans
       integer(c_int), value :: n
       integer(c_int), value :: nrhs
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: A(..)
       integer(c_int), value :: lda
-      complex(c_double_complex), target :: B(*)
+      complex(c_double_complex), target :: B(..)
       integer(c_int), value :: ldb
       integer(c_int) :: zgetrs_npvt
-      zgetrs_npvt = rocsolver_zgetrs_npvt_raw(handle, trans, n, nrhs, c_loc(A(1)), lda, c_loc(B( &
-        1)), ldb)
+      zgetrs_npvt = rocsolver_zgetrs_npvt_raw(handle, trans, n, nrhs, c_loc(A), lda, c_loc(B), ldb)
     end function rocsolver_zgetrs_npvt_native
 
     function rocsolver_zgetrs_npvt_typed(handle, trans, n, nrhs, A, lda, B, ldb) result(zgetrs_npvt)
@@ -60074,13 +60061,13 @@ contains
       integer(c_int), value :: trans
       integer(c_long), value :: n
       integer(c_long), value :: nrhs
-      real(c_float), target :: A(*)
+      real(c_float), target :: A(..)
       integer(c_long), value :: lda
-      real(c_float), target :: B(*)
+      real(c_float), target :: B(..)
       integer(c_long), value :: ldb
       integer(c_int) :: sgetrs_npvt_64
-      sgetrs_npvt_64 = rocsolver_sgetrs_npvt_64_raw(handle, trans, n, nrhs, c_loc(A(1)), lda, &
-        c_loc(B(1)), ldb)
+      sgetrs_npvt_64 = rocsolver_sgetrs_npvt_64_raw(handle, trans, n, nrhs, c_loc(A), lda, c_loc( &
+        B), ldb)
     end function rocsolver_sgetrs_npvt_64_native
 
     function rocsolver_sgetrs_npvt_64_typed(handle, trans, n, nrhs, A, lda, B, ldb) result( &
@@ -60108,13 +60095,13 @@ contains
       integer(c_int), value :: trans
       integer(c_long), value :: n
       integer(c_long), value :: nrhs
-      real(c_double), target :: A(*)
+      real(c_double), target :: A(..)
       integer(c_long), value :: lda
-      real(c_double), target :: B(*)
+      real(c_double), target :: B(..)
       integer(c_long), value :: ldb
       integer(c_int) :: dgetrs_npvt_64
-      dgetrs_npvt_64 = rocsolver_dgetrs_npvt_64_raw(handle, trans, n, nrhs, c_loc(A(1)), lda, &
-        c_loc(B(1)), ldb)
+      dgetrs_npvt_64 = rocsolver_dgetrs_npvt_64_raw(handle, trans, n, nrhs, c_loc(A), lda, c_loc( &
+        B), ldb)
     end function rocsolver_dgetrs_npvt_64_native
 
     function rocsolver_dgetrs_npvt_64_typed(handle, trans, n, nrhs, A, lda, B, ldb) result( &
@@ -60142,13 +60129,13 @@ contains
       integer(c_int), value :: trans
       integer(c_long), value :: n
       integer(c_long), value :: nrhs
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: A(..)
       integer(c_long), value :: lda
-      complex(c_float_complex), target :: B(*)
+      complex(c_float_complex), target :: B(..)
       integer(c_long), value :: ldb
       integer(c_int) :: cgetrs_npvt_64
-      cgetrs_npvt_64 = rocsolver_cgetrs_npvt_64_raw(handle, trans, n, nrhs, c_loc(A(1)), lda, &
-        c_loc(B(1)), ldb)
+      cgetrs_npvt_64 = rocsolver_cgetrs_npvt_64_raw(handle, trans, n, nrhs, c_loc(A), lda, c_loc( &
+        B), ldb)
     end function rocsolver_cgetrs_npvt_64_native
 
     function rocsolver_cgetrs_npvt_64_typed(handle, trans, n, nrhs, A, lda, B, ldb) result( &
@@ -60176,13 +60163,13 @@ contains
       integer(c_int), value :: trans
       integer(c_long), value :: n
       integer(c_long), value :: nrhs
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: A(..)
       integer(c_long), value :: lda
-      complex(c_double_complex), target :: B(*)
+      complex(c_double_complex), target :: B(..)
       integer(c_long), value :: ldb
       integer(c_int) :: zgetrs_npvt_64
-      zgetrs_npvt_64 = rocsolver_zgetrs_npvt_64_raw(handle, trans, n, nrhs, c_loc(A(1)), lda, &
-        c_loc(B(1)), ldb)
+      zgetrs_npvt_64 = rocsolver_zgetrs_npvt_64_raw(handle, trans, n, nrhs, c_loc(A), lda, c_loc( &
+        B), ldb)
     end function rocsolver_zgetrs_npvt_64_native
 
     function rocsolver_zgetrs_npvt_64_typed(handle, trans, n, nrhs, A, lda, B, ldb) result( &
@@ -60362,16 +60349,16 @@ contains
       integer(c_int), value :: trans
       integer(c_int), value :: n
       integer(c_int), value :: nrhs
-      real(c_float), target :: A(*)
+      real(c_float), target :: A(..)
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
-      real(c_float), target :: B(*)
+      real(c_float), target :: B(..)
       integer(c_int), value :: ldb
       integer(c_long), value :: strideB
       integer(c_int), value :: batch_count
       integer(c_int) :: sgetrs_npvt_strided_batched
       sgetrs_npvt_strided_batched = rocsolver_sgetrs_npvt_strided_batched_raw(handle, trans, n, &
-        nrhs, c_loc(A(1)), lda, strideA, c_loc(B(1)), ldb, strideB, batch_count)
+        nrhs, c_loc(A), lda, strideA, c_loc(B), ldb, strideB, batch_count)
     end function rocsolver_sgetrs_npvt_strided_batched_native
 
     function rocsolver_sgetrs_npvt_strided_batched_typed(handle, trans, n, nrhs, A, lda, strideA, &
@@ -60403,16 +60390,16 @@ contains
       integer(c_int), value :: trans
       integer(c_int), value :: n
       integer(c_int), value :: nrhs
-      real(c_double), target :: A(*)
+      real(c_double), target :: A(..)
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
-      real(c_double), target :: B(*)
+      real(c_double), target :: B(..)
       integer(c_int), value :: ldb
       integer(c_long), value :: strideB
       integer(c_int), value :: batch_count
       integer(c_int) :: dgetrs_npvt_strided_batched
       dgetrs_npvt_strided_batched = rocsolver_dgetrs_npvt_strided_batched_raw(handle, trans, n, &
-        nrhs, c_loc(A(1)), lda, strideA, c_loc(B(1)), ldb, strideB, batch_count)
+        nrhs, c_loc(A), lda, strideA, c_loc(B), ldb, strideB, batch_count)
     end function rocsolver_dgetrs_npvt_strided_batched_native
 
     function rocsolver_dgetrs_npvt_strided_batched_typed(handle, trans, n, nrhs, A, lda, strideA, &
@@ -60444,16 +60431,16 @@ contains
       integer(c_int), value :: trans
       integer(c_int), value :: n
       integer(c_int), value :: nrhs
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: A(..)
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
-      complex(c_float_complex), target :: B(*)
+      complex(c_float_complex), target :: B(..)
       integer(c_int), value :: ldb
       integer(c_long), value :: strideB
       integer(c_int), value :: batch_count
       integer(c_int) :: cgetrs_npvt_strided_batched
       cgetrs_npvt_strided_batched = rocsolver_cgetrs_npvt_strided_batched_raw(handle, trans, n, &
-        nrhs, c_loc(A(1)), lda, strideA, c_loc(B(1)), ldb, strideB, batch_count)
+        nrhs, c_loc(A), lda, strideA, c_loc(B), ldb, strideB, batch_count)
     end function rocsolver_cgetrs_npvt_strided_batched_native
 
     function rocsolver_cgetrs_npvt_strided_batched_typed(handle, trans, n, nrhs, A, lda, strideA, &
@@ -60485,16 +60472,16 @@ contains
       integer(c_int), value :: trans
       integer(c_int), value :: n
       integer(c_int), value :: nrhs
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: A(..)
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
-      complex(c_double_complex), target :: B(*)
+      complex(c_double_complex), target :: B(..)
       integer(c_int), value :: ldb
       integer(c_long), value :: strideB
       integer(c_int), value :: batch_count
       integer(c_int) :: zgetrs_npvt_strided_batched
       zgetrs_npvt_strided_batched = rocsolver_zgetrs_npvt_strided_batched_raw(handle, trans, n, &
-        nrhs, c_loc(A(1)), lda, strideA, c_loc(B(1)), ldb, strideB, batch_count)
+        nrhs, c_loc(A), lda, strideA, c_loc(B), ldb, strideB, batch_count)
     end function rocsolver_zgetrs_npvt_strided_batched_native
 
     function rocsolver_zgetrs_npvt_strided_batched_typed(handle, trans, n, nrhs, A, lda, strideA, &
@@ -60526,16 +60513,16 @@ contains
       integer(c_int), value :: trans
       integer(c_long), value :: n
       integer(c_long), value :: nrhs
-      real(c_float), target :: A(*)
+      real(c_float), target :: A(..)
       integer(c_long), value :: lda
       integer(c_long), value :: strideA
-      real(c_float), target :: B(*)
+      real(c_float), target :: B(..)
       integer(c_long), value :: ldb
       integer(c_long), value :: strideB
       integer(c_long), value :: batch_count
       integer(c_int) :: sgetrs_npvt_strided_batched_64
       sgetrs_npvt_strided_batched_64 = rocsolver_sgetrs_npvt_strided_batched_64_raw(handle, trans, &
-        n, nrhs, c_loc(A(1)), lda, strideA, c_loc(B(1)), ldb, strideB, batch_count)
+        n, nrhs, c_loc(A), lda, strideA, c_loc(B), ldb, strideB, batch_count)
     end function rocsolver_sgetrs_npvt_strided_batched_64_native
 
     function rocsolver_sgetrs_npvt_strided_batched_64_typed(handle, trans, n, nrhs, A, lda, &
@@ -60567,16 +60554,16 @@ contains
       integer(c_int), value :: trans
       integer(c_long), value :: n
       integer(c_long), value :: nrhs
-      real(c_double), target :: A(*)
+      real(c_double), target :: A(..)
       integer(c_long), value :: lda
       integer(c_long), value :: strideA
-      real(c_double), target :: B(*)
+      real(c_double), target :: B(..)
       integer(c_long), value :: ldb
       integer(c_long), value :: strideB
       integer(c_long), value :: batch_count
       integer(c_int) :: dgetrs_npvt_strided_batched_64
       dgetrs_npvt_strided_batched_64 = rocsolver_dgetrs_npvt_strided_batched_64_raw(handle, trans, &
-        n, nrhs, c_loc(A(1)), lda, strideA, c_loc(B(1)), ldb, strideB, batch_count)
+        n, nrhs, c_loc(A), lda, strideA, c_loc(B), ldb, strideB, batch_count)
     end function rocsolver_dgetrs_npvt_strided_batched_64_native
 
     function rocsolver_dgetrs_npvt_strided_batched_64_typed(handle, trans, n, nrhs, A, lda, &
@@ -60608,16 +60595,16 @@ contains
       integer(c_int), value :: trans
       integer(c_long), value :: n
       integer(c_long), value :: nrhs
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: A(..)
       integer(c_long), value :: lda
       integer(c_long), value :: strideA
-      complex(c_float_complex), target :: B(*)
+      complex(c_float_complex), target :: B(..)
       integer(c_long), value :: ldb
       integer(c_long), value :: strideB
       integer(c_long), value :: batch_count
       integer(c_int) :: cgetrs_npvt_strided_batched_64
       cgetrs_npvt_strided_batched_64 = rocsolver_cgetrs_npvt_strided_batched_64_raw(handle, trans, &
-        n, nrhs, c_loc(A(1)), lda, strideA, c_loc(B(1)), ldb, strideB, batch_count)
+        n, nrhs, c_loc(A), lda, strideA, c_loc(B), ldb, strideB, batch_count)
     end function rocsolver_cgetrs_npvt_strided_batched_64_native
 
     function rocsolver_cgetrs_npvt_strided_batched_64_typed(handle, trans, n, nrhs, A, lda, &
@@ -60649,16 +60636,16 @@ contains
       integer(c_int), value :: trans
       integer(c_long), value :: n
       integer(c_long), value :: nrhs
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: A(..)
       integer(c_long), value :: lda
       integer(c_long), value :: strideA
-      complex(c_double_complex), target :: B(*)
+      complex(c_double_complex), target :: B(..)
       integer(c_long), value :: ldb
       integer(c_long), value :: strideB
       integer(c_long), value :: batch_count
       integer(c_int) :: zgetrs_npvt_strided_batched_64
       zgetrs_npvt_strided_batched_64 = rocsolver_zgetrs_npvt_strided_batched_64_raw(handle, trans, &
-        n, nrhs, c_loc(A(1)), lda, strideA, c_loc(B(1)), ldb, strideB, batch_count)
+        n, nrhs, c_loc(A), lda, strideA, c_loc(B), ldb, strideB, batch_count)
     end function rocsolver_zgetrs_npvt_strided_batched_64_native
 
     function rocsolver_zgetrs_npvt_strided_batched_64_typed(handle, trans, n, nrhs, A, lda, &
@@ -60687,12 +60674,12 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_int), value :: n
-      real(c_float), target :: A(*)
+      real(c_float), target :: A(..)
       integer(c_int), value :: lda
-      integer(c_int), target :: ipiv(*)
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: ipiv(..)
+      integer(c_int), target :: info(..)
       integer(c_int) :: sgetri
-      sgetri = rocsolver_sgetri_raw(handle, n, c_loc(A(1)), lda, c_loc(ipiv(1)), c_loc(info(1)))
+      sgetri = rocsolver_sgetri_raw(handle, n, c_loc(A), lda, c_loc(ipiv), c_loc(info))
     end function rocsolver_sgetri_native
 
     function rocsolver_sgetri_typed(handle, n, A, lda, ipiv, info) result(sgetri)
@@ -60714,12 +60701,12 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_int), value :: n
-      real(c_double), target :: A(*)
+      real(c_double), target :: A(..)
       integer(c_int), value :: lda
-      integer(c_int), target :: ipiv(*)
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: ipiv(..)
+      integer(c_int), target :: info(..)
       integer(c_int) :: dgetri
-      dgetri = rocsolver_dgetri_raw(handle, n, c_loc(A(1)), lda, c_loc(ipiv(1)), c_loc(info(1)))
+      dgetri = rocsolver_dgetri_raw(handle, n, c_loc(A), lda, c_loc(ipiv), c_loc(info))
     end function rocsolver_dgetri_native
 
     function rocsolver_dgetri_typed(handle, n, A, lda, ipiv, info) result(dgetri)
@@ -60741,12 +60728,12 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_int), value :: n
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: A(..)
       integer(c_int), value :: lda
-      integer(c_int), target :: ipiv(*)
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: ipiv(..)
+      integer(c_int), target :: info(..)
       integer(c_int) :: cgetri
-      cgetri = rocsolver_cgetri_raw(handle, n, c_loc(A(1)), lda, c_loc(ipiv(1)), c_loc(info(1)))
+      cgetri = rocsolver_cgetri_raw(handle, n, c_loc(A), lda, c_loc(ipiv), c_loc(info))
     end function rocsolver_cgetri_native
 
     function rocsolver_cgetri_typed(handle, n, A, lda, ipiv, info) result(cgetri)
@@ -60768,12 +60755,12 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_int), value :: n
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: A(..)
       integer(c_int), value :: lda
-      integer(c_int), target :: ipiv(*)
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: ipiv(..)
+      integer(c_int), target :: info(..)
       integer(c_int) :: zgetri
-      zgetri = rocsolver_zgetri_raw(handle, n, c_loc(A(1)), lda, c_loc(ipiv(1)), c_loc(info(1)))
+      zgetri = rocsolver_zgetri_raw(handle, n, c_loc(A), lda, c_loc(ipiv), c_loc(info))
     end function rocsolver_zgetri_native
 
     function rocsolver_zgetri_typed(handle, n, A, lda, ipiv, info) result(zgetri)
@@ -60798,13 +60785,13 @@ contains
       integer(c_int), value :: n
       type(c_ptr), value :: A
       integer(c_int), value :: lda
-      integer(c_int), target :: ipiv(*)
+      integer(c_int), target :: ipiv(..)
       integer(c_long), value :: strideP
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: sgetri_batched
-      sgetri_batched = rocsolver_sgetri_batched_raw(handle, n, A, lda, c_loc(ipiv(1)), strideP, &
-        c_loc(info(1)), batch_count)
+      sgetri_batched = rocsolver_sgetri_batched_raw(handle, n, A, lda, c_loc(ipiv), strideP, &
+        c_loc(info), batch_count)
     end function rocsolver_sgetri_batched_native
 
     function rocsolver_sgetri_batched_typed(handle, n, A, lda, ipiv, strideP, info, &
@@ -60833,13 +60820,13 @@ contains
       integer(c_int), value :: n
       type(c_ptr), value :: A
       integer(c_int), value :: lda
-      integer(c_int), target :: ipiv(*)
+      integer(c_int), target :: ipiv(..)
       integer(c_long), value :: strideP
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: dgetri_batched
-      dgetri_batched = rocsolver_dgetri_batched_raw(handle, n, A, lda, c_loc(ipiv(1)), strideP, &
-        c_loc(info(1)), batch_count)
+      dgetri_batched = rocsolver_dgetri_batched_raw(handle, n, A, lda, c_loc(ipiv), strideP, &
+        c_loc(info), batch_count)
     end function rocsolver_dgetri_batched_native
 
     function rocsolver_dgetri_batched_typed(handle, n, A, lda, ipiv, strideP, info, &
@@ -60868,13 +60855,13 @@ contains
       integer(c_int), value :: n
       type(c_ptr), value :: A
       integer(c_int), value :: lda
-      integer(c_int), target :: ipiv(*)
+      integer(c_int), target :: ipiv(..)
       integer(c_long), value :: strideP
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: cgetri_batched
-      cgetri_batched = rocsolver_cgetri_batched_raw(handle, n, A, lda, c_loc(ipiv(1)), strideP, &
-        c_loc(info(1)), batch_count)
+      cgetri_batched = rocsolver_cgetri_batched_raw(handle, n, A, lda, c_loc(ipiv), strideP, &
+        c_loc(info), batch_count)
     end function rocsolver_cgetri_batched_native
 
     function rocsolver_cgetri_batched_typed(handle, n, A, lda, ipiv, strideP, info, &
@@ -60903,13 +60890,13 @@ contains
       integer(c_int), value :: n
       type(c_ptr), value :: A
       integer(c_int), value :: lda
-      integer(c_int), target :: ipiv(*)
+      integer(c_int), target :: ipiv(..)
       integer(c_long), value :: strideP
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: zgetri_batched
-      zgetri_batched = rocsolver_zgetri_batched_raw(handle, n, A, lda, c_loc(ipiv(1)), strideP, &
-        c_loc(info(1)), batch_count)
+      zgetri_batched = rocsolver_zgetri_batched_raw(handle, n, A, lda, c_loc(ipiv), strideP, &
+        c_loc(info), batch_count)
     end function rocsolver_zgetri_batched_native
 
     function rocsolver_zgetri_batched_typed(handle, n, A, lda, ipiv, strideP, info, &
@@ -60936,16 +60923,16 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_int), value :: n
-      real(c_float), target :: A(*)
+      real(c_float), target :: A(..)
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
-      integer(c_int), target :: ipiv(*)
+      integer(c_int), target :: ipiv(..)
       integer(c_long), value :: strideP
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: sgetri_strided_batched
-      sgetri_strided_batched = rocsolver_sgetri_strided_batched_raw(handle, n, c_loc(A(1)), lda, &
-        strideA, c_loc(ipiv(1)), strideP, c_loc(info(1)), batch_count)
+      sgetri_strided_batched = rocsolver_sgetri_strided_batched_raw(handle, n, c_loc(A), lda, &
+        strideA, c_loc(ipiv), strideP, c_loc(info), batch_count)
     end function rocsolver_sgetri_strided_batched_native
 
     function rocsolver_sgetri_strided_batched_typed(handle, n, A, lda, strideA, ipiv, strideP, &
@@ -60973,16 +60960,16 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_int), value :: n
-      real(c_double), target :: A(*)
+      real(c_double), target :: A(..)
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
-      integer(c_int), target :: ipiv(*)
+      integer(c_int), target :: ipiv(..)
       integer(c_long), value :: strideP
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: dgetri_strided_batched
-      dgetri_strided_batched = rocsolver_dgetri_strided_batched_raw(handle, n, c_loc(A(1)), lda, &
-        strideA, c_loc(ipiv(1)), strideP, c_loc(info(1)), batch_count)
+      dgetri_strided_batched = rocsolver_dgetri_strided_batched_raw(handle, n, c_loc(A), lda, &
+        strideA, c_loc(ipiv), strideP, c_loc(info), batch_count)
     end function rocsolver_dgetri_strided_batched_native
 
     function rocsolver_dgetri_strided_batched_typed(handle, n, A, lda, strideA, ipiv, strideP, &
@@ -61010,16 +60997,16 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_int), value :: n
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: A(..)
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
-      integer(c_int), target :: ipiv(*)
+      integer(c_int), target :: ipiv(..)
       integer(c_long), value :: strideP
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: cgetri_strided_batched
-      cgetri_strided_batched = rocsolver_cgetri_strided_batched_raw(handle, n, c_loc(A(1)), lda, &
-        strideA, c_loc(ipiv(1)), strideP, c_loc(info(1)), batch_count)
+      cgetri_strided_batched = rocsolver_cgetri_strided_batched_raw(handle, n, c_loc(A), lda, &
+        strideA, c_loc(ipiv), strideP, c_loc(info), batch_count)
     end function rocsolver_cgetri_strided_batched_native
 
     function rocsolver_cgetri_strided_batched_typed(handle, n, A, lda, strideA, ipiv, strideP, &
@@ -61047,16 +61034,16 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_int), value :: n
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: A(..)
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
-      integer(c_int), target :: ipiv(*)
+      integer(c_int), target :: ipiv(..)
       integer(c_long), value :: strideP
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: zgetri_strided_batched
-      zgetri_strided_batched = rocsolver_zgetri_strided_batched_raw(handle, n, c_loc(A(1)), lda, &
-        strideA, c_loc(ipiv(1)), strideP, c_loc(info(1)), batch_count)
+      zgetri_strided_batched = rocsolver_zgetri_strided_batched_raw(handle, n, c_loc(A), lda, &
+        strideA, c_loc(ipiv), strideP, c_loc(info), batch_count)
     end function rocsolver_zgetri_strided_batched_native
 
     function rocsolver_zgetri_strided_batched_typed(handle, n, A, lda, strideA, ipiv, strideP, &
@@ -61083,11 +61070,11 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_int), value :: n
-      real(c_float), target :: A(*)
+      real(c_float), target :: A(..)
       integer(c_int), value :: lda
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int) :: sgetri_npvt
-      sgetri_npvt = rocsolver_sgetri_npvt_raw(handle, n, c_loc(A(1)), lda, c_loc(info(1)))
+      sgetri_npvt = rocsolver_sgetri_npvt_raw(handle, n, c_loc(A), lda, c_loc(info))
     end function rocsolver_sgetri_npvt_native
 
     function rocsolver_sgetri_npvt_typed(handle, n, A, lda, info) result(sgetri_npvt)
@@ -61108,11 +61095,11 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_int), value :: n
-      real(c_double), target :: A(*)
+      real(c_double), target :: A(..)
       integer(c_int), value :: lda
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int) :: dgetri_npvt
-      dgetri_npvt = rocsolver_dgetri_npvt_raw(handle, n, c_loc(A(1)), lda, c_loc(info(1)))
+      dgetri_npvt = rocsolver_dgetri_npvt_raw(handle, n, c_loc(A), lda, c_loc(info))
     end function rocsolver_dgetri_npvt_native
 
     function rocsolver_dgetri_npvt_typed(handle, n, A, lda, info) result(dgetri_npvt)
@@ -61133,11 +61120,11 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_int), value :: n
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: A(..)
       integer(c_int), value :: lda
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int) :: cgetri_npvt
-      cgetri_npvt = rocsolver_cgetri_npvt_raw(handle, n, c_loc(A(1)), lda, c_loc(info(1)))
+      cgetri_npvt = rocsolver_cgetri_npvt_raw(handle, n, c_loc(A), lda, c_loc(info))
     end function rocsolver_cgetri_npvt_native
 
     function rocsolver_cgetri_npvt_typed(handle, n, A, lda, info) result(cgetri_npvt)
@@ -61158,11 +61145,11 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_int), value :: n
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: A(..)
       integer(c_int), value :: lda
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int) :: zgetri_npvt
-      zgetri_npvt = rocsolver_zgetri_npvt_raw(handle, n, c_loc(A(1)), lda, c_loc(info(1)))
+      zgetri_npvt = rocsolver_zgetri_npvt_raw(handle, n, c_loc(A), lda, c_loc(info))
     end function rocsolver_zgetri_npvt_native
 
     function rocsolver_zgetri_npvt_typed(handle, n, A, lda, info) result(zgetri_npvt)
@@ -61186,10 +61173,10 @@ contains
       integer(c_int), value :: n
       type(c_ptr), value :: A
       integer(c_int), value :: lda
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: sgetri_npvt_batched
-      sgetri_npvt_batched = rocsolver_sgetri_npvt_batched_raw(handle, n, A, lda, c_loc(info(1)), &
+      sgetri_npvt_batched = rocsolver_sgetri_npvt_batched_raw(handle, n, A, lda, c_loc(info), &
         batch_count)
     end function rocsolver_sgetri_npvt_batched_native
 
@@ -61217,10 +61204,10 @@ contains
       integer(c_int), value :: n
       type(c_ptr), value :: A
       integer(c_int), value :: lda
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: dgetri_npvt_batched
-      dgetri_npvt_batched = rocsolver_dgetri_npvt_batched_raw(handle, n, A, lda, c_loc(info(1)), &
+      dgetri_npvt_batched = rocsolver_dgetri_npvt_batched_raw(handle, n, A, lda, c_loc(info), &
         batch_count)
     end function rocsolver_dgetri_npvt_batched_native
 
@@ -61248,10 +61235,10 @@ contains
       integer(c_int), value :: n
       type(c_ptr), value :: A
       integer(c_int), value :: lda
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: cgetri_npvt_batched
-      cgetri_npvt_batched = rocsolver_cgetri_npvt_batched_raw(handle, n, A, lda, c_loc(info(1)), &
+      cgetri_npvt_batched = rocsolver_cgetri_npvt_batched_raw(handle, n, A, lda, c_loc(info), &
         batch_count)
     end function rocsolver_cgetri_npvt_batched_native
 
@@ -61279,10 +61266,10 @@ contains
       integer(c_int), value :: n
       type(c_ptr), value :: A
       integer(c_int), value :: lda
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: zgetri_npvt_batched
-      zgetri_npvt_batched = rocsolver_zgetri_npvt_batched_raw(handle, n, A, lda, c_loc(info(1)), &
+      zgetri_npvt_batched = rocsolver_zgetri_npvt_batched_raw(handle, n, A, lda, c_loc(info), &
         batch_count)
     end function rocsolver_zgetri_npvt_batched_native
 
@@ -61308,14 +61295,14 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_int), value :: n
-      real(c_float), target :: A(*)
+      real(c_float), target :: A(..)
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: sgetri_npvt_strided_batched
-      sgetri_npvt_strided_batched = rocsolver_sgetri_npvt_strided_batched_raw(handle, n, c_loc(A( &
-        1)), lda, strideA, c_loc(info(1)), batch_count)
+      sgetri_npvt_strided_batched = rocsolver_sgetri_npvt_strided_batched_raw(handle, n, c_loc(A), &
+        lda, strideA, c_loc(info), batch_count)
     end function rocsolver_sgetri_npvt_strided_batched_native
 
     function rocsolver_sgetri_npvt_strided_batched_typed(handle, n, A, lda, strideA, info, &
@@ -61341,14 +61328,14 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_int), value :: n
-      real(c_double), target :: A(*)
+      real(c_double), target :: A(..)
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: dgetri_npvt_strided_batched
-      dgetri_npvt_strided_batched = rocsolver_dgetri_npvt_strided_batched_raw(handle, n, c_loc(A( &
-        1)), lda, strideA, c_loc(info(1)), batch_count)
+      dgetri_npvt_strided_batched = rocsolver_dgetri_npvt_strided_batched_raw(handle, n, c_loc(A), &
+        lda, strideA, c_loc(info), batch_count)
     end function rocsolver_dgetri_npvt_strided_batched_native
 
     function rocsolver_dgetri_npvt_strided_batched_typed(handle, n, A, lda, strideA, info, &
@@ -61374,14 +61361,14 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_int), value :: n
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: A(..)
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: cgetri_npvt_strided_batched
-      cgetri_npvt_strided_batched = rocsolver_cgetri_npvt_strided_batched_raw(handle, n, c_loc(A( &
-        1)), lda, strideA, c_loc(info(1)), batch_count)
+      cgetri_npvt_strided_batched = rocsolver_cgetri_npvt_strided_batched_raw(handle, n, c_loc(A), &
+        lda, strideA, c_loc(info), batch_count)
     end function rocsolver_cgetri_npvt_strided_batched_native
 
     function rocsolver_cgetri_npvt_strided_batched_typed(handle, n, A, lda, strideA, info, &
@@ -61407,14 +61394,14 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_int), value :: n
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: A(..)
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: zgetri_npvt_strided_batched
-      zgetri_npvt_strided_batched = rocsolver_zgetri_npvt_strided_batched_raw(handle, n, c_loc(A( &
-        1)), lda, strideA, c_loc(info(1)), batch_count)
+      zgetri_npvt_strided_batched = rocsolver_zgetri_npvt_strided_batched_raw(handle, n, c_loc(A), &
+        lda, strideA, c_loc(info), batch_count)
     end function rocsolver_zgetri_npvt_strided_batched_native
 
     function rocsolver_zgetri_npvt_strided_batched_typed(handle, n, A, lda, strideA, info, &
@@ -61442,14 +61429,14 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       integer(c_int), value :: nrhs
-      real(c_float), target :: A(*)
+      real(c_float), target :: A(..)
       integer(c_int), value :: lda
-      real(c_float), target :: B(*)
+      real(c_float), target :: B(..)
       integer(c_int), value :: ldb
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int) :: sgels
-      sgels = rocsolver_sgels_raw(handle, trans, m, n, nrhs, c_loc(A(1)), lda, c_loc(B(1)), ldb, &
-        c_loc(info(1)))
+      sgels = rocsolver_sgels_raw(handle, trans, m, n, nrhs, c_loc(A), lda, c_loc(B), ldb, c_loc( &
+        info))
     end function rocsolver_sgels_native
 
     function rocsolver_sgels_typed(handle, trans, m, n, nrhs, A, lda, B, ldb, info) result(sgels)
@@ -61478,14 +61465,14 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       integer(c_int), value :: nrhs
-      real(c_double), target :: A(*)
+      real(c_double), target :: A(..)
       integer(c_int), value :: lda
-      real(c_double), target :: B(*)
+      real(c_double), target :: B(..)
       integer(c_int), value :: ldb
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int) :: dgels
-      dgels = rocsolver_dgels_raw(handle, trans, m, n, nrhs, c_loc(A(1)), lda, c_loc(B(1)), ldb, &
-        c_loc(info(1)))
+      dgels = rocsolver_dgels_raw(handle, trans, m, n, nrhs, c_loc(A), lda, c_loc(B), ldb, c_loc( &
+        info))
     end function rocsolver_dgels_native
 
     function rocsolver_dgels_typed(handle, trans, m, n, nrhs, A, lda, B, ldb, info) result(dgels)
@@ -61514,14 +61501,14 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       integer(c_int), value :: nrhs
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: A(..)
       integer(c_int), value :: lda
-      complex(c_float_complex), target :: B(*)
+      complex(c_float_complex), target :: B(..)
       integer(c_int), value :: ldb
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int) :: cgels
-      cgels = rocsolver_cgels_raw(handle, trans, m, n, nrhs, c_loc(A(1)), lda, c_loc(B(1)), ldb, &
-        c_loc(info(1)))
+      cgels = rocsolver_cgels_raw(handle, trans, m, n, nrhs, c_loc(A), lda, c_loc(B), ldb, c_loc( &
+        info))
     end function rocsolver_cgels_native
 
     function rocsolver_cgels_typed(handle, trans, m, n, nrhs, A, lda, B, ldb, info) result(cgels)
@@ -61550,14 +61537,14 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       integer(c_int), value :: nrhs
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: A(..)
       integer(c_int), value :: lda
-      complex(c_double_complex), target :: B(*)
+      complex(c_double_complex), target :: B(..)
       integer(c_int), value :: ldb
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int) :: zgels
-      zgels = rocsolver_zgels_raw(handle, trans, m, n, nrhs, c_loc(A(1)), lda, c_loc(B(1)), ldb, &
-        c_loc(info(1)))
+      zgels = rocsolver_zgels_raw(handle, trans, m, n, nrhs, c_loc(A), lda, c_loc(B), ldb, c_loc( &
+        info))
     end function rocsolver_zgels_native
 
     function rocsolver_zgels_typed(handle, trans, m, n, nrhs, A, lda, B, ldb, info) result(zgels)
@@ -61591,11 +61578,11 @@ contains
       integer(c_int), value :: lda
       type(c_ptr), value :: B
       integer(c_int), value :: ldb
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: sgels_batched
       sgels_batched = rocsolver_sgels_batched_raw(handle, trans, m, n, nrhs, A, lda, B, ldb, &
-        c_loc(info(1)), batch_count)
+        c_loc(info), batch_count)
     end function rocsolver_sgels_batched_native
 
     function rocsolver_sgels_batched_typed(handle, trans, m, n, nrhs, A, lda, B, ldb, info, &
@@ -61632,11 +61619,11 @@ contains
       integer(c_int), value :: lda
       type(c_ptr), value :: B
       integer(c_int), value :: ldb
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: dgels_batched
       dgels_batched = rocsolver_dgels_batched_raw(handle, trans, m, n, nrhs, A, lda, B, ldb, &
-        c_loc(info(1)), batch_count)
+        c_loc(info), batch_count)
     end function rocsolver_dgels_batched_native
 
     function rocsolver_dgels_batched_typed(handle, trans, m, n, nrhs, A, lda, B, ldb, info, &
@@ -61673,11 +61660,11 @@ contains
       integer(c_int), value :: lda
       type(c_ptr), value :: B
       integer(c_int), value :: ldb
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: cgels_batched
       cgels_batched = rocsolver_cgels_batched_raw(handle, trans, m, n, nrhs, A, lda, B, ldb, &
-        c_loc(info(1)), batch_count)
+        c_loc(info), batch_count)
     end function rocsolver_cgels_batched_native
 
     function rocsolver_cgels_batched_typed(handle, trans, m, n, nrhs, A, lda, B, ldb, info, &
@@ -61714,11 +61701,11 @@ contains
       integer(c_int), value :: lda
       type(c_ptr), value :: B
       integer(c_int), value :: ldb
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: zgels_batched
       zgels_batched = rocsolver_zgels_batched_raw(handle, trans, m, n, nrhs, A, lda, B, ldb, &
-        c_loc(info(1)), batch_count)
+        c_loc(info), batch_count)
     end function rocsolver_zgels_batched_native
 
     function rocsolver_zgels_batched_typed(handle, trans, m, n, nrhs, A, lda, B, ldb, info, &
@@ -61751,17 +61738,17 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       integer(c_int), value :: nrhs
-      real(c_float), target :: A(*)
+      real(c_float), target :: A(..)
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
-      real(c_float), target :: B(*)
+      real(c_float), target :: B(..)
       integer(c_int), value :: ldb
       integer(c_long), value :: strideB
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: sgels_strided_batched
       sgels_strided_batched = rocsolver_sgels_strided_batched_raw(handle, trans, m, n, nrhs, &
-        c_loc(A(1)), lda, strideA, c_loc(B(1)), ldb, strideB, c_loc(info(1)), batch_count)
+        c_loc(A), lda, strideA, c_loc(B), ldb, strideB, c_loc(info), batch_count)
     end function rocsolver_sgels_strided_batched_native
 
     function rocsolver_sgels_strided_batched_typed(handle, trans, m, n, nrhs, A, lda, strideA, B, &
@@ -61796,17 +61783,17 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       integer(c_int), value :: nrhs
-      real(c_double), target :: A(*)
+      real(c_double), target :: A(..)
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
-      real(c_double), target :: B(*)
+      real(c_double), target :: B(..)
       integer(c_int), value :: ldb
       integer(c_long), value :: strideB
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: dgels_strided_batched
       dgels_strided_batched = rocsolver_dgels_strided_batched_raw(handle, trans, m, n, nrhs, &
-        c_loc(A(1)), lda, strideA, c_loc(B(1)), ldb, strideB, c_loc(info(1)), batch_count)
+        c_loc(A), lda, strideA, c_loc(B), ldb, strideB, c_loc(info), batch_count)
     end function rocsolver_dgels_strided_batched_native
 
     function rocsolver_dgels_strided_batched_typed(handle, trans, m, n, nrhs, A, lda, strideA, B, &
@@ -61841,17 +61828,17 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       integer(c_int), value :: nrhs
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: A(..)
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
-      complex(c_float_complex), target :: B(*)
+      complex(c_float_complex), target :: B(..)
       integer(c_int), value :: ldb
       integer(c_long), value :: strideB
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: cgels_strided_batched
       cgels_strided_batched = rocsolver_cgels_strided_batched_raw(handle, trans, m, n, nrhs, &
-        c_loc(A(1)), lda, strideA, c_loc(B(1)), ldb, strideB, c_loc(info(1)), batch_count)
+        c_loc(A), lda, strideA, c_loc(B), ldb, strideB, c_loc(info), batch_count)
     end function rocsolver_cgels_strided_batched_native
 
     function rocsolver_cgels_strided_batched_typed(handle, trans, m, n, nrhs, A, lda, strideA, B, &
@@ -61886,17 +61873,17 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       integer(c_int), value :: nrhs
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: A(..)
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
-      complex(c_double_complex), target :: B(*)
+      complex(c_double_complex), target :: B(..)
       integer(c_int), value :: ldb
       integer(c_long), value :: strideB
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: zgels_strided_batched
       zgels_strided_batched = rocsolver_zgels_strided_batched_raw(handle, trans, m, n, nrhs, &
-        c_loc(A(1)), lda, strideA, c_loc(B(1)), ldb, strideB, c_loc(info(1)), batch_count)
+        c_loc(A), lda, strideA, c_loc(B), ldb, strideB, c_loc(info), batch_count)
     end function rocsolver_zgels_strided_batched_native
 
     function rocsolver_zgels_strided_batched_typed(handle, trans, m, n, nrhs, A, lda, strideA, B, &
@@ -61928,11 +61915,11 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: uplo
       integer(c_int), value :: n
-      real(c_float), target :: A(*)
+      real(c_float), target :: A(..)
       integer(c_int), value :: lda
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int) :: spotf2
-      spotf2 = rocsolver_spotf2_raw(handle, uplo, n, c_loc(A(1)), lda, c_loc(info(1)))
+      spotf2 = rocsolver_spotf2_raw(handle, uplo, n, c_loc(A), lda, c_loc(info))
     end function rocsolver_spotf2_native
 
     function rocsolver_spotf2_typed(handle, uplo, n, A, lda, info) result(spotf2)
@@ -61955,11 +61942,11 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: uplo
       integer(c_int), value :: n
-      real(c_double), target :: A(*)
+      real(c_double), target :: A(..)
       integer(c_int), value :: lda
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int) :: dpotf2
-      dpotf2 = rocsolver_dpotf2_raw(handle, uplo, n, c_loc(A(1)), lda, c_loc(info(1)))
+      dpotf2 = rocsolver_dpotf2_raw(handle, uplo, n, c_loc(A), lda, c_loc(info))
     end function rocsolver_dpotf2_native
 
     function rocsolver_dpotf2_typed(handle, uplo, n, A, lda, info) result(dpotf2)
@@ -61982,11 +61969,11 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: uplo
       integer(c_int), value :: n
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: A(..)
       integer(c_int), value :: lda
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int) :: cpotf2
-      cpotf2 = rocsolver_cpotf2_raw(handle, uplo, n, c_loc(A(1)), lda, c_loc(info(1)))
+      cpotf2 = rocsolver_cpotf2_raw(handle, uplo, n, c_loc(A), lda, c_loc(info))
     end function rocsolver_cpotf2_native
 
     function rocsolver_cpotf2_typed(handle, uplo, n, A, lda, info) result(cpotf2)
@@ -62009,11 +61996,11 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: uplo
       integer(c_int), value :: n
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: A(..)
       integer(c_int), value :: lda
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int) :: zpotf2
-      zpotf2 = rocsolver_zpotf2_raw(handle, uplo, n, c_loc(A(1)), lda, c_loc(info(1)))
+      zpotf2 = rocsolver_zpotf2_raw(handle, uplo, n, c_loc(A), lda, c_loc(info))
     end function rocsolver_zpotf2_native
 
     function rocsolver_zpotf2_typed(handle, uplo, n, A, lda, info) result(zpotf2)
@@ -62036,11 +62023,11 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: uplo
       integer(c_long), value :: n
-      real(c_float), target :: A(*)
+      real(c_float), target :: A(..)
       integer(c_long), value :: lda
       type(c_ptr), value :: info
       integer(c_int) :: spotf2_64
-      spotf2_64 = rocsolver_spotf2_64_raw(handle, uplo, n, c_loc(A(1)), lda, info)
+      spotf2_64 = rocsolver_spotf2_64_raw(handle, uplo, n, c_loc(A), lda, info)
     end function rocsolver_spotf2_64_native
 
     function rocsolver_spotf2_64_typed(handle, uplo, n, A, lda, info) result(spotf2_64)
@@ -62063,11 +62050,11 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: uplo
       integer(c_long), value :: n
-      real(c_double), target :: A(*)
+      real(c_double), target :: A(..)
       integer(c_long), value :: lda
       type(c_ptr), value :: info
       integer(c_int) :: dpotf2_64
-      dpotf2_64 = rocsolver_dpotf2_64_raw(handle, uplo, n, c_loc(A(1)), lda, info)
+      dpotf2_64 = rocsolver_dpotf2_64_raw(handle, uplo, n, c_loc(A), lda, info)
     end function rocsolver_dpotf2_64_native
 
     function rocsolver_dpotf2_64_typed(handle, uplo, n, A, lda, info) result(dpotf2_64)
@@ -62090,11 +62077,11 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: uplo
       integer(c_long), value :: n
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: A(..)
       integer(c_long), value :: lda
       type(c_ptr), value :: info
       integer(c_int) :: cpotf2_64
-      cpotf2_64 = rocsolver_cpotf2_64_raw(handle, uplo, n, c_loc(A(1)), lda, info)
+      cpotf2_64 = rocsolver_cpotf2_64_raw(handle, uplo, n, c_loc(A), lda, info)
     end function rocsolver_cpotf2_64_native
 
     function rocsolver_cpotf2_64_typed(handle, uplo, n, A, lda, info) result(cpotf2_64)
@@ -62117,11 +62104,11 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: uplo
       integer(c_long), value :: n
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: A(..)
       integer(c_long), value :: lda
       type(c_ptr), value :: info
       integer(c_int) :: zpotf2_64
-      zpotf2_64 = rocsolver_zpotf2_64_raw(handle, uplo, n, c_loc(A(1)), lda, info)
+      zpotf2_64 = rocsolver_zpotf2_64_raw(handle, uplo, n, c_loc(A), lda, info)
     end function rocsolver_zpotf2_64_native
 
     function rocsolver_zpotf2_64_typed(handle, uplo, n, A, lda, info) result(zpotf2_64)
@@ -62147,10 +62134,10 @@ contains
       integer(c_int), value :: n
       type(c_ptr), value :: A
       integer(c_int), value :: lda
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: spotf2_batched
-      spotf2_batched = rocsolver_spotf2_batched_raw(handle, uplo, n, A, lda, c_loc(info(1)), &
+      spotf2_batched = rocsolver_spotf2_batched_raw(handle, uplo, n, A, lda, c_loc(info), &
         batch_count)
     end function rocsolver_spotf2_batched_native
 
@@ -62179,10 +62166,10 @@ contains
       integer(c_int), value :: n
       type(c_ptr), value :: A
       integer(c_int), value :: lda
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: dpotf2_batched
-      dpotf2_batched = rocsolver_dpotf2_batched_raw(handle, uplo, n, A, lda, c_loc(info(1)), &
+      dpotf2_batched = rocsolver_dpotf2_batched_raw(handle, uplo, n, A, lda, c_loc(info), &
         batch_count)
     end function rocsolver_dpotf2_batched_native
 
@@ -62211,10 +62198,10 @@ contains
       integer(c_int), value :: n
       type(c_ptr), value :: A
       integer(c_int), value :: lda
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: cpotf2_batched
-      cpotf2_batched = rocsolver_cpotf2_batched_raw(handle, uplo, n, A, lda, c_loc(info(1)), &
+      cpotf2_batched = rocsolver_cpotf2_batched_raw(handle, uplo, n, A, lda, c_loc(info), &
         batch_count)
     end function rocsolver_cpotf2_batched_native
 
@@ -62243,10 +62230,10 @@ contains
       integer(c_int), value :: n
       type(c_ptr), value :: A
       integer(c_int), value :: lda
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: zpotf2_batched
-      zpotf2_batched = rocsolver_zpotf2_batched_raw(handle, uplo, n, A, lda, c_loc(info(1)), &
+      zpotf2_batched = rocsolver_zpotf2_batched_raw(handle, uplo, n, A, lda, c_loc(info), &
         batch_count)
     end function rocsolver_zpotf2_batched_native
 
@@ -62341,14 +62328,14 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: uplo
       integer(c_int), value :: n
-      real(c_float), target :: A(*)
+      real(c_float), target :: A(..)
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: spotf2_strided_batched
-      spotf2_strided_batched = rocsolver_spotf2_strided_batched_raw(handle, uplo, n, c_loc(A(1)), &
-        lda, strideA, c_loc(info(1)), batch_count)
+      spotf2_strided_batched = rocsolver_spotf2_strided_batched_raw(handle, uplo, n, c_loc(A), &
+        lda, strideA, c_loc(info), batch_count)
     end function rocsolver_spotf2_strided_batched_native
 
     function rocsolver_spotf2_strided_batched_typed(handle, uplo, n, A, lda, strideA, info, &
@@ -62376,14 +62363,14 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: uplo
       integer(c_int), value :: n
-      real(c_double), target :: A(*)
+      real(c_double), target :: A(..)
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: dpotf2_strided_batched
-      dpotf2_strided_batched = rocsolver_dpotf2_strided_batched_raw(handle, uplo, n, c_loc(A(1)), &
-        lda, strideA, c_loc(info(1)), batch_count)
+      dpotf2_strided_batched = rocsolver_dpotf2_strided_batched_raw(handle, uplo, n, c_loc(A), &
+        lda, strideA, c_loc(info), batch_count)
     end function rocsolver_dpotf2_strided_batched_native
 
     function rocsolver_dpotf2_strided_batched_typed(handle, uplo, n, A, lda, strideA, info, &
@@ -62411,14 +62398,14 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: uplo
       integer(c_int), value :: n
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: A(..)
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: cpotf2_strided_batched
-      cpotf2_strided_batched = rocsolver_cpotf2_strided_batched_raw(handle, uplo, n, c_loc(A(1)), &
-        lda, strideA, c_loc(info(1)), batch_count)
+      cpotf2_strided_batched = rocsolver_cpotf2_strided_batched_raw(handle, uplo, n, c_loc(A), &
+        lda, strideA, c_loc(info), batch_count)
     end function rocsolver_cpotf2_strided_batched_native
 
     function rocsolver_cpotf2_strided_batched_typed(handle, uplo, n, A, lda, strideA, info, &
@@ -62446,14 +62433,14 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: uplo
       integer(c_int), value :: n
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: A(..)
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: zpotf2_strided_batched
-      zpotf2_strided_batched = rocsolver_zpotf2_strided_batched_raw(handle, uplo, n, c_loc(A(1)), &
-        lda, strideA, c_loc(info(1)), batch_count)
+      zpotf2_strided_batched = rocsolver_zpotf2_strided_batched_raw(handle, uplo, n, c_loc(A), &
+        lda, strideA, c_loc(info), batch_count)
     end function rocsolver_zpotf2_strided_batched_native
 
     function rocsolver_zpotf2_strided_batched_typed(handle, uplo, n, A, lda, strideA, info, &
@@ -62481,14 +62468,14 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: uplo
       integer(c_long), value :: n
-      real(c_float), target :: A(*)
+      real(c_float), target :: A(..)
       integer(c_long), value :: lda
       integer(c_long), value :: strideA
       type(c_ptr), value :: info
       integer(c_long), value :: batch_count
       integer(c_int) :: spotf2_strided_batched_64
       spotf2_strided_batched_64 = rocsolver_spotf2_strided_batched_64_raw(handle, uplo, n, c_loc( &
-        A(1)), lda, strideA, info, batch_count)
+        A), lda, strideA, info, batch_count)
     end function rocsolver_spotf2_strided_batched_64_native
 
     function rocsolver_spotf2_strided_batched_64_typed(handle, uplo, n, A, lda, strideA, info, &
@@ -62516,14 +62503,14 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: uplo
       integer(c_long), value :: n
-      real(c_double), target :: A(*)
+      real(c_double), target :: A(..)
       integer(c_long), value :: lda
       integer(c_long), value :: strideA
       type(c_ptr), value :: info
       integer(c_long), value :: batch_count
       integer(c_int) :: dpotf2_strided_batched_64
       dpotf2_strided_batched_64 = rocsolver_dpotf2_strided_batched_64_raw(handle, uplo, n, c_loc( &
-        A(1)), lda, strideA, info, batch_count)
+        A), lda, strideA, info, batch_count)
     end function rocsolver_dpotf2_strided_batched_64_native
 
     function rocsolver_dpotf2_strided_batched_64_typed(handle, uplo, n, A, lda, strideA, info, &
@@ -62551,14 +62538,14 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: uplo
       integer(c_long), value :: n
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: A(..)
       integer(c_long), value :: lda
       integer(c_long), value :: strideA
       type(c_ptr), value :: info
       integer(c_long), value :: batch_count
       integer(c_int) :: cpotf2_strided_batched_64
       cpotf2_strided_batched_64 = rocsolver_cpotf2_strided_batched_64_raw(handle, uplo, n, c_loc( &
-        A(1)), lda, strideA, info, batch_count)
+        A), lda, strideA, info, batch_count)
     end function rocsolver_cpotf2_strided_batched_64_native
 
     function rocsolver_cpotf2_strided_batched_64_typed(handle, uplo, n, A, lda, strideA, info, &
@@ -62586,14 +62573,14 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: uplo
       integer(c_long), value :: n
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: A(..)
       integer(c_long), value :: lda
       integer(c_long), value :: strideA
       type(c_ptr), value :: info
       integer(c_long), value :: batch_count
       integer(c_int) :: zpotf2_strided_batched_64
       zpotf2_strided_batched_64 = rocsolver_zpotf2_strided_batched_64_raw(handle, uplo, n, c_loc( &
-        A(1)), lda, strideA, info, batch_count)
+        A), lda, strideA, info, batch_count)
     end function rocsolver_zpotf2_strided_batched_64_native
 
     function rocsolver_zpotf2_strided_batched_64_typed(handle, uplo, n, A, lda, strideA, info, &
@@ -62620,11 +62607,11 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: uplo
       integer(c_int), value :: n
-      real(c_float), target :: A(*)
+      real(c_float), target :: A(..)
       integer(c_int), value :: lda
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int) :: spotrf
-      spotrf = rocsolver_spotrf_raw(handle, uplo, n, c_loc(A(1)), lda, c_loc(info(1)))
+      spotrf = rocsolver_spotrf_raw(handle, uplo, n, c_loc(A), lda, c_loc(info))
     end function rocsolver_spotrf_native
 
     function rocsolver_spotrf_typed(handle, uplo, n, A, lda, info) result(spotrf)
@@ -62647,11 +62634,11 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: uplo
       integer(c_int), value :: n
-      real(c_double), target :: A(*)
+      real(c_double), target :: A(..)
       integer(c_int), value :: lda
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int) :: dpotrf
-      dpotrf = rocsolver_dpotrf_raw(handle, uplo, n, c_loc(A(1)), lda, c_loc(info(1)))
+      dpotrf = rocsolver_dpotrf_raw(handle, uplo, n, c_loc(A), lda, c_loc(info))
     end function rocsolver_dpotrf_native
 
     function rocsolver_dpotrf_typed(handle, uplo, n, A, lda, info) result(dpotrf)
@@ -62674,11 +62661,11 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: uplo
       integer(c_int), value :: n
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: A(..)
       integer(c_int), value :: lda
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int) :: cpotrf
-      cpotrf = rocsolver_cpotrf_raw(handle, uplo, n, c_loc(A(1)), lda, c_loc(info(1)))
+      cpotrf = rocsolver_cpotrf_raw(handle, uplo, n, c_loc(A), lda, c_loc(info))
     end function rocsolver_cpotrf_native
 
     function rocsolver_cpotrf_typed(handle, uplo, n, A, lda, info) result(cpotrf)
@@ -62701,11 +62688,11 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: uplo
       integer(c_int), value :: n
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: A(..)
       integer(c_int), value :: lda
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int) :: zpotrf
-      zpotrf = rocsolver_zpotrf_raw(handle, uplo, n, c_loc(A(1)), lda, c_loc(info(1)))
+      zpotrf = rocsolver_zpotrf_raw(handle, uplo, n, c_loc(A), lda, c_loc(info))
     end function rocsolver_zpotrf_native
 
     function rocsolver_zpotrf_typed(handle, uplo, n, A, lda, info) result(zpotrf)
@@ -62728,11 +62715,11 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: uplo
       integer(c_long), value :: n
-      real(c_float), target :: A(*)
+      real(c_float), target :: A(..)
       integer(c_long), value :: lda
       type(c_ptr), value :: info
       integer(c_int) :: spotrf_64
-      spotrf_64 = rocsolver_spotrf_64_raw(handle, uplo, n, c_loc(A(1)), lda, info)
+      spotrf_64 = rocsolver_spotrf_64_raw(handle, uplo, n, c_loc(A), lda, info)
     end function rocsolver_spotrf_64_native
 
     function rocsolver_spotrf_64_typed(handle, uplo, n, A, lda, info) result(spotrf_64)
@@ -62755,11 +62742,11 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: uplo
       integer(c_long), value :: n
-      real(c_double), target :: A(*)
+      real(c_double), target :: A(..)
       integer(c_long), value :: lda
       type(c_ptr), value :: info
       integer(c_int) :: dpotrf_64
-      dpotrf_64 = rocsolver_dpotrf_64_raw(handle, uplo, n, c_loc(A(1)), lda, info)
+      dpotrf_64 = rocsolver_dpotrf_64_raw(handle, uplo, n, c_loc(A), lda, info)
     end function rocsolver_dpotrf_64_native
 
     function rocsolver_dpotrf_64_typed(handle, uplo, n, A, lda, info) result(dpotrf_64)
@@ -62782,11 +62769,11 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: uplo
       integer(c_long), value :: n
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: A(..)
       integer(c_long), value :: lda
       type(c_ptr), value :: info
       integer(c_int) :: cpotrf_64
-      cpotrf_64 = rocsolver_cpotrf_64_raw(handle, uplo, n, c_loc(A(1)), lda, info)
+      cpotrf_64 = rocsolver_cpotrf_64_raw(handle, uplo, n, c_loc(A), lda, info)
     end function rocsolver_cpotrf_64_native
 
     function rocsolver_cpotrf_64_typed(handle, uplo, n, A, lda, info) result(cpotrf_64)
@@ -62809,11 +62796,11 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: uplo
       integer(c_long), value :: n
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: A(..)
       integer(c_long), value :: lda
       type(c_ptr), value :: info
       integer(c_int) :: zpotrf_64
-      zpotrf_64 = rocsolver_zpotrf_64_raw(handle, uplo, n, c_loc(A(1)), lda, info)
+      zpotrf_64 = rocsolver_zpotrf_64_raw(handle, uplo, n, c_loc(A), lda, info)
     end function rocsolver_zpotrf_64_native
 
     function rocsolver_zpotrf_64_typed(handle, uplo, n, A, lda, info) result(zpotrf_64)
@@ -62839,10 +62826,10 @@ contains
       integer(c_int), value :: n
       type(c_ptr), value :: A
       integer(c_int), value :: lda
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: spotrf_batched
-      spotrf_batched = rocsolver_spotrf_batched_raw(handle, uplo, n, A, lda, c_loc(info(1)), &
+      spotrf_batched = rocsolver_spotrf_batched_raw(handle, uplo, n, A, lda, c_loc(info), &
         batch_count)
     end function rocsolver_spotrf_batched_native
 
@@ -62871,10 +62858,10 @@ contains
       integer(c_int), value :: n
       type(c_ptr), value :: A
       integer(c_int), value :: lda
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: dpotrf_batched
-      dpotrf_batched = rocsolver_dpotrf_batched_raw(handle, uplo, n, A, lda, c_loc(info(1)), &
+      dpotrf_batched = rocsolver_dpotrf_batched_raw(handle, uplo, n, A, lda, c_loc(info), &
         batch_count)
     end function rocsolver_dpotrf_batched_native
 
@@ -62903,10 +62890,10 @@ contains
       integer(c_int), value :: n
       type(c_ptr), value :: A
       integer(c_int), value :: lda
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: cpotrf_batched
-      cpotrf_batched = rocsolver_cpotrf_batched_raw(handle, uplo, n, A, lda, c_loc(info(1)), &
+      cpotrf_batched = rocsolver_cpotrf_batched_raw(handle, uplo, n, A, lda, c_loc(info), &
         batch_count)
     end function rocsolver_cpotrf_batched_native
 
@@ -62935,10 +62922,10 @@ contains
       integer(c_int), value :: n
       type(c_ptr), value :: A
       integer(c_int), value :: lda
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: zpotrf_batched
-      zpotrf_batched = rocsolver_zpotrf_batched_raw(handle, uplo, n, A, lda, c_loc(info(1)), &
+      zpotrf_batched = rocsolver_zpotrf_batched_raw(handle, uplo, n, A, lda, c_loc(info), &
         batch_count)
     end function rocsolver_zpotrf_batched_native
 
@@ -63033,14 +63020,14 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: uplo
       integer(c_int), value :: n
-      real(c_float), target :: A(*)
+      real(c_float), target :: A(..)
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: spotrf_strided_batched
-      spotrf_strided_batched = rocsolver_spotrf_strided_batched_raw(handle, uplo, n, c_loc(A(1)), &
-        lda, strideA, c_loc(info(1)), batch_count)
+      spotrf_strided_batched = rocsolver_spotrf_strided_batched_raw(handle, uplo, n, c_loc(A), &
+        lda, strideA, c_loc(info), batch_count)
     end function rocsolver_spotrf_strided_batched_native
 
     function rocsolver_spotrf_strided_batched_typed(handle, uplo, n, A, lda, strideA, info, &
@@ -63068,14 +63055,14 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: uplo
       integer(c_int), value :: n
-      real(c_double), target :: A(*)
+      real(c_double), target :: A(..)
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: dpotrf_strided_batched
-      dpotrf_strided_batched = rocsolver_dpotrf_strided_batched_raw(handle, uplo, n, c_loc(A(1)), &
-        lda, strideA, c_loc(info(1)), batch_count)
+      dpotrf_strided_batched = rocsolver_dpotrf_strided_batched_raw(handle, uplo, n, c_loc(A), &
+        lda, strideA, c_loc(info), batch_count)
     end function rocsolver_dpotrf_strided_batched_native
 
     function rocsolver_dpotrf_strided_batched_typed(handle, uplo, n, A, lda, strideA, info, &
@@ -63103,14 +63090,14 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: uplo
       integer(c_int), value :: n
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: A(..)
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: cpotrf_strided_batched
-      cpotrf_strided_batched = rocsolver_cpotrf_strided_batched_raw(handle, uplo, n, c_loc(A(1)), &
-        lda, strideA, c_loc(info(1)), batch_count)
+      cpotrf_strided_batched = rocsolver_cpotrf_strided_batched_raw(handle, uplo, n, c_loc(A), &
+        lda, strideA, c_loc(info), batch_count)
     end function rocsolver_cpotrf_strided_batched_native
 
     function rocsolver_cpotrf_strided_batched_typed(handle, uplo, n, A, lda, strideA, info, &
@@ -63138,14 +63125,14 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: uplo
       integer(c_int), value :: n
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: A(..)
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: zpotrf_strided_batched
-      zpotrf_strided_batched = rocsolver_zpotrf_strided_batched_raw(handle, uplo, n, c_loc(A(1)), &
-        lda, strideA, c_loc(info(1)), batch_count)
+      zpotrf_strided_batched = rocsolver_zpotrf_strided_batched_raw(handle, uplo, n, c_loc(A), &
+        lda, strideA, c_loc(info), batch_count)
     end function rocsolver_zpotrf_strided_batched_native
 
     function rocsolver_zpotrf_strided_batched_typed(handle, uplo, n, A, lda, strideA, info, &
@@ -63173,14 +63160,14 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: uplo
       integer(c_long), value :: n
-      real(c_float), target :: A(*)
+      real(c_float), target :: A(..)
       integer(c_long), value :: lda
       integer(c_long), value :: strideA
       type(c_ptr), value :: info
       integer(c_long), value :: batch_count
       integer(c_int) :: spotrf_strided_batched_64
       spotrf_strided_batched_64 = rocsolver_spotrf_strided_batched_64_raw(handle, uplo, n, c_loc( &
-        A(1)), lda, strideA, info, batch_count)
+        A), lda, strideA, info, batch_count)
     end function rocsolver_spotrf_strided_batched_64_native
 
     function rocsolver_spotrf_strided_batched_64_typed(handle, uplo, n, A, lda, strideA, info, &
@@ -63208,14 +63195,14 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: uplo
       integer(c_long), value :: n
-      real(c_double), target :: A(*)
+      real(c_double), target :: A(..)
       integer(c_long), value :: lda
       integer(c_long), value :: strideA
       type(c_ptr), value :: info
       integer(c_long), value :: batch_count
       integer(c_int) :: dpotrf_strided_batched_64
       dpotrf_strided_batched_64 = rocsolver_dpotrf_strided_batched_64_raw(handle, uplo, n, c_loc( &
-        A(1)), lda, strideA, info, batch_count)
+        A), lda, strideA, info, batch_count)
     end function rocsolver_dpotrf_strided_batched_64_native
 
     function rocsolver_dpotrf_strided_batched_64_typed(handle, uplo, n, A, lda, strideA, info, &
@@ -63243,14 +63230,14 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: uplo
       integer(c_long), value :: n
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: A(..)
       integer(c_long), value :: lda
       integer(c_long), value :: strideA
       type(c_ptr), value :: info
       integer(c_long), value :: batch_count
       integer(c_int) :: cpotrf_strided_batched_64
       cpotrf_strided_batched_64 = rocsolver_cpotrf_strided_batched_64_raw(handle, uplo, n, c_loc( &
-        A(1)), lda, strideA, info, batch_count)
+        A), lda, strideA, info, batch_count)
     end function rocsolver_cpotrf_strided_batched_64_native
 
     function rocsolver_cpotrf_strided_batched_64_typed(handle, uplo, n, A, lda, strideA, info, &
@@ -63278,14 +63265,14 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: uplo
       integer(c_long), value :: n
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: A(..)
       integer(c_long), value :: lda
       integer(c_long), value :: strideA
       type(c_ptr), value :: info
       integer(c_long), value :: batch_count
       integer(c_int) :: zpotrf_strided_batched_64
       zpotrf_strided_batched_64 = rocsolver_zpotrf_strided_batched_64_raw(handle, uplo, n, c_loc( &
-        A(1)), lda, strideA, info, batch_count)
+        A), lda, strideA, info, batch_count)
     end function rocsolver_zpotrf_strided_batched_64_native
 
     function rocsolver_zpotrf_strided_batched_64_typed(handle, uplo, n, A, lda, strideA, info, &
@@ -63313,12 +63300,12 @@ contains
       integer(c_int), value :: uplo
       integer(c_int), value :: n
       integer(c_int), value :: nrhs
-      real(c_float), target :: A(*)
+      real(c_float), target :: A(..)
       integer(c_int), value :: lda
-      real(c_float), target :: B(*)
+      real(c_float), target :: B(..)
       integer(c_int), value :: ldb
       integer(c_int) :: spotrs
-      spotrs = rocsolver_spotrs_raw(handle, uplo, n, nrhs, c_loc(A(1)), lda, c_loc(B(1)), ldb)
+      spotrs = rocsolver_spotrs_raw(handle, uplo, n, nrhs, c_loc(A), lda, c_loc(B), ldb)
     end function rocsolver_spotrs_native
 
     function rocsolver_spotrs_typed(handle, uplo, n, nrhs, A, lda, B, ldb) result(spotrs)
@@ -63344,12 +63331,12 @@ contains
       integer(c_int), value :: uplo
       integer(c_int), value :: n
       integer(c_int), value :: nrhs
-      real(c_double), target :: A(*)
+      real(c_double), target :: A(..)
       integer(c_int), value :: lda
-      real(c_double), target :: B(*)
+      real(c_double), target :: B(..)
       integer(c_int), value :: ldb
       integer(c_int) :: dpotrs
-      dpotrs = rocsolver_dpotrs_raw(handle, uplo, n, nrhs, c_loc(A(1)), lda, c_loc(B(1)), ldb)
+      dpotrs = rocsolver_dpotrs_raw(handle, uplo, n, nrhs, c_loc(A), lda, c_loc(B), ldb)
     end function rocsolver_dpotrs_native
 
     function rocsolver_dpotrs_typed(handle, uplo, n, nrhs, A, lda, B, ldb) result(dpotrs)
@@ -63375,12 +63362,12 @@ contains
       integer(c_int), value :: uplo
       integer(c_int), value :: n
       integer(c_int), value :: nrhs
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: A(..)
       integer(c_int), value :: lda
-      complex(c_float_complex), target :: B(*)
+      complex(c_float_complex), target :: B(..)
       integer(c_int), value :: ldb
       integer(c_int) :: cpotrs
-      cpotrs = rocsolver_cpotrs_raw(handle, uplo, n, nrhs, c_loc(A(1)), lda, c_loc(B(1)), ldb)
+      cpotrs = rocsolver_cpotrs_raw(handle, uplo, n, nrhs, c_loc(A), lda, c_loc(B), ldb)
     end function rocsolver_cpotrs_native
 
     function rocsolver_cpotrs_typed(handle, uplo, n, nrhs, A, lda, B, ldb) result(cpotrs)
@@ -63406,12 +63393,12 @@ contains
       integer(c_int), value :: uplo
       integer(c_int), value :: n
       integer(c_int), value :: nrhs
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: A(..)
       integer(c_int), value :: lda
-      complex(c_double_complex), target :: B(*)
+      complex(c_double_complex), target :: B(..)
       integer(c_int), value :: ldb
       integer(c_int) :: zpotrs
-      zpotrs = rocsolver_zpotrs_raw(handle, uplo, n, nrhs, c_loc(A(1)), lda, c_loc(B(1)), ldb)
+      zpotrs = rocsolver_zpotrs_raw(handle, uplo, n, nrhs, c_loc(A), lda, c_loc(B), ldb)
     end function rocsolver_zpotrs_native
 
     function rocsolver_zpotrs_typed(handle, uplo, n, nrhs, A, lda, B, ldb) result(zpotrs)
@@ -63437,12 +63424,12 @@ contains
       integer(c_int), value :: uplo
       integer(c_long), value :: n
       integer(c_long), value :: nrhs
-      real(c_float), target :: A(*)
+      real(c_float), target :: A(..)
       integer(c_long), value :: lda
-      real(c_float), target :: B(*)
+      real(c_float), target :: B(..)
       integer(c_long), value :: ldb
       integer(c_int) :: spotrs_64
-      spotrs_64 = rocsolver_spotrs_64_raw(handle, uplo, n, nrhs, c_loc(A(1)), lda, c_loc(B(1)), ldb)
+      spotrs_64 = rocsolver_spotrs_64_raw(handle, uplo, n, nrhs, c_loc(A), lda, c_loc(B), ldb)
     end function rocsolver_spotrs_64_native
 
     function rocsolver_spotrs_64_typed(handle, uplo, n, nrhs, A, lda, B, ldb) result(spotrs_64)
@@ -63468,12 +63455,12 @@ contains
       integer(c_int), value :: uplo
       integer(c_long), value :: n
       integer(c_long), value :: nrhs
-      real(c_double), target :: A(*)
+      real(c_double), target :: A(..)
       integer(c_long), value :: lda
-      real(c_double), target :: B(*)
+      real(c_double), target :: B(..)
       integer(c_long), value :: ldb
       integer(c_int) :: dpotrs_64
-      dpotrs_64 = rocsolver_dpotrs_64_raw(handle, uplo, n, nrhs, c_loc(A(1)), lda, c_loc(B(1)), ldb)
+      dpotrs_64 = rocsolver_dpotrs_64_raw(handle, uplo, n, nrhs, c_loc(A), lda, c_loc(B), ldb)
     end function rocsolver_dpotrs_64_native
 
     function rocsolver_dpotrs_64_typed(handle, uplo, n, nrhs, A, lda, B, ldb) result(dpotrs_64)
@@ -63499,12 +63486,12 @@ contains
       integer(c_int), value :: uplo
       integer(c_long), value :: n
       integer(c_long), value :: nrhs
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: A(..)
       integer(c_long), value :: lda
-      complex(c_float_complex), target :: B(*)
+      complex(c_float_complex), target :: B(..)
       integer(c_long), value :: ldb
       integer(c_int) :: cpotrs_64
-      cpotrs_64 = rocsolver_cpotrs_64_raw(handle, uplo, n, nrhs, c_loc(A(1)), lda, c_loc(B(1)), ldb)
+      cpotrs_64 = rocsolver_cpotrs_64_raw(handle, uplo, n, nrhs, c_loc(A), lda, c_loc(B), ldb)
     end function rocsolver_cpotrs_64_native
 
     function rocsolver_cpotrs_64_typed(handle, uplo, n, nrhs, A, lda, B, ldb) result(cpotrs_64)
@@ -63530,12 +63517,12 @@ contains
       integer(c_int), value :: uplo
       integer(c_long), value :: n
       integer(c_long), value :: nrhs
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: A(..)
       integer(c_long), value :: lda
-      complex(c_double_complex), target :: B(*)
+      complex(c_double_complex), target :: B(..)
       integer(c_long), value :: ldb
       integer(c_int) :: zpotrs_64
-      zpotrs_64 = rocsolver_zpotrs_64_raw(handle, uplo, n, nrhs, c_loc(A(1)), lda, c_loc(B(1)), ldb)
+      zpotrs_64 = rocsolver_zpotrs_64_raw(handle, uplo, n, nrhs, c_loc(A), lda, c_loc(B), ldb)
     end function rocsolver_zpotrs_64_native
 
     function rocsolver_zpotrs_64_typed(handle, uplo, n, nrhs, A, lda, B, ldb) result(zpotrs_64)
@@ -63714,16 +63701,16 @@ contains
       integer(c_int), value :: uplo
       integer(c_int), value :: n
       integer(c_int), value :: nrhs
-      real(c_float), target :: A(*)
+      real(c_float), target :: A(..)
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
-      real(c_float), target :: B(*)
+      real(c_float), target :: B(..)
       integer(c_int), value :: ldb
       integer(c_long), value :: strideB
       integer(c_int), value :: batch_count
       integer(c_int) :: spotrs_strided_batched
       spotrs_strided_batched = rocsolver_spotrs_strided_batched_raw(handle, uplo, n, nrhs, c_loc( &
-        A(1)), lda, strideA, c_loc(B(1)), ldb, strideB, batch_count)
+        A), lda, strideA, c_loc(B), ldb, strideB, batch_count)
     end function rocsolver_spotrs_strided_batched_native
 
     function rocsolver_spotrs_strided_batched_typed(handle, uplo, n, nrhs, A, lda, strideA, B, &
@@ -63755,16 +63742,16 @@ contains
       integer(c_int), value :: uplo
       integer(c_int), value :: n
       integer(c_int), value :: nrhs
-      real(c_double), target :: A(*)
+      real(c_double), target :: A(..)
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
-      real(c_double), target :: B(*)
+      real(c_double), target :: B(..)
       integer(c_int), value :: ldb
       integer(c_long), value :: strideB
       integer(c_int), value :: batch_count
       integer(c_int) :: dpotrs_strided_batched
       dpotrs_strided_batched = rocsolver_dpotrs_strided_batched_raw(handle, uplo, n, nrhs, c_loc( &
-        A(1)), lda, strideA, c_loc(B(1)), ldb, strideB, batch_count)
+        A), lda, strideA, c_loc(B), ldb, strideB, batch_count)
     end function rocsolver_dpotrs_strided_batched_native
 
     function rocsolver_dpotrs_strided_batched_typed(handle, uplo, n, nrhs, A, lda, strideA, B, &
@@ -63796,16 +63783,16 @@ contains
       integer(c_int), value :: uplo
       integer(c_int), value :: n
       integer(c_int), value :: nrhs
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: A(..)
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
-      complex(c_float_complex), target :: B(*)
+      complex(c_float_complex), target :: B(..)
       integer(c_int), value :: ldb
       integer(c_long), value :: strideB
       integer(c_int), value :: batch_count
       integer(c_int) :: cpotrs_strided_batched
       cpotrs_strided_batched = rocsolver_cpotrs_strided_batched_raw(handle, uplo, n, nrhs, c_loc( &
-        A(1)), lda, strideA, c_loc(B(1)), ldb, strideB, batch_count)
+        A), lda, strideA, c_loc(B), ldb, strideB, batch_count)
     end function rocsolver_cpotrs_strided_batched_native
 
     function rocsolver_cpotrs_strided_batched_typed(handle, uplo, n, nrhs, A, lda, strideA, B, &
@@ -63837,16 +63824,16 @@ contains
       integer(c_int), value :: uplo
       integer(c_int), value :: n
       integer(c_int), value :: nrhs
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: A(..)
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
-      complex(c_double_complex), target :: B(*)
+      complex(c_double_complex), target :: B(..)
       integer(c_int), value :: ldb
       integer(c_long), value :: strideB
       integer(c_int), value :: batch_count
       integer(c_int) :: zpotrs_strided_batched
       zpotrs_strided_batched = rocsolver_zpotrs_strided_batched_raw(handle, uplo, n, nrhs, c_loc( &
-        A(1)), lda, strideA, c_loc(B(1)), ldb, strideB, batch_count)
+        A), lda, strideA, c_loc(B), ldb, strideB, batch_count)
     end function rocsolver_zpotrs_strided_batched_native
 
     function rocsolver_zpotrs_strided_batched_typed(handle, uplo, n, nrhs, A, lda, strideA, B, &
@@ -63878,16 +63865,16 @@ contains
       integer(c_int), value :: uplo
       integer(c_long), value :: n
       integer(c_long), value :: nrhs
-      real(c_float), target :: A(*)
+      real(c_float), target :: A(..)
       integer(c_long), value :: lda
       integer(c_long), value :: strideA
-      real(c_float), target :: B(*)
+      real(c_float), target :: B(..)
       integer(c_long), value :: ldb
       integer(c_long), value :: strideB
       integer(c_long), value :: batch_count
       integer(c_int) :: spotrs_strided_batched_64
       spotrs_strided_batched_64 = rocsolver_spotrs_strided_batched_64_raw(handle, uplo, n, nrhs, &
-        c_loc(A(1)), lda, strideA, c_loc(B(1)), ldb, strideB, batch_count)
+        c_loc(A), lda, strideA, c_loc(B), ldb, strideB, batch_count)
     end function rocsolver_spotrs_strided_batched_64_native
 
     function rocsolver_spotrs_strided_batched_64_typed(handle, uplo, n, nrhs, A, lda, strideA, B, &
@@ -63919,16 +63906,16 @@ contains
       integer(c_int), value :: uplo
       integer(c_long), value :: n
       integer(c_long), value :: nrhs
-      real(c_double), target :: A(*)
+      real(c_double), target :: A(..)
       integer(c_long), value :: lda
       integer(c_long), value :: strideA
-      real(c_double), target :: B(*)
+      real(c_double), target :: B(..)
       integer(c_long), value :: ldb
       integer(c_long), value :: strideB
       integer(c_long), value :: batch_count
       integer(c_int) :: dpotrs_strided_batched_64
       dpotrs_strided_batched_64 = rocsolver_dpotrs_strided_batched_64_raw(handle, uplo, n, nrhs, &
-        c_loc(A(1)), lda, strideA, c_loc(B(1)), ldb, strideB, batch_count)
+        c_loc(A), lda, strideA, c_loc(B), ldb, strideB, batch_count)
     end function rocsolver_dpotrs_strided_batched_64_native
 
     function rocsolver_dpotrs_strided_batched_64_typed(handle, uplo, n, nrhs, A, lda, strideA, B, &
@@ -63960,16 +63947,16 @@ contains
       integer(c_int), value :: uplo
       integer(c_long), value :: n
       integer(c_long), value :: nrhs
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: A(..)
       integer(c_long), value :: lda
       integer(c_long), value :: strideA
-      complex(c_float_complex), target :: B(*)
+      complex(c_float_complex), target :: B(..)
       integer(c_long), value :: ldb
       integer(c_long), value :: strideB
       integer(c_long), value :: batch_count
       integer(c_int) :: cpotrs_strided_batched_64
       cpotrs_strided_batched_64 = rocsolver_cpotrs_strided_batched_64_raw(handle, uplo, n, nrhs, &
-        c_loc(A(1)), lda, strideA, c_loc(B(1)), ldb, strideB, batch_count)
+        c_loc(A), lda, strideA, c_loc(B), ldb, strideB, batch_count)
     end function rocsolver_cpotrs_strided_batched_64_native
 
     function rocsolver_cpotrs_strided_batched_64_typed(handle, uplo, n, nrhs, A, lda, strideA, B, &
@@ -64001,16 +63988,16 @@ contains
       integer(c_int), value :: uplo
       integer(c_long), value :: n
       integer(c_long), value :: nrhs
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: A(..)
       integer(c_long), value :: lda
       integer(c_long), value :: strideA
-      complex(c_double_complex), target :: B(*)
+      complex(c_double_complex), target :: B(..)
       integer(c_long), value :: ldb
       integer(c_long), value :: strideB
       integer(c_long), value :: batch_count
       integer(c_int) :: zpotrs_strided_batched_64
       zpotrs_strided_batched_64 = rocsolver_zpotrs_strided_batched_64_raw(handle, uplo, n, nrhs, &
-        c_loc(A(1)), lda, strideA, c_loc(B(1)), ldb, strideB, batch_count)
+        c_loc(A), lda, strideA, c_loc(B), ldb, strideB, batch_count)
     end function rocsolver_zpotrs_strided_batched_64_native
 
     function rocsolver_zpotrs_strided_batched_64_typed(handle, uplo, n, nrhs, A, lda, strideA, B, &
@@ -64041,14 +64028,13 @@ contains
       integer(c_int), value :: uplo
       integer(c_int), value :: n
       integer(c_int), value :: nrhs
-      real(c_float), target :: A(*)
+      real(c_float), target :: A(..)
       integer(c_int), value :: lda
-      real(c_float), target :: B(*)
+      real(c_float), target :: B(..)
       integer(c_int), value :: ldb
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int) :: sposv
-      sposv = rocsolver_sposv_raw(handle, uplo, n, nrhs, c_loc(A(1)), lda, c_loc(B(1)), ldb, &
-        c_loc(info(1)))
+      sposv = rocsolver_sposv_raw(handle, uplo, n, nrhs, c_loc(A), lda, c_loc(B), ldb, c_loc(info))
     end function rocsolver_sposv_native
 
     function rocsolver_sposv_typed(handle, uplo, n, nrhs, A, lda, B, ldb, info) result(sposv)
@@ -64075,14 +64061,13 @@ contains
       integer(c_int), value :: uplo
       integer(c_int), value :: n
       integer(c_int), value :: nrhs
-      real(c_double), target :: A(*)
+      real(c_double), target :: A(..)
       integer(c_int), value :: lda
-      real(c_double), target :: B(*)
+      real(c_double), target :: B(..)
       integer(c_int), value :: ldb
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int) :: dposv
-      dposv = rocsolver_dposv_raw(handle, uplo, n, nrhs, c_loc(A(1)), lda, c_loc(B(1)), ldb, &
-        c_loc(info(1)))
+      dposv = rocsolver_dposv_raw(handle, uplo, n, nrhs, c_loc(A), lda, c_loc(B), ldb, c_loc(info))
     end function rocsolver_dposv_native
 
     function rocsolver_dposv_typed(handle, uplo, n, nrhs, A, lda, B, ldb, info) result(dposv)
@@ -64109,14 +64094,13 @@ contains
       integer(c_int), value :: uplo
       integer(c_int), value :: n
       integer(c_int), value :: nrhs
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: A(..)
       integer(c_int), value :: lda
-      complex(c_float_complex), target :: B(*)
+      complex(c_float_complex), target :: B(..)
       integer(c_int), value :: ldb
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int) :: cposv
-      cposv = rocsolver_cposv_raw(handle, uplo, n, nrhs, c_loc(A(1)), lda, c_loc(B(1)), ldb, &
-        c_loc(info(1)))
+      cposv = rocsolver_cposv_raw(handle, uplo, n, nrhs, c_loc(A), lda, c_loc(B), ldb, c_loc(info))
     end function rocsolver_cposv_native
 
     function rocsolver_cposv_typed(handle, uplo, n, nrhs, A, lda, B, ldb, info) result(cposv)
@@ -64143,14 +64127,13 @@ contains
       integer(c_int), value :: uplo
       integer(c_int), value :: n
       integer(c_int), value :: nrhs
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: A(..)
       integer(c_int), value :: lda
-      complex(c_double_complex), target :: B(*)
+      complex(c_double_complex), target :: B(..)
       integer(c_int), value :: ldb
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int) :: zposv
-      zposv = rocsolver_zposv_raw(handle, uplo, n, nrhs, c_loc(A(1)), lda, c_loc(B(1)), ldb, &
-        c_loc(info(1)))
+      zposv = rocsolver_zposv_raw(handle, uplo, n, nrhs, c_loc(A), lda, c_loc(B), ldb, c_loc(info))
     end function rocsolver_zposv_native
 
     function rocsolver_zposv_typed(handle, uplo, n, nrhs, A, lda, B, ldb, info) result(zposv)
@@ -64182,11 +64165,11 @@ contains
       integer(c_int), value :: lda
       type(c_ptr), value :: B
       integer(c_int), value :: ldb
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: sposv_batched
       sposv_batched = rocsolver_sposv_batched_raw(handle, uplo, n, nrhs, A, lda, B, ldb, c_loc( &
-        info(1)), batch_count)
+        info), batch_count)
     end function rocsolver_sposv_batched_native
 
     function rocsolver_sposv_batched_typed(handle, uplo, n, nrhs, A, lda, B, ldb, info, &
@@ -64221,11 +64204,11 @@ contains
       integer(c_int), value :: lda
       type(c_ptr), value :: B
       integer(c_int), value :: ldb
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: dposv_batched
       dposv_batched = rocsolver_dposv_batched_raw(handle, uplo, n, nrhs, A, lda, B, ldb, c_loc( &
-        info(1)), batch_count)
+        info), batch_count)
     end function rocsolver_dposv_batched_native
 
     function rocsolver_dposv_batched_typed(handle, uplo, n, nrhs, A, lda, B, ldb, info, &
@@ -64260,11 +64243,11 @@ contains
       integer(c_int), value :: lda
       type(c_ptr), value :: B
       integer(c_int), value :: ldb
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: cposv_batched
       cposv_batched = rocsolver_cposv_batched_raw(handle, uplo, n, nrhs, A, lda, B, ldb, c_loc( &
-        info(1)), batch_count)
+        info), batch_count)
     end function rocsolver_cposv_batched_native
 
     function rocsolver_cposv_batched_typed(handle, uplo, n, nrhs, A, lda, B, ldb, info, &
@@ -64299,11 +64282,11 @@ contains
       integer(c_int), value :: lda
       type(c_ptr), value :: B
       integer(c_int), value :: ldb
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: zposv_batched
       zposv_batched = rocsolver_zposv_batched_raw(handle, uplo, n, nrhs, A, lda, B, ldb, c_loc( &
-        info(1)), batch_count)
+        info), batch_count)
     end function rocsolver_zposv_batched_native
 
     function rocsolver_zposv_batched_typed(handle, uplo, n, nrhs, A, lda, B, ldb, info, &
@@ -64334,17 +64317,17 @@ contains
       integer(c_int), value :: uplo
       integer(c_int), value :: n
       integer(c_int), value :: nrhs
-      real(c_float), target :: A(*)
+      real(c_float), target :: A(..)
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
-      real(c_float), target :: B(*)
+      real(c_float), target :: B(..)
       integer(c_int), value :: ldb
       integer(c_long), value :: strideB
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: sposv_strided_batched
-      sposv_strided_batched = rocsolver_sposv_strided_batched_raw(handle, uplo, n, nrhs, c_loc(A( &
-        1)), lda, strideA, c_loc(B(1)), ldb, strideB, c_loc(info(1)), batch_count)
+      sposv_strided_batched = rocsolver_sposv_strided_batched_raw(handle, uplo, n, nrhs, c_loc(A), &
+        lda, strideA, c_loc(B), ldb, strideB, c_loc(info), batch_count)
     end function rocsolver_sposv_strided_batched_native
 
     function rocsolver_sposv_strided_batched_typed(handle, uplo, n, nrhs, A, lda, strideA, B, ldb, &
@@ -64377,17 +64360,17 @@ contains
       integer(c_int), value :: uplo
       integer(c_int), value :: n
       integer(c_int), value :: nrhs
-      real(c_double), target :: A(*)
+      real(c_double), target :: A(..)
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
-      real(c_double), target :: B(*)
+      real(c_double), target :: B(..)
       integer(c_int), value :: ldb
       integer(c_long), value :: strideB
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: dposv_strided_batched
-      dposv_strided_batched = rocsolver_dposv_strided_batched_raw(handle, uplo, n, nrhs, c_loc(A( &
-        1)), lda, strideA, c_loc(B(1)), ldb, strideB, c_loc(info(1)), batch_count)
+      dposv_strided_batched = rocsolver_dposv_strided_batched_raw(handle, uplo, n, nrhs, c_loc(A), &
+        lda, strideA, c_loc(B), ldb, strideB, c_loc(info), batch_count)
     end function rocsolver_dposv_strided_batched_native
 
     function rocsolver_dposv_strided_batched_typed(handle, uplo, n, nrhs, A, lda, strideA, B, ldb, &
@@ -64420,17 +64403,17 @@ contains
       integer(c_int), value :: uplo
       integer(c_int), value :: n
       integer(c_int), value :: nrhs
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: A(..)
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
-      complex(c_float_complex), target :: B(*)
+      complex(c_float_complex), target :: B(..)
       integer(c_int), value :: ldb
       integer(c_long), value :: strideB
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: cposv_strided_batched
-      cposv_strided_batched = rocsolver_cposv_strided_batched_raw(handle, uplo, n, nrhs, c_loc(A( &
-        1)), lda, strideA, c_loc(B(1)), ldb, strideB, c_loc(info(1)), batch_count)
+      cposv_strided_batched = rocsolver_cposv_strided_batched_raw(handle, uplo, n, nrhs, c_loc(A), &
+        lda, strideA, c_loc(B), ldb, strideB, c_loc(info), batch_count)
     end function rocsolver_cposv_strided_batched_native
 
     function rocsolver_cposv_strided_batched_typed(handle, uplo, n, nrhs, A, lda, strideA, B, ldb, &
@@ -64463,17 +64446,17 @@ contains
       integer(c_int), value :: uplo
       integer(c_int), value :: n
       integer(c_int), value :: nrhs
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: A(..)
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
-      complex(c_double_complex), target :: B(*)
+      complex(c_double_complex), target :: B(..)
       integer(c_int), value :: ldb
       integer(c_long), value :: strideB
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: zposv_strided_batched
-      zposv_strided_batched = rocsolver_zposv_strided_batched_raw(handle, uplo, n, nrhs, c_loc(A( &
-        1)), lda, strideA, c_loc(B(1)), ldb, strideB, c_loc(info(1)), batch_count)
+      zposv_strided_batched = rocsolver_zposv_strided_batched_raw(handle, uplo, n, nrhs, c_loc(A), &
+        lda, strideA, c_loc(B), ldb, strideB, c_loc(info), batch_count)
     end function rocsolver_zposv_strided_batched_native
 
     function rocsolver_zposv_strided_batched_typed(handle, uplo, n, nrhs, A, lda, strideA, B, ldb, &
@@ -64504,11 +64487,11 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: uplo
       integer(c_int), value :: n
-      real(c_float), target :: A(*)
+      real(c_float), target :: A(..)
       integer(c_int), value :: lda
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int) :: spotri
-      spotri = rocsolver_spotri_raw(handle, uplo, n, c_loc(A(1)), lda, c_loc(info(1)))
+      spotri = rocsolver_spotri_raw(handle, uplo, n, c_loc(A), lda, c_loc(info))
     end function rocsolver_spotri_native
 
     function rocsolver_spotri_typed(handle, uplo, n, A, lda, info) result(spotri)
@@ -64531,11 +64514,11 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: uplo
       integer(c_int), value :: n
-      real(c_double), target :: A(*)
+      real(c_double), target :: A(..)
       integer(c_int), value :: lda
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int) :: dpotri
-      dpotri = rocsolver_dpotri_raw(handle, uplo, n, c_loc(A(1)), lda, c_loc(info(1)))
+      dpotri = rocsolver_dpotri_raw(handle, uplo, n, c_loc(A), lda, c_loc(info))
     end function rocsolver_dpotri_native
 
     function rocsolver_dpotri_typed(handle, uplo, n, A, lda, info) result(dpotri)
@@ -64558,11 +64541,11 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: uplo
       integer(c_int), value :: n
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: A(..)
       integer(c_int), value :: lda
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int) :: cpotri
-      cpotri = rocsolver_cpotri_raw(handle, uplo, n, c_loc(A(1)), lda, c_loc(info(1)))
+      cpotri = rocsolver_cpotri_raw(handle, uplo, n, c_loc(A), lda, c_loc(info))
     end function rocsolver_cpotri_native
 
     function rocsolver_cpotri_typed(handle, uplo, n, A, lda, info) result(cpotri)
@@ -64585,11 +64568,11 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: uplo
       integer(c_int), value :: n
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: A(..)
       integer(c_int), value :: lda
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int) :: zpotri
-      zpotri = rocsolver_zpotri_raw(handle, uplo, n, c_loc(A(1)), lda, c_loc(info(1)))
+      zpotri = rocsolver_zpotri_raw(handle, uplo, n, c_loc(A), lda, c_loc(info))
     end function rocsolver_zpotri_native
 
     function rocsolver_zpotri_typed(handle, uplo, n, A, lda, info) result(zpotri)
@@ -64615,10 +64598,10 @@ contains
       integer(c_int), value :: n
       type(c_ptr), value :: A
       integer(c_int), value :: lda
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: spotri_batched
-      spotri_batched = rocsolver_spotri_batched_raw(handle, uplo, n, A, lda, c_loc(info(1)), &
+      spotri_batched = rocsolver_spotri_batched_raw(handle, uplo, n, A, lda, c_loc(info), &
         batch_count)
     end function rocsolver_spotri_batched_native
 
@@ -64647,10 +64630,10 @@ contains
       integer(c_int), value :: n
       type(c_ptr), value :: A
       integer(c_int), value :: lda
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: dpotri_batched
-      dpotri_batched = rocsolver_dpotri_batched_raw(handle, uplo, n, A, lda, c_loc(info(1)), &
+      dpotri_batched = rocsolver_dpotri_batched_raw(handle, uplo, n, A, lda, c_loc(info), &
         batch_count)
     end function rocsolver_dpotri_batched_native
 
@@ -64679,10 +64662,10 @@ contains
       integer(c_int), value :: n
       type(c_ptr), value :: A
       integer(c_int), value :: lda
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: cpotri_batched
-      cpotri_batched = rocsolver_cpotri_batched_raw(handle, uplo, n, A, lda, c_loc(info(1)), &
+      cpotri_batched = rocsolver_cpotri_batched_raw(handle, uplo, n, A, lda, c_loc(info), &
         batch_count)
     end function rocsolver_cpotri_batched_native
 
@@ -64711,10 +64694,10 @@ contains
       integer(c_int), value :: n
       type(c_ptr), value :: A
       integer(c_int), value :: lda
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: zpotri_batched
-      zpotri_batched = rocsolver_zpotri_batched_raw(handle, uplo, n, A, lda, c_loc(info(1)), &
+      zpotri_batched = rocsolver_zpotri_batched_raw(handle, uplo, n, A, lda, c_loc(info), &
         batch_count)
     end function rocsolver_zpotri_batched_native
 
@@ -64741,14 +64724,14 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: uplo
       integer(c_int), value :: n
-      real(c_float), target :: A(*)
+      real(c_float), target :: A(..)
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: spotri_strided_batched
-      spotri_strided_batched = rocsolver_spotri_strided_batched_raw(handle, uplo, n, c_loc(A(1)), &
-        lda, strideA, c_loc(info(1)), batch_count)
+      spotri_strided_batched = rocsolver_spotri_strided_batched_raw(handle, uplo, n, c_loc(A), &
+        lda, strideA, c_loc(info), batch_count)
     end function rocsolver_spotri_strided_batched_native
 
     function rocsolver_spotri_strided_batched_typed(handle, uplo, n, A, lda, strideA, info, &
@@ -64776,14 +64759,14 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: uplo
       integer(c_int), value :: n
-      real(c_double), target :: A(*)
+      real(c_double), target :: A(..)
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: dpotri_strided_batched
-      dpotri_strided_batched = rocsolver_dpotri_strided_batched_raw(handle, uplo, n, c_loc(A(1)), &
-        lda, strideA, c_loc(info(1)), batch_count)
+      dpotri_strided_batched = rocsolver_dpotri_strided_batched_raw(handle, uplo, n, c_loc(A), &
+        lda, strideA, c_loc(info), batch_count)
     end function rocsolver_dpotri_strided_batched_native
 
     function rocsolver_dpotri_strided_batched_typed(handle, uplo, n, A, lda, strideA, info, &
@@ -64811,14 +64794,14 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: uplo
       integer(c_int), value :: n
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: A(..)
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: cpotri_strided_batched
-      cpotri_strided_batched = rocsolver_cpotri_strided_batched_raw(handle, uplo, n, c_loc(A(1)), &
-        lda, strideA, c_loc(info(1)), batch_count)
+      cpotri_strided_batched = rocsolver_cpotri_strided_batched_raw(handle, uplo, n, c_loc(A), &
+        lda, strideA, c_loc(info), batch_count)
     end function rocsolver_cpotri_strided_batched_native
 
     function rocsolver_cpotri_strided_batched_typed(handle, uplo, n, A, lda, strideA, info, &
@@ -64846,14 +64829,14 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: uplo
       integer(c_int), value :: n
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: A(..)
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: zpotri_strided_batched
-      zpotri_strided_batched = rocsolver_zpotri_strided_batched_raw(handle, uplo, n, c_loc(A(1)), &
-        lda, strideA, c_loc(info(1)), batch_count)
+      zpotri_strided_batched = rocsolver_zpotri_strided_batched_raw(handle, uplo, n, c_loc(A), &
+        lda, strideA, c_loc(info), batch_count)
     end function rocsolver_zpotri_strided_batched_native
 
     function rocsolver_zpotri_strided_batched_typed(handle, uplo, n, A, lda, strideA, info, &
@@ -64883,19 +64866,19 @@ contains
       integer(c_int), value :: right_svect
       integer(c_int), value :: m
       integer(c_int), value :: n
-      real(c_float), target :: A(*)
+      real(c_float), target :: A(..)
       integer(c_int), value :: lda
-      real(c_float), target :: S(*)
-      real(c_float), target :: U(*)
+      real(c_float), target :: S(..)
+      real(c_float), target :: U(..)
       integer(c_int), value :: ldu
-      real(c_float), target :: V(*)
+      real(c_float), target :: V(..)
       integer(c_int), value :: ldv
-      real(c_float), target :: E(*)
+      real(c_float), target :: E(..)
       integer(c_int), value :: fast_alg
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int) :: sgesvd
-      sgesvd = rocsolver_sgesvd_raw(handle, left_svect, right_svect, m, n, c_loc(A(1)), lda, &
-        c_loc(S(1)), c_loc(U(1)), ldu, c_loc(V(1)), ldv, c_loc(E(1)), fast_alg, c_loc(info(1)))
+      sgesvd = rocsolver_sgesvd_raw(handle, left_svect, right_svect, m, n, c_loc(A), lda, c_loc( &
+        S), c_loc(U), ldu, c_loc(V), ldv, c_loc(E), fast_alg, c_loc(info))
     end function rocsolver_sgesvd_native
 
     function rocsolver_sgesvd_typed(handle, left_svect, right_svect, m, n, A, lda, S, U, ldu, V, &
@@ -64932,19 +64915,19 @@ contains
       integer(c_int), value :: right_svect
       integer(c_int), value :: m
       integer(c_int), value :: n
-      real(c_double), target :: A(*)
+      real(c_double), target :: A(..)
       integer(c_int), value :: lda
-      real(c_double), target :: S(*)
-      real(c_double), target :: U(*)
+      real(c_double), target :: S(..)
+      real(c_double), target :: U(..)
       integer(c_int), value :: ldu
-      real(c_double), target :: V(*)
+      real(c_double), target :: V(..)
       integer(c_int), value :: ldv
-      real(c_double), target :: E(*)
+      real(c_double), target :: E(..)
       integer(c_int), value :: fast_alg
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int) :: dgesvd
-      dgesvd = rocsolver_dgesvd_raw(handle, left_svect, right_svect, m, n, c_loc(A(1)), lda, &
-        c_loc(S(1)), c_loc(U(1)), ldu, c_loc(V(1)), ldv, c_loc(E(1)), fast_alg, c_loc(info(1)))
+      dgesvd = rocsolver_dgesvd_raw(handle, left_svect, right_svect, m, n, c_loc(A), lda, c_loc( &
+        S), c_loc(U), ldu, c_loc(V), ldv, c_loc(E), fast_alg, c_loc(info))
     end function rocsolver_dgesvd_native
 
     function rocsolver_dgesvd_typed(handle, left_svect, right_svect, m, n, A, lda, S, U, ldu, V, &
@@ -64981,19 +64964,19 @@ contains
       integer(c_int), value :: right_svect
       integer(c_int), value :: m
       integer(c_int), value :: n
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: A(..)
       integer(c_int), value :: lda
-      real(c_float), target :: S(*)
-      complex(c_float_complex), target :: U(*)
+      real(c_float), target :: S(..)
+      complex(c_float_complex), target :: U(..)
       integer(c_int), value :: ldu
-      complex(c_float_complex), target :: V(*)
+      complex(c_float_complex), target :: V(..)
       integer(c_int), value :: ldv
-      real(c_float), target :: E(*)
+      real(c_float), target :: E(..)
       integer(c_int), value :: fast_alg
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int) :: cgesvd
-      cgesvd = rocsolver_cgesvd_raw(handle, left_svect, right_svect, m, n, c_loc(A(1)), lda, &
-        c_loc(S(1)), c_loc(U(1)), ldu, c_loc(V(1)), ldv, c_loc(E(1)), fast_alg, c_loc(info(1)))
+      cgesvd = rocsolver_cgesvd_raw(handle, left_svect, right_svect, m, n, c_loc(A), lda, c_loc( &
+        S), c_loc(U), ldu, c_loc(V), ldv, c_loc(E), fast_alg, c_loc(info))
     end function rocsolver_cgesvd_native
 
     function rocsolver_cgesvd_typed(handle, left_svect, right_svect, m, n, A, lda, S, U, ldu, V, &
@@ -65030,19 +65013,19 @@ contains
       integer(c_int), value :: right_svect
       integer(c_int), value :: m
       integer(c_int), value :: n
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: A(..)
       integer(c_int), value :: lda
-      real(c_double), target :: S(*)
-      complex(c_double_complex), target :: U(*)
+      real(c_double), target :: S(..)
+      complex(c_double_complex), target :: U(..)
       integer(c_int), value :: ldu
-      complex(c_double_complex), target :: V(*)
+      complex(c_double_complex), target :: V(..)
       integer(c_int), value :: ldv
-      real(c_double), target :: E(*)
+      real(c_double), target :: E(..)
       integer(c_int), value :: fast_alg
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int) :: zgesvd
-      zgesvd = rocsolver_zgesvd_raw(handle, left_svect, right_svect, m, n, c_loc(A(1)), lda, &
-        c_loc(S(1)), c_loc(U(1)), ldu, c_loc(V(1)), ldv, c_loc(E(1)), fast_alg, c_loc(info(1)))
+      zgesvd = rocsolver_zgesvd_raw(handle, left_svect, right_svect, m, n, c_loc(A), lda, c_loc( &
+        S), c_loc(U), ldu, c_loc(V), ldv, c_loc(E), fast_alg, c_loc(info))
     end function rocsolver_zgesvd_native
 
     function rocsolver_zgesvd_typed(handle, left_svect, right_svect, m, n, A, lda, S, U, ldu, V, &
@@ -65082,23 +65065,23 @@ contains
       integer(c_int), value :: n
       type(c_ptr), value :: A
       integer(c_int), value :: lda
-      real(c_float), target :: S(*)
+      real(c_float), target :: S(..)
       integer(c_long), value :: strideS
-      real(c_float), target :: U(*)
+      real(c_float), target :: U(..)
       integer(c_int), value :: ldu
       integer(c_long), value :: strideU
-      real(c_float), target :: V(*)
+      real(c_float), target :: V(..)
       integer(c_int), value :: ldv
       integer(c_long), value :: strideV
-      real(c_float), target :: E(*)
+      real(c_float), target :: E(..)
       integer(c_long), value :: strideE
       integer(c_int), value :: fast_alg
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: sgesvd_batched
       sgesvd_batched = rocsolver_sgesvd_batched_raw(handle, left_svect, right_svect, m, n, A, lda, &
-        c_loc(S(1)), strideS, c_loc(U(1)), ldu, strideU, c_loc(V(1)), ldv, strideV, c_loc(E(1)), &
-        strideE, fast_alg, c_loc(info(1)), batch_count)
+        c_loc(S), strideS, c_loc(U), ldu, strideU, c_loc(V), ldv, strideV, c_loc(E), strideE, &
+        fast_alg, c_loc(info), batch_count)
     end function rocsolver_sgesvd_batched_native
 
     function rocsolver_sgesvd_batched_typed(handle, left_svect, right_svect, m, n, A, lda, S, &
@@ -65144,23 +65127,23 @@ contains
       integer(c_int), value :: n
       type(c_ptr), value :: A
       integer(c_int), value :: lda
-      real(c_double), target :: S(*)
+      real(c_double), target :: S(..)
       integer(c_long), value :: strideS
-      real(c_double), target :: U(*)
+      real(c_double), target :: U(..)
       integer(c_int), value :: ldu
       integer(c_long), value :: strideU
-      real(c_double), target :: V(*)
+      real(c_double), target :: V(..)
       integer(c_int), value :: ldv
       integer(c_long), value :: strideV
-      real(c_double), target :: E(*)
+      real(c_double), target :: E(..)
       integer(c_long), value :: strideE
       integer(c_int), value :: fast_alg
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: dgesvd_batched
       dgesvd_batched = rocsolver_dgesvd_batched_raw(handle, left_svect, right_svect, m, n, A, lda, &
-        c_loc(S(1)), strideS, c_loc(U(1)), ldu, strideU, c_loc(V(1)), ldv, strideV, c_loc(E(1)), &
-        strideE, fast_alg, c_loc(info(1)), batch_count)
+        c_loc(S), strideS, c_loc(U), ldu, strideU, c_loc(V), ldv, strideV, c_loc(E), strideE, &
+        fast_alg, c_loc(info), batch_count)
     end function rocsolver_dgesvd_batched_native
 
     function rocsolver_dgesvd_batched_typed(handle, left_svect, right_svect, m, n, A, lda, S, &
@@ -65206,23 +65189,23 @@ contains
       integer(c_int), value :: n
       type(c_ptr), value :: A
       integer(c_int), value :: lda
-      real(c_float), target :: S(*)
+      real(c_float), target :: S(..)
       integer(c_long), value :: strideS
-      complex(c_float_complex), target :: U(*)
+      complex(c_float_complex), target :: U(..)
       integer(c_int), value :: ldu
       integer(c_long), value :: strideU
-      complex(c_float_complex), target :: V(*)
+      complex(c_float_complex), target :: V(..)
       integer(c_int), value :: ldv
       integer(c_long), value :: strideV
-      real(c_float), target :: E(*)
+      real(c_float), target :: E(..)
       integer(c_long), value :: strideE
       integer(c_int), value :: fast_alg
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: cgesvd_batched
       cgesvd_batched = rocsolver_cgesvd_batched_raw(handle, left_svect, right_svect, m, n, A, lda, &
-        c_loc(S(1)), strideS, c_loc(U(1)), ldu, strideU, c_loc(V(1)), ldv, strideV, c_loc(E(1)), &
-        strideE, fast_alg, c_loc(info(1)), batch_count)
+        c_loc(S), strideS, c_loc(U), ldu, strideU, c_loc(V), ldv, strideV, c_loc(E), strideE, &
+        fast_alg, c_loc(info), batch_count)
     end function rocsolver_cgesvd_batched_native
 
     function rocsolver_cgesvd_batched_typed(handle, left_svect, right_svect, m, n, A, lda, S, &
@@ -65268,23 +65251,23 @@ contains
       integer(c_int), value :: n
       type(c_ptr), value :: A
       integer(c_int), value :: lda
-      real(c_double), target :: S(*)
+      real(c_double), target :: S(..)
       integer(c_long), value :: strideS
-      complex(c_double_complex), target :: U(*)
+      complex(c_double_complex), target :: U(..)
       integer(c_int), value :: ldu
       integer(c_long), value :: strideU
-      complex(c_double_complex), target :: V(*)
+      complex(c_double_complex), target :: V(..)
       integer(c_int), value :: ldv
       integer(c_long), value :: strideV
-      real(c_double), target :: E(*)
+      real(c_double), target :: E(..)
       integer(c_long), value :: strideE
       integer(c_int), value :: fast_alg
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: zgesvd_batched
       zgesvd_batched = rocsolver_zgesvd_batched_raw(handle, left_svect, right_svect, m, n, A, lda, &
-        c_loc(S(1)), strideS, c_loc(U(1)), ldu, strideU, c_loc(V(1)), ldv, strideV, c_loc(E(1)), &
-        strideE, fast_alg, c_loc(info(1)), batch_count)
+        c_loc(S), strideS, c_loc(U), ldu, strideU, c_loc(V), ldv, strideV, c_loc(E), strideE, &
+        fast_alg, c_loc(info), batch_count)
     end function rocsolver_zgesvd_batched_native
 
     function rocsolver_zgesvd_batched_typed(handle, left_svect, right_svect, m, n, A, lda, S, &
@@ -65328,27 +65311,26 @@ contains
       integer(c_int), value :: right_svect
       integer(c_int), value :: m
       integer(c_int), value :: n
-      real(c_float), target :: A(*)
+      real(c_float), target :: A(..)
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
-      real(c_float), target :: S(*)
+      real(c_float), target :: S(..)
       integer(c_long), value :: strideS
-      real(c_float), target :: U(*)
+      real(c_float), target :: U(..)
       integer(c_int), value :: ldu
       integer(c_long), value :: strideU
-      real(c_float), target :: V(*)
+      real(c_float), target :: V(..)
       integer(c_int), value :: ldv
       integer(c_long), value :: strideV
-      real(c_float), target :: E(*)
+      real(c_float), target :: E(..)
       integer(c_long), value :: strideE
       integer(c_int), value :: fast_alg
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: sgesvd_strided_batched
       sgesvd_strided_batched = rocsolver_sgesvd_strided_batched_raw(handle, left_svect, &
-        right_svect, m, n, c_loc(A(1)), lda, strideA, c_loc(S(1)), strideS, c_loc(U(1)), ldu, &
-        strideU, c_loc(V(1)), ldv, strideV, c_loc(E(1)), strideE, fast_alg, c_loc(info(1)), &
-        batch_count)
+        right_svect, m, n, c_loc(A), lda, strideA, c_loc(S), strideS, c_loc(U), ldu, strideU, &
+        c_loc(V), ldv, strideV, c_loc(E), strideE, fast_alg, c_loc(info), batch_count)
     end function rocsolver_sgesvd_strided_batched_native
 
     function rocsolver_sgesvd_strided_batched_typed(handle, left_svect, right_svect, m, n, A, lda, &
@@ -65394,27 +65376,26 @@ contains
       integer(c_int), value :: right_svect
       integer(c_int), value :: m
       integer(c_int), value :: n
-      real(c_double), target :: A(*)
+      real(c_double), target :: A(..)
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
-      real(c_double), target :: S(*)
+      real(c_double), target :: S(..)
       integer(c_long), value :: strideS
-      real(c_double), target :: U(*)
+      real(c_double), target :: U(..)
       integer(c_int), value :: ldu
       integer(c_long), value :: strideU
-      real(c_double), target :: V(*)
+      real(c_double), target :: V(..)
       integer(c_int), value :: ldv
       integer(c_long), value :: strideV
-      real(c_double), target :: E(*)
+      real(c_double), target :: E(..)
       integer(c_long), value :: strideE
       integer(c_int), value :: fast_alg
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: dgesvd_strided_batched
       dgesvd_strided_batched = rocsolver_dgesvd_strided_batched_raw(handle, left_svect, &
-        right_svect, m, n, c_loc(A(1)), lda, strideA, c_loc(S(1)), strideS, c_loc(U(1)), ldu, &
-        strideU, c_loc(V(1)), ldv, strideV, c_loc(E(1)), strideE, fast_alg, c_loc(info(1)), &
-        batch_count)
+        right_svect, m, n, c_loc(A), lda, strideA, c_loc(S), strideS, c_loc(U), ldu, strideU, &
+        c_loc(V), ldv, strideV, c_loc(E), strideE, fast_alg, c_loc(info), batch_count)
     end function rocsolver_dgesvd_strided_batched_native
 
     function rocsolver_dgesvd_strided_batched_typed(handle, left_svect, right_svect, m, n, A, lda, &
@@ -65460,27 +65441,26 @@ contains
       integer(c_int), value :: right_svect
       integer(c_int), value :: m
       integer(c_int), value :: n
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: A(..)
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
-      real(c_float), target :: S(*)
+      real(c_float), target :: S(..)
       integer(c_long), value :: strideS
-      complex(c_float_complex), target :: U(*)
+      complex(c_float_complex), target :: U(..)
       integer(c_int), value :: ldu
       integer(c_long), value :: strideU
-      complex(c_float_complex), target :: V(*)
+      complex(c_float_complex), target :: V(..)
       integer(c_int), value :: ldv
       integer(c_long), value :: strideV
-      real(c_float), target :: E(*)
+      real(c_float), target :: E(..)
       integer(c_long), value :: strideE
       integer(c_int), value :: fast_alg
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: cgesvd_strided_batched
       cgesvd_strided_batched = rocsolver_cgesvd_strided_batched_raw(handle, left_svect, &
-        right_svect, m, n, c_loc(A(1)), lda, strideA, c_loc(S(1)), strideS, c_loc(U(1)), ldu, &
-        strideU, c_loc(V(1)), ldv, strideV, c_loc(E(1)), strideE, fast_alg, c_loc(info(1)), &
-        batch_count)
+        right_svect, m, n, c_loc(A), lda, strideA, c_loc(S), strideS, c_loc(U), ldu, strideU, &
+        c_loc(V), ldv, strideV, c_loc(E), strideE, fast_alg, c_loc(info), batch_count)
     end function rocsolver_cgesvd_strided_batched_native
 
     function rocsolver_cgesvd_strided_batched_typed(handle, left_svect, right_svect, m, n, A, lda, &
@@ -65526,27 +65506,26 @@ contains
       integer(c_int), value :: right_svect
       integer(c_int), value :: m
       integer(c_int), value :: n
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: A(..)
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
-      real(c_double), target :: S(*)
+      real(c_double), target :: S(..)
       integer(c_long), value :: strideS
-      complex(c_double_complex), target :: U(*)
+      complex(c_double_complex), target :: U(..)
       integer(c_int), value :: ldu
       integer(c_long), value :: strideU
-      complex(c_double_complex), target :: V(*)
+      complex(c_double_complex), target :: V(..)
       integer(c_int), value :: ldv
       integer(c_long), value :: strideV
-      real(c_double), target :: E(*)
+      real(c_double), target :: E(..)
       integer(c_long), value :: strideE
       integer(c_int), value :: fast_alg
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: zgesvd_strided_batched
       zgesvd_strided_batched = rocsolver_zgesvd_strided_batched_raw(handle, left_svect, &
-        right_svect, m, n, c_loc(A(1)), lda, strideA, c_loc(S(1)), strideS, c_loc(U(1)), ldu, &
-        strideU, c_loc(V(1)), ldv, strideV, c_loc(E(1)), strideE, fast_alg, c_loc(info(1)), &
-        batch_count)
+        right_svect, m, n, c_loc(A), lda, strideA, c_loc(S), strideS, c_loc(U), ldu, strideU, &
+        c_loc(V), ldv, strideV, c_loc(E), strideE, fast_alg, c_loc(info), batch_count)
     end function rocsolver_zgesvd_strided_batched_native
 
     function rocsolver_zgesvd_strided_batched_typed(handle, left_svect, right_svect, m, n, A, lda, &
@@ -65591,17 +65570,17 @@ contains
       integer(c_int), value :: right_svect
       integer(c_int), value :: m
       integer(c_int), value :: n
-      real(c_float), target :: A(*)
+      real(c_float), target :: A(..)
       integer(c_int), value :: lda
-      real(c_float), target :: S(*)
-      real(c_float), target :: U(*)
+      real(c_float), target :: S(..)
+      real(c_float), target :: U(..)
       integer(c_int), value :: ldu
-      real(c_float), target :: V(*)
+      real(c_float), target :: V(..)
       integer(c_int), value :: ldv
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int) :: sgesdd
-      sgesdd = rocsolver_sgesdd_raw(handle, left_svect, right_svect, m, n, c_loc(A(1)), lda, &
-        c_loc(S(1)), c_loc(U(1)), ldu, c_loc(V(1)), ldv, c_loc(info(1)))
+      sgesdd = rocsolver_sgesdd_raw(handle, left_svect, right_svect, m, n, c_loc(A), lda, c_loc( &
+        S), c_loc(U), ldu, c_loc(V), ldv, c_loc(info))
     end function rocsolver_sgesdd_native
 
     function rocsolver_sgesdd_typed(handle, left_svect, right_svect, m, n, A, lda, S, U, ldu, V, &
@@ -65636,17 +65615,17 @@ contains
       integer(c_int), value :: right_svect
       integer(c_int), value :: m
       integer(c_int), value :: n
-      real(c_double), target :: A(*)
+      real(c_double), target :: A(..)
       integer(c_int), value :: lda
-      real(c_double), target :: S(*)
-      real(c_double), target :: U(*)
+      real(c_double), target :: S(..)
+      real(c_double), target :: U(..)
       integer(c_int), value :: ldu
-      real(c_double), target :: V(*)
+      real(c_double), target :: V(..)
       integer(c_int), value :: ldv
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int) :: dgesdd
-      dgesdd = rocsolver_dgesdd_raw(handle, left_svect, right_svect, m, n, c_loc(A(1)), lda, &
-        c_loc(S(1)), c_loc(U(1)), ldu, c_loc(V(1)), ldv, c_loc(info(1)))
+      dgesdd = rocsolver_dgesdd_raw(handle, left_svect, right_svect, m, n, c_loc(A), lda, c_loc( &
+        S), c_loc(U), ldu, c_loc(V), ldv, c_loc(info))
     end function rocsolver_dgesdd_native
 
     function rocsolver_dgesdd_typed(handle, left_svect, right_svect, m, n, A, lda, S, U, ldu, V, &
@@ -65681,17 +65660,17 @@ contains
       integer(c_int), value :: right_svect
       integer(c_int), value :: m
       integer(c_int), value :: n
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: A(..)
       integer(c_int), value :: lda
-      real(c_float), target :: S(*)
-      complex(c_float_complex), target :: U(*)
+      real(c_float), target :: S(..)
+      complex(c_float_complex), target :: U(..)
       integer(c_int), value :: ldu
-      complex(c_float_complex), target :: V(*)
+      complex(c_float_complex), target :: V(..)
       integer(c_int), value :: ldv
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int) :: cgesdd
-      cgesdd = rocsolver_cgesdd_raw(handle, left_svect, right_svect, m, n, c_loc(A(1)), lda, &
-        c_loc(S(1)), c_loc(U(1)), ldu, c_loc(V(1)), ldv, c_loc(info(1)))
+      cgesdd = rocsolver_cgesdd_raw(handle, left_svect, right_svect, m, n, c_loc(A), lda, c_loc( &
+        S), c_loc(U), ldu, c_loc(V), ldv, c_loc(info))
     end function rocsolver_cgesdd_native
 
     function rocsolver_cgesdd_typed(handle, left_svect, right_svect, m, n, A, lda, S, U, ldu, V, &
@@ -65726,17 +65705,17 @@ contains
       integer(c_int), value :: right_svect
       integer(c_int), value :: m
       integer(c_int), value :: n
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: A(..)
       integer(c_int), value :: lda
-      real(c_double), target :: S(*)
-      complex(c_double_complex), target :: U(*)
+      real(c_double), target :: S(..)
+      complex(c_double_complex), target :: U(..)
       integer(c_int), value :: ldu
-      complex(c_double_complex), target :: V(*)
+      complex(c_double_complex), target :: V(..)
       integer(c_int), value :: ldv
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int) :: zgesdd
-      zgesdd = rocsolver_zgesdd_raw(handle, left_svect, right_svect, m, n, c_loc(A(1)), lda, &
-        c_loc(S(1)), c_loc(U(1)), ldu, c_loc(V(1)), ldv, c_loc(info(1)))
+      zgesdd = rocsolver_zgesdd_raw(handle, left_svect, right_svect, m, n, c_loc(A), lda, c_loc( &
+        S), c_loc(U), ldu, c_loc(V), ldv, c_loc(info))
     end function rocsolver_zgesdd_native
 
     function rocsolver_zgesdd_typed(handle, left_svect, right_svect, m, n, A, lda, S, U, ldu, V, &
@@ -65773,20 +65752,19 @@ contains
       integer(c_int), value :: n
       type(c_ptr), value :: A
       integer(c_int), value :: lda
-      real(c_float), target :: S(*)
+      real(c_float), target :: S(..)
       integer(c_long), value :: strideS
-      real(c_float), target :: U(*)
+      real(c_float), target :: U(..)
       integer(c_int), value :: ldu
       integer(c_long), value :: strideU
-      real(c_float), target :: V(*)
+      real(c_float), target :: V(..)
       integer(c_int), value :: ldv
       integer(c_long), value :: strideV
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: sgesdd_batched
       sgesdd_batched = rocsolver_sgesdd_batched_raw(handle, left_svect, right_svect, m, n, A, lda, &
-        c_loc(S(1)), strideS, c_loc(U(1)), ldu, strideU, c_loc(V(1)), ldv, strideV, c_loc(info( &
-        1)), batch_count)
+        c_loc(S), strideS, c_loc(U), ldu, strideU, c_loc(V), ldv, strideV, c_loc(info), batch_count)
     end function rocsolver_sgesdd_batched_native
 
     function rocsolver_sgesdd_batched_typed(handle, left_svect, right_svect, m, n, A, lda, S, &
@@ -65827,20 +65805,19 @@ contains
       integer(c_int), value :: n
       type(c_ptr), value :: A
       integer(c_int), value :: lda
-      real(c_double), target :: S(*)
+      real(c_double), target :: S(..)
       integer(c_long), value :: strideS
-      real(c_double), target :: U(*)
+      real(c_double), target :: U(..)
       integer(c_int), value :: ldu
       integer(c_long), value :: strideU
-      real(c_double), target :: V(*)
+      real(c_double), target :: V(..)
       integer(c_int), value :: ldv
       integer(c_long), value :: strideV
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: dgesdd_batched
       dgesdd_batched = rocsolver_dgesdd_batched_raw(handle, left_svect, right_svect, m, n, A, lda, &
-        c_loc(S(1)), strideS, c_loc(U(1)), ldu, strideU, c_loc(V(1)), ldv, strideV, c_loc(info( &
-        1)), batch_count)
+        c_loc(S), strideS, c_loc(U), ldu, strideU, c_loc(V), ldv, strideV, c_loc(info), batch_count)
     end function rocsolver_dgesdd_batched_native
 
     function rocsolver_dgesdd_batched_typed(handle, left_svect, right_svect, m, n, A, lda, S, &
@@ -65881,20 +65858,19 @@ contains
       integer(c_int), value :: n
       type(c_ptr), value :: A
       integer(c_int), value :: lda
-      real(c_float), target :: S(*)
+      real(c_float), target :: S(..)
       integer(c_long), value :: strideS
-      complex(c_float_complex), target :: U(*)
+      complex(c_float_complex), target :: U(..)
       integer(c_int), value :: ldu
       integer(c_long), value :: strideU
-      complex(c_float_complex), target :: V(*)
+      complex(c_float_complex), target :: V(..)
       integer(c_int), value :: ldv
       integer(c_long), value :: strideV
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: cgesdd_batched
       cgesdd_batched = rocsolver_cgesdd_batched_raw(handle, left_svect, right_svect, m, n, A, lda, &
-        c_loc(S(1)), strideS, c_loc(U(1)), ldu, strideU, c_loc(V(1)), ldv, strideV, c_loc(info( &
-        1)), batch_count)
+        c_loc(S), strideS, c_loc(U), ldu, strideU, c_loc(V), ldv, strideV, c_loc(info), batch_count)
     end function rocsolver_cgesdd_batched_native
 
     function rocsolver_cgesdd_batched_typed(handle, left_svect, right_svect, m, n, A, lda, S, &
@@ -65935,20 +65911,19 @@ contains
       integer(c_int), value :: n
       type(c_ptr), value :: A
       integer(c_int), value :: lda
-      real(c_double), target :: S(*)
+      real(c_double), target :: S(..)
       integer(c_long), value :: strideS
-      complex(c_double_complex), target :: U(*)
+      complex(c_double_complex), target :: U(..)
       integer(c_int), value :: ldu
       integer(c_long), value :: strideU
-      complex(c_double_complex), target :: V(*)
+      complex(c_double_complex), target :: V(..)
       integer(c_int), value :: ldv
       integer(c_long), value :: strideV
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: zgesdd_batched
       zgesdd_batched = rocsolver_zgesdd_batched_raw(handle, left_svect, right_svect, m, n, A, lda, &
-        c_loc(S(1)), strideS, c_loc(U(1)), ldu, strideU, c_loc(V(1)), ldv, strideV, c_loc(info( &
-        1)), batch_count)
+        c_loc(S), strideS, c_loc(U), ldu, strideU, c_loc(V), ldv, strideV, c_loc(info), batch_count)
     end function rocsolver_zgesdd_batched_native
 
     function rocsolver_zgesdd_batched_typed(handle, left_svect, right_svect, m, n, A, lda, S, &
@@ -65988,23 +65963,23 @@ contains
       integer(c_int), value :: right_svect
       integer(c_int), value :: m
       integer(c_int), value :: n
-      real(c_float), target :: A(*)
+      real(c_float), target :: A(..)
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
-      real(c_float), target :: S(*)
+      real(c_float), target :: S(..)
       integer(c_long), value :: strideS
-      real(c_float), target :: U(*)
+      real(c_float), target :: U(..)
       integer(c_int), value :: ldu
       integer(c_long), value :: strideU
-      real(c_float), target :: V(*)
+      real(c_float), target :: V(..)
       integer(c_int), value :: ldv
       integer(c_long), value :: strideV
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: sgesdd_strided_batched
       sgesdd_strided_batched = rocsolver_sgesdd_strided_batched_raw(handle, left_svect, &
-        right_svect, m, n, c_loc(A(1)), lda, strideA, c_loc(S(1)), strideS, c_loc(U(1)), ldu, &
-        strideU, c_loc(V(1)), ldv, strideV, c_loc(info(1)), batch_count)
+        right_svect, m, n, c_loc(A), lda, strideA, c_loc(S), strideS, c_loc(U), ldu, strideU, &
+        c_loc(V), ldv, strideV, c_loc(info), batch_count)
     end function rocsolver_sgesdd_strided_batched_native
 
     function rocsolver_sgesdd_strided_batched_typed(handle, left_svect, right_svect, m, n, A, lda, &
@@ -66047,23 +66022,23 @@ contains
       integer(c_int), value :: right_svect
       integer(c_int), value :: m
       integer(c_int), value :: n
-      real(c_double), target :: A(*)
+      real(c_double), target :: A(..)
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
-      real(c_double), target :: S(*)
+      real(c_double), target :: S(..)
       integer(c_long), value :: strideS
-      real(c_double), target :: U(*)
+      real(c_double), target :: U(..)
       integer(c_int), value :: ldu
       integer(c_long), value :: strideU
-      real(c_double), target :: V(*)
+      real(c_double), target :: V(..)
       integer(c_int), value :: ldv
       integer(c_long), value :: strideV
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: dgesdd_strided_batched
       dgesdd_strided_batched = rocsolver_dgesdd_strided_batched_raw(handle, left_svect, &
-        right_svect, m, n, c_loc(A(1)), lda, strideA, c_loc(S(1)), strideS, c_loc(U(1)), ldu, &
-        strideU, c_loc(V(1)), ldv, strideV, c_loc(info(1)), batch_count)
+        right_svect, m, n, c_loc(A), lda, strideA, c_loc(S), strideS, c_loc(U), ldu, strideU, &
+        c_loc(V), ldv, strideV, c_loc(info), batch_count)
     end function rocsolver_dgesdd_strided_batched_native
 
     function rocsolver_dgesdd_strided_batched_typed(handle, left_svect, right_svect, m, n, A, lda, &
@@ -66106,23 +66081,23 @@ contains
       integer(c_int), value :: right_svect
       integer(c_int), value :: m
       integer(c_int), value :: n
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: A(..)
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
-      real(c_float), target :: S(*)
+      real(c_float), target :: S(..)
       integer(c_long), value :: strideS
-      complex(c_float_complex), target :: U(*)
+      complex(c_float_complex), target :: U(..)
       integer(c_int), value :: ldu
       integer(c_long), value :: strideU
-      complex(c_float_complex), target :: V(*)
+      complex(c_float_complex), target :: V(..)
       integer(c_int), value :: ldv
       integer(c_long), value :: strideV
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: cgesdd_strided_batched
       cgesdd_strided_batched = rocsolver_cgesdd_strided_batched_raw(handle, left_svect, &
-        right_svect, m, n, c_loc(A(1)), lda, strideA, c_loc(S(1)), strideS, c_loc(U(1)), ldu, &
-        strideU, c_loc(V(1)), ldv, strideV, c_loc(info(1)), batch_count)
+        right_svect, m, n, c_loc(A), lda, strideA, c_loc(S), strideS, c_loc(U), ldu, strideU, &
+        c_loc(V), ldv, strideV, c_loc(info), batch_count)
     end function rocsolver_cgesdd_strided_batched_native
 
     function rocsolver_cgesdd_strided_batched_typed(handle, left_svect, right_svect, m, n, A, lda, &
@@ -66165,23 +66140,23 @@ contains
       integer(c_int), value :: right_svect
       integer(c_int), value :: m
       integer(c_int), value :: n
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: A(..)
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
-      real(c_double), target :: S(*)
+      real(c_double), target :: S(..)
       integer(c_long), value :: strideS
-      complex(c_double_complex), target :: U(*)
+      complex(c_double_complex), target :: U(..)
       integer(c_int), value :: ldu
       integer(c_long), value :: strideU
-      complex(c_double_complex), target :: V(*)
+      complex(c_double_complex), target :: V(..)
       integer(c_int), value :: ldv
       integer(c_long), value :: strideV
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: zgesdd_strided_batched
       zgesdd_strided_batched = rocsolver_zgesdd_strided_batched_raw(handle, left_svect, &
-        right_svect, m, n, c_loc(A(1)), lda, strideA, c_loc(S(1)), strideS, c_loc(U(1)), ldu, &
-        strideU, c_loc(V(1)), ldv, strideV, c_loc(info(1)), batch_count)
+        right_svect, m, n, c_loc(A), lda, strideA, c_loc(S), strideS, c_loc(U), ldu, strideU, &
+        c_loc(V), ldv, strideV, c_loc(info), batch_count)
     end function rocsolver_zgesdd_strided_batched_native
 
     function rocsolver_zgesdd_strided_batched_typed(handle, left_svect, right_svect, m, n, A, lda, &
@@ -66223,22 +66198,22 @@ contains
       integer(c_int), value :: right_svect
       integer(c_int), value :: m
       integer(c_int), value :: n
-      real(c_float), target :: A(*)
+      real(c_float), target :: A(..)
       integer(c_int), value :: lda
       real(c_float), value :: abstol
-      real(c_float), target :: residual(*)
+      real(c_float), target :: residual(..)
       integer(c_int), value :: max_sweeps
-      integer(c_int), target :: n_sweeps(*)
-      real(c_float), target :: S(*)
-      real(c_float), target :: U(*)
+      integer(c_int), target :: n_sweeps(..)
+      real(c_float), target :: S(..)
+      real(c_float), target :: U(..)
       integer(c_int), value :: ldu
-      real(c_float), target :: V(*)
+      real(c_float), target :: V(..)
       integer(c_int), value :: ldv
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int) :: sgesvdj
-      sgesvdj = rocsolver_sgesvdj_raw(handle, left_svect, right_svect, m, n, c_loc(A(1)), lda, &
-        abstol, c_loc(residual(1)), max_sweeps, c_loc(n_sweeps(1)), c_loc(S(1)), c_loc(U(1)), ldu, &
-        c_loc(V(1)), ldv, c_loc(info(1)))
+      sgesvdj = rocsolver_sgesvdj_raw(handle, left_svect, right_svect, m, n, c_loc(A), lda, &
+        abstol, c_loc(residual), max_sweeps, c_loc(n_sweeps), c_loc(S), c_loc(U), ldu, c_loc(V), &
+        ldv, c_loc(info))
     end function rocsolver_sgesvdj_native
 
     function rocsolver_sgesvdj_typed(handle, left_svect, right_svect, m, n, A, lda, abstol, &
@@ -66277,22 +66252,22 @@ contains
       integer(c_int), value :: right_svect
       integer(c_int), value :: m
       integer(c_int), value :: n
-      real(c_double), target :: A(*)
+      real(c_double), target :: A(..)
       integer(c_int), value :: lda
       real(c_double), value :: abstol
-      real(c_double), target :: residual(*)
+      real(c_double), target :: residual(..)
       integer(c_int), value :: max_sweeps
-      integer(c_int), target :: n_sweeps(*)
-      real(c_double), target :: S(*)
-      real(c_double), target :: U(*)
+      integer(c_int), target :: n_sweeps(..)
+      real(c_double), target :: S(..)
+      real(c_double), target :: U(..)
       integer(c_int), value :: ldu
-      real(c_double), target :: V(*)
+      real(c_double), target :: V(..)
       integer(c_int), value :: ldv
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int) :: dgesvdj
-      dgesvdj = rocsolver_dgesvdj_raw(handle, left_svect, right_svect, m, n, c_loc(A(1)), lda, &
-        abstol, c_loc(residual(1)), max_sweeps, c_loc(n_sweeps(1)), c_loc(S(1)), c_loc(U(1)), ldu, &
-        c_loc(V(1)), ldv, c_loc(info(1)))
+      dgesvdj = rocsolver_dgesvdj_raw(handle, left_svect, right_svect, m, n, c_loc(A), lda, &
+        abstol, c_loc(residual), max_sweeps, c_loc(n_sweeps), c_loc(S), c_loc(U), ldu, c_loc(V), &
+        ldv, c_loc(info))
     end function rocsolver_dgesvdj_native
 
     function rocsolver_dgesvdj_typed(handle, left_svect, right_svect, m, n, A, lda, abstol, &
@@ -66331,22 +66306,22 @@ contains
       integer(c_int), value :: right_svect
       integer(c_int), value :: m
       integer(c_int), value :: n
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: A(..)
       integer(c_int), value :: lda
       real(c_float), value :: abstol
-      real(c_float), target :: residual(*)
+      real(c_float), target :: residual(..)
       integer(c_int), value :: max_sweeps
-      integer(c_int), target :: n_sweeps(*)
-      real(c_float), target :: S(*)
-      complex(c_float_complex), target :: U(*)
+      integer(c_int), target :: n_sweeps(..)
+      real(c_float), target :: S(..)
+      complex(c_float_complex), target :: U(..)
       integer(c_int), value :: ldu
-      complex(c_float_complex), target :: V(*)
+      complex(c_float_complex), target :: V(..)
       integer(c_int), value :: ldv
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int) :: cgesvdj
-      cgesvdj = rocsolver_cgesvdj_raw(handle, left_svect, right_svect, m, n, c_loc(A(1)), lda, &
-        abstol, c_loc(residual(1)), max_sweeps, c_loc(n_sweeps(1)), c_loc(S(1)), c_loc(U(1)), ldu, &
-        c_loc(V(1)), ldv, c_loc(info(1)))
+      cgesvdj = rocsolver_cgesvdj_raw(handle, left_svect, right_svect, m, n, c_loc(A), lda, &
+        abstol, c_loc(residual), max_sweeps, c_loc(n_sweeps), c_loc(S), c_loc(U), ldu, c_loc(V), &
+        ldv, c_loc(info))
     end function rocsolver_cgesvdj_native
 
     function rocsolver_cgesvdj_typed(handle, left_svect, right_svect, m, n, A, lda, abstol, &
@@ -66385,22 +66360,22 @@ contains
       integer(c_int), value :: right_svect
       integer(c_int), value :: m
       integer(c_int), value :: n
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: A(..)
       integer(c_int), value :: lda
       real(c_double), value :: abstol
-      real(c_double), target :: residual(*)
+      real(c_double), target :: residual(..)
       integer(c_int), value :: max_sweeps
-      integer(c_int), target :: n_sweeps(*)
-      real(c_double), target :: S(*)
-      complex(c_double_complex), target :: U(*)
+      integer(c_int), target :: n_sweeps(..)
+      real(c_double), target :: S(..)
+      complex(c_double_complex), target :: U(..)
       integer(c_int), value :: ldu
-      complex(c_double_complex), target :: V(*)
+      complex(c_double_complex), target :: V(..)
       integer(c_int), value :: ldv
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int) :: zgesvdj
-      zgesvdj = rocsolver_zgesvdj_raw(handle, left_svect, right_svect, m, n, c_loc(A(1)), lda, &
-        abstol, c_loc(residual(1)), max_sweeps, c_loc(n_sweeps(1)), c_loc(S(1)), c_loc(U(1)), ldu, &
-        c_loc(V(1)), ldv, c_loc(info(1)))
+      zgesvdj = rocsolver_zgesvdj_raw(handle, left_svect, right_svect, m, n, c_loc(A), lda, &
+        abstol, c_loc(residual), max_sweeps, c_loc(n_sweeps), c_loc(S), c_loc(U), ldu, c_loc(V), &
+        ldv, c_loc(info))
     end function rocsolver_zgesvdj_native
 
     function rocsolver_zgesvdj_typed(handle, left_svect, right_svect, m, n, A, lda, abstol, &
@@ -66443,23 +66418,23 @@ contains
       type(c_ptr), value :: A
       integer(c_int), value :: lda
       real(c_float), value :: abstol
-      real(c_float), target :: residual(*)
+      real(c_float), target :: residual(..)
       integer(c_int), value :: max_sweeps
-      integer(c_int), target :: n_sweeps(*)
-      real(c_float), target :: S(*)
+      integer(c_int), target :: n_sweeps(..)
+      real(c_float), target :: S(..)
       integer(c_long), value :: strideS
-      real(c_float), target :: U(*)
+      real(c_float), target :: U(..)
       integer(c_int), value :: ldu
       integer(c_long), value :: strideU
-      real(c_float), target :: V(*)
+      real(c_float), target :: V(..)
       integer(c_int), value :: ldv
       integer(c_long), value :: strideV
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: sgesvdj_batched
       sgesvdj_batched = rocsolver_sgesvdj_batched_raw(handle, left_svect, right_svect, m, n, A, &
-        lda, abstol, c_loc(residual(1)), max_sweeps, c_loc(n_sweeps(1)), c_loc(S(1)), strideS, &
-        c_loc(U(1)), ldu, strideU, c_loc(V(1)), ldv, strideV, c_loc(info(1)), batch_count)
+        lda, abstol, c_loc(residual), max_sweeps, c_loc(n_sweeps), c_loc(S), strideS, c_loc(U), &
+        ldu, strideU, c_loc(V), ldv, strideV, c_loc(info), batch_count)
     end function rocsolver_sgesvdj_batched_native
 
     function rocsolver_sgesvdj_batched_typed(handle, left_svect, right_svect, m, n, A, lda, &
@@ -66508,23 +66483,23 @@ contains
       type(c_ptr), value :: A
       integer(c_int), value :: lda
       real(c_double), value :: abstol
-      real(c_double), target :: residual(*)
+      real(c_double), target :: residual(..)
       integer(c_int), value :: max_sweeps
-      integer(c_int), target :: n_sweeps(*)
-      real(c_double), target :: S(*)
+      integer(c_int), target :: n_sweeps(..)
+      real(c_double), target :: S(..)
       integer(c_long), value :: strideS
-      real(c_double), target :: U(*)
+      real(c_double), target :: U(..)
       integer(c_int), value :: ldu
       integer(c_long), value :: strideU
-      real(c_double), target :: V(*)
+      real(c_double), target :: V(..)
       integer(c_int), value :: ldv
       integer(c_long), value :: strideV
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: dgesvdj_batched
       dgesvdj_batched = rocsolver_dgesvdj_batched_raw(handle, left_svect, right_svect, m, n, A, &
-        lda, abstol, c_loc(residual(1)), max_sweeps, c_loc(n_sweeps(1)), c_loc(S(1)), strideS, &
-        c_loc(U(1)), ldu, strideU, c_loc(V(1)), ldv, strideV, c_loc(info(1)), batch_count)
+        lda, abstol, c_loc(residual), max_sweeps, c_loc(n_sweeps), c_loc(S), strideS, c_loc(U), &
+        ldu, strideU, c_loc(V), ldv, strideV, c_loc(info), batch_count)
     end function rocsolver_dgesvdj_batched_native
 
     function rocsolver_dgesvdj_batched_typed(handle, left_svect, right_svect, m, n, A, lda, &
@@ -66573,23 +66548,23 @@ contains
       type(c_ptr), value :: A
       integer(c_int), value :: lda
       real(c_float), value :: abstol
-      real(c_float), target :: residual(*)
+      real(c_float), target :: residual(..)
       integer(c_int), value :: max_sweeps
-      integer(c_int), target :: n_sweeps(*)
-      real(c_float), target :: S(*)
+      integer(c_int), target :: n_sweeps(..)
+      real(c_float), target :: S(..)
       integer(c_long), value :: strideS
-      complex(c_float_complex), target :: U(*)
+      complex(c_float_complex), target :: U(..)
       integer(c_int), value :: ldu
       integer(c_long), value :: strideU
-      complex(c_float_complex), target :: V(*)
+      complex(c_float_complex), target :: V(..)
       integer(c_int), value :: ldv
       integer(c_long), value :: strideV
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: cgesvdj_batched
       cgesvdj_batched = rocsolver_cgesvdj_batched_raw(handle, left_svect, right_svect, m, n, A, &
-        lda, abstol, c_loc(residual(1)), max_sweeps, c_loc(n_sweeps(1)), c_loc(S(1)), strideS, &
-        c_loc(U(1)), ldu, strideU, c_loc(V(1)), ldv, strideV, c_loc(info(1)), batch_count)
+        lda, abstol, c_loc(residual), max_sweeps, c_loc(n_sweeps), c_loc(S), strideS, c_loc(U), &
+        ldu, strideU, c_loc(V), ldv, strideV, c_loc(info), batch_count)
     end function rocsolver_cgesvdj_batched_native
 
     function rocsolver_cgesvdj_batched_typed(handle, left_svect, right_svect, m, n, A, lda, &
@@ -66638,23 +66613,23 @@ contains
       type(c_ptr), value :: A
       integer(c_int), value :: lda
       real(c_double), value :: abstol
-      real(c_double), target :: residual(*)
+      real(c_double), target :: residual(..)
       integer(c_int), value :: max_sweeps
-      integer(c_int), target :: n_sweeps(*)
-      real(c_double), target :: S(*)
+      integer(c_int), target :: n_sweeps(..)
+      real(c_double), target :: S(..)
       integer(c_long), value :: strideS
-      complex(c_double_complex), target :: U(*)
+      complex(c_double_complex), target :: U(..)
       integer(c_int), value :: ldu
       integer(c_long), value :: strideU
-      complex(c_double_complex), target :: V(*)
+      complex(c_double_complex), target :: V(..)
       integer(c_int), value :: ldv
       integer(c_long), value :: strideV
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: zgesvdj_batched
       zgesvdj_batched = rocsolver_zgesvdj_batched_raw(handle, left_svect, right_svect, m, n, A, &
-        lda, abstol, c_loc(residual(1)), max_sweeps, c_loc(n_sweeps(1)), c_loc(S(1)), strideS, &
-        c_loc(U(1)), ldu, strideU, c_loc(V(1)), ldv, strideV, c_loc(info(1)), batch_count)
+        lda, abstol, c_loc(residual), max_sweeps, c_loc(n_sweeps), c_loc(S), strideS, c_loc(U), &
+        ldu, strideU, c_loc(V), ldv, strideV, c_loc(info), batch_count)
     end function rocsolver_zgesvdj_batched_native
 
     function rocsolver_zgesvdj_batched_typed(handle, left_svect, right_svect, m, n, A, lda, &
@@ -66700,28 +66675,28 @@ contains
       integer(c_int), value :: right_svect
       integer(c_int), value :: m
       integer(c_int), value :: n
-      real(c_float), target :: A(*)
+      real(c_float), target :: A(..)
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
       real(c_float), value :: abstol
-      real(c_float), target :: residual(*)
+      real(c_float), target :: residual(..)
       integer(c_int), value :: max_sweeps
-      integer(c_int), target :: n_sweeps(*)
-      real(c_float), target :: S(*)
+      integer(c_int), target :: n_sweeps(..)
+      real(c_float), target :: S(..)
       integer(c_long), value :: strideS
-      real(c_float), target :: U(*)
+      real(c_float), target :: U(..)
       integer(c_int), value :: ldu
       integer(c_long), value :: strideU
-      real(c_float), target :: V(*)
+      real(c_float), target :: V(..)
       integer(c_int), value :: ldv
       integer(c_long), value :: strideV
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: sgesvdj_strided_batched
       sgesvdj_strided_batched = rocsolver_sgesvdj_strided_batched_raw(handle, left_svect, &
-        right_svect, m, n, c_loc(A(1)), lda, strideA, abstol, c_loc(residual(1)), max_sweeps, &
-        c_loc(n_sweeps(1)), c_loc(S(1)), strideS, c_loc(U(1)), ldu, strideU, c_loc(V(1)), ldv, &
-        strideV, c_loc(info(1)), batch_count)
+        right_svect, m, n, c_loc(A), lda, strideA, abstol, c_loc(residual), max_sweeps, c_loc( &
+        n_sweeps), c_loc(S), strideS, c_loc(U), ldu, strideU, c_loc(V), ldv, strideV, c_loc(info), &
+        batch_count)
     end function rocsolver_sgesvdj_strided_batched_native
 
     function rocsolver_sgesvdj_strided_batched_typed(handle, left_svect, right_svect, m, n, A, &
@@ -66768,28 +66743,28 @@ contains
       integer(c_int), value :: right_svect
       integer(c_int), value :: m
       integer(c_int), value :: n
-      real(c_double), target :: A(*)
+      real(c_double), target :: A(..)
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
       real(c_double), value :: abstol
-      real(c_double), target :: residual(*)
+      real(c_double), target :: residual(..)
       integer(c_int), value :: max_sweeps
-      integer(c_int), target :: n_sweeps(*)
-      real(c_double), target :: S(*)
+      integer(c_int), target :: n_sweeps(..)
+      real(c_double), target :: S(..)
       integer(c_long), value :: strideS
-      real(c_double), target :: U(*)
+      real(c_double), target :: U(..)
       integer(c_int), value :: ldu
       integer(c_long), value :: strideU
-      real(c_double), target :: V(*)
+      real(c_double), target :: V(..)
       integer(c_int), value :: ldv
       integer(c_long), value :: strideV
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: dgesvdj_strided_batched
       dgesvdj_strided_batched = rocsolver_dgesvdj_strided_batched_raw(handle, left_svect, &
-        right_svect, m, n, c_loc(A(1)), lda, strideA, abstol, c_loc(residual(1)), max_sweeps, &
-        c_loc(n_sweeps(1)), c_loc(S(1)), strideS, c_loc(U(1)), ldu, strideU, c_loc(V(1)), ldv, &
-        strideV, c_loc(info(1)), batch_count)
+        right_svect, m, n, c_loc(A), lda, strideA, abstol, c_loc(residual), max_sweeps, c_loc( &
+        n_sweeps), c_loc(S), strideS, c_loc(U), ldu, strideU, c_loc(V), ldv, strideV, c_loc(info), &
+        batch_count)
     end function rocsolver_dgesvdj_strided_batched_native
 
     function rocsolver_dgesvdj_strided_batched_typed(handle, left_svect, right_svect, m, n, A, &
@@ -66836,28 +66811,28 @@ contains
       integer(c_int), value :: right_svect
       integer(c_int), value :: m
       integer(c_int), value :: n
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: A(..)
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
       real(c_float), value :: abstol
-      real(c_float), target :: residual(*)
+      real(c_float), target :: residual(..)
       integer(c_int), value :: max_sweeps
-      integer(c_int), target :: n_sweeps(*)
-      real(c_float), target :: S(*)
+      integer(c_int), target :: n_sweeps(..)
+      real(c_float), target :: S(..)
       integer(c_long), value :: strideS
-      complex(c_float_complex), target :: U(*)
+      complex(c_float_complex), target :: U(..)
       integer(c_int), value :: ldu
       integer(c_long), value :: strideU
-      complex(c_float_complex), target :: V(*)
+      complex(c_float_complex), target :: V(..)
       integer(c_int), value :: ldv
       integer(c_long), value :: strideV
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: cgesvdj_strided_batched
       cgesvdj_strided_batched = rocsolver_cgesvdj_strided_batched_raw(handle, left_svect, &
-        right_svect, m, n, c_loc(A(1)), lda, strideA, abstol, c_loc(residual(1)), max_sweeps, &
-        c_loc(n_sweeps(1)), c_loc(S(1)), strideS, c_loc(U(1)), ldu, strideU, c_loc(V(1)), ldv, &
-        strideV, c_loc(info(1)), batch_count)
+        right_svect, m, n, c_loc(A), lda, strideA, abstol, c_loc(residual), max_sweeps, c_loc( &
+        n_sweeps), c_loc(S), strideS, c_loc(U), ldu, strideU, c_loc(V), ldv, strideV, c_loc(info), &
+        batch_count)
     end function rocsolver_cgesvdj_strided_batched_native
 
     function rocsolver_cgesvdj_strided_batched_typed(handle, left_svect, right_svect, m, n, A, &
@@ -66904,28 +66879,28 @@ contains
       integer(c_int), value :: right_svect
       integer(c_int), value :: m
       integer(c_int), value :: n
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: A(..)
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
       real(c_double), value :: abstol
-      real(c_double), target :: residual(*)
+      real(c_double), target :: residual(..)
       integer(c_int), value :: max_sweeps
-      integer(c_int), target :: n_sweeps(*)
-      real(c_double), target :: S(*)
+      integer(c_int), target :: n_sweeps(..)
+      real(c_double), target :: S(..)
       integer(c_long), value :: strideS
-      complex(c_double_complex), target :: U(*)
+      complex(c_double_complex), target :: U(..)
       integer(c_int), value :: ldu
       integer(c_long), value :: strideU
-      complex(c_double_complex), target :: V(*)
+      complex(c_double_complex), target :: V(..)
       integer(c_int), value :: ldv
       integer(c_long), value :: strideV
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: zgesvdj_strided_batched
       zgesvdj_strided_batched = rocsolver_zgesvdj_strided_batched_raw(handle, left_svect, &
-        right_svect, m, n, c_loc(A(1)), lda, strideA, abstol, c_loc(residual(1)), max_sweeps, &
-        c_loc(n_sweeps(1)), c_loc(S(1)), strideS, c_loc(U(1)), ldu, strideU, c_loc(V(1)), ldv, &
-        strideV, c_loc(info(1)), batch_count)
+        right_svect, m, n, c_loc(A), lda, strideA, abstol, c_loc(residual), max_sweeps, c_loc( &
+        n_sweeps), c_loc(S), strideS, c_loc(U), ldu, strideU, c_loc(V), ldv, strideV, c_loc(info), &
+        batch_count)
     end function rocsolver_zgesvdj_strided_batched_native
 
     function rocsolver_zgesvdj_strided_batched_typed(handle, left_svect, right_svect, m, n, A, &
@@ -66972,24 +66947,24 @@ contains
       integer(c_int), value :: srange
       integer(c_int), value :: m
       integer(c_int), value :: n
-      real(c_float), target :: A(*)
+      real(c_float), target :: A(..)
       integer(c_int), value :: lda
       real(c_float), value :: vl
       real(c_float), value :: vu
       integer(c_int), value :: il
       integer(c_int), value :: iu
-      integer(c_int), target :: nsv(*)
-      real(c_float), target :: S(*)
-      real(c_float), target :: U(*)
+      integer(c_int), target :: nsv(..)
+      real(c_float), target :: S(..)
+      real(c_float), target :: U(..)
       integer(c_int), value :: ldu
-      real(c_float), target :: V(*)
+      real(c_float), target :: V(..)
       integer(c_int), value :: ldv
-      integer(c_int), target :: ifail(*)
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: ifail(..)
+      integer(c_int), target :: info(..)
       integer(c_int) :: sgesvdx
-      sgesvdx = rocsolver_sgesvdx_raw(handle, left_svect, right_svect, srange, m, n, c_loc(A(1)), &
-        lda, vl, vu, il, iu, c_loc(nsv(1)), c_loc(S(1)), c_loc(U(1)), ldu, c_loc(V(1)), ldv, &
-        c_loc(ifail(1)), c_loc(info(1)))
+      sgesvdx = rocsolver_sgesvdx_raw(handle, left_svect, right_svect, srange, m, n, c_loc(A), &
+        lda, vl, vu, il, iu, c_loc(nsv), c_loc(S), c_loc(U), ldu, c_loc(V), ldv, c_loc(ifail), &
+        c_loc(info))
     end function rocsolver_sgesvdx_native
 
     function rocsolver_sgesvdx_typed(handle, left_svect, right_svect, srange, m, n, A, lda, vl, &
@@ -67032,24 +67007,24 @@ contains
       integer(c_int), value :: srange
       integer(c_int), value :: m
       integer(c_int), value :: n
-      real(c_double), target :: A(*)
+      real(c_double), target :: A(..)
       integer(c_int), value :: lda
       real(c_double), value :: vl
       real(c_double), value :: vu
       integer(c_int), value :: il
       integer(c_int), value :: iu
-      integer(c_int), target :: nsv(*)
-      real(c_double), target :: S(*)
-      real(c_double), target :: U(*)
+      integer(c_int), target :: nsv(..)
+      real(c_double), target :: S(..)
+      real(c_double), target :: U(..)
       integer(c_int), value :: ldu
-      real(c_double), target :: V(*)
+      real(c_double), target :: V(..)
       integer(c_int), value :: ldv
-      integer(c_int), target :: ifail(*)
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: ifail(..)
+      integer(c_int), target :: info(..)
       integer(c_int) :: dgesvdx
-      dgesvdx = rocsolver_dgesvdx_raw(handle, left_svect, right_svect, srange, m, n, c_loc(A(1)), &
-        lda, vl, vu, il, iu, c_loc(nsv(1)), c_loc(S(1)), c_loc(U(1)), ldu, c_loc(V(1)), ldv, &
-        c_loc(ifail(1)), c_loc(info(1)))
+      dgesvdx = rocsolver_dgesvdx_raw(handle, left_svect, right_svect, srange, m, n, c_loc(A), &
+        lda, vl, vu, il, iu, c_loc(nsv), c_loc(S), c_loc(U), ldu, c_loc(V), ldv, c_loc(ifail), &
+        c_loc(info))
     end function rocsolver_dgesvdx_native
 
     function rocsolver_dgesvdx_typed(handle, left_svect, right_svect, srange, m, n, A, lda, vl, &
@@ -67092,24 +67067,24 @@ contains
       integer(c_int), value :: srange
       integer(c_int), value :: m
       integer(c_int), value :: n
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: A(..)
       integer(c_int), value :: lda
       real(c_float), value :: vl
       real(c_float), value :: vu
       integer(c_int), value :: il
       integer(c_int), value :: iu
-      integer(c_int), target :: nsv(*)
-      real(c_float), target :: S(*)
-      complex(c_float_complex), target :: U(*)
+      integer(c_int), target :: nsv(..)
+      real(c_float), target :: S(..)
+      complex(c_float_complex), target :: U(..)
       integer(c_int), value :: ldu
-      complex(c_float_complex), target :: V(*)
+      complex(c_float_complex), target :: V(..)
       integer(c_int), value :: ldv
-      integer(c_int), target :: ifail(*)
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: ifail(..)
+      integer(c_int), target :: info(..)
       integer(c_int) :: cgesvdx
-      cgesvdx = rocsolver_cgesvdx_raw(handle, left_svect, right_svect, srange, m, n, c_loc(A(1)), &
-        lda, vl, vu, il, iu, c_loc(nsv(1)), c_loc(S(1)), c_loc(U(1)), ldu, c_loc(V(1)), ldv, &
-        c_loc(ifail(1)), c_loc(info(1)))
+      cgesvdx = rocsolver_cgesvdx_raw(handle, left_svect, right_svect, srange, m, n, c_loc(A), &
+        lda, vl, vu, il, iu, c_loc(nsv), c_loc(S), c_loc(U), ldu, c_loc(V), ldv, c_loc(ifail), &
+        c_loc(info))
     end function rocsolver_cgesvdx_native
 
     function rocsolver_cgesvdx_typed(handle, left_svect, right_svect, srange, m, n, A, lda, vl, &
@@ -67152,24 +67127,24 @@ contains
       integer(c_int), value :: srange
       integer(c_int), value :: m
       integer(c_int), value :: n
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: A(..)
       integer(c_int), value :: lda
       real(c_double), value :: vl
       real(c_double), value :: vu
       integer(c_int), value :: il
       integer(c_int), value :: iu
-      integer(c_int), target :: nsv(*)
-      real(c_double), target :: S(*)
-      complex(c_double_complex), target :: U(*)
+      integer(c_int), target :: nsv(..)
+      real(c_double), target :: S(..)
+      complex(c_double_complex), target :: U(..)
       integer(c_int), value :: ldu
-      complex(c_double_complex), target :: V(*)
+      complex(c_double_complex), target :: V(..)
       integer(c_int), value :: ldv
-      integer(c_int), target :: ifail(*)
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: ifail(..)
+      integer(c_int), target :: info(..)
       integer(c_int) :: zgesvdx
-      zgesvdx = rocsolver_zgesvdx_raw(handle, left_svect, right_svect, srange, m, n, c_loc(A(1)), &
-        lda, vl, vu, il, iu, c_loc(nsv(1)), c_loc(S(1)), c_loc(U(1)), ldu, c_loc(V(1)), ldv, &
-        c_loc(ifail(1)), c_loc(info(1)))
+      zgesvdx = rocsolver_zgesvdx_raw(handle, left_svect, right_svect, srange, m, n, c_loc(A), &
+        lda, vl, vu, il, iu, c_loc(nsv), c_loc(S), c_loc(U), ldu, c_loc(V), ldv, c_loc(ifail), &
+        c_loc(info))
     end function rocsolver_zgesvdx_native
 
     function rocsolver_zgesvdx_typed(handle, left_svect, right_svect, srange, m, n, A, lda, vl, &
@@ -67219,23 +67194,23 @@ contains
       real(c_float), value :: vu
       integer(c_int), value :: il
       integer(c_int), value :: iu
-      integer(c_int), target :: nsv(*)
-      real(c_float), target :: S(*)
+      integer(c_int), target :: nsv(..)
+      real(c_float), target :: S(..)
       integer(c_long), value :: strideS
-      real(c_float), target :: U(*)
+      real(c_float), target :: U(..)
       integer(c_int), value :: ldu
       integer(c_long), value :: strideU
-      real(c_float), target :: V(*)
+      real(c_float), target :: V(..)
       integer(c_int), value :: ldv
       integer(c_long), value :: strideV
-      integer(c_int), target :: ifail(*)
+      integer(c_int), target :: ifail(..)
       integer(c_long), value :: strideF
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: sgesvdx_batched
       sgesvdx_batched = rocsolver_sgesvdx_batched_raw(handle, left_svect, right_svect, srange, m, &
-        n, A, lda, vl, vu, il, iu, c_loc(nsv(1)), c_loc(S(1)), strideS, c_loc(U(1)), ldu, strideU, &
-        c_loc(V(1)), ldv, strideV, c_loc(ifail(1)), strideF, c_loc(info(1)), batch_count)
+        n, A, lda, vl, vu, il, iu, c_loc(nsv), c_loc(S), strideS, c_loc(U), ldu, strideU, c_loc( &
+        V), ldv, strideV, c_loc(ifail), strideF, c_loc(info), batch_count)
     end function rocsolver_sgesvdx_batched_native
 
     function rocsolver_sgesvdx_batched_typed(handle, left_svect, right_svect, srange, m, n, A, &
@@ -67292,23 +67267,23 @@ contains
       real(c_double), value :: vu
       integer(c_int), value :: il
       integer(c_int), value :: iu
-      integer(c_int), target :: nsv(*)
-      real(c_double), target :: S(*)
+      integer(c_int), target :: nsv(..)
+      real(c_double), target :: S(..)
       integer(c_long), value :: strideS
-      real(c_double), target :: U(*)
+      real(c_double), target :: U(..)
       integer(c_int), value :: ldu
       integer(c_long), value :: strideU
-      real(c_double), target :: V(*)
+      real(c_double), target :: V(..)
       integer(c_int), value :: ldv
       integer(c_long), value :: strideV
-      integer(c_int), target :: ifail(*)
+      integer(c_int), target :: ifail(..)
       integer(c_long), value :: strideF
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: dgesvdx_batched
       dgesvdx_batched = rocsolver_dgesvdx_batched_raw(handle, left_svect, right_svect, srange, m, &
-        n, A, lda, vl, vu, il, iu, c_loc(nsv(1)), c_loc(S(1)), strideS, c_loc(U(1)), ldu, strideU, &
-        c_loc(V(1)), ldv, strideV, c_loc(ifail(1)), strideF, c_loc(info(1)), batch_count)
+        n, A, lda, vl, vu, il, iu, c_loc(nsv), c_loc(S), strideS, c_loc(U), ldu, strideU, c_loc( &
+        V), ldv, strideV, c_loc(ifail), strideF, c_loc(info), batch_count)
     end function rocsolver_dgesvdx_batched_native
 
     function rocsolver_dgesvdx_batched_typed(handle, left_svect, right_svect, srange, m, n, A, &
@@ -67365,23 +67340,23 @@ contains
       real(c_float), value :: vu
       integer(c_int), value :: il
       integer(c_int), value :: iu
-      integer(c_int), target :: nsv(*)
-      real(c_float), target :: S(*)
+      integer(c_int), target :: nsv(..)
+      real(c_float), target :: S(..)
       integer(c_long), value :: strideS
-      complex(c_float_complex), target :: U(*)
+      complex(c_float_complex), target :: U(..)
       integer(c_int), value :: ldu
       integer(c_long), value :: strideU
-      complex(c_float_complex), target :: V(*)
+      complex(c_float_complex), target :: V(..)
       integer(c_int), value :: ldv
       integer(c_long), value :: strideV
-      integer(c_int), target :: ifail(*)
+      integer(c_int), target :: ifail(..)
       integer(c_long), value :: strideF
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: cgesvdx_batched
       cgesvdx_batched = rocsolver_cgesvdx_batched_raw(handle, left_svect, right_svect, srange, m, &
-        n, A, lda, vl, vu, il, iu, c_loc(nsv(1)), c_loc(S(1)), strideS, c_loc(U(1)), ldu, strideU, &
-        c_loc(V(1)), ldv, strideV, c_loc(ifail(1)), strideF, c_loc(info(1)), batch_count)
+        n, A, lda, vl, vu, il, iu, c_loc(nsv), c_loc(S), strideS, c_loc(U), ldu, strideU, c_loc( &
+        V), ldv, strideV, c_loc(ifail), strideF, c_loc(info), batch_count)
     end function rocsolver_cgesvdx_batched_native
 
     function rocsolver_cgesvdx_batched_typed(handle, left_svect, right_svect, srange, m, n, A, &
@@ -67438,23 +67413,23 @@ contains
       real(c_double), value :: vu
       integer(c_int), value :: il
       integer(c_int), value :: iu
-      integer(c_int), target :: nsv(*)
-      real(c_double), target :: S(*)
+      integer(c_int), target :: nsv(..)
+      real(c_double), target :: S(..)
       integer(c_long), value :: strideS
-      complex(c_double_complex), target :: U(*)
+      complex(c_double_complex), target :: U(..)
       integer(c_int), value :: ldu
       integer(c_long), value :: strideU
-      complex(c_double_complex), target :: V(*)
+      complex(c_double_complex), target :: V(..)
       integer(c_int), value :: ldv
       integer(c_long), value :: strideV
-      integer(c_int), target :: ifail(*)
+      integer(c_int), target :: ifail(..)
       integer(c_long), value :: strideF
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: zgesvdx_batched
       zgesvdx_batched = rocsolver_zgesvdx_batched_raw(handle, left_svect, right_svect, srange, m, &
-        n, A, lda, vl, vu, il, iu, c_loc(nsv(1)), c_loc(S(1)), strideS, c_loc(U(1)), ldu, strideU, &
-        c_loc(V(1)), ldv, strideV, c_loc(ifail(1)), strideF, c_loc(info(1)), batch_count)
+        n, A, lda, vl, vu, il, iu, c_loc(nsv), c_loc(S), strideS, c_loc(U), ldu, strideU, c_loc( &
+        V), ldv, strideV, c_loc(ifail), strideF, c_loc(info), batch_count)
     end function rocsolver_zgesvdx_batched_native
 
     function rocsolver_zgesvdx_batched_typed(handle, left_svect, right_svect, srange, m, n, A, &
@@ -67505,31 +67480,31 @@ contains
       integer(c_int), value :: srange
       integer(c_int), value :: m
       integer(c_int), value :: n
-      real(c_float), target :: A(*)
+      real(c_float), target :: A(..)
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
       real(c_float), value :: vl
       real(c_float), value :: vu
       integer(c_int), value :: il
       integer(c_int), value :: iu
-      integer(c_int), target :: nsv(*)
-      real(c_float), target :: S(*)
+      integer(c_int), target :: nsv(..)
+      real(c_float), target :: S(..)
       integer(c_long), value :: strideS
-      real(c_float), target :: U(*)
+      real(c_float), target :: U(..)
       integer(c_int), value :: ldu
       integer(c_long), value :: strideU
-      real(c_float), target :: V(*)
+      real(c_float), target :: V(..)
       integer(c_int), value :: ldv
       integer(c_long), value :: strideV
-      integer(c_int), target :: ifail(*)
+      integer(c_int), target :: ifail(..)
       integer(c_long), value :: strideF
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: sgesvdx_strided_batched
       sgesvdx_strided_batched = rocsolver_sgesvdx_strided_batched_raw(handle, left_svect, &
-        right_svect, srange, m, n, c_loc(A(1)), lda, strideA, vl, vu, il, iu, c_loc(nsv(1)), &
-        c_loc(S(1)), strideS, c_loc(U(1)), ldu, strideU, c_loc(V(1)), ldv, strideV, c_loc(ifail( &
-        1)), strideF, c_loc(info(1)), batch_count)
+        right_svect, srange, m, n, c_loc(A), lda, strideA, vl, vu, il, iu, c_loc(nsv), c_loc(S), &
+        strideS, c_loc(U), ldu, strideU, c_loc(V), ldv, strideV, c_loc(ifail), strideF, c_loc( &
+        info), batch_count)
     end function rocsolver_sgesvdx_strided_batched_native
 
     function rocsolver_sgesvdx_strided_batched_typed(handle, left_svect, right_svect, srange, m, &
@@ -67581,31 +67556,31 @@ contains
       integer(c_int), value :: srange
       integer(c_int), value :: m
       integer(c_int), value :: n
-      real(c_double), target :: A(*)
+      real(c_double), target :: A(..)
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
       real(c_double), value :: vl
       real(c_double), value :: vu
       integer(c_int), value :: il
       integer(c_int), value :: iu
-      integer(c_int), target :: nsv(*)
-      real(c_double), target :: S(*)
+      integer(c_int), target :: nsv(..)
+      real(c_double), target :: S(..)
       integer(c_long), value :: strideS
-      real(c_double), target :: U(*)
+      real(c_double), target :: U(..)
       integer(c_int), value :: ldu
       integer(c_long), value :: strideU
-      real(c_double), target :: V(*)
+      real(c_double), target :: V(..)
       integer(c_int), value :: ldv
       integer(c_long), value :: strideV
-      integer(c_int), target :: ifail(*)
+      integer(c_int), target :: ifail(..)
       integer(c_long), value :: strideF
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: dgesvdx_strided_batched
       dgesvdx_strided_batched = rocsolver_dgesvdx_strided_batched_raw(handle, left_svect, &
-        right_svect, srange, m, n, c_loc(A(1)), lda, strideA, vl, vu, il, iu, c_loc(nsv(1)), &
-        c_loc(S(1)), strideS, c_loc(U(1)), ldu, strideU, c_loc(V(1)), ldv, strideV, c_loc(ifail( &
-        1)), strideF, c_loc(info(1)), batch_count)
+        right_svect, srange, m, n, c_loc(A), lda, strideA, vl, vu, il, iu, c_loc(nsv), c_loc(S), &
+        strideS, c_loc(U), ldu, strideU, c_loc(V), ldv, strideV, c_loc(ifail), strideF, c_loc( &
+        info), batch_count)
     end function rocsolver_dgesvdx_strided_batched_native
 
     function rocsolver_dgesvdx_strided_batched_typed(handle, left_svect, right_svect, srange, m, &
@@ -67657,31 +67632,31 @@ contains
       integer(c_int), value :: srange
       integer(c_int), value :: m
       integer(c_int), value :: n
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: A(..)
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
       real(c_float), value :: vl
       real(c_float), value :: vu
       integer(c_int), value :: il
       integer(c_int), value :: iu
-      integer(c_int), target :: nsv(*)
-      real(c_float), target :: S(*)
+      integer(c_int), target :: nsv(..)
+      real(c_float), target :: S(..)
       integer(c_long), value :: strideS
-      complex(c_float_complex), target :: U(*)
+      complex(c_float_complex), target :: U(..)
       integer(c_int), value :: ldu
       integer(c_long), value :: strideU
-      complex(c_float_complex), target :: V(*)
+      complex(c_float_complex), target :: V(..)
       integer(c_int), value :: ldv
       integer(c_long), value :: strideV
-      integer(c_int), target :: ifail(*)
+      integer(c_int), target :: ifail(..)
       integer(c_long), value :: strideF
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: cgesvdx_strided_batched
       cgesvdx_strided_batched = rocsolver_cgesvdx_strided_batched_raw(handle, left_svect, &
-        right_svect, srange, m, n, c_loc(A(1)), lda, strideA, vl, vu, il, iu, c_loc(nsv(1)), &
-        c_loc(S(1)), strideS, c_loc(U(1)), ldu, strideU, c_loc(V(1)), ldv, strideV, c_loc(ifail( &
-        1)), strideF, c_loc(info(1)), batch_count)
+        right_svect, srange, m, n, c_loc(A), lda, strideA, vl, vu, il, iu, c_loc(nsv), c_loc(S), &
+        strideS, c_loc(U), ldu, strideU, c_loc(V), ldv, strideV, c_loc(ifail), strideF, c_loc( &
+        info), batch_count)
     end function rocsolver_cgesvdx_strided_batched_native
 
     function rocsolver_cgesvdx_strided_batched_typed(handle, left_svect, right_svect, srange, m, &
@@ -67733,31 +67708,31 @@ contains
       integer(c_int), value :: srange
       integer(c_int), value :: m
       integer(c_int), value :: n
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: A(..)
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
       real(c_double), value :: vl
       real(c_double), value :: vu
       integer(c_int), value :: il
       integer(c_int), value :: iu
-      integer(c_int), target :: nsv(*)
-      real(c_double), target :: S(*)
+      integer(c_int), target :: nsv(..)
+      real(c_double), target :: S(..)
       integer(c_long), value :: strideS
-      complex(c_double_complex), target :: U(*)
+      complex(c_double_complex), target :: U(..)
       integer(c_int), value :: ldu
       integer(c_long), value :: strideU
-      complex(c_double_complex), target :: V(*)
+      complex(c_double_complex), target :: V(..)
       integer(c_int), value :: ldv
       integer(c_long), value :: strideV
-      integer(c_int), target :: ifail(*)
+      integer(c_int), target :: ifail(..)
       integer(c_long), value :: strideF
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: zgesvdx_strided_batched
       zgesvdx_strided_batched = rocsolver_zgesvdx_strided_batched_raw(handle, left_svect, &
-        right_svect, srange, m, n, c_loc(A(1)), lda, strideA, vl, vu, il, iu, c_loc(nsv(1)), &
-        c_loc(S(1)), strideS, c_loc(U(1)), ldu, strideU, c_loc(V(1)), ldv, strideV, c_loc(ifail( &
-        1)), strideF, c_loc(info(1)), batch_count)
+        right_svect, srange, m, n, c_loc(A), lda, strideA, vl, vu, il, iu, c_loc(nsv), c_loc(S), &
+        strideS, c_loc(U), ldu, strideU, c_loc(V), ldv, strideV, c_loc(ifail), strideF, c_loc( &
+        info), batch_count)
     end function rocsolver_zgesvdx_strided_batched_native
 
     function rocsolver_zgesvdx_strided_batched_typed(handle, left_svect, right_svect, srange, m, &
@@ -67804,14 +67779,13 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: uplo
       integer(c_int), value :: n
-      real(c_float), target :: A(*)
+      real(c_float), target :: A(..)
       integer(c_int), value :: lda
-      real(c_float), target :: D(*)
-      real(c_float), target :: E(*)
-      real(c_float), target :: tau(*)
+      real(c_float), target :: D(..)
+      real(c_float), target :: E(..)
+      real(c_float) :: tau
       integer(c_int) :: ssytd2
-      ssytd2 = rocsolver_ssytd2_raw(handle, uplo, n, c_loc(A(1)), lda, c_loc(D(1)), c_loc(E(1)), &
-        c_loc(tau(1)))
+      ssytd2 = rocsolver_ssytd2_raw(handle, uplo, n, c_loc(A), lda, c_loc(D), c_loc(E), tau)
     end function rocsolver_ssytd2_native
 
     function rocsolver_ssytd2_typed(handle, uplo, n, A, lda, D, E, tau) result(ssytd2)
@@ -67825,7 +67799,7 @@ contains
       integer(c_int), value :: lda
       type(c_ptr), value :: D
       type(c_ptr), value :: E
-      type(c_ptr), value :: tau
+      real(c_float) :: tau
       integer(c_int) :: ssytd2
       ssytd2 = rocsolver_ssytd2_raw(handle%ptr, uplo, n, A, lda, D, E, tau)
     end function rocsolver_ssytd2_typed
@@ -67836,14 +67810,13 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: uplo
       integer(c_int), value :: n
-      real(c_double), target :: A(*)
+      real(c_double), target :: A(..)
       integer(c_int), value :: lda
-      real(c_double), target :: D(*)
-      real(c_double), target :: E(*)
-      real(c_double), target :: tau(*)
+      real(c_double), target :: D(..)
+      real(c_double), target :: E(..)
+      real(c_double) :: tau
       integer(c_int) :: dsytd2
-      dsytd2 = rocsolver_dsytd2_raw(handle, uplo, n, c_loc(A(1)), lda, c_loc(D(1)), c_loc(E(1)), &
-        c_loc(tau(1)))
+      dsytd2 = rocsolver_dsytd2_raw(handle, uplo, n, c_loc(A), lda, c_loc(D), c_loc(E), tau)
     end function rocsolver_dsytd2_native
 
     function rocsolver_dsytd2_typed(handle, uplo, n, A, lda, D, E, tau) result(dsytd2)
@@ -67857,7 +67830,7 @@ contains
       integer(c_int), value :: lda
       type(c_ptr), value :: D
       type(c_ptr), value :: E
-      type(c_ptr), value :: tau
+      real(c_double) :: tau
       integer(c_int) :: dsytd2
       dsytd2 = rocsolver_dsytd2_raw(handle%ptr, uplo, n, A, lda, D, E, tau)
     end function rocsolver_dsytd2_typed
@@ -67868,14 +67841,13 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: uplo
       integer(c_int), value :: n
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: A(..)
       integer(c_int), value :: lda
-      real(c_float), target :: D(*)
-      real(c_float), target :: E(*)
-      complex(c_float_complex), target :: tau(*)
+      real(c_float), target :: D(..)
+      real(c_float), target :: E(..)
+      complex(c_float_complex) :: tau
       integer(c_int) :: chetd2
-      chetd2 = rocsolver_chetd2_raw(handle, uplo, n, c_loc(A(1)), lda, c_loc(D(1)), c_loc(E(1)), &
-        c_loc(tau(1)))
+      chetd2 = rocsolver_chetd2_raw(handle, uplo, n, c_loc(A), lda, c_loc(D), c_loc(E), tau)
     end function rocsolver_chetd2_native
 
     function rocsolver_chetd2_typed(handle, uplo, n, A, lda, D, E, tau) result(chetd2)
@@ -67889,7 +67861,7 @@ contains
       integer(c_int), value :: lda
       type(c_ptr), value :: D
       type(c_ptr), value :: E
-      type(c_ptr), value :: tau
+      complex(c_float_complex) :: tau
       integer(c_int) :: chetd2
       chetd2 = rocsolver_chetd2_raw(handle%ptr, uplo, n, A, lda, D, E, tau)
     end function rocsolver_chetd2_typed
@@ -67900,14 +67872,13 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: uplo
       integer(c_int), value :: n
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: A(..)
       integer(c_int), value :: lda
-      real(c_double), target :: D(*)
-      real(c_double), target :: E(*)
-      complex(c_double_complex), target :: tau(*)
+      real(c_double), target :: D(..)
+      real(c_double), target :: E(..)
+      complex(c_double_complex) :: tau
       integer(c_int) :: zhetd2
-      zhetd2 = rocsolver_zhetd2_raw(handle, uplo, n, c_loc(A(1)), lda, c_loc(D(1)), c_loc(E(1)), &
-        c_loc(tau(1)))
+      zhetd2 = rocsolver_zhetd2_raw(handle, uplo, n, c_loc(A), lda, c_loc(D), c_loc(E), tau)
     end function rocsolver_zhetd2_native
 
     function rocsolver_zhetd2_typed(handle, uplo, n, A, lda, D, E, tau) result(zhetd2)
@@ -67921,7 +67892,7 @@ contains
       integer(c_int), value :: lda
       type(c_ptr), value :: D
       type(c_ptr), value :: E
-      type(c_ptr), value :: tau
+      complex(c_double_complex) :: tau
       integer(c_int) :: zhetd2
       zhetd2 = rocsolver_zhetd2_raw(handle%ptr, uplo, n, A, lda, D, E, tau)
     end function rocsolver_zhetd2_typed
@@ -67935,16 +67906,16 @@ contains
       integer(c_int), value :: n
       type(c_ptr), value :: A
       integer(c_int), value :: lda
-      real(c_float), target :: D(*)
+      real(c_float), target :: D(..)
       integer(c_long), value :: strideD
-      real(c_float), target :: E(*)
+      real(c_float), target :: E(..)
       integer(c_long), value :: strideE
       real(c_float) :: tau
       integer(c_long), value :: strideP
       integer(c_int), value :: batch_count
       integer(c_int) :: ssytd2_batched
-      ssytd2_batched = rocsolver_ssytd2_batched_raw(handle, uplo, n, A, lda, c_loc(D(1)), strideD, &
-        c_loc(E(1)), strideE, tau, strideP, batch_count)
+      ssytd2_batched = rocsolver_ssytd2_batched_raw(handle, uplo, n, A, lda, c_loc(D), strideD, &
+        c_loc(E), strideE, tau, strideP, batch_count)
     end function rocsolver_ssytd2_batched_native
 
     function rocsolver_ssytd2_batched_typed(handle, uplo, n, A, lda, D, strideD, E, strideE, tau, &
@@ -67978,16 +67949,16 @@ contains
       integer(c_int), value :: n
       type(c_ptr), value :: A
       integer(c_int), value :: lda
-      real(c_double), target :: D(*)
+      real(c_double), target :: D(..)
       integer(c_long), value :: strideD
-      real(c_double), target :: E(*)
+      real(c_double), target :: E(..)
       integer(c_long), value :: strideE
       real(c_double) :: tau
       integer(c_long), value :: strideP
       integer(c_int), value :: batch_count
       integer(c_int) :: dsytd2_batched
-      dsytd2_batched = rocsolver_dsytd2_batched_raw(handle, uplo, n, A, lda, c_loc(D(1)), strideD, &
-        c_loc(E(1)), strideE, tau, strideP, batch_count)
+      dsytd2_batched = rocsolver_dsytd2_batched_raw(handle, uplo, n, A, lda, c_loc(D), strideD, &
+        c_loc(E), strideE, tau, strideP, batch_count)
     end function rocsolver_dsytd2_batched_native
 
     function rocsolver_dsytd2_batched_typed(handle, uplo, n, A, lda, D, strideD, E, strideE, tau, &
@@ -68021,16 +67992,16 @@ contains
       integer(c_int), value :: n
       type(c_ptr), value :: A
       integer(c_int), value :: lda
-      real(c_float), target :: D(*)
+      real(c_float), target :: D(..)
       integer(c_long), value :: strideD
-      real(c_float), target :: E(*)
+      real(c_float), target :: E(..)
       integer(c_long), value :: strideE
       complex(c_float_complex) :: tau
       integer(c_long), value :: strideP
       integer(c_int), value :: batch_count
       integer(c_int) :: chetd2_batched
-      chetd2_batched = rocsolver_chetd2_batched_raw(handle, uplo, n, A, lda, c_loc(D(1)), strideD, &
-        c_loc(E(1)), strideE, tau, strideP, batch_count)
+      chetd2_batched = rocsolver_chetd2_batched_raw(handle, uplo, n, A, lda, c_loc(D), strideD, &
+        c_loc(E), strideE, tau, strideP, batch_count)
     end function rocsolver_chetd2_batched_native
 
     function rocsolver_chetd2_batched_typed(handle, uplo, n, A, lda, D, strideD, E, strideE, tau, &
@@ -68064,16 +68035,16 @@ contains
       integer(c_int), value :: n
       type(c_ptr), value :: A
       integer(c_int), value :: lda
-      real(c_double), target :: D(*)
+      real(c_double), target :: D(..)
       integer(c_long), value :: strideD
-      real(c_double), target :: E(*)
+      real(c_double), target :: E(..)
       integer(c_long), value :: strideE
       complex(c_double_complex) :: tau
       integer(c_long), value :: strideP
       integer(c_int), value :: batch_count
       integer(c_int) :: zhetd2_batched
-      zhetd2_batched = rocsolver_zhetd2_batched_raw(handle, uplo, n, A, lda, c_loc(D(1)), strideD, &
-        c_loc(E(1)), strideE, tau, strideP, batch_count)
+      zhetd2_batched = rocsolver_zhetd2_batched_raw(handle, uplo, n, A, lda, c_loc(D), strideD, &
+        c_loc(E), strideE, tau, strideP, batch_count)
     end function rocsolver_zhetd2_batched_native
 
     function rocsolver_zhetd2_batched_typed(handle, uplo, n, A, lda, D, strideD, E, strideE, tau, &
@@ -68105,19 +68076,19 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: uplo
       integer(c_int), value :: n
-      real(c_float), target :: A(*)
+      real(c_float), target :: A(..)
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
-      real(c_float), target :: D(*)
+      real(c_float), target :: D(..)
       integer(c_long), value :: strideD
-      real(c_float), target :: E(*)
+      real(c_float), target :: E(..)
       integer(c_long), value :: strideE
       real(c_float) :: tau
       integer(c_long), value :: strideP
       integer(c_int), value :: batch_count
       integer(c_int) :: ssytd2_strided_batched
-      ssytd2_strided_batched = rocsolver_ssytd2_strided_batched_raw(handle, uplo, n, c_loc(A(1)), &
-        lda, strideA, c_loc(D(1)), strideD, c_loc(E(1)), strideE, tau, strideP, batch_count)
+      ssytd2_strided_batched = rocsolver_ssytd2_strided_batched_raw(handle, uplo, n, c_loc(A), &
+        lda, strideA, c_loc(D), strideD, c_loc(E), strideE, tau, strideP, batch_count)
     end function rocsolver_ssytd2_strided_batched_native
 
     function rocsolver_ssytd2_strided_batched_typed(handle, uplo, n, A, lda, strideA, D, strideD, &
@@ -68150,19 +68121,19 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: uplo
       integer(c_int), value :: n
-      real(c_double), target :: A(*)
+      real(c_double), target :: A(..)
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
-      real(c_double), target :: D(*)
+      real(c_double), target :: D(..)
       integer(c_long), value :: strideD
-      real(c_double), target :: E(*)
+      real(c_double), target :: E(..)
       integer(c_long), value :: strideE
       real(c_double) :: tau
       integer(c_long), value :: strideP
       integer(c_int), value :: batch_count
       integer(c_int) :: dsytd2_strided_batched
-      dsytd2_strided_batched = rocsolver_dsytd2_strided_batched_raw(handle, uplo, n, c_loc(A(1)), &
-        lda, strideA, c_loc(D(1)), strideD, c_loc(E(1)), strideE, tau, strideP, batch_count)
+      dsytd2_strided_batched = rocsolver_dsytd2_strided_batched_raw(handle, uplo, n, c_loc(A), &
+        lda, strideA, c_loc(D), strideD, c_loc(E), strideE, tau, strideP, batch_count)
     end function rocsolver_dsytd2_strided_batched_native
 
     function rocsolver_dsytd2_strided_batched_typed(handle, uplo, n, A, lda, strideA, D, strideD, &
@@ -68195,19 +68166,19 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: uplo
       integer(c_int), value :: n
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: A(..)
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
-      real(c_float), target :: D(*)
+      real(c_float), target :: D(..)
       integer(c_long), value :: strideD
-      real(c_float), target :: E(*)
+      real(c_float), target :: E(..)
       integer(c_long), value :: strideE
       complex(c_float_complex) :: tau
       integer(c_long), value :: strideP
       integer(c_int), value :: batch_count
       integer(c_int) :: chetd2_strided_batched
-      chetd2_strided_batched = rocsolver_chetd2_strided_batched_raw(handle, uplo, n, c_loc(A(1)), &
-        lda, strideA, c_loc(D(1)), strideD, c_loc(E(1)), strideE, tau, strideP, batch_count)
+      chetd2_strided_batched = rocsolver_chetd2_strided_batched_raw(handle, uplo, n, c_loc(A), &
+        lda, strideA, c_loc(D), strideD, c_loc(E), strideE, tau, strideP, batch_count)
     end function rocsolver_chetd2_strided_batched_native
 
     function rocsolver_chetd2_strided_batched_typed(handle, uplo, n, A, lda, strideA, D, strideD, &
@@ -68240,19 +68211,19 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: uplo
       integer(c_int), value :: n
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: A(..)
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
-      real(c_double), target :: D(*)
+      real(c_double), target :: D(..)
       integer(c_long), value :: strideD
-      real(c_double), target :: E(*)
+      real(c_double), target :: E(..)
       integer(c_long), value :: strideE
       complex(c_double_complex) :: tau
       integer(c_long), value :: strideP
       integer(c_int), value :: batch_count
       integer(c_int) :: zhetd2_strided_batched
-      zhetd2_strided_batched = rocsolver_zhetd2_strided_batched_raw(handle, uplo, n, c_loc(A(1)), &
-        lda, strideA, c_loc(D(1)), strideD, c_loc(E(1)), strideE, tau, strideP, batch_count)
+      zhetd2_strided_batched = rocsolver_zhetd2_strided_batched_raw(handle, uplo, n, c_loc(A), &
+        lda, strideA, c_loc(D), strideD, c_loc(E), strideE, tau, strideP, batch_count)
     end function rocsolver_zhetd2_strided_batched_native
 
     function rocsolver_zhetd2_strided_batched_typed(handle, uplo, n, A, lda, strideA, D, strideD, &
@@ -68284,14 +68255,13 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: uplo
       integer(c_int), value :: n
-      real(c_float), target :: A(*)
+      real(c_float), target :: A(..)
       integer(c_int), value :: lda
-      real(c_float), target :: D(*)
-      real(c_float), target :: E(*)
-      real(c_float), target :: tau(*)
+      real(c_float), target :: D(..)
+      real(c_float), target :: E(..)
+      real(c_float) :: tau
       integer(c_int) :: ssytrd
-      ssytrd = rocsolver_ssytrd_raw(handle, uplo, n, c_loc(A(1)), lda, c_loc(D(1)), c_loc(E(1)), &
-        c_loc(tau(1)))
+      ssytrd = rocsolver_ssytrd_raw(handle, uplo, n, c_loc(A), lda, c_loc(D), c_loc(E), tau)
     end function rocsolver_ssytrd_native
 
     function rocsolver_ssytrd_typed(handle, uplo, n, A, lda, D, E, tau) result(ssytrd)
@@ -68305,7 +68275,7 @@ contains
       integer(c_int), value :: lda
       type(c_ptr), value :: D
       type(c_ptr), value :: E
-      type(c_ptr), value :: tau
+      real(c_float) :: tau
       integer(c_int) :: ssytrd
       ssytrd = rocsolver_ssytrd_raw(handle%ptr, uplo, n, A, lda, D, E, tau)
     end function rocsolver_ssytrd_typed
@@ -68316,14 +68286,13 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: uplo
       integer(c_int), value :: n
-      real(c_double), target :: A(*)
+      real(c_double), target :: A(..)
       integer(c_int), value :: lda
-      real(c_double), target :: D(*)
-      real(c_double), target :: E(*)
-      real(c_double), target :: tau(*)
+      real(c_double), target :: D(..)
+      real(c_double), target :: E(..)
+      real(c_double) :: tau
       integer(c_int) :: dsytrd
-      dsytrd = rocsolver_dsytrd_raw(handle, uplo, n, c_loc(A(1)), lda, c_loc(D(1)), c_loc(E(1)), &
-        c_loc(tau(1)))
+      dsytrd = rocsolver_dsytrd_raw(handle, uplo, n, c_loc(A), lda, c_loc(D), c_loc(E), tau)
     end function rocsolver_dsytrd_native
 
     function rocsolver_dsytrd_typed(handle, uplo, n, A, lda, D, E, tau) result(dsytrd)
@@ -68337,7 +68306,7 @@ contains
       integer(c_int), value :: lda
       type(c_ptr), value :: D
       type(c_ptr), value :: E
-      type(c_ptr), value :: tau
+      real(c_double) :: tau
       integer(c_int) :: dsytrd
       dsytrd = rocsolver_dsytrd_raw(handle%ptr, uplo, n, A, lda, D, E, tau)
     end function rocsolver_dsytrd_typed
@@ -68348,14 +68317,13 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: uplo
       integer(c_int), value :: n
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: A(..)
       integer(c_int), value :: lda
-      real(c_float), target :: D(*)
-      real(c_float), target :: E(*)
-      complex(c_float_complex), target :: tau(*)
+      real(c_float), target :: D(..)
+      real(c_float), target :: E(..)
+      complex(c_float_complex) :: tau
       integer(c_int) :: chetrd
-      chetrd = rocsolver_chetrd_raw(handle, uplo, n, c_loc(A(1)), lda, c_loc(D(1)), c_loc(E(1)), &
-        c_loc(tau(1)))
+      chetrd = rocsolver_chetrd_raw(handle, uplo, n, c_loc(A), lda, c_loc(D), c_loc(E), tau)
     end function rocsolver_chetrd_native
 
     function rocsolver_chetrd_typed(handle, uplo, n, A, lda, D, E, tau) result(chetrd)
@@ -68369,7 +68337,7 @@ contains
       integer(c_int), value :: lda
       type(c_ptr), value :: D
       type(c_ptr), value :: E
-      type(c_ptr), value :: tau
+      complex(c_float_complex) :: tau
       integer(c_int) :: chetrd
       chetrd = rocsolver_chetrd_raw(handle%ptr, uplo, n, A, lda, D, E, tau)
     end function rocsolver_chetrd_typed
@@ -68380,14 +68348,13 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: uplo
       integer(c_int), value :: n
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: A(..)
       integer(c_int), value :: lda
-      real(c_double), target :: D(*)
-      real(c_double), target :: E(*)
-      complex(c_double_complex), target :: tau(*)
+      real(c_double), target :: D(..)
+      real(c_double), target :: E(..)
+      complex(c_double_complex) :: tau
       integer(c_int) :: zhetrd
-      zhetrd = rocsolver_zhetrd_raw(handle, uplo, n, c_loc(A(1)), lda, c_loc(D(1)), c_loc(E(1)), &
-        c_loc(tau(1)))
+      zhetrd = rocsolver_zhetrd_raw(handle, uplo, n, c_loc(A), lda, c_loc(D), c_loc(E), tau)
     end function rocsolver_zhetrd_native
 
     function rocsolver_zhetrd_typed(handle, uplo, n, A, lda, D, E, tau) result(zhetrd)
@@ -68401,7 +68368,7 @@ contains
       integer(c_int), value :: lda
       type(c_ptr), value :: D
       type(c_ptr), value :: E
-      type(c_ptr), value :: tau
+      complex(c_double_complex) :: tau
       integer(c_int) :: zhetrd
       zhetrd = rocsolver_zhetrd_raw(handle%ptr, uplo, n, A, lda, D, E, tau)
     end function rocsolver_zhetrd_typed
@@ -68415,16 +68382,16 @@ contains
       integer(c_int), value :: n
       type(c_ptr), value :: A
       integer(c_int), value :: lda
-      real(c_float), target :: D(*)
+      real(c_float), target :: D(..)
       integer(c_long), value :: strideD
-      real(c_float), target :: E(*)
+      real(c_float), target :: E(..)
       integer(c_long), value :: strideE
       real(c_float) :: tau
       integer(c_long), value :: strideP
       integer(c_int), value :: batch_count
       integer(c_int) :: ssytrd_batched
-      ssytrd_batched = rocsolver_ssytrd_batched_raw(handle, uplo, n, A, lda, c_loc(D(1)), strideD, &
-        c_loc(E(1)), strideE, tau, strideP, batch_count)
+      ssytrd_batched = rocsolver_ssytrd_batched_raw(handle, uplo, n, A, lda, c_loc(D), strideD, &
+        c_loc(E), strideE, tau, strideP, batch_count)
     end function rocsolver_ssytrd_batched_native
 
     function rocsolver_ssytrd_batched_typed(handle, uplo, n, A, lda, D, strideD, E, strideE, tau, &
@@ -68458,16 +68425,16 @@ contains
       integer(c_int), value :: n
       type(c_ptr), value :: A
       integer(c_int), value :: lda
-      real(c_double), target :: D(*)
+      real(c_double), target :: D(..)
       integer(c_long), value :: strideD
-      real(c_double), target :: E(*)
+      real(c_double), target :: E(..)
       integer(c_long), value :: strideE
       real(c_double) :: tau
       integer(c_long), value :: strideP
       integer(c_int), value :: batch_count
       integer(c_int) :: dsytrd_batched
-      dsytrd_batched = rocsolver_dsytrd_batched_raw(handle, uplo, n, A, lda, c_loc(D(1)), strideD, &
-        c_loc(E(1)), strideE, tau, strideP, batch_count)
+      dsytrd_batched = rocsolver_dsytrd_batched_raw(handle, uplo, n, A, lda, c_loc(D), strideD, &
+        c_loc(E), strideE, tau, strideP, batch_count)
     end function rocsolver_dsytrd_batched_native
 
     function rocsolver_dsytrd_batched_typed(handle, uplo, n, A, lda, D, strideD, E, strideE, tau, &
@@ -68501,16 +68468,16 @@ contains
       integer(c_int), value :: n
       type(c_ptr), value :: A
       integer(c_int), value :: lda
-      real(c_float), target :: D(*)
+      real(c_float), target :: D(..)
       integer(c_long), value :: strideD
-      real(c_float), target :: E(*)
+      real(c_float), target :: E(..)
       integer(c_long), value :: strideE
       complex(c_float_complex) :: tau
       integer(c_long), value :: strideP
       integer(c_int), value :: batch_count
       integer(c_int) :: chetrd_batched
-      chetrd_batched = rocsolver_chetrd_batched_raw(handle, uplo, n, A, lda, c_loc(D(1)), strideD, &
-        c_loc(E(1)), strideE, tau, strideP, batch_count)
+      chetrd_batched = rocsolver_chetrd_batched_raw(handle, uplo, n, A, lda, c_loc(D), strideD, &
+        c_loc(E), strideE, tau, strideP, batch_count)
     end function rocsolver_chetrd_batched_native
 
     function rocsolver_chetrd_batched_typed(handle, uplo, n, A, lda, D, strideD, E, strideE, tau, &
@@ -68544,16 +68511,16 @@ contains
       integer(c_int), value :: n
       type(c_ptr), value :: A
       integer(c_int), value :: lda
-      real(c_double), target :: D(*)
+      real(c_double), target :: D(..)
       integer(c_long), value :: strideD
-      real(c_double), target :: E(*)
+      real(c_double), target :: E(..)
       integer(c_long), value :: strideE
       complex(c_double_complex) :: tau
       integer(c_long), value :: strideP
       integer(c_int), value :: batch_count
       integer(c_int) :: zhetrd_batched
-      zhetrd_batched = rocsolver_zhetrd_batched_raw(handle, uplo, n, A, lda, c_loc(D(1)), strideD, &
-        c_loc(E(1)), strideE, tau, strideP, batch_count)
+      zhetrd_batched = rocsolver_zhetrd_batched_raw(handle, uplo, n, A, lda, c_loc(D), strideD, &
+        c_loc(E), strideE, tau, strideP, batch_count)
     end function rocsolver_zhetrd_batched_native
 
     function rocsolver_zhetrd_batched_typed(handle, uplo, n, A, lda, D, strideD, E, strideE, tau, &
@@ -68585,19 +68552,19 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: uplo
       integer(c_int), value :: n
-      real(c_float), target :: A(*)
+      real(c_float), target :: A(..)
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
-      real(c_float), target :: D(*)
+      real(c_float), target :: D(..)
       integer(c_long), value :: strideD
-      real(c_float), target :: E(*)
+      real(c_float), target :: E(..)
       integer(c_long), value :: strideE
       real(c_float) :: tau
       integer(c_long), value :: strideP
       integer(c_int), value :: batch_count
       integer(c_int) :: ssytrd_strided_batched
-      ssytrd_strided_batched = rocsolver_ssytrd_strided_batched_raw(handle, uplo, n, c_loc(A(1)), &
-        lda, strideA, c_loc(D(1)), strideD, c_loc(E(1)), strideE, tau, strideP, batch_count)
+      ssytrd_strided_batched = rocsolver_ssytrd_strided_batched_raw(handle, uplo, n, c_loc(A), &
+        lda, strideA, c_loc(D), strideD, c_loc(E), strideE, tau, strideP, batch_count)
     end function rocsolver_ssytrd_strided_batched_native
 
     function rocsolver_ssytrd_strided_batched_typed(handle, uplo, n, A, lda, strideA, D, strideD, &
@@ -68630,19 +68597,19 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: uplo
       integer(c_int), value :: n
-      real(c_double), target :: A(*)
+      real(c_double), target :: A(..)
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
-      real(c_double), target :: D(*)
+      real(c_double), target :: D(..)
       integer(c_long), value :: strideD
-      real(c_double), target :: E(*)
+      real(c_double), target :: E(..)
       integer(c_long), value :: strideE
       real(c_double) :: tau
       integer(c_long), value :: strideP
       integer(c_int), value :: batch_count
       integer(c_int) :: dsytrd_strided_batched
-      dsytrd_strided_batched = rocsolver_dsytrd_strided_batched_raw(handle, uplo, n, c_loc(A(1)), &
-        lda, strideA, c_loc(D(1)), strideD, c_loc(E(1)), strideE, tau, strideP, batch_count)
+      dsytrd_strided_batched = rocsolver_dsytrd_strided_batched_raw(handle, uplo, n, c_loc(A), &
+        lda, strideA, c_loc(D), strideD, c_loc(E), strideE, tau, strideP, batch_count)
     end function rocsolver_dsytrd_strided_batched_native
 
     function rocsolver_dsytrd_strided_batched_typed(handle, uplo, n, A, lda, strideA, D, strideD, &
@@ -68675,19 +68642,19 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: uplo
       integer(c_int), value :: n
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: A(..)
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
-      real(c_float), target :: D(*)
+      real(c_float), target :: D(..)
       integer(c_long), value :: strideD
-      real(c_float), target :: E(*)
+      real(c_float), target :: E(..)
       integer(c_long), value :: strideE
       complex(c_float_complex) :: tau
       integer(c_long), value :: strideP
       integer(c_int), value :: batch_count
       integer(c_int) :: chetrd_strided_batched
-      chetrd_strided_batched = rocsolver_chetrd_strided_batched_raw(handle, uplo, n, c_loc(A(1)), &
-        lda, strideA, c_loc(D(1)), strideD, c_loc(E(1)), strideE, tau, strideP, batch_count)
+      chetrd_strided_batched = rocsolver_chetrd_strided_batched_raw(handle, uplo, n, c_loc(A), &
+        lda, strideA, c_loc(D), strideD, c_loc(E), strideE, tau, strideP, batch_count)
     end function rocsolver_chetrd_strided_batched_native
 
     function rocsolver_chetrd_strided_batched_typed(handle, uplo, n, A, lda, strideA, D, strideD, &
@@ -68720,19 +68687,19 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: uplo
       integer(c_int), value :: n
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: A(..)
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
-      real(c_double), target :: D(*)
+      real(c_double), target :: D(..)
       integer(c_long), value :: strideD
-      real(c_double), target :: E(*)
+      real(c_double), target :: E(..)
       integer(c_long), value :: strideE
       complex(c_double_complex) :: tau
       integer(c_long), value :: strideP
       integer(c_int), value :: batch_count
       integer(c_int) :: zhetrd_strided_batched
-      zhetrd_strided_batched = rocsolver_zhetrd_strided_batched_raw(handle, uplo, n, c_loc(A(1)), &
-        lda, strideA, c_loc(D(1)), strideD, c_loc(E(1)), strideE, tau, strideP, batch_count)
+      zhetrd_strided_batched = rocsolver_zhetrd_strided_batched_raw(handle, uplo, n, c_loc(A), &
+        lda, strideA, c_loc(D), strideD, c_loc(E), strideE, tau, strideP, batch_count)
     end function rocsolver_zhetrd_strided_batched_native
 
     function rocsolver_zhetrd_strided_batched_typed(handle, uplo, n, A, lda, strideA, D, strideD, &
@@ -68765,12 +68732,12 @@ contains
       integer(c_int), value :: itype
       integer(c_int), value :: uplo
       integer(c_int), value :: n
-      real(c_float), target :: A(*)
+      real(c_float), target :: A(..)
       integer(c_int), value :: lda
-      real(c_float), target :: B(*)
+      real(c_float), target :: B(..)
       integer(c_int), value :: ldb
       integer(c_int) :: ssygs2
-      ssygs2 = rocsolver_ssygs2_raw(handle, itype, uplo, n, c_loc(A(1)), lda, c_loc(B(1)), ldb)
+      ssygs2 = rocsolver_ssygs2_raw(handle, itype, uplo, n, c_loc(A), lda, c_loc(B), ldb)
     end function rocsolver_ssygs2_native
 
     function rocsolver_ssygs2_typed(handle, itype, uplo, n, A, lda, B, ldb) result(ssygs2)
@@ -68796,12 +68763,12 @@ contains
       integer(c_int), value :: itype
       integer(c_int), value :: uplo
       integer(c_int), value :: n
-      real(c_double), target :: A(*)
+      real(c_double), target :: A(..)
       integer(c_int), value :: lda
-      real(c_double), target :: B(*)
+      real(c_double), target :: B(..)
       integer(c_int), value :: ldb
       integer(c_int) :: dsygs2
-      dsygs2 = rocsolver_dsygs2_raw(handle, itype, uplo, n, c_loc(A(1)), lda, c_loc(B(1)), ldb)
+      dsygs2 = rocsolver_dsygs2_raw(handle, itype, uplo, n, c_loc(A), lda, c_loc(B), ldb)
     end function rocsolver_dsygs2_native
 
     function rocsolver_dsygs2_typed(handle, itype, uplo, n, A, lda, B, ldb) result(dsygs2)
@@ -68827,12 +68794,12 @@ contains
       integer(c_int), value :: itype
       integer(c_int), value :: uplo
       integer(c_int), value :: n
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: A(..)
       integer(c_int), value :: lda
-      complex(c_float_complex), target :: B(*)
+      complex(c_float_complex), target :: B(..)
       integer(c_int), value :: ldb
       integer(c_int) :: chegs2
-      chegs2 = rocsolver_chegs2_raw(handle, itype, uplo, n, c_loc(A(1)), lda, c_loc(B(1)), ldb)
+      chegs2 = rocsolver_chegs2_raw(handle, itype, uplo, n, c_loc(A), lda, c_loc(B), ldb)
     end function rocsolver_chegs2_native
 
     function rocsolver_chegs2_typed(handle, itype, uplo, n, A, lda, B, ldb) result(chegs2)
@@ -68858,12 +68825,12 @@ contains
       integer(c_int), value :: itype
       integer(c_int), value :: uplo
       integer(c_int), value :: n
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: A(..)
       integer(c_int), value :: lda
-      complex(c_double_complex), target :: B(*)
+      complex(c_double_complex), target :: B(..)
       integer(c_int), value :: ldb
       integer(c_int) :: zhegs2
-      zhegs2 = rocsolver_zhegs2_raw(handle, itype, uplo, n, c_loc(A(1)), lda, c_loc(B(1)), ldb)
+      zhegs2 = rocsolver_zhegs2_raw(handle, itype, uplo, n, c_loc(A), lda, c_loc(B), ldb)
     end function rocsolver_zhegs2_native
 
     function rocsolver_zhegs2_typed(handle, itype, uplo, n, A, lda, B, ldb) result(zhegs2)
@@ -68966,16 +68933,16 @@ contains
       integer(c_int), value :: itype
       integer(c_int), value :: uplo
       integer(c_int), value :: n
-      real(c_float), target :: A(*)
+      real(c_float), target :: A(..)
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
-      real(c_float), target :: B(*)
+      real(c_float), target :: B(..)
       integer(c_int), value :: ldb
       integer(c_long), value :: strideB
       integer(c_int), value :: batch_count
       integer(c_int) :: ssygs2_strided_batched
       ssygs2_strided_batched = rocsolver_ssygs2_strided_batched_raw(handle, itype, uplo, n, c_loc( &
-        A(1)), lda, strideA, c_loc(B(1)), ldb, strideB, batch_count)
+        A), lda, strideA, c_loc(B), ldb, strideB, batch_count)
     end function rocsolver_ssygs2_strided_batched_native
 
     function rocsolver_ssygs2_strided_batched_typed(handle, itype, uplo, n, A, lda, strideA, B, &
@@ -69007,16 +68974,16 @@ contains
       integer(c_int), value :: itype
       integer(c_int), value :: uplo
       integer(c_int), value :: n
-      real(c_double), target :: A(*)
+      real(c_double), target :: A(..)
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
-      real(c_double), target :: B(*)
+      real(c_double), target :: B(..)
       integer(c_int), value :: ldb
       integer(c_long), value :: strideB
       integer(c_int), value :: batch_count
       integer(c_int) :: dsygs2_strided_batched
       dsygs2_strided_batched = rocsolver_dsygs2_strided_batched_raw(handle, itype, uplo, n, c_loc( &
-        A(1)), lda, strideA, c_loc(B(1)), ldb, strideB, batch_count)
+        A), lda, strideA, c_loc(B), ldb, strideB, batch_count)
     end function rocsolver_dsygs2_strided_batched_native
 
     function rocsolver_dsygs2_strided_batched_typed(handle, itype, uplo, n, A, lda, strideA, B, &
@@ -69048,16 +69015,16 @@ contains
       integer(c_int), value :: itype
       integer(c_int), value :: uplo
       integer(c_int), value :: n
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: A(..)
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
-      complex(c_float_complex), target :: B(*)
+      complex(c_float_complex), target :: B(..)
       integer(c_int), value :: ldb
       integer(c_long), value :: strideB
       integer(c_int), value :: batch_count
       integer(c_int) :: chegs2_strided_batched
       chegs2_strided_batched = rocsolver_chegs2_strided_batched_raw(handle, itype, uplo, n, c_loc( &
-        A(1)), lda, strideA, c_loc(B(1)), ldb, strideB, batch_count)
+        A), lda, strideA, c_loc(B), ldb, strideB, batch_count)
     end function rocsolver_chegs2_strided_batched_native
 
     function rocsolver_chegs2_strided_batched_typed(handle, itype, uplo, n, A, lda, strideA, B, &
@@ -69089,16 +69056,16 @@ contains
       integer(c_int), value :: itype
       integer(c_int), value :: uplo
       integer(c_int), value :: n
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: A(..)
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
-      complex(c_double_complex), target :: B(*)
+      complex(c_double_complex), target :: B(..)
       integer(c_int), value :: ldb
       integer(c_long), value :: strideB
       integer(c_int), value :: batch_count
       integer(c_int) :: zhegs2_strided_batched
       zhegs2_strided_batched = rocsolver_zhegs2_strided_batched_raw(handle, itype, uplo, n, c_loc( &
-        A(1)), lda, strideA, c_loc(B(1)), ldb, strideB, batch_count)
+        A), lda, strideA, c_loc(B), ldb, strideB, batch_count)
     end function rocsolver_zhegs2_strided_batched_native
 
     function rocsolver_zhegs2_strided_batched_typed(handle, itype, uplo, n, A, lda, strideA, B, &
@@ -69129,12 +69096,12 @@ contains
       integer(c_int), value :: itype
       integer(c_int), value :: uplo
       integer(c_int), value :: n
-      real(c_float), target :: A(*)
+      real(c_float), target :: A(..)
       integer(c_int), value :: lda
-      real(c_float), target :: B(*)
+      real(c_float), target :: B(..)
       integer(c_int), value :: ldb
       integer(c_int) :: ssygst
-      ssygst = rocsolver_ssygst_raw(handle, itype, uplo, n, c_loc(A(1)), lda, c_loc(B(1)), ldb)
+      ssygst = rocsolver_ssygst_raw(handle, itype, uplo, n, c_loc(A), lda, c_loc(B), ldb)
     end function rocsolver_ssygst_native
 
     function rocsolver_ssygst_typed(handle, itype, uplo, n, A, lda, B, ldb) result(ssygst)
@@ -69160,12 +69127,12 @@ contains
       integer(c_int), value :: itype
       integer(c_int), value :: uplo
       integer(c_int), value :: n
-      real(c_double), target :: A(*)
+      real(c_double), target :: A(..)
       integer(c_int), value :: lda
-      real(c_double), target :: B(*)
+      real(c_double), target :: B(..)
       integer(c_int), value :: ldb
       integer(c_int) :: dsygst
-      dsygst = rocsolver_dsygst_raw(handle, itype, uplo, n, c_loc(A(1)), lda, c_loc(B(1)), ldb)
+      dsygst = rocsolver_dsygst_raw(handle, itype, uplo, n, c_loc(A), lda, c_loc(B), ldb)
     end function rocsolver_dsygst_native
 
     function rocsolver_dsygst_typed(handle, itype, uplo, n, A, lda, B, ldb) result(dsygst)
@@ -69191,12 +69158,12 @@ contains
       integer(c_int), value :: itype
       integer(c_int), value :: uplo
       integer(c_int), value :: n
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: A(..)
       integer(c_int), value :: lda
-      complex(c_float_complex), target :: B(*)
+      complex(c_float_complex), target :: B(..)
       integer(c_int), value :: ldb
       integer(c_int) :: chegst
-      chegst = rocsolver_chegst_raw(handle, itype, uplo, n, c_loc(A(1)), lda, c_loc(B(1)), ldb)
+      chegst = rocsolver_chegst_raw(handle, itype, uplo, n, c_loc(A), lda, c_loc(B), ldb)
     end function rocsolver_chegst_native
 
     function rocsolver_chegst_typed(handle, itype, uplo, n, A, lda, B, ldb) result(chegst)
@@ -69222,12 +69189,12 @@ contains
       integer(c_int), value :: itype
       integer(c_int), value :: uplo
       integer(c_int), value :: n
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: A(..)
       integer(c_int), value :: lda
-      complex(c_double_complex), target :: B(*)
+      complex(c_double_complex), target :: B(..)
       integer(c_int), value :: ldb
       integer(c_int) :: zhegst
-      zhegst = rocsolver_zhegst_raw(handle, itype, uplo, n, c_loc(A(1)), lda, c_loc(B(1)), ldb)
+      zhegst = rocsolver_zhegst_raw(handle, itype, uplo, n, c_loc(A), lda, c_loc(B), ldb)
     end function rocsolver_zhegst_native
 
     function rocsolver_zhegst_typed(handle, itype, uplo, n, A, lda, B, ldb) result(zhegst)
@@ -69330,16 +69297,16 @@ contains
       integer(c_int), value :: itype
       integer(c_int), value :: uplo
       integer(c_int), value :: n
-      real(c_float), target :: A(*)
+      real(c_float), target :: A(..)
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
-      real(c_float), target :: B(*)
+      real(c_float), target :: B(..)
       integer(c_int), value :: ldb
       integer(c_long), value :: strideB
       integer(c_int), value :: batch_count
       integer(c_int) :: ssygst_strided_batched
       ssygst_strided_batched = rocsolver_ssygst_strided_batched_raw(handle, itype, uplo, n, c_loc( &
-        A(1)), lda, strideA, c_loc(B(1)), ldb, strideB, batch_count)
+        A), lda, strideA, c_loc(B), ldb, strideB, batch_count)
     end function rocsolver_ssygst_strided_batched_native
 
     function rocsolver_ssygst_strided_batched_typed(handle, itype, uplo, n, A, lda, strideA, B, &
@@ -69371,16 +69338,16 @@ contains
       integer(c_int), value :: itype
       integer(c_int), value :: uplo
       integer(c_int), value :: n
-      real(c_double), target :: A(*)
+      real(c_double), target :: A(..)
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
-      real(c_double), target :: B(*)
+      real(c_double), target :: B(..)
       integer(c_int), value :: ldb
       integer(c_long), value :: strideB
       integer(c_int), value :: batch_count
       integer(c_int) :: dsygst_strided_batched
       dsygst_strided_batched = rocsolver_dsygst_strided_batched_raw(handle, itype, uplo, n, c_loc( &
-        A(1)), lda, strideA, c_loc(B(1)), ldb, strideB, batch_count)
+        A), lda, strideA, c_loc(B), ldb, strideB, batch_count)
     end function rocsolver_dsygst_strided_batched_native
 
     function rocsolver_dsygst_strided_batched_typed(handle, itype, uplo, n, A, lda, strideA, B, &
@@ -69412,16 +69379,16 @@ contains
       integer(c_int), value :: itype
       integer(c_int), value :: uplo
       integer(c_int), value :: n
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: A(..)
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
-      complex(c_float_complex), target :: B(*)
+      complex(c_float_complex), target :: B(..)
       integer(c_int), value :: ldb
       integer(c_long), value :: strideB
       integer(c_int), value :: batch_count
       integer(c_int) :: chegst_strided_batched
       chegst_strided_batched = rocsolver_chegst_strided_batched_raw(handle, itype, uplo, n, c_loc( &
-        A(1)), lda, strideA, c_loc(B(1)), ldb, strideB, batch_count)
+        A), lda, strideA, c_loc(B), ldb, strideB, batch_count)
     end function rocsolver_chegst_strided_batched_native
 
     function rocsolver_chegst_strided_batched_typed(handle, itype, uplo, n, A, lda, strideA, B, &
@@ -69453,16 +69420,16 @@ contains
       integer(c_int), value :: itype
       integer(c_int), value :: uplo
       integer(c_int), value :: n
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: A(..)
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
-      complex(c_double_complex), target :: B(*)
+      complex(c_double_complex), target :: B(..)
       integer(c_int), value :: ldb
       integer(c_long), value :: strideB
       integer(c_int), value :: batch_count
       integer(c_int) :: zhegst_strided_batched
       zhegst_strided_batched = rocsolver_zhegst_strided_batched_raw(handle, itype, uplo, n, c_loc( &
-        A(1)), lda, strideA, c_loc(B(1)), ldb, strideB, batch_count)
+        A), lda, strideA, c_loc(B), ldb, strideB, batch_count)
     end function rocsolver_zhegst_strided_batched_native
 
     function rocsolver_zhegst_strided_batched_typed(handle, itype, uplo, n, A, lda, strideA, B, &
@@ -69493,14 +69460,14 @@ contains
       integer(c_int), value :: evect
       integer(c_int), value :: uplo
       integer(c_int), value :: n
-      real(c_float), target :: A(*)
+      real(c_float), target :: A(..)
       integer(c_int), value :: lda
-      real(c_float), target :: D(*)
-      real(c_float), target :: E(*)
-      integer(c_int), target :: info(*)
+      real(c_float), target :: D(..)
+      real(c_float), target :: E(..)
+      integer(c_int), target :: info(..)
       integer(c_int) :: ssyev
-      ssyev = rocsolver_ssyev_raw(handle, evect, uplo, n, c_loc(A(1)), lda, c_loc(D(1)), c_loc(E( &
-        1)), c_loc(info(1)))
+      ssyev = rocsolver_ssyev_raw(handle, evect, uplo, n, c_loc(A), lda, c_loc(D), c_loc(E), &
+        c_loc(info))
     end function rocsolver_ssyev_native
 
     function rocsolver_ssyev_typed(handle, evect, uplo, n, A, lda, D, E, info) result(ssyev)
@@ -69527,14 +69494,14 @@ contains
       integer(c_int), value :: evect
       integer(c_int), value :: uplo
       integer(c_int), value :: n
-      real(c_double), target :: A(*)
+      real(c_double), target :: A(..)
       integer(c_int), value :: lda
-      real(c_double), target :: D(*)
-      real(c_double), target :: E(*)
-      integer(c_int), target :: info(*)
+      real(c_double), target :: D(..)
+      real(c_double), target :: E(..)
+      integer(c_int), target :: info(..)
       integer(c_int) :: dsyev
-      dsyev = rocsolver_dsyev_raw(handle, evect, uplo, n, c_loc(A(1)), lda, c_loc(D(1)), c_loc(E( &
-        1)), c_loc(info(1)))
+      dsyev = rocsolver_dsyev_raw(handle, evect, uplo, n, c_loc(A), lda, c_loc(D), c_loc(E), &
+        c_loc(info))
     end function rocsolver_dsyev_native
 
     function rocsolver_dsyev_typed(handle, evect, uplo, n, A, lda, D, E, info) result(dsyev)
@@ -69561,14 +69528,14 @@ contains
       integer(c_int), value :: evect
       integer(c_int), value :: uplo
       integer(c_int), value :: n
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: A(..)
       integer(c_int), value :: lda
-      real(c_float), target :: D(*)
-      real(c_float), target :: E(*)
-      integer(c_int), target :: info(*)
+      real(c_float), target :: D(..)
+      real(c_float), target :: E(..)
+      integer(c_int), target :: info(..)
       integer(c_int) :: cheev
-      cheev = rocsolver_cheev_raw(handle, evect, uplo, n, c_loc(A(1)), lda, c_loc(D(1)), c_loc(E( &
-        1)), c_loc(info(1)))
+      cheev = rocsolver_cheev_raw(handle, evect, uplo, n, c_loc(A), lda, c_loc(D), c_loc(E), &
+        c_loc(info))
     end function rocsolver_cheev_native
 
     function rocsolver_cheev_typed(handle, evect, uplo, n, A, lda, D, E, info) result(cheev)
@@ -69595,14 +69562,14 @@ contains
       integer(c_int), value :: evect
       integer(c_int), value :: uplo
       integer(c_int), value :: n
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: A(..)
       integer(c_int), value :: lda
-      real(c_double), target :: D(*)
-      real(c_double), target :: E(*)
-      integer(c_int), target :: info(*)
+      real(c_double), target :: D(..)
+      real(c_double), target :: E(..)
+      integer(c_int), target :: info(..)
       integer(c_int) :: zheev
-      zheev = rocsolver_zheev_raw(handle, evect, uplo, n, c_loc(A(1)), lda, c_loc(D(1)), c_loc(E( &
-        1)), c_loc(info(1)))
+      zheev = rocsolver_zheev_raw(handle, evect, uplo, n, c_loc(A), lda, c_loc(D), c_loc(E), &
+        c_loc(info))
     end function rocsolver_zheev_native
 
     function rocsolver_zheev_typed(handle, evect, uplo, n, A, lda, D, E, info) result(zheev)
@@ -69632,15 +69599,15 @@ contains
       integer(c_int), value :: n
       type(c_ptr), value :: A
       integer(c_int), value :: lda
-      real(c_float), target :: D(*)
+      real(c_float), target :: D(..)
       integer(c_long), value :: strideD
-      real(c_float), target :: E(*)
+      real(c_float), target :: E(..)
       integer(c_long), value :: strideE
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: ssyev_batched
-      ssyev_batched = rocsolver_ssyev_batched_raw(handle, evect, uplo, n, A, lda, c_loc(D(1)), &
-        strideD, c_loc(E(1)), strideE, c_loc(info(1)), batch_count)
+      ssyev_batched = rocsolver_ssyev_batched_raw(handle, evect, uplo, n, A, lda, c_loc(D), &
+        strideD, c_loc(E), strideE, c_loc(info), batch_count)
     end function rocsolver_ssyev_batched_native
 
     function rocsolver_ssyev_batched_typed(handle, evect, uplo, n, A, lda, D, strideD, E, strideE, &
@@ -69675,15 +69642,15 @@ contains
       integer(c_int), value :: n
       type(c_ptr), value :: A
       integer(c_int), value :: lda
-      real(c_double), target :: D(*)
+      real(c_double), target :: D(..)
       integer(c_long), value :: strideD
-      real(c_double), target :: E(*)
+      real(c_double), target :: E(..)
       integer(c_long), value :: strideE
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: dsyev_batched
-      dsyev_batched = rocsolver_dsyev_batched_raw(handle, evect, uplo, n, A, lda, c_loc(D(1)), &
-        strideD, c_loc(E(1)), strideE, c_loc(info(1)), batch_count)
+      dsyev_batched = rocsolver_dsyev_batched_raw(handle, evect, uplo, n, A, lda, c_loc(D), &
+        strideD, c_loc(E), strideE, c_loc(info), batch_count)
     end function rocsolver_dsyev_batched_native
 
     function rocsolver_dsyev_batched_typed(handle, evect, uplo, n, A, lda, D, strideD, E, strideE, &
@@ -69718,15 +69685,15 @@ contains
       integer(c_int), value :: n
       type(c_ptr), value :: A
       integer(c_int), value :: lda
-      real(c_float), target :: D(*)
+      real(c_float), target :: D(..)
       integer(c_long), value :: strideD
-      real(c_float), target :: E(*)
+      real(c_float), target :: E(..)
       integer(c_long), value :: strideE
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: cheev_batched
-      cheev_batched = rocsolver_cheev_batched_raw(handle, evect, uplo, n, A, lda, c_loc(D(1)), &
-        strideD, c_loc(E(1)), strideE, c_loc(info(1)), batch_count)
+      cheev_batched = rocsolver_cheev_batched_raw(handle, evect, uplo, n, A, lda, c_loc(D), &
+        strideD, c_loc(E), strideE, c_loc(info), batch_count)
     end function rocsolver_cheev_batched_native
 
     function rocsolver_cheev_batched_typed(handle, evect, uplo, n, A, lda, D, strideD, E, strideE, &
@@ -69761,15 +69728,15 @@ contains
       integer(c_int), value :: n
       type(c_ptr), value :: A
       integer(c_int), value :: lda
-      real(c_double), target :: D(*)
+      real(c_double), target :: D(..)
       integer(c_long), value :: strideD
-      real(c_double), target :: E(*)
+      real(c_double), target :: E(..)
       integer(c_long), value :: strideE
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: zheev_batched
-      zheev_batched = rocsolver_zheev_batched_raw(handle, evect, uplo, n, A, lda, c_loc(D(1)), &
-        strideD, c_loc(E(1)), strideE, c_loc(info(1)), batch_count)
+      zheev_batched = rocsolver_zheev_batched_raw(handle, evect, uplo, n, A, lda, c_loc(D), &
+        strideD, c_loc(E), strideE, c_loc(info), batch_count)
     end function rocsolver_zheev_batched_native
 
     function rocsolver_zheev_batched_typed(handle, evect, uplo, n, A, lda, D, strideD, E, strideE, &
@@ -69802,18 +69769,18 @@ contains
       integer(c_int), value :: evect
       integer(c_int), value :: uplo
       integer(c_int), value :: n
-      real(c_float), target :: A(*)
+      real(c_float), target :: A(..)
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
-      real(c_float), target :: D(*)
+      real(c_float), target :: D(..)
       integer(c_long), value :: strideD
-      real(c_float), target :: E(*)
+      real(c_float), target :: E(..)
       integer(c_long), value :: strideE
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: ssyev_strided_batched
-      ssyev_strided_batched = rocsolver_ssyev_strided_batched_raw(handle, evect, uplo, n, c_loc(A( &
-        1)), lda, strideA, c_loc(D(1)), strideD, c_loc(E(1)), strideE, c_loc(info(1)), batch_count)
+      ssyev_strided_batched = rocsolver_ssyev_strided_batched_raw(handle, evect, uplo, n, c_loc( &
+        A), lda, strideA, c_loc(D), strideD, c_loc(E), strideE, c_loc(info), batch_count)
     end function rocsolver_ssyev_strided_batched_native
 
     function rocsolver_ssyev_strided_batched_typed(handle, evect, uplo, n, A, lda, strideA, D, &
@@ -69847,18 +69814,18 @@ contains
       integer(c_int), value :: evect
       integer(c_int), value :: uplo
       integer(c_int), value :: n
-      real(c_double), target :: A(*)
+      real(c_double), target :: A(..)
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
-      real(c_double), target :: D(*)
+      real(c_double), target :: D(..)
       integer(c_long), value :: strideD
-      real(c_double), target :: E(*)
+      real(c_double), target :: E(..)
       integer(c_long), value :: strideE
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: dsyev_strided_batched
-      dsyev_strided_batched = rocsolver_dsyev_strided_batched_raw(handle, evect, uplo, n, c_loc(A( &
-        1)), lda, strideA, c_loc(D(1)), strideD, c_loc(E(1)), strideE, c_loc(info(1)), batch_count)
+      dsyev_strided_batched = rocsolver_dsyev_strided_batched_raw(handle, evect, uplo, n, c_loc( &
+        A), lda, strideA, c_loc(D), strideD, c_loc(E), strideE, c_loc(info), batch_count)
     end function rocsolver_dsyev_strided_batched_native
 
     function rocsolver_dsyev_strided_batched_typed(handle, evect, uplo, n, A, lda, strideA, D, &
@@ -69892,18 +69859,18 @@ contains
       integer(c_int), value :: evect
       integer(c_int), value :: uplo
       integer(c_int), value :: n
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: A(..)
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
-      real(c_float), target :: D(*)
+      real(c_float), target :: D(..)
       integer(c_long), value :: strideD
-      real(c_float), target :: E(*)
+      real(c_float), target :: E(..)
       integer(c_long), value :: strideE
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: cheev_strided_batched
-      cheev_strided_batched = rocsolver_cheev_strided_batched_raw(handle, evect, uplo, n, c_loc(A( &
-        1)), lda, strideA, c_loc(D(1)), strideD, c_loc(E(1)), strideE, c_loc(info(1)), batch_count)
+      cheev_strided_batched = rocsolver_cheev_strided_batched_raw(handle, evect, uplo, n, c_loc( &
+        A), lda, strideA, c_loc(D), strideD, c_loc(E), strideE, c_loc(info), batch_count)
     end function rocsolver_cheev_strided_batched_native
 
     function rocsolver_cheev_strided_batched_typed(handle, evect, uplo, n, A, lda, strideA, D, &
@@ -69937,18 +69904,18 @@ contains
       integer(c_int), value :: evect
       integer(c_int), value :: uplo
       integer(c_int), value :: n
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: A(..)
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
-      real(c_double), target :: D(*)
+      real(c_double), target :: D(..)
       integer(c_long), value :: strideD
-      real(c_double), target :: E(*)
+      real(c_double), target :: E(..)
       integer(c_long), value :: strideE
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: zheev_strided_batched
-      zheev_strided_batched = rocsolver_zheev_strided_batched_raw(handle, evect, uplo, n, c_loc(A( &
-        1)), lda, strideA, c_loc(D(1)), strideD, c_loc(E(1)), strideE, c_loc(info(1)), batch_count)
+      zheev_strided_batched = rocsolver_zheev_strided_batched_raw(handle, evect, uplo, n, c_loc( &
+        A), lda, strideA, c_loc(D), strideD, c_loc(E), strideE, c_loc(info), batch_count)
     end function rocsolver_zheev_strided_batched_native
 
     function rocsolver_zheev_strided_batched_typed(handle, evect, uplo, n, A, lda, strideA, D, &
@@ -69981,14 +69948,14 @@ contains
       integer(c_int), value :: evect
       integer(c_int), value :: uplo
       integer(c_int), value :: n
-      real(c_float), target :: A(*)
+      real(c_float), target :: A(..)
       integer(c_int), value :: lda
-      real(c_float), target :: D(*)
-      real(c_float), target :: E(*)
-      integer(c_int), target :: info(*)
+      real(c_float), target :: D(..)
+      real(c_float), target :: E(..)
+      integer(c_int), target :: info(..)
       integer(c_int) :: ssyevd
-      ssyevd = rocsolver_ssyevd_raw(handle, evect, uplo, n, c_loc(A(1)), lda, c_loc(D(1)), c_loc( &
-        E(1)), c_loc(info(1)))
+      ssyevd = rocsolver_ssyevd_raw(handle, evect, uplo, n, c_loc(A), lda, c_loc(D), c_loc(E), &
+        c_loc(info))
     end function rocsolver_ssyevd_native
 
     function rocsolver_ssyevd_typed(handle, evect, uplo, n, A, lda, D, E, info) result(ssyevd)
@@ -70015,14 +69982,14 @@ contains
       integer(c_int), value :: evect
       integer(c_int), value :: uplo
       integer(c_int), value :: n
-      real(c_double), target :: A(*)
+      real(c_double), target :: A(..)
       integer(c_int), value :: lda
-      real(c_double), target :: D(*)
-      real(c_double), target :: E(*)
-      integer(c_int), target :: info(*)
+      real(c_double), target :: D(..)
+      real(c_double), target :: E(..)
+      integer(c_int), target :: info(..)
       integer(c_int) :: dsyevd
-      dsyevd = rocsolver_dsyevd_raw(handle, evect, uplo, n, c_loc(A(1)), lda, c_loc(D(1)), c_loc( &
-        E(1)), c_loc(info(1)))
+      dsyevd = rocsolver_dsyevd_raw(handle, evect, uplo, n, c_loc(A), lda, c_loc(D), c_loc(E), &
+        c_loc(info))
     end function rocsolver_dsyevd_native
 
     function rocsolver_dsyevd_typed(handle, evect, uplo, n, A, lda, D, E, info) result(dsyevd)
@@ -70049,14 +70016,14 @@ contains
       integer(c_int), value :: evect
       integer(c_int), value :: uplo
       integer(c_int), value :: n
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: A(..)
       integer(c_int), value :: lda
-      real(c_float), target :: D(*)
-      real(c_float), target :: E(*)
-      integer(c_int), target :: info(*)
+      real(c_float), target :: D(..)
+      real(c_float), target :: E(..)
+      integer(c_int), target :: info(..)
       integer(c_int) :: cheevd
-      cheevd = rocsolver_cheevd_raw(handle, evect, uplo, n, c_loc(A(1)), lda, c_loc(D(1)), c_loc( &
-        E(1)), c_loc(info(1)))
+      cheevd = rocsolver_cheevd_raw(handle, evect, uplo, n, c_loc(A), lda, c_loc(D), c_loc(E), &
+        c_loc(info))
     end function rocsolver_cheevd_native
 
     function rocsolver_cheevd_typed(handle, evect, uplo, n, A, lda, D, E, info) result(cheevd)
@@ -70083,14 +70050,14 @@ contains
       integer(c_int), value :: evect
       integer(c_int), value :: uplo
       integer(c_int), value :: n
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: A(..)
       integer(c_int), value :: lda
-      real(c_double), target :: D(*)
-      real(c_double), target :: E(*)
-      integer(c_int), target :: info(*)
+      real(c_double), target :: D(..)
+      real(c_double), target :: E(..)
+      integer(c_int), target :: info(..)
       integer(c_int) :: zheevd
-      zheevd = rocsolver_zheevd_raw(handle, evect, uplo, n, c_loc(A(1)), lda, c_loc(D(1)), c_loc( &
-        E(1)), c_loc(info(1)))
+      zheevd = rocsolver_zheevd_raw(handle, evect, uplo, n, c_loc(A), lda, c_loc(D), c_loc(E), &
+        c_loc(info))
     end function rocsolver_zheevd_native
 
     function rocsolver_zheevd_typed(handle, evect, uplo, n, A, lda, D, E, info) result(zheevd)
@@ -70120,15 +70087,15 @@ contains
       integer(c_int), value :: n
       type(c_ptr), value :: A
       integer(c_int), value :: lda
-      real(c_float), target :: D(*)
+      real(c_float), target :: D(..)
       integer(c_long), value :: strideD
-      real(c_float), target :: E(*)
+      real(c_float), target :: E(..)
       integer(c_long), value :: strideE
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: ssyevd_batched
-      ssyevd_batched = rocsolver_ssyevd_batched_raw(handle, evect, uplo, n, A, lda, c_loc(D(1)), &
-        strideD, c_loc(E(1)), strideE, c_loc(info(1)), batch_count)
+      ssyevd_batched = rocsolver_ssyevd_batched_raw(handle, evect, uplo, n, A, lda, c_loc(D), &
+        strideD, c_loc(E), strideE, c_loc(info), batch_count)
     end function rocsolver_ssyevd_batched_native
 
     function rocsolver_ssyevd_batched_typed(handle, evect, uplo, n, A, lda, D, strideD, E, &
@@ -70163,15 +70130,15 @@ contains
       integer(c_int), value :: n
       type(c_ptr), value :: A
       integer(c_int), value :: lda
-      real(c_double), target :: D(*)
+      real(c_double), target :: D(..)
       integer(c_long), value :: strideD
-      real(c_double), target :: E(*)
+      real(c_double), target :: E(..)
       integer(c_long), value :: strideE
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: dsyevd_batched
-      dsyevd_batched = rocsolver_dsyevd_batched_raw(handle, evect, uplo, n, A, lda, c_loc(D(1)), &
-        strideD, c_loc(E(1)), strideE, c_loc(info(1)), batch_count)
+      dsyevd_batched = rocsolver_dsyevd_batched_raw(handle, evect, uplo, n, A, lda, c_loc(D), &
+        strideD, c_loc(E), strideE, c_loc(info), batch_count)
     end function rocsolver_dsyevd_batched_native
 
     function rocsolver_dsyevd_batched_typed(handle, evect, uplo, n, A, lda, D, strideD, E, &
@@ -70206,15 +70173,15 @@ contains
       integer(c_int), value :: n
       type(c_ptr), value :: A
       integer(c_int), value :: lda
-      real(c_float), target :: D(*)
+      real(c_float), target :: D(..)
       integer(c_long), value :: strideD
-      real(c_float), target :: E(*)
+      real(c_float), target :: E(..)
       integer(c_long), value :: strideE
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: cheevd_batched
-      cheevd_batched = rocsolver_cheevd_batched_raw(handle, evect, uplo, n, A, lda, c_loc(D(1)), &
-        strideD, c_loc(E(1)), strideE, c_loc(info(1)), batch_count)
+      cheevd_batched = rocsolver_cheevd_batched_raw(handle, evect, uplo, n, A, lda, c_loc(D), &
+        strideD, c_loc(E), strideE, c_loc(info), batch_count)
     end function rocsolver_cheevd_batched_native
 
     function rocsolver_cheevd_batched_typed(handle, evect, uplo, n, A, lda, D, strideD, E, &
@@ -70249,15 +70216,15 @@ contains
       integer(c_int), value :: n
       type(c_ptr), value :: A
       integer(c_int), value :: lda
-      real(c_double), target :: D(*)
+      real(c_double), target :: D(..)
       integer(c_long), value :: strideD
-      real(c_double), target :: E(*)
+      real(c_double), target :: E(..)
       integer(c_long), value :: strideE
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: zheevd_batched
-      zheevd_batched = rocsolver_zheevd_batched_raw(handle, evect, uplo, n, A, lda, c_loc(D(1)), &
-        strideD, c_loc(E(1)), strideE, c_loc(info(1)), batch_count)
+      zheevd_batched = rocsolver_zheevd_batched_raw(handle, evect, uplo, n, A, lda, c_loc(D), &
+        strideD, c_loc(E), strideE, c_loc(info), batch_count)
     end function rocsolver_zheevd_batched_native
 
     function rocsolver_zheevd_batched_typed(handle, evect, uplo, n, A, lda, D, strideD, E, &
@@ -70290,19 +70257,18 @@ contains
       integer(c_int), value :: evect
       integer(c_int), value :: uplo
       integer(c_int), value :: n
-      real(c_float), target :: A(*)
+      real(c_float), target :: A(..)
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
-      real(c_float), target :: D(*)
+      real(c_float), target :: D(..)
       integer(c_long), value :: strideD
-      real(c_float), target :: E(*)
+      real(c_float), target :: E(..)
       integer(c_long), value :: strideE
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: ssyevd_strided_batched
       ssyevd_strided_batched = rocsolver_ssyevd_strided_batched_raw(handle, evect, uplo, n, c_loc( &
-        A(1)), lda, strideA, c_loc(D(1)), strideD, c_loc(E(1)), strideE, c_loc(info(1)), &
-        batch_count)
+        A), lda, strideA, c_loc(D), strideD, c_loc(E), strideE, c_loc(info), batch_count)
     end function rocsolver_ssyevd_strided_batched_native
 
     function rocsolver_ssyevd_strided_batched_typed(handle, evect, uplo, n, A, lda, strideA, D, &
@@ -70336,19 +70302,18 @@ contains
       integer(c_int), value :: evect
       integer(c_int), value :: uplo
       integer(c_int), value :: n
-      real(c_double), target :: A(*)
+      real(c_double), target :: A(..)
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
-      real(c_double), target :: D(*)
+      real(c_double), target :: D(..)
       integer(c_long), value :: strideD
-      real(c_double), target :: E(*)
+      real(c_double), target :: E(..)
       integer(c_long), value :: strideE
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: dsyevd_strided_batched
       dsyevd_strided_batched = rocsolver_dsyevd_strided_batched_raw(handle, evect, uplo, n, c_loc( &
-        A(1)), lda, strideA, c_loc(D(1)), strideD, c_loc(E(1)), strideE, c_loc(info(1)), &
-        batch_count)
+        A), lda, strideA, c_loc(D), strideD, c_loc(E), strideE, c_loc(info), batch_count)
     end function rocsolver_dsyevd_strided_batched_native
 
     function rocsolver_dsyevd_strided_batched_typed(handle, evect, uplo, n, A, lda, strideA, D, &
@@ -70382,19 +70347,18 @@ contains
       integer(c_int), value :: evect
       integer(c_int), value :: uplo
       integer(c_int), value :: n
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: A(..)
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
-      real(c_float), target :: D(*)
+      real(c_float), target :: D(..)
       integer(c_long), value :: strideD
-      real(c_float), target :: E(*)
+      real(c_float), target :: E(..)
       integer(c_long), value :: strideE
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: cheevd_strided_batched
       cheevd_strided_batched = rocsolver_cheevd_strided_batched_raw(handle, evect, uplo, n, c_loc( &
-        A(1)), lda, strideA, c_loc(D(1)), strideD, c_loc(E(1)), strideE, c_loc(info(1)), &
-        batch_count)
+        A), lda, strideA, c_loc(D), strideD, c_loc(E), strideE, c_loc(info), batch_count)
     end function rocsolver_cheevd_strided_batched_native
 
     function rocsolver_cheevd_strided_batched_typed(handle, evect, uplo, n, A, lda, strideA, D, &
@@ -70428,19 +70392,18 @@ contains
       integer(c_int), value :: evect
       integer(c_int), value :: uplo
       integer(c_int), value :: n
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: A(..)
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
-      real(c_double), target :: D(*)
+      real(c_double), target :: D(..)
       integer(c_long), value :: strideD
-      real(c_double), target :: E(*)
+      real(c_double), target :: E(..)
       integer(c_long), value :: strideE
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: zheevd_strided_batched
       zheevd_strided_batched = rocsolver_zheevd_strided_batched_raw(handle, evect, uplo, n, c_loc( &
-        A(1)), lda, strideA, c_loc(D(1)), strideD, c_loc(E(1)), strideE, c_loc(info(1)), &
-        batch_count)
+        A), lda, strideA, c_loc(D), strideD, c_loc(E), strideE, c_loc(info), batch_count)
     end function rocsolver_zheevd_strided_batched_native
 
     function rocsolver_zheevd_strided_batched_typed(handle, evect, uplo, n, A, lda, strideA, D, &
@@ -70473,13 +70436,12 @@ contains
       integer(c_int), value :: evect
       integer(c_int), value :: uplo
       integer(c_int), value :: n
-      real(c_float), target :: A(*)
+      real(c_float), target :: A(..)
       integer(c_int), value :: lda
-      real(c_float), target :: D(*)
-      integer(c_int), target :: info(*)
+      real(c_float), target :: D(..)
+      integer(c_int), target :: info(..)
       integer(c_int) :: ssyevdj
-      ssyevdj = rocsolver_ssyevdj_raw(handle, evect, uplo, n, c_loc(A(1)), lda, c_loc(D(1)), &
-        c_loc(info(1)))
+      ssyevdj = rocsolver_ssyevdj_raw(handle, evect, uplo, n, c_loc(A), lda, c_loc(D), c_loc(info))
     end function rocsolver_ssyevdj_native
 
     function rocsolver_ssyevdj_typed(handle, evect, uplo, n, A, lda, D, info) result(ssyevdj)
@@ -70505,13 +70467,12 @@ contains
       integer(c_int), value :: evect
       integer(c_int), value :: uplo
       integer(c_int), value :: n
-      real(c_double), target :: A(*)
+      real(c_double), target :: A(..)
       integer(c_int), value :: lda
-      real(c_double), target :: D(*)
-      integer(c_int), target :: info(*)
+      real(c_double), target :: D(..)
+      integer(c_int), target :: info(..)
       integer(c_int) :: dsyevdj
-      dsyevdj = rocsolver_dsyevdj_raw(handle, evect, uplo, n, c_loc(A(1)), lda, c_loc(D(1)), &
-        c_loc(info(1)))
+      dsyevdj = rocsolver_dsyevdj_raw(handle, evect, uplo, n, c_loc(A), lda, c_loc(D), c_loc(info))
     end function rocsolver_dsyevdj_native
 
     function rocsolver_dsyevdj_typed(handle, evect, uplo, n, A, lda, D, info) result(dsyevdj)
@@ -70537,13 +70498,12 @@ contains
       integer(c_int), value :: evect
       integer(c_int), value :: uplo
       integer(c_int), value :: n
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: A(..)
       integer(c_int), value :: lda
-      real(c_float), target :: D(*)
-      integer(c_int), target :: info(*)
+      real(c_float), target :: D(..)
+      integer(c_int), target :: info(..)
       integer(c_int) :: cheevdj
-      cheevdj = rocsolver_cheevdj_raw(handle, evect, uplo, n, c_loc(A(1)), lda, c_loc(D(1)), &
-        c_loc(info(1)))
+      cheevdj = rocsolver_cheevdj_raw(handle, evect, uplo, n, c_loc(A), lda, c_loc(D), c_loc(info))
     end function rocsolver_cheevdj_native
 
     function rocsolver_cheevdj_typed(handle, evect, uplo, n, A, lda, D, info) result(cheevdj)
@@ -70569,13 +70529,12 @@ contains
       integer(c_int), value :: evect
       integer(c_int), value :: uplo
       integer(c_int), value :: n
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: A(..)
       integer(c_int), value :: lda
-      real(c_double), target :: D(*)
-      integer(c_int), target :: info(*)
+      real(c_double), target :: D(..)
+      integer(c_int), target :: info(..)
       integer(c_int) :: zheevdj
-      zheevdj = rocsolver_zheevdj_raw(handle, evect, uplo, n, c_loc(A(1)), lda, c_loc(D(1)), &
-        c_loc(info(1)))
+      zheevdj = rocsolver_zheevdj_raw(handle, evect, uplo, n, c_loc(A), lda, c_loc(D), c_loc(info))
     end function rocsolver_zheevdj_native
 
     function rocsolver_zheevdj_typed(handle, evect, uplo, n, A, lda, D, info) result(zheevdj)
@@ -70604,13 +70563,13 @@ contains
       integer(c_int), value :: n
       type(c_ptr), value :: A
       integer(c_int), value :: lda
-      real(c_float), target :: D(*)
+      real(c_float), target :: D(..)
       integer(c_long), value :: strideD
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: ssyevdj_batched
-      ssyevdj_batched = rocsolver_ssyevdj_batched_raw(handle, evect, uplo, n, A, lda, c_loc(D(1)), &
-        strideD, c_loc(info(1)), batch_count)
+      ssyevdj_batched = rocsolver_ssyevdj_batched_raw(handle, evect, uplo, n, A, lda, c_loc(D), &
+        strideD, c_loc(info), batch_count)
     end function rocsolver_ssyevdj_batched_native
 
     function rocsolver_ssyevdj_batched_typed(handle, evect, uplo, n, A, lda, D, strideD, info, &
@@ -70643,13 +70602,13 @@ contains
       integer(c_int), value :: n
       type(c_ptr), value :: A
       integer(c_int), value :: lda
-      real(c_double), target :: D(*)
+      real(c_double), target :: D(..)
       integer(c_long), value :: strideD
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: dsyevdj_batched
-      dsyevdj_batched = rocsolver_dsyevdj_batched_raw(handle, evect, uplo, n, A, lda, c_loc(D(1)), &
-        strideD, c_loc(info(1)), batch_count)
+      dsyevdj_batched = rocsolver_dsyevdj_batched_raw(handle, evect, uplo, n, A, lda, c_loc(D), &
+        strideD, c_loc(info), batch_count)
     end function rocsolver_dsyevdj_batched_native
 
     function rocsolver_dsyevdj_batched_typed(handle, evect, uplo, n, A, lda, D, strideD, info, &
@@ -70682,13 +70641,13 @@ contains
       integer(c_int), value :: n
       type(c_ptr), value :: A
       integer(c_int), value :: lda
-      real(c_float), target :: D(*)
+      real(c_float), target :: D(..)
       integer(c_long), value :: strideD
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: cheevdj_batched
-      cheevdj_batched = rocsolver_cheevdj_batched_raw(handle, evect, uplo, n, A, lda, c_loc(D(1)), &
-        strideD, c_loc(info(1)), batch_count)
+      cheevdj_batched = rocsolver_cheevdj_batched_raw(handle, evect, uplo, n, A, lda, c_loc(D), &
+        strideD, c_loc(info), batch_count)
     end function rocsolver_cheevdj_batched_native
 
     function rocsolver_cheevdj_batched_typed(handle, evect, uplo, n, A, lda, D, strideD, info, &
@@ -70721,13 +70680,13 @@ contains
       integer(c_int), value :: n
       type(c_ptr), value :: A
       integer(c_int), value :: lda
-      real(c_double), target :: D(*)
+      real(c_double), target :: D(..)
       integer(c_long), value :: strideD
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: zheevdj_batched
-      zheevdj_batched = rocsolver_zheevdj_batched_raw(handle, evect, uplo, n, A, lda, c_loc(D(1)), &
-        strideD, c_loc(info(1)), batch_count)
+      zheevdj_batched = rocsolver_zheevdj_batched_raw(handle, evect, uplo, n, A, lda, c_loc(D), &
+        strideD, c_loc(info), batch_count)
     end function rocsolver_zheevdj_batched_native
 
     function rocsolver_zheevdj_batched_typed(handle, evect, uplo, n, A, lda, D, strideD, info, &
@@ -70758,16 +70717,16 @@ contains
       integer(c_int), value :: evect
       integer(c_int), value :: uplo
       integer(c_int), value :: n
-      real(c_float), target :: A(*)
+      real(c_float), target :: A(..)
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
-      real(c_float), target :: D(*)
+      real(c_float), target :: D(..)
       integer(c_long), value :: strideD
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: ssyevdj_strided_batched
       ssyevdj_strided_batched = rocsolver_ssyevdj_strided_batched_raw(handle, evect, uplo, n, &
-        c_loc(A(1)), lda, strideA, c_loc(D(1)), strideD, c_loc(info(1)), batch_count)
+        c_loc(A), lda, strideA, c_loc(D), strideD, c_loc(info), batch_count)
     end function rocsolver_ssyevdj_strided_batched_native
 
     function rocsolver_ssyevdj_strided_batched_typed(handle, evect, uplo, n, A, lda, strideA, D, &
@@ -70799,16 +70758,16 @@ contains
       integer(c_int), value :: evect
       integer(c_int), value :: uplo
       integer(c_int), value :: n
-      real(c_double), target :: A(*)
+      real(c_double), target :: A(..)
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
-      real(c_double), target :: D(*)
+      real(c_double), target :: D(..)
       integer(c_long), value :: strideD
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: dsyevdj_strided_batched
       dsyevdj_strided_batched = rocsolver_dsyevdj_strided_batched_raw(handle, evect, uplo, n, &
-        c_loc(A(1)), lda, strideA, c_loc(D(1)), strideD, c_loc(info(1)), batch_count)
+        c_loc(A), lda, strideA, c_loc(D), strideD, c_loc(info), batch_count)
     end function rocsolver_dsyevdj_strided_batched_native
 
     function rocsolver_dsyevdj_strided_batched_typed(handle, evect, uplo, n, A, lda, strideA, D, &
@@ -70840,16 +70799,16 @@ contains
       integer(c_int), value :: evect
       integer(c_int), value :: uplo
       integer(c_int), value :: n
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: A(..)
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
-      real(c_float), target :: D(*)
+      real(c_float), target :: D(..)
       integer(c_long), value :: strideD
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: cheevdj_strided_batched
       cheevdj_strided_batched = rocsolver_cheevdj_strided_batched_raw(handle, evect, uplo, n, &
-        c_loc(A(1)), lda, strideA, c_loc(D(1)), strideD, c_loc(info(1)), batch_count)
+        c_loc(A), lda, strideA, c_loc(D), strideD, c_loc(info), batch_count)
     end function rocsolver_cheevdj_strided_batched_native
 
     function rocsolver_cheevdj_strided_batched_typed(handle, evect, uplo, n, A, lda, strideA, D, &
@@ -70881,16 +70840,16 @@ contains
       integer(c_int), value :: evect
       integer(c_int), value :: uplo
       integer(c_int), value :: n
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: A(..)
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
-      real(c_double), target :: D(*)
+      real(c_double), target :: D(..)
       integer(c_long), value :: strideD
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: zheevdj_strided_batched
       zheevdj_strided_batched = rocsolver_zheevdj_strided_batched_raw(handle, evect, uplo, n, &
-        c_loc(A(1)), lda, strideA, c_loc(D(1)), strideD, c_loc(info(1)), batch_count)
+        c_loc(A), lda, strideA, c_loc(D), strideD, c_loc(info), batch_count)
     end function rocsolver_zheevdj_strided_batched_native
 
     function rocsolver_zheevdj_strided_batched_typed(handle, evect, uplo, n, A, lda, strideA, D, &
@@ -70923,15 +70882,15 @@ contains
       integer(c_int), value :: evect
       integer(c_int), value :: uplo
       integer(c_int), value :: n
-      real(c_float), target :: A(*)
+      real(c_float), target :: A(..)
       integer(c_int), value :: lda
-      real(c_float), target :: B(*)
+      real(c_float), target :: B(..)
       integer(c_int), value :: ldb
-      real(c_float), target :: D(*)
-      integer(c_int), target :: info(*)
+      real(c_float), target :: D(..)
+      integer(c_int), target :: info(..)
       integer(c_int) :: ssygvdj
-      ssygvdj = rocsolver_ssygvdj_raw(handle, itype, evect, uplo, n, c_loc(A(1)), lda, c_loc(B( &
-        1)), ldb, c_loc(D(1)), c_loc(info(1)))
+      ssygvdj = rocsolver_ssygvdj_raw(handle, itype, evect, uplo, n, c_loc(A), lda, c_loc(B), ldb, &
+        c_loc(D), c_loc(info))
     end function rocsolver_ssygvdj_native
 
     function rocsolver_ssygvdj_typed(handle, itype, evect, uplo, n, A, lda, B, ldb, D, &
@@ -70963,15 +70922,15 @@ contains
       integer(c_int), value :: evect
       integer(c_int), value :: uplo
       integer(c_int), value :: n
-      real(c_double), target :: A(*)
+      real(c_double), target :: A(..)
       integer(c_int), value :: lda
-      real(c_double), target :: B(*)
+      real(c_double), target :: B(..)
       integer(c_int), value :: ldb
-      real(c_double), target :: D(*)
-      integer(c_int), target :: info(*)
+      real(c_double), target :: D(..)
+      integer(c_int), target :: info(..)
       integer(c_int) :: dsygvdj
-      dsygvdj = rocsolver_dsygvdj_raw(handle, itype, evect, uplo, n, c_loc(A(1)), lda, c_loc(B( &
-        1)), ldb, c_loc(D(1)), c_loc(info(1)))
+      dsygvdj = rocsolver_dsygvdj_raw(handle, itype, evect, uplo, n, c_loc(A), lda, c_loc(B), ldb, &
+        c_loc(D), c_loc(info))
     end function rocsolver_dsygvdj_native
 
     function rocsolver_dsygvdj_typed(handle, itype, evect, uplo, n, A, lda, B, ldb, D, &
@@ -71003,15 +70962,15 @@ contains
       integer(c_int), value :: evect
       integer(c_int), value :: uplo
       integer(c_int), value :: n
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: A(..)
       integer(c_int), value :: lda
-      complex(c_float_complex), target :: B(*)
+      complex(c_float_complex), target :: B(..)
       integer(c_int), value :: ldb
-      real(c_float), target :: D(*)
-      integer(c_int), target :: info(*)
+      real(c_float), target :: D(..)
+      integer(c_int), target :: info(..)
       integer(c_int) :: chegvdj
-      chegvdj = rocsolver_chegvdj_raw(handle, itype, evect, uplo, n, c_loc(A(1)), lda, c_loc(B( &
-        1)), ldb, c_loc(D(1)), c_loc(info(1)))
+      chegvdj = rocsolver_chegvdj_raw(handle, itype, evect, uplo, n, c_loc(A), lda, c_loc(B), ldb, &
+        c_loc(D), c_loc(info))
     end function rocsolver_chegvdj_native
 
     function rocsolver_chegvdj_typed(handle, itype, evect, uplo, n, A, lda, B, ldb, D, &
@@ -71043,15 +71002,15 @@ contains
       integer(c_int), value :: evect
       integer(c_int), value :: uplo
       integer(c_int), value :: n
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: A(..)
       integer(c_int), value :: lda
-      complex(c_double_complex), target :: B(*)
+      complex(c_double_complex), target :: B(..)
       integer(c_int), value :: ldb
-      real(c_double), target :: D(*)
-      integer(c_int), target :: info(*)
+      real(c_double), target :: D(..)
+      integer(c_int), target :: info(..)
       integer(c_int) :: zhegvdj
-      zhegvdj = rocsolver_zhegvdj_raw(handle, itype, evect, uplo, n, c_loc(A(1)), lda, c_loc(B( &
-        1)), ldb, c_loc(D(1)), c_loc(info(1)))
+      zhegvdj = rocsolver_zhegvdj_raw(handle, itype, evect, uplo, n, c_loc(A), lda, c_loc(B), ldb, &
+        c_loc(D), c_loc(info))
     end function rocsolver_zhegvdj_native
 
     function rocsolver_zhegvdj_typed(handle, itype, evect, uplo, n, A, lda, B, ldb, D, &
@@ -71087,13 +71046,13 @@ contains
       integer(c_int), value :: lda
       type(c_ptr), value :: B
       integer(c_int), value :: ldb
-      real(c_float), target :: D(*)
+      real(c_float), target :: D(..)
       integer(c_long), value :: strideD
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: ssygvdj_batched
       ssygvdj_batched = rocsolver_ssygvdj_batched_raw(handle, itype, evect, uplo, n, A, lda, B, &
-        ldb, c_loc(D(1)), strideD, c_loc(info(1)), batch_count)
+        ldb, c_loc(D), strideD, c_loc(info), batch_count)
     end function rocsolver_ssygvdj_batched_native
 
     function rocsolver_ssygvdj_batched_typed(handle, itype, evect, uplo, n, A, lda, B, ldb, D, &
@@ -71132,13 +71091,13 @@ contains
       integer(c_int), value :: lda
       type(c_ptr), value :: B
       integer(c_int), value :: ldb
-      real(c_double), target :: D(*)
+      real(c_double), target :: D(..)
       integer(c_long), value :: strideD
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: dsygvdj_batched
       dsygvdj_batched = rocsolver_dsygvdj_batched_raw(handle, itype, evect, uplo, n, A, lda, B, &
-        ldb, c_loc(D(1)), strideD, c_loc(info(1)), batch_count)
+        ldb, c_loc(D), strideD, c_loc(info), batch_count)
     end function rocsolver_dsygvdj_batched_native
 
     function rocsolver_dsygvdj_batched_typed(handle, itype, evect, uplo, n, A, lda, B, ldb, D, &
@@ -71177,13 +71136,13 @@ contains
       integer(c_int), value :: lda
       type(c_ptr), value :: B
       integer(c_int), value :: ldb
-      real(c_float), target :: D(*)
+      real(c_float), target :: D(..)
       integer(c_long), value :: strideD
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: chegvdj_batched
       chegvdj_batched = rocsolver_chegvdj_batched_raw(handle, itype, evect, uplo, n, A, lda, B, &
-        ldb, c_loc(D(1)), strideD, c_loc(info(1)), batch_count)
+        ldb, c_loc(D), strideD, c_loc(info), batch_count)
     end function rocsolver_chegvdj_batched_native
 
     function rocsolver_chegvdj_batched_typed(handle, itype, evect, uplo, n, A, lda, B, ldb, D, &
@@ -71222,13 +71181,13 @@ contains
       integer(c_int), value :: lda
       type(c_ptr), value :: B
       integer(c_int), value :: ldb
-      real(c_double), target :: D(*)
+      real(c_double), target :: D(..)
       integer(c_long), value :: strideD
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: zhegvdj_batched
       zhegvdj_batched = rocsolver_zhegvdj_batched_raw(handle, itype, evect, uplo, n, A, lda, B, &
-        ldb, c_loc(D(1)), strideD, c_loc(info(1)), batch_count)
+        ldb, c_loc(D), strideD, c_loc(info), batch_count)
     end function rocsolver_zhegvdj_batched_native
 
     function rocsolver_zhegvdj_batched_typed(handle, itype, evect, uplo, n, A, lda, B, ldb, D, &
@@ -71263,20 +71222,20 @@ contains
       integer(c_int), value :: evect
       integer(c_int), value :: uplo
       integer(c_int), value :: n
-      real(c_float), target :: A(*)
+      real(c_float), target :: A(..)
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
-      real(c_float), target :: B(*)
+      real(c_float), target :: B(..)
       integer(c_int), value :: ldb
       integer(c_long), value :: strideB
-      real(c_float), target :: D(*)
+      real(c_float), target :: D(..)
       integer(c_long), value :: strideD
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: ssygvdj_strided_batched
       ssygvdj_strided_batched = rocsolver_ssygvdj_strided_batched_raw(handle, itype, evect, uplo, &
-        n, c_loc(A(1)), lda, strideA, c_loc(B(1)), ldb, strideB, c_loc(D(1)), strideD, c_loc(info( &
-        1)), batch_count)
+        n, c_loc(A), lda, strideA, c_loc(B), ldb, strideB, c_loc(D), strideD, c_loc(info), &
+        batch_count)
     end function rocsolver_ssygvdj_strided_batched_native
 
     function rocsolver_ssygvdj_strided_batched_typed(handle, itype, evect, uplo, n, A, lda, &
@@ -71313,20 +71272,20 @@ contains
       integer(c_int), value :: evect
       integer(c_int), value :: uplo
       integer(c_int), value :: n
-      real(c_double), target :: A(*)
+      real(c_double), target :: A(..)
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
-      real(c_double), target :: B(*)
+      real(c_double), target :: B(..)
       integer(c_int), value :: ldb
       integer(c_long), value :: strideB
-      real(c_double), target :: D(*)
+      real(c_double), target :: D(..)
       integer(c_long), value :: strideD
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: dsygvdj_strided_batched
       dsygvdj_strided_batched = rocsolver_dsygvdj_strided_batched_raw(handle, itype, evect, uplo, &
-        n, c_loc(A(1)), lda, strideA, c_loc(B(1)), ldb, strideB, c_loc(D(1)), strideD, c_loc(info( &
-        1)), batch_count)
+        n, c_loc(A), lda, strideA, c_loc(B), ldb, strideB, c_loc(D), strideD, c_loc(info), &
+        batch_count)
     end function rocsolver_dsygvdj_strided_batched_native
 
     function rocsolver_dsygvdj_strided_batched_typed(handle, itype, evect, uplo, n, A, lda, &
@@ -71363,20 +71322,20 @@ contains
       integer(c_int), value :: evect
       integer(c_int), value :: uplo
       integer(c_int), value :: n
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: A(..)
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
-      complex(c_float_complex), target :: B(*)
+      complex(c_float_complex), target :: B(..)
       integer(c_int), value :: ldb
       integer(c_long), value :: strideB
-      real(c_float), target :: D(*)
+      real(c_float), target :: D(..)
       integer(c_long), value :: strideD
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: chegvdj_strided_batched
       chegvdj_strided_batched = rocsolver_chegvdj_strided_batched_raw(handle, itype, evect, uplo, &
-        n, c_loc(A(1)), lda, strideA, c_loc(B(1)), ldb, strideB, c_loc(D(1)), strideD, c_loc(info( &
-        1)), batch_count)
+        n, c_loc(A), lda, strideA, c_loc(B), ldb, strideB, c_loc(D), strideD, c_loc(info), &
+        batch_count)
     end function rocsolver_chegvdj_strided_batched_native
 
     function rocsolver_chegvdj_strided_batched_typed(handle, itype, evect, uplo, n, A, lda, &
@@ -71413,20 +71372,20 @@ contains
       integer(c_int), value :: evect
       integer(c_int), value :: uplo
       integer(c_int), value :: n
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: A(..)
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
-      complex(c_double_complex), target :: B(*)
+      complex(c_double_complex), target :: B(..)
       integer(c_int), value :: ldb
       integer(c_long), value :: strideB
-      real(c_double), target :: D(*)
+      real(c_double), target :: D(..)
       integer(c_long), value :: strideD
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: zhegvdj_strided_batched
       zhegvdj_strided_batched = rocsolver_zhegvdj_strided_batched_raw(handle, itype, evect, uplo, &
-        n, c_loc(A(1)), lda, strideA, c_loc(B(1)), ldb, strideB, c_loc(D(1)), strideD, c_loc(info( &
-        1)), batch_count)
+        n, c_loc(A), lda, strideA, c_loc(B), ldb, strideB, c_loc(D), strideD, c_loc(info), &
+        batch_count)
     end function rocsolver_zhegvdj_strided_batched_native
 
     function rocsolver_zhegvdj_strided_batched_typed(handle, itype, evect, uplo, n, A, lda, &
@@ -71463,17 +71422,17 @@ contains
       integer(c_int), value :: evect
       integer(c_int), value :: uplo
       integer(c_int), value :: n
-      real(c_float), target :: A(*)
+      real(c_float), target :: A(..)
       integer(c_int), value :: lda
       real(c_float), value :: abstol
-      real(c_float), target :: residual(*)
+      real(c_float), target :: residual(..)
       integer(c_int), value :: max_sweeps
-      integer(c_int), target :: n_sweeps(*)
-      real(c_float), target :: W(*)
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: n_sweeps(..)
+      real(c_float), target :: W(..)
+      integer(c_int), target :: info(..)
       integer(c_int) :: ssyevj
-      ssyevj = rocsolver_ssyevj_raw(handle, esort, evect, uplo, n, c_loc(A(1)), lda, abstol, &
-        c_loc(residual(1)), max_sweeps, c_loc(n_sweeps(1)), c_loc(W(1)), c_loc(info(1)))
+      ssyevj = rocsolver_ssyevj_raw(handle, esort, evect, uplo, n, c_loc(A), lda, abstol, c_loc( &
+        residual), max_sweeps, c_loc(n_sweeps), c_loc(W), c_loc(info))
     end function rocsolver_ssyevj_native
 
     function rocsolver_ssyevj_typed(handle, esort, evect, uplo, n, A, lda, abstol, residual, &
@@ -71508,17 +71467,17 @@ contains
       integer(c_int), value :: evect
       integer(c_int), value :: uplo
       integer(c_int), value :: n
-      real(c_double), target :: A(*)
+      real(c_double), target :: A(..)
       integer(c_int), value :: lda
       real(c_double), value :: abstol
-      real(c_double), target :: residual(*)
+      real(c_double), target :: residual(..)
       integer(c_int), value :: max_sweeps
-      integer(c_int), target :: n_sweeps(*)
-      real(c_double), target :: W(*)
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: n_sweeps(..)
+      real(c_double), target :: W(..)
+      integer(c_int), target :: info(..)
       integer(c_int) :: dsyevj
-      dsyevj = rocsolver_dsyevj_raw(handle, esort, evect, uplo, n, c_loc(A(1)), lda, abstol, &
-        c_loc(residual(1)), max_sweeps, c_loc(n_sweeps(1)), c_loc(W(1)), c_loc(info(1)))
+      dsyevj = rocsolver_dsyevj_raw(handle, esort, evect, uplo, n, c_loc(A), lda, abstol, c_loc( &
+        residual), max_sweeps, c_loc(n_sweeps), c_loc(W), c_loc(info))
     end function rocsolver_dsyevj_native
 
     function rocsolver_dsyevj_typed(handle, esort, evect, uplo, n, A, lda, abstol, residual, &
@@ -71553,17 +71512,17 @@ contains
       integer(c_int), value :: evect
       integer(c_int), value :: uplo
       integer(c_int), value :: n
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: A(..)
       integer(c_int), value :: lda
       real(c_float), value :: abstol
-      real(c_float), target :: residual(*)
+      real(c_float), target :: residual(..)
       integer(c_int), value :: max_sweeps
-      integer(c_int), target :: n_sweeps(*)
-      real(c_float), target :: W(*)
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: n_sweeps(..)
+      real(c_float), target :: W(..)
+      integer(c_int), target :: info(..)
       integer(c_int) :: cheevj
-      cheevj = rocsolver_cheevj_raw(handle, esort, evect, uplo, n, c_loc(A(1)), lda, abstol, &
-        c_loc(residual(1)), max_sweeps, c_loc(n_sweeps(1)), c_loc(W(1)), c_loc(info(1)))
+      cheevj = rocsolver_cheevj_raw(handle, esort, evect, uplo, n, c_loc(A), lda, abstol, c_loc( &
+        residual), max_sweeps, c_loc(n_sweeps), c_loc(W), c_loc(info))
     end function rocsolver_cheevj_native
 
     function rocsolver_cheevj_typed(handle, esort, evect, uplo, n, A, lda, abstol, residual, &
@@ -71598,17 +71557,17 @@ contains
       integer(c_int), value :: evect
       integer(c_int), value :: uplo
       integer(c_int), value :: n
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: A(..)
       integer(c_int), value :: lda
       real(c_double), value :: abstol
-      real(c_double), target :: residual(*)
+      real(c_double), target :: residual(..)
       integer(c_int), value :: max_sweeps
-      integer(c_int), target :: n_sweeps(*)
-      real(c_double), target :: W(*)
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: n_sweeps(..)
+      real(c_double), target :: W(..)
+      integer(c_int), target :: info(..)
       integer(c_int) :: zheevj
-      zheevj = rocsolver_zheevj_raw(handle, esort, evect, uplo, n, c_loc(A(1)), lda, abstol, &
-        c_loc(residual(1)), max_sweeps, c_loc(n_sweeps(1)), c_loc(W(1)), c_loc(info(1)))
+      zheevj = rocsolver_zheevj_raw(handle, esort, evect, uplo, n, c_loc(A), lda, abstol, c_loc( &
+        residual), max_sweeps, c_loc(n_sweeps), c_loc(W), c_loc(info))
     end function rocsolver_zheevj_native
 
     function rocsolver_zheevj_typed(handle, esort, evect, uplo, n, A, lda, abstol, residual, &
@@ -71646,17 +71605,16 @@ contains
       type(c_ptr), value :: A
       integer(c_int), value :: lda
       real(c_float), value :: abstol
-      real(c_float), target :: residual(*)
+      real(c_float), target :: residual(..)
       integer(c_int), value :: max_sweeps
-      integer(c_int), target :: n_sweeps(*)
-      real(c_float), target :: W(*)
+      integer(c_int), target :: n_sweeps(..)
+      real(c_float), target :: W(..)
       integer(c_long), value :: strideW
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: ssyevj_batched
       ssyevj_batched = rocsolver_ssyevj_batched_raw(handle, esort, evect, uplo, n, A, lda, abstol, &
-        c_loc(residual(1)), max_sweeps, c_loc(n_sweeps(1)), c_loc(W(1)), strideW, c_loc(info(1)), &
-        batch_count)
+        c_loc(residual), max_sweeps, c_loc(n_sweeps), c_loc(W), strideW, c_loc(info), batch_count)
     end function rocsolver_ssyevj_batched_native
 
     function rocsolver_ssyevj_batched_typed(handle, esort, evect, uplo, n, A, lda, abstol, &
@@ -71696,17 +71654,16 @@ contains
       type(c_ptr), value :: A
       integer(c_int), value :: lda
       real(c_double), value :: abstol
-      real(c_double), target :: residual(*)
+      real(c_double), target :: residual(..)
       integer(c_int), value :: max_sweeps
-      integer(c_int), target :: n_sweeps(*)
-      real(c_double), target :: W(*)
+      integer(c_int), target :: n_sweeps(..)
+      real(c_double), target :: W(..)
       integer(c_long), value :: strideW
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: dsyevj_batched
       dsyevj_batched = rocsolver_dsyevj_batched_raw(handle, esort, evect, uplo, n, A, lda, abstol, &
-        c_loc(residual(1)), max_sweeps, c_loc(n_sweeps(1)), c_loc(W(1)), strideW, c_loc(info(1)), &
-        batch_count)
+        c_loc(residual), max_sweeps, c_loc(n_sweeps), c_loc(W), strideW, c_loc(info), batch_count)
     end function rocsolver_dsyevj_batched_native
 
     function rocsolver_dsyevj_batched_typed(handle, esort, evect, uplo, n, A, lda, abstol, &
@@ -71746,17 +71703,16 @@ contains
       type(c_ptr), value :: A
       integer(c_int), value :: lda
       real(c_float), value :: abstol
-      real(c_float), target :: residual(*)
+      real(c_float), target :: residual(..)
       integer(c_int), value :: max_sweeps
-      integer(c_int), target :: n_sweeps(*)
-      real(c_float), target :: W(*)
+      integer(c_int), target :: n_sweeps(..)
+      real(c_float), target :: W(..)
       integer(c_long), value :: strideW
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: cheevj_batched
       cheevj_batched = rocsolver_cheevj_batched_raw(handle, esort, evect, uplo, n, A, lda, abstol, &
-        c_loc(residual(1)), max_sweeps, c_loc(n_sweeps(1)), c_loc(W(1)), strideW, c_loc(info(1)), &
-        batch_count)
+        c_loc(residual), max_sweeps, c_loc(n_sweeps), c_loc(W), strideW, c_loc(info), batch_count)
     end function rocsolver_cheevj_batched_native
 
     function rocsolver_cheevj_batched_typed(handle, esort, evect, uplo, n, A, lda, abstol, &
@@ -71796,17 +71752,16 @@ contains
       type(c_ptr), value :: A
       integer(c_int), value :: lda
       real(c_double), value :: abstol
-      real(c_double), target :: residual(*)
+      real(c_double), target :: residual(..)
       integer(c_int), value :: max_sweeps
-      integer(c_int), target :: n_sweeps(*)
-      real(c_double), target :: W(*)
+      integer(c_int), target :: n_sweeps(..)
+      real(c_double), target :: W(..)
       integer(c_long), value :: strideW
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: zheevj_batched
       zheevj_batched = rocsolver_zheevj_batched_raw(handle, esort, evect, uplo, n, A, lda, abstol, &
-        c_loc(residual(1)), max_sweeps, c_loc(n_sweeps(1)), c_loc(W(1)), strideW, c_loc(info(1)), &
-        batch_count)
+        c_loc(residual), max_sweeps, c_loc(n_sweeps), c_loc(W), strideW, c_loc(info), batch_count)
     end function rocsolver_zheevj_batched_native
 
     function rocsolver_zheevj_batched_typed(handle, esort, evect, uplo, n, A, lda, abstol, &
@@ -71844,21 +71799,21 @@ contains
       integer(c_int), value :: evect
       integer(c_int), value :: uplo
       integer(c_int), value :: n
-      real(c_float), target :: A(*)
+      real(c_float), target :: A(..)
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
       real(c_float), value :: abstol
-      real(c_float), target :: residual(*)
+      real(c_float), target :: residual(..)
       integer(c_int), value :: max_sweeps
-      integer(c_int), target :: n_sweeps(*)
-      real(c_float), target :: W(*)
+      integer(c_int), target :: n_sweeps(..)
+      real(c_float), target :: W(..)
       integer(c_long), value :: strideW
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: ssyevj_strided_batched
       ssyevj_strided_batched = rocsolver_ssyevj_strided_batched_raw(handle, esort, evect, uplo, n, &
-        c_loc(A(1)), lda, strideA, abstol, c_loc(residual(1)), max_sweeps, c_loc(n_sweeps(1)), &
-        c_loc(W(1)), strideW, c_loc(info(1)), batch_count)
+        c_loc(A), lda, strideA, abstol, c_loc(residual), max_sweeps, c_loc(n_sweeps), c_loc(W), &
+        strideW, c_loc(info), batch_count)
     end function rocsolver_ssyevj_strided_batched_native
 
     function rocsolver_ssyevj_strided_batched_typed(handle, esort, evect, uplo, n, A, lda, &
@@ -71899,21 +71854,21 @@ contains
       integer(c_int), value :: evect
       integer(c_int), value :: uplo
       integer(c_int), value :: n
-      real(c_double), target :: A(*)
+      real(c_double), target :: A(..)
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
       real(c_double), value :: abstol
-      real(c_double), target :: residual(*)
+      real(c_double), target :: residual(..)
       integer(c_int), value :: max_sweeps
-      integer(c_int), target :: n_sweeps(*)
-      real(c_double), target :: W(*)
+      integer(c_int), target :: n_sweeps(..)
+      real(c_double), target :: W(..)
       integer(c_long), value :: strideW
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: dsyevj_strided_batched
       dsyevj_strided_batched = rocsolver_dsyevj_strided_batched_raw(handle, esort, evect, uplo, n, &
-        c_loc(A(1)), lda, strideA, abstol, c_loc(residual(1)), max_sweeps, c_loc(n_sweeps(1)), &
-        c_loc(W(1)), strideW, c_loc(info(1)), batch_count)
+        c_loc(A), lda, strideA, abstol, c_loc(residual), max_sweeps, c_loc(n_sweeps), c_loc(W), &
+        strideW, c_loc(info), batch_count)
     end function rocsolver_dsyevj_strided_batched_native
 
     function rocsolver_dsyevj_strided_batched_typed(handle, esort, evect, uplo, n, A, lda, &
@@ -71954,21 +71909,21 @@ contains
       integer(c_int), value :: evect
       integer(c_int), value :: uplo
       integer(c_int), value :: n
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: A(..)
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
       real(c_float), value :: abstol
-      real(c_float), target :: residual(*)
+      real(c_float), target :: residual(..)
       integer(c_int), value :: max_sweeps
-      integer(c_int), target :: n_sweeps(*)
-      real(c_float), target :: W(*)
+      integer(c_int), target :: n_sweeps(..)
+      real(c_float), target :: W(..)
       integer(c_long), value :: strideW
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: cheevj_strided_batched
       cheevj_strided_batched = rocsolver_cheevj_strided_batched_raw(handle, esort, evect, uplo, n, &
-        c_loc(A(1)), lda, strideA, abstol, c_loc(residual(1)), max_sweeps, c_loc(n_sweeps(1)), &
-        c_loc(W(1)), strideW, c_loc(info(1)), batch_count)
+        c_loc(A), lda, strideA, abstol, c_loc(residual), max_sweeps, c_loc(n_sweeps), c_loc(W), &
+        strideW, c_loc(info), batch_count)
     end function rocsolver_cheevj_strided_batched_native
 
     function rocsolver_cheevj_strided_batched_typed(handle, esort, evect, uplo, n, A, lda, &
@@ -72009,21 +71964,21 @@ contains
       integer(c_int), value :: evect
       integer(c_int), value :: uplo
       integer(c_int), value :: n
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: A(..)
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
       real(c_double), value :: abstol
-      real(c_double), target :: residual(*)
+      real(c_double), target :: residual(..)
       integer(c_int), value :: max_sweeps
-      integer(c_int), target :: n_sweeps(*)
-      real(c_double), target :: W(*)
+      integer(c_int), target :: n_sweeps(..)
+      real(c_double), target :: W(..)
       integer(c_long), value :: strideW
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: zheevj_strided_batched
       zheevj_strided_batched = rocsolver_zheevj_strided_batched_raw(handle, esort, evect, uplo, n, &
-        c_loc(A(1)), lda, strideA, abstol, c_loc(residual(1)), max_sweeps, c_loc(n_sweeps(1)), &
-        c_loc(W(1)), strideW, c_loc(info(1)), batch_count)
+        c_loc(A), lda, strideA, abstol, c_loc(residual), max_sweeps, c_loc(n_sweeps), c_loc(W), &
+        strideW, c_loc(info), batch_count)
     end function rocsolver_zheevj_strided_batched_native
 
     function rocsolver_zheevj_strided_batched_typed(handle, esort, evect, uplo, n, A, lda, &
@@ -72063,22 +72018,22 @@ contains
       integer(c_int), value :: erange
       integer(c_int), value :: uplo
       integer(c_int), value :: n
-      real(c_float), target :: A(*)
+      real(c_float), target :: A(..)
       integer(c_int), value :: lda
       real(c_float), value :: vl
       real(c_float), value :: vu
       integer(c_int), value :: il
       integer(c_int), value :: iu
       real(c_float), value :: abstol
-      integer(c_int), target :: nev(*)
-      real(c_float), target :: W(*)
-      real(c_float), target :: Z(*)
+      integer(c_int), target :: nev(..)
+      real(c_float), target :: W(..)
+      real(c_float), target :: Z(..)
       integer(c_int), value :: ldz
-      integer(c_int), target :: ifail(*)
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: ifail(..)
+      integer(c_int), target :: info(..)
       integer(c_int) :: ssyevx
-      ssyevx = rocsolver_ssyevx_raw(handle, evect, erange, uplo, n, c_loc(A(1)), lda, vl, vu, il, &
-        iu, abstol, c_loc(nev(1)), c_loc(W(1)), c_loc(Z(1)), ldz, c_loc(ifail(1)), c_loc(info(1)))
+      ssyevx = rocsolver_ssyevx_raw(handle, evect, erange, uplo, n, c_loc(A), lda, vl, vu, il, iu, &
+        abstol, c_loc(nev), c_loc(W), c_loc(Z), ldz, c_loc(ifail), c_loc(info))
     end function rocsolver_ssyevx_native
 
     function rocsolver_ssyevx_typed(handle, evect, erange, uplo, n, A, lda, vl, vu, il, iu, &
@@ -72118,22 +72073,22 @@ contains
       integer(c_int), value :: erange
       integer(c_int), value :: uplo
       integer(c_int), value :: n
-      real(c_double), target :: A(*)
+      real(c_double), target :: A(..)
       integer(c_int), value :: lda
       real(c_double), value :: vl
       real(c_double), value :: vu
       integer(c_int), value :: il
       integer(c_int), value :: iu
       real(c_double), value :: abstol
-      integer(c_int), target :: nev(*)
-      real(c_double), target :: W(*)
-      real(c_double), target :: Z(*)
+      integer(c_int), target :: nev(..)
+      real(c_double), target :: W(..)
+      real(c_double), target :: Z(..)
       integer(c_int), value :: ldz
-      integer(c_int), target :: ifail(*)
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: ifail(..)
+      integer(c_int), target :: info(..)
       integer(c_int) :: dsyevx
-      dsyevx = rocsolver_dsyevx_raw(handle, evect, erange, uplo, n, c_loc(A(1)), lda, vl, vu, il, &
-        iu, abstol, c_loc(nev(1)), c_loc(W(1)), c_loc(Z(1)), ldz, c_loc(ifail(1)), c_loc(info(1)))
+      dsyevx = rocsolver_dsyevx_raw(handle, evect, erange, uplo, n, c_loc(A), lda, vl, vu, il, iu, &
+        abstol, c_loc(nev), c_loc(W), c_loc(Z), ldz, c_loc(ifail), c_loc(info))
     end function rocsolver_dsyevx_native
 
     function rocsolver_dsyevx_typed(handle, evect, erange, uplo, n, A, lda, vl, vu, il, iu, &
@@ -72173,22 +72128,22 @@ contains
       integer(c_int), value :: erange
       integer(c_int), value :: uplo
       integer(c_int), value :: n
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: A(..)
       integer(c_int), value :: lda
       real(c_float), value :: vl
       real(c_float), value :: vu
       integer(c_int), value :: il
       integer(c_int), value :: iu
       real(c_float), value :: abstol
-      integer(c_int), target :: nev(*)
-      real(c_float), target :: W(*)
-      complex(c_float_complex), target :: Z(*)
+      integer(c_int), target :: nev(..)
+      real(c_float), target :: W(..)
+      complex(c_float_complex), target :: Z(..)
       integer(c_int), value :: ldz
-      integer(c_int), target :: ifail(*)
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: ifail(..)
+      integer(c_int), target :: info(..)
       integer(c_int) :: cheevx
-      cheevx = rocsolver_cheevx_raw(handle, evect, erange, uplo, n, c_loc(A(1)), lda, vl, vu, il, &
-        iu, abstol, c_loc(nev(1)), c_loc(W(1)), c_loc(Z(1)), ldz, c_loc(ifail(1)), c_loc(info(1)))
+      cheevx = rocsolver_cheevx_raw(handle, evect, erange, uplo, n, c_loc(A), lda, vl, vu, il, iu, &
+        abstol, c_loc(nev), c_loc(W), c_loc(Z), ldz, c_loc(ifail), c_loc(info))
     end function rocsolver_cheevx_native
 
     function rocsolver_cheevx_typed(handle, evect, erange, uplo, n, A, lda, vl, vu, il, iu, &
@@ -72228,22 +72183,22 @@ contains
       integer(c_int), value :: erange
       integer(c_int), value :: uplo
       integer(c_int), value :: n
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: A(..)
       integer(c_int), value :: lda
       real(c_double), value :: vl
       real(c_double), value :: vu
       integer(c_int), value :: il
       integer(c_int), value :: iu
       real(c_double), value :: abstol
-      integer(c_int), target :: nev(*)
-      real(c_double), target :: W(*)
-      complex(c_double_complex), target :: Z(*)
+      integer(c_int), target :: nev(..)
+      real(c_double), target :: W(..)
+      complex(c_double_complex), target :: Z(..)
       integer(c_int), value :: ldz
-      integer(c_int), target :: ifail(*)
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: ifail(..)
+      integer(c_int), target :: info(..)
       integer(c_int) :: zheevx
-      zheevx = rocsolver_zheevx_raw(handle, evect, erange, uplo, n, c_loc(A(1)), lda, vl, vu, il, &
-        iu, abstol, c_loc(nev(1)), c_loc(W(1)), c_loc(Z(1)), ldz, c_loc(ifail(1)), c_loc(info(1)))
+      zheevx = rocsolver_zheevx_raw(handle, evect, erange, uplo, n, c_loc(A), lda, vl, vu, il, iu, &
+        abstol, c_loc(nev), c_loc(W), c_loc(Z), ldz, c_loc(ifail), c_loc(info))
     end function rocsolver_zheevx_native
 
     function rocsolver_zheevx_typed(handle, evect, erange, uplo, n, A, lda, vl, vu, il, iu, &
@@ -72291,19 +72246,19 @@ contains
       integer(c_int), value :: il
       integer(c_int), value :: iu
       real(c_float), value :: abstol
-      integer(c_int), target :: nev(*)
-      real(c_float), target :: W(*)
+      integer(c_int), target :: nev(..)
+      real(c_float), target :: W(..)
       integer(c_long), value :: strideW
       type(c_ptr), value :: Z
       integer(c_int), value :: ldz
-      integer(c_int), target :: ifail(*)
+      integer(c_int), target :: ifail(..)
       integer(c_long), value :: strideF
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: ssyevx_batched
       ssyevx_batched = rocsolver_ssyevx_batched_raw(handle, evect, erange, uplo, n, A, lda, vl, &
-        vu, il, iu, abstol, c_loc(nev(1)), c_loc(W(1)), strideW, Z, ldz, c_loc(ifail(1)), strideF, &
-        c_loc(info(1)), batch_count)
+        vu, il, iu, abstol, c_loc(nev), c_loc(W), strideW, Z, ldz, c_loc(ifail), strideF, c_loc( &
+        info), batch_count)
     end function rocsolver_ssyevx_batched_native
 
     function rocsolver_ssyevx_batched_typed(handle, evect, erange, uplo, n, A, lda, vl, vu, il, &
@@ -72355,19 +72310,19 @@ contains
       integer(c_int), value :: il
       integer(c_int), value :: iu
       real(c_double), value :: abstol
-      integer(c_int), target :: nev(*)
-      real(c_double), target :: W(*)
+      integer(c_int), target :: nev(..)
+      real(c_double), target :: W(..)
       integer(c_long), value :: strideW
       type(c_ptr), value :: Z
       integer(c_int), value :: ldz
-      integer(c_int), target :: ifail(*)
+      integer(c_int), target :: ifail(..)
       integer(c_long), value :: strideF
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: dsyevx_batched
       dsyevx_batched = rocsolver_dsyevx_batched_raw(handle, evect, erange, uplo, n, A, lda, vl, &
-        vu, il, iu, abstol, c_loc(nev(1)), c_loc(W(1)), strideW, Z, ldz, c_loc(ifail(1)), strideF, &
-        c_loc(info(1)), batch_count)
+        vu, il, iu, abstol, c_loc(nev), c_loc(W), strideW, Z, ldz, c_loc(ifail), strideF, c_loc( &
+        info), batch_count)
     end function rocsolver_dsyevx_batched_native
 
     function rocsolver_dsyevx_batched_typed(handle, evect, erange, uplo, n, A, lda, vl, vu, il, &
@@ -72419,19 +72374,19 @@ contains
       integer(c_int), value :: il
       integer(c_int), value :: iu
       real(c_float), value :: abstol
-      integer(c_int), target :: nev(*)
-      real(c_float), target :: W(*)
+      integer(c_int), target :: nev(..)
+      real(c_float), target :: W(..)
       integer(c_long), value :: strideW
       type(c_ptr), value :: Z
       integer(c_int), value :: ldz
-      integer(c_int), target :: ifail(*)
+      integer(c_int), target :: ifail(..)
       integer(c_long), value :: strideF
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: cheevx_batched
       cheevx_batched = rocsolver_cheevx_batched_raw(handle, evect, erange, uplo, n, A, lda, vl, &
-        vu, il, iu, abstol, c_loc(nev(1)), c_loc(W(1)), strideW, Z, ldz, c_loc(ifail(1)), strideF, &
-        c_loc(info(1)), batch_count)
+        vu, il, iu, abstol, c_loc(nev), c_loc(W), strideW, Z, ldz, c_loc(ifail), strideF, c_loc( &
+        info), batch_count)
     end function rocsolver_cheevx_batched_native
 
     function rocsolver_cheevx_batched_typed(handle, evect, erange, uplo, n, A, lda, vl, vu, il, &
@@ -72483,19 +72438,19 @@ contains
       integer(c_int), value :: il
       integer(c_int), value :: iu
       real(c_double), value :: abstol
-      integer(c_int), target :: nev(*)
-      real(c_double), target :: W(*)
+      integer(c_int), target :: nev(..)
+      real(c_double), target :: W(..)
       integer(c_long), value :: strideW
       type(c_ptr), value :: Z
       integer(c_int), value :: ldz
-      integer(c_int), target :: ifail(*)
+      integer(c_int), target :: ifail(..)
       integer(c_long), value :: strideF
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: zheevx_batched
       zheevx_batched = rocsolver_zheevx_batched_raw(handle, evect, erange, uplo, n, A, lda, vl, &
-        vu, il, iu, abstol, c_loc(nev(1)), c_loc(W(1)), strideW, Z, ldz, c_loc(ifail(1)), strideF, &
-        c_loc(info(1)), batch_count)
+        vu, il, iu, abstol, c_loc(nev), c_loc(W), strideW, Z, ldz, c_loc(ifail), strideF, c_loc( &
+        info), batch_count)
     end function rocsolver_zheevx_batched_native
 
     function rocsolver_zheevx_batched_typed(handle, evect, erange, uplo, n, A, lda, vl, vu, il, &
@@ -72540,7 +72495,7 @@ contains
       integer(c_int), value :: erange
       integer(c_int), value :: uplo
       integer(c_int), value :: n
-      real(c_float), target :: A(*)
+      real(c_float), target :: A(..)
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
       real(c_float), value :: vl
@@ -72548,20 +72503,20 @@ contains
       integer(c_int), value :: il
       integer(c_int), value :: iu
       real(c_float), value :: abstol
-      integer(c_int), target :: nev(*)
-      real(c_float), target :: W(*)
+      integer(c_int), target :: nev(..)
+      real(c_float), target :: W(..)
       integer(c_long), value :: strideW
-      real(c_float), target :: Z(*)
+      real(c_float), target :: Z(..)
       integer(c_int), value :: ldz
       integer(c_long), value :: strideZ
-      integer(c_int), target :: ifail(*)
+      integer(c_int), target :: ifail(..)
       integer(c_long), value :: strideF
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: ssyevx_strided_batched
       ssyevx_strided_batched = rocsolver_ssyevx_strided_batched_raw(handle, evect, erange, uplo, &
-        n, c_loc(A(1)), lda, strideA, vl, vu, il, iu, abstol, c_loc(nev(1)), c_loc(W(1)), strideW, &
-        c_loc(Z(1)), ldz, strideZ, c_loc(ifail(1)), strideF, c_loc(info(1)), batch_count)
+        n, c_loc(A), lda, strideA, vl, vu, il, iu, abstol, c_loc(nev), c_loc(W), strideW, c_loc( &
+        Z), ldz, strideZ, c_loc(ifail), strideF, c_loc(info), batch_count)
     end function rocsolver_ssyevx_strided_batched_native
 
     function rocsolver_ssyevx_strided_batched_typed(handle, evect, erange, uplo, n, A, lda, &
@@ -72609,7 +72564,7 @@ contains
       integer(c_int), value :: erange
       integer(c_int), value :: uplo
       integer(c_int), value :: n
-      real(c_double), target :: A(*)
+      real(c_double), target :: A(..)
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
       real(c_double), value :: vl
@@ -72617,20 +72572,20 @@ contains
       integer(c_int), value :: il
       integer(c_int), value :: iu
       real(c_double), value :: abstol
-      integer(c_int), target :: nev(*)
-      real(c_double), target :: W(*)
+      integer(c_int), target :: nev(..)
+      real(c_double), target :: W(..)
       integer(c_long), value :: strideW
-      real(c_double), target :: Z(*)
+      real(c_double), target :: Z(..)
       integer(c_int), value :: ldz
       integer(c_long), value :: strideZ
-      integer(c_int), target :: ifail(*)
+      integer(c_int), target :: ifail(..)
       integer(c_long), value :: strideF
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: dsyevx_strided_batched
       dsyevx_strided_batched = rocsolver_dsyevx_strided_batched_raw(handle, evect, erange, uplo, &
-        n, c_loc(A(1)), lda, strideA, vl, vu, il, iu, abstol, c_loc(nev(1)), c_loc(W(1)), strideW, &
-        c_loc(Z(1)), ldz, strideZ, c_loc(ifail(1)), strideF, c_loc(info(1)), batch_count)
+        n, c_loc(A), lda, strideA, vl, vu, il, iu, abstol, c_loc(nev), c_loc(W), strideW, c_loc( &
+        Z), ldz, strideZ, c_loc(ifail), strideF, c_loc(info), batch_count)
     end function rocsolver_dsyevx_strided_batched_native
 
     function rocsolver_dsyevx_strided_batched_typed(handle, evect, erange, uplo, n, A, lda, &
@@ -72678,7 +72633,7 @@ contains
       integer(c_int), value :: erange
       integer(c_int), value :: uplo
       integer(c_int), value :: n
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: A(..)
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
       real(c_float), value :: vl
@@ -72686,20 +72641,20 @@ contains
       integer(c_int), value :: il
       integer(c_int), value :: iu
       real(c_float), value :: abstol
-      integer(c_int), target :: nev(*)
-      real(c_float), target :: W(*)
+      integer(c_int), target :: nev(..)
+      real(c_float), target :: W(..)
       integer(c_long), value :: strideW
-      complex(c_float_complex), target :: Z(*)
+      complex(c_float_complex), target :: Z(..)
       integer(c_int), value :: ldz
       integer(c_long), value :: strideZ
-      integer(c_int), target :: ifail(*)
+      integer(c_int), target :: ifail(..)
       integer(c_long), value :: strideF
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: cheevx_strided_batched
       cheevx_strided_batched = rocsolver_cheevx_strided_batched_raw(handle, evect, erange, uplo, &
-        n, c_loc(A(1)), lda, strideA, vl, vu, il, iu, abstol, c_loc(nev(1)), c_loc(W(1)), strideW, &
-        c_loc(Z(1)), ldz, strideZ, c_loc(ifail(1)), strideF, c_loc(info(1)), batch_count)
+        n, c_loc(A), lda, strideA, vl, vu, il, iu, abstol, c_loc(nev), c_loc(W), strideW, c_loc( &
+        Z), ldz, strideZ, c_loc(ifail), strideF, c_loc(info), batch_count)
     end function rocsolver_cheevx_strided_batched_native
 
     function rocsolver_cheevx_strided_batched_typed(handle, evect, erange, uplo, n, A, lda, &
@@ -72747,7 +72702,7 @@ contains
       integer(c_int), value :: erange
       integer(c_int), value :: uplo
       integer(c_int), value :: n
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: A(..)
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
       real(c_double), value :: vl
@@ -72755,20 +72710,20 @@ contains
       integer(c_int), value :: il
       integer(c_int), value :: iu
       real(c_double), value :: abstol
-      integer(c_int), target :: nev(*)
-      real(c_double), target :: W(*)
+      integer(c_int), target :: nev(..)
+      real(c_double), target :: W(..)
       integer(c_long), value :: strideW
-      complex(c_double_complex), target :: Z(*)
+      complex(c_double_complex), target :: Z(..)
       integer(c_int), value :: ldz
       integer(c_long), value :: strideZ
-      integer(c_int), target :: ifail(*)
+      integer(c_int), target :: ifail(..)
       integer(c_long), value :: strideF
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: zheevx_strided_batched
       zheevx_strided_batched = rocsolver_zheevx_strided_batched_raw(handle, evect, erange, uplo, &
-        n, c_loc(A(1)), lda, strideA, vl, vu, il, iu, abstol, c_loc(nev(1)), c_loc(W(1)), strideW, &
-        c_loc(Z(1)), ldz, strideZ, c_loc(ifail(1)), strideF, c_loc(info(1)), batch_count)
+        n, c_loc(A), lda, strideA, vl, vu, il, iu, abstol, c_loc(nev), c_loc(W), strideW, c_loc( &
+        Z), ldz, strideZ, c_loc(ifail), strideF, c_loc(info), batch_count)
     end function rocsolver_zheevx_strided_batched_native
 
     function rocsolver_zheevx_strided_batched_typed(handle, evect, erange, uplo, n, A, lda, &
@@ -72815,16 +72770,16 @@ contains
       integer(c_int), value :: evect
       integer(c_int), value :: uplo
       integer(c_int), value :: n
-      real(c_float), target :: A(*)
+      real(c_float), target :: A(..)
       integer(c_int), value :: lda
-      real(c_float), target :: B(*)
+      real(c_float), target :: B(..)
       integer(c_int), value :: ldb
-      real(c_float), target :: D(*)
-      real(c_float), target :: E(*)
-      integer(c_int), target :: info(*)
+      real(c_float), target :: D(..)
+      real(c_float), target :: E(..)
+      integer(c_int), target :: info(..)
       integer(c_int) :: ssygv
-      ssygv = rocsolver_ssygv_raw(handle, itype, evect, uplo, n, c_loc(A(1)), lda, c_loc(B(1)), &
-        ldb, c_loc(D(1)), c_loc(E(1)), c_loc(info(1)))
+      ssygv = rocsolver_ssygv_raw(handle, itype, evect, uplo, n, c_loc(A), lda, c_loc(B), ldb, &
+        c_loc(D), c_loc(E), c_loc(info))
     end function rocsolver_ssygv_native
 
     function rocsolver_ssygv_typed(handle, itype, evect, uplo, n, A, lda, B, ldb, D, E, &
@@ -72857,16 +72812,16 @@ contains
       integer(c_int), value :: evect
       integer(c_int), value :: uplo
       integer(c_int), value :: n
-      real(c_double), target :: A(*)
+      real(c_double), target :: A(..)
       integer(c_int), value :: lda
-      real(c_double), target :: B(*)
+      real(c_double), target :: B(..)
       integer(c_int), value :: ldb
-      real(c_double), target :: D(*)
-      real(c_double), target :: E(*)
-      integer(c_int), target :: info(*)
+      real(c_double), target :: D(..)
+      real(c_double), target :: E(..)
+      integer(c_int), target :: info(..)
       integer(c_int) :: dsygv
-      dsygv = rocsolver_dsygv_raw(handle, itype, evect, uplo, n, c_loc(A(1)), lda, c_loc(B(1)), &
-        ldb, c_loc(D(1)), c_loc(E(1)), c_loc(info(1)))
+      dsygv = rocsolver_dsygv_raw(handle, itype, evect, uplo, n, c_loc(A), lda, c_loc(B), ldb, &
+        c_loc(D), c_loc(E), c_loc(info))
     end function rocsolver_dsygv_native
 
     function rocsolver_dsygv_typed(handle, itype, evect, uplo, n, A, lda, B, ldb, D, E, &
@@ -72899,16 +72854,16 @@ contains
       integer(c_int), value :: evect
       integer(c_int), value :: uplo
       integer(c_int), value :: n
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: A(..)
       integer(c_int), value :: lda
-      complex(c_float_complex), target :: B(*)
+      complex(c_float_complex), target :: B(..)
       integer(c_int), value :: ldb
-      real(c_float), target :: D(*)
-      real(c_float), target :: E(*)
-      integer(c_int), target :: info(*)
+      real(c_float), target :: D(..)
+      real(c_float), target :: E(..)
+      integer(c_int), target :: info(..)
       integer(c_int) :: chegv
-      chegv = rocsolver_chegv_raw(handle, itype, evect, uplo, n, c_loc(A(1)), lda, c_loc(B(1)), &
-        ldb, c_loc(D(1)), c_loc(E(1)), c_loc(info(1)))
+      chegv = rocsolver_chegv_raw(handle, itype, evect, uplo, n, c_loc(A), lda, c_loc(B), ldb, &
+        c_loc(D), c_loc(E), c_loc(info))
     end function rocsolver_chegv_native
 
     function rocsolver_chegv_typed(handle, itype, evect, uplo, n, A, lda, B, ldb, D, E, &
@@ -72941,16 +72896,16 @@ contains
       integer(c_int), value :: evect
       integer(c_int), value :: uplo
       integer(c_int), value :: n
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: A(..)
       integer(c_int), value :: lda
-      complex(c_double_complex), target :: B(*)
+      complex(c_double_complex), target :: B(..)
       integer(c_int), value :: ldb
-      real(c_double), target :: D(*)
-      real(c_double), target :: E(*)
-      integer(c_int), target :: info(*)
+      real(c_double), target :: D(..)
+      real(c_double), target :: E(..)
+      integer(c_int), target :: info(..)
       integer(c_int) :: zhegv
-      zhegv = rocsolver_zhegv_raw(handle, itype, evect, uplo, n, c_loc(A(1)), lda, c_loc(B(1)), &
-        ldb, c_loc(D(1)), c_loc(E(1)), c_loc(info(1)))
+      zhegv = rocsolver_zhegv_raw(handle, itype, evect, uplo, n, c_loc(A), lda, c_loc(B), ldb, &
+        c_loc(D), c_loc(E), c_loc(info))
     end function rocsolver_zhegv_native
 
     function rocsolver_zhegv_typed(handle, itype, evect, uplo, n, A, lda, B, ldb, D, E, &
@@ -72987,15 +72942,15 @@ contains
       integer(c_int), value :: lda
       type(c_ptr), value :: B
       integer(c_int), value :: ldb
-      real(c_float), target :: D(*)
+      real(c_float), target :: D(..)
       integer(c_long), value :: strideD
-      real(c_float), target :: E(*)
+      real(c_float), target :: E(..)
       integer(c_long), value :: strideE
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: ssygv_batched
       ssygv_batched = rocsolver_ssygv_batched_raw(handle, itype, evect, uplo, n, A, lda, B, ldb, &
-        c_loc(D(1)), strideD, c_loc(E(1)), strideE, c_loc(info(1)), batch_count)
+        c_loc(D), strideD, c_loc(E), strideE, c_loc(info), batch_count)
     end function rocsolver_ssygv_batched_native
 
     function rocsolver_ssygv_batched_typed(handle, itype, evect, uplo, n, A, lda, B, ldb, D, &
@@ -73036,15 +72991,15 @@ contains
       integer(c_int), value :: lda
       type(c_ptr), value :: B
       integer(c_int), value :: ldb
-      real(c_double), target :: D(*)
+      real(c_double), target :: D(..)
       integer(c_long), value :: strideD
-      real(c_double), target :: E(*)
+      real(c_double), target :: E(..)
       integer(c_long), value :: strideE
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: dsygv_batched
       dsygv_batched = rocsolver_dsygv_batched_raw(handle, itype, evect, uplo, n, A, lda, B, ldb, &
-        c_loc(D(1)), strideD, c_loc(E(1)), strideE, c_loc(info(1)), batch_count)
+        c_loc(D), strideD, c_loc(E), strideE, c_loc(info), batch_count)
     end function rocsolver_dsygv_batched_native
 
     function rocsolver_dsygv_batched_typed(handle, itype, evect, uplo, n, A, lda, B, ldb, D, &
@@ -73085,15 +73040,15 @@ contains
       integer(c_int), value :: lda
       type(c_ptr), value :: B
       integer(c_int), value :: ldb
-      real(c_float), target :: D(*)
+      real(c_float), target :: D(..)
       integer(c_long), value :: strideD
-      real(c_float), target :: E(*)
+      real(c_float), target :: E(..)
       integer(c_long), value :: strideE
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: chegv_batched
       chegv_batched = rocsolver_chegv_batched_raw(handle, itype, evect, uplo, n, A, lda, B, ldb, &
-        c_loc(D(1)), strideD, c_loc(E(1)), strideE, c_loc(info(1)), batch_count)
+        c_loc(D), strideD, c_loc(E), strideE, c_loc(info), batch_count)
     end function rocsolver_chegv_batched_native
 
     function rocsolver_chegv_batched_typed(handle, itype, evect, uplo, n, A, lda, B, ldb, D, &
@@ -73134,15 +73089,15 @@ contains
       integer(c_int), value :: lda
       type(c_ptr), value :: B
       integer(c_int), value :: ldb
-      real(c_double), target :: D(*)
+      real(c_double), target :: D(..)
       integer(c_long), value :: strideD
-      real(c_double), target :: E(*)
+      real(c_double), target :: E(..)
       integer(c_long), value :: strideE
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: zhegv_batched
       zhegv_batched = rocsolver_zhegv_batched_raw(handle, itype, evect, uplo, n, A, lda, B, ldb, &
-        c_loc(D(1)), strideD, c_loc(E(1)), strideE, c_loc(info(1)), batch_count)
+        c_loc(D), strideD, c_loc(E), strideE, c_loc(info), batch_count)
     end function rocsolver_zhegv_batched_native
 
     function rocsolver_zhegv_batched_typed(handle, itype, evect, uplo, n, A, lda, B, ldb, D, &
@@ -73180,22 +73135,22 @@ contains
       integer(c_int), value :: evect
       integer(c_int), value :: uplo
       integer(c_int), value :: n
-      real(c_float), target :: A(*)
+      real(c_float), target :: A(..)
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
-      real(c_float), target :: B(*)
+      real(c_float), target :: B(..)
       integer(c_int), value :: ldb
       integer(c_long), value :: strideB
-      real(c_float), target :: D(*)
+      real(c_float), target :: D(..)
       integer(c_long), value :: strideD
-      real(c_float), target :: E(*)
+      real(c_float), target :: E(..)
       integer(c_long), value :: strideE
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: ssygv_strided_batched
       ssygv_strided_batched = rocsolver_ssygv_strided_batched_raw(handle, itype, evect, uplo, n, &
-        c_loc(A(1)), lda, strideA, c_loc(B(1)), ldb, strideB, c_loc(D(1)), strideD, c_loc(E(1)), &
-        strideE, c_loc(info(1)), batch_count)
+        c_loc(A), lda, strideA, c_loc(B), ldb, strideB, c_loc(D), strideD, c_loc(E), strideE, &
+        c_loc(info), batch_count)
     end function rocsolver_ssygv_strided_batched_native
 
     function rocsolver_ssygv_strided_batched_typed(handle, itype, evect, uplo, n, A, lda, strideA, &
@@ -73235,22 +73190,22 @@ contains
       integer(c_int), value :: evect
       integer(c_int), value :: uplo
       integer(c_int), value :: n
-      real(c_double), target :: A(*)
+      real(c_double), target :: A(..)
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
-      real(c_double), target :: B(*)
+      real(c_double), target :: B(..)
       integer(c_int), value :: ldb
       integer(c_long), value :: strideB
-      real(c_double), target :: D(*)
+      real(c_double), target :: D(..)
       integer(c_long), value :: strideD
-      real(c_double), target :: E(*)
+      real(c_double), target :: E(..)
       integer(c_long), value :: strideE
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: dsygv_strided_batched
       dsygv_strided_batched = rocsolver_dsygv_strided_batched_raw(handle, itype, evect, uplo, n, &
-        c_loc(A(1)), lda, strideA, c_loc(B(1)), ldb, strideB, c_loc(D(1)), strideD, c_loc(E(1)), &
-        strideE, c_loc(info(1)), batch_count)
+        c_loc(A), lda, strideA, c_loc(B), ldb, strideB, c_loc(D), strideD, c_loc(E), strideE, &
+        c_loc(info), batch_count)
     end function rocsolver_dsygv_strided_batched_native
 
     function rocsolver_dsygv_strided_batched_typed(handle, itype, evect, uplo, n, A, lda, strideA, &
@@ -73290,22 +73245,22 @@ contains
       integer(c_int), value :: evect
       integer(c_int), value :: uplo
       integer(c_int), value :: n
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: A(..)
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
-      complex(c_float_complex), target :: B(*)
+      complex(c_float_complex), target :: B(..)
       integer(c_int), value :: ldb
       integer(c_long), value :: strideB
-      real(c_float), target :: D(*)
+      real(c_float), target :: D(..)
       integer(c_long), value :: strideD
-      real(c_float), target :: E(*)
+      real(c_float), target :: E(..)
       integer(c_long), value :: strideE
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: chegv_strided_batched
       chegv_strided_batched = rocsolver_chegv_strided_batched_raw(handle, itype, evect, uplo, n, &
-        c_loc(A(1)), lda, strideA, c_loc(B(1)), ldb, strideB, c_loc(D(1)), strideD, c_loc(E(1)), &
-        strideE, c_loc(info(1)), batch_count)
+        c_loc(A), lda, strideA, c_loc(B), ldb, strideB, c_loc(D), strideD, c_loc(E), strideE, &
+        c_loc(info), batch_count)
     end function rocsolver_chegv_strided_batched_native
 
     function rocsolver_chegv_strided_batched_typed(handle, itype, evect, uplo, n, A, lda, strideA, &
@@ -73345,22 +73300,22 @@ contains
       integer(c_int), value :: evect
       integer(c_int), value :: uplo
       integer(c_int), value :: n
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: A(..)
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
-      complex(c_double_complex), target :: B(*)
+      complex(c_double_complex), target :: B(..)
       integer(c_int), value :: ldb
       integer(c_long), value :: strideB
-      real(c_double), target :: D(*)
+      real(c_double), target :: D(..)
       integer(c_long), value :: strideD
-      real(c_double), target :: E(*)
+      real(c_double), target :: E(..)
       integer(c_long), value :: strideE
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: zhegv_strided_batched
       zhegv_strided_batched = rocsolver_zhegv_strided_batched_raw(handle, itype, evect, uplo, n, &
-        c_loc(A(1)), lda, strideA, c_loc(B(1)), ldb, strideB, c_loc(D(1)), strideD, c_loc(E(1)), &
-        strideE, c_loc(info(1)), batch_count)
+        c_loc(A), lda, strideA, c_loc(B), ldb, strideB, c_loc(D), strideD, c_loc(E), strideE, &
+        c_loc(info), batch_count)
     end function rocsolver_zhegv_strided_batched_native
 
     function rocsolver_zhegv_strided_batched_typed(handle, itype, evect, uplo, n, A, lda, strideA, &
@@ -73399,16 +73354,16 @@ contains
       integer(c_int), value :: evect
       integer(c_int), value :: uplo
       integer(c_int), value :: n
-      real(c_float), target :: A(*)
+      real(c_float), target :: A(..)
       integer(c_int), value :: lda
-      real(c_float), target :: B(*)
+      real(c_float), target :: B(..)
       integer(c_int), value :: ldb
-      real(c_float), target :: D(*)
-      real(c_float), target :: E(*)
-      integer(c_int), target :: info(*)
+      real(c_float), target :: D(..)
+      real(c_float), target :: E(..)
+      integer(c_int), target :: info(..)
       integer(c_int) :: ssygvd
-      ssygvd = rocsolver_ssygvd_raw(handle, itype, evect, uplo, n, c_loc(A(1)), lda, c_loc(B(1)), &
-        ldb, c_loc(D(1)), c_loc(E(1)), c_loc(info(1)))
+      ssygvd = rocsolver_ssygvd_raw(handle, itype, evect, uplo, n, c_loc(A), lda, c_loc(B), ldb, &
+        c_loc(D), c_loc(E), c_loc(info))
     end function rocsolver_ssygvd_native
 
     function rocsolver_ssygvd_typed(handle, itype, evect, uplo, n, A, lda, B, ldb, D, E, &
@@ -73441,16 +73396,16 @@ contains
       integer(c_int), value :: evect
       integer(c_int), value :: uplo
       integer(c_int), value :: n
-      real(c_double), target :: A(*)
+      real(c_double), target :: A(..)
       integer(c_int), value :: lda
-      real(c_double), target :: B(*)
+      real(c_double), target :: B(..)
       integer(c_int), value :: ldb
-      real(c_double), target :: D(*)
-      real(c_double), target :: E(*)
-      integer(c_int), target :: info(*)
+      real(c_double), target :: D(..)
+      real(c_double), target :: E(..)
+      integer(c_int), target :: info(..)
       integer(c_int) :: dsygvd
-      dsygvd = rocsolver_dsygvd_raw(handle, itype, evect, uplo, n, c_loc(A(1)), lda, c_loc(B(1)), &
-        ldb, c_loc(D(1)), c_loc(E(1)), c_loc(info(1)))
+      dsygvd = rocsolver_dsygvd_raw(handle, itype, evect, uplo, n, c_loc(A), lda, c_loc(B), ldb, &
+        c_loc(D), c_loc(E), c_loc(info))
     end function rocsolver_dsygvd_native
 
     function rocsolver_dsygvd_typed(handle, itype, evect, uplo, n, A, lda, B, ldb, D, E, &
@@ -73483,16 +73438,16 @@ contains
       integer(c_int), value :: evect
       integer(c_int), value :: uplo
       integer(c_int), value :: n
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: A(..)
       integer(c_int), value :: lda
-      complex(c_float_complex), target :: B(*)
+      complex(c_float_complex), target :: B(..)
       integer(c_int), value :: ldb
-      real(c_float), target :: D(*)
-      real(c_float), target :: E(*)
-      integer(c_int), target :: info(*)
+      real(c_float), target :: D(..)
+      real(c_float), target :: E(..)
+      integer(c_int), target :: info(..)
       integer(c_int) :: chegvd
-      chegvd = rocsolver_chegvd_raw(handle, itype, evect, uplo, n, c_loc(A(1)), lda, c_loc(B(1)), &
-        ldb, c_loc(D(1)), c_loc(E(1)), c_loc(info(1)))
+      chegvd = rocsolver_chegvd_raw(handle, itype, evect, uplo, n, c_loc(A), lda, c_loc(B), ldb, &
+        c_loc(D), c_loc(E), c_loc(info))
     end function rocsolver_chegvd_native
 
     function rocsolver_chegvd_typed(handle, itype, evect, uplo, n, A, lda, B, ldb, D, E, &
@@ -73525,16 +73480,16 @@ contains
       integer(c_int), value :: evect
       integer(c_int), value :: uplo
       integer(c_int), value :: n
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: A(..)
       integer(c_int), value :: lda
-      complex(c_double_complex), target :: B(*)
+      complex(c_double_complex), target :: B(..)
       integer(c_int), value :: ldb
-      real(c_double), target :: D(*)
-      real(c_double), target :: E(*)
-      integer(c_int), target :: info(*)
+      real(c_double), target :: D(..)
+      real(c_double), target :: E(..)
+      integer(c_int), target :: info(..)
       integer(c_int) :: zhegvd
-      zhegvd = rocsolver_zhegvd_raw(handle, itype, evect, uplo, n, c_loc(A(1)), lda, c_loc(B(1)), &
-        ldb, c_loc(D(1)), c_loc(E(1)), c_loc(info(1)))
+      zhegvd = rocsolver_zhegvd_raw(handle, itype, evect, uplo, n, c_loc(A), lda, c_loc(B), ldb, &
+        c_loc(D), c_loc(E), c_loc(info))
     end function rocsolver_zhegvd_native
 
     function rocsolver_zhegvd_typed(handle, itype, evect, uplo, n, A, lda, B, ldb, D, E, &
@@ -73571,15 +73526,15 @@ contains
       integer(c_int), value :: lda
       type(c_ptr), value :: B
       integer(c_int), value :: ldb
-      real(c_float), target :: D(*)
+      real(c_float), target :: D(..)
       integer(c_long), value :: strideD
-      real(c_float), target :: E(*)
+      real(c_float), target :: E(..)
       integer(c_long), value :: strideE
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: ssygvd_batched
       ssygvd_batched = rocsolver_ssygvd_batched_raw(handle, itype, evect, uplo, n, A, lda, B, ldb, &
-        c_loc(D(1)), strideD, c_loc(E(1)), strideE, c_loc(info(1)), batch_count)
+        c_loc(D), strideD, c_loc(E), strideE, c_loc(info), batch_count)
     end function rocsolver_ssygvd_batched_native
 
     function rocsolver_ssygvd_batched_typed(handle, itype, evect, uplo, n, A, lda, B, ldb, D, &
@@ -73620,15 +73575,15 @@ contains
       integer(c_int), value :: lda
       type(c_ptr), value :: B
       integer(c_int), value :: ldb
-      real(c_double), target :: D(*)
+      real(c_double), target :: D(..)
       integer(c_long), value :: strideD
-      real(c_double), target :: E(*)
+      real(c_double), target :: E(..)
       integer(c_long), value :: strideE
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: dsygvd_batched
       dsygvd_batched = rocsolver_dsygvd_batched_raw(handle, itype, evect, uplo, n, A, lda, B, ldb, &
-        c_loc(D(1)), strideD, c_loc(E(1)), strideE, c_loc(info(1)), batch_count)
+        c_loc(D), strideD, c_loc(E), strideE, c_loc(info), batch_count)
     end function rocsolver_dsygvd_batched_native
 
     function rocsolver_dsygvd_batched_typed(handle, itype, evect, uplo, n, A, lda, B, ldb, D, &
@@ -73669,15 +73624,15 @@ contains
       integer(c_int), value :: lda
       type(c_ptr), value :: B
       integer(c_int), value :: ldb
-      real(c_float), target :: D(*)
+      real(c_float), target :: D(..)
       integer(c_long), value :: strideD
-      real(c_float), target :: E(*)
+      real(c_float), target :: E(..)
       integer(c_long), value :: strideE
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: chegvd_batched
       chegvd_batched = rocsolver_chegvd_batched_raw(handle, itype, evect, uplo, n, A, lda, B, ldb, &
-        c_loc(D(1)), strideD, c_loc(E(1)), strideE, c_loc(info(1)), batch_count)
+        c_loc(D), strideD, c_loc(E), strideE, c_loc(info), batch_count)
     end function rocsolver_chegvd_batched_native
 
     function rocsolver_chegvd_batched_typed(handle, itype, evect, uplo, n, A, lda, B, ldb, D, &
@@ -73718,15 +73673,15 @@ contains
       integer(c_int), value :: lda
       type(c_ptr), value :: B
       integer(c_int), value :: ldb
-      real(c_double), target :: D(*)
+      real(c_double), target :: D(..)
       integer(c_long), value :: strideD
-      real(c_double), target :: E(*)
+      real(c_double), target :: E(..)
       integer(c_long), value :: strideE
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: zhegvd_batched
       zhegvd_batched = rocsolver_zhegvd_batched_raw(handle, itype, evect, uplo, n, A, lda, B, ldb, &
-        c_loc(D(1)), strideD, c_loc(E(1)), strideE, c_loc(info(1)), batch_count)
+        c_loc(D), strideD, c_loc(E), strideE, c_loc(info), batch_count)
     end function rocsolver_zhegvd_batched_native
 
     function rocsolver_zhegvd_batched_typed(handle, itype, evect, uplo, n, A, lda, B, ldb, D, &
@@ -73764,22 +73719,22 @@ contains
       integer(c_int), value :: evect
       integer(c_int), value :: uplo
       integer(c_int), value :: n
-      real(c_float), target :: A(*)
+      real(c_float), target :: A(..)
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
-      real(c_float), target :: B(*)
+      real(c_float), target :: B(..)
       integer(c_int), value :: ldb
       integer(c_long), value :: strideB
-      real(c_float), target :: D(*)
+      real(c_float), target :: D(..)
       integer(c_long), value :: strideD
-      real(c_float), target :: E(*)
+      real(c_float), target :: E(..)
       integer(c_long), value :: strideE
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: ssygvd_strided_batched
       ssygvd_strided_batched = rocsolver_ssygvd_strided_batched_raw(handle, itype, evect, uplo, n, &
-        c_loc(A(1)), lda, strideA, c_loc(B(1)), ldb, strideB, c_loc(D(1)), strideD, c_loc(E(1)), &
-        strideE, c_loc(info(1)), batch_count)
+        c_loc(A), lda, strideA, c_loc(B), ldb, strideB, c_loc(D), strideD, c_loc(E), strideE, &
+        c_loc(info), batch_count)
     end function rocsolver_ssygvd_strided_batched_native
 
     function rocsolver_ssygvd_strided_batched_typed(handle, itype, evect, uplo, n, A, lda, &
@@ -73820,22 +73775,22 @@ contains
       integer(c_int), value :: evect
       integer(c_int), value :: uplo
       integer(c_int), value :: n
-      real(c_double), target :: A(*)
+      real(c_double), target :: A(..)
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
-      real(c_double), target :: B(*)
+      real(c_double), target :: B(..)
       integer(c_int), value :: ldb
       integer(c_long), value :: strideB
-      real(c_double), target :: D(*)
+      real(c_double), target :: D(..)
       integer(c_long), value :: strideD
-      real(c_double), target :: E(*)
+      real(c_double), target :: E(..)
       integer(c_long), value :: strideE
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: dsygvd_strided_batched
       dsygvd_strided_batched = rocsolver_dsygvd_strided_batched_raw(handle, itype, evect, uplo, n, &
-        c_loc(A(1)), lda, strideA, c_loc(B(1)), ldb, strideB, c_loc(D(1)), strideD, c_loc(E(1)), &
-        strideE, c_loc(info(1)), batch_count)
+        c_loc(A), lda, strideA, c_loc(B), ldb, strideB, c_loc(D), strideD, c_loc(E), strideE, &
+        c_loc(info), batch_count)
     end function rocsolver_dsygvd_strided_batched_native
 
     function rocsolver_dsygvd_strided_batched_typed(handle, itype, evect, uplo, n, A, lda, &
@@ -73876,22 +73831,22 @@ contains
       integer(c_int), value :: evect
       integer(c_int), value :: uplo
       integer(c_int), value :: n
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: A(..)
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
-      complex(c_float_complex), target :: B(*)
+      complex(c_float_complex), target :: B(..)
       integer(c_int), value :: ldb
       integer(c_long), value :: strideB
-      real(c_float), target :: D(*)
+      real(c_float), target :: D(..)
       integer(c_long), value :: strideD
-      real(c_float), target :: E(*)
+      real(c_float), target :: E(..)
       integer(c_long), value :: strideE
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: chegvd_strided_batched
       chegvd_strided_batched = rocsolver_chegvd_strided_batched_raw(handle, itype, evect, uplo, n, &
-        c_loc(A(1)), lda, strideA, c_loc(B(1)), ldb, strideB, c_loc(D(1)), strideD, c_loc(E(1)), &
-        strideE, c_loc(info(1)), batch_count)
+        c_loc(A), lda, strideA, c_loc(B), ldb, strideB, c_loc(D), strideD, c_loc(E), strideE, &
+        c_loc(info), batch_count)
     end function rocsolver_chegvd_strided_batched_native
 
     function rocsolver_chegvd_strided_batched_typed(handle, itype, evect, uplo, n, A, lda, &
@@ -73932,22 +73887,22 @@ contains
       integer(c_int), value :: evect
       integer(c_int), value :: uplo
       integer(c_int), value :: n
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: A(..)
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
-      complex(c_double_complex), target :: B(*)
+      complex(c_double_complex), target :: B(..)
       integer(c_int), value :: ldb
       integer(c_long), value :: strideB
-      real(c_double), target :: D(*)
+      real(c_double), target :: D(..)
       integer(c_long), value :: strideD
-      real(c_double), target :: E(*)
+      real(c_double), target :: E(..)
       integer(c_long), value :: strideE
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: zhegvd_strided_batched
       zhegvd_strided_batched = rocsolver_zhegvd_strided_batched_raw(handle, itype, evect, uplo, n, &
-        c_loc(A(1)), lda, strideA, c_loc(B(1)), ldb, strideB, c_loc(D(1)), strideD, c_loc(E(1)), &
-        strideE, c_loc(info(1)), batch_count)
+        c_loc(A), lda, strideA, c_loc(B), ldb, strideB, c_loc(D), strideD, c_loc(E), strideE, &
+        c_loc(info), batch_count)
     end function rocsolver_zhegvd_strided_batched_native
 
     function rocsolver_zhegvd_strided_batched_typed(handle, itype, evect, uplo, n, A, lda, &
@@ -73987,20 +73942,19 @@ contains
       integer(c_int), value :: evect
       integer(c_int), value :: uplo
       integer(c_int), value :: n
-      real(c_float), target :: A(*)
+      real(c_float), target :: A(..)
       integer(c_int), value :: lda
-      real(c_float), target :: B(*)
+      real(c_float), target :: B(..)
       integer(c_int), value :: ldb
       real(c_float), value :: abstol
-      real(c_float), target :: residual(*)
+      real(c_float), target :: residual(..)
       integer(c_int), value :: max_sweeps
-      integer(c_int), target :: n_sweeps(*)
-      real(c_float), target :: W(*)
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: n_sweeps(..)
+      real(c_float), target :: W(..)
+      integer(c_int), target :: info(..)
       integer(c_int) :: ssygvj
-      ssygvj = rocsolver_ssygvj_raw(handle, itype, evect, uplo, n, c_loc(A(1)), lda, c_loc(B(1)), &
-        ldb, abstol, c_loc(residual(1)), max_sweeps, c_loc(n_sweeps(1)), c_loc(W(1)), c_loc(info( &
-        1)))
+      ssygvj = rocsolver_ssygvj_raw(handle, itype, evect, uplo, n, c_loc(A), lda, c_loc(B), ldb, &
+        abstol, c_loc(residual), max_sweeps, c_loc(n_sweeps), c_loc(W), c_loc(info))
     end function rocsolver_ssygvj_native
 
     function rocsolver_ssygvj_typed(handle, itype, evect, uplo, n, A, lda, B, ldb, abstol, &
@@ -74037,20 +73991,19 @@ contains
       integer(c_int), value :: evect
       integer(c_int), value :: uplo
       integer(c_int), value :: n
-      real(c_double), target :: A(*)
+      real(c_double), target :: A(..)
       integer(c_int), value :: lda
-      real(c_double), target :: B(*)
+      real(c_double), target :: B(..)
       integer(c_int), value :: ldb
       real(c_double), value :: abstol
-      real(c_double), target :: residual(*)
+      real(c_double), target :: residual(..)
       integer(c_int), value :: max_sweeps
-      integer(c_int), target :: n_sweeps(*)
-      real(c_double), target :: W(*)
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: n_sweeps(..)
+      real(c_double), target :: W(..)
+      integer(c_int), target :: info(..)
       integer(c_int) :: dsygvj
-      dsygvj = rocsolver_dsygvj_raw(handle, itype, evect, uplo, n, c_loc(A(1)), lda, c_loc(B(1)), &
-        ldb, abstol, c_loc(residual(1)), max_sweeps, c_loc(n_sweeps(1)), c_loc(W(1)), c_loc(info( &
-        1)))
+      dsygvj = rocsolver_dsygvj_raw(handle, itype, evect, uplo, n, c_loc(A), lda, c_loc(B), ldb, &
+        abstol, c_loc(residual), max_sweeps, c_loc(n_sweeps), c_loc(W), c_loc(info))
     end function rocsolver_dsygvj_native
 
     function rocsolver_dsygvj_typed(handle, itype, evect, uplo, n, A, lda, B, ldb, abstol, &
@@ -74087,20 +74040,19 @@ contains
       integer(c_int), value :: evect
       integer(c_int), value :: uplo
       integer(c_int), value :: n
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: A(..)
       integer(c_int), value :: lda
-      complex(c_float_complex), target :: B(*)
+      complex(c_float_complex), target :: B(..)
       integer(c_int), value :: ldb
       real(c_float), value :: abstol
-      real(c_float), target :: residual(*)
+      real(c_float), target :: residual(..)
       integer(c_int), value :: max_sweeps
-      integer(c_int), target :: n_sweeps(*)
-      real(c_float), target :: W(*)
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: n_sweeps(..)
+      real(c_float), target :: W(..)
+      integer(c_int), target :: info(..)
       integer(c_int) :: chegvj
-      chegvj = rocsolver_chegvj_raw(handle, itype, evect, uplo, n, c_loc(A(1)), lda, c_loc(B(1)), &
-        ldb, abstol, c_loc(residual(1)), max_sweeps, c_loc(n_sweeps(1)), c_loc(W(1)), c_loc(info( &
-        1)))
+      chegvj = rocsolver_chegvj_raw(handle, itype, evect, uplo, n, c_loc(A), lda, c_loc(B), ldb, &
+        abstol, c_loc(residual), max_sweeps, c_loc(n_sweeps), c_loc(W), c_loc(info))
     end function rocsolver_chegvj_native
 
     function rocsolver_chegvj_typed(handle, itype, evect, uplo, n, A, lda, B, ldb, abstol, &
@@ -74137,20 +74089,19 @@ contains
       integer(c_int), value :: evect
       integer(c_int), value :: uplo
       integer(c_int), value :: n
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: A(..)
       integer(c_int), value :: lda
-      complex(c_double_complex), target :: B(*)
+      complex(c_double_complex), target :: B(..)
       integer(c_int), value :: ldb
       real(c_double), value :: abstol
-      real(c_double), target :: residual(*)
+      real(c_double), target :: residual(..)
       integer(c_int), value :: max_sweeps
-      integer(c_int), target :: n_sweeps(*)
-      real(c_double), target :: W(*)
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: n_sweeps(..)
+      real(c_double), target :: W(..)
+      integer(c_int), target :: info(..)
       integer(c_int) :: zhegvj
-      zhegvj = rocsolver_zhegvj_raw(handle, itype, evect, uplo, n, c_loc(A(1)), lda, c_loc(B(1)), &
-        ldb, abstol, c_loc(residual(1)), max_sweeps, c_loc(n_sweeps(1)), c_loc(W(1)), c_loc(info( &
-        1)))
+      zhegvj = rocsolver_zhegvj_raw(handle, itype, evect, uplo, n, c_loc(A), lda, c_loc(B), ldb, &
+        abstol, c_loc(residual), max_sweeps, c_loc(n_sweeps), c_loc(W), c_loc(info))
     end function rocsolver_zhegvj_native
 
     function rocsolver_zhegvj_typed(handle, itype, evect, uplo, n, A, lda, B, ldb, abstol, &
@@ -74193,17 +74144,17 @@ contains
       type(c_ptr), value :: B
       integer(c_int), value :: ldb
       real(c_float), value :: abstol
-      real(c_float), target :: residual(*)
+      real(c_float), target :: residual(..)
       integer(c_int), value :: max_sweeps
-      integer(c_int), target :: n_sweeps(*)
-      real(c_float), target :: W(*)
+      integer(c_int), target :: n_sweeps(..)
+      real(c_float), target :: W(..)
       integer(c_long), value :: strideW
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: ssygvj_batched
       ssygvj_batched = rocsolver_ssygvj_batched_raw(handle, itype, evect, uplo, n, A, lda, B, ldb, &
-        abstol, c_loc(residual(1)), max_sweeps, c_loc(n_sweeps(1)), c_loc(W(1)), strideW, c_loc( &
-        info(1)), batch_count)
+        abstol, c_loc(residual), max_sweeps, c_loc(n_sweeps), c_loc(W), strideW, c_loc(info), &
+        batch_count)
     end function rocsolver_ssygvj_batched_native
 
     function rocsolver_ssygvj_batched_typed(handle, itype, evect, uplo, n, A, lda, B, ldb, abstol, &
@@ -74248,17 +74199,17 @@ contains
       type(c_ptr), value :: B
       integer(c_int), value :: ldb
       real(c_double), value :: abstol
-      real(c_double), target :: residual(*)
+      real(c_double), target :: residual(..)
       integer(c_int), value :: max_sweeps
-      integer(c_int), target :: n_sweeps(*)
-      real(c_double), target :: W(*)
+      integer(c_int), target :: n_sweeps(..)
+      real(c_double), target :: W(..)
       integer(c_long), value :: strideW
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: dsygvj_batched
       dsygvj_batched = rocsolver_dsygvj_batched_raw(handle, itype, evect, uplo, n, A, lda, B, ldb, &
-        abstol, c_loc(residual(1)), max_sweeps, c_loc(n_sweeps(1)), c_loc(W(1)), strideW, c_loc( &
-        info(1)), batch_count)
+        abstol, c_loc(residual), max_sweeps, c_loc(n_sweeps), c_loc(W), strideW, c_loc(info), &
+        batch_count)
     end function rocsolver_dsygvj_batched_native
 
     function rocsolver_dsygvj_batched_typed(handle, itype, evect, uplo, n, A, lda, B, ldb, abstol, &
@@ -74303,17 +74254,17 @@ contains
       type(c_ptr), value :: B
       integer(c_int), value :: ldb
       real(c_float), value :: abstol
-      real(c_float), target :: residual(*)
+      real(c_float), target :: residual(..)
       integer(c_int), value :: max_sweeps
-      integer(c_int), target :: n_sweeps(*)
-      real(c_float), target :: W(*)
+      integer(c_int), target :: n_sweeps(..)
+      real(c_float), target :: W(..)
       integer(c_long), value :: strideW
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: chegvj_batched
       chegvj_batched = rocsolver_chegvj_batched_raw(handle, itype, evect, uplo, n, A, lda, B, ldb, &
-        abstol, c_loc(residual(1)), max_sweeps, c_loc(n_sweeps(1)), c_loc(W(1)), strideW, c_loc( &
-        info(1)), batch_count)
+        abstol, c_loc(residual), max_sweeps, c_loc(n_sweeps), c_loc(W), strideW, c_loc(info), &
+        batch_count)
     end function rocsolver_chegvj_batched_native
 
     function rocsolver_chegvj_batched_typed(handle, itype, evect, uplo, n, A, lda, B, ldb, abstol, &
@@ -74358,17 +74309,17 @@ contains
       type(c_ptr), value :: B
       integer(c_int), value :: ldb
       real(c_double), value :: abstol
-      real(c_double), target :: residual(*)
+      real(c_double), target :: residual(..)
       integer(c_int), value :: max_sweeps
-      integer(c_int), target :: n_sweeps(*)
-      real(c_double), target :: W(*)
+      integer(c_int), target :: n_sweeps(..)
+      real(c_double), target :: W(..)
       integer(c_long), value :: strideW
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: zhegvj_batched
       zhegvj_batched = rocsolver_zhegvj_batched_raw(handle, itype, evect, uplo, n, A, lda, B, ldb, &
-        abstol, c_loc(residual(1)), max_sweeps, c_loc(n_sweeps(1)), c_loc(W(1)), strideW, c_loc( &
-        info(1)), batch_count)
+        abstol, c_loc(residual), max_sweeps, c_loc(n_sweeps), c_loc(W), strideW, c_loc(info), &
+        batch_count)
     end function rocsolver_zhegvj_batched_native
 
     function rocsolver_zhegvj_batched_typed(handle, itype, evect, uplo, n, A, lda, B, ldb, abstol, &
@@ -74408,24 +74359,24 @@ contains
       integer(c_int), value :: evect
       integer(c_int), value :: uplo
       integer(c_int), value :: n
-      real(c_float), target :: A(*)
+      real(c_float), target :: A(..)
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
-      real(c_float), target :: B(*)
+      real(c_float), target :: B(..)
       integer(c_int), value :: ldb
       integer(c_long), value :: strideB
       real(c_float), value :: abstol
-      real(c_float), target :: residual(*)
+      real(c_float), target :: residual(..)
       integer(c_int), value :: max_sweeps
-      integer(c_int), target :: n_sweeps(*)
-      real(c_float), target :: W(*)
+      integer(c_int), target :: n_sweeps(..)
+      real(c_float), target :: W(..)
       integer(c_long), value :: strideW
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: ssygvj_strided_batched
       ssygvj_strided_batched = rocsolver_ssygvj_strided_batched_raw(handle, itype, evect, uplo, n, &
-        c_loc(A(1)), lda, strideA, c_loc(B(1)), ldb, strideB, abstol, c_loc(residual(1)), &
-        max_sweeps, c_loc(n_sweeps(1)), c_loc(W(1)), strideW, c_loc(info(1)), batch_count)
+        c_loc(A), lda, strideA, c_loc(B), ldb, strideB, abstol, c_loc(residual), max_sweeps, &
+        c_loc(n_sweeps), c_loc(W), strideW, c_loc(info), batch_count)
     end function rocsolver_ssygvj_strided_batched_native
 
     function rocsolver_ssygvj_strided_batched_typed(handle, itype, evect, uplo, n, A, lda, &
@@ -74469,24 +74420,24 @@ contains
       integer(c_int), value :: evect
       integer(c_int), value :: uplo
       integer(c_int), value :: n
-      real(c_double), target :: A(*)
+      real(c_double), target :: A(..)
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
-      real(c_double), target :: B(*)
+      real(c_double), target :: B(..)
       integer(c_int), value :: ldb
       integer(c_long), value :: strideB
       real(c_double), value :: abstol
-      real(c_double), target :: residual(*)
+      real(c_double), target :: residual(..)
       integer(c_int), value :: max_sweeps
-      integer(c_int), target :: n_sweeps(*)
-      real(c_double), target :: W(*)
+      integer(c_int), target :: n_sweeps(..)
+      real(c_double), target :: W(..)
       integer(c_long), value :: strideW
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: dsygvj_strided_batched
       dsygvj_strided_batched = rocsolver_dsygvj_strided_batched_raw(handle, itype, evect, uplo, n, &
-        c_loc(A(1)), lda, strideA, c_loc(B(1)), ldb, strideB, abstol, c_loc(residual(1)), &
-        max_sweeps, c_loc(n_sweeps(1)), c_loc(W(1)), strideW, c_loc(info(1)), batch_count)
+        c_loc(A), lda, strideA, c_loc(B), ldb, strideB, abstol, c_loc(residual), max_sweeps, &
+        c_loc(n_sweeps), c_loc(W), strideW, c_loc(info), batch_count)
     end function rocsolver_dsygvj_strided_batched_native
 
     function rocsolver_dsygvj_strided_batched_typed(handle, itype, evect, uplo, n, A, lda, &
@@ -74530,24 +74481,24 @@ contains
       integer(c_int), value :: evect
       integer(c_int), value :: uplo
       integer(c_int), value :: n
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: A(..)
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
-      complex(c_float_complex), target :: B(*)
+      complex(c_float_complex), target :: B(..)
       integer(c_int), value :: ldb
       integer(c_long), value :: strideB
       real(c_float), value :: abstol
-      real(c_float), target :: residual(*)
+      real(c_float), target :: residual(..)
       integer(c_int), value :: max_sweeps
-      integer(c_int), target :: n_sweeps(*)
-      real(c_float), target :: W(*)
+      integer(c_int), target :: n_sweeps(..)
+      real(c_float), target :: W(..)
       integer(c_long), value :: strideW
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: chegvj_strided_batched
       chegvj_strided_batched = rocsolver_chegvj_strided_batched_raw(handle, itype, evect, uplo, n, &
-        c_loc(A(1)), lda, strideA, c_loc(B(1)), ldb, strideB, abstol, c_loc(residual(1)), &
-        max_sweeps, c_loc(n_sweeps(1)), c_loc(W(1)), strideW, c_loc(info(1)), batch_count)
+        c_loc(A), lda, strideA, c_loc(B), ldb, strideB, abstol, c_loc(residual), max_sweeps, &
+        c_loc(n_sweeps), c_loc(W), strideW, c_loc(info), batch_count)
     end function rocsolver_chegvj_strided_batched_native
 
     function rocsolver_chegvj_strided_batched_typed(handle, itype, evect, uplo, n, A, lda, &
@@ -74591,24 +74542,24 @@ contains
       integer(c_int), value :: evect
       integer(c_int), value :: uplo
       integer(c_int), value :: n
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: A(..)
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
-      complex(c_double_complex), target :: B(*)
+      complex(c_double_complex), target :: B(..)
       integer(c_int), value :: ldb
       integer(c_long), value :: strideB
       real(c_double), value :: abstol
-      real(c_double), target :: residual(*)
+      real(c_double), target :: residual(..)
       integer(c_int), value :: max_sweeps
-      integer(c_int), target :: n_sweeps(*)
-      real(c_double), target :: W(*)
+      integer(c_int), target :: n_sweeps(..)
+      real(c_double), target :: W(..)
       integer(c_long), value :: strideW
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: zhegvj_strided_batched
       zhegvj_strided_batched = rocsolver_zhegvj_strided_batched_raw(handle, itype, evect, uplo, n, &
-        c_loc(A(1)), lda, strideA, c_loc(B(1)), ldb, strideB, abstol, c_loc(residual(1)), &
-        max_sweeps, c_loc(n_sweeps(1)), c_loc(W(1)), strideW, c_loc(info(1)), batch_count)
+        c_loc(A), lda, strideA, c_loc(B), ldb, strideB, abstol, c_loc(residual), max_sweeps, &
+        c_loc(n_sweeps), c_loc(W), strideW, c_loc(info), batch_count)
     end function rocsolver_zhegvj_strided_batched_native
 
     function rocsolver_zhegvj_strided_batched_typed(handle, itype, evect, uplo, n, A, lda, &
@@ -74652,25 +74603,25 @@ contains
       integer(c_int), value :: erange
       integer(c_int), value :: uplo
       integer(c_int), value :: n
-      real(c_float), target :: A(*)
+      real(c_float), target :: A(..)
       integer(c_int), value :: lda
-      real(c_float), target :: B(*)
+      real(c_float), target :: B(..)
       integer(c_int), value :: ldb
       real(c_float), value :: vl
       real(c_float), value :: vu
       integer(c_int), value :: il
       integer(c_int), value :: iu
       real(c_float), value :: abstol
-      integer(c_int), target :: nev(*)
-      real(c_float), target :: W(*)
-      real(c_float), target :: Z(*)
+      integer(c_int), target :: nev(..)
+      real(c_float), target :: W(..)
+      real(c_float), target :: Z(..)
       integer(c_int), value :: ldz
-      integer(c_int), target :: ifail(*)
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: ifail(..)
+      integer(c_int), target :: info(..)
       integer(c_int) :: ssygvx
-      ssygvx = rocsolver_ssygvx_raw(handle, itype, evect, erange, uplo, n, c_loc(A(1)), lda, &
-        c_loc(B(1)), ldb, vl, vu, il, iu, abstol, c_loc(nev(1)), c_loc(W(1)), c_loc(Z(1)), ldz, &
-        c_loc(ifail(1)), c_loc(info(1)))
+      ssygvx = rocsolver_ssygvx_raw(handle, itype, evect, erange, uplo, n, c_loc(A), lda, c_loc( &
+        B), ldb, vl, vu, il, iu, abstol, c_loc(nev), c_loc(W), c_loc(Z), ldz, c_loc(ifail), c_loc( &
+        info))
     end function rocsolver_ssygvx_native
 
     function rocsolver_ssygvx_typed(handle, itype, evect, erange, uplo, n, A, lda, B, ldb, vl, vu, &
@@ -74714,25 +74665,25 @@ contains
       integer(c_int), value :: erange
       integer(c_int), value :: uplo
       integer(c_int), value :: n
-      real(c_double), target :: A(*)
+      real(c_double), target :: A(..)
       integer(c_int), value :: lda
-      real(c_double), target :: B(*)
+      real(c_double), target :: B(..)
       integer(c_int), value :: ldb
       real(c_double), value :: vl
       real(c_double), value :: vu
       integer(c_int), value :: il
       integer(c_int), value :: iu
       real(c_double), value :: abstol
-      integer(c_int), target :: nev(*)
-      real(c_double), target :: W(*)
-      real(c_double), target :: Z(*)
+      integer(c_int), target :: nev(..)
+      real(c_double), target :: W(..)
+      real(c_double), target :: Z(..)
       integer(c_int), value :: ldz
-      integer(c_int), target :: ifail(*)
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: ifail(..)
+      integer(c_int), target :: info(..)
       integer(c_int) :: dsygvx
-      dsygvx = rocsolver_dsygvx_raw(handle, itype, evect, erange, uplo, n, c_loc(A(1)), lda, &
-        c_loc(B(1)), ldb, vl, vu, il, iu, abstol, c_loc(nev(1)), c_loc(W(1)), c_loc(Z(1)), ldz, &
-        c_loc(ifail(1)), c_loc(info(1)))
+      dsygvx = rocsolver_dsygvx_raw(handle, itype, evect, erange, uplo, n, c_loc(A), lda, c_loc( &
+        B), ldb, vl, vu, il, iu, abstol, c_loc(nev), c_loc(W), c_loc(Z), ldz, c_loc(ifail), c_loc( &
+        info))
     end function rocsolver_dsygvx_native
 
     function rocsolver_dsygvx_typed(handle, itype, evect, erange, uplo, n, A, lda, B, ldb, vl, vu, &
@@ -74776,25 +74727,25 @@ contains
       integer(c_int), value :: erange
       integer(c_int), value :: uplo
       integer(c_int), value :: n
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: A(..)
       integer(c_int), value :: lda
-      complex(c_float_complex), target :: B(*)
+      complex(c_float_complex), target :: B(..)
       integer(c_int), value :: ldb
       real(c_float), value :: vl
       real(c_float), value :: vu
       integer(c_int), value :: il
       integer(c_int), value :: iu
       real(c_float), value :: abstol
-      integer(c_int), target :: nev(*)
-      real(c_float), target :: W(*)
-      complex(c_float_complex), target :: Z(*)
+      integer(c_int), target :: nev(..)
+      real(c_float), target :: W(..)
+      complex(c_float_complex), target :: Z(..)
       integer(c_int), value :: ldz
-      integer(c_int), target :: ifail(*)
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: ifail(..)
+      integer(c_int), target :: info(..)
       integer(c_int) :: chegvx
-      chegvx = rocsolver_chegvx_raw(handle, itype, evect, erange, uplo, n, c_loc(A(1)), lda, &
-        c_loc(B(1)), ldb, vl, vu, il, iu, abstol, c_loc(nev(1)), c_loc(W(1)), c_loc(Z(1)), ldz, &
-        c_loc(ifail(1)), c_loc(info(1)))
+      chegvx = rocsolver_chegvx_raw(handle, itype, evect, erange, uplo, n, c_loc(A), lda, c_loc( &
+        B), ldb, vl, vu, il, iu, abstol, c_loc(nev), c_loc(W), c_loc(Z), ldz, c_loc(ifail), c_loc( &
+        info))
     end function rocsolver_chegvx_native
 
     function rocsolver_chegvx_typed(handle, itype, evect, erange, uplo, n, A, lda, B, ldb, vl, vu, &
@@ -74838,25 +74789,25 @@ contains
       integer(c_int), value :: erange
       integer(c_int), value :: uplo
       integer(c_int), value :: n
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: A(..)
       integer(c_int), value :: lda
-      complex(c_double_complex), target :: B(*)
+      complex(c_double_complex), target :: B(..)
       integer(c_int), value :: ldb
       real(c_double), value :: vl
       real(c_double), value :: vu
       integer(c_int), value :: il
       integer(c_int), value :: iu
       real(c_double), value :: abstol
-      integer(c_int), target :: nev(*)
-      real(c_double), target :: W(*)
-      complex(c_double_complex), target :: Z(*)
+      integer(c_int), target :: nev(..)
+      real(c_double), target :: W(..)
+      complex(c_double_complex), target :: Z(..)
       integer(c_int), value :: ldz
-      integer(c_int), target :: ifail(*)
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: ifail(..)
+      integer(c_int), target :: info(..)
       integer(c_int) :: zhegvx
-      zhegvx = rocsolver_zhegvx_raw(handle, itype, evect, erange, uplo, n, c_loc(A(1)), lda, &
-        c_loc(B(1)), ldb, vl, vu, il, iu, abstol, c_loc(nev(1)), c_loc(W(1)), c_loc(Z(1)), ldz, &
-        c_loc(ifail(1)), c_loc(info(1)))
+      zhegvx = rocsolver_zhegvx_raw(handle, itype, evect, erange, uplo, n, c_loc(A), lda, c_loc( &
+        B), ldb, vl, vu, il, iu, abstol, c_loc(nev), c_loc(W), c_loc(Z), ldz, c_loc(ifail), c_loc( &
+        info))
     end function rocsolver_zhegvx_native
 
     function rocsolver_zhegvx_typed(handle, itype, evect, erange, uplo, n, A, lda, B, ldb, vl, vu, &
@@ -74910,19 +74861,19 @@ contains
       integer(c_int), value :: il
       integer(c_int), value :: iu
       real(c_float), value :: abstol
-      integer(c_int), target :: nev(*)
-      real(c_float), target :: W(*)
+      integer(c_int), target :: nev(..)
+      real(c_float), target :: W(..)
       integer(c_long), value :: strideW
       type(c_ptr), value :: Z
       integer(c_int), value :: ldz
-      integer(c_int), target :: ifail(*)
+      integer(c_int), target :: ifail(..)
       integer(c_long), value :: strideF
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: ssygvx_batched
       ssygvx_batched = rocsolver_ssygvx_batched_raw(handle, itype, evect, erange, uplo, n, A, lda, &
-        B, ldb, vl, vu, il, iu, abstol, c_loc(nev(1)), c_loc(W(1)), strideW, Z, ldz, c_loc(ifail( &
-        1)), strideF, c_loc(info(1)), batch_count)
+        B, ldb, vl, vu, il, iu, abstol, c_loc(nev), c_loc(W), strideW, Z, ldz, c_loc(ifail), &
+        strideF, c_loc(info), batch_count)
     end function rocsolver_ssygvx_batched_native
 
     function rocsolver_ssygvx_batched_typed(handle, itype, evect, erange, uplo, n, A, lda, B, ldb, &
@@ -74981,19 +74932,19 @@ contains
       integer(c_int), value :: il
       integer(c_int), value :: iu
       real(c_double), value :: abstol
-      integer(c_int), target :: nev(*)
-      real(c_double), target :: W(*)
+      integer(c_int), target :: nev(..)
+      real(c_double), target :: W(..)
       integer(c_long), value :: strideW
       type(c_ptr), value :: Z
       integer(c_int), value :: ldz
-      integer(c_int), target :: ifail(*)
+      integer(c_int), target :: ifail(..)
       integer(c_long), value :: strideF
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: dsygvx_batched
       dsygvx_batched = rocsolver_dsygvx_batched_raw(handle, itype, evect, erange, uplo, n, A, lda, &
-        B, ldb, vl, vu, il, iu, abstol, c_loc(nev(1)), c_loc(W(1)), strideW, Z, ldz, c_loc(ifail( &
-        1)), strideF, c_loc(info(1)), batch_count)
+        B, ldb, vl, vu, il, iu, abstol, c_loc(nev), c_loc(W), strideW, Z, ldz, c_loc(ifail), &
+        strideF, c_loc(info), batch_count)
     end function rocsolver_dsygvx_batched_native
 
     function rocsolver_dsygvx_batched_typed(handle, itype, evect, erange, uplo, n, A, lda, B, ldb, &
@@ -75052,19 +75003,19 @@ contains
       integer(c_int), value :: il
       integer(c_int), value :: iu
       real(c_float), value :: abstol
-      integer(c_int), target :: nev(*)
-      real(c_float), target :: W(*)
+      integer(c_int), target :: nev(..)
+      real(c_float), target :: W(..)
       integer(c_long), value :: strideW
       type(c_ptr), value :: Z
       integer(c_int), value :: ldz
-      integer(c_int), target :: ifail(*)
+      integer(c_int), target :: ifail(..)
       integer(c_long), value :: strideF
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: chegvx_batched
       chegvx_batched = rocsolver_chegvx_batched_raw(handle, itype, evect, erange, uplo, n, A, lda, &
-        B, ldb, vl, vu, il, iu, abstol, c_loc(nev(1)), c_loc(W(1)), strideW, Z, ldz, c_loc(ifail( &
-        1)), strideF, c_loc(info(1)), batch_count)
+        B, ldb, vl, vu, il, iu, abstol, c_loc(nev), c_loc(W), strideW, Z, ldz, c_loc(ifail), &
+        strideF, c_loc(info), batch_count)
     end function rocsolver_chegvx_batched_native
 
     function rocsolver_chegvx_batched_typed(handle, itype, evect, erange, uplo, n, A, lda, B, ldb, &
@@ -75123,19 +75074,19 @@ contains
       integer(c_int), value :: il
       integer(c_int), value :: iu
       real(c_double), value :: abstol
-      integer(c_int), target :: nev(*)
-      real(c_double), target :: W(*)
+      integer(c_int), target :: nev(..)
+      real(c_double), target :: W(..)
       integer(c_long), value :: strideW
       type(c_ptr), value :: Z
       integer(c_int), value :: ldz
-      integer(c_int), target :: ifail(*)
+      integer(c_int), target :: ifail(..)
       integer(c_long), value :: strideF
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: zhegvx_batched
       zhegvx_batched = rocsolver_zhegvx_batched_raw(handle, itype, evect, erange, uplo, n, A, lda, &
-        B, ldb, vl, vu, il, iu, abstol, c_loc(nev(1)), c_loc(W(1)), strideW, Z, ldz, c_loc(ifail( &
-        1)), strideF, c_loc(info(1)), batch_count)
+        B, ldb, vl, vu, il, iu, abstol, c_loc(nev), c_loc(W), strideW, Z, ldz, c_loc(ifail), &
+        strideF, c_loc(info), batch_count)
     end function rocsolver_zhegvx_batched_native
 
     function rocsolver_zhegvx_batched_typed(handle, itype, evect, erange, uplo, n, A, lda, B, ldb, &
@@ -75185,10 +75136,10 @@ contains
       integer(c_int), value :: erange
       integer(c_int), value :: uplo
       integer(c_int), value :: n
-      real(c_float), target :: A(*)
+      real(c_float), target :: A(..)
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
-      real(c_float), target :: B(*)
+      real(c_float), target :: B(..)
       integer(c_int), value :: ldb
       integer(c_long), value :: strideB
       real(c_float), value :: vl
@@ -75196,21 +75147,21 @@ contains
       integer(c_int), value :: il
       integer(c_int), value :: iu
       real(c_float), value :: abstol
-      integer(c_int), target :: nev(*)
-      real(c_float), target :: W(*)
+      integer(c_int), target :: nev(..)
+      real(c_float), target :: W(..)
       integer(c_long), value :: strideW
-      real(c_float), target :: Z(*)
+      real(c_float), target :: Z(..)
       integer(c_int), value :: ldz
       integer(c_long), value :: strideZ
-      integer(c_int), target :: ifail(*)
+      integer(c_int), target :: ifail(..)
       integer(c_long), value :: strideF
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: ssygvx_strided_batched
       ssygvx_strided_batched = rocsolver_ssygvx_strided_batched_raw(handle, itype, evect, erange, &
-        uplo, n, c_loc(A(1)), lda, strideA, c_loc(B(1)), ldb, strideB, vl, vu, il, iu, abstol, &
-        c_loc(nev(1)), c_loc(W(1)), strideW, c_loc(Z(1)), ldz, strideZ, c_loc(ifail(1)), strideF, &
-        c_loc(info(1)), batch_count)
+        uplo, n, c_loc(A), lda, strideA, c_loc(B), ldb, strideB, vl, vu, il, iu, abstol, c_loc( &
+        nev), c_loc(W), strideW, c_loc(Z), ldz, strideZ, c_loc(ifail), strideF, c_loc(info), &
+        batch_count)
     end function rocsolver_ssygvx_strided_batched_native
 
     function rocsolver_ssygvx_strided_batched_typed(handle, itype, evect, erange, uplo, n, A, lda, &
@@ -75263,10 +75214,10 @@ contains
       integer(c_int), value :: erange
       integer(c_int), value :: uplo
       integer(c_int), value :: n
-      real(c_double), target :: A(*)
+      real(c_double), target :: A(..)
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
-      real(c_double), target :: B(*)
+      real(c_double), target :: B(..)
       integer(c_int), value :: ldb
       integer(c_long), value :: strideB
       real(c_double), value :: vl
@@ -75274,21 +75225,21 @@ contains
       integer(c_int), value :: il
       integer(c_int), value :: iu
       real(c_double), value :: abstol
-      integer(c_int), target :: nev(*)
-      real(c_double), target :: W(*)
+      integer(c_int), target :: nev(..)
+      real(c_double), target :: W(..)
       integer(c_long), value :: strideW
-      real(c_double), target :: Z(*)
+      real(c_double), target :: Z(..)
       integer(c_int), value :: ldz
       integer(c_long), value :: strideZ
-      integer(c_int), target :: ifail(*)
+      integer(c_int), target :: ifail(..)
       integer(c_long), value :: strideF
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: dsygvx_strided_batched
       dsygvx_strided_batched = rocsolver_dsygvx_strided_batched_raw(handle, itype, evect, erange, &
-        uplo, n, c_loc(A(1)), lda, strideA, c_loc(B(1)), ldb, strideB, vl, vu, il, iu, abstol, &
-        c_loc(nev(1)), c_loc(W(1)), strideW, c_loc(Z(1)), ldz, strideZ, c_loc(ifail(1)), strideF, &
-        c_loc(info(1)), batch_count)
+        uplo, n, c_loc(A), lda, strideA, c_loc(B), ldb, strideB, vl, vu, il, iu, abstol, c_loc( &
+        nev), c_loc(W), strideW, c_loc(Z), ldz, strideZ, c_loc(ifail), strideF, c_loc(info), &
+        batch_count)
     end function rocsolver_dsygvx_strided_batched_native
 
     function rocsolver_dsygvx_strided_batched_typed(handle, itype, evect, erange, uplo, n, A, lda, &
@@ -75341,10 +75292,10 @@ contains
       integer(c_int), value :: erange
       integer(c_int), value :: uplo
       integer(c_int), value :: n
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: A(..)
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
-      complex(c_float_complex), target :: B(*)
+      complex(c_float_complex), target :: B(..)
       integer(c_int), value :: ldb
       integer(c_long), value :: strideB
       real(c_float), value :: vl
@@ -75352,21 +75303,21 @@ contains
       integer(c_int), value :: il
       integer(c_int), value :: iu
       real(c_float), value :: abstol
-      integer(c_int), target :: nev(*)
-      real(c_float), target :: W(*)
+      integer(c_int), target :: nev(..)
+      real(c_float), target :: W(..)
       integer(c_long), value :: strideW
-      complex(c_float_complex), target :: Z(*)
+      complex(c_float_complex), target :: Z(..)
       integer(c_int), value :: ldz
       integer(c_long), value :: strideZ
-      integer(c_int), target :: ifail(*)
+      integer(c_int), target :: ifail(..)
       integer(c_long), value :: strideF
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: chegvx_strided_batched
       chegvx_strided_batched = rocsolver_chegvx_strided_batched_raw(handle, itype, evect, erange, &
-        uplo, n, c_loc(A(1)), lda, strideA, c_loc(B(1)), ldb, strideB, vl, vu, il, iu, abstol, &
-        c_loc(nev(1)), c_loc(W(1)), strideW, c_loc(Z(1)), ldz, strideZ, c_loc(ifail(1)), strideF, &
-        c_loc(info(1)), batch_count)
+        uplo, n, c_loc(A), lda, strideA, c_loc(B), ldb, strideB, vl, vu, il, iu, abstol, c_loc( &
+        nev), c_loc(W), strideW, c_loc(Z), ldz, strideZ, c_loc(ifail), strideF, c_loc(info), &
+        batch_count)
     end function rocsolver_chegvx_strided_batched_native
 
     function rocsolver_chegvx_strided_batched_typed(handle, itype, evect, erange, uplo, n, A, lda, &
@@ -75419,10 +75370,10 @@ contains
       integer(c_int), value :: erange
       integer(c_int), value :: uplo
       integer(c_int), value :: n
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: A(..)
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
-      complex(c_double_complex), target :: B(*)
+      complex(c_double_complex), target :: B(..)
       integer(c_int), value :: ldb
       integer(c_long), value :: strideB
       real(c_double), value :: vl
@@ -75430,21 +75381,21 @@ contains
       integer(c_int), value :: il
       integer(c_int), value :: iu
       real(c_double), value :: abstol
-      integer(c_int), target :: nev(*)
-      real(c_double), target :: W(*)
+      integer(c_int), target :: nev(..)
+      real(c_double), target :: W(..)
       integer(c_long), value :: strideW
-      complex(c_double_complex), target :: Z(*)
+      complex(c_double_complex), target :: Z(..)
       integer(c_int), value :: ldz
       integer(c_long), value :: strideZ
-      integer(c_int), target :: ifail(*)
+      integer(c_int), target :: ifail(..)
       integer(c_long), value :: strideF
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: zhegvx_strided_batched
       zhegvx_strided_batched = rocsolver_zhegvx_strided_batched_raw(handle, itype, evect, erange, &
-        uplo, n, c_loc(A(1)), lda, strideA, c_loc(B(1)), ldb, strideB, vl, vu, il, iu, abstol, &
-        c_loc(nev(1)), c_loc(W(1)), strideW, c_loc(Z(1)), ldz, strideZ, c_loc(ifail(1)), strideF, &
-        c_loc(info(1)), batch_count)
+        uplo, n, c_loc(A), lda, strideA, c_loc(B), ldb, strideB, vl, vu, il, iu, abstol, c_loc( &
+        nev), c_loc(W), strideW, c_loc(Z), ldz, strideZ, c_loc(ifail), strideF, c_loc(info), &
+        batch_count)
     end function rocsolver_zhegvx_strided_batched_native
 
     function rocsolver_zhegvx_strided_batched_typed(handle, itype, evect, erange, uplo, n, A, lda, &
@@ -75492,15 +75443,15 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_int), value :: n
-      real(c_float), target :: A(*)
+      real(c_float), target :: A(..)
       integer(c_int), value :: lda
-      integer(c_int), target :: ipiv(*)
-      real(c_float), target :: C(*)
+      integer(c_int), target :: ipiv(..)
+      real(c_float), target :: C(..)
       integer(c_int), value :: ldc
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int) :: sgetri_outofplace
-      sgetri_outofplace = rocsolver_sgetri_outofplace_raw(handle, n, c_loc(A(1)), lda, c_loc(ipiv( &
-        1)), c_loc(C(1)), ldc, c_loc(info(1)))
+      sgetri_outofplace = rocsolver_sgetri_outofplace_raw(handle, n, c_loc(A), lda, c_loc(ipiv), &
+        c_loc(C), ldc, c_loc(info))
     end function rocsolver_sgetri_outofplace_native
 
     function rocsolver_sgetri_outofplace_typed(handle, n, A, lda, ipiv, C, ldc, info) result( &
@@ -75526,15 +75477,15 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_int), value :: n
-      real(c_double), target :: A(*)
+      real(c_double), target :: A(..)
       integer(c_int), value :: lda
-      integer(c_int), target :: ipiv(*)
-      real(c_double), target :: C(*)
+      integer(c_int), target :: ipiv(..)
+      real(c_double), target :: C(..)
       integer(c_int), value :: ldc
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int) :: dgetri_outofplace
-      dgetri_outofplace = rocsolver_dgetri_outofplace_raw(handle, n, c_loc(A(1)), lda, c_loc(ipiv( &
-        1)), c_loc(C(1)), ldc, c_loc(info(1)))
+      dgetri_outofplace = rocsolver_dgetri_outofplace_raw(handle, n, c_loc(A), lda, c_loc(ipiv), &
+        c_loc(C), ldc, c_loc(info))
     end function rocsolver_dgetri_outofplace_native
 
     function rocsolver_dgetri_outofplace_typed(handle, n, A, lda, ipiv, C, ldc, info) result( &
@@ -75560,15 +75511,15 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_int), value :: n
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: A(..)
       integer(c_int), value :: lda
-      integer(c_int), target :: ipiv(*)
-      complex(c_float_complex), target :: C(*)
+      integer(c_int), target :: ipiv(..)
+      complex(c_float_complex), target :: C(..)
       integer(c_int), value :: ldc
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int) :: cgetri_outofplace
-      cgetri_outofplace = rocsolver_cgetri_outofplace_raw(handle, n, c_loc(A(1)), lda, c_loc(ipiv( &
-        1)), c_loc(C(1)), ldc, c_loc(info(1)))
+      cgetri_outofplace = rocsolver_cgetri_outofplace_raw(handle, n, c_loc(A), lda, c_loc(ipiv), &
+        c_loc(C), ldc, c_loc(info))
     end function rocsolver_cgetri_outofplace_native
 
     function rocsolver_cgetri_outofplace_typed(handle, n, A, lda, ipiv, C, ldc, info) result( &
@@ -75594,15 +75545,15 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_int), value :: n
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: A(..)
       integer(c_int), value :: lda
-      integer(c_int), target :: ipiv(*)
-      complex(c_double_complex), target :: C(*)
+      integer(c_int), target :: ipiv(..)
+      complex(c_double_complex), target :: C(..)
       integer(c_int), value :: ldc
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int) :: zgetri_outofplace
-      zgetri_outofplace = rocsolver_zgetri_outofplace_raw(handle, n, c_loc(A(1)), lda, c_loc(ipiv( &
-        1)), c_loc(C(1)), ldc, c_loc(info(1)))
+      zgetri_outofplace = rocsolver_zgetri_outofplace_raw(handle, n, c_loc(A), lda, c_loc(ipiv), &
+        c_loc(C), ldc, c_loc(info))
     end function rocsolver_zgetri_outofplace_native
 
     function rocsolver_zgetri_outofplace_typed(handle, n, A, lda, ipiv, C, ldc, info) result( &
@@ -75630,15 +75581,15 @@ contains
       integer(c_int), value :: n
       type(c_ptr), value :: A
       integer(c_int), value :: lda
-      integer(c_int), target :: ipiv(*)
+      integer(c_int), target :: ipiv(..)
       integer(c_long), value :: strideP
       type(c_ptr), value :: C
       integer(c_int), value :: ldc
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: sgetri_outofplace_batched
       sgetri_outofplace_batched = rocsolver_sgetri_outofplace_batched_raw(handle, n, A, lda, &
-        c_loc(ipiv(1)), strideP, C, ldc, c_loc(info(1)), batch_count)
+        c_loc(ipiv), strideP, C, ldc, c_loc(info), batch_count)
     end function rocsolver_sgetri_outofplace_batched_native
 
     function rocsolver_sgetri_outofplace_batched_typed(handle, n, A, lda, ipiv, strideP, C, ldc, &
@@ -75669,15 +75620,15 @@ contains
       integer(c_int), value :: n
       type(c_ptr), value :: A
       integer(c_int), value :: lda
-      integer(c_int), target :: ipiv(*)
+      integer(c_int), target :: ipiv(..)
       integer(c_long), value :: strideP
       type(c_ptr), value :: C
       integer(c_int), value :: ldc
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: dgetri_outofplace_batched
       dgetri_outofplace_batched = rocsolver_dgetri_outofplace_batched_raw(handle, n, A, lda, &
-        c_loc(ipiv(1)), strideP, C, ldc, c_loc(info(1)), batch_count)
+        c_loc(ipiv), strideP, C, ldc, c_loc(info), batch_count)
     end function rocsolver_dgetri_outofplace_batched_native
 
     function rocsolver_dgetri_outofplace_batched_typed(handle, n, A, lda, ipiv, strideP, C, ldc, &
@@ -75708,15 +75659,15 @@ contains
       integer(c_int), value :: n
       type(c_ptr), value :: A
       integer(c_int), value :: lda
-      integer(c_int), target :: ipiv(*)
+      integer(c_int), target :: ipiv(..)
       integer(c_long), value :: strideP
       type(c_ptr), value :: C
       integer(c_int), value :: ldc
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: cgetri_outofplace_batched
       cgetri_outofplace_batched = rocsolver_cgetri_outofplace_batched_raw(handle, n, A, lda, &
-        c_loc(ipiv(1)), strideP, C, ldc, c_loc(info(1)), batch_count)
+        c_loc(ipiv), strideP, C, ldc, c_loc(info), batch_count)
     end function rocsolver_cgetri_outofplace_batched_native
 
     function rocsolver_cgetri_outofplace_batched_typed(handle, n, A, lda, ipiv, strideP, C, ldc, &
@@ -75747,15 +75698,15 @@ contains
       integer(c_int), value :: n
       type(c_ptr), value :: A
       integer(c_int), value :: lda
-      integer(c_int), target :: ipiv(*)
+      integer(c_int), target :: ipiv(..)
       integer(c_long), value :: strideP
       type(c_ptr), value :: C
       integer(c_int), value :: ldc
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: zgetri_outofplace_batched
       zgetri_outofplace_batched = rocsolver_zgetri_outofplace_batched_raw(handle, n, A, lda, &
-        c_loc(ipiv(1)), strideP, C, ldc, c_loc(info(1)), batch_count)
+        c_loc(ipiv), strideP, C, ldc, c_loc(info), batch_count)
     end function rocsolver_zgetri_outofplace_batched_native
 
     function rocsolver_zgetri_outofplace_batched_typed(handle, n, A, lda, ipiv, strideP, C, ldc, &
@@ -75784,20 +75735,20 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_int), value :: n
-      real(c_float), target :: A(*)
+      real(c_float), target :: A(..)
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
-      integer(c_int), target :: ipiv(*)
+      integer(c_int), target :: ipiv(..)
       integer(c_long), value :: strideP
-      real(c_float), target :: C(*)
+      real(c_float), target :: C(..)
       integer(c_int), value :: ldc
       integer(c_long), value :: strideC
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: sgetri_outofplace_strided_batched
       sgetri_outofplace_strided_batched = rocsolver_sgetri_outofplace_strided_batched_raw(handle, &
-        n, c_loc(A(1)), lda, strideA, c_loc(ipiv(1)), strideP, c_loc(C(1)), ldc, strideC, c_loc( &
-        info(1)), batch_count)
+        n, c_loc(A), lda, strideA, c_loc(ipiv), strideP, c_loc(C), ldc, strideC, c_loc(info), &
+        batch_count)
     end function rocsolver_sgetri_outofplace_strided_batched_native
 
     function rocsolver_sgetri_outofplace_strided_batched_typed(handle, n, A, lda, strideA, ipiv, &
@@ -75828,20 +75779,20 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_int), value :: n
-      real(c_double), target :: A(*)
+      real(c_double), target :: A(..)
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
-      integer(c_int), target :: ipiv(*)
+      integer(c_int), target :: ipiv(..)
       integer(c_long), value :: strideP
-      real(c_double), target :: C(*)
+      real(c_double), target :: C(..)
       integer(c_int), value :: ldc
       integer(c_long), value :: strideC
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: dgetri_outofplace_strided_batched
       dgetri_outofplace_strided_batched = rocsolver_dgetri_outofplace_strided_batched_raw(handle, &
-        n, c_loc(A(1)), lda, strideA, c_loc(ipiv(1)), strideP, c_loc(C(1)), ldc, strideC, c_loc( &
-        info(1)), batch_count)
+        n, c_loc(A), lda, strideA, c_loc(ipiv), strideP, c_loc(C), ldc, strideC, c_loc(info), &
+        batch_count)
     end function rocsolver_dgetri_outofplace_strided_batched_native
 
     function rocsolver_dgetri_outofplace_strided_batched_typed(handle, n, A, lda, strideA, ipiv, &
@@ -75872,20 +75823,20 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_int), value :: n
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: A(..)
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
-      integer(c_int), target :: ipiv(*)
+      integer(c_int), target :: ipiv(..)
       integer(c_long), value :: strideP
-      complex(c_float_complex), target :: C(*)
+      complex(c_float_complex), target :: C(..)
       integer(c_int), value :: ldc
       integer(c_long), value :: strideC
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: cgetri_outofplace_strided_batched
       cgetri_outofplace_strided_batched = rocsolver_cgetri_outofplace_strided_batched_raw(handle, &
-        n, c_loc(A(1)), lda, strideA, c_loc(ipiv(1)), strideP, c_loc(C(1)), ldc, strideC, c_loc( &
-        info(1)), batch_count)
+        n, c_loc(A), lda, strideA, c_loc(ipiv), strideP, c_loc(C), ldc, strideC, c_loc(info), &
+        batch_count)
     end function rocsolver_cgetri_outofplace_strided_batched_native
 
     function rocsolver_cgetri_outofplace_strided_batched_typed(handle, n, A, lda, strideA, ipiv, &
@@ -75916,20 +75867,20 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_int), value :: n
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: A(..)
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
-      integer(c_int), target :: ipiv(*)
+      integer(c_int), target :: ipiv(..)
       integer(c_long), value :: strideP
-      complex(c_double_complex), target :: C(*)
+      complex(c_double_complex), target :: C(..)
       integer(c_int), value :: ldc
       integer(c_long), value :: strideC
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: zgetri_outofplace_strided_batched
       zgetri_outofplace_strided_batched = rocsolver_zgetri_outofplace_strided_batched_raw(handle, &
-        n, c_loc(A(1)), lda, strideA, c_loc(ipiv(1)), strideP, c_loc(C(1)), ldc, strideC, c_loc( &
-        info(1)), batch_count)
+        n, c_loc(A), lda, strideA, c_loc(ipiv), strideP, c_loc(C), ldc, strideC, c_loc(info), &
+        batch_count)
     end function rocsolver_zgetri_outofplace_strided_batched_native
 
     function rocsolver_zgetri_outofplace_strided_batched_typed(handle, n, A, lda, strideA, ipiv, &
@@ -75960,14 +75911,14 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_int), value :: n
-      real(c_float), target :: A(*)
+      real(c_float), target :: A(..)
       integer(c_int), value :: lda
-      real(c_float), target :: C(*)
+      real(c_float), target :: C(..)
       integer(c_int), value :: ldc
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int) :: sgetri_npvt_outofplace
-      sgetri_npvt_outofplace = rocsolver_sgetri_npvt_outofplace_raw(handle, n, c_loc(A(1)), lda, &
-        c_loc(C(1)), ldc, c_loc(info(1)))
+      sgetri_npvt_outofplace = rocsolver_sgetri_npvt_outofplace_raw(handle, n, c_loc(A), lda, &
+        c_loc(C), ldc, c_loc(info))
     end function rocsolver_sgetri_npvt_outofplace_native
 
     function rocsolver_sgetri_npvt_outofplace_typed(handle, n, A, lda, C, ldc, info) result( &
@@ -75993,14 +75944,14 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_int), value :: n
-      real(c_double), target :: A(*)
+      real(c_double), target :: A(..)
       integer(c_int), value :: lda
-      real(c_double), target :: C(*)
+      real(c_double), target :: C(..)
       integer(c_int), value :: ldc
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int) :: dgetri_npvt_outofplace
-      dgetri_npvt_outofplace = rocsolver_dgetri_npvt_outofplace_raw(handle, n, c_loc(A(1)), lda, &
-        c_loc(C(1)), ldc, c_loc(info(1)))
+      dgetri_npvt_outofplace = rocsolver_dgetri_npvt_outofplace_raw(handle, n, c_loc(A), lda, &
+        c_loc(C), ldc, c_loc(info))
     end function rocsolver_dgetri_npvt_outofplace_native
 
     function rocsolver_dgetri_npvt_outofplace_typed(handle, n, A, lda, C, ldc, info) result( &
@@ -76026,14 +75977,14 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_int), value :: n
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: A(..)
       integer(c_int), value :: lda
-      complex(c_float_complex), target :: C(*)
+      complex(c_float_complex), target :: C(..)
       integer(c_int), value :: ldc
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int) :: cgetri_npvt_outofplace
-      cgetri_npvt_outofplace = rocsolver_cgetri_npvt_outofplace_raw(handle, n, c_loc(A(1)), lda, &
-        c_loc(C(1)), ldc, c_loc(info(1)))
+      cgetri_npvt_outofplace = rocsolver_cgetri_npvt_outofplace_raw(handle, n, c_loc(A), lda, &
+        c_loc(C), ldc, c_loc(info))
     end function rocsolver_cgetri_npvt_outofplace_native
 
     function rocsolver_cgetri_npvt_outofplace_typed(handle, n, A, lda, C, ldc, info) result( &
@@ -76059,14 +76010,14 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_int), value :: n
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: A(..)
       integer(c_int), value :: lda
-      complex(c_double_complex), target :: C(*)
+      complex(c_double_complex), target :: C(..)
       integer(c_int), value :: ldc
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int) :: zgetri_npvt_outofplace
-      zgetri_npvt_outofplace = rocsolver_zgetri_npvt_outofplace_raw(handle, n, c_loc(A(1)), lda, &
-        c_loc(C(1)), ldc, c_loc(info(1)))
+      zgetri_npvt_outofplace = rocsolver_zgetri_npvt_outofplace_raw(handle, n, c_loc(A), lda, &
+        c_loc(C), ldc, c_loc(info))
     end function rocsolver_zgetri_npvt_outofplace_native
 
     function rocsolver_zgetri_npvt_outofplace_typed(handle, n, A, lda, C, ldc, info) result( &
@@ -76096,11 +76047,11 @@ contains
       integer(c_int), value :: lda
       type(c_ptr), value :: C
       integer(c_int), value :: ldc
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: sgetri_npvt_outofplace_batched
       sgetri_npvt_outofplace_batched = rocsolver_sgetri_npvt_outofplace_batched_raw(handle, n, A, &
-        lda, C, ldc, c_loc(info(1)), batch_count)
+        lda, C, ldc, c_loc(info), batch_count)
     end function rocsolver_sgetri_npvt_outofplace_batched_native
 
     function rocsolver_sgetri_npvt_outofplace_batched_typed(handle, n, A, lda, C, ldc, info, &
@@ -76131,11 +76082,11 @@ contains
       integer(c_int), value :: lda
       type(c_ptr), value :: C
       integer(c_int), value :: ldc
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: dgetri_npvt_outofplace_batched
       dgetri_npvt_outofplace_batched = rocsolver_dgetri_npvt_outofplace_batched_raw(handle, n, A, &
-        lda, C, ldc, c_loc(info(1)), batch_count)
+        lda, C, ldc, c_loc(info), batch_count)
     end function rocsolver_dgetri_npvt_outofplace_batched_native
 
     function rocsolver_dgetri_npvt_outofplace_batched_typed(handle, n, A, lda, C, ldc, info, &
@@ -76166,11 +76117,11 @@ contains
       integer(c_int), value :: lda
       type(c_ptr), value :: C
       integer(c_int), value :: ldc
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: cgetri_npvt_outofplace_batched
       cgetri_npvt_outofplace_batched = rocsolver_cgetri_npvt_outofplace_batched_raw(handle, n, A, &
-        lda, C, ldc, c_loc(info(1)), batch_count)
+        lda, C, ldc, c_loc(info), batch_count)
     end function rocsolver_cgetri_npvt_outofplace_batched_native
 
     function rocsolver_cgetri_npvt_outofplace_batched_typed(handle, n, A, lda, C, ldc, info, &
@@ -76201,11 +76152,11 @@ contains
       integer(c_int), value :: lda
       type(c_ptr), value :: C
       integer(c_int), value :: ldc
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: zgetri_npvt_outofplace_batched
       zgetri_npvt_outofplace_batched = rocsolver_zgetri_npvt_outofplace_batched_raw(handle, n, A, &
-        lda, C, ldc, c_loc(info(1)), batch_count)
+        lda, C, ldc, c_loc(info), batch_count)
     end function rocsolver_zgetri_npvt_outofplace_batched_native
 
     function rocsolver_zgetri_npvt_outofplace_batched_typed(handle, n, A, lda, C, ldc, info, &
@@ -76232,18 +76183,17 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_int), value :: n
-      real(c_float), target :: A(*)
+      real(c_float), target :: A(..)
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
-      real(c_float), target :: C(*)
+      real(c_float), target :: C(..)
       integer(c_int), value :: ldc
       integer(c_long), value :: strideC
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: sgetri_npvt_outofplace_strided_batched
       sgetri_npvt_outofplace_strided_batched = rocsolver_sgetri_npvt_outofplace_strided_batched_raw( &
-        handle, n, c_loc(A(1)), lda, strideA, c_loc(C(1)), ldc, strideC, c_loc(info(1)), &
-        batch_count)
+        handle, n, c_loc(A), lda, strideA, c_loc(C), ldc, strideC, c_loc(info), batch_count)
     end function rocsolver_sgetri_npvt_outofplace_strided_batched_native
 
     function rocsolver_sgetri_npvt_outofplace_strided_batched_typed(handle, n, A, lda, strideA, C, &
@@ -76272,18 +76222,17 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_int), value :: n
-      real(c_double), target :: A(*)
+      real(c_double), target :: A(..)
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
-      real(c_double), target :: C(*)
+      real(c_double), target :: C(..)
       integer(c_int), value :: ldc
       integer(c_long), value :: strideC
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: dgetri_npvt_outofplace_strided_batched
       dgetri_npvt_outofplace_strided_batched = rocsolver_dgetri_npvt_outofplace_strided_batched_raw( &
-        handle, n, c_loc(A(1)), lda, strideA, c_loc(C(1)), ldc, strideC, c_loc(info(1)), &
-        batch_count)
+        handle, n, c_loc(A), lda, strideA, c_loc(C), ldc, strideC, c_loc(info), batch_count)
     end function rocsolver_dgetri_npvt_outofplace_strided_batched_native
 
     function rocsolver_dgetri_npvt_outofplace_strided_batched_typed(handle, n, A, lda, strideA, C, &
@@ -76312,18 +76261,17 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_int), value :: n
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: A(..)
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
-      complex(c_float_complex), target :: C(*)
+      complex(c_float_complex), target :: C(..)
       integer(c_int), value :: ldc
       integer(c_long), value :: strideC
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: cgetri_npvt_outofplace_strided_batched
       cgetri_npvt_outofplace_strided_batched = rocsolver_cgetri_npvt_outofplace_strided_batched_raw( &
-        handle, n, c_loc(A(1)), lda, strideA, c_loc(C(1)), ldc, strideC, c_loc(info(1)), &
-        batch_count)
+        handle, n, c_loc(A), lda, strideA, c_loc(C), ldc, strideC, c_loc(info), batch_count)
     end function rocsolver_cgetri_npvt_outofplace_strided_batched_native
 
     function rocsolver_cgetri_npvt_outofplace_strided_batched_typed(handle, n, A, lda, strideA, C, &
@@ -76352,18 +76300,17 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_int), value :: n
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: A(..)
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
-      complex(c_double_complex), target :: C(*)
+      complex(c_double_complex), target :: C(..)
       integer(c_int), value :: ldc
       integer(c_long), value :: strideC
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: zgetri_npvt_outofplace_strided_batched
       zgetri_npvt_outofplace_strided_batched = rocsolver_zgetri_npvt_outofplace_strided_batched_raw( &
-        handle, n, c_loc(A(1)), lda, strideA, c_loc(C(1)), ldc, strideC, c_loc(info(1)), &
-        batch_count)
+        handle, n, c_loc(A), lda, strideA, c_loc(C), ldc, strideC, c_loc(info), batch_count)
     end function rocsolver_zgetri_npvt_outofplace_strided_batched_native
 
     function rocsolver_zgetri_npvt_outofplace_strided_batched_typed(handle, n, A, lda, strideA, C, &
@@ -76393,11 +76340,11 @@ contains
       integer(c_int), value :: uplo
       integer(c_int), value :: diag
       integer(c_int), value :: n
-      real(c_float), target :: A(*)
+      real(c_float), target :: A(..)
       integer(c_int), value :: lda
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int) :: strtri
-      strtri = rocsolver_strtri_raw(handle, uplo, diag, n, c_loc(A(1)), lda, c_loc(info(1)))
+      strtri = rocsolver_strtri_raw(handle, uplo, diag, n, c_loc(A), lda, c_loc(info))
     end function rocsolver_strtri_native
 
     function rocsolver_strtri_typed(handle, uplo, diag, n, A, lda, info) result(strtri)
@@ -76422,11 +76369,11 @@ contains
       integer(c_int), value :: uplo
       integer(c_int), value :: diag
       integer(c_int), value :: n
-      real(c_double), target :: A(*)
+      real(c_double), target :: A(..)
       integer(c_int), value :: lda
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int) :: dtrtri
-      dtrtri = rocsolver_dtrtri_raw(handle, uplo, diag, n, c_loc(A(1)), lda, c_loc(info(1)))
+      dtrtri = rocsolver_dtrtri_raw(handle, uplo, diag, n, c_loc(A), lda, c_loc(info))
     end function rocsolver_dtrtri_native
 
     function rocsolver_dtrtri_typed(handle, uplo, diag, n, A, lda, info) result(dtrtri)
@@ -76451,11 +76398,11 @@ contains
       integer(c_int), value :: uplo
       integer(c_int), value :: diag
       integer(c_int), value :: n
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: A(..)
       integer(c_int), value :: lda
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int) :: ctrtri
-      ctrtri = rocsolver_ctrtri_raw(handle, uplo, diag, n, c_loc(A(1)), lda, c_loc(info(1)))
+      ctrtri = rocsolver_ctrtri_raw(handle, uplo, diag, n, c_loc(A), lda, c_loc(info))
     end function rocsolver_ctrtri_native
 
     function rocsolver_ctrtri_typed(handle, uplo, diag, n, A, lda, info) result(ctrtri)
@@ -76480,11 +76427,11 @@ contains
       integer(c_int), value :: uplo
       integer(c_int), value :: diag
       integer(c_int), value :: n
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: A(..)
       integer(c_int), value :: lda
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int) :: ztrtri
-      ztrtri = rocsolver_ztrtri_raw(handle, uplo, diag, n, c_loc(A(1)), lda, c_loc(info(1)))
+      ztrtri = rocsolver_ztrtri_raw(handle, uplo, diag, n, c_loc(A), lda, c_loc(info))
     end function rocsolver_ztrtri_native
 
     function rocsolver_ztrtri_typed(handle, uplo, diag, n, A, lda, info) result(ztrtri)
@@ -76512,10 +76459,10 @@ contains
       integer(c_int), value :: n
       type(c_ptr), value :: A
       integer(c_int), value :: lda
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: strtri_batched
-      strtri_batched = rocsolver_strtri_batched_raw(handle, uplo, diag, n, A, lda, c_loc(info(1)), &
+      strtri_batched = rocsolver_strtri_batched_raw(handle, uplo, diag, n, A, lda, c_loc(info), &
         batch_count)
     end function rocsolver_strtri_batched_native
 
@@ -76547,10 +76494,10 @@ contains
       integer(c_int), value :: n
       type(c_ptr), value :: A
       integer(c_int), value :: lda
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: dtrtri_batched
-      dtrtri_batched = rocsolver_dtrtri_batched_raw(handle, uplo, diag, n, A, lda, c_loc(info(1)), &
+      dtrtri_batched = rocsolver_dtrtri_batched_raw(handle, uplo, diag, n, A, lda, c_loc(info), &
         batch_count)
     end function rocsolver_dtrtri_batched_native
 
@@ -76582,10 +76529,10 @@ contains
       integer(c_int), value :: n
       type(c_ptr), value :: A
       integer(c_int), value :: lda
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: ctrtri_batched
-      ctrtri_batched = rocsolver_ctrtri_batched_raw(handle, uplo, diag, n, A, lda, c_loc(info(1)), &
+      ctrtri_batched = rocsolver_ctrtri_batched_raw(handle, uplo, diag, n, A, lda, c_loc(info), &
         batch_count)
     end function rocsolver_ctrtri_batched_native
 
@@ -76617,10 +76564,10 @@ contains
       integer(c_int), value :: n
       type(c_ptr), value :: A
       integer(c_int), value :: lda
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: ztrtri_batched
-      ztrtri_batched = rocsolver_ztrtri_batched_raw(handle, uplo, diag, n, A, lda, c_loc(info(1)), &
+      ztrtri_batched = rocsolver_ztrtri_batched_raw(handle, uplo, diag, n, A, lda, c_loc(info), &
         batch_count)
     end function rocsolver_ztrtri_batched_native
 
@@ -76650,14 +76597,14 @@ contains
       integer(c_int), value :: uplo
       integer(c_int), value :: diag
       integer(c_int), value :: n
-      real(c_float), target :: A(*)
+      real(c_float), target :: A(..)
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: strtri_strided_batched
       strtri_strided_batched = rocsolver_strtri_strided_batched_raw(handle, uplo, diag, n, c_loc( &
-        A(1)), lda, strideA, c_loc(info(1)), batch_count)
+        A), lda, strideA, c_loc(info), batch_count)
     end function rocsolver_strtri_strided_batched_native
 
     function rocsolver_strtri_strided_batched_typed(handle, uplo, diag, n, A, lda, strideA, info, &
@@ -76687,14 +76634,14 @@ contains
       integer(c_int), value :: uplo
       integer(c_int), value :: diag
       integer(c_int), value :: n
-      real(c_double), target :: A(*)
+      real(c_double), target :: A(..)
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: dtrtri_strided_batched
       dtrtri_strided_batched = rocsolver_dtrtri_strided_batched_raw(handle, uplo, diag, n, c_loc( &
-        A(1)), lda, strideA, c_loc(info(1)), batch_count)
+        A), lda, strideA, c_loc(info), batch_count)
     end function rocsolver_dtrtri_strided_batched_native
 
     function rocsolver_dtrtri_strided_batched_typed(handle, uplo, diag, n, A, lda, strideA, info, &
@@ -76724,14 +76671,14 @@ contains
       integer(c_int), value :: uplo
       integer(c_int), value :: diag
       integer(c_int), value :: n
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: A(..)
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: ctrtri_strided_batched
       ctrtri_strided_batched = rocsolver_ctrtri_strided_batched_raw(handle, uplo, diag, n, c_loc( &
-        A(1)), lda, strideA, c_loc(info(1)), batch_count)
+        A), lda, strideA, c_loc(info), batch_count)
     end function rocsolver_ctrtri_strided_batched_native
 
     function rocsolver_ctrtri_strided_batched_typed(handle, uplo, diag, n, A, lda, strideA, info, &
@@ -76761,14 +76708,14 @@ contains
       integer(c_int), value :: uplo
       integer(c_int), value :: diag
       integer(c_int), value :: n
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: A(..)
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: ztrtri_strided_batched
       ztrtri_strided_batched = rocsolver_ztrtri_strided_batched_raw(handle, uplo, diag, n, c_loc( &
-        A(1)), lda, strideA, c_loc(info(1)), batch_count)
+        A), lda, strideA, c_loc(info), batch_count)
     end function rocsolver_ztrtri_strided_batched_native
 
     function rocsolver_ztrtri_strided_batched_typed(handle, uplo, diag, n, A, lda, strideA, info, &
@@ -76796,13 +76743,12 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: uplo
       integer(c_int), value :: n
-      real(c_float), target :: A(*)
+      real(c_float), target :: A(..)
       integer(c_int), value :: lda
-      integer(c_int), target :: ipiv(*)
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: ipiv(..)
+      integer(c_int), target :: info(..)
       integer(c_int) :: ssytf2
-      ssytf2 = rocsolver_ssytf2_raw(handle, uplo, n, c_loc(A(1)), lda, c_loc(ipiv(1)), c_loc(info( &
-        1)))
+      ssytf2 = rocsolver_ssytf2_raw(handle, uplo, n, c_loc(A), lda, c_loc(ipiv), c_loc(info))
     end function rocsolver_ssytf2_native
 
     function rocsolver_ssytf2_typed(handle, uplo, n, A, lda, ipiv, info) result(ssytf2)
@@ -76826,13 +76772,12 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: uplo
       integer(c_int), value :: n
-      real(c_double), target :: A(*)
+      real(c_double), target :: A(..)
       integer(c_int), value :: lda
-      integer(c_int), target :: ipiv(*)
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: ipiv(..)
+      integer(c_int), target :: info(..)
       integer(c_int) :: dsytf2
-      dsytf2 = rocsolver_dsytf2_raw(handle, uplo, n, c_loc(A(1)), lda, c_loc(ipiv(1)), c_loc(info( &
-        1)))
+      dsytf2 = rocsolver_dsytf2_raw(handle, uplo, n, c_loc(A), lda, c_loc(ipiv), c_loc(info))
     end function rocsolver_dsytf2_native
 
     function rocsolver_dsytf2_typed(handle, uplo, n, A, lda, ipiv, info) result(dsytf2)
@@ -76856,13 +76801,12 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: uplo
       integer(c_int), value :: n
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: A(..)
       integer(c_int), value :: lda
-      integer(c_int), target :: ipiv(*)
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: ipiv(..)
+      integer(c_int), target :: info(..)
       integer(c_int) :: csytf2
-      csytf2 = rocsolver_csytf2_raw(handle, uplo, n, c_loc(A(1)), lda, c_loc(ipiv(1)), c_loc(info( &
-        1)))
+      csytf2 = rocsolver_csytf2_raw(handle, uplo, n, c_loc(A), lda, c_loc(ipiv), c_loc(info))
     end function rocsolver_csytf2_native
 
     function rocsolver_csytf2_typed(handle, uplo, n, A, lda, ipiv, info) result(csytf2)
@@ -76886,13 +76830,12 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: uplo
       integer(c_int), value :: n
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: A(..)
       integer(c_int), value :: lda
-      integer(c_int), target :: ipiv(*)
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: ipiv(..)
+      integer(c_int), target :: info(..)
       integer(c_int) :: zsytf2
-      zsytf2 = rocsolver_zsytf2_raw(handle, uplo, n, c_loc(A(1)), lda, c_loc(ipiv(1)), c_loc(info( &
-        1)))
+      zsytf2 = rocsolver_zsytf2_raw(handle, uplo, n, c_loc(A), lda, c_loc(ipiv), c_loc(info))
     end function rocsolver_zsytf2_native
 
     function rocsolver_zsytf2_typed(handle, uplo, n, A, lda, ipiv, info) result(zsytf2)
@@ -76919,13 +76862,13 @@ contains
       integer(c_int), value :: n
       type(c_ptr), value :: A
       integer(c_int), value :: lda
-      integer(c_int), target :: ipiv(*)
+      integer(c_int), target :: ipiv(..)
       integer(c_long), value :: strideP
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: ssytf2_batched
-      ssytf2_batched = rocsolver_ssytf2_batched_raw(handle, uplo, n, A, lda, c_loc(ipiv(1)), &
-        strideP, c_loc(info(1)), batch_count)
+      ssytf2_batched = rocsolver_ssytf2_batched_raw(handle, uplo, n, A, lda, c_loc(ipiv), strideP, &
+        c_loc(info), batch_count)
     end function rocsolver_ssytf2_batched_native
 
     function rocsolver_ssytf2_batched_typed(handle, uplo, n, A, lda, ipiv, strideP, info, &
@@ -76956,13 +76899,13 @@ contains
       integer(c_int), value :: n
       type(c_ptr), value :: A
       integer(c_int), value :: lda
-      integer(c_int), target :: ipiv(*)
+      integer(c_int), target :: ipiv(..)
       integer(c_long), value :: strideP
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: dsytf2_batched
-      dsytf2_batched = rocsolver_dsytf2_batched_raw(handle, uplo, n, A, lda, c_loc(ipiv(1)), &
-        strideP, c_loc(info(1)), batch_count)
+      dsytf2_batched = rocsolver_dsytf2_batched_raw(handle, uplo, n, A, lda, c_loc(ipiv), strideP, &
+        c_loc(info), batch_count)
     end function rocsolver_dsytf2_batched_native
 
     function rocsolver_dsytf2_batched_typed(handle, uplo, n, A, lda, ipiv, strideP, info, &
@@ -76993,13 +76936,13 @@ contains
       integer(c_int), value :: n
       type(c_ptr), value :: A
       integer(c_int), value :: lda
-      integer(c_int), target :: ipiv(*)
+      integer(c_int), target :: ipiv(..)
       integer(c_long), value :: strideP
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: csytf2_batched
-      csytf2_batched = rocsolver_csytf2_batched_raw(handle, uplo, n, A, lda, c_loc(ipiv(1)), &
-        strideP, c_loc(info(1)), batch_count)
+      csytf2_batched = rocsolver_csytf2_batched_raw(handle, uplo, n, A, lda, c_loc(ipiv), strideP, &
+        c_loc(info), batch_count)
     end function rocsolver_csytf2_batched_native
 
     function rocsolver_csytf2_batched_typed(handle, uplo, n, A, lda, ipiv, strideP, info, &
@@ -77030,13 +76973,13 @@ contains
       integer(c_int), value :: n
       type(c_ptr), value :: A
       integer(c_int), value :: lda
-      integer(c_int), target :: ipiv(*)
+      integer(c_int), target :: ipiv(..)
       integer(c_long), value :: strideP
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: zsytf2_batched
-      zsytf2_batched = rocsolver_zsytf2_batched_raw(handle, uplo, n, A, lda, c_loc(ipiv(1)), &
-        strideP, c_loc(info(1)), batch_count)
+      zsytf2_batched = rocsolver_zsytf2_batched_raw(handle, uplo, n, A, lda, c_loc(ipiv), strideP, &
+        c_loc(info), batch_count)
     end function rocsolver_zsytf2_batched_native
 
     function rocsolver_zsytf2_batched_typed(handle, uplo, n, A, lda, ipiv, strideP, info, &
@@ -77065,16 +77008,16 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: uplo
       integer(c_int), value :: n
-      real(c_float), target :: A(*)
+      real(c_float), target :: A(..)
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
-      integer(c_int), target :: ipiv(*)
+      integer(c_int), target :: ipiv(..)
       integer(c_long), value :: strideP
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: ssytf2_strided_batched
-      ssytf2_strided_batched = rocsolver_ssytf2_strided_batched_raw(handle, uplo, n, c_loc(A(1)), &
-        lda, strideA, c_loc(ipiv(1)), strideP, c_loc(info(1)), batch_count)
+      ssytf2_strided_batched = rocsolver_ssytf2_strided_batched_raw(handle, uplo, n, c_loc(A), &
+        lda, strideA, c_loc(ipiv), strideP, c_loc(info), batch_count)
     end function rocsolver_ssytf2_strided_batched_native
 
     function rocsolver_ssytf2_strided_batched_typed(handle, uplo, n, A, lda, strideA, ipiv, &
@@ -77104,16 +77047,16 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: uplo
       integer(c_int), value :: n
-      real(c_double), target :: A(*)
+      real(c_double), target :: A(..)
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
-      integer(c_int), target :: ipiv(*)
+      integer(c_int), target :: ipiv(..)
       integer(c_long), value :: strideP
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: dsytf2_strided_batched
-      dsytf2_strided_batched = rocsolver_dsytf2_strided_batched_raw(handle, uplo, n, c_loc(A(1)), &
-        lda, strideA, c_loc(ipiv(1)), strideP, c_loc(info(1)), batch_count)
+      dsytf2_strided_batched = rocsolver_dsytf2_strided_batched_raw(handle, uplo, n, c_loc(A), &
+        lda, strideA, c_loc(ipiv), strideP, c_loc(info), batch_count)
     end function rocsolver_dsytf2_strided_batched_native
 
     function rocsolver_dsytf2_strided_batched_typed(handle, uplo, n, A, lda, strideA, ipiv, &
@@ -77143,16 +77086,16 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: uplo
       integer(c_int), value :: n
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: A(..)
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
-      integer(c_int), target :: ipiv(*)
+      integer(c_int), target :: ipiv(..)
       integer(c_long), value :: strideP
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: csytf2_strided_batched
-      csytf2_strided_batched = rocsolver_csytf2_strided_batched_raw(handle, uplo, n, c_loc(A(1)), &
-        lda, strideA, c_loc(ipiv(1)), strideP, c_loc(info(1)), batch_count)
+      csytf2_strided_batched = rocsolver_csytf2_strided_batched_raw(handle, uplo, n, c_loc(A), &
+        lda, strideA, c_loc(ipiv), strideP, c_loc(info), batch_count)
     end function rocsolver_csytf2_strided_batched_native
 
     function rocsolver_csytf2_strided_batched_typed(handle, uplo, n, A, lda, strideA, ipiv, &
@@ -77182,16 +77125,16 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: uplo
       integer(c_int), value :: n
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: A(..)
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
-      integer(c_int), target :: ipiv(*)
+      integer(c_int), target :: ipiv(..)
       integer(c_long), value :: strideP
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: zsytf2_strided_batched
-      zsytf2_strided_batched = rocsolver_zsytf2_strided_batched_raw(handle, uplo, n, c_loc(A(1)), &
-        lda, strideA, c_loc(ipiv(1)), strideP, c_loc(info(1)), batch_count)
+      zsytf2_strided_batched = rocsolver_zsytf2_strided_batched_raw(handle, uplo, n, c_loc(A), &
+        lda, strideA, c_loc(ipiv), strideP, c_loc(info), batch_count)
     end function rocsolver_zsytf2_strided_batched_native
 
     function rocsolver_zsytf2_strided_batched_typed(handle, uplo, n, A, lda, strideA, ipiv, &
@@ -77220,13 +77163,12 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: uplo
       integer(c_int), value :: n
-      real(c_float), target :: A(*)
+      real(c_float), target :: A(..)
       integer(c_int), value :: lda
-      integer(c_int), target :: ipiv(*)
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: ipiv(..)
+      integer(c_int), target :: info(..)
       integer(c_int) :: ssytrf
-      ssytrf = rocsolver_ssytrf_raw(handle, uplo, n, c_loc(A(1)), lda, c_loc(ipiv(1)), c_loc(info( &
-        1)))
+      ssytrf = rocsolver_ssytrf_raw(handle, uplo, n, c_loc(A), lda, c_loc(ipiv), c_loc(info))
     end function rocsolver_ssytrf_native
 
     function rocsolver_ssytrf_typed(handle, uplo, n, A, lda, ipiv, info) result(ssytrf)
@@ -77250,13 +77192,12 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: uplo
       integer(c_int), value :: n
-      real(c_double), target :: A(*)
+      real(c_double), target :: A(..)
       integer(c_int), value :: lda
-      integer(c_int), target :: ipiv(*)
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: ipiv(..)
+      integer(c_int), target :: info(..)
       integer(c_int) :: dsytrf
-      dsytrf = rocsolver_dsytrf_raw(handle, uplo, n, c_loc(A(1)), lda, c_loc(ipiv(1)), c_loc(info( &
-        1)))
+      dsytrf = rocsolver_dsytrf_raw(handle, uplo, n, c_loc(A), lda, c_loc(ipiv), c_loc(info))
     end function rocsolver_dsytrf_native
 
     function rocsolver_dsytrf_typed(handle, uplo, n, A, lda, ipiv, info) result(dsytrf)
@@ -77280,13 +77221,12 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: uplo
       integer(c_int), value :: n
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: A(..)
       integer(c_int), value :: lda
-      integer(c_int), target :: ipiv(*)
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: ipiv(..)
+      integer(c_int), target :: info(..)
       integer(c_int) :: csytrf
-      csytrf = rocsolver_csytrf_raw(handle, uplo, n, c_loc(A(1)), lda, c_loc(ipiv(1)), c_loc(info( &
-        1)))
+      csytrf = rocsolver_csytrf_raw(handle, uplo, n, c_loc(A), lda, c_loc(ipiv), c_loc(info))
     end function rocsolver_csytrf_native
 
     function rocsolver_csytrf_typed(handle, uplo, n, A, lda, ipiv, info) result(csytrf)
@@ -77310,13 +77250,12 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: uplo
       integer(c_int), value :: n
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: A(..)
       integer(c_int), value :: lda
-      integer(c_int), target :: ipiv(*)
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: ipiv(..)
+      integer(c_int), target :: info(..)
       integer(c_int) :: zsytrf
-      zsytrf = rocsolver_zsytrf_raw(handle, uplo, n, c_loc(A(1)), lda, c_loc(ipiv(1)), c_loc(info( &
-        1)))
+      zsytrf = rocsolver_zsytrf_raw(handle, uplo, n, c_loc(A), lda, c_loc(ipiv), c_loc(info))
     end function rocsolver_zsytrf_native
 
     function rocsolver_zsytrf_typed(handle, uplo, n, A, lda, ipiv, info) result(zsytrf)
@@ -77343,13 +77282,13 @@ contains
       integer(c_int), value :: n
       type(c_ptr), value :: A
       integer(c_int), value :: lda
-      integer(c_int), target :: ipiv(*)
+      integer(c_int), target :: ipiv(..)
       integer(c_long), value :: strideP
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: ssytrf_batched
-      ssytrf_batched = rocsolver_ssytrf_batched_raw(handle, uplo, n, A, lda, c_loc(ipiv(1)), &
-        strideP, c_loc(info(1)), batch_count)
+      ssytrf_batched = rocsolver_ssytrf_batched_raw(handle, uplo, n, A, lda, c_loc(ipiv), strideP, &
+        c_loc(info), batch_count)
     end function rocsolver_ssytrf_batched_native
 
     function rocsolver_ssytrf_batched_typed(handle, uplo, n, A, lda, ipiv, strideP, info, &
@@ -77380,13 +77319,13 @@ contains
       integer(c_int), value :: n
       type(c_ptr), value :: A
       integer(c_int), value :: lda
-      integer(c_int), target :: ipiv(*)
+      integer(c_int), target :: ipiv(..)
       integer(c_long), value :: strideP
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: dsytrf_batched
-      dsytrf_batched = rocsolver_dsytrf_batched_raw(handle, uplo, n, A, lda, c_loc(ipiv(1)), &
-        strideP, c_loc(info(1)), batch_count)
+      dsytrf_batched = rocsolver_dsytrf_batched_raw(handle, uplo, n, A, lda, c_loc(ipiv), strideP, &
+        c_loc(info), batch_count)
     end function rocsolver_dsytrf_batched_native
 
     function rocsolver_dsytrf_batched_typed(handle, uplo, n, A, lda, ipiv, strideP, info, &
@@ -77417,13 +77356,13 @@ contains
       integer(c_int), value :: n
       type(c_ptr), value :: A
       integer(c_int), value :: lda
-      integer(c_int), target :: ipiv(*)
+      integer(c_int), target :: ipiv(..)
       integer(c_long), value :: strideP
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: csytrf_batched
-      csytrf_batched = rocsolver_csytrf_batched_raw(handle, uplo, n, A, lda, c_loc(ipiv(1)), &
-        strideP, c_loc(info(1)), batch_count)
+      csytrf_batched = rocsolver_csytrf_batched_raw(handle, uplo, n, A, lda, c_loc(ipiv), strideP, &
+        c_loc(info), batch_count)
     end function rocsolver_csytrf_batched_native
 
     function rocsolver_csytrf_batched_typed(handle, uplo, n, A, lda, ipiv, strideP, info, &
@@ -77454,13 +77393,13 @@ contains
       integer(c_int), value :: n
       type(c_ptr), value :: A
       integer(c_int), value :: lda
-      integer(c_int), target :: ipiv(*)
+      integer(c_int), target :: ipiv(..)
       integer(c_long), value :: strideP
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: zsytrf_batched
-      zsytrf_batched = rocsolver_zsytrf_batched_raw(handle, uplo, n, A, lda, c_loc(ipiv(1)), &
-        strideP, c_loc(info(1)), batch_count)
+      zsytrf_batched = rocsolver_zsytrf_batched_raw(handle, uplo, n, A, lda, c_loc(ipiv), strideP, &
+        c_loc(info), batch_count)
     end function rocsolver_zsytrf_batched_native
 
     function rocsolver_zsytrf_batched_typed(handle, uplo, n, A, lda, ipiv, strideP, info, &
@@ -77489,16 +77428,16 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: uplo
       integer(c_int), value :: n
-      real(c_float), target :: A(*)
+      real(c_float), target :: A(..)
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
-      integer(c_int), target :: ipiv(*)
+      integer(c_int), target :: ipiv(..)
       integer(c_long), value :: strideP
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: ssytrf_strided_batched
-      ssytrf_strided_batched = rocsolver_ssytrf_strided_batched_raw(handle, uplo, n, c_loc(A(1)), &
-        lda, strideA, c_loc(ipiv(1)), strideP, c_loc(info(1)), batch_count)
+      ssytrf_strided_batched = rocsolver_ssytrf_strided_batched_raw(handle, uplo, n, c_loc(A), &
+        lda, strideA, c_loc(ipiv), strideP, c_loc(info), batch_count)
     end function rocsolver_ssytrf_strided_batched_native
 
     function rocsolver_ssytrf_strided_batched_typed(handle, uplo, n, A, lda, strideA, ipiv, &
@@ -77528,16 +77467,16 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: uplo
       integer(c_int), value :: n
-      real(c_double), target :: A(*)
+      real(c_double), target :: A(..)
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
-      integer(c_int), target :: ipiv(*)
+      integer(c_int), target :: ipiv(..)
       integer(c_long), value :: strideP
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: dsytrf_strided_batched
-      dsytrf_strided_batched = rocsolver_dsytrf_strided_batched_raw(handle, uplo, n, c_loc(A(1)), &
-        lda, strideA, c_loc(ipiv(1)), strideP, c_loc(info(1)), batch_count)
+      dsytrf_strided_batched = rocsolver_dsytrf_strided_batched_raw(handle, uplo, n, c_loc(A), &
+        lda, strideA, c_loc(ipiv), strideP, c_loc(info), batch_count)
     end function rocsolver_dsytrf_strided_batched_native
 
     function rocsolver_dsytrf_strided_batched_typed(handle, uplo, n, A, lda, strideA, ipiv, &
@@ -77567,16 +77506,16 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: uplo
       integer(c_int), value :: n
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: A(..)
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
-      integer(c_int), target :: ipiv(*)
+      integer(c_int), target :: ipiv(..)
       integer(c_long), value :: strideP
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: csytrf_strided_batched
-      csytrf_strided_batched = rocsolver_csytrf_strided_batched_raw(handle, uplo, n, c_loc(A(1)), &
-        lda, strideA, c_loc(ipiv(1)), strideP, c_loc(info(1)), batch_count)
+      csytrf_strided_batched = rocsolver_csytrf_strided_batched_raw(handle, uplo, n, c_loc(A), &
+        lda, strideA, c_loc(ipiv), strideP, c_loc(info), batch_count)
     end function rocsolver_csytrf_strided_batched_native
 
     function rocsolver_csytrf_strided_batched_typed(handle, uplo, n, A, lda, strideA, ipiv, &
@@ -77606,16 +77545,16 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: uplo
       integer(c_int), value :: n
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: A(..)
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
-      integer(c_int), target :: ipiv(*)
+      integer(c_int), target :: ipiv(..)
       integer(c_long), value :: strideP
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: zsytrf_strided_batched
-      zsytrf_strided_batched = rocsolver_zsytrf_strided_batched_raw(handle, uplo, n, c_loc(A(1)), &
-        lda, strideA, c_loc(ipiv(1)), strideP, c_loc(info(1)), batch_count)
+      zsytrf_strided_batched = rocsolver_zsytrf_strided_batched_raw(handle, uplo, n, c_loc(A), &
+        lda, strideA, c_loc(ipiv), strideP, c_loc(info), batch_count)
     end function rocsolver_zsytrf_strided_batched_native
 
     function rocsolver_zsytrf_strided_batched_typed(handle, uplo, n, A, lda, strideA, ipiv, &
@@ -77645,16 +77584,16 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: nb
       integer(c_int), value :: nblocks
-      real(c_float), target :: A(*)
+      real(c_float), target :: A(..)
       integer(c_int), value :: lda
-      real(c_float), target :: B(*)
+      real(c_float), target :: B(..)
       integer(c_int), value :: ldb
-      real(c_float), target :: C(*)
+      real(c_float), target :: C(..)
       integer(c_int), value :: ldc
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int) :: sgeblttrf_npvt
-      sgeblttrf_npvt = rocsolver_sgeblttrf_npvt_raw(handle, nb, nblocks, c_loc(A(1)), lda, c_loc( &
-        B(1)), ldb, c_loc(C(1)), ldc, c_loc(info(1)))
+      sgeblttrf_npvt = rocsolver_sgeblttrf_npvt_raw(handle, nb, nblocks, c_loc(A), lda, c_loc(B), &
+        ldb, c_loc(C), ldc, c_loc(info))
     end function rocsolver_sgeblttrf_npvt_native
 
     function rocsolver_sgeblttrf_npvt_typed(handle, nb, nblocks, A, lda, B, ldb, C, ldc, &
@@ -77684,16 +77623,16 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: nb
       integer(c_int), value :: nblocks
-      real(c_double), target :: A(*)
+      real(c_double), target :: A(..)
       integer(c_int), value :: lda
-      real(c_double), target :: B(*)
+      real(c_double), target :: B(..)
       integer(c_int), value :: ldb
-      real(c_double), target :: C(*)
+      real(c_double), target :: C(..)
       integer(c_int), value :: ldc
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int) :: dgeblttrf_npvt
-      dgeblttrf_npvt = rocsolver_dgeblttrf_npvt_raw(handle, nb, nblocks, c_loc(A(1)), lda, c_loc( &
-        B(1)), ldb, c_loc(C(1)), ldc, c_loc(info(1)))
+      dgeblttrf_npvt = rocsolver_dgeblttrf_npvt_raw(handle, nb, nblocks, c_loc(A), lda, c_loc(B), &
+        ldb, c_loc(C), ldc, c_loc(info))
     end function rocsolver_dgeblttrf_npvt_native
 
     function rocsolver_dgeblttrf_npvt_typed(handle, nb, nblocks, A, lda, B, ldb, C, ldc, &
@@ -77723,16 +77662,16 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: nb
       integer(c_int), value :: nblocks
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: A(..)
       integer(c_int), value :: lda
-      complex(c_float_complex), target :: B(*)
+      complex(c_float_complex), target :: B(..)
       integer(c_int), value :: ldb
-      complex(c_float_complex), target :: C(*)
+      complex(c_float_complex), target :: C(..)
       integer(c_int), value :: ldc
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int) :: cgeblttrf_npvt
-      cgeblttrf_npvt = rocsolver_cgeblttrf_npvt_raw(handle, nb, nblocks, c_loc(A(1)), lda, c_loc( &
-        B(1)), ldb, c_loc(C(1)), ldc, c_loc(info(1)))
+      cgeblttrf_npvt = rocsolver_cgeblttrf_npvt_raw(handle, nb, nblocks, c_loc(A), lda, c_loc(B), &
+        ldb, c_loc(C), ldc, c_loc(info))
     end function rocsolver_cgeblttrf_npvt_native
 
     function rocsolver_cgeblttrf_npvt_typed(handle, nb, nblocks, A, lda, B, ldb, C, ldc, &
@@ -77762,16 +77701,16 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: nb
       integer(c_int), value :: nblocks
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: A(..)
       integer(c_int), value :: lda
-      complex(c_double_complex), target :: B(*)
+      complex(c_double_complex), target :: B(..)
       integer(c_int), value :: ldb
-      complex(c_double_complex), target :: C(*)
+      complex(c_double_complex), target :: C(..)
       integer(c_int), value :: ldc
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int) :: zgeblttrf_npvt
-      zgeblttrf_npvt = rocsolver_zgeblttrf_npvt_raw(handle, nb, nblocks, c_loc(A(1)), lda, c_loc( &
-        B(1)), ldb, c_loc(C(1)), ldc, c_loc(info(1)))
+      zgeblttrf_npvt = rocsolver_zgeblttrf_npvt_raw(handle, nb, nblocks, c_loc(A), lda, c_loc(B), &
+        ldb, c_loc(C), ldc, c_loc(info))
     end function rocsolver_zgeblttrf_npvt_native
 
     function rocsolver_zgeblttrf_npvt_typed(handle, nb, nblocks, A, lda, B, ldb, C, ldc, &
@@ -77807,11 +77746,11 @@ contains
       integer(c_int), value :: ldb
       type(c_ptr), value :: C
       integer(c_int), value :: ldc
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: sgeblttrf_npvt_batched
       sgeblttrf_npvt_batched = rocsolver_sgeblttrf_npvt_batched_raw(handle, nb, nblocks, A, lda, &
-        B, ldb, C, ldc, c_loc(info(1)), batch_count)
+        B, ldb, C, ldc, c_loc(info), batch_count)
     end function rocsolver_sgeblttrf_npvt_batched_native
 
     function rocsolver_sgeblttrf_npvt_batched_typed(handle, nb, nblocks, A, lda, B, ldb, C, ldc, &
@@ -77848,11 +77787,11 @@ contains
       integer(c_int), value :: ldb
       type(c_ptr), value :: C
       integer(c_int), value :: ldc
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: dgeblttrf_npvt_batched
       dgeblttrf_npvt_batched = rocsolver_dgeblttrf_npvt_batched_raw(handle, nb, nblocks, A, lda, &
-        B, ldb, C, ldc, c_loc(info(1)), batch_count)
+        B, ldb, C, ldc, c_loc(info), batch_count)
     end function rocsolver_dgeblttrf_npvt_batched_native
 
     function rocsolver_dgeblttrf_npvt_batched_typed(handle, nb, nblocks, A, lda, B, ldb, C, ldc, &
@@ -77889,11 +77828,11 @@ contains
       integer(c_int), value :: ldb
       type(c_ptr), value :: C
       integer(c_int), value :: ldc
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: cgeblttrf_npvt_batched
       cgeblttrf_npvt_batched = rocsolver_cgeblttrf_npvt_batched_raw(handle, nb, nblocks, A, lda, &
-        B, ldb, C, ldc, c_loc(info(1)), batch_count)
+        B, ldb, C, ldc, c_loc(info), batch_count)
     end function rocsolver_cgeblttrf_npvt_batched_native
 
     function rocsolver_cgeblttrf_npvt_batched_typed(handle, nb, nblocks, A, lda, B, ldb, C, ldc, &
@@ -77930,11 +77869,11 @@ contains
       integer(c_int), value :: ldb
       type(c_ptr), value :: C
       integer(c_int), value :: ldc
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: zgeblttrf_npvt_batched
       zgeblttrf_npvt_batched = rocsolver_zgeblttrf_npvt_batched_raw(handle, nb, nblocks, A, lda, &
-        B, ldb, C, ldc, c_loc(info(1)), batch_count)
+        B, ldb, C, ldc, c_loc(info), batch_count)
     end function rocsolver_zgeblttrf_npvt_batched_native
 
     function rocsolver_zgeblttrf_npvt_batched_typed(handle, nb, nblocks, A, lda, B, ldb, C, ldc, &
@@ -77965,21 +77904,21 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: nb
       integer(c_int), value :: nblocks
-      real(c_float), target :: A(*)
+      real(c_float), target :: A(..)
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
-      real(c_float), target :: B(*)
+      real(c_float), target :: B(..)
       integer(c_int), value :: ldb
       integer(c_long), value :: strideB
-      real(c_float), target :: C(*)
+      real(c_float), target :: C(..)
       integer(c_int), value :: ldc
       integer(c_long), value :: strideC
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: sgeblttrf_npvt_strided_batched
       sgeblttrf_npvt_strided_batched = rocsolver_sgeblttrf_npvt_strided_batched_raw(handle, nb, &
-        nblocks, c_loc(A(1)), lda, strideA, c_loc(B(1)), ldb, strideB, c_loc(C(1)), ldc, strideC, &
-        c_loc(info(1)), batch_count)
+        nblocks, c_loc(A), lda, strideA, c_loc(B), ldb, strideB, c_loc(C), ldc, strideC, c_loc( &
+        info), batch_count)
     end function rocsolver_sgeblttrf_npvt_strided_batched_native
 
     function rocsolver_sgeblttrf_npvt_strided_batched_typed(handle, nb, nblocks, A, lda, strideA, &
@@ -78013,21 +77952,21 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: nb
       integer(c_int), value :: nblocks
-      real(c_double), target :: A(*)
+      real(c_double), target :: A(..)
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
-      real(c_double), target :: B(*)
+      real(c_double), target :: B(..)
       integer(c_int), value :: ldb
       integer(c_long), value :: strideB
-      real(c_double), target :: C(*)
+      real(c_double), target :: C(..)
       integer(c_int), value :: ldc
       integer(c_long), value :: strideC
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: dgeblttrf_npvt_strided_batched
       dgeblttrf_npvt_strided_batched = rocsolver_dgeblttrf_npvt_strided_batched_raw(handle, nb, &
-        nblocks, c_loc(A(1)), lda, strideA, c_loc(B(1)), ldb, strideB, c_loc(C(1)), ldc, strideC, &
-        c_loc(info(1)), batch_count)
+        nblocks, c_loc(A), lda, strideA, c_loc(B), ldb, strideB, c_loc(C), ldc, strideC, c_loc( &
+        info), batch_count)
     end function rocsolver_dgeblttrf_npvt_strided_batched_native
 
     function rocsolver_dgeblttrf_npvt_strided_batched_typed(handle, nb, nblocks, A, lda, strideA, &
@@ -78061,21 +78000,21 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: nb
       integer(c_int), value :: nblocks
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: A(..)
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
-      complex(c_float_complex), target :: B(*)
+      complex(c_float_complex), target :: B(..)
       integer(c_int), value :: ldb
       integer(c_long), value :: strideB
-      complex(c_float_complex), target :: C(*)
+      complex(c_float_complex), target :: C(..)
       integer(c_int), value :: ldc
       integer(c_long), value :: strideC
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: cgeblttrf_npvt_strided_batched
       cgeblttrf_npvt_strided_batched = rocsolver_cgeblttrf_npvt_strided_batched_raw(handle, nb, &
-        nblocks, c_loc(A(1)), lda, strideA, c_loc(B(1)), ldb, strideB, c_loc(C(1)), ldc, strideC, &
-        c_loc(info(1)), batch_count)
+        nblocks, c_loc(A), lda, strideA, c_loc(B), ldb, strideB, c_loc(C), ldc, strideC, c_loc( &
+        info), batch_count)
     end function rocsolver_cgeblttrf_npvt_strided_batched_native
 
     function rocsolver_cgeblttrf_npvt_strided_batched_typed(handle, nb, nblocks, A, lda, strideA, &
@@ -78109,21 +78048,21 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: nb
       integer(c_int), value :: nblocks
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: A(..)
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
-      complex(c_double_complex), target :: B(*)
+      complex(c_double_complex), target :: B(..)
       integer(c_int), value :: ldb
       integer(c_long), value :: strideB
-      complex(c_double_complex), target :: C(*)
+      complex(c_double_complex), target :: C(..)
       integer(c_int), value :: ldc
       integer(c_long), value :: strideC
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: zgeblttrf_npvt_strided_batched
       zgeblttrf_npvt_strided_batched = rocsolver_zgeblttrf_npvt_strided_batched_raw(handle, nb, &
-        nblocks, c_loc(A(1)), lda, strideA, c_loc(B(1)), ldb, strideB, c_loc(C(1)), ldc, strideC, &
-        c_loc(info(1)), batch_count)
+        nblocks, c_loc(A), lda, strideA, c_loc(B), ldb, strideB, c_loc(C), ldc, strideC, c_loc( &
+        info), batch_count)
     end function rocsolver_zgeblttrf_npvt_strided_batched_native
 
     function rocsolver_zgeblttrf_npvt_strided_batched_typed(handle, nb, nblocks, A, lda, strideA, &
@@ -78158,24 +78097,24 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: nb
       integer(c_int), value :: nblocks
-      real(c_float), target :: A(*)
+      real(c_float), target :: A(..)
       integer(c_int), value :: inca
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
-      real(c_float), target :: B(*)
+      real(c_float), target :: B(..)
       integer(c_int), value :: incb
       integer(c_int), value :: ldb
       integer(c_long), value :: strideB
-      real(c_float), target :: C(*)
+      real(c_float), target :: C(..)
       integer(c_int), value :: incc
       integer(c_int), value :: ldc
       integer(c_long), value :: strideC
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: sgeblttrf_npvt_interleaved_batched
       sgeblttrf_npvt_interleaved_batched = rocsolver_sgeblttrf_npvt_interleaved_batched_raw( &
-        handle, nb, nblocks, c_loc(A(1)), inca, lda, strideA, c_loc(B(1)), incb, ldb, strideB, &
-        c_loc(C(1)), incc, ldc, strideC, c_loc(info(1)), batch_count)
+        handle, nb, nblocks, c_loc(A), inca, lda, strideA, c_loc(B), incb, ldb, strideB, c_loc(C), &
+        incc, ldc, strideC, c_loc(info), batch_count)
     end function rocsolver_sgeblttrf_npvt_interleaved_batched_native
 
     function rocsolver_sgeblttrf_npvt_interleaved_batched_typed(handle, nb, nblocks, A, inca, lda, &
@@ -78215,24 +78154,24 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: nb
       integer(c_int), value :: nblocks
-      real(c_double), target :: A(*)
+      real(c_double), target :: A(..)
       integer(c_int), value :: inca
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
-      real(c_double), target :: B(*)
+      real(c_double), target :: B(..)
       integer(c_int), value :: incb
       integer(c_int), value :: ldb
       integer(c_long), value :: strideB
-      real(c_double), target :: C(*)
+      real(c_double), target :: C(..)
       integer(c_int), value :: incc
       integer(c_int), value :: ldc
       integer(c_long), value :: strideC
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: dgeblttrf_npvt_interleaved_batched
       dgeblttrf_npvt_interleaved_batched = rocsolver_dgeblttrf_npvt_interleaved_batched_raw( &
-        handle, nb, nblocks, c_loc(A(1)), inca, lda, strideA, c_loc(B(1)), incb, ldb, strideB, &
-        c_loc(C(1)), incc, ldc, strideC, c_loc(info(1)), batch_count)
+        handle, nb, nblocks, c_loc(A), inca, lda, strideA, c_loc(B), incb, ldb, strideB, c_loc(C), &
+        incc, ldc, strideC, c_loc(info), batch_count)
     end function rocsolver_dgeblttrf_npvt_interleaved_batched_native
 
     function rocsolver_dgeblttrf_npvt_interleaved_batched_typed(handle, nb, nblocks, A, inca, lda, &
@@ -78272,24 +78211,24 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: nb
       integer(c_int), value :: nblocks
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: A(..)
       integer(c_int), value :: inca
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
-      complex(c_float_complex), target :: B(*)
+      complex(c_float_complex), target :: B(..)
       integer(c_int), value :: incb
       integer(c_int), value :: ldb
       integer(c_long), value :: strideB
-      complex(c_float_complex), target :: C(*)
+      complex(c_float_complex), target :: C(..)
       integer(c_int), value :: incc
       integer(c_int), value :: ldc
       integer(c_long), value :: strideC
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: cgeblttrf_npvt_interleaved_batched
       cgeblttrf_npvt_interleaved_batched = rocsolver_cgeblttrf_npvt_interleaved_batched_raw( &
-        handle, nb, nblocks, c_loc(A(1)), inca, lda, strideA, c_loc(B(1)), incb, ldb, strideB, &
-        c_loc(C(1)), incc, ldc, strideC, c_loc(info(1)), batch_count)
+        handle, nb, nblocks, c_loc(A), inca, lda, strideA, c_loc(B), incb, ldb, strideB, c_loc(C), &
+        incc, ldc, strideC, c_loc(info), batch_count)
     end function rocsolver_cgeblttrf_npvt_interleaved_batched_native
 
     function rocsolver_cgeblttrf_npvt_interleaved_batched_typed(handle, nb, nblocks, A, inca, lda, &
@@ -78329,24 +78268,24 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: nb
       integer(c_int), value :: nblocks
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: A(..)
       integer(c_int), value :: inca
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
-      complex(c_double_complex), target :: B(*)
+      complex(c_double_complex), target :: B(..)
       integer(c_int), value :: incb
       integer(c_int), value :: ldb
       integer(c_long), value :: strideB
-      complex(c_double_complex), target :: C(*)
+      complex(c_double_complex), target :: C(..)
       integer(c_int), value :: incc
       integer(c_int), value :: ldc
       integer(c_long), value :: strideC
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: zgeblttrf_npvt_interleaved_batched
       zgeblttrf_npvt_interleaved_batched = rocsolver_zgeblttrf_npvt_interleaved_batched_raw( &
-        handle, nb, nblocks, c_loc(A(1)), inca, lda, strideA, c_loc(B(1)), incb, ldb, strideB, &
-        c_loc(C(1)), incc, ldc, strideC, c_loc(info(1)), batch_count)
+        handle, nb, nblocks, c_loc(A), inca, lda, strideA, c_loc(B), incb, ldb, strideB, c_loc(C), &
+        incc, ldc, strideC, c_loc(info), batch_count)
     end function rocsolver_zgeblttrf_npvt_interleaved_batched_native
 
     function rocsolver_zgeblttrf_npvt_interleaved_batched_typed(handle, nb, nblocks, A, inca, lda, &
@@ -78386,17 +78325,17 @@ contains
       integer(c_int), value :: nb
       integer(c_int), value :: nblocks
       integer(c_int), value :: nrhs
-      real(c_float), target :: A(*)
+      real(c_float), target :: A(..)
       integer(c_int), value :: lda
-      real(c_float), target :: B(*)
+      real(c_float), target :: B(..)
       integer(c_int), value :: ldb
-      real(c_float), target :: C(*)
+      real(c_float), target :: C(..)
       integer(c_int), value :: ldc
-      real(c_float), target :: X(*)
+      real(c_float), target :: X(..)
       integer(c_int), value :: ldx
       integer(c_int) :: sgeblttrs_npvt
-      sgeblttrs_npvt = rocsolver_sgeblttrs_npvt_raw(handle, nb, nblocks, nrhs, c_loc(A(1)), lda, &
-        c_loc(B(1)), ldb, c_loc(C(1)), ldc, c_loc(X(1)), ldx)
+      sgeblttrs_npvt = rocsolver_sgeblttrs_npvt_raw(handle, nb, nblocks, nrhs, c_loc(A), lda, &
+        c_loc(B), ldb, c_loc(C), ldc, c_loc(X), ldx)
     end function rocsolver_sgeblttrs_npvt_native
 
     function rocsolver_sgeblttrs_npvt_typed(handle, nb, nblocks, nrhs, A, lda, B, ldb, C, ldc, X, &
@@ -78429,17 +78368,17 @@ contains
       integer(c_int), value :: nb
       integer(c_int), value :: nblocks
       integer(c_int), value :: nrhs
-      real(c_double), target :: A(*)
+      real(c_double), target :: A(..)
       integer(c_int), value :: lda
-      real(c_double), target :: B(*)
+      real(c_double), target :: B(..)
       integer(c_int), value :: ldb
-      real(c_double), target :: C(*)
+      real(c_double), target :: C(..)
       integer(c_int), value :: ldc
-      real(c_double), target :: X(*)
+      real(c_double), target :: X(..)
       integer(c_int), value :: ldx
       integer(c_int) :: dgeblttrs_npvt
-      dgeblttrs_npvt = rocsolver_dgeblttrs_npvt_raw(handle, nb, nblocks, nrhs, c_loc(A(1)), lda, &
-        c_loc(B(1)), ldb, c_loc(C(1)), ldc, c_loc(X(1)), ldx)
+      dgeblttrs_npvt = rocsolver_dgeblttrs_npvt_raw(handle, nb, nblocks, nrhs, c_loc(A), lda, &
+        c_loc(B), ldb, c_loc(C), ldc, c_loc(X), ldx)
     end function rocsolver_dgeblttrs_npvt_native
 
     function rocsolver_dgeblttrs_npvt_typed(handle, nb, nblocks, nrhs, A, lda, B, ldb, C, ldc, X, &
@@ -78472,17 +78411,17 @@ contains
       integer(c_int), value :: nb
       integer(c_int), value :: nblocks
       integer(c_int), value :: nrhs
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: A(..)
       integer(c_int), value :: lda
-      complex(c_float_complex), target :: B(*)
+      complex(c_float_complex), target :: B(..)
       integer(c_int), value :: ldb
-      complex(c_float_complex), target :: C(*)
+      complex(c_float_complex), target :: C(..)
       integer(c_int), value :: ldc
-      complex(c_float_complex), target :: X(*)
+      complex(c_float_complex), target :: X(..)
       integer(c_int), value :: ldx
       integer(c_int) :: cgeblttrs_npvt
-      cgeblttrs_npvt = rocsolver_cgeblttrs_npvt_raw(handle, nb, nblocks, nrhs, c_loc(A(1)), lda, &
-        c_loc(B(1)), ldb, c_loc(C(1)), ldc, c_loc(X(1)), ldx)
+      cgeblttrs_npvt = rocsolver_cgeblttrs_npvt_raw(handle, nb, nblocks, nrhs, c_loc(A), lda, &
+        c_loc(B), ldb, c_loc(C), ldc, c_loc(X), ldx)
     end function rocsolver_cgeblttrs_npvt_native
 
     function rocsolver_cgeblttrs_npvt_typed(handle, nb, nblocks, nrhs, A, lda, B, ldb, C, ldc, X, &
@@ -78515,17 +78454,17 @@ contains
       integer(c_int), value :: nb
       integer(c_int), value :: nblocks
       integer(c_int), value :: nrhs
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: A(..)
       integer(c_int), value :: lda
-      complex(c_double_complex), target :: B(*)
+      complex(c_double_complex), target :: B(..)
       integer(c_int), value :: ldb
-      complex(c_double_complex), target :: C(*)
+      complex(c_double_complex), target :: C(..)
       integer(c_int), value :: ldc
-      complex(c_double_complex), target :: X(*)
+      complex(c_double_complex), target :: X(..)
       integer(c_int), value :: ldx
       integer(c_int) :: zgeblttrs_npvt
-      zgeblttrs_npvt = rocsolver_zgeblttrs_npvt_raw(handle, nb, nblocks, nrhs, c_loc(A(1)), lda, &
-        c_loc(B(1)), ldb, c_loc(C(1)), ldc, c_loc(X(1)), ldx)
+      zgeblttrs_npvt = rocsolver_zgeblttrs_npvt_raw(handle, nb, nblocks, nrhs, c_loc(A), lda, &
+        c_loc(B), ldb, c_loc(C), ldc, c_loc(X), ldx)
     end function rocsolver_zgeblttrs_npvt_native
 
     function rocsolver_zgeblttrs_npvt_typed(handle, nb, nblocks, nrhs, A, lda, B, ldb, C, ldc, X, &
@@ -78651,23 +78590,23 @@ contains
       integer(c_int), value :: nb
       integer(c_int), value :: nblocks
       integer(c_int), value :: nrhs
-      real(c_float), target :: A(*)
+      real(c_float), target :: A(..)
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
-      real(c_float), target :: B(*)
+      real(c_float), target :: B(..)
       integer(c_int), value :: ldb
       integer(c_long), value :: strideB
-      real(c_float), target :: C(*)
+      real(c_float), target :: C(..)
       integer(c_int), value :: ldc
       integer(c_long), value :: strideC
-      real(c_float), target :: X(*)
+      real(c_float), target :: X(..)
       integer(c_int), value :: ldx
       integer(c_long), value :: strideX
       integer(c_int), value :: batch_count
       integer(c_int) :: sgeblttrs_npvt_strided_batched
       sgeblttrs_npvt_strided_batched = rocsolver_sgeblttrs_npvt_strided_batched_raw(handle, nb, &
-        nblocks, nrhs, c_loc(A(1)), lda, strideA, c_loc(B(1)), ldb, strideB, c_loc(C(1)), ldc, &
-        strideC, c_loc(X(1)), ldx, strideX, batch_count)
+        nblocks, nrhs, c_loc(A), lda, strideA, c_loc(B), ldb, strideB, c_loc(C), ldc, strideC, &
+        c_loc(X), ldx, strideX, batch_count)
     end function rocsolver_sgeblttrs_npvt_strided_batched_native
 
     function rocsolver_sgeblttrs_npvt_strided_batched_typed(handle, nb, nblocks, nrhs, A, lda, &
@@ -78708,23 +78647,23 @@ contains
       integer(c_int), value :: nb
       integer(c_int), value :: nblocks
       integer(c_int), value :: nrhs
-      real(c_double), target :: A(*)
+      real(c_double), target :: A(..)
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
-      real(c_double), target :: B(*)
+      real(c_double), target :: B(..)
       integer(c_int), value :: ldb
       integer(c_long), value :: strideB
-      real(c_double), target :: C(*)
+      real(c_double), target :: C(..)
       integer(c_int), value :: ldc
       integer(c_long), value :: strideC
-      real(c_double), target :: X(*)
+      real(c_double), target :: X(..)
       integer(c_int), value :: ldx
       integer(c_long), value :: strideX
       integer(c_int), value :: batch_count
       integer(c_int) :: dgeblttrs_npvt_strided_batched
       dgeblttrs_npvt_strided_batched = rocsolver_dgeblttrs_npvt_strided_batched_raw(handle, nb, &
-        nblocks, nrhs, c_loc(A(1)), lda, strideA, c_loc(B(1)), ldb, strideB, c_loc(C(1)), ldc, &
-        strideC, c_loc(X(1)), ldx, strideX, batch_count)
+        nblocks, nrhs, c_loc(A), lda, strideA, c_loc(B), ldb, strideB, c_loc(C), ldc, strideC, &
+        c_loc(X), ldx, strideX, batch_count)
     end function rocsolver_dgeblttrs_npvt_strided_batched_native
 
     function rocsolver_dgeblttrs_npvt_strided_batched_typed(handle, nb, nblocks, nrhs, A, lda, &
@@ -78765,23 +78704,23 @@ contains
       integer(c_int), value :: nb
       integer(c_int), value :: nblocks
       integer(c_int), value :: nrhs
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: A(..)
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
-      complex(c_float_complex), target :: B(*)
+      complex(c_float_complex), target :: B(..)
       integer(c_int), value :: ldb
       integer(c_long), value :: strideB
-      complex(c_float_complex), target :: C(*)
+      complex(c_float_complex), target :: C(..)
       integer(c_int), value :: ldc
       integer(c_long), value :: strideC
-      complex(c_float_complex), target :: X(*)
+      complex(c_float_complex), target :: X(..)
       integer(c_int), value :: ldx
       integer(c_long), value :: strideX
       integer(c_int), value :: batch_count
       integer(c_int) :: cgeblttrs_npvt_strided_batched
       cgeblttrs_npvt_strided_batched = rocsolver_cgeblttrs_npvt_strided_batched_raw(handle, nb, &
-        nblocks, nrhs, c_loc(A(1)), lda, strideA, c_loc(B(1)), ldb, strideB, c_loc(C(1)), ldc, &
-        strideC, c_loc(X(1)), ldx, strideX, batch_count)
+        nblocks, nrhs, c_loc(A), lda, strideA, c_loc(B), ldb, strideB, c_loc(C), ldc, strideC, &
+        c_loc(X), ldx, strideX, batch_count)
     end function rocsolver_cgeblttrs_npvt_strided_batched_native
 
     function rocsolver_cgeblttrs_npvt_strided_batched_typed(handle, nb, nblocks, nrhs, A, lda, &
@@ -78822,23 +78761,23 @@ contains
       integer(c_int), value :: nb
       integer(c_int), value :: nblocks
       integer(c_int), value :: nrhs
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: A(..)
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
-      complex(c_double_complex), target :: B(*)
+      complex(c_double_complex), target :: B(..)
       integer(c_int), value :: ldb
       integer(c_long), value :: strideB
-      complex(c_double_complex), target :: C(*)
+      complex(c_double_complex), target :: C(..)
       integer(c_int), value :: ldc
       integer(c_long), value :: strideC
-      complex(c_double_complex), target :: X(*)
+      complex(c_double_complex), target :: X(..)
       integer(c_int), value :: ldx
       integer(c_long), value :: strideX
       integer(c_int), value :: batch_count
       integer(c_int) :: zgeblttrs_npvt_strided_batched
       zgeblttrs_npvt_strided_batched = rocsolver_zgeblttrs_npvt_strided_batched_raw(handle, nb, &
-        nblocks, nrhs, c_loc(A(1)), lda, strideA, c_loc(B(1)), ldb, strideB, c_loc(C(1)), ldc, &
-        strideC, c_loc(X(1)), ldx, strideX, batch_count)
+        nblocks, nrhs, c_loc(A), lda, strideA, c_loc(B), ldb, strideB, c_loc(C), ldc, strideC, &
+        c_loc(X), ldx, strideX, batch_count)
     end function rocsolver_zgeblttrs_npvt_strided_batched_native
 
     function rocsolver_zgeblttrs_npvt_strided_batched_typed(handle, nb, nblocks, nrhs, A, lda, &
@@ -78879,27 +78818,27 @@ contains
       integer(c_int), value :: nb
       integer(c_int), value :: nblocks
       integer(c_int), value :: nrhs
-      real(c_float), target :: A(*)
+      real(c_float), target :: A(..)
       integer(c_int), value :: inca
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
-      real(c_float), target :: B(*)
+      real(c_float), target :: B(..)
       integer(c_int), value :: incb
       integer(c_int), value :: ldb
       integer(c_long), value :: strideB
-      real(c_float), target :: C(*)
+      real(c_float), target :: C(..)
       integer(c_int), value :: incc
       integer(c_int), value :: ldc
       integer(c_long), value :: strideC
-      real(c_float), target :: X(*)
+      real(c_float), target :: X(..)
       integer(c_int), value :: incx
       integer(c_int), value :: ldx
       integer(c_long), value :: strideX
       integer(c_int), value :: batch_count
       integer(c_int) :: sgeblttrs_npvt_interleaved_batched
       sgeblttrs_npvt_interleaved_batched = rocsolver_sgeblttrs_npvt_interleaved_batched_raw( &
-        handle, nb, nblocks, nrhs, c_loc(A(1)), inca, lda, strideA, c_loc(B(1)), incb, ldb, &
-        strideB, c_loc(C(1)), incc, ldc, strideC, c_loc(X(1)), incx, ldx, strideX, batch_count)
+        handle, nb, nblocks, nrhs, c_loc(A), inca, lda, strideA, c_loc(B), incb, ldb, strideB, &
+        c_loc(C), incc, ldc, strideC, c_loc(X), incx, ldx, strideX, batch_count)
     end function rocsolver_sgeblttrs_npvt_interleaved_batched_native
 
     function rocsolver_sgeblttrs_npvt_interleaved_batched_typed(handle, nb, nblocks, nrhs, A, &
@@ -78944,27 +78883,27 @@ contains
       integer(c_int), value :: nb
       integer(c_int), value :: nblocks
       integer(c_int), value :: nrhs
-      real(c_double), target :: A(*)
+      real(c_double), target :: A(..)
       integer(c_int), value :: inca
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
-      real(c_double), target :: B(*)
+      real(c_double), target :: B(..)
       integer(c_int), value :: incb
       integer(c_int), value :: ldb
       integer(c_long), value :: strideB
-      real(c_double), target :: C(*)
+      real(c_double), target :: C(..)
       integer(c_int), value :: incc
       integer(c_int), value :: ldc
       integer(c_long), value :: strideC
-      real(c_double), target :: X(*)
+      real(c_double), target :: X(..)
       integer(c_int), value :: incx
       integer(c_int), value :: ldx
       integer(c_long), value :: strideX
       integer(c_int), value :: batch_count
       integer(c_int) :: dgeblttrs_npvt_interleaved_batched
       dgeblttrs_npvt_interleaved_batched = rocsolver_dgeblttrs_npvt_interleaved_batched_raw( &
-        handle, nb, nblocks, nrhs, c_loc(A(1)), inca, lda, strideA, c_loc(B(1)), incb, ldb, &
-        strideB, c_loc(C(1)), incc, ldc, strideC, c_loc(X(1)), incx, ldx, strideX, batch_count)
+        handle, nb, nblocks, nrhs, c_loc(A), inca, lda, strideA, c_loc(B), incb, ldb, strideB, &
+        c_loc(C), incc, ldc, strideC, c_loc(X), incx, ldx, strideX, batch_count)
     end function rocsolver_dgeblttrs_npvt_interleaved_batched_native
 
     function rocsolver_dgeblttrs_npvt_interleaved_batched_typed(handle, nb, nblocks, nrhs, A, &
@@ -79009,27 +78948,27 @@ contains
       integer(c_int), value :: nb
       integer(c_int), value :: nblocks
       integer(c_int), value :: nrhs
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: A(..)
       integer(c_int), value :: inca
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
-      complex(c_float_complex), target :: B(*)
+      complex(c_float_complex), target :: B(..)
       integer(c_int), value :: incb
       integer(c_int), value :: ldb
       integer(c_long), value :: strideB
-      complex(c_float_complex), target :: C(*)
+      complex(c_float_complex), target :: C(..)
       integer(c_int), value :: incc
       integer(c_int), value :: ldc
       integer(c_long), value :: strideC
-      complex(c_float_complex), target :: X(*)
+      complex(c_float_complex), target :: X(..)
       integer(c_int), value :: incx
       integer(c_int), value :: ldx
       integer(c_long), value :: strideX
       integer(c_int), value :: batch_count
       integer(c_int) :: cgeblttrs_npvt_interleaved_batched
       cgeblttrs_npvt_interleaved_batched = rocsolver_cgeblttrs_npvt_interleaved_batched_raw( &
-        handle, nb, nblocks, nrhs, c_loc(A(1)), inca, lda, strideA, c_loc(B(1)), incb, ldb, &
-        strideB, c_loc(C(1)), incc, ldc, strideC, c_loc(X(1)), incx, ldx, strideX, batch_count)
+        handle, nb, nblocks, nrhs, c_loc(A), inca, lda, strideA, c_loc(B), incb, ldb, strideB, &
+        c_loc(C), incc, ldc, strideC, c_loc(X), incx, ldx, strideX, batch_count)
     end function rocsolver_cgeblttrs_npvt_interleaved_batched_native
 
     function rocsolver_cgeblttrs_npvt_interleaved_batched_typed(handle, nb, nblocks, nrhs, A, &
@@ -79074,27 +79013,27 @@ contains
       integer(c_int), value :: nb
       integer(c_int), value :: nblocks
       integer(c_int), value :: nrhs
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: A(..)
       integer(c_int), value :: inca
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
-      complex(c_double_complex), target :: B(*)
+      complex(c_double_complex), target :: B(..)
       integer(c_int), value :: incb
       integer(c_int), value :: ldb
       integer(c_long), value :: strideB
-      complex(c_double_complex), target :: C(*)
+      complex(c_double_complex), target :: C(..)
       integer(c_int), value :: incc
       integer(c_int), value :: ldc
       integer(c_long), value :: strideC
-      complex(c_double_complex), target :: X(*)
+      complex(c_double_complex), target :: X(..)
       integer(c_int), value :: incx
       integer(c_int), value :: ldx
       integer(c_long), value :: strideX
       integer(c_int), value :: batch_count
       integer(c_int) :: zgeblttrs_npvt_interleaved_batched
       zgeblttrs_npvt_interleaved_batched = rocsolver_zgeblttrs_npvt_interleaved_batched_raw( &
-        handle, nb, nblocks, nrhs, c_loc(A(1)), inca, lda, strideA, c_loc(B(1)), incb, ldb, &
-        strideB, c_loc(C(1)), incc, ldc, strideC, c_loc(X(1)), incx, ldx, strideX, batch_count)
+        handle, nb, nblocks, nrhs, c_loc(A), inca, lda, strideA, c_loc(B), incb, ldb, strideB, &
+        c_loc(C), incc, ldc, strideC, c_loc(X), incx, ldx, strideX, batch_count)
     end function rocsolver_zgeblttrs_npvt_interleaved_batched_native
 
     function rocsolver_zgeblttrs_npvt_interleaved_batched_typed(handle, nb, nblocks, nrhs, A, &
@@ -79163,9 +79102,9 @@ contains
       use, intrinsic :: iso_c_binding
       implicit none
       type(c_ptr), value :: rfinfo
-      integer(c_int), target :: mode(*)
+      integer(c_int), target :: mode(..)
       integer(c_int) :: get_rfinfo_mode
-      get_rfinfo_mode = rocsolver_get_rfinfo_mode_raw(rfinfo, c_loc(mode(1)))
+      get_rfinfo_mode = rocsolver_get_rfinfo_mode_raw(rfinfo, c_loc(mode))
     end function rocsolver_get_rfinfo_mode_native
 
     function rocsolver_get_rfinfo_mode_typed(rfinfo, mode) result(get_rfinfo_mode)
@@ -79185,20 +79124,19 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: n
       integer(c_int), value :: nnzL
-      integer(c_int), target :: ptrL(*)
-      integer(c_int), target :: indL(*)
-      real(c_float), target :: valL(*)
+      integer(c_int), target :: ptrL(..)
+      integer(c_int), target :: indL(..)
+      real(c_float), target :: valL(..)
       integer(c_int), value :: nnzU
-      integer(c_int), target :: ptrU(*)
-      integer(c_int), target :: indU(*)
-      real(c_float), target :: valU(*)
-      integer(c_int), target :: ptrT(*)
-      integer(c_int), target :: indT(*)
-      real(c_float), target :: valT(*)
+      integer(c_int), target :: ptrU(..)
+      integer(c_int), target :: indU(..)
+      real(c_float), target :: valU(..)
+      integer(c_int), target :: ptrT(..)
+      integer(c_int), target :: indT(..)
+      real(c_float), target :: valT(..)
       integer(c_int) :: scsrrf_sumlu
-      scsrrf_sumlu = rocsolver_scsrrf_sumlu_raw(handle, n, nnzL, c_loc(ptrL(1)), c_loc(indL(1)), &
-        c_loc(valL(1)), nnzU, c_loc(ptrU(1)), c_loc(indU(1)), c_loc(valU(1)), c_loc(ptrT(1)), &
-        c_loc(indT(1)), c_loc(valT(1)))
+      scsrrf_sumlu = rocsolver_scsrrf_sumlu_raw(handle, n, nnzL, c_loc(ptrL), c_loc(indL), c_loc( &
+        valL), nnzU, c_loc(ptrU), c_loc(indU), c_loc(valU), c_loc(ptrT), c_loc(indT), c_loc(valT))
     end function rocsolver_scsrrf_sumlu_native
 
     function rocsolver_scsrrf_sumlu_typed(handle, n, nnzL, ptrL, indL, valL, nnzU, ptrU, indU, &
@@ -79231,20 +79169,19 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: n
       integer(c_int), value :: nnzL
-      integer(c_int), target :: ptrL(*)
-      integer(c_int), target :: indL(*)
-      real(c_double), target :: valL(*)
+      integer(c_int), target :: ptrL(..)
+      integer(c_int), target :: indL(..)
+      real(c_double), target :: valL(..)
       integer(c_int), value :: nnzU
-      integer(c_int), target :: ptrU(*)
-      integer(c_int), target :: indU(*)
-      real(c_double), target :: valU(*)
-      integer(c_int), target :: ptrT(*)
-      integer(c_int), target :: indT(*)
-      real(c_double), target :: valT(*)
+      integer(c_int), target :: ptrU(..)
+      integer(c_int), target :: indU(..)
+      real(c_double), target :: valU(..)
+      integer(c_int), target :: ptrT(..)
+      integer(c_int), target :: indT(..)
+      real(c_double), target :: valT(..)
       integer(c_int) :: dcsrrf_sumlu
-      dcsrrf_sumlu = rocsolver_dcsrrf_sumlu_raw(handle, n, nnzL, c_loc(ptrL(1)), c_loc(indL(1)), &
-        c_loc(valL(1)), nnzU, c_loc(ptrU(1)), c_loc(indU(1)), c_loc(valU(1)), c_loc(ptrT(1)), &
-        c_loc(indT(1)), c_loc(valT(1)))
+      dcsrrf_sumlu = rocsolver_dcsrrf_sumlu_raw(handle, n, nnzL, c_loc(ptrL), c_loc(indL), c_loc( &
+        valL), nnzU, c_loc(ptrU), c_loc(indU), c_loc(valU), c_loc(ptrT), c_loc(indT), c_loc(valT))
     end function rocsolver_dcsrrf_sumlu_native
 
     function rocsolver_dcsrrf_sumlu_typed(handle, n, nnzL, ptrL, indL, valL, nnzU, ptrU, indU, &
@@ -79277,19 +79214,18 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: n
       integer(c_int), value :: nnzT
-      integer(c_int), target :: ptrT(*)
-      integer(c_int), target :: indT(*)
-      real(c_float), target :: valT(*)
-      integer(c_int), target :: ptrL(*)
-      integer(c_int), target :: indL(*)
-      real(c_float), target :: valL(*)
-      integer(c_int), target :: ptrU(*)
-      integer(c_int), target :: indU(*)
-      real(c_float), target :: valU(*)
+      integer(c_int), target :: ptrT(..)
+      integer(c_int), target :: indT(..)
+      real(c_float), target :: valT(..)
+      integer(c_int), target :: ptrL(..)
+      integer(c_int), target :: indL(..)
+      real(c_float), target :: valL(..)
+      integer(c_int), target :: ptrU(..)
+      integer(c_int), target :: indU(..)
+      real(c_float), target :: valU(..)
       integer(c_int) :: scsrrf_splitlu
-      scsrrf_splitlu = rocsolver_scsrrf_splitlu_raw(handle, n, nnzT, c_loc(ptrT(1)), c_loc(indT( &
-        1)), c_loc(valT(1)), c_loc(ptrL(1)), c_loc(indL(1)), c_loc(valL(1)), c_loc(ptrU(1)), &
-        c_loc(indU(1)), c_loc(valU(1)))
+      scsrrf_splitlu = rocsolver_scsrrf_splitlu_raw(handle, n, nnzT, c_loc(ptrT), c_loc(indT), &
+        c_loc(valT), c_loc(ptrL), c_loc(indL), c_loc(valL), c_loc(ptrU), c_loc(indU), c_loc(valU))
     end function rocsolver_scsrrf_splitlu_native
 
     function rocsolver_scsrrf_splitlu_typed(handle, n, nnzT, ptrT, indT, valT, ptrL, indL, valL, &
@@ -79321,19 +79257,18 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: n
       integer(c_int), value :: nnzT
-      integer(c_int), target :: ptrT(*)
-      integer(c_int), target :: indT(*)
-      real(c_double), target :: valT(*)
-      integer(c_int), target :: ptrL(*)
-      integer(c_int), target :: indL(*)
-      real(c_double), target :: valL(*)
-      integer(c_int), target :: ptrU(*)
-      integer(c_int), target :: indU(*)
-      real(c_double), target :: valU(*)
+      integer(c_int), target :: ptrT(..)
+      integer(c_int), target :: indT(..)
+      real(c_double), target :: valT(..)
+      integer(c_int), target :: ptrL(..)
+      integer(c_int), target :: indL(..)
+      real(c_double), target :: valL(..)
+      integer(c_int), target :: ptrU(..)
+      integer(c_int), target :: indU(..)
+      real(c_double), target :: valU(..)
       integer(c_int) :: dcsrrf_splitlu
-      dcsrrf_splitlu = rocsolver_dcsrrf_splitlu_raw(handle, n, nnzT, c_loc(ptrT(1)), c_loc(indT( &
-        1)), c_loc(valT(1)), c_loc(ptrL(1)), c_loc(indL(1)), c_loc(valL(1)), c_loc(ptrU(1)), &
-        c_loc(indU(1)), c_loc(valU(1)))
+      dcsrrf_splitlu = rocsolver_dcsrrf_splitlu_raw(handle, n, nnzT, c_loc(ptrT), c_loc(indT), &
+        c_loc(valT), c_loc(ptrL), c_loc(indL), c_loc(valL), c_loc(ptrU), c_loc(indU), c_loc(valU))
     end function rocsolver_dcsrrf_splitlu_native
 
     function rocsolver_dcsrrf_splitlu_typed(handle, n, nnzT, ptrT, indT, valT, ptrL, indL, valL, &
@@ -79366,22 +79301,22 @@ contains
       integer(c_int), value :: n
       integer(c_int), value :: nrhs
       integer(c_int), value :: nnzM
-      integer(c_int), target :: ptrM(*)
-      integer(c_int), target :: indM(*)
-      real(c_float), target :: valM(*)
+      integer(c_int), target :: ptrM(..)
+      integer(c_int), target :: indM(..)
+      real(c_float), target :: valM(..)
       integer(c_int), value :: nnzT
-      integer(c_int), target :: ptrT(*)
-      integer(c_int), target :: indT(*)
-      real(c_float), target :: valT(*)
-      integer(c_int), target :: pivP(*)
-      integer(c_int), target :: pivQ(*)
-      real(c_float), target :: B(*)
+      integer(c_int), target :: ptrT(..)
+      integer(c_int), target :: indT(..)
+      real(c_float), target :: valT(..)
+      integer(c_int), target :: pivP(..)
+      integer(c_int), target :: pivQ(..)
+      real(c_float), target :: B(..)
       integer(c_int), value :: ldb
       type(c_ptr), value :: rfinfo
       integer(c_int) :: scsrrf_analysis
-      scsrrf_analysis = rocsolver_scsrrf_analysis_raw(handle, n, nrhs, nnzM, c_loc(ptrM(1)), &
-        c_loc(indM(1)), c_loc(valM(1)), nnzT, c_loc(ptrT(1)), c_loc(indT(1)), c_loc(valT(1)), &
-        c_loc(pivP(1)), c_loc(pivQ(1)), c_loc(B(1)), ldb, rfinfo)
+      scsrrf_analysis = rocsolver_scsrrf_analysis_raw(handle, n, nrhs, nnzM, c_loc(ptrM), c_loc( &
+        indM), c_loc(valM), nnzT, c_loc(ptrT), c_loc(indT), c_loc(valT), c_loc(pivP), c_loc(pivQ), &
+        c_loc(B), ldb, rfinfo)
     end function rocsolver_scsrrf_analysis_native
 
     function rocsolver_scsrrf_analysis_typed(handle, n, nrhs, nnzM, ptrM, indM, valM, nnzT, ptrT, &
@@ -79418,22 +79353,22 @@ contains
       integer(c_int), value :: n
       integer(c_int), value :: nrhs
       integer(c_int), value :: nnzM
-      integer(c_int), target :: ptrM(*)
-      integer(c_int), target :: indM(*)
-      real(c_double), target :: valM(*)
+      integer(c_int), target :: ptrM(..)
+      integer(c_int), target :: indM(..)
+      real(c_double), target :: valM(..)
       integer(c_int), value :: nnzT
-      integer(c_int), target :: ptrT(*)
-      integer(c_int), target :: indT(*)
-      real(c_double), target :: valT(*)
-      integer(c_int), target :: pivP(*)
-      integer(c_int), target :: pivQ(*)
-      real(c_double), target :: B(*)
+      integer(c_int), target :: ptrT(..)
+      integer(c_int), target :: indT(..)
+      real(c_double), target :: valT(..)
+      integer(c_int), target :: pivP(..)
+      integer(c_int), target :: pivQ(..)
+      real(c_double), target :: B(..)
       integer(c_int), value :: ldb
       type(c_ptr), value :: rfinfo
       integer(c_int) :: dcsrrf_analysis
-      dcsrrf_analysis = rocsolver_dcsrrf_analysis_raw(handle, n, nrhs, nnzM, c_loc(ptrM(1)), &
-        c_loc(indM(1)), c_loc(valM(1)), nnzT, c_loc(ptrT(1)), c_loc(indT(1)), c_loc(valT(1)), &
-        c_loc(pivP(1)), c_loc(pivQ(1)), c_loc(B(1)), ldb, rfinfo)
+      dcsrrf_analysis = rocsolver_dcsrrf_analysis_raw(handle, n, nrhs, nnzM, c_loc(ptrM), c_loc( &
+        indM), c_loc(valM), nnzT, c_loc(ptrT), c_loc(indT), c_loc(valT), c_loc(pivP), c_loc(pivQ), &
+        c_loc(B), ldb, rfinfo)
     end function rocsolver_dcsrrf_analysis_native
 
     function rocsolver_dcsrrf_analysis_typed(handle, n, nrhs, nnzM, ptrM, indM, valM, nnzT, ptrT, &
@@ -79469,20 +79404,19 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: n
       integer(c_int), value :: nnzA
-      integer(c_int), target :: ptrA(*)
-      integer(c_int), target :: indA(*)
-      real(c_float), target :: valA(*)
+      integer(c_int), target :: ptrA(..)
+      integer(c_int), target :: indA(..)
+      real(c_float), target :: valA(..)
       integer(c_int), value :: nnzT
-      integer(c_int), target :: ptrT(*)
-      integer(c_int), target :: indT(*)
-      real(c_float), target :: valT(*)
-      integer(c_int), target :: pivP(*)
-      integer(c_int), target :: pivQ(*)
+      integer(c_int), target :: ptrT(..)
+      integer(c_int), target :: indT(..)
+      real(c_float), target :: valT(..)
+      integer(c_int), target :: pivP(..)
+      integer(c_int), target :: pivQ(..)
       type(c_ptr), value :: rfinfo
       integer(c_int) :: scsrrf_refactlu
-      scsrrf_refactlu = rocsolver_scsrrf_refactlu_raw(handle, n, nnzA, c_loc(ptrA(1)), c_loc(indA( &
-        1)), c_loc(valA(1)), nnzT, c_loc(ptrT(1)), c_loc(indT(1)), c_loc(valT(1)), c_loc(pivP(1)), &
-        c_loc(pivQ(1)), rfinfo)
+      scsrrf_refactlu = rocsolver_scsrrf_refactlu_raw(handle, n, nnzA, c_loc(ptrA), c_loc(indA), &
+        c_loc(valA), nnzT, c_loc(ptrT), c_loc(indT), c_loc(valT), c_loc(pivP), c_loc(pivQ), rfinfo)
     end function rocsolver_scsrrf_refactlu_native
 
     function rocsolver_scsrrf_refactlu_typed(handle, n, nnzA, ptrA, indA, valA, nnzT, ptrT, indT, &
@@ -79515,20 +79449,19 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: n
       integer(c_int), value :: nnzA
-      integer(c_int), target :: ptrA(*)
-      integer(c_int), target :: indA(*)
-      real(c_double), target :: valA(*)
+      integer(c_int), target :: ptrA(..)
+      integer(c_int), target :: indA(..)
+      real(c_double), target :: valA(..)
       integer(c_int), value :: nnzT
-      integer(c_int), target :: ptrT(*)
-      integer(c_int), target :: indT(*)
-      real(c_double), target :: valT(*)
-      integer(c_int), target :: pivP(*)
-      integer(c_int), target :: pivQ(*)
+      integer(c_int), target :: ptrT(..)
+      integer(c_int), target :: indT(..)
+      real(c_double), target :: valT(..)
+      integer(c_int), target :: pivP(..)
+      integer(c_int), target :: pivQ(..)
       type(c_ptr), value :: rfinfo
       integer(c_int) :: dcsrrf_refactlu
-      dcsrrf_refactlu = rocsolver_dcsrrf_refactlu_raw(handle, n, nnzA, c_loc(ptrA(1)), c_loc(indA( &
-        1)), c_loc(valA(1)), nnzT, c_loc(ptrT(1)), c_loc(indT(1)), c_loc(valT(1)), c_loc(pivP(1)), &
-        c_loc(pivQ(1)), rfinfo)
+      dcsrrf_refactlu = rocsolver_dcsrrf_refactlu_raw(handle, n, nnzA, c_loc(ptrA), c_loc(indA), &
+        c_loc(valA), nnzT, c_loc(ptrT), c_loc(indT), c_loc(valT), c_loc(pivP), c_loc(pivQ), rfinfo)
     end function rocsolver_dcsrrf_refactlu_native
 
     function rocsolver_dcsrrf_refactlu_typed(handle, n, nnzA, ptrA, indA, valA, nnzT, ptrT, indT, &
@@ -79561,19 +79494,18 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: n
       integer(c_int), value :: nnzA
-      integer(c_int), target :: ptrA(*)
-      integer(c_int), target :: indA(*)
-      real(c_float), target :: valA(*)
+      integer(c_int), target :: ptrA(..)
+      integer(c_int), target :: indA(..)
+      real(c_float), target :: valA(..)
       integer(c_int), value :: nnzT
-      integer(c_int), target :: ptrT(*)
-      integer(c_int), target :: indT(*)
-      real(c_float), target :: valT(*)
-      integer(c_int), target :: pivQ(*)
+      integer(c_int), target :: ptrT(..)
+      integer(c_int), target :: indT(..)
+      real(c_float), target :: valT(..)
+      integer(c_int), target :: pivQ(..)
       type(c_ptr), value :: rfinfo
       integer(c_int) :: scsrrf_refactchol
-      scsrrf_refactchol = rocsolver_scsrrf_refactchol_raw(handle, n, nnzA, c_loc(ptrA(1)), c_loc( &
-        indA(1)), c_loc(valA(1)), nnzT, c_loc(ptrT(1)), c_loc(indT(1)), c_loc(valT(1)), c_loc( &
-        pivQ(1)), rfinfo)
+      scsrrf_refactchol = rocsolver_scsrrf_refactchol_raw(handle, n, nnzA, c_loc(ptrA), c_loc( &
+        indA), c_loc(valA), nnzT, c_loc(ptrT), c_loc(indT), c_loc(valT), c_loc(pivQ), rfinfo)
     end function rocsolver_scsrrf_refactchol_native
 
     function rocsolver_scsrrf_refactchol_typed(handle, n, nnzA, ptrA, indA, valA, nnzT, ptrT, &
@@ -79605,19 +79537,18 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: n
       integer(c_int), value :: nnzA
-      integer(c_int), target :: ptrA(*)
-      integer(c_int), target :: indA(*)
-      real(c_double), target :: valA(*)
+      integer(c_int), target :: ptrA(..)
+      integer(c_int), target :: indA(..)
+      real(c_double), target :: valA(..)
       integer(c_int), value :: nnzT
-      integer(c_int), target :: ptrT(*)
-      integer(c_int), target :: indT(*)
-      real(c_double), target :: valT(*)
-      integer(c_int), target :: pivQ(*)
+      integer(c_int), target :: ptrT(..)
+      integer(c_int), target :: indT(..)
+      real(c_double), target :: valT(..)
+      integer(c_int), target :: pivQ(..)
       type(c_ptr), value :: rfinfo
       integer(c_int) :: dcsrrf_refactchol
-      dcsrrf_refactchol = rocsolver_dcsrrf_refactchol_raw(handle, n, nnzA, c_loc(ptrA(1)), c_loc( &
-        indA(1)), c_loc(valA(1)), nnzT, c_loc(ptrT(1)), c_loc(indT(1)), c_loc(valT(1)), c_loc( &
-        pivQ(1)), rfinfo)
+      dcsrrf_refactchol = rocsolver_dcsrrf_refactchol_raw(handle, n, nnzA, c_loc(ptrA), c_loc( &
+        indA), c_loc(valA), nnzT, c_loc(ptrT), c_loc(indT), c_loc(valT), c_loc(pivQ), rfinfo)
     end function rocsolver_dcsrrf_refactchol_native
 
     function rocsolver_dcsrrf_refactchol_typed(handle, n, nnzA, ptrA, indA, valA, nnzT, ptrT, &
@@ -79650,17 +79581,17 @@ contains
       integer(c_int), value :: n
       integer(c_int), value :: nrhs
       integer(c_int), value :: nnzT
-      integer(c_int), target :: ptrT(*)
-      integer(c_int), target :: indT(*)
-      real(c_float), target :: valT(*)
-      integer(c_int), target :: pivP(*)
-      integer(c_int), target :: pivQ(*)
-      real(c_float), target :: B(*)
+      integer(c_int), target :: ptrT(..)
+      integer(c_int), target :: indT(..)
+      real(c_float), target :: valT(..)
+      integer(c_int), target :: pivP(..)
+      integer(c_int), target :: pivQ(..)
+      real(c_float), target :: B(..)
       integer(c_int), value :: ldb
       type(c_ptr), value :: rfinfo
       integer(c_int) :: scsrrf_solve
-      scsrrf_solve = rocsolver_scsrrf_solve_raw(handle, n, nrhs, nnzT, c_loc(ptrT(1)), c_loc(indT( &
-        1)), c_loc(valT(1)), c_loc(pivP(1)), c_loc(pivQ(1)), c_loc(B(1)), ldb, rfinfo)
+      scsrrf_solve = rocsolver_scsrrf_solve_raw(handle, n, nrhs, nnzT, c_loc(ptrT), c_loc(indT), &
+        c_loc(valT), c_loc(pivP), c_loc(pivQ), c_loc(B), ldb, rfinfo)
     end function rocsolver_scsrrf_solve_native
 
     function rocsolver_scsrrf_solve_typed(handle, n, nrhs, nnzT, ptrT, indT, valT, pivP, pivQ, B, &
@@ -79693,17 +79624,17 @@ contains
       integer(c_int), value :: n
       integer(c_int), value :: nrhs
       integer(c_int), value :: nnzT
-      integer(c_int), target :: ptrT(*)
-      integer(c_int), target :: indT(*)
-      real(c_double), target :: valT(*)
-      integer(c_int), target :: pivP(*)
-      integer(c_int), target :: pivQ(*)
-      real(c_double), target :: B(*)
+      integer(c_int), target :: ptrT(..)
+      integer(c_int), target :: indT(..)
+      real(c_double), target :: valT(..)
+      integer(c_int), target :: pivP(..)
+      integer(c_int), target :: pivQ(..)
+      real(c_double), target :: B(..)
       integer(c_int), value :: ldb
       type(c_ptr), value :: rfinfo
       integer(c_int) :: dcsrrf_solve
-      dcsrrf_solve = rocsolver_dcsrrf_solve_raw(handle, n, nrhs, nnzT, c_loc(ptrT(1)), c_loc(indT( &
-        1)), c_loc(valT(1)), c_loc(pivP(1)), c_loc(pivQ(1)), c_loc(B(1)), ldb, rfinfo)
+      dcsrrf_solve = rocsolver_dcsrrf_solve_raw(handle, n, nrhs, nnzT, c_loc(ptrT), c_loc(indT), &
+        c_loc(valT), c_loc(pivP), c_loc(pivQ), c_loc(B), ldb, rfinfo)
     end function rocsolver_dcsrrf_solve_native
 
     function rocsolver_dcsrrf_solve_typed(handle, n, nrhs, nnzT, ptrT, indT, valT, pivP, pivQ, B, &
@@ -79737,20 +79668,20 @@ contains
       integer(c_int), value :: erange
       integer(c_int), value :: uplo
       integer(c_int), value :: n
-      real(c_float), target :: A(*)
+      real(c_float), target :: A(..)
       integer(c_int), value :: lda
       real(c_float), value :: vl
       real(c_float), value :: vu
       integer(c_int), value :: il
       integer(c_int), value :: iu
-      integer(c_int), target :: nev(*)
-      real(c_float), target :: W(*)
-      real(c_float), target :: Z(*)
+      integer(c_int), target :: nev(..)
+      real(c_float), target :: W(..)
+      real(c_float), target :: Z(..)
       integer(c_int), value :: ldz
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int) :: ssyevdx
-      ssyevdx = rocsolver_ssyevdx_raw(handle, evect, erange, uplo, n, c_loc(A(1)), lda, vl, vu, &
-        il, iu, c_loc(nev(1)), c_loc(W(1)), c_loc(Z(1)), ldz, c_loc(info(1)))
+      ssyevdx = rocsolver_ssyevdx_raw(handle, evect, erange, uplo, n, c_loc(A), lda, vl, vu, il, &
+        iu, c_loc(nev), c_loc(W), c_loc(Z), ldz, c_loc(info))
     end function rocsolver_ssyevdx_native
 
     function rocsolver_ssyevdx_typed(handle, evect, erange, uplo, n, A, lda, vl, vu, il, iu, nev, &
@@ -79788,20 +79719,20 @@ contains
       integer(c_int), value :: erange
       integer(c_int), value :: uplo
       integer(c_int), value :: n
-      real(c_double), target :: A(*)
+      real(c_double), target :: A(..)
       integer(c_int), value :: lda
       real(c_double), value :: vl
       real(c_double), value :: vu
       integer(c_int), value :: il
       integer(c_int), value :: iu
-      integer(c_int), target :: nev(*)
-      real(c_double), target :: W(*)
-      real(c_double), target :: Z(*)
+      integer(c_int), target :: nev(..)
+      real(c_double), target :: W(..)
+      real(c_double), target :: Z(..)
       integer(c_int), value :: ldz
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int) :: dsyevdx
-      dsyevdx = rocsolver_dsyevdx_raw(handle, evect, erange, uplo, n, c_loc(A(1)), lda, vl, vu, &
-        il, iu, c_loc(nev(1)), c_loc(W(1)), c_loc(Z(1)), ldz, c_loc(info(1)))
+      dsyevdx = rocsolver_dsyevdx_raw(handle, evect, erange, uplo, n, c_loc(A), lda, vl, vu, il, &
+        iu, c_loc(nev), c_loc(W), c_loc(Z), ldz, c_loc(info))
     end function rocsolver_dsyevdx_native
 
     function rocsolver_dsyevdx_typed(handle, evect, erange, uplo, n, A, lda, vl, vu, il, iu, nev, &
@@ -79839,20 +79770,20 @@ contains
       integer(c_int), value :: erange
       integer(c_int), value :: uplo
       integer(c_int), value :: n
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: A(..)
       integer(c_int), value :: lda
       real(c_float), value :: vl
       real(c_float), value :: vu
       integer(c_int), value :: il
       integer(c_int), value :: iu
-      integer(c_int), target :: nev(*)
-      real(c_float), target :: W(*)
-      complex(c_float_complex), target :: Z(*)
+      integer(c_int), target :: nev(..)
+      real(c_float), target :: W(..)
+      complex(c_float_complex), target :: Z(..)
       integer(c_int), value :: ldz
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int) :: cheevdx
-      cheevdx = rocsolver_cheevdx_raw(handle, evect, erange, uplo, n, c_loc(A(1)), lda, vl, vu, &
-        il, iu, c_loc(nev(1)), c_loc(W(1)), c_loc(Z(1)), ldz, c_loc(info(1)))
+      cheevdx = rocsolver_cheevdx_raw(handle, evect, erange, uplo, n, c_loc(A), lda, vl, vu, il, &
+        iu, c_loc(nev), c_loc(W), c_loc(Z), ldz, c_loc(info))
     end function rocsolver_cheevdx_native
 
     function rocsolver_cheevdx_typed(handle, evect, erange, uplo, n, A, lda, vl, vu, il, iu, nev, &
@@ -79890,20 +79821,20 @@ contains
       integer(c_int), value :: erange
       integer(c_int), value :: uplo
       integer(c_int), value :: n
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: A(..)
       integer(c_int), value :: lda
       real(c_double), value :: vl
       real(c_double), value :: vu
       integer(c_int), value :: il
       integer(c_int), value :: iu
-      integer(c_int), target :: nev(*)
-      real(c_double), target :: W(*)
-      complex(c_double_complex), target :: Z(*)
+      integer(c_int), target :: nev(..)
+      real(c_double), target :: W(..)
+      complex(c_double_complex), target :: Z(..)
       integer(c_int), value :: ldz
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int) :: zheevdx
-      zheevdx = rocsolver_zheevdx_raw(handle, evect, erange, uplo, n, c_loc(A(1)), lda, vl, vu, &
-        il, iu, c_loc(nev(1)), c_loc(W(1)), c_loc(Z(1)), ldz, c_loc(info(1)))
+      zheevdx = rocsolver_zheevdx_raw(handle, evect, erange, uplo, n, c_loc(A), lda, vl, vu, il, &
+        iu, c_loc(nev), c_loc(W), c_loc(Z), ldz, c_loc(info))
     end function rocsolver_zheevdx_native
 
     function rocsolver_zheevdx_typed(handle, evect, erange, uplo, n, A, lda, vl, vu, il, iu, nev, &
@@ -79947,16 +79878,16 @@ contains
       real(c_float), value :: vu
       integer(c_int), value :: il
       integer(c_int), value :: iu
-      integer(c_int), target :: nev(*)
-      real(c_float), target :: W(*)
+      integer(c_int), target :: nev(..)
+      real(c_float), target :: W(..)
       integer(c_long), value :: strideW
       type(c_ptr), value :: Z
       integer(c_int), value :: ldz
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: ssyevdx_batched
       ssyevdx_batched = rocsolver_ssyevdx_batched_raw(handle, evect, erange, uplo, n, A, lda, vl, &
-        vu, il, iu, c_loc(nev(1)), c_loc(W(1)), strideW, Z, ldz, c_loc(info(1)), batch_count)
+        vu, il, iu, c_loc(nev), c_loc(W), strideW, Z, ldz, c_loc(info), batch_count)
     end function rocsolver_ssyevdx_batched_native
 
     function rocsolver_ssyevdx_batched_typed(handle, evect, erange, uplo, n, A, lda, vl, vu, il, &
@@ -80002,16 +79933,16 @@ contains
       real(c_double), value :: vu
       integer(c_int), value :: il
       integer(c_int), value :: iu
-      integer(c_int), target :: nev(*)
-      real(c_double), target :: W(*)
+      integer(c_int), target :: nev(..)
+      real(c_double), target :: W(..)
       integer(c_long), value :: strideW
       type(c_ptr), value :: Z
       integer(c_int), value :: ldz
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: dsyevdx_batched
       dsyevdx_batched = rocsolver_dsyevdx_batched_raw(handle, evect, erange, uplo, n, A, lda, vl, &
-        vu, il, iu, c_loc(nev(1)), c_loc(W(1)), strideW, Z, ldz, c_loc(info(1)), batch_count)
+        vu, il, iu, c_loc(nev), c_loc(W), strideW, Z, ldz, c_loc(info), batch_count)
     end function rocsolver_dsyevdx_batched_native
 
     function rocsolver_dsyevdx_batched_typed(handle, evect, erange, uplo, n, A, lda, vl, vu, il, &
@@ -80057,16 +79988,16 @@ contains
       real(c_float), value :: vu
       integer(c_int), value :: il
       integer(c_int), value :: iu
-      integer(c_int), target :: nev(*)
-      real(c_float), target :: W(*)
+      integer(c_int), target :: nev(..)
+      real(c_float), target :: W(..)
       integer(c_long), value :: strideW
       type(c_ptr), value :: Z
       integer(c_int), value :: ldz
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: cheevdx_batched
       cheevdx_batched = rocsolver_cheevdx_batched_raw(handle, evect, erange, uplo, n, A, lda, vl, &
-        vu, il, iu, c_loc(nev(1)), c_loc(W(1)), strideW, Z, ldz, c_loc(info(1)), batch_count)
+        vu, il, iu, c_loc(nev), c_loc(W), strideW, Z, ldz, c_loc(info), batch_count)
     end function rocsolver_cheevdx_batched_native
 
     function rocsolver_cheevdx_batched_typed(handle, evect, erange, uplo, n, A, lda, vl, vu, il, &
@@ -80112,16 +80043,16 @@ contains
       real(c_double), value :: vu
       integer(c_int), value :: il
       integer(c_int), value :: iu
-      integer(c_int), target :: nev(*)
-      real(c_double), target :: W(*)
+      integer(c_int), target :: nev(..)
+      real(c_double), target :: W(..)
       integer(c_long), value :: strideW
       type(c_ptr), value :: Z
       integer(c_int), value :: ldz
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: zheevdx_batched
       zheevdx_batched = rocsolver_zheevdx_batched_raw(handle, evect, erange, uplo, n, A, lda, vl, &
-        vu, il, iu, c_loc(nev(1)), c_loc(W(1)), strideW, Z, ldz, c_loc(info(1)), batch_count)
+        vu, il, iu, c_loc(nev), c_loc(W), strideW, Z, ldz, c_loc(info), batch_count)
     end function rocsolver_zheevdx_batched_native
 
     function rocsolver_zheevdx_batched_typed(handle, evect, erange, uplo, n, A, lda, vl, vu, il, &
@@ -80162,25 +80093,25 @@ contains
       integer(c_int), value :: erange
       integer(c_int), value :: uplo
       integer(c_int), value :: n
-      real(c_float), target :: A(*)
+      real(c_float), target :: A(..)
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
       real(c_float), value :: vl
       real(c_float), value :: vu
       integer(c_int), value :: il
       integer(c_int), value :: iu
-      integer(c_int), target :: nev(*)
-      real(c_float), target :: W(*)
+      integer(c_int), target :: nev(..)
+      real(c_float), target :: W(..)
       integer(c_long), value :: strideW
-      real(c_float), target :: Z(*)
+      real(c_float), target :: Z(..)
       integer(c_int), value :: ldz
       integer(c_long), value :: strideZ
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: ssyevdx_strided_batched
       ssyevdx_strided_batched = rocsolver_ssyevdx_strided_batched_raw(handle, evect, erange, uplo, &
-        n, c_loc(A(1)), lda, strideA, vl, vu, il, iu, c_loc(nev(1)), c_loc(W(1)), strideW, c_loc( &
-        Z(1)), ldz, strideZ, c_loc(info(1)), batch_count)
+        n, c_loc(A), lda, strideA, vl, vu, il, iu, c_loc(nev), c_loc(W), strideW, c_loc(Z), ldz, &
+        strideZ, c_loc(info), batch_count)
     end function rocsolver_ssyevdx_strided_batched_native
 
     function rocsolver_ssyevdx_strided_batched_typed(handle, evect, erange, uplo, n, A, lda, &
@@ -80225,25 +80156,25 @@ contains
       integer(c_int), value :: erange
       integer(c_int), value :: uplo
       integer(c_int), value :: n
-      real(c_double), target :: A(*)
+      real(c_double), target :: A(..)
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
       real(c_double), value :: vl
       real(c_double), value :: vu
       integer(c_int), value :: il
       integer(c_int), value :: iu
-      integer(c_int), target :: nev(*)
-      real(c_double), target :: W(*)
+      integer(c_int), target :: nev(..)
+      real(c_double), target :: W(..)
       integer(c_long), value :: strideW
-      real(c_double), target :: Z(*)
+      real(c_double), target :: Z(..)
       integer(c_int), value :: ldz
       integer(c_long), value :: strideZ
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: dsyevdx_strided_batched
       dsyevdx_strided_batched = rocsolver_dsyevdx_strided_batched_raw(handle, evect, erange, uplo, &
-        n, c_loc(A(1)), lda, strideA, vl, vu, il, iu, c_loc(nev(1)), c_loc(W(1)), strideW, c_loc( &
-        Z(1)), ldz, strideZ, c_loc(info(1)), batch_count)
+        n, c_loc(A), lda, strideA, vl, vu, il, iu, c_loc(nev), c_loc(W), strideW, c_loc(Z), ldz, &
+        strideZ, c_loc(info), batch_count)
     end function rocsolver_dsyevdx_strided_batched_native
 
     function rocsolver_dsyevdx_strided_batched_typed(handle, evect, erange, uplo, n, A, lda, &
@@ -80288,25 +80219,25 @@ contains
       integer(c_int), value :: erange
       integer(c_int), value :: uplo
       integer(c_int), value :: n
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: A(..)
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
       real(c_float), value :: vl
       real(c_float), value :: vu
       integer(c_int), value :: il
       integer(c_int), value :: iu
-      integer(c_int), target :: nev(*)
-      real(c_float), target :: W(*)
+      integer(c_int), target :: nev(..)
+      real(c_float), target :: W(..)
       integer(c_long), value :: strideW
-      complex(c_float_complex), target :: Z(*)
+      complex(c_float_complex), target :: Z(..)
       integer(c_int), value :: ldz
       integer(c_long), value :: strideZ
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: cheevdx_strided_batched
       cheevdx_strided_batched = rocsolver_cheevdx_strided_batched_raw(handle, evect, erange, uplo, &
-        n, c_loc(A(1)), lda, strideA, vl, vu, il, iu, c_loc(nev(1)), c_loc(W(1)), strideW, c_loc( &
-        Z(1)), ldz, strideZ, c_loc(info(1)), batch_count)
+        n, c_loc(A), lda, strideA, vl, vu, il, iu, c_loc(nev), c_loc(W), strideW, c_loc(Z), ldz, &
+        strideZ, c_loc(info), batch_count)
     end function rocsolver_cheevdx_strided_batched_native
 
     function rocsolver_cheevdx_strided_batched_typed(handle, evect, erange, uplo, n, A, lda, &
@@ -80351,25 +80282,25 @@ contains
       integer(c_int), value :: erange
       integer(c_int), value :: uplo
       integer(c_int), value :: n
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: A(..)
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
       real(c_double), value :: vl
       real(c_double), value :: vu
       integer(c_int), value :: il
       integer(c_int), value :: iu
-      integer(c_int), target :: nev(*)
-      real(c_double), target :: W(*)
+      integer(c_int), target :: nev(..)
+      real(c_double), target :: W(..)
       integer(c_long), value :: strideW
-      complex(c_double_complex), target :: Z(*)
+      complex(c_double_complex), target :: Z(..)
       integer(c_int), value :: ldz
       integer(c_long), value :: strideZ
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: zheevdx_strided_batched
       zheevdx_strided_batched = rocsolver_zheevdx_strided_batched_raw(handle, evect, erange, uplo, &
-        n, c_loc(A(1)), lda, strideA, vl, vu, il, iu, c_loc(nev(1)), c_loc(W(1)), strideW, c_loc( &
-        Z(1)), ldz, strideZ, c_loc(info(1)), batch_count)
+        n, c_loc(A), lda, strideA, vl, vu, il, iu, c_loc(nev), c_loc(W), strideW, c_loc(Z), ldz, &
+        strideZ, c_loc(info), batch_count)
     end function rocsolver_zheevdx_strided_batched_native
 
     function rocsolver_zheevdx_strided_batched_typed(handle, evect, erange, uplo, n, A, lda, &
@@ -80414,23 +80345,22 @@ contains
       integer(c_int), value :: erange
       integer(c_int), value :: uplo
       integer(c_int), value :: n
-      real(c_float), target :: A(*)
+      real(c_float), target :: A(..)
       integer(c_int), value :: lda
-      real(c_float), target :: B(*)
+      real(c_float), target :: B(..)
       integer(c_int), value :: ldb
       real(c_float), value :: vl
       real(c_float), value :: vu
       integer(c_int), value :: il
       integer(c_int), value :: iu
-      integer(c_int), target :: nev(*)
-      real(c_float), target :: W(*)
-      real(c_float), target :: Z(*)
+      integer(c_int), target :: nev(..)
+      real(c_float), target :: W(..)
+      real(c_float), target :: Z(..)
       integer(c_int), value :: ldz
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int) :: ssygvdx
-      ssygvdx = rocsolver_ssygvdx_raw(handle, itype, evect, erange, uplo, n, c_loc(A(1)), lda, &
-        c_loc(B(1)), ldb, vl, vu, il, iu, c_loc(nev(1)), c_loc(W(1)), c_loc(Z(1)), ldz, c_loc( &
-        info(1)))
+      ssygvdx = rocsolver_ssygvdx_raw(handle, itype, evect, erange, uplo, n, c_loc(A), lda, c_loc( &
+        B), ldb, vl, vu, il, iu, c_loc(nev), c_loc(W), c_loc(Z), ldz, c_loc(info))
     end function rocsolver_ssygvdx_native
 
     function rocsolver_ssygvdx_typed(handle, itype, evect, erange, uplo, n, A, lda, B, ldb, vl, &
@@ -80472,23 +80402,22 @@ contains
       integer(c_int), value :: erange
       integer(c_int), value :: uplo
       integer(c_int), value :: n
-      real(c_double), target :: A(*)
+      real(c_double), target :: A(..)
       integer(c_int), value :: lda
-      real(c_double), target :: B(*)
+      real(c_double), target :: B(..)
       integer(c_int), value :: ldb
       real(c_double), value :: vl
       real(c_double), value :: vu
       integer(c_int), value :: il
       integer(c_int), value :: iu
-      integer(c_int), target :: nev(*)
-      real(c_double), target :: W(*)
-      real(c_double), target :: Z(*)
+      integer(c_int), target :: nev(..)
+      real(c_double), target :: W(..)
+      real(c_double), target :: Z(..)
       integer(c_int), value :: ldz
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int) :: dsygvdx
-      dsygvdx = rocsolver_dsygvdx_raw(handle, itype, evect, erange, uplo, n, c_loc(A(1)), lda, &
-        c_loc(B(1)), ldb, vl, vu, il, iu, c_loc(nev(1)), c_loc(W(1)), c_loc(Z(1)), ldz, c_loc( &
-        info(1)))
+      dsygvdx = rocsolver_dsygvdx_raw(handle, itype, evect, erange, uplo, n, c_loc(A), lda, c_loc( &
+        B), ldb, vl, vu, il, iu, c_loc(nev), c_loc(W), c_loc(Z), ldz, c_loc(info))
     end function rocsolver_dsygvdx_native
 
     function rocsolver_dsygvdx_typed(handle, itype, evect, erange, uplo, n, A, lda, B, ldb, vl, &
@@ -80530,22 +80459,22 @@ contains
       integer(c_int), value :: erange
       integer(c_int), value :: uplo
       integer(c_int), value :: n
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: A(..)
       integer(c_int), value :: lda
-      complex(c_float_complex), target :: B(*)
+      complex(c_float_complex), target :: B(..)
       integer(c_int), value :: ldb
       real(c_float), value :: vl
       real(c_float), value :: vu
       integer(c_int), value :: il
       integer(c_int), value :: iu
       integer(c_int) :: nev
-      real(c_float), target :: W(*)
-      complex(c_float_complex), target :: Z(*)
+      real(c_float), target :: W(..)
+      complex(c_float_complex), target :: Z(..)
       integer(c_int), value :: ldz
-      integer(c_int), target :: info(*)
+      integer(c_int) :: info
       integer(c_int) :: chegvdx
-      chegvdx = rocsolver_chegvdx_raw(handle, itype, evect, erange, uplo, n, c_loc(A(1)), lda, &
-        c_loc(B(1)), ldb, vl, vu, il, iu, nev, c_loc(W(1)), c_loc(Z(1)), ldz, c_loc(info(1)))
+      chegvdx = rocsolver_chegvdx_raw(handle, itype, evect, erange, uplo, n, c_loc(A), lda, c_loc( &
+        B), ldb, vl, vu, il, iu, nev, c_loc(W), c_loc(Z), ldz, info)
     end function rocsolver_chegvdx_native
 
     function rocsolver_chegvdx_typed(handle, itype, evect, erange, uplo, n, A, lda, B, ldb, vl, &
@@ -80571,7 +80500,7 @@ contains
       type(c_ptr), value :: W
       type(c_ptr), value :: Z
       integer(c_int), value :: ldz
-      type(c_ptr), value :: info
+      integer(c_int) :: info
       integer(c_int) :: chegvdx
       chegvdx = rocsolver_chegvdx_raw(handle%ptr, itype, evect, erange, uplo, n, A, lda, B, ldb, &
         vl, vu, il, iu, nev, W, Z, ldz, info)
@@ -80587,22 +80516,22 @@ contains
       integer(c_int), value :: erange
       integer(c_int), value :: uplo
       integer(c_int), value :: n
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: A(..)
       integer(c_int), value :: lda
-      complex(c_double_complex), target :: B(*)
+      complex(c_double_complex), target :: B(..)
       integer(c_int), value :: ldb
       real(c_double), value :: vl
       real(c_double), value :: vu
       integer(c_int), value :: il
       integer(c_int), value :: iu
       integer(c_int) :: nev
-      real(c_double), target :: W(*)
-      complex(c_double_complex), target :: Z(*)
+      real(c_double), target :: W(..)
+      complex(c_double_complex), target :: Z(..)
       integer(c_int), value :: ldz
-      integer(c_int), target :: info(*)
+      integer(c_int) :: info
       integer(c_int) :: zhegvdx
-      zhegvdx = rocsolver_zhegvdx_raw(handle, itype, evect, erange, uplo, n, c_loc(A(1)), lda, &
-        c_loc(B(1)), ldb, vl, vu, il, iu, nev, c_loc(W(1)), c_loc(Z(1)), ldz, c_loc(info(1)))
+      zhegvdx = rocsolver_zhegvdx_raw(handle, itype, evect, erange, uplo, n, c_loc(A), lda, c_loc( &
+        B), ldb, vl, vu, il, iu, nev, c_loc(W), c_loc(Z), ldz, info)
     end function rocsolver_zhegvdx_native
 
     function rocsolver_zhegvdx_typed(handle, itype, evect, erange, uplo, n, A, lda, B, ldb, vl, &
@@ -80628,7 +80557,7 @@ contains
       type(c_ptr), value :: W
       type(c_ptr), value :: Z
       integer(c_int), value :: ldz
-      type(c_ptr), value :: info
+      integer(c_int) :: info
       integer(c_int) :: zhegvdx
       zhegvdx = rocsolver_zhegvdx_raw(handle%ptr, itype, evect, erange, uplo, n, A, lda, B, ldb, &
         vl, vu, il, iu, nev, W, Z, ldz, info)
@@ -80652,16 +80581,16 @@ contains
       real(c_float), value :: vu
       integer(c_int), value :: il
       integer(c_int), value :: iu
-      integer(c_int), target :: nev(*)
-      real(c_float), target :: W(*)
+      integer(c_int), target :: nev(..)
+      real(c_float), target :: W(..)
       integer(c_long), value :: strideW
       type(c_ptr), value :: Z
       integer(c_int), value :: ldz
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: ssygvdx_batched
       ssygvdx_batched = rocsolver_ssygvdx_batched_raw(handle, itype, evect, erange, uplo, n, A, &
-        lda, B, ldb, vl, vu, il, iu, c_loc(nev(1)), c_loc(W(1)), strideW, Z, ldz, c_loc(info(1)), &
+        lda, B, ldb, vl, vu, il, iu, c_loc(nev), c_loc(W), strideW, Z, ldz, c_loc(info), &
         batch_count)
     end function rocsolver_ssygvdx_batched_native
 
@@ -80714,16 +80643,16 @@ contains
       real(c_double), value :: vu
       integer(c_int), value :: il
       integer(c_int), value :: iu
-      integer(c_int), target :: nev(*)
-      real(c_double), target :: W(*)
+      integer(c_int), target :: nev(..)
+      real(c_double), target :: W(..)
       integer(c_long), value :: strideW
       type(c_ptr), value :: Z
       integer(c_int), value :: ldz
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: dsygvdx_batched
       dsygvdx_batched = rocsolver_dsygvdx_batched_raw(handle, itype, evect, erange, uplo, n, A, &
-        lda, B, ldb, vl, vu, il, iu, c_loc(nev(1)), c_loc(W(1)), strideW, Z, ldz, c_loc(info(1)), &
+        lda, B, ldb, vl, vu, il, iu, c_loc(nev), c_loc(W), strideW, Z, ldz, c_loc(info), &
         batch_count)
     end function rocsolver_dsygvdx_batched_native
 
@@ -80776,16 +80705,16 @@ contains
       real(c_float), value :: vu
       integer(c_int), value :: il
       integer(c_int), value :: iu
-      integer(c_int), target :: nev(*)
-      real(c_float), target :: W(*)
+      integer(c_int), target :: nev(..)
+      real(c_float), target :: W(..)
       integer(c_long), value :: strideW
       type(c_ptr), value :: Z
       integer(c_int), value :: ldz
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: chegvdx_batched
       chegvdx_batched = rocsolver_chegvdx_batched_raw(handle, itype, evect, erange, uplo, n, A, &
-        lda, B, ldb, vl, vu, il, iu, c_loc(nev(1)), c_loc(W(1)), strideW, Z, ldz, c_loc(info(1)), &
+        lda, B, ldb, vl, vu, il, iu, c_loc(nev), c_loc(W), strideW, Z, ldz, c_loc(info), &
         batch_count)
     end function rocsolver_chegvdx_batched_native
 
@@ -80838,16 +80767,16 @@ contains
       real(c_double), value :: vu
       integer(c_int), value :: il
       integer(c_int), value :: iu
-      integer(c_int), target :: nev(*)
-      real(c_double), target :: W(*)
+      integer(c_int), target :: nev(..)
+      real(c_double), target :: W(..)
       integer(c_long), value :: strideW
       type(c_ptr), value :: Z
       integer(c_int), value :: ldz
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: zhegvdx_batched
       zhegvdx_batched = rocsolver_zhegvdx_batched_raw(handle, itype, evect, erange, uplo, n, A, &
-        lda, B, ldb, vl, vu, il, iu, c_loc(nev(1)), c_loc(W(1)), strideW, Z, ldz, c_loc(info(1)), &
+        lda, B, ldb, vl, vu, il, iu, c_loc(nev), c_loc(W), strideW, Z, ldz, c_loc(info), &
         batch_count)
     end function rocsolver_zhegvdx_batched_native
 
@@ -80893,28 +80822,28 @@ contains
       integer(c_int), value :: erange
       integer(c_int), value :: uplo
       integer(c_int), value :: n
-      real(c_float), target :: A(*)
+      real(c_float), target :: A(..)
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
-      real(c_float), target :: B(*)
+      real(c_float), target :: B(..)
       integer(c_int), value :: ldb
       integer(c_long), value :: strideB
       real(c_float), value :: vl
       real(c_float), value :: vu
       integer(c_int), value :: il
       integer(c_int), value :: iu
-      integer(c_int), target :: nev(*)
-      real(c_float), target :: W(*)
+      integer(c_int), target :: nev(..)
+      real(c_float), target :: W(..)
       integer(c_long), value :: strideW
-      real(c_float), target :: Z(*)
+      real(c_float), target :: Z(..)
       integer(c_int), value :: ldz
       integer(c_long), value :: strideZ
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: ssygvdx_strided_batched
       ssygvdx_strided_batched = rocsolver_ssygvdx_strided_batched_raw(handle, itype, evect, &
-        erange, uplo, n, c_loc(A(1)), lda, strideA, c_loc(B(1)), ldb, strideB, vl, vu, il, iu, &
-        c_loc(nev(1)), c_loc(W(1)), strideW, c_loc(Z(1)), ldz, strideZ, c_loc(info(1)), batch_count)
+        erange, uplo, n, c_loc(A), lda, strideA, c_loc(B), ldb, strideB, vl, vu, il, iu, c_loc( &
+        nev), c_loc(W), strideW, c_loc(Z), ldz, strideZ, c_loc(info), batch_count)
     end function rocsolver_ssygvdx_strided_batched_native
 
     function rocsolver_ssygvdx_strided_batched_typed(handle, itype, evect, erange, uplo, n, A, &
@@ -80964,28 +80893,28 @@ contains
       integer(c_int), value :: erange
       integer(c_int), value :: uplo
       integer(c_int), value :: n
-      real(c_double), target :: A(*)
+      real(c_double), target :: A(..)
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
-      real(c_double), target :: B(*)
+      real(c_double), target :: B(..)
       integer(c_int), value :: ldb
       integer(c_long), value :: strideB
       real(c_double), value :: vl
       real(c_double), value :: vu
       integer(c_int), value :: il
       integer(c_int), value :: iu
-      integer(c_int), target :: nev(*)
-      real(c_double), target :: W(*)
+      integer(c_int), target :: nev(..)
+      real(c_double), target :: W(..)
       integer(c_long), value :: strideW
-      real(c_double), target :: Z(*)
+      real(c_double), target :: Z(..)
       integer(c_int), value :: ldz
       integer(c_long), value :: strideZ
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: dsygvdx_strided_batched
       dsygvdx_strided_batched = rocsolver_dsygvdx_strided_batched_raw(handle, itype, evect, &
-        erange, uplo, n, c_loc(A(1)), lda, strideA, c_loc(B(1)), ldb, strideB, vl, vu, il, iu, &
-        c_loc(nev(1)), c_loc(W(1)), strideW, c_loc(Z(1)), ldz, strideZ, c_loc(info(1)), batch_count)
+        erange, uplo, n, c_loc(A), lda, strideA, c_loc(B), ldb, strideB, vl, vu, il, iu, c_loc( &
+        nev), c_loc(W), strideW, c_loc(Z), ldz, strideZ, c_loc(info), batch_count)
     end function rocsolver_dsygvdx_strided_batched_native
 
     function rocsolver_dsygvdx_strided_batched_typed(handle, itype, evect, erange, uplo, n, A, &
@@ -81035,28 +80964,28 @@ contains
       integer(c_int), value :: erange
       integer(c_int), value :: uplo
       integer(c_int), value :: n
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: A(..)
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
-      complex(c_float_complex), target :: B(*)
+      complex(c_float_complex), target :: B(..)
       integer(c_int), value :: ldb
       integer(c_long), value :: strideB
       real(c_float), value :: vl
       real(c_float), value :: vu
       integer(c_int), value :: il
       integer(c_int), value :: iu
-      integer(c_int), target :: nev(*)
-      real(c_float), target :: W(*)
+      integer(c_int), target :: nev(..)
+      real(c_float), target :: W(..)
       integer(c_long), value :: strideW
-      complex(c_float_complex), target :: Z(*)
+      complex(c_float_complex), target :: Z(..)
       integer(c_int), value :: ldz
       integer(c_long), value :: strideZ
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: chegvdx_strided_batched
       chegvdx_strided_batched = rocsolver_chegvdx_strided_batched_raw(handle, itype, evect, &
-        erange, uplo, n, c_loc(A(1)), lda, strideA, c_loc(B(1)), ldb, strideB, vl, vu, il, iu, &
-        c_loc(nev(1)), c_loc(W(1)), strideW, c_loc(Z(1)), ldz, strideZ, c_loc(info(1)), batch_count)
+        erange, uplo, n, c_loc(A), lda, strideA, c_loc(B), ldb, strideB, vl, vu, il, iu, c_loc( &
+        nev), c_loc(W), strideW, c_loc(Z), ldz, strideZ, c_loc(info), batch_count)
     end function rocsolver_chegvdx_strided_batched_native
 
     function rocsolver_chegvdx_strided_batched_typed(handle, itype, evect, erange, uplo, n, A, &
@@ -81106,28 +81035,28 @@ contains
       integer(c_int), value :: erange
       integer(c_int), value :: uplo
       integer(c_int), value :: n
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: A(..)
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
-      complex(c_double_complex), target :: B(*)
+      complex(c_double_complex), target :: B(..)
       integer(c_int), value :: ldb
       integer(c_long), value :: strideB
       real(c_double), value :: vl
       real(c_double), value :: vu
       integer(c_int), value :: il
       integer(c_int), value :: iu
-      integer(c_int), target :: nev(*)
-      real(c_double), target :: W(*)
+      integer(c_int), target :: nev(..)
+      real(c_double), target :: W(..)
       integer(c_long), value :: strideW
-      complex(c_double_complex), target :: Z(*)
+      complex(c_double_complex), target :: Z(..)
       integer(c_int), value :: ldz
       integer(c_long), value :: strideZ
-      integer(c_int), target :: info(*)
+      integer(c_int), target :: info(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: zhegvdx_strided_batched
       zhegvdx_strided_batched = rocsolver_zhegvdx_strided_batched_raw(handle, itype, evect, &
-        erange, uplo, n, c_loc(A(1)), lda, strideA, c_loc(B(1)), ldb, strideB, vl, vu, il, iu, &
-        c_loc(nev(1)), c_loc(W(1)), strideW, c_loc(Z(1)), ldz, strideZ, c_loc(info(1)), batch_count)
+        erange, uplo, n, c_loc(A), lda, strideA, c_loc(B), ldb, strideB, vl, vu, il, iu, c_loc( &
+        nev), c_loc(W), strideW, c_loc(Z), ldz, strideZ, c_loc(info), batch_count)
     end function rocsolver_zhegvdx_strided_batched_native
 
     function rocsolver_zhegvdx_strided_batched_typed(handle, itype, evect, erange, uplo, n, A, &

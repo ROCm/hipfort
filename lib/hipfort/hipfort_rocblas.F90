@@ -526,6 +526,27 @@ module hipfort_rocblas
     end subroutine rocblas_initialize
 
     !---------------------------------------------
+    ! rocblas_get_version_string
+    !---------------------------------------------
+    !> \brief   Loads ``char* buf`` with the rocBLAS library version. ``size_t len``
+    !> is the maximum length of the ``char* buf``.
+    !> \details
+    !>
+    !> @param[in, out]
+    !> buf             pointer to buffer for version string
+    !>
+    !> @param[in]
+    !> len             length of buf
+    function rocblas_get_version_string(buf, len) &
+       result(get_version_string) &
+       bind(C, name="rocblas_get_version_string")
+       import :: c_ptr, c_long, c_int
+       type(c_ptr), value :: buf
+       integer(c_long), value :: len
+       integer(c_int) :: get_version_string
+    end function rocblas_get_version_string
+
+    !---------------------------------------------
     ! rocblas_get_version_string_size
     !---------------------------------------------
     !> \brief   Queries the minimum buffer size for a successful call to
@@ -541,6 +562,27 @@ module hipfort_rocblas
        type(c_ptr), value :: len
        integer(c_int) :: get_version_string_size
     end function rocblas_get_version_string_size
+
+    !---------------------------------------------
+    ! rocblas_get_commit_hash_string
+    !---------------------------------------------
+    !> \brief   Loads char* buf with the rocblas library commit hash. size_t len
+    !> is the maximum length of char* buf.
+    !> \details
+    !>
+    !> @param[in, out]
+    !> buf             pointer to buffer for version string
+    !>
+    !> @param[in]
+    !> len             length of buf
+    function rocblas_get_commit_hash_string(buf, len) &
+       result(get_commit_hash_string) &
+       bind(C, name="rocblas_get_commit_hash_string")
+       import :: c_ptr, c_long, c_int
+       type(c_ptr), value :: buf
+       integer(c_long), value :: len
+       integer(c_int) :: get_commit_hash_string
+    end function rocblas_get_commit_hash_string
 
     !---------------------------------------------
     ! rocblas_get_commit_hash_string_size
@@ -2526,14 +2568,14 @@ module hipfort_rocblas
     function rocblas_hdot_raw(handle, n, x, incx, y, incy, result) &
        result(hdot_raw) &
        bind(C, name="rocblas_hdot")
-       import :: c_ptr, c_int
+       import :: c_ptr, c_int, rocblas_half
        type(c_ptr), value :: handle
        integer(c_int), value :: n
-       type(c_ptr), value :: x
+       type(rocblas_half) :: x
        integer(c_int), value :: incx
-       type(c_ptr), value :: y
+       type(rocblas_half) :: y
        integer(c_int), value :: incy
-       type(c_ptr), value :: result
+       type(rocblas_half) :: result
        integer(c_int) :: hdot_raw
     end function rocblas_hdot_raw
 
@@ -2547,14 +2589,14 @@ module hipfort_rocblas
     function rocblas_bfdot_raw(handle, n, x, incx, y, incy, result) &
        result(bfdot_raw) &
        bind(C, name="rocblas_bfdot")
-       import :: c_ptr, c_int
+       import :: c_ptr, c_int, rocblas_bfloat16
        type(c_ptr), value :: handle
        integer(c_int), value :: n
-       type(c_ptr), value :: x
+       type(rocblas_bfloat16) :: x
        integer(c_int), value :: incx
-       type(c_ptr), value :: y
+       type(rocblas_bfloat16) :: y
        integer(c_int), value :: incy
-       type(c_ptr), value :: result
+       type(rocblas_bfloat16) :: result
        integer(c_int) :: bfdot_raw
     end function rocblas_bfdot_raw
 
@@ -2700,14 +2742,14 @@ module hipfort_rocblas
     function rocblas_hdot_64_raw(handle, n, x, incx, y, incy, result) &
        result(hdot_64_raw) &
        bind(C, name="rocblas_hdot_64")
-       import :: c_ptr, c_long, c_int
+       import :: c_ptr, c_long, rocblas_half, c_int
        type(c_ptr), value :: handle
        integer(c_long), value :: n
-       type(c_ptr), value :: x
+       type(rocblas_half) :: x
        integer(c_long), value :: incx
-       type(c_ptr), value :: y
+       type(rocblas_half) :: y
        integer(c_long), value :: incy
-       type(c_ptr), value :: result
+       type(rocblas_half) :: result
        integer(c_int) :: hdot_64_raw
     end function rocblas_hdot_64_raw
 
@@ -2721,14 +2763,14 @@ module hipfort_rocblas
     function rocblas_bfdot_64_raw(handle, n, x, incx, y, incy, result) &
        result(bfdot_64_raw) &
        bind(C, name="rocblas_bfdot_64")
-       import :: c_ptr, c_long, c_int
+       import :: c_ptr, c_long, rocblas_bfloat16, c_int
        type(c_ptr), value :: handle
        integer(c_long), value :: n
-       type(c_ptr), value :: x
+       type(rocblas_bfloat16) :: x
        integer(c_long), value :: incx
-       type(c_ptr), value :: y
+       type(rocblas_bfloat16) :: y
        integer(c_long), value :: incy
-       type(c_ptr), value :: result
+       type(rocblas_bfloat16) :: result
        integer(c_int) :: bfdot_64_raw
     end function rocblas_bfdot_64_raw
 
@@ -2914,7 +2956,7 @@ module hipfort_rocblas
     function rocblas_hdot_batched_raw(handle, n, x, incx, y, incy, batch_count, result) &
        result(hdot_batched_raw) &
        bind(C, name="rocblas_hdot_batched")
-       import :: c_ptr, c_int
+       import :: c_ptr, c_int, rocblas_half
        type(c_ptr), value :: handle
        integer(c_int), value :: n
        type(c_ptr), value :: x
@@ -2922,7 +2964,7 @@ module hipfort_rocblas
        type(c_ptr), value :: y
        integer(c_int), value :: incy
        integer(c_int), value :: batch_count
-       type(c_ptr), value :: result
+       type(rocblas_half) :: result
        integer(c_int) :: hdot_batched_raw
     end function rocblas_hdot_batched_raw
 
@@ -2936,7 +2978,7 @@ module hipfort_rocblas
     function rocblas_bfdot_batched_raw(handle, n, x, incx, y, incy, batch_count, result) &
        result(bfdot_batched_raw) &
        bind(C, name="rocblas_bfdot_batched")
-       import :: c_ptr, c_int
+       import :: c_ptr, c_int, rocblas_bfloat16
        type(c_ptr), value :: handle
        integer(c_int), value :: n
        type(c_ptr), value :: x
@@ -2944,7 +2986,7 @@ module hipfort_rocblas
        type(c_ptr), value :: y
        integer(c_int), value :: incy
        integer(c_int), value :: batch_count
-       type(c_ptr), value :: result
+       type(rocblas_bfloat16) :: result
        integer(c_int) :: bfdot_batched_raw
     end function rocblas_bfdot_batched_raw
 
@@ -3096,7 +3138,7 @@ module hipfort_rocblas
     function rocblas_hdot_batched_64_raw(handle, n, x, incx, y, incy, batch_count, result) &
        result(hdot_batched_64_raw) &
        bind(C, name="rocblas_hdot_batched_64")
-       import :: c_ptr, c_long, c_int
+       import :: c_ptr, c_long, rocblas_half, c_int
        type(c_ptr), value :: handle
        integer(c_long), value :: n
        type(c_ptr), value :: x
@@ -3104,7 +3146,7 @@ module hipfort_rocblas
        type(c_ptr), value :: y
        integer(c_long), value :: incy
        integer(c_long), value :: batch_count
-       type(c_ptr), value :: result
+       type(rocblas_half) :: result
        integer(c_int) :: hdot_batched_64_raw
     end function rocblas_hdot_batched_64_raw
 
@@ -3118,7 +3160,7 @@ module hipfort_rocblas
     function rocblas_bfdot_batched_64_raw(handle, n, x, incx, y, incy, batch_count, result) &
        result(bfdot_batched_64_raw) &
        bind(C, name="rocblas_bfdot_batched_64")
-       import :: c_ptr, c_long, c_int
+       import :: c_ptr, c_long, rocblas_bfloat16, c_int
        type(c_ptr), value :: handle
        integer(c_long), value :: n
        type(c_ptr), value :: x
@@ -3126,7 +3168,7 @@ module hipfort_rocblas
        type(c_ptr), value :: y
        integer(c_long), value :: incy
        integer(c_long), value :: batch_count
-       type(c_ptr), value :: result
+       type(rocblas_bfloat16) :: result
        integer(c_int) :: bfdot_batched_64_raw
     end function rocblas_bfdot_batched_64_raw
 
@@ -3330,17 +3372,17 @@ module hipfort_rocblas
                                               batch_count, result) &
        result(hdot_strided_batched_raw) &
        bind(C, name="rocblas_hdot_strided_batched")
-       import :: c_ptr, c_int, c_long
+       import :: c_ptr, c_int, rocblas_half, c_long
        type(c_ptr), value :: handle
        integer(c_int), value :: n
-       type(c_ptr), value :: x
+       type(rocblas_half) :: x
        integer(c_int), value :: incx
        integer(c_long), value :: stridex
-       type(c_ptr), value :: y
+       type(rocblas_half) :: y
        integer(c_int), value :: incy
        integer(c_long), value :: stridey
        integer(c_int), value :: batch_count
-       type(c_ptr), value :: result
+       type(rocblas_half) :: result
        integer(c_int) :: hdot_strided_batched_raw
     end function rocblas_hdot_strided_batched_raw
 
@@ -3355,17 +3397,17 @@ module hipfort_rocblas
                                                batch_count, result) &
        result(bfdot_strided_batched_raw) &
        bind(C, name="rocblas_bfdot_strided_batched")
-       import :: c_ptr, c_int, c_long
+       import :: c_ptr, c_int, rocblas_bfloat16, c_long
        type(c_ptr), value :: handle
        integer(c_int), value :: n
-       type(c_ptr), value :: x
+       type(rocblas_bfloat16) :: x
        integer(c_int), value :: incx
        integer(c_long), value :: stridex
-       type(c_ptr), value :: y
+       type(rocblas_bfloat16) :: y
        integer(c_int), value :: incy
        integer(c_long), value :: stridey
        integer(c_int), value :: batch_count
-       type(c_ptr), value :: result
+       type(rocblas_bfloat16) :: result
        integer(c_int) :: bfdot_strided_batched_raw
     end function rocblas_bfdot_strided_batched_raw
 
@@ -3536,17 +3578,17 @@ module hipfort_rocblas
                                                  batch_count, result) &
        result(hdot_strided_batched_64_raw) &
        bind(C, name="rocblas_hdot_strided_batched_64")
-       import :: c_ptr, c_long, c_int
+       import :: c_ptr, c_long, rocblas_half, c_int
        type(c_ptr), value :: handle
        integer(c_long), value :: n
-       type(c_ptr), value :: x
+       type(rocblas_half) :: x
        integer(c_long), value :: incx
        integer(c_long), value :: stridex
-       type(c_ptr), value :: y
+       type(rocblas_half) :: y
        integer(c_long), value :: incy
        integer(c_long), value :: stridey
        integer(c_long), value :: batch_count
-       type(c_ptr), value :: result
+       type(rocblas_half) :: result
        integer(c_int) :: hdot_strided_batched_64_raw
     end function rocblas_hdot_strided_batched_64_raw
 
@@ -3561,17 +3603,17 @@ module hipfort_rocblas
                                                   batch_count, result) &
        result(bfdot_strided_batched_64_raw) &
        bind(C, name="rocblas_bfdot_strided_batched_64")
-       import :: c_ptr, c_long, c_int
+       import :: c_ptr, c_long, rocblas_bfloat16, c_int
        type(c_ptr), value :: handle
        integer(c_long), value :: n
-       type(c_ptr), value :: x
+       type(rocblas_bfloat16) :: x
        integer(c_long), value :: incx
        integer(c_long), value :: stridex
-       type(c_ptr), value :: y
+       type(rocblas_bfloat16) :: y
        integer(c_long), value :: incy
        integer(c_long), value :: stridey
        integer(c_long), value :: batch_count
-       type(c_ptr), value :: result
+       type(rocblas_bfloat16) :: result
        integer(c_int) :: bfdot_strided_batched_64_raw
     end function rocblas_bfdot_strided_batched_64_raw
 
@@ -4343,13 +4385,13 @@ module hipfort_rocblas
     function rocblas_haxpy_raw(handle, n, alpha, x, incx, y, incy) &
        result(haxpy_raw) &
        bind(C, name="rocblas_haxpy")
-       import :: c_ptr, c_int
+       import :: c_ptr, c_int, rocblas_half
        type(c_ptr), value :: handle
        integer(c_int), value :: n
-       type(c_ptr), value :: alpha
-       type(c_ptr), value :: x
+       type(rocblas_half) :: alpha
+       type(rocblas_half) :: x
        integer(c_int), value :: incx
-       type(c_ptr), value :: y
+       type(rocblas_half) :: y
        integer(c_int), value :: incy
        integer(c_int) :: haxpy_raw
     end function rocblas_haxpy_raw
@@ -4452,13 +4494,13 @@ module hipfort_rocblas
     function rocblas_haxpy_64_raw(handle, n, alpha, x, incx, y, incy) &
        result(haxpy_64_raw) &
        bind(C, name="rocblas_haxpy_64")
-       import :: c_ptr, c_long, c_int
+       import :: c_ptr, c_long, rocblas_half, c_int
        type(c_ptr), value :: handle
        integer(c_long), value :: n
-       type(c_ptr), value :: alpha
-       type(c_ptr), value :: x
+       type(rocblas_half) :: alpha
+       type(rocblas_half) :: x
        integer(c_long), value :: incx
-       type(c_ptr), value :: y
+       type(rocblas_half) :: y
        integer(c_long), value :: incy
        integer(c_int) :: haxpy_64_raw
     end function rocblas_haxpy_64_raw
@@ -4587,10 +4629,10 @@ module hipfort_rocblas
     function rocblas_haxpy_batched_raw(handle, n, alpha, x, incx, y, incy, batch_count) &
        result(haxpy_batched_raw) &
        bind(C, name="rocblas_haxpy_batched")
-       import :: c_ptr, c_int
+       import :: c_ptr, c_int, rocblas_half
        type(c_ptr), value :: handle
        integer(c_int), value :: n
-       type(c_ptr), value :: alpha
+       type(rocblas_half) :: alpha
        type(c_ptr), value :: x
        integer(c_int), value :: incx
        type(c_ptr), value :: y
@@ -4697,10 +4739,10 @@ module hipfort_rocblas
     function rocblas_haxpy_batched_64_raw(handle, n, alpha, x, incx, y, incy, batch_count) &
        result(haxpy_batched_64_raw) &
        bind(C, name="rocblas_haxpy_batched_64")
-       import :: c_ptr, c_long, c_int
+       import :: c_ptr, c_long, rocblas_half, c_int
        type(c_ptr), value :: handle
        integer(c_long), value :: n
-       type(c_ptr), value :: alpha
+       type(rocblas_half) :: alpha
        type(c_ptr), value :: x
        integer(c_long), value :: incx
        type(c_ptr), value :: y
@@ -4845,14 +4887,14 @@ module hipfort_rocblas
                                                stridey, batch_count) &
        result(haxpy_strided_batched_raw) &
        bind(C, name="rocblas_haxpy_strided_batched")
-       import :: c_ptr, c_int, c_long
+       import :: c_ptr, c_int, rocblas_half, c_long
        type(c_ptr), value :: handle
        integer(c_int), value :: n
-       type(c_ptr), value :: alpha
-       type(c_ptr), value :: x
+       type(rocblas_half) :: alpha
+       type(rocblas_half) :: x
        integer(c_int), value :: incx
        integer(c_long), value :: stridex
-       type(c_ptr), value :: y
+       type(rocblas_half) :: y
        integer(c_int), value :: incy
        integer(c_long), value :: stridey
        integer(c_int), value :: batch_count
@@ -4974,14 +5016,14 @@ module hipfort_rocblas
                                                   stridey, batch_count) &
        result(haxpy_strided_batched_64_raw) &
        bind(C, name="rocblas_haxpy_strided_batched_64")
-       import :: c_ptr, c_long, c_int
+       import :: c_ptr, c_long, rocblas_half, c_int
        type(c_ptr), value :: handle
        integer(c_long), value :: n
-       type(c_ptr), value :: alpha
-       type(c_ptr), value :: x
+       type(rocblas_half) :: alpha
+       type(rocblas_half) :: x
        integer(c_long), value :: incx
        integer(c_long), value :: stridex
-       type(c_ptr), value :: y
+       type(rocblas_half) :: y
        integer(c_long), value :: incy
        integer(c_long), value :: stridey
        integer(c_long), value :: batch_count
@@ -11832,20 +11874,20 @@ module hipfort_rocblas
                                                  batch_count) &
        result(hshgemv_strided_batched_raw) &
        bind(C, name="rocblas_hshgemv_strided_batched")
-       import :: c_ptr, c_int, c_long
+       import :: c_ptr, c_int, rocblas_half, c_long
        type(c_ptr), value :: handle
        integer(c_int), value :: transA
        integer(c_int), value :: m
        integer(c_int), value :: n
        type(c_ptr), value :: alpha
-       type(c_ptr), value :: A
+       type(rocblas_half) :: A
        integer(c_int), value :: lda
        integer(c_long), value :: strideA
-       type(c_ptr), value :: x
+       type(rocblas_half) :: x
        integer(c_int), value :: incx
        integer(c_long), value :: stridex
        type(c_ptr), value :: beta
-       type(c_ptr), value :: y
+       type(rocblas_half) :: y
        integer(c_int), value :: incy
        integer(c_long), value :: stridey
        integer(c_int), value :: batch_count
@@ -11865,16 +11907,16 @@ module hipfort_rocblas
                                                  batch_count) &
        result(hssgemv_strided_batched_raw) &
        bind(C, name="rocblas_hssgemv_strided_batched")
-       import :: c_ptr, c_int, c_long
+       import :: c_ptr, c_int, rocblas_half, c_long
        type(c_ptr), value :: handle
        integer(c_int), value :: transA
        integer(c_int), value :: m
        integer(c_int), value :: n
        type(c_ptr), value :: alpha
-       type(c_ptr), value :: A
+       type(rocblas_half) :: A
        integer(c_int), value :: lda
        integer(c_long), value :: strideA
-       type(c_ptr), value :: x
+       type(rocblas_half) :: x
        integer(c_int), value :: incx
        integer(c_long), value :: stridex
        type(c_ptr), value :: beta
@@ -11898,20 +11940,20 @@ module hipfort_rocblas
                                                  batch_count) &
        result(tstgemv_strided_batched_raw) &
        bind(C, name="rocblas_tstgemv_strided_batched")
-       import :: c_ptr, c_int, c_long
+       import :: c_ptr, c_int, rocblas_bfloat16, c_long
        type(c_ptr), value :: handle
        integer(c_int), value :: transA
        integer(c_int), value :: m
        integer(c_int), value :: n
        type(c_ptr), value :: alpha
-       type(c_ptr), value :: A
+       type(rocblas_bfloat16) :: A
        integer(c_int), value :: lda
        integer(c_long), value :: strideA
-       type(c_ptr), value :: x
+       type(rocblas_bfloat16) :: x
        integer(c_int), value :: incx
        integer(c_long), value :: stridex
        type(c_ptr), value :: beta
-       type(c_ptr), value :: y
+       type(rocblas_bfloat16) :: y
        integer(c_int), value :: incy
        integer(c_long), value :: stridey
        integer(c_int), value :: batch_count
@@ -11931,16 +11973,16 @@ module hipfort_rocblas
                                                  batch_count) &
        result(tssgemv_strided_batched_raw) &
        bind(C, name="rocblas_tssgemv_strided_batched")
-       import :: c_ptr, c_int, c_long
+       import :: c_ptr, c_int, rocblas_bfloat16, c_long
        type(c_ptr), value :: handle
        integer(c_int), value :: transA
        integer(c_int), value :: m
        integer(c_int), value :: n
        type(c_ptr), value :: alpha
-       type(c_ptr), value :: A
+       type(rocblas_bfloat16) :: A
        integer(c_int), value :: lda
        integer(c_long), value :: strideA
-       type(c_ptr), value :: x
+       type(rocblas_bfloat16) :: x
        integer(c_int), value :: incx
        integer(c_long), value :: stridex
        type(c_ptr), value :: beta
@@ -12096,20 +12138,20 @@ module hipfort_rocblas
                                                     batch_count) &
        result(hshgemv_strided_batched_64_raw) &
        bind(C, name="rocblas_hshgemv_strided_batched_64")
-       import :: c_ptr, c_int, c_long
+       import :: c_ptr, c_int, c_long, rocblas_half
        type(c_ptr), value :: handle
        integer(c_int), value :: transA
        integer(c_long), value :: m
        integer(c_long), value :: n
        type(c_ptr), value :: alpha
-       type(c_ptr), value :: A
+       type(rocblas_half) :: A
        integer(c_long), value :: lda
        integer(c_long), value :: strideA
-       type(c_ptr), value :: x
+       type(rocblas_half) :: x
        integer(c_long), value :: incx
        integer(c_long), value :: stridex
        type(c_ptr), value :: beta
-       type(c_ptr), value :: y
+       type(rocblas_half) :: y
        integer(c_long), value :: incy
        integer(c_long), value :: stridey
        integer(c_long), value :: batch_count
@@ -12129,16 +12171,16 @@ module hipfort_rocblas
                                                     batch_count) &
        result(hssgemv_strided_batched_64_raw) &
        bind(C, name="rocblas_hssgemv_strided_batched_64")
-       import :: c_ptr, c_int, c_long
+       import :: c_ptr, c_int, c_long, rocblas_half
        type(c_ptr), value :: handle
        integer(c_int), value :: transA
        integer(c_long), value :: m
        integer(c_long), value :: n
        type(c_ptr), value :: alpha
-       type(c_ptr), value :: A
+       type(rocblas_half) :: A
        integer(c_long), value :: lda
        integer(c_long), value :: strideA
-       type(c_ptr), value :: x
+       type(rocblas_half) :: x
        integer(c_long), value :: incx
        integer(c_long), value :: stridex
        type(c_ptr), value :: beta
@@ -12162,20 +12204,20 @@ module hipfort_rocblas
                                                     batch_count) &
        result(tstgemv_strided_batched_64_raw) &
        bind(C, name="rocblas_tstgemv_strided_batched_64")
-       import :: c_ptr, c_int, c_long
+       import :: c_ptr, c_int, c_long, rocblas_bfloat16
        type(c_ptr), value :: handle
        integer(c_int), value :: transA
        integer(c_long), value :: m
        integer(c_long), value :: n
        type(c_ptr), value :: alpha
-       type(c_ptr), value :: A
+       type(rocblas_bfloat16) :: A
        integer(c_long), value :: lda
        integer(c_long), value :: strideA
-       type(c_ptr), value :: x
+       type(rocblas_bfloat16) :: x
        integer(c_long), value :: incx
        integer(c_long), value :: stridex
        type(c_ptr), value :: beta
-       type(c_ptr), value :: y
+       type(rocblas_bfloat16) :: y
        integer(c_long), value :: incy
        integer(c_long), value :: stridey
        integer(c_long), value :: batch_count
@@ -12195,16 +12237,16 @@ module hipfort_rocblas
                                                     batch_count) &
        result(tssgemv_strided_batched_64_raw) &
        bind(C, name="rocblas_tssgemv_strided_batched_64")
-       import :: c_ptr, c_int, c_long
+       import :: c_ptr, c_int, c_long, rocblas_bfloat16
        type(c_ptr), value :: handle
        integer(c_int), value :: transA
        integer(c_long), value :: m
        integer(c_long), value :: n
        type(c_ptr), value :: alpha
-       type(c_ptr), value :: A
+       type(rocblas_bfloat16) :: A
        integer(c_long), value :: lda
        integer(c_long), value :: strideA
-       type(c_ptr), value :: x
+       type(rocblas_bfloat16) :: x
        integer(c_long), value :: incx
        integer(c_long), value :: stridex
        type(c_ptr), value :: beta
@@ -35147,20 +35189,20 @@ module hipfort_rocblas
                                ldc) &
        result(hgemm_raw) &
        bind(C, name="rocblas_hgemm")
-       import :: c_ptr, c_int
+       import :: c_ptr, c_int, rocblas_half
        type(c_ptr), value :: handle
        integer(c_int), value :: transA
        integer(c_int), value :: transB
        integer(c_int), value :: m
        integer(c_int), value :: n
        integer(c_int), value :: k
-       type(c_ptr), value :: alpha
-       type(c_ptr), value :: A
+       type(rocblas_half) :: alpha
+       type(rocblas_half) :: A
        integer(c_int), value :: lda
-       type(c_ptr), value :: B
+       type(rocblas_half) :: B
        integer(c_int), value :: ldb
-       type(c_ptr), value :: beta
-       type(c_ptr), value :: C
+       type(rocblas_half) :: beta
+       type(rocblas_half) :: C
        integer(c_int), value :: ldc
        integer(c_int) :: hgemm_raw
     end function rocblas_hgemm_raw
@@ -35296,20 +35338,20 @@ module hipfort_rocblas
                                   ldc) &
        result(hgemm_64_raw) &
        bind(C, name="rocblas_hgemm_64")
-       import :: c_ptr, c_int, c_long
+       import :: c_ptr, c_int, c_long, rocblas_half
        type(c_ptr), value :: handle
        integer(c_int), value :: transA
        integer(c_int), value :: transB
        integer(c_long), value :: m
        integer(c_long), value :: n
        integer(c_long), value :: k
-       type(c_ptr), value :: alpha
-       type(c_ptr), value :: A
+       type(rocblas_half) :: alpha
+       type(rocblas_half) :: A
        integer(c_long), value :: lda
-       type(c_ptr), value :: B
+       type(rocblas_half) :: B
        integer(c_long), value :: ldb
-       type(c_ptr), value :: beta
-       type(c_ptr), value :: C
+       type(rocblas_half) :: beta
+       type(rocblas_half) :: C
        integer(c_long), value :: ldc
        integer(c_int) :: hgemm_64_raw
     end function rocblas_hgemm_64_raw
@@ -35505,19 +35547,19 @@ module hipfort_rocblas
                                        beta, C, ldc, batch_count) &
        result(hgemm_batched_raw) &
        bind(C, name="rocblas_hgemm_batched")
-       import :: c_ptr, c_int
+       import :: c_ptr, c_int, rocblas_half
        type(c_ptr), value :: handle
        integer(c_int), value :: transA
        integer(c_int), value :: transB
        integer(c_int), value :: m
        integer(c_int), value :: n
        integer(c_int), value :: k
-       type(c_ptr), value :: alpha
+       type(rocblas_half) :: alpha
        type(c_ptr), value :: A
        integer(c_int), value :: lda
        type(c_ptr), value :: B
        integer(c_int), value :: ldb
-       type(c_ptr), value :: beta
+       type(rocblas_half) :: beta
        type(c_ptr), value :: C
        integer(c_int), value :: ldc
        integer(c_int), value :: batch_count
@@ -35657,19 +35699,19 @@ module hipfort_rocblas
                                           beta, C, ldc, batch_count) &
        result(hgemm_batched_64_raw) &
        bind(C, name="rocblas_hgemm_batched_64")
-       import :: c_ptr, c_int, c_long
+       import :: c_ptr, c_int, c_long, rocblas_half
        type(c_ptr), value :: handle
        integer(c_int), value :: transA
        integer(c_int), value :: transB
        integer(c_long), value :: m
        integer(c_long), value :: n
        integer(c_long), value :: k
-       type(c_ptr), value :: alpha
+       type(rocblas_half) :: alpha
        type(c_ptr), value :: A
        integer(c_long), value :: lda
        type(c_ptr), value :: B
        integer(c_long), value :: ldb
-       type(c_ptr), value :: beta
+       type(rocblas_half) :: beta
        type(c_ptr), value :: C
        integer(c_long), value :: ldc
        integer(c_long), value :: batch_count
@@ -35890,22 +35932,22 @@ module hipfort_rocblas
                                                batch_count) &
        result(hgemm_strided_batched_raw) &
        bind(C, name="rocblas_hgemm_strided_batched")
-       import :: c_ptr, c_int, c_long
+       import :: c_ptr, c_int, rocblas_half, c_long
        type(c_ptr), value :: handle
        integer(c_int), value :: transA
        integer(c_int), value :: transB
        integer(c_int), value :: m
        integer(c_int), value :: n
        integer(c_int), value :: k
-       type(c_ptr), value :: alpha
-       type(c_ptr), value :: A
+       type(rocblas_half) :: alpha
+       type(rocblas_half) :: A
        integer(c_int), value :: lda
        integer(c_long), value :: stride_a
-       type(c_ptr), value :: B
+       type(rocblas_half) :: B
        integer(c_int), value :: ldb
        integer(c_long), value :: stride_b
-       type(c_ptr), value :: beta
-       type(c_ptr), value :: C
+       type(rocblas_half) :: beta
+       type(rocblas_half) :: C
        integer(c_int), value :: ldc
        integer(c_long), value :: stride_c
        integer(c_int), value :: batch_count
@@ -36064,22 +36106,22 @@ module hipfort_rocblas
                                                   stride_c, batch_count) &
        result(hgemm_strided_batched_64_raw) &
        bind(C, name="rocblas_hgemm_strided_batched_64")
-       import :: c_ptr, c_int, c_long
+       import :: c_ptr, c_int, c_long, rocblas_half
        type(c_ptr), value :: handle
        integer(c_int), value :: transA
        integer(c_int), value :: transB
        integer(c_long), value :: m
        integer(c_long), value :: n
        integer(c_long), value :: k
-       type(c_ptr), value :: alpha
-       type(c_ptr), value :: A
+       type(rocblas_half) :: alpha
+       type(rocblas_half) :: A
        integer(c_long), value :: lda
        integer(c_long), value :: stride_a
-       type(c_ptr), value :: B
+       type(rocblas_half) :: B
        integer(c_long), value :: ldb
        integer(c_long), value :: stride_b
-       type(c_ptr), value :: beta
-       type(c_ptr), value :: C
+       type(rocblas_half) :: beta
+       type(rocblas_half) :: C
        integer(c_long), value :: ldc
        integer(c_long), value :: stride_c
        integer(c_long), value :: batch_count
@@ -42555,9 +42597,9 @@ contains
       use, intrinsic :: iso_c_binding
       implicit none
       type(c_ptr), value :: handle
-      integer(c_int), target :: pointer_mode(*)
+      integer(c_int), target :: pointer_mode(..)
       integer(c_int) :: get_pointer_mode
-      get_pointer_mode = rocblas_get_pointer_mode_raw(handle, c_loc(pointer_mode(1)))
+      get_pointer_mode = rocblas_get_pointer_mode_raw(handle, c_loc(pointer_mode))
     end function rocblas_get_pointer_mode_native
 
     function rocblas_get_pointer_mode_typed(handle, pointer_mode) result(get_pointer_mode)
@@ -42584,9 +42626,9 @@ contains
       use, intrinsic :: iso_c_binding
       implicit none
       type(c_ptr), value :: handle
-      integer(c_int), target :: atomics_mode(*)
+      integer(c_int), target :: atomics_mode(..)
       integer(c_int) :: get_atomics_mode
-      get_atomics_mode = rocblas_get_atomics_mode_raw(handle, c_loc(atomics_mode(1)))
+      get_atomics_mode = rocblas_get_atomics_mode_raw(handle, c_loc(atomics_mode))
     end function rocblas_get_atomics_mode_native
 
     function rocblas_get_atomics_mode_typed(handle, atomics_mode) result(get_atomics_mode)
@@ -42655,9 +42697,9 @@ contains
       use, intrinsic :: iso_c_binding
       implicit none
       type(c_ptr), value :: handle
-      integer(c_int), target :: math_mode(*)
+      integer(c_int), target :: math_mode(..)
       integer(c_int) :: get_math_mode
-      get_math_mode = rocblas_get_math_mode_raw(handle, c_loc(math_mode(1)))
+      get_math_mode = rocblas_get_math_mode_raw(handle, c_loc(math_mode))
     end function rocblas_get_math_mode_native
 
     function rocblas_get_math_mode_typed(handle, math_mode) result(get_math_mode)
@@ -42687,9 +42729,9 @@ contains
       use, intrinsic :: iso_c_binding
       implicit none
       type(c_ptr), value :: handle
-      real(c_double), target :: fitness(*)
+      real(c_double), target :: fitness(..)
       integer(c_int) :: set_solution_fitness_query
-      set_solution_fitness_query = rocblas_set_solution_fitness_query_raw(handle, c_loc(fitness(1)))
+      set_solution_fitness_query = rocblas_set_solution_fitness_query_raw(handle, c_loc(fitness))
     end function rocblas_set_solution_fitness_query_native
 
     function rocblas_set_solution_fitness_query_typed(handle, fitness) result( &
@@ -42717,9 +42759,9 @@ contains
       use, intrinsic :: iso_c_binding
       implicit none
       type(c_ptr), value :: handle
-      integer(c_int), target :: metric(*)
+      integer(c_int), target :: metric(..)
       integer(c_int) :: get_performance_metric
-      get_performance_metric = rocblas_get_performance_metric_raw(handle, c_loc(metric(1)))
+      get_performance_metric = rocblas_get_performance_metric_raw(handle, c_loc(metric))
     end function rocblas_get_performance_metric_native
 
     function rocblas_get_performance_metric_typed(handle, metric) result(get_performance_metric)
@@ -42737,11 +42779,11 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_int), value :: n
-      real(c_float), target :: alpha(*)
-      real(c_float), target :: x(*)
+      real(c_float), target :: alpha(..)
+      real(c_float), target :: x(..)
       integer(c_int), value :: incx
       integer(c_int) :: sscal
-      sscal = rocblas_sscal_raw(handle, n, c_loc(alpha(1)), c_loc(x(1)), incx)
+      sscal = rocblas_sscal_raw(handle, n, c_loc(alpha), c_loc(x), incx)
     end function rocblas_sscal_native
 
     function rocblas_sscal_typed(handle, n, alpha, x, incx) result(sscal)
@@ -42762,11 +42804,11 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_int), value :: n
-      real(c_double), target :: alpha(*)
-      real(c_double), target :: x(*)
+      real(c_double), target :: alpha(..)
+      real(c_double), target :: x(..)
       integer(c_int), value :: incx
       integer(c_int) :: dscal
-      dscal = rocblas_dscal_raw(handle, n, c_loc(alpha(1)), c_loc(x(1)), incx)
+      dscal = rocblas_dscal_raw(handle, n, c_loc(alpha), c_loc(x), incx)
     end function rocblas_dscal_native
 
     function rocblas_dscal_typed(handle, n, alpha, x, incx) result(dscal)
@@ -42788,10 +42830,10 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: n
       complex(c_float_complex) :: alpha
-      complex(c_float_complex), target :: x(*)
+      complex(c_float_complex), target :: x(..)
       integer(c_int), value :: incx
       integer(c_int) :: cscal
-      cscal = rocblas_cscal_raw(handle, n, alpha, c_loc(x(1)), incx)
+      cscal = rocblas_cscal_raw(handle, n, alpha, c_loc(x), incx)
     end function rocblas_cscal_native
 
     function rocblas_cscal_typed(handle, n, alpha, x, incx) result(cscal)
@@ -42813,10 +42855,10 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: n
       complex(c_double_complex) :: alpha
-      complex(c_double_complex), target :: x(*)
+      complex(c_double_complex), target :: x(..)
       integer(c_int), value :: incx
       integer(c_int) :: zscal
-      zscal = rocblas_zscal_raw(handle, n, alpha, c_loc(x(1)), incx)
+      zscal = rocblas_zscal_raw(handle, n, alpha, c_loc(x), incx)
     end function rocblas_zscal_native
 
     function rocblas_zscal_typed(handle, n, alpha, x, incx) result(zscal)
@@ -42838,10 +42880,10 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: n
       real(c_float) :: alpha
-      complex(c_float_complex), target :: x(*)
+      complex(c_float_complex), target :: x(..)
       integer(c_int), value :: incx
       integer(c_int) :: csscal
-      csscal = rocblas_csscal_raw(handle, n, alpha, c_loc(x(1)), incx)
+      csscal = rocblas_csscal_raw(handle, n, alpha, c_loc(x), incx)
     end function rocblas_csscal_native
 
     function rocblas_csscal_typed(handle, n, alpha, x, incx) result(csscal)
@@ -42863,10 +42905,10 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: n
       real(c_double) :: alpha
-      complex(c_double_complex), target :: x(*)
+      complex(c_double_complex), target :: x(..)
       integer(c_int), value :: incx
       integer(c_int) :: zdscal
-      zdscal = rocblas_zdscal_raw(handle, n, alpha, c_loc(x(1)), incx)
+      zdscal = rocblas_zdscal_raw(handle, n, alpha, c_loc(x), incx)
     end function rocblas_zdscal_native
 
     function rocblas_zdscal_typed(handle, n, alpha, x, incx) result(zdscal)
@@ -42887,11 +42929,11 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_long), value :: n
-      real(c_float), target :: alpha(*)
-      real(c_float), target :: x(*)
+      real(c_float), target :: alpha(..)
+      real(c_float), target :: x(..)
       integer(c_long), value :: incx
       integer(c_int) :: sscal_64
-      sscal_64 = rocblas_sscal_64_raw(handle, n, c_loc(alpha(1)), c_loc(x(1)), incx)
+      sscal_64 = rocblas_sscal_64_raw(handle, n, c_loc(alpha), c_loc(x), incx)
     end function rocblas_sscal_64_native
 
     function rocblas_sscal_64_typed(handle, n, alpha, x, incx) result(sscal_64)
@@ -42912,11 +42954,11 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_long), value :: n
-      real(c_double), target :: alpha(*)
-      real(c_double), target :: x(*)
+      real(c_double), target :: alpha(..)
+      real(c_double), target :: x(..)
       integer(c_long), value :: incx
       integer(c_int) :: dscal_64
-      dscal_64 = rocblas_dscal_64_raw(handle, n, c_loc(alpha(1)), c_loc(x(1)), incx)
+      dscal_64 = rocblas_dscal_64_raw(handle, n, c_loc(alpha), c_loc(x), incx)
     end function rocblas_dscal_64_native
 
     function rocblas_dscal_64_typed(handle, n, alpha, x, incx) result(dscal_64)
@@ -42937,11 +42979,11 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_long), value :: n
-      complex(c_float_complex), target :: alpha(*)
-      complex(c_float_complex), target :: x(*)
+      complex(c_float_complex), target :: alpha(..)
+      complex(c_float_complex), target :: x(..)
       integer(c_long), value :: incx
       integer(c_int) :: cscal_64
-      cscal_64 = rocblas_cscal_64_raw(handle, n, c_loc(alpha(1)), c_loc(x(1)), incx)
+      cscal_64 = rocblas_cscal_64_raw(handle, n, c_loc(alpha), c_loc(x), incx)
     end function rocblas_cscal_64_native
 
     function rocblas_cscal_64_typed(handle, n, alpha, x, incx) result(cscal_64)
@@ -42962,11 +43004,11 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_long), value :: n
-      complex(c_double_complex), target :: alpha(*)
-      complex(c_double_complex), target :: x(*)
+      complex(c_double_complex), target :: alpha(..)
+      complex(c_double_complex), target :: x(..)
       integer(c_long), value :: incx
       integer(c_int) :: zscal_64
-      zscal_64 = rocblas_zscal_64_raw(handle, n, c_loc(alpha(1)), c_loc(x(1)), incx)
+      zscal_64 = rocblas_zscal_64_raw(handle, n, c_loc(alpha), c_loc(x), incx)
     end function rocblas_zscal_64_native
 
     function rocblas_zscal_64_typed(handle, n, alpha, x, incx) result(zscal_64)
@@ -42987,11 +43029,11 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_long), value :: n
-      real(c_float), target :: alpha(*)
-      complex(c_float_complex), target :: x(*)
+      real(c_float), target :: alpha(..)
+      complex(c_float_complex), target :: x(..)
       integer(c_long), value :: incx
       integer(c_int) :: csscal_64
-      csscal_64 = rocblas_csscal_64_raw(handle, n, c_loc(alpha(1)), c_loc(x(1)), incx)
+      csscal_64 = rocblas_csscal_64_raw(handle, n, c_loc(alpha), c_loc(x), incx)
     end function rocblas_csscal_64_native
 
     function rocblas_csscal_64_typed(handle, n, alpha, x, incx) result(csscal_64)
@@ -43012,11 +43054,11 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_long), value :: n
-      real(c_double), target :: alpha(*)
-      complex(c_double_complex), target :: x(*)
+      real(c_double), target :: alpha(..)
+      complex(c_double_complex), target :: x(..)
       integer(c_long), value :: incx
       integer(c_int) :: zdscal_64
-      zdscal_64 = rocblas_zdscal_64_raw(handle, n, c_loc(alpha(1)), c_loc(x(1)), incx)
+      zdscal_64 = rocblas_zdscal_64_raw(handle, n, c_loc(alpha), c_loc(x), incx)
     end function rocblas_zdscal_64_native
 
     function rocblas_zdscal_64_typed(handle, n, alpha, x, incx) result(zdscal_64)
@@ -43128,13 +43170,12 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_long), value :: n
-      real(c_float), target :: alpha(*)
+      real(c_float), target :: alpha(..)
       type(c_ptr), value :: x
       integer(c_long), value :: incx
       integer(c_long), value :: batch_count
       integer(c_int) :: sscal_batched_64
-      sscal_batched_64 = rocblas_sscal_batched_64_raw(handle, n, c_loc(alpha(1)), x, incx, &
-        batch_count)
+      sscal_batched_64 = rocblas_sscal_batched_64_raw(handle, n, c_loc(alpha), x, incx, batch_count)
     end function rocblas_sscal_batched_64_native
 
     function rocblas_sscal_batched_64_typed(handle, n, alpha, x, incx, batch_count) result( &
@@ -43158,13 +43199,12 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_long), value :: n
-      real(c_double), target :: alpha(*)
+      real(c_double), target :: alpha(..)
       type(c_ptr), value :: x
       integer(c_long), value :: incx
       integer(c_long), value :: batch_count
       integer(c_int) :: dscal_batched_64
-      dscal_batched_64 = rocblas_dscal_batched_64_raw(handle, n, c_loc(alpha(1)), x, incx, &
-        batch_count)
+      dscal_batched_64 = rocblas_dscal_batched_64_raw(handle, n, c_loc(alpha), x, incx, batch_count)
     end function rocblas_dscal_batched_64_native
 
     function rocblas_dscal_batched_64_typed(handle, n, alpha, x, incx, batch_count) result( &
@@ -43188,13 +43228,12 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_long), value :: n
-      complex(c_float_complex), target :: alpha(*)
+      complex(c_float_complex), target :: alpha(..)
       type(c_ptr), value :: x
       integer(c_long), value :: incx
       integer(c_long), value :: batch_count
       integer(c_int) :: cscal_batched_64
-      cscal_batched_64 = rocblas_cscal_batched_64_raw(handle, n, c_loc(alpha(1)), x, incx, &
-        batch_count)
+      cscal_batched_64 = rocblas_cscal_batched_64_raw(handle, n, c_loc(alpha), x, incx, batch_count)
     end function rocblas_cscal_batched_64_native
 
     function rocblas_cscal_batched_64_typed(handle, n, alpha, x, incx, batch_count) result( &
@@ -43218,13 +43257,12 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_long), value :: n
-      complex(c_double_complex), target :: alpha(*)
+      complex(c_double_complex), target :: alpha(..)
       type(c_ptr), value :: x
       integer(c_long), value :: incx
       integer(c_long), value :: batch_count
       integer(c_int) :: zscal_batched_64
-      zscal_batched_64 = rocblas_zscal_batched_64_raw(handle, n, c_loc(alpha(1)), x, incx, &
-        batch_count)
+      zscal_batched_64 = rocblas_zscal_batched_64_raw(handle, n, c_loc(alpha), x, incx, batch_count)
     end function rocblas_zscal_batched_64_native
 
     function rocblas_zscal_batched_64_typed(handle, n, alpha, x, incx, batch_count) result( &
@@ -43248,12 +43286,12 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_long), value :: n
-      real(c_float), target :: alpha(*)
+      real(c_float), target :: alpha(..)
       type(c_ptr), value :: x
       integer(c_long), value :: incx
       integer(c_long), value :: batch_count
       integer(c_int) :: csscal_batched_64
-      csscal_batched_64 = rocblas_csscal_batched_64_raw(handle, n, c_loc(alpha(1)), x, incx, &
+      csscal_batched_64 = rocblas_csscal_batched_64_raw(handle, n, c_loc(alpha), x, incx, &
         batch_count)
     end function rocblas_csscal_batched_64_native
 
@@ -43278,12 +43316,12 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_long), value :: n
-      real(c_double), target :: alpha(*)
+      real(c_double), target :: alpha(..)
       type(c_ptr), value :: x
       integer(c_long), value :: incx
       integer(c_long), value :: batch_count
       integer(c_int) :: zdscal_batched_64
-      zdscal_batched_64 = rocblas_zdscal_batched_64_raw(handle, n, c_loc(alpha(1)), x, incx, &
+      zdscal_batched_64 = rocblas_zdscal_batched_64_raw(handle, n, c_loc(alpha), x, incx, &
         batch_count)
     end function rocblas_zdscal_batched_64_native
 
@@ -43309,13 +43347,13 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: n
       real(c_float) :: alpha
-      real(c_float), target :: x(*)
+      real(c_float), target :: x(..)
       integer(c_int), value :: incx
       integer(c_long), value :: stride_x
       integer(c_int), value :: batch_count
       integer(c_int) :: sscal_strided_batched
-      sscal_strided_batched = rocblas_sscal_strided_batched_raw(handle, n, alpha, c_loc(x(1)), &
-        incx, stride_x, batch_count)
+      sscal_strided_batched = rocblas_sscal_strided_batched_raw(handle, n, alpha, c_loc(x), incx, &
+        stride_x, batch_count)
     end function rocblas_sscal_strided_batched_native
 
     function rocblas_sscal_strided_batched_typed(handle, n, alpha, x, incx, stride_x, &
@@ -43342,13 +43380,13 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: n
       real(c_double) :: alpha
-      real(c_double), target :: x(*)
+      real(c_double), target :: x(..)
       integer(c_int), value :: incx
       integer(c_long), value :: stride_x
       integer(c_int), value :: batch_count
       integer(c_int) :: dscal_strided_batched
-      dscal_strided_batched = rocblas_dscal_strided_batched_raw(handle, n, alpha, c_loc(x(1)), &
-        incx, stride_x, batch_count)
+      dscal_strided_batched = rocblas_dscal_strided_batched_raw(handle, n, alpha, c_loc(x), incx, &
+        stride_x, batch_count)
     end function rocblas_dscal_strided_batched_native
 
     function rocblas_dscal_strided_batched_typed(handle, n, alpha, x, incx, stride_x, &
@@ -43375,13 +43413,13 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: n
       complex(c_float_complex) :: alpha
-      complex(c_float_complex), target :: x(*)
+      complex(c_float_complex), target :: x(..)
       integer(c_int), value :: incx
       integer(c_long), value :: stride_x
       integer(c_int), value :: batch_count
       integer(c_int) :: cscal_strided_batched
-      cscal_strided_batched = rocblas_cscal_strided_batched_raw(handle, n, alpha, c_loc(x(1)), &
-        incx, stride_x, batch_count)
+      cscal_strided_batched = rocblas_cscal_strided_batched_raw(handle, n, alpha, c_loc(x), incx, &
+        stride_x, batch_count)
     end function rocblas_cscal_strided_batched_native
 
     function rocblas_cscal_strided_batched_typed(handle, n, alpha, x, incx, stride_x, &
@@ -43408,13 +43446,13 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: n
       complex(c_double_complex) :: alpha
-      complex(c_double_complex), target :: x(*)
+      complex(c_double_complex), target :: x(..)
       integer(c_int), value :: incx
       integer(c_long), value :: stride_x
       integer(c_int), value :: batch_count
       integer(c_int) :: zscal_strided_batched
-      zscal_strided_batched = rocblas_zscal_strided_batched_raw(handle, n, alpha, c_loc(x(1)), &
-        incx, stride_x, batch_count)
+      zscal_strided_batched = rocblas_zscal_strided_batched_raw(handle, n, alpha, c_loc(x), incx, &
+        stride_x, batch_count)
     end function rocblas_zscal_strided_batched_native
 
     function rocblas_zscal_strided_batched_typed(handle, n, alpha, x, incx, stride_x, &
@@ -43441,12 +43479,12 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: n
       real(c_float) :: alpha
-      complex(c_float_complex), target :: x(*)
+      complex(c_float_complex), target :: x(..)
       integer(c_int), value :: incx
       integer(c_long), value :: stride_x
       integer(c_int), value :: batch_count
       integer(c_int) :: csscal_strided_batched
-      csscal_strided_batched = rocblas_csscal_strided_batched_raw(handle, n, alpha, c_loc(x(1)), &
+      csscal_strided_batched = rocblas_csscal_strided_batched_raw(handle, n, alpha, c_loc(x), &
         incx, stride_x, batch_count)
     end function rocblas_csscal_strided_batched_native
 
@@ -43474,12 +43512,12 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: n
       real(c_double) :: alpha
-      complex(c_double_complex), target :: x(*)
+      complex(c_double_complex), target :: x(..)
       integer(c_int), value :: incx
       integer(c_long), value :: stride_x
       integer(c_int), value :: batch_count
       integer(c_int) :: zdscal_strided_batched
-      zdscal_strided_batched = rocblas_zdscal_strided_batched_raw(handle, n, alpha, c_loc(x(1)), &
+      zdscal_strided_batched = rocblas_zdscal_strided_batched_raw(handle, n, alpha, c_loc(x), &
         incx, stride_x, batch_count)
     end function rocblas_zdscal_strided_batched_native
 
@@ -43506,14 +43544,14 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_long), value :: n
-      real(c_float), target :: alpha(*)
-      real(c_float), target :: x(*)
+      real(c_float), target :: alpha(..)
+      real(c_float), target :: x(..)
       integer(c_long), value :: incx
       integer(c_long), value :: stride_x
       integer(c_long), value :: batch_count
       integer(c_int) :: sscal_strided_batched_64
-      sscal_strided_batched_64 = rocblas_sscal_strided_batched_64_raw(handle, n, c_loc(alpha(1)), &
-        c_loc(x(1)), incx, stride_x, batch_count)
+      sscal_strided_batched_64 = rocblas_sscal_strided_batched_64_raw(handle, n, c_loc(alpha), &
+        c_loc(x), incx, stride_x, batch_count)
     end function rocblas_sscal_strided_batched_64_native
 
     function rocblas_sscal_strided_batched_64_typed(handle, n, alpha, x, incx, stride_x, &
@@ -43539,14 +43577,14 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_long), value :: n
-      real(c_double), target :: alpha(*)
-      real(c_double), target :: x(*)
+      real(c_double), target :: alpha(..)
+      real(c_double), target :: x(..)
       integer(c_long), value :: incx
       integer(c_long), value :: stride_x
       integer(c_long), value :: batch_count
       integer(c_int) :: dscal_strided_batched_64
-      dscal_strided_batched_64 = rocblas_dscal_strided_batched_64_raw(handle, n, c_loc(alpha(1)), &
-        c_loc(x(1)), incx, stride_x, batch_count)
+      dscal_strided_batched_64 = rocblas_dscal_strided_batched_64_raw(handle, n, c_loc(alpha), &
+        c_loc(x), incx, stride_x, batch_count)
     end function rocblas_dscal_strided_batched_64_native
 
     function rocblas_dscal_strided_batched_64_typed(handle, n, alpha, x, incx, stride_x, &
@@ -43572,14 +43610,14 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_long), value :: n
-      complex(c_float_complex), target :: alpha(*)
-      complex(c_float_complex), target :: x(*)
+      complex(c_float_complex), target :: alpha(..)
+      complex(c_float_complex), target :: x(..)
       integer(c_long), value :: incx
       integer(c_long), value :: stride_x
       integer(c_long), value :: batch_count
       integer(c_int) :: cscal_strided_batched_64
-      cscal_strided_batched_64 = rocblas_cscal_strided_batched_64_raw(handle, n, c_loc(alpha(1)), &
-        c_loc(x(1)), incx, stride_x, batch_count)
+      cscal_strided_batched_64 = rocblas_cscal_strided_batched_64_raw(handle, n, c_loc(alpha), &
+        c_loc(x), incx, stride_x, batch_count)
     end function rocblas_cscal_strided_batched_64_native
 
     function rocblas_cscal_strided_batched_64_typed(handle, n, alpha, x, incx, stride_x, &
@@ -43605,14 +43643,14 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_long), value :: n
-      complex(c_double_complex), target :: alpha(*)
-      complex(c_double_complex), target :: x(*)
+      complex(c_double_complex), target :: alpha(..)
+      complex(c_double_complex), target :: x(..)
       integer(c_long), value :: incx
       integer(c_long), value :: stride_x
       integer(c_long), value :: batch_count
       integer(c_int) :: zscal_strided_batched_64
-      zscal_strided_batched_64 = rocblas_zscal_strided_batched_64_raw(handle, n, c_loc(alpha(1)), &
-        c_loc(x(1)), incx, stride_x, batch_count)
+      zscal_strided_batched_64 = rocblas_zscal_strided_batched_64_raw(handle, n, c_loc(alpha), &
+        c_loc(x), incx, stride_x, batch_count)
     end function rocblas_zscal_strided_batched_64_native
 
     function rocblas_zscal_strided_batched_64_typed(handle, n, alpha, x, incx, stride_x, &
@@ -43638,14 +43676,14 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_long), value :: n
-      real(c_float), target :: alpha(*)
-      complex(c_float_complex), target :: x(*)
+      real(c_float), target :: alpha(..)
+      complex(c_float_complex), target :: x(..)
       integer(c_long), value :: incx
       integer(c_long), value :: stride_x
       integer(c_long), value :: batch_count
       integer(c_int) :: csscal_strided_batched_64
-      csscal_strided_batched_64 = rocblas_csscal_strided_batched_64_raw(handle, n, c_loc(alpha( &
-        1)), c_loc(x(1)), incx, stride_x, batch_count)
+      csscal_strided_batched_64 = rocblas_csscal_strided_batched_64_raw(handle, n, c_loc(alpha), &
+        c_loc(x), incx, stride_x, batch_count)
     end function rocblas_csscal_strided_batched_64_native
 
     function rocblas_csscal_strided_batched_64_typed(handle, n, alpha, x, incx, stride_x, &
@@ -43671,14 +43709,14 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_long), value :: n
-      real(c_double), target :: alpha(*)
-      complex(c_double_complex), target :: x(*)
+      real(c_double), target :: alpha(..)
+      complex(c_double_complex), target :: x(..)
       integer(c_long), value :: incx
       integer(c_long), value :: stride_x
       integer(c_long), value :: batch_count
       integer(c_int) :: zdscal_strided_batched_64
-      zdscal_strided_batched_64 = rocblas_zdscal_strided_batched_64_raw(handle, n, c_loc(alpha( &
-        1)), c_loc(x(1)), incx, stride_x, batch_count)
+      zdscal_strided_batched_64 = rocblas_zdscal_strided_batched_64_raw(handle, n, c_loc(alpha), &
+        c_loc(x), incx, stride_x, batch_count)
     end function rocblas_zdscal_strided_batched_64_native
 
     function rocblas_zdscal_strided_batched_64_typed(handle, n, alpha, x, incx, stride_x, &
@@ -43703,12 +43741,12 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_int), value :: n
-      real(c_float), target :: x(*)
+      real(c_float), target :: x(..)
       integer(c_int), value :: incx
-      real(c_float), target :: y(*)
+      real(c_float), target :: y(..)
       integer(c_int), value :: incy
       integer(c_int) :: scopy
-      scopy = rocblas_scopy_raw(handle, n, c_loc(x(1)), incx, c_loc(y(1)), incy)
+      scopy = rocblas_scopy_raw(handle, n, c_loc(x), incx, c_loc(y), incy)
     end function rocblas_scopy_native
 
     function rocblas_scopy_typed(handle, n, x, incx, y, incy) result(scopy)
@@ -43730,12 +43768,12 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_int), value :: n
-      real(c_double), target :: x(*)
+      real(c_double), target :: x(..)
       integer(c_int), value :: incx
-      real(c_double), target :: y(*)
+      real(c_double), target :: y(..)
       integer(c_int), value :: incy
       integer(c_int) :: dcopy
-      dcopy = rocblas_dcopy_raw(handle, n, c_loc(x(1)), incx, c_loc(y(1)), incy)
+      dcopy = rocblas_dcopy_raw(handle, n, c_loc(x), incx, c_loc(y), incy)
     end function rocblas_dcopy_native
 
     function rocblas_dcopy_typed(handle, n, x, incx, y, incy) result(dcopy)
@@ -43757,12 +43795,12 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_int), value :: n
-      complex(c_float_complex), target :: x(*)
+      complex(c_float_complex), target :: x(..)
       integer(c_int), value :: incx
-      complex(c_float_complex), target :: y(*)
+      complex(c_float_complex), target :: y(..)
       integer(c_int), value :: incy
       integer(c_int) :: ccopy
-      ccopy = rocblas_ccopy_raw(handle, n, c_loc(x(1)), incx, c_loc(y(1)), incy)
+      ccopy = rocblas_ccopy_raw(handle, n, c_loc(x), incx, c_loc(y), incy)
     end function rocblas_ccopy_native
 
     function rocblas_ccopy_typed(handle, n, x, incx, y, incy) result(ccopy)
@@ -43784,12 +43822,12 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_int), value :: n
-      complex(c_double_complex), target :: x(*)
+      complex(c_double_complex), target :: x(..)
       integer(c_int), value :: incx
-      complex(c_double_complex), target :: y(*)
+      complex(c_double_complex), target :: y(..)
       integer(c_int), value :: incy
       integer(c_int) :: zcopy
-      zcopy = rocblas_zcopy_raw(handle, n, c_loc(x(1)), incx, c_loc(y(1)), incy)
+      zcopy = rocblas_zcopy_raw(handle, n, c_loc(x), incx, c_loc(y), incy)
     end function rocblas_zcopy_native
 
     function rocblas_zcopy_typed(handle, n, x, incx, y, incy) result(zcopy)
@@ -43811,12 +43849,12 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_long), value :: n
-      real(c_float), target :: x(*)
+      real(c_float), target :: x(..)
       integer(c_long), value :: incx
-      real(c_float), target :: y(*)
+      real(c_float), target :: y(..)
       integer(c_long), value :: incy
       integer(c_int) :: scopy_64
-      scopy_64 = rocblas_scopy_64_raw(handle, n, c_loc(x(1)), incx, c_loc(y(1)), incy)
+      scopy_64 = rocblas_scopy_64_raw(handle, n, c_loc(x), incx, c_loc(y), incy)
     end function rocblas_scopy_64_native
 
     function rocblas_scopy_64_typed(handle, n, x, incx, y, incy) result(scopy_64)
@@ -43838,12 +43876,12 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_long), value :: n
-      real(c_double), target :: x(*)
+      real(c_double), target :: x(..)
       integer(c_long), value :: incx
-      real(c_double), target :: y(*)
+      real(c_double), target :: y(..)
       integer(c_long), value :: incy
       integer(c_int) :: dcopy_64
-      dcopy_64 = rocblas_dcopy_64_raw(handle, n, c_loc(x(1)), incx, c_loc(y(1)), incy)
+      dcopy_64 = rocblas_dcopy_64_raw(handle, n, c_loc(x), incx, c_loc(y), incy)
     end function rocblas_dcopy_64_native
 
     function rocblas_dcopy_64_typed(handle, n, x, incx, y, incy) result(dcopy_64)
@@ -43865,12 +43903,12 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_long), value :: n
-      complex(c_float_complex), target :: x(*)
+      complex(c_float_complex), target :: x(..)
       integer(c_long), value :: incx
-      complex(c_float_complex), target :: y(*)
+      complex(c_float_complex), target :: y(..)
       integer(c_long), value :: incy
       integer(c_int) :: ccopy_64
-      ccopy_64 = rocblas_ccopy_64_raw(handle, n, c_loc(x(1)), incx, c_loc(y(1)), incy)
+      ccopy_64 = rocblas_ccopy_64_raw(handle, n, c_loc(x), incx, c_loc(y), incy)
     end function rocblas_ccopy_64_native
 
     function rocblas_ccopy_64_typed(handle, n, x, incx, y, incy) result(ccopy_64)
@@ -43892,12 +43930,12 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_long), value :: n
-      complex(c_double_complex), target :: x(*)
+      complex(c_double_complex), target :: x(..)
       integer(c_long), value :: incx
-      complex(c_double_complex), target :: y(*)
+      complex(c_double_complex), target :: y(..)
       integer(c_long), value :: incy
       integer(c_int) :: zcopy_64
-      zcopy_64 = rocblas_zcopy_64_raw(handle, n, c_loc(x(1)), incx, c_loc(y(1)), incy)
+      zcopy_64 = rocblas_zcopy_64_raw(handle, n, c_loc(x), incx, c_loc(y), incy)
     end function rocblas_zcopy_64_native
 
     function rocblas_zcopy_64_typed(handle, n, x, incx, y, incy) result(zcopy_64)
@@ -44048,16 +44086,16 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_int), value :: n
-      real(c_float), target :: x(*)
+      real(c_float), target :: x(..)
       integer(c_int), value :: incx
       integer(c_long), value :: stridex
-      real(c_float), target :: y(*)
+      real(c_float), target :: y(..)
       integer(c_int), value :: incy
       integer(c_long), value :: stridey
       integer(c_int), value :: batch_count
       integer(c_int) :: scopy_strided_batched
-      scopy_strided_batched = rocblas_scopy_strided_batched_raw(handle, n, c_loc(x(1)), incx, &
-        stridex, c_loc(y(1)), incy, stridey, batch_count)
+      scopy_strided_batched = rocblas_scopy_strided_batched_raw(handle, n, c_loc(x), incx, &
+        stridex, c_loc(y), incy, stridey, batch_count)
     end function rocblas_scopy_strided_batched_native
 
     function rocblas_scopy_strided_batched_typed(handle, n, x, incx, stridex, y, incy, stridey, &
@@ -44085,16 +44123,16 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_int), value :: n
-      real(c_double), target :: x(*)
+      real(c_double), target :: x(..)
       integer(c_int), value :: incx
       integer(c_long), value :: stridex
-      real(c_double), target :: y(*)
+      real(c_double), target :: y(..)
       integer(c_int), value :: incy
       integer(c_long), value :: stridey
       integer(c_int), value :: batch_count
       integer(c_int) :: dcopy_strided_batched
-      dcopy_strided_batched = rocblas_dcopy_strided_batched_raw(handle, n, c_loc(x(1)), incx, &
-        stridex, c_loc(y(1)), incy, stridey, batch_count)
+      dcopy_strided_batched = rocblas_dcopy_strided_batched_raw(handle, n, c_loc(x), incx, &
+        stridex, c_loc(y), incy, stridey, batch_count)
     end function rocblas_dcopy_strided_batched_native
 
     function rocblas_dcopy_strided_batched_typed(handle, n, x, incx, stridex, y, incy, stridey, &
@@ -44122,16 +44160,16 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_int), value :: n
-      complex(c_float_complex), target :: x(*)
+      complex(c_float_complex), target :: x(..)
       integer(c_int), value :: incx
       integer(c_long), value :: stridex
-      complex(c_float_complex), target :: y(*)
+      complex(c_float_complex), target :: y(..)
       integer(c_int), value :: incy
       integer(c_long), value :: stridey
       integer(c_int), value :: batch_count
       integer(c_int) :: ccopy_strided_batched
-      ccopy_strided_batched = rocblas_ccopy_strided_batched_raw(handle, n, c_loc(x(1)), incx, &
-        stridex, c_loc(y(1)), incy, stridey, batch_count)
+      ccopy_strided_batched = rocblas_ccopy_strided_batched_raw(handle, n, c_loc(x), incx, &
+        stridex, c_loc(y), incy, stridey, batch_count)
     end function rocblas_ccopy_strided_batched_native
 
     function rocblas_ccopy_strided_batched_typed(handle, n, x, incx, stridex, y, incy, stridey, &
@@ -44159,16 +44197,16 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_int), value :: n
-      complex(c_double_complex), target :: x(*)
+      complex(c_double_complex), target :: x(..)
       integer(c_int), value :: incx
       integer(c_long), value :: stridex
-      complex(c_double_complex), target :: y(*)
+      complex(c_double_complex), target :: y(..)
       integer(c_int), value :: incy
       integer(c_long), value :: stridey
       integer(c_int), value :: batch_count
       integer(c_int) :: zcopy_strided_batched
-      zcopy_strided_batched = rocblas_zcopy_strided_batched_raw(handle, n, c_loc(x(1)), incx, &
-        stridex, c_loc(y(1)), incy, stridey, batch_count)
+      zcopy_strided_batched = rocblas_zcopy_strided_batched_raw(handle, n, c_loc(x), incx, &
+        stridex, c_loc(y), incy, stridey, batch_count)
     end function rocblas_zcopy_strided_batched_native
 
     function rocblas_zcopy_strided_batched_typed(handle, n, x, incx, stridex, y, incy, stridey, &
@@ -44196,16 +44234,16 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_long), value :: n
-      real(c_float), target :: x(*)
+      real(c_float), target :: x(..)
       integer(c_long), value :: incx
       integer(c_long), value :: stridex
-      real(c_float), target :: y(*)
+      real(c_float), target :: y(..)
       integer(c_long), value :: incy
       integer(c_long), value :: stridey
       integer(c_long), value :: batch_count
       integer(c_int) :: scopy_strided_batched_64
-      scopy_strided_batched_64 = rocblas_scopy_strided_batched_64_raw(handle, n, c_loc(x(1)), &
-        incx, stridex, c_loc(y(1)), incy, stridey, batch_count)
+      scopy_strided_batched_64 = rocblas_scopy_strided_batched_64_raw(handle, n, c_loc(x), incx, &
+        stridex, c_loc(y), incy, stridey, batch_count)
     end function rocblas_scopy_strided_batched_64_native
 
     function rocblas_scopy_strided_batched_64_typed(handle, n, x, incx, stridex, y, incy, stridey, &
@@ -44233,16 +44271,16 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_long), value :: n
-      real(c_double), target :: x(*)
+      real(c_double), target :: x(..)
       integer(c_long), value :: incx
       integer(c_long), value :: stridex
-      real(c_double), target :: y(*)
+      real(c_double), target :: y(..)
       integer(c_long), value :: incy
       integer(c_long), value :: stridey
       integer(c_long), value :: batch_count
       integer(c_int) :: dcopy_strided_batched_64
-      dcopy_strided_batched_64 = rocblas_dcopy_strided_batched_64_raw(handle, n, c_loc(x(1)), &
-        incx, stridex, c_loc(y(1)), incy, stridey, batch_count)
+      dcopy_strided_batched_64 = rocblas_dcopy_strided_batched_64_raw(handle, n, c_loc(x), incx, &
+        stridex, c_loc(y), incy, stridey, batch_count)
     end function rocblas_dcopy_strided_batched_64_native
 
     function rocblas_dcopy_strided_batched_64_typed(handle, n, x, incx, stridex, y, incy, stridey, &
@@ -44270,16 +44308,16 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_long), value :: n
-      complex(c_float_complex), target :: x(*)
+      complex(c_float_complex), target :: x(..)
       integer(c_long), value :: incx
       integer(c_long), value :: stridex
-      complex(c_float_complex), target :: y(*)
+      complex(c_float_complex), target :: y(..)
       integer(c_long), value :: incy
       integer(c_long), value :: stridey
       integer(c_long), value :: batch_count
       integer(c_int) :: ccopy_strided_batched_64
-      ccopy_strided_batched_64 = rocblas_ccopy_strided_batched_64_raw(handle, n, c_loc(x(1)), &
-        incx, stridex, c_loc(y(1)), incy, stridey, batch_count)
+      ccopy_strided_batched_64 = rocblas_ccopy_strided_batched_64_raw(handle, n, c_loc(x), incx, &
+        stridex, c_loc(y), incy, stridey, batch_count)
     end function rocblas_ccopy_strided_batched_64_native
 
     function rocblas_ccopy_strided_batched_64_typed(handle, n, x, incx, stridex, y, incy, stridey, &
@@ -44307,16 +44345,16 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_long), value :: n
-      complex(c_double_complex), target :: x(*)
+      complex(c_double_complex), target :: x(..)
       integer(c_long), value :: incx
       integer(c_long), value :: stridex
-      complex(c_double_complex), target :: y(*)
+      complex(c_double_complex), target :: y(..)
       integer(c_long), value :: incy
       integer(c_long), value :: stridey
       integer(c_long), value :: batch_count
       integer(c_int) :: zcopy_strided_batched_64
-      zcopy_strided_batched_64 = rocblas_zcopy_strided_batched_64_raw(handle, n, c_loc(x(1)), &
-        incx, stridex, c_loc(y(1)), incy, stridey, batch_count)
+      zcopy_strided_batched_64 = rocblas_zcopy_strided_batched_64_raw(handle, n, c_loc(x), incx, &
+        stridex, c_loc(y), incy, stridey, batch_count)
     end function rocblas_zcopy_strided_batched_64_native
 
     function rocblas_zcopy_strided_batched_64_typed(handle, n, x, incx, stridex, y, incy, stridey, &
@@ -44343,13 +44381,13 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_int), value :: n
-      real(c_float), target :: x(*)
+      real(c_float), target :: x(..)
       integer(c_int), value :: incx
-      real(c_float), target :: y(*)
+      real(c_float), target :: y(..)
       integer(c_int), value :: incy
-      real(c_float), target :: result(*)
+      real(c_float), target :: result(..)
       integer(c_int) :: sdot
-      sdot = rocblas_sdot_raw(handle, n, c_loc(x(1)), incx, c_loc(y(1)), incy, c_loc(result(1)))
+      sdot = rocblas_sdot_raw(handle, n, c_loc(x), incx, c_loc(y), incy, c_loc(result))
     end function rocblas_sdot_native
 
     function rocblas_sdot_typed(handle, n, x, incx, y, incy, result) result(sdot)
@@ -44372,13 +44410,13 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_int), value :: n
-      real(c_double), target :: x(*)
+      real(c_double), target :: x(..)
       integer(c_int), value :: incx
-      real(c_double), target :: y(*)
+      real(c_double), target :: y(..)
       integer(c_int), value :: incy
-      real(c_double), target :: result(*)
+      real(c_double), target :: result(..)
       integer(c_int) :: ddot
-      ddot = rocblas_ddot_raw(handle, n, c_loc(x(1)), incx, c_loc(y(1)), incy, c_loc(result(1)))
+      ddot = rocblas_ddot_raw(handle, n, c_loc(x), incx, c_loc(y), incy, c_loc(result))
     end function rocblas_ddot_native
 
     function rocblas_ddot_typed(handle, n, x, incx, y, incy, result) result(ddot)
@@ -44402,11 +44440,11 @@ contains
       implicit none
       type(rocblas_handle_t), value :: handle
       integer(c_int), value :: n
-      type(c_ptr), value :: x
+      type(rocblas_half) :: x
       integer(c_int), value :: incx
-      type(c_ptr), value :: y
+      type(rocblas_half) :: y
       integer(c_int), value :: incy
-      type(c_ptr), value :: result
+      type(rocblas_half) :: result
       integer(c_int) :: hdot
       hdot = rocblas_hdot_raw(handle%ptr, n, x, incx, y, incy, result)
     end function rocblas_hdot_typed
@@ -44417,11 +44455,11 @@ contains
       implicit none
       type(rocblas_handle_t), value :: handle
       integer(c_int), value :: n
-      type(c_ptr), value :: x
+      type(rocblas_bfloat16) :: x
       integer(c_int), value :: incx
-      type(c_ptr), value :: y
+      type(rocblas_bfloat16) :: y
       integer(c_int), value :: incy
-      type(c_ptr), value :: result
+      type(rocblas_bfloat16) :: result
       integer(c_int) :: bfdot
       bfdot = rocblas_bfdot_raw(handle%ptr, n, x, incx, y, incy, result)
     end function rocblas_bfdot_typed
@@ -44431,13 +44469,13 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_int), value :: n
-      complex(c_float_complex), target :: x(*)
+      complex(c_float_complex), target :: x(..)
       integer(c_int), value :: incx
-      complex(c_float_complex), target :: y(*)
+      complex(c_float_complex), target :: y(..)
       integer(c_int), value :: incy
-      complex(c_float_complex), target :: result(*)
+      complex(c_float_complex), target :: result(..)
       integer(c_int) :: cdotu
-      cdotu = rocblas_cdotu_raw(handle, n, c_loc(x(1)), incx, c_loc(y(1)), incy, c_loc(result(1)))
+      cdotu = rocblas_cdotu_raw(handle, n, c_loc(x), incx, c_loc(y), incy, c_loc(result))
     end function rocblas_cdotu_native
 
     function rocblas_cdotu_typed(handle, n, x, incx, y, incy, result) result(cdotu)
@@ -44460,13 +44498,13 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_int), value :: n
-      complex(c_double_complex), target :: x(*)
+      complex(c_double_complex), target :: x(..)
       integer(c_int), value :: incx
-      complex(c_double_complex), target :: y(*)
+      complex(c_double_complex), target :: y(..)
       integer(c_int), value :: incy
-      complex(c_double_complex), target :: result(*)
+      complex(c_double_complex), target :: result(..)
       integer(c_int) :: zdotu
-      zdotu = rocblas_zdotu_raw(handle, n, c_loc(x(1)), incx, c_loc(y(1)), incy, c_loc(result(1)))
+      zdotu = rocblas_zdotu_raw(handle, n, c_loc(x), incx, c_loc(y), incy, c_loc(result))
     end function rocblas_zdotu_native
 
     function rocblas_zdotu_typed(handle, n, x, incx, y, incy, result) result(zdotu)
@@ -44489,13 +44527,13 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_int), value :: n
-      complex(c_float_complex), target :: x(*)
+      complex(c_float_complex), target :: x(..)
       integer(c_int), value :: incx
-      complex(c_float_complex), target :: y(*)
+      complex(c_float_complex), target :: y(..)
       integer(c_int), value :: incy
-      complex(c_float_complex), target :: result(*)
+      complex(c_float_complex), target :: result(..)
       integer(c_int) :: cdotc
-      cdotc = rocblas_cdotc_raw(handle, n, c_loc(x(1)), incx, c_loc(y(1)), incy, c_loc(result(1)))
+      cdotc = rocblas_cdotc_raw(handle, n, c_loc(x), incx, c_loc(y), incy, c_loc(result))
     end function rocblas_cdotc_native
 
     function rocblas_cdotc_typed(handle, n, x, incx, y, incy, result) result(cdotc)
@@ -44518,13 +44556,13 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_int), value :: n
-      complex(c_double_complex), target :: x(*)
+      complex(c_double_complex), target :: x(..)
       integer(c_int), value :: incx
-      complex(c_double_complex), target :: y(*)
+      complex(c_double_complex), target :: y(..)
       integer(c_int), value :: incy
-      complex(c_double_complex), target :: result(*)
+      complex(c_double_complex), target :: result(..)
       integer(c_int) :: zdotc
-      zdotc = rocblas_zdotc_raw(handle, n, c_loc(x(1)), incx, c_loc(y(1)), incy, c_loc(result(1)))
+      zdotc = rocblas_zdotc_raw(handle, n, c_loc(x), incx, c_loc(y), incy, c_loc(result))
     end function rocblas_zdotc_native
 
     function rocblas_zdotc_typed(handle, n, x, incx, y, incy, result) result(zdotc)
@@ -44547,14 +44585,13 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_long), value :: n
-      real(c_float), target :: x(*)
+      real(c_float), target :: x(..)
       integer(c_long), value :: incx
-      real(c_float), target :: y(*)
+      real(c_float), target :: y(..)
       integer(c_long), value :: incy
-      real(c_float), target :: result(*)
+      real(c_float), target :: result(..)
       integer(c_int) :: sdot_64
-      sdot_64 = rocblas_sdot_64_raw(handle, n, c_loc(x(1)), incx, c_loc(y(1)), incy, c_loc(result( &
-        1)))
+      sdot_64 = rocblas_sdot_64_raw(handle, n, c_loc(x), incx, c_loc(y), incy, c_loc(result))
     end function rocblas_sdot_64_native
 
     function rocblas_sdot_64_typed(handle, n, x, incx, y, incy, result) result(sdot_64)
@@ -44577,14 +44614,13 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_long), value :: n
-      real(c_double), target :: x(*)
+      real(c_double), target :: x(..)
       integer(c_long), value :: incx
-      real(c_double), target :: y(*)
+      real(c_double), target :: y(..)
       integer(c_long), value :: incy
-      real(c_double), target :: result(*)
+      real(c_double), target :: result(..)
       integer(c_int) :: ddot_64
-      ddot_64 = rocblas_ddot_64_raw(handle, n, c_loc(x(1)), incx, c_loc(y(1)), incy, c_loc(result( &
-        1)))
+      ddot_64 = rocblas_ddot_64_raw(handle, n, c_loc(x), incx, c_loc(y), incy, c_loc(result))
     end function rocblas_ddot_64_native
 
     function rocblas_ddot_64_typed(handle, n, x, incx, y, incy, result) result(ddot_64)
@@ -44608,11 +44644,11 @@ contains
       implicit none
       type(rocblas_handle_t), value :: handle
       integer(c_long), value :: n
-      type(c_ptr), value :: x
+      type(rocblas_half) :: x
       integer(c_long), value :: incx
-      type(c_ptr), value :: y
+      type(rocblas_half) :: y
       integer(c_long), value :: incy
-      type(c_ptr), value :: result
+      type(rocblas_half) :: result
       integer(c_int) :: hdot_64
       hdot_64 = rocblas_hdot_64_raw(handle%ptr, n, x, incx, y, incy, result)
     end function rocblas_hdot_64_typed
@@ -44623,11 +44659,11 @@ contains
       implicit none
       type(rocblas_handle_t), value :: handle
       integer(c_long), value :: n
-      type(c_ptr), value :: x
+      type(rocblas_bfloat16) :: x
       integer(c_long), value :: incx
-      type(c_ptr), value :: y
+      type(rocblas_bfloat16) :: y
       integer(c_long), value :: incy
-      type(c_ptr), value :: result
+      type(rocblas_bfloat16) :: result
       integer(c_int) :: bfdot_64
       bfdot_64 = rocblas_bfdot_64_raw(handle%ptr, n, x, incx, y, incy, result)
     end function rocblas_bfdot_64_typed
@@ -44637,14 +44673,13 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_long), value :: n
-      complex(c_float_complex), target :: x(*)
+      complex(c_float_complex), target :: x(..)
       integer(c_long), value :: incx
-      complex(c_float_complex), target :: y(*)
+      complex(c_float_complex), target :: y(..)
       integer(c_long), value :: incy
-      complex(c_float_complex), target :: result(*)
+      complex(c_float_complex), target :: result(..)
       integer(c_int) :: cdotu_64
-      cdotu_64 = rocblas_cdotu_64_raw(handle, n, c_loc(x(1)), incx, c_loc(y(1)), incy, c_loc( &
-        result(1)))
+      cdotu_64 = rocblas_cdotu_64_raw(handle, n, c_loc(x), incx, c_loc(y), incy, c_loc(result))
     end function rocblas_cdotu_64_native
 
     function rocblas_cdotu_64_typed(handle, n, x, incx, y, incy, result) result(cdotu_64)
@@ -44667,14 +44702,13 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_long), value :: n
-      complex(c_double_complex), target :: x(*)
+      complex(c_double_complex), target :: x(..)
       integer(c_long), value :: incx
-      complex(c_double_complex), target :: y(*)
+      complex(c_double_complex), target :: y(..)
       integer(c_long), value :: incy
-      complex(c_double_complex), target :: result(*)
+      complex(c_double_complex), target :: result(..)
       integer(c_int) :: zdotu_64
-      zdotu_64 = rocblas_zdotu_64_raw(handle, n, c_loc(x(1)), incx, c_loc(y(1)), incy, c_loc( &
-        result(1)))
+      zdotu_64 = rocblas_zdotu_64_raw(handle, n, c_loc(x), incx, c_loc(y), incy, c_loc(result))
     end function rocblas_zdotu_64_native
 
     function rocblas_zdotu_64_typed(handle, n, x, incx, y, incy, result) result(zdotu_64)
@@ -44697,14 +44731,13 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_long), value :: n
-      complex(c_float_complex), target :: x(*)
+      complex(c_float_complex), target :: x(..)
       integer(c_long), value :: incx
-      complex(c_float_complex), target :: y(*)
+      complex(c_float_complex), target :: y(..)
       integer(c_long), value :: incy
-      complex(c_float_complex), target :: result(*)
+      complex(c_float_complex), target :: result(..)
       integer(c_int) :: cdotc_64
-      cdotc_64 = rocblas_cdotc_64_raw(handle, n, c_loc(x(1)), incx, c_loc(y(1)), incy, c_loc( &
-        result(1)))
+      cdotc_64 = rocblas_cdotc_64_raw(handle, n, c_loc(x), incx, c_loc(y), incy, c_loc(result))
     end function rocblas_cdotc_64_native
 
     function rocblas_cdotc_64_typed(handle, n, x, incx, y, incy, result) result(cdotc_64)
@@ -44727,14 +44760,13 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_long), value :: n
-      complex(c_double_complex), target :: x(*)
+      complex(c_double_complex), target :: x(..)
       integer(c_long), value :: incx
-      complex(c_double_complex), target :: y(*)
+      complex(c_double_complex), target :: y(..)
       integer(c_long), value :: incy
-      complex(c_double_complex), target :: result(*)
+      complex(c_double_complex), target :: result(..)
       integer(c_int) :: zdotc_64
-      zdotc_64 = rocblas_zdotc_64_raw(handle, n, c_loc(x(1)), incx, c_loc(y(1)), incy, c_loc( &
-        result(1)))
+      zdotc_64 = rocblas_zdotc_64_raw(handle, n, c_loc(x), incx, c_loc(y), incy, c_loc(result))
     end function rocblas_zdotc_64_native
 
     function rocblas_zdotc_64_typed(handle, n, x, incx, y, incy, result) result(zdotc_64)
@@ -44763,10 +44795,10 @@ contains
       type(c_ptr), value :: y
       integer(c_int), value :: incy
       integer(c_int), value :: batch_count
-      real(c_float), target :: result(*)
+      real(c_float), target :: result(..)
       integer(c_int) :: sdot_batched
       sdot_batched = rocblas_sdot_batched_raw(handle, n, x, incx, y, incy, batch_count, c_loc( &
-        result(1)))
+        result))
     end function rocblas_sdot_batched_native
 
     function rocblas_sdot_batched_typed(handle, n, x, incx, y, incy, batch_count, result) result( &
@@ -44797,10 +44829,10 @@ contains
       type(c_ptr), value :: y
       integer(c_int), value :: incy
       integer(c_int), value :: batch_count
-      real(c_double), target :: result(*)
+      real(c_double), target :: result(..)
       integer(c_int) :: ddot_batched
       ddot_batched = rocblas_ddot_batched_raw(handle, n, x, incx, y, incy, batch_count, c_loc( &
-        result(1)))
+        result))
     end function rocblas_ddot_batched_native
 
     function rocblas_ddot_batched_typed(handle, n, x, incx, y, incy, batch_count, result) result( &
@@ -44832,7 +44864,7 @@ contains
       type(c_ptr), value :: y
       integer(c_int), value :: incy
       integer(c_int), value :: batch_count
-      type(c_ptr), value :: result
+      type(rocblas_half) :: result
       integer(c_int) :: hdot_batched
       hdot_batched = rocblas_hdot_batched_raw(handle%ptr, n, x, incx, y, incy, batch_count, result)
     end function rocblas_hdot_batched_typed
@@ -44849,7 +44881,7 @@ contains
       type(c_ptr), value :: y
       integer(c_int), value :: incy
       integer(c_int), value :: batch_count
-      type(c_ptr), value :: result
+      type(rocblas_bfloat16) :: result
       integer(c_int) :: bfdot_batched
       bfdot_batched = rocblas_bfdot_batched_raw(handle%ptr, n, x, incx, y, incy, batch_count, &
         result)
@@ -44866,10 +44898,10 @@ contains
       type(c_ptr), value :: y
       integer(c_int), value :: incy
       integer(c_int), value :: batch_count
-      complex(c_float_complex), target :: result(*)
+      complex(c_float_complex), target :: result(..)
       integer(c_int) :: cdotu_batched
       cdotu_batched = rocblas_cdotu_batched_raw(handle, n, x, incx, y, incy, batch_count, c_loc( &
-        result(1)))
+        result))
     end function rocblas_cdotu_batched_native
 
     function rocblas_cdotu_batched_typed(handle, n, x, incx, y, incy, batch_count, result) result( &
@@ -44901,10 +44933,10 @@ contains
       type(c_ptr), value :: y
       integer(c_int), value :: incy
       integer(c_int), value :: batch_count
-      complex(c_double_complex), target :: result(*)
+      complex(c_double_complex), target :: result(..)
       integer(c_int) :: zdotu_batched
       zdotu_batched = rocblas_zdotu_batched_raw(handle, n, x, incx, y, incy, batch_count, c_loc( &
-        result(1)))
+        result))
     end function rocblas_zdotu_batched_native
 
     function rocblas_zdotu_batched_typed(handle, n, x, incx, y, incy, batch_count, result) result( &
@@ -44936,10 +44968,10 @@ contains
       type(c_ptr), value :: y
       integer(c_int), value :: incy
       integer(c_int), value :: batch_count
-      complex(c_float_complex), target :: result(*)
+      complex(c_float_complex), target :: result(..)
       integer(c_int) :: cdotc_batched
       cdotc_batched = rocblas_cdotc_batched_raw(handle, n, x, incx, y, incy, batch_count, c_loc( &
-        result(1)))
+        result))
     end function rocblas_cdotc_batched_native
 
     function rocblas_cdotc_batched_typed(handle, n, x, incx, y, incy, batch_count, result) result( &
@@ -44971,10 +45003,10 @@ contains
       type(c_ptr), value :: y
       integer(c_int), value :: incy
       integer(c_int), value :: batch_count
-      complex(c_double_complex), target :: result(*)
+      complex(c_double_complex), target :: result(..)
       integer(c_int) :: zdotc_batched
       zdotc_batched = rocblas_zdotc_batched_raw(handle, n, x, incx, y, incy, batch_count, c_loc( &
-        result(1)))
+        result))
     end function rocblas_zdotc_batched_native
 
     function rocblas_zdotc_batched_typed(handle, n, x, incx, y, incy, batch_count, result) result( &
@@ -45006,10 +45038,10 @@ contains
       type(c_ptr), value :: y
       integer(c_long), value :: incy
       integer(c_long), value :: batch_count
-      real(c_float), target :: result(*)
+      real(c_float), target :: result(..)
       integer(c_int) :: sdot_batched_64
       sdot_batched_64 = rocblas_sdot_batched_64_raw(handle, n, x, incx, y, incy, batch_count, &
-        c_loc(result(1)))
+        c_loc(result))
     end function rocblas_sdot_batched_64_native
 
     function rocblas_sdot_batched_64_typed(handle, n, x, incx, y, incy, batch_count, &
@@ -45041,10 +45073,10 @@ contains
       type(c_ptr), value :: y
       integer(c_long), value :: incy
       integer(c_long), value :: batch_count
-      real(c_double), target :: result(*)
+      real(c_double), target :: result(..)
       integer(c_int) :: ddot_batched_64
       ddot_batched_64 = rocblas_ddot_batched_64_raw(handle, n, x, incx, y, incy, batch_count, &
-        c_loc(result(1)))
+        c_loc(result))
     end function rocblas_ddot_batched_64_native
 
     function rocblas_ddot_batched_64_typed(handle, n, x, incx, y, incy, batch_count, &
@@ -45077,7 +45109,7 @@ contains
       type(c_ptr), value :: y
       integer(c_long), value :: incy
       integer(c_long), value :: batch_count
-      type(c_ptr), value :: result
+      type(rocblas_half) :: result
       integer(c_int) :: hdot_batched_64
       hdot_batched_64 = rocblas_hdot_batched_64_raw(handle%ptr, n, x, incx, y, incy, batch_count, &
         result)
@@ -45095,7 +45127,7 @@ contains
       type(c_ptr), value :: y
       integer(c_long), value :: incy
       integer(c_long), value :: batch_count
-      type(c_ptr), value :: result
+      type(rocblas_bfloat16) :: result
       integer(c_int) :: bfdot_batched_64
       bfdot_batched_64 = rocblas_bfdot_batched_64_raw(handle%ptr, n, x, incx, y, incy, &
         batch_count, result)
@@ -45112,10 +45144,10 @@ contains
       type(c_ptr), value :: y
       integer(c_long), value :: incy
       integer(c_long), value :: batch_count
-      complex(c_float_complex), target :: result(*)
+      complex(c_float_complex), target :: result(..)
       integer(c_int) :: cdotu_batched_64
       cdotu_batched_64 = rocblas_cdotu_batched_64_raw(handle, n, x, incx, y, incy, batch_count, &
-        c_loc(result(1)))
+        c_loc(result))
     end function rocblas_cdotu_batched_64_native
 
     function rocblas_cdotu_batched_64_typed(handle, n, x, incx, y, incy, batch_count, &
@@ -45147,10 +45179,10 @@ contains
       type(c_ptr), value :: y
       integer(c_long), value :: incy
       integer(c_long), value :: batch_count
-      complex(c_double_complex), target :: result(*)
+      complex(c_double_complex), target :: result(..)
       integer(c_int) :: zdotu_batched_64
       zdotu_batched_64 = rocblas_zdotu_batched_64_raw(handle, n, x, incx, y, incy, batch_count, &
-        c_loc(result(1)))
+        c_loc(result))
     end function rocblas_zdotu_batched_64_native
 
     function rocblas_zdotu_batched_64_typed(handle, n, x, incx, y, incy, batch_count, &
@@ -45182,10 +45214,10 @@ contains
       type(c_ptr), value :: y
       integer(c_long), value :: incy
       integer(c_long), value :: batch_count
-      complex(c_float_complex), target :: result(*)
+      complex(c_float_complex), target :: result(..)
       integer(c_int) :: cdotc_batched_64
       cdotc_batched_64 = rocblas_cdotc_batched_64_raw(handle, n, x, incx, y, incy, batch_count, &
-        c_loc(result(1)))
+        c_loc(result))
     end function rocblas_cdotc_batched_64_native
 
     function rocblas_cdotc_batched_64_typed(handle, n, x, incx, y, incy, batch_count, &
@@ -45217,10 +45249,10 @@ contains
       type(c_ptr), value :: y
       integer(c_long), value :: incy
       integer(c_long), value :: batch_count
-      complex(c_double_complex), target :: result(*)
+      complex(c_double_complex), target :: result(..)
       integer(c_int) :: zdotc_batched_64
       zdotc_batched_64 = rocblas_zdotc_batched_64_raw(handle, n, x, incx, y, incy, batch_count, &
-        c_loc(result(1)))
+        c_loc(result))
     end function rocblas_zdotc_batched_64_native
 
     function rocblas_zdotc_batched_64_typed(handle, n, x, incx, y, incy, batch_count, &
@@ -45247,17 +45279,17 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_int), value :: n
-      real(c_float), target :: x(*)
+      real(c_float), target :: x(..)
       integer(c_int), value :: incx
       integer(c_long), value :: stridex
-      real(c_float), target :: y(*)
+      real(c_float), target :: y(..)
       integer(c_int), value :: incy
       integer(c_long), value :: stridey
       integer(c_int), value :: batch_count
-      real(c_float), target :: result(*)
+      real(c_float), target :: result(..)
       integer(c_int) :: sdot_strided_batched
-      sdot_strided_batched = rocblas_sdot_strided_batched_raw(handle, n, c_loc(x(1)), incx, &
-        stridex, c_loc(y(1)), incy, stridey, batch_count, c_loc(result(1)))
+      sdot_strided_batched = rocblas_sdot_strided_batched_raw(handle, n, c_loc(x), incx, stridex, &
+        c_loc(y), incy, stridey, batch_count, c_loc(result))
     end function rocblas_sdot_strided_batched_native
 
     function rocblas_sdot_strided_batched_typed(handle, n, x, incx, stridex, y, incy, stridey, &
@@ -45286,17 +45318,17 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_int), value :: n
-      real(c_double), target :: x(*)
+      real(c_double), target :: x(..)
       integer(c_int), value :: incx
       integer(c_long), value :: stridex
-      real(c_double), target :: y(*)
+      real(c_double), target :: y(..)
       integer(c_int), value :: incy
       integer(c_long), value :: stridey
       integer(c_int), value :: batch_count
-      real(c_double), target :: result(*)
+      real(c_double), target :: result(..)
       integer(c_int) :: ddot_strided_batched
-      ddot_strided_batched = rocblas_ddot_strided_batched_raw(handle, n, c_loc(x(1)), incx, &
-        stridex, c_loc(y(1)), incy, stridey, batch_count, c_loc(result(1)))
+      ddot_strided_batched = rocblas_ddot_strided_batched_raw(handle, n, c_loc(x), incx, stridex, &
+        c_loc(y), incy, stridey, batch_count, c_loc(result))
     end function rocblas_ddot_strided_batched_native
 
     function rocblas_ddot_strided_batched_typed(handle, n, x, incx, stridex, y, incy, stridey, &
@@ -45326,14 +45358,14 @@ contains
       implicit none
       type(rocblas_handle_t), value :: handle
       integer(c_int), value :: n
-      type(c_ptr), value :: x
+      type(rocblas_half) :: x
       integer(c_int), value :: incx
       integer(c_long), value :: stridex
-      type(c_ptr), value :: y
+      type(rocblas_half) :: y
       integer(c_int), value :: incy
       integer(c_long), value :: stridey
       integer(c_int), value :: batch_count
-      type(c_ptr), value :: result
+      type(rocblas_half) :: result
       integer(c_int) :: hdot_strided_batched
       hdot_strided_batched = rocblas_hdot_strided_batched_raw(handle%ptr, n, x, incx, stridex, y, &
         incy, stridey, batch_count, result)
@@ -45346,14 +45378,14 @@ contains
       implicit none
       type(rocblas_handle_t), value :: handle
       integer(c_int), value :: n
-      type(c_ptr), value :: x
+      type(rocblas_bfloat16) :: x
       integer(c_int), value :: incx
       integer(c_long), value :: stridex
-      type(c_ptr), value :: y
+      type(rocblas_bfloat16) :: y
       integer(c_int), value :: incy
       integer(c_long), value :: stridey
       integer(c_int), value :: batch_count
-      type(c_ptr), value :: result
+      type(rocblas_bfloat16) :: result
       integer(c_int) :: bfdot_strided_batched
       bfdot_strided_batched = rocblas_bfdot_strided_batched_raw(handle%ptr, n, x, incx, stridex, &
         y, incy, stridey, batch_count, result)
@@ -45365,17 +45397,17 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_int), value :: n
-      complex(c_float_complex), target :: x(*)
+      complex(c_float_complex), target :: x(..)
       integer(c_int), value :: incx
       integer(c_long), value :: stridex
-      complex(c_float_complex), target :: y(*)
+      complex(c_float_complex), target :: y(..)
       integer(c_int), value :: incy
       integer(c_long), value :: stridey
       integer(c_int), value :: batch_count
-      complex(c_float_complex), target :: result(*)
+      complex(c_float_complex), target :: result(..)
       integer(c_int) :: cdotu_strided_batched
-      cdotu_strided_batched = rocblas_cdotu_strided_batched_raw(handle, n, c_loc(x(1)), incx, &
-        stridex, c_loc(y(1)), incy, stridey, batch_count, c_loc(result(1)))
+      cdotu_strided_batched = rocblas_cdotu_strided_batched_raw(handle, n, c_loc(x), incx, &
+        stridex, c_loc(y), incy, stridey, batch_count, c_loc(result))
     end function rocblas_cdotu_strided_batched_native
 
     function rocblas_cdotu_strided_batched_typed(handle, n, x, incx, stridex, y, incy, stridey, &
@@ -45404,17 +45436,17 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_int), value :: n
-      complex(c_double_complex), target :: x(*)
+      complex(c_double_complex), target :: x(..)
       integer(c_int), value :: incx
       integer(c_long), value :: stridex
-      complex(c_double_complex), target :: y(*)
+      complex(c_double_complex), target :: y(..)
       integer(c_int), value :: incy
       integer(c_long), value :: stridey
       integer(c_int), value :: batch_count
-      complex(c_double_complex), target :: result(*)
+      complex(c_double_complex), target :: result(..)
       integer(c_int) :: zdotu_strided_batched
-      zdotu_strided_batched = rocblas_zdotu_strided_batched_raw(handle, n, c_loc(x(1)), incx, &
-        stridex, c_loc(y(1)), incy, stridey, batch_count, c_loc(result(1)))
+      zdotu_strided_batched = rocblas_zdotu_strided_batched_raw(handle, n, c_loc(x), incx, &
+        stridex, c_loc(y), incy, stridey, batch_count, c_loc(result))
     end function rocblas_zdotu_strided_batched_native
 
     function rocblas_zdotu_strided_batched_typed(handle, n, x, incx, stridex, y, incy, stridey, &
@@ -45443,17 +45475,17 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_int), value :: n
-      complex(c_float_complex), target :: x(*)
+      complex(c_float_complex), target :: x(..)
       integer(c_int), value :: incx
       integer(c_long), value :: stridex
-      complex(c_float_complex), target :: y(*)
+      complex(c_float_complex), target :: y(..)
       integer(c_int), value :: incy
       integer(c_long), value :: stridey
       integer(c_int), value :: batch_count
-      complex(c_float_complex), target :: result(*)
+      complex(c_float_complex), target :: result(..)
       integer(c_int) :: cdotc_strided_batched
-      cdotc_strided_batched = rocblas_cdotc_strided_batched_raw(handle, n, c_loc(x(1)), incx, &
-        stridex, c_loc(y(1)), incy, stridey, batch_count, c_loc(result(1)))
+      cdotc_strided_batched = rocblas_cdotc_strided_batched_raw(handle, n, c_loc(x), incx, &
+        stridex, c_loc(y), incy, stridey, batch_count, c_loc(result))
     end function rocblas_cdotc_strided_batched_native
 
     function rocblas_cdotc_strided_batched_typed(handle, n, x, incx, stridex, y, incy, stridey, &
@@ -45482,17 +45514,17 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_int), value :: n
-      complex(c_double_complex), target :: x(*)
+      complex(c_double_complex), target :: x(..)
       integer(c_int), value :: incx
       integer(c_long), value :: stridex
-      complex(c_double_complex), target :: y(*)
+      complex(c_double_complex), target :: y(..)
       integer(c_int), value :: incy
       integer(c_long), value :: stridey
       integer(c_int), value :: batch_count
-      complex(c_double_complex), target :: result(*)
+      complex(c_double_complex), target :: result(..)
       integer(c_int) :: zdotc_strided_batched
-      zdotc_strided_batched = rocblas_zdotc_strided_batched_raw(handle, n, c_loc(x(1)), incx, &
-        stridex, c_loc(y(1)), incy, stridey, batch_count, c_loc(result(1)))
+      zdotc_strided_batched = rocblas_zdotc_strided_batched_raw(handle, n, c_loc(x), incx, &
+        stridex, c_loc(y), incy, stridey, batch_count, c_loc(result))
     end function rocblas_zdotc_strided_batched_native
 
     function rocblas_zdotc_strided_batched_typed(handle, n, x, incx, stridex, y, incy, stridey, &
@@ -45521,17 +45553,17 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_long), value :: n
-      real(c_float), target :: x(*)
+      real(c_float), target :: x(..)
       integer(c_long), value :: incx
       integer(c_long), value :: stridex
-      real(c_float), target :: y(*)
+      real(c_float), target :: y(..)
       integer(c_long), value :: incy
       integer(c_long), value :: stridey
       integer(c_long), value :: batch_count
-      real(c_float), target :: result(*)
+      real(c_float), target :: result(..)
       integer(c_int) :: sdot_strided_batched_64
-      sdot_strided_batched_64 = rocblas_sdot_strided_batched_64_raw(handle, n, c_loc(x(1)), incx, &
-        stridex, c_loc(y(1)), incy, stridey, batch_count, c_loc(result(1)))
+      sdot_strided_batched_64 = rocblas_sdot_strided_batched_64_raw(handle, n, c_loc(x), incx, &
+        stridex, c_loc(y), incy, stridey, batch_count, c_loc(result))
     end function rocblas_sdot_strided_batched_64_native
 
     function rocblas_sdot_strided_batched_64_typed(handle, n, x, incx, stridex, y, incy, stridey, &
@@ -45560,17 +45592,17 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_long), value :: n
-      real(c_double), target :: x(*)
+      real(c_double), target :: x(..)
       integer(c_long), value :: incx
       integer(c_long), value :: stridex
-      real(c_double), target :: y(*)
+      real(c_double), target :: y(..)
       integer(c_long), value :: incy
       integer(c_long), value :: stridey
       integer(c_long), value :: batch_count
-      real(c_double), target :: result(*)
+      real(c_double), target :: result(..)
       integer(c_int) :: ddot_strided_batched_64
-      ddot_strided_batched_64 = rocblas_ddot_strided_batched_64_raw(handle, n, c_loc(x(1)), incx, &
-        stridex, c_loc(y(1)), incy, stridey, batch_count, c_loc(result(1)))
+      ddot_strided_batched_64 = rocblas_ddot_strided_batched_64_raw(handle, n, c_loc(x), incx, &
+        stridex, c_loc(y), incy, stridey, batch_count, c_loc(result))
     end function rocblas_ddot_strided_batched_64_native
 
     function rocblas_ddot_strided_batched_64_typed(handle, n, x, incx, stridex, y, incy, stridey, &
@@ -45600,14 +45632,14 @@ contains
       implicit none
       type(rocblas_handle_t), value :: handle
       integer(c_long), value :: n
-      type(c_ptr), value :: x
+      type(rocblas_half) :: x
       integer(c_long), value :: incx
       integer(c_long), value :: stridex
-      type(c_ptr), value :: y
+      type(rocblas_half) :: y
       integer(c_long), value :: incy
       integer(c_long), value :: stridey
       integer(c_long), value :: batch_count
-      type(c_ptr), value :: result
+      type(rocblas_half) :: result
       integer(c_int) :: hdot_strided_batched_64
       hdot_strided_batched_64 = rocblas_hdot_strided_batched_64_raw(handle%ptr, n, x, incx, &
         stridex, y, incy, stridey, batch_count, result)
@@ -45620,14 +45652,14 @@ contains
       implicit none
       type(rocblas_handle_t), value :: handle
       integer(c_long), value :: n
-      type(c_ptr), value :: x
+      type(rocblas_bfloat16) :: x
       integer(c_long), value :: incx
       integer(c_long), value :: stridex
-      type(c_ptr), value :: y
+      type(rocblas_bfloat16) :: y
       integer(c_long), value :: incy
       integer(c_long), value :: stridey
       integer(c_long), value :: batch_count
-      type(c_ptr), value :: result
+      type(rocblas_bfloat16) :: result
       integer(c_int) :: bfdot_strided_batched_64
       bfdot_strided_batched_64 = rocblas_bfdot_strided_batched_64_raw(handle%ptr, n, x, incx, &
         stridex, y, incy, stridey, batch_count, result)
@@ -45639,17 +45671,17 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_long), value :: n
-      complex(c_float_complex), target :: x(*)
+      complex(c_float_complex), target :: x(..)
       integer(c_long), value :: incx
       integer(c_long), value :: stridex
-      complex(c_float_complex), target :: y(*)
+      complex(c_float_complex), target :: y(..)
       integer(c_long), value :: incy
       integer(c_long), value :: stridey
       integer(c_long), value :: batch_count
-      complex(c_float_complex), target :: result(*)
+      complex(c_float_complex), target :: result(..)
       integer(c_int) :: cdotu_strided_batched_64
-      cdotu_strided_batched_64 = rocblas_cdotu_strided_batched_64_raw(handle, n, c_loc(x(1)), &
-        incx, stridex, c_loc(y(1)), incy, stridey, batch_count, c_loc(result(1)))
+      cdotu_strided_batched_64 = rocblas_cdotu_strided_batched_64_raw(handle, n, c_loc(x), incx, &
+        stridex, c_loc(y), incy, stridey, batch_count, c_loc(result))
     end function rocblas_cdotu_strided_batched_64_native
 
     function rocblas_cdotu_strided_batched_64_typed(handle, n, x, incx, stridex, y, incy, stridey, &
@@ -45678,17 +45710,17 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_long), value :: n
-      complex(c_double_complex), target :: x(*)
+      complex(c_double_complex), target :: x(..)
       integer(c_long), value :: incx
       integer(c_long), value :: stridex
-      complex(c_double_complex), target :: y(*)
+      complex(c_double_complex), target :: y(..)
       integer(c_long), value :: incy
       integer(c_long), value :: stridey
       integer(c_long), value :: batch_count
-      complex(c_double_complex), target :: result(*)
+      complex(c_double_complex), target :: result(..)
       integer(c_int) :: zdotu_strided_batched_64
-      zdotu_strided_batched_64 = rocblas_zdotu_strided_batched_64_raw(handle, n, c_loc(x(1)), &
-        incx, stridex, c_loc(y(1)), incy, stridey, batch_count, c_loc(result(1)))
+      zdotu_strided_batched_64 = rocblas_zdotu_strided_batched_64_raw(handle, n, c_loc(x), incx, &
+        stridex, c_loc(y), incy, stridey, batch_count, c_loc(result))
     end function rocblas_zdotu_strided_batched_64_native
 
     function rocblas_zdotu_strided_batched_64_typed(handle, n, x, incx, stridex, y, incy, stridey, &
@@ -45717,17 +45749,17 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_long), value :: n
-      complex(c_float_complex), target :: x(*)
+      complex(c_float_complex), target :: x(..)
       integer(c_long), value :: incx
       integer(c_long), value :: stridex
-      complex(c_float_complex), target :: y(*)
+      complex(c_float_complex), target :: y(..)
       integer(c_long), value :: incy
       integer(c_long), value :: stridey
       integer(c_long), value :: batch_count
-      complex(c_float_complex), target :: result(*)
+      complex(c_float_complex), target :: result(..)
       integer(c_int) :: cdotc_strided_batched_64
-      cdotc_strided_batched_64 = rocblas_cdotc_strided_batched_64_raw(handle, n, c_loc(x(1)), &
-        incx, stridex, c_loc(y(1)), incy, stridey, batch_count, c_loc(result(1)))
+      cdotc_strided_batched_64 = rocblas_cdotc_strided_batched_64_raw(handle, n, c_loc(x), incx, &
+        stridex, c_loc(y), incy, stridey, batch_count, c_loc(result))
     end function rocblas_cdotc_strided_batched_64_native
 
     function rocblas_cdotc_strided_batched_64_typed(handle, n, x, incx, stridex, y, incy, stridey, &
@@ -45756,17 +45788,17 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_long), value :: n
-      complex(c_double_complex), target :: x(*)
+      complex(c_double_complex), target :: x(..)
       integer(c_long), value :: incx
       integer(c_long), value :: stridex
-      complex(c_double_complex), target :: y(*)
+      complex(c_double_complex), target :: y(..)
       integer(c_long), value :: incy
       integer(c_long), value :: stridey
       integer(c_long), value :: batch_count
-      complex(c_double_complex), target :: result(*)
+      complex(c_double_complex), target :: result(..)
       integer(c_int) :: zdotc_strided_batched_64
-      zdotc_strided_batched_64 = rocblas_zdotc_strided_batched_64_raw(handle, n, c_loc(x(1)), &
-        incx, stridex, c_loc(y(1)), incy, stridey, batch_count, c_loc(result(1)))
+      zdotc_strided_batched_64 = rocblas_zdotc_strided_batched_64_raw(handle, n, c_loc(x), incx, &
+        stridex, c_loc(y), incy, stridey, batch_count, c_loc(result))
     end function rocblas_zdotc_strided_batched_64_native
 
     function rocblas_zdotc_strided_batched_64_typed(handle, n, x, incx, stridex, y, incy, stridey, &
@@ -45794,12 +45826,12 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_int), value :: n
-      real(c_float), target :: x(*)
+      real(c_float), target :: x(..)
       integer(c_int), value :: incx
-      real(c_float), target :: y(*)
+      real(c_float), target :: y(..)
       integer(c_int), value :: incy
       integer(c_int) :: sswap
-      sswap = rocblas_sswap_raw(handle, n, c_loc(x(1)), incx, c_loc(y(1)), incy)
+      sswap = rocblas_sswap_raw(handle, n, c_loc(x), incx, c_loc(y), incy)
     end function rocblas_sswap_native
 
     function rocblas_sswap_typed(handle, n, x, incx, y, incy) result(sswap)
@@ -45821,12 +45853,12 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_int), value :: n
-      real(c_double), target :: x(*)
+      real(c_double), target :: x(..)
       integer(c_int), value :: incx
-      real(c_double), target :: y(*)
+      real(c_double), target :: y(..)
       integer(c_int), value :: incy
       integer(c_int) :: dswap
-      dswap = rocblas_dswap_raw(handle, n, c_loc(x(1)), incx, c_loc(y(1)), incy)
+      dswap = rocblas_dswap_raw(handle, n, c_loc(x), incx, c_loc(y), incy)
     end function rocblas_dswap_native
 
     function rocblas_dswap_typed(handle, n, x, incx, y, incy) result(dswap)
@@ -45848,12 +45880,12 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_int), value :: n
-      complex(c_float_complex), target :: x(*)
+      complex(c_float_complex), target :: x(..)
       integer(c_int), value :: incx
-      complex(c_float_complex), target :: y(*)
+      complex(c_float_complex), target :: y(..)
       integer(c_int), value :: incy
       integer(c_int) :: cswap
-      cswap = rocblas_cswap_raw(handle, n, c_loc(x(1)), incx, c_loc(y(1)), incy)
+      cswap = rocblas_cswap_raw(handle, n, c_loc(x), incx, c_loc(y), incy)
     end function rocblas_cswap_native
 
     function rocblas_cswap_typed(handle, n, x, incx, y, incy) result(cswap)
@@ -45875,12 +45907,12 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_int), value :: n
-      complex(c_double_complex), target :: x(*)
+      complex(c_double_complex), target :: x(..)
       integer(c_int), value :: incx
-      complex(c_double_complex), target :: y(*)
+      complex(c_double_complex), target :: y(..)
       integer(c_int), value :: incy
       integer(c_int) :: zswap
-      zswap = rocblas_zswap_raw(handle, n, c_loc(x(1)), incx, c_loc(y(1)), incy)
+      zswap = rocblas_zswap_raw(handle, n, c_loc(x), incx, c_loc(y), incy)
     end function rocblas_zswap_native
 
     function rocblas_zswap_typed(handle, n, x, incx, y, incy) result(zswap)
@@ -45902,12 +45934,12 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_long), value :: n
-      real(c_float), target :: x(*)
+      real(c_float), target :: x(..)
       integer(c_long), value :: incx
-      real(c_float), target :: y(*)
+      real(c_float), target :: y(..)
       integer(c_long), value :: incy
       integer(c_int) :: sswap_64
-      sswap_64 = rocblas_sswap_64_raw(handle, n, c_loc(x(1)), incx, c_loc(y(1)), incy)
+      sswap_64 = rocblas_sswap_64_raw(handle, n, c_loc(x), incx, c_loc(y), incy)
     end function rocblas_sswap_64_native
 
     function rocblas_sswap_64_typed(handle, n, x, incx, y, incy) result(sswap_64)
@@ -45929,12 +45961,12 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_long), value :: n
-      real(c_double), target :: x(*)
+      real(c_double), target :: x(..)
       integer(c_long), value :: incx
-      real(c_double), target :: y(*)
+      real(c_double), target :: y(..)
       integer(c_long), value :: incy
       integer(c_int) :: dswap_64
-      dswap_64 = rocblas_dswap_64_raw(handle, n, c_loc(x(1)), incx, c_loc(y(1)), incy)
+      dswap_64 = rocblas_dswap_64_raw(handle, n, c_loc(x), incx, c_loc(y), incy)
     end function rocblas_dswap_64_native
 
     function rocblas_dswap_64_typed(handle, n, x, incx, y, incy) result(dswap_64)
@@ -45956,12 +45988,12 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_long), value :: n
-      complex(c_float_complex), target :: x(*)
+      complex(c_float_complex), target :: x(..)
       integer(c_long), value :: incx
-      complex(c_float_complex), target :: y(*)
+      complex(c_float_complex), target :: y(..)
       integer(c_long), value :: incy
       integer(c_int) :: cswap_64
-      cswap_64 = rocblas_cswap_64_raw(handle, n, c_loc(x(1)), incx, c_loc(y(1)), incy)
+      cswap_64 = rocblas_cswap_64_raw(handle, n, c_loc(x), incx, c_loc(y), incy)
     end function rocblas_cswap_64_native
 
     function rocblas_cswap_64_typed(handle, n, x, incx, y, incy) result(cswap_64)
@@ -45983,12 +46015,12 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_long), value :: n
-      complex(c_double_complex), target :: x(*)
+      complex(c_double_complex), target :: x(..)
       integer(c_long), value :: incx
-      complex(c_double_complex), target :: y(*)
+      complex(c_double_complex), target :: y(..)
       integer(c_long), value :: incy
       integer(c_int) :: zswap_64
-      zswap_64 = rocblas_zswap_64_raw(handle, n, c_loc(x(1)), incx, c_loc(y(1)), incy)
+      zswap_64 = rocblas_zswap_64_raw(handle, n, c_loc(x), incx, c_loc(y), incy)
     end function rocblas_zswap_64_native
 
     function rocblas_zswap_64_typed(handle, n, x, incx, y, incy) result(zswap_64)
@@ -46139,16 +46171,16 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_int), value :: n
-      real(c_float), target :: x(*)
+      real(c_float), target :: x(..)
       integer(c_int), value :: incx
       integer(c_long), value :: stridex
-      real(c_float), target :: y(*)
+      real(c_float), target :: y(..)
       integer(c_int), value :: incy
       integer(c_long), value :: stridey
       integer(c_int), value :: batch_count
       integer(c_int) :: sswap_strided_batched
-      sswap_strided_batched = rocblas_sswap_strided_batched_raw(handle, n, c_loc(x(1)), incx, &
-        stridex, c_loc(y(1)), incy, stridey, batch_count)
+      sswap_strided_batched = rocblas_sswap_strided_batched_raw(handle, n, c_loc(x), incx, &
+        stridex, c_loc(y), incy, stridey, batch_count)
     end function rocblas_sswap_strided_batched_native
 
     function rocblas_sswap_strided_batched_typed(handle, n, x, incx, stridex, y, incy, stridey, &
@@ -46176,16 +46208,16 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_int), value :: n
-      real(c_double), target :: x(*)
+      real(c_double), target :: x(..)
       integer(c_int), value :: incx
       integer(c_long), value :: stridex
-      real(c_double), target :: y(*)
+      real(c_double), target :: y(..)
       integer(c_int), value :: incy
       integer(c_long), value :: stridey
       integer(c_int), value :: batch_count
       integer(c_int) :: dswap_strided_batched
-      dswap_strided_batched = rocblas_dswap_strided_batched_raw(handle, n, c_loc(x(1)), incx, &
-        stridex, c_loc(y(1)), incy, stridey, batch_count)
+      dswap_strided_batched = rocblas_dswap_strided_batched_raw(handle, n, c_loc(x), incx, &
+        stridex, c_loc(y), incy, stridey, batch_count)
     end function rocblas_dswap_strided_batched_native
 
     function rocblas_dswap_strided_batched_typed(handle, n, x, incx, stridex, y, incy, stridey, &
@@ -46213,16 +46245,16 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_int), value :: n
-      complex(c_float_complex), target :: x(*)
+      complex(c_float_complex), target :: x(..)
       integer(c_int), value :: incx
       integer(c_long), value :: stridex
-      complex(c_float_complex), target :: y(*)
+      complex(c_float_complex), target :: y(..)
       integer(c_int), value :: incy
       integer(c_long), value :: stridey
       integer(c_int), value :: batch_count
       integer(c_int) :: cswap_strided_batched
-      cswap_strided_batched = rocblas_cswap_strided_batched_raw(handle, n, c_loc(x(1)), incx, &
-        stridex, c_loc(y(1)), incy, stridey, batch_count)
+      cswap_strided_batched = rocblas_cswap_strided_batched_raw(handle, n, c_loc(x), incx, &
+        stridex, c_loc(y), incy, stridey, batch_count)
     end function rocblas_cswap_strided_batched_native
 
     function rocblas_cswap_strided_batched_typed(handle, n, x, incx, stridex, y, incy, stridey, &
@@ -46250,16 +46282,16 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_int), value :: n
-      complex(c_double_complex), target :: x(*)
+      complex(c_double_complex), target :: x(..)
       integer(c_int), value :: incx
       integer(c_long), value :: stridex
-      complex(c_double_complex), target :: y(*)
+      complex(c_double_complex), target :: y(..)
       integer(c_int), value :: incy
       integer(c_long), value :: stridey
       integer(c_int), value :: batch_count
       integer(c_int) :: zswap_strided_batched
-      zswap_strided_batched = rocblas_zswap_strided_batched_raw(handle, n, c_loc(x(1)), incx, &
-        stridex, c_loc(y(1)), incy, stridey, batch_count)
+      zswap_strided_batched = rocblas_zswap_strided_batched_raw(handle, n, c_loc(x), incx, &
+        stridex, c_loc(y), incy, stridey, batch_count)
     end function rocblas_zswap_strided_batched_native
 
     function rocblas_zswap_strided_batched_typed(handle, n, x, incx, stridex, y, incy, stridey, &
@@ -46287,16 +46319,16 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_long), value :: n
-      real(c_float), target :: x(*)
+      real(c_float), target :: x(..)
       integer(c_long), value :: incx
       integer(c_long), value :: stridex
-      real(c_float), target :: y(*)
+      real(c_float), target :: y(..)
       integer(c_long), value :: incy
       integer(c_long), value :: stridey
       integer(c_long), value :: batch_count
       integer(c_int) :: sswap_strided_batched_64
-      sswap_strided_batched_64 = rocblas_sswap_strided_batched_64_raw(handle, n, c_loc(x(1)), &
-        incx, stridex, c_loc(y(1)), incy, stridey, batch_count)
+      sswap_strided_batched_64 = rocblas_sswap_strided_batched_64_raw(handle, n, c_loc(x), incx, &
+        stridex, c_loc(y), incy, stridey, batch_count)
     end function rocblas_sswap_strided_batched_64_native
 
     function rocblas_sswap_strided_batched_64_typed(handle, n, x, incx, stridex, y, incy, stridey, &
@@ -46324,16 +46356,16 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_long), value :: n
-      real(c_double), target :: x(*)
+      real(c_double), target :: x(..)
       integer(c_long), value :: incx
       integer(c_long), value :: stridex
-      real(c_double), target :: y(*)
+      real(c_double), target :: y(..)
       integer(c_long), value :: incy
       integer(c_long), value :: stridey
       integer(c_long), value :: batch_count
       integer(c_int) :: dswap_strided_batched_64
-      dswap_strided_batched_64 = rocblas_dswap_strided_batched_64_raw(handle, n, c_loc(x(1)), &
-        incx, stridex, c_loc(y(1)), incy, stridey, batch_count)
+      dswap_strided_batched_64 = rocblas_dswap_strided_batched_64_raw(handle, n, c_loc(x), incx, &
+        stridex, c_loc(y), incy, stridey, batch_count)
     end function rocblas_dswap_strided_batched_64_native
 
     function rocblas_dswap_strided_batched_64_typed(handle, n, x, incx, stridex, y, incy, stridey, &
@@ -46361,16 +46393,16 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_long), value :: n
-      complex(c_float_complex), target :: x(*)
+      complex(c_float_complex), target :: x(..)
       integer(c_long), value :: incx
       integer(c_long), value :: stridex
-      complex(c_float_complex), target :: y(*)
+      complex(c_float_complex), target :: y(..)
       integer(c_long), value :: incy
       integer(c_long), value :: stridey
       integer(c_long), value :: batch_count
       integer(c_int) :: cswap_strided_batched_64
-      cswap_strided_batched_64 = rocblas_cswap_strided_batched_64_raw(handle, n, c_loc(x(1)), &
-        incx, stridex, c_loc(y(1)), incy, stridey, batch_count)
+      cswap_strided_batched_64 = rocblas_cswap_strided_batched_64_raw(handle, n, c_loc(x), incx, &
+        stridex, c_loc(y), incy, stridey, batch_count)
     end function rocblas_cswap_strided_batched_64_native
 
     function rocblas_cswap_strided_batched_64_typed(handle, n, x, incx, stridex, y, incy, stridey, &
@@ -46398,16 +46430,16 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_long), value :: n
-      complex(c_double_complex), target :: x(*)
+      complex(c_double_complex), target :: x(..)
       integer(c_long), value :: incx
       integer(c_long), value :: stridex
-      complex(c_double_complex), target :: y(*)
+      complex(c_double_complex), target :: y(..)
       integer(c_long), value :: incy
       integer(c_long), value :: stridey
       integer(c_long), value :: batch_count
       integer(c_int) :: zswap_strided_batched_64
-      zswap_strided_batched_64 = rocblas_zswap_strided_batched_64_raw(handle, n, c_loc(x(1)), &
-        incx, stridex, c_loc(y(1)), incy, stridey, batch_count)
+      zswap_strided_batched_64 = rocblas_zswap_strided_batched_64_raw(handle, n, c_loc(x), incx, &
+        stridex, c_loc(y), incy, stridey, batch_count)
     end function rocblas_zswap_strided_batched_64_native
 
     function rocblas_zswap_strided_batched_64_typed(handle, n, x, incx, stridex, y, incy, stridey, &
@@ -46435,10 +46467,10 @@ contains
       implicit none
       type(rocblas_handle_t), value :: handle
       integer(c_int), value :: n
-      type(c_ptr), value :: alpha
-      type(c_ptr), value :: x
+      type(rocblas_half) :: alpha
+      type(rocblas_half) :: x
       integer(c_int), value :: incx
-      type(c_ptr), value :: y
+      type(rocblas_half) :: y
       integer(c_int), value :: incy
       integer(c_int) :: haxpy
       haxpy = rocblas_haxpy_raw(handle%ptr, n, alpha, x, incx, y, incy)
@@ -46450,12 +46482,12 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: n
       real(c_float) :: alpha
-      real(c_float), target :: x(*)
+      real(c_float), target :: x(..)
       integer(c_int), value :: incx
-      real(c_float), target :: y(*)
+      real(c_float), target :: y(..)
       integer(c_int), value :: incy
       integer(c_int) :: saxpy
-      saxpy = rocblas_saxpy_raw(handle, n, alpha, c_loc(x(1)), incx, c_loc(y(1)), incy)
+      saxpy = rocblas_saxpy_raw(handle, n, alpha, c_loc(x), incx, c_loc(y), incy)
     end function rocblas_saxpy_native
 
     function rocblas_saxpy_typed(handle, n, alpha, x, incx, y, incy) result(saxpy)
@@ -46479,12 +46511,12 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: n
       real(c_double) :: alpha
-      real(c_double), target :: x(*)
+      real(c_double), target :: x(..)
       integer(c_int), value :: incx
-      real(c_double), target :: y(*)
+      real(c_double), target :: y(..)
       integer(c_int), value :: incy
       integer(c_int) :: daxpy
-      daxpy = rocblas_daxpy_raw(handle, n, alpha, c_loc(x(1)), incx, c_loc(y(1)), incy)
+      daxpy = rocblas_daxpy_raw(handle, n, alpha, c_loc(x), incx, c_loc(y), incy)
     end function rocblas_daxpy_native
 
     function rocblas_daxpy_typed(handle, n, alpha, x, incx, y, incy) result(daxpy)
@@ -46508,12 +46540,12 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: n
       complex(c_float_complex) :: alpha
-      complex(c_float_complex), target :: x(*)
+      complex(c_float_complex), target :: x(..)
       integer(c_int), value :: incx
-      complex(c_float_complex), target :: y(*)
+      complex(c_float_complex), target :: y(..)
       integer(c_int), value :: incy
       integer(c_int) :: caxpy
-      caxpy = rocblas_caxpy_raw(handle, n, alpha, c_loc(x(1)), incx, c_loc(y(1)), incy)
+      caxpy = rocblas_caxpy_raw(handle, n, alpha, c_loc(x), incx, c_loc(y), incy)
     end function rocblas_caxpy_native
 
     function rocblas_caxpy_typed(handle, n, alpha, x, incx, y, incy) result(caxpy)
@@ -46537,12 +46569,12 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: n
       complex(c_double_complex) :: alpha
-      complex(c_double_complex), target :: x(*)
+      complex(c_double_complex), target :: x(..)
       integer(c_int), value :: incx
-      complex(c_double_complex), target :: y(*)
+      complex(c_double_complex), target :: y(..)
       integer(c_int), value :: incy
       integer(c_int) :: zaxpy
-      zaxpy = rocblas_zaxpy_raw(handle, n, alpha, c_loc(x(1)), incx, c_loc(y(1)), incy)
+      zaxpy = rocblas_zaxpy_raw(handle, n, alpha, c_loc(x), incx, c_loc(y), incy)
     end function rocblas_zaxpy_native
 
     function rocblas_zaxpy_typed(handle, n, alpha, x, incx, y, incy) result(zaxpy)
@@ -46566,10 +46598,10 @@ contains
       implicit none
       type(rocblas_handle_t), value :: handle
       integer(c_long), value :: n
-      type(c_ptr), value :: alpha
-      type(c_ptr), value :: x
+      type(rocblas_half) :: alpha
+      type(rocblas_half) :: x
       integer(c_long), value :: incx
-      type(c_ptr), value :: y
+      type(rocblas_half) :: y
       integer(c_long), value :: incy
       integer(c_int) :: haxpy_64
       haxpy_64 = rocblas_haxpy_64_raw(handle%ptr, n, alpha, x, incx, y, incy)
@@ -46580,14 +46612,13 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_long), value :: n
-      real(c_float), target :: alpha(*)
-      real(c_float), target :: x(*)
+      real(c_float), target :: alpha(..)
+      real(c_float), target :: x(..)
       integer(c_long), value :: incx
-      real(c_float), target :: y(*)
+      real(c_float), target :: y(..)
       integer(c_long), value :: incy
       integer(c_int) :: saxpy_64
-      saxpy_64 = rocblas_saxpy_64_raw(handle, n, c_loc(alpha(1)), c_loc(x(1)), incx, c_loc(y(1)), &
-        incy)
+      saxpy_64 = rocblas_saxpy_64_raw(handle, n, c_loc(alpha), c_loc(x), incx, c_loc(y), incy)
     end function rocblas_saxpy_64_native
 
     function rocblas_saxpy_64_typed(handle, n, alpha, x, incx, y, incy) result(saxpy_64)
@@ -46610,14 +46641,13 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_long), value :: n
-      real(c_double), target :: alpha(*)
-      real(c_double), target :: x(*)
+      real(c_double), target :: alpha(..)
+      real(c_double), target :: x(..)
       integer(c_long), value :: incx
-      real(c_double), target :: y(*)
+      real(c_double), target :: y(..)
       integer(c_long), value :: incy
       integer(c_int) :: daxpy_64
-      daxpy_64 = rocblas_daxpy_64_raw(handle, n, c_loc(alpha(1)), c_loc(x(1)), incx, c_loc(y(1)), &
-        incy)
+      daxpy_64 = rocblas_daxpy_64_raw(handle, n, c_loc(alpha), c_loc(x), incx, c_loc(y), incy)
     end function rocblas_daxpy_64_native
 
     function rocblas_daxpy_64_typed(handle, n, alpha, x, incx, y, incy) result(daxpy_64)
@@ -46640,14 +46670,13 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_long), value :: n
-      complex(c_float_complex), target :: alpha(*)
-      complex(c_float_complex), target :: x(*)
+      complex(c_float_complex), target :: alpha(..)
+      complex(c_float_complex), target :: x(..)
       integer(c_long), value :: incx
-      complex(c_float_complex), target :: y(*)
+      complex(c_float_complex), target :: y(..)
       integer(c_long), value :: incy
       integer(c_int) :: caxpy_64
-      caxpy_64 = rocblas_caxpy_64_raw(handle, n, c_loc(alpha(1)), c_loc(x(1)), incx, c_loc(y(1)), &
-        incy)
+      caxpy_64 = rocblas_caxpy_64_raw(handle, n, c_loc(alpha), c_loc(x), incx, c_loc(y), incy)
     end function rocblas_caxpy_64_native
 
     function rocblas_caxpy_64_typed(handle, n, alpha, x, incx, y, incy) result(caxpy_64)
@@ -46670,14 +46699,13 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_long), value :: n
-      complex(c_double_complex), target :: alpha(*)
-      complex(c_double_complex), target :: x(*)
+      complex(c_double_complex), target :: alpha(..)
+      complex(c_double_complex), target :: x(..)
       integer(c_long), value :: incx
-      complex(c_double_complex), target :: y(*)
+      complex(c_double_complex), target :: y(..)
       integer(c_long), value :: incy
       integer(c_int) :: zaxpy_64
-      zaxpy_64 = rocblas_zaxpy_64_raw(handle, n, c_loc(alpha(1)), c_loc(x(1)), incx, c_loc(y(1)), &
-        incy)
+      zaxpy_64 = rocblas_zaxpy_64_raw(handle, n, c_loc(alpha), c_loc(x), incx, c_loc(y), incy)
     end function rocblas_zaxpy_64_native
 
     function rocblas_zaxpy_64_typed(handle, n, alpha, x, incx, y, incy) result(zaxpy_64)
@@ -46702,7 +46730,7 @@ contains
       implicit none
       type(rocblas_handle_t), value :: handle
       integer(c_int), value :: n
-      type(c_ptr), value :: alpha
+      type(rocblas_half) :: alpha
       type(c_ptr), value :: x
       integer(c_int), value :: incx
       type(c_ptr), value :: y
@@ -46787,7 +46815,7 @@ contains
       implicit none
       type(rocblas_handle_t), value :: handle
       integer(c_long), value :: n
-      type(c_ptr), value :: alpha
+      type(rocblas_half) :: alpha
       type(c_ptr), value :: x
       integer(c_long), value :: incx
       type(c_ptr), value :: y
@@ -46804,15 +46832,15 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_long), value :: n
-      real(c_float), target :: alpha(*)
+      real(c_float), target :: alpha(..)
       type(c_ptr), value :: x
       integer(c_long), value :: incx
       type(c_ptr), value :: y
       integer(c_long), value :: incy
       integer(c_long), value :: batch_count
       integer(c_int) :: saxpy_batched_64
-      saxpy_batched_64 = rocblas_saxpy_batched_64_raw(handle, n, c_loc(alpha(1)), x, incx, y, &
-        incy, batch_count)
+      saxpy_batched_64 = rocblas_saxpy_batched_64_raw(handle, n, c_loc(alpha), x, incx, y, incy, &
+        batch_count)
     end function rocblas_saxpy_batched_64_native
 
     function rocblas_saxpy_batched_64_typed(handle, n, alpha, x, incx, y, incy, &
@@ -46839,15 +46867,15 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_long), value :: n
-      real(c_double), target :: alpha(*)
+      real(c_double), target :: alpha(..)
       type(c_ptr), value :: x
       integer(c_long), value :: incx
       type(c_ptr), value :: y
       integer(c_long), value :: incy
       integer(c_long), value :: batch_count
       integer(c_int) :: daxpy_batched_64
-      daxpy_batched_64 = rocblas_daxpy_batched_64_raw(handle, n, c_loc(alpha(1)), x, incx, y, &
-        incy, batch_count)
+      daxpy_batched_64 = rocblas_daxpy_batched_64_raw(handle, n, c_loc(alpha), x, incx, y, incy, &
+        batch_count)
     end function rocblas_daxpy_batched_64_native
 
     function rocblas_daxpy_batched_64_typed(handle, n, alpha, x, incx, y, incy, &
@@ -46874,15 +46902,15 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_long), value :: n
-      complex(c_float_complex), target :: alpha(*)
+      complex(c_float_complex), target :: alpha(..)
       type(c_ptr), value :: x
       integer(c_long), value :: incx
       type(c_ptr), value :: y
       integer(c_long), value :: incy
       integer(c_long), value :: batch_count
       integer(c_int) :: caxpy_batched_64
-      caxpy_batched_64 = rocblas_caxpy_batched_64_raw(handle, n, c_loc(alpha(1)), x, incx, y, &
-        incy, batch_count)
+      caxpy_batched_64 = rocblas_caxpy_batched_64_raw(handle, n, c_loc(alpha), x, incx, y, incy, &
+        batch_count)
     end function rocblas_caxpy_batched_64_native
 
     function rocblas_caxpy_batched_64_typed(handle, n, alpha, x, incx, y, incy, &
@@ -46909,15 +46937,15 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_long), value :: n
-      complex(c_double_complex), target :: alpha(*)
+      complex(c_double_complex), target :: alpha(..)
       type(c_ptr), value :: x
       integer(c_long), value :: incx
       type(c_ptr), value :: y
       integer(c_long), value :: incy
       integer(c_long), value :: batch_count
       integer(c_int) :: zaxpy_batched_64
-      zaxpy_batched_64 = rocblas_zaxpy_batched_64_raw(handle, n, c_loc(alpha(1)), x, incx, y, &
-        incy, batch_count)
+      zaxpy_batched_64 = rocblas_zaxpy_batched_64_raw(handle, n, c_loc(alpha), x, incx, y, incy, &
+        batch_count)
     end function rocblas_zaxpy_batched_64_native
 
     function rocblas_zaxpy_batched_64_typed(handle, n, alpha, x, incx, y, incy, &
@@ -46945,11 +46973,11 @@ contains
       implicit none
       type(rocblas_handle_t), value :: handle
       integer(c_int), value :: n
-      type(c_ptr), value :: alpha
-      type(c_ptr), value :: x
+      type(rocblas_half) :: alpha
+      type(rocblas_half) :: x
       integer(c_int), value :: incx
       integer(c_long), value :: stridex
-      type(c_ptr), value :: y
+      type(rocblas_half) :: y
       integer(c_int), value :: incy
       integer(c_long), value :: stridey
       integer(c_int), value :: batch_count
@@ -46965,16 +46993,16 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: n
       real(c_float) :: alpha
-      real(c_float), target :: x(*)
+      real(c_float), target :: x(..)
       integer(c_int), value :: incx
       integer(c_long), value :: stridex
-      real(c_float), target :: y(*)
+      real(c_float), target :: y(..)
       integer(c_int), value :: incy
       integer(c_long), value :: stridey
       integer(c_int), value :: batch_count
       integer(c_int) :: saxpy_strided_batched
-      saxpy_strided_batched = rocblas_saxpy_strided_batched_raw(handle, n, alpha, c_loc(x(1)), &
-        incx, stridex, c_loc(y(1)), incy, stridey, batch_count)
+      saxpy_strided_batched = rocblas_saxpy_strided_batched_raw(handle, n, alpha, c_loc(x), incx, &
+        stridex, c_loc(y), incy, stridey, batch_count)
     end function rocblas_saxpy_strided_batched_native
 
     function rocblas_saxpy_strided_batched_typed(handle, n, alpha, x, incx, stridex, y, incy, &
@@ -47004,16 +47032,16 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: n
       real(c_double) :: alpha
-      real(c_double), target :: x(*)
+      real(c_double), target :: x(..)
       integer(c_int), value :: incx
       integer(c_long), value :: stridex
-      real(c_double), target :: y(*)
+      real(c_double), target :: y(..)
       integer(c_int), value :: incy
       integer(c_long), value :: stridey
       integer(c_int), value :: batch_count
       integer(c_int) :: daxpy_strided_batched
-      daxpy_strided_batched = rocblas_daxpy_strided_batched_raw(handle, n, alpha, c_loc(x(1)), &
-        incx, stridex, c_loc(y(1)), incy, stridey, batch_count)
+      daxpy_strided_batched = rocblas_daxpy_strided_batched_raw(handle, n, alpha, c_loc(x), incx, &
+        stridex, c_loc(y), incy, stridey, batch_count)
     end function rocblas_daxpy_strided_batched_native
 
     function rocblas_daxpy_strided_batched_typed(handle, n, alpha, x, incx, stridex, y, incy, &
@@ -47043,16 +47071,16 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: n
       complex(c_float_complex) :: alpha
-      complex(c_float_complex), target :: x(*)
+      complex(c_float_complex), target :: x(..)
       integer(c_int), value :: incx
       integer(c_long), value :: stridex
-      complex(c_float_complex), target :: y(*)
+      complex(c_float_complex), target :: y(..)
       integer(c_int), value :: incy
       integer(c_long), value :: stridey
       integer(c_int), value :: batch_count
       integer(c_int) :: caxpy_strided_batched
-      caxpy_strided_batched = rocblas_caxpy_strided_batched_raw(handle, n, alpha, c_loc(x(1)), &
-        incx, stridex, c_loc(y(1)), incy, stridey, batch_count)
+      caxpy_strided_batched = rocblas_caxpy_strided_batched_raw(handle, n, alpha, c_loc(x), incx, &
+        stridex, c_loc(y), incy, stridey, batch_count)
     end function rocblas_caxpy_strided_batched_native
 
     function rocblas_caxpy_strided_batched_typed(handle, n, alpha, x, incx, stridex, y, incy, &
@@ -47082,16 +47110,16 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: n
       complex(c_double_complex) :: alpha
-      complex(c_double_complex), target :: x(*)
+      complex(c_double_complex), target :: x(..)
       integer(c_int), value :: incx
       integer(c_long), value :: stridex
-      complex(c_double_complex), target :: y(*)
+      complex(c_double_complex), target :: y(..)
       integer(c_int), value :: incy
       integer(c_long), value :: stridey
       integer(c_int), value :: batch_count
       integer(c_int) :: zaxpy_strided_batched
-      zaxpy_strided_batched = rocblas_zaxpy_strided_batched_raw(handle, n, alpha, c_loc(x(1)), &
-        incx, stridex, c_loc(y(1)), incy, stridey, batch_count)
+      zaxpy_strided_batched = rocblas_zaxpy_strided_batched_raw(handle, n, alpha, c_loc(x), incx, &
+        stridex, c_loc(y), incy, stridey, batch_count)
     end function rocblas_zaxpy_strided_batched_native
 
     function rocblas_zaxpy_strided_batched_typed(handle, n, alpha, x, incx, stridex, y, incy, &
@@ -47121,11 +47149,11 @@ contains
       implicit none
       type(rocblas_handle_t), value :: handle
       integer(c_long), value :: n
-      type(c_ptr), value :: alpha
-      type(c_ptr), value :: x
+      type(rocblas_half) :: alpha
+      type(rocblas_half) :: x
       integer(c_long), value :: incx
       integer(c_long), value :: stridex
-      type(c_ptr), value :: y
+      type(rocblas_half) :: y
       integer(c_long), value :: incy
       integer(c_long), value :: stridey
       integer(c_long), value :: batch_count
@@ -47140,17 +47168,17 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_long), value :: n
-      real(c_float), target :: alpha(*)
-      real(c_float), target :: x(*)
+      real(c_float), target :: alpha(..)
+      real(c_float), target :: x(..)
       integer(c_long), value :: incx
       integer(c_long), value :: stridex
-      real(c_float), target :: y(*)
+      real(c_float), target :: y(..)
       integer(c_long), value :: incy
       integer(c_long), value :: stridey
       integer(c_long), value :: batch_count
       integer(c_int) :: saxpy_strided_batched_64
-      saxpy_strided_batched_64 = rocblas_saxpy_strided_batched_64_raw(handle, n, c_loc(alpha(1)), &
-        c_loc(x(1)), incx, stridex, c_loc(y(1)), incy, stridey, batch_count)
+      saxpy_strided_batched_64 = rocblas_saxpy_strided_batched_64_raw(handle, n, c_loc(alpha), &
+        c_loc(x), incx, stridex, c_loc(y), incy, stridey, batch_count)
     end function rocblas_saxpy_strided_batched_64_native
 
     function rocblas_saxpy_strided_batched_64_typed(handle, n, alpha, x, incx, stridex, y, incy, &
@@ -47179,17 +47207,17 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_long), value :: n
-      real(c_double), target :: alpha(*)
-      real(c_double), target :: x(*)
+      real(c_double), target :: alpha(..)
+      real(c_double), target :: x(..)
       integer(c_long), value :: incx
       integer(c_long), value :: stridex
-      real(c_double), target :: y(*)
+      real(c_double), target :: y(..)
       integer(c_long), value :: incy
       integer(c_long), value :: stridey
       integer(c_long), value :: batch_count
       integer(c_int) :: daxpy_strided_batched_64
-      daxpy_strided_batched_64 = rocblas_daxpy_strided_batched_64_raw(handle, n, c_loc(alpha(1)), &
-        c_loc(x(1)), incx, stridex, c_loc(y(1)), incy, stridey, batch_count)
+      daxpy_strided_batched_64 = rocblas_daxpy_strided_batched_64_raw(handle, n, c_loc(alpha), &
+        c_loc(x), incx, stridex, c_loc(y), incy, stridey, batch_count)
     end function rocblas_daxpy_strided_batched_64_native
 
     function rocblas_daxpy_strided_batched_64_typed(handle, n, alpha, x, incx, stridex, y, incy, &
@@ -47218,17 +47246,17 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_long), value :: n
-      complex(c_float_complex), target :: alpha(*)
-      complex(c_float_complex), target :: x(*)
+      complex(c_float_complex), target :: alpha(..)
+      complex(c_float_complex), target :: x(..)
       integer(c_long), value :: incx
       integer(c_long), value :: stridex
-      complex(c_float_complex), target :: y(*)
+      complex(c_float_complex), target :: y(..)
       integer(c_long), value :: incy
       integer(c_long), value :: stridey
       integer(c_long), value :: batch_count
       integer(c_int) :: caxpy_strided_batched_64
-      caxpy_strided_batched_64 = rocblas_caxpy_strided_batched_64_raw(handle, n, c_loc(alpha(1)), &
-        c_loc(x(1)), incx, stridex, c_loc(y(1)), incy, stridey, batch_count)
+      caxpy_strided_batched_64 = rocblas_caxpy_strided_batched_64_raw(handle, n, c_loc(alpha), &
+        c_loc(x), incx, stridex, c_loc(y), incy, stridey, batch_count)
     end function rocblas_caxpy_strided_batched_64_native
 
     function rocblas_caxpy_strided_batched_64_typed(handle, n, alpha, x, incx, stridex, y, incy, &
@@ -47257,17 +47285,17 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_long), value :: n
-      complex(c_double_complex), target :: alpha(*)
-      complex(c_double_complex), target :: x(*)
+      complex(c_double_complex), target :: alpha(..)
+      complex(c_double_complex), target :: x(..)
       integer(c_long), value :: incx
       integer(c_long), value :: stridex
-      complex(c_double_complex), target :: y(*)
+      complex(c_double_complex), target :: y(..)
       integer(c_long), value :: incy
       integer(c_long), value :: stridey
       integer(c_long), value :: batch_count
       integer(c_int) :: zaxpy_strided_batched_64
-      zaxpy_strided_batched_64 = rocblas_zaxpy_strided_batched_64_raw(handle, n, c_loc(alpha(1)), &
-        c_loc(x(1)), incx, stridex, c_loc(y(1)), incy, stridey, batch_count)
+      zaxpy_strided_batched_64 = rocblas_zaxpy_strided_batched_64_raw(handle, n, c_loc(alpha), &
+        c_loc(x), incx, stridex, c_loc(y), incy, stridey, batch_count)
     end function rocblas_zaxpy_strided_batched_64_native
 
     function rocblas_zaxpy_strided_batched_64_typed(handle, n, alpha, x, incx, stridex, y, incy, &
@@ -47295,11 +47323,11 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_int), value :: n
-      real(c_float), target :: x(*)
+      real(c_float), target :: x(..)
       integer(c_int), value :: incx
-      real(c_float), target :: result(*)
+      real(c_float), target :: result(..)
       integer(c_int) :: sasum
-      sasum = rocblas_sasum_raw(handle, n, c_loc(x(1)), incx, c_loc(result(1)))
+      sasum = rocblas_sasum_raw(handle, n, c_loc(x), incx, c_loc(result))
     end function rocblas_sasum_native
 
     function rocblas_sasum_typed(handle, n, x, incx, result) result(sasum)
@@ -47320,11 +47348,11 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_int), value :: n
-      real(c_double), target :: x(*)
+      real(c_double), target :: x(..)
       integer(c_int), value :: incx
-      real(c_double), target :: result(*)
+      real(c_double), target :: result(..)
       integer(c_int) :: dasum
-      dasum = rocblas_dasum_raw(handle, n, c_loc(x(1)), incx, c_loc(result(1)))
+      dasum = rocblas_dasum_raw(handle, n, c_loc(x), incx, c_loc(result))
     end function rocblas_dasum_native
 
     function rocblas_dasum_typed(handle, n, x, incx, result) result(dasum)
@@ -47345,11 +47373,11 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_int), value :: n
-      complex(c_float_complex), target :: x(*)
+      complex(c_float_complex), target :: x(..)
       integer(c_int), value :: incx
-      real(c_float), target :: result(*)
+      real(c_float), target :: result(..)
       integer(c_int) :: scasum
-      scasum = rocblas_scasum_raw(handle, n, c_loc(x(1)), incx, c_loc(result(1)))
+      scasum = rocblas_scasum_raw(handle, n, c_loc(x), incx, c_loc(result))
     end function rocblas_scasum_native
 
     function rocblas_scasum_typed(handle, n, x, incx, result) result(scasum)
@@ -47370,11 +47398,11 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_int), value :: n
-      complex(c_double_complex), target :: x(*)
+      complex(c_double_complex), target :: x(..)
       integer(c_int), value :: incx
-      real(c_double), target :: result(*)
+      real(c_double), target :: result(..)
       integer(c_int) :: dzasum
-      dzasum = rocblas_dzasum_raw(handle, n, c_loc(x(1)), incx, c_loc(result(1)))
+      dzasum = rocblas_dzasum_raw(handle, n, c_loc(x), incx, c_loc(result))
     end function rocblas_dzasum_native
 
     function rocblas_dzasum_typed(handle, n, x, incx, result) result(dzasum)
@@ -47395,11 +47423,11 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_long), value :: n
-      real(c_float), target :: x(*)
+      real(c_float), target :: x(..)
       integer(c_long), value :: incx
-      real(c_float), target :: result(*)
+      real(c_float), target :: result(..)
       integer(c_int) :: sasum_64
-      sasum_64 = rocblas_sasum_64_raw(handle, n, c_loc(x(1)), incx, c_loc(result(1)))
+      sasum_64 = rocblas_sasum_64_raw(handle, n, c_loc(x), incx, c_loc(result))
     end function rocblas_sasum_64_native
 
     function rocblas_sasum_64_typed(handle, n, x, incx, result) result(sasum_64)
@@ -47420,11 +47448,11 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_long), value :: n
-      real(c_double), target :: x(*)
+      real(c_double), target :: x(..)
       integer(c_long), value :: incx
-      real(c_double), target :: result(*)
+      real(c_double), target :: result(..)
       integer(c_int) :: dasum_64
-      dasum_64 = rocblas_dasum_64_raw(handle, n, c_loc(x(1)), incx, c_loc(result(1)))
+      dasum_64 = rocblas_dasum_64_raw(handle, n, c_loc(x), incx, c_loc(result))
     end function rocblas_dasum_64_native
 
     function rocblas_dasum_64_typed(handle, n, x, incx, result) result(dasum_64)
@@ -47445,11 +47473,11 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_long), value :: n
-      complex(c_float_complex), target :: x(*)
+      complex(c_float_complex), target :: x(..)
       integer(c_long), value :: incx
-      real(c_float), target :: result(*)
+      real(c_float), target :: result(..)
       integer(c_int) :: scasum_64
-      scasum_64 = rocblas_scasum_64_raw(handle, n, c_loc(x(1)), incx, c_loc(result(1)))
+      scasum_64 = rocblas_scasum_64_raw(handle, n, c_loc(x), incx, c_loc(result))
     end function rocblas_scasum_64_native
 
     function rocblas_scasum_64_typed(handle, n, x, incx, result) result(scasum_64)
@@ -47470,11 +47498,11 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_long), value :: n
-      complex(c_double_complex), target :: x(*)
+      complex(c_double_complex), target :: x(..)
       integer(c_long), value :: incx
-      real(c_double), target :: result(*)
+      real(c_double), target :: result(..)
       integer(c_int) :: dzasum_64
-      dzasum_64 = rocblas_dzasum_64_raw(handle, n, c_loc(x(1)), incx, c_loc(result(1)))
+      dzasum_64 = rocblas_dzasum_64_raw(handle, n, c_loc(x), incx, c_loc(result))
     end function rocblas_dzasum_64_native
 
     function rocblas_dzasum_64_typed(handle, n, x, incx, result) result(dzasum_64)
@@ -47499,9 +47527,9 @@ contains
       type(c_ptr), value :: x
       integer(c_int), value :: incx
       integer(c_int), value :: batch_count
-      real(c_float), target :: results(*)
+      real(c_float), target :: results(..)
       integer(c_int) :: sasum_batched
-      sasum_batched = rocblas_sasum_batched_raw(handle, n, x, incx, batch_count, c_loc(results(1)))
+      sasum_batched = rocblas_sasum_batched_raw(handle, n, x, incx, batch_count, c_loc(results))
     end function rocblas_sasum_batched_native
 
     function rocblas_sasum_batched_typed(handle, n, x, incx, batch_count, results) result( &
@@ -47528,9 +47556,9 @@ contains
       type(c_ptr), value :: x
       integer(c_int), value :: incx
       integer(c_int), value :: batch_count
-      real(c_double), target :: results(*)
+      real(c_double), target :: results(..)
       integer(c_int) :: dasum_batched
-      dasum_batched = rocblas_dasum_batched_raw(handle, n, x, incx, batch_count, c_loc(results(1)))
+      dasum_batched = rocblas_dasum_batched_raw(handle, n, x, incx, batch_count, c_loc(results))
     end function rocblas_dasum_batched_native
 
     function rocblas_dasum_batched_typed(handle, n, x, incx, batch_count, results) result( &
@@ -47557,10 +47585,9 @@ contains
       type(c_ptr), value :: x
       integer(c_int), value :: incx
       integer(c_int), value :: batch_count
-      real(c_float), target :: results(*)
+      real(c_float), target :: results(..)
       integer(c_int) :: scasum_batched
-      scasum_batched = rocblas_scasum_batched_raw(handle, n, x, incx, batch_count, c_loc(results( &
-        1)))
+      scasum_batched = rocblas_scasum_batched_raw(handle, n, x, incx, batch_count, c_loc(results))
     end function rocblas_scasum_batched_native
 
     function rocblas_scasum_batched_typed(handle, n, x, incx, batch_count, results) result( &
@@ -47587,10 +47614,9 @@ contains
       type(c_ptr), value :: x
       integer(c_int), value :: incx
       integer(c_int), value :: batch_count
-      real(c_double), target :: results(*)
+      real(c_double), target :: results(..)
       integer(c_int) :: dzasum_batched
-      dzasum_batched = rocblas_dzasum_batched_raw(handle, n, x, incx, batch_count, c_loc(results( &
-        1)))
+      dzasum_batched = rocblas_dzasum_batched_raw(handle, n, x, incx, batch_count, c_loc(results))
     end function rocblas_dzasum_batched_native
 
     function rocblas_dzasum_batched_typed(handle, n, x, incx, batch_count, results) result( &
@@ -47617,10 +47643,10 @@ contains
       type(c_ptr), value :: x
       integer(c_long), value :: incx
       integer(c_long), value :: batch_count
-      real(c_float), target :: results(*)
+      real(c_float), target :: results(..)
       integer(c_int) :: sasum_batched_64
       sasum_batched_64 = rocblas_sasum_batched_64_raw(handle, n, x, incx, batch_count, c_loc( &
-        results(1)))
+        results))
     end function rocblas_sasum_batched_64_native
 
     function rocblas_sasum_batched_64_typed(handle, n, x, incx, batch_count, results) result( &
@@ -47647,10 +47673,10 @@ contains
       type(c_ptr), value :: x
       integer(c_long), value :: incx
       integer(c_long), value :: batch_count
-      real(c_double), target :: results(*)
+      real(c_double), target :: results(..)
       integer(c_int) :: dasum_batched_64
       dasum_batched_64 = rocblas_dasum_batched_64_raw(handle, n, x, incx, batch_count, c_loc( &
-        results(1)))
+        results))
     end function rocblas_dasum_batched_64_native
 
     function rocblas_dasum_batched_64_typed(handle, n, x, incx, batch_count, results) result( &
@@ -47677,10 +47703,10 @@ contains
       type(c_ptr), value :: x
       integer(c_long), value :: incx
       integer(c_long), value :: batch_count
-      real(c_float), target :: results(*)
+      real(c_float), target :: results(..)
       integer(c_int) :: scasum_batched_64
       scasum_batched_64 = rocblas_scasum_batched_64_raw(handle, n, x, incx, batch_count, c_loc( &
-        results(1)))
+        results))
     end function rocblas_scasum_batched_64_native
 
     function rocblas_scasum_batched_64_typed(handle, n, x, incx, batch_count, results) result( &
@@ -47708,10 +47734,10 @@ contains
       type(c_ptr), value :: x
       integer(c_long), value :: incx
       integer(c_long), value :: batch_count
-      real(c_double), target :: results(*)
+      real(c_double), target :: results(..)
       integer(c_int) :: dzasum_batched_64
       dzasum_batched_64 = rocblas_dzasum_batched_64_raw(handle, n, x, incx, batch_count, c_loc( &
-        results(1)))
+        results))
     end function rocblas_dzasum_batched_64_native
 
     function rocblas_dzasum_batched_64_typed(handle, n, x, incx, batch_count, results) result( &
@@ -47736,14 +47762,14 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_int), value :: n
-      real(c_float), target :: x(*)
+      real(c_float), target :: x(..)
       integer(c_int), value :: incx
       integer(c_long), value :: stridex
       integer(c_int), value :: batch_count
-      real(c_float), target :: results(*)
+      real(c_float), target :: results(..)
       integer(c_int) :: sasum_strided_batched
-      sasum_strided_batched = rocblas_sasum_strided_batched_raw(handle, n, c_loc(x(1)), incx, &
-        stridex, batch_count, c_loc(results(1)))
+      sasum_strided_batched = rocblas_sasum_strided_batched_raw(handle, n, c_loc(x), incx, &
+        stridex, batch_count, c_loc(results))
     end function rocblas_sasum_strided_batched_native
 
     function rocblas_sasum_strided_batched_typed(handle, n, x, incx, stridex, batch_count, &
@@ -47769,14 +47795,14 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_int), value :: n
-      real(c_double), target :: x(*)
+      real(c_double), target :: x(..)
       integer(c_int), value :: incx
       integer(c_long), value :: stridex
       integer(c_int), value :: batch_count
-      real(c_double), target :: results(*)
+      real(c_double), target :: results(..)
       integer(c_int) :: dasum_strided_batched
-      dasum_strided_batched = rocblas_dasum_strided_batched_raw(handle, n, c_loc(x(1)), incx, &
-        stridex, batch_count, c_loc(results(1)))
+      dasum_strided_batched = rocblas_dasum_strided_batched_raw(handle, n, c_loc(x), incx, &
+        stridex, batch_count, c_loc(results))
     end function rocblas_dasum_strided_batched_native
 
     function rocblas_dasum_strided_batched_typed(handle, n, x, incx, stridex, batch_count, &
@@ -47802,14 +47828,14 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_int), value :: n
-      complex(c_float_complex), target :: x(*)
+      complex(c_float_complex), target :: x(..)
       integer(c_int), value :: incx
       integer(c_long), value :: stridex
       integer(c_int), value :: batch_count
-      real(c_float), target :: results(*)
+      real(c_float), target :: results(..)
       integer(c_int) :: scasum_strided_batched
-      scasum_strided_batched = rocblas_scasum_strided_batched_raw(handle, n, c_loc(x(1)), incx, &
-        stridex, batch_count, c_loc(results(1)))
+      scasum_strided_batched = rocblas_scasum_strided_batched_raw(handle, n, c_loc(x), incx, &
+        stridex, batch_count, c_loc(results))
     end function rocblas_scasum_strided_batched_native
 
     function rocblas_scasum_strided_batched_typed(handle, n, x, incx, stridex, batch_count, &
@@ -47835,14 +47861,14 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_int), value :: n
-      complex(c_double_complex), target :: x(*)
+      complex(c_double_complex), target :: x(..)
       integer(c_int), value :: incx
       integer(c_long), value :: stridex
       integer(c_int), value :: batch_count
-      real(c_double), target :: results(*)
+      real(c_double), target :: results(..)
       integer(c_int) :: dzasum_strided_batched
-      dzasum_strided_batched = rocblas_dzasum_strided_batched_raw(handle, n, c_loc(x(1)), incx, &
-        stridex, batch_count, c_loc(results(1)))
+      dzasum_strided_batched = rocblas_dzasum_strided_batched_raw(handle, n, c_loc(x), incx, &
+        stridex, batch_count, c_loc(results))
     end function rocblas_dzasum_strided_batched_native
 
     function rocblas_dzasum_strided_batched_typed(handle, n, x, incx, stridex, batch_count, &
@@ -47868,14 +47894,14 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_long), value :: n
-      real(c_float), target :: x(*)
+      real(c_float), target :: x(..)
       integer(c_long), value :: incx
       integer(c_long), value :: stridex
       integer(c_long), value :: batch_count
-      real(c_float), target :: results(*)
+      real(c_float), target :: results(..)
       integer(c_int) :: sasum_strided_batched_64
-      sasum_strided_batched_64 = rocblas_sasum_strided_batched_64_raw(handle, n, c_loc(x(1)), &
-        incx, stridex, batch_count, c_loc(results(1)))
+      sasum_strided_batched_64 = rocblas_sasum_strided_batched_64_raw(handle, n, c_loc(x), incx, &
+        stridex, batch_count, c_loc(results))
     end function rocblas_sasum_strided_batched_64_native
 
     function rocblas_sasum_strided_batched_64_typed(handle, n, x, incx, stridex, batch_count, &
@@ -47901,14 +47927,14 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_long), value :: n
-      real(c_double), target :: x(*)
+      real(c_double), target :: x(..)
       integer(c_long), value :: incx
       integer(c_long), value :: stridex
       integer(c_long), value :: batch_count
-      real(c_double), target :: results(*)
+      real(c_double), target :: results(..)
       integer(c_int) :: dasum_strided_batched_64
-      dasum_strided_batched_64 = rocblas_dasum_strided_batched_64_raw(handle, n, c_loc(x(1)), &
-        incx, stridex, batch_count, c_loc(results(1)))
+      dasum_strided_batched_64 = rocblas_dasum_strided_batched_64_raw(handle, n, c_loc(x), incx, &
+        stridex, batch_count, c_loc(results))
     end function rocblas_dasum_strided_batched_64_native
 
     function rocblas_dasum_strided_batched_64_typed(handle, n, x, incx, stridex, batch_count, &
@@ -47934,14 +47960,14 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_long), value :: n
-      complex(c_float_complex), target :: x(*)
+      complex(c_float_complex), target :: x(..)
       integer(c_long), value :: incx
       integer(c_long), value :: stridex
       integer(c_long), value :: batch_count
-      real(c_float), target :: results(*)
+      real(c_float), target :: results(..)
       integer(c_int) :: scasum_strided_batched_64
-      scasum_strided_batched_64 = rocblas_scasum_strided_batched_64_raw(handle, n, c_loc(x(1)), &
-        incx, stridex, batch_count, c_loc(results(1)))
+      scasum_strided_batched_64 = rocblas_scasum_strided_batched_64_raw(handle, n, c_loc(x), incx, &
+        stridex, batch_count, c_loc(results))
     end function rocblas_scasum_strided_batched_64_native
 
     function rocblas_scasum_strided_batched_64_typed(handle, n, x, incx, stridex, batch_count, &
@@ -47967,14 +47993,14 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_long), value :: n
-      complex(c_double_complex), target :: x(*)
+      complex(c_double_complex), target :: x(..)
       integer(c_long), value :: incx
       integer(c_long), value :: stridex
       integer(c_long), value :: batch_count
-      real(c_double), target :: results(*)
+      real(c_double), target :: results(..)
       integer(c_int) :: dzasum_strided_batched_64
-      dzasum_strided_batched_64 = rocblas_dzasum_strided_batched_64_raw(handle, n, c_loc(x(1)), &
-        incx, stridex, batch_count, c_loc(results(1)))
+      dzasum_strided_batched_64 = rocblas_dzasum_strided_batched_64_raw(handle, n, c_loc(x), incx, &
+        stridex, batch_count, c_loc(results))
     end function rocblas_dzasum_strided_batched_64_native
 
     function rocblas_dzasum_strided_batched_64_typed(handle, n, x, incx, stridex, batch_count, &
@@ -47999,11 +48025,11 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_int), value :: n
-      real(c_float), target :: x(*)
+      real(c_float), target :: x(..)
       integer(c_int), value :: incx
-      real(c_float), target :: result(*)
+      real(c_float), target :: result(..)
       integer(c_int) :: snrm2
-      snrm2 = rocblas_snrm2_raw(handle, n, c_loc(x(1)), incx, c_loc(result(1)))
+      snrm2 = rocblas_snrm2_raw(handle, n, c_loc(x), incx, c_loc(result))
     end function rocblas_snrm2_native
 
     function rocblas_snrm2_typed(handle, n, x, incx, result) result(snrm2)
@@ -48024,11 +48050,11 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_int), value :: n
-      real(c_double), target :: x(*)
+      real(c_double), target :: x(..)
       integer(c_int), value :: incx
-      real(c_double), target :: result(*)
+      real(c_double), target :: result(..)
       integer(c_int) :: dnrm2
-      dnrm2 = rocblas_dnrm2_raw(handle, n, c_loc(x(1)), incx, c_loc(result(1)))
+      dnrm2 = rocblas_dnrm2_raw(handle, n, c_loc(x), incx, c_loc(result))
     end function rocblas_dnrm2_native
 
     function rocblas_dnrm2_typed(handle, n, x, incx, result) result(dnrm2)
@@ -48049,11 +48075,11 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_int), value :: n
-      complex(c_float_complex), target :: x(*)
+      complex(c_float_complex), target :: x(..)
       integer(c_int), value :: incx
-      real(c_float), target :: result(*)
+      real(c_float), target :: result(..)
       integer(c_int) :: scnrm2
-      scnrm2 = rocblas_scnrm2_raw(handle, n, c_loc(x(1)), incx, c_loc(result(1)))
+      scnrm2 = rocblas_scnrm2_raw(handle, n, c_loc(x), incx, c_loc(result))
     end function rocblas_scnrm2_native
 
     function rocblas_scnrm2_typed(handle, n, x, incx, result) result(scnrm2)
@@ -48074,11 +48100,11 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_int), value :: n
-      complex(c_double_complex), target :: x(*)
+      complex(c_double_complex), target :: x(..)
       integer(c_int), value :: incx
-      real(c_double), target :: result(*)
+      real(c_double), target :: result(..)
       integer(c_int) :: dznrm2
-      dznrm2 = rocblas_dznrm2_raw(handle, n, c_loc(x(1)), incx, c_loc(result(1)))
+      dznrm2 = rocblas_dznrm2_raw(handle, n, c_loc(x), incx, c_loc(result))
     end function rocblas_dznrm2_native
 
     function rocblas_dznrm2_typed(handle, n, x, incx, result) result(dznrm2)
@@ -48099,11 +48125,11 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_long), value :: n
-      real(c_float), target :: x(*)
+      real(c_float), target :: x(..)
       integer(c_long), value :: incx
-      real(c_float), target :: result(*)
+      real(c_float), target :: result(..)
       integer(c_int) :: snrm2_64
-      snrm2_64 = rocblas_snrm2_64_raw(handle, n, c_loc(x(1)), incx, c_loc(result(1)))
+      snrm2_64 = rocblas_snrm2_64_raw(handle, n, c_loc(x), incx, c_loc(result))
     end function rocblas_snrm2_64_native
 
     function rocblas_snrm2_64_typed(handle, n, x, incx, result) result(snrm2_64)
@@ -48124,11 +48150,11 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_long), value :: n
-      real(c_double), target :: x(*)
+      real(c_double), target :: x(..)
       integer(c_long), value :: incx
-      real(c_double), target :: result(*)
+      real(c_double), target :: result(..)
       integer(c_int) :: dnrm2_64
-      dnrm2_64 = rocblas_dnrm2_64_raw(handle, n, c_loc(x(1)), incx, c_loc(result(1)))
+      dnrm2_64 = rocblas_dnrm2_64_raw(handle, n, c_loc(x), incx, c_loc(result))
     end function rocblas_dnrm2_64_native
 
     function rocblas_dnrm2_64_typed(handle, n, x, incx, result) result(dnrm2_64)
@@ -48149,11 +48175,11 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_long), value :: n
-      complex(c_float_complex), target :: x(*)
+      complex(c_float_complex), target :: x(..)
       integer(c_long), value :: incx
-      real(c_float), target :: result(*)
+      real(c_float), target :: result(..)
       integer(c_int) :: scnrm2_64
-      scnrm2_64 = rocblas_scnrm2_64_raw(handle, n, c_loc(x(1)), incx, c_loc(result(1)))
+      scnrm2_64 = rocblas_scnrm2_64_raw(handle, n, c_loc(x), incx, c_loc(result))
     end function rocblas_scnrm2_64_native
 
     function rocblas_scnrm2_64_typed(handle, n, x, incx, result) result(scnrm2_64)
@@ -48174,11 +48200,11 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_long), value :: n
-      complex(c_double_complex), target :: x(*)
+      complex(c_double_complex), target :: x(..)
       integer(c_long), value :: incx
-      real(c_double), target :: result(*)
+      real(c_double), target :: result(..)
       integer(c_int) :: dznrm2_64
-      dznrm2_64 = rocblas_dznrm2_64_raw(handle, n, c_loc(x(1)), incx, c_loc(result(1)))
+      dznrm2_64 = rocblas_dznrm2_64_raw(handle, n, c_loc(x), incx, c_loc(result))
     end function rocblas_dznrm2_64_native
 
     function rocblas_dznrm2_64_typed(handle, n, x, incx, result) result(dznrm2_64)
@@ -48203,9 +48229,9 @@ contains
       type(c_ptr), value :: x
       integer(c_int), value :: incx
       integer(c_int), value :: batch_count
-      real(c_float), target :: results(*)
+      real(c_float), target :: results(..)
       integer(c_int) :: snrm2_batched
-      snrm2_batched = rocblas_snrm2_batched_raw(handle, n, x, incx, batch_count, c_loc(results(1)))
+      snrm2_batched = rocblas_snrm2_batched_raw(handle, n, x, incx, batch_count, c_loc(results))
     end function rocblas_snrm2_batched_native
 
     function rocblas_snrm2_batched_typed(handle, n, x, incx, batch_count, results) result( &
@@ -48232,9 +48258,9 @@ contains
       type(c_ptr), value :: x
       integer(c_int), value :: incx
       integer(c_int), value :: batch_count
-      real(c_double), target :: results(*)
+      real(c_double), target :: results(..)
       integer(c_int) :: dnrm2_batched
-      dnrm2_batched = rocblas_dnrm2_batched_raw(handle, n, x, incx, batch_count, c_loc(results(1)))
+      dnrm2_batched = rocblas_dnrm2_batched_raw(handle, n, x, incx, batch_count, c_loc(results))
     end function rocblas_dnrm2_batched_native
 
     function rocblas_dnrm2_batched_typed(handle, n, x, incx, batch_count, results) result( &
@@ -48261,10 +48287,9 @@ contains
       type(c_ptr), value :: x
       integer(c_int), value :: incx
       integer(c_int), value :: batch_count
-      real(c_float), target :: results(*)
+      real(c_float), target :: results(..)
       integer(c_int) :: scnrm2_batched
-      scnrm2_batched = rocblas_scnrm2_batched_raw(handle, n, x, incx, batch_count, c_loc(results( &
-        1)))
+      scnrm2_batched = rocblas_scnrm2_batched_raw(handle, n, x, incx, batch_count, c_loc(results))
     end function rocblas_scnrm2_batched_native
 
     function rocblas_scnrm2_batched_typed(handle, n, x, incx, batch_count, results) result( &
@@ -48291,10 +48316,9 @@ contains
       type(c_ptr), value :: x
       integer(c_int), value :: incx
       integer(c_int), value :: batch_count
-      real(c_double), target :: results(*)
+      real(c_double), target :: results(..)
       integer(c_int) :: dznrm2_batched
-      dznrm2_batched = rocblas_dznrm2_batched_raw(handle, n, x, incx, batch_count, c_loc(results( &
-        1)))
+      dznrm2_batched = rocblas_dznrm2_batched_raw(handle, n, x, incx, batch_count, c_loc(results))
     end function rocblas_dznrm2_batched_native
 
     function rocblas_dznrm2_batched_typed(handle, n, x, incx, batch_count, results) result( &
@@ -48321,10 +48345,10 @@ contains
       type(c_ptr), value :: x
       integer(c_long), value :: incx
       integer(c_long), value :: batch_count
-      real(c_float), target :: results(*)
+      real(c_float), target :: results(..)
       integer(c_int) :: snrm2_batched_64
       snrm2_batched_64 = rocblas_snrm2_batched_64_raw(handle, n, x, incx, batch_count, c_loc( &
-        results(1)))
+        results))
     end function rocblas_snrm2_batched_64_native
 
     function rocblas_snrm2_batched_64_typed(handle, n, x, incx, batch_count, results) result( &
@@ -48351,10 +48375,10 @@ contains
       type(c_ptr), value :: x
       integer(c_long), value :: incx
       integer(c_long), value :: batch_count
-      real(c_double), target :: results(*)
+      real(c_double), target :: results(..)
       integer(c_int) :: dnrm2_batched_64
       dnrm2_batched_64 = rocblas_dnrm2_batched_64_raw(handle, n, x, incx, batch_count, c_loc( &
-        results(1)))
+        results))
     end function rocblas_dnrm2_batched_64_native
 
     function rocblas_dnrm2_batched_64_typed(handle, n, x, incx, batch_count, results) result( &
@@ -48381,10 +48405,10 @@ contains
       type(c_ptr), value :: x
       integer(c_long), value :: incx
       integer(c_long), value :: batch_count
-      real(c_float), target :: results(*)
+      real(c_float), target :: results(..)
       integer(c_int) :: scnrm2_batched_64
       scnrm2_batched_64 = rocblas_scnrm2_batched_64_raw(handle, n, x, incx, batch_count, c_loc( &
-        results(1)))
+        results))
     end function rocblas_scnrm2_batched_64_native
 
     function rocblas_scnrm2_batched_64_typed(handle, n, x, incx, batch_count, results) result( &
@@ -48412,10 +48436,10 @@ contains
       type(c_ptr), value :: x
       integer(c_long), value :: incx
       integer(c_long), value :: batch_count
-      real(c_double), target :: results(*)
+      real(c_double), target :: results(..)
       integer(c_int) :: dznrm2_batched_64
       dznrm2_batched_64 = rocblas_dznrm2_batched_64_raw(handle, n, x, incx, batch_count, c_loc( &
-        results(1)))
+        results))
     end function rocblas_dznrm2_batched_64_native
 
     function rocblas_dznrm2_batched_64_typed(handle, n, x, incx, batch_count, results) result( &
@@ -48440,14 +48464,14 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_int), value :: n
-      real(c_float), target :: x(*)
+      real(c_float), target :: x(..)
       integer(c_int), value :: incx
       integer(c_long), value :: stridex
       integer(c_int), value :: batch_count
-      real(c_float), target :: results(*)
+      real(c_float), target :: results(..)
       integer(c_int) :: snrm2_strided_batched
-      snrm2_strided_batched = rocblas_snrm2_strided_batched_raw(handle, n, c_loc(x(1)), incx, &
-        stridex, batch_count, c_loc(results(1)))
+      snrm2_strided_batched = rocblas_snrm2_strided_batched_raw(handle, n, c_loc(x), incx, &
+        stridex, batch_count, c_loc(results))
     end function rocblas_snrm2_strided_batched_native
 
     function rocblas_snrm2_strided_batched_typed(handle, n, x, incx, stridex, batch_count, &
@@ -48473,14 +48497,14 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_int), value :: n
-      real(c_double), target :: x(*)
+      real(c_double), target :: x(..)
       integer(c_int), value :: incx
       integer(c_long), value :: stridex
       integer(c_int), value :: batch_count
-      real(c_double), target :: results(*)
+      real(c_double), target :: results(..)
       integer(c_int) :: dnrm2_strided_batched
-      dnrm2_strided_batched = rocblas_dnrm2_strided_batched_raw(handle, n, c_loc(x(1)), incx, &
-        stridex, batch_count, c_loc(results(1)))
+      dnrm2_strided_batched = rocblas_dnrm2_strided_batched_raw(handle, n, c_loc(x), incx, &
+        stridex, batch_count, c_loc(results))
     end function rocblas_dnrm2_strided_batched_native
 
     function rocblas_dnrm2_strided_batched_typed(handle, n, x, incx, stridex, batch_count, &
@@ -48506,14 +48530,14 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_int), value :: n
-      complex(c_float_complex), target :: x(*)
+      complex(c_float_complex), target :: x(..)
       integer(c_int), value :: incx
       integer(c_long), value :: stridex
       integer(c_int), value :: batch_count
-      real(c_float), target :: results(*)
+      real(c_float), target :: results(..)
       integer(c_int) :: scnrm2_strided_batched
-      scnrm2_strided_batched = rocblas_scnrm2_strided_batched_raw(handle, n, c_loc(x(1)), incx, &
-        stridex, batch_count, c_loc(results(1)))
+      scnrm2_strided_batched = rocblas_scnrm2_strided_batched_raw(handle, n, c_loc(x), incx, &
+        stridex, batch_count, c_loc(results))
     end function rocblas_scnrm2_strided_batched_native
 
     function rocblas_scnrm2_strided_batched_typed(handle, n, x, incx, stridex, batch_count, &
@@ -48539,14 +48563,14 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_int), value :: n
-      complex(c_double_complex), target :: x(*)
+      complex(c_double_complex), target :: x(..)
       integer(c_int), value :: incx
       integer(c_long), value :: stridex
       integer(c_int), value :: batch_count
-      real(c_double), target :: results(*)
+      real(c_double), target :: results(..)
       integer(c_int) :: dznrm2_strided_batched
-      dznrm2_strided_batched = rocblas_dznrm2_strided_batched_raw(handle, n, c_loc(x(1)), incx, &
-        stridex, batch_count, c_loc(results(1)))
+      dznrm2_strided_batched = rocblas_dznrm2_strided_batched_raw(handle, n, c_loc(x), incx, &
+        stridex, batch_count, c_loc(results))
     end function rocblas_dznrm2_strided_batched_native
 
     function rocblas_dznrm2_strided_batched_typed(handle, n, x, incx, stridex, batch_count, &
@@ -48572,14 +48596,14 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_long), value :: n
-      real(c_float), target :: x(*)
+      real(c_float), target :: x(..)
       integer(c_long), value :: incx
       integer(c_long), value :: stridex
       integer(c_long), value :: batch_count
-      real(c_float), target :: results(*)
+      real(c_float), target :: results(..)
       integer(c_int) :: snrm2_strided_batched_64
-      snrm2_strided_batched_64 = rocblas_snrm2_strided_batched_64_raw(handle, n, c_loc(x(1)), &
-        incx, stridex, batch_count, c_loc(results(1)))
+      snrm2_strided_batched_64 = rocblas_snrm2_strided_batched_64_raw(handle, n, c_loc(x), incx, &
+        stridex, batch_count, c_loc(results))
     end function rocblas_snrm2_strided_batched_64_native
 
     function rocblas_snrm2_strided_batched_64_typed(handle, n, x, incx, stridex, batch_count, &
@@ -48605,14 +48629,14 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_long), value :: n
-      real(c_double), target :: x(*)
+      real(c_double), target :: x(..)
       integer(c_long), value :: incx
       integer(c_long), value :: stridex
       integer(c_long), value :: batch_count
-      real(c_double), target :: results(*)
+      real(c_double), target :: results(..)
       integer(c_int) :: dnrm2_strided_batched_64
-      dnrm2_strided_batched_64 = rocblas_dnrm2_strided_batched_64_raw(handle, n, c_loc(x(1)), &
-        incx, stridex, batch_count, c_loc(results(1)))
+      dnrm2_strided_batched_64 = rocblas_dnrm2_strided_batched_64_raw(handle, n, c_loc(x), incx, &
+        stridex, batch_count, c_loc(results))
     end function rocblas_dnrm2_strided_batched_64_native
 
     function rocblas_dnrm2_strided_batched_64_typed(handle, n, x, incx, stridex, batch_count, &
@@ -48638,14 +48662,14 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_long), value :: n
-      complex(c_float_complex), target :: x(*)
+      complex(c_float_complex), target :: x(..)
       integer(c_long), value :: incx
       integer(c_long), value :: stridex
       integer(c_long), value :: batch_count
-      real(c_float), target :: results(*)
+      real(c_float), target :: results(..)
       integer(c_int) :: scnrm2_strided_batched_64
-      scnrm2_strided_batched_64 = rocblas_scnrm2_strided_batched_64_raw(handle, n, c_loc(x(1)), &
-        incx, stridex, batch_count, c_loc(results(1)))
+      scnrm2_strided_batched_64 = rocblas_scnrm2_strided_batched_64_raw(handle, n, c_loc(x), incx, &
+        stridex, batch_count, c_loc(results))
     end function rocblas_scnrm2_strided_batched_64_native
 
     function rocblas_scnrm2_strided_batched_64_typed(handle, n, x, incx, stridex, batch_count, &
@@ -48671,14 +48695,14 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_long), value :: n
-      complex(c_double_complex), target :: x(*)
+      complex(c_double_complex), target :: x(..)
       integer(c_long), value :: incx
       integer(c_long), value :: stridex
       integer(c_long), value :: batch_count
-      real(c_double), target :: results(*)
+      real(c_double), target :: results(..)
       integer(c_int) :: dznrm2_strided_batched_64
-      dznrm2_strided_batched_64 = rocblas_dznrm2_strided_batched_64_raw(handle, n, c_loc(x(1)), &
-        incx, stridex, batch_count, c_loc(results(1)))
+      dznrm2_strided_batched_64 = rocblas_dznrm2_strided_batched_64_raw(handle, n, c_loc(x), incx, &
+        stridex, batch_count, c_loc(results))
     end function rocblas_dznrm2_strided_batched_64_native
 
     function rocblas_dznrm2_strided_batched_64_typed(handle, n, x, incx, stridex, batch_count, &
@@ -48703,11 +48727,11 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_int), value :: n
-      real(c_float), target :: x(*)
+      real(c_float), target :: x(..)
       integer(c_int), value :: incx
-      integer(c_int), target :: result(*)
+      integer(c_int), target :: result(..)
       integer(c_int) :: isamax
-      isamax = rocblas_isamax_raw(handle, n, c_loc(x(1)), incx, c_loc(result(1)))
+      isamax = rocblas_isamax_raw(handle, n, c_loc(x), incx, c_loc(result))
     end function rocblas_isamax_native
 
     function rocblas_isamax_typed(handle, n, x, incx, result) result(isamax)
@@ -48728,11 +48752,11 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_int), value :: n
-      real(c_double), target :: x(*)
+      real(c_double), target :: x(..)
       integer(c_int), value :: incx
-      integer(c_int), target :: result(*)
+      integer(c_int), target :: result(..)
       integer(c_int) :: idamax
-      idamax = rocblas_idamax_raw(handle, n, c_loc(x(1)), incx, c_loc(result(1)))
+      idamax = rocblas_idamax_raw(handle, n, c_loc(x), incx, c_loc(result))
     end function rocblas_idamax_native
 
     function rocblas_idamax_typed(handle, n, x, incx, result) result(idamax)
@@ -48753,11 +48777,11 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_int), value :: n
-      complex(c_float_complex), target :: x(*)
+      complex(c_float_complex), target :: x(..)
       integer(c_int), value :: incx
-      integer(c_int), target :: result(*)
+      integer(c_int), target :: result(..)
       integer(c_int) :: icamax
-      icamax = rocblas_icamax_raw(handle, n, c_loc(x(1)), incx, c_loc(result(1)))
+      icamax = rocblas_icamax_raw(handle, n, c_loc(x), incx, c_loc(result))
     end function rocblas_icamax_native
 
     function rocblas_icamax_typed(handle, n, x, incx, result) result(icamax)
@@ -48778,11 +48802,11 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_int), value :: n
-      complex(c_double_complex), target :: x(*)
+      complex(c_double_complex), target :: x(..)
       integer(c_int), value :: incx
-      integer(c_int), target :: result(*)
+      integer(c_int), target :: result(..)
       integer(c_int) :: izamax
-      izamax = rocblas_izamax_raw(handle, n, c_loc(x(1)), incx, c_loc(result(1)))
+      izamax = rocblas_izamax_raw(handle, n, c_loc(x), incx, c_loc(result))
     end function rocblas_izamax_native
 
     function rocblas_izamax_typed(handle, n, x, incx, result) result(izamax)
@@ -48803,11 +48827,11 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_long), value :: n
-      real(c_float), target :: x(*)
+      real(c_float), target :: x(..)
       integer(c_long), value :: incx
       type(c_ptr), value :: result
       integer(c_int) :: isamax_64
-      isamax_64 = rocblas_isamax_64_raw(handle, n, c_loc(x(1)), incx, result)
+      isamax_64 = rocblas_isamax_64_raw(handle, n, c_loc(x), incx, result)
     end function rocblas_isamax_64_native
 
     function rocblas_isamax_64_typed(handle, n, x, incx, result) result(isamax_64)
@@ -48828,11 +48852,11 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_long), value :: n
-      real(c_double), target :: x(*)
+      real(c_double), target :: x(..)
       integer(c_long), value :: incx
       type(c_ptr), value :: result
       integer(c_int) :: idamax_64
-      idamax_64 = rocblas_idamax_64_raw(handle, n, c_loc(x(1)), incx, result)
+      idamax_64 = rocblas_idamax_64_raw(handle, n, c_loc(x), incx, result)
     end function rocblas_idamax_64_native
 
     function rocblas_idamax_64_typed(handle, n, x, incx, result) result(idamax_64)
@@ -48853,11 +48877,11 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_long), value :: n
-      complex(c_float_complex), target :: x(*)
+      complex(c_float_complex), target :: x(..)
       integer(c_long), value :: incx
       type(c_ptr), value :: result
       integer(c_int) :: icamax_64
-      icamax_64 = rocblas_icamax_64_raw(handle, n, c_loc(x(1)), incx, result)
+      icamax_64 = rocblas_icamax_64_raw(handle, n, c_loc(x), incx, result)
     end function rocblas_icamax_64_native
 
     function rocblas_icamax_64_typed(handle, n, x, incx, result) result(icamax_64)
@@ -48878,11 +48902,11 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_long), value :: n
-      complex(c_double_complex), target :: x(*)
+      complex(c_double_complex), target :: x(..)
       integer(c_long), value :: incx
       type(c_ptr), value :: result
       integer(c_int) :: izamax_64
-      izamax_64 = rocblas_izamax_64_raw(handle, n, c_loc(x(1)), incx, result)
+      izamax_64 = rocblas_izamax_64_raw(handle, n, c_loc(x), incx, result)
     end function rocblas_izamax_64_native
 
     function rocblas_izamax_64_typed(handle, n, x, incx, result) result(izamax_64)
@@ -48907,9 +48931,9 @@ contains
       type(c_ptr), value :: x
       integer(c_int), value :: incx
       integer(c_int), value :: batch_count
-      integer(c_int), target :: result(*)
+      integer(c_int), target :: result(..)
       integer(c_int) :: isamax_batched
-      isamax_batched = rocblas_isamax_batched_raw(handle, n, x, incx, batch_count, c_loc(result(1)))
+      isamax_batched = rocblas_isamax_batched_raw(handle, n, x, incx, batch_count, c_loc(result))
     end function rocblas_isamax_batched_native
 
     function rocblas_isamax_batched_typed(handle, n, x, incx, batch_count, result) result( &
@@ -48936,9 +48960,9 @@ contains
       type(c_ptr), value :: x
       integer(c_int), value :: incx
       integer(c_int), value :: batch_count
-      integer(c_int), target :: result(*)
+      integer(c_int), target :: result(..)
       integer(c_int) :: idamax_batched
-      idamax_batched = rocblas_idamax_batched_raw(handle, n, x, incx, batch_count, c_loc(result(1)))
+      idamax_batched = rocblas_idamax_batched_raw(handle, n, x, incx, batch_count, c_loc(result))
     end function rocblas_idamax_batched_native
 
     function rocblas_idamax_batched_typed(handle, n, x, incx, batch_count, result) result( &
@@ -48965,9 +48989,9 @@ contains
       type(c_ptr), value :: x
       integer(c_int), value :: incx
       integer(c_int), value :: batch_count
-      integer(c_int), target :: result(*)
+      integer(c_int), target :: result(..)
       integer(c_int) :: icamax_batched
-      icamax_batched = rocblas_icamax_batched_raw(handle, n, x, incx, batch_count, c_loc(result(1)))
+      icamax_batched = rocblas_icamax_batched_raw(handle, n, x, incx, batch_count, c_loc(result))
     end function rocblas_icamax_batched_native
 
     function rocblas_icamax_batched_typed(handle, n, x, incx, batch_count, result) result( &
@@ -48994,9 +49018,9 @@ contains
       type(c_ptr), value :: x
       integer(c_int), value :: incx
       integer(c_int), value :: batch_count
-      integer(c_int), target :: result(*)
+      integer(c_int), target :: result(..)
       integer(c_int) :: izamax_batched
-      izamax_batched = rocblas_izamax_batched_raw(handle, n, x, incx, batch_count, c_loc(result(1)))
+      izamax_batched = rocblas_izamax_batched_raw(handle, n, x, incx, batch_count, c_loc(result))
     end function rocblas_izamax_batched_native
 
     function rocblas_izamax_batched_typed(handle, n, x, incx, batch_count, result) result( &
@@ -49080,14 +49104,14 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_int), value :: n
-      real(c_float), target :: x(*)
+      real(c_float), target :: x(..)
       integer(c_int), value :: incx
       integer(c_long), value :: stridex
       integer(c_int), value :: batch_count
-      integer(c_int), target :: result(*)
+      integer(c_int), target :: result(..)
       integer(c_int) :: isamax_strided_batched
-      isamax_strided_batched = rocblas_isamax_strided_batched_raw(handle, n, c_loc(x(1)), incx, &
-        stridex, batch_count, c_loc(result(1)))
+      isamax_strided_batched = rocblas_isamax_strided_batched_raw(handle, n, c_loc(x), incx, &
+        stridex, batch_count, c_loc(result))
     end function rocblas_isamax_strided_batched_native
 
     function rocblas_isamax_strided_batched_typed(handle, n, x, incx, stridex, batch_count, &
@@ -49113,14 +49137,14 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_int), value :: n
-      real(c_double), target :: x(*)
+      real(c_double), target :: x(..)
       integer(c_int), value :: incx
       integer(c_long), value :: stridex
       integer(c_int), value :: batch_count
-      integer(c_int), target :: result(*)
+      integer(c_int), target :: result(..)
       integer(c_int) :: idamax_strided_batched
-      idamax_strided_batched = rocblas_idamax_strided_batched_raw(handle, n, c_loc(x(1)), incx, &
-        stridex, batch_count, c_loc(result(1)))
+      idamax_strided_batched = rocblas_idamax_strided_batched_raw(handle, n, c_loc(x), incx, &
+        stridex, batch_count, c_loc(result))
     end function rocblas_idamax_strided_batched_native
 
     function rocblas_idamax_strided_batched_typed(handle, n, x, incx, stridex, batch_count, &
@@ -49146,14 +49170,14 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_int), value :: n
-      complex(c_float_complex), target :: x(*)
+      complex(c_float_complex), target :: x(..)
       integer(c_int), value :: incx
       integer(c_long), value :: stridex
       integer(c_int), value :: batch_count
-      integer(c_int), target :: result(*)
+      integer(c_int), target :: result(..)
       integer(c_int) :: icamax_strided_batched
-      icamax_strided_batched = rocblas_icamax_strided_batched_raw(handle, n, c_loc(x(1)), incx, &
-        stridex, batch_count, c_loc(result(1)))
+      icamax_strided_batched = rocblas_icamax_strided_batched_raw(handle, n, c_loc(x), incx, &
+        stridex, batch_count, c_loc(result))
     end function rocblas_icamax_strided_batched_native
 
     function rocblas_icamax_strided_batched_typed(handle, n, x, incx, stridex, batch_count, &
@@ -49179,14 +49203,14 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_int), value :: n
-      complex(c_double_complex), target :: x(*)
+      complex(c_double_complex), target :: x(..)
       integer(c_int), value :: incx
       integer(c_long), value :: stridex
       integer(c_int), value :: batch_count
-      integer(c_int), target :: result(*)
+      integer(c_int), target :: result(..)
       integer(c_int) :: izamax_strided_batched
-      izamax_strided_batched = rocblas_izamax_strided_batched_raw(handle, n, c_loc(x(1)), incx, &
-        stridex, batch_count, c_loc(result(1)))
+      izamax_strided_batched = rocblas_izamax_strided_batched_raw(handle, n, c_loc(x), incx, &
+        stridex, batch_count, c_loc(result))
     end function rocblas_izamax_strided_batched_native
 
     function rocblas_izamax_strided_batched_typed(handle, n, x, incx, stridex, batch_count, &
@@ -49212,14 +49236,14 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_long), value :: n
-      real(c_float), target :: x(*)
+      real(c_float), target :: x(..)
       integer(c_long), value :: incx
       integer(c_long), value :: stridex
       integer(c_long), value :: batch_count
       type(c_ptr), value :: result
       integer(c_int) :: isamax_strided_batched_64
-      isamax_strided_batched_64 = rocblas_isamax_strided_batched_64_raw(handle, n, c_loc(x(1)), &
-        incx, stridex, batch_count, result)
+      isamax_strided_batched_64 = rocblas_isamax_strided_batched_64_raw(handle, n, c_loc(x), incx, &
+        stridex, batch_count, result)
     end function rocblas_isamax_strided_batched_64_native
 
     function rocblas_isamax_strided_batched_64_typed(handle, n, x, incx, stridex, batch_count, &
@@ -49245,14 +49269,14 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_long), value :: n
-      real(c_double), target :: x(*)
+      real(c_double), target :: x(..)
       integer(c_long), value :: incx
       integer(c_long), value :: stridex
       integer(c_long), value :: batch_count
       type(c_ptr), value :: result
       integer(c_int) :: idamax_strided_batched_64
-      idamax_strided_batched_64 = rocblas_idamax_strided_batched_64_raw(handle, n, c_loc(x(1)), &
-        incx, stridex, batch_count, result)
+      idamax_strided_batched_64 = rocblas_idamax_strided_batched_64_raw(handle, n, c_loc(x), incx, &
+        stridex, batch_count, result)
     end function rocblas_idamax_strided_batched_64_native
 
     function rocblas_idamax_strided_batched_64_typed(handle, n, x, incx, stridex, batch_count, &
@@ -49278,14 +49302,14 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_long), value :: n
-      complex(c_float_complex), target :: x(*)
+      complex(c_float_complex), target :: x(..)
       integer(c_long), value :: incx
       integer(c_long), value :: stridex
       integer(c_long), value :: batch_count
       type(c_ptr), value :: result
       integer(c_int) :: icamax_strided_batched_64
-      icamax_strided_batched_64 = rocblas_icamax_strided_batched_64_raw(handle, n, c_loc(x(1)), &
-        incx, stridex, batch_count, result)
+      icamax_strided_batched_64 = rocblas_icamax_strided_batched_64_raw(handle, n, c_loc(x), incx, &
+        stridex, batch_count, result)
     end function rocblas_icamax_strided_batched_64_native
 
     function rocblas_icamax_strided_batched_64_typed(handle, n, x, incx, stridex, batch_count, &
@@ -49311,14 +49335,14 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_long), value :: n
-      complex(c_double_complex), target :: x(*)
+      complex(c_double_complex), target :: x(..)
       integer(c_long), value :: incx
       integer(c_long), value :: stridex
       integer(c_long), value :: batch_count
       type(c_ptr), value :: result
       integer(c_int) :: izamax_strided_batched_64
-      izamax_strided_batched_64 = rocblas_izamax_strided_batched_64_raw(handle, n, c_loc(x(1)), &
-        incx, stridex, batch_count, result)
+      izamax_strided_batched_64 = rocblas_izamax_strided_batched_64_raw(handle, n, c_loc(x), incx, &
+        stridex, batch_count, result)
     end function rocblas_izamax_strided_batched_64_native
 
     function rocblas_izamax_strided_batched_64_typed(handle, n, x, incx, stridex, batch_count, &
@@ -49343,11 +49367,11 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_int), value :: n
-      real(c_float), target :: x(*)
+      real(c_float), target :: x(..)
       integer(c_int), value :: incx
-      integer(c_int), target :: result(*)
+      integer(c_int), target :: result(..)
       integer(c_int) :: isamin
-      isamin = rocblas_isamin_raw(handle, n, c_loc(x(1)), incx, c_loc(result(1)))
+      isamin = rocblas_isamin_raw(handle, n, c_loc(x), incx, c_loc(result))
     end function rocblas_isamin_native
 
     function rocblas_isamin_typed(handle, n, x, incx, result) result(isamin)
@@ -49368,11 +49392,11 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_int), value :: n
-      real(c_double), target :: x(*)
+      real(c_double), target :: x(..)
       integer(c_int), value :: incx
-      integer(c_int), target :: result(*)
+      integer(c_int), target :: result(..)
       integer(c_int) :: idamin
-      idamin = rocblas_idamin_raw(handle, n, c_loc(x(1)), incx, c_loc(result(1)))
+      idamin = rocblas_idamin_raw(handle, n, c_loc(x), incx, c_loc(result))
     end function rocblas_idamin_native
 
     function rocblas_idamin_typed(handle, n, x, incx, result) result(idamin)
@@ -49393,11 +49417,11 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_int), value :: n
-      complex(c_float_complex), target :: x(*)
+      complex(c_float_complex), target :: x(..)
       integer(c_int), value :: incx
-      integer(c_int), target :: result(*)
+      integer(c_int), target :: result(..)
       integer(c_int) :: icamin
-      icamin = rocblas_icamin_raw(handle, n, c_loc(x(1)), incx, c_loc(result(1)))
+      icamin = rocblas_icamin_raw(handle, n, c_loc(x), incx, c_loc(result))
     end function rocblas_icamin_native
 
     function rocblas_icamin_typed(handle, n, x, incx, result) result(icamin)
@@ -49418,11 +49442,11 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_int), value :: n
-      complex(c_double_complex), target :: x(*)
+      complex(c_double_complex), target :: x(..)
       integer(c_int), value :: incx
-      integer(c_int), target :: result(*)
+      integer(c_int), target :: result(..)
       integer(c_int) :: izamin
-      izamin = rocblas_izamin_raw(handle, n, c_loc(x(1)), incx, c_loc(result(1)))
+      izamin = rocblas_izamin_raw(handle, n, c_loc(x), incx, c_loc(result))
     end function rocblas_izamin_native
 
     function rocblas_izamin_typed(handle, n, x, incx, result) result(izamin)
@@ -49443,11 +49467,11 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_long), value :: n
-      real(c_float), target :: x(*)
+      real(c_float), target :: x(..)
       integer(c_long), value :: incx
       type(c_ptr), value :: result
       integer(c_int) :: isamin_64
-      isamin_64 = rocblas_isamin_64_raw(handle, n, c_loc(x(1)), incx, result)
+      isamin_64 = rocblas_isamin_64_raw(handle, n, c_loc(x), incx, result)
     end function rocblas_isamin_64_native
 
     function rocblas_isamin_64_typed(handle, n, x, incx, result) result(isamin_64)
@@ -49468,11 +49492,11 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_long), value :: n
-      real(c_double), target :: x(*)
+      real(c_double), target :: x(..)
       integer(c_long), value :: incx
       type(c_ptr), value :: result
       integer(c_int) :: idamin_64
-      idamin_64 = rocblas_idamin_64_raw(handle, n, c_loc(x(1)), incx, result)
+      idamin_64 = rocblas_idamin_64_raw(handle, n, c_loc(x), incx, result)
     end function rocblas_idamin_64_native
 
     function rocblas_idamin_64_typed(handle, n, x, incx, result) result(idamin_64)
@@ -49493,11 +49517,11 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_long), value :: n
-      complex(c_float_complex), target :: x(*)
+      complex(c_float_complex), target :: x(..)
       integer(c_long), value :: incx
       type(c_ptr), value :: result
       integer(c_int) :: icamin_64
-      icamin_64 = rocblas_icamin_64_raw(handle, n, c_loc(x(1)), incx, result)
+      icamin_64 = rocblas_icamin_64_raw(handle, n, c_loc(x), incx, result)
     end function rocblas_icamin_64_native
 
     function rocblas_icamin_64_typed(handle, n, x, incx, result) result(icamin_64)
@@ -49518,11 +49542,11 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_long), value :: n
-      complex(c_double_complex), target :: x(*)
+      complex(c_double_complex), target :: x(..)
       integer(c_long), value :: incx
       type(c_ptr), value :: result
       integer(c_int) :: izamin_64
-      izamin_64 = rocblas_izamin_64_raw(handle, n, c_loc(x(1)), incx, result)
+      izamin_64 = rocblas_izamin_64_raw(handle, n, c_loc(x), incx, result)
     end function rocblas_izamin_64_native
 
     function rocblas_izamin_64_typed(handle, n, x, incx, result) result(izamin_64)
@@ -49547,9 +49571,9 @@ contains
       type(c_ptr), value :: x
       integer(c_int), value :: incx
       integer(c_int), value :: batch_count
-      integer(c_int), target :: result(*)
+      integer(c_int), target :: result(..)
       integer(c_int) :: isamin_batched
-      isamin_batched = rocblas_isamin_batched_raw(handle, n, x, incx, batch_count, c_loc(result(1)))
+      isamin_batched = rocblas_isamin_batched_raw(handle, n, x, incx, batch_count, c_loc(result))
     end function rocblas_isamin_batched_native
 
     function rocblas_isamin_batched_typed(handle, n, x, incx, batch_count, result) result( &
@@ -49576,9 +49600,9 @@ contains
       type(c_ptr), value :: x
       integer(c_int), value :: incx
       integer(c_int), value :: batch_count
-      integer(c_int), target :: result(*)
+      integer(c_int), target :: result(..)
       integer(c_int) :: idamin_batched
-      idamin_batched = rocblas_idamin_batched_raw(handle, n, x, incx, batch_count, c_loc(result(1)))
+      idamin_batched = rocblas_idamin_batched_raw(handle, n, x, incx, batch_count, c_loc(result))
     end function rocblas_idamin_batched_native
 
     function rocblas_idamin_batched_typed(handle, n, x, incx, batch_count, result) result( &
@@ -49605,9 +49629,9 @@ contains
       type(c_ptr), value :: x
       integer(c_int), value :: incx
       integer(c_int), value :: batch_count
-      integer(c_int), target :: result(*)
+      integer(c_int), target :: result(..)
       integer(c_int) :: icamin_batched
-      icamin_batched = rocblas_icamin_batched_raw(handle, n, x, incx, batch_count, c_loc(result(1)))
+      icamin_batched = rocblas_icamin_batched_raw(handle, n, x, incx, batch_count, c_loc(result))
     end function rocblas_icamin_batched_native
 
     function rocblas_icamin_batched_typed(handle, n, x, incx, batch_count, result) result( &
@@ -49634,9 +49658,9 @@ contains
       type(c_ptr), value :: x
       integer(c_int), value :: incx
       integer(c_int), value :: batch_count
-      integer(c_int), target :: result(*)
+      integer(c_int), target :: result(..)
       integer(c_int) :: izamin_batched
-      izamin_batched = rocblas_izamin_batched_raw(handle, n, x, incx, batch_count, c_loc(result(1)))
+      izamin_batched = rocblas_izamin_batched_raw(handle, n, x, incx, batch_count, c_loc(result))
     end function rocblas_izamin_batched_native
 
     function rocblas_izamin_batched_typed(handle, n, x, incx, batch_count, result) result( &
@@ -49720,14 +49744,14 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_int), value :: n
-      real(c_float), target :: x(*)
+      real(c_float), target :: x(..)
       integer(c_int), value :: incx
       integer(c_long), value :: stridex
       integer(c_int), value :: batch_count
-      integer(c_int), target :: result(*)
+      integer(c_int), target :: result(..)
       integer(c_int) :: isamin_strided_batched
-      isamin_strided_batched = rocblas_isamin_strided_batched_raw(handle, n, c_loc(x(1)), incx, &
-        stridex, batch_count, c_loc(result(1)))
+      isamin_strided_batched = rocblas_isamin_strided_batched_raw(handle, n, c_loc(x), incx, &
+        stridex, batch_count, c_loc(result))
     end function rocblas_isamin_strided_batched_native
 
     function rocblas_isamin_strided_batched_typed(handle, n, x, incx, stridex, batch_count, &
@@ -49753,14 +49777,14 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_int), value :: n
-      real(c_double), target :: x(*)
+      real(c_double), target :: x(..)
       integer(c_int), value :: incx
       integer(c_long), value :: stridex
       integer(c_int), value :: batch_count
-      integer(c_int), target :: result(*)
+      integer(c_int), target :: result(..)
       integer(c_int) :: idamin_strided_batched
-      idamin_strided_batched = rocblas_idamin_strided_batched_raw(handle, n, c_loc(x(1)), incx, &
-        stridex, batch_count, c_loc(result(1)))
+      idamin_strided_batched = rocblas_idamin_strided_batched_raw(handle, n, c_loc(x), incx, &
+        stridex, batch_count, c_loc(result))
     end function rocblas_idamin_strided_batched_native
 
     function rocblas_idamin_strided_batched_typed(handle, n, x, incx, stridex, batch_count, &
@@ -49786,14 +49810,14 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_int), value :: n
-      complex(c_float_complex), target :: x(*)
+      complex(c_float_complex), target :: x(..)
       integer(c_int), value :: incx
       integer(c_long), value :: stridex
       integer(c_int), value :: batch_count
-      integer(c_int), target :: result(*)
+      integer(c_int), target :: result(..)
       integer(c_int) :: icamin_strided_batched
-      icamin_strided_batched = rocblas_icamin_strided_batched_raw(handle, n, c_loc(x(1)), incx, &
-        stridex, batch_count, c_loc(result(1)))
+      icamin_strided_batched = rocblas_icamin_strided_batched_raw(handle, n, c_loc(x), incx, &
+        stridex, batch_count, c_loc(result))
     end function rocblas_icamin_strided_batched_native
 
     function rocblas_icamin_strided_batched_typed(handle, n, x, incx, stridex, batch_count, &
@@ -49819,14 +49843,14 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_int), value :: n
-      complex(c_double_complex), target :: x(*)
+      complex(c_double_complex), target :: x(..)
       integer(c_int), value :: incx
       integer(c_long), value :: stridex
       integer(c_int), value :: batch_count
-      integer(c_int), target :: result(*)
+      integer(c_int), target :: result(..)
       integer(c_int) :: izamin_strided_batched
-      izamin_strided_batched = rocblas_izamin_strided_batched_raw(handle, n, c_loc(x(1)), incx, &
-        stridex, batch_count, c_loc(result(1)))
+      izamin_strided_batched = rocblas_izamin_strided_batched_raw(handle, n, c_loc(x), incx, &
+        stridex, batch_count, c_loc(result))
     end function rocblas_izamin_strided_batched_native
 
     function rocblas_izamin_strided_batched_typed(handle, n, x, incx, stridex, batch_count, &
@@ -49852,14 +49876,14 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_long), value :: n
-      real(c_float), target :: x(*)
+      real(c_float), target :: x(..)
       integer(c_long), value :: incx
       integer(c_long), value :: stridex
       integer(c_long), value :: batch_count
       type(c_ptr), value :: result
       integer(c_int) :: isamin_strided_batched_64
-      isamin_strided_batched_64 = rocblas_isamin_strided_batched_64_raw(handle, n, c_loc(x(1)), &
-        incx, stridex, batch_count, result)
+      isamin_strided_batched_64 = rocblas_isamin_strided_batched_64_raw(handle, n, c_loc(x), incx, &
+        stridex, batch_count, result)
     end function rocblas_isamin_strided_batched_64_native
 
     function rocblas_isamin_strided_batched_64_typed(handle, n, x, incx, stridex, batch_count, &
@@ -49885,14 +49909,14 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_long), value :: n
-      real(c_double), target :: x(*)
+      real(c_double), target :: x(..)
       integer(c_long), value :: incx
       integer(c_long), value :: stridex
       integer(c_long), value :: batch_count
       type(c_ptr), value :: result
       integer(c_int) :: idamin_strided_batched_64
-      idamin_strided_batched_64 = rocblas_idamin_strided_batched_64_raw(handle, n, c_loc(x(1)), &
-        incx, stridex, batch_count, result)
+      idamin_strided_batched_64 = rocblas_idamin_strided_batched_64_raw(handle, n, c_loc(x), incx, &
+        stridex, batch_count, result)
     end function rocblas_idamin_strided_batched_64_native
 
     function rocblas_idamin_strided_batched_64_typed(handle, n, x, incx, stridex, batch_count, &
@@ -49918,14 +49942,14 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_long), value :: n
-      complex(c_float_complex), target :: x(*)
+      complex(c_float_complex), target :: x(..)
       integer(c_long), value :: incx
       integer(c_long), value :: stridex
       integer(c_long), value :: batch_count
       type(c_ptr), value :: result
       integer(c_int) :: icamin_strided_batched_64
-      icamin_strided_batched_64 = rocblas_icamin_strided_batched_64_raw(handle, n, c_loc(x(1)), &
-        incx, stridex, batch_count, result)
+      icamin_strided_batched_64 = rocblas_icamin_strided_batched_64_raw(handle, n, c_loc(x), incx, &
+        stridex, batch_count, result)
     end function rocblas_icamin_strided_batched_64_native
 
     function rocblas_icamin_strided_batched_64_typed(handle, n, x, incx, stridex, batch_count, &
@@ -49951,14 +49975,14 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_long), value :: n
-      complex(c_double_complex), target :: x(*)
+      complex(c_double_complex), target :: x(..)
       integer(c_long), value :: incx
       integer(c_long), value :: stridex
       integer(c_long), value :: batch_count
       type(c_ptr), value :: result
       integer(c_int) :: izamin_strided_batched_64
-      izamin_strided_batched_64 = rocblas_izamin_strided_batched_64_raw(handle, n, c_loc(x(1)), &
-        incx, stridex, batch_count, result)
+      izamin_strided_batched_64 = rocblas_izamin_strided_batched_64_raw(handle, n, c_loc(x), incx, &
+        stridex, batch_count, result)
     end function rocblas_izamin_strided_batched_64_native
 
     function rocblas_izamin_strided_batched_64_typed(handle, n, x, incx, stridex, batch_count, &
@@ -49983,15 +50007,14 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_int), value :: n
-      real(c_float), target :: x(*)
+      real(c_float), target :: x(..)
       integer(c_int), value :: incx
-      real(c_float), target :: y(*)
+      real(c_float), target :: y(..)
       integer(c_int), value :: incy
-      real(c_float), target :: c(*)
-      real(c_float), target :: s(*)
+      real(c_float), target :: c(..)
+      real(c_float), target :: s(..)
       integer(c_int) :: srot
-      srot = rocblas_srot_raw(handle, n, c_loc(x(1)), incx, c_loc(y(1)), incy, c_loc(c(1)), c_loc( &
-        s(1)))
+      srot = rocblas_srot_raw(handle, n, c_loc(x), incx, c_loc(y), incy, c_loc(c), c_loc(s))
     end function rocblas_srot_native
 
     function rocblas_srot_typed(handle, n, x, incx, y, incy, c, s) result(srot)
@@ -50015,15 +50038,14 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_int), value :: n
-      real(c_double), target :: x(*)
+      real(c_double), target :: x(..)
       integer(c_int), value :: incx
-      real(c_double), target :: y(*)
+      real(c_double), target :: y(..)
       integer(c_int), value :: incy
-      real(c_double), target :: c(*)
-      real(c_double), target :: s(*)
+      real(c_double), target :: c(..)
+      real(c_double), target :: s(..)
       integer(c_int) :: drot
-      drot = rocblas_drot_raw(handle, n, c_loc(x(1)), incx, c_loc(y(1)), incy, c_loc(c(1)), c_loc( &
-        s(1)))
+      drot = rocblas_drot_raw(handle, n, c_loc(x), incx, c_loc(y), incy, c_loc(c), c_loc(s))
     end function rocblas_drot_native
 
     function rocblas_drot_typed(handle, n, x, incx, y, incy, c, s) result(drot)
@@ -50047,15 +50069,14 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_int), value :: n
-      complex(c_float_complex), target :: x(*)
+      complex(c_float_complex), target :: x(..)
       integer(c_int), value :: incx
-      complex(c_float_complex), target :: y(*)
+      complex(c_float_complex), target :: y(..)
       integer(c_int), value :: incy
-      real(c_float), target :: c(*)
-      complex(c_float_complex), target :: s(*)
+      real(c_float), target :: c(..)
+      complex(c_float_complex), target :: s(..)
       integer(c_int) :: crot
-      crot = rocblas_crot_raw(handle, n, c_loc(x(1)), incx, c_loc(y(1)), incy, c_loc(c(1)), c_loc( &
-        s(1)))
+      crot = rocblas_crot_raw(handle, n, c_loc(x), incx, c_loc(y), incy, c_loc(c), c_loc(s))
     end function rocblas_crot_native
 
     function rocblas_crot_typed(handle, n, x, incx, y, incy, c, s) result(crot)
@@ -50079,15 +50100,14 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_int), value :: n
-      complex(c_float_complex), target :: x(*)
+      complex(c_float_complex), target :: x(..)
       integer(c_int), value :: incx
-      complex(c_float_complex), target :: y(*)
+      complex(c_float_complex), target :: y(..)
       integer(c_int), value :: incy
-      real(c_float), target :: c(*)
-      real(c_float), target :: s(*)
+      real(c_float), target :: c(..)
+      real(c_float), target :: s(..)
       integer(c_int) :: csrot
-      csrot = rocblas_csrot_raw(handle, n, c_loc(x(1)), incx, c_loc(y(1)), incy, c_loc(c(1)), &
-        c_loc(s(1)))
+      csrot = rocblas_csrot_raw(handle, n, c_loc(x), incx, c_loc(y), incy, c_loc(c), c_loc(s))
     end function rocblas_csrot_native
 
     function rocblas_csrot_typed(handle, n, x, incx, y, incy, c, s) result(csrot)
@@ -50111,15 +50131,14 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_int), value :: n
-      complex(c_double_complex), target :: x(*)
+      complex(c_double_complex), target :: x(..)
       integer(c_int), value :: incx
-      complex(c_double_complex), target :: y(*)
+      complex(c_double_complex), target :: y(..)
       integer(c_int), value :: incy
-      real(c_double), target :: c(*)
-      complex(c_double_complex), target :: s(*)
+      real(c_double), target :: c(..)
+      complex(c_double_complex), target :: s(..)
       integer(c_int) :: zrot
-      zrot = rocblas_zrot_raw(handle, n, c_loc(x(1)), incx, c_loc(y(1)), incy, c_loc(c(1)), c_loc( &
-        s(1)))
+      zrot = rocblas_zrot_raw(handle, n, c_loc(x), incx, c_loc(y), incy, c_loc(c), c_loc(s))
     end function rocblas_zrot_native
 
     function rocblas_zrot_typed(handle, n, x, incx, y, incy, c, s) result(zrot)
@@ -50143,15 +50162,14 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_int), value :: n
-      complex(c_double_complex), target :: x(*)
+      complex(c_double_complex), target :: x(..)
       integer(c_int), value :: incx
-      complex(c_double_complex), target :: y(*)
+      complex(c_double_complex), target :: y(..)
       integer(c_int), value :: incy
-      real(c_double), target :: c(*)
-      real(c_double), target :: s(*)
+      real(c_double), target :: c(..)
+      real(c_double), target :: s(..)
       integer(c_int) :: zdrot
-      zdrot = rocblas_zdrot_raw(handle, n, c_loc(x(1)), incx, c_loc(y(1)), incy, c_loc(c(1)), &
-        c_loc(s(1)))
+      zdrot = rocblas_zdrot_raw(handle, n, c_loc(x), incx, c_loc(y), incy, c_loc(c), c_loc(s))
     end function rocblas_zdrot_native
 
     function rocblas_zdrot_typed(handle, n, x, incx, y, incy, c, s) result(zdrot)
@@ -50175,15 +50193,14 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_long), value :: n
-      real(c_float), target :: x(*)
+      real(c_float), target :: x(..)
       integer(c_long), value :: incx
-      real(c_float), target :: y(*)
+      real(c_float), target :: y(..)
       integer(c_long), value :: incy
-      real(c_float), target :: c(*)
-      real(c_float), target :: s(*)
+      real(c_float), target :: c(..)
+      real(c_float), target :: s(..)
       integer(c_int) :: srot_64
-      srot_64 = rocblas_srot_64_raw(handle, n, c_loc(x(1)), incx, c_loc(y(1)), incy, c_loc(c(1)), &
-        c_loc(s(1)))
+      srot_64 = rocblas_srot_64_raw(handle, n, c_loc(x), incx, c_loc(y), incy, c_loc(c), c_loc(s))
     end function rocblas_srot_64_native
 
     function rocblas_srot_64_typed(handle, n, x, incx, y, incy, c, s) result(srot_64)
@@ -50207,15 +50224,14 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_long), value :: n
-      real(c_double), target :: x(*)
+      real(c_double), target :: x(..)
       integer(c_long), value :: incx
-      real(c_double), target :: y(*)
+      real(c_double), target :: y(..)
       integer(c_long), value :: incy
-      real(c_double), target :: c(*)
-      real(c_double), target :: s(*)
+      real(c_double), target :: c(..)
+      real(c_double), target :: s(..)
       integer(c_int) :: drot_64
-      drot_64 = rocblas_drot_64_raw(handle, n, c_loc(x(1)), incx, c_loc(y(1)), incy, c_loc(c(1)), &
-        c_loc(s(1)))
+      drot_64 = rocblas_drot_64_raw(handle, n, c_loc(x), incx, c_loc(y), incy, c_loc(c), c_loc(s))
     end function rocblas_drot_64_native
 
     function rocblas_drot_64_typed(handle, n, x, incx, y, incy, c, s) result(drot_64)
@@ -50239,15 +50255,14 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_long), value :: n
-      complex(c_float_complex), target :: x(*)
+      complex(c_float_complex), target :: x(..)
       integer(c_long), value :: incx
-      complex(c_float_complex), target :: y(*)
+      complex(c_float_complex), target :: y(..)
       integer(c_long), value :: incy
-      real(c_float), target :: c(*)
-      complex(c_float_complex), target :: s(*)
+      real(c_float), target :: c(..)
+      complex(c_float_complex), target :: s(..)
       integer(c_int) :: crot_64
-      crot_64 = rocblas_crot_64_raw(handle, n, c_loc(x(1)), incx, c_loc(y(1)), incy, c_loc(c(1)), &
-        c_loc(s(1)))
+      crot_64 = rocblas_crot_64_raw(handle, n, c_loc(x), incx, c_loc(y), incy, c_loc(c), c_loc(s))
     end function rocblas_crot_64_native
 
     function rocblas_crot_64_typed(handle, n, x, incx, y, incy, c, s) result(crot_64)
@@ -50271,15 +50286,14 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_long), value :: n
-      complex(c_float_complex), target :: x(*)
+      complex(c_float_complex), target :: x(..)
       integer(c_long), value :: incx
-      complex(c_float_complex), target :: y(*)
+      complex(c_float_complex), target :: y(..)
       integer(c_long), value :: incy
-      real(c_float), target :: c(*)
-      real(c_float), target :: s(*)
+      real(c_float), target :: c(..)
+      real(c_float), target :: s(..)
       integer(c_int) :: csrot_64
-      csrot_64 = rocblas_csrot_64_raw(handle, n, c_loc(x(1)), incx, c_loc(y(1)), incy, c_loc(c( &
-        1)), c_loc(s(1)))
+      csrot_64 = rocblas_csrot_64_raw(handle, n, c_loc(x), incx, c_loc(y), incy, c_loc(c), c_loc(s))
     end function rocblas_csrot_64_native
 
     function rocblas_csrot_64_typed(handle, n, x, incx, y, incy, c, s) result(csrot_64)
@@ -50303,15 +50317,14 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_long), value :: n
-      complex(c_double_complex), target :: x(*)
+      complex(c_double_complex), target :: x(..)
       integer(c_long), value :: incx
-      complex(c_double_complex), target :: y(*)
+      complex(c_double_complex), target :: y(..)
       integer(c_long), value :: incy
-      real(c_double), target :: c(*)
-      complex(c_double_complex), target :: s(*)
+      real(c_double), target :: c(..)
+      complex(c_double_complex), target :: s(..)
       integer(c_int) :: zrot_64
-      zrot_64 = rocblas_zrot_64_raw(handle, n, c_loc(x(1)), incx, c_loc(y(1)), incy, c_loc(c(1)), &
-        c_loc(s(1)))
+      zrot_64 = rocblas_zrot_64_raw(handle, n, c_loc(x), incx, c_loc(y), incy, c_loc(c), c_loc(s))
     end function rocblas_zrot_64_native
 
     function rocblas_zrot_64_typed(handle, n, x, incx, y, incy, c, s) result(zrot_64)
@@ -50335,15 +50348,14 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_long), value :: n
-      complex(c_double_complex), target :: x(*)
+      complex(c_double_complex), target :: x(..)
       integer(c_long), value :: incx
-      complex(c_double_complex), target :: y(*)
+      complex(c_double_complex), target :: y(..)
       integer(c_long), value :: incy
-      real(c_double), target :: c(*)
-      real(c_double), target :: s(*)
+      real(c_double), target :: c(..)
+      real(c_double), target :: s(..)
       integer(c_int) :: zdrot_64
-      zdrot_64 = rocblas_zdrot_64_raw(handle, n, c_loc(x(1)), incx, c_loc(y(1)), incy, c_loc(c( &
-        1)), c_loc(s(1)))
+      zdrot_64 = rocblas_zdrot_64_raw(handle, n, c_loc(x), incx, c_loc(y), incy, c_loc(c), c_loc(s))
     end function rocblas_zdrot_64_native
 
     function rocblas_zdrot_64_typed(handle, n, x, incx, y, incy, c, s) result(zdrot_64)
@@ -50372,12 +50384,12 @@ contains
       integer(c_int), value :: incx
       type(c_ptr), value :: y
       integer(c_int), value :: incy
-      real(c_float), target :: c(*)
-      real(c_float), target :: s(*)
+      real(c_float), target :: c(..)
+      real(c_float), target :: s(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: srot_batched
-      srot_batched = rocblas_srot_batched_raw(handle, n, x, incx, y, incy, c_loc(c(1)), c_loc(s( &
-        1)), batch_count)
+      srot_batched = rocblas_srot_batched_raw(handle, n, x, incx, y, incy, c_loc(c), c_loc(s), &
+        batch_count)
     end function rocblas_srot_batched_native
 
     function rocblas_srot_batched_typed(handle, n, x, incx, y, incy, c, s, batch_count) result( &
@@ -50408,12 +50420,12 @@ contains
       integer(c_int), value :: incx
       type(c_ptr), value :: y
       integer(c_int), value :: incy
-      real(c_double), target :: c(*)
-      real(c_double), target :: s(*)
+      real(c_double), target :: c(..)
+      real(c_double), target :: s(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: drot_batched
-      drot_batched = rocblas_drot_batched_raw(handle, n, x, incx, y, incy, c_loc(c(1)), c_loc(s( &
-        1)), batch_count)
+      drot_batched = rocblas_drot_batched_raw(handle, n, x, incx, y, incy, c_loc(c), c_loc(s), &
+        batch_count)
     end function rocblas_drot_batched_native
 
     function rocblas_drot_batched_typed(handle, n, x, incx, y, incy, c, s, batch_count) result( &
@@ -50444,12 +50456,12 @@ contains
       integer(c_int), value :: incx
       type(c_ptr), value :: y
       integer(c_int), value :: incy
-      real(c_float), target :: c(*)
-      complex(c_float_complex), target :: s(*)
+      real(c_float), target :: c(..)
+      complex(c_float_complex), target :: s(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: crot_batched
-      crot_batched = rocblas_crot_batched_raw(handle, n, x, incx, y, incy, c_loc(c(1)), c_loc(s( &
-        1)), batch_count)
+      crot_batched = rocblas_crot_batched_raw(handle, n, x, incx, y, incy, c_loc(c), c_loc(s), &
+        batch_count)
     end function rocblas_crot_batched_native
 
     function rocblas_crot_batched_typed(handle, n, x, incx, y, incy, c, s, batch_count) result( &
@@ -50480,12 +50492,12 @@ contains
       integer(c_int), value :: incx
       type(c_ptr), value :: y
       integer(c_int), value :: incy
-      real(c_float), target :: c(*)
-      real(c_float), target :: s(*)
+      real(c_float), target :: c(..)
+      real(c_float), target :: s(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: csrot_batched
-      csrot_batched = rocblas_csrot_batched_raw(handle, n, x, incx, y, incy, c_loc(c(1)), c_loc(s( &
-        1)), batch_count)
+      csrot_batched = rocblas_csrot_batched_raw(handle, n, x, incx, y, incy, c_loc(c), c_loc(s), &
+        batch_count)
     end function rocblas_csrot_batched_native
 
     function rocblas_csrot_batched_typed(handle, n, x, incx, y, incy, c, s, batch_count) result( &
@@ -50516,12 +50528,12 @@ contains
       integer(c_int), value :: incx
       type(c_ptr), value :: y
       integer(c_int), value :: incy
-      real(c_double), target :: c(*)
-      complex(c_double_complex), target :: s(*)
+      real(c_double), target :: c(..)
+      complex(c_double_complex), target :: s(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: zrot_batched
-      zrot_batched = rocblas_zrot_batched_raw(handle, n, x, incx, y, incy, c_loc(c(1)), c_loc(s( &
-        1)), batch_count)
+      zrot_batched = rocblas_zrot_batched_raw(handle, n, x, incx, y, incy, c_loc(c), c_loc(s), &
+        batch_count)
     end function rocblas_zrot_batched_native
 
     function rocblas_zrot_batched_typed(handle, n, x, incx, y, incy, c, s, batch_count) result( &
@@ -50552,12 +50564,12 @@ contains
       integer(c_int), value :: incx
       type(c_ptr), value :: y
       integer(c_int), value :: incy
-      real(c_double), target :: c(*)
-      real(c_double), target :: s(*)
+      real(c_double), target :: c(..)
+      real(c_double), target :: s(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: zdrot_batched
-      zdrot_batched = rocblas_zdrot_batched_raw(handle, n, x, incx, y, incy, c_loc(c(1)), c_loc(s( &
-        1)), batch_count)
+      zdrot_batched = rocblas_zdrot_batched_raw(handle, n, x, incx, y, incy, c_loc(c), c_loc(s), &
+        batch_count)
     end function rocblas_zdrot_batched_native
 
     function rocblas_zdrot_batched_typed(handle, n, x, incx, y, incy, c, s, batch_count) result( &
@@ -50588,12 +50600,12 @@ contains
       integer(c_long), value :: incx
       type(c_ptr), value :: y
       integer(c_long), value :: incy
-      real(c_float), target :: c(*)
-      real(c_float), target :: s(*)
+      real(c_float), target :: c(..)
+      real(c_float), target :: s(..)
       integer(c_long), value :: batch_count
       integer(c_int) :: srot_batched_64
-      srot_batched_64 = rocblas_srot_batched_64_raw(handle, n, x, incx, y, incy, c_loc(c(1)), &
-        c_loc(s(1)), batch_count)
+      srot_batched_64 = rocblas_srot_batched_64_raw(handle, n, x, incx, y, incy, c_loc(c), c_loc( &
+        s), batch_count)
     end function rocblas_srot_batched_64_native
 
     function rocblas_srot_batched_64_typed(handle, n, x, incx, y, incy, c, s, batch_count) result( &
@@ -50625,12 +50637,12 @@ contains
       integer(c_long), value :: incx
       type(c_ptr), value :: y
       integer(c_long), value :: incy
-      real(c_double), target :: c(*)
-      real(c_double), target :: s(*)
+      real(c_double), target :: c(..)
+      real(c_double), target :: s(..)
       integer(c_long), value :: batch_count
       integer(c_int) :: drot_batched_64
-      drot_batched_64 = rocblas_drot_batched_64_raw(handle, n, x, incx, y, incy, c_loc(c(1)), &
-        c_loc(s(1)), batch_count)
+      drot_batched_64 = rocblas_drot_batched_64_raw(handle, n, x, incx, y, incy, c_loc(c), c_loc( &
+        s), batch_count)
     end function rocblas_drot_batched_64_native
 
     function rocblas_drot_batched_64_typed(handle, n, x, incx, y, incy, c, s, batch_count) result( &
@@ -50662,12 +50674,12 @@ contains
       integer(c_long), value :: incx
       type(c_ptr), value :: y
       integer(c_long), value :: incy
-      real(c_float), target :: c(*)
-      complex(c_float_complex), target :: s(*)
+      real(c_float), target :: c(..)
+      complex(c_float_complex), target :: s(..)
       integer(c_long), value :: batch_count
       integer(c_int) :: crot_batched_64
-      crot_batched_64 = rocblas_crot_batched_64_raw(handle, n, x, incx, y, incy, c_loc(c(1)), &
-        c_loc(s(1)), batch_count)
+      crot_batched_64 = rocblas_crot_batched_64_raw(handle, n, x, incx, y, incy, c_loc(c), c_loc( &
+        s), batch_count)
     end function rocblas_crot_batched_64_native
 
     function rocblas_crot_batched_64_typed(handle, n, x, incx, y, incy, c, s, batch_count) result( &
@@ -50699,12 +50711,12 @@ contains
       integer(c_long), value :: incx
       type(c_ptr), value :: y
       integer(c_long), value :: incy
-      real(c_float), target :: c(*)
-      real(c_float), target :: s(*)
+      real(c_float), target :: c(..)
+      real(c_float), target :: s(..)
       integer(c_long), value :: batch_count
       integer(c_int) :: csrot_batched_64
-      csrot_batched_64 = rocblas_csrot_batched_64_raw(handle, n, x, incx, y, incy, c_loc(c(1)), &
-        c_loc(s(1)), batch_count)
+      csrot_batched_64 = rocblas_csrot_batched_64_raw(handle, n, x, incx, y, incy, c_loc(c), &
+        c_loc(s), batch_count)
     end function rocblas_csrot_batched_64_native
 
     function rocblas_csrot_batched_64_typed(handle, n, x, incx, y, incy, c, s, &
@@ -50736,12 +50748,12 @@ contains
       integer(c_long), value :: incx
       type(c_ptr), value :: y
       integer(c_long), value :: incy
-      real(c_double), target :: c(*)
-      complex(c_double_complex), target :: s(*)
+      real(c_double), target :: c(..)
+      complex(c_double_complex), target :: s(..)
       integer(c_long), value :: batch_count
       integer(c_int) :: zrot_batched_64
-      zrot_batched_64 = rocblas_zrot_batched_64_raw(handle, n, x, incx, y, incy, c_loc(c(1)), &
-        c_loc(s(1)), batch_count)
+      zrot_batched_64 = rocblas_zrot_batched_64_raw(handle, n, x, incx, y, incy, c_loc(c), c_loc( &
+        s), batch_count)
     end function rocblas_zrot_batched_64_native
 
     function rocblas_zrot_batched_64_typed(handle, n, x, incx, y, incy, c, s, batch_count) result( &
@@ -50773,12 +50785,12 @@ contains
       integer(c_long), value :: incx
       type(c_ptr), value :: y
       integer(c_long), value :: incy
-      real(c_double), target :: c(*)
-      real(c_double), target :: s(*)
+      real(c_double), target :: c(..)
+      real(c_double), target :: s(..)
       integer(c_long), value :: batch_count
       integer(c_int) :: zdrot_batched_64
-      zdrot_batched_64 = rocblas_zdrot_batched_64_raw(handle, n, x, incx, y, incy, c_loc(c(1)), &
-        c_loc(s(1)), batch_count)
+      zdrot_batched_64 = rocblas_zdrot_batched_64_raw(handle, n, x, incx, y, incy, c_loc(c), &
+        c_loc(s), batch_count)
     end function rocblas_zdrot_batched_64_native
 
     function rocblas_zdrot_batched_64_typed(handle, n, x, incx, y, incy, c, s, &
@@ -50806,18 +50818,18 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_int), value :: n
-      real(c_float), target :: x(*)
+      real(c_float), target :: x(..)
       integer(c_int), value :: incx
       integer(c_long), value :: stride_x
-      real(c_float), target :: y(*)
+      real(c_float), target :: y(..)
       integer(c_int), value :: incy
       integer(c_long), value :: stride_y
-      real(c_float), target :: c(*)
-      real(c_float), target :: s(*)
+      real(c_float), target :: c(..)
+      real(c_float), target :: s(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: srot_strided_batched
-      srot_strided_batched = rocblas_srot_strided_batched_raw(handle, n, c_loc(x(1)), incx, &
-        stride_x, c_loc(y(1)), incy, stride_y, c_loc(c(1)), c_loc(s(1)), batch_count)
+      srot_strided_batched = rocblas_srot_strided_batched_raw(handle, n, c_loc(x), incx, stride_x, &
+        c_loc(y), incy, stride_y, c_loc(c), c_loc(s), batch_count)
     end function rocblas_srot_strided_batched_native
 
     function rocblas_srot_strided_batched_typed(handle, n, x, incx, stride_x, y, incy, stride_y, &
@@ -50847,18 +50859,18 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_int), value :: n
-      real(c_double), target :: x(*)
+      real(c_double), target :: x(..)
       integer(c_int), value :: incx
       integer(c_long), value :: stride_x
-      real(c_double), target :: y(*)
+      real(c_double), target :: y(..)
       integer(c_int), value :: incy
       integer(c_long), value :: stride_y
-      real(c_double), target :: c(*)
-      real(c_double), target :: s(*)
+      real(c_double), target :: c(..)
+      real(c_double), target :: s(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: drot_strided_batched
-      drot_strided_batched = rocblas_drot_strided_batched_raw(handle, n, c_loc(x(1)), incx, &
-        stride_x, c_loc(y(1)), incy, stride_y, c_loc(c(1)), c_loc(s(1)), batch_count)
+      drot_strided_batched = rocblas_drot_strided_batched_raw(handle, n, c_loc(x), incx, stride_x, &
+        c_loc(y), incy, stride_y, c_loc(c), c_loc(s), batch_count)
     end function rocblas_drot_strided_batched_native
 
     function rocblas_drot_strided_batched_typed(handle, n, x, incx, stride_x, y, incy, stride_y, &
@@ -50888,18 +50900,18 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_int), value :: n
-      complex(c_float_complex), target :: x(*)
+      complex(c_float_complex), target :: x(..)
       integer(c_int), value :: incx
       integer(c_long), value :: stride_x
-      complex(c_float_complex), target :: y(*)
+      complex(c_float_complex), target :: y(..)
       integer(c_int), value :: incy
       integer(c_long), value :: stride_y
-      real(c_float), target :: c(*)
-      complex(c_float_complex), target :: s(*)
+      real(c_float), target :: c(..)
+      complex(c_float_complex), target :: s(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: crot_strided_batched
-      crot_strided_batched = rocblas_crot_strided_batched_raw(handle, n, c_loc(x(1)), incx, &
-        stride_x, c_loc(y(1)), incy, stride_y, c_loc(c(1)), c_loc(s(1)), batch_count)
+      crot_strided_batched = rocblas_crot_strided_batched_raw(handle, n, c_loc(x), incx, stride_x, &
+        c_loc(y), incy, stride_y, c_loc(c), c_loc(s), batch_count)
     end function rocblas_crot_strided_batched_native
 
     function rocblas_crot_strided_batched_typed(handle, n, x, incx, stride_x, y, incy, stride_y, &
@@ -50929,18 +50941,18 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_int), value :: n
-      complex(c_float_complex), target :: x(*)
+      complex(c_float_complex), target :: x(..)
       integer(c_int), value :: incx
       integer(c_long), value :: stride_x
-      complex(c_float_complex), target :: y(*)
+      complex(c_float_complex), target :: y(..)
       integer(c_int), value :: incy
       integer(c_long), value :: stride_y
-      real(c_float), target :: c(*)
-      real(c_float), target :: s(*)
+      real(c_float), target :: c(..)
+      real(c_float), target :: s(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: csrot_strided_batched
-      csrot_strided_batched = rocblas_csrot_strided_batched_raw(handle, n, c_loc(x(1)), incx, &
-        stride_x, c_loc(y(1)), incy, stride_y, c_loc(c(1)), c_loc(s(1)), batch_count)
+      csrot_strided_batched = rocblas_csrot_strided_batched_raw(handle, n, c_loc(x), incx, &
+        stride_x, c_loc(y), incy, stride_y, c_loc(c), c_loc(s), batch_count)
     end function rocblas_csrot_strided_batched_native
 
     function rocblas_csrot_strided_batched_typed(handle, n, x, incx, stride_x, y, incy, stride_y, &
@@ -50970,18 +50982,18 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_int), value :: n
-      complex(c_double_complex), target :: x(*)
+      complex(c_double_complex), target :: x(..)
       integer(c_int), value :: incx
       integer(c_long), value :: stride_x
-      complex(c_double_complex), target :: y(*)
+      complex(c_double_complex), target :: y(..)
       integer(c_int), value :: incy
       integer(c_long), value :: stride_y
-      real(c_double), target :: c(*)
-      complex(c_double_complex), target :: s(*)
+      real(c_double), target :: c(..)
+      complex(c_double_complex), target :: s(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: zrot_strided_batched
-      zrot_strided_batched = rocblas_zrot_strided_batched_raw(handle, n, c_loc(x(1)), incx, &
-        stride_x, c_loc(y(1)), incy, stride_y, c_loc(c(1)), c_loc(s(1)), batch_count)
+      zrot_strided_batched = rocblas_zrot_strided_batched_raw(handle, n, c_loc(x), incx, stride_x, &
+        c_loc(y), incy, stride_y, c_loc(c), c_loc(s), batch_count)
     end function rocblas_zrot_strided_batched_native
 
     function rocblas_zrot_strided_batched_typed(handle, n, x, incx, stride_x, y, incy, stride_y, &
@@ -51011,18 +51023,18 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_int), value :: n
-      complex(c_double_complex), target :: x(*)
+      complex(c_double_complex), target :: x(..)
       integer(c_int), value :: incx
       integer(c_long), value :: stride_x
-      complex(c_double_complex), target :: y(*)
+      complex(c_double_complex), target :: y(..)
       integer(c_int), value :: incy
       integer(c_long), value :: stride_y
-      real(c_double), target :: c(*)
-      real(c_double), target :: s(*)
+      real(c_double), target :: c(..)
+      real(c_double), target :: s(..)
       integer(c_int), value :: batch_count
       integer(c_int) :: zdrot_strided_batched
-      zdrot_strided_batched = rocblas_zdrot_strided_batched_raw(handle, n, c_loc(x(1)), incx, &
-        stride_x, c_loc(y(1)), incy, stride_y, c_loc(c(1)), c_loc(s(1)), batch_count)
+      zdrot_strided_batched = rocblas_zdrot_strided_batched_raw(handle, n, c_loc(x), incx, &
+        stride_x, c_loc(y), incy, stride_y, c_loc(c), c_loc(s), batch_count)
     end function rocblas_zdrot_strided_batched_native
 
     function rocblas_zdrot_strided_batched_typed(handle, n, x, incx, stride_x, y, incy, stride_y, &
@@ -51052,18 +51064,18 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_long), value :: n
-      real(c_float), target :: x(*)
+      real(c_float), target :: x(..)
       integer(c_long), value :: incx
       integer(c_long), value :: stride_x
-      real(c_float), target :: y(*)
+      real(c_float), target :: y(..)
       integer(c_long), value :: incy
       integer(c_long), value :: stride_y
-      real(c_float), target :: c(*)
-      real(c_float), target :: s(*)
+      real(c_float), target :: c(..)
+      real(c_float), target :: s(..)
       integer(c_long), value :: batch_count
       integer(c_int) :: srot_strided_batched_64
-      srot_strided_batched_64 = rocblas_srot_strided_batched_64_raw(handle, n, c_loc(x(1)), incx, &
-        stride_x, c_loc(y(1)), incy, stride_y, c_loc(c(1)), c_loc(s(1)), batch_count)
+      srot_strided_batched_64 = rocblas_srot_strided_batched_64_raw(handle, n, c_loc(x), incx, &
+        stride_x, c_loc(y), incy, stride_y, c_loc(c), c_loc(s), batch_count)
     end function rocblas_srot_strided_batched_64_native
 
     function rocblas_srot_strided_batched_64_typed(handle, n, x, incx, stride_x, y, incy, &
@@ -51093,18 +51105,18 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_long), value :: n
-      real(c_double), target :: x(*)
+      real(c_double), target :: x(..)
       integer(c_long), value :: incx
       integer(c_long), value :: stride_x
-      real(c_double), target :: y(*)
+      real(c_double), target :: y(..)
       integer(c_long), value :: incy
       integer(c_long), value :: stride_y
-      real(c_double), target :: c(*)
-      real(c_double), target :: s(*)
+      real(c_double), target :: c(..)
+      real(c_double), target :: s(..)
       integer(c_long), value :: batch_count
       integer(c_int) :: drot_strided_batched_64
-      drot_strided_batched_64 = rocblas_drot_strided_batched_64_raw(handle, n, c_loc(x(1)), incx, &
-        stride_x, c_loc(y(1)), incy, stride_y, c_loc(c(1)), c_loc(s(1)), batch_count)
+      drot_strided_batched_64 = rocblas_drot_strided_batched_64_raw(handle, n, c_loc(x), incx, &
+        stride_x, c_loc(y), incy, stride_y, c_loc(c), c_loc(s), batch_count)
     end function rocblas_drot_strided_batched_64_native
 
     function rocblas_drot_strided_batched_64_typed(handle, n, x, incx, stride_x, y, incy, &
@@ -51134,18 +51146,18 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_long), value :: n
-      complex(c_float_complex), target :: x(*)
+      complex(c_float_complex), target :: x(..)
       integer(c_long), value :: incx
       integer(c_long), value :: stride_x
-      complex(c_float_complex), target :: y(*)
+      complex(c_float_complex), target :: y(..)
       integer(c_long), value :: incy
       integer(c_long), value :: stride_y
-      real(c_float), target :: c(*)
-      complex(c_float_complex), target :: s(*)
+      real(c_float), target :: c(..)
+      complex(c_float_complex), target :: s(..)
       integer(c_long), value :: batch_count
       integer(c_int) :: crot_strided_batched_64
-      crot_strided_batched_64 = rocblas_crot_strided_batched_64_raw(handle, n, c_loc(x(1)), incx, &
-        stride_x, c_loc(y(1)), incy, stride_y, c_loc(c(1)), c_loc(s(1)), batch_count)
+      crot_strided_batched_64 = rocblas_crot_strided_batched_64_raw(handle, n, c_loc(x), incx, &
+        stride_x, c_loc(y), incy, stride_y, c_loc(c), c_loc(s), batch_count)
     end function rocblas_crot_strided_batched_64_native
 
     function rocblas_crot_strided_batched_64_typed(handle, n, x, incx, stride_x, y, incy, &
@@ -51175,18 +51187,18 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_long), value :: n
-      complex(c_float_complex), target :: x(*)
+      complex(c_float_complex), target :: x(..)
       integer(c_long), value :: incx
       integer(c_long), value :: stride_x
-      complex(c_float_complex), target :: y(*)
+      complex(c_float_complex), target :: y(..)
       integer(c_long), value :: incy
       integer(c_long), value :: stride_y
-      real(c_float), target :: c(*)
-      real(c_float), target :: s(*)
+      real(c_float), target :: c(..)
+      real(c_float), target :: s(..)
       integer(c_long), value :: batch_count
       integer(c_int) :: csrot_strided_batched_64
-      csrot_strided_batched_64 = rocblas_csrot_strided_batched_64_raw(handle, n, c_loc(x(1)), &
-        incx, stride_x, c_loc(y(1)), incy, stride_y, c_loc(c(1)), c_loc(s(1)), batch_count)
+      csrot_strided_batched_64 = rocblas_csrot_strided_batched_64_raw(handle, n, c_loc(x), incx, &
+        stride_x, c_loc(y), incy, stride_y, c_loc(c), c_loc(s), batch_count)
     end function rocblas_csrot_strided_batched_64_native
 
     function rocblas_csrot_strided_batched_64_typed(handle, n, x, incx, stride_x, y, incy, &
@@ -51216,18 +51228,18 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_long), value :: n
-      complex(c_double_complex), target :: x(*)
+      complex(c_double_complex), target :: x(..)
       integer(c_long), value :: incx
       integer(c_long), value :: stride_x
-      complex(c_double_complex), target :: y(*)
+      complex(c_double_complex), target :: y(..)
       integer(c_long), value :: incy
       integer(c_long), value :: stride_y
-      real(c_double), target :: c(*)
-      complex(c_double_complex), target :: s(*)
+      real(c_double), target :: c(..)
+      complex(c_double_complex), target :: s(..)
       integer(c_long), value :: batch_count
       integer(c_int) :: zrot_strided_batched_64
-      zrot_strided_batched_64 = rocblas_zrot_strided_batched_64_raw(handle, n, c_loc(x(1)), incx, &
-        stride_x, c_loc(y(1)), incy, stride_y, c_loc(c(1)), c_loc(s(1)), batch_count)
+      zrot_strided_batched_64 = rocblas_zrot_strided_batched_64_raw(handle, n, c_loc(x), incx, &
+        stride_x, c_loc(y), incy, stride_y, c_loc(c), c_loc(s), batch_count)
     end function rocblas_zrot_strided_batched_64_native
 
     function rocblas_zrot_strided_batched_64_typed(handle, n, x, incx, stride_x, y, incy, &
@@ -51257,18 +51269,18 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_long), value :: n
-      complex(c_double_complex), target :: x(*)
+      complex(c_double_complex), target :: x(..)
       integer(c_long), value :: incx
       integer(c_long), value :: stride_x
-      complex(c_double_complex), target :: y(*)
+      complex(c_double_complex), target :: y(..)
       integer(c_long), value :: incy
       integer(c_long), value :: stride_y
-      real(c_double), target :: c(*)
-      real(c_double), target :: s(*)
+      real(c_double), target :: c(..)
+      real(c_double), target :: s(..)
       integer(c_long), value :: batch_count
       integer(c_int) :: zdrot_strided_batched_64
-      zdrot_strided_batched_64 = rocblas_zdrot_strided_batched_64_raw(handle, n, c_loc(x(1)), &
-        incx, stride_x, c_loc(y(1)), incy, stride_y, c_loc(c(1)), c_loc(s(1)), batch_count)
+      zdrot_strided_batched_64 = rocblas_zdrot_strided_batched_64_raw(handle, n, c_loc(x), incx, &
+        stride_x, c_loc(y), incy, stride_y, c_loc(c), c_loc(s), batch_count)
     end function rocblas_zdrot_strided_batched_64_native
 
     function rocblas_zdrot_strided_batched_64_typed(handle, n, x, incx, stride_x, y, incy, &
@@ -51296,12 +51308,12 @@ contains
       use, intrinsic :: iso_c_binding
       implicit none
       type(c_ptr), value :: handle
-      real(c_float), target :: a(*)
-      real(c_float), target :: b(*)
-      real(c_float), target :: c(*)
-      real(c_float), target :: s(*)
+      real(c_float), target :: a(..)
+      real(c_float), target :: b(..)
+      real(c_float), target :: c(..)
+      real(c_float), target :: s(..)
       integer(c_int) :: srotg
-      srotg = rocblas_srotg_raw(handle, c_loc(a(1)), c_loc(b(1)), c_loc(c(1)), c_loc(s(1)))
+      srotg = rocblas_srotg_raw(handle, c_loc(a), c_loc(b), c_loc(c), c_loc(s))
     end function rocblas_srotg_native
 
     function rocblas_srotg_typed(handle, a, b, c, s) result(srotg)
@@ -51321,12 +51333,12 @@ contains
       use, intrinsic :: iso_c_binding
       implicit none
       type(c_ptr), value :: handle
-      real(c_double), target :: a(*)
-      real(c_double), target :: b(*)
-      real(c_double), target :: c(*)
-      real(c_double), target :: s(*)
+      real(c_double), target :: a(..)
+      real(c_double), target :: b(..)
+      real(c_double), target :: c(..)
+      real(c_double), target :: s(..)
       integer(c_int) :: drotg
-      drotg = rocblas_drotg_raw(handle, c_loc(a(1)), c_loc(b(1)), c_loc(c(1)), c_loc(s(1)))
+      drotg = rocblas_drotg_raw(handle, c_loc(a), c_loc(b), c_loc(c), c_loc(s))
     end function rocblas_drotg_native
 
     function rocblas_drotg_typed(handle, a, b, c, s) result(drotg)
@@ -51346,12 +51358,12 @@ contains
       use, intrinsic :: iso_c_binding
       implicit none
       type(c_ptr), value :: handle
-      complex(c_float_complex), target :: a(*)
-      complex(c_float_complex), target :: b(*)
-      real(c_float), target :: c(*)
-      complex(c_float_complex), target :: s(*)
+      complex(c_float_complex), target :: a(..)
+      complex(c_float_complex), target :: b(..)
+      real(c_float), target :: c(..)
+      complex(c_float_complex), target :: s(..)
       integer(c_int) :: crotg
-      crotg = rocblas_crotg_raw(handle, c_loc(a(1)), c_loc(b(1)), c_loc(c(1)), c_loc(s(1)))
+      crotg = rocblas_crotg_raw(handle, c_loc(a), c_loc(b), c_loc(c), c_loc(s))
     end function rocblas_crotg_native
 
     function rocblas_crotg_typed(handle, a, b, c, s) result(crotg)
@@ -51371,12 +51383,12 @@ contains
       use, intrinsic :: iso_c_binding
       implicit none
       type(c_ptr), value :: handle
-      complex(c_double_complex), target :: a(*)
-      complex(c_double_complex), target :: b(*)
-      real(c_double), target :: c(*)
-      complex(c_double_complex), target :: s(*)
+      complex(c_double_complex), target :: a(..)
+      complex(c_double_complex), target :: b(..)
+      real(c_double), target :: c(..)
+      complex(c_double_complex), target :: s(..)
       integer(c_int) :: zrotg
-      zrotg = rocblas_zrotg_raw(handle, c_loc(a(1)), c_loc(b(1)), c_loc(c(1)), c_loc(s(1)))
+      zrotg = rocblas_zrotg_raw(handle, c_loc(a), c_loc(b), c_loc(c), c_loc(s))
     end function rocblas_zrotg_native
 
     function rocblas_zrotg_typed(handle, a, b, c, s) result(zrotg)
@@ -51396,12 +51408,12 @@ contains
       use, intrinsic :: iso_c_binding
       implicit none
       type(c_ptr), value :: handle
-      real(c_float), target :: a(*)
-      real(c_float), target :: b(*)
-      real(c_float), target :: c(*)
-      real(c_float), target :: s(*)
+      real(c_float), target :: a(..)
+      real(c_float), target :: b(..)
+      real(c_float), target :: c(..)
+      real(c_float), target :: s(..)
       integer(c_int) :: srotg_64
-      srotg_64 = rocblas_srotg_64_raw(handle, c_loc(a(1)), c_loc(b(1)), c_loc(c(1)), c_loc(s(1)))
+      srotg_64 = rocblas_srotg_64_raw(handle, c_loc(a), c_loc(b), c_loc(c), c_loc(s))
     end function rocblas_srotg_64_native
 
     function rocblas_srotg_64_typed(handle, a, b, c, s) result(srotg_64)
@@ -51421,12 +51433,12 @@ contains
       use, intrinsic :: iso_c_binding
       implicit none
       type(c_ptr), value :: handle
-      real(c_double), target :: a(*)
-      real(c_double), target :: b(*)
-      real(c_double), target :: c(*)
-      real(c_double), target :: s(*)
+      real(c_double), target :: a(..)
+      real(c_double), target :: b(..)
+      real(c_double), target :: c(..)
+      real(c_double), target :: s(..)
       integer(c_int) :: drotg_64
-      drotg_64 = rocblas_drotg_64_raw(handle, c_loc(a(1)), c_loc(b(1)), c_loc(c(1)), c_loc(s(1)))
+      drotg_64 = rocblas_drotg_64_raw(handle, c_loc(a), c_loc(b), c_loc(c), c_loc(s))
     end function rocblas_drotg_64_native
 
     function rocblas_drotg_64_typed(handle, a, b, c, s) result(drotg_64)
@@ -51446,12 +51458,12 @@ contains
       use, intrinsic :: iso_c_binding
       implicit none
       type(c_ptr), value :: handle
-      complex(c_float_complex), target :: a(*)
-      complex(c_float_complex), target :: b(*)
-      real(c_float), target :: c(*)
-      complex(c_float_complex), target :: s(*)
+      complex(c_float_complex), target :: a(..)
+      complex(c_float_complex), target :: b(..)
+      real(c_float), target :: c(..)
+      complex(c_float_complex), target :: s(..)
       integer(c_int) :: crotg_64
-      crotg_64 = rocblas_crotg_64_raw(handle, c_loc(a(1)), c_loc(b(1)), c_loc(c(1)), c_loc(s(1)))
+      crotg_64 = rocblas_crotg_64_raw(handle, c_loc(a), c_loc(b), c_loc(c), c_loc(s))
     end function rocblas_crotg_64_native
 
     function rocblas_crotg_64_typed(handle, a, b, c, s) result(crotg_64)
@@ -51471,12 +51483,12 @@ contains
       use, intrinsic :: iso_c_binding
       implicit none
       type(c_ptr), value :: handle
-      complex(c_double_complex), target :: a(*)
-      complex(c_double_complex), target :: b(*)
-      real(c_double), target :: c(*)
-      complex(c_double_complex), target :: s(*)
+      complex(c_double_complex), target :: a(..)
+      complex(c_double_complex), target :: b(..)
+      real(c_double), target :: c(..)
+      complex(c_double_complex), target :: s(..)
       integer(c_int) :: zrotg_64
-      zrotg_64 = rocblas_zrotg_64_raw(handle, c_loc(a(1)), c_loc(b(1)), c_loc(c(1)), c_loc(s(1)))
+      zrotg_64 = rocblas_zrotg_64_raw(handle, c_loc(a), c_loc(b), c_loc(c), c_loc(s))
     end function rocblas_zrotg_64_native
 
     function rocblas_zrotg_64_typed(handle, a, b, c, s) result(zrotg_64)
@@ -51613,18 +51625,18 @@ contains
       use, intrinsic :: iso_c_binding
       implicit none
       type(c_ptr), value :: handle
-      real(c_float), target :: a(*)
+      real(c_float), target :: a(..)
       integer(c_long), value :: stride_a
-      real(c_float), target :: b(*)
+      real(c_float), target :: b(..)
       integer(c_long), value :: stride_b
-      real(c_float), target :: c(*)
+      real(c_float), target :: c(..)
       integer(c_long), value :: stride_c
-      real(c_float), target :: s(*)
+      real(c_float), target :: s(..)
       integer(c_long), value :: stride_s
       integer(c_int), value :: batch_count
       integer(c_int) :: srotg_strided_batched
-      srotg_strided_batched = rocblas_srotg_strided_batched_raw(handle, c_loc(a(1)), stride_a, &
-        c_loc(b(1)), stride_b, c_loc(c(1)), stride_c, c_loc(s(1)), stride_s, batch_count)
+      srotg_strided_batched = rocblas_srotg_strided_batched_raw(handle, c_loc(a), stride_a, c_loc( &
+        b), stride_b, c_loc(c), stride_c, c_loc(s), stride_s, batch_count)
     end function rocblas_srotg_strided_batched_native
 
     function rocblas_srotg_strided_batched_typed(handle, a, stride_a, b, stride_b, c, stride_c, s, &
@@ -51652,18 +51664,18 @@ contains
       use, intrinsic :: iso_c_binding
       implicit none
       type(c_ptr), value :: handle
-      real(c_double), target :: a(*)
+      real(c_double), target :: a(..)
       integer(c_long), value :: stride_a
-      real(c_double), target :: b(*)
+      real(c_double), target :: b(..)
       integer(c_long), value :: stride_b
-      real(c_double), target :: c(*)
+      real(c_double), target :: c(..)
       integer(c_long), value :: stride_c
-      real(c_double), target :: s(*)
+      real(c_double), target :: s(..)
       integer(c_long), value :: stride_s
       integer(c_int), value :: batch_count
       integer(c_int) :: drotg_strided_batched
-      drotg_strided_batched = rocblas_drotg_strided_batched_raw(handle, c_loc(a(1)), stride_a, &
-        c_loc(b(1)), stride_b, c_loc(c(1)), stride_c, c_loc(s(1)), stride_s, batch_count)
+      drotg_strided_batched = rocblas_drotg_strided_batched_raw(handle, c_loc(a), stride_a, c_loc( &
+        b), stride_b, c_loc(c), stride_c, c_loc(s), stride_s, batch_count)
     end function rocblas_drotg_strided_batched_native
 
     function rocblas_drotg_strided_batched_typed(handle, a, stride_a, b, stride_b, c, stride_c, s, &
@@ -51691,18 +51703,18 @@ contains
       use, intrinsic :: iso_c_binding
       implicit none
       type(c_ptr), value :: handle
-      complex(c_float_complex), target :: a(*)
+      complex(c_float_complex), target :: a(..)
       integer(c_long), value :: stride_a
-      complex(c_float_complex), target :: b(*)
+      complex(c_float_complex), target :: b(..)
       integer(c_long), value :: stride_b
-      real(c_float), target :: c(*)
+      real(c_float), target :: c(..)
       integer(c_long), value :: stride_c
-      complex(c_float_complex), target :: s(*)
+      complex(c_float_complex), target :: s(..)
       integer(c_long), value :: stride_s
       integer(c_int), value :: batch_count
       integer(c_int) :: crotg_strided_batched
-      crotg_strided_batched = rocblas_crotg_strided_batched_raw(handle, c_loc(a(1)), stride_a, &
-        c_loc(b(1)), stride_b, c_loc(c(1)), stride_c, c_loc(s(1)), stride_s, batch_count)
+      crotg_strided_batched = rocblas_crotg_strided_batched_raw(handle, c_loc(a), stride_a, c_loc( &
+        b), stride_b, c_loc(c), stride_c, c_loc(s), stride_s, batch_count)
     end function rocblas_crotg_strided_batched_native
 
     function rocblas_crotg_strided_batched_typed(handle, a, stride_a, b, stride_b, c, stride_c, s, &
@@ -51730,18 +51742,18 @@ contains
       use, intrinsic :: iso_c_binding
       implicit none
       type(c_ptr), value :: handle
-      complex(c_double_complex), target :: a(*)
+      complex(c_double_complex), target :: a(..)
       integer(c_long), value :: stride_a
-      complex(c_double_complex), target :: b(*)
+      complex(c_double_complex), target :: b(..)
       integer(c_long), value :: stride_b
-      real(c_double), target :: c(*)
+      real(c_double), target :: c(..)
       integer(c_long), value :: stride_c
-      complex(c_double_complex), target :: s(*)
+      complex(c_double_complex), target :: s(..)
       integer(c_long), value :: stride_s
       integer(c_int), value :: batch_count
       integer(c_int) :: zrotg_strided_batched
-      zrotg_strided_batched = rocblas_zrotg_strided_batched_raw(handle, c_loc(a(1)), stride_a, &
-        c_loc(b(1)), stride_b, c_loc(c(1)), stride_c, c_loc(s(1)), stride_s, batch_count)
+      zrotg_strided_batched = rocblas_zrotg_strided_batched_raw(handle, c_loc(a), stride_a, c_loc( &
+        b), stride_b, c_loc(c), stride_c, c_loc(s), stride_s, batch_count)
     end function rocblas_zrotg_strided_batched_native
 
     function rocblas_zrotg_strided_batched_typed(handle, a, stride_a, b, stride_b, c, stride_c, s, &
@@ -51769,18 +51781,18 @@ contains
       use, intrinsic :: iso_c_binding
       implicit none
       type(c_ptr), value :: handle
-      real(c_float), target :: a(*)
+      real(c_float), target :: a(..)
       integer(c_long), value :: stride_a
-      real(c_float), target :: b(*)
+      real(c_float), target :: b(..)
       integer(c_long), value :: stride_b
-      real(c_float), target :: c(*)
+      real(c_float), target :: c(..)
       integer(c_long), value :: stride_c
-      real(c_float), target :: s(*)
+      real(c_float), target :: s(..)
       integer(c_long), value :: stride_s
       integer(c_long), value :: batch_count
       integer(c_int) :: srotg_strided_batched_64
-      srotg_strided_batched_64 = rocblas_srotg_strided_batched_64_raw(handle, c_loc(a(1)), &
-        stride_a, c_loc(b(1)), stride_b, c_loc(c(1)), stride_c, c_loc(s(1)), stride_s, batch_count)
+      srotg_strided_batched_64 = rocblas_srotg_strided_batched_64_raw(handle, c_loc(a), stride_a, &
+        c_loc(b), stride_b, c_loc(c), stride_c, c_loc(s), stride_s, batch_count)
     end function rocblas_srotg_strided_batched_64_native
 
     function rocblas_srotg_strided_batched_64_typed(handle, a, stride_a, b, stride_b, c, stride_c, &
@@ -51808,18 +51820,18 @@ contains
       use, intrinsic :: iso_c_binding
       implicit none
       type(c_ptr), value :: handle
-      real(c_double), target :: a(*)
+      real(c_double), target :: a(..)
       integer(c_long), value :: stride_a
-      real(c_double), target :: b(*)
+      real(c_double), target :: b(..)
       integer(c_long), value :: stride_b
-      real(c_double), target :: c(*)
+      real(c_double), target :: c(..)
       integer(c_long), value :: stride_c
-      real(c_double), target :: s(*)
+      real(c_double), target :: s(..)
       integer(c_long), value :: stride_s
       integer(c_long), value :: batch_count
       integer(c_int) :: drotg_strided_batched_64
-      drotg_strided_batched_64 = rocblas_drotg_strided_batched_64_raw(handle, c_loc(a(1)), &
-        stride_a, c_loc(b(1)), stride_b, c_loc(c(1)), stride_c, c_loc(s(1)), stride_s, batch_count)
+      drotg_strided_batched_64 = rocblas_drotg_strided_batched_64_raw(handle, c_loc(a), stride_a, &
+        c_loc(b), stride_b, c_loc(c), stride_c, c_loc(s), stride_s, batch_count)
     end function rocblas_drotg_strided_batched_64_native
 
     function rocblas_drotg_strided_batched_64_typed(handle, a, stride_a, b, stride_b, c, stride_c, &
@@ -51847,18 +51859,18 @@ contains
       use, intrinsic :: iso_c_binding
       implicit none
       type(c_ptr), value :: handle
-      complex(c_float_complex), target :: a(*)
+      complex(c_float_complex), target :: a(..)
       integer(c_long), value :: stride_a
-      complex(c_float_complex), target :: b(*)
+      complex(c_float_complex), target :: b(..)
       integer(c_long), value :: stride_b
-      real(c_float), target :: c(*)
+      real(c_float), target :: c(..)
       integer(c_long), value :: stride_c
-      complex(c_float_complex), target :: s(*)
+      complex(c_float_complex), target :: s(..)
       integer(c_long), value :: stride_s
       integer(c_long), value :: batch_count
       integer(c_int) :: crotg_strided_batched_64
-      crotg_strided_batched_64 = rocblas_crotg_strided_batched_64_raw(handle, c_loc(a(1)), &
-        stride_a, c_loc(b(1)), stride_b, c_loc(c(1)), stride_c, c_loc(s(1)), stride_s, batch_count)
+      crotg_strided_batched_64 = rocblas_crotg_strided_batched_64_raw(handle, c_loc(a), stride_a, &
+        c_loc(b), stride_b, c_loc(c), stride_c, c_loc(s), stride_s, batch_count)
     end function rocblas_crotg_strided_batched_64_native
 
     function rocblas_crotg_strided_batched_64_typed(handle, a, stride_a, b, stride_b, c, stride_c, &
@@ -51886,18 +51898,18 @@ contains
       use, intrinsic :: iso_c_binding
       implicit none
       type(c_ptr), value :: handle
-      complex(c_double_complex), target :: a(*)
+      complex(c_double_complex), target :: a(..)
       integer(c_long), value :: stride_a
-      complex(c_double_complex), target :: b(*)
+      complex(c_double_complex), target :: b(..)
       integer(c_long), value :: stride_b
-      real(c_double), target :: c(*)
+      real(c_double), target :: c(..)
       integer(c_long), value :: stride_c
-      complex(c_double_complex), target :: s(*)
+      complex(c_double_complex), target :: s(..)
       integer(c_long), value :: stride_s
       integer(c_long), value :: batch_count
       integer(c_int) :: zrotg_strided_batched_64
-      zrotg_strided_batched_64 = rocblas_zrotg_strided_batched_64_raw(handle, c_loc(a(1)), &
-        stride_a, c_loc(b(1)), stride_b, c_loc(c(1)), stride_c, c_loc(s(1)), stride_s, batch_count)
+      zrotg_strided_batched_64 = rocblas_zrotg_strided_batched_64_raw(handle, c_loc(a), stride_a, &
+        c_loc(b), stride_b, c_loc(c), stride_c, c_loc(s), stride_s, batch_count)
     end function rocblas_zrotg_strided_batched_64_native
 
     function rocblas_zrotg_strided_batched_64_typed(handle, a, stride_a, b, stride_b, c, stride_c, &
@@ -51925,13 +51937,13 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_int), value :: n
-      real(c_float), target :: x(*)
+      real(c_float), target :: x(..)
       integer(c_int), value :: incx
-      real(c_float), target :: y(*)
+      real(c_float), target :: y(..)
       integer(c_int), value :: incy
-      real(c_float), target :: param(*)
+      real(c_float), target :: param(..)
       integer(c_int) :: srotm
-      srotm = rocblas_srotm_raw(handle, n, c_loc(x(1)), incx, c_loc(y(1)), incy, c_loc(param(1)))
+      srotm = rocblas_srotm_raw(handle, n, c_loc(x), incx, c_loc(y), incy, c_loc(param))
     end function rocblas_srotm_native
 
     function rocblas_srotm_typed(handle, n, x, incx, y, incy, param) result(srotm)
@@ -51954,13 +51966,13 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_int), value :: n
-      real(c_double), target :: x(*)
+      real(c_double), target :: x(..)
       integer(c_int), value :: incx
-      real(c_double), target :: y(*)
+      real(c_double), target :: y(..)
       integer(c_int), value :: incy
-      real(c_double), target :: param(*)
+      real(c_double), target :: param(..)
       integer(c_int) :: drotm
-      drotm = rocblas_drotm_raw(handle, n, c_loc(x(1)), incx, c_loc(y(1)), incy, c_loc(param(1)))
+      drotm = rocblas_drotm_raw(handle, n, c_loc(x), incx, c_loc(y), incy, c_loc(param))
     end function rocblas_drotm_native
 
     function rocblas_drotm_typed(handle, n, x, incx, y, incy, param) result(drotm)
@@ -51983,14 +51995,13 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_long), value :: n
-      real(c_float), target :: x(*)
+      real(c_float), target :: x(..)
       integer(c_long), value :: incx
-      real(c_float), target :: y(*)
+      real(c_float), target :: y(..)
       integer(c_long), value :: incy
-      real(c_float), target :: param(*)
+      real(c_float), target :: param(..)
       integer(c_int) :: srotm_64
-      srotm_64 = rocblas_srotm_64_raw(handle, n, c_loc(x(1)), incx, c_loc(y(1)), incy, c_loc( &
-        param(1)))
+      srotm_64 = rocblas_srotm_64_raw(handle, n, c_loc(x), incx, c_loc(y), incy, c_loc(param))
     end function rocblas_srotm_64_native
 
     function rocblas_srotm_64_typed(handle, n, x, incx, y, incy, param) result(srotm_64)
@@ -52013,14 +52024,13 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_long), value :: n
-      real(c_double), target :: x(*)
+      real(c_double), target :: x(..)
       integer(c_long), value :: incx
-      real(c_double), target :: y(*)
+      real(c_double), target :: y(..)
       integer(c_long), value :: incy
-      real(c_double), target :: param(*)
+      real(c_double), target :: param(..)
       integer(c_int) :: drotm_64
-      drotm_64 = rocblas_drotm_64_raw(handle, n, c_loc(x(1)), incx, c_loc(y(1)), incy, c_loc( &
-        param(1)))
+      drotm_64 = rocblas_drotm_64_raw(handle, n, c_loc(x), incx, c_loc(y), incy, c_loc(param))
     end function rocblas_drotm_64_native
 
     function rocblas_drotm_64_typed(handle, n, x, incx, y, incy, param) result(drotm_64)
@@ -52114,18 +52124,18 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_int), value :: n
-      real(c_float), target :: x(*)
+      real(c_float), target :: x(..)
       integer(c_int), value :: incx
       integer(c_long), value :: stride_x
-      real(c_float), target :: y(*)
+      real(c_float), target :: y(..)
       integer(c_int), value :: incy
       integer(c_long), value :: stride_y
-      real(c_float), target :: param(*)
+      real(c_float), target :: param(..)
       integer(c_long), value :: stride_param
       integer(c_int), value :: batch_count
       integer(c_int) :: srotm_strided_batched
-      srotm_strided_batched = rocblas_srotm_strided_batched_raw(handle, n, c_loc(x(1)), incx, &
-        stride_x, c_loc(y(1)), incy, stride_y, c_loc(param(1)), stride_param, batch_count)
+      srotm_strided_batched = rocblas_srotm_strided_batched_raw(handle, n, c_loc(x), incx, &
+        stride_x, c_loc(y), incy, stride_y, c_loc(param), stride_param, batch_count)
     end function rocblas_srotm_strided_batched_native
 
     function rocblas_srotm_strided_batched_typed(handle, n, x, incx, stride_x, y, incy, stride_y, &
@@ -52155,18 +52165,18 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_int), value :: n
-      real(c_double), target :: x(*)
+      real(c_double), target :: x(..)
       integer(c_int), value :: incx
       integer(c_long), value :: stride_x
-      real(c_double), target :: y(*)
+      real(c_double), target :: y(..)
       integer(c_int), value :: incy
       integer(c_long), value :: stride_y
-      real(c_double), target :: param(*)
+      real(c_double), target :: param(..)
       integer(c_long), value :: stride_param
       integer(c_int), value :: batch_count
       integer(c_int) :: drotm_strided_batched
-      drotm_strided_batched = rocblas_drotm_strided_batched_raw(handle, n, c_loc(x(1)), incx, &
-        stride_x, c_loc(y(1)), incy, stride_y, c_loc(param(1)), stride_param, batch_count)
+      drotm_strided_batched = rocblas_drotm_strided_batched_raw(handle, n, c_loc(x), incx, &
+        stride_x, c_loc(y), incy, stride_y, c_loc(param), stride_param, batch_count)
     end function rocblas_drotm_strided_batched_native
 
     function rocblas_drotm_strided_batched_typed(handle, n, x, incx, stride_x, y, incy, stride_y, &
@@ -52196,18 +52206,18 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_long), value :: n
-      real(c_float), target :: x(*)
+      real(c_float), target :: x(..)
       integer(c_long), value :: incx
       integer(c_long), value :: stride_x
-      real(c_float), target :: y(*)
+      real(c_float), target :: y(..)
       integer(c_long), value :: incy
       integer(c_long), value :: stride_y
-      real(c_float), target :: param(*)
+      real(c_float), target :: param(..)
       integer(c_long), value :: stride_param
       integer(c_long), value :: batch_count
       integer(c_int) :: srotm_strided_batched_64
-      srotm_strided_batched_64 = rocblas_srotm_strided_batched_64_raw(handle, n, c_loc(x(1)), &
-        incx, stride_x, c_loc(y(1)), incy, stride_y, c_loc(param(1)), stride_param, batch_count)
+      srotm_strided_batched_64 = rocblas_srotm_strided_batched_64_raw(handle, n, c_loc(x), incx, &
+        stride_x, c_loc(y), incy, stride_y, c_loc(param), stride_param, batch_count)
     end function rocblas_srotm_strided_batched_64_native
 
     function rocblas_srotm_strided_batched_64_typed(handle, n, x, incx, stride_x, y, incy, &
@@ -52237,18 +52247,18 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_long), value :: n
-      real(c_double), target :: x(*)
+      real(c_double), target :: x(..)
       integer(c_long), value :: incx
       integer(c_long), value :: stride_x
-      real(c_double), target :: y(*)
+      real(c_double), target :: y(..)
       integer(c_long), value :: incy
       integer(c_long), value :: stride_y
-      real(c_double), target :: param(*)
+      real(c_double), target :: param(..)
       integer(c_long), value :: stride_param
       integer(c_long), value :: batch_count
       integer(c_int) :: drotm_strided_batched_64
-      drotm_strided_batched_64 = rocblas_drotm_strided_batched_64_raw(handle, n, c_loc(x(1)), &
-        incx, stride_x, c_loc(y(1)), incy, stride_y, c_loc(param(1)), stride_param, batch_count)
+      drotm_strided_batched_64 = rocblas_drotm_strided_batched_64_raw(handle, n, c_loc(x), incx, &
+        stride_x, c_loc(y), incy, stride_y, c_loc(param), stride_param, batch_count)
     end function rocblas_drotm_strided_batched_64_native
 
     function rocblas_drotm_strided_batched_64_typed(handle, n, x, incx, stride_x, y, incy, &
@@ -52276,14 +52286,13 @@ contains
       use, intrinsic :: iso_c_binding
       implicit none
       type(c_ptr), value :: handle
-      real(c_float), target :: d1(*)
-      real(c_float), target :: d2(*)
-      real(c_float), target :: x1(*)
-      real(c_float), target :: y1(*)
-      real(c_float), target :: param(*)
+      real(c_float), target :: d1(..)
+      real(c_float), target :: d2(..)
+      real(c_float), target :: x1(..)
+      real(c_float), target :: y1(..)
+      real(c_float), target :: param(..)
       integer(c_int) :: srotmg
-      srotmg = rocblas_srotmg_raw(handle, c_loc(d1(1)), c_loc(d2(1)), c_loc(x1(1)), c_loc(y1(1)), &
-        c_loc(param(1)))
+      srotmg = rocblas_srotmg_raw(handle, c_loc(d1), c_loc(d2), c_loc(x1), c_loc(y1), c_loc(param))
     end function rocblas_srotmg_native
 
     function rocblas_srotmg_typed(handle, d1, d2, x1, y1, param) result(srotmg)
@@ -52304,14 +52313,13 @@ contains
       use, intrinsic :: iso_c_binding
       implicit none
       type(c_ptr), value :: handle
-      real(c_double), target :: d1(*)
-      real(c_double), target :: d2(*)
-      real(c_double), target :: x1(*)
-      real(c_double), target :: y1(*)
-      real(c_double), target :: param(*)
+      real(c_double), target :: d1(..)
+      real(c_double), target :: d2(..)
+      real(c_double), target :: x1(..)
+      real(c_double), target :: y1(..)
+      real(c_double), target :: param(..)
       integer(c_int) :: drotmg
-      drotmg = rocblas_drotmg_raw(handle, c_loc(d1(1)), c_loc(d2(1)), c_loc(x1(1)), c_loc(y1(1)), &
-        c_loc(param(1)))
+      drotmg = rocblas_drotmg_raw(handle, c_loc(d1), c_loc(d2), c_loc(x1), c_loc(y1), c_loc(param))
     end function rocblas_drotmg_native
 
     function rocblas_drotmg_typed(handle, d1, d2, x1, y1, param) result(drotmg)
@@ -52332,14 +52340,14 @@ contains
       use, intrinsic :: iso_c_binding
       implicit none
       type(c_ptr), value :: handle
-      real(c_float), target :: d1(*)
-      real(c_float), target :: d2(*)
-      real(c_float), target :: x1(*)
-      real(c_float), target :: y1(*)
-      real(c_float), target :: param(*)
+      real(c_float), target :: d1(..)
+      real(c_float), target :: d2(..)
+      real(c_float), target :: x1(..)
+      real(c_float), target :: y1(..)
+      real(c_float), target :: param(..)
       integer(c_int) :: srotmg_64
-      srotmg_64 = rocblas_srotmg_64_raw(handle, c_loc(d1(1)), c_loc(d2(1)), c_loc(x1(1)), c_loc( &
-        y1(1)), c_loc(param(1)))
+      srotmg_64 = rocblas_srotmg_64_raw(handle, c_loc(d1), c_loc(d2), c_loc(x1), c_loc(y1), c_loc( &
+        param))
     end function rocblas_srotmg_64_native
 
     function rocblas_srotmg_64_typed(handle, d1, d2, x1, y1, param) result(srotmg_64)
@@ -52360,14 +52368,14 @@ contains
       use, intrinsic :: iso_c_binding
       implicit none
       type(c_ptr), value :: handle
-      real(c_double), target :: d1(*)
-      real(c_double), target :: d2(*)
-      real(c_double), target :: x1(*)
-      real(c_double), target :: y1(*)
-      real(c_double), target :: param(*)
+      real(c_double), target :: d1(..)
+      real(c_double), target :: d2(..)
+      real(c_double), target :: x1(..)
+      real(c_double), target :: y1(..)
+      real(c_double), target :: param(..)
       integer(c_int) :: drotmg_64
-      drotmg_64 = rocblas_drotmg_64_raw(handle, c_loc(d1(1)), c_loc(d2(1)), c_loc(x1(1)), c_loc( &
-        y1(1)), c_loc(param(1)))
+      drotmg_64 = rocblas_drotmg_64_raw(handle, c_loc(d1), c_loc(d2), c_loc(x1), c_loc(y1), c_loc( &
+        param))
     end function rocblas_drotmg_64_native
 
     function rocblas_drotmg_64_typed(handle, d1, d2, x1, y1, param) result(drotmg_64)
@@ -52455,21 +52463,21 @@ contains
       use, intrinsic :: iso_c_binding
       implicit none
       type(c_ptr), value :: handle
-      real(c_float), target :: d1(*)
+      real(c_float), target :: d1(..)
       integer(c_long), value :: stride_d1
-      real(c_float), target :: d2(*)
+      real(c_float), target :: d2(..)
       integer(c_long), value :: stride_d2
-      real(c_float), target :: x1(*)
+      real(c_float), target :: x1(..)
       integer(c_long), value :: stride_x1
-      real(c_float), target :: y1(*)
+      real(c_float), target :: y1(..)
       integer(c_long), value :: stride_y1
-      real(c_float), target :: param(*)
+      real(c_float), target :: param(..)
       integer(c_long), value :: stride_param
       integer(c_int), value :: batch_count
       integer(c_int) :: srotmg_strided_batched
-      srotmg_strided_batched = rocblas_srotmg_strided_batched_raw(handle, c_loc(d1(1)), stride_d1, &
-        c_loc(d2(1)), stride_d2, c_loc(x1(1)), stride_x1, c_loc(y1(1)), stride_y1, c_loc(param( &
-        1)), stride_param, batch_count)
+      srotmg_strided_batched = rocblas_srotmg_strided_batched_raw(handle, c_loc(d1), stride_d1, &
+        c_loc(d2), stride_d2, c_loc(x1), stride_x1, c_loc(y1), stride_y1, c_loc(param), &
+        stride_param, batch_count)
     end function rocblas_srotmg_strided_batched_native
 
     function rocblas_srotmg_strided_batched_typed(handle, d1, stride_d1, d2, stride_d2, x1, &
@@ -52499,21 +52507,21 @@ contains
       use, intrinsic :: iso_c_binding
       implicit none
       type(c_ptr), value :: handle
-      real(c_double), target :: d1(*)
+      real(c_double), target :: d1(..)
       integer(c_long), value :: stride_d1
-      real(c_double), target :: d2(*)
+      real(c_double), target :: d2(..)
       integer(c_long), value :: stride_d2
-      real(c_double), target :: x1(*)
+      real(c_double), target :: x1(..)
       integer(c_long), value :: stride_x1
-      real(c_double), target :: y1(*)
+      real(c_double), target :: y1(..)
       integer(c_long), value :: stride_y1
-      real(c_double), target :: param(*)
+      real(c_double), target :: param(..)
       integer(c_long), value :: stride_param
       integer(c_int), value :: batch_count
       integer(c_int) :: drotmg_strided_batched
-      drotmg_strided_batched = rocblas_drotmg_strided_batched_raw(handle, c_loc(d1(1)), stride_d1, &
-        c_loc(d2(1)), stride_d2, c_loc(x1(1)), stride_x1, c_loc(y1(1)), stride_y1, c_loc(param( &
-        1)), stride_param, batch_count)
+      drotmg_strided_batched = rocblas_drotmg_strided_batched_raw(handle, c_loc(d1), stride_d1, &
+        c_loc(d2), stride_d2, c_loc(x1), stride_x1, c_loc(y1), stride_y1, c_loc(param), &
+        stride_param, batch_count)
     end function rocblas_drotmg_strided_batched_native
 
     function rocblas_drotmg_strided_batched_typed(handle, d1, stride_d1, d2, stride_d2, x1, &
@@ -52544,21 +52552,21 @@ contains
       use, intrinsic :: iso_c_binding
       implicit none
       type(c_ptr), value :: handle
-      real(c_float), target :: d1(*)
+      real(c_float), target :: d1(..)
       integer(c_long), value :: stride_d1
-      real(c_float), target :: d2(*)
+      real(c_float), target :: d2(..)
       integer(c_long), value :: stride_d2
-      real(c_float), target :: x1(*)
+      real(c_float), target :: x1(..)
       integer(c_long), value :: stride_x1
-      real(c_float), target :: y1(*)
+      real(c_float), target :: y1(..)
       integer(c_long), value :: stride_y1
-      real(c_float), target :: param(*)
+      real(c_float), target :: param(..)
       integer(c_long), value :: stride_param
       integer(c_long), value :: batch_count
       integer(c_int) :: srotmg_strided_batched_64
-      srotmg_strided_batched_64 = rocblas_srotmg_strided_batched_64_raw(handle, c_loc(d1(1)), &
-        stride_d1, c_loc(d2(1)), stride_d2, c_loc(x1(1)), stride_x1, c_loc(y1(1)), stride_y1, &
-        c_loc(param(1)), stride_param, batch_count)
+      srotmg_strided_batched_64 = rocblas_srotmg_strided_batched_64_raw(handle, c_loc(d1), &
+        stride_d1, c_loc(d2), stride_d2, c_loc(x1), stride_x1, c_loc(y1), stride_y1, c_loc(param), &
+        stride_param, batch_count)
     end function rocblas_srotmg_strided_batched_64_native
 
     function rocblas_srotmg_strided_batched_64_typed(handle, d1, stride_d1, d2, stride_d2, x1, &
@@ -52590,21 +52598,21 @@ contains
       use, intrinsic :: iso_c_binding
       implicit none
       type(c_ptr), value :: handle
-      real(c_double), target :: d1(*)
+      real(c_double), target :: d1(..)
       integer(c_long), value :: stride_d1
-      real(c_double), target :: d2(*)
+      real(c_double), target :: d2(..)
       integer(c_long), value :: stride_d2
-      real(c_double), target :: x1(*)
+      real(c_double), target :: x1(..)
       integer(c_long), value :: stride_x1
-      real(c_double), target :: y1(*)
+      real(c_double), target :: y1(..)
       integer(c_long), value :: stride_y1
-      real(c_double), target :: param(*)
+      real(c_double), target :: param(..)
       integer(c_long), value :: stride_param
       integer(c_long), value :: batch_count
       integer(c_int) :: drotmg_strided_batched_64
-      drotmg_strided_batched_64 = rocblas_drotmg_strided_batched_64_raw(handle, c_loc(d1(1)), &
-        stride_d1, c_loc(d2(1)), stride_d2, c_loc(x1(1)), stride_x1, c_loc(y1(1)), stride_y1, &
-        c_loc(param(1)), stride_param, batch_count)
+      drotmg_strided_batched_64 = rocblas_drotmg_strided_batched_64_raw(handle, c_loc(d1), &
+        stride_d1, c_loc(d2), stride_d2, c_loc(x1), stride_x1, c_loc(y1), stride_y1, c_loc(param), &
+        stride_param, batch_count)
     end function rocblas_drotmg_strided_batched_64_native
 
     function rocblas_drotmg_strided_batched_64_typed(handle, d1, stride_d1, d2, stride_d2, x1, &
@@ -52641,16 +52649,16 @@ contains
       integer(c_int), value :: kl
       integer(c_int), value :: ku
       real(c_float) :: alpha
-      real(c_float), target :: A(*)
+      real(c_float), target :: A(..)
       integer(c_int), value :: lda
-      real(c_float), target :: x(*)
+      real(c_float), target :: x(..)
       integer(c_int), value :: incx
       real(c_float) :: beta
-      real(c_float), target :: y(*)
+      real(c_float), target :: y(..)
       integer(c_int), value :: incy
       integer(c_int) :: sgbmv
-      sgbmv = rocblas_sgbmv_raw(handle, trans, m, n, kl, ku, alpha, c_loc(A(1)), lda, c_loc(x(1)), &
-        incx, beta, c_loc(y(1)), incy)
+      sgbmv = rocblas_sgbmv_raw(handle, trans, m, n, kl, ku, alpha, c_loc(A), lda, c_loc(x), incx, &
+        beta, c_loc(y), incy)
     end function rocblas_sgbmv_native
 
     function rocblas_sgbmv_typed(handle, trans, m, n, kl, ku, alpha, A, lda, x, incx, beta, y, &
@@ -52688,16 +52696,16 @@ contains
       integer(c_int), value :: kl
       integer(c_int), value :: ku
       real(c_double) :: alpha
-      real(c_double), target :: A(*)
+      real(c_double), target :: A(..)
       integer(c_int), value :: lda
-      real(c_double), target :: x(*)
+      real(c_double), target :: x(..)
       integer(c_int), value :: incx
       real(c_double) :: beta
-      real(c_double), target :: y(*)
+      real(c_double), target :: y(..)
       integer(c_int), value :: incy
       integer(c_int) :: dgbmv
-      dgbmv = rocblas_dgbmv_raw(handle, trans, m, n, kl, ku, alpha, c_loc(A(1)), lda, c_loc(x(1)), &
-        incx, beta, c_loc(y(1)), incy)
+      dgbmv = rocblas_dgbmv_raw(handle, trans, m, n, kl, ku, alpha, c_loc(A), lda, c_loc(x), incx, &
+        beta, c_loc(y), incy)
     end function rocblas_dgbmv_native
 
     function rocblas_dgbmv_typed(handle, trans, m, n, kl, ku, alpha, A, lda, x, incx, beta, y, &
@@ -52735,16 +52743,16 @@ contains
       integer(c_int), value :: kl
       integer(c_int), value :: ku
       complex(c_float_complex) :: alpha
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: A(..)
       integer(c_int), value :: lda
-      complex(c_float_complex), target :: x(*)
+      complex(c_float_complex), target :: x(..)
       integer(c_int), value :: incx
       complex(c_float_complex) :: beta
-      complex(c_float_complex), target :: y(*)
+      complex(c_float_complex), target :: y(..)
       integer(c_int), value :: incy
       integer(c_int) :: cgbmv
-      cgbmv = rocblas_cgbmv_raw(handle, trans, m, n, kl, ku, alpha, c_loc(A(1)), lda, c_loc(x(1)), &
-        incx, beta, c_loc(y(1)), incy)
+      cgbmv = rocblas_cgbmv_raw(handle, trans, m, n, kl, ku, alpha, c_loc(A), lda, c_loc(x), incx, &
+        beta, c_loc(y), incy)
     end function rocblas_cgbmv_native
 
     function rocblas_cgbmv_typed(handle, trans, m, n, kl, ku, alpha, A, lda, x, incx, beta, y, &
@@ -52782,16 +52790,16 @@ contains
       integer(c_int), value :: kl
       integer(c_int), value :: ku
       complex(c_double_complex) :: alpha
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: A(..)
       integer(c_int), value :: lda
-      complex(c_double_complex), target :: x(*)
+      complex(c_double_complex), target :: x(..)
       integer(c_int), value :: incx
       complex(c_double_complex) :: beta
-      complex(c_double_complex), target :: y(*)
+      complex(c_double_complex), target :: y(..)
       integer(c_int), value :: incy
       integer(c_int) :: zgbmv
-      zgbmv = rocblas_zgbmv_raw(handle, trans, m, n, kl, ku, alpha, c_loc(A(1)), lda, c_loc(x(1)), &
-        incx, beta, c_loc(y(1)), incy)
+      zgbmv = rocblas_zgbmv_raw(handle, trans, m, n, kl, ku, alpha, c_loc(A), lda, c_loc(x), incx, &
+        beta, c_loc(y), incy)
     end function rocblas_zgbmv_native
 
     function rocblas_zgbmv_typed(handle, trans, m, n, kl, ku, alpha, A, lda, x, incx, beta, y, &
@@ -52828,17 +52836,17 @@ contains
       integer(c_long), value :: n
       integer(c_long), value :: kl
       integer(c_long), value :: ku
-      real(c_float), target :: alpha(*)
-      real(c_float), target :: A(*)
+      real(c_float), target :: alpha(..)
+      real(c_float), target :: A(..)
       integer(c_long), value :: lda
-      real(c_float), target :: x(*)
+      real(c_float), target :: x(..)
       integer(c_long), value :: incx
-      real(c_float), target :: beta(*)
-      real(c_float), target :: y(*)
+      real(c_float), target :: beta(..)
+      real(c_float), target :: y(..)
       integer(c_long), value :: incy
       integer(c_int) :: sgbmv_64
-      sgbmv_64 = rocblas_sgbmv_64_raw(handle, trans, m, n, kl, ku, c_loc(alpha(1)), c_loc(A(1)), &
-        lda, c_loc(x(1)), incx, c_loc(beta(1)), c_loc(y(1)), incy)
+      sgbmv_64 = rocblas_sgbmv_64_raw(handle, trans, m, n, kl, ku, c_loc(alpha), c_loc(A), lda, &
+        c_loc(x), incx, c_loc(beta), c_loc(y), incy)
     end function rocblas_sgbmv_64_native
 
     function rocblas_sgbmv_64_typed(handle, trans, m, n, kl, ku, alpha, A, lda, x, incx, beta, y, &
@@ -52875,17 +52883,17 @@ contains
       integer(c_long), value :: n
       integer(c_long), value :: kl
       integer(c_long), value :: ku
-      real(c_double), target :: alpha(*)
-      real(c_double), target :: A(*)
+      real(c_double), target :: alpha(..)
+      real(c_double), target :: A(..)
       integer(c_long), value :: lda
-      real(c_double), target :: x(*)
+      real(c_double), target :: x(..)
       integer(c_long), value :: incx
-      real(c_double), target :: beta(*)
-      real(c_double), target :: y(*)
+      real(c_double), target :: beta(..)
+      real(c_double), target :: y(..)
       integer(c_long), value :: incy
       integer(c_int) :: dgbmv_64
-      dgbmv_64 = rocblas_dgbmv_64_raw(handle, trans, m, n, kl, ku, c_loc(alpha(1)), c_loc(A(1)), &
-        lda, c_loc(x(1)), incx, c_loc(beta(1)), c_loc(y(1)), incy)
+      dgbmv_64 = rocblas_dgbmv_64_raw(handle, trans, m, n, kl, ku, c_loc(alpha), c_loc(A), lda, &
+        c_loc(x), incx, c_loc(beta), c_loc(y), incy)
     end function rocblas_dgbmv_64_native
 
     function rocblas_dgbmv_64_typed(handle, trans, m, n, kl, ku, alpha, A, lda, x, incx, beta, y, &
@@ -52922,17 +52930,17 @@ contains
       integer(c_long), value :: n
       integer(c_long), value :: kl
       integer(c_long), value :: ku
-      complex(c_float_complex), target :: alpha(*)
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: alpha(..)
+      complex(c_float_complex), target :: A(..)
       integer(c_long), value :: lda
-      complex(c_float_complex), target :: x(*)
+      complex(c_float_complex), target :: x(..)
       integer(c_long), value :: incx
-      complex(c_float_complex), target :: beta(*)
-      complex(c_float_complex), target :: y(*)
+      complex(c_float_complex), target :: beta(..)
+      complex(c_float_complex), target :: y(..)
       integer(c_long), value :: incy
       integer(c_int) :: cgbmv_64
-      cgbmv_64 = rocblas_cgbmv_64_raw(handle, trans, m, n, kl, ku, c_loc(alpha(1)), c_loc(A(1)), &
-        lda, c_loc(x(1)), incx, c_loc(beta(1)), c_loc(y(1)), incy)
+      cgbmv_64 = rocblas_cgbmv_64_raw(handle, trans, m, n, kl, ku, c_loc(alpha), c_loc(A), lda, &
+        c_loc(x), incx, c_loc(beta), c_loc(y), incy)
     end function rocblas_cgbmv_64_native
 
     function rocblas_cgbmv_64_typed(handle, trans, m, n, kl, ku, alpha, A, lda, x, incx, beta, y, &
@@ -52969,17 +52977,17 @@ contains
       integer(c_long), value :: n
       integer(c_long), value :: kl
       integer(c_long), value :: ku
-      complex(c_double_complex), target :: alpha(*)
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: alpha(..)
+      complex(c_double_complex), target :: A(..)
       integer(c_long), value :: lda
-      complex(c_double_complex), target :: x(*)
+      complex(c_double_complex), target :: x(..)
       integer(c_long), value :: incx
-      complex(c_double_complex), target :: beta(*)
-      complex(c_double_complex), target :: y(*)
+      complex(c_double_complex), target :: beta(..)
+      complex(c_double_complex), target :: y(..)
       integer(c_long), value :: incy
       integer(c_int) :: zgbmv_64
-      zgbmv_64 = rocblas_zgbmv_64_raw(handle, trans, m, n, kl, ku, c_loc(alpha(1)), c_loc(A(1)), &
-        lda, c_loc(x(1)), incx, c_loc(beta(1)), c_loc(y(1)), incy)
+      zgbmv_64 = rocblas_zgbmv_64_raw(handle, trans, m, n, kl, ku, c_loc(alpha), c_loc(A), lda, &
+        c_loc(x), incx, c_loc(beta), c_loc(y), incy)
     end function rocblas_zgbmv_64_native
 
     function rocblas_zgbmv_64_typed(handle, trans, m, n, kl, ku, alpha, A, lda, x, incx, beta, y, &
@@ -53116,18 +53124,18 @@ contains
       integer(c_long), value :: n
       integer(c_long), value :: kl
       integer(c_long), value :: ku
-      real(c_float), target :: alpha(*)
+      real(c_float), target :: alpha(..)
       type(c_ptr), value :: A
       integer(c_long), value :: lda
       type(c_ptr), value :: x
       integer(c_long), value :: incx
-      real(c_float), target :: beta(*)
+      real(c_float), target :: beta(..)
       type(c_ptr), value :: y
       integer(c_long), value :: incy
       integer(c_long), value :: batch_count
       integer(c_int) :: sgbmv_batched_64
-      sgbmv_batched_64 = rocblas_sgbmv_batched_64_raw(handle, trans, m, n, kl, ku, c_loc(alpha( &
-        1)), A, lda, x, incx, c_loc(beta(1)), y, incy, batch_count)
+      sgbmv_batched_64 = rocblas_sgbmv_batched_64_raw(handle, trans, m, n, kl, ku, c_loc(alpha), &
+        A, lda, x, incx, c_loc(beta), y, incy, batch_count)
     end function rocblas_sgbmv_batched_64_native
 
     function rocblas_sgbmv_batched_64_typed(handle, trans, m, n, kl, ku, alpha, A, lda, x, incx, &
@@ -53165,18 +53173,18 @@ contains
       integer(c_long), value :: n
       integer(c_long), value :: kl
       integer(c_long), value :: ku
-      real(c_double), target :: alpha(*)
+      real(c_double), target :: alpha(..)
       type(c_ptr), value :: A
       integer(c_long), value :: lda
       type(c_ptr), value :: x
       integer(c_long), value :: incx
-      real(c_double), target :: beta(*)
+      real(c_double), target :: beta(..)
       type(c_ptr), value :: y
       integer(c_long), value :: incy
       integer(c_long), value :: batch_count
       integer(c_int) :: dgbmv_batched_64
-      dgbmv_batched_64 = rocblas_dgbmv_batched_64_raw(handle, trans, m, n, kl, ku, c_loc(alpha( &
-        1)), A, lda, x, incx, c_loc(beta(1)), y, incy, batch_count)
+      dgbmv_batched_64 = rocblas_dgbmv_batched_64_raw(handle, trans, m, n, kl, ku, c_loc(alpha), &
+        A, lda, x, incx, c_loc(beta), y, incy, batch_count)
     end function rocblas_dgbmv_batched_64_native
 
     function rocblas_dgbmv_batched_64_typed(handle, trans, m, n, kl, ku, alpha, A, lda, x, incx, &
@@ -53214,18 +53222,18 @@ contains
       integer(c_long), value :: n
       integer(c_long), value :: kl
       integer(c_long), value :: ku
-      complex(c_float_complex), target :: alpha(*)
+      complex(c_float_complex), target :: alpha(..)
       type(c_ptr), value :: A
       integer(c_long), value :: lda
       type(c_ptr), value :: x
       integer(c_long), value :: incx
-      complex(c_float_complex), target :: beta(*)
+      complex(c_float_complex), target :: beta(..)
       type(c_ptr), value :: y
       integer(c_long), value :: incy
       integer(c_long), value :: batch_count
       integer(c_int) :: cgbmv_batched_64
-      cgbmv_batched_64 = rocblas_cgbmv_batched_64_raw(handle, trans, m, n, kl, ku, c_loc(alpha( &
-        1)), A, lda, x, incx, c_loc(beta(1)), y, incy, batch_count)
+      cgbmv_batched_64 = rocblas_cgbmv_batched_64_raw(handle, trans, m, n, kl, ku, c_loc(alpha), &
+        A, lda, x, incx, c_loc(beta), y, incy, batch_count)
     end function rocblas_cgbmv_batched_64_native
 
     function rocblas_cgbmv_batched_64_typed(handle, trans, m, n, kl, ku, alpha, A, lda, x, incx, &
@@ -53263,18 +53271,18 @@ contains
       integer(c_long), value :: n
       integer(c_long), value :: kl
       integer(c_long), value :: ku
-      complex(c_double_complex), target :: alpha(*)
+      complex(c_double_complex), target :: alpha(..)
       type(c_ptr), value :: A
       integer(c_long), value :: lda
       type(c_ptr), value :: x
       integer(c_long), value :: incx
-      complex(c_double_complex), target :: beta(*)
+      complex(c_double_complex), target :: beta(..)
       type(c_ptr), value :: y
       integer(c_long), value :: incy
       integer(c_long), value :: batch_count
       integer(c_int) :: zgbmv_batched_64
-      zgbmv_batched_64 = rocblas_zgbmv_batched_64_raw(handle, trans, m, n, kl, ku, c_loc(alpha( &
-        1)), A, lda, x, incx, c_loc(beta(1)), y, incy, batch_count)
+      zgbmv_batched_64 = rocblas_zgbmv_batched_64_raw(handle, trans, m, n, kl, ku, c_loc(alpha), &
+        A, lda, x, incx, c_loc(beta), y, incy, batch_count)
     end function rocblas_zgbmv_batched_64_native
 
     function rocblas_zgbmv_batched_64_typed(handle, trans, m, n, kl, ku, alpha, A, lda, x, incx, &
@@ -53314,21 +53322,21 @@ contains
       integer(c_int), value :: kl
       integer(c_int), value :: ku
       real(c_float) :: alpha
-      real(c_float), target :: A(*)
+      real(c_float), target :: A(..)
       integer(c_int), value :: lda
       integer(c_long), value :: stride_A
-      real(c_float), target :: x(*)
+      real(c_float), target :: x(..)
       integer(c_int), value :: incx
       integer(c_long), value :: stride_x
       real(c_float) :: beta
-      real(c_float), target :: y(*)
+      real(c_float), target :: y(..)
       integer(c_int), value :: incy
       integer(c_long), value :: stride_y
       integer(c_int), value :: batch_count
       integer(c_int) :: sgbmv_strided_batched
       sgbmv_strided_batched = rocblas_sgbmv_strided_batched_raw(handle, trans, m, n, kl, ku, &
-        alpha, c_loc(A(1)), lda, stride_A, c_loc(x(1)), incx, stride_x, beta, c_loc(y(1)), incy, &
-        stride_y, batch_count)
+        alpha, c_loc(A), lda, stride_A, c_loc(x), incx, stride_x, beta, c_loc(y), incy, stride_y, &
+        batch_count)
     end function rocblas_sgbmv_strided_batched_native
 
     function rocblas_sgbmv_strided_batched_typed(handle, trans, m, n, kl, ku, alpha, A, lda, &
@@ -53372,21 +53380,21 @@ contains
       integer(c_int), value :: kl
       integer(c_int), value :: ku
       real(c_double) :: alpha
-      real(c_double), target :: A(*)
+      real(c_double), target :: A(..)
       integer(c_int), value :: lda
       integer(c_long), value :: stride_A
-      real(c_double), target :: x(*)
+      real(c_double), target :: x(..)
       integer(c_int), value :: incx
       integer(c_long), value :: stride_x
       real(c_double) :: beta
-      real(c_double), target :: y(*)
+      real(c_double), target :: y(..)
       integer(c_int), value :: incy
       integer(c_long), value :: stride_y
       integer(c_int), value :: batch_count
       integer(c_int) :: dgbmv_strided_batched
       dgbmv_strided_batched = rocblas_dgbmv_strided_batched_raw(handle, trans, m, n, kl, ku, &
-        alpha, c_loc(A(1)), lda, stride_A, c_loc(x(1)), incx, stride_x, beta, c_loc(y(1)), incy, &
-        stride_y, batch_count)
+        alpha, c_loc(A), lda, stride_A, c_loc(x), incx, stride_x, beta, c_loc(y), incy, stride_y, &
+        batch_count)
     end function rocblas_dgbmv_strided_batched_native
 
     function rocblas_dgbmv_strided_batched_typed(handle, trans, m, n, kl, ku, alpha, A, lda, &
@@ -53430,21 +53438,21 @@ contains
       integer(c_int), value :: kl
       integer(c_int), value :: ku
       complex(c_float_complex) :: alpha
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: A(..)
       integer(c_int), value :: lda
       integer(c_long), value :: stride_A
-      complex(c_float_complex), target :: x(*)
+      complex(c_float_complex), target :: x(..)
       integer(c_int), value :: incx
       integer(c_long), value :: stride_x
       complex(c_float_complex) :: beta
-      complex(c_float_complex), target :: y(*)
+      complex(c_float_complex), target :: y(..)
       integer(c_int), value :: incy
       integer(c_long), value :: stride_y
       integer(c_int), value :: batch_count
       integer(c_int) :: cgbmv_strided_batched
       cgbmv_strided_batched = rocblas_cgbmv_strided_batched_raw(handle, trans, m, n, kl, ku, &
-        alpha, c_loc(A(1)), lda, stride_A, c_loc(x(1)), incx, stride_x, beta, c_loc(y(1)), incy, &
-        stride_y, batch_count)
+        alpha, c_loc(A), lda, stride_A, c_loc(x), incx, stride_x, beta, c_loc(y), incy, stride_y, &
+        batch_count)
     end function rocblas_cgbmv_strided_batched_native
 
     function rocblas_cgbmv_strided_batched_typed(handle, trans, m, n, kl, ku, alpha, A, lda, &
@@ -53488,21 +53496,21 @@ contains
       integer(c_int), value :: kl
       integer(c_int), value :: ku
       complex(c_double_complex) :: alpha
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: A(..)
       integer(c_int), value :: lda
       integer(c_long), value :: stride_A
-      complex(c_double_complex), target :: x(*)
+      complex(c_double_complex), target :: x(..)
       integer(c_int), value :: incx
       integer(c_long), value :: stride_x
       complex(c_double_complex) :: beta
-      complex(c_double_complex), target :: y(*)
+      complex(c_double_complex), target :: y(..)
       integer(c_int), value :: incy
       integer(c_long), value :: stride_y
       integer(c_int), value :: batch_count
       integer(c_int) :: zgbmv_strided_batched
       zgbmv_strided_batched = rocblas_zgbmv_strided_batched_raw(handle, trans, m, n, kl, ku, &
-        alpha, c_loc(A(1)), lda, stride_A, c_loc(x(1)), incx, stride_x, beta, c_loc(y(1)), incy, &
-        stride_y, batch_count)
+        alpha, c_loc(A), lda, stride_A, c_loc(x), incx, stride_x, beta, c_loc(y), incy, stride_y, &
+        batch_count)
     end function rocblas_zgbmv_strided_batched_native
 
     function rocblas_zgbmv_strided_batched_typed(handle, trans, m, n, kl, ku, alpha, A, lda, &
@@ -53545,22 +53553,22 @@ contains
       integer(c_long), value :: n
       integer(c_long), value :: kl
       integer(c_long), value :: ku
-      real(c_float), target :: alpha(*)
-      real(c_float), target :: A(*)
+      real(c_float), target :: alpha(..)
+      real(c_float), target :: A(..)
       integer(c_long), value :: lda
       integer(c_long), value :: stride_A
-      real(c_float), target :: x(*)
+      real(c_float), target :: x(..)
       integer(c_long), value :: incx
       integer(c_long), value :: stride_x
-      real(c_float), target :: beta(*)
-      real(c_float), target :: y(*)
+      real(c_float), target :: beta(..)
+      real(c_float), target :: y(..)
       integer(c_long), value :: incy
       integer(c_long), value :: stride_y
       integer(c_long), value :: batch_count
       integer(c_int) :: sgbmv_strided_batched_64
       sgbmv_strided_batched_64 = rocblas_sgbmv_strided_batched_64_raw(handle, trans, m, n, kl, ku, &
-        c_loc(alpha(1)), c_loc(A(1)), lda, stride_A, c_loc(x(1)), incx, stride_x, c_loc(beta(1)), &
-        c_loc(y(1)), incy, stride_y, batch_count)
+        c_loc(alpha), c_loc(A), lda, stride_A, c_loc(x), incx, stride_x, c_loc(beta), c_loc(y), &
+        incy, stride_y, batch_count)
     end function rocblas_sgbmv_strided_batched_64_native
 
     function rocblas_sgbmv_strided_batched_64_typed(handle, trans, m, n, kl, ku, alpha, A, lda, &
@@ -53603,22 +53611,22 @@ contains
       integer(c_long), value :: n
       integer(c_long), value :: kl
       integer(c_long), value :: ku
-      real(c_double), target :: alpha(*)
-      real(c_double), target :: A(*)
+      real(c_double), target :: alpha(..)
+      real(c_double), target :: A(..)
       integer(c_long), value :: lda
       integer(c_long), value :: stride_A
-      real(c_double), target :: x(*)
+      real(c_double), target :: x(..)
       integer(c_long), value :: incx
       integer(c_long), value :: stride_x
-      real(c_double), target :: beta(*)
-      real(c_double), target :: y(*)
+      real(c_double), target :: beta(..)
+      real(c_double), target :: y(..)
       integer(c_long), value :: incy
       integer(c_long), value :: stride_y
       integer(c_long), value :: batch_count
       integer(c_int) :: dgbmv_strided_batched_64
       dgbmv_strided_batched_64 = rocblas_dgbmv_strided_batched_64_raw(handle, trans, m, n, kl, ku, &
-        c_loc(alpha(1)), c_loc(A(1)), lda, stride_A, c_loc(x(1)), incx, stride_x, c_loc(beta(1)), &
-        c_loc(y(1)), incy, stride_y, batch_count)
+        c_loc(alpha), c_loc(A), lda, stride_A, c_loc(x), incx, stride_x, c_loc(beta), c_loc(y), &
+        incy, stride_y, batch_count)
     end function rocblas_dgbmv_strided_batched_64_native
 
     function rocblas_dgbmv_strided_batched_64_typed(handle, trans, m, n, kl, ku, alpha, A, lda, &
@@ -53661,22 +53669,22 @@ contains
       integer(c_long), value :: n
       integer(c_long), value :: kl
       integer(c_long), value :: ku
-      complex(c_float_complex), target :: alpha(*)
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: alpha(..)
+      complex(c_float_complex), target :: A(..)
       integer(c_long), value :: lda
       integer(c_long), value :: stride_A
-      complex(c_float_complex), target :: x(*)
+      complex(c_float_complex), target :: x(..)
       integer(c_long), value :: incx
       integer(c_long), value :: stride_x
-      complex(c_float_complex), target :: beta(*)
-      complex(c_float_complex), target :: y(*)
+      complex(c_float_complex), target :: beta(..)
+      complex(c_float_complex), target :: y(..)
       integer(c_long), value :: incy
       integer(c_long), value :: stride_y
       integer(c_long), value :: batch_count
       integer(c_int) :: cgbmv_strided_batched_64
       cgbmv_strided_batched_64 = rocblas_cgbmv_strided_batched_64_raw(handle, trans, m, n, kl, ku, &
-        c_loc(alpha(1)), c_loc(A(1)), lda, stride_A, c_loc(x(1)), incx, stride_x, c_loc(beta(1)), &
-        c_loc(y(1)), incy, stride_y, batch_count)
+        c_loc(alpha), c_loc(A), lda, stride_A, c_loc(x), incx, stride_x, c_loc(beta), c_loc(y), &
+        incy, stride_y, batch_count)
     end function rocblas_cgbmv_strided_batched_64_native
 
     function rocblas_cgbmv_strided_batched_64_typed(handle, trans, m, n, kl, ku, alpha, A, lda, &
@@ -53719,22 +53727,22 @@ contains
       integer(c_long), value :: n
       integer(c_long), value :: kl
       integer(c_long), value :: ku
-      complex(c_double_complex), target :: alpha(*)
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: alpha(..)
+      complex(c_double_complex), target :: A(..)
       integer(c_long), value :: lda
       integer(c_long), value :: stride_A
-      complex(c_double_complex), target :: x(*)
+      complex(c_double_complex), target :: x(..)
       integer(c_long), value :: incx
       integer(c_long), value :: stride_x
-      complex(c_double_complex), target :: beta(*)
-      complex(c_double_complex), target :: y(*)
+      complex(c_double_complex), target :: beta(..)
+      complex(c_double_complex), target :: y(..)
       integer(c_long), value :: incy
       integer(c_long), value :: stride_y
       integer(c_long), value :: batch_count
       integer(c_int) :: zgbmv_strided_batched_64
       zgbmv_strided_batched_64 = rocblas_zgbmv_strided_batched_64_raw(handle, trans, m, n, kl, ku, &
-        c_loc(alpha(1)), c_loc(A(1)), lda, stride_A, c_loc(x(1)), incx, stride_x, c_loc(beta(1)), &
-        c_loc(y(1)), incy, stride_y, batch_count)
+        c_loc(alpha), c_loc(A), lda, stride_A, c_loc(x), incx, stride_x, c_loc(beta), c_loc(y), &
+        incy, stride_y, batch_count)
     end function rocblas_zgbmv_strided_batched_64_native
 
     function rocblas_zgbmv_strided_batched_64_typed(handle, trans, m, n, kl, ku, alpha, A, lda, &
@@ -53775,16 +53783,16 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       real(c_float) :: alpha
-      real(c_float), target :: A(*)
+      real(c_float), target :: A(..)
       integer(c_int), value :: lda
-      real(c_float), target :: x(*)
+      real(c_float), target :: x(..)
       integer(c_int), value :: incx
       real(c_float) :: beta
-      real(c_float), target :: y(*)
+      real(c_float), target :: y(..)
       integer(c_int), value :: incy
       integer(c_int) :: sgemv
-      sgemv = rocblas_sgemv_raw(handle, trans, m, n, alpha, c_loc(A(1)), lda, c_loc(x(1)), incx, &
-        beta, c_loc(y(1)), incy)
+      sgemv = rocblas_sgemv_raw(handle, trans, m, n, alpha, c_loc(A), lda, c_loc(x), incx, beta, &
+        c_loc(y), incy)
     end function rocblas_sgemv_native
 
     function rocblas_sgemv_typed(handle, trans, m, n, alpha, A, lda, x, incx, beta, y, &
@@ -53817,16 +53825,16 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       real(c_double) :: alpha
-      real(c_double), target :: A(*)
+      real(c_double), target :: A(..)
       integer(c_int), value :: lda
-      real(c_double), target :: x(*)
+      real(c_double), target :: x(..)
       integer(c_int), value :: incx
       real(c_double) :: beta
-      real(c_double), target :: y(*)
+      real(c_double), target :: y(..)
       integer(c_int), value :: incy
       integer(c_int) :: dgemv
-      dgemv = rocblas_dgemv_raw(handle, trans, m, n, alpha, c_loc(A(1)), lda, c_loc(x(1)), incx, &
-        beta, c_loc(y(1)), incy)
+      dgemv = rocblas_dgemv_raw(handle, trans, m, n, alpha, c_loc(A), lda, c_loc(x), incx, beta, &
+        c_loc(y), incy)
     end function rocblas_dgemv_native
 
     function rocblas_dgemv_typed(handle, trans, m, n, alpha, A, lda, x, incx, beta, y, &
@@ -53859,16 +53867,16 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       complex(c_float_complex) :: alpha
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: A(..)
       integer(c_int), value :: lda
-      complex(c_float_complex), target :: x(*)
+      complex(c_float_complex), target :: x(..)
       integer(c_int), value :: incx
       complex(c_float_complex) :: beta
-      complex(c_float_complex), target :: y(*)
+      complex(c_float_complex), target :: y(..)
       integer(c_int), value :: incy
       integer(c_int) :: cgemv
-      cgemv = rocblas_cgemv_raw(handle, trans, m, n, alpha, c_loc(A(1)), lda, c_loc(x(1)), incx, &
-        beta, c_loc(y(1)), incy)
+      cgemv = rocblas_cgemv_raw(handle, trans, m, n, alpha, c_loc(A), lda, c_loc(x), incx, beta, &
+        c_loc(y), incy)
     end function rocblas_cgemv_native
 
     function rocblas_cgemv_typed(handle, trans, m, n, alpha, A, lda, x, incx, beta, y, &
@@ -53901,16 +53909,16 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       complex(c_double_complex) :: alpha
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: A(..)
       integer(c_int), value :: lda
-      complex(c_double_complex), target :: x(*)
+      complex(c_double_complex), target :: x(..)
       integer(c_int), value :: incx
       complex(c_double_complex) :: beta
-      complex(c_double_complex), target :: y(*)
+      complex(c_double_complex), target :: y(..)
       integer(c_int), value :: incy
       integer(c_int) :: zgemv
-      zgemv = rocblas_zgemv_raw(handle, trans, m, n, alpha, c_loc(A(1)), lda, c_loc(x(1)), incx, &
-        beta, c_loc(y(1)), incy)
+      zgemv = rocblas_zgemv_raw(handle, trans, m, n, alpha, c_loc(A), lda, c_loc(x), incx, beta, &
+        c_loc(y), incy)
     end function rocblas_zgemv_native
 
     function rocblas_zgemv_typed(handle, trans, m, n, alpha, A, lda, x, incx, beta, y, &
@@ -53942,17 +53950,17 @@ contains
       integer(c_int), value :: trans
       integer(c_long), value :: m
       integer(c_long), value :: n
-      real(c_float), target :: alpha(*)
-      real(c_float), target :: A(*)
+      real(c_float), target :: alpha(..)
+      real(c_float), target :: A(..)
       integer(c_long), value :: lda
-      real(c_float), target :: x(*)
+      real(c_float), target :: x(..)
       integer(c_long), value :: incx
-      real(c_float), target :: beta(*)
-      real(c_float), target :: y(*)
+      real(c_float), target :: beta(..)
+      real(c_float), target :: y(..)
       integer(c_long), value :: incy
       integer(c_int) :: sgemv_64
-      sgemv_64 = rocblas_sgemv_64_raw(handle, trans, m, n, c_loc(alpha(1)), c_loc(A(1)), lda, &
-        c_loc(x(1)), incx, c_loc(beta(1)), c_loc(y(1)), incy)
+      sgemv_64 = rocblas_sgemv_64_raw(handle, trans, m, n, c_loc(alpha), c_loc(A), lda, c_loc(x), &
+        incx, c_loc(beta), c_loc(y), incy)
     end function rocblas_sgemv_64_native
 
     function rocblas_sgemv_64_typed(handle, trans, m, n, alpha, A, lda, x, incx, beta, y, &
@@ -53985,17 +53993,17 @@ contains
       integer(c_int), value :: trans
       integer(c_long), value :: m
       integer(c_long), value :: n
-      real(c_double), target :: alpha(*)
-      real(c_double), target :: A(*)
+      real(c_double), target :: alpha(..)
+      real(c_double), target :: A(..)
       integer(c_long), value :: lda
-      real(c_double), target :: x(*)
+      real(c_double), target :: x(..)
       integer(c_long), value :: incx
-      real(c_double), target :: beta(*)
-      real(c_double), target :: y(*)
+      real(c_double), target :: beta(..)
+      real(c_double), target :: y(..)
       integer(c_long), value :: incy
       integer(c_int) :: dgemv_64
-      dgemv_64 = rocblas_dgemv_64_raw(handle, trans, m, n, c_loc(alpha(1)), c_loc(A(1)), lda, &
-        c_loc(x(1)), incx, c_loc(beta(1)), c_loc(y(1)), incy)
+      dgemv_64 = rocblas_dgemv_64_raw(handle, trans, m, n, c_loc(alpha), c_loc(A), lda, c_loc(x), &
+        incx, c_loc(beta), c_loc(y), incy)
     end function rocblas_dgemv_64_native
 
     function rocblas_dgemv_64_typed(handle, trans, m, n, alpha, A, lda, x, incx, beta, y, &
@@ -54028,17 +54036,17 @@ contains
       integer(c_int), value :: trans
       integer(c_long), value :: m
       integer(c_long), value :: n
-      complex(c_float_complex), target :: alpha(*)
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: alpha(..)
+      complex(c_float_complex), target :: A(..)
       integer(c_long), value :: lda
-      complex(c_float_complex), target :: x(*)
+      complex(c_float_complex), target :: x(..)
       integer(c_long), value :: incx
-      complex(c_float_complex), target :: beta(*)
-      complex(c_float_complex), target :: y(*)
+      complex(c_float_complex), target :: beta(..)
+      complex(c_float_complex), target :: y(..)
       integer(c_long), value :: incy
       integer(c_int) :: cgemv_64
-      cgemv_64 = rocblas_cgemv_64_raw(handle, trans, m, n, c_loc(alpha(1)), c_loc(A(1)), lda, &
-        c_loc(x(1)), incx, c_loc(beta(1)), c_loc(y(1)), incy)
+      cgemv_64 = rocblas_cgemv_64_raw(handle, trans, m, n, c_loc(alpha), c_loc(A), lda, c_loc(x), &
+        incx, c_loc(beta), c_loc(y), incy)
     end function rocblas_cgemv_64_native
 
     function rocblas_cgemv_64_typed(handle, trans, m, n, alpha, A, lda, x, incx, beta, y, &
@@ -54071,17 +54079,17 @@ contains
       integer(c_int), value :: trans
       integer(c_long), value :: m
       integer(c_long), value :: n
-      complex(c_double_complex), target :: alpha(*)
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: alpha(..)
+      complex(c_double_complex), target :: A(..)
       integer(c_long), value :: lda
-      complex(c_double_complex), target :: x(*)
+      complex(c_double_complex), target :: x(..)
       integer(c_long), value :: incx
-      complex(c_double_complex), target :: beta(*)
-      complex(c_double_complex), target :: y(*)
+      complex(c_double_complex), target :: beta(..)
+      complex(c_double_complex), target :: y(..)
       integer(c_long), value :: incy
       integer(c_int) :: zgemv_64
-      zgemv_64 = rocblas_zgemv_64_raw(handle, trans, m, n, c_loc(alpha(1)), c_loc(A(1)), lda, &
-        c_loc(x(1)), incx, c_loc(beta(1)), c_loc(y(1)), incy)
+      zgemv_64 = rocblas_zgemv_64_raw(handle, trans, m, n, c_loc(alpha), c_loc(A), lda, c_loc(x), &
+        incx, c_loc(beta), c_loc(y), incy)
     end function rocblas_zgemv_64_native
 
     function rocblas_zgemv_64_typed(handle, trans, m, n, alpha, A, lda, x, incx, beta, y, &
@@ -54206,18 +54214,18 @@ contains
       integer(c_int), value :: trans
       integer(c_int), value :: m
       integer(c_int), value :: n
-      real(c_float), target :: alpha(*)
+      real(c_float), target :: alpha(..)
       type(c_ptr), value :: A
       integer(c_int), value :: lda
       type(c_ptr), value :: x
       integer(c_int), value :: incx
-      real(c_float), target :: beta(*)
+      real(c_float), target :: beta(..)
       type(c_ptr), value :: y
       integer(c_int), value :: incy
       integer(c_int), value :: batch_count
       integer(c_int) :: hshgemv_batched
-      hshgemv_batched = rocblas_hshgemv_batched_raw(handle, trans, m, n, c_loc(alpha(1)), A, lda, &
-        x, incx, c_loc(beta(1)), y, incy, batch_count)
+      hshgemv_batched = rocblas_hshgemv_batched_raw(handle, trans, m, n, c_loc(alpha), A, lda, x, &
+        incx, c_loc(beta), y, incy, batch_count)
     end function rocblas_hshgemv_batched_native
 
     function rocblas_hshgemv_batched_typed(handle, trans, m, n, alpha, A, lda, x, incx, beta, y, &
@@ -54251,18 +54259,18 @@ contains
       integer(c_int), value :: trans
       integer(c_int), value :: m
       integer(c_int), value :: n
-      real(c_float), target :: alpha(*)
+      real(c_float), target :: alpha(..)
       type(c_ptr), value :: A
       integer(c_int), value :: lda
       type(c_ptr), value :: x
       integer(c_int), value :: incx
-      real(c_float), target :: beta(*)
+      real(c_float), target :: beta(..)
       type(c_ptr), value :: y
       integer(c_int), value :: incy
       integer(c_int), value :: batch_count
       integer(c_int) :: hssgemv_batched
-      hssgemv_batched = rocblas_hssgemv_batched_raw(handle, trans, m, n, c_loc(alpha(1)), A, lda, &
-        x, incx, c_loc(beta(1)), y, incy, batch_count)
+      hssgemv_batched = rocblas_hssgemv_batched_raw(handle, trans, m, n, c_loc(alpha), A, lda, x, &
+        incx, c_loc(beta), y, incy, batch_count)
     end function rocblas_hssgemv_batched_native
 
     function rocblas_hssgemv_batched_typed(handle, trans, m, n, alpha, A, lda, x, incx, beta, y, &
@@ -54296,18 +54304,18 @@ contains
       integer(c_int), value :: trans
       integer(c_int), value :: m
       integer(c_int), value :: n
-      real(c_float), target :: alpha(*)
+      real(c_float), target :: alpha(..)
       type(c_ptr), value :: A
       integer(c_int), value :: lda
       type(c_ptr), value :: x
       integer(c_int), value :: incx
-      real(c_float), target :: beta(*)
+      real(c_float), target :: beta(..)
       type(c_ptr), value :: y
       integer(c_int), value :: incy
       integer(c_int), value :: batch_count
       integer(c_int) :: tstgemv_batched
-      tstgemv_batched = rocblas_tstgemv_batched_raw(handle, trans, m, n, c_loc(alpha(1)), A, lda, &
-        x, incx, c_loc(beta(1)), y, incy, batch_count)
+      tstgemv_batched = rocblas_tstgemv_batched_raw(handle, trans, m, n, c_loc(alpha), A, lda, x, &
+        incx, c_loc(beta), y, incy, batch_count)
     end function rocblas_tstgemv_batched_native
 
     function rocblas_tstgemv_batched_typed(handle, trans, m, n, alpha, A, lda, x, incx, beta, y, &
@@ -54341,18 +54349,18 @@ contains
       integer(c_int), value :: trans
       integer(c_int), value :: m
       integer(c_int), value :: n
-      real(c_float), target :: alpha(*)
+      real(c_float), target :: alpha(..)
       type(c_ptr), value :: A
       integer(c_int), value :: lda
       type(c_ptr), value :: x
       integer(c_int), value :: incx
-      real(c_float), target :: beta(*)
+      real(c_float), target :: beta(..)
       type(c_ptr), value :: y
       integer(c_int), value :: incy
       integer(c_int), value :: batch_count
       integer(c_int) :: tssgemv_batched
-      tssgemv_batched = rocblas_tssgemv_batched_raw(handle, trans, m, n, c_loc(alpha(1)), A, lda, &
-        x, incx, c_loc(beta(1)), y, incy, batch_count)
+      tssgemv_batched = rocblas_tssgemv_batched_raw(handle, trans, m, n, c_loc(alpha), A, lda, x, &
+        incx, c_loc(beta), y, incy, batch_count)
     end function rocblas_tssgemv_batched_native
 
     function rocblas_tssgemv_batched_typed(handle, trans, m, n, alpha, A, lda, x, incx, beta, y, &
@@ -54386,18 +54394,18 @@ contains
       integer(c_int), value :: trans
       integer(c_long), value :: m
       integer(c_long), value :: n
-      real(c_float), target :: alpha(*)
+      real(c_float), target :: alpha(..)
       type(c_ptr), value :: A
       integer(c_long), value :: lda
       type(c_ptr), value :: x
       integer(c_long), value :: incx
-      real(c_float), target :: beta(*)
+      real(c_float), target :: beta(..)
       type(c_ptr), value :: y
       integer(c_long), value :: incy
       integer(c_long), value :: batch_count
       integer(c_int) :: sgemv_batched_64
-      sgemv_batched_64 = rocblas_sgemv_batched_64_raw(handle, trans, m, n, c_loc(alpha(1)), A, &
-        lda, x, incx, c_loc(beta(1)), y, incy, batch_count)
+      sgemv_batched_64 = rocblas_sgemv_batched_64_raw(handle, trans, m, n, c_loc(alpha), A, lda, &
+        x, incx, c_loc(beta), y, incy, batch_count)
     end function rocblas_sgemv_batched_64_native
 
     function rocblas_sgemv_batched_64_typed(handle, trans, m, n, alpha, A, lda, x, incx, beta, y, &
@@ -54431,18 +54439,18 @@ contains
       integer(c_int), value :: trans
       integer(c_long), value :: m
       integer(c_long), value :: n
-      real(c_double), target :: alpha(*)
+      real(c_double), target :: alpha(..)
       type(c_ptr), value :: A
       integer(c_long), value :: lda
       type(c_ptr), value :: x
       integer(c_long), value :: incx
-      real(c_double), target :: beta(*)
+      real(c_double), target :: beta(..)
       type(c_ptr), value :: y
       integer(c_long), value :: incy
       integer(c_long), value :: batch_count
       integer(c_int) :: dgemv_batched_64
-      dgemv_batched_64 = rocblas_dgemv_batched_64_raw(handle, trans, m, n, c_loc(alpha(1)), A, &
-        lda, x, incx, c_loc(beta(1)), y, incy, batch_count)
+      dgemv_batched_64 = rocblas_dgemv_batched_64_raw(handle, trans, m, n, c_loc(alpha), A, lda, &
+        x, incx, c_loc(beta), y, incy, batch_count)
     end function rocblas_dgemv_batched_64_native
 
     function rocblas_dgemv_batched_64_typed(handle, trans, m, n, alpha, A, lda, x, incx, beta, y, &
@@ -54476,18 +54484,18 @@ contains
       integer(c_int), value :: trans
       integer(c_long), value :: m
       integer(c_long), value :: n
-      complex(c_float_complex), target :: alpha(*)
+      complex(c_float_complex), target :: alpha(..)
       type(c_ptr), value :: A
       integer(c_long), value :: lda
       type(c_ptr), value :: x
       integer(c_long), value :: incx
-      complex(c_float_complex), target :: beta(*)
+      complex(c_float_complex), target :: beta(..)
       type(c_ptr), value :: y
       integer(c_long), value :: incy
       integer(c_long), value :: batch_count
       integer(c_int) :: cgemv_batched_64
-      cgemv_batched_64 = rocblas_cgemv_batched_64_raw(handle, trans, m, n, c_loc(alpha(1)), A, &
-        lda, x, incx, c_loc(beta(1)), y, incy, batch_count)
+      cgemv_batched_64 = rocblas_cgemv_batched_64_raw(handle, trans, m, n, c_loc(alpha), A, lda, &
+        x, incx, c_loc(beta), y, incy, batch_count)
     end function rocblas_cgemv_batched_64_native
 
     function rocblas_cgemv_batched_64_typed(handle, trans, m, n, alpha, A, lda, x, incx, beta, y, &
@@ -54521,18 +54529,18 @@ contains
       integer(c_int), value :: trans
       integer(c_long), value :: m
       integer(c_long), value :: n
-      complex(c_double_complex), target :: alpha(*)
+      complex(c_double_complex), target :: alpha(..)
       type(c_ptr), value :: A
       integer(c_long), value :: lda
       type(c_ptr), value :: x
       integer(c_long), value :: incx
-      complex(c_double_complex), target :: beta(*)
+      complex(c_double_complex), target :: beta(..)
       type(c_ptr), value :: y
       integer(c_long), value :: incy
       integer(c_long), value :: batch_count
       integer(c_int) :: zgemv_batched_64
-      zgemv_batched_64 = rocblas_zgemv_batched_64_raw(handle, trans, m, n, c_loc(alpha(1)), A, &
-        lda, x, incx, c_loc(beta(1)), y, incy, batch_count)
+      zgemv_batched_64 = rocblas_zgemv_batched_64_raw(handle, trans, m, n, c_loc(alpha), A, lda, &
+        x, incx, c_loc(beta), y, incy, batch_count)
     end function rocblas_zgemv_batched_64_native
 
     function rocblas_zgemv_batched_64_typed(handle, trans, m, n, alpha, A, lda, x, incx, beta, y, &
@@ -54566,18 +54574,18 @@ contains
       integer(c_int), value :: trans
       integer(c_long), value :: m
       integer(c_long), value :: n
-      real(c_float), target :: alpha(*)
+      real(c_float), target :: alpha(..)
       type(c_ptr), value :: A
       integer(c_long), value :: lda
       type(c_ptr), value :: x
       integer(c_long), value :: incx
-      real(c_float), target :: beta(*)
+      real(c_float), target :: beta(..)
       type(c_ptr), value :: y
       integer(c_long), value :: incy
       integer(c_long), value :: batch_count
       integer(c_int) :: hshgemv_batched_64
-      hshgemv_batched_64 = rocblas_hshgemv_batched_64_raw(handle, trans, m, n, c_loc(alpha(1)), A, &
-        lda, x, incx, c_loc(beta(1)), y, incy, batch_count)
+      hshgemv_batched_64 = rocblas_hshgemv_batched_64_raw(handle, trans, m, n, c_loc(alpha), A, &
+        lda, x, incx, c_loc(beta), y, incy, batch_count)
     end function rocblas_hshgemv_batched_64_native
 
     function rocblas_hshgemv_batched_64_typed(handle, trans, m, n, alpha, A, lda, x, incx, beta, &
@@ -54611,18 +54619,18 @@ contains
       integer(c_int), value :: trans
       integer(c_long), value :: m
       integer(c_long), value :: n
-      real(c_float), target :: alpha(*)
+      real(c_float), target :: alpha(..)
       type(c_ptr), value :: A
       integer(c_long), value :: lda
       type(c_ptr), value :: x
       integer(c_long), value :: incx
-      real(c_float), target :: beta(*)
+      real(c_float), target :: beta(..)
       type(c_ptr), value :: y
       integer(c_long), value :: incy
       integer(c_long), value :: batch_count
       integer(c_int) :: hssgemv_batched_64
-      hssgemv_batched_64 = rocblas_hssgemv_batched_64_raw(handle, trans, m, n, c_loc(alpha(1)), A, &
-        lda, x, incx, c_loc(beta(1)), y, incy, batch_count)
+      hssgemv_batched_64 = rocblas_hssgemv_batched_64_raw(handle, trans, m, n, c_loc(alpha), A, &
+        lda, x, incx, c_loc(beta), y, incy, batch_count)
     end function rocblas_hssgemv_batched_64_native
 
     function rocblas_hssgemv_batched_64_typed(handle, trans, m, n, alpha, A, lda, x, incx, beta, &
@@ -54656,18 +54664,18 @@ contains
       integer(c_int), value :: trans
       integer(c_long), value :: m
       integer(c_long), value :: n
-      real(c_float), target :: alpha(*)
+      real(c_float), target :: alpha(..)
       type(c_ptr), value :: A
       integer(c_long), value :: lda
       type(c_ptr), value :: x
       integer(c_long), value :: incx
-      real(c_float), target :: beta(*)
+      real(c_float), target :: beta(..)
       type(c_ptr), value :: y
       integer(c_long), value :: incy
       integer(c_long), value :: batch_count
       integer(c_int) :: tstgemv_batched_64
-      tstgemv_batched_64 = rocblas_tstgemv_batched_64_raw(handle, trans, m, n, c_loc(alpha(1)), A, &
-        lda, x, incx, c_loc(beta(1)), y, incy, batch_count)
+      tstgemv_batched_64 = rocblas_tstgemv_batched_64_raw(handle, trans, m, n, c_loc(alpha), A, &
+        lda, x, incx, c_loc(beta), y, incy, batch_count)
     end function rocblas_tstgemv_batched_64_native
 
     function rocblas_tstgemv_batched_64_typed(handle, trans, m, n, alpha, A, lda, x, incx, beta, &
@@ -54701,18 +54709,18 @@ contains
       integer(c_int), value :: trans
       integer(c_long), value :: m
       integer(c_long), value :: n
-      real(c_float), target :: alpha(*)
+      real(c_float), target :: alpha(..)
       type(c_ptr), value :: A
       integer(c_long), value :: lda
       type(c_ptr), value :: x
       integer(c_long), value :: incx
-      real(c_float), target :: beta(*)
+      real(c_float), target :: beta(..)
       type(c_ptr), value :: y
       integer(c_long), value :: incy
       integer(c_long), value :: batch_count
       integer(c_int) :: tssgemv_batched_64
-      tssgemv_batched_64 = rocblas_tssgemv_batched_64_raw(handle, trans, m, n, c_loc(alpha(1)), A, &
-        lda, x, incx, c_loc(beta(1)), y, incy, batch_count)
+      tssgemv_batched_64 = rocblas_tssgemv_batched_64_raw(handle, trans, m, n, c_loc(alpha), A, &
+        lda, x, incx, c_loc(beta), y, incy, batch_count)
     end function rocblas_tssgemv_batched_64_native
 
     function rocblas_tssgemv_batched_64_typed(handle, trans, m, n, alpha, A, lda, x, incx, beta, &
@@ -54747,21 +54755,20 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       real(c_float) :: alpha
-      real(c_float), target :: A(*)
+      real(c_float), target :: A(..)
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
-      real(c_float), target :: x(*)
+      real(c_float), target :: x(..)
       integer(c_int), value :: incx
       integer(c_long), value :: stridex
       real(c_float) :: beta
-      real(c_float), target :: y(*)
+      real(c_float), target :: y(..)
       integer(c_int), value :: incy
       integer(c_long), value :: stridey
       integer(c_int), value :: batch_count
       integer(c_int) :: sgemv_strided_batched
       sgemv_strided_batched = rocblas_sgemv_strided_batched_raw(handle, transA, m, n, alpha, &
-        c_loc(A(1)), lda, strideA, c_loc(x(1)), incx, stridex, beta, c_loc(y(1)), incy, stridey, &
-        batch_count)
+        c_loc(A), lda, strideA, c_loc(x), incx, stridex, beta, c_loc(y), incy, stridey, batch_count)
     end function rocblas_sgemv_strided_batched_native
 
     function rocblas_sgemv_strided_batched_typed(handle, transA, m, n, alpha, A, lda, strideA, x, &
@@ -54799,21 +54806,20 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       real(c_double) :: alpha
-      real(c_double), target :: A(*)
+      real(c_double), target :: A(..)
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
-      real(c_double), target :: x(*)
+      real(c_double), target :: x(..)
       integer(c_int), value :: incx
       integer(c_long), value :: stridex
       real(c_double) :: beta
-      real(c_double), target :: y(*)
+      real(c_double), target :: y(..)
       integer(c_int), value :: incy
       integer(c_long), value :: stridey
       integer(c_int), value :: batch_count
       integer(c_int) :: dgemv_strided_batched
       dgemv_strided_batched = rocblas_dgemv_strided_batched_raw(handle, transA, m, n, alpha, &
-        c_loc(A(1)), lda, strideA, c_loc(x(1)), incx, stridex, beta, c_loc(y(1)), incy, stridey, &
-        batch_count)
+        c_loc(A), lda, strideA, c_loc(x), incx, stridex, beta, c_loc(y), incy, stridey, batch_count)
     end function rocblas_dgemv_strided_batched_native
 
     function rocblas_dgemv_strided_batched_typed(handle, transA, m, n, alpha, A, lda, strideA, x, &
@@ -54851,21 +54857,20 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       complex(c_float_complex) :: alpha
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: A(..)
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
-      complex(c_float_complex), target :: x(*)
+      complex(c_float_complex), target :: x(..)
       integer(c_int), value :: incx
       integer(c_long), value :: stridex
       complex(c_float_complex) :: beta
-      complex(c_float_complex), target :: y(*)
+      complex(c_float_complex), target :: y(..)
       integer(c_int), value :: incy
       integer(c_long), value :: stridey
       integer(c_int), value :: batch_count
       integer(c_int) :: cgemv_strided_batched
       cgemv_strided_batched = rocblas_cgemv_strided_batched_raw(handle, transA, m, n, alpha, &
-        c_loc(A(1)), lda, strideA, c_loc(x(1)), incx, stridex, beta, c_loc(y(1)), incy, stridey, &
-        batch_count)
+        c_loc(A), lda, strideA, c_loc(x), incx, stridex, beta, c_loc(y), incy, stridey, batch_count)
     end function rocblas_cgemv_strided_batched_native
 
     function rocblas_cgemv_strided_batched_typed(handle, transA, m, n, alpha, A, lda, strideA, x, &
@@ -54903,21 +54908,20 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       complex(c_double_complex) :: alpha
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: A(..)
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
-      complex(c_double_complex), target :: x(*)
+      complex(c_double_complex), target :: x(..)
       integer(c_int), value :: incx
       integer(c_long), value :: stridex
       complex(c_double_complex) :: beta
-      complex(c_double_complex), target :: y(*)
+      complex(c_double_complex), target :: y(..)
       integer(c_int), value :: incy
       integer(c_long), value :: stridey
       integer(c_int), value :: batch_count
       integer(c_int) :: zgemv_strided_batched
       zgemv_strided_batched = rocblas_zgemv_strided_batched_raw(handle, transA, m, n, alpha, &
-        c_loc(A(1)), lda, strideA, c_loc(x(1)), incx, stridex, beta, c_loc(y(1)), incy, stridey, &
-        batch_count)
+        c_loc(A), lda, strideA, c_loc(x), incx, stridex, beta, c_loc(y), incy, stridey, batch_count)
     end function rocblas_zgemv_strided_batched_native
 
     function rocblas_zgemv_strided_batched_typed(handle, transA, m, n, alpha, A, lda, strideA, x, &
@@ -54954,21 +54958,21 @@ contains
       integer(c_int), value :: transA
       integer(c_int), value :: m
       integer(c_int), value :: n
-      real(c_float), target :: alpha(*)
-      type(c_ptr), value :: A
+      real(c_float), target :: alpha(..)
+      type(rocblas_half) :: A
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
-      type(c_ptr), value :: x
+      type(rocblas_half) :: x
       integer(c_int), value :: incx
       integer(c_long), value :: stridex
-      real(c_float), target :: beta(*)
-      type(c_ptr), value :: y
+      real(c_float), target :: beta(..)
+      type(rocblas_half) :: y
       integer(c_int), value :: incy
       integer(c_long), value :: stridey
       integer(c_int), value :: batch_count
       integer(c_int) :: hshgemv_strided_batched
       hshgemv_strided_batched = rocblas_hshgemv_strided_batched_raw(handle, transA, m, n, c_loc( &
-        alpha(1)), A, lda, strideA, x, incx, stridex, c_loc(beta(1)), y, incy, stridey, batch_count)
+        alpha), A, lda, strideA, x, incx, stridex, c_loc(beta), y, incy, stridey, batch_count)
     end function rocblas_hshgemv_strided_batched_native
 
     function rocblas_hshgemv_strided_batched_typed(handle, transA, m, n, alpha, A, lda, strideA, &
@@ -54981,14 +54985,14 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       type(c_ptr), value :: alpha
-      type(c_ptr), value :: A
+      type(rocblas_half) :: A
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
-      type(c_ptr), value :: x
+      type(rocblas_half) :: x
       integer(c_int), value :: incx
       integer(c_long), value :: stridex
       type(c_ptr), value :: beta
-      type(c_ptr), value :: y
+      type(rocblas_half) :: y
       integer(c_int), value :: incy
       integer(c_long), value :: stridey
       integer(c_int), value :: batch_count
@@ -55005,21 +55009,21 @@ contains
       integer(c_int), value :: transA
       integer(c_int), value :: m
       integer(c_int), value :: n
-      real(c_float), target :: alpha(*)
-      type(c_ptr), value :: A
+      real(c_float), target :: alpha(..)
+      type(rocblas_half) :: A
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
-      type(c_ptr), value :: x
+      type(rocblas_half) :: x
       integer(c_int), value :: incx
       integer(c_long), value :: stridex
-      real(c_float), target :: beta(*)
-      real(c_float), target :: y(*)
+      real(c_float), target :: beta(..)
+      real(c_float), target :: y(..)
       integer(c_int), value :: incy
       integer(c_long), value :: stridey
       integer(c_int), value :: batch_count
       integer(c_int) :: hssgemv_strided_batched
       hssgemv_strided_batched = rocblas_hssgemv_strided_batched_raw(handle, transA, m, n, c_loc( &
-        alpha(1)), A, lda, strideA, x, incx, stridex, c_loc(beta(1)), c_loc(y(1)), incy, stridey, &
+        alpha), A, lda, strideA, x, incx, stridex, c_loc(beta), c_loc(y), incy, stridey, &
         batch_count)
     end function rocblas_hssgemv_strided_batched_native
 
@@ -55033,10 +55037,10 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       type(c_ptr), value :: alpha
-      type(c_ptr), value :: A
+      type(rocblas_half) :: A
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
-      type(c_ptr), value :: x
+      type(rocblas_half) :: x
       integer(c_int), value :: incx
       integer(c_long), value :: stridex
       type(c_ptr), value :: beta
@@ -55057,21 +55061,21 @@ contains
       integer(c_int), value :: transA
       integer(c_int), value :: m
       integer(c_int), value :: n
-      real(c_float), target :: alpha(*)
-      type(c_ptr), value :: A
+      real(c_float), target :: alpha(..)
+      type(rocblas_bfloat16) :: A
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
-      type(c_ptr), value :: x
+      type(rocblas_bfloat16) :: x
       integer(c_int), value :: incx
       integer(c_long), value :: stridex
-      real(c_float), target :: beta(*)
-      type(c_ptr), value :: y
+      real(c_float), target :: beta(..)
+      type(rocblas_bfloat16) :: y
       integer(c_int), value :: incy
       integer(c_long), value :: stridey
       integer(c_int), value :: batch_count
       integer(c_int) :: tstgemv_strided_batched
       tstgemv_strided_batched = rocblas_tstgemv_strided_batched_raw(handle, transA, m, n, c_loc( &
-        alpha(1)), A, lda, strideA, x, incx, stridex, c_loc(beta(1)), y, incy, stridey, batch_count)
+        alpha), A, lda, strideA, x, incx, stridex, c_loc(beta), y, incy, stridey, batch_count)
     end function rocblas_tstgemv_strided_batched_native
 
     function rocblas_tstgemv_strided_batched_typed(handle, transA, m, n, alpha, A, lda, strideA, &
@@ -55084,14 +55088,14 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       type(c_ptr), value :: alpha
-      type(c_ptr), value :: A
+      type(rocblas_bfloat16) :: A
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
-      type(c_ptr), value :: x
+      type(rocblas_bfloat16) :: x
       integer(c_int), value :: incx
       integer(c_long), value :: stridex
       type(c_ptr), value :: beta
-      type(c_ptr), value :: y
+      type(rocblas_bfloat16) :: y
       integer(c_int), value :: incy
       integer(c_long), value :: stridey
       integer(c_int), value :: batch_count
@@ -55108,21 +55112,21 @@ contains
       integer(c_int), value :: transA
       integer(c_int), value :: m
       integer(c_int), value :: n
-      real(c_float), target :: alpha(*)
-      type(c_ptr), value :: A
+      real(c_float), target :: alpha(..)
+      type(rocblas_bfloat16) :: A
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
-      type(c_ptr), value :: x
+      type(rocblas_bfloat16) :: x
       integer(c_int), value :: incx
       integer(c_long), value :: stridex
-      real(c_float), target :: beta(*)
-      real(c_float), target :: y(*)
+      real(c_float), target :: beta(..)
+      real(c_float), target :: y(..)
       integer(c_int), value :: incy
       integer(c_long), value :: stridey
       integer(c_int), value :: batch_count
       integer(c_int) :: tssgemv_strided_batched
       tssgemv_strided_batched = rocblas_tssgemv_strided_batched_raw(handle, transA, m, n, c_loc( &
-        alpha(1)), A, lda, strideA, x, incx, stridex, c_loc(beta(1)), c_loc(y(1)), incy, stridey, &
+        alpha), A, lda, strideA, x, incx, stridex, c_loc(beta), c_loc(y), incy, stridey, &
         batch_count)
     end function rocblas_tssgemv_strided_batched_native
 
@@ -55136,10 +55140,10 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       type(c_ptr), value :: alpha
-      type(c_ptr), value :: A
+      type(rocblas_bfloat16) :: A
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
-      type(c_ptr), value :: x
+      type(rocblas_bfloat16) :: x
       integer(c_int), value :: incx
       integer(c_long), value :: stridex
       type(c_ptr), value :: beta
@@ -55160,22 +55164,22 @@ contains
       integer(c_int), value :: transA
       integer(c_long), value :: m
       integer(c_long), value :: n
-      real(c_float), target :: alpha(*)
-      real(c_float), target :: A(*)
+      real(c_float), target :: alpha(..)
+      real(c_float), target :: A(..)
       integer(c_long), value :: lda
       integer(c_long), value :: strideA
-      real(c_float), target :: x(*)
+      real(c_float), target :: x(..)
       integer(c_long), value :: incx
       integer(c_long), value :: stridex
-      real(c_float), target :: beta(*)
-      real(c_float), target :: y(*)
+      real(c_float), target :: beta(..)
+      real(c_float), target :: y(..)
       integer(c_long), value :: incy
       integer(c_long), value :: stridey
       integer(c_long), value :: batch_count
       integer(c_int) :: sgemv_strided_batched_64
       sgemv_strided_batched_64 = rocblas_sgemv_strided_batched_64_raw(handle, transA, m, n, c_loc( &
-        alpha(1)), c_loc(A(1)), lda, strideA, c_loc(x(1)), incx, stridex, c_loc(beta(1)), c_loc(y( &
-        1)), incy, stridey, batch_count)
+        alpha), c_loc(A), lda, strideA, c_loc(x), incx, stridex, c_loc(beta), c_loc(y), incy, &
+        stridey, batch_count)
     end function rocblas_sgemv_strided_batched_64_native
 
     function rocblas_sgemv_strided_batched_64_typed(handle, transA, m, n, alpha, A, lda, strideA, &
@@ -55212,22 +55216,22 @@ contains
       integer(c_int), value :: transA
       integer(c_long), value :: m
       integer(c_long), value :: n
-      real(c_double), target :: alpha(*)
-      real(c_double), target :: A(*)
+      real(c_double), target :: alpha(..)
+      real(c_double), target :: A(..)
       integer(c_long), value :: lda
       integer(c_long), value :: strideA
-      real(c_double), target :: x(*)
+      real(c_double), target :: x(..)
       integer(c_long), value :: incx
       integer(c_long), value :: stridex
-      real(c_double), target :: beta(*)
-      real(c_double), target :: y(*)
+      real(c_double), target :: beta(..)
+      real(c_double), target :: y(..)
       integer(c_long), value :: incy
       integer(c_long), value :: stridey
       integer(c_long), value :: batch_count
       integer(c_int) :: dgemv_strided_batched_64
       dgemv_strided_batched_64 = rocblas_dgemv_strided_batched_64_raw(handle, transA, m, n, c_loc( &
-        alpha(1)), c_loc(A(1)), lda, strideA, c_loc(x(1)), incx, stridex, c_loc(beta(1)), c_loc(y( &
-        1)), incy, stridey, batch_count)
+        alpha), c_loc(A), lda, strideA, c_loc(x), incx, stridex, c_loc(beta), c_loc(y), incy, &
+        stridey, batch_count)
     end function rocblas_dgemv_strided_batched_64_native
 
     function rocblas_dgemv_strided_batched_64_typed(handle, transA, m, n, alpha, A, lda, strideA, &
@@ -55264,22 +55268,22 @@ contains
       integer(c_int), value :: transA
       integer(c_long), value :: m
       integer(c_long), value :: n
-      complex(c_float_complex), target :: alpha(*)
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: alpha(..)
+      complex(c_float_complex), target :: A(..)
       integer(c_long), value :: lda
       integer(c_long), value :: strideA
-      complex(c_float_complex), target :: x(*)
+      complex(c_float_complex), target :: x(..)
       integer(c_long), value :: incx
       integer(c_long), value :: stridex
-      complex(c_float_complex), target :: beta(*)
-      complex(c_float_complex), target :: y(*)
+      complex(c_float_complex), target :: beta(..)
+      complex(c_float_complex), target :: y(..)
       integer(c_long), value :: incy
       integer(c_long), value :: stridey
       integer(c_long), value :: batch_count
       integer(c_int) :: cgemv_strided_batched_64
       cgemv_strided_batched_64 = rocblas_cgemv_strided_batched_64_raw(handle, transA, m, n, c_loc( &
-        alpha(1)), c_loc(A(1)), lda, strideA, c_loc(x(1)), incx, stridex, c_loc(beta(1)), c_loc(y( &
-        1)), incy, stridey, batch_count)
+        alpha), c_loc(A), lda, strideA, c_loc(x), incx, stridex, c_loc(beta), c_loc(y), incy, &
+        stridey, batch_count)
     end function rocblas_cgemv_strided_batched_64_native
 
     function rocblas_cgemv_strided_batched_64_typed(handle, transA, m, n, alpha, A, lda, strideA, &
@@ -55316,22 +55320,22 @@ contains
       integer(c_int), value :: transA
       integer(c_long), value :: m
       integer(c_long), value :: n
-      complex(c_double_complex), target :: alpha(*)
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: alpha(..)
+      complex(c_double_complex), target :: A(..)
       integer(c_long), value :: lda
       integer(c_long), value :: strideA
-      complex(c_double_complex), target :: x(*)
+      complex(c_double_complex), target :: x(..)
       integer(c_long), value :: incx
       integer(c_long), value :: stridex
-      complex(c_double_complex), target :: beta(*)
-      complex(c_double_complex), target :: y(*)
+      complex(c_double_complex), target :: beta(..)
+      complex(c_double_complex), target :: y(..)
       integer(c_long), value :: incy
       integer(c_long), value :: stridey
       integer(c_long), value :: batch_count
       integer(c_int) :: zgemv_strided_batched_64
       zgemv_strided_batched_64 = rocblas_zgemv_strided_batched_64_raw(handle, transA, m, n, c_loc( &
-        alpha(1)), c_loc(A(1)), lda, strideA, c_loc(x(1)), incx, stridex, c_loc(beta(1)), c_loc(y( &
-        1)), incy, stridey, batch_count)
+        alpha), c_loc(A), lda, strideA, c_loc(x), incx, stridex, c_loc(beta), c_loc(y), incy, &
+        stridey, batch_count)
     end function rocblas_zgemv_strided_batched_64_native
 
     function rocblas_zgemv_strided_batched_64_typed(handle, transA, m, n, alpha, A, lda, strideA, &
@@ -55369,22 +55373,21 @@ contains
       integer(c_int), value :: transA
       integer(c_long), value :: m
       integer(c_long), value :: n
-      real(c_float), target :: alpha(*)
-      type(c_ptr), value :: A
+      real(c_float), target :: alpha(..)
+      type(rocblas_half) :: A
       integer(c_long), value :: lda
       integer(c_long), value :: strideA
-      type(c_ptr), value :: x
+      type(rocblas_half) :: x
       integer(c_long), value :: incx
       integer(c_long), value :: stridex
-      real(c_float), target :: beta(*)
-      type(c_ptr), value :: y
+      real(c_float), target :: beta(..)
+      type(rocblas_half) :: y
       integer(c_long), value :: incy
       integer(c_long), value :: stridey
       integer(c_long), value :: batch_count
       integer(c_int) :: hshgemv_strided_batched_64
       hshgemv_strided_batched_64 = rocblas_hshgemv_strided_batched_64_raw(handle, transA, m, n, &
-        c_loc(alpha(1)), A, lda, strideA, x, incx, stridex, c_loc(beta(1)), y, incy, stridey, &
-        batch_count)
+        c_loc(alpha), A, lda, strideA, x, incx, stridex, c_loc(beta), y, incy, stridey, batch_count)
     end function rocblas_hshgemv_strided_batched_64_native
 
     function rocblas_hshgemv_strided_batched_64_typed(handle, transA, m, n, alpha, A, lda, &
@@ -55398,14 +55401,14 @@ contains
       integer(c_long), value :: m
       integer(c_long), value :: n
       type(c_ptr), value :: alpha
-      type(c_ptr), value :: A
+      type(rocblas_half) :: A
       integer(c_long), value :: lda
       integer(c_long), value :: strideA
-      type(c_ptr), value :: x
+      type(rocblas_half) :: x
       integer(c_long), value :: incx
       integer(c_long), value :: stridex
       type(c_ptr), value :: beta
-      type(c_ptr), value :: y
+      type(rocblas_half) :: y
       integer(c_long), value :: incy
       integer(c_long), value :: stridey
       integer(c_long), value :: batch_count
@@ -55423,22 +55426,22 @@ contains
       integer(c_int), value :: transA
       integer(c_long), value :: m
       integer(c_long), value :: n
-      real(c_float), target :: alpha(*)
-      type(c_ptr), value :: A
+      real(c_float), target :: alpha(..)
+      type(rocblas_half) :: A
       integer(c_long), value :: lda
       integer(c_long), value :: strideA
-      type(c_ptr), value :: x
+      type(rocblas_half) :: x
       integer(c_long), value :: incx
       integer(c_long), value :: stridex
-      real(c_float), target :: beta(*)
-      real(c_float), target :: y(*)
+      real(c_float), target :: beta(..)
+      real(c_float), target :: y(..)
       integer(c_long), value :: incy
       integer(c_long), value :: stridey
       integer(c_long), value :: batch_count
       integer(c_int) :: hssgemv_strided_batched_64
       hssgemv_strided_batched_64 = rocblas_hssgemv_strided_batched_64_raw(handle, transA, m, n, &
-        c_loc(alpha(1)), A, lda, strideA, x, incx, stridex, c_loc(beta(1)), c_loc(y(1)), incy, &
-        stridey, batch_count)
+        c_loc(alpha), A, lda, strideA, x, incx, stridex, c_loc(beta), c_loc(y), incy, stridey, &
+        batch_count)
     end function rocblas_hssgemv_strided_batched_64_native
 
     function rocblas_hssgemv_strided_batched_64_typed(handle, transA, m, n, alpha, A, lda, &
@@ -55452,10 +55455,10 @@ contains
       integer(c_long), value :: m
       integer(c_long), value :: n
       type(c_ptr), value :: alpha
-      type(c_ptr), value :: A
+      type(rocblas_half) :: A
       integer(c_long), value :: lda
       integer(c_long), value :: strideA
-      type(c_ptr), value :: x
+      type(rocblas_half) :: x
       integer(c_long), value :: incx
       integer(c_long), value :: stridex
       type(c_ptr), value :: beta
@@ -55477,22 +55480,21 @@ contains
       integer(c_int), value :: transA
       integer(c_long), value :: m
       integer(c_long), value :: n
-      real(c_float), target :: alpha(*)
-      type(c_ptr), value :: A
+      real(c_float), target :: alpha(..)
+      type(rocblas_bfloat16) :: A
       integer(c_long), value :: lda
       integer(c_long), value :: strideA
-      type(c_ptr), value :: x
+      type(rocblas_bfloat16) :: x
       integer(c_long), value :: incx
       integer(c_long), value :: stridex
-      real(c_float), target :: beta(*)
-      type(c_ptr), value :: y
+      real(c_float), target :: beta(..)
+      type(rocblas_bfloat16) :: y
       integer(c_long), value :: incy
       integer(c_long), value :: stridey
       integer(c_long), value :: batch_count
       integer(c_int) :: tstgemv_strided_batched_64
       tstgemv_strided_batched_64 = rocblas_tstgemv_strided_batched_64_raw(handle, transA, m, n, &
-        c_loc(alpha(1)), A, lda, strideA, x, incx, stridex, c_loc(beta(1)), y, incy, stridey, &
-        batch_count)
+        c_loc(alpha), A, lda, strideA, x, incx, stridex, c_loc(beta), y, incy, stridey, batch_count)
     end function rocblas_tstgemv_strided_batched_64_native
 
     function rocblas_tstgemv_strided_batched_64_typed(handle, transA, m, n, alpha, A, lda, &
@@ -55506,14 +55508,14 @@ contains
       integer(c_long), value :: m
       integer(c_long), value :: n
       type(c_ptr), value :: alpha
-      type(c_ptr), value :: A
+      type(rocblas_bfloat16) :: A
       integer(c_long), value :: lda
       integer(c_long), value :: strideA
-      type(c_ptr), value :: x
+      type(rocblas_bfloat16) :: x
       integer(c_long), value :: incx
       integer(c_long), value :: stridex
       type(c_ptr), value :: beta
-      type(c_ptr), value :: y
+      type(rocblas_bfloat16) :: y
       integer(c_long), value :: incy
       integer(c_long), value :: stridey
       integer(c_long), value :: batch_count
@@ -55531,22 +55533,22 @@ contains
       integer(c_int), value :: transA
       integer(c_long), value :: m
       integer(c_long), value :: n
-      real(c_float), target :: alpha(*)
-      type(c_ptr), value :: A
+      real(c_float), target :: alpha(..)
+      type(rocblas_bfloat16) :: A
       integer(c_long), value :: lda
       integer(c_long), value :: strideA
-      type(c_ptr), value :: x
+      type(rocblas_bfloat16) :: x
       integer(c_long), value :: incx
       integer(c_long), value :: stridex
-      real(c_float), target :: beta(*)
-      real(c_float), target :: y(*)
+      real(c_float), target :: beta(..)
+      real(c_float), target :: y(..)
       integer(c_long), value :: incy
       integer(c_long), value :: stridey
       integer(c_long), value :: batch_count
       integer(c_int) :: tssgemv_strided_batched_64
       tssgemv_strided_batched_64 = rocblas_tssgemv_strided_batched_64_raw(handle, transA, m, n, &
-        c_loc(alpha(1)), A, lda, strideA, x, incx, stridex, c_loc(beta(1)), c_loc(y(1)), incy, &
-        stridey, batch_count)
+        c_loc(alpha), A, lda, strideA, x, incx, stridex, c_loc(beta), c_loc(y), incy, stridey, &
+        batch_count)
     end function rocblas_tssgemv_strided_batched_64_native
 
     function rocblas_tssgemv_strided_batched_64_typed(handle, transA, m, n, alpha, A, lda, &
@@ -55560,10 +55562,10 @@ contains
       integer(c_long), value :: m
       integer(c_long), value :: n
       type(c_ptr), value :: alpha
-      type(c_ptr), value :: A
+      type(rocblas_bfloat16) :: A
       integer(c_long), value :: lda
       integer(c_long), value :: strideA
-      type(c_ptr), value :: x
+      type(rocblas_bfloat16) :: x
       integer(c_long), value :: incx
       integer(c_long), value :: stridex
       type(c_ptr), value :: beta
@@ -55585,16 +55587,16 @@ contains
       integer(c_int), value :: n
       integer(c_int), value :: k
       complex(c_float_complex) :: alpha
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: A(..)
       integer(c_int), value :: lda
-      complex(c_float_complex), target :: x(*)
+      complex(c_float_complex), target :: x(..)
       integer(c_int), value :: incx
       complex(c_float_complex) :: beta
-      complex(c_float_complex), target :: y(*)
+      complex(c_float_complex), target :: y(..)
       integer(c_int), value :: incy
       integer(c_int) :: chbmv
-      chbmv = rocblas_chbmv_raw(handle, uplo, n, k, alpha, c_loc(A(1)), lda, c_loc(x(1)), incx, &
-        beta, c_loc(y(1)), incy)
+      chbmv = rocblas_chbmv_raw(handle, uplo, n, k, alpha, c_loc(A), lda, c_loc(x), incx, beta, &
+        c_loc(y), incy)
     end function rocblas_chbmv_native
 
     function rocblas_chbmv_typed(handle, uplo, n, k, alpha, A, lda, x, incx, beta, y, &
@@ -55627,16 +55629,16 @@ contains
       integer(c_int), value :: n
       integer(c_int), value :: k
       complex(c_double_complex) :: alpha
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: A(..)
       integer(c_int), value :: lda
-      complex(c_double_complex), target :: x(*)
+      complex(c_double_complex), target :: x(..)
       integer(c_int), value :: incx
       complex(c_double_complex) :: beta
-      complex(c_double_complex), target :: y(*)
+      complex(c_double_complex), target :: y(..)
       integer(c_int), value :: incy
       integer(c_int) :: zhbmv
-      zhbmv = rocblas_zhbmv_raw(handle, uplo, n, k, alpha, c_loc(A(1)), lda, c_loc(x(1)), incx, &
-        beta, c_loc(y(1)), incy)
+      zhbmv = rocblas_zhbmv_raw(handle, uplo, n, k, alpha, c_loc(A), lda, c_loc(x), incx, beta, &
+        c_loc(y), incy)
     end function rocblas_zhbmv_native
 
     function rocblas_zhbmv_typed(handle, uplo, n, k, alpha, A, lda, x, incx, beta, y, &
@@ -55668,17 +55670,17 @@ contains
       integer(c_int), value :: uplo
       integer(c_long), value :: n
       integer(c_long), value :: k
-      complex(c_float_complex), target :: alpha(*)
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: alpha(..)
+      complex(c_float_complex), target :: A(..)
       integer(c_long), value :: lda
-      complex(c_float_complex), target :: x(*)
+      complex(c_float_complex), target :: x(..)
       integer(c_long), value :: incx
-      complex(c_float_complex), target :: beta(*)
-      complex(c_float_complex), target :: y(*)
+      complex(c_float_complex), target :: beta(..)
+      complex(c_float_complex), target :: y(..)
       integer(c_long), value :: incy
       integer(c_int) :: chbmv_64
-      chbmv_64 = rocblas_chbmv_64_raw(handle, uplo, n, k, c_loc(alpha(1)), c_loc(A(1)), lda, &
-        c_loc(x(1)), incx, c_loc(beta(1)), c_loc(y(1)), incy)
+      chbmv_64 = rocblas_chbmv_64_raw(handle, uplo, n, k, c_loc(alpha), c_loc(A), lda, c_loc(x), &
+        incx, c_loc(beta), c_loc(y), incy)
     end function rocblas_chbmv_64_native
 
     function rocblas_chbmv_64_typed(handle, uplo, n, k, alpha, A, lda, x, incx, beta, y, &
@@ -55710,17 +55712,17 @@ contains
       integer(c_int), value :: uplo
       integer(c_long), value :: n
       integer(c_long), value :: k
-      complex(c_double_complex), target :: alpha(*)
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: alpha(..)
+      complex(c_double_complex), target :: A(..)
       integer(c_long), value :: lda
-      complex(c_double_complex), target :: x(*)
+      complex(c_double_complex), target :: x(..)
       integer(c_long), value :: incx
-      complex(c_double_complex), target :: beta(*)
-      complex(c_double_complex), target :: y(*)
+      complex(c_double_complex), target :: beta(..)
+      complex(c_double_complex), target :: y(..)
       integer(c_long), value :: incy
       integer(c_int) :: zhbmv_64
-      zhbmv_64 = rocblas_zhbmv_64_raw(handle, uplo, n, k, c_loc(alpha(1)), c_loc(A(1)), lda, &
-        c_loc(x(1)), incx, c_loc(beta(1)), c_loc(y(1)), incy)
+      zhbmv_64 = rocblas_zhbmv_64_raw(handle, uplo, n, k, c_loc(alpha), c_loc(A), lda, c_loc(x), &
+        incx, c_loc(beta), c_loc(y), incy)
     end function rocblas_zhbmv_64_native
 
     function rocblas_zhbmv_64_typed(handle, uplo, n, k, alpha, A, lda, x, incx, beta, y, &
@@ -55798,18 +55800,18 @@ contains
       integer(c_int), value :: uplo
       integer(c_long), value :: n
       integer(c_long), value :: k
-      complex(c_float_complex), target :: alpha(*)
+      complex(c_float_complex), target :: alpha(..)
       type(c_ptr), value :: A
       integer(c_long), value :: lda
       type(c_ptr), value :: x
       integer(c_long), value :: incx
-      complex(c_float_complex), target :: beta(*)
+      complex(c_float_complex), target :: beta(..)
       type(c_ptr), value :: y
       integer(c_long), value :: incy
       integer(c_long), value :: batch_count
       integer(c_int) :: chbmv_batched_64
-      chbmv_batched_64 = rocblas_chbmv_batched_64_raw(handle, uplo, n, k, c_loc(alpha(1)), A, lda, &
-        x, incx, c_loc(beta(1)), y, incy, batch_count)
+      chbmv_batched_64 = rocblas_chbmv_batched_64_raw(handle, uplo, n, k, c_loc(alpha), A, lda, x, &
+        incx, c_loc(beta), y, incy, batch_count)
     end function rocblas_chbmv_batched_64_native
 
     function rocblas_chbmv_batched_64_typed(handle, uplo, n, k, alpha, A, lda, x, incx, beta, y, &
@@ -55843,18 +55845,18 @@ contains
       integer(c_int), value :: uplo
       integer(c_long), value :: n
       integer(c_long), value :: k
-      complex(c_double_complex), target :: alpha(*)
+      complex(c_double_complex), target :: alpha(..)
       type(c_ptr), value :: A
       integer(c_long), value :: lda
       type(c_ptr), value :: x
       integer(c_long), value :: incx
-      complex(c_double_complex), target :: beta(*)
+      complex(c_double_complex), target :: beta(..)
       type(c_ptr), value :: y
       integer(c_long), value :: incy
       integer(c_long), value :: batch_count
       integer(c_int) :: zhbmv_batched_64
-      zhbmv_batched_64 = rocblas_zhbmv_batched_64_raw(handle, uplo, n, k, c_loc(alpha(1)), A, lda, &
-        x, incx, c_loc(beta(1)), y, incy, batch_count)
+      zhbmv_batched_64 = rocblas_zhbmv_batched_64_raw(handle, uplo, n, k, c_loc(alpha), A, lda, x, &
+        incx, c_loc(beta), y, incy, batch_count)
     end function rocblas_zhbmv_batched_64_native
 
     function rocblas_zhbmv_batched_64_typed(handle, uplo, n, k, alpha, A, lda, x, incx, beta, y, &
@@ -55889,21 +55891,20 @@ contains
       integer(c_int), value :: n
       integer(c_int), value :: k
       complex(c_float_complex) :: alpha
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: A(..)
       integer(c_int), value :: lda
       integer(c_long), value :: stride_A
-      complex(c_float_complex), target :: x(*)
+      complex(c_float_complex), target :: x(..)
       integer(c_int), value :: incx
       integer(c_long), value :: stride_x
       complex(c_float_complex) :: beta
-      complex(c_float_complex), target :: y(*)
+      complex(c_float_complex), target :: y(..)
       integer(c_int), value :: incy
       integer(c_long), value :: stride_y
       integer(c_int), value :: batch_count
       integer(c_int) :: chbmv_strided_batched
       chbmv_strided_batched = rocblas_chbmv_strided_batched_raw(handle, uplo, n, k, alpha, c_loc( &
-        A(1)), lda, stride_A, c_loc(x(1)), incx, stride_x, beta, c_loc(y(1)), incy, stride_y, &
-        batch_count)
+        A), lda, stride_A, c_loc(x), incx, stride_x, beta, c_loc(y), incy, stride_y, batch_count)
     end function rocblas_chbmv_strided_batched_native
 
     function rocblas_chbmv_strided_batched_typed(handle, uplo, n, k, alpha, A, lda, stride_A, x, &
@@ -55941,21 +55942,20 @@ contains
       integer(c_int), value :: n
       integer(c_int), value :: k
       complex(c_double_complex) :: alpha
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: A(..)
       integer(c_int), value :: lda
       integer(c_long), value :: stride_A
-      complex(c_double_complex), target :: x(*)
+      complex(c_double_complex), target :: x(..)
       integer(c_int), value :: incx
       integer(c_long), value :: stride_x
       complex(c_double_complex) :: beta
-      complex(c_double_complex), target :: y(*)
+      complex(c_double_complex), target :: y(..)
       integer(c_int), value :: incy
       integer(c_long), value :: stride_y
       integer(c_int), value :: batch_count
       integer(c_int) :: zhbmv_strided_batched
       zhbmv_strided_batched = rocblas_zhbmv_strided_batched_raw(handle, uplo, n, k, alpha, c_loc( &
-        A(1)), lda, stride_A, c_loc(x(1)), incx, stride_x, beta, c_loc(y(1)), incy, stride_y, &
-        batch_count)
+        A), lda, stride_A, c_loc(x), incx, stride_x, beta, c_loc(y), incy, stride_y, batch_count)
     end function rocblas_zhbmv_strided_batched_native
 
     function rocblas_zhbmv_strided_batched_typed(handle, uplo, n, k, alpha, A, lda, stride_A, x, &
@@ -55992,22 +55992,22 @@ contains
       integer(c_int), value :: uplo
       integer(c_long), value :: n
       integer(c_long), value :: k
-      complex(c_float_complex), target :: alpha(*)
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: alpha(..)
+      complex(c_float_complex), target :: A(..)
       integer(c_long), value :: lda
       integer(c_long), value :: stride_A
-      complex(c_float_complex), target :: x(*)
+      complex(c_float_complex), target :: x(..)
       integer(c_long), value :: incx
       integer(c_long), value :: stride_x
-      complex(c_float_complex), target :: beta(*)
-      complex(c_float_complex), target :: y(*)
+      complex(c_float_complex), target :: beta(..)
+      complex(c_float_complex), target :: y(..)
       integer(c_long), value :: incy
       integer(c_long), value :: stride_y
       integer(c_long), value :: batch_count
       integer(c_int) :: chbmv_strided_batched_64
       chbmv_strided_batched_64 = rocblas_chbmv_strided_batched_64_raw(handle, uplo, n, k, c_loc( &
-        alpha(1)), c_loc(A(1)), lda, stride_A, c_loc(x(1)), incx, stride_x, c_loc(beta(1)), c_loc( &
-        y(1)), incy, stride_y, batch_count)
+        alpha), c_loc(A), lda, stride_A, c_loc(x), incx, stride_x, c_loc(beta), c_loc(y), incy, &
+        stride_y, batch_count)
     end function rocblas_chbmv_strided_batched_64_native
 
     function rocblas_chbmv_strided_batched_64_typed(handle, uplo, n, k, alpha, A, lda, stride_A, &
@@ -56044,22 +56044,22 @@ contains
       integer(c_int), value :: uplo
       integer(c_long), value :: n
       integer(c_long), value :: k
-      complex(c_double_complex), target :: alpha(*)
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: alpha(..)
+      complex(c_double_complex), target :: A(..)
       integer(c_long), value :: lda
       integer(c_long), value :: stride_A
-      complex(c_double_complex), target :: x(*)
+      complex(c_double_complex), target :: x(..)
       integer(c_long), value :: incx
       integer(c_long), value :: stride_x
-      complex(c_double_complex), target :: beta(*)
-      complex(c_double_complex), target :: y(*)
+      complex(c_double_complex), target :: beta(..)
+      complex(c_double_complex), target :: y(..)
       integer(c_long), value :: incy
       integer(c_long), value :: stride_y
       integer(c_long), value :: batch_count
       integer(c_int) :: zhbmv_strided_batched_64
       zhbmv_strided_batched_64 = rocblas_zhbmv_strided_batched_64_raw(handle, uplo, n, k, c_loc( &
-        alpha(1)), c_loc(A(1)), lda, stride_A, c_loc(x(1)), incx, stride_x, c_loc(beta(1)), c_loc( &
-        y(1)), incy, stride_y, batch_count)
+        alpha), c_loc(A), lda, stride_A, c_loc(x), incx, stride_x, c_loc(beta), c_loc(y), incy, &
+        stride_y, batch_count)
     end function rocblas_zhbmv_strided_batched_64_native
 
     function rocblas_zhbmv_strided_batched_64_typed(handle, uplo, n, k, alpha, A, lda, stride_A, &
@@ -56096,16 +56096,16 @@ contains
       integer(c_int), value :: uplo
       integer(c_int), value :: n
       complex(c_float_complex) :: alpha
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: A(..)
       integer(c_int), value :: lda
-      complex(c_float_complex), target :: x(*)
+      complex(c_float_complex), target :: x(..)
       integer(c_int), value :: incx
       complex(c_float_complex) :: beta
-      complex(c_float_complex), target :: y(*)
+      complex(c_float_complex), target :: y(..)
       integer(c_int), value :: incy
       integer(c_int) :: chemv
-      chemv = rocblas_chemv_raw(handle, uplo, n, alpha, c_loc(A(1)), lda, c_loc(x(1)), incx, beta, &
-        c_loc(y(1)), incy)
+      chemv = rocblas_chemv_raw(handle, uplo, n, alpha, c_loc(A), lda, c_loc(x), incx, beta, &
+        c_loc(y), incy)
     end function rocblas_chemv_native
 
     function rocblas_chemv_typed(handle, uplo, n, alpha, A, lda, x, incx, beta, y, incy) result( &
@@ -56136,16 +56136,16 @@ contains
       integer(c_int), value :: uplo
       integer(c_int), value :: n
       complex(c_double_complex) :: alpha
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: A(..)
       integer(c_int), value :: lda
-      complex(c_double_complex), target :: x(*)
+      complex(c_double_complex), target :: x(..)
       integer(c_int), value :: incx
       complex(c_double_complex) :: beta
-      complex(c_double_complex), target :: y(*)
+      complex(c_double_complex), target :: y(..)
       integer(c_int), value :: incy
       integer(c_int) :: zhemv
-      zhemv = rocblas_zhemv_raw(handle, uplo, n, alpha, c_loc(A(1)), lda, c_loc(x(1)), incx, beta, &
-        c_loc(y(1)), incy)
+      zhemv = rocblas_zhemv_raw(handle, uplo, n, alpha, c_loc(A), lda, c_loc(x), incx, beta, &
+        c_loc(y), incy)
     end function rocblas_zhemv_native
 
     function rocblas_zhemv_typed(handle, uplo, n, alpha, A, lda, x, incx, beta, y, incy) result( &
@@ -56175,17 +56175,17 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: uplo
       integer(c_long), value :: n
-      complex(c_float_complex), target :: alpha(*)
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: alpha(..)
+      complex(c_float_complex), target :: A(..)
       integer(c_long), value :: lda
-      complex(c_float_complex), target :: x(*)
+      complex(c_float_complex), target :: x(..)
       integer(c_long), value :: incx
-      complex(c_float_complex), target :: beta(*)
-      complex(c_float_complex), target :: y(*)
+      complex(c_float_complex), target :: beta(..)
+      complex(c_float_complex), target :: y(..)
       integer(c_long), value :: incy
       integer(c_int) :: chemv_64
-      chemv_64 = rocblas_chemv_64_raw(handle, uplo, n, c_loc(alpha(1)), c_loc(A(1)), lda, c_loc(x( &
-        1)), incx, c_loc(beta(1)), c_loc(y(1)), incy)
+      chemv_64 = rocblas_chemv_64_raw(handle, uplo, n, c_loc(alpha), c_loc(A), lda, c_loc(x), &
+        incx, c_loc(beta), c_loc(y), incy)
     end function rocblas_chemv_64_native
 
     function rocblas_chemv_64_typed(handle, uplo, n, alpha, A, lda, x, incx, beta, y, &
@@ -56215,17 +56215,17 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: uplo
       integer(c_long), value :: n
-      complex(c_double_complex), target :: alpha(*)
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: alpha(..)
+      complex(c_double_complex), target :: A(..)
       integer(c_long), value :: lda
-      complex(c_double_complex), target :: x(*)
+      complex(c_double_complex), target :: x(..)
       integer(c_long), value :: incx
-      complex(c_double_complex), target :: beta(*)
-      complex(c_double_complex), target :: y(*)
+      complex(c_double_complex), target :: beta(..)
+      complex(c_double_complex), target :: y(..)
       integer(c_long), value :: incy
       integer(c_int) :: zhemv_64
-      zhemv_64 = rocblas_zhemv_64_raw(handle, uplo, n, c_loc(alpha(1)), c_loc(A(1)), lda, c_loc(x( &
-        1)), incx, c_loc(beta(1)), c_loc(y(1)), incy)
+      zhemv_64 = rocblas_zhemv_64_raw(handle, uplo, n, c_loc(alpha), c_loc(A), lda, c_loc(x), &
+        incx, c_loc(beta), c_loc(y), incy)
     end function rocblas_zhemv_64_native
 
     function rocblas_zhemv_64_typed(handle, uplo, n, alpha, A, lda, x, incx, beta, y, &
@@ -56299,18 +56299,18 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: uplo
       integer(c_long), value :: n
-      complex(c_float_complex), target :: alpha(*)
+      complex(c_float_complex), target :: alpha(..)
       type(c_ptr), value :: A
       integer(c_long), value :: lda
       type(c_ptr), value :: x
       integer(c_long), value :: incx
-      complex(c_float_complex), target :: beta(*)
+      complex(c_float_complex), target :: beta(..)
       type(c_ptr), value :: y
       integer(c_long), value :: incy
       integer(c_long), value :: batch_count
       integer(c_int) :: chemv_batched_64
-      chemv_batched_64 = rocblas_chemv_batched_64_raw(handle, uplo, n, c_loc(alpha(1)), A, lda, x, &
-        incx, c_loc(beta(1)), y, incy, batch_count)
+      chemv_batched_64 = rocblas_chemv_batched_64_raw(handle, uplo, n, c_loc(alpha), A, lda, x, &
+        incx, c_loc(beta), y, incy, batch_count)
     end function rocblas_chemv_batched_64_native
 
     function rocblas_chemv_batched_64_typed(handle, uplo, n, alpha, A, lda, x, incx, beta, y, &
@@ -56342,18 +56342,18 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: uplo
       integer(c_long), value :: n
-      complex(c_double_complex), target :: alpha(*)
+      complex(c_double_complex), target :: alpha(..)
       type(c_ptr), value :: A
       integer(c_long), value :: lda
       type(c_ptr), value :: x
       integer(c_long), value :: incx
-      complex(c_double_complex), target :: beta(*)
+      complex(c_double_complex), target :: beta(..)
       type(c_ptr), value :: y
       integer(c_long), value :: incy
       integer(c_long), value :: batch_count
       integer(c_int) :: zhemv_batched_64
-      zhemv_batched_64 = rocblas_zhemv_batched_64_raw(handle, uplo, n, c_loc(alpha(1)), A, lda, x, &
-        incx, c_loc(beta(1)), y, incy, batch_count)
+      zhemv_batched_64 = rocblas_zhemv_batched_64_raw(handle, uplo, n, c_loc(alpha), A, lda, x, &
+        incx, c_loc(beta), y, incy, batch_count)
     end function rocblas_zhemv_batched_64_native
 
     function rocblas_zhemv_batched_64_typed(handle, uplo, n, alpha, A, lda, x, incx, beta, y, &
@@ -56386,21 +56386,20 @@ contains
       integer(c_int), value :: uplo
       integer(c_int), value :: n
       complex(c_float_complex) :: alpha
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: A(..)
       integer(c_int), value :: lda
       integer(c_long), value :: stride_A
-      complex(c_float_complex), target :: x(*)
+      complex(c_float_complex), target :: x(..)
       integer(c_int), value :: incx
       integer(c_long), value :: stride_x
       complex(c_float_complex) :: beta
-      complex(c_float_complex), target :: y(*)
+      complex(c_float_complex), target :: y(..)
       integer(c_int), value :: incy
       integer(c_long), value :: stride_y
       integer(c_int), value :: batch_count
       integer(c_int) :: chemv_strided_batched
-      chemv_strided_batched = rocblas_chemv_strided_batched_raw(handle, uplo, n, alpha, c_loc(A( &
-        1)), lda, stride_A, c_loc(x(1)), incx, stride_x, beta, c_loc(y(1)), incy, stride_y, &
-        batch_count)
+      chemv_strided_batched = rocblas_chemv_strided_batched_raw(handle, uplo, n, alpha, c_loc(A), &
+        lda, stride_A, c_loc(x), incx, stride_x, beta, c_loc(y), incy, stride_y, batch_count)
     end function rocblas_chemv_strided_batched_native
 
     function rocblas_chemv_strided_batched_typed(handle, uplo, n, alpha, A, lda, stride_A, x, &
@@ -56436,21 +56435,20 @@ contains
       integer(c_int), value :: uplo
       integer(c_int), value :: n
       complex(c_double_complex) :: alpha
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: A(..)
       integer(c_int), value :: lda
       integer(c_long), value :: stride_A
-      complex(c_double_complex), target :: x(*)
+      complex(c_double_complex), target :: x(..)
       integer(c_int), value :: incx
       integer(c_long), value :: stride_x
       complex(c_double_complex) :: beta
-      complex(c_double_complex), target :: y(*)
+      complex(c_double_complex), target :: y(..)
       integer(c_int), value :: incy
       integer(c_long), value :: stride_y
       integer(c_int), value :: batch_count
       integer(c_int) :: zhemv_strided_batched
-      zhemv_strided_batched = rocblas_zhemv_strided_batched_raw(handle, uplo, n, alpha, c_loc(A( &
-        1)), lda, stride_A, c_loc(x(1)), incx, stride_x, beta, c_loc(y(1)), incy, stride_y, &
-        batch_count)
+      zhemv_strided_batched = rocblas_zhemv_strided_batched_raw(handle, uplo, n, alpha, c_loc(A), &
+        lda, stride_A, c_loc(x), incx, stride_x, beta, c_loc(y), incy, stride_y, batch_count)
     end function rocblas_zhemv_strided_batched_native
 
     function rocblas_zhemv_strided_batched_typed(handle, uplo, n, alpha, A, lda, stride_A, x, &
@@ -56485,22 +56483,22 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: uplo
       integer(c_long), value :: n
-      complex(c_float_complex), target :: alpha(*)
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: alpha(..)
+      complex(c_float_complex), target :: A(..)
       integer(c_long), value :: lda
       integer(c_long), value :: stride_A
-      complex(c_float_complex), target :: x(*)
+      complex(c_float_complex), target :: x(..)
       integer(c_long), value :: incx
       integer(c_long), value :: stride_x
-      complex(c_float_complex), target :: beta(*)
-      complex(c_float_complex), target :: y(*)
+      complex(c_float_complex), target :: beta(..)
+      complex(c_float_complex), target :: y(..)
       integer(c_long), value :: incy
       integer(c_long), value :: stride_y
       integer(c_long), value :: batch_count
       integer(c_int) :: chemv_strided_batched_64
       chemv_strided_batched_64 = rocblas_chemv_strided_batched_64_raw(handle, uplo, n, c_loc( &
-        alpha(1)), c_loc(A(1)), lda, stride_A, c_loc(x(1)), incx, stride_x, c_loc(beta(1)), c_loc( &
-        y(1)), incy, stride_y, batch_count)
+        alpha), c_loc(A), lda, stride_A, c_loc(x), incx, stride_x, c_loc(beta), c_loc(y), incy, &
+        stride_y, batch_count)
     end function rocblas_chemv_strided_batched_64_native
 
     function rocblas_chemv_strided_batched_64_typed(handle, uplo, n, alpha, A, lda, stride_A, x, &
@@ -56535,22 +56533,22 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: uplo
       integer(c_long), value :: n
-      complex(c_double_complex), target :: alpha(*)
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: alpha(..)
+      complex(c_double_complex), target :: A(..)
       integer(c_long), value :: lda
       integer(c_long), value :: stride_A
-      complex(c_double_complex), target :: x(*)
+      complex(c_double_complex), target :: x(..)
       integer(c_long), value :: incx
       integer(c_long), value :: stride_x
-      complex(c_double_complex), target :: beta(*)
-      complex(c_double_complex), target :: y(*)
+      complex(c_double_complex), target :: beta(..)
+      complex(c_double_complex), target :: y(..)
       integer(c_long), value :: incy
       integer(c_long), value :: stride_y
       integer(c_long), value :: batch_count
       integer(c_int) :: zhemv_strided_batched_64
       zhemv_strided_batched_64 = rocblas_zhemv_strided_batched_64_raw(handle, uplo, n, c_loc( &
-        alpha(1)), c_loc(A(1)), lda, stride_A, c_loc(x(1)), incx, stride_x, c_loc(beta(1)), c_loc( &
-        y(1)), incy, stride_y, batch_count)
+        alpha), c_loc(A), lda, stride_A, c_loc(x), incx, stride_x, c_loc(beta), c_loc(y), incy, &
+        stride_y, batch_count)
     end function rocblas_zhemv_strided_batched_64_native
 
     function rocblas_zhemv_strided_batched_64_typed(handle, uplo, n, alpha, A, lda, stride_A, x, &
@@ -56585,12 +56583,12 @@ contains
       integer(c_int), value :: uplo
       integer(c_int), value :: n
       real(c_float) :: alpha
-      complex(c_float_complex), target :: x(*)
+      complex(c_float_complex), target :: x(..)
       integer(c_int), value :: incx
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: A(..)
       integer(c_int), value :: lda
       integer(c_int) :: cher
-      cher = rocblas_cher_raw(handle, uplo, n, alpha, c_loc(x(1)), incx, c_loc(A(1)), lda)
+      cher = rocblas_cher_raw(handle, uplo, n, alpha, c_loc(x), incx, c_loc(A), lda)
     end function rocblas_cher_native
 
     function rocblas_cher_typed(handle, uplo, n, alpha, x, incx, A, lda) result(cher)
@@ -56616,12 +56614,12 @@ contains
       integer(c_int), value :: uplo
       integer(c_int), value :: n
       real(c_double) :: alpha
-      complex(c_double_complex), target :: x(*)
+      complex(c_double_complex), target :: x(..)
       integer(c_int), value :: incx
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: A(..)
       integer(c_int), value :: lda
       integer(c_int) :: zher
-      zher = rocblas_zher_raw(handle, uplo, n, alpha, c_loc(x(1)), incx, c_loc(A(1)), lda)
+      zher = rocblas_zher_raw(handle, uplo, n, alpha, c_loc(x), incx, c_loc(A), lda)
     end function rocblas_zher_native
 
     function rocblas_zher_typed(handle, uplo, n, alpha, x, incx, A, lda) result(zher)
@@ -56646,14 +56644,13 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: uplo
       integer(c_long), value :: n
-      real(c_float), target :: alpha(*)
-      complex(c_float_complex), target :: x(*)
+      real(c_float), target :: alpha(..)
+      complex(c_float_complex), target :: x(..)
       integer(c_long), value :: incx
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: A(..)
       integer(c_long), value :: lda
       integer(c_int) :: cher_64
-      cher_64 = rocblas_cher_64_raw(handle, uplo, n, c_loc(alpha(1)), c_loc(x(1)), incx, c_loc(A( &
-        1)), lda)
+      cher_64 = rocblas_cher_64_raw(handle, uplo, n, c_loc(alpha), c_loc(x), incx, c_loc(A), lda)
     end function rocblas_cher_64_native
 
     function rocblas_cher_64_typed(handle, uplo, n, alpha, x, incx, A, lda) result(cher_64)
@@ -56678,14 +56675,13 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: uplo
       integer(c_long), value :: n
-      real(c_double), target :: alpha(*)
-      complex(c_double_complex), target :: x(*)
+      real(c_double), target :: alpha(..)
+      complex(c_double_complex), target :: x(..)
       integer(c_long), value :: incx
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: A(..)
       integer(c_long), value :: lda
       integer(c_int) :: zher_64
-      zher_64 = rocblas_zher_64_raw(handle, uplo, n, c_loc(alpha(1)), c_loc(x(1)), incx, c_loc(A( &
-        1)), lda)
+      zher_64 = rocblas_zher_64_raw(handle, uplo, n, c_loc(alpha), c_loc(x), incx, c_loc(A), lda)
     end function rocblas_zher_64_native
 
     function rocblas_zher_64_typed(handle, uplo, n, alpha, x, incx, A, lda) result(zher_64)
@@ -56749,14 +56745,14 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: uplo
       integer(c_long), value :: n
-      real(c_float), target :: alpha(*)
+      real(c_float), target :: alpha(..)
       type(c_ptr), value :: x
       integer(c_long), value :: incx
       type(c_ptr), value :: A
       integer(c_long), value :: lda
       integer(c_long), value :: batch_count
       integer(c_int) :: cher_batched_64
-      cher_batched_64 = rocblas_cher_batched_64_raw(handle, uplo, n, c_loc(alpha(1)), x, incx, A, &
+      cher_batched_64 = rocblas_cher_batched_64_raw(handle, uplo, n, c_loc(alpha), x, incx, A, &
         lda, batch_count)
     end function rocblas_cher_batched_64_native
 
@@ -56786,14 +56782,14 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: uplo
       integer(c_long), value :: n
-      real(c_double), target :: alpha(*)
+      real(c_double), target :: alpha(..)
       type(c_ptr), value :: x
       integer(c_long), value :: incx
       type(c_ptr), value :: A
       integer(c_long), value :: lda
       integer(c_long), value :: batch_count
       integer(c_int) :: zher_batched_64
-      zher_batched_64 = rocblas_zher_batched_64_raw(handle, uplo, n, c_loc(alpha(1)), x, incx, A, &
+      zher_batched_64 = rocblas_zher_batched_64_raw(handle, uplo, n, c_loc(alpha), x, incx, A, &
         lda, batch_count)
     end function rocblas_zher_batched_64_native
 
@@ -56824,16 +56820,16 @@ contains
       integer(c_int), value :: uplo
       integer(c_int), value :: n
       real(c_float) :: alpha
-      complex(c_float_complex), target :: x(*)
+      complex(c_float_complex), target :: x(..)
       integer(c_int), value :: incx
       integer(c_long), value :: stride_x
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: A(..)
       integer(c_int), value :: lda
       integer(c_long), value :: stride_A
       integer(c_int), value :: batch_count
       integer(c_int) :: cher_strided_batched
-      cher_strided_batched = rocblas_cher_strided_batched_raw(handle, uplo, n, alpha, c_loc(x(1)), &
-        incx, stride_x, c_loc(A(1)), lda, stride_A, batch_count)
+      cher_strided_batched = rocblas_cher_strided_batched_raw(handle, uplo, n, alpha, c_loc(x), &
+        incx, stride_x, c_loc(A), lda, stride_A, batch_count)
     end function rocblas_cher_strided_batched_native
 
     function rocblas_cher_strided_batched_typed(handle, uplo, n, alpha, x, incx, stride_x, A, lda, &
@@ -56865,16 +56861,16 @@ contains
       integer(c_int), value :: uplo
       integer(c_int), value :: n
       real(c_double) :: alpha
-      complex(c_double_complex), target :: x(*)
+      complex(c_double_complex), target :: x(..)
       integer(c_int), value :: incx
       integer(c_long), value :: stride_x
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: A(..)
       integer(c_int), value :: lda
       integer(c_long), value :: stride_A
       integer(c_int), value :: batch_count
       integer(c_int) :: zher_strided_batched
-      zher_strided_batched = rocblas_zher_strided_batched_raw(handle, uplo, n, alpha, c_loc(x(1)), &
-        incx, stride_x, c_loc(A(1)), lda, stride_A, batch_count)
+      zher_strided_batched = rocblas_zher_strided_batched_raw(handle, uplo, n, alpha, c_loc(x), &
+        incx, stride_x, c_loc(A), lda, stride_A, batch_count)
     end function rocblas_zher_strided_batched_native
 
     function rocblas_zher_strided_batched_typed(handle, uplo, n, alpha, x, incx, stride_x, A, lda, &
@@ -56905,17 +56901,17 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: uplo
       integer(c_long), value :: n
-      real(c_float), target :: alpha(*)
-      complex(c_float_complex), target :: x(*)
+      real(c_float), target :: alpha(..)
+      complex(c_float_complex), target :: x(..)
       integer(c_long), value :: incx
       integer(c_long), value :: stride_x
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: A(..)
       integer(c_long), value :: lda
       integer(c_long), value :: stride_A
       integer(c_long), value :: batch_count
       integer(c_int) :: cher_strided_batched_64
-      cher_strided_batched_64 = rocblas_cher_strided_batched_64_raw(handle, uplo, n, c_loc(alpha( &
-        1)), c_loc(x(1)), incx, stride_x, c_loc(A(1)), lda, stride_A, batch_count)
+      cher_strided_batched_64 = rocblas_cher_strided_batched_64_raw(handle, uplo, n, c_loc(alpha), &
+        c_loc(x), incx, stride_x, c_loc(A), lda, stride_A, batch_count)
     end function rocblas_cher_strided_batched_64_native
 
     function rocblas_cher_strided_batched_64_typed(handle, uplo, n, alpha, x, incx, stride_x, A, &
@@ -56946,17 +56942,17 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: uplo
       integer(c_long), value :: n
-      real(c_double), target :: alpha(*)
-      complex(c_double_complex), target :: x(*)
+      real(c_double), target :: alpha(..)
+      complex(c_double_complex), target :: x(..)
       integer(c_long), value :: incx
       integer(c_long), value :: stride_x
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: A(..)
       integer(c_long), value :: lda
       integer(c_long), value :: stride_A
       integer(c_long), value :: batch_count
       integer(c_int) :: zher_strided_batched_64
-      zher_strided_batched_64 = rocblas_zher_strided_batched_64_raw(handle, uplo, n, c_loc(alpha( &
-        1)), c_loc(x(1)), incx, stride_x, c_loc(A(1)), lda, stride_A, batch_count)
+      zher_strided_batched_64 = rocblas_zher_strided_batched_64_raw(handle, uplo, n, c_loc(alpha), &
+        c_loc(x), incx, stride_x, c_loc(A), lda, stride_A, batch_count)
     end function rocblas_zher_strided_batched_64_native
 
     function rocblas_zher_strided_batched_64_typed(handle, uplo, n, alpha, x, incx, stride_x, A, &
@@ -56987,15 +56983,15 @@ contains
       integer(c_int), value :: uplo
       integer(c_int), value :: n
       complex(c_float_complex) :: alpha
-      complex(c_float_complex), target :: x(*)
+      complex(c_float_complex), target :: x(..)
       integer(c_int), value :: incx
-      complex(c_float_complex), target :: y(*)
+      complex(c_float_complex), target :: y(..)
       integer(c_int), value :: incy
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: A(..)
       integer(c_int), value :: lda
       integer(c_int) :: cher2
-      cher2 = rocblas_cher2_raw(handle, uplo, n, alpha, c_loc(x(1)), incx, c_loc(y(1)), incy, &
-        c_loc(A(1)), lda)
+      cher2 = rocblas_cher2_raw(handle, uplo, n, alpha, c_loc(x), incx, c_loc(y), incy, c_loc(A), &
+        lda)
     end function rocblas_cher2_native
 
     function rocblas_cher2_typed(handle, uplo, n, alpha, x, incx, y, incy, A, lda) result(cher2)
@@ -57023,15 +57019,15 @@ contains
       integer(c_int), value :: uplo
       integer(c_int), value :: n
       complex(c_double_complex) :: alpha
-      complex(c_double_complex), target :: x(*)
+      complex(c_double_complex), target :: x(..)
       integer(c_int), value :: incx
-      complex(c_double_complex), target :: y(*)
+      complex(c_double_complex), target :: y(..)
       integer(c_int), value :: incy
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: A(..)
       integer(c_int), value :: lda
       integer(c_int) :: zher2
-      zher2 = rocblas_zher2_raw(handle, uplo, n, alpha, c_loc(x(1)), incx, c_loc(y(1)), incy, &
-        c_loc(A(1)), lda)
+      zher2 = rocblas_zher2_raw(handle, uplo, n, alpha, c_loc(x), incx, c_loc(y), incy, c_loc(A), &
+        lda)
     end function rocblas_zher2_native
 
     function rocblas_zher2_typed(handle, uplo, n, alpha, x, incx, y, incy, A, lda) result(zher2)
@@ -57059,16 +57055,16 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: uplo
       integer(c_long), value :: n
-      complex(c_float_complex), target :: alpha(*)
-      complex(c_float_complex), target :: x(*)
+      complex(c_float_complex), target :: alpha(..)
+      complex(c_float_complex), target :: x(..)
       integer(c_long), value :: incx
-      complex(c_float_complex), target :: y(*)
+      complex(c_float_complex), target :: y(..)
       integer(c_long), value :: incy
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: A(..)
       integer(c_long), value :: lda
       integer(c_int) :: cher2_64
-      cher2_64 = rocblas_cher2_64_raw(handle, uplo, n, c_loc(alpha(1)), c_loc(x(1)), incx, c_loc( &
-        y(1)), incy, c_loc(A(1)), lda)
+      cher2_64 = rocblas_cher2_64_raw(handle, uplo, n, c_loc(alpha), c_loc(x), incx, c_loc(y), &
+        incy, c_loc(A), lda)
     end function rocblas_cher2_64_native
 
     function rocblas_cher2_64_typed(handle, uplo, n, alpha, x, incx, y, incy, A, lda) result( &
@@ -57097,16 +57093,16 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: uplo
       integer(c_long), value :: n
-      complex(c_double_complex), target :: alpha(*)
-      complex(c_double_complex), target :: x(*)
+      complex(c_double_complex), target :: alpha(..)
+      complex(c_double_complex), target :: x(..)
       integer(c_long), value :: incx
-      complex(c_double_complex), target :: y(*)
+      complex(c_double_complex), target :: y(..)
       integer(c_long), value :: incy
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: A(..)
       integer(c_long), value :: lda
       integer(c_int) :: zher2_64
-      zher2_64 = rocblas_zher2_64_raw(handle, uplo, n, c_loc(alpha(1)), c_loc(x(1)), incx, c_loc( &
-        y(1)), incy, c_loc(A(1)), lda)
+      zher2_64 = rocblas_zher2_64_raw(handle, uplo, n, c_loc(alpha), c_loc(x), incx, c_loc(y), &
+        incy, c_loc(A), lda)
     end function rocblas_zher2_64_native
 
     function rocblas_zher2_64_typed(handle, uplo, n, alpha, x, incx, y, incy, A, lda) result( &
@@ -57177,7 +57173,7 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: uplo
       integer(c_long), value :: n
-      complex(c_float_complex), target :: alpha(*)
+      complex(c_float_complex), target :: alpha(..)
       type(c_ptr), value :: x
       integer(c_long), value :: incx
       type(c_ptr), value :: y
@@ -57186,8 +57182,8 @@ contains
       integer(c_long), value :: lda
       integer(c_long), value :: batch_count
       integer(c_int) :: cher2_batched_64
-      cher2_batched_64 = rocblas_cher2_batched_64_raw(handle, uplo, n, c_loc(alpha(1)), x, incx, &
-        y, incy, A, lda, batch_count)
+      cher2_batched_64 = rocblas_cher2_batched_64_raw(handle, uplo, n, c_loc(alpha), x, incx, y, &
+        incy, A, lda, batch_count)
     end function rocblas_cher2_batched_64_native
 
     function rocblas_cher2_batched_64_typed(handle, uplo, n, alpha, x, incx, y, incy, A, lda, &
@@ -57218,7 +57214,7 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: uplo
       integer(c_long), value :: n
-      complex(c_double_complex), target :: alpha(*)
+      complex(c_double_complex), target :: alpha(..)
       type(c_ptr), value :: x
       integer(c_long), value :: incx
       type(c_ptr), value :: y
@@ -57227,8 +57223,8 @@ contains
       integer(c_long), value :: lda
       integer(c_long), value :: batch_count
       integer(c_int) :: zher2_batched_64
-      zher2_batched_64 = rocblas_zher2_batched_64_raw(handle, uplo, n, c_loc(alpha(1)), x, incx, &
-        y, incy, A, lda, batch_count)
+      zher2_batched_64 = rocblas_zher2_batched_64_raw(handle, uplo, n, c_loc(alpha), x, incx, y, &
+        incy, A, lda, batch_count)
     end function rocblas_zher2_batched_64_native
 
     function rocblas_zher2_batched_64_typed(handle, uplo, n, alpha, x, incx, y, incy, A, lda, &
@@ -57260,19 +57256,19 @@ contains
       integer(c_int), value :: uplo
       integer(c_int), value :: n
       complex(c_float_complex) :: alpha
-      complex(c_float_complex), target :: x(*)
+      complex(c_float_complex), target :: x(..)
       integer(c_int), value :: incx
       integer(c_long), value :: stride_x
-      complex(c_float_complex), target :: y(*)
+      complex(c_float_complex), target :: y(..)
       integer(c_int), value :: incy
       integer(c_long), value :: stride_y
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: A(..)
       integer(c_int), value :: lda
       integer(c_long), value :: stride_A
       integer(c_int), value :: batch_count
       integer(c_int) :: cher2_strided_batched
-      cher2_strided_batched = rocblas_cher2_strided_batched_raw(handle, uplo, n, alpha, c_loc(x( &
-        1)), incx, stride_x, c_loc(y(1)), incy, stride_y, c_loc(A(1)), lda, stride_A, batch_count)
+      cher2_strided_batched = rocblas_cher2_strided_batched_raw(handle, uplo, n, alpha, c_loc(x), &
+        incx, stride_x, c_loc(y), incy, stride_y, c_loc(A), lda, stride_A, batch_count)
     end function rocblas_cher2_strided_batched_native
 
     function rocblas_cher2_strided_batched_typed(handle, uplo, n, alpha, x, incx, stride_x, y, &
@@ -57307,19 +57303,19 @@ contains
       integer(c_int), value :: uplo
       integer(c_int), value :: n
       complex(c_double_complex) :: alpha
-      complex(c_double_complex), target :: x(*)
+      complex(c_double_complex), target :: x(..)
       integer(c_int), value :: incx
       integer(c_long), value :: stride_x
-      complex(c_double_complex), target :: y(*)
+      complex(c_double_complex), target :: y(..)
       integer(c_int), value :: incy
       integer(c_long), value :: stride_y
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: A(..)
       integer(c_int), value :: lda
       integer(c_long), value :: stride_A
       integer(c_int), value :: batch_count
       integer(c_int) :: zher2_strided_batched
-      zher2_strided_batched = rocblas_zher2_strided_batched_raw(handle, uplo, n, alpha, c_loc(x( &
-        1)), incx, stride_x, c_loc(y(1)), incy, stride_y, c_loc(A(1)), lda, stride_A, batch_count)
+      zher2_strided_batched = rocblas_zher2_strided_batched_raw(handle, uplo, n, alpha, c_loc(x), &
+        incx, stride_x, c_loc(y), incy, stride_y, c_loc(A), lda, stride_A, batch_count)
     end function rocblas_zher2_strided_batched_native
 
     function rocblas_zher2_strided_batched_typed(handle, uplo, n, alpha, x, incx, stride_x, y, &
@@ -57353,21 +57349,21 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: uplo
       integer(c_long), value :: n
-      complex(c_float_complex), target :: alpha(*)
-      complex(c_float_complex), target :: x(*)
+      complex(c_float_complex), target :: alpha(..)
+      complex(c_float_complex), target :: x(..)
       integer(c_long), value :: incx
       integer(c_long), value :: stride_x
-      complex(c_float_complex), target :: y(*)
+      complex(c_float_complex), target :: y(..)
       integer(c_long), value :: incy
       integer(c_long), value :: stride_y
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: A(..)
       integer(c_long), value :: lda
       integer(c_long), value :: stride_A
       integer(c_long), value :: batch_count
       integer(c_int) :: cher2_strided_batched_64
       cher2_strided_batched_64 = rocblas_cher2_strided_batched_64_raw(handle, uplo, n, c_loc( &
-        alpha(1)), c_loc(x(1)), incx, stride_x, c_loc(y(1)), incy, stride_y, c_loc(A(1)), lda, &
-        stride_A, batch_count)
+        alpha), c_loc(x), incx, stride_x, c_loc(y), incy, stride_y, c_loc(A), lda, stride_A, &
+        batch_count)
     end function rocblas_cher2_strided_batched_64_native
 
     function rocblas_cher2_strided_batched_64_typed(handle, uplo, n, alpha, x, incx, stride_x, y, &
@@ -57401,21 +57397,21 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: uplo
       integer(c_long), value :: n
-      complex(c_double_complex), target :: alpha(*)
-      complex(c_double_complex), target :: x(*)
+      complex(c_double_complex), target :: alpha(..)
+      complex(c_double_complex), target :: x(..)
       integer(c_long), value :: incx
       integer(c_long), value :: stride_x
-      complex(c_double_complex), target :: y(*)
+      complex(c_double_complex), target :: y(..)
       integer(c_long), value :: incy
       integer(c_long), value :: stride_y
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: A(..)
       integer(c_long), value :: lda
       integer(c_long), value :: stride_A
       integer(c_long), value :: batch_count
       integer(c_int) :: zher2_strided_batched_64
       zher2_strided_batched_64 = rocblas_zher2_strided_batched_64_raw(handle, uplo, n, c_loc( &
-        alpha(1)), c_loc(x(1)), incx, stride_x, c_loc(y(1)), incy, stride_y, c_loc(A(1)), lda, &
-        stride_A, batch_count)
+        alpha), c_loc(x), incx, stride_x, c_loc(y), incy, stride_y, c_loc(A), lda, stride_A, &
+        batch_count)
     end function rocblas_zher2_strided_batched_64_native
 
     function rocblas_zher2_strided_batched_64_typed(handle, uplo, n, alpha, x, incx, stride_x, y, &
@@ -57449,15 +57445,15 @@ contains
       integer(c_int), value :: uplo
       integer(c_int), value :: n
       complex(c_float_complex) :: alpha
-      complex(c_float_complex), target :: AP(*)
-      complex(c_float_complex), target :: x(*)
+      complex(c_float_complex), target :: AP(..)
+      complex(c_float_complex), target :: x(..)
       integer(c_int), value :: incx
       complex(c_float_complex) :: beta
-      complex(c_float_complex), target :: y(*)
+      complex(c_float_complex), target :: y(..)
       integer(c_int), value :: incy
       integer(c_int) :: chpmv
-      chpmv = rocblas_chpmv_raw(handle, uplo, n, alpha, c_loc(AP(1)), c_loc(x(1)), incx, beta, &
-        c_loc(y(1)), incy)
+      chpmv = rocblas_chpmv_raw(handle, uplo, n, alpha, c_loc(AP), c_loc(x), incx, beta, c_loc(y), &
+        incy)
     end function rocblas_chpmv_native
 
     function rocblas_chpmv_typed(handle, uplo, n, alpha, AP, x, incx, beta, y, incy) result(chpmv)
@@ -57485,15 +57481,15 @@ contains
       integer(c_int), value :: uplo
       integer(c_int), value :: n
       complex(c_double_complex) :: alpha
-      complex(c_double_complex), target :: AP(*)
-      complex(c_double_complex), target :: x(*)
+      complex(c_double_complex), target :: AP(..)
+      complex(c_double_complex), target :: x(..)
       integer(c_int), value :: incx
       complex(c_double_complex) :: beta
-      complex(c_double_complex), target :: y(*)
+      complex(c_double_complex), target :: y(..)
       integer(c_int), value :: incy
       integer(c_int) :: zhpmv
-      zhpmv = rocblas_zhpmv_raw(handle, uplo, n, alpha, c_loc(AP(1)), c_loc(x(1)), incx, beta, &
-        c_loc(y(1)), incy)
+      zhpmv = rocblas_zhpmv_raw(handle, uplo, n, alpha, c_loc(AP), c_loc(x), incx, beta, c_loc(y), &
+        incy)
     end function rocblas_zhpmv_native
 
     function rocblas_zhpmv_typed(handle, uplo, n, alpha, AP, x, incx, beta, y, incy) result(zhpmv)
@@ -57521,16 +57517,16 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: uplo
       integer(c_long), value :: n
-      complex(c_float_complex), target :: alpha(*)
-      complex(c_float_complex), target :: AP(*)
-      complex(c_float_complex), target :: x(*)
+      complex(c_float_complex), target :: alpha(..)
+      complex(c_float_complex), target :: AP(..)
+      complex(c_float_complex), target :: x(..)
       integer(c_long), value :: incx
-      complex(c_float_complex), target :: beta(*)
-      complex(c_float_complex), target :: y(*)
+      complex(c_float_complex), target :: beta(..)
+      complex(c_float_complex), target :: y(..)
       integer(c_long), value :: incy
       integer(c_int) :: chpmv_64
-      chpmv_64 = rocblas_chpmv_64_raw(handle, uplo, n, c_loc(alpha(1)), c_loc(AP(1)), c_loc(x(1)), &
-        incx, c_loc(beta(1)), c_loc(y(1)), incy)
+      chpmv_64 = rocblas_chpmv_64_raw(handle, uplo, n, c_loc(alpha), c_loc(AP), c_loc(x), incx, &
+        c_loc(beta), c_loc(y), incy)
     end function rocblas_chpmv_64_native
 
     function rocblas_chpmv_64_typed(handle, uplo, n, alpha, AP, x, incx, beta, y, incy) result( &
@@ -57559,16 +57555,16 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: uplo
       integer(c_long), value :: n
-      complex(c_double_complex), target :: alpha(*)
-      complex(c_double_complex), target :: AP(*)
-      complex(c_double_complex), target :: x(*)
+      complex(c_double_complex), target :: alpha(..)
+      complex(c_double_complex), target :: AP(..)
+      complex(c_double_complex), target :: x(..)
       integer(c_long), value :: incx
-      complex(c_double_complex), target :: beta(*)
-      complex(c_double_complex), target :: y(*)
+      complex(c_double_complex), target :: beta(..)
+      complex(c_double_complex), target :: y(..)
       integer(c_long), value :: incy
       integer(c_int) :: zhpmv_64
-      zhpmv_64 = rocblas_zhpmv_64_raw(handle, uplo, n, c_loc(alpha(1)), c_loc(AP(1)), c_loc(x(1)), &
-        incx, c_loc(beta(1)), c_loc(y(1)), incy)
+      zhpmv_64 = rocblas_zhpmv_64_raw(handle, uplo, n, c_loc(alpha), c_loc(AP), c_loc(x), incx, &
+        c_loc(beta), c_loc(y), incy)
     end function rocblas_zhpmv_64_native
 
     function rocblas_zhpmv_64_typed(handle, uplo, n, alpha, AP, x, incx, beta, y, incy) result( &
@@ -57639,17 +57635,17 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: uplo
       integer(c_long), value :: n
-      complex(c_float_complex), target :: alpha(*)
+      complex(c_float_complex), target :: alpha(..)
       type(c_ptr), value :: AP
       type(c_ptr), value :: x
       integer(c_long), value :: incx
-      complex(c_float_complex), target :: beta(*)
+      complex(c_float_complex), target :: beta(..)
       type(c_ptr), value :: y
       integer(c_long), value :: incy
       integer(c_long), value :: batch_count
       integer(c_int) :: chpmv_batched_64
-      chpmv_batched_64 = rocblas_chpmv_batched_64_raw(handle, uplo, n, c_loc(alpha(1)), AP, x, &
-        incx, c_loc(beta(1)), y, incy, batch_count)
+      chpmv_batched_64 = rocblas_chpmv_batched_64_raw(handle, uplo, n, c_loc(alpha), AP, x, incx, &
+        c_loc(beta), y, incy, batch_count)
     end function rocblas_chpmv_batched_64_native
 
     function rocblas_chpmv_batched_64_typed(handle, uplo, n, alpha, AP, x, incx, beta, y, incy, &
@@ -57680,17 +57676,17 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: uplo
       integer(c_long), value :: n
-      complex(c_double_complex), target :: alpha(*)
+      complex(c_double_complex), target :: alpha(..)
       type(c_ptr), value :: AP
       type(c_ptr), value :: x
       integer(c_long), value :: incx
-      complex(c_double_complex), target :: beta(*)
+      complex(c_double_complex), target :: beta(..)
       type(c_ptr), value :: y
       integer(c_long), value :: incy
       integer(c_long), value :: batch_count
       integer(c_int) :: zhpmv_batched_64
-      zhpmv_batched_64 = rocblas_zhpmv_batched_64_raw(handle, uplo, n, c_loc(alpha(1)), AP, x, &
-        incx, c_loc(beta(1)), y, incy, batch_count)
+      zhpmv_batched_64 = rocblas_zhpmv_batched_64_raw(handle, uplo, n, c_loc(alpha), AP, x, incx, &
+        c_loc(beta), y, incy, batch_count)
     end function rocblas_zhpmv_batched_64_native
 
     function rocblas_zhpmv_batched_64_typed(handle, uplo, n, alpha, AP, x, incx, beta, y, incy, &
@@ -57722,19 +57718,19 @@ contains
       integer(c_int), value :: uplo
       integer(c_int), value :: n
       complex(c_float_complex) :: alpha
-      complex(c_float_complex), target :: AP(*)
+      complex(c_float_complex), target :: AP(..)
       integer(c_long), value :: stride_A
-      complex(c_float_complex), target :: x(*)
+      complex(c_float_complex), target :: x(..)
       integer(c_int), value :: incx
       integer(c_long), value :: stride_x
       complex(c_float_complex) :: beta
-      complex(c_float_complex), target :: y(*)
+      complex(c_float_complex), target :: y(..)
       integer(c_int), value :: incy
       integer(c_long), value :: stride_y
       integer(c_int), value :: batch_count
       integer(c_int) :: chpmv_strided_batched
-      chpmv_strided_batched = rocblas_chpmv_strided_batched_raw(handle, uplo, n, alpha, c_loc(AP( &
-        1)), stride_A, c_loc(x(1)), incx, stride_x, beta, c_loc(y(1)), incy, stride_y, batch_count)
+      chpmv_strided_batched = rocblas_chpmv_strided_batched_raw(handle, uplo, n, alpha, c_loc(AP), &
+        stride_A, c_loc(x), incx, stride_x, beta, c_loc(y), incy, stride_y, batch_count)
     end function rocblas_chpmv_strided_batched_native
 
     function rocblas_chpmv_strided_batched_typed(handle, uplo, n, alpha, AP, stride_A, x, incx, &
@@ -57769,19 +57765,19 @@ contains
       integer(c_int), value :: uplo
       integer(c_int), value :: n
       complex(c_double_complex) :: alpha
-      complex(c_double_complex), target :: AP(*)
+      complex(c_double_complex), target :: AP(..)
       integer(c_long), value :: stride_A
-      complex(c_double_complex), target :: x(*)
+      complex(c_double_complex), target :: x(..)
       integer(c_int), value :: incx
       integer(c_long), value :: stride_x
       complex(c_double_complex) :: beta
-      complex(c_double_complex), target :: y(*)
+      complex(c_double_complex), target :: y(..)
       integer(c_int), value :: incy
       integer(c_long), value :: stride_y
       integer(c_int), value :: batch_count
       integer(c_int) :: zhpmv_strided_batched
-      zhpmv_strided_batched = rocblas_zhpmv_strided_batched_raw(handle, uplo, n, alpha, c_loc(AP( &
-        1)), stride_A, c_loc(x(1)), incx, stride_x, beta, c_loc(y(1)), incy, stride_y, batch_count)
+      zhpmv_strided_batched = rocblas_zhpmv_strided_batched_raw(handle, uplo, n, alpha, c_loc(AP), &
+        stride_A, c_loc(x), incx, stride_x, beta, c_loc(y), incy, stride_y, batch_count)
     end function rocblas_zhpmv_strided_batched_native
 
     function rocblas_zhpmv_strided_batched_typed(handle, uplo, n, alpha, AP, stride_A, x, incx, &
@@ -57815,21 +57811,21 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: uplo
       integer(c_long), value :: n
-      complex(c_float_complex), target :: alpha(*)
-      complex(c_float_complex), target :: AP(*)
+      complex(c_float_complex), target :: alpha(..)
+      complex(c_float_complex), target :: AP(..)
       integer(c_long), value :: stride_A
-      complex(c_float_complex), target :: x(*)
+      complex(c_float_complex), target :: x(..)
       integer(c_long), value :: incx
       integer(c_long), value :: stride_x
-      complex(c_float_complex), target :: beta(*)
-      complex(c_float_complex), target :: y(*)
+      complex(c_float_complex), target :: beta(..)
+      complex(c_float_complex), target :: y(..)
       integer(c_long), value :: incy
       integer(c_long), value :: stride_y
       integer(c_long), value :: batch_count
       integer(c_int) :: chpmv_strided_batched_64
       chpmv_strided_batched_64 = rocblas_chpmv_strided_batched_64_raw(handle, uplo, n, c_loc( &
-        alpha(1)), c_loc(AP(1)), stride_A, c_loc(x(1)), incx, stride_x, c_loc(beta(1)), c_loc(y( &
-        1)), incy, stride_y, batch_count)
+        alpha), c_loc(AP), stride_A, c_loc(x), incx, stride_x, c_loc(beta), c_loc(y), incy, &
+        stride_y, batch_count)
     end function rocblas_chpmv_strided_batched_64_native
 
     function rocblas_chpmv_strided_batched_64_typed(handle, uplo, n, alpha, AP, stride_A, x, incx, &
@@ -57863,21 +57859,21 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: uplo
       integer(c_long), value :: n
-      complex(c_double_complex), target :: alpha(*)
-      complex(c_double_complex), target :: AP(*)
+      complex(c_double_complex), target :: alpha(..)
+      complex(c_double_complex), target :: AP(..)
       integer(c_long), value :: stride_A
-      complex(c_double_complex), target :: x(*)
+      complex(c_double_complex), target :: x(..)
       integer(c_long), value :: incx
       integer(c_long), value :: stride_x
-      complex(c_double_complex), target :: beta(*)
-      complex(c_double_complex), target :: y(*)
+      complex(c_double_complex), target :: beta(..)
+      complex(c_double_complex), target :: y(..)
       integer(c_long), value :: incy
       integer(c_long), value :: stride_y
       integer(c_long), value :: batch_count
       integer(c_int) :: zhpmv_strided_batched_64
       zhpmv_strided_batched_64 = rocblas_zhpmv_strided_batched_64_raw(handle, uplo, n, c_loc( &
-        alpha(1)), c_loc(AP(1)), stride_A, c_loc(x(1)), incx, stride_x, c_loc(beta(1)), c_loc(y( &
-        1)), incy, stride_y, batch_count)
+        alpha), c_loc(AP), stride_A, c_loc(x), incx, stride_x, c_loc(beta), c_loc(y), incy, &
+        stride_y, batch_count)
     end function rocblas_zhpmv_strided_batched_64_native
 
     function rocblas_zhpmv_strided_batched_64_typed(handle, uplo, n, alpha, AP, stride_A, x, incx, &
@@ -57911,11 +57907,11 @@ contains
       integer(c_int), value :: uplo
       integer(c_int), value :: n
       real(c_float) :: alpha
-      complex(c_float_complex), target :: x(*)
+      complex(c_float_complex), target :: x(..)
       integer(c_int), value :: incx
-      complex(c_float_complex), target :: AP(*)
+      complex(c_float_complex), target :: AP(..)
       integer(c_int) :: chpr
-      chpr = rocblas_chpr_raw(handle, uplo, n, alpha, c_loc(x(1)), incx, c_loc(AP(1)))
+      chpr = rocblas_chpr_raw(handle, uplo, n, alpha, c_loc(x), incx, c_loc(AP))
     end function rocblas_chpr_native
 
     function rocblas_chpr_typed(handle, uplo, n, alpha, x, incx, AP) result(chpr)
@@ -57940,11 +57936,11 @@ contains
       integer(c_int), value :: uplo
       integer(c_int), value :: n
       real(c_double) :: alpha
-      complex(c_double_complex), target :: x(*)
+      complex(c_double_complex), target :: x(..)
       integer(c_int), value :: incx
-      complex(c_double_complex), target :: AP(*)
+      complex(c_double_complex), target :: AP(..)
       integer(c_int) :: zhpr
-      zhpr = rocblas_zhpr_raw(handle, uplo, n, alpha, c_loc(x(1)), incx, c_loc(AP(1)))
+      zhpr = rocblas_zhpr_raw(handle, uplo, n, alpha, c_loc(x), incx, c_loc(AP))
     end function rocblas_zhpr_native
 
     function rocblas_zhpr_typed(handle, uplo, n, alpha, x, incx, AP) result(zhpr)
@@ -57968,13 +57964,12 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: uplo
       integer(c_long), value :: n
-      real(c_float), target :: alpha(*)
-      complex(c_float_complex), target :: x(*)
+      real(c_float), target :: alpha(..)
+      complex(c_float_complex), target :: x(..)
       integer(c_long), value :: incx
-      complex(c_float_complex), target :: AP(*)
+      complex(c_float_complex), target :: AP(..)
       integer(c_int) :: chpr_64
-      chpr_64 = rocblas_chpr_64_raw(handle, uplo, n, c_loc(alpha(1)), c_loc(x(1)), incx, c_loc(AP( &
-        1)))
+      chpr_64 = rocblas_chpr_64_raw(handle, uplo, n, c_loc(alpha), c_loc(x), incx, c_loc(AP))
     end function rocblas_chpr_64_native
 
     function rocblas_chpr_64_typed(handle, uplo, n, alpha, x, incx, AP) result(chpr_64)
@@ -57998,13 +57993,12 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: uplo
       integer(c_long), value :: n
-      real(c_double), target :: alpha(*)
-      complex(c_double_complex), target :: x(*)
+      real(c_double), target :: alpha(..)
+      complex(c_double_complex), target :: x(..)
       integer(c_long), value :: incx
-      complex(c_double_complex), target :: AP(*)
+      complex(c_double_complex), target :: AP(..)
       integer(c_int) :: zhpr_64
-      zhpr_64 = rocblas_zhpr_64_raw(handle, uplo, n, c_loc(alpha(1)), c_loc(x(1)), incx, c_loc(AP( &
-        1)))
+      zhpr_64 = rocblas_zhpr_64_raw(handle, uplo, n, c_loc(alpha), c_loc(x), incx, c_loc(AP))
     end function rocblas_zhpr_64_native
 
     function rocblas_zhpr_64_typed(handle, uplo, n, alpha, x, incx, AP) result(zhpr_64)
@@ -58063,13 +58057,13 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: uplo
       integer(c_long), value :: n
-      real(c_float), target :: alpha(*)
+      real(c_float), target :: alpha(..)
       type(c_ptr), value :: x
       integer(c_long), value :: incx
       type(c_ptr), value :: AP
       integer(c_long), value :: batch_count
       integer(c_int) :: chpr_batched_64
-      chpr_batched_64 = rocblas_chpr_batched_64_raw(handle, uplo, n, c_loc(alpha(1)), x, incx, AP, &
+      chpr_batched_64 = rocblas_chpr_batched_64_raw(handle, uplo, n, c_loc(alpha), x, incx, AP, &
         batch_count)
     end function rocblas_chpr_batched_64_native
 
@@ -58098,13 +58092,13 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: uplo
       integer(c_long), value :: n
-      real(c_double), target :: alpha(*)
+      real(c_double), target :: alpha(..)
       type(c_ptr), value :: x
       integer(c_long), value :: incx
       type(c_ptr), value :: AP
       integer(c_long), value :: batch_count
       integer(c_int) :: zhpr_batched_64
-      zhpr_batched_64 = rocblas_zhpr_batched_64_raw(handle, uplo, n, c_loc(alpha(1)), x, incx, AP, &
+      zhpr_batched_64 = rocblas_zhpr_batched_64_raw(handle, uplo, n, c_loc(alpha), x, incx, AP, &
         batch_count)
     end function rocblas_zhpr_batched_64_native
 
@@ -58134,15 +58128,15 @@ contains
       integer(c_int), value :: uplo
       integer(c_int), value :: n
       real(c_float) :: alpha
-      complex(c_float_complex), target :: x(*)
+      complex(c_float_complex), target :: x(..)
       integer(c_int), value :: incx
       integer(c_long), value :: stride_x
-      complex(c_float_complex), target :: AP(*)
+      complex(c_float_complex), target :: AP(..)
       integer(c_long), value :: stride_A
       integer(c_int), value :: batch_count
       integer(c_int) :: chpr_strided_batched
-      chpr_strided_batched = rocblas_chpr_strided_batched_raw(handle, uplo, n, alpha, c_loc(x(1)), &
-        incx, stride_x, c_loc(AP(1)), stride_A, batch_count)
+      chpr_strided_batched = rocblas_chpr_strided_batched_raw(handle, uplo, n, alpha, c_loc(x), &
+        incx, stride_x, c_loc(AP), stride_A, batch_count)
     end function rocblas_chpr_strided_batched_native
 
     function rocblas_chpr_strided_batched_typed(handle, uplo, n, alpha, x, incx, stride_x, AP, &
@@ -58173,15 +58167,15 @@ contains
       integer(c_int), value :: uplo
       integer(c_int), value :: n
       real(c_double) :: alpha
-      complex(c_double_complex), target :: x(*)
+      complex(c_double_complex), target :: x(..)
       integer(c_int), value :: incx
       integer(c_long), value :: stride_x
-      complex(c_double_complex), target :: AP(*)
+      complex(c_double_complex), target :: AP(..)
       integer(c_long), value :: stride_A
       integer(c_int), value :: batch_count
       integer(c_int) :: zhpr_strided_batched
-      zhpr_strided_batched = rocblas_zhpr_strided_batched_raw(handle, uplo, n, alpha, c_loc(x(1)), &
-        incx, stride_x, c_loc(AP(1)), stride_A, batch_count)
+      zhpr_strided_batched = rocblas_zhpr_strided_batched_raw(handle, uplo, n, alpha, c_loc(x), &
+        incx, stride_x, c_loc(AP), stride_A, batch_count)
     end function rocblas_zhpr_strided_batched_native
 
     function rocblas_zhpr_strided_batched_typed(handle, uplo, n, alpha, x, incx, stride_x, AP, &
@@ -58211,16 +58205,16 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: uplo
       integer(c_long), value :: n
-      real(c_float), target :: alpha(*)
-      complex(c_float_complex), target :: x(*)
+      real(c_float), target :: alpha(..)
+      complex(c_float_complex), target :: x(..)
       integer(c_long), value :: incx
       integer(c_long), value :: stride_x
-      complex(c_float_complex), target :: AP(*)
+      complex(c_float_complex), target :: AP(..)
       integer(c_long), value :: stride_A
       integer(c_long), value :: batch_count
       integer(c_int) :: chpr_strided_batched_64
-      chpr_strided_batched_64 = rocblas_chpr_strided_batched_64_raw(handle, uplo, n, c_loc(alpha( &
-        1)), c_loc(x(1)), incx, stride_x, c_loc(AP(1)), stride_A, batch_count)
+      chpr_strided_batched_64 = rocblas_chpr_strided_batched_64_raw(handle, uplo, n, c_loc(alpha), &
+        c_loc(x), incx, stride_x, c_loc(AP), stride_A, batch_count)
     end function rocblas_chpr_strided_batched_64_native
 
     function rocblas_chpr_strided_batched_64_typed(handle, uplo, n, alpha, x, incx, stride_x, AP, &
@@ -58250,16 +58244,16 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: uplo
       integer(c_long), value :: n
-      real(c_double), target :: alpha(*)
-      complex(c_double_complex), target :: x(*)
+      real(c_double), target :: alpha(..)
+      complex(c_double_complex), target :: x(..)
       integer(c_long), value :: incx
       integer(c_long), value :: stride_x
-      complex(c_double_complex), target :: AP(*)
+      complex(c_double_complex), target :: AP(..)
       integer(c_long), value :: stride_A
       integer(c_long), value :: batch_count
       integer(c_int) :: zhpr_strided_batched_64
-      zhpr_strided_batched_64 = rocblas_zhpr_strided_batched_64_raw(handle, uplo, n, c_loc(alpha( &
-        1)), c_loc(x(1)), incx, stride_x, c_loc(AP(1)), stride_A, batch_count)
+      zhpr_strided_batched_64 = rocblas_zhpr_strided_batched_64_raw(handle, uplo, n, c_loc(alpha), &
+        c_loc(x), incx, stride_x, c_loc(AP), stride_A, batch_count)
     end function rocblas_zhpr_strided_batched_64_native
 
     function rocblas_zhpr_strided_batched_64_typed(handle, uplo, n, alpha, x, incx, stride_x, AP, &
@@ -58289,14 +58283,13 @@ contains
       integer(c_int), value :: uplo
       integer(c_int), value :: n
       complex(c_float_complex) :: alpha
-      complex(c_float_complex), target :: x(*)
+      complex(c_float_complex), target :: x(..)
       integer(c_int), value :: incx
-      complex(c_float_complex), target :: y(*)
+      complex(c_float_complex), target :: y(..)
       integer(c_int), value :: incy
-      complex(c_float_complex), target :: AP(*)
+      complex(c_float_complex), target :: AP(..)
       integer(c_int) :: chpr2
-      chpr2 = rocblas_chpr2_raw(handle, uplo, n, alpha, c_loc(x(1)), incx, c_loc(y(1)), incy, &
-        c_loc(AP(1)))
+      chpr2 = rocblas_chpr2_raw(handle, uplo, n, alpha, c_loc(x), incx, c_loc(y), incy, c_loc(AP))
     end function rocblas_chpr2_native
 
     function rocblas_chpr2_typed(handle, uplo, n, alpha, x, incx, y, incy, AP) result(chpr2)
@@ -58323,14 +58316,13 @@ contains
       integer(c_int), value :: uplo
       integer(c_int), value :: n
       complex(c_double_complex) :: alpha
-      complex(c_double_complex), target :: x(*)
+      complex(c_double_complex), target :: x(..)
       integer(c_int), value :: incx
-      complex(c_double_complex), target :: y(*)
+      complex(c_double_complex), target :: y(..)
       integer(c_int), value :: incy
-      complex(c_double_complex), target :: AP(*)
+      complex(c_double_complex), target :: AP(..)
       integer(c_int) :: zhpr2
-      zhpr2 = rocblas_zhpr2_raw(handle, uplo, n, alpha, c_loc(x(1)), incx, c_loc(y(1)), incy, &
-        c_loc(AP(1)))
+      zhpr2 = rocblas_zhpr2_raw(handle, uplo, n, alpha, c_loc(x), incx, c_loc(y), incy, c_loc(AP))
     end function rocblas_zhpr2_native
 
     function rocblas_zhpr2_typed(handle, uplo, n, alpha, x, incx, y, incy, AP) result(zhpr2)
@@ -58356,15 +58348,15 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: uplo
       integer(c_long), value :: n
-      complex(c_float_complex), target :: alpha(*)
-      complex(c_float_complex), target :: x(*)
+      complex(c_float_complex), target :: alpha(..)
+      complex(c_float_complex), target :: x(..)
       integer(c_long), value :: incx
-      complex(c_float_complex), target :: y(*)
+      complex(c_float_complex), target :: y(..)
       integer(c_long), value :: incy
-      complex(c_float_complex), target :: AP(*)
+      complex(c_float_complex), target :: AP(..)
       integer(c_int) :: chpr2_64
-      chpr2_64 = rocblas_chpr2_64_raw(handle, uplo, n, c_loc(alpha(1)), c_loc(x(1)), incx, c_loc( &
-        y(1)), incy, c_loc(AP(1)))
+      chpr2_64 = rocblas_chpr2_64_raw(handle, uplo, n, c_loc(alpha), c_loc(x), incx, c_loc(y), &
+        incy, c_loc(AP))
     end function rocblas_chpr2_64_native
 
     function rocblas_chpr2_64_typed(handle, uplo, n, alpha, x, incx, y, incy, AP) result(chpr2_64)
@@ -58390,15 +58382,15 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: uplo
       integer(c_long), value :: n
-      complex(c_double_complex), target :: alpha(*)
-      complex(c_double_complex), target :: x(*)
+      complex(c_double_complex), target :: alpha(..)
+      complex(c_double_complex), target :: x(..)
       integer(c_long), value :: incx
-      complex(c_double_complex), target :: y(*)
+      complex(c_double_complex), target :: y(..)
       integer(c_long), value :: incy
-      complex(c_double_complex), target :: AP(*)
+      complex(c_double_complex), target :: AP(..)
       integer(c_int) :: zhpr2_64
-      zhpr2_64 = rocblas_zhpr2_64_raw(handle, uplo, n, c_loc(alpha(1)), c_loc(x(1)), incx, c_loc( &
-        y(1)), incy, c_loc(AP(1)))
+      zhpr2_64 = rocblas_zhpr2_64_raw(handle, uplo, n, c_loc(alpha), c_loc(x), incx, c_loc(y), &
+        incy, c_loc(AP))
     end function rocblas_zhpr2_64_native
 
     function rocblas_zhpr2_64_typed(handle, uplo, n, alpha, x, incx, y, incy, AP) result(zhpr2_64)
@@ -58465,7 +58457,7 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: uplo
       integer(c_long), value :: n
-      complex(c_float_complex), target :: alpha(*)
+      complex(c_float_complex), target :: alpha(..)
       type(c_ptr), value :: x
       integer(c_long), value :: incx
       type(c_ptr), value :: y
@@ -58473,8 +58465,8 @@ contains
       type(c_ptr), value :: AP
       integer(c_long), value :: batch_count
       integer(c_int) :: chpr2_batched_64
-      chpr2_batched_64 = rocblas_chpr2_batched_64_raw(handle, uplo, n, c_loc(alpha(1)), x, incx, &
-        y, incy, AP, batch_count)
+      chpr2_batched_64 = rocblas_chpr2_batched_64_raw(handle, uplo, n, c_loc(alpha), x, incx, y, &
+        incy, AP, batch_count)
     end function rocblas_chpr2_batched_64_native
 
     function rocblas_chpr2_batched_64_typed(handle, uplo, n, alpha, x, incx, y, incy, AP, &
@@ -58504,7 +58496,7 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: uplo
       integer(c_long), value :: n
-      complex(c_double_complex), target :: alpha(*)
+      complex(c_double_complex), target :: alpha(..)
       type(c_ptr), value :: x
       integer(c_long), value :: incx
       type(c_ptr), value :: y
@@ -58512,8 +58504,8 @@ contains
       type(c_ptr), value :: AP
       integer(c_long), value :: batch_count
       integer(c_int) :: zhpr2_batched_64
-      zhpr2_batched_64 = rocblas_zhpr2_batched_64_raw(handle, uplo, n, c_loc(alpha(1)), x, incx, &
-        y, incy, AP, batch_count)
+      zhpr2_batched_64 = rocblas_zhpr2_batched_64_raw(handle, uplo, n, c_loc(alpha), x, incx, y, &
+        incy, AP, batch_count)
     end function rocblas_zhpr2_batched_64_native
 
     function rocblas_zhpr2_batched_64_typed(handle, uplo, n, alpha, x, incx, y, incy, AP, &
@@ -58544,18 +58536,18 @@ contains
       integer(c_int), value :: uplo
       integer(c_int), value :: n
       complex(c_float_complex) :: alpha
-      complex(c_float_complex), target :: x(*)
+      complex(c_float_complex), target :: x(..)
       integer(c_int), value :: incx
       integer(c_long), value :: stride_x
-      complex(c_float_complex), target :: y(*)
+      complex(c_float_complex), target :: y(..)
       integer(c_int), value :: incy
       integer(c_long), value :: stride_y
-      complex(c_float_complex), target :: AP(*)
+      complex(c_float_complex), target :: AP(..)
       integer(c_long), value :: stride_A
       integer(c_int), value :: batch_count
       integer(c_int) :: chpr2_strided_batched
-      chpr2_strided_batched = rocblas_chpr2_strided_batched_raw(handle, uplo, n, alpha, c_loc(x( &
-        1)), incx, stride_x, c_loc(y(1)), incy, stride_y, c_loc(AP(1)), stride_A, batch_count)
+      chpr2_strided_batched = rocblas_chpr2_strided_batched_raw(handle, uplo, n, alpha, c_loc(x), &
+        incx, stride_x, c_loc(y), incy, stride_y, c_loc(AP), stride_A, batch_count)
     end function rocblas_chpr2_strided_batched_native
 
     function rocblas_chpr2_strided_batched_typed(handle, uplo, n, alpha, x, incx, stride_x, y, &
@@ -58589,18 +58581,18 @@ contains
       integer(c_int), value :: uplo
       integer(c_int), value :: n
       complex(c_double_complex) :: alpha
-      complex(c_double_complex), target :: x(*)
+      complex(c_double_complex), target :: x(..)
       integer(c_int), value :: incx
       integer(c_long), value :: stride_x
-      complex(c_double_complex), target :: y(*)
+      complex(c_double_complex), target :: y(..)
       integer(c_int), value :: incy
       integer(c_long), value :: stride_y
-      complex(c_double_complex), target :: AP(*)
+      complex(c_double_complex), target :: AP(..)
       integer(c_long), value :: stride_A
       integer(c_int), value :: batch_count
       integer(c_int) :: zhpr2_strided_batched
-      zhpr2_strided_batched = rocblas_zhpr2_strided_batched_raw(handle, uplo, n, alpha, c_loc(x( &
-        1)), incx, stride_x, c_loc(y(1)), incy, stride_y, c_loc(AP(1)), stride_A, batch_count)
+      zhpr2_strided_batched = rocblas_zhpr2_strided_batched_raw(handle, uplo, n, alpha, c_loc(x), &
+        incx, stride_x, c_loc(y), incy, stride_y, c_loc(AP), stride_A, batch_count)
     end function rocblas_zhpr2_strided_batched_native
 
     function rocblas_zhpr2_strided_batched_typed(handle, uplo, n, alpha, x, incx, stride_x, y, &
@@ -58633,20 +58625,20 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: uplo
       integer(c_long), value :: n
-      complex(c_float_complex), target :: alpha(*)
-      complex(c_float_complex), target :: x(*)
+      complex(c_float_complex), target :: alpha(..)
+      complex(c_float_complex), target :: x(..)
       integer(c_long), value :: incx
       integer(c_long), value :: stride_x
-      complex(c_float_complex), target :: y(*)
+      complex(c_float_complex), target :: y(..)
       integer(c_long), value :: incy
       integer(c_long), value :: stride_y
-      complex(c_float_complex), target :: AP(*)
+      complex(c_float_complex), target :: AP(..)
       integer(c_long), value :: stride_A
       integer(c_long), value :: batch_count
       integer(c_int) :: chpr2_strided_batched_64
       chpr2_strided_batched_64 = rocblas_chpr2_strided_batched_64_raw(handle, uplo, n, c_loc( &
-        alpha(1)), c_loc(x(1)), incx, stride_x, c_loc(y(1)), incy, stride_y, c_loc(AP(1)), &
-        stride_A, batch_count)
+        alpha), c_loc(x), incx, stride_x, c_loc(y), incy, stride_y, c_loc(AP), stride_A, &
+        batch_count)
     end function rocblas_chpr2_strided_batched_64_native
 
     function rocblas_chpr2_strided_batched_64_typed(handle, uplo, n, alpha, x, incx, stride_x, y, &
@@ -58679,20 +58671,20 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: uplo
       integer(c_long), value :: n
-      complex(c_double_complex), target :: alpha(*)
-      complex(c_double_complex), target :: x(*)
+      complex(c_double_complex), target :: alpha(..)
+      complex(c_double_complex), target :: x(..)
       integer(c_long), value :: incx
       integer(c_long), value :: stride_x
-      complex(c_double_complex), target :: y(*)
+      complex(c_double_complex), target :: y(..)
       integer(c_long), value :: incy
       integer(c_long), value :: stride_y
-      complex(c_double_complex), target :: AP(*)
+      complex(c_double_complex), target :: AP(..)
       integer(c_long), value :: stride_A
       integer(c_long), value :: batch_count
       integer(c_int) :: zhpr2_strided_batched_64
       zhpr2_strided_batched_64 = rocblas_zhpr2_strided_batched_64_raw(handle, uplo, n, c_loc( &
-        alpha(1)), c_loc(x(1)), incx, stride_x, c_loc(y(1)), incy, stride_y, c_loc(AP(1)), &
-        stride_A, batch_count)
+        alpha), c_loc(x), incx, stride_x, c_loc(y), incy, stride_y, c_loc(AP), stride_A, &
+        batch_count)
     end function rocblas_zhpr2_strided_batched_64_native
 
     function rocblas_zhpr2_strided_batched_64_typed(handle, uplo, n, alpha, x, incx, stride_x, y, &
@@ -58726,12 +58718,12 @@ contains
       integer(c_int), value :: transA
       integer(c_int), value :: diag
       integer(c_int), value :: n
-      real(c_float), target :: A(*)
+      real(c_float), target :: A(..)
       integer(c_int), value :: lda
-      real(c_float), target :: x(*)
+      real(c_float), target :: x(..)
       integer(c_int), value :: incx
       integer(c_int) :: strmv
-      strmv = rocblas_strmv_raw(handle, uplo, transA, diag, n, c_loc(A(1)), lda, c_loc(x(1)), incx)
+      strmv = rocblas_strmv_raw(handle, uplo, transA, diag, n, c_loc(A), lda, c_loc(x), incx)
     end function rocblas_strmv_native
 
     function rocblas_strmv_typed(handle, uplo, transA, diag, n, A, lda, x, incx) result(strmv)
@@ -58759,12 +58751,12 @@ contains
       integer(c_int), value :: transA
       integer(c_int), value :: diag
       integer(c_int), value :: n
-      real(c_double), target :: A(*)
+      real(c_double), target :: A(..)
       integer(c_int), value :: lda
-      real(c_double), target :: x(*)
+      real(c_double), target :: x(..)
       integer(c_int), value :: incx
       integer(c_int) :: dtrmv
-      dtrmv = rocblas_dtrmv_raw(handle, uplo, transA, diag, n, c_loc(A(1)), lda, c_loc(x(1)), incx)
+      dtrmv = rocblas_dtrmv_raw(handle, uplo, transA, diag, n, c_loc(A), lda, c_loc(x), incx)
     end function rocblas_dtrmv_native
 
     function rocblas_dtrmv_typed(handle, uplo, transA, diag, n, A, lda, x, incx) result(dtrmv)
@@ -58792,12 +58784,12 @@ contains
       integer(c_int), value :: transA
       integer(c_int), value :: diag
       integer(c_int), value :: n
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: A(..)
       integer(c_int), value :: lda
-      complex(c_float_complex), target :: x(*)
+      complex(c_float_complex), target :: x(..)
       integer(c_int), value :: incx
       integer(c_int) :: ctrmv
-      ctrmv = rocblas_ctrmv_raw(handle, uplo, transA, diag, n, c_loc(A(1)), lda, c_loc(x(1)), incx)
+      ctrmv = rocblas_ctrmv_raw(handle, uplo, transA, diag, n, c_loc(A), lda, c_loc(x), incx)
     end function rocblas_ctrmv_native
 
     function rocblas_ctrmv_typed(handle, uplo, transA, diag, n, A, lda, x, incx) result(ctrmv)
@@ -58825,12 +58817,12 @@ contains
       integer(c_int), value :: transA
       integer(c_int), value :: diag
       integer(c_int), value :: n
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: A(..)
       integer(c_int), value :: lda
-      complex(c_double_complex), target :: x(*)
+      complex(c_double_complex), target :: x(..)
       integer(c_int), value :: incx
       integer(c_int) :: ztrmv
-      ztrmv = rocblas_ztrmv_raw(handle, uplo, transA, diag, n, c_loc(A(1)), lda, c_loc(x(1)), incx)
+      ztrmv = rocblas_ztrmv_raw(handle, uplo, transA, diag, n, c_loc(A), lda, c_loc(x), incx)
     end function rocblas_ztrmv_native
 
     function rocblas_ztrmv_typed(handle, uplo, transA, diag, n, A, lda, x, incx) result(ztrmv)
@@ -58859,13 +58851,12 @@ contains
       integer(c_int), value :: transA
       integer(c_int), value :: diag
       integer(c_long), value :: n
-      real(c_float), target :: A(*)
+      real(c_float), target :: A(..)
       integer(c_long), value :: lda
-      real(c_float), target :: x(*)
+      real(c_float), target :: x(..)
       integer(c_long), value :: incx
       integer(c_int) :: strmv_64
-      strmv_64 = rocblas_strmv_64_raw(handle, uplo, transA, diag, n, c_loc(A(1)), lda, c_loc(x( &
-        1)), incx)
+      strmv_64 = rocblas_strmv_64_raw(handle, uplo, transA, diag, n, c_loc(A), lda, c_loc(x), incx)
     end function rocblas_strmv_64_native
 
     function rocblas_strmv_64_typed(handle, uplo, transA, diag, n, A, lda, x, incx) result(strmv_64)
@@ -58894,13 +58885,12 @@ contains
       integer(c_int), value :: transA
       integer(c_int), value :: diag
       integer(c_long), value :: n
-      real(c_double), target :: A(*)
+      real(c_double), target :: A(..)
       integer(c_long), value :: lda
-      real(c_double), target :: x(*)
+      real(c_double), target :: x(..)
       integer(c_long), value :: incx
       integer(c_int) :: dtrmv_64
-      dtrmv_64 = rocblas_dtrmv_64_raw(handle, uplo, transA, diag, n, c_loc(A(1)), lda, c_loc(x( &
-        1)), incx)
+      dtrmv_64 = rocblas_dtrmv_64_raw(handle, uplo, transA, diag, n, c_loc(A), lda, c_loc(x), incx)
     end function rocblas_dtrmv_64_native
 
     function rocblas_dtrmv_64_typed(handle, uplo, transA, diag, n, A, lda, x, incx) result(dtrmv_64)
@@ -58929,13 +58919,12 @@ contains
       integer(c_int), value :: transA
       integer(c_int), value :: diag
       integer(c_long), value :: n
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: A(..)
       integer(c_long), value :: lda
-      complex(c_float_complex), target :: x(*)
+      complex(c_float_complex), target :: x(..)
       integer(c_long), value :: incx
       integer(c_int) :: ctrmv_64
-      ctrmv_64 = rocblas_ctrmv_64_raw(handle, uplo, transA, diag, n, c_loc(A(1)), lda, c_loc(x( &
-        1)), incx)
+      ctrmv_64 = rocblas_ctrmv_64_raw(handle, uplo, transA, diag, n, c_loc(A), lda, c_loc(x), incx)
     end function rocblas_ctrmv_64_native
 
     function rocblas_ctrmv_64_typed(handle, uplo, transA, diag, n, A, lda, x, incx) result(ctrmv_64)
@@ -58964,13 +58953,12 @@ contains
       integer(c_int), value :: transA
       integer(c_int), value :: diag
       integer(c_long), value :: n
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: A(..)
       integer(c_long), value :: lda
-      complex(c_double_complex), target :: x(*)
+      complex(c_double_complex), target :: x(..)
       integer(c_long), value :: incx
       integer(c_int) :: ztrmv_64
-      ztrmv_64 = rocblas_ztrmv_64_raw(handle, uplo, transA, diag, n, c_loc(A(1)), lda, c_loc(x( &
-        1)), incx)
+      ztrmv_64 = rocblas_ztrmv_64_raw(handle, uplo, transA, diag, n, c_loc(A), lda, c_loc(x), incx)
     end function rocblas_ztrmv_64_native
 
     function rocblas_ztrmv_64_typed(handle, uplo, transA, diag, n, A, lda, x, incx) result(ztrmv_64)
@@ -59159,16 +59147,16 @@ contains
       integer(c_int), value :: transA
       integer(c_int), value :: diag
       integer(c_int), value :: n
-      real(c_float), target :: A(*)
+      real(c_float), target :: A(..)
       integer(c_int), value :: lda
       integer(c_long), value :: stride_A
-      real(c_float), target :: x(*)
+      real(c_float), target :: x(..)
       integer(c_int), value :: incx
       integer(c_long), value :: stride_x
       integer(c_int), value :: batch_count
       integer(c_int) :: strmv_strided_batched
       strmv_strided_batched = rocblas_strmv_strided_batched_raw(handle, uplo, transA, diag, n, &
-        c_loc(A(1)), lda, stride_A, c_loc(x(1)), incx, stride_x, batch_count)
+        c_loc(A), lda, stride_A, c_loc(x), incx, stride_x, batch_count)
     end function rocblas_strmv_strided_batched_native
 
     function rocblas_strmv_strided_batched_typed(handle, uplo, transA, diag, n, A, lda, stride_A, &
@@ -59202,16 +59190,16 @@ contains
       integer(c_int), value :: transA
       integer(c_int), value :: diag
       integer(c_int), value :: n
-      real(c_double), target :: A(*)
+      real(c_double), target :: A(..)
       integer(c_int), value :: lda
       integer(c_long), value :: stride_A
-      real(c_double), target :: x(*)
+      real(c_double), target :: x(..)
       integer(c_int), value :: incx
       integer(c_long), value :: stride_x
       integer(c_int), value :: batch_count
       integer(c_int) :: dtrmv_strided_batched
       dtrmv_strided_batched = rocblas_dtrmv_strided_batched_raw(handle, uplo, transA, diag, n, &
-        c_loc(A(1)), lda, stride_A, c_loc(x(1)), incx, stride_x, batch_count)
+        c_loc(A), lda, stride_A, c_loc(x), incx, stride_x, batch_count)
     end function rocblas_dtrmv_strided_batched_native
 
     function rocblas_dtrmv_strided_batched_typed(handle, uplo, transA, diag, n, A, lda, stride_A, &
@@ -59245,16 +59233,16 @@ contains
       integer(c_int), value :: transA
       integer(c_int), value :: diag
       integer(c_int), value :: n
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: A(..)
       integer(c_int), value :: lda
       integer(c_long), value :: stride_A
-      complex(c_float_complex), target :: x(*)
+      complex(c_float_complex), target :: x(..)
       integer(c_int), value :: incx
       integer(c_long), value :: stride_x
       integer(c_int), value :: batch_count
       integer(c_int) :: ctrmv_strided_batched
       ctrmv_strided_batched = rocblas_ctrmv_strided_batched_raw(handle, uplo, transA, diag, n, &
-        c_loc(A(1)), lda, stride_A, c_loc(x(1)), incx, stride_x, batch_count)
+        c_loc(A), lda, stride_A, c_loc(x), incx, stride_x, batch_count)
     end function rocblas_ctrmv_strided_batched_native
 
     function rocblas_ctrmv_strided_batched_typed(handle, uplo, transA, diag, n, A, lda, stride_A, &
@@ -59288,16 +59276,16 @@ contains
       integer(c_int), value :: transA
       integer(c_int), value :: diag
       integer(c_int), value :: n
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: A(..)
       integer(c_int), value :: lda
       integer(c_long), value :: stride_A
-      complex(c_double_complex), target :: x(*)
+      complex(c_double_complex), target :: x(..)
       integer(c_int), value :: incx
       integer(c_long), value :: stride_x
       integer(c_int), value :: batch_count
       integer(c_int) :: ztrmv_strided_batched
       ztrmv_strided_batched = rocblas_ztrmv_strided_batched_raw(handle, uplo, transA, diag, n, &
-        c_loc(A(1)), lda, stride_A, c_loc(x(1)), incx, stride_x, batch_count)
+        c_loc(A), lda, stride_A, c_loc(x), incx, stride_x, batch_count)
     end function rocblas_ztrmv_strided_batched_native
 
     function rocblas_ztrmv_strided_batched_typed(handle, uplo, transA, diag, n, A, lda, stride_A, &
@@ -59331,16 +59319,16 @@ contains
       integer(c_int), value :: transA
       integer(c_int), value :: diag
       integer(c_long), value :: n
-      real(c_float), target :: A(*)
+      real(c_float), target :: A(..)
       integer(c_long), value :: lda
       integer(c_long), value :: stride_A
-      real(c_float), target :: x(*)
+      real(c_float), target :: x(..)
       integer(c_long), value :: incx
       integer(c_long), value :: stride_x
       integer(c_long), value :: batch_count
       integer(c_int) :: strmv_strided_batched_64
       strmv_strided_batched_64 = rocblas_strmv_strided_batched_64_raw(handle, uplo, transA, diag, &
-        n, c_loc(A(1)), lda, stride_A, c_loc(x(1)), incx, stride_x, batch_count)
+        n, c_loc(A), lda, stride_A, c_loc(x), incx, stride_x, batch_count)
     end function rocblas_strmv_strided_batched_64_native
 
     function rocblas_strmv_strided_batched_64_typed(handle, uplo, transA, diag, n, A, lda, &
@@ -59374,16 +59362,16 @@ contains
       integer(c_int), value :: transA
       integer(c_int), value :: diag
       integer(c_long), value :: n
-      real(c_double), target :: A(*)
+      real(c_double), target :: A(..)
       integer(c_long), value :: lda
       integer(c_long), value :: stride_A
-      real(c_double), target :: x(*)
+      real(c_double), target :: x(..)
       integer(c_long), value :: incx
       integer(c_long), value :: stride_x
       integer(c_long), value :: batch_count
       integer(c_int) :: dtrmv_strided_batched_64
       dtrmv_strided_batched_64 = rocblas_dtrmv_strided_batched_64_raw(handle, uplo, transA, diag, &
-        n, c_loc(A(1)), lda, stride_A, c_loc(x(1)), incx, stride_x, batch_count)
+        n, c_loc(A), lda, stride_A, c_loc(x), incx, stride_x, batch_count)
     end function rocblas_dtrmv_strided_batched_64_native
 
     function rocblas_dtrmv_strided_batched_64_typed(handle, uplo, transA, diag, n, A, lda, &
@@ -59417,16 +59405,16 @@ contains
       integer(c_int), value :: transA
       integer(c_int), value :: diag
       integer(c_long), value :: n
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: A(..)
       integer(c_long), value :: lda
       integer(c_long), value :: stride_A
-      complex(c_float_complex), target :: x(*)
+      complex(c_float_complex), target :: x(..)
       integer(c_long), value :: incx
       integer(c_long), value :: stride_x
       integer(c_long), value :: batch_count
       integer(c_int) :: ctrmv_strided_batched_64
       ctrmv_strided_batched_64 = rocblas_ctrmv_strided_batched_64_raw(handle, uplo, transA, diag, &
-        n, c_loc(A(1)), lda, stride_A, c_loc(x(1)), incx, stride_x, batch_count)
+        n, c_loc(A), lda, stride_A, c_loc(x), incx, stride_x, batch_count)
     end function rocblas_ctrmv_strided_batched_64_native
 
     function rocblas_ctrmv_strided_batched_64_typed(handle, uplo, transA, diag, n, A, lda, &
@@ -59460,16 +59448,16 @@ contains
       integer(c_int), value :: transA
       integer(c_int), value :: diag
       integer(c_long), value :: n
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: A(..)
       integer(c_long), value :: lda
       integer(c_long), value :: stride_A
-      complex(c_double_complex), target :: x(*)
+      complex(c_double_complex), target :: x(..)
       integer(c_long), value :: incx
       integer(c_long), value :: stride_x
       integer(c_long), value :: batch_count
       integer(c_int) :: ztrmv_strided_batched_64
       ztrmv_strided_batched_64 = rocblas_ztrmv_strided_batched_64_raw(handle, uplo, transA, diag, &
-        n, c_loc(A(1)), lda, stride_A, c_loc(x(1)), incx, stride_x, batch_count)
+        n, c_loc(A), lda, stride_A, c_loc(x), incx, stride_x, batch_count)
     end function rocblas_ztrmv_strided_batched_64_native
 
     function rocblas_ztrmv_strided_batched_64_typed(handle, uplo, transA, diag, n, A, lda, &
@@ -59502,11 +59490,11 @@ contains
       integer(c_int), value :: transA
       integer(c_int), value :: diag
       integer(c_int), value :: n
-      real(c_float), target :: A(*)
-      real(c_float), target :: x(*)
+      real(c_float), target :: A(..)
+      real(c_float), target :: x(..)
       integer(c_int), value :: incx
       integer(c_int) :: stpmv
-      stpmv = rocblas_stpmv_raw(handle, uplo, transA, diag, n, c_loc(A(1)), c_loc(x(1)), incx)
+      stpmv = rocblas_stpmv_raw(handle, uplo, transA, diag, n, c_loc(A), c_loc(x), incx)
     end function rocblas_stpmv_native
 
     function rocblas_stpmv_typed(handle, uplo, transA, diag, n, A, x, incx) result(stpmv)
@@ -59533,11 +59521,11 @@ contains
       integer(c_int), value :: transA
       integer(c_int), value :: diag
       integer(c_int), value :: n
-      real(c_double), target :: A(*)
-      real(c_double), target :: x(*)
+      real(c_double), target :: A(..)
+      real(c_double), target :: x(..)
       integer(c_int), value :: incx
       integer(c_int) :: dtpmv
-      dtpmv = rocblas_dtpmv_raw(handle, uplo, transA, diag, n, c_loc(A(1)), c_loc(x(1)), incx)
+      dtpmv = rocblas_dtpmv_raw(handle, uplo, transA, diag, n, c_loc(A), c_loc(x), incx)
     end function rocblas_dtpmv_native
 
     function rocblas_dtpmv_typed(handle, uplo, transA, diag, n, A, x, incx) result(dtpmv)
@@ -59564,11 +59552,11 @@ contains
       integer(c_int), value :: transA
       integer(c_int), value :: diag
       integer(c_int), value :: n
-      complex(c_float_complex), target :: A(*)
-      complex(c_float_complex), target :: x(*)
+      complex(c_float_complex), target :: A(..)
+      complex(c_float_complex), target :: x(..)
       integer(c_int), value :: incx
       integer(c_int) :: ctpmv
-      ctpmv = rocblas_ctpmv_raw(handle, uplo, transA, diag, n, c_loc(A(1)), c_loc(x(1)), incx)
+      ctpmv = rocblas_ctpmv_raw(handle, uplo, transA, diag, n, c_loc(A), c_loc(x), incx)
     end function rocblas_ctpmv_native
 
     function rocblas_ctpmv_typed(handle, uplo, transA, diag, n, A, x, incx) result(ctpmv)
@@ -59595,11 +59583,11 @@ contains
       integer(c_int), value :: transA
       integer(c_int), value :: diag
       integer(c_int), value :: n
-      complex(c_double_complex), target :: A(*)
-      complex(c_double_complex), target :: x(*)
+      complex(c_double_complex), target :: A(..)
+      complex(c_double_complex), target :: x(..)
       integer(c_int), value :: incx
       integer(c_int) :: ztpmv
-      ztpmv = rocblas_ztpmv_raw(handle, uplo, transA, diag, n, c_loc(A(1)), c_loc(x(1)), incx)
+      ztpmv = rocblas_ztpmv_raw(handle, uplo, transA, diag, n, c_loc(A), c_loc(x), incx)
     end function rocblas_ztpmv_native
 
     function rocblas_ztpmv_typed(handle, uplo, transA, diag, n, A, x, incx) result(ztpmv)
@@ -59626,11 +59614,11 @@ contains
       integer(c_int), value :: transA
       integer(c_int), value :: diag
       integer(c_long), value :: n
-      real(c_float), target :: A(*)
-      real(c_float), target :: x(*)
+      real(c_float), target :: A(..)
+      real(c_float), target :: x(..)
       integer(c_long), value :: incx
       integer(c_int) :: stpmv_64
-      stpmv_64 = rocblas_stpmv_64_raw(handle, uplo, transA, diag, n, c_loc(A(1)), c_loc(x(1)), incx)
+      stpmv_64 = rocblas_stpmv_64_raw(handle, uplo, transA, diag, n, c_loc(A), c_loc(x), incx)
     end function rocblas_stpmv_64_native
 
     function rocblas_stpmv_64_typed(handle, uplo, transA, diag, n, A, x, incx) result(stpmv_64)
@@ -59657,11 +59645,11 @@ contains
       integer(c_int), value :: transA
       integer(c_int), value :: diag
       integer(c_long), value :: n
-      real(c_double), target :: A(*)
-      real(c_double), target :: x(*)
+      real(c_double), target :: A(..)
+      real(c_double), target :: x(..)
       integer(c_long), value :: incx
       integer(c_int) :: dtpmv_64
-      dtpmv_64 = rocblas_dtpmv_64_raw(handle, uplo, transA, diag, n, c_loc(A(1)), c_loc(x(1)), incx)
+      dtpmv_64 = rocblas_dtpmv_64_raw(handle, uplo, transA, diag, n, c_loc(A), c_loc(x), incx)
     end function rocblas_dtpmv_64_native
 
     function rocblas_dtpmv_64_typed(handle, uplo, transA, diag, n, A, x, incx) result(dtpmv_64)
@@ -59688,11 +59676,11 @@ contains
       integer(c_int), value :: transA
       integer(c_int), value :: diag
       integer(c_long), value :: n
-      complex(c_float_complex), target :: A(*)
-      complex(c_float_complex), target :: x(*)
+      complex(c_float_complex), target :: A(..)
+      complex(c_float_complex), target :: x(..)
       integer(c_long), value :: incx
       integer(c_int) :: ctpmv_64
-      ctpmv_64 = rocblas_ctpmv_64_raw(handle, uplo, transA, diag, n, c_loc(A(1)), c_loc(x(1)), incx)
+      ctpmv_64 = rocblas_ctpmv_64_raw(handle, uplo, transA, diag, n, c_loc(A), c_loc(x), incx)
     end function rocblas_ctpmv_64_native
 
     function rocblas_ctpmv_64_typed(handle, uplo, transA, diag, n, A, x, incx) result(ctpmv_64)
@@ -59719,11 +59707,11 @@ contains
       integer(c_int), value :: transA
       integer(c_int), value :: diag
       integer(c_long), value :: n
-      complex(c_double_complex), target :: A(*)
-      complex(c_double_complex), target :: x(*)
+      complex(c_double_complex), target :: A(..)
+      complex(c_double_complex), target :: x(..)
       integer(c_long), value :: incx
       integer(c_int) :: ztpmv_64
-      ztpmv_64 = rocblas_ztpmv_64_raw(handle, uplo, transA, diag, n, c_loc(A(1)), c_loc(x(1)), incx)
+      ztpmv_64 = rocblas_ztpmv_64_raw(handle, uplo, transA, diag, n, c_loc(A), c_loc(x), incx)
     end function rocblas_ztpmv_64_native
 
     function rocblas_ztpmv_64_typed(handle, uplo, transA, diag, n, A, x, incx) result(ztpmv_64)
@@ -59903,15 +59891,15 @@ contains
       integer(c_int), value :: transA
       integer(c_int), value :: diag
       integer(c_int), value :: n
-      real(c_float), target :: A(*)
+      real(c_float), target :: A(..)
       integer(c_long), value :: stride_A
-      real(c_float), target :: x(*)
+      real(c_float), target :: x(..)
       integer(c_int), value :: incx
       integer(c_long), value :: stride_x
       integer(c_int), value :: batch_count
       integer(c_int) :: stpmv_strided_batched
       stpmv_strided_batched = rocblas_stpmv_strided_batched_raw(handle, uplo, transA, diag, n, &
-        c_loc(A(1)), stride_A, c_loc(x(1)), incx, stride_x, batch_count)
+        c_loc(A), stride_A, c_loc(x), incx, stride_x, batch_count)
     end function rocblas_stpmv_strided_batched_native
 
     function rocblas_stpmv_strided_batched_typed(handle, uplo, transA, diag, n, A, stride_A, x, &
@@ -59944,15 +59932,15 @@ contains
       integer(c_int), value :: transA
       integer(c_int), value :: diag
       integer(c_int), value :: n
-      real(c_double), target :: A(*)
+      real(c_double), target :: A(..)
       integer(c_long), value :: stride_A
-      real(c_double), target :: x(*)
+      real(c_double), target :: x(..)
       integer(c_int), value :: incx
       integer(c_long), value :: stride_x
       integer(c_int), value :: batch_count
       integer(c_int) :: dtpmv_strided_batched
       dtpmv_strided_batched = rocblas_dtpmv_strided_batched_raw(handle, uplo, transA, diag, n, &
-        c_loc(A(1)), stride_A, c_loc(x(1)), incx, stride_x, batch_count)
+        c_loc(A), stride_A, c_loc(x), incx, stride_x, batch_count)
     end function rocblas_dtpmv_strided_batched_native
 
     function rocblas_dtpmv_strided_batched_typed(handle, uplo, transA, diag, n, A, stride_A, x, &
@@ -59985,15 +59973,15 @@ contains
       integer(c_int), value :: transA
       integer(c_int), value :: diag
       integer(c_int), value :: n
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: A(..)
       integer(c_long), value :: stride_A
-      complex(c_float_complex), target :: x(*)
+      complex(c_float_complex), target :: x(..)
       integer(c_int), value :: incx
       integer(c_long), value :: stride_x
       integer(c_int), value :: batch_count
       integer(c_int) :: ctpmv_strided_batched
       ctpmv_strided_batched = rocblas_ctpmv_strided_batched_raw(handle, uplo, transA, diag, n, &
-        c_loc(A(1)), stride_A, c_loc(x(1)), incx, stride_x, batch_count)
+        c_loc(A), stride_A, c_loc(x), incx, stride_x, batch_count)
     end function rocblas_ctpmv_strided_batched_native
 
     function rocblas_ctpmv_strided_batched_typed(handle, uplo, transA, diag, n, A, stride_A, x, &
@@ -60026,15 +60014,15 @@ contains
       integer(c_int), value :: transA
       integer(c_int), value :: diag
       integer(c_int), value :: n
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: A(..)
       integer(c_long), value :: stride_A
-      complex(c_double_complex), target :: x(*)
+      complex(c_double_complex), target :: x(..)
       integer(c_int), value :: incx
       integer(c_long), value :: stride_x
       integer(c_int), value :: batch_count
       integer(c_int) :: ztpmv_strided_batched
       ztpmv_strided_batched = rocblas_ztpmv_strided_batched_raw(handle, uplo, transA, diag, n, &
-        c_loc(A(1)), stride_A, c_loc(x(1)), incx, stride_x, batch_count)
+        c_loc(A), stride_A, c_loc(x), incx, stride_x, batch_count)
     end function rocblas_ztpmv_strided_batched_native
 
     function rocblas_ztpmv_strided_batched_typed(handle, uplo, transA, diag, n, A, stride_A, x, &
@@ -60067,15 +60055,15 @@ contains
       integer(c_int), value :: transA
       integer(c_int), value :: diag
       integer(c_long), value :: n
-      real(c_float), target :: A(*)
+      real(c_float), target :: A(..)
       integer(c_long), value :: stride_A
-      real(c_float), target :: x(*)
+      real(c_float), target :: x(..)
       integer(c_long), value :: incx
       integer(c_long), value :: stride_x
       integer(c_long), value :: batch_count
       integer(c_int) :: stpmv_strided_batched_64
       stpmv_strided_batched_64 = rocblas_stpmv_strided_batched_64_raw(handle, uplo, transA, diag, &
-        n, c_loc(A(1)), stride_A, c_loc(x(1)), incx, stride_x, batch_count)
+        n, c_loc(A), stride_A, c_loc(x), incx, stride_x, batch_count)
     end function rocblas_stpmv_strided_batched_64_native
 
     function rocblas_stpmv_strided_batched_64_typed(handle, uplo, transA, diag, n, A, stride_A, x, &
@@ -60108,15 +60096,15 @@ contains
       integer(c_int), value :: transA
       integer(c_int), value :: diag
       integer(c_long), value :: n
-      real(c_double), target :: A(*)
+      real(c_double), target :: A(..)
       integer(c_long), value :: stride_A
-      real(c_double), target :: x(*)
+      real(c_double), target :: x(..)
       integer(c_long), value :: incx
       integer(c_long), value :: stride_x
       integer(c_long), value :: batch_count
       integer(c_int) :: dtpmv_strided_batched_64
       dtpmv_strided_batched_64 = rocblas_dtpmv_strided_batched_64_raw(handle, uplo, transA, diag, &
-        n, c_loc(A(1)), stride_A, c_loc(x(1)), incx, stride_x, batch_count)
+        n, c_loc(A), stride_A, c_loc(x), incx, stride_x, batch_count)
     end function rocblas_dtpmv_strided_batched_64_native
 
     function rocblas_dtpmv_strided_batched_64_typed(handle, uplo, transA, diag, n, A, stride_A, x, &
@@ -60149,15 +60137,15 @@ contains
       integer(c_int), value :: transA
       integer(c_int), value :: diag
       integer(c_long), value :: n
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: A(..)
       integer(c_long), value :: stride_A
-      complex(c_float_complex), target :: x(*)
+      complex(c_float_complex), target :: x(..)
       integer(c_long), value :: incx
       integer(c_long), value :: stride_x
       integer(c_long), value :: batch_count
       integer(c_int) :: ctpmv_strided_batched_64
       ctpmv_strided_batched_64 = rocblas_ctpmv_strided_batched_64_raw(handle, uplo, transA, diag, &
-        n, c_loc(A(1)), stride_A, c_loc(x(1)), incx, stride_x, batch_count)
+        n, c_loc(A), stride_A, c_loc(x), incx, stride_x, batch_count)
     end function rocblas_ctpmv_strided_batched_64_native
 
     function rocblas_ctpmv_strided_batched_64_typed(handle, uplo, transA, diag, n, A, stride_A, x, &
@@ -60190,15 +60178,15 @@ contains
       integer(c_int), value :: transA
       integer(c_int), value :: diag
       integer(c_long), value :: n
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: A(..)
       integer(c_long), value :: stride_A
-      complex(c_double_complex), target :: x(*)
+      complex(c_double_complex), target :: x(..)
       integer(c_long), value :: incx
       integer(c_long), value :: stride_x
       integer(c_long), value :: batch_count
       integer(c_int) :: ztpmv_strided_batched_64
       ztpmv_strided_batched_64 = rocblas_ztpmv_strided_batched_64_raw(handle, uplo, transA, diag, &
-        n, c_loc(A(1)), stride_A, c_loc(x(1)), incx, stride_x, batch_count)
+        n, c_loc(A), stride_A, c_loc(x), incx, stride_x, batch_count)
     end function rocblas_ztpmv_strided_batched_64_native
 
     function rocblas_ztpmv_strided_batched_64_typed(handle, uplo, transA, diag, n, A, stride_A, x, &
@@ -60231,13 +60219,12 @@ contains
       integer(c_int), value :: diag
       integer(c_int), value :: n
       integer(c_int), value :: k
-      real(c_float), target :: A(*)
+      real(c_float), target :: A(..)
       integer(c_int), value :: lda
-      real(c_float), target :: x(*)
+      real(c_float), target :: x(..)
       integer(c_int), value :: incx
       integer(c_int) :: stbmv
-      stbmv = rocblas_stbmv_raw(handle, uplo, trans, diag, n, k, c_loc(A(1)), lda, c_loc(x(1)), &
-        incx)
+      stbmv = rocblas_stbmv_raw(handle, uplo, trans, diag, n, k, c_loc(A), lda, c_loc(x), incx)
     end function rocblas_stbmv_native
 
     function rocblas_stbmv_typed(handle, uplo, trans, diag, n, k, A, lda, x, incx) result(stbmv)
@@ -60267,13 +60254,12 @@ contains
       integer(c_int), value :: diag
       integer(c_int), value :: n
       integer(c_int), value :: k
-      real(c_double), target :: A(*)
+      real(c_double), target :: A(..)
       integer(c_int), value :: lda
-      real(c_double), target :: x(*)
+      real(c_double), target :: x(..)
       integer(c_int), value :: incx
       integer(c_int) :: dtbmv
-      dtbmv = rocblas_dtbmv_raw(handle, uplo, trans, diag, n, k, c_loc(A(1)), lda, c_loc(x(1)), &
-        incx)
+      dtbmv = rocblas_dtbmv_raw(handle, uplo, trans, diag, n, k, c_loc(A), lda, c_loc(x), incx)
     end function rocblas_dtbmv_native
 
     function rocblas_dtbmv_typed(handle, uplo, trans, diag, n, k, A, lda, x, incx) result(dtbmv)
@@ -60303,13 +60289,12 @@ contains
       integer(c_int), value :: diag
       integer(c_int), value :: n
       integer(c_int), value :: k
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: A(..)
       integer(c_int), value :: lda
-      complex(c_float_complex), target :: x(*)
+      complex(c_float_complex), target :: x(..)
       integer(c_int), value :: incx
       integer(c_int) :: ctbmv
-      ctbmv = rocblas_ctbmv_raw(handle, uplo, trans, diag, n, k, c_loc(A(1)), lda, c_loc(x(1)), &
-        incx)
+      ctbmv = rocblas_ctbmv_raw(handle, uplo, trans, diag, n, k, c_loc(A), lda, c_loc(x), incx)
     end function rocblas_ctbmv_native
 
     function rocblas_ctbmv_typed(handle, uplo, trans, diag, n, k, A, lda, x, incx) result(ctbmv)
@@ -60339,13 +60324,12 @@ contains
       integer(c_int), value :: diag
       integer(c_int), value :: n
       integer(c_int), value :: k
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: A(..)
       integer(c_int), value :: lda
-      complex(c_double_complex), target :: x(*)
+      complex(c_double_complex), target :: x(..)
       integer(c_int), value :: incx
       integer(c_int) :: ztbmv
-      ztbmv = rocblas_ztbmv_raw(handle, uplo, trans, diag, n, k, c_loc(A(1)), lda, c_loc(x(1)), &
-        incx)
+      ztbmv = rocblas_ztbmv_raw(handle, uplo, trans, diag, n, k, c_loc(A), lda, c_loc(x), incx)
     end function rocblas_ztbmv_native
 
     function rocblas_ztbmv_typed(handle, uplo, trans, diag, n, k, A, lda, x, incx) result(ztbmv)
@@ -60376,13 +60360,13 @@ contains
       integer(c_int), value :: diag
       integer(c_long), value :: n
       integer(c_long), value :: k
-      real(c_float), target :: A(*)
+      real(c_float), target :: A(..)
       integer(c_long), value :: lda
-      real(c_float), target :: x(*)
+      real(c_float), target :: x(..)
       integer(c_long), value :: incx
       integer(c_int) :: stbmv_64
-      stbmv_64 = rocblas_stbmv_64_raw(handle, uplo, trans, diag, n, k, c_loc(A(1)), lda, c_loc(x( &
-        1)), incx)
+      stbmv_64 = rocblas_stbmv_64_raw(handle, uplo, trans, diag, n, k, c_loc(A), lda, c_loc(x), &
+        incx)
     end function rocblas_stbmv_64_native
 
     function rocblas_stbmv_64_typed(handle, uplo, trans, diag, n, k, A, lda, x, incx) result( &
@@ -60414,13 +60398,13 @@ contains
       integer(c_int), value :: diag
       integer(c_long), value :: n
       integer(c_long), value :: k
-      real(c_double), target :: A(*)
+      real(c_double), target :: A(..)
       integer(c_long), value :: lda
-      real(c_double), target :: x(*)
+      real(c_double), target :: x(..)
       integer(c_long), value :: incx
       integer(c_int) :: dtbmv_64
-      dtbmv_64 = rocblas_dtbmv_64_raw(handle, uplo, trans, diag, n, k, c_loc(A(1)), lda, c_loc(x( &
-        1)), incx)
+      dtbmv_64 = rocblas_dtbmv_64_raw(handle, uplo, trans, diag, n, k, c_loc(A), lda, c_loc(x), &
+        incx)
     end function rocblas_dtbmv_64_native
 
     function rocblas_dtbmv_64_typed(handle, uplo, trans, diag, n, k, A, lda, x, incx) result( &
@@ -60452,13 +60436,13 @@ contains
       integer(c_int), value :: diag
       integer(c_long), value :: n
       integer(c_long), value :: k
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: A(..)
       integer(c_long), value :: lda
-      complex(c_float_complex), target :: x(*)
+      complex(c_float_complex), target :: x(..)
       integer(c_long), value :: incx
       integer(c_int) :: ctbmv_64
-      ctbmv_64 = rocblas_ctbmv_64_raw(handle, uplo, trans, diag, n, k, c_loc(A(1)), lda, c_loc(x( &
-        1)), incx)
+      ctbmv_64 = rocblas_ctbmv_64_raw(handle, uplo, trans, diag, n, k, c_loc(A), lda, c_loc(x), &
+        incx)
     end function rocblas_ctbmv_64_native
 
     function rocblas_ctbmv_64_typed(handle, uplo, trans, diag, n, k, A, lda, x, incx) result( &
@@ -60490,13 +60474,13 @@ contains
       integer(c_int), value :: diag
       integer(c_long), value :: n
       integer(c_long), value :: k
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: A(..)
       integer(c_long), value :: lda
-      complex(c_double_complex), target :: x(*)
+      complex(c_double_complex), target :: x(..)
       integer(c_long), value :: incx
       integer(c_int) :: ztbmv_64
-      ztbmv_64 = rocblas_ztbmv_64_raw(handle, uplo, trans, diag, n, k, c_loc(A(1)), lda, c_loc(x( &
-        1)), incx)
+      ztbmv_64 = rocblas_ztbmv_64_raw(handle, uplo, trans, diag, n, k, c_loc(A), lda, c_loc(x), &
+        incx)
     end function rocblas_ztbmv_64_native
 
     function rocblas_ztbmv_64_typed(handle, uplo, trans, diag, n, k, A, lda, x, incx) result( &
@@ -60696,16 +60680,16 @@ contains
       integer(c_int), value :: diag
       integer(c_int), value :: n
       integer(c_int), value :: k
-      real(c_float), target :: A(*)
+      real(c_float), target :: A(..)
       integer(c_int), value :: lda
       integer(c_long), value :: stride_A
-      real(c_float), target :: x(*)
+      real(c_float), target :: x(..)
       integer(c_int), value :: incx
       integer(c_long), value :: stride_x
       integer(c_int), value :: batch_count
       integer(c_int) :: stbmv_strided_batched
       stbmv_strided_batched = rocblas_stbmv_strided_batched_raw(handle, uplo, trans, diag, n, k, &
-        c_loc(A(1)), lda, stride_A, c_loc(x(1)), incx, stride_x, batch_count)
+        c_loc(A), lda, stride_A, c_loc(x), incx, stride_x, batch_count)
     end function rocblas_stbmv_strided_batched_native
 
     function rocblas_stbmv_strided_batched_typed(handle, uplo, trans, diag, n, k, A, lda, &
@@ -60741,16 +60725,16 @@ contains
       integer(c_int), value :: diag
       integer(c_int), value :: n
       integer(c_int), value :: k
-      real(c_double), target :: A(*)
+      real(c_double), target :: A(..)
       integer(c_int), value :: lda
       integer(c_long), value :: stride_A
-      real(c_double), target :: x(*)
+      real(c_double), target :: x(..)
       integer(c_int), value :: incx
       integer(c_long), value :: stride_x
       integer(c_int), value :: batch_count
       integer(c_int) :: dtbmv_strided_batched
       dtbmv_strided_batched = rocblas_dtbmv_strided_batched_raw(handle, uplo, trans, diag, n, k, &
-        c_loc(A(1)), lda, stride_A, c_loc(x(1)), incx, stride_x, batch_count)
+        c_loc(A), lda, stride_A, c_loc(x), incx, stride_x, batch_count)
     end function rocblas_dtbmv_strided_batched_native
 
     function rocblas_dtbmv_strided_batched_typed(handle, uplo, trans, diag, n, k, A, lda, &
@@ -60786,16 +60770,16 @@ contains
       integer(c_int), value :: diag
       integer(c_int), value :: n
       integer(c_int), value :: k
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: A(..)
       integer(c_int), value :: lda
       integer(c_long), value :: stride_A
-      complex(c_float_complex), target :: x(*)
+      complex(c_float_complex), target :: x(..)
       integer(c_int), value :: incx
       integer(c_long), value :: stride_x
       integer(c_int), value :: batch_count
       integer(c_int) :: ctbmv_strided_batched
       ctbmv_strided_batched = rocblas_ctbmv_strided_batched_raw(handle, uplo, trans, diag, n, k, &
-        c_loc(A(1)), lda, stride_A, c_loc(x(1)), incx, stride_x, batch_count)
+        c_loc(A), lda, stride_A, c_loc(x), incx, stride_x, batch_count)
     end function rocblas_ctbmv_strided_batched_native
 
     function rocblas_ctbmv_strided_batched_typed(handle, uplo, trans, diag, n, k, A, lda, &
@@ -60831,16 +60815,16 @@ contains
       integer(c_int), value :: diag
       integer(c_int), value :: n
       integer(c_int), value :: k
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: A(..)
       integer(c_int), value :: lda
       integer(c_long), value :: stride_A
-      complex(c_double_complex), target :: x(*)
+      complex(c_double_complex), target :: x(..)
       integer(c_int), value :: incx
       integer(c_long), value :: stride_x
       integer(c_int), value :: batch_count
       integer(c_int) :: ztbmv_strided_batched
       ztbmv_strided_batched = rocblas_ztbmv_strided_batched_raw(handle, uplo, trans, diag, n, k, &
-        c_loc(A(1)), lda, stride_A, c_loc(x(1)), incx, stride_x, batch_count)
+        c_loc(A), lda, stride_A, c_loc(x), incx, stride_x, batch_count)
     end function rocblas_ztbmv_strided_batched_native
 
     function rocblas_ztbmv_strided_batched_typed(handle, uplo, trans, diag, n, k, A, lda, &
@@ -60876,16 +60860,16 @@ contains
       integer(c_int), value :: diag
       integer(c_long), value :: n
       integer(c_long), value :: k
-      real(c_float), target :: A(*)
+      real(c_float), target :: A(..)
       integer(c_long), value :: lda
       integer(c_long), value :: stride_A
-      real(c_float), target :: x(*)
+      real(c_float), target :: x(..)
       integer(c_long), value :: incx
       integer(c_long), value :: stride_x
       integer(c_long), value :: batch_count
       integer(c_int) :: stbmv_strided_batched_64
       stbmv_strided_batched_64 = rocblas_stbmv_strided_batched_64_raw(handle, uplo, trans, diag, &
-        n, k, c_loc(A(1)), lda, stride_A, c_loc(x(1)), incx, stride_x, batch_count)
+        n, k, c_loc(A), lda, stride_A, c_loc(x), incx, stride_x, batch_count)
     end function rocblas_stbmv_strided_batched_64_native
 
     function rocblas_stbmv_strided_batched_64_typed(handle, uplo, trans, diag, n, k, A, lda, &
@@ -60921,16 +60905,16 @@ contains
       integer(c_int), value :: diag
       integer(c_long), value :: n
       integer(c_long), value :: k
-      real(c_double), target :: A(*)
+      real(c_double), target :: A(..)
       integer(c_long), value :: lda
       integer(c_long), value :: stride_A
-      real(c_double), target :: x(*)
+      real(c_double), target :: x(..)
       integer(c_long), value :: incx
       integer(c_long), value :: stride_x
       integer(c_long), value :: batch_count
       integer(c_int) :: dtbmv_strided_batched_64
       dtbmv_strided_batched_64 = rocblas_dtbmv_strided_batched_64_raw(handle, uplo, trans, diag, &
-        n, k, c_loc(A(1)), lda, stride_A, c_loc(x(1)), incx, stride_x, batch_count)
+        n, k, c_loc(A), lda, stride_A, c_loc(x), incx, stride_x, batch_count)
     end function rocblas_dtbmv_strided_batched_64_native
 
     function rocblas_dtbmv_strided_batched_64_typed(handle, uplo, trans, diag, n, k, A, lda, &
@@ -60966,16 +60950,16 @@ contains
       integer(c_int), value :: diag
       integer(c_long), value :: n
       integer(c_long), value :: k
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: A(..)
       integer(c_long), value :: lda
       integer(c_long), value :: stride_A
-      complex(c_float_complex), target :: x(*)
+      complex(c_float_complex), target :: x(..)
       integer(c_long), value :: incx
       integer(c_long), value :: stride_x
       integer(c_long), value :: batch_count
       integer(c_int) :: ctbmv_strided_batched_64
       ctbmv_strided_batched_64 = rocblas_ctbmv_strided_batched_64_raw(handle, uplo, trans, diag, &
-        n, k, c_loc(A(1)), lda, stride_A, c_loc(x(1)), incx, stride_x, batch_count)
+        n, k, c_loc(A), lda, stride_A, c_loc(x), incx, stride_x, batch_count)
     end function rocblas_ctbmv_strided_batched_64_native
 
     function rocblas_ctbmv_strided_batched_64_typed(handle, uplo, trans, diag, n, k, A, lda, &
@@ -61011,16 +60995,16 @@ contains
       integer(c_int), value :: diag
       integer(c_long), value :: n
       integer(c_long), value :: k
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: A(..)
       integer(c_long), value :: lda
       integer(c_long), value :: stride_A
-      complex(c_double_complex), target :: x(*)
+      complex(c_double_complex), target :: x(..)
       integer(c_long), value :: incx
       integer(c_long), value :: stride_x
       integer(c_long), value :: batch_count
       integer(c_int) :: ztbmv_strided_batched_64
       ztbmv_strided_batched_64 = rocblas_ztbmv_strided_batched_64_raw(handle, uplo, trans, diag, &
-        n, k, c_loc(A(1)), lda, stride_A, c_loc(x(1)), incx, stride_x, batch_count)
+        n, k, c_loc(A), lda, stride_A, c_loc(x), incx, stride_x, batch_count)
     end function rocblas_ztbmv_strided_batched_64_native
 
     function rocblas_ztbmv_strided_batched_64_typed(handle, uplo, trans, diag, n, k, A, lda, &
@@ -61055,13 +61039,12 @@ contains
       integer(c_int), value :: diag
       integer(c_int), value :: n
       integer(c_int), value :: k
-      real(c_float), target :: A(*)
+      real(c_float), target :: A(..)
       integer(c_int), value :: lda
-      real(c_float), target :: x(*)
+      real(c_float), target :: x(..)
       integer(c_int), value :: incx
       integer(c_int) :: stbsv
-      stbsv = rocblas_stbsv_raw(handle, uplo, transA, diag, n, k, c_loc(A(1)), lda, c_loc(x(1)), &
-        incx)
+      stbsv = rocblas_stbsv_raw(handle, uplo, transA, diag, n, k, c_loc(A), lda, c_loc(x), incx)
     end function rocblas_stbsv_native
 
     function rocblas_stbsv_typed(handle, uplo, transA, diag, n, k, A, lda, x, incx) result(stbsv)
@@ -61091,13 +61074,12 @@ contains
       integer(c_int), value :: diag
       integer(c_int), value :: n
       integer(c_int), value :: k
-      real(c_double), target :: A(*)
+      real(c_double), target :: A(..)
       integer(c_int), value :: lda
-      real(c_double), target :: x(*)
+      real(c_double), target :: x(..)
       integer(c_int), value :: incx
       integer(c_int) :: dtbsv
-      dtbsv = rocblas_dtbsv_raw(handle, uplo, transA, diag, n, k, c_loc(A(1)), lda, c_loc(x(1)), &
-        incx)
+      dtbsv = rocblas_dtbsv_raw(handle, uplo, transA, diag, n, k, c_loc(A), lda, c_loc(x), incx)
     end function rocblas_dtbsv_native
 
     function rocblas_dtbsv_typed(handle, uplo, transA, diag, n, k, A, lda, x, incx) result(dtbsv)
@@ -61127,13 +61109,12 @@ contains
       integer(c_int), value :: diag
       integer(c_int), value :: n
       integer(c_int), value :: k
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: A(..)
       integer(c_int), value :: lda
-      complex(c_float_complex), target :: x(*)
+      complex(c_float_complex), target :: x(..)
       integer(c_int), value :: incx
       integer(c_int) :: ctbsv
-      ctbsv = rocblas_ctbsv_raw(handle, uplo, transA, diag, n, k, c_loc(A(1)), lda, c_loc(x(1)), &
-        incx)
+      ctbsv = rocblas_ctbsv_raw(handle, uplo, transA, diag, n, k, c_loc(A), lda, c_loc(x), incx)
     end function rocblas_ctbsv_native
 
     function rocblas_ctbsv_typed(handle, uplo, transA, diag, n, k, A, lda, x, incx) result(ctbsv)
@@ -61163,13 +61144,12 @@ contains
       integer(c_int), value :: diag
       integer(c_int), value :: n
       integer(c_int), value :: k
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: A(..)
       integer(c_int), value :: lda
-      complex(c_double_complex), target :: x(*)
+      complex(c_double_complex), target :: x(..)
       integer(c_int), value :: incx
       integer(c_int) :: ztbsv
-      ztbsv = rocblas_ztbsv_raw(handle, uplo, transA, diag, n, k, c_loc(A(1)), lda, c_loc(x(1)), &
-        incx)
+      ztbsv = rocblas_ztbsv_raw(handle, uplo, transA, diag, n, k, c_loc(A), lda, c_loc(x), incx)
     end function rocblas_ztbsv_native
 
     function rocblas_ztbsv_typed(handle, uplo, transA, diag, n, k, A, lda, x, incx) result(ztbsv)
@@ -61200,13 +61180,13 @@ contains
       integer(c_int), value :: diag
       integer(c_long), value :: n
       integer(c_long), value :: k
-      real(c_float), target :: A(*)
+      real(c_float), target :: A(..)
       integer(c_long), value :: lda
-      real(c_float), target :: x(*)
+      real(c_float), target :: x(..)
       integer(c_long), value :: incx
       integer(c_int) :: stbsv_64
-      stbsv_64 = rocblas_stbsv_64_raw(handle, uplo, transA, diag, n, k, c_loc(A(1)), lda, c_loc(x( &
-        1)), incx)
+      stbsv_64 = rocblas_stbsv_64_raw(handle, uplo, transA, diag, n, k, c_loc(A), lda, c_loc(x), &
+        incx)
     end function rocblas_stbsv_64_native
 
     function rocblas_stbsv_64_typed(handle, uplo, transA, diag, n, k, A, lda, x, incx) result( &
@@ -61238,13 +61218,13 @@ contains
       integer(c_int), value :: diag
       integer(c_long), value :: n
       integer(c_long), value :: k
-      real(c_double), target :: A(*)
+      real(c_double), target :: A(..)
       integer(c_long), value :: lda
-      real(c_double), target :: x(*)
+      real(c_double), target :: x(..)
       integer(c_long), value :: incx
       integer(c_int) :: dtbsv_64
-      dtbsv_64 = rocblas_dtbsv_64_raw(handle, uplo, transA, diag, n, k, c_loc(A(1)), lda, c_loc(x( &
-        1)), incx)
+      dtbsv_64 = rocblas_dtbsv_64_raw(handle, uplo, transA, diag, n, k, c_loc(A), lda, c_loc(x), &
+        incx)
     end function rocblas_dtbsv_64_native
 
     function rocblas_dtbsv_64_typed(handle, uplo, transA, diag, n, k, A, lda, x, incx) result( &
@@ -61276,13 +61256,13 @@ contains
       integer(c_int), value :: diag
       integer(c_long), value :: n
       integer(c_long), value :: k
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: A(..)
       integer(c_long), value :: lda
-      complex(c_float_complex), target :: x(*)
+      complex(c_float_complex), target :: x(..)
       integer(c_long), value :: incx
       integer(c_int) :: ctbsv_64
-      ctbsv_64 = rocblas_ctbsv_64_raw(handle, uplo, transA, diag, n, k, c_loc(A(1)), lda, c_loc(x( &
-        1)), incx)
+      ctbsv_64 = rocblas_ctbsv_64_raw(handle, uplo, transA, diag, n, k, c_loc(A), lda, c_loc(x), &
+        incx)
     end function rocblas_ctbsv_64_native
 
     function rocblas_ctbsv_64_typed(handle, uplo, transA, diag, n, k, A, lda, x, incx) result( &
@@ -61314,13 +61294,13 @@ contains
       integer(c_int), value :: diag
       integer(c_long), value :: n
       integer(c_long), value :: k
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: A(..)
       integer(c_long), value :: lda
-      complex(c_double_complex), target :: x(*)
+      complex(c_double_complex), target :: x(..)
       integer(c_long), value :: incx
       integer(c_int) :: ztbsv_64
-      ztbsv_64 = rocblas_ztbsv_64_raw(handle, uplo, transA, diag, n, k, c_loc(A(1)), lda, c_loc(x( &
-        1)), incx)
+      ztbsv_64 = rocblas_ztbsv_64_raw(handle, uplo, transA, diag, n, k, c_loc(A), lda, c_loc(x), &
+        incx)
     end function rocblas_ztbsv_64_native
 
     function rocblas_ztbsv_64_typed(handle, uplo, transA, diag, n, k, A, lda, x, incx) result( &
@@ -61520,16 +61500,16 @@ contains
       integer(c_int), value :: diag
       integer(c_int), value :: n
       integer(c_int), value :: k
-      real(c_float), target :: A(*)
+      real(c_float), target :: A(..)
       integer(c_int), value :: lda
       integer(c_long), value :: stride_A
-      real(c_float), target :: x(*)
+      real(c_float), target :: x(..)
       integer(c_int), value :: incx
       integer(c_long), value :: stride_x
       integer(c_int), value :: batch_count
       integer(c_int) :: stbsv_strided_batched
       stbsv_strided_batched = rocblas_stbsv_strided_batched_raw(handle, uplo, transA, diag, n, k, &
-        c_loc(A(1)), lda, stride_A, c_loc(x(1)), incx, stride_x, batch_count)
+        c_loc(A), lda, stride_A, c_loc(x), incx, stride_x, batch_count)
     end function rocblas_stbsv_strided_batched_native
 
     function rocblas_stbsv_strided_batched_typed(handle, uplo, transA, diag, n, k, A, lda, &
@@ -61565,16 +61545,16 @@ contains
       integer(c_int), value :: diag
       integer(c_int), value :: n
       integer(c_int), value :: k
-      real(c_double), target :: A(*)
+      real(c_double), target :: A(..)
       integer(c_int), value :: lda
       integer(c_long), value :: stride_A
-      real(c_double), target :: x(*)
+      real(c_double), target :: x(..)
       integer(c_int), value :: incx
       integer(c_long), value :: stride_x
       integer(c_int), value :: batch_count
       integer(c_int) :: dtbsv_strided_batched
       dtbsv_strided_batched = rocblas_dtbsv_strided_batched_raw(handle, uplo, transA, diag, n, k, &
-        c_loc(A(1)), lda, stride_A, c_loc(x(1)), incx, stride_x, batch_count)
+        c_loc(A), lda, stride_A, c_loc(x), incx, stride_x, batch_count)
     end function rocblas_dtbsv_strided_batched_native
 
     function rocblas_dtbsv_strided_batched_typed(handle, uplo, transA, diag, n, k, A, lda, &
@@ -61610,16 +61590,16 @@ contains
       integer(c_int), value :: diag
       integer(c_int), value :: n
       integer(c_int), value :: k
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: A(..)
       integer(c_int), value :: lda
       integer(c_long), value :: stride_A
-      complex(c_float_complex), target :: x(*)
+      complex(c_float_complex), target :: x(..)
       integer(c_int), value :: incx
       integer(c_long), value :: stride_x
       integer(c_int), value :: batch_count
       integer(c_int) :: ctbsv_strided_batched
       ctbsv_strided_batched = rocblas_ctbsv_strided_batched_raw(handle, uplo, transA, diag, n, k, &
-        c_loc(A(1)), lda, stride_A, c_loc(x(1)), incx, stride_x, batch_count)
+        c_loc(A), lda, stride_A, c_loc(x), incx, stride_x, batch_count)
     end function rocblas_ctbsv_strided_batched_native
 
     function rocblas_ctbsv_strided_batched_typed(handle, uplo, transA, diag, n, k, A, lda, &
@@ -61655,16 +61635,16 @@ contains
       integer(c_int), value :: diag
       integer(c_int), value :: n
       integer(c_int), value :: k
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: A(..)
       integer(c_int), value :: lda
       integer(c_long), value :: stride_A
-      complex(c_double_complex), target :: x(*)
+      complex(c_double_complex), target :: x(..)
       integer(c_int), value :: incx
       integer(c_long), value :: stride_x
       integer(c_int), value :: batch_count
       integer(c_int) :: ztbsv_strided_batched
       ztbsv_strided_batched = rocblas_ztbsv_strided_batched_raw(handle, uplo, transA, diag, n, k, &
-        c_loc(A(1)), lda, stride_A, c_loc(x(1)), incx, stride_x, batch_count)
+        c_loc(A), lda, stride_A, c_loc(x), incx, stride_x, batch_count)
     end function rocblas_ztbsv_strided_batched_native
 
     function rocblas_ztbsv_strided_batched_typed(handle, uplo, transA, diag, n, k, A, lda, &
@@ -61700,16 +61680,16 @@ contains
       integer(c_int), value :: diag
       integer(c_long), value :: n
       integer(c_long), value :: k
-      real(c_float), target :: A(*)
+      real(c_float), target :: A(..)
       integer(c_long), value :: lda
       integer(c_long), value :: stride_A
-      real(c_float), target :: x(*)
+      real(c_float), target :: x(..)
       integer(c_long), value :: incx
       integer(c_long), value :: stride_x
       integer(c_long), value :: batch_count
       integer(c_int) :: stbsv_strided_batched_64
       stbsv_strided_batched_64 = rocblas_stbsv_strided_batched_64_raw(handle, uplo, transA, diag, &
-        n, k, c_loc(A(1)), lda, stride_A, c_loc(x(1)), incx, stride_x, batch_count)
+        n, k, c_loc(A), lda, stride_A, c_loc(x), incx, stride_x, batch_count)
     end function rocblas_stbsv_strided_batched_64_native
 
     function rocblas_stbsv_strided_batched_64_typed(handle, uplo, transA, diag, n, k, A, lda, &
@@ -61745,16 +61725,16 @@ contains
       integer(c_int), value :: diag
       integer(c_long), value :: n
       integer(c_long), value :: k
-      real(c_double), target :: A(*)
+      real(c_double), target :: A(..)
       integer(c_long), value :: lda
       integer(c_long), value :: stride_A
-      real(c_double), target :: x(*)
+      real(c_double), target :: x(..)
       integer(c_long), value :: incx
       integer(c_long), value :: stride_x
       integer(c_long), value :: batch_count
       integer(c_int) :: dtbsv_strided_batched_64
       dtbsv_strided_batched_64 = rocblas_dtbsv_strided_batched_64_raw(handle, uplo, transA, diag, &
-        n, k, c_loc(A(1)), lda, stride_A, c_loc(x(1)), incx, stride_x, batch_count)
+        n, k, c_loc(A), lda, stride_A, c_loc(x), incx, stride_x, batch_count)
     end function rocblas_dtbsv_strided_batched_64_native
 
     function rocblas_dtbsv_strided_batched_64_typed(handle, uplo, transA, diag, n, k, A, lda, &
@@ -61790,16 +61770,16 @@ contains
       integer(c_int), value :: diag
       integer(c_long), value :: n
       integer(c_long), value :: k
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: A(..)
       integer(c_long), value :: lda
       integer(c_long), value :: stride_A
-      complex(c_float_complex), target :: x(*)
+      complex(c_float_complex), target :: x(..)
       integer(c_long), value :: incx
       integer(c_long), value :: stride_x
       integer(c_long), value :: batch_count
       integer(c_int) :: ctbsv_strided_batched_64
       ctbsv_strided_batched_64 = rocblas_ctbsv_strided_batched_64_raw(handle, uplo, transA, diag, &
-        n, k, c_loc(A(1)), lda, stride_A, c_loc(x(1)), incx, stride_x, batch_count)
+        n, k, c_loc(A), lda, stride_A, c_loc(x), incx, stride_x, batch_count)
     end function rocblas_ctbsv_strided_batched_64_native
 
     function rocblas_ctbsv_strided_batched_64_typed(handle, uplo, transA, diag, n, k, A, lda, &
@@ -61835,16 +61815,16 @@ contains
       integer(c_int), value :: diag
       integer(c_long), value :: n
       integer(c_long), value :: k
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: A(..)
       integer(c_long), value :: lda
       integer(c_long), value :: stride_A
-      complex(c_double_complex), target :: x(*)
+      complex(c_double_complex), target :: x(..)
       integer(c_long), value :: incx
       integer(c_long), value :: stride_x
       integer(c_long), value :: batch_count
       integer(c_int) :: ztbsv_strided_batched_64
       ztbsv_strided_batched_64 = rocblas_ztbsv_strided_batched_64_raw(handle, uplo, transA, diag, &
-        n, k, c_loc(A(1)), lda, stride_A, c_loc(x(1)), incx, stride_x, batch_count)
+        n, k, c_loc(A), lda, stride_A, c_loc(x), incx, stride_x, batch_count)
     end function rocblas_ztbsv_strided_batched_64_native
 
     function rocblas_ztbsv_strided_batched_64_typed(handle, uplo, transA, diag, n, k, A, lda, &
@@ -61878,12 +61858,12 @@ contains
       integer(c_int), value :: transA
       integer(c_int), value :: diag
       integer(c_int), value :: n
-      real(c_float), target :: A(*)
+      real(c_float), target :: A(..)
       integer(c_int), value :: lda
-      real(c_float), target :: x(*)
+      real(c_float), target :: x(..)
       integer(c_int), value :: incx
       integer(c_int) :: strsv
-      strsv = rocblas_strsv_raw(handle, uplo, transA, diag, n, c_loc(A(1)), lda, c_loc(x(1)), incx)
+      strsv = rocblas_strsv_raw(handle, uplo, transA, diag, n, c_loc(A), lda, c_loc(x), incx)
     end function rocblas_strsv_native
 
     function rocblas_strsv_typed(handle, uplo, transA, diag, n, A, lda, x, incx) result(strsv)
@@ -61911,12 +61891,12 @@ contains
       integer(c_int), value :: transA
       integer(c_int), value :: diag
       integer(c_int), value :: n
-      real(c_double), target :: A(*)
+      real(c_double), target :: A(..)
       integer(c_int), value :: lda
-      real(c_double), target :: x(*)
+      real(c_double), target :: x(..)
       integer(c_int), value :: incx
       integer(c_int) :: dtrsv
-      dtrsv = rocblas_dtrsv_raw(handle, uplo, transA, diag, n, c_loc(A(1)), lda, c_loc(x(1)), incx)
+      dtrsv = rocblas_dtrsv_raw(handle, uplo, transA, diag, n, c_loc(A), lda, c_loc(x), incx)
     end function rocblas_dtrsv_native
 
     function rocblas_dtrsv_typed(handle, uplo, transA, diag, n, A, lda, x, incx) result(dtrsv)
@@ -61944,12 +61924,12 @@ contains
       integer(c_int), value :: transA
       integer(c_int), value :: diag
       integer(c_int), value :: n
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: A(..)
       integer(c_int), value :: lda
-      complex(c_float_complex), target :: x(*)
+      complex(c_float_complex), target :: x(..)
       integer(c_int), value :: incx
       integer(c_int) :: ctrsv
-      ctrsv = rocblas_ctrsv_raw(handle, uplo, transA, diag, n, c_loc(A(1)), lda, c_loc(x(1)), incx)
+      ctrsv = rocblas_ctrsv_raw(handle, uplo, transA, diag, n, c_loc(A), lda, c_loc(x), incx)
     end function rocblas_ctrsv_native
 
     function rocblas_ctrsv_typed(handle, uplo, transA, diag, n, A, lda, x, incx) result(ctrsv)
@@ -61977,12 +61957,12 @@ contains
       integer(c_int), value :: transA
       integer(c_int), value :: diag
       integer(c_int), value :: n
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: A(..)
       integer(c_int), value :: lda
-      complex(c_double_complex), target :: x(*)
+      complex(c_double_complex), target :: x(..)
       integer(c_int), value :: incx
       integer(c_int) :: ztrsv
-      ztrsv = rocblas_ztrsv_raw(handle, uplo, transA, diag, n, c_loc(A(1)), lda, c_loc(x(1)), incx)
+      ztrsv = rocblas_ztrsv_raw(handle, uplo, transA, diag, n, c_loc(A), lda, c_loc(x), incx)
     end function rocblas_ztrsv_native
 
     function rocblas_ztrsv_typed(handle, uplo, transA, diag, n, A, lda, x, incx) result(ztrsv)
@@ -62011,13 +61991,12 @@ contains
       integer(c_int), value :: transA
       integer(c_int), value :: diag
       integer(c_long), value :: n
-      real(c_float), target :: A(*)
+      real(c_float), target :: A(..)
       integer(c_long), value :: lda
-      real(c_float), target :: x(*)
+      real(c_float), target :: x(..)
       integer(c_long), value :: incx
       integer(c_int) :: strsv_64
-      strsv_64 = rocblas_strsv_64_raw(handle, uplo, transA, diag, n, c_loc(A(1)), lda, c_loc(x( &
-        1)), incx)
+      strsv_64 = rocblas_strsv_64_raw(handle, uplo, transA, diag, n, c_loc(A), lda, c_loc(x), incx)
     end function rocblas_strsv_64_native
 
     function rocblas_strsv_64_typed(handle, uplo, transA, diag, n, A, lda, x, incx) result(strsv_64)
@@ -62046,13 +62025,12 @@ contains
       integer(c_int), value :: transA
       integer(c_int), value :: diag
       integer(c_long), value :: n
-      real(c_double), target :: A(*)
+      real(c_double), target :: A(..)
       integer(c_long), value :: lda
-      real(c_double), target :: x(*)
+      real(c_double), target :: x(..)
       integer(c_long), value :: incx
       integer(c_int) :: dtrsv_64
-      dtrsv_64 = rocblas_dtrsv_64_raw(handle, uplo, transA, diag, n, c_loc(A(1)), lda, c_loc(x( &
-        1)), incx)
+      dtrsv_64 = rocblas_dtrsv_64_raw(handle, uplo, transA, diag, n, c_loc(A), lda, c_loc(x), incx)
     end function rocblas_dtrsv_64_native
 
     function rocblas_dtrsv_64_typed(handle, uplo, transA, diag, n, A, lda, x, incx) result(dtrsv_64)
@@ -62081,13 +62059,12 @@ contains
       integer(c_int), value :: transA
       integer(c_int), value :: diag
       integer(c_long), value :: n
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: A(..)
       integer(c_long), value :: lda
-      complex(c_float_complex), target :: x(*)
+      complex(c_float_complex), target :: x(..)
       integer(c_long), value :: incx
       integer(c_int) :: ctrsv_64
-      ctrsv_64 = rocblas_ctrsv_64_raw(handle, uplo, transA, diag, n, c_loc(A(1)), lda, c_loc(x( &
-        1)), incx)
+      ctrsv_64 = rocblas_ctrsv_64_raw(handle, uplo, transA, diag, n, c_loc(A), lda, c_loc(x), incx)
     end function rocblas_ctrsv_64_native
 
     function rocblas_ctrsv_64_typed(handle, uplo, transA, diag, n, A, lda, x, incx) result(ctrsv_64)
@@ -62116,13 +62093,12 @@ contains
       integer(c_int), value :: transA
       integer(c_int), value :: diag
       integer(c_long), value :: n
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: A(..)
       integer(c_long), value :: lda
-      complex(c_double_complex), target :: x(*)
+      complex(c_double_complex), target :: x(..)
       integer(c_long), value :: incx
       integer(c_int) :: ztrsv_64
-      ztrsv_64 = rocblas_ztrsv_64_raw(handle, uplo, transA, diag, n, c_loc(A(1)), lda, c_loc(x( &
-        1)), incx)
+      ztrsv_64 = rocblas_ztrsv_64_raw(handle, uplo, transA, diag, n, c_loc(A), lda, c_loc(x), incx)
     end function rocblas_ztrsv_64_native
 
     function rocblas_ztrsv_64_typed(handle, uplo, transA, diag, n, A, lda, x, incx) result(ztrsv_64)
@@ -62311,16 +62287,16 @@ contains
       integer(c_int), value :: transA
       integer(c_int), value :: diag
       integer(c_int), value :: n
-      real(c_float), target :: A(*)
+      real(c_float), target :: A(..)
       integer(c_int), value :: lda
       integer(c_long), value :: stride_A
-      real(c_float), target :: x(*)
+      real(c_float), target :: x(..)
       integer(c_int), value :: incx
       integer(c_long), value :: stride_x
       integer(c_int), value :: batch_count
       integer(c_int) :: strsv_strided_batched
       strsv_strided_batched = rocblas_strsv_strided_batched_raw(handle, uplo, transA, diag, n, &
-        c_loc(A(1)), lda, stride_A, c_loc(x(1)), incx, stride_x, batch_count)
+        c_loc(A), lda, stride_A, c_loc(x), incx, stride_x, batch_count)
     end function rocblas_strsv_strided_batched_native
 
     function rocblas_strsv_strided_batched_typed(handle, uplo, transA, diag, n, A, lda, stride_A, &
@@ -62354,16 +62330,16 @@ contains
       integer(c_int), value :: transA
       integer(c_int), value :: diag
       integer(c_int), value :: n
-      real(c_double), target :: A(*)
+      real(c_double), target :: A(..)
       integer(c_int), value :: lda
       integer(c_long), value :: stride_A
-      real(c_double), target :: x(*)
+      real(c_double), target :: x(..)
       integer(c_int), value :: incx
       integer(c_long), value :: stride_x
       integer(c_int), value :: batch_count
       integer(c_int) :: dtrsv_strided_batched
       dtrsv_strided_batched = rocblas_dtrsv_strided_batched_raw(handle, uplo, transA, diag, n, &
-        c_loc(A(1)), lda, stride_A, c_loc(x(1)), incx, stride_x, batch_count)
+        c_loc(A), lda, stride_A, c_loc(x), incx, stride_x, batch_count)
     end function rocblas_dtrsv_strided_batched_native
 
     function rocblas_dtrsv_strided_batched_typed(handle, uplo, transA, diag, n, A, lda, stride_A, &
@@ -62397,16 +62373,16 @@ contains
       integer(c_int), value :: transA
       integer(c_int), value :: diag
       integer(c_int), value :: n
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: A(..)
       integer(c_int), value :: lda
       integer(c_long), value :: stride_A
-      complex(c_float_complex), target :: x(*)
+      complex(c_float_complex), target :: x(..)
       integer(c_int), value :: incx
       integer(c_long), value :: stride_x
       integer(c_int), value :: batch_count
       integer(c_int) :: ctrsv_strided_batched
       ctrsv_strided_batched = rocblas_ctrsv_strided_batched_raw(handle, uplo, transA, diag, n, &
-        c_loc(A(1)), lda, stride_A, c_loc(x(1)), incx, stride_x, batch_count)
+        c_loc(A), lda, stride_A, c_loc(x), incx, stride_x, batch_count)
     end function rocblas_ctrsv_strided_batched_native
 
     function rocblas_ctrsv_strided_batched_typed(handle, uplo, transA, diag, n, A, lda, stride_A, &
@@ -62440,16 +62416,16 @@ contains
       integer(c_int), value :: transA
       integer(c_int), value :: diag
       integer(c_int), value :: n
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: A(..)
       integer(c_int), value :: lda
       integer(c_long), value :: stride_A
-      complex(c_double_complex), target :: x(*)
+      complex(c_double_complex), target :: x(..)
       integer(c_int), value :: incx
       integer(c_long), value :: stride_x
       integer(c_int), value :: batch_count
       integer(c_int) :: ztrsv_strided_batched
       ztrsv_strided_batched = rocblas_ztrsv_strided_batched_raw(handle, uplo, transA, diag, n, &
-        c_loc(A(1)), lda, stride_A, c_loc(x(1)), incx, stride_x, batch_count)
+        c_loc(A), lda, stride_A, c_loc(x), incx, stride_x, batch_count)
     end function rocblas_ztrsv_strided_batched_native
 
     function rocblas_ztrsv_strided_batched_typed(handle, uplo, transA, diag, n, A, lda, stride_A, &
@@ -62483,16 +62459,16 @@ contains
       integer(c_int), value :: transA
       integer(c_int), value :: diag
       integer(c_long), value :: n
-      real(c_float), target :: A(*)
+      real(c_float), target :: A(..)
       integer(c_long), value :: lda
       integer(c_long), value :: stride_A
-      real(c_float), target :: x(*)
+      real(c_float), target :: x(..)
       integer(c_long), value :: incx
       integer(c_long), value :: stride_x
       integer(c_long), value :: batch_count
       integer(c_int) :: strsv_strided_batched_64
       strsv_strided_batched_64 = rocblas_strsv_strided_batched_64_raw(handle, uplo, transA, diag, &
-        n, c_loc(A(1)), lda, stride_A, c_loc(x(1)), incx, stride_x, batch_count)
+        n, c_loc(A), lda, stride_A, c_loc(x), incx, stride_x, batch_count)
     end function rocblas_strsv_strided_batched_64_native
 
     function rocblas_strsv_strided_batched_64_typed(handle, uplo, transA, diag, n, A, lda, &
@@ -62526,16 +62502,16 @@ contains
       integer(c_int), value :: transA
       integer(c_int), value :: diag
       integer(c_long), value :: n
-      real(c_double), target :: A(*)
+      real(c_double), target :: A(..)
       integer(c_long), value :: lda
       integer(c_long), value :: stride_A
-      real(c_double), target :: x(*)
+      real(c_double), target :: x(..)
       integer(c_long), value :: incx
       integer(c_long), value :: stride_x
       integer(c_long), value :: batch_count
       integer(c_int) :: dtrsv_strided_batched_64
       dtrsv_strided_batched_64 = rocblas_dtrsv_strided_batched_64_raw(handle, uplo, transA, diag, &
-        n, c_loc(A(1)), lda, stride_A, c_loc(x(1)), incx, stride_x, batch_count)
+        n, c_loc(A), lda, stride_A, c_loc(x), incx, stride_x, batch_count)
     end function rocblas_dtrsv_strided_batched_64_native
 
     function rocblas_dtrsv_strided_batched_64_typed(handle, uplo, transA, diag, n, A, lda, &
@@ -62569,16 +62545,16 @@ contains
       integer(c_int), value :: transA
       integer(c_int), value :: diag
       integer(c_long), value :: n
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: A(..)
       integer(c_long), value :: lda
       integer(c_long), value :: stride_A
-      complex(c_float_complex), target :: x(*)
+      complex(c_float_complex), target :: x(..)
       integer(c_long), value :: incx
       integer(c_long), value :: stride_x
       integer(c_long), value :: batch_count
       integer(c_int) :: ctrsv_strided_batched_64
       ctrsv_strided_batched_64 = rocblas_ctrsv_strided_batched_64_raw(handle, uplo, transA, diag, &
-        n, c_loc(A(1)), lda, stride_A, c_loc(x(1)), incx, stride_x, batch_count)
+        n, c_loc(A), lda, stride_A, c_loc(x), incx, stride_x, batch_count)
     end function rocblas_ctrsv_strided_batched_64_native
 
     function rocblas_ctrsv_strided_batched_64_typed(handle, uplo, transA, diag, n, A, lda, &
@@ -62612,16 +62588,16 @@ contains
       integer(c_int), value :: transA
       integer(c_int), value :: diag
       integer(c_long), value :: n
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: A(..)
       integer(c_long), value :: lda
       integer(c_long), value :: stride_A
-      complex(c_double_complex), target :: x(*)
+      complex(c_double_complex), target :: x(..)
       integer(c_long), value :: incx
       integer(c_long), value :: stride_x
       integer(c_long), value :: batch_count
       integer(c_int) :: ztrsv_strided_batched_64
       ztrsv_strided_batched_64 = rocblas_ztrsv_strided_batched_64_raw(handle, uplo, transA, diag, &
-        n, c_loc(A(1)), lda, stride_A, c_loc(x(1)), incx, stride_x, batch_count)
+        n, c_loc(A), lda, stride_A, c_loc(x), incx, stride_x, batch_count)
     end function rocblas_ztrsv_strided_batched_64_native
 
     function rocblas_ztrsv_strided_batched_64_typed(handle, uplo, transA, diag, n, A, lda, &
@@ -62654,11 +62630,11 @@ contains
       integer(c_int), value :: transA
       integer(c_int), value :: diag
       integer(c_int), value :: n
-      real(c_float), target :: AP(*)
-      real(c_float), target :: x(*)
+      real(c_float), target :: AP(..)
+      real(c_float), target :: x(..)
       integer(c_int), value :: incx
       integer(c_int) :: stpsv
-      stpsv = rocblas_stpsv_raw(handle, uplo, transA, diag, n, c_loc(AP(1)), c_loc(x(1)), incx)
+      stpsv = rocblas_stpsv_raw(handle, uplo, transA, diag, n, c_loc(AP), c_loc(x), incx)
     end function rocblas_stpsv_native
 
     function rocblas_stpsv_typed(handle, uplo, transA, diag, n, AP, x, incx) result(stpsv)
@@ -62685,11 +62661,11 @@ contains
       integer(c_int), value :: transA
       integer(c_int), value :: diag
       integer(c_int), value :: n
-      real(c_double), target :: AP(*)
-      real(c_double), target :: x(*)
+      real(c_double), target :: AP(..)
+      real(c_double), target :: x(..)
       integer(c_int), value :: incx
       integer(c_int) :: dtpsv
-      dtpsv = rocblas_dtpsv_raw(handle, uplo, transA, diag, n, c_loc(AP(1)), c_loc(x(1)), incx)
+      dtpsv = rocblas_dtpsv_raw(handle, uplo, transA, diag, n, c_loc(AP), c_loc(x), incx)
     end function rocblas_dtpsv_native
 
     function rocblas_dtpsv_typed(handle, uplo, transA, diag, n, AP, x, incx) result(dtpsv)
@@ -62716,11 +62692,11 @@ contains
       integer(c_int), value :: transA
       integer(c_int), value :: diag
       integer(c_int), value :: n
-      complex(c_float_complex), target :: AP(*)
-      complex(c_float_complex), target :: x(*)
+      complex(c_float_complex), target :: AP(..)
+      complex(c_float_complex), target :: x(..)
       integer(c_int), value :: incx
       integer(c_int) :: ctpsv
-      ctpsv = rocblas_ctpsv_raw(handle, uplo, transA, diag, n, c_loc(AP(1)), c_loc(x(1)), incx)
+      ctpsv = rocblas_ctpsv_raw(handle, uplo, transA, diag, n, c_loc(AP), c_loc(x), incx)
     end function rocblas_ctpsv_native
 
     function rocblas_ctpsv_typed(handle, uplo, transA, diag, n, AP, x, incx) result(ctpsv)
@@ -62747,11 +62723,11 @@ contains
       integer(c_int), value :: transA
       integer(c_int), value :: diag
       integer(c_int), value :: n
-      complex(c_double_complex), target :: AP(*)
-      complex(c_double_complex), target :: x(*)
+      complex(c_double_complex), target :: AP(..)
+      complex(c_double_complex), target :: x(..)
       integer(c_int), value :: incx
       integer(c_int) :: ztpsv
-      ztpsv = rocblas_ztpsv_raw(handle, uplo, transA, diag, n, c_loc(AP(1)), c_loc(x(1)), incx)
+      ztpsv = rocblas_ztpsv_raw(handle, uplo, transA, diag, n, c_loc(AP), c_loc(x), incx)
     end function rocblas_ztpsv_native
 
     function rocblas_ztpsv_typed(handle, uplo, transA, diag, n, AP, x, incx) result(ztpsv)
@@ -62778,12 +62754,11 @@ contains
       integer(c_int), value :: transA
       integer(c_int), value :: diag
       integer(c_long), value :: n
-      real(c_float), target :: AP(*)
-      real(c_float), target :: x(*)
+      real(c_float), target :: AP(..)
+      real(c_float), target :: x(..)
       integer(c_long), value :: incx
       integer(c_int) :: stpsv_64
-      stpsv_64 = rocblas_stpsv_64_raw(handle, uplo, transA, diag, n, c_loc(AP(1)), c_loc(x(1)), &
-        incx)
+      stpsv_64 = rocblas_stpsv_64_raw(handle, uplo, transA, diag, n, c_loc(AP), c_loc(x), incx)
     end function rocblas_stpsv_64_native
 
     function rocblas_stpsv_64_typed(handle, uplo, transA, diag, n, AP, x, incx) result(stpsv_64)
@@ -62810,12 +62785,11 @@ contains
       integer(c_int), value :: transA
       integer(c_int), value :: diag
       integer(c_long), value :: n
-      real(c_double), target :: AP(*)
-      real(c_double), target :: x(*)
+      real(c_double), target :: AP(..)
+      real(c_double), target :: x(..)
       integer(c_long), value :: incx
       integer(c_int) :: dtpsv_64
-      dtpsv_64 = rocblas_dtpsv_64_raw(handle, uplo, transA, diag, n, c_loc(AP(1)), c_loc(x(1)), &
-        incx)
+      dtpsv_64 = rocblas_dtpsv_64_raw(handle, uplo, transA, diag, n, c_loc(AP), c_loc(x), incx)
     end function rocblas_dtpsv_64_native
 
     function rocblas_dtpsv_64_typed(handle, uplo, transA, diag, n, AP, x, incx) result(dtpsv_64)
@@ -62842,12 +62816,11 @@ contains
       integer(c_int), value :: transA
       integer(c_int), value :: diag
       integer(c_long), value :: n
-      complex(c_float_complex), target :: AP(*)
-      complex(c_float_complex), target :: x(*)
+      complex(c_float_complex), target :: AP(..)
+      complex(c_float_complex), target :: x(..)
       integer(c_long), value :: incx
       integer(c_int) :: ctpsv_64
-      ctpsv_64 = rocblas_ctpsv_64_raw(handle, uplo, transA, diag, n, c_loc(AP(1)), c_loc(x(1)), &
-        incx)
+      ctpsv_64 = rocblas_ctpsv_64_raw(handle, uplo, transA, diag, n, c_loc(AP), c_loc(x), incx)
     end function rocblas_ctpsv_64_native
 
     function rocblas_ctpsv_64_typed(handle, uplo, transA, diag, n, AP, x, incx) result(ctpsv_64)
@@ -62874,12 +62847,11 @@ contains
       integer(c_int), value :: transA
       integer(c_int), value :: diag
       integer(c_long), value :: n
-      complex(c_double_complex), target :: AP(*)
-      complex(c_double_complex), target :: x(*)
+      complex(c_double_complex), target :: AP(..)
+      complex(c_double_complex), target :: x(..)
       integer(c_long), value :: incx
       integer(c_int) :: ztpsv_64
-      ztpsv_64 = rocblas_ztpsv_64_raw(handle, uplo, transA, diag, n, c_loc(AP(1)), c_loc(x(1)), &
-        incx)
+      ztpsv_64 = rocblas_ztpsv_64_raw(handle, uplo, transA, diag, n, c_loc(AP), c_loc(x), incx)
     end function rocblas_ztpsv_64_native
 
     function rocblas_ztpsv_64_typed(handle, uplo, transA, diag, n, AP, x, incx) result(ztpsv_64)
@@ -63059,15 +63031,15 @@ contains
       integer(c_int), value :: transA
       integer(c_int), value :: diag
       integer(c_int), value :: n
-      real(c_float), target :: AP(*)
+      real(c_float), target :: AP(..)
       integer(c_long), value :: stride_A
-      real(c_float), target :: x(*)
+      real(c_float), target :: x(..)
       integer(c_int), value :: incx
       integer(c_long), value :: stride_x
       integer(c_int), value :: batch_count
       integer(c_int) :: stpsv_strided_batched
       stpsv_strided_batched = rocblas_stpsv_strided_batched_raw(handle, uplo, transA, diag, n, &
-        c_loc(AP(1)), stride_A, c_loc(x(1)), incx, stride_x, batch_count)
+        c_loc(AP), stride_A, c_loc(x), incx, stride_x, batch_count)
     end function rocblas_stpsv_strided_batched_native
 
     function rocblas_stpsv_strided_batched_typed(handle, uplo, transA, diag, n, AP, stride_A, x, &
@@ -63100,15 +63072,15 @@ contains
       integer(c_int), value :: transA
       integer(c_int), value :: diag
       integer(c_int), value :: n
-      real(c_double), target :: AP(*)
+      real(c_double), target :: AP(..)
       integer(c_long), value :: stride_A
-      real(c_double), target :: x(*)
+      real(c_double), target :: x(..)
       integer(c_int), value :: incx
       integer(c_long), value :: stride_x
       integer(c_int), value :: batch_count
       integer(c_int) :: dtpsv_strided_batched
       dtpsv_strided_batched = rocblas_dtpsv_strided_batched_raw(handle, uplo, transA, diag, n, &
-        c_loc(AP(1)), stride_A, c_loc(x(1)), incx, stride_x, batch_count)
+        c_loc(AP), stride_A, c_loc(x), incx, stride_x, batch_count)
     end function rocblas_dtpsv_strided_batched_native
 
     function rocblas_dtpsv_strided_batched_typed(handle, uplo, transA, diag, n, AP, stride_A, x, &
@@ -63141,15 +63113,15 @@ contains
       integer(c_int), value :: transA
       integer(c_int), value :: diag
       integer(c_int), value :: n
-      complex(c_float_complex), target :: AP(*)
+      complex(c_float_complex), target :: AP(..)
       integer(c_long), value :: stride_A
-      complex(c_float_complex), target :: x(*)
+      complex(c_float_complex), target :: x(..)
       integer(c_int), value :: incx
       integer(c_long), value :: stride_x
       integer(c_int), value :: batch_count
       integer(c_int) :: ctpsv_strided_batched
       ctpsv_strided_batched = rocblas_ctpsv_strided_batched_raw(handle, uplo, transA, diag, n, &
-        c_loc(AP(1)), stride_A, c_loc(x(1)), incx, stride_x, batch_count)
+        c_loc(AP), stride_A, c_loc(x), incx, stride_x, batch_count)
     end function rocblas_ctpsv_strided_batched_native
 
     function rocblas_ctpsv_strided_batched_typed(handle, uplo, transA, diag, n, AP, stride_A, x, &
@@ -63182,15 +63154,15 @@ contains
       integer(c_int), value :: transA
       integer(c_int), value :: diag
       integer(c_int), value :: n
-      complex(c_double_complex), target :: AP(*)
+      complex(c_double_complex), target :: AP(..)
       integer(c_long), value :: stride_A
-      complex(c_double_complex), target :: x(*)
+      complex(c_double_complex), target :: x(..)
       integer(c_int), value :: incx
       integer(c_long), value :: stride_x
       integer(c_int), value :: batch_count
       integer(c_int) :: ztpsv_strided_batched
       ztpsv_strided_batched = rocblas_ztpsv_strided_batched_raw(handle, uplo, transA, diag, n, &
-        c_loc(AP(1)), stride_A, c_loc(x(1)), incx, stride_x, batch_count)
+        c_loc(AP), stride_A, c_loc(x), incx, stride_x, batch_count)
     end function rocblas_ztpsv_strided_batched_native
 
     function rocblas_ztpsv_strided_batched_typed(handle, uplo, transA, diag, n, AP, stride_A, x, &
@@ -63223,15 +63195,15 @@ contains
       integer(c_int), value :: transA
       integer(c_int), value :: diag
       integer(c_long), value :: n
-      real(c_float), target :: AP(*)
+      real(c_float), target :: AP(..)
       integer(c_long), value :: stride_A
-      real(c_float), target :: x(*)
+      real(c_float), target :: x(..)
       integer(c_long), value :: incx
       integer(c_long), value :: stride_x
       integer(c_long), value :: batch_count
       integer(c_int) :: stpsv_strided_batched_64
       stpsv_strided_batched_64 = rocblas_stpsv_strided_batched_64_raw(handle, uplo, transA, diag, &
-        n, c_loc(AP(1)), stride_A, c_loc(x(1)), incx, stride_x, batch_count)
+        n, c_loc(AP), stride_A, c_loc(x), incx, stride_x, batch_count)
     end function rocblas_stpsv_strided_batched_64_native
 
     function rocblas_stpsv_strided_batched_64_typed(handle, uplo, transA, diag, n, AP, stride_A, &
@@ -63264,15 +63236,15 @@ contains
       integer(c_int), value :: transA
       integer(c_int), value :: diag
       integer(c_long), value :: n
-      real(c_double), target :: AP(*)
+      real(c_double), target :: AP(..)
       integer(c_long), value :: stride_A
-      real(c_double), target :: x(*)
+      real(c_double), target :: x(..)
       integer(c_long), value :: incx
       integer(c_long), value :: stride_x
       integer(c_long), value :: batch_count
       integer(c_int) :: dtpsv_strided_batched_64
       dtpsv_strided_batched_64 = rocblas_dtpsv_strided_batched_64_raw(handle, uplo, transA, diag, &
-        n, c_loc(AP(1)), stride_A, c_loc(x(1)), incx, stride_x, batch_count)
+        n, c_loc(AP), stride_A, c_loc(x), incx, stride_x, batch_count)
     end function rocblas_dtpsv_strided_batched_64_native
 
     function rocblas_dtpsv_strided_batched_64_typed(handle, uplo, transA, diag, n, AP, stride_A, &
@@ -63305,15 +63277,15 @@ contains
       integer(c_int), value :: transA
       integer(c_int), value :: diag
       integer(c_long), value :: n
-      complex(c_float_complex), target :: AP(*)
+      complex(c_float_complex), target :: AP(..)
       integer(c_long), value :: stride_A
-      complex(c_float_complex), target :: x(*)
+      complex(c_float_complex), target :: x(..)
       integer(c_long), value :: incx
       integer(c_long), value :: stride_x
       integer(c_long), value :: batch_count
       integer(c_int) :: ctpsv_strided_batched_64
       ctpsv_strided_batched_64 = rocblas_ctpsv_strided_batched_64_raw(handle, uplo, transA, diag, &
-        n, c_loc(AP(1)), stride_A, c_loc(x(1)), incx, stride_x, batch_count)
+        n, c_loc(AP), stride_A, c_loc(x), incx, stride_x, batch_count)
     end function rocblas_ctpsv_strided_batched_64_native
 
     function rocblas_ctpsv_strided_batched_64_typed(handle, uplo, transA, diag, n, AP, stride_A, &
@@ -63346,15 +63318,15 @@ contains
       integer(c_int), value :: transA
       integer(c_int), value :: diag
       integer(c_long), value :: n
-      complex(c_double_complex), target :: AP(*)
+      complex(c_double_complex), target :: AP(..)
       integer(c_long), value :: stride_A
-      complex(c_double_complex), target :: x(*)
+      complex(c_double_complex), target :: x(..)
       integer(c_long), value :: incx
       integer(c_long), value :: stride_x
       integer(c_long), value :: batch_count
       integer(c_int) :: ztpsv_strided_batched_64
       ztpsv_strided_batched_64 = rocblas_ztpsv_strided_batched_64_raw(handle, uplo, transA, diag, &
-        n, c_loc(AP(1)), stride_A, c_loc(x(1)), incx, stride_x, batch_count)
+        n, c_loc(AP), stride_A, c_loc(x), incx, stride_x, batch_count)
     end function rocblas_ztpsv_strided_batched_64_native
 
     function rocblas_ztpsv_strided_batched_64_typed(handle, uplo, transA, diag, n, AP, stride_A, &
@@ -63386,16 +63358,16 @@ contains
       integer(c_int), value :: uplo
       integer(c_int), value :: n
       real(c_float) :: alpha
-      real(c_float), target :: A(*)
+      real(c_float), target :: A(..)
       integer(c_int), value :: lda
-      real(c_float), target :: x(*)
+      real(c_float), target :: x(..)
       integer(c_int), value :: incx
       real(c_float) :: beta
-      real(c_float), target :: y(*)
+      real(c_float), target :: y(..)
       integer(c_int), value :: incy
       integer(c_int) :: ssymv
-      ssymv = rocblas_ssymv_raw(handle, uplo, n, alpha, c_loc(A(1)), lda, c_loc(x(1)), incx, beta, &
-        c_loc(y(1)), incy)
+      ssymv = rocblas_ssymv_raw(handle, uplo, n, alpha, c_loc(A), lda, c_loc(x), incx, beta, &
+        c_loc(y), incy)
     end function rocblas_ssymv_native
 
     function rocblas_ssymv_typed(handle, uplo, n, alpha, A, lda, x, incx, beta, y, incy) result( &
@@ -63426,16 +63398,16 @@ contains
       integer(c_int), value :: uplo
       integer(c_int), value :: n
       real(c_double) :: alpha
-      real(c_double), target :: A(*)
+      real(c_double), target :: A(..)
       integer(c_int), value :: lda
-      real(c_double), target :: x(*)
+      real(c_double), target :: x(..)
       integer(c_int), value :: incx
       real(c_double) :: beta
-      real(c_double), target :: y(*)
+      real(c_double), target :: y(..)
       integer(c_int), value :: incy
       integer(c_int) :: dsymv
-      dsymv = rocblas_dsymv_raw(handle, uplo, n, alpha, c_loc(A(1)), lda, c_loc(x(1)), incx, beta, &
-        c_loc(y(1)), incy)
+      dsymv = rocblas_dsymv_raw(handle, uplo, n, alpha, c_loc(A), lda, c_loc(x), incx, beta, &
+        c_loc(y), incy)
     end function rocblas_dsymv_native
 
     function rocblas_dsymv_typed(handle, uplo, n, alpha, A, lda, x, incx, beta, y, incy) result( &
@@ -63466,16 +63438,16 @@ contains
       integer(c_int), value :: uplo
       integer(c_int), value :: n
       complex(c_float_complex) :: alpha
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: A(..)
       integer(c_int), value :: lda
-      complex(c_float_complex), target :: x(*)
+      complex(c_float_complex), target :: x(..)
       integer(c_int), value :: incx
       complex(c_float_complex) :: beta
-      complex(c_float_complex), target :: y(*)
+      complex(c_float_complex), target :: y(..)
       integer(c_int), value :: incy
       integer(c_int) :: csymv
-      csymv = rocblas_csymv_raw(handle, uplo, n, alpha, c_loc(A(1)), lda, c_loc(x(1)), incx, beta, &
-        c_loc(y(1)), incy)
+      csymv = rocblas_csymv_raw(handle, uplo, n, alpha, c_loc(A), lda, c_loc(x), incx, beta, &
+        c_loc(y), incy)
     end function rocblas_csymv_native
 
     function rocblas_csymv_typed(handle, uplo, n, alpha, A, lda, x, incx, beta, y, incy) result( &
@@ -63506,16 +63478,16 @@ contains
       integer(c_int), value :: uplo
       integer(c_int), value :: n
       complex(c_double_complex) :: alpha
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: A(..)
       integer(c_int), value :: lda
-      complex(c_double_complex), target :: x(*)
+      complex(c_double_complex), target :: x(..)
       integer(c_int), value :: incx
       complex(c_double_complex) :: beta
-      complex(c_double_complex), target :: y(*)
+      complex(c_double_complex), target :: y(..)
       integer(c_int), value :: incy
       integer(c_int) :: zsymv
-      zsymv = rocblas_zsymv_raw(handle, uplo, n, alpha, c_loc(A(1)), lda, c_loc(x(1)), incx, beta, &
-        c_loc(y(1)), incy)
+      zsymv = rocblas_zsymv_raw(handle, uplo, n, alpha, c_loc(A), lda, c_loc(x), incx, beta, &
+        c_loc(y), incy)
     end function rocblas_zsymv_native
 
     function rocblas_zsymv_typed(handle, uplo, n, alpha, A, lda, x, incx, beta, y, incy) result( &
@@ -63545,17 +63517,17 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: uplo
       integer(c_long), value :: n
-      real(c_float), target :: alpha(*)
-      real(c_float), target :: A(*)
+      real(c_float), target :: alpha(..)
+      real(c_float), target :: A(..)
       integer(c_long), value :: lda
-      real(c_float), target :: x(*)
+      real(c_float), target :: x(..)
       integer(c_long), value :: incx
-      real(c_float), target :: beta(*)
-      real(c_float), target :: y(*)
+      real(c_float), target :: beta(..)
+      real(c_float), target :: y(..)
       integer(c_long), value :: incy
       integer(c_int) :: ssymv_64
-      ssymv_64 = rocblas_ssymv_64_raw(handle, uplo, n, c_loc(alpha(1)), c_loc(A(1)), lda, c_loc(x( &
-        1)), incx, c_loc(beta(1)), c_loc(y(1)), incy)
+      ssymv_64 = rocblas_ssymv_64_raw(handle, uplo, n, c_loc(alpha), c_loc(A), lda, c_loc(x), &
+        incx, c_loc(beta), c_loc(y), incy)
     end function rocblas_ssymv_64_native
 
     function rocblas_ssymv_64_typed(handle, uplo, n, alpha, A, lda, x, incx, beta, y, &
@@ -63585,17 +63557,17 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: uplo
       integer(c_long), value :: n
-      real(c_double), target :: alpha(*)
-      real(c_double), target :: A(*)
+      real(c_double), target :: alpha(..)
+      real(c_double), target :: A(..)
       integer(c_long), value :: lda
-      real(c_double), target :: x(*)
+      real(c_double), target :: x(..)
       integer(c_long), value :: incx
-      real(c_double), target :: beta(*)
-      real(c_double), target :: y(*)
+      real(c_double), target :: beta(..)
+      real(c_double), target :: y(..)
       integer(c_long), value :: incy
       integer(c_int) :: dsymv_64
-      dsymv_64 = rocblas_dsymv_64_raw(handle, uplo, n, c_loc(alpha(1)), c_loc(A(1)), lda, c_loc(x( &
-        1)), incx, c_loc(beta(1)), c_loc(y(1)), incy)
+      dsymv_64 = rocblas_dsymv_64_raw(handle, uplo, n, c_loc(alpha), c_loc(A), lda, c_loc(x), &
+        incx, c_loc(beta), c_loc(y), incy)
     end function rocblas_dsymv_64_native
 
     function rocblas_dsymv_64_typed(handle, uplo, n, alpha, A, lda, x, incx, beta, y, &
@@ -63625,17 +63597,17 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: uplo
       integer(c_long), value :: n
-      complex(c_float_complex), target :: alpha(*)
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: alpha(..)
+      complex(c_float_complex), target :: A(..)
       integer(c_long), value :: lda
-      complex(c_float_complex), target :: x(*)
+      complex(c_float_complex), target :: x(..)
       integer(c_long), value :: incx
-      complex(c_float_complex), target :: beta(*)
-      complex(c_float_complex), target :: y(*)
+      complex(c_float_complex), target :: beta(..)
+      complex(c_float_complex), target :: y(..)
       integer(c_long), value :: incy
       integer(c_int) :: csymv_64
-      csymv_64 = rocblas_csymv_64_raw(handle, uplo, n, c_loc(alpha(1)), c_loc(A(1)), lda, c_loc(x( &
-        1)), incx, c_loc(beta(1)), c_loc(y(1)), incy)
+      csymv_64 = rocblas_csymv_64_raw(handle, uplo, n, c_loc(alpha), c_loc(A), lda, c_loc(x), &
+        incx, c_loc(beta), c_loc(y), incy)
     end function rocblas_csymv_64_native
 
     function rocblas_csymv_64_typed(handle, uplo, n, alpha, A, lda, x, incx, beta, y, &
@@ -63665,17 +63637,17 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: uplo
       integer(c_long), value :: n
-      complex(c_double_complex), target :: alpha(*)
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: alpha(..)
+      complex(c_double_complex), target :: A(..)
       integer(c_long), value :: lda
-      complex(c_double_complex), target :: x(*)
+      complex(c_double_complex), target :: x(..)
       integer(c_long), value :: incx
-      complex(c_double_complex), target :: beta(*)
-      complex(c_double_complex), target :: y(*)
+      complex(c_double_complex), target :: beta(..)
+      complex(c_double_complex), target :: y(..)
       integer(c_long), value :: incy
       integer(c_int) :: zsymv_64
-      zsymv_64 = rocblas_zsymv_64_raw(handle, uplo, n, c_loc(alpha(1)), c_loc(A(1)), lda, c_loc(x( &
-        1)), incx, c_loc(beta(1)), c_loc(y(1)), incy)
+      zsymv_64 = rocblas_zsymv_64_raw(handle, uplo, n, c_loc(alpha), c_loc(A), lda, c_loc(x), &
+        incx, c_loc(beta), c_loc(y), incy)
     end function rocblas_zsymv_64_native
 
     function rocblas_zsymv_64_typed(handle, uplo, n, alpha, A, lda, x, incx, beta, y, &
@@ -63793,18 +63765,18 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: uplo
       integer(c_long), value :: n
-      real(c_float), target :: alpha(*)
+      real(c_float), target :: alpha(..)
       type(c_ptr), value :: A
       integer(c_long), value :: lda
       type(c_ptr), value :: x
       integer(c_long), value :: incx
-      real(c_float), target :: beta(*)
+      real(c_float), target :: beta(..)
       type(c_ptr), value :: y
       integer(c_long), value :: incy
       integer(c_long), value :: batch_count
       integer(c_int) :: ssymv_batched_64
-      ssymv_batched_64 = rocblas_ssymv_batched_64_raw(handle, uplo, n, c_loc(alpha(1)), A, lda, x, &
-        incx, c_loc(beta(1)), y, incy, batch_count)
+      ssymv_batched_64 = rocblas_ssymv_batched_64_raw(handle, uplo, n, c_loc(alpha), A, lda, x, &
+        incx, c_loc(beta), y, incy, batch_count)
     end function rocblas_ssymv_batched_64_native
 
     function rocblas_ssymv_batched_64_typed(handle, uplo, n, alpha, A, lda, x, incx, beta, y, &
@@ -63836,18 +63808,18 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: uplo
       integer(c_long), value :: n
-      real(c_double), target :: alpha(*)
+      real(c_double), target :: alpha(..)
       type(c_ptr), value :: A
       integer(c_long), value :: lda
       type(c_ptr), value :: x
       integer(c_long), value :: incx
-      real(c_double), target :: beta(*)
+      real(c_double), target :: beta(..)
       type(c_ptr), value :: y
       integer(c_long), value :: incy
       integer(c_long), value :: batch_count
       integer(c_int) :: dsymv_batched_64
-      dsymv_batched_64 = rocblas_dsymv_batched_64_raw(handle, uplo, n, c_loc(alpha(1)), A, lda, x, &
-        incx, c_loc(beta(1)), y, incy, batch_count)
+      dsymv_batched_64 = rocblas_dsymv_batched_64_raw(handle, uplo, n, c_loc(alpha), A, lda, x, &
+        incx, c_loc(beta), y, incy, batch_count)
     end function rocblas_dsymv_batched_64_native
 
     function rocblas_dsymv_batched_64_typed(handle, uplo, n, alpha, A, lda, x, incx, beta, y, &
@@ -63879,18 +63851,18 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: uplo
       integer(c_long), value :: n
-      complex(c_float_complex), target :: alpha(*)
+      complex(c_float_complex), target :: alpha(..)
       type(c_ptr), value :: A
       integer(c_long), value :: lda
       type(c_ptr), value :: x
       integer(c_long), value :: incx
-      complex(c_float_complex), target :: beta(*)
+      complex(c_float_complex), target :: beta(..)
       type(c_ptr), value :: y
       integer(c_long), value :: incy
       integer(c_long), value :: batch_count
       integer(c_int) :: csymv_batched_64
-      csymv_batched_64 = rocblas_csymv_batched_64_raw(handle, uplo, n, c_loc(alpha(1)), A, lda, x, &
-        incx, c_loc(beta(1)), y, incy, batch_count)
+      csymv_batched_64 = rocblas_csymv_batched_64_raw(handle, uplo, n, c_loc(alpha), A, lda, x, &
+        incx, c_loc(beta), y, incy, batch_count)
     end function rocblas_csymv_batched_64_native
 
     function rocblas_csymv_batched_64_typed(handle, uplo, n, alpha, A, lda, x, incx, beta, y, &
@@ -63922,18 +63894,18 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: uplo
       integer(c_long), value :: n
-      complex(c_double_complex), target :: alpha(*)
+      complex(c_double_complex), target :: alpha(..)
       type(c_ptr), value :: A
       integer(c_long), value :: lda
       type(c_ptr), value :: x
       integer(c_long), value :: incx
-      complex(c_double_complex), target :: beta(*)
+      complex(c_double_complex), target :: beta(..)
       type(c_ptr), value :: y
       integer(c_long), value :: incy
       integer(c_long), value :: batch_count
       integer(c_int) :: zsymv_batched_64
-      zsymv_batched_64 = rocblas_zsymv_batched_64_raw(handle, uplo, n, c_loc(alpha(1)), A, lda, x, &
-        incx, c_loc(beta(1)), y, incy, batch_count)
+      zsymv_batched_64 = rocblas_zsymv_batched_64_raw(handle, uplo, n, c_loc(alpha), A, lda, x, &
+        incx, c_loc(beta), y, incy, batch_count)
     end function rocblas_zsymv_batched_64_native
 
     function rocblas_zsymv_batched_64_typed(handle, uplo, n, alpha, A, lda, x, incx, beta, y, &
@@ -63966,21 +63938,20 @@ contains
       integer(c_int), value :: uplo
       integer(c_int), value :: n
       real(c_float) :: alpha
-      real(c_float), target :: A(*)
+      real(c_float), target :: A(..)
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
-      real(c_float), target :: x(*)
+      real(c_float), target :: x(..)
       integer(c_int), value :: incx
       integer(c_long), value :: stridex
       real(c_float) :: beta
-      real(c_float), target :: y(*)
+      real(c_float), target :: y(..)
       integer(c_int), value :: incy
       integer(c_long), value :: stridey
       integer(c_int), value :: batch_count
       integer(c_int) :: ssymv_strided_batched
-      ssymv_strided_batched = rocblas_ssymv_strided_batched_raw(handle, uplo, n, alpha, c_loc(A( &
-        1)), lda, strideA, c_loc(x(1)), incx, stridex, beta, c_loc(y(1)), incy, stridey, &
-        batch_count)
+      ssymv_strided_batched = rocblas_ssymv_strided_batched_raw(handle, uplo, n, alpha, c_loc(A), &
+        lda, strideA, c_loc(x), incx, stridex, beta, c_loc(y), incy, stridey, batch_count)
     end function rocblas_ssymv_strided_batched_native
 
     function rocblas_ssymv_strided_batched_typed(handle, uplo, n, alpha, A, lda, strideA, x, incx, &
@@ -64016,21 +63987,20 @@ contains
       integer(c_int), value :: uplo
       integer(c_int), value :: n
       real(c_double) :: alpha
-      real(c_double), target :: A(*)
+      real(c_double), target :: A(..)
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
-      real(c_double), target :: x(*)
+      real(c_double), target :: x(..)
       integer(c_int), value :: incx
       integer(c_long), value :: stridex
       real(c_double) :: beta
-      real(c_double), target :: y(*)
+      real(c_double), target :: y(..)
       integer(c_int), value :: incy
       integer(c_long), value :: stridey
       integer(c_int), value :: batch_count
       integer(c_int) :: dsymv_strided_batched
-      dsymv_strided_batched = rocblas_dsymv_strided_batched_raw(handle, uplo, n, alpha, c_loc(A( &
-        1)), lda, strideA, c_loc(x(1)), incx, stridex, beta, c_loc(y(1)), incy, stridey, &
-        batch_count)
+      dsymv_strided_batched = rocblas_dsymv_strided_batched_raw(handle, uplo, n, alpha, c_loc(A), &
+        lda, strideA, c_loc(x), incx, stridex, beta, c_loc(y), incy, stridey, batch_count)
     end function rocblas_dsymv_strided_batched_native
 
     function rocblas_dsymv_strided_batched_typed(handle, uplo, n, alpha, A, lda, strideA, x, incx, &
@@ -64066,21 +64036,20 @@ contains
       integer(c_int), value :: uplo
       integer(c_int), value :: n
       complex(c_float_complex) :: alpha
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: A(..)
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
-      complex(c_float_complex), target :: x(*)
+      complex(c_float_complex), target :: x(..)
       integer(c_int), value :: incx
       integer(c_long), value :: stridex
       complex(c_float_complex) :: beta
-      complex(c_float_complex), target :: y(*)
+      complex(c_float_complex), target :: y(..)
       integer(c_int), value :: incy
       integer(c_long), value :: stridey
       integer(c_int), value :: batch_count
       integer(c_int) :: csymv_strided_batched
-      csymv_strided_batched = rocblas_csymv_strided_batched_raw(handle, uplo, n, alpha, c_loc(A( &
-        1)), lda, strideA, c_loc(x(1)), incx, stridex, beta, c_loc(y(1)), incy, stridey, &
-        batch_count)
+      csymv_strided_batched = rocblas_csymv_strided_batched_raw(handle, uplo, n, alpha, c_loc(A), &
+        lda, strideA, c_loc(x), incx, stridex, beta, c_loc(y), incy, stridey, batch_count)
     end function rocblas_csymv_strided_batched_native
 
     function rocblas_csymv_strided_batched_typed(handle, uplo, n, alpha, A, lda, strideA, x, incx, &
@@ -64116,21 +64085,20 @@ contains
       integer(c_int), value :: uplo
       integer(c_int), value :: n
       complex(c_double_complex) :: alpha
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: A(..)
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
-      complex(c_double_complex), target :: x(*)
+      complex(c_double_complex), target :: x(..)
       integer(c_int), value :: incx
       integer(c_long), value :: stridex
       complex(c_double_complex) :: beta
-      complex(c_double_complex), target :: y(*)
+      complex(c_double_complex), target :: y(..)
       integer(c_int), value :: incy
       integer(c_long), value :: stridey
       integer(c_int), value :: batch_count
       integer(c_int) :: zsymv_strided_batched
-      zsymv_strided_batched = rocblas_zsymv_strided_batched_raw(handle, uplo, n, alpha, c_loc(A( &
-        1)), lda, strideA, c_loc(x(1)), incx, stridex, beta, c_loc(y(1)), incy, stridey, &
-        batch_count)
+      zsymv_strided_batched = rocblas_zsymv_strided_batched_raw(handle, uplo, n, alpha, c_loc(A), &
+        lda, strideA, c_loc(x), incx, stridex, beta, c_loc(y), incy, stridey, batch_count)
     end function rocblas_zsymv_strided_batched_native
 
     function rocblas_zsymv_strided_batched_typed(handle, uplo, n, alpha, A, lda, strideA, x, incx, &
@@ -64165,22 +64133,22 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: uplo
       integer(c_long), value :: n
-      real(c_float), target :: alpha(*)
-      real(c_float), target :: A(*)
+      real(c_float), target :: alpha(..)
+      real(c_float), target :: A(..)
       integer(c_long), value :: lda
       integer(c_long), value :: strideA
-      real(c_float), target :: x(*)
+      real(c_float), target :: x(..)
       integer(c_long), value :: incx
       integer(c_long), value :: stridex
-      real(c_float), target :: beta(*)
-      real(c_float), target :: y(*)
+      real(c_float), target :: beta(..)
+      real(c_float), target :: y(..)
       integer(c_long), value :: incy
       integer(c_long), value :: stridey
       integer(c_long), value :: batch_count
       integer(c_int) :: ssymv_strided_batched_64
       ssymv_strided_batched_64 = rocblas_ssymv_strided_batched_64_raw(handle, uplo, n, c_loc( &
-        alpha(1)), c_loc(A(1)), lda, strideA, c_loc(x(1)), incx, stridex, c_loc(beta(1)), c_loc(y( &
-        1)), incy, stridey, batch_count)
+        alpha), c_loc(A), lda, strideA, c_loc(x), incx, stridex, c_loc(beta), c_loc(y), incy, &
+        stridey, batch_count)
     end function rocblas_ssymv_strided_batched_64_native
 
     function rocblas_ssymv_strided_batched_64_typed(handle, uplo, n, alpha, A, lda, strideA, x, &
@@ -64215,22 +64183,22 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: uplo
       integer(c_long), value :: n
-      real(c_double), target :: alpha(*)
-      real(c_double), target :: A(*)
+      real(c_double), target :: alpha(..)
+      real(c_double), target :: A(..)
       integer(c_long), value :: lda
       integer(c_long), value :: strideA
-      real(c_double), target :: x(*)
+      real(c_double), target :: x(..)
       integer(c_long), value :: incx
       integer(c_long), value :: stridex
-      real(c_double), target :: beta(*)
-      real(c_double), target :: y(*)
+      real(c_double), target :: beta(..)
+      real(c_double), target :: y(..)
       integer(c_long), value :: incy
       integer(c_long), value :: stridey
       integer(c_long), value :: batch_count
       integer(c_int) :: dsymv_strided_batched_64
       dsymv_strided_batched_64 = rocblas_dsymv_strided_batched_64_raw(handle, uplo, n, c_loc( &
-        alpha(1)), c_loc(A(1)), lda, strideA, c_loc(x(1)), incx, stridex, c_loc(beta(1)), c_loc(y( &
-        1)), incy, stridey, batch_count)
+        alpha), c_loc(A), lda, strideA, c_loc(x), incx, stridex, c_loc(beta), c_loc(y), incy, &
+        stridey, batch_count)
     end function rocblas_dsymv_strided_batched_64_native
 
     function rocblas_dsymv_strided_batched_64_typed(handle, uplo, n, alpha, A, lda, strideA, x, &
@@ -64265,22 +64233,22 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: uplo
       integer(c_long), value :: n
-      complex(c_float_complex), target :: alpha(*)
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: alpha(..)
+      complex(c_float_complex), target :: A(..)
       integer(c_long), value :: lda
       integer(c_long), value :: strideA
-      complex(c_float_complex), target :: x(*)
+      complex(c_float_complex), target :: x(..)
       integer(c_long), value :: incx
       integer(c_long), value :: stridex
-      complex(c_float_complex), target :: beta(*)
-      complex(c_float_complex), target :: y(*)
+      complex(c_float_complex), target :: beta(..)
+      complex(c_float_complex), target :: y(..)
       integer(c_long), value :: incy
       integer(c_long), value :: stridey
       integer(c_long), value :: batch_count
       integer(c_int) :: csymv_strided_batched_64
       csymv_strided_batched_64 = rocblas_csymv_strided_batched_64_raw(handle, uplo, n, c_loc( &
-        alpha(1)), c_loc(A(1)), lda, strideA, c_loc(x(1)), incx, stridex, c_loc(beta(1)), c_loc(y( &
-        1)), incy, stridey, batch_count)
+        alpha), c_loc(A), lda, strideA, c_loc(x), incx, stridex, c_loc(beta), c_loc(y), incy, &
+        stridey, batch_count)
     end function rocblas_csymv_strided_batched_64_native
 
     function rocblas_csymv_strided_batched_64_typed(handle, uplo, n, alpha, A, lda, strideA, x, &
@@ -64315,22 +64283,22 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: uplo
       integer(c_long), value :: n
-      complex(c_double_complex), target :: alpha(*)
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: alpha(..)
+      complex(c_double_complex), target :: A(..)
       integer(c_long), value :: lda
       integer(c_long), value :: strideA
-      complex(c_double_complex), target :: x(*)
+      complex(c_double_complex), target :: x(..)
       integer(c_long), value :: incx
       integer(c_long), value :: stridex
-      complex(c_double_complex), target :: beta(*)
-      complex(c_double_complex), target :: y(*)
+      complex(c_double_complex), target :: beta(..)
+      complex(c_double_complex), target :: y(..)
       integer(c_long), value :: incy
       integer(c_long), value :: stridey
       integer(c_long), value :: batch_count
       integer(c_int) :: zsymv_strided_batched_64
       zsymv_strided_batched_64 = rocblas_zsymv_strided_batched_64_raw(handle, uplo, n, c_loc( &
-        alpha(1)), c_loc(A(1)), lda, strideA, c_loc(x(1)), incx, stridex, c_loc(beta(1)), c_loc(y( &
-        1)), incy, stridey, batch_count)
+        alpha), c_loc(A), lda, strideA, c_loc(x), incx, stridex, c_loc(beta), c_loc(y), incy, &
+        stridey, batch_count)
     end function rocblas_zsymv_strided_batched_64_native
 
     function rocblas_zsymv_strided_batched_64_typed(handle, uplo, n, alpha, A, lda, strideA, x, &
@@ -64365,15 +64333,15 @@ contains
       integer(c_int), value :: uplo
       integer(c_int), value :: n
       real(c_float) :: alpha
-      real(c_float), target :: A(*)
-      real(c_float), target :: x(*)
+      real(c_float), target :: A(..)
+      real(c_float), target :: x(..)
       integer(c_int), value :: incx
       real(c_float) :: beta
-      real(c_float), target :: y(*)
+      real(c_float), target :: y(..)
       integer(c_int), value :: incy
       integer(c_int) :: sspmv
-      sspmv = rocblas_sspmv_raw(handle, uplo, n, alpha, c_loc(A(1)), c_loc(x(1)), incx, beta, &
-        c_loc(y(1)), incy)
+      sspmv = rocblas_sspmv_raw(handle, uplo, n, alpha, c_loc(A), c_loc(x), incx, beta, c_loc(y), &
+        incy)
     end function rocblas_sspmv_native
 
     function rocblas_sspmv_typed(handle, uplo, n, alpha, A, x, incx, beta, y, incy) result(sspmv)
@@ -64401,15 +64369,15 @@ contains
       integer(c_int), value :: uplo
       integer(c_int), value :: n
       real(c_double) :: alpha
-      real(c_double), target :: A(*)
-      real(c_double), target :: x(*)
+      real(c_double), target :: A(..)
+      real(c_double), target :: x(..)
       integer(c_int), value :: incx
       real(c_double) :: beta
-      real(c_double), target :: y(*)
+      real(c_double), target :: y(..)
       integer(c_int), value :: incy
       integer(c_int) :: dspmv
-      dspmv = rocblas_dspmv_raw(handle, uplo, n, alpha, c_loc(A(1)), c_loc(x(1)), incx, beta, &
-        c_loc(y(1)), incy)
+      dspmv = rocblas_dspmv_raw(handle, uplo, n, alpha, c_loc(A), c_loc(x), incx, beta, c_loc(y), &
+        incy)
     end function rocblas_dspmv_native
 
     function rocblas_dspmv_typed(handle, uplo, n, alpha, A, x, incx, beta, y, incy) result(dspmv)
@@ -64437,16 +64405,16 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: uplo
       integer(c_long), value :: n
-      real(c_float), target :: alpha(*)
-      real(c_float), target :: A(*)
-      real(c_float), target :: x(*)
+      real(c_float), target :: alpha(..)
+      real(c_float), target :: A(..)
+      real(c_float), target :: x(..)
       integer(c_long), value :: incx
-      real(c_float), target :: beta(*)
-      real(c_float), target :: y(*)
+      real(c_float), target :: beta(..)
+      real(c_float), target :: y(..)
       integer(c_long), value :: incy
       integer(c_int) :: sspmv_64
-      sspmv_64 = rocblas_sspmv_64_raw(handle, uplo, n, c_loc(alpha(1)), c_loc(A(1)), c_loc(x(1)), &
-        incx, c_loc(beta(1)), c_loc(y(1)), incy)
+      sspmv_64 = rocblas_sspmv_64_raw(handle, uplo, n, c_loc(alpha), c_loc(A), c_loc(x), incx, &
+        c_loc(beta), c_loc(y), incy)
     end function rocblas_sspmv_64_native
 
     function rocblas_sspmv_64_typed(handle, uplo, n, alpha, A, x, incx, beta, y, incy) result( &
@@ -64475,16 +64443,16 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: uplo
       integer(c_long), value :: n
-      real(c_double), target :: alpha(*)
-      real(c_double), target :: A(*)
-      real(c_double), target :: x(*)
+      real(c_double), target :: alpha(..)
+      real(c_double), target :: A(..)
+      real(c_double), target :: x(..)
       integer(c_long), value :: incx
-      real(c_double), target :: beta(*)
-      real(c_double), target :: y(*)
+      real(c_double), target :: beta(..)
+      real(c_double), target :: y(..)
       integer(c_long), value :: incy
       integer(c_int) :: dspmv_64
-      dspmv_64 = rocblas_dspmv_64_raw(handle, uplo, n, c_loc(alpha(1)), c_loc(A(1)), c_loc(x(1)), &
-        incx, c_loc(beta(1)), c_loc(y(1)), incy)
+      dspmv_64 = rocblas_dspmv_64_raw(handle, uplo, n, c_loc(alpha), c_loc(A), c_loc(x), incx, &
+        c_loc(beta), c_loc(y), incy)
     end function rocblas_dspmv_64_native
 
     function rocblas_dspmv_64_typed(handle, uplo, n, alpha, A, x, incx, beta, y, incy) result( &
@@ -64555,17 +64523,17 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: uplo
       integer(c_long), value :: n
-      real(c_float), target :: alpha(*)
+      real(c_float), target :: alpha(..)
       type(c_ptr), value :: A
       type(c_ptr), value :: x
       integer(c_long), value :: incx
-      real(c_float), target :: beta(*)
+      real(c_float), target :: beta(..)
       type(c_ptr), value :: y
       integer(c_long), value :: incy
       integer(c_long), value :: batch_count
       integer(c_int) :: sspmv_batched_64
-      sspmv_batched_64 = rocblas_sspmv_batched_64_raw(handle, uplo, n, c_loc(alpha(1)), A, x, &
-        incx, c_loc(beta(1)), y, incy, batch_count)
+      sspmv_batched_64 = rocblas_sspmv_batched_64_raw(handle, uplo, n, c_loc(alpha), A, x, incx, &
+        c_loc(beta), y, incy, batch_count)
     end function rocblas_sspmv_batched_64_native
 
     function rocblas_sspmv_batched_64_typed(handle, uplo, n, alpha, A, x, incx, beta, y, incy, &
@@ -64596,17 +64564,17 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: uplo
       integer(c_long), value :: n
-      real(c_double), target :: alpha(*)
+      real(c_double), target :: alpha(..)
       type(c_ptr), value :: A
       type(c_ptr), value :: x
       integer(c_long), value :: incx
-      real(c_double), target :: beta(*)
+      real(c_double), target :: beta(..)
       type(c_ptr), value :: y
       integer(c_long), value :: incy
       integer(c_long), value :: batch_count
       integer(c_int) :: dspmv_batched_64
-      dspmv_batched_64 = rocblas_dspmv_batched_64_raw(handle, uplo, n, c_loc(alpha(1)), A, x, &
-        incx, c_loc(beta(1)), y, incy, batch_count)
+      dspmv_batched_64 = rocblas_dspmv_batched_64_raw(handle, uplo, n, c_loc(alpha), A, x, incx, &
+        c_loc(beta), y, incy, batch_count)
     end function rocblas_dspmv_batched_64_native
 
     function rocblas_dspmv_batched_64_typed(handle, uplo, n, alpha, A, x, incx, beta, y, incy, &
@@ -64638,19 +64606,19 @@ contains
       integer(c_int), value :: uplo
       integer(c_int), value :: n
       real(c_float) :: alpha
-      real(c_float), target :: A(*)
+      real(c_float), target :: A(..)
       integer(c_long), value :: strideA
-      real(c_float), target :: x(*)
+      real(c_float), target :: x(..)
       integer(c_int), value :: incx
       integer(c_long), value :: stridex
       real(c_float) :: beta
-      real(c_float), target :: y(*)
+      real(c_float), target :: y(..)
       integer(c_int), value :: incy
       integer(c_long), value :: stridey
       integer(c_int), value :: batch_count
       integer(c_int) :: sspmv_strided_batched
-      sspmv_strided_batched = rocblas_sspmv_strided_batched_raw(handle, uplo, n, alpha, c_loc(A( &
-        1)), strideA, c_loc(x(1)), incx, stridex, beta, c_loc(y(1)), incy, stridey, batch_count)
+      sspmv_strided_batched = rocblas_sspmv_strided_batched_raw(handle, uplo, n, alpha, c_loc(A), &
+        strideA, c_loc(x), incx, stridex, beta, c_loc(y), incy, stridey, batch_count)
     end function rocblas_sspmv_strided_batched_native
 
     function rocblas_sspmv_strided_batched_typed(handle, uplo, n, alpha, A, strideA, x, incx, &
@@ -64685,19 +64653,19 @@ contains
       integer(c_int), value :: uplo
       integer(c_int), value :: n
       real(c_double) :: alpha
-      real(c_double), target :: A(*)
+      real(c_double), target :: A(..)
       integer(c_long), value :: strideA
-      real(c_double), target :: x(*)
+      real(c_double), target :: x(..)
       integer(c_int), value :: incx
       integer(c_long), value :: stridex
       real(c_double) :: beta
-      real(c_double), target :: y(*)
+      real(c_double), target :: y(..)
       integer(c_int), value :: incy
       integer(c_long), value :: stridey
       integer(c_int), value :: batch_count
       integer(c_int) :: dspmv_strided_batched
-      dspmv_strided_batched = rocblas_dspmv_strided_batched_raw(handle, uplo, n, alpha, c_loc(A( &
-        1)), strideA, c_loc(x(1)), incx, stridex, beta, c_loc(y(1)), incy, stridey, batch_count)
+      dspmv_strided_batched = rocblas_dspmv_strided_batched_raw(handle, uplo, n, alpha, c_loc(A), &
+        strideA, c_loc(x), incx, stridex, beta, c_loc(y), incy, stridey, batch_count)
     end function rocblas_dspmv_strided_batched_native
 
     function rocblas_dspmv_strided_batched_typed(handle, uplo, n, alpha, A, strideA, x, incx, &
@@ -64731,21 +64699,21 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: uplo
       integer(c_long), value :: n
-      real(c_float), target :: alpha(*)
-      real(c_float), target :: A(*)
+      real(c_float), target :: alpha(..)
+      real(c_float), target :: A(..)
       integer(c_long), value :: strideA
-      real(c_float), target :: x(*)
+      real(c_float), target :: x(..)
       integer(c_long), value :: incx
       integer(c_long), value :: stridex
-      real(c_float), target :: beta(*)
-      real(c_float), target :: y(*)
+      real(c_float), target :: beta(..)
+      real(c_float), target :: y(..)
       integer(c_long), value :: incy
       integer(c_long), value :: stridey
       integer(c_long), value :: batch_count
       integer(c_int) :: sspmv_strided_batched_64
       sspmv_strided_batched_64 = rocblas_sspmv_strided_batched_64_raw(handle, uplo, n, c_loc( &
-        alpha(1)), c_loc(A(1)), strideA, c_loc(x(1)), incx, stridex, c_loc(beta(1)), c_loc(y(1)), &
-        incy, stridey, batch_count)
+        alpha), c_loc(A), strideA, c_loc(x), incx, stridex, c_loc(beta), c_loc(y), incy, stridey, &
+        batch_count)
     end function rocblas_sspmv_strided_batched_64_native
 
     function rocblas_sspmv_strided_batched_64_typed(handle, uplo, n, alpha, A, strideA, x, incx, &
@@ -64779,21 +64747,21 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: uplo
       integer(c_long), value :: n
-      real(c_double), target :: alpha(*)
-      real(c_double), target :: A(*)
+      real(c_double), target :: alpha(..)
+      real(c_double), target :: A(..)
       integer(c_long), value :: strideA
-      real(c_double), target :: x(*)
+      real(c_double), target :: x(..)
       integer(c_long), value :: incx
       integer(c_long), value :: stridex
-      real(c_double), target :: beta(*)
-      real(c_double), target :: y(*)
+      real(c_double), target :: beta(..)
+      real(c_double), target :: y(..)
       integer(c_long), value :: incy
       integer(c_long), value :: stridey
       integer(c_long), value :: batch_count
       integer(c_int) :: dspmv_strided_batched_64
       dspmv_strided_batched_64 = rocblas_dspmv_strided_batched_64_raw(handle, uplo, n, c_loc( &
-        alpha(1)), c_loc(A(1)), strideA, c_loc(x(1)), incx, stridex, c_loc(beta(1)), c_loc(y(1)), &
-        incy, stridey, batch_count)
+        alpha), c_loc(A), strideA, c_loc(x), incx, stridex, c_loc(beta), c_loc(y), incy, stridey, &
+        batch_count)
     end function rocblas_dspmv_strided_batched_64_native
 
     function rocblas_dspmv_strided_batched_64_typed(handle, uplo, n, alpha, A, strideA, x, incx, &
@@ -64829,16 +64797,16 @@ contains
       integer(c_int), value :: n
       integer(c_int), value :: k
       real(c_float) :: alpha
-      real(c_float), target :: A(*)
+      real(c_float), target :: A(..)
       integer(c_int), value :: lda
-      real(c_float), target :: x(*)
+      real(c_float), target :: x(..)
       integer(c_int), value :: incx
       real(c_float) :: beta
-      real(c_float), target :: y(*)
+      real(c_float), target :: y(..)
       integer(c_int), value :: incy
       integer(c_int) :: ssbmv
-      ssbmv = rocblas_ssbmv_raw(handle, uplo, n, k, alpha, c_loc(A(1)), lda, c_loc(x(1)), incx, &
-        beta, c_loc(y(1)), incy)
+      ssbmv = rocblas_ssbmv_raw(handle, uplo, n, k, alpha, c_loc(A), lda, c_loc(x), incx, beta, &
+        c_loc(y), incy)
     end function rocblas_ssbmv_native
 
     function rocblas_ssbmv_typed(handle, uplo, n, k, alpha, A, lda, x, incx, beta, y, &
@@ -64871,16 +64839,16 @@ contains
       integer(c_int), value :: n
       integer(c_int), value :: k
       real(c_double) :: alpha
-      real(c_double), target :: A(*)
+      real(c_double), target :: A(..)
       integer(c_int), value :: lda
-      real(c_double), target :: x(*)
+      real(c_double), target :: x(..)
       integer(c_int), value :: incx
       real(c_double) :: beta
-      real(c_double), target :: y(*)
+      real(c_double), target :: y(..)
       integer(c_int), value :: incy
       integer(c_int) :: dsbmv
-      dsbmv = rocblas_dsbmv_raw(handle, uplo, n, k, alpha, c_loc(A(1)), lda, c_loc(x(1)), incx, &
-        beta, c_loc(y(1)), incy)
+      dsbmv = rocblas_dsbmv_raw(handle, uplo, n, k, alpha, c_loc(A), lda, c_loc(x), incx, beta, &
+        c_loc(y), incy)
     end function rocblas_dsbmv_native
 
     function rocblas_dsbmv_typed(handle, uplo, n, k, alpha, A, lda, x, incx, beta, y, &
@@ -64912,17 +64880,17 @@ contains
       integer(c_int), value :: uplo
       integer(c_long), value :: n
       integer(c_long), value :: k
-      real(c_float), target :: alpha(*)
-      real(c_float), target :: A(*)
+      real(c_float), target :: alpha(..)
+      real(c_float), target :: A(..)
       integer(c_long), value :: lda
-      real(c_float), target :: x(*)
+      real(c_float), target :: x(..)
       integer(c_long), value :: incx
-      real(c_float), target :: beta(*)
-      real(c_float), target :: y(*)
+      real(c_float), target :: beta(..)
+      real(c_float), target :: y(..)
       integer(c_long), value :: incy
       integer(c_int) :: ssbmv_64
-      ssbmv_64 = rocblas_ssbmv_64_raw(handle, uplo, n, k, c_loc(alpha(1)), c_loc(A(1)), lda, &
-        c_loc(x(1)), incx, c_loc(beta(1)), c_loc(y(1)), incy)
+      ssbmv_64 = rocblas_ssbmv_64_raw(handle, uplo, n, k, c_loc(alpha), c_loc(A), lda, c_loc(x), &
+        incx, c_loc(beta), c_loc(y), incy)
     end function rocblas_ssbmv_64_native
 
     function rocblas_ssbmv_64_typed(handle, uplo, n, k, alpha, A, lda, x, incx, beta, y, &
@@ -64954,17 +64922,17 @@ contains
       integer(c_int), value :: uplo
       integer(c_long), value :: n
       integer(c_long), value :: k
-      real(c_double), target :: alpha(*)
-      real(c_double), target :: A(*)
+      real(c_double), target :: alpha(..)
+      real(c_double), target :: A(..)
       integer(c_long), value :: lda
-      real(c_double), target :: x(*)
+      real(c_double), target :: x(..)
       integer(c_long), value :: incx
-      real(c_double), target :: beta(*)
-      real(c_double), target :: y(*)
+      real(c_double), target :: beta(..)
+      real(c_double), target :: y(..)
       integer(c_long), value :: incy
       integer(c_int) :: dsbmv_64
-      dsbmv_64 = rocblas_dsbmv_64_raw(handle, uplo, n, k, c_loc(alpha(1)), c_loc(A(1)), lda, &
-        c_loc(x(1)), incx, c_loc(beta(1)), c_loc(y(1)), incy)
+      dsbmv_64 = rocblas_dsbmv_64_raw(handle, uplo, n, k, c_loc(alpha), c_loc(A), lda, c_loc(x), &
+        incx, c_loc(beta), c_loc(y), incy)
     end function rocblas_dsbmv_64_native
 
     function rocblas_dsbmv_64_typed(handle, uplo, n, k, alpha, A, lda, x, incx, beta, y, &
@@ -65042,18 +65010,18 @@ contains
       integer(c_int), value :: uplo
       integer(c_long), value :: n
       integer(c_long), value :: k
-      real(c_float), target :: alpha(*)
+      real(c_float), target :: alpha(..)
       type(c_ptr), value :: A
       integer(c_long), value :: lda
       type(c_ptr), value :: x
       integer(c_long), value :: incx
-      real(c_float), target :: beta(*)
+      real(c_float), target :: beta(..)
       type(c_ptr), value :: y
       integer(c_long), value :: incy
       integer(c_long), value :: batch_count
       integer(c_int) :: ssbmv_batched_64
-      ssbmv_batched_64 = rocblas_ssbmv_batched_64_raw(handle, uplo, n, k, c_loc(alpha(1)), A, lda, &
-        x, incx, c_loc(beta(1)), y, incy, batch_count)
+      ssbmv_batched_64 = rocblas_ssbmv_batched_64_raw(handle, uplo, n, k, c_loc(alpha), A, lda, x, &
+        incx, c_loc(beta), y, incy, batch_count)
     end function rocblas_ssbmv_batched_64_native
 
     function rocblas_ssbmv_batched_64_typed(handle, uplo, n, k, alpha, A, lda, x, incx, beta, y, &
@@ -65087,18 +65055,18 @@ contains
       integer(c_int), value :: uplo
       integer(c_long), value :: n
       integer(c_long), value :: k
-      real(c_double), target :: alpha(*)
+      real(c_double), target :: alpha(..)
       type(c_ptr), value :: A
       integer(c_long), value :: lda
       type(c_ptr), value :: x
       integer(c_long), value :: incx
-      real(c_double), target :: beta(*)
+      real(c_double), target :: beta(..)
       type(c_ptr), value :: y
       integer(c_long), value :: incy
       integer(c_long), value :: batch_count
       integer(c_int) :: dsbmv_batched_64
-      dsbmv_batched_64 = rocblas_dsbmv_batched_64_raw(handle, uplo, n, k, c_loc(alpha(1)), A, lda, &
-        x, incx, c_loc(beta(1)), y, incy, batch_count)
+      dsbmv_batched_64 = rocblas_dsbmv_batched_64_raw(handle, uplo, n, k, c_loc(alpha), A, lda, x, &
+        incx, c_loc(beta), y, incy, batch_count)
     end function rocblas_dsbmv_batched_64_native
 
     function rocblas_dsbmv_batched_64_typed(handle, uplo, n, k, alpha, A, lda, x, incx, beta, y, &
@@ -65133,21 +65101,20 @@ contains
       integer(c_int), value :: n
       integer(c_int), value :: k
       real(c_float) :: alpha
-      real(c_float), target :: A(*)
+      real(c_float), target :: A(..)
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
-      real(c_float), target :: x(*)
+      real(c_float), target :: x(..)
       integer(c_int), value :: incx
       integer(c_long), value :: stridex
       real(c_float) :: beta
-      real(c_float), target :: y(*)
+      real(c_float), target :: y(..)
       integer(c_int), value :: incy
       integer(c_long), value :: stridey
       integer(c_int), value :: batch_count
       integer(c_int) :: ssbmv_strided_batched
       ssbmv_strided_batched = rocblas_ssbmv_strided_batched_raw(handle, uplo, n, k, alpha, c_loc( &
-        A(1)), lda, strideA, c_loc(x(1)), incx, stridex, beta, c_loc(y(1)), incy, stridey, &
-        batch_count)
+        A), lda, strideA, c_loc(x), incx, stridex, beta, c_loc(y), incy, stridey, batch_count)
     end function rocblas_ssbmv_strided_batched_native
 
     function rocblas_ssbmv_strided_batched_typed(handle, uplo, n, k, alpha, A, lda, strideA, x, &
@@ -65185,21 +65152,20 @@ contains
       integer(c_int), value :: n
       integer(c_int), value :: k
       real(c_double) :: alpha
-      real(c_double), target :: A(*)
+      real(c_double), target :: A(..)
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
-      real(c_double), target :: x(*)
+      real(c_double), target :: x(..)
       integer(c_int), value :: incx
       integer(c_long), value :: stridex
       real(c_double) :: beta
-      real(c_double), target :: y(*)
+      real(c_double), target :: y(..)
       integer(c_int), value :: incy
       integer(c_long), value :: stridey
       integer(c_int), value :: batch_count
       integer(c_int) :: dsbmv_strided_batched
       dsbmv_strided_batched = rocblas_dsbmv_strided_batched_raw(handle, uplo, n, k, alpha, c_loc( &
-        A(1)), lda, strideA, c_loc(x(1)), incx, stridex, beta, c_loc(y(1)), incy, stridey, &
-        batch_count)
+        A), lda, strideA, c_loc(x), incx, stridex, beta, c_loc(y), incy, stridey, batch_count)
     end function rocblas_dsbmv_strided_batched_native
 
     function rocblas_dsbmv_strided_batched_typed(handle, uplo, n, k, alpha, A, lda, strideA, x, &
@@ -65236,22 +65202,22 @@ contains
       integer(c_int), value :: uplo
       integer(c_long), value :: n
       integer(c_long), value :: k
-      real(c_float), target :: alpha(*)
-      real(c_float), target :: A(*)
+      real(c_float), target :: alpha(..)
+      real(c_float), target :: A(..)
       integer(c_long), value :: lda
       integer(c_long), value :: strideA
-      real(c_float), target :: x(*)
+      real(c_float), target :: x(..)
       integer(c_long), value :: incx
       integer(c_long), value :: stridex
-      real(c_float), target :: beta(*)
-      real(c_float), target :: y(*)
+      real(c_float), target :: beta(..)
+      real(c_float), target :: y(..)
       integer(c_long), value :: incy
       integer(c_long), value :: stridey
       integer(c_long), value :: batch_count
       integer(c_int) :: ssbmv_strided_batched_64
       ssbmv_strided_batched_64 = rocblas_ssbmv_strided_batched_64_raw(handle, uplo, n, k, c_loc( &
-        alpha(1)), c_loc(A(1)), lda, strideA, c_loc(x(1)), incx, stridex, c_loc(beta(1)), c_loc(y( &
-        1)), incy, stridey, batch_count)
+        alpha), c_loc(A), lda, strideA, c_loc(x), incx, stridex, c_loc(beta), c_loc(y), incy, &
+        stridey, batch_count)
     end function rocblas_ssbmv_strided_batched_64_native
 
     function rocblas_ssbmv_strided_batched_64_typed(handle, uplo, n, k, alpha, A, lda, strideA, x, &
@@ -65288,22 +65254,22 @@ contains
       integer(c_int), value :: uplo
       integer(c_long), value :: n
       integer(c_long), value :: k
-      real(c_double), target :: alpha(*)
-      real(c_double), target :: A(*)
+      real(c_double), target :: alpha(..)
+      real(c_double), target :: A(..)
       integer(c_long), value :: lda
       integer(c_long), value :: strideA
-      real(c_double), target :: x(*)
+      real(c_double), target :: x(..)
       integer(c_long), value :: incx
       integer(c_long), value :: stridex
-      real(c_double), target :: beta(*)
-      real(c_double), target :: y(*)
+      real(c_double), target :: beta(..)
+      real(c_double), target :: y(..)
       integer(c_long), value :: incy
       integer(c_long), value :: stridey
       integer(c_long), value :: batch_count
       integer(c_int) :: dsbmv_strided_batched_64
       dsbmv_strided_batched_64 = rocblas_dsbmv_strided_batched_64_raw(handle, uplo, n, k, c_loc( &
-        alpha(1)), c_loc(A(1)), lda, strideA, c_loc(x(1)), incx, stridex, c_loc(beta(1)), c_loc(y( &
-        1)), incy, stridey, batch_count)
+        alpha), c_loc(A), lda, strideA, c_loc(x), incx, stridex, c_loc(beta), c_loc(y), incy, &
+        stridey, batch_count)
     end function rocblas_dsbmv_strided_batched_64_native
 
     function rocblas_dsbmv_strided_batched_64_typed(handle, uplo, n, k, alpha, A, lda, strideA, x, &
@@ -65339,15 +65305,14 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       real(c_float) :: alpha
-      real(c_float), target :: x(*)
+      real(c_float), target :: x(..)
       integer(c_int), value :: incx
-      real(c_float), target :: y(*)
+      real(c_float), target :: y(..)
       integer(c_int), value :: incy
-      real(c_float), target :: A(*)
+      real(c_float), target :: A(..)
       integer(c_int), value :: lda
       integer(c_int) :: sger
-      sger = rocblas_sger_raw(handle, m, n, alpha, c_loc(x(1)), incx, c_loc(y(1)), incy, c_loc(A( &
-        1)), lda)
+      sger = rocblas_sger_raw(handle, m, n, alpha, c_loc(x), incx, c_loc(y), incy, c_loc(A), lda)
     end function rocblas_sger_native
 
     function rocblas_sger_typed(handle, m, n, alpha, x, incx, y, incy, A, lda) result(sger)
@@ -65375,15 +65340,14 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       real(c_double) :: alpha
-      real(c_double), target :: x(*)
+      real(c_double), target :: x(..)
       integer(c_int), value :: incx
-      real(c_double), target :: y(*)
+      real(c_double), target :: y(..)
       integer(c_int), value :: incy
-      real(c_double), target :: A(*)
+      real(c_double), target :: A(..)
       integer(c_int), value :: lda
       integer(c_int) :: dger
-      dger = rocblas_dger_raw(handle, m, n, alpha, c_loc(x(1)), incx, c_loc(y(1)), incy, c_loc(A( &
-        1)), lda)
+      dger = rocblas_dger_raw(handle, m, n, alpha, c_loc(x), incx, c_loc(y), incy, c_loc(A), lda)
     end function rocblas_dger_native
 
     function rocblas_dger_typed(handle, m, n, alpha, x, incx, y, incy, A, lda) result(dger)
@@ -65411,15 +65375,14 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       complex(c_float_complex) :: alpha
-      complex(c_float_complex), target :: x(*)
+      complex(c_float_complex), target :: x(..)
       integer(c_int), value :: incx
-      complex(c_float_complex), target :: y(*)
+      complex(c_float_complex), target :: y(..)
       integer(c_int), value :: incy
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: A(..)
       integer(c_int), value :: lda
       integer(c_int) :: cgeru
-      cgeru = rocblas_cgeru_raw(handle, m, n, alpha, c_loc(x(1)), incx, c_loc(y(1)), incy, c_loc( &
-        A(1)), lda)
+      cgeru = rocblas_cgeru_raw(handle, m, n, alpha, c_loc(x), incx, c_loc(y), incy, c_loc(A), lda)
     end function rocblas_cgeru_native
 
     function rocblas_cgeru_typed(handle, m, n, alpha, x, incx, y, incy, A, lda) result(cgeru)
@@ -65447,15 +65410,14 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       complex(c_double_complex) :: alpha
-      complex(c_double_complex), target :: x(*)
+      complex(c_double_complex), target :: x(..)
       integer(c_int), value :: incx
-      complex(c_double_complex), target :: y(*)
+      complex(c_double_complex), target :: y(..)
       integer(c_int), value :: incy
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: A(..)
       integer(c_int), value :: lda
       integer(c_int) :: zgeru
-      zgeru = rocblas_zgeru_raw(handle, m, n, alpha, c_loc(x(1)), incx, c_loc(y(1)), incy, c_loc( &
-        A(1)), lda)
+      zgeru = rocblas_zgeru_raw(handle, m, n, alpha, c_loc(x), incx, c_loc(y), incy, c_loc(A), lda)
     end function rocblas_zgeru_native
 
     function rocblas_zgeru_typed(handle, m, n, alpha, x, incx, y, incy, A, lda) result(zgeru)
@@ -65483,15 +65445,14 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       complex(c_float_complex) :: alpha
-      complex(c_float_complex), target :: x(*)
+      complex(c_float_complex), target :: x(..)
       integer(c_int), value :: incx
-      complex(c_float_complex), target :: y(*)
+      complex(c_float_complex), target :: y(..)
       integer(c_int), value :: incy
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: A(..)
       integer(c_int), value :: lda
       integer(c_int) :: cgerc
-      cgerc = rocblas_cgerc_raw(handle, m, n, alpha, c_loc(x(1)), incx, c_loc(y(1)), incy, c_loc( &
-        A(1)), lda)
+      cgerc = rocblas_cgerc_raw(handle, m, n, alpha, c_loc(x), incx, c_loc(y), incy, c_loc(A), lda)
     end function rocblas_cgerc_native
 
     function rocblas_cgerc_typed(handle, m, n, alpha, x, incx, y, incy, A, lda) result(cgerc)
@@ -65519,15 +65480,14 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       complex(c_double_complex) :: alpha
-      complex(c_double_complex), target :: x(*)
+      complex(c_double_complex), target :: x(..)
       integer(c_int), value :: incx
-      complex(c_double_complex), target :: y(*)
+      complex(c_double_complex), target :: y(..)
       integer(c_int), value :: incy
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: A(..)
       integer(c_int), value :: lda
       integer(c_int) :: zgerc
-      zgerc = rocblas_zgerc_raw(handle, m, n, alpha, c_loc(x(1)), incx, c_loc(y(1)), incy, c_loc( &
-        A(1)), lda)
+      zgerc = rocblas_zgerc_raw(handle, m, n, alpha, c_loc(x), incx, c_loc(y), incy, c_loc(A), lda)
     end function rocblas_zgerc_native
 
     function rocblas_zgerc_typed(handle, m, n, alpha, x, incx, y, incy, A, lda) result(zgerc)
@@ -65554,16 +65514,16 @@ contains
       type(c_ptr), value :: handle
       integer(c_long), value :: m
       integer(c_long), value :: n
-      real(c_float), target :: alpha(*)
-      real(c_float), target :: x(*)
+      real(c_float), target :: alpha(..)
+      real(c_float), target :: x(..)
       integer(c_long), value :: incx
-      real(c_float), target :: y(*)
+      real(c_float), target :: y(..)
       integer(c_long), value :: incy
-      real(c_float), target :: A(*)
+      real(c_float), target :: A(..)
       integer(c_long), value :: lda
       integer(c_int) :: sger_64
-      sger_64 = rocblas_sger_64_raw(handle, m, n, c_loc(alpha(1)), c_loc(x(1)), incx, c_loc(y(1)), &
-        incy, c_loc(A(1)), lda)
+      sger_64 = rocblas_sger_64_raw(handle, m, n, c_loc(alpha), c_loc(x), incx, c_loc(y), incy, &
+        c_loc(A), lda)
     end function rocblas_sger_64_native
 
     function rocblas_sger_64_typed(handle, m, n, alpha, x, incx, y, incy, A, lda) result(sger_64)
@@ -65590,16 +65550,16 @@ contains
       type(c_ptr), value :: handle
       integer(c_long), value :: m
       integer(c_long), value :: n
-      real(c_double), target :: alpha(*)
-      real(c_double), target :: x(*)
+      real(c_double), target :: alpha(..)
+      real(c_double), target :: x(..)
       integer(c_long), value :: incx
-      real(c_double), target :: y(*)
+      real(c_double), target :: y(..)
       integer(c_long), value :: incy
-      real(c_double), target :: A(*)
+      real(c_double), target :: A(..)
       integer(c_long), value :: lda
       integer(c_int) :: dger_64
-      dger_64 = rocblas_dger_64_raw(handle, m, n, c_loc(alpha(1)), c_loc(x(1)), incx, c_loc(y(1)), &
-        incy, c_loc(A(1)), lda)
+      dger_64 = rocblas_dger_64_raw(handle, m, n, c_loc(alpha), c_loc(x), incx, c_loc(y), incy, &
+        c_loc(A), lda)
     end function rocblas_dger_64_native
 
     function rocblas_dger_64_typed(handle, m, n, alpha, x, incx, y, incy, A, lda) result(dger_64)
@@ -65626,16 +65586,16 @@ contains
       type(c_ptr), value :: handle
       integer(c_long), value :: m
       integer(c_long), value :: n
-      complex(c_float_complex), target :: alpha(*)
-      complex(c_float_complex), target :: x(*)
+      complex(c_float_complex), target :: alpha(..)
+      complex(c_float_complex), target :: x(..)
       integer(c_long), value :: incx
-      complex(c_float_complex), target :: y(*)
+      complex(c_float_complex), target :: y(..)
       integer(c_long), value :: incy
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: A(..)
       integer(c_long), value :: lda
       integer(c_int) :: cgeru_64
-      cgeru_64 = rocblas_cgeru_64_raw(handle, m, n, c_loc(alpha(1)), c_loc(x(1)), incx, c_loc(y( &
-        1)), incy, c_loc(A(1)), lda)
+      cgeru_64 = rocblas_cgeru_64_raw(handle, m, n, c_loc(alpha), c_loc(x), incx, c_loc(y), incy, &
+        c_loc(A), lda)
     end function rocblas_cgeru_64_native
 
     function rocblas_cgeru_64_typed(handle, m, n, alpha, x, incx, y, incy, A, lda) result(cgeru_64)
@@ -65662,16 +65622,16 @@ contains
       type(c_ptr), value :: handle
       integer(c_long), value :: m
       integer(c_long), value :: n
-      complex(c_double_complex), target :: alpha(*)
-      complex(c_double_complex), target :: x(*)
+      complex(c_double_complex), target :: alpha(..)
+      complex(c_double_complex), target :: x(..)
       integer(c_long), value :: incx
-      complex(c_double_complex), target :: y(*)
+      complex(c_double_complex), target :: y(..)
       integer(c_long), value :: incy
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: A(..)
       integer(c_long), value :: lda
       integer(c_int) :: zgeru_64
-      zgeru_64 = rocblas_zgeru_64_raw(handle, m, n, c_loc(alpha(1)), c_loc(x(1)), incx, c_loc(y( &
-        1)), incy, c_loc(A(1)), lda)
+      zgeru_64 = rocblas_zgeru_64_raw(handle, m, n, c_loc(alpha), c_loc(x), incx, c_loc(y), incy, &
+        c_loc(A), lda)
     end function rocblas_zgeru_64_native
 
     function rocblas_zgeru_64_typed(handle, m, n, alpha, x, incx, y, incy, A, lda) result(zgeru_64)
@@ -65698,16 +65658,16 @@ contains
       type(c_ptr), value :: handle
       integer(c_long), value :: m
       integer(c_long), value :: n
-      complex(c_float_complex), target :: alpha(*)
-      complex(c_float_complex), target :: x(*)
+      complex(c_float_complex), target :: alpha(..)
+      complex(c_float_complex), target :: x(..)
       integer(c_long), value :: incx
-      complex(c_float_complex), target :: y(*)
+      complex(c_float_complex), target :: y(..)
       integer(c_long), value :: incy
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: A(..)
       integer(c_long), value :: lda
       integer(c_int) :: cgerc_64
-      cgerc_64 = rocblas_cgerc_64_raw(handle, m, n, c_loc(alpha(1)), c_loc(x(1)), incx, c_loc(y( &
-        1)), incy, c_loc(A(1)), lda)
+      cgerc_64 = rocblas_cgerc_64_raw(handle, m, n, c_loc(alpha), c_loc(x), incx, c_loc(y), incy, &
+        c_loc(A), lda)
     end function rocblas_cgerc_64_native
 
     function rocblas_cgerc_64_typed(handle, m, n, alpha, x, incx, y, incy, A, lda) result(cgerc_64)
@@ -65734,16 +65694,16 @@ contains
       type(c_ptr), value :: handle
       integer(c_long), value :: m
       integer(c_long), value :: n
-      complex(c_double_complex), target :: alpha(*)
-      complex(c_double_complex), target :: x(*)
+      complex(c_double_complex), target :: alpha(..)
+      complex(c_double_complex), target :: x(..)
       integer(c_long), value :: incx
-      complex(c_double_complex), target :: y(*)
+      complex(c_double_complex), target :: y(..)
       integer(c_long), value :: incy
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: A(..)
       integer(c_long), value :: lda
       integer(c_int) :: zgerc_64
-      zgerc_64 = rocblas_zgerc_64_raw(handle, m, n, c_loc(alpha(1)), c_loc(x(1)), incx, c_loc(y( &
-        1)), incy, c_loc(A(1)), lda)
+      zgerc_64 = rocblas_zgerc_64_raw(handle, m, n, c_loc(alpha), c_loc(x), incx, c_loc(y), incy, &
+        c_loc(A), lda)
     end function rocblas_zgerc_64_native
 
     function rocblas_zgerc_64_typed(handle, m, n, alpha, x, incx, y, incy, A, lda) result(zgerc_64)
@@ -65897,7 +65857,7 @@ contains
       type(c_ptr), value :: handle
       integer(c_long), value :: m
       integer(c_long), value :: n
-      real(c_float), target :: alpha(*)
+      real(c_float), target :: alpha(..)
       type(c_ptr), value :: x
       integer(c_long), value :: incx
       type(c_ptr), value :: y
@@ -65906,8 +65866,8 @@ contains
       integer(c_long), value :: lda
       integer(c_long), value :: batch_count
       integer(c_int) :: sger_batched_64
-      sger_batched_64 = rocblas_sger_batched_64_raw(handle, m, n, c_loc(alpha(1)), x, incx, y, &
-        incy, A, lda, batch_count)
+      sger_batched_64 = rocblas_sger_batched_64_raw(handle, m, n, c_loc(alpha), x, incx, y, incy, &
+        A, lda, batch_count)
     end function rocblas_sger_batched_64_native
 
     function rocblas_sger_batched_64_typed(handle, m, n, alpha, x, incx, y, incy, A, lda, &
@@ -65938,7 +65898,7 @@ contains
       type(c_ptr), value :: handle
       integer(c_long), value :: m
       integer(c_long), value :: n
-      real(c_double), target :: alpha(*)
+      real(c_double), target :: alpha(..)
       type(c_ptr), value :: x
       integer(c_long), value :: incx
       type(c_ptr), value :: y
@@ -65947,8 +65907,8 @@ contains
       integer(c_long), value :: lda
       integer(c_long), value :: batch_count
       integer(c_int) :: dger_batched_64
-      dger_batched_64 = rocblas_dger_batched_64_raw(handle, m, n, c_loc(alpha(1)), x, incx, y, &
-        incy, A, lda, batch_count)
+      dger_batched_64 = rocblas_dger_batched_64_raw(handle, m, n, c_loc(alpha), x, incx, y, incy, &
+        A, lda, batch_count)
     end function rocblas_dger_batched_64_native
 
     function rocblas_dger_batched_64_typed(handle, m, n, alpha, x, incx, y, incy, A, lda, &
@@ -65979,7 +65939,7 @@ contains
       type(c_ptr), value :: handle
       integer(c_long), value :: m
       integer(c_long), value :: n
-      complex(c_float_complex), target :: alpha(*)
+      complex(c_float_complex), target :: alpha(..)
       type(c_ptr), value :: x
       integer(c_long), value :: incx
       type(c_ptr), value :: y
@@ -65988,7 +65948,7 @@ contains
       integer(c_long), value :: lda
       integer(c_long), value :: batch_count
       integer(c_int) :: cgeru_batched_64
-      cgeru_batched_64 = rocblas_cgeru_batched_64_raw(handle, m, n, c_loc(alpha(1)), x, incx, y, &
+      cgeru_batched_64 = rocblas_cgeru_batched_64_raw(handle, m, n, c_loc(alpha), x, incx, y, &
         incy, A, lda, batch_count)
     end function rocblas_cgeru_batched_64_native
 
@@ -66020,7 +65980,7 @@ contains
       type(c_ptr), value :: handle
       integer(c_long), value :: m
       integer(c_long), value :: n
-      complex(c_double_complex), target :: alpha(*)
+      complex(c_double_complex), target :: alpha(..)
       type(c_ptr), value :: x
       integer(c_long), value :: incx
       type(c_ptr), value :: y
@@ -66029,7 +65989,7 @@ contains
       integer(c_long), value :: lda
       integer(c_long), value :: batch_count
       integer(c_int) :: zgeru_batched_64
-      zgeru_batched_64 = rocblas_zgeru_batched_64_raw(handle, m, n, c_loc(alpha(1)), x, incx, y, &
+      zgeru_batched_64 = rocblas_zgeru_batched_64_raw(handle, m, n, c_loc(alpha), x, incx, y, &
         incy, A, lda, batch_count)
     end function rocblas_zgeru_batched_64_native
 
@@ -66061,7 +66021,7 @@ contains
       type(c_ptr), value :: handle
       integer(c_long), value :: m
       integer(c_long), value :: n
-      complex(c_float_complex), target :: alpha(*)
+      complex(c_float_complex), target :: alpha(..)
       type(c_ptr), value :: x
       integer(c_long), value :: incx
       type(c_ptr), value :: y
@@ -66070,7 +66030,7 @@ contains
       integer(c_long), value :: lda
       integer(c_long), value :: batch_count
       integer(c_int) :: cgerc_batched_64
-      cgerc_batched_64 = rocblas_cgerc_batched_64_raw(handle, m, n, c_loc(alpha(1)), x, incx, y, &
+      cgerc_batched_64 = rocblas_cgerc_batched_64_raw(handle, m, n, c_loc(alpha), x, incx, y, &
         incy, A, lda, batch_count)
     end function rocblas_cgerc_batched_64_native
 
@@ -66102,7 +66062,7 @@ contains
       type(c_ptr), value :: handle
       integer(c_long), value :: m
       integer(c_long), value :: n
-      complex(c_double_complex), target :: alpha(*)
+      complex(c_double_complex), target :: alpha(..)
       type(c_ptr), value :: x
       integer(c_long), value :: incx
       type(c_ptr), value :: y
@@ -66111,7 +66071,7 @@ contains
       integer(c_long), value :: lda
       integer(c_long), value :: batch_count
       integer(c_int) :: zgerc_batched_64
-      zgerc_batched_64 = rocblas_zgerc_batched_64_raw(handle, m, n, c_loc(alpha(1)), x, incx, y, &
+      zgerc_batched_64 = rocblas_zgerc_batched_64_raw(handle, m, n, c_loc(alpha), x, incx, y, &
         incy, A, lda, batch_count)
     end function rocblas_zgerc_batched_64_native
 
@@ -66144,19 +66104,19 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       real(c_float) :: alpha
-      real(c_float), target :: x(*)
+      real(c_float), target :: x(..)
       integer(c_int), value :: incx
       integer(c_long), value :: stridex
-      real(c_float), target :: y(*)
+      real(c_float), target :: y(..)
       integer(c_int), value :: incy
       integer(c_long), value :: stridey
-      real(c_float), target :: A(*)
+      real(c_float), target :: A(..)
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
       integer(c_int), value :: batch_count
       integer(c_int) :: sger_strided_batched
-      sger_strided_batched = rocblas_sger_strided_batched_raw(handle, m, n, alpha, c_loc(x(1)), &
-        incx, stridex, c_loc(y(1)), incy, stridey, c_loc(A(1)), lda, strideA, batch_count)
+      sger_strided_batched = rocblas_sger_strided_batched_raw(handle, m, n, alpha, c_loc(x), incx, &
+        stridex, c_loc(y), incy, stridey, c_loc(A), lda, strideA, batch_count)
     end function rocblas_sger_strided_batched_native
 
     function rocblas_sger_strided_batched_typed(handle, m, n, alpha, x, incx, stridex, y, incy, &
@@ -66191,19 +66151,19 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       real(c_double) :: alpha
-      real(c_double), target :: x(*)
+      real(c_double), target :: x(..)
       integer(c_int), value :: incx
       integer(c_long), value :: stridex
-      real(c_double), target :: y(*)
+      real(c_double), target :: y(..)
       integer(c_int), value :: incy
       integer(c_long), value :: stridey
-      real(c_double), target :: A(*)
+      real(c_double), target :: A(..)
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
       integer(c_int), value :: batch_count
       integer(c_int) :: dger_strided_batched
-      dger_strided_batched = rocblas_dger_strided_batched_raw(handle, m, n, alpha, c_loc(x(1)), &
-        incx, stridex, c_loc(y(1)), incy, stridey, c_loc(A(1)), lda, strideA, batch_count)
+      dger_strided_batched = rocblas_dger_strided_batched_raw(handle, m, n, alpha, c_loc(x), incx, &
+        stridex, c_loc(y), incy, stridey, c_loc(A), lda, strideA, batch_count)
     end function rocblas_dger_strided_batched_native
 
     function rocblas_dger_strided_batched_typed(handle, m, n, alpha, x, incx, stridex, y, incy, &
@@ -66238,19 +66198,19 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       complex(c_float_complex) :: alpha
-      complex(c_float_complex), target :: x(*)
+      complex(c_float_complex), target :: x(..)
       integer(c_int), value :: incx
       integer(c_long), value :: stridex
-      complex(c_float_complex), target :: y(*)
+      complex(c_float_complex), target :: y(..)
       integer(c_int), value :: incy
       integer(c_long), value :: stridey
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: A(..)
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
       integer(c_int), value :: batch_count
       integer(c_int) :: cgeru_strided_batched
-      cgeru_strided_batched = rocblas_cgeru_strided_batched_raw(handle, m, n, alpha, c_loc(x(1)), &
-        incx, stridex, c_loc(y(1)), incy, stridey, c_loc(A(1)), lda, strideA, batch_count)
+      cgeru_strided_batched = rocblas_cgeru_strided_batched_raw(handle, m, n, alpha, c_loc(x), &
+        incx, stridex, c_loc(y), incy, stridey, c_loc(A), lda, strideA, batch_count)
     end function rocblas_cgeru_strided_batched_native
 
     function rocblas_cgeru_strided_batched_typed(handle, m, n, alpha, x, incx, stridex, y, incy, &
@@ -66285,19 +66245,19 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       complex(c_double_complex) :: alpha
-      complex(c_double_complex), target :: x(*)
+      complex(c_double_complex), target :: x(..)
       integer(c_int), value :: incx
       integer(c_long), value :: stridex
-      complex(c_double_complex), target :: y(*)
+      complex(c_double_complex), target :: y(..)
       integer(c_int), value :: incy
       integer(c_long), value :: stridey
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: A(..)
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
       integer(c_int), value :: batch_count
       integer(c_int) :: zgeru_strided_batched
-      zgeru_strided_batched = rocblas_zgeru_strided_batched_raw(handle, m, n, alpha, c_loc(x(1)), &
-        incx, stridex, c_loc(y(1)), incy, stridey, c_loc(A(1)), lda, strideA, batch_count)
+      zgeru_strided_batched = rocblas_zgeru_strided_batched_raw(handle, m, n, alpha, c_loc(x), &
+        incx, stridex, c_loc(y), incy, stridey, c_loc(A), lda, strideA, batch_count)
     end function rocblas_zgeru_strided_batched_native
 
     function rocblas_zgeru_strided_batched_typed(handle, m, n, alpha, x, incx, stridex, y, incy, &
@@ -66332,19 +66292,19 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       complex(c_float_complex) :: alpha
-      complex(c_float_complex), target :: x(*)
+      complex(c_float_complex), target :: x(..)
       integer(c_int), value :: incx
       integer(c_long), value :: stridex
-      complex(c_float_complex), target :: y(*)
+      complex(c_float_complex), target :: y(..)
       integer(c_int), value :: incy
       integer(c_long), value :: stridey
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: A(..)
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
       integer(c_int), value :: batch_count
       integer(c_int) :: cgerc_strided_batched
-      cgerc_strided_batched = rocblas_cgerc_strided_batched_raw(handle, m, n, alpha, c_loc(x(1)), &
-        incx, stridex, c_loc(y(1)), incy, stridey, c_loc(A(1)), lda, strideA, batch_count)
+      cgerc_strided_batched = rocblas_cgerc_strided_batched_raw(handle, m, n, alpha, c_loc(x), &
+        incx, stridex, c_loc(y), incy, stridey, c_loc(A), lda, strideA, batch_count)
     end function rocblas_cgerc_strided_batched_native
 
     function rocblas_cgerc_strided_batched_typed(handle, m, n, alpha, x, incx, stridex, y, incy, &
@@ -66379,19 +66339,19 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       complex(c_double_complex) :: alpha
-      complex(c_double_complex), target :: x(*)
+      complex(c_double_complex), target :: x(..)
       integer(c_int), value :: incx
       integer(c_long), value :: stridex
-      complex(c_double_complex), target :: y(*)
+      complex(c_double_complex), target :: y(..)
       integer(c_int), value :: incy
       integer(c_long), value :: stridey
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: A(..)
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
       integer(c_int), value :: batch_count
       integer(c_int) :: zgerc_strided_batched
-      zgerc_strided_batched = rocblas_zgerc_strided_batched_raw(handle, m, n, alpha, c_loc(x(1)), &
-        incx, stridex, c_loc(y(1)), incy, stridey, c_loc(A(1)), lda, strideA, batch_count)
+      zgerc_strided_batched = rocblas_zgerc_strided_batched_raw(handle, m, n, alpha, c_loc(x), &
+        incx, stridex, c_loc(y), incy, stridey, c_loc(A), lda, strideA, batch_count)
     end function rocblas_zgerc_strided_batched_native
 
     function rocblas_zgerc_strided_batched_typed(handle, m, n, alpha, x, incx, stridex, y, incy, &
@@ -66425,21 +66385,20 @@ contains
       type(c_ptr), value :: handle
       integer(c_long), value :: m
       integer(c_long), value :: n
-      real(c_float), target :: alpha(*)
-      real(c_float), target :: x(*)
+      real(c_float), target :: alpha(..)
+      real(c_float), target :: x(..)
       integer(c_long), value :: incx
       integer(c_long), value :: stridex
-      real(c_float), target :: y(*)
+      real(c_float), target :: y(..)
       integer(c_long), value :: incy
       integer(c_long), value :: stridey
-      real(c_float), target :: A(*)
+      real(c_float), target :: A(..)
       integer(c_long), value :: lda
       integer(c_long), value :: strideA
       integer(c_long), value :: batch_count
       integer(c_int) :: sger_strided_batched_64
-      sger_strided_batched_64 = rocblas_sger_strided_batched_64_raw(handle, m, n, c_loc(alpha(1)), &
-        c_loc(x(1)), incx, stridex, c_loc(y(1)), incy, stridey, c_loc(A(1)), lda, strideA, &
-        batch_count)
+      sger_strided_batched_64 = rocblas_sger_strided_batched_64_raw(handle, m, n, c_loc(alpha), &
+        c_loc(x), incx, stridex, c_loc(y), incy, stridey, c_loc(A), lda, strideA, batch_count)
     end function rocblas_sger_strided_batched_64_native
 
     function rocblas_sger_strided_batched_64_typed(handle, m, n, alpha, x, incx, stridex, y, incy, &
@@ -66473,21 +66432,20 @@ contains
       type(c_ptr), value :: handle
       integer(c_long), value :: m
       integer(c_long), value :: n
-      real(c_double), target :: alpha(*)
-      real(c_double), target :: x(*)
+      real(c_double), target :: alpha(..)
+      real(c_double), target :: x(..)
       integer(c_long), value :: incx
       integer(c_long), value :: stridex
-      real(c_double), target :: y(*)
+      real(c_double), target :: y(..)
       integer(c_long), value :: incy
       integer(c_long), value :: stridey
-      real(c_double), target :: A(*)
+      real(c_double), target :: A(..)
       integer(c_long), value :: lda
       integer(c_long), value :: strideA
       integer(c_long), value :: batch_count
       integer(c_int) :: dger_strided_batched_64
-      dger_strided_batched_64 = rocblas_dger_strided_batched_64_raw(handle, m, n, c_loc(alpha(1)), &
-        c_loc(x(1)), incx, stridex, c_loc(y(1)), incy, stridey, c_loc(A(1)), lda, strideA, &
-        batch_count)
+      dger_strided_batched_64 = rocblas_dger_strided_batched_64_raw(handle, m, n, c_loc(alpha), &
+        c_loc(x), incx, stridex, c_loc(y), incy, stridey, c_loc(A), lda, strideA, batch_count)
     end function rocblas_dger_strided_batched_64_native
 
     function rocblas_dger_strided_batched_64_typed(handle, m, n, alpha, x, incx, stridex, y, incy, &
@@ -66521,21 +66479,20 @@ contains
       type(c_ptr), value :: handle
       integer(c_long), value :: m
       integer(c_long), value :: n
-      complex(c_float_complex), target :: alpha(*)
-      complex(c_float_complex), target :: x(*)
+      complex(c_float_complex), target :: alpha(..)
+      complex(c_float_complex), target :: x(..)
       integer(c_long), value :: incx
       integer(c_long), value :: stridex
-      complex(c_float_complex), target :: y(*)
+      complex(c_float_complex), target :: y(..)
       integer(c_long), value :: incy
       integer(c_long), value :: stridey
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: A(..)
       integer(c_long), value :: lda
       integer(c_long), value :: strideA
       integer(c_long), value :: batch_count
       integer(c_int) :: cgeru_strided_batched_64
-      cgeru_strided_batched_64 = rocblas_cgeru_strided_batched_64_raw(handle, m, n, c_loc(alpha( &
-        1)), c_loc(x(1)), incx, stridex, c_loc(y(1)), incy, stridey, c_loc(A(1)), lda, strideA, &
-        batch_count)
+      cgeru_strided_batched_64 = rocblas_cgeru_strided_batched_64_raw(handle, m, n, c_loc(alpha), &
+        c_loc(x), incx, stridex, c_loc(y), incy, stridey, c_loc(A), lda, strideA, batch_count)
     end function rocblas_cgeru_strided_batched_64_native
 
     function rocblas_cgeru_strided_batched_64_typed(handle, m, n, alpha, x, incx, stridex, y, &
@@ -66569,21 +66526,20 @@ contains
       type(c_ptr), value :: handle
       integer(c_long), value :: m
       integer(c_long), value :: n
-      complex(c_double_complex), target :: alpha(*)
-      complex(c_double_complex), target :: x(*)
+      complex(c_double_complex), target :: alpha(..)
+      complex(c_double_complex), target :: x(..)
       integer(c_long), value :: incx
       integer(c_long), value :: stridex
-      complex(c_double_complex), target :: y(*)
+      complex(c_double_complex), target :: y(..)
       integer(c_long), value :: incy
       integer(c_long), value :: stridey
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: A(..)
       integer(c_long), value :: lda
       integer(c_long), value :: strideA
       integer(c_long), value :: batch_count
       integer(c_int) :: zgeru_strided_batched_64
-      zgeru_strided_batched_64 = rocblas_zgeru_strided_batched_64_raw(handle, m, n, c_loc(alpha( &
-        1)), c_loc(x(1)), incx, stridex, c_loc(y(1)), incy, stridey, c_loc(A(1)), lda, strideA, &
-        batch_count)
+      zgeru_strided_batched_64 = rocblas_zgeru_strided_batched_64_raw(handle, m, n, c_loc(alpha), &
+        c_loc(x), incx, stridex, c_loc(y), incy, stridey, c_loc(A), lda, strideA, batch_count)
     end function rocblas_zgeru_strided_batched_64_native
 
     function rocblas_zgeru_strided_batched_64_typed(handle, m, n, alpha, x, incx, stridex, y, &
@@ -66617,21 +66573,20 @@ contains
       type(c_ptr), value :: handle
       integer(c_long), value :: m
       integer(c_long), value :: n
-      complex(c_float_complex), target :: alpha(*)
-      complex(c_float_complex), target :: x(*)
+      complex(c_float_complex), target :: alpha(..)
+      complex(c_float_complex), target :: x(..)
       integer(c_long), value :: incx
       integer(c_long), value :: stridex
-      complex(c_float_complex), target :: y(*)
+      complex(c_float_complex), target :: y(..)
       integer(c_long), value :: incy
       integer(c_long), value :: stridey
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: A(..)
       integer(c_long), value :: lda
       integer(c_long), value :: strideA
       integer(c_long), value :: batch_count
       integer(c_int) :: cgerc_strided_batched_64
-      cgerc_strided_batched_64 = rocblas_cgerc_strided_batched_64_raw(handle, m, n, c_loc(alpha( &
-        1)), c_loc(x(1)), incx, stridex, c_loc(y(1)), incy, stridey, c_loc(A(1)), lda, strideA, &
-        batch_count)
+      cgerc_strided_batched_64 = rocblas_cgerc_strided_batched_64_raw(handle, m, n, c_loc(alpha), &
+        c_loc(x), incx, stridex, c_loc(y), incy, stridey, c_loc(A), lda, strideA, batch_count)
     end function rocblas_cgerc_strided_batched_64_native
 
     function rocblas_cgerc_strided_batched_64_typed(handle, m, n, alpha, x, incx, stridex, y, &
@@ -66665,21 +66620,20 @@ contains
       type(c_ptr), value :: handle
       integer(c_long), value :: m
       integer(c_long), value :: n
-      complex(c_double_complex), target :: alpha(*)
-      complex(c_double_complex), target :: x(*)
+      complex(c_double_complex), target :: alpha(..)
+      complex(c_double_complex), target :: x(..)
       integer(c_long), value :: incx
       integer(c_long), value :: stridex
-      complex(c_double_complex), target :: y(*)
+      complex(c_double_complex), target :: y(..)
       integer(c_long), value :: incy
       integer(c_long), value :: stridey
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: A(..)
       integer(c_long), value :: lda
       integer(c_long), value :: strideA
       integer(c_long), value :: batch_count
       integer(c_int) :: zgerc_strided_batched_64
-      zgerc_strided_batched_64 = rocblas_zgerc_strided_batched_64_raw(handle, m, n, c_loc(alpha( &
-        1)), c_loc(x(1)), incx, stridex, c_loc(y(1)), incy, stridey, c_loc(A(1)), lda, strideA, &
-        batch_count)
+      zgerc_strided_batched_64 = rocblas_zgerc_strided_batched_64_raw(handle, m, n, c_loc(alpha), &
+        c_loc(x), incx, stridex, c_loc(y), incy, stridey, c_loc(A), lda, strideA, batch_count)
     end function rocblas_zgerc_strided_batched_64_native
 
     function rocblas_zgerc_strided_batched_64_typed(handle, m, n, alpha, x, incx, stridex, y, &
@@ -66713,11 +66667,11 @@ contains
       integer(c_int), value :: uplo
       integer(c_int), value :: n
       real(c_float) :: alpha
-      real(c_float), target :: x(*)
+      real(c_float), target :: x(..)
       integer(c_int), value :: incx
-      real(c_float), target :: AP(*)
+      real(c_float), target :: AP(..)
       integer(c_int) :: sspr
-      sspr = rocblas_sspr_raw(handle, uplo, n, alpha, c_loc(x(1)), incx, c_loc(AP(1)))
+      sspr = rocblas_sspr_raw(handle, uplo, n, alpha, c_loc(x), incx, c_loc(AP))
     end function rocblas_sspr_native
 
     function rocblas_sspr_typed(handle, uplo, n, alpha, x, incx, AP) result(sspr)
@@ -66742,11 +66696,11 @@ contains
       integer(c_int), value :: uplo
       integer(c_int), value :: n
       real(c_double) :: alpha
-      real(c_double), target :: x(*)
+      real(c_double), target :: x(..)
       integer(c_int), value :: incx
-      real(c_double), target :: AP(*)
+      real(c_double), target :: AP(..)
       integer(c_int) :: dspr
-      dspr = rocblas_dspr_raw(handle, uplo, n, alpha, c_loc(x(1)), incx, c_loc(AP(1)))
+      dspr = rocblas_dspr_raw(handle, uplo, n, alpha, c_loc(x), incx, c_loc(AP))
     end function rocblas_dspr_native
 
     function rocblas_dspr_typed(handle, uplo, n, alpha, x, incx, AP) result(dspr)
@@ -66771,11 +66725,11 @@ contains
       integer(c_int), value :: uplo
       integer(c_int), value :: n
       complex(c_float_complex) :: alpha
-      complex(c_float_complex), target :: x(*)
+      complex(c_float_complex), target :: x(..)
       integer(c_int), value :: incx
-      complex(c_float_complex), target :: AP(*)
+      complex(c_float_complex), target :: AP(..)
       integer(c_int) :: cspr
-      cspr = rocblas_cspr_raw(handle, uplo, n, alpha, c_loc(x(1)), incx, c_loc(AP(1)))
+      cspr = rocblas_cspr_raw(handle, uplo, n, alpha, c_loc(x), incx, c_loc(AP))
     end function rocblas_cspr_native
 
     function rocblas_cspr_typed(handle, uplo, n, alpha, x, incx, AP) result(cspr)
@@ -66800,11 +66754,11 @@ contains
       integer(c_int), value :: uplo
       integer(c_int), value :: n
       complex(c_double_complex) :: alpha
-      complex(c_double_complex), target :: x(*)
+      complex(c_double_complex), target :: x(..)
       integer(c_int), value :: incx
-      complex(c_double_complex), target :: AP(*)
+      complex(c_double_complex), target :: AP(..)
       integer(c_int) :: zspr
-      zspr = rocblas_zspr_raw(handle, uplo, n, alpha, c_loc(x(1)), incx, c_loc(AP(1)))
+      zspr = rocblas_zspr_raw(handle, uplo, n, alpha, c_loc(x), incx, c_loc(AP))
     end function rocblas_zspr_native
 
     function rocblas_zspr_typed(handle, uplo, n, alpha, x, incx, AP) result(zspr)
@@ -66828,13 +66782,12 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: uplo
       integer(c_long), value :: n
-      real(c_float), target :: alpha(*)
-      real(c_float), target :: x(*)
+      real(c_float), target :: alpha(..)
+      real(c_float), target :: x(..)
       integer(c_long), value :: incx
-      real(c_float), target :: AP(*)
+      real(c_float), target :: AP(..)
       integer(c_int) :: sspr_64
-      sspr_64 = rocblas_sspr_64_raw(handle, uplo, n, c_loc(alpha(1)), c_loc(x(1)), incx, c_loc(AP( &
-        1)))
+      sspr_64 = rocblas_sspr_64_raw(handle, uplo, n, c_loc(alpha), c_loc(x), incx, c_loc(AP))
     end function rocblas_sspr_64_native
 
     function rocblas_sspr_64_typed(handle, uplo, n, alpha, x, incx, AP) result(sspr_64)
@@ -66858,13 +66811,12 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: uplo
       integer(c_long), value :: n
-      real(c_double), target :: alpha(*)
-      real(c_double), target :: x(*)
+      real(c_double), target :: alpha(..)
+      real(c_double), target :: x(..)
       integer(c_long), value :: incx
-      real(c_double), target :: AP(*)
+      real(c_double), target :: AP(..)
       integer(c_int) :: dspr_64
-      dspr_64 = rocblas_dspr_64_raw(handle, uplo, n, c_loc(alpha(1)), c_loc(x(1)), incx, c_loc(AP( &
-        1)))
+      dspr_64 = rocblas_dspr_64_raw(handle, uplo, n, c_loc(alpha), c_loc(x), incx, c_loc(AP))
     end function rocblas_dspr_64_native
 
     function rocblas_dspr_64_typed(handle, uplo, n, alpha, x, incx, AP) result(dspr_64)
@@ -66888,13 +66840,12 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: uplo
       integer(c_long), value :: n
-      complex(c_float_complex), target :: alpha(*)
-      complex(c_float_complex), target :: x(*)
+      complex(c_float_complex), target :: alpha(..)
+      complex(c_float_complex), target :: x(..)
       integer(c_long), value :: incx
-      complex(c_float_complex), target :: AP(*)
+      complex(c_float_complex), target :: AP(..)
       integer(c_int) :: cspr_64
-      cspr_64 = rocblas_cspr_64_raw(handle, uplo, n, c_loc(alpha(1)), c_loc(x(1)), incx, c_loc(AP( &
-        1)))
+      cspr_64 = rocblas_cspr_64_raw(handle, uplo, n, c_loc(alpha), c_loc(x), incx, c_loc(AP))
     end function rocblas_cspr_64_native
 
     function rocblas_cspr_64_typed(handle, uplo, n, alpha, x, incx, AP) result(cspr_64)
@@ -66918,13 +66869,12 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: uplo
       integer(c_long), value :: n
-      complex(c_double_complex), target :: alpha(*)
-      complex(c_double_complex), target :: x(*)
+      complex(c_double_complex), target :: alpha(..)
+      complex(c_double_complex), target :: x(..)
       integer(c_long), value :: incx
-      complex(c_double_complex), target :: AP(*)
+      complex(c_double_complex), target :: AP(..)
       integer(c_int) :: zspr_64
-      zspr_64 = rocblas_zspr_64_raw(handle, uplo, n, c_loc(alpha(1)), c_loc(x(1)), incx, c_loc(AP( &
-        1)))
+      zspr_64 = rocblas_zspr_64_raw(handle, uplo, n, c_loc(alpha), c_loc(x), incx, c_loc(AP))
     end function rocblas_zspr_64_native
 
     function rocblas_zspr_64_typed(handle, uplo, n, alpha, x, incx, AP) result(zspr_64)
@@ -67017,13 +66967,13 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: uplo
       integer(c_long), value :: n
-      real(c_float), target :: alpha(*)
+      real(c_float), target :: alpha(..)
       type(c_ptr), value :: x
       integer(c_long), value :: incx
       type(c_ptr), value :: AP
       integer(c_long), value :: batch_count
       integer(c_int) :: sspr_batched_64
-      sspr_batched_64 = rocblas_sspr_batched_64_raw(handle, uplo, n, c_loc(alpha(1)), x, incx, AP, &
+      sspr_batched_64 = rocblas_sspr_batched_64_raw(handle, uplo, n, c_loc(alpha), x, incx, AP, &
         batch_count)
     end function rocblas_sspr_batched_64_native
 
@@ -67052,13 +67002,13 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: uplo
       integer(c_long), value :: n
-      real(c_double), target :: alpha(*)
+      real(c_double), target :: alpha(..)
       type(c_ptr), value :: x
       integer(c_long), value :: incx
       type(c_ptr), value :: AP
       integer(c_long), value :: batch_count
       integer(c_int) :: dspr_batched_64
-      dspr_batched_64 = rocblas_dspr_batched_64_raw(handle, uplo, n, c_loc(alpha(1)), x, incx, AP, &
+      dspr_batched_64 = rocblas_dspr_batched_64_raw(handle, uplo, n, c_loc(alpha), x, incx, AP, &
         batch_count)
     end function rocblas_dspr_batched_64_native
 
@@ -67087,13 +67037,13 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: uplo
       integer(c_long), value :: n
-      complex(c_float_complex), target :: alpha(*)
+      complex(c_float_complex), target :: alpha(..)
       type(c_ptr), value :: x
       integer(c_long), value :: incx
       type(c_ptr), value :: AP
       integer(c_long), value :: batch_count
       integer(c_int) :: cspr_batched_64
-      cspr_batched_64 = rocblas_cspr_batched_64_raw(handle, uplo, n, c_loc(alpha(1)), x, incx, AP, &
+      cspr_batched_64 = rocblas_cspr_batched_64_raw(handle, uplo, n, c_loc(alpha), x, incx, AP, &
         batch_count)
     end function rocblas_cspr_batched_64_native
 
@@ -67122,13 +67072,13 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: uplo
       integer(c_long), value :: n
-      complex(c_double_complex), target :: alpha(*)
+      complex(c_double_complex), target :: alpha(..)
       type(c_ptr), value :: x
       integer(c_long), value :: incx
       type(c_ptr), value :: AP
       integer(c_long), value :: batch_count
       integer(c_int) :: zspr_batched_64
-      zspr_batched_64 = rocblas_zspr_batched_64_raw(handle, uplo, n, c_loc(alpha(1)), x, incx, AP, &
+      zspr_batched_64 = rocblas_zspr_batched_64_raw(handle, uplo, n, c_loc(alpha), x, incx, AP, &
         batch_count)
     end function rocblas_zspr_batched_64_native
 
@@ -67158,15 +67108,15 @@ contains
       integer(c_int), value :: uplo
       integer(c_int), value :: n
       real(c_float) :: alpha
-      real(c_float), target :: x(*)
+      real(c_float), target :: x(..)
       integer(c_int), value :: incx
       integer(c_long), value :: stride_x
-      real(c_float), target :: AP(*)
+      real(c_float), target :: AP(..)
       integer(c_long), value :: stride_A
       integer(c_int), value :: batch_count
       integer(c_int) :: sspr_strided_batched
-      sspr_strided_batched = rocblas_sspr_strided_batched_raw(handle, uplo, n, alpha, c_loc(x(1)), &
-        incx, stride_x, c_loc(AP(1)), stride_A, batch_count)
+      sspr_strided_batched = rocblas_sspr_strided_batched_raw(handle, uplo, n, alpha, c_loc(x), &
+        incx, stride_x, c_loc(AP), stride_A, batch_count)
     end function rocblas_sspr_strided_batched_native
 
     function rocblas_sspr_strided_batched_typed(handle, uplo, n, alpha, x, incx, stride_x, AP, &
@@ -67197,15 +67147,15 @@ contains
       integer(c_int), value :: uplo
       integer(c_int), value :: n
       real(c_double) :: alpha
-      real(c_double), target :: x(*)
+      real(c_double), target :: x(..)
       integer(c_int), value :: incx
       integer(c_long), value :: stride_x
-      real(c_double), target :: AP(*)
+      real(c_double), target :: AP(..)
       integer(c_long), value :: stride_A
       integer(c_int), value :: batch_count
       integer(c_int) :: dspr_strided_batched
-      dspr_strided_batched = rocblas_dspr_strided_batched_raw(handle, uplo, n, alpha, c_loc(x(1)), &
-        incx, stride_x, c_loc(AP(1)), stride_A, batch_count)
+      dspr_strided_batched = rocblas_dspr_strided_batched_raw(handle, uplo, n, alpha, c_loc(x), &
+        incx, stride_x, c_loc(AP), stride_A, batch_count)
     end function rocblas_dspr_strided_batched_native
 
     function rocblas_dspr_strided_batched_typed(handle, uplo, n, alpha, x, incx, stride_x, AP, &
@@ -67236,15 +67186,15 @@ contains
       integer(c_int), value :: uplo
       integer(c_int), value :: n
       complex(c_float_complex) :: alpha
-      complex(c_float_complex), target :: x(*)
+      complex(c_float_complex), target :: x(..)
       integer(c_int), value :: incx
       integer(c_long), value :: stride_x
-      complex(c_float_complex), target :: AP(*)
+      complex(c_float_complex), target :: AP(..)
       integer(c_long), value :: stride_A
       integer(c_int), value :: batch_count
       integer(c_int) :: cspr_strided_batched
-      cspr_strided_batched = rocblas_cspr_strided_batched_raw(handle, uplo, n, alpha, c_loc(x(1)), &
-        incx, stride_x, c_loc(AP(1)), stride_A, batch_count)
+      cspr_strided_batched = rocblas_cspr_strided_batched_raw(handle, uplo, n, alpha, c_loc(x), &
+        incx, stride_x, c_loc(AP), stride_A, batch_count)
     end function rocblas_cspr_strided_batched_native
 
     function rocblas_cspr_strided_batched_typed(handle, uplo, n, alpha, x, incx, stride_x, AP, &
@@ -67275,15 +67225,15 @@ contains
       integer(c_int), value :: uplo
       integer(c_int), value :: n
       complex(c_double_complex) :: alpha
-      complex(c_double_complex), target :: x(*)
+      complex(c_double_complex), target :: x(..)
       integer(c_int), value :: incx
       integer(c_long), value :: stride_x
-      complex(c_double_complex), target :: AP(*)
+      complex(c_double_complex), target :: AP(..)
       integer(c_long), value :: stride_A
       integer(c_int), value :: batch_count
       integer(c_int) :: zspr_strided_batched
-      zspr_strided_batched = rocblas_zspr_strided_batched_raw(handle, uplo, n, alpha, c_loc(x(1)), &
-        incx, stride_x, c_loc(AP(1)), stride_A, batch_count)
+      zspr_strided_batched = rocblas_zspr_strided_batched_raw(handle, uplo, n, alpha, c_loc(x), &
+        incx, stride_x, c_loc(AP), stride_A, batch_count)
     end function rocblas_zspr_strided_batched_native
 
     function rocblas_zspr_strided_batched_typed(handle, uplo, n, alpha, x, incx, stride_x, AP, &
@@ -67313,16 +67263,16 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: uplo
       integer(c_long), value :: n
-      real(c_float), target :: alpha(*)
-      real(c_float), target :: x(*)
+      real(c_float), target :: alpha(..)
+      real(c_float), target :: x(..)
       integer(c_long), value :: incx
       integer(c_long), value :: stride_x
-      real(c_float), target :: AP(*)
+      real(c_float), target :: AP(..)
       integer(c_long), value :: stride_A
       integer(c_long), value :: batch_count
       integer(c_int) :: sspr_strided_batched_64
-      sspr_strided_batched_64 = rocblas_sspr_strided_batched_64_raw(handle, uplo, n, c_loc(alpha( &
-        1)), c_loc(x(1)), incx, stride_x, c_loc(AP(1)), stride_A, batch_count)
+      sspr_strided_batched_64 = rocblas_sspr_strided_batched_64_raw(handle, uplo, n, c_loc(alpha), &
+        c_loc(x), incx, stride_x, c_loc(AP), stride_A, batch_count)
     end function rocblas_sspr_strided_batched_64_native
 
     function rocblas_sspr_strided_batched_64_typed(handle, uplo, n, alpha, x, incx, stride_x, AP, &
@@ -67352,16 +67302,16 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: uplo
       integer(c_long), value :: n
-      real(c_double), target :: alpha(*)
-      real(c_double), target :: x(*)
+      real(c_double), target :: alpha(..)
+      real(c_double), target :: x(..)
       integer(c_long), value :: incx
       integer(c_long), value :: stride_x
-      real(c_double), target :: AP(*)
+      real(c_double), target :: AP(..)
       integer(c_long), value :: stride_A
       integer(c_long), value :: batch_count
       integer(c_int) :: dspr_strided_batched_64
-      dspr_strided_batched_64 = rocblas_dspr_strided_batched_64_raw(handle, uplo, n, c_loc(alpha( &
-        1)), c_loc(x(1)), incx, stride_x, c_loc(AP(1)), stride_A, batch_count)
+      dspr_strided_batched_64 = rocblas_dspr_strided_batched_64_raw(handle, uplo, n, c_loc(alpha), &
+        c_loc(x), incx, stride_x, c_loc(AP), stride_A, batch_count)
     end function rocblas_dspr_strided_batched_64_native
 
     function rocblas_dspr_strided_batched_64_typed(handle, uplo, n, alpha, x, incx, stride_x, AP, &
@@ -67391,16 +67341,16 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: uplo
       integer(c_long), value :: n
-      complex(c_float_complex), target :: alpha(*)
-      complex(c_float_complex), target :: x(*)
+      complex(c_float_complex), target :: alpha(..)
+      complex(c_float_complex), target :: x(..)
       integer(c_long), value :: incx
       integer(c_long), value :: stride_x
-      complex(c_float_complex), target :: AP(*)
+      complex(c_float_complex), target :: AP(..)
       integer(c_long), value :: stride_A
       integer(c_long), value :: batch_count
       integer(c_int) :: cspr_strided_batched_64
-      cspr_strided_batched_64 = rocblas_cspr_strided_batched_64_raw(handle, uplo, n, c_loc(alpha( &
-        1)), c_loc(x(1)), incx, stride_x, c_loc(AP(1)), stride_A, batch_count)
+      cspr_strided_batched_64 = rocblas_cspr_strided_batched_64_raw(handle, uplo, n, c_loc(alpha), &
+        c_loc(x), incx, stride_x, c_loc(AP), stride_A, batch_count)
     end function rocblas_cspr_strided_batched_64_native
 
     function rocblas_cspr_strided_batched_64_typed(handle, uplo, n, alpha, x, incx, stride_x, AP, &
@@ -67430,16 +67380,16 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: uplo
       integer(c_long), value :: n
-      complex(c_double_complex), target :: alpha(*)
-      complex(c_double_complex), target :: x(*)
+      complex(c_double_complex), target :: alpha(..)
+      complex(c_double_complex), target :: x(..)
       integer(c_long), value :: incx
       integer(c_long), value :: stride_x
-      complex(c_double_complex), target :: AP(*)
+      complex(c_double_complex), target :: AP(..)
       integer(c_long), value :: stride_A
       integer(c_long), value :: batch_count
       integer(c_int) :: zspr_strided_batched_64
-      zspr_strided_batched_64 = rocblas_zspr_strided_batched_64_raw(handle, uplo, n, c_loc(alpha( &
-        1)), c_loc(x(1)), incx, stride_x, c_loc(AP(1)), stride_A, batch_count)
+      zspr_strided_batched_64 = rocblas_zspr_strided_batched_64_raw(handle, uplo, n, c_loc(alpha), &
+        c_loc(x), incx, stride_x, c_loc(AP), stride_A, batch_count)
     end function rocblas_zspr_strided_batched_64_native
 
     function rocblas_zspr_strided_batched_64_typed(handle, uplo, n, alpha, x, incx, stride_x, AP, &
@@ -67469,14 +67419,13 @@ contains
       integer(c_int), value :: uplo
       integer(c_int), value :: n
       real(c_float) :: alpha
-      real(c_float), target :: x(*)
+      real(c_float), target :: x(..)
       integer(c_int), value :: incx
-      real(c_float), target :: y(*)
+      real(c_float), target :: y(..)
       integer(c_int), value :: incy
-      real(c_float), target :: AP(*)
+      real(c_float), target :: AP(..)
       integer(c_int) :: sspr2
-      sspr2 = rocblas_sspr2_raw(handle, uplo, n, alpha, c_loc(x(1)), incx, c_loc(y(1)), incy, &
-        c_loc(AP(1)))
+      sspr2 = rocblas_sspr2_raw(handle, uplo, n, alpha, c_loc(x), incx, c_loc(y), incy, c_loc(AP))
     end function rocblas_sspr2_native
 
     function rocblas_sspr2_typed(handle, uplo, n, alpha, x, incx, y, incy, AP) result(sspr2)
@@ -67503,14 +67452,13 @@ contains
       integer(c_int), value :: uplo
       integer(c_int), value :: n
       real(c_double) :: alpha
-      real(c_double), target :: x(*)
+      real(c_double), target :: x(..)
       integer(c_int), value :: incx
-      real(c_double), target :: y(*)
+      real(c_double), target :: y(..)
       integer(c_int), value :: incy
-      real(c_double), target :: AP(*)
+      real(c_double), target :: AP(..)
       integer(c_int) :: dspr2
-      dspr2 = rocblas_dspr2_raw(handle, uplo, n, alpha, c_loc(x(1)), incx, c_loc(y(1)), incy, &
-        c_loc(AP(1)))
+      dspr2 = rocblas_dspr2_raw(handle, uplo, n, alpha, c_loc(x), incx, c_loc(y), incy, c_loc(AP))
     end function rocblas_dspr2_native
 
     function rocblas_dspr2_typed(handle, uplo, n, alpha, x, incx, y, incy, AP) result(dspr2)
@@ -67536,15 +67484,15 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: uplo
       integer(c_long), value :: n
-      real(c_float), target :: alpha(*)
-      real(c_float), target :: x(*)
+      real(c_float), target :: alpha(..)
+      real(c_float), target :: x(..)
       integer(c_long), value :: incx
-      real(c_float), target :: y(*)
+      real(c_float), target :: y(..)
       integer(c_long), value :: incy
-      real(c_float), target :: AP(*)
+      real(c_float), target :: AP(..)
       integer(c_int) :: sspr2_64
-      sspr2_64 = rocblas_sspr2_64_raw(handle, uplo, n, c_loc(alpha(1)), c_loc(x(1)), incx, c_loc( &
-        y(1)), incy, c_loc(AP(1)))
+      sspr2_64 = rocblas_sspr2_64_raw(handle, uplo, n, c_loc(alpha), c_loc(x), incx, c_loc(y), &
+        incy, c_loc(AP))
     end function rocblas_sspr2_64_native
 
     function rocblas_sspr2_64_typed(handle, uplo, n, alpha, x, incx, y, incy, AP) result(sspr2_64)
@@ -67570,15 +67518,15 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: uplo
       integer(c_long), value :: n
-      real(c_double), target :: alpha(*)
-      real(c_double), target :: x(*)
+      real(c_double), target :: alpha(..)
+      real(c_double), target :: x(..)
       integer(c_long), value :: incx
-      real(c_double), target :: y(*)
+      real(c_double), target :: y(..)
       integer(c_long), value :: incy
-      real(c_double), target :: AP(*)
+      real(c_double), target :: AP(..)
       integer(c_int) :: dspr2_64
-      dspr2_64 = rocblas_dspr2_64_raw(handle, uplo, n, c_loc(alpha(1)), c_loc(x(1)), incx, c_loc( &
-        y(1)), incy, c_loc(AP(1)))
+      dspr2_64 = rocblas_dspr2_64_raw(handle, uplo, n, c_loc(alpha), c_loc(x), incx, c_loc(y), &
+        incy, c_loc(AP))
     end function rocblas_dspr2_64_native
 
     function rocblas_dspr2_64_typed(handle, uplo, n, alpha, x, incx, y, incy, AP) result(dspr2_64)
@@ -67645,7 +67593,7 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: uplo
       integer(c_long), value :: n
-      real(c_float), target :: alpha(*)
+      real(c_float), target :: alpha(..)
       type(c_ptr), value :: x
       integer(c_long), value :: incx
       type(c_ptr), value :: y
@@ -67653,8 +67601,8 @@ contains
       type(c_ptr), value :: AP
       integer(c_long), value :: batch_count
       integer(c_int) :: sspr2_batched_64
-      sspr2_batched_64 = rocblas_sspr2_batched_64_raw(handle, uplo, n, c_loc(alpha(1)), x, incx, &
-        y, incy, AP, batch_count)
+      sspr2_batched_64 = rocblas_sspr2_batched_64_raw(handle, uplo, n, c_loc(alpha), x, incx, y, &
+        incy, AP, batch_count)
     end function rocblas_sspr2_batched_64_native
 
     function rocblas_sspr2_batched_64_typed(handle, uplo, n, alpha, x, incx, y, incy, AP, &
@@ -67684,7 +67632,7 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: uplo
       integer(c_long), value :: n
-      real(c_double), target :: alpha(*)
+      real(c_double), target :: alpha(..)
       type(c_ptr), value :: x
       integer(c_long), value :: incx
       type(c_ptr), value :: y
@@ -67692,8 +67640,8 @@ contains
       type(c_ptr), value :: AP
       integer(c_long), value :: batch_count
       integer(c_int) :: dspr2_batched_64
-      dspr2_batched_64 = rocblas_dspr2_batched_64_raw(handle, uplo, n, c_loc(alpha(1)), x, incx, &
-        y, incy, AP, batch_count)
+      dspr2_batched_64 = rocblas_dspr2_batched_64_raw(handle, uplo, n, c_loc(alpha), x, incx, y, &
+        incy, AP, batch_count)
     end function rocblas_dspr2_batched_64_native
 
     function rocblas_dspr2_batched_64_typed(handle, uplo, n, alpha, x, incx, y, incy, AP, &
@@ -67724,18 +67672,18 @@ contains
       integer(c_int), value :: uplo
       integer(c_int), value :: n
       real(c_float) :: alpha
-      real(c_float), target :: x(*)
+      real(c_float), target :: x(..)
       integer(c_int), value :: incx
       integer(c_long), value :: stride_x
-      real(c_float), target :: y(*)
+      real(c_float), target :: y(..)
       integer(c_int), value :: incy
       integer(c_long), value :: stride_y
-      real(c_float), target :: AP(*)
+      real(c_float), target :: AP(..)
       integer(c_long), value :: stride_A
       integer(c_int), value :: batch_count
       integer(c_int) :: sspr2_strided_batched
-      sspr2_strided_batched = rocblas_sspr2_strided_batched_raw(handle, uplo, n, alpha, c_loc(x( &
-        1)), incx, stride_x, c_loc(y(1)), incy, stride_y, c_loc(AP(1)), stride_A, batch_count)
+      sspr2_strided_batched = rocblas_sspr2_strided_batched_raw(handle, uplo, n, alpha, c_loc(x), &
+        incx, stride_x, c_loc(y), incy, stride_y, c_loc(AP), stride_A, batch_count)
     end function rocblas_sspr2_strided_batched_native
 
     function rocblas_sspr2_strided_batched_typed(handle, uplo, n, alpha, x, incx, stride_x, y, &
@@ -67769,18 +67717,18 @@ contains
       integer(c_int), value :: uplo
       integer(c_int), value :: n
       real(c_double) :: alpha
-      real(c_double), target :: x(*)
+      real(c_double), target :: x(..)
       integer(c_int), value :: incx
       integer(c_long), value :: stride_x
-      real(c_double), target :: y(*)
+      real(c_double), target :: y(..)
       integer(c_int), value :: incy
       integer(c_long), value :: stride_y
-      real(c_double), target :: AP(*)
+      real(c_double), target :: AP(..)
       integer(c_long), value :: stride_A
       integer(c_int), value :: batch_count
       integer(c_int) :: dspr2_strided_batched
-      dspr2_strided_batched = rocblas_dspr2_strided_batched_raw(handle, uplo, n, alpha, c_loc(x( &
-        1)), incx, stride_x, c_loc(y(1)), incy, stride_y, c_loc(AP(1)), stride_A, batch_count)
+      dspr2_strided_batched = rocblas_dspr2_strided_batched_raw(handle, uplo, n, alpha, c_loc(x), &
+        incx, stride_x, c_loc(y), incy, stride_y, c_loc(AP), stride_A, batch_count)
     end function rocblas_dspr2_strided_batched_native
 
     function rocblas_dspr2_strided_batched_typed(handle, uplo, n, alpha, x, incx, stride_x, y, &
@@ -67813,20 +67761,20 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: uplo
       integer(c_long), value :: n
-      real(c_float), target :: alpha(*)
-      real(c_float), target :: x(*)
+      real(c_float), target :: alpha(..)
+      real(c_float), target :: x(..)
       integer(c_long), value :: incx
       integer(c_long), value :: stride_x
-      real(c_float), target :: y(*)
+      real(c_float), target :: y(..)
       integer(c_long), value :: incy
       integer(c_long), value :: stride_y
-      real(c_float), target :: AP(*)
+      real(c_float), target :: AP(..)
       integer(c_long), value :: stride_A
       integer(c_long), value :: batch_count
       integer(c_int) :: sspr2_strided_batched_64
       sspr2_strided_batched_64 = rocblas_sspr2_strided_batched_64_raw(handle, uplo, n, c_loc( &
-        alpha(1)), c_loc(x(1)), incx, stride_x, c_loc(y(1)), incy, stride_y, c_loc(AP(1)), &
-        stride_A, batch_count)
+        alpha), c_loc(x), incx, stride_x, c_loc(y), incy, stride_y, c_loc(AP), stride_A, &
+        batch_count)
     end function rocblas_sspr2_strided_batched_64_native
 
     function rocblas_sspr2_strided_batched_64_typed(handle, uplo, n, alpha, x, incx, stride_x, y, &
@@ -67859,20 +67807,20 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: uplo
       integer(c_long), value :: n
-      real(c_double), target :: alpha(*)
-      real(c_double), target :: x(*)
+      real(c_double), target :: alpha(..)
+      real(c_double), target :: x(..)
       integer(c_long), value :: incx
       integer(c_long), value :: stride_x
-      real(c_double), target :: y(*)
+      real(c_double), target :: y(..)
       integer(c_long), value :: incy
       integer(c_long), value :: stride_y
-      real(c_double), target :: AP(*)
+      real(c_double), target :: AP(..)
       integer(c_long), value :: stride_A
       integer(c_long), value :: batch_count
       integer(c_int) :: dspr2_strided_batched_64
       dspr2_strided_batched_64 = rocblas_dspr2_strided_batched_64_raw(handle, uplo, n, c_loc( &
-        alpha(1)), c_loc(x(1)), incx, stride_x, c_loc(y(1)), incy, stride_y, c_loc(AP(1)), &
-        stride_A, batch_count)
+        alpha), c_loc(x), incx, stride_x, c_loc(y), incy, stride_y, c_loc(AP), stride_A, &
+        batch_count)
     end function rocblas_dspr2_strided_batched_64_native
 
     function rocblas_dspr2_strided_batched_64_typed(handle, uplo, n, alpha, x, incx, stride_x, y, &
@@ -67905,12 +67853,12 @@ contains
       integer(c_int), value :: uplo
       integer(c_int), value :: n
       real(c_float) :: alpha
-      real(c_float), target :: x(*)
+      real(c_float), target :: x(..)
       integer(c_int), value :: incx
-      real(c_float), target :: A(*)
+      real(c_float), target :: A(..)
       integer(c_int), value :: lda
       integer(c_int) :: ssyr
-      ssyr = rocblas_ssyr_raw(handle, uplo, n, alpha, c_loc(x(1)), incx, c_loc(A(1)), lda)
+      ssyr = rocblas_ssyr_raw(handle, uplo, n, alpha, c_loc(x), incx, c_loc(A), lda)
     end function rocblas_ssyr_native
 
     function rocblas_ssyr_typed(handle, uplo, n, alpha, x, incx, A, lda) result(ssyr)
@@ -67936,12 +67884,12 @@ contains
       integer(c_int), value :: uplo
       integer(c_int), value :: n
       real(c_double) :: alpha
-      real(c_double), target :: x(*)
+      real(c_double), target :: x(..)
       integer(c_int), value :: incx
-      real(c_double), target :: A(*)
+      real(c_double), target :: A(..)
       integer(c_int), value :: lda
       integer(c_int) :: dsyr
-      dsyr = rocblas_dsyr_raw(handle, uplo, n, alpha, c_loc(x(1)), incx, c_loc(A(1)), lda)
+      dsyr = rocblas_dsyr_raw(handle, uplo, n, alpha, c_loc(x), incx, c_loc(A), lda)
     end function rocblas_dsyr_native
 
     function rocblas_dsyr_typed(handle, uplo, n, alpha, x, incx, A, lda) result(dsyr)
@@ -67967,12 +67915,12 @@ contains
       integer(c_int), value :: uplo
       integer(c_int), value :: n
       complex(c_float_complex) :: alpha
-      complex(c_float_complex), target :: x(*)
+      complex(c_float_complex), target :: x(..)
       integer(c_int), value :: incx
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: A(..)
       integer(c_int), value :: lda
       integer(c_int) :: csyr
-      csyr = rocblas_csyr_raw(handle, uplo, n, alpha, c_loc(x(1)), incx, c_loc(A(1)), lda)
+      csyr = rocblas_csyr_raw(handle, uplo, n, alpha, c_loc(x), incx, c_loc(A), lda)
     end function rocblas_csyr_native
 
     function rocblas_csyr_typed(handle, uplo, n, alpha, x, incx, A, lda) result(csyr)
@@ -67998,12 +67946,12 @@ contains
       integer(c_int), value :: uplo
       integer(c_int), value :: n
       complex(c_double_complex) :: alpha
-      complex(c_double_complex), target :: x(*)
+      complex(c_double_complex), target :: x(..)
       integer(c_int), value :: incx
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: A(..)
       integer(c_int), value :: lda
       integer(c_int) :: zsyr
-      zsyr = rocblas_zsyr_raw(handle, uplo, n, alpha, c_loc(x(1)), incx, c_loc(A(1)), lda)
+      zsyr = rocblas_zsyr_raw(handle, uplo, n, alpha, c_loc(x), incx, c_loc(A), lda)
     end function rocblas_zsyr_native
 
     function rocblas_zsyr_typed(handle, uplo, n, alpha, x, incx, A, lda) result(zsyr)
@@ -68028,14 +67976,13 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: uplo
       integer(c_long), value :: n
-      real(c_float), target :: alpha(*)
-      real(c_float), target :: x(*)
+      real(c_float), target :: alpha(..)
+      real(c_float), target :: x(..)
       integer(c_long), value :: incx
-      real(c_float), target :: A(*)
+      real(c_float), target :: A(..)
       integer(c_long), value :: lda
       integer(c_int) :: ssyr_64
-      ssyr_64 = rocblas_ssyr_64_raw(handle, uplo, n, c_loc(alpha(1)), c_loc(x(1)), incx, c_loc(A( &
-        1)), lda)
+      ssyr_64 = rocblas_ssyr_64_raw(handle, uplo, n, c_loc(alpha), c_loc(x), incx, c_loc(A), lda)
     end function rocblas_ssyr_64_native
 
     function rocblas_ssyr_64_typed(handle, uplo, n, alpha, x, incx, A, lda) result(ssyr_64)
@@ -68060,14 +68007,13 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: uplo
       integer(c_long), value :: n
-      real(c_double), target :: alpha(*)
-      real(c_double), target :: x(*)
+      real(c_double), target :: alpha(..)
+      real(c_double), target :: x(..)
       integer(c_long), value :: incx
-      real(c_double), target :: A(*)
+      real(c_double), target :: A(..)
       integer(c_long), value :: lda
       integer(c_int) :: dsyr_64
-      dsyr_64 = rocblas_dsyr_64_raw(handle, uplo, n, c_loc(alpha(1)), c_loc(x(1)), incx, c_loc(A( &
-        1)), lda)
+      dsyr_64 = rocblas_dsyr_64_raw(handle, uplo, n, c_loc(alpha), c_loc(x), incx, c_loc(A), lda)
     end function rocblas_dsyr_64_native
 
     function rocblas_dsyr_64_typed(handle, uplo, n, alpha, x, incx, A, lda) result(dsyr_64)
@@ -68092,14 +68038,13 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: uplo
       integer(c_long), value :: n
-      complex(c_float_complex), target :: alpha(*)
-      complex(c_float_complex), target :: x(*)
+      complex(c_float_complex), target :: alpha(..)
+      complex(c_float_complex), target :: x(..)
       integer(c_long), value :: incx
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: A(..)
       integer(c_long), value :: lda
       integer(c_int) :: csyr_64
-      csyr_64 = rocblas_csyr_64_raw(handle, uplo, n, c_loc(alpha(1)), c_loc(x(1)), incx, c_loc(A( &
-        1)), lda)
+      csyr_64 = rocblas_csyr_64_raw(handle, uplo, n, c_loc(alpha), c_loc(x), incx, c_loc(A), lda)
     end function rocblas_csyr_64_native
 
     function rocblas_csyr_64_typed(handle, uplo, n, alpha, x, incx, A, lda) result(csyr_64)
@@ -68124,14 +68069,13 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: uplo
       integer(c_long), value :: n
-      complex(c_double_complex), target :: alpha(*)
-      complex(c_double_complex), target :: x(*)
+      complex(c_double_complex), target :: alpha(..)
+      complex(c_double_complex), target :: x(..)
       integer(c_long), value :: incx
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: A(..)
       integer(c_long), value :: lda
       integer(c_int) :: zsyr_64
-      zsyr_64 = rocblas_zsyr_64_raw(handle, uplo, n, c_loc(alpha(1)), c_loc(x(1)), incx, c_loc(A( &
-        1)), lda)
+      zsyr_64 = rocblas_zsyr_64_raw(handle, uplo, n, c_loc(alpha), c_loc(x), incx, c_loc(A), lda)
     end function rocblas_zsyr_64_native
 
     function rocblas_zsyr_64_typed(handle, uplo, n, alpha, x, incx, A, lda) result(zsyr_64)
@@ -68233,14 +68177,14 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: uplo
       integer(c_long), value :: n
-      real(c_float), target :: alpha(*)
+      real(c_float), target :: alpha(..)
       type(c_ptr), value :: x
       integer(c_long), value :: incx
       type(c_ptr), value :: A
       integer(c_long), value :: lda
       integer(c_long), value :: batch_count
       integer(c_int) :: ssyr_batched_64
-      ssyr_batched_64 = rocblas_ssyr_batched_64_raw(handle, uplo, n, c_loc(alpha(1)), x, incx, A, &
+      ssyr_batched_64 = rocblas_ssyr_batched_64_raw(handle, uplo, n, c_loc(alpha), x, incx, A, &
         lda, batch_count)
     end function rocblas_ssyr_batched_64_native
 
@@ -68270,14 +68214,14 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: uplo
       integer(c_long), value :: n
-      real(c_double), target :: alpha(*)
+      real(c_double), target :: alpha(..)
       type(c_ptr), value :: x
       integer(c_long), value :: incx
       type(c_ptr), value :: A
       integer(c_long), value :: lda
       integer(c_long), value :: batch_count
       integer(c_int) :: dsyr_batched_64
-      dsyr_batched_64 = rocblas_dsyr_batched_64_raw(handle, uplo, n, c_loc(alpha(1)), x, incx, A, &
+      dsyr_batched_64 = rocblas_dsyr_batched_64_raw(handle, uplo, n, c_loc(alpha), x, incx, A, &
         lda, batch_count)
     end function rocblas_dsyr_batched_64_native
 
@@ -68307,14 +68251,14 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: uplo
       integer(c_long), value :: n
-      complex(c_float_complex), target :: alpha(*)
+      complex(c_float_complex), target :: alpha(..)
       type(c_ptr), value :: x
       integer(c_long), value :: incx
       type(c_ptr), value :: A
       integer(c_long), value :: lda
       integer(c_long), value :: batch_count
       integer(c_int) :: csyr_batched_64
-      csyr_batched_64 = rocblas_csyr_batched_64_raw(handle, uplo, n, c_loc(alpha(1)), x, incx, A, &
+      csyr_batched_64 = rocblas_csyr_batched_64_raw(handle, uplo, n, c_loc(alpha), x, incx, A, &
         lda, batch_count)
     end function rocblas_csyr_batched_64_native
 
@@ -68344,14 +68288,14 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: uplo
       integer(c_long), value :: n
-      complex(c_double_complex), target :: alpha(*)
+      complex(c_double_complex), target :: alpha(..)
       type(c_ptr), value :: x
       integer(c_long), value :: incx
       type(c_ptr), value :: A
       integer(c_long), value :: lda
       integer(c_long), value :: batch_count
       integer(c_int) :: zsyr_batched_64
-      zsyr_batched_64 = rocblas_zsyr_batched_64_raw(handle, uplo, n, c_loc(alpha(1)), x, incx, A, &
+      zsyr_batched_64 = rocblas_zsyr_batched_64_raw(handle, uplo, n, c_loc(alpha), x, incx, A, &
         lda, batch_count)
     end function rocblas_zsyr_batched_64_native
 
@@ -68382,16 +68326,16 @@ contains
       integer(c_int), value :: uplo
       integer(c_int), value :: n
       real(c_float) :: alpha
-      real(c_float), target :: x(*)
+      real(c_float), target :: x(..)
       integer(c_int), value :: incx
       integer(c_long), value :: stridex
-      real(c_float), target :: A(*)
+      real(c_float), target :: A(..)
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
       integer(c_int), value :: batch_count
       integer(c_int) :: ssyr_strided_batched
-      ssyr_strided_batched = rocblas_ssyr_strided_batched_raw(handle, uplo, n, alpha, c_loc(x(1)), &
-        incx, stridex, c_loc(A(1)), lda, strideA, batch_count)
+      ssyr_strided_batched = rocblas_ssyr_strided_batched_raw(handle, uplo, n, alpha, c_loc(x), &
+        incx, stridex, c_loc(A), lda, strideA, batch_count)
     end function rocblas_ssyr_strided_batched_native
 
     function rocblas_ssyr_strided_batched_typed(handle, uplo, n, alpha, x, incx, stridex, A, lda, &
@@ -68423,16 +68367,16 @@ contains
       integer(c_int), value :: uplo
       integer(c_int), value :: n
       real(c_double) :: alpha
-      real(c_double), target :: x(*)
+      real(c_double), target :: x(..)
       integer(c_int), value :: incx
       integer(c_long), value :: stridex
-      real(c_double), target :: A(*)
+      real(c_double), target :: A(..)
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
       integer(c_int), value :: batch_count
       integer(c_int) :: dsyr_strided_batched
-      dsyr_strided_batched = rocblas_dsyr_strided_batched_raw(handle, uplo, n, alpha, c_loc(x(1)), &
-        incx, stridex, c_loc(A(1)), lda, strideA, batch_count)
+      dsyr_strided_batched = rocblas_dsyr_strided_batched_raw(handle, uplo, n, alpha, c_loc(x), &
+        incx, stridex, c_loc(A), lda, strideA, batch_count)
     end function rocblas_dsyr_strided_batched_native
 
     function rocblas_dsyr_strided_batched_typed(handle, uplo, n, alpha, x, incx, stridex, A, lda, &
@@ -68464,16 +68408,16 @@ contains
       integer(c_int), value :: uplo
       integer(c_int), value :: n
       complex(c_float_complex) :: alpha
-      complex(c_float_complex), target :: x(*)
+      complex(c_float_complex), target :: x(..)
       integer(c_int), value :: incx
       integer(c_long), value :: stridex
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: A(..)
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
       integer(c_int), value :: batch_count
       integer(c_int) :: csyr_strided_batched
-      csyr_strided_batched = rocblas_csyr_strided_batched_raw(handle, uplo, n, alpha, c_loc(x(1)), &
-        incx, stridex, c_loc(A(1)), lda, strideA, batch_count)
+      csyr_strided_batched = rocblas_csyr_strided_batched_raw(handle, uplo, n, alpha, c_loc(x), &
+        incx, stridex, c_loc(A), lda, strideA, batch_count)
     end function rocblas_csyr_strided_batched_native
 
     function rocblas_csyr_strided_batched_typed(handle, uplo, n, alpha, x, incx, stridex, A, lda, &
@@ -68505,16 +68449,16 @@ contains
       integer(c_int), value :: uplo
       integer(c_int), value :: n
       complex(c_double_complex) :: alpha
-      complex(c_double_complex), target :: x(*)
+      complex(c_double_complex), target :: x(..)
       integer(c_int), value :: incx
       integer(c_long), value :: stridex
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: A(..)
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
       integer(c_int), value :: batch_count
       integer(c_int) :: zsyr_strided_batched
-      zsyr_strided_batched = rocblas_zsyr_strided_batched_raw(handle, uplo, n, alpha, c_loc(x(1)), &
-        incx, stridex, c_loc(A(1)), lda, strideA, batch_count)
+      zsyr_strided_batched = rocblas_zsyr_strided_batched_raw(handle, uplo, n, alpha, c_loc(x), &
+        incx, stridex, c_loc(A), lda, strideA, batch_count)
     end function rocblas_zsyr_strided_batched_native
 
     function rocblas_zsyr_strided_batched_typed(handle, uplo, n, alpha, x, incx, stridex, A, lda, &
@@ -68545,17 +68489,17 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: uplo
       integer(c_long), value :: n
-      real(c_float), target :: alpha(*)
-      real(c_float), target :: x(*)
+      real(c_float), target :: alpha(..)
+      real(c_float), target :: x(..)
       integer(c_long), value :: incx
       integer(c_long), value :: stridex
-      real(c_float), target :: A(*)
+      real(c_float), target :: A(..)
       integer(c_long), value :: lda
       integer(c_long), value :: strideA
       integer(c_long), value :: batch_count
       integer(c_int) :: ssyr_strided_batched_64
-      ssyr_strided_batched_64 = rocblas_ssyr_strided_batched_64_raw(handle, uplo, n, c_loc(alpha( &
-        1)), c_loc(x(1)), incx, stridex, c_loc(A(1)), lda, strideA, batch_count)
+      ssyr_strided_batched_64 = rocblas_ssyr_strided_batched_64_raw(handle, uplo, n, c_loc(alpha), &
+        c_loc(x), incx, stridex, c_loc(A), lda, strideA, batch_count)
     end function rocblas_ssyr_strided_batched_64_native
 
     function rocblas_ssyr_strided_batched_64_typed(handle, uplo, n, alpha, x, incx, stridex, A, &
@@ -68586,17 +68530,17 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: uplo
       integer(c_long), value :: n
-      real(c_double), target :: alpha(*)
-      real(c_double), target :: x(*)
+      real(c_double), target :: alpha(..)
+      real(c_double), target :: x(..)
       integer(c_long), value :: incx
       integer(c_long), value :: stridex
-      real(c_double), target :: A(*)
+      real(c_double), target :: A(..)
       integer(c_long), value :: lda
       integer(c_long), value :: strideA
       integer(c_long), value :: batch_count
       integer(c_int) :: dsyr_strided_batched_64
-      dsyr_strided_batched_64 = rocblas_dsyr_strided_batched_64_raw(handle, uplo, n, c_loc(alpha( &
-        1)), c_loc(x(1)), incx, stridex, c_loc(A(1)), lda, strideA, batch_count)
+      dsyr_strided_batched_64 = rocblas_dsyr_strided_batched_64_raw(handle, uplo, n, c_loc(alpha), &
+        c_loc(x), incx, stridex, c_loc(A), lda, strideA, batch_count)
     end function rocblas_dsyr_strided_batched_64_native
 
     function rocblas_dsyr_strided_batched_64_typed(handle, uplo, n, alpha, x, incx, stridex, A, &
@@ -68627,17 +68571,17 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: uplo
       integer(c_long), value :: n
-      complex(c_float_complex), target :: alpha(*)
-      complex(c_float_complex), target :: x(*)
+      complex(c_float_complex), target :: alpha(..)
+      complex(c_float_complex), target :: x(..)
       integer(c_long), value :: incx
       integer(c_long), value :: stridex
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: A(..)
       integer(c_long), value :: lda
       integer(c_long), value :: strideA
       integer(c_long), value :: batch_count
       integer(c_int) :: csyr_strided_batched_64
-      csyr_strided_batched_64 = rocblas_csyr_strided_batched_64_raw(handle, uplo, n, c_loc(alpha( &
-        1)), c_loc(x(1)), incx, stridex, c_loc(A(1)), lda, strideA, batch_count)
+      csyr_strided_batched_64 = rocblas_csyr_strided_batched_64_raw(handle, uplo, n, c_loc(alpha), &
+        c_loc(x), incx, stridex, c_loc(A), lda, strideA, batch_count)
     end function rocblas_csyr_strided_batched_64_native
 
     function rocblas_csyr_strided_batched_64_typed(handle, uplo, n, alpha, x, incx, stridex, A, &
@@ -68668,17 +68612,17 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: uplo
       integer(c_long), value :: n
-      complex(c_double_complex), target :: alpha(*)
-      complex(c_double_complex), target :: x(*)
+      complex(c_double_complex), target :: alpha(..)
+      complex(c_double_complex), target :: x(..)
       integer(c_long), value :: incx
       integer(c_long), value :: stridex
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: A(..)
       integer(c_long), value :: lda
       integer(c_long), value :: strideA
       integer(c_long), value :: batch_count
       integer(c_int) :: zsyr_strided_batched_64
-      zsyr_strided_batched_64 = rocblas_zsyr_strided_batched_64_raw(handle, uplo, n, c_loc(alpha( &
-        1)), c_loc(x(1)), incx, stridex, c_loc(A(1)), lda, strideA, batch_count)
+      zsyr_strided_batched_64 = rocblas_zsyr_strided_batched_64_raw(handle, uplo, n, c_loc(alpha), &
+        c_loc(x), incx, stridex, c_loc(A), lda, strideA, batch_count)
     end function rocblas_zsyr_strided_batched_64_native
 
     function rocblas_zsyr_strided_batched_64_typed(handle, uplo, n, alpha, x, incx, stridex, A, &
@@ -68709,15 +68653,15 @@ contains
       integer(c_int), value :: uplo
       integer(c_int), value :: n
       real(c_float) :: alpha
-      real(c_float), target :: x(*)
+      real(c_float), target :: x(..)
       integer(c_int), value :: incx
-      real(c_float), target :: y(*)
+      real(c_float), target :: y(..)
       integer(c_int), value :: incy
-      real(c_float), target :: A(*)
+      real(c_float), target :: A(..)
       integer(c_int), value :: lda
       integer(c_int) :: ssyr2
-      ssyr2 = rocblas_ssyr2_raw(handle, uplo, n, alpha, c_loc(x(1)), incx, c_loc(y(1)), incy, &
-        c_loc(A(1)), lda)
+      ssyr2 = rocblas_ssyr2_raw(handle, uplo, n, alpha, c_loc(x), incx, c_loc(y), incy, c_loc(A), &
+        lda)
     end function rocblas_ssyr2_native
 
     function rocblas_ssyr2_typed(handle, uplo, n, alpha, x, incx, y, incy, A, lda) result(ssyr2)
@@ -68745,15 +68689,15 @@ contains
       integer(c_int), value :: uplo
       integer(c_int), value :: n
       real(c_double) :: alpha
-      real(c_double), target :: x(*)
+      real(c_double), target :: x(..)
       integer(c_int), value :: incx
-      real(c_double), target :: y(*)
+      real(c_double), target :: y(..)
       integer(c_int), value :: incy
-      real(c_double), target :: A(*)
+      real(c_double), target :: A(..)
       integer(c_int), value :: lda
       integer(c_int) :: dsyr2
-      dsyr2 = rocblas_dsyr2_raw(handle, uplo, n, alpha, c_loc(x(1)), incx, c_loc(y(1)), incy, &
-        c_loc(A(1)), lda)
+      dsyr2 = rocblas_dsyr2_raw(handle, uplo, n, alpha, c_loc(x), incx, c_loc(y), incy, c_loc(A), &
+        lda)
     end function rocblas_dsyr2_native
 
     function rocblas_dsyr2_typed(handle, uplo, n, alpha, x, incx, y, incy, A, lda) result(dsyr2)
@@ -68781,15 +68725,15 @@ contains
       integer(c_int), value :: uplo
       integer(c_int), value :: n
       complex(c_float_complex) :: alpha
-      complex(c_float_complex), target :: x(*)
+      complex(c_float_complex), target :: x(..)
       integer(c_int), value :: incx
-      complex(c_float_complex), target :: y(*)
+      complex(c_float_complex), target :: y(..)
       integer(c_int), value :: incy
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: A(..)
       integer(c_int), value :: lda
       integer(c_int) :: csyr2
-      csyr2 = rocblas_csyr2_raw(handle, uplo, n, alpha, c_loc(x(1)), incx, c_loc(y(1)), incy, &
-        c_loc(A(1)), lda)
+      csyr2 = rocblas_csyr2_raw(handle, uplo, n, alpha, c_loc(x), incx, c_loc(y), incy, c_loc(A), &
+        lda)
     end function rocblas_csyr2_native
 
     function rocblas_csyr2_typed(handle, uplo, n, alpha, x, incx, y, incy, A, lda) result(csyr2)
@@ -68817,15 +68761,15 @@ contains
       integer(c_int), value :: uplo
       integer(c_int), value :: n
       complex(c_double_complex) :: alpha
-      complex(c_double_complex), target :: x(*)
+      complex(c_double_complex), target :: x(..)
       integer(c_int), value :: incx
-      complex(c_double_complex), target :: y(*)
+      complex(c_double_complex), target :: y(..)
       integer(c_int), value :: incy
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: A(..)
       integer(c_int), value :: lda
       integer(c_int) :: zsyr2
-      zsyr2 = rocblas_zsyr2_raw(handle, uplo, n, alpha, c_loc(x(1)), incx, c_loc(y(1)), incy, &
-        c_loc(A(1)), lda)
+      zsyr2 = rocblas_zsyr2_raw(handle, uplo, n, alpha, c_loc(x), incx, c_loc(y), incy, c_loc(A), &
+        lda)
     end function rocblas_zsyr2_native
 
     function rocblas_zsyr2_typed(handle, uplo, n, alpha, x, incx, y, incy, A, lda) result(zsyr2)
@@ -68853,16 +68797,16 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: uplo
       integer(c_long), value :: n
-      real(c_float), target :: alpha(*)
-      real(c_float), target :: x(*)
+      real(c_float), target :: alpha(..)
+      real(c_float), target :: x(..)
       integer(c_long), value :: incx
-      real(c_float), target :: y(*)
+      real(c_float), target :: y(..)
       integer(c_long), value :: incy
-      real(c_float), target :: A(*)
+      real(c_float), target :: A(..)
       integer(c_long), value :: lda
       integer(c_int) :: ssyr2_64
-      ssyr2_64 = rocblas_ssyr2_64_raw(handle, uplo, n, c_loc(alpha(1)), c_loc(x(1)), incx, c_loc( &
-        y(1)), incy, c_loc(A(1)), lda)
+      ssyr2_64 = rocblas_ssyr2_64_raw(handle, uplo, n, c_loc(alpha), c_loc(x), incx, c_loc(y), &
+        incy, c_loc(A), lda)
     end function rocblas_ssyr2_64_native
 
     function rocblas_ssyr2_64_typed(handle, uplo, n, alpha, x, incx, y, incy, A, lda) result( &
@@ -68891,16 +68835,16 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: uplo
       integer(c_long), value :: n
-      real(c_double), target :: alpha(*)
-      real(c_double), target :: x(*)
+      real(c_double), target :: alpha(..)
+      real(c_double), target :: x(..)
       integer(c_long), value :: incx
-      real(c_double), target :: y(*)
+      real(c_double), target :: y(..)
       integer(c_long), value :: incy
-      real(c_double), target :: A(*)
+      real(c_double), target :: A(..)
       integer(c_long), value :: lda
       integer(c_int) :: dsyr2_64
-      dsyr2_64 = rocblas_dsyr2_64_raw(handle, uplo, n, c_loc(alpha(1)), c_loc(x(1)), incx, c_loc( &
-        y(1)), incy, c_loc(A(1)), lda)
+      dsyr2_64 = rocblas_dsyr2_64_raw(handle, uplo, n, c_loc(alpha), c_loc(x), incx, c_loc(y), &
+        incy, c_loc(A), lda)
     end function rocblas_dsyr2_64_native
 
     function rocblas_dsyr2_64_typed(handle, uplo, n, alpha, x, incx, y, incy, A, lda) result( &
@@ -68929,16 +68873,16 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: uplo
       integer(c_long), value :: n
-      complex(c_float_complex), target :: alpha(*)
-      complex(c_float_complex), target :: x(*)
+      complex(c_float_complex), target :: alpha(..)
+      complex(c_float_complex), target :: x(..)
       integer(c_long), value :: incx
-      complex(c_float_complex), target :: y(*)
+      complex(c_float_complex), target :: y(..)
       integer(c_long), value :: incy
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: A(..)
       integer(c_long), value :: lda
       integer(c_int) :: csyr2_64
-      csyr2_64 = rocblas_csyr2_64_raw(handle, uplo, n, c_loc(alpha(1)), c_loc(x(1)), incx, c_loc( &
-        y(1)), incy, c_loc(A(1)), lda)
+      csyr2_64 = rocblas_csyr2_64_raw(handle, uplo, n, c_loc(alpha), c_loc(x), incx, c_loc(y), &
+        incy, c_loc(A), lda)
     end function rocblas_csyr2_64_native
 
     function rocblas_csyr2_64_typed(handle, uplo, n, alpha, x, incx, y, incy, A, lda) result( &
@@ -68967,16 +68911,16 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: uplo
       integer(c_long), value :: n
-      complex(c_double_complex), target :: alpha(*)
-      complex(c_double_complex), target :: x(*)
+      complex(c_double_complex), target :: alpha(..)
+      complex(c_double_complex), target :: x(..)
       integer(c_long), value :: incx
-      complex(c_double_complex), target :: y(*)
+      complex(c_double_complex), target :: y(..)
       integer(c_long), value :: incy
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: A(..)
       integer(c_long), value :: lda
       integer(c_int) :: zsyr2_64
-      zsyr2_64 = rocblas_zsyr2_64_raw(handle, uplo, n, c_loc(alpha(1)), c_loc(x(1)), incx, c_loc( &
-        y(1)), incy, c_loc(A(1)), lda)
+      zsyr2_64 = rocblas_zsyr2_64_raw(handle, uplo, n, c_loc(alpha), c_loc(x), incx, c_loc(y), &
+        incy, c_loc(A), lda)
     end function rocblas_zsyr2_64_native
 
     function rocblas_zsyr2_64_typed(handle, uplo, n, alpha, x, incx, y, incy, A, lda) result( &
@@ -69089,7 +69033,7 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: uplo
       integer(c_long), value :: n
-      real(c_float), target :: alpha(*)
+      real(c_float), target :: alpha(..)
       type(c_ptr), value :: x
       integer(c_long), value :: incx
       type(c_ptr), value :: y
@@ -69098,8 +69042,8 @@ contains
       integer(c_long), value :: lda
       integer(c_long), value :: batch_count
       integer(c_int) :: ssyr2_batched_64
-      ssyr2_batched_64 = rocblas_ssyr2_batched_64_raw(handle, uplo, n, c_loc(alpha(1)), x, incx, &
-        y, incy, A, lda, batch_count)
+      ssyr2_batched_64 = rocblas_ssyr2_batched_64_raw(handle, uplo, n, c_loc(alpha), x, incx, y, &
+        incy, A, lda, batch_count)
     end function rocblas_ssyr2_batched_64_native
 
     function rocblas_ssyr2_batched_64_typed(handle, uplo, n, alpha, x, incx, y, incy, A, lda, &
@@ -69130,7 +69074,7 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: uplo
       integer(c_long), value :: n
-      real(c_double), target :: alpha(*)
+      real(c_double), target :: alpha(..)
       type(c_ptr), value :: x
       integer(c_long), value :: incx
       type(c_ptr), value :: y
@@ -69139,8 +69083,8 @@ contains
       integer(c_long), value :: lda
       integer(c_long), value :: batch_count
       integer(c_int) :: dsyr2_batched_64
-      dsyr2_batched_64 = rocblas_dsyr2_batched_64_raw(handle, uplo, n, c_loc(alpha(1)), x, incx, &
-        y, incy, A, lda, batch_count)
+      dsyr2_batched_64 = rocblas_dsyr2_batched_64_raw(handle, uplo, n, c_loc(alpha), x, incx, y, &
+        incy, A, lda, batch_count)
     end function rocblas_dsyr2_batched_64_native
 
     function rocblas_dsyr2_batched_64_typed(handle, uplo, n, alpha, x, incx, y, incy, A, lda, &
@@ -69171,7 +69115,7 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: uplo
       integer(c_long), value :: n
-      complex(c_float_complex), target :: alpha(*)
+      complex(c_float_complex), target :: alpha(..)
       type(c_ptr), value :: x
       integer(c_long), value :: incx
       type(c_ptr), value :: y
@@ -69180,8 +69124,8 @@ contains
       integer(c_long), value :: lda
       integer(c_long), value :: batch_count
       integer(c_int) :: csyr2_batched_64
-      csyr2_batched_64 = rocblas_csyr2_batched_64_raw(handle, uplo, n, c_loc(alpha(1)), x, incx, &
-        y, incy, A, lda, batch_count)
+      csyr2_batched_64 = rocblas_csyr2_batched_64_raw(handle, uplo, n, c_loc(alpha), x, incx, y, &
+        incy, A, lda, batch_count)
     end function rocblas_csyr2_batched_64_native
 
     function rocblas_csyr2_batched_64_typed(handle, uplo, n, alpha, x, incx, y, incy, A, lda, &
@@ -69212,7 +69156,7 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: uplo
       integer(c_long), value :: n
-      complex(c_double_complex), target :: alpha(*)
+      complex(c_double_complex), target :: alpha(..)
       type(c_ptr), value :: x
       integer(c_long), value :: incx
       type(c_ptr), value :: y
@@ -69221,8 +69165,8 @@ contains
       integer(c_long), value :: lda
       integer(c_long), value :: batch_count
       integer(c_int) :: zsyr2_batched_64
-      zsyr2_batched_64 = rocblas_zsyr2_batched_64_raw(handle, uplo, n, c_loc(alpha(1)), x, incx, &
-        y, incy, A, lda, batch_count)
+      zsyr2_batched_64 = rocblas_zsyr2_batched_64_raw(handle, uplo, n, c_loc(alpha), x, incx, y, &
+        incy, A, lda, batch_count)
     end function rocblas_zsyr2_batched_64_native
 
     function rocblas_zsyr2_batched_64_typed(handle, uplo, n, alpha, x, incx, y, incy, A, lda, &
@@ -69254,19 +69198,19 @@ contains
       integer(c_int), value :: uplo
       integer(c_int), value :: n
       real(c_float) :: alpha
-      real(c_float), target :: x(*)
+      real(c_float), target :: x(..)
       integer(c_int), value :: incx
       integer(c_long), value :: stridex
-      real(c_float), target :: y(*)
+      real(c_float), target :: y(..)
       integer(c_int), value :: incy
       integer(c_long), value :: stridey
-      real(c_float), target :: A(*)
+      real(c_float), target :: A(..)
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
       integer(c_int), value :: batch_count
       integer(c_int) :: ssyr2_strided_batched
-      ssyr2_strided_batched = rocblas_ssyr2_strided_batched_raw(handle, uplo, n, alpha, c_loc(x( &
-        1)), incx, stridex, c_loc(y(1)), incy, stridey, c_loc(A(1)), lda, strideA, batch_count)
+      ssyr2_strided_batched = rocblas_ssyr2_strided_batched_raw(handle, uplo, n, alpha, c_loc(x), &
+        incx, stridex, c_loc(y), incy, stridey, c_loc(A), lda, strideA, batch_count)
     end function rocblas_ssyr2_strided_batched_native
 
     function rocblas_ssyr2_strided_batched_typed(handle, uplo, n, alpha, x, incx, stridex, y, &
@@ -69301,19 +69245,19 @@ contains
       integer(c_int), value :: uplo
       integer(c_int), value :: n
       real(c_double) :: alpha
-      real(c_double), target :: x(*)
+      real(c_double), target :: x(..)
       integer(c_int), value :: incx
       integer(c_long), value :: stridex
-      real(c_double), target :: y(*)
+      real(c_double), target :: y(..)
       integer(c_int), value :: incy
       integer(c_long), value :: stridey
-      real(c_double), target :: A(*)
+      real(c_double), target :: A(..)
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
       integer(c_int), value :: batch_count
       integer(c_int) :: dsyr2_strided_batched
-      dsyr2_strided_batched = rocblas_dsyr2_strided_batched_raw(handle, uplo, n, alpha, c_loc(x( &
-        1)), incx, stridex, c_loc(y(1)), incy, stridey, c_loc(A(1)), lda, strideA, batch_count)
+      dsyr2_strided_batched = rocblas_dsyr2_strided_batched_raw(handle, uplo, n, alpha, c_loc(x), &
+        incx, stridex, c_loc(y), incy, stridey, c_loc(A), lda, strideA, batch_count)
     end function rocblas_dsyr2_strided_batched_native
 
     function rocblas_dsyr2_strided_batched_typed(handle, uplo, n, alpha, x, incx, stridex, y, &
@@ -69348,19 +69292,19 @@ contains
       integer(c_int), value :: uplo
       integer(c_int), value :: n
       complex(c_float_complex) :: alpha
-      complex(c_float_complex), target :: x(*)
+      complex(c_float_complex), target :: x(..)
       integer(c_int), value :: incx
       integer(c_long), value :: stridex
-      complex(c_float_complex), target :: y(*)
+      complex(c_float_complex), target :: y(..)
       integer(c_int), value :: incy
       integer(c_long), value :: stridey
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: A(..)
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
       integer(c_int), value :: batch_count
       integer(c_int) :: csyr2_strided_batched
-      csyr2_strided_batched = rocblas_csyr2_strided_batched_raw(handle, uplo, n, alpha, c_loc(x( &
-        1)), incx, stridex, c_loc(y(1)), incy, stridey, c_loc(A(1)), lda, strideA, batch_count)
+      csyr2_strided_batched = rocblas_csyr2_strided_batched_raw(handle, uplo, n, alpha, c_loc(x), &
+        incx, stridex, c_loc(y), incy, stridey, c_loc(A), lda, strideA, batch_count)
     end function rocblas_csyr2_strided_batched_native
 
     function rocblas_csyr2_strided_batched_typed(handle, uplo, n, alpha, x, incx, stridex, y, &
@@ -69395,19 +69339,19 @@ contains
       integer(c_int), value :: uplo
       integer(c_int), value :: n
       complex(c_double_complex) :: alpha
-      complex(c_double_complex), target :: x(*)
+      complex(c_double_complex), target :: x(..)
       integer(c_int), value :: incx
       integer(c_long), value :: stridex
-      complex(c_double_complex), target :: y(*)
+      complex(c_double_complex), target :: y(..)
       integer(c_int), value :: incy
       integer(c_long), value :: stridey
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: A(..)
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
       integer(c_int), value :: batch_count
       integer(c_int) :: zsyr2_strided_batched
-      zsyr2_strided_batched = rocblas_zsyr2_strided_batched_raw(handle, uplo, n, alpha, c_loc(x( &
-        1)), incx, stridex, c_loc(y(1)), incy, stridey, c_loc(A(1)), lda, strideA, batch_count)
+      zsyr2_strided_batched = rocblas_zsyr2_strided_batched_raw(handle, uplo, n, alpha, c_loc(x), &
+        incx, stridex, c_loc(y), incy, stridey, c_loc(A), lda, strideA, batch_count)
     end function rocblas_zsyr2_strided_batched_native
 
     function rocblas_zsyr2_strided_batched_typed(handle, uplo, n, alpha, x, incx, stridex, y, &
@@ -69441,21 +69385,21 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: uplo
       integer(c_long), value :: n
-      real(c_float), target :: alpha(*)
-      real(c_float), target :: x(*)
+      real(c_float), target :: alpha(..)
+      real(c_float), target :: x(..)
       integer(c_long), value :: incx
       integer(c_long), value :: stridex
-      real(c_float), target :: y(*)
+      real(c_float), target :: y(..)
       integer(c_long), value :: incy
       integer(c_long), value :: stridey
-      real(c_float), target :: A(*)
+      real(c_float), target :: A(..)
       integer(c_long), value :: lda
       integer(c_long), value :: strideA
       integer(c_long), value :: batch_count
       integer(c_int) :: ssyr2_strided_batched_64
       ssyr2_strided_batched_64 = rocblas_ssyr2_strided_batched_64_raw(handle, uplo, n, c_loc( &
-        alpha(1)), c_loc(x(1)), incx, stridex, c_loc(y(1)), incy, stridey, c_loc(A(1)), lda, &
-        strideA, batch_count)
+        alpha), c_loc(x), incx, stridex, c_loc(y), incy, stridey, c_loc(A), lda, strideA, &
+        batch_count)
     end function rocblas_ssyr2_strided_batched_64_native
 
     function rocblas_ssyr2_strided_batched_64_typed(handle, uplo, n, alpha, x, incx, stridex, y, &
@@ -69489,21 +69433,21 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: uplo
       integer(c_long), value :: n
-      real(c_double), target :: alpha(*)
-      real(c_double), target :: x(*)
+      real(c_double), target :: alpha(..)
+      real(c_double), target :: x(..)
       integer(c_long), value :: incx
       integer(c_long), value :: stridex
-      real(c_double), target :: y(*)
+      real(c_double), target :: y(..)
       integer(c_long), value :: incy
       integer(c_long), value :: stridey
-      real(c_double), target :: A(*)
+      real(c_double), target :: A(..)
       integer(c_long), value :: lda
       integer(c_long), value :: strideA
       integer(c_long), value :: batch_count
       integer(c_int) :: dsyr2_strided_batched_64
       dsyr2_strided_batched_64 = rocblas_dsyr2_strided_batched_64_raw(handle, uplo, n, c_loc( &
-        alpha(1)), c_loc(x(1)), incx, stridex, c_loc(y(1)), incy, stridey, c_loc(A(1)), lda, &
-        strideA, batch_count)
+        alpha), c_loc(x), incx, stridex, c_loc(y), incy, stridey, c_loc(A), lda, strideA, &
+        batch_count)
     end function rocblas_dsyr2_strided_batched_64_native
 
     function rocblas_dsyr2_strided_batched_64_typed(handle, uplo, n, alpha, x, incx, stridex, y, &
@@ -69537,21 +69481,21 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: uplo
       integer(c_long), value :: n
-      complex(c_float_complex), target :: alpha(*)
-      complex(c_float_complex), target :: x(*)
+      complex(c_float_complex), target :: alpha(..)
+      complex(c_float_complex), target :: x(..)
       integer(c_long), value :: incx
       integer(c_long), value :: stridex
-      complex(c_float_complex), target :: y(*)
+      complex(c_float_complex), target :: y(..)
       integer(c_long), value :: incy
       integer(c_long), value :: stridey
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: A(..)
       integer(c_long), value :: lda
       integer(c_long), value :: strideA
       integer(c_long), value :: batch_count
       integer(c_int) :: csyr2_strided_batched_64
       csyr2_strided_batched_64 = rocblas_csyr2_strided_batched_64_raw(handle, uplo, n, c_loc( &
-        alpha(1)), c_loc(x(1)), incx, stridex, c_loc(y(1)), incy, stridey, c_loc(A(1)), lda, &
-        strideA, batch_count)
+        alpha), c_loc(x), incx, stridex, c_loc(y), incy, stridey, c_loc(A), lda, strideA, &
+        batch_count)
     end function rocblas_csyr2_strided_batched_64_native
 
     function rocblas_csyr2_strided_batched_64_typed(handle, uplo, n, alpha, x, incx, stridex, y, &
@@ -69585,21 +69529,21 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: uplo
       integer(c_long), value :: n
-      complex(c_double_complex), target :: alpha(*)
-      complex(c_double_complex), target :: x(*)
+      complex(c_double_complex), target :: alpha(..)
+      complex(c_double_complex), target :: x(..)
       integer(c_long), value :: incx
       integer(c_long), value :: stridex
-      complex(c_double_complex), target :: y(*)
+      complex(c_double_complex), target :: y(..)
       integer(c_long), value :: incy
       integer(c_long), value :: stridey
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: A(..)
       integer(c_long), value :: lda
       integer(c_long), value :: strideA
       integer(c_long), value :: batch_count
       integer(c_int) :: zsyr2_strided_batched_64
       zsyr2_strided_batched_64 = rocblas_zsyr2_strided_batched_64_raw(handle, uplo, n, c_loc( &
-        alpha(1)), c_loc(x(1)), incx, stridex, c_loc(y(1)), incy, stridey, c_loc(A(1)), lda, &
-        strideA, batch_count)
+        alpha), c_loc(x), incx, stridex, c_loc(y), incy, stridey, c_loc(A), lda, strideA, &
+        batch_count)
     end function rocblas_zsyr2_strided_batched_64_native
 
     function rocblas_zsyr2_strided_batched_64_typed(handle, uplo, n, alpha, x, incx, stridex, y, &
@@ -69636,16 +69580,16 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       complex(c_float_complex) :: alpha
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: A(..)
       integer(c_int), value :: lda
-      complex(c_float_complex), target :: B(*)
+      complex(c_float_complex), target :: B(..)
       integer(c_int), value :: ldb
       complex(c_float_complex) :: beta
-      complex(c_float_complex), target :: C(*)
+      complex(c_float_complex), target :: C(..)
       integer(c_int), value :: ldc
       integer(c_int) :: chemm
-      chemm = rocblas_chemm_raw(handle, side, uplo, m, n, alpha, c_loc(A(1)), lda, c_loc(B(1)), &
-        ldb, beta, c_loc(C(1)), ldc)
+      chemm = rocblas_chemm_raw(handle, side, uplo, m, n, alpha, c_loc(A), lda, c_loc(B), ldb, &
+        beta, c_loc(C), ldc)
     end function rocblas_chemm_native
 
     function rocblas_chemm_typed(handle, side, uplo, m, n, alpha, A, lda, B, ldb, beta, C, &
@@ -69680,16 +69624,16 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       complex(c_double_complex) :: alpha
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: A(..)
       integer(c_int), value :: lda
-      complex(c_double_complex), target :: B(*)
+      complex(c_double_complex), target :: B(..)
       integer(c_int), value :: ldb
       complex(c_double_complex) :: beta
-      complex(c_double_complex), target :: C(*)
+      complex(c_double_complex), target :: C(..)
       integer(c_int), value :: ldc
       integer(c_int) :: zhemm
-      zhemm = rocblas_zhemm_raw(handle, side, uplo, m, n, alpha, c_loc(A(1)), lda, c_loc(B(1)), &
-        ldb, beta, c_loc(C(1)), ldc)
+      zhemm = rocblas_zhemm_raw(handle, side, uplo, m, n, alpha, c_loc(A), lda, c_loc(B), ldb, &
+        beta, c_loc(C), ldc)
     end function rocblas_zhemm_native
 
     function rocblas_zhemm_typed(handle, side, uplo, m, n, alpha, A, lda, B, ldb, beta, C, &
@@ -69723,17 +69667,17 @@ contains
       integer(c_int), value :: uplo
       integer(c_long), value :: m
       integer(c_long), value :: n
-      complex(c_float_complex), target :: alpha(*)
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: alpha(..)
+      complex(c_float_complex), target :: A(..)
       integer(c_long), value :: lda
-      complex(c_float_complex), target :: B(*)
+      complex(c_float_complex), target :: B(..)
       integer(c_long), value :: ldb
-      complex(c_float_complex), target :: beta(*)
-      complex(c_float_complex), target :: C(*)
+      complex(c_float_complex), target :: beta(..)
+      complex(c_float_complex), target :: C(..)
       integer(c_long), value :: ldc
       integer(c_int) :: chemm_64
-      chemm_64 = rocblas_chemm_64_raw(handle, side, uplo, m, n, c_loc(alpha(1)), c_loc(A(1)), lda, &
-        c_loc(B(1)), ldb, c_loc(beta(1)), c_loc(C(1)), ldc)
+      chemm_64 = rocblas_chemm_64_raw(handle, side, uplo, m, n, c_loc(alpha), c_loc(A), lda, &
+        c_loc(B), ldb, c_loc(beta), c_loc(C), ldc)
     end function rocblas_chemm_64_native
 
     function rocblas_chemm_64_typed(handle, side, uplo, m, n, alpha, A, lda, B, ldb, beta, C, &
@@ -69768,17 +69712,17 @@ contains
       integer(c_int), value :: uplo
       integer(c_long), value :: m
       integer(c_long), value :: n
-      complex(c_double_complex), target :: alpha(*)
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: alpha(..)
+      complex(c_double_complex), target :: A(..)
       integer(c_long), value :: lda
-      complex(c_double_complex), target :: B(*)
+      complex(c_double_complex), target :: B(..)
       integer(c_long), value :: ldb
-      complex(c_double_complex), target :: beta(*)
-      complex(c_double_complex), target :: C(*)
+      complex(c_double_complex), target :: beta(..)
+      complex(c_double_complex), target :: C(..)
       integer(c_long), value :: ldc
       integer(c_int) :: zhemm_64
-      zhemm_64 = rocblas_zhemm_64_raw(handle, side, uplo, m, n, c_loc(alpha(1)), c_loc(A(1)), lda, &
-        c_loc(B(1)), ldb, c_loc(beta(1)), c_loc(C(1)), ldc)
+      zhemm_64 = rocblas_zhemm_64_raw(handle, side, uplo, m, n, c_loc(alpha), c_loc(A), lda, &
+        c_loc(B), ldb, c_loc(beta), c_loc(C), ldc)
     end function rocblas_zhemm_64_native
 
     function rocblas_zhemm_64_typed(handle, side, uplo, m, n, alpha, A, lda, B, ldb, beta, C, &
@@ -69861,18 +69805,18 @@ contains
       integer(c_int), value :: uplo
       integer(c_long), value :: m
       integer(c_long), value :: n
-      complex(c_float_complex), target :: alpha(*)
+      complex(c_float_complex), target :: alpha(..)
       type(c_ptr), value :: A
       integer(c_long), value :: lda
       type(c_ptr), value :: B
       integer(c_long), value :: ldb
-      complex(c_float_complex), target :: beta(*)
+      complex(c_float_complex), target :: beta(..)
       type(c_ptr), value :: C
       integer(c_long), value :: ldc
       integer(c_long), value :: batch_count
       integer(c_int) :: chemm_batched_64
-      chemm_batched_64 = rocblas_chemm_batched_64_raw(handle, side, uplo, m, n, c_loc(alpha(1)), &
-        A, lda, B, ldb, c_loc(beta(1)), C, ldc, batch_count)
+      chemm_batched_64 = rocblas_chemm_batched_64_raw(handle, side, uplo, m, n, c_loc(alpha), A, &
+        lda, B, ldb, c_loc(beta), C, ldc, batch_count)
     end function rocblas_chemm_batched_64_native
 
     function rocblas_chemm_batched_64_typed(handle, side, uplo, m, n, alpha, A, lda, B, ldb, beta, &
@@ -69908,18 +69852,18 @@ contains
       integer(c_int), value :: uplo
       integer(c_long), value :: m
       integer(c_long), value :: n
-      complex(c_double_complex), target :: alpha(*)
+      complex(c_double_complex), target :: alpha(..)
       type(c_ptr), value :: A
       integer(c_long), value :: lda
       type(c_ptr), value :: B
       integer(c_long), value :: ldb
-      complex(c_double_complex), target :: beta(*)
+      complex(c_double_complex), target :: beta(..)
       type(c_ptr), value :: C
       integer(c_long), value :: ldc
       integer(c_long), value :: batch_count
       integer(c_int) :: zhemm_batched_64
-      zhemm_batched_64 = rocblas_zhemm_batched_64_raw(handle, side, uplo, m, n, c_loc(alpha(1)), &
-        A, lda, B, ldb, c_loc(beta(1)), C, ldc, batch_count)
+      zhemm_batched_64 = rocblas_zhemm_batched_64_raw(handle, side, uplo, m, n, c_loc(alpha), A, &
+        lda, B, ldb, c_loc(beta), C, ldc, batch_count)
     end function rocblas_zhemm_batched_64_native
 
     function rocblas_zhemm_batched_64_typed(handle, side, uplo, m, n, alpha, A, lda, B, ldb, beta, &
@@ -69957,20 +69901,20 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       complex(c_float_complex) :: alpha
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: A(..)
       integer(c_int), value :: lda
       integer(c_long), value :: stride_A
-      complex(c_float_complex), target :: B(*)
+      complex(c_float_complex), target :: B(..)
       integer(c_int), value :: ldb
       integer(c_long), value :: stride_B
       complex(c_float_complex) :: beta
-      complex(c_float_complex), target :: C(*)
+      complex(c_float_complex), target :: C(..)
       integer(c_int), value :: ldc
       integer(c_long), value :: stride_C
       integer(c_int), value :: batch_count
       integer(c_int) :: chemm_strided_batched
       chemm_strided_batched = rocblas_chemm_strided_batched_raw(handle, side, uplo, m, n, alpha, &
-        c_loc(A(1)), lda, stride_A, c_loc(B(1)), ldb, stride_B, beta, c_loc(C(1)), ldc, stride_C, &
+        c_loc(A), lda, stride_A, c_loc(B), ldb, stride_B, beta, c_loc(C), ldc, stride_C, &
         batch_count)
     end function rocblas_chemm_strided_batched_native
 
@@ -70013,20 +69957,20 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       complex(c_double_complex) :: alpha
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: A(..)
       integer(c_int), value :: lda
       integer(c_long), value :: stride_A
-      complex(c_double_complex), target :: B(*)
+      complex(c_double_complex), target :: B(..)
       integer(c_int), value :: ldb
       integer(c_long), value :: stride_B
       complex(c_double_complex) :: beta
-      complex(c_double_complex), target :: C(*)
+      complex(c_double_complex), target :: C(..)
       integer(c_int), value :: ldc
       integer(c_long), value :: stride_C
       integer(c_int), value :: batch_count
       integer(c_int) :: zhemm_strided_batched
       zhemm_strided_batched = rocblas_zhemm_strided_batched_raw(handle, side, uplo, m, n, alpha, &
-        c_loc(A(1)), lda, stride_A, c_loc(B(1)), ldb, stride_B, beta, c_loc(C(1)), ldc, stride_C, &
+        c_loc(A), lda, stride_A, c_loc(B), ldb, stride_B, beta, c_loc(C), ldc, stride_C, &
         batch_count)
     end function rocblas_zhemm_strided_batched_native
 
@@ -70068,22 +70012,22 @@ contains
       integer(c_int), value :: uplo
       integer(c_long), value :: m
       integer(c_long), value :: n
-      complex(c_float_complex), target :: alpha(*)
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: alpha(..)
+      complex(c_float_complex), target :: A(..)
       integer(c_long), value :: lda
       integer(c_long), value :: stride_A
-      complex(c_float_complex), target :: B(*)
+      complex(c_float_complex), target :: B(..)
       integer(c_long), value :: ldb
       integer(c_long), value :: stride_B
-      complex(c_float_complex), target :: beta(*)
-      complex(c_float_complex), target :: C(*)
+      complex(c_float_complex), target :: beta(..)
+      complex(c_float_complex), target :: C(..)
       integer(c_long), value :: ldc
       integer(c_long), value :: stride_C
       integer(c_long), value :: batch_count
       integer(c_int) :: chemm_strided_batched_64
       chemm_strided_batched_64 = rocblas_chemm_strided_batched_64_raw(handle, side, uplo, m, n, &
-        c_loc(alpha(1)), c_loc(A(1)), lda, stride_A, c_loc(B(1)), ldb, stride_B, c_loc(beta(1)), &
-        c_loc(C(1)), ldc, stride_C, batch_count)
+        c_loc(alpha), c_loc(A), lda, stride_A, c_loc(B), ldb, stride_B, c_loc(beta), c_loc(C), &
+        ldc, stride_C, batch_count)
     end function rocblas_chemm_strided_batched_64_native
 
     function rocblas_chemm_strided_batched_64_typed(handle, side, uplo, m, n, alpha, A, lda, &
@@ -70124,22 +70068,22 @@ contains
       integer(c_int), value :: uplo
       integer(c_long), value :: m
       integer(c_long), value :: n
-      complex(c_double_complex), target :: alpha(*)
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: alpha(..)
+      complex(c_double_complex), target :: A(..)
       integer(c_long), value :: lda
       integer(c_long), value :: stride_A
-      complex(c_double_complex), target :: B(*)
+      complex(c_double_complex), target :: B(..)
       integer(c_long), value :: ldb
       integer(c_long), value :: stride_B
-      complex(c_double_complex), target :: beta(*)
-      complex(c_double_complex), target :: C(*)
+      complex(c_double_complex), target :: beta(..)
+      complex(c_double_complex), target :: C(..)
       integer(c_long), value :: ldc
       integer(c_long), value :: stride_C
       integer(c_long), value :: batch_count
       integer(c_int) :: zhemm_strided_batched_64
       zhemm_strided_batched_64 = rocblas_zhemm_strided_batched_64_raw(handle, side, uplo, m, n, &
-        c_loc(alpha(1)), c_loc(A(1)), lda, stride_A, c_loc(B(1)), ldb, stride_B, c_loc(beta(1)), &
-        c_loc(C(1)), ldc, stride_C, batch_count)
+        c_loc(alpha), c_loc(A), lda, stride_A, c_loc(B), ldb, stride_B, c_loc(beta), c_loc(C), &
+        ldc, stride_C, batch_count)
     end function rocblas_zhemm_strided_batched_64_native
 
     function rocblas_zhemm_strided_batched_64_typed(handle, side, uplo, m, n, alpha, A, lda, &
@@ -70180,14 +70124,14 @@ contains
       integer(c_int), value :: n
       integer(c_int), value :: k
       real(c_float) :: alpha
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: A(..)
       integer(c_int), value :: lda
       real(c_float) :: beta
-      complex(c_float_complex), target :: C(*)
+      complex(c_float_complex), target :: C(..)
       integer(c_int), value :: ldc
       integer(c_int) :: cherk
-      cherk = rocblas_cherk_raw(handle, uplo, transA, n, k, alpha, c_loc(A(1)), lda, beta, c_loc( &
-        C(1)), ldc)
+      cherk = rocblas_cherk_raw(handle, uplo, transA, n, k, alpha, c_loc(A), lda, beta, c_loc(C), &
+        ldc)
     end function rocblas_cherk_native
 
     function rocblas_cherk_typed(handle, uplo, transA, n, k, alpha, A, lda, beta, C, ldc) result( &
@@ -70220,14 +70164,14 @@ contains
       integer(c_int), value :: n
       integer(c_int), value :: k
       real(c_double) :: alpha
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: A(..)
       integer(c_int), value :: lda
       real(c_double) :: beta
-      complex(c_double_complex), target :: C(*)
+      complex(c_double_complex), target :: C(..)
       integer(c_int), value :: ldc
       integer(c_int) :: zherk
-      zherk = rocblas_zherk_raw(handle, uplo, transA, n, k, alpha, c_loc(A(1)), lda, beta, c_loc( &
-        C(1)), ldc)
+      zherk = rocblas_zherk_raw(handle, uplo, transA, n, k, alpha, c_loc(A), lda, beta, c_loc(C), &
+        ldc)
     end function rocblas_zherk_native
 
     function rocblas_zherk_typed(handle, uplo, transA, n, k, alpha, A, lda, beta, C, ldc) result( &
@@ -70259,15 +70203,15 @@ contains
       integer(c_int), value :: transA
       integer(c_long), value :: n
       integer(c_long), value :: k
-      real(c_float), target :: alpha(*)
-      complex(c_float_complex), target :: A(*)
+      real(c_float), target :: alpha(..)
+      complex(c_float_complex), target :: A(..)
       integer(c_long), value :: lda
-      real(c_float), target :: beta(*)
-      complex(c_float_complex), target :: C(*)
+      real(c_float), target :: beta(..)
+      complex(c_float_complex), target :: C(..)
       integer(c_long), value :: ldc
       integer(c_int) :: cherk_64
-      cherk_64 = rocblas_cherk_64_raw(handle, uplo, transA, n, k, c_loc(alpha(1)), c_loc(A(1)), &
-        lda, c_loc(beta(1)), c_loc(C(1)), ldc)
+      cherk_64 = rocblas_cherk_64_raw(handle, uplo, transA, n, k, c_loc(alpha), c_loc(A), lda, &
+        c_loc(beta), c_loc(C), ldc)
     end function rocblas_cherk_64_native
 
     function rocblas_cherk_64_typed(handle, uplo, transA, n, k, alpha, A, lda, beta, C, &
@@ -70299,15 +70243,15 @@ contains
       integer(c_int), value :: transA
       integer(c_long), value :: n
       integer(c_long), value :: k
-      real(c_double), target :: alpha(*)
-      complex(c_double_complex), target :: A(*)
+      real(c_double), target :: alpha(..)
+      complex(c_double_complex), target :: A(..)
       integer(c_long), value :: lda
-      real(c_double), target :: beta(*)
-      complex(c_double_complex), target :: C(*)
+      real(c_double), target :: beta(..)
+      complex(c_double_complex), target :: C(..)
       integer(c_long), value :: ldc
       integer(c_int) :: zherk_64
-      zherk_64 = rocblas_zherk_64_raw(handle, uplo, transA, n, k, c_loc(alpha(1)), c_loc(A(1)), &
-        lda, c_loc(beta(1)), c_loc(C(1)), ldc)
+      zherk_64 = rocblas_zherk_64_raw(handle, uplo, transA, n, k, c_loc(alpha), c_loc(A), lda, &
+        c_loc(beta), c_loc(C), ldc)
     end function rocblas_zherk_64_native
 
     function rocblas_zherk_64_typed(handle, uplo, transA, n, k, alpha, A, lda, beta, C, &
@@ -70383,16 +70327,16 @@ contains
       integer(c_int), value :: transA
       integer(c_long), value :: n
       integer(c_long), value :: k
-      real(c_float), target :: alpha(*)
+      real(c_float), target :: alpha(..)
       type(c_ptr), value :: A
       integer(c_long), value :: lda
-      real(c_float), target :: beta(*)
+      real(c_float), target :: beta(..)
       type(c_ptr), value :: C
       integer(c_long), value :: ldc
       integer(c_long), value :: batch_count
       integer(c_int) :: cherk_batched_64
-      cherk_batched_64 = rocblas_cherk_batched_64_raw(handle, uplo, transA, n, k, c_loc(alpha(1)), &
-        A, lda, c_loc(beta(1)), C, ldc, batch_count)
+      cherk_batched_64 = rocblas_cherk_batched_64_raw(handle, uplo, transA, n, k, c_loc(alpha), A, &
+        lda, c_loc(beta), C, ldc, batch_count)
     end function rocblas_cherk_batched_64_native
 
     function rocblas_cherk_batched_64_typed(handle, uplo, transA, n, k, alpha, A, lda, beta, C, &
@@ -70426,16 +70370,16 @@ contains
       integer(c_int), value :: transA
       integer(c_long), value :: n
       integer(c_long), value :: k
-      real(c_double), target :: alpha(*)
+      real(c_double), target :: alpha(..)
       type(c_ptr), value :: A
       integer(c_long), value :: lda
-      real(c_double), target :: beta(*)
+      real(c_double), target :: beta(..)
       type(c_ptr), value :: C
       integer(c_long), value :: ldc
       integer(c_long), value :: batch_count
       integer(c_int) :: zherk_batched_64
-      zherk_batched_64 = rocblas_zherk_batched_64_raw(handle, uplo, transA, n, k, c_loc(alpha(1)), &
-        A, lda, c_loc(beta(1)), C, ldc, batch_count)
+      zherk_batched_64 = rocblas_zherk_batched_64_raw(handle, uplo, transA, n, k, c_loc(alpha), A, &
+        lda, c_loc(beta), C, ldc, batch_count)
     end function rocblas_zherk_batched_64_native
 
     function rocblas_zherk_batched_64_typed(handle, uplo, transA, n, k, alpha, A, lda, beta, C, &
@@ -70470,17 +70414,17 @@ contains
       integer(c_int), value :: n
       integer(c_int), value :: k
       real(c_float) :: alpha
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: A(..)
       integer(c_int), value :: lda
       integer(c_long), value :: stride_A
       real(c_float) :: beta
-      complex(c_float_complex), target :: C(*)
+      complex(c_float_complex), target :: C(..)
       integer(c_int), value :: ldc
       integer(c_long), value :: stride_C
       integer(c_int), value :: batch_count
       integer(c_int) :: cherk_strided_batched
       cherk_strided_batched = rocblas_cherk_strided_batched_raw(handle, uplo, transA, n, k, alpha, &
-        c_loc(A(1)), lda, stride_A, beta, c_loc(C(1)), ldc, stride_C, batch_count)
+        c_loc(A), lda, stride_A, beta, c_loc(C), ldc, stride_C, batch_count)
     end function rocblas_cherk_strided_batched_native
 
     function rocblas_cherk_strided_batched_typed(handle, uplo, transA, n, k, alpha, A, lda, &
@@ -70517,17 +70461,17 @@ contains
       integer(c_int), value :: n
       integer(c_int), value :: k
       real(c_double) :: alpha
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: A(..)
       integer(c_int), value :: lda
       integer(c_long), value :: stride_A
       real(c_double) :: beta
-      complex(c_double_complex), target :: C(*)
+      complex(c_double_complex), target :: C(..)
       integer(c_int), value :: ldc
       integer(c_long), value :: stride_C
       integer(c_int), value :: batch_count
       integer(c_int) :: zherk_strided_batched
       zherk_strided_batched = rocblas_zherk_strided_batched_raw(handle, uplo, transA, n, k, alpha, &
-        c_loc(A(1)), lda, stride_A, beta, c_loc(C(1)), ldc, stride_C, batch_count)
+        c_loc(A), lda, stride_A, beta, c_loc(C), ldc, stride_C, batch_count)
     end function rocblas_zherk_strided_batched_native
 
     function rocblas_zherk_strided_batched_typed(handle, uplo, transA, n, k, alpha, A, lda, &
@@ -70563,19 +70507,18 @@ contains
       integer(c_int), value :: transA
       integer(c_long), value :: n
       integer(c_long), value :: k
-      real(c_float), target :: alpha(*)
-      complex(c_float_complex), target :: A(*)
+      real(c_float), target :: alpha(..)
+      complex(c_float_complex), target :: A(..)
       integer(c_long), value :: lda
       integer(c_long), value :: stride_A
-      real(c_float), target :: beta(*)
-      complex(c_float_complex), target :: C(*)
+      real(c_float), target :: beta(..)
+      complex(c_float_complex), target :: C(..)
       integer(c_long), value :: ldc
       integer(c_long), value :: stride_C
       integer(c_long), value :: batch_count
       integer(c_int) :: cherk_strided_batched_64
       cherk_strided_batched_64 = rocblas_cherk_strided_batched_64_raw(handle, uplo, transA, n, k, &
-        c_loc(alpha(1)), c_loc(A(1)), lda, stride_A, c_loc(beta(1)), c_loc(C(1)), ldc, stride_C, &
-        batch_count)
+        c_loc(alpha), c_loc(A), lda, stride_A, c_loc(beta), c_loc(C), ldc, stride_C, batch_count)
     end function rocblas_cherk_strided_batched_64_native
 
     function rocblas_cherk_strided_batched_64_typed(handle, uplo, transA, n, k, alpha, A, lda, &
@@ -70611,19 +70554,18 @@ contains
       integer(c_int), value :: transA
       integer(c_long), value :: n
       integer(c_long), value :: k
-      real(c_double), target :: alpha(*)
-      complex(c_double_complex), target :: A(*)
+      real(c_double), target :: alpha(..)
+      complex(c_double_complex), target :: A(..)
       integer(c_long), value :: lda
       integer(c_long), value :: stride_A
-      real(c_double), target :: beta(*)
-      complex(c_double_complex), target :: C(*)
+      real(c_double), target :: beta(..)
+      complex(c_double_complex), target :: C(..)
       integer(c_long), value :: ldc
       integer(c_long), value :: stride_C
       integer(c_long), value :: batch_count
       integer(c_int) :: zherk_strided_batched_64
       zherk_strided_batched_64 = rocblas_zherk_strided_batched_64_raw(handle, uplo, transA, n, k, &
-        c_loc(alpha(1)), c_loc(A(1)), lda, stride_A, c_loc(beta(1)), c_loc(C(1)), ldc, stride_C, &
-        batch_count)
+        c_loc(alpha), c_loc(A), lda, stride_A, c_loc(beta), c_loc(C), ldc, stride_C, batch_count)
     end function rocblas_zherk_strided_batched_64_native
 
     function rocblas_zherk_strided_batched_64_typed(handle, uplo, transA, n, k, alpha, A, lda, &
@@ -70660,16 +70602,16 @@ contains
       integer(c_int), value :: n
       integer(c_int), value :: k
       complex(c_float_complex) :: alpha
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: A(..)
       integer(c_int), value :: lda
-      complex(c_float_complex), target :: B(*)
+      complex(c_float_complex), target :: B(..)
       integer(c_int), value :: ldb
       real(c_float) :: beta
-      complex(c_float_complex), target :: C(*)
+      complex(c_float_complex), target :: C(..)
       integer(c_int), value :: ldc
       integer(c_int) :: cher2k
-      cher2k = rocblas_cher2k_raw(handle, uplo, trans, n, k, alpha, c_loc(A(1)), lda, c_loc(B(1)), &
-        ldb, beta, c_loc(C(1)), ldc)
+      cher2k = rocblas_cher2k_raw(handle, uplo, trans, n, k, alpha, c_loc(A), lda, c_loc(B), ldb, &
+        beta, c_loc(C), ldc)
     end function rocblas_cher2k_native
 
     function rocblas_cher2k_typed(handle, uplo, trans, n, k, alpha, A, lda, B, ldb, beta, C, &
@@ -70705,16 +70647,16 @@ contains
       integer(c_int), value :: n
       integer(c_int), value :: k
       complex(c_double_complex) :: alpha
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: A(..)
       integer(c_int), value :: lda
-      complex(c_double_complex), target :: B(*)
+      complex(c_double_complex), target :: B(..)
       integer(c_int), value :: ldb
       real(c_double) :: beta
-      complex(c_double_complex), target :: C(*)
+      complex(c_double_complex), target :: C(..)
       integer(c_int), value :: ldc
       integer(c_int) :: zher2k
-      zher2k = rocblas_zher2k_raw(handle, uplo, trans, n, k, alpha, c_loc(A(1)), lda, c_loc(B(1)), &
-        ldb, beta, c_loc(C(1)), ldc)
+      zher2k = rocblas_zher2k_raw(handle, uplo, trans, n, k, alpha, c_loc(A), lda, c_loc(B), ldb, &
+        beta, c_loc(C), ldc)
     end function rocblas_zher2k_native
 
     function rocblas_zher2k_typed(handle, uplo, trans, n, k, alpha, A, lda, B, ldb, beta, C, &
@@ -70749,17 +70691,17 @@ contains
       integer(c_int), value :: trans
       integer(c_long), value :: n
       integer(c_long), value :: k
-      complex(c_float_complex), target :: alpha(*)
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: alpha(..)
+      complex(c_float_complex), target :: A(..)
       integer(c_long), value :: lda
-      complex(c_float_complex), target :: B(*)
+      complex(c_float_complex), target :: B(..)
       integer(c_long), value :: ldb
-      real(c_float), target :: beta(*)
-      complex(c_float_complex), target :: C(*)
+      real(c_float), target :: beta(..)
+      complex(c_float_complex), target :: C(..)
       integer(c_long), value :: ldc
       integer(c_int) :: cher2k_64
-      cher2k_64 = rocblas_cher2k_64_raw(handle, uplo, trans, n, k, c_loc(alpha(1)), c_loc(A(1)), &
-        lda, c_loc(B(1)), ldb, c_loc(beta(1)), c_loc(C(1)), ldc)
+      cher2k_64 = rocblas_cher2k_64_raw(handle, uplo, trans, n, k, c_loc(alpha), c_loc(A), lda, &
+        c_loc(B), ldb, c_loc(beta), c_loc(C), ldc)
     end function rocblas_cher2k_64_native
 
     function rocblas_cher2k_64_typed(handle, uplo, trans, n, k, alpha, A, lda, B, ldb, beta, C, &
@@ -70794,17 +70736,17 @@ contains
       integer(c_int), value :: trans
       integer(c_long), value :: n
       integer(c_long), value :: k
-      complex(c_double_complex), target :: alpha(*)
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: alpha(..)
+      complex(c_double_complex), target :: A(..)
       integer(c_long), value :: lda
-      complex(c_double_complex), target :: B(*)
+      complex(c_double_complex), target :: B(..)
       integer(c_long), value :: ldb
-      real(c_double), target :: beta(*)
-      complex(c_double_complex), target :: C(*)
+      real(c_double), target :: beta(..)
+      complex(c_double_complex), target :: C(..)
       integer(c_long), value :: ldc
       integer(c_int) :: zher2k_64
-      zher2k_64 = rocblas_zher2k_64_raw(handle, uplo, trans, n, k, c_loc(alpha(1)), c_loc(A(1)), &
-        lda, c_loc(B(1)), ldb, c_loc(beta(1)), c_loc(C(1)), ldc)
+      zher2k_64 = rocblas_zher2k_64_raw(handle, uplo, trans, n, k, c_loc(alpha), c_loc(A), lda, &
+        c_loc(B), ldb, c_loc(beta), c_loc(C), ldc)
     end function rocblas_zher2k_64_native
 
     function rocblas_zher2k_64_typed(handle, uplo, trans, n, k, alpha, A, lda, B, ldb, beta, C, &
@@ -70887,18 +70829,18 @@ contains
       integer(c_int), value :: trans
       integer(c_long), value :: n
       integer(c_long), value :: k
-      complex(c_float_complex), target :: alpha(*)
+      complex(c_float_complex), target :: alpha(..)
       type(c_ptr), value :: A
       integer(c_long), value :: lda
       type(c_ptr), value :: B
       integer(c_long), value :: ldb
-      real(c_float), target :: beta(*)
+      real(c_float), target :: beta(..)
       type(c_ptr), value :: C
       integer(c_long), value :: ldc
       integer(c_long), value :: batch_count
       integer(c_int) :: cher2k_batched_64
-      cher2k_batched_64 = rocblas_cher2k_batched_64_raw(handle, uplo, trans, n, k, c_loc(alpha( &
-        1)), A, lda, B, ldb, c_loc(beta(1)), C, ldc, batch_count)
+      cher2k_batched_64 = rocblas_cher2k_batched_64_raw(handle, uplo, trans, n, k, c_loc(alpha), &
+        A, lda, B, ldb, c_loc(beta), C, ldc, batch_count)
     end function rocblas_cher2k_batched_64_native
 
     function rocblas_cher2k_batched_64_typed(handle, uplo, trans, n, k, alpha, A, lda, B, ldb, &
@@ -70934,18 +70876,18 @@ contains
       integer(c_int), value :: trans
       integer(c_long), value :: n
       integer(c_long), value :: k
-      complex(c_double_complex), target :: alpha(*)
+      complex(c_double_complex), target :: alpha(..)
       type(c_ptr), value :: A
       integer(c_long), value :: lda
       type(c_ptr), value :: B
       integer(c_long), value :: ldb
-      real(c_double), target :: beta(*)
+      real(c_double), target :: beta(..)
       type(c_ptr), value :: C
       integer(c_long), value :: ldc
       integer(c_long), value :: batch_count
       integer(c_int) :: zher2k_batched_64
-      zher2k_batched_64 = rocblas_zher2k_batched_64_raw(handle, uplo, trans, n, k, c_loc(alpha( &
-        1)), A, lda, B, ldb, c_loc(beta(1)), C, ldc, batch_count)
+      zher2k_batched_64 = rocblas_zher2k_batched_64_raw(handle, uplo, trans, n, k, c_loc(alpha), &
+        A, lda, B, ldb, c_loc(beta), C, ldc, batch_count)
     end function rocblas_zher2k_batched_64_native
 
     function rocblas_zher2k_batched_64_typed(handle, uplo, trans, n, k, alpha, A, lda, B, ldb, &
@@ -70983,21 +70925,21 @@ contains
       integer(c_int), value :: n
       integer(c_int), value :: k
       complex(c_float_complex) :: alpha
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: A(..)
       integer(c_int), value :: lda
       integer(c_long), value :: stride_A
-      complex(c_float_complex), target :: B(*)
+      complex(c_float_complex), target :: B(..)
       integer(c_int), value :: ldb
       integer(c_long), value :: stride_B
       real(c_float) :: beta
-      complex(c_float_complex), target :: C(*)
+      complex(c_float_complex), target :: C(..)
       integer(c_int), value :: ldc
       integer(c_long), value :: stride_C
       integer(c_int), value :: batch_count
       integer(c_int) :: cher2k_strided_batched
       cher2k_strided_batched = rocblas_cher2k_strided_batched_raw(handle, uplo, trans, n, k, &
-        alpha, c_loc(A(1)), lda, stride_A, c_loc(B(1)), ldb, stride_B, beta, c_loc(C(1)), ldc, &
-        stride_C, batch_count)
+        alpha, c_loc(A), lda, stride_A, c_loc(B), ldb, stride_B, beta, c_loc(C), ldc, stride_C, &
+        batch_count)
     end function rocblas_cher2k_strided_batched_native
 
     function rocblas_cher2k_strided_batched_typed(handle, uplo, trans, n, k, alpha, A, lda, &
@@ -71039,21 +70981,21 @@ contains
       integer(c_int), value :: n
       integer(c_int), value :: k
       complex(c_double_complex) :: alpha
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: A(..)
       integer(c_int), value :: lda
       integer(c_long), value :: stride_A
-      complex(c_double_complex), target :: B(*)
+      complex(c_double_complex), target :: B(..)
       integer(c_int), value :: ldb
       integer(c_long), value :: stride_B
       real(c_double) :: beta
-      complex(c_double_complex), target :: C(*)
+      complex(c_double_complex), target :: C(..)
       integer(c_int), value :: ldc
       integer(c_long), value :: stride_C
       integer(c_int), value :: batch_count
       integer(c_int) :: zher2k_strided_batched
       zher2k_strided_batched = rocblas_zher2k_strided_batched_raw(handle, uplo, trans, n, k, &
-        alpha, c_loc(A(1)), lda, stride_A, c_loc(B(1)), ldb, stride_B, beta, c_loc(C(1)), ldc, &
-        stride_C, batch_count)
+        alpha, c_loc(A), lda, stride_A, c_loc(B), ldb, stride_B, beta, c_loc(C), ldc, stride_C, &
+        batch_count)
     end function rocblas_zher2k_strided_batched_native
 
     function rocblas_zher2k_strided_batched_typed(handle, uplo, trans, n, k, alpha, A, lda, &
@@ -71094,22 +71036,22 @@ contains
       integer(c_int), value :: trans
       integer(c_long), value :: n
       integer(c_long), value :: k
-      complex(c_float_complex), target :: alpha(*)
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: alpha(..)
+      complex(c_float_complex), target :: A(..)
       integer(c_long), value :: lda
       integer(c_long), value :: stride_A
-      complex(c_float_complex), target :: B(*)
+      complex(c_float_complex), target :: B(..)
       integer(c_long), value :: ldb
       integer(c_long), value :: stride_B
-      real(c_float), target :: beta(*)
-      complex(c_float_complex), target :: C(*)
+      real(c_float), target :: beta(..)
+      complex(c_float_complex), target :: C(..)
       integer(c_long), value :: ldc
       integer(c_long), value :: stride_C
       integer(c_long), value :: batch_count
       integer(c_int) :: cher2k_strided_batched_64
       cher2k_strided_batched_64 = rocblas_cher2k_strided_batched_64_raw(handle, uplo, trans, n, k, &
-        c_loc(alpha(1)), c_loc(A(1)), lda, stride_A, c_loc(B(1)), ldb, stride_B, c_loc(beta(1)), &
-        c_loc(C(1)), ldc, stride_C, batch_count)
+        c_loc(alpha), c_loc(A), lda, stride_A, c_loc(B), ldb, stride_B, c_loc(beta), c_loc(C), &
+        ldc, stride_C, batch_count)
     end function rocblas_cher2k_strided_batched_64_native
 
     function rocblas_cher2k_strided_batched_64_typed(handle, uplo, trans, n, k, alpha, A, lda, &
@@ -71150,22 +71092,22 @@ contains
       integer(c_int), value :: trans
       integer(c_long), value :: n
       integer(c_long), value :: k
-      complex(c_double_complex), target :: alpha(*)
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: alpha(..)
+      complex(c_double_complex), target :: A(..)
       integer(c_long), value :: lda
       integer(c_long), value :: stride_A
-      complex(c_double_complex), target :: B(*)
+      complex(c_double_complex), target :: B(..)
       integer(c_long), value :: ldb
       integer(c_long), value :: stride_B
-      real(c_double), target :: beta(*)
-      complex(c_double_complex), target :: C(*)
+      real(c_double), target :: beta(..)
+      complex(c_double_complex), target :: C(..)
       integer(c_long), value :: ldc
       integer(c_long), value :: stride_C
       integer(c_long), value :: batch_count
       integer(c_int) :: zher2k_strided_batched_64
       zher2k_strided_batched_64 = rocblas_zher2k_strided_batched_64_raw(handle, uplo, trans, n, k, &
-        c_loc(alpha(1)), c_loc(A(1)), lda, stride_A, c_loc(B(1)), ldb, stride_B, c_loc(beta(1)), &
-        c_loc(C(1)), ldc, stride_C, batch_count)
+        c_loc(alpha), c_loc(A), lda, stride_A, c_loc(B), ldb, stride_B, c_loc(beta), c_loc(C), &
+        ldc, stride_C, batch_count)
     end function rocblas_zher2k_strided_batched_64_native
 
     function rocblas_zher2k_strided_batched_64_typed(handle, uplo, trans, n, k, alpha, A, lda, &
@@ -71206,16 +71148,16 @@ contains
       integer(c_int), value :: n
       integer(c_int), value :: k
       complex(c_float_complex) :: alpha
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: A(..)
       integer(c_int), value :: lda
-      complex(c_float_complex), target :: B(*)
+      complex(c_float_complex), target :: B(..)
       integer(c_int), value :: ldb
       real(c_float) :: beta
-      complex(c_float_complex), target :: C(*)
+      complex(c_float_complex), target :: C(..)
       integer(c_int), value :: ldc
       integer(c_int) :: cherkx
-      cherkx = rocblas_cherkx_raw(handle, uplo, trans, n, k, alpha, c_loc(A(1)), lda, c_loc(B(1)), &
-        ldb, beta, c_loc(C(1)), ldc)
+      cherkx = rocblas_cherkx_raw(handle, uplo, trans, n, k, alpha, c_loc(A), lda, c_loc(B), ldb, &
+        beta, c_loc(C), ldc)
     end function rocblas_cherkx_native
 
     function rocblas_cherkx_typed(handle, uplo, trans, n, k, alpha, A, lda, B, ldb, beta, C, &
@@ -71251,16 +71193,16 @@ contains
       integer(c_int), value :: n
       integer(c_int), value :: k
       complex(c_double_complex) :: alpha
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: A(..)
       integer(c_int), value :: lda
-      complex(c_double_complex), target :: B(*)
+      complex(c_double_complex), target :: B(..)
       integer(c_int), value :: ldb
       real(c_double) :: beta
-      complex(c_double_complex), target :: C(*)
+      complex(c_double_complex), target :: C(..)
       integer(c_int), value :: ldc
       integer(c_int) :: zherkx
-      zherkx = rocblas_zherkx_raw(handle, uplo, trans, n, k, alpha, c_loc(A(1)), lda, c_loc(B(1)), &
-        ldb, beta, c_loc(C(1)), ldc)
+      zherkx = rocblas_zherkx_raw(handle, uplo, trans, n, k, alpha, c_loc(A), lda, c_loc(B), ldb, &
+        beta, c_loc(C), ldc)
     end function rocblas_zherkx_native
 
     function rocblas_zherkx_typed(handle, uplo, trans, n, k, alpha, A, lda, B, ldb, beta, C, &
@@ -71295,17 +71237,17 @@ contains
       integer(c_int), value :: trans
       integer(c_long), value :: n
       integer(c_long), value :: k
-      complex(c_float_complex), target :: alpha(*)
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: alpha(..)
+      complex(c_float_complex), target :: A(..)
       integer(c_long), value :: lda
-      complex(c_float_complex), target :: B(*)
+      complex(c_float_complex), target :: B(..)
       integer(c_long), value :: ldb
-      real(c_float), target :: beta(*)
-      complex(c_float_complex), target :: C(*)
+      real(c_float), target :: beta(..)
+      complex(c_float_complex), target :: C(..)
       integer(c_long), value :: ldc
       integer(c_int) :: cherkx_64
-      cherkx_64 = rocblas_cherkx_64_raw(handle, uplo, trans, n, k, c_loc(alpha(1)), c_loc(A(1)), &
-        lda, c_loc(B(1)), ldb, c_loc(beta(1)), c_loc(C(1)), ldc)
+      cherkx_64 = rocblas_cherkx_64_raw(handle, uplo, trans, n, k, c_loc(alpha), c_loc(A), lda, &
+        c_loc(B), ldb, c_loc(beta), c_loc(C), ldc)
     end function rocblas_cherkx_64_native
 
     function rocblas_cherkx_64_typed(handle, uplo, trans, n, k, alpha, A, lda, B, ldb, beta, C, &
@@ -71340,17 +71282,17 @@ contains
       integer(c_int), value :: trans
       integer(c_long), value :: n
       integer(c_long), value :: k
-      complex(c_double_complex), target :: alpha(*)
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: alpha(..)
+      complex(c_double_complex), target :: A(..)
       integer(c_long), value :: lda
-      complex(c_double_complex), target :: B(*)
+      complex(c_double_complex), target :: B(..)
       integer(c_long), value :: ldb
-      real(c_double), target :: beta(*)
-      complex(c_double_complex), target :: C(*)
+      real(c_double), target :: beta(..)
+      complex(c_double_complex), target :: C(..)
       integer(c_long), value :: ldc
       integer(c_int) :: zherkx_64
-      zherkx_64 = rocblas_zherkx_64_raw(handle, uplo, trans, n, k, c_loc(alpha(1)), c_loc(A(1)), &
-        lda, c_loc(B(1)), ldb, c_loc(beta(1)), c_loc(C(1)), ldc)
+      zherkx_64 = rocblas_zherkx_64_raw(handle, uplo, trans, n, k, c_loc(alpha), c_loc(A), lda, &
+        c_loc(B), ldb, c_loc(beta), c_loc(C), ldc)
     end function rocblas_zherkx_64_native
 
     function rocblas_zherkx_64_typed(handle, uplo, trans, n, k, alpha, A, lda, B, ldb, beta, C, &
@@ -71433,18 +71375,18 @@ contains
       integer(c_int), value :: trans
       integer(c_long), value :: n
       integer(c_long), value :: k
-      complex(c_float_complex), target :: alpha(*)
+      complex(c_float_complex), target :: alpha(..)
       type(c_ptr), value :: A
       integer(c_long), value :: lda
       type(c_ptr), value :: B
       integer(c_long), value :: ldb
-      real(c_float), target :: beta(*)
+      real(c_float), target :: beta(..)
       type(c_ptr), value :: C
       integer(c_long), value :: ldc
       integer(c_long), value :: batch_count
       integer(c_int) :: cherkx_batched_64
-      cherkx_batched_64 = rocblas_cherkx_batched_64_raw(handle, uplo, trans, n, k, c_loc(alpha( &
-        1)), A, lda, B, ldb, c_loc(beta(1)), C, ldc, batch_count)
+      cherkx_batched_64 = rocblas_cherkx_batched_64_raw(handle, uplo, trans, n, k, c_loc(alpha), &
+        A, lda, B, ldb, c_loc(beta), C, ldc, batch_count)
     end function rocblas_cherkx_batched_64_native
 
     function rocblas_cherkx_batched_64_typed(handle, uplo, trans, n, k, alpha, A, lda, B, ldb, &
@@ -71480,18 +71422,18 @@ contains
       integer(c_int), value :: trans
       integer(c_long), value :: n
       integer(c_long), value :: k
-      complex(c_double_complex), target :: alpha(*)
+      complex(c_double_complex), target :: alpha(..)
       type(c_ptr), value :: A
       integer(c_long), value :: lda
       type(c_ptr), value :: B
       integer(c_long), value :: ldb
-      real(c_double), target :: beta(*)
+      real(c_double), target :: beta(..)
       type(c_ptr), value :: C
       integer(c_long), value :: ldc
       integer(c_long), value :: batch_count
       integer(c_int) :: zherkx_batched_64
-      zherkx_batched_64 = rocblas_zherkx_batched_64_raw(handle, uplo, trans, n, k, c_loc(alpha( &
-        1)), A, lda, B, ldb, c_loc(beta(1)), C, ldc, batch_count)
+      zherkx_batched_64 = rocblas_zherkx_batched_64_raw(handle, uplo, trans, n, k, c_loc(alpha), &
+        A, lda, B, ldb, c_loc(beta), C, ldc, batch_count)
     end function rocblas_zherkx_batched_64_native
 
     function rocblas_zherkx_batched_64_typed(handle, uplo, trans, n, k, alpha, A, lda, B, ldb, &
@@ -71529,21 +71471,21 @@ contains
       integer(c_int), value :: n
       integer(c_int), value :: k
       complex(c_float_complex) :: alpha
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: A(..)
       integer(c_int), value :: lda
       integer(c_long), value :: stride_A
-      complex(c_float_complex), target :: B(*)
+      complex(c_float_complex), target :: B(..)
       integer(c_int), value :: ldb
       integer(c_long), value :: stride_B
       real(c_float) :: beta
-      complex(c_float_complex), target :: C(*)
+      complex(c_float_complex), target :: C(..)
       integer(c_int), value :: ldc
       integer(c_long), value :: stride_C
       integer(c_int), value :: batch_count
       integer(c_int) :: cherkx_strided_batched
       cherkx_strided_batched = rocblas_cherkx_strided_batched_raw(handle, uplo, trans, n, k, &
-        alpha, c_loc(A(1)), lda, stride_A, c_loc(B(1)), ldb, stride_B, beta, c_loc(C(1)), ldc, &
-        stride_C, batch_count)
+        alpha, c_loc(A), lda, stride_A, c_loc(B), ldb, stride_B, beta, c_loc(C), ldc, stride_C, &
+        batch_count)
     end function rocblas_cherkx_strided_batched_native
 
     function rocblas_cherkx_strided_batched_typed(handle, uplo, trans, n, k, alpha, A, lda, &
@@ -71585,21 +71527,21 @@ contains
       integer(c_int), value :: n
       integer(c_int), value :: k
       complex(c_double_complex) :: alpha
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: A(..)
       integer(c_int), value :: lda
       integer(c_long), value :: stride_A
-      complex(c_double_complex), target :: B(*)
+      complex(c_double_complex), target :: B(..)
       integer(c_int), value :: ldb
       integer(c_long), value :: stride_B
       real(c_double) :: beta
-      complex(c_double_complex), target :: C(*)
+      complex(c_double_complex), target :: C(..)
       integer(c_int), value :: ldc
       integer(c_long), value :: stride_C
       integer(c_int), value :: batch_count
       integer(c_int) :: zherkx_strided_batched
       zherkx_strided_batched = rocblas_zherkx_strided_batched_raw(handle, uplo, trans, n, k, &
-        alpha, c_loc(A(1)), lda, stride_A, c_loc(B(1)), ldb, stride_B, beta, c_loc(C(1)), ldc, &
-        stride_C, batch_count)
+        alpha, c_loc(A), lda, stride_A, c_loc(B), ldb, stride_B, beta, c_loc(C), ldc, stride_C, &
+        batch_count)
     end function rocblas_zherkx_strided_batched_native
 
     function rocblas_zherkx_strided_batched_typed(handle, uplo, trans, n, k, alpha, A, lda, &
@@ -71640,22 +71582,22 @@ contains
       integer(c_int), value :: trans
       integer(c_long), value :: n
       integer(c_long), value :: k
-      complex(c_float_complex), target :: alpha(*)
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: alpha(..)
+      complex(c_float_complex), target :: A(..)
       integer(c_long), value :: lda
       integer(c_long), value :: stride_A
-      complex(c_float_complex), target :: B(*)
+      complex(c_float_complex), target :: B(..)
       integer(c_long), value :: ldb
       integer(c_long), value :: stride_B
-      real(c_float), target :: beta(*)
-      complex(c_float_complex), target :: C(*)
+      real(c_float), target :: beta(..)
+      complex(c_float_complex), target :: C(..)
       integer(c_long), value :: ldc
       integer(c_long), value :: stride_C
       integer(c_long), value :: batch_count
       integer(c_int) :: cherkx_strided_batched_64
       cherkx_strided_batched_64 = rocblas_cherkx_strided_batched_64_raw(handle, uplo, trans, n, k, &
-        c_loc(alpha(1)), c_loc(A(1)), lda, stride_A, c_loc(B(1)), ldb, stride_B, c_loc(beta(1)), &
-        c_loc(C(1)), ldc, stride_C, batch_count)
+        c_loc(alpha), c_loc(A), lda, stride_A, c_loc(B), ldb, stride_B, c_loc(beta), c_loc(C), &
+        ldc, stride_C, batch_count)
     end function rocblas_cherkx_strided_batched_64_native
 
     function rocblas_cherkx_strided_batched_64_typed(handle, uplo, trans, n, k, alpha, A, lda, &
@@ -71696,22 +71638,22 @@ contains
       integer(c_int), value :: trans
       integer(c_long), value :: n
       integer(c_long), value :: k
-      complex(c_double_complex), target :: alpha(*)
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: alpha(..)
+      complex(c_double_complex), target :: A(..)
       integer(c_long), value :: lda
       integer(c_long), value :: stride_A
-      complex(c_double_complex), target :: B(*)
+      complex(c_double_complex), target :: B(..)
       integer(c_long), value :: ldb
       integer(c_long), value :: stride_B
-      real(c_double), target :: beta(*)
-      complex(c_double_complex), target :: C(*)
+      real(c_double), target :: beta(..)
+      complex(c_double_complex), target :: C(..)
       integer(c_long), value :: ldc
       integer(c_long), value :: stride_C
       integer(c_long), value :: batch_count
       integer(c_int) :: zherkx_strided_batched_64
       zherkx_strided_batched_64 = rocblas_zherkx_strided_batched_64_raw(handle, uplo, trans, n, k, &
-        c_loc(alpha(1)), c_loc(A(1)), lda, stride_A, c_loc(B(1)), ldb, stride_B, c_loc(beta(1)), &
-        c_loc(C(1)), ldc, stride_C, batch_count)
+        c_loc(alpha), c_loc(A), lda, stride_A, c_loc(B), ldb, stride_B, c_loc(beta), c_loc(C), &
+        ldc, stride_C, batch_count)
     end function rocblas_zherkx_strided_batched_64_native
 
     function rocblas_zherkx_strided_batched_64_typed(handle, uplo, trans, n, k, alpha, A, lda, &
@@ -71752,16 +71694,16 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       real(c_float) :: alpha
-      real(c_float), target :: A(*)
+      real(c_float), target :: A(..)
       integer(c_int), value :: lda
-      real(c_float), target :: B(*)
+      real(c_float), target :: B(..)
       integer(c_int), value :: ldb
       real(c_float) :: beta
-      real(c_float), target :: C(*)
+      real(c_float), target :: C(..)
       integer(c_int), value :: ldc
       integer(c_int) :: ssymm
-      ssymm = rocblas_ssymm_raw(handle, side, uplo, m, n, alpha, c_loc(A(1)), lda, c_loc(B(1)), &
-        ldb, beta, c_loc(C(1)), ldc)
+      ssymm = rocblas_ssymm_raw(handle, side, uplo, m, n, alpha, c_loc(A), lda, c_loc(B), ldb, &
+        beta, c_loc(C), ldc)
     end function rocblas_ssymm_native
 
     function rocblas_ssymm_typed(handle, side, uplo, m, n, alpha, A, lda, B, ldb, beta, C, &
@@ -71796,16 +71738,16 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       real(c_double) :: alpha
-      real(c_double), target :: A(*)
+      real(c_double), target :: A(..)
       integer(c_int), value :: lda
-      real(c_double), target :: B(*)
+      real(c_double), target :: B(..)
       integer(c_int), value :: ldb
       real(c_double) :: beta
-      real(c_double), target :: C(*)
+      real(c_double), target :: C(..)
       integer(c_int), value :: ldc
       integer(c_int) :: dsymm
-      dsymm = rocblas_dsymm_raw(handle, side, uplo, m, n, alpha, c_loc(A(1)), lda, c_loc(B(1)), &
-        ldb, beta, c_loc(C(1)), ldc)
+      dsymm = rocblas_dsymm_raw(handle, side, uplo, m, n, alpha, c_loc(A), lda, c_loc(B), ldb, &
+        beta, c_loc(C), ldc)
     end function rocblas_dsymm_native
 
     function rocblas_dsymm_typed(handle, side, uplo, m, n, alpha, A, lda, B, ldb, beta, C, &
@@ -71840,16 +71782,16 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       complex(c_float_complex) :: alpha
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: A(..)
       integer(c_int), value :: lda
-      complex(c_float_complex), target :: B(*)
+      complex(c_float_complex), target :: B(..)
       integer(c_int), value :: ldb
       complex(c_float_complex) :: beta
-      complex(c_float_complex), target :: C(*)
+      complex(c_float_complex), target :: C(..)
       integer(c_int), value :: ldc
       integer(c_int) :: csymm
-      csymm = rocblas_csymm_raw(handle, side, uplo, m, n, alpha, c_loc(A(1)), lda, c_loc(B(1)), &
-        ldb, beta, c_loc(C(1)), ldc)
+      csymm = rocblas_csymm_raw(handle, side, uplo, m, n, alpha, c_loc(A), lda, c_loc(B), ldb, &
+        beta, c_loc(C), ldc)
     end function rocblas_csymm_native
 
     function rocblas_csymm_typed(handle, side, uplo, m, n, alpha, A, lda, B, ldb, beta, C, &
@@ -71884,16 +71826,16 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       complex(c_double_complex) :: alpha
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: A(..)
       integer(c_int), value :: lda
-      complex(c_double_complex), target :: B(*)
+      complex(c_double_complex), target :: B(..)
       integer(c_int), value :: ldb
       complex(c_double_complex) :: beta
-      complex(c_double_complex), target :: C(*)
+      complex(c_double_complex), target :: C(..)
       integer(c_int), value :: ldc
       integer(c_int) :: zsymm
-      zsymm = rocblas_zsymm_raw(handle, side, uplo, m, n, alpha, c_loc(A(1)), lda, c_loc(B(1)), &
-        ldb, beta, c_loc(C(1)), ldc)
+      zsymm = rocblas_zsymm_raw(handle, side, uplo, m, n, alpha, c_loc(A), lda, c_loc(B), ldb, &
+        beta, c_loc(C), ldc)
     end function rocblas_zsymm_native
 
     function rocblas_zsymm_typed(handle, side, uplo, m, n, alpha, A, lda, B, ldb, beta, C, &
@@ -71927,17 +71869,17 @@ contains
       integer(c_int), value :: uplo
       integer(c_long), value :: m
       integer(c_long), value :: n
-      real(c_float), target :: alpha(*)
-      real(c_float), target :: A(*)
+      real(c_float), target :: alpha(..)
+      real(c_float), target :: A(..)
       integer(c_long), value :: lda
-      real(c_float), target :: B(*)
+      real(c_float), target :: B(..)
       integer(c_long), value :: ldb
-      real(c_float), target :: beta(*)
-      real(c_float), target :: C(*)
+      real(c_float), target :: beta(..)
+      real(c_float), target :: C(..)
       integer(c_long), value :: ldc
       integer(c_int) :: ssymm_64
-      ssymm_64 = rocblas_ssymm_64_raw(handle, side, uplo, m, n, c_loc(alpha(1)), c_loc(A(1)), lda, &
-        c_loc(B(1)), ldb, c_loc(beta(1)), c_loc(C(1)), ldc)
+      ssymm_64 = rocblas_ssymm_64_raw(handle, side, uplo, m, n, c_loc(alpha), c_loc(A), lda, &
+        c_loc(B), ldb, c_loc(beta), c_loc(C), ldc)
     end function rocblas_ssymm_64_native
 
     function rocblas_ssymm_64_typed(handle, side, uplo, m, n, alpha, A, lda, B, ldb, beta, C, &
@@ -71972,17 +71914,17 @@ contains
       integer(c_int), value :: uplo
       integer(c_long), value :: m
       integer(c_long), value :: n
-      real(c_double), target :: alpha(*)
-      real(c_double), target :: A(*)
+      real(c_double), target :: alpha(..)
+      real(c_double), target :: A(..)
       integer(c_long), value :: lda
-      real(c_double), target :: B(*)
+      real(c_double), target :: B(..)
       integer(c_long), value :: ldb
-      real(c_double), target :: beta(*)
-      real(c_double), target :: C(*)
+      real(c_double), target :: beta(..)
+      real(c_double), target :: C(..)
       integer(c_long), value :: ldc
       integer(c_int) :: dsymm_64
-      dsymm_64 = rocblas_dsymm_64_raw(handle, side, uplo, m, n, c_loc(alpha(1)), c_loc(A(1)), lda, &
-        c_loc(B(1)), ldb, c_loc(beta(1)), c_loc(C(1)), ldc)
+      dsymm_64 = rocblas_dsymm_64_raw(handle, side, uplo, m, n, c_loc(alpha), c_loc(A), lda, &
+        c_loc(B), ldb, c_loc(beta), c_loc(C), ldc)
     end function rocblas_dsymm_64_native
 
     function rocblas_dsymm_64_typed(handle, side, uplo, m, n, alpha, A, lda, B, ldb, beta, C, &
@@ -72017,17 +71959,17 @@ contains
       integer(c_int), value :: uplo
       integer(c_long), value :: m
       integer(c_long), value :: n
-      complex(c_float_complex), target :: alpha(*)
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: alpha(..)
+      complex(c_float_complex), target :: A(..)
       integer(c_long), value :: lda
-      complex(c_float_complex), target :: B(*)
+      complex(c_float_complex), target :: B(..)
       integer(c_long), value :: ldb
-      complex(c_float_complex), target :: beta(*)
-      complex(c_float_complex), target :: C(*)
+      complex(c_float_complex), target :: beta(..)
+      complex(c_float_complex), target :: C(..)
       integer(c_long), value :: ldc
       integer(c_int) :: csymm_64
-      csymm_64 = rocblas_csymm_64_raw(handle, side, uplo, m, n, c_loc(alpha(1)), c_loc(A(1)), lda, &
-        c_loc(B(1)), ldb, c_loc(beta(1)), c_loc(C(1)), ldc)
+      csymm_64 = rocblas_csymm_64_raw(handle, side, uplo, m, n, c_loc(alpha), c_loc(A), lda, &
+        c_loc(B), ldb, c_loc(beta), c_loc(C), ldc)
     end function rocblas_csymm_64_native
 
     function rocblas_csymm_64_typed(handle, side, uplo, m, n, alpha, A, lda, B, ldb, beta, C, &
@@ -72062,17 +72004,17 @@ contains
       integer(c_int), value :: uplo
       integer(c_long), value :: m
       integer(c_long), value :: n
-      complex(c_double_complex), target :: alpha(*)
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: alpha(..)
+      complex(c_double_complex), target :: A(..)
       integer(c_long), value :: lda
-      complex(c_double_complex), target :: B(*)
+      complex(c_double_complex), target :: B(..)
       integer(c_long), value :: ldb
-      complex(c_double_complex), target :: beta(*)
-      complex(c_double_complex), target :: C(*)
+      complex(c_double_complex), target :: beta(..)
+      complex(c_double_complex), target :: C(..)
       integer(c_long), value :: ldc
       integer(c_int) :: zsymm_64
-      zsymm_64 = rocblas_zsymm_64_raw(handle, side, uplo, m, n, c_loc(alpha(1)), c_loc(A(1)), lda, &
-        c_loc(B(1)), ldb, c_loc(beta(1)), c_loc(C(1)), ldc)
+      zsymm_64 = rocblas_zsymm_64_raw(handle, side, uplo, m, n, c_loc(alpha), c_loc(A), lda, &
+        c_loc(B), ldb, c_loc(beta), c_loc(C), ldc)
     end function rocblas_zsymm_64_native
 
     function rocblas_zsymm_64_typed(handle, side, uplo, m, n, alpha, A, lda, B, ldb, beta, C, &
@@ -72203,18 +72145,18 @@ contains
       integer(c_int), value :: uplo
       integer(c_long), value :: m
       integer(c_long), value :: n
-      real(c_float), target :: alpha(*)
+      real(c_float), target :: alpha(..)
       type(c_ptr), value :: A
       integer(c_long), value :: lda
       type(c_ptr), value :: B
       integer(c_long), value :: ldb
-      real(c_float), target :: beta(*)
+      real(c_float), target :: beta(..)
       type(c_ptr), value :: C
       integer(c_long), value :: ldc
       integer(c_long), value :: batch_count
       integer(c_int) :: ssymm_batched_64
-      ssymm_batched_64 = rocblas_ssymm_batched_64_raw(handle, side, uplo, m, n, c_loc(alpha(1)), &
-        A, lda, B, ldb, c_loc(beta(1)), C, ldc, batch_count)
+      ssymm_batched_64 = rocblas_ssymm_batched_64_raw(handle, side, uplo, m, n, c_loc(alpha), A, &
+        lda, B, ldb, c_loc(beta), C, ldc, batch_count)
     end function rocblas_ssymm_batched_64_native
 
     function rocblas_ssymm_batched_64_typed(handle, side, uplo, m, n, alpha, A, lda, B, ldb, beta, &
@@ -72250,18 +72192,18 @@ contains
       integer(c_int), value :: uplo
       integer(c_long), value :: m
       integer(c_long), value :: n
-      real(c_double), target :: alpha(*)
+      real(c_double), target :: alpha(..)
       type(c_ptr), value :: A
       integer(c_long), value :: lda
       type(c_ptr), value :: B
       integer(c_long), value :: ldb
-      real(c_double), target :: beta(*)
+      real(c_double), target :: beta(..)
       type(c_ptr), value :: C
       integer(c_long), value :: ldc
       integer(c_long), value :: batch_count
       integer(c_int) :: dsymm_batched_64
-      dsymm_batched_64 = rocblas_dsymm_batched_64_raw(handle, side, uplo, m, n, c_loc(alpha(1)), &
-        A, lda, B, ldb, c_loc(beta(1)), C, ldc, batch_count)
+      dsymm_batched_64 = rocblas_dsymm_batched_64_raw(handle, side, uplo, m, n, c_loc(alpha), A, &
+        lda, B, ldb, c_loc(beta), C, ldc, batch_count)
     end function rocblas_dsymm_batched_64_native
 
     function rocblas_dsymm_batched_64_typed(handle, side, uplo, m, n, alpha, A, lda, B, ldb, beta, &
@@ -72297,18 +72239,18 @@ contains
       integer(c_int), value :: uplo
       integer(c_long), value :: m
       integer(c_long), value :: n
-      complex(c_float_complex), target :: alpha(*)
+      complex(c_float_complex), target :: alpha(..)
       type(c_ptr), value :: A
       integer(c_long), value :: lda
       type(c_ptr), value :: B
       integer(c_long), value :: ldb
-      complex(c_float_complex), target :: beta(*)
+      complex(c_float_complex), target :: beta(..)
       type(c_ptr), value :: C
       integer(c_long), value :: ldc
       integer(c_long), value :: batch_count
       integer(c_int) :: csymm_batched_64
-      csymm_batched_64 = rocblas_csymm_batched_64_raw(handle, side, uplo, m, n, c_loc(alpha(1)), &
-        A, lda, B, ldb, c_loc(beta(1)), C, ldc, batch_count)
+      csymm_batched_64 = rocblas_csymm_batched_64_raw(handle, side, uplo, m, n, c_loc(alpha), A, &
+        lda, B, ldb, c_loc(beta), C, ldc, batch_count)
     end function rocblas_csymm_batched_64_native
 
     function rocblas_csymm_batched_64_typed(handle, side, uplo, m, n, alpha, A, lda, B, ldb, beta, &
@@ -72344,18 +72286,18 @@ contains
       integer(c_int), value :: uplo
       integer(c_long), value :: m
       integer(c_long), value :: n
-      complex(c_double_complex), target :: alpha(*)
+      complex(c_double_complex), target :: alpha(..)
       type(c_ptr), value :: A
       integer(c_long), value :: lda
       type(c_ptr), value :: B
       integer(c_long), value :: ldb
-      complex(c_double_complex), target :: beta(*)
+      complex(c_double_complex), target :: beta(..)
       type(c_ptr), value :: C
       integer(c_long), value :: ldc
       integer(c_long), value :: batch_count
       integer(c_int) :: zsymm_batched_64
-      zsymm_batched_64 = rocblas_zsymm_batched_64_raw(handle, side, uplo, m, n, c_loc(alpha(1)), &
-        A, lda, B, ldb, c_loc(beta(1)), C, ldc, batch_count)
+      zsymm_batched_64 = rocblas_zsymm_batched_64_raw(handle, side, uplo, m, n, c_loc(alpha), A, &
+        lda, B, ldb, c_loc(beta), C, ldc, batch_count)
     end function rocblas_zsymm_batched_64_native
 
     function rocblas_zsymm_batched_64_typed(handle, side, uplo, m, n, alpha, A, lda, B, ldb, beta, &
@@ -72393,20 +72335,20 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       real(c_float) :: alpha
-      real(c_float), target :: A(*)
+      real(c_float), target :: A(..)
       integer(c_int), value :: lda
       integer(c_long), value :: stride_A
-      real(c_float), target :: B(*)
+      real(c_float), target :: B(..)
       integer(c_int), value :: ldb
       integer(c_long), value :: stride_B
       real(c_float) :: beta
-      real(c_float), target :: C(*)
+      real(c_float), target :: C(..)
       integer(c_int), value :: ldc
       integer(c_long), value :: stride_C
       integer(c_int), value :: batch_count
       integer(c_int) :: ssymm_strided_batched
       ssymm_strided_batched = rocblas_ssymm_strided_batched_raw(handle, side, uplo, m, n, alpha, &
-        c_loc(A(1)), lda, stride_A, c_loc(B(1)), ldb, stride_B, beta, c_loc(C(1)), ldc, stride_C, &
+        c_loc(A), lda, stride_A, c_loc(B), ldb, stride_B, beta, c_loc(C), ldc, stride_C, &
         batch_count)
     end function rocblas_ssymm_strided_batched_native
 
@@ -72449,20 +72391,20 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       real(c_double) :: alpha
-      real(c_double), target :: A(*)
+      real(c_double), target :: A(..)
       integer(c_int), value :: lda
       integer(c_long), value :: stride_A
-      real(c_double), target :: B(*)
+      real(c_double), target :: B(..)
       integer(c_int), value :: ldb
       integer(c_long), value :: stride_B
       real(c_double) :: beta
-      real(c_double), target :: C(*)
+      real(c_double), target :: C(..)
       integer(c_int), value :: ldc
       integer(c_long), value :: stride_C
       integer(c_int), value :: batch_count
       integer(c_int) :: dsymm_strided_batched
       dsymm_strided_batched = rocblas_dsymm_strided_batched_raw(handle, side, uplo, m, n, alpha, &
-        c_loc(A(1)), lda, stride_A, c_loc(B(1)), ldb, stride_B, beta, c_loc(C(1)), ldc, stride_C, &
+        c_loc(A), lda, stride_A, c_loc(B), ldb, stride_B, beta, c_loc(C), ldc, stride_C, &
         batch_count)
     end function rocblas_dsymm_strided_batched_native
 
@@ -72505,20 +72447,20 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       complex(c_float_complex) :: alpha
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: A(..)
       integer(c_int), value :: lda
       integer(c_long), value :: stride_A
-      complex(c_float_complex), target :: B(*)
+      complex(c_float_complex), target :: B(..)
       integer(c_int), value :: ldb
       integer(c_long), value :: stride_B
       complex(c_float_complex) :: beta
-      complex(c_float_complex), target :: C(*)
+      complex(c_float_complex), target :: C(..)
       integer(c_int), value :: ldc
       integer(c_long), value :: stride_C
       integer(c_int), value :: batch_count
       integer(c_int) :: csymm_strided_batched
       csymm_strided_batched = rocblas_csymm_strided_batched_raw(handle, side, uplo, m, n, alpha, &
-        c_loc(A(1)), lda, stride_A, c_loc(B(1)), ldb, stride_B, beta, c_loc(C(1)), ldc, stride_C, &
+        c_loc(A), lda, stride_A, c_loc(B), ldb, stride_B, beta, c_loc(C), ldc, stride_C, &
         batch_count)
     end function rocblas_csymm_strided_batched_native
 
@@ -72561,20 +72503,20 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       complex(c_double_complex) :: alpha
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: A(..)
       integer(c_int), value :: lda
       integer(c_long), value :: stride_A
-      complex(c_double_complex), target :: B(*)
+      complex(c_double_complex), target :: B(..)
       integer(c_int), value :: ldb
       integer(c_long), value :: stride_B
       complex(c_double_complex) :: beta
-      complex(c_double_complex), target :: C(*)
+      complex(c_double_complex), target :: C(..)
       integer(c_int), value :: ldc
       integer(c_long), value :: stride_C
       integer(c_int), value :: batch_count
       integer(c_int) :: zsymm_strided_batched
       zsymm_strided_batched = rocblas_zsymm_strided_batched_raw(handle, side, uplo, m, n, alpha, &
-        c_loc(A(1)), lda, stride_A, c_loc(B(1)), ldb, stride_B, beta, c_loc(C(1)), ldc, stride_C, &
+        c_loc(A), lda, stride_A, c_loc(B), ldb, stride_B, beta, c_loc(C), ldc, stride_C, &
         batch_count)
     end function rocblas_zsymm_strided_batched_native
 
@@ -72616,22 +72558,22 @@ contains
       integer(c_int), value :: uplo
       integer(c_long), value :: m
       integer(c_long), value :: n
-      real(c_float), target :: alpha(*)
-      real(c_float), target :: A(*)
+      real(c_float), target :: alpha(..)
+      real(c_float), target :: A(..)
       integer(c_long), value :: lda
       integer(c_long), value :: stride_A
-      real(c_float), target :: B(*)
+      real(c_float), target :: B(..)
       integer(c_long), value :: ldb
       integer(c_long), value :: stride_B
-      real(c_float), target :: beta(*)
-      real(c_float), target :: C(*)
+      real(c_float), target :: beta(..)
+      real(c_float), target :: C(..)
       integer(c_long), value :: ldc
       integer(c_long), value :: stride_C
       integer(c_long), value :: batch_count
       integer(c_int) :: ssymm_strided_batched_64
       ssymm_strided_batched_64 = rocblas_ssymm_strided_batched_64_raw(handle, side, uplo, m, n, &
-        c_loc(alpha(1)), c_loc(A(1)), lda, stride_A, c_loc(B(1)), ldb, stride_B, c_loc(beta(1)), &
-        c_loc(C(1)), ldc, stride_C, batch_count)
+        c_loc(alpha), c_loc(A), lda, stride_A, c_loc(B), ldb, stride_B, c_loc(beta), c_loc(C), &
+        ldc, stride_C, batch_count)
     end function rocblas_ssymm_strided_batched_64_native
 
     function rocblas_ssymm_strided_batched_64_typed(handle, side, uplo, m, n, alpha, A, lda, &
@@ -72672,22 +72614,22 @@ contains
       integer(c_int), value :: uplo
       integer(c_long), value :: m
       integer(c_long), value :: n
-      real(c_double), target :: alpha(*)
-      real(c_double), target :: A(*)
+      real(c_double), target :: alpha(..)
+      real(c_double), target :: A(..)
       integer(c_long), value :: lda
       integer(c_long), value :: stride_A
-      real(c_double), target :: B(*)
+      real(c_double), target :: B(..)
       integer(c_long), value :: ldb
       integer(c_long), value :: stride_B
-      real(c_double), target :: beta(*)
-      real(c_double), target :: C(*)
+      real(c_double), target :: beta(..)
+      real(c_double), target :: C(..)
       integer(c_long), value :: ldc
       integer(c_long), value :: stride_C
       integer(c_long), value :: batch_count
       integer(c_int) :: dsymm_strided_batched_64
       dsymm_strided_batched_64 = rocblas_dsymm_strided_batched_64_raw(handle, side, uplo, m, n, &
-        c_loc(alpha(1)), c_loc(A(1)), lda, stride_A, c_loc(B(1)), ldb, stride_B, c_loc(beta(1)), &
-        c_loc(C(1)), ldc, stride_C, batch_count)
+        c_loc(alpha), c_loc(A), lda, stride_A, c_loc(B), ldb, stride_B, c_loc(beta), c_loc(C), &
+        ldc, stride_C, batch_count)
     end function rocblas_dsymm_strided_batched_64_native
 
     function rocblas_dsymm_strided_batched_64_typed(handle, side, uplo, m, n, alpha, A, lda, &
@@ -72728,22 +72670,22 @@ contains
       integer(c_int), value :: uplo
       integer(c_long), value :: m
       integer(c_long), value :: n
-      complex(c_float_complex), target :: alpha(*)
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: alpha(..)
+      complex(c_float_complex), target :: A(..)
       integer(c_long), value :: lda
       integer(c_long), value :: stride_A
-      complex(c_float_complex), target :: B(*)
+      complex(c_float_complex), target :: B(..)
       integer(c_long), value :: ldb
       integer(c_long), value :: stride_B
-      complex(c_float_complex), target :: beta(*)
-      complex(c_float_complex), target :: C(*)
+      complex(c_float_complex), target :: beta(..)
+      complex(c_float_complex), target :: C(..)
       integer(c_long), value :: ldc
       integer(c_long), value :: stride_C
       integer(c_long), value :: batch_count
       integer(c_int) :: csymm_strided_batched_64
       csymm_strided_batched_64 = rocblas_csymm_strided_batched_64_raw(handle, side, uplo, m, n, &
-        c_loc(alpha(1)), c_loc(A(1)), lda, stride_A, c_loc(B(1)), ldb, stride_B, c_loc(beta(1)), &
-        c_loc(C(1)), ldc, stride_C, batch_count)
+        c_loc(alpha), c_loc(A), lda, stride_A, c_loc(B), ldb, stride_B, c_loc(beta), c_loc(C), &
+        ldc, stride_C, batch_count)
     end function rocblas_csymm_strided_batched_64_native
 
     function rocblas_csymm_strided_batched_64_typed(handle, side, uplo, m, n, alpha, A, lda, &
@@ -72784,22 +72726,22 @@ contains
       integer(c_int), value :: uplo
       integer(c_long), value :: m
       integer(c_long), value :: n
-      complex(c_double_complex), target :: alpha(*)
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: alpha(..)
+      complex(c_double_complex), target :: A(..)
       integer(c_long), value :: lda
       integer(c_long), value :: stride_A
-      complex(c_double_complex), target :: B(*)
+      complex(c_double_complex), target :: B(..)
       integer(c_long), value :: ldb
       integer(c_long), value :: stride_B
-      complex(c_double_complex), target :: beta(*)
-      complex(c_double_complex), target :: C(*)
+      complex(c_double_complex), target :: beta(..)
+      complex(c_double_complex), target :: C(..)
       integer(c_long), value :: ldc
       integer(c_long), value :: stride_C
       integer(c_long), value :: batch_count
       integer(c_int) :: zsymm_strided_batched_64
       zsymm_strided_batched_64 = rocblas_zsymm_strided_batched_64_raw(handle, side, uplo, m, n, &
-        c_loc(alpha(1)), c_loc(A(1)), lda, stride_A, c_loc(B(1)), ldb, stride_B, c_loc(beta(1)), &
-        c_loc(C(1)), ldc, stride_C, batch_count)
+        c_loc(alpha), c_loc(A), lda, stride_A, c_loc(B), ldb, stride_B, c_loc(beta), c_loc(C), &
+        ldc, stride_C, batch_count)
     end function rocblas_zsymm_strided_batched_64_native
 
     function rocblas_zsymm_strided_batched_64_typed(handle, side, uplo, m, n, alpha, A, lda, &
@@ -72840,14 +72782,14 @@ contains
       integer(c_int), value :: n
       integer(c_int), value :: k
       real(c_float) :: alpha
-      real(c_float), target :: A(*)
+      real(c_float), target :: A(..)
       integer(c_int), value :: lda
       real(c_float) :: beta
-      real(c_float), target :: C(*)
+      real(c_float), target :: C(..)
       integer(c_int), value :: ldc
       integer(c_int) :: ssyrk
-      ssyrk = rocblas_ssyrk_raw(handle, uplo, transA, n, k, alpha, c_loc(A(1)), lda, beta, c_loc( &
-        C(1)), ldc)
+      ssyrk = rocblas_ssyrk_raw(handle, uplo, transA, n, k, alpha, c_loc(A), lda, beta, c_loc(C), &
+        ldc)
     end function rocblas_ssyrk_native
 
     function rocblas_ssyrk_typed(handle, uplo, transA, n, k, alpha, A, lda, beta, C, ldc) result( &
@@ -72880,14 +72822,14 @@ contains
       integer(c_int), value :: n
       integer(c_int), value :: k
       real(c_double) :: alpha
-      real(c_double), target :: A(*)
+      real(c_double), target :: A(..)
       integer(c_int), value :: lda
       real(c_double) :: beta
-      real(c_double), target :: C(*)
+      real(c_double), target :: C(..)
       integer(c_int), value :: ldc
       integer(c_int) :: dsyrk
-      dsyrk = rocblas_dsyrk_raw(handle, uplo, transA, n, k, alpha, c_loc(A(1)), lda, beta, c_loc( &
-        C(1)), ldc)
+      dsyrk = rocblas_dsyrk_raw(handle, uplo, transA, n, k, alpha, c_loc(A), lda, beta, c_loc(C), &
+        ldc)
     end function rocblas_dsyrk_native
 
     function rocblas_dsyrk_typed(handle, uplo, transA, n, k, alpha, A, lda, beta, C, ldc) result( &
@@ -72920,14 +72862,14 @@ contains
       integer(c_int), value :: n
       integer(c_int), value :: k
       complex(c_float_complex) :: alpha
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: A(..)
       integer(c_int), value :: lda
       complex(c_float_complex) :: beta
-      complex(c_float_complex), target :: C(*)
+      complex(c_float_complex), target :: C(..)
       integer(c_int), value :: ldc
       integer(c_int) :: csyrk
-      csyrk = rocblas_csyrk_raw(handle, uplo, transA, n, k, alpha, c_loc(A(1)), lda, beta, c_loc( &
-        C(1)), ldc)
+      csyrk = rocblas_csyrk_raw(handle, uplo, transA, n, k, alpha, c_loc(A), lda, beta, c_loc(C), &
+        ldc)
     end function rocblas_csyrk_native
 
     function rocblas_csyrk_typed(handle, uplo, transA, n, k, alpha, A, lda, beta, C, ldc) result( &
@@ -72960,14 +72902,14 @@ contains
       integer(c_int), value :: n
       integer(c_int), value :: k
       complex(c_double_complex) :: alpha
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: A(..)
       integer(c_int), value :: lda
       complex(c_double_complex) :: beta
-      complex(c_double_complex), target :: C(*)
+      complex(c_double_complex), target :: C(..)
       integer(c_int), value :: ldc
       integer(c_int) :: zsyrk
-      zsyrk = rocblas_zsyrk_raw(handle, uplo, transA, n, k, alpha, c_loc(A(1)), lda, beta, c_loc( &
-        C(1)), ldc)
+      zsyrk = rocblas_zsyrk_raw(handle, uplo, transA, n, k, alpha, c_loc(A), lda, beta, c_loc(C), &
+        ldc)
     end function rocblas_zsyrk_native
 
     function rocblas_zsyrk_typed(handle, uplo, transA, n, k, alpha, A, lda, beta, C, ldc) result( &
@@ -72999,15 +72941,15 @@ contains
       integer(c_int), value :: transA
       integer(c_long), value :: n
       integer(c_long), value :: k
-      real(c_float), target :: alpha(*)
-      real(c_float), target :: A(*)
+      real(c_float), target :: alpha(..)
+      real(c_float), target :: A(..)
       integer(c_long), value :: lda
-      real(c_float), target :: beta(*)
-      real(c_float), target :: C(*)
+      real(c_float), target :: beta(..)
+      real(c_float), target :: C(..)
       integer(c_long), value :: ldc
       integer(c_int) :: ssyrk_64
-      ssyrk_64 = rocblas_ssyrk_64_raw(handle, uplo, transA, n, k, c_loc(alpha(1)), c_loc(A(1)), &
-        lda, c_loc(beta(1)), c_loc(C(1)), ldc)
+      ssyrk_64 = rocblas_ssyrk_64_raw(handle, uplo, transA, n, k, c_loc(alpha), c_loc(A), lda, &
+        c_loc(beta), c_loc(C), ldc)
     end function rocblas_ssyrk_64_native
 
     function rocblas_ssyrk_64_typed(handle, uplo, transA, n, k, alpha, A, lda, beta, C, &
@@ -73039,15 +72981,15 @@ contains
       integer(c_int), value :: transA
       integer(c_long), value :: n
       integer(c_long), value :: k
-      real(c_double), target :: alpha(*)
-      real(c_double), target :: A(*)
+      real(c_double), target :: alpha(..)
+      real(c_double), target :: A(..)
       integer(c_long), value :: lda
-      real(c_double), target :: beta(*)
-      real(c_double), target :: C(*)
+      real(c_double), target :: beta(..)
+      real(c_double), target :: C(..)
       integer(c_long), value :: ldc
       integer(c_int) :: dsyrk_64
-      dsyrk_64 = rocblas_dsyrk_64_raw(handle, uplo, transA, n, k, c_loc(alpha(1)), c_loc(A(1)), &
-        lda, c_loc(beta(1)), c_loc(C(1)), ldc)
+      dsyrk_64 = rocblas_dsyrk_64_raw(handle, uplo, transA, n, k, c_loc(alpha), c_loc(A), lda, &
+        c_loc(beta), c_loc(C), ldc)
     end function rocblas_dsyrk_64_native
 
     function rocblas_dsyrk_64_typed(handle, uplo, transA, n, k, alpha, A, lda, beta, C, &
@@ -73079,15 +73021,15 @@ contains
       integer(c_int), value :: transA
       integer(c_long), value :: n
       integer(c_long), value :: k
-      complex(c_float_complex), target :: alpha(*)
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: alpha(..)
+      complex(c_float_complex), target :: A(..)
       integer(c_long), value :: lda
-      complex(c_float_complex), target :: beta(*)
-      complex(c_float_complex), target :: C(*)
+      complex(c_float_complex), target :: beta(..)
+      complex(c_float_complex), target :: C(..)
       integer(c_long), value :: ldc
       integer(c_int) :: csyrk_64
-      csyrk_64 = rocblas_csyrk_64_raw(handle, uplo, transA, n, k, c_loc(alpha(1)), c_loc(A(1)), &
-        lda, c_loc(beta(1)), c_loc(C(1)), ldc)
+      csyrk_64 = rocblas_csyrk_64_raw(handle, uplo, transA, n, k, c_loc(alpha), c_loc(A), lda, &
+        c_loc(beta), c_loc(C), ldc)
     end function rocblas_csyrk_64_native
 
     function rocblas_csyrk_64_typed(handle, uplo, transA, n, k, alpha, A, lda, beta, C, &
@@ -73119,15 +73061,15 @@ contains
       integer(c_int), value :: transA
       integer(c_long), value :: n
       integer(c_long), value :: k
-      complex(c_double_complex), target :: alpha(*)
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: alpha(..)
+      complex(c_double_complex), target :: A(..)
       integer(c_long), value :: lda
-      complex(c_double_complex), target :: beta(*)
-      complex(c_double_complex), target :: C(*)
+      complex(c_double_complex), target :: beta(..)
+      complex(c_double_complex), target :: C(..)
       integer(c_long), value :: ldc
       integer(c_int) :: zsyrk_64
-      zsyrk_64 = rocblas_zsyrk_64_raw(handle, uplo, transA, n, k, c_loc(alpha(1)), c_loc(A(1)), &
-        lda, c_loc(beta(1)), c_loc(C(1)), ldc)
+      zsyrk_64 = rocblas_zsyrk_64_raw(handle, uplo, transA, n, k, c_loc(alpha), c_loc(A), lda, &
+        c_loc(beta), c_loc(C), ldc)
     end function rocblas_zsyrk_64_native
 
     function rocblas_zsyrk_64_typed(handle, uplo, transA, n, k, alpha, A, lda, beta, C, &
@@ -73247,16 +73189,16 @@ contains
       integer(c_int), value :: transA
       integer(c_long), value :: n
       integer(c_long), value :: k
-      real(c_float), target :: alpha(*)
+      real(c_float), target :: alpha(..)
       type(c_ptr), value :: A
       integer(c_long), value :: lda
-      real(c_float), target :: beta(*)
+      real(c_float), target :: beta(..)
       type(c_ptr), value :: C
       integer(c_long), value :: ldc
       integer(c_long), value :: batch_count
       integer(c_int) :: ssyrk_batched_64
-      ssyrk_batched_64 = rocblas_ssyrk_batched_64_raw(handle, uplo, transA, n, k, c_loc(alpha(1)), &
-        A, lda, c_loc(beta(1)), C, ldc, batch_count)
+      ssyrk_batched_64 = rocblas_ssyrk_batched_64_raw(handle, uplo, transA, n, k, c_loc(alpha), A, &
+        lda, c_loc(beta), C, ldc, batch_count)
     end function rocblas_ssyrk_batched_64_native
 
     function rocblas_ssyrk_batched_64_typed(handle, uplo, transA, n, k, alpha, A, lda, beta, C, &
@@ -73290,16 +73232,16 @@ contains
       integer(c_int), value :: transA
       integer(c_long), value :: n
       integer(c_long), value :: k
-      real(c_double), target :: alpha(*)
+      real(c_double), target :: alpha(..)
       type(c_ptr), value :: A
       integer(c_long), value :: lda
-      real(c_double), target :: beta(*)
+      real(c_double), target :: beta(..)
       type(c_ptr), value :: C
       integer(c_long), value :: ldc
       integer(c_long), value :: batch_count
       integer(c_int) :: dsyrk_batched_64
-      dsyrk_batched_64 = rocblas_dsyrk_batched_64_raw(handle, uplo, transA, n, k, c_loc(alpha(1)), &
-        A, lda, c_loc(beta(1)), C, ldc, batch_count)
+      dsyrk_batched_64 = rocblas_dsyrk_batched_64_raw(handle, uplo, transA, n, k, c_loc(alpha), A, &
+        lda, c_loc(beta), C, ldc, batch_count)
     end function rocblas_dsyrk_batched_64_native
 
     function rocblas_dsyrk_batched_64_typed(handle, uplo, transA, n, k, alpha, A, lda, beta, C, &
@@ -73333,16 +73275,16 @@ contains
       integer(c_int), value :: transA
       integer(c_long), value :: n
       integer(c_long), value :: k
-      complex(c_float_complex), target :: alpha(*)
+      complex(c_float_complex), target :: alpha(..)
       type(c_ptr), value :: A
       integer(c_long), value :: lda
-      complex(c_float_complex), target :: beta(*)
+      complex(c_float_complex), target :: beta(..)
       type(c_ptr), value :: C
       integer(c_long), value :: ldc
       integer(c_long), value :: batch_count
       integer(c_int) :: csyrk_batched_64
-      csyrk_batched_64 = rocblas_csyrk_batched_64_raw(handle, uplo, transA, n, k, c_loc(alpha(1)), &
-        A, lda, c_loc(beta(1)), C, ldc, batch_count)
+      csyrk_batched_64 = rocblas_csyrk_batched_64_raw(handle, uplo, transA, n, k, c_loc(alpha), A, &
+        lda, c_loc(beta), C, ldc, batch_count)
     end function rocblas_csyrk_batched_64_native
 
     function rocblas_csyrk_batched_64_typed(handle, uplo, transA, n, k, alpha, A, lda, beta, C, &
@@ -73376,16 +73318,16 @@ contains
       integer(c_int), value :: transA
       integer(c_long), value :: n
       integer(c_long), value :: k
-      complex(c_double_complex), target :: alpha(*)
+      complex(c_double_complex), target :: alpha(..)
       type(c_ptr), value :: A
       integer(c_long), value :: lda
-      complex(c_double_complex), target :: beta(*)
+      complex(c_double_complex), target :: beta(..)
       type(c_ptr), value :: C
       integer(c_long), value :: ldc
       integer(c_long), value :: batch_count
       integer(c_int) :: zsyrk_batched_64
-      zsyrk_batched_64 = rocblas_zsyrk_batched_64_raw(handle, uplo, transA, n, k, c_loc(alpha(1)), &
-        A, lda, c_loc(beta(1)), C, ldc, batch_count)
+      zsyrk_batched_64 = rocblas_zsyrk_batched_64_raw(handle, uplo, transA, n, k, c_loc(alpha), A, &
+        lda, c_loc(beta), C, ldc, batch_count)
     end function rocblas_zsyrk_batched_64_native
 
     function rocblas_zsyrk_batched_64_typed(handle, uplo, transA, n, k, alpha, A, lda, beta, C, &
@@ -73420,17 +73362,17 @@ contains
       integer(c_int), value :: n
       integer(c_int), value :: k
       real(c_float) :: alpha
-      real(c_float), target :: A(*)
+      real(c_float), target :: A(..)
       integer(c_int), value :: lda
       integer(c_long), value :: stride_A
       real(c_float) :: beta
-      real(c_float), target :: C(*)
+      real(c_float), target :: C(..)
       integer(c_int), value :: ldc
       integer(c_long), value :: stride_C
       integer(c_int), value :: batch_count
       integer(c_int) :: ssyrk_strided_batched
       ssyrk_strided_batched = rocblas_ssyrk_strided_batched_raw(handle, uplo, transA, n, k, alpha, &
-        c_loc(A(1)), lda, stride_A, beta, c_loc(C(1)), ldc, stride_C, batch_count)
+        c_loc(A), lda, stride_A, beta, c_loc(C), ldc, stride_C, batch_count)
     end function rocblas_ssyrk_strided_batched_native
 
     function rocblas_ssyrk_strided_batched_typed(handle, uplo, transA, n, k, alpha, A, lda, &
@@ -73467,17 +73409,17 @@ contains
       integer(c_int), value :: n
       integer(c_int), value :: k
       real(c_double) :: alpha
-      real(c_double), target :: A(*)
+      real(c_double), target :: A(..)
       integer(c_int), value :: lda
       integer(c_long), value :: stride_A
       real(c_double) :: beta
-      real(c_double), target :: C(*)
+      real(c_double), target :: C(..)
       integer(c_int), value :: ldc
       integer(c_long), value :: stride_C
       integer(c_int), value :: batch_count
       integer(c_int) :: dsyrk_strided_batched
       dsyrk_strided_batched = rocblas_dsyrk_strided_batched_raw(handle, uplo, transA, n, k, alpha, &
-        c_loc(A(1)), lda, stride_A, beta, c_loc(C(1)), ldc, stride_C, batch_count)
+        c_loc(A), lda, stride_A, beta, c_loc(C), ldc, stride_C, batch_count)
     end function rocblas_dsyrk_strided_batched_native
 
     function rocblas_dsyrk_strided_batched_typed(handle, uplo, transA, n, k, alpha, A, lda, &
@@ -73514,17 +73456,17 @@ contains
       integer(c_int), value :: n
       integer(c_int), value :: k
       complex(c_float_complex) :: alpha
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: A(..)
       integer(c_int), value :: lda
       integer(c_long), value :: stride_A
       complex(c_float_complex) :: beta
-      complex(c_float_complex), target :: C(*)
+      complex(c_float_complex), target :: C(..)
       integer(c_int), value :: ldc
       integer(c_long), value :: stride_C
       integer(c_int), value :: batch_count
       integer(c_int) :: csyrk_strided_batched
       csyrk_strided_batched = rocblas_csyrk_strided_batched_raw(handle, uplo, transA, n, k, alpha, &
-        c_loc(A(1)), lda, stride_A, beta, c_loc(C(1)), ldc, stride_C, batch_count)
+        c_loc(A), lda, stride_A, beta, c_loc(C), ldc, stride_C, batch_count)
     end function rocblas_csyrk_strided_batched_native
 
     function rocblas_csyrk_strided_batched_typed(handle, uplo, transA, n, k, alpha, A, lda, &
@@ -73561,17 +73503,17 @@ contains
       integer(c_int), value :: n
       integer(c_int), value :: k
       complex(c_double_complex) :: alpha
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: A(..)
       integer(c_int), value :: lda
       integer(c_long), value :: stride_A
       complex(c_double_complex) :: beta
-      complex(c_double_complex), target :: C(*)
+      complex(c_double_complex), target :: C(..)
       integer(c_int), value :: ldc
       integer(c_long), value :: stride_C
       integer(c_int), value :: batch_count
       integer(c_int) :: zsyrk_strided_batched
       zsyrk_strided_batched = rocblas_zsyrk_strided_batched_raw(handle, uplo, transA, n, k, alpha, &
-        c_loc(A(1)), lda, stride_A, beta, c_loc(C(1)), ldc, stride_C, batch_count)
+        c_loc(A), lda, stride_A, beta, c_loc(C), ldc, stride_C, batch_count)
     end function rocblas_zsyrk_strided_batched_native
 
     function rocblas_zsyrk_strided_batched_typed(handle, uplo, transA, n, k, alpha, A, lda, &
@@ -73607,19 +73549,18 @@ contains
       integer(c_int), value :: transA
       integer(c_long), value :: n
       integer(c_long), value :: k
-      real(c_float), target :: alpha(*)
-      real(c_float), target :: A(*)
+      real(c_float), target :: alpha(..)
+      real(c_float), target :: A(..)
       integer(c_long), value :: lda
       integer(c_long), value :: stride_A
-      real(c_float), target :: beta(*)
-      real(c_float), target :: C(*)
+      real(c_float), target :: beta(..)
+      real(c_float), target :: C(..)
       integer(c_long), value :: ldc
       integer(c_long), value :: stride_C
       integer(c_long), value :: batch_count
       integer(c_int) :: ssyrk_strided_batched_64
       ssyrk_strided_batched_64 = rocblas_ssyrk_strided_batched_64_raw(handle, uplo, transA, n, k, &
-        c_loc(alpha(1)), c_loc(A(1)), lda, stride_A, c_loc(beta(1)), c_loc(C(1)), ldc, stride_C, &
-        batch_count)
+        c_loc(alpha), c_loc(A), lda, stride_A, c_loc(beta), c_loc(C), ldc, stride_C, batch_count)
     end function rocblas_ssyrk_strided_batched_64_native
 
     function rocblas_ssyrk_strided_batched_64_typed(handle, uplo, transA, n, k, alpha, A, lda, &
@@ -73655,19 +73596,18 @@ contains
       integer(c_int), value :: transA
       integer(c_long), value :: n
       integer(c_long), value :: k
-      real(c_double), target :: alpha(*)
-      real(c_double), target :: A(*)
+      real(c_double), target :: alpha(..)
+      real(c_double), target :: A(..)
       integer(c_long), value :: lda
       integer(c_long), value :: stride_A
-      real(c_double), target :: beta(*)
-      real(c_double), target :: C(*)
+      real(c_double), target :: beta(..)
+      real(c_double), target :: C(..)
       integer(c_long), value :: ldc
       integer(c_long), value :: stride_C
       integer(c_long), value :: batch_count
       integer(c_int) :: dsyrk_strided_batched_64
       dsyrk_strided_batched_64 = rocblas_dsyrk_strided_batched_64_raw(handle, uplo, transA, n, k, &
-        c_loc(alpha(1)), c_loc(A(1)), lda, stride_A, c_loc(beta(1)), c_loc(C(1)), ldc, stride_C, &
-        batch_count)
+        c_loc(alpha), c_loc(A), lda, stride_A, c_loc(beta), c_loc(C), ldc, stride_C, batch_count)
     end function rocblas_dsyrk_strided_batched_64_native
 
     function rocblas_dsyrk_strided_batched_64_typed(handle, uplo, transA, n, k, alpha, A, lda, &
@@ -73703,19 +73643,18 @@ contains
       integer(c_int), value :: transA
       integer(c_long), value :: n
       integer(c_long), value :: k
-      complex(c_float_complex), target :: alpha(*)
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: alpha(..)
+      complex(c_float_complex), target :: A(..)
       integer(c_long), value :: lda
       integer(c_long), value :: stride_A
-      complex(c_float_complex), target :: beta(*)
-      complex(c_float_complex), target :: C(*)
+      complex(c_float_complex), target :: beta(..)
+      complex(c_float_complex), target :: C(..)
       integer(c_long), value :: ldc
       integer(c_long), value :: stride_C
       integer(c_long), value :: batch_count
       integer(c_int) :: csyrk_strided_batched_64
       csyrk_strided_batched_64 = rocblas_csyrk_strided_batched_64_raw(handle, uplo, transA, n, k, &
-        c_loc(alpha(1)), c_loc(A(1)), lda, stride_A, c_loc(beta(1)), c_loc(C(1)), ldc, stride_C, &
-        batch_count)
+        c_loc(alpha), c_loc(A), lda, stride_A, c_loc(beta), c_loc(C), ldc, stride_C, batch_count)
     end function rocblas_csyrk_strided_batched_64_native
 
     function rocblas_csyrk_strided_batched_64_typed(handle, uplo, transA, n, k, alpha, A, lda, &
@@ -73751,19 +73690,18 @@ contains
       integer(c_int), value :: transA
       integer(c_long), value :: n
       integer(c_long), value :: k
-      complex(c_double_complex), target :: alpha(*)
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: alpha(..)
+      complex(c_double_complex), target :: A(..)
       integer(c_long), value :: lda
       integer(c_long), value :: stride_A
-      complex(c_double_complex), target :: beta(*)
-      complex(c_double_complex), target :: C(*)
+      complex(c_double_complex), target :: beta(..)
+      complex(c_double_complex), target :: C(..)
       integer(c_long), value :: ldc
       integer(c_long), value :: stride_C
       integer(c_long), value :: batch_count
       integer(c_int) :: zsyrk_strided_batched_64
       zsyrk_strided_batched_64 = rocblas_zsyrk_strided_batched_64_raw(handle, uplo, transA, n, k, &
-        c_loc(alpha(1)), c_loc(A(1)), lda, stride_A, c_loc(beta(1)), c_loc(C(1)), ldc, stride_C, &
-        batch_count)
+        c_loc(alpha), c_loc(A), lda, stride_A, c_loc(beta), c_loc(C), ldc, stride_C, batch_count)
     end function rocblas_zsyrk_strided_batched_64_native
 
     function rocblas_zsyrk_strided_batched_64_typed(handle, uplo, transA, n, k, alpha, A, lda, &
@@ -73800,16 +73738,16 @@ contains
       integer(c_int), value :: n
       integer(c_int), value :: k
       real(c_float) :: alpha
-      real(c_float), target :: A(*)
+      real(c_float), target :: A(..)
       integer(c_int), value :: lda
-      real(c_float), target :: B(*)
+      real(c_float), target :: B(..)
       integer(c_int), value :: ldb
       real(c_float) :: beta
-      real(c_float), target :: C(*)
+      real(c_float), target :: C(..)
       integer(c_int), value :: ldc
       integer(c_int) :: ssyr2k
-      ssyr2k = rocblas_ssyr2k_raw(handle, uplo, trans, n, k, alpha, c_loc(A(1)), lda, c_loc(B(1)), &
-        ldb, beta, c_loc(C(1)), ldc)
+      ssyr2k = rocblas_ssyr2k_raw(handle, uplo, trans, n, k, alpha, c_loc(A), lda, c_loc(B), ldb, &
+        beta, c_loc(C), ldc)
     end function rocblas_ssyr2k_native
 
     function rocblas_ssyr2k_typed(handle, uplo, trans, n, k, alpha, A, lda, B, ldb, beta, C, &
@@ -73845,16 +73783,16 @@ contains
       integer(c_int), value :: n
       integer(c_int), value :: k
       real(c_double) :: alpha
-      real(c_double), target :: A(*)
+      real(c_double), target :: A(..)
       integer(c_int), value :: lda
-      real(c_double), target :: B(*)
+      real(c_double), target :: B(..)
       integer(c_int), value :: ldb
       real(c_double) :: beta
-      real(c_double), target :: C(*)
+      real(c_double), target :: C(..)
       integer(c_int), value :: ldc
       integer(c_int) :: dsyr2k
-      dsyr2k = rocblas_dsyr2k_raw(handle, uplo, trans, n, k, alpha, c_loc(A(1)), lda, c_loc(B(1)), &
-        ldb, beta, c_loc(C(1)), ldc)
+      dsyr2k = rocblas_dsyr2k_raw(handle, uplo, trans, n, k, alpha, c_loc(A), lda, c_loc(B), ldb, &
+        beta, c_loc(C), ldc)
     end function rocblas_dsyr2k_native
 
     function rocblas_dsyr2k_typed(handle, uplo, trans, n, k, alpha, A, lda, B, ldb, beta, C, &
@@ -73890,16 +73828,16 @@ contains
       integer(c_int), value :: n
       integer(c_int), value :: k
       complex(c_float_complex) :: alpha
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: A(..)
       integer(c_int), value :: lda
-      complex(c_float_complex), target :: B(*)
+      complex(c_float_complex), target :: B(..)
       integer(c_int), value :: ldb
       complex(c_float_complex) :: beta
-      complex(c_float_complex), target :: C(*)
+      complex(c_float_complex), target :: C(..)
       integer(c_int), value :: ldc
       integer(c_int) :: csyr2k
-      csyr2k = rocblas_csyr2k_raw(handle, uplo, trans, n, k, alpha, c_loc(A(1)), lda, c_loc(B(1)), &
-        ldb, beta, c_loc(C(1)), ldc)
+      csyr2k = rocblas_csyr2k_raw(handle, uplo, trans, n, k, alpha, c_loc(A), lda, c_loc(B), ldb, &
+        beta, c_loc(C), ldc)
     end function rocblas_csyr2k_native
 
     function rocblas_csyr2k_typed(handle, uplo, trans, n, k, alpha, A, lda, B, ldb, beta, C, &
@@ -73935,16 +73873,16 @@ contains
       integer(c_int), value :: n
       integer(c_int), value :: k
       complex(c_double_complex) :: alpha
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: A(..)
       integer(c_int), value :: lda
-      complex(c_double_complex), target :: B(*)
+      complex(c_double_complex), target :: B(..)
       integer(c_int), value :: ldb
       complex(c_double_complex) :: beta
-      complex(c_double_complex), target :: C(*)
+      complex(c_double_complex), target :: C(..)
       integer(c_int), value :: ldc
       integer(c_int) :: zsyr2k
-      zsyr2k = rocblas_zsyr2k_raw(handle, uplo, trans, n, k, alpha, c_loc(A(1)), lda, c_loc(B(1)), &
-        ldb, beta, c_loc(C(1)), ldc)
+      zsyr2k = rocblas_zsyr2k_raw(handle, uplo, trans, n, k, alpha, c_loc(A), lda, c_loc(B), ldb, &
+        beta, c_loc(C), ldc)
     end function rocblas_zsyr2k_native
 
     function rocblas_zsyr2k_typed(handle, uplo, trans, n, k, alpha, A, lda, B, ldb, beta, C, &
@@ -73979,17 +73917,17 @@ contains
       integer(c_int), value :: trans
       integer(c_long), value :: n
       integer(c_long), value :: k
-      real(c_float), target :: alpha(*)
-      real(c_float), target :: A(*)
+      real(c_float), target :: alpha(..)
+      real(c_float), target :: A(..)
       integer(c_long), value :: lda
-      real(c_float), target :: B(*)
+      real(c_float), target :: B(..)
       integer(c_long), value :: ldb
-      real(c_float), target :: beta(*)
-      real(c_float), target :: C(*)
+      real(c_float), target :: beta(..)
+      real(c_float), target :: C(..)
       integer(c_long), value :: ldc
       integer(c_int) :: ssyr2k_64
-      ssyr2k_64 = rocblas_ssyr2k_64_raw(handle, uplo, trans, n, k, c_loc(alpha(1)), c_loc(A(1)), &
-        lda, c_loc(B(1)), ldb, c_loc(beta(1)), c_loc(C(1)), ldc)
+      ssyr2k_64 = rocblas_ssyr2k_64_raw(handle, uplo, trans, n, k, c_loc(alpha), c_loc(A), lda, &
+        c_loc(B), ldb, c_loc(beta), c_loc(C), ldc)
     end function rocblas_ssyr2k_64_native
 
     function rocblas_ssyr2k_64_typed(handle, uplo, trans, n, k, alpha, A, lda, B, ldb, beta, C, &
@@ -74024,17 +73962,17 @@ contains
       integer(c_int), value :: trans
       integer(c_long), value :: n
       integer(c_long), value :: k
-      real(c_double), target :: alpha(*)
-      real(c_double), target :: A(*)
+      real(c_double), target :: alpha(..)
+      real(c_double), target :: A(..)
       integer(c_long), value :: lda
-      real(c_double), target :: B(*)
+      real(c_double), target :: B(..)
       integer(c_long), value :: ldb
-      real(c_double), target :: beta(*)
-      real(c_double), target :: C(*)
+      real(c_double), target :: beta(..)
+      real(c_double), target :: C(..)
       integer(c_long), value :: ldc
       integer(c_int) :: dsyr2k_64
-      dsyr2k_64 = rocblas_dsyr2k_64_raw(handle, uplo, trans, n, k, c_loc(alpha(1)), c_loc(A(1)), &
-        lda, c_loc(B(1)), ldb, c_loc(beta(1)), c_loc(C(1)), ldc)
+      dsyr2k_64 = rocblas_dsyr2k_64_raw(handle, uplo, trans, n, k, c_loc(alpha), c_loc(A), lda, &
+        c_loc(B), ldb, c_loc(beta), c_loc(C), ldc)
     end function rocblas_dsyr2k_64_native
 
     function rocblas_dsyr2k_64_typed(handle, uplo, trans, n, k, alpha, A, lda, B, ldb, beta, C, &
@@ -74069,17 +74007,17 @@ contains
       integer(c_int), value :: trans
       integer(c_long), value :: n
       integer(c_long), value :: k
-      complex(c_float_complex), target :: alpha(*)
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: alpha(..)
+      complex(c_float_complex), target :: A(..)
       integer(c_long), value :: lda
-      complex(c_float_complex), target :: B(*)
+      complex(c_float_complex), target :: B(..)
       integer(c_long), value :: ldb
-      complex(c_float_complex), target :: beta(*)
-      complex(c_float_complex), target :: C(*)
+      complex(c_float_complex), target :: beta(..)
+      complex(c_float_complex), target :: C(..)
       integer(c_long), value :: ldc
       integer(c_int) :: csyr2k_64
-      csyr2k_64 = rocblas_csyr2k_64_raw(handle, uplo, trans, n, k, c_loc(alpha(1)), c_loc(A(1)), &
-        lda, c_loc(B(1)), ldb, c_loc(beta(1)), c_loc(C(1)), ldc)
+      csyr2k_64 = rocblas_csyr2k_64_raw(handle, uplo, trans, n, k, c_loc(alpha), c_loc(A), lda, &
+        c_loc(B), ldb, c_loc(beta), c_loc(C), ldc)
     end function rocblas_csyr2k_64_native
 
     function rocblas_csyr2k_64_typed(handle, uplo, trans, n, k, alpha, A, lda, B, ldb, beta, C, &
@@ -74114,17 +74052,17 @@ contains
       integer(c_int), value :: trans
       integer(c_long), value :: n
       integer(c_long), value :: k
-      complex(c_double_complex), target :: alpha(*)
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: alpha(..)
+      complex(c_double_complex), target :: A(..)
       integer(c_long), value :: lda
-      complex(c_double_complex), target :: B(*)
+      complex(c_double_complex), target :: B(..)
       integer(c_long), value :: ldb
-      complex(c_double_complex), target :: beta(*)
-      complex(c_double_complex), target :: C(*)
+      complex(c_double_complex), target :: beta(..)
+      complex(c_double_complex), target :: C(..)
       integer(c_long), value :: ldc
       integer(c_int) :: zsyr2k_64
-      zsyr2k_64 = rocblas_zsyr2k_64_raw(handle, uplo, trans, n, k, c_loc(alpha(1)), c_loc(A(1)), &
-        lda, c_loc(B(1)), ldb, c_loc(beta(1)), c_loc(C(1)), ldc)
+      zsyr2k_64 = rocblas_zsyr2k_64_raw(handle, uplo, trans, n, k, c_loc(alpha), c_loc(A), lda, &
+        c_loc(B), ldb, c_loc(beta), c_loc(C), ldc)
     end function rocblas_zsyr2k_64_native
 
     function rocblas_zsyr2k_64_typed(handle, uplo, trans, n, k, alpha, A, lda, B, ldb, beta, C, &
@@ -74255,18 +74193,18 @@ contains
       integer(c_int), value :: trans
       integer(c_long), value :: n
       integer(c_long), value :: k
-      real(c_float), target :: alpha(*)
+      real(c_float), target :: alpha(..)
       type(c_ptr), value :: A
       integer(c_long), value :: lda
       type(c_ptr), value :: B
       integer(c_long), value :: ldb
-      real(c_float), target :: beta(*)
+      real(c_float), target :: beta(..)
       type(c_ptr), value :: C
       integer(c_long), value :: ldc
       integer(c_long), value :: batch_count
       integer(c_int) :: ssyr2k_batched_64
-      ssyr2k_batched_64 = rocblas_ssyr2k_batched_64_raw(handle, uplo, trans, n, k, c_loc(alpha( &
-        1)), A, lda, B, ldb, c_loc(beta(1)), C, ldc, batch_count)
+      ssyr2k_batched_64 = rocblas_ssyr2k_batched_64_raw(handle, uplo, trans, n, k, c_loc(alpha), &
+        A, lda, B, ldb, c_loc(beta), C, ldc, batch_count)
     end function rocblas_ssyr2k_batched_64_native
 
     function rocblas_ssyr2k_batched_64_typed(handle, uplo, trans, n, k, alpha, A, lda, B, ldb, &
@@ -74302,18 +74240,18 @@ contains
       integer(c_int), value :: trans
       integer(c_long), value :: n
       integer(c_long), value :: k
-      real(c_double), target :: alpha(*)
+      real(c_double), target :: alpha(..)
       type(c_ptr), value :: A
       integer(c_long), value :: lda
       type(c_ptr), value :: B
       integer(c_long), value :: ldb
-      real(c_double), target :: beta(*)
+      real(c_double), target :: beta(..)
       type(c_ptr), value :: C
       integer(c_long), value :: ldc
       integer(c_long), value :: batch_count
       integer(c_int) :: dsyr2k_batched_64
-      dsyr2k_batched_64 = rocblas_dsyr2k_batched_64_raw(handle, uplo, trans, n, k, c_loc(alpha( &
-        1)), A, lda, B, ldb, c_loc(beta(1)), C, ldc, batch_count)
+      dsyr2k_batched_64 = rocblas_dsyr2k_batched_64_raw(handle, uplo, trans, n, k, c_loc(alpha), &
+        A, lda, B, ldb, c_loc(beta), C, ldc, batch_count)
     end function rocblas_dsyr2k_batched_64_native
 
     function rocblas_dsyr2k_batched_64_typed(handle, uplo, trans, n, k, alpha, A, lda, B, ldb, &
@@ -74349,18 +74287,18 @@ contains
       integer(c_int), value :: trans
       integer(c_long), value :: n
       integer(c_long), value :: k
-      complex(c_float_complex), target :: alpha(*)
+      complex(c_float_complex), target :: alpha(..)
       type(c_ptr), value :: A
       integer(c_long), value :: lda
       type(c_ptr), value :: B
       integer(c_long), value :: ldb
-      complex(c_float_complex), target :: beta(*)
+      complex(c_float_complex), target :: beta(..)
       type(c_ptr), value :: C
       integer(c_long), value :: ldc
       integer(c_long), value :: batch_count
       integer(c_int) :: csyr2k_batched_64
-      csyr2k_batched_64 = rocblas_csyr2k_batched_64_raw(handle, uplo, trans, n, k, c_loc(alpha( &
-        1)), A, lda, B, ldb, c_loc(beta(1)), C, ldc, batch_count)
+      csyr2k_batched_64 = rocblas_csyr2k_batched_64_raw(handle, uplo, trans, n, k, c_loc(alpha), &
+        A, lda, B, ldb, c_loc(beta), C, ldc, batch_count)
     end function rocblas_csyr2k_batched_64_native
 
     function rocblas_csyr2k_batched_64_typed(handle, uplo, trans, n, k, alpha, A, lda, B, ldb, &
@@ -74396,18 +74334,18 @@ contains
       integer(c_int), value :: trans
       integer(c_long), value :: n
       integer(c_long), value :: k
-      complex(c_double_complex), target :: alpha(*)
+      complex(c_double_complex), target :: alpha(..)
       type(c_ptr), value :: A
       integer(c_long), value :: lda
       type(c_ptr), value :: B
       integer(c_long), value :: ldb
-      complex(c_double_complex), target :: beta(*)
+      complex(c_double_complex), target :: beta(..)
       type(c_ptr), value :: C
       integer(c_long), value :: ldc
       integer(c_long), value :: batch_count
       integer(c_int) :: zsyr2k_batched_64
-      zsyr2k_batched_64 = rocblas_zsyr2k_batched_64_raw(handle, uplo, trans, n, k, c_loc(alpha( &
-        1)), A, lda, B, ldb, c_loc(beta(1)), C, ldc, batch_count)
+      zsyr2k_batched_64 = rocblas_zsyr2k_batched_64_raw(handle, uplo, trans, n, k, c_loc(alpha), &
+        A, lda, B, ldb, c_loc(beta), C, ldc, batch_count)
     end function rocblas_zsyr2k_batched_64_native
 
     function rocblas_zsyr2k_batched_64_typed(handle, uplo, trans, n, k, alpha, A, lda, B, ldb, &
@@ -74445,21 +74383,21 @@ contains
       integer(c_int), value :: n
       integer(c_int), value :: k
       real(c_float) :: alpha
-      real(c_float), target :: A(*)
+      real(c_float), target :: A(..)
       integer(c_int), value :: lda
       integer(c_long), value :: stride_A
-      real(c_float), target :: B(*)
+      real(c_float), target :: B(..)
       integer(c_int), value :: ldb
       integer(c_long), value :: stride_B
       real(c_float) :: beta
-      real(c_float), target :: C(*)
+      real(c_float), target :: C(..)
       integer(c_int), value :: ldc
       integer(c_long), value :: stride_C
       integer(c_int), value :: batch_count
       integer(c_int) :: ssyr2k_strided_batched
       ssyr2k_strided_batched = rocblas_ssyr2k_strided_batched_raw(handle, uplo, trans, n, k, &
-        alpha, c_loc(A(1)), lda, stride_A, c_loc(B(1)), ldb, stride_B, beta, c_loc(C(1)), ldc, &
-        stride_C, batch_count)
+        alpha, c_loc(A), lda, stride_A, c_loc(B), ldb, stride_B, beta, c_loc(C), ldc, stride_C, &
+        batch_count)
     end function rocblas_ssyr2k_strided_batched_native
 
     function rocblas_ssyr2k_strided_batched_typed(handle, uplo, trans, n, k, alpha, A, lda, &
@@ -74501,21 +74439,21 @@ contains
       integer(c_int), value :: n
       integer(c_int), value :: k
       real(c_double) :: alpha
-      real(c_double), target :: A(*)
+      real(c_double), target :: A(..)
       integer(c_int), value :: lda
       integer(c_long), value :: stride_A
-      real(c_double), target :: B(*)
+      real(c_double), target :: B(..)
       integer(c_int), value :: ldb
       integer(c_long), value :: stride_B
       real(c_double) :: beta
-      real(c_double), target :: C(*)
+      real(c_double), target :: C(..)
       integer(c_int), value :: ldc
       integer(c_long), value :: stride_C
       integer(c_int), value :: batch_count
       integer(c_int) :: dsyr2k_strided_batched
       dsyr2k_strided_batched = rocblas_dsyr2k_strided_batched_raw(handle, uplo, trans, n, k, &
-        alpha, c_loc(A(1)), lda, stride_A, c_loc(B(1)), ldb, stride_B, beta, c_loc(C(1)), ldc, &
-        stride_C, batch_count)
+        alpha, c_loc(A), lda, stride_A, c_loc(B), ldb, stride_B, beta, c_loc(C), ldc, stride_C, &
+        batch_count)
     end function rocblas_dsyr2k_strided_batched_native
 
     function rocblas_dsyr2k_strided_batched_typed(handle, uplo, trans, n, k, alpha, A, lda, &
@@ -74557,21 +74495,21 @@ contains
       integer(c_int), value :: n
       integer(c_int), value :: k
       complex(c_float_complex) :: alpha
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: A(..)
       integer(c_int), value :: lda
       integer(c_long), value :: stride_A
-      complex(c_float_complex), target :: B(*)
+      complex(c_float_complex), target :: B(..)
       integer(c_int), value :: ldb
       integer(c_long), value :: stride_B
       complex(c_float_complex) :: beta
-      complex(c_float_complex), target :: C(*)
+      complex(c_float_complex), target :: C(..)
       integer(c_int), value :: ldc
       integer(c_long), value :: stride_C
       integer(c_int), value :: batch_count
       integer(c_int) :: csyr2k_strided_batched
       csyr2k_strided_batched = rocblas_csyr2k_strided_batched_raw(handle, uplo, trans, n, k, &
-        alpha, c_loc(A(1)), lda, stride_A, c_loc(B(1)), ldb, stride_B, beta, c_loc(C(1)), ldc, &
-        stride_C, batch_count)
+        alpha, c_loc(A), lda, stride_A, c_loc(B), ldb, stride_B, beta, c_loc(C), ldc, stride_C, &
+        batch_count)
     end function rocblas_csyr2k_strided_batched_native
 
     function rocblas_csyr2k_strided_batched_typed(handle, uplo, trans, n, k, alpha, A, lda, &
@@ -74613,21 +74551,21 @@ contains
       integer(c_int), value :: n
       integer(c_int), value :: k
       complex(c_double_complex) :: alpha
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: A(..)
       integer(c_int), value :: lda
       integer(c_long), value :: stride_A
-      complex(c_double_complex), target :: B(*)
+      complex(c_double_complex), target :: B(..)
       integer(c_int), value :: ldb
       integer(c_long), value :: stride_B
       complex(c_double_complex) :: beta
-      complex(c_double_complex), target :: C(*)
+      complex(c_double_complex), target :: C(..)
       integer(c_int), value :: ldc
       integer(c_long), value :: stride_C
       integer(c_int), value :: batch_count
       integer(c_int) :: zsyr2k_strided_batched
       zsyr2k_strided_batched = rocblas_zsyr2k_strided_batched_raw(handle, uplo, trans, n, k, &
-        alpha, c_loc(A(1)), lda, stride_A, c_loc(B(1)), ldb, stride_B, beta, c_loc(C(1)), ldc, &
-        stride_C, batch_count)
+        alpha, c_loc(A), lda, stride_A, c_loc(B), ldb, stride_B, beta, c_loc(C), ldc, stride_C, &
+        batch_count)
     end function rocblas_zsyr2k_strided_batched_native
 
     function rocblas_zsyr2k_strided_batched_typed(handle, uplo, trans, n, k, alpha, A, lda, &
@@ -74668,22 +74606,22 @@ contains
       integer(c_int), value :: trans
       integer(c_long), value :: n
       integer(c_long), value :: k
-      real(c_float), target :: alpha(*)
-      real(c_float), target :: A(*)
+      real(c_float), target :: alpha(..)
+      real(c_float), target :: A(..)
       integer(c_long), value :: lda
       integer(c_long), value :: stride_A
-      real(c_float), target :: B(*)
+      real(c_float), target :: B(..)
       integer(c_long), value :: ldb
       integer(c_long), value :: stride_B
-      real(c_float), target :: beta(*)
-      real(c_float), target :: C(*)
+      real(c_float), target :: beta(..)
+      real(c_float), target :: C(..)
       integer(c_long), value :: ldc
       integer(c_long), value :: stride_C
       integer(c_long), value :: batch_count
       integer(c_int) :: ssyr2k_strided_batched_64
       ssyr2k_strided_batched_64 = rocblas_ssyr2k_strided_batched_64_raw(handle, uplo, trans, n, k, &
-        c_loc(alpha(1)), c_loc(A(1)), lda, stride_A, c_loc(B(1)), ldb, stride_B, c_loc(beta(1)), &
-        c_loc(C(1)), ldc, stride_C, batch_count)
+        c_loc(alpha), c_loc(A), lda, stride_A, c_loc(B), ldb, stride_B, c_loc(beta), c_loc(C), &
+        ldc, stride_C, batch_count)
     end function rocblas_ssyr2k_strided_batched_64_native
 
     function rocblas_ssyr2k_strided_batched_64_typed(handle, uplo, trans, n, k, alpha, A, lda, &
@@ -74724,22 +74662,22 @@ contains
       integer(c_int), value :: trans
       integer(c_long), value :: n
       integer(c_long), value :: k
-      real(c_double), target :: alpha(*)
-      real(c_double), target :: A(*)
+      real(c_double), target :: alpha(..)
+      real(c_double), target :: A(..)
       integer(c_long), value :: lda
       integer(c_long), value :: stride_A
-      real(c_double), target :: B(*)
+      real(c_double), target :: B(..)
       integer(c_long), value :: ldb
       integer(c_long), value :: stride_B
-      real(c_double), target :: beta(*)
-      real(c_double), target :: C(*)
+      real(c_double), target :: beta(..)
+      real(c_double), target :: C(..)
       integer(c_long), value :: ldc
       integer(c_long), value :: stride_C
       integer(c_long), value :: batch_count
       integer(c_int) :: dsyr2k_strided_batched_64
       dsyr2k_strided_batched_64 = rocblas_dsyr2k_strided_batched_64_raw(handle, uplo, trans, n, k, &
-        c_loc(alpha(1)), c_loc(A(1)), lda, stride_A, c_loc(B(1)), ldb, stride_B, c_loc(beta(1)), &
-        c_loc(C(1)), ldc, stride_C, batch_count)
+        c_loc(alpha), c_loc(A), lda, stride_A, c_loc(B), ldb, stride_B, c_loc(beta), c_loc(C), &
+        ldc, stride_C, batch_count)
     end function rocblas_dsyr2k_strided_batched_64_native
 
     function rocblas_dsyr2k_strided_batched_64_typed(handle, uplo, trans, n, k, alpha, A, lda, &
@@ -74780,22 +74718,22 @@ contains
       integer(c_int), value :: trans
       integer(c_long), value :: n
       integer(c_long), value :: k
-      complex(c_float_complex), target :: alpha(*)
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: alpha(..)
+      complex(c_float_complex), target :: A(..)
       integer(c_long), value :: lda
       integer(c_long), value :: stride_A
-      complex(c_float_complex), target :: B(*)
+      complex(c_float_complex), target :: B(..)
       integer(c_long), value :: ldb
       integer(c_long), value :: stride_B
-      complex(c_float_complex), target :: beta(*)
-      complex(c_float_complex), target :: C(*)
+      complex(c_float_complex), target :: beta(..)
+      complex(c_float_complex), target :: C(..)
       integer(c_long), value :: ldc
       integer(c_long), value :: stride_C
       integer(c_long), value :: batch_count
       integer(c_int) :: csyr2k_strided_batched_64
       csyr2k_strided_batched_64 = rocblas_csyr2k_strided_batched_64_raw(handle, uplo, trans, n, k, &
-        c_loc(alpha(1)), c_loc(A(1)), lda, stride_A, c_loc(B(1)), ldb, stride_B, c_loc(beta(1)), &
-        c_loc(C(1)), ldc, stride_C, batch_count)
+        c_loc(alpha), c_loc(A), lda, stride_A, c_loc(B), ldb, stride_B, c_loc(beta), c_loc(C), &
+        ldc, stride_C, batch_count)
     end function rocblas_csyr2k_strided_batched_64_native
 
     function rocblas_csyr2k_strided_batched_64_typed(handle, uplo, trans, n, k, alpha, A, lda, &
@@ -74836,22 +74774,22 @@ contains
       integer(c_int), value :: trans
       integer(c_long), value :: n
       integer(c_long), value :: k
-      complex(c_double_complex), target :: alpha(*)
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: alpha(..)
+      complex(c_double_complex), target :: A(..)
       integer(c_long), value :: lda
       integer(c_long), value :: stride_A
-      complex(c_double_complex), target :: B(*)
+      complex(c_double_complex), target :: B(..)
       integer(c_long), value :: ldb
       integer(c_long), value :: stride_B
-      complex(c_double_complex), target :: beta(*)
-      complex(c_double_complex), target :: C(*)
+      complex(c_double_complex), target :: beta(..)
+      complex(c_double_complex), target :: C(..)
       integer(c_long), value :: ldc
       integer(c_long), value :: stride_C
       integer(c_long), value :: batch_count
       integer(c_int) :: zsyr2k_strided_batched_64
       zsyr2k_strided_batched_64 = rocblas_zsyr2k_strided_batched_64_raw(handle, uplo, trans, n, k, &
-        c_loc(alpha(1)), c_loc(A(1)), lda, stride_A, c_loc(B(1)), ldb, stride_B, c_loc(beta(1)), &
-        c_loc(C(1)), ldc, stride_C, batch_count)
+        c_loc(alpha), c_loc(A), lda, stride_A, c_loc(B), ldb, stride_B, c_loc(beta), c_loc(C), &
+        ldc, stride_C, batch_count)
     end function rocblas_zsyr2k_strided_batched_64_native
 
     function rocblas_zsyr2k_strided_batched_64_typed(handle, uplo, trans, n, k, alpha, A, lda, &
@@ -74892,16 +74830,16 @@ contains
       integer(c_int), value :: n
       integer(c_int), value :: k
       real(c_float) :: alpha
-      real(c_float), target :: A(*)
+      real(c_float), target :: A(..)
       integer(c_int), value :: lda
-      real(c_float), target :: B(*)
+      real(c_float), target :: B(..)
       integer(c_int), value :: ldb
       real(c_float) :: beta
-      real(c_float), target :: C(*)
+      real(c_float), target :: C(..)
       integer(c_int), value :: ldc
       integer(c_int) :: ssyrkx
-      ssyrkx = rocblas_ssyrkx_raw(handle, uplo, trans, n, k, alpha, c_loc(A(1)), lda, c_loc(B(1)), &
-        ldb, beta, c_loc(C(1)), ldc)
+      ssyrkx = rocblas_ssyrkx_raw(handle, uplo, trans, n, k, alpha, c_loc(A), lda, c_loc(B), ldb, &
+        beta, c_loc(C), ldc)
     end function rocblas_ssyrkx_native
 
     function rocblas_ssyrkx_typed(handle, uplo, trans, n, k, alpha, A, lda, B, ldb, beta, C, &
@@ -74937,16 +74875,16 @@ contains
       integer(c_int), value :: n
       integer(c_int), value :: k
       real(c_double) :: alpha
-      real(c_double), target :: A(*)
+      real(c_double), target :: A(..)
       integer(c_int), value :: lda
-      real(c_double), target :: B(*)
+      real(c_double), target :: B(..)
       integer(c_int), value :: ldb
       real(c_double) :: beta
-      real(c_double), target :: C(*)
+      real(c_double), target :: C(..)
       integer(c_int), value :: ldc
       integer(c_int) :: dsyrkx
-      dsyrkx = rocblas_dsyrkx_raw(handle, uplo, trans, n, k, alpha, c_loc(A(1)), lda, c_loc(B(1)), &
-        ldb, beta, c_loc(C(1)), ldc)
+      dsyrkx = rocblas_dsyrkx_raw(handle, uplo, trans, n, k, alpha, c_loc(A), lda, c_loc(B), ldb, &
+        beta, c_loc(C), ldc)
     end function rocblas_dsyrkx_native
 
     function rocblas_dsyrkx_typed(handle, uplo, trans, n, k, alpha, A, lda, B, ldb, beta, C, &
@@ -74982,16 +74920,16 @@ contains
       integer(c_int), value :: n
       integer(c_int), value :: k
       complex(c_float_complex) :: alpha
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: A(..)
       integer(c_int), value :: lda
-      complex(c_float_complex), target :: B(*)
+      complex(c_float_complex), target :: B(..)
       integer(c_int), value :: ldb
       complex(c_float_complex) :: beta
-      complex(c_float_complex), target :: C(*)
+      complex(c_float_complex), target :: C(..)
       integer(c_int), value :: ldc
       integer(c_int) :: csyrkx
-      csyrkx = rocblas_csyrkx_raw(handle, uplo, trans, n, k, alpha, c_loc(A(1)), lda, c_loc(B(1)), &
-        ldb, beta, c_loc(C(1)), ldc)
+      csyrkx = rocblas_csyrkx_raw(handle, uplo, trans, n, k, alpha, c_loc(A), lda, c_loc(B), ldb, &
+        beta, c_loc(C), ldc)
     end function rocblas_csyrkx_native
 
     function rocblas_csyrkx_typed(handle, uplo, trans, n, k, alpha, A, lda, B, ldb, beta, C, &
@@ -75027,16 +74965,16 @@ contains
       integer(c_int), value :: n
       integer(c_int), value :: k
       complex(c_double_complex) :: alpha
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: A(..)
       integer(c_int), value :: lda
-      complex(c_double_complex), target :: B(*)
+      complex(c_double_complex), target :: B(..)
       integer(c_int), value :: ldb
       complex(c_double_complex) :: beta
-      complex(c_double_complex), target :: C(*)
+      complex(c_double_complex), target :: C(..)
       integer(c_int), value :: ldc
       integer(c_int) :: zsyrkx
-      zsyrkx = rocblas_zsyrkx_raw(handle, uplo, trans, n, k, alpha, c_loc(A(1)), lda, c_loc(B(1)), &
-        ldb, beta, c_loc(C(1)), ldc)
+      zsyrkx = rocblas_zsyrkx_raw(handle, uplo, trans, n, k, alpha, c_loc(A), lda, c_loc(B), ldb, &
+        beta, c_loc(C), ldc)
     end function rocblas_zsyrkx_native
 
     function rocblas_zsyrkx_typed(handle, uplo, trans, n, k, alpha, A, lda, B, ldb, beta, C, &
@@ -75071,17 +75009,17 @@ contains
       integer(c_int), value :: trans
       integer(c_long), value :: n
       integer(c_long), value :: k
-      real(c_float), target :: alpha(*)
-      real(c_float), target :: A(*)
+      real(c_float), target :: alpha(..)
+      real(c_float), target :: A(..)
       integer(c_long), value :: lda
-      real(c_float), target :: B(*)
+      real(c_float), target :: B(..)
       integer(c_long), value :: ldb
-      real(c_float), target :: beta(*)
-      real(c_float), target :: C(*)
+      real(c_float), target :: beta(..)
+      real(c_float), target :: C(..)
       integer(c_long), value :: ldc
       integer(c_int) :: ssyrkx_64
-      ssyrkx_64 = rocblas_ssyrkx_64_raw(handle, uplo, trans, n, k, c_loc(alpha(1)), c_loc(A(1)), &
-        lda, c_loc(B(1)), ldb, c_loc(beta(1)), c_loc(C(1)), ldc)
+      ssyrkx_64 = rocblas_ssyrkx_64_raw(handle, uplo, trans, n, k, c_loc(alpha), c_loc(A), lda, &
+        c_loc(B), ldb, c_loc(beta), c_loc(C), ldc)
     end function rocblas_ssyrkx_64_native
 
     function rocblas_ssyrkx_64_typed(handle, uplo, trans, n, k, alpha, A, lda, B, ldb, beta, C, &
@@ -75116,17 +75054,17 @@ contains
       integer(c_int), value :: trans
       integer(c_long), value :: n
       integer(c_long), value :: k
-      real(c_double), target :: alpha(*)
-      real(c_double), target :: A(*)
+      real(c_double), target :: alpha(..)
+      real(c_double), target :: A(..)
       integer(c_long), value :: lda
-      real(c_double), target :: B(*)
+      real(c_double), target :: B(..)
       integer(c_long), value :: ldb
-      real(c_double), target :: beta(*)
-      real(c_double), target :: C(*)
+      real(c_double), target :: beta(..)
+      real(c_double), target :: C(..)
       integer(c_long), value :: ldc
       integer(c_int) :: dsyrkx_64
-      dsyrkx_64 = rocblas_dsyrkx_64_raw(handle, uplo, trans, n, k, c_loc(alpha(1)), c_loc(A(1)), &
-        lda, c_loc(B(1)), ldb, c_loc(beta(1)), c_loc(C(1)), ldc)
+      dsyrkx_64 = rocblas_dsyrkx_64_raw(handle, uplo, trans, n, k, c_loc(alpha), c_loc(A), lda, &
+        c_loc(B), ldb, c_loc(beta), c_loc(C), ldc)
     end function rocblas_dsyrkx_64_native
 
     function rocblas_dsyrkx_64_typed(handle, uplo, trans, n, k, alpha, A, lda, B, ldb, beta, C, &
@@ -75161,17 +75099,17 @@ contains
       integer(c_int), value :: trans
       integer(c_long), value :: n
       integer(c_long), value :: k
-      complex(c_float_complex), target :: alpha(*)
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: alpha(..)
+      complex(c_float_complex), target :: A(..)
       integer(c_long), value :: lda
-      complex(c_float_complex), target :: B(*)
+      complex(c_float_complex), target :: B(..)
       integer(c_long), value :: ldb
-      complex(c_float_complex), target :: beta(*)
-      complex(c_float_complex), target :: C(*)
+      complex(c_float_complex), target :: beta(..)
+      complex(c_float_complex), target :: C(..)
       integer(c_long), value :: ldc
       integer(c_int) :: csyrkx_64
-      csyrkx_64 = rocblas_csyrkx_64_raw(handle, uplo, trans, n, k, c_loc(alpha(1)), c_loc(A(1)), &
-        lda, c_loc(B(1)), ldb, c_loc(beta(1)), c_loc(C(1)), ldc)
+      csyrkx_64 = rocblas_csyrkx_64_raw(handle, uplo, trans, n, k, c_loc(alpha), c_loc(A), lda, &
+        c_loc(B), ldb, c_loc(beta), c_loc(C), ldc)
     end function rocblas_csyrkx_64_native
 
     function rocblas_csyrkx_64_typed(handle, uplo, trans, n, k, alpha, A, lda, B, ldb, beta, C, &
@@ -75206,17 +75144,17 @@ contains
       integer(c_int), value :: trans
       integer(c_long), value :: n
       integer(c_long), value :: k
-      complex(c_double_complex), target :: alpha(*)
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: alpha(..)
+      complex(c_double_complex), target :: A(..)
       integer(c_long), value :: lda
-      complex(c_double_complex), target :: B(*)
+      complex(c_double_complex), target :: B(..)
       integer(c_long), value :: ldb
-      complex(c_double_complex), target :: beta(*)
-      complex(c_double_complex), target :: C(*)
+      complex(c_double_complex), target :: beta(..)
+      complex(c_double_complex), target :: C(..)
       integer(c_long), value :: ldc
       integer(c_int) :: zsyrkx_64
-      zsyrkx_64 = rocblas_zsyrkx_64_raw(handle, uplo, trans, n, k, c_loc(alpha(1)), c_loc(A(1)), &
-        lda, c_loc(B(1)), ldb, c_loc(beta(1)), c_loc(C(1)), ldc)
+      zsyrkx_64 = rocblas_zsyrkx_64_raw(handle, uplo, trans, n, k, c_loc(alpha), c_loc(A), lda, &
+        c_loc(B), ldb, c_loc(beta), c_loc(C), ldc)
     end function rocblas_zsyrkx_64_native
 
     function rocblas_zsyrkx_64_typed(handle, uplo, trans, n, k, alpha, A, lda, B, ldb, beta, C, &
@@ -75347,18 +75285,18 @@ contains
       integer(c_int), value :: trans
       integer(c_long), value :: n
       integer(c_long), value :: k
-      real(c_float), target :: alpha(*)
+      real(c_float), target :: alpha(..)
       type(c_ptr), value :: A
       integer(c_long), value :: lda
       type(c_ptr), value :: B
       integer(c_long), value :: ldb
-      real(c_float), target :: beta(*)
+      real(c_float), target :: beta(..)
       type(c_ptr), value :: C
       integer(c_long), value :: ldc
       integer(c_long), value :: batch_count
       integer(c_int) :: ssyrkx_batched_64
-      ssyrkx_batched_64 = rocblas_ssyrkx_batched_64_raw(handle, uplo, trans, n, k, c_loc(alpha( &
-        1)), A, lda, B, ldb, c_loc(beta(1)), C, ldc, batch_count)
+      ssyrkx_batched_64 = rocblas_ssyrkx_batched_64_raw(handle, uplo, trans, n, k, c_loc(alpha), &
+        A, lda, B, ldb, c_loc(beta), C, ldc, batch_count)
     end function rocblas_ssyrkx_batched_64_native
 
     function rocblas_ssyrkx_batched_64_typed(handle, uplo, trans, n, k, alpha, A, lda, B, ldb, &
@@ -75394,18 +75332,18 @@ contains
       integer(c_int), value :: trans
       integer(c_long), value :: n
       integer(c_long), value :: k
-      real(c_double), target :: alpha(*)
+      real(c_double), target :: alpha(..)
       type(c_ptr), value :: A
       integer(c_long), value :: lda
       type(c_ptr), value :: B
       integer(c_long), value :: ldb
-      real(c_double), target :: beta(*)
+      real(c_double), target :: beta(..)
       type(c_ptr), value :: C
       integer(c_long), value :: ldc
       integer(c_long), value :: batch_count
       integer(c_int) :: dsyrkx_batched_64
-      dsyrkx_batched_64 = rocblas_dsyrkx_batched_64_raw(handle, uplo, trans, n, k, c_loc(alpha( &
-        1)), A, lda, B, ldb, c_loc(beta(1)), C, ldc, batch_count)
+      dsyrkx_batched_64 = rocblas_dsyrkx_batched_64_raw(handle, uplo, trans, n, k, c_loc(alpha), &
+        A, lda, B, ldb, c_loc(beta), C, ldc, batch_count)
     end function rocblas_dsyrkx_batched_64_native
 
     function rocblas_dsyrkx_batched_64_typed(handle, uplo, trans, n, k, alpha, A, lda, B, ldb, &
@@ -75441,18 +75379,18 @@ contains
       integer(c_int), value :: trans
       integer(c_long), value :: n
       integer(c_long), value :: k
-      complex(c_float_complex), target :: alpha(*)
+      complex(c_float_complex), target :: alpha(..)
       type(c_ptr), value :: A
       integer(c_long), value :: lda
       type(c_ptr), value :: B
       integer(c_long), value :: ldb
-      complex(c_float_complex), target :: beta(*)
+      complex(c_float_complex), target :: beta(..)
       type(c_ptr), value :: C
       integer(c_long), value :: ldc
       integer(c_long), value :: batch_count
       integer(c_int) :: csyrkx_batched_64
-      csyrkx_batched_64 = rocblas_csyrkx_batched_64_raw(handle, uplo, trans, n, k, c_loc(alpha( &
-        1)), A, lda, B, ldb, c_loc(beta(1)), C, ldc, batch_count)
+      csyrkx_batched_64 = rocblas_csyrkx_batched_64_raw(handle, uplo, trans, n, k, c_loc(alpha), &
+        A, lda, B, ldb, c_loc(beta), C, ldc, batch_count)
     end function rocblas_csyrkx_batched_64_native
 
     function rocblas_csyrkx_batched_64_typed(handle, uplo, trans, n, k, alpha, A, lda, B, ldb, &
@@ -75488,18 +75426,18 @@ contains
       integer(c_int), value :: trans
       integer(c_long), value :: n
       integer(c_long), value :: k
-      complex(c_double_complex), target :: alpha(*)
+      complex(c_double_complex), target :: alpha(..)
       type(c_ptr), value :: A
       integer(c_long), value :: lda
       type(c_ptr), value :: B
       integer(c_long), value :: ldb
-      complex(c_double_complex), target :: beta(*)
+      complex(c_double_complex), target :: beta(..)
       type(c_ptr), value :: C
       integer(c_long), value :: ldc
       integer(c_long), value :: batch_count
       integer(c_int) :: zsyrkx_batched_64
-      zsyrkx_batched_64 = rocblas_zsyrkx_batched_64_raw(handle, uplo, trans, n, k, c_loc(alpha( &
-        1)), A, lda, B, ldb, c_loc(beta(1)), C, ldc, batch_count)
+      zsyrkx_batched_64 = rocblas_zsyrkx_batched_64_raw(handle, uplo, trans, n, k, c_loc(alpha), &
+        A, lda, B, ldb, c_loc(beta), C, ldc, batch_count)
     end function rocblas_zsyrkx_batched_64_native
 
     function rocblas_zsyrkx_batched_64_typed(handle, uplo, trans, n, k, alpha, A, lda, B, ldb, &
@@ -75537,21 +75475,21 @@ contains
       integer(c_int), value :: n
       integer(c_int), value :: k
       real(c_float) :: alpha
-      real(c_float), target :: A(*)
+      real(c_float), target :: A(..)
       integer(c_int), value :: lda
       integer(c_long), value :: stride_A
-      real(c_float), target :: B(*)
+      real(c_float), target :: B(..)
       integer(c_int), value :: ldb
       integer(c_long), value :: stride_B
       real(c_float) :: beta
-      real(c_float), target :: C(*)
+      real(c_float), target :: C(..)
       integer(c_int), value :: ldc
       integer(c_long), value :: stride_C
       integer(c_int), value :: batch_count
       integer(c_int) :: ssyrkx_strided_batched
       ssyrkx_strided_batched = rocblas_ssyrkx_strided_batched_raw(handle, uplo, trans, n, k, &
-        alpha, c_loc(A(1)), lda, stride_A, c_loc(B(1)), ldb, stride_B, beta, c_loc(C(1)), ldc, &
-        stride_C, batch_count)
+        alpha, c_loc(A), lda, stride_A, c_loc(B), ldb, stride_B, beta, c_loc(C), ldc, stride_C, &
+        batch_count)
     end function rocblas_ssyrkx_strided_batched_native
 
     function rocblas_ssyrkx_strided_batched_typed(handle, uplo, trans, n, k, alpha, A, lda, &
@@ -75593,21 +75531,21 @@ contains
       integer(c_int), value :: n
       integer(c_int), value :: k
       real(c_double) :: alpha
-      real(c_double), target :: A(*)
+      real(c_double), target :: A(..)
       integer(c_int), value :: lda
       integer(c_long), value :: stride_A
-      real(c_double), target :: B(*)
+      real(c_double), target :: B(..)
       integer(c_int), value :: ldb
       integer(c_long), value :: stride_B
       real(c_double) :: beta
-      real(c_double), target :: C(*)
+      real(c_double), target :: C(..)
       integer(c_int), value :: ldc
       integer(c_long), value :: stride_C
       integer(c_int), value :: batch_count
       integer(c_int) :: dsyrkx_strided_batched
       dsyrkx_strided_batched = rocblas_dsyrkx_strided_batched_raw(handle, uplo, trans, n, k, &
-        alpha, c_loc(A(1)), lda, stride_A, c_loc(B(1)), ldb, stride_B, beta, c_loc(C(1)), ldc, &
-        stride_C, batch_count)
+        alpha, c_loc(A), lda, stride_A, c_loc(B), ldb, stride_B, beta, c_loc(C), ldc, stride_C, &
+        batch_count)
     end function rocblas_dsyrkx_strided_batched_native
 
     function rocblas_dsyrkx_strided_batched_typed(handle, uplo, trans, n, k, alpha, A, lda, &
@@ -75649,21 +75587,21 @@ contains
       integer(c_int), value :: n
       integer(c_int), value :: k
       complex(c_float_complex) :: alpha
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: A(..)
       integer(c_int), value :: lda
       integer(c_long), value :: stride_A
-      complex(c_float_complex), target :: B(*)
+      complex(c_float_complex), target :: B(..)
       integer(c_int), value :: ldb
       integer(c_long), value :: stride_B
       complex(c_float_complex) :: beta
-      complex(c_float_complex), target :: C(*)
+      complex(c_float_complex), target :: C(..)
       integer(c_int), value :: ldc
       integer(c_long), value :: stride_C
       integer(c_int), value :: batch_count
       integer(c_int) :: csyrkx_strided_batched
       csyrkx_strided_batched = rocblas_csyrkx_strided_batched_raw(handle, uplo, trans, n, k, &
-        alpha, c_loc(A(1)), lda, stride_A, c_loc(B(1)), ldb, stride_B, beta, c_loc(C(1)), ldc, &
-        stride_C, batch_count)
+        alpha, c_loc(A), lda, stride_A, c_loc(B), ldb, stride_B, beta, c_loc(C), ldc, stride_C, &
+        batch_count)
     end function rocblas_csyrkx_strided_batched_native
 
     function rocblas_csyrkx_strided_batched_typed(handle, uplo, trans, n, k, alpha, A, lda, &
@@ -75705,21 +75643,21 @@ contains
       integer(c_int), value :: n
       integer(c_int), value :: k
       complex(c_double_complex) :: alpha
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: A(..)
       integer(c_int), value :: lda
       integer(c_long), value :: stride_A
-      complex(c_double_complex), target :: B(*)
+      complex(c_double_complex), target :: B(..)
       integer(c_int), value :: ldb
       integer(c_long), value :: stride_B
       complex(c_double_complex) :: beta
-      complex(c_double_complex), target :: C(*)
+      complex(c_double_complex), target :: C(..)
       integer(c_int), value :: ldc
       integer(c_long), value :: stride_C
       integer(c_int), value :: batch_count
       integer(c_int) :: zsyrkx_strided_batched
       zsyrkx_strided_batched = rocblas_zsyrkx_strided_batched_raw(handle, uplo, trans, n, k, &
-        alpha, c_loc(A(1)), lda, stride_A, c_loc(B(1)), ldb, stride_B, beta, c_loc(C(1)), ldc, &
-        stride_C, batch_count)
+        alpha, c_loc(A), lda, stride_A, c_loc(B), ldb, stride_B, beta, c_loc(C), ldc, stride_C, &
+        batch_count)
     end function rocblas_zsyrkx_strided_batched_native
 
     function rocblas_zsyrkx_strided_batched_typed(handle, uplo, trans, n, k, alpha, A, lda, &
@@ -75760,22 +75698,22 @@ contains
       integer(c_int), value :: trans
       integer(c_long), value :: n
       integer(c_long), value :: k
-      real(c_float), target :: alpha(*)
-      real(c_float), target :: A(*)
+      real(c_float), target :: alpha(..)
+      real(c_float), target :: A(..)
       integer(c_long), value :: lda
       integer(c_long), value :: stride_A
-      real(c_float), target :: B(*)
+      real(c_float), target :: B(..)
       integer(c_long), value :: ldb
       integer(c_long), value :: stride_B
-      real(c_float), target :: beta(*)
-      real(c_float), target :: C(*)
+      real(c_float), target :: beta(..)
+      real(c_float), target :: C(..)
       integer(c_long), value :: ldc
       integer(c_long), value :: stride_C
       integer(c_long), value :: batch_count
       integer(c_int) :: ssyrkx_strided_batched_64
       ssyrkx_strided_batched_64 = rocblas_ssyrkx_strided_batched_64_raw(handle, uplo, trans, n, k, &
-        c_loc(alpha(1)), c_loc(A(1)), lda, stride_A, c_loc(B(1)), ldb, stride_B, c_loc(beta(1)), &
-        c_loc(C(1)), ldc, stride_C, batch_count)
+        c_loc(alpha), c_loc(A), lda, stride_A, c_loc(B), ldb, stride_B, c_loc(beta), c_loc(C), &
+        ldc, stride_C, batch_count)
     end function rocblas_ssyrkx_strided_batched_64_native
 
     function rocblas_ssyrkx_strided_batched_64_typed(handle, uplo, trans, n, k, alpha, A, lda, &
@@ -75816,22 +75754,22 @@ contains
       integer(c_int), value :: trans
       integer(c_long), value :: n
       integer(c_long), value :: k
-      real(c_double), target :: alpha(*)
-      real(c_double), target :: A(*)
+      real(c_double), target :: alpha(..)
+      real(c_double), target :: A(..)
       integer(c_long), value :: lda
       integer(c_long), value :: stride_A
-      real(c_double), target :: B(*)
+      real(c_double), target :: B(..)
       integer(c_long), value :: ldb
       integer(c_long), value :: stride_B
-      real(c_double), target :: beta(*)
-      real(c_double), target :: C(*)
+      real(c_double), target :: beta(..)
+      real(c_double), target :: C(..)
       integer(c_long), value :: ldc
       integer(c_long), value :: stride_C
       integer(c_long), value :: batch_count
       integer(c_int) :: dsyrkx_strided_batched_64
       dsyrkx_strided_batched_64 = rocblas_dsyrkx_strided_batched_64_raw(handle, uplo, trans, n, k, &
-        c_loc(alpha(1)), c_loc(A(1)), lda, stride_A, c_loc(B(1)), ldb, stride_B, c_loc(beta(1)), &
-        c_loc(C(1)), ldc, stride_C, batch_count)
+        c_loc(alpha), c_loc(A), lda, stride_A, c_loc(B), ldb, stride_B, c_loc(beta), c_loc(C), &
+        ldc, stride_C, batch_count)
     end function rocblas_dsyrkx_strided_batched_64_native
 
     function rocblas_dsyrkx_strided_batched_64_typed(handle, uplo, trans, n, k, alpha, A, lda, &
@@ -75872,22 +75810,22 @@ contains
       integer(c_int), value :: trans
       integer(c_long), value :: n
       integer(c_long), value :: k
-      complex(c_float_complex), target :: alpha(*)
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: alpha(..)
+      complex(c_float_complex), target :: A(..)
       integer(c_long), value :: lda
       integer(c_long), value :: stride_A
-      complex(c_float_complex), target :: B(*)
+      complex(c_float_complex), target :: B(..)
       integer(c_long), value :: ldb
       integer(c_long), value :: stride_B
-      complex(c_float_complex), target :: beta(*)
-      complex(c_float_complex), target :: C(*)
+      complex(c_float_complex), target :: beta(..)
+      complex(c_float_complex), target :: C(..)
       integer(c_long), value :: ldc
       integer(c_long), value :: stride_C
       integer(c_long), value :: batch_count
       integer(c_int) :: csyrkx_strided_batched_64
       csyrkx_strided_batched_64 = rocblas_csyrkx_strided_batched_64_raw(handle, uplo, trans, n, k, &
-        c_loc(alpha(1)), c_loc(A(1)), lda, stride_A, c_loc(B(1)), ldb, stride_B, c_loc(beta(1)), &
-        c_loc(C(1)), ldc, stride_C, batch_count)
+        c_loc(alpha), c_loc(A), lda, stride_A, c_loc(B), ldb, stride_B, c_loc(beta), c_loc(C), &
+        ldc, stride_C, batch_count)
     end function rocblas_csyrkx_strided_batched_64_native
 
     function rocblas_csyrkx_strided_batched_64_typed(handle, uplo, trans, n, k, alpha, A, lda, &
@@ -75928,22 +75866,22 @@ contains
       integer(c_int), value :: trans
       integer(c_long), value :: n
       integer(c_long), value :: k
-      complex(c_double_complex), target :: alpha(*)
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: alpha(..)
+      complex(c_double_complex), target :: A(..)
       integer(c_long), value :: lda
       integer(c_long), value :: stride_A
-      complex(c_double_complex), target :: B(*)
+      complex(c_double_complex), target :: B(..)
       integer(c_long), value :: ldb
       integer(c_long), value :: stride_B
-      complex(c_double_complex), target :: beta(*)
-      complex(c_double_complex), target :: C(*)
+      complex(c_double_complex), target :: beta(..)
+      complex(c_double_complex), target :: C(..)
       integer(c_long), value :: ldc
       integer(c_long), value :: stride_C
       integer(c_long), value :: batch_count
       integer(c_int) :: zsyrkx_strided_batched_64
       zsyrkx_strided_batched_64 = rocblas_zsyrkx_strided_batched_64_raw(handle, uplo, trans, n, k, &
-        c_loc(alpha(1)), c_loc(A(1)), lda, stride_A, c_loc(B(1)), ldb, stride_B, c_loc(beta(1)), &
-        c_loc(C(1)), ldc, stride_C, batch_count)
+        c_loc(alpha), c_loc(A), lda, stride_A, c_loc(B), ldb, stride_B, c_loc(beta), c_loc(C), &
+        ldc, stride_C, batch_count)
     end function rocblas_zsyrkx_strided_batched_64_native
 
     function rocblas_zsyrkx_strided_batched_64_typed(handle, uplo, trans, n, k, alpha, A, lda, &
@@ -75986,15 +75924,15 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       real(c_float) :: alpha
-      real(c_float), target :: A(*)
+      real(c_float), target :: A(..)
       integer(c_int), value :: lda
-      real(c_float), target :: B(*)
+      real(c_float), target :: B(..)
       integer(c_int), value :: ldb
-      real(c_float), target :: C(*)
+      real(c_float), target :: C(..)
       integer(c_int), value :: ldc
       integer(c_int) :: strmm
-      strmm = rocblas_strmm_raw(handle, side, uplo, transA, diag, m, n, alpha, c_loc(A(1)), lda, &
-        c_loc(B(1)), ldb, c_loc(C(1)), ldc)
+      strmm = rocblas_strmm_raw(handle, side, uplo, transA, diag, m, n, alpha, c_loc(A), lda, &
+        c_loc(B), ldb, c_loc(C), ldc)
     end function rocblas_strmm_native
 
     function rocblas_strmm_typed(handle, side, uplo, transA, diag, m, n, alpha, A, lda, B, ldb, C, &
@@ -76033,15 +75971,15 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       real(c_double) :: alpha
-      real(c_double), target :: A(*)
+      real(c_double), target :: A(..)
       integer(c_int), value :: lda
-      real(c_double), target :: B(*)
+      real(c_double), target :: B(..)
       integer(c_int), value :: ldb
-      real(c_double), target :: C(*)
+      real(c_double), target :: C(..)
       integer(c_int), value :: ldc
       integer(c_int) :: dtrmm
-      dtrmm = rocblas_dtrmm_raw(handle, side, uplo, transA, diag, m, n, alpha, c_loc(A(1)), lda, &
-        c_loc(B(1)), ldb, c_loc(C(1)), ldc)
+      dtrmm = rocblas_dtrmm_raw(handle, side, uplo, transA, diag, m, n, alpha, c_loc(A), lda, &
+        c_loc(B), ldb, c_loc(C), ldc)
     end function rocblas_dtrmm_native
 
     function rocblas_dtrmm_typed(handle, side, uplo, transA, diag, m, n, alpha, A, lda, B, ldb, C, &
@@ -76080,15 +76018,15 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       complex(c_float_complex) :: alpha
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: A(..)
       integer(c_int), value :: lda
-      complex(c_float_complex), target :: B(*)
+      complex(c_float_complex), target :: B(..)
       integer(c_int), value :: ldb
-      complex(c_float_complex), target :: C(*)
+      complex(c_float_complex), target :: C(..)
       integer(c_int), value :: ldc
       integer(c_int) :: ctrmm
-      ctrmm = rocblas_ctrmm_raw(handle, side, uplo, transA, diag, m, n, alpha, c_loc(A(1)), lda, &
-        c_loc(B(1)), ldb, c_loc(C(1)), ldc)
+      ctrmm = rocblas_ctrmm_raw(handle, side, uplo, transA, diag, m, n, alpha, c_loc(A), lda, &
+        c_loc(B), ldb, c_loc(C), ldc)
     end function rocblas_ctrmm_native
 
     function rocblas_ctrmm_typed(handle, side, uplo, transA, diag, m, n, alpha, A, lda, B, ldb, C, &
@@ -76127,15 +76065,15 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       complex(c_double_complex) :: alpha
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: A(..)
       integer(c_int), value :: lda
-      complex(c_double_complex), target :: B(*)
+      complex(c_double_complex), target :: B(..)
       integer(c_int), value :: ldb
-      complex(c_double_complex), target :: C(*)
+      complex(c_double_complex), target :: C(..)
       integer(c_int), value :: ldc
       integer(c_int) :: ztrmm
-      ztrmm = rocblas_ztrmm_raw(handle, side, uplo, transA, diag, m, n, alpha, c_loc(A(1)), lda, &
-        c_loc(B(1)), ldb, c_loc(C(1)), ldc)
+      ztrmm = rocblas_ztrmm_raw(handle, side, uplo, transA, diag, m, n, alpha, c_loc(A), lda, &
+        c_loc(B), ldb, c_loc(C), ldc)
     end function rocblas_ztrmm_native
 
     function rocblas_ztrmm_typed(handle, side, uplo, transA, diag, m, n, alpha, A, lda, B, ldb, C, &
@@ -76173,16 +76111,16 @@ contains
       integer(c_int), value :: diag
       integer(c_long), value :: m
       integer(c_long), value :: n
-      real(c_float), target :: alpha(*)
-      real(c_float), target :: A(*)
+      real(c_float), target :: alpha(..)
+      real(c_float), target :: A(..)
       integer(c_long), value :: lda
-      real(c_float), target :: B(*)
+      real(c_float), target :: B(..)
       integer(c_long), value :: ldb
-      real(c_float), target :: C(*)
+      real(c_float), target :: C(..)
       integer(c_long), value :: ldc
       integer(c_int) :: strmm_64
-      strmm_64 = rocblas_strmm_64_raw(handle, side, uplo, transA, diag, m, n, c_loc(alpha(1)), &
-        c_loc(A(1)), lda, c_loc(B(1)), ldb, c_loc(C(1)), ldc)
+      strmm_64 = rocblas_strmm_64_raw(handle, side, uplo, transA, diag, m, n, c_loc(alpha), c_loc( &
+        A), lda, c_loc(B), ldb, c_loc(C), ldc)
     end function rocblas_strmm_64_native
 
     function rocblas_strmm_64_typed(handle, side, uplo, transA, diag, m, n, alpha, A, lda, B, ldb, &
@@ -76220,16 +76158,16 @@ contains
       integer(c_int), value :: diag
       integer(c_long), value :: m
       integer(c_long), value :: n
-      real(c_double), target :: alpha(*)
-      real(c_double), target :: A(*)
+      real(c_double), target :: alpha(..)
+      real(c_double), target :: A(..)
       integer(c_long), value :: lda
-      real(c_double), target :: B(*)
+      real(c_double), target :: B(..)
       integer(c_long), value :: ldb
-      real(c_double), target :: C(*)
+      real(c_double), target :: C(..)
       integer(c_long), value :: ldc
       integer(c_int) :: dtrmm_64
-      dtrmm_64 = rocblas_dtrmm_64_raw(handle, side, uplo, transA, diag, m, n, c_loc(alpha(1)), &
-        c_loc(A(1)), lda, c_loc(B(1)), ldb, c_loc(C(1)), ldc)
+      dtrmm_64 = rocblas_dtrmm_64_raw(handle, side, uplo, transA, diag, m, n, c_loc(alpha), c_loc( &
+        A), lda, c_loc(B), ldb, c_loc(C), ldc)
     end function rocblas_dtrmm_64_native
 
     function rocblas_dtrmm_64_typed(handle, side, uplo, transA, diag, m, n, alpha, A, lda, B, ldb, &
@@ -76267,16 +76205,16 @@ contains
       integer(c_int), value :: diag
       integer(c_long), value :: m
       integer(c_long), value :: n
-      complex(c_float_complex), target :: alpha(*)
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: alpha(..)
+      complex(c_float_complex), target :: A(..)
       integer(c_long), value :: lda
-      complex(c_float_complex), target :: B(*)
+      complex(c_float_complex), target :: B(..)
       integer(c_long), value :: ldb
-      complex(c_float_complex), target :: C(*)
+      complex(c_float_complex), target :: C(..)
       integer(c_long), value :: ldc
       integer(c_int) :: ctrmm_64
-      ctrmm_64 = rocblas_ctrmm_64_raw(handle, side, uplo, transA, diag, m, n, c_loc(alpha(1)), &
-        c_loc(A(1)), lda, c_loc(B(1)), ldb, c_loc(C(1)), ldc)
+      ctrmm_64 = rocblas_ctrmm_64_raw(handle, side, uplo, transA, diag, m, n, c_loc(alpha), c_loc( &
+        A), lda, c_loc(B), ldb, c_loc(C), ldc)
     end function rocblas_ctrmm_64_native
 
     function rocblas_ctrmm_64_typed(handle, side, uplo, transA, diag, m, n, alpha, A, lda, B, ldb, &
@@ -76314,16 +76252,16 @@ contains
       integer(c_int), value :: diag
       integer(c_long), value :: m
       integer(c_long), value :: n
-      complex(c_double_complex), target :: alpha(*)
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: alpha(..)
+      complex(c_double_complex), target :: A(..)
       integer(c_long), value :: lda
-      complex(c_double_complex), target :: B(*)
+      complex(c_double_complex), target :: B(..)
       integer(c_long), value :: ldb
-      complex(c_double_complex), target :: C(*)
+      complex(c_double_complex), target :: C(..)
       integer(c_long), value :: ldc
       integer(c_int) :: ztrmm_64
-      ztrmm_64 = rocblas_ztrmm_64_raw(handle, side, uplo, transA, diag, m, n, c_loc(alpha(1)), &
-        c_loc(A(1)), lda, c_loc(B(1)), ldb, c_loc(C(1)), ldc)
+      ztrmm_64 = rocblas_ztrmm_64_raw(handle, side, uplo, transA, diag, m, n, c_loc(alpha), c_loc( &
+        A), lda, c_loc(B), ldb, c_loc(C), ldc)
     end function rocblas_ztrmm_64_native
 
     function rocblas_ztrmm_64_typed(handle, side, uplo, transA, diag, m, n, alpha, A, lda, B, ldb, &
@@ -76461,7 +76399,7 @@ contains
       integer(c_int), value :: diag
       integer(c_long), value :: m
       integer(c_long), value :: n
-      real(c_float), target :: alpha(*)
+      real(c_float), target :: alpha(..)
       type(c_ptr), value :: A
       integer(c_long), value :: lda
       type(c_ptr), value :: B
@@ -76471,7 +76409,7 @@ contains
       integer(c_long), value :: batch_count
       integer(c_int) :: strmm_batched_64
       strmm_batched_64 = rocblas_strmm_batched_64_raw(handle, side, uplo, transA, diag, m, n, &
-        c_loc(alpha(1)), A, lda, B, ldb, C, ldc, batch_count)
+        c_loc(alpha), A, lda, B, ldb, C, ldc, batch_count)
     end function rocblas_strmm_batched_64_native
 
     function rocblas_strmm_batched_64_typed(handle, side, uplo, transA, diag, m, n, alpha, A, lda, &
@@ -76510,7 +76448,7 @@ contains
       integer(c_int), value :: diag
       integer(c_long), value :: m
       integer(c_long), value :: n
-      real(c_double), target :: alpha(*)
+      real(c_double), target :: alpha(..)
       type(c_ptr), value :: A
       integer(c_long), value :: lda
       type(c_ptr), value :: B
@@ -76520,7 +76458,7 @@ contains
       integer(c_long), value :: batch_count
       integer(c_int) :: dtrmm_batched_64
       dtrmm_batched_64 = rocblas_dtrmm_batched_64_raw(handle, side, uplo, transA, diag, m, n, &
-        c_loc(alpha(1)), A, lda, B, ldb, C, ldc, batch_count)
+        c_loc(alpha), A, lda, B, ldb, C, ldc, batch_count)
     end function rocblas_dtrmm_batched_64_native
 
     function rocblas_dtrmm_batched_64_typed(handle, side, uplo, transA, diag, m, n, alpha, A, lda, &
@@ -76559,7 +76497,7 @@ contains
       integer(c_int), value :: diag
       integer(c_long), value :: m
       integer(c_long), value :: n
-      complex(c_float_complex), target :: alpha(*)
+      complex(c_float_complex), target :: alpha(..)
       type(c_ptr), value :: A
       integer(c_long), value :: lda
       type(c_ptr), value :: B
@@ -76569,7 +76507,7 @@ contains
       integer(c_long), value :: batch_count
       integer(c_int) :: ctrmm_batched_64
       ctrmm_batched_64 = rocblas_ctrmm_batched_64_raw(handle, side, uplo, transA, diag, m, n, &
-        c_loc(alpha(1)), A, lda, B, ldb, C, ldc, batch_count)
+        c_loc(alpha), A, lda, B, ldb, C, ldc, batch_count)
     end function rocblas_ctrmm_batched_64_native
 
     function rocblas_ctrmm_batched_64_typed(handle, side, uplo, transA, diag, m, n, alpha, A, lda, &
@@ -76608,7 +76546,7 @@ contains
       integer(c_int), value :: diag
       integer(c_long), value :: m
       integer(c_long), value :: n
-      complex(c_double_complex), target :: alpha(*)
+      complex(c_double_complex), target :: alpha(..)
       type(c_ptr), value :: A
       integer(c_long), value :: lda
       type(c_ptr), value :: B
@@ -76618,7 +76556,7 @@ contains
       integer(c_long), value :: batch_count
       integer(c_int) :: ztrmm_batched_64
       ztrmm_batched_64 = rocblas_ztrmm_batched_64_raw(handle, side, uplo, transA, diag, m, n, &
-        c_loc(alpha(1)), A, lda, B, ldb, C, ldc, batch_count)
+        c_loc(alpha), A, lda, B, ldb, C, ldc, batch_count)
     end function rocblas_ztrmm_batched_64_native
 
     function rocblas_ztrmm_batched_64_typed(handle, side, uplo, transA, diag, m, n, alpha, A, lda, &
@@ -76659,20 +76597,20 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       real(c_float) :: alpha
-      real(c_float), target :: A(*)
+      real(c_float), target :: A(..)
       integer(c_int), value :: lda
       integer(c_long), value :: stride_A
-      real(c_float), target :: B(*)
+      real(c_float), target :: B(..)
       integer(c_int), value :: ldb
       integer(c_long), value :: stride_B
-      real(c_float), target :: C(*)
+      real(c_float), target :: C(..)
       integer(c_int), value :: ldc
       integer(c_long), value :: stride_C
       integer(c_int), value :: batch_count
       integer(c_int) :: strmm_strided_batched
       strmm_strided_batched = rocblas_strmm_strided_batched_raw(handle, side, uplo, transA, diag, &
-        m, n, alpha, c_loc(A(1)), lda, stride_A, c_loc(B(1)), ldb, stride_B, c_loc(C(1)), ldc, &
-        stride_C, batch_count)
+        m, n, alpha, c_loc(A), lda, stride_A, c_loc(B), ldb, stride_B, c_loc(C), ldc, stride_C, &
+        batch_count)
     end function rocblas_strmm_strided_batched_native
 
     function rocblas_strmm_strided_batched_typed(handle, side, uplo, transA, diag, m, n, alpha, A, &
@@ -76717,20 +76655,20 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       real(c_double) :: alpha
-      real(c_double), target :: A(*)
+      real(c_double), target :: A(..)
       integer(c_int), value :: lda
       integer(c_long), value :: stride_A
-      real(c_double), target :: B(*)
+      real(c_double), target :: B(..)
       integer(c_int), value :: ldb
       integer(c_long), value :: stride_B
-      real(c_double), target :: C(*)
+      real(c_double), target :: C(..)
       integer(c_int), value :: ldc
       integer(c_long), value :: stride_C
       integer(c_int), value :: batch_count
       integer(c_int) :: dtrmm_strided_batched
       dtrmm_strided_batched = rocblas_dtrmm_strided_batched_raw(handle, side, uplo, transA, diag, &
-        m, n, alpha, c_loc(A(1)), lda, stride_A, c_loc(B(1)), ldb, stride_B, c_loc(C(1)), ldc, &
-        stride_C, batch_count)
+        m, n, alpha, c_loc(A), lda, stride_A, c_loc(B), ldb, stride_B, c_loc(C), ldc, stride_C, &
+        batch_count)
     end function rocblas_dtrmm_strided_batched_native
 
     function rocblas_dtrmm_strided_batched_typed(handle, side, uplo, transA, diag, m, n, alpha, A, &
@@ -76775,20 +76713,20 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       complex(c_float_complex) :: alpha
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: A(..)
       integer(c_int), value :: lda
       integer(c_long), value :: stride_A
-      complex(c_float_complex), target :: B(*)
+      complex(c_float_complex), target :: B(..)
       integer(c_int), value :: ldb
       integer(c_long), value :: stride_B
-      complex(c_float_complex), target :: C(*)
+      complex(c_float_complex), target :: C(..)
       integer(c_int), value :: ldc
       integer(c_long), value :: stride_C
       integer(c_int), value :: batch_count
       integer(c_int) :: ctrmm_strided_batched
       ctrmm_strided_batched = rocblas_ctrmm_strided_batched_raw(handle, side, uplo, transA, diag, &
-        m, n, alpha, c_loc(A(1)), lda, stride_A, c_loc(B(1)), ldb, stride_B, c_loc(C(1)), ldc, &
-        stride_C, batch_count)
+        m, n, alpha, c_loc(A), lda, stride_A, c_loc(B), ldb, stride_B, c_loc(C), ldc, stride_C, &
+        batch_count)
     end function rocblas_ctrmm_strided_batched_native
 
     function rocblas_ctrmm_strided_batched_typed(handle, side, uplo, transA, diag, m, n, alpha, A, &
@@ -76833,20 +76771,20 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       complex(c_double_complex) :: alpha
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: A(..)
       integer(c_int), value :: lda
       integer(c_long), value :: stride_A
-      complex(c_double_complex), target :: B(*)
+      complex(c_double_complex), target :: B(..)
       integer(c_int), value :: ldb
       integer(c_long), value :: stride_B
-      complex(c_double_complex), target :: C(*)
+      complex(c_double_complex), target :: C(..)
       integer(c_int), value :: ldc
       integer(c_long), value :: stride_C
       integer(c_int), value :: batch_count
       integer(c_int) :: ztrmm_strided_batched
       ztrmm_strided_batched = rocblas_ztrmm_strided_batched_raw(handle, side, uplo, transA, diag, &
-        m, n, alpha, c_loc(A(1)), lda, stride_A, c_loc(B(1)), ldb, stride_B, c_loc(C(1)), ldc, &
-        stride_C, batch_count)
+        m, n, alpha, c_loc(A), lda, stride_A, c_loc(B), ldb, stride_B, c_loc(C), ldc, stride_C, &
+        batch_count)
     end function rocblas_ztrmm_strided_batched_native
 
     function rocblas_ztrmm_strided_batched_typed(handle, side, uplo, transA, diag, m, n, alpha, A, &
@@ -76890,21 +76828,21 @@ contains
       integer(c_int), value :: diag
       integer(c_long), value :: m
       integer(c_long), value :: n
-      real(c_float), target :: alpha(*)
-      real(c_float), target :: A(*)
+      real(c_float), target :: alpha(..)
+      real(c_float), target :: A(..)
       integer(c_long), value :: lda
       integer(c_long), value :: stride_A
-      real(c_float), target :: B(*)
+      real(c_float), target :: B(..)
       integer(c_long), value :: ldb
       integer(c_long), value :: stride_B
-      real(c_float), target :: C(*)
+      real(c_float), target :: C(..)
       integer(c_long), value :: ldc
       integer(c_long), value :: stride_C
       integer(c_long), value :: batch_count
       integer(c_int) :: strmm_strided_batched_64
       strmm_strided_batched_64 = rocblas_strmm_strided_batched_64_raw(handle, side, uplo, transA, &
-        diag, m, n, c_loc(alpha(1)), c_loc(A(1)), lda, stride_A, c_loc(B(1)), ldb, stride_B, &
-        c_loc(C(1)), ldc, stride_C, batch_count)
+        diag, m, n, c_loc(alpha), c_loc(A), lda, stride_A, c_loc(B), ldb, stride_B, c_loc(C), ldc, &
+        stride_C, batch_count)
     end function rocblas_strmm_strided_batched_64_native
 
     function rocblas_strmm_strided_batched_64_typed(handle, side, uplo, transA, diag, m, n, alpha, &
@@ -76949,21 +76887,21 @@ contains
       integer(c_int), value :: diag
       integer(c_long), value :: m
       integer(c_long), value :: n
-      real(c_double), target :: alpha(*)
-      real(c_double), target :: A(*)
+      real(c_double), target :: alpha(..)
+      real(c_double), target :: A(..)
       integer(c_long), value :: lda
       integer(c_long), value :: stride_A
-      real(c_double), target :: B(*)
+      real(c_double), target :: B(..)
       integer(c_long), value :: ldb
       integer(c_long), value :: stride_B
-      real(c_double), target :: C(*)
+      real(c_double), target :: C(..)
       integer(c_long), value :: ldc
       integer(c_long), value :: stride_C
       integer(c_long), value :: batch_count
       integer(c_int) :: dtrmm_strided_batched_64
       dtrmm_strided_batched_64 = rocblas_dtrmm_strided_batched_64_raw(handle, side, uplo, transA, &
-        diag, m, n, c_loc(alpha(1)), c_loc(A(1)), lda, stride_A, c_loc(B(1)), ldb, stride_B, &
-        c_loc(C(1)), ldc, stride_C, batch_count)
+        diag, m, n, c_loc(alpha), c_loc(A), lda, stride_A, c_loc(B), ldb, stride_B, c_loc(C), ldc, &
+        stride_C, batch_count)
     end function rocblas_dtrmm_strided_batched_64_native
 
     function rocblas_dtrmm_strided_batched_64_typed(handle, side, uplo, transA, diag, m, n, alpha, &
@@ -77008,21 +76946,21 @@ contains
       integer(c_int), value :: diag
       integer(c_long), value :: m
       integer(c_long), value :: n
-      complex(c_float_complex), target :: alpha(*)
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: alpha(..)
+      complex(c_float_complex), target :: A(..)
       integer(c_long), value :: lda
       integer(c_long), value :: stride_A
-      complex(c_float_complex), target :: B(*)
+      complex(c_float_complex), target :: B(..)
       integer(c_long), value :: ldb
       integer(c_long), value :: stride_B
-      complex(c_float_complex), target :: C(*)
+      complex(c_float_complex), target :: C(..)
       integer(c_long), value :: ldc
       integer(c_long), value :: stride_C
       integer(c_long), value :: batch_count
       integer(c_int) :: ctrmm_strided_batched_64
       ctrmm_strided_batched_64 = rocblas_ctrmm_strided_batched_64_raw(handle, side, uplo, transA, &
-        diag, m, n, c_loc(alpha(1)), c_loc(A(1)), lda, stride_A, c_loc(B(1)), ldb, stride_B, &
-        c_loc(C(1)), ldc, stride_C, batch_count)
+        diag, m, n, c_loc(alpha), c_loc(A), lda, stride_A, c_loc(B), ldb, stride_B, c_loc(C), ldc, &
+        stride_C, batch_count)
     end function rocblas_ctrmm_strided_batched_64_native
 
     function rocblas_ctrmm_strided_batched_64_typed(handle, side, uplo, transA, diag, m, n, alpha, &
@@ -77067,21 +77005,21 @@ contains
       integer(c_int), value :: diag
       integer(c_long), value :: m
       integer(c_long), value :: n
-      complex(c_double_complex), target :: alpha(*)
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: alpha(..)
+      complex(c_double_complex), target :: A(..)
       integer(c_long), value :: lda
       integer(c_long), value :: stride_A
-      complex(c_double_complex), target :: B(*)
+      complex(c_double_complex), target :: B(..)
       integer(c_long), value :: ldb
       integer(c_long), value :: stride_B
-      complex(c_double_complex), target :: C(*)
+      complex(c_double_complex), target :: C(..)
       integer(c_long), value :: ldc
       integer(c_long), value :: stride_C
       integer(c_long), value :: batch_count
       integer(c_int) :: ztrmm_strided_batched_64
       ztrmm_strided_batched_64 = rocblas_ztrmm_strided_batched_64_raw(handle, side, uplo, transA, &
-        diag, m, n, c_loc(alpha(1)), c_loc(A(1)), lda, stride_A, c_loc(B(1)), ldb, stride_B, &
-        c_loc(C(1)), ldc, stride_C, batch_count)
+        diag, m, n, c_loc(alpha), c_loc(A), lda, stride_A, c_loc(B), ldb, stride_B, c_loc(C), ldc, &
+        stride_C, batch_count)
     end function rocblas_ztrmm_strided_batched_64_native
 
     function rocblas_ztrmm_strided_batched_64_typed(handle, side, uplo, transA, diag, m, n, alpha, &
@@ -77121,12 +77059,12 @@ contains
       integer(c_int), value :: uplo
       integer(c_int), value :: diag
       integer(c_int), value :: n
-      real(c_float), target :: A(*)
+      real(c_float), target :: A(..)
       integer(c_int), value :: lda
-      real(c_float), target :: invA(*)
+      real(c_float), target :: invA(..)
       integer(c_int), value :: ldinvA
       integer(c_int) :: strtri
-      strtri = rocblas_strtri_raw(handle, uplo, diag, n, c_loc(A(1)), lda, c_loc(invA(1)), ldinvA)
+      strtri = rocblas_strtri_raw(handle, uplo, diag, n, c_loc(A), lda, c_loc(invA), ldinvA)
     end function rocblas_strtri_native
 
     function rocblas_strtri_typed(handle, uplo, diag, n, A, lda, invA, ldinvA) result(strtri)
@@ -77152,12 +77090,12 @@ contains
       integer(c_int), value :: uplo
       integer(c_int), value :: diag
       integer(c_int), value :: n
-      real(c_double), target :: A(*)
+      real(c_double), target :: A(..)
       integer(c_int), value :: lda
-      real(c_double), target :: invA(*)
+      real(c_double), target :: invA(..)
       integer(c_int), value :: ldinvA
       integer(c_int) :: dtrtri
-      dtrtri = rocblas_dtrtri_raw(handle, uplo, diag, n, c_loc(A(1)), lda, c_loc(invA(1)), ldinvA)
+      dtrtri = rocblas_dtrtri_raw(handle, uplo, diag, n, c_loc(A), lda, c_loc(invA), ldinvA)
     end function rocblas_dtrtri_native
 
     function rocblas_dtrtri_typed(handle, uplo, diag, n, A, lda, invA, ldinvA) result(dtrtri)
@@ -77183,12 +77121,12 @@ contains
       integer(c_int), value :: uplo
       integer(c_int), value :: diag
       integer(c_int), value :: n
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: A(..)
       integer(c_int), value :: lda
-      complex(c_float_complex), target :: invA(*)
+      complex(c_float_complex), target :: invA(..)
       integer(c_int), value :: ldinvA
       integer(c_int) :: ctrtri
-      ctrtri = rocblas_ctrtri_raw(handle, uplo, diag, n, c_loc(A(1)), lda, c_loc(invA(1)), ldinvA)
+      ctrtri = rocblas_ctrtri_raw(handle, uplo, diag, n, c_loc(A), lda, c_loc(invA), ldinvA)
     end function rocblas_ctrtri_native
 
     function rocblas_ctrtri_typed(handle, uplo, diag, n, A, lda, invA, ldinvA) result(ctrtri)
@@ -77214,12 +77152,12 @@ contains
       integer(c_int), value :: uplo
       integer(c_int), value :: diag
       integer(c_int), value :: n
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: A(..)
       integer(c_int), value :: lda
-      complex(c_double_complex), target :: invA(*)
+      complex(c_double_complex), target :: invA(..)
       integer(c_int), value :: ldinvA
       integer(c_int) :: ztrtri
-      ztrtri = rocblas_ztrtri_raw(handle, uplo, diag, n, c_loc(A(1)), lda, c_loc(invA(1)), ldinvA)
+      ztrtri = rocblas_ztrtri_raw(handle, uplo, diag, n, c_loc(A), lda, c_loc(invA), ldinvA)
     end function rocblas_ztrtri_native
 
     function rocblas_ztrtri_typed(handle, uplo, diag, n, A, lda, invA, ldinvA) result(ztrtri)
@@ -77322,16 +77260,16 @@ contains
       integer(c_int), value :: uplo
       integer(c_int), value :: diag
       integer(c_int), value :: n
-      real(c_float), target :: A(*)
+      real(c_float), target :: A(..)
       integer(c_int), value :: lda
       integer(c_long), value :: stride_a
-      real(c_float), target :: invA(*)
+      real(c_float), target :: invA(..)
       integer(c_int), value :: ldinvA
       integer(c_long), value :: stride_invA
       integer(c_int), value :: batch_count
       integer(c_int) :: strtri_strided_batched
-      strtri_strided_batched = rocblas_strtri_strided_batched_raw(handle, uplo, diag, n, c_loc(A( &
-        1)), lda, stride_a, c_loc(invA(1)), ldinvA, stride_invA, batch_count)
+      strtri_strided_batched = rocblas_strtri_strided_batched_raw(handle, uplo, diag, n, c_loc(A), &
+        lda, stride_a, c_loc(invA), ldinvA, stride_invA, batch_count)
     end function rocblas_strtri_strided_batched_native
 
     function rocblas_strtri_strided_batched_typed(handle, uplo, diag, n, A, lda, stride_a, invA, &
@@ -77363,16 +77301,16 @@ contains
       integer(c_int), value :: uplo
       integer(c_int), value :: diag
       integer(c_int), value :: n
-      real(c_double), target :: A(*)
+      real(c_double), target :: A(..)
       integer(c_int), value :: lda
       integer(c_long), value :: stride_a
-      real(c_double), target :: invA(*)
+      real(c_double), target :: invA(..)
       integer(c_int), value :: ldinvA
       integer(c_long), value :: stride_invA
       integer(c_int), value :: batch_count
       integer(c_int) :: dtrtri_strided_batched
-      dtrtri_strided_batched = rocblas_dtrtri_strided_batched_raw(handle, uplo, diag, n, c_loc(A( &
-        1)), lda, stride_a, c_loc(invA(1)), ldinvA, stride_invA, batch_count)
+      dtrtri_strided_batched = rocblas_dtrtri_strided_batched_raw(handle, uplo, diag, n, c_loc(A), &
+        lda, stride_a, c_loc(invA), ldinvA, stride_invA, batch_count)
     end function rocblas_dtrtri_strided_batched_native
 
     function rocblas_dtrtri_strided_batched_typed(handle, uplo, diag, n, A, lda, stride_a, invA, &
@@ -77404,16 +77342,16 @@ contains
       integer(c_int), value :: uplo
       integer(c_int), value :: diag
       integer(c_int), value :: n
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: A(..)
       integer(c_int), value :: lda
       integer(c_long), value :: stride_a
-      complex(c_float_complex), target :: invA(*)
+      complex(c_float_complex), target :: invA(..)
       integer(c_int), value :: ldinvA
       integer(c_long), value :: stride_invA
       integer(c_int), value :: batch_count
       integer(c_int) :: ctrtri_strided_batched
-      ctrtri_strided_batched = rocblas_ctrtri_strided_batched_raw(handle, uplo, diag, n, c_loc(A( &
-        1)), lda, stride_a, c_loc(invA(1)), ldinvA, stride_invA, batch_count)
+      ctrtri_strided_batched = rocblas_ctrtri_strided_batched_raw(handle, uplo, diag, n, c_loc(A), &
+        lda, stride_a, c_loc(invA), ldinvA, stride_invA, batch_count)
     end function rocblas_ctrtri_strided_batched_native
 
     function rocblas_ctrtri_strided_batched_typed(handle, uplo, diag, n, A, lda, stride_a, invA, &
@@ -77445,16 +77383,16 @@ contains
       integer(c_int), value :: uplo
       integer(c_int), value :: diag
       integer(c_int), value :: n
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: A(..)
       integer(c_int), value :: lda
       integer(c_long), value :: stride_a
-      complex(c_double_complex), target :: invA(*)
+      complex(c_double_complex), target :: invA(..)
       integer(c_int), value :: ldinvA
       integer(c_long), value :: stride_invA
       integer(c_int), value :: batch_count
       integer(c_int) :: ztrtri_strided_batched
-      ztrtri_strided_batched = rocblas_ztrtri_strided_batched_raw(handle, uplo, diag, n, c_loc(A( &
-        1)), lda, stride_a, c_loc(invA(1)), ldinvA, stride_invA, batch_count)
+      ztrtri_strided_batched = rocblas_ztrtri_strided_batched_raw(handle, uplo, diag, n, c_loc(A), &
+        lda, stride_a, c_loc(invA), ldinvA, stride_invA, batch_count)
     end function rocblas_ztrtri_strided_batched_native
 
     function rocblas_ztrtri_strided_batched_typed(handle, uplo, diag, n, A, lda, stride_a, invA, &
@@ -77490,13 +77428,13 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       real(c_float) :: alpha
-      real(c_float), target :: A(*)
+      real(c_float), target :: A(..)
       integer(c_int), value :: lda
-      real(c_float), target :: B(*)
+      real(c_float), target :: B(..)
       integer(c_int), value :: ldb
       integer(c_int) :: strsm
-      strsm = rocblas_strsm_raw(handle, side, uplo, transA, diag, m, n, alpha, c_loc(A(1)), lda, &
-        c_loc(B(1)), ldb)
+      strsm = rocblas_strsm_raw(handle, side, uplo, transA, diag, m, n, alpha, c_loc(A), lda, &
+        c_loc(B), ldb)
     end function rocblas_strsm_native
 
     function rocblas_strsm_typed(handle, side, uplo, transA, diag, m, n, alpha, A, lda, B, &
@@ -77532,13 +77470,13 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       real(c_double) :: alpha
-      real(c_double), target :: A(*)
+      real(c_double), target :: A(..)
       integer(c_int), value :: lda
-      real(c_double), target :: B(*)
+      real(c_double), target :: B(..)
       integer(c_int), value :: ldb
       integer(c_int) :: dtrsm
-      dtrsm = rocblas_dtrsm_raw(handle, side, uplo, transA, diag, m, n, alpha, c_loc(A(1)), lda, &
-        c_loc(B(1)), ldb)
+      dtrsm = rocblas_dtrsm_raw(handle, side, uplo, transA, diag, m, n, alpha, c_loc(A), lda, &
+        c_loc(B), ldb)
     end function rocblas_dtrsm_native
 
     function rocblas_dtrsm_typed(handle, side, uplo, transA, diag, m, n, alpha, A, lda, B, &
@@ -77574,13 +77512,13 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       complex(c_float_complex) :: alpha
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: A(..)
       integer(c_int), value :: lda
-      complex(c_float_complex), target :: B(*)
+      complex(c_float_complex), target :: B(..)
       integer(c_int), value :: ldb
       integer(c_int) :: ctrsm
-      ctrsm = rocblas_ctrsm_raw(handle, side, uplo, transA, diag, m, n, alpha, c_loc(A(1)), lda, &
-        c_loc(B(1)), ldb)
+      ctrsm = rocblas_ctrsm_raw(handle, side, uplo, transA, diag, m, n, alpha, c_loc(A), lda, &
+        c_loc(B), ldb)
     end function rocblas_ctrsm_native
 
     function rocblas_ctrsm_typed(handle, side, uplo, transA, diag, m, n, alpha, A, lda, B, &
@@ -77616,13 +77554,13 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       complex(c_double_complex) :: alpha
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: A(..)
       integer(c_int), value :: lda
-      complex(c_double_complex), target :: B(*)
+      complex(c_double_complex), target :: B(..)
       integer(c_int), value :: ldb
       integer(c_int) :: ztrsm
-      ztrsm = rocblas_ztrsm_raw(handle, side, uplo, transA, diag, m, n, alpha, c_loc(A(1)), lda, &
-        c_loc(B(1)), ldb)
+      ztrsm = rocblas_ztrsm_raw(handle, side, uplo, transA, diag, m, n, alpha, c_loc(A), lda, &
+        c_loc(B), ldb)
     end function rocblas_ztrsm_native
 
     function rocblas_ztrsm_typed(handle, side, uplo, transA, diag, m, n, alpha, A, lda, B, &
@@ -77657,14 +77595,14 @@ contains
       integer(c_int), value :: diag
       integer(c_long), value :: m
       integer(c_long), value :: n
-      real(c_float), target :: alpha(*)
-      real(c_float), target :: A(*)
+      real(c_float), target :: alpha(..)
+      real(c_float), target :: A(..)
       integer(c_long), value :: lda
-      real(c_float), target :: B(*)
+      real(c_float), target :: B(..)
       integer(c_long), value :: ldb
       integer(c_int) :: strsm_64
-      strsm_64 = rocblas_strsm_64_raw(handle, side, uplo, transA, diag, m, n, c_loc(alpha(1)), &
-        c_loc(A(1)), lda, c_loc(B(1)), ldb)
+      strsm_64 = rocblas_strsm_64_raw(handle, side, uplo, transA, diag, m, n, c_loc(alpha), c_loc( &
+        A), lda, c_loc(B), ldb)
     end function rocblas_strsm_64_native
 
     function rocblas_strsm_64_typed(handle, side, uplo, transA, diag, m, n, alpha, A, lda, B, &
@@ -77700,14 +77638,14 @@ contains
       integer(c_int), value :: diag
       integer(c_long), value :: m
       integer(c_long), value :: n
-      real(c_double), target :: alpha(*)
-      real(c_double), target :: A(*)
+      real(c_double), target :: alpha(..)
+      real(c_double), target :: A(..)
       integer(c_long), value :: lda
-      real(c_double), target :: B(*)
+      real(c_double), target :: B(..)
       integer(c_long), value :: ldb
       integer(c_int) :: dtrsm_64
-      dtrsm_64 = rocblas_dtrsm_64_raw(handle, side, uplo, transA, diag, m, n, c_loc(alpha(1)), &
-        c_loc(A(1)), lda, c_loc(B(1)), ldb)
+      dtrsm_64 = rocblas_dtrsm_64_raw(handle, side, uplo, transA, diag, m, n, c_loc(alpha), c_loc( &
+        A), lda, c_loc(B), ldb)
     end function rocblas_dtrsm_64_native
 
     function rocblas_dtrsm_64_typed(handle, side, uplo, transA, diag, m, n, alpha, A, lda, B, &
@@ -77743,14 +77681,14 @@ contains
       integer(c_int), value :: diag
       integer(c_long), value :: m
       integer(c_long), value :: n
-      complex(c_float_complex), target :: alpha(*)
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: alpha(..)
+      complex(c_float_complex), target :: A(..)
       integer(c_long), value :: lda
-      complex(c_float_complex), target :: B(*)
+      complex(c_float_complex), target :: B(..)
       integer(c_long), value :: ldb
       integer(c_int) :: ctrsm_64
-      ctrsm_64 = rocblas_ctrsm_64_raw(handle, side, uplo, transA, diag, m, n, c_loc(alpha(1)), &
-        c_loc(A(1)), lda, c_loc(B(1)), ldb)
+      ctrsm_64 = rocblas_ctrsm_64_raw(handle, side, uplo, transA, diag, m, n, c_loc(alpha), c_loc( &
+        A), lda, c_loc(B), ldb)
     end function rocblas_ctrsm_64_native
 
     function rocblas_ctrsm_64_typed(handle, side, uplo, transA, diag, m, n, alpha, A, lda, B, &
@@ -77786,14 +77724,14 @@ contains
       integer(c_int), value :: diag
       integer(c_long), value :: m
       integer(c_long), value :: n
-      complex(c_double_complex), target :: alpha(*)
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: alpha(..)
+      complex(c_double_complex), target :: A(..)
       integer(c_long), value :: lda
-      complex(c_double_complex), target :: B(*)
+      complex(c_double_complex), target :: B(..)
       integer(c_long), value :: ldb
       integer(c_int) :: ztrsm_64
-      ztrsm_64 = rocblas_ztrsm_64_raw(handle, side, uplo, transA, diag, m, n, c_loc(alpha(1)), &
-        c_loc(A(1)), lda, c_loc(B(1)), ldb)
+      ztrsm_64 = rocblas_ztrsm_64_raw(handle, side, uplo, transA, diag, m, n, c_loc(alpha), c_loc( &
+        A), lda, c_loc(B), ldb)
     end function rocblas_ztrsm_64_native
 
     function rocblas_ztrsm_64_typed(handle, side, uplo, transA, diag, m, n, alpha, A, lda, B, &
@@ -77921,7 +77859,7 @@ contains
       integer(c_int), value :: diag
       integer(c_long), value :: m
       integer(c_long), value :: n
-      real(c_float), target :: alpha(*)
+      real(c_float), target :: alpha(..)
       type(c_ptr), value :: A
       integer(c_long), value :: lda
       type(c_ptr), value :: B
@@ -77929,7 +77867,7 @@ contains
       integer(c_long), value :: batch_count
       integer(c_int) :: strsm_batched_64
       strsm_batched_64 = rocblas_strsm_batched_64_raw(handle, side, uplo, transA, diag, m, n, &
-        c_loc(alpha(1)), A, lda, B, ldb, batch_count)
+        c_loc(alpha), A, lda, B, ldb, batch_count)
     end function rocblas_strsm_batched_64_native
 
     function rocblas_strsm_batched_64_typed(handle, side, uplo, transA, diag, m, n, alpha, A, lda, &
@@ -77966,7 +77904,7 @@ contains
       integer(c_int), value :: diag
       integer(c_long), value :: m
       integer(c_long), value :: n
-      real(c_double), target :: alpha(*)
+      real(c_double), target :: alpha(..)
       type(c_ptr), value :: A
       integer(c_long), value :: lda
       type(c_ptr), value :: B
@@ -77974,7 +77912,7 @@ contains
       integer(c_long), value :: batch_count
       integer(c_int) :: dtrsm_batched_64
       dtrsm_batched_64 = rocblas_dtrsm_batched_64_raw(handle, side, uplo, transA, diag, m, n, &
-        c_loc(alpha(1)), A, lda, B, ldb, batch_count)
+        c_loc(alpha), A, lda, B, ldb, batch_count)
     end function rocblas_dtrsm_batched_64_native
 
     function rocblas_dtrsm_batched_64_typed(handle, side, uplo, transA, diag, m, n, alpha, A, lda, &
@@ -78011,7 +77949,7 @@ contains
       integer(c_int), value :: diag
       integer(c_long), value :: m
       integer(c_long), value :: n
-      complex(c_float_complex), target :: alpha(*)
+      complex(c_float_complex), target :: alpha(..)
       type(c_ptr), value :: A
       integer(c_long), value :: lda
       type(c_ptr), value :: B
@@ -78019,7 +77957,7 @@ contains
       integer(c_long), value :: batch_count
       integer(c_int) :: ctrsm_batched_64
       ctrsm_batched_64 = rocblas_ctrsm_batched_64_raw(handle, side, uplo, transA, diag, m, n, &
-        c_loc(alpha(1)), A, lda, B, ldb, batch_count)
+        c_loc(alpha), A, lda, B, ldb, batch_count)
     end function rocblas_ctrsm_batched_64_native
 
     function rocblas_ctrsm_batched_64_typed(handle, side, uplo, transA, diag, m, n, alpha, A, lda, &
@@ -78056,7 +77994,7 @@ contains
       integer(c_int), value :: diag
       integer(c_long), value :: m
       integer(c_long), value :: n
-      complex(c_double_complex), target :: alpha(*)
+      complex(c_double_complex), target :: alpha(..)
       type(c_ptr), value :: A
       integer(c_long), value :: lda
       type(c_ptr), value :: B
@@ -78064,7 +78002,7 @@ contains
       integer(c_long), value :: batch_count
       integer(c_int) :: ztrsm_batched_64
       ztrsm_batched_64 = rocblas_ztrsm_batched_64_raw(handle, side, uplo, transA, diag, m, n, &
-        c_loc(alpha(1)), A, lda, B, ldb, batch_count)
+        c_loc(alpha), A, lda, B, ldb, batch_count)
     end function rocblas_ztrsm_batched_64_native
 
     function rocblas_ztrsm_batched_64_typed(handle, side, uplo, transA, diag, m, n, alpha, A, lda, &
@@ -78102,16 +78040,16 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       real(c_float) :: alpha
-      real(c_float), target :: A(*)
+      real(c_float), target :: A(..)
       integer(c_int), value :: lda
       integer(c_long), value :: stride_a
-      real(c_float), target :: B(*)
+      real(c_float), target :: B(..)
       integer(c_int), value :: ldb
       integer(c_long), value :: stride_b
       integer(c_int), value :: batch_count
       integer(c_int) :: strsm_strided_batched
       strsm_strided_batched = rocblas_strsm_strided_batched_raw(handle, side, uplo, transA, diag, &
-        m, n, alpha, c_loc(A(1)), lda, stride_a, c_loc(B(1)), ldb, stride_b, batch_count)
+        m, n, alpha, c_loc(A), lda, stride_a, c_loc(B), ldb, stride_b, batch_count)
     end function rocblas_strsm_strided_batched_native
 
     function rocblas_strsm_strided_batched_typed(handle, side, uplo, transA, diag, m, n, alpha, A, &
@@ -78151,16 +78089,16 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       real(c_double) :: alpha
-      real(c_double), target :: A(*)
+      real(c_double), target :: A(..)
       integer(c_int), value :: lda
       integer(c_long), value :: stride_a
-      real(c_double), target :: B(*)
+      real(c_double), target :: B(..)
       integer(c_int), value :: ldb
       integer(c_long), value :: stride_b
       integer(c_int), value :: batch_count
       integer(c_int) :: dtrsm_strided_batched
       dtrsm_strided_batched = rocblas_dtrsm_strided_batched_raw(handle, side, uplo, transA, diag, &
-        m, n, alpha, c_loc(A(1)), lda, stride_a, c_loc(B(1)), ldb, stride_b, batch_count)
+        m, n, alpha, c_loc(A), lda, stride_a, c_loc(B), ldb, stride_b, batch_count)
     end function rocblas_dtrsm_strided_batched_native
 
     function rocblas_dtrsm_strided_batched_typed(handle, side, uplo, transA, diag, m, n, alpha, A, &
@@ -78200,16 +78138,16 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       complex(c_float_complex) :: alpha
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: A(..)
       integer(c_int), value :: lda
       integer(c_long), value :: stride_a
-      complex(c_float_complex), target :: B(*)
+      complex(c_float_complex), target :: B(..)
       integer(c_int), value :: ldb
       integer(c_long), value :: stride_b
       integer(c_int), value :: batch_count
       integer(c_int) :: ctrsm_strided_batched
       ctrsm_strided_batched = rocblas_ctrsm_strided_batched_raw(handle, side, uplo, transA, diag, &
-        m, n, alpha, c_loc(A(1)), lda, stride_a, c_loc(B(1)), ldb, stride_b, batch_count)
+        m, n, alpha, c_loc(A), lda, stride_a, c_loc(B), ldb, stride_b, batch_count)
     end function rocblas_ctrsm_strided_batched_native
 
     function rocblas_ctrsm_strided_batched_typed(handle, side, uplo, transA, diag, m, n, alpha, A, &
@@ -78249,16 +78187,16 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       complex(c_double_complex) :: alpha
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: A(..)
       integer(c_int), value :: lda
       integer(c_long), value :: stride_a
-      complex(c_double_complex), target :: B(*)
+      complex(c_double_complex), target :: B(..)
       integer(c_int), value :: ldb
       integer(c_long), value :: stride_b
       integer(c_int), value :: batch_count
       integer(c_int) :: ztrsm_strided_batched
       ztrsm_strided_batched = rocblas_ztrsm_strided_batched_raw(handle, side, uplo, transA, diag, &
-        m, n, alpha, c_loc(A(1)), lda, stride_a, c_loc(B(1)), ldb, stride_b, batch_count)
+        m, n, alpha, c_loc(A), lda, stride_a, c_loc(B), ldb, stride_b, batch_count)
     end function rocblas_ztrsm_strided_batched_native
 
     function rocblas_ztrsm_strided_batched_typed(handle, side, uplo, transA, diag, m, n, alpha, A, &
@@ -78297,18 +78235,17 @@ contains
       integer(c_int), value :: diag
       integer(c_long), value :: m
       integer(c_long), value :: n
-      real(c_float), target :: alpha(*)
-      real(c_float), target :: A(*)
+      real(c_float), target :: alpha(..)
+      real(c_float), target :: A(..)
       integer(c_long), value :: lda
       integer(c_long), value :: stride_a
-      real(c_float), target :: B(*)
+      real(c_float), target :: B(..)
       integer(c_long), value :: ldb
       integer(c_long), value :: stride_b
       integer(c_long), value :: batch_count
       integer(c_int) :: strsm_strided_batched_64
       strsm_strided_batched_64 = rocblas_strsm_strided_batched_64_raw(handle, side, uplo, transA, &
-        diag, m, n, c_loc(alpha(1)), c_loc(A(1)), lda, stride_a, c_loc(B(1)), ldb, stride_b, &
-        batch_count)
+        diag, m, n, c_loc(alpha), c_loc(A), lda, stride_a, c_loc(B), ldb, stride_b, batch_count)
     end function rocblas_strsm_strided_batched_64_native
 
     function rocblas_strsm_strided_batched_64_typed(handle, side, uplo, transA, diag, m, n, alpha, &
@@ -78347,18 +78284,17 @@ contains
       integer(c_int), value :: diag
       integer(c_long), value :: m
       integer(c_long), value :: n
-      real(c_double), target :: alpha(*)
-      real(c_double), target :: A(*)
+      real(c_double), target :: alpha(..)
+      real(c_double), target :: A(..)
       integer(c_long), value :: lda
       integer(c_long), value :: stride_a
-      real(c_double), target :: B(*)
+      real(c_double), target :: B(..)
       integer(c_long), value :: ldb
       integer(c_long), value :: stride_b
       integer(c_long), value :: batch_count
       integer(c_int) :: dtrsm_strided_batched_64
       dtrsm_strided_batched_64 = rocblas_dtrsm_strided_batched_64_raw(handle, side, uplo, transA, &
-        diag, m, n, c_loc(alpha(1)), c_loc(A(1)), lda, stride_a, c_loc(B(1)), ldb, stride_b, &
-        batch_count)
+        diag, m, n, c_loc(alpha), c_loc(A), lda, stride_a, c_loc(B), ldb, stride_b, batch_count)
     end function rocblas_dtrsm_strided_batched_64_native
 
     function rocblas_dtrsm_strided_batched_64_typed(handle, side, uplo, transA, diag, m, n, alpha, &
@@ -78397,18 +78333,17 @@ contains
       integer(c_int), value :: diag
       integer(c_long), value :: m
       integer(c_long), value :: n
-      complex(c_float_complex), target :: alpha(*)
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: alpha(..)
+      complex(c_float_complex), target :: A(..)
       integer(c_long), value :: lda
       integer(c_long), value :: stride_a
-      complex(c_float_complex), target :: B(*)
+      complex(c_float_complex), target :: B(..)
       integer(c_long), value :: ldb
       integer(c_long), value :: stride_b
       integer(c_long), value :: batch_count
       integer(c_int) :: ctrsm_strided_batched_64
       ctrsm_strided_batched_64 = rocblas_ctrsm_strided_batched_64_raw(handle, side, uplo, transA, &
-        diag, m, n, c_loc(alpha(1)), c_loc(A(1)), lda, stride_a, c_loc(B(1)), ldb, stride_b, &
-        batch_count)
+        diag, m, n, c_loc(alpha), c_loc(A), lda, stride_a, c_loc(B), ldb, stride_b, batch_count)
     end function rocblas_ctrsm_strided_batched_64_native
 
     function rocblas_ctrsm_strided_batched_64_typed(handle, side, uplo, transA, diag, m, n, alpha, &
@@ -78447,18 +78382,17 @@ contains
       integer(c_int), value :: diag
       integer(c_long), value :: m
       integer(c_long), value :: n
-      complex(c_double_complex), target :: alpha(*)
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: alpha(..)
+      complex(c_double_complex), target :: A(..)
       integer(c_long), value :: lda
       integer(c_long), value :: stride_a
-      complex(c_double_complex), target :: B(*)
+      complex(c_double_complex), target :: B(..)
       integer(c_long), value :: ldb
       integer(c_long), value :: stride_b
       integer(c_long), value :: batch_count
       integer(c_int) :: ztrsm_strided_batched_64
       ztrsm_strided_batched_64 = rocblas_ztrsm_strided_batched_64_raw(handle, side, uplo, transA, &
-        diag, m, n, c_loc(alpha(1)), c_loc(A(1)), lda, stride_a, c_loc(B(1)), ldb, stride_b, &
-        batch_count)
+        diag, m, n, c_loc(alpha), c_loc(A), lda, stride_a, c_loc(B), ldb, stride_b, batch_count)
     end function rocblas_ztrsm_strided_batched_64_native
 
     function rocblas_ztrsm_strided_batched_64_typed(handle, side, uplo, transA, diag, m, n, alpha, &
@@ -78497,16 +78431,16 @@ contains
       integer(c_int), value :: n
       integer(c_int), value :: k
       real(c_float) :: alpha
-      real(c_float), target :: A(*)
+      real(c_float), target :: A(..)
       integer(c_int), value :: lda
-      real(c_float), target :: B(*)
+      real(c_float), target :: B(..)
       integer(c_int), value :: ldb
       real(c_float) :: beta
-      real(c_float), target :: C(*)
+      real(c_float), target :: C(..)
       integer(c_int), value :: ldc
       integer(c_int) :: sgemm
-      sgemm = rocblas_sgemm_raw(handle, transA, transB, m, n, k, alpha, c_loc(A(1)), lda, c_loc(B( &
-        1)), ldb, beta, c_loc(C(1)), ldc)
+      sgemm = rocblas_sgemm_raw(handle, transA, transB, m, n, k, alpha, c_loc(A), lda, c_loc(B), &
+        ldb, beta, c_loc(C), ldc)
     end function rocblas_sgemm_native
 
     function rocblas_sgemm_typed(handle, transA, transB, m, n, k, alpha, A, lda, B, ldb, beta, C, &
@@ -78544,16 +78478,16 @@ contains
       integer(c_int), value :: n
       integer(c_int), value :: k
       real(c_double) :: alpha
-      real(c_double), target :: A(*)
+      real(c_double), target :: A(..)
       integer(c_int), value :: lda
-      real(c_double), target :: B(*)
+      real(c_double), target :: B(..)
       integer(c_int), value :: ldb
       real(c_double) :: beta
-      real(c_double), target :: C(*)
+      real(c_double), target :: C(..)
       integer(c_int), value :: ldc
       integer(c_int) :: dgemm
-      dgemm = rocblas_dgemm_raw(handle, transA, transB, m, n, k, alpha, c_loc(A(1)), lda, c_loc(B( &
-        1)), ldb, beta, c_loc(C(1)), ldc)
+      dgemm = rocblas_dgemm_raw(handle, transA, transB, m, n, k, alpha, c_loc(A), lda, c_loc(B), &
+        ldb, beta, c_loc(C), ldc)
     end function rocblas_dgemm_native
 
     function rocblas_dgemm_typed(handle, transA, transB, m, n, k, alpha, A, lda, B, ldb, beta, C, &
@@ -78591,13 +78525,13 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       integer(c_int), value :: k
-      type(c_ptr), value :: alpha
-      type(c_ptr), value :: A
+      type(rocblas_half) :: alpha
+      type(rocblas_half) :: A
       integer(c_int), value :: lda
-      type(c_ptr), value :: B
+      type(rocblas_half) :: B
       integer(c_int), value :: ldb
-      type(c_ptr), value :: beta
-      type(c_ptr), value :: C
+      type(rocblas_half) :: beta
+      type(rocblas_half) :: C
       integer(c_int), value :: ldc
       integer(c_int) :: hgemm
       hgemm = rocblas_hgemm_raw(handle%ptr, transA, transB, m, n, k, alpha, A, lda, B, ldb, beta, &
@@ -78615,16 +78549,16 @@ contains
       integer(c_int), value :: n
       integer(c_int), value :: k
       complex(c_float_complex) :: alpha
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: A(..)
       integer(c_int), value :: lda
-      complex(c_float_complex), target :: B(*)
+      complex(c_float_complex), target :: B(..)
       integer(c_int), value :: ldb
       complex(c_float_complex) :: beta
-      complex(c_float_complex), target :: C(*)
+      complex(c_float_complex), target :: C(..)
       integer(c_int), value :: ldc
       integer(c_int) :: cgemm
-      cgemm = rocblas_cgemm_raw(handle, transA, transB, m, n, k, alpha, c_loc(A(1)), lda, c_loc(B( &
-        1)), ldb, beta, c_loc(C(1)), ldc)
+      cgemm = rocblas_cgemm_raw(handle, transA, transB, m, n, k, alpha, c_loc(A), lda, c_loc(B), &
+        ldb, beta, c_loc(C), ldc)
     end function rocblas_cgemm_native
 
     function rocblas_cgemm_typed(handle, transA, transB, m, n, k, alpha, A, lda, B, ldb, beta, C, &
@@ -78662,16 +78596,16 @@ contains
       integer(c_int), value :: n
       integer(c_int), value :: k
       complex(c_double_complex) :: alpha
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: A(..)
       integer(c_int), value :: lda
-      complex(c_double_complex), target :: B(*)
+      complex(c_double_complex), target :: B(..)
       integer(c_int), value :: ldb
       complex(c_double_complex) :: beta
-      complex(c_double_complex), target :: C(*)
+      complex(c_double_complex), target :: C(..)
       integer(c_int), value :: ldc
       integer(c_int) :: zgemm
-      zgemm = rocblas_zgemm_raw(handle, transA, transB, m, n, k, alpha, c_loc(A(1)), lda, c_loc(B( &
-        1)), ldb, beta, c_loc(C(1)), ldc)
+      zgemm = rocblas_zgemm_raw(handle, transA, transB, m, n, k, alpha, c_loc(A), lda, c_loc(B), &
+        ldb, beta, c_loc(C), ldc)
     end function rocblas_zgemm_native
 
     function rocblas_zgemm_typed(handle, transA, transB, m, n, k, alpha, A, lda, B, ldb, beta, C, &
@@ -78708,17 +78642,17 @@ contains
       integer(c_long), value :: m
       integer(c_long), value :: n
       integer(c_long), value :: k
-      real(c_float), target :: alpha(*)
-      real(c_float), target :: A(*)
+      real(c_float), target :: alpha(..)
+      real(c_float), target :: A(..)
       integer(c_long), value :: lda
-      real(c_float), target :: B(*)
+      real(c_float), target :: B(..)
       integer(c_long), value :: ldb
-      real(c_float), target :: beta(*)
-      real(c_float), target :: C(*)
+      real(c_float), target :: beta(..)
+      real(c_float), target :: C(..)
       integer(c_long), value :: ldc
       integer(c_int) :: sgemm_64
-      sgemm_64 = rocblas_sgemm_64_raw(handle, transA, transB, m, n, k, c_loc(alpha(1)), c_loc(A( &
-        1)), lda, c_loc(B(1)), ldb, c_loc(beta(1)), c_loc(C(1)), ldc)
+      sgemm_64 = rocblas_sgemm_64_raw(handle, transA, transB, m, n, k, c_loc(alpha), c_loc(A), &
+        lda, c_loc(B), ldb, c_loc(beta), c_loc(C), ldc)
     end function rocblas_sgemm_64_native
 
     function rocblas_sgemm_64_typed(handle, transA, transB, m, n, k, alpha, A, lda, B, ldb, beta, &
@@ -78755,17 +78689,17 @@ contains
       integer(c_long), value :: m
       integer(c_long), value :: n
       integer(c_long), value :: k
-      real(c_double), target :: alpha(*)
-      real(c_double), target :: A(*)
+      real(c_double), target :: alpha(..)
+      real(c_double), target :: A(..)
       integer(c_long), value :: lda
-      real(c_double), target :: B(*)
+      real(c_double), target :: B(..)
       integer(c_long), value :: ldb
-      real(c_double), target :: beta(*)
-      real(c_double), target :: C(*)
+      real(c_double), target :: beta(..)
+      real(c_double), target :: C(..)
       integer(c_long), value :: ldc
       integer(c_int) :: dgemm_64
-      dgemm_64 = rocblas_dgemm_64_raw(handle, transA, transB, m, n, k, c_loc(alpha(1)), c_loc(A( &
-        1)), lda, c_loc(B(1)), ldb, c_loc(beta(1)), c_loc(C(1)), ldc)
+      dgemm_64 = rocblas_dgemm_64_raw(handle, transA, transB, m, n, k, c_loc(alpha), c_loc(A), &
+        lda, c_loc(B), ldb, c_loc(beta), c_loc(C), ldc)
     end function rocblas_dgemm_64_native
 
     function rocblas_dgemm_64_typed(handle, transA, transB, m, n, k, alpha, A, lda, B, ldb, beta, &
@@ -78803,13 +78737,13 @@ contains
       integer(c_long), value :: m
       integer(c_long), value :: n
       integer(c_long), value :: k
-      type(c_ptr), value :: alpha
-      type(c_ptr), value :: A
+      type(rocblas_half) :: alpha
+      type(rocblas_half) :: A
       integer(c_long), value :: lda
-      type(c_ptr), value :: B
+      type(rocblas_half) :: B
       integer(c_long), value :: ldb
-      type(c_ptr), value :: beta
-      type(c_ptr), value :: C
+      type(rocblas_half) :: beta
+      type(rocblas_half) :: C
       integer(c_long), value :: ldc
       integer(c_int) :: hgemm_64
       hgemm_64 = rocblas_hgemm_64_raw(handle%ptr, transA, transB, m, n, k, alpha, A, lda, B, ldb, &
@@ -78826,17 +78760,17 @@ contains
       integer(c_long), value :: m
       integer(c_long), value :: n
       integer(c_long), value :: k
-      complex(c_float_complex), target :: alpha(*)
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: alpha(..)
+      complex(c_float_complex), target :: A(..)
       integer(c_long), value :: lda
-      complex(c_float_complex), target :: B(*)
+      complex(c_float_complex), target :: B(..)
       integer(c_long), value :: ldb
-      complex(c_float_complex), target :: beta(*)
-      complex(c_float_complex), target :: C(*)
+      complex(c_float_complex), target :: beta(..)
+      complex(c_float_complex), target :: C(..)
       integer(c_long), value :: ldc
       integer(c_int) :: cgemm_64
-      cgemm_64 = rocblas_cgemm_64_raw(handle, transA, transB, m, n, k, c_loc(alpha(1)), c_loc(A( &
-        1)), lda, c_loc(B(1)), ldb, c_loc(beta(1)), c_loc(C(1)), ldc)
+      cgemm_64 = rocblas_cgemm_64_raw(handle, transA, transB, m, n, k, c_loc(alpha), c_loc(A), &
+        lda, c_loc(B), ldb, c_loc(beta), c_loc(C), ldc)
     end function rocblas_cgemm_64_native
 
     function rocblas_cgemm_64_typed(handle, transA, transB, m, n, k, alpha, A, lda, B, ldb, beta, &
@@ -78873,17 +78807,17 @@ contains
       integer(c_long), value :: m
       integer(c_long), value :: n
       integer(c_long), value :: k
-      complex(c_double_complex), target :: alpha(*)
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: alpha(..)
+      complex(c_double_complex), target :: A(..)
       integer(c_long), value :: lda
-      complex(c_double_complex), target :: B(*)
+      complex(c_double_complex), target :: B(..)
       integer(c_long), value :: ldb
-      complex(c_double_complex), target :: beta(*)
-      complex(c_double_complex), target :: C(*)
+      complex(c_double_complex), target :: beta(..)
+      complex(c_double_complex), target :: C(..)
       integer(c_long), value :: ldc
       integer(c_int) :: zgemm_64
-      zgemm_64 = rocblas_zgemm_64_raw(handle, transA, transB, m, n, k, c_loc(alpha(1)), c_loc(A( &
-        1)), lda, c_loc(B(1)), ldb, c_loc(beta(1)), c_loc(C(1)), ldc)
+      zgemm_64 = rocblas_zgemm_64_raw(handle, transA, transB, m, n, k, c_loc(alpha), c_loc(A), &
+        lda, c_loc(B), ldb, c_loc(beta), c_loc(C), ldc)
     end function rocblas_zgemm_64_native
 
     function rocblas_zgemm_64_typed(handle, transA, transB, m, n, k, alpha, A, lda, B, ldb, beta, &
@@ -78971,12 +78905,12 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       integer(c_int), value :: k
-      type(c_ptr), value :: alpha
+      type(rocblas_half) :: alpha
       type(c_ptr), value :: A
       integer(c_int), value :: lda
       type(c_ptr), value :: B
       integer(c_int), value :: ldb
-      type(c_ptr), value :: beta
+      type(rocblas_half) :: beta
       type(c_ptr), value :: C
       integer(c_int), value :: ldc
       integer(c_int), value :: batch_count
@@ -79045,18 +78979,18 @@ contains
       integer(c_long), value :: m
       integer(c_long), value :: n
       integer(c_long), value :: k
-      real(c_float), target :: alpha(*)
+      real(c_float), target :: alpha(..)
       type(c_ptr), value :: A
       integer(c_long), value :: lda
       type(c_ptr), value :: B
       integer(c_long), value :: ldb
-      real(c_float), target :: beta(*)
+      real(c_float), target :: beta(..)
       type(c_ptr), value :: C
       integer(c_long), value :: ldc
       integer(c_long), value :: batch_count
       integer(c_int) :: sgemm_batched_64
       sgemm_batched_64 = rocblas_sgemm_batched_64_raw(handle, transA, transB, m, n, k, c_loc( &
-        alpha(1)), A, lda, B, ldb, c_loc(beta(1)), C, ldc, batch_count)
+        alpha), A, lda, B, ldb, c_loc(beta), C, ldc, batch_count)
     end function rocblas_sgemm_batched_64_native
 
     function rocblas_sgemm_batched_64_typed(handle, transA, transB, m, n, k, alpha, A, lda, B, &
@@ -79094,18 +79028,18 @@ contains
       integer(c_long), value :: m
       integer(c_long), value :: n
       integer(c_long), value :: k
-      real(c_double), target :: alpha(*)
+      real(c_double), target :: alpha(..)
       type(c_ptr), value :: A
       integer(c_long), value :: lda
       type(c_ptr), value :: B
       integer(c_long), value :: ldb
-      real(c_double), target :: beta(*)
+      real(c_double), target :: beta(..)
       type(c_ptr), value :: C
       integer(c_long), value :: ldc
       integer(c_long), value :: batch_count
       integer(c_int) :: dgemm_batched_64
       dgemm_batched_64 = rocblas_dgemm_batched_64_raw(handle, transA, transB, m, n, k, c_loc( &
-        alpha(1)), A, lda, B, ldb, c_loc(beta(1)), C, ldc, batch_count)
+        alpha), A, lda, B, ldb, c_loc(beta), C, ldc, batch_count)
     end function rocblas_dgemm_batched_64_native
 
     function rocblas_dgemm_batched_64_typed(handle, transA, transB, m, n, k, alpha, A, lda, B, &
@@ -79144,12 +79078,12 @@ contains
       integer(c_long), value :: m
       integer(c_long), value :: n
       integer(c_long), value :: k
-      type(c_ptr), value :: alpha
+      type(rocblas_half) :: alpha
       type(c_ptr), value :: A
       integer(c_long), value :: lda
       type(c_ptr), value :: B
       integer(c_long), value :: ldb
-      type(c_ptr), value :: beta
+      type(rocblas_half) :: beta
       type(c_ptr), value :: C
       integer(c_long), value :: ldc
       integer(c_long), value :: batch_count
@@ -79168,18 +79102,18 @@ contains
       integer(c_long), value :: m
       integer(c_long), value :: n
       integer(c_long), value :: k
-      complex(c_float_complex), target :: alpha(*)
+      complex(c_float_complex), target :: alpha(..)
       type(c_ptr), value :: A
       integer(c_long), value :: lda
       type(c_ptr), value :: B
       integer(c_long), value :: ldb
-      complex(c_float_complex), target :: beta(*)
+      complex(c_float_complex), target :: beta(..)
       type(c_ptr), value :: C
       integer(c_long), value :: ldc
       integer(c_long), value :: batch_count
       integer(c_int) :: cgemm_batched_64
       cgemm_batched_64 = rocblas_cgemm_batched_64_raw(handle, transA, transB, m, n, k, c_loc( &
-        alpha(1)), A, lda, B, ldb, c_loc(beta(1)), C, ldc, batch_count)
+        alpha), A, lda, B, ldb, c_loc(beta), C, ldc, batch_count)
     end function rocblas_cgemm_batched_64_native
 
     function rocblas_cgemm_batched_64_typed(handle, transA, transB, m, n, k, alpha, A, lda, B, &
@@ -79217,18 +79151,18 @@ contains
       integer(c_long), value :: m
       integer(c_long), value :: n
       integer(c_long), value :: k
-      complex(c_double_complex), target :: alpha(*)
+      complex(c_double_complex), target :: alpha(..)
       type(c_ptr), value :: A
       integer(c_long), value :: lda
       type(c_ptr), value :: B
       integer(c_long), value :: ldb
-      complex(c_double_complex), target :: beta(*)
+      complex(c_double_complex), target :: beta(..)
       type(c_ptr), value :: C
       integer(c_long), value :: ldc
       integer(c_long), value :: batch_count
       integer(c_int) :: zgemm_batched_64
       zgemm_batched_64 = rocblas_zgemm_batched_64_raw(handle, transA, transB, m, n, k, c_loc( &
-        alpha(1)), A, lda, B, ldb, c_loc(beta(1)), C, ldc, batch_count)
+        alpha), A, lda, B, ldb, c_loc(beta), C, ldc, batch_count)
     end function rocblas_zgemm_batched_64_native
 
     function rocblas_zgemm_batched_64_typed(handle, transA, transB, m, n, k, alpha, A, lda, B, &
@@ -79268,21 +79202,21 @@ contains
       integer(c_int), value :: n
       integer(c_int), value :: k
       real(c_float) :: alpha
-      real(c_float), target :: A(*)
+      real(c_float), target :: A(..)
       integer(c_int), value :: lda
       integer(c_long), value :: stride_a
-      real(c_float), target :: B(*)
+      real(c_float), target :: B(..)
       integer(c_int), value :: ldb
       integer(c_long), value :: stride_b
       real(c_float) :: beta
-      real(c_float), target :: C(*)
+      real(c_float), target :: C(..)
       integer(c_int), value :: ldc
       integer(c_long), value :: stride_c
       integer(c_int), value :: batch_count
       integer(c_int) :: sgemm_strided_batched
       sgemm_strided_batched = rocblas_sgemm_strided_batched_raw(handle, transA, transB, m, n, k, &
-        alpha, c_loc(A(1)), lda, stride_a, c_loc(B(1)), ldb, stride_b, beta, c_loc(C(1)), ldc, &
-        stride_c, batch_count)
+        alpha, c_loc(A), lda, stride_a, c_loc(B), ldb, stride_b, beta, c_loc(C), ldc, stride_c, &
+        batch_count)
     end function rocblas_sgemm_strided_batched_native
 
     function rocblas_sgemm_strided_batched_typed(handle, transA, transB, m, n, k, alpha, A, lda, &
@@ -79326,21 +79260,21 @@ contains
       integer(c_int), value :: n
       integer(c_int), value :: k
       real(c_double) :: alpha
-      real(c_double), target :: A(*)
+      real(c_double), target :: A(..)
       integer(c_int), value :: lda
       integer(c_long), value :: stride_a
-      real(c_double), target :: B(*)
+      real(c_double), target :: B(..)
       integer(c_int), value :: ldb
       integer(c_long), value :: stride_b
       real(c_double) :: beta
-      real(c_double), target :: C(*)
+      real(c_double), target :: C(..)
       integer(c_int), value :: ldc
       integer(c_long), value :: stride_c
       integer(c_int), value :: batch_count
       integer(c_int) :: dgemm_strided_batched
       dgemm_strided_batched = rocblas_dgemm_strided_batched_raw(handle, transA, transB, m, n, k, &
-        alpha, c_loc(A(1)), lda, stride_a, c_loc(B(1)), ldb, stride_b, beta, c_loc(C(1)), ldc, &
-        stride_c, batch_count)
+        alpha, c_loc(A), lda, stride_a, c_loc(B), ldb, stride_b, beta, c_loc(C), ldc, stride_c, &
+        batch_count)
     end function rocblas_dgemm_strided_batched_native
 
     function rocblas_dgemm_strided_batched_typed(handle, transA, transB, m, n, k, alpha, A, lda, &
@@ -79384,15 +79318,15 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       integer(c_int), value :: k
-      type(c_ptr), value :: alpha
-      type(c_ptr), value :: A
+      type(rocblas_half) :: alpha
+      type(rocblas_half) :: A
       integer(c_int), value :: lda
       integer(c_long), value :: stride_a
-      type(c_ptr), value :: B
+      type(rocblas_half) :: B
       integer(c_int), value :: ldb
       integer(c_long), value :: stride_b
-      type(c_ptr), value :: beta
-      type(c_ptr), value :: C
+      type(rocblas_half) :: beta
+      type(rocblas_half) :: C
       integer(c_int), value :: ldc
       integer(c_long), value :: stride_c
       integer(c_int), value :: batch_count
@@ -79413,21 +79347,21 @@ contains
       integer(c_int), value :: n
       integer(c_int), value :: k
       complex(c_float_complex) :: alpha
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: A(..)
       integer(c_int), value :: lda
       integer(c_long), value :: stride_a
-      complex(c_float_complex), target :: B(*)
+      complex(c_float_complex), target :: B(..)
       integer(c_int), value :: ldb
       integer(c_long), value :: stride_b
       complex(c_float_complex) :: beta
-      complex(c_float_complex), target :: C(*)
+      complex(c_float_complex), target :: C(..)
       integer(c_int), value :: ldc
       integer(c_long), value :: stride_c
       integer(c_int), value :: batch_count
       integer(c_int) :: cgemm_strided_batched
       cgemm_strided_batched = rocblas_cgemm_strided_batched_raw(handle, transA, transB, m, n, k, &
-        alpha, c_loc(A(1)), lda, stride_a, c_loc(B(1)), ldb, stride_b, beta, c_loc(C(1)), ldc, &
-        stride_c, batch_count)
+        alpha, c_loc(A), lda, stride_a, c_loc(B), ldb, stride_b, beta, c_loc(C), ldc, stride_c, &
+        batch_count)
     end function rocblas_cgemm_strided_batched_native
 
     function rocblas_cgemm_strided_batched_typed(handle, transA, transB, m, n, k, alpha, A, lda, &
@@ -79471,21 +79405,21 @@ contains
       integer(c_int), value :: n
       integer(c_int), value :: k
       complex(c_double_complex) :: alpha
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: A(..)
       integer(c_int), value :: lda
       integer(c_long), value :: stride_a
-      complex(c_double_complex), target :: B(*)
+      complex(c_double_complex), target :: B(..)
       integer(c_int), value :: ldb
       integer(c_long), value :: stride_b
       complex(c_double_complex) :: beta
-      complex(c_double_complex), target :: C(*)
+      complex(c_double_complex), target :: C(..)
       integer(c_int), value :: ldc
       integer(c_long), value :: stride_c
       integer(c_int), value :: batch_count
       integer(c_int) :: zgemm_strided_batched
       zgemm_strided_batched = rocblas_zgemm_strided_batched_raw(handle, transA, transB, m, n, k, &
-        alpha, c_loc(A(1)), lda, stride_a, c_loc(B(1)), ldb, stride_b, beta, c_loc(C(1)), ldc, &
-        stride_c, batch_count)
+        alpha, c_loc(A), lda, stride_a, c_loc(B), ldb, stride_b, beta, c_loc(C), ldc, stride_c, &
+        batch_count)
     end function rocblas_zgemm_strided_batched_native
 
     function rocblas_zgemm_strided_batched_typed(handle, transA, transB, m, n, k, alpha, A, lda, &
@@ -79528,22 +79462,22 @@ contains
       integer(c_long), value :: m
       integer(c_long), value :: n
       integer(c_long), value :: k
-      real(c_float), target :: alpha(*)
-      real(c_float), target :: A(*)
+      real(c_float), target :: alpha(..)
+      real(c_float), target :: A(..)
       integer(c_long), value :: lda
       integer(c_long), value :: stride_a
-      real(c_float), target :: B(*)
+      real(c_float), target :: B(..)
       integer(c_long), value :: ldb
       integer(c_long), value :: stride_b
-      real(c_float), target :: beta(*)
-      real(c_float), target :: C(*)
+      real(c_float), target :: beta(..)
+      real(c_float), target :: C(..)
       integer(c_long), value :: ldc
       integer(c_long), value :: stride_c
       integer(c_long), value :: batch_count
       integer(c_int) :: sgemm_strided_batched_64
       sgemm_strided_batched_64 = rocblas_sgemm_strided_batched_64_raw(handle, transA, transB, m, &
-        n, k, c_loc(alpha(1)), c_loc(A(1)), lda, stride_a, c_loc(B(1)), ldb, stride_b, c_loc(beta( &
-        1)), c_loc(C(1)), ldc, stride_c, batch_count)
+        n, k, c_loc(alpha), c_loc(A), lda, stride_a, c_loc(B), ldb, stride_b, c_loc(beta), c_loc( &
+        C), ldc, stride_c, batch_count)
     end function rocblas_sgemm_strided_batched_64_native
 
     function rocblas_sgemm_strided_batched_64_typed(handle, transA, transB, m, n, k, alpha, A, &
@@ -79586,22 +79520,22 @@ contains
       integer(c_long), value :: m
       integer(c_long), value :: n
       integer(c_long), value :: k
-      real(c_double), target :: alpha(*)
-      real(c_double), target :: A(*)
+      real(c_double), target :: alpha(..)
+      real(c_double), target :: A(..)
       integer(c_long), value :: lda
       integer(c_long), value :: stride_a
-      real(c_double), target :: B(*)
+      real(c_double), target :: B(..)
       integer(c_long), value :: ldb
       integer(c_long), value :: stride_b
-      real(c_double), target :: beta(*)
-      real(c_double), target :: C(*)
+      real(c_double), target :: beta(..)
+      real(c_double), target :: C(..)
       integer(c_long), value :: ldc
       integer(c_long), value :: stride_c
       integer(c_long), value :: batch_count
       integer(c_int) :: dgemm_strided_batched_64
       dgemm_strided_batched_64 = rocblas_dgemm_strided_batched_64_raw(handle, transA, transB, m, &
-        n, k, c_loc(alpha(1)), c_loc(A(1)), lda, stride_a, c_loc(B(1)), ldb, stride_b, c_loc(beta( &
-        1)), c_loc(C(1)), ldc, stride_c, batch_count)
+        n, k, c_loc(alpha), c_loc(A), lda, stride_a, c_loc(B), ldb, stride_b, c_loc(beta), c_loc( &
+        C), ldc, stride_c, batch_count)
     end function rocblas_dgemm_strided_batched_64_native
 
     function rocblas_dgemm_strided_batched_64_typed(handle, transA, transB, m, n, k, alpha, A, &
@@ -79645,15 +79579,15 @@ contains
       integer(c_long), value :: m
       integer(c_long), value :: n
       integer(c_long), value :: k
-      type(c_ptr), value :: alpha
-      type(c_ptr), value :: A
+      type(rocblas_half) :: alpha
+      type(rocblas_half) :: A
       integer(c_long), value :: lda
       integer(c_long), value :: stride_a
-      type(c_ptr), value :: B
+      type(rocblas_half) :: B
       integer(c_long), value :: ldb
       integer(c_long), value :: stride_b
-      type(c_ptr), value :: beta
-      type(c_ptr), value :: C
+      type(rocblas_half) :: beta
+      type(rocblas_half) :: C
       integer(c_long), value :: ldc
       integer(c_long), value :: stride_c
       integer(c_long), value :: batch_count
@@ -79673,22 +79607,22 @@ contains
       integer(c_long), value :: m
       integer(c_long), value :: n
       integer(c_long), value :: k
-      complex(c_float_complex), target :: alpha(*)
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: alpha(..)
+      complex(c_float_complex), target :: A(..)
       integer(c_long), value :: lda
       integer(c_long), value :: stride_a
-      complex(c_float_complex), target :: B(*)
+      complex(c_float_complex), target :: B(..)
       integer(c_long), value :: ldb
       integer(c_long), value :: stride_b
-      complex(c_float_complex), target :: beta(*)
-      complex(c_float_complex), target :: C(*)
+      complex(c_float_complex), target :: beta(..)
+      complex(c_float_complex), target :: C(..)
       integer(c_long), value :: ldc
       integer(c_long), value :: stride_c
       integer(c_long), value :: batch_count
       integer(c_int) :: cgemm_strided_batched_64
       cgemm_strided_batched_64 = rocblas_cgemm_strided_batched_64_raw(handle, transA, transB, m, &
-        n, k, c_loc(alpha(1)), c_loc(A(1)), lda, stride_a, c_loc(B(1)), ldb, stride_b, c_loc(beta( &
-        1)), c_loc(C(1)), ldc, stride_c, batch_count)
+        n, k, c_loc(alpha), c_loc(A), lda, stride_a, c_loc(B), ldb, stride_b, c_loc(beta), c_loc( &
+        C), ldc, stride_c, batch_count)
     end function rocblas_cgemm_strided_batched_64_native
 
     function rocblas_cgemm_strided_batched_64_typed(handle, transA, transB, m, n, k, alpha, A, &
@@ -79731,22 +79665,22 @@ contains
       integer(c_long), value :: m
       integer(c_long), value :: n
       integer(c_long), value :: k
-      complex(c_double_complex), target :: alpha(*)
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: alpha(..)
+      complex(c_double_complex), target :: A(..)
       integer(c_long), value :: lda
       integer(c_long), value :: stride_a
-      complex(c_double_complex), target :: B(*)
+      complex(c_double_complex), target :: B(..)
       integer(c_long), value :: ldb
       integer(c_long), value :: stride_b
-      complex(c_double_complex), target :: beta(*)
-      complex(c_double_complex), target :: C(*)
+      complex(c_double_complex), target :: beta(..)
+      complex(c_double_complex), target :: C(..)
       integer(c_long), value :: ldc
       integer(c_long), value :: stride_c
       integer(c_long), value :: batch_count
       integer(c_int) :: zgemm_strided_batched_64
       zgemm_strided_batched_64 = rocblas_zgemm_strided_batched_64_raw(handle, transA, transB, m, &
-        n, k, c_loc(alpha(1)), c_loc(A(1)), lda, stride_a, c_loc(B(1)), ldb, stride_b, c_loc(beta( &
-        1)), c_loc(C(1)), ldc, stride_c, batch_count)
+        n, k, c_loc(alpha), c_loc(A), lda, stride_a, c_loc(B), ldb, stride_b, c_loc(beta), c_loc( &
+        C), ldc, stride_c, batch_count)
     end function rocblas_zgemm_strided_batched_64_native
 
     function rocblas_zgemm_strided_batched_64_typed(handle, transA, transB, m, n, k, alpha, A, &
@@ -79785,15 +79719,14 @@ contains
       integer(c_int), value :: side
       integer(c_int), value :: m
       integer(c_int), value :: n
-      real(c_float), target :: A(*)
+      real(c_float), target :: A(..)
       integer(c_int), value :: lda
-      real(c_float), target :: x(*)
+      real(c_float), target :: x(..)
       integer(c_int), value :: incx
-      real(c_float), target :: C(*)
+      real(c_float), target :: C(..)
       integer(c_int), value :: ldc
       integer(c_int) :: sdgmm
-      sdgmm = rocblas_sdgmm_raw(handle, side, m, n, c_loc(A(1)), lda, c_loc(x(1)), incx, c_loc(C( &
-        1)), ldc)
+      sdgmm = rocblas_sdgmm_raw(handle, side, m, n, c_loc(A), lda, c_loc(x), incx, c_loc(C), ldc)
     end function rocblas_sdgmm_native
 
     function rocblas_sdgmm_typed(handle, side, m, n, A, lda, x, incx, C, ldc) result(sdgmm)
@@ -79821,15 +79754,14 @@ contains
       integer(c_int), value :: side
       integer(c_int), value :: m
       integer(c_int), value :: n
-      real(c_double), target :: A(*)
+      real(c_double), target :: A(..)
       integer(c_int), value :: lda
-      real(c_double), target :: x(*)
+      real(c_double), target :: x(..)
       integer(c_int), value :: incx
-      real(c_double), target :: C(*)
+      real(c_double), target :: C(..)
       integer(c_int), value :: ldc
       integer(c_int) :: ddgmm
-      ddgmm = rocblas_ddgmm_raw(handle, side, m, n, c_loc(A(1)), lda, c_loc(x(1)), incx, c_loc(C( &
-        1)), ldc)
+      ddgmm = rocblas_ddgmm_raw(handle, side, m, n, c_loc(A), lda, c_loc(x), incx, c_loc(C), ldc)
     end function rocblas_ddgmm_native
 
     function rocblas_ddgmm_typed(handle, side, m, n, A, lda, x, incx, C, ldc) result(ddgmm)
@@ -79857,15 +79789,14 @@ contains
       integer(c_int), value :: side
       integer(c_int), value :: m
       integer(c_int), value :: n
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: A(..)
       integer(c_int), value :: lda
-      complex(c_float_complex), target :: x(*)
+      complex(c_float_complex), target :: x(..)
       integer(c_int), value :: incx
-      complex(c_float_complex), target :: C(*)
+      complex(c_float_complex), target :: C(..)
       integer(c_int), value :: ldc
       integer(c_int) :: cdgmm
-      cdgmm = rocblas_cdgmm_raw(handle, side, m, n, c_loc(A(1)), lda, c_loc(x(1)), incx, c_loc(C( &
-        1)), ldc)
+      cdgmm = rocblas_cdgmm_raw(handle, side, m, n, c_loc(A), lda, c_loc(x), incx, c_loc(C), ldc)
     end function rocblas_cdgmm_native
 
     function rocblas_cdgmm_typed(handle, side, m, n, A, lda, x, incx, C, ldc) result(cdgmm)
@@ -79893,15 +79824,14 @@ contains
       integer(c_int), value :: side
       integer(c_int), value :: m
       integer(c_int), value :: n
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: A(..)
       integer(c_int), value :: lda
-      complex(c_double_complex), target :: x(*)
+      complex(c_double_complex), target :: x(..)
       integer(c_int), value :: incx
-      complex(c_double_complex), target :: C(*)
+      complex(c_double_complex), target :: C(..)
       integer(c_int), value :: ldc
       integer(c_int) :: zdgmm
-      zdgmm = rocblas_zdgmm_raw(handle, side, m, n, c_loc(A(1)), lda, c_loc(x(1)), incx, c_loc(C( &
-        1)), ldc)
+      zdgmm = rocblas_zdgmm_raw(handle, side, m, n, c_loc(A), lda, c_loc(x), incx, c_loc(C), ldc)
     end function rocblas_zdgmm_native
 
     function rocblas_zdgmm_typed(handle, side, m, n, A, lda, x, incx, C, ldc) result(zdgmm)
@@ -79929,15 +79859,15 @@ contains
       integer(c_int), value :: side
       integer(c_long), value :: m
       integer(c_long), value :: n
-      real(c_float), target :: A(*)
+      real(c_float), target :: A(..)
       integer(c_long), value :: lda
-      real(c_float), target :: x(*)
+      real(c_float), target :: x(..)
       integer(c_long), value :: incx
-      real(c_float), target :: C(*)
+      real(c_float), target :: C(..)
       integer(c_long), value :: ldc
       integer(c_int) :: sdgmm_64
-      sdgmm_64 = rocblas_sdgmm_64_raw(handle, side, m, n, c_loc(A(1)), lda, c_loc(x(1)), incx, &
-        c_loc(C(1)), ldc)
+      sdgmm_64 = rocblas_sdgmm_64_raw(handle, side, m, n, c_loc(A), lda, c_loc(x), incx, c_loc(C), &
+        ldc)
     end function rocblas_sdgmm_64_native
 
     function rocblas_sdgmm_64_typed(handle, side, m, n, A, lda, x, incx, C, ldc) result(sdgmm_64)
@@ -79965,15 +79895,15 @@ contains
       integer(c_int), value :: side
       integer(c_long), value :: m
       integer(c_long), value :: n
-      real(c_double), target :: A(*)
+      real(c_double), target :: A(..)
       integer(c_long), value :: lda
-      real(c_double), target :: x(*)
+      real(c_double), target :: x(..)
       integer(c_long), value :: incx
-      real(c_double), target :: C(*)
+      real(c_double), target :: C(..)
       integer(c_long), value :: ldc
       integer(c_int) :: ddgmm_64
-      ddgmm_64 = rocblas_ddgmm_64_raw(handle, side, m, n, c_loc(A(1)), lda, c_loc(x(1)), incx, &
-        c_loc(C(1)), ldc)
+      ddgmm_64 = rocblas_ddgmm_64_raw(handle, side, m, n, c_loc(A), lda, c_loc(x), incx, c_loc(C), &
+        ldc)
     end function rocblas_ddgmm_64_native
 
     function rocblas_ddgmm_64_typed(handle, side, m, n, A, lda, x, incx, C, ldc) result(ddgmm_64)
@@ -80001,15 +79931,15 @@ contains
       integer(c_int), value :: side
       integer(c_long), value :: m
       integer(c_long), value :: n
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: A(..)
       integer(c_long), value :: lda
-      complex(c_float_complex), target :: x(*)
+      complex(c_float_complex), target :: x(..)
       integer(c_long), value :: incx
-      complex(c_float_complex), target :: C(*)
+      complex(c_float_complex), target :: C(..)
       integer(c_long), value :: ldc
       integer(c_int) :: cdgmm_64
-      cdgmm_64 = rocblas_cdgmm_64_raw(handle, side, m, n, c_loc(A(1)), lda, c_loc(x(1)), incx, &
-        c_loc(C(1)), ldc)
+      cdgmm_64 = rocblas_cdgmm_64_raw(handle, side, m, n, c_loc(A), lda, c_loc(x), incx, c_loc(C), &
+        ldc)
     end function rocblas_cdgmm_64_native
 
     function rocblas_cdgmm_64_typed(handle, side, m, n, A, lda, x, incx, C, ldc) result(cdgmm_64)
@@ -80037,15 +79967,15 @@ contains
       integer(c_int), value :: side
       integer(c_long), value :: m
       integer(c_long), value :: n
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: A(..)
       integer(c_long), value :: lda
-      complex(c_double_complex), target :: x(*)
+      complex(c_double_complex), target :: x(..)
       integer(c_long), value :: incx
-      complex(c_double_complex), target :: C(*)
+      complex(c_double_complex), target :: C(..)
       integer(c_long), value :: ldc
       integer(c_int) :: zdgmm_64
-      zdgmm_64 = rocblas_zdgmm_64_raw(handle, side, m, n, c_loc(A(1)), lda, c_loc(x(1)), incx, &
-        c_loc(C(1)), ldc)
+      zdgmm_64 = rocblas_zdgmm_64_raw(handle, side, m, n, c_loc(A), lda, c_loc(x), incx, c_loc(C), &
+        ldc)
     end function rocblas_zdgmm_64_native
 
     function rocblas_zdgmm_64_typed(handle, side, m, n, A, lda, x, incx, C, ldc) result(zdgmm_64)
@@ -80242,19 +80172,19 @@ contains
       integer(c_int), value :: side
       integer(c_int), value :: m
       integer(c_int), value :: n
-      real(c_float), target :: A(*)
+      real(c_float), target :: A(..)
       integer(c_int), value :: lda
       integer(c_long), value :: stride_A
-      real(c_float), target :: x(*)
+      real(c_float), target :: x(..)
       integer(c_int), value :: incx
       integer(c_long), value :: stride_x
-      real(c_float), target :: C(*)
+      real(c_float), target :: C(..)
       integer(c_int), value :: ldc
       integer(c_long), value :: stride_C
       integer(c_int), value :: batch_count
       integer(c_int) :: sdgmm_strided_batched
-      sdgmm_strided_batched = rocblas_sdgmm_strided_batched_raw(handle, side, m, n, c_loc(A(1)), &
-        lda, stride_A, c_loc(x(1)), incx, stride_x, c_loc(C(1)), ldc, stride_C, batch_count)
+      sdgmm_strided_batched = rocblas_sdgmm_strided_batched_raw(handle, side, m, n, c_loc(A), lda, &
+        stride_A, c_loc(x), incx, stride_x, c_loc(C), ldc, stride_C, batch_count)
     end function rocblas_sdgmm_strided_batched_native
 
     function rocblas_sdgmm_strided_batched_typed(handle, side, m, n, A, lda, stride_A, x, incx, &
@@ -80289,19 +80219,19 @@ contains
       integer(c_int), value :: side
       integer(c_int), value :: m
       integer(c_int), value :: n
-      real(c_double), target :: A(*)
+      real(c_double), target :: A(..)
       integer(c_int), value :: lda
       integer(c_long), value :: stride_A
-      real(c_double), target :: x(*)
+      real(c_double), target :: x(..)
       integer(c_int), value :: incx
       integer(c_long), value :: stride_x
-      real(c_double), target :: C(*)
+      real(c_double), target :: C(..)
       integer(c_int), value :: ldc
       integer(c_long), value :: stride_C
       integer(c_int), value :: batch_count
       integer(c_int) :: ddgmm_strided_batched
-      ddgmm_strided_batched = rocblas_ddgmm_strided_batched_raw(handle, side, m, n, c_loc(A(1)), &
-        lda, stride_A, c_loc(x(1)), incx, stride_x, c_loc(C(1)), ldc, stride_C, batch_count)
+      ddgmm_strided_batched = rocblas_ddgmm_strided_batched_raw(handle, side, m, n, c_loc(A), lda, &
+        stride_A, c_loc(x), incx, stride_x, c_loc(C), ldc, stride_C, batch_count)
     end function rocblas_ddgmm_strided_batched_native
 
     function rocblas_ddgmm_strided_batched_typed(handle, side, m, n, A, lda, stride_A, x, incx, &
@@ -80336,19 +80266,19 @@ contains
       integer(c_int), value :: side
       integer(c_int), value :: m
       integer(c_int), value :: n
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: A(..)
       integer(c_int), value :: lda
       integer(c_long), value :: stride_A
-      complex(c_float_complex), target :: x(*)
+      complex(c_float_complex), target :: x(..)
       integer(c_int), value :: incx
       integer(c_long), value :: stride_x
-      complex(c_float_complex), target :: C(*)
+      complex(c_float_complex), target :: C(..)
       integer(c_int), value :: ldc
       integer(c_long), value :: stride_C
       integer(c_int), value :: batch_count
       integer(c_int) :: cdgmm_strided_batched
-      cdgmm_strided_batched = rocblas_cdgmm_strided_batched_raw(handle, side, m, n, c_loc(A(1)), &
-        lda, stride_A, c_loc(x(1)), incx, stride_x, c_loc(C(1)), ldc, stride_C, batch_count)
+      cdgmm_strided_batched = rocblas_cdgmm_strided_batched_raw(handle, side, m, n, c_loc(A), lda, &
+        stride_A, c_loc(x), incx, stride_x, c_loc(C), ldc, stride_C, batch_count)
     end function rocblas_cdgmm_strided_batched_native
 
     function rocblas_cdgmm_strided_batched_typed(handle, side, m, n, A, lda, stride_A, x, incx, &
@@ -80383,19 +80313,19 @@ contains
       integer(c_int), value :: side
       integer(c_int), value :: m
       integer(c_int), value :: n
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: A(..)
       integer(c_int), value :: lda
       integer(c_long), value :: stride_A
-      complex(c_double_complex), target :: x(*)
+      complex(c_double_complex), target :: x(..)
       integer(c_int), value :: incx
       integer(c_long), value :: stride_x
-      complex(c_double_complex), target :: C(*)
+      complex(c_double_complex), target :: C(..)
       integer(c_int), value :: ldc
       integer(c_long), value :: stride_C
       integer(c_int), value :: batch_count
       integer(c_int) :: zdgmm_strided_batched
-      zdgmm_strided_batched = rocblas_zdgmm_strided_batched_raw(handle, side, m, n, c_loc(A(1)), &
-        lda, stride_A, c_loc(x(1)), incx, stride_x, c_loc(C(1)), ldc, stride_C, batch_count)
+      zdgmm_strided_batched = rocblas_zdgmm_strided_batched_raw(handle, side, m, n, c_loc(A), lda, &
+        stride_A, c_loc(x), incx, stride_x, c_loc(C), ldc, stride_C, batch_count)
     end function rocblas_zdgmm_strided_batched_native
 
     function rocblas_zdgmm_strided_batched_typed(handle, side, m, n, A, lda, stride_A, x, incx, &
@@ -80430,19 +80360,19 @@ contains
       integer(c_int), value :: side
       integer(c_long), value :: m
       integer(c_long), value :: n
-      real(c_float), target :: A(*)
+      real(c_float), target :: A(..)
       integer(c_long), value :: lda
       integer(c_long), value :: stride_A
-      real(c_float), target :: x(*)
+      real(c_float), target :: x(..)
       integer(c_long), value :: incx
       integer(c_long), value :: stride_x
-      real(c_float), target :: C(*)
+      real(c_float), target :: C(..)
       integer(c_long), value :: ldc
       integer(c_long), value :: stride_C
       integer(c_long), value :: batch_count
       integer(c_int) :: sdgmm_strided_batched_64
-      sdgmm_strided_batched_64 = rocblas_sdgmm_strided_batched_64_raw(handle, side, m, n, c_loc(A( &
-        1)), lda, stride_A, c_loc(x(1)), incx, stride_x, c_loc(C(1)), ldc, stride_C, batch_count)
+      sdgmm_strided_batched_64 = rocblas_sdgmm_strided_batched_64_raw(handle, side, m, n, c_loc( &
+        A), lda, stride_A, c_loc(x), incx, stride_x, c_loc(C), ldc, stride_C, batch_count)
     end function rocblas_sdgmm_strided_batched_64_native
 
     function rocblas_sdgmm_strided_batched_64_typed(handle, side, m, n, A, lda, stride_A, x, incx, &
@@ -80477,19 +80407,19 @@ contains
       integer(c_int), value :: side
       integer(c_long), value :: m
       integer(c_long), value :: n
-      real(c_double), target :: A(*)
+      real(c_double), target :: A(..)
       integer(c_long), value :: lda
       integer(c_long), value :: stride_A
-      real(c_double), target :: x(*)
+      real(c_double), target :: x(..)
       integer(c_long), value :: incx
       integer(c_long), value :: stride_x
-      real(c_double), target :: C(*)
+      real(c_double), target :: C(..)
       integer(c_long), value :: ldc
       integer(c_long), value :: stride_C
       integer(c_long), value :: batch_count
       integer(c_int) :: ddgmm_strided_batched_64
-      ddgmm_strided_batched_64 = rocblas_ddgmm_strided_batched_64_raw(handle, side, m, n, c_loc(A( &
-        1)), lda, stride_A, c_loc(x(1)), incx, stride_x, c_loc(C(1)), ldc, stride_C, batch_count)
+      ddgmm_strided_batched_64 = rocblas_ddgmm_strided_batched_64_raw(handle, side, m, n, c_loc( &
+        A), lda, stride_A, c_loc(x), incx, stride_x, c_loc(C), ldc, stride_C, batch_count)
     end function rocblas_ddgmm_strided_batched_64_native
 
     function rocblas_ddgmm_strided_batched_64_typed(handle, side, m, n, A, lda, stride_A, x, incx, &
@@ -80524,19 +80454,19 @@ contains
       integer(c_int), value :: side
       integer(c_long), value :: m
       integer(c_long), value :: n
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: A(..)
       integer(c_long), value :: lda
       integer(c_long), value :: stride_A
-      complex(c_float_complex), target :: x(*)
+      complex(c_float_complex), target :: x(..)
       integer(c_long), value :: incx
       integer(c_long), value :: stride_x
-      complex(c_float_complex), target :: C(*)
+      complex(c_float_complex), target :: C(..)
       integer(c_long), value :: ldc
       integer(c_long), value :: stride_C
       integer(c_long), value :: batch_count
       integer(c_int) :: cdgmm_strided_batched_64
-      cdgmm_strided_batched_64 = rocblas_cdgmm_strided_batched_64_raw(handle, side, m, n, c_loc(A( &
-        1)), lda, stride_A, c_loc(x(1)), incx, stride_x, c_loc(C(1)), ldc, stride_C, batch_count)
+      cdgmm_strided_batched_64 = rocblas_cdgmm_strided_batched_64_raw(handle, side, m, n, c_loc( &
+        A), lda, stride_A, c_loc(x), incx, stride_x, c_loc(C), ldc, stride_C, batch_count)
     end function rocblas_cdgmm_strided_batched_64_native
 
     function rocblas_cdgmm_strided_batched_64_typed(handle, side, m, n, A, lda, stride_A, x, incx, &
@@ -80571,19 +80501,19 @@ contains
       integer(c_int), value :: side
       integer(c_long), value :: m
       integer(c_long), value :: n
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: A(..)
       integer(c_long), value :: lda
       integer(c_long), value :: stride_A
-      complex(c_double_complex), target :: x(*)
+      complex(c_double_complex), target :: x(..)
       integer(c_long), value :: incx
       integer(c_long), value :: stride_x
-      complex(c_double_complex), target :: C(*)
+      complex(c_double_complex), target :: C(..)
       integer(c_long), value :: ldc
       integer(c_long), value :: stride_C
       integer(c_long), value :: batch_count
       integer(c_int) :: zdgmm_strided_batched_64
-      zdgmm_strided_batched_64 = rocblas_zdgmm_strided_batched_64_raw(handle, side, m, n, c_loc(A( &
-        1)), lda, stride_A, c_loc(x(1)), incx, stride_x, c_loc(C(1)), ldc, stride_C, batch_count)
+      zdgmm_strided_batched_64 = rocblas_zdgmm_strided_batched_64_raw(handle, side, m, n, c_loc( &
+        A), lda, stride_A, c_loc(x), incx, stride_x, c_loc(C), ldc, stride_C, batch_count)
     end function rocblas_zdgmm_strided_batched_64_native
 
     function rocblas_zdgmm_strided_batched_64_typed(handle, side, m, n, A, lda, stride_A, x, incx, &
@@ -80620,16 +80550,16 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       real(c_float) :: alpha
-      real(c_float), target :: A(*)
+      real(c_float), target :: A(..)
       integer(c_int), value :: lda
       real(c_float) :: beta
-      real(c_float), target :: B(*)
+      real(c_float), target :: B(..)
       integer(c_int), value :: ldb
-      real(c_float), target :: C(*)
+      real(c_float), target :: C(..)
       integer(c_int), value :: ldc
       integer(c_int) :: sgeam
-      sgeam = rocblas_sgeam_raw(handle, transA, transB, m, n, alpha, c_loc(A(1)), lda, beta, &
-        c_loc(B(1)), ldb, c_loc(C(1)), ldc)
+      sgeam = rocblas_sgeam_raw(handle, transA, transB, m, n, alpha, c_loc(A), lda, beta, c_loc( &
+        B), ldb, c_loc(C), ldc)
     end function rocblas_sgeam_native
 
     function rocblas_sgeam_typed(handle, transA, transB, m, n, alpha, A, lda, beta, B, ldb, C, &
@@ -80665,16 +80595,16 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       real(c_double) :: alpha
-      real(c_double), target :: A(*)
+      real(c_double), target :: A(..)
       integer(c_int), value :: lda
       real(c_double) :: beta
-      real(c_double), target :: B(*)
+      real(c_double), target :: B(..)
       integer(c_int), value :: ldb
-      real(c_double), target :: C(*)
+      real(c_double), target :: C(..)
       integer(c_int), value :: ldc
       integer(c_int) :: dgeam
-      dgeam = rocblas_dgeam_raw(handle, transA, transB, m, n, alpha, c_loc(A(1)), lda, beta, &
-        c_loc(B(1)), ldb, c_loc(C(1)), ldc)
+      dgeam = rocblas_dgeam_raw(handle, transA, transB, m, n, alpha, c_loc(A), lda, beta, c_loc( &
+        B), ldb, c_loc(C), ldc)
     end function rocblas_dgeam_native
 
     function rocblas_dgeam_typed(handle, transA, transB, m, n, alpha, A, lda, beta, B, ldb, C, &
@@ -80710,16 +80640,16 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       complex(c_float_complex) :: alpha
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: A(..)
       integer(c_int), value :: lda
       complex(c_float_complex) :: beta
-      complex(c_float_complex), target :: B(*)
+      complex(c_float_complex), target :: B(..)
       integer(c_int), value :: ldb
-      complex(c_float_complex), target :: C(*)
+      complex(c_float_complex), target :: C(..)
       integer(c_int), value :: ldc
       integer(c_int) :: cgeam
-      cgeam = rocblas_cgeam_raw(handle, transA, transB, m, n, alpha, c_loc(A(1)), lda, beta, &
-        c_loc(B(1)), ldb, c_loc(C(1)), ldc)
+      cgeam = rocblas_cgeam_raw(handle, transA, transB, m, n, alpha, c_loc(A), lda, beta, c_loc( &
+        B), ldb, c_loc(C), ldc)
     end function rocblas_cgeam_native
 
     function rocblas_cgeam_typed(handle, transA, transB, m, n, alpha, A, lda, beta, B, ldb, C, &
@@ -80755,16 +80685,16 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       complex(c_double_complex) :: alpha
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: A(..)
       integer(c_int), value :: lda
       complex(c_double_complex) :: beta
-      complex(c_double_complex), target :: B(*)
+      complex(c_double_complex), target :: B(..)
       integer(c_int), value :: ldb
-      complex(c_double_complex), target :: C(*)
+      complex(c_double_complex), target :: C(..)
       integer(c_int), value :: ldc
       integer(c_int) :: zgeam
-      zgeam = rocblas_zgeam_raw(handle, transA, transB, m, n, alpha, c_loc(A(1)), lda, beta, &
-        c_loc(B(1)), ldb, c_loc(C(1)), ldc)
+      zgeam = rocblas_zgeam_raw(handle, transA, transB, m, n, alpha, c_loc(A), lda, beta, c_loc( &
+        B), ldb, c_loc(C), ldc)
     end function rocblas_zgeam_native
 
     function rocblas_zgeam_typed(handle, transA, transB, m, n, alpha, A, lda, beta, B, ldb, C, &
@@ -80799,17 +80729,17 @@ contains
       integer(c_int), value :: transB
       integer(c_long), value :: m
       integer(c_long), value :: n
-      real(c_float), target :: alpha(*)
-      real(c_float), target :: A(*)
+      real(c_float), target :: alpha(..)
+      real(c_float), target :: A(..)
       integer(c_long), value :: lda
-      real(c_float), target :: beta(*)
-      real(c_float), target :: B(*)
+      real(c_float), target :: beta(..)
+      real(c_float), target :: B(..)
       integer(c_long), value :: ldb
-      real(c_float), target :: C(*)
+      real(c_float), target :: C(..)
       integer(c_long), value :: ldc
       integer(c_int) :: sgeam_64
-      sgeam_64 = rocblas_sgeam_64_raw(handle, transA, transB, m, n, c_loc(alpha(1)), c_loc(A(1)), &
-        lda, c_loc(beta(1)), c_loc(B(1)), ldb, c_loc(C(1)), ldc)
+      sgeam_64 = rocblas_sgeam_64_raw(handle, transA, transB, m, n, c_loc(alpha), c_loc(A), lda, &
+        c_loc(beta), c_loc(B), ldb, c_loc(C), ldc)
     end function rocblas_sgeam_64_native
 
     function rocblas_sgeam_64_typed(handle, transA, transB, m, n, alpha, A, lda, beta, B, ldb, C, &
@@ -80844,17 +80774,17 @@ contains
       integer(c_int), value :: transB
       integer(c_long), value :: m
       integer(c_long), value :: n
-      real(c_double), target :: alpha(*)
-      real(c_double), target :: A(*)
+      real(c_double), target :: alpha(..)
+      real(c_double), target :: A(..)
       integer(c_long), value :: lda
-      real(c_double), target :: beta(*)
-      real(c_double), target :: B(*)
+      real(c_double), target :: beta(..)
+      real(c_double), target :: B(..)
       integer(c_long), value :: ldb
-      real(c_double), target :: C(*)
+      real(c_double), target :: C(..)
       integer(c_long), value :: ldc
       integer(c_int) :: dgeam_64
-      dgeam_64 = rocblas_dgeam_64_raw(handle, transA, transB, m, n, c_loc(alpha(1)), c_loc(A(1)), &
-        lda, c_loc(beta(1)), c_loc(B(1)), ldb, c_loc(C(1)), ldc)
+      dgeam_64 = rocblas_dgeam_64_raw(handle, transA, transB, m, n, c_loc(alpha), c_loc(A), lda, &
+        c_loc(beta), c_loc(B), ldb, c_loc(C), ldc)
     end function rocblas_dgeam_64_native
 
     function rocblas_dgeam_64_typed(handle, transA, transB, m, n, alpha, A, lda, beta, B, ldb, C, &
@@ -80889,17 +80819,17 @@ contains
       integer(c_int), value :: transB
       integer(c_long), value :: m
       integer(c_long), value :: n
-      complex(c_float_complex), target :: alpha(*)
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: alpha(..)
+      complex(c_float_complex), target :: A(..)
       integer(c_long), value :: lda
-      complex(c_float_complex), target :: beta(*)
-      complex(c_float_complex), target :: B(*)
+      complex(c_float_complex), target :: beta(..)
+      complex(c_float_complex), target :: B(..)
       integer(c_long), value :: ldb
-      complex(c_float_complex), target :: C(*)
+      complex(c_float_complex), target :: C(..)
       integer(c_long), value :: ldc
       integer(c_int) :: cgeam_64
-      cgeam_64 = rocblas_cgeam_64_raw(handle, transA, transB, m, n, c_loc(alpha(1)), c_loc(A(1)), &
-        lda, c_loc(beta(1)), c_loc(B(1)), ldb, c_loc(C(1)), ldc)
+      cgeam_64 = rocblas_cgeam_64_raw(handle, transA, transB, m, n, c_loc(alpha), c_loc(A), lda, &
+        c_loc(beta), c_loc(B), ldb, c_loc(C), ldc)
     end function rocblas_cgeam_64_native
 
     function rocblas_cgeam_64_typed(handle, transA, transB, m, n, alpha, A, lda, beta, B, ldb, C, &
@@ -80934,17 +80864,17 @@ contains
       integer(c_int), value :: transB
       integer(c_long), value :: m
       integer(c_long), value :: n
-      complex(c_double_complex), target :: alpha(*)
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: alpha(..)
+      complex(c_double_complex), target :: A(..)
       integer(c_long), value :: lda
-      complex(c_double_complex), target :: beta(*)
-      complex(c_double_complex), target :: B(*)
+      complex(c_double_complex), target :: beta(..)
+      complex(c_double_complex), target :: B(..)
       integer(c_long), value :: ldb
-      complex(c_double_complex), target :: C(*)
+      complex(c_double_complex), target :: C(..)
       integer(c_long), value :: ldc
       integer(c_int) :: zgeam_64
-      zgeam_64 = rocblas_zgeam_64_raw(handle, transA, transB, m, n, c_loc(alpha(1)), c_loc(A(1)), &
-        lda, c_loc(beta(1)), c_loc(B(1)), ldb, c_loc(C(1)), ldc)
+      zgeam_64 = rocblas_zgeam_64_raw(handle, transA, transB, m, n, c_loc(alpha), c_loc(A), lda, &
+        c_loc(beta), c_loc(B), ldb, c_loc(C), ldc)
     end function rocblas_zgeam_64_native
 
     function rocblas_zgeam_64_typed(handle, transA, transB, m, n, alpha, A, lda, beta, B, ldb, C, &
@@ -81075,18 +81005,18 @@ contains
       integer(c_int), value :: transB
       integer(c_long), value :: m
       integer(c_long), value :: n
-      real(c_float), target :: alpha(*)
+      real(c_float), target :: alpha(..)
       type(c_ptr), value :: A
       integer(c_long), value :: lda
-      real(c_float), target :: beta(*)
+      real(c_float), target :: beta(..)
       type(c_ptr), value :: B
       integer(c_long), value :: ldb
       type(c_ptr), value :: C
       integer(c_long), value :: ldc
       integer(c_long), value :: batch_count
       integer(c_int) :: sgeam_batched_64
-      sgeam_batched_64 = rocblas_sgeam_batched_64_raw(handle, transA, transB, m, n, c_loc(alpha( &
-        1)), A, lda, c_loc(beta(1)), B, ldb, C, ldc, batch_count)
+      sgeam_batched_64 = rocblas_sgeam_batched_64_raw(handle, transA, transB, m, n, c_loc(alpha), &
+        A, lda, c_loc(beta), B, ldb, C, ldc, batch_count)
     end function rocblas_sgeam_batched_64_native
 
     function rocblas_sgeam_batched_64_typed(handle, transA, transB, m, n, alpha, A, lda, beta, B, &
@@ -81122,18 +81052,18 @@ contains
       integer(c_int), value :: transB
       integer(c_long), value :: m
       integer(c_long), value :: n
-      real(c_double), target :: alpha(*)
+      real(c_double), target :: alpha(..)
       type(c_ptr), value :: A
       integer(c_long), value :: lda
-      real(c_double), target :: beta(*)
+      real(c_double), target :: beta(..)
       type(c_ptr), value :: B
       integer(c_long), value :: ldb
       type(c_ptr), value :: C
       integer(c_long), value :: ldc
       integer(c_long), value :: batch_count
       integer(c_int) :: dgeam_batched_64
-      dgeam_batched_64 = rocblas_dgeam_batched_64_raw(handle, transA, transB, m, n, c_loc(alpha( &
-        1)), A, lda, c_loc(beta(1)), B, ldb, C, ldc, batch_count)
+      dgeam_batched_64 = rocblas_dgeam_batched_64_raw(handle, transA, transB, m, n, c_loc(alpha), &
+        A, lda, c_loc(beta), B, ldb, C, ldc, batch_count)
     end function rocblas_dgeam_batched_64_native
 
     function rocblas_dgeam_batched_64_typed(handle, transA, transB, m, n, alpha, A, lda, beta, B, &
@@ -81169,18 +81099,18 @@ contains
       integer(c_int), value :: transB
       integer(c_long), value :: m
       integer(c_long), value :: n
-      complex(c_float_complex), target :: alpha(*)
+      complex(c_float_complex), target :: alpha(..)
       type(c_ptr), value :: A
       integer(c_long), value :: lda
-      complex(c_float_complex), target :: beta(*)
+      complex(c_float_complex), target :: beta(..)
       type(c_ptr), value :: B
       integer(c_long), value :: ldb
       type(c_ptr), value :: C
       integer(c_long), value :: ldc
       integer(c_long), value :: batch_count
       integer(c_int) :: cgeam_batched_64
-      cgeam_batched_64 = rocblas_cgeam_batched_64_raw(handle, transA, transB, m, n, c_loc(alpha( &
-        1)), A, lda, c_loc(beta(1)), B, ldb, C, ldc, batch_count)
+      cgeam_batched_64 = rocblas_cgeam_batched_64_raw(handle, transA, transB, m, n, c_loc(alpha), &
+        A, lda, c_loc(beta), B, ldb, C, ldc, batch_count)
     end function rocblas_cgeam_batched_64_native
 
     function rocblas_cgeam_batched_64_typed(handle, transA, transB, m, n, alpha, A, lda, beta, B, &
@@ -81216,18 +81146,18 @@ contains
       integer(c_int), value :: transB
       integer(c_long), value :: m
       integer(c_long), value :: n
-      complex(c_double_complex), target :: alpha(*)
+      complex(c_double_complex), target :: alpha(..)
       type(c_ptr), value :: A
       integer(c_long), value :: lda
-      complex(c_double_complex), target :: beta(*)
+      complex(c_double_complex), target :: beta(..)
       type(c_ptr), value :: B
       integer(c_long), value :: ldb
       type(c_ptr), value :: C
       integer(c_long), value :: ldc
       integer(c_long), value :: batch_count
       integer(c_int) :: zgeam_batched_64
-      zgeam_batched_64 = rocblas_zgeam_batched_64_raw(handle, transA, transB, m, n, c_loc(alpha( &
-        1)), A, lda, c_loc(beta(1)), B, ldb, C, ldc, batch_count)
+      zgeam_batched_64 = rocblas_zgeam_batched_64_raw(handle, transA, transB, m, n, c_loc(alpha), &
+        A, lda, c_loc(beta), B, ldb, C, ldc, batch_count)
     end function rocblas_zgeam_batched_64_native
 
     function rocblas_zgeam_batched_64_typed(handle, transA, transB, m, n, alpha, A, lda, beta, B, &
@@ -81265,21 +81195,21 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       real(c_float) :: alpha
-      real(c_float), target :: A(*)
+      real(c_float), target :: A(..)
       integer(c_int), value :: lda
       integer(c_long), value :: stride_A
       real(c_float) :: beta
-      real(c_float), target :: B(*)
+      real(c_float), target :: B(..)
       integer(c_int), value :: ldb
       integer(c_long), value :: stride_B
-      real(c_float), target :: C(*)
+      real(c_float), target :: C(..)
       integer(c_int), value :: ldc
       integer(c_long), value :: stride_C
       integer(c_int), value :: batch_count
       integer(c_int) :: sgeam_strided_batched
       sgeam_strided_batched = rocblas_sgeam_strided_batched_raw(handle, transA, transB, m, n, &
-        alpha, c_loc(A(1)), lda, stride_A, beta, c_loc(B(1)), ldb, stride_B, c_loc(C(1)), ldc, &
-        stride_C, batch_count)
+        alpha, c_loc(A), lda, stride_A, beta, c_loc(B), ldb, stride_B, c_loc(C), ldc, stride_C, &
+        batch_count)
     end function rocblas_sgeam_strided_batched_native
 
     function rocblas_sgeam_strided_batched_typed(handle, transA, transB, m, n, alpha, A, lda, &
@@ -81321,21 +81251,21 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       real(c_double) :: alpha
-      real(c_double), target :: A(*)
+      real(c_double), target :: A(..)
       integer(c_int), value :: lda
       integer(c_long), value :: stride_A
       real(c_double) :: beta
-      real(c_double), target :: B(*)
+      real(c_double), target :: B(..)
       integer(c_int), value :: ldb
       integer(c_long), value :: stride_B
-      real(c_double), target :: C(*)
+      real(c_double), target :: C(..)
       integer(c_int), value :: ldc
       integer(c_long), value :: stride_C
       integer(c_int), value :: batch_count
       integer(c_int) :: dgeam_strided_batched
       dgeam_strided_batched = rocblas_dgeam_strided_batched_raw(handle, transA, transB, m, n, &
-        alpha, c_loc(A(1)), lda, stride_A, beta, c_loc(B(1)), ldb, stride_B, c_loc(C(1)), ldc, &
-        stride_C, batch_count)
+        alpha, c_loc(A), lda, stride_A, beta, c_loc(B), ldb, stride_B, c_loc(C), ldc, stride_C, &
+        batch_count)
     end function rocblas_dgeam_strided_batched_native
 
     function rocblas_dgeam_strided_batched_typed(handle, transA, transB, m, n, alpha, A, lda, &
@@ -81377,21 +81307,21 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       complex(c_float_complex) :: alpha
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: A(..)
       integer(c_int), value :: lda
       integer(c_long), value :: stride_A
       complex(c_float_complex) :: beta
-      complex(c_float_complex), target :: B(*)
+      complex(c_float_complex), target :: B(..)
       integer(c_int), value :: ldb
       integer(c_long), value :: stride_B
-      complex(c_float_complex), target :: C(*)
+      complex(c_float_complex), target :: C(..)
       integer(c_int), value :: ldc
       integer(c_long), value :: stride_C
       integer(c_int), value :: batch_count
       integer(c_int) :: cgeam_strided_batched
       cgeam_strided_batched = rocblas_cgeam_strided_batched_raw(handle, transA, transB, m, n, &
-        alpha, c_loc(A(1)), lda, stride_A, beta, c_loc(B(1)), ldb, stride_B, c_loc(C(1)), ldc, &
-        stride_C, batch_count)
+        alpha, c_loc(A), lda, stride_A, beta, c_loc(B), ldb, stride_B, c_loc(C), ldc, stride_C, &
+        batch_count)
     end function rocblas_cgeam_strided_batched_native
 
     function rocblas_cgeam_strided_batched_typed(handle, transA, transB, m, n, alpha, A, lda, &
@@ -81433,21 +81363,21 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       complex(c_double_complex) :: alpha
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: A(..)
       integer(c_int), value :: lda
       integer(c_long), value :: stride_A
       complex(c_double_complex) :: beta
-      complex(c_double_complex), target :: B(*)
+      complex(c_double_complex), target :: B(..)
       integer(c_int), value :: ldb
       integer(c_long), value :: stride_B
-      complex(c_double_complex), target :: C(*)
+      complex(c_double_complex), target :: C(..)
       integer(c_int), value :: ldc
       integer(c_long), value :: stride_C
       integer(c_int), value :: batch_count
       integer(c_int) :: zgeam_strided_batched
       zgeam_strided_batched = rocblas_zgeam_strided_batched_raw(handle, transA, transB, m, n, &
-        alpha, c_loc(A(1)), lda, stride_A, beta, c_loc(B(1)), ldb, stride_B, c_loc(C(1)), ldc, &
-        stride_C, batch_count)
+        alpha, c_loc(A), lda, stride_A, beta, c_loc(B), ldb, stride_B, c_loc(C), ldc, stride_C, &
+        batch_count)
     end function rocblas_zgeam_strided_batched_native
 
     function rocblas_zgeam_strided_batched_typed(handle, transA, transB, m, n, alpha, A, lda, &
@@ -81488,22 +81418,22 @@ contains
       integer(c_int), value :: transB
       integer(c_long), value :: m
       integer(c_long), value :: n
-      real(c_float), target :: alpha(*)
-      real(c_float), target :: A(*)
+      real(c_float), target :: alpha(..)
+      real(c_float), target :: A(..)
       integer(c_long), value :: lda
       integer(c_long), value :: stride_A
-      real(c_float), target :: beta(*)
-      real(c_float), target :: B(*)
+      real(c_float), target :: beta(..)
+      real(c_float), target :: B(..)
       integer(c_long), value :: ldb
       integer(c_long), value :: stride_B
-      real(c_float), target :: C(*)
+      real(c_float), target :: C(..)
       integer(c_long), value :: ldc
       integer(c_long), value :: stride_C
       integer(c_long), value :: batch_count
       integer(c_int) :: sgeam_strided_batched_64
       sgeam_strided_batched_64 = rocblas_sgeam_strided_batched_64_raw(handle, transA, transB, m, &
-        n, c_loc(alpha(1)), c_loc(A(1)), lda, stride_A, c_loc(beta(1)), c_loc(B(1)), ldb, &
-        stride_B, c_loc(C(1)), ldc, stride_C, batch_count)
+        n, c_loc(alpha), c_loc(A), lda, stride_A, c_loc(beta), c_loc(B), ldb, stride_B, c_loc(C), &
+        ldc, stride_C, batch_count)
     end function rocblas_sgeam_strided_batched_64_native
 
     function rocblas_sgeam_strided_batched_64_typed(handle, transA, transB, m, n, alpha, A, lda, &
@@ -81544,22 +81474,22 @@ contains
       integer(c_int), value :: transB
       integer(c_long), value :: m
       integer(c_long), value :: n
-      real(c_double), target :: alpha(*)
-      real(c_double), target :: A(*)
+      real(c_double), target :: alpha(..)
+      real(c_double), target :: A(..)
       integer(c_long), value :: lda
       integer(c_long), value :: stride_A
-      real(c_double), target :: beta(*)
-      real(c_double), target :: B(*)
+      real(c_double), target :: beta(..)
+      real(c_double), target :: B(..)
       integer(c_long), value :: ldb
       integer(c_long), value :: stride_B
-      real(c_double), target :: C(*)
+      real(c_double), target :: C(..)
       integer(c_long), value :: ldc
       integer(c_long), value :: stride_C
       integer(c_long), value :: batch_count
       integer(c_int) :: dgeam_strided_batched_64
       dgeam_strided_batched_64 = rocblas_dgeam_strided_batched_64_raw(handle, transA, transB, m, &
-        n, c_loc(alpha(1)), c_loc(A(1)), lda, stride_A, c_loc(beta(1)), c_loc(B(1)), ldb, &
-        stride_B, c_loc(C(1)), ldc, stride_C, batch_count)
+        n, c_loc(alpha), c_loc(A), lda, stride_A, c_loc(beta), c_loc(B), ldb, stride_B, c_loc(C), &
+        ldc, stride_C, batch_count)
     end function rocblas_dgeam_strided_batched_64_native
 
     function rocblas_dgeam_strided_batched_64_typed(handle, transA, transB, m, n, alpha, A, lda, &
@@ -81600,22 +81530,22 @@ contains
       integer(c_int), value :: transB
       integer(c_long), value :: m
       integer(c_long), value :: n
-      complex(c_float_complex), target :: alpha(*)
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: alpha(..)
+      complex(c_float_complex), target :: A(..)
       integer(c_long), value :: lda
       integer(c_long), value :: stride_A
-      complex(c_float_complex), target :: beta(*)
-      complex(c_float_complex), target :: B(*)
+      complex(c_float_complex), target :: beta(..)
+      complex(c_float_complex), target :: B(..)
       integer(c_long), value :: ldb
       integer(c_long), value :: stride_B
-      complex(c_float_complex), target :: C(*)
+      complex(c_float_complex), target :: C(..)
       integer(c_long), value :: ldc
       integer(c_long), value :: stride_C
       integer(c_long), value :: batch_count
       integer(c_int) :: cgeam_strided_batched_64
       cgeam_strided_batched_64 = rocblas_cgeam_strided_batched_64_raw(handle, transA, transB, m, &
-        n, c_loc(alpha(1)), c_loc(A(1)), lda, stride_A, c_loc(beta(1)), c_loc(B(1)), ldb, &
-        stride_B, c_loc(C(1)), ldc, stride_C, batch_count)
+        n, c_loc(alpha), c_loc(A), lda, stride_A, c_loc(beta), c_loc(B), ldb, stride_B, c_loc(C), &
+        ldc, stride_C, batch_count)
     end function rocblas_cgeam_strided_batched_64_native
 
     function rocblas_cgeam_strided_batched_64_typed(handle, transA, transB, m, n, alpha, A, lda, &
@@ -81656,22 +81586,22 @@ contains
       integer(c_int), value :: transB
       integer(c_long), value :: m
       integer(c_long), value :: n
-      complex(c_double_complex), target :: alpha(*)
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: alpha(..)
+      complex(c_double_complex), target :: A(..)
       integer(c_long), value :: lda
       integer(c_long), value :: stride_A
-      complex(c_double_complex), target :: beta(*)
-      complex(c_double_complex), target :: B(*)
+      complex(c_double_complex), target :: beta(..)
+      complex(c_double_complex), target :: B(..)
       integer(c_long), value :: ldb
       integer(c_long), value :: stride_B
-      complex(c_double_complex), target :: C(*)
+      complex(c_double_complex), target :: C(..)
       integer(c_long), value :: ldc
       integer(c_long), value :: stride_C
       integer(c_long), value :: batch_count
       integer(c_int) :: zgeam_strided_batched_64
       zgeam_strided_batched_64 = rocblas_zgeam_strided_batched_64_raw(handle, transA, transB, m, &
-        n, c_loc(alpha(1)), c_loc(A(1)), lda, stride_A, c_loc(beta(1)), c_loc(B(1)), ldb, &
-        stride_B, c_loc(C(1)), ldc, stride_C, batch_count)
+        n, c_loc(alpha), c_loc(A), lda, stride_A, c_loc(beta), c_loc(B), ldb, stride_B, c_loc(C), &
+        ldc, stride_C, batch_count)
     end function rocblas_zgeam_strided_batched_64_native
 
     function rocblas_zgeam_strided_batched_64_typed(handle, transA, transB, m, n, alpha, A, lda, &
@@ -81943,17 +81873,17 @@ contains
       integer(c_int), value :: transB
       integer(c_int), value :: n
       integer(c_int), value :: k
-      real(c_float), target :: alpha(*)
-      real(c_float), target :: A(*)
+      real(c_float), target :: alpha(..)
+      real(c_float), target :: A(..)
       integer(c_int), value :: lda
-      real(c_float), target :: B(*)
+      real(c_float), target :: B(..)
       integer(c_int), value :: ldb
-      real(c_float), target :: beta(*)
-      real(c_float), target :: C(*)
+      real(c_float), target :: beta(..)
+      real(c_float), target :: C(..)
       integer(c_int), value :: ldc
       integer(c_int) :: sgemmt
-      sgemmt = rocblas_sgemmt_raw(handle, uplo, transA, transB, n, k, c_loc(alpha(1)), c_loc(A( &
-        1)), lda, c_loc(B(1)), ldb, c_loc(beta(1)), c_loc(C(1)), ldc)
+      sgemmt = rocblas_sgemmt_raw(handle, uplo, transA, transB, n, k, c_loc(alpha), c_loc(A), lda, &
+        c_loc(B), ldb, c_loc(beta), c_loc(C), ldc)
     end function rocblas_sgemmt_native
 
     function rocblas_sgemmt_typed(handle, uplo, transA, transB, n, k, alpha, A, lda, B, ldb, beta, &
@@ -81990,17 +81920,17 @@ contains
       integer(c_int), value :: transB
       integer(c_int), value :: n
       integer(c_int), value :: k
-      real(c_double), target :: alpha(*)
-      real(c_double), target :: A(*)
+      real(c_double), target :: alpha(..)
+      real(c_double), target :: A(..)
       integer(c_int), value :: lda
-      real(c_double), target :: B(*)
+      real(c_double), target :: B(..)
       integer(c_int), value :: ldb
-      real(c_double), target :: beta(*)
-      real(c_double), target :: C(*)
+      real(c_double), target :: beta(..)
+      real(c_double), target :: C(..)
       integer(c_int), value :: ldc
       integer(c_int) :: dgemmt
-      dgemmt = rocblas_dgemmt_raw(handle, uplo, transA, transB, n, k, c_loc(alpha(1)), c_loc(A( &
-        1)), lda, c_loc(B(1)), ldb, c_loc(beta(1)), c_loc(C(1)), ldc)
+      dgemmt = rocblas_dgemmt_raw(handle, uplo, transA, transB, n, k, c_loc(alpha), c_loc(A), lda, &
+        c_loc(B), ldb, c_loc(beta), c_loc(C), ldc)
     end function rocblas_dgemmt_native
 
     function rocblas_dgemmt_typed(handle, uplo, transA, transB, n, k, alpha, A, lda, B, ldb, beta, &
@@ -82037,17 +81967,17 @@ contains
       integer(c_int), value :: transB
       integer(c_int), value :: n
       integer(c_int), value :: k
-      complex(c_float_complex), target :: alpha(*)
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: alpha(..)
+      complex(c_float_complex), target :: A(..)
       integer(c_int), value :: lda
-      complex(c_float_complex), target :: B(*)
+      complex(c_float_complex), target :: B(..)
       integer(c_int), value :: ldb
-      complex(c_float_complex), target :: beta(*)
-      complex(c_float_complex), target :: C(*)
+      complex(c_float_complex), target :: beta(..)
+      complex(c_float_complex), target :: C(..)
       integer(c_int), value :: ldc
       integer(c_int) :: cgemmt
-      cgemmt = rocblas_cgemmt_raw(handle, uplo, transA, transB, n, k, c_loc(alpha(1)), c_loc(A( &
-        1)), lda, c_loc(B(1)), ldb, c_loc(beta(1)), c_loc(C(1)), ldc)
+      cgemmt = rocblas_cgemmt_raw(handle, uplo, transA, transB, n, k, c_loc(alpha), c_loc(A), lda, &
+        c_loc(B), ldb, c_loc(beta), c_loc(C), ldc)
     end function rocblas_cgemmt_native
 
     function rocblas_cgemmt_typed(handle, uplo, transA, transB, n, k, alpha, A, lda, B, ldb, beta, &
@@ -82084,17 +82014,17 @@ contains
       integer(c_int), value :: transB
       integer(c_int), value :: n
       integer(c_int), value :: k
-      complex(c_double_complex), target :: alpha(*)
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: alpha(..)
+      complex(c_double_complex), target :: A(..)
       integer(c_int), value :: lda
-      complex(c_double_complex), target :: B(*)
+      complex(c_double_complex), target :: B(..)
       integer(c_int), value :: ldb
-      complex(c_double_complex), target :: beta(*)
-      complex(c_double_complex), target :: C(*)
+      complex(c_double_complex), target :: beta(..)
+      complex(c_double_complex), target :: C(..)
       integer(c_int), value :: ldc
       integer(c_int) :: zgemmt
-      zgemmt = rocblas_zgemmt_raw(handle, uplo, transA, transB, n, k, c_loc(alpha(1)), c_loc(A( &
-        1)), lda, c_loc(B(1)), ldb, c_loc(beta(1)), c_loc(C(1)), ldc)
+      zgemmt = rocblas_zgemmt_raw(handle, uplo, transA, transB, n, k, c_loc(alpha), c_loc(A), lda, &
+        c_loc(B), ldb, c_loc(beta), c_loc(C), ldc)
     end function rocblas_zgemmt_native
 
     function rocblas_zgemmt_typed(handle, uplo, transA, transB, n, k, alpha, A, lda, B, ldb, beta, &
@@ -82131,17 +82061,17 @@ contains
       integer(c_int), value :: transB
       integer(c_long), value :: n
       integer(c_long), value :: k
-      real(c_float), target :: alpha(*)
-      real(c_float), target :: A(*)
+      real(c_float), target :: alpha(..)
+      real(c_float), target :: A(..)
       integer(c_long), value :: lda
-      real(c_float), target :: B(*)
+      real(c_float), target :: B(..)
       integer(c_long), value :: ldb
-      real(c_float), target :: beta(*)
-      real(c_float), target :: C(*)
+      real(c_float), target :: beta(..)
+      real(c_float), target :: C(..)
       integer(c_long), value :: ldc
       integer(c_int) :: sgemmt_64
-      sgemmt_64 = rocblas_sgemmt_64_raw(handle, uplo, transA, transB, n, k, c_loc(alpha(1)), &
-        c_loc(A(1)), lda, c_loc(B(1)), ldb, c_loc(beta(1)), c_loc(C(1)), ldc)
+      sgemmt_64 = rocblas_sgemmt_64_raw(handle, uplo, transA, transB, n, k, c_loc(alpha), c_loc( &
+        A), lda, c_loc(B), ldb, c_loc(beta), c_loc(C), ldc)
     end function rocblas_sgemmt_64_native
 
     function rocblas_sgemmt_64_typed(handle, uplo, transA, transB, n, k, alpha, A, lda, B, ldb, &
@@ -82178,17 +82108,17 @@ contains
       integer(c_int), value :: transB
       integer(c_long), value :: n
       integer(c_long), value :: k
-      real(c_double), target :: alpha(*)
-      real(c_double), target :: A(*)
+      real(c_double), target :: alpha(..)
+      real(c_double), target :: A(..)
       integer(c_long), value :: lda
-      real(c_double), target :: B(*)
+      real(c_double), target :: B(..)
       integer(c_long), value :: ldb
-      real(c_double), target :: beta(*)
-      real(c_double), target :: C(*)
+      real(c_double), target :: beta(..)
+      real(c_double), target :: C(..)
       integer(c_long), value :: ldc
       integer(c_int) :: dgemmt_64
-      dgemmt_64 = rocblas_dgemmt_64_raw(handle, uplo, transA, transB, n, k, c_loc(alpha(1)), &
-        c_loc(A(1)), lda, c_loc(B(1)), ldb, c_loc(beta(1)), c_loc(C(1)), ldc)
+      dgemmt_64 = rocblas_dgemmt_64_raw(handle, uplo, transA, transB, n, k, c_loc(alpha), c_loc( &
+        A), lda, c_loc(B), ldb, c_loc(beta), c_loc(C), ldc)
     end function rocblas_dgemmt_64_native
 
     function rocblas_dgemmt_64_typed(handle, uplo, transA, transB, n, k, alpha, A, lda, B, ldb, &
@@ -82225,17 +82155,17 @@ contains
       integer(c_int), value :: transB
       integer(c_long), value :: n
       integer(c_long), value :: k
-      complex(c_float_complex), target :: alpha(*)
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: alpha(..)
+      complex(c_float_complex), target :: A(..)
       integer(c_long), value :: lda
-      complex(c_float_complex), target :: B(*)
+      complex(c_float_complex), target :: B(..)
       integer(c_long), value :: ldb
-      complex(c_float_complex), target :: beta(*)
-      complex(c_float_complex), target :: C(*)
+      complex(c_float_complex), target :: beta(..)
+      complex(c_float_complex), target :: C(..)
       integer(c_long), value :: ldc
       integer(c_int) :: cgemmt_64
-      cgemmt_64 = rocblas_cgemmt_64_raw(handle, uplo, transA, transB, n, k, c_loc(alpha(1)), &
-        c_loc(A(1)), lda, c_loc(B(1)), ldb, c_loc(beta(1)), c_loc(C(1)), ldc)
+      cgemmt_64 = rocblas_cgemmt_64_raw(handle, uplo, transA, transB, n, k, c_loc(alpha), c_loc( &
+        A), lda, c_loc(B), ldb, c_loc(beta), c_loc(C), ldc)
     end function rocblas_cgemmt_64_native
 
     function rocblas_cgemmt_64_typed(handle, uplo, transA, transB, n, k, alpha, A, lda, B, ldb, &
@@ -82272,17 +82202,17 @@ contains
       integer(c_int), value :: transB
       integer(c_long), value :: n
       integer(c_long), value :: k
-      complex(c_double_complex), target :: alpha(*)
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: alpha(..)
+      complex(c_double_complex), target :: A(..)
       integer(c_long), value :: lda
-      complex(c_double_complex), target :: B(*)
+      complex(c_double_complex), target :: B(..)
       integer(c_long), value :: ldb
-      complex(c_double_complex), target :: beta(*)
-      complex(c_double_complex), target :: C(*)
+      complex(c_double_complex), target :: beta(..)
+      complex(c_double_complex), target :: C(..)
       integer(c_long), value :: ldc
       integer(c_int) :: zgemmt_64
-      zgemmt_64 = rocblas_zgemmt_64_raw(handle, uplo, transA, transB, n, k, c_loc(alpha(1)), &
-        c_loc(A(1)), lda, c_loc(B(1)), ldb, c_loc(beta(1)), c_loc(C(1)), ldc)
+      zgemmt_64 = rocblas_zgemmt_64_raw(handle, uplo, transA, transB, n, k, c_loc(alpha), c_loc( &
+        A), lda, c_loc(B), ldb, c_loc(beta), c_loc(C), ldc)
     end function rocblas_zgemmt_64_native
 
     function rocblas_zgemmt_64_typed(handle, uplo, transA, transB, n, k, alpha, A, lda, B, ldb, &
@@ -82319,18 +82249,18 @@ contains
       integer(c_int), value :: transB
       integer(c_int), value :: n
       integer(c_int), value :: k
-      real(c_float), target :: alpha(*)
+      real(c_float), target :: alpha(..)
       type(c_ptr), value :: A
       integer(c_int), value :: lda
       type(c_ptr), value :: B
       integer(c_int), value :: ldb
-      real(c_float), target :: beta(*)
+      real(c_float), target :: beta(..)
       type(c_ptr), value :: C
       integer(c_int), value :: ldc
       integer(c_int), value :: batch_count
       integer(c_int) :: sgemmt_batched
-      sgemmt_batched = rocblas_sgemmt_batched_raw(handle, uplo, transA, transB, n, k, c_loc(alpha( &
-        1)), A, lda, B, ldb, c_loc(beta(1)), C, ldc, batch_count)
+      sgemmt_batched = rocblas_sgemmt_batched_raw(handle, uplo, transA, transB, n, k, c_loc( &
+        alpha), A, lda, B, ldb, c_loc(beta), C, ldc, batch_count)
     end function rocblas_sgemmt_batched_native
 
     function rocblas_sgemmt_batched_typed(handle, uplo, transA, transB, n, k, alpha, A, lda, B, &
@@ -82368,18 +82298,18 @@ contains
       integer(c_int), value :: transB
       integer(c_int), value :: n
       integer(c_int), value :: k
-      real(c_double), target :: alpha(*)
+      real(c_double), target :: alpha(..)
       type(c_ptr), value :: A
       integer(c_int), value :: lda
       type(c_ptr), value :: B
       integer(c_int), value :: ldb
-      real(c_double), target :: beta(*)
+      real(c_double), target :: beta(..)
       type(c_ptr), value :: C
       integer(c_int), value :: ldc
       integer(c_int), value :: batch_count
       integer(c_int) :: dgemmt_batched
-      dgemmt_batched = rocblas_dgemmt_batched_raw(handle, uplo, transA, transB, n, k, c_loc(alpha( &
-        1)), A, lda, B, ldb, c_loc(beta(1)), C, ldc, batch_count)
+      dgemmt_batched = rocblas_dgemmt_batched_raw(handle, uplo, transA, transB, n, k, c_loc( &
+        alpha), A, lda, B, ldb, c_loc(beta), C, ldc, batch_count)
     end function rocblas_dgemmt_batched_native
 
     function rocblas_dgemmt_batched_typed(handle, uplo, transA, transB, n, k, alpha, A, lda, B, &
@@ -82417,18 +82347,18 @@ contains
       integer(c_int), value :: transB
       integer(c_int), value :: n
       integer(c_int), value :: k
-      complex(c_float_complex), target :: alpha(*)
+      complex(c_float_complex), target :: alpha(..)
       type(c_ptr), value :: A
       integer(c_int), value :: lda
       type(c_ptr), value :: B
       integer(c_int), value :: ldb
-      complex(c_float_complex), target :: beta(*)
+      complex(c_float_complex), target :: beta(..)
       type(c_ptr), value :: C
       integer(c_int), value :: ldc
       integer(c_int), value :: batch_count
       integer(c_int) :: cgemmt_batched
-      cgemmt_batched = rocblas_cgemmt_batched_raw(handle, uplo, transA, transB, n, k, c_loc(alpha( &
-        1)), A, lda, B, ldb, c_loc(beta(1)), C, ldc, batch_count)
+      cgemmt_batched = rocblas_cgemmt_batched_raw(handle, uplo, transA, transB, n, k, c_loc( &
+        alpha), A, lda, B, ldb, c_loc(beta), C, ldc, batch_count)
     end function rocblas_cgemmt_batched_native
 
     function rocblas_cgemmt_batched_typed(handle, uplo, transA, transB, n, k, alpha, A, lda, B, &
@@ -82466,18 +82396,18 @@ contains
       integer(c_int), value :: transB
       integer(c_int), value :: n
       integer(c_int), value :: k
-      complex(c_double_complex), target :: alpha(*)
+      complex(c_double_complex), target :: alpha(..)
       type(c_ptr), value :: A
       integer(c_int), value :: lda
       type(c_ptr), value :: B
       integer(c_int), value :: ldb
-      complex(c_double_complex), target :: beta(*)
+      complex(c_double_complex), target :: beta(..)
       type(c_ptr), value :: C
       integer(c_int), value :: ldc
       integer(c_int), value :: batch_count
       integer(c_int) :: zgemmt_batched
-      zgemmt_batched = rocblas_zgemmt_batched_raw(handle, uplo, transA, transB, n, k, c_loc(alpha( &
-        1)), A, lda, B, ldb, c_loc(beta(1)), C, ldc, batch_count)
+      zgemmt_batched = rocblas_zgemmt_batched_raw(handle, uplo, transA, transB, n, k, c_loc( &
+        alpha), A, lda, B, ldb, c_loc(beta), C, ldc, batch_count)
     end function rocblas_zgemmt_batched_native
 
     function rocblas_zgemmt_batched_typed(handle, uplo, transA, transB, n, k, alpha, A, lda, B, &
@@ -82515,18 +82445,18 @@ contains
       integer(c_int), value :: transB
       integer(c_long), value :: n
       integer(c_long), value :: k
-      real(c_float), target :: alpha(*)
+      real(c_float), target :: alpha(..)
       type(c_ptr), value :: A
       integer(c_long), value :: lda
       type(c_ptr), value :: B
       integer(c_long), value :: ldb
-      real(c_float), target :: beta(*)
+      real(c_float), target :: beta(..)
       type(c_ptr), value :: C
       integer(c_long), value :: ldc
       integer(c_long), value :: batch_count
       integer(c_int) :: sgemmt_batched_64
       sgemmt_batched_64 = rocblas_sgemmt_batched_64_raw(handle, uplo, transA, transB, n, k, c_loc( &
-        alpha(1)), A, lda, B, ldb, c_loc(beta(1)), C, ldc, batch_count)
+        alpha), A, lda, B, ldb, c_loc(beta), C, ldc, batch_count)
     end function rocblas_sgemmt_batched_64_native
 
     function rocblas_sgemmt_batched_64_typed(handle, uplo, transA, transB, n, k, alpha, A, lda, B, &
@@ -82564,18 +82494,18 @@ contains
       integer(c_int), value :: transB
       integer(c_long), value :: n
       integer(c_long), value :: k
-      real(c_double), target :: alpha(*)
+      real(c_double), target :: alpha(..)
       type(c_ptr), value :: A
       integer(c_long), value :: lda
       type(c_ptr), value :: B
       integer(c_long), value :: ldb
-      real(c_double), target :: beta(*)
+      real(c_double), target :: beta(..)
       type(c_ptr), value :: C
       integer(c_long), value :: ldc
       integer(c_long), value :: batch_count
       integer(c_int) :: dgemmt_batched_64
       dgemmt_batched_64 = rocblas_dgemmt_batched_64_raw(handle, uplo, transA, transB, n, k, c_loc( &
-        alpha(1)), A, lda, B, ldb, c_loc(beta(1)), C, ldc, batch_count)
+        alpha), A, lda, B, ldb, c_loc(beta), C, ldc, batch_count)
     end function rocblas_dgemmt_batched_64_native
 
     function rocblas_dgemmt_batched_64_typed(handle, uplo, transA, transB, n, k, alpha, A, lda, B, &
@@ -82613,18 +82543,18 @@ contains
       integer(c_int), value :: transB
       integer(c_long), value :: n
       integer(c_long), value :: k
-      complex(c_float_complex), target :: alpha(*)
+      complex(c_float_complex), target :: alpha(..)
       type(c_ptr), value :: A
       integer(c_long), value :: lda
       type(c_ptr), value :: B
       integer(c_long), value :: ldb
-      complex(c_float_complex), target :: beta(*)
+      complex(c_float_complex), target :: beta(..)
       type(c_ptr), value :: C
       integer(c_long), value :: ldc
       integer(c_long), value :: batch_count
       integer(c_int) :: cgemmt_batched_64
       cgemmt_batched_64 = rocblas_cgemmt_batched_64_raw(handle, uplo, transA, transB, n, k, c_loc( &
-        alpha(1)), A, lda, B, ldb, c_loc(beta(1)), C, ldc, batch_count)
+        alpha), A, lda, B, ldb, c_loc(beta), C, ldc, batch_count)
     end function rocblas_cgemmt_batched_64_native
 
     function rocblas_cgemmt_batched_64_typed(handle, uplo, transA, transB, n, k, alpha, A, lda, B, &
@@ -82662,18 +82592,18 @@ contains
       integer(c_int), value :: transB
       integer(c_long), value :: n
       integer(c_long), value :: k
-      complex(c_double_complex), target :: alpha(*)
+      complex(c_double_complex), target :: alpha(..)
       type(c_ptr), value :: A
       integer(c_long), value :: lda
       type(c_ptr), value :: B
       integer(c_long), value :: ldb
-      complex(c_double_complex), target :: beta(*)
+      complex(c_double_complex), target :: beta(..)
       type(c_ptr), value :: C
       integer(c_long), value :: ldc
       integer(c_long), value :: batch_count
       integer(c_int) :: zgemmt_batched_64
       zgemmt_batched_64 = rocblas_zgemmt_batched_64_raw(handle, uplo, transA, transB, n, k, c_loc( &
-        alpha(1)), A, lda, B, ldb, c_loc(beta(1)), C, ldc, batch_count)
+        alpha), A, lda, B, ldb, c_loc(beta), C, ldc, batch_count)
     end function rocblas_zgemmt_batched_64_native
 
     function rocblas_zgemmt_batched_64_typed(handle, uplo, transA, transB, n, k, alpha, A, lda, B, &
@@ -82712,22 +82642,22 @@ contains
       integer(c_int), value :: transB
       integer(c_int), value :: n
       integer(c_int), value :: k
-      real(c_float), target :: alpha(*)
-      real(c_float), target :: A(*)
+      real(c_float), target :: alpha(..)
+      real(c_float), target :: A(..)
       integer(c_int), value :: lda
       integer(c_long), value :: stride_a
-      real(c_float), target :: B(*)
+      real(c_float), target :: B(..)
       integer(c_int), value :: ldb
       integer(c_long), value :: stride_b
-      real(c_float), target :: beta(*)
-      real(c_float), target :: C(*)
+      real(c_float), target :: beta(..)
+      real(c_float), target :: C(..)
       integer(c_int), value :: ldc
       integer(c_long), value :: stride_c
       integer(c_int), value :: batch_count
       integer(c_int) :: sgemmt_strided_batched
       sgemmt_strided_batched = rocblas_sgemmt_strided_batched_raw(handle, uplo, transA, transB, n, &
-        k, c_loc(alpha(1)), c_loc(A(1)), lda, stride_a, c_loc(B(1)), ldb, stride_b, c_loc(beta( &
-        1)), c_loc(C(1)), ldc, stride_c, batch_count)
+        k, c_loc(alpha), c_loc(A), lda, stride_a, c_loc(B), ldb, stride_b, c_loc(beta), c_loc(C), &
+        ldc, stride_c, batch_count)
     end function rocblas_sgemmt_strided_batched_native
 
     function rocblas_sgemmt_strided_batched_typed(handle, uplo, transA, transB, n, k, alpha, A, &
@@ -82771,22 +82701,22 @@ contains
       integer(c_int), value :: transB
       integer(c_int), value :: n
       integer(c_int), value :: k
-      real(c_double), target :: alpha(*)
-      real(c_double), target :: A(*)
+      real(c_double), target :: alpha(..)
+      real(c_double), target :: A(..)
       integer(c_int), value :: lda
       integer(c_long), value :: stride_a
-      real(c_double), target :: B(*)
+      real(c_double), target :: B(..)
       integer(c_int), value :: ldb
       integer(c_long), value :: stride_b
-      real(c_double), target :: beta(*)
-      real(c_double), target :: C(*)
+      real(c_double), target :: beta(..)
+      real(c_double), target :: C(..)
       integer(c_int), value :: ldc
       integer(c_long), value :: stride_c
       integer(c_int), value :: batch_count
       integer(c_int) :: dgemmt_strided_batched
       dgemmt_strided_batched = rocblas_dgemmt_strided_batched_raw(handle, uplo, transA, transB, n, &
-        k, c_loc(alpha(1)), c_loc(A(1)), lda, stride_a, c_loc(B(1)), ldb, stride_b, c_loc(beta( &
-        1)), c_loc(C(1)), ldc, stride_c, batch_count)
+        k, c_loc(alpha), c_loc(A), lda, stride_a, c_loc(B), ldb, stride_b, c_loc(beta), c_loc(C), &
+        ldc, stride_c, batch_count)
     end function rocblas_dgemmt_strided_batched_native
 
     function rocblas_dgemmt_strided_batched_typed(handle, uplo, transA, transB, n, k, alpha, A, &
@@ -82830,22 +82760,22 @@ contains
       integer(c_int), value :: transB
       integer(c_int), value :: n
       integer(c_int), value :: k
-      complex(c_float_complex), target :: alpha(*)
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: alpha(..)
+      complex(c_float_complex), target :: A(..)
       integer(c_int), value :: lda
       integer(c_long), value :: stride_a
-      complex(c_float_complex), target :: B(*)
+      complex(c_float_complex), target :: B(..)
       integer(c_int), value :: ldb
       integer(c_long), value :: stride_b
-      complex(c_float_complex), target :: beta(*)
-      complex(c_float_complex), target :: C(*)
+      complex(c_float_complex), target :: beta(..)
+      complex(c_float_complex), target :: C(..)
       integer(c_int), value :: ldc
       integer(c_long), value :: stride_c
       integer(c_int), value :: batch_count
       integer(c_int) :: cgemmt_strided_batched
       cgemmt_strided_batched = rocblas_cgemmt_strided_batched_raw(handle, uplo, transA, transB, n, &
-        k, c_loc(alpha(1)), c_loc(A(1)), lda, stride_a, c_loc(B(1)), ldb, stride_b, c_loc(beta( &
-        1)), c_loc(C(1)), ldc, stride_c, batch_count)
+        k, c_loc(alpha), c_loc(A), lda, stride_a, c_loc(B), ldb, stride_b, c_loc(beta), c_loc(C), &
+        ldc, stride_c, batch_count)
     end function rocblas_cgemmt_strided_batched_native
 
     function rocblas_cgemmt_strided_batched_typed(handle, uplo, transA, transB, n, k, alpha, A, &
@@ -82889,22 +82819,22 @@ contains
       integer(c_int), value :: transB
       integer(c_int), value :: n
       integer(c_int), value :: k
-      complex(c_double_complex), target :: alpha(*)
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: alpha(..)
+      complex(c_double_complex), target :: A(..)
       integer(c_int), value :: lda
       integer(c_long), value :: stride_a
-      complex(c_double_complex), target :: B(*)
+      complex(c_double_complex), target :: B(..)
       integer(c_int), value :: ldb
       integer(c_long), value :: stride_b
-      complex(c_double_complex), target :: beta(*)
-      complex(c_double_complex), target :: C(*)
+      complex(c_double_complex), target :: beta(..)
+      complex(c_double_complex), target :: C(..)
       integer(c_int), value :: ldc
       integer(c_long), value :: stride_c
       integer(c_int), value :: batch_count
       integer(c_int) :: zgemmt_strided_batched
       zgemmt_strided_batched = rocblas_zgemmt_strided_batched_raw(handle, uplo, transA, transB, n, &
-        k, c_loc(alpha(1)), c_loc(A(1)), lda, stride_a, c_loc(B(1)), ldb, stride_b, c_loc(beta( &
-        1)), c_loc(C(1)), ldc, stride_c, batch_count)
+        k, c_loc(alpha), c_loc(A), lda, stride_a, c_loc(B), ldb, stride_b, c_loc(beta), c_loc(C), &
+        ldc, stride_c, batch_count)
     end function rocblas_zgemmt_strided_batched_native
 
     function rocblas_zgemmt_strided_batched_typed(handle, uplo, transA, transB, n, k, alpha, A, &
@@ -82948,22 +82878,22 @@ contains
       integer(c_int), value :: transB
       integer(c_long), value :: n
       integer(c_long), value :: k
-      real(c_float), target :: alpha(*)
-      real(c_float), target :: A(*)
+      real(c_float), target :: alpha(..)
+      real(c_float), target :: A(..)
       integer(c_long), value :: lda
       integer(c_long), value :: stride_a
-      real(c_float), target :: B(*)
+      real(c_float), target :: B(..)
       integer(c_long), value :: ldb
       integer(c_long), value :: stride_b
-      real(c_float), target :: beta(*)
-      real(c_float), target :: C(*)
+      real(c_float), target :: beta(..)
+      real(c_float), target :: C(..)
       integer(c_long), value :: ldc
       integer(c_long), value :: stride_c
       integer(c_long), value :: batch_count
       integer(c_int) :: sgemmt_strided_batched_64
       sgemmt_strided_batched_64 = rocblas_sgemmt_strided_batched_64_raw(handle, uplo, transA, &
-        transB, n, k, c_loc(alpha(1)), c_loc(A(1)), lda, stride_a, c_loc(B(1)), ldb, stride_b, &
-        c_loc(beta(1)), c_loc(C(1)), ldc, stride_c, batch_count)
+        transB, n, k, c_loc(alpha), c_loc(A), lda, stride_a, c_loc(B), ldb, stride_b, c_loc(beta), &
+        c_loc(C), ldc, stride_c, batch_count)
     end function rocblas_sgemmt_strided_batched_64_native
 
     function rocblas_sgemmt_strided_batched_64_typed(handle, uplo, transA, transB, n, k, alpha, A, &
@@ -83007,22 +82937,22 @@ contains
       integer(c_int), value :: transB
       integer(c_long), value :: n
       integer(c_long), value :: k
-      real(c_double), target :: alpha(*)
-      real(c_double), target :: A(*)
+      real(c_double), target :: alpha(..)
+      real(c_double), target :: A(..)
       integer(c_long), value :: lda
       integer(c_long), value :: stride_a
-      real(c_double), target :: B(*)
+      real(c_double), target :: B(..)
       integer(c_long), value :: ldb
       integer(c_long), value :: stride_b
-      real(c_double), target :: beta(*)
-      real(c_double), target :: C(*)
+      real(c_double), target :: beta(..)
+      real(c_double), target :: C(..)
       integer(c_long), value :: ldc
       integer(c_long), value :: stride_c
       integer(c_long), value :: batch_count
       integer(c_int) :: dgemmt_strided_batched_64
       dgemmt_strided_batched_64 = rocblas_dgemmt_strided_batched_64_raw(handle, uplo, transA, &
-        transB, n, k, c_loc(alpha(1)), c_loc(A(1)), lda, stride_a, c_loc(B(1)), ldb, stride_b, &
-        c_loc(beta(1)), c_loc(C(1)), ldc, stride_c, batch_count)
+        transB, n, k, c_loc(alpha), c_loc(A), lda, stride_a, c_loc(B), ldb, stride_b, c_loc(beta), &
+        c_loc(C), ldc, stride_c, batch_count)
     end function rocblas_dgemmt_strided_batched_64_native
 
     function rocblas_dgemmt_strided_batched_64_typed(handle, uplo, transA, transB, n, k, alpha, A, &
@@ -83066,22 +82996,22 @@ contains
       integer(c_int), value :: transB
       integer(c_long), value :: n
       integer(c_long), value :: k
-      complex(c_float_complex), target :: alpha(*)
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: alpha(..)
+      complex(c_float_complex), target :: A(..)
       integer(c_long), value :: lda
       integer(c_long), value :: stride_a
-      complex(c_float_complex), target :: B(*)
+      complex(c_float_complex), target :: B(..)
       integer(c_long), value :: ldb
       integer(c_long), value :: stride_b
-      complex(c_float_complex), target :: beta(*)
-      complex(c_float_complex), target :: C(*)
+      complex(c_float_complex), target :: beta(..)
+      complex(c_float_complex), target :: C(..)
       integer(c_long), value :: ldc
       integer(c_long), value :: stride_c
       integer(c_long), value :: batch_count
       integer(c_int) :: cgemmt_strided_batched_64
       cgemmt_strided_batched_64 = rocblas_cgemmt_strided_batched_64_raw(handle, uplo, transA, &
-        transB, n, k, c_loc(alpha(1)), c_loc(A(1)), lda, stride_a, c_loc(B(1)), ldb, stride_b, &
-        c_loc(beta(1)), c_loc(C(1)), ldc, stride_c, batch_count)
+        transB, n, k, c_loc(alpha), c_loc(A), lda, stride_a, c_loc(B), ldb, stride_b, c_loc(beta), &
+        c_loc(C), ldc, stride_c, batch_count)
     end function rocblas_cgemmt_strided_batched_64_native
 
     function rocblas_cgemmt_strided_batched_64_typed(handle, uplo, transA, transB, n, k, alpha, A, &
@@ -83125,22 +83055,22 @@ contains
       integer(c_int), value :: transB
       integer(c_long), value :: n
       integer(c_long), value :: k
-      complex(c_double_complex), target :: alpha(*)
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: alpha(..)
+      complex(c_double_complex), target :: A(..)
       integer(c_long), value :: lda
       integer(c_long), value :: stride_a
-      complex(c_double_complex), target :: B(*)
+      complex(c_double_complex), target :: B(..)
       integer(c_long), value :: ldb
       integer(c_long), value :: stride_b
-      complex(c_double_complex), target :: beta(*)
-      complex(c_double_complex), target :: C(*)
+      complex(c_double_complex), target :: beta(..)
+      complex(c_double_complex), target :: C(..)
       integer(c_long), value :: ldc
       integer(c_long), value :: stride_c
       integer(c_long), value :: batch_count
       integer(c_int) :: zgemmt_strided_batched_64
       zgemmt_strided_batched_64 = rocblas_zgemmt_strided_batched_64_raw(handle, uplo, transA, &
-        transB, n, k, c_loc(alpha(1)), c_loc(A(1)), lda, stride_a, c_loc(B(1)), ldb, stride_b, &
-        c_loc(beta(1)), c_loc(C(1)), ldc, stride_c, batch_count)
+        transB, n, k, c_loc(alpha), c_loc(A), lda, stride_a, c_loc(B), ldb, stride_b, c_loc(beta), &
+        c_loc(C), ldc, stride_c, batch_count)
     end function rocblas_zgemmt_strided_batched_64_native
 
     function rocblas_zgemmt_strided_batched_64_typed(handle, uplo, transA, transB, n, k, alpha, A, &

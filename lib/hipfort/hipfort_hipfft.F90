@@ -844,6 +844,7 @@ module hipfort_hipfft
        integer(c_int) :: ExecC2C_raw
     end function hipfftExecC2C_raw
 
+    module procedure hipfftExecC2C_native
     module procedure hipfftExecC2C_typed
   end interface hipfftExecC2C
 
@@ -935,6 +936,7 @@ module hipfort_hipfft
        integer(c_int) :: ExecZ2Z_raw
     end function hipfftExecZ2Z_raw
 
+    module procedure hipfftExecZ2Z_native
     module procedure hipfftExecZ2Z_typed
   end interface hipfftExecZ2Z
 
@@ -1139,18 +1141,18 @@ contains
       implicit none
       type(c_ptr) :: plan
       integer(c_int), value :: rank
-      integer(c_int), target :: n(*)
-      integer(c_int), target :: inembed(*)
+      integer(c_int), target :: n(..)
+      integer(c_int), target :: inembed(..)
       integer(c_int), value :: istride
       integer(c_int), value :: idist
-      integer(c_int), target :: onembed(*)
+      integer(c_int), target :: onembed(..)
       integer(c_int), value :: ostride
       integer(c_int), value :: odist
       integer(c_int), value :: type
       integer(c_int), value :: batch
       integer(c_int) :: PlanMany
-      PlanMany = hipfftPlanMany_raw(plan, rank, c_loc(n(1)), c_loc(inembed(1)), istride, idist, &
-        c_loc(onembed(1)), ostride, odist, type, batch)
+      PlanMany = hipfftPlanMany_raw(plan, rank, c_loc(n), c_loc(inembed), istride, idist, c_loc( &
+        onembed), ostride, odist, type, batch)
     end function hipfftPlanMany_native
 
     function hipfftPlanMany_typed(plan, rank, n, inembed, istride, idist, onembed, ostride, odist, &
@@ -1239,19 +1241,19 @@ contains
       implicit none
       type(c_ptr), value :: plan
       integer(c_int), value :: rank
-      integer(c_int), target :: n(*)
-      integer(c_int), target :: inembed(*)
+      integer(c_int), target :: n(..)
+      integer(c_int), target :: inembed(..)
       integer(c_int), value :: istride
       integer(c_int), value :: idist
-      integer(c_int), target :: onembed(*)
+      integer(c_int), target :: onembed(..)
       integer(c_int), value :: ostride
       integer(c_int), value :: odist
       integer(c_int), value :: type
       integer(c_int), value :: batch
       type(c_ptr), value :: workSize
       integer(c_int) :: MakePlanMany
-      MakePlanMany = hipfftMakePlanMany_raw(plan, rank, c_loc(n(1)), c_loc(inembed(1)), istride, &
-        idist, c_loc(onembed(1)), ostride, odist, type, batch, workSize)
+      MakePlanMany = hipfftMakePlanMany_raw(plan, rank, c_loc(n), c_loc(inembed), istride, idist, &
+        c_loc(onembed), ostride, odist, type, batch, workSize)
     end function hipfftMakePlanMany_native
 
     function hipfftMakePlanMany_typed(plan, rank, n, inembed, istride, idist, onembed, ostride, &
@@ -1282,19 +1284,19 @@ contains
       implicit none
       type(c_ptr), value :: plan
       integer(c_int), value :: rank
-      integer(c_int64_t), target :: n(*)
-      integer(c_int64_t), target :: inembed(*)
+      integer(c_int64_t), target :: n(..)
+      integer(c_int64_t), target :: inembed(..)
       integer(c_int64_t), value :: istride
       integer(c_int64_t), value :: idist
-      integer(c_int64_t), target :: onembed(*)
+      integer(c_int64_t), target :: onembed(..)
       integer(c_int64_t), value :: ostride
       integer(c_int64_t), value :: odist
       integer(c_int), value :: type
       integer(c_int64_t), value :: batch
       type(c_ptr), value :: workSize
       integer(c_int) :: MakePlanMany64
-      MakePlanMany64 = hipfftMakePlanMany64_raw(plan, rank, c_loc(n(1)), c_loc(inembed(1)), &
-        istride, idist, c_loc(onembed(1)), ostride, odist, type, batch, workSize)
+      MakePlanMany64 = hipfftMakePlanMany64_raw(plan, rank, c_loc(n), c_loc(inembed), istride, &
+        idist, c_loc(onembed), ostride, odist, type, batch, workSize)
     end function hipfftMakePlanMany64_native
 
     function hipfftMakePlanMany64_typed(plan, rank, n, inembed, istride, idist, onembed, ostride, &
@@ -1324,19 +1326,19 @@ contains
       use, intrinsic :: iso_c_binding
       implicit none
       integer(c_int), value :: rank
-      integer(c_int), target :: n(*)
-      integer(c_int), target :: inembed(*)
+      integer(c_int), target :: n(..)
+      integer(c_int), target :: inembed(..)
       integer(c_int), value :: istride
       integer(c_int), value :: idist
-      integer(c_int), target :: onembed(*)
+      integer(c_int), target :: onembed(..)
       integer(c_int), value :: ostride
       integer(c_int), value :: odist
       integer(c_int), value :: type
       integer(c_int), value :: batch
       type(c_ptr), value :: workSize
       integer(c_int) :: EstimateMany
-      EstimateMany = hipfftEstimateMany_raw(rank, c_loc(n(1)), c_loc(inembed(1)), istride, idist, &
-        c_loc(onembed(1)), ostride, odist, type, batch, workSize)
+      EstimateMany = hipfftEstimateMany_raw(rank, c_loc(n), c_loc(inembed), istride, idist, c_loc( &
+        onembed), ostride, odist, type, batch, workSize)
     end function hipfftEstimateMany_native
 
     function hipfftGetSize1d_typed(plan, nx, type, batch, workSize) result(GetSize1d)
@@ -1385,19 +1387,19 @@ contains
       implicit none
       type(c_ptr), value :: plan
       integer(c_int), value :: rank
-      integer(c_int), target :: n(*)
-      integer(c_int), target :: inembed(*)
+      integer(c_int), target :: n(..)
+      integer(c_int), target :: inembed(..)
       integer(c_int), value :: istride
       integer(c_int), value :: idist
-      integer(c_int), target :: onembed(*)
+      integer(c_int), target :: onembed(..)
       integer(c_int), value :: ostride
       integer(c_int), value :: odist
       integer(c_int), value :: type
       integer(c_int), value :: batch
       type(c_ptr), value :: workSize
       integer(c_int) :: GetSizeMany
-      GetSizeMany = hipfftGetSizeMany_raw(plan, rank, c_loc(n(1)), c_loc(inembed(1)), istride, &
-        idist, c_loc(onembed(1)), ostride, odist, type, batch, workSize)
+      GetSizeMany = hipfftGetSizeMany_raw(plan, rank, c_loc(n), c_loc(inembed), istride, idist, &
+        c_loc(onembed), ostride, odist, type, batch, workSize)
     end function hipfftGetSizeMany_native
 
     function hipfftGetSizeMany_typed(plan, rank, n, inembed, istride, idist, onembed, ostride, &
@@ -1428,19 +1430,19 @@ contains
       implicit none
       type(c_ptr), value :: plan
       integer(c_int), value :: rank
-      integer(c_int64_t), target :: n(*)
-      integer(c_int64_t), target :: inembed(*)
+      integer(c_int64_t), target :: n(..)
+      integer(c_int64_t), target :: inembed(..)
       integer(c_int64_t), value :: istride
       integer(c_int64_t), value :: idist
-      integer(c_int64_t), target :: onembed(*)
+      integer(c_int64_t), target :: onembed(..)
       integer(c_int64_t), value :: ostride
       integer(c_int64_t), value :: odist
       integer(c_int), value :: type
       integer(c_int64_t), value :: batch
       type(c_ptr), value :: workSize
       integer(c_int) :: GetSizeMany64
-      GetSizeMany64 = hipfftGetSizeMany64_raw(plan, rank, c_loc(n(1)), c_loc(inembed(1)), istride, &
-        idist, c_loc(onembed(1)), ostride, odist, type, batch, workSize)
+      GetSizeMany64 = hipfftGetSizeMany64_raw(plan, rank, c_loc(n), c_loc(inembed), istride, &
+        idist, c_loc(onembed), ostride, odist, type, batch, workSize)
     end function hipfftGetSizeMany64_native
 
     function hipfftGetSizeMany64_typed(plan, rank, n, inembed, istride, idist, onembed, ostride, &
@@ -1495,6 +1497,17 @@ contains
       SetWorkArea = hipfftSetWorkArea_raw(plan%ptr, workArea)
     end function hipfftSetWorkArea_typed
 
+    function hipfftExecC2C_native(plan, idata, odata, direction) result(ExecC2C)
+      use, intrinsic :: iso_c_binding
+      implicit none
+      type(c_ptr), value :: plan
+      complex(c_float_complex), target :: idata(..)
+      complex(c_float_complex), target :: odata(..)
+      integer(c_int), value :: direction
+      integer(c_int) :: ExecC2C
+      ExecC2C = hipfftExecC2C_raw(plan, c_loc(idata), c_loc(odata), direction)
+    end function hipfftExecC2C_native
+
     function hipfftExecC2C_typed(plan, idata, odata, direction) result(ExecC2C)
       use, intrinsic :: iso_c_binding
       use hipfort_handles
@@ -1511,10 +1524,10 @@ contains
       use, intrinsic :: iso_c_binding
       implicit none
       type(c_ptr), value :: plan
-      real(c_float), target :: idata(*)
-      type(c_ptr), value :: odata
+      real(c_float), target :: idata(..)
+      complex(c_float_complex), target :: odata(..)
       integer(c_int) :: ExecR2C
-      ExecR2C = hipfftExecR2C_raw(plan, c_loc(idata(1)), odata)
+      ExecR2C = hipfftExecR2C_raw(plan, c_loc(idata), c_loc(odata))
     end function hipfftExecR2C_native
 
     function hipfftExecR2C_typed(plan, idata, odata) result(ExecR2C)
@@ -1532,10 +1545,10 @@ contains
       use, intrinsic :: iso_c_binding
       implicit none
       type(c_ptr), value :: plan
-      type(c_ptr), value :: idata
-      real(c_float), target :: odata(*)
+      complex(c_float_complex), target :: idata(..)
+      real(c_float), target :: odata(..)
       integer(c_int) :: ExecC2R
-      ExecC2R = hipfftExecC2R_raw(plan, idata, c_loc(odata(1)))
+      ExecC2R = hipfftExecC2R_raw(plan, c_loc(idata), c_loc(odata))
     end function hipfftExecC2R_native
 
     function hipfftExecC2R_typed(plan, idata, odata) result(ExecC2R)
@@ -1548,6 +1561,17 @@ contains
       integer(c_int) :: ExecC2R
       ExecC2R = hipfftExecC2R_raw(plan%ptr, idata, odata)
     end function hipfftExecC2R_typed
+
+    function hipfftExecZ2Z_native(plan, idata, odata, direction) result(ExecZ2Z)
+      use, intrinsic :: iso_c_binding
+      implicit none
+      type(c_ptr), value :: plan
+      complex(c_double_complex), target :: idata(..)
+      complex(c_double_complex), target :: odata(..)
+      integer(c_int), value :: direction
+      integer(c_int) :: ExecZ2Z
+      ExecZ2Z = hipfftExecZ2Z_raw(plan, c_loc(idata), c_loc(odata), direction)
+    end function hipfftExecZ2Z_native
 
     function hipfftExecZ2Z_typed(plan, idata, odata, direction) result(ExecZ2Z)
       use, intrinsic :: iso_c_binding
@@ -1565,10 +1589,10 @@ contains
       use, intrinsic :: iso_c_binding
       implicit none
       type(c_ptr), value :: plan
-      real(c_double), target :: idata(*)
-      type(c_ptr), value :: odata
+      real(c_double), target :: idata(..)
+      complex(c_double_complex), target :: odata(..)
       integer(c_int) :: ExecD2Z
-      ExecD2Z = hipfftExecD2Z_raw(plan, c_loc(idata(1)), odata)
+      ExecD2Z = hipfftExecD2Z_raw(plan, c_loc(idata), c_loc(odata))
     end function hipfftExecD2Z_native
 
     function hipfftExecD2Z_typed(plan, idata, odata) result(ExecD2Z)
@@ -1586,10 +1610,10 @@ contains
       use, intrinsic :: iso_c_binding
       implicit none
       type(c_ptr), value :: plan
-      type(c_ptr), value :: idata
-      real(c_double), target :: odata(*)
+      complex(c_double_complex), target :: idata(..)
+      real(c_double), target :: odata(..)
       integer(c_int) :: ExecZ2D
-      ExecZ2D = hipfftExecZ2D_raw(plan, idata, c_loc(odata(1)))
+      ExecZ2D = hipfftExecZ2D_raw(plan, c_loc(idata), c_loc(odata))
     end function hipfftExecZ2D_native
 
     function hipfftExecZ2D_typed(plan, idata, odata) result(ExecZ2D)
@@ -1625,18 +1649,18 @@ contains
     function hipfftGetVersion_native(version) result(GetVersion)
       use, intrinsic :: iso_c_binding
       implicit none
-      integer(c_int), target :: version(*)
+      integer(c_int), target :: version(..)
       integer(c_int) :: GetVersion
-      GetVersion = hipfftGetVersion_raw(c_loc(version(1)))
+      GetVersion = hipfftGetVersion_raw(c_loc(version))
     end function hipfftGetVersion_native
 
     function hipfftGetProperty_native(type, value) result(GetProperty)
       use, intrinsic :: iso_c_binding
       implicit none
       integer(c_int), value :: type
-      integer(c_int), target :: value(*)
+      integer(c_int), target :: value(..)
       integer(c_int) :: GetProperty
-      GetProperty = hipfftGetProperty_raw(type, c_loc(value(1)))
+      GetProperty = hipfftGetProperty_raw(type, c_loc(value))
     end function hipfftGetProperty_native
 
 end module hipfort_hipfft

@@ -57,6 +57,22 @@ module hipfort_rocfft
     end function rocfft_cleanup
 
     !---------------------------------------------
+    ! rocfft_get_version_string
+    !---------------------------------------------
+    !> @brief Get library version string
+    !>
+    !> @param[in, out] buf buffer that receives the version string
+    !> @param[in] len length of buf, minimum 30 characters
+    function rocfft_get_version_string(buf, len) &
+       result(get_version_string) &
+       bind(C, name="rocfft_get_version_string")
+       import :: c_ptr, c_long, c_int
+       type(c_ptr), value :: buf
+       integer(c_long), value :: len
+       integer(c_int) :: get_version_string
+    end function rocfft_get_version_string
+
+    !---------------------------------------------
     ! rocfft_cache_serialize
     !---------------------------------------------
     !> @brief Serialize compiled kernel cache

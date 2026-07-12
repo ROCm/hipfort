@@ -113,6 +113,29 @@ module hipfort
     end function hipDeviceGet
 
     !---------------------------------------------
+    ! hipDeviceGetName
+    !---------------------------------------------
+    !> @brief Returns an identifer string for the device.
+    !> @param [out] name String of the device name
+    !> @param [in] len Maximum length of string to store in device name
+    !> @param [in] device Device ordinal
+    !>
+    !> @returns `hipSuccess`, `hipErrorInvalidDevice`
+    function hipDeviceGetName(name, len, device) &
+       result(DeviceGetName) &
+#ifdef USE_CUDA_NAMES
+       bind(C, name="cudaDeviceGetName")
+#else
+       bind(C, name="hipDeviceGetName")
+#endif
+       import :: c_ptr, c_int
+       type(c_ptr), value :: name
+       integer(c_int), value :: len
+       integer(c_int), value :: device
+       integer(c_int) :: DeviceGetName
+    end function hipDeviceGetName
+
+    !---------------------------------------------
     ! hipDeviceGetUuid
     !---------------------------------------------
     !> @brief Returns an UUID for the device.[BETA]
@@ -128,11 +151,55 @@ module hipfort
     function hipDeviceGetUuid(uuid, device) &
        result(DeviceGetUuid) &
        bind(C, name="hipDeviceGetUuid")
-       import :: c_ptr, c_int
-       type(c_ptr), value :: uuid
+       import :: hipUUID, c_int
+       type(hipUUID) :: uuid
        integer(c_int), value :: device
        integer(c_int) :: DeviceGetUuid
     end function hipDeviceGetUuid
+
+    !---------------------------------------------
+    ! hipDeviceGetPCIBusId
+    !---------------------------------------------
+    !> @brief Returns a PCI Bus Id string for the device, overloaded to take int device ID.
+    !> @param [out] pciBusId The string of PCI Bus Id format for the device
+    !> @param [in] len Maximum length of string
+    !> @param [in] device The device ordinal
+    !>
+    !> @returns `hipSuccess`, `hipErrorInvalidDevice`
+    function hipDeviceGetPCIBusId(pciBusId, len, device) &
+       result(DeviceGetPCIBusId) &
+#ifdef USE_CUDA_NAMES
+       bind(C, name="cudaDeviceGetPCIBusId")
+#else
+       bind(C, name="hipDeviceGetPCIBusId")
+#endif
+       import :: c_ptr, c_int
+       type(c_ptr), value :: pciBusId
+       integer(c_int), value :: len
+       integer(c_int), value :: device
+       integer(c_int) :: DeviceGetPCIBusId
+    end function hipDeviceGetPCIBusId
+
+    !---------------------------------------------
+    ! hipDeviceGetByPCIBusId
+    !---------------------------------------------
+    !> @brief Returns a handle to a compute device.
+    !> @param [out] device The handle of the device
+    !> @param [in] pciBusId The string of PCI Bus Id for the device
+    !>
+    !> @returns `hipSuccess`, `hipErrorInvalidDevice`, `hipErrorInvalidValue`
+    function hipDeviceGetByPCIBusId(device, pciBusId) &
+       result(DeviceGetByPCIBusId) &
+#ifdef USE_CUDA_NAMES
+       bind(C, name="cudaDeviceGetByPCIBusId")
+#else
+       bind(C, name="hipDeviceGetByPCIBusId")
+#endif
+       import :: c_int, c_ptr
+       integer(c_int) :: device
+       type(c_ptr), value :: pciBusId
+       integer(c_int) :: DeviceGetByPCIBusId
+    end function hipDeviceGetByPCIBusId
 
     !---------------------------------------------
     ! hipDeviceTotalMem
@@ -256,6 +323,58 @@ module hipfort
     end function hipSetDevice
 
     !---------------------------------------------
+    ! hipGetDevice
+    !---------------------------------------------
+    !> @brief Return the default device id for the calling host thread.
+    !>
+    !> @param [out] deviceId *device is written with the default device
+    !>
+    !> HIP maintains an default device for each thread using thread-local-storage.
+    !> This device is used implicitly for HIP runtime APIs called by this thread.
+    !> hipGetDevice returns in * @p device the default device for the calling host thread.
+    !>
+    !> @returns `hipSuccess`, `hipErrorInvalidDevice`, `hipErrorInvalidValue`
+    !>
+    !> @see hipSetDevice, hipGetDevicesizeBytes
+    function hipGetDevice(deviceId) &
+       result(GetDevice) &
+#ifdef USE_CUDA_NAMES
+       bind(C, name="cudaGetDevice")
+#else
+       bind(C, name="hipGetDevice")
+#endif
+       import :: c_int
+       integer(c_int) :: deviceId
+       integer(c_int) :: GetDevice
+    end function hipGetDevice
+
+    !---------------------------------------------
+    ! hipGetDeviceCount
+    !---------------------------------------------
+    !> @brief Return number of compute-capable devices.
+    !>
+    !> @param [out] count Returns number of compute-capable devices.
+    !>
+    !> @returns `hipSuccess`, `hipErrorNoDevice`
+    !>
+    !>
+    !> Returns in @p *count the number of devices that have ability to run compute commands. If
+    !> there
+    !> are no such devices, then `hipGetDeviceCount` will return `hipErrorNoDevice`. If 1 or more
+    !> devices can be found, then hipGetDeviceCount returns `hipSuccess`.
+    function hipGetDeviceCount(count) &
+       result(GetDeviceCount) &
+#ifdef USE_CUDA_NAMES
+       bind(C, name="cudaGetDeviceCount")
+#else
+       bind(C, name="hipGetDeviceCount")
+#endif
+       import :: c_int
+       integer(c_int) :: count
+       integer(c_int) :: GetDeviceCount
+    end function hipGetDeviceCount
+
+    !---------------------------------------------
     ! hipGetDevicePropertiesR0600
     !---------------------------------------------
     !> @brief Returns device properties.
@@ -276,8 +395,8 @@ module hipfort
 #else
        bind(C, name="hipGetDevicePropertiesR0600")
 #endif
-       import :: c_ptr, c_int
-       type(c_ptr), value :: prop
+       import :: hipDeviceProp_t, c_int
+       type(hipDeviceProp_t) :: prop
        integer(c_int), value :: deviceId
        integer(c_int) :: GetDevicePropertiesR0600
     end function hipGetDevicePropertiesR0600
@@ -308,9 +427,9 @@ module hipfort
 #else
        bind(C, name="hipDeviceGetTexture1DLinearMaxWidth")
 #endif
-       import :: c_ptr, c_int
+       import :: c_ptr, hipChannelFormatDesc, c_int
        type(c_ptr), value :: max_width
-       type(c_ptr), value :: desc
+       type(hipChannelFormatDesc) :: desc
        integer(c_int), value :: device
        integer(c_int) :: DeviceGetTexture1DLinearMaxWidth
     end function hipDeviceGetTexture1DLinearMaxWidth
@@ -495,8 +614,8 @@ module hipfort
 #else
        bind(C, name="hipIpcGetMemHandle")
 #endif
-       import :: c_ptr, c_int
-       type(c_ptr), value :: handle
+       import :: hipIpcMemHandle_t, c_ptr, c_int
+       type(hipIpcMemHandle_t) :: handle
        type(c_ptr), value :: devPtr
        integer(c_int) :: IpcGetMemHandle
     end function hipIpcGetMemHandle
@@ -865,8 +984,8 @@ module hipfort
 #else
        bind(C, name="hipPointerGetAttributes")
 #endif
-       import :: c_ptr, c_int
-       type(c_ptr), value :: attributes
+       import :: hipPointerAttribute_t, c_ptr, c_int
+       type(hipPointerAttribute_t) :: attributes
        type(c_ptr), value :: ptr
        integer(c_int) :: PointerGetAttributes
     end function hipPointerGetAttributes
@@ -1213,8 +1332,8 @@ module hipfort
 #else
        bind(C, name="hipMemPoolExportPointer")
 #endif
-       import :: c_ptr, c_int
-       type(c_ptr), value :: export_data
+       import :: hipMemPoolPtrExportData, c_ptr, c_int
+       type(hipMemPoolPtrExportData) :: export_data
        type(c_ptr), value :: dev_ptr
        integer(c_int) :: MemPoolExportPointer
     end function hipMemPoolExportPointer
@@ -1980,9 +2099,9 @@ module hipfort
 #else
        bind(C, name="hipMallocArray")
 #endif
-       import :: c_ptr, c_long, c_int
+       import :: c_ptr, hipChannelFormatDesc, c_long, c_int
        type(c_ptr) :: array
-       type(c_ptr), value :: desc
+       type(hipChannelFormatDesc) :: desc
        integer(c_long), value :: width
        integer(c_long), value :: height
        integer(c_int), value :: flags
@@ -2007,9 +2126,9 @@ module hipfort
 #else
        bind(C, name="hipArrayCreate")
 #endif
-       import :: c_ptr, c_int
+       import :: c_ptr, HIP_ARRAY_DESCRIPTOR, c_int
        type(c_ptr) :: pHandle
-       type(c_ptr), value :: pAllocateArray
+       type(HIP_ARRAY_DESCRIPTOR) :: pAllocateArray
        integer(c_int) :: ArrayCreate
     end function hipArrayCreate
 
@@ -2053,9 +2172,9 @@ module hipfort
 #else
        bind(C, name="hipArray3DCreate")
 #endif
-       import :: c_ptr, c_int
+       import :: c_ptr, HIP_ARRAY3D_DESCRIPTOR, c_int
        type(c_ptr) :: array
-       type(c_ptr), value :: pAllocateArray
+       type(HIP_ARRAY3D_DESCRIPTOR) :: pAllocateArray
        integer(c_int) :: Array3DCreate
     end function hipArray3DCreate
 
@@ -2077,8 +2196,8 @@ module hipfort
 #else
        bind(C, name="hipMalloc3D")
 #endif
-       import :: c_ptr, c_int
-       type(c_ptr), value :: pitchedDevPtr
+       import :: hipPitchedPtr, c_ptr, c_int
+       type(hipPitchedPtr) :: pitchedDevPtr
        type(c_ptr), value :: extent
        integer(c_int) :: Malloc3D
     end function hipMalloc3D
@@ -2123,9 +2242,9 @@ module hipfort
 #else
        bind(C, name="hipMalloc3DArray")
 #endif
-       import :: c_ptr, c_int
+       import :: c_ptr, hipChannelFormatDesc, c_int
        type(c_ptr) :: array
-       type(c_ptr), value :: desc
+       type(hipChannelFormatDesc) :: desc
        type(c_ptr), value :: extent
        integer(c_int), value :: flags
        integer(c_int) :: Malloc3DArray
@@ -2154,8 +2273,8 @@ module hipfort
     function hipArrayGetDescriptor(pArrayDescriptor, array) &
        result(ArrayGetDescriptor) &
        bind(C, name="hipArrayGetDescriptor")
-       import :: c_ptr, c_int
-       type(c_ptr), value :: pArrayDescriptor
+       import :: HIP_ARRAY_DESCRIPTOR, c_ptr, c_int
+       type(HIP_ARRAY_DESCRIPTOR) :: pArrayDescriptor
        type(c_ptr), value :: array
        integer(c_int) :: ArrayGetDescriptor
     end function hipArrayGetDescriptor
@@ -2183,8 +2302,8 @@ module hipfort
     function hipArray3DGetDescriptor(pArrayDescriptor, array) &
        result(Array3DGetDescriptor) &
        bind(C, name="hipArray3DGetDescriptor")
-       import :: c_ptr, c_int
-       type(c_ptr), value :: pArrayDescriptor
+       import :: HIP_ARRAY3D_DESCRIPTOR, c_ptr, c_int
+       type(HIP_ARRAY3D_DESCRIPTOR) :: pArrayDescriptor
        type(c_ptr), value :: array
        integer(c_int) :: Array3DGetDescriptor
     end function hipArray3DGetDescriptor
@@ -2263,8 +2382,8 @@ module hipfort
 #else
        bind(C, name="hipMemcpyParam2D")
 #endif
-       import :: c_ptr, c_int
-       type(c_ptr), value :: pCopy
+       import :: hip_Memcpy2D, c_int
+       type(hip_Memcpy2D) :: pCopy
        integer(c_int) :: MemcpyParam2D
     end function hipMemcpyParam2D
 
@@ -2530,8 +2649,8 @@ module hipfort
 #else
        bind(C, name="hipMemcpy3D")
 #endif
-       import :: c_ptr, c_int
-       type(c_ptr), value :: p
+       import :: hipMemcpy3DParms, c_int
+       type(hipMemcpy3DParms) :: p
        integer(c_int) :: Memcpy3D
     end function hipMemcpy3D
 
@@ -2553,8 +2672,8 @@ module hipfort
 #else
        bind(C, name="hipDrvMemcpy3D")
 #endif
-       import :: c_ptr, c_int
-       type(c_ptr), value :: pCopy
+       import :: HIP_MEMCPY3D, c_int
+       type(HIP_MEMCPY3D) :: pCopy
        integer(c_int) :: DrvMemcpy3D
     end function hipDrvMemcpy3D
 
@@ -2601,8 +2720,8 @@ module hipfort
 #else
        bind(C, name="hipMemcpy3DPeer")
 #endif
-       import :: c_ptr, c_int
-       type(c_ptr), value :: p
+       import :: hipMemcpy3DPeerParms, c_int
+       type(hipMemcpy3DPeerParms) :: p
        integer(c_int) :: Memcpy3DPeer
     end function hipMemcpy3DPeer
 
@@ -2687,6 +2806,33 @@ module hipfort
        integer(c_long), value :: sizeBytes
        integer(c_int) :: MemcpyPeer
     end function hipMemcpyPeer
+
+    !---------------------------------------------
+    ! hipCtxGetDevice
+    !---------------------------------------------
+    !> @brief Get the handle of the device associated with current/default context [Deprecated]
+    !>
+    !> @param [out] device The device from the current context
+    !>
+    !> @returns `hipSuccess`, `hipErrorInvalidContext`
+    !>
+    !> @see hipCtxCreate, hipCtxDestroy, hipCtxGetFlags, hipCtxPopCurrent, hipCtxGetCurrent,
+    !> hipCtxPushCurrent, hipCtxSetCacheConfig, hipCtxSynchronize
+    !>
+    !> @warning This API is deprecated on the AMD platform, only for equivalent cuCtx driver API on
+    !> the
+    !> NVIDIA platform.
+    function hipCtxGetDevice(device) &
+       result(CtxGetDevice) &
+#ifdef USE_CUDA_NAMES
+       bind(C, name="cudaCtxGetDevice")
+#else
+       bind(C, name="hipCtxGetDevice")
+#endif
+       import :: c_int
+       integer(c_int) :: device
+       integer(c_int) :: CtxGetDevice
+    end function hipCtxGetDevice
 
     !---------------------------------------------
     ! hipCtxSetCacheConfig
@@ -2880,6 +3026,25 @@ module hipfort
     end function hipLibraryUnload
 
     !---------------------------------------------
+    ! hipLibraryGetKernel
+    !---------------------------------------------
+    !> @brief Get Kernel object from library
+    !>
+    !> @param [out] pKernel Output kernel object
+    !> @param [in] library Input hip library
+    !> @param [in] name kernel name to be searched for
+    !> @return `hipSuccess`, `hipErrorInvalidValue`
+    function hipLibraryGetKernel(pKernel, library, name) &
+       result(LibraryGetKernel) &
+       bind(C, name="hipLibraryGetKernel")
+       import :: c_ptr, c_int
+       type(c_ptr) :: pKernel
+       type(c_ptr), value :: library
+       type(c_ptr), value :: name
+       integer(c_int) :: LibraryGetKernel
+    end function hipLibraryGetKernel
+
+    !---------------------------------------------
     ! hipLibraryEnumerateKernels
     !---------------------------------------------
     !> @brief Retrieve kernel handles within a library
@@ -2952,8 +3117,8 @@ module hipfort
 #else
        bind(C, name="hipFuncGetAttributes")
 #endif
-       import :: c_ptr, c_int
-       type(c_ptr), value :: attr
+       import :: hipFuncAttributes, c_ptr, c_int
+       type(hipFuncAttributes) :: attr
        type(c_ptr), value :: func
        integer(c_int) :: FuncGetAttributes
     end function hipFuncGetAttributes
@@ -3018,8 +3183,8 @@ module hipfort
     function hipModuleLaunchCooperativeKernelMultiDevice(launchParamsList, numDevices, flags) &
        result(ModuleLaunchCooperativeKernelMultiDevice) &
        bind(C, name="hipModuleLaunchCooperativeKernelMultiDevice")
-       import :: c_ptr, c_int
-       type(c_ptr), value :: launchParamsList
+       import :: hipFunctionLaunchParams, c_int
+       type(hipFunctionLaunchParams) :: launchParamsList
        integer(c_int), value :: numDevices
        integer(c_int), value :: flags
        integer(c_int) :: ModuleLaunchCooperativeKernelMultiDevice
@@ -3044,8 +3209,8 @@ module hipfort
 #else
        bind(C, name="hipLaunchCooperativeKernelMultiDevice")
 #endif
-       import :: c_ptr, c_int
-       type(c_ptr), value :: launchParamsList
+       import :: hipLaunchParams, c_int
+       type(hipLaunchParams) :: launchParamsList
        integer(c_int), value :: numDevices
        integer(c_int), value :: flags
        integer(c_int) :: LaunchCooperativeKernelMultiDevice
@@ -3071,8 +3236,8 @@ module hipfort
 #else
        bind(C, name="hipExtLaunchMultiKernelMultiDevice")
 #endif
-       import :: c_ptr, c_int
-       type(c_ptr), value :: launchParamsList
+       import :: hipLaunchParams, c_int
+       type(hipLaunchParams) :: launchParamsList
        integer(c_int), value :: numDevices
        integer(c_int), value :: flags
        integer(c_int) :: ExtLaunchMultiKernelMultiDevice
@@ -3101,8 +3266,8 @@ module hipfort
 #else
        bind(C, name="hipLaunchKernelExC")
 #endif
-       import :: c_ptr, c_int
-       type(c_ptr), value :: config
+       import :: hipLaunchConfig_t, c_ptr, c_int
+       type(hipLaunchConfig_t) :: config
        type(c_ptr), value :: fPtr
        type(c_ptr) :: args
        integer(c_int) :: LaunchKernelExC
@@ -3264,8 +3429,8 @@ module hipfort
 #else
        bind(C, name="hipDrvMemcpy2DUnaligned")
 #endif
-       import :: c_ptr, c_int
-       type(c_ptr), value :: pCopy
+       import :: hip_Memcpy2D, c_int
+       type(hip_Memcpy2D) :: pCopy
        integer(c_int) :: DrvMemcpy2DUnaligned
     end function hipDrvMemcpy2DUnaligned
 
@@ -3290,11 +3455,11 @@ module hipfort
 #else
        bind(C, name="hipCreateTextureObject")
 #endif
-       import :: c_ptr, c_int
+       import :: c_ptr, hipResourceDesc, hipTextureDesc, hipResourceViewDesc, c_int
        type(c_ptr) :: pTexObject
-       type(c_ptr), value :: pResDesc
-       type(c_ptr), value :: pTexDesc
-       type(c_ptr), value :: pResViewDesc
+       type(hipResourceDesc) :: pResDesc
+       type(hipTextureDesc) :: pTexDesc
+       type(hipResourceViewDesc) :: pResViewDesc
        integer(c_int) :: CreateTextureObject
     end function hipCreateTextureObject
 
@@ -3334,8 +3499,8 @@ module hipfort
 #else
        bind(C, name="hipGetChannelDesc")
 #endif
-       import :: c_ptr, c_int
-       type(c_ptr), value :: desc
+       import :: hipChannelFormatDesc, c_ptr, c_int
+       type(hipChannelFormatDesc) :: desc
        type(c_ptr), value :: array
        integer(c_int) :: GetChannelDesc
     end function hipGetChannelDesc
@@ -3356,8 +3521,8 @@ module hipfort
 #else
        bind(C, name="hipGetTextureObjectResourceDesc")
 #endif
-       import :: c_ptr, c_int
-       type(c_ptr), value :: pResDesc
+       import :: hipResourceDesc, c_ptr, c_int
+       type(hipResourceDesc) :: pResDesc
        type(c_ptr), value :: textureObject
        integer(c_int) :: GetTextureObjectResourceDesc
     end function hipGetTextureObjectResourceDesc
@@ -3378,8 +3543,8 @@ module hipfort
 #else
        bind(C, name="hipGetTextureObjectResourceViewDesc")
 #endif
-       import :: c_ptr, c_int
-       type(c_ptr), value :: pResViewDesc
+       import :: hipResourceViewDesc, c_ptr, c_int
+       type(hipResourceViewDesc) :: pResViewDesc
        type(c_ptr), value :: textureObject
        integer(c_int) :: GetTextureObjectResourceViewDesc
     end function hipGetTextureObjectResourceViewDesc
@@ -3400,8 +3565,8 @@ module hipfort
 #else
        bind(C, name="hipGetTextureObjectTextureDesc")
 #endif
-       import :: c_ptr, c_int
-       type(c_ptr), value :: pTexDesc
+       import :: hipTextureDesc, c_ptr, c_int
+       type(hipTextureDesc) :: pTexDesc
        type(c_ptr), value :: textureObject
        integer(c_int) :: GetTextureObjectTextureDesc
     end function hipGetTextureObjectTextureDesc
@@ -3424,11 +3589,11 @@ module hipfort
 #else
        bind(C, name="hipTexObjectCreate")
 #endif
-       import :: c_ptr, c_int
+       import :: c_ptr, HIP_RESOURCE_DESC, HIP_TEXTURE_DESC, HIP_RESOURCE_VIEW_DESC, c_int
        type(c_ptr) :: pTexObject
-       type(c_ptr), value :: pResDesc
-       type(c_ptr), value :: pTexDesc
-       type(c_ptr), value :: pResViewDesc
+       type(HIP_RESOURCE_DESC) :: pResDesc
+       type(HIP_TEXTURE_DESC) :: pTexDesc
+       type(HIP_RESOURCE_VIEW_DESC) :: pResViewDesc
        integer(c_int) :: TexObjectCreate
     end function hipTexObjectCreate
 
@@ -3468,8 +3633,8 @@ module hipfort
 #else
        bind(C, name="hipTexObjectGetResourceDesc")
 #endif
-       import :: c_ptr, c_int
-       type(c_ptr), value :: pResDesc
+       import :: HIP_RESOURCE_DESC, c_ptr, c_int
+       type(HIP_RESOURCE_DESC) :: pResDesc
        type(c_ptr), value :: texObject
        integer(c_int) :: TexObjectGetResourceDesc
     end function hipTexObjectGetResourceDesc
@@ -3490,8 +3655,8 @@ module hipfort
 #else
        bind(C, name="hipTexObjectGetResourceViewDesc")
 #endif
-       import :: c_ptr, c_int
-       type(c_ptr), value :: pResViewDesc
+       import :: HIP_RESOURCE_VIEW_DESC, c_ptr, c_int
+       type(HIP_RESOURCE_VIEW_DESC) :: pResViewDesc
        type(c_ptr), value :: texObject
        integer(c_int) :: TexObjectGetResourceViewDesc
     end function hipTexObjectGetResourceViewDesc
@@ -3512,8 +3677,8 @@ module hipfort
 #else
        bind(C, name="hipTexObjectGetTextureDesc")
 #endif
-       import :: c_ptr, c_int
-       type(c_ptr), value :: pTexDesc
+       import :: HIP_TEXTURE_DESC, c_ptr, c_int
+       type(HIP_TEXTURE_DESC) :: pTexDesc
        type(c_ptr), value :: texObject
        integer(c_int) :: TexObjectGetTextureDesc
     end function hipTexObjectGetTextureDesc
@@ -3539,9 +3704,9 @@ module hipfort
 #else
        bind(C, name="hipMallocMipmappedArray")
 #endif
-       import :: c_ptr, c_int
+       import :: c_ptr, hipChannelFormatDesc, c_int
        type(c_ptr) :: mipmappedArray
-       type(c_ptr), value :: desc
+       type(hipChannelFormatDesc) :: desc
        type(c_ptr), value :: extent
        integer(c_int), value :: numLevels
        integer(c_int), value :: flags
@@ -3615,9 +3780,9 @@ module hipfort
 #else
        bind(C, name="hipMipmappedArrayCreate")
 #endif
-       import :: c_ptr, c_int
+       import :: c_ptr, HIP_ARRAY3D_DESCRIPTOR, c_int
        type(c_ptr) :: pHandle
-       type(c_ptr), value :: pMipmappedArrayDesc
+       type(HIP_ARRAY3D_DESCRIPTOR) :: pMipmappedArrayDesc
        integer(c_int), value :: numMipmapLevels
        integer(c_int) :: MipmappedArrayCreate
     end function hipMipmappedArrayCreate
@@ -3687,10 +3852,10 @@ module hipfort
 #else
        bind(C, name="hipBindTextureToMipmappedArray")
 #endif
-       import :: c_ptr, c_int
-       type(c_ptr), value :: tex
+       import :: textureReference, c_ptr, hipChannelFormatDesc, c_int
+       type(textureReference) :: tex
        type(c_ptr), value :: mipmappedArray
-       type(c_ptr), value :: desc
+       type(hipChannelFormatDesc) :: desc
        integer(c_int) :: BindTextureToMipmappedArray
     end function hipBindTextureToMipmappedArray
 
@@ -3727,9 +3892,9 @@ module hipfort
     function hipTexRefGetArray(pArray, texRef) &
        result(TexRefGetArray) &
        bind(C, name="hipTexRefGetArray")
-       import :: c_ptr, c_int
+       import :: c_ptr, textureReference, c_int
        type(c_ptr) :: pArray
-       type(c_ptr), value :: texRef
+       type(textureReference) :: texRef
        integer(c_int) :: TexRefGetArray
     end function hipTexRefGetArray
 
@@ -3751,8 +3916,8 @@ module hipfort
 #else
        bind(C, name="hipTexRefSetAddressMode")
 #endif
-       import :: c_ptr, c_int
-       type(c_ptr), value :: texRef
+       import :: textureReference, c_int
+       type(textureReference) :: texRef
        integer(c_int), value :: dim
        integer(c_int), value :: am
        integer(c_int) :: TexRefSetAddressMode
@@ -3777,8 +3942,8 @@ module hipfort
 #else
        bind(C, name="hipTexRefSetArray")
 #endif
-       import :: c_ptr, c_int
-       type(c_ptr), value :: tex
+       import :: textureReference, c_ptr, c_int
+       type(textureReference) :: tex
        type(c_ptr), value :: array
        integer(c_int), value :: flags
        integer(c_int) :: TexRefSetArray
@@ -3802,8 +3967,8 @@ module hipfort
 #else
        bind(C, name="hipTexRefSetFilterMode")
 #endif
-       import :: c_ptr, c_int
-       type(c_ptr), value :: texRef
+       import :: textureReference, c_int
+       type(textureReference) :: texRef
        integer(c_int), value :: fm
        integer(c_int) :: TexRefSetFilterMode
     end function hipTexRefSetFilterMode
@@ -3826,8 +3991,8 @@ module hipfort
 #else
        bind(C, name="hipTexRefSetFlags")
 #endif
-       import :: c_ptr, c_int
-       type(c_ptr), value :: texRef
+       import :: textureReference, c_int
+       type(textureReference) :: texRef
        integer(c_int), value :: Flags
        integer(c_int) :: TexRefSetFlags
     end function hipTexRefSetFlags
@@ -3851,8 +4016,8 @@ module hipfort
 #else
        bind(C, name="hipTexRefSetFormat")
 #endif
-       import :: c_ptr, c_int
-       type(c_ptr), value :: texRef
+       import :: textureReference, c_int
+       type(textureReference) :: texRef
        integer(c_int), value :: fmt
        integer(c_int), value :: NumPackedComponents
        integer(c_int) :: TexRefSetFormat
@@ -3879,11 +4044,11 @@ module hipfort
 #else
        bind(C, name="hipBindTexture")
 #endif
-       import :: c_ptr, c_long, c_int
+       import :: c_ptr, textureReference, hipChannelFormatDesc, c_long, c_int
        type(c_ptr), value :: offset
-       type(c_ptr), value :: tex
+       type(textureReference) :: tex
        type(c_ptr), value :: devPtr
-       type(c_ptr), value :: desc
+       type(hipChannelFormatDesc) :: desc
        integer(c_long), value :: size
        integer(c_int) :: BindTexture
     end function hipBindTexture
@@ -3911,11 +4076,11 @@ module hipfort
 #else
        bind(C, name="hipBindTexture2D")
 #endif
-       import :: c_ptr, c_long, c_int
+       import :: c_ptr, textureReference, hipChannelFormatDesc, c_long, c_int
        type(c_ptr), value :: offset
-       type(c_ptr), value :: tex
+       type(textureReference) :: tex
        type(c_ptr), value :: devPtr
-       type(c_ptr), value :: desc
+       type(hipChannelFormatDesc) :: desc
        integer(c_long), value :: width
        integer(c_long), value :: height
        integer(c_long), value :: pitch
@@ -3941,10 +4106,10 @@ module hipfort
 #else
        bind(C, name="hipBindTextureToArray")
 #endif
-       import :: c_ptr, c_int
-       type(c_ptr), value :: tex
+       import :: textureReference, c_ptr, hipChannelFormatDesc, c_int
+       type(textureReference) :: tex
        type(c_ptr), value :: array
-       type(c_ptr), value :: desc
+       type(hipChannelFormatDesc) :: desc
        integer(c_int) :: BindTextureToArray
     end function hipBindTextureToArray
 
@@ -3966,9 +4131,9 @@ module hipfort
 #else
        bind(C, name="hipGetTextureAlignmentOffset")
 #endif
-       import :: c_ptr, c_int
+       import :: c_ptr, textureReference, c_int
        type(c_ptr), value :: offset
-       type(c_ptr), value :: texref
+       type(textureReference) :: texref
        integer(c_int) :: GetTextureAlignmentOffset
     end function hipGetTextureAlignmentOffset
 
@@ -3989,8 +4154,8 @@ module hipfort
 #else
        bind(C, name="hipUnbindTexture")
 #endif
-       import :: c_ptr, c_int
-       type(c_ptr), value :: tex
+       import :: textureReference, c_int
+       type(textureReference) :: tex
        integer(c_int) :: UnbindTexture
     end function hipUnbindTexture
 
@@ -4012,9 +4177,9 @@ module hipfort
 #else
        bind(C, name="hipTexRefGetAddress")
 #endif
-       import :: c_ptr, c_int
+       import :: c_ptr, textureReference, c_int
        type(c_ptr) :: dev_ptr
-       type(c_ptr), value :: texRef
+       type(textureReference) :: texRef
        integer(c_int) :: TexRefGetAddress
     end function hipTexRefGetAddress
 
@@ -4036,9 +4201,9 @@ module hipfort
 #else
        bind(C, name="hipTexRefGetMipMappedArray")
 #endif
-       import :: c_ptr, c_int
+       import :: c_ptr, textureReference, c_int
        type(c_ptr) :: pArray
-       type(c_ptr), value :: texRef
+       type(textureReference) :: texRef
        integer(c_int) :: TexRefGetMipMappedArray
     end function hipTexRefGetMipMappedArray
 
@@ -4062,9 +4227,9 @@ module hipfort
 #else
        bind(C, name="hipTexRefSetAddress")
 #endif
-       import :: c_ptr, c_long, c_int
+       import :: c_ptr, textureReference, c_long, c_int
        type(c_ptr), value :: ByteOffset
-       type(c_ptr), value :: texRef
+       type(textureReference) :: texRef
        type(c_ptr), value :: dptr
        integer(c_long), value :: bytes
        integer(c_int) :: TexRefSetAddress
@@ -4090,9 +4255,9 @@ module hipfort
 #else
        bind(C, name="hipTexRefSetAddress2D")
 #endif
-       import :: c_ptr, c_long, c_int
-       type(c_ptr), value :: texRef
-       type(c_ptr), value :: desc
+       import :: textureReference, HIP_ARRAY_DESCRIPTOR, c_ptr, c_long, c_int
+       type(textureReference) :: texRef
+       type(HIP_ARRAY_DESCRIPTOR) :: desc
        type(c_ptr), value :: dptr
        integer(c_long), value :: Pitch
        integer(c_int) :: TexRefSetAddress2D
@@ -4116,8 +4281,8 @@ module hipfort
 #else
        bind(C, name="hipTexRefSetMaxAnisotropy")
 #endif
-       import :: c_ptr, c_int
-       type(c_ptr), value :: texRef
+       import :: textureReference, c_int
+       type(textureReference) :: texRef
        integer(c_int), value :: maxAniso
        integer(c_int) :: TexRefSetMaxAnisotropy
     end function hipTexRefSetMaxAnisotropy
@@ -4140,8 +4305,8 @@ module hipfort
 #else
        bind(C, name="hipTexRefSetMipmapFilterMode")
 #endif
-       import :: c_ptr, c_int
-       type(c_ptr), value :: texRef
+       import :: textureReference, c_int
+       type(textureReference) :: texRef
        integer(c_int), value :: fm
        integer(c_int) :: TexRefSetMipmapFilterMode
     end function hipTexRefSetMipmapFilterMode
@@ -4164,8 +4329,8 @@ module hipfort
 #else
        bind(C, name="hipTexRefSetMipmapLevelBias")
 #endif
-       import :: c_ptr, c_float, c_int
-       type(c_ptr), value :: texRef
+       import :: textureReference, c_float, c_int
+       type(textureReference) :: texRef
        real(c_float), value :: bias
        integer(c_int) :: TexRefSetMipmapLevelBias
     end function hipTexRefSetMipmapLevelBias
@@ -4189,8 +4354,8 @@ module hipfort
 #else
        bind(C, name="hipTexRefSetMipmapLevelClamp")
 #endif
-       import :: c_ptr, c_float, c_int
-       type(c_ptr), value :: texRef
+       import :: textureReference, c_float, c_int
+       type(textureReference) :: texRef
        real(c_float), value :: minMipMapLevelClamp
        real(c_float), value :: maxMipMapLevelClamp
        integer(c_int) :: TexRefSetMipmapLevelClamp
@@ -4215,9 +4380,9 @@ module hipfort
 #else
        bind(C, name="hipTexRefSetMipmappedArray")
 #endif
-       import :: c_ptr, c_int
-       type(c_ptr), value :: texRef
-       type(c_ptr), value :: mipmappedArray
+       import :: textureReference, hipMipmappedArray, c_int
+       type(textureReference) :: texRef
+       type(hipMipmappedArray) :: mipmappedArray
        integer(c_int), value :: Flags
        integer(c_int) :: TexRefSetMipmappedArray
     end function hipTexRefSetMipmappedArray
@@ -4374,10 +4539,10 @@ module hipfort
     function hipMemCreate(handle, size, prop, flags) &
        result(MemCreate) &
        bind(C, name="hipMemCreate")
-       import :: c_ptr, c_long, c_int64_t, c_int
+       import :: c_ptr, c_long, hipMemAllocationProp, c_int64_t, c_int
        type(c_ptr) :: handle
        integer(c_long), value :: size
-       type(c_ptr), value :: prop
+       type(hipMemAllocationProp) :: prop
        integer(c_int64_t), value :: flags
        integer(c_int) :: MemCreate
     end function hipMemCreate
@@ -4423,9 +4588,9 @@ module hipfort
     function hipMemGetAllocationGranularity(granularity, prop, option) &
        result(MemGetAllocationGranularity) &
        bind(C, name="hipMemGetAllocationGranularity")
-       import :: c_ptr, c_int
+       import :: c_ptr, hipMemAllocationProp, c_int
        type(c_ptr), value :: granularity
-       type(c_ptr), value :: prop
+       type(hipMemAllocationProp) :: prop
        integer(c_int), value :: option
        integer(c_int) :: MemGetAllocationGranularity
     end function hipMemGetAllocationGranularity
@@ -4445,8 +4610,8 @@ module hipfort
     function hipMemGetAllocationPropertiesFromHandle(prop, handle) &
        result(MemGetAllocationPropertiesFromHandle) &
        bind(C, name="hipMemGetAllocationPropertiesFromHandle")
-       import :: c_ptr, c_int
-       type(c_ptr), value :: prop
+       import :: hipMemAllocationProp, c_ptr, c_int
+       type(hipMemAllocationProp) :: prop
        type(c_ptr), value :: handle
        integer(c_int) :: MemGetAllocationPropertiesFromHandle
     end function hipMemGetAllocationPropertiesFromHandle
@@ -4561,10 +4726,10 @@ module hipfort
     function hipMemSetAccess(ptr, size, desc, count) &
        result(MemSetAccess) &
        bind(C, name="hipMemSetAccess")
-       import :: c_ptr, c_long, c_int
+       import :: c_ptr, c_long, hipMemAccessDesc, c_int
        type(c_ptr), value :: ptr
        integer(c_long), value :: size
-       type(c_ptr), value :: desc
+       type(hipMemAccessDesc) :: desc
        integer(c_long), value :: count
        integer(c_int) :: MemSetAccess
     end function hipMemSetAccess
@@ -4679,9 +4844,9 @@ module hipfort
 #else
        bind(C, name="hipCreateSurfaceObject")
 #endif
-       import :: c_ptr, c_int
+       import :: c_ptr, hipResourceDesc, c_int
        type(c_ptr) :: pSurfObject
-       type(c_ptr), value :: pResDesc
+       type(hipResourceDesc) :: pResDesc
        integer(c_int) :: CreateSurfaceObject
     end function hipCreateSurfaceObject
 
@@ -4790,8 +4955,8 @@ module hipfort
     function hipMemcpy3D_spt(p) &
        result(Memcpy3D_spt) &
        bind(C, name="hipMemcpy3D_spt")
-       import :: c_ptr, c_int
-       type(c_ptr), value :: p
+       import :: hipMemcpy3DParms, c_int
+       type(hipMemcpy3DParms) :: p
        integer(c_int) :: Memcpy3D_spt
     end function hipMemcpy3D_spt
 
@@ -4891,8 +5056,8 @@ module hipfort
 #else
        bind(C, name="hipGetDevicePropertiesR0600")
 #endif
-       import :: c_ptr, c_int
-       type(c_ptr), value :: prop
+       import :: hipDeviceProp_t, c_int
+       type(hipDeviceProp_t) :: prop
        integer(c_int), value :: deviceId
        integer(c_int) :: GetDeviceProperties
     end function hipGetDeviceProperties
@@ -5048,66 +5213,6 @@ module hipfort
 
     module procedure hipSetValidDevices_native
   end interface hipSetValidDevices
-
-  interface hipGetDevice
-    !---------------------------------------------
-    ! hipGetDevice
-    !---------------------------------------------
-    !> @brief Return the default device id for the calling host thread.
-    !>
-    !> @param [out] deviceId *device is written with the default device
-    !>
-    !> HIP maintains an default device for each thread using thread-local-storage.
-    !> This device is used implicitly for HIP runtime APIs called by this thread.
-    !> hipGetDevice returns in * @p device the default device for the calling host thread.
-    !>
-    !> @returns `hipSuccess`, `hipErrorInvalidDevice`, `hipErrorInvalidValue`
-    !>
-    !> @see hipSetDevice, hipGetDevicesizeBytes
-    function hipGetDevice_raw(deviceId) &
-       result(GetDevice_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cudaGetDevice")
-#else
-       bind(C, name="hipGetDevice")
-#endif
-       import :: c_ptr, c_int
-       type(c_ptr), value :: deviceId
-       integer(c_int) :: GetDevice_raw
-    end function hipGetDevice_raw
-
-    module procedure hipGetDevice_native
-  end interface hipGetDevice
-
-  interface hipGetDeviceCount
-    !---------------------------------------------
-    ! hipGetDeviceCount
-    !---------------------------------------------
-    !> @brief Return number of compute-capable devices.
-    !>
-    !> @param [out] count Returns number of compute-capable devices.
-    !>
-    !> @returns `hipSuccess`, `hipErrorNoDevice`
-    !>
-    !>
-    !> Returns in @p *count the number of devices that have ability to run compute commands. If
-    !> there
-    !> are no such devices, then `hipGetDeviceCount` will return `hipErrorNoDevice`. If 1 or more
-    !> devices can be found, then hipGetDeviceCount returns `hipSuccess`.
-    function hipGetDeviceCount_raw(count) &
-       result(GetDeviceCount_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cudaGetDeviceCount")
-#else
-       bind(C, name="hipGetDeviceCount")
-#endif
-       import :: c_ptr, c_int
-       type(c_ptr), value :: count
-       integer(c_int) :: GetDeviceCount_raw
-    end function hipGetDeviceCount_raw
-
-    module procedure hipGetDeviceCount_native
-  end interface hipGetDeviceCount
 
   interface hipDeviceGetAttribute
     !---------------------------------------------
@@ -5341,9 +5446,9 @@ module hipfort
 #else
        bind(C, name="hipChooseDeviceR0600")
 #endif
-       import :: c_ptr, c_int
+       import :: c_ptr, hipDeviceProp_t, c_int
        type(c_ptr), value :: device
-       type(c_ptr), value :: prop
+       type(hipDeviceProp_t) :: prop
        integer(c_int) :: ChooseDeviceR0600_raw
     end function hipChooseDeviceR0600_raw
 
@@ -5407,8 +5512,8 @@ module hipfort
 #else
        bind(C, name="hipIpcGetEventHandle")
 #endif
-       import :: c_ptr, c_int
-       type(c_ptr), value :: handle
+       import :: hipIpcEventHandle_t, c_ptr, c_int
+       type(hipIpcEventHandle_t) :: handle
        type(c_ptr), value :: event
        integer(c_int) :: IpcGetEventHandle_raw
     end function hipIpcGetEventHandle_raw
@@ -5801,7 +5906,7 @@ module hipfort
     !> @brief Queries the Id of a stream.
     !>
     !> @param[in] stream  Stream to be queried
-    !> @param[in,out] flags  Pointer to an unsigned long long in which the stream's id is returned
+    !> flags  Pointer to an unsigned long long in which the stream's id is returned
     !> @returns `hipSuccess`, `hipErrorInvalidValue`, `hipErrorInvalidHandle`.
     !>
     !> @see hipStreamCreateWithFlags, hipStreamGetFlags, hipStreamCreateWithPriority,
@@ -6025,7 +6130,7 @@ module hipfort
     !> @brief queries stream attribute.
     !> @param[in] stream - Stream to geet attributes from
     !> @param[in] attr   - Attribute ID for the attribute to query
-    !> @param[out] value  - Attribute value output
+    !> value  - Attribute value output
     !> @returns `hipSuccess`, `hipErrorInvalidValue`, `hipErrorInvalidResourceHandle`
     function hipStreamGetAttribute_raw(stream, attr, value_out) &
        result(StreamGetAttribute_raw) &
@@ -6313,12 +6418,12 @@ module hipfort
                                            nodeParams) &
        result(GraphAddBatchMemOpNode_raw) &
        bind(C, name="hipGraphAddBatchMemOpNode")
-       import :: c_ptr, c_long, c_int
+       import :: c_ptr, c_long, hipBatchMemOpNodeParams, c_int
        type(c_ptr) :: phGraphNode
        type(c_ptr), value :: hGraph
        type(c_ptr) :: dependencies
        integer(c_long), value :: numDependencies
-       type(c_ptr), value :: nodeParams
+       type(hipBatchMemOpNodeParams) :: nodeParams
        integer(c_int) :: GraphAddBatchMemOpNode_raw
     end function hipGraphAddBatchMemOpNode_raw
 
@@ -6349,9 +6454,9 @@ module hipfort
     function hipGraphBatchMemOpNodeGetParams_raw(hNode, nodeParams_out) &
        result(GraphBatchMemOpNodeGetParams_raw) &
        bind(C, name="hipGraphBatchMemOpNodeGetParams")
-       import :: c_ptr, c_int
+       import :: c_ptr, hipBatchMemOpNodeParams, c_int
        type(c_ptr), value :: hNode
-       type(c_ptr), value :: nodeParams_out
+       type(hipBatchMemOpNodeParams) :: nodeParams_out
        integer(c_int) :: GraphBatchMemOpNodeGetParams_raw
     end function hipGraphBatchMemOpNodeGetParams_raw
 
@@ -6379,9 +6484,9 @@ module hipfort
     function hipGraphBatchMemOpNodeSetParams_raw(hNode, nodeParams) &
        result(GraphBatchMemOpNodeSetParams_raw) &
        bind(C, name="hipGraphBatchMemOpNodeSetParams")
-       import :: c_ptr, c_int
+       import :: c_ptr, hipBatchMemOpNodeParams, c_int
        type(c_ptr), value :: hNode
-       type(c_ptr), value :: nodeParams
+       type(hipBatchMemOpNodeParams) :: nodeParams
        integer(c_int) :: GraphBatchMemOpNodeSetParams_raw
     end function hipGraphBatchMemOpNodeSetParams_raw
 
@@ -6412,10 +6517,10 @@ module hipfort
     function hipGraphExecBatchMemOpNodeSetParams_raw(hGraphExec, hNode, nodeParams) &
        result(GraphExecBatchMemOpNodeSetParams_raw) &
        bind(C, name="hipGraphExecBatchMemOpNodeSetParams")
-       import :: c_ptr, c_int
+       import :: c_ptr, hipBatchMemOpNodeParams, c_int
        type(c_ptr), value :: hGraphExec
        type(c_ptr), value :: hNode
-       type(c_ptr), value :: nodeParams
+       type(hipBatchMemOpNodeParams) :: nodeParams
        integer(c_int) :: GraphExecBatchMemOpNodeSetParams_raw
     end function hipGraphExecBatchMemOpNodeSetParams_raw
 
@@ -6804,9 +6909,9 @@ module hipfort
 #else
        bind(C, name="hipImportExternalSemaphore")
 #endif
-       import :: c_ptr, c_int
+       import :: c_ptr, hipExternalSemaphoreHandleDesc, c_int
        type(c_ptr) :: extSem_out
-       type(c_ptr), value :: semHandleDesc
+       type(hipExternalSemaphoreHandleDesc) :: semHandleDesc
        integer(c_int) :: ImportExternalSemaphore_raw
     end function hipImportExternalSemaphore_raw
 
@@ -6836,9 +6941,9 @@ module hipfort
 #else
        bind(C, name="hipSignalExternalSemaphoresAsync")
 #endif
-       import :: c_ptr, c_int
+       import :: c_ptr, hipExternalSemaphoreSignalParams, c_int
        type(c_ptr) :: extSemArray
-       type(c_ptr), value :: paramsArray
+       type(hipExternalSemaphoreSignalParams) :: paramsArray
        integer(c_int), value :: numExtSems
        type(c_ptr), value :: stream
        integer(c_int) :: SignalExternalSemaphoresAsync_raw
@@ -6870,9 +6975,9 @@ module hipfort
 #else
        bind(C, name="hipWaitExternalSemaphoresAsync")
 #endif
-       import :: c_ptr, c_int
+       import :: c_ptr, hipExternalSemaphoreWaitParams, c_int
        type(c_ptr) :: extSemArray
-       type(c_ptr), value :: paramsArray
+       type(hipExternalSemaphoreWaitParams) :: paramsArray
        integer(c_int), value :: numExtSems
        type(c_ptr), value :: stream
        integer(c_int) :: WaitExternalSemaphoresAsync_raw
@@ -6930,9 +7035,9 @@ module hipfort
 #else
        bind(C, name="hipImportExternalMemory")
 #endif
-       import :: c_ptr, c_int
+       import :: c_ptr, hipExternalMemoryHandleDesc, c_int
        type(c_ptr) :: extMem_out
-       type(c_ptr), value :: memHandleDesc
+       type(hipExternalMemoryHandleDesc) :: memHandleDesc
        integer(c_int) :: ImportExternalMemory_raw
     end function hipImportExternalMemory_raw
 
@@ -6959,10 +7064,10 @@ module hipfort
 #else
        bind(C, name="hipExternalMemoryGetMappedBuffer")
 #endif
-       import :: c_ptr, c_int
+       import :: c_ptr, hipExternalMemoryBufferDesc, c_int
        type(c_ptr) :: devPtr
        type(c_ptr), value :: extMem
-       type(c_ptr), value :: bufferDesc
+       type(hipExternalMemoryBufferDesc) :: bufferDesc
        integer(c_int) :: ExternalMemoryGetMappedBuffer_raw
     end function hipExternalMemoryGetMappedBuffer_raw
 
@@ -7018,10 +7123,10 @@ module hipfort
 #else
        bind(C, name="hipExternalMemoryGetMappedMipmappedArray")
 #endif
-       import :: c_ptr, c_int
+       import :: c_ptr, hipExternalMemoryMipmappedArrayDesc, c_int
        type(c_ptr) :: mipmap
        type(c_ptr), value :: extMem
-       type(c_ptr), value :: mipmapDesc
+       type(hipExternalMemoryMipmappedArrayDesc) :: mipmapDesc
        integer(c_int) :: ExternalMemoryGetMappedMipmappedArray_raw
     end function hipExternalMemoryGetMappedMipmappedArray_raw
 
@@ -7444,9 +7549,9 @@ module hipfort
 #else
        bind(C, name="hipMemPoolSetAccess")
 #endif
-       import :: c_ptr, c_long, c_int
+       import :: c_ptr, hipMemAccessDesc, c_long, c_int
        type(c_ptr), value :: mem_pool
-       type(c_ptr), value :: desc_list
+       type(hipMemAccessDesc) :: desc_list
        integer(c_long), value :: count
        integer(c_int) :: MemPoolSetAccess_raw
     end function hipMemPoolSetAccess_raw
@@ -7482,10 +7587,10 @@ module hipfort
 #else
        bind(C, name="hipMemPoolGetAccess")
 #endif
-       import :: c_ptr, c_int
+       import :: c_ptr, hipMemLocation, c_int
        type(c_ptr), value :: flags
        type(c_ptr), value :: mem_pool
-       type(c_ptr), value :: location
+       type(hipMemLocation) :: location
        integer(c_int) :: MemPoolGetAccess_raw
     end function hipMemPoolGetAccess_raw
 
@@ -7526,9 +7631,9 @@ module hipfort
 #else
        bind(C, name="hipMemPoolCreate")
 #endif
-       import :: c_ptr, c_int
+       import :: c_ptr, hipMemPoolProps, c_int
        type(c_ptr) :: mem_pool
-       type(c_ptr), value :: pool_props
+       type(hipMemPoolProps) :: pool_props
        integer(c_int) :: MemPoolCreate_raw
     end function hipMemPoolCreate_raw
 
@@ -7764,10 +7869,10 @@ module hipfort
 #else
        bind(C, name="hipMemPoolImportPointer")
 #endif
-       import :: c_ptr, c_int
+       import :: c_ptr, hipMemPoolPtrExportData, c_int
        type(c_ptr) :: dev_ptr
        type(c_ptr), value :: mem_pool
-       type(c_ptr), value :: export_data
+       type(hipMemPoolPtrExportData) :: export_data
        integer(c_int) :: MemPoolImportPointer_raw
     end function hipMemPoolImportPointer_raw
 
@@ -8000,6 +8105,81 @@ module hipfort
 
     module procedure hipMemcpyHtoAAsync_typed
   end interface hipMemcpyHtoAAsync
+
+  interface hipModuleGetGlobal
+    !---------------------------------------------
+    ! hipModuleGetGlobal
+    !---------------------------------------------
+    !> @brief Returns a global pointer from a module.
+    !> @ingroup Module
+    !>
+    !> Returns in *dptr and *bytes the pointer and size of the global of name name located in module
+    !> hmod. If no variable of that name exists, it returns hipErrorNotFound. Both parameters dptr
+    !> and
+    !> bytes are optional. If one of them is NULL, it is ignored and hipSuccess is returned.
+    !>
+    !> @param[out]  dptr  Returns global device pointer
+    !> @param[out]  bytes Returns global size in bytes
+    !> @param[in]   hmod  Module to retrieve global from
+    !> @param[in]   name  Name of global to retrieve
+    !>
+    !> @returns `hipSuccess`, `hipErrorInvalidValue`, `hipErrorNotFound`, `hipErrorInvalidContext`
+    function hipModuleGetGlobal_raw(dptr, bytes, hmod, name) &
+       result(ModuleGetGlobal_raw) &
+#ifdef USE_CUDA_NAMES
+       bind(C, name="cudaModuleGetGlobal")
+#else
+       bind(C, name="hipModuleGetGlobal")
+#endif
+       import :: c_ptr, c_int
+       type(c_ptr) :: dptr
+       type(c_ptr), value :: bytes
+       type(c_ptr), value :: hmod
+       type(c_ptr), value :: name
+       integer(c_int) :: ModuleGetGlobal_raw
+    end function hipModuleGetGlobal_raw
+
+    module procedure hipModuleGetGlobal_typed
+  end interface hipModuleGetGlobal
+
+  interface hipGetProcAddress
+    !---------------------------------------------
+    ! hipGetProcAddress
+    !---------------------------------------------
+    !> @brief Gets the pointer of requested HIP driver function.
+    !>
+    !> @param[in] symbol  The Symbol name of the driver function to request.
+    !> @param[out] pfn  Output pointer to the requested driver function.
+    !> @param[in] hipVersion  The HIP version for the requested driver function symbol.
+    !> HIP version is defined as 100*version_major + version_minor. For example, in HIP 6.1, the
+    !> hipversion is 601, for the symbol function "hipGetDeviceProperties", the specified hipVersion
+    !> 601
+    !> is greater or equal to the version 600, the symbol function will be handle properly as
+    !> backend
+    !> compatible function.
+    !>
+    !> @param[in] flags  Currently only default flag is suppported.
+    !> @param[out] symbolStatus Optional enumeration for returned status of searching for symbol
+    !> driver
+    !> function based on the input hipVersion.
+    !>
+    !> Returns hipSuccess if the returned pfn is addressed to the pointer of found driver function.
+    !>
+    !> @returns `hipSuccess`, `hipErrorInvalidValue`.
+    function hipGetProcAddress_raw(symbol, pfn, hipVersion, flags, symbolStatus) &
+       result(GetProcAddress_raw) &
+       bind(C, name="hipGetProcAddress")
+       import :: c_ptr, c_int, c_long
+       type(c_ptr), value :: symbol
+       type(c_ptr) :: pfn
+       integer(c_int), value :: hipVersion
+       integer(c_long), value :: flags
+       type(c_ptr), value :: symbolStatus
+       integer(c_int) :: GetProcAddress_raw
+    end function hipGetProcAddress_raw
+
+    module procedure hipGetProcAddress_native
+  end interface hipGetProcAddress
 
   interface hipMemcpyToSymbolAsync
     !---------------------------------------------
@@ -8394,9 +8574,9 @@ module hipfort
 #else
        bind(C, name="hipArrayGetInfo")
 #endif
-       import :: c_ptr, c_int
-       type(c_ptr), value :: desc
-       type(c_ptr), value :: extent
+       import :: hipChannelFormatDesc, hipExtent, c_ptr, c_int
+       type(hipChannelFormatDesc) :: desc
+       type(hipExtent) :: extent
        type(c_ptr), value :: flags
        type(c_ptr), value :: array
        integer(c_int) :: ArrayGetInfo_raw
@@ -8424,8 +8604,8 @@ module hipfort
 #else
        bind(C, name="hipMemcpyParam2DAsync")
 #endif
-       import :: c_ptr, c_int
-       type(c_ptr), value :: pCopy
+       import :: hip_Memcpy2D, c_ptr, c_int
+       type(hip_Memcpy2D) :: pCopy
        type(c_ptr), value :: stream
        integer(c_int) :: MemcpyParam2DAsync_raw
     end function hipMemcpyParam2DAsync_raw
@@ -8610,8 +8790,8 @@ module hipfort
 #else
        bind(C, name="hipMemcpy3DAsync")
 #endif
-       import :: c_ptr, c_int
-       type(c_ptr), value :: p
+       import :: hipMemcpy3DParms, c_ptr, c_int
+       type(hipMemcpy3DParms) :: p
        type(c_ptr), value :: stream
        integer(c_int) :: Memcpy3DAsync_raw
     end function hipMemcpy3DAsync_raw
@@ -8639,8 +8819,8 @@ module hipfort
 #else
        bind(C, name="hipDrvMemcpy3DAsync")
 #endif
-       import :: c_ptr, c_int
-       type(c_ptr), value :: pCopy
+       import :: HIP_MEMCPY3D, c_ptr, c_int
+       type(HIP_MEMCPY3D) :: pCopy
        type(c_ptr), value :: stream
        integer(c_int) :: DrvMemcpy3DAsync_raw
     end function hipDrvMemcpy3DAsync_raw
@@ -8673,12 +8853,12 @@ module hipfort
 #else
        bind(C, name="hipMemcpyBatchAsync")
 #endif
-       import :: c_ptr, c_long, c_int
+       import :: c_ptr, c_long, hipMemcpyAttributes, c_int
        type(c_ptr) :: dsts
        type(c_ptr) :: srcs
        type(c_ptr), value :: sizes
        integer(c_long), value :: count
-       type(c_ptr), value :: attrs
+       type(hipMemcpyAttributes) :: attrs
        type(c_ptr), value :: attrsIdxs
        integer(c_long), value :: numAttrs
        type(c_ptr), value :: failIdx
@@ -8710,9 +8890,9 @@ module hipfort
 #else
        bind(C, name="hipMemcpy3DBatchAsync")
 #endif
-       import :: c_long, c_ptr, c_int64_t, c_int
+       import :: c_long, hipMemcpy3DBatchOp, c_ptr, c_int64_t, c_int
        integer(c_long), value :: numOps
-       type(c_ptr), value :: opList
+       type(hipMemcpy3DBatchOp) :: opList
        type(c_ptr), value :: failIdx
        integer(c_int64_t), value :: flags
        type(c_ptr), value :: stream
@@ -8739,8 +8919,8 @@ module hipfort
 #else
        bind(C, name="hipMemcpy3DPeerAsync")
 #endif
-       import :: c_ptr, c_int
-       type(c_ptr), value :: p
+       import :: hipMemcpy3DPeerParms, c_ptr, c_int
+       type(hipMemcpy3DPeerParms) :: p
        type(c_ptr), value :: stream
        integer(c_int) :: Memcpy3DPeerAsync_raw
     end function hipMemcpy3DPeerAsync_raw
@@ -9021,37 +9201,6 @@ module hipfort
 
     module procedure hipCtxGetCurrent_typed
   end interface hipCtxGetCurrent
-
-  interface hipCtxGetDevice
-    !---------------------------------------------
-    ! hipCtxGetDevice
-    !---------------------------------------------
-    !> @brief Get the handle of the device associated with current/default context [Deprecated]
-    !>
-    !> @param [out] device The device from the current context
-    !>
-    !> @returns `hipSuccess`, `hipErrorInvalidContext`
-    !>
-    !> @see hipCtxCreate, hipCtxDestroy, hipCtxGetFlags, hipCtxPopCurrent, hipCtxGetCurrent,
-    !> hipCtxPushCurrent, hipCtxSetCacheConfig, hipCtxSynchronize
-    !>
-    !> @warning This API is deprecated on the AMD platform, only for equivalent cuCtx driver API on
-    !> the
-    !> NVIDIA platform.
-    function hipCtxGetDevice_raw(device) &
-       result(CtxGetDevice_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cudaCtxGetDevice")
-#else
-       bind(C, name="hipCtxGetDevice")
-#endif
-       import :: c_ptr, c_int
-       type(c_ptr), value :: device
-       integer(c_int) :: CtxGetDevice_raw
-    end function hipCtxGetDevice_raw
-
-    module procedure hipCtxGetDevice_native
-  end interface hipCtxGetDevice
 
   interface hipCtxGetApiVersion
     !---------------------------------------------
@@ -9363,17 +9512,49 @@ module hipfort
     !> @returns `hipSuccess`, `hipErrorInvalidValue`, `hipErrorInvalidContext`,
     !> `hipErrorFileNotFound`,
     !> `hipErrorOutOfMemory`, `hipErrorSharedObjectInitFailed`, `hipErrorNotInitialized`
-    function hipModuleLoadFatBinary_raw(module, fatbin) &
+    function hipModuleLoadFatBinary_raw(module_, fatbin) &
        result(ModuleLoadFatBinary_raw) &
        bind(C, name="hipModuleLoadFatBinary")
        import :: c_ptr, c_int
-       type(c_ptr) :: module
+       type(c_ptr) :: module_
        type(c_ptr), value :: fatbin
        integer(c_int) :: ModuleLoadFatBinary_raw
     end function hipModuleLoadFatBinary_raw
 
     module procedure hipModuleLoadFatBinary_typed
   end interface hipModuleLoadFatBinary
+
+  interface hipModuleLoad
+    !---------------------------------------------
+    ! hipModuleLoad
+    !---------------------------------------------
+    !> @brief Loads code object from file into a module the currrent context.
+    !>
+    !> @param [in] fname  Filename of code object to load
+    !>
+    !> @param [out] module  Module
+    !>
+    !> @warning File/memory resources allocated in this function are released only in
+    !> hipModuleUnload.
+    !>
+    !> @returns `hipSuccess`, `hipErrorInvalidValue`, `hipErrorInvalidContext`,
+    !> `hipErrorFileNotFound`,
+    !> `hipErrorOutOfMemory`, `hipErrorSharedObjectInitFailed`, `hipErrorNotInitialized`
+    function hipModuleLoad_raw(module_, fname) &
+       result(ModuleLoad_raw) &
+#ifdef USE_CUDA_NAMES
+       bind(C, name="cudaModuleLoad")
+#else
+       bind(C, name="hipModuleLoad")
+#endif
+       import :: c_ptr, c_int
+       type(c_ptr) :: module_
+       type(c_ptr), value :: fname
+       integer(c_int) :: ModuleLoad_raw
+    end function hipModuleLoad_raw
+
+    module procedure hipModuleLoad_typed
+  end interface hipModuleLoad
 
   interface hipModuleUnload
     !---------------------------------------------
@@ -9386,7 +9567,7 @@ module hipfort
     !> @returns `hipSuccess`, `hipErrorInvalidResourceHandle`
     !>
     !> The module is freed, and the code objects associated with it are destroyed.
-    function hipModuleUnload_raw(module) &
+    function hipModuleUnload_raw(module_) &
        result(ModuleUnload_raw) &
 #ifdef USE_CUDA_NAMES
        bind(C, name="cudaModuleUnload")
@@ -9394,12 +9575,42 @@ module hipfort
        bind(C, name="hipModuleUnload")
 #endif
        import :: c_ptr, c_int
-       type(c_ptr), value :: module
+       type(c_ptr), value :: module_
        integer(c_int) :: ModuleUnload_raw
     end function hipModuleUnload_raw
 
     module procedure hipModuleUnload_typed
   end interface hipModuleUnload
+
+  interface hipModuleGetFunction
+    !---------------------------------------------
+    ! hipModuleGetFunction
+    !---------------------------------------------
+    !> @brief Function with kname will be extracted if present in module
+    !>
+    !> @param [in] module  Module to get function from
+    !> @param [in] kname  Pointer to the name of function
+    !> @param [out] function  Pointer to function handle
+    !>
+    !> @returns `hipSuccess`, `hipErrorInvalidValue`, `hipErrorInvalidContext`,
+    !> `hipErrorNotInitialized`,
+    !> `hipErrorNotFound`,
+    function hipModuleGetFunction_raw(function_, module_, kname) &
+       result(ModuleGetFunction_raw) &
+#ifdef USE_CUDA_NAMES
+       bind(C, name="cudaModuleGetFunction")
+#else
+       bind(C, name="hipModuleGetFunction")
+#endif
+       import :: c_ptr, c_int
+       type(c_ptr) :: function_
+       type(c_ptr), value :: module_
+       type(c_ptr), value :: kname
+       integer(c_int) :: ModuleGetFunction_raw
+    end function hipModuleGetFunction_raw
+
+    module procedure hipModuleGetFunction_typed
+  end interface hipModuleGetFunction
 
   interface hipModuleGetFunctionCount
     !---------------------------------------------
@@ -9463,6 +9674,41 @@ module hipfort
 
     module procedure hipLibraryLoadData_native
   end interface hipLibraryLoadData
+
+  interface hipLibraryLoadFromFile
+    !---------------------------------------------
+    ! hipLibraryLoadFromFile
+    !---------------------------------------------
+    !> @brief Load hip Library from file
+    !>
+    !> @param [out] library Output Library
+    !> @param [in] fileName file which contains code object
+    !> @param [in] jitOptions JIT options, CUDA only
+    !> @param [in] jitOptionsValues JIT options values, CUDA only
+    !> @param [in] numJitOptions Number of JIT options
+    !> @param [in] libraryOptions Library options
+    !> @param [in] libraryOptionValues Library options values
+    !> @param [in] numLibraryOptions Number of library options
+    !> @return `hipSuccess`, `hipErrorInvalidValue`
+    function hipLibraryLoadFromFile_raw(library, fileName, jitOptions, jitOptionsValues, &
+                                        numJitOptions, libraryOptions, libraryOptionValues, &
+                                        numLibraryOptions) &
+       result(LibraryLoadFromFile_raw) &
+       bind(C, name="hipLibraryLoadFromFile")
+       import :: c_ptr, c_int
+       type(c_ptr) :: library
+       type(c_ptr), value :: fileName
+       type(c_ptr), value :: jitOptions
+       type(c_ptr) :: jitOptionsValues
+       integer(c_int), value :: numJitOptions
+       type(c_ptr), value :: libraryOptions
+       type(c_ptr) :: libraryOptionValues
+       integer(c_int), value :: numLibraryOptions
+       integer(c_int) :: LibraryLoadFromFile_raw
+    end function hipLibraryLoadFromFile_raw
+
+    module procedure hipLibraryLoadFromFile_native
+  end interface hipLibraryLoadFromFile
 
   interface hipLibraryGetKernelCount
     !---------------------------------------------
@@ -9544,6 +9790,60 @@ module hipfort
     module procedure hipGetFuncBySymbol_typed
   end interface hipGetFuncBySymbol
 
+  interface hipGetDriverEntryPoint
+    !---------------------------------------------
+    ! hipGetDriverEntryPoint
+    !---------------------------------------------
+    !> @brief Gets function pointer of a requested HIP API
+    !>
+    !> @param [in]  symbol  The API base name
+    !> @param [out] funcPtr  Pointer to the requested function
+    !> @param [in]  flags  Flags for the search
+    !> @param [out] driverStatus  Optional returned status of the search
+    !>
+    !> @returns `hipSuccess`, `hipErrorInvalidValue`
+    function hipGetDriverEntryPoint_raw(symbol, funcPtr, flags, driverStatus) &
+       result(GetDriverEntryPoint_raw) &
+       bind(C, name="hipGetDriverEntryPoint")
+       import :: c_ptr, c_int64_t, c_int
+       type(c_ptr), value :: symbol
+       type(c_ptr) :: funcPtr
+       integer(c_int64_t), value :: flags
+       type(c_ptr), value :: driverStatus
+       integer(c_int) :: GetDriverEntryPoint_raw
+    end function hipGetDriverEntryPoint_raw
+
+    module procedure hipGetDriverEntryPoint_native
+  end interface hipGetDriverEntryPoint
+
+  interface hipModuleGetTexRef
+    !---------------------------------------------
+    ! hipModuleGetTexRef
+    !---------------------------------------------
+    !> @brief returns the handle of the texture reference with the name from the module.
+    !>
+    !> @param [in] hmod  Module
+    !> @param [in] name  Pointer of name of texture reference
+    !> @param [out] texRef  Pointer of texture reference
+    !>
+    !> @returns `hipSuccess`, `hipErrorNotInitialized`, `hipErrorNotFound`, `hipErrorInvalidValue`
+    function hipModuleGetTexRef_raw(texRef, hmod, name) &
+       result(ModuleGetTexRef_raw) &
+#ifdef USE_CUDA_NAMES
+       bind(C, name="cudaModuleGetTexRef")
+#else
+       bind(C, name="hipModuleGetTexRef")
+#endif
+       import :: c_ptr, c_int
+       type(c_ptr) :: texRef
+       type(c_ptr), value :: hmod
+       type(c_ptr), value :: name
+       integer(c_int) :: ModuleGetTexRef_raw
+    end function hipModuleGetTexRef_raw
+
+    module procedure hipModuleGetTexRef_typed
+  end interface hipModuleGetTexRef
+
   interface hipModuleLoadData
     !---------------------------------------------
     ! hipModuleLoadData
@@ -9573,7 +9873,7 @@ module hipfort
     !> @param [out] module  Retuned module
     !>
     !> @returns hipSuccess, hipErrorNotInitialized, hipErrorOutOfMemory, hipErrorNotInitialized
-    function hipModuleLoadData_raw(module, image) &
+    function hipModuleLoadData_raw(module_, image) &
        result(ModuleLoadData_raw) &
 #ifdef USE_CUDA_NAMES
        bind(C, name="cudaModuleLoadData")
@@ -9581,7 +9881,7 @@ module hipfort
        bind(C, name="hipModuleLoadData")
 #endif
        import :: c_ptr, c_int
-       type(c_ptr) :: module
+       type(c_ptr) :: module_
        type(c_ptr), value :: image
        integer(c_int) :: ModuleLoadData_raw
     end function hipModuleLoadData_raw
@@ -9603,7 +9903,7 @@ module hipfort
     !> @param [in] optionValues  Option values for JIT
     !>
     !> @returns hipSuccess, hipErrorNotInitialized, hipErrorOutOfMemory, hipErrorNotInitialized
-    function hipModuleLoadDataEx_raw(module, image, numOptions, options, optionValues) &
+    function hipModuleLoadDataEx_raw(module_, image, numOptions, options, optionValues) &
        result(ModuleLoadDataEx_raw) &
 #ifdef USE_CUDA_NAMES
        bind(C, name="cudaModuleLoadDataEx")
@@ -9611,7 +9911,7 @@ module hipfort
        bind(C, name="hipModuleLoadDataEx")
 #endif
        import :: c_ptr, c_int
-       type(c_ptr) :: module
+       type(c_ptr) :: module_
        type(c_ptr), value :: image
        integer(c_int), value :: numOptions
        type(c_ptr), value :: options
@@ -9622,6 +9922,78 @@ module hipfort
     module procedure hipModuleLoadDataEx_native
     module procedure hipModuleLoadDataEx_typed
   end interface hipModuleLoadDataEx
+
+  interface hipLinkAddData
+    !---------------------------------------------
+    ! hipLinkAddData
+    !---------------------------------------------
+    !> @brief Adds bitcode data to be linked with options.
+    !> @param [in] state hip link state
+    !> @param [in] type  Type of the input data or bitcode
+    !> @param [in] data  Input data which is null terminated
+    !> @param [in] size  Size of the input data
+    !> @param [in] name  Optional name for this input
+    !> @param [in] numOptions  Size of the options
+    !> @param [in] options  Array of options applied to this input
+    !> @param [in] optionValues  Array of option values cast to void*
+    !>
+    !> @returns `hipSuccess`, `hipErrorInvalidValue`, `hipErrorInvalidHandle`
+    !>
+    !> If adding the file fails, it will
+    !> @return `hipErrorInvalidConfiguration`
+    !>
+    !> @see hipError_t
+    function hipLinkAddData_raw(state, type, data, size, name, numOptions, options, optionValues) &
+       result(LinkAddData_raw) &
+       bind(C, name="hipLinkAddData")
+       import :: c_ptr, c_int, c_long
+       type(c_ptr), value :: state
+       integer(c_int), value :: type
+       type(c_ptr), value :: data
+       integer(c_long), value :: size
+       type(c_ptr), value :: name
+       integer(c_int), value :: numOptions
+       type(c_ptr), value :: options
+       type(c_ptr) :: optionValues
+       integer(c_int) :: LinkAddData_raw
+    end function hipLinkAddData_raw
+
+    module procedure hipLinkAddData_native
+  end interface hipLinkAddData
+
+  interface hipLinkAddFile
+    !---------------------------------------------
+    ! hipLinkAddFile
+    !---------------------------------------------
+    !> @brief Adds a file with bitcode to be linked with options.
+    !> @param [in] state hip link state
+    !> @param [in] type  Type of the input data or bitcode
+    !> @param [in] path  Path to the input file where bitcode is present
+    !> @param [in] numOptions  Size of the options
+    !> @param [in] options  Array of options applied to this input
+    !> @param [in] optionValues  Array of option values cast to void*
+    !>
+    !> @returns `hipSuccess`, `hipErrorInvalidValue`
+    !>
+    !> If adding the file fails, it will
+    !> @return `hipErrorInvalidConfiguration`
+    !>
+    !> @see hipError_t
+    function hipLinkAddFile_raw(state, type, path, numOptions, options, optionValues) &
+       result(LinkAddFile_raw) &
+       bind(C, name="hipLinkAddFile")
+       import :: c_ptr, c_int
+       type(c_ptr), value :: state
+       integer(c_int), value :: type
+       type(c_ptr), value :: path
+       integer(c_int), value :: numOptions
+       type(c_ptr), value :: options
+       type(c_ptr) :: optionValues
+       integer(c_int) :: LinkAddFile_raw
+    end function hipLinkAddFile_raw
+
+    module procedure hipLinkAddFile_native
+  end interface hipLinkAddFile
 
   interface hipLinkCreate
     !---------------------------------------------
@@ -9834,8 +10206,8 @@ module hipfort
     function hipDrvLaunchKernelEx_raw(config, f, params, extra) &
        result(DrvLaunchKernelEx_raw) &
        bind(C, name="hipDrvLaunchKernelEx")
-       import :: c_ptr, c_int
-       type(c_ptr), value :: config
+       import :: HIP_LAUNCH_CONFIG, c_ptr, c_int
+       type(HIP_LAUNCH_CONFIG) :: config
        type(c_ptr), value :: f
        type(c_ptr) :: params
        type(c_ptr) :: extra
@@ -10282,9 +10654,9 @@ module hipfort
     function hipTexRefGetBorderColor_raw(pBorderColor, texRef) &
        result(TexRefGetBorderColor_raw) &
        bind(C, name="hipTexRefGetBorderColor")
-       import :: c_ptr, c_int
+       import :: c_ptr, textureReference, c_int
        type(c_ptr), value :: pBorderColor
-       type(c_ptr), value :: texRef
+       type(textureReference) :: texRef
        integer(c_int) :: TexRefGetBorderColor_raw
     end function hipTexRefGetBorderColor_raw
 
@@ -10311,9 +10683,9 @@ module hipfort
 #else
        bind(C, name="hipTexRefGetAddressMode")
 #endif
-       import :: c_ptr, c_int
+       import :: c_ptr, textureReference, c_int
        type(c_ptr), value :: pam
-       type(c_ptr), value :: texRef
+       type(textureReference) :: texRef
        integer(c_int), value :: dim
        integer(c_int) :: TexRefGetAddressMode_raw
     end function hipTexRefGetAddressMode_raw
@@ -10340,9 +10712,9 @@ module hipfort
 #else
        bind(C, name="hipTexRefGetFilterMode")
 #endif
-       import :: c_ptr, c_int
+       import :: c_ptr, textureReference, c_int
        type(c_ptr), value :: pfm
-       type(c_ptr), value :: texRef
+       type(textureReference) :: texRef
        integer(c_int) :: TexRefGetFilterMode_raw
     end function hipTexRefGetFilterMode_raw
 
@@ -10368,9 +10740,9 @@ module hipfort
 #else
        bind(C, name="hipTexRefGetFlags")
 #endif
-       import :: c_ptr, c_int
+       import :: c_ptr, textureReference, c_int
        type(c_ptr), value :: pFlags
-       type(c_ptr), value :: texRef
+       type(textureReference) :: texRef
        integer(c_int) :: TexRefGetFlags_raw
     end function hipTexRefGetFlags_raw
 
@@ -10397,10 +10769,10 @@ module hipfort
 #else
        bind(C, name="hipTexRefGetFormat")
 #endif
-       import :: c_ptr, c_int
+       import :: c_ptr, textureReference, c_int
        type(c_ptr), value :: pFormat
        type(c_ptr), value :: pNumChannels
-       type(c_ptr), value :: texRef
+       type(textureReference) :: texRef
        integer(c_int) :: TexRefGetFormat_raw
     end function hipTexRefGetFormat_raw
 
@@ -10426,9 +10798,9 @@ module hipfort
 #else
        bind(C, name="hipTexRefGetMaxAnisotropy")
 #endif
-       import :: c_ptr, c_int
+       import :: c_ptr, textureReference, c_int
        type(c_ptr), value :: pmaxAnsio
-       type(c_ptr), value :: texRef
+       type(textureReference) :: texRef
        integer(c_int) :: TexRefGetMaxAnisotropy_raw
     end function hipTexRefGetMaxAnisotropy_raw
 
@@ -10454,9 +10826,9 @@ module hipfort
 #else
        bind(C, name="hipTexRefGetMipmapFilterMode")
 #endif
-       import :: c_ptr, c_int
+       import :: c_ptr, textureReference, c_int
        type(c_ptr), value :: pfm
-       type(c_ptr), value :: texRef
+       type(textureReference) :: texRef
        integer(c_int) :: TexRefGetMipmapFilterMode_raw
     end function hipTexRefGetMipmapFilterMode_raw
 
@@ -10482,9 +10854,9 @@ module hipfort
 #else
        bind(C, name="hipTexRefGetMipmapLevelBias")
 #endif
-       import :: c_ptr, c_int
+       import :: c_ptr, textureReference, c_int
        type(c_ptr), value :: pbias
-       type(c_ptr), value :: texRef
+       type(textureReference) :: texRef
        integer(c_int) :: TexRefGetMipmapLevelBias_raw
     end function hipTexRefGetMipmapLevelBias_raw
 
@@ -10511,10 +10883,10 @@ module hipfort
 #else
        bind(C, name="hipTexRefGetMipmapLevelClamp")
 #endif
-       import :: c_ptr, c_int
+       import :: c_ptr, textureReference, c_int
        type(c_ptr), value :: pminMipmapLevelClamp
        type(c_ptr), value :: pmaxMipmapLevelClamp
-       type(c_ptr), value :: texRef
+       type(textureReference) :: texRef
        integer(c_int) :: TexRefGetMipmapLevelClamp_raw
     end function hipTexRefGetMipmapLevelClamp_raw
 
@@ -10540,8 +10912,8 @@ module hipfort
 #else
        bind(C, name="hipTexRefSetBorderColor")
 #endif
-       import :: c_ptr, c_int
-       type(c_ptr), value :: texRef
+       import :: textureReference, c_ptr, c_int
+       type(textureReference) :: texRef
        type(c_ptr), value :: pBorderColor
        integer(c_int) :: TexRefSetBorderColor_raw
     end function hipTexRefSetBorderColor_raw
@@ -10671,11 +11043,11 @@ module hipfort
 #else
        bind(C, name="hipStreamBeginCaptureToGraph")
 #endif
-       import :: c_ptr, c_long, c_int
+       import :: c_ptr, hipGraphEdgeData, c_long, c_int
        type(c_ptr), value :: stream
        type(c_ptr), value :: graph
        type(c_ptr) :: dependencies
-       type(c_ptr), value :: dependencyData
+       type(hipGraphEdgeData) :: dependencyData
        integer(c_long), value :: numDependencies
        integer(c_int), value :: mode
        integer(c_int) :: StreamBeginCaptureToGraph_raw
@@ -11236,6 +11608,39 @@ module hipfort
     module procedure hipGraphNodeFindInClone_typed
   end interface hipGraphNodeFindInClone
 
+  interface hipGraphInstantiate
+    !---------------------------------------------
+    ! hipGraphInstantiate
+    !---------------------------------------------
+    !> @brief Creates an executable graph from a graph
+    !>
+    !> @param [out] pGraphExec - Pointer to instantiated executable graph.
+    !> @param [in] graph - Instance of graph to instantiate.
+    !> @param [out] pErrorNode - Pointer to error node. In case an error occured during
+    !> graph instantiation, it could modify the corresponding node.
+    !> @param [out] pLogBuffer - Pointer to log buffer.
+    !> @param [out] bufferSize - Size of the log buffer.
+    !>
+    !> @returns `hipSuccess`, `hipErrorOutOfMemory`
+    function hipGraphInstantiate_raw(pGraphExec, graph, pErrorNode, pLogBuffer, bufferSize) &
+       result(GraphInstantiate_raw) &
+#ifdef USE_CUDA_NAMES
+       bind(C, name="cudaGraphInstantiate")
+#else
+       bind(C, name="hipGraphInstantiate")
+#endif
+       import :: c_ptr, c_long, c_int
+       type(c_ptr) :: pGraphExec
+       type(c_ptr), value :: graph
+       type(c_ptr) :: pErrorNode
+       type(c_ptr), value :: pLogBuffer
+       integer(c_long), value :: bufferSize
+       integer(c_int) :: GraphInstantiate_raw
+    end function hipGraphInstantiate_raw
+
+    module procedure hipGraphInstantiate_typed
+  end interface hipGraphInstantiate
+
   interface hipGraphInstantiateWithFlags
     !---------------------------------------------
     ! hipGraphInstantiateWithFlags
@@ -11282,10 +11687,10 @@ module hipfort
 #else
        bind(C, name="hipGraphInstantiateWithParams")
 #endif
-       import :: c_ptr, c_int
+       import :: c_ptr, hipGraphInstantiateParams, c_int
        type(c_ptr) :: pGraphExec
        type(c_ptr), value :: graph
-       type(c_ptr), value :: instantiateParams
+       type(hipGraphInstantiateParams) :: instantiateParams
        integer(c_int) :: GraphInstantiateWithParams_raw
     end function hipGraphInstantiateWithParams_raw
 
@@ -11361,12 +11766,12 @@ module hipfort
 #else
        bind(C, name="hipGraphAddNode")
 #endif
-       import :: c_ptr, c_long, c_int
+       import :: c_ptr, c_long, hipGraphNodeParams, c_int
        type(c_ptr) :: pGraphNode
        type(c_ptr), value :: graph
        type(c_ptr) :: pDependencies
        integer(c_long), value :: numDependencies
-       type(c_ptr), value :: nodeParams
+       type(hipGraphNodeParams) :: nodeParams
        integer(c_int) :: GraphAddNode_raw
     end function hipGraphAddNode_raw
 
@@ -11416,9 +11821,9 @@ module hipfort
 #else
        bind(C, name="hipGraphNodeSetParams")
 #endif
-       import :: c_ptr, c_int
+       import :: c_ptr, hipGraphNodeParams, c_int
        type(c_ptr), value :: node
-       type(c_ptr), value :: nodeParams
+       type(hipGraphNodeParams) :: nodeParams
        integer(c_int) :: GraphNodeSetParams_raw
     end function hipGraphNodeSetParams_raw
 
@@ -11443,10 +11848,10 @@ module hipfort
 #else
        bind(C, name="hipGraphExecNodeSetParams")
 #endif
-       import :: c_ptr, c_int
+       import :: c_ptr, hipGraphNodeParams, c_int
        type(c_ptr), value :: graphExec
        type(c_ptr), value :: node
-       type(c_ptr), value :: nodeParams
+       type(hipGraphNodeParams) :: nodeParams
        integer(c_int) :: GraphExecNodeSetParams_raw
     end function hipGraphExecNodeSetParams_raw
 
@@ -11529,12 +11934,12 @@ module hipfort
 #else
        bind(C, name="hipGraphAddKernelNode")
 #endif
-       import :: c_ptr, c_long, c_int
+       import :: c_ptr, c_long, hipKernelNodeParams, c_int
        type(c_ptr) :: pGraphNode
        type(c_ptr), value :: graph
        type(c_ptr) :: pDependencies
        integer(c_long), value :: numDependencies
-       type(c_ptr), value :: pNodeParams
+       type(hipKernelNodeParams) :: pNodeParams
        integer(c_int) :: GraphAddKernelNode_raw
     end function hipGraphAddKernelNode_raw
 
@@ -11557,9 +11962,9 @@ module hipfort
 #else
        bind(C, name="hipGraphKernelNodeGetParams")
 #endif
-       import :: c_ptr, c_int
+       import :: c_ptr, hipKernelNodeParams, c_int
        type(c_ptr), value :: node
-       type(c_ptr), value :: pNodeParams
+       type(hipKernelNodeParams) :: pNodeParams
        integer(c_int) :: GraphKernelNodeGetParams_raw
     end function hipGraphKernelNodeGetParams_raw
 
@@ -11582,9 +11987,9 @@ module hipfort
 #else
        bind(C, name="hipGraphKernelNodeSetParams")
 #endif
-       import :: c_ptr, c_int
+       import :: c_ptr, hipKernelNodeParams, c_int
        type(c_ptr), value :: node
-       type(c_ptr), value :: pNodeParams
+       type(hipKernelNodeParams) :: pNodeParams
        integer(c_int) :: GraphKernelNodeSetParams_raw
     end function hipGraphKernelNodeSetParams_raw
 
@@ -11608,10 +12013,10 @@ module hipfort
 #else
        bind(C, name="hipGraphExecKernelNodeSetParams")
 #endif
-       import :: c_ptr, c_int
+       import :: c_ptr, hipKernelNodeParams, c_int
        type(c_ptr), value :: hGraphExec
        type(c_ptr), value :: node
-       type(c_ptr), value :: pNodeParams
+       type(hipKernelNodeParams) :: pNodeParams
        integer(c_int) :: GraphExecKernelNodeSetParams_raw
     end function hipGraphExecKernelNodeSetParams_raw
 
@@ -11635,12 +12040,12 @@ module hipfort
                                           copyParams, ctx) &
        result(DrvGraphAddMemcpyNode_raw) &
        bind(C, name="hipDrvGraphAddMemcpyNode")
-       import :: c_ptr, c_long, c_int
+       import :: c_ptr, c_long, HIP_MEMCPY3D, c_int
        type(c_ptr) :: phGraphNode
        type(c_ptr), value :: hGraph
        type(c_ptr) :: dependencies
        integer(c_long), value :: numDependencies
-       type(c_ptr), value :: copyParams
+       type(HIP_MEMCPY3D) :: copyParams
        type(c_ptr), value :: ctx
        integer(c_int) :: DrvGraphAddMemcpyNode_raw
     end function hipDrvGraphAddMemcpyNode_raw
@@ -11668,12 +12073,12 @@ module hipfort
 #else
        bind(C, name="hipGraphAddMemcpyNode")
 #endif
-       import :: c_ptr, c_long, c_int
+       import :: c_ptr, c_long, hipMemcpy3DParms, c_int
        type(c_ptr) :: pGraphNode
        type(c_ptr), value :: graph
        type(c_ptr) :: pDependencies
        integer(c_long), value :: numDependencies
-       type(c_ptr), value :: pCopyParams
+       type(hipMemcpy3DParms) :: pCopyParams
        integer(c_int) :: GraphAddMemcpyNode_raw
     end function hipGraphAddMemcpyNode_raw
 
@@ -11696,9 +12101,9 @@ module hipfort
 #else
        bind(C, name="hipGraphMemcpyNodeGetParams")
 #endif
-       import :: c_ptr, c_int
+       import :: c_ptr, hipMemcpy3DParms, c_int
        type(c_ptr), value :: node
-       type(c_ptr), value :: pNodeParams
+       type(hipMemcpy3DParms) :: pNodeParams
        integer(c_int) :: GraphMemcpyNodeGetParams_raw
     end function hipGraphMemcpyNodeGetParams_raw
 
@@ -11721,9 +12126,9 @@ module hipfort
 #else
        bind(C, name="hipGraphMemcpyNodeSetParams")
 #endif
-       import :: c_ptr, c_int
+       import :: c_ptr, hipMemcpy3DParms, c_int
        type(c_ptr), value :: node
-       type(c_ptr), value :: pNodeParams
+       type(hipMemcpy3DParms) :: pNodeParams
        integer(c_int) :: GraphMemcpyNodeSetParams_raw
     end function hipGraphMemcpyNodeSetParams_raw
 
@@ -11801,10 +12206,10 @@ module hipfort
 #else
        bind(C, name="hipGraphExecMemcpyNodeSetParams")
 #endif
-       import :: c_ptr, c_int
+       import :: c_ptr, hipMemcpy3DParms, c_int
        type(c_ptr), value :: hGraphExec
        type(c_ptr), value :: node
-       type(c_ptr), value :: pNodeParams
+       type(hipMemcpy3DParms) :: pNodeParams
        integer(c_int) :: GraphExecMemcpyNodeSetParams_raw
     end function hipGraphExecMemcpyNodeSetParams_raw
 
@@ -12157,12 +12562,12 @@ module hipfort
 #else
        bind(C, name="hipGraphAddMemsetNode")
 #endif
-       import :: c_ptr, c_long, c_int
+       import :: c_ptr, c_long, hipMemsetParams, c_int
        type(c_ptr) :: pGraphNode
        type(c_ptr), value :: graph
        type(c_ptr) :: pDependencies
        integer(c_long), value :: numDependencies
-       type(c_ptr), value :: pMemsetParams
+       type(hipMemsetParams) :: pMemsetParams
        integer(c_int) :: GraphAddMemsetNode_raw
     end function hipGraphAddMemsetNode_raw
 
@@ -12185,9 +12590,9 @@ module hipfort
 #else
        bind(C, name="hipGraphMemsetNodeGetParams")
 #endif
-       import :: c_ptr, c_int
+       import :: c_ptr, hipMemsetParams, c_int
        type(c_ptr), value :: node
-       type(c_ptr), value :: pNodeParams
+       type(hipMemsetParams) :: pNodeParams
        integer(c_int) :: GraphMemsetNodeGetParams_raw
     end function hipGraphMemsetNodeGetParams_raw
 
@@ -12210,9 +12615,9 @@ module hipfort
 #else
        bind(C, name="hipGraphMemsetNodeSetParams")
 #endif
-       import :: c_ptr, c_int
+       import :: c_ptr, hipMemsetParams, c_int
        type(c_ptr), value :: node
-       type(c_ptr), value :: pNodeParams
+       type(hipMemsetParams) :: pNodeParams
        integer(c_int) :: GraphMemsetNodeSetParams_raw
     end function hipGraphMemsetNodeSetParams_raw
 
@@ -12236,10 +12641,10 @@ module hipfort
 #else
        bind(C, name="hipGraphExecMemsetNodeSetParams")
 #endif
-       import :: c_ptr, c_int
+       import :: c_ptr, hipMemsetParams, c_int
        type(c_ptr), value :: hGraphExec
        type(c_ptr), value :: node
-       type(c_ptr), value :: pNodeParams
+       type(hipMemsetParams) :: pNodeParams
        integer(c_int) :: GraphExecMemsetNodeSetParams_raw
     end function hipGraphExecMemsetNodeSetParams_raw
 
@@ -12266,12 +12671,12 @@ module hipfort
 #else
        bind(C, name="hipGraphAddHostNode")
 #endif
-       import :: c_ptr, c_long, c_int
+       import :: c_ptr, c_long, hipHostNodeParams, c_int
        type(c_ptr) :: pGraphNode
        type(c_ptr), value :: graph
        type(c_ptr) :: pDependencies
        integer(c_long), value :: numDependencies
-       type(c_ptr), value :: pNodeParams
+       type(hipHostNodeParams) :: pNodeParams
        integer(c_int) :: GraphAddHostNode_raw
     end function hipGraphAddHostNode_raw
 
@@ -12294,9 +12699,9 @@ module hipfort
 #else
        bind(C, name="hipGraphHostNodeGetParams")
 #endif
-       import :: c_ptr, c_int
+       import :: c_ptr, hipHostNodeParams, c_int
        type(c_ptr), value :: node
-       type(c_ptr), value :: pNodeParams
+       type(hipHostNodeParams) :: pNodeParams
        integer(c_int) :: GraphHostNodeGetParams_raw
     end function hipGraphHostNodeGetParams_raw
 
@@ -12319,9 +12724,9 @@ module hipfort
 #else
        bind(C, name="hipGraphHostNodeSetParams")
 #endif
-       import :: c_ptr, c_int
+       import :: c_ptr, hipHostNodeParams, c_int
        type(c_ptr), value :: node
-       type(c_ptr), value :: pNodeParams
+       type(hipHostNodeParams) :: pNodeParams
        integer(c_int) :: GraphHostNodeSetParams_raw
     end function hipGraphHostNodeSetParams_raw
 
@@ -12345,10 +12750,10 @@ module hipfort
 #else
        bind(C, name="hipGraphExecHostNodeSetParams")
 #endif
-       import :: c_ptr, c_int
+       import :: c_ptr, hipHostNodeParams, c_int
        type(c_ptr), value :: hGraphExec
        type(c_ptr), value :: node
-       type(c_ptr), value :: pNodeParams
+       type(hipHostNodeParams) :: pNodeParams
        integer(c_int) :: GraphExecHostNodeSetParams_raw
     end function hipGraphExecHostNodeSetParams_raw
 
@@ -12708,12 +13113,12 @@ module hipfort
 #else
        bind(C, name="hipGraphAddMemAllocNode")
 #endif
-       import :: c_ptr, c_long, c_int
+       import :: c_ptr, c_long, hipMemAllocNodeParams, c_int
        type(c_ptr) :: pGraphNode
        type(c_ptr), value :: graph
        type(c_ptr) :: pDependencies
        integer(c_long), value :: numDependencies
-       type(c_ptr), value :: pNodeParams
+       type(hipMemAllocNodeParams) :: pNodeParams
        integer(c_int) :: GraphAddMemAllocNode_raw
     end function hipGraphAddMemAllocNode_raw
 
@@ -12736,9 +13141,9 @@ module hipfort
 #else
        bind(C, name="hipGraphMemAllocNodeGetParams")
 #endif
-       import :: c_ptr, c_int
+       import :: c_ptr, hipMemAllocNodeParams, c_int
        type(c_ptr), value :: node
-       type(c_ptr), value :: pNodeParams
+       type(hipMemAllocNodeParams) :: pNodeParams
        integer(c_int) :: GraphMemAllocNodeGetParams_raw
     end function hipGraphMemAllocNodeGetParams_raw
 
@@ -12939,6 +13344,29 @@ module hipfort
     module procedure hipGraphReleaseUserObject_typed
   end interface hipGraphReleaseUserObject
 
+  interface hipGraphDebugDotPrint
+    !---------------------------------------------
+    ! hipGraphDebugDotPrint
+    !---------------------------------------------
+    !> @brief Write a DOT file describing graph structure.
+    !>
+    !> @param [in] graph - graph object for which DOT file has to be generated.
+    !> @param [in] path - path to write the DOT file.
+    !> @param [in] flags - Flags from hipGraphDebugDotFlags to get additional node information.
+    !> @returns `hipSuccess`, `hipErrorInvalidValue`, `hipErrorOperatingSystem`
+    function hipGraphDebugDotPrint_raw(graph, path, flags) &
+       result(GraphDebugDotPrint_raw) &
+       bind(C, name="hipGraphDebugDotPrint")
+       import :: c_ptr, c_int
+       type(c_ptr), value :: graph
+       type(c_ptr), value :: path
+       integer(c_int), value :: flags
+       integer(c_int) :: GraphDebugDotPrint_raw
+    end function hipGraphDebugDotPrint_raw
+
+    module procedure hipGraphDebugDotPrint_typed
+  end interface hipGraphDebugDotPrint
+
   interface hipGraphKernelNodeCopyAttributes
     !---------------------------------------------
     ! hipGraphKernelNodeCopyAttributes
@@ -13066,12 +13494,12 @@ module hipfort
 #else
        bind(C, name="hipGraphAddExternalSemaphoresWaitNode")
 #endif
-       import :: c_ptr, c_long, c_int
+       import :: c_ptr, c_long, hipExternalSemaphoreWaitNodeParams, c_int
        type(c_ptr) :: pGraphNode
        type(c_ptr), value :: graph
        type(c_ptr) :: pDependencies
        integer(c_long), value :: numDependencies
-       type(c_ptr), value :: nodeParams
+       type(hipExternalSemaphoreWaitNodeParams) :: nodeParams
        integer(c_int) :: GraphAddExternalSemaphoresWaitNode_raw
     end function hipGraphAddExternalSemaphoresWaitNode_raw
 
@@ -13098,12 +13526,12 @@ module hipfort
 #else
        bind(C, name="hipGraphAddExternalSemaphoresSignalNode")
 #endif
-       import :: c_ptr, c_long, c_int
+       import :: c_ptr, c_long, hipExternalSemaphoreSignalNodeParams, c_int
        type(c_ptr) :: pGraphNode
        type(c_ptr), value :: graph
        type(c_ptr) :: pDependencies
        integer(c_long), value :: numDependencies
-       type(c_ptr), value :: nodeParams
+       type(hipExternalSemaphoreSignalNodeParams) :: nodeParams
        integer(c_int) :: GraphAddExternalSemaphoresSignalNode_raw
     end function hipGraphAddExternalSemaphoresSignalNode_raw
 
@@ -13126,9 +13554,9 @@ module hipfort
 #else
        bind(C, name="hipGraphExternalSemaphoresSignalNodeSetParams")
 #endif
-       import :: c_ptr, c_int
+       import :: c_ptr, hipExternalSemaphoreSignalNodeParams, c_int
        type(c_ptr), value :: hNode
-       type(c_ptr), value :: nodeParams
+       type(hipExternalSemaphoreSignalNodeParams) :: nodeParams
        integer(c_int) :: GraphExternalSemaphoresSignalNodeSetParams_raw
     end function hipGraphExternalSemaphoresSignalNodeSetParams_raw
 
@@ -13151,9 +13579,9 @@ module hipfort
 #else
        bind(C, name="hipGraphExternalSemaphoresWaitNodeSetParams")
 #endif
-       import :: c_ptr, c_int
+       import :: c_ptr, hipExternalSemaphoreWaitNodeParams, c_int
        type(c_ptr), value :: hNode
-       type(c_ptr), value :: nodeParams
+       type(hipExternalSemaphoreWaitNodeParams) :: nodeParams
        integer(c_int) :: GraphExternalSemaphoresWaitNodeSetParams_raw
     end function hipGraphExternalSemaphoresWaitNodeSetParams_raw
 
@@ -13176,9 +13604,9 @@ module hipfort
 #else
        bind(C, name="hipGraphExternalSemaphoresSignalNodeGetParams")
 #endif
-       import :: c_ptr, c_int
+       import :: c_ptr, hipExternalSemaphoreSignalNodeParams, c_int
        type(c_ptr), value :: hNode
-       type(c_ptr), value :: params_out
+       type(hipExternalSemaphoreSignalNodeParams) :: params_out
        integer(c_int) :: GraphExternalSemaphoresSignalNodeGetParams_raw
     end function hipGraphExternalSemaphoresSignalNodeGetParams_raw
 
@@ -13201,9 +13629,9 @@ module hipfort
 #else
        bind(C, name="hipGraphExternalSemaphoresWaitNodeGetParams")
 #endif
-       import :: c_ptr, c_int
+       import :: c_ptr, hipExternalSemaphoreWaitNodeParams, c_int
        type(c_ptr), value :: hNode
-       type(c_ptr), value :: params_out
+       type(hipExternalSemaphoreWaitNodeParams) :: params_out
        integer(c_int) :: GraphExternalSemaphoresWaitNodeGetParams_raw
     end function hipGraphExternalSemaphoresWaitNodeGetParams_raw
 
@@ -13227,10 +13655,10 @@ module hipfort
 #else
        bind(C, name="hipGraphExecExternalSemaphoresSignalNodeSetParams")
 #endif
-       import :: c_ptr, c_int
+       import :: c_ptr, hipExternalSemaphoreSignalNodeParams, c_int
        type(c_ptr), value :: hGraphExec
        type(c_ptr), value :: hNode
-       type(c_ptr), value :: nodeParams
+       type(hipExternalSemaphoreSignalNodeParams) :: nodeParams
        integer(c_int) :: GraphExecExternalSemaphoresSignalNodeSetParams_raw
     end function hipGraphExecExternalSemaphoresSignalNodeSetParams_raw
 
@@ -13254,10 +13682,10 @@ module hipfort
 #else
        bind(C, name="hipGraphExecExternalSemaphoresWaitNodeSetParams")
 #endif
-       import :: c_ptr, c_int
+       import :: c_ptr, hipExternalSemaphoreWaitNodeParams, c_int
        type(c_ptr), value :: hGraphExec
        type(c_ptr), value :: hNode
-       type(c_ptr), value :: nodeParams
+       type(hipExternalSemaphoreWaitNodeParams) :: nodeParams
        integer(c_int) :: GraphExecExternalSemaphoresWaitNodeSetParams_raw
     end function hipGraphExecExternalSemaphoresWaitNodeSetParams_raw
 
@@ -13276,9 +13704,9 @@ module hipfort
     function hipDrvGraphMemcpyNodeGetParams_raw(hNode, nodeParams) &
        result(DrvGraphMemcpyNodeGetParams_raw) &
        bind(C, name="hipDrvGraphMemcpyNodeGetParams")
-       import :: c_ptr, c_int
+       import :: c_ptr, HIP_MEMCPY3D, c_int
        type(c_ptr), value :: hNode
-       type(c_ptr), value :: nodeParams
+       type(HIP_MEMCPY3D) :: nodeParams
        integer(c_int) :: DrvGraphMemcpyNodeGetParams_raw
     end function hipDrvGraphMemcpyNodeGetParams_raw
 
@@ -13297,9 +13725,9 @@ module hipfort
     function hipDrvGraphMemcpyNodeSetParams_raw(hNode, nodeParams) &
        result(DrvGraphMemcpyNodeSetParams_raw) &
        bind(C, name="hipDrvGraphMemcpyNodeSetParams")
-       import :: c_ptr, c_int
+       import :: c_ptr, HIP_MEMCPY3D, c_int
        type(c_ptr), value :: hNode
-       type(c_ptr), value :: nodeParams
+       type(HIP_MEMCPY3D) :: nodeParams
        integer(c_int) :: DrvGraphMemcpyNodeSetParams_raw
     end function hipDrvGraphMemcpyNodeSetParams_raw
 
@@ -13323,12 +13751,12 @@ module hipfort
                                           memsetParams, ctx) &
        result(DrvGraphAddMemsetNode_raw) &
        bind(C, name="hipDrvGraphAddMemsetNode")
-       import :: c_ptr, c_long, c_int
+       import :: c_ptr, c_long, hipMemsetParams, c_int
        type(c_ptr) :: phGraphNode
        type(c_ptr), value :: hGraph
        type(c_ptr) :: dependencies
        integer(c_long), value :: numDependencies
-       type(c_ptr), value :: memsetParams
+       type(hipMemsetParams) :: memsetParams
        type(c_ptr), value :: ctx
        integer(c_int) :: DrvGraphAddMemsetNode_raw
     end function hipDrvGraphAddMemsetNode_raw
@@ -13378,10 +13806,10 @@ module hipfort
     function hipDrvGraphExecMemcpyNodeSetParams_raw(hGraphExec, hNode, copyParams, ctx) &
        result(DrvGraphExecMemcpyNodeSetParams_raw) &
        bind(C, name="hipDrvGraphExecMemcpyNodeSetParams")
-       import :: c_ptr, c_int
+       import :: c_ptr, HIP_MEMCPY3D, c_int
        type(c_ptr), value :: hGraphExec
        type(c_ptr), value :: hNode
-       type(c_ptr), value :: copyParams
+       type(HIP_MEMCPY3D) :: copyParams
        type(c_ptr), value :: ctx
        integer(c_int) :: DrvGraphExecMemcpyNodeSetParams_raw
     end function hipDrvGraphExecMemcpyNodeSetParams_raw
@@ -13403,10 +13831,10 @@ module hipfort
     function hipDrvGraphExecMemsetNodeSetParams_raw(hGraphExec, hNode, memsetParams, ctx) &
        result(DrvGraphExecMemsetNodeSetParams_raw) &
        bind(C, name="hipDrvGraphExecMemsetNodeSetParams")
-       import :: c_ptr, c_int
+       import :: c_ptr, hipMemsetParams, c_int
        type(c_ptr), value :: hGraphExec
        type(c_ptr), value :: hNode
-       type(c_ptr), value :: memsetParams
+       type(hipMemsetParams) :: memsetParams
        type(c_ptr), value :: ctx
        integer(c_int) :: DrvGraphExecMemsetNodeSetParams_raw
     end function hipDrvGraphExecMemsetNodeSetParams_raw
@@ -13431,9 +13859,9 @@ module hipfort
     function hipMemGetAccess_raw(flags, location, ptr) &
        result(MemGetAccess_raw) &
        bind(C, name="hipMemGetAccess")
-       import :: c_ptr, c_int
+       import :: c_ptr, hipMemLocation, c_int
        type(c_ptr), value :: flags
-       type(c_ptr), value :: location
+       type(hipMemLocation) :: location
        type(c_ptr), value :: ptr
        integer(c_int) :: MemGetAccess_raw
     end function hipMemGetAccess_raw
@@ -13456,8 +13884,8 @@ module hipfort
     function hipMemMapArrayAsync_raw(mapInfoList, count, stream) &
        result(MemMapArrayAsync_raw) &
        bind(C, name="hipMemMapArrayAsync")
-       import :: c_ptr, c_int
-       type(c_ptr), value :: mapInfoList
+       import :: hipArrayMapInfo, c_int, c_ptr
+       type(hipArrayMapInfo) :: mapInfoList
        integer(c_int), value :: count
        type(c_ptr), value :: stream
        integer(c_int) :: MemMapArrayAsync_raw
@@ -13606,8 +14034,8 @@ module hipfort
     function hipMemcpy3DAsync_spt_raw(p, stream) &
        result(Memcpy3DAsync_spt_raw) &
        bind(C, name="hipMemcpy3DAsync_spt")
-       import :: c_ptr, c_int
-       type(c_ptr), value :: p
+       import :: hipMemcpy3DParms, c_ptr, c_int
+       type(hipMemcpy3DParms) :: p
        type(c_ptr), value :: stream
        integer(c_int) :: Memcpy3DAsync_spt_raw
     end function hipMemcpy3DAsync_spt_raw
@@ -14004,82 +14432,82 @@ module hipfort
     module procedure hipLaunchHostFunc_spt_typed
   end interface hipLaunchHostFunc_spt
 
+  interface hipGetDriverEntryPoint_spt
+    !---------------------------------------------
+    ! hipGetDriverEntryPoint_spt
+    !---------------------------------------------
+    function hipGetDriverEntryPoint_spt_raw(symbol, funcPtr, flags, status) &
+       result(GetDriverEntryPoint_spt_raw) &
+       bind(C, name="hipGetDriverEntryPoint_spt")
+       import :: c_ptr, c_int64_t, c_int
+       type(c_ptr), value :: symbol
+       type(c_ptr) :: funcPtr
+       integer(c_int64_t), value :: flags
+       type(c_ptr), value :: status
+       integer(c_int) :: GetDriverEntryPoint_spt_raw
+    end function hipGetDriverEntryPoint_spt_raw
+
+    module procedure hipGetDriverEntryPoint_spt_native
+  end interface hipGetDriverEntryPoint_spt
+
 
 contains
 
     function hipDriverGetVersion_native(driverVersion) result(DriverGetVersion)
       use, intrinsic :: iso_c_binding
       implicit none
-      integer(c_int), target :: driverVersion(*)
+      integer(c_int), target :: driverVersion(..)
       integer(c_int) :: DriverGetVersion
-      DriverGetVersion = hipDriverGetVersion_raw(c_loc(driverVersion(1)))
+      DriverGetVersion = hipDriverGetVersion_raw(c_loc(driverVersion))
     end function hipDriverGetVersion_native
 
     function hipRuntimeGetVersion_native(runtimeVersion) result(RuntimeGetVersion)
       use, intrinsic :: iso_c_binding
       implicit none
-      integer(c_int), target :: runtimeVersion(*)
+      integer(c_int), target :: runtimeVersion(..)
       integer(c_int) :: RuntimeGetVersion
-      RuntimeGetVersion = hipRuntimeGetVersion_raw(c_loc(runtimeVersion(1)))
+      RuntimeGetVersion = hipRuntimeGetVersion_raw(c_loc(runtimeVersion))
     end function hipRuntimeGetVersion_native
 
     function hipDeviceComputeCapability_native(major, minor, device) result(DeviceComputeCapability)
       use, intrinsic :: iso_c_binding
       implicit none
-      integer(c_int), target :: major(*)
-      integer(c_int), target :: minor(*)
+      integer(c_int), target :: major(..)
+      integer(c_int), target :: minor(..)
       integer(c_int), value :: device
       integer(c_int) :: DeviceComputeCapability
-      DeviceComputeCapability = hipDeviceComputeCapability_raw(c_loc(major(1)), c_loc(minor(1)), &
-        device)
+      DeviceComputeCapability = hipDeviceComputeCapability_raw(c_loc(major), c_loc(minor), device)
     end function hipDeviceComputeCapability_native
 
     function hipDeviceGetP2PAttribute_native(value, attr, srcDevice, dstDevice) result( &
         DeviceGetP2PAttribute)
       use, intrinsic :: iso_c_binding
       implicit none
-      integer(c_int), target :: value(*)
+      integer(c_int), target :: value(..)
       integer(c_int), value :: attr
       integer(c_int), value :: srcDevice
       integer(c_int), value :: dstDevice
       integer(c_int) :: DeviceGetP2PAttribute
-      DeviceGetP2PAttribute = hipDeviceGetP2PAttribute_raw(c_loc(value(1)), attr, srcDevice, &
-        dstDevice)
+      DeviceGetP2PAttribute = hipDeviceGetP2PAttribute_raw(c_loc(value), attr, srcDevice, dstDevice)
     end function hipDeviceGetP2PAttribute_native
 
     function hipSetValidDevices_native(device_arr, len) result(SetValidDevices)
       use, intrinsic :: iso_c_binding
       implicit none
-      integer(c_int), target :: device_arr(*)
+      integer(c_int), target :: device_arr(..)
       integer(c_int), value :: len
       integer(c_int) :: SetValidDevices
-      SetValidDevices = hipSetValidDevices_raw(c_loc(device_arr(1)), len)
+      SetValidDevices = hipSetValidDevices_raw(c_loc(device_arr), len)
     end function hipSetValidDevices_native
-
-    function hipGetDevice_native(deviceId) result(GetDevice)
-      use, intrinsic :: iso_c_binding
-      implicit none
-      integer(c_int), target :: deviceId(*)
-      integer(c_int) :: GetDevice
-      GetDevice = hipGetDevice_raw(c_loc(deviceId(1)))
-    end function hipGetDevice_native
-
-    function hipGetDeviceCount_native(count) result(GetDeviceCount)
-      use, intrinsic :: iso_c_binding
-      implicit none
-      integer(c_int), target :: count(*)
-      integer(c_int) :: GetDeviceCount
-      GetDeviceCount = hipGetDeviceCount_raw(c_loc(count(1)))
-    end function hipGetDeviceCount_native
 
     function hipDeviceGetAttribute_native(pi, attr, deviceId) result(DeviceGetAttribute)
       use, intrinsic :: iso_c_binding
       implicit none
-      integer(c_int), target :: pi(*)
+      integer(c_int), target :: pi(..)
       integer(c_int), value :: attr
       integer(c_int), value :: deviceId
       integer(c_int) :: DeviceGetAttribute
-      DeviceGetAttribute = hipDeviceGetAttribute_raw(c_loc(pi(1)), attr, deviceId)
+      DeviceGetAttribute = hipDeviceGetAttribute_raw(c_loc(pi), attr, deviceId)
     end function hipDeviceGetAttribute_native
 
     function hipDeviceGetDefaultMemPool_typed(mem_pool, device) result(DeviceGetDefaultMemPool)
@@ -14115,34 +14543,34 @@ contains
     function hipDeviceGetCacheConfig_native(cacheConfig) result(DeviceGetCacheConfig)
       use, intrinsic :: iso_c_binding
       implicit none
-      integer(c_int), target :: cacheConfig(*)
+      integer(c_int), target :: cacheConfig(..)
       integer(c_int) :: DeviceGetCacheConfig
-      DeviceGetCacheConfig = hipDeviceGetCacheConfig_raw(c_loc(cacheConfig(1)))
+      DeviceGetCacheConfig = hipDeviceGetCacheConfig_raw(c_loc(cacheConfig))
     end function hipDeviceGetCacheConfig_native
 
     function hipDeviceGetSharedMemConfig_native(pConfig) result(DeviceGetSharedMemConfig)
       use, intrinsic :: iso_c_binding
       implicit none
-      integer(c_int), target :: pConfig(*)
+      integer(c_int), target :: pConfig(..)
       integer(c_int) :: DeviceGetSharedMemConfig
-      DeviceGetSharedMemConfig = hipDeviceGetSharedMemConfig_raw(c_loc(pConfig(1)))
+      DeviceGetSharedMemConfig = hipDeviceGetSharedMemConfig_raw(c_loc(pConfig))
     end function hipDeviceGetSharedMemConfig_native
 
     function hipGetDeviceFlags_native(flags) result(GetDeviceFlags)
       use, intrinsic :: iso_c_binding
       implicit none
-      integer(c_int), target :: flags(*)
+      integer(c_int), target :: flags(..)
       integer(c_int) :: GetDeviceFlags
-      GetDeviceFlags = hipGetDeviceFlags_raw(c_loc(flags(1)))
+      GetDeviceFlags = hipGetDeviceFlags_raw(c_loc(flags))
     end function hipGetDeviceFlags_native
 
     function hipChooseDeviceR0600_native(device, prop) result(ChooseDeviceR0600)
       use, intrinsic :: iso_c_binding
       implicit none
-      integer(c_int), target :: device(*)
-      type(c_ptr), value :: prop
+      integer(c_int), target :: device(..)
+      type(hipDeviceProp_t) :: prop
       integer(c_int) :: ChooseDeviceR0600
-      ChooseDeviceR0600 = hipChooseDeviceR0600_raw(c_loc(device(1)), prop)
+      ChooseDeviceR0600 = hipChooseDeviceR0600_raw(c_loc(device), prop)
     end function hipChooseDeviceR0600_native
 
     function hipExtGetLinkTypeAndHopCount_native(device1, device2, linktype, hopcount) result( &
@@ -14151,18 +14579,18 @@ contains
       implicit none
       integer(c_int), value :: device1
       integer(c_int), value :: device2
-      integer(c_int), target :: linktype(*)
-      integer(c_int), target :: hopcount(*)
+      integer(c_int), target :: linktype(..)
+      integer(c_int), target :: hopcount(..)
       integer(c_int) :: ExtGetLinkTypeAndHopCount
       ExtGetLinkTypeAndHopCount = hipExtGetLinkTypeAndHopCount_raw(device1, device2, c_loc( &
-        linktype(1)), c_loc(hopcount(1)))
+        linktype), c_loc(hopcount))
     end function hipExtGetLinkTypeAndHopCount_native
 
     function hipIpcGetEventHandle_typed(handle, event) result(IpcGetEventHandle)
       use, intrinsic :: iso_c_binding
       use hipfort_handles
       implicit none
-      type(c_ptr), value :: handle
+      type(hipIpcEventHandle_t) :: handle
       type(hipEvent_t), value :: event
       integer(c_int) :: IpcGetEventHandle
       IpcGetEventHandle = hipIpcGetEventHandle_raw(handle, event%ptr)
@@ -14213,11 +14641,11 @@ contains
         DeviceGetStreamPriorityRange)
       use, intrinsic :: iso_c_binding
       implicit none
-      integer(c_int), target :: leastPriority(*)
-      integer(c_int), target :: greatestPriority(*)
+      integer(c_int), target :: leastPriority(..)
+      integer(c_int), target :: greatestPriority(..)
       integer(c_int) :: DeviceGetStreamPriorityRange
-      DeviceGetStreamPriorityRange = hipDeviceGetStreamPriorityRange_raw(c_loc(leastPriority(1)), &
-        c_loc(greatestPriority(1)))
+      DeviceGetStreamPriorityRange = hipDeviceGetStreamPriorityRange_raw(c_loc(leastPriority), &
+        c_loc(greatestPriority))
     end function hipDeviceGetStreamPriorityRange_native
 
     function hipStreamDestroy_typed(stream) result(StreamDestroy)
@@ -14262,9 +14690,9 @@ contains
       use, intrinsic :: iso_c_binding
       implicit none
       type(c_ptr), value :: stream
-      integer(c_int), target :: flags(*)
+      integer(c_int), target :: flags(..)
       integer(c_int) :: StreamGetFlags
-      StreamGetFlags = hipStreamGetFlags_raw(stream, c_loc(flags(1)))
+      StreamGetFlags = hipStreamGetFlags_raw(stream, c_loc(flags))
     end function hipStreamGetFlags_native
 
     function hipStreamGetFlags_typed(stream, flags) result(StreamGetFlags)
@@ -14281,9 +14709,9 @@ contains
       use, intrinsic :: iso_c_binding
       implicit none
       type(c_ptr), value :: stream
-      integer(c_int64_t), target :: streamId(*)
+      integer(c_int64_t), target :: streamId(..)
       integer(c_int) :: StreamGetId
-      StreamGetId = hipStreamGetId_raw(stream, c_loc(streamId(1)))
+      StreamGetId = hipStreamGetId_raw(stream, c_loc(streamId))
     end function hipStreamGetId_native
 
     function hipStreamGetId_typed(stream, streamId) result(StreamGetId)
@@ -14300,9 +14728,9 @@ contains
       use, intrinsic :: iso_c_binding
       implicit none
       type(c_ptr), value :: stream
-      integer(c_int), target :: priority(*)
+      integer(c_int), target :: priority(..)
       integer(c_int) :: StreamGetPriority
-      StreamGetPriority = hipStreamGetPriority_raw(stream, c_loc(priority(1)))
+      StreamGetPriority = hipStreamGetPriority_raw(stream, c_loc(priority))
     end function hipStreamGetPriority_native
 
     function hipStreamGetPriority_typed(stream, priority) result(StreamGetPriority)
@@ -14319,9 +14747,9 @@ contains
       use, intrinsic :: iso_c_binding
       implicit none
       type(c_ptr), value :: stream
-      integer(c_int), target :: device(*)
+      integer(c_int), target :: device(..)
       integer(c_int) :: StreamGetDevice
-      StreamGetDevice = hipStreamGetDevice_raw(stream, c_loc(device(1)))
+      StreamGetDevice = hipStreamGetDevice_raw(stream, c_loc(device))
     end function hipStreamGetDevice_native
 
     function hipStreamGetDevice_typed(stream, device) result(StreamGetDevice)
@@ -14340,10 +14768,10 @@ contains
       implicit none
       type(c_ptr) :: stream
       integer(c_int), value :: cuMaskSize
-      integer(c_int), target :: cuMask(*)
+      integer(c_int), target :: cuMask(..)
       integer(c_int) :: ExtStreamCreateWithCUMask
       ExtStreamCreateWithCUMask = hipExtStreamCreateWithCUMask_raw(stream, cuMaskSize, c_loc( &
-        cuMask(1)))
+        cuMask))
     end function hipExtStreamCreateWithCUMask_native
 
     function hipExtStreamCreateWithCUMask_typed(stream, cuMaskSize, cuMask) result( &
@@ -14363,9 +14791,9 @@ contains
       implicit none
       type(c_ptr), value :: stream
       integer(c_int), value :: cuMaskSize
-      integer(c_int), target :: cuMask(*)
+      integer(c_int), target :: cuMask(..)
       integer(c_int) :: ExtStreamGetCUMask
-      ExtStreamGetCUMask = hipExtStreamGetCUMask_raw(stream, cuMaskSize, c_loc(cuMask(1)))
+      ExtStreamGetCUMask = hipExtStreamGetCUMask_raw(stream, cuMaskSize, c_loc(cuMask))
     end function hipExtStreamGetCUMask_native
 
     function hipExtStreamGetCUMask_typed(stream, cuMaskSize, cuMask) result(ExtStreamGetCUMask)
@@ -14494,7 +14922,7 @@ contains
       type(hipGraph_t), value :: hGraph
       type(hipGraphNode_t) :: dependencies
       integer(c_long), value :: numDependencies
-      type(c_ptr), value :: nodeParams
+      type(hipBatchMemOpNodeParams) :: nodeParams
       integer(c_int) :: GraphAddBatchMemOpNode
       GraphAddBatchMemOpNode = hipGraphAddBatchMemOpNode_raw(phGraphNode%ptr, hGraph%ptr, &
         dependencies%ptr, numDependencies, nodeParams)
@@ -14506,7 +14934,7 @@ contains
       use hipfort_handles
       implicit none
       type(hipGraphNode_t), value :: hNode
-      type(c_ptr), value :: nodeParams_out
+      type(hipBatchMemOpNodeParams) :: nodeParams_out
       integer(c_int) :: GraphBatchMemOpNodeGetParams
       GraphBatchMemOpNodeGetParams = hipGraphBatchMemOpNodeGetParams_raw(hNode%ptr, nodeParams_out)
     end function hipGraphBatchMemOpNodeGetParams_typed
@@ -14517,7 +14945,7 @@ contains
       use hipfort_handles
       implicit none
       type(hipGraphNode_t), value :: hNode
-      type(c_ptr), value :: nodeParams
+      type(hipBatchMemOpNodeParams) :: nodeParams
       integer(c_int) :: GraphBatchMemOpNodeSetParams
       GraphBatchMemOpNodeSetParams = hipGraphBatchMemOpNodeSetParams_raw(hNode%ptr, nodeParams)
     end function hipGraphBatchMemOpNodeSetParams_typed
@@ -14529,7 +14957,7 @@ contains
       implicit none
       type(hipGraphExec_t), value :: hGraphExec
       type(hipGraphNode_t), value :: hNode
-      type(c_ptr), value :: nodeParams
+      type(hipBatchMemOpNodeParams) :: nodeParams
       integer(c_int) :: GraphExecBatchMemOpNodeSetParams
       GraphExecBatchMemOpNodeSetParams = hipGraphExecBatchMemOpNodeSetParams_raw(hGraphExec%ptr, &
         hNode%ptr, nodeParams)
@@ -14596,11 +15024,11 @@ contains
     function hipEventElapsedTime_native(ms, start, stop) result(EventElapsedTime)
       use, intrinsic :: iso_c_binding
       implicit none
-      real(c_float), target :: ms(*)
+      real(c_float), target :: ms(..)
       type(c_ptr), value :: start
       type(c_ptr), value :: stop
       integer(c_int) :: EventElapsedTime
-      EventElapsedTime = hipEventElapsedTime_raw(c_loc(ms(1)), start, stop)
+      EventElapsedTime = hipEventElapsedTime_raw(c_loc(ms), start, stop)
     end function hipEventElapsedTime_native
 
     function hipEventElapsedTime_typed(ms, start, stop) result(EventElapsedTime)
@@ -14628,12 +15056,12 @@ contains
       use, intrinsic :: iso_c_binding
       implicit none
       integer(c_int), value :: numAttributes
-      integer(c_int), target :: attributes(*)
+      integer(c_int), target :: attributes(..)
       type(c_ptr) :: data
       type(c_ptr), value :: ptr
       integer(c_int) :: DrvPointerGetAttributes
-      DrvPointerGetAttributes = hipDrvPointerGetAttributes_raw(numAttributes, c_loc(attributes( &
-        1)), data, ptr)
+      DrvPointerGetAttributes = hipDrvPointerGetAttributes_raw(numAttributes, c_loc(attributes), &
+        data, ptr)
     end function hipDrvPointerGetAttributes_native
 
     function hipImportExternalSemaphore_typed(extSem_out, semHandleDesc) result( &
@@ -14642,7 +15070,7 @@ contains
       use hipfort_handles
       implicit none
       type(hipExternalSemaphore_t) :: extSem_out
-      type(c_ptr), value :: semHandleDesc
+      type(hipExternalSemaphoreHandleDesc) :: semHandleDesc
       integer(c_int) :: ImportExternalSemaphore
       ImportExternalSemaphore = hipImportExternalSemaphore_raw(extSem_out%ptr, semHandleDesc)
     end function hipImportExternalSemaphore_typed
@@ -14653,7 +15081,7 @@ contains
       use hipfort_handles
       implicit none
       type(hipExternalSemaphore_t) :: extSemArray
-      type(c_ptr), value :: paramsArray
+      type(hipExternalSemaphoreSignalParams) :: paramsArray
       integer(c_int), value :: numExtSems
       type(hipStream_t), value :: stream
       integer(c_int) :: SignalExternalSemaphoresAsync
@@ -14667,7 +15095,7 @@ contains
       use hipfort_handles
       implicit none
       type(hipExternalSemaphore_t) :: extSemArray
-      type(c_ptr), value :: paramsArray
+      type(hipExternalSemaphoreWaitParams) :: paramsArray
       integer(c_int), value :: numExtSems
       type(hipStream_t), value :: stream
       integer(c_int) :: WaitExternalSemaphoresAsync
@@ -14689,7 +15117,7 @@ contains
       use hipfort_handles
       implicit none
       type(hipExternalMemory_t) :: extMem_out
-      type(c_ptr), value :: memHandleDesc
+      type(hipExternalMemoryHandleDesc) :: memHandleDesc
       integer(c_int) :: ImportExternalMemory
       ImportExternalMemory = hipImportExternalMemory_raw(extMem_out%ptr, memHandleDesc)
     end function hipImportExternalMemory_typed
@@ -14701,7 +15129,7 @@ contains
       implicit none
       type(c_ptr) :: devPtr
       type(hipExternalMemory_t), value :: extMem
-      type(c_ptr), value :: bufferDesc
+      type(hipExternalMemoryBufferDesc) :: bufferDesc
       integer(c_int) :: ExternalMemoryGetMappedBuffer
       ExternalMemoryGetMappedBuffer = hipExternalMemoryGetMappedBuffer_raw(devPtr, extMem%ptr, &
         bufferDesc)
@@ -14723,7 +15151,7 @@ contains
       implicit none
       type(c_ptr) :: mipmap
       type(hipExternalMemory_t), value :: extMem
-      type(c_ptr), value :: mipmapDesc
+      type(hipExternalMemoryMipmappedArrayDesc) :: mipmapDesc
       integer(c_int) :: ExternalMemoryGetMappedMipmappedArray
       ExternalMemoryGetMappedMipmappedArray = hipExternalMemoryGetMappedMipmappedArray_raw(mipmap, &
         extMem%ptr, mipmapDesc)
@@ -14761,12 +15189,12 @@ contains
       implicit none
       type(c_ptr) :: data
       type(c_ptr), value :: data_sizes
-      integer(c_int), target :: attributes(*)
+      integer(c_int), target :: attributes(..)
       integer(c_long), value :: num_attributes
       type(c_ptr), value :: dev_ptr
       integer(c_long), value :: count
       integer(c_int) :: MemRangeGetAttributes
-      MemRangeGetAttributes = hipMemRangeGetAttributes_raw(data, data_sizes, c_loc(attributes(1)), &
+      MemRangeGetAttributes = hipMemRangeGetAttributes_raw(data, data_sizes, c_loc(attributes), &
         num_attributes, dev_ptr, count)
     end function hipMemRangeGetAttributes_native
 
@@ -14841,7 +15269,7 @@ contains
       use hipfort_handles
       implicit none
       type(hipMemPool_t), value :: mem_pool
-      type(c_ptr), value :: desc_list
+      type(hipMemAccessDesc) :: desc_list
       integer(c_long), value :: count
       integer(c_int) :: MemPoolSetAccess
       MemPoolSetAccess = hipMemPoolSetAccess_raw(mem_pool%ptr, desc_list, count)
@@ -14850,11 +15278,11 @@ contains
     function hipMemPoolGetAccess_native(flags, mem_pool, location) result(MemPoolGetAccess)
       use, intrinsic :: iso_c_binding
       implicit none
-      integer(c_int), target :: flags(*)
+      integer(c_int), target :: flags(..)
       type(c_ptr), value :: mem_pool
-      type(c_ptr), value :: location
+      type(hipMemLocation) :: location
       integer(c_int) :: MemPoolGetAccess
-      MemPoolGetAccess = hipMemPoolGetAccess_raw(c_loc(flags(1)), mem_pool, location)
+      MemPoolGetAccess = hipMemPoolGetAccess_raw(c_loc(flags), mem_pool, location)
     end function hipMemPoolGetAccess_native
 
     function hipMemPoolGetAccess_typed(flags, mem_pool, location) result(MemPoolGetAccess)
@@ -14863,7 +15291,7 @@ contains
       implicit none
       type(c_ptr), value :: flags
       type(hipMemPool_t), value :: mem_pool
-      type(c_ptr), value :: location
+      type(hipMemLocation) :: location
       integer(c_int) :: MemPoolGetAccess
       MemPoolGetAccess = hipMemPoolGetAccess_raw(flags, mem_pool%ptr, location)
     end function hipMemPoolGetAccess_typed
@@ -14873,7 +15301,7 @@ contains
       use hipfort_handles
       implicit none
       type(hipMemPool_t) :: mem_pool
-      type(c_ptr), value :: pool_props
+      type(hipMemPoolProps) :: pool_props
       integer(c_int) :: MemPoolCreate
       MemPoolCreate = hipMemPoolCreate_raw(mem_pool%ptr, pool_props)
     end function hipMemPoolCreate_typed
@@ -14935,7 +15363,7 @@ contains
       implicit none
       type(c_ptr) :: dev_ptr
       type(hipMemPool_t), value :: mem_pool
-      type(c_ptr), value :: export_data
+      type(hipMemPoolPtrExportData) :: export_data
       integer(c_int) :: MemPoolImportPointer
       MemPoolImportPointer = hipMemPoolImportPointer_raw(dev_ptr, mem_pool%ptr, export_data)
     end function hipMemPoolImportPointer_typed
@@ -15016,6 +15444,31 @@ contains
       integer(c_int) :: MemcpyHtoAAsync
       MemcpyHtoAAsync = hipMemcpyHtoAAsync_raw(dstArray, dstOffset, srcHost, ByteCount, stream%ptr)
     end function hipMemcpyHtoAAsync_typed
+
+    function hipModuleGetGlobal_typed(dptr, bytes, hmod, name) result(ModuleGetGlobal)
+      use, intrinsic :: iso_c_binding
+      use hipfort_handles
+      implicit none
+      type(c_ptr) :: dptr
+      type(c_ptr), value :: bytes
+      type(hipModule_t), value :: hmod
+      type(c_ptr), value :: name
+      integer(c_int) :: ModuleGetGlobal
+      ModuleGetGlobal = hipModuleGetGlobal_raw(dptr, bytes, hmod%ptr, name)
+    end function hipModuleGetGlobal_typed
+
+    function hipGetProcAddress_native(symbol, pfn, hipVersion, flags, symbolStatus) result( &
+        GetProcAddress)
+      use, intrinsic :: iso_c_binding
+      implicit none
+      type(c_ptr), value :: symbol
+      type(c_ptr) :: pfn
+      integer(c_int), value :: hipVersion
+      integer(c_long), value :: flags
+      integer(c_int), target :: symbolStatus(..)
+      integer(c_int) :: GetProcAddress
+      GetProcAddress = hipGetProcAddress_raw(symbol, pfn, hipVersion, flags, c_loc(symbolStatus))
+    end function hipGetProcAddress_native
 
     function hipMemcpyToSymbolAsync_typed(symbol, src, sizeBytes, offset, kind, stream) result( &
         MemcpyToSymbolAsync)
@@ -15171,19 +15624,19 @@ contains
     function hipArrayGetInfo_native(desc, extent, flags, array) result(ArrayGetInfo)
       use, intrinsic :: iso_c_binding
       implicit none
-      type(c_ptr), value :: desc
-      type(c_ptr), value :: extent
-      integer(c_int), target :: flags(*)
+      type(hipChannelFormatDesc) :: desc
+      type(hipExtent) :: extent
+      integer(c_int), target :: flags(..)
       type(c_ptr), value :: array
       integer(c_int) :: ArrayGetInfo
-      ArrayGetInfo = hipArrayGetInfo_raw(desc, extent, c_loc(flags(1)), array)
+      ArrayGetInfo = hipArrayGetInfo_raw(desc, extent, c_loc(flags), array)
     end function hipArrayGetInfo_native
 
     function hipMemcpyParam2DAsync_typed(pCopy, stream) result(MemcpyParam2DAsync)
       use, intrinsic :: iso_c_binding
       use hipfort_handles
       implicit none
-      type(c_ptr), value :: pCopy
+      type(hip_Memcpy2D) :: pCopy
       type(hipStream_t), value :: stream
       integer(c_int) :: MemcpyParam2DAsync
       MemcpyParam2DAsync = hipMemcpyParam2DAsync_raw(pCopy, stream%ptr)
@@ -15249,7 +15702,7 @@ contains
       use, intrinsic :: iso_c_binding
       use hipfort_handles
       implicit none
-      type(c_ptr), value :: p
+      type(hipMemcpy3DParms) :: p
       type(hipStream_t), value :: stream
       integer(c_int) :: Memcpy3DAsync
       Memcpy3DAsync = hipMemcpy3DAsync_raw(p, stream%ptr)
@@ -15259,7 +15712,7 @@ contains
       use, intrinsic :: iso_c_binding
       use hipfort_handles
       implicit none
-      type(c_ptr), value :: pCopy
+      type(HIP_MEMCPY3D) :: pCopy
       type(hipStream_t), value :: stream
       integer(c_int) :: DrvMemcpy3DAsync
       DrvMemcpy3DAsync = hipDrvMemcpy3DAsync_raw(pCopy, stream%ptr)
@@ -15274,7 +15727,7 @@ contains
       type(c_ptr) :: srcs
       type(c_ptr), value :: sizes
       integer(c_long), value :: count
-      type(c_ptr), value :: attrs
+      type(hipMemcpyAttributes) :: attrs
       type(c_ptr), value :: attrsIdxs
       integer(c_long), value :: numAttrs
       type(c_ptr), value :: failIdx
@@ -15290,7 +15743,7 @@ contains
       use hipfort_handles
       implicit none
       integer(c_long), value :: numOps
-      type(c_ptr), value :: opList
+      type(hipMemcpy3DBatchOp) :: opList
       type(c_ptr), value :: failIdx
       integer(c_int64_t), value :: flags
       type(hipStream_t), value :: stream
@@ -15302,7 +15755,7 @@ contains
       use, intrinsic :: iso_c_binding
       use hipfort_handles
       implicit none
-      type(c_ptr), value :: p
+      type(hipMemcpy3DPeerParms) :: p
       type(hipStream_t), value :: stream
       integer(c_int) :: Memcpy3DPeerAsync
       Memcpy3DPeerAsync = hipMemcpy3DPeerAsync_raw(p, stream%ptr)
@@ -15312,12 +15765,11 @@ contains
         DeviceCanAccessPeer)
       use, intrinsic :: iso_c_binding
       implicit none
-      integer(c_int), target :: canAccessPeer(*)
+      integer(c_int), target :: canAccessPeer(..)
       integer(c_int), value :: deviceId
       integer(c_int), value :: peerDeviceId
       integer(c_int) :: DeviceCanAccessPeer
-      DeviceCanAccessPeer = hipDeviceCanAccessPeer_raw(c_loc(canAccessPeer(1)), deviceId, &
-        peerDeviceId)
+      DeviceCanAccessPeer = hipDeviceCanAccessPeer_raw(c_loc(canAccessPeer), deviceId, peerDeviceId)
     end function hipDeviceCanAccessPeer_native
 
     function hipMemcpyPeerAsync_typed(dst, dstDeviceId, src, srcDevice, sizeBytes, stream) result( &
@@ -15392,21 +15844,13 @@ contains
       CtxGetCurrent = hipCtxGetCurrent_raw(ctx%ptr)
     end function hipCtxGetCurrent_typed
 
-    function hipCtxGetDevice_native(device) result(CtxGetDevice)
-      use, intrinsic :: iso_c_binding
-      implicit none
-      integer(c_int), target :: device(*)
-      integer(c_int) :: CtxGetDevice
-      CtxGetDevice = hipCtxGetDevice_raw(c_loc(device(1)))
-    end function hipCtxGetDevice_native
-
     function hipCtxGetApiVersion_native(ctx, apiVersion) result(CtxGetApiVersion)
       use, intrinsic :: iso_c_binding
       implicit none
       type(c_ptr), value :: ctx
-      integer(c_int), target :: apiVersion(*)
+      integer(c_int), target :: apiVersion(..)
       integer(c_int) :: CtxGetApiVersion
-      CtxGetApiVersion = hipCtxGetApiVersion_raw(ctx, c_loc(apiVersion(1)))
+      CtxGetApiVersion = hipCtxGetApiVersion_raw(ctx, c_loc(apiVersion))
     end function hipCtxGetApiVersion_native
 
     function hipCtxGetApiVersion_typed(ctx, apiVersion) result(CtxGetApiVersion)
@@ -15422,25 +15866,25 @@ contains
     function hipCtxGetCacheConfig_native(cacheConfig) result(CtxGetCacheConfig)
       use, intrinsic :: iso_c_binding
       implicit none
-      integer(c_int), target :: cacheConfig(*)
+      integer(c_int), target :: cacheConfig(..)
       integer(c_int) :: CtxGetCacheConfig
-      CtxGetCacheConfig = hipCtxGetCacheConfig_raw(c_loc(cacheConfig(1)))
+      CtxGetCacheConfig = hipCtxGetCacheConfig_raw(c_loc(cacheConfig))
     end function hipCtxGetCacheConfig_native
 
     function hipCtxGetSharedMemConfig_native(pConfig) result(CtxGetSharedMemConfig)
       use, intrinsic :: iso_c_binding
       implicit none
-      integer(c_int), target :: pConfig(*)
+      integer(c_int), target :: pConfig(..)
       integer(c_int) :: CtxGetSharedMemConfig
-      CtxGetSharedMemConfig = hipCtxGetSharedMemConfig_raw(c_loc(pConfig(1)))
+      CtxGetSharedMemConfig = hipCtxGetSharedMemConfig_raw(c_loc(pConfig))
     end function hipCtxGetSharedMemConfig_native
 
     function hipCtxGetFlags_native(flags) result(CtxGetFlags)
       use, intrinsic :: iso_c_binding
       implicit none
-      integer(c_int), target :: flags(*)
+      integer(c_int), target :: flags(..)
       integer(c_int) :: CtxGetFlags
-      CtxGetFlags = hipCtxGetFlags_raw(c_loc(flags(1)))
+      CtxGetFlags = hipCtxGetFlags_raw(c_loc(flags))
     end function hipCtxGetFlags_native
 
     function hipCtxEnablePeerAccess_typed(peerCtx, flags) result(CtxEnablePeerAccess)
@@ -15466,11 +15910,10 @@ contains
       use, intrinsic :: iso_c_binding
       implicit none
       integer(c_int), value :: dev
-      integer(c_int), target :: flags(*)
-      integer(c_int), target :: active(*)
+      integer(c_int), target :: flags(..)
+      integer(c_int), target :: active(..)
       integer(c_int) :: DevicePrimaryCtxGetState
-      DevicePrimaryCtxGetState = hipDevicePrimaryCtxGetState_raw(dev, c_loc(flags(1)), c_loc( &
-        active(1)))
+      DevicePrimaryCtxGetState = hipDevicePrimaryCtxGetState_raw(dev, c_loc(flags), c_loc(active))
     end function hipDevicePrimaryCtxGetState_native
 
     function hipDevicePrimaryCtxRetain_typed(pctx, dev) result(DevicePrimaryCtxRetain)
@@ -15483,32 +15926,53 @@ contains
       DevicePrimaryCtxRetain = hipDevicePrimaryCtxRetain_raw(pctx%ptr, dev)
     end function hipDevicePrimaryCtxRetain_typed
 
-    function hipModuleLoadFatBinary_typed(module, fatbin) result(ModuleLoadFatBinary)
+    function hipModuleLoadFatBinary_typed(module_, fatbin) result(ModuleLoadFatBinary)
       use, intrinsic :: iso_c_binding
       use hipfort_handles
       implicit none
-      type(hipModule_t) :: module
+      type(hipModule_t) :: module_
       type(c_ptr), value :: fatbin
       integer(c_int) :: ModuleLoadFatBinary
-      ModuleLoadFatBinary = hipModuleLoadFatBinary_raw(module%ptr, fatbin)
+      ModuleLoadFatBinary = hipModuleLoadFatBinary_raw(module_%ptr, fatbin)
     end function hipModuleLoadFatBinary_typed
 
-    function hipModuleUnload_typed(module) result(ModuleUnload)
+    function hipModuleLoad_typed(module_, fname) result(ModuleLoad)
       use, intrinsic :: iso_c_binding
       use hipfort_handles
       implicit none
-      type(hipModule_t), value :: module
+      type(hipModule_t) :: module_
+      type(c_ptr), value :: fname
+      integer(c_int) :: ModuleLoad
+      ModuleLoad = hipModuleLoad_raw(module_%ptr, fname)
+    end function hipModuleLoad_typed
+
+    function hipModuleUnload_typed(module_) result(ModuleUnload)
+      use, intrinsic :: iso_c_binding
+      use hipfort_handles
+      implicit none
+      type(hipModule_t), value :: module_
       integer(c_int) :: ModuleUnload
-      ModuleUnload = hipModuleUnload_raw(module%ptr)
+      ModuleUnload = hipModuleUnload_raw(module_%ptr)
     end function hipModuleUnload_typed
+
+    function hipModuleGetFunction_typed(function_, module_, kname) result(ModuleGetFunction)
+      use, intrinsic :: iso_c_binding
+      use hipfort_handles
+      implicit none
+      type(hipFunction_t) :: function_
+      type(hipModule_t), value :: module_
+      type(c_ptr), value :: kname
+      integer(c_int) :: ModuleGetFunction
+      ModuleGetFunction = hipModuleGetFunction_raw(function_%ptr, module_%ptr, kname)
+    end function hipModuleGetFunction_typed
 
     function hipModuleGetFunctionCount_native(count, mod) result(ModuleGetFunctionCount)
       use, intrinsic :: iso_c_binding
       implicit none
-      integer(c_int), target :: count(*)
+      integer(c_int), target :: count(..)
       type(c_ptr), value :: mod
       integer(c_int) :: ModuleGetFunctionCount
-      ModuleGetFunctionCount = hipModuleGetFunctionCount_raw(c_loc(count(1)), mod)
+      ModuleGetFunctionCount = hipModuleGetFunctionCount_raw(c_loc(count), mod)
     end function hipModuleGetFunctionCount_native
 
     function hipModuleGetFunctionCount_typed(count, mod) result(ModuleGetFunctionCount)
@@ -15527,35 +15991,53 @@ contains
       implicit none
       type(c_ptr) :: library
       type(c_ptr), value :: code
-      integer(c_int), target :: jitOptions(*)
+      integer(c_int), target :: jitOptions(..)
       type(c_ptr) :: jitOptionsValues
       integer(c_int), value :: numJitOptions
-      integer(c_int), target :: libraryOptions(*)
+      integer(c_int), target :: libraryOptions(..)
       type(c_ptr) :: libraryOptionValues
       integer(c_int), value :: numLibraryOptions
       integer(c_int) :: LibraryLoadData
-      LibraryLoadData = hipLibraryLoadData_raw(library, code, c_loc(jitOptions(1)), &
-        jitOptionsValues, numJitOptions, c_loc(libraryOptions(1)), libraryOptionValues, &
-        numLibraryOptions)
+      LibraryLoadData = hipLibraryLoadData_raw(library, code, c_loc(jitOptions), jitOptionsValues, &
+        numJitOptions, c_loc(libraryOptions), libraryOptionValues, numLibraryOptions)
     end function hipLibraryLoadData_native
+
+    function hipLibraryLoadFromFile_native(library, fileName, jitOptions, jitOptionsValues, &
+        numJitOptions, libraryOptions, libraryOptionValues, numLibraryOptions) result( &
+        LibraryLoadFromFile)
+      use, intrinsic :: iso_c_binding
+      implicit none
+      type(c_ptr) :: library
+      type(c_ptr), value :: fileName
+      integer(c_int), target :: jitOptions(..)
+      type(c_ptr) :: jitOptionsValues
+      integer(c_int), value :: numJitOptions
+      integer(c_int), target :: libraryOptions(..)
+      type(c_ptr) :: libraryOptionValues
+      integer(c_int), value :: numLibraryOptions
+      integer(c_int) :: LibraryLoadFromFile
+      LibraryLoadFromFile = hipLibraryLoadFromFile_raw(library, fileName, c_loc(jitOptions), &
+        jitOptionsValues, numJitOptions, c_loc(libraryOptions), libraryOptionValues, &
+        numLibraryOptions)
+    end function hipLibraryLoadFromFile_native
 
     function hipLibraryGetKernelCount_native(count, library) result(LibraryGetKernelCount)
       use, intrinsic :: iso_c_binding
       implicit none
-      integer(c_int), target :: count(*)
+      integer(c_int), target :: count(..)
       type(c_ptr), value :: library
       integer(c_int) :: LibraryGetKernelCount
-      LibraryGetKernelCount = hipLibraryGetKernelCount_raw(c_loc(count(1)), library)
+      LibraryGetKernelCount = hipLibraryGetKernelCount_raw(c_loc(count), library)
     end function hipLibraryGetKernelCount_native
 
     function hipFuncGetAttribute_native(value, attrib, hfunc) result(FuncGetAttribute)
       use, intrinsic :: iso_c_binding
       implicit none
-      integer(c_int), target :: value(*)
+      integer(c_int), target :: value(..)
       integer(c_int), value :: attrib
       type(c_ptr), value :: hfunc
       integer(c_int) :: FuncGetAttribute
-      FuncGetAttribute = hipFuncGetAttribute_raw(c_loc(value(1)), attrib, hfunc)
+      FuncGetAttribute = hipFuncGetAttribute_raw(c_loc(value), attrib, hfunc)
     end function hipFuncGetAttribute_native
 
     function hipFuncGetAttribute_typed(value, attrib, hfunc) result(FuncGetAttribute)
@@ -15579,54 +16061,108 @@ contains
       GetFuncBySymbol = hipGetFuncBySymbol_raw(functionPtr%ptr, symbolPtr)
     end function hipGetFuncBySymbol_typed
 
-    function hipModuleLoadData_typed(module, image) result(ModuleLoadData)
+    function hipGetDriverEntryPoint_native(symbol, funcPtr, flags, driverStatus) result( &
+        GetDriverEntryPoint)
+      use, intrinsic :: iso_c_binding
+      implicit none
+      type(c_ptr), value :: symbol
+      type(c_ptr) :: funcPtr
+      integer(c_int64_t), value :: flags
+      integer(c_int), target :: driverStatus(..)
+      integer(c_int) :: GetDriverEntryPoint
+      GetDriverEntryPoint = hipGetDriverEntryPoint_raw(symbol, funcPtr, flags, c_loc(driverStatus))
+    end function hipGetDriverEntryPoint_native
+
+    function hipModuleGetTexRef_typed(texRef, hmod, name) result(ModuleGetTexRef)
       use, intrinsic :: iso_c_binding
       use hipfort_handles
       implicit none
-      type(hipModule_t) :: module
+      type(c_ptr) :: texRef
+      type(hipModule_t), value :: hmod
+      type(c_ptr), value :: name
+      integer(c_int) :: ModuleGetTexRef
+      ModuleGetTexRef = hipModuleGetTexRef_raw(texRef, hmod%ptr, name)
+    end function hipModuleGetTexRef_typed
+
+    function hipModuleLoadData_typed(module_, image) result(ModuleLoadData)
+      use, intrinsic :: iso_c_binding
+      use hipfort_handles
+      implicit none
+      type(hipModule_t) :: module_
       type(c_ptr), value :: image
       integer(c_int) :: ModuleLoadData
-      ModuleLoadData = hipModuleLoadData_raw(module%ptr, image)
+      ModuleLoadData = hipModuleLoadData_raw(module_%ptr, image)
     end function hipModuleLoadData_typed
 
-    function hipModuleLoadDataEx_native(module, image, numOptions, options, optionValues) result( &
+    function hipModuleLoadDataEx_native(module_, image, numOptions, options, optionValues) result( &
         ModuleLoadDataEx)
       use, intrinsic :: iso_c_binding
       implicit none
-      type(c_ptr) :: module
+      type(c_ptr) :: module_
       type(c_ptr), value :: image
       integer(c_int), value :: numOptions
-      integer(c_int), target :: options(*)
+      integer(c_int), target :: options(..)
       type(c_ptr) :: optionValues
       integer(c_int) :: ModuleLoadDataEx
-      ModuleLoadDataEx = hipModuleLoadDataEx_raw(module, image, numOptions, c_loc(options(1)), &
+      ModuleLoadDataEx = hipModuleLoadDataEx_raw(module_, image, numOptions, c_loc(options), &
         optionValues)
     end function hipModuleLoadDataEx_native
 
-    function hipModuleLoadDataEx_typed(module, image, numOptions, options, optionValues) result( &
+    function hipModuleLoadDataEx_typed(module_, image, numOptions, options, optionValues) result( &
         ModuleLoadDataEx)
       use, intrinsic :: iso_c_binding
       use hipfort_handles
       implicit none
-      type(hipModule_t) :: module
+      type(hipModule_t) :: module_
       type(c_ptr), value :: image
       integer(c_int), value :: numOptions
       type(c_ptr), value :: options
       type(c_ptr) :: optionValues
       integer(c_int) :: ModuleLoadDataEx
-      ModuleLoadDataEx = hipModuleLoadDataEx_raw(module%ptr, image, numOptions, options, &
+      ModuleLoadDataEx = hipModuleLoadDataEx_raw(module_%ptr, image, numOptions, options, &
         optionValues)
     end function hipModuleLoadDataEx_typed
+
+    function hipLinkAddData_native(state, type, data, size, name, numOptions, options, &
+        optionValues) result(LinkAddData)
+      use, intrinsic :: iso_c_binding
+      implicit none
+      type(c_ptr), value :: state
+      integer(c_int), value :: type
+      type(c_ptr), value :: data
+      integer(c_long), value :: size
+      type(c_ptr), value :: name
+      integer(c_int), value :: numOptions
+      integer(c_int), target :: options(..)
+      type(c_ptr) :: optionValues
+      integer(c_int) :: LinkAddData
+      LinkAddData = hipLinkAddData_raw(state, type, data, size, name, numOptions, c_loc(options), &
+        optionValues)
+    end function hipLinkAddData_native
+
+    function hipLinkAddFile_native(state, type, path, numOptions, options, optionValues) result( &
+        LinkAddFile)
+      use, intrinsic :: iso_c_binding
+      implicit none
+      type(c_ptr), value :: state
+      integer(c_int), value :: type
+      type(c_ptr), value :: path
+      integer(c_int), value :: numOptions
+      integer(c_int), target :: options(..)
+      type(c_ptr) :: optionValues
+      integer(c_int) :: LinkAddFile
+      LinkAddFile = hipLinkAddFile_raw(state, type, path, numOptions, c_loc(options), optionValues)
+    end function hipLinkAddFile_native
 
     function hipLinkCreate_native(numOptions, options, optionValues, stateOut) result(LinkCreate)
       use, intrinsic :: iso_c_binding
       implicit none
       integer(c_int), value :: numOptions
-      integer(c_int), target :: options(*)
+      integer(c_int), target :: options(..)
       type(c_ptr) :: optionValues
       type(c_ptr) :: stateOut
       integer(c_int) :: LinkCreate
-      LinkCreate = hipLinkCreate_raw(numOptions, c_loc(options(1)), optionValues, stateOut)
+      LinkCreate = hipLinkCreate_raw(numOptions, c_loc(options), optionValues, stateOut)
     end function hipLinkCreate_native
 
     function hipModuleLaunchKernel_typed(f, gridDimX, gridDimY, gridDimZ, blockDimX, blockDimY, &
@@ -15692,7 +16228,7 @@ contains
       use, intrinsic :: iso_c_binding
       use hipfort_handles
       implicit none
-      type(c_ptr), value :: config
+      type(HIP_LAUNCH_CONFIG) :: config
       type(hipFunction_t), value :: f
       type(c_ptr) :: params
       type(c_ptr) :: extra
@@ -15704,14 +16240,14 @@ contains
         dynSharedMemPerBlk, blockSizeLimit) result(ModuleOccupancyMaxPotentialBlockSize)
       use, intrinsic :: iso_c_binding
       implicit none
-      integer(c_int), target :: gridSize(*)
-      integer(c_int), target :: blockSize(*)
+      integer(c_int), target :: gridSize(..)
+      integer(c_int), target :: blockSize(..)
       type(c_ptr), value :: f
       integer(c_long), value :: dynSharedMemPerBlk
       integer(c_int), value :: blockSizeLimit
       integer(c_int) :: ModuleOccupancyMaxPotentialBlockSize
       ModuleOccupancyMaxPotentialBlockSize = hipModuleOccupancyMaxPotentialBlockSize_raw(c_loc( &
-        gridSize(1)), c_loc(blockSize(1)), f, dynSharedMemPerBlk, blockSizeLimit)
+        gridSize), c_loc(blockSize), f, dynSharedMemPerBlk, blockSizeLimit)
     end function hipModuleOccupancyMaxPotentialBlockSize_native
 
     function hipModuleOccupancyMaxPotentialBlockSize_typed(gridSize, blockSize, f, &
@@ -15734,15 +16270,15 @@ contains
         ModuleOccupancyMaxPotentialBlockSizeWithFlags)
       use, intrinsic :: iso_c_binding
       implicit none
-      integer(c_int), target :: gridSize(*)
-      integer(c_int), target :: blockSize(*)
+      integer(c_int), target :: gridSize(..)
+      integer(c_int), target :: blockSize(..)
       type(c_ptr), value :: f
       integer(c_long), value :: dynSharedMemPerBlk
       integer(c_int), value :: blockSizeLimit
       integer(c_int), value :: flags
       integer(c_int) :: ModuleOccupancyMaxPotentialBlockSizeWithFlags
       ModuleOccupancyMaxPotentialBlockSizeWithFlags = hipModuleOccupancyMaxPotentialBlockSizeWithFlags_raw( &
-        c_loc(gridSize(1)), c_loc(blockSize(1)), f, dynSharedMemPerBlk, blockSizeLimit, flags)
+        c_loc(gridSize), c_loc(blockSize), f, dynSharedMemPerBlk, blockSizeLimit, flags)
     end function hipModuleOccupancyMaxPotentialBlockSizeWithFlags_native
 
     function hipModuleOccupancyMaxPotentialBlockSizeWithFlags_typed(gridSize, blockSize, f, &
@@ -15766,13 +16302,13 @@ contains
         dynSharedMemPerBlk) result(ModuleOccupancyMaxActiveBlocksPerMultiprocessor)
       use, intrinsic :: iso_c_binding
       implicit none
-      integer(c_int), target :: numBlocks(*)
+      integer(c_int), target :: numBlocks(..)
       type(c_ptr), value :: f
       integer(c_int), value :: blockSize
       integer(c_long), value :: dynSharedMemPerBlk
       integer(c_int) :: ModuleOccupancyMaxActiveBlocksPerMultiprocessor
       ModuleOccupancyMaxActiveBlocksPerMultiprocessor = hipModuleOccupancyMaxActiveBlocksPerMultiprocessor_raw( &
-        c_loc(numBlocks(1)), f, blockSize, dynSharedMemPerBlk)
+        c_loc(numBlocks), f, blockSize, dynSharedMemPerBlk)
     end function hipModuleOccupancyMaxActiveBlocksPerMultiprocessor_native
 
     function hipModuleOccupancyMaxActiveBlocksPerMultiprocessor_typed(numBlocks, f, blockSize, &
@@ -15794,14 +16330,14 @@ contains
         ModuleOccupancyMaxActiveBlocksPerMultiprocessorWithFlags)
       use, intrinsic :: iso_c_binding
       implicit none
-      integer(c_int), target :: numBlocks(*)
+      integer(c_int), target :: numBlocks(..)
       type(c_ptr), value :: f
       integer(c_int), value :: blockSize
       integer(c_long), value :: dynSharedMemPerBlk
       integer(c_int), value :: flags
       integer(c_int) :: ModuleOccupancyMaxActiveBlocksPerMultiprocessorWithFlags
       ModuleOccupancyMaxActiveBlocksPerMultiprocessorWithFlags = hipModuleOccupancyMaxActiveBlocksPerMultiprocessorWithFlags_raw( &
-        c_loc(numBlocks(1)), f, blockSize, dynSharedMemPerBlk, flags)
+        c_loc(numBlocks), f, blockSize, dynSharedMemPerBlk, flags)
     end function hipModuleOccupancyMaxActiveBlocksPerMultiprocessorWithFl_native
 
     function hipModuleOccupancyMaxActiveBlocksPerMultiprocessorWithFla_typed(numBlocks, f, &
@@ -15824,41 +16360,41 @@ contains
         dynSharedMemPerBlk) result(OccupancyMaxActiveBlocksPerMultiprocessor)
       use, intrinsic :: iso_c_binding
       implicit none
-      integer(c_int), target :: numBlocks(*)
+      integer(c_int), target :: numBlocks(..)
       type(c_ptr), value :: f
       integer(c_int), value :: blockSize
       integer(c_long), value :: dynSharedMemPerBlk
       integer(c_int) :: OccupancyMaxActiveBlocksPerMultiprocessor
       OccupancyMaxActiveBlocksPerMultiprocessor = hipOccupancyMaxActiveBlocksPerMultiprocessor_raw( &
-        c_loc(numBlocks(1)), f, blockSize, dynSharedMemPerBlk)
+        c_loc(numBlocks), f, blockSize, dynSharedMemPerBlk)
     end function hipOccupancyMaxActiveBlocksPerMultiprocessor_native
 
     function hipOccupancyMaxActiveBlocksPerMultiprocessorWithFlags_native(numBlocks, f, blockSize, &
         dynSharedMemPerBlk, flags) result(OccupancyMaxActiveBlocksPerMultiprocessorWithFlags)
       use, intrinsic :: iso_c_binding
       implicit none
-      integer(c_int), target :: numBlocks(*)
+      integer(c_int), target :: numBlocks(..)
       type(c_ptr), value :: f
       integer(c_int), value :: blockSize
       integer(c_long), value :: dynSharedMemPerBlk
       integer(c_int), value :: flags
       integer(c_int) :: OccupancyMaxActiveBlocksPerMultiprocessorWithFlags
       OccupancyMaxActiveBlocksPerMultiprocessorWithFlags = hipOccupancyMaxActiveBlocksPerMultiprocessorWithFlags_raw( &
-        c_loc(numBlocks(1)), f, blockSize, dynSharedMemPerBlk, flags)
+        c_loc(numBlocks), f, blockSize, dynSharedMemPerBlk, flags)
     end function hipOccupancyMaxActiveBlocksPerMultiprocessorWithFlags_native
 
     function hipOccupancyMaxPotentialBlockSize_native(gridSize, blockSize, f, dynSharedMemPerBlk, &
         blockSizeLimit) result(OccupancyMaxPotentialBlockSize)
       use, intrinsic :: iso_c_binding
       implicit none
-      integer(c_int), target :: gridSize(*)
-      integer(c_int), target :: blockSize(*)
+      integer(c_int), target :: gridSize(..)
+      integer(c_int), target :: blockSize(..)
       type(c_ptr), value :: f
       integer(c_long), value :: dynSharedMemPerBlk
       integer(c_int), value :: blockSizeLimit
       integer(c_int) :: OccupancyMaxPotentialBlockSize
-      OccupancyMaxPotentialBlockSize = hipOccupancyMaxPotentialBlockSize_raw(c_loc(gridSize(1)), &
-        c_loc(blockSize(1)), f, dynSharedMemPerBlk, blockSizeLimit)
+      OccupancyMaxPotentialBlockSize = hipOccupancyMaxPotentialBlockSize_raw(c_loc(gridSize), &
+        c_loc(blockSize), f, dynSharedMemPerBlk, blockSizeLimit)
     end function hipOccupancyMaxPotentialBlockSize_native
 
     function hipConfigureCall_typed(gridDim, blockDim, sharedMem, stream) result(ConfigureCall)
@@ -15922,96 +16458,96 @@ contains
     function hipTexRefGetBorderColor_native(pBorderColor, texRef) result(TexRefGetBorderColor)
       use, intrinsic :: iso_c_binding
       implicit none
-      real(c_float), target :: pBorderColor(*)
-      type(c_ptr), value :: texRef
+      real(c_float), target :: pBorderColor(..)
+      type(textureReference) :: texRef
       integer(c_int) :: TexRefGetBorderColor
-      TexRefGetBorderColor = hipTexRefGetBorderColor_raw(c_loc(pBorderColor(1)), texRef)
+      TexRefGetBorderColor = hipTexRefGetBorderColor_raw(c_loc(pBorderColor), texRef)
     end function hipTexRefGetBorderColor_native
 
     function hipTexRefGetAddressMode_native(pam, texRef, dim) result(TexRefGetAddressMode)
       use, intrinsic :: iso_c_binding
       implicit none
-      integer(c_int), target :: pam(*)
-      type(c_ptr), value :: texRef
+      integer(c_int), target :: pam(..)
+      type(textureReference) :: texRef
       integer(c_int), value :: dim
       integer(c_int) :: TexRefGetAddressMode
-      TexRefGetAddressMode = hipTexRefGetAddressMode_raw(c_loc(pam(1)), texRef, dim)
+      TexRefGetAddressMode = hipTexRefGetAddressMode_raw(c_loc(pam), texRef, dim)
     end function hipTexRefGetAddressMode_native
 
     function hipTexRefGetFilterMode_native(pfm, texRef) result(TexRefGetFilterMode)
       use, intrinsic :: iso_c_binding
       implicit none
-      integer(c_int), target :: pfm(*)
-      type(c_ptr), value :: texRef
+      integer(c_int), target :: pfm(..)
+      type(textureReference) :: texRef
       integer(c_int) :: TexRefGetFilterMode
-      TexRefGetFilterMode = hipTexRefGetFilterMode_raw(c_loc(pfm(1)), texRef)
+      TexRefGetFilterMode = hipTexRefGetFilterMode_raw(c_loc(pfm), texRef)
     end function hipTexRefGetFilterMode_native
 
     function hipTexRefGetFlags_native(pFlags, texRef) result(TexRefGetFlags)
       use, intrinsic :: iso_c_binding
       implicit none
-      integer(c_int), target :: pFlags(*)
-      type(c_ptr), value :: texRef
+      integer(c_int), target :: pFlags(..)
+      type(textureReference) :: texRef
       integer(c_int) :: TexRefGetFlags
-      TexRefGetFlags = hipTexRefGetFlags_raw(c_loc(pFlags(1)), texRef)
+      TexRefGetFlags = hipTexRefGetFlags_raw(c_loc(pFlags), texRef)
     end function hipTexRefGetFlags_native
 
     function hipTexRefGetFormat_native(pFormat, pNumChannels, texRef) result(TexRefGetFormat)
       use, intrinsic :: iso_c_binding
       implicit none
-      integer(c_int), target :: pFormat(*)
-      integer(c_int), target :: pNumChannels(*)
-      type(c_ptr), value :: texRef
+      integer(c_int), target :: pFormat(..)
+      integer(c_int), target :: pNumChannels(..)
+      type(textureReference) :: texRef
       integer(c_int) :: TexRefGetFormat
-      TexRefGetFormat = hipTexRefGetFormat_raw(c_loc(pFormat(1)), c_loc(pNumChannels(1)), texRef)
+      TexRefGetFormat = hipTexRefGetFormat_raw(c_loc(pFormat), c_loc(pNumChannels), texRef)
     end function hipTexRefGetFormat_native
 
     function hipTexRefGetMaxAnisotropy_native(pmaxAnsio, texRef) result(TexRefGetMaxAnisotropy)
       use, intrinsic :: iso_c_binding
       implicit none
-      integer(c_int), target :: pmaxAnsio(*)
-      type(c_ptr), value :: texRef
+      integer(c_int), target :: pmaxAnsio(..)
+      type(textureReference) :: texRef
       integer(c_int) :: TexRefGetMaxAnisotropy
-      TexRefGetMaxAnisotropy = hipTexRefGetMaxAnisotropy_raw(c_loc(pmaxAnsio(1)), texRef)
+      TexRefGetMaxAnisotropy = hipTexRefGetMaxAnisotropy_raw(c_loc(pmaxAnsio), texRef)
     end function hipTexRefGetMaxAnisotropy_native
 
     function hipTexRefGetMipmapFilterMode_native(pfm, texRef) result(TexRefGetMipmapFilterMode)
       use, intrinsic :: iso_c_binding
       implicit none
-      integer(c_int), target :: pfm(*)
-      type(c_ptr), value :: texRef
+      integer(c_int), target :: pfm(..)
+      type(textureReference) :: texRef
       integer(c_int) :: TexRefGetMipmapFilterMode
-      TexRefGetMipmapFilterMode = hipTexRefGetMipmapFilterMode_raw(c_loc(pfm(1)), texRef)
+      TexRefGetMipmapFilterMode = hipTexRefGetMipmapFilterMode_raw(c_loc(pfm), texRef)
     end function hipTexRefGetMipmapFilterMode_native
 
     function hipTexRefGetMipmapLevelBias_native(pbias, texRef) result(TexRefGetMipmapLevelBias)
       use, intrinsic :: iso_c_binding
       implicit none
-      real(c_float), target :: pbias(*)
-      type(c_ptr), value :: texRef
+      real(c_float), target :: pbias(..)
+      type(textureReference) :: texRef
       integer(c_int) :: TexRefGetMipmapLevelBias
-      TexRefGetMipmapLevelBias = hipTexRefGetMipmapLevelBias_raw(c_loc(pbias(1)), texRef)
+      TexRefGetMipmapLevelBias = hipTexRefGetMipmapLevelBias_raw(c_loc(pbias), texRef)
     end function hipTexRefGetMipmapLevelBias_native
 
     function hipTexRefGetMipmapLevelClamp_native(pminMipmapLevelClamp, pmaxMipmapLevelClamp, &
         texRef) result(TexRefGetMipmapLevelClamp)
       use, intrinsic :: iso_c_binding
       implicit none
-      real(c_float), target :: pminMipmapLevelClamp(*)
-      real(c_float), target :: pmaxMipmapLevelClamp(*)
-      type(c_ptr), value :: texRef
+      real(c_float), target :: pminMipmapLevelClamp(..)
+      real(c_float), target :: pmaxMipmapLevelClamp(..)
+      type(textureReference) :: texRef
       integer(c_int) :: TexRefGetMipmapLevelClamp
-      TexRefGetMipmapLevelClamp = hipTexRefGetMipmapLevelClamp_raw(c_loc(pminMipmapLevelClamp(1)), &
-        c_loc(pmaxMipmapLevelClamp(1)), texRef)
+      TexRefGetMipmapLevelClamp = hipTexRefGetMipmapLevelClamp_raw(c_loc(pminMipmapLevelClamp), &
+        c_loc(pmaxMipmapLevelClamp), texRef)
     end function hipTexRefGetMipmapLevelClamp_native
 
     function hipTexRefSetBorderColor_native(texRef, pBorderColor) result(TexRefSetBorderColor)
       use, intrinsic :: iso_c_binding
       implicit none
-      type(c_ptr), value :: texRef
-      real(c_float), target :: pBorderColor(*)
+      type(textureReference) :: texRef
+      real(c_float), target :: pBorderColor(..)
       integer(c_int) :: TexRefSetBorderColor
-      TexRefSetBorderColor = hipTexRefSetBorderColor_raw(texRef, c_loc(pBorderColor(1)))
+      TexRefSetBorderColor = hipTexRefSetBorderColor_raw(texRef, c_loc(pBorderColor))
     end function hipTexRefSetBorderColor_native
 
     function hipKernelNameRef_typed(f) result(KernelNameRef)
@@ -16060,7 +16596,7 @@ contains
       type(hipStream_t), value :: stream
       type(hipGraph_t), value :: graph
       type(hipGraphNode_t) :: dependencies
-      type(c_ptr), value :: dependencyData
+      type(hipGraphEdgeData) :: dependencyData
       integer(c_long), value :: numDependencies
       integer(c_int), value :: mode
       integer(c_int) :: StreamBeginCaptureToGraph
@@ -16083,11 +16619,10 @@ contains
       use, intrinsic :: iso_c_binding
       implicit none
       type(c_ptr), value :: stream
-      integer(c_int), target :: pCaptureStatus(*)
-      integer(c_int64_t), target :: pId(*)
+      integer(c_int), target :: pCaptureStatus(..)
+      integer(c_int64_t), target :: pId(..)
       integer(c_int) :: StreamGetCaptureInfo
-      StreamGetCaptureInfo = hipStreamGetCaptureInfo_raw(stream, c_loc(pCaptureStatus(1)), c_loc( &
-        pId(1)))
+      StreamGetCaptureInfo = hipStreamGetCaptureInfo_raw(stream, c_loc(pCaptureStatus), c_loc(pId))
     end function hipStreamGetCaptureInfo_native
 
     function hipStreamGetCaptureInfo_typed(stream, pCaptureStatus, pId) result(StreamGetCaptureInfo)
@@ -16106,14 +16641,14 @@ contains
       use, intrinsic :: iso_c_binding
       implicit none
       type(c_ptr), value :: stream
-      integer(c_int), target :: captureStatus_out(*)
-      integer(c_int64_t), target :: id_out(*)
+      integer(c_int), target :: captureStatus_out(..)
+      integer(c_int64_t), target :: id_out(..)
       type(c_ptr) :: graph_out
       type(c_ptr) :: dependencies_out
       type(c_ptr), value :: numDependencies_out
       integer(c_int) :: StreamGetCaptureInfo_v2
-      StreamGetCaptureInfo_v2 = hipStreamGetCaptureInfo_v2_raw(stream, c_loc(captureStatus_out( &
-        1)), c_loc(id_out(1)), graph_out, dependencies_out, numDependencies_out)
+      StreamGetCaptureInfo_v2 = hipStreamGetCaptureInfo_v2_raw(stream, c_loc(captureStatus_out), &
+        c_loc(id_out), graph_out, dependencies_out, numDependencies_out)
     end function hipStreamGetCaptureInfo_v2_native
 
     function hipStreamGetCaptureInfo_v2_typed(stream, captureStatus_out, id_out, graph_out, &
@@ -16136,9 +16671,9 @@ contains
       use, intrinsic :: iso_c_binding
       implicit none
       type(c_ptr), value :: stream
-      integer(c_int), target :: pCaptureStatus(*)
+      integer(c_int), target :: pCaptureStatus(..)
       integer(c_int) :: StreamIsCapturing
-      StreamIsCapturing = hipStreamIsCapturing_raw(stream, c_loc(pCaptureStatus(1)))
+      StreamIsCapturing = hipStreamIsCapturing_raw(stream, c_loc(pCaptureStatus))
     end function hipStreamIsCapturing_native
 
     function hipStreamIsCapturing_typed(stream, pCaptureStatus) result(StreamIsCapturing)
@@ -16168,9 +16703,9 @@ contains
     function hipThreadExchangeStreamCaptureMode_native(mode) result(ThreadExchangeStreamCaptureMode)
       use, intrinsic :: iso_c_binding
       implicit none
-      integer(c_int), target :: mode(*)
+      integer(c_int), target :: mode(..)
       integer(c_int) :: ThreadExchangeStreamCaptureMode
-      ThreadExchangeStreamCaptureMode = hipThreadExchangeStreamCaptureMode_raw(c_loc(mode(1)))
+      ThreadExchangeStreamCaptureMode = hipThreadExchangeStreamCaptureMode_raw(c_loc(mode))
     end function hipThreadExchangeStreamCaptureMode_native
 
     function hipGraphCreate_typed(pGraph, flags) result(GraphCreate)
@@ -16284,9 +16819,9 @@ contains
       use, intrinsic :: iso_c_binding
       implicit none
       type(c_ptr), value :: node
-      integer(c_int), target :: pType(*)
+      integer(c_int), target :: pType(..)
       integer(c_int) :: GraphNodeGetType
-      GraphNodeGetType = hipGraphNodeGetType_raw(node, c_loc(pType(1)))
+      GraphNodeGetType = hipGraphNodeGetType_raw(node, c_loc(pType))
     end function hipGraphNodeGetType_native
 
     function hipGraphNodeGetType_typed(node, pType) result(GraphNodeGetType)
@@ -16331,6 +16866,21 @@ contains
         clonedGraph%ptr)
     end function hipGraphNodeFindInClone_typed
 
+    function hipGraphInstantiate_typed(pGraphExec, graph, pErrorNode, pLogBuffer, &
+        bufferSize) result(GraphInstantiate)
+      use, intrinsic :: iso_c_binding
+      use hipfort_handles
+      implicit none
+      type(hipGraphExec_t) :: pGraphExec
+      type(hipGraph_t), value :: graph
+      type(hipGraphNode_t) :: pErrorNode
+      type(c_ptr), value :: pLogBuffer
+      integer(c_long), value :: bufferSize
+      integer(c_int) :: GraphInstantiate
+      GraphInstantiate = hipGraphInstantiate_raw(pGraphExec%ptr, graph%ptr, pErrorNode%ptr, &
+        pLogBuffer, bufferSize)
+    end function hipGraphInstantiate_typed
+
     function hipGraphInstantiateWithFlags_typed(pGraphExec, graph, flags) result( &
         GraphInstantiateWithFlags)
       use, intrinsic :: iso_c_binding
@@ -16350,7 +16900,7 @@ contains
       implicit none
       type(hipGraphExec_t) :: pGraphExec
       type(hipGraph_t), value :: graph
-      type(c_ptr), value :: instantiateParams
+      type(hipGraphInstantiateParams) :: instantiateParams
       integer(c_int) :: GraphInstantiateWithParams
       GraphInstantiateWithParams = hipGraphInstantiateWithParams_raw(pGraphExec%ptr, graph%ptr, &
         instantiateParams)
@@ -16385,7 +16935,7 @@ contains
       type(hipGraph_t), value :: graph
       type(hipGraphNode_t) :: pDependencies
       integer(c_long), value :: numDependencies
-      type(c_ptr), value :: nodeParams
+      type(hipGraphNodeParams) :: nodeParams
       integer(c_int) :: GraphAddNode
       GraphAddNode = hipGraphAddNode_raw(pGraphNode%ptr, graph%ptr, pDependencies%ptr, &
         numDependencies, nodeParams)
@@ -16395,9 +16945,9 @@ contains
       use, intrinsic :: iso_c_binding
       implicit none
       type(c_ptr), value :: graphExec
-      integer(c_int64_t), target :: flags(*)
+      integer(c_int64_t), target :: flags(..)
       integer(c_int) :: GraphExecGetFlags
-      GraphExecGetFlags = hipGraphExecGetFlags_raw(graphExec, c_loc(flags(1)))
+      GraphExecGetFlags = hipGraphExecGetFlags_raw(graphExec, c_loc(flags))
     end function hipGraphExecGetFlags_native
 
     function hipGraphExecGetFlags_typed(graphExec, flags) result(GraphExecGetFlags)
@@ -16415,7 +16965,7 @@ contains
       use hipfort_handles
       implicit none
       type(hipGraphNode_t), value :: node
-      type(c_ptr), value :: nodeParams
+      type(hipGraphNodeParams) :: nodeParams
       integer(c_int) :: GraphNodeSetParams
       GraphNodeSetParams = hipGraphNodeSetParams_raw(node%ptr, nodeParams)
     end function hipGraphNodeSetParams_typed
@@ -16427,7 +16977,7 @@ contains
       implicit none
       type(hipGraphExec_t), value :: graphExec
       type(hipGraphNode_t), value :: node
-      type(c_ptr), value :: nodeParams
+      type(hipGraphNodeParams) :: nodeParams
       integer(c_int) :: GraphExecNodeSetParams
       GraphExecNodeSetParams = hipGraphExecNodeSetParams_raw(graphExec%ptr, node%ptr, nodeParams)
     end function hipGraphExecNodeSetParams_typed
@@ -16448,10 +16998,10 @@ contains
       type(c_ptr), value :: hGraphExec
       type(c_ptr), value :: hGraph
       type(c_ptr) :: hErrorNode_out
-      integer(c_int), target :: updateResult_out(*)
+      integer(c_int), target :: updateResult_out(..)
       integer(c_int) :: GraphExecUpdate
       GraphExecUpdate = hipGraphExecUpdate_raw(hGraphExec, hGraph, hErrorNode_out, c_loc( &
-        updateResult_out(1)))
+        updateResult_out))
     end function hipGraphExecUpdate_native
 
     function hipGraphExecUpdate_typed(hGraphExec, hGraph, hErrorNode_out, &
@@ -16477,7 +17027,7 @@ contains
       type(hipGraph_t), value :: graph
       type(hipGraphNode_t) :: pDependencies
       integer(c_long), value :: numDependencies
-      type(c_ptr), value :: pNodeParams
+      type(hipKernelNodeParams) :: pNodeParams
       integer(c_int) :: GraphAddKernelNode
       GraphAddKernelNode = hipGraphAddKernelNode_raw(pGraphNode%ptr, graph%ptr, pDependencies%ptr, &
         numDependencies, pNodeParams)
@@ -16488,7 +17038,7 @@ contains
       use hipfort_handles
       implicit none
       type(hipGraphNode_t), value :: node
-      type(c_ptr), value :: pNodeParams
+      type(hipKernelNodeParams) :: pNodeParams
       integer(c_int) :: GraphKernelNodeGetParams
       GraphKernelNodeGetParams = hipGraphKernelNodeGetParams_raw(node%ptr, pNodeParams)
     end function hipGraphKernelNodeGetParams_typed
@@ -16498,7 +17048,7 @@ contains
       use hipfort_handles
       implicit none
       type(hipGraphNode_t), value :: node
-      type(c_ptr), value :: pNodeParams
+      type(hipKernelNodeParams) :: pNodeParams
       integer(c_int) :: GraphKernelNodeSetParams
       GraphKernelNodeSetParams = hipGraphKernelNodeSetParams_raw(node%ptr, pNodeParams)
     end function hipGraphKernelNodeSetParams_typed
@@ -16510,7 +17060,7 @@ contains
       implicit none
       type(hipGraphExec_t), value :: hGraphExec
       type(hipGraphNode_t), value :: node
-      type(c_ptr), value :: pNodeParams
+      type(hipKernelNodeParams) :: pNodeParams
       integer(c_int) :: GraphExecKernelNodeSetParams
       GraphExecKernelNodeSetParams = hipGraphExecKernelNodeSetParams_raw(hGraphExec%ptr, node%ptr, &
         pNodeParams)
@@ -16525,7 +17075,7 @@ contains
       type(hipGraph_t), value :: hGraph
       type(hipGraphNode_t) :: dependencies
       integer(c_long), value :: numDependencies
-      type(c_ptr), value :: copyParams
+      type(HIP_MEMCPY3D) :: copyParams
       type(hipCtx_t), value :: ctx
       integer(c_int) :: DrvGraphAddMemcpyNode
       DrvGraphAddMemcpyNode = hipDrvGraphAddMemcpyNode_raw(phGraphNode%ptr, hGraph%ptr, &
@@ -16541,7 +17091,7 @@ contains
       type(hipGraph_t), value :: graph
       type(hipGraphNode_t) :: pDependencies
       integer(c_long), value :: numDependencies
-      type(c_ptr), value :: pCopyParams
+      type(hipMemcpy3DParms) :: pCopyParams
       integer(c_int) :: GraphAddMemcpyNode
       GraphAddMemcpyNode = hipGraphAddMemcpyNode_raw(pGraphNode%ptr, graph%ptr, pDependencies%ptr, &
         numDependencies, pCopyParams)
@@ -16552,7 +17102,7 @@ contains
       use hipfort_handles
       implicit none
       type(hipGraphNode_t), value :: node
-      type(c_ptr), value :: pNodeParams
+      type(hipMemcpy3DParms) :: pNodeParams
       integer(c_int) :: GraphMemcpyNodeGetParams
       GraphMemcpyNodeGetParams = hipGraphMemcpyNodeGetParams_raw(node%ptr, pNodeParams)
     end function hipGraphMemcpyNodeGetParams_typed
@@ -16562,7 +17112,7 @@ contains
       use hipfort_handles
       implicit none
       type(hipGraphNode_t), value :: node
-      type(c_ptr), value :: pNodeParams
+      type(hipMemcpy3DParms) :: pNodeParams
       integer(c_int) :: GraphMemcpyNodeSetParams
       GraphMemcpyNodeSetParams = hipGraphMemcpyNodeSetParams_raw(node%ptr, pNodeParams)
     end function hipGraphMemcpyNodeSetParams_typed
@@ -16598,7 +17148,7 @@ contains
       implicit none
       type(hipGraphExec_t), value :: hGraphExec
       type(hipGraphNode_t), value :: node
-      type(c_ptr), value :: pNodeParams
+      type(hipMemcpy3DParms) :: pNodeParams
       integer(c_int) :: GraphExecMemcpyNodeSetParams
       GraphExecMemcpyNodeSetParams = hipGraphExecMemcpyNodeSetParams_raw(hGraphExec%ptr, node%ptr, &
         pNodeParams)
@@ -16766,7 +17316,7 @@ contains
       type(hipGraph_t), value :: graph
       type(hipGraphNode_t) :: pDependencies
       integer(c_long), value :: numDependencies
-      type(c_ptr), value :: pMemsetParams
+      type(hipMemsetParams) :: pMemsetParams
       integer(c_int) :: GraphAddMemsetNode
       GraphAddMemsetNode = hipGraphAddMemsetNode_raw(pGraphNode%ptr, graph%ptr, pDependencies%ptr, &
         numDependencies, pMemsetParams)
@@ -16777,7 +17327,7 @@ contains
       use hipfort_handles
       implicit none
       type(hipGraphNode_t), value :: node
-      type(c_ptr), value :: pNodeParams
+      type(hipMemsetParams) :: pNodeParams
       integer(c_int) :: GraphMemsetNodeGetParams
       GraphMemsetNodeGetParams = hipGraphMemsetNodeGetParams_raw(node%ptr, pNodeParams)
     end function hipGraphMemsetNodeGetParams_typed
@@ -16787,7 +17337,7 @@ contains
       use hipfort_handles
       implicit none
       type(hipGraphNode_t), value :: node
-      type(c_ptr), value :: pNodeParams
+      type(hipMemsetParams) :: pNodeParams
       integer(c_int) :: GraphMemsetNodeSetParams
       GraphMemsetNodeSetParams = hipGraphMemsetNodeSetParams_raw(node%ptr, pNodeParams)
     end function hipGraphMemsetNodeSetParams_typed
@@ -16799,7 +17349,7 @@ contains
       implicit none
       type(hipGraphExec_t), value :: hGraphExec
       type(hipGraphNode_t), value :: node
-      type(c_ptr), value :: pNodeParams
+      type(hipMemsetParams) :: pNodeParams
       integer(c_int) :: GraphExecMemsetNodeSetParams
       GraphExecMemsetNodeSetParams = hipGraphExecMemsetNodeSetParams_raw(hGraphExec%ptr, node%ptr, &
         pNodeParams)
@@ -16814,7 +17364,7 @@ contains
       type(hipGraph_t), value :: graph
       type(hipGraphNode_t) :: pDependencies
       integer(c_long), value :: numDependencies
-      type(c_ptr), value :: pNodeParams
+      type(hipHostNodeParams) :: pNodeParams
       integer(c_int) :: GraphAddHostNode
       GraphAddHostNode = hipGraphAddHostNode_raw(pGraphNode%ptr, graph%ptr, pDependencies%ptr, &
         numDependencies, pNodeParams)
@@ -16825,7 +17375,7 @@ contains
       use hipfort_handles
       implicit none
       type(hipGraphNode_t), value :: node
-      type(c_ptr), value :: pNodeParams
+      type(hipHostNodeParams) :: pNodeParams
       integer(c_int) :: GraphHostNodeGetParams
       GraphHostNodeGetParams = hipGraphHostNodeGetParams_raw(node%ptr, pNodeParams)
     end function hipGraphHostNodeGetParams_typed
@@ -16835,7 +17385,7 @@ contains
       use hipfort_handles
       implicit none
       type(hipGraphNode_t), value :: node
-      type(c_ptr), value :: pNodeParams
+      type(hipHostNodeParams) :: pNodeParams
       integer(c_int) :: GraphHostNodeSetParams
       GraphHostNodeSetParams = hipGraphHostNodeSetParams_raw(node%ptr, pNodeParams)
     end function hipGraphHostNodeSetParams_typed
@@ -16847,7 +17397,7 @@ contains
       implicit none
       type(hipGraphExec_t), value :: hGraphExec
       type(hipGraphNode_t), value :: node
-      type(c_ptr), value :: pNodeParams
+      type(hipHostNodeParams) :: pNodeParams
       integer(c_int) :: GraphExecHostNodeSetParams
       GraphExecHostNodeSetParams = hipGraphExecHostNodeSetParams_raw(hGraphExec%ptr, node%ptr, &
         pNodeParams)
@@ -17011,7 +17561,7 @@ contains
       type(hipGraph_t), value :: graph
       type(hipGraphNode_t) :: pDependencies
       integer(c_long), value :: numDependencies
-      type(c_ptr), value :: pNodeParams
+      type(hipMemAllocNodeParams) :: pNodeParams
       integer(c_int) :: GraphAddMemAllocNode
       GraphAddMemAllocNode = hipGraphAddMemAllocNode_raw(pGraphNode%ptr, graph%ptr, &
         pDependencies%ptr, numDependencies, pNodeParams)
@@ -17023,7 +17573,7 @@ contains
       use hipfort_handles
       implicit none
       type(hipGraphNode_t), value :: node
-      type(c_ptr), value :: pNodeParams
+      type(hipMemAllocNodeParams) :: pNodeParams
       integer(c_int) :: GraphMemAllocNodeGetParams
       GraphMemAllocNodeGetParams = hipGraphMemAllocNodeGetParams_raw(node%ptr, pNodeParams)
     end function hipGraphMemAllocNodeGetParams_typed
@@ -17112,6 +17662,17 @@ contains
       GraphReleaseUserObject = hipGraphReleaseUserObject_raw(graph%ptr, object%ptr, count)
     end function hipGraphReleaseUserObject_typed
 
+    function hipGraphDebugDotPrint_typed(graph, path, flags) result(GraphDebugDotPrint)
+      use, intrinsic :: iso_c_binding
+      use hipfort_handles
+      implicit none
+      type(hipGraph_t), value :: graph
+      type(c_ptr), value :: path
+      integer(c_int), value :: flags
+      integer(c_int) :: GraphDebugDotPrint
+      GraphDebugDotPrint = hipGraphDebugDotPrint_raw(graph%ptr, path, flags)
+    end function hipGraphDebugDotPrint_typed
+
     function hipGraphKernelNodeCopyAttributes_typed(hSrc, hDst) result( &
         GraphKernelNodeCopyAttributes)
       use, intrinsic :: iso_c_binding
@@ -17139,9 +17700,9 @@ contains
       implicit none
       type(c_ptr), value :: hGraphExec
       type(c_ptr), value :: hNode
-      integer(c_int), target :: isEnabled(*)
+      integer(c_int), target :: isEnabled(..)
       integer(c_int) :: GraphNodeGetEnabled
-      GraphNodeGetEnabled = hipGraphNodeGetEnabled_raw(hGraphExec, hNode, c_loc(isEnabled(1)))
+      GraphNodeGetEnabled = hipGraphNodeGetEnabled_raw(hGraphExec, hNode, c_loc(isEnabled))
     end function hipGraphNodeGetEnabled_native
 
     function hipGraphNodeGetEnabled_typed(hGraphExec, hNode, isEnabled) result(GraphNodeGetEnabled)
@@ -17164,7 +17725,7 @@ contains
       type(hipGraph_t), value :: graph
       type(hipGraphNode_t) :: pDependencies
       integer(c_long), value :: numDependencies
-      type(c_ptr), value :: nodeParams
+      type(hipExternalSemaphoreWaitNodeParams) :: nodeParams
       integer(c_int) :: GraphAddExternalSemaphoresWaitNode
       GraphAddExternalSemaphoresWaitNode = hipGraphAddExternalSemaphoresWaitNode_raw( &
         pGraphNode%ptr, graph%ptr, pDependencies%ptr, numDependencies, nodeParams)
@@ -17179,7 +17740,7 @@ contains
       type(hipGraph_t), value :: graph
       type(hipGraphNode_t) :: pDependencies
       integer(c_long), value :: numDependencies
-      type(c_ptr), value :: nodeParams
+      type(hipExternalSemaphoreSignalNodeParams) :: nodeParams
       integer(c_int) :: GraphAddExternalSemaphoresSignalNode
       GraphAddExternalSemaphoresSignalNode = hipGraphAddExternalSemaphoresSignalNode_raw( &
         pGraphNode%ptr, graph%ptr, pDependencies%ptr, numDependencies, nodeParams)
@@ -17191,7 +17752,7 @@ contains
       use hipfort_handles
       implicit none
       type(hipGraphNode_t), value :: hNode
-      type(c_ptr), value :: nodeParams
+      type(hipExternalSemaphoreSignalNodeParams) :: nodeParams
       integer(c_int) :: GraphExternalSemaphoresSignalNodeSetParams
       GraphExternalSemaphoresSignalNodeSetParams = hipGraphExternalSemaphoresSignalNodeSetParams_raw( &
         hNode%ptr, nodeParams)
@@ -17203,7 +17764,7 @@ contains
       use hipfort_handles
       implicit none
       type(hipGraphNode_t), value :: hNode
-      type(c_ptr), value :: nodeParams
+      type(hipExternalSemaphoreWaitNodeParams) :: nodeParams
       integer(c_int) :: GraphExternalSemaphoresWaitNodeSetParams
       GraphExternalSemaphoresWaitNodeSetParams = hipGraphExternalSemaphoresWaitNodeSetParams_raw( &
         hNode%ptr, nodeParams)
@@ -17215,7 +17776,7 @@ contains
       use hipfort_handles
       implicit none
       type(hipGraphNode_t), value :: hNode
-      type(c_ptr), value :: params_out
+      type(hipExternalSemaphoreSignalNodeParams) :: params_out
       integer(c_int) :: GraphExternalSemaphoresSignalNodeGetParams
       GraphExternalSemaphoresSignalNodeGetParams = hipGraphExternalSemaphoresSignalNodeGetParams_raw( &
         hNode%ptr, params_out)
@@ -17227,7 +17788,7 @@ contains
       use hipfort_handles
       implicit none
       type(hipGraphNode_t), value :: hNode
-      type(c_ptr), value :: params_out
+      type(hipExternalSemaphoreWaitNodeParams) :: params_out
       integer(c_int) :: GraphExternalSemaphoresWaitNodeGetParams
       GraphExternalSemaphoresWaitNodeGetParams = hipGraphExternalSemaphoresWaitNodeGetParams_raw( &
         hNode%ptr, params_out)
@@ -17240,7 +17801,7 @@ contains
       implicit none
       type(hipGraphExec_t), value :: hGraphExec
       type(hipGraphNode_t), value :: hNode
-      type(c_ptr), value :: nodeParams
+      type(hipExternalSemaphoreSignalNodeParams) :: nodeParams
       integer(c_int) :: GraphExecExternalSemaphoresSignalNodeSetParams
       GraphExecExternalSemaphoresSignalNodeSetParams = hipGraphExecExternalSemaphoresSignalNodeSetParams_raw( &
         hGraphExec%ptr, hNode%ptr, nodeParams)
@@ -17253,7 +17814,7 @@ contains
       implicit none
       type(hipGraphExec_t), value :: hGraphExec
       type(hipGraphNode_t), value :: hNode
-      type(c_ptr), value :: nodeParams
+      type(hipExternalSemaphoreWaitNodeParams) :: nodeParams
       integer(c_int) :: GraphExecExternalSemaphoresWaitNodeSetParams
       GraphExecExternalSemaphoresWaitNodeSetParams = hipGraphExecExternalSemaphoresWaitNodeSetParams_raw( &
         hGraphExec%ptr, hNode%ptr, nodeParams)
@@ -17265,7 +17826,7 @@ contains
       use hipfort_handles
       implicit none
       type(hipGraphNode_t), value :: hNode
-      type(c_ptr), value :: nodeParams
+      type(HIP_MEMCPY3D) :: nodeParams
       integer(c_int) :: DrvGraphMemcpyNodeGetParams
       DrvGraphMemcpyNodeGetParams = hipDrvGraphMemcpyNodeGetParams_raw(hNode%ptr, nodeParams)
     end function hipDrvGraphMemcpyNodeGetParams_typed
@@ -17276,7 +17837,7 @@ contains
       use hipfort_handles
       implicit none
       type(hipGraphNode_t), value :: hNode
-      type(c_ptr), value :: nodeParams
+      type(HIP_MEMCPY3D) :: nodeParams
       integer(c_int) :: DrvGraphMemcpyNodeSetParams
       DrvGraphMemcpyNodeSetParams = hipDrvGraphMemcpyNodeSetParams_raw(hNode%ptr, nodeParams)
     end function hipDrvGraphMemcpyNodeSetParams_typed
@@ -17290,7 +17851,7 @@ contains
       type(hipGraph_t), value :: hGraph
       type(hipGraphNode_t) :: dependencies
       integer(c_long), value :: numDependencies
-      type(c_ptr), value :: memsetParams
+      type(hipMemsetParams) :: memsetParams
       type(hipCtx_t), value :: ctx
       integer(c_int) :: DrvGraphAddMemsetNode
       DrvGraphAddMemsetNode = hipDrvGraphAddMemsetNode_raw(phGraphNode%ptr, hGraph%ptr, &
@@ -17319,7 +17880,7 @@ contains
       implicit none
       type(hipGraphExec_t), value :: hGraphExec
       type(hipGraphNode_t), value :: hNode
-      type(c_ptr), value :: copyParams
+      type(HIP_MEMCPY3D) :: copyParams
       type(hipCtx_t), value :: ctx
       integer(c_int) :: DrvGraphExecMemcpyNodeSetParams
       DrvGraphExecMemcpyNodeSetParams = hipDrvGraphExecMemcpyNodeSetParams_raw(hGraphExec%ptr, &
@@ -17333,7 +17894,7 @@ contains
       implicit none
       type(hipGraphExec_t), value :: hGraphExec
       type(hipGraphNode_t), value :: hNode
-      type(c_ptr), value :: memsetParams
+      type(hipMemsetParams) :: memsetParams
       type(hipCtx_t), value :: ctx
       integer(c_int) :: DrvGraphExecMemsetNodeSetParams
       DrvGraphExecMemsetNodeSetParams = hipDrvGraphExecMemsetNodeSetParams_raw(hGraphExec%ptr, &
@@ -17343,18 +17904,18 @@ contains
     function hipMemGetAccess_native(flags, location, ptr) result(MemGetAccess)
       use, intrinsic :: iso_c_binding
       implicit none
-      integer(c_int64_t), target :: flags(*)
-      type(c_ptr), value :: location
+      integer(c_int64_t), target :: flags(..)
+      type(hipMemLocation) :: location
       type(c_ptr), value :: ptr
       integer(c_int) :: MemGetAccess
-      MemGetAccess = hipMemGetAccess_raw(c_loc(flags(1)), location, ptr)
+      MemGetAccess = hipMemGetAccess_raw(c_loc(flags), location, ptr)
     end function hipMemGetAccess_native
 
     function hipMemMapArrayAsync_typed(mapInfoList, count, stream) result(MemMapArrayAsync)
       use, intrinsic :: iso_c_binding
       use hipfort_handles
       implicit none
-      type(c_ptr), value :: mapInfoList
+      type(hipArrayMapInfo) :: mapInfoList
       integer(c_int), value :: count
       type(hipStream_t), value :: stream
       integer(c_int) :: MemMapArrayAsync
@@ -17441,7 +18002,7 @@ contains
       use, intrinsic :: iso_c_binding
       use hipfort_handles
       implicit none
-      type(c_ptr), value :: p
+      type(hipMemcpy3DParms) :: p
       type(hipStream_t), value :: stream
       integer(c_int) :: Memcpy3DAsync_spt
       Memcpy3DAsync_spt = hipMemcpy3DAsync_spt_raw(p, stream%ptr)
@@ -17557,9 +18118,9 @@ contains
       use, intrinsic :: iso_c_binding
       implicit none
       type(c_ptr), value :: stream
-      integer(c_int), target :: priority(*)
+      integer(c_int), target :: priority(..)
       integer(c_int) :: StreamGetPriority_spt
-      StreamGetPriority_spt = hipStreamGetPriority_spt_raw(stream, c_loc(priority(1)))
+      StreamGetPriority_spt = hipStreamGetPriority_spt_raw(stream, c_loc(priority))
     end function hipStreamGetPriority_spt_native
 
     function hipStreamGetPriority_spt_typed(stream, priority) result(StreamGetPriority_spt)
@@ -17587,9 +18148,9 @@ contains
       use, intrinsic :: iso_c_binding
       implicit none
       type(c_ptr), value :: stream
-      integer(c_int), target :: flags(*)
+      integer(c_int), target :: flags(..)
       integer(c_int) :: StreamGetFlags_spt
-      StreamGetFlags_spt = hipStreamGetFlags_spt_raw(stream, c_loc(flags(1)))
+      StreamGetFlags_spt = hipStreamGetFlags_spt_raw(stream, c_loc(flags))
     end function hipStreamGetFlags_spt_native
 
     function hipStreamGetFlags_spt_typed(stream, flags) result(StreamGetFlags_spt)
@@ -17691,9 +18252,9 @@ contains
       use, intrinsic :: iso_c_binding
       implicit none
       type(c_ptr), value :: stream
-      integer(c_int), target :: pCaptureStatus(*)
+      integer(c_int), target :: pCaptureStatus(..)
       integer(c_int) :: StreamIsCapturing_spt
-      StreamIsCapturing_spt = hipStreamIsCapturing_spt_raw(stream, c_loc(pCaptureStatus(1)))
+      StreamIsCapturing_spt = hipStreamIsCapturing_spt_raw(stream, c_loc(pCaptureStatus))
     end function hipStreamIsCapturing_spt_native
 
     function hipStreamIsCapturing_spt_typed(stream, pCaptureStatus) result(StreamIsCapturing_spt)
@@ -17711,11 +18272,11 @@ contains
       use, intrinsic :: iso_c_binding
       implicit none
       type(c_ptr), value :: stream
-      integer(c_int), target :: pCaptureStatus(*)
-      integer(c_int64_t), target :: pId(*)
+      integer(c_int), target :: pCaptureStatus(..)
+      integer(c_int64_t), target :: pId(..)
       integer(c_int) :: StreamGetCaptureInfo_spt
-      StreamGetCaptureInfo_spt = hipStreamGetCaptureInfo_spt_raw(stream, c_loc(pCaptureStatus(1)), &
-        c_loc(pId(1)))
+      StreamGetCaptureInfo_spt = hipStreamGetCaptureInfo_spt_raw(stream, c_loc(pCaptureStatus), &
+        c_loc(pId))
     end function hipStreamGetCaptureInfo_spt_native
 
     function hipStreamGetCaptureInfo_spt_typed(stream, pCaptureStatus, pId) result( &
@@ -17735,14 +18296,14 @@ contains
       use, intrinsic :: iso_c_binding
       implicit none
       type(c_ptr), value :: stream
-      integer(c_int), target :: captureStatus_out(*)
-      integer(c_int64_t), target :: id_out(*)
+      integer(c_int), target :: captureStatus_out(..)
+      integer(c_int64_t), target :: id_out(..)
       type(c_ptr) :: graph_out
       type(c_ptr) :: dependencies_out
       type(c_ptr), value :: numDependencies_out
       integer(c_int) :: StreamGetCaptureInfo_v2_spt
       StreamGetCaptureInfo_v2_spt = hipStreamGetCaptureInfo_v2_spt_raw(stream, c_loc( &
-        captureStatus_out(1)), c_loc(id_out(1)), graph_out, dependencies_out, numDependencies_out)
+        captureStatus_out), c_loc(id_out), graph_out, dependencies_out, numDependencies_out)
     end function hipStreamGetCaptureInfo_v2_spt_native
 
     function hipStreamGetCaptureInfo_v2_spt_typed(stream, captureStatus_out, id_out, graph_out, &
@@ -17771,5 +18332,18 @@ contains
       integer(c_int) :: LaunchHostFunc_spt
       LaunchHostFunc_spt = hipLaunchHostFunc_spt_raw(stream%ptr, fn, userData)
     end function hipLaunchHostFunc_spt_typed
+
+    function hipGetDriverEntryPoint_spt_native(symbol, funcPtr, flags, status) result( &
+        GetDriverEntryPoint_spt)
+      use, intrinsic :: iso_c_binding
+      implicit none
+      type(c_ptr), value :: symbol
+      type(c_ptr) :: funcPtr
+      integer(c_int64_t), value :: flags
+      integer(c_int), target :: status(..)
+      integer(c_int) :: GetDriverEntryPoint_spt
+      GetDriverEntryPoint_spt = hipGetDriverEntryPoint_spt_raw(symbol, funcPtr, flags, c_loc( &
+        status))
+    end function hipGetDriverEntryPoint_spt_native
 
 end module hipfort

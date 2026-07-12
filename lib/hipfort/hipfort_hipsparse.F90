@@ -255,6 +255,31 @@ module hipfort_hipsparse
     module procedure hipsparseGetVersion_typed
   end interface hipsparseGetVersion
 
+  interface hipsparseGetGitRevision
+    !---------------------------------------------
+    ! hipsparseGetGitRevision
+    !---------------------------------------------
+    !> \ingroup aux_module
+    !> \brief Get the hipSPARSE git revision.
+    !>
+    !> \details
+    !> \p hipsparseGetGitRevision gets the hipSPARSE library git commit revision (SHA-1).
+    function hipsparseGetGitRevision_raw(handle, rev) &
+       result(GetGitRevision_raw) &
+#ifdef USE_CUDA_NAMES
+       bind(C, name="cusparseGetGitRevision")
+#else
+       bind(C, name="hipsparseGetGitRevision")
+#endif
+       import :: c_ptr, c_int
+       type(c_ptr), value :: handle
+       type(c_ptr), value :: rev
+       integer(c_int) :: GetGitRevision_raw
+    end function hipsparseGetGitRevision_raw
+
+    module procedure hipsparseGetGitRevision_typed
+  end interface hipsparseGetGitRevision
+
   interface hipsparseSetStream
     !---------------------------------------------
     ! hipsparseSetStream
@@ -2429,11 +2454,10 @@ module hipfort_hipsparse
        import :: c_ptr, c_int
        type(c_ptr), value :: handle
        type(c_ptr), value :: info
-       type(c_ptr), value :: position
+       integer(c_int) :: position
        integer(c_int) :: Xbsrsv2_zeroPivot_raw
     end function hipsparseXbsrsv2_zeroPivot_raw
 
-    module procedure hipsparseXbsrsv2_zeroPivot_native
     module procedure hipsparseXbsrsv2_zeroPivot_typed
   end interface hipsparseXbsrsv2_zeroPivot
 
@@ -2506,7 +2530,7 @@ module hipfort_hipsparse
        type(c_ptr), value :: bsrSortedColIndA
        integer(c_int), value :: blockDim
        type(c_ptr), value :: info
-       type(c_ptr), value :: pBufferSizeInBytes
+       integer(c_int) :: pBufferSizeInBytes
        integer(c_int) :: Sbsrsv2_bufferSize_raw
     end function hipsparseSbsrsv2_bufferSize_raw
 
@@ -2539,7 +2563,7 @@ module hipfort_hipsparse
        type(c_ptr), value :: bsrSortedColIndA
        integer(c_int), value :: blockDim
        type(c_ptr), value :: info
-       type(c_ptr), value :: pBufferSizeInBytes
+       integer(c_int) :: pBufferSizeInBytes
        integer(c_int) :: Dbsrsv2_bufferSize_raw
     end function hipsparseDbsrsv2_bufferSize_raw
 
@@ -2572,7 +2596,7 @@ module hipfort_hipsparse
        type(c_ptr), value :: bsrSortedColIndA
        integer(c_int), value :: blockDim
        type(c_ptr), value :: info
-       type(c_ptr), value :: pBufferSizeInBytes
+       integer(c_int) :: pBufferSizeInBytes
        integer(c_int) :: Cbsrsv2_bufferSize_raw
     end function hipsparseCbsrsv2_bufferSize_raw
 
@@ -2605,7 +2629,7 @@ module hipfort_hipsparse
        type(c_ptr), value :: bsrSortedColIndA
        integer(c_int), value :: blockDim
        type(c_ptr), value :: info
-       type(c_ptr), value :: pBufferSizeInBytes
+       integer(c_int) :: pBufferSizeInBytes
        integer(c_int) :: Zbsrsv2_bufferSize_raw
     end function hipsparseZbsrsv2_bufferSize_raw
 
@@ -3754,11 +3778,10 @@ module hipfort_hipsparse
        import :: c_ptr, c_int
        type(c_ptr), value :: handle
        type(c_ptr), value :: info
-       type(c_ptr), value :: position
+       integer(c_int) :: position
        integer(c_int) :: Xcsrsv2_zeroPivot_raw
     end function hipsparseXcsrsv2_zeroPivot_raw
 
-    module procedure hipsparseXcsrsv2_zeroPivot_native
     module procedure hipsparseXcsrsv2_zeroPivot_typed
   end interface hipsparseXcsrsv2_zeroPivot
 
@@ -3824,7 +3847,7 @@ module hipfort_hipsparse
        type(c_ptr), value :: csrSortedRowPtrA
        type(c_ptr), value :: csrSortedColIndA
        type(c_ptr), value :: info
-       type(c_ptr), value :: pBufferSizeInBytes
+       integer(c_int) :: pBufferSizeInBytes
        integer(c_int) :: Scsrsv2_bufferSize_raw
     end function hipsparseScsrsv2_bufferSize_raw
 
@@ -3855,7 +3878,7 @@ module hipfort_hipsparse
        type(c_ptr), value :: csrSortedRowPtrA
        type(c_ptr), value :: csrSortedColIndA
        type(c_ptr), value :: info
-       type(c_ptr), value :: pBufferSizeInBytes
+       integer(c_int) :: pBufferSizeInBytes
        integer(c_int) :: Dcsrsv2_bufferSize_raw
     end function hipsparseDcsrsv2_bufferSize_raw
 
@@ -3886,7 +3909,7 @@ module hipfort_hipsparse
        type(c_ptr), value :: csrSortedRowPtrA
        type(c_ptr), value :: csrSortedColIndA
        type(c_ptr), value :: info
-       type(c_ptr), value :: pBufferSizeInBytes
+       integer(c_int) :: pBufferSizeInBytes
        integer(c_int) :: Ccsrsv2_bufferSize_raw
     end function hipsparseCcsrsv2_bufferSize_raw
 
@@ -3917,7 +3940,7 @@ module hipfort_hipsparse
        type(c_ptr), value :: csrSortedRowPtrA
        type(c_ptr), value :: csrSortedColIndA
        type(c_ptr), value :: info
-       type(c_ptr), value :: pBufferSizeInBytes
+       integer(c_int) :: pBufferSizeInBytes
        integer(c_int) :: Zcsrsv2_bufferSize_raw
     end function hipsparseZcsrsv2_bufferSize_raw
 
@@ -5317,11 +5340,10 @@ module hipfort_hipsparse
        import :: c_ptr, c_int
        type(c_ptr), value :: handle
        type(c_ptr), value :: info
-       type(c_ptr), value :: position
+       integer(c_int) :: position
        integer(c_int) :: Xbsrsm2_zeroPivot_raw
     end function hipsparseXbsrsm2_zeroPivot_raw
 
-    module procedure hipsparseXbsrsm2_zeroPivot_native
     module procedure hipsparseXbsrsm2_zeroPivot_typed
   end interface hipsparseXbsrsm2_zeroPivot
 
@@ -5401,7 +5423,7 @@ module hipfort_hipsparse
        type(c_ptr), value :: bsrSortedColIndA
        integer(c_int), value :: blockDim
        type(c_ptr), value :: info
-       type(c_ptr), value :: pBufferSizeInBytes
+       integer(c_int) :: pBufferSizeInBytes
        integer(c_int) :: Sbsrsm2_bufferSize_raw
     end function hipsparseSbsrsm2_bufferSize_raw
 
@@ -5436,7 +5458,7 @@ module hipfort_hipsparse
        type(c_ptr), value :: bsrSortedColIndA
        integer(c_int), value :: blockDim
        type(c_ptr), value :: info
-       type(c_ptr), value :: pBufferSizeInBytes
+       integer(c_int) :: pBufferSizeInBytes
        integer(c_int) :: Dbsrsm2_bufferSize_raw
     end function hipsparseDbsrsm2_bufferSize_raw
 
@@ -5471,7 +5493,7 @@ module hipfort_hipsparse
        type(c_ptr), value :: bsrSortedColIndA
        integer(c_int), value :: blockDim
        type(c_ptr), value :: info
-       type(c_ptr), value :: pBufferSizeInBytes
+       integer(c_int) :: pBufferSizeInBytes
        integer(c_int) :: Cbsrsm2_bufferSize_raw
     end function hipsparseCbsrsm2_bufferSize_raw
 
@@ -5506,7 +5528,7 @@ module hipfort_hipsparse
        type(c_ptr), value :: bsrSortedColIndA
        integer(c_int), value :: blockDim
        type(c_ptr), value :: info
-       type(c_ptr), value :: pBufferSizeInBytes
+       integer(c_int) :: pBufferSizeInBytes
        integer(c_int) :: Zbsrsm2_bufferSize_raw
     end function hipsparseZbsrsm2_bufferSize_raw
 
@@ -6680,11 +6702,10 @@ module hipfort_hipsparse
        import :: c_ptr, c_int
        type(c_ptr), value :: handle
        type(c_ptr), value :: info
-       type(c_ptr), value :: position
+       integer(c_int) :: position
        integer(c_int) :: Xcsrsm2_zeroPivot_raw
     end function hipsparseXcsrsm2_zeroPivot_raw
 
-    module procedure hipsparseXcsrsm2_zeroPivot_native
     module procedure hipsparseXcsrsm2_zeroPivot_typed
   end interface hipsparseXcsrsm2_zeroPivot
 
@@ -7768,7 +7789,7 @@ module hipfort_hipsparse
        type(c_ptr), value :: csrColIndB
        type(c_ptr), value :: descrC
        type(c_ptr), value :: csrRowPtrC
-       type(c_ptr), value :: nnzTotalDevHostPtr
+       integer(c_int) :: nnzTotalDevHostPtr
        integer(c_int) :: XcsrgeamNnz_raw
     end function hipsparseXcsrgeamNnz_raw
 
@@ -8750,7 +8771,7 @@ module hipfort_hipsparse
        type(c_ptr), value :: csrColIndB
        type(c_ptr), value :: descrC
        type(c_ptr), value :: csrRowPtrC
-       type(c_ptr), value :: nnzTotalDevHostPtr
+       integer(c_int) :: nnzTotalDevHostPtr
        integer(c_int) :: XcsrgemmNnz_raw
     end function hipsparseXcsrgemmNnz_raw
 
@@ -9792,11 +9813,10 @@ module hipfort_hipsparse
        import :: c_ptr, c_int
        type(c_ptr), value :: handle
        type(c_ptr), value :: info
-       type(c_ptr), value :: position
+       integer(c_int) :: position
        integer(c_int) :: Xbsric02_zeroPivot_raw
     end function hipsparseXbsric02_zeroPivot_raw
 
-    module procedure hipsparseXbsric02_zeroPivot_native
     module procedure hipsparseXbsric02_zeroPivot_typed
   end interface hipsparseXbsric02_zeroPivot
 
@@ -9870,7 +9890,7 @@ module hipfort_hipsparse
        type(c_ptr), value :: bsrColIndA
        integer(c_int), value :: blockDim
        type(c_ptr), value :: info
-       type(c_ptr), value :: pBufferSizeInBytes
+       integer(c_int) :: pBufferSizeInBytes
        integer(c_int) :: Sbsric02_bufferSize_raw
     end function hipsparseSbsric02_bufferSize_raw
 
@@ -9901,7 +9921,7 @@ module hipfort_hipsparse
        type(c_ptr), value :: bsrColIndA
        integer(c_int), value :: blockDim
        type(c_ptr), value :: info
-       type(c_ptr), value :: pBufferSizeInBytes
+       integer(c_int) :: pBufferSizeInBytes
        integer(c_int) :: Dbsric02_bufferSize_raw
     end function hipsparseDbsric02_bufferSize_raw
 
@@ -9932,7 +9952,7 @@ module hipfort_hipsparse
        type(c_ptr), value :: bsrColIndA
        integer(c_int), value :: blockDim
        type(c_ptr), value :: info
-       type(c_ptr), value :: pBufferSizeInBytes
+       integer(c_int) :: pBufferSizeInBytes
        integer(c_int) :: Cbsric02_bufferSize_raw
     end function hipsparseCbsric02_bufferSize_raw
 
@@ -9963,7 +9983,7 @@ module hipfort_hipsparse
        type(c_ptr), value :: bsrColIndA
        integer(c_int), value :: blockDim
        type(c_ptr), value :: info
-       type(c_ptr), value :: pBufferSizeInBytes
+       integer(c_int) :: pBufferSizeInBytes
        integer(c_int) :: Zbsric02_bufferSize_raw
     end function hipsparseZbsric02_bufferSize_raw
 
@@ -10406,11 +10426,10 @@ module hipfort_hipsparse
        import :: c_ptr, c_int
        type(c_ptr), value :: handle
        type(c_ptr), value :: info
-       type(c_ptr), value :: position
+       integer(c_int) :: position
        integer(c_int) :: Xbsrilu02_zeroPivot_raw
     end function hipsparseXbsrilu02_zeroPivot_raw
 
-    module procedure hipsparseXbsrilu02_zeroPivot_native
     module procedure hipsparseXbsrilu02_zeroPivot_typed
   end interface hipsparseXbsrilu02_zeroPivot
 
@@ -10457,16 +10476,15 @@ module hipfort_hipsparse
 #else
        bind(C, name="hipsparseSbsrilu02_numericBoost")
 #endif
-       import :: c_ptr, c_int, c_double
+       import :: c_ptr, c_int, c_double, c_float
        type(c_ptr), value :: handle
        type(c_ptr), value :: info
        integer(c_int), value :: enable_boost
        real(c_double) :: tol
-       type(c_ptr), value :: boost_val
+       real(c_float) :: boost_val
        integer(c_int) :: Sbsrilu02_numericBoost_raw
     end function hipsparseSbsrilu02_numericBoost_raw
 
-    module procedure hipsparseSbsrilu02_numericBoost_native
     module procedure hipsparseSbsrilu02_numericBoost_typed
   end interface hipsparseSbsrilu02_numericBoost
 
@@ -10486,11 +10504,10 @@ module hipfort_hipsparse
        type(c_ptr), value :: info
        integer(c_int), value :: enable_boost
        real(c_double) :: tol
-       type(c_ptr), value :: boost_val
+       real(c_double) :: boost_val
        integer(c_int) :: Dbsrilu02_numericBoost_raw
     end function hipsparseDbsrilu02_numericBoost_raw
 
-    module procedure hipsparseDbsrilu02_numericBoost_native
     module procedure hipsparseDbsrilu02_numericBoost_typed
   end interface hipsparseDbsrilu02_numericBoost
 
@@ -10505,16 +10522,15 @@ module hipfort_hipsparse
 #else
        bind(C, name="hipsparseCbsrilu02_numericBoost")
 #endif
-       import :: c_ptr, c_int, c_double
+       import :: c_ptr, c_int, c_double, c_float_complex
        type(c_ptr), value :: handle
        type(c_ptr), value :: info
        integer(c_int), value :: enable_boost
        real(c_double) :: tol
-       type(c_ptr), value :: boost_val
+       complex(c_float_complex) :: boost_val
        integer(c_int) :: Cbsrilu02_numericBoost_raw
     end function hipsparseCbsrilu02_numericBoost_raw
 
-    module procedure hipsparseCbsrilu02_numericBoost_native
     module procedure hipsparseCbsrilu02_numericBoost_typed
   end interface hipsparseCbsrilu02_numericBoost
 
@@ -10529,16 +10545,15 @@ module hipfort_hipsparse
 #else
        bind(C, name="hipsparseZbsrilu02_numericBoost")
 #endif
-       import :: c_ptr, c_int, c_double
+       import :: c_ptr, c_int, c_double, c_double_complex
        type(c_ptr), value :: handle
        type(c_ptr), value :: info
        integer(c_int), value :: enable_boost
        real(c_double) :: tol
-       type(c_ptr), value :: boost_val
+       complex(c_double_complex) :: boost_val
        integer(c_int) :: Zbsrilu02_numericBoost_raw
     end function hipsparseZbsrilu02_numericBoost_raw
 
-    module procedure hipsparseZbsrilu02_numericBoost_native
     module procedure hipsparseZbsrilu02_numericBoost_typed
   end interface hipsparseZbsrilu02_numericBoost
 
@@ -10612,7 +10627,7 @@ module hipfort_hipsparse
        type(c_ptr), value :: bsrSortedColIndA
        integer(c_int), value :: blockDim
        type(c_ptr), value :: info
-       type(c_ptr), value :: pBufferSizeInBytes
+       integer(c_int) :: pBufferSizeInBytes
        integer(c_int) :: Sbsrilu02_bufferSize_raw
     end function hipsparseSbsrilu02_bufferSize_raw
 
@@ -10644,7 +10659,7 @@ module hipfort_hipsparse
        type(c_ptr), value :: bsrSortedColIndA
        integer(c_int), value :: blockDim
        type(c_ptr), value :: info
-       type(c_ptr), value :: pBufferSizeInBytes
+       integer(c_int) :: pBufferSizeInBytes
        integer(c_int) :: Dbsrilu02_bufferSize_raw
     end function hipsparseDbsrilu02_bufferSize_raw
 
@@ -10676,7 +10691,7 @@ module hipfort_hipsparse
        type(c_ptr), value :: bsrSortedColIndA
        integer(c_int), value :: blockDim
        type(c_ptr), value :: info
-       type(c_ptr), value :: pBufferSizeInBytes
+       integer(c_int) :: pBufferSizeInBytes
        integer(c_int) :: Cbsrilu02_bufferSize_raw
     end function hipsparseCbsrilu02_bufferSize_raw
 
@@ -10708,7 +10723,7 @@ module hipfort_hipsparse
        type(c_ptr), value :: bsrSortedColIndA
        integer(c_int), value :: blockDim
        type(c_ptr), value :: info
-       type(c_ptr), value :: pBufferSizeInBytes
+       integer(c_int) :: pBufferSizeInBytes
        integer(c_int) :: Zbsrilu02_bufferSize_raw
     end function hipsparseZbsrilu02_bufferSize_raw
 
@@ -11143,11 +11158,10 @@ module hipfort_hipsparse
        import :: c_ptr, c_int
        type(c_ptr), value :: handle
        type(c_ptr), value :: info
-       type(c_ptr), value :: position
+       integer(c_int) :: position
        integer(c_int) :: Xcsric02_zeroPivot_raw
     end function hipsparseXcsric02_zeroPivot_raw
 
-    module procedure hipsparseXcsric02_zeroPivot_native
     module procedure hipsparseXcsric02_zeroPivot_typed
   end interface hipsparseXcsric02_zeroPivot
 
@@ -11210,7 +11224,7 @@ module hipfort_hipsparse
        type(c_ptr), value :: csrSortedRowPtrA
        type(c_ptr), value :: csrSortedColIndA
        type(c_ptr), value :: info
-       type(c_ptr), value :: pBufferSizeInBytes
+       integer(c_int) :: pBufferSizeInBytes
        integer(c_int) :: Scsric02_bufferSize_raw
     end function hipsparseScsric02_bufferSize_raw
 
@@ -11240,7 +11254,7 @@ module hipfort_hipsparse
        type(c_ptr), value :: csrSortedRowPtrA
        type(c_ptr), value :: csrSortedColIndA
        type(c_ptr), value :: info
-       type(c_ptr), value :: pBufferSizeInBytes
+       integer(c_int) :: pBufferSizeInBytes
        integer(c_int) :: Dcsric02_bufferSize_raw
     end function hipsparseDcsric02_bufferSize_raw
 
@@ -11270,7 +11284,7 @@ module hipfort_hipsparse
        type(c_ptr), value :: csrSortedRowPtrA
        type(c_ptr), value :: csrSortedColIndA
        type(c_ptr), value :: info
-       type(c_ptr), value :: pBufferSizeInBytes
+       integer(c_int) :: pBufferSizeInBytes
        integer(c_int) :: Ccsric02_bufferSize_raw
     end function hipsparseCcsric02_bufferSize_raw
 
@@ -11300,7 +11314,7 @@ module hipfort_hipsparse
        type(c_ptr), value :: csrSortedRowPtrA
        type(c_ptr), value :: csrSortedColIndA
        type(c_ptr), value :: info
-       type(c_ptr), value :: pBufferSizeInBytes
+       integer(c_int) :: pBufferSizeInBytes
        integer(c_int) :: Zcsric02_bufferSize_raw
     end function hipsparseZcsric02_bufferSize_raw
 
@@ -11964,11 +11978,10 @@ module hipfort_hipsparse
        import :: c_ptr, c_int
        type(c_ptr), value :: handle
        type(c_ptr), value :: info
-       type(c_ptr), value :: position
+       integer(c_int) :: position
        integer(c_int) :: Xcsrilu02_zeroPivot_raw
     end function hipsparseXcsrilu02_zeroPivot_raw
 
-    module procedure hipsparseXcsrilu02_zeroPivot_native
     module procedure hipsparseXcsrilu02_zeroPivot_typed
   end interface hipsparseXcsrilu02_zeroPivot
 
@@ -12015,16 +12028,15 @@ module hipfort_hipsparse
 #else
        bind(C, name="hipsparseScsrilu02_numericBoost")
 #endif
-       import :: c_ptr, c_int, c_double
+       import :: c_ptr, c_int, c_double, c_float
        type(c_ptr), value :: handle
        type(c_ptr), value :: info
        integer(c_int), value :: enable_boost
        real(c_double) :: tol
-       type(c_ptr), value :: boost_val
+       real(c_float) :: boost_val
        integer(c_int) :: Scsrilu02_numericBoost_raw
     end function hipsparseScsrilu02_numericBoost_raw
 
-    module procedure hipsparseScsrilu02_numericBoost_native
     module procedure hipsparseScsrilu02_numericBoost_typed
   end interface hipsparseScsrilu02_numericBoost
 
@@ -12044,11 +12056,10 @@ module hipfort_hipsparse
        type(c_ptr), value :: info
        integer(c_int), value :: enable_boost
        real(c_double) :: tol
-       type(c_ptr), value :: boost_val
+       real(c_double) :: boost_val
        integer(c_int) :: Dcsrilu02_numericBoost_raw
     end function hipsparseDcsrilu02_numericBoost_raw
 
-    module procedure hipsparseDcsrilu02_numericBoost_native
     module procedure hipsparseDcsrilu02_numericBoost_typed
   end interface hipsparseDcsrilu02_numericBoost
 
@@ -12063,16 +12074,15 @@ module hipfort_hipsparse
 #else
        bind(C, name="hipsparseCcsrilu02_numericBoost")
 #endif
-       import :: c_ptr, c_int, c_double
+       import :: c_ptr, c_int, c_double, c_float_complex
        type(c_ptr), value :: handle
        type(c_ptr), value :: info
        integer(c_int), value :: enable_boost
        real(c_double) :: tol
-       type(c_ptr), value :: boost_val
+       complex(c_float_complex) :: boost_val
        integer(c_int) :: Ccsrilu02_numericBoost_raw
     end function hipsparseCcsrilu02_numericBoost_raw
 
-    module procedure hipsparseCcsrilu02_numericBoost_native
     module procedure hipsparseCcsrilu02_numericBoost_typed
   end interface hipsparseCcsrilu02_numericBoost
 
@@ -12087,16 +12097,15 @@ module hipfort_hipsparse
 #else
        bind(C, name="hipsparseZcsrilu02_numericBoost")
 #endif
-       import :: c_ptr, c_int, c_double
+       import :: c_ptr, c_int, c_double, c_double_complex
        type(c_ptr), value :: handle
        type(c_ptr), value :: info
        integer(c_int), value :: enable_boost
        real(c_double) :: tol
-       type(c_ptr), value :: boost_val
+       complex(c_double_complex) :: boost_val
        integer(c_int) :: Zcsrilu02_numericBoost_raw
     end function hipsparseZcsrilu02_numericBoost_raw
 
-    module procedure hipsparseZcsrilu02_numericBoost_native
     module procedure hipsparseZcsrilu02_numericBoost_typed
   end interface hipsparseZcsrilu02_numericBoost
 
@@ -12157,7 +12166,7 @@ module hipfort_hipsparse
        type(c_ptr), value :: csrSortedRowPtrA
        type(c_ptr), value :: csrSortedColIndA
        type(c_ptr), value :: info
-       type(c_ptr), value :: pBufferSizeInBytes
+       integer(c_int) :: pBufferSizeInBytes
        integer(c_int) :: Scsrilu02_bufferSize_raw
     end function hipsparseScsrilu02_bufferSize_raw
 
@@ -12187,7 +12196,7 @@ module hipfort_hipsparse
        type(c_ptr), value :: csrSortedRowPtrA
        type(c_ptr), value :: csrSortedColIndA
        type(c_ptr), value :: info
-       type(c_ptr), value :: pBufferSizeInBytes
+       integer(c_int) :: pBufferSizeInBytes
        integer(c_int) :: Dcsrilu02_bufferSize_raw
     end function hipsparseDcsrilu02_bufferSize_raw
 
@@ -12217,7 +12226,7 @@ module hipfort_hipsparse
        type(c_ptr), value :: csrSortedRowPtrA
        type(c_ptr), value :: csrSortedColIndA
        type(c_ptr), value :: info
-       type(c_ptr), value :: pBufferSizeInBytes
+       integer(c_int) :: pBufferSizeInBytes
        integer(c_int) :: Ccsrilu02_bufferSize_raw
     end function hipsparseCcsrilu02_bufferSize_raw
 
@@ -12247,7 +12256,7 @@ module hipfort_hipsparse
        type(c_ptr), value :: csrSortedRowPtrA
        type(c_ptr), value :: csrSortedColIndA
        type(c_ptr), value :: info
-       type(c_ptr), value :: pBufferSizeInBytes
+       integer(c_int) :: pBufferSizeInBytes
        integer(c_int) :: Zcsrilu02_bufferSize_raw
     end function hipsparseZcsrilu02_bufferSize_raw
 
@@ -20034,7 +20043,7 @@ module hipfort_hipsparse
        type(c_ptr), value :: A
        integer(c_int), value :: lda
        type(c_ptr), value :: nnzPerRowColumn
-       type(c_ptr), value :: nnzTotalDevHostPtr
+       integer(c_int) :: nnzTotalDevHostPtr
        integer(c_int) :: Snnz_raw
     end function hipsparseSnnz_raw
 
@@ -20063,7 +20072,7 @@ module hipfort_hipsparse
        type(c_ptr), value :: A
        integer(c_int), value :: lda
        type(c_ptr), value :: nnzPerRowColumn
-       type(c_ptr), value :: nnzTotalDevHostPtr
+       integer(c_int) :: nnzTotalDevHostPtr
        integer(c_int) :: Dnnz_raw
     end function hipsparseDnnz_raw
 
@@ -20092,7 +20101,7 @@ module hipfort_hipsparse
        type(c_ptr), value :: A
        integer(c_int), value :: lda
        type(c_ptr), value :: nnzPerRowColumn
-       type(c_ptr), value :: nnzTotalDevHostPtr
+       integer(c_int) :: nnzTotalDevHostPtr
        integer(c_int) :: Cnnz_raw
     end function hipsparseCnnz_raw
 
@@ -20121,7 +20130,7 @@ module hipfort_hipsparse
        type(c_ptr), value :: A
        integer(c_int), value :: lda
        type(c_ptr), value :: nnzPerRowColumn
-       type(c_ptr), value :: nnzTotalDevHostPtr
+       integer(c_int) :: nnzTotalDevHostPtr
        integer(c_int) :: Znnz_raw
     end function hipsparseZnnz_raw
 
@@ -23487,7 +23496,7 @@ module hipfort_hipsparse
     !---------------------------------------------
     ! hipsparseSpMatGetFormat
     !---------------------------------------------
-    function hipsparseSpMatGetFormat_raw(spMatDescr, format) &
+    function hipsparseSpMatGetFormat_raw(spMatDescr, format_) &
        result(SpMatGetFormat_raw) &
 #ifdef USE_CUDA_NAMES
        bind(C, name="cusparseSpMatGetFormat")
@@ -23496,7 +23505,7 @@ module hipfort_hipsparse
 #endif
        import :: c_ptr, c_int
        type(c_ptr), value :: spMatDescr
-       type(c_ptr), value :: format
+       type(c_ptr), value :: format_
        integer(c_int) :: SpMatGetFormat_raw
     end function hipsparseSpMatGetFormat_raw
 
@@ -25181,9 +25190,9 @@ contains
       use, intrinsic :: iso_c_binding
       implicit none
       type(c_ptr), value :: handle
-      integer(c_int), target :: version(*)
+      integer(c_int), target :: version(..)
       integer(c_int) :: GetVersion
-      GetVersion = hipsparseGetVersion_raw(handle, c_loc(version(1)))
+      GetVersion = hipsparseGetVersion_raw(handle, c_loc(version))
     end function hipsparseGetVersion_native
 
     function hipsparseGetVersion_typed(handle, version) result(GetVersion)
@@ -25195,6 +25204,16 @@ contains
       integer(c_int) :: GetVersion
       GetVersion = hipsparseGetVersion_raw(handle%ptr, version)
     end function hipsparseGetVersion_typed
+
+    function hipsparseGetGitRevision_typed(handle, rev) result(GetGitRevision)
+      use, intrinsic :: iso_c_binding
+      use hipfort_handles
+      implicit none
+      type(hipsparseHandle_t), value :: handle
+      type(c_ptr), value :: rev
+      integer(c_int) :: GetGitRevision
+      GetGitRevision = hipsparseGetGitRevision_raw(handle%ptr, rev)
+    end function hipsparseGetGitRevision_typed
 
     function hipsparseSetStream_typed(handle, streamId) result(SetStream)
       use, intrinsic :: iso_c_binding
@@ -25230,9 +25249,9 @@ contains
       use, intrinsic :: iso_c_binding
       implicit none
       type(c_ptr), value :: handle
-      integer(c_int), target :: mode(*)
+      integer(c_int), target :: mode(..)
       integer(c_int) :: GetPointerMode
-      GetPointerMode = hipsparseGetPointerMode_raw(handle, c_loc(mode(1)))
+      GetPointerMode = hipsparseGetPointerMode_raw(handle, c_loc(mode))
     end function hipsparseGetPointerMode_native
 
     function hipsparseGetPointerMode_typed(handle, mode) result(GetPointerMode)
@@ -25553,13 +25572,12 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: nnz
       real(c_float) :: alpha
-      real(c_float), target :: xVal(*)
-      integer(c_int), target :: xInd(*)
-      real(c_float), target :: y(*)
+      real(c_float), target :: xVal(..)
+      integer(c_int), target :: xInd(..)
+      real(c_float), target :: y(..)
       integer(c_int), value :: idxBase
       integer(c_int) :: Saxpyi
-      Saxpyi = hipsparseSaxpyi_raw(handle, nnz, alpha, c_loc(xVal(1)), c_loc(xInd(1)), c_loc(y( &
-        1)), idxBase)
+      Saxpyi = hipsparseSaxpyi_raw(handle, nnz, alpha, c_loc(xVal), c_loc(xInd), c_loc(y), idxBase)
     end function hipsparseSaxpyi_native
 
     function hipsparseSaxpyi_typed(handle, nnz, alpha, xVal, xInd, y, idxBase) result(Saxpyi)
@@ -25583,13 +25601,12 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: nnz
       real(c_double) :: alpha
-      real(c_double), target :: xVal(*)
-      integer(c_int), target :: xInd(*)
-      real(c_double), target :: y(*)
+      real(c_double), target :: xVal(..)
+      integer(c_int), target :: xInd(..)
+      real(c_double), target :: y(..)
       integer(c_int), value :: idxBase
       integer(c_int) :: Daxpyi
-      Daxpyi = hipsparseDaxpyi_raw(handle, nnz, alpha, c_loc(xVal(1)), c_loc(xInd(1)), c_loc(y( &
-        1)), idxBase)
+      Daxpyi = hipsparseDaxpyi_raw(handle, nnz, alpha, c_loc(xVal), c_loc(xInd), c_loc(y), idxBase)
     end function hipsparseDaxpyi_native
 
     function hipsparseDaxpyi_typed(handle, nnz, alpha, xVal, xInd, y, idxBase) result(Daxpyi)
@@ -25613,13 +25630,12 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: nnz
       complex(c_float_complex) :: alpha
-      complex(c_float_complex), target :: xVal(*)
-      integer(c_int), target :: xInd(*)
-      complex(c_float_complex), target :: y(*)
+      complex(c_float_complex), target :: xVal(..)
+      integer(c_int), target :: xInd(..)
+      complex(c_float_complex), target :: y(..)
       integer(c_int), value :: idxBase
       integer(c_int) :: Caxpyi
-      Caxpyi = hipsparseCaxpyi_raw(handle, nnz, alpha, c_loc(xVal(1)), c_loc(xInd(1)), c_loc(y( &
-        1)), idxBase)
+      Caxpyi = hipsparseCaxpyi_raw(handle, nnz, alpha, c_loc(xVal), c_loc(xInd), c_loc(y), idxBase)
     end function hipsparseCaxpyi_native
 
     function hipsparseCaxpyi_typed(handle, nnz, alpha, xVal, xInd, y, idxBase) result(Caxpyi)
@@ -25643,13 +25659,12 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: nnz
       complex(c_double_complex) :: alpha
-      complex(c_double_complex), target :: xVal(*)
-      integer(c_int), target :: xInd(*)
-      complex(c_double_complex), target :: y(*)
+      complex(c_double_complex), target :: xVal(..)
+      integer(c_int), target :: xInd(..)
+      complex(c_double_complex), target :: y(..)
       integer(c_int), value :: idxBase
       integer(c_int) :: Zaxpyi
-      Zaxpyi = hipsparseZaxpyi_raw(handle, nnz, alpha, c_loc(xVal(1)), c_loc(xInd(1)), c_loc(y( &
-        1)), idxBase)
+      Zaxpyi = hipsparseZaxpyi_raw(handle, nnz, alpha, c_loc(xVal), c_loc(xInd), c_loc(y), idxBase)
     end function hipsparseZaxpyi_native
 
     function hipsparseZaxpyi_typed(handle, nnz, alpha, xVal, xInd, y, idxBase) result(Zaxpyi)
@@ -25672,14 +25687,14 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_int), value :: nnz
-      complex(c_float_complex), target :: xVal(*)
-      integer(c_int), target :: xInd(*)
-      complex(c_float_complex), target :: y(*)
-      complex(c_float_complex), target :: result(*)
+      complex(c_float_complex), target :: xVal(..)
+      integer(c_int), target :: xInd(..)
+      complex(c_float_complex), target :: y(..)
+      complex(c_float_complex), target :: result(..)
       integer(c_int), value :: idxBase
       integer(c_int) :: Cdotci
-      Cdotci = hipsparseCdotci_raw(handle, nnz, c_loc(xVal(1)), c_loc(xInd(1)), c_loc(y(1)), &
-        c_loc(result(1)), idxBase)
+      Cdotci = hipsparseCdotci_raw(handle, nnz, c_loc(xVal), c_loc(xInd), c_loc(y), c_loc(result), &
+        idxBase)
     end function hipsparseCdotci_native
 
     function hipsparseCdotci_typed(handle, nnz, xVal, xInd, y, result, idxBase) result(Cdotci)
@@ -25702,14 +25717,14 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_int), value :: nnz
-      complex(c_double_complex), target :: xVal(*)
-      integer(c_int), target :: xInd(*)
-      complex(c_double_complex), target :: y(*)
-      complex(c_double_complex), target :: result(*)
+      complex(c_double_complex), target :: xVal(..)
+      integer(c_int), target :: xInd(..)
+      complex(c_double_complex), target :: y(..)
+      complex(c_double_complex), target :: result(..)
       integer(c_int), value :: idxBase
       integer(c_int) :: Zdotci
-      Zdotci = hipsparseZdotci_raw(handle, nnz, c_loc(xVal(1)), c_loc(xInd(1)), c_loc(y(1)), &
-        c_loc(result(1)), idxBase)
+      Zdotci = hipsparseZdotci_raw(handle, nnz, c_loc(xVal), c_loc(xInd), c_loc(y), c_loc(result), &
+        idxBase)
     end function hipsparseZdotci_native
 
     function hipsparseZdotci_typed(handle, nnz, xVal, xInd, y, result, idxBase) result(Zdotci)
@@ -25732,14 +25747,14 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_int), value :: nnz
-      real(c_float), target :: xVal(*)
-      integer(c_int), target :: xInd(*)
-      real(c_float), target :: y(*)
-      real(c_float), target :: result(*)
+      real(c_float), target :: xVal(..)
+      integer(c_int), target :: xInd(..)
+      real(c_float), target :: y(..)
+      real(c_float), target :: result(..)
       integer(c_int), value :: idxBase
       integer(c_int) :: Sdoti
-      Sdoti = hipsparseSdoti_raw(handle, nnz, c_loc(xVal(1)), c_loc(xInd(1)), c_loc(y(1)), c_loc( &
-        result(1)), idxBase)
+      Sdoti = hipsparseSdoti_raw(handle, nnz, c_loc(xVal), c_loc(xInd), c_loc(y), c_loc(result), &
+        idxBase)
     end function hipsparseSdoti_native
 
     function hipsparseSdoti_typed(handle, nnz, xVal, xInd, y, result, idxBase) result(Sdoti)
@@ -25762,14 +25777,14 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_int), value :: nnz
-      real(c_double), target :: xVal(*)
-      integer(c_int), target :: xInd(*)
-      real(c_double), target :: y(*)
-      real(c_double), target :: result(*)
+      real(c_double), target :: xVal(..)
+      integer(c_int), target :: xInd(..)
+      real(c_double), target :: y(..)
+      real(c_double), target :: result(..)
       integer(c_int), value :: idxBase
       integer(c_int) :: Ddoti
-      Ddoti = hipsparseDdoti_raw(handle, nnz, c_loc(xVal(1)), c_loc(xInd(1)), c_loc(y(1)), c_loc( &
-        result(1)), idxBase)
+      Ddoti = hipsparseDdoti_raw(handle, nnz, c_loc(xVal), c_loc(xInd), c_loc(y), c_loc(result), &
+        idxBase)
     end function hipsparseDdoti_native
 
     function hipsparseDdoti_typed(handle, nnz, xVal, xInd, y, result, idxBase) result(Ddoti)
@@ -25792,14 +25807,14 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_int), value :: nnz
-      complex(c_float_complex), target :: xVal(*)
-      integer(c_int), target :: xInd(*)
-      complex(c_float_complex), target :: y(*)
-      complex(c_float_complex), target :: result(*)
+      complex(c_float_complex), target :: xVal(..)
+      integer(c_int), target :: xInd(..)
+      complex(c_float_complex), target :: y(..)
+      complex(c_float_complex), target :: result(..)
       integer(c_int), value :: idxBase
       integer(c_int) :: Cdoti
-      Cdoti = hipsparseCdoti_raw(handle, nnz, c_loc(xVal(1)), c_loc(xInd(1)), c_loc(y(1)), c_loc( &
-        result(1)), idxBase)
+      Cdoti = hipsparseCdoti_raw(handle, nnz, c_loc(xVal), c_loc(xInd), c_loc(y), c_loc(result), &
+        idxBase)
     end function hipsparseCdoti_native
 
     function hipsparseCdoti_typed(handle, nnz, xVal, xInd, y, result, idxBase) result(Cdoti)
@@ -25822,14 +25837,14 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_int), value :: nnz
-      complex(c_double_complex), target :: xVal(*)
-      integer(c_int), target :: xInd(*)
-      complex(c_double_complex), target :: y(*)
-      complex(c_double_complex), target :: result(*)
+      complex(c_double_complex), target :: xVal(..)
+      integer(c_int), target :: xInd(..)
+      complex(c_double_complex), target :: y(..)
+      complex(c_double_complex), target :: result(..)
       integer(c_int), value :: idxBase
       integer(c_int) :: Zdoti
-      Zdoti = hipsparseZdoti_raw(handle, nnz, c_loc(xVal(1)), c_loc(xInd(1)), c_loc(y(1)), c_loc( &
-        result(1)), idxBase)
+      Zdoti = hipsparseZdoti_raw(handle, nnz, c_loc(xVal), c_loc(xInd), c_loc(y), c_loc(result), &
+        idxBase)
     end function hipsparseZdoti_native
 
     function hipsparseZdoti_typed(handle, nnz, xVal, xInd, y, result, idxBase) result(Zdoti)
@@ -25852,12 +25867,12 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_int), value :: nnz
-      real(c_float), target :: y(*)
-      real(c_float), target :: xVal(*)
-      integer(c_int), target :: xInd(*)
+      real(c_float), target :: y(..)
+      real(c_float), target :: xVal(..)
+      integer(c_int), target :: xInd(..)
       integer(c_int), value :: idxBase
       integer(c_int) :: Sgthr
-      Sgthr = hipsparseSgthr_raw(handle, nnz, c_loc(y(1)), c_loc(xVal(1)), c_loc(xInd(1)), idxBase)
+      Sgthr = hipsparseSgthr_raw(handle, nnz, c_loc(y), c_loc(xVal), c_loc(xInd), idxBase)
     end function hipsparseSgthr_native
 
     function hipsparseSgthr_typed(handle, nnz, y, xVal, xInd, idxBase) result(Sgthr)
@@ -25879,12 +25894,12 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_int), value :: nnz
-      real(c_double), target :: y(*)
-      real(c_double), target :: xVal(*)
-      integer(c_int), target :: xInd(*)
+      real(c_double), target :: y(..)
+      real(c_double), target :: xVal(..)
+      integer(c_int), target :: xInd(..)
       integer(c_int), value :: idxBase
       integer(c_int) :: Dgthr
-      Dgthr = hipsparseDgthr_raw(handle, nnz, c_loc(y(1)), c_loc(xVal(1)), c_loc(xInd(1)), idxBase)
+      Dgthr = hipsparseDgthr_raw(handle, nnz, c_loc(y), c_loc(xVal), c_loc(xInd), idxBase)
     end function hipsparseDgthr_native
 
     function hipsparseDgthr_typed(handle, nnz, y, xVal, xInd, idxBase) result(Dgthr)
@@ -25906,12 +25921,12 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_int), value :: nnz
-      complex(c_float_complex), target :: y(*)
-      complex(c_float_complex), target :: xVal(*)
-      integer(c_int), target :: xInd(*)
+      complex(c_float_complex), target :: y(..)
+      complex(c_float_complex), target :: xVal(..)
+      integer(c_int), target :: xInd(..)
       integer(c_int), value :: idxBase
       integer(c_int) :: Cgthr
-      Cgthr = hipsparseCgthr_raw(handle, nnz, c_loc(y(1)), c_loc(xVal(1)), c_loc(xInd(1)), idxBase)
+      Cgthr = hipsparseCgthr_raw(handle, nnz, c_loc(y), c_loc(xVal), c_loc(xInd), idxBase)
     end function hipsparseCgthr_native
 
     function hipsparseCgthr_typed(handle, nnz, y, xVal, xInd, idxBase) result(Cgthr)
@@ -25933,12 +25948,12 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_int), value :: nnz
-      complex(c_double_complex), target :: y(*)
-      complex(c_double_complex), target :: xVal(*)
-      integer(c_int), target :: xInd(*)
+      complex(c_double_complex), target :: y(..)
+      complex(c_double_complex), target :: xVal(..)
+      integer(c_int), target :: xInd(..)
       integer(c_int), value :: idxBase
       integer(c_int) :: Zgthr
-      Zgthr = hipsparseZgthr_raw(handle, nnz, c_loc(y(1)), c_loc(xVal(1)), c_loc(xInd(1)), idxBase)
+      Zgthr = hipsparseZgthr_raw(handle, nnz, c_loc(y), c_loc(xVal), c_loc(xInd), idxBase)
     end function hipsparseZgthr_native
 
     function hipsparseZgthr_typed(handle, nnz, y, xVal, xInd, idxBase) result(Zgthr)
@@ -25960,13 +25975,12 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_int), value :: nnz
-      real(c_float), target :: y(*)
-      real(c_float), target :: xVal(*)
-      integer(c_int), target :: xInd(*)
+      real(c_float), target :: y(..)
+      real(c_float), target :: xVal(..)
+      integer(c_int), target :: xInd(..)
       integer(c_int), value :: idxBase
       integer(c_int) :: Sgthrz
-      Sgthrz = hipsparseSgthrz_raw(handle, nnz, c_loc(y(1)), c_loc(xVal(1)), c_loc(xInd(1)), &
-        idxBase)
+      Sgthrz = hipsparseSgthrz_raw(handle, nnz, c_loc(y), c_loc(xVal), c_loc(xInd), idxBase)
     end function hipsparseSgthrz_native
 
     function hipsparseSgthrz_typed(handle, nnz, y, xVal, xInd, idxBase) result(Sgthrz)
@@ -25988,13 +26002,12 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_int), value :: nnz
-      real(c_double), target :: y(*)
-      real(c_double), target :: xVal(*)
-      integer(c_int), target :: xInd(*)
+      real(c_double), target :: y(..)
+      real(c_double), target :: xVal(..)
+      integer(c_int), target :: xInd(..)
       integer(c_int), value :: idxBase
       integer(c_int) :: Dgthrz
-      Dgthrz = hipsparseDgthrz_raw(handle, nnz, c_loc(y(1)), c_loc(xVal(1)), c_loc(xInd(1)), &
-        idxBase)
+      Dgthrz = hipsparseDgthrz_raw(handle, nnz, c_loc(y), c_loc(xVal), c_loc(xInd), idxBase)
     end function hipsparseDgthrz_native
 
     function hipsparseDgthrz_typed(handle, nnz, y, xVal, xInd, idxBase) result(Dgthrz)
@@ -26016,13 +26029,12 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_int), value :: nnz
-      complex(c_float_complex), target :: y(*)
-      complex(c_float_complex), target :: xVal(*)
-      integer(c_int), target :: xInd(*)
+      complex(c_float_complex), target :: y(..)
+      complex(c_float_complex), target :: xVal(..)
+      integer(c_int), target :: xInd(..)
       integer(c_int), value :: idxBase
       integer(c_int) :: Cgthrz
-      Cgthrz = hipsparseCgthrz_raw(handle, nnz, c_loc(y(1)), c_loc(xVal(1)), c_loc(xInd(1)), &
-        idxBase)
+      Cgthrz = hipsparseCgthrz_raw(handle, nnz, c_loc(y), c_loc(xVal), c_loc(xInd), idxBase)
     end function hipsparseCgthrz_native
 
     function hipsparseCgthrz_typed(handle, nnz, y, xVal, xInd, idxBase) result(Cgthrz)
@@ -26044,13 +26056,12 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_int), value :: nnz
-      complex(c_double_complex), target :: y(*)
-      complex(c_double_complex), target :: xVal(*)
-      integer(c_int), target :: xInd(*)
+      complex(c_double_complex), target :: y(..)
+      complex(c_double_complex), target :: xVal(..)
+      integer(c_int), target :: xInd(..)
       integer(c_int), value :: idxBase
       integer(c_int) :: Zgthrz
-      Zgthrz = hipsparseZgthrz_raw(handle, nnz, c_loc(y(1)), c_loc(xVal(1)), c_loc(xInd(1)), &
-        idxBase)
+      Zgthrz = hipsparseZgthrz_raw(handle, nnz, c_loc(y), c_loc(xVal), c_loc(xInd), idxBase)
     end function hipsparseZgthrz_native
 
     function hipsparseZgthrz_typed(handle, nnz, y, xVal, xInd, idxBase) result(Zgthrz)
@@ -26072,15 +26083,14 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_int), value :: nnz
-      real(c_float), target :: xVal(*)
-      integer(c_int), target :: xInd(*)
-      real(c_float), target :: y(*)
+      real(c_float), target :: xVal(..)
+      integer(c_int), target :: xInd(..)
+      real(c_float), target :: y(..)
       real(c_float) :: c
       real(c_float) :: s
       integer(c_int), value :: idxBase
       integer(c_int) :: Sroti
-      Sroti = hipsparseSroti_raw(handle, nnz, c_loc(xVal(1)), c_loc(xInd(1)), c_loc(y(1)), c, s, &
-        idxBase)
+      Sroti = hipsparseSroti_raw(handle, nnz, c_loc(xVal), c_loc(xInd), c_loc(y), c, s, idxBase)
     end function hipsparseSroti_native
 
     function hipsparseSroti_typed(handle, nnz, xVal, xInd, y, c, s, idxBase) result(Sroti)
@@ -26104,15 +26114,14 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_int), value :: nnz
-      real(c_double), target :: xVal(*)
-      integer(c_int), target :: xInd(*)
-      real(c_double), target :: y(*)
+      real(c_double), target :: xVal(..)
+      integer(c_int), target :: xInd(..)
+      real(c_double), target :: y(..)
       real(c_double) :: c
       real(c_double) :: s
       integer(c_int), value :: idxBase
       integer(c_int) :: Droti
-      Droti = hipsparseDroti_raw(handle, nnz, c_loc(xVal(1)), c_loc(xInd(1)), c_loc(y(1)), c, s, &
-        idxBase)
+      Droti = hipsparseDroti_raw(handle, nnz, c_loc(xVal), c_loc(xInd), c_loc(y), c, s, idxBase)
     end function hipsparseDroti_native
 
     function hipsparseDroti_typed(handle, nnz, xVal, xInd, y, c, s, idxBase) result(Droti)
@@ -26136,12 +26145,12 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_int), value :: nnz
-      real(c_float), target :: xVal(*)
-      integer(c_int), target :: xInd(*)
-      real(c_float), target :: y(*)
+      real(c_float), target :: xVal(..)
+      integer(c_int), target :: xInd(..)
+      real(c_float), target :: y(..)
       integer(c_int), value :: idxBase
       integer(c_int) :: Ssctr
-      Ssctr = hipsparseSsctr_raw(handle, nnz, c_loc(xVal(1)), c_loc(xInd(1)), c_loc(y(1)), idxBase)
+      Ssctr = hipsparseSsctr_raw(handle, nnz, c_loc(xVal), c_loc(xInd), c_loc(y), idxBase)
     end function hipsparseSsctr_native
 
     function hipsparseSsctr_typed(handle, nnz, xVal, xInd, y, idxBase) result(Ssctr)
@@ -26163,12 +26172,12 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_int), value :: nnz
-      real(c_double), target :: xVal(*)
-      integer(c_int), target :: xInd(*)
-      real(c_double), target :: y(*)
+      real(c_double), target :: xVal(..)
+      integer(c_int), target :: xInd(..)
+      real(c_double), target :: y(..)
       integer(c_int), value :: idxBase
       integer(c_int) :: Dsctr
-      Dsctr = hipsparseDsctr_raw(handle, nnz, c_loc(xVal(1)), c_loc(xInd(1)), c_loc(y(1)), idxBase)
+      Dsctr = hipsparseDsctr_raw(handle, nnz, c_loc(xVal), c_loc(xInd), c_loc(y), idxBase)
     end function hipsparseDsctr_native
 
     function hipsparseDsctr_typed(handle, nnz, xVal, xInd, y, idxBase) result(Dsctr)
@@ -26190,12 +26199,12 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_int), value :: nnz
-      complex(c_float_complex), target :: xVal(*)
-      integer(c_int), target :: xInd(*)
-      complex(c_float_complex), target :: y(*)
+      complex(c_float_complex), target :: xVal(..)
+      integer(c_int), target :: xInd(..)
+      complex(c_float_complex), target :: y(..)
       integer(c_int), value :: idxBase
       integer(c_int) :: Csctr
-      Csctr = hipsparseCsctr_raw(handle, nnz, c_loc(xVal(1)), c_loc(xInd(1)), c_loc(y(1)), idxBase)
+      Csctr = hipsparseCsctr_raw(handle, nnz, c_loc(xVal), c_loc(xInd), c_loc(y), idxBase)
     end function hipsparseCsctr_native
 
     function hipsparseCsctr_typed(handle, nnz, xVal, xInd, y, idxBase) result(Csctr)
@@ -26217,12 +26226,12 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_int), value :: nnz
-      complex(c_double_complex), target :: xVal(*)
-      integer(c_int), target :: xInd(*)
-      complex(c_double_complex), target :: y(*)
+      complex(c_double_complex), target :: xVal(..)
+      integer(c_int), target :: xInd(..)
+      complex(c_double_complex), target :: y(..)
       integer(c_int), value :: idxBase
       integer(c_int) :: Zsctr
-      Zsctr = hipsparseZsctr_raw(handle, nnz, c_loc(xVal(1)), c_loc(xInd(1)), c_loc(y(1)), idxBase)
+      Zsctr = hipsparseZsctr_raw(handle, nnz, c_loc(xVal), c_loc(xInd), c_loc(y), idxBase)
     end function hipsparseZsctr_native
 
     function hipsparseZsctr_typed(handle, nnz, xVal, xInd, y, idxBase) result(Zsctr)
@@ -26251,17 +26260,17 @@ contains
       integer(c_int), value :: nnzb
       real(c_float) :: alpha
       type(c_ptr), value :: descrA
-      real(c_float), target :: bsrSortedValA(*)
-      integer(c_int), target :: bsrSortedRowPtrA(*)
-      integer(c_int), target :: bsrSortedColIndA(*)
+      real(c_float), target :: bsrSortedValA(..)
+      integer(c_int), target :: bsrSortedRowPtrA(..)
+      integer(c_int), target :: bsrSortedColIndA(..)
       integer(c_int), value :: blockDim
-      real(c_float), target :: x(*)
+      real(c_float), target :: x(..)
       real(c_float) :: beta
-      real(c_float), target :: y(*)
+      real(c_float), target :: y(..)
       integer(c_int) :: Sbsrmv
       Sbsrmv = hipsparseSbsrmv_raw(handle, dirA, transA, mb, nb, nnzb, alpha, descrA, c_loc( &
-        bsrSortedValA(1)), c_loc(bsrSortedRowPtrA(1)), c_loc(bsrSortedColIndA(1)), blockDim, &
-        c_loc(x(1)), beta, c_loc(y(1)))
+        bsrSortedValA), c_loc(bsrSortedRowPtrA), c_loc(bsrSortedColIndA), blockDim, c_loc(x), &
+        beta, c_loc(y))
     end function hipsparseSbsrmv_native
 
     function hipsparseSbsrmv_typed(handle, dirA, transA, mb, nb, nnzb, alpha, descrA, &
@@ -26301,17 +26310,17 @@ contains
       integer(c_int), value :: nnzb
       real(c_double) :: alpha
       type(c_ptr), value :: descrA
-      real(c_double), target :: bsrSortedValA(*)
-      integer(c_int), target :: bsrSortedRowPtrA(*)
-      integer(c_int), target :: bsrSortedColIndA(*)
+      real(c_double), target :: bsrSortedValA(..)
+      integer(c_int), target :: bsrSortedRowPtrA(..)
+      integer(c_int), target :: bsrSortedColIndA(..)
       integer(c_int), value :: blockDim
-      real(c_double), target :: x(*)
+      real(c_double), target :: x(..)
       real(c_double) :: beta
-      real(c_double), target :: y(*)
+      real(c_double), target :: y(..)
       integer(c_int) :: Dbsrmv
       Dbsrmv = hipsparseDbsrmv_raw(handle, dirA, transA, mb, nb, nnzb, alpha, descrA, c_loc( &
-        bsrSortedValA(1)), c_loc(bsrSortedRowPtrA(1)), c_loc(bsrSortedColIndA(1)), blockDim, &
-        c_loc(x(1)), beta, c_loc(y(1)))
+        bsrSortedValA), c_loc(bsrSortedRowPtrA), c_loc(bsrSortedColIndA), blockDim, c_loc(x), &
+        beta, c_loc(y))
     end function hipsparseDbsrmv_native
 
     function hipsparseDbsrmv_typed(handle, dirA, transA, mb, nb, nnzb, alpha, descrA, &
@@ -26351,17 +26360,17 @@ contains
       integer(c_int), value :: nnzb
       complex(c_float_complex) :: alpha
       type(c_ptr), value :: descrA
-      complex(c_float_complex), target :: bsrSortedValA(*)
-      integer(c_int), target :: bsrSortedRowPtrA(*)
-      integer(c_int), target :: bsrSortedColIndA(*)
+      complex(c_float_complex), target :: bsrSortedValA(..)
+      integer(c_int), target :: bsrSortedRowPtrA(..)
+      integer(c_int), target :: bsrSortedColIndA(..)
       integer(c_int), value :: blockDim
-      complex(c_float_complex), target :: x(*)
+      complex(c_float_complex), target :: x(..)
       complex(c_float_complex) :: beta
-      complex(c_float_complex), target :: y(*)
+      complex(c_float_complex), target :: y(..)
       integer(c_int) :: Cbsrmv
       Cbsrmv = hipsparseCbsrmv_raw(handle, dirA, transA, mb, nb, nnzb, alpha, descrA, c_loc( &
-        bsrSortedValA(1)), c_loc(bsrSortedRowPtrA(1)), c_loc(bsrSortedColIndA(1)), blockDim, &
-        c_loc(x(1)), beta, c_loc(y(1)))
+        bsrSortedValA), c_loc(bsrSortedRowPtrA), c_loc(bsrSortedColIndA), blockDim, c_loc(x), &
+        beta, c_loc(y))
     end function hipsparseCbsrmv_native
 
     function hipsparseCbsrmv_typed(handle, dirA, transA, mb, nb, nnzb, alpha, descrA, &
@@ -26401,17 +26410,17 @@ contains
       integer(c_int), value :: nnzb
       complex(c_double_complex) :: alpha
       type(c_ptr), value :: descrA
-      complex(c_double_complex), target :: bsrSortedValA(*)
-      integer(c_int), target :: bsrSortedRowPtrA(*)
-      integer(c_int), target :: bsrSortedColIndA(*)
+      complex(c_double_complex), target :: bsrSortedValA(..)
+      integer(c_int), target :: bsrSortedRowPtrA(..)
+      integer(c_int), target :: bsrSortedColIndA(..)
       integer(c_int), value :: blockDim
-      complex(c_double_complex), target :: x(*)
+      complex(c_double_complex), target :: x(..)
       complex(c_double_complex) :: beta
-      complex(c_double_complex), target :: y(*)
+      complex(c_double_complex), target :: y(..)
       integer(c_int) :: Zbsrmv
       Zbsrmv = hipsparseZbsrmv_raw(handle, dirA, transA, mb, nb, nnzb, alpha, descrA, c_loc( &
-        bsrSortedValA(1)), c_loc(bsrSortedRowPtrA(1)), c_loc(bsrSortedColIndA(1)), blockDim, &
-        c_loc(x(1)), beta, c_loc(y(1)))
+        bsrSortedValA), c_loc(bsrSortedRowPtrA), c_loc(bsrSortedColIndA), blockDim, c_loc(x), &
+        beta, c_loc(y))
     end function hipsparseZbsrmv_native
 
     function hipsparseZbsrmv_typed(handle, dirA, transA, mb, nb, nnzb, alpha, descrA, &
@@ -26439,23 +26448,13 @@ contains
         bsrSortedValA, bsrSortedRowPtrA, bsrSortedColIndA, blockDim, x, beta, y)
     end function hipsparseZbsrmv_typed
 
-    function hipsparseXbsrsv2_zeroPivot_native(handle, info, position) result(Xbsrsv2_zeroPivot)
-      use, intrinsic :: iso_c_binding
-      implicit none
-      type(c_ptr), value :: handle
-      type(c_ptr), value :: info
-      integer(c_int), target :: position(*)
-      integer(c_int) :: Xbsrsv2_zeroPivot
-      Xbsrsv2_zeroPivot = hipsparseXbsrsv2_zeroPivot_raw(handle, info, c_loc(position(1)))
-    end function hipsparseXbsrsv2_zeroPivot_native
-
     function hipsparseXbsrsv2_zeroPivot_typed(handle, info, position) result(Xbsrsv2_zeroPivot)
       use, intrinsic :: iso_c_binding
       use hipfort_handles
       implicit none
       type(hipsparseHandle_t), value :: handle
       type(bsrsv2Info_t), value :: info
-      type(c_ptr), value :: position
+      integer(c_int) :: position
       integer(c_int) :: Xbsrsv2_zeroPivot
       Xbsrsv2_zeroPivot = hipsparseXbsrsv2_zeroPivot_raw(handle%ptr, info%ptr, position)
     end function hipsparseXbsrsv2_zeroPivot_typed
@@ -26471,16 +26470,16 @@ contains
       integer(c_int), value :: mb
       integer(c_int), value :: nnzb
       type(c_ptr), value :: descrA
-      real(c_float), target :: bsrSortedValA(*)
-      integer(c_int), target :: bsrSortedRowPtrA(*)
-      integer(c_int), target :: bsrSortedColIndA(*)
+      real(c_float), target :: bsrSortedValA(..)
+      integer(c_int), target :: bsrSortedRowPtrA(..)
+      integer(c_int), target :: bsrSortedColIndA(..)
       integer(c_int), value :: blockDim
       type(c_ptr), value :: info
-      integer(c_int), target :: pBufferSizeInBytes(*)
+      integer(c_int) :: pBufferSizeInBytes
       integer(c_int) :: Sbsrsv2_bufferSize
       Sbsrsv2_bufferSize = hipsparseSbsrsv2_bufferSize_raw(handle, dirA, transA, mb, nnzb, descrA, &
-        c_loc(bsrSortedValA(1)), c_loc(bsrSortedRowPtrA(1)), c_loc(bsrSortedColIndA(1)), blockDim, &
-        info, c_loc(pBufferSizeInBytes(1)))
+        c_loc(bsrSortedValA), c_loc(bsrSortedRowPtrA), c_loc(bsrSortedColIndA), blockDim, info, &
+        pBufferSizeInBytes)
     end function hipsparseSbsrsv2_bufferSize_native
 
     function hipsparseSbsrsv2_bufferSize_typed(handle, dirA, transA, mb, nnzb, descrA, &
@@ -26500,7 +26499,7 @@ contains
       type(c_ptr), value :: bsrSortedColIndA
       integer(c_int), value :: blockDim
       type(bsrsv2Info_t), value :: info
-      type(c_ptr), value :: pBufferSizeInBytes
+      integer(c_int) :: pBufferSizeInBytes
       integer(c_int) :: Sbsrsv2_bufferSize
       Sbsrsv2_bufferSize = hipsparseSbsrsv2_bufferSize_raw(handle%ptr, dirA, transA, mb, nnzb, &
         descrA%ptr, bsrSortedValA, bsrSortedRowPtrA, bsrSortedColIndA, blockDim, info%ptr, &
@@ -26518,16 +26517,16 @@ contains
       integer(c_int), value :: mb
       integer(c_int), value :: nnzb
       type(c_ptr), value :: descrA
-      real(c_double), target :: bsrSortedValA(*)
-      integer(c_int), target :: bsrSortedRowPtrA(*)
-      integer(c_int), target :: bsrSortedColIndA(*)
+      real(c_double), target :: bsrSortedValA(..)
+      integer(c_int), target :: bsrSortedRowPtrA(..)
+      integer(c_int), target :: bsrSortedColIndA(..)
       integer(c_int), value :: blockDim
       type(c_ptr), value :: info
-      integer(c_int), target :: pBufferSizeInBytes(*)
+      integer(c_int) :: pBufferSizeInBytes
       integer(c_int) :: Dbsrsv2_bufferSize
       Dbsrsv2_bufferSize = hipsparseDbsrsv2_bufferSize_raw(handle, dirA, transA, mb, nnzb, descrA, &
-        c_loc(bsrSortedValA(1)), c_loc(bsrSortedRowPtrA(1)), c_loc(bsrSortedColIndA(1)), blockDim, &
-        info, c_loc(pBufferSizeInBytes(1)))
+        c_loc(bsrSortedValA), c_loc(bsrSortedRowPtrA), c_loc(bsrSortedColIndA), blockDim, info, &
+        pBufferSizeInBytes)
     end function hipsparseDbsrsv2_bufferSize_native
 
     function hipsparseDbsrsv2_bufferSize_typed(handle, dirA, transA, mb, nnzb, descrA, &
@@ -26547,7 +26546,7 @@ contains
       type(c_ptr), value :: bsrSortedColIndA
       integer(c_int), value :: blockDim
       type(bsrsv2Info_t), value :: info
-      type(c_ptr), value :: pBufferSizeInBytes
+      integer(c_int) :: pBufferSizeInBytes
       integer(c_int) :: Dbsrsv2_bufferSize
       Dbsrsv2_bufferSize = hipsparseDbsrsv2_bufferSize_raw(handle%ptr, dirA, transA, mb, nnzb, &
         descrA%ptr, bsrSortedValA, bsrSortedRowPtrA, bsrSortedColIndA, blockDim, info%ptr, &
@@ -26565,16 +26564,16 @@ contains
       integer(c_int), value :: mb
       integer(c_int), value :: nnzb
       type(c_ptr), value :: descrA
-      complex(c_float_complex), target :: bsrSortedValA(*)
-      integer(c_int), target :: bsrSortedRowPtrA(*)
-      integer(c_int), target :: bsrSortedColIndA(*)
+      complex(c_float_complex), target :: bsrSortedValA(..)
+      integer(c_int), target :: bsrSortedRowPtrA(..)
+      integer(c_int), target :: bsrSortedColIndA(..)
       integer(c_int), value :: blockDim
       type(c_ptr), value :: info
-      integer(c_int), target :: pBufferSizeInBytes(*)
+      integer(c_int) :: pBufferSizeInBytes
       integer(c_int) :: Cbsrsv2_bufferSize
       Cbsrsv2_bufferSize = hipsparseCbsrsv2_bufferSize_raw(handle, dirA, transA, mb, nnzb, descrA, &
-        c_loc(bsrSortedValA(1)), c_loc(bsrSortedRowPtrA(1)), c_loc(bsrSortedColIndA(1)), blockDim, &
-        info, c_loc(pBufferSizeInBytes(1)))
+        c_loc(bsrSortedValA), c_loc(bsrSortedRowPtrA), c_loc(bsrSortedColIndA), blockDim, info, &
+        pBufferSizeInBytes)
     end function hipsparseCbsrsv2_bufferSize_native
 
     function hipsparseCbsrsv2_bufferSize_typed(handle, dirA, transA, mb, nnzb, descrA, &
@@ -26594,7 +26593,7 @@ contains
       type(c_ptr), value :: bsrSortedColIndA
       integer(c_int), value :: blockDim
       type(bsrsv2Info_t), value :: info
-      type(c_ptr), value :: pBufferSizeInBytes
+      integer(c_int) :: pBufferSizeInBytes
       integer(c_int) :: Cbsrsv2_bufferSize
       Cbsrsv2_bufferSize = hipsparseCbsrsv2_bufferSize_raw(handle%ptr, dirA, transA, mb, nnzb, &
         descrA%ptr, bsrSortedValA, bsrSortedRowPtrA, bsrSortedColIndA, blockDim, info%ptr, &
@@ -26612,16 +26611,16 @@ contains
       integer(c_int), value :: mb
       integer(c_int), value :: nnzb
       type(c_ptr), value :: descrA
-      complex(c_double_complex), target :: bsrSortedValA(*)
-      integer(c_int), target :: bsrSortedRowPtrA(*)
-      integer(c_int), target :: bsrSortedColIndA(*)
+      complex(c_double_complex), target :: bsrSortedValA(..)
+      integer(c_int), target :: bsrSortedRowPtrA(..)
+      integer(c_int), target :: bsrSortedColIndA(..)
       integer(c_int), value :: blockDim
       type(c_ptr), value :: info
-      integer(c_int), target :: pBufferSizeInBytes(*)
+      integer(c_int) :: pBufferSizeInBytes
       integer(c_int) :: Zbsrsv2_bufferSize
       Zbsrsv2_bufferSize = hipsparseZbsrsv2_bufferSize_raw(handle, dirA, transA, mb, nnzb, descrA, &
-        c_loc(bsrSortedValA(1)), c_loc(bsrSortedRowPtrA(1)), c_loc(bsrSortedColIndA(1)), blockDim, &
-        info, c_loc(pBufferSizeInBytes(1)))
+        c_loc(bsrSortedValA), c_loc(bsrSortedRowPtrA), c_loc(bsrSortedColIndA), blockDim, info, &
+        pBufferSizeInBytes)
     end function hipsparseZbsrsv2_bufferSize_native
 
     function hipsparseZbsrsv2_bufferSize_typed(handle, dirA, transA, mb, nnzb, descrA, &
@@ -26641,7 +26640,7 @@ contains
       type(c_ptr), value :: bsrSortedColIndA
       integer(c_int), value :: blockDim
       type(bsrsv2Info_t), value :: info
-      type(c_ptr), value :: pBufferSizeInBytes
+      integer(c_int) :: pBufferSizeInBytes
       integer(c_int) :: Zbsrsv2_bufferSize
       Zbsrsv2_bufferSize = hipsparseZbsrsv2_bufferSize_raw(handle%ptr, dirA, transA, mb, nnzb, &
         descrA%ptr, bsrSortedValA, bsrSortedRowPtrA, bsrSortedColIndA, blockDim, info%ptr, &
@@ -26659,16 +26658,16 @@ contains
       integer(c_int), value :: mb
       integer(c_int), value :: nnzb
       type(c_ptr), value :: descrA
-      real(c_float), target :: bsrSortedValA(*)
-      integer(c_int), target :: bsrSortedRowPtrA(*)
-      integer(c_int), target :: bsrSortedColIndA(*)
+      real(c_float), target :: bsrSortedValA(..)
+      integer(c_int), target :: bsrSortedRowPtrA(..)
+      integer(c_int), target :: bsrSortedColIndA(..)
       integer(c_int), value :: blockDim
       type(c_ptr), value :: info
       type(c_ptr), value :: pBufferSizeInBytes
       integer(c_int) :: Sbsrsv2_bufferSizeExt
       Sbsrsv2_bufferSizeExt = hipsparseSbsrsv2_bufferSizeExt_raw(handle, dirA, transA, mb, nnzb, &
-        descrA, c_loc(bsrSortedValA(1)), c_loc(bsrSortedRowPtrA(1)), c_loc(bsrSortedColIndA(1)), &
-        blockDim, info, pBufferSizeInBytes)
+        descrA, c_loc(bsrSortedValA), c_loc(bsrSortedRowPtrA), c_loc(bsrSortedColIndA), blockDim, &
+        info, pBufferSizeInBytes)
     end function hipsparseSbsrsv2_bufferSizeExt_native
 
     function hipsparseSbsrsv2_bufferSizeExt_typed(handle, dirA, transA, mb, nnzb, descrA, &
@@ -26706,16 +26705,16 @@ contains
       integer(c_int), value :: mb
       integer(c_int), value :: nnzb
       type(c_ptr), value :: descrA
-      real(c_double), target :: bsrSortedValA(*)
-      integer(c_int), target :: bsrSortedRowPtrA(*)
-      integer(c_int), target :: bsrSortedColIndA(*)
+      real(c_double), target :: bsrSortedValA(..)
+      integer(c_int), target :: bsrSortedRowPtrA(..)
+      integer(c_int), target :: bsrSortedColIndA(..)
       integer(c_int), value :: blockDim
       type(c_ptr), value :: info
       type(c_ptr), value :: pBufferSizeInBytes
       integer(c_int) :: Dbsrsv2_bufferSizeExt
       Dbsrsv2_bufferSizeExt = hipsparseDbsrsv2_bufferSizeExt_raw(handle, dirA, transA, mb, nnzb, &
-        descrA, c_loc(bsrSortedValA(1)), c_loc(bsrSortedRowPtrA(1)), c_loc(bsrSortedColIndA(1)), &
-        blockDim, info, pBufferSizeInBytes)
+        descrA, c_loc(bsrSortedValA), c_loc(bsrSortedRowPtrA), c_loc(bsrSortedColIndA), blockDim, &
+        info, pBufferSizeInBytes)
     end function hipsparseDbsrsv2_bufferSizeExt_native
 
     function hipsparseDbsrsv2_bufferSizeExt_typed(handle, dirA, transA, mb, nnzb, descrA, &
@@ -26753,16 +26752,16 @@ contains
       integer(c_int), value :: mb
       integer(c_int), value :: nnzb
       type(c_ptr), value :: descrA
-      complex(c_float_complex), target :: bsrSortedValA(*)
-      integer(c_int), target :: bsrSortedRowPtrA(*)
-      integer(c_int), target :: bsrSortedColIndA(*)
+      complex(c_float_complex), target :: bsrSortedValA(..)
+      integer(c_int), target :: bsrSortedRowPtrA(..)
+      integer(c_int), target :: bsrSortedColIndA(..)
       integer(c_int), value :: blockDim
       type(c_ptr), value :: info
       type(c_ptr), value :: pBufferSizeInBytes
       integer(c_int) :: Cbsrsv2_bufferSizeExt
       Cbsrsv2_bufferSizeExt = hipsparseCbsrsv2_bufferSizeExt_raw(handle, dirA, transA, mb, nnzb, &
-        descrA, c_loc(bsrSortedValA(1)), c_loc(bsrSortedRowPtrA(1)), c_loc(bsrSortedColIndA(1)), &
-        blockDim, info, pBufferSizeInBytes)
+        descrA, c_loc(bsrSortedValA), c_loc(bsrSortedRowPtrA), c_loc(bsrSortedColIndA), blockDim, &
+        info, pBufferSizeInBytes)
     end function hipsparseCbsrsv2_bufferSizeExt_native
 
     function hipsparseCbsrsv2_bufferSizeExt_typed(handle, dirA, transA, mb, nnzb, descrA, &
@@ -26800,16 +26799,16 @@ contains
       integer(c_int), value :: mb
       integer(c_int), value :: nnzb
       type(c_ptr), value :: descrA
-      complex(c_double_complex), target :: bsrSortedValA(*)
-      integer(c_int), target :: bsrSortedRowPtrA(*)
-      integer(c_int), target :: bsrSortedColIndA(*)
+      complex(c_double_complex), target :: bsrSortedValA(..)
+      integer(c_int), target :: bsrSortedRowPtrA(..)
+      integer(c_int), target :: bsrSortedColIndA(..)
       integer(c_int), value :: blockDim
       type(c_ptr), value :: info
       type(c_ptr), value :: pBufferSizeInBytes
       integer(c_int) :: Zbsrsv2_bufferSizeExt
       Zbsrsv2_bufferSizeExt = hipsparseZbsrsv2_bufferSizeExt_raw(handle, dirA, transA, mb, nnzb, &
-        descrA, c_loc(bsrSortedValA(1)), c_loc(bsrSortedRowPtrA(1)), c_loc(bsrSortedColIndA(1)), &
-        blockDim, info, pBufferSizeInBytes)
+        descrA, c_loc(bsrSortedValA), c_loc(bsrSortedRowPtrA), c_loc(bsrSortedColIndA), blockDim, &
+        info, pBufferSizeInBytes)
     end function hipsparseZbsrsv2_bufferSizeExt_native
 
     function hipsparseZbsrsv2_bufferSizeExt_typed(handle, dirA, transA, mb, nnzb, descrA, &
@@ -26847,17 +26846,17 @@ contains
       integer(c_int), value :: mb
       integer(c_int), value :: nnzb
       type(c_ptr), value :: descrA
-      real(c_float), target :: bsrSortedValA(*)
-      integer(c_int), target :: bsrSortedRowPtrA(*)
-      integer(c_int), target :: bsrSortedColIndA(*)
+      real(c_float), target :: bsrSortedValA(..)
+      integer(c_int), target :: bsrSortedRowPtrA(..)
+      integer(c_int), target :: bsrSortedColIndA(..)
       integer(c_int), value :: blockDim
       type(c_ptr), value :: info
       integer(c_int), value :: policy
       type(c_ptr), value :: pBuffer
       integer(c_int) :: Sbsrsv2_analysis
       Sbsrsv2_analysis = hipsparseSbsrsv2_analysis_raw(handle, dirA, transA, mb, nnzb, descrA, &
-        c_loc(bsrSortedValA(1)), c_loc(bsrSortedRowPtrA(1)), c_loc(bsrSortedColIndA(1)), blockDim, &
-        info, policy, pBuffer)
+        c_loc(bsrSortedValA), c_loc(bsrSortedRowPtrA), c_loc(bsrSortedColIndA), blockDim, info, &
+        policy, pBuffer)
     end function hipsparseSbsrsv2_analysis_native
 
     function hipsparseSbsrsv2_analysis_typed(handle, dirA, transA, mb, nnzb, descrA, &
@@ -26896,17 +26895,17 @@ contains
       integer(c_int), value :: mb
       integer(c_int), value :: nnzb
       type(c_ptr), value :: descrA
-      real(c_double), target :: bsrSortedValA(*)
-      integer(c_int), target :: bsrSortedRowPtrA(*)
-      integer(c_int), target :: bsrSortedColIndA(*)
+      real(c_double), target :: bsrSortedValA(..)
+      integer(c_int), target :: bsrSortedRowPtrA(..)
+      integer(c_int), target :: bsrSortedColIndA(..)
       integer(c_int), value :: blockDim
       type(c_ptr), value :: info
       integer(c_int), value :: policy
       type(c_ptr), value :: pBuffer
       integer(c_int) :: Dbsrsv2_analysis
       Dbsrsv2_analysis = hipsparseDbsrsv2_analysis_raw(handle, dirA, transA, mb, nnzb, descrA, &
-        c_loc(bsrSortedValA(1)), c_loc(bsrSortedRowPtrA(1)), c_loc(bsrSortedColIndA(1)), blockDim, &
-        info, policy, pBuffer)
+        c_loc(bsrSortedValA), c_loc(bsrSortedRowPtrA), c_loc(bsrSortedColIndA), blockDim, info, &
+        policy, pBuffer)
     end function hipsparseDbsrsv2_analysis_native
 
     function hipsparseDbsrsv2_analysis_typed(handle, dirA, transA, mb, nnzb, descrA, &
@@ -26945,17 +26944,17 @@ contains
       integer(c_int), value :: mb
       integer(c_int), value :: nnzb
       type(c_ptr), value :: descrA
-      complex(c_float_complex), target :: bsrSortedValA(*)
-      integer(c_int), target :: bsrSortedRowPtrA(*)
-      integer(c_int), target :: bsrSortedColIndA(*)
+      complex(c_float_complex), target :: bsrSortedValA(..)
+      integer(c_int), target :: bsrSortedRowPtrA(..)
+      integer(c_int), target :: bsrSortedColIndA(..)
       integer(c_int), value :: blockDim
       type(c_ptr), value :: info
       integer(c_int), value :: policy
       type(c_ptr), value :: pBuffer
       integer(c_int) :: Cbsrsv2_analysis
       Cbsrsv2_analysis = hipsparseCbsrsv2_analysis_raw(handle, dirA, transA, mb, nnzb, descrA, &
-        c_loc(bsrSortedValA(1)), c_loc(bsrSortedRowPtrA(1)), c_loc(bsrSortedColIndA(1)), blockDim, &
-        info, policy, pBuffer)
+        c_loc(bsrSortedValA), c_loc(bsrSortedRowPtrA), c_loc(bsrSortedColIndA), blockDim, info, &
+        policy, pBuffer)
     end function hipsparseCbsrsv2_analysis_native
 
     function hipsparseCbsrsv2_analysis_typed(handle, dirA, transA, mb, nnzb, descrA, &
@@ -26994,17 +26993,17 @@ contains
       integer(c_int), value :: mb
       integer(c_int), value :: nnzb
       type(c_ptr), value :: descrA
-      complex(c_double_complex), target :: bsrSortedValA(*)
-      integer(c_int), target :: bsrSortedRowPtrA(*)
-      integer(c_int), target :: bsrSortedColIndA(*)
+      complex(c_double_complex), target :: bsrSortedValA(..)
+      integer(c_int), target :: bsrSortedRowPtrA(..)
+      integer(c_int), target :: bsrSortedColIndA(..)
       integer(c_int), value :: blockDim
       type(c_ptr), value :: info
       integer(c_int), value :: policy
       type(c_ptr), value :: pBuffer
       integer(c_int) :: Zbsrsv2_analysis
       Zbsrsv2_analysis = hipsparseZbsrsv2_analysis_raw(handle, dirA, transA, mb, nnzb, descrA, &
-        c_loc(bsrSortedValA(1)), c_loc(bsrSortedRowPtrA(1)), c_loc(bsrSortedColIndA(1)), blockDim, &
-        info, policy, pBuffer)
+        c_loc(bsrSortedValA), c_loc(bsrSortedRowPtrA), c_loc(bsrSortedColIndA), blockDim, info, &
+        policy, pBuffer)
     end function hipsparseZbsrsv2_analysis_native
 
     function hipsparseZbsrsv2_analysis_typed(handle, dirA, transA, mb, nnzb, descrA, &
@@ -27044,19 +27043,19 @@ contains
       integer(c_int), value :: nnzb
       real(c_float) :: alpha
       type(c_ptr), value :: descrA
-      real(c_float), target :: bsrSortedValA(*)
-      integer(c_int), target :: bsrSortedRowPtrA(*)
-      integer(c_int), target :: bsrSortedColIndA(*)
+      real(c_float), target :: bsrSortedValA(..)
+      integer(c_int), target :: bsrSortedRowPtrA(..)
+      integer(c_int), target :: bsrSortedColIndA(..)
       integer(c_int), value :: blockDim
       type(c_ptr), value :: info
-      real(c_float), target :: f(*)
-      real(c_float), target :: x(*)
+      real(c_float), target :: f(..)
+      real(c_float), target :: x(..)
       integer(c_int), value :: policy
       type(c_ptr), value :: pBuffer
       integer(c_int) :: Sbsrsv2_solve
       Sbsrsv2_solve = hipsparseSbsrsv2_solve_raw(handle, dirA, transA, mb, nnzb, alpha, descrA, &
-        c_loc(bsrSortedValA(1)), c_loc(bsrSortedRowPtrA(1)), c_loc(bsrSortedColIndA(1)), blockDim, &
-        info, c_loc(f(1)), c_loc(x(1)), policy, pBuffer)
+        c_loc(bsrSortedValA), c_loc(bsrSortedRowPtrA), c_loc(bsrSortedColIndA), blockDim, info, &
+        c_loc(f), c_loc(x), policy, pBuffer)
     end function hipsparseSbsrsv2_solve_native
 
     function hipsparseSbsrsv2_solve_typed(handle, dirA, transA, mb, nnzb, alpha, descrA, &
@@ -27099,19 +27098,19 @@ contains
       integer(c_int), value :: nnzb
       real(c_double) :: alpha
       type(c_ptr), value :: descrA
-      real(c_double), target :: bsrSortedValA(*)
-      integer(c_int), target :: bsrSortedRowPtrA(*)
-      integer(c_int), target :: bsrSortedColIndA(*)
+      real(c_double), target :: bsrSortedValA(..)
+      integer(c_int), target :: bsrSortedRowPtrA(..)
+      integer(c_int), target :: bsrSortedColIndA(..)
       integer(c_int), value :: blockDim
       type(c_ptr), value :: info
-      real(c_double), target :: f(*)
-      real(c_double), target :: x(*)
+      real(c_double), target :: f(..)
+      real(c_double), target :: x(..)
       integer(c_int), value :: policy
       type(c_ptr), value :: pBuffer
       integer(c_int) :: Dbsrsv2_solve
       Dbsrsv2_solve = hipsparseDbsrsv2_solve_raw(handle, dirA, transA, mb, nnzb, alpha, descrA, &
-        c_loc(bsrSortedValA(1)), c_loc(bsrSortedRowPtrA(1)), c_loc(bsrSortedColIndA(1)), blockDim, &
-        info, c_loc(f(1)), c_loc(x(1)), policy, pBuffer)
+        c_loc(bsrSortedValA), c_loc(bsrSortedRowPtrA), c_loc(bsrSortedColIndA), blockDim, info, &
+        c_loc(f), c_loc(x), policy, pBuffer)
     end function hipsparseDbsrsv2_solve_native
 
     function hipsparseDbsrsv2_solve_typed(handle, dirA, transA, mb, nnzb, alpha, descrA, &
@@ -27154,19 +27153,19 @@ contains
       integer(c_int), value :: nnzb
       complex(c_float_complex) :: alpha
       type(c_ptr), value :: descrA
-      complex(c_float_complex), target :: bsrSortedValA(*)
-      integer(c_int), target :: bsrSortedRowPtrA(*)
-      integer(c_int), target :: bsrSortedColIndA(*)
+      complex(c_float_complex), target :: bsrSortedValA(..)
+      integer(c_int), target :: bsrSortedRowPtrA(..)
+      integer(c_int), target :: bsrSortedColIndA(..)
       integer(c_int), value :: blockDim
       type(c_ptr), value :: info
-      complex(c_float_complex), target :: f(*)
-      complex(c_float_complex), target :: x(*)
+      complex(c_float_complex), target :: f(..)
+      complex(c_float_complex), target :: x(..)
       integer(c_int), value :: policy
       type(c_ptr), value :: pBuffer
       integer(c_int) :: Cbsrsv2_solve
       Cbsrsv2_solve = hipsparseCbsrsv2_solve_raw(handle, dirA, transA, mb, nnzb, alpha, descrA, &
-        c_loc(bsrSortedValA(1)), c_loc(bsrSortedRowPtrA(1)), c_loc(bsrSortedColIndA(1)), blockDim, &
-        info, c_loc(f(1)), c_loc(x(1)), policy, pBuffer)
+        c_loc(bsrSortedValA), c_loc(bsrSortedRowPtrA), c_loc(bsrSortedColIndA), blockDim, info, &
+        c_loc(f), c_loc(x), policy, pBuffer)
     end function hipsparseCbsrsv2_solve_native
 
     function hipsparseCbsrsv2_solve_typed(handle, dirA, transA, mb, nnzb, alpha, descrA, &
@@ -27209,19 +27208,19 @@ contains
       integer(c_int), value :: nnzb
       complex(c_double_complex) :: alpha
       type(c_ptr), value :: descrA
-      complex(c_double_complex), target :: bsrSortedValA(*)
-      integer(c_int), target :: bsrSortedRowPtrA(*)
-      integer(c_int), target :: bsrSortedColIndA(*)
+      complex(c_double_complex), target :: bsrSortedValA(..)
+      integer(c_int), target :: bsrSortedRowPtrA(..)
+      integer(c_int), target :: bsrSortedColIndA(..)
       integer(c_int), value :: blockDim
       type(c_ptr), value :: info
-      complex(c_double_complex), target :: f(*)
-      complex(c_double_complex), target :: x(*)
+      complex(c_double_complex), target :: f(..)
+      complex(c_double_complex), target :: x(..)
       integer(c_int), value :: policy
       type(c_ptr), value :: pBuffer
       integer(c_int) :: Zbsrsv2_solve
       Zbsrsv2_solve = hipsparseZbsrsv2_solve_raw(handle, dirA, transA, mb, nnzb, alpha, descrA, &
-        c_loc(bsrSortedValA(1)), c_loc(bsrSortedRowPtrA(1)), c_loc(bsrSortedColIndA(1)), blockDim, &
-        info, c_loc(f(1)), c_loc(x(1)), policy, pBuffer)
+        c_loc(bsrSortedValA), c_loc(bsrSortedRowPtrA), c_loc(bsrSortedColIndA), blockDim, info, &
+        c_loc(f), c_loc(x), policy, pBuffer)
     end function hipsparseZbsrsv2_solve_native
 
     function hipsparseZbsrsv2_solve_typed(handle, dirA, transA, mb, nnzb, alpha, descrA, &
@@ -27265,19 +27264,19 @@ contains
       integer(c_int), value :: nnzb
       real(c_float) :: alpha
       type(c_ptr), value :: descr
-      real(c_float), target :: bsrVal(*)
-      integer(c_int), target :: bsrMaskPtr(*)
-      integer(c_int), target :: bsrRowPtr(*)
-      integer(c_int), target :: bsrEndPtr(*)
-      integer(c_int), target :: bsrColInd(*)
+      real(c_float), target :: bsrVal(..)
+      integer(c_int), target :: bsrMaskPtr(..)
+      integer(c_int), target :: bsrRowPtr(..)
+      integer(c_int), target :: bsrEndPtr(..)
+      integer(c_int), target :: bsrColInd(..)
       integer(c_int), value :: blockDim
-      real(c_float), target :: x(*)
+      real(c_float), target :: x(..)
       real(c_float) :: beta
-      real(c_float), target :: y(*)
+      real(c_float), target :: y(..)
       integer(c_int) :: Sbsrxmv
       Sbsrxmv = hipsparseSbsrxmv_raw(handle, dir, trans, sizeOfMask, mb, nb, nnzb, alpha, descr, &
-        c_loc(bsrVal(1)), c_loc(bsrMaskPtr(1)), c_loc(bsrRowPtr(1)), c_loc(bsrEndPtr(1)), c_loc( &
-        bsrColInd(1)), blockDim, c_loc(x(1)), beta, c_loc(y(1)))
+        c_loc(bsrVal), c_loc(bsrMaskPtr), c_loc(bsrRowPtr), c_loc(bsrEndPtr), c_loc(bsrColInd), &
+        blockDim, c_loc(x), beta, c_loc(y))
     end function hipsparseSbsrxmv_native
 
     function hipsparseSbsrxmv_typed(handle, dir, trans, sizeOfMask, mb, nb, nnzb, alpha, descr, &
@@ -27321,19 +27320,19 @@ contains
       integer(c_int), value :: nnzb
       real(c_double) :: alpha
       type(c_ptr), value :: descr
-      real(c_double), target :: bsrVal(*)
-      integer(c_int), target :: bsrMaskPtr(*)
-      integer(c_int), target :: bsrRowPtr(*)
-      integer(c_int), target :: bsrEndPtr(*)
-      integer(c_int), target :: bsrColInd(*)
+      real(c_double), target :: bsrVal(..)
+      integer(c_int), target :: bsrMaskPtr(..)
+      integer(c_int), target :: bsrRowPtr(..)
+      integer(c_int), target :: bsrEndPtr(..)
+      integer(c_int), target :: bsrColInd(..)
       integer(c_int), value :: blockDim
-      real(c_double), target :: x(*)
+      real(c_double), target :: x(..)
       real(c_double) :: beta
-      real(c_double), target :: y(*)
+      real(c_double), target :: y(..)
       integer(c_int) :: Dbsrxmv
       Dbsrxmv = hipsparseDbsrxmv_raw(handle, dir, trans, sizeOfMask, mb, nb, nnzb, alpha, descr, &
-        c_loc(bsrVal(1)), c_loc(bsrMaskPtr(1)), c_loc(bsrRowPtr(1)), c_loc(bsrEndPtr(1)), c_loc( &
-        bsrColInd(1)), blockDim, c_loc(x(1)), beta, c_loc(y(1)))
+        c_loc(bsrVal), c_loc(bsrMaskPtr), c_loc(bsrRowPtr), c_loc(bsrEndPtr), c_loc(bsrColInd), &
+        blockDim, c_loc(x), beta, c_loc(y))
     end function hipsparseDbsrxmv_native
 
     function hipsparseDbsrxmv_typed(handle, dir, trans, sizeOfMask, mb, nb, nnzb, alpha, descr, &
@@ -27377,19 +27376,19 @@ contains
       integer(c_int), value :: nnzb
       complex(c_float_complex) :: alpha
       type(c_ptr), value :: descr
-      complex(c_float_complex), target :: bsrVal(*)
-      integer(c_int), target :: bsrMaskPtr(*)
-      integer(c_int), target :: bsrRowPtr(*)
-      integer(c_int), target :: bsrEndPtr(*)
-      integer(c_int), target :: bsrColInd(*)
+      complex(c_float_complex), target :: bsrVal(..)
+      integer(c_int), target :: bsrMaskPtr(..)
+      integer(c_int), target :: bsrRowPtr(..)
+      integer(c_int), target :: bsrEndPtr(..)
+      integer(c_int), target :: bsrColInd(..)
       integer(c_int), value :: blockDim
-      complex(c_float_complex), target :: x(*)
+      complex(c_float_complex), target :: x(..)
       complex(c_float_complex) :: beta
-      complex(c_float_complex), target :: y(*)
+      complex(c_float_complex), target :: y(..)
       integer(c_int) :: Cbsrxmv
       Cbsrxmv = hipsparseCbsrxmv_raw(handle, dir, trans, sizeOfMask, mb, nb, nnzb, alpha, descr, &
-        c_loc(bsrVal(1)), c_loc(bsrMaskPtr(1)), c_loc(bsrRowPtr(1)), c_loc(bsrEndPtr(1)), c_loc( &
-        bsrColInd(1)), blockDim, c_loc(x(1)), beta, c_loc(y(1)))
+        c_loc(bsrVal), c_loc(bsrMaskPtr), c_loc(bsrRowPtr), c_loc(bsrEndPtr), c_loc(bsrColInd), &
+        blockDim, c_loc(x), beta, c_loc(y))
     end function hipsparseCbsrxmv_native
 
     function hipsparseCbsrxmv_typed(handle, dir, trans, sizeOfMask, mb, nb, nnzb, alpha, descr, &
@@ -27433,19 +27432,19 @@ contains
       integer(c_int), value :: nnzb
       complex(c_double_complex) :: alpha
       type(c_ptr), value :: descr
-      complex(c_double_complex), target :: bsrVal(*)
-      integer(c_int), target :: bsrMaskPtr(*)
-      integer(c_int), target :: bsrRowPtr(*)
-      integer(c_int), target :: bsrEndPtr(*)
-      integer(c_int), target :: bsrColInd(*)
+      complex(c_double_complex), target :: bsrVal(..)
+      integer(c_int), target :: bsrMaskPtr(..)
+      integer(c_int), target :: bsrRowPtr(..)
+      integer(c_int), target :: bsrEndPtr(..)
+      integer(c_int), target :: bsrColInd(..)
       integer(c_int), value :: blockDim
-      complex(c_double_complex), target :: x(*)
+      complex(c_double_complex), target :: x(..)
       complex(c_double_complex) :: beta
-      complex(c_double_complex), target :: y(*)
+      complex(c_double_complex), target :: y(..)
       integer(c_int) :: Zbsrxmv
       Zbsrxmv = hipsparseZbsrxmv_raw(handle, dir, trans, sizeOfMask, mb, nb, nnzb, alpha, descr, &
-        c_loc(bsrVal(1)), c_loc(bsrMaskPtr(1)), c_loc(bsrRowPtr(1)), c_loc(bsrEndPtr(1)), c_loc( &
-        bsrColInd(1)), blockDim, c_loc(x(1)), beta, c_loc(y(1)))
+        c_loc(bsrVal), c_loc(bsrMaskPtr), c_loc(bsrRowPtr), c_loc(bsrEndPtr), c_loc(bsrColInd), &
+        blockDim, c_loc(x), beta, c_loc(y))
     end function hipsparseZbsrxmv_native
 
     function hipsparseZbsrxmv_typed(handle, dir, trans, sizeOfMask, mb, nb, nnzb, alpha, descr, &
@@ -27487,15 +27486,15 @@ contains
       integer(c_int), value :: nnz
       real(c_float) :: alpha
       type(c_ptr), value :: descrA
-      real(c_float), target :: csrSortedValA(*)
-      integer(c_int), target :: csrSortedRowPtrA(*)
-      integer(c_int), target :: csrSortedColIndA(*)
-      real(c_float), target :: x(*)
+      real(c_float), target :: csrSortedValA(..)
+      integer(c_int), target :: csrSortedRowPtrA(..)
+      integer(c_int), target :: csrSortedColIndA(..)
+      real(c_float), target :: x(..)
       real(c_float) :: beta
-      real(c_float), target :: y(*)
+      real(c_float), target :: y(..)
       integer(c_int) :: Scsrmv
-      Scsrmv = hipsparseScsrmv_raw(handle, transA, m, n, nnz, alpha, descrA, c_loc(csrSortedValA( &
-        1)), c_loc(csrSortedRowPtrA(1)), c_loc(csrSortedColIndA(1)), c_loc(x(1)), beta, c_loc(y(1)))
+      Scsrmv = hipsparseScsrmv_raw(handle, transA, m, n, nnz, alpha, descrA, c_loc(csrSortedValA), &
+        c_loc(csrSortedRowPtrA), c_loc(csrSortedColIndA), c_loc(x), beta, c_loc(y))
     end function hipsparseScsrmv_native
 
     function hipsparseScsrmv_typed(handle, transA, m, n, nnz, alpha, descrA, csrSortedValA, &
@@ -27532,15 +27531,15 @@ contains
       integer(c_int), value :: nnz
       real(c_double) :: alpha
       type(c_ptr), value :: descrA
-      real(c_double), target :: csrSortedValA(*)
-      integer(c_int), target :: csrSortedRowPtrA(*)
-      integer(c_int), target :: csrSortedColIndA(*)
-      real(c_double), target :: x(*)
+      real(c_double), target :: csrSortedValA(..)
+      integer(c_int), target :: csrSortedRowPtrA(..)
+      integer(c_int), target :: csrSortedColIndA(..)
+      real(c_double), target :: x(..)
       real(c_double) :: beta
-      real(c_double), target :: y(*)
+      real(c_double), target :: y(..)
       integer(c_int) :: Dcsrmv
-      Dcsrmv = hipsparseDcsrmv_raw(handle, transA, m, n, nnz, alpha, descrA, c_loc(csrSortedValA( &
-        1)), c_loc(csrSortedRowPtrA(1)), c_loc(csrSortedColIndA(1)), c_loc(x(1)), beta, c_loc(y(1)))
+      Dcsrmv = hipsparseDcsrmv_raw(handle, transA, m, n, nnz, alpha, descrA, c_loc(csrSortedValA), &
+        c_loc(csrSortedRowPtrA), c_loc(csrSortedColIndA), c_loc(x), beta, c_loc(y))
     end function hipsparseDcsrmv_native
 
     function hipsparseDcsrmv_typed(handle, transA, m, n, nnz, alpha, descrA, csrSortedValA, &
@@ -27577,15 +27576,15 @@ contains
       integer(c_int), value :: nnz
       complex(c_float_complex) :: alpha
       type(c_ptr), value :: descrA
-      complex(c_float_complex), target :: csrSortedValA(*)
-      integer(c_int), target :: csrSortedRowPtrA(*)
-      integer(c_int), target :: csrSortedColIndA(*)
-      complex(c_float_complex), target :: x(*)
+      complex(c_float_complex), target :: csrSortedValA(..)
+      integer(c_int), target :: csrSortedRowPtrA(..)
+      integer(c_int), target :: csrSortedColIndA(..)
+      complex(c_float_complex), target :: x(..)
       complex(c_float_complex) :: beta
-      complex(c_float_complex), target :: y(*)
+      complex(c_float_complex), target :: y(..)
       integer(c_int) :: Ccsrmv
-      Ccsrmv = hipsparseCcsrmv_raw(handle, transA, m, n, nnz, alpha, descrA, c_loc(csrSortedValA( &
-        1)), c_loc(csrSortedRowPtrA(1)), c_loc(csrSortedColIndA(1)), c_loc(x(1)), beta, c_loc(y(1)))
+      Ccsrmv = hipsparseCcsrmv_raw(handle, transA, m, n, nnz, alpha, descrA, c_loc(csrSortedValA), &
+        c_loc(csrSortedRowPtrA), c_loc(csrSortedColIndA), c_loc(x), beta, c_loc(y))
     end function hipsparseCcsrmv_native
 
     function hipsparseCcsrmv_typed(handle, transA, m, n, nnz, alpha, descrA, csrSortedValA, &
@@ -27622,15 +27621,15 @@ contains
       integer(c_int), value :: nnz
       complex(c_double_complex) :: alpha
       type(c_ptr), value :: descrA
-      complex(c_double_complex), target :: csrSortedValA(*)
-      integer(c_int), target :: csrSortedRowPtrA(*)
-      integer(c_int), target :: csrSortedColIndA(*)
-      complex(c_double_complex), target :: x(*)
+      complex(c_double_complex), target :: csrSortedValA(..)
+      integer(c_int), target :: csrSortedRowPtrA(..)
+      integer(c_int), target :: csrSortedColIndA(..)
+      complex(c_double_complex), target :: x(..)
       complex(c_double_complex) :: beta
-      complex(c_double_complex), target :: y(*)
+      complex(c_double_complex), target :: y(..)
       integer(c_int) :: Zcsrmv
-      Zcsrmv = hipsparseZcsrmv_raw(handle, transA, m, n, nnz, alpha, descrA, c_loc(csrSortedValA( &
-        1)), c_loc(csrSortedRowPtrA(1)), c_loc(csrSortedColIndA(1)), c_loc(x(1)), beta, c_loc(y(1)))
+      Zcsrmv = hipsparseZcsrmv_raw(handle, transA, m, n, nnz, alpha, descrA, c_loc(csrSortedValA), &
+        c_loc(csrSortedRowPtrA), c_loc(csrSortedColIndA), c_loc(x), beta, c_loc(y))
     end function hipsparseZcsrmv_native
 
     function hipsparseZcsrmv_typed(handle, transA, m, n, nnz, alpha, descrA, csrSortedValA, &
@@ -27656,23 +27655,13 @@ contains
         csrSortedValA, csrSortedRowPtrA, csrSortedColIndA, x, beta, y)
     end function hipsparseZcsrmv_typed
 
-    function hipsparseXcsrsv2_zeroPivot_native(handle, info, position) result(Xcsrsv2_zeroPivot)
-      use, intrinsic :: iso_c_binding
-      implicit none
-      type(c_ptr), value :: handle
-      type(c_ptr), value :: info
-      integer(c_int), target :: position(*)
-      integer(c_int) :: Xcsrsv2_zeroPivot
-      Xcsrsv2_zeroPivot = hipsparseXcsrsv2_zeroPivot_raw(handle, info, c_loc(position(1)))
-    end function hipsparseXcsrsv2_zeroPivot_native
-
     function hipsparseXcsrsv2_zeroPivot_typed(handle, info, position) result(Xcsrsv2_zeroPivot)
       use, intrinsic :: iso_c_binding
       use hipfort_handles
       implicit none
       type(hipsparseHandle_t), value :: handle
       type(csrsv2Info_t), value :: info
-      type(c_ptr), value :: position
+      integer(c_int) :: position
       integer(c_int) :: Xcsrsv2_zeroPivot
       Xcsrsv2_zeroPivot = hipsparseXcsrsv2_zeroPivot_raw(handle%ptr, info%ptr, position)
     end function hipsparseXcsrsv2_zeroPivot_typed
@@ -27686,15 +27675,14 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: nnz
       type(c_ptr), value :: descrA
-      real(c_float), target :: csrSortedValA(*)
-      integer(c_int), target :: csrSortedRowPtrA(*)
-      integer(c_int), target :: csrSortedColIndA(*)
+      real(c_float), target :: csrSortedValA(..)
+      integer(c_int), target :: csrSortedRowPtrA(..)
+      integer(c_int), target :: csrSortedColIndA(..)
       type(c_ptr), value :: info
-      integer(c_int), target :: pBufferSizeInBytes(*)
+      integer(c_int) :: pBufferSizeInBytes
       integer(c_int) :: Scsrsv2_bufferSize
       Scsrsv2_bufferSize = hipsparseScsrsv2_bufferSize_raw(handle, transA, m, nnz, descrA, c_loc( &
-        csrSortedValA(1)), c_loc(csrSortedRowPtrA(1)), c_loc(csrSortedColIndA(1)), info, c_loc( &
-        pBufferSizeInBytes(1)))
+        csrSortedValA), c_loc(csrSortedRowPtrA), c_loc(csrSortedColIndA), info, pBufferSizeInBytes)
     end function hipsparseScsrsv2_bufferSize_native
 
     function hipsparseScsrsv2_bufferSize_typed(handle, transA, m, nnz, descrA, csrSortedValA, &
@@ -27711,7 +27699,7 @@ contains
       type(c_ptr), value :: csrSortedRowPtrA
       type(c_ptr), value :: csrSortedColIndA
       type(csrsv2Info_t), value :: info
-      type(c_ptr), value :: pBufferSizeInBytes
+      integer(c_int) :: pBufferSizeInBytes
       integer(c_int) :: Scsrsv2_bufferSize
       Scsrsv2_bufferSize = hipsparseScsrsv2_bufferSize_raw(handle%ptr, transA, m, nnz, descrA%ptr, &
         csrSortedValA, csrSortedRowPtrA, csrSortedColIndA, info%ptr, pBufferSizeInBytes)
@@ -27726,15 +27714,14 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: nnz
       type(c_ptr), value :: descrA
-      real(c_double), target :: csrSortedValA(*)
-      integer(c_int), target :: csrSortedRowPtrA(*)
-      integer(c_int), target :: csrSortedColIndA(*)
+      real(c_double), target :: csrSortedValA(..)
+      integer(c_int), target :: csrSortedRowPtrA(..)
+      integer(c_int), target :: csrSortedColIndA(..)
       type(c_ptr), value :: info
-      integer(c_int), target :: pBufferSizeInBytes(*)
+      integer(c_int) :: pBufferSizeInBytes
       integer(c_int) :: Dcsrsv2_bufferSize
       Dcsrsv2_bufferSize = hipsparseDcsrsv2_bufferSize_raw(handle, transA, m, nnz, descrA, c_loc( &
-        csrSortedValA(1)), c_loc(csrSortedRowPtrA(1)), c_loc(csrSortedColIndA(1)), info, c_loc( &
-        pBufferSizeInBytes(1)))
+        csrSortedValA), c_loc(csrSortedRowPtrA), c_loc(csrSortedColIndA), info, pBufferSizeInBytes)
     end function hipsparseDcsrsv2_bufferSize_native
 
     function hipsparseDcsrsv2_bufferSize_typed(handle, transA, m, nnz, descrA, csrSortedValA, &
@@ -27751,7 +27738,7 @@ contains
       type(c_ptr), value :: csrSortedRowPtrA
       type(c_ptr), value :: csrSortedColIndA
       type(csrsv2Info_t), value :: info
-      type(c_ptr), value :: pBufferSizeInBytes
+      integer(c_int) :: pBufferSizeInBytes
       integer(c_int) :: Dcsrsv2_bufferSize
       Dcsrsv2_bufferSize = hipsparseDcsrsv2_bufferSize_raw(handle%ptr, transA, m, nnz, descrA%ptr, &
         csrSortedValA, csrSortedRowPtrA, csrSortedColIndA, info%ptr, pBufferSizeInBytes)
@@ -27766,15 +27753,14 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: nnz
       type(c_ptr), value :: descrA
-      complex(c_float_complex), target :: csrSortedValA(*)
-      integer(c_int), target :: csrSortedRowPtrA(*)
-      integer(c_int), target :: csrSortedColIndA(*)
+      complex(c_float_complex), target :: csrSortedValA(..)
+      integer(c_int), target :: csrSortedRowPtrA(..)
+      integer(c_int), target :: csrSortedColIndA(..)
       type(c_ptr), value :: info
-      integer(c_int), target :: pBufferSizeInBytes(*)
+      integer(c_int) :: pBufferSizeInBytes
       integer(c_int) :: Ccsrsv2_bufferSize
       Ccsrsv2_bufferSize = hipsparseCcsrsv2_bufferSize_raw(handle, transA, m, nnz, descrA, c_loc( &
-        csrSortedValA(1)), c_loc(csrSortedRowPtrA(1)), c_loc(csrSortedColIndA(1)), info, c_loc( &
-        pBufferSizeInBytes(1)))
+        csrSortedValA), c_loc(csrSortedRowPtrA), c_loc(csrSortedColIndA), info, pBufferSizeInBytes)
     end function hipsparseCcsrsv2_bufferSize_native
 
     function hipsparseCcsrsv2_bufferSize_typed(handle, transA, m, nnz, descrA, csrSortedValA, &
@@ -27791,7 +27777,7 @@ contains
       type(c_ptr), value :: csrSortedRowPtrA
       type(c_ptr), value :: csrSortedColIndA
       type(csrsv2Info_t), value :: info
-      type(c_ptr), value :: pBufferSizeInBytes
+      integer(c_int) :: pBufferSizeInBytes
       integer(c_int) :: Ccsrsv2_bufferSize
       Ccsrsv2_bufferSize = hipsparseCcsrsv2_bufferSize_raw(handle%ptr, transA, m, nnz, descrA%ptr, &
         csrSortedValA, csrSortedRowPtrA, csrSortedColIndA, info%ptr, pBufferSizeInBytes)
@@ -27806,15 +27792,14 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: nnz
       type(c_ptr), value :: descrA
-      complex(c_double_complex), target :: csrSortedValA(*)
-      integer(c_int), target :: csrSortedRowPtrA(*)
-      integer(c_int), target :: csrSortedColIndA(*)
+      complex(c_double_complex), target :: csrSortedValA(..)
+      integer(c_int), target :: csrSortedRowPtrA(..)
+      integer(c_int), target :: csrSortedColIndA(..)
       type(c_ptr), value :: info
-      integer(c_int), target :: pBufferSizeInBytes(*)
+      integer(c_int) :: pBufferSizeInBytes
       integer(c_int) :: Zcsrsv2_bufferSize
       Zcsrsv2_bufferSize = hipsparseZcsrsv2_bufferSize_raw(handle, transA, m, nnz, descrA, c_loc( &
-        csrSortedValA(1)), c_loc(csrSortedRowPtrA(1)), c_loc(csrSortedColIndA(1)), info, c_loc( &
-        pBufferSizeInBytes(1)))
+        csrSortedValA), c_loc(csrSortedRowPtrA), c_loc(csrSortedColIndA), info, pBufferSizeInBytes)
     end function hipsparseZcsrsv2_bufferSize_native
 
     function hipsparseZcsrsv2_bufferSize_typed(handle, transA, m, nnz, descrA, csrSortedValA, &
@@ -27831,7 +27816,7 @@ contains
       type(c_ptr), value :: csrSortedRowPtrA
       type(c_ptr), value :: csrSortedColIndA
       type(csrsv2Info_t), value :: info
-      type(c_ptr), value :: pBufferSizeInBytes
+      integer(c_int) :: pBufferSizeInBytes
       integer(c_int) :: Zcsrsv2_bufferSize
       Zcsrsv2_bufferSize = hipsparseZcsrsv2_bufferSize_raw(handle%ptr, transA, m, nnz, descrA%ptr, &
         csrSortedValA, csrSortedRowPtrA, csrSortedColIndA, info%ptr, pBufferSizeInBytes)
@@ -27846,14 +27831,14 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: nnz
       type(c_ptr), value :: descrA
-      real(c_float), target :: csrSortedValA(*)
-      integer(c_int), target :: csrSortedRowPtrA(*)
-      integer(c_int), target :: csrSortedColIndA(*)
+      real(c_float), target :: csrSortedValA(..)
+      integer(c_int), target :: csrSortedRowPtrA(..)
+      integer(c_int), target :: csrSortedColIndA(..)
       type(c_ptr), value :: info
       type(c_ptr), value :: pBufferSizeInBytes
       integer(c_int) :: Scsrsv2_bufferSizeExt
       Scsrsv2_bufferSizeExt = hipsparseScsrsv2_bufferSizeExt_raw(handle, transA, m, nnz, descrA, &
-        c_loc(csrSortedValA(1)), c_loc(csrSortedRowPtrA(1)), c_loc(csrSortedColIndA(1)), info, &
+        c_loc(csrSortedValA), c_loc(csrSortedRowPtrA), c_loc(csrSortedColIndA), info, &
         pBufferSizeInBytes)
     end function hipsparseScsrsv2_bufferSizeExt_native
 
@@ -27886,14 +27871,14 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: nnz
       type(c_ptr), value :: descrA
-      real(c_double), target :: csrSortedValA(*)
-      integer(c_int), target :: csrSortedRowPtrA(*)
-      integer(c_int), target :: csrSortedColIndA(*)
+      real(c_double), target :: csrSortedValA(..)
+      integer(c_int), target :: csrSortedRowPtrA(..)
+      integer(c_int), target :: csrSortedColIndA(..)
       type(c_ptr), value :: info
       type(c_ptr), value :: pBufferSizeInBytes
       integer(c_int) :: Dcsrsv2_bufferSizeExt
       Dcsrsv2_bufferSizeExt = hipsparseDcsrsv2_bufferSizeExt_raw(handle, transA, m, nnz, descrA, &
-        c_loc(csrSortedValA(1)), c_loc(csrSortedRowPtrA(1)), c_loc(csrSortedColIndA(1)), info, &
+        c_loc(csrSortedValA), c_loc(csrSortedRowPtrA), c_loc(csrSortedColIndA), info, &
         pBufferSizeInBytes)
     end function hipsparseDcsrsv2_bufferSizeExt_native
 
@@ -27926,14 +27911,14 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: nnz
       type(c_ptr), value :: descrA
-      complex(c_float_complex), target :: csrSortedValA(*)
-      integer(c_int), target :: csrSortedRowPtrA(*)
-      integer(c_int), target :: csrSortedColIndA(*)
+      complex(c_float_complex), target :: csrSortedValA(..)
+      integer(c_int), target :: csrSortedRowPtrA(..)
+      integer(c_int), target :: csrSortedColIndA(..)
       type(c_ptr), value :: info
       type(c_ptr), value :: pBufferSizeInBytes
       integer(c_int) :: Ccsrsv2_bufferSizeExt
       Ccsrsv2_bufferSizeExt = hipsparseCcsrsv2_bufferSizeExt_raw(handle, transA, m, nnz, descrA, &
-        c_loc(csrSortedValA(1)), c_loc(csrSortedRowPtrA(1)), c_loc(csrSortedColIndA(1)), info, &
+        c_loc(csrSortedValA), c_loc(csrSortedRowPtrA), c_loc(csrSortedColIndA), info, &
         pBufferSizeInBytes)
     end function hipsparseCcsrsv2_bufferSizeExt_native
 
@@ -27966,14 +27951,14 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: nnz
       type(c_ptr), value :: descrA
-      complex(c_double_complex), target :: csrSortedValA(*)
-      integer(c_int), target :: csrSortedRowPtrA(*)
-      integer(c_int), target :: csrSortedColIndA(*)
+      complex(c_double_complex), target :: csrSortedValA(..)
+      integer(c_int), target :: csrSortedRowPtrA(..)
+      integer(c_int), target :: csrSortedColIndA(..)
       type(c_ptr), value :: info
       type(c_ptr), value :: pBufferSizeInBytes
       integer(c_int) :: Zcsrsv2_bufferSizeExt
       Zcsrsv2_bufferSizeExt = hipsparseZcsrsv2_bufferSizeExt_raw(handle, transA, m, nnz, descrA, &
-        c_loc(csrSortedValA(1)), c_loc(csrSortedRowPtrA(1)), c_loc(csrSortedColIndA(1)), info, &
+        c_loc(csrSortedValA), c_loc(csrSortedRowPtrA), c_loc(csrSortedColIndA), info, &
         pBufferSizeInBytes)
     end function hipsparseZcsrsv2_bufferSizeExt_native
 
@@ -28006,16 +27991,15 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: nnz
       type(c_ptr), value :: descrA
-      real(c_float), target :: csrSortedValA(*)
-      integer(c_int), target :: csrSortedRowPtrA(*)
-      integer(c_int), target :: csrSortedColIndA(*)
+      real(c_float), target :: csrSortedValA(..)
+      integer(c_int), target :: csrSortedRowPtrA(..)
+      integer(c_int), target :: csrSortedColIndA(..)
       type(c_ptr), value :: info
       integer(c_int), value :: policy
       type(c_ptr), value :: pBuffer
       integer(c_int) :: Scsrsv2_analysis
       Scsrsv2_analysis = hipsparseScsrsv2_analysis_raw(handle, transA, m, nnz, descrA, c_loc( &
-        csrSortedValA(1)), c_loc(csrSortedRowPtrA(1)), c_loc(csrSortedColIndA(1)), info, policy, &
-        pBuffer)
+        csrSortedValA), c_loc(csrSortedRowPtrA), c_loc(csrSortedColIndA), info, policy, pBuffer)
     end function hipsparseScsrsv2_analysis_native
 
     function hipsparseScsrsv2_analysis_typed(handle, transA, m, nnz, descrA, csrSortedValA, &
@@ -28048,16 +28032,15 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: nnz
       type(c_ptr), value :: descrA
-      real(c_double), target :: csrSortedValA(*)
-      integer(c_int), target :: csrSortedRowPtrA(*)
-      integer(c_int), target :: csrSortedColIndA(*)
+      real(c_double), target :: csrSortedValA(..)
+      integer(c_int), target :: csrSortedRowPtrA(..)
+      integer(c_int), target :: csrSortedColIndA(..)
       type(c_ptr), value :: info
       integer(c_int), value :: policy
       type(c_ptr), value :: pBuffer
       integer(c_int) :: Dcsrsv2_analysis
       Dcsrsv2_analysis = hipsparseDcsrsv2_analysis_raw(handle, transA, m, nnz, descrA, c_loc( &
-        csrSortedValA(1)), c_loc(csrSortedRowPtrA(1)), c_loc(csrSortedColIndA(1)), info, policy, &
-        pBuffer)
+        csrSortedValA), c_loc(csrSortedRowPtrA), c_loc(csrSortedColIndA), info, policy, pBuffer)
     end function hipsparseDcsrsv2_analysis_native
 
     function hipsparseDcsrsv2_analysis_typed(handle, transA, m, nnz, descrA, csrSortedValA, &
@@ -28090,16 +28073,15 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: nnz
       type(c_ptr), value :: descrA
-      complex(c_float_complex), target :: csrSortedValA(*)
-      integer(c_int), target :: csrSortedRowPtrA(*)
-      integer(c_int), target :: csrSortedColIndA(*)
+      complex(c_float_complex), target :: csrSortedValA(..)
+      integer(c_int), target :: csrSortedRowPtrA(..)
+      integer(c_int), target :: csrSortedColIndA(..)
       type(c_ptr), value :: info
       integer(c_int), value :: policy
       type(c_ptr), value :: pBuffer
       integer(c_int) :: Ccsrsv2_analysis
       Ccsrsv2_analysis = hipsparseCcsrsv2_analysis_raw(handle, transA, m, nnz, descrA, c_loc( &
-        csrSortedValA(1)), c_loc(csrSortedRowPtrA(1)), c_loc(csrSortedColIndA(1)), info, policy, &
-        pBuffer)
+        csrSortedValA), c_loc(csrSortedRowPtrA), c_loc(csrSortedColIndA), info, policy, pBuffer)
     end function hipsparseCcsrsv2_analysis_native
 
     function hipsparseCcsrsv2_analysis_typed(handle, transA, m, nnz, descrA, csrSortedValA, &
@@ -28132,16 +28114,15 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: nnz
       type(c_ptr), value :: descrA
-      complex(c_double_complex), target :: csrSortedValA(*)
-      integer(c_int), target :: csrSortedRowPtrA(*)
-      integer(c_int), target :: csrSortedColIndA(*)
+      complex(c_double_complex), target :: csrSortedValA(..)
+      integer(c_int), target :: csrSortedRowPtrA(..)
+      integer(c_int), target :: csrSortedColIndA(..)
       type(c_ptr), value :: info
       integer(c_int), value :: policy
       type(c_ptr), value :: pBuffer
       integer(c_int) :: Zcsrsv2_analysis
       Zcsrsv2_analysis = hipsparseZcsrsv2_analysis_raw(handle, transA, m, nnz, descrA, c_loc( &
-        csrSortedValA(1)), c_loc(csrSortedRowPtrA(1)), c_loc(csrSortedColIndA(1)), info, policy, &
-        pBuffer)
+        csrSortedValA), c_loc(csrSortedRowPtrA), c_loc(csrSortedColIndA), info, policy, pBuffer)
     end function hipsparseZcsrsv2_analysis_native
 
     function hipsparseZcsrsv2_analysis_typed(handle, transA, m, nnz, descrA, csrSortedValA, &
@@ -28175,18 +28156,18 @@ contains
       integer(c_int), value :: nnz
       real(c_float) :: alpha
       type(c_ptr), value :: descrA
-      real(c_float), target :: csrSortedValA(*)
-      integer(c_int), target :: csrSortedRowPtrA(*)
-      integer(c_int), target :: csrSortedColIndA(*)
+      real(c_float), target :: csrSortedValA(..)
+      integer(c_int), target :: csrSortedRowPtrA(..)
+      integer(c_int), target :: csrSortedColIndA(..)
       type(c_ptr), value :: info
-      real(c_float), target :: f(*)
-      real(c_float), target :: x(*)
+      real(c_float), target :: f(..)
+      real(c_float), target :: x(..)
       integer(c_int), value :: policy
       type(c_ptr), value :: pBuffer
       integer(c_int) :: Scsrsv2_solve
       Scsrsv2_solve = hipsparseScsrsv2_solve_raw(handle, transA, m, nnz, alpha, descrA, c_loc( &
-        csrSortedValA(1)), c_loc(csrSortedRowPtrA(1)), c_loc(csrSortedColIndA(1)), info, c_loc(f( &
-        1)), c_loc(x(1)), policy, pBuffer)
+        csrSortedValA), c_loc(csrSortedRowPtrA), c_loc(csrSortedColIndA), info, c_loc(f), c_loc( &
+        x), policy, pBuffer)
     end function hipsparseScsrsv2_solve_native
 
     function hipsparseScsrsv2_solve_typed(handle, transA, m, nnz, alpha, descrA, csrSortedValA, &
@@ -28223,18 +28204,18 @@ contains
       integer(c_int), value :: nnz
       real(c_double) :: alpha
       type(c_ptr), value :: descrA
-      real(c_double), target :: csrSortedValA(*)
-      integer(c_int), target :: csrSortedRowPtrA(*)
-      integer(c_int), target :: csrSortedColIndA(*)
+      real(c_double), target :: csrSortedValA(..)
+      integer(c_int), target :: csrSortedRowPtrA(..)
+      integer(c_int), target :: csrSortedColIndA(..)
       type(c_ptr), value :: info
-      real(c_double), target :: f(*)
-      real(c_double), target :: x(*)
+      real(c_double), target :: f(..)
+      real(c_double), target :: x(..)
       integer(c_int), value :: policy
       type(c_ptr), value :: pBuffer
       integer(c_int) :: Dcsrsv2_solve
       Dcsrsv2_solve = hipsparseDcsrsv2_solve_raw(handle, transA, m, nnz, alpha, descrA, c_loc( &
-        csrSortedValA(1)), c_loc(csrSortedRowPtrA(1)), c_loc(csrSortedColIndA(1)), info, c_loc(f( &
-        1)), c_loc(x(1)), policy, pBuffer)
+        csrSortedValA), c_loc(csrSortedRowPtrA), c_loc(csrSortedColIndA), info, c_loc(f), c_loc( &
+        x), policy, pBuffer)
     end function hipsparseDcsrsv2_solve_native
 
     function hipsparseDcsrsv2_solve_typed(handle, transA, m, nnz, alpha, descrA, csrSortedValA, &
@@ -28271,18 +28252,18 @@ contains
       integer(c_int), value :: nnz
       complex(c_float_complex) :: alpha
       type(c_ptr), value :: descrA
-      complex(c_float_complex), target :: csrSortedValA(*)
-      integer(c_int), target :: csrSortedRowPtrA(*)
-      integer(c_int), target :: csrSortedColIndA(*)
+      complex(c_float_complex), target :: csrSortedValA(..)
+      integer(c_int), target :: csrSortedRowPtrA(..)
+      integer(c_int), target :: csrSortedColIndA(..)
       type(c_ptr), value :: info
-      complex(c_float_complex), target :: f(*)
-      complex(c_float_complex), target :: x(*)
+      complex(c_float_complex), target :: f(..)
+      complex(c_float_complex), target :: x(..)
       integer(c_int), value :: policy
       type(c_ptr), value :: pBuffer
       integer(c_int) :: Ccsrsv2_solve
       Ccsrsv2_solve = hipsparseCcsrsv2_solve_raw(handle, transA, m, nnz, alpha, descrA, c_loc( &
-        csrSortedValA(1)), c_loc(csrSortedRowPtrA(1)), c_loc(csrSortedColIndA(1)), info, c_loc(f( &
-        1)), c_loc(x(1)), policy, pBuffer)
+        csrSortedValA), c_loc(csrSortedRowPtrA), c_loc(csrSortedColIndA), info, c_loc(f), c_loc( &
+        x), policy, pBuffer)
     end function hipsparseCcsrsv2_solve_native
 
     function hipsparseCcsrsv2_solve_typed(handle, transA, m, nnz, alpha, descrA, csrSortedValA, &
@@ -28319,18 +28300,18 @@ contains
       integer(c_int), value :: nnz
       complex(c_double_complex) :: alpha
       type(c_ptr), value :: descrA
-      complex(c_double_complex), target :: csrSortedValA(*)
-      integer(c_int), target :: csrSortedRowPtrA(*)
-      integer(c_int), target :: csrSortedColIndA(*)
+      complex(c_double_complex), target :: csrSortedValA(..)
+      integer(c_int), target :: csrSortedRowPtrA(..)
+      integer(c_int), target :: csrSortedColIndA(..)
       type(c_ptr), value :: info
-      complex(c_double_complex), target :: f(*)
-      complex(c_double_complex), target :: x(*)
+      complex(c_double_complex), target :: f(..)
+      complex(c_double_complex), target :: x(..)
       integer(c_int), value :: policy
       type(c_ptr), value :: pBuffer
       integer(c_int) :: Zcsrsv2_solve
       Zcsrsv2_solve = hipsparseZcsrsv2_solve_raw(handle, transA, m, nnz, alpha, descrA, c_loc( &
-        csrSortedValA(1)), c_loc(csrSortedRowPtrA(1)), c_loc(csrSortedColIndA(1)), info, c_loc(f( &
-        1)), c_loc(x(1)), policy, pBuffer)
+        csrSortedValA), c_loc(csrSortedRowPtrA), c_loc(csrSortedColIndA), info, c_loc(f), c_loc( &
+        x), policy, pBuffer)
     end function hipsparseZcsrsv2_solve_native
 
     function hipsparseZcsrsv2_solve_typed(handle, transA, m, nnz, alpha, descrA, csrSortedValA, &
@@ -28366,10 +28347,10 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       integer(c_int), value :: nnz
-      integer(c_int), target :: pBufferSizeInBytes(*)
+      integer(c_int), target :: pBufferSizeInBytes(..)
       integer(c_int) :: Sgemvi_bufferSize
       Sgemvi_bufferSize = hipsparseSgemvi_bufferSize_raw(handle, transA, m, n, nnz, c_loc( &
-        pBufferSizeInBytes(1)))
+        pBufferSizeInBytes))
     end function hipsparseSgemvi_bufferSize_native
 
     function hipsparseSgemvi_bufferSize_typed(handle, transA, m, n, nnz, &
@@ -28397,10 +28378,10 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       integer(c_int), value :: nnz
-      integer(c_int), target :: pBufferSizeInBytes(*)
+      integer(c_int), target :: pBufferSizeInBytes(..)
       integer(c_int) :: Dgemvi_bufferSize
       Dgemvi_bufferSize = hipsparseDgemvi_bufferSize_raw(handle, transA, m, n, nnz, c_loc( &
-        pBufferSizeInBytes(1)))
+        pBufferSizeInBytes))
     end function hipsparseDgemvi_bufferSize_native
 
     function hipsparseDgemvi_bufferSize_typed(handle, transA, m, n, nnz, &
@@ -28428,10 +28409,10 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       integer(c_int), value :: nnz
-      integer(c_int), target :: pBufferSizeInBytes(*)
+      integer(c_int), target :: pBufferSizeInBytes(..)
       integer(c_int) :: Cgemvi_bufferSize
       Cgemvi_bufferSize = hipsparseCgemvi_bufferSize_raw(handle, transA, m, n, nnz, c_loc( &
-        pBufferSizeInBytes(1)))
+        pBufferSizeInBytes))
     end function hipsparseCgemvi_bufferSize_native
 
     function hipsparseCgemvi_bufferSize_typed(handle, transA, m, n, nnz, &
@@ -28459,10 +28440,10 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       integer(c_int), value :: nnz
-      integer(c_int), target :: pBufferSizeInBytes(*)
+      integer(c_int), target :: pBufferSizeInBytes(..)
       integer(c_int) :: Zgemvi_bufferSize
       Zgemvi_bufferSize = hipsparseZgemvi_bufferSize_raw(handle, transA, m, n, nnz, c_loc( &
-        pBufferSizeInBytes(1)))
+        pBufferSizeInBytes))
     end function hipsparseZgemvi_bufferSize_native
 
     function hipsparseZgemvi_bufferSize_typed(handle, transA, m, n, nnz, &
@@ -28490,18 +28471,18 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       real(c_float) :: alpha
-      real(c_float), target :: A(*)
+      real(c_float), target :: A(..)
       integer(c_int), value :: lda
       integer(c_int), value :: nnz
-      real(c_float), target :: x(*)
-      integer(c_int), target :: xInd(*)
+      real(c_float), target :: x(..)
+      integer(c_int), target :: xInd(..)
       real(c_float) :: beta
-      real(c_float), target :: y(*)
+      real(c_float), target :: y(..)
       integer(c_int), value :: idxBase
       type(c_ptr), value :: pBuffer
       integer(c_int) :: Sgemvi
-      Sgemvi = hipsparseSgemvi_raw(handle, transA, m, n, alpha, c_loc(A(1)), lda, nnz, c_loc(x( &
-        1)), c_loc(xInd(1)), beta, c_loc(y(1)), idxBase, pBuffer)
+      Sgemvi = hipsparseSgemvi_raw(handle, transA, m, n, alpha, c_loc(A), lda, nnz, c_loc(x), &
+        c_loc(xInd), beta, c_loc(y), idxBase, pBuffer)
     end function hipsparseSgemvi_native
 
     function hipsparseSgemvi_typed(handle, transA, m, n, alpha, A, lda, nnz, x, xInd, beta, y, &
@@ -28537,18 +28518,18 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       real(c_double) :: alpha
-      real(c_double), target :: A(*)
+      real(c_double), target :: A(..)
       integer(c_int), value :: lda
       integer(c_int), value :: nnz
-      real(c_double), target :: x(*)
-      integer(c_int), target :: xInd(*)
+      real(c_double), target :: x(..)
+      integer(c_int), target :: xInd(..)
       real(c_double) :: beta
-      real(c_double), target :: y(*)
+      real(c_double), target :: y(..)
       integer(c_int), value :: idxBase
       type(c_ptr), value :: pBuffer
       integer(c_int) :: Dgemvi
-      Dgemvi = hipsparseDgemvi_raw(handle, transA, m, n, alpha, c_loc(A(1)), lda, nnz, c_loc(x( &
-        1)), c_loc(xInd(1)), beta, c_loc(y(1)), idxBase, pBuffer)
+      Dgemvi = hipsparseDgemvi_raw(handle, transA, m, n, alpha, c_loc(A), lda, nnz, c_loc(x), &
+        c_loc(xInd), beta, c_loc(y), idxBase, pBuffer)
     end function hipsparseDgemvi_native
 
     function hipsparseDgemvi_typed(handle, transA, m, n, alpha, A, lda, nnz, x, xInd, beta, y, &
@@ -28584,18 +28565,18 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       complex(c_float_complex) :: alpha
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: A(..)
       integer(c_int), value :: lda
       integer(c_int), value :: nnz
-      complex(c_float_complex), target :: x(*)
-      integer(c_int), target :: xInd(*)
+      complex(c_float_complex), target :: x(..)
+      integer(c_int), target :: xInd(..)
       complex(c_float_complex) :: beta
-      complex(c_float_complex), target :: y(*)
+      complex(c_float_complex), target :: y(..)
       integer(c_int), value :: idxBase
       type(c_ptr), value :: pBuffer
       integer(c_int) :: Cgemvi
-      Cgemvi = hipsparseCgemvi_raw(handle, transA, m, n, alpha, c_loc(A(1)), lda, nnz, c_loc(x( &
-        1)), c_loc(xInd(1)), beta, c_loc(y(1)), idxBase, pBuffer)
+      Cgemvi = hipsparseCgemvi_raw(handle, transA, m, n, alpha, c_loc(A), lda, nnz, c_loc(x), &
+        c_loc(xInd), beta, c_loc(y), idxBase, pBuffer)
     end function hipsparseCgemvi_native
 
     function hipsparseCgemvi_typed(handle, transA, m, n, alpha, A, lda, nnz, x, xInd, beta, y, &
@@ -28631,18 +28612,18 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       complex(c_double_complex) :: alpha
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: A(..)
       integer(c_int), value :: lda
       integer(c_int), value :: nnz
-      complex(c_double_complex), target :: x(*)
-      integer(c_int), target :: xInd(*)
+      complex(c_double_complex), target :: x(..)
+      integer(c_int), target :: xInd(..)
       complex(c_double_complex) :: beta
-      complex(c_double_complex), target :: y(*)
+      complex(c_double_complex), target :: y(..)
       integer(c_int), value :: idxBase
       type(c_ptr), value :: pBuffer
       integer(c_int) :: Zgemvi
-      Zgemvi = hipsparseZgemvi_raw(handle, transA, m, n, alpha, c_loc(A(1)), lda, nnz, c_loc(x( &
-        1)), c_loc(xInd(1)), beta, c_loc(y(1)), idxBase, pBuffer)
+      Zgemvi = hipsparseZgemvi_raw(handle, transA, m, n, alpha, c_loc(A), lda, nnz, c_loc(x), &
+        c_loc(xInd), beta, c_loc(y), idxBase, pBuffer)
     end function hipsparseZgemvi_native
 
     function hipsparseZgemvi_typed(handle, transA, m, n, alpha, A, lda, nnz, x, xInd, beta, y, &
@@ -28677,12 +28658,11 @@ contains
       real(c_float) :: alpha
       type(c_ptr), value :: descrA
       type(c_ptr), value :: hybA
-      real(c_float), target :: x(*)
+      real(c_float), target :: x(..)
       real(c_float) :: beta
-      real(c_float), target :: y(*)
+      real(c_float), target :: y(..)
       integer(c_int) :: Shybmv
-      Shybmv = hipsparseShybmv_raw(handle, transA, alpha, descrA, hybA, c_loc(x(1)), beta, c_loc( &
-        y(1)))
+      Shybmv = hipsparseShybmv_raw(handle, transA, alpha, descrA, hybA, c_loc(x), beta, c_loc(y))
     end function hipsparseShybmv_native
 
     function hipsparseShybmv_typed(handle, transA, alpha, descrA, hybA, x, beta, y) result(Shybmv)
@@ -28709,12 +28689,11 @@ contains
       real(c_double) :: alpha
       type(c_ptr), value :: descrA
       type(c_ptr), value :: hybA
-      real(c_double), target :: x(*)
+      real(c_double), target :: x(..)
       real(c_double) :: beta
-      real(c_double), target :: y(*)
+      real(c_double), target :: y(..)
       integer(c_int) :: Dhybmv
-      Dhybmv = hipsparseDhybmv_raw(handle, transA, alpha, descrA, hybA, c_loc(x(1)), beta, c_loc( &
-        y(1)))
+      Dhybmv = hipsparseDhybmv_raw(handle, transA, alpha, descrA, hybA, c_loc(x), beta, c_loc(y))
     end function hipsparseDhybmv_native
 
     function hipsparseDhybmv_typed(handle, transA, alpha, descrA, hybA, x, beta, y) result(Dhybmv)
@@ -28741,12 +28720,11 @@ contains
       complex(c_float_complex) :: alpha
       type(c_ptr), value :: descrA
       type(c_ptr), value :: hybA
-      complex(c_float_complex), target :: x(*)
+      complex(c_float_complex), target :: x(..)
       complex(c_float_complex) :: beta
-      complex(c_float_complex), target :: y(*)
+      complex(c_float_complex), target :: y(..)
       integer(c_int) :: Chybmv
-      Chybmv = hipsparseChybmv_raw(handle, transA, alpha, descrA, hybA, c_loc(x(1)), beta, c_loc( &
-        y(1)))
+      Chybmv = hipsparseChybmv_raw(handle, transA, alpha, descrA, hybA, c_loc(x), beta, c_loc(y))
     end function hipsparseChybmv_native
 
     function hipsparseChybmv_typed(handle, transA, alpha, descrA, hybA, x, beta, y) result(Chybmv)
@@ -28773,12 +28751,11 @@ contains
       complex(c_double_complex) :: alpha
       type(c_ptr), value :: descrA
       type(c_ptr), value :: hybA
-      complex(c_double_complex), target :: x(*)
+      complex(c_double_complex), target :: x(..)
       complex(c_double_complex) :: beta
-      complex(c_double_complex), target :: y(*)
+      complex(c_double_complex), target :: y(..)
       integer(c_int) :: Zhybmv
-      Zhybmv = hipsparseZhybmv_raw(handle, transA, alpha, descrA, hybA, c_loc(x(1)), beta, c_loc( &
-        y(1)))
+      Zhybmv = hipsparseZhybmv_raw(handle, transA, alpha, descrA, hybA, c_loc(x), beta, c_loc(y))
     end function hipsparseZhybmv_native
 
     function hipsparseZhybmv_typed(handle, transA, alpha, descrA, hybA, x, beta, y) result(Zhybmv)
@@ -28811,19 +28788,19 @@ contains
       integer(c_int), value :: nnzb
       real(c_float) :: alpha
       type(c_ptr), value :: descrA
-      real(c_float), target :: bsrValA(*)
-      integer(c_int), target :: bsrRowPtrA(*)
-      integer(c_int), target :: bsrColIndA(*)
+      real(c_float), target :: bsrValA(..)
+      integer(c_int), target :: bsrRowPtrA(..)
+      integer(c_int), target :: bsrColIndA(..)
       integer(c_int), value :: blockDim
-      real(c_float), target :: B(*)
+      real(c_float), target :: B(..)
       integer(c_int), value :: ldb
       real(c_float) :: beta
-      real(c_float), target :: C(*)
+      real(c_float), target :: C(..)
       integer(c_int), value :: ldc
       integer(c_int) :: Sbsrmm
       Sbsrmm = hipsparseSbsrmm_raw(handle, dirA, transA, transB, mb, n, kb, nnzb, alpha, descrA, &
-        c_loc(bsrValA(1)), c_loc(bsrRowPtrA(1)), c_loc(bsrColIndA(1)), blockDim, c_loc(B(1)), ldb, &
-        beta, c_loc(C(1)), ldc)
+        c_loc(bsrValA), c_loc(bsrRowPtrA), c_loc(bsrColIndA), blockDim, c_loc(B), ldb, beta, &
+        c_loc(C), ldc)
     end function hipsparseSbsrmm_native
 
     function hipsparseSbsrmm_typed(handle, dirA, transA, transB, mb, n, kb, nnzb, alpha, descrA, &
@@ -28869,19 +28846,19 @@ contains
       integer(c_int), value :: nnzb
       real(c_double) :: alpha
       type(c_ptr), value :: descrA
-      real(c_double), target :: bsrValA(*)
-      integer(c_int), target :: bsrRowPtrA(*)
-      integer(c_int), target :: bsrColIndA(*)
+      real(c_double), target :: bsrValA(..)
+      integer(c_int), target :: bsrRowPtrA(..)
+      integer(c_int), target :: bsrColIndA(..)
       integer(c_int), value :: blockDim
-      real(c_double), target :: B(*)
+      real(c_double), target :: B(..)
       integer(c_int), value :: ldb
       real(c_double) :: beta
-      real(c_double), target :: C(*)
+      real(c_double), target :: C(..)
       integer(c_int), value :: ldc
       integer(c_int) :: Dbsrmm
       Dbsrmm = hipsparseDbsrmm_raw(handle, dirA, transA, transB, mb, n, kb, nnzb, alpha, descrA, &
-        c_loc(bsrValA(1)), c_loc(bsrRowPtrA(1)), c_loc(bsrColIndA(1)), blockDim, c_loc(B(1)), ldb, &
-        beta, c_loc(C(1)), ldc)
+        c_loc(bsrValA), c_loc(bsrRowPtrA), c_loc(bsrColIndA), blockDim, c_loc(B), ldb, beta, &
+        c_loc(C), ldc)
     end function hipsparseDbsrmm_native
 
     function hipsparseDbsrmm_typed(handle, dirA, transA, transB, mb, n, kb, nnzb, alpha, descrA, &
@@ -28927,19 +28904,19 @@ contains
       integer(c_int), value :: nnzb
       complex(c_float_complex) :: alpha
       type(c_ptr), value :: descrA
-      complex(c_float_complex), target :: bsrValA(*)
-      integer(c_int), target :: bsrRowPtrA(*)
-      integer(c_int), target :: bsrColIndA(*)
+      complex(c_float_complex), target :: bsrValA(..)
+      integer(c_int), target :: bsrRowPtrA(..)
+      integer(c_int), target :: bsrColIndA(..)
       integer(c_int), value :: blockDim
-      complex(c_float_complex), target :: B(*)
+      complex(c_float_complex), target :: B(..)
       integer(c_int), value :: ldb
       complex(c_float_complex) :: beta
-      complex(c_float_complex), target :: C(*)
+      complex(c_float_complex), target :: C(..)
       integer(c_int), value :: ldc
       integer(c_int) :: Cbsrmm
       Cbsrmm = hipsparseCbsrmm_raw(handle, dirA, transA, transB, mb, n, kb, nnzb, alpha, descrA, &
-        c_loc(bsrValA(1)), c_loc(bsrRowPtrA(1)), c_loc(bsrColIndA(1)), blockDim, c_loc(B(1)), ldb, &
-        beta, c_loc(C(1)), ldc)
+        c_loc(bsrValA), c_loc(bsrRowPtrA), c_loc(bsrColIndA), blockDim, c_loc(B), ldb, beta, &
+        c_loc(C), ldc)
     end function hipsparseCbsrmm_native
 
     function hipsparseCbsrmm_typed(handle, dirA, transA, transB, mb, n, kb, nnzb, alpha, descrA, &
@@ -28985,19 +28962,19 @@ contains
       integer(c_int), value :: nnzb
       complex(c_double_complex) :: alpha
       type(c_ptr), value :: descrA
-      complex(c_double_complex), target :: bsrValA(*)
-      integer(c_int), target :: bsrRowPtrA(*)
-      integer(c_int), target :: bsrColIndA(*)
+      complex(c_double_complex), target :: bsrValA(..)
+      integer(c_int), target :: bsrRowPtrA(..)
+      integer(c_int), target :: bsrColIndA(..)
       integer(c_int), value :: blockDim
-      complex(c_double_complex), target :: B(*)
+      complex(c_double_complex), target :: B(..)
       integer(c_int), value :: ldb
       complex(c_double_complex) :: beta
-      complex(c_double_complex), target :: C(*)
+      complex(c_double_complex), target :: C(..)
       integer(c_int), value :: ldc
       integer(c_int) :: Zbsrmm
       Zbsrmm = hipsparseZbsrmm_raw(handle, dirA, transA, transB, mb, n, kb, nnzb, alpha, descrA, &
-        c_loc(bsrValA(1)), c_loc(bsrRowPtrA(1)), c_loc(bsrColIndA(1)), blockDim, c_loc(B(1)), ldb, &
-        beta, c_loc(C(1)), ldc)
+        c_loc(bsrValA), c_loc(bsrRowPtrA), c_loc(bsrColIndA), blockDim, c_loc(B), ldb, beta, &
+        c_loc(C), ldc)
     end function hipsparseZbsrmm_native
 
     function hipsparseZbsrmm_typed(handle, dirA, transA, transB, mb, n, kb, nnzb, alpha, descrA, &
@@ -29029,23 +29006,13 @@ contains
         descrA%ptr, bsrValA, bsrRowPtrA, bsrColIndA, blockDim, B, ldb, beta, C, ldc)
     end function hipsparseZbsrmm_typed
 
-    function hipsparseXbsrsm2_zeroPivot_native(handle, info, position) result(Xbsrsm2_zeroPivot)
-      use, intrinsic :: iso_c_binding
-      implicit none
-      type(c_ptr), value :: handle
-      type(c_ptr), value :: info
-      integer(c_int), target :: position(*)
-      integer(c_int) :: Xbsrsm2_zeroPivot
-      Xbsrsm2_zeroPivot = hipsparseXbsrsm2_zeroPivot_raw(handle, info, c_loc(position(1)))
-    end function hipsparseXbsrsm2_zeroPivot_native
-
     function hipsparseXbsrsm2_zeroPivot_typed(handle, info, position) result(Xbsrsm2_zeroPivot)
       use, intrinsic :: iso_c_binding
       use hipfort_handles
       implicit none
       type(hipsparseHandle_t), value :: handle
       type(bsrsm2Info_t), value :: info
-      type(c_ptr), value :: position
+      integer(c_int) :: position
       integer(c_int) :: Xbsrsm2_zeroPivot
       Xbsrsm2_zeroPivot = hipsparseXbsrsm2_zeroPivot_raw(handle%ptr, info%ptr, position)
     end function hipsparseXbsrsm2_zeroPivot_typed
@@ -29063,16 +29030,16 @@ contains
       integer(c_int), value :: nrhs
       integer(c_int), value :: nnzb
       type(c_ptr), value :: descrA
-      real(c_float), target :: bsrSortedValA(*)
-      integer(c_int), target :: bsrSortedRowPtrA(*)
-      integer(c_int), target :: bsrSortedColIndA(*)
+      real(c_float), target :: bsrSortedValA(..)
+      integer(c_int), target :: bsrSortedRowPtrA(..)
+      integer(c_int), target :: bsrSortedColIndA(..)
       integer(c_int), value :: blockDim
       type(c_ptr), value :: info
-      integer(c_int), target :: pBufferSizeInBytes(*)
+      integer(c_int) :: pBufferSizeInBytes
       integer(c_int) :: Sbsrsm2_bufferSize
       Sbsrsm2_bufferSize = hipsparseSbsrsm2_bufferSize_raw(handle, dirA, transA, transX, mb, nrhs, &
-        nnzb, descrA, c_loc(bsrSortedValA(1)), c_loc(bsrSortedRowPtrA(1)), c_loc(bsrSortedColIndA( &
-        1)), blockDim, info, c_loc(pBufferSizeInBytes(1)))
+        nnzb, descrA, c_loc(bsrSortedValA), c_loc(bsrSortedRowPtrA), c_loc(bsrSortedColIndA), &
+        blockDim, info, pBufferSizeInBytes)
     end function hipsparseSbsrsm2_bufferSize_native
 
     function hipsparseSbsrsm2_bufferSize_typed(handle, dirA, transA, transX, mb, nrhs, nnzb, &
@@ -29094,7 +29061,7 @@ contains
       type(c_ptr), value :: bsrSortedColIndA
       integer(c_int), value :: blockDim
       type(bsrsm2Info_t), value :: info
-      type(c_ptr), value :: pBufferSizeInBytes
+      integer(c_int) :: pBufferSizeInBytes
       integer(c_int) :: Sbsrsm2_bufferSize
       Sbsrsm2_bufferSize = hipsparseSbsrsm2_bufferSize_raw(handle%ptr, dirA, transA, transX, mb, &
         nrhs, nnzb, descrA%ptr, bsrSortedValA, bsrSortedRowPtrA, bsrSortedColIndA, blockDim, &
@@ -29114,16 +29081,16 @@ contains
       integer(c_int), value :: nrhs
       integer(c_int), value :: nnzb
       type(c_ptr), value :: descrA
-      real(c_double), target :: bsrSortedValA(*)
-      integer(c_int), target :: bsrSortedRowPtrA(*)
-      integer(c_int), target :: bsrSortedColIndA(*)
+      real(c_double), target :: bsrSortedValA(..)
+      integer(c_int), target :: bsrSortedRowPtrA(..)
+      integer(c_int), target :: bsrSortedColIndA(..)
       integer(c_int), value :: blockDim
       type(c_ptr), value :: info
-      integer(c_int), target :: pBufferSizeInBytes(*)
+      integer(c_int) :: pBufferSizeInBytes
       integer(c_int) :: Dbsrsm2_bufferSize
       Dbsrsm2_bufferSize = hipsparseDbsrsm2_bufferSize_raw(handle, dirA, transA, transX, mb, nrhs, &
-        nnzb, descrA, c_loc(bsrSortedValA(1)), c_loc(bsrSortedRowPtrA(1)), c_loc(bsrSortedColIndA( &
-        1)), blockDim, info, c_loc(pBufferSizeInBytes(1)))
+        nnzb, descrA, c_loc(bsrSortedValA), c_loc(bsrSortedRowPtrA), c_loc(bsrSortedColIndA), &
+        blockDim, info, pBufferSizeInBytes)
     end function hipsparseDbsrsm2_bufferSize_native
 
     function hipsparseDbsrsm2_bufferSize_typed(handle, dirA, transA, transX, mb, nrhs, nnzb, &
@@ -29145,7 +29112,7 @@ contains
       type(c_ptr), value :: bsrSortedColIndA
       integer(c_int), value :: blockDim
       type(bsrsm2Info_t), value :: info
-      type(c_ptr), value :: pBufferSizeInBytes
+      integer(c_int) :: pBufferSizeInBytes
       integer(c_int) :: Dbsrsm2_bufferSize
       Dbsrsm2_bufferSize = hipsparseDbsrsm2_bufferSize_raw(handle%ptr, dirA, transA, transX, mb, &
         nrhs, nnzb, descrA%ptr, bsrSortedValA, bsrSortedRowPtrA, bsrSortedColIndA, blockDim, &
@@ -29165,16 +29132,16 @@ contains
       integer(c_int), value :: nrhs
       integer(c_int), value :: nnzb
       type(c_ptr), value :: descrA
-      complex(c_float_complex), target :: bsrSortedValA(*)
-      integer(c_int), target :: bsrSortedRowPtrA(*)
-      integer(c_int), target :: bsrSortedColIndA(*)
+      complex(c_float_complex), target :: bsrSortedValA(..)
+      integer(c_int), target :: bsrSortedRowPtrA(..)
+      integer(c_int), target :: bsrSortedColIndA(..)
       integer(c_int), value :: blockDim
       type(c_ptr), value :: info
-      integer(c_int), target :: pBufferSizeInBytes(*)
+      integer(c_int) :: pBufferSizeInBytes
       integer(c_int) :: Cbsrsm2_bufferSize
       Cbsrsm2_bufferSize = hipsparseCbsrsm2_bufferSize_raw(handle, dirA, transA, transX, mb, nrhs, &
-        nnzb, descrA, c_loc(bsrSortedValA(1)), c_loc(bsrSortedRowPtrA(1)), c_loc(bsrSortedColIndA( &
-        1)), blockDim, info, c_loc(pBufferSizeInBytes(1)))
+        nnzb, descrA, c_loc(bsrSortedValA), c_loc(bsrSortedRowPtrA), c_loc(bsrSortedColIndA), &
+        blockDim, info, pBufferSizeInBytes)
     end function hipsparseCbsrsm2_bufferSize_native
 
     function hipsparseCbsrsm2_bufferSize_typed(handle, dirA, transA, transX, mb, nrhs, nnzb, &
@@ -29196,7 +29163,7 @@ contains
       type(c_ptr), value :: bsrSortedColIndA
       integer(c_int), value :: blockDim
       type(bsrsm2Info_t), value :: info
-      type(c_ptr), value :: pBufferSizeInBytes
+      integer(c_int) :: pBufferSizeInBytes
       integer(c_int) :: Cbsrsm2_bufferSize
       Cbsrsm2_bufferSize = hipsparseCbsrsm2_bufferSize_raw(handle%ptr, dirA, transA, transX, mb, &
         nrhs, nnzb, descrA%ptr, bsrSortedValA, bsrSortedRowPtrA, bsrSortedColIndA, blockDim, &
@@ -29216,16 +29183,16 @@ contains
       integer(c_int), value :: nrhs
       integer(c_int), value :: nnzb
       type(c_ptr), value :: descrA
-      complex(c_double_complex), target :: bsrSortedValA(*)
-      integer(c_int), target :: bsrSortedRowPtrA(*)
-      integer(c_int), target :: bsrSortedColIndA(*)
+      complex(c_double_complex), target :: bsrSortedValA(..)
+      integer(c_int), target :: bsrSortedRowPtrA(..)
+      integer(c_int), target :: bsrSortedColIndA(..)
       integer(c_int), value :: blockDim
       type(c_ptr), value :: info
-      integer(c_int), target :: pBufferSizeInBytes(*)
+      integer(c_int) :: pBufferSizeInBytes
       integer(c_int) :: Zbsrsm2_bufferSize
       Zbsrsm2_bufferSize = hipsparseZbsrsm2_bufferSize_raw(handle, dirA, transA, transX, mb, nrhs, &
-        nnzb, descrA, c_loc(bsrSortedValA(1)), c_loc(bsrSortedRowPtrA(1)), c_loc(bsrSortedColIndA( &
-        1)), blockDim, info, c_loc(pBufferSizeInBytes(1)))
+        nnzb, descrA, c_loc(bsrSortedValA), c_loc(bsrSortedRowPtrA), c_loc(bsrSortedColIndA), &
+        blockDim, info, pBufferSizeInBytes)
     end function hipsparseZbsrsm2_bufferSize_native
 
     function hipsparseZbsrsm2_bufferSize_typed(handle, dirA, transA, transX, mb, nrhs, nnzb, &
@@ -29247,7 +29214,7 @@ contains
       type(c_ptr), value :: bsrSortedColIndA
       integer(c_int), value :: blockDim
       type(bsrsm2Info_t), value :: info
-      type(c_ptr), value :: pBufferSizeInBytes
+      integer(c_int) :: pBufferSizeInBytes
       integer(c_int) :: Zbsrsm2_bufferSize
       Zbsrsm2_bufferSize = hipsparseZbsrsm2_bufferSize_raw(handle%ptr, dirA, transA, transX, mb, &
         nrhs, nnzb, descrA%ptr, bsrSortedValA, bsrSortedRowPtrA, bsrSortedColIndA, blockDim, &
@@ -29267,17 +29234,17 @@ contains
       integer(c_int), value :: nrhs
       integer(c_int), value :: nnzb
       type(c_ptr), value :: descrA
-      real(c_float), target :: bsrSortedValA(*)
-      integer(c_int), target :: bsrSortedRowPtrA(*)
-      integer(c_int), target :: bsrSortedColIndA(*)
+      real(c_float), target :: bsrSortedValA(..)
+      integer(c_int), target :: bsrSortedRowPtrA(..)
+      integer(c_int), target :: bsrSortedColIndA(..)
       integer(c_int), value :: blockDim
       type(c_ptr), value :: info
       integer(c_int), value :: policy
       type(c_ptr), value :: pBuffer
       integer(c_int) :: Sbsrsm2_analysis
       Sbsrsm2_analysis = hipsparseSbsrsm2_analysis_raw(handle, dirA, transA, transX, mb, nrhs, &
-        nnzb, descrA, c_loc(bsrSortedValA(1)), c_loc(bsrSortedRowPtrA(1)), c_loc(bsrSortedColIndA( &
-        1)), blockDim, info, policy, pBuffer)
+        nnzb, descrA, c_loc(bsrSortedValA), c_loc(bsrSortedRowPtrA), c_loc(bsrSortedColIndA), &
+        blockDim, info, policy, pBuffer)
     end function hipsparseSbsrsm2_analysis_native
 
     function hipsparseSbsrsm2_analysis_typed(handle, dirA, transA, transX, mb, nrhs, nnzb, descrA, &
@@ -29320,17 +29287,17 @@ contains
       integer(c_int), value :: nrhs
       integer(c_int), value :: nnzb
       type(c_ptr), value :: descrA
-      real(c_double), target :: bsrSortedValA(*)
-      integer(c_int), target :: bsrSortedRowPtrA(*)
-      integer(c_int), target :: bsrSortedColIndA(*)
+      real(c_double), target :: bsrSortedValA(..)
+      integer(c_int), target :: bsrSortedRowPtrA(..)
+      integer(c_int), target :: bsrSortedColIndA(..)
       integer(c_int), value :: blockDim
       type(c_ptr), value :: info
       integer(c_int), value :: policy
       type(c_ptr), value :: pBuffer
       integer(c_int) :: Dbsrsm2_analysis
       Dbsrsm2_analysis = hipsparseDbsrsm2_analysis_raw(handle, dirA, transA, transX, mb, nrhs, &
-        nnzb, descrA, c_loc(bsrSortedValA(1)), c_loc(bsrSortedRowPtrA(1)), c_loc(bsrSortedColIndA( &
-        1)), blockDim, info, policy, pBuffer)
+        nnzb, descrA, c_loc(bsrSortedValA), c_loc(bsrSortedRowPtrA), c_loc(bsrSortedColIndA), &
+        blockDim, info, policy, pBuffer)
     end function hipsparseDbsrsm2_analysis_native
 
     function hipsparseDbsrsm2_analysis_typed(handle, dirA, transA, transX, mb, nrhs, nnzb, descrA, &
@@ -29373,17 +29340,17 @@ contains
       integer(c_int), value :: nrhs
       integer(c_int), value :: nnzb
       type(c_ptr), value :: descrA
-      complex(c_float_complex), target :: bsrSortedValA(*)
-      integer(c_int), target :: bsrSortedRowPtrA(*)
-      integer(c_int), target :: bsrSortedColIndA(*)
+      complex(c_float_complex), target :: bsrSortedValA(..)
+      integer(c_int), target :: bsrSortedRowPtrA(..)
+      integer(c_int), target :: bsrSortedColIndA(..)
       integer(c_int), value :: blockDim
       type(c_ptr), value :: info
       integer(c_int), value :: policy
       type(c_ptr), value :: pBuffer
       integer(c_int) :: Cbsrsm2_analysis
       Cbsrsm2_analysis = hipsparseCbsrsm2_analysis_raw(handle, dirA, transA, transX, mb, nrhs, &
-        nnzb, descrA, c_loc(bsrSortedValA(1)), c_loc(bsrSortedRowPtrA(1)), c_loc(bsrSortedColIndA( &
-        1)), blockDim, info, policy, pBuffer)
+        nnzb, descrA, c_loc(bsrSortedValA), c_loc(bsrSortedRowPtrA), c_loc(bsrSortedColIndA), &
+        blockDim, info, policy, pBuffer)
     end function hipsparseCbsrsm2_analysis_native
 
     function hipsparseCbsrsm2_analysis_typed(handle, dirA, transA, transX, mb, nrhs, nnzb, descrA, &
@@ -29426,17 +29393,17 @@ contains
       integer(c_int), value :: nrhs
       integer(c_int), value :: nnzb
       type(c_ptr), value :: descrA
-      complex(c_double_complex), target :: bsrSortedValA(*)
-      integer(c_int), target :: bsrSortedRowPtrA(*)
-      integer(c_int), target :: bsrSortedColIndA(*)
+      complex(c_double_complex), target :: bsrSortedValA(..)
+      integer(c_int), target :: bsrSortedRowPtrA(..)
+      integer(c_int), target :: bsrSortedColIndA(..)
       integer(c_int), value :: blockDim
       type(c_ptr), value :: info
       integer(c_int), value :: policy
       type(c_ptr), value :: pBuffer
       integer(c_int) :: Zbsrsm2_analysis
       Zbsrsm2_analysis = hipsparseZbsrsm2_analysis_raw(handle, dirA, transA, transX, mb, nrhs, &
-        nnzb, descrA, c_loc(bsrSortedValA(1)), c_loc(bsrSortedRowPtrA(1)), c_loc(bsrSortedColIndA( &
-        1)), blockDim, info, policy, pBuffer)
+        nnzb, descrA, c_loc(bsrSortedValA), c_loc(bsrSortedRowPtrA), c_loc(bsrSortedColIndA), &
+        blockDim, info, policy, pBuffer)
     end function hipsparseZbsrsm2_analysis_native
 
     function hipsparseZbsrsm2_analysis_typed(handle, dirA, transA, transX, mb, nrhs, nnzb, descrA, &
@@ -29480,21 +29447,21 @@ contains
       integer(c_int), value :: nnzb
       real(c_float) :: alpha
       type(c_ptr), value :: descrA
-      real(c_float), target :: bsrSortedValA(*)
-      integer(c_int), target :: bsrSortedRowPtrA(*)
-      integer(c_int), target :: bsrSortedColIndA(*)
+      real(c_float), target :: bsrSortedValA(..)
+      integer(c_int), target :: bsrSortedRowPtrA(..)
+      integer(c_int), target :: bsrSortedColIndA(..)
       integer(c_int), value :: blockDim
       type(c_ptr), value :: info
-      real(c_float), target :: B(*)
+      real(c_float), target :: B(..)
       integer(c_int), value :: ldb
-      real(c_float), target :: X(*)
+      real(c_float), target :: X(..)
       integer(c_int), value :: ldx
       integer(c_int), value :: policy
       type(c_ptr), value :: pBuffer
       integer(c_int) :: Sbsrsm2_solve
       Sbsrsm2_solve = hipsparseSbsrsm2_solve_raw(handle, dirA, transA, transX, mb, nrhs, nnzb, &
-        alpha, descrA, c_loc(bsrSortedValA(1)), c_loc(bsrSortedRowPtrA(1)), c_loc( &
-        bsrSortedColIndA(1)), blockDim, info, c_loc(B(1)), ldb, c_loc(X(1)), ldx, policy, pBuffer)
+        alpha, descrA, c_loc(bsrSortedValA), c_loc(bsrSortedRowPtrA), c_loc(bsrSortedColIndA), &
+        blockDim, info, c_loc(B), ldb, c_loc(X), ldx, policy, pBuffer)
     end function hipsparseSbsrsm2_solve_native
 
     function hipsparseSbsrsm2_solve_typed(handle, dirA, transA, transX, mb, nrhs, nnzb, alpha, &
@@ -29543,21 +29510,21 @@ contains
       integer(c_int), value :: nnzb
       real(c_double) :: alpha
       type(c_ptr), value :: descrA
-      real(c_double), target :: bsrSortedValA(*)
-      integer(c_int), target :: bsrSortedRowPtrA(*)
-      integer(c_int), target :: bsrSortedColIndA(*)
+      real(c_double), target :: bsrSortedValA(..)
+      integer(c_int), target :: bsrSortedRowPtrA(..)
+      integer(c_int), target :: bsrSortedColIndA(..)
       integer(c_int), value :: blockDim
       type(c_ptr), value :: info
-      real(c_double), target :: B(*)
+      real(c_double), target :: B(..)
       integer(c_int), value :: ldb
-      real(c_double), target :: X(*)
+      real(c_double), target :: X(..)
       integer(c_int), value :: ldx
       integer(c_int), value :: policy
       type(c_ptr), value :: pBuffer
       integer(c_int) :: Dbsrsm2_solve
       Dbsrsm2_solve = hipsparseDbsrsm2_solve_raw(handle, dirA, transA, transX, mb, nrhs, nnzb, &
-        alpha, descrA, c_loc(bsrSortedValA(1)), c_loc(bsrSortedRowPtrA(1)), c_loc( &
-        bsrSortedColIndA(1)), blockDim, info, c_loc(B(1)), ldb, c_loc(X(1)), ldx, policy, pBuffer)
+        alpha, descrA, c_loc(bsrSortedValA), c_loc(bsrSortedRowPtrA), c_loc(bsrSortedColIndA), &
+        blockDim, info, c_loc(B), ldb, c_loc(X), ldx, policy, pBuffer)
     end function hipsparseDbsrsm2_solve_native
 
     function hipsparseDbsrsm2_solve_typed(handle, dirA, transA, transX, mb, nrhs, nnzb, alpha, &
@@ -29606,21 +29573,21 @@ contains
       integer(c_int), value :: nnzb
       complex(c_float_complex) :: alpha
       type(c_ptr), value :: descrA
-      complex(c_float_complex), target :: bsrSortedValA(*)
-      integer(c_int), target :: bsrSortedRowPtrA(*)
-      integer(c_int), target :: bsrSortedColIndA(*)
+      complex(c_float_complex), target :: bsrSortedValA(..)
+      integer(c_int), target :: bsrSortedRowPtrA(..)
+      integer(c_int), target :: bsrSortedColIndA(..)
       integer(c_int), value :: blockDim
       type(c_ptr), value :: info
-      complex(c_float_complex), target :: B(*)
+      complex(c_float_complex), target :: B(..)
       integer(c_int), value :: ldb
-      complex(c_float_complex), target :: X(*)
+      complex(c_float_complex), target :: X(..)
       integer(c_int), value :: ldx
       integer(c_int), value :: policy
       type(c_ptr), value :: pBuffer
       integer(c_int) :: Cbsrsm2_solve
       Cbsrsm2_solve = hipsparseCbsrsm2_solve_raw(handle, dirA, transA, transX, mb, nrhs, nnzb, &
-        alpha, descrA, c_loc(bsrSortedValA(1)), c_loc(bsrSortedRowPtrA(1)), c_loc( &
-        bsrSortedColIndA(1)), blockDim, info, c_loc(B(1)), ldb, c_loc(X(1)), ldx, policy, pBuffer)
+        alpha, descrA, c_loc(bsrSortedValA), c_loc(bsrSortedRowPtrA), c_loc(bsrSortedColIndA), &
+        blockDim, info, c_loc(B), ldb, c_loc(X), ldx, policy, pBuffer)
     end function hipsparseCbsrsm2_solve_native
 
     function hipsparseCbsrsm2_solve_typed(handle, dirA, transA, transX, mb, nrhs, nnzb, alpha, &
@@ -29669,21 +29636,21 @@ contains
       integer(c_int), value :: nnzb
       complex(c_double_complex) :: alpha
       type(c_ptr), value :: descrA
-      complex(c_double_complex), target :: bsrSortedValA(*)
-      integer(c_int), target :: bsrSortedRowPtrA(*)
-      integer(c_int), target :: bsrSortedColIndA(*)
+      complex(c_double_complex), target :: bsrSortedValA(..)
+      integer(c_int), target :: bsrSortedRowPtrA(..)
+      integer(c_int), target :: bsrSortedColIndA(..)
       integer(c_int), value :: blockDim
       type(c_ptr), value :: info
-      complex(c_double_complex), target :: B(*)
+      complex(c_double_complex), target :: B(..)
       integer(c_int), value :: ldb
-      complex(c_double_complex), target :: X(*)
+      complex(c_double_complex), target :: X(..)
       integer(c_int), value :: ldx
       integer(c_int), value :: policy
       type(c_ptr), value :: pBuffer
       integer(c_int) :: Zbsrsm2_solve
       Zbsrsm2_solve = hipsparseZbsrsm2_solve_raw(handle, dirA, transA, transX, mb, nrhs, nnzb, &
-        alpha, descrA, c_loc(bsrSortedValA(1)), c_loc(bsrSortedRowPtrA(1)), c_loc( &
-        bsrSortedColIndA(1)), blockDim, info, c_loc(B(1)), ldb, c_loc(X(1)), ldx, policy, pBuffer)
+        alpha, descrA, c_loc(bsrSortedValA), c_loc(bsrSortedRowPtrA), c_loc(bsrSortedColIndA), &
+        blockDim, info, c_loc(B), ldb, c_loc(X), ldx, policy, pBuffer)
     end function hipsparseZbsrsm2_solve_native
 
     function hipsparseZbsrsm2_solve_typed(handle, dirA, transA, transX, mb, nrhs, nnzb, alpha, &
@@ -29730,18 +29697,18 @@ contains
       integer(c_int), value :: nnz
       real(c_float) :: alpha
       type(c_ptr), value :: descrA
-      real(c_float), target :: csrSortedValA(*)
-      integer(c_int), target :: csrSortedRowPtrA(*)
-      integer(c_int), target :: csrSortedColIndA(*)
-      real(c_float), target :: B(*)
+      real(c_float), target :: csrSortedValA(..)
+      integer(c_int), target :: csrSortedRowPtrA(..)
+      integer(c_int), target :: csrSortedColIndA(..)
+      real(c_float), target :: B(..)
       integer(c_int), value :: ldb
       real(c_float) :: beta
-      real(c_float), target :: C(*)
+      real(c_float), target :: C(..)
       integer(c_int), value :: ldc
       integer(c_int) :: Scsrmm
       Scsrmm = hipsparseScsrmm_raw(handle, transA, m, n, k, nnz, alpha, descrA, c_loc( &
-        csrSortedValA(1)), c_loc(csrSortedRowPtrA(1)), c_loc(csrSortedColIndA(1)), c_loc(B(1)), &
-        ldb, beta, c_loc(C(1)), ldc)
+        csrSortedValA), c_loc(csrSortedRowPtrA), c_loc(csrSortedColIndA), c_loc(B), ldb, beta, &
+        c_loc(C), ldc)
     end function hipsparseScsrmm_native
 
     function hipsparseScsrmm_typed(handle, transA, m, n, k, nnz, alpha, descrA, csrSortedValA, &
@@ -29782,18 +29749,18 @@ contains
       integer(c_int), value :: nnz
       real(c_double) :: alpha
       type(c_ptr), value :: descrA
-      real(c_double), target :: csrSortedValA(*)
-      integer(c_int), target :: csrSortedRowPtrA(*)
-      integer(c_int), target :: csrSortedColIndA(*)
-      real(c_double), target :: B(*)
+      real(c_double), target :: csrSortedValA(..)
+      integer(c_int), target :: csrSortedRowPtrA(..)
+      integer(c_int), target :: csrSortedColIndA(..)
+      real(c_double), target :: B(..)
       integer(c_int), value :: ldb
       real(c_double) :: beta
-      real(c_double), target :: C(*)
+      real(c_double), target :: C(..)
       integer(c_int), value :: ldc
       integer(c_int) :: Dcsrmm
       Dcsrmm = hipsparseDcsrmm_raw(handle, transA, m, n, k, nnz, alpha, descrA, c_loc( &
-        csrSortedValA(1)), c_loc(csrSortedRowPtrA(1)), c_loc(csrSortedColIndA(1)), c_loc(B(1)), &
-        ldb, beta, c_loc(C(1)), ldc)
+        csrSortedValA), c_loc(csrSortedRowPtrA), c_loc(csrSortedColIndA), c_loc(B), ldb, beta, &
+        c_loc(C), ldc)
     end function hipsparseDcsrmm_native
 
     function hipsparseDcsrmm_typed(handle, transA, m, n, k, nnz, alpha, descrA, csrSortedValA, &
@@ -29834,18 +29801,18 @@ contains
       integer(c_int), value :: nnz
       complex(c_float_complex) :: alpha
       type(c_ptr), value :: descrA
-      complex(c_float_complex), target :: csrSortedValA(*)
-      integer(c_int), target :: csrSortedRowPtrA(*)
-      integer(c_int), target :: csrSortedColIndA(*)
-      complex(c_float_complex), target :: B(*)
+      complex(c_float_complex), target :: csrSortedValA(..)
+      integer(c_int), target :: csrSortedRowPtrA(..)
+      integer(c_int), target :: csrSortedColIndA(..)
+      complex(c_float_complex), target :: B(..)
       integer(c_int), value :: ldb
       complex(c_float_complex) :: beta
-      complex(c_float_complex), target :: C(*)
+      complex(c_float_complex), target :: C(..)
       integer(c_int), value :: ldc
       integer(c_int) :: Ccsrmm
       Ccsrmm = hipsparseCcsrmm_raw(handle, transA, m, n, k, nnz, alpha, descrA, c_loc( &
-        csrSortedValA(1)), c_loc(csrSortedRowPtrA(1)), c_loc(csrSortedColIndA(1)), c_loc(B(1)), &
-        ldb, beta, c_loc(C(1)), ldc)
+        csrSortedValA), c_loc(csrSortedRowPtrA), c_loc(csrSortedColIndA), c_loc(B), ldb, beta, &
+        c_loc(C), ldc)
     end function hipsparseCcsrmm_native
 
     function hipsparseCcsrmm_typed(handle, transA, m, n, k, nnz, alpha, descrA, csrSortedValA, &
@@ -29886,18 +29853,18 @@ contains
       integer(c_int), value :: nnz
       complex(c_double_complex) :: alpha
       type(c_ptr), value :: descrA
-      complex(c_double_complex), target :: csrSortedValA(*)
-      integer(c_int), target :: csrSortedRowPtrA(*)
-      integer(c_int), target :: csrSortedColIndA(*)
-      complex(c_double_complex), target :: B(*)
+      complex(c_double_complex), target :: csrSortedValA(..)
+      integer(c_int), target :: csrSortedRowPtrA(..)
+      integer(c_int), target :: csrSortedColIndA(..)
+      complex(c_double_complex), target :: B(..)
       integer(c_int), value :: ldb
       complex(c_double_complex) :: beta
-      complex(c_double_complex), target :: C(*)
+      complex(c_double_complex), target :: C(..)
       integer(c_int), value :: ldc
       integer(c_int) :: Zcsrmm
       Zcsrmm = hipsparseZcsrmm_raw(handle, transA, m, n, k, nnz, alpha, descrA, c_loc( &
-        csrSortedValA(1)), c_loc(csrSortedRowPtrA(1)), c_loc(csrSortedColIndA(1)), c_loc(B(1)), &
-        ldb, beta, c_loc(C(1)), ldc)
+        csrSortedValA), c_loc(csrSortedRowPtrA), c_loc(csrSortedColIndA), c_loc(B), ldb, beta, &
+        c_loc(C), ldc)
     end function hipsparseZcsrmm_native
 
     function hipsparseZcsrmm_typed(handle, transA, m, n, k, nnz, alpha, descrA, csrSortedValA, &
@@ -29939,18 +29906,18 @@ contains
       integer(c_int), value :: nnz
       real(c_float) :: alpha
       type(c_ptr), value :: descrA
-      real(c_float), target :: csrSortedValA(*)
-      integer(c_int), target :: csrSortedRowPtrA(*)
-      integer(c_int), target :: csrSortedColIndA(*)
-      real(c_float), target :: B(*)
+      real(c_float), target :: csrSortedValA(..)
+      integer(c_int), target :: csrSortedRowPtrA(..)
+      integer(c_int), target :: csrSortedColIndA(..)
+      real(c_float), target :: B(..)
       integer(c_int), value :: ldb
       real(c_float) :: beta
-      real(c_float), target :: C(*)
+      real(c_float), target :: C(..)
       integer(c_int), value :: ldc
       integer(c_int) :: Scsrmm2
       Scsrmm2 = hipsparseScsrmm2_raw(handle, transA, transB, m, n, k, nnz, alpha, descrA, c_loc( &
-        csrSortedValA(1)), c_loc(csrSortedRowPtrA(1)), c_loc(csrSortedColIndA(1)), c_loc(B(1)), &
-        ldb, beta, c_loc(C(1)), ldc)
+        csrSortedValA), c_loc(csrSortedRowPtrA), c_loc(csrSortedColIndA), c_loc(B), ldb, beta, &
+        c_loc(C), ldc)
     end function hipsparseScsrmm2_native
 
     function hipsparseScsrmm2_typed(handle, transA, transB, m, n, k, nnz, alpha, descrA, &
@@ -29993,18 +29960,18 @@ contains
       integer(c_int), value :: nnz
       real(c_double) :: alpha
       type(c_ptr), value :: descrA
-      real(c_double), target :: csrSortedValA(*)
-      integer(c_int), target :: csrSortedRowPtrA(*)
-      integer(c_int), target :: csrSortedColIndA(*)
-      real(c_double), target :: B(*)
+      real(c_double), target :: csrSortedValA(..)
+      integer(c_int), target :: csrSortedRowPtrA(..)
+      integer(c_int), target :: csrSortedColIndA(..)
+      real(c_double), target :: B(..)
       integer(c_int), value :: ldb
       real(c_double) :: beta
-      real(c_double), target :: C(*)
+      real(c_double), target :: C(..)
       integer(c_int), value :: ldc
       integer(c_int) :: Dcsrmm2
       Dcsrmm2 = hipsparseDcsrmm2_raw(handle, transA, transB, m, n, k, nnz, alpha, descrA, c_loc( &
-        csrSortedValA(1)), c_loc(csrSortedRowPtrA(1)), c_loc(csrSortedColIndA(1)), c_loc(B(1)), &
-        ldb, beta, c_loc(C(1)), ldc)
+        csrSortedValA), c_loc(csrSortedRowPtrA), c_loc(csrSortedColIndA), c_loc(B), ldb, beta, &
+        c_loc(C), ldc)
     end function hipsparseDcsrmm2_native
 
     function hipsparseDcsrmm2_typed(handle, transA, transB, m, n, k, nnz, alpha, descrA, &
@@ -30047,18 +30014,18 @@ contains
       integer(c_int), value :: nnz
       complex(c_float_complex) :: alpha
       type(c_ptr), value :: descrA
-      complex(c_float_complex), target :: csrSortedValA(*)
-      integer(c_int), target :: csrSortedRowPtrA(*)
-      integer(c_int), target :: csrSortedColIndA(*)
-      complex(c_float_complex), target :: B(*)
+      complex(c_float_complex), target :: csrSortedValA(..)
+      integer(c_int), target :: csrSortedRowPtrA(..)
+      integer(c_int), target :: csrSortedColIndA(..)
+      complex(c_float_complex), target :: B(..)
       integer(c_int), value :: ldb
       complex(c_float_complex) :: beta
-      complex(c_float_complex), target :: C(*)
+      complex(c_float_complex), target :: C(..)
       integer(c_int), value :: ldc
       integer(c_int) :: Ccsrmm2
       Ccsrmm2 = hipsparseCcsrmm2_raw(handle, transA, transB, m, n, k, nnz, alpha, descrA, c_loc( &
-        csrSortedValA(1)), c_loc(csrSortedRowPtrA(1)), c_loc(csrSortedColIndA(1)), c_loc(B(1)), &
-        ldb, beta, c_loc(C(1)), ldc)
+        csrSortedValA), c_loc(csrSortedRowPtrA), c_loc(csrSortedColIndA), c_loc(B), ldb, beta, &
+        c_loc(C), ldc)
     end function hipsparseCcsrmm2_native
 
     function hipsparseCcsrmm2_typed(handle, transA, transB, m, n, k, nnz, alpha, descrA, &
@@ -30101,18 +30068,18 @@ contains
       integer(c_int), value :: nnz
       complex(c_double_complex) :: alpha
       type(c_ptr), value :: descrA
-      complex(c_double_complex), target :: csrSortedValA(*)
-      integer(c_int), target :: csrSortedRowPtrA(*)
-      integer(c_int), target :: csrSortedColIndA(*)
-      complex(c_double_complex), target :: B(*)
+      complex(c_double_complex), target :: csrSortedValA(..)
+      integer(c_int), target :: csrSortedRowPtrA(..)
+      integer(c_int), target :: csrSortedColIndA(..)
+      complex(c_double_complex), target :: B(..)
       integer(c_int), value :: ldb
       complex(c_double_complex) :: beta
-      complex(c_double_complex), target :: C(*)
+      complex(c_double_complex), target :: C(..)
       integer(c_int), value :: ldc
       integer(c_int) :: Zcsrmm2
       Zcsrmm2 = hipsparseZcsrmm2_raw(handle, transA, transB, m, n, k, nnz, alpha, descrA, c_loc( &
-        csrSortedValA(1)), c_loc(csrSortedRowPtrA(1)), c_loc(csrSortedColIndA(1)), c_loc(B(1)), &
-        ldb, beta, c_loc(C(1)), ldc)
+        csrSortedValA), c_loc(csrSortedRowPtrA), c_loc(csrSortedColIndA), c_loc(B), ldb, beta, &
+        c_loc(C), ldc)
     end function hipsparseZcsrmm2_native
 
     function hipsparseZcsrmm2_typed(handle, transA, transB, m, n, k, nnz, alpha, descrA, &
@@ -30142,23 +30109,13 @@ contains
         csrSortedValA, csrSortedRowPtrA, csrSortedColIndA, B, ldb, beta, C, ldc)
     end function hipsparseZcsrmm2_typed
 
-    function hipsparseXcsrsm2_zeroPivot_native(handle, info, position) result(Xcsrsm2_zeroPivot)
-      use, intrinsic :: iso_c_binding
-      implicit none
-      type(c_ptr), value :: handle
-      type(c_ptr), value :: info
-      integer(c_int), target :: position(*)
-      integer(c_int) :: Xcsrsm2_zeroPivot
-      Xcsrsm2_zeroPivot = hipsparseXcsrsm2_zeroPivot_raw(handle, info, c_loc(position(1)))
-    end function hipsparseXcsrsm2_zeroPivot_native
-
     function hipsparseXcsrsm2_zeroPivot_typed(handle, info, position) result(Xcsrsm2_zeroPivot)
       use, intrinsic :: iso_c_binding
       use hipfort_handles
       implicit none
       type(hipsparseHandle_t), value :: handle
       type(csrsm2Info_t), value :: info
-      type(c_ptr), value :: position
+      integer(c_int) :: position
       integer(c_int) :: Xcsrsm2_zeroPivot
       Xcsrsm2_zeroPivot = hipsparseXcsrsm2_zeroPivot_raw(handle%ptr, info%ptr, position)
     end function hipsparseXcsrsm2_zeroPivot_typed
@@ -30177,18 +30134,18 @@ contains
       integer(c_int), value :: nnz
       real(c_float) :: alpha
       type(c_ptr), value :: descrA
-      real(c_float), target :: csrSortedValA(*)
-      integer(c_int), target :: csrSortedRowPtrA(*)
-      integer(c_int), target :: csrSortedColIndA(*)
-      real(c_float), target :: B(*)
+      real(c_float), target :: csrSortedValA(..)
+      integer(c_int), target :: csrSortedRowPtrA(..)
+      integer(c_int), target :: csrSortedColIndA(..)
+      real(c_float), target :: B(..)
       integer(c_int), value :: ldb
       type(c_ptr), value :: info
       integer(c_int), value :: policy
       type(c_ptr), value :: pBufferSizeInBytes
       integer(c_int) :: Scsrsm2_bufferSizeExt
       Scsrsm2_bufferSizeExt = hipsparseScsrsm2_bufferSizeExt_raw(handle, algo, transA, transB, m, &
-        nrhs, nnz, alpha, descrA, c_loc(csrSortedValA(1)), c_loc(csrSortedRowPtrA(1)), c_loc( &
-        csrSortedColIndA(1)), c_loc(B(1)), ldb, info, policy, pBufferSizeInBytes)
+        nrhs, nnz, alpha, descrA, c_loc(csrSortedValA), c_loc(csrSortedRowPtrA), c_loc( &
+        csrSortedColIndA), c_loc(B), ldb, info, policy, pBufferSizeInBytes)
     end function hipsparseScsrsm2_bufferSizeExt_native
 
     function hipsparseScsrsm2_bufferSizeExt_typed(handle, algo, transA, transB, m, nrhs, nnz, &
@@ -30234,18 +30191,18 @@ contains
       integer(c_int), value :: nnz
       real(c_double) :: alpha
       type(c_ptr), value :: descrA
-      real(c_double), target :: csrSortedValA(*)
-      integer(c_int), target :: csrSortedRowPtrA(*)
-      integer(c_int), target :: csrSortedColIndA(*)
-      real(c_double), target :: B(*)
+      real(c_double), target :: csrSortedValA(..)
+      integer(c_int), target :: csrSortedRowPtrA(..)
+      integer(c_int), target :: csrSortedColIndA(..)
+      real(c_double), target :: B(..)
       integer(c_int), value :: ldb
       type(c_ptr), value :: info
       integer(c_int), value :: policy
       type(c_ptr), value :: pBufferSizeInBytes
       integer(c_int) :: Dcsrsm2_bufferSizeExt
       Dcsrsm2_bufferSizeExt = hipsparseDcsrsm2_bufferSizeExt_raw(handle, algo, transA, transB, m, &
-        nrhs, nnz, alpha, descrA, c_loc(csrSortedValA(1)), c_loc(csrSortedRowPtrA(1)), c_loc( &
-        csrSortedColIndA(1)), c_loc(B(1)), ldb, info, policy, pBufferSizeInBytes)
+        nrhs, nnz, alpha, descrA, c_loc(csrSortedValA), c_loc(csrSortedRowPtrA), c_loc( &
+        csrSortedColIndA), c_loc(B), ldb, info, policy, pBufferSizeInBytes)
     end function hipsparseDcsrsm2_bufferSizeExt_native
 
     function hipsparseDcsrsm2_bufferSizeExt_typed(handle, algo, transA, transB, m, nrhs, nnz, &
@@ -30291,18 +30248,18 @@ contains
       integer(c_int), value :: nnz
       complex(c_float_complex) :: alpha
       type(c_ptr), value :: descrA
-      complex(c_float_complex), target :: csrSortedValA(*)
-      integer(c_int), target :: csrSortedRowPtrA(*)
-      integer(c_int), target :: csrSortedColIndA(*)
-      complex(c_float_complex), target :: B(*)
+      complex(c_float_complex), target :: csrSortedValA(..)
+      integer(c_int), target :: csrSortedRowPtrA(..)
+      integer(c_int), target :: csrSortedColIndA(..)
+      complex(c_float_complex), target :: B(..)
       integer(c_int), value :: ldb
       type(c_ptr), value :: info
       integer(c_int), value :: policy
       type(c_ptr), value :: pBufferSizeInBytes
       integer(c_int) :: Ccsrsm2_bufferSizeExt
       Ccsrsm2_bufferSizeExt = hipsparseCcsrsm2_bufferSizeExt_raw(handle, algo, transA, transB, m, &
-        nrhs, nnz, alpha, descrA, c_loc(csrSortedValA(1)), c_loc(csrSortedRowPtrA(1)), c_loc( &
-        csrSortedColIndA(1)), c_loc(B(1)), ldb, info, policy, pBufferSizeInBytes)
+        nrhs, nnz, alpha, descrA, c_loc(csrSortedValA), c_loc(csrSortedRowPtrA), c_loc( &
+        csrSortedColIndA), c_loc(B), ldb, info, policy, pBufferSizeInBytes)
     end function hipsparseCcsrsm2_bufferSizeExt_native
 
     function hipsparseCcsrsm2_bufferSizeExt_typed(handle, algo, transA, transB, m, nrhs, nnz, &
@@ -30348,18 +30305,18 @@ contains
       integer(c_int), value :: nnz
       complex(c_double_complex) :: alpha
       type(c_ptr), value :: descrA
-      complex(c_double_complex), target :: csrSortedValA(*)
-      integer(c_int), target :: csrSortedRowPtrA(*)
-      integer(c_int), target :: csrSortedColIndA(*)
-      complex(c_double_complex), target :: B(*)
+      complex(c_double_complex), target :: csrSortedValA(..)
+      integer(c_int), target :: csrSortedRowPtrA(..)
+      integer(c_int), target :: csrSortedColIndA(..)
+      complex(c_double_complex), target :: B(..)
       integer(c_int), value :: ldb
       type(c_ptr), value :: info
       integer(c_int), value :: policy
       type(c_ptr), value :: pBufferSizeInBytes
       integer(c_int) :: Zcsrsm2_bufferSizeExt
       Zcsrsm2_bufferSizeExt = hipsparseZcsrsm2_bufferSizeExt_raw(handle, algo, transA, transB, m, &
-        nrhs, nnz, alpha, descrA, c_loc(csrSortedValA(1)), c_loc(csrSortedRowPtrA(1)), c_loc( &
-        csrSortedColIndA(1)), c_loc(B(1)), ldb, info, policy, pBufferSizeInBytes)
+        nrhs, nnz, alpha, descrA, c_loc(csrSortedValA), c_loc(csrSortedRowPtrA), c_loc( &
+        csrSortedColIndA), c_loc(B), ldb, info, policy, pBufferSizeInBytes)
     end function hipsparseZcsrsm2_bufferSizeExt_native
 
     function hipsparseZcsrsm2_bufferSizeExt_typed(handle, algo, transA, transB, m, nrhs, nnz, &
@@ -30405,18 +30362,18 @@ contains
       integer(c_int), value :: nnz
       real(c_float) :: alpha
       type(c_ptr), value :: descrA
-      real(c_float), target :: csrSortedValA(*)
-      integer(c_int), target :: csrSortedRowPtrA(*)
-      integer(c_int), target :: csrSortedColIndA(*)
-      real(c_float), target :: B(*)
+      real(c_float), target :: csrSortedValA(..)
+      integer(c_int), target :: csrSortedRowPtrA(..)
+      integer(c_int), target :: csrSortedColIndA(..)
+      real(c_float), target :: B(..)
       integer(c_int), value :: ldb
       type(c_ptr), value :: info
       integer(c_int), value :: policy
       type(c_ptr), value :: pBuffer
       integer(c_int) :: Scsrsm2_analysis
       Scsrsm2_analysis = hipsparseScsrsm2_analysis_raw(handle, algo, transA, transB, m, nrhs, nnz, &
-        alpha, descrA, c_loc(csrSortedValA(1)), c_loc(csrSortedRowPtrA(1)), c_loc( &
-        csrSortedColIndA(1)), c_loc(B(1)), ldb, info, policy, pBuffer)
+        alpha, descrA, c_loc(csrSortedValA), c_loc(csrSortedRowPtrA), c_loc(csrSortedColIndA), &
+        c_loc(B), ldb, info, policy, pBuffer)
     end function hipsparseScsrsm2_analysis_native
 
     function hipsparseScsrsm2_analysis_typed(handle, algo, transA, transB, m, nrhs, nnz, alpha, &
@@ -30462,18 +30419,18 @@ contains
       integer(c_int), value :: nnz
       real(c_double) :: alpha
       type(c_ptr), value :: descrA
-      real(c_double), target :: csrSortedValA(*)
-      integer(c_int), target :: csrSortedRowPtrA(*)
-      integer(c_int), target :: csrSortedColIndA(*)
-      real(c_double), target :: B(*)
+      real(c_double), target :: csrSortedValA(..)
+      integer(c_int), target :: csrSortedRowPtrA(..)
+      integer(c_int), target :: csrSortedColIndA(..)
+      real(c_double), target :: B(..)
       integer(c_int), value :: ldb
       type(c_ptr), value :: info
       integer(c_int), value :: policy
       type(c_ptr), value :: pBuffer
       integer(c_int) :: Dcsrsm2_analysis
       Dcsrsm2_analysis = hipsparseDcsrsm2_analysis_raw(handle, algo, transA, transB, m, nrhs, nnz, &
-        alpha, descrA, c_loc(csrSortedValA(1)), c_loc(csrSortedRowPtrA(1)), c_loc( &
-        csrSortedColIndA(1)), c_loc(B(1)), ldb, info, policy, pBuffer)
+        alpha, descrA, c_loc(csrSortedValA), c_loc(csrSortedRowPtrA), c_loc(csrSortedColIndA), &
+        c_loc(B), ldb, info, policy, pBuffer)
     end function hipsparseDcsrsm2_analysis_native
 
     function hipsparseDcsrsm2_analysis_typed(handle, algo, transA, transB, m, nrhs, nnz, alpha, &
@@ -30519,18 +30476,18 @@ contains
       integer(c_int), value :: nnz
       complex(c_float_complex) :: alpha
       type(c_ptr), value :: descrA
-      complex(c_float_complex), target :: csrSortedValA(*)
-      integer(c_int), target :: csrSortedRowPtrA(*)
-      integer(c_int), target :: csrSortedColIndA(*)
-      complex(c_float_complex), target :: B(*)
+      complex(c_float_complex), target :: csrSortedValA(..)
+      integer(c_int), target :: csrSortedRowPtrA(..)
+      integer(c_int), target :: csrSortedColIndA(..)
+      complex(c_float_complex), target :: B(..)
       integer(c_int), value :: ldb
       type(c_ptr), value :: info
       integer(c_int), value :: policy
       type(c_ptr), value :: pBuffer
       integer(c_int) :: Ccsrsm2_analysis
       Ccsrsm2_analysis = hipsparseCcsrsm2_analysis_raw(handle, algo, transA, transB, m, nrhs, nnz, &
-        alpha, descrA, c_loc(csrSortedValA(1)), c_loc(csrSortedRowPtrA(1)), c_loc( &
-        csrSortedColIndA(1)), c_loc(B(1)), ldb, info, policy, pBuffer)
+        alpha, descrA, c_loc(csrSortedValA), c_loc(csrSortedRowPtrA), c_loc(csrSortedColIndA), &
+        c_loc(B), ldb, info, policy, pBuffer)
     end function hipsparseCcsrsm2_analysis_native
 
     function hipsparseCcsrsm2_analysis_typed(handle, algo, transA, transB, m, nrhs, nnz, alpha, &
@@ -30576,18 +30533,18 @@ contains
       integer(c_int), value :: nnz
       complex(c_double_complex) :: alpha
       type(c_ptr), value :: descrA
-      complex(c_double_complex), target :: csrSortedValA(*)
-      integer(c_int), target :: csrSortedRowPtrA(*)
-      integer(c_int), target :: csrSortedColIndA(*)
-      complex(c_double_complex), target :: B(*)
+      complex(c_double_complex), target :: csrSortedValA(..)
+      integer(c_int), target :: csrSortedRowPtrA(..)
+      integer(c_int), target :: csrSortedColIndA(..)
+      complex(c_double_complex), target :: B(..)
       integer(c_int), value :: ldb
       type(c_ptr), value :: info
       integer(c_int), value :: policy
       type(c_ptr), value :: pBuffer
       integer(c_int) :: Zcsrsm2_analysis
       Zcsrsm2_analysis = hipsparseZcsrsm2_analysis_raw(handle, algo, transA, transB, m, nrhs, nnz, &
-        alpha, descrA, c_loc(csrSortedValA(1)), c_loc(csrSortedRowPtrA(1)), c_loc( &
-        csrSortedColIndA(1)), c_loc(B(1)), ldb, info, policy, pBuffer)
+        alpha, descrA, c_loc(csrSortedValA), c_loc(csrSortedRowPtrA), c_loc(csrSortedColIndA), &
+        c_loc(B), ldb, info, policy, pBuffer)
     end function hipsparseZcsrsm2_analysis_native
 
     function hipsparseZcsrsm2_analysis_typed(handle, algo, transA, transB, m, nrhs, nnz, alpha, &
@@ -30633,18 +30590,18 @@ contains
       integer(c_int), value :: nnz
       real(c_float) :: alpha
       type(c_ptr), value :: descrA
-      real(c_float), target :: csrSortedValA(*)
-      integer(c_int), target :: csrSortedRowPtrA(*)
-      integer(c_int), target :: csrSortedColIndA(*)
-      real(c_float), target :: B(*)
+      real(c_float), target :: csrSortedValA(..)
+      integer(c_int), target :: csrSortedRowPtrA(..)
+      integer(c_int), target :: csrSortedColIndA(..)
+      real(c_float), target :: B(..)
       integer(c_int), value :: ldb
       type(c_ptr), value :: info
       integer(c_int), value :: policy
       type(c_ptr), value :: pBuffer
       integer(c_int) :: Scsrsm2_solve
       Scsrsm2_solve = hipsparseScsrsm2_solve_raw(handle, algo, transA, transB, m, nrhs, nnz, &
-        alpha, descrA, c_loc(csrSortedValA(1)), c_loc(csrSortedRowPtrA(1)), c_loc( &
-        csrSortedColIndA(1)), c_loc(B(1)), ldb, info, policy, pBuffer)
+        alpha, descrA, c_loc(csrSortedValA), c_loc(csrSortedRowPtrA), c_loc(csrSortedColIndA), &
+        c_loc(B), ldb, info, policy, pBuffer)
     end function hipsparseScsrsm2_solve_native
 
     function hipsparseScsrsm2_solve_typed(handle, algo, transA, transB, m, nrhs, nnz, alpha, &
@@ -30690,18 +30647,18 @@ contains
       integer(c_int), value :: nnz
       real(c_double) :: alpha
       type(c_ptr), value :: descrA
-      real(c_double), target :: csrSortedValA(*)
-      integer(c_int), target :: csrSortedRowPtrA(*)
-      integer(c_int), target :: csrSortedColIndA(*)
-      real(c_double), target :: B(*)
+      real(c_double), target :: csrSortedValA(..)
+      integer(c_int), target :: csrSortedRowPtrA(..)
+      integer(c_int), target :: csrSortedColIndA(..)
+      real(c_double), target :: B(..)
       integer(c_int), value :: ldb
       type(c_ptr), value :: info
       integer(c_int), value :: policy
       type(c_ptr), value :: pBuffer
       integer(c_int) :: Dcsrsm2_solve
       Dcsrsm2_solve = hipsparseDcsrsm2_solve_raw(handle, algo, transA, transB, m, nrhs, nnz, &
-        alpha, descrA, c_loc(csrSortedValA(1)), c_loc(csrSortedRowPtrA(1)), c_loc( &
-        csrSortedColIndA(1)), c_loc(B(1)), ldb, info, policy, pBuffer)
+        alpha, descrA, c_loc(csrSortedValA), c_loc(csrSortedRowPtrA), c_loc(csrSortedColIndA), &
+        c_loc(B), ldb, info, policy, pBuffer)
     end function hipsparseDcsrsm2_solve_native
 
     function hipsparseDcsrsm2_solve_typed(handle, algo, transA, transB, m, nrhs, nnz, alpha, &
@@ -30747,18 +30704,18 @@ contains
       integer(c_int), value :: nnz
       complex(c_float_complex) :: alpha
       type(c_ptr), value :: descrA
-      complex(c_float_complex), target :: csrSortedValA(*)
-      integer(c_int), target :: csrSortedRowPtrA(*)
-      integer(c_int), target :: csrSortedColIndA(*)
-      complex(c_float_complex), target :: B(*)
+      complex(c_float_complex), target :: csrSortedValA(..)
+      integer(c_int), target :: csrSortedRowPtrA(..)
+      integer(c_int), target :: csrSortedColIndA(..)
+      complex(c_float_complex), target :: B(..)
       integer(c_int), value :: ldb
       type(c_ptr), value :: info
       integer(c_int), value :: policy
       type(c_ptr), value :: pBuffer
       integer(c_int) :: Ccsrsm2_solve
       Ccsrsm2_solve = hipsparseCcsrsm2_solve_raw(handle, algo, transA, transB, m, nrhs, nnz, &
-        alpha, descrA, c_loc(csrSortedValA(1)), c_loc(csrSortedRowPtrA(1)), c_loc( &
-        csrSortedColIndA(1)), c_loc(B(1)), ldb, info, policy, pBuffer)
+        alpha, descrA, c_loc(csrSortedValA), c_loc(csrSortedRowPtrA), c_loc(csrSortedColIndA), &
+        c_loc(B), ldb, info, policy, pBuffer)
     end function hipsparseCcsrsm2_solve_native
 
     function hipsparseCcsrsm2_solve_typed(handle, algo, transA, transB, m, nrhs, nnz, alpha, &
@@ -30804,18 +30761,18 @@ contains
       integer(c_int), value :: nnz
       complex(c_double_complex) :: alpha
       type(c_ptr), value :: descrA
-      complex(c_double_complex), target :: csrSortedValA(*)
-      integer(c_int), target :: csrSortedRowPtrA(*)
-      integer(c_int), target :: csrSortedColIndA(*)
-      complex(c_double_complex), target :: B(*)
+      complex(c_double_complex), target :: csrSortedValA(..)
+      integer(c_int), target :: csrSortedRowPtrA(..)
+      integer(c_int), target :: csrSortedColIndA(..)
+      complex(c_double_complex), target :: B(..)
       integer(c_int), value :: ldb
       type(c_ptr), value :: info
       integer(c_int), value :: policy
       type(c_ptr), value :: pBuffer
       integer(c_int) :: Zcsrsm2_solve
       Zcsrsm2_solve = hipsparseZcsrsm2_solve_raw(handle, algo, transA, transB, m, nrhs, nnz, &
-        alpha, descrA, c_loc(csrSortedValA(1)), c_loc(csrSortedRowPtrA(1)), c_loc( &
-        csrSortedColIndA(1)), c_loc(B(1)), ldb, info, policy, pBuffer)
+        alpha, descrA, c_loc(csrSortedValA), c_loc(csrSortedRowPtrA), c_loc(csrSortedColIndA), &
+        c_loc(B), ldb, info, policy, pBuffer)
     end function hipsparseZcsrsm2_solve_native
 
     function hipsparseZcsrsm2_solve_typed(handle, algo, transA, transB, m, nrhs, nnz, alpha, &
@@ -30857,17 +30814,17 @@ contains
       integer(c_int), value :: k
       integer(c_int), value :: nnz
       real(c_float) :: alpha
-      real(c_float), target :: A(*)
+      real(c_float), target :: A(..)
       integer(c_int), value :: lda
-      real(c_float), target :: cscValB(*)
-      integer(c_int), target :: cscColPtrB(*)
-      integer(c_int), target :: cscRowIndB(*)
+      real(c_float), target :: cscValB(..)
+      integer(c_int), target :: cscColPtrB(..)
+      integer(c_int), target :: cscRowIndB(..)
       real(c_float) :: beta
-      real(c_float), target :: C(*)
+      real(c_float), target :: C(..)
       integer(c_int), value :: ldc
       integer(c_int) :: Sgemmi
-      Sgemmi = hipsparseSgemmi_raw(handle, m, n, k, nnz, alpha, c_loc(A(1)), lda, c_loc(cscValB( &
-        1)), c_loc(cscColPtrB(1)), c_loc(cscRowIndB(1)), beta, c_loc(C(1)), ldc)
+      Sgemmi = hipsparseSgemmi_raw(handle, m, n, k, nnz, alpha, c_loc(A), lda, c_loc(cscValB), &
+        c_loc(cscColPtrB), c_loc(cscRowIndB), beta, c_loc(C), ldc)
     end function hipsparseSgemmi_native
 
     function hipsparseSgemmi_typed(handle, m, n, k, nnz, alpha, A, lda, cscValB, cscColPtrB, &
@@ -30904,17 +30861,17 @@ contains
       integer(c_int), value :: k
       integer(c_int), value :: nnz
       real(c_double) :: alpha
-      real(c_double), target :: A(*)
+      real(c_double), target :: A(..)
       integer(c_int), value :: lda
-      real(c_double), target :: cscValB(*)
-      integer(c_int), target :: cscColPtrB(*)
-      integer(c_int), target :: cscRowIndB(*)
+      real(c_double), target :: cscValB(..)
+      integer(c_int), target :: cscColPtrB(..)
+      integer(c_int), target :: cscRowIndB(..)
       real(c_double) :: beta
-      real(c_double), target :: C(*)
+      real(c_double), target :: C(..)
       integer(c_int), value :: ldc
       integer(c_int) :: Dgemmi
-      Dgemmi = hipsparseDgemmi_raw(handle, m, n, k, nnz, alpha, c_loc(A(1)), lda, c_loc(cscValB( &
-        1)), c_loc(cscColPtrB(1)), c_loc(cscRowIndB(1)), beta, c_loc(C(1)), ldc)
+      Dgemmi = hipsparseDgemmi_raw(handle, m, n, k, nnz, alpha, c_loc(A), lda, c_loc(cscValB), &
+        c_loc(cscColPtrB), c_loc(cscRowIndB), beta, c_loc(C), ldc)
     end function hipsparseDgemmi_native
 
     function hipsparseDgemmi_typed(handle, m, n, k, nnz, alpha, A, lda, cscValB, cscColPtrB, &
@@ -30951,17 +30908,17 @@ contains
       integer(c_int), value :: k
       integer(c_int), value :: nnz
       complex(c_float_complex) :: alpha
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: A(..)
       integer(c_int), value :: lda
-      complex(c_float_complex), target :: cscValB(*)
-      integer(c_int), target :: cscColPtrB(*)
-      integer(c_int), target :: cscRowIndB(*)
+      complex(c_float_complex), target :: cscValB(..)
+      integer(c_int), target :: cscColPtrB(..)
+      integer(c_int), target :: cscRowIndB(..)
       complex(c_float_complex) :: beta
-      complex(c_float_complex), target :: C(*)
+      complex(c_float_complex), target :: C(..)
       integer(c_int), value :: ldc
       integer(c_int) :: Cgemmi
-      Cgemmi = hipsparseCgemmi_raw(handle, m, n, k, nnz, alpha, c_loc(A(1)), lda, c_loc(cscValB( &
-        1)), c_loc(cscColPtrB(1)), c_loc(cscRowIndB(1)), beta, c_loc(C(1)), ldc)
+      Cgemmi = hipsparseCgemmi_raw(handle, m, n, k, nnz, alpha, c_loc(A), lda, c_loc(cscValB), &
+        c_loc(cscColPtrB), c_loc(cscRowIndB), beta, c_loc(C), ldc)
     end function hipsparseCgemmi_native
 
     function hipsparseCgemmi_typed(handle, m, n, k, nnz, alpha, A, lda, cscValB, cscColPtrB, &
@@ -30998,17 +30955,17 @@ contains
       integer(c_int), value :: k
       integer(c_int), value :: nnz
       complex(c_double_complex) :: alpha
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: A(..)
       integer(c_int), value :: lda
-      complex(c_double_complex), target :: cscValB(*)
-      integer(c_int), target :: cscColPtrB(*)
-      integer(c_int), target :: cscRowIndB(*)
+      complex(c_double_complex), target :: cscValB(..)
+      integer(c_int), target :: cscColPtrB(..)
+      integer(c_int), target :: cscRowIndB(..)
       complex(c_double_complex) :: beta
-      complex(c_double_complex), target :: C(*)
+      complex(c_double_complex), target :: C(..)
       integer(c_int), value :: ldc
       integer(c_int) :: Zgemmi
-      Zgemmi = hipsparseZgemmi_raw(handle, m, n, k, nnz, alpha, c_loc(A(1)), lda, c_loc(cscValB( &
-        1)), c_loc(cscColPtrB(1)), c_loc(cscRowIndB(1)), beta, c_loc(C(1)), ldc)
+      Zgemmi = hipsparseZgemmi_raw(handle, m, n, k, nnz, alpha, c_loc(A), lda, c_loc(cscValB), &
+        c_loc(cscColPtrB), c_loc(cscRowIndB), beta, c_loc(C), ldc)
     end function hipsparseZgemmi_native
 
     function hipsparseZgemmi_typed(handle, m, n, k, nnz, alpha, A, lda, cscValB, cscColPtrB, &
@@ -31045,19 +31002,19 @@ contains
       integer(c_int), value :: n
       type(c_ptr), value :: descrA
       integer(c_int), value :: nnzA
-      integer(c_int), target :: csrRowPtrA(*)
-      integer(c_int), target :: csrColIndA(*)
+      integer(c_int), target :: csrRowPtrA(..)
+      integer(c_int), target :: csrColIndA(..)
       type(c_ptr), value :: descrB
       integer(c_int), value :: nnzB
-      integer(c_int), target :: csrRowPtrB(*)
-      integer(c_int), target :: csrColIndB(*)
+      integer(c_int), target :: csrRowPtrB(..)
+      integer(c_int), target :: csrColIndB(..)
       type(c_ptr), value :: descrC
-      integer(c_int), target :: csrRowPtrC(*)
-      integer(c_int), target :: nnzTotalDevHostPtr(*)
+      integer(c_int), target :: csrRowPtrC(..)
+      integer(c_int) :: nnzTotalDevHostPtr
       integer(c_int) :: XcsrgeamNnz
-      XcsrgeamNnz = hipsparseXcsrgeamNnz_raw(handle, m, n, descrA, nnzA, c_loc(csrRowPtrA(1)), &
-        c_loc(csrColIndA(1)), descrB, nnzB, c_loc(csrRowPtrB(1)), c_loc(csrColIndB(1)), descrC, &
-        c_loc(csrRowPtrC(1)), c_loc(nnzTotalDevHostPtr(1)))
+      XcsrgeamNnz = hipsparseXcsrgeamNnz_raw(handle, m, n, descrA, nnzA, c_loc(csrRowPtrA), c_loc( &
+        csrColIndA), descrB, nnzB, c_loc(csrRowPtrB), c_loc(csrColIndB), descrC, c_loc( &
+        csrRowPtrC), nnzTotalDevHostPtr)
     end function hipsparseXcsrgeamNnz_native
 
     function hipsparseXcsrgeamNnz_typed(handle, m, n, descrA, nnzA, csrRowPtrA, csrColIndA, &
@@ -31079,7 +31036,7 @@ contains
       type(c_ptr), value :: csrColIndB
       type(hipsparseMatDescr_t), value :: descrC
       type(c_ptr), value :: csrRowPtrC
-      type(c_ptr), value :: nnzTotalDevHostPtr
+      integer(c_int) :: nnzTotalDevHostPtr
       integer(c_int) :: XcsrgeamNnz
       XcsrgeamNnz = hipsparseXcsrgeamNnz_raw(handle%ptr, m, n, descrA%ptr, nnzA, csrRowPtrA, &
         csrColIndA, descrB%ptr, nnzB, csrRowPtrB, csrColIndB, descrC%ptr, csrRowPtrC, &
@@ -31097,24 +31054,23 @@ contains
       real(c_float) :: alpha
       type(c_ptr), value :: descrA
       integer(c_int), value :: nnzA
-      real(c_float), target :: csrValA(*)
-      integer(c_int), target :: csrRowPtrA(*)
-      integer(c_int), target :: csrColIndA(*)
+      real(c_float), target :: csrValA(..)
+      integer(c_int), target :: csrRowPtrA(..)
+      integer(c_int), target :: csrColIndA(..)
       real(c_float) :: beta
       type(c_ptr), value :: descrB
       integer(c_int), value :: nnzB
-      real(c_float), target :: csrValB(*)
-      integer(c_int), target :: csrRowPtrB(*)
-      integer(c_int), target :: csrColIndB(*)
+      real(c_float), target :: csrValB(..)
+      integer(c_int), target :: csrRowPtrB(..)
+      integer(c_int), target :: csrColIndB(..)
       type(c_ptr), value :: descrC
-      real(c_float), target :: csrValC(*)
-      integer(c_int), target :: csrRowPtrC(*)
-      integer(c_int), target :: csrColIndC(*)
+      real(c_float), target :: csrValC(..)
+      integer(c_int), target :: csrRowPtrC(..)
+      integer(c_int), target :: csrColIndC(..)
       integer(c_int) :: Scsrgeam
-      Scsrgeam = hipsparseScsrgeam_raw(handle, m, n, alpha, descrA, nnzA, c_loc(csrValA(1)), &
-        c_loc(csrRowPtrA(1)), c_loc(csrColIndA(1)), beta, descrB, nnzB, c_loc(csrValB(1)), c_loc( &
-        csrRowPtrB(1)), c_loc(csrColIndB(1)), descrC, c_loc(csrValC(1)), c_loc(csrRowPtrC(1)), &
-        c_loc(csrColIndC(1)))
+      Scsrgeam = hipsparseScsrgeam_raw(handle, m, n, alpha, descrA, nnzA, c_loc(csrValA), c_loc( &
+        csrRowPtrA), c_loc(csrColIndA), beta, descrB, nnzB, c_loc(csrValB), c_loc(csrRowPtrB), &
+        c_loc(csrColIndB), descrC, c_loc(csrValC), c_loc(csrRowPtrC), c_loc(csrColIndC))
     end function hipsparseScsrgeam_native
 
     function hipsparseScsrgeam_typed(handle, m, n, alpha, descrA, nnzA, csrValA, csrRowPtrA, &
@@ -31159,24 +31115,23 @@ contains
       real(c_double) :: alpha
       type(c_ptr), value :: descrA
       integer(c_int), value :: nnzA
-      real(c_double), target :: csrValA(*)
-      integer(c_int), target :: csrRowPtrA(*)
-      integer(c_int), target :: csrColIndA(*)
+      real(c_double), target :: csrValA(..)
+      integer(c_int), target :: csrRowPtrA(..)
+      integer(c_int), target :: csrColIndA(..)
       real(c_double) :: beta
       type(c_ptr), value :: descrB
       integer(c_int), value :: nnzB
-      real(c_double), target :: csrValB(*)
-      integer(c_int), target :: csrRowPtrB(*)
-      integer(c_int), target :: csrColIndB(*)
+      real(c_double), target :: csrValB(..)
+      integer(c_int), target :: csrRowPtrB(..)
+      integer(c_int), target :: csrColIndB(..)
       type(c_ptr), value :: descrC
-      real(c_double), target :: csrValC(*)
-      integer(c_int), target :: csrRowPtrC(*)
-      integer(c_int), target :: csrColIndC(*)
+      real(c_double), target :: csrValC(..)
+      integer(c_int), target :: csrRowPtrC(..)
+      integer(c_int), target :: csrColIndC(..)
       integer(c_int) :: Dcsrgeam
-      Dcsrgeam = hipsparseDcsrgeam_raw(handle, m, n, alpha, descrA, nnzA, c_loc(csrValA(1)), &
-        c_loc(csrRowPtrA(1)), c_loc(csrColIndA(1)), beta, descrB, nnzB, c_loc(csrValB(1)), c_loc( &
-        csrRowPtrB(1)), c_loc(csrColIndB(1)), descrC, c_loc(csrValC(1)), c_loc(csrRowPtrC(1)), &
-        c_loc(csrColIndC(1)))
+      Dcsrgeam = hipsparseDcsrgeam_raw(handle, m, n, alpha, descrA, nnzA, c_loc(csrValA), c_loc( &
+        csrRowPtrA), c_loc(csrColIndA), beta, descrB, nnzB, c_loc(csrValB), c_loc(csrRowPtrB), &
+        c_loc(csrColIndB), descrC, c_loc(csrValC), c_loc(csrRowPtrC), c_loc(csrColIndC))
     end function hipsparseDcsrgeam_native
 
     function hipsparseDcsrgeam_typed(handle, m, n, alpha, descrA, nnzA, csrValA, csrRowPtrA, &
@@ -31221,24 +31176,23 @@ contains
       complex(c_float_complex) :: alpha
       type(c_ptr), value :: descrA
       integer(c_int), value :: nnzA
-      complex(c_float_complex), target :: csrValA(*)
-      integer(c_int), target :: csrRowPtrA(*)
-      integer(c_int), target :: csrColIndA(*)
+      complex(c_float_complex), target :: csrValA(..)
+      integer(c_int), target :: csrRowPtrA(..)
+      integer(c_int), target :: csrColIndA(..)
       complex(c_float_complex) :: beta
       type(c_ptr), value :: descrB
       integer(c_int), value :: nnzB
-      complex(c_float_complex), target :: csrValB(*)
-      integer(c_int), target :: csrRowPtrB(*)
-      integer(c_int), target :: csrColIndB(*)
+      complex(c_float_complex), target :: csrValB(..)
+      integer(c_int), target :: csrRowPtrB(..)
+      integer(c_int), target :: csrColIndB(..)
       type(c_ptr), value :: descrC
-      complex(c_float_complex), target :: csrValC(*)
-      integer(c_int), target :: csrRowPtrC(*)
-      integer(c_int), target :: csrColIndC(*)
+      complex(c_float_complex), target :: csrValC(..)
+      integer(c_int), target :: csrRowPtrC(..)
+      integer(c_int), target :: csrColIndC(..)
       integer(c_int) :: Ccsrgeam
-      Ccsrgeam = hipsparseCcsrgeam_raw(handle, m, n, alpha, descrA, nnzA, c_loc(csrValA(1)), &
-        c_loc(csrRowPtrA(1)), c_loc(csrColIndA(1)), beta, descrB, nnzB, c_loc(csrValB(1)), c_loc( &
-        csrRowPtrB(1)), c_loc(csrColIndB(1)), descrC, c_loc(csrValC(1)), c_loc(csrRowPtrC(1)), &
-        c_loc(csrColIndC(1)))
+      Ccsrgeam = hipsparseCcsrgeam_raw(handle, m, n, alpha, descrA, nnzA, c_loc(csrValA), c_loc( &
+        csrRowPtrA), c_loc(csrColIndA), beta, descrB, nnzB, c_loc(csrValB), c_loc(csrRowPtrB), &
+        c_loc(csrColIndB), descrC, c_loc(csrValC), c_loc(csrRowPtrC), c_loc(csrColIndC))
     end function hipsparseCcsrgeam_native
 
     function hipsparseCcsrgeam_typed(handle, m, n, alpha, descrA, nnzA, csrValA, csrRowPtrA, &
@@ -31283,24 +31237,23 @@ contains
       complex(c_double_complex) :: alpha
       type(c_ptr), value :: descrA
       integer(c_int), value :: nnzA
-      complex(c_double_complex), target :: csrValA(*)
-      integer(c_int), target :: csrRowPtrA(*)
-      integer(c_int), target :: csrColIndA(*)
+      complex(c_double_complex), target :: csrValA(..)
+      integer(c_int), target :: csrRowPtrA(..)
+      integer(c_int), target :: csrColIndA(..)
       complex(c_double_complex) :: beta
       type(c_ptr), value :: descrB
       integer(c_int), value :: nnzB
-      complex(c_double_complex), target :: csrValB(*)
-      integer(c_int), target :: csrRowPtrB(*)
-      integer(c_int), target :: csrColIndB(*)
+      complex(c_double_complex), target :: csrValB(..)
+      integer(c_int), target :: csrRowPtrB(..)
+      integer(c_int), target :: csrColIndB(..)
       type(c_ptr), value :: descrC
-      complex(c_double_complex), target :: csrValC(*)
-      integer(c_int), target :: csrRowPtrC(*)
-      integer(c_int), target :: csrColIndC(*)
+      complex(c_double_complex), target :: csrValC(..)
+      integer(c_int), target :: csrRowPtrC(..)
+      integer(c_int), target :: csrColIndC(..)
       integer(c_int) :: Zcsrgeam
-      Zcsrgeam = hipsparseZcsrgeam_raw(handle, m, n, alpha, descrA, nnzA, c_loc(csrValA(1)), &
-        c_loc(csrRowPtrA(1)), c_loc(csrColIndA(1)), beta, descrB, nnzB, c_loc(csrValB(1)), c_loc( &
-        csrRowPtrB(1)), c_loc(csrColIndB(1)), descrC, c_loc(csrValC(1)), c_loc(csrRowPtrC(1)), &
-        c_loc(csrColIndC(1)))
+      Zcsrgeam = hipsparseZcsrgeam_raw(handle, m, n, alpha, descrA, nnzA, c_loc(csrValA), c_loc( &
+        csrRowPtrA), c_loc(csrColIndA), beta, descrB, nnzB, c_loc(csrValB), c_loc(csrRowPtrB), &
+        c_loc(csrColIndB), descrC, c_loc(csrValC), c_loc(csrRowPtrC), c_loc(csrColIndC))
     end function hipsparseZcsrgeam_native
 
     function hipsparseZcsrgeam_typed(handle, m, n, alpha, descrA, nnzA, csrValA, csrRowPtrA, &
@@ -31346,26 +31299,26 @@ contains
       real(c_float) :: alpha
       type(c_ptr), value :: descrA
       integer(c_int), value :: nnzA
-      real(c_float), target :: csrSortedValA(*)
-      integer(c_int), target :: csrSortedRowPtrA(*)
-      integer(c_int), target :: csrSortedColIndA(*)
+      real(c_float), target :: csrSortedValA(..)
+      integer(c_int), target :: csrSortedRowPtrA(..)
+      integer(c_int), target :: csrSortedColIndA(..)
       real(c_float) :: beta
       type(c_ptr), value :: descrB
       integer(c_int), value :: nnzB
-      real(c_float), target :: csrSortedValB(*)
-      integer(c_int), target :: csrSortedRowPtrB(*)
-      integer(c_int), target :: csrSortedColIndB(*)
+      real(c_float), target :: csrSortedValB(..)
+      integer(c_int), target :: csrSortedRowPtrB(..)
+      integer(c_int), target :: csrSortedColIndB(..)
       type(c_ptr), value :: descrC
-      real(c_float), target :: csrSortedValC(*)
-      integer(c_int), target :: csrSortedRowPtrC(*)
-      integer(c_int), target :: csrSortedColIndC(*)
+      real(c_float), target :: csrSortedValC(..)
+      integer(c_int), target :: csrSortedRowPtrC(..)
+      integer(c_int), target :: csrSortedColIndC(..)
       type(c_ptr), value :: pBufferSizeInBytes
       integer(c_int) :: Scsrgeam2_bufferSizeExt
       Scsrgeam2_bufferSizeExt = hipsparseScsrgeam2_bufferSizeExt_raw(handle, m, n, alpha, descrA, &
-        nnzA, c_loc(csrSortedValA(1)), c_loc(csrSortedRowPtrA(1)), c_loc(csrSortedColIndA(1)), &
-        beta, descrB, nnzB, c_loc(csrSortedValB(1)), c_loc(csrSortedRowPtrB(1)), c_loc( &
-        csrSortedColIndB(1)), descrC, c_loc(csrSortedValC(1)), c_loc(csrSortedRowPtrC(1)), c_loc( &
-        csrSortedColIndC(1)), pBufferSizeInBytes)
+        nnzA, c_loc(csrSortedValA), c_loc(csrSortedRowPtrA), c_loc(csrSortedColIndA), beta, &
+        descrB, nnzB, c_loc(csrSortedValB), c_loc(csrSortedRowPtrB), c_loc(csrSortedColIndB), &
+        descrC, c_loc(csrSortedValC), c_loc(csrSortedRowPtrC), c_loc(csrSortedColIndC), &
+        pBufferSizeInBytes)
     end function hipsparseScsrgeam2_bufferSizeExt_native
 
     function hipsparseScsrgeam2_bufferSizeExt_typed(handle, m, n, alpha, descrA, nnzA, &
@@ -31414,26 +31367,26 @@ contains
       real(c_double) :: alpha
       type(c_ptr), value :: descrA
       integer(c_int), value :: nnzA
-      real(c_double), target :: csrSortedValA(*)
-      integer(c_int), target :: csrSortedRowPtrA(*)
-      integer(c_int), target :: csrSortedColIndA(*)
+      real(c_double), target :: csrSortedValA(..)
+      integer(c_int), target :: csrSortedRowPtrA(..)
+      integer(c_int), target :: csrSortedColIndA(..)
       real(c_double) :: beta
       type(c_ptr), value :: descrB
       integer(c_int), value :: nnzB
-      real(c_double), target :: csrSortedValB(*)
-      integer(c_int), target :: csrSortedRowPtrB(*)
-      integer(c_int), target :: csrSortedColIndB(*)
+      real(c_double), target :: csrSortedValB(..)
+      integer(c_int), target :: csrSortedRowPtrB(..)
+      integer(c_int), target :: csrSortedColIndB(..)
       type(c_ptr), value :: descrC
-      real(c_double), target :: csrSortedValC(*)
-      integer(c_int), target :: csrSortedRowPtrC(*)
-      integer(c_int), target :: csrSortedColIndC(*)
+      real(c_double), target :: csrSortedValC(..)
+      integer(c_int), target :: csrSortedRowPtrC(..)
+      integer(c_int), target :: csrSortedColIndC(..)
       type(c_ptr), value :: pBufferSizeInBytes
       integer(c_int) :: Dcsrgeam2_bufferSizeExt
       Dcsrgeam2_bufferSizeExt = hipsparseDcsrgeam2_bufferSizeExt_raw(handle, m, n, alpha, descrA, &
-        nnzA, c_loc(csrSortedValA(1)), c_loc(csrSortedRowPtrA(1)), c_loc(csrSortedColIndA(1)), &
-        beta, descrB, nnzB, c_loc(csrSortedValB(1)), c_loc(csrSortedRowPtrB(1)), c_loc( &
-        csrSortedColIndB(1)), descrC, c_loc(csrSortedValC(1)), c_loc(csrSortedRowPtrC(1)), c_loc( &
-        csrSortedColIndC(1)), pBufferSizeInBytes)
+        nnzA, c_loc(csrSortedValA), c_loc(csrSortedRowPtrA), c_loc(csrSortedColIndA), beta, &
+        descrB, nnzB, c_loc(csrSortedValB), c_loc(csrSortedRowPtrB), c_loc(csrSortedColIndB), &
+        descrC, c_loc(csrSortedValC), c_loc(csrSortedRowPtrC), c_loc(csrSortedColIndC), &
+        pBufferSizeInBytes)
     end function hipsparseDcsrgeam2_bufferSizeExt_native
 
     function hipsparseDcsrgeam2_bufferSizeExt_typed(handle, m, n, alpha, descrA, nnzA, &
@@ -31482,26 +31435,26 @@ contains
       complex(c_float_complex) :: alpha
       type(c_ptr), value :: descrA
       integer(c_int), value :: nnzA
-      complex(c_float_complex), target :: csrSortedValA(*)
-      integer(c_int), target :: csrSortedRowPtrA(*)
-      integer(c_int), target :: csrSortedColIndA(*)
+      complex(c_float_complex), target :: csrSortedValA(..)
+      integer(c_int), target :: csrSortedRowPtrA(..)
+      integer(c_int), target :: csrSortedColIndA(..)
       complex(c_float_complex) :: beta
       type(c_ptr), value :: descrB
       integer(c_int), value :: nnzB
-      complex(c_float_complex), target :: csrSortedValB(*)
-      integer(c_int), target :: csrSortedRowPtrB(*)
-      integer(c_int), target :: csrSortedColIndB(*)
+      complex(c_float_complex), target :: csrSortedValB(..)
+      integer(c_int), target :: csrSortedRowPtrB(..)
+      integer(c_int), target :: csrSortedColIndB(..)
       type(c_ptr), value :: descrC
-      complex(c_float_complex), target :: csrSortedValC(*)
-      integer(c_int), target :: csrSortedRowPtrC(*)
-      integer(c_int), target :: csrSortedColIndC(*)
+      complex(c_float_complex), target :: csrSortedValC(..)
+      integer(c_int), target :: csrSortedRowPtrC(..)
+      integer(c_int), target :: csrSortedColIndC(..)
       type(c_ptr), value :: pBufferSizeInBytes
       integer(c_int) :: Ccsrgeam2_bufferSizeExt
       Ccsrgeam2_bufferSizeExt = hipsparseCcsrgeam2_bufferSizeExt_raw(handle, m, n, alpha, descrA, &
-        nnzA, c_loc(csrSortedValA(1)), c_loc(csrSortedRowPtrA(1)), c_loc(csrSortedColIndA(1)), &
-        beta, descrB, nnzB, c_loc(csrSortedValB(1)), c_loc(csrSortedRowPtrB(1)), c_loc( &
-        csrSortedColIndB(1)), descrC, c_loc(csrSortedValC(1)), c_loc(csrSortedRowPtrC(1)), c_loc( &
-        csrSortedColIndC(1)), pBufferSizeInBytes)
+        nnzA, c_loc(csrSortedValA), c_loc(csrSortedRowPtrA), c_loc(csrSortedColIndA), beta, &
+        descrB, nnzB, c_loc(csrSortedValB), c_loc(csrSortedRowPtrB), c_loc(csrSortedColIndB), &
+        descrC, c_loc(csrSortedValC), c_loc(csrSortedRowPtrC), c_loc(csrSortedColIndC), &
+        pBufferSizeInBytes)
     end function hipsparseCcsrgeam2_bufferSizeExt_native
 
     function hipsparseCcsrgeam2_bufferSizeExt_typed(handle, m, n, alpha, descrA, nnzA, &
@@ -31550,26 +31503,26 @@ contains
       complex(c_double_complex) :: alpha
       type(c_ptr), value :: descrA
       integer(c_int), value :: nnzA
-      complex(c_double_complex), target :: csrSortedValA(*)
-      integer(c_int), target :: csrSortedRowPtrA(*)
-      integer(c_int), target :: csrSortedColIndA(*)
+      complex(c_double_complex), target :: csrSortedValA(..)
+      integer(c_int), target :: csrSortedRowPtrA(..)
+      integer(c_int), target :: csrSortedColIndA(..)
       complex(c_double_complex) :: beta
       type(c_ptr), value :: descrB
       integer(c_int), value :: nnzB
-      complex(c_double_complex), target :: csrSortedValB(*)
-      integer(c_int), target :: csrSortedRowPtrB(*)
-      integer(c_int), target :: csrSortedColIndB(*)
+      complex(c_double_complex), target :: csrSortedValB(..)
+      integer(c_int), target :: csrSortedRowPtrB(..)
+      integer(c_int), target :: csrSortedColIndB(..)
       type(c_ptr), value :: descrC
-      complex(c_double_complex), target :: csrSortedValC(*)
-      integer(c_int), target :: csrSortedRowPtrC(*)
-      integer(c_int), target :: csrSortedColIndC(*)
+      complex(c_double_complex), target :: csrSortedValC(..)
+      integer(c_int), target :: csrSortedRowPtrC(..)
+      integer(c_int), target :: csrSortedColIndC(..)
       type(c_ptr), value :: pBufferSizeInBytes
       integer(c_int) :: Zcsrgeam2_bufferSizeExt
       Zcsrgeam2_bufferSizeExt = hipsparseZcsrgeam2_bufferSizeExt_raw(handle, m, n, alpha, descrA, &
-        nnzA, c_loc(csrSortedValA(1)), c_loc(csrSortedRowPtrA(1)), c_loc(csrSortedColIndA(1)), &
-        beta, descrB, nnzB, c_loc(csrSortedValB(1)), c_loc(csrSortedRowPtrB(1)), c_loc( &
-        csrSortedColIndB(1)), descrC, c_loc(csrSortedValC(1)), c_loc(csrSortedRowPtrC(1)), c_loc( &
-        csrSortedColIndC(1)), pBufferSizeInBytes)
+        nnzA, c_loc(csrSortedValA), c_loc(csrSortedRowPtrA), c_loc(csrSortedColIndA), beta, &
+        descrB, nnzB, c_loc(csrSortedValB), c_loc(csrSortedRowPtrB), c_loc(csrSortedColIndB), &
+        descrC, c_loc(csrSortedValC), c_loc(csrSortedRowPtrC), c_loc(csrSortedColIndC), &
+        pBufferSizeInBytes)
     end function hipsparseZcsrgeam2_bufferSizeExt_native
 
     function hipsparseZcsrgeam2_bufferSizeExt_typed(handle, m, n, alpha, descrA, nnzA, &
@@ -31616,20 +31569,20 @@ contains
       integer(c_int), value :: n
       type(c_ptr), value :: descrA
       integer(c_int), value :: nnzA
-      integer(c_int), target :: csrSortedRowPtrA(*)
-      integer(c_int), target :: csrSortedColIndA(*)
+      integer(c_int), target :: csrSortedRowPtrA(..)
+      integer(c_int), target :: csrSortedColIndA(..)
       type(c_ptr), value :: descrB
       integer(c_int), value :: nnzB
-      integer(c_int), target :: csrSortedRowPtrB(*)
-      integer(c_int), target :: csrSortedColIndB(*)
+      integer(c_int), target :: csrSortedRowPtrB(..)
+      integer(c_int), target :: csrSortedColIndB(..)
       type(c_ptr), value :: descrC
-      integer(c_int), target :: csrSortedRowPtrC(*)
+      integer(c_int), target :: csrSortedRowPtrC(..)
       integer(c_int) :: nnzTotalDevHostPtr
       type(c_ptr), value :: workspace
       integer(c_int) :: Xcsrgeam2Nnz
-      Xcsrgeam2Nnz = hipsparseXcsrgeam2Nnz_raw(handle, m, n, descrA, nnzA, c_loc(csrSortedRowPtrA( &
-        1)), c_loc(csrSortedColIndA(1)), descrB, nnzB, c_loc(csrSortedRowPtrB(1)), c_loc( &
-        csrSortedColIndB(1)), descrC, c_loc(csrSortedRowPtrC(1)), nnzTotalDevHostPtr, workspace)
+      Xcsrgeam2Nnz = hipsparseXcsrgeam2Nnz_raw(handle, m, n, descrA, nnzA, c_loc( &
+        csrSortedRowPtrA), c_loc(csrSortedColIndA), descrB, nnzB, c_loc(csrSortedRowPtrB), c_loc( &
+        csrSortedColIndB), descrC, c_loc(csrSortedRowPtrC), nnzTotalDevHostPtr, workspace)
     end function hipsparseXcsrgeam2Nnz_native
 
     function hipsparseXcsrgeam2Nnz_typed(handle, m, n, descrA, nnzA, csrSortedRowPtrA, &
@@ -31671,25 +31624,25 @@ contains
       real(c_float) :: alpha
       type(c_ptr), value :: descrA
       integer(c_int), value :: nnzA
-      real(c_float), target :: csrSortedValA(*)
-      integer(c_int), target :: csrSortedRowPtrA(*)
-      integer(c_int), target :: csrSortedColIndA(*)
+      real(c_float), target :: csrSortedValA(..)
+      integer(c_int), target :: csrSortedRowPtrA(..)
+      integer(c_int), target :: csrSortedColIndA(..)
       real(c_float) :: beta
       type(c_ptr), value :: descrB
       integer(c_int), value :: nnzB
-      real(c_float), target :: csrSortedValB(*)
-      integer(c_int), target :: csrSortedRowPtrB(*)
-      integer(c_int), target :: csrSortedColIndB(*)
+      real(c_float), target :: csrSortedValB(..)
+      integer(c_int), target :: csrSortedRowPtrB(..)
+      integer(c_int), target :: csrSortedColIndB(..)
       type(c_ptr), value :: descrC
-      real(c_float), target :: csrSortedValC(*)
-      integer(c_int), target :: csrSortedRowPtrC(*)
-      integer(c_int), target :: csrSortedColIndC(*)
+      real(c_float), target :: csrSortedValC(..)
+      integer(c_int), target :: csrSortedRowPtrC(..)
+      integer(c_int), target :: csrSortedColIndC(..)
       type(c_ptr), value :: pBuffer
       integer(c_int) :: Scsrgeam2
-      Scsrgeam2 = hipsparseScsrgeam2_raw(handle, m, n, alpha, descrA, nnzA, c_loc(csrSortedValA( &
-        1)), c_loc(csrSortedRowPtrA(1)), c_loc(csrSortedColIndA(1)), beta, descrB, nnzB, c_loc( &
-        csrSortedValB(1)), c_loc(csrSortedRowPtrB(1)), c_loc(csrSortedColIndB(1)), descrC, c_loc( &
-        csrSortedValC(1)), c_loc(csrSortedRowPtrC(1)), c_loc(csrSortedColIndC(1)), pBuffer)
+      Scsrgeam2 = hipsparseScsrgeam2_raw(handle, m, n, alpha, descrA, nnzA, c_loc(csrSortedValA), &
+        c_loc(csrSortedRowPtrA), c_loc(csrSortedColIndA), beta, descrB, nnzB, c_loc( &
+        csrSortedValB), c_loc(csrSortedRowPtrB), c_loc(csrSortedColIndB), descrC, c_loc( &
+        csrSortedValC), c_loc(csrSortedRowPtrC), c_loc(csrSortedColIndC), pBuffer)
     end function hipsparseScsrgeam2_native
 
     function hipsparseScsrgeam2_typed(handle, m, n, alpha, descrA, nnzA, csrSortedValA, &
@@ -31738,25 +31691,25 @@ contains
       real(c_double) :: alpha
       type(c_ptr), value :: descrA
       integer(c_int), value :: nnzA
-      real(c_double), target :: csrSortedValA(*)
-      integer(c_int), target :: csrSortedRowPtrA(*)
-      integer(c_int), target :: csrSortedColIndA(*)
+      real(c_double), target :: csrSortedValA(..)
+      integer(c_int), target :: csrSortedRowPtrA(..)
+      integer(c_int), target :: csrSortedColIndA(..)
       real(c_double) :: beta
       type(c_ptr), value :: descrB
       integer(c_int), value :: nnzB
-      real(c_double), target :: csrSortedValB(*)
-      integer(c_int), target :: csrSortedRowPtrB(*)
-      integer(c_int), target :: csrSortedColIndB(*)
+      real(c_double), target :: csrSortedValB(..)
+      integer(c_int), target :: csrSortedRowPtrB(..)
+      integer(c_int), target :: csrSortedColIndB(..)
       type(c_ptr), value :: descrC
-      real(c_double), target :: csrSortedValC(*)
-      integer(c_int), target :: csrSortedRowPtrC(*)
-      integer(c_int), target :: csrSortedColIndC(*)
+      real(c_double), target :: csrSortedValC(..)
+      integer(c_int), target :: csrSortedRowPtrC(..)
+      integer(c_int), target :: csrSortedColIndC(..)
       type(c_ptr), value :: pBuffer
       integer(c_int) :: Dcsrgeam2
-      Dcsrgeam2 = hipsparseDcsrgeam2_raw(handle, m, n, alpha, descrA, nnzA, c_loc(csrSortedValA( &
-        1)), c_loc(csrSortedRowPtrA(1)), c_loc(csrSortedColIndA(1)), beta, descrB, nnzB, c_loc( &
-        csrSortedValB(1)), c_loc(csrSortedRowPtrB(1)), c_loc(csrSortedColIndB(1)), descrC, c_loc( &
-        csrSortedValC(1)), c_loc(csrSortedRowPtrC(1)), c_loc(csrSortedColIndC(1)), pBuffer)
+      Dcsrgeam2 = hipsparseDcsrgeam2_raw(handle, m, n, alpha, descrA, nnzA, c_loc(csrSortedValA), &
+        c_loc(csrSortedRowPtrA), c_loc(csrSortedColIndA), beta, descrB, nnzB, c_loc( &
+        csrSortedValB), c_loc(csrSortedRowPtrB), c_loc(csrSortedColIndB), descrC, c_loc( &
+        csrSortedValC), c_loc(csrSortedRowPtrC), c_loc(csrSortedColIndC), pBuffer)
     end function hipsparseDcsrgeam2_native
 
     function hipsparseDcsrgeam2_typed(handle, m, n, alpha, descrA, nnzA, csrSortedValA, &
@@ -31805,25 +31758,25 @@ contains
       complex(c_float_complex) :: alpha
       type(c_ptr), value :: descrA
       integer(c_int), value :: nnzA
-      complex(c_float_complex), target :: csrSortedValA(*)
-      integer(c_int), target :: csrSortedRowPtrA(*)
-      integer(c_int), target :: csrSortedColIndA(*)
+      complex(c_float_complex), target :: csrSortedValA(..)
+      integer(c_int), target :: csrSortedRowPtrA(..)
+      integer(c_int), target :: csrSortedColIndA(..)
       complex(c_float_complex) :: beta
       type(c_ptr), value :: descrB
       integer(c_int), value :: nnzB
-      complex(c_float_complex), target :: csrSortedValB(*)
-      integer(c_int), target :: csrSortedRowPtrB(*)
-      integer(c_int), target :: csrSortedColIndB(*)
+      complex(c_float_complex), target :: csrSortedValB(..)
+      integer(c_int), target :: csrSortedRowPtrB(..)
+      integer(c_int), target :: csrSortedColIndB(..)
       type(c_ptr), value :: descrC
-      complex(c_float_complex), target :: csrSortedValC(*)
-      integer(c_int), target :: csrSortedRowPtrC(*)
-      integer(c_int), target :: csrSortedColIndC(*)
+      complex(c_float_complex), target :: csrSortedValC(..)
+      integer(c_int), target :: csrSortedRowPtrC(..)
+      integer(c_int), target :: csrSortedColIndC(..)
       type(c_ptr), value :: pBuffer
       integer(c_int) :: Ccsrgeam2
-      Ccsrgeam2 = hipsparseCcsrgeam2_raw(handle, m, n, alpha, descrA, nnzA, c_loc(csrSortedValA( &
-        1)), c_loc(csrSortedRowPtrA(1)), c_loc(csrSortedColIndA(1)), beta, descrB, nnzB, c_loc( &
-        csrSortedValB(1)), c_loc(csrSortedRowPtrB(1)), c_loc(csrSortedColIndB(1)), descrC, c_loc( &
-        csrSortedValC(1)), c_loc(csrSortedRowPtrC(1)), c_loc(csrSortedColIndC(1)), pBuffer)
+      Ccsrgeam2 = hipsparseCcsrgeam2_raw(handle, m, n, alpha, descrA, nnzA, c_loc(csrSortedValA), &
+        c_loc(csrSortedRowPtrA), c_loc(csrSortedColIndA), beta, descrB, nnzB, c_loc( &
+        csrSortedValB), c_loc(csrSortedRowPtrB), c_loc(csrSortedColIndB), descrC, c_loc( &
+        csrSortedValC), c_loc(csrSortedRowPtrC), c_loc(csrSortedColIndC), pBuffer)
     end function hipsparseCcsrgeam2_native
 
     function hipsparseCcsrgeam2_typed(handle, m, n, alpha, descrA, nnzA, csrSortedValA, &
@@ -31872,25 +31825,25 @@ contains
       complex(c_double_complex) :: alpha
       type(c_ptr), value :: descrA
       integer(c_int), value :: nnzA
-      complex(c_double_complex), target :: csrSortedValA(*)
-      integer(c_int), target :: csrSortedRowPtrA(*)
-      integer(c_int), target :: csrSortedColIndA(*)
+      complex(c_double_complex), target :: csrSortedValA(..)
+      integer(c_int), target :: csrSortedRowPtrA(..)
+      integer(c_int), target :: csrSortedColIndA(..)
       complex(c_double_complex) :: beta
       type(c_ptr), value :: descrB
       integer(c_int), value :: nnzB
-      complex(c_double_complex), target :: csrSortedValB(*)
-      integer(c_int), target :: csrSortedRowPtrB(*)
-      integer(c_int), target :: csrSortedColIndB(*)
+      complex(c_double_complex), target :: csrSortedValB(..)
+      integer(c_int), target :: csrSortedRowPtrB(..)
+      integer(c_int), target :: csrSortedColIndB(..)
       type(c_ptr), value :: descrC
-      complex(c_double_complex), target :: csrSortedValC(*)
-      integer(c_int), target :: csrSortedRowPtrC(*)
-      integer(c_int), target :: csrSortedColIndC(*)
+      complex(c_double_complex), target :: csrSortedValC(..)
+      integer(c_int), target :: csrSortedRowPtrC(..)
+      integer(c_int), target :: csrSortedColIndC(..)
       type(c_ptr), value :: pBuffer
       integer(c_int) :: Zcsrgeam2
-      Zcsrgeam2 = hipsparseZcsrgeam2_raw(handle, m, n, alpha, descrA, nnzA, c_loc(csrSortedValA( &
-        1)), c_loc(csrSortedRowPtrA(1)), c_loc(csrSortedColIndA(1)), beta, descrB, nnzB, c_loc( &
-        csrSortedValB(1)), c_loc(csrSortedRowPtrB(1)), c_loc(csrSortedColIndB(1)), descrC, c_loc( &
-        csrSortedValC(1)), c_loc(csrSortedRowPtrC(1)), c_loc(csrSortedColIndC(1)), pBuffer)
+      Zcsrgeam2 = hipsparseZcsrgeam2_raw(handle, m, n, alpha, descrA, nnzA, c_loc(csrSortedValA), &
+        c_loc(csrSortedRowPtrA), c_loc(csrSortedColIndA), beta, descrB, nnzB, c_loc( &
+        csrSortedValB), c_loc(csrSortedRowPtrB), c_loc(csrSortedColIndB), descrC, c_loc( &
+        csrSortedValC), c_loc(csrSortedRowPtrC), c_loc(csrSortedColIndC), pBuffer)
     end function hipsparseZcsrgeam2_native
 
     function hipsparseZcsrgeam2_typed(handle, m, n, alpha, descrA, nnzA, csrSortedValA, &
@@ -31940,19 +31893,19 @@ contains
       integer(c_int), value :: k
       type(c_ptr), value :: descrA
       integer(c_int), value :: nnzA
-      integer(c_int), target :: csrRowPtrA(*)
-      integer(c_int), target :: csrColIndA(*)
+      integer(c_int), target :: csrRowPtrA(..)
+      integer(c_int), target :: csrColIndA(..)
       type(c_ptr), value :: descrB
       integer(c_int), value :: nnzB
-      integer(c_int), target :: csrRowPtrB(*)
-      integer(c_int), target :: csrColIndB(*)
+      integer(c_int), target :: csrRowPtrB(..)
+      integer(c_int), target :: csrColIndB(..)
       type(c_ptr), value :: descrC
-      integer(c_int), target :: csrRowPtrC(*)
-      integer(c_int), target :: nnzTotalDevHostPtr(*)
+      integer(c_int), target :: csrRowPtrC(..)
+      integer(c_int) :: nnzTotalDevHostPtr
       integer(c_int) :: XcsrgemmNnz
       XcsrgemmNnz = hipsparseXcsrgemmNnz_raw(handle, transA, transB, m, n, k, descrA, nnzA, c_loc( &
-        csrRowPtrA(1)), c_loc(csrColIndA(1)), descrB, nnzB, c_loc(csrRowPtrB(1)), c_loc( &
-        csrColIndB(1)), descrC, c_loc(csrRowPtrC(1)), c_loc(nnzTotalDevHostPtr(1)))
+        csrRowPtrA), c_loc(csrColIndA), descrB, nnzB, c_loc(csrRowPtrB), c_loc(csrColIndB), &
+        descrC, c_loc(csrRowPtrC), nnzTotalDevHostPtr)
     end function hipsparseXcsrgemmNnz_native
 
     function hipsparseXcsrgemmNnz_typed(handle, transA, transB, m, n, k, descrA, nnzA, csrRowPtrA, &
@@ -31977,7 +31930,7 @@ contains
       type(c_ptr), value :: csrColIndB
       type(hipsparseMatDescr_t), value :: descrC
       type(c_ptr), value :: csrRowPtrC
-      type(c_ptr), value :: nnzTotalDevHostPtr
+      integer(c_int) :: nnzTotalDevHostPtr
       integer(c_int) :: XcsrgemmNnz
       XcsrgemmNnz = hipsparseXcsrgemmNnz_raw(handle%ptr, transA, transB, m, n, k, descrA%ptr, &
         nnzA, csrRowPtrA, csrColIndA, descrB%ptr, nnzB, csrRowPtrB, csrColIndB, descrC%ptr, &
@@ -31997,23 +31950,23 @@ contains
       integer(c_int), value :: k
       type(c_ptr), value :: descrA
       integer(c_int), value :: nnzA
-      real(c_float), target :: csrValA(*)
-      integer(c_int), target :: csrRowPtrA(*)
-      integer(c_int), target :: csrColIndA(*)
+      real(c_float), target :: csrValA(..)
+      integer(c_int), target :: csrRowPtrA(..)
+      integer(c_int), target :: csrColIndA(..)
       type(c_ptr), value :: descrB
       integer(c_int), value :: nnzB
-      real(c_float), target :: csrValB(*)
-      integer(c_int), target :: csrRowPtrB(*)
-      integer(c_int), target :: csrColIndB(*)
+      real(c_float), target :: csrValB(..)
+      integer(c_int), target :: csrRowPtrB(..)
+      integer(c_int), target :: csrColIndB(..)
       type(c_ptr), value :: descrC
-      real(c_float), target :: csrValC(*)
-      integer(c_int), target :: csrRowPtrC(*)
-      integer(c_int), target :: csrColIndC(*)
+      real(c_float), target :: csrValC(..)
+      integer(c_int), target :: csrRowPtrC(..)
+      integer(c_int), target :: csrColIndC(..)
       integer(c_int) :: Scsrgemm
       Scsrgemm = hipsparseScsrgemm_raw(handle, transA, transB, m, n, k, descrA, nnzA, c_loc( &
-        csrValA(1)), c_loc(csrRowPtrA(1)), c_loc(csrColIndA(1)), descrB, nnzB, c_loc(csrValB(1)), &
-        c_loc(csrRowPtrB(1)), c_loc(csrColIndB(1)), descrC, c_loc(csrValC(1)), c_loc(csrRowPtrC( &
-        1)), c_loc(csrColIndC(1)))
+        csrValA), c_loc(csrRowPtrA), c_loc(csrColIndA), descrB, nnzB, c_loc(csrValB), c_loc( &
+        csrRowPtrB), c_loc(csrColIndB), descrC, c_loc(csrValC), c_loc(csrRowPtrC), c_loc( &
+        csrColIndC))
     end function hipsparseScsrgemm_native
 
     function hipsparseScsrgemm_typed(handle, transA, transB, m, n, k, descrA, nnzA, csrValA, &
@@ -32061,23 +32014,23 @@ contains
       integer(c_int), value :: k
       type(c_ptr), value :: descrA
       integer(c_int), value :: nnzA
-      real(c_double), target :: csrValA(*)
-      integer(c_int), target :: csrRowPtrA(*)
-      integer(c_int), target :: csrColIndA(*)
+      real(c_double), target :: csrValA(..)
+      integer(c_int), target :: csrRowPtrA(..)
+      integer(c_int), target :: csrColIndA(..)
       type(c_ptr), value :: descrB
       integer(c_int), value :: nnzB
-      real(c_double), target :: csrValB(*)
-      integer(c_int), target :: csrRowPtrB(*)
-      integer(c_int), target :: csrColIndB(*)
+      real(c_double), target :: csrValB(..)
+      integer(c_int), target :: csrRowPtrB(..)
+      integer(c_int), target :: csrColIndB(..)
       type(c_ptr), value :: descrC
-      real(c_double), target :: csrValC(*)
-      integer(c_int), target :: csrRowPtrC(*)
-      integer(c_int), target :: csrColIndC(*)
+      real(c_double), target :: csrValC(..)
+      integer(c_int), target :: csrRowPtrC(..)
+      integer(c_int), target :: csrColIndC(..)
       integer(c_int) :: Dcsrgemm
       Dcsrgemm = hipsparseDcsrgemm_raw(handle, transA, transB, m, n, k, descrA, nnzA, c_loc( &
-        csrValA(1)), c_loc(csrRowPtrA(1)), c_loc(csrColIndA(1)), descrB, nnzB, c_loc(csrValB(1)), &
-        c_loc(csrRowPtrB(1)), c_loc(csrColIndB(1)), descrC, c_loc(csrValC(1)), c_loc(csrRowPtrC( &
-        1)), c_loc(csrColIndC(1)))
+        csrValA), c_loc(csrRowPtrA), c_loc(csrColIndA), descrB, nnzB, c_loc(csrValB), c_loc( &
+        csrRowPtrB), c_loc(csrColIndB), descrC, c_loc(csrValC), c_loc(csrRowPtrC), c_loc( &
+        csrColIndC))
     end function hipsparseDcsrgemm_native
 
     function hipsparseDcsrgemm_typed(handle, transA, transB, m, n, k, descrA, nnzA, csrValA, &
@@ -32125,23 +32078,23 @@ contains
       integer(c_int), value :: k
       type(c_ptr), value :: descrA
       integer(c_int), value :: nnzA
-      complex(c_float_complex), target :: csrValA(*)
-      integer(c_int), target :: csrRowPtrA(*)
-      integer(c_int), target :: csrColIndA(*)
+      complex(c_float_complex), target :: csrValA(..)
+      integer(c_int), target :: csrRowPtrA(..)
+      integer(c_int), target :: csrColIndA(..)
       type(c_ptr), value :: descrB
       integer(c_int), value :: nnzB
-      complex(c_float_complex), target :: csrValB(*)
-      integer(c_int), target :: csrRowPtrB(*)
-      integer(c_int), target :: csrColIndB(*)
+      complex(c_float_complex), target :: csrValB(..)
+      integer(c_int), target :: csrRowPtrB(..)
+      integer(c_int), target :: csrColIndB(..)
       type(c_ptr), value :: descrC
-      complex(c_float_complex), target :: csrValC(*)
-      integer(c_int), target :: csrRowPtrC(*)
-      integer(c_int), target :: csrColIndC(*)
+      complex(c_float_complex), target :: csrValC(..)
+      integer(c_int), target :: csrRowPtrC(..)
+      integer(c_int), target :: csrColIndC(..)
       integer(c_int) :: Ccsrgemm
       Ccsrgemm = hipsparseCcsrgemm_raw(handle, transA, transB, m, n, k, descrA, nnzA, c_loc( &
-        csrValA(1)), c_loc(csrRowPtrA(1)), c_loc(csrColIndA(1)), descrB, nnzB, c_loc(csrValB(1)), &
-        c_loc(csrRowPtrB(1)), c_loc(csrColIndB(1)), descrC, c_loc(csrValC(1)), c_loc(csrRowPtrC( &
-        1)), c_loc(csrColIndC(1)))
+        csrValA), c_loc(csrRowPtrA), c_loc(csrColIndA), descrB, nnzB, c_loc(csrValB), c_loc( &
+        csrRowPtrB), c_loc(csrColIndB), descrC, c_loc(csrValC), c_loc(csrRowPtrC), c_loc( &
+        csrColIndC))
     end function hipsparseCcsrgemm_native
 
     function hipsparseCcsrgemm_typed(handle, transA, transB, m, n, k, descrA, nnzA, csrValA, &
@@ -32189,23 +32142,23 @@ contains
       integer(c_int), value :: k
       type(c_ptr), value :: descrA
       integer(c_int), value :: nnzA
-      complex(c_double_complex), target :: csrValA(*)
-      integer(c_int), target :: csrRowPtrA(*)
-      integer(c_int), target :: csrColIndA(*)
+      complex(c_double_complex), target :: csrValA(..)
+      integer(c_int), target :: csrRowPtrA(..)
+      integer(c_int), target :: csrColIndA(..)
       type(c_ptr), value :: descrB
       integer(c_int), value :: nnzB
-      complex(c_double_complex), target :: csrValB(*)
-      integer(c_int), target :: csrRowPtrB(*)
-      integer(c_int), target :: csrColIndB(*)
+      complex(c_double_complex), target :: csrValB(..)
+      integer(c_int), target :: csrRowPtrB(..)
+      integer(c_int), target :: csrColIndB(..)
       type(c_ptr), value :: descrC
-      complex(c_double_complex), target :: csrValC(*)
-      integer(c_int), target :: csrRowPtrC(*)
-      integer(c_int), target :: csrColIndC(*)
+      complex(c_double_complex), target :: csrValC(..)
+      integer(c_int), target :: csrRowPtrC(..)
+      integer(c_int), target :: csrColIndC(..)
       integer(c_int) :: Zcsrgemm
       Zcsrgemm = hipsparseZcsrgemm_raw(handle, transA, transB, m, n, k, descrA, nnzA, c_loc( &
-        csrValA(1)), c_loc(csrRowPtrA(1)), c_loc(csrColIndA(1)), descrB, nnzB, c_loc(csrValB(1)), &
-        c_loc(csrRowPtrB(1)), c_loc(csrColIndB(1)), descrC, c_loc(csrValC(1)), c_loc(csrRowPtrC( &
-        1)), c_loc(csrColIndC(1)))
+        csrValA), c_loc(csrRowPtrA), c_loc(csrColIndA), descrB, nnzB, c_loc(csrValB), c_loc( &
+        csrRowPtrB), c_loc(csrColIndB), descrC, c_loc(csrValC), c_loc(csrRowPtrC), c_loc( &
+        csrColIndC))
     end function hipsparseZcsrgemm_native
 
     function hipsparseZcsrgemm_typed(handle, transA, transB, m, n, k, descrA, nnzA, csrValA, &
@@ -32252,24 +32205,24 @@ contains
       real(c_float) :: alpha
       type(c_ptr), value :: descrA
       integer(c_int), value :: nnzA
-      integer(c_int), target :: csrRowPtrA(*)
-      integer(c_int), target :: csrColIndA(*)
+      integer(c_int), target :: csrRowPtrA(..)
+      integer(c_int), target :: csrColIndA(..)
       type(c_ptr), value :: descrB
       integer(c_int), value :: nnzB
-      integer(c_int), target :: csrRowPtrB(*)
-      integer(c_int), target :: csrColIndB(*)
+      integer(c_int), target :: csrRowPtrB(..)
+      integer(c_int), target :: csrColIndB(..)
       real(c_float) :: beta
       type(c_ptr), value :: descrD
       integer(c_int), value :: nnzD
-      integer(c_int), target :: csrRowPtrD(*)
-      integer(c_int), target :: csrColIndD(*)
+      integer(c_int), target :: csrRowPtrD(..)
+      integer(c_int), target :: csrColIndD(..)
       type(c_ptr), value :: info
       type(c_ptr), value :: pBufferSizeInBytes
       integer(c_int) :: Scsrgemm2_bufferSizeExt
       Scsrgemm2_bufferSizeExt = hipsparseScsrgemm2_bufferSizeExt_raw(handle, m, n, k, alpha, &
-        descrA, nnzA, c_loc(csrRowPtrA(1)), c_loc(csrColIndA(1)), descrB, nnzB, c_loc(csrRowPtrB( &
-        1)), c_loc(csrColIndB(1)), beta, descrD, nnzD, c_loc(csrRowPtrD(1)), c_loc(csrColIndD(1)), &
-        info, pBufferSizeInBytes)
+        descrA, nnzA, c_loc(csrRowPtrA), c_loc(csrColIndA), descrB, nnzB, c_loc(csrRowPtrB), &
+        c_loc(csrColIndB), beta, descrD, nnzD, c_loc(csrRowPtrD), c_loc(csrColIndD), info, &
+        pBufferSizeInBytes)
     end function hipsparseScsrgemm2_bufferSizeExt_native
 
     function hipsparseScsrgemm2_bufferSizeExt_typed(handle, m, n, k, alpha, descrA, nnzA, &
@@ -32316,24 +32269,24 @@ contains
       real(c_double) :: alpha
       type(c_ptr), value :: descrA
       integer(c_int), value :: nnzA
-      integer(c_int), target :: csrRowPtrA(*)
-      integer(c_int), target :: csrColIndA(*)
+      integer(c_int), target :: csrRowPtrA(..)
+      integer(c_int), target :: csrColIndA(..)
       type(c_ptr), value :: descrB
       integer(c_int), value :: nnzB
-      integer(c_int), target :: csrRowPtrB(*)
-      integer(c_int), target :: csrColIndB(*)
+      integer(c_int), target :: csrRowPtrB(..)
+      integer(c_int), target :: csrColIndB(..)
       real(c_double) :: beta
       type(c_ptr), value :: descrD
       integer(c_int), value :: nnzD
-      integer(c_int), target :: csrRowPtrD(*)
-      integer(c_int), target :: csrColIndD(*)
+      integer(c_int), target :: csrRowPtrD(..)
+      integer(c_int), target :: csrColIndD(..)
       type(c_ptr), value :: info
       type(c_ptr), value :: pBufferSizeInBytes
       integer(c_int) :: Dcsrgemm2_bufferSizeExt
       Dcsrgemm2_bufferSizeExt = hipsparseDcsrgemm2_bufferSizeExt_raw(handle, m, n, k, alpha, &
-        descrA, nnzA, c_loc(csrRowPtrA(1)), c_loc(csrColIndA(1)), descrB, nnzB, c_loc(csrRowPtrB( &
-        1)), c_loc(csrColIndB(1)), beta, descrD, nnzD, c_loc(csrRowPtrD(1)), c_loc(csrColIndD(1)), &
-        info, pBufferSizeInBytes)
+        descrA, nnzA, c_loc(csrRowPtrA), c_loc(csrColIndA), descrB, nnzB, c_loc(csrRowPtrB), &
+        c_loc(csrColIndB), beta, descrD, nnzD, c_loc(csrRowPtrD), c_loc(csrColIndD), info, &
+        pBufferSizeInBytes)
     end function hipsparseDcsrgemm2_bufferSizeExt_native
 
     function hipsparseDcsrgemm2_bufferSizeExt_typed(handle, m, n, k, alpha, descrA, nnzA, &
@@ -32380,24 +32333,24 @@ contains
       complex(c_float_complex) :: alpha
       type(c_ptr), value :: descrA
       integer(c_int), value :: nnzA
-      integer(c_int), target :: csrRowPtrA(*)
-      integer(c_int), target :: csrColIndA(*)
+      integer(c_int), target :: csrRowPtrA(..)
+      integer(c_int), target :: csrColIndA(..)
       type(c_ptr), value :: descrB
       integer(c_int), value :: nnzB
-      integer(c_int), target :: csrRowPtrB(*)
-      integer(c_int), target :: csrColIndB(*)
+      integer(c_int), target :: csrRowPtrB(..)
+      integer(c_int), target :: csrColIndB(..)
       complex(c_float_complex) :: beta
       type(c_ptr), value :: descrD
       integer(c_int), value :: nnzD
-      integer(c_int), target :: csrRowPtrD(*)
-      integer(c_int), target :: csrColIndD(*)
+      integer(c_int), target :: csrRowPtrD(..)
+      integer(c_int), target :: csrColIndD(..)
       type(c_ptr), value :: info
       type(c_ptr), value :: pBufferSizeInBytes
       integer(c_int) :: Ccsrgemm2_bufferSizeExt
       Ccsrgemm2_bufferSizeExt = hipsparseCcsrgemm2_bufferSizeExt_raw(handle, m, n, k, alpha, &
-        descrA, nnzA, c_loc(csrRowPtrA(1)), c_loc(csrColIndA(1)), descrB, nnzB, c_loc(csrRowPtrB( &
-        1)), c_loc(csrColIndB(1)), beta, descrD, nnzD, c_loc(csrRowPtrD(1)), c_loc(csrColIndD(1)), &
-        info, pBufferSizeInBytes)
+        descrA, nnzA, c_loc(csrRowPtrA), c_loc(csrColIndA), descrB, nnzB, c_loc(csrRowPtrB), &
+        c_loc(csrColIndB), beta, descrD, nnzD, c_loc(csrRowPtrD), c_loc(csrColIndD), info, &
+        pBufferSizeInBytes)
     end function hipsparseCcsrgemm2_bufferSizeExt_native
 
     function hipsparseCcsrgemm2_bufferSizeExt_typed(handle, m, n, k, alpha, descrA, nnzA, &
@@ -32444,24 +32397,24 @@ contains
       complex(c_double_complex) :: alpha
       type(c_ptr), value :: descrA
       integer(c_int), value :: nnzA
-      integer(c_int), target :: csrRowPtrA(*)
-      integer(c_int), target :: csrColIndA(*)
+      integer(c_int), target :: csrRowPtrA(..)
+      integer(c_int), target :: csrColIndA(..)
       type(c_ptr), value :: descrB
       integer(c_int), value :: nnzB
-      integer(c_int), target :: csrRowPtrB(*)
-      integer(c_int), target :: csrColIndB(*)
+      integer(c_int), target :: csrRowPtrB(..)
+      integer(c_int), target :: csrColIndB(..)
       complex(c_double_complex) :: beta
       type(c_ptr), value :: descrD
       integer(c_int), value :: nnzD
-      integer(c_int), target :: csrRowPtrD(*)
-      integer(c_int), target :: csrColIndD(*)
+      integer(c_int), target :: csrRowPtrD(..)
+      integer(c_int), target :: csrColIndD(..)
       type(c_ptr), value :: info
       type(c_ptr), value :: pBufferSizeInBytes
       integer(c_int) :: Zcsrgemm2_bufferSizeExt
       Zcsrgemm2_bufferSizeExt = hipsparseZcsrgemm2_bufferSizeExt_raw(handle, m, n, k, alpha, &
-        descrA, nnzA, c_loc(csrRowPtrA(1)), c_loc(csrColIndA(1)), descrB, nnzB, c_loc(csrRowPtrB( &
-        1)), c_loc(csrColIndB(1)), beta, descrD, nnzD, c_loc(csrRowPtrD(1)), c_loc(csrColIndD(1)), &
-        info, pBufferSizeInBytes)
+        descrA, nnzA, c_loc(csrRowPtrA), c_loc(csrColIndA), descrB, nnzB, c_loc(csrRowPtrB), &
+        c_loc(csrColIndB), beta, descrD, nnzD, c_loc(csrRowPtrD), c_loc(csrColIndD), info, &
+        pBufferSizeInBytes)
     end function hipsparseZcsrgemm2_bufferSizeExt_native
 
     function hipsparseZcsrgemm2_bufferSizeExt_typed(handle, m, n, k, alpha, descrA, nnzA, &
@@ -32507,26 +32460,26 @@ contains
       integer(c_int), value :: k
       type(c_ptr), value :: descrA
       integer(c_int), value :: nnzA
-      integer(c_int), target :: csrRowPtrA(*)
-      integer(c_int), target :: csrColIndA(*)
+      integer(c_int), target :: csrRowPtrA(..)
+      integer(c_int), target :: csrColIndA(..)
       type(c_ptr), value :: descrB
       integer(c_int), value :: nnzB
-      integer(c_int), target :: csrRowPtrB(*)
-      integer(c_int), target :: csrColIndB(*)
+      integer(c_int), target :: csrRowPtrB(..)
+      integer(c_int), target :: csrColIndB(..)
       type(c_ptr), value :: descrD
       integer(c_int), value :: nnzD
-      integer(c_int), target :: csrRowPtrD(*)
-      integer(c_int), target :: csrColIndD(*)
+      integer(c_int), target :: csrRowPtrD(..)
+      integer(c_int), target :: csrColIndD(..)
       type(c_ptr), value :: descrC
-      integer(c_int), target :: csrRowPtrC(*)
+      integer(c_int), target :: csrRowPtrC(..)
       integer(c_int) :: nnzTotalDevHostPtr
       type(c_ptr), value :: info
       type(c_ptr), value :: pBuffer
       integer(c_int) :: Xcsrgemm2Nnz
-      Xcsrgemm2Nnz = hipsparseXcsrgemm2Nnz_raw(handle, m, n, k, descrA, nnzA, c_loc(csrRowPtrA( &
-        1)), c_loc(csrColIndA(1)), descrB, nnzB, c_loc(csrRowPtrB(1)), c_loc(csrColIndB(1)), &
-        descrD, nnzD, c_loc(csrRowPtrD(1)), c_loc(csrColIndD(1)), descrC, c_loc(csrRowPtrC(1)), &
-        nnzTotalDevHostPtr, info, pBuffer)
+      Xcsrgemm2Nnz = hipsparseXcsrgemm2Nnz_raw(handle, m, n, k, descrA, nnzA, c_loc(csrRowPtrA), &
+        c_loc(csrColIndA), descrB, nnzB, c_loc(csrRowPtrB), c_loc(csrColIndB), descrD, nnzD, &
+        c_loc(csrRowPtrD), c_loc(csrColIndD), descrC, c_loc(csrRowPtrC), nnzTotalDevHostPtr, info, &
+        pBuffer)
     end function hipsparseXcsrgemm2Nnz_native
 
     function hipsparseXcsrgemm2Nnz_typed(handle, m, n, k, descrA, nnzA, csrRowPtrA, csrColIndA, &
@@ -32575,32 +32528,31 @@ contains
       real(c_float) :: alpha
       type(c_ptr), value :: descrA
       integer(c_int), value :: nnzA
-      real(c_float), target :: csrValA(*)
-      integer(c_int), target :: csrRowPtrA(*)
-      integer(c_int), target :: csrColIndA(*)
+      real(c_float), target :: csrValA(..)
+      integer(c_int), target :: csrRowPtrA(..)
+      integer(c_int), target :: csrColIndA(..)
       type(c_ptr), value :: descrB
       integer(c_int), value :: nnzB
-      real(c_float), target :: csrValB(*)
-      integer(c_int), target :: csrRowPtrB(*)
-      integer(c_int), target :: csrColIndB(*)
+      real(c_float), target :: csrValB(..)
+      integer(c_int), target :: csrRowPtrB(..)
+      integer(c_int), target :: csrColIndB(..)
       real(c_float) :: beta
       type(c_ptr), value :: descrD
       integer(c_int), value :: nnzD
-      real(c_float), target :: csrValD(*)
-      integer(c_int), target :: csrRowPtrD(*)
-      integer(c_int), target :: csrColIndD(*)
+      real(c_float), target :: csrValD(..)
+      integer(c_int), target :: csrRowPtrD(..)
+      integer(c_int), target :: csrColIndD(..)
       type(c_ptr), value :: descrC
-      real(c_float), target :: csrValC(*)
-      integer(c_int), target :: csrRowPtrC(*)
-      integer(c_int), target :: csrColIndC(*)
+      real(c_float), target :: csrValC(..)
+      integer(c_int), target :: csrRowPtrC(..)
+      integer(c_int), target :: csrColIndC(..)
       type(c_ptr), value :: info
       type(c_ptr), value :: pBuffer
       integer(c_int) :: Scsrgemm2
-      Scsrgemm2 = hipsparseScsrgemm2_raw(handle, m, n, k, alpha, descrA, nnzA, c_loc(csrValA(1)), &
-        c_loc(csrRowPtrA(1)), c_loc(csrColIndA(1)), descrB, nnzB, c_loc(csrValB(1)), c_loc( &
-        csrRowPtrB(1)), c_loc(csrColIndB(1)), beta, descrD, nnzD, c_loc(csrValD(1)), c_loc( &
-        csrRowPtrD(1)), c_loc(csrColIndD(1)), descrC, c_loc(csrValC(1)), c_loc(csrRowPtrC(1)), &
-        c_loc(csrColIndC(1)), info, pBuffer)
+      Scsrgemm2 = hipsparseScsrgemm2_raw(handle, m, n, k, alpha, descrA, nnzA, c_loc(csrValA), &
+        c_loc(csrRowPtrA), c_loc(csrColIndA), descrB, nnzB, c_loc(csrValB), c_loc(csrRowPtrB), &
+        c_loc(csrColIndB), beta, descrD, nnzD, c_loc(csrValD), c_loc(csrRowPtrD), c_loc( &
+        csrColIndD), descrC, c_loc(csrValC), c_loc(csrRowPtrC), c_loc(csrColIndC), info, pBuffer)
     end function hipsparseScsrgemm2_native
 
     function hipsparseScsrgemm2_typed(handle, m, n, k, alpha, descrA, nnzA, csrValA, csrRowPtrA, &
@@ -32657,32 +32609,31 @@ contains
       real(c_double) :: alpha
       type(c_ptr), value :: descrA
       integer(c_int), value :: nnzA
-      real(c_double), target :: csrValA(*)
-      integer(c_int), target :: csrRowPtrA(*)
-      integer(c_int), target :: csrColIndA(*)
+      real(c_double), target :: csrValA(..)
+      integer(c_int), target :: csrRowPtrA(..)
+      integer(c_int), target :: csrColIndA(..)
       type(c_ptr), value :: descrB
       integer(c_int), value :: nnzB
-      real(c_double), target :: csrValB(*)
-      integer(c_int), target :: csrRowPtrB(*)
-      integer(c_int), target :: csrColIndB(*)
+      real(c_double), target :: csrValB(..)
+      integer(c_int), target :: csrRowPtrB(..)
+      integer(c_int), target :: csrColIndB(..)
       real(c_double) :: beta
       type(c_ptr), value :: descrD
       integer(c_int), value :: nnzD
-      real(c_double), target :: csrValD(*)
-      integer(c_int), target :: csrRowPtrD(*)
-      integer(c_int), target :: csrColIndD(*)
+      real(c_double), target :: csrValD(..)
+      integer(c_int), target :: csrRowPtrD(..)
+      integer(c_int), target :: csrColIndD(..)
       type(c_ptr), value :: descrC
-      real(c_double), target :: csrValC(*)
-      integer(c_int), target :: csrRowPtrC(*)
-      integer(c_int), target :: csrColIndC(*)
+      real(c_double), target :: csrValC(..)
+      integer(c_int), target :: csrRowPtrC(..)
+      integer(c_int), target :: csrColIndC(..)
       type(c_ptr), value :: info
       type(c_ptr), value :: pBuffer
       integer(c_int) :: Dcsrgemm2
-      Dcsrgemm2 = hipsparseDcsrgemm2_raw(handle, m, n, k, alpha, descrA, nnzA, c_loc(csrValA(1)), &
-        c_loc(csrRowPtrA(1)), c_loc(csrColIndA(1)), descrB, nnzB, c_loc(csrValB(1)), c_loc( &
-        csrRowPtrB(1)), c_loc(csrColIndB(1)), beta, descrD, nnzD, c_loc(csrValD(1)), c_loc( &
-        csrRowPtrD(1)), c_loc(csrColIndD(1)), descrC, c_loc(csrValC(1)), c_loc(csrRowPtrC(1)), &
-        c_loc(csrColIndC(1)), info, pBuffer)
+      Dcsrgemm2 = hipsparseDcsrgemm2_raw(handle, m, n, k, alpha, descrA, nnzA, c_loc(csrValA), &
+        c_loc(csrRowPtrA), c_loc(csrColIndA), descrB, nnzB, c_loc(csrValB), c_loc(csrRowPtrB), &
+        c_loc(csrColIndB), beta, descrD, nnzD, c_loc(csrValD), c_loc(csrRowPtrD), c_loc( &
+        csrColIndD), descrC, c_loc(csrValC), c_loc(csrRowPtrC), c_loc(csrColIndC), info, pBuffer)
     end function hipsparseDcsrgemm2_native
 
     function hipsparseDcsrgemm2_typed(handle, m, n, k, alpha, descrA, nnzA, csrValA, csrRowPtrA, &
@@ -32739,32 +32690,31 @@ contains
       complex(c_float_complex) :: alpha
       type(c_ptr), value :: descrA
       integer(c_int), value :: nnzA
-      complex(c_float_complex), target :: csrValA(*)
-      integer(c_int), target :: csrRowPtrA(*)
-      integer(c_int), target :: csrColIndA(*)
+      complex(c_float_complex), target :: csrValA(..)
+      integer(c_int), target :: csrRowPtrA(..)
+      integer(c_int), target :: csrColIndA(..)
       type(c_ptr), value :: descrB
       integer(c_int), value :: nnzB
-      complex(c_float_complex), target :: csrValB(*)
-      integer(c_int), target :: csrRowPtrB(*)
-      integer(c_int), target :: csrColIndB(*)
+      complex(c_float_complex), target :: csrValB(..)
+      integer(c_int), target :: csrRowPtrB(..)
+      integer(c_int), target :: csrColIndB(..)
       complex(c_float_complex) :: beta
       type(c_ptr), value :: descrD
       integer(c_int), value :: nnzD
-      complex(c_float_complex), target :: csrValD(*)
-      integer(c_int), target :: csrRowPtrD(*)
-      integer(c_int), target :: csrColIndD(*)
+      complex(c_float_complex), target :: csrValD(..)
+      integer(c_int), target :: csrRowPtrD(..)
+      integer(c_int), target :: csrColIndD(..)
       type(c_ptr), value :: descrC
-      complex(c_float_complex), target :: csrValC(*)
-      integer(c_int), target :: csrRowPtrC(*)
-      integer(c_int), target :: csrColIndC(*)
+      complex(c_float_complex), target :: csrValC(..)
+      integer(c_int), target :: csrRowPtrC(..)
+      integer(c_int), target :: csrColIndC(..)
       type(c_ptr), value :: info
       type(c_ptr), value :: pBuffer
       integer(c_int) :: Ccsrgemm2
-      Ccsrgemm2 = hipsparseCcsrgemm2_raw(handle, m, n, k, alpha, descrA, nnzA, c_loc(csrValA(1)), &
-        c_loc(csrRowPtrA(1)), c_loc(csrColIndA(1)), descrB, nnzB, c_loc(csrValB(1)), c_loc( &
-        csrRowPtrB(1)), c_loc(csrColIndB(1)), beta, descrD, nnzD, c_loc(csrValD(1)), c_loc( &
-        csrRowPtrD(1)), c_loc(csrColIndD(1)), descrC, c_loc(csrValC(1)), c_loc(csrRowPtrC(1)), &
-        c_loc(csrColIndC(1)), info, pBuffer)
+      Ccsrgemm2 = hipsparseCcsrgemm2_raw(handle, m, n, k, alpha, descrA, nnzA, c_loc(csrValA), &
+        c_loc(csrRowPtrA), c_loc(csrColIndA), descrB, nnzB, c_loc(csrValB), c_loc(csrRowPtrB), &
+        c_loc(csrColIndB), beta, descrD, nnzD, c_loc(csrValD), c_loc(csrRowPtrD), c_loc( &
+        csrColIndD), descrC, c_loc(csrValC), c_loc(csrRowPtrC), c_loc(csrColIndC), info, pBuffer)
     end function hipsparseCcsrgemm2_native
 
     function hipsparseCcsrgemm2_typed(handle, m, n, k, alpha, descrA, nnzA, csrValA, csrRowPtrA, &
@@ -32821,32 +32771,31 @@ contains
       complex(c_double_complex) :: alpha
       type(c_ptr), value :: descrA
       integer(c_int), value :: nnzA
-      complex(c_double_complex), target :: csrValA(*)
-      integer(c_int), target :: csrRowPtrA(*)
-      integer(c_int), target :: csrColIndA(*)
+      complex(c_double_complex), target :: csrValA(..)
+      integer(c_int), target :: csrRowPtrA(..)
+      integer(c_int), target :: csrColIndA(..)
       type(c_ptr), value :: descrB
       integer(c_int), value :: nnzB
-      complex(c_double_complex), target :: csrValB(*)
-      integer(c_int), target :: csrRowPtrB(*)
-      integer(c_int), target :: csrColIndB(*)
+      complex(c_double_complex), target :: csrValB(..)
+      integer(c_int), target :: csrRowPtrB(..)
+      integer(c_int), target :: csrColIndB(..)
       complex(c_double_complex) :: beta
       type(c_ptr), value :: descrD
       integer(c_int), value :: nnzD
-      complex(c_double_complex), target :: csrValD(*)
-      integer(c_int), target :: csrRowPtrD(*)
-      integer(c_int), target :: csrColIndD(*)
+      complex(c_double_complex), target :: csrValD(..)
+      integer(c_int), target :: csrRowPtrD(..)
+      integer(c_int), target :: csrColIndD(..)
       type(c_ptr), value :: descrC
-      complex(c_double_complex), target :: csrValC(*)
-      integer(c_int), target :: csrRowPtrC(*)
-      integer(c_int), target :: csrColIndC(*)
+      complex(c_double_complex), target :: csrValC(..)
+      integer(c_int), target :: csrRowPtrC(..)
+      integer(c_int), target :: csrColIndC(..)
       type(c_ptr), value :: info
       type(c_ptr), value :: pBuffer
       integer(c_int) :: Zcsrgemm2
-      Zcsrgemm2 = hipsparseZcsrgemm2_raw(handle, m, n, k, alpha, descrA, nnzA, c_loc(csrValA(1)), &
-        c_loc(csrRowPtrA(1)), c_loc(csrColIndA(1)), descrB, nnzB, c_loc(csrValB(1)), c_loc( &
-        csrRowPtrB(1)), c_loc(csrColIndB(1)), beta, descrD, nnzD, c_loc(csrValD(1)), c_loc( &
-        csrRowPtrD(1)), c_loc(csrColIndD(1)), descrC, c_loc(csrValC(1)), c_loc(csrRowPtrC(1)), &
-        c_loc(csrColIndC(1)), info, pBuffer)
+      Zcsrgemm2 = hipsparseZcsrgemm2_raw(handle, m, n, k, alpha, descrA, nnzA, c_loc(csrValA), &
+        c_loc(csrRowPtrA), c_loc(csrColIndA), descrB, nnzB, c_loc(csrValB), c_loc(csrRowPtrB), &
+        c_loc(csrColIndB), beta, descrD, nnzD, c_loc(csrValD), c_loc(csrRowPtrD), c_loc( &
+        csrColIndD), descrC, c_loc(csrValC), c_loc(csrRowPtrC), c_loc(csrColIndC), info, pBuffer)
     end function hipsparseZcsrgemm2_native
 
     function hipsparseZcsrgemm2_typed(handle, m, n, k, alpha, descrA, nnzA, csrValA, csrRowPtrA, &
@@ -32890,23 +32839,13 @@ contains
         csrColIndC, info%ptr, pBuffer)
     end function hipsparseZcsrgemm2_typed
 
-    function hipsparseXbsric02_zeroPivot_native(handle, info, position) result(Xbsric02_zeroPivot)
-      use, intrinsic :: iso_c_binding
-      implicit none
-      type(c_ptr), value :: handle
-      type(c_ptr), value :: info
-      integer(c_int), target :: position(*)
-      integer(c_int) :: Xbsric02_zeroPivot
-      Xbsric02_zeroPivot = hipsparseXbsric02_zeroPivot_raw(handle, info, c_loc(position(1)))
-    end function hipsparseXbsric02_zeroPivot_native
-
     function hipsparseXbsric02_zeroPivot_typed(handle, info, position) result(Xbsric02_zeroPivot)
       use, intrinsic :: iso_c_binding
       use hipfort_handles
       implicit none
       type(hipsparseHandle_t), value :: handle
       type(bsric02Info_t), value :: info
-      type(c_ptr), value :: position
+      integer(c_int) :: position
       integer(c_int) :: Xbsric02_zeroPivot
       Xbsric02_zeroPivot = hipsparseXbsric02_zeroPivot_raw(handle%ptr, info%ptr, position)
     end function hipsparseXbsric02_zeroPivot_typed
@@ -32920,16 +32859,15 @@ contains
       integer(c_int), value :: mb
       integer(c_int), value :: nnzb
       type(c_ptr), value :: descrA
-      real(c_float), target :: bsrValA(*)
-      integer(c_int), target :: bsrRowPtrA(*)
-      integer(c_int), target :: bsrColIndA(*)
+      real(c_float), target :: bsrValA(..)
+      integer(c_int), target :: bsrRowPtrA(..)
+      integer(c_int), target :: bsrColIndA(..)
       integer(c_int), value :: blockDim
       type(c_ptr), value :: info
-      integer(c_int), target :: pBufferSizeInBytes(*)
+      integer(c_int) :: pBufferSizeInBytes
       integer(c_int) :: Sbsric02_bufferSize
       Sbsric02_bufferSize = hipsparseSbsric02_bufferSize_raw(handle, dirA, mb, nnzb, descrA, &
-        c_loc(bsrValA(1)), c_loc(bsrRowPtrA(1)), c_loc(bsrColIndA(1)), blockDim, info, c_loc( &
-        pBufferSizeInBytes(1)))
+        c_loc(bsrValA), c_loc(bsrRowPtrA), c_loc(bsrColIndA), blockDim, info, pBufferSizeInBytes)
     end function hipsparseSbsric02_bufferSize_native
 
     function hipsparseSbsric02_bufferSize_typed(handle, dirA, mb, nnzb, descrA, bsrValA, &
@@ -32947,7 +32885,7 @@ contains
       type(c_ptr), value :: bsrColIndA
       integer(c_int), value :: blockDim
       type(bsric02Info_t), value :: info
-      type(c_ptr), value :: pBufferSizeInBytes
+      integer(c_int) :: pBufferSizeInBytes
       integer(c_int) :: Sbsric02_bufferSize
       Sbsric02_bufferSize = hipsparseSbsric02_bufferSize_raw(handle%ptr, dirA, mb, nnzb, &
         descrA%ptr, bsrValA, bsrRowPtrA, bsrColIndA, blockDim, info%ptr, pBufferSizeInBytes)
@@ -32962,16 +32900,15 @@ contains
       integer(c_int), value :: mb
       integer(c_int), value :: nnzb
       type(c_ptr), value :: descrA
-      real(c_double), target :: bsrValA(*)
-      integer(c_int), target :: bsrRowPtrA(*)
-      integer(c_int), target :: bsrColIndA(*)
+      real(c_double), target :: bsrValA(..)
+      integer(c_int), target :: bsrRowPtrA(..)
+      integer(c_int), target :: bsrColIndA(..)
       integer(c_int), value :: blockDim
       type(c_ptr), value :: info
-      integer(c_int), target :: pBufferSizeInBytes(*)
+      integer(c_int) :: pBufferSizeInBytes
       integer(c_int) :: Dbsric02_bufferSize
       Dbsric02_bufferSize = hipsparseDbsric02_bufferSize_raw(handle, dirA, mb, nnzb, descrA, &
-        c_loc(bsrValA(1)), c_loc(bsrRowPtrA(1)), c_loc(bsrColIndA(1)), blockDim, info, c_loc( &
-        pBufferSizeInBytes(1)))
+        c_loc(bsrValA), c_loc(bsrRowPtrA), c_loc(bsrColIndA), blockDim, info, pBufferSizeInBytes)
     end function hipsparseDbsric02_bufferSize_native
 
     function hipsparseDbsric02_bufferSize_typed(handle, dirA, mb, nnzb, descrA, bsrValA, &
@@ -32989,7 +32926,7 @@ contains
       type(c_ptr), value :: bsrColIndA
       integer(c_int), value :: blockDim
       type(bsric02Info_t), value :: info
-      type(c_ptr), value :: pBufferSizeInBytes
+      integer(c_int) :: pBufferSizeInBytes
       integer(c_int) :: Dbsric02_bufferSize
       Dbsric02_bufferSize = hipsparseDbsric02_bufferSize_raw(handle%ptr, dirA, mb, nnzb, &
         descrA%ptr, bsrValA, bsrRowPtrA, bsrColIndA, blockDim, info%ptr, pBufferSizeInBytes)
@@ -33004,16 +32941,15 @@ contains
       integer(c_int), value :: mb
       integer(c_int), value :: nnzb
       type(c_ptr), value :: descrA
-      complex(c_float_complex), target :: bsrValA(*)
-      integer(c_int), target :: bsrRowPtrA(*)
-      integer(c_int), target :: bsrColIndA(*)
+      complex(c_float_complex), target :: bsrValA(..)
+      integer(c_int), target :: bsrRowPtrA(..)
+      integer(c_int), target :: bsrColIndA(..)
       integer(c_int), value :: blockDim
       type(c_ptr), value :: info
-      integer(c_int), target :: pBufferSizeInBytes(*)
+      integer(c_int) :: pBufferSizeInBytes
       integer(c_int) :: Cbsric02_bufferSize
       Cbsric02_bufferSize = hipsparseCbsric02_bufferSize_raw(handle, dirA, mb, nnzb, descrA, &
-        c_loc(bsrValA(1)), c_loc(bsrRowPtrA(1)), c_loc(bsrColIndA(1)), blockDim, info, c_loc( &
-        pBufferSizeInBytes(1)))
+        c_loc(bsrValA), c_loc(bsrRowPtrA), c_loc(bsrColIndA), blockDim, info, pBufferSizeInBytes)
     end function hipsparseCbsric02_bufferSize_native
 
     function hipsparseCbsric02_bufferSize_typed(handle, dirA, mb, nnzb, descrA, bsrValA, &
@@ -33031,7 +32967,7 @@ contains
       type(c_ptr), value :: bsrColIndA
       integer(c_int), value :: blockDim
       type(bsric02Info_t), value :: info
-      type(c_ptr), value :: pBufferSizeInBytes
+      integer(c_int) :: pBufferSizeInBytes
       integer(c_int) :: Cbsric02_bufferSize
       Cbsric02_bufferSize = hipsparseCbsric02_bufferSize_raw(handle%ptr, dirA, mb, nnzb, &
         descrA%ptr, bsrValA, bsrRowPtrA, bsrColIndA, blockDim, info%ptr, pBufferSizeInBytes)
@@ -33046,16 +32982,15 @@ contains
       integer(c_int), value :: mb
       integer(c_int), value :: nnzb
       type(c_ptr), value :: descrA
-      complex(c_double_complex), target :: bsrValA(*)
-      integer(c_int), target :: bsrRowPtrA(*)
-      integer(c_int), target :: bsrColIndA(*)
+      complex(c_double_complex), target :: bsrValA(..)
+      integer(c_int), target :: bsrRowPtrA(..)
+      integer(c_int), target :: bsrColIndA(..)
       integer(c_int), value :: blockDim
       type(c_ptr), value :: info
-      integer(c_int), target :: pBufferSizeInBytes(*)
+      integer(c_int) :: pBufferSizeInBytes
       integer(c_int) :: Zbsric02_bufferSize
       Zbsric02_bufferSize = hipsparseZbsric02_bufferSize_raw(handle, dirA, mb, nnzb, descrA, &
-        c_loc(bsrValA(1)), c_loc(bsrRowPtrA(1)), c_loc(bsrColIndA(1)), blockDim, info, c_loc( &
-        pBufferSizeInBytes(1)))
+        c_loc(bsrValA), c_loc(bsrRowPtrA), c_loc(bsrColIndA), blockDim, info, pBufferSizeInBytes)
     end function hipsparseZbsric02_bufferSize_native
 
     function hipsparseZbsric02_bufferSize_typed(handle, dirA, mb, nnzb, descrA, bsrValA, &
@@ -33073,7 +33008,7 @@ contains
       type(c_ptr), value :: bsrColIndA
       integer(c_int), value :: blockDim
       type(bsric02Info_t), value :: info
-      type(c_ptr), value :: pBufferSizeInBytes
+      integer(c_int) :: pBufferSizeInBytes
       integer(c_int) :: Zbsric02_bufferSize
       Zbsric02_bufferSize = hipsparseZbsric02_bufferSize_raw(handle%ptr, dirA, mb, nnzb, &
         descrA%ptr, bsrValA, bsrRowPtrA, bsrColIndA, blockDim, info%ptr, pBufferSizeInBytes)
@@ -33088,16 +33023,16 @@ contains
       integer(c_int), value :: mb
       integer(c_int), value :: nnzb
       type(c_ptr), value :: descrA
-      real(c_float), target :: bsrValA(*)
-      integer(c_int), target :: bsrRowPtrA(*)
-      integer(c_int), target :: bsrColIndA(*)
+      real(c_float), target :: bsrValA(..)
+      integer(c_int), target :: bsrRowPtrA(..)
+      integer(c_int), target :: bsrColIndA(..)
       integer(c_int), value :: blockDim
       type(c_ptr), value :: info
       integer(c_int), value :: policy
       type(c_ptr), value :: pBuffer
       integer(c_int) :: Sbsric02_analysis
       Sbsric02_analysis = hipsparseSbsric02_analysis_raw(handle, dirA, mb, nnzb, descrA, c_loc( &
-        bsrValA(1)), c_loc(bsrRowPtrA(1)), c_loc(bsrColIndA(1)), blockDim, info, policy, pBuffer)
+        bsrValA), c_loc(bsrRowPtrA), c_loc(bsrColIndA), blockDim, info, policy, pBuffer)
     end function hipsparseSbsric02_analysis_native
 
     function hipsparseSbsric02_analysis_typed(handle, dirA, mb, nnzb, descrA, bsrValA, bsrRowPtrA, &
@@ -33131,16 +33066,16 @@ contains
       integer(c_int), value :: mb
       integer(c_int), value :: nnzb
       type(c_ptr), value :: descrA
-      real(c_double), target :: bsrValA(*)
-      integer(c_int), target :: bsrRowPtrA(*)
-      integer(c_int), target :: bsrColIndA(*)
+      real(c_double), target :: bsrValA(..)
+      integer(c_int), target :: bsrRowPtrA(..)
+      integer(c_int), target :: bsrColIndA(..)
       integer(c_int), value :: blockDim
       type(c_ptr), value :: info
       integer(c_int), value :: policy
       type(c_ptr), value :: pBuffer
       integer(c_int) :: Dbsric02_analysis
       Dbsric02_analysis = hipsparseDbsric02_analysis_raw(handle, dirA, mb, nnzb, descrA, c_loc( &
-        bsrValA(1)), c_loc(bsrRowPtrA(1)), c_loc(bsrColIndA(1)), blockDim, info, policy, pBuffer)
+        bsrValA), c_loc(bsrRowPtrA), c_loc(bsrColIndA), blockDim, info, policy, pBuffer)
     end function hipsparseDbsric02_analysis_native
 
     function hipsparseDbsric02_analysis_typed(handle, dirA, mb, nnzb, descrA, bsrValA, bsrRowPtrA, &
@@ -33174,16 +33109,16 @@ contains
       integer(c_int), value :: mb
       integer(c_int), value :: nnzb
       type(c_ptr), value :: descrA
-      complex(c_float_complex), target :: bsrValA(*)
-      integer(c_int), target :: bsrRowPtrA(*)
-      integer(c_int), target :: bsrColIndA(*)
+      complex(c_float_complex), target :: bsrValA(..)
+      integer(c_int), target :: bsrRowPtrA(..)
+      integer(c_int), target :: bsrColIndA(..)
       integer(c_int), value :: blockDim
       type(c_ptr), value :: info
       integer(c_int), value :: policy
       type(c_ptr), value :: pBuffer
       integer(c_int) :: Cbsric02_analysis
       Cbsric02_analysis = hipsparseCbsric02_analysis_raw(handle, dirA, mb, nnzb, descrA, c_loc( &
-        bsrValA(1)), c_loc(bsrRowPtrA(1)), c_loc(bsrColIndA(1)), blockDim, info, policy, pBuffer)
+        bsrValA), c_loc(bsrRowPtrA), c_loc(bsrColIndA), blockDim, info, policy, pBuffer)
     end function hipsparseCbsric02_analysis_native
 
     function hipsparseCbsric02_analysis_typed(handle, dirA, mb, nnzb, descrA, bsrValA, bsrRowPtrA, &
@@ -33217,16 +33152,16 @@ contains
       integer(c_int), value :: mb
       integer(c_int), value :: nnzb
       type(c_ptr), value :: descrA
-      complex(c_double_complex), target :: bsrValA(*)
-      integer(c_int), target :: bsrRowPtrA(*)
-      integer(c_int), target :: bsrColIndA(*)
+      complex(c_double_complex), target :: bsrValA(..)
+      integer(c_int), target :: bsrRowPtrA(..)
+      integer(c_int), target :: bsrColIndA(..)
       integer(c_int), value :: blockDim
       type(c_ptr), value :: info
       integer(c_int), value :: policy
       type(c_ptr), value :: pBuffer
       integer(c_int) :: Zbsric02_analysis
       Zbsric02_analysis = hipsparseZbsric02_analysis_raw(handle, dirA, mb, nnzb, descrA, c_loc( &
-        bsrValA(1)), c_loc(bsrRowPtrA(1)), c_loc(bsrColIndA(1)), blockDim, info, policy, pBuffer)
+        bsrValA), c_loc(bsrRowPtrA), c_loc(bsrColIndA), blockDim, info, policy, pBuffer)
     end function hipsparseZbsric02_analysis_native
 
     function hipsparseZbsric02_analysis_typed(handle, dirA, mb, nnzb, descrA, bsrValA, bsrRowPtrA, &
@@ -33260,16 +33195,16 @@ contains
       integer(c_int), value :: mb
       integer(c_int), value :: nnzb
       type(c_ptr), value :: descrA
-      real(c_float), target :: bsrValA(*)
-      integer(c_int), target :: bsrRowPtrA(*)
-      integer(c_int), target :: bsrColIndA(*)
+      real(c_float), target :: bsrValA(..)
+      integer(c_int), target :: bsrRowPtrA(..)
+      integer(c_int), target :: bsrColIndA(..)
       integer(c_int), value :: blockDim
       type(c_ptr), value :: info
       integer(c_int), value :: policy
       type(c_ptr), value :: pBuffer
       integer(c_int) :: Sbsric02
-      Sbsric02 = hipsparseSbsric02_raw(handle, dirA, mb, nnzb, descrA, c_loc(bsrValA(1)), c_loc( &
-        bsrRowPtrA(1)), c_loc(bsrColIndA(1)), blockDim, info, policy, pBuffer)
+      Sbsric02 = hipsparseSbsric02_raw(handle, dirA, mb, nnzb, descrA, c_loc(bsrValA), c_loc( &
+        bsrRowPtrA), c_loc(bsrColIndA), blockDim, info, policy, pBuffer)
     end function hipsparseSbsric02_native
 
     function hipsparseSbsric02_typed(handle, dirA, mb, nnzb, descrA, bsrValA, bsrRowPtrA, &
@@ -33303,16 +33238,16 @@ contains
       integer(c_int), value :: mb
       integer(c_int), value :: nnzb
       type(c_ptr), value :: descrA
-      real(c_double), target :: bsrValA(*)
-      integer(c_int), target :: bsrRowPtrA(*)
-      integer(c_int), target :: bsrColIndA(*)
+      real(c_double), target :: bsrValA(..)
+      integer(c_int), target :: bsrRowPtrA(..)
+      integer(c_int), target :: bsrColIndA(..)
       integer(c_int), value :: blockDim
       type(c_ptr), value :: info
       integer(c_int), value :: policy
       type(c_ptr), value :: pBuffer
       integer(c_int) :: Dbsric02
-      Dbsric02 = hipsparseDbsric02_raw(handle, dirA, mb, nnzb, descrA, c_loc(bsrValA(1)), c_loc( &
-        bsrRowPtrA(1)), c_loc(bsrColIndA(1)), blockDim, info, policy, pBuffer)
+      Dbsric02 = hipsparseDbsric02_raw(handle, dirA, mb, nnzb, descrA, c_loc(bsrValA), c_loc( &
+        bsrRowPtrA), c_loc(bsrColIndA), blockDim, info, policy, pBuffer)
     end function hipsparseDbsric02_native
 
     function hipsparseDbsric02_typed(handle, dirA, mb, nnzb, descrA, bsrValA, bsrRowPtrA, &
@@ -33346,16 +33281,16 @@ contains
       integer(c_int), value :: mb
       integer(c_int), value :: nnzb
       type(c_ptr), value :: descrA
-      complex(c_float_complex), target :: bsrValA(*)
-      integer(c_int), target :: bsrRowPtrA(*)
-      integer(c_int), target :: bsrColIndA(*)
+      complex(c_float_complex), target :: bsrValA(..)
+      integer(c_int), target :: bsrRowPtrA(..)
+      integer(c_int), target :: bsrColIndA(..)
       integer(c_int), value :: blockDim
       type(c_ptr), value :: info
       integer(c_int), value :: policy
       type(c_ptr), value :: pBuffer
       integer(c_int) :: Cbsric02
-      Cbsric02 = hipsparseCbsric02_raw(handle, dirA, mb, nnzb, descrA, c_loc(bsrValA(1)), c_loc( &
-        bsrRowPtrA(1)), c_loc(bsrColIndA(1)), blockDim, info, policy, pBuffer)
+      Cbsric02 = hipsparseCbsric02_raw(handle, dirA, mb, nnzb, descrA, c_loc(bsrValA), c_loc( &
+        bsrRowPtrA), c_loc(bsrColIndA), blockDim, info, policy, pBuffer)
     end function hipsparseCbsric02_native
 
     function hipsparseCbsric02_typed(handle, dirA, mb, nnzb, descrA, bsrValA, bsrRowPtrA, &
@@ -33389,16 +33324,16 @@ contains
       integer(c_int), value :: mb
       integer(c_int), value :: nnzb
       type(c_ptr), value :: descrA
-      complex(c_double_complex), target :: bsrValA(*)
-      integer(c_int), target :: bsrRowPtrA(*)
-      integer(c_int), target :: bsrColIndA(*)
+      complex(c_double_complex), target :: bsrValA(..)
+      integer(c_int), target :: bsrRowPtrA(..)
+      integer(c_int), target :: bsrColIndA(..)
       integer(c_int), value :: blockDim
       type(c_ptr), value :: info
       integer(c_int), value :: policy
       type(c_ptr), value :: pBuffer
       integer(c_int) :: Zbsric02
-      Zbsric02 = hipsparseZbsric02_raw(handle, dirA, mb, nnzb, descrA, c_loc(bsrValA(1)), c_loc( &
-        bsrRowPtrA(1)), c_loc(bsrColIndA(1)), blockDim, info, policy, pBuffer)
+      Zbsric02 = hipsparseZbsric02_raw(handle, dirA, mb, nnzb, descrA, c_loc(bsrValA), c_loc( &
+        bsrRowPtrA), c_loc(bsrColIndA), blockDim, info, policy, pBuffer)
     end function hipsparseZbsric02_native
 
     function hipsparseZbsric02_typed(handle, dirA, mb, nnzb, descrA, bsrValA, bsrRowPtrA, &
@@ -33423,40 +33358,16 @@ contains
         bsrRowPtrA, bsrColIndA, blockDim, info%ptr, policy, pBuffer)
     end function hipsparseZbsric02_typed
 
-    function hipsparseXbsrilu02_zeroPivot_native(handle, info, position) result(Xbsrilu02_zeroPivot)
-      use, intrinsic :: iso_c_binding
-      implicit none
-      type(c_ptr), value :: handle
-      type(c_ptr), value :: info
-      integer(c_int), target :: position(*)
-      integer(c_int) :: Xbsrilu02_zeroPivot
-      Xbsrilu02_zeroPivot = hipsparseXbsrilu02_zeroPivot_raw(handle, info, c_loc(position(1)))
-    end function hipsparseXbsrilu02_zeroPivot_native
-
     function hipsparseXbsrilu02_zeroPivot_typed(handle, info, position) result(Xbsrilu02_zeroPivot)
       use, intrinsic :: iso_c_binding
       use hipfort_handles
       implicit none
       type(hipsparseHandle_t), value :: handle
       type(bsrilu02Info_t), value :: info
-      type(c_ptr), value :: position
+      integer(c_int) :: position
       integer(c_int) :: Xbsrilu02_zeroPivot
       Xbsrilu02_zeroPivot = hipsparseXbsrilu02_zeroPivot_raw(handle%ptr, info%ptr, position)
     end function hipsparseXbsrilu02_zeroPivot_typed
-
-    function hipsparseSbsrilu02_numericBoost_native(handle, info, enable_boost, tol, &
-        boost_val) result(Sbsrilu02_numericBoost)
-      use, intrinsic :: iso_c_binding
-      implicit none
-      type(c_ptr), value :: handle
-      type(c_ptr), value :: info
-      integer(c_int), value :: enable_boost
-      real(c_double) :: tol
-      real(c_float), target :: boost_val(*)
-      integer(c_int) :: Sbsrilu02_numericBoost
-      Sbsrilu02_numericBoost = hipsparseSbsrilu02_numericBoost_raw(handle, info, enable_boost, &
-        tol, c_loc(boost_val(1)))
-    end function hipsparseSbsrilu02_numericBoost_native
 
     function hipsparseSbsrilu02_numericBoost_typed(handle, info, enable_boost, tol, &
         boost_val) result(Sbsrilu02_numericBoost)
@@ -33467,25 +33378,11 @@ contains
       type(bsrilu02Info_t), value :: info
       integer(c_int), value :: enable_boost
       real(c_double) :: tol
-      type(c_ptr), value :: boost_val
+      real(c_float) :: boost_val
       integer(c_int) :: Sbsrilu02_numericBoost
       Sbsrilu02_numericBoost = hipsparseSbsrilu02_numericBoost_raw(handle%ptr, info%ptr, &
         enable_boost, tol, boost_val)
     end function hipsparseSbsrilu02_numericBoost_typed
-
-    function hipsparseDbsrilu02_numericBoost_native(handle, info, enable_boost, tol, &
-        boost_val) result(Dbsrilu02_numericBoost)
-      use, intrinsic :: iso_c_binding
-      implicit none
-      type(c_ptr), value :: handle
-      type(c_ptr), value :: info
-      integer(c_int), value :: enable_boost
-      real(c_double) :: tol
-      real(c_double), target :: boost_val(*)
-      integer(c_int) :: Dbsrilu02_numericBoost
-      Dbsrilu02_numericBoost = hipsparseDbsrilu02_numericBoost_raw(handle, info, enable_boost, &
-        tol, c_loc(boost_val(1)))
-    end function hipsparseDbsrilu02_numericBoost_native
 
     function hipsparseDbsrilu02_numericBoost_typed(handle, info, enable_boost, tol, &
         boost_val) result(Dbsrilu02_numericBoost)
@@ -33496,25 +33393,11 @@ contains
       type(bsrilu02Info_t), value :: info
       integer(c_int), value :: enable_boost
       real(c_double) :: tol
-      type(c_ptr), value :: boost_val
+      real(c_double) :: boost_val
       integer(c_int) :: Dbsrilu02_numericBoost
       Dbsrilu02_numericBoost = hipsparseDbsrilu02_numericBoost_raw(handle%ptr, info%ptr, &
         enable_boost, tol, boost_val)
     end function hipsparseDbsrilu02_numericBoost_typed
-
-    function hipsparseCbsrilu02_numericBoost_native(handle, info, enable_boost, tol, &
-        boost_val) result(Cbsrilu02_numericBoost)
-      use, intrinsic :: iso_c_binding
-      implicit none
-      type(c_ptr), value :: handle
-      type(c_ptr), value :: info
-      integer(c_int), value :: enable_boost
-      real(c_double) :: tol
-      complex(c_float_complex), target :: boost_val(*)
-      integer(c_int) :: Cbsrilu02_numericBoost
-      Cbsrilu02_numericBoost = hipsparseCbsrilu02_numericBoost_raw(handle, info, enable_boost, &
-        tol, c_loc(boost_val(1)))
-    end function hipsparseCbsrilu02_numericBoost_native
 
     function hipsparseCbsrilu02_numericBoost_typed(handle, info, enable_boost, tol, &
         boost_val) result(Cbsrilu02_numericBoost)
@@ -33525,25 +33408,11 @@ contains
       type(bsrilu02Info_t), value :: info
       integer(c_int), value :: enable_boost
       real(c_double) :: tol
-      type(c_ptr), value :: boost_val
+      complex(c_float_complex) :: boost_val
       integer(c_int) :: Cbsrilu02_numericBoost
       Cbsrilu02_numericBoost = hipsparseCbsrilu02_numericBoost_raw(handle%ptr, info%ptr, &
         enable_boost, tol, boost_val)
     end function hipsparseCbsrilu02_numericBoost_typed
-
-    function hipsparseZbsrilu02_numericBoost_native(handle, info, enable_boost, tol, &
-        boost_val) result(Zbsrilu02_numericBoost)
-      use, intrinsic :: iso_c_binding
-      implicit none
-      type(c_ptr), value :: handle
-      type(c_ptr), value :: info
-      integer(c_int), value :: enable_boost
-      real(c_double) :: tol
-      complex(c_double_complex), target :: boost_val(*)
-      integer(c_int) :: Zbsrilu02_numericBoost
-      Zbsrilu02_numericBoost = hipsparseZbsrilu02_numericBoost_raw(handle, info, enable_boost, &
-        tol, c_loc(boost_val(1)))
-    end function hipsparseZbsrilu02_numericBoost_native
 
     function hipsparseZbsrilu02_numericBoost_typed(handle, info, enable_boost, tol, &
         boost_val) result(Zbsrilu02_numericBoost)
@@ -33554,7 +33423,7 @@ contains
       type(bsrilu02Info_t), value :: info
       integer(c_int), value :: enable_boost
       real(c_double) :: tol
-      type(c_ptr), value :: boost_val
+      complex(c_double_complex) :: boost_val
       integer(c_int) :: Zbsrilu02_numericBoost
       Zbsrilu02_numericBoost = hipsparseZbsrilu02_numericBoost_raw(handle%ptr, info%ptr, &
         enable_boost, tol, boost_val)
@@ -33570,16 +33439,16 @@ contains
       integer(c_int), value :: mb
       integer(c_int), value :: nnzb
       type(c_ptr), value :: descrA
-      real(c_float), target :: bsrSortedValA(*)
-      integer(c_int), target :: bsrSortedRowPtrA(*)
-      integer(c_int), target :: bsrSortedColIndA(*)
+      real(c_float), target :: bsrSortedValA(..)
+      integer(c_int), target :: bsrSortedRowPtrA(..)
+      integer(c_int), target :: bsrSortedColIndA(..)
       integer(c_int), value :: blockDim
       type(c_ptr), value :: info
-      integer(c_int), target :: pBufferSizeInBytes(*)
+      integer(c_int) :: pBufferSizeInBytes
       integer(c_int) :: Sbsrilu02_bufferSize
       Sbsrilu02_bufferSize = hipsparseSbsrilu02_bufferSize_raw(handle, dirA, mb, nnzb, descrA, &
-        c_loc(bsrSortedValA(1)), c_loc(bsrSortedRowPtrA(1)), c_loc(bsrSortedColIndA(1)), blockDim, &
-        info, c_loc(pBufferSizeInBytes(1)))
+        c_loc(bsrSortedValA), c_loc(bsrSortedRowPtrA), c_loc(bsrSortedColIndA), blockDim, info, &
+        pBufferSizeInBytes)
     end function hipsparseSbsrilu02_bufferSize_native
 
     function hipsparseSbsrilu02_bufferSize_typed(handle, dirA, mb, nnzb, descrA, bsrSortedValA, &
@@ -33598,7 +33467,7 @@ contains
       type(c_ptr), value :: bsrSortedColIndA
       integer(c_int), value :: blockDim
       type(bsrilu02Info_t), value :: info
-      type(c_ptr), value :: pBufferSizeInBytes
+      integer(c_int) :: pBufferSizeInBytes
       integer(c_int) :: Sbsrilu02_bufferSize
       Sbsrilu02_bufferSize = hipsparseSbsrilu02_bufferSize_raw(handle%ptr, dirA, mb, nnzb, &
         descrA%ptr, bsrSortedValA, bsrSortedRowPtrA, bsrSortedColIndA, blockDim, info%ptr, &
@@ -33615,16 +33484,16 @@ contains
       integer(c_int), value :: mb
       integer(c_int), value :: nnzb
       type(c_ptr), value :: descrA
-      real(c_double), target :: bsrSortedValA(*)
-      integer(c_int), target :: bsrSortedRowPtrA(*)
-      integer(c_int), target :: bsrSortedColIndA(*)
+      real(c_double), target :: bsrSortedValA(..)
+      integer(c_int), target :: bsrSortedRowPtrA(..)
+      integer(c_int), target :: bsrSortedColIndA(..)
       integer(c_int), value :: blockDim
       type(c_ptr), value :: info
-      integer(c_int), target :: pBufferSizeInBytes(*)
+      integer(c_int) :: pBufferSizeInBytes
       integer(c_int) :: Dbsrilu02_bufferSize
       Dbsrilu02_bufferSize = hipsparseDbsrilu02_bufferSize_raw(handle, dirA, mb, nnzb, descrA, &
-        c_loc(bsrSortedValA(1)), c_loc(bsrSortedRowPtrA(1)), c_loc(bsrSortedColIndA(1)), blockDim, &
-        info, c_loc(pBufferSizeInBytes(1)))
+        c_loc(bsrSortedValA), c_loc(bsrSortedRowPtrA), c_loc(bsrSortedColIndA), blockDim, info, &
+        pBufferSizeInBytes)
     end function hipsparseDbsrilu02_bufferSize_native
 
     function hipsparseDbsrilu02_bufferSize_typed(handle, dirA, mb, nnzb, descrA, bsrSortedValA, &
@@ -33643,7 +33512,7 @@ contains
       type(c_ptr), value :: bsrSortedColIndA
       integer(c_int), value :: blockDim
       type(bsrilu02Info_t), value :: info
-      type(c_ptr), value :: pBufferSizeInBytes
+      integer(c_int) :: pBufferSizeInBytes
       integer(c_int) :: Dbsrilu02_bufferSize
       Dbsrilu02_bufferSize = hipsparseDbsrilu02_bufferSize_raw(handle%ptr, dirA, mb, nnzb, &
         descrA%ptr, bsrSortedValA, bsrSortedRowPtrA, bsrSortedColIndA, blockDim, info%ptr, &
@@ -33660,16 +33529,16 @@ contains
       integer(c_int), value :: mb
       integer(c_int), value :: nnzb
       type(c_ptr), value :: descrA
-      complex(c_float_complex), target :: bsrSortedValA(*)
-      integer(c_int), target :: bsrSortedRowPtrA(*)
-      integer(c_int), target :: bsrSortedColIndA(*)
+      complex(c_float_complex), target :: bsrSortedValA(..)
+      integer(c_int), target :: bsrSortedRowPtrA(..)
+      integer(c_int), target :: bsrSortedColIndA(..)
       integer(c_int), value :: blockDim
       type(c_ptr), value :: info
-      integer(c_int), target :: pBufferSizeInBytes(*)
+      integer(c_int) :: pBufferSizeInBytes
       integer(c_int) :: Cbsrilu02_bufferSize
       Cbsrilu02_bufferSize = hipsparseCbsrilu02_bufferSize_raw(handle, dirA, mb, nnzb, descrA, &
-        c_loc(bsrSortedValA(1)), c_loc(bsrSortedRowPtrA(1)), c_loc(bsrSortedColIndA(1)), blockDim, &
-        info, c_loc(pBufferSizeInBytes(1)))
+        c_loc(bsrSortedValA), c_loc(bsrSortedRowPtrA), c_loc(bsrSortedColIndA), blockDim, info, &
+        pBufferSizeInBytes)
     end function hipsparseCbsrilu02_bufferSize_native
 
     function hipsparseCbsrilu02_bufferSize_typed(handle, dirA, mb, nnzb, descrA, bsrSortedValA, &
@@ -33688,7 +33557,7 @@ contains
       type(c_ptr), value :: bsrSortedColIndA
       integer(c_int), value :: blockDim
       type(bsrilu02Info_t), value :: info
-      type(c_ptr), value :: pBufferSizeInBytes
+      integer(c_int) :: pBufferSizeInBytes
       integer(c_int) :: Cbsrilu02_bufferSize
       Cbsrilu02_bufferSize = hipsparseCbsrilu02_bufferSize_raw(handle%ptr, dirA, mb, nnzb, &
         descrA%ptr, bsrSortedValA, bsrSortedRowPtrA, bsrSortedColIndA, blockDim, info%ptr, &
@@ -33705,16 +33574,16 @@ contains
       integer(c_int), value :: mb
       integer(c_int), value :: nnzb
       type(c_ptr), value :: descrA
-      complex(c_double_complex), target :: bsrSortedValA(*)
-      integer(c_int), target :: bsrSortedRowPtrA(*)
-      integer(c_int), target :: bsrSortedColIndA(*)
+      complex(c_double_complex), target :: bsrSortedValA(..)
+      integer(c_int), target :: bsrSortedRowPtrA(..)
+      integer(c_int), target :: bsrSortedColIndA(..)
       integer(c_int), value :: blockDim
       type(c_ptr), value :: info
-      integer(c_int), target :: pBufferSizeInBytes(*)
+      integer(c_int) :: pBufferSizeInBytes
       integer(c_int) :: Zbsrilu02_bufferSize
       Zbsrilu02_bufferSize = hipsparseZbsrilu02_bufferSize_raw(handle, dirA, mb, nnzb, descrA, &
-        c_loc(bsrSortedValA(1)), c_loc(bsrSortedRowPtrA(1)), c_loc(bsrSortedColIndA(1)), blockDim, &
-        info, c_loc(pBufferSizeInBytes(1)))
+        c_loc(bsrSortedValA), c_loc(bsrSortedRowPtrA), c_loc(bsrSortedColIndA), blockDim, info, &
+        pBufferSizeInBytes)
     end function hipsparseZbsrilu02_bufferSize_native
 
     function hipsparseZbsrilu02_bufferSize_typed(handle, dirA, mb, nnzb, descrA, bsrSortedValA, &
@@ -33733,7 +33602,7 @@ contains
       type(c_ptr), value :: bsrSortedColIndA
       integer(c_int), value :: blockDim
       type(bsrilu02Info_t), value :: info
-      type(c_ptr), value :: pBufferSizeInBytes
+      integer(c_int) :: pBufferSizeInBytes
       integer(c_int) :: Zbsrilu02_bufferSize
       Zbsrilu02_bufferSize = hipsparseZbsrilu02_bufferSize_raw(handle%ptr, dirA, mb, nnzb, &
         descrA%ptr, bsrSortedValA, bsrSortedRowPtrA, bsrSortedColIndA, blockDim, info%ptr, &
@@ -33750,17 +33619,17 @@ contains
       integer(c_int), value :: mb
       integer(c_int), value :: nnzb
       type(c_ptr), value :: descrA
-      real(c_float), target :: bsrSortedValA(*)
-      integer(c_int), target :: bsrSortedRowPtrA(*)
-      integer(c_int), target :: bsrSortedColIndA(*)
+      real(c_float), target :: bsrSortedValA(..)
+      integer(c_int), target :: bsrSortedRowPtrA(..)
+      integer(c_int), target :: bsrSortedColIndA(..)
       integer(c_int), value :: blockDim
       type(c_ptr), value :: info
       integer(c_int), value :: policy
       type(c_ptr), value :: pBuffer
       integer(c_int) :: Sbsrilu02_analysis
       Sbsrilu02_analysis = hipsparseSbsrilu02_analysis_raw(handle, dirA, mb, nnzb, descrA, c_loc( &
-        bsrSortedValA(1)), c_loc(bsrSortedRowPtrA(1)), c_loc(bsrSortedColIndA(1)), blockDim, info, &
-        policy, pBuffer)
+        bsrSortedValA), c_loc(bsrSortedRowPtrA), c_loc(bsrSortedColIndA), blockDim, info, policy, &
+        pBuffer)
     end function hipsparseSbsrilu02_analysis_native
 
     function hipsparseSbsrilu02_analysis_typed(handle, dirA, mb, nnzb, descrA, bsrSortedValA, &
@@ -33796,17 +33665,17 @@ contains
       integer(c_int), value :: mb
       integer(c_int), value :: nnzb
       type(c_ptr), value :: descrA
-      real(c_double), target :: bsrSortedValA(*)
-      integer(c_int), target :: bsrSortedRowPtrA(*)
-      integer(c_int), target :: bsrSortedColIndA(*)
+      real(c_double), target :: bsrSortedValA(..)
+      integer(c_int), target :: bsrSortedRowPtrA(..)
+      integer(c_int), target :: bsrSortedColIndA(..)
       integer(c_int), value :: blockDim
       type(c_ptr), value :: info
       integer(c_int), value :: policy
       type(c_ptr), value :: pBuffer
       integer(c_int) :: Dbsrilu02_analysis
       Dbsrilu02_analysis = hipsparseDbsrilu02_analysis_raw(handle, dirA, mb, nnzb, descrA, c_loc( &
-        bsrSortedValA(1)), c_loc(bsrSortedRowPtrA(1)), c_loc(bsrSortedColIndA(1)), blockDim, info, &
-        policy, pBuffer)
+        bsrSortedValA), c_loc(bsrSortedRowPtrA), c_loc(bsrSortedColIndA), blockDim, info, policy, &
+        pBuffer)
     end function hipsparseDbsrilu02_analysis_native
 
     function hipsparseDbsrilu02_analysis_typed(handle, dirA, mb, nnzb, descrA, bsrSortedValA, &
@@ -33842,17 +33711,17 @@ contains
       integer(c_int), value :: mb
       integer(c_int), value :: nnzb
       type(c_ptr), value :: descrA
-      complex(c_float_complex), target :: bsrSortedValA(*)
-      integer(c_int), target :: bsrSortedRowPtrA(*)
-      integer(c_int), target :: bsrSortedColIndA(*)
+      complex(c_float_complex), target :: bsrSortedValA(..)
+      integer(c_int), target :: bsrSortedRowPtrA(..)
+      integer(c_int), target :: bsrSortedColIndA(..)
       integer(c_int), value :: blockDim
       type(c_ptr), value :: info
       integer(c_int), value :: policy
       type(c_ptr), value :: pBuffer
       integer(c_int) :: Cbsrilu02_analysis
       Cbsrilu02_analysis = hipsparseCbsrilu02_analysis_raw(handle, dirA, mb, nnzb, descrA, c_loc( &
-        bsrSortedValA(1)), c_loc(bsrSortedRowPtrA(1)), c_loc(bsrSortedColIndA(1)), blockDim, info, &
-        policy, pBuffer)
+        bsrSortedValA), c_loc(bsrSortedRowPtrA), c_loc(bsrSortedColIndA), blockDim, info, policy, &
+        pBuffer)
     end function hipsparseCbsrilu02_analysis_native
 
     function hipsparseCbsrilu02_analysis_typed(handle, dirA, mb, nnzb, descrA, bsrSortedValA, &
@@ -33888,17 +33757,17 @@ contains
       integer(c_int), value :: mb
       integer(c_int), value :: nnzb
       type(c_ptr), value :: descrA
-      complex(c_double_complex), target :: bsrSortedValA(*)
-      integer(c_int), target :: bsrSortedRowPtrA(*)
-      integer(c_int), target :: bsrSortedColIndA(*)
+      complex(c_double_complex), target :: bsrSortedValA(..)
+      integer(c_int), target :: bsrSortedRowPtrA(..)
+      integer(c_int), target :: bsrSortedColIndA(..)
       integer(c_int), value :: blockDim
       type(c_ptr), value :: info
       integer(c_int), value :: policy
       type(c_ptr), value :: pBuffer
       integer(c_int) :: Zbsrilu02_analysis
       Zbsrilu02_analysis = hipsparseZbsrilu02_analysis_raw(handle, dirA, mb, nnzb, descrA, c_loc( &
-        bsrSortedValA(1)), c_loc(bsrSortedRowPtrA(1)), c_loc(bsrSortedColIndA(1)), blockDim, info, &
-        policy, pBuffer)
+        bsrSortedValA), c_loc(bsrSortedRowPtrA), c_loc(bsrSortedColIndA), blockDim, info, policy, &
+        pBuffer)
     end function hipsparseZbsrilu02_analysis_native
 
     function hipsparseZbsrilu02_analysis_typed(handle, dirA, mb, nnzb, descrA, bsrSortedValA, &
@@ -33933,17 +33802,17 @@ contains
       integer(c_int), value :: mb
       integer(c_int), value :: nnzb
       type(c_ptr), value :: descrA
-      real(c_float), target :: bsrSortedValA_valM(*)
-      integer(c_int), target :: bsrSortedRowPtrA(*)
-      integer(c_int), target :: bsrSortedColIndA(*)
+      real(c_float), target :: bsrSortedValA_valM(..)
+      integer(c_int), target :: bsrSortedRowPtrA(..)
+      integer(c_int), target :: bsrSortedColIndA(..)
       integer(c_int), value :: blockDim
       type(c_ptr), value :: info
       integer(c_int), value :: policy
       type(c_ptr), value :: pBuffer
       integer(c_int) :: Sbsrilu02
-      Sbsrilu02 = hipsparseSbsrilu02_raw(handle, dirA, mb, nnzb, descrA, c_loc(bsrSortedValA_valM( &
-        1)), c_loc(bsrSortedRowPtrA(1)), c_loc(bsrSortedColIndA(1)), blockDim, info, policy, &
-        pBuffer)
+      Sbsrilu02 = hipsparseSbsrilu02_raw(handle, dirA, mb, nnzb, descrA, c_loc( &
+        bsrSortedValA_valM), c_loc(bsrSortedRowPtrA), c_loc(bsrSortedColIndA), blockDim, info, &
+        policy, pBuffer)
     end function hipsparseSbsrilu02_native
 
     function hipsparseSbsrilu02_typed(handle, dirA, mb, nnzb, descrA, bsrSortedValA_valM, &
@@ -33977,17 +33846,17 @@ contains
       integer(c_int), value :: mb
       integer(c_int), value :: nnzb
       type(c_ptr), value :: descrA
-      real(c_double), target :: bsrSortedValA_valM(*)
-      integer(c_int), target :: bsrSortedRowPtrA(*)
-      integer(c_int), target :: bsrSortedColIndA(*)
+      real(c_double), target :: bsrSortedValA_valM(..)
+      integer(c_int), target :: bsrSortedRowPtrA(..)
+      integer(c_int), target :: bsrSortedColIndA(..)
       integer(c_int), value :: blockDim
       type(c_ptr), value :: info
       integer(c_int), value :: policy
       type(c_ptr), value :: pBuffer
       integer(c_int) :: Dbsrilu02
-      Dbsrilu02 = hipsparseDbsrilu02_raw(handle, dirA, mb, nnzb, descrA, c_loc(bsrSortedValA_valM( &
-        1)), c_loc(bsrSortedRowPtrA(1)), c_loc(bsrSortedColIndA(1)), blockDim, info, policy, &
-        pBuffer)
+      Dbsrilu02 = hipsparseDbsrilu02_raw(handle, dirA, mb, nnzb, descrA, c_loc( &
+        bsrSortedValA_valM), c_loc(bsrSortedRowPtrA), c_loc(bsrSortedColIndA), blockDim, info, &
+        policy, pBuffer)
     end function hipsparseDbsrilu02_native
 
     function hipsparseDbsrilu02_typed(handle, dirA, mb, nnzb, descrA, bsrSortedValA_valM, &
@@ -34021,17 +33890,17 @@ contains
       integer(c_int), value :: mb
       integer(c_int), value :: nnzb
       type(c_ptr), value :: descrA
-      complex(c_float_complex), target :: bsrSortedValA_valM(*)
-      integer(c_int), target :: bsrSortedRowPtrA(*)
-      integer(c_int), target :: bsrSortedColIndA(*)
+      complex(c_float_complex), target :: bsrSortedValA_valM(..)
+      integer(c_int), target :: bsrSortedRowPtrA(..)
+      integer(c_int), target :: bsrSortedColIndA(..)
       integer(c_int), value :: blockDim
       type(c_ptr), value :: info
       integer(c_int), value :: policy
       type(c_ptr), value :: pBuffer
       integer(c_int) :: Cbsrilu02
-      Cbsrilu02 = hipsparseCbsrilu02_raw(handle, dirA, mb, nnzb, descrA, c_loc(bsrSortedValA_valM( &
-        1)), c_loc(bsrSortedRowPtrA(1)), c_loc(bsrSortedColIndA(1)), blockDim, info, policy, &
-        pBuffer)
+      Cbsrilu02 = hipsparseCbsrilu02_raw(handle, dirA, mb, nnzb, descrA, c_loc( &
+        bsrSortedValA_valM), c_loc(bsrSortedRowPtrA), c_loc(bsrSortedColIndA), blockDim, info, &
+        policy, pBuffer)
     end function hipsparseCbsrilu02_native
 
     function hipsparseCbsrilu02_typed(handle, dirA, mb, nnzb, descrA, bsrSortedValA_valM, &
@@ -34065,17 +33934,17 @@ contains
       integer(c_int), value :: mb
       integer(c_int), value :: nnzb
       type(c_ptr), value :: descrA
-      complex(c_double_complex), target :: bsrSortedValA_valM(*)
-      integer(c_int), target :: bsrSortedRowPtrA(*)
-      integer(c_int), target :: bsrSortedColIndA(*)
+      complex(c_double_complex), target :: bsrSortedValA_valM(..)
+      integer(c_int), target :: bsrSortedRowPtrA(..)
+      integer(c_int), target :: bsrSortedColIndA(..)
       integer(c_int), value :: blockDim
       type(c_ptr), value :: info
       integer(c_int), value :: policy
       type(c_ptr), value :: pBuffer
       integer(c_int) :: Zbsrilu02
-      Zbsrilu02 = hipsparseZbsrilu02_raw(handle, dirA, mb, nnzb, descrA, c_loc(bsrSortedValA_valM( &
-        1)), c_loc(bsrSortedRowPtrA(1)), c_loc(bsrSortedColIndA(1)), blockDim, info, policy, &
-        pBuffer)
+      Zbsrilu02 = hipsparseZbsrilu02_raw(handle, dirA, mb, nnzb, descrA, c_loc( &
+        bsrSortedValA_valM), c_loc(bsrSortedRowPtrA), c_loc(bsrSortedColIndA), blockDim, info, &
+        policy, pBuffer)
     end function hipsparseZbsrilu02_native
 
     function hipsparseZbsrilu02_typed(handle, dirA, mb, nnzb, descrA, bsrSortedValA_valM, &
@@ -34100,23 +33969,13 @@ contains
         bsrSortedValA_valM, bsrSortedRowPtrA, bsrSortedColIndA, blockDim, info%ptr, policy, pBuffer)
     end function hipsparseZbsrilu02_typed
 
-    function hipsparseXcsric02_zeroPivot_native(handle, info, position) result(Xcsric02_zeroPivot)
-      use, intrinsic :: iso_c_binding
-      implicit none
-      type(c_ptr), value :: handle
-      type(c_ptr), value :: info
-      integer(c_int), target :: position(*)
-      integer(c_int) :: Xcsric02_zeroPivot
-      Xcsric02_zeroPivot = hipsparseXcsric02_zeroPivot_raw(handle, info, c_loc(position(1)))
-    end function hipsparseXcsric02_zeroPivot_native
-
     function hipsparseXcsric02_zeroPivot_typed(handle, info, position) result(Xcsric02_zeroPivot)
       use, intrinsic :: iso_c_binding
       use hipfort_handles
       implicit none
       type(hipsparseHandle_t), value :: handle
       type(csric02Info_t), value :: info
-      type(c_ptr), value :: position
+      integer(c_int) :: position
       integer(c_int) :: Xcsric02_zeroPivot
       Xcsric02_zeroPivot = hipsparseXcsric02_zeroPivot_raw(handle%ptr, info%ptr, position)
     end function hipsparseXcsric02_zeroPivot_typed
@@ -34129,15 +33988,14 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: nnz
       type(c_ptr), value :: descrA
-      real(c_float), target :: csrSortedValA(*)
-      integer(c_int), target :: csrSortedRowPtrA(*)
-      integer(c_int), target :: csrSortedColIndA(*)
+      real(c_float), target :: csrSortedValA(..)
+      integer(c_int), target :: csrSortedRowPtrA(..)
+      integer(c_int), target :: csrSortedColIndA(..)
       type(c_ptr), value :: info
-      integer(c_int), target :: pBufferSizeInBytes(*)
+      integer(c_int) :: pBufferSizeInBytes
       integer(c_int) :: Scsric02_bufferSize
       Scsric02_bufferSize = hipsparseScsric02_bufferSize_raw(handle, m, nnz, descrA, c_loc( &
-        csrSortedValA(1)), c_loc(csrSortedRowPtrA(1)), c_loc(csrSortedColIndA(1)), info, c_loc( &
-        pBufferSizeInBytes(1)))
+        csrSortedValA), c_loc(csrSortedRowPtrA), c_loc(csrSortedColIndA), info, pBufferSizeInBytes)
     end function hipsparseScsric02_bufferSize_native
 
     function hipsparseScsric02_bufferSize_typed(handle, m, nnz, descrA, csrSortedValA, &
@@ -34153,7 +34011,7 @@ contains
       type(c_ptr), value :: csrSortedRowPtrA
       type(c_ptr), value :: csrSortedColIndA
       type(csric02Info_t), value :: info
-      type(c_ptr), value :: pBufferSizeInBytes
+      integer(c_int) :: pBufferSizeInBytes
       integer(c_int) :: Scsric02_bufferSize
       Scsric02_bufferSize = hipsparseScsric02_bufferSize_raw(handle%ptr, m, nnz, descrA%ptr, &
         csrSortedValA, csrSortedRowPtrA, csrSortedColIndA, info%ptr, pBufferSizeInBytes)
@@ -34167,15 +34025,14 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: nnz
       type(c_ptr), value :: descrA
-      real(c_double), target :: csrSortedValA(*)
-      integer(c_int), target :: csrSortedRowPtrA(*)
-      integer(c_int), target :: csrSortedColIndA(*)
+      real(c_double), target :: csrSortedValA(..)
+      integer(c_int), target :: csrSortedRowPtrA(..)
+      integer(c_int), target :: csrSortedColIndA(..)
       type(c_ptr), value :: info
-      integer(c_int), target :: pBufferSizeInBytes(*)
+      integer(c_int) :: pBufferSizeInBytes
       integer(c_int) :: Dcsric02_bufferSize
       Dcsric02_bufferSize = hipsparseDcsric02_bufferSize_raw(handle, m, nnz, descrA, c_loc( &
-        csrSortedValA(1)), c_loc(csrSortedRowPtrA(1)), c_loc(csrSortedColIndA(1)), info, c_loc( &
-        pBufferSizeInBytes(1)))
+        csrSortedValA), c_loc(csrSortedRowPtrA), c_loc(csrSortedColIndA), info, pBufferSizeInBytes)
     end function hipsparseDcsric02_bufferSize_native
 
     function hipsparseDcsric02_bufferSize_typed(handle, m, nnz, descrA, csrSortedValA, &
@@ -34191,7 +34048,7 @@ contains
       type(c_ptr), value :: csrSortedRowPtrA
       type(c_ptr), value :: csrSortedColIndA
       type(csric02Info_t), value :: info
-      type(c_ptr), value :: pBufferSizeInBytes
+      integer(c_int) :: pBufferSizeInBytes
       integer(c_int) :: Dcsric02_bufferSize
       Dcsric02_bufferSize = hipsparseDcsric02_bufferSize_raw(handle%ptr, m, nnz, descrA%ptr, &
         csrSortedValA, csrSortedRowPtrA, csrSortedColIndA, info%ptr, pBufferSizeInBytes)
@@ -34205,15 +34062,14 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: nnz
       type(c_ptr), value :: descrA
-      complex(c_float_complex), target :: csrSortedValA(*)
-      integer(c_int), target :: csrSortedRowPtrA(*)
-      integer(c_int), target :: csrSortedColIndA(*)
+      complex(c_float_complex), target :: csrSortedValA(..)
+      integer(c_int), target :: csrSortedRowPtrA(..)
+      integer(c_int), target :: csrSortedColIndA(..)
       type(c_ptr), value :: info
-      integer(c_int), target :: pBufferSizeInBytes(*)
+      integer(c_int) :: pBufferSizeInBytes
       integer(c_int) :: Ccsric02_bufferSize
       Ccsric02_bufferSize = hipsparseCcsric02_bufferSize_raw(handle, m, nnz, descrA, c_loc( &
-        csrSortedValA(1)), c_loc(csrSortedRowPtrA(1)), c_loc(csrSortedColIndA(1)), info, c_loc( &
-        pBufferSizeInBytes(1)))
+        csrSortedValA), c_loc(csrSortedRowPtrA), c_loc(csrSortedColIndA), info, pBufferSizeInBytes)
     end function hipsparseCcsric02_bufferSize_native
 
     function hipsparseCcsric02_bufferSize_typed(handle, m, nnz, descrA, csrSortedValA, &
@@ -34229,7 +34085,7 @@ contains
       type(c_ptr), value :: csrSortedRowPtrA
       type(c_ptr), value :: csrSortedColIndA
       type(csric02Info_t), value :: info
-      type(c_ptr), value :: pBufferSizeInBytes
+      integer(c_int) :: pBufferSizeInBytes
       integer(c_int) :: Ccsric02_bufferSize
       Ccsric02_bufferSize = hipsparseCcsric02_bufferSize_raw(handle%ptr, m, nnz, descrA%ptr, &
         csrSortedValA, csrSortedRowPtrA, csrSortedColIndA, info%ptr, pBufferSizeInBytes)
@@ -34243,15 +34099,14 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: nnz
       type(c_ptr), value :: descrA
-      complex(c_double_complex), target :: csrSortedValA(*)
-      integer(c_int), target :: csrSortedRowPtrA(*)
-      integer(c_int), target :: csrSortedColIndA(*)
+      complex(c_double_complex), target :: csrSortedValA(..)
+      integer(c_int), target :: csrSortedRowPtrA(..)
+      integer(c_int), target :: csrSortedColIndA(..)
       type(c_ptr), value :: info
-      integer(c_int), target :: pBufferSizeInBytes(*)
+      integer(c_int) :: pBufferSizeInBytes
       integer(c_int) :: Zcsric02_bufferSize
       Zcsric02_bufferSize = hipsparseZcsric02_bufferSize_raw(handle, m, nnz, descrA, c_loc( &
-        csrSortedValA(1)), c_loc(csrSortedRowPtrA(1)), c_loc(csrSortedColIndA(1)), info, c_loc( &
-        pBufferSizeInBytes(1)))
+        csrSortedValA), c_loc(csrSortedRowPtrA), c_loc(csrSortedColIndA), info, pBufferSizeInBytes)
     end function hipsparseZcsric02_bufferSize_native
 
     function hipsparseZcsric02_bufferSize_typed(handle, m, nnz, descrA, csrSortedValA, &
@@ -34267,7 +34122,7 @@ contains
       type(c_ptr), value :: csrSortedRowPtrA
       type(c_ptr), value :: csrSortedColIndA
       type(csric02Info_t), value :: info
-      type(c_ptr), value :: pBufferSizeInBytes
+      integer(c_int) :: pBufferSizeInBytes
       integer(c_int) :: Zcsric02_bufferSize
       Zcsric02_bufferSize = hipsparseZcsric02_bufferSize_raw(handle%ptr, m, nnz, descrA%ptr, &
         csrSortedValA, csrSortedRowPtrA, csrSortedColIndA, info%ptr, pBufferSizeInBytes)
@@ -34281,15 +34136,14 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: nnz
       type(c_ptr), value :: descrA
-      real(c_float), target :: csrSortedValA(*)
-      integer(c_int), target :: csrSortedRowPtrA(*)
-      integer(c_int), target :: csrSortedColIndA(*)
+      real(c_float), target :: csrSortedValA(..)
+      integer(c_int), target :: csrSortedRowPtrA(..)
+      integer(c_int), target :: csrSortedColIndA(..)
       type(c_ptr), value :: info
       type(c_ptr), value :: pBufferSizeInBytes
       integer(c_int) :: Scsric02_bufferSizeExt
       Scsric02_bufferSizeExt = hipsparseScsric02_bufferSizeExt_raw(handle, m, nnz, descrA, c_loc( &
-        csrSortedValA(1)), c_loc(csrSortedRowPtrA(1)), c_loc(csrSortedColIndA(1)), info, &
-        pBufferSizeInBytes)
+        csrSortedValA), c_loc(csrSortedRowPtrA), c_loc(csrSortedColIndA), info, pBufferSizeInBytes)
     end function hipsparseScsric02_bufferSizeExt_native
 
     function hipsparseScsric02_bufferSizeExt_typed(handle, m, nnz, descrA, csrSortedValA, &
@@ -34319,15 +34173,14 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: nnz
       type(c_ptr), value :: descrA
-      real(c_double), target :: csrSortedValA(*)
-      integer(c_int), target :: csrSortedRowPtrA(*)
-      integer(c_int), target :: csrSortedColIndA(*)
+      real(c_double), target :: csrSortedValA(..)
+      integer(c_int), target :: csrSortedRowPtrA(..)
+      integer(c_int), target :: csrSortedColIndA(..)
       type(c_ptr), value :: info
       type(c_ptr), value :: pBufferSizeInBytes
       integer(c_int) :: Dcsric02_bufferSizeExt
       Dcsric02_bufferSizeExt = hipsparseDcsric02_bufferSizeExt_raw(handle, m, nnz, descrA, c_loc( &
-        csrSortedValA(1)), c_loc(csrSortedRowPtrA(1)), c_loc(csrSortedColIndA(1)), info, &
-        pBufferSizeInBytes)
+        csrSortedValA), c_loc(csrSortedRowPtrA), c_loc(csrSortedColIndA), info, pBufferSizeInBytes)
     end function hipsparseDcsric02_bufferSizeExt_native
 
     function hipsparseDcsric02_bufferSizeExt_typed(handle, m, nnz, descrA, csrSortedValA, &
@@ -34357,15 +34210,14 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: nnz
       type(c_ptr), value :: descrA
-      complex(c_float_complex), target :: csrSortedValA(*)
-      integer(c_int), target :: csrSortedRowPtrA(*)
-      integer(c_int), target :: csrSortedColIndA(*)
+      complex(c_float_complex), target :: csrSortedValA(..)
+      integer(c_int), target :: csrSortedRowPtrA(..)
+      integer(c_int), target :: csrSortedColIndA(..)
       type(c_ptr), value :: info
       type(c_ptr), value :: pBufferSizeInBytes
       integer(c_int) :: Ccsric02_bufferSizeExt
       Ccsric02_bufferSizeExt = hipsparseCcsric02_bufferSizeExt_raw(handle, m, nnz, descrA, c_loc( &
-        csrSortedValA(1)), c_loc(csrSortedRowPtrA(1)), c_loc(csrSortedColIndA(1)), info, &
-        pBufferSizeInBytes)
+        csrSortedValA), c_loc(csrSortedRowPtrA), c_loc(csrSortedColIndA), info, pBufferSizeInBytes)
     end function hipsparseCcsric02_bufferSizeExt_native
 
     function hipsparseCcsric02_bufferSizeExt_typed(handle, m, nnz, descrA, csrSortedValA, &
@@ -34395,15 +34247,14 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: nnz
       type(c_ptr), value :: descrA
-      complex(c_double_complex), target :: csrSortedValA(*)
-      integer(c_int), target :: csrSortedRowPtrA(*)
-      integer(c_int), target :: csrSortedColIndA(*)
+      complex(c_double_complex), target :: csrSortedValA(..)
+      integer(c_int), target :: csrSortedRowPtrA(..)
+      integer(c_int), target :: csrSortedColIndA(..)
       type(c_ptr), value :: info
       type(c_ptr), value :: pBufferSizeInBytes
       integer(c_int) :: Zcsric02_bufferSizeExt
       Zcsric02_bufferSizeExt = hipsparseZcsric02_bufferSizeExt_raw(handle, m, nnz, descrA, c_loc( &
-        csrSortedValA(1)), c_loc(csrSortedRowPtrA(1)), c_loc(csrSortedColIndA(1)), info, &
-        pBufferSizeInBytes)
+        csrSortedValA), c_loc(csrSortedRowPtrA), c_loc(csrSortedColIndA), info, pBufferSizeInBytes)
     end function hipsparseZcsric02_bufferSizeExt_native
 
     function hipsparseZcsric02_bufferSizeExt_typed(handle, m, nnz, descrA, csrSortedValA, &
@@ -34433,16 +34284,15 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: nnz
       type(c_ptr), value :: descrA
-      real(c_float), target :: csrSortedValA(*)
-      integer(c_int), target :: csrSortedRowPtrA(*)
-      integer(c_int), target :: csrSortedColIndA(*)
+      real(c_float), target :: csrSortedValA(..)
+      integer(c_int), target :: csrSortedRowPtrA(..)
+      integer(c_int), target :: csrSortedColIndA(..)
       type(c_ptr), value :: info
       integer(c_int), value :: policy
       type(c_ptr), value :: pBuffer
       integer(c_int) :: Scsric02_analysis
       Scsric02_analysis = hipsparseScsric02_analysis_raw(handle, m, nnz, descrA, c_loc( &
-        csrSortedValA(1)), c_loc(csrSortedRowPtrA(1)), c_loc(csrSortedColIndA(1)), info, policy, &
-        pBuffer)
+        csrSortedValA), c_loc(csrSortedRowPtrA), c_loc(csrSortedColIndA), info, policy, pBuffer)
     end function hipsparseScsric02_analysis_native
 
     function hipsparseScsric02_analysis_typed(handle, m, nnz, descrA, csrSortedValA, &
@@ -34473,16 +34323,15 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: nnz
       type(c_ptr), value :: descrA
-      real(c_double), target :: csrSortedValA(*)
-      integer(c_int), target :: csrSortedRowPtrA(*)
-      integer(c_int), target :: csrSortedColIndA(*)
+      real(c_double), target :: csrSortedValA(..)
+      integer(c_int), target :: csrSortedRowPtrA(..)
+      integer(c_int), target :: csrSortedColIndA(..)
       type(c_ptr), value :: info
       integer(c_int), value :: policy
       type(c_ptr), value :: pBuffer
       integer(c_int) :: Dcsric02_analysis
       Dcsric02_analysis = hipsparseDcsric02_analysis_raw(handle, m, nnz, descrA, c_loc( &
-        csrSortedValA(1)), c_loc(csrSortedRowPtrA(1)), c_loc(csrSortedColIndA(1)), info, policy, &
-        pBuffer)
+        csrSortedValA), c_loc(csrSortedRowPtrA), c_loc(csrSortedColIndA), info, policy, pBuffer)
     end function hipsparseDcsric02_analysis_native
 
     function hipsparseDcsric02_analysis_typed(handle, m, nnz, descrA, csrSortedValA, &
@@ -34513,16 +34362,15 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: nnz
       type(c_ptr), value :: descrA
-      complex(c_float_complex), target :: csrSortedValA(*)
-      integer(c_int), target :: csrSortedRowPtrA(*)
-      integer(c_int), target :: csrSortedColIndA(*)
+      complex(c_float_complex), target :: csrSortedValA(..)
+      integer(c_int), target :: csrSortedRowPtrA(..)
+      integer(c_int), target :: csrSortedColIndA(..)
       type(c_ptr), value :: info
       integer(c_int), value :: policy
       type(c_ptr), value :: pBuffer
       integer(c_int) :: Ccsric02_analysis
       Ccsric02_analysis = hipsparseCcsric02_analysis_raw(handle, m, nnz, descrA, c_loc( &
-        csrSortedValA(1)), c_loc(csrSortedRowPtrA(1)), c_loc(csrSortedColIndA(1)), info, policy, &
-        pBuffer)
+        csrSortedValA), c_loc(csrSortedRowPtrA), c_loc(csrSortedColIndA), info, policy, pBuffer)
     end function hipsparseCcsric02_analysis_native
 
     function hipsparseCcsric02_analysis_typed(handle, m, nnz, descrA, csrSortedValA, &
@@ -34553,16 +34401,15 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: nnz
       type(c_ptr), value :: descrA
-      complex(c_double_complex), target :: csrSortedValA(*)
-      integer(c_int), target :: csrSortedRowPtrA(*)
-      integer(c_int), target :: csrSortedColIndA(*)
+      complex(c_double_complex), target :: csrSortedValA(..)
+      integer(c_int), target :: csrSortedRowPtrA(..)
+      integer(c_int), target :: csrSortedColIndA(..)
       type(c_ptr), value :: info
       integer(c_int), value :: policy
       type(c_ptr), value :: pBuffer
       integer(c_int) :: Zcsric02_analysis
       Zcsric02_analysis = hipsparseZcsric02_analysis_raw(handle, m, nnz, descrA, c_loc( &
-        csrSortedValA(1)), c_loc(csrSortedRowPtrA(1)), c_loc(csrSortedColIndA(1)), info, policy, &
-        pBuffer)
+        csrSortedValA), c_loc(csrSortedRowPtrA), c_loc(csrSortedColIndA), info, policy, pBuffer)
     end function hipsparseZcsric02_analysis_native
 
     function hipsparseZcsric02_analysis_typed(handle, m, nnz, descrA, csrSortedValA, &
@@ -34593,15 +34440,15 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: nnz
       type(c_ptr), value :: descrA
-      real(c_float), target :: csrSortedValA_valM(*)
-      integer(c_int), target :: csrSortedRowPtrA(*)
-      integer(c_int), target :: csrSortedColIndA(*)
+      real(c_float), target :: csrSortedValA_valM(..)
+      integer(c_int), target :: csrSortedRowPtrA(..)
+      integer(c_int), target :: csrSortedColIndA(..)
       type(c_ptr), value :: info
       integer(c_int), value :: policy
       type(c_ptr), value :: pBuffer
       integer(c_int) :: Scsric02
-      Scsric02 = hipsparseScsric02_raw(handle, m, nnz, descrA, c_loc(csrSortedValA_valM(1)), &
-        c_loc(csrSortedRowPtrA(1)), c_loc(csrSortedColIndA(1)), info, policy, pBuffer)
+      Scsric02 = hipsparseScsric02_raw(handle, m, nnz, descrA, c_loc(csrSortedValA_valM), c_loc( &
+        csrSortedRowPtrA), c_loc(csrSortedColIndA), info, policy, pBuffer)
     end function hipsparseScsric02_native
 
     function hipsparseScsric02_typed(handle, m, nnz, descrA, csrSortedValA_valM, csrSortedRowPtrA, &
@@ -34632,15 +34479,15 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: nnz
       type(c_ptr), value :: descrA
-      real(c_double), target :: csrSortedValA_valM(*)
-      integer(c_int), target :: csrSortedRowPtrA(*)
-      integer(c_int), target :: csrSortedColIndA(*)
+      real(c_double), target :: csrSortedValA_valM(..)
+      integer(c_int), target :: csrSortedRowPtrA(..)
+      integer(c_int), target :: csrSortedColIndA(..)
       type(c_ptr), value :: info
       integer(c_int), value :: policy
       type(c_ptr), value :: pBuffer
       integer(c_int) :: Dcsric02
-      Dcsric02 = hipsparseDcsric02_raw(handle, m, nnz, descrA, c_loc(csrSortedValA_valM(1)), &
-        c_loc(csrSortedRowPtrA(1)), c_loc(csrSortedColIndA(1)), info, policy, pBuffer)
+      Dcsric02 = hipsparseDcsric02_raw(handle, m, nnz, descrA, c_loc(csrSortedValA_valM), c_loc( &
+        csrSortedRowPtrA), c_loc(csrSortedColIndA), info, policy, pBuffer)
     end function hipsparseDcsric02_native
 
     function hipsparseDcsric02_typed(handle, m, nnz, descrA, csrSortedValA_valM, csrSortedRowPtrA, &
@@ -34671,15 +34518,15 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: nnz
       type(c_ptr), value :: descrA
-      complex(c_float_complex), target :: csrSortedValA_valM(*)
-      integer(c_int), target :: csrSortedRowPtrA(*)
-      integer(c_int), target :: csrSortedColIndA(*)
+      complex(c_float_complex), target :: csrSortedValA_valM(..)
+      integer(c_int), target :: csrSortedRowPtrA(..)
+      integer(c_int), target :: csrSortedColIndA(..)
       type(c_ptr), value :: info
       integer(c_int), value :: policy
       type(c_ptr), value :: pBuffer
       integer(c_int) :: Ccsric02
-      Ccsric02 = hipsparseCcsric02_raw(handle, m, nnz, descrA, c_loc(csrSortedValA_valM(1)), &
-        c_loc(csrSortedRowPtrA(1)), c_loc(csrSortedColIndA(1)), info, policy, pBuffer)
+      Ccsric02 = hipsparseCcsric02_raw(handle, m, nnz, descrA, c_loc(csrSortedValA_valM), c_loc( &
+        csrSortedRowPtrA), c_loc(csrSortedColIndA), info, policy, pBuffer)
     end function hipsparseCcsric02_native
 
     function hipsparseCcsric02_typed(handle, m, nnz, descrA, csrSortedValA_valM, csrSortedRowPtrA, &
@@ -34710,15 +34557,15 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: nnz
       type(c_ptr), value :: descrA
-      complex(c_double_complex), target :: csrSortedValA_valM(*)
-      integer(c_int), target :: csrSortedRowPtrA(*)
-      integer(c_int), target :: csrSortedColIndA(*)
+      complex(c_double_complex), target :: csrSortedValA_valM(..)
+      integer(c_int), target :: csrSortedRowPtrA(..)
+      integer(c_int), target :: csrSortedColIndA(..)
       type(c_ptr), value :: info
       integer(c_int), value :: policy
       type(c_ptr), value :: pBuffer
       integer(c_int) :: Zcsric02
-      Zcsric02 = hipsparseZcsric02_raw(handle, m, nnz, descrA, c_loc(csrSortedValA_valM(1)), &
-        c_loc(csrSortedRowPtrA(1)), c_loc(csrSortedColIndA(1)), info, policy, pBuffer)
+      Zcsric02 = hipsparseZcsric02_raw(handle, m, nnz, descrA, c_loc(csrSortedValA_valM), c_loc( &
+        csrSortedRowPtrA), c_loc(csrSortedColIndA), info, policy, pBuffer)
     end function hipsparseZcsric02_native
 
     function hipsparseZcsric02_typed(handle, m, nnz, descrA, csrSortedValA_valM, csrSortedRowPtrA, &
@@ -34741,40 +34588,16 @@ contains
         csrSortedRowPtrA, csrSortedColIndA, info%ptr, policy, pBuffer)
     end function hipsparseZcsric02_typed
 
-    function hipsparseXcsrilu02_zeroPivot_native(handle, info, position) result(Xcsrilu02_zeroPivot)
-      use, intrinsic :: iso_c_binding
-      implicit none
-      type(c_ptr), value :: handle
-      type(c_ptr), value :: info
-      integer(c_int), target :: position(*)
-      integer(c_int) :: Xcsrilu02_zeroPivot
-      Xcsrilu02_zeroPivot = hipsparseXcsrilu02_zeroPivot_raw(handle, info, c_loc(position(1)))
-    end function hipsparseXcsrilu02_zeroPivot_native
-
     function hipsparseXcsrilu02_zeroPivot_typed(handle, info, position) result(Xcsrilu02_zeroPivot)
       use, intrinsic :: iso_c_binding
       use hipfort_handles
       implicit none
       type(hipsparseHandle_t), value :: handle
       type(csrilu02Info_t), value :: info
-      type(c_ptr), value :: position
+      integer(c_int) :: position
       integer(c_int) :: Xcsrilu02_zeroPivot
       Xcsrilu02_zeroPivot = hipsparseXcsrilu02_zeroPivot_raw(handle%ptr, info%ptr, position)
     end function hipsparseXcsrilu02_zeroPivot_typed
-
-    function hipsparseScsrilu02_numericBoost_native(handle, info, enable_boost, tol, &
-        boost_val) result(Scsrilu02_numericBoost)
-      use, intrinsic :: iso_c_binding
-      implicit none
-      type(c_ptr), value :: handle
-      type(c_ptr), value :: info
-      integer(c_int), value :: enable_boost
-      real(c_double) :: tol
-      real(c_float), target :: boost_val(*)
-      integer(c_int) :: Scsrilu02_numericBoost
-      Scsrilu02_numericBoost = hipsparseScsrilu02_numericBoost_raw(handle, info, enable_boost, &
-        tol, c_loc(boost_val(1)))
-    end function hipsparseScsrilu02_numericBoost_native
 
     function hipsparseScsrilu02_numericBoost_typed(handle, info, enable_boost, tol, &
         boost_val) result(Scsrilu02_numericBoost)
@@ -34785,25 +34608,11 @@ contains
       type(csrilu02Info_t), value :: info
       integer(c_int), value :: enable_boost
       real(c_double) :: tol
-      type(c_ptr), value :: boost_val
+      real(c_float) :: boost_val
       integer(c_int) :: Scsrilu02_numericBoost
       Scsrilu02_numericBoost = hipsparseScsrilu02_numericBoost_raw(handle%ptr, info%ptr, &
         enable_boost, tol, boost_val)
     end function hipsparseScsrilu02_numericBoost_typed
-
-    function hipsparseDcsrilu02_numericBoost_native(handle, info, enable_boost, tol, &
-        boost_val) result(Dcsrilu02_numericBoost)
-      use, intrinsic :: iso_c_binding
-      implicit none
-      type(c_ptr), value :: handle
-      type(c_ptr), value :: info
-      integer(c_int), value :: enable_boost
-      real(c_double) :: tol
-      real(c_double), target :: boost_val(*)
-      integer(c_int) :: Dcsrilu02_numericBoost
-      Dcsrilu02_numericBoost = hipsparseDcsrilu02_numericBoost_raw(handle, info, enable_boost, &
-        tol, c_loc(boost_val(1)))
-    end function hipsparseDcsrilu02_numericBoost_native
 
     function hipsparseDcsrilu02_numericBoost_typed(handle, info, enable_boost, tol, &
         boost_val) result(Dcsrilu02_numericBoost)
@@ -34814,25 +34623,11 @@ contains
       type(csrilu02Info_t), value :: info
       integer(c_int), value :: enable_boost
       real(c_double) :: tol
-      type(c_ptr), value :: boost_val
+      real(c_double) :: boost_val
       integer(c_int) :: Dcsrilu02_numericBoost
       Dcsrilu02_numericBoost = hipsparseDcsrilu02_numericBoost_raw(handle%ptr, info%ptr, &
         enable_boost, tol, boost_val)
     end function hipsparseDcsrilu02_numericBoost_typed
-
-    function hipsparseCcsrilu02_numericBoost_native(handle, info, enable_boost, tol, &
-        boost_val) result(Ccsrilu02_numericBoost)
-      use, intrinsic :: iso_c_binding
-      implicit none
-      type(c_ptr), value :: handle
-      type(c_ptr), value :: info
-      integer(c_int), value :: enable_boost
-      real(c_double) :: tol
-      complex(c_float_complex), target :: boost_val(*)
-      integer(c_int) :: Ccsrilu02_numericBoost
-      Ccsrilu02_numericBoost = hipsparseCcsrilu02_numericBoost_raw(handle, info, enable_boost, &
-        tol, c_loc(boost_val(1)))
-    end function hipsparseCcsrilu02_numericBoost_native
 
     function hipsparseCcsrilu02_numericBoost_typed(handle, info, enable_boost, tol, &
         boost_val) result(Ccsrilu02_numericBoost)
@@ -34843,25 +34638,11 @@ contains
       type(csrilu02Info_t), value :: info
       integer(c_int), value :: enable_boost
       real(c_double) :: tol
-      type(c_ptr), value :: boost_val
+      complex(c_float_complex) :: boost_val
       integer(c_int) :: Ccsrilu02_numericBoost
       Ccsrilu02_numericBoost = hipsparseCcsrilu02_numericBoost_raw(handle%ptr, info%ptr, &
         enable_boost, tol, boost_val)
     end function hipsparseCcsrilu02_numericBoost_typed
-
-    function hipsparseZcsrilu02_numericBoost_native(handle, info, enable_boost, tol, &
-        boost_val) result(Zcsrilu02_numericBoost)
-      use, intrinsic :: iso_c_binding
-      implicit none
-      type(c_ptr), value :: handle
-      type(c_ptr), value :: info
-      integer(c_int), value :: enable_boost
-      real(c_double) :: tol
-      complex(c_double_complex), target :: boost_val(*)
-      integer(c_int) :: Zcsrilu02_numericBoost
-      Zcsrilu02_numericBoost = hipsparseZcsrilu02_numericBoost_raw(handle, info, enable_boost, &
-        tol, c_loc(boost_val(1)))
-    end function hipsparseZcsrilu02_numericBoost_native
 
     function hipsparseZcsrilu02_numericBoost_typed(handle, info, enable_boost, tol, &
         boost_val) result(Zcsrilu02_numericBoost)
@@ -34872,7 +34653,7 @@ contains
       type(csrilu02Info_t), value :: info
       integer(c_int), value :: enable_boost
       real(c_double) :: tol
-      type(c_ptr), value :: boost_val
+      complex(c_double_complex) :: boost_val
       integer(c_int) :: Zcsrilu02_numericBoost
       Zcsrilu02_numericBoost = hipsparseZcsrilu02_numericBoost_raw(handle%ptr, info%ptr, &
         enable_boost, tol, boost_val)
@@ -34886,15 +34667,14 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: nnz
       type(c_ptr), value :: descrA
-      real(c_float), target :: csrSortedValA(*)
-      integer(c_int), target :: csrSortedRowPtrA(*)
-      integer(c_int), target :: csrSortedColIndA(*)
+      real(c_float), target :: csrSortedValA(..)
+      integer(c_int), target :: csrSortedRowPtrA(..)
+      integer(c_int), target :: csrSortedColIndA(..)
       type(c_ptr), value :: info
-      integer(c_int), target :: pBufferSizeInBytes(*)
+      integer(c_int) :: pBufferSizeInBytes
       integer(c_int) :: Scsrilu02_bufferSize
       Scsrilu02_bufferSize = hipsparseScsrilu02_bufferSize_raw(handle, m, nnz, descrA, c_loc( &
-        csrSortedValA(1)), c_loc(csrSortedRowPtrA(1)), c_loc(csrSortedColIndA(1)), info, c_loc( &
-        pBufferSizeInBytes(1)))
+        csrSortedValA), c_loc(csrSortedRowPtrA), c_loc(csrSortedColIndA), info, pBufferSizeInBytes)
     end function hipsparseScsrilu02_bufferSize_native
 
     function hipsparseScsrilu02_bufferSize_typed(handle, m, nnz, descrA, csrSortedValA, &
@@ -34910,7 +34690,7 @@ contains
       type(c_ptr), value :: csrSortedRowPtrA
       type(c_ptr), value :: csrSortedColIndA
       type(csrilu02Info_t), value :: info
-      type(c_ptr), value :: pBufferSizeInBytes
+      integer(c_int) :: pBufferSizeInBytes
       integer(c_int) :: Scsrilu02_bufferSize
       Scsrilu02_bufferSize = hipsparseScsrilu02_bufferSize_raw(handle%ptr, m, nnz, descrA%ptr, &
         csrSortedValA, csrSortedRowPtrA, csrSortedColIndA, info%ptr, pBufferSizeInBytes)
@@ -34924,15 +34704,14 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: nnz
       type(c_ptr), value :: descrA
-      real(c_double), target :: csrSortedValA(*)
-      integer(c_int), target :: csrSortedRowPtrA(*)
-      integer(c_int), target :: csrSortedColIndA(*)
+      real(c_double), target :: csrSortedValA(..)
+      integer(c_int), target :: csrSortedRowPtrA(..)
+      integer(c_int), target :: csrSortedColIndA(..)
       type(c_ptr), value :: info
-      integer(c_int), target :: pBufferSizeInBytes(*)
+      integer(c_int) :: pBufferSizeInBytes
       integer(c_int) :: Dcsrilu02_bufferSize
       Dcsrilu02_bufferSize = hipsparseDcsrilu02_bufferSize_raw(handle, m, nnz, descrA, c_loc( &
-        csrSortedValA(1)), c_loc(csrSortedRowPtrA(1)), c_loc(csrSortedColIndA(1)), info, c_loc( &
-        pBufferSizeInBytes(1)))
+        csrSortedValA), c_loc(csrSortedRowPtrA), c_loc(csrSortedColIndA), info, pBufferSizeInBytes)
     end function hipsparseDcsrilu02_bufferSize_native
 
     function hipsparseDcsrilu02_bufferSize_typed(handle, m, nnz, descrA, csrSortedValA, &
@@ -34948,7 +34727,7 @@ contains
       type(c_ptr), value :: csrSortedRowPtrA
       type(c_ptr), value :: csrSortedColIndA
       type(csrilu02Info_t), value :: info
-      type(c_ptr), value :: pBufferSizeInBytes
+      integer(c_int) :: pBufferSizeInBytes
       integer(c_int) :: Dcsrilu02_bufferSize
       Dcsrilu02_bufferSize = hipsparseDcsrilu02_bufferSize_raw(handle%ptr, m, nnz, descrA%ptr, &
         csrSortedValA, csrSortedRowPtrA, csrSortedColIndA, info%ptr, pBufferSizeInBytes)
@@ -34962,15 +34741,14 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: nnz
       type(c_ptr), value :: descrA
-      complex(c_float_complex), target :: csrSortedValA(*)
-      integer(c_int), target :: csrSortedRowPtrA(*)
-      integer(c_int), target :: csrSortedColIndA(*)
+      complex(c_float_complex), target :: csrSortedValA(..)
+      integer(c_int), target :: csrSortedRowPtrA(..)
+      integer(c_int), target :: csrSortedColIndA(..)
       type(c_ptr), value :: info
-      integer(c_int), target :: pBufferSizeInBytes(*)
+      integer(c_int) :: pBufferSizeInBytes
       integer(c_int) :: Ccsrilu02_bufferSize
       Ccsrilu02_bufferSize = hipsparseCcsrilu02_bufferSize_raw(handle, m, nnz, descrA, c_loc( &
-        csrSortedValA(1)), c_loc(csrSortedRowPtrA(1)), c_loc(csrSortedColIndA(1)), info, c_loc( &
-        pBufferSizeInBytes(1)))
+        csrSortedValA), c_loc(csrSortedRowPtrA), c_loc(csrSortedColIndA), info, pBufferSizeInBytes)
     end function hipsparseCcsrilu02_bufferSize_native
 
     function hipsparseCcsrilu02_bufferSize_typed(handle, m, nnz, descrA, csrSortedValA, &
@@ -34986,7 +34764,7 @@ contains
       type(c_ptr), value :: csrSortedRowPtrA
       type(c_ptr), value :: csrSortedColIndA
       type(csrilu02Info_t), value :: info
-      type(c_ptr), value :: pBufferSizeInBytes
+      integer(c_int) :: pBufferSizeInBytes
       integer(c_int) :: Ccsrilu02_bufferSize
       Ccsrilu02_bufferSize = hipsparseCcsrilu02_bufferSize_raw(handle%ptr, m, nnz, descrA%ptr, &
         csrSortedValA, csrSortedRowPtrA, csrSortedColIndA, info%ptr, pBufferSizeInBytes)
@@ -35000,15 +34778,14 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: nnz
       type(c_ptr), value :: descrA
-      complex(c_double_complex), target :: csrSortedValA(*)
-      integer(c_int), target :: csrSortedRowPtrA(*)
-      integer(c_int), target :: csrSortedColIndA(*)
+      complex(c_double_complex), target :: csrSortedValA(..)
+      integer(c_int), target :: csrSortedRowPtrA(..)
+      integer(c_int), target :: csrSortedColIndA(..)
       type(c_ptr), value :: info
-      integer(c_int), target :: pBufferSizeInBytes(*)
+      integer(c_int) :: pBufferSizeInBytes
       integer(c_int) :: Zcsrilu02_bufferSize
       Zcsrilu02_bufferSize = hipsparseZcsrilu02_bufferSize_raw(handle, m, nnz, descrA, c_loc( &
-        csrSortedValA(1)), c_loc(csrSortedRowPtrA(1)), c_loc(csrSortedColIndA(1)), info, c_loc( &
-        pBufferSizeInBytes(1)))
+        csrSortedValA), c_loc(csrSortedRowPtrA), c_loc(csrSortedColIndA), info, pBufferSizeInBytes)
     end function hipsparseZcsrilu02_bufferSize_native
 
     function hipsparseZcsrilu02_bufferSize_typed(handle, m, nnz, descrA, csrSortedValA, &
@@ -35024,7 +34801,7 @@ contains
       type(c_ptr), value :: csrSortedRowPtrA
       type(c_ptr), value :: csrSortedColIndA
       type(csrilu02Info_t), value :: info
-      type(c_ptr), value :: pBufferSizeInBytes
+      integer(c_int) :: pBufferSizeInBytes
       integer(c_int) :: Zcsrilu02_bufferSize
       Zcsrilu02_bufferSize = hipsparseZcsrilu02_bufferSize_raw(handle%ptr, m, nnz, descrA%ptr, &
         csrSortedValA, csrSortedRowPtrA, csrSortedColIndA, info%ptr, pBufferSizeInBytes)
@@ -35039,14 +34816,14 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: nnz
       type(c_ptr), value :: descrA
-      real(c_float), target :: csrSortedValA(*)
-      integer(c_int), target :: csrSortedRowPtrA(*)
-      integer(c_int), target :: csrSortedColIndA(*)
+      real(c_float), target :: csrSortedValA(..)
+      integer(c_int), target :: csrSortedRowPtrA(..)
+      integer(c_int), target :: csrSortedColIndA(..)
       type(c_ptr), value :: info
       type(c_ptr), value :: pBufferSizeInBytes
       integer(c_int) :: Scsrilu02_bufferSizeExt
       Scsrilu02_bufferSizeExt = hipsparseScsrilu02_bufferSizeExt_raw(handle, m, nnz, descrA, &
-        c_loc(csrSortedValA(1)), c_loc(csrSortedRowPtrA(1)), c_loc(csrSortedColIndA(1)), info, &
+        c_loc(csrSortedValA), c_loc(csrSortedRowPtrA), c_loc(csrSortedColIndA), info, &
         pBufferSizeInBytes)
     end function hipsparseScsrilu02_bufferSizeExt_native
 
@@ -35079,14 +34856,14 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: nnz
       type(c_ptr), value :: descrA
-      real(c_double), target :: csrSortedValA(*)
-      integer(c_int), target :: csrSortedRowPtrA(*)
-      integer(c_int), target :: csrSortedColIndA(*)
+      real(c_double), target :: csrSortedValA(..)
+      integer(c_int), target :: csrSortedRowPtrA(..)
+      integer(c_int), target :: csrSortedColIndA(..)
       type(c_ptr), value :: info
       type(c_ptr), value :: pBufferSizeInBytes
       integer(c_int) :: Dcsrilu02_bufferSizeExt
       Dcsrilu02_bufferSizeExt = hipsparseDcsrilu02_bufferSizeExt_raw(handle, m, nnz, descrA, &
-        c_loc(csrSortedValA(1)), c_loc(csrSortedRowPtrA(1)), c_loc(csrSortedColIndA(1)), info, &
+        c_loc(csrSortedValA), c_loc(csrSortedRowPtrA), c_loc(csrSortedColIndA), info, &
         pBufferSizeInBytes)
     end function hipsparseDcsrilu02_bufferSizeExt_native
 
@@ -35119,14 +34896,14 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: nnz
       type(c_ptr), value :: descrA
-      complex(c_float_complex), target :: csrSortedValA(*)
-      integer(c_int), target :: csrSortedRowPtrA(*)
-      integer(c_int), target :: csrSortedColIndA(*)
+      complex(c_float_complex), target :: csrSortedValA(..)
+      integer(c_int), target :: csrSortedRowPtrA(..)
+      integer(c_int), target :: csrSortedColIndA(..)
       type(c_ptr), value :: info
       type(c_ptr), value :: pBufferSizeInBytes
       integer(c_int) :: Ccsrilu02_bufferSizeExt
       Ccsrilu02_bufferSizeExt = hipsparseCcsrilu02_bufferSizeExt_raw(handle, m, nnz, descrA, &
-        c_loc(csrSortedValA(1)), c_loc(csrSortedRowPtrA(1)), c_loc(csrSortedColIndA(1)), info, &
+        c_loc(csrSortedValA), c_loc(csrSortedRowPtrA), c_loc(csrSortedColIndA), info, &
         pBufferSizeInBytes)
     end function hipsparseCcsrilu02_bufferSizeExt_native
 
@@ -35159,14 +34936,14 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: nnz
       type(c_ptr), value :: descrA
-      complex(c_double_complex), target :: csrSortedValA(*)
-      integer(c_int), target :: csrSortedRowPtrA(*)
-      integer(c_int), target :: csrSortedColIndA(*)
+      complex(c_double_complex), target :: csrSortedValA(..)
+      integer(c_int), target :: csrSortedRowPtrA(..)
+      integer(c_int), target :: csrSortedColIndA(..)
       type(c_ptr), value :: info
       type(c_ptr), value :: pBufferSizeInBytes
       integer(c_int) :: Zcsrilu02_bufferSizeExt
       Zcsrilu02_bufferSizeExt = hipsparseZcsrilu02_bufferSizeExt_raw(handle, m, nnz, descrA, &
-        c_loc(csrSortedValA(1)), c_loc(csrSortedRowPtrA(1)), c_loc(csrSortedColIndA(1)), info, &
+        c_loc(csrSortedValA), c_loc(csrSortedRowPtrA), c_loc(csrSortedColIndA), info, &
         pBufferSizeInBytes)
     end function hipsparseZcsrilu02_bufferSizeExt_native
 
@@ -35198,16 +34975,15 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: nnz
       type(c_ptr), value :: descrA
-      real(c_float), target :: csrSortedValA(*)
-      integer(c_int), target :: csrSortedRowPtrA(*)
-      integer(c_int), target :: csrSortedColIndA(*)
+      real(c_float), target :: csrSortedValA(..)
+      integer(c_int), target :: csrSortedRowPtrA(..)
+      integer(c_int), target :: csrSortedColIndA(..)
       type(c_ptr), value :: info
       integer(c_int), value :: policy
       type(c_ptr), value :: pBuffer
       integer(c_int) :: Scsrilu02_analysis
       Scsrilu02_analysis = hipsparseScsrilu02_analysis_raw(handle, m, nnz, descrA, c_loc( &
-        csrSortedValA(1)), c_loc(csrSortedRowPtrA(1)), c_loc(csrSortedColIndA(1)), info, policy, &
-        pBuffer)
+        csrSortedValA), c_loc(csrSortedRowPtrA), c_loc(csrSortedColIndA), info, policy, pBuffer)
     end function hipsparseScsrilu02_analysis_native
 
     function hipsparseScsrilu02_analysis_typed(handle, m, nnz, descrA, csrSortedValA, &
@@ -35238,16 +35014,15 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: nnz
       type(c_ptr), value :: descrA
-      real(c_double), target :: csrSortedValA(*)
-      integer(c_int), target :: csrSortedRowPtrA(*)
-      integer(c_int), target :: csrSortedColIndA(*)
+      real(c_double), target :: csrSortedValA(..)
+      integer(c_int), target :: csrSortedRowPtrA(..)
+      integer(c_int), target :: csrSortedColIndA(..)
       type(c_ptr), value :: info
       integer(c_int), value :: policy
       type(c_ptr), value :: pBuffer
       integer(c_int) :: Dcsrilu02_analysis
       Dcsrilu02_analysis = hipsparseDcsrilu02_analysis_raw(handle, m, nnz, descrA, c_loc( &
-        csrSortedValA(1)), c_loc(csrSortedRowPtrA(1)), c_loc(csrSortedColIndA(1)), info, policy, &
-        pBuffer)
+        csrSortedValA), c_loc(csrSortedRowPtrA), c_loc(csrSortedColIndA), info, policy, pBuffer)
     end function hipsparseDcsrilu02_analysis_native
 
     function hipsparseDcsrilu02_analysis_typed(handle, m, nnz, descrA, csrSortedValA, &
@@ -35278,16 +35053,15 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: nnz
       type(c_ptr), value :: descrA
-      complex(c_float_complex), target :: csrSortedValA(*)
-      integer(c_int), target :: csrSortedRowPtrA(*)
-      integer(c_int), target :: csrSortedColIndA(*)
+      complex(c_float_complex), target :: csrSortedValA(..)
+      integer(c_int), target :: csrSortedRowPtrA(..)
+      integer(c_int), target :: csrSortedColIndA(..)
       type(c_ptr), value :: info
       integer(c_int), value :: policy
       type(c_ptr), value :: pBuffer
       integer(c_int) :: Ccsrilu02_analysis
       Ccsrilu02_analysis = hipsparseCcsrilu02_analysis_raw(handle, m, nnz, descrA, c_loc( &
-        csrSortedValA(1)), c_loc(csrSortedRowPtrA(1)), c_loc(csrSortedColIndA(1)), info, policy, &
-        pBuffer)
+        csrSortedValA), c_loc(csrSortedRowPtrA), c_loc(csrSortedColIndA), info, policy, pBuffer)
     end function hipsparseCcsrilu02_analysis_native
 
     function hipsparseCcsrilu02_analysis_typed(handle, m, nnz, descrA, csrSortedValA, &
@@ -35318,16 +35092,15 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: nnz
       type(c_ptr), value :: descrA
-      complex(c_double_complex), target :: csrSortedValA(*)
-      integer(c_int), target :: csrSortedRowPtrA(*)
-      integer(c_int), target :: csrSortedColIndA(*)
+      complex(c_double_complex), target :: csrSortedValA(..)
+      integer(c_int), target :: csrSortedRowPtrA(..)
+      integer(c_int), target :: csrSortedColIndA(..)
       type(c_ptr), value :: info
       integer(c_int), value :: policy
       type(c_ptr), value :: pBuffer
       integer(c_int) :: Zcsrilu02_analysis
       Zcsrilu02_analysis = hipsparseZcsrilu02_analysis_raw(handle, m, nnz, descrA, c_loc( &
-        csrSortedValA(1)), c_loc(csrSortedRowPtrA(1)), c_loc(csrSortedColIndA(1)), info, policy, &
-        pBuffer)
+        csrSortedValA), c_loc(csrSortedRowPtrA), c_loc(csrSortedColIndA), info, policy, pBuffer)
     end function hipsparseZcsrilu02_analysis_native
 
     function hipsparseZcsrilu02_analysis_typed(handle, m, nnz, descrA, csrSortedValA, &
@@ -35358,15 +35131,15 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: nnz
       type(c_ptr), value :: descrA
-      real(c_float), target :: csrSortedValA_valM(*)
-      integer(c_int), target :: csrSortedRowPtrA(*)
-      integer(c_int), target :: csrSortedColIndA(*)
+      real(c_float), target :: csrSortedValA_valM(..)
+      integer(c_int), target :: csrSortedRowPtrA(..)
+      integer(c_int), target :: csrSortedColIndA(..)
       type(c_ptr), value :: info
       integer(c_int), value :: policy
       type(c_ptr), value :: pBuffer
       integer(c_int) :: Scsrilu02
-      Scsrilu02 = hipsparseScsrilu02_raw(handle, m, nnz, descrA, c_loc(csrSortedValA_valM(1)), &
-        c_loc(csrSortedRowPtrA(1)), c_loc(csrSortedColIndA(1)), info, policy, pBuffer)
+      Scsrilu02 = hipsparseScsrilu02_raw(handle, m, nnz, descrA, c_loc(csrSortedValA_valM), c_loc( &
+        csrSortedRowPtrA), c_loc(csrSortedColIndA), info, policy, pBuffer)
     end function hipsparseScsrilu02_native
 
     function hipsparseScsrilu02_typed(handle, m, nnz, descrA, csrSortedValA_valM, &
@@ -35397,15 +35170,15 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: nnz
       type(c_ptr), value :: descrA
-      real(c_double), target :: csrSortedValA_valM(*)
-      integer(c_int), target :: csrSortedRowPtrA(*)
-      integer(c_int), target :: csrSortedColIndA(*)
+      real(c_double), target :: csrSortedValA_valM(..)
+      integer(c_int), target :: csrSortedRowPtrA(..)
+      integer(c_int), target :: csrSortedColIndA(..)
       type(c_ptr), value :: info
       integer(c_int), value :: policy
       type(c_ptr), value :: pBuffer
       integer(c_int) :: Dcsrilu02
-      Dcsrilu02 = hipsparseDcsrilu02_raw(handle, m, nnz, descrA, c_loc(csrSortedValA_valM(1)), &
-        c_loc(csrSortedRowPtrA(1)), c_loc(csrSortedColIndA(1)), info, policy, pBuffer)
+      Dcsrilu02 = hipsparseDcsrilu02_raw(handle, m, nnz, descrA, c_loc(csrSortedValA_valM), c_loc( &
+        csrSortedRowPtrA), c_loc(csrSortedColIndA), info, policy, pBuffer)
     end function hipsparseDcsrilu02_native
 
     function hipsparseDcsrilu02_typed(handle, m, nnz, descrA, csrSortedValA_valM, &
@@ -35436,15 +35209,15 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: nnz
       type(c_ptr), value :: descrA
-      complex(c_float_complex), target :: csrSortedValA_valM(*)
-      integer(c_int), target :: csrSortedRowPtrA(*)
-      integer(c_int), target :: csrSortedColIndA(*)
+      complex(c_float_complex), target :: csrSortedValA_valM(..)
+      integer(c_int), target :: csrSortedRowPtrA(..)
+      integer(c_int), target :: csrSortedColIndA(..)
       type(c_ptr), value :: info
       integer(c_int), value :: policy
       type(c_ptr), value :: pBuffer
       integer(c_int) :: Ccsrilu02
-      Ccsrilu02 = hipsparseCcsrilu02_raw(handle, m, nnz, descrA, c_loc(csrSortedValA_valM(1)), &
-        c_loc(csrSortedRowPtrA(1)), c_loc(csrSortedColIndA(1)), info, policy, pBuffer)
+      Ccsrilu02 = hipsparseCcsrilu02_raw(handle, m, nnz, descrA, c_loc(csrSortedValA_valM), c_loc( &
+        csrSortedRowPtrA), c_loc(csrSortedColIndA), info, policy, pBuffer)
     end function hipsparseCcsrilu02_native
 
     function hipsparseCcsrilu02_typed(handle, m, nnz, descrA, csrSortedValA_valM, &
@@ -35475,15 +35248,15 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: nnz
       type(c_ptr), value :: descrA
-      complex(c_double_complex), target :: csrSortedValA_valM(*)
-      integer(c_int), target :: csrSortedRowPtrA(*)
-      integer(c_int), target :: csrSortedColIndA(*)
+      complex(c_double_complex), target :: csrSortedValA_valM(..)
+      integer(c_int), target :: csrSortedRowPtrA(..)
+      integer(c_int), target :: csrSortedColIndA(..)
       type(c_ptr), value :: info
       integer(c_int), value :: policy
       type(c_ptr), value :: pBuffer
       integer(c_int) :: Zcsrilu02
-      Zcsrilu02 = hipsparseZcsrilu02_raw(handle, m, nnz, descrA, c_loc(csrSortedValA_valM(1)), &
-        c_loc(csrSortedRowPtrA(1)), c_loc(csrSortedColIndA(1)), info, policy, pBuffer)
+      Zcsrilu02 = hipsparseZcsrilu02_raw(handle, m, nnz, descrA, c_loc(csrSortedValA_valM), c_loc( &
+        csrSortedRowPtrA), c_loc(csrSortedColIndA), info, policy, pBuffer)
     end function hipsparseZcsrilu02_native
 
     function hipsparseZcsrilu02_typed(handle, m, nnz, descrA, csrSortedValA_valM, &
@@ -35513,18 +35286,18 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: algo
       integer(c_int), value :: m
-      real(c_float), target :: ds(*)
-      real(c_float), target :: dl(*)
-      real(c_float), target :: d(*)
-      real(c_float), target :: du(*)
-      real(c_float), target :: dw(*)
-      real(c_float), target :: x(*)
+      real(c_float), target :: ds(..)
+      real(c_float), target :: dl(..)
+      real(c_float), target :: d(..)
+      real(c_float), target :: du(..)
+      real(c_float), target :: dw(..)
+      real(c_float), target :: x(..)
       integer(c_int), value :: batchCount
       type(c_ptr), value :: pBufferSizeInBytes
       integer(c_int) :: SgpsvInterleavedBatch_bufferSizeExt
       SgpsvInterleavedBatch_bufferSizeExt = hipsparseSgpsvInterleavedBatch_bufferSizeExt_raw( &
-        handle, algo, m, c_loc(ds(1)), c_loc(dl(1)), c_loc(d(1)), c_loc(du(1)), c_loc(dw(1)), &
-        c_loc(x(1)), batchCount, pBufferSizeInBytes)
+        handle, algo, m, c_loc(ds), c_loc(dl), c_loc(d), c_loc(du), c_loc(dw), c_loc(x), &
+        batchCount, pBufferSizeInBytes)
     end function hipsparseSgpsvInterleavedBatch_bufferSizeExt_native
 
     function hipsparseSgpsvInterleavedBatch_bufferSizeExt_typed(handle, algo, m, ds, dl, d, du, &
@@ -35555,18 +35328,18 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: algo
       integer(c_int), value :: m
-      real(c_double), target :: ds(*)
-      real(c_double), target :: dl(*)
-      real(c_double), target :: d(*)
-      real(c_double), target :: du(*)
-      real(c_double), target :: dw(*)
-      real(c_double), target :: x(*)
+      real(c_double), target :: ds(..)
+      real(c_double), target :: dl(..)
+      real(c_double), target :: d(..)
+      real(c_double), target :: du(..)
+      real(c_double), target :: dw(..)
+      real(c_double), target :: x(..)
       integer(c_int), value :: batchCount
       type(c_ptr), value :: pBufferSizeInBytes
       integer(c_int) :: DgpsvInterleavedBatch_bufferSizeExt
       DgpsvInterleavedBatch_bufferSizeExt = hipsparseDgpsvInterleavedBatch_bufferSizeExt_raw( &
-        handle, algo, m, c_loc(ds(1)), c_loc(dl(1)), c_loc(d(1)), c_loc(du(1)), c_loc(dw(1)), &
-        c_loc(x(1)), batchCount, pBufferSizeInBytes)
+        handle, algo, m, c_loc(ds), c_loc(dl), c_loc(d), c_loc(du), c_loc(dw), c_loc(x), &
+        batchCount, pBufferSizeInBytes)
     end function hipsparseDgpsvInterleavedBatch_bufferSizeExt_native
 
     function hipsparseDgpsvInterleavedBatch_bufferSizeExt_typed(handle, algo, m, ds, dl, d, du, &
@@ -35597,18 +35370,18 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: algo
       integer(c_int), value :: m
-      complex(c_float_complex), target :: ds(*)
-      complex(c_float_complex), target :: dl(*)
-      complex(c_float_complex), target :: d(*)
-      complex(c_float_complex), target :: du(*)
-      complex(c_float_complex), target :: dw(*)
-      complex(c_float_complex), target :: x(*)
+      complex(c_float_complex), target :: ds(..)
+      complex(c_float_complex), target :: dl(..)
+      complex(c_float_complex), target :: d(..)
+      complex(c_float_complex), target :: du(..)
+      complex(c_float_complex), target :: dw(..)
+      complex(c_float_complex), target :: x(..)
       integer(c_int), value :: batchCount
       type(c_ptr), value :: pBufferSizeInBytes
       integer(c_int) :: CgpsvInterleavedBatch_bufferSizeExt
       CgpsvInterleavedBatch_bufferSizeExt = hipsparseCgpsvInterleavedBatch_bufferSizeExt_raw( &
-        handle, algo, m, c_loc(ds(1)), c_loc(dl(1)), c_loc(d(1)), c_loc(du(1)), c_loc(dw(1)), &
-        c_loc(x(1)), batchCount, pBufferSizeInBytes)
+        handle, algo, m, c_loc(ds), c_loc(dl), c_loc(d), c_loc(du), c_loc(dw), c_loc(x), &
+        batchCount, pBufferSizeInBytes)
     end function hipsparseCgpsvInterleavedBatch_bufferSizeExt_native
 
     function hipsparseCgpsvInterleavedBatch_bufferSizeExt_typed(handle, algo, m, ds, dl, d, du, &
@@ -35639,18 +35412,18 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: algo
       integer(c_int), value :: m
-      complex(c_double_complex), target :: ds(*)
-      complex(c_double_complex), target :: dl(*)
-      complex(c_double_complex), target :: d(*)
-      complex(c_double_complex), target :: du(*)
-      complex(c_double_complex), target :: dw(*)
-      complex(c_double_complex), target :: x(*)
+      complex(c_double_complex), target :: ds(..)
+      complex(c_double_complex), target :: dl(..)
+      complex(c_double_complex), target :: d(..)
+      complex(c_double_complex), target :: du(..)
+      complex(c_double_complex), target :: dw(..)
+      complex(c_double_complex), target :: x(..)
       integer(c_int), value :: batchCount
       type(c_ptr), value :: pBufferSizeInBytes
       integer(c_int) :: ZgpsvInterleavedBatch_bufferSizeExt
       ZgpsvInterleavedBatch_bufferSizeExt = hipsparseZgpsvInterleavedBatch_bufferSizeExt_raw( &
-        handle, algo, m, c_loc(ds(1)), c_loc(dl(1)), c_loc(d(1)), c_loc(du(1)), c_loc(dw(1)), &
-        c_loc(x(1)), batchCount, pBufferSizeInBytes)
+        handle, algo, m, c_loc(ds), c_loc(dl), c_loc(d), c_loc(du), c_loc(dw), c_loc(x), &
+        batchCount, pBufferSizeInBytes)
     end function hipsparseZgpsvInterleavedBatch_bufferSizeExt_native
 
     function hipsparseZgpsvInterleavedBatch_bufferSizeExt_typed(handle, algo, m, ds, dl, d, du, &
@@ -35681,17 +35454,17 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: algo
       integer(c_int), value :: m
-      real(c_float), target :: ds(*)
-      real(c_float), target :: dl(*)
-      real(c_float), target :: d(*)
-      real(c_float), target :: du(*)
-      real(c_float), target :: dw(*)
-      real(c_float), target :: x(*)
+      real(c_float), target :: ds(..)
+      real(c_float), target :: dl(..)
+      real(c_float), target :: d(..)
+      real(c_float), target :: du(..)
+      real(c_float), target :: dw(..)
+      real(c_float), target :: x(..)
       integer(c_int), value :: batchCount
       type(c_ptr), value :: pBuffer
       integer(c_int) :: SgpsvInterleavedBatch
-      SgpsvInterleavedBatch = hipsparseSgpsvInterleavedBatch_raw(handle, algo, m, c_loc(ds(1)), &
-        c_loc(dl(1)), c_loc(d(1)), c_loc(du(1)), c_loc(dw(1)), c_loc(x(1)), batchCount, pBuffer)
+      SgpsvInterleavedBatch = hipsparseSgpsvInterleavedBatch_raw(handle, algo, m, c_loc(ds), &
+        c_loc(dl), c_loc(d), c_loc(du), c_loc(dw), c_loc(x), batchCount, pBuffer)
     end function hipsparseSgpsvInterleavedBatch_native
 
     function hipsparseSgpsvInterleavedBatch_typed(handle, algo, m, ds, dl, d, du, dw, x, &
@@ -35722,17 +35495,17 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: algo
       integer(c_int), value :: m
-      real(c_double), target :: ds(*)
-      real(c_double), target :: dl(*)
-      real(c_double), target :: d(*)
-      real(c_double), target :: du(*)
-      real(c_double), target :: dw(*)
-      real(c_double), target :: x(*)
+      real(c_double), target :: ds(..)
+      real(c_double), target :: dl(..)
+      real(c_double), target :: d(..)
+      real(c_double), target :: du(..)
+      real(c_double), target :: dw(..)
+      real(c_double), target :: x(..)
       integer(c_int), value :: batchCount
       type(c_ptr), value :: pBuffer
       integer(c_int) :: DgpsvInterleavedBatch
-      DgpsvInterleavedBatch = hipsparseDgpsvInterleavedBatch_raw(handle, algo, m, c_loc(ds(1)), &
-        c_loc(dl(1)), c_loc(d(1)), c_loc(du(1)), c_loc(dw(1)), c_loc(x(1)), batchCount, pBuffer)
+      DgpsvInterleavedBatch = hipsparseDgpsvInterleavedBatch_raw(handle, algo, m, c_loc(ds), &
+        c_loc(dl), c_loc(d), c_loc(du), c_loc(dw), c_loc(x), batchCount, pBuffer)
     end function hipsparseDgpsvInterleavedBatch_native
 
     function hipsparseDgpsvInterleavedBatch_typed(handle, algo, m, ds, dl, d, du, dw, x, &
@@ -35763,17 +35536,17 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: algo
       integer(c_int), value :: m
-      complex(c_float_complex), target :: ds(*)
-      complex(c_float_complex), target :: dl(*)
-      complex(c_float_complex), target :: d(*)
-      complex(c_float_complex), target :: du(*)
-      complex(c_float_complex), target :: dw(*)
-      complex(c_float_complex), target :: x(*)
+      complex(c_float_complex), target :: ds(..)
+      complex(c_float_complex), target :: dl(..)
+      complex(c_float_complex), target :: d(..)
+      complex(c_float_complex), target :: du(..)
+      complex(c_float_complex), target :: dw(..)
+      complex(c_float_complex), target :: x(..)
       integer(c_int), value :: batchCount
       type(c_ptr), value :: pBuffer
       integer(c_int) :: CgpsvInterleavedBatch
-      CgpsvInterleavedBatch = hipsparseCgpsvInterleavedBatch_raw(handle, algo, m, c_loc(ds(1)), &
-        c_loc(dl(1)), c_loc(d(1)), c_loc(du(1)), c_loc(dw(1)), c_loc(x(1)), batchCount, pBuffer)
+      CgpsvInterleavedBatch = hipsparseCgpsvInterleavedBatch_raw(handle, algo, m, c_loc(ds), &
+        c_loc(dl), c_loc(d), c_loc(du), c_loc(dw), c_loc(x), batchCount, pBuffer)
     end function hipsparseCgpsvInterleavedBatch_native
 
     function hipsparseCgpsvInterleavedBatch_typed(handle, algo, m, ds, dl, d, du, dw, x, &
@@ -35804,17 +35577,17 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: algo
       integer(c_int), value :: m
-      complex(c_double_complex), target :: ds(*)
-      complex(c_double_complex), target :: dl(*)
-      complex(c_double_complex), target :: d(*)
-      complex(c_double_complex), target :: du(*)
-      complex(c_double_complex), target :: dw(*)
-      complex(c_double_complex), target :: x(*)
+      complex(c_double_complex), target :: ds(..)
+      complex(c_double_complex), target :: dl(..)
+      complex(c_double_complex), target :: d(..)
+      complex(c_double_complex), target :: du(..)
+      complex(c_double_complex), target :: dw(..)
+      complex(c_double_complex), target :: x(..)
       integer(c_int), value :: batchCount
       type(c_ptr), value :: pBuffer
       integer(c_int) :: ZgpsvInterleavedBatch
-      ZgpsvInterleavedBatch = hipsparseZgpsvInterleavedBatch_raw(handle, algo, m, c_loc(ds(1)), &
-        c_loc(dl(1)), c_loc(d(1)), c_loc(du(1)), c_loc(dw(1)), c_loc(x(1)), batchCount, pBuffer)
+      ZgpsvInterleavedBatch = hipsparseZgpsvInterleavedBatch_raw(handle, algo, m, c_loc(ds), &
+        c_loc(dl), c_loc(d), c_loc(du), c_loc(dw), c_loc(x), batchCount, pBuffer)
     end function hipsparseZgpsvInterleavedBatch_native
 
     function hipsparseZgpsvInterleavedBatch_typed(handle, algo, m, ds, dl, d, du, dw, x, &
@@ -35845,15 +35618,15 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: m
       integer(c_int), value :: n
-      real(c_float), target :: dl(*)
-      real(c_float), target :: d(*)
-      real(c_float), target :: du(*)
-      real(c_float), target :: B(*)
+      real(c_float), target :: dl(..)
+      real(c_float), target :: d(..)
+      real(c_float), target :: du(..)
+      real(c_float), target :: B(..)
       integer(c_int), value :: ldb
       type(c_ptr), value :: pBufferSizeInBytes
       integer(c_int) :: Sgtsv2_bufferSizeExt
-      Sgtsv2_bufferSizeExt = hipsparseSgtsv2_bufferSizeExt_raw(handle, m, n, c_loc(dl(1)), c_loc( &
-        d(1)), c_loc(du(1)), c_loc(B(1)), ldb, pBufferSizeInBytes)
+      Sgtsv2_bufferSizeExt = hipsparseSgtsv2_bufferSizeExt_raw(handle, m, n, c_loc(dl), c_loc(d), &
+        c_loc(du), c_loc(B), ldb, pBufferSizeInBytes)
     end function hipsparseSgtsv2_bufferSizeExt_native
 
     function hipsparseSgtsv2_bufferSizeExt_typed(handle, m, n, dl, d, du, B, ldb, &
@@ -35882,15 +35655,15 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: m
       integer(c_int), value :: n
-      real(c_double), target :: dl(*)
-      real(c_double), target :: d(*)
-      real(c_double), target :: du(*)
-      real(c_double), target :: B(*)
+      real(c_double), target :: dl(..)
+      real(c_double), target :: d(..)
+      real(c_double), target :: du(..)
+      real(c_double), target :: B(..)
       integer(c_int), value :: ldb
       type(c_ptr), value :: pBufferSizeInBytes
       integer(c_int) :: Dgtsv2_bufferSizeExt
-      Dgtsv2_bufferSizeExt = hipsparseDgtsv2_bufferSizeExt_raw(handle, m, n, c_loc(dl(1)), c_loc( &
-        d(1)), c_loc(du(1)), c_loc(B(1)), ldb, pBufferSizeInBytes)
+      Dgtsv2_bufferSizeExt = hipsparseDgtsv2_bufferSizeExt_raw(handle, m, n, c_loc(dl), c_loc(d), &
+        c_loc(du), c_loc(B), ldb, pBufferSizeInBytes)
     end function hipsparseDgtsv2_bufferSizeExt_native
 
     function hipsparseDgtsv2_bufferSizeExt_typed(handle, m, n, dl, d, du, B, ldb, &
@@ -35919,15 +35692,15 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: m
       integer(c_int), value :: n
-      complex(c_float_complex), target :: dl(*)
-      complex(c_float_complex), target :: d(*)
-      complex(c_float_complex), target :: du(*)
-      complex(c_float_complex), target :: B(*)
+      complex(c_float_complex), target :: dl(..)
+      complex(c_float_complex), target :: d(..)
+      complex(c_float_complex), target :: du(..)
+      complex(c_float_complex), target :: B(..)
       integer(c_int), value :: ldb
       type(c_ptr), value :: pBufferSizeInBytes
       integer(c_int) :: Cgtsv2_bufferSizeExt
-      Cgtsv2_bufferSizeExt = hipsparseCgtsv2_bufferSizeExt_raw(handle, m, n, c_loc(dl(1)), c_loc( &
-        d(1)), c_loc(du(1)), c_loc(B(1)), ldb, pBufferSizeInBytes)
+      Cgtsv2_bufferSizeExt = hipsparseCgtsv2_bufferSizeExt_raw(handle, m, n, c_loc(dl), c_loc(d), &
+        c_loc(du), c_loc(B), ldb, pBufferSizeInBytes)
     end function hipsparseCgtsv2_bufferSizeExt_native
 
     function hipsparseCgtsv2_bufferSizeExt_typed(handle, m, n, dl, d, du, B, ldb, &
@@ -35956,15 +35729,15 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: m
       integer(c_int), value :: n
-      complex(c_double_complex), target :: dl(*)
-      complex(c_double_complex), target :: d(*)
-      complex(c_double_complex), target :: du(*)
-      complex(c_double_complex), target :: B(*)
+      complex(c_double_complex), target :: dl(..)
+      complex(c_double_complex), target :: d(..)
+      complex(c_double_complex), target :: du(..)
+      complex(c_double_complex), target :: B(..)
       integer(c_int), value :: ldb
       type(c_ptr), value :: pBufferSizeInBytes
       integer(c_int) :: Zgtsv2_bufferSizeExt
-      Zgtsv2_bufferSizeExt = hipsparseZgtsv2_bufferSizeExt_raw(handle, m, n, c_loc(dl(1)), c_loc( &
-        d(1)), c_loc(du(1)), c_loc(B(1)), ldb, pBufferSizeInBytes)
+      Zgtsv2_bufferSizeExt = hipsparseZgtsv2_bufferSizeExt_raw(handle, m, n, c_loc(dl), c_loc(d), &
+        c_loc(du), c_loc(B), ldb, pBufferSizeInBytes)
     end function hipsparseZgtsv2_bufferSizeExt_native
 
     function hipsparseZgtsv2_bufferSizeExt_typed(handle, m, n, dl, d, du, B, ldb, &
@@ -35992,15 +35765,15 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: m
       integer(c_int), value :: n
-      real(c_float), target :: dl(*)
-      real(c_float), target :: d(*)
-      real(c_float), target :: du(*)
-      real(c_float), target :: B(*)
+      real(c_float), target :: dl(..)
+      real(c_float), target :: d(..)
+      real(c_float), target :: du(..)
+      real(c_float), target :: B(..)
       integer(c_int), value :: ldb
       type(c_ptr), value :: pBuffer
       integer(c_int) :: Sgtsv2
-      Sgtsv2 = hipsparseSgtsv2_raw(handle, m, n, c_loc(dl(1)), c_loc(d(1)), c_loc(du(1)), c_loc(B( &
-        1)), ldb, pBuffer)
+      Sgtsv2 = hipsparseSgtsv2_raw(handle, m, n, c_loc(dl), c_loc(d), c_loc(du), c_loc(B), ldb, &
+        pBuffer)
     end function hipsparseSgtsv2_native
 
     function hipsparseSgtsv2_typed(handle, m, n, dl, d, du, B, ldb, pBuffer) result(Sgtsv2)
@@ -36026,15 +35799,15 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: m
       integer(c_int), value :: n
-      real(c_double), target :: dl(*)
-      real(c_double), target :: d(*)
-      real(c_double), target :: du(*)
-      real(c_double), target :: B(*)
+      real(c_double), target :: dl(..)
+      real(c_double), target :: d(..)
+      real(c_double), target :: du(..)
+      real(c_double), target :: B(..)
       integer(c_int), value :: ldb
       type(c_ptr), value :: pBuffer
       integer(c_int) :: Dgtsv2
-      Dgtsv2 = hipsparseDgtsv2_raw(handle, m, n, c_loc(dl(1)), c_loc(d(1)), c_loc(du(1)), c_loc(B( &
-        1)), ldb, pBuffer)
+      Dgtsv2 = hipsparseDgtsv2_raw(handle, m, n, c_loc(dl), c_loc(d), c_loc(du), c_loc(B), ldb, &
+        pBuffer)
     end function hipsparseDgtsv2_native
 
     function hipsparseDgtsv2_typed(handle, m, n, dl, d, du, B, ldb, pBuffer) result(Dgtsv2)
@@ -36060,15 +35833,15 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: m
       integer(c_int), value :: n
-      complex(c_float_complex), target :: dl(*)
-      complex(c_float_complex), target :: d(*)
-      complex(c_float_complex), target :: du(*)
-      complex(c_float_complex), target :: B(*)
+      complex(c_float_complex), target :: dl(..)
+      complex(c_float_complex), target :: d(..)
+      complex(c_float_complex), target :: du(..)
+      complex(c_float_complex), target :: B(..)
       integer(c_int), value :: ldb
       type(c_ptr), value :: pBuffer
       integer(c_int) :: Cgtsv2
-      Cgtsv2 = hipsparseCgtsv2_raw(handle, m, n, c_loc(dl(1)), c_loc(d(1)), c_loc(du(1)), c_loc(B( &
-        1)), ldb, pBuffer)
+      Cgtsv2 = hipsparseCgtsv2_raw(handle, m, n, c_loc(dl), c_loc(d), c_loc(du), c_loc(B), ldb, &
+        pBuffer)
     end function hipsparseCgtsv2_native
 
     function hipsparseCgtsv2_typed(handle, m, n, dl, d, du, B, ldb, pBuffer) result(Cgtsv2)
@@ -36094,15 +35867,15 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: m
       integer(c_int), value :: n
-      complex(c_double_complex), target :: dl(*)
-      complex(c_double_complex), target :: d(*)
-      complex(c_double_complex), target :: du(*)
-      complex(c_double_complex), target :: B(*)
+      complex(c_double_complex), target :: dl(..)
+      complex(c_double_complex), target :: d(..)
+      complex(c_double_complex), target :: du(..)
+      complex(c_double_complex), target :: B(..)
       integer(c_int), value :: ldb
       type(c_ptr), value :: pBuffer
       integer(c_int) :: Zgtsv2
-      Zgtsv2 = hipsparseZgtsv2_raw(handle, m, n, c_loc(dl(1)), c_loc(d(1)), c_loc(du(1)), c_loc(B( &
-        1)), ldb, pBuffer)
+      Zgtsv2 = hipsparseZgtsv2_raw(handle, m, n, c_loc(dl), c_loc(d), c_loc(du), c_loc(B), ldb, &
+        pBuffer)
     end function hipsparseZgtsv2_native
 
     function hipsparseZgtsv2_typed(handle, m, n, dl, d, du, B, ldb, pBuffer) result(Zgtsv2)
@@ -36129,16 +35902,15 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: algo
       integer(c_int), value :: m
-      real(c_float), target :: dl(*)
-      real(c_float), target :: d(*)
-      real(c_float), target :: du(*)
-      real(c_float), target :: x(*)
+      real(c_float), target :: dl(..)
+      real(c_float), target :: d(..)
+      real(c_float), target :: du(..)
+      real(c_float), target :: x(..)
       integer(c_int), value :: batchCount
       type(c_ptr), value :: pBufferSizeInBytes
       integer(c_int) :: SgtsvInterleavedBatch_bufferSizeExt
       SgtsvInterleavedBatch_bufferSizeExt = hipsparseSgtsvInterleavedBatch_bufferSizeExt_raw( &
-        handle, algo, m, c_loc(dl(1)), c_loc(d(1)), c_loc(du(1)), c_loc(x(1)), batchCount, &
-        pBufferSizeInBytes)
+        handle, algo, m, c_loc(dl), c_loc(d), c_loc(du), c_loc(x), batchCount, pBufferSizeInBytes)
     end function hipsparseSgtsvInterleavedBatch_bufferSizeExt_native
 
     function hipsparseSgtsvInterleavedBatch_bufferSizeExt_typed(handle, algo, m, dl, d, du, x, &
@@ -36167,16 +35939,15 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: algo
       integer(c_int), value :: m
-      real(c_double), target :: dl(*)
-      real(c_double), target :: d(*)
-      real(c_double), target :: du(*)
-      real(c_double), target :: x(*)
+      real(c_double), target :: dl(..)
+      real(c_double), target :: d(..)
+      real(c_double), target :: du(..)
+      real(c_double), target :: x(..)
       integer(c_int), value :: batchCount
       type(c_ptr), value :: pBufferSizeInBytes
       integer(c_int) :: DgtsvInterleavedBatch_bufferSizeExt
       DgtsvInterleavedBatch_bufferSizeExt = hipsparseDgtsvInterleavedBatch_bufferSizeExt_raw( &
-        handle, algo, m, c_loc(dl(1)), c_loc(d(1)), c_loc(du(1)), c_loc(x(1)), batchCount, &
-        pBufferSizeInBytes)
+        handle, algo, m, c_loc(dl), c_loc(d), c_loc(du), c_loc(x), batchCount, pBufferSizeInBytes)
     end function hipsparseDgtsvInterleavedBatch_bufferSizeExt_native
 
     function hipsparseDgtsvInterleavedBatch_bufferSizeExt_typed(handle, algo, m, dl, d, du, x, &
@@ -36205,16 +35976,15 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: algo
       integer(c_int), value :: m
-      complex(c_float_complex), target :: dl(*)
-      complex(c_float_complex), target :: d(*)
-      complex(c_float_complex), target :: du(*)
-      complex(c_float_complex), target :: x(*)
+      complex(c_float_complex), target :: dl(..)
+      complex(c_float_complex), target :: d(..)
+      complex(c_float_complex), target :: du(..)
+      complex(c_float_complex), target :: x(..)
       integer(c_int), value :: batchCount
       type(c_ptr), value :: pBufferSizeInBytes
       integer(c_int) :: CgtsvInterleavedBatch_bufferSizeExt
       CgtsvInterleavedBatch_bufferSizeExt = hipsparseCgtsvInterleavedBatch_bufferSizeExt_raw( &
-        handle, algo, m, c_loc(dl(1)), c_loc(d(1)), c_loc(du(1)), c_loc(x(1)), batchCount, &
-        pBufferSizeInBytes)
+        handle, algo, m, c_loc(dl), c_loc(d), c_loc(du), c_loc(x), batchCount, pBufferSizeInBytes)
     end function hipsparseCgtsvInterleavedBatch_bufferSizeExt_native
 
     function hipsparseCgtsvInterleavedBatch_bufferSizeExt_typed(handle, algo, m, dl, d, du, x, &
@@ -36243,16 +36013,15 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: algo
       integer(c_int), value :: m
-      complex(c_double_complex), target :: dl(*)
-      complex(c_double_complex), target :: d(*)
-      complex(c_double_complex), target :: du(*)
-      complex(c_double_complex), target :: x(*)
+      complex(c_double_complex), target :: dl(..)
+      complex(c_double_complex), target :: d(..)
+      complex(c_double_complex), target :: du(..)
+      complex(c_double_complex), target :: x(..)
       integer(c_int), value :: batchCount
       type(c_ptr), value :: pBufferSizeInBytes
       integer(c_int) :: ZgtsvInterleavedBatch_bufferSizeExt
       ZgtsvInterleavedBatch_bufferSizeExt = hipsparseZgtsvInterleavedBatch_bufferSizeExt_raw( &
-        handle, algo, m, c_loc(dl(1)), c_loc(d(1)), c_loc(du(1)), c_loc(x(1)), batchCount, &
-        pBufferSizeInBytes)
+        handle, algo, m, c_loc(dl), c_loc(d), c_loc(du), c_loc(x), batchCount, pBufferSizeInBytes)
     end function hipsparseZgtsvInterleavedBatch_bufferSizeExt_native
 
     function hipsparseZgtsvInterleavedBatch_bufferSizeExt_typed(handle, algo, m, dl, d, du, x, &
@@ -36281,15 +36050,15 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: algo
       integer(c_int), value :: m
-      real(c_float), target :: dl(*)
-      real(c_float), target :: d(*)
-      real(c_float), target :: du(*)
-      real(c_float), target :: x(*)
+      real(c_float), target :: dl(..)
+      real(c_float), target :: d(..)
+      real(c_float), target :: du(..)
+      real(c_float), target :: x(..)
       integer(c_int), value :: batchCount
       type(c_ptr), value :: pBuffer
       integer(c_int) :: SgtsvInterleavedBatch
-      SgtsvInterleavedBatch = hipsparseSgtsvInterleavedBatch_raw(handle, algo, m, c_loc(dl(1)), &
-        c_loc(d(1)), c_loc(du(1)), c_loc(x(1)), batchCount, pBuffer)
+      SgtsvInterleavedBatch = hipsparseSgtsvInterleavedBatch_raw(handle, algo, m, c_loc(dl), &
+        c_loc(d), c_loc(du), c_loc(x), batchCount, pBuffer)
     end function hipsparseSgtsvInterleavedBatch_native
 
     function hipsparseSgtsvInterleavedBatch_typed(handle, algo, m, dl, d, du, x, batchCount, &
@@ -36318,15 +36087,15 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: algo
       integer(c_int), value :: m
-      real(c_double), target :: dl(*)
-      real(c_double), target :: d(*)
-      real(c_double), target :: du(*)
-      real(c_double), target :: x(*)
+      real(c_double), target :: dl(..)
+      real(c_double), target :: d(..)
+      real(c_double), target :: du(..)
+      real(c_double), target :: x(..)
       integer(c_int), value :: batchCount
       type(c_ptr), value :: pBuffer
       integer(c_int) :: DgtsvInterleavedBatch
-      DgtsvInterleavedBatch = hipsparseDgtsvInterleavedBatch_raw(handle, algo, m, c_loc(dl(1)), &
-        c_loc(d(1)), c_loc(du(1)), c_loc(x(1)), batchCount, pBuffer)
+      DgtsvInterleavedBatch = hipsparseDgtsvInterleavedBatch_raw(handle, algo, m, c_loc(dl), &
+        c_loc(d), c_loc(du), c_loc(x), batchCount, pBuffer)
     end function hipsparseDgtsvInterleavedBatch_native
 
     function hipsparseDgtsvInterleavedBatch_typed(handle, algo, m, dl, d, du, x, batchCount, &
@@ -36355,15 +36124,15 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: algo
       integer(c_int), value :: m
-      complex(c_float_complex), target :: dl(*)
-      complex(c_float_complex), target :: d(*)
-      complex(c_float_complex), target :: du(*)
-      complex(c_float_complex), target :: x(*)
+      complex(c_float_complex), target :: dl(..)
+      complex(c_float_complex), target :: d(..)
+      complex(c_float_complex), target :: du(..)
+      complex(c_float_complex), target :: x(..)
       integer(c_int), value :: batchCount
       type(c_ptr), value :: pBuffer
       integer(c_int) :: CgtsvInterleavedBatch
-      CgtsvInterleavedBatch = hipsparseCgtsvInterleavedBatch_raw(handle, algo, m, c_loc(dl(1)), &
-        c_loc(d(1)), c_loc(du(1)), c_loc(x(1)), batchCount, pBuffer)
+      CgtsvInterleavedBatch = hipsparseCgtsvInterleavedBatch_raw(handle, algo, m, c_loc(dl), &
+        c_loc(d), c_loc(du), c_loc(x), batchCount, pBuffer)
     end function hipsparseCgtsvInterleavedBatch_native
 
     function hipsparseCgtsvInterleavedBatch_typed(handle, algo, m, dl, d, du, x, batchCount, &
@@ -36392,15 +36161,15 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: algo
       integer(c_int), value :: m
-      complex(c_double_complex), target :: dl(*)
-      complex(c_double_complex), target :: d(*)
-      complex(c_double_complex), target :: du(*)
-      complex(c_double_complex), target :: x(*)
+      complex(c_double_complex), target :: dl(..)
+      complex(c_double_complex), target :: d(..)
+      complex(c_double_complex), target :: du(..)
+      complex(c_double_complex), target :: x(..)
       integer(c_int), value :: batchCount
       type(c_ptr), value :: pBuffer
       integer(c_int) :: ZgtsvInterleavedBatch
-      ZgtsvInterleavedBatch = hipsparseZgtsvInterleavedBatch_raw(handle, algo, m, c_loc(dl(1)), &
-        c_loc(d(1)), c_loc(du(1)), c_loc(x(1)), batchCount, pBuffer)
+      ZgtsvInterleavedBatch = hipsparseZgtsvInterleavedBatch_raw(handle, algo, m, c_loc(dl), &
+        c_loc(d), c_loc(du), c_loc(x), batchCount, pBuffer)
     end function hipsparseZgtsvInterleavedBatch_native
 
     function hipsparseZgtsvInterleavedBatch_typed(handle, algo, m, dl, d, du, x, batchCount, &
@@ -36429,15 +36198,15 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: m
       integer(c_int), value :: n
-      real(c_float), target :: dl(*)
-      real(c_float), target :: d(*)
-      real(c_float), target :: du(*)
-      real(c_float), target :: B(*)
+      real(c_float), target :: dl(..)
+      real(c_float), target :: d(..)
+      real(c_float), target :: du(..)
+      real(c_float), target :: B(..)
       integer(c_int), value :: ldb
       type(c_ptr), value :: pBufferSizeInBytes
       integer(c_int) :: Sgtsv2_nopivot_bufferSizeExt
       Sgtsv2_nopivot_bufferSizeExt = hipsparseSgtsv2_nopivot_bufferSizeExt_raw(handle, m, n, &
-        c_loc(dl(1)), c_loc(d(1)), c_loc(du(1)), c_loc(B(1)), ldb, pBufferSizeInBytes)
+        c_loc(dl), c_loc(d), c_loc(du), c_loc(B), ldb, pBufferSizeInBytes)
     end function hipsparseSgtsv2_nopivot_bufferSizeExt_native
 
     function hipsparseSgtsv2_nopivot_bufferSizeExt_typed(handle, m, n, dl, d, du, B, ldb, &
@@ -36466,15 +36235,15 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: m
       integer(c_int), value :: n
-      real(c_double), target :: dl(*)
-      real(c_double), target :: d(*)
-      real(c_double), target :: du(*)
-      real(c_double), target :: B(*)
+      real(c_double), target :: dl(..)
+      real(c_double), target :: d(..)
+      real(c_double), target :: du(..)
+      real(c_double), target :: B(..)
       integer(c_int), value :: ldb
       type(c_ptr), value :: pBufferSizeInBytes
       integer(c_int) :: Dgtsv2_nopivot_bufferSizeExt
       Dgtsv2_nopivot_bufferSizeExt = hipsparseDgtsv2_nopivot_bufferSizeExt_raw(handle, m, n, &
-        c_loc(dl(1)), c_loc(d(1)), c_loc(du(1)), c_loc(B(1)), ldb, pBufferSizeInBytes)
+        c_loc(dl), c_loc(d), c_loc(du), c_loc(B), ldb, pBufferSizeInBytes)
     end function hipsparseDgtsv2_nopivot_bufferSizeExt_native
 
     function hipsparseDgtsv2_nopivot_bufferSizeExt_typed(handle, m, n, dl, d, du, B, ldb, &
@@ -36503,15 +36272,15 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: m
       integer(c_int), value :: n
-      complex(c_float_complex), target :: dl(*)
-      complex(c_float_complex), target :: d(*)
-      complex(c_float_complex), target :: du(*)
-      complex(c_float_complex), target :: B(*)
+      complex(c_float_complex), target :: dl(..)
+      complex(c_float_complex), target :: d(..)
+      complex(c_float_complex), target :: du(..)
+      complex(c_float_complex), target :: B(..)
       integer(c_int), value :: ldb
       type(c_ptr), value :: pBufferSizeInBytes
       integer(c_int) :: Cgtsv2_nopivot_bufferSizeExt
       Cgtsv2_nopivot_bufferSizeExt = hipsparseCgtsv2_nopivot_bufferSizeExt_raw(handle, m, n, &
-        c_loc(dl(1)), c_loc(d(1)), c_loc(du(1)), c_loc(B(1)), ldb, pBufferSizeInBytes)
+        c_loc(dl), c_loc(d), c_loc(du), c_loc(B), ldb, pBufferSizeInBytes)
     end function hipsparseCgtsv2_nopivot_bufferSizeExt_native
 
     function hipsparseCgtsv2_nopivot_bufferSizeExt_typed(handle, m, n, dl, d, du, B, ldb, &
@@ -36540,15 +36309,15 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: m
       integer(c_int), value :: n
-      complex(c_double_complex), target :: dl(*)
-      complex(c_double_complex), target :: d(*)
-      complex(c_double_complex), target :: du(*)
-      complex(c_double_complex), target :: B(*)
+      complex(c_double_complex), target :: dl(..)
+      complex(c_double_complex), target :: d(..)
+      complex(c_double_complex), target :: du(..)
+      complex(c_double_complex), target :: B(..)
       integer(c_int), value :: ldb
       type(c_ptr), value :: pBufferSizeInBytes
       integer(c_int) :: Zgtsv2_nopivot_bufferSizeExt
       Zgtsv2_nopivot_bufferSizeExt = hipsparseZgtsv2_nopivot_bufferSizeExt_raw(handle, m, n, &
-        c_loc(dl(1)), c_loc(d(1)), c_loc(du(1)), c_loc(B(1)), ldb, pBufferSizeInBytes)
+        c_loc(dl), c_loc(d), c_loc(du), c_loc(B), ldb, pBufferSizeInBytes)
     end function hipsparseZgtsv2_nopivot_bufferSizeExt_native
 
     function hipsparseZgtsv2_nopivot_bufferSizeExt_typed(handle, m, n, dl, d, du, B, ldb, &
@@ -36577,15 +36346,15 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: m
       integer(c_int), value :: n
-      real(c_float), target :: dl(*)
-      real(c_float), target :: d(*)
-      real(c_float), target :: du(*)
-      real(c_float), target :: B(*)
+      real(c_float), target :: dl(..)
+      real(c_float), target :: d(..)
+      real(c_float), target :: du(..)
+      real(c_float), target :: B(..)
       integer(c_int), value :: ldb
       type(c_ptr), value :: pBuffer
       integer(c_int) :: Sgtsv2_nopivot
-      Sgtsv2_nopivot = hipsparseSgtsv2_nopivot_raw(handle, m, n, c_loc(dl(1)), c_loc(d(1)), c_loc( &
-        du(1)), c_loc(B(1)), ldb, pBuffer)
+      Sgtsv2_nopivot = hipsparseSgtsv2_nopivot_raw(handle, m, n, c_loc(dl), c_loc(d), c_loc(du), &
+        c_loc(B), ldb, pBuffer)
     end function hipsparseSgtsv2_nopivot_native
 
     function hipsparseSgtsv2_nopivot_typed(handle, m, n, dl, d, du, B, ldb, pBuffer) result( &
@@ -36613,15 +36382,15 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: m
       integer(c_int), value :: n
-      real(c_double), target :: dl(*)
-      real(c_double), target :: d(*)
-      real(c_double), target :: du(*)
-      real(c_double), target :: B(*)
+      real(c_double), target :: dl(..)
+      real(c_double), target :: d(..)
+      real(c_double), target :: du(..)
+      real(c_double), target :: B(..)
       integer(c_int), value :: ldb
       type(c_ptr), value :: pBuffer
       integer(c_int) :: Dgtsv2_nopivot
-      Dgtsv2_nopivot = hipsparseDgtsv2_nopivot_raw(handle, m, n, c_loc(dl(1)), c_loc(d(1)), c_loc( &
-        du(1)), c_loc(B(1)), ldb, pBuffer)
+      Dgtsv2_nopivot = hipsparseDgtsv2_nopivot_raw(handle, m, n, c_loc(dl), c_loc(d), c_loc(du), &
+        c_loc(B), ldb, pBuffer)
     end function hipsparseDgtsv2_nopivot_native
 
     function hipsparseDgtsv2_nopivot_typed(handle, m, n, dl, d, du, B, ldb, pBuffer) result( &
@@ -36649,15 +36418,15 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: m
       integer(c_int), value :: n
-      complex(c_float_complex), target :: dl(*)
-      complex(c_float_complex), target :: d(*)
-      complex(c_float_complex), target :: du(*)
-      complex(c_float_complex), target :: B(*)
+      complex(c_float_complex), target :: dl(..)
+      complex(c_float_complex), target :: d(..)
+      complex(c_float_complex), target :: du(..)
+      complex(c_float_complex), target :: B(..)
       integer(c_int), value :: ldb
       type(c_ptr), value :: pBuffer
       integer(c_int) :: Cgtsv2_nopivot
-      Cgtsv2_nopivot = hipsparseCgtsv2_nopivot_raw(handle, m, n, c_loc(dl(1)), c_loc(d(1)), c_loc( &
-        du(1)), c_loc(B(1)), ldb, pBuffer)
+      Cgtsv2_nopivot = hipsparseCgtsv2_nopivot_raw(handle, m, n, c_loc(dl), c_loc(d), c_loc(du), &
+        c_loc(B), ldb, pBuffer)
     end function hipsparseCgtsv2_nopivot_native
 
     function hipsparseCgtsv2_nopivot_typed(handle, m, n, dl, d, du, B, ldb, pBuffer) result( &
@@ -36685,15 +36454,15 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: m
       integer(c_int), value :: n
-      complex(c_double_complex), target :: dl(*)
-      complex(c_double_complex), target :: d(*)
-      complex(c_double_complex), target :: du(*)
-      complex(c_double_complex), target :: B(*)
+      complex(c_double_complex), target :: dl(..)
+      complex(c_double_complex), target :: d(..)
+      complex(c_double_complex), target :: du(..)
+      complex(c_double_complex), target :: B(..)
       integer(c_int), value :: ldb
       type(c_ptr), value :: pBuffer
       integer(c_int) :: Zgtsv2_nopivot
-      Zgtsv2_nopivot = hipsparseZgtsv2_nopivot_raw(handle, m, n, c_loc(dl(1)), c_loc(d(1)), c_loc( &
-        du(1)), c_loc(B(1)), ldb, pBuffer)
+      Zgtsv2_nopivot = hipsparseZgtsv2_nopivot_raw(handle, m, n, c_loc(dl), c_loc(d), c_loc(du), &
+        c_loc(B), ldb, pBuffer)
     end function hipsparseZgtsv2_nopivot_native
 
     function hipsparseZgtsv2_nopivot_typed(handle, m, n, dl, d, du, B, ldb, pBuffer) result( &
@@ -36720,17 +36489,16 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_int), value :: m
-      real(c_float), target :: dl(*)
-      real(c_float), target :: d(*)
-      real(c_float), target :: du(*)
-      real(c_float), target :: x(*)
+      real(c_float), target :: dl(..)
+      real(c_float), target :: d(..)
+      real(c_float), target :: du(..)
+      real(c_float), target :: x(..)
       integer(c_int), value :: batchCount
       integer(c_int), value :: batchStride
       type(c_ptr), value :: pBufferSizeInBytes
       integer(c_int) :: Sgtsv2StridedBatch_bufferSizeExt
       Sgtsv2StridedBatch_bufferSizeExt = hipsparseSgtsv2StridedBatch_bufferSizeExt_raw(handle, m, &
-        c_loc(dl(1)), c_loc(d(1)), c_loc(du(1)), c_loc(x(1)), batchCount, batchStride, &
-        pBufferSizeInBytes)
+        c_loc(dl), c_loc(d), c_loc(du), c_loc(x), batchCount, batchStride, pBufferSizeInBytes)
     end function hipsparseSgtsv2StridedBatch_bufferSizeExt_native
 
     function hipsparseSgtsv2StridedBatch_bufferSizeExt_typed(handle, m, dl, d, du, x, batchCount, &
@@ -36758,17 +36526,16 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_int), value :: m
-      real(c_double), target :: dl(*)
-      real(c_double), target :: d(*)
-      real(c_double), target :: du(*)
-      real(c_double), target :: x(*)
+      real(c_double), target :: dl(..)
+      real(c_double), target :: d(..)
+      real(c_double), target :: du(..)
+      real(c_double), target :: x(..)
       integer(c_int), value :: batchCount
       integer(c_int), value :: batchStride
       type(c_ptr), value :: pBufferSizeInBytes
       integer(c_int) :: Dgtsv2StridedBatch_bufferSizeExt
       Dgtsv2StridedBatch_bufferSizeExt = hipsparseDgtsv2StridedBatch_bufferSizeExt_raw(handle, m, &
-        c_loc(dl(1)), c_loc(d(1)), c_loc(du(1)), c_loc(x(1)), batchCount, batchStride, &
-        pBufferSizeInBytes)
+        c_loc(dl), c_loc(d), c_loc(du), c_loc(x), batchCount, batchStride, pBufferSizeInBytes)
     end function hipsparseDgtsv2StridedBatch_bufferSizeExt_native
 
     function hipsparseDgtsv2StridedBatch_bufferSizeExt_typed(handle, m, dl, d, du, x, batchCount, &
@@ -36796,17 +36563,16 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_int), value :: m
-      complex(c_float_complex), target :: dl(*)
-      complex(c_float_complex), target :: d(*)
-      complex(c_float_complex), target :: du(*)
-      complex(c_float_complex), target :: x(*)
+      complex(c_float_complex), target :: dl(..)
+      complex(c_float_complex), target :: d(..)
+      complex(c_float_complex), target :: du(..)
+      complex(c_float_complex), target :: x(..)
       integer(c_int), value :: batchCount
       integer(c_int), value :: batchStride
       type(c_ptr), value :: pBufferSizeInBytes
       integer(c_int) :: Cgtsv2StridedBatch_bufferSizeExt
       Cgtsv2StridedBatch_bufferSizeExt = hipsparseCgtsv2StridedBatch_bufferSizeExt_raw(handle, m, &
-        c_loc(dl(1)), c_loc(d(1)), c_loc(du(1)), c_loc(x(1)), batchCount, batchStride, &
-        pBufferSizeInBytes)
+        c_loc(dl), c_loc(d), c_loc(du), c_loc(x), batchCount, batchStride, pBufferSizeInBytes)
     end function hipsparseCgtsv2StridedBatch_bufferSizeExt_native
 
     function hipsparseCgtsv2StridedBatch_bufferSizeExt_typed(handle, m, dl, d, du, x, batchCount, &
@@ -36834,17 +36600,16 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_int), value :: m
-      complex(c_double_complex), target :: dl(*)
-      complex(c_double_complex), target :: d(*)
-      complex(c_double_complex), target :: du(*)
-      complex(c_double_complex), target :: x(*)
+      complex(c_double_complex), target :: dl(..)
+      complex(c_double_complex), target :: d(..)
+      complex(c_double_complex), target :: du(..)
+      complex(c_double_complex), target :: x(..)
       integer(c_int), value :: batchCount
       integer(c_int), value :: batchStride
       type(c_ptr), value :: pBufferSizeInBytes
       integer(c_int) :: Zgtsv2StridedBatch_bufferSizeExt
       Zgtsv2StridedBatch_bufferSizeExt = hipsparseZgtsv2StridedBatch_bufferSizeExt_raw(handle, m, &
-        c_loc(dl(1)), c_loc(d(1)), c_loc(du(1)), c_loc(x(1)), batchCount, batchStride, &
-        pBufferSizeInBytes)
+        c_loc(dl), c_loc(d), c_loc(du), c_loc(x), batchCount, batchStride, pBufferSizeInBytes)
     end function hipsparseZgtsv2StridedBatch_bufferSizeExt_native
 
     function hipsparseZgtsv2StridedBatch_bufferSizeExt_typed(handle, m, dl, d, du, x, batchCount, &
@@ -36872,16 +36637,16 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_int), value :: m
-      real(c_float), target :: dl(*)
-      real(c_float), target :: d(*)
-      real(c_float), target :: du(*)
-      real(c_float), target :: x(*)
+      real(c_float), target :: dl(..)
+      real(c_float), target :: d(..)
+      real(c_float), target :: du(..)
+      real(c_float), target :: x(..)
       integer(c_int), value :: batchCount
       integer(c_int), value :: batchStride
       type(c_ptr), value :: pBuffer
       integer(c_int) :: Sgtsv2StridedBatch
-      Sgtsv2StridedBatch = hipsparseSgtsv2StridedBatch_raw(handle, m, c_loc(dl(1)), c_loc(d(1)), &
-        c_loc(du(1)), c_loc(x(1)), batchCount, batchStride, pBuffer)
+      Sgtsv2StridedBatch = hipsparseSgtsv2StridedBatch_raw(handle, m, c_loc(dl), c_loc(d), c_loc( &
+        du), c_loc(x), batchCount, batchStride, pBuffer)
     end function hipsparseSgtsv2StridedBatch_native
 
     function hipsparseSgtsv2StridedBatch_typed(handle, m, dl, d, du, x, batchCount, batchStride, &
@@ -36909,16 +36674,16 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_int), value :: m
-      real(c_double), target :: dl(*)
-      real(c_double), target :: d(*)
-      real(c_double), target :: du(*)
-      real(c_double), target :: x(*)
+      real(c_double), target :: dl(..)
+      real(c_double), target :: d(..)
+      real(c_double), target :: du(..)
+      real(c_double), target :: x(..)
       integer(c_int), value :: batchCount
       integer(c_int), value :: batchStride
       type(c_ptr), value :: pBuffer
       integer(c_int) :: Dgtsv2StridedBatch
-      Dgtsv2StridedBatch = hipsparseDgtsv2StridedBatch_raw(handle, m, c_loc(dl(1)), c_loc(d(1)), &
-        c_loc(du(1)), c_loc(x(1)), batchCount, batchStride, pBuffer)
+      Dgtsv2StridedBatch = hipsparseDgtsv2StridedBatch_raw(handle, m, c_loc(dl), c_loc(d), c_loc( &
+        du), c_loc(x), batchCount, batchStride, pBuffer)
     end function hipsparseDgtsv2StridedBatch_native
 
     function hipsparseDgtsv2StridedBatch_typed(handle, m, dl, d, du, x, batchCount, batchStride, &
@@ -36946,16 +36711,16 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_int), value :: m
-      complex(c_float_complex), target :: dl(*)
-      complex(c_float_complex), target :: d(*)
-      complex(c_float_complex), target :: du(*)
-      complex(c_float_complex), target :: x(*)
+      complex(c_float_complex), target :: dl(..)
+      complex(c_float_complex), target :: d(..)
+      complex(c_float_complex), target :: du(..)
+      complex(c_float_complex), target :: x(..)
       integer(c_int), value :: batchCount
       integer(c_int), value :: batchStride
       type(c_ptr), value :: pBuffer
       integer(c_int) :: Cgtsv2StridedBatch
-      Cgtsv2StridedBatch = hipsparseCgtsv2StridedBatch_raw(handle, m, c_loc(dl(1)), c_loc(d(1)), &
-        c_loc(du(1)), c_loc(x(1)), batchCount, batchStride, pBuffer)
+      Cgtsv2StridedBatch = hipsparseCgtsv2StridedBatch_raw(handle, m, c_loc(dl), c_loc(d), c_loc( &
+        du), c_loc(x), batchCount, batchStride, pBuffer)
     end function hipsparseCgtsv2StridedBatch_native
 
     function hipsparseCgtsv2StridedBatch_typed(handle, m, dl, d, du, x, batchCount, batchStride, &
@@ -36983,16 +36748,16 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_int), value :: m
-      complex(c_double_complex), target :: dl(*)
-      complex(c_double_complex), target :: d(*)
-      complex(c_double_complex), target :: du(*)
-      complex(c_double_complex), target :: x(*)
+      complex(c_double_complex), target :: dl(..)
+      complex(c_double_complex), target :: d(..)
+      complex(c_double_complex), target :: du(..)
+      complex(c_double_complex), target :: x(..)
       integer(c_int), value :: batchCount
       integer(c_int), value :: batchStride
       type(c_ptr), value :: pBuffer
       integer(c_int) :: Zgtsv2StridedBatch
-      Zgtsv2StridedBatch = hipsparseZgtsv2StridedBatch_raw(handle, m, c_loc(dl(1)), c_loc(d(1)), &
-        c_loc(du(1)), c_loc(x(1)), batchCount, batchStride, pBuffer)
+      Zgtsv2StridedBatch = hipsparseZgtsv2StridedBatch_raw(handle, m, c_loc(dl), c_loc(d), c_loc( &
+        du), c_loc(x), batchCount, batchStride, pBuffer)
     end function hipsparseZgtsv2StridedBatch_native
 
     function hipsparseZgtsv2StridedBatch_typed(handle, m, dl, d, du, x, batchCount, batchStride, &
@@ -37023,18 +36788,18 @@ contains
       integer(c_int), value :: mb
       integer(c_int), value :: nb
       type(c_ptr), value :: descrA
-      real(c_float), target :: bsrValA(*)
-      integer(c_int), target :: bsrRowPtrA(*)
-      integer(c_int), target :: bsrColIndA(*)
+      real(c_float), target :: bsrValA(..)
+      integer(c_int), target :: bsrRowPtrA(..)
+      integer(c_int), target :: bsrColIndA(..)
       integer(c_int), value :: blockDim
       type(c_ptr), value :: descrC
-      real(c_float), target :: csrValC(*)
-      integer(c_int), target :: csrRowPtrC(*)
-      integer(c_int), target :: csrColIndC(*)
+      real(c_float), target :: csrValC(..)
+      integer(c_int), target :: csrRowPtrC(..)
+      integer(c_int), target :: csrColIndC(..)
       integer(c_int) :: Sbsr2csr
-      Sbsr2csr = hipsparseSbsr2csr_raw(handle, dirA, mb, nb, descrA, c_loc(bsrValA(1)), c_loc( &
-        bsrRowPtrA(1)), c_loc(bsrColIndA(1)), blockDim, descrC, c_loc(csrValC(1)), c_loc( &
-        csrRowPtrC(1)), c_loc(csrColIndC(1)))
+      Sbsr2csr = hipsparseSbsr2csr_raw(handle, dirA, mb, nb, descrA, c_loc(bsrValA), c_loc( &
+        bsrRowPtrA), c_loc(bsrColIndA), blockDim, descrC, c_loc(csrValC), c_loc(csrRowPtrC), &
+        c_loc(csrColIndC))
     end function hipsparseSbsr2csr_native
 
     function hipsparseSbsr2csr_typed(handle, dirA, mb, nb, descrA, bsrValA, bsrRowPtrA, &
@@ -37069,18 +36834,18 @@ contains
       integer(c_int), value :: mb
       integer(c_int), value :: nb
       type(c_ptr), value :: descrA
-      real(c_double), target :: bsrValA(*)
-      integer(c_int), target :: bsrRowPtrA(*)
-      integer(c_int), target :: bsrColIndA(*)
+      real(c_double), target :: bsrValA(..)
+      integer(c_int), target :: bsrRowPtrA(..)
+      integer(c_int), target :: bsrColIndA(..)
       integer(c_int), value :: blockDim
       type(c_ptr), value :: descrC
-      real(c_double), target :: csrValC(*)
-      integer(c_int), target :: csrRowPtrC(*)
-      integer(c_int), target :: csrColIndC(*)
+      real(c_double), target :: csrValC(..)
+      integer(c_int), target :: csrRowPtrC(..)
+      integer(c_int), target :: csrColIndC(..)
       integer(c_int) :: Dbsr2csr
-      Dbsr2csr = hipsparseDbsr2csr_raw(handle, dirA, mb, nb, descrA, c_loc(bsrValA(1)), c_loc( &
-        bsrRowPtrA(1)), c_loc(bsrColIndA(1)), blockDim, descrC, c_loc(csrValC(1)), c_loc( &
-        csrRowPtrC(1)), c_loc(csrColIndC(1)))
+      Dbsr2csr = hipsparseDbsr2csr_raw(handle, dirA, mb, nb, descrA, c_loc(bsrValA), c_loc( &
+        bsrRowPtrA), c_loc(bsrColIndA), blockDim, descrC, c_loc(csrValC), c_loc(csrRowPtrC), &
+        c_loc(csrColIndC))
     end function hipsparseDbsr2csr_native
 
     function hipsparseDbsr2csr_typed(handle, dirA, mb, nb, descrA, bsrValA, bsrRowPtrA, &
@@ -37115,18 +36880,18 @@ contains
       integer(c_int), value :: mb
       integer(c_int), value :: nb
       type(c_ptr), value :: descrA
-      complex(c_float_complex), target :: bsrValA(*)
-      integer(c_int), target :: bsrRowPtrA(*)
-      integer(c_int), target :: bsrColIndA(*)
+      complex(c_float_complex), target :: bsrValA(..)
+      integer(c_int), target :: bsrRowPtrA(..)
+      integer(c_int), target :: bsrColIndA(..)
       integer(c_int), value :: blockDim
       type(c_ptr), value :: descrC
-      complex(c_float_complex), target :: csrValC(*)
-      integer(c_int), target :: csrRowPtrC(*)
-      integer(c_int), target :: csrColIndC(*)
+      complex(c_float_complex), target :: csrValC(..)
+      integer(c_int), target :: csrRowPtrC(..)
+      integer(c_int), target :: csrColIndC(..)
       integer(c_int) :: Cbsr2csr
-      Cbsr2csr = hipsparseCbsr2csr_raw(handle, dirA, mb, nb, descrA, c_loc(bsrValA(1)), c_loc( &
-        bsrRowPtrA(1)), c_loc(bsrColIndA(1)), blockDim, descrC, c_loc(csrValC(1)), c_loc( &
-        csrRowPtrC(1)), c_loc(csrColIndC(1)))
+      Cbsr2csr = hipsparseCbsr2csr_raw(handle, dirA, mb, nb, descrA, c_loc(bsrValA), c_loc( &
+        bsrRowPtrA), c_loc(bsrColIndA), blockDim, descrC, c_loc(csrValC), c_loc(csrRowPtrC), &
+        c_loc(csrColIndC))
     end function hipsparseCbsr2csr_native
 
     function hipsparseCbsr2csr_typed(handle, dirA, mb, nb, descrA, bsrValA, bsrRowPtrA, &
@@ -37161,18 +36926,18 @@ contains
       integer(c_int), value :: mb
       integer(c_int), value :: nb
       type(c_ptr), value :: descrA
-      complex(c_double_complex), target :: bsrValA(*)
-      integer(c_int), target :: bsrRowPtrA(*)
-      integer(c_int), target :: bsrColIndA(*)
+      complex(c_double_complex), target :: bsrValA(..)
+      integer(c_int), target :: bsrRowPtrA(..)
+      integer(c_int), target :: bsrColIndA(..)
       integer(c_int), value :: blockDim
       type(c_ptr), value :: descrC
-      complex(c_double_complex), target :: csrValC(*)
-      integer(c_int), target :: csrRowPtrC(*)
-      integer(c_int), target :: csrColIndC(*)
+      complex(c_double_complex), target :: csrValC(..)
+      integer(c_int), target :: csrRowPtrC(..)
+      integer(c_int), target :: csrColIndC(..)
       integer(c_int) :: Zbsr2csr
-      Zbsr2csr = hipsparseZbsr2csr_raw(handle, dirA, mb, nb, descrA, c_loc(bsrValA(1)), c_loc( &
-        bsrRowPtrA(1)), c_loc(bsrColIndA(1)), blockDim, descrC, c_loc(csrValC(1)), c_loc( &
-        csrRowPtrC(1)), c_loc(csrColIndC(1)))
+      Zbsr2csr = hipsparseZbsr2csr_raw(handle, dirA, mb, nb, descrA, c_loc(bsrValA), c_loc( &
+        bsrRowPtrA), c_loc(bsrColIndA), blockDim, descrC, c_loc(csrValC), c_loc(csrRowPtrC), &
+        c_loc(csrColIndC))
     end function hipsparseZbsr2csr_native
 
     function hipsparseZbsr2csr_typed(handle, dirA, mb, nb, descrA, bsrValA, bsrRowPtrA, &
@@ -37203,14 +36968,13 @@ contains
       use, intrinsic :: iso_c_binding
       implicit none
       type(c_ptr), value :: handle
-      integer(c_int), target :: cooRowInd(*)
+      integer(c_int), target :: cooRowInd(..)
       integer(c_int), value :: nnz
       integer(c_int), value :: m
-      integer(c_int), target :: csrRowPtr(*)
+      integer(c_int), target :: csrRowPtr(..)
       integer(c_int), value :: idxBase
       integer(c_int) :: Xcoo2csr
-      Xcoo2csr = hipsparseXcoo2csr_raw(handle, c_loc(cooRowInd(1)), nnz, m, c_loc(csrRowPtr(1)), &
-        idxBase)
+      Xcoo2csr = hipsparseXcoo2csr_raw(handle, c_loc(cooRowInd), nnz, m, c_loc(csrRowPtr), idxBase)
     end function hipsparseXcoo2csr_native
 
     function hipsparseXcoo2csr_typed(handle, cooRowInd, nnz, m, csrRowPtr, idxBase) result(Xcoo2csr)
@@ -37235,12 +36999,12 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       integer(c_int), value :: nnz
-      integer(c_int), target :: cooRows(*)
-      integer(c_int), target :: cooCols(*)
+      integer(c_int), target :: cooRows(..)
+      integer(c_int), target :: cooCols(..)
       type(c_ptr), value :: pBufferSizeInBytes
       integer(c_int) :: Xcoosort_bufferSizeExt
       Xcoosort_bufferSizeExt = hipsparseXcoosort_bufferSizeExt_raw(handle, m, n, nnz, c_loc( &
-        cooRows(1)), c_loc(cooCols(1)), pBufferSizeInBytes)
+        cooRows), c_loc(cooCols), pBufferSizeInBytes)
     end function hipsparseXcoosort_bufferSizeExt_native
 
     function hipsparseXcoosort_bufferSizeExt_typed(handle, m, n, nnz, cooRows, cooCols, &
@@ -37268,13 +37032,13 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       integer(c_int), value :: nnz
-      integer(c_int), target :: cooRows(*)
-      integer(c_int), target :: cooCols(*)
-      integer(c_int), target :: P(*)
+      integer(c_int), target :: cooRows(..)
+      integer(c_int), target :: cooCols(..)
+      integer(c_int), target :: P(..)
       type(c_ptr), value :: pBuffer
       integer(c_int) :: XcoosortByRow
-      XcoosortByRow = hipsparseXcoosortByRow_raw(handle, m, n, nnz, c_loc(cooRows(1)), c_loc( &
-        cooCols(1)), c_loc(P(1)), pBuffer)
+      XcoosortByRow = hipsparseXcoosortByRow_raw(handle, m, n, nnz, c_loc(cooRows), c_loc( &
+        cooCols), c_loc(P), pBuffer)
     end function hipsparseXcoosortByRow_native
 
     function hipsparseXcoosortByRow_typed(handle, m, n, nnz, cooRows, cooCols, P, pBuffer) result( &
@@ -37303,13 +37067,13 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       integer(c_int), value :: nnz
-      integer(c_int), target :: cooRows(*)
-      integer(c_int), target :: cooCols(*)
-      integer(c_int), target :: P(*)
+      integer(c_int), target :: cooRows(..)
+      integer(c_int), target :: cooCols(..)
+      integer(c_int), target :: P(..)
       type(c_ptr), value :: pBuffer
       integer(c_int) :: XcoosortByColumn
-      XcoosortByColumn = hipsparseXcoosortByColumn_raw(handle, m, n, nnz, c_loc(cooRows(1)), &
-        c_loc(cooCols(1)), c_loc(P(1)), pBuffer)
+      XcoosortByColumn = hipsparseXcoosortByColumn_raw(handle, m, n, nnz, c_loc(cooRows), c_loc( &
+        cooCols), c_loc(P), pBuffer)
     end function hipsparseXcoosortByColumn_native
 
     function hipsparseXcoosortByColumn_typed(handle, m, n, nnz, cooRows, cooCols, P, &
@@ -37336,9 +37100,9 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_int), value :: n
-      integer(c_int), target :: p(*)
+      integer(c_int), target :: p(..)
       integer(c_int) :: CreateIdentityPermutation
-      CreateIdentityPermutation = hipsparseCreateIdentityPermutation_raw(handle, n, c_loc(p(1)))
+      CreateIdentityPermutation = hipsparseCreateIdentityPermutation_raw(handle, n, c_loc(p))
     end function hipsparseCreateIdentityPermutation_native
 
     function hipsparseCreateIdentityPermutation_typed(handle, n, p) result( &
@@ -37361,14 +37125,14 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       type(c_ptr), value :: descr
-      real(c_float), target :: cscVal(*)
-      integer(c_int), target :: cscRowInd(*)
-      integer(c_int), target :: cscColPtr(*)
-      real(c_float), target :: A(*)
+      real(c_float), target :: cscVal(..)
+      integer(c_int), target :: cscRowInd(..)
+      integer(c_int), target :: cscColPtr(..)
+      real(c_float), target :: A(..)
       integer(c_int), value :: ld
       integer(c_int) :: Scsc2dense
-      Scsc2dense = hipsparseScsc2dense_raw(handle, m, n, descr, c_loc(cscVal(1)), c_loc(cscRowInd( &
-        1)), c_loc(cscColPtr(1)), c_loc(A(1)), ld)
+      Scsc2dense = hipsparseScsc2dense_raw(handle, m, n, descr, c_loc(cscVal), c_loc(cscRowInd), &
+        c_loc(cscColPtr), c_loc(A), ld)
     end function hipsparseScsc2dense_native
 
     function hipsparseScsc2dense_typed(handle, m, n, descr, cscVal, cscRowInd, cscColPtr, A, &
@@ -37398,14 +37162,14 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       type(c_ptr), value :: descr
-      real(c_double), target :: cscVal(*)
-      integer(c_int), target :: cscRowInd(*)
-      integer(c_int), target :: cscColPtr(*)
-      real(c_double), target :: A(*)
+      real(c_double), target :: cscVal(..)
+      integer(c_int), target :: cscRowInd(..)
+      integer(c_int), target :: cscColPtr(..)
+      real(c_double), target :: A(..)
       integer(c_int), value :: ld
       integer(c_int) :: Dcsc2dense
-      Dcsc2dense = hipsparseDcsc2dense_raw(handle, m, n, descr, c_loc(cscVal(1)), c_loc(cscRowInd( &
-        1)), c_loc(cscColPtr(1)), c_loc(A(1)), ld)
+      Dcsc2dense = hipsparseDcsc2dense_raw(handle, m, n, descr, c_loc(cscVal), c_loc(cscRowInd), &
+        c_loc(cscColPtr), c_loc(A), ld)
     end function hipsparseDcsc2dense_native
 
     function hipsparseDcsc2dense_typed(handle, m, n, descr, cscVal, cscRowInd, cscColPtr, A, &
@@ -37435,14 +37199,14 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       type(c_ptr), value :: descr
-      complex(c_float_complex), target :: cscVal(*)
-      integer(c_int), target :: cscRowInd(*)
-      integer(c_int), target :: cscColPtr(*)
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: cscVal(..)
+      integer(c_int), target :: cscRowInd(..)
+      integer(c_int), target :: cscColPtr(..)
+      complex(c_float_complex), target :: A(..)
       integer(c_int), value :: ld
       integer(c_int) :: Ccsc2dense
-      Ccsc2dense = hipsparseCcsc2dense_raw(handle, m, n, descr, c_loc(cscVal(1)), c_loc(cscRowInd( &
-        1)), c_loc(cscColPtr(1)), c_loc(A(1)), ld)
+      Ccsc2dense = hipsparseCcsc2dense_raw(handle, m, n, descr, c_loc(cscVal), c_loc(cscRowInd), &
+        c_loc(cscColPtr), c_loc(A), ld)
     end function hipsparseCcsc2dense_native
 
     function hipsparseCcsc2dense_typed(handle, m, n, descr, cscVal, cscRowInd, cscColPtr, A, &
@@ -37472,14 +37236,14 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       type(c_ptr), value :: descr
-      complex(c_double_complex), target :: cscVal(*)
-      integer(c_int), target :: cscRowInd(*)
-      integer(c_int), target :: cscColPtr(*)
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: cscVal(..)
+      integer(c_int), target :: cscRowInd(..)
+      integer(c_int), target :: cscColPtr(..)
+      complex(c_double_complex), target :: A(..)
       integer(c_int), value :: ld
       integer(c_int) :: Zcsc2dense
-      Zcsc2dense = hipsparseZcsc2dense_raw(handle, m, n, descr, c_loc(cscVal(1)), c_loc(cscRowInd( &
-        1)), c_loc(cscColPtr(1)), c_loc(A(1)), ld)
+      Zcsc2dense = hipsparseZcsc2dense_raw(handle, m, n, descr, c_loc(cscVal), c_loc(cscRowInd), &
+        c_loc(cscColPtr), c_loc(A), ld)
     end function hipsparseZcsc2dense_native
 
     function hipsparseZcsc2dense_typed(handle, m, n, descr, cscVal, cscRowInd, cscColPtr, A, &
@@ -37509,12 +37273,12 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       integer(c_int), value :: nnz
-      integer(c_int), target :: cscColPtr(*)
-      integer(c_int), target :: cscRowInd(*)
+      integer(c_int), target :: cscColPtr(..)
+      integer(c_int), target :: cscRowInd(..)
       type(c_ptr), value :: pBufferSizeInBytes
       integer(c_int) :: Xcscsort_bufferSizeExt
       Xcscsort_bufferSizeExt = hipsparseXcscsort_bufferSizeExt_raw(handle, m, n, nnz, c_loc( &
-        cscColPtr(1)), c_loc(cscRowInd(1)), pBufferSizeInBytes)
+        cscColPtr), c_loc(cscRowInd), pBufferSizeInBytes)
     end function hipsparseXcscsort_bufferSizeExt_native
 
     function hipsparseXcscsort_bufferSizeExt_typed(handle, m, n, nnz, cscColPtr, cscRowInd, &
@@ -37543,13 +37307,13 @@ contains
       integer(c_int), value :: n
       integer(c_int), value :: nnz
       type(c_ptr), value :: descrA
-      integer(c_int), target :: cscColPtr(*)
-      integer(c_int), target :: cscRowInd(*)
-      integer(c_int), target :: P(*)
+      integer(c_int), target :: cscColPtr(..)
+      integer(c_int), target :: cscRowInd(..)
+      integer(c_int), target :: P(..)
       type(c_ptr), value :: pBuffer
       integer(c_int) :: Xcscsort
-      Xcscsort = hipsparseXcscsort_raw(handle, m, n, nnz, descrA, c_loc(cscColPtr(1)), c_loc( &
-        cscRowInd(1)), c_loc(P(1)), pBuffer)
+      Xcscsort = hipsparseXcscsort_raw(handle, m, n, nnz, descrA, c_loc(cscColPtr), c_loc( &
+        cscRowInd), c_loc(P), pBuffer)
     end function hipsparseXcscsort_native
 
     function hipsparseXcscsort_typed(handle, m, n, nnz, descrA, cscColPtr, cscRowInd, P, &
@@ -37580,15 +37344,15 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       type(c_ptr), value :: descrA
-      integer(c_int), target :: csrRowPtrA(*)
-      integer(c_int), target :: csrColIndA(*)
+      integer(c_int), target :: csrRowPtrA(..)
+      integer(c_int), target :: csrColIndA(..)
       integer(c_int), value :: blockDim
       type(c_ptr), value :: descrC
-      integer(c_int), target :: bsrRowPtrC(*)
-      integer(c_int), target :: bsrNnzb(*)
+      integer(c_int), target :: bsrRowPtrC(..)
+      integer(c_int), target :: bsrNnzb(..)
       integer(c_int) :: Xcsr2bsrNnz
-      Xcsr2bsrNnz = hipsparseXcsr2bsrNnz_raw(handle, dirA, m, n, descrA, c_loc(csrRowPtrA(1)), &
-        c_loc(csrColIndA(1)), blockDim, descrC, c_loc(bsrRowPtrC(1)), c_loc(bsrNnzb(1)))
+      Xcsr2bsrNnz = hipsparseXcsr2bsrNnz_raw(handle, dirA, m, n, descrA, c_loc(csrRowPtrA), c_loc( &
+        csrColIndA), blockDim, descrC, c_loc(bsrRowPtrC), c_loc(bsrNnzb))
     end function hipsparseXcsr2bsrNnz_native
 
     function hipsparseXcsr2bsrNnz_typed(handle, dirA, m, n, descrA, csrRowPtrA, csrColIndA, &
@@ -37621,18 +37385,18 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       type(c_ptr), value :: descrA
-      real(c_float), target :: csrValA(*)
-      integer(c_int), target :: csrRowPtrA(*)
-      integer(c_int), target :: csrColIndA(*)
+      real(c_float), target :: csrValA(..)
+      integer(c_int), target :: csrRowPtrA(..)
+      integer(c_int), target :: csrColIndA(..)
       integer(c_int), value :: blockDim
       type(c_ptr), value :: descrC
-      real(c_float), target :: bsrValC(*)
-      integer(c_int), target :: bsrRowPtrC(*)
-      integer(c_int), target :: bsrColIndC(*)
+      real(c_float), target :: bsrValC(..)
+      integer(c_int), target :: bsrRowPtrC(..)
+      integer(c_int), target :: bsrColIndC(..)
       integer(c_int) :: Scsr2bsr
-      Scsr2bsr = hipsparseScsr2bsr_raw(handle, dirA, m, n, descrA, c_loc(csrValA(1)), c_loc( &
-        csrRowPtrA(1)), c_loc(csrColIndA(1)), blockDim, descrC, c_loc(bsrValC(1)), c_loc( &
-        bsrRowPtrC(1)), c_loc(bsrColIndC(1)))
+      Scsr2bsr = hipsparseScsr2bsr_raw(handle, dirA, m, n, descrA, c_loc(csrValA), c_loc( &
+        csrRowPtrA), c_loc(csrColIndA), blockDim, descrC, c_loc(bsrValC), c_loc(bsrRowPtrC), &
+        c_loc(bsrColIndC))
     end function hipsparseScsr2bsr_native
 
     function hipsparseScsr2bsr_typed(handle, dirA, m, n, descrA, csrValA, csrRowPtrA, csrColIndA, &
@@ -37667,18 +37431,18 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       type(c_ptr), value :: descrA
-      real(c_double), target :: csrValA(*)
-      integer(c_int), target :: csrRowPtrA(*)
-      integer(c_int), target :: csrColIndA(*)
+      real(c_double), target :: csrValA(..)
+      integer(c_int), target :: csrRowPtrA(..)
+      integer(c_int), target :: csrColIndA(..)
       integer(c_int), value :: blockDim
       type(c_ptr), value :: descrC
-      real(c_double), target :: bsrValC(*)
-      integer(c_int), target :: bsrRowPtrC(*)
-      integer(c_int), target :: bsrColIndC(*)
+      real(c_double), target :: bsrValC(..)
+      integer(c_int), target :: bsrRowPtrC(..)
+      integer(c_int), target :: bsrColIndC(..)
       integer(c_int) :: Dcsr2bsr
-      Dcsr2bsr = hipsparseDcsr2bsr_raw(handle, dirA, m, n, descrA, c_loc(csrValA(1)), c_loc( &
-        csrRowPtrA(1)), c_loc(csrColIndA(1)), blockDim, descrC, c_loc(bsrValC(1)), c_loc( &
-        bsrRowPtrC(1)), c_loc(bsrColIndC(1)))
+      Dcsr2bsr = hipsparseDcsr2bsr_raw(handle, dirA, m, n, descrA, c_loc(csrValA), c_loc( &
+        csrRowPtrA), c_loc(csrColIndA), blockDim, descrC, c_loc(bsrValC), c_loc(bsrRowPtrC), &
+        c_loc(bsrColIndC))
     end function hipsparseDcsr2bsr_native
 
     function hipsparseDcsr2bsr_typed(handle, dirA, m, n, descrA, csrValA, csrRowPtrA, csrColIndA, &
@@ -37713,18 +37477,18 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       type(c_ptr), value :: descrA
-      complex(c_float_complex), target :: csrValA(*)
-      integer(c_int), target :: csrRowPtrA(*)
-      integer(c_int), target :: csrColIndA(*)
+      complex(c_float_complex), target :: csrValA(..)
+      integer(c_int), target :: csrRowPtrA(..)
+      integer(c_int), target :: csrColIndA(..)
       integer(c_int), value :: blockDim
       type(c_ptr), value :: descrC
-      complex(c_float_complex), target :: bsrValC(*)
-      integer(c_int), target :: bsrRowPtrC(*)
-      integer(c_int), target :: bsrColIndC(*)
+      complex(c_float_complex), target :: bsrValC(..)
+      integer(c_int), target :: bsrRowPtrC(..)
+      integer(c_int), target :: bsrColIndC(..)
       integer(c_int) :: Ccsr2bsr
-      Ccsr2bsr = hipsparseCcsr2bsr_raw(handle, dirA, m, n, descrA, c_loc(csrValA(1)), c_loc( &
-        csrRowPtrA(1)), c_loc(csrColIndA(1)), blockDim, descrC, c_loc(bsrValC(1)), c_loc( &
-        bsrRowPtrC(1)), c_loc(bsrColIndC(1)))
+      Ccsr2bsr = hipsparseCcsr2bsr_raw(handle, dirA, m, n, descrA, c_loc(csrValA), c_loc( &
+        csrRowPtrA), c_loc(csrColIndA), blockDim, descrC, c_loc(bsrValC), c_loc(bsrRowPtrC), &
+        c_loc(bsrColIndC))
     end function hipsparseCcsr2bsr_native
 
     function hipsparseCcsr2bsr_typed(handle, dirA, m, n, descrA, csrValA, csrRowPtrA, csrColIndA, &
@@ -37759,18 +37523,18 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       type(c_ptr), value :: descrA
-      complex(c_double_complex), target :: csrValA(*)
-      integer(c_int), target :: csrRowPtrA(*)
-      integer(c_int), target :: csrColIndA(*)
+      complex(c_double_complex), target :: csrValA(..)
+      integer(c_int), target :: csrRowPtrA(..)
+      integer(c_int), target :: csrColIndA(..)
       integer(c_int), value :: blockDim
       type(c_ptr), value :: descrC
-      complex(c_double_complex), target :: bsrValC(*)
-      integer(c_int), target :: bsrRowPtrC(*)
-      integer(c_int), target :: bsrColIndC(*)
+      complex(c_double_complex), target :: bsrValC(..)
+      integer(c_int), target :: bsrRowPtrC(..)
+      integer(c_int), target :: bsrColIndC(..)
       integer(c_int) :: Zcsr2bsr
-      Zcsr2bsr = hipsparseZcsr2bsr_raw(handle, dirA, m, n, descrA, c_loc(csrValA(1)), c_loc( &
-        csrRowPtrA(1)), c_loc(csrColIndA(1)), blockDim, descrC, c_loc(bsrValC(1)), c_loc( &
-        bsrRowPtrC(1)), c_loc(bsrColIndC(1)))
+      Zcsr2bsr = hipsparseZcsr2bsr_raw(handle, dirA, m, n, descrA, c_loc(csrValA), c_loc( &
+        csrRowPtrA), c_loc(csrColIndA), blockDim, descrC, c_loc(bsrValC), c_loc(bsrRowPtrC), &
+        c_loc(bsrColIndC))
     end function hipsparseZcsr2bsr_native
 
     function hipsparseZcsr2bsr_typed(handle, dirA, m, n, descrA, csrValA, csrRowPtrA, csrColIndA, &
@@ -37801,14 +37565,13 @@ contains
       use, intrinsic :: iso_c_binding
       implicit none
       type(c_ptr), value :: handle
-      integer(c_int), target :: csrRowPtr(*)
+      integer(c_int), target :: csrRowPtr(..)
       integer(c_int), value :: nnz
       integer(c_int), value :: m
-      integer(c_int), target :: cooRowInd(*)
+      integer(c_int), target :: cooRowInd(..)
       integer(c_int), value :: idxBase
       integer(c_int) :: Xcsr2coo
-      Xcsr2coo = hipsparseXcsr2coo_raw(handle, c_loc(csrRowPtr(1)), nnz, m, c_loc(cooRowInd(1)), &
-        idxBase)
+      Xcsr2coo = hipsparseXcsr2coo_raw(handle, c_loc(csrRowPtr), nnz, m, c_loc(cooRowInd), idxBase)
     end function hipsparseXcsr2coo_native
 
     function hipsparseXcsr2coo_typed(handle, csrRowPtr, nnz, m, cooRowInd, idxBase) result(Xcsr2coo)
@@ -37834,18 +37597,18 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       integer(c_int), value :: nnz
-      real(c_float), target :: csrSortedVal(*)
-      integer(c_int), target :: csrSortedRowPtr(*)
-      integer(c_int), target :: csrSortedColInd(*)
-      real(c_float), target :: cscSortedVal(*)
-      integer(c_int), target :: cscSortedRowInd(*)
-      integer(c_int), target :: cscSortedColPtr(*)
+      real(c_float), target :: csrSortedVal(..)
+      integer(c_int), target :: csrSortedRowPtr(..)
+      integer(c_int), target :: csrSortedColInd(..)
+      real(c_float), target :: cscSortedVal(..)
+      integer(c_int), target :: cscSortedRowInd(..)
+      integer(c_int), target :: cscSortedColPtr(..)
       integer(c_int), value :: copyValues
       integer(c_int), value :: idxBase
       integer(c_int) :: Scsr2csc
-      Scsr2csc = hipsparseScsr2csc_raw(handle, m, n, nnz, c_loc(csrSortedVal(1)), c_loc( &
-        csrSortedRowPtr(1)), c_loc(csrSortedColInd(1)), c_loc(cscSortedVal(1)), c_loc( &
-        cscSortedRowInd(1)), c_loc(cscSortedColPtr(1)), copyValues, idxBase)
+      Scsr2csc = hipsparseScsr2csc_raw(handle, m, n, nnz, c_loc(csrSortedVal), c_loc( &
+        csrSortedRowPtr), c_loc(csrSortedColInd), c_loc(cscSortedVal), c_loc(cscSortedRowInd), &
+        c_loc(cscSortedColPtr), copyValues, idxBase)
     end function hipsparseScsr2csc_native
 
     function hipsparseScsr2csc_typed(handle, m, n, nnz, csrSortedVal, csrSortedRowPtr, &
@@ -37880,18 +37643,18 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       integer(c_int), value :: nnz
-      real(c_double), target :: csrSortedVal(*)
-      integer(c_int), target :: csrSortedRowPtr(*)
-      integer(c_int), target :: csrSortedColInd(*)
-      real(c_double), target :: cscSortedVal(*)
-      integer(c_int), target :: cscSortedRowInd(*)
-      integer(c_int), target :: cscSortedColPtr(*)
+      real(c_double), target :: csrSortedVal(..)
+      integer(c_int), target :: csrSortedRowPtr(..)
+      integer(c_int), target :: csrSortedColInd(..)
+      real(c_double), target :: cscSortedVal(..)
+      integer(c_int), target :: cscSortedRowInd(..)
+      integer(c_int), target :: cscSortedColPtr(..)
       integer(c_int), value :: copyValues
       integer(c_int), value :: idxBase
       integer(c_int) :: Dcsr2csc
-      Dcsr2csc = hipsparseDcsr2csc_raw(handle, m, n, nnz, c_loc(csrSortedVal(1)), c_loc( &
-        csrSortedRowPtr(1)), c_loc(csrSortedColInd(1)), c_loc(cscSortedVal(1)), c_loc( &
-        cscSortedRowInd(1)), c_loc(cscSortedColPtr(1)), copyValues, idxBase)
+      Dcsr2csc = hipsparseDcsr2csc_raw(handle, m, n, nnz, c_loc(csrSortedVal), c_loc( &
+        csrSortedRowPtr), c_loc(csrSortedColInd), c_loc(cscSortedVal), c_loc(cscSortedRowInd), &
+        c_loc(cscSortedColPtr), copyValues, idxBase)
     end function hipsparseDcsr2csc_native
 
     function hipsparseDcsr2csc_typed(handle, m, n, nnz, csrSortedVal, csrSortedRowPtr, &
@@ -37926,18 +37689,18 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       integer(c_int), value :: nnz
-      complex(c_float_complex), target :: csrSortedVal(*)
-      integer(c_int), target :: csrSortedRowPtr(*)
-      integer(c_int), target :: csrSortedColInd(*)
-      complex(c_float_complex), target :: cscSortedVal(*)
-      integer(c_int), target :: cscSortedRowInd(*)
-      integer(c_int), target :: cscSortedColPtr(*)
+      complex(c_float_complex), target :: csrSortedVal(..)
+      integer(c_int), target :: csrSortedRowPtr(..)
+      integer(c_int), target :: csrSortedColInd(..)
+      complex(c_float_complex), target :: cscSortedVal(..)
+      integer(c_int), target :: cscSortedRowInd(..)
+      integer(c_int), target :: cscSortedColPtr(..)
       integer(c_int), value :: copyValues
       integer(c_int), value :: idxBase
       integer(c_int) :: Ccsr2csc
-      Ccsr2csc = hipsparseCcsr2csc_raw(handle, m, n, nnz, c_loc(csrSortedVal(1)), c_loc( &
-        csrSortedRowPtr(1)), c_loc(csrSortedColInd(1)), c_loc(cscSortedVal(1)), c_loc( &
-        cscSortedRowInd(1)), c_loc(cscSortedColPtr(1)), copyValues, idxBase)
+      Ccsr2csc = hipsparseCcsr2csc_raw(handle, m, n, nnz, c_loc(csrSortedVal), c_loc( &
+        csrSortedRowPtr), c_loc(csrSortedColInd), c_loc(cscSortedVal), c_loc(cscSortedRowInd), &
+        c_loc(cscSortedColPtr), copyValues, idxBase)
     end function hipsparseCcsr2csc_native
 
     function hipsparseCcsr2csc_typed(handle, m, n, nnz, csrSortedVal, csrSortedRowPtr, &
@@ -37972,18 +37735,18 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       integer(c_int), value :: nnz
-      complex(c_double_complex), target :: csrSortedVal(*)
-      integer(c_int), target :: csrSortedRowPtr(*)
-      integer(c_int), target :: csrSortedColInd(*)
-      complex(c_double_complex), target :: cscSortedVal(*)
-      integer(c_int), target :: cscSortedRowInd(*)
-      integer(c_int), target :: cscSortedColPtr(*)
+      complex(c_double_complex), target :: csrSortedVal(..)
+      integer(c_int), target :: csrSortedRowPtr(..)
+      integer(c_int), target :: csrSortedColInd(..)
+      complex(c_double_complex), target :: cscSortedVal(..)
+      integer(c_int), target :: cscSortedRowInd(..)
+      integer(c_int), target :: cscSortedColPtr(..)
       integer(c_int), value :: copyValues
       integer(c_int), value :: idxBase
       integer(c_int) :: Zcsr2csc
-      Zcsr2csc = hipsparseZcsr2csc_raw(handle, m, n, nnz, c_loc(csrSortedVal(1)), c_loc( &
-        csrSortedRowPtr(1)), c_loc(csrSortedColInd(1)), c_loc(cscSortedVal(1)), c_loc( &
-        cscSortedRowInd(1)), c_loc(cscSortedColPtr(1)), copyValues, idxBase)
+      Zcsr2csc = hipsparseZcsr2csc_raw(handle, m, n, nnz, c_loc(csrSortedVal), c_loc( &
+        csrSortedRowPtr), c_loc(csrSortedColInd), c_loc(cscSortedVal), c_loc(cscSortedRowInd), &
+        c_loc(cscSortedColPtr), copyValues, idxBase)
     end function hipsparseZcsr2csc_native
 
     function hipsparseZcsr2csc_typed(handle, m, n, nnz, csrSortedVal, csrSortedRowPtr, &
@@ -38019,11 +37782,11 @@ contains
       integer(c_int), value :: n
       integer(c_int), value :: nnz
       type(c_ptr), value :: csrVal
-      integer(c_int), target :: csrRowPtr(*)
-      integer(c_int), target :: csrColInd(*)
+      integer(c_int), target :: csrRowPtr(..)
+      integer(c_int), target :: csrColInd(..)
       type(c_ptr), value :: cscVal
-      integer(c_int), target :: cscColPtr(*)
-      integer(c_int), target :: cscRowInd(*)
+      integer(c_int), target :: cscColPtr(..)
+      integer(c_int), target :: cscRowInd(..)
       integer(c_int), value :: valType
       integer(c_int), value :: copyValues
       integer(c_int), value :: idxBase
@@ -38031,8 +37794,8 @@ contains
       type(c_ptr), value :: pBufferSizeInBytes
       integer(c_int) :: Csr2cscEx2_bufferSize
       Csr2cscEx2_bufferSize = hipsparseCsr2cscEx2_bufferSize_raw(handle, m, n, nnz, csrVal, c_loc( &
-        csrRowPtr(1)), c_loc(csrColInd(1)), cscVal, c_loc(cscColPtr(1)), c_loc(cscRowInd(1)), &
-        valType, copyValues, idxBase, alg, pBufferSizeInBytes)
+        csrRowPtr), c_loc(csrColInd), cscVal, c_loc(cscColPtr), c_loc(cscRowInd), valType, &
+        copyValues, idxBase, alg, pBufferSizeInBytes)
     end function hipsparseCsr2cscEx2_bufferSize_native
 
     function hipsparseCsr2cscEx2_bufferSize_typed(handle, m, n, nnz, csrVal, csrRowPtr, csrColInd, &
@@ -38071,20 +37834,20 @@ contains
       integer(c_int), value :: n
       integer(c_int), value :: nnz
       type(c_ptr), value :: csrVal
-      integer(c_int), target :: csrRowPtr(*)
-      integer(c_int), target :: csrColInd(*)
+      integer(c_int), target :: csrRowPtr(..)
+      integer(c_int), target :: csrColInd(..)
       type(c_ptr), value :: cscVal
-      integer(c_int), target :: cscColPtr(*)
-      integer(c_int), target :: cscRowInd(*)
+      integer(c_int), target :: cscColPtr(..)
+      integer(c_int), target :: cscRowInd(..)
       integer(c_int), value :: valType
       integer(c_int), value :: copyValues
       integer(c_int), value :: idxBase
       integer(c_int), value :: alg
       type(c_ptr), value :: buffer
       integer(c_int) :: Csr2cscEx2
-      Csr2cscEx2 = hipsparseCsr2cscEx2_raw(handle, m, n, nnz, csrVal, c_loc(csrRowPtr(1)), c_loc( &
-        csrColInd(1)), cscVal, c_loc(cscColPtr(1)), c_loc(cscRowInd(1)), valType, copyValues, &
-        idxBase, alg, buffer)
+      Csr2cscEx2 = hipsparseCsr2cscEx2_raw(handle, m, n, nnz, csrVal, c_loc(csrRowPtr), c_loc( &
+        csrColInd), cscVal, c_loc(cscColPtr), c_loc(cscRowInd), valType, copyValues, idxBase, alg, &
+        buffer)
     end function hipsparseCsr2cscEx2_native
 
     function hipsparseCsr2cscEx2_typed(handle, m, n, nnz, csrVal, csrRowPtr, csrColInd, cscVal, &
@@ -38120,19 +37883,19 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       type(c_ptr), value :: descrA
-      real(c_float), target :: csrValA(*)
-      integer(c_int), target :: csrColIndA(*)
-      integer(c_int), target :: csrRowPtrA(*)
+      real(c_float), target :: csrValA(..)
+      integer(c_int), target :: csrColIndA(..)
+      integer(c_int), target :: csrRowPtrA(..)
       integer(c_int), value :: nnzA
-      integer(c_int), target :: nnzPerRow(*)
-      real(c_float), target :: csrValC(*)
-      integer(c_int), target :: csrColIndC(*)
-      integer(c_int), target :: csrRowPtrC(*)
+      integer(c_int), target :: nnzPerRow(..)
+      real(c_float), target :: csrValC(..)
+      integer(c_int), target :: csrColIndC(..)
+      integer(c_int), target :: csrRowPtrC(..)
       real(c_float), value :: tol
       integer(c_int) :: Scsr2csr_compress
-      Scsr2csr_compress = hipsparseScsr2csr_compress_raw(handle, m, n, descrA, c_loc(csrValA(1)), &
-        c_loc(csrColIndA(1)), c_loc(csrRowPtrA(1)), nnzA, c_loc(nnzPerRow(1)), c_loc(csrValC(1)), &
-        c_loc(csrColIndC(1)), c_loc(csrRowPtrC(1)), tol)
+      Scsr2csr_compress = hipsparseScsr2csr_compress_raw(handle, m, n, descrA, c_loc(csrValA), &
+        c_loc(csrColIndA), c_loc(csrRowPtrA), nnzA, c_loc(nnzPerRow), c_loc(csrValC), c_loc( &
+        csrColIndC), c_loc(csrRowPtrC), tol)
     end function hipsparseScsr2csr_compress_native
 
     function hipsparseScsr2csr_compress_typed(handle, m, n, descrA, csrValA, csrColIndA, &
@@ -38166,19 +37929,19 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       type(c_ptr), value :: descrA
-      real(c_double), target :: csrValA(*)
-      integer(c_int), target :: csrColIndA(*)
-      integer(c_int), target :: csrRowPtrA(*)
+      real(c_double), target :: csrValA(..)
+      integer(c_int), target :: csrColIndA(..)
+      integer(c_int), target :: csrRowPtrA(..)
       integer(c_int), value :: nnzA
-      integer(c_int), target :: nnzPerRow(*)
-      real(c_double), target :: csrValC(*)
-      integer(c_int), target :: csrColIndC(*)
-      integer(c_int), target :: csrRowPtrC(*)
+      integer(c_int), target :: nnzPerRow(..)
+      real(c_double), target :: csrValC(..)
+      integer(c_int), target :: csrColIndC(..)
+      integer(c_int), target :: csrRowPtrC(..)
       real(c_double), value :: tol
       integer(c_int) :: Dcsr2csr_compress
-      Dcsr2csr_compress = hipsparseDcsr2csr_compress_raw(handle, m, n, descrA, c_loc(csrValA(1)), &
-        c_loc(csrColIndA(1)), c_loc(csrRowPtrA(1)), nnzA, c_loc(nnzPerRow(1)), c_loc(csrValC(1)), &
-        c_loc(csrColIndC(1)), c_loc(csrRowPtrC(1)), tol)
+      Dcsr2csr_compress = hipsparseDcsr2csr_compress_raw(handle, m, n, descrA, c_loc(csrValA), &
+        c_loc(csrColIndA), c_loc(csrRowPtrA), nnzA, c_loc(nnzPerRow), c_loc(csrValC), c_loc( &
+        csrColIndC), c_loc(csrRowPtrC), tol)
     end function hipsparseDcsr2csr_compress_native
 
     function hipsparseDcsr2csr_compress_typed(handle, m, n, descrA, csrValA, csrColIndA, &
@@ -38212,19 +37975,19 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       type(c_ptr), value :: descrA
-      complex(c_float_complex), target :: csrValA(*)
-      integer(c_int), target :: csrColIndA(*)
-      integer(c_int), target :: csrRowPtrA(*)
+      complex(c_float_complex), target :: csrValA(..)
+      integer(c_int), target :: csrColIndA(..)
+      integer(c_int), target :: csrRowPtrA(..)
       integer(c_int), value :: nnzA
-      integer(c_int), target :: nnzPerRow(*)
-      complex(c_float_complex), target :: csrValC(*)
-      integer(c_int), target :: csrColIndC(*)
-      integer(c_int), target :: csrRowPtrC(*)
+      integer(c_int), target :: nnzPerRow(..)
+      complex(c_float_complex), target :: csrValC(..)
+      integer(c_int), target :: csrColIndC(..)
+      integer(c_int), target :: csrRowPtrC(..)
       complex(c_float_complex), value :: tol
       integer(c_int) :: Ccsr2csr_compress
-      Ccsr2csr_compress = hipsparseCcsr2csr_compress_raw(handle, m, n, descrA, c_loc(csrValA(1)), &
-        c_loc(csrColIndA(1)), c_loc(csrRowPtrA(1)), nnzA, c_loc(nnzPerRow(1)), c_loc(csrValC(1)), &
-        c_loc(csrColIndC(1)), c_loc(csrRowPtrC(1)), tol)
+      Ccsr2csr_compress = hipsparseCcsr2csr_compress_raw(handle, m, n, descrA, c_loc(csrValA), &
+        c_loc(csrColIndA), c_loc(csrRowPtrA), nnzA, c_loc(nnzPerRow), c_loc(csrValC), c_loc( &
+        csrColIndC), c_loc(csrRowPtrC), tol)
     end function hipsparseCcsr2csr_compress_native
 
     function hipsparseCcsr2csr_compress_typed(handle, m, n, descrA, csrValA, csrColIndA, &
@@ -38258,19 +38021,19 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       type(c_ptr), value :: descrA
-      complex(c_double_complex), target :: csrValA(*)
-      integer(c_int), target :: csrColIndA(*)
-      integer(c_int), target :: csrRowPtrA(*)
+      complex(c_double_complex), target :: csrValA(..)
+      integer(c_int), target :: csrColIndA(..)
+      integer(c_int), target :: csrRowPtrA(..)
       integer(c_int), value :: nnzA
-      integer(c_int), target :: nnzPerRow(*)
-      complex(c_double_complex), target :: csrValC(*)
-      integer(c_int), target :: csrColIndC(*)
-      integer(c_int), target :: csrRowPtrC(*)
+      integer(c_int), target :: nnzPerRow(..)
+      complex(c_double_complex), target :: csrValC(..)
+      integer(c_int), target :: csrColIndC(..)
+      integer(c_int), target :: csrRowPtrC(..)
       complex(c_double_complex), value :: tol
       integer(c_int) :: Zcsr2csr_compress
-      Zcsr2csr_compress = hipsparseZcsr2csr_compress_raw(handle, m, n, descrA, c_loc(csrValA(1)), &
-        c_loc(csrColIndA(1)), c_loc(csrRowPtrA(1)), nnzA, c_loc(nnzPerRow(1)), c_loc(csrValC(1)), &
-        c_loc(csrColIndC(1)), c_loc(csrRowPtrC(1)), tol)
+      Zcsr2csr_compress = hipsparseZcsr2csr_compress_raw(handle, m, n, descrA, c_loc(csrValA), &
+        c_loc(csrColIndA), c_loc(csrRowPtrA), nnzA, c_loc(nnzPerRow), c_loc(csrValC), c_loc( &
+        csrColIndC), c_loc(csrRowPtrC), tol)
     end function hipsparseZcsr2csr_compress_native
 
     function hipsparseZcsr2csr_compress_typed(handle, m, n, descrA, csrValA, csrColIndA, &
@@ -38305,14 +38068,14 @@ contains
       integer(c_int), value :: n
       integer(c_int), value :: nnz
       type(c_ptr), value :: descrA
-      real(c_float), target :: csrVal(*)
-      integer(c_int), target :: csrRowPtr(*)
-      integer(c_int), target :: csrColInd(*)
+      real(c_float), target :: csrVal(..)
+      integer(c_int), target :: csrRowPtr(..)
+      integer(c_int), target :: csrColInd(..)
       type(c_ptr), value :: info
       type(c_ptr), value :: pBuffer
       integer(c_int) :: Scsr2csru
-      Scsr2csru = hipsparseScsr2csru_raw(handle, m, n, nnz, descrA, c_loc(csrVal(1)), c_loc( &
-        csrRowPtr(1)), c_loc(csrColInd(1)), info, pBuffer)
+      Scsr2csru = hipsparseScsr2csru_raw(handle, m, n, nnz, descrA, c_loc(csrVal), c_loc( &
+        csrRowPtr), c_loc(csrColInd), info, pBuffer)
     end function hipsparseScsr2csru_native
 
     function hipsparseScsr2csru_typed(handle, m, n, nnz, descrA, csrVal, csrRowPtr, csrColInd, &
@@ -38344,14 +38107,14 @@ contains
       integer(c_int), value :: n
       integer(c_int), value :: nnz
       type(c_ptr), value :: descrA
-      real(c_double), target :: csrVal(*)
-      integer(c_int), target :: csrRowPtr(*)
-      integer(c_int), target :: csrColInd(*)
+      real(c_double), target :: csrVal(..)
+      integer(c_int), target :: csrRowPtr(..)
+      integer(c_int), target :: csrColInd(..)
       type(c_ptr), value :: info
       type(c_ptr), value :: pBuffer
       integer(c_int) :: Dcsr2csru
-      Dcsr2csru = hipsparseDcsr2csru_raw(handle, m, n, nnz, descrA, c_loc(csrVal(1)), c_loc( &
-        csrRowPtr(1)), c_loc(csrColInd(1)), info, pBuffer)
+      Dcsr2csru = hipsparseDcsr2csru_raw(handle, m, n, nnz, descrA, c_loc(csrVal), c_loc( &
+        csrRowPtr), c_loc(csrColInd), info, pBuffer)
     end function hipsparseDcsr2csru_native
 
     function hipsparseDcsr2csru_typed(handle, m, n, nnz, descrA, csrVal, csrRowPtr, csrColInd, &
@@ -38383,14 +38146,14 @@ contains
       integer(c_int), value :: n
       integer(c_int), value :: nnz
       type(c_ptr), value :: descrA
-      complex(c_float_complex), target :: csrVal(*)
-      integer(c_int), target :: csrRowPtr(*)
-      integer(c_int), target :: csrColInd(*)
+      complex(c_float_complex), target :: csrVal(..)
+      integer(c_int), target :: csrRowPtr(..)
+      integer(c_int), target :: csrColInd(..)
       type(c_ptr), value :: info
       type(c_ptr), value :: pBuffer
       integer(c_int) :: Ccsr2csru
-      Ccsr2csru = hipsparseCcsr2csru_raw(handle, m, n, nnz, descrA, c_loc(csrVal(1)), c_loc( &
-        csrRowPtr(1)), c_loc(csrColInd(1)), info, pBuffer)
+      Ccsr2csru = hipsparseCcsr2csru_raw(handle, m, n, nnz, descrA, c_loc(csrVal), c_loc( &
+        csrRowPtr), c_loc(csrColInd), info, pBuffer)
     end function hipsparseCcsr2csru_native
 
     function hipsparseCcsr2csru_typed(handle, m, n, nnz, descrA, csrVal, csrRowPtr, csrColInd, &
@@ -38422,14 +38185,14 @@ contains
       integer(c_int), value :: n
       integer(c_int), value :: nnz
       type(c_ptr), value :: descrA
-      complex(c_double_complex), target :: csrVal(*)
-      integer(c_int), target :: csrRowPtr(*)
-      integer(c_int), target :: csrColInd(*)
+      complex(c_double_complex), target :: csrVal(..)
+      integer(c_int), target :: csrRowPtr(..)
+      integer(c_int), target :: csrColInd(..)
       type(c_ptr), value :: info
       type(c_ptr), value :: pBuffer
       integer(c_int) :: Zcsr2csru
-      Zcsr2csru = hipsparseZcsr2csru_raw(handle, m, n, nnz, descrA, c_loc(csrVal(1)), c_loc( &
-        csrRowPtr(1)), c_loc(csrColInd(1)), info, pBuffer)
+      Zcsr2csru = hipsparseZcsr2csru_raw(handle, m, n, nnz, descrA, c_loc(csrVal), c_loc( &
+        csrRowPtr), c_loc(csrColInd), info, pBuffer)
     end function hipsparseZcsr2csru_native
 
     function hipsparseZcsr2csru_typed(handle, m, n, nnz, descrA, csrVal, csrRowPtr, csrColInd, &
@@ -38460,14 +38223,14 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       type(c_ptr), value :: descr
-      real(c_float), target :: csrVal(*)
-      integer(c_int), target :: csrRowPtr(*)
-      integer(c_int), target :: csrColInd(*)
-      real(c_float), target :: A(*)
+      real(c_float), target :: csrVal(..)
+      integer(c_int), target :: csrRowPtr(..)
+      integer(c_int), target :: csrColInd(..)
+      real(c_float), target :: A(..)
       integer(c_int), value :: ld
       integer(c_int) :: Scsr2dense
-      Scsr2dense = hipsparseScsr2dense_raw(handle, m, n, descr, c_loc(csrVal(1)), c_loc(csrRowPtr( &
-        1)), c_loc(csrColInd(1)), c_loc(A(1)), ld)
+      Scsr2dense = hipsparseScsr2dense_raw(handle, m, n, descr, c_loc(csrVal), c_loc(csrRowPtr), &
+        c_loc(csrColInd), c_loc(A), ld)
     end function hipsparseScsr2dense_native
 
     function hipsparseScsr2dense_typed(handle, m, n, descr, csrVal, csrRowPtr, csrColInd, A, &
@@ -38497,14 +38260,14 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       type(c_ptr), value :: descr
-      real(c_double), target :: csrVal(*)
-      integer(c_int), target :: csrRowPtr(*)
-      integer(c_int), target :: csrColInd(*)
-      real(c_double), target :: A(*)
+      real(c_double), target :: csrVal(..)
+      integer(c_int), target :: csrRowPtr(..)
+      integer(c_int), target :: csrColInd(..)
+      real(c_double), target :: A(..)
       integer(c_int), value :: ld
       integer(c_int) :: Dcsr2dense
-      Dcsr2dense = hipsparseDcsr2dense_raw(handle, m, n, descr, c_loc(csrVal(1)), c_loc(csrRowPtr( &
-        1)), c_loc(csrColInd(1)), c_loc(A(1)), ld)
+      Dcsr2dense = hipsparseDcsr2dense_raw(handle, m, n, descr, c_loc(csrVal), c_loc(csrRowPtr), &
+        c_loc(csrColInd), c_loc(A), ld)
     end function hipsparseDcsr2dense_native
 
     function hipsparseDcsr2dense_typed(handle, m, n, descr, csrVal, csrRowPtr, csrColInd, A, &
@@ -38534,14 +38297,14 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       type(c_ptr), value :: descr
-      complex(c_float_complex), target :: csrVal(*)
-      integer(c_int), target :: csrRowPtr(*)
-      integer(c_int), target :: csrColInd(*)
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: csrVal(..)
+      integer(c_int), target :: csrRowPtr(..)
+      integer(c_int), target :: csrColInd(..)
+      complex(c_float_complex), target :: A(..)
       integer(c_int), value :: ld
       integer(c_int) :: Ccsr2dense
-      Ccsr2dense = hipsparseCcsr2dense_raw(handle, m, n, descr, c_loc(csrVal(1)), c_loc(csrRowPtr( &
-        1)), c_loc(csrColInd(1)), c_loc(A(1)), ld)
+      Ccsr2dense = hipsparseCcsr2dense_raw(handle, m, n, descr, c_loc(csrVal), c_loc(csrRowPtr), &
+        c_loc(csrColInd), c_loc(A), ld)
     end function hipsparseCcsr2dense_native
 
     function hipsparseCcsr2dense_typed(handle, m, n, descr, csrVal, csrRowPtr, csrColInd, A, &
@@ -38571,14 +38334,14 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       type(c_ptr), value :: descr
-      complex(c_double_complex), target :: csrVal(*)
-      integer(c_int), target :: csrRowPtr(*)
-      integer(c_int), target :: csrColInd(*)
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: csrVal(..)
+      integer(c_int), target :: csrRowPtr(..)
+      integer(c_int), target :: csrColInd(..)
+      complex(c_double_complex), target :: A(..)
       integer(c_int), value :: ld
       integer(c_int) :: Zcsr2dense
-      Zcsr2dense = hipsparseZcsr2dense_raw(handle, m, n, descr, c_loc(csrVal(1)), c_loc(csrRowPtr( &
-        1)), c_loc(csrColInd(1)), c_loc(A(1)), ld)
+      Zcsr2dense = hipsparseZcsr2dense_raw(handle, m, n, descr, c_loc(csrVal), c_loc(csrRowPtr), &
+        c_loc(csrColInd), c_loc(A), ld)
     end function hipsparseZcsr2dense_native
 
     function hipsparseZcsr2dense_typed(handle, m, n, descr, csrVal, csrRowPtr, csrColInd, A, &
@@ -38610,15 +38373,15 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       type(c_ptr), value :: csr_descr
-      real(c_float), target :: csrVal(*)
-      integer(c_int), target :: csrRowPtr(*)
-      integer(c_int), target :: csrColInd(*)
+      real(c_float), target :: csrVal(..)
+      integer(c_int), target :: csrRowPtr(..)
+      integer(c_int), target :: csrColInd(..)
       integer(c_int), value :: rowBlockDim
       integer(c_int), value :: colBlockDim
       type(c_ptr), value :: pBufferSizeInBytes
       integer(c_int) :: Scsr2gebsr_bufferSize
       Scsr2gebsr_bufferSize = hipsparseScsr2gebsr_bufferSize_raw(handle, dir, m, n, csr_descr, &
-        c_loc(csrVal(1)), c_loc(csrRowPtr(1)), c_loc(csrColInd(1)), rowBlockDim, colBlockDim, &
+        c_loc(csrVal), c_loc(csrRowPtr), c_loc(csrColInd), rowBlockDim, colBlockDim, &
         pBufferSizeInBytes)
     end function hipsparseScsr2gebsr_bufferSize_native
 
@@ -38653,15 +38416,15 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       type(c_ptr), value :: csr_descr
-      real(c_double), target :: csrVal(*)
-      integer(c_int), target :: csrRowPtr(*)
-      integer(c_int), target :: csrColInd(*)
+      real(c_double), target :: csrVal(..)
+      integer(c_int), target :: csrRowPtr(..)
+      integer(c_int), target :: csrColInd(..)
       integer(c_int), value :: rowBlockDim
       integer(c_int), value :: colBlockDim
       type(c_ptr), value :: pBufferSizeInBytes
       integer(c_int) :: Dcsr2gebsr_bufferSize
       Dcsr2gebsr_bufferSize = hipsparseDcsr2gebsr_bufferSize_raw(handle, dir, m, n, csr_descr, &
-        c_loc(csrVal(1)), c_loc(csrRowPtr(1)), c_loc(csrColInd(1)), rowBlockDim, colBlockDim, &
+        c_loc(csrVal), c_loc(csrRowPtr), c_loc(csrColInd), rowBlockDim, colBlockDim, &
         pBufferSizeInBytes)
     end function hipsparseDcsr2gebsr_bufferSize_native
 
@@ -38696,15 +38459,15 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       type(c_ptr), value :: csr_descr
-      complex(c_float_complex), target :: csrVal(*)
-      integer(c_int), target :: csrRowPtr(*)
-      integer(c_int), target :: csrColInd(*)
+      complex(c_float_complex), target :: csrVal(..)
+      integer(c_int), target :: csrRowPtr(..)
+      integer(c_int), target :: csrColInd(..)
       integer(c_int), value :: rowBlockDim
       integer(c_int), value :: colBlockDim
       type(c_ptr), value :: pBufferSizeInBytes
       integer(c_int) :: Ccsr2gebsr_bufferSize
       Ccsr2gebsr_bufferSize = hipsparseCcsr2gebsr_bufferSize_raw(handle, dir, m, n, csr_descr, &
-        c_loc(csrVal(1)), c_loc(csrRowPtr(1)), c_loc(csrColInd(1)), rowBlockDim, colBlockDim, &
+        c_loc(csrVal), c_loc(csrRowPtr), c_loc(csrColInd), rowBlockDim, colBlockDim, &
         pBufferSizeInBytes)
     end function hipsparseCcsr2gebsr_bufferSize_native
 
@@ -38739,15 +38502,15 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       type(c_ptr), value :: csr_descr
-      complex(c_double_complex), target :: csrVal(*)
-      integer(c_int), target :: csrRowPtr(*)
-      integer(c_int), target :: csrColInd(*)
+      complex(c_double_complex), target :: csrVal(..)
+      integer(c_int), target :: csrRowPtr(..)
+      integer(c_int), target :: csrColInd(..)
       integer(c_int), value :: rowBlockDim
       integer(c_int), value :: colBlockDim
       type(c_ptr), value :: pBufferSizeInBytes
       integer(c_int) :: Zcsr2gebsr_bufferSize
       Zcsr2gebsr_bufferSize = hipsparseZcsr2gebsr_bufferSize_raw(handle, dir, m, n, csr_descr, &
-        c_loc(csrVal(1)), c_loc(csrRowPtr(1)), c_loc(csrColInd(1)), rowBlockDim, colBlockDim, &
+        c_loc(csrVal), c_loc(csrRowPtr), c_loc(csrColInd), rowBlockDim, colBlockDim, &
         pBufferSizeInBytes)
     end function hipsparseZcsr2gebsr_bufferSize_native
 
@@ -38782,18 +38545,18 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       type(c_ptr), value :: csr_descr
-      integer(c_int), target :: csrRowPtr(*)
-      integer(c_int), target :: csrColInd(*)
+      integer(c_int), target :: csrRowPtr(..)
+      integer(c_int), target :: csrColInd(..)
       type(c_ptr), value :: bsr_descr
-      integer(c_int), target :: bsrRowPtr(*)
+      integer(c_int), target :: bsrRowPtr(..)
       integer(c_int), value :: rowBlockDim
       integer(c_int), value :: colBlockDim
-      integer(c_int), target :: bsrNnzDevhost(*)
+      integer(c_int), target :: bsrNnzDevhost(..)
       type(c_ptr), value :: pbuffer
       integer(c_int) :: Xcsr2gebsrNnz
-      Xcsr2gebsrNnz = hipsparseXcsr2gebsrNnz_raw(handle, dir, m, n, csr_descr, c_loc(csrRowPtr( &
-        1)), c_loc(csrColInd(1)), bsr_descr, c_loc(bsrRowPtr(1)), rowBlockDim, colBlockDim, c_loc( &
-        bsrNnzDevhost(1)), pbuffer)
+      Xcsr2gebsrNnz = hipsparseXcsr2gebsrNnz_raw(handle, dir, m, n, csr_descr, c_loc(csrRowPtr), &
+        c_loc(csrColInd), bsr_descr, c_loc(bsrRowPtr), rowBlockDim, colBlockDim, c_loc( &
+        bsrNnzDevhost), pbuffer)
     end function hipsparseXcsr2gebsrNnz_native
 
     function hipsparseXcsr2gebsrNnz_typed(handle, dir, m, n, csr_descr, csrRowPtr, csrColInd, &
@@ -38830,20 +38593,20 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       type(c_ptr), value :: csr_descr
-      real(c_float), target :: csrVal(*)
-      integer(c_int), target :: csrRowPtr(*)
-      integer(c_int), target :: csrColInd(*)
+      real(c_float), target :: csrVal(..)
+      integer(c_int), target :: csrRowPtr(..)
+      integer(c_int), target :: csrColInd(..)
       type(c_ptr), value :: bsr_descr
-      real(c_float), target :: bsrVal(*)
-      integer(c_int), target :: bsrRowPtr(*)
-      integer(c_int), target :: bsrColInd(*)
+      real(c_float), target :: bsrVal(..)
+      integer(c_int), target :: bsrRowPtr(..)
+      integer(c_int), target :: bsrColInd(..)
       integer(c_int), value :: rowBlockDim
       integer(c_int), value :: colBlockDim
       type(c_ptr), value :: pbuffer
       integer(c_int) :: Scsr2gebsr
-      Scsr2gebsr = hipsparseScsr2gebsr_raw(handle, dir, m, n, csr_descr, c_loc(csrVal(1)), c_loc( &
-        csrRowPtr(1)), c_loc(csrColInd(1)), bsr_descr, c_loc(bsrVal(1)), c_loc(bsrRowPtr(1)), &
-        c_loc(bsrColInd(1)), rowBlockDim, colBlockDim, pbuffer)
+      Scsr2gebsr = hipsparseScsr2gebsr_raw(handle, dir, m, n, csr_descr, c_loc(csrVal), c_loc( &
+        csrRowPtr), c_loc(csrColInd), bsr_descr, c_loc(bsrVal), c_loc(bsrRowPtr), c_loc( &
+        bsrColInd), rowBlockDim, colBlockDim, pbuffer)
     end function hipsparseScsr2gebsr_native
 
     function hipsparseScsr2gebsr_typed(handle, dir, m, n, csr_descr, csrVal, csrRowPtr, csrColInd, &
@@ -38883,20 +38646,20 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       type(c_ptr), value :: csr_descr
-      real(c_double), target :: csrVal(*)
-      integer(c_int), target :: csrRowPtr(*)
-      integer(c_int), target :: csrColInd(*)
+      real(c_double), target :: csrVal(..)
+      integer(c_int), target :: csrRowPtr(..)
+      integer(c_int), target :: csrColInd(..)
       type(c_ptr), value :: bsr_descr
-      real(c_double), target :: bsrVal(*)
-      integer(c_int), target :: bsrRowPtr(*)
-      integer(c_int), target :: bsrColInd(*)
+      real(c_double), target :: bsrVal(..)
+      integer(c_int), target :: bsrRowPtr(..)
+      integer(c_int), target :: bsrColInd(..)
       integer(c_int), value :: rowBlockDim
       integer(c_int), value :: colBlockDim
       type(c_ptr), value :: pbuffer
       integer(c_int) :: Dcsr2gebsr
-      Dcsr2gebsr = hipsparseDcsr2gebsr_raw(handle, dir, m, n, csr_descr, c_loc(csrVal(1)), c_loc( &
-        csrRowPtr(1)), c_loc(csrColInd(1)), bsr_descr, c_loc(bsrVal(1)), c_loc(bsrRowPtr(1)), &
-        c_loc(bsrColInd(1)), rowBlockDim, colBlockDim, pbuffer)
+      Dcsr2gebsr = hipsparseDcsr2gebsr_raw(handle, dir, m, n, csr_descr, c_loc(csrVal), c_loc( &
+        csrRowPtr), c_loc(csrColInd), bsr_descr, c_loc(bsrVal), c_loc(bsrRowPtr), c_loc( &
+        bsrColInd), rowBlockDim, colBlockDim, pbuffer)
     end function hipsparseDcsr2gebsr_native
 
     function hipsparseDcsr2gebsr_typed(handle, dir, m, n, csr_descr, csrVal, csrRowPtr, csrColInd, &
@@ -38936,20 +38699,20 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       type(c_ptr), value :: csr_descr
-      complex(c_float_complex), target :: csrVal(*)
-      integer(c_int), target :: csrRowPtr(*)
-      integer(c_int), target :: csrColInd(*)
+      complex(c_float_complex), target :: csrVal(..)
+      integer(c_int), target :: csrRowPtr(..)
+      integer(c_int), target :: csrColInd(..)
       type(c_ptr), value :: bsr_descr
-      complex(c_float_complex), target :: bsrVal(*)
-      integer(c_int), target :: bsrRowPtr(*)
-      integer(c_int), target :: bsrColInd(*)
+      complex(c_float_complex), target :: bsrVal(..)
+      integer(c_int), target :: bsrRowPtr(..)
+      integer(c_int), target :: bsrColInd(..)
       integer(c_int), value :: rowBlockDim
       integer(c_int), value :: colBlockDim
       type(c_ptr), value :: pbuffer
       integer(c_int) :: Ccsr2gebsr
-      Ccsr2gebsr = hipsparseCcsr2gebsr_raw(handle, dir, m, n, csr_descr, c_loc(csrVal(1)), c_loc( &
-        csrRowPtr(1)), c_loc(csrColInd(1)), bsr_descr, c_loc(bsrVal(1)), c_loc(bsrRowPtr(1)), &
-        c_loc(bsrColInd(1)), rowBlockDim, colBlockDim, pbuffer)
+      Ccsr2gebsr = hipsparseCcsr2gebsr_raw(handle, dir, m, n, csr_descr, c_loc(csrVal), c_loc( &
+        csrRowPtr), c_loc(csrColInd), bsr_descr, c_loc(bsrVal), c_loc(bsrRowPtr), c_loc( &
+        bsrColInd), rowBlockDim, colBlockDim, pbuffer)
     end function hipsparseCcsr2gebsr_native
 
     function hipsparseCcsr2gebsr_typed(handle, dir, m, n, csr_descr, csrVal, csrRowPtr, csrColInd, &
@@ -38989,20 +38752,20 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       type(c_ptr), value :: csr_descr
-      complex(c_double_complex), target :: csrVal(*)
-      integer(c_int), target :: csrRowPtr(*)
-      integer(c_int), target :: csrColInd(*)
+      complex(c_double_complex), target :: csrVal(..)
+      integer(c_int), target :: csrRowPtr(..)
+      integer(c_int), target :: csrColInd(..)
       type(c_ptr), value :: bsr_descr
-      complex(c_double_complex), target :: bsrVal(*)
-      integer(c_int), target :: bsrRowPtr(*)
-      integer(c_int), target :: bsrColInd(*)
+      complex(c_double_complex), target :: bsrVal(..)
+      integer(c_int), target :: bsrRowPtr(..)
+      integer(c_int), target :: bsrColInd(..)
       integer(c_int), value :: rowBlockDim
       integer(c_int), value :: colBlockDim
       type(c_ptr), value :: pbuffer
       integer(c_int) :: Zcsr2gebsr
-      Zcsr2gebsr = hipsparseZcsr2gebsr_raw(handle, dir, m, n, csr_descr, c_loc(csrVal(1)), c_loc( &
-        csrRowPtr(1)), c_loc(csrColInd(1)), bsr_descr, c_loc(bsrVal(1)), c_loc(bsrRowPtr(1)), &
-        c_loc(bsrColInd(1)), rowBlockDim, colBlockDim, pbuffer)
+      Zcsr2gebsr = hipsparseZcsr2gebsr_raw(handle, dir, m, n, csr_descr, c_loc(csrVal), c_loc( &
+        csrRowPtr), c_loc(csrColInd), bsr_descr, c_loc(bsrVal), c_loc(bsrRowPtr), c_loc( &
+        bsrColInd), rowBlockDim, colBlockDim, pbuffer)
     end function hipsparseZcsr2gebsr_native
 
     function hipsparseZcsr2gebsr_typed(handle, dir, m, n, csr_descr, csrVal, csrRowPtr, csrColInd, &
@@ -39040,15 +38803,15 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       type(c_ptr), value :: descrA
-      real(c_float), target :: csrSortedValA(*)
-      integer(c_int), target :: csrSortedRowPtrA(*)
-      integer(c_int), target :: csrSortedColIndA(*)
+      real(c_float), target :: csrSortedValA(..)
+      integer(c_int), target :: csrSortedRowPtrA(..)
+      integer(c_int), target :: csrSortedColIndA(..)
       type(c_ptr), value :: hybA
       integer(c_int), value :: userEllWidth
       integer(c_int), value :: partitionType
       integer(c_int) :: Scsr2hyb
-      Scsr2hyb = hipsparseScsr2hyb_raw(handle, m, n, descrA, c_loc(csrSortedValA(1)), c_loc( &
-        csrSortedRowPtrA(1)), c_loc(csrSortedColIndA(1)), hybA, userEllWidth, partitionType)
+      Scsr2hyb = hipsparseScsr2hyb_raw(handle, m, n, descrA, c_loc(csrSortedValA), c_loc( &
+        csrSortedRowPtrA), c_loc(csrSortedColIndA), hybA, userEllWidth, partitionType)
     end function hipsparseScsr2hyb_native
 
     function hipsparseScsr2hyb_typed(handle, m, n, descrA, csrSortedValA, csrSortedRowPtrA, &
@@ -39079,15 +38842,15 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       type(c_ptr), value :: descrA
-      real(c_double), target :: csrSortedValA(*)
-      integer(c_int), target :: csrSortedRowPtrA(*)
-      integer(c_int), target :: csrSortedColIndA(*)
+      real(c_double), target :: csrSortedValA(..)
+      integer(c_int), target :: csrSortedRowPtrA(..)
+      integer(c_int), target :: csrSortedColIndA(..)
       type(c_ptr), value :: hybA
       integer(c_int), value :: userEllWidth
       integer(c_int), value :: partitionType
       integer(c_int) :: Dcsr2hyb
-      Dcsr2hyb = hipsparseDcsr2hyb_raw(handle, m, n, descrA, c_loc(csrSortedValA(1)), c_loc( &
-        csrSortedRowPtrA(1)), c_loc(csrSortedColIndA(1)), hybA, userEllWidth, partitionType)
+      Dcsr2hyb = hipsparseDcsr2hyb_raw(handle, m, n, descrA, c_loc(csrSortedValA), c_loc( &
+        csrSortedRowPtrA), c_loc(csrSortedColIndA), hybA, userEllWidth, partitionType)
     end function hipsparseDcsr2hyb_native
 
     function hipsparseDcsr2hyb_typed(handle, m, n, descrA, csrSortedValA, csrSortedRowPtrA, &
@@ -39118,15 +38881,15 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       type(c_ptr), value :: descrA
-      complex(c_float_complex), target :: csrSortedValA(*)
-      integer(c_int), target :: csrSortedRowPtrA(*)
-      integer(c_int), target :: csrSortedColIndA(*)
+      complex(c_float_complex), target :: csrSortedValA(..)
+      integer(c_int), target :: csrSortedRowPtrA(..)
+      integer(c_int), target :: csrSortedColIndA(..)
       type(c_ptr), value :: hybA
       integer(c_int), value :: userEllWidth
       integer(c_int), value :: partitionType
       integer(c_int) :: Ccsr2hyb
-      Ccsr2hyb = hipsparseCcsr2hyb_raw(handle, m, n, descrA, c_loc(csrSortedValA(1)), c_loc( &
-        csrSortedRowPtrA(1)), c_loc(csrSortedColIndA(1)), hybA, userEllWidth, partitionType)
+      Ccsr2hyb = hipsparseCcsr2hyb_raw(handle, m, n, descrA, c_loc(csrSortedValA), c_loc( &
+        csrSortedRowPtrA), c_loc(csrSortedColIndA), hybA, userEllWidth, partitionType)
     end function hipsparseCcsr2hyb_native
 
     function hipsparseCcsr2hyb_typed(handle, m, n, descrA, csrSortedValA, csrSortedRowPtrA, &
@@ -39157,15 +38920,15 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       type(c_ptr), value :: descrA
-      complex(c_double_complex), target :: csrSortedValA(*)
-      integer(c_int), target :: csrSortedRowPtrA(*)
-      integer(c_int), target :: csrSortedColIndA(*)
+      complex(c_double_complex), target :: csrSortedValA(..)
+      integer(c_int), target :: csrSortedRowPtrA(..)
+      integer(c_int), target :: csrSortedColIndA(..)
       type(c_ptr), value :: hybA
       integer(c_int), value :: userEllWidth
       integer(c_int), value :: partitionType
       integer(c_int) :: Zcsr2hyb
-      Zcsr2hyb = hipsparseZcsr2hyb_raw(handle, m, n, descrA, c_loc(csrSortedValA(1)), c_loc( &
-        csrSortedRowPtrA(1)), c_loc(csrSortedColIndA(1)), hybA, userEllWidth, partitionType)
+      Zcsr2hyb = hipsparseZcsr2hyb_raw(handle, m, n, descrA, c_loc(csrSortedValA), c_loc( &
+        csrSortedRowPtrA), c_loc(csrSortedColIndA), hybA, userEllWidth, partitionType)
     end function hipsparseZcsr2hyb_native
 
     function hipsparseZcsr2hyb_typed(handle, m, n, descrA, csrSortedValA, csrSortedRowPtrA, &
@@ -39196,12 +38959,12 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       integer(c_int), value :: nnz
-      integer(c_int), target :: csrRowPtr(*)
-      integer(c_int), target :: csrColInd(*)
+      integer(c_int), target :: csrRowPtr(..)
+      integer(c_int), target :: csrColInd(..)
       type(c_ptr), value :: pBufferSizeInBytes
       integer(c_int) :: Xcsrsort_bufferSizeExt
       Xcsrsort_bufferSizeExt = hipsparseXcsrsort_bufferSizeExt_raw(handle, m, n, nnz, c_loc( &
-        csrRowPtr(1)), c_loc(csrColInd(1)), pBufferSizeInBytes)
+        csrRowPtr), c_loc(csrColInd), pBufferSizeInBytes)
     end function hipsparseXcsrsort_bufferSizeExt_native
 
     function hipsparseXcsrsort_bufferSizeExt_typed(handle, m, n, nnz, csrRowPtr, csrColInd, &
@@ -39230,13 +38993,13 @@ contains
       integer(c_int), value :: n
       integer(c_int), value :: nnz
       type(c_ptr), value :: descrA
-      integer(c_int), target :: csrRowPtr(*)
-      integer(c_int), target :: csrColInd(*)
-      integer(c_int), target :: P(*)
+      integer(c_int), target :: csrRowPtr(..)
+      integer(c_int), target :: csrColInd(..)
+      integer(c_int), target :: P(..)
       type(c_ptr), value :: pBuffer
       integer(c_int) :: Xcsrsort
-      Xcsrsort = hipsparseXcsrsort_raw(handle, m, n, nnz, descrA, c_loc(csrRowPtr(1)), c_loc( &
-        csrColInd(1)), c_loc(P(1)), pBuffer)
+      Xcsrsort = hipsparseXcsrsort_raw(handle, m, n, nnz, descrA, c_loc(csrRowPtr), c_loc( &
+        csrColInd), c_loc(P), pBuffer)
     end function hipsparseXcsrsort_native
 
     function hipsparseXcsrsort_typed(handle, m, n, nnz, descrA, csrRowPtr, csrColInd, P, &
@@ -39266,14 +39029,14 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       integer(c_int), value :: nnz
-      real(c_float), target :: csrVal(*)
-      integer(c_int), target :: csrRowPtr(*)
-      integer(c_int), target :: csrColInd(*)
+      real(c_float), target :: csrVal(..)
+      integer(c_int), target :: csrRowPtr(..)
+      integer(c_int), target :: csrColInd(..)
       type(c_ptr), value :: info
       type(c_ptr), value :: pBufferSizeInBytes
       integer(c_int) :: Scsru2csr_bufferSizeExt
       Scsru2csr_bufferSizeExt = hipsparseScsru2csr_bufferSizeExt_raw(handle, m, n, nnz, c_loc( &
-        csrVal(1)), c_loc(csrRowPtr(1)), c_loc(csrColInd(1)), info, pBufferSizeInBytes)
+        csrVal), c_loc(csrRowPtr), c_loc(csrColInd), info, pBufferSizeInBytes)
     end function hipsparseScsru2csr_bufferSizeExt_native
 
     function hipsparseScsru2csr_bufferSizeExt_typed(handle, m, n, nnz, csrVal, csrRowPtr, &
@@ -39303,14 +39066,14 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       integer(c_int), value :: nnz
-      real(c_double), target :: csrVal(*)
-      integer(c_int), target :: csrRowPtr(*)
-      integer(c_int), target :: csrColInd(*)
+      real(c_double), target :: csrVal(..)
+      integer(c_int), target :: csrRowPtr(..)
+      integer(c_int), target :: csrColInd(..)
       type(c_ptr), value :: info
       type(c_ptr), value :: pBufferSizeInBytes
       integer(c_int) :: Dcsru2csr_bufferSizeExt
       Dcsru2csr_bufferSizeExt = hipsparseDcsru2csr_bufferSizeExt_raw(handle, m, n, nnz, c_loc( &
-        csrVal(1)), c_loc(csrRowPtr(1)), c_loc(csrColInd(1)), info, pBufferSizeInBytes)
+        csrVal), c_loc(csrRowPtr), c_loc(csrColInd), info, pBufferSizeInBytes)
     end function hipsparseDcsru2csr_bufferSizeExt_native
 
     function hipsparseDcsru2csr_bufferSizeExt_typed(handle, m, n, nnz, csrVal, csrRowPtr, &
@@ -39340,14 +39103,14 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       integer(c_int), value :: nnz
-      complex(c_float_complex), target :: csrVal(*)
-      integer(c_int), target :: csrRowPtr(*)
-      integer(c_int), target :: csrColInd(*)
+      complex(c_float_complex), target :: csrVal(..)
+      integer(c_int), target :: csrRowPtr(..)
+      integer(c_int), target :: csrColInd(..)
       type(c_ptr), value :: info
       type(c_ptr), value :: pBufferSizeInBytes
       integer(c_int) :: Ccsru2csr_bufferSizeExt
       Ccsru2csr_bufferSizeExt = hipsparseCcsru2csr_bufferSizeExt_raw(handle, m, n, nnz, c_loc( &
-        csrVal(1)), c_loc(csrRowPtr(1)), c_loc(csrColInd(1)), info, pBufferSizeInBytes)
+        csrVal), c_loc(csrRowPtr), c_loc(csrColInd), info, pBufferSizeInBytes)
     end function hipsparseCcsru2csr_bufferSizeExt_native
 
     function hipsparseCcsru2csr_bufferSizeExt_typed(handle, m, n, nnz, csrVal, csrRowPtr, &
@@ -39377,14 +39140,14 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       integer(c_int), value :: nnz
-      complex(c_double_complex), target :: csrVal(*)
-      integer(c_int), target :: csrRowPtr(*)
-      integer(c_int), target :: csrColInd(*)
+      complex(c_double_complex), target :: csrVal(..)
+      integer(c_int), target :: csrRowPtr(..)
+      integer(c_int), target :: csrColInd(..)
       type(c_ptr), value :: info
       type(c_ptr), value :: pBufferSizeInBytes
       integer(c_int) :: Zcsru2csr_bufferSizeExt
       Zcsru2csr_bufferSizeExt = hipsparseZcsru2csr_bufferSizeExt_raw(handle, m, n, nnz, c_loc( &
-        csrVal(1)), c_loc(csrRowPtr(1)), c_loc(csrColInd(1)), info, pBufferSizeInBytes)
+        csrVal), c_loc(csrRowPtr), c_loc(csrColInd), info, pBufferSizeInBytes)
     end function hipsparseZcsru2csr_bufferSizeExt_native
 
     function hipsparseZcsru2csr_bufferSizeExt_typed(handle, m, n, nnz, csrVal, csrRowPtr, &
@@ -39415,14 +39178,14 @@ contains
       integer(c_int), value :: n
       integer(c_int), value :: nnz
       type(c_ptr), value :: descrA
-      real(c_float), target :: csrVal(*)
-      integer(c_int), target :: csrRowPtr(*)
-      integer(c_int), target :: csrColInd(*)
+      real(c_float), target :: csrVal(..)
+      integer(c_int), target :: csrRowPtr(..)
+      integer(c_int), target :: csrColInd(..)
       type(c_ptr), value :: info
       type(c_ptr), value :: pBuffer
       integer(c_int) :: Scsru2csr
-      Scsru2csr = hipsparseScsru2csr_raw(handle, m, n, nnz, descrA, c_loc(csrVal(1)), c_loc( &
-        csrRowPtr(1)), c_loc(csrColInd(1)), info, pBuffer)
+      Scsru2csr = hipsparseScsru2csr_raw(handle, m, n, nnz, descrA, c_loc(csrVal), c_loc( &
+        csrRowPtr), c_loc(csrColInd), info, pBuffer)
     end function hipsparseScsru2csr_native
 
     function hipsparseScsru2csr_typed(handle, m, n, nnz, descrA, csrVal, csrRowPtr, csrColInd, &
@@ -39454,14 +39217,14 @@ contains
       integer(c_int), value :: n
       integer(c_int), value :: nnz
       type(c_ptr), value :: descrA
-      real(c_double), target :: csrVal(*)
-      integer(c_int), target :: csrRowPtr(*)
-      integer(c_int), target :: csrColInd(*)
+      real(c_double), target :: csrVal(..)
+      integer(c_int), target :: csrRowPtr(..)
+      integer(c_int), target :: csrColInd(..)
       type(c_ptr), value :: info
       type(c_ptr), value :: pBuffer
       integer(c_int) :: Dcsru2csr
-      Dcsru2csr = hipsparseDcsru2csr_raw(handle, m, n, nnz, descrA, c_loc(csrVal(1)), c_loc( &
-        csrRowPtr(1)), c_loc(csrColInd(1)), info, pBuffer)
+      Dcsru2csr = hipsparseDcsru2csr_raw(handle, m, n, nnz, descrA, c_loc(csrVal), c_loc( &
+        csrRowPtr), c_loc(csrColInd), info, pBuffer)
     end function hipsparseDcsru2csr_native
 
     function hipsparseDcsru2csr_typed(handle, m, n, nnz, descrA, csrVal, csrRowPtr, csrColInd, &
@@ -39493,14 +39256,14 @@ contains
       integer(c_int), value :: n
       integer(c_int), value :: nnz
       type(c_ptr), value :: descrA
-      complex(c_float_complex), target :: csrVal(*)
-      integer(c_int), target :: csrRowPtr(*)
-      integer(c_int), target :: csrColInd(*)
+      complex(c_float_complex), target :: csrVal(..)
+      integer(c_int), target :: csrRowPtr(..)
+      integer(c_int), target :: csrColInd(..)
       type(c_ptr), value :: info
       type(c_ptr), value :: pBuffer
       integer(c_int) :: Ccsru2csr
-      Ccsru2csr = hipsparseCcsru2csr_raw(handle, m, n, nnz, descrA, c_loc(csrVal(1)), c_loc( &
-        csrRowPtr(1)), c_loc(csrColInd(1)), info, pBuffer)
+      Ccsru2csr = hipsparseCcsru2csr_raw(handle, m, n, nnz, descrA, c_loc(csrVal), c_loc( &
+        csrRowPtr), c_loc(csrColInd), info, pBuffer)
     end function hipsparseCcsru2csr_native
 
     function hipsparseCcsru2csr_typed(handle, m, n, nnz, descrA, csrVal, csrRowPtr, csrColInd, &
@@ -39532,14 +39295,14 @@ contains
       integer(c_int), value :: n
       integer(c_int), value :: nnz
       type(c_ptr), value :: descrA
-      complex(c_double_complex), target :: csrVal(*)
-      integer(c_int), target :: csrRowPtr(*)
-      integer(c_int), target :: csrColInd(*)
+      complex(c_double_complex), target :: csrVal(..)
+      integer(c_int), target :: csrRowPtr(..)
+      integer(c_int), target :: csrColInd(..)
       type(c_ptr), value :: info
       type(c_ptr), value :: pBuffer
       integer(c_int) :: Zcsru2csr
-      Zcsru2csr = hipsparseZcsru2csr_raw(handle, m, n, nnz, descrA, c_loc(csrVal(1)), c_loc( &
-        csrRowPtr(1)), c_loc(csrColInd(1)), info, pBuffer)
+      Zcsru2csr = hipsparseZcsru2csr_raw(handle, m, n, nnz, descrA, c_loc(csrVal), c_loc( &
+        csrRowPtr), c_loc(csrColInd), info, pBuffer)
     end function hipsparseZcsru2csr_native
 
     function hipsparseZcsru2csr_typed(handle, m, n, nnz, descrA, csrVal, csrRowPtr, csrColInd, &
@@ -39570,15 +39333,15 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       type(c_ptr), value :: descr
-      real(c_float), target :: A(*)
+      real(c_float), target :: A(..)
       integer(c_int), value :: ld
-      integer(c_int), target :: nnzPerColumn(*)
-      real(c_float), target :: cscVal(*)
-      integer(c_int), target :: cscRowInd(*)
-      integer(c_int), target :: cscColPtr(*)
+      integer(c_int), target :: nnzPerColumn(..)
+      real(c_float), target :: cscVal(..)
+      integer(c_int), target :: cscRowInd(..)
+      integer(c_int), target :: cscColPtr(..)
       integer(c_int) :: Sdense2csc
-      Sdense2csc = hipsparseSdense2csc_raw(handle, m, n, descr, c_loc(A(1)), ld, c_loc( &
-        nnzPerColumn(1)), c_loc(cscVal(1)), c_loc(cscRowInd(1)), c_loc(cscColPtr(1)))
+      Sdense2csc = hipsparseSdense2csc_raw(handle, m, n, descr, c_loc(A), ld, c_loc(nnzPerColumn), &
+        c_loc(cscVal), c_loc(cscRowInd), c_loc(cscColPtr))
     end function hipsparseSdense2csc_native
 
     function hipsparseSdense2csc_typed(handle, m, n, descr, A, ld, nnzPerColumn, cscVal, &
@@ -39609,15 +39372,15 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       type(c_ptr), value :: descr
-      real(c_double), target :: A(*)
+      real(c_double), target :: A(..)
       integer(c_int), value :: ld
-      integer(c_int), target :: nnzPerColumn(*)
-      real(c_double), target :: cscVal(*)
-      integer(c_int), target :: cscRowInd(*)
-      integer(c_int), target :: cscColPtr(*)
+      integer(c_int), target :: nnzPerColumn(..)
+      real(c_double), target :: cscVal(..)
+      integer(c_int), target :: cscRowInd(..)
+      integer(c_int), target :: cscColPtr(..)
       integer(c_int) :: Ddense2csc
-      Ddense2csc = hipsparseDdense2csc_raw(handle, m, n, descr, c_loc(A(1)), ld, c_loc( &
-        nnzPerColumn(1)), c_loc(cscVal(1)), c_loc(cscRowInd(1)), c_loc(cscColPtr(1)))
+      Ddense2csc = hipsparseDdense2csc_raw(handle, m, n, descr, c_loc(A), ld, c_loc(nnzPerColumn), &
+        c_loc(cscVal), c_loc(cscRowInd), c_loc(cscColPtr))
     end function hipsparseDdense2csc_native
 
     function hipsparseDdense2csc_typed(handle, m, n, descr, A, ld, nnzPerColumn, cscVal, &
@@ -39648,15 +39411,15 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       type(c_ptr), value :: descr
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: A(..)
       integer(c_int), value :: ld
-      integer(c_int), target :: nnzPerColumn(*)
-      complex(c_float_complex), target :: cscVal(*)
-      integer(c_int), target :: cscRowInd(*)
-      integer(c_int), target :: cscColPtr(*)
+      integer(c_int), target :: nnzPerColumn(..)
+      complex(c_float_complex), target :: cscVal(..)
+      integer(c_int), target :: cscRowInd(..)
+      integer(c_int), target :: cscColPtr(..)
       integer(c_int) :: Cdense2csc
-      Cdense2csc = hipsparseCdense2csc_raw(handle, m, n, descr, c_loc(A(1)), ld, c_loc( &
-        nnzPerColumn(1)), c_loc(cscVal(1)), c_loc(cscRowInd(1)), c_loc(cscColPtr(1)))
+      Cdense2csc = hipsparseCdense2csc_raw(handle, m, n, descr, c_loc(A), ld, c_loc(nnzPerColumn), &
+        c_loc(cscVal), c_loc(cscRowInd), c_loc(cscColPtr))
     end function hipsparseCdense2csc_native
 
     function hipsparseCdense2csc_typed(handle, m, n, descr, A, ld, nnzPerColumn, cscVal, &
@@ -39687,15 +39450,15 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       type(c_ptr), value :: descr
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: A(..)
       integer(c_int), value :: ld
-      integer(c_int), target :: nnzPerColumn(*)
-      complex(c_double_complex), target :: cscVal(*)
-      integer(c_int), target :: cscRowInd(*)
-      integer(c_int), target :: cscColPtr(*)
+      integer(c_int), target :: nnzPerColumn(..)
+      complex(c_double_complex), target :: cscVal(..)
+      integer(c_int), target :: cscRowInd(..)
+      integer(c_int), target :: cscColPtr(..)
       integer(c_int) :: Zdense2csc
-      Zdense2csc = hipsparseZdense2csc_raw(handle, m, n, descr, c_loc(A(1)), ld, c_loc( &
-        nnzPerColumn(1)), c_loc(cscVal(1)), c_loc(cscRowInd(1)), c_loc(cscColPtr(1)))
+      Zdense2csc = hipsparseZdense2csc_raw(handle, m, n, descr, c_loc(A), ld, c_loc(nnzPerColumn), &
+        c_loc(cscVal), c_loc(cscRowInd), c_loc(cscColPtr))
     end function hipsparseZdense2csc_native
 
     function hipsparseZdense2csc_typed(handle, m, n, descr, A, ld, nnzPerColumn, cscVal, &
@@ -39726,15 +39489,15 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       type(c_ptr), value :: descr
-      real(c_float), target :: A(*)
+      real(c_float), target :: A(..)
       integer(c_int), value :: ld
-      integer(c_int), target :: nnzPerRow(*)
-      real(c_float), target :: csrVal(*)
-      integer(c_int), target :: csrRowPtr(*)
-      integer(c_int), target :: csrColInd(*)
+      integer(c_int), target :: nnzPerRow(..)
+      real(c_float), target :: csrVal(..)
+      integer(c_int), target :: csrRowPtr(..)
+      integer(c_int), target :: csrColInd(..)
       integer(c_int) :: Sdense2csr
-      Sdense2csr = hipsparseSdense2csr_raw(handle, m, n, descr, c_loc(A(1)), ld, c_loc(nnzPerRow( &
-        1)), c_loc(csrVal(1)), c_loc(csrRowPtr(1)), c_loc(csrColInd(1)))
+      Sdense2csr = hipsparseSdense2csr_raw(handle, m, n, descr, c_loc(A), ld, c_loc(nnzPerRow), &
+        c_loc(csrVal), c_loc(csrRowPtr), c_loc(csrColInd))
     end function hipsparseSdense2csr_native
 
     function hipsparseSdense2csr_typed(handle, m, n, descr, A, ld, nnzPerRow, csrVal, csrRowPtr, &
@@ -39765,15 +39528,15 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       type(c_ptr), value :: descr
-      real(c_double), target :: A(*)
+      real(c_double), target :: A(..)
       integer(c_int), value :: ld
-      integer(c_int), target :: nnzPerRow(*)
-      real(c_double), target :: csrVal(*)
-      integer(c_int), target :: csrRowPtr(*)
-      integer(c_int), target :: csrColInd(*)
+      integer(c_int), target :: nnzPerRow(..)
+      real(c_double), target :: csrVal(..)
+      integer(c_int), target :: csrRowPtr(..)
+      integer(c_int), target :: csrColInd(..)
       integer(c_int) :: Ddense2csr
-      Ddense2csr = hipsparseDdense2csr_raw(handle, m, n, descr, c_loc(A(1)), ld, c_loc(nnzPerRow( &
-        1)), c_loc(csrVal(1)), c_loc(csrRowPtr(1)), c_loc(csrColInd(1)))
+      Ddense2csr = hipsparseDdense2csr_raw(handle, m, n, descr, c_loc(A), ld, c_loc(nnzPerRow), &
+        c_loc(csrVal), c_loc(csrRowPtr), c_loc(csrColInd))
     end function hipsparseDdense2csr_native
 
     function hipsparseDdense2csr_typed(handle, m, n, descr, A, ld, nnzPerRow, csrVal, csrRowPtr, &
@@ -39804,15 +39567,15 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       type(c_ptr), value :: descr
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: A(..)
       integer(c_int), value :: ld
-      integer(c_int), target :: nnzPerRow(*)
-      complex(c_float_complex), target :: csrVal(*)
-      integer(c_int), target :: csrRowPtr(*)
-      integer(c_int), target :: csrColInd(*)
+      integer(c_int), target :: nnzPerRow(..)
+      complex(c_float_complex), target :: csrVal(..)
+      integer(c_int), target :: csrRowPtr(..)
+      integer(c_int), target :: csrColInd(..)
       integer(c_int) :: Cdense2csr
-      Cdense2csr = hipsparseCdense2csr_raw(handle, m, n, descr, c_loc(A(1)), ld, c_loc(nnzPerRow( &
-        1)), c_loc(csrVal(1)), c_loc(csrRowPtr(1)), c_loc(csrColInd(1)))
+      Cdense2csr = hipsparseCdense2csr_raw(handle, m, n, descr, c_loc(A), ld, c_loc(nnzPerRow), &
+        c_loc(csrVal), c_loc(csrRowPtr), c_loc(csrColInd))
     end function hipsparseCdense2csr_native
 
     function hipsparseCdense2csr_typed(handle, m, n, descr, A, ld, nnzPerRow, csrVal, csrRowPtr, &
@@ -39843,15 +39606,15 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       type(c_ptr), value :: descr
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: A(..)
       integer(c_int), value :: ld
-      integer(c_int), target :: nnzPerRow(*)
-      complex(c_double_complex), target :: csrVal(*)
-      integer(c_int), target :: csrRowPtr(*)
-      integer(c_int), target :: csrColInd(*)
+      integer(c_int), target :: nnzPerRow(..)
+      complex(c_double_complex), target :: csrVal(..)
+      integer(c_int), target :: csrRowPtr(..)
+      integer(c_int), target :: csrColInd(..)
       integer(c_int) :: Zdense2csr
-      Zdense2csr = hipsparseZdense2csr_raw(handle, m, n, descr, c_loc(A(1)), ld, c_loc(nnzPerRow( &
-        1)), c_loc(csrVal(1)), c_loc(csrRowPtr(1)), c_loc(csrColInd(1)))
+      Zdense2csr = hipsparseZdense2csr_raw(handle, m, n, descr, c_loc(A), ld, c_loc(nnzPerRow), &
+        c_loc(csrVal), c_loc(csrRowPtr), c_loc(csrColInd))
     end function hipsparseZdense2csr_native
 
     function hipsparseZdense2csr_typed(handle, m, n, descr, A, ld, nnzPerRow, csrVal, csrRowPtr, &
@@ -39884,19 +39647,19 @@ contains
       integer(c_int), value :: mb
       integer(c_int), value :: nb
       type(c_ptr), value :: descrA
-      real(c_float), target :: bsrValA(*)
-      integer(c_int), target :: bsrRowPtrA(*)
-      integer(c_int), target :: bsrColIndA(*)
+      real(c_float), target :: bsrValA(..)
+      integer(c_int), target :: bsrRowPtrA(..)
+      integer(c_int), target :: bsrColIndA(..)
       integer(c_int), value :: rowBlockDim
       integer(c_int), value :: colBlockDim
       type(c_ptr), value :: descrC
-      real(c_float), target :: csrValC(*)
-      integer(c_int), target :: csrRowPtrC(*)
-      integer(c_int), target :: csrColIndC(*)
+      real(c_float), target :: csrValC(..)
+      integer(c_int), target :: csrRowPtrC(..)
+      integer(c_int), target :: csrColIndC(..)
       integer(c_int) :: Sgebsr2csr
-      Sgebsr2csr = hipsparseSgebsr2csr_raw(handle, dirA, mb, nb, descrA, c_loc(bsrValA(1)), c_loc( &
-        bsrRowPtrA(1)), c_loc(bsrColIndA(1)), rowBlockDim, colBlockDim, descrC, c_loc(csrValC(1)), &
-        c_loc(csrRowPtrC(1)), c_loc(csrColIndC(1)))
+      Sgebsr2csr = hipsparseSgebsr2csr_raw(handle, dirA, mb, nb, descrA, c_loc(bsrValA), c_loc( &
+        bsrRowPtrA), c_loc(bsrColIndA), rowBlockDim, colBlockDim, descrC, c_loc(csrValC), c_loc( &
+        csrRowPtrC), c_loc(csrColIndC))
     end function hipsparseSgebsr2csr_native
 
     function hipsparseSgebsr2csr_typed(handle, dirA, mb, nb, descrA, bsrValA, bsrRowPtrA, &
@@ -39935,19 +39698,19 @@ contains
       integer(c_int), value :: mb
       integer(c_int), value :: nb
       type(c_ptr), value :: descrA
-      real(c_double), target :: bsrValA(*)
-      integer(c_int), target :: bsrRowPtrA(*)
-      integer(c_int), target :: bsrColIndA(*)
+      real(c_double), target :: bsrValA(..)
+      integer(c_int), target :: bsrRowPtrA(..)
+      integer(c_int), target :: bsrColIndA(..)
       integer(c_int), value :: rowBlockDim
       integer(c_int), value :: colBlockDim
       type(c_ptr), value :: descrC
-      real(c_double), target :: csrValC(*)
-      integer(c_int), target :: csrRowPtrC(*)
-      integer(c_int), target :: csrColIndC(*)
+      real(c_double), target :: csrValC(..)
+      integer(c_int), target :: csrRowPtrC(..)
+      integer(c_int), target :: csrColIndC(..)
       integer(c_int) :: Dgebsr2csr
-      Dgebsr2csr = hipsparseDgebsr2csr_raw(handle, dirA, mb, nb, descrA, c_loc(bsrValA(1)), c_loc( &
-        bsrRowPtrA(1)), c_loc(bsrColIndA(1)), rowBlockDim, colBlockDim, descrC, c_loc(csrValC(1)), &
-        c_loc(csrRowPtrC(1)), c_loc(csrColIndC(1)))
+      Dgebsr2csr = hipsparseDgebsr2csr_raw(handle, dirA, mb, nb, descrA, c_loc(bsrValA), c_loc( &
+        bsrRowPtrA), c_loc(bsrColIndA), rowBlockDim, colBlockDim, descrC, c_loc(csrValC), c_loc( &
+        csrRowPtrC), c_loc(csrColIndC))
     end function hipsparseDgebsr2csr_native
 
     function hipsparseDgebsr2csr_typed(handle, dirA, mb, nb, descrA, bsrValA, bsrRowPtrA, &
@@ -39986,19 +39749,19 @@ contains
       integer(c_int), value :: mb
       integer(c_int), value :: nb
       type(c_ptr), value :: descrA
-      complex(c_float_complex), target :: bsrValA(*)
-      integer(c_int), target :: bsrRowPtrA(*)
-      integer(c_int), target :: bsrColIndA(*)
+      complex(c_float_complex), target :: bsrValA(..)
+      integer(c_int), target :: bsrRowPtrA(..)
+      integer(c_int), target :: bsrColIndA(..)
       integer(c_int), value :: rowBlockDim
       integer(c_int), value :: colBlockDim
       type(c_ptr), value :: descrC
-      complex(c_float_complex), target :: csrValC(*)
-      integer(c_int), target :: csrRowPtrC(*)
-      integer(c_int), target :: csrColIndC(*)
+      complex(c_float_complex), target :: csrValC(..)
+      integer(c_int), target :: csrRowPtrC(..)
+      integer(c_int), target :: csrColIndC(..)
       integer(c_int) :: Cgebsr2csr
-      Cgebsr2csr = hipsparseCgebsr2csr_raw(handle, dirA, mb, nb, descrA, c_loc(bsrValA(1)), c_loc( &
-        bsrRowPtrA(1)), c_loc(bsrColIndA(1)), rowBlockDim, colBlockDim, descrC, c_loc(csrValC(1)), &
-        c_loc(csrRowPtrC(1)), c_loc(csrColIndC(1)))
+      Cgebsr2csr = hipsparseCgebsr2csr_raw(handle, dirA, mb, nb, descrA, c_loc(bsrValA), c_loc( &
+        bsrRowPtrA), c_loc(bsrColIndA), rowBlockDim, colBlockDim, descrC, c_loc(csrValC), c_loc( &
+        csrRowPtrC), c_loc(csrColIndC))
     end function hipsparseCgebsr2csr_native
 
     function hipsparseCgebsr2csr_typed(handle, dirA, mb, nb, descrA, bsrValA, bsrRowPtrA, &
@@ -40037,19 +39800,19 @@ contains
       integer(c_int), value :: mb
       integer(c_int), value :: nb
       type(c_ptr), value :: descrA
-      complex(c_double_complex), target :: bsrValA(*)
-      integer(c_int), target :: bsrRowPtrA(*)
-      integer(c_int), target :: bsrColIndA(*)
+      complex(c_double_complex), target :: bsrValA(..)
+      integer(c_int), target :: bsrRowPtrA(..)
+      integer(c_int), target :: bsrColIndA(..)
       integer(c_int), value :: rowBlockDim
       integer(c_int), value :: colBlockDim
       type(c_ptr), value :: descrC
-      complex(c_double_complex), target :: csrValC(*)
-      integer(c_int), target :: csrRowPtrC(*)
-      integer(c_int), target :: csrColIndC(*)
+      complex(c_double_complex), target :: csrValC(..)
+      integer(c_int), target :: csrRowPtrC(..)
+      integer(c_int), target :: csrColIndC(..)
       integer(c_int) :: Zgebsr2csr
-      Zgebsr2csr = hipsparseZgebsr2csr_raw(handle, dirA, mb, nb, descrA, c_loc(bsrValA(1)), c_loc( &
-        bsrRowPtrA(1)), c_loc(bsrColIndA(1)), rowBlockDim, colBlockDim, descrC, c_loc(csrValC(1)), &
-        c_loc(csrRowPtrC(1)), c_loc(csrColIndC(1)))
+      Zgebsr2csr = hipsparseZgebsr2csr_raw(handle, dirA, mb, nb, descrA, c_loc(bsrValA), c_loc( &
+        bsrRowPtrA), c_loc(bsrColIndA), rowBlockDim, colBlockDim, descrC, c_loc(csrValC), c_loc( &
+        csrRowPtrC), c_loc(csrColIndC))
     end function hipsparseZgebsr2csr_native
 
     function hipsparseZgebsr2csr_typed(handle, dirA, mb, nb, descrA, bsrValA, bsrRowPtrA, &
@@ -40086,16 +39849,15 @@ contains
       integer(c_int), value :: mb
       integer(c_int), value :: nb
       integer(c_int), value :: nnzb
-      real(c_float), target :: bsrVal(*)
-      integer(c_int), target :: bsrRowPtr(*)
-      integer(c_int), target :: bsrColInd(*)
+      real(c_float), target :: bsrVal(..)
+      integer(c_int), target :: bsrRowPtr(..)
+      integer(c_int), target :: bsrColInd(..)
       integer(c_int), value :: rowBlockDim
       integer(c_int), value :: colBlockDim
       type(c_ptr), value :: pBufferSizeInBytes
       integer(c_int) :: Sgebsr2gebsc_bufferSize
       Sgebsr2gebsc_bufferSize = hipsparseSgebsr2gebsc_bufferSize_raw(handle, mb, nb, nnzb, c_loc( &
-        bsrVal(1)), c_loc(bsrRowPtr(1)), c_loc(bsrColInd(1)), rowBlockDim, colBlockDim, &
-        pBufferSizeInBytes)
+        bsrVal), c_loc(bsrRowPtr), c_loc(bsrColInd), rowBlockDim, colBlockDim, pBufferSizeInBytes)
     end function hipsparseSgebsr2gebsc_bufferSize_native
 
     function hipsparseSgebsr2gebsc_bufferSize_typed(handle, mb, nb, nnzb, bsrVal, bsrRowPtr, &
@@ -40126,16 +39888,15 @@ contains
       integer(c_int), value :: mb
       integer(c_int), value :: nb
       integer(c_int), value :: nnzb
-      real(c_double), target :: bsrVal(*)
-      integer(c_int), target :: bsrRowPtr(*)
-      integer(c_int), target :: bsrColInd(*)
+      real(c_double), target :: bsrVal(..)
+      integer(c_int), target :: bsrRowPtr(..)
+      integer(c_int), target :: bsrColInd(..)
       integer(c_int), value :: rowBlockDim
       integer(c_int), value :: colBlockDim
       type(c_ptr), value :: pBufferSizeInBytes
       integer(c_int) :: Dgebsr2gebsc_bufferSize
       Dgebsr2gebsc_bufferSize = hipsparseDgebsr2gebsc_bufferSize_raw(handle, mb, nb, nnzb, c_loc( &
-        bsrVal(1)), c_loc(bsrRowPtr(1)), c_loc(bsrColInd(1)), rowBlockDim, colBlockDim, &
-        pBufferSizeInBytes)
+        bsrVal), c_loc(bsrRowPtr), c_loc(bsrColInd), rowBlockDim, colBlockDim, pBufferSizeInBytes)
     end function hipsparseDgebsr2gebsc_bufferSize_native
 
     function hipsparseDgebsr2gebsc_bufferSize_typed(handle, mb, nb, nnzb, bsrVal, bsrRowPtr, &
@@ -40166,16 +39927,15 @@ contains
       integer(c_int), value :: mb
       integer(c_int), value :: nb
       integer(c_int), value :: nnzb
-      complex(c_float_complex), target :: bsrVal(*)
-      integer(c_int), target :: bsrRowPtr(*)
-      integer(c_int), target :: bsrColInd(*)
+      complex(c_float_complex), target :: bsrVal(..)
+      integer(c_int), target :: bsrRowPtr(..)
+      integer(c_int), target :: bsrColInd(..)
       integer(c_int), value :: rowBlockDim
       integer(c_int), value :: colBlockDim
       type(c_ptr), value :: pBufferSizeInBytes
       integer(c_int) :: Cgebsr2gebsc_bufferSize
       Cgebsr2gebsc_bufferSize = hipsparseCgebsr2gebsc_bufferSize_raw(handle, mb, nb, nnzb, c_loc( &
-        bsrVal(1)), c_loc(bsrRowPtr(1)), c_loc(bsrColInd(1)), rowBlockDim, colBlockDim, &
-        pBufferSizeInBytes)
+        bsrVal), c_loc(bsrRowPtr), c_loc(bsrColInd), rowBlockDim, colBlockDim, pBufferSizeInBytes)
     end function hipsparseCgebsr2gebsc_bufferSize_native
 
     function hipsparseCgebsr2gebsc_bufferSize_typed(handle, mb, nb, nnzb, bsrVal, bsrRowPtr, &
@@ -40206,16 +39966,15 @@ contains
       integer(c_int), value :: mb
       integer(c_int), value :: nb
       integer(c_int), value :: nnzb
-      complex(c_double_complex), target :: bsrVal(*)
-      integer(c_int), target :: bsrRowPtr(*)
-      integer(c_int), target :: bsrColInd(*)
+      complex(c_double_complex), target :: bsrVal(..)
+      integer(c_int), target :: bsrRowPtr(..)
+      integer(c_int), target :: bsrColInd(..)
       integer(c_int), value :: rowBlockDim
       integer(c_int), value :: colBlockDim
       type(c_ptr), value :: pBufferSizeInBytes
       integer(c_int) :: Zgebsr2gebsc_bufferSize
       Zgebsr2gebsc_bufferSize = hipsparseZgebsr2gebsc_bufferSize_raw(handle, mb, nb, nnzb, c_loc( &
-        bsrVal(1)), c_loc(bsrRowPtr(1)), c_loc(bsrColInd(1)), rowBlockDim, colBlockDim, &
-        pBufferSizeInBytes)
+        bsrVal), c_loc(bsrRowPtr), c_loc(bsrColInd), rowBlockDim, colBlockDim, pBufferSizeInBytes)
     end function hipsparseZgebsr2gebsc_bufferSize_native
 
     function hipsparseZgebsr2gebsc_bufferSize_typed(handle, mb, nb, nnzb, bsrVal, bsrRowPtr, &
@@ -40247,21 +40006,21 @@ contains
       integer(c_int), value :: mb
       integer(c_int), value :: nb
       integer(c_int), value :: nnzb
-      real(c_float), target :: bsrVal(*)
-      integer(c_int), target :: bsrRowPtr(*)
-      integer(c_int), target :: bsrColInd(*)
+      real(c_float), target :: bsrVal(..)
+      integer(c_int), target :: bsrRowPtr(..)
+      integer(c_int), target :: bsrColInd(..)
       integer(c_int), value :: rowBlockDim
       integer(c_int), value :: colBlockDim
-      real(c_float), target :: bscVal(*)
-      integer(c_int), target :: bscRowInd(*)
-      integer(c_int), target :: bscColPtr(*)
+      real(c_float), target :: bscVal(..)
+      integer(c_int), target :: bscRowInd(..)
+      integer(c_int), target :: bscColPtr(..)
       integer(c_int), value :: copyValues
       integer(c_int), value :: idxBase
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: Sgebsr2gebsc
-      Sgebsr2gebsc = hipsparseSgebsr2gebsc_raw(handle, mb, nb, nnzb, c_loc(bsrVal(1)), c_loc( &
-        bsrRowPtr(1)), c_loc(bsrColInd(1)), rowBlockDim, colBlockDim, c_loc(bscVal(1)), c_loc( &
-        bscRowInd(1)), c_loc(bscColPtr(1)), copyValues, idxBase, temp_buffer)
+      Sgebsr2gebsc = hipsparseSgebsr2gebsc_raw(handle, mb, nb, nnzb, c_loc(bsrVal), c_loc( &
+        bsrRowPtr), c_loc(bsrColInd), rowBlockDim, colBlockDim, c_loc(bscVal), c_loc(bscRowInd), &
+        c_loc(bscColPtr), copyValues, idxBase, temp_buffer)
     end function hipsparseSgebsr2gebsc_native
 
     function hipsparseSgebsr2gebsc_typed(handle, mb, nb, nnzb, bsrVal, bsrRowPtr, bsrColInd, &
@@ -40300,21 +40059,21 @@ contains
       integer(c_int), value :: mb
       integer(c_int), value :: nb
       integer(c_int), value :: nnzb
-      real(c_double), target :: bsrVal(*)
-      integer(c_int), target :: bsrRowPtr(*)
-      integer(c_int), target :: bsrColInd(*)
+      real(c_double), target :: bsrVal(..)
+      integer(c_int), target :: bsrRowPtr(..)
+      integer(c_int), target :: bsrColInd(..)
       integer(c_int), value :: rowBlockDim
       integer(c_int), value :: colBlockDim
-      real(c_double), target :: bscVal(*)
-      integer(c_int), target :: bscRowInd(*)
-      integer(c_int), target :: bscColPtr(*)
+      real(c_double), target :: bscVal(..)
+      integer(c_int), target :: bscRowInd(..)
+      integer(c_int), target :: bscColPtr(..)
       integer(c_int), value :: copyValues
       integer(c_int), value :: idxBase
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: Dgebsr2gebsc
-      Dgebsr2gebsc = hipsparseDgebsr2gebsc_raw(handle, mb, nb, nnzb, c_loc(bsrVal(1)), c_loc( &
-        bsrRowPtr(1)), c_loc(bsrColInd(1)), rowBlockDim, colBlockDim, c_loc(bscVal(1)), c_loc( &
-        bscRowInd(1)), c_loc(bscColPtr(1)), copyValues, idxBase, temp_buffer)
+      Dgebsr2gebsc = hipsparseDgebsr2gebsc_raw(handle, mb, nb, nnzb, c_loc(bsrVal), c_loc( &
+        bsrRowPtr), c_loc(bsrColInd), rowBlockDim, colBlockDim, c_loc(bscVal), c_loc(bscRowInd), &
+        c_loc(bscColPtr), copyValues, idxBase, temp_buffer)
     end function hipsparseDgebsr2gebsc_native
 
     function hipsparseDgebsr2gebsc_typed(handle, mb, nb, nnzb, bsrVal, bsrRowPtr, bsrColInd, &
@@ -40353,21 +40112,21 @@ contains
       integer(c_int), value :: mb
       integer(c_int), value :: nb
       integer(c_int), value :: nnzb
-      complex(c_float_complex), target :: bsrVal(*)
-      integer(c_int), target :: bsrRowPtr(*)
-      integer(c_int), target :: bsrColInd(*)
+      complex(c_float_complex), target :: bsrVal(..)
+      integer(c_int), target :: bsrRowPtr(..)
+      integer(c_int), target :: bsrColInd(..)
       integer(c_int), value :: rowBlockDim
       integer(c_int), value :: colBlockDim
-      complex(c_float_complex), target :: bscVal(*)
-      integer(c_int), target :: bscRowInd(*)
-      integer(c_int), target :: bscColPtr(*)
+      complex(c_float_complex), target :: bscVal(..)
+      integer(c_int), target :: bscRowInd(..)
+      integer(c_int), target :: bscColPtr(..)
       integer(c_int), value :: copyValues
       integer(c_int), value :: idxBase
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: Cgebsr2gebsc
-      Cgebsr2gebsc = hipsparseCgebsr2gebsc_raw(handle, mb, nb, nnzb, c_loc(bsrVal(1)), c_loc( &
-        bsrRowPtr(1)), c_loc(bsrColInd(1)), rowBlockDim, colBlockDim, c_loc(bscVal(1)), c_loc( &
-        bscRowInd(1)), c_loc(bscColPtr(1)), copyValues, idxBase, temp_buffer)
+      Cgebsr2gebsc = hipsparseCgebsr2gebsc_raw(handle, mb, nb, nnzb, c_loc(bsrVal), c_loc( &
+        bsrRowPtr), c_loc(bsrColInd), rowBlockDim, colBlockDim, c_loc(bscVal), c_loc(bscRowInd), &
+        c_loc(bscColPtr), copyValues, idxBase, temp_buffer)
     end function hipsparseCgebsr2gebsc_native
 
     function hipsparseCgebsr2gebsc_typed(handle, mb, nb, nnzb, bsrVal, bsrRowPtr, bsrColInd, &
@@ -40406,21 +40165,21 @@ contains
       integer(c_int), value :: mb
       integer(c_int), value :: nb
       integer(c_int), value :: nnzb
-      complex(c_double_complex), target :: bsrVal(*)
-      integer(c_int), target :: bsrRowPtr(*)
-      integer(c_int), target :: bsrColInd(*)
+      complex(c_double_complex), target :: bsrVal(..)
+      integer(c_int), target :: bsrRowPtr(..)
+      integer(c_int), target :: bsrColInd(..)
       integer(c_int), value :: rowBlockDim
       integer(c_int), value :: colBlockDim
-      complex(c_double_complex), target :: bscVal(*)
-      integer(c_int), target :: bscRowInd(*)
-      integer(c_int), target :: bscColPtr(*)
+      complex(c_double_complex), target :: bscVal(..)
+      integer(c_int), target :: bscRowInd(..)
+      integer(c_int), target :: bscColPtr(..)
       integer(c_int), value :: copyValues
       integer(c_int), value :: idxBase
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: Zgebsr2gebsc
-      Zgebsr2gebsc = hipsparseZgebsr2gebsc_raw(handle, mb, nb, nnzb, c_loc(bsrVal(1)), c_loc( &
-        bsrRowPtr(1)), c_loc(bsrColInd(1)), rowBlockDim, colBlockDim, c_loc(bscVal(1)), c_loc( &
-        bscRowInd(1)), c_loc(bscColPtr(1)), copyValues, idxBase, temp_buffer)
+      Zgebsr2gebsc = hipsparseZgebsr2gebsc_raw(handle, mb, nb, nnzb, c_loc(bsrVal), c_loc( &
+        bsrRowPtr), c_loc(bsrColInd), rowBlockDim, colBlockDim, c_loc(bscVal), c_loc(bscRowInd), &
+        c_loc(bscColPtr), copyValues, idxBase, temp_buffer)
     end function hipsparseZgebsr2gebsc_native
 
     function hipsparseZgebsr2gebsc_typed(handle, mb, nb, nnzb, bsrVal, bsrRowPtr, bsrColInd, &
@@ -40461,18 +40220,18 @@ contains
       integer(c_int), value :: nb
       integer(c_int), value :: nnzb
       type(c_ptr), value :: descrA
-      real(c_float), target :: bsrValA(*)
-      integer(c_int), target :: bsrRowPtrA(*)
-      integer(c_int), target :: bsrColIndA(*)
+      real(c_float), target :: bsrValA(..)
+      integer(c_int), target :: bsrRowPtrA(..)
+      integer(c_int), target :: bsrColIndA(..)
       integer(c_int), value :: rowBlockDimA
       integer(c_int), value :: colBlockDimA
       integer(c_int), value :: rowBlockDimC
       integer(c_int), value :: colBlockDimC
-      integer(c_int), target :: pBufferSizeInBytes(*)
+      integer(c_int), target :: pBufferSizeInBytes(..)
       integer(c_int) :: Sgebsr2gebsr_bufferSize
       Sgebsr2gebsr_bufferSize = hipsparseSgebsr2gebsr_bufferSize_raw(handle, dirA, mb, nb, nnzb, &
-        descrA, c_loc(bsrValA(1)), c_loc(bsrRowPtrA(1)), c_loc(bsrColIndA(1)), rowBlockDimA, &
-        colBlockDimA, rowBlockDimC, colBlockDimC, c_loc(pBufferSizeInBytes(1)))
+        descrA, c_loc(bsrValA), c_loc(bsrRowPtrA), c_loc(bsrColIndA), rowBlockDimA, colBlockDimA, &
+        rowBlockDimC, colBlockDimC, c_loc(pBufferSizeInBytes))
     end function hipsparseSgebsr2gebsr_bufferSize_native
 
     function hipsparseSgebsr2gebsr_bufferSize_typed(handle, dirA, mb, nb, nnzb, descrA, bsrValA, &
@@ -40512,18 +40271,18 @@ contains
       integer(c_int), value :: nb
       integer(c_int), value :: nnzb
       type(c_ptr), value :: descrA
-      real(c_double), target :: bsrValA(*)
-      integer(c_int), target :: bsrRowPtrA(*)
-      integer(c_int), target :: bsrColIndA(*)
+      real(c_double), target :: bsrValA(..)
+      integer(c_int), target :: bsrRowPtrA(..)
+      integer(c_int), target :: bsrColIndA(..)
       integer(c_int), value :: rowBlockDimA
       integer(c_int), value :: colBlockDimA
       integer(c_int), value :: rowBlockDimC
       integer(c_int), value :: colBlockDimC
-      integer(c_int), target :: pBufferSizeInBytes(*)
+      integer(c_int), target :: pBufferSizeInBytes(..)
       integer(c_int) :: Dgebsr2gebsr_bufferSize
       Dgebsr2gebsr_bufferSize = hipsparseDgebsr2gebsr_bufferSize_raw(handle, dirA, mb, nb, nnzb, &
-        descrA, c_loc(bsrValA(1)), c_loc(bsrRowPtrA(1)), c_loc(bsrColIndA(1)), rowBlockDimA, &
-        colBlockDimA, rowBlockDimC, colBlockDimC, c_loc(pBufferSizeInBytes(1)))
+        descrA, c_loc(bsrValA), c_loc(bsrRowPtrA), c_loc(bsrColIndA), rowBlockDimA, colBlockDimA, &
+        rowBlockDimC, colBlockDimC, c_loc(pBufferSizeInBytes))
     end function hipsparseDgebsr2gebsr_bufferSize_native
 
     function hipsparseDgebsr2gebsr_bufferSize_typed(handle, dirA, mb, nb, nnzb, descrA, bsrValA, &
@@ -40563,18 +40322,18 @@ contains
       integer(c_int), value :: nb
       integer(c_int), value :: nnzb
       type(c_ptr), value :: descrA
-      complex(c_float_complex), target :: bsrValA(*)
-      integer(c_int), target :: bsrRowPtrA(*)
-      integer(c_int), target :: bsrColIndA(*)
+      complex(c_float_complex), target :: bsrValA(..)
+      integer(c_int), target :: bsrRowPtrA(..)
+      integer(c_int), target :: bsrColIndA(..)
       integer(c_int), value :: rowBlockDimA
       integer(c_int), value :: colBlockDimA
       integer(c_int), value :: rowBlockDimC
       integer(c_int), value :: colBlockDimC
-      integer(c_int), target :: pBufferSizeInBytes(*)
+      integer(c_int), target :: pBufferSizeInBytes(..)
       integer(c_int) :: Cgebsr2gebsr_bufferSize
       Cgebsr2gebsr_bufferSize = hipsparseCgebsr2gebsr_bufferSize_raw(handle, dirA, mb, nb, nnzb, &
-        descrA, c_loc(bsrValA(1)), c_loc(bsrRowPtrA(1)), c_loc(bsrColIndA(1)), rowBlockDimA, &
-        colBlockDimA, rowBlockDimC, colBlockDimC, c_loc(pBufferSizeInBytes(1)))
+        descrA, c_loc(bsrValA), c_loc(bsrRowPtrA), c_loc(bsrColIndA), rowBlockDimA, colBlockDimA, &
+        rowBlockDimC, colBlockDimC, c_loc(pBufferSizeInBytes))
     end function hipsparseCgebsr2gebsr_bufferSize_native
 
     function hipsparseCgebsr2gebsr_bufferSize_typed(handle, dirA, mb, nb, nnzb, descrA, bsrValA, &
@@ -40614,18 +40373,18 @@ contains
       integer(c_int), value :: nb
       integer(c_int), value :: nnzb
       type(c_ptr), value :: descrA
-      complex(c_double_complex), target :: bsrValA(*)
-      integer(c_int), target :: bsrRowPtrA(*)
-      integer(c_int), target :: bsrColIndA(*)
+      complex(c_double_complex), target :: bsrValA(..)
+      integer(c_int), target :: bsrRowPtrA(..)
+      integer(c_int), target :: bsrColIndA(..)
       integer(c_int), value :: rowBlockDimA
       integer(c_int), value :: colBlockDimA
       integer(c_int), value :: rowBlockDimC
       integer(c_int), value :: colBlockDimC
-      integer(c_int), target :: pBufferSizeInBytes(*)
+      integer(c_int), target :: pBufferSizeInBytes(..)
       integer(c_int) :: Zgebsr2gebsr_bufferSize
       Zgebsr2gebsr_bufferSize = hipsparseZgebsr2gebsr_bufferSize_raw(handle, dirA, mb, nb, nnzb, &
-        descrA, c_loc(bsrValA(1)), c_loc(bsrRowPtrA(1)), c_loc(bsrColIndA(1)), rowBlockDimA, &
-        colBlockDimA, rowBlockDimC, colBlockDimC, c_loc(pBufferSizeInBytes(1)))
+        descrA, c_loc(bsrValA), c_loc(bsrRowPtrA), c_loc(bsrColIndA), rowBlockDimA, colBlockDimA, &
+        rowBlockDimC, colBlockDimC, c_loc(pBufferSizeInBytes))
     end function hipsparseZgebsr2gebsr_bufferSize_native
 
     function hipsparseZgebsr2gebsr_bufferSize_typed(handle, dirA, mb, nb, nnzb, descrA, bsrValA, &
@@ -40665,20 +40424,20 @@ contains
       integer(c_int), value :: nb
       integer(c_int), value :: nnzb
       type(c_ptr), value :: descrA
-      integer(c_int), target :: bsrRowPtrA(*)
-      integer(c_int), target :: bsrColIndA(*)
+      integer(c_int), target :: bsrRowPtrA(..)
+      integer(c_int), target :: bsrColIndA(..)
       integer(c_int), value :: rowBlockDimA
       integer(c_int), value :: colBlockDimA
       type(c_ptr), value :: descrC
-      integer(c_int), target :: bsrRowPtrC(*)
+      integer(c_int), target :: bsrRowPtrC(..)
       integer(c_int), value :: rowBlockDimC
       integer(c_int), value :: colBlockDimC
       integer(c_int) :: nnzTotalDevHostPtr
       type(c_ptr), value :: buffer
       integer(c_int) :: Xgebsr2gebsrNnz
       Xgebsr2gebsrNnz = hipsparseXgebsr2gebsrNnz_raw(handle, dirA, mb, nb, nnzb, descrA, c_loc( &
-        bsrRowPtrA(1)), c_loc(bsrColIndA(1)), rowBlockDimA, colBlockDimA, descrC, c_loc( &
-        bsrRowPtrC(1)), rowBlockDimC, colBlockDimC, nnzTotalDevHostPtr, buffer)
+        bsrRowPtrA), c_loc(bsrColIndA), rowBlockDimA, colBlockDimA, descrC, c_loc(bsrRowPtrC), &
+        rowBlockDimC, colBlockDimC, nnzTotalDevHostPtr, buffer)
     end function hipsparseXgebsr2gebsrNnz_native
 
     function hipsparseXgebsr2gebsrNnz_typed(handle, dirA, mb, nb, nnzb, descrA, bsrRowPtrA, &
@@ -40720,23 +40479,22 @@ contains
       integer(c_int), value :: nb
       integer(c_int), value :: nnzb
       type(c_ptr), value :: descrA
-      real(c_float), target :: bsrValA(*)
-      integer(c_int), target :: bsrRowPtrA(*)
-      integer(c_int), target :: bsrColIndA(*)
+      real(c_float), target :: bsrValA(..)
+      integer(c_int), target :: bsrRowPtrA(..)
+      integer(c_int), target :: bsrColIndA(..)
       integer(c_int), value :: rowBlockDimA
       integer(c_int), value :: colBlockDimA
       type(c_ptr), value :: descrC
-      real(c_float), target :: bsrValC(*)
-      integer(c_int), target :: bsrRowPtrC(*)
-      integer(c_int), target :: bsrColIndC(*)
+      real(c_float), target :: bsrValC(..)
+      integer(c_int), target :: bsrRowPtrC(..)
+      integer(c_int), target :: bsrColIndC(..)
       integer(c_int), value :: rowBlockDimC
       integer(c_int), value :: colBlockDimC
       type(c_ptr), value :: buffer
       integer(c_int) :: Sgebsr2gebsr
-      Sgebsr2gebsr = hipsparseSgebsr2gebsr_raw(handle, dirA, mb, nb, nnzb, descrA, c_loc(bsrValA( &
-        1)), c_loc(bsrRowPtrA(1)), c_loc(bsrColIndA(1)), rowBlockDimA, colBlockDimA, descrC, &
-        c_loc(bsrValC(1)), c_loc(bsrRowPtrC(1)), c_loc(bsrColIndC(1)), rowBlockDimC, colBlockDimC, &
-        buffer)
+      Sgebsr2gebsr = hipsparseSgebsr2gebsr_raw(handle, dirA, mb, nb, nnzb, descrA, c_loc(bsrValA), &
+        c_loc(bsrRowPtrA), c_loc(bsrColIndA), rowBlockDimA, colBlockDimA, descrC, c_loc(bsrValC), &
+        c_loc(bsrRowPtrC), c_loc(bsrColIndC), rowBlockDimC, colBlockDimC, buffer)
     end function hipsparseSgebsr2gebsr_native
 
     function hipsparseSgebsr2gebsr_typed(handle, dirA, mb, nb, nnzb, descrA, bsrValA, bsrRowPtrA, &
@@ -40780,23 +40538,22 @@ contains
       integer(c_int), value :: nb
       integer(c_int), value :: nnzb
       type(c_ptr), value :: descrA
-      real(c_double), target :: bsrValA(*)
-      integer(c_int), target :: bsrRowPtrA(*)
-      integer(c_int), target :: bsrColIndA(*)
+      real(c_double), target :: bsrValA(..)
+      integer(c_int), target :: bsrRowPtrA(..)
+      integer(c_int), target :: bsrColIndA(..)
       integer(c_int), value :: rowBlockDimA
       integer(c_int), value :: colBlockDimA
       type(c_ptr), value :: descrC
-      real(c_double), target :: bsrValC(*)
-      integer(c_int), target :: bsrRowPtrC(*)
-      integer(c_int), target :: bsrColIndC(*)
+      real(c_double), target :: bsrValC(..)
+      integer(c_int), target :: bsrRowPtrC(..)
+      integer(c_int), target :: bsrColIndC(..)
       integer(c_int), value :: rowBlockDimC
       integer(c_int), value :: colBlockDimC
       type(c_ptr), value :: buffer
       integer(c_int) :: Dgebsr2gebsr
-      Dgebsr2gebsr = hipsparseDgebsr2gebsr_raw(handle, dirA, mb, nb, nnzb, descrA, c_loc(bsrValA( &
-        1)), c_loc(bsrRowPtrA(1)), c_loc(bsrColIndA(1)), rowBlockDimA, colBlockDimA, descrC, &
-        c_loc(bsrValC(1)), c_loc(bsrRowPtrC(1)), c_loc(bsrColIndC(1)), rowBlockDimC, colBlockDimC, &
-        buffer)
+      Dgebsr2gebsr = hipsparseDgebsr2gebsr_raw(handle, dirA, mb, nb, nnzb, descrA, c_loc(bsrValA), &
+        c_loc(bsrRowPtrA), c_loc(bsrColIndA), rowBlockDimA, colBlockDimA, descrC, c_loc(bsrValC), &
+        c_loc(bsrRowPtrC), c_loc(bsrColIndC), rowBlockDimC, colBlockDimC, buffer)
     end function hipsparseDgebsr2gebsr_native
 
     function hipsparseDgebsr2gebsr_typed(handle, dirA, mb, nb, nnzb, descrA, bsrValA, bsrRowPtrA, &
@@ -40840,23 +40597,22 @@ contains
       integer(c_int), value :: nb
       integer(c_int), value :: nnzb
       type(c_ptr), value :: descrA
-      complex(c_float_complex), target :: bsrValA(*)
-      integer(c_int), target :: bsrRowPtrA(*)
-      integer(c_int), target :: bsrColIndA(*)
+      complex(c_float_complex), target :: bsrValA(..)
+      integer(c_int), target :: bsrRowPtrA(..)
+      integer(c_int), target :: bsrColIndA(..)
       integer(c_int), value :: rowBlockDimA
       integer(c_int), value :: colBlockDimA
       type(c_ptr), value :: descrC
-      complex(c_float_complex), target :: bsrValC(*)
-      integer(c_int), target :: bsrRowPtrC(*)
-      integer(c_int), target :: bsrColIndC(*)
+      complex(c_float_complex), target :: bsrValC(..)
+      integer(c_int), target :: bsrRowPtrC(..)
+      integer(c_int), target :: bsrColIndC(..)
       integer(c_int), value :: rowBlockDimC
       integer(c_int), value :: colBlockDimC
       type(c_ptr), value :: buffer
       integer(c_int) :: Cgebsr2gebsr
-      Cgebsr2gebsr = hipsparseCgebsr2gebsr_raw(handle, dirA, mb, nb, nnzb, descrA, c_loc(bsrValA( &
-        1)), c_loc(bsrRowPtrA(1)), c_loc(bsrColIndA(1)), rowBlockDimA, colBlockDimA, descrC, &
-        c_loc(bsrValC(1)), c_loc(bsrRowPtrC(1)), c_loc(bsrColIndC(1)), rowBlockDimC, colBlockDimC, &
-        buffer)
+      Cgebsr2gebsr = hipsparseCgebsr2gebsr_raw(handle, dirA, mb, nb, nnzb, descrA, c_loc(bsrValA), &
+        c_loc(bsrRowPtrA), c_loc(bsrColIndA), rowBlockDimA, colBlockDimA, descrC, c_loc(bsrValC), &
+        c_loc(bsrRowPtrC), c_loc(bsrColIndC), rowBlockDimC, colBlockDimC, buffer)
     end function hipsparseCgebsr2gebsr_native
 
     function hipsparseCgebsr2gebsr_typed(handle, dirA, mb, nb, nnzb, descrA, bsrValA, bsrRowPtrA, &
@@ -40900,23 +40656,22 @@ contains
       integer(c_int), value :: nb
       integer(c_int), value :: nnzb
       type(c_ptr), value :: descrA
-      complex(c_double_complex), target :: bsrValA(*)
-      integer(c_int), target :: bsrRowPtrA(*)
-      integer(c_int), target :: bsrColIndA(*)
+      complex(c_double_complex), target :: bsrValA(..)
+      integer(c_int), target :: bsrRowPtrA(..)
+      integer(c_int), target :: bsrColIndA(..)
       integer(c_int), value :: rowBlockDimA
       integer(c_int), value :: colBlockDimA
       type(c_ptr), value :: descrC
-      complex(c_double_complex), target :: bsrValC(*)
-      integer(c_int), target :: bsrRowPtrC(*)
-      integer(c_int), target :: bsrColIndC(*)
+      complex(c_double_complex), target :: bsrValC(..)
+      integer(c_int), target :: bsrRowPtrC(..)
+      integer(c_int), target :: bsrColIndC(..)
       integer(c_int), value :: rowBlockDimC
       integer(c_int), value :: colBlockDimC
       type(c_ptr), value :: buffer
       integer(c_int) :: Zgebsr2gebsr
-      Zgebsr2gebsr = hipsparseZgebsr2gebsr_raw(handle, dirA, mb, nb, nnzb, descrA, c_loc(bsrValA( &
-        1)), c_loc(bsrRowPtrA(1)), c_loc(bsrColIndA(1)), rowBlockDimA, colBlockDimA, descrC, &
-        c_loc(bsrValC(1)), c_loc(bsrRowPtrC(1)), c_loc(bsrColIndC(1)), rowBlockDimC, colBlockDimC, &
-        buffer)
+      Zgebsr2gebsr = hipsparseZgebsr2gebsr_raw(handle, dirA, mb, nb, nnzb, descrA, c_loc(bsrValA), &
+        c_loc(bsrRowPtrA), c_loc(bsrColIndA), rowBlockDimA, colBlockDimA, descrC, c_loc(bsrValC), &
+        c_loc(bsrRowPtrC), c_loc(bsrColIndC), rowBlockDimC, colBlockDimC, buffer)
     end function hipsparseZgebsr2gebsr_native
 
     function hipsparseZgebsr2gebsr_typed(handle, dirA, mb, nb, nnzb, descrA, bsrValA, bsrRowPtrA, &
@@ -40956,12 +40711,12 @@ contains
       type(c_ptr), value :: handle
       type(c_ptr), value :: descrA
       type(c_ptr), value :: hybA
-      real(c_float), target :: csrSortedValA(*)
-      integer(c_int), target :: csrSortedRowPtrA(*)
-      integer(c_int), target :: csrSortedColIndA(*)
+      real(c_float), target :: csrSortedValA(..)
+      integer(c_int), target :: csrSortedRowPtrA(..)
+      integer(c_int), target :: csrSortedColIndA(..)
       integer(c_int) :: Shyb2csr
-      Shyb2csr = hipsparseShyb2csr_raw(handle, descrA, hybA, c_loc(csrSortedValA(1)), c_loc( &
-        csrSortedRowPtrA(1)), c_loc(csrSortedColIndA(1)))
+      Shyb2csr = hipsparseShyb2csr_raw(handle, descrA, hybA, c_loc(csrSortedValA), c_loc( &
+        csrSortedRowPtrA), c_loc(csrSortedColIndA))
     end function hipsparseShyb2csr_native
 
     function hipsparseShyb2csr_typed(handle, descrA, hybA, csrSortedValA, csrSortedRowPtrA, &
@@ -40987,12 +40742,12 @@ contains
       type(c_ptr), value :: handle
       type(c_ptr), value :: descrA
       type(c_ptr), value :: hybA
-      real(c_double), target :: csrSortedValA(*)
-      integer(c_int), target :: csrSortedRowPtrA(*)
-      integer(c_int), target :: csrSortedColIndA(*)
+      real(c_double), target :: csrSortedValA(..)
+      integer(c_int), target :: csrSortedRowPtrA(..)
+      integer(c_int), target :: csrSortedColIndA(..)
       integer(c_int) :: Dhyb2csr
-      Dhyb2csr = hipsparseDhyb2csr_raw(handle, descrA, hybA, c_loc(csrSortedValA(1)), c_loc( &
-        csrSortedRowPtrA(1)), c_loc(csrSortedColIndA(1)))
+      Dhyb2csr = hipsparseDhyb2csr_raw(handle, descrA, hybA, c_loc(csrSortedValA), c_loc( &
+        csrSortedRowPtrA), c_loc(csrSortedColIndA))
     end function hipsparseDhyb2csr_native
 
     function hipsparseDhyb2csr_typed(handle, descrA, hybA, csrSortedValA, csrSortedRowPtrA, &
@@ -41018,12 +40773,12 @@ contains
       type(c_ptr), value :: handle
       type(c_ptr), value :: descrA
       type(c_ptr), value :: hybA
-      complex(c_float_complex), target :: csrSortedValA(*)
-      integer(c_int), target :: csrSortedRowPtrA(*)
-      integer(c_int), target :: csrSortedColIndA(*)
+      complex(c_float_complex), target :: csrSortedValA(..)
+      integer(c_int), target :: csrSortedRowPtrA(..)
+      integer(c_int), target :: csrSortedColIndA(..)
       integer(c_int) :: Chyb2csr
-      Chyb2csr = hipsparseChyb2csr_raw(handle, descrA, hybA, c_loc(csrSortedValA(1)), c_loc( &
-        csrSortedRowPtrA(1)), c_loc(csrSortedColIndA(1)))
+      Chyb2csr = hipsparseChyb2csr_raw(handle, descrA, hybA, c_loc(csrSortedValA), c_loc( &
+        csrSortedRowPtrA), c_loc(csrSortedColIndA))
     end function hipsparseChyb2csr_native
 
     function hipsparseChyb2csr_typed(handle, descrA, hybA, csrSortedValA, csrSortedRowPtrA, &
@@ -41049,12 +40804,12 @@ contains
       type(c_ptr), value :: handle
       type(c_ptr), value :: descrA
       type(c_ptr), value :: hybA
-      complex(c_double_complex), target :: csrSortedValA(*)
-      integer(c_int), target :: csrSortedRowPtrA(*)
-      integer(c_int), target :: csrSortedColIndA(*)
+      complex(c_double_complex), target :: csrSortedValA(..)
+      integer(c_int), target :: csrSortedRowPtrA(..)
+      integer(c_int), target :: csrSortedColIndA(..)
       integer(c_int) :: Zhyb2csr
-      Zhyb2csr = hipsparseZhyb2csr_raw(handle, descrA, hybA, c_loc(csrSortedValA(1)), c_loc( &
-        csrSortedRowPtrA(1)), c_loc(csrSortedColIndA(1)))
+      Zhyb2csr = hipsparseZhyb2csr_raw(handle, descrA, hybA, c_loc(csrSortedValA), c_loc( &
+        csrSortedRowPtrA), c_loc(csrSortedColIndA))
     end function hipsparseZhyb2csr_native
 
     function hipsparseZhyb2csr_typed(handle, descrA, hybA, csrSortedValA, csrSortedRowPtrA, &
@@ -41082,13 +40837,13 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       type(c_ptr), value :: descrA
-      real(c_float), target :: A(*)
+      real(c_float), target :: A(..)
       integer(c_int), value :: lda
-      integer(c_int), target :: nnzPerRowColumn(*)
-      integer(c_int), target :: nnzTotalDevHostPtr(*)
+      integer(c_int), target :: nnzPerRowColumn(..)
+      integer(c_int) :: nnzTotalDevHostPtr
       integer(c_int) :: Snnz
-      Snnz = hipsparseSnnz_raw(handle, dirA, m, n, descrA, c_loc(A(1)), lda, c_loc( &
-        nnzPerRowColumn(1)), c_loc(nnzTotalDevHostPtr(1)))
+      Snnz = hipsparseSnnz_raw(handle, dirA, m, n, descrA, c_loc(A), lda, c_loc(nnzPerRowColumn), &
+        nnzTotalDevHostPtr)
     end function hipsparseSnnz_native
 
     function hipsparseSnnz_typed(handle, dirA, m, n, descrA, A, lda, nnzPerRowColumn, &
@@ -41104,7 +40859,7 @@ contains
       type(c_ptr), value :: A
       integer(c_int), value :: lda
       type(c_ptr), value :: nnzPerRowColumn
-      type(c_ptr), value :: nnzTotalDevHostPtr
+      integer(c_int) :: nnzTotalDevHostPtr
       integer(c_int) :: Snnz
       Snnz = hipsparseSnnz_raw(handle%ptr, dirA, m, n, descrA%ptr, A, lda, nnzPerRowColumn, &
         nnzTotalDevHostPtr)
@@ -41119,13 +40874,13 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       type(c_ptr), value :: descrA
-      real(c_double), target :: A(*)
+      real(c_double), target :: A(..)
       integer(c_int), value :: lda
-      integer(c_int), target :: nnzPerRowColumn(*)
-      integer(c_int), target :: nnzTotalDevHostPtr(*)
+      integer(c_int), target :: nnzPerRowColumn(..)
+      integer(c_int) :: nnzTotalDevHostPtr
       integer(c_int) :: Dnnz
-      Dnnz = hipsparseDnnz_raw(handle, dirA, m, n, descrA, c_loc(A(1)), lda, c_loc( &
-        nnzPerRowColumn(1)), c_loc(nnzTotalDevHostPtr(1)))
+      Dnnz = hipsparseDnnz_raw(handle, dirA, m, n, descrA, c_loc(A), lda, c_loc(nnzPerRowColumn), &
+        nnzTotalDevHostPtr)
     end function hipsparseDnnz_native
 
     function hipsparseDnnz_typed(handle, dirA, m, n, descrA, A, lda, nnzPerRowColumn, &
@@ -41141,7 +40896,7 @@ contains
       type(c_ptr), value :: A
       integer(c_int), value :: lda
       type(c_ptr), value :: nnzPerRowColumn
-      type(c_ptr), value :: nnzTotalDevHostPtr
+      integer(c_int) :: nnzTotalDevHostPtr
       integer(c_int) :: Dnnz
       Dnnz = hipsparseDnnz_raw(handle%ptr, dirA, m, n, descrA%ptr, A, lda, nnzPerRowColumn, &
         nnzTotalDevHostPtr)
@@ -41156,13 +40911,13 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       type(c_ptr), value :: descrA
-      complex(c_float_complex), target :: A(*)
+      complex(c_float_complex), target :: A(..)
       integer(c_int), value :: lda
-      integer(c_int), target :: nnzPerRowColumn(*)
-      integer(c_int), target :: nnzTotalDevHostPtr(*)
+      integer(c_int), target :: nnzPerRowColumn(..)
+      integer(c_int) :: nnzTotalDevHostPtr
       integer(c_int) :: Cnnz
-      Cnnz = hipsparseCnnz_raw(handle, dirA, m, n, descrA, c_loc(A(1)), lda, c_loc( &
-        nnzPerRowColumn(1)), c_loc(nnzTotalDevHostPtr(1)))
+      Cnnz = hipsparseCnnz_raw(handle, dirA, m, n, descrA, c_loc(A), lda, c_loc(nnzPerRowColumn), &
+        nnzTotalDevHostPtr)
     end function hipsparseCnnz_native
 
     function hipsparseCnnz_typed(handle, dirA, m, n, descrA, A, lda, nnzPerRowColumn, &
@@ -41178,7 +40933,7 @@ contains
       type(c_ptr), value :: A
       integer(c_int), value :: lda
       type(c_ptr), value :: nnzPerRowColumn
-      type(c_ptr), value :: nnzTotalDevHostPtr
+      integer(c_int) :: nnzTotalDevHostPtr
       integer(c_int) :: Cnnz
       Cnnz = hipsparseCnnz_raw(handle%ptr, dirA, m, n, descrA%ptr, A, lda, nnzPerRowColumn, &
         nnzTotalDevHostPtr)
@@ -41193,13 +40948,13 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       type(c_ptr), value :: descrA
-      complex(c_double_complex), target :: A(*)
+      complex(c_double_complex), target :: A(..)
       integer(c_int), value :: lda
-      integer(c_int), target :: nnzPerRowColumn(*)
-      integer(c_int), target :: nnzTotalDevHostPtr(*)
+      integer(c_int), target :: nnzPerRowColumn(..)
+      integer(c_int) :: nnzTotalDevHostPtr
       integer(c_int) :: Znnz
-      Znnz = hipsparseZnnz_raw(handle, dirA, m, n, descrA, c_loc(A(1)), lda, c_loc( &
-        nnzPerRowColumn(1)), c_loc(nnzTotalDevHostPtr(1)))
+      Znnz = hipsparseZnnz_raw(handle, dirA, m, n, descrA, c_loc(A), lda, c_loc(nnzPerRowColumn), &
+        nnzTotalDevHostPtr)
     end function hipsparseZnnz_native
 
     function hipsparseZnnz_typed(handle, dirA, m, n, descrA, A, lda, nnzPerRowColumn, &
@@ -41215,7 +40970,7 @@ contains
       type(c_ptr), value :: A
       integer(c_int), value :: lda
       type(c_ptr), value :: nnzPerRowColumn
-      type(c_ptr), value :: nnzTotalDevHostPtr
+      integer(c_int) :: nnzTotalDevHostPtr
       integer(c_int) :: Znnz
       Znnz = hipsparseZnnz_raw(handle%ptr, dirA, m, n, descrA%ptr, A, lda, nnzPerRowColumn, &
         nnzTotalDevHostPtr)
@@ -41228,14 +40983,14 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: m
       type(c_ptr), value :: descrA
-      real(c_float), target :: csrValA(*)
-      integer(c_int), target :: csrRowPtrA(*)
-      integer(c_int), target :: nnzPerRow(*)
-      integer(c_int), target :: nnzC(*)
+      real(c_float), target :: csrValA(..)
+      integer(c_int), target :: csrRowPtrA(..)
+      integer(c_int), target :: nnzPerRow(..)
+      integer(c_int), target :: nnzC(..)
       real(c_float), value :: tol
       integer(c_int) :: Snnz_compress
-      Snnz_compress = hipsparseSnnz_compress_raw(handle, m, descrA, c_loc(csrValA(1)), c_loc( &
-        csrRowPtrA(1)), c_loc(nnzPerRow(1)), c_loc(nnzC(1)), tol)
+      Snnz_compress = hipsparseSnnz_compress_raw(handle, m, descrA, c_loc(csrValA), c_loc( &
+        csrRowPtrA), c_loc(nnzPerRow), c_loc(nnzC), tol)
     end function hipsparseSnnz_compress_native
 
     function hipsparseSnnz_compress_typed(handle, m, descrA, csrValA, csrRowPtrA, nnzPerRow, nnzC, &
@@ -41263,14 +41018,14 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: m
       type(c_ptr), value :: descrA
-      real(c_double), target :: csrValA(*)
-      integer(c_int), target :: csrRowPtrA(*)
-      integer(c_int), target :: nnzPerRow(*)
-      integer(c_int), target :: nnzC(*)
+      real(c_double), target :: csrValA(..)
+      integer(c_int), target :: csrRowPtrA(..)
+      integer(c_int), target :: nnzPerRow(..)
+      integer(c_int), target :: nnzC(..)
       real(c_double), value :: tol
       integer(c_int) :: Dnnz_compress
-      Dnnz_compress = hipsparseDnnz_compress_raw(handle, m, descrA, c_loc(csrValA(1)), c_loc( &
-        csrRowPtrA(1)), c_loc(nnzPerRow(1)), c_loc(nnzC(1)), tol)
+      Dnnz_compress = hipsparseDnnz_compress_raw(handle, m, descrA, c_loc(csrValA), c_loc( &
+        csrRowPtrA), c_loc(nnzPerRow), c_loc(nnzC), tol)
     end function hipsparseDnnz_compress_native
 
     function hipsparseDnnz_compress_typed(handle, m, descrA, csrValA, csrRowPtrA, nnzPerRow, nnzC, &
@@ -41298,14 +41053,14 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: m
       type(c_ptr), value :: descrA
-      complex(c_float_complex), target :: csrValA(*)
-      integer(c_int), target :: csrRowPtrA(*)
-      integer(c_int), target :: nnzPerRow(*)
-      integer(c_int), target :: nnzC(*)
+      complex(c_float_complex), target :: csrValA(..)
+      integer(c_int), target :: csrRowPtrA(..)
+      integer(c_int), target :: nnzPerRow(..)
+      integer(c_int), target :: nnzC(..)
       complex(c_float_complex), value :: tol
       integer(c_int) :: Cnnz_compress
-      Cnnz_compress = hipsparseCnnz_compress_raw(handle, m, descrA, c_loc(csrValA(1)), c_loc( &
-        csrRowPtrA(1)), c_loc(nnzPerRow(1)), c_loc(nnzC(1)), tol)
+      Cnnz_compress = hipsparseCnnz_compress_raw(handle, m, descrA, c_loc(csrValA), c_loc( &
+        csrRowPtrA), c_loc(nnzPerRow), c_loc(nnzC), tol)
     end function hipsparseCnnz_compress_native
 
     function hipsparseCnnz_compress_typed(handle, m, descrA, csrValA, csrRowPtrA, nnzPerRow, nnzC, &
@@ -41333,14 +41088,14 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: m
       type(c_ptr), value :: descrA
-      complex(c_double_complex), target :: csrValA(*)
-      integer(c_int), target :: csrRowPtrA(*)
-      integer(c_int), target :: nnzPerRow(*)
-      integer(c_int), target :: nnzC(*)
+      complex(c_double_complex), target :: csrValA(..)
+      integer(c_int), target :: csrRowPtrA(..)
+      integer(c_int), target :: nnzPerRow(..)
+      integer(c_int), target :: nnzC(..)
       complex(c_double_complex), value :: tol
       integer(c_int) :: Znnz_compress
-      Znnz_compress = hipsparseZnnz_compress_raw(handle, m, descrA, c_loc(csrValA(1)), c_loc( &
-        csrRowPtrA(1)), c_loc(nnzPerRow(1)), c_loc(nnzC(1)), tol)
+      Znnz_compress = hipsparseZnnz_compress_raw(handle, m, descrA, c_loc(csrValA), c_loc( &
+        csrRowPtrA), c_loc(nnzPerRow), c_loc(nnzC), tol)
     end function hipsparseZnnz_compress_native
 
     function hipsparseZnnz_compress_typed(handle, m, descrA, csrValA, csrRowPtrA, nnzPerRow, nnzC, &
@@ -41371,19 +41126,19 @@ contains
       integer(c_int), value :: n
       integer(c_int), value :: nnzA
       type(c_ptr), value :: descrA
-      real(c_float), target :: csrValA(*)
-      integer(c_int), target :: csrRowPtrA(*)
-      integer(c_int), target :: csrColIndA(*)
+      real(c_float), target :: csrValA(..)
+      integer(c_int), target :: csrRowPtrA(..)
+      integer(c_int), target :: csrColIndA(..)
       real(c_float) :: threshold
       type(c_ptr), value :: descrC
-      real(c_float), target :: csrValC(*)
-      integer(c_int), target :: csrRowPtrC(*)
-      integer(c_int), target :: csrColIndC(*)
+      real(c_float), target :: csrValC(..)
+      integer(c_int), target :: csrRowPtrC(..)
+      integer(c_int), target :: csrColIndC(..)
       type(c_ptr), value :: pBufferSizeInBytes
       integer(c_int) :: SpruneCsr2csr_bufferSize
       SpruneCsr2csr_bufferSize = hipsparseSpruneCsr2csr_bufferSize_raw(handle, m, n, nnzA, descrA, &
-        c_loc(csrValA(1)), c_loc(csrRowPtrA(1)), c_loc(csrColIndA(1)), threshold, descrC, c_loc( &
-        csrValC(1)), c_loc(csrRowPtrC(1)), c_loc(csrColIndC(1)), pBufferSizeInBytes)
+        c_loc(csrValA), c_loc(csrRowPtrA), c_loc(csrColIndA), threshold, descrC, c_loc(csrValC), &
+        c_loc(csrRowPtrC), c_loc(csrColIndC), pBufferSizeInBytes)
     end function hipsparseSpruneCsr2csr_bufferSize_native
 
     function hipsparseSpruneCsr2csr_bufferSize_typed(handle, m, n, nnzA, descrA, csrValA, &
@@ -41422,19 +41177,19 @@ contains
       integer(c_int), value :: n
       integer(c_int), value :: nnzA
       type(c_ptr), value :: descrA
-      real(c_double), target :: csrValA(*)
-      integer(c_int), target :: csrRowPtrA(*)
-      integer(c_int), target :: csrColIndA(*)
+      real(c_double), target :: csrValA(..)
+      integer(c_int), target :: csrRowPtrA(..)
+      integer(c_int), target :: csrColIndA(..)
       real(c_double) :: threshold
       type(c_ptr), value :: descrC
-      real(c_double), target :: csrValC(*)
-      integer(c_int), target :: csrRowPtrC(*)
-      integer(c_int), target :: csrColIndC(*)
+      real(c_double), target :: csrValC(..)
+      integer(c_int), target :: csrRowPtrC(..)
+      integer(c_int), target :: csrColIndC(..)
       type(c_ptr), value :: pBufferSizeInBytes
       integer(c_int) :: DpruneCsr2csr_bufferSize
       DpruneCsr2csr_bufferSize = hipsparseDpruneCsr2csr_bufferSize_raw(handle, m, n, nnzA, descrA, &
-        c_loc(csrValA(1)), c_loc(csrRowPtrA(1)), c_loc(csrColIndA(1)), threshold, descrC, c_loc( &
-        csrValC(1)), c_loc(csrRowPtrC(1)), c_loc(csrColIndC(1)), pBufferSizeInBytes)
+        c_loc(csrValA), c_loc(csrRowPtrA), c_loc(csrColIndA), threshold, descrC, c_loc(csrValC), &
+        c_loc(csrRowPtrC), c_loc(csrColIndC), pBufferSizeInBytes)
     end function hipsparseDpruneCsr2csr_bufferSize_native
 
     function hipsparseDpruneCsr2csr_bufferSize_typed(handle, m, n, nnzA, descrA, csrValA, &
@@ -41473,19 +41228,19 @@ contains
       integer(c_int), value :: n
       integer(c_int), value :: nnzA
       type(c_ptr), value :: descrA
-      real(c_float), target :: csrValA(*)
-      integer(c_int), target :: csrRowPtrA(*)
-      integer(c_int), target :: csrColIndA(*)
+      real(c_float), target :: csrValA(..)
+      integer(c_int), target :: csrRowPtrA(..)
+      integer(c_int), target :: csrColIndA(..)
       real(c_float) :: threshold
       type(c_ptr), value :: descrC
-      real(c_float), target :: csrValC(*)
-      integer(c_int), target :: csrRowPtrC(*)
-      integer(c_int), target :: csrColIndC(*)
+      real(c_float), target :: csrValC(..)
+      integer(c_int), target :: csrRowPtrC(..)
+      integer(c_int), target :: csrColIndC(..)
       type(c_ptr), value :: pBufferSizeInBytes
       integer(c_int) :: SpruneCsr2csr_bufferSizeExt
       SpruneCsr2csr_bufferSizeExt = hipsparseSpruneCsr2csr_bufferSizeExt_raw(handle, m, n, nnzA, &
-        descrA, c_loc(csrValA(1)), c_loc(csrRowPtrA(1)), c_loc(csrColIndA(1)), threshold, descrC, &
-        c_loc(csrValC(1)), c_loc(csrRowPtrC(1)), c_loc(csrColIndC(1)), pBufferSizeInBytes)
+        descrA, c_loc(csrValA), c_loc(csrRowPtrA), c_loc(csrColIndA), threshold, descrC, c_loc( &
+        csrValC), c_loc(csrRowPtrC), c_loc(csrColIndC), pBufferSizeInBytes)
     end function hipsparseSpruneCsr2csr_bufferSizeExt_native
 
     function hipsparseSpruneCsr2csr_bufferSizeExt_typed(handle, m, n, nnzA, descrA, csrValA, &
@@ -41524,19 +41279,19 @@ contains
       integer(c_int), value :: n
       integer(c_int), value :: nnzA
       type(c_ptr), value :: descrA
-      real(c_double), target :: csrValA(*)
-      integer(c_int), target :: csrRowPtrA(*)
-      integer(c_int), target :: csrColIndA(*)
+      real(c_double), target :: csrValA(..)
+      integer(c_int), target :: csrRowPtrA(..)
+      integer(c_int), target :: csrColIndA(..)
       real(c_double) :: threshold
       type(c_ptr), value :: descrC
-      real(c_double), target :: csrValC(*)
-      integer(c_int), target :: csrRowPtrC(*)
-      integer(c_int), target :: csrColIndC(*)
+      real(c_double), target :: csrValC(..)
+      integer(c_int), target :: csrRowPtrC(..)
+      integer(c_int), target :: csrColIndC(..)
       type(c_ptr), value :: pBufferSizeInBytes
       integer(c_int) :: DpruneCsr2csr_bufferSizeExt
       DpruneCsr2csr_bufferSizeExt = hipsparseDpruneCsr2csr_bufferSizeExt_raw(handle, m, n, nnzA, &
-        descrA, c_loc(csrValA(1)), c_loc(csrRowPtrA(1)), c_loc(csrColIndA(1)), threshold, descrC, &
-        c_loc(csrValC(1)), c_loc(csrRowPtrC(1)), c_loc(csrColIndC(1)), pBufferSizeInBytes)
+        descrA, c_loc(csrValA), c_loc(csrRowPtrA), c_loc(csrColIndA), threshold, descrC, c_loc( &
+        csrValC), c_loc(csrRowPtrC), c_loc(csrColIndC), pBufferSizeInBytes)
     end function hipsparseDpruneCsr2csr_bufferSizeExt_native
 
     function hipsparseDpruneCsr2csr_bufferSizeExt_typed(handle, m, n, nnzA, descrA, csrValA, &
@@ -41575,17 +41330,17 @@ contains
       integer(c_int), value :: n
       integer(c_int), value :: nnzA
       type(c_ptr), value :: descrA
-      real(c_float), target :: csrValA(*)
-      integer(c_int), target :: csrRowPtrA(*)
-      integer(c_int), target :: csrColIndA(*)
+      real(c_float), target :: csrValA(..)
+      integer(c_int), target :: csrRowPtrA(..)
+      integer(c_int), target :: csrColIndA(..)
       real(c_float) :: threshold
       type(c_ptr), value :: descrC
-      integer(c_int), target :: csrRowPtrC(*)
+      integer(c_int), target :: csrRowPtrC(..)
       integer(c_int) :: nnzTotalDevHostPtr
       type(c_ptr), value :: buffer
       integer(c_int) :: SpruneCsr2csrNnz
-      SpruneCsr2csrNnz = hipsparseSpruneCsr2csrNnz_raw(handle, m, n, nnzA, descrA, c_loc(csrValA( &
-        1)), c_loc(csrRowPtrA(1)), c_loc(csrColIndA(1)), threshold, descrC, c_loc(csrRowPtrC(1)), &
+      SpruneCsr2csrNnz = hipsparseSpruneCsr2csrNnz_raw(handle, m, n, nnzA, descrA, c_loc(csrValA), &
+        c_loc(csrRowPtrA), c_loc(csrColIndA), threshold, descrC, c_loc(csrRowPtrC), &
         nnzTotalDevHostPtr, buffer)
     end function hipsparseSpruneCsr2csrNnz_native
 
@@ -41624,17 +41379,17 @@ contains
       integer(c_int), value :: n
       integer(c_int), value :: nnzA
       type(c_ptr), value :: descrA
-      real(c_double), target :: csrValA(*)
-      integer(c_int), target :: csrRowPtrA(*)
-      integer(c_int), target :: csrColIndA(*)
+      real(c_double), target :: csrValA(..)
+      integer(c_int), target :: csrRowPtrA(..)
+      integer(c_int), target :: csrColIndA(..)
       real(c_double) :: threshold
       type(c_ptr), value :: descrC
-      integer(c_int), target :: csrRowPtrC(*)
+      integer(c_int), target :: csrRowPtrC(..)
       integer(c_int) :: nnzTotalDevHostPtr
       type(c_ptr), value :: buffer
       integer(c_int) :: DpruneCsr2csrNnz
-      DpruneCsr2csrNnz = hipsparseDpruneCsr2csrNnz_raw(handle, m, n, nnzA, descrA, c_loc(csrValA( &
-        1)), c_loc(csrRowPtrA(1)), c_loc(csrColIndA(1)), threshold, descrC, c_loc(csrRowPtrC(1)), &
+      DpruneCsr2csrNnz = hipsparseDpruneCsr2csrNnz_raw(handle, m, n, nnzA, descrA, c_loc(csrValA), &
+        c_loc(csrRowPtrA), c_loc(csrColIndA), threshold, descrC, c_loc(csrRowPtrC), &
         nnzTotalDevHostPtr, buffer)
     end function hipsparseDpruneCsr2csrNnz_native
 
@@ -41673,19 +41428,19 @@ contains
       integer(c_int), value :: n
       integer(c_int), value :: nnzA
       type(c_ptr), value :: descrA
-      real(c_float), target :: csrValA(*)
-      integer(c_int), target :: csrRowPtrA(*)
-      integer(c_int), target :: csrColIndA(*)
+      real(c_float), target :: csrValA(..)
+      integer(c_int), target :: csrRowPtrA(..)
+      integer(c_int), target :: csrColIndA(..)
       real(c_float) :: threshold
       type(c_ptr), value :: descrC
-      real(c_float), target :: csrValC(*)
-      integer(c_int), target :: csrRowPtrC(*)
-      integer(c_int), target :: csrColIndC(*)
+      real(c_float), target :: csrValC(..)
+      integer(c_int), target :: csrRowPtrC(..)
+      integer(c_int), target :: csrColIndC(..)
       type(c_ptr), value :: buffer
       integer(c_int) :: SpruneCsr2csr
-      SpruneCsr2csr = hipsparseSpruneCsr2csr_raw(handle, m, n, nnzA, descrA, c_loc(csrValA(1)), &
-        c_loc(csrRowPtrA(1)), c_loc(csrColIndA(1)), threshold, descrC, c_loc(csrValC(1)), c_loc( &
-        csrRowPtrC(1)), c_loc(csrColIndC(1)), buffer)
+      SpruneCsr2csr = hipsparseSpruneCsr2csr_raw(handle, m, n, nnzA, descrA, c_loc(csrValA), &
+        c_loc(csrRowPtrA), c_loc(csrColIndA), threshold, descrC, c_loc(csrValC), c_loc( &
+        csrRowPtrC), c_loc(csrColIndC), buffer)
     end function hipsparseSpruneCsr2csr_native
 
     function hipsparseSpruneCsr2csr_typed(handle, m, n, nnzA, descrA, csrValA, csrRowPtrA, &
@@ -41723,19 +41478,19 @@ contains
       integer(c_int), value :: n
       integer(c_int), value :: nnzA
       type(c_ptr), value :: descrA
-      real(c_double), target :: csrValA(*)
-      integer(c_int), target :: csrRowPtrA(*)
-      integer(c_int), target :: csrColIndA(*)
+      real(c_double), target :: csrValA(..)
+      integer(c_int), target :: csrRowPtrA(..)
+      integer(c_int), target :: csrColIndA(..)
       real(c_double) :: threshold
       type(c_ptr), value :: descrC
-      real(c_double), target :: csrValC(*)
-      integer(c_int), target :: csrRowPtrC(*)
-      integer(c_int), target :: csrColIndC(*)
+      real(c_double), target :: csrValC(..)
+      integer(c_int), target :: csrRowPtrC(..)
+      integer(c_int), target :: csrColIndC(..)
       type(c_ptr), value :: buffer
       integer(c_int) :: DpruneCsr2csr
-      DpruneCsr2csr = hipsparseDpruneCsr2csr_raw(handle, m, n, nnzA, descrA, c_loc(csrValA(1)), &
-        c_loc(csrRowPtrA(1)), c_loc(csrColIndA(1)), threshold, descrC, c_loc(csrValC(1)), c_loc( &
-        csrRowPtrC(1)), c_loc(csrColIndC(1)), buffer)
+      DpruneCsr2csr = hipsparseDpruneCsr2csr_raw(handle, m, n, nnzA, descrA, c_loc(csrValA), &
+        c_loc(csrRowPtrA), c_loc(csrColIndA), threshold, descrC, c_loc(csrValC), c_loc( &
+        csrRowPtrC), c_loc(csrColIndC), buffer)
     end function hipsparseDpruneCsr2csr_native
 
     function hipsparseDpruneCsr2csr_typed(handle, m, n, nnzA, descrA, csrValA, csrRowPtrA, &
@@ -41773,20 +41528,20 @@ contains
       integer(c_int), value :: n
       integer(c_int), value :: nnzA
       type(c_ptr), value :: descrA
-      real(c_float), target :: csrValA(*)
-      integer(c_int), target :: csrRowPtrA(*)
-      integer(c_int), target :: csrColIndA(*)
+      real(c_float), target :: csrValA(..)
+      integer(c_int), target :: csrRowPtrA(..)
+      integer(c_int), target :: csrColIndA(..)
       real(c_float), value :: percentage
       type(c_ptr), value :: descrC
-      real(c_float), target :: csrValC(*)
-      integer(c_int), target :: csrRowPtrC(*)
-      integer(c_int), target :: csrColIndC(*)
+      real(c_float), target :: csrValC(..)
+      integer(c_int), target :: csrRowPtrC(..)
+      integer(c_int), target :: csrColIndC(..)
       type(c_ptr), value :: info
       type(c_ptr), value :: pBufferSizeInBytes
       integer(c_int) :: SpruneCsr2csrByPercentage_bufferSize
       SpruneCsr2csrByPercentage_bufferSize = hipsparseSpruneCsr2csrByPercentage_bufferSize_raw( &
-        handle, m, n, nnzA, descrA, c_loc(csrValA(1)), c_loc(csrRowPtrA(1)), c_loc(csrColIndA(1)), &
-        percentage, descrC, c_loc(csrValC(1)), c_loc(csrRowPtrC(1)), c_loc(csrColIndC(1)), info, &
+        handle, m, n, nnzA, descrA, c_loc(csrValA), c_loc(csrRowPtrA), c_loc(csrColIndA), &
+        percentage, descrC, c_loc(csrValC), c_loc(csrRowPtrC), c_loc(csrColIndC), info, &
         pBufferSizeInBytes)
     end function hipsparseSpruneCsr2csrByPercentage_bufferSize_native
 
@@ -41827,20 +41582,20 @@ contains
       integer(c_int), value :: n
       integer(c_int), value :: nnzA
       type(c_ptr), value :: descrA
-      real(c_double), target :: csrValA(*)
-      integer(c_int), target :: csrRowPtrA(*)
-      integer(c_int), target :: csrColIndA(*)
+      real(c_double), target :: csrValA(..)
+      integer(c_int), target :: csrRowPtrA(..)
+      integer(c_int), target :: csrColIndA(..)
       real(c_double), value :: percentage
       type(c_ptr), value :: descrC
-      real(c_double), target :: csrValC(*)
-      integer(c_int), target :: csrRowPtrC(*)
-      integer(c_int), target :: csrColIndC(*)
+      real(c_double), target :: csrValC(..)
+      integer(c_int), target :: csrRowPtrC(..)
+      integer(c_int), target :: csrColIndC(..)
       type(c_ptr), value :: info
       type(c_ptr), value :: pBufferSizeInBytes
       integer(c_int) :: DpruneCsr2csrByPercentage_bufferSize
       DpruneCsr2csrByPercentage_bufferSize = hipsparseDpruneCsr2csrByPercentage_bufferSize_raw( &
-        handle, m, n, nnzA, descrA, c_loc(csrValA(1)), c_loc(csrRowPtrA(1)), c_loc(csrColIndA(1)), &
-        percentage, descrC, c_loc(csrValC(1)), c_loc(csrRowPtrC(1)), c_loc(csrColIndC(1)), info, &
+        handle, m, n, nnzA, descrA, c_loc(csrValA), c_loc(csrRowPtrA), c_loc(csrColIndA), &
+        percentage, descrC, c_loc(csrValC), c_loc(csrRowPtrC), c_loc(csrColIndC), info, &
         pBufferSizeInBytes)
     end function hipsparseDpruneCsr2csrByPercentage_bufferSize_native
 
@@ -41881,20 +41636,20 @@ contains
       integer(c_int), value :: n
       integer(c_int), value :: nnzA
       type(c_ptr), value :: descrA
-      real(c_float), target :: csrValA(*)
-      integer(c_int), target :: csrRowPtrA(*)
-      integer(c_int), target :: csrColIndA(*)
+      real(c_float), target :: csrValA(..)
+      integer(c_int), target :: csrRowPtrA(..)
+      integer(c_int), target :: csrColIndA(..)
       real(c_float), value :: percentage
       type(c_ptr), value :: descrC
-      real(c_float), target :: csrValC(*)
-      integer(c_int), target :: csrRowPtrC(*)
-      integer(c_int), target :: csrColIndC(*)
+      real(c_float), target :: csrValC(..)
+      integer(c_int), target :: csrRowPtrC(..)
+      integer(c_int), target :: csrColIndC(..)
       type(c_ptr), value :: info
       type(c_ptr), value :: pBufferSizeInBytes
       integer(c_int) :: SpruneCsr2csrByPercentage_bufferSizeExt
       SpruneCsr2csrByPercentage_bufferSizeExt = hipsparseSpruneCsr2csrByPercentage_bufferSizeExt_raw( &
-        handle, m, n, nnzA, descrA, c_loc(csrValA(1)), c_loc(csrRowPtrA(1)), c_loc(csrColIndA(1)), &
-        percentage, descrC, c_loc(csrValC(1)), c_loc(csrRowPtrC(1)), c_loc(csrColIndC(1)), info, &
+        handle, m, n, nnzA, descrA, c_loc(csrValA), c_loc(csrRowPtrA), c_loc(csrColIndA), &
+        percentage, descrC, c_loc(csrValC), c_loc(csrRowPtrC), c_loc(csrColIndC), info, &
         pBufferSizeInBytes)
     end function hipsparseSpruneCsr2csrByPercentage_bufferSizeExt_native
 
@@ -41935,20 +41690,20 @@ contains
       integer(c_int), value :: n
       integer(c_int), value :: nnzA
       type(c_ptr), value :: descrA
-      real(c_double), target :: csrValA(*)
-      integer(c_int), target :: csrRowPtrA(*)
-      integer(c_int), target :: csrColIndA(*)
+      real(c_double), target :: csrValA(..)
+      integer(c_int), target :: csrRowPtrA(..)
+      integer(c_int), target :: csrColIndA(..)
       real(c_double), value :: percentage
       type(c_ptr), value :: descrC
-      real(c_double), target :: csrValC(*)
-      integer(c_int), target :: csrRowPtrC(*)
-      integer(c_int), target :: csrColIndC(*)
+      real(c_double), target :: csrValC(..)
+      integer(c_int), target :: csrRowPtrC(..)
+      integer(c_int), target :: csrColIndC(..)
       type(c_ptr), value :: info
       type(c_ptr), value :: pBufferSizeInBytes
       integer(c_int) :: DpruneCsr2csrByPercentage_bufferSizeExt
       DpruneCsr2csrByPercentage_bufferSizeExt = hipsparseDpruneCsr2csrByPercentage_bufferSizeExt_raw( &
-        handle, m, n, nnzA, descrA, c_loc(csrValA(1)), c_loc(csrRowPtrA(1)), c_loc(csrColIndA(1)), &
-        percentage, descrC, c_loc(csrValC(1)), c_loc(csrRowPtrC(1)), c_loc(csrColIndC(1)), info, &
+        handle, m, n, nnzA, descrA, c_loc(csrValA), c_loc(csrRowPtrA), c_loc(csrColIndA), &
+        percentage, descrC, c_loc(csrValC), c_loc(csrRowPtrC), c_loc(csrColIndC), info, &
         pBufferSizeInBytes)
     end function hipsparseDpruneCsr2csrByPercentage_bufferSizeExt_native
 
@@ -41989,19 +41744,19 @@ contains
       integer(c_int), value :: n
       integer(c_int), value :: nnzA
       type(c_ptr), value :: descrA
-      real(c_float), target :: csrValA(*)
-      integer(c_int), target :: csrRowPtrA(*)
-      integer(c_int), target :: csrColIndA(*)
+      real(c_float), target :: csrValA(..)
+      integer(c_int), target :: csrRowPtrA(..)
+      integer(c_int), target :: csrColIndA(..)
       real(c_float), value :: percentage
       type(c_ptr), value :: descrC
-      integer(c_int), target :: csrRowPtrC(*)
+      integer(c_int), target :: csrRowPtrC(..)
       integer(c_int) :: nnzTotalDevHostPtr
       type(c_ptr), value :: info
       type(c_ptr), value :: buffer
       integer(c_int) :: SpruneCsr2csrNnzByPercentage
       SpruneCsr2csrNnzByPercentage = hipsparseSpruneCsr2csrNnzByPercentage_raw(handle, m, n, nnzA, &
-        descrA, c_loc(csrValA(1)), c_loc(csrRowPtrA(1)), c_loc(csrColIndA(1)), percentage, descrC, &
-        c_loc(csrRowPtrC(1)), nnzTotalDevHostPtr, info, buffer)
+        descrA, c_loc(csrValA), c_loc(csrRowPtrA), c_loc(csrColIndA), percentage, descrC, c_loc( &
+        csrRowPtrC), nnzTotalDevHostPtr, info, buffer)
     end function hipsparseSpruneCsr2csrNnzByPercentage_native
 
     function hipsparseSpruneCsr2csrNnzByPercentage_typed(handle, m, n, nnzA, descrA, csrValA, &
@@ -42040,19 +41795,19 @@ contains
       integer(c_int), value :: n
       integer(c_int), value :: nnzA
       type(c_ptr), value :: descrA
-      real(c_double), target :: csrValA(*)
-      integer(c_int), target :: csrRowPtrA(*)
-      integer(c_int), target :: csrColIndA(*)
+      real(c_double), target :: csrValA(..)
+      integer(c_int), target :: csrRowPtrA(..)
+      integer(c_int), target :: csrColIndA(..)
       real(c_double), value :: percentage
       type(c_ptr), value :: descrC
-      integer(c_int), target :: csrRowPtrC(*)
+      integer(c_int), target :: csrRowPtrC(..)
       integer(c_int) :: nnzTotalDevHostPtr
       type(c_ptr), value :: info
       type(c_ptr), value :: buffer
       integer(c_int) :: DpruneCsr2csrNnzByPercentage
       DpruneCsr2csrNnzByPercentage = hipsparseDpruneCsr2csrNnzByPercentage_raw(handle, m, n, nnzA, &
-        descrA, c_loc(csrValA(1)), c_loc(csrRowPtrA(1)), c_loc(csrColIndA(1)), percentage, descrC, &
-        c_loc(csrRowPtrC(1)), nnzTotalDevHostPtr, info, buffer)
+        descrA, c_loc(csrValA), c_loc(csrRowPtrA), c_loc(csrColIndA), percentage, descrC, c_loc( &
+        csrRowPtrC), nnzTotalDevHostPtr, info, buffer)
     end function hipsparseDpruneCsr2csrNnzByPercentage_native
 
     function hipsparseDpruneCsr2csrNnzByPercentage_typed(handle, m, n, nnzA, descrA, csrValA, &
@@ -42091,20 +41846,20 @@ contains
       integer(c_int), value :: n
       integer(c_int), value :: nnzA
       type(c_ptr), value :: descrA
-      real(c_float), target :: csrValA(*)
-      integer(c_int), target :: csrRowPtrA(*)
-      integer(c_int), target :: csrColIndA(*)
+      real(c_float), target :: csrValA(..)
+      integer(c_int), target :: csrRowPtrA(..)
+      integer(c_int), target :: csrColIndA(..)
       real(c_float), value :: percentage
       type(c_ptr), value :: descrC
-      real(c_float), target :: csrValC(*)
-      integer(c_int), target :: csrRowPtrC(*)
-      integer(c_int), target :: csrColIndC(*)
+      real(c_float), target :: csrValC(..)
+      integer(c_int), target :: csrRowPtrC(..)
+      integer(c_int), target :: csrColIndC(..)
       type(c_ptr), value :: info
       type(c_ptr), value :: buffer
       integer(c_int) :: SpruneCsr2csrByPercentage
       SpruneCsr2csrByPercentage = hipsparseSpruneCsr2csrByPercentage_raw(handle, m, n, nnzA, &
-        descrA, c_loc(csrValA(1)), c_loc(csrRowPtrA(1)), c_loc(csrColIndA(1)), percentage, descrC, &
-        c_loc(csrValC(1)), c_loc(csrRowPtrC(1)), c_loc(csrColIndC(1)), info, buffer)
+        descrA, c_loc(csrValA), c_loc(csrRowPtrA), c_loc(csrColIndA), percentage, descrC, c_loc( &
+        csrValC), c_loc(csrRowPtrC), c_loc(csrColIndC), info, buffer)
     end function hipsparseSpruneCsr2csrByPercentage_native
 
     function hipsparseSpruneCsr2csrByPercentage_typed(handle, m, n, nnzA, descrA, csrValA, &
@@ -42144,20 +41899,20 @@ contains
       integer(c_int), value :: n
       integer(c_int), value :: nnzA
       type(c_ptr), value :: descrA
-      real(c_double), target :: csrValA(*)
-      integer(c_int), target :: csrRowPtrA(*)
-      integer(c_int), target :: csrColIndA(*)
+      real(c_double), target :: csrValA(..)
+      integer(c_int), target :: csrRowPtrA(..)
+      integer(c_int), target :: csrColIndA(..)
       real(c_double), value :: percentage
       type(c_ptr), value :: descrC
-      real(c_double), target :: csrValC(*)
-      integer(c_int), target :: csrRowPtrC(*)
-      integer(c_int), target :: csrColIndC(*)
+      real(c_double), target :: csrValC(..)
+      integer(c_int), target :: csrRowPtrC(..)
+      integer(c_int), target :: csrColIndC(..)
       type(c_ptr), value :: info
       type(c_ptr), value :: buffer
       integer(c_int) :: DpruneCsr2csrByPercentage
       DpruneCsr2csrByPercentage = hipsparseDpruneCsr2csrByPercentage_raw(handle, m, n, nnzA, &
-        descrA, c_loc(csrValA(1)), c_loc(csrRowPtrA(1)), c_loc(csrColIndA(1)), percentage, descrC, &
-        c_loc(csrValC(1)), c_loc(csrRowPtrC(1)), c_loc(csrColIndC(1)), info, buffer)
+        descrA, c_loc(csrValA), c_loc(csrRowPtrA), c_loc(csrColIndA), percentage, descrC, c_loc( &
+        csrValC), c_loc(csrRowPtrC), c_loc(csrColIndC), info, buffer)
     end function hipsparseDpruneCsr2csrByPercentage_native
 
     function hipsparseDpruneCsr2csrByPercentage_typed(handle, m, n, nnzA, descrA, csrValA, &
@@ -42194,17 +41949,17 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: m
       integer(c_int), value :: n
-      real(c_float), target :: A(*)
+      real(c_float), target :: A(..)
       integer(c_int), value :: lda
       real(c_float) :: threshold
       type(c_ptr), value :: descr
-      real(c_float), target :: csrVal(*)
-      integer(c_int), target :: csrRowPtr(*)
-      integer(c_int), target :: csrColInd(*)
+      real(c_float), target :: csrVal(..)
+      integer(c_int), target :: csrRowPtr(..)
+      integer(c_int), target :: csrColInd(..)
       type(c_ptr), value :: pBufferSizeInBytes
       integer(c_int) :: SpruneDense2csr_bufferSize
-      SpruneDense2csr_bufferSize = hipsparseSpruneDense2csr_bufferSize_raw(handle, m, n, c_loc(A( &
-        1)), lda, threshold, descr, c_loc(csrVal(1)), c_loc(csrRowPtr(1)), c_loc(csrColInd(1)), &
+      SpruneDense2csr_bufferSize = hipsparseSpruneDense2csr_bufferSize_raw(handle, m, n, c_loc(A), &
+        lda, threshold, descr, c_loc(csrVal), c_loc(csrRowPtr), c_loc(csrColInd), &
         pBufferSizeInBytes)
     end function hipsparseSpruneDense2csr_bufferSize_native
 
@@ -42236,17 +41991,17 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: m
       integer(c_int), value :: n
-      real(c_double), target :: A(*)
+      real(c_double), target :: A(..)
       integer(c_int), value :: lda
       real(c_double) :: threshold
       type(c_ptr), value :: descr
-      real(c_double), target :: csrVal(*)
-      integer(c_int), target :: csrRowPtr(*)
-      integer(c_int), target :: csrColInd(*)
+      real(c_double), target :: csrVal(..)
+      integer(c_int), target :: csrRowPtr(..)
+      integer(c_int), target :: csrColInd(..)
       type(c_ptr), value :: pBufferSizeInBytes
       integer(c_int) :: DpruneDense2csr_bufferSize
-      DpruneDense2csr_bufferSize = hipsparseDpruneDense2csr_bufferSize_raw(handle, m, n, c_loc(A( &
-        1)), lda, threshold, descr, c_loc(csrVal(1)), c_loc(csrRowPtr(1)), c_loc(csrColInd(1)), &
+      DpruneDense2csr_bufferSize = hipsparseDpruneDense2csr_bufferSize_raw(handle, m, n, c_loc(A), &
+        lda, threshold, descr, c_loc(csrVal), c_loc(csrRowPtr), c_loc(csrColInd), &
         pBufferSizeInBytes)
     end function hipsparseDpruneDense2csr_bufferSize_native
 
@@ -42278,18 +42033,18 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: m
       integer(c_int), value :: n
-      real(c_float), target :: A(*)
+      real(c_float), target :: A(..)
       integer(c_int), value :: lda
       real(c_float) :: threshold
       type(c_ptr), value :: descr
-      real(c_float), target :: csrVal(*)
-      integer(c_int), target :: csrRowPtr(*)
-      integer(c_int), target :: csrColInd(*)
+      real(c_float), target :: csrVal(..)
+      integer(c_int), target :: csrRowPtr(..)
+      integer(c_int), target :: csrColInd(..)
       type(c_ptr), value :: pBufferSizeInBytes
       integer(c_int) :: SpruneDense2csr_bufferSizeExt
       SpruneDense2csr_bufferSizeExt = hipsparseSpruneDense2csr_bufferSizeExt_raw(handle, m, n, &
-        c_loc(A(1)), lda, threshold, descr, c_loc(csrVal(1)), c_loc(csrRowPtr(1)), c_loc( &
-        csrColInd(1)), pBufferSizeInBytes)
+        c_loc(A), lda, threshold, descr, c_loc(csrVal), c_loc(csrRowPtr), c_loc(csrColInd), &
+        pBufferSizeInBytes)
     end function hipsparseSpruneDense2csr_bufferSizeExt_native
 
     function hipsparseSpruneDense2csr_bufferSizeExt_typed(handle, m, n, A, lda, threshold, descr, &
@@ -42320,18 +42075,18 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: m
       integer(c_int), value :: n
-      real(c_double), target :: A(*)
+      real(c_double), target :: A(..)
       integer(c_int), value :: lda
       real(c_double) :: threshold
       type(c_ptr), value :: descr
-      real(c_double), target :: csrVal(*)
-      integer(c_int), target :: csrRowPtr(*)
-      integer(c_int), target :: csrColInd(*)
+      real(c_double), target :: csrVal(..)
+      integer(c_int), target :: csrRowPtr(..)
+      integer(c_int), target :: csrColInd(..)
       type(c_ptr), value :: pBufferSizeInBytes
       integer(c_int) :: DpruneDense2csr_bufferSizeExt
       DpruneDense2csr_bufferSizeExt = hipsparseDpruneDense2csr_bufferSizeExt_raw(handle, m, n, &
-        c_loc(A(1)), lda, threshold, descr, c_loc(csrVal(1)), c_loc(csrRowPtr(1)), c_loc( &
-        csrColInd(1)), pBufferSizeInBytes)
+        c_loc(A), lda, threshold, descr, c_loc(csrVal), c_loc(csrRowPtr), c_loc(csrColInd), &
+        pBufferSizeInBytes)
     end function hipsparseDpruneDense2csr_bufferSizeExt_native
 
     function hipsparseDpruneDense2csr_bufferSizeExt_typed(handle, m, n, A, lda, threshold, descr, &
@@ -42362,16 +42117,16 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: m
       integer(c_int), value :: n
-      real(c_float), target :: A(*)
+      real(c_float), target :: A(..)
       integer(c_int), value :: lda
       real(c_float) :: threshold
       type(c_ptr), value :: descr
-      integer(c_int), target :: csrRowPtr(*)
+      integer(c_int), target :: csrRowPtr(..)
       integer(c_int) :: nnzTotalDevHostPtr
       type(c_ptr), value :: buffer
       integer(c_int) :: SpruneDense2csrNnz
-      SpruneDense2csrNnz = hipsparseSpruneDense2csrNnz_raw(handle, m, n, c_loc(A(1)), lda, &
-        threshold, descr, c_loc(csrRowPtr(1)), nnzTotalDevHostPtr, buffer)
+      SpruneDense2csrNnz = hipsparseSpruneDense2csrNnz_raw(handle, m, n, c_loc(A), lda, threshold, &
+        descr, c_loc(csrRowPtr), nnzTotalDevHostPtr, buffer)
     end function hipsparseSpruneDense2csrNnz_native
 
     function hipsparseSpruneDense2csrNnz_typed(handle, m, n, A, lda, threshold, descr, csrRowPtr, &
@@ -42401,16 +42156,16 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: m
       integer(c_int), value :: n
-      real(c_double), target :: A(*)
+      real(c_double), target :: A(..)
       integer(c_int), value :: lda
       real(c_double) :: threshold
       type(c_ptr), value :: descr
-      integer(c_int), target :: csrRowPtr(*)
+      integer(c_int), target :: csrRowPtr(..)
       integer(c_int) :: nnzTotalDevHostPtr
       type(c_ptr), value :: buffer
       integer(c_int) :: DpruneDense2csrNnz
-      DpruneDense2csrNnz = hipsparseDpruneDense2csrNnz_raw(handle, m, n, c_loc(A(1)), lda, &
-        threshold, descr, c_loc(csrRowPtr(1)), nnzTotalDevHostPtr, buffer)
+      DpruneDense2csrNnz = hipsparseDpruneDense2csrNnz_raw(handle, m, n, c_loc(A), lda, threshold, &
+        descr, c_loc(csrRowPtr), nnzTotalDevHostPtr, buffer)
     end function hipsparseDpruneDense2csrNnz_native
 
     function hipsparseDpruneDense2csrNnz_typed(handle, m, n, A, lda, threshold, descr, csrRowPtr, &
@@ -42440,17 +42195,17 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: m
       integer(c_int), value :: n
-      real(c_float), target :: A(*)
+      real(c_float), target :: A(..)
       integer(c_int), value :: lda
       real(c_float) :: threshold
       type(c_ptr), value :: descr
-      real(c_float), target :: csrVal(*)
-      integer(c_int), target :: csrRowPtr(*)
-      integer(c_int), target :: csrColInd(*)
+      real(c_float), target :: csrVal(..)
+      integer(c_int), target :: csrRowPtr(..)
+      integer(c_int), target :: csrColInd(..)
       type(c_ptr), value :: buffer
       integer(c_int) :: SpruneDense2csr
-      SpruneDense2csr = hipsparseSpruneDense2csr_raw(handle, m, n, c_loc(A(1)), lda, threshold, &
-        descr, c_loc(csrVal(1)), c_loc(csrRowPtr(1)), c_loc(csrColInd(1)), buffer)
+      SpruneDense2csr = hipsparseSpruneDense2csr_raw(handle, m, n, c_loc(A), lda, threshold, &
+        descr, c_loc(csrVal), c_loc(csrRowPtr), c_loc(csrColInd), buffer)
     end function hipsparseSpruneDense2csr_native
 
     function hipsparseSpruneDense2csr_typed(handle, m, n, A, lda, threshold, descr, csrVal, &
@@ -42481,17 +42236,17 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: m
       integer(c_int), value :: n
-      real(c_double), target :: A(*)
+      real(c_double), target :: A(..)
       integer(c_int), value :: lda
       real(c_double) :: threshold
       type(c_ptr), value :: descr
-      real(c_double), target :: csrVal(*)
-      integer(c_int), target :: csrRowPtr(*)
-      integer(c_int), target :: csrColInd(*)
+      real(c_double), target :: csrVal(..)
+      integer(c_int), target :: csrRowPtr(..)
+      integer(c_int), target :: csrColInd(..)
       type(c_ptr), value :: buffer
       integer(c_int) :: DpruneDense2csr
-      DpruneDense2csr = hipsparseDpruneDense2csr_raw(handle, m, n, c_loc(A(1)), lda, threshold, &
-        descr, c_loc(csrVal(1)), c_loc(csrRowPtr(1)), c_loc(csrColInd(1)), buffer)
+      DpruneDense2csr = hipsparseDpruneDense2csr_raw(handle, m, n, c_loc(A), lda, threshold, &
+        descr, c_loc(csrVal), c_loc(csrRowPtr), c_loc(csrColInd), buffer)
     end function hipsparseDpruneDense2csr_native
 
     function hipsparseDpruneDense2csr_typed(handle, m, n, A, lda, threshold, descr, csrVal, &
@@ -42523,19 +42278,19 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: m
       integer(c_int), value :: n
-      real(c_float), target :: A(*)
+      real(c_float), target :: A(..)
       integer(c_int), value :: lda
       real(c_float), value :: percentage
       type(c_ptr), value :: descr
-      real(c_float), target :: csrVal(*)
-      integer(c_int), target :: csrRowPtr(*)
-      integer(c_int), target :: csrColInd(*)
+      real(c_float), target :: csrVal(..)
+      integer(c_int), target :: csrRowPtr(..)
+      integer(c_int), target :: csrColInd(..)
       type(c_ptr), value :: info
       type(c_ptr), value :: pBufferSizeInBytes
       integer(c_int) :: SpruneDense2csrByPercentage_bufferSize
       SpruneDense2csrByPercentage_bufferSize = hipsparseSpruneDense2csrByPercentage_bufferSize_raw( &
-        handle, m, n, c_loc(A(1)), lda, percentage, descr, c_loc(csrVal(1)), c_loc(csrRowPtr(1)), &
-        c_loc(csrColInd(1)), info, pBufferSizeInBytes)
+        handle, m, n, c_loc(A), lda, percentage, descr, c_loc(csrVal), c_loc(csrRowPtr), c_loc( &
+        csrColInd), info, pBufferSizeInBytes)
     end function hipsparseSpruneDense2csrByPercentage_bufferSize_native
 
     function hipsparseSpruneDense2csrByPercentage_bufferSize_typed(handle, m, n, A, lda, &
@@ -42570,19 +42325,19 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: m
       integer(c_int), value :: n
-      real(c_double), target :: A(*)
+      real(c_double), target :: A(..)
       integer(c_int), value :: lda
       real(c_double), value :: percentage
       type(c_ptr), value :: descr
-      real(c_double), target :: csrVal(*)
-      integer(c_int), target :: csrRowPtr(*)
-      integer(c_int), target :: csrColInd(*)
+      real(c_double), target :: csrVal(..)
+      integer(c_int), target :: csrRowPtr(..)
+      integer(c_int), target :: csrColInd(..)
       type(c_ptr), value :: info
       type(c_ptr), value :: pBufferSizeInBytes
       integer(c_int) :: DpruneDense2csrByPercentage_bufferSize
       DpruneDense2csrByPercentage_bufferSize = hipsparseDpruneDense2csrByPercentage_bufferSize_raw( &
-        handle, m, n, c_loc(A(1)), lda, percentage, descr, c_loc(csrVal(1)), c_loc(csrRowPtr(1)), &
-        c_loc(csrColInd(1)), info, pBufferSizeInBytes)
+        handle, m, n, c_loc(A), lda, percentage, descr, c_loc(csrVal), c_loc(csrRowPtr), c_loc( &
+        csrColInd), info, pBufferSizeInBytes)
     end function hipsparseDpruneDense2csrByPercentage_bufferSize_native
 
     function hipsparseDpruneDense2csrByPercentage_bufferSize_typed(handle, m, n, A, lda, &
@@ -42617,19 +42372,19 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: m
       integer(c_int), value :: n
-      real(c_float), target :: A(*)
+      real(c_float), target :: A(..)
       integer(c_int), value :: lda
       real(c_float), value :: percentage
       type(c_ptr), value :: descr
-      real(c_float), target :: csrVal(*)
-      integer(c_int), target :: csrRowPtr(*)
-      integer(c_int), target :: csrColInd(*)
+      real(c_float), target :: csrVal(..)
+      integer(c_int), target :: csrRowPtr(..)
+      integer(c_int), target :: csrColInd(..)
       type(c_ptr), value :: info
       type(c_ptr), value :: pBufferSizeInBytes
       integer(c_int) :: SpruneDense2csrByPercentage_bufferSizeExt
       SpruneDense2csrByPercentage_bufferSizeExt = hipsparseSpruneDense2csrByPercentage_bufferSizeExt_raw( &
-        handle, m, n, c_loc(A(1)), lda, percentage, descr, c_loc(csrVal(1)), c_loc(csrRowPtr(1)), &
-        c_loc(csrColInd(1)), info, pBufferSizeInBytes)
+        handle, m, n, c_loc(A), lda, percentage, descr, c_loc(csrVal), c_loc(csrRowPtr), c_loc( &
+        csrColInd), info, pBufferSizeInBytes)
     end function hipsparseSpruneDense2csrByPercentage_bufferSizeExt_native
 
     function hipsparseSpruneDense2csrByPercentage_bufferSizeExt_typed(handle, m, n, A, lda, &
@@ -42664,19 +42419,19 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: m
       integer(c_int), value :: n
-      real(c_double), target :: A(*)
+      real(c_double), target :: A(..)
       integer(c_int), value :: lda
       real(c_double), value :: percentage
       type(c_ptr), value :: descr
-      real(c_double), target :: csrVal(*)
-      integer(c_int), target :: csrRowPtr(*)
-      integer(c_int), target :: csrColInd(*)
+      real(c_double), target :: csrVal(..)
+      integer(c_int), target :: csrRowPtr(..)
+      integer(c_int), target :: csrColInd(..)
       type(c_ptr), value :: info
       type(c_ptr), value :: pBufferSizeInBytes
       integer(c_int) :: DpruneDense2csrByPercentage_bufferSizeExt
       DpruneDense2csrByPercentage_bufferSizeExt = hipsparseDpruneDense2csrByPercentage_bufferSizeExt_raw( &
-        handle, m, n, c_loc(A(1)), lda, percentage, descr, c_loc(csrVal(1)), c_loc(csrRowPtr(1)), &
-        c_loc(csrColInd(1)), info, pBufferSizeInBytes)
+        handle, m, n, c_loc(A), lda, percentage, descr, c_loc(csrVal), c_loc(csrRowPtr), c_loc( &
+        csrColInd), info, pBufferSizeInBytes)
     end function hipsparseDpruneDense2csrByPercentage_bufferSizeExt_native
 
     function hipsparseDpruneDense2csrByPercentage_bufferSizeExt_typed(handle, m, n, A, lda, &
@@ -42710,17 +42465,17 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: m
       integer(c_int), value :: n
-      real(c_float), target :: A(*)
+      real(c_float), target :: A(..)
       integer(c_int), value :: lda
       real(c_float), value :: percentage
       type(c_ptr), value :: descr
-      integer(c_int), target :: csrRowPtr(*)
+      integer(c_int), target :: csrRowPtr(..)
       integer(c_int) :: nnzTotalDevHostPtr
       type(c_ptr), value :: info
       type(c_ptr), value :: buffer
       integer(c_int) :: SpruneDense2csrNnzByPercentage
       SpruneDense2csrNnzByPercentage = hipsparseSpruneDense2csrNnzByPercentage_raw(handle, m, n, &
-        c_loc(A(1)), lda, percentage, descr, c_loc(csrRowPtr(1)), nnzTotalDevHostPtr, info, buffer)
+        c_loc(A), lda, percentage, descr, c_loc(csrRowPtr), nnzTotalDevHostPtr, info, buffer)
     end function hipsparseSpruneDense2csrNnzByPercentage_native
 
     function hipsparseSpruneDense2csrNnzByPercentage_typed(handle, m, n, A, lda, percentage, &
@@ -42751,17 +42506,17 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: m
       integer(c_int), value :: n
-      real(c_double), target :: A(*)
+      real(c_double), target :: A(..)
       integer(c_int), value :: lda
       real(c_double), value :: percentage
       type(c_ptr), value :: descr
-      integer(c_int), target :: csrRowPtr(*)
+      integer(c_int), target :: csrRowPtr(..)
       integer(c_int) :: nnzTotalDevHostPtr
       type(c_ptr), value :: info
       type(c_ptr), value :: buffer
       integer(c_int) :: DpruneDense2csrNnzByPercentage
       DpruneDense2csrNnzByPercentage = hipsparseDpruneDense2csrNnzByPercentage_raw(handle, m, n, &
-        c_loc(A(1)), lda, percentage, descr, c_loc(csrRowPtr(1)), nnzTotalDevHostPtr, info, buffer)
+        c_loc(A), lda, percentage, descr, c_loc(csrRowPtr), nnzTotalDevHostPtr, info, buffer)
     end function hipsparseDpruneDense2csrNnzByPercentage_native
 
     function hipsparseDpruneDense2csrNnzByPercentage_typed(handle, m, n, A, lda, percentage, &
@@ -42792,19 +42547,18 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: m
       integer(c_int), value :: n
-      real(c_float), target :: A(*)
+      real(c_float), target :: A(..)
       integer(c_int), value :: lda
       real(c_float), value :: percentage
       type(c_ptr), value :: descr
-      real(c_float), target :: csrVal(*)
-      integer(c_int), target :: csrRowPtr(*)
-      integer(c_int), target :: csrColInd(*)
+      real(c_float), target :: csrVal(..)
+      integer(c_int), target :: csrRowPtr(..)
+      integer(c_int), target :: csrColInd(..)
       type(c_ptr), value :: info
       type(c_ptr), value :: buffer
       integer(c_int) :: SpruneDense2csrByPercentage
       SpruneDense2csrByPercentage = hipsparseSpruneDense2csrByPercentage_raw(handle, m, n, c_loc( &
-        A(1)), lda, percentage, descr, c_loc(csrVal(1)), c_loc(csrRowPtr(1)), c_loc(csrColInd(1)), &
-        info, buffer)
+        A), lda, percentage, descr, c_loc(csrVal), c_loc(csrRowPtr), c_loc(csrColInd), info, buffer)
     end function hipsparseSpruneDense2csrByPercentage_native
 
     function hipsparseSpruneDense2csrByPercentage_typed(handle, m, n, A, lda, percentage, descr, &
@@ -42836,19 +42590,18 @@ contains
       type(c_ptr), value :: handle
       integer(c_int), value :: m
       integer(c_int), value :: n
-      real(c_double), target :: A(*)
+      real(c_double), target :: A(..)
       integer(c_int), value :: lda
       real(c_double), value :: percentage
       type(c_ptr), value :: descr
-      real(c_double), target :: csrVal(*)
-      integer(c_int), target :: csrRowPtr(*)
-      integer(c_int), target :: csrColInd(*)
+      real(c_double), target :: csrVal(..)
+      integer(c_int), target :: csrRowPtr(..)
+      integer(c_int), target :: csrColInd(..)
       type(c_ptr), value :: info
       type(c_ptr), value :: buffer
       integer(c_int) :: DpruneDense2csrByPercentage
       DpruneDense2csrByPercentage = hipsparseDpruneDense2csrByPercentage_raw(handle, m, n, c_loc( &
-        A(1)), lda, percentage, descr, c_loc(csrVal(1)), c_loc(csrRowPtr(1)), c_loc(csrColInd(1)), &
-        info, buffer)
+        A), lda, percentage, descr, c_loc(csrVal), c_loc(csrRowPtr), c_loc(csrColInd), info, buffer)
     end function hipsparseDpruneDense2csrByPercentage_native
 
     function hipsparseDpruneDense2csrByPercentage_typed(handle, m, n, A, lda, percentage, descr, &
@@ -42881,18 +42634,17 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: nnz
       type(c_ptr), value :: descrA
-      real(c_float), target :: csrValA(*)
-      integer(c_int), target :: csrRowPtrA(*)
-      integer(c_int), target :: csrColIndA(*)
-      real(c_float), target :: fractionToColor(*)
+      real(c_float), target :: csrValA(..)
+      integer(c_int), target :: csrRowPtrA(..)
+      integer(c_int), target :: csrColIndA(..)
+      real(c_float), target :: fractionToColor(..)
       integer(c_int) :: ncolors
       integer(c_int) :: coloring
       integer(c_int) :: reordering
       type(c_ptr), value :: info
       integer(c_int) :: Scsrcolor
-      Scsrcolor = hipsparseScsrcolor_raw(handle, m, nnz, descrA, c_loc(csrValA(1)), c_loc( &
-        csrRowPtrA(1)), c_loc(csrColIndA(1)), c_loc(fractionToColor(1)), ncolors, coloring, &
-        reordering, info)
+      Scsrcolor = hipsparseScsrcolor_raw(handle, m, nnz, descrA, c_loc(csrValA), c_loc( &
+        csrRowPtrA), c_loc(csrColIndA), c_loc(fractionToColor), ncolors, coloring, reordering, info)
     end function hipsparseScsrcolor_native
 
     function hipsparseScsrcolor_typed(handle, m, nnz, descrA, csrValA, csrRowPtrA, csrColIndA, &
@@ -42925,18 +42677,17 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: nnz
       type(c_ptr), value :: descrA
-      real(c_double), target :: csrValA(*)
-      integer(c_int), target :: csrRowPtrA(*)
-      integer(c_int), target :: csrColIndA(*)
-      real(c_double), target :: fractionToColor(*)
+      real(c_double), target :: csrValA(..)
+      integer(c_int), target :: csrRowPtrA(..)
+      integer(c_int), target :: csrColIndA(..)
+      real(c_double), target :: fractionToColor(..)
       integer(c_int) :: ncolors
       integer(c_int) :: coloring
       integer(c_int) :: reordering
       type(c_ptr), value :: info
       integer(c_int) :: Dcsrcolor
-      Dcsrcolor = hipsparseDcsrcolor_raw(handle, m, nnz, descrA, c_loc(csrValA(1)), c_loc( &
-        csrRowPtrA(1)), c_loc(csrColIndA(1)), c_loc(fractionToColor(1)), ncolors, coloring, &
-        reordering, info)
+      Dcsrcolor = hipsparseDcsrcolor_raw(handle, m, nnz, descrA, c_loc(csrValA), c_loc( &
+        csrRowPtrA), c_loc(csrColIndA), c_loc(fractionToColor), ncolors, coloring, reordering, info)
     end function hipsparseDcsrcolor_native
 
     function hipsparseDcsrcolor_typed(handle, m, nnz, descrA, csrValA, csrRowPtrA, csrColIndA, &
@@ -42969,18 +42720,17 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: nnz
       type(c_ptr), value :: descrA
-      complex(c_float_complex), target :: csrValA(*)
-      integer(c_int), target :: csrRowPtrA(*)
-      integer(c_int), target :: csrColIndA(*)
-      real(c_float), target :: fractionToColor(*)
+      complex(c_float_complex), target :: csrValA(..)
+      integer(c_int), target :: csrRowPtrA(..)
+      integer(c_int), target :: csrColIndA(..)
+      real(c_float), target :: fractionToColor(..)
       integer(c_int) :: ncolors
       integer(c_int) :: coloring
       integer(c_int) :: reordering
       type(c_ptr), value :: info
       integer(c_int) :: Ccsrcolor
-      Ccsrcolor = hipsparseCcsrcolor_raw(handle, m, nnz, descrA, c_loc(csrValA(1)), c_loc( &
-        csrRowPtrA(1)), c_loc(csrColIndA(1)), c_loc(fractionToColor(1)), ncolors, coloring, &
-        reordering, info)
+      Ccsrcolor = hipsparseCcsrcolor_raw(handle, m, nnz, descrA, c_loc(csrValA), c_loc( &
+        csrRowPtrA), c_loc(csrColIndA), c_loc(fractionToColor), ncolors, coloring, reordering, info)
     end function hipsparseCcsrcolor_native
 
     function hipsparseCcsrcolor_typed(handle, m, nnz, descrA, csrValA, csrRowPtrA, csrColIndA, &
@@ -43013,18 +42763,17 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: nnz
       type(c_ptr), value :: descrA
-      complex(c_double_complex), target :: csrValA(*)
-      integer(c_int), target :: csrRowPtrA(*)
-      integer(c_int), target :: csrColIndA(*)
-      real(c_double), target :: fractionToColor(*)
+      complex(c_double_complex), target :: csrValA(..)
+      integer(c_int), target :: csrRowPtrA(..)
+      integer(c_int), target :: csrColIndA(..)
+      real(c_double), target :: fractionToColor(..)
       integer(c_int) :: ncolors
       integer(c_int) :: coloring
       integer(c_int) :: reordering
       type(c_ptr), value :: info
       integer(c_int) :: Zcsrcolor
-      Zcsrcolor = hipsparseZcsrcolor_raw(handle, m, nnz, descrA, c_loc(csrValA(1)), c_loc( &
-        csrRowPtrA(1)), c_loc(csrColIndA(1)), c_loc(fractionToColor(1)), ncolors, coloring, &
-        reordering, info)
+      Zcsrcolor = hipsparseZcsrcolor_raw(handle, m, nnz, descrA, c_loc(csrValA), c_loc( &
+        csrRowPtrA), c_loc(csrColIndA), c_loc(fractionToColor), ncolors, coloring, reordering, info)
     end function hipsparseZcsrcolor_native
 
     function hipsparseZcsrcolor_typed(handle, m, nnz, descrA, csrValA, csrRowPtrA, csrColIndA, &
@@ -43103,12 +42852,12 @@ contains
       type(c_ptr), value :: nnz
       type(c_ptr) :: indices
       type(c_ptr) :: values
-      integer(c_int), target :: idxType(*)
-      integer(c_int), target :: idxBase(*)
-      integer(c_int), target :: valueType(*)
+      integer(c_int), target :: idxType(..)
+      integer(c_int), target :: idxBase(..)
+      integer(c_int), target :: valueType(..)
       integer(c_int) :: SpVecGet
-      SpVecGet = hipsparseSpVecGet_raw(spVecDescr, size, nnz, indices, values, c_loc(idxType(1)), &
-        c_loc(idxBase(1)), c_loc(valueType(1)))
+      SpVecGet = hipsparseSpVecGet_raw(spVecDescr, size, nnz, indices, values, c_loc(idxType), &
+        c_loc(idxBase), c_loc(valueType))
     end function hipsparseSpVecGet_native
 
     function hipsparseSpVecGet_typed(spVecDescr, size, nnz, indices, values, idxType, idxBase, &
@@ -43138,12 +42887,12 @@ contains
       type(c_ptr), value :: nnz
       type(c_ptr) :: indices
       type(c_ptr) :: values
-      integer(c_int), target :: idxType(*)
-      integer(c_int), target :: idxBase(*)
-      integer(c_int), target :: valueType(*)
+      integer(c_int), target :: idxType(..)
+      integer(c_int), target :: idxBase(..)
+      integer(c_int), target :: valueType(..)
       integer(c_int) :: ConstSpVecGet
       ConstSpVecGet = hipsparseConstSpVecGet_raw(spVecDescr, size, nnz, indices, values, c_loc( &
-        idxType(1)), c_loc(idxBase(1)), c_loc(valueType(1)))
+        idxType), c_loc(idxBase), c_loc(valueType))
     end function hipsparseConstSpVecGet_native
 
     function hipsparseConstSpVecGet_typed(spVecDescr, size, nnz, indices, values, idxType, &
@@ -43168,9 +42917,9 @@ contains
       use, intrinsic :: iso_c_binding
       implicit none
       type(c_ptr), value :: spVecDescr
-      integer(c_int), target :: idxBase(*)
+      integer(c_int), target :: idxBase(..)
       integer(c_int) :: SpVecGetIndexBase
-      SpVecGetIndexBase = hipsparseSpVecGetIndexBase_raw(spVecDescr, c_loc(idxBase(1)))
+      SpVecGetIndexBase = hipsparseSpVecGetIndexBase_raw(spVecDescr, c_loc(idxBase))
     end function hipsparseSpVecGetIndexBase_native
 
     function hipsparseSpVecGetIndexBase_typed(spVecDescr, idxBase) result(SpVecGetIndexBase)
@@ -43466,12 +43215,12 @@ contains
       type(c_ptr) :: cooRowInd
       type(c_ptr) :: cooColInd
       type(c_ptr) :: cooValues
-      integer(c_int), target :: idxType(*)
-      integer(c_int), target :: idxBase(*)
-      integer(c_int), target :: valueType(*)
+      integer(c_int), target :: idxType(..)
+      integer(c_int), target :: idxBase(..)
+      integer(c_int), target :: valueType(..)
       integer(c_int) :: CooGet
       CooGet = hipsparseCooGet_raw(spMatDescr, rows, cols, nnz, cooRowInd, cooColInd, cooValues, &
-        c_loc(idxType(1)), c_loc(idxBase(1)), c_loc(valueType(1)))
+        c_loc(idxType), c_loc(idxBase), c_loc(valueType))
     end function hipsparseCooGet_native
 
     function hipsparseCooGet_typed(spMatDescr, rows, cols, nnz, cooRowInd, cooColInd, cooValues, &
@@ -43505,12 +43254,12 @@ contains
       type(c_ptr) :: cooRowInd
       type(c_ptr) :: cooColInd
       type(c_ptr) :: cooValues
-      integer(c_int), target :: idxType(*)
-      integer(c_int), target :: idxBase(*)
-      integer(c_int), target :: valueType(*)
+      integer(c_int), target :: idxType(..)
+      integer(c_int), target :: idxBase(..)
+      integer(c_int), target :: valueType(..)
       integer(c_int) :: ConstCooGet
       ConstCooGet = hipsparseConstCooGet_raw(spMatDescr, rows, cols, nnz, cooRowInd, cooColInd, &
-        cooValues, c_loc(idxType(1)), c_loc(idxBase(1)), c_loc(valueType(1)))
+        cooValues, c_loc(idxType), c_loc(idxBase), c_loc(valueType))
     end function hipsparseConstCooGet_native
 
     function hipsparseConstCooGet_typed(spMatDescr, rows, cols, nnz, cooRowInd, cooColInd, &
@@ -43543,12 +43292,12 @@ contains
       type(c_ptr), value :: nnz
       type(c_ptr) :: cooInd
       type(c_ptr) :: cooValues
-      integer(c_int), target :: idxType(*)
-      integer(c_int), target :: idxBase(*)
-      integer(c_int), target :: valueType(*)
+      integer(c_int), target :: idxType(..)
+      integer(c_int), target :: idxBase(..)
+      integer(c_int), target :: valueType(..)
       integer(c_int) :: CooAoSGet
       CooAoSGet = hipsparseCooAoSGet_raw(spMatDescr, rows, cols, nnz, cooInd, cooValues, c_loc( &
-        idxType(1)), c_loc(idxBase(1)), c_loc(valueType(1)))
+        idxType), c_loc(idxBase), c_loc(valueType))
     end function hipsparseCooAoSGet_native
 
     function hipsparseCooAoSGet_typed(spMatDescr, rows, cols, nnz, cooInd, cooValues, idxType, &
@@ -43581,14 +43330,13 @@ contains
       type(c_ptr) :: csrRowOffsets
       type(c_ptr) :: csrColInd
       type(c_ptr) :: csrValues
-      integer(c_int), target :: csrRowOffsetsType(*)
-      integer(c_int), target :: csrColIndType(*)
-      integer(c_int), target :: idxBase(*)
-      integer(c_int), target :: valueType(*)
+      integer(c_int), target :: csrRowOffsetsType(..)
+      integer(c_int), target :: csrColIndType(..)
+      integer(c_int), target :: idxBase(..)
+      integer(c_int), target :: valueType(..)
       integer(c_int) :: CsrGet
       CsrGet = hipsparseCsrGet_raw(spMatDescr, rows, cols, nnz, csrRowOffsets, csrColInd, &
-        csrValues, c_loc(csrRowOffsetsType(1)), c_loc(csrColIndType(1)), c_loc(idxBase(1)), c_loc( &
-        valueType(1)))
+        csrValues, c_loc(csrRowOffsetsType), c_loc(csrColIndType), c_loc(idxBase), c_loc(valueType))
     end function hipsparseCsrGet_native
 
     function hipsparseCsrGet_typed(spMatDescr, rows, cols, nnz, csrRowOffsets, csrColInd, &
@@ -43623,14 +43371,14 @@ contains
       type(c_ptr) :: csrRowOffsets
       type(c_ptr) :: csrColInd
       type(c_ptr) :: csrValues
-      integer(c_int), target :: csrRowOffsetsType(*)
-      integer(c_int), target :: csrColIndType(*)
-      integer(c_int), target :: idxBase(*)
-      integer(c_int), target :: valueType(*)
+      integer(c_int), target :: csrRowOffsetsType(..)
+      integer(c_int), target :: csrColIndType(..)
+      integer(c_int), target :: idxBase(..)
+      integer(c_int), target :: valueType(..)
       integer(c_int) :: ConstCsrGet
       ConstCsrGet = hipsparseConstCsrGet_raw(spMatDescr, rows, cols, nnz, csrRowOffsets, &
-        csrColInd, csrValues, c_loc(csrRowOffsetsType(1)), c_loc(csrColIndType(1)), c_loc(idxBase( &
-        1)), c_loc(valueType(1)))
+        csrColInd, csrValues, c_loc(csrRowOffsetsType), c_loc(csrColIndType), c_loc(idxBase), &
+        c_loc(valueType))
     end function hipsparseConstCsrGet_native
 
     function hipsparseConstCsrGet_typed(spMatDescr, rows, cols, nnz, csrRowOffsets, csrColInd, &
@@ -43665,14 +43413,13 @@ contains
       type(c_ptr) :: cscColOffsets
       type(c_ptr) :: cscRowInd
       type(c_ptr) :: cscValues
-      integer(c_int), target :: cscColOffsetsType(*)
-      integer(c_int), target :: cscRowIndType(*)
-      integer(c_int), target :: idxBase(*)
-      integer(c_int), target :: valueType(*)
+      integer(c_int), target :: cscColOffsetsType(..)
+      integer(c_int), target :: cscRowIndType(..)
+      integer(c_int), target :: idxBase(..)
+      integer(c_int), target :: valueType(..)
       integer(c_int) :: CscGet
       CscGet = hipsparseCscGet_raw(spMatDescr, rows, cols, nnz, cscColOffsets, cscRowInd, &
-        cscValues, c_loc(cscColOffsetsType(1)), c_loc(cscRowIndType(1)), c_loc(idxBase(1)), c_loc( &
-        valueType(1)))
+        cscValues, c_loc(cscColOffsetsType), c_loc(cscRowIndType), c_loc(idxBase), c_loc(valueType))
     end function hipsparseCscGet_native
 
     function hipsparseCscGet_typed(spMatDescr, rows, cols, nnz, cscColOffsets, cscRowInd, &
@@ -43707,14 +43454,14 @@ contains
       type(c_ptr) :: cscColOffsets
       type(c_ptr) :: cscRowInd
       type(c_ptr) :: cscValues
-      integer(c_int), target :: cscColOffsetsType(*)
-      integer(c_int), target :: cscRowIndType(*)
-      integer(c_int), target :: idxBase(*)
-      integer(c_int), target :: valueType(*)
+      integer(c_int), target :: cscColOffsetsType(..)
+      integer(c_int), target :: cscRowIndType(..)
+      integer(c_int), target :: idxBase(..)
+      integer(c_int), target :: valueType(..)
       integer(c_int) :: ConstCscGet
       ConstCscGet = hipsparseConstCscGet_raw(spMatDescr, rows, cols, nnz, cscColOffsets, &
-        cscRowInd, cscValues, c_loc(cscColOffsetsType(1)), c_loc(cscRowIndType(1)), c_loc(idxBase( &
-        1)), c_loc(valueType(1)))
+        cscRowInd, cscValues, c_loc(cscColOffsetsType), c_loc(cscRowIndType), c_loc(idxBase), &
+        c_loc(valueType))
     end function hipsparseConstCscGet_native
 
     function hipsparseConstCscGet_typed(spMatDescr, rows, cols, nnz, cscColOffsets, cscRowInd, &
@@ -43749,12 +43496,12 @@ contains
       type(c_ptr), value :: ellCols
       type(c_ptr) :: ellColInd
       type(c_ptr) :: ellValue
-      integer(c_int), target :: ellIdxType(*)
-      integer(c_int), target :: idxBase(*)
-      integer(c_int), target :: valueType(*)
+      integer(c_int), target :: ellIdxType(..)
+      integer(c_int), target :: idxBase(..)
+      integer(c_int), target :: valueType(..)
       integer(c_int) :: BlockedEllGet
       BlockedEllGet = hipsparseBlockedEllGet_raw(spMatDescr, rows, cols, ellBlockSize, ellCols, &
-        ellColInd, ellValue, c_loc(ellIdxType(1)), c_loc(idxBase(1)), c_loc(valueType(1)))
+        ellColInd, ellValue, c_loc(ellIdxType), c_loc(idxBase), c_loc(valueType))
     end function hipsparseBlockedEllGet_native
 
     function hipsparseBlockedEllGet_typed(spMatDescr, rows, cols, ellBlockSize, ellCols, &
@@ -43788,12 +43535,12 @@ contains
       type(c_ptr), value :: ellCols
       type(c_ptr) :: ellColInd
       type(c_ptr) :: ellValue
-      integer(c_int), target :: ellIdxType(*)
-      integer(c_int), target :: idxBase(*)
-      integer(c_int), target :: valueType(*)
+      integer(c_int), target :: ellIdxType(..)
+      integer(c_int), target :: idxBase(..)
+      integer(c_int), target :: valueType(..)
       integer(c_int) :: ConstBlockedEllGet
       ConstBlockedEllGet = hipsparseConstBlockedEllGet_raw(spMatDescr, rows, cols, ellBlockSize, &
-        ellCols, ellColInd, ellValue, c_loc(ellIdxType(1)), c_loc(idxBase(1)), c_loc(valueType(1)))
+        ellCols, ellColInd, ellValue, c_loc(ellIdxType), c_loc(idxBase), c_loc(valueType))
     end function hipsparseConstBlockedEllGet_native
 
     function hipsparseConstBlockedEllGet_typed(spMatDescr, rows, cols, ellBlockSize, ellCols, &
@@ -43869,32 +43616,32 @@ contains
       SpMatGetSize = hipsparseSpMatGetSize_raw(spMatDescr%ptr, rows, cols, nnz)
     end function hipsparseSpMatGetSize_typed
 
-    function hipsparseSpMatGetFormat_native(spMatDescr, format) result(SpMatGetFormat)
+    function hipsparseSpMatGetFormat_native(spMatDescr, format_) result(SpMatGetFormat)
       use, intrinsic :: iso_c_binding
       implicit none
       type(c_ptr), value :: spMatDescr
-      integer(c_int), target :: format(*)
+      integer(c_int), target :: format_(..)
       integer(c_int) :: SpMatGetFormat
-      SpMatGetFormat = hipsparseSpMatGetFormat_raw(spMatDescr, c_loc(format(1)))
+      SpMatGetFormat = hipsparseSpMatGetFormat_raw(spMatDescr, c_loc(format_))
     end function hipsparseSpMatGetFormat_native
 
-    function hipsparseSpMatGetFormat_typed(spMatDescr, format) result(SpMatGetFormat)
+    function hipsparseSpMatGetFormat_typed(spMatDescr, format_) result(SpMatGetFormat)
       use, intrinsic :: iso_c_binding
       use hipfort_handles
       implicit none
       type(hipsparseConstSpMatDescr_t), value :: spMatDescr
-      type(c_ptr), value :: format
+      type(c_ptr), value :: format_
       integer(c_int) :: SpMatGetFormat
-      SpMatGetFormat = hipsparseSpMatGetFormat_raw(spMatDescr%ptr, format)
+      SpMatGetFormat = hipsparseSpMatGetFormat_raw(spMatDescr%ptr, format_)
     end function hipsparseSpMatGetFormat_typed
 
     function hipsparseSpMatGetIndexBase_native(spMatDescr, idxBase) result(SpMatGetIndexBase)
       use, intrinsic :: iso_c_binding
       implicit none
       type(c_ptr), value :: spMatDescr
-      integer(c_int), target :: idxBase(*)
+      integer(c_int), target :: idxBase(..)
       integer(c_int) :: SpMatGetIndexBase
-      SpMatGetIndexBase = hipsparseSpMatGetIndexBase_raw(spMatDescr, c_loc(idxBase(1)))
+      SpMatGetIndexBase = hipsparseSpMatGetIndexBase_raw(spMatDescr, c_loc(idxBase))
     end function hipsparseSpMatGetIndexBase_native
 
     function hipsparseSpMatGetIndexBase_typed(spMatDescr, idxBase) result(SpMatGetIndexBase)
@@ -43942,9 +43689,9 @@ contains
       use, intrinsic :: iso_c_binding
       implicit none
       type(c_ptr), value :: spMatDescr
-      integer(c_int), target :: batchCount(*)
+      integer(c_int), target :: batchCount(..)
       integer(c_int) :: SpMatGetStridedBatch
-      SpMatGetStridedBatch = hipsparseSpMatGetStridedBatch_raw(spMatDescr, c_loc(batchCount(1)))
+      SpMatGetStridedBatch = hipsparseSpMatGetStridedBatch_raw(spMatDescr, c_loc(batchCount))
     end function hipsparseSpMatGetStridedBatch_native
 
     function hipsparseSpMatGetStridedBatch_typed(spMatDescr, batchCount) result( &
@@ -44061,9 +43808,9 @@ contains
       type(c_ptr), value :: dnVecDescr
       type(c_ptr), value :: size
       type(c_ptr) :: values
-      integer(c_int), target :: valueType(*)
+      integer(c_int), target :: valueType(..)
       integer(c_int) :: DnVecGet
-      DnVecGet = hipsparseDnVecGet_raw(dnVecDescr, size, values, c_loc(valueType(1)))
+      DnVecGet = hipsparseDnVecGet_raw(dnVecDescr, size, values, c_loc(valueType))
     end function hipsparseDnVecGet_native
 
     function hipsparseDnVecGet_typed(dnVecDescr, size, values, valueType) result(DnVecGet)
@@ -44085,9 +43832,9 @@ contains
       type(c_ptr), value :: dnVecDescr
       type(c_ptr), value :: size
       type(c_ptr) :: values
-      integer(c_int), target :: valueType(*)
+      integer(c_int), target :: valueType(..)
       integer(c_int) :: ConstDnVecGet
-      ConstDnVecGet = hipsparseConstDnVecGet_raw(dnVecDescr, size, values, c_loc(valueType(1)))
+      ConstDnVecGet = hipsparseConstDnVecGet_raw(dnVecDescr, size, values, c_loc(valueType))
     end function hipsparseConstDnVecGet_native
 
     function hipsparseConstDnVecGet_typed(dnVecDescr, size, values, valueType) result(ConstDnVecGet)
@@ -44184,11 +43931,11 @@ contains
       type(c_ptr), value :: cols
       type(c_ptr), value :: ld
       type(c_ptr) :: values
-      integer(c_int), target :: valueType(*)
-      integer(c_int), target :: order(*)
+      integer(c_int), target :: valueType(..)
+      integer(c_int), target :: order(..)
       integer(c_int) :: DnMatGet
-      DnMatGet = hipsparseDnMatGet_raw(dnMatDescr, rows, cols, ld, values, c_loc(valueType(1)), &
-        c_loc(order(1)))
+      DnMatGet = hipsparseDnMatGet_raw(dnMatDescr, rows, cols, ld, values, c_loc(valueType), &
+        c_loc(order))
     end function hipsparseDnMatGet_native
 
     function hipsparseDnMatGet_typed(dnMatDescr, rows, cols, ld, values, valueType, order) result( &
@@ -44216,11 +43963,11 @@ contains
       type(c_ptr), value :: cols
       type(c_ptr), value :: ld
       type(c_ptr) :: values
-      integer(c_int), target :: valueType(*)
-      integer(c_int), target :: order(*)
+      integer(c_int), target :: valueType(..)
+      integer(c_int), target :: order(..)
       integer(c_int) :: ConstDnMatGet
       ConstDnMatGet = hipsparseConstDnMatGet_raw(dnMatDescr, rows, cols, ld, values, c_loc( &
-        valueType(1)), c_loc(order(1)))
+        valueType), c_loc(order))
     end function hipsparseConstDnMatGet_native
 
     function hipsparseConstDnMatGet_typed(dnMatDescr, rows, cols, ld, values, valueType, &
@@ -44275,10 +44022,10 @@ contains
       use, intrinsic :: iso_c_binding
       implicit none
       type(c_ptr), value :: dnMatDescr
-      integer(c_int), target :: batchCount(*)
+      integer(c_int), target :: batchCount(..)
       type(c_ptr), value :: batchStride
       integer(c_int) :: DnMatGetStridedBatch
-      DnMatGetStridedBatch = hipsparseDnMatGetStridedBatch_raw(dnMatDescr, c_loc(batchCount(1)), &
+      DnMatGetStridedBatch = hipsparseDnMatGetStridedBatch_raw(dnMatDescr, c_loc(batchCount), &
         batchStride)
     end function hipsparseDnMatGetStridedBatch_native
 

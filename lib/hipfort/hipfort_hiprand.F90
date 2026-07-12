@@ -1157,10 +1157,10 @@ contains
       use, intrinsic :: iso_c_binding
       implicit none
       type(c_ptr), value :: generator
-      integer(c_int), target :: output_data(*)
+      integer(c_int), target :: output_data(..)
       integer(c_long), value :: n
       integer(c_int) :: Generate
-      Generate = hiprandGenerate_raw(generator, c_loc(output_data(1)), n)
+      Generate = hiprandGenerate_raw(generator, c_loc(output_data), n)
     end function hiprandGenerate_native
 
     function hiprandGenerate_typed(generator, output_data, n) result(Generate)
@@ -1200,10 +1200,10 @@ contains
       use, intrinsic :: iso_c_binding
       implicit none
       type(c_ptr), value :: generator
-      integer(c_int64_t), target :: output_data(*)
+      integer(c_int64_t), target :: output_data(..)
       integer(c_long), value :: n
       integer(c_int) :: GenerateLongLong
-      GenerateLongLong = hiprandGenerateLongLong_raw(generator, c_loc(output_data(1)), n)
+      GenerateLongLong = hiprandGenerateLongLong_raw(generator, c_loc(output_data), n)
     end function hiprandGenerateLongLong_native
 
     function hiprandGenerateLongLong_typed(generator, output_data, n) result(GenerateLongLong)
@@ -1221,10 +1221,10 @@ contains
       use, intrinsic :: iso_c_binding
       implicit none
       type(c_ptr), value :: generator
-      real(c_float), target :: output_data(*)
+      real(c_float), target :: output_data(..)
       integer(c_long), value :: n
       integer(c_int) :: GenerateUniform
-      GenerateUniform = hiprandGenerateUniform_raw(generator, c_loc(output_data(1)), n)
+      GenerateUniform = hiprandGenerateUniform_raw(generator, c_loc(output_data), n)
     end function hiprandGenerateUniform_native
 
     function hiprandGenerateUniform_typed(generator, output_data, n) result(GenerateUniform)
@@ -1243,10 +1243,10 @@ contains
       use, intrinsic :: iso_c_binding
       implicit none
       type(c_ptr), value :: generator
-      real(c_double), target :: output_data(*)
+      real(c_double), target :: output_data(..)
       integer(c_long), value :: n
       integer(c_int) :: GenerateUniformDouble
-      GenerateUniformDouble = hiprandGenerateUniformDouble_raw(generator, c_loc(output_data(1)), n)
+      GenerateUniformDouble = hiprandGenerateUniformDouble_raw(generator, c_loc(output_data), n)
     end function hiprandGenerateUniformDouble_native
 
     function hiprandGenerateUniformDouble_typed(generator, output_data, n) result( &
@@ -1266,10 +1266,10 @@ contains
       use, intrinsic :: iso_c_binding
       implicit none
       type(c_ptr), value :: generator
-      integer(c_int), target :: output_data(*)
+      integer(c_int), target :: output_data(..)
       integer(c_long), value :: n
       integer(c_int) :: GenerateUniformHalf
-      GenerateUniformHalf = hiprandGenerateUniformHalf_raw(generator, c_loc(output_data(1)), n)
+      GenerateUniformHalf = hiprandGenerateUniformHalf_raw(generator, c_loc(output_data), n)
     end function hiprandGenerateUniformHalf_native
 
     function hiprandGenerateUniformHalf_typed(generator, output_data, n) result(GenerateUniformHalf)
@@ -1288,12 +1288,12 @@ contains
       use, intrinsic :: iso_c_binding
       implicit none
       type(c_ptr), value :: generator
-      real(c_float), target :: output_data(*)
+      real(c_float), target :: output_data(..)
       integer(c_long), value :: n
       real(c_float), value :: mean
       real(c_float), value :: stddev
       integer(c_int) :: GenerateNormal
-      GenerateNormal = hiprandGenerateNormal_raw(generator, c_loc(output_data(1)), n, mean, stddev)
+      GenerateNormal = hiprandGenerateNormal_raw(generator, c_loc(output_data), n, mean, stddev)
     end function hiprandGenerateNormal_native
 
     function hiprandGenerateNormal_typed(generator, output_data, n, mean, stddev) result( &
@@ -1315,12 +1315,12 @@ contains
       use, intrinsic :: iso_c_binding
       implicit none
       type(c_ptr), value :: generator
-      real(c_double), target :: output_data(*)
+      real(c_double), target :: output_data(..)
       integer(c_long), value :: n
       real(c_double), value :: mean
       real(c_double), value :: stddev
       integer(c_int) :: GenerateNormalDouble
-      GenerateNormalDouble = hiprandGenerateNormalDouble_raw(generator, c_loc(output_data(1)), n, &
+      GenerateNormalDouble = hiprandGenerateNormalDouble_raw(generator, c_loc(output_data), n, &
         mean, stddev)
     end function hiprandGenerateNormalDouble_native
 
@@ -1344,13 +1344,13 @@ contains
       use, intrinsic :: iso_c_binding
       implicit none
       type(c_ptr), value :: generator
-      integer(c_int), target :: output_data(*)
+      integer(c_int), target :: output_data(..)
       integer(c_long), value :: n
       integer(c_int), value :: mean
       integer(c_int), value :: stddev
       integer(c_int) :: GenerateNormalHalf
-      GenerateNormalHalf = hiprandGenerateNormalHalf_raw(generator, c_loc(output_data(1)), n, &
-        mean, stddev)
+      GenerateNormalHalf = hiprandGenerateNormalHalf_raw(generator, c_loc(output_data), n, mean, &
+        stddev)
     end function hiprandGenerateNormalHalf_native
 
     function hiprandGenerateNormalHalf_typed(generator, output_data, n, mean, stddev) result( &
@@ -1373,12 +1373,12 @@ contains
       use, intrinsic :: iso_c_binding
       implicit none
       type(c_ptr), value :: generator
-      real(c_float), target :: output_data(*)
+      real(c_float), target :: output_data(..)
       integer(c_long), value :: n
       real(c_float), value :: mean
       real(c_float), value :: stddev
       integer(c_int) :: GenerateLogNormal
-      GenerateLogNormal = hiprandGenerateLogNormal_raw(generator, c_loc(output_data(1)), n, mean, &
+      GenerateLogNormal = hiprandGenerateLogNormal_raw(generator, c_loc(output_data), n, mean, &
         stddev)
     end function hiprandGenerateLogNormal_native
 
@@ -1401,13 +1401,13 @@ contains
       use, intrinsic :: iso_c_binding
       implicit none
       type(c_ptr), value :: generator
-      real(c_double), target :: output_data(*)
+      real(c_double), target :: output_data(..)
       integer(c_long), value :: n
       real(c_double), value :: mean
       real(c_double), value :: stddev
       integer(c_int) :: GenerateLogNormalDouble
-      GenerateLogNormalDouble = hiprandGenerateLogNormalDouble_raw(generator, c_loc(output_data( &
-        1)), n, mean, stddev)
+      GenerateLogNormalDouble = hiprandGenerateLogNormalDouble_raw(generator, c_loc(output_data), &
+        n, mean, stddev)
     end function hiprandGenerateLogNormalDouble_native
 
     function hiprandGenerateLogNormalDouble_typed(generator, output_data, n, mean, stddev) result( &
@@ -1430,13 +1430,13 @@ contains
       use, intrinsic :: iso_c_binding
       implicit none
       type(c_ptr), value :: generator
-      integer(c_int), target :: output_data(*)
+      integer(c_int), target :: output_data(..)
       integer(c_long), value :: n
       integer(c_int), value :: mean
       integer(c_int), value :: stddev
       integer(c_int) :: GenerateLogNormalHalf
-      GenerateLogNormalHalf = hiprandGenerateLogNormalHalf_raw(generator, c_loc(output_data(1)), &
-        n, mean, stddev)
+      GenerateLogNormalHalf = hiprandGenerateLogNormalHalf_raw(generator, c_loc(output_data), n, &
+        mean, stddev)
     end function hiprandGenerateLogNormalHalf_native
 
     function hiprandGenerateLogNormalHalf_typed(generator, output_data, n, mean, stddev) result( &
@@ -1459,11 +1459,11 @@ contains
       use, intrinsic :: iso_c_binding
       implicit none
       type(c_ptr), value :: generator
-      integer(c_int), target :: output_data(*)
+      integer(c_int), target :: output_data(..)
       integer(c_long), value :: n
       real(c_double), value :: lambda
       integer(c_int) :: GeneratePoisson
-      GeneratePoisson = hiprandGeneratePoisson_raw(generator, c_loc(output_data(1)), n, lambda)
+      GeneratePoisson = hiprandGeneratePoisson_raw(generator, c_loc(output_data), n, lambda)
     end function hiprandGeneratePoisson_native
 
     function hiprandGeneratePoisson_typed(generator, output_data, n, lambda) result(GeneratePoisson)
@@ -1543,9 +1543,9 @@ contains
     function hiprandGetVersion_native(version) result(GetVersion)
       use, intrinsic :: iso_c_binding
       implicit none
-      integer(c_int), target :: version(*)
+      integer(c_int), target :: version(..)
       integer(c_int) :: GetVersion
-      GetVersion = hiprandGetVersion_raw(c_loc(version(1)))
+      GetVersion = hiprandGetVersion_raw(c_loc(version))
     end function hiprandGetVersion_native
 
     function hiprandCreatePoissonDistribution_typed(lambda, discrete_distribution) result( &
