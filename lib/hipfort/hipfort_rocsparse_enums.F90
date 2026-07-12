@@ -526,7 +526,6 @@ module hipfort_rocsparse_enums
     enumerator :: rocsparse_gpsv_interleaved_alg_qr = 1
   end enum
 
-  !--- #define integer constants ---
   integer(c_int), parameter :: ROCSPARSE_VERSION_MAJOR = 4
   integer(c_int), parameter :: ROCSPARSE_VERSION_MINOR = 2
   integer(c_int), parameter :: ROCSPARSE_VERSION_PATCH = 0

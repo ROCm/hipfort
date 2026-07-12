@@ -150,7 +150,6 @@ module hipfort_hipsolver_enums
     enumerator :: HIPSOLVERRF_UNIT_DIAGONAL_ASSUMED_U = 3
   end enum
 
-  !--- #define integer constants ---
   integer(c_int), parameter :: hipsolverVersionMajor = 3
   integer(c_int), parameter :: hipsolverVersionMinor = 2
   integer(c_int), parameter :: hipsolverVersionPatch = 0

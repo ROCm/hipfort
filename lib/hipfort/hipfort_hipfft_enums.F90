@@ -65,7 +65,6 @@ module hipfort_hipfft_enums
     enumerator :: HIPFFT_PATCH_LEVEL = 2
   end enum
 
-  !--- #define integer constants ---
   integer(c_int), parameter :: hipfftVersionMajor = 1
   integer(c_int), parameter :: hipfftVersionMinor = 0
   integer(c_int), parameter :: hipfftVersionPatch = 22

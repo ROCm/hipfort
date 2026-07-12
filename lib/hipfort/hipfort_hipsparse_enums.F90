@@ -219,7 +219,6 @@ module hipfort_hipsparse_enums
     enumerator :: HIPSPARSE_SPGEMM_ALG3 = 5
   end enum
 
-  !--- #define integer constants ---
   integer(c_int), parameter :: hipsparseVersionMajor = 4
   integer(c_int), parameter :: hipsparseVersionMinor = 2
   integer(c_int), parameter :: hipsparseVersionPatch = 0

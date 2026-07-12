@@ -26,16 +26,105 @@
 
 module hipfort_hiprand
   use hipfort_hiprand_enums
+  use hipfort_handles
   use, intrinsic :: iso_c_binding
   implicit none
 
-  !--- Opaque handles (all are typedef struct* → type(c_ptr)) ---
-  !    hiprandDiscreteDistribution_t
-  !    hiprandGenerator_t
-
-  !--- 30 bind(C) interfaces ---
   interface
 
+    !---------------------------------------------
+    ! hiprandGetDirectionVectors32
+    !---------------------------------------------
+    !> \brief Retrieves the Sobol 32 direction vector array specified by \p set.
+    !>
+    !> \param vectors Pointer to the Sobol 32 direction vector array.
+    !> \param set Specifies which hipRAND vector set for quasirandom generators to retrieve.
+    !>
+    !> \return
+    !> - HIPRAND_STATUS_OUT_OF_RANGE if \p set is invalid \n
+    !> - HIPRAND_STATUS_SUCCESS if \p vectors was set successfully \n
+    function hiprandGetDirectionVectors32(vectors, set) &
+       result(GetDirectionVectors32) &
+#ifdef USE_CUDA_NAMES
+       bind(C, name="curandGetDirectionVectors32")
+#else
+       bind(C, name="hiprandGetDirectionVectors32")
+#endif
+       import :: c_ptr, c_int
+       type(c_ptr) :: vectors
+       integer(c_int), value :: set
+       integer(c_int) :: GetDirectionVectors32
+    end function hiprandGetDirectionVectors32
+
+    !---------------------------------------------
+    ! hiprandGetDirectionVectors64
+    !---------------------------------------------
+    !> \brief Retrieves the Sobol 64 direction vector array specified by \p set.
+    !>
+    !> \param vectors Pointer to the Sobol 64 direction vector array.
+    !> \param set Specifies which hipRAND vector set for quasirandom generators to retrieve.
+    !>
+    !> \return
+    !> - HIPRAND_STATUS_OUT_OF_RANGE if \p set is invalid \n
+    !> - HIPRAND_STATUS_SUCCESS if \p vectors was set successfully \n
+    function hiprandGetDirectionVectors64(vectors, set) &
+       result(GetDirectionVectors64) &
+#ifdef USE_CUDA_NAMES
+       bind(C, name="curandGetDirectionVectors64")
+#else
+       bind(C, name="hiprandGetDirectionVectors64")
+#endif
+       import :: c_ptr, c_int
+       type(c_ptr) :: vectors
+       integer(c_int), value :: set
+       integer(c_int) :: GetDirectionVectors64
+    end function hiprandGetDirectionVectors64
+
+    !---------------------------------------------
+    ! hiprandGetScrambleConstants32
+    !---------------------------------------------
+    !> \brief Retrieves the scramble constants for 32-bit scrambled Sobol generation.
+    !>
+    !> \param constants Pointer to the constants pointer.
+    !>
+    !> \return
+    !> - HIPRAND_STATUS_SUCCESS if the pointer was set successfully
+    function hiprandGetScrambleConstants32(constants) &
+       result(GetScrambleConstants32) &
+#ifdef USE_CUDA_NAMES
+       bind(C, name="curandGetScrambleConstants32")
+#else
+       bind(C, name="hiprandGetScrambleConstants32")
+#endif
+       import :: c_ptr, c_int
+       type(c_ptr) :: constants
+       integer(c_int) :: GetScrambleConstants32
+    end function hiprandGetScrambleConstants32
+
+    !---------------------------------------------
+    ! hiprandGetScrambleConstants64
+    !---------------------------------------------
+    !> \brief Retrieves the scramble constants for 64-bit scrambled Sobol generation.
+    !>
+    !> \param constants Pointer to the constants pointer.
+    !>
+    !> \return
+    !> - HIPRAND_STATUS_SUCCESS if the pointer was set successfully
+    function hiprandGetScrambleConstants64(constants) &
+       result(GetScrambleConstants64) &
+#ifdef USE_CUDA_NAMES
+       bind(C, name="curandGetScrambleConstants64")
+#else
+       bind(C, name="hiprandGetScrambleConstants64")
+#endif
+       import :: c_ptr, c_int
+       type(c_ptr) :: constants
+       integer(c_int) :: GetScrambleConstants64
+    end function hiprandGetScrambleConstants64
+
+  end interface
+
+  interface hiprandCreateGenerator
     !---------------------------------------------
     ! hiprandCreateGenerator
     !---------------------------------------------
@@ -69,8 +158,8 @@ module hipfort_hiprand
     !> - HIPRAND_STATUS_TYPE_ERROR if the value for \p rng_type is invalid \n
     !> - HIPRAND_STATUS_NOT_IMPLEMENTED if generator of type \p rng_type is not implemented yet \n
     !> - HIPRAND_STATUS_SUCCESS if generator was created successfully \n
-    function hiprandCreateGenerator(generator, rng_type) &
-       result(CreateGenerator) &
+    function hiprandCreateGenerator_raw(generator, rng_type) &
+       result(CreateGenerator_raw) &
 #ifdef USE_CUDA_NAMES
        bind(C, name="curandCreateGenerator")
 #else
@@ -79,9 +168,13 @@ module hipfort_hiprand
        import :: c_ptr, c_int
        type(c_ptr) :: generator
        integer(c_int), value :: rng_type
-       integer(c_int) :: CreateGenerator
-    end function hiprandCreateGenerator
+       integer(c_int) :: CreateGenerator_raw
+    end function hiprandCreateGenerator_raw
 
+    module procedure hiprandCreateGenerator_typed
+  end interface hiprandCreateGenerator
+
+  interface hiprandCreateGeneratorHost
     !---------------------------------------------
     ! hiprandCreateGeneratorHost
     !---------------------------------------------
@@ -115,8 +208,8 @@ module hipfort_hiprand
     !> - HIPRAND_STATUS_NOT_IMPLEMENTED if host generator of type \p rng_type is not implemented yet
     !> \n
     !> - HIPRAND_STATUS_SUCCESS if generator was created successfully \n
-    function hiprandCreateGeneratorHost(generator, rng_type) &
-       result(CreateGeneratorHost) &
+    function hiprandCreateGeneratorHost_raw(generator, rng_type) &
+       result(CreateGeneratorHost_raw) &
 #ifdef USE_CUDA_NAMES
        bind(C, name="curandCreateGeneratorHost")
 #else
@@ -125,9 +218,13 @@ module hipfort_hiprand
        import :: c_ptr, c_int
        type(c_ptr) :: generator
        integer(c_int), value :: rng_type
-       integer(c_int) :: CreateGeneratorHost
-    end function hiprandCreateGeneratorHost
+       integer(c_int) :: CreateGeneratorHost_raw
+    end function hiprandCreateGeneratorHost_raw
 
+    module procedure hiprandCreateGeneratorHost_typed
+  end interface hiprandCreateGeneratorHost
+
+  interface hiprandDestroyGenerator
     !---------------------------------------------
     ! hiprandDestroyGenerator
     !---------------------------------------------
@@ -140,8 +237,8 @@ module hipfort_hiprand
     !> \return
     !> - HIPRAND_STATUS_NOT_INITIALIZED if the generator was not initialized \n
     !> - HIPRAND_STATUS_SUCCESS if generator was destroyed successfully \n
-    function hiprandDestroyGenerator(generator) &
-       result(DestroyGenerator) &
+    function hiprandDestroyGenerator_raw(generator) &
+       result(DestroyGenerator_raw) &
 #ifdef USE_CUDA_NAMES
        bind(C, name="curandDestroyGenerator")
 #else
@@ -149,9 +246,13 @@ module hipfort_hiprand
 #endif
        import :: c_ptr, c_int
        type(c_ptr), value :: generator
-       integer(c_int) :: DestroyGenerator
-    end function hiprandDestroyGenerator
+       integer(c_int) :: DestroyGenerator_raw
+    end function hiprandDestroyGenerator_raw
 
+    module procedure hiprandDestroyGenerator_typed
+  end interface hiprandDestroyGenerator
+
+  interface hiprandGenerate
     !---------------------------------------------
     ! hiprandGenerate
     !---------------------------------------------
@@ -174,20 +275,25 @@ module hipfort_hiprand
     !> - HIPRAND_STATUS_NOT_INITIALIZED if the generator was not initialized \n
     !> - HIPRAND_STATUS_LAUNCH_FAILURE if generator failed to launch kernel \n
     !> - HIPRAND_STATUS_SUCCESS if random numbers were successfully generated \n
-    function hiprandGenerate(generator, output_data, n) &
-       result(Generate) &
+    function hiprandGenerate_raw(generator, output_data, n) &
+       result(Generate_raw) &
 #ifdef USE_CUDA_NAMES
        bind(C, name="curandGenerate")
 #else
        bind(C, name="hiprandGenerate")
 #endif
-       import :: c_ptr, c_int, c_long
+       import :: c_ptr, c_long, c_int
        type(c_ptr), value :: generator
-       integer(c_int) :: output_data(*)
+       type(c_ptr), value :: output_data
        integer(c_long), value :: n
-       integer(c_int) :: Generate
-    end function hiprandGenerate
+       integer(c_int) :: Generate_raw
+    end function hiprandGenerate_raw
 
+    module procedure hiprandGenerate_native
+    module procedure hiprandGenerate_typed
+  end interface hiprandGenerate
+
+  interface hiprandGenerateChar
     !---------------------------------------------
     ! hiprandGenerateChar
     !---------------------------------------------
@@ -207,8 +313,8 @@ module hipfort_hiprand
     !> - HIPRAND_STATUS_NOT_INITIALIZED if the generator was not initialized \n
     !> - HIPRAND_STATUS_LAUNCH_FAILURE if generator failed to launch kernel \n
     !> - HIPRAND_STATUS_SUCCESS if random numbers were successfully generated \n
-    function hiprandGenerateChar(generator, output_data, n) &
-       result(GenerateChar) &
+    function hiprandGenerateChar_raw(generator, output_data, n) &
+       result(GenerateChar_raw) &
 #ifdef USE_CUDA_NAMES
        bind(C, name="curandGenerateChar")
 #else
@@ -218,9 +324,13 @@ module hipfort_hiprand
        type(c_ptr), value :: generator
        type(c_ptr), value :: output_data
        integer(c_long), value :: n
-       integer(c_int) :: GenerateChar
-    end function hiprandGenerateChar
+       integer(c_int) :: GenerateChar_raw
+    end function hiprandGenerateChar_raw
 
+    module procedure hiprandGenerateChar_typed
+  end interface hiprandGenerateChar
+
+  interface hiprandGenerateShort
     !---------------------------------------------
     ! hiprandGenerateShort
     !---------------------------------------------
@@ -240,8 +350,8 @@ module hipfort_hiprand
     !> - HIPRAND_STATUS_NOT_INITIALIZED if the generator was not initialized \n
     !> - HIPRAND_STATUS_LAUNCH_FAILURE if generator failed to launch kernel \n
     !> - HIPRAND_STATUS_SUCCESS if random numbers were successfully generated \n
-    function hiprandGenerateShort(generator, output_data, n) &
-       result(GenerateShort) &
+    function hiprandGenerateShort_raw(generator, output_data, n) &
+       result(GenerateShort_raw) &
 #ifdef USE_CUDA_NAMES
        bind(C, name="curandGenerateShort")
 #else
@@ -251,9 +361,13 @@ module hipfort_hiprand
        type(c_ptr), value :: generator
        type(c_ptr), value :: output_data
        integer(c_long), value :: n
-       integer(c_int) :: GenerateShort
-    end function hiprandGenerateShort
+       integer(c_int) :: GenerateShort_raw
+    end function hiprandGenerateShort_raw
 
+    module procedure hiprandGenerateShort_typed
+  end interface hiprandGenerateShort
+
+  interface hiprandGenerateLongLong
     !---------------------------------------------
     ! hiprandGenerateLongLong
     !---------------------------------------------
@@ -276,16 +390,25 @@ module hipfort_hiprand
     !> - HIPRAND_STATUS_NOT_INITIALIZED if the generator was not initialized \n
     !> - HIPRAND_STATUS_LAUNCH_FAILURE if generator failed to launch kernel \n
     !> - HIPRAND_STATUS_SUCCESS if random numbers were successfully generated \n
-    function hiprandGenerateLongLong(generator, output_data, n) &
-       result(GenerateLongLong) &
+    function hiprandGenerateLongLong_raw(generator, output_data, n) &
+       result(GenerateLongLong_raw) &
+#ifdef USE_CUDA_NAMES
+       bind(C, name="curandGenerateLongLong")
+#else
        bind(C, name="hiprandGenerateLongLong")
-       import :: c_ptr, c_int64_t, c_long, c_int
+#endif
+       import :: c_ptr, c_long, c_int
        type(c_ptr), value :: generator
-       integer(c_int64_t) :: output_data(*)
+       type(c_ptr), value :: output_data
        integer(c_long), value :: n
-       integer(c_int) :: GenerateLongLong
-    end function hiprandGenerateLongLong
+       integer(c_int) :: GenerateLongLong_raw
+    end function hiprandGenerateLongLong_raw
 
+    module procedure hiprandGenerateLongLong_native
+    module procedure hiprandGenerateLongLong_typed
+  end interface hiprandGenerateLongLong
+
+  interface hiprandGenerateUniform
     !---------------------------------------------
     ! hiprandGenerateUniform
     !---------------------------------------------
@@ -307,20 +430,25 @@ module hipfort_hiprand
     !> - HIPRAND_STATUS_LENGTH_NOT_MULTIPLE if \p n is not a multiple of the dimension
     !> of used quasi-random generator \n
     !> - HIPRAND_STATUS_SUCCESS if random numbers were successfully generated \n
-    function hiprandGenerateUniform(generator, output_data, n) &
-       result(GenerateUniform) &
+    function hiprandGenerateUniform_raw(generator, output_data, n) &
+       result(GenerateUniform_raw) &
 #ifdef USE_CUDA_NAMES
        bind(C, name="curandGenerateUniform")
 #else
        bind(C, name="hiprandGenerateUniform")
 #endif
-       import :: c_ptr, c_float, c_long, c_int
+       import :: c_ptr, c_long, c_int
        type(c_ptr), value :: generator
-       real(c_float) :: output_data(*)
+       type(c_ptr), value :: output_data
        integer(c_long), value :: n
-       integer(c_int) :: GenerateUniform
-    end function hiprandGenerateUniform
+       integer(c_int) :: GenerateUniform_raw
+    end function hiprandGenerateUniform_raw
 
+    module procedure hiprandGenerateUniform_native
+    module procedure hiprandGenerateUniform_typed
+  end interface hiprandGenerateUniform
+
+  interface hiprandGenerateUniformDouble
     !---------------------------------------------
     ! hiprandGenerateUniformDouble
     !---------------------------------------------
@@ -348,20 +476,25 @@ module hipfort_hiprand
     !> - HIPRAND_STATUS_LENGTH_NOT_MULTIPLE if \p n is not a multiple of the dimension
     !> of used quasi-random generator \n
     !> - HIPRAND_STATUS_SUCCESS if random numbers were successfully generated \n
-    function hiprandGenerateUniformDouble(generator, output_data, n) &
-       result(GenerateUniformDouble) &
+    function hiprandGenerateUniformDouble_raw(generator, output_data, n) &
+       result(GenerateUniformDouble_raw) &
 #ifdef USE_CUDA_NAMES
        bind(C, name="curandGenerateUniformDouble")
 #else
        bind(C, name="hiprandGenerateUniformDouble")
 #endif
-       import :: c_ptr, c_double, c_long, c_int
+       import :: c_ptr, c_long, c_int
        type(c_ptr), value :: generator
-       real(c_double) :: output_data(*)
+       type(c_ptr), value :: output_data
        integer(c_long), value :: n
-       integer(c_int) :: GenerateUniformDouble
-    end function hiprandGenerateUniformDouble
+       integer(c_int) :: GenerateUniformDouble_raw
+    end function hiprandGenerateUniformDouble_raw
 
+    module procedure hiprandGenerateUniformDouble_native
+    module procedure hiprandGenerateUniformDouble_typed
+  end interface hiprandGenerateUniformDouble
+
+  interface hiprandGenerateUniformHalf
     !---------------------------------------------
     ! hiprandGenerateUniformHalf
     !---------------------------------------------
@@ -383,16 +516,21 @@ module hipfort_hiprand
     !> - HIPRAND_STATUS_LENGTH_NOT_MULTIPLE if \p n is not a multiple of the dimension
     !> of used quasi-random generator \n
     !> - HIPRAND_STATUS_SUCCESS if random numbers were successfully generated \n
-    function hiprandGenerateUniformHalf(generator, output_data, n) &
-       result(GenerateUniformHalf) &
+    function hiprandGenerateUniformHalf_raw(generator, output_data, n) &
+       result(GenerateUniformHalf_raw) &
        bind(C, name="hiprandGenerateUniformHalf")
-       import :: c_ptr, c_int, c_long
+       import :: c_ptr, c_long, c_int
        type(c_ptr), value :: generator
-       integer(c_int) :: output_data(*)
+       type(c_ptr), value :: output_data
        integer(c_long), value :: n
-       integer(c_int) :: GenerateUniformHalf
-    end function hiprandGenerateUniformHalf
+       integer(c_int) :: GenerateUniformHalf_raw
+    end function hiprandGenerateUniformHalf_raw
 
+    module procedure hiprandGenerateUniformHalf_native
+    module procedure hiprandGenerateUniformHalf_typed
+  end interface hiprandGenerateUniformHalf
+
+  interface hiprandGenerateNormal
     !---------------------------------------------
     ! hiprandGenerateNormal
     !---------------------------------------------
@@ -414,22 +552,27 @@ module hipfort_hiprand
     !> aligned to \p sizeof(float2) bytes, or \p n is not a multiple of the dimension
     !> of used quasi-random generator \n
     !> - HIPRAND_STATUS_SUCCESS if random numbers were successfully generated \n
-    function hiprandGenerateNormal(generator, output_data, n, mean, stddev) &
-       result(GenerateNormal) &
+    function hiprandGenerateNormal_raw(generator, output_data, n, mean, stddev) &
+       result(GenerateNormal_raw) &
 #ifdef USE_CUDA_NAMES
        bind(C, name="curandGenerateNormal")
 #else
        bind(C, name="hiprandGenerateNormal")
 #endif
-       import :: c_ptr, c_float, c_long, c_int
+       import :: c_ptr, c_long, c_float, c_int
        type(c_ptr), value :: generator
-       real(c_float) :: output_data(*)
+       type(c_ptr), value :: output_data
        integer(c_long), value :: n
        real(c_float), value :: mean
        real(c_float), value :: stddev
-       integer(c_int) :: GenerateNormal
-    end function hiprandGenerateNormal
+       integer(c_int) :: GenerateNormal_raw
+    end function hiprandGenerateNormal_raw
 
+    module procedure hiprandGenerateNormal_native
+    module procedure hiprandGenerateNormal_typed
+  end interface hiprandGenerateNormal
+
+  interface hiprandGenerateNormalDouble
     !---------------------------------------------
     ! hiprandGenerateNormalDouble
     !---------------------------------------------
@@ -451,22 +594,27 @@ module hipfort_hiprand
     !> aligned to \p sizeof(double2) bytes, or \p n is not a multiple of the dimension
     !> of used quasi-random generator \n
     !> - HIPRAND_STATUS_SUCCESS if random numbers were successfully generated \n
-    function hiprandGenerateNormalDouble(generator, output_data, n, mean, stddev) &
-       result(GenerateNormalDouble) &
+    function hiprandGenerateNormalDouble_raw(generator, output_data, n, mean, stddev) &
+       result(GenerateNormalDouble_raw) &
 #ifdef USE_CUDA_NAMES
        bind(C, name="curandGenerateNormalDouble")
 #else
        bind(C, name="hiprandGenerateNormalDouble")
 #endif
-       import :: c_ptr, c_double, c_long, c_int
+       import :: c_ptr, c_long, c_double, c_int
        type(c_ptr), value :: generator
-       real(c_double) :: output_data(*)
+       type(c_ptr), value :: output_data
        integer(c_long), value :: n
        real(c_double), value :: mean
        real(c_double), value :: stddev
-       integer(c_int) :: GenerateNormalDouble
-    end function hiprandGenerateNormalDouble
+       integer(c_int) :: GenerateNormalDouble_raw
+    end function hiprandGenerateNormalDouble_raw
 
+    module procedure hiprandGenerateNormalDouble_native
+    module procedure hiprandGenerateNormalDouble_typed
+  end interface hiprandGenerateNormalDouble
+
+  interface hiprandGenerateNormalHalf
     !---------------------------------------------
     ! hiprandGenerateNormalHalf
     !---------------------------------------------
@@ -488,18 +636,23 @@ module hipfort_hiprand
     !> aligned to \p sizeof(half2) bytes, or \p n is not a multiple of the dimension
     !> of used quasi-random generator \n
     !> - HIPRAND_STATUS_SUCCESS if random numbers were successfully generated \n
-    function hiprandGenerateNormalHalf(generator, output_data, n, mean, stddev) &
-       result(GenerateNormalHalf) &
+    function hiprandGenerateNormalHalf_raw(generator, output_data, n, mean, stddev) &
+       result(GenerateNormalHalf_raw) &
        bind(C, name="hiprandGenerateNormalHalf")
-       import :: c_ptr, c_int, c_long
+       import :: c_ptr, c_long, c_int
        type(c_ptr), value :: generator
-       integer(c_int) :: output_data(*)
+       type(c_ptr), value :: output_data
        integer(c_long), value :: n
        integer(c_int), value :: mean
        integer(c_int), value :: stddev
-       integer(c_int) :: GenerateNormalHalf
-    end function hiprandGenerateNormalHalf
+       integer(c_int) :: GenerateNormalHalf_raw
+    end function hiprandGenerateNormalHalf_raw
 
+    module procedure hiprandGenerateNormalHalf_native
+    module procedure hiprandGenerateNormalHalf_typed
+  end interface hiprandGenerateNormalHalf
+
+  interface hiprandGenerateLogNormal
     !---------------------------------------------
     ! hiprandGenerateLogNormal
     !---------------------------------------------
@@ -521,22 +674,27 @@ module hipfort_hiprand
     !> aligned to \p sizeof(float2) bytes, or \p n is not a multiple of the dimension
     !> of used quasi-random generator \n
     !> - HIPRAND_STATUS_SUCCESS if random numbers were successfully generated \n
-    function hiprandGenerateLogNormal(generator, output_data, n, mean, stddev) &
-       result(GenerateLogNormal) &
+    function hiprandGenerateLogNormal_raw(generator, output_data, n, mean, stddev) &
+       result(GenerateLogNormal_raw) &
 #ifdef USE_CUDA_NAMES
        bind(C, name="curandGenerateLogNormal")
 #else
        bind(C, name="hiprandGenerateLogNormal")
 #endif
-       import :: c_ptr, c_float, c_long, c_int
+       import :: c_ptr, c_long, c_float, c_int
        type(c_ptr), value :: generator
-       real(c_float) :: output_data(*)
+       type(c_ptr), value :: output_data
        integer(c_long), value :: n
        real(c_float), value :: mean
        real(c_float), value :: stddev
-       integer(c_int) :: GenerateLogNormal
-    end function hiprandGenerateLogNormal
+       integer(c_int) :: GenerateLogNormal_raw
+    end function hiprandGenerateLogNormal_raw
 
+    module procedure hiprandGenerateLogNormal_native
+    module procedure hiprandGenerateLogNormal_typed
+  end interface hiprandGenerateLogNormal
+
+  interface hiprandGenerateLogNormalDouble
     !---------------------------------------------
     ! hiprandGenerateLogNormalDouble
     !---------------------------------------------
@@ -558,22 +716,27 @@ module hipfort_hiprand
     !> aligned to \p sizeof(double2) bytes, or \p n is not a multiple of the dimension
     !> of used quasi-random generator \n
     !> - HIPRAND_STATUS_SUCCESS if random numbers were successfully generated \n
-    function hiprandGenerateLogNormalDouble(generator, output_data, n, mean, stddev) &
-       result(GenerateLogNormalDouble) &
+    function hiprandGenerateLogNormalDouble_raw(generator, output_data, n, mean, stddev) &
+       result(GenerateLogNormalDouble_raw) &
 #ifdef USE_CUDA_NAMES
        bind(C, name="curandGenerateLogNormalDouble")
 #else
        bind(C, name="hiprandGenerateLogNormalDouble")
 #endif
-       import :: c_ptr, c_double, c_long, c_int
+       import :: c_ptr, c_long, c_double, c_int
        type(c_ptr), value :: generator
-       real(c_double) :: output_data(*)
+       type(c_ptr), value :: output_data
        integer(c_long), value :: n
        real(c_double), value :: mean
        real(c_double), value :: stddev
-       integer(c_int) :: GenerateLogNormalDouble
-    end function hiprandGenerateLogNormalDouble
+       integer(c_int) :: GenerateLogNormalDouble_raw
+    end function hiprandGenerateLogNormalDouble_raw
 
+    module procedure hiprandGenerateLogNormalDouble_native
+    module procedure hiprandGenerateLogNormalDouble_typed
+  end interface hiprandGenerateLogNormalDouble
+
+  interface hiprandGenerateLogNormalHalf
     !---------------------------------------------
     ! hiprandGenerateLogNormalHalf
     !---------------------------------------------
@@ -595,18 +758,23 @@ module hipfort_hiprand
     !> aligned to \p sizeof(half2) bytes, or \p n is not a multiple of the dimension
     !> of used quasi-random generator \n
     !> - HIPRAND_STATUS_SUCCESS if random numbers were successfully generated \n
-    function hiprandGenerateLogNormalHalf(generator, output_data, n, mean, stddev) &
-       result(GenerateLogNormalHalf) &
+    function hiprandGenerateLogNormalHalf_raw(generator, output_data, n, mean, stddev) &
+       result(GenerateLogNormalHalf_raw) &
        bind(C, name="hiprandGenerateLogNormalHalf")
-       import :: c_ptr, c_int, c_long
+       import :: c_ptr, c_long, c_int
        type(c_ptr), value :: generator
-       integer(c_int) :: output_data(*)
+       type(c_ptr), value :: output_data
        integer(c_long), value :: n
        integer(c_int), value :: mean
        integer(c_int), value :: stddev
-       integer(c_int) :: GenerateLogNormalHalf
-    end function hiprandGenerateLogNormalHalf
+       integer(c_int) :: GenerateLogNormalHalf_raw
+    end function hiprandGenerateLogNormalHalf_raw
 
+    module procedure hiprandGenerateLogNormalHalf_native
+    module procedure hiprandGenerateLogNormalHalf_typed
+  end interface hiprandGenerateLogNormalHalf
+
+  interface hiprandGeneratePoisson
     !---------------------------------------------
     ! hiprandGeneratePoisson
     !---------------------------------------------
@@ -627,21 +795,26 @@ module hipfort_hiprand
     !> - HIPRAND_STATUS_LENGTH_NOT_MULTIPLE if \p n is not a multiple of the dimension
     !> of used quasi-random generator \n
     !> - HIPRAND_STATUS_SUCCESS if random numbers were successfully generated \n
-    function hiprandGeneratePoisson(generator, output_data, n, lambda) &
-       result(GeneratePoisson) &
+    function hiprandGeneratePoisson_raw(generator, output_data, n, lambda) &
+       result(GeneratePoisson_raw) &
 #ifdef USE_CUDA_NAMES
        bind(C, name="curandGeneratePoisson")
 #else
        bind(C, name="hiprandGeneratePoisson")
 #endif
-       import :: c_ptr, c_int, c_long, c_double
+       import :: c_ptr, c_long, c_double, c_int
        type(c_ptr), value :: generator
-       integer(c_int) :: output_data(*)
+       type(c_ptr), value :: output_data
        integer(c_long), value :: n
        real(c_double), value :: lambda
-       integer(c_int) :: GeneratePoisson
-    end function hiprandGeneratePoisson
+       integer(c_int) :: GeneratePoisson_raw
+    end function hiprandGeneratePoisson_raw
 
+    module procedure hiprandGeneratePoisson_native
+    module procedure hiprandGeneratePoisson_typed
+  end interface hiprandGeneratePoisson
+
+  interface hiprandGenerateSeeds
     !---------------------------------------------
     ! hiprandGenerateSeeds
     !---------------------------------------------
@@ -661,8 +834,8 @@ module hipfort_hiprand
     !> a previous kernel launch \n
     !> - HIPRAND_STATUS_LAUNCH_FAILURE if the kernel launch failed for any reason \n
     !> - HIPRAND_STATUS_SUCCESS if the seeds were generated successfully \n
-    function hiprandGenerateSeeds(generator) &
-       result(GenerateSeeds) &
+    function hiprandGenerateSeeds_raw(generator) &
+       result(GenerateSeeds_raw) &
 #ifdef USE_CUDA_NAMES
        bind(C, name="curandGenerateSeeds")
 #else
@@ -670,9 +843,13 @@ module hipfort_hiprand
 #endif
        import :: c_ptr, c_int
        type(c_ptr), value :: generator
-       integer(c_int) :: GenerateSeeds
-    end function hiprandGenerateSeeds
+       integer(c_int) :: GenerateSeeds_raw
+    end function hiprandGenerateSeeds_raw
 
+    module procedure hiprandGenerateSeeds_typed
+  end interface hiprandGenerateSeeds
+
+  interface hiprandSetStream
     !---------------------------------------------
     ! hiprandSetStream
     !---------------------------------------------
@@ -687,8 +864,8 @@ module hipfort_hiprand
     !> \return
     !> - HIPRAND_STATUS_NOT_INITIALIZED if the generator was not initialized \n
     !> - HIPRAND_STATUS_SUCCESS if stream was set successfully \n
-    function hiprandSetStream(generator, stream) &
-       result(SetStream) &
+    function hiprandSetStream_raw(generator, stream) &
+       result(SetStream_raw) &
 #ifdef USE_CUDA_NAMES
        bind(C, name="curandSetStream")
 #else
@@ -697,9 +874,13 @@ module hipfort_hiprand
        import :: c_ptr, c_int
        type(c_ptr), value :: generator
        type(c_ptr), value :: stream
-       integer(c_int) :: SetStream
-    end function hiprandSetStream
+       integer(c_int) :: SetStream_raw
+    end function hiprandSetStream_raw
 
+    module procedure hiprandSetStream_typed
+  end interface hiprandSetStream
+
+  interface hiprandSetPseudoRandomGeneratorSeed
     !---------------------------------------------
     ! hiprandSetPseudoRandomGeneratorSeed
     !---------------------------------------------
@@ -717,8 +898,8 @@ module hipfort_hiprand
     !> - HIPRAND_STATUS_NOT_INITIALIZED if the generator was not initialized \n
     !> - HIPRAND_STATUS_TYPE_ERROR if the generator is a quasi random number generator \n
     !> - HIPRAND_STATUS_SUCCESS if seed was set successfully \n
-    function hiprandSetPseudoRandomGeneratorSeed(generator, seed) &
-       result(SetPseudoRandomGeneratorSeed) &
+    function hiprandSetPseudoRandomGeneratorSeed_raw(generator, seed) &
+       result(SetPseudoRandomGeneratorSeed_raw) &
 #ifdef USE_CUDA_NAMES
        bind(C, name="curandSetPseudoRandomGeneratorSeed")
 #else
@@ -727,9 +908,13 @@ module hipfort_hiprand
        import :: c_ptr, c_int64_t, c_int
        type(c_ptr), value :: generator
        integer(c_int64_t), value :: seed
-       integer(c_int) :: SetPseudoRandomGeneratorSeed
-    end function hiprandSetPseudoRandomGeneratorSeed
+       integer(c_int) :: SetPseudoRandomGeneratorSeed_raw
+    end function hiprandSetPseudoRandomGeneratorSeed_raw
 
+    module procedure hiprandSetPseudoRandomGeneratorSeed_typed
+  end interface hiprandSetPseudoRandomGeneratorSeed
+
+  interface hiprandSetGeneratorOffset
     !---------------------------------------------
     ! hiprandSetGeneratorOffset
     !---------------------------------------------
@@ -751,8 +936,8 @@ module hipfort_hiprand
     !> - HIPRAND_STATUS_SUCCESS if offset was successfully set \n
     !> - HIPRAND_STATUS_TYPE_ERROR if generator's type is HIPRAND_RNG_PSEUDO_MTGP32
     !> or HIPRAND_RNG_PSEUDO_MT19937 \n
-    function hiprandSetGeneratorOffset(generator, offset) &
-       result(SetGeneratorOffset) &
+    function hiprandSetGeneratorOffset_raw(generator, offset) &
+       result(SetGeneratorOffset_raw) &
 #ifdef USE_CUDA_NAMES
        bind(C, name="curandSetGeneratorOffset")
 #else
@@ -761,9 +946,13 @@ module hipfort_hiprand
        import :: c_ptr, c_int64_t, c_int
        type(c_ptr), value :: generator
        integer(c_int64_t), value :: offset
-       integer(c_int) :: SetGeneratorOffset
-    end function hiprandSetGeneratorOffset
+       integer(c_int) :: SetGeneratorOffset_raw
+    end function hiprandSetGeneratorOffset_raw
 
+    module procedure hiprandSetGeneratorOffset_typed
+  end interface hiprandSetGeneratorOffset
+
+  interface hiprandSetGeneratorOrdering
     !---------------------------------------------
     ! hiprandSetGeneratorOrdering
     !---------------------------------------------
@@ -790,15 +979,23 @@ module hipfort_hiprand
     !> - HIPRAND_STATUS_OUT_OF_RANGE if the ordering is not valid \n
     !> - HIPRAND_STATUS_SUCCESS if the ordering was successfully set \n
     !> - HIPRAND_STATUS_TYPE_ERROR if generator's type is not valid
-    function hiprandSetGeneratorOrdering(generator, order) &
-       result(SetGeneratorOrdering) &
+    function hiprandSetGeneratorOrdering_raw(generator, order) &
+       result(SetGeneratorOrdering_raw) &
+#ifdef USE_CUDA_NAMES
+       bind(C, name="curandSetGeneratorOrdering")
+#else
        bind(C, name="hiprandSetGeneratorOrdering")
+#endif
        import :: c_ptr, c_int
        type(c_ptr), value :: generator
        integer(c_int), value :: order
-       integer(c_int) :: SetGeneratorOrdering
-    end function hiprandSetGeneratorOrdering
+       integer(c_int) :: SetGeneratorOrdering_raw
+    end function hiprandSetGeneratorOrdering_raw
 
+    module procedure hiprandSetGeneratorOrdering_typed
+  end interface hiprandSetGeneratorOrdering
+
+  interface hiprandSetQuasiRandomGeneratorDimensions
     !---------------------------------------------
     ! hiprandSetQuasiRandomGeneratorDimensions
     !---------------------------------------------
@@ -818,8 +1015,8 @@ module hipfort_hiprand
     !> - HIPRAND_STATUS_TYPE_ERROR if the generator is not a quasi-random number generator \n
     !> - HIPRAND_STATUS_OUT_OF_RANGE if \p dimensions is out of range \n
     !> - HIPRAND_STATUS_SUCCESS if the number of dimensions was set successfully \n
-    function hiprandSetQuasiRandomGeneratorDimensions(generator, dimensions) &
-       result(SetQuasiRandomGeneratorDimensions) &
+    function hiprandSetQuasiRandomGeneratorDimensions_raw(generator, dimensions) &
+       result(SetQuasiRandomGeneratorDimensions_raw) &
 #ifdef USE_CUDA_NAMES
        bind(C, name="curandSetQuasiRandomGeneratorDimensions")
 #else
@@ -828,9 +1025,13 @@ module hipfort_hiprand
        import :: c_ptr, c_int
        type(c_ptr), value :: generator
        integer(c_int), value :: dimensions
-       integer(c_int) :: SetQuasiRandomGeneratorDimensions
-    end function hiprandSetQuasiRandomGeneratorDimensions
+       integer(c_int) :: SetQuasiRandomGeneratorDimensions_raw
+    end function hiprandSetQuasiRandomGeneratorDimensions_raw
 
+    module procedure hiprandSetQuasiRandomGeneratorDimensions_typed
+  end interface hiprandSetQuasiRandomGeneratorDimensions
+
+  interface hiprandGetVersion
     !---------------------------------------------
     ! hiprandGetVersion
     !---------------------------------------------
@@ -844,18 +1045,22 @@ module hipfort_hiprand
     !> \return
     !> - HIPRAND_STATUS_OUT_OF_RANGE if \p version is NULL \n
     !> - HIPRAND_STATUS_SUCCESS if the version number was successfully returned \n
-    function hiprandGetVersion(version) &
-       result(GetVersion) &
+    function hiprandGetVersion_raw(version) &
+       result(GetVersion_raw) &
 #ifdef USE_CUDA_NAMES
        bind(C, name="curandGetVersion")
 #else
        bind(C, name="hiprandGetVersion")
 #endif
-       import :: c_int
-       integer(c_int) :: version(*)
-       integer(c_int) :: GetVersion
-    end function hiprandGetVersion
+       import :: c_ptr, c_int
+       type(c_ptr), value :: version
+       integer(c_int) :: GetVersion_raw
+    end function hiprandGetVersion_raw
 
+    module procedure hiprandGetVersion_native
+  end interface hiprandGetVersion
+
+  interface hiprandCreatePoissonDistribution
     !---------------------------------------------
     ! hiprandCreatePoissonDistribution
     !---------------------------------------------
@@ -871,8 +1076,8 @@ module hipfort_hiprand
     !> - HIPRAND_STATUS_OUT_OF_RANGE if \p discrete_distribution pointer was null \n
     !> - HIPRAND_STATUS_OUT_OF_RANGE if lambda is non-positive \n
     !> - HIPRAND_STATUS_SUCCESS if the histogram was constructed successfully \n
-    function hiprandCreatePoissonDistribution(lambda, discrete_distribution) &
-       result(CreatePoissonDistribution) &
+    function hiprandCreatePoissonDistribution_raw(lambda, discrete_distribution) &
+       result(CreatePoissonDistribution_raw) &
 #ifdef USE_CUDA_NAMES
        bind(C, name="curandCreatePoissonDistribution")
 #else
@@ -881,9 +1086,13 @@ module hipfort_hiprand
        import :: c_double, c_ptr, c_int
        real(c_double), value :: lambda
        type(c_ptr) :: discrete_distribution
-       integer(c_int) :: CreatePoissonDistribution
-    end function hiprandCreatePoissonDistribution
+       integer(c_int) :: CreatePoissonDistribution_raw
+    end function hiprandCreatePoissonDistribution_raw
 
+    module procedure hiprandCreatePoissonDistribution_typed
+  end interface hiprandCreatePoissonDistribution
+
+  interface hiprandDestroyDistribution
     !---------------------------------------------
     ! hiprandDestroyDistribution
     !---------------------------------------------
@@ -897,8 +1106,8 @@ module hipfort_hiprand
     !> \return
     !> - HIPRAND_STATUS_OUT_OF_RANGE if \p discrete_distribution was null \n
     !> - HIPRAND_STATUS_SUCCESS if the histogram was destroyed successfully \n
-    function hiprandDestroyDistribution(discrete_distribution) &
-       result(DestroyDistribution) &
+    function hiprandDestroyDistribution_raw(discrete_distribution) &
+       result(DestroyDistribution_raw) &
 #ifdef USE_CUDA_NAMES
        bind(C, name="curandDestroyDistribution")
 #else
@@ -906,82 +1115,458 @@ module hipfort_hiprand
 #endif
        import :: c_ptr, c_int
        type(c_ptr), value :: discrete_distribution
-       integer(c_int) :: DestroyDistribution
-    end function hiprandDestroyDistribution
+       integer(c_int) :: DestroyDistribution_raw
+    end function hiprandDestroyDistribution_raw
 
-    !---------------------------------------------
-    ! hiprandGetDirectionVectors32
-    !---------------------------------------------
-    !> \brief Retrieves the Sobol 32 direction vector array specified by \p set.
-    !>
-    !> \param vectors Pointer to the Sobol 32 direction vector array.
-    !> \param set Specifies which hipRAND vector set for quasirandom generators to retrieve.
-    !>
-    !> \return
-    !> - HIPRAND_STATUS_OUT_OF_RANGE if \p set is invalid \n
-    !> - HIPRAND_STATUS_SUCCESS if \p vectors was set successfully \n
-    function hiprandGetDirectionVectors32(vectors, set) &
-       result(GetDirectionVectors32) &
-       bind(C, name="hiprandGetDirectionVectors32")
-       import :: c_ptr, c_int
-       type(c_ptr) :: vectors
-       integer(c_int), value :: set
-       integer(c_int) :: GetDirectionVectors32
-    end function hiprandGetDirectionVectors32
+    module procedure hiprandDestroyDistribution_typed
+  end interface hiprandDestroyDistribution
 
-    !---------------------------------------------
-    ! hiprandGetDirectionVectors64
-    !---------------------------------------------
-    !> \brief Retrieves the Sobol 64 direction vector array specified by \p set.
-    !>
-    !> \param vectors Pointer to the Sobol 64 direction vector array.
-    !> \param set Specifies which hipRAND vector set for quasirandom generators to retrieve.
-    !>
-    !> \return
-    !> - HIPRAND_STATUS_OUT_OF_RANGE if \p set is invalid \n
-    !> - HIPRAND_STATUS_SUCCESS if \p vectors was set successfully \n
-    function hiprandGetDirectionVectors64(vectors, set) &
-       result(GetDirectionVectors64) &
-       bind(C, name="hiprandGetDirectionVectors64")
-       import :: c_ptr, c_int
-       type(c_ptr) :: vectors
-       integer(c_int), value :: set
-       integer(c_int) :: GetDirectionVectors64
-    end function hiprandGetDirectionVectors64
 
-    !---------------------------------------------
-    ! hiprandGetScrambleConstants32
-    !---------------------------------------------
-    !> \brief Retrieves the scramble constants for 32-bit scrambled Sobol generation.
-    !>
-    !> \param constants Pointer to the constants pointer.
-    !>
-    !> \return
-    !> - HIPRAND_STATUS_SUCCESS if the pointer was set successfully
-    function hiprandGetScrambleConstants32(constants) &
-       result(GetScrambleConstants32) &
-       bind(C, name="hiprandGetScrambleConstants32")
-       import :: c_ptr, c_int
-       type(c_ptr) :: constants
-       integer(c_int) :: GetScrambleConstants32
-    end function hiprandGetScrambleConstants32
+contains
 
-    !---------------------------------------------
-    ! hiprandGetScrambleConstants64
-    !---------------------------------------------
-    !> \brief Retrieves the scramble constants for 64-bit scrambled Sobol generation.
-    !>
-    !> \param constants Pointer to the constants pointer.
-    !>
-    !> \return
-    !> - HIPRAND_STATUS_SUCCESS if the pointer was set successfully
-    function hiprandGetScrambleConstants64(constants) &
-       result(GetScrambleConstants64) &
-       bind(C, name="hiprandGetScrambleConstants64")
-       import :: c_ptr, c_int
-       type(c_ptr) :: constants
-       integer(c_int) :: GetScrambleConstants64
-    end function hiprandGetScrambleConstants64
+    function hiprandCreateGenerator_typed(generator, rng_type) result(CreateGenerator)
+      use, intrinsic :: iso_c_binding
+      use hipfort_handles
+      implicit none
+      type(hiprandGenerator_t) :: generator
+      integer(c_int), value :: rng_type
+      integer(c_int) :: CreateGenerator
+      CreateGenerator = hiprandCreateGenerator_raw(generator%ptr, rng_type)
+    end function hiprandCreateGenerator_typed
 
-  end interface
+    function hiprandCreateGeneratorHost_typed(generator, rng_type) result(CreateGeneratorHost)
+      use, intrinsic :: iso_c_binding
+      use hipfort_handles
+      implicit none
+      type(hiprandGenerator_t) :: generator
+      integer(c_int), value :: rng_type
+      integer(c_int) :: CreateGeneratorHost
+      CreateGeneratorHost = hiprandCreateGeneratorHost_raw(generator%ptr, rng_type)
+    end function hiprandCreateGeneratorHost_typed
+
+    function hiprandDestroyGenerator_typed(generator) result(DestroyGenerator)
+      use, intrinsic :: iso_c_binding
+      use hipfort_handles
+      implicit none
+      type(hiprandGenerator_t), value :: generator
+      integer(c_int) :: DestroyGenerator
+      DestroyGenerator = hiprandDestroyGenerator_raw(generator%ptr)
+    end function hiprandDestroyGenerator_typed
+
+    function hiprandGenerate_native(generator, output_data, n) result(Generate)
+      use, intrinsic :: iso_c_binding
+      implicit none
+      type(c_ptr), value :: generator
+      integer(c_int), target :: output_data(*)
+      integer(c_long), value :: n
+      integer(c_int) :: Generate
+      Generate = hiprandGenerate_raw(generator, c_loc(output_data(1)), n)
+    end function hiprandGenerate_native
+
+    function hiprandGenerate_typed(generator, output_data, n) result(Generate)
+      use, intrinsic :: iso_c_binding
+      use hipfort_handles
+      implicit none
+      type(hiprandGenerator_t), value :: generator
+      type(c_ptr), value :: output_data
+      integer(c_long), value :: n
+      integer(c_int) :: Generate
+      Generate = hiprandGenerate_raw(generator%ptr, output_data, n)
+    end function hiprandGenerate_typed
+
+    function hiprandGenerateChar_typed(generator, output_data, n) result(GenerateChar)
+      use, intrinsic :: iso_c_binding
+      use hipfort_handles
+      implicit none
+      type(hiprandGenerator_t), value :: generator
+      type(c_ptr), value :: output_data
+      integer(c_long), value :: n
+      integer(c_int) :: GenerateChar
+      GenerateChar = hiprandGenerateChar_raw(generator%ptr, output_data, n)
+    end function hiprandGenerateChar_typed
+
+    function hiprandGenerateShort_typed(generator, output_data, n) result(GenerateShort)
+      use, intrinsic :: iso_c_binding
+      use hipfort_handles
+      implicit none
+      type(hiprandGenerator_t), value :: generator
+      type(c_ptr), value :: output_data
+      integer(c_long), value :: n
+      integer(c_int) :: GenerateShort
+      GenerateShort = hiprandGenerateShort_raw(generator%ptr, output_data, n)
+    end function hiprandGenerateShort_typed
+
+    function hiprandGenerateLongLong_native(generator, output_data, n) result(GenerateLongLong)
+      use, intrinsic :: iso_c_binding
+      implicit none
+      type(c_ptr), value :: generator
+      integer(c_int64_t), target :: output_data(*)
+      integer(c_long), value :: n
+      integer(c_int) :: GenerateLongLong
+      GenerateLongLong = hiprandGenerateLongLong_raw(generator, c_loc(output_data(1)), n)
+    end function hiprandGenerateLongLong_native
+
+    function hiprandGenerateLongLong_typed(generator, output_data, n) result(GenerateLongLong)
+      use, intrinsic :: iso_c_binding
+      use hipfort_handles
+      implicit none
+      type(hiprandGenerator_t), value :: generator
+      type(c_ptr), value :: output_data
+      integer(c_long), value :: n
+      integer(c_int) :: GenerateLongLong
+      GenerateLongLong = hiprandGenerateLongLong_raw(generator%ptr, output_data, n)
+    end function hiprandGenerateLongLong_typed
+
+    function hiprandGenerateUniform_native(generator, output_data, n) result(GenerateUniform)
+      use, intrinsic :: iso_c_binding
+      implicit none
+      type(c_ptr), value :: generator
+      real(c_float), target :: output_data(*)
+      integer(c_long), value :: n
+      integer(c_int) :: GenerateUniform
+      GenerateUniform = hiprandGenerateUniform_raw(generator, c_loc(output_data(1)), n)
+    end function hiprandGenerateUniform_native
+
+    function hiprandGenerateUniform_typed(generator, output_data, n) result(GenerateUniform)
+      use, intrinsic :: iso_c_binding
+      use hipfort_handles
+      implicit none
+      type(hiprandGenerator_t), value :: generator
+      type(c_ptr), value :: output_data
+      integer(c_long), value :: n
+      integer(c_int) :: GenerateUniform
+      GenerateUniform = hiprandGenerateUniform_raw(generator%ptr, output_data, n)
+    end function hiprandGenerateUniform_typed
+
+    function hiprandGenerateUniformDouble_native(generator, output_data, n) result( &
+        GenerateUniformDouble)
+      use, intrinsic :: iso_c_binding
+      implicit none
+      type(c_ptr), value :: generator
+      real(c_double), target :: output_data(*)
+      integer(c_long), value :: n
+      integer(c_int) :: GenerateUniformDouble
+      GenerateUniformDouble = hiprandGenerateUniformDouble_raw(generator, c_loc(output_data(1)), n)
+    end function hiprandGenerateUniformDouble_native
+
+    function hiprandGenerateUniformDouble_typed(generator, output_data, n) result( &
+        GenerateUniformDouble)
+      use, intrinsic :: iso_c_binding
+      use hipfort_handles
+      implicit none
+      type(hiprandGenerator_t), value :: generator
+      type(c_ptr), value :: output_data
+      integer(c_long), value :: n
+      integer(c_int) :: GenerateUniformDouble
+      GenerateUniformDouble = hiprandGenerateUniformDouble_raw(generator%ptr, output_data, n)
+    end function hiprandGenerateUniformDouble_typed
+
+    function hiprandGenerateUniformHalf_native(generator, output_data, n) result( &
+        GenerateUniformHalf)
+      use, intrinsic :: iso_c_binding
+      implicit none
+      type(c_ptr), value :: generator
+      integer(c_int), target :: output_data(*)
+      integer(c_long), value :: n
+      integer(c_int) :: GenerateUniformHalf
+      GenerateUniformHalf = hiprandGenerateUniformHalf_raw(generator, c_loc(output_data(1)), n)
+    end function hiprandGenerateUniformHalf_native
+
+    function hiprandGenerateUniformHalf_typed(generator, output_data, n) result(GenerateUniformHalf)
+      use, intrinsic :: iso_c_binding
+      use hipfort_handles
+      implicit none
+      type(hiprandGenerator_t), value :: generator
+      type(c_ptr), value :: output_data
+      integer(c_long), value :: n
+      integer(c_int) :: GenerateUniformHalf
+      GenerateUniformHalf = hiprandGenerateUniformHalf_raw(generator%ptr, output_data, n)
+    end function hiprandGenerateUniformHalf_typed
+
+    function hiprandGenerateNormal_native(generator, output_data, n, mean, stddev) result( &
+        GenerateNormal)
+      use, intrinsic :: iso_c_binding
+      implicit none
+      type(c_ptr), value :: generator
+      real(c_float), target :: output_data(*)
+      integer(c_long), value :: n
+      real(c_float), value :: mean
+      real(c_float), value :: stddev
+      integer(c_int) :: GenerateNormal
+      GenerateNormal = hiprandGenerateNormal_raw(generator, c_loc(output_data(1)), n, mean, stddev)
+    end function hiprandGenerateNormal_native
+
+    function hiprandGenerateNormal_typed(generator, output_data, n, mean, stddev) result( &
+        GenerateNormal)
+      use, intrinsic :: iso_c_binding
+      use hipfort_handles
+      implicit none
+      type(hiprandGenerator_t), value :: generator
+      type(c_ptr), value :: output_data
+      integer(c_long), value :: n
+      real(c_float), value :: mean
+      real(c_float), value :: stddev
+      integer(c_int) :: GenerateNormal
+      GenerateNormal = hiprandGenerateNormal_raw(generator%ptr, output_data, n, mean, stddev)
+    end function hiprandGenerateNormal_typed
+
+    function hiprandGenerateNormalDouble_native(generator, output_data, n, mean, stddev) result( &
+        GenerateNormalDouble)
+      use, intrinsic :: iso_c_binding
+      implicit none
+      type(c_ptr), value :: generator
+      real(c_double), target :: output_data(*)
+      integer(c_long), value :: n
+      real(c_double), value :: mean
+      real(c_double), value :: stddev
+      integer(c_int) :: GenerateNormalDouble
+      GenerateNormalDouble = hiprandGenerateNormalDouble_raw(generator, c_loc(output_data(1)), n, &
+        mean, stddev)
+    end function hiprandGenerateNormalDouble_native
+
+    function hiprandGenerateNormalDouble_typed(generator, output_data, n, mean, stddev) result( &
+        GenerateNormalDouble)
+      use, intrinsic :: iso_c_binding
+      use hipfort_handles
+      implicit none
+      type(hiprandGenerator_t), value :: generator
+      type(c_ptr), value :: output_data
+      integer(c_long), value :: n
+      real(c_double), value :: mean
+      real(c_double), value :: stddev
+      integer(c_int) :: GenerateNormalDouble
+      GenerateNormalDouble = hiprandGenerateNormalDouble_raw(generator%ptr, output_data, n, mean, &
+        stddev)
+    end function hiprandGenerateNormalDouble_typed
+
+    function hiprandGenerateNormalHalf_native(generator, output_data, n, mean, stddev) result( &
+        GenerateNormalHalf)
+      use, intrinsic :: iso_c_binding
+      implicit none
+      type(c_ptr), value :: generator
+      integer(c_int), target :: output_data(*)
+      integer(c_long), value :: n
+      integer(c_int), value :: mean
+      integer(c_int), value :: stddev
+      integer(c_int) :: GenerateNormalHalf
+      GenerateNormalHalf = hiprandGenerateNormalHalf_raw(generator, c_loc(output_data(1)), n, &
+        mean, stddev)
+    end function hiprandGenerateNormalHalf_native
+
+    function hiprandGenerateNormalHalf_typed(generator, output_data, n, mean, stddev) result( &
+        GenerateNormalHalf)
+      use, intrinsic :: iso_c_binding
+      use hipfort_handles
+      implicit none
+      type(hiprandGenerator_t), value :: generator
+      type(c_ptr), value :: output_data
+      integer(c_long), value :: n
+      integer(c_int), value :: mean
+      integer(c_int), value :: stddev
+      integer(c_int) :: GenerateNormalHalf
+      GenerateNormalHalf = hiprandGenerateNormalHalf_raw(generator%ptr, output_data, n, mean, &
+        stddev)
+    end function hiprandGenerateNormalHalf_typed
+
+    function hiprandGenerateLogNormal_native(generator, output_data, n, mean, stddev) result( &
+        GenerateLogNormal)
+      use, intrinsic :: iso_c_binding
+      implicit none
+      type(c_ptr), value :: generator
+      real(c_float), target :: output_data(*)
+      integer(c_long), value :: n
+      real(c_float), value :: mean
+      real(c_float), value :: stddev
+      integer(c_int) :: GenerateLogNormal
+      GenerateLogNormal = hiprandGenerateLogNormal_raw(generator, c_loc(output_data(1)), n, mean, &
+        stddev)
+    end function hiprandGenerateLogNormal_native
+
+    function hiprandGenerateLogNormal_typed(generator, output_data, n, mean, stddev) result( &
+        GenerateLogNormal)
+      use, intrinsic :: iso_c_binding
+      use hipfort_handles
+      implicit none
+      type(hiprandGenerator_t), value :: generator
+      type(c_ptr), value :: output_data
+      integer(c_long), value :: n
+      real(c_float), value :: mean
+      real(c_float), value :: stddev
+      integer(c_int) :: GenerateLogNormal
+      GenerateLogNormal = hiprandGenerateLogNormal_raw(generator%ptr, output_data, n, mean, stddev)
+    end function hiprandGenerateLogNormal_typed
+
+    function hiprandGenerateLogNormalDouble_native(generator, output_data, n, mean, &
+        stddev) result(GenerateLogNormalDouble)
+      use, intrinsic :: iso_c_binding
+      implicit none
+      type(c_ptr), value :: generator
+      real(c_double), target :: output_data(*)
+      integer(c_long), value :: n
+      real(c_double), value :: mean
+      real(c_double), value :: stddev
+      integer(c_int) :: GenerateLogNormalDouble
+      GenerateLogNormalDouble = hiprandGenerateLogNormalDouble_raw(generator, c_loc(output_data( &
+        1)), n, mean, stddev)
+    end function hiprandGenerateLogNormalDouble_native
+
+    function hiprandGenerateLogNormalDouble_typed(generator, output_data, n, mean, stddev) result( &
+        GenerateLogNormalDouble)
+      use, intrinsic :: iso_c_binding
+      use hipfort_handles
+      implicit none
+      type(hiprandGenerator_t), value :: generator
+      type(c_ptr), value :: output_data
+      integer(c_long), value :: n
+      real(c_double), value :: mean
+      real(c_double), value :: stddev
+      integer(c_int) :: GenerateLogNormalDouble
+      GenerateLogNormalDouble = hiprandGenerateLogNormalDouble_raw(generator%ptr, output_data, n, &
+        mean, stddev)
+    end function hiprandGenerateLogNormalDouble_typed
+
+    function hiprandGenerateLogNormalHalf_native(generator, output_data, n, mean, stddev) result( &
+        GenerateLogNormalHalf)
+      use, intrinsic :: iso_c_binding
+      implicit none
+      type(c_ptr), value :: generator
+      integer(c_int), target :: output_data(*)
+      integer(c_long), value :: n
+      integer(c_int), value :: mean
+      integer(c_int), value :: stddev
+      integer(c_int) :: GenerateLogNormalHalf
+      GenerateLogNormalHalf = hiprandGenerateLogNormalHalf_raw(generator, c_loc(output_data(1)), &
+        n, mean, stddev)
+    end function hiprandGenerateLogNormalHalf_native
+
+    function hiprandGenerateLogNormalHalf_typed(generator, output_data, n, mean, stddev) result( &
+        GenerateLogNormalHalf)
+      use, intrinsic :: iso_c_binding
+      use hipfort_handles
+      implicit none
+      type(hiprandGenerator_t), value :: generator
+      type(c_ptr), value :: output_data
+      integer(c_long), value :: n
+      integer(c_int), value :: mean
+      integer(c_int), value :: stddev
+      integer(c_int) :: GenerateLogNormalHalf
+      GenerateLogNormalHalf = hiprandGenerateLogNormalHalf_raw(generator%ptr, output_data, n, &
+        mean, stddev)
+    end function hiprandGenerateLogNormalHalf_typed
+
+    function hiprandGeneratePoisson_native(generator, output_data, n, lambda) result( &
+        GeneratePoisson)
+      use, intrinsic :: iso_c_binding
+      implicit none
+      type(c_ptr), value :: generator
+      integer(c_int), target :: output_data(*)
+      integer(c_long), value :: n
+      real(c_double), value :: lambda
+      integer(c_int) :: GeneratePoisson
+      GeneratePoisson = hiprandGeneratePoisson_raw(generator, c_loc(output_data(1)), n, lambda)
+    end function hiprandGeneratePoisson_native
+
+    function hiprandGeneratePoisson_typed(generator, output_data, n, lambda) result(GeneratePoisson)
+      use, intrinsic :: iso_c_binding
+      use hipfort_handles
+      implicit none
+      type(hiprandGenerator_t), value :: generator
+      type(c_ptr), value :: output_data
+      integer(c_long), value :: n
+      real(c_double), value :: lambda
+      integer(c_int) :: GeneratePoisson
+      GeneratePoisson = hiprandGeneratePoisson_raw(generator%ptr, output_data, n, lambda)
+    end function hiprandGeneratePoisson_typed
+
+    function hiprandGenerateSeeds_typed(generator) result(GenerateSeeds)
+      use, intrinsic :: iso_c_binding
+      use hipfort_handles
+      implicit none
+      type(hiprandGenerator_t), value :: generator
+      integer(c_int) :: GenerateSeeds
+      GenerateSeeds = hiprandGenerateSeeds_raw(generator%ptr)
+    end function hiprandGenerateSeeds_typed
+
+    function hiprandSetStream_typed(generator, stream) result(SetStream)
+      use, intrinsic :: iso_c_binding
+      use hipfort_handles
+      implicit none
+      type(hiprandGenerator_t), value :: generator
+      type(c_ptr), value :: stream
+      integer(c_int) :: SetStream
+      SetStream = hiprandSetStream_raw(generator%ptr, stream)
+    end function hiprandSetStream_typed
+
+    function hiprandSetPseudoRandomGeneratorSeed_typed(generator, seed) result( &
+        SetPseudoRandomGeneratorSeed)
+      use, intrinsic :: iso_c_binding
+      use hipfort_handles
+      implicit none
+      type(hiprandGenerator_t), value :: generator
+      integer(c_int64_t), value :: seed
+      integer(c_int) :: SetPseudoRandomGeneratorSeed
+      SetPseudoRandomGeneratorSeed = hiprandSetPseudoRandomGeneratorSeed_raw(generator%ptr, seed)
+    end function hiprandSetPseudoRandomGeneratorSeed_typed
+
+    function hiprandSetGeneratorOffset_typed(generator, offset) result(SetGeneratorOffset)
+      use, intrinsic :: iso_c_binding
+      use hipfort_handles
+      implicit none
+      type(hiprandGenerator_t), value :: generator
+      integer(c_int64_t), value :: offset
+      integer(c_int) :: SetGeneratorOffset
+      SetGeneratorOffset = hiprandSetGeneratorOffset_raw(generator%ptr, offset)
+    end function hiprandSetGeneratorOffset_typed
+
+    function hiprandSetGeneratorOrdering_typed(generator, order) result(SetGeneratorOrdering)
+      use, intrinsic :: iso_c_binding
+      use hipfort_handles
+      implicit none
+      type(hiprandGenerator_t), value :: generator
+      integer(c_int), value :: order
+      integer(c_int) :: SetGeneratorOrdering
+      SetGeneratorOrdering = hiprandSetGeneratorOrdering_raw(generator%ptr, order)
+    end function hiprandSetGeneratorOrdering_typed
+
+    function hiprandSetQuasiRandomGeneratorDimensions_typed(generator, dimensions) result( &
+        SetQuasiRandomGeneratorDimensions)
+      use, intrinsic :: iso_c_binding
+      use hipfort_handles
+      implicit none
+      type(hiprandGenerator_t), value :: generator
+      integer(c_int), value :: dimensions
+      integer(c_int) :: SetQuasiRandomGeneratorDimensions
+      SetQuasiRandomGeneratorDimensions = hiprandSetQuasiRandomGeneratorDimensions_raw( &
+        generator%ptr, dimensions)
+    end function hiprandSetQuasiRandomGeneratorDimensions_typed
+
+    function hiprandGetVersion_native(version) result(GetVersion)
+      use, intrinsic :: iso_c_binding
+      implicit none
+      integer(c_int), target :: version(*)
+      integer(c_int) :: GetVersion
+      GetVersion = hiprandGetVersion_raw(c_loc(version(1)))
+    end function hiprandGetVersion_native
+
+    function hiprandCreatePoissonDistribution_typed(lambda, discrete_distribution) result( &
+        CreatePoissonDistribution)
+      use, intrinsic :: iso_c_binding
+      use hipfort_handles
+      implicit none
+      real(c_double), value :: lambda
+      type(hiprandDiscreteDistribution_t) :: discrete_distribution
+      integer(c_int) :: CreatePoissonDistribution
+      CreatePoissonDistribution = hiprandCreatePoissonDistribution_raw(lambda, &
+        discrete_distribution%ptr)
+    end function hiprandCreatePoissonDistribution_typed
+
+    function hiprandDestroyDistribution_typed(discrete_distribution) result(DestroyDistribution)
+      use, intrinsic :: iso_c_binding
+      use hipfort_handles
+      implicit none
+      type(hiprandDiscreteDistribution_t), value :: discrete_distribution
+      integer(c_int) :: DestroyDistribution
+      DestroyDistribution = hiprandDestroyDistribution_raw(discrete_distribution%ptr)
+    end function hiprandDestroyDistribution_typed
+
 end module hipfort_hiprand

@@ -915,7 +915,6 @@ module hipfort_enums
     enumerator :: hipMemRangeFlagsMax = 2147483647
   end enum
 
-  !--- #define integer constants ---
   integer(c_int), parameter :: HIP_VERSION_MAJOR = 7
   integer(c_int), parameter :: HIP_VERSION_MINOR = 2
   integer(c_int), parameter :: HIP_VERSION_PATCH = 53211

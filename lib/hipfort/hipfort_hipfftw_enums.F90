@@ -28,7 +28,6 @@ module hipfort_hipfftw_enums
   use, intrinsic :: iso_c_binding
   implicit none
 
-  !--- #define integer constants ---
   integer(c_int), parameter :: FFTW_MEASURE = 0
   integer(c_int), parameter :: FFTW_FORWARD = -1
   integer(c_int), parameter :: FFTW_BACKWARD = 1

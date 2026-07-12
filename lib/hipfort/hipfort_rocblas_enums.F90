@@ -161,7 +161,6 @@ module hipfort_rocblas_enums
     enumerator :: rocblas_xf32_xdl_math_op = 1
   end enum
 
-  !--- #define integer constants ---
   integer(c_int), parameter :: ROCBLAS_VERSION_MAJOR = 5
   integer(c_int), parameter :: ROCBLAS_VERSION_MINOR = 2
   integer(c_int), parameter :: ROCBLAS_VERSION_PATCH = 0

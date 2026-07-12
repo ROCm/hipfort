@@ -193,7 +193,6 @@ module hipfort_hipblas_enums
     enumerator :: HIPBLAS_PATCH_LEVEL = 2
   end enum
 
-  !--- #define integer constants ---
   integer(c_int), parameter :: hipblasVersionMajor = 3
   integer(c_int), parameter :: hipblaseVersionMinor = 2
   integer(c_int), parameter :: hipblasVersionMinor = 2
