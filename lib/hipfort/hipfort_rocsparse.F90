@@ -12512,19 +12512,19 @@ module hipfort_rocsparse
                                     bsr_val_C, bsr_row_ptr_C, bsr_col_ind_C) &
        result(sbsrgeam_raw) &
        bind(C, name="rocsparse_sbsrgeam")
-       import :: c_ptr, c_int
+       import :: c_ptr, c_int, c_float
        type(c_ptr), value :: handle
        integer(c_int), value :: dir
        integer(c_int), value :: mb
        integer(c_int), value :: nb
        integer(c_int), value :: block_dim
-       type(c_ptr), value :: alpha
+       real(c_float) :: alpha
        type(c_ptr), value :: descr_A
        integer(c_int), value :: nnzb_A
        type(c_ptr), value :: bsr_val_A
        type(c_ptr), value :: bsr_row_ptr_A
        type(c_ptr), value :: bsr_col_ind_A
-       type(c_ptr), value :: beta
+       real(c_float) :: beta
        type(c_ptr), value :: descr_B
        integer(c_int), value :: nnzb_B
        type(c_ptr), value :: bsr_val_B
@@ -12551,19 +12551,19 @@ module hipfort_rocsparse
                                     bsr_val_C, bsr_row_ptr_C, bsr_col_ind_C) &
        result(dbsrgeam_raw) &
        bind(C, name="rocsparse_dbsrgeam")
-       import :: c_ptr, c_int
+       import :: c_ptr, c_int, c_double
        type(c_ptr), value :: handle
        integer(c_int), value :: dir
        integer(c_int), value :: mb
        integer(c_int), value :: nb
        integer(c_int), value :: block_dim
-       type(c_ptr), value :: alpha
+       real(c_double) :: alpha
        type(c_ptr), value :: descr_A
        integer(c_int), value :: nnzb_A
        type(c_ptr), value :: bsr_val_A
        type(c_ptr), value :: bsr_row_ptr_A
        type(c_ptr), value :: bsr_col_ind_A
-       type(c_ptr), value :: beta
+       real(c_double) :: beta
        type(c_ptr), value :: descr_B
        integer(c_int), value :: nnzb_B
        type(c_ptr), value :: bsr_val_B
@@ -12590,19 +12590,19 @@ module hipfort_rocsparse
                                     bsr_val_C, bsr_row_ptr_C, bsr_col_ind_C) &
        result(cbsrgeam_raw) &
        bind(C, name="rocsparse_cbsrgeam")
-       import :: c_ptr, c_int
+       import :: c_ptr, c_int, c_float_complex
        type(c_ptr), value :: handle
        integer(c_int), value :: dir
        integer(c_int), value :: mb
        integer(c_int), value :: nb
        integer(c_int), value :: block_dim
-       type(c_ptr), value :: alpha
+       complex(c_float_complex) :: alpha
        type(c_ptr), value :: descr_A
        integer(c_int), value :: nnzb_A
        type(c_ptr), value :: bsr_val_A
        type(c_ptr), value :: bsr_row_ptr_A
        type(c_ptr), value :: bsr_col_ind_A
-       type(c_ptr), value :: beta
+       complex(c_float_complex) :: beta
        type(c_ptr), value :: descr_B
        integer(c_int), value :: nnzb_B
        type(c_ptr), value :: bsr_val_B
@@ -12629,19 +12629,19 @@ module hipfort_rocsparse
                                     bsr_val_C, bsr_row_ptr_C, bsr_col_ind_C) &
        result(zbsrgeam_raw) &
        bind(C, name="rocsparse_zbsrgeam")
-       import :: c_ptr, c_int
+       import :: c_ptr, c_int, c_double_complex
        type(c_ptr), value :: handle
        integer(c_int), value :: dir
        integer(c_int), value :: mb
        integer(c_int), value :: nb
        integer(c_int), value :: block_dim
-       type(c_ptr), value :: alpha
+       complex(c_double_complex) :: alpha
        type(c_ptr), value :: descr_A
        integer(c_int), value :: nnzb_A
        type(c_ptr), value :: bsr_val_A
        type(c_ptr), value :: bsr_row_ptr_A
        type(c_ptr), value :: bsr_col_ind_A
-       type(c_ptr), value :: beta
+       complex(c_double_complex) :: beta
        type(c_ptr), value :: descr_B
        integer(c_int), value :: nnzb_B
        type(c_ptr), value :: bsr_val_B
@@ -12766,7 +12766,7 @@ module hipfort_rocsparse
                                                 bsr_row_ptr_D, bsr_col_ind_D, info_C, buffer_size) &
        result(sbsrgemm_buffer_size_raw) &
        bind(C, name="rocsparse_sbsrgemm_buffer_size")
-       import :: c_ptr, c_int
+       import :: c_ptr, c_int, c_float
        type(c_ptr), value :: handle
        integer(c_int), value :: dir
        integer(c_int), value :: trans_A
@@ -12775,7 +12775,7 @@ module hipfort_rocsparse
        integer(c_int), value :: nb
        integer(c_int), value :: kb
        integer(c_int), value :: block_dim
-       type(c_ptr), value :: alpha
+       real(c_float) :: alpha
        type(c_ptr), value :: descr_A
        integer(c_int), value :: nnzb_A
        type(c_ptr), value :: bsr_row_ptr_A
@@ -12784,7 +12784,7 @@ module hipfort_rocsparse
        integer(c_int), value :: nnzb_B
        type(c_ptr), value :: bsr_row_ptr_B
        type(c_ptr), value :: bsr_col_ind_B
-       type(c_ptr), value :: beta
+       real(c_float) :: beta
        type(c_ptr), value :: descr_D
        integer(c_int), value :: nnzb_D
        type(c_ptr), value :: bsr_row_ptr_D
@@ -12809,7 +12809,7 @@ module hipfort_rocsparse
                                                 bsr_row_ptr_D, bsr_col_ind_D, info_C, buffer_size) &
        result(dbsrgemm_buffer_size_raw) &
        bind(C, name="rocsparse_dbsrgemm_buffer_size")
-       import :: c_ptr, c_int
+       import :: c_ptr, c_int, c_double
        type(c_ptr), value :: handle
        integer(c_int), value :: dir
        integer(c_int), value :: trans_A
@@ -12818,7 +12818,7 @@ module hipfort_rocsparse
        integer(c_int), value :: nb
        integer(c_int), value :: kb
        integer(c_int), value :: block_dim
-       type(c_ptr), value :: alpha
+       real(c_double) :: alpha
        type(c_ptr), value :: descr_A
        integer(c_int), value :: nnzb_A
        type(c_ptr), value :: bsr_row_ptr_A
@@ -12827,7 +12827,7 @@ module hipfort_rocsparse
        integer(c_int), value :: nnzb_B
        type(c_ptr), value :: bsr_row_ptr_B
        type(c_ptr), value :: bsr_col_ind_B
-       type(c_ptr), value :: beta
+       real(c_double) :: beta
        type(c_ptr), value :: descr_D
        integer(c_int), value :: nnzb_D
        type(c_ptr), value :: bsr_row_ptr_D
@@ -12852,7 +12852,7 @@ module hipfort_rocsparse
                                                 bsr_row_ptr_D, bsr_col_ind_D, info_C, buffer_size) &
        result(cbsrgemm_buffer_size_raw) &
        bind(C, name="rocsparse_cbsrgemm_buffer_size")
-       import :: c_ptr, c_int
+       import :: c_ptr, c_int, c_float_complex
        type(c_ptr), value :: handle
        integer(c_int), value :: dir
        integer(c_int), value :: trans_A
@@ -12861,7 +12861,7 @@ module hipfort_rocsparse
        integer(c_int), value :: nb
        integer(c_int), value :: kb
        integer(c_int), value :: block_dim
-       type(c_ptr), value :: alpha
+       complex(c_float_complex) :: alpha
        type(c_ptr), value :: descr_A
        integer(c_int), value :: nnzb_A
        type(c_ptr), value :: bsr_row_ptr_A
@@ -12870,7 +12870,7 @@ module hipfort_rocsparse
        integer(c_int), value :: nnzb_B
        type(c_ptr), value :: bsr_row_ptr_B
        type(c_ptr), value :: bsr_col_ind_B
-       type(c_ptr), value :: beta
+       complex(c_float_complex) :: beta
        type(c_ptr), value :: descr_D
        integer(c_int), value :: nnzb_D
        type(c_ptr), value :: bsr_row_ptr_D
@@ -12895,7 +12895,7 @@ module hipfort_rocsparse
                                                 bsr_row_ptr_D, bsr_col_ind_D, info_C, buffer_size) &
        result(zbsrgemm_buffer_size_raw) &
        bind(C, name="rocsparse_zbsrgemm_buffer_size")
-       import :: c_ptr, c_int
+       import :: c_ptr, c_int, c_double_complex
        type(c_ptr), value :: handle
        integer(c_int), value :: dir
        integer(c_int), value :: trans_A
@@ -12904,7 +12904,7 @@ module hipfort_rocsparse
        integer(c_int), value :: nb
        integer(c_int), value :: kb
        integer(c_int), value :: block_dim
-       type(c_ptr), value :: alpha
+       complex(c_double_complex) :: alpha
        type(c_ptr), value :: descr_A
        integer(c_int), value :: nnzb_A
        type(c_ptr), value :: bsr_row_ptr_A
@@ -12913,7 +12913,7 @@ module hipfort_rocsparse
        integer(c_int), value :: nnzb_B
        type(c_ptr), value :: bsr_row_ptr_B
        type(c_ptr), value :: bsr_col_ind_B
-       type(c_ptr), value :: beta
+       complex(c_double_complex) :: beta
        type(c_ptr), value :: descr_D
        integer(c_int), value :: nnzb_D
        type(c_ptr), value :: bsr_row_ptr_D
@@ -13255,7 +13255,7 @@ module hipfort_rocsparse
                                     bsr_col_ind_C, info_C, temp_buffer) &
        result(sbsrgemm_raw) &
        bind(C, name="rocsparse_sbsrgemm")
-       import :: c_ptr, c_int
+       import :: c_ptr, c_int, c_float
        type(c_ptr), value :: handle
        integer(c_int), value :: dir
        integer(c_int), value :: trans_A
@@ -13264,7 +13264,7 @@ module hipfort_rocsparse
        integer(c_int), value :: nb
        integer(c_int), value :: kb
        integer(c_int), value :: block_dim
-       type(c_ptr), value :: alpha
+       real(c_float) :: alpha
        type(c_ptr), value :: descr_A
        integer(c_int), value :: nnzb_A
        type(c_ptr), value :: bsr_val_A
@@ -13275,7 +13275,7 @@ module hipfort_rocsparse
        type(c_ptr), value :: bsr_val_B
        type(c_ptr), value :: bsr_row_ptr_B
        type(c_ptr), value :: bsr_col_ind_B
-       type(c_ptr), value :: beta
+       real(c_float) :: beta
        type(c_ptr), value :: descr_D
        integer(c_int), value :: nnzb_D
        type(c_ptr), value :: bsr_val_D
@@ -13306,7 +13306,7 @@ module hipfort_rocsparse
                                     bsr_col_ind_C, info_C, temp_buffer) &
        result(dbsrgemm_raw) &
        bind(C, name="rocsparse_dbsrgemm")
-       import :: c_ptr, c_int
+       import :: c_ptr, c_int, c_double
        type(c_ptr), value :: handle
        integer(c_int), value :: dir
        integer(c_int), value :: trans_A
@@ -13315,7 +13315,7 @@ module hipfort_rocsparse
        integer(c_int), value :: nb
        integer(c_int), value :: kb
        integer(c_int), value :: block_dim
-       type(c_ptr), value :: alpha
+       real(c_double) :: alpha
        type(c_ptr), value :: descr_A
        integer(c_int), value :: nnzb_A
        type(c_ptr), value :: bsr_val_A
@@ -13326,7 +13326,7 @@ module hipfort_rocsparse
        type(c_ptr), value :: bsr_val_B
        type(c_ptr), value :: bsr_row_ptr_B
        type(c_ptr), value :: bsr_col_ind_B
-       type(c_ptr), value :: beta
+       real(c_double) :: beta
        type(c_ptr), value :: descr_D
        integer(c_int), value :: nnzb_D
        type(c_ptr), value :: bsr_val_D
@@ -13357,7 +13357,7 @@ module hipfort_rocsparse
                                     bsr_col_ind_C, info_C, temp_buffer) &
        result(cbsrgemm_raw) &
        bind(C, name="rocsparse_cbsrgemm")
-       import :: c_ptr, c_int
+       import :: c_ptr, c_int, c_float_complex
        type(c_ptr), value :: handle
        integer(c_int), value :: dir
        integer(c_int), value :: trans_A
@@ -13366,7 +13366,7 @@ module hipfort_rocsparse
        integer(c_int), value :: nb
        integer(c_int), value :: kb
        integer(c_int), value :: block_dim
-       type(c_ptr), value :: alpha
+       complex(c_float_complex) :: alpha
        type(c_ptr), value :: descr_A
        integer(c_int), value :: nnzb_A
        type(c_ptr), value :: bsr_val_A
@@ -13377,7 +13377,7 @@ module hipfort_rocsparse
        type(c_ptr), value :: bsr_val_B
        type(c_ptr), value :: bsr_row_ptr_B
        type(c_ptr), value :: bsr_col_ind_B
-       type(c_ptr), value :: beta
+       complex(c_float_complex) :: beta
        type(c_ptr), value :: descr_D
        integer(c_int), value :: nnzb_D
        type(c_ptr), value :: bsr_val_D
@@ -13408,7 +13408,7 @@ module hipfort_rocsparse
                                     bsr_col_ind_C, info_C, temp_buffer) &
        result(zbsrgemm_raw) &
        bind(C, name="rocsparse_zbsrgemm")
-       import :: c_ptr, c_int
+       import :: c_ptr, c_int, c_double_complex
        type(c_ptr), value :: handle
        integer(c_int), value :: dir
        integer(c_int), value :: trans_A
@@ -13417,7 +13417,7 @@ module hipfort_rocsparse
        integer(c_int), value :: nb
        integer(c_int), value :: kb
        integer(c_int), value :: block_dim
-       type(c_ptr), value :: alpha
+       complex(c_double_complex) :: alpha
        type(c_ptr), value :: descr_A
        integer(c_int), value :: nnzb_A
        type(c_ptr), value :: bsr_val_A
@@ -13428,7 +13428,7 @@ module hipfort_rocsparse
        type(c_ptr), value :: bsr_val_B
        type(c_ptr), value :: bsr_row_ptr_B
        type(c_ptr), value :: bsr_col_ind_B
-       type(c_ptr), value :: beta
+       complex(c_double_complex) :: beta
        type(c_ptr), value :: descr_D
        integer(c_int), value :: nnzb_D
        type(c_ptr), value :: bsr_val_D
@@ -15258,14 +15258,14 @@ module hipfort_rocsparse
                                             temp_buffer) &
        result(scsrgemm_numeric_raw) &
        bind(C, name="rocsparse_scsrgemm_numeric")
-       import :: c_ptr, c_int
+       import :: c_ptr, c_int, c_float
        type(c_ptr), value :: handle
        integer(c_int), value :: trans_A
        integer(c_int), value :: trans_B
        integer(c_int), value :: m
        integer(c_int), value :: n
        integer(c_int), value :: k
-       type(c_ptr), value :: alpha
+       real(c_float) :: alpha
        type(c_ptr), value :: descr_A
        integer(c_int), value :: nnz_A
        type(c_ptr), value :: csr_val_A
@@ -15276,7 +15276,7 @@ module hipfort_rocsparse
        type(c_ptr), value :: csr_val_B
        type(c_ptr), value :: csr_row_ptr_B
        type(c_ptr), value :: csr_col_ind_B
-       type(c_ptr), value :: beta
+       real(c_float) :: beta
        type(c_ptr), value :: descr_D
        integer(c_int), value :: nnz_D
        type(c_ptr), value :: csr_val_D
@@ -15309,14 +15309,14 @@ module hipfort_rocsparse
                                             temp_buffer) &
        result(dcsrgemm_numeric_raw) &
        bind(C, name="rocsparse_dcsrgemm_numeric")
-       import :: c_ptr, c_int
+       import :: c_ptr, c_int, c_double
        type(c_ptr), value :: handle
        integer(c_int), value :: trans_A
        integer(c_int), value :: trans_B
        integer(c_int), value :: m
        integer(c_int), value :: n
        integer(c_int), value :: k
-       type(c_ptr), value :: alpha
+       real(c_double) :: alpha
        type(c_ptr), value :: descr_A
        integer(c_int), value :: nnz_A
        type(c_ptr), value :: csr_val_A
@@ -15327,7 +15327,7 @@ module hipfort_rocsparse
        type(c_ptr), value :: csr_val_B
        type(c_ptr), value :: csr_row_ptr_B
        type(c_ptr), value :: csr_col_ind_B
-       type(c_ptr), value :: beta
+       real(c_double) :: beta
        type(c_ptr), value :: descr_D
        integer(c_int), value :: nnz_D
        type(c_ptr), value :: csr_val_D
@@ -15360,14 +15360,14 @@ module hipfort_rocsparse
                                             temp_buffer) &
        result(ccsrgemm_numeric_raw) &
        bind(C, name="rocsparse_ccsrgemm_numeric")
-       import :: c_ptr, c_int
+       import :: c_ptr, c_int, c_float_complex
        type(c_ptr), value :: handle
        integer(c_int), value :: trans_A
        integer(c_int), value :: trans_B
        integer(c_int), value :: m
        integer(c_int), value :: n
        integer(c_int), value :: k
-       type(c_ptr), value :: alpha
+       complex(c_float_complex) :: alpha
        type(c_ptr), value :: descr_A
        integer(c_int), value :: nnz_A
        type(c_ptr), value :: csr_val_A
@@ -15378,7 +15378,7 @@ module hipfort_rocsparse
        type(c_ptr), value :: csr_val_B
        type(c_ptr), value :: csr_row_ptr_B
        type(c_ptr), value :: csr_col_ind_B
-       type(c_ptr), value :: beta
+       complex(c_float_complex) :: beta
        type(c_ptr), value :: descr_D
        integer(c_int), value :: nnz_D
        type(c_ptr), value :: csr_val_D
@@ -15411,14 +15411,14 @@ module hipfort_rocsparse
                                             temp_buffer) &
        result(zcsrgemm_numeric_raw) &
        bind(C, name="rocsparse_zcsrgemm_numeric")
-       import :: c_ptr, c_int
+       import :: c_ptr, c_int, c_double_complex
        type(c_ptr), value :: handle
        integer(c_int), value :: trans_A
        integer(c_int), value :: trans_B
        integer(c_int), value :: m
        integer(c_int), value :: n
        integer(c_int), value :: k
-       type(c_ptr), value :: alpha
+       complex(c_double_complex) :: alpha
        type(c_ptr), value :: descr_A
        integer(c_int), value :: nnz_A
        type(c_ptr), value :: csr_val_A
@@ -15429,7 +15429,7 @@ module hipfort_rocsparse
        type(c_ptr), value :: csr_val_B
        type(c_ptr), value :: csr_row_ptr_B
        type(c_ptr), value :: csr_col_ind_B
-       type(c_ptr), value :: beta
+       complex(c_double_complex) :: beta
        type(c_ptr), value :: descr_D
        integer(c_int), value :: nnz_D
        type(c_ptr), value :: csr_val_D
@@ -22578,7 +22578,7 @@ module hipfort_rocsparse
                                           info, x, y, policy, temp_buffer) &
        result(scsritsv_solve_raw) &
        bind(C, name="rocsparse_scsritsv_solve")
-       import :: c_ptr, c_int
+       import :: c_ptr, c_int, c_float
        type(c_ptr), value :: handle
        type(c_ptr), value :: host_nmaxiter
        type(c_ptr), value :: host_tol
@@ -22586,7 +22586,7 @@ module hipfort_rocsparse
        integer(c_int), value :: trans
        integer(c_int), value :: m
        integer(c_int), value :: nnz
-       type(c_ptr), value :: alpha
+       real(c_float) :: alpha
        type(c_ptr), value :: descr
        type(c_ptr), value :: csr_val
        type(c_ptr), value :: csr_row_ptr
@@ -22612,7 +22612,7 @@ module hipfort_rocsparse
                                           info, x, y, policy, temp_buffer) &
        result(dcsritsv_solve_raw) &
        bind(C, name="rocsparse_dcsritsv_solve")
-       import :: c_ptr, c_int
+       import :: c_ptr, c_int, c_double
        type(c_ptr), value :: handle
        type(c_ptr), value :: host_nmaxiter
        type(c_ptr), value :: host_tol
@@ -22620,7 +22620,7 @@ module hipfort_rocsparse
        integer(c_int), value :: trans
        integer(c_int), value :: m
        integer(c_int), value :: nnz
-       type(c_ptr), value :: alpha
+       real(c_double) :: alpha
        type(c_ptr), value :: descr
        type(c_ptr), value :: csr_val
        type(c_ptr), value :: csr_row_ptr
@@ -22646,7 +22646,7 @@ module hipfort_rocsparse
                                           info, x, y, policy, temp_buffer) &
        result(ccsritsv_solve_raw) &
        bind(C, name="rocsparse_ccsritsv_solve")
-       import :: c_ptr, c_int
+       import :: c_ptr, c_int, c_float_complex
        type(c_ptr), value :: handle
        type(c_ptr), value :: host_nmaxiter
        type(c_ptr), value :: host_tol
@@ -22654,7 +22654,7 @@ module hipfort_rocsparse
        integer(c_int), value :: trans
        integer(c_int), value :: m
        integer(c_int), value :: nnz
-       type(c_ptr), value :: alpha
+       complex(c_float_complex) :: alpha
        type(c_ptr), value :: descr
        type(c_ptr), value :: csr_val
        type(c_ptr), value :: csr_row_ptr
@@ -22680,7 +22680,7 @@ module hipfort_rocsparse
                                           info, x, y, policy, temp_buffer) &
        result(zcsritsv_solve_raw) &
        bind(C, name="rocsparse_zcsritsv_solve")
-       import :: c_ptr, c_int
+       import :: c_ptr, c_int, c_double_complex
        type(c_ptr), value :: handle
        type(c_ptr), value :: host_nmaxiter
        type(c_ptr), value :: host_tol
@@ -22688,7 +22688,7 @@ module hipfort_rocsparse
        integer(c_int), value :: trans
        integer(c_int), value :: m
        integer(c_int), value :: nnz
-       type(c_ptr), value :: alpha
+       complex(c_double_complex) :: alpha
        type(c_ptr), value :: descr
        type(c_ptr), value :: csr_val
        type(c_ptr), value :: csr_row_ptr
@@ -22938,7 +22938,7 @@ module hipfort_rocsparse
                                              temp_buffer) &
        result(scsritsv_solve_ex_raw) &
        bind(C, name="rocsparse_scsritsv_solve_ex")
-       import :: c_ptr, c_int
+       import :: c_ptr, c_int, c_float
        type(c_ptr), value :: handle
        type(c_ptr), value :: host_nmaxiter
        integer(c_int), value :: host_nfreeiter
@@ -22947,7 +22947,7 @@ module hipfort_rocsparse
        integer(c_int), value :: trans
        integer(c_int), value :: m
        integer(c_int), value :: nnz
-       type(c_ptr), value :: alpha
+       real(c_float) :: alpha
        type(c_ptr), value :: descr
        type(c_ptr), value :: csr_val
        type(c_ptr), value :: csr_row_ptr
@@ -22974,7 +22974,7 @@ module hipfort_rocsparse
                                              temp_buffer) &
        result(dcsritsv_solve_ex_raw) &
        bind(C, name="rocsparse_dcsritsv_solve_ex")
-       import :: c_ptr, c_int
+       import :: c_ptr, c_int, c_double
        type(c_ptr), value :: handle
        type(c_ptr), value :: host_nmaxiter
        integer(c_int), value :: host_nfreeiter
@@ -22983,7 +22983,7 @@ module hipfort_rocsparse
        integer(c_int), value :: trans
        integer(c_int), value :: m
        integer(c_int), value :: nnz
-       type(c_ptr), value :: alpha
+       real(c_double) :: alpha
        type(c_ptr), value :: descr
        type(c_ptr), value :: csr_val
        type(c_ptr), value :: csr_row_ptr
@@ -23010,7 +23010,7 @@ module hipfort_rocsparse
                                              temp_buffer) &
        result(ccsritsv_solve_ex_raw) &
        bind(C, name="rocsparse_ccsritsv_solve_ex")
-       import :: c_ptr, c_int
+       import :: c_ptr, c_int, c_float_complex
        type(c_ptr), value :: handle
        type(c_ptr), value :: host_nmaxiter
        integer(c_int), value :: host_nfreeiter
@@ -23019,7 +23019,7 @@ module hipfort_rocsparse
        integer(c_int), value :: trans
        integer(c_int), value :: m
        integer(c_int), value :: nnz
-       type(c_ptr), value :: alpha
+       complex(c_float_complex) :: alpha
        type(c_ptr), value :: descr
        type(c_ptr), value :: csr_val
        type(c_ptr), value :: csr_row_ptr
@@ -23046,7 +23046,7 @@ module hipfort_rocsparse
                                              temp_buffer) &
        result(zcsritsv_solve_ex_raw) &
        bind(C, name="rocsparse_zcsritsv_solve_ex")
-       import :: c_ptr, c_int
+       import :: c_ptr, c_int, c_double_complex
        type(c_ptr), value :: handle
        type(c_ptr), value :: host_nmaxiter
        integer(c_int), value :: host_nfreeiter
@@ -23055,7 +23055,7 @@ module hipfort_rocsparse
        integer(c_int), value :: trans
        integer(c_int), value :: m
        integer(c_int), value :: nnz
-       type(c_ptr), value :: alpha
+       complex(c_double_complex) :: alpha
        type(c_ptr), value :: descr
        type(c_ptr), value :: csr_val
        type(c_ptr), value :: csr_row_ptr
@@ -45341,13 +45341,13 @@ contains
       integer(c_int), value :: mb
       integer(c_int), value :: nb
       integer(c_int), value :: block_dim
-      real(c_float), target :: alpha(..)
+      real(c_float) :: alpha
       type(c_ptr), value :: descr_A
       integer(c_int), value :: nnzb_A
       real(c_float), target :: bsr_val_A(..)
       integer(c_int), target :: bsr_row_ptr_A(..)
       integer(c_int), target :: bsr_col_ind_A(..)
-      real(c_float), target :: beta(..)
+      real(c_float) :: beta
       type(c_ptr), value :: descr_B
       integer(c_int), value :: nnzb_B
       real(c_float), target :: bsr_val_B(..)
@@ -45358,21 +45358,19 @@ contains
       integer(c_int), target :: bsr_row_ptr_C(..)
       integer(c_int), target :: bsr_col_ind_C(..)
       integer(c_int) :: sbsrgeam
-      if (.not. is_contiguous(alpha)) error stop "alpha: array must be contiguous"
       if (.not. is_contiguous(bsr_val_A)) error stop "bsr_val_A: array must be contiguous"
       if (.not. is_contiguous(bsr_row_ptr_A)) error stop "bsr_row_ptr_A: array must be contiguous"
       if (.not. is_contiguous(bsr_col_ind_A)) error stop "bsr_col_ind_A: array must be contiguous"
-      if (.not. is_contiguous(beta)) error stop "beta: array must be contiguous"
       if (.not. is_contiguous(bsr_val_B)) error stop "bsr_val_B: array must be contiguous"
       if (.not. is_contiguous(bsr_row_ptr_B)) error stop "bsr_row_ptr_B: array must be contiguous"
       if (.not. is_contiguous(bsr_col_ind_B)) error stop "bsr_col_ind_B: array must be contiguous"
       if (.not. is_contiguous(bsr_val_C)) error stop "bsr_val_C: array must be contiguous"
       if (.not. is_contiguous(bsr_row_ptr_C)) error stop "bsr_row_ptr_C: array must be contiguous"
       if (.not. is_contiguous(bsr_col_ind_C)) error stop "bsr_col_ind_C: array must be contiguous"
-      sbsrgeam = rocsparse_sbsrgeam_raw(handle, dir, mb, nb, block_dim, c_loc(alpha), descr_A, &
-        nnzb_A, c_loc(bsr_val_A), c_loc(bsr_row_ptr_A), c_loc(bsr_col_ind_A), c_loc(beta), &
-        descr_B, nnzb_B, c_loc(bsr_val_B), c_loc(bsr_row_ptr_B), c_loc(bsr_col_ind_B), descr_C, &
-        c_loc(bsr_val_C), c_loc(bsr_row_ptr_C), c_loc(bsr_col_ind_C))
+      sbsrgeam = rocsparse_sbsrgeam_raw(handle, dir, mb, nb, block_dim, alpha, descr_A, nnzb_A, &
+        c_loc(bsr_val_A), c_loc(bsr_row_ptr_A), c_loc(bsr_col_ind_A), beta, descr_B, nnzb_B, &
+        c_loc(bsr_val_B), c_loc(bsr_row_ptr_B), c_loc(bsr_col_ind_B), descr_C, c_loc(bsr_val_C), &
+        c_loc(bsr_row_ptr_C), c_loc(bsr_col_ind_C))
     end function rocsparse_sbsrgeam_native
 
     function rocsparse_sbsrgeam_typed(handle, dir, mb, nb, block_dim, alpha, descr_A, nnzb_A, &
@@ -45386,13 +45384,13 @@ contains
       integer(c_int), value :: mb
       integer(c_int), value :: nb
       integer(c_int), value :: block_dim
-      type(c_ptr), value :: alpha
+      real(c_float) :: alpha
       type(rocsparse_mat_descr_t), value :: descr_A
       integer(c_int), value :: nnzb_A
       type(c_ptr), value :: bsr_val_A
       type(c_ptr), value :: bsr_row_ptr_A
       type(c_ptr), value :: bsr_col_ind_A
-      type(c_ptr), value :: beta
+      real(c_float) :: beta
       type(rocsparse_mat_descr_t), value :: descr_B
       integer(c_int), value :: nnzb_B
       type(c_ptr), value :: bsr_val_B
@@ -45418,13 +45416,13 @@ contains
       integer(c_int), value :: mb
       integer(c_int), value :: nb
       integer(c_int), value :: block_dim
-      real(c_double), target :: alpha(..)
+      real(c_double) :: alpha
       type(c_ptr), value :: descr_A
       integer(c_int), value :: nnzb_A
       real(c_double), target :: bsr_val_A(..)
       integer(c_int), target :: bsr_row_ptr_A(..)
       integer(c_int), target :: bsr_col_ind_A(..)
-      real(c_double), target :: beta(..)
+      real(c_double) :: beta
       type(c_ptr), value :: descr_B
       integer(c_int), value :: nnzb_B
       real(c_double), target :: bsr_val_B(..)
@@ -45435,21 +45433,19 @@ contains
       integer(c_int), target :: bsr_row_ptr_C(..)
       integer(c_int), target :: bsr_col_ind_C(..)
       integer(c_int) :: dbsrgeam
-      if (.not. is_contiguous(alpha)) error stop "alpha: array must be contiguous"
       if (.not. is_contiguous(bsr_val_A)) error stop "bsr_val_A: array must be contiguous"
       if (.not. is_contiguous(bsr_row_ptr_A)) error stop "bsr_row_ptr_A: array must be contiguous"
       if (.not. is_contiguous(bsr_col_ind_A)) error stop "bsr_col_ind_A: array must be contiguous"
-      if (.not. is_contiguous(beta)) error stop "beta: array must be contiguous"
       if (.not. is_contiguous(bsr_val_B)) error stop "bsr_val_B: array must be contiguous"
       if (.not. is_contiguous(bsr_row_ptr_B)) error stop "bsr_row_ptr_B: array must be contiguous"
       if (.not. is_contiguous(bsr_col_ind_B)) error stop "bsr_col_ind_B: array must be contiguous"
       if (.not. is_contiguous(bsr_val_C)) error stop "bsr_val_C: array must be contiguous"
       if (.not. is_contiguous(bsr_row_ptr_C)) error stop "bsr_row_ptr_C: array must be contiguous"
       if (.not. is_contiguous(bsr_col_ind_C)) error stop "bsr_col_ind_C: array must be contiguous"
-      dbsrgeam = rocsparse_dbsrgeam_raw(handle, dir, mb, nb, block_dim, c_loc(alpha), descr_A, &
-        nnzb_A, c_loc(bsr_val_A), c_loc(bsr_row_ptr_A), c_loc(bsr_col_ind_A), c_loc(beta), &
-        descr_B, nnzb_B, c_loc(bsr_val_B), c_loc(bsr_row_ptr_B), c_loc(bsr_col_ind_B), descr_C, &
-        c_loc(bsr_val_C), c_loc(bsr_row_ptr_C), c_loc(bsr_col_ind_C))
+      dbsrgeam = rocsparse_dbsrgeam_raw(handle, dir, mb, nb, block_dim, alpha, descr_A, nnzb_A, &
+        c_loc(bsr_val_A), c_loc(bsr_row_ptr_A), c_loc(bsr_col_ind_A), beta, descr_B, nnzb_B, &
+        c_loc(bsr_val_B), c_loc(bsr_row_ptr_B), c_loc(bsr_col_ind_B), descr_C, c_loc(bsr_val_C), &
+        c_loc(bsr_row_ptr_C), c_loc(bsr_col_ind_C))
     end function rocsparse_dbsrgeam_native
 
     function rocsparse_dbsrgeam_typed(handle, dir, mb, nb, block_dim, alpha, descr_A, nnzb_A, &
@@ -45463,13 +45459,13 @@ contains
       integer(c_int), value :: mb
       integer(c_int), value :: nb
       integer(c_int), value :: block_dim
-      type(c_ptr), value :: alpha
+      real(c_double) :: alpha
       type(rocsparse_mat_descr_t), value :: descr_A
       integer(c_int), value :: nnzb_A
       type(c_ptr), value :: bsr_val_A
       type(c_ptr), value :: bsr_row_ptr_A
       type(c_ptr), value :: bsr_col_ind_A
-      type(c_ptr), value :: beta
+      real(c_double) :: beta
       type(rocsparse_mat_descr_t), value :: descr_B
       integer(c_int), value :: nnzb_B
       type(c_ptr), value :: bsr_val_B
@@ -45495,13 +45491,13 @@ contains
       integer(c_int), value :: mb
       integer(c_int), value :: nb
       integer(c_int), value :: block_dim
-      complex(c_float_complex), target :: alpha(..)
+      complex(c_float_complex) :: alpha
       type(c_ptr), value :: descr_A
       integer(c_int), value :: nnzb_A
       complex(c_float_complex), target :: bsr_val_A(..)
       integer(c_int), target :: bsr_row_ptr_A(..)
       integer(c_int), target :: bsr_col_ind_A(..)
-      complex(c_float_complex), target :: beta(..)
+      complex(c_float_complex) :: beta
       type(c_ptr), value :: descr_B
       integer(c_int), value :: nnzb_B
       complex(c_float_complex), target :: bsr_val_B(..)
@@ -45512,21 +45508,19 @@ contains
       integer(c_int), target :: bsr_row_ptr_C(..)
       integer(c_int), target :: bsr_col_ind_C(..)
       integer(c_int) :: cbsrgeam
-      if (.not. is_contiguous(alpha)) error stop "alpha: array must be contiguous"
       if (.not. is_contiguous(bsr_val_A)) error stop "bsr_val_A: array must be contiguous"
       if (.not. is_contiguous(bsr_row_ptr_A)) error stop "bsr_row_ptr_A: array must be contiguous"
       if (.not. is_contiguous(bsr_col_ind_A)) error stop "bsr_col_ind_A: array must be contiguous"
-      if (.not. is_contiguous(beta)) error stop "beta: array must be contiguous"
       if (.not. is_contiguous(bsr_val_B)) error stop "bsr_val_B: array must be contiguous"
       if (.not. is_contiguous(bsr_row_ptr_B)) error stop "bsr_row_ptr_B: array must be contiguous"
       if (.not. is_contiguous(bsr_col_ind_B)) error stop "bsr_col_ind_B: array must be contiguous"
       if (.not. is_contiguous(bsr_val_C)) error stop "bsr_val_C: array must be contiguous"
       if (.not. is_contiguous(bsr_row_ptr_C)) error stop "bsr_row_ptr_C: array must be contiguous"
       if (.not. is_contiguous(bsr_col_ind_C)) error stop "bsr_col_ind_C: array must be contiguous"
-      cbsrgeam = rocsparse_cbsrgeam_raw(handle, dir, mb, nb, block_dim, c_loc(alpha), descr_A, &
-        nnzb_A, c_loc(bsr_val_A), c_loc(bsr_row_ptr_A), c_loc(bsr_col_ind_A), c_loc(beta), &
-        descr_B, nnzb_B, c_loc(bsr_val_B), c_loc(bsr_row_ptr_B), c_loc(bsr_col_ind_B), descr_C, &
-        c_loc(bsr_val_C), c_loc(bsr_row_ptr_C), c_loc(bsr_col_ind_C))
+      cbsrgeam = rocsparse_cbsrgeam_raw(handle, dir, mb, nb, block_dim, alpha, descr_A, nnzb_A, &
+        c_loc(bsr_val_A), c_loc(bsr_row_ptr_A), c_loc(bsr_col_ind_A), beta, descr_B, nnzb_B, &
+        c_loc(bsr_val_B), c_loc(bsr_row_ptr_B), c_loc(bsr_col_ind_B), descr_C, c_loc(bsr_val_C), &
+        c_loc(bsr_row_ptr_C), c_loc(bsr_col_ind_C))
     end function rocsparse_cbsrgeam_native
 
     function rocsparse_cbsrgeam_typed(handle, dir, mb, nb, block_dim, alpha, descr_A, nnzb_A, &
@@ -45540,13 +45534,13 @@ contains
       integer(c_int), value :: mb
       integer(c_int), value :: nb
       integer(c_int), value :: block_dim
-      type(c_ptr), value :: alpha
+      complex(c_float_complex) :: alpha
       type(rocsparse_mat_descr_t), value :: descr_A
       integer(c_int), value :: nnzb_A
       type(c_ptr), value :: bsr_val_A
       type(c_ptr), value :: bsr_row_ptr_A
       type(c_ptr), value :: bsr_col_ind_A
-      type(c_ptr), value :: beta
+      complex(c_float_complex) :: beta
       type(rocsparse_mat_descr_t), value :: descr_B
       integer(c_int), value :: nnzb_B
       type(c_ptr), value :: bsr_val_B
@@ -45572,13 +45566,13 @@ contains
       integer(c_int), value :: mb
       integer(c_int), value :: nb
       integer(c_int), value :: block_dim
-      complex(c_double_complex), target :: alpha(..)
+      complex(c_double_complex) :: alpha
       type(c_ptr), value :: descr_A
       integer(c_int), value :: nnzb_A
       complex(c_double_complex), target :: bsr_val_A(..)
       integer(c_int), target :: bsr_row_ptr_A(..)
       integer(c_int), target :: bsr_col_ind_A(..)
-      complex(c_double_complex), target :: beta(..)
+      complex(c_double_complex) :: beta
       type(c_ptr), value :: descr_B
       integer(c_int), value :: nnzb_B
       complex(c_double_complex), target :: bsr_val_B(..)
@@ -45589,21 +45583,19 @@ contains
       integer(c_int), target :: bsr_row_ptr_C(..)
       integer(c_int), target :: bsr_col_ind_C(..)
       integer(c_int) :: zbsrgeam
-      if (.not. is_contiguous(alpha)) error stop "alpha: array must be contiguous"
       if (.not. is_contiguous(bsr_val_A)) error stop "bsr_val_A: array must be contiguous"
       if (.not. is_contiguous(bsr_row_ptr_A)) error stop "bsr_row_ptr_A: array must be contiguous"
       if (.not. is_contiguous(bsr_col_ind_A)) error stop "bsr_col_ind_A: array must be contiguous"
-      if (.not. is_contiguous(beta)) error stop "beta: array must be contiguous"
       if (.not. is_contiguous(bsr_val_B)) error stop "bsr_val_B: array must be contiguous"
       if (.not. is_contiguous(bsr_row_ptr_B)) error stop "bsr_row_ptr_B: array must be contiguous"
       if (.not. is_contiguous(bsr_col_ind_B)) error stop "bsr_col_ind_B: array must be contiguous"
       if (.not. is_contiguous(bsr_val_C)) error stop "bsr_val_C: array must be contiguous"
       if (.not. is_contiguous(bsr_row_ptr_C)) error stop "bsr_row_ptr_C: array must be contiguous"
       if (.not. is_contiguous(bsr_col_ind_C)) error stop "bsr_col_ind_C: array must be contiguous"
-      zbsrgeam = rocsparse_zbsrgeam_raw(handle, dir, mb, nb, block_dim, c_loc(alpha), descr_A, &
-        nnzb_A, c_loc(bsr_val_A), c_loc(bsr_row_ptr_A), c_loc(bsr_col_ind_A), c_loc(beta), &
-        descr_B, nnzb_B, c_loc(bsr_val_B), c_loc(bsr_row_ptr_B), c_loc(bsr_col_ind_B), descr_C, &
-        c_loc(bsr_val_C), c_loc(bsr_row_ptr_C), c_loc(bsr_col_ind_C))
+      zbsrgeam = rocsparse_zbsrgeam_raw(handle, dir, mb, nb, block_dim, alpha, descr_A, nnzb_A, &
+        c_loc(bsr_val_A), c_loc(bsr_row_ptr_A), c_loc(bsr_col_ind_A), beta, descr_B, nnzb_B, &
+        c_loc(bsr_val_B), c_loc(bsr_row_ptr_B), c_loc(bsr_col_ind_B), descr_C, c_loc(bsr_val_C), &
+        c_loc(bsr_row_ptr_C), c_loc(bsr_col_ind_C))
     end function rocsparse_zbsrgeam_native
 
     function rocsparse_zbsrgeam_typed(handle, dir, mb, nb, block_dim, alpha, descr_A, nnzb_A, &
@@ -45617,13 +45609,13 @@ contains
       integer(c_int), value :: mb
       integer(c_int), value :: nb
       integer(c_int), value :: block_dim
-      type(c_ptr), value :: alpha
+      complex(c_double_complex) :: alpha
       type(rocsparse_mat_descr_t), value :: descr_A
       integer(c_int), value :: nnzb_A
       type(c_ptr), value :: bsr_val_A
       type(c_ptr), value :: bsr_row_ptr_A
       type(c_ptr), value :: bsr_col_ind_A
-      type(c_ptr), value :: beta
+      complex(c_double_complex) :: beta
       type(rocsparse_mat_descr_t), value :: descr_B
       integer(c_int), value :: nnzb_B
       type(c_ptr), value :: bsr_val_B
@@ -45653,7 +45645,7 @@ contains
       integer(c_int), value :: nb
       integer(c_int), value :: kb
       integer(c_int), value :: block_dim
-      real(c_float), target :: alpha(..)
+      real(c_float) :: alpha
       type(c_ptr), value :: descr_A
       integer(c_int), value :: nnzb_A
       integer(c_int), target :: bsr_row_ptr_A(..)
@@ -45662,7 +45654,7 @@ contains
       integer(c_int), value :: nnzb_B
       integer(c_int), target :: bsr_row_ptr_B(..)
       integer(c_int), target :: bsr_col_ind_B(..)
-      real(c_float), target :: beta(..)
+      real(c_float) :: beta
       type(c_ptr), value :: descr_D
       integer(c_int), value :: nnzb_D
       integer(c_int), target :: bsr_row_ptr_D(..)
@@ -45670,18 +45662,16 @@ contains
       type(c_ptr), value :: info_C
       type(c_ptr), value :: buffer_size
       integer(c_int) :: sbsrgemm_buffer_size
-      if (.not. is_contiguous(alpha)) error stop "alpha: array must be contiguous"
       if (.not. is_contiguous(bsr_row_ptr_A)) error stop "bsr_row_ptr_A: array must be contiguous"
       if (.not. is_contiguous(bsr_col_ind_A)) error stop "bsr_col_ind_A: array must be contiguous"
       if (.not. is_contiguous(bsr_row_ptr_B)) error stop "bsr_row_ptr_B: array must be contiguous"
       if (.not. is_contiguous(bsr_col_ind_B)) error stop "bsr_col_ind_B: array must be contiguous"
-      if (.not. is_contiguous(beta)) error stop "beta: array must be contiguous"
       if (.not. is_contiguous(bsr_row_ptr_D)) error stop "bsr_row_ptr_D: array must be contiguous"
       if (.not. is_contiguous(bsr_col_ind_D)) error stop "bsr_col_ind_D: array must be contiguous"
       sbsrgemm_buffer_size = rocsparse_sbsrgemm_buffer_size_raw(handle, dir, trans_A, trans_B, mb, &
-        nb, kb, block_dim, c_loc(alpha), descr_A, nnzb_A, c_loc(bsr_row_ptr_A), c_loc( &
-        bsr_col_ind_A), descr_B, nnzb_B, c_loc(bsr_row_ptr_B), c_loc(bsr_col_ind_B), c_loc(beta), &
-        descr_D, nnzb_D, c_loc(bsr_row_ptr_D), c_loc(bsr_col_ind_D), info_C, buffer_size)
+        nb, kb, block_dim, alpha, descr_A, nnzb_A, c_loc(bsr_row_ptr_A), c_loc(bsr_col_ind_A), &
+        descr_B, nnzb_B, c_loc(bsr_row_ptr_B), c_loc(bsr_col_ind_B), beta, descr_D, nnzb_D, c_loc( &
+        bsr_row_ptr_D), c_loc(bsr_col_ind_D), info_C, buffer_size)
     end function rocsparse_sbsrgemm_buffer_size_native
 
     function rocsparse_sbsrgemm_buffer_size_typed(handle, dir, trans_A, trans_B, mb, nb, kb, &
@@ -45699,7 +45689,7 @@ contains
       integer(c_int), value :: nb
       integer(c_int), value :: kb
       integer(c_int), value :: block_dim
-      type(c_ptr), value :: alpha
+      real(c_float) :: alpha
       type(rocsparse_mat_descr_t), value :: descr_A
       integer(c_int), value :: nnzb_A
       type(c_ptr), value :: bsr_row_ptr_A
@@ -45708,7 +45698,7 @@ contains
       integer(c_int), value :: nnzb_B
       type(c_ptr), value :: bsr_row_ptr_B
       type(c_ptr), value :: bsr_col_ind_B
-      type(c_ptr), value :: beta
+      real(c_float) :: beta
       type(rocsparse_mat_descr_t), value :: descr_D
       integer(c_int), value :: nnzb_D
       type(c_ptr), value :: bsr_row_ptr_D
@@ -45736,7 +45726,7 @@ contains
       integer(c_int), value :: nb
       integer(c_int), value :: kb
       integer(c_int), value :: block_dim
-      real(c_double), target :: alpha(..)
+      real(c_double) :: alpha
       type(c_ptr), value :: descr_A
       integer(c_int), value :: nnzb_A
       integer(c_int), target :: bsr_row_ptr_A(..)
@@ -45745,7 +45735,7 @@ contains
       integer(c_int), value :: nnzb_B
       integer(c_int), target :: bsr_row_ptr_B(..)
       integer(c_int), target :: bsr_col_ind_B(..)
-      real(c_double), target :: beta(..)
+      real(c_double) :: beta
       type(c_ptr), value :: descr_D
       integer(c_int), value :: nnzb_D
       integer(c_int), target :: bsr_row_ptr_D(..)
@@ -45753,18 +45743,16 @@ contains
       type(c_ptr), value :: info_C
       type(c_ptr), value :: buffer_size
       integer(c_int) :: dbsrgemm_buffer_size
-      if (.not. is_contiguous(alpha)) error stop "alpha: array must be contiguous"
       if (.not. is_contiguous(bsr_row_ptr_A)) error stop "bsr_row_ptr_A: array must be contiguous"
       if (.not. is_contiguous(bsr_col_ind_A)) error stop "bsr_col_ind_A: array must be contiguous"
       if (.not. is_contiguous(bsr_row_ptr_B)) error stop "bsr_row_ptr_B: array must be contiguous"
       if (.not. is_contiguous(bsr_col_ind_B)) error stop "bsr_col_ind_B: array must be contiguous"
-      if (.not. is_contiguous(beta)) error stop "beta: array must be contiguous"
       if (.not. is_contiguous(bsr_row_ptr_D)) error stop "bsr_row_ptr_D: array must be contiguous"
       if (.not. is_contiguous(bsr_col_ind_D)) error stop "bsr_col_ind_D: array must be contiguous"
       dbsrgemm_buffer_size = rocsparse_dbsrgemm_buffer_size_raw(handle, dir, trans_A, trans_B, mb, &
-        nb, kb, block_dim, c_loc(alpha), descr_A, nnzb_A, c_loc(bsr_row_ptr_A), c_loc( &
-        bsr_col_ind_A), descr_B, nnzb_B, c_loc(bsr_row_ptr_B), c_loc(bsr_col_ind_B), c_loc(beta), &
-        descr_D, nnzb_D, c_loc(bsr_row_ptr_D), c_loc(bsr_col_ind_D), info_C, buffer_size)
+        nb, kb, block_dim, alpha, descr_A, nnzb_A, c_loc(bsr_row_ptr_A), c_loc(bsr_col_ind_A), &
+        descr_B, nnzb_B, c_loc(bsr_row_ptr_B), c_loc(bsr_col_ind_B), beta, descr_D, nnzb_D, c_loc( &
+        bsr_row_ptr_D), c_loc(bsr_col_ind_D), info_C, buffer_size)
     end function rocsparse_dbsrgemm_buffer_size_native
 
     function rocsparse_dbsrgemm_buffer_size_typed(handle, dir, trans_A, trans_B, mb, nb, kb, &
@@ -45782,7 +45770,7 @@ contains
       integer(c_int), value :: nb
       integer(c_int), value :: kb
       integer(c_int), value :: block_dim
-      type(c_ptr), value :: alpha
+      real(c_double) :: alpha
       type(rocsparse_mat_descr_t), value :: descr_A
       integer(c_int), value :: nnzb_A
       type(c_ptr), value :: bsr_row_ptr_A
@@ -45791,7 +45779,7 @@ contains
       integer(c_int), value :: nnzb_B
       type(c_ptr), value :: bsr_row_ptr_B
       type(c_ptr), value :: bsr_col_ind_B
-      type(c_ptr), value :: beta
+      real(c_double) :: beta
       type(rocsparse_mat_descr_t), value :: descr_D
       integer(c_int), value :: nnzb_D
       type(c_ptr), value :: bsr_row_ptr_D
@@ -45819,7 +45807,7 @@ contains
       integer(c_int), value :: nb
       integer(c_int), value :: kb
       integer(c_int), value :: block_dim
-      complex(c_float_complex), target :: alpha(..)
+      complex(c_float_complex) :: alpha
       type(c_ptr), value :: descr_A
       integer(c_int), value :: nnzb_A
       integer(c_int), target :: bsr_row_ptr_A(..)
@@ -45828,7 +45816,7 @@ contains
       integer(c_int), value :: nnzb_B
       integer(c_int), target :: bsr_row_ptr_B(..)
       integer(c_int), target :: bsr_col_ind_B(..)
-      complex(c_float_complex), target :: beta(..)
+      complex(c_float_complex) :: beta
       type(c_ptr), value :: descr_D
       integer(c_int), value :: nnzb_D
       integer(c_int), target :: bsr_row_ptr_D(..)
@@ -45836,18 +45824,16 @@ contains
       type(c_ptr), value :: info_C
       type(c_ptr), value :: buffer_size
       integer(c_int) :: cbsrgemm_buffer_size
-      if (.not. is_contiguous(alpha)) error stop "alpha: array must be contiguous"
       if (.not. is_contiguous(bsr_row_ptr_A)) error stop "bsr_row_ptr_A: array must be contiguous"
       if (.not. is_contiguous(bsr_col_ind_A)) error stop "bsr_col_ind_A: array must be contiguous"
       if (.not. is_contiguous(bsr_row_ptr_B)) error stop "bsr_row_ptr_B: array must be contiguous"
       if (.not. is_contiguous(bsr_col_ind_B)) error stop "bsr_col_ind_B: array must be contiguous"
-      if (.not. is_contiguous(beta)) error stop "beta: array must be contiguous"
       if (.not. is_contiguous(bsr_row_ptr_D)) error stop "bsr_row_ptr_D: array must be contiguous"
       if (.not. is_contiguous(bsr_col_ind_D)) error stop "bsr_col_ind_D: array must be contiguous"
       cbsrgemm_buffer_size = rocsparse_cbsrgemm_buffer_size_raw(handle, dir, trans_A, trans_B, mb, &
-        nb, kb, block_dim, c_loc(alpha), descr_A, nnzb_A, c_loc(bsr_row_ptr_A), c_loc( &
-        bsr_col_ind_A), descr_B, nnzb_B, c_loc(bsr_row_ptr_B), c_loc(bsr_col_ind_B), c_loc(beta), &
-        descr_D, nnzb_D, c_loc(bsr_row_ptr_D), c_loc(bsr_col_ind_D), info_C, buffer_size)
+        nb, kb, block_dim, alpha, descr_A, nnzb_A, c_loc(bsr_row_ptr_A), c_loc(bsr_col_ind_A), &
+        descr_B, nnzb_B, c_loc(bsr_row_ptr_B), c_loc(bsr_col_ind_B), beta, descr_D, nnzb_D, c_loc( &
+        bsr_row_ptr_D), c_loc(bsr_col_ind_D), info_C, buffer_size)
     end function rocsparse_cbsrgemm_buffer_size_native
 
     function rocsparse_cbsrgemm_buffer_size_typed(handle, dir, trans_A, trans_B, mb, nb, kb, &
@@ -45865,7 +45851,7 @@ contains
       integer(c_int), value :: nb
       integer(c_int), value :: kb
       integer(c_int), value :: block_dim
-      type(c_ptr), value :: alpha
+      complex(c_float_complex) :: alpha
       type(rocsparse_mat_descr_t), value :: descr_A
       integer(c_int), value :: nnzb_A
       type(c_ptr), value :: bsr_row_ptr_A
@@ -45874,7 +45860,7 @@ contains
       integer(c_int), value :: nnzb_B
       type(c_ptr), value :: bsr_row_ptr_B
       type(c_ptr), value :: bsr_col_ind_B
-      type(c_ptr), value :: beta
+      complex(c_float_complex) :: beta
       type(rocsparse_mat_descr_t), value :: descr_D
       integer(c_int), value :: nnzb_D
       type(c_ptr), value :: bsr_row_ptr_D
@@ -45902,7 +45888,7 @@ contains
       integer(c_int), value :: nb
       integer(c_int), value :: kb
       integer(c_int), value :: block_dim
-      complex(c_double_complex), target :: alpha(..)
+      complex(c_double_complex) :: alpha
       type(c_ptr), value :: descr_A
       integer(c_int), value :: nnzb_A
       integer(c_int), target :: bsr_row_ptr_A(..)
@@ -45911,7 +45897,7 @@ contains
       integer(c_int), value :: nnzb_B
       integer(c_int), target :: bsr_row_ptr_B(..)
       integer(c_int), target :: bsr_col_ind_B(..)
-      complex(c_double_complex), target :: beta(..)
+      complex(c_double_complex) :: beta
       type(c_ptr), value :: descr_D
       integer(c_int), value :: nnzb_D
       integer(c_int), target :: bsr_row_ptr_D(..)
@@ -45919,18 +45905,16 @@ contains
       type(c_ptr), value :: info_C
       type(c_ptr), value :: buffer_size
       integer(c_int) :: zbsrgemm_buffer_size
-      if (.not. is_contiguous(alpha)) error stop "alpha: array must be contiguous"
       if (.not. is_contiguous(bsr_row_ptr_A)) error stop "bsr_row_ptr_A: array must be contiguous"
       if (.not. is_contiguous(bsr_col_ind_A)) error stop "bsr_col_ind_A: array must be contiguous"
       if (.not. is_contiguous(bsr_row_ptr_B)) error stop "bsr_row_ptr_B: array must be contiguous"
       if (.not. is_contiguous(bsr_col_ind_B)) error stop "bsr_col_ind_B: array must be contiguous"
-      if (.not. is_contiguous(beta)) error stop "beta: array must be contiguous"
       if (.not. is_contiguous(bsr_row_ptr_D)) error stop "bsr_row_ptr_D: array must be contiguous"
       if (.not. is_contiguous(bsr_col_ind_D)) error stop "bsr_col_ind_D: array must be contiguous"
       zbsrgemm_buffer_size = rocsparse_zbsrgemm_buffer_size_raw(handle, dir, trans_A, trans_B, mb, &
-        nb, kb, block_dim, c_loc(alpha), descr_A, nnzb_A, c_loc(bsr_row_ptr_A), c_loc( &
-        bsr_col_ind_A), descr_B, nnzb_B, c_loc(bsr_row_ptr_B), c_loc(bsr_col_ind_B), c_loc(beta), &
-        descr_D, nnzb_D, c_loc(bsr_row_ptr_D), c_loc(bsr_col_ind_D), info_C, buffer_size)
+        nb, kb, block_dim, alpha, descr_A, nnzb_A, c_loc(bsr_row_ptr_A), c_loc(bsr_col_ind_A), &
+        descr_B, nnzb_B, c_loc(bsr_row_ptr_B), c_loc(bsr_col_ind_B), beta, descr_D, nnzb_D, c_loc( &
+        bsr_row_ptr_D), c_loc(bsr_col_ind_D), info_C, buffer_size)
     end function rocsparse_zbsrgemm_buffer_size_native
 
     function rocsparse_zbsrgemm_buffer_size_typed(handle, dir, trans_A, trans_B, mb, nb, kb, &
@@ -45948,7 +45932,7 @@ contains
       integer(c_int), value :: nb
       integer(c_int), value :: kb
       integer(c_int), value :: block_dim
-      type(c_ptr), value :: alpha
+      complex(c_double_complex) :: alpha
       type(rocsparse_mat_descr_t), value :: descr_A
       integer(c_int), value :: nnzb_A
       type(c_ptr), value :: bsr_row_ptr_A
@@ -45957,7 +45941,7 @@ contains
       integer(c_int), value :: nnzb_B
       type(c_ptr), value :: bsr_row_ptr_B
       type(c_ptr), value :: bsr_col_ind_B
-      type(c_ptr), value :: beta
+      complex(c_double_complex) :: beta
       type(rocsparse_mat_descr_t), value :: descr_D
       integer(c_int), value :: nnzb_D
       type(c_ptr), value :: bsr_row_ptr_D
@@ -46071,7 +46055,7 @@ contains
       integer(c_int), value :: nb
       integer(c_int), value :: kb
       integer(c_int), value :: block_dim
-      real(c_float), target :: alpha(..)
+      real(c_float) :: alpha
       type(c_ptr), value :: descr_A
       integer(c_int), value :: nnzb_A
       real(c_float), target :: bsr_val_A(..)
@@ -46082,7 +46066,7 @@ contains
       real(c_float), target :: bsr_val_B(..)
       integer(c_int), target :: bsr_row_ptr_B(..)
       integer(c_int), target :: bsr_col_ind_B(..)
-      real(c_float), target :: beta(..)
+      real(c_float) :: beta
       type(c_ptr), value :: descr_D
       integer(c_int), value :: nnzb_D
       real(c_float), target :: bsr_val_D(..)
@@ -46095,14 +46079,12 @@ contains
       type(c_ptr), value :: info_C
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: sbsrgemm
-      if (.not. is_contiguous(alpha)) error stop "alpha: array must be contiguous"
       if (.not. is_contiguous(bsr_val_A)) error stop "bsr_val_A: array must be contiguous"
       if (.not. is_contiguous(bsr_row_ptr_A)) error stop "bsr_row_ptr_A: array must be contiguous"
       if (.not. is_contiguous(bsr_col_ind_A)) error stop "bsr_col_ind_A: array must be contiguous"
       if (.not. is_contiguous(bsr_val_B)) error stop "bsr_val_B: array must be contiguous"
       if (.not. is_contiguous(bsr_row_ptr_B)) error stop "bsr_row_ptr_B: array must be contiguous"
       if (.not. is_contiguous(bsr_col_ind_B)) error stop "bsr_col_ind_B: array must be contiguous"
-      if (.not. is_contiguous(beta)) error stop "beta: array must be contiguous"
       if (.not. is_contiguous(bsr_val_D)) error stop "bsr_val_D: array must be contiguous"
       if (.not. is_contiguous(bsr_row_ptr_D)) error stop "bsr_row_ptr_D: array must be contiguous"
       if (.not. is_contiguous(bsr_col_ind_D)) error stop "bsr_col_ind_D: array must be contiguous"
@@ -46110,11 +46092,10 @@ contains
       if (.not. is_contiguous(bsr_row_ptr_C)) error stop "bsr_row_ptr_C: array must be contiguous"
       if (.not. is_contiguous(bsr_col_ind_C)) error stop "bsr_col_ind_C: array must be contiguous"
       sbsrgemm = rocsparse_sbsrgemm_raw(handle, dir, trans_A, trans_B, mb, nb, kb, block_dim, &
-        c_loc(alpha), descr_A, nnzb_A, c_loc(bsr_val_A), c_loc(bsr_row_ptr_A), c_loc( &
-        bsr_col_ind_A), descr_B, nnzb_B, c_loc(bsr_val_B), c_loc(bsr_row_ptr_B), c_loc( &
-        bsr_col_ind_B), c_loc(beta), descr_D, nnzb_D, c_loc(bsr_val_D), c_loc(bsr_row_ptr_D), &
-        c_loc(bsr_col_ind_D), descr_C, c_loc(bsr_val_C), c_loc(bsr_row_ptr_C), c_loc( &
-        bsr_col_ind_C), info_C, temp_buffer)
+        alpha, descr_A, nnzb_A, c_loc(bsr_val_A), c_loc(bsr_row_ptr_A), c_loc(bsr_col_ind_A), &
+        descr_B, nnzb_B, c_loc(bsr_val_B), c_loc(bsr_row_ptr_B), c_loc(bsr_col_ind_B), beta, &
+        descr_D, nnzb_D, c_loc(bsr_val_D), c_loc(bsr_row_ptr_D), c_loc(bsr_col_ind_D), descr_C, &
+        c_loc(bsr_val_C), c_loc(bsr_row_ptr_C), c_loc(bsr_col_ind_C), info_C, temp_buffer)
     end function rocsparse_sbsrgemm_native
 
     function rocsparse_sbsrgemm_typed(handle, dir, trans_A, trans_B, mb, nb, kb, block_dim, alpha, &
@@ -46133,7 +46114,7 @@ contains
       integer(c_int), value :: nb
       integer(c_int), value :: kb
       integer(c_int), value :: block_dim
-      type(c_ptr), value :: alpha
+      real(c_float) :: alpha
       type(rocsparse_mat_descr_t), value :: descr_A
       integer(c_int), value :: nnzb_A
       type(c_ptr), value :: bsr_val_A
@@ -46144,7 +46125,7 @@ contains
       type(c_ptr), value :: bsr_val_B
       type(c_ptr), value :: bsr_row_ptr_B
       type(c_ptr), value :: bsr_col_ind_B
-      type(c_ptr), value :: beta
+      real(c_float) :: beta
       type(rocsparse_mat_descr_t), value :: descr_D
       integer(c_int), value :: nnzb_D
       type(c_ptr), value :: bsr_val_D
@@ -46179,7 +46160,7 @@ contains
       integer(c_int), value :: nb
       integer(c_int), value :: kb
       integer(c_int), value :: block_dim
-      real(c_double), target :: alpha(..)
+      real(c_double) :: alpha
       type(c_ptr), value :: descr_A
       integer(c_int), value :: nnzb_A
       real(c_double), target :: bsr_val_A(..)
@@ -46190,7 +46171,7 @@ contains
       real(c_double), target :: bsr_val_B(..)
       integer(c_int), target :: bsr_row_ptr_B(..)
       integer(c_int), target :: bsr_col_ind_B(..)
-      real(c_double), target :: beta(..)
+      real(c_double) :: beta
       type(c_ptr), value :: descr_D
       integer(c_int), value :: nnzb_D
       real(c_double), target :: bsr_val_D(..)
@@ -46203,14 +46184,12 @@ contains
       type(c_ptr), value :: info_C
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: dbsrgemm
-      if (.not. is_contiguous(alpha)) error stop "alpha: array must be contiguous"
       if (.not. is_contiguous(bsr_val_A)) error stop "bsr_val_A: array must be contiguous"
       if (.not. is_contiguous(bsr_row_ptr_A)) error stop "bsr_row_ptr_A: array must be contiguous"
       if (.not. is_contiguous(bsr_col_ind_A)) error stop "bsr_col_ind_A: array must be contiguous"
       if (.not. is_contiguous(bsr_val_B)) error stop "bsr_val_B: array must be contiguous"
       if (.not. is_contiguous(bsr_row_ptr_B)) error stop "bsr_row_ptr_B: array must be contiguous"
       if (.not. is_contiguous(bsr_col_ind_B)) error stop "bsr_col_ind_B: array must be contiguous"
-      if (.not. is_contiguous(beta)) error stop "beta: array must be contiguous"
       if (.not. is_contiguous(bsr_val_D)) error stop "bsr_val_D: array must be contiguous"
       if (.not. is_contiguous(bsr_row_ptr_D)) error stop "bsr_row_ptr_D: array must be contiguous"
       if (.not. is_contiguous(bsr_col_ind_D)) error stop "bsr_col_ind_D: array must be contiguous"
@@ -46218,11 +46197,10 @@ contains
       if (.not. is_contiguous(bsr_row_ptr_C)) error stop "bsr_row_ptr_C: array must be contiguous"
       if (.not. is_contiguous(bsr_col_ind_C)) error stop "bsr_col_ind_C: array must be contiguous"
       dbsrgemm = rocsparse_dbsrgemm_raw(handle, dir, trans_A, trans_B, mb, nb, kb, block_dim, &
-        c_loc(alpha), descr_A, nnzb_A, c_loc(bsr_val_A), c_loc(bsr_row_ptr_A), c_loc( &
-        bsr_col_ind_A), descr_B, nnzb_B, c_loc(bsr_val_B), c_loc(bsr_row_ptr_B), c_loc( &
-        bsr_col_ind_B), c_loc(beta), descr_D, nnzb_D, c_loc(bsr_val_D), c_loc(bsr_row_ptr_D), &
-        c_loc(bsr_col_ind_D), descr_C, c_loc(bsr_val_C), c_loc(bsr_row_ptr_C), c_loc( &
-        bsr_col_ind_C), info_C, temp_buffer)
+        alpha, descr_A, nnzb_A, c_loc(bsr_val_A), c_loc(bsr_row_ptr_A), c_loc(bsr_col_ind_A), &
+        descr_B, nnzb_B, c_loc(bsr_val_B), c_loc(bsr_row_ptr_B), c_loc(bsr_col_ind_B), beta, &
+        descr_D, nnzb_D, c_loc(bsr_val_D), c_loc(bsr_row_ptr_D), c_loc(bsr_col_ind_D), descr_C, &
+        c_loc(bsr_val_C), c_loc(bsr_row_ptr_C), c_loc(bsr_col_ind_C), info_C, temp_buffer)
     end function rocsparse_dbsrgemm_native
 
     function rocsparse_dbsrgemm_typed(handle, dir, trans_A, trans_B, mb, nb, kb, block_dim, alpha, &
@@ -46241,7 +46219,7 @@ contains
       integer(c_int), value :: nb
       integer(c_int), value :: kb
       integer(c_int), value :: block_dim
-      type(c_ptr), value :: alpha
+      real(c_double) :: alpha
       type(rocsparse_mat_descr_t), value :: descr_A
       integer(c_int), value :: nnzb_A
       type(c_ptr), value :: bsr_val_A
@@ -46252,7 +46230,7 @@ contains
       type(c_ptr), value :: bsr_val_B
       type(c_ptr), value :: bsr_row_ptr_B
       type(c_ptr), value :: bsr_col_ind_B
-      type(c_ptr), value :: beta
+      real(c_double) :: beta
       type(rocsparse_mat_descr_t), value :: descr_D
       integer(c_int), value :: nnzb_D
       type(c_ptr), value :: bsr_val_D
@@ -46287,7 +46265,7 @@ contains
       integer(c_int), value :: nb
       integer(c_int), value :: kb
       integer(c_int), value :: block_dim
-      complex(c_float_complex), target :: alpha(..)
+      complex(c_float_complex) :: alpha
       type(c_ptr), value :: descr_A
       integer(c_int), value :: nnzb_A
       complex(c_float_complex), target :: bsr_val_A(..)
@@ -46298,7 +46276,7 @@ contains
       complex(c_float_complex), target :: bsr_val_B(..)
       integer(c_int), target :: bsr_row_ptr_B(..)
       integer(c_int), target :: bsr_col_ind_B(..)
-      complex(c_float_complex), target :: beta(..)
+      complex(c_float_complex) :: beta
       type(c_ptr), value :: descr_D
       integer(c_int), value :: nnzb_D
       complex(c_float_complex), target :: bsr_val_D(..)
@@ -46311,14 +46289,12 @@ contains
       type(c_ptr), value :: info_C
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: cbsrgemm
-      if (.not. is_contiguous(alpha)) error stop "alpha: array must be contiguous"
       if (.not. is_contiguous(bsr_val_A)) error stop "bsr_val_A: array must be contiguous"
       if (.not. is_contiguous(bsr_row_ptr_A)) error stop "bsr_row_ptr_A: array must be contiguous"
       if (.not. is_contiguous(bsr_col_ind_A)) error stop "bsr_col_ind_A: array must be contiguous"
       if (.not. is_contiguous(bsr_val_B)) error stop "bsr_val_B: array must be contiguous"
       if (.not. is_contiguous(bsr_row_ptr_B)) error stop "bsr_row_ptr_B: array must be contiguous"
       if (.not. is_contiguous(bsr_col_ind_B)) error stop "bsr_col_ind_B: array must be contiguous"
-      if (.not. is_contiguous(beta)) error stop "beta: array must be contiguous"
       if (.not. is_contiguous(bsr_val_D)) error stop "bsr_val_D: array must be contiguous"
       if (.not. is_contiguous(bsr_row_ptr_D)) error stop "bsr_row_ptr_D: array must be contiguous"
       if (.not. is_contiguous(bsr_col_ind_D)) error stop "bsr_col_ind_D: array must be contiguous"
@@ -46326,11 +46302,10 @@ contains
       if (.not. is_contiguous(bsr_row_ptr_C)) error stop "bsr_row_ptr_C: array must be contiguous"
       if (.not. is_contiguous(bsr_col_ind_C)) error stop "bsr_col_ind_C: array must be contiguous"
       cbsrgemm = rocsparse_cbsrgemm_raw(handle, dir, trans_A, trans_B, mb, nb, kb, block_dim, &
-        c_loc(alpha), descr_A, nnzb_A, c_loc(bsr_val_A), c_loc(bsr_row_ptr_A), c_loc( &
-        bsr_col_ind_A), descr_B, nnzb_B, c_loc(bsr_val_B), c_loc(bsr_row_ptr_B), c_loc( &
-        bsr_col_ind_B), c_loc(beta), descr_D, nnzb_D, c_loc(bsr_val_D), c_loc(bsr_row_ptr_D), &
-        c_loc(bsr_col_ind_D), descr_C, c_loc(bsr_val_C), c_loc(bsr_row_ptr_C), c_loc( &
-        bsr_col_ind_C), info_C, temp_buffer)
+        alpha, descr_A, nnzb_A, c_loc(bsr_val_A), c_loc(bsr_row_ptr_A), c_loc(bsr_col_ind_A), &
+        descr_B, nnzb_B, c_loc(bsr_val_B), c_loc(bsr_row_ptr_B), c_loc(bsr_col_ind_B), beta, &
+        descr_D, nnzb_D, c_loc(bsr_val_D), c_loc(bsr_row_ptr_D), c_loc(bsr_col_ind_D), descr_C, &
+        c_loc(bsr_val_C), c_loc(bsr_row_ptr_C), c_loc(bsr_col_ind_C), info_C, temp_buffer)
     end function rocsparse_cbsrgemm_native
 
     function rocsparse_cbsrgemm_typed(handle, dir, trans_A, trans_B, mb, nb, kb, block_dim, alpha, &
@@ -46349,7 +46324,7 @@ contains
       integer(c_int), value :: nb
       integer(c_int), value :: kb
       integer(c_int), value :: block_dim
-      type(c_ptr), value :: alpha
+      complex(c_float_complex) :: alpha
       type(rocsparse_mat_descr_t), value :: descr_A
       integer(c_int), value :: nnzb_A
       type(c_ptr), value :: bsr_val_A
@@ -46360,7 +46335,7 @@ contains
       type(c_ptr), value :: bsr_val_B
       type(c_ptr), value :: bsr_row_ptr_B
       type(c_ptr), value :: bsr_col_ind_B
-      type(c_ptr), value :: beta
+      complex(c_float_complex) :: beta
       type(rocsparse_mat_descr_t), value :: descr_D
       integer(c_int), value :: nnzb_D
       type(c_ptr), value :: bsr_val_D
@@ -46395,7 +46370,7 @@ contains
       integer(c_int), value :: nb
       integer(c_int), value :: kb
       integer(c_int), value :: block_dim
-      complex(c_double_complex), target :: alpha(..)
+      complex(c_double_complex) :: alpha
       type(c_ptr), value :: descr_A
       integer(c_int), value :: nnzb_A
       complex(c_double_complex), target :: bsr_val_A(..)
@@ -46406,7 +46381,7 @@ contains
       complex(c_double_complex), target :: bsr_val_B(..)
       integer(c_int), target :: bsr_row_ptr_B(..)
       integer(c_int), target :: bsr_col_ind_B(..)
-      complex(c_double_complex), target :: beta(..)
+      complex(c_double_complex) :: beta
       type(c_ptr), value :: descr_D
       integer(c_int), value :: nnzb_D
       complex(c_double_complex), target :: bsr_val_D(..)
@@ -46419,14 +46394,12 @@ contains
       type(c_ptr), value :: info_C
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: zbsrgemm
-      if (.not. is_contiguous(alpha)) error stop "alpha: array must be contiguous"
       if (.not. is_contiguous(bsr_val_A)) error stop "bsr_val_A: array must be contiguous"
       if (.not. is_contiguous(bsr_row_ptr_A)) error stop "bsr_row_ptr_A: array must be contiguous"
       if (.not. is_contiguous(bsr_col_ind_A)) error stop "bsr_col_ind_A: array must be contiguous"
       if (.not. is_contiguous(bsr_val_B)) error stop "bsr_val_B: array must be contiguous"
       if (.not. is_contiguous(bsr_row_ptr_B)) error stop "bsr_row_ptr_B: array must be contiguous"
       if (.not. is_contiguous(bsr_col_ind_B)) error stop "bsr_col_ind_B: array must be contiguous"
-      if (.not. is_contiguous(beta)) error stop "beta: array must be contiguous"
       if (.not. is_contiguous(bsr_val_D)) error stop "bsr_val_D: array must be contiguous"
       if (.not. is_contiguous(bsr_row_ptr_D)) error stop "bsr_row_ptr_D: array must be contiguous"
       if (.not. is_contiguous(bsr_col_ind_D)) error stop "bsr_col_ind_D: array must be contiguous"
@@ -46434,11 +46407,10 @@ contains
       if (.not. is_contiguous(bsr_row_ptr_C)) error stop "bsr_row_ptr_C: array must be contiguous"
       if (.not. is_contiguous(bsr_col_ind_C)) error stop "bsr_col_ind_C: array must be contiguous"
       zbsrgemm = rocsparse_zbsrgemm_raw(handle, dir, trans_A, trans_B, mb, nb, kb, block_dim, &
-        c_loc(alpha), descr_A, nnzb_A, c_loc(bsr_val_A), c_loc(bsr_row_ptr_A), c_loc( &
-        bsr_col_ind_A), descr_B, nnzb_B, c_loc(bsr_val_B), c_loc(bsr_row_ptr_B), c_loc( &
-        bsr_col_ind_B), c_loc(beta), descr_D, nnzb_D, c_loc(bsr_val_D), c_loc(bsr_row_ptr_D), &
-        c_loc(bsr_col_ind_D), descr_C, c_loc(bsr_val_C), c_loc(bsr_row_ptr_C), c_loc( &
-        bsr_col_ind_C), info_C, temp_buffer)
+        alpha, descr_A, nnzb_A, c_loc(bsr_val_A), c_loc(bsr_row_ptr_A), c_loc(bsr_col_ind_A), &
+        descr_B, nnzb_B, c_loc(bsr_val_B), c_loc(bsr_row_ptr_B), c_loc(bsr_col_ind_B), beta, &
+        descr_D, nnzb_D, c_loc(bsr_val_D), c_loc(bsr_row_ptr_D), c_loc(bsr_col_ind_D), descr_C, &
+        c_loc(bsr_val_C), c_loc(bsr_row_ptr_C), c_loc(bsr_col_ind_C), info_C, temp_buffer)
     end function rocsparse_zbsrgemm_native
 
     function rocsparse_zbsrgemm_typed(handle, dir, trans_A, trans_B, mb, nb, kb, block_dim, alpha, &
@@ -46457,7 +46429,7 @@ contains
       integer(c_int), value :: nb
       integer(c_int), value :: kb
       integer(c_int), value :: block_dim
-      type(c_ptr), value :: alpha
+      complex(c_double_complex) :: alpha
       type(rocsparse_mat_descr_t), value :: descr_A
       integer(c_int), value :: nnzb_A
       type(c_ptr), value :: bsr_val_A
@@ -46468,7 +46440,7 @@ contains
       type(c_ptr), value :: bsr_val_B
       type(c_ptr), value :: bsr_row_ptr_B
       type(c_ptr), value :: bsr_col_ind_B
-      type(c_ptr), value :: beta
+      complex(c_double_complex) :: beta
       type(rocsparse_mat_descr_t), value :: descr_D
       integer(c_int), value :: nnzb_D
       type(c_ptr), value :: bsr_val_D
@@ -47711,7 +47683,7 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       integer(c_int), value :: k
-      real(c_float), target :: alpha(..)
+      real(c_float) :: alpha
       type(c_ptr), value :: descr_A
       integer(c_int), value :: nnz_A
       real(c_float), target :: csr_val_A(..)
@@ -47722,7 +47694,7 @@ contains
       real(c_float), target :: csr_val_B(..)
       integer(c_int), target :: csr_row_ptr_B(..)
       integer(c_int), target :: csr_col_ind_B(..)
-      real(c_float), target :: beta(..)
+      real(c_float) :: beta
       type(c_ptr), value :: descr_D
       integer(c_int), value :: nnz_D
       real(c_float), target :: csr_val_D(..)
@@ -47736,25 +47708,23 @@ contains
       type(c_ptr), value :: info_C
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: scsrgemm_numeric
-      if (.not. is_contiguous(alpha)) error stop "alpha: array must be contiguous"
       if (.not. is_contiguous(csr_val_A)) error stop "csr_val_A: array must be contiguous"
       if (.not. is_contiguous(csr_row_ptr_A)) error stop "csr_row_ptr_A: array must be contiguous"
       if (.not. is_contiguous(csr_col_ind_A)) error stop "csr_col_ind_A: array must be contiguous"
       if (.not. is_contiguous(csr_val_B)) error stop "csr_val_B: array must be contiguous"
       if (.not. is_contiguous(csr_row_ptr_B)) error stop "csr_row_ptr_B: array must be contiguous"
       if (.not. is_contiguous(csr_col_ind_B)) error stop "csr_col_ind_B: array must be contiguous"
-      if (.not. is_contiguous(beta)) error stop "beta: array must be contiguous"
       if (.not. is_contiguous(csr_val_D)) error stop "csr_val_D: array must be contiguous"
       if (.not. is_contiguous(csr_row_ptr_D)) error stop "csr_row_ptr_D: array must be contiguous"
       if (.not. is_contiguous(csr_col_ind_D)) error stop "csr_col_ind_D: array must be contiguous"
       if (.not. is_contiguous(csr_val_C)) error stop "csr_val_C: array must be contiguous"
       if (.not. is_contiguous(csr_row_ptr_C)) error stop "csr_row_ptr_C: array must be contiguous"
       if (.not. is_contiguous(csr_col_ind_C)) error stop "csr_col_ind_C: array must be contiguous"
-      scsrgemm_numeric = rocsparse_scsrgemm_numeric_raw(handle, trans_A, trans_B, m, n, k, c_loc( &
-        alpha), descr_A, nnz_A, c_loc(csr_val_A), c_loc(csr_row_ptr_A), c_loc(csr_col_ind_A), &
-        descr_B, nnz_B, c_loc(csr_val_B), c_loc(csr_row_ptr_B), c_loc(csr_col_ind_B), c_loc(beta), &
-        descr_D, nnz_D, c_loc(csr_val_D), c_loc(csr_row_ptr_D), c_loc(csr_col_ind_D), descr_C, &
-        nnz_C, c_loc(csr_val_C), c_loc(csr_row_ptr_C), c_loc(csr_col_ind_C), info_C, temp_buffer)
+      scsrgemm_numeric = rocsparse_scsrgemm_numeric_raw(handle, trans_A, trans_B, m, n, k, alpha, &
+        descr_A, nnz_A, c_loc(csr_val_A), c_loc(csr_row_ptr_A), c_loc(csr_col_ind_A), descr_B, &
+        nnz_B, c_loc(csr_val_B), c_loc(csr_row_ptr_B), c_loc(csr_col_ind_B), beta, descr_D, nnz_D, &
+        c_loc(csr_val_D), c_loc(csr_row_ptr_D), c_loc(csr_col_ind_D), descr_C, nnz_C, c_loc( &
+        csr_val_C), c_loc(csr_row_ptr_C), c_loc(csr_col_ind_C), info_C, temp_buffer)
     end function rocsparse_scsrgemm_numeric_native
 
     function rocsparse_scsrgemm_numeric_typed(handle, trans_A, trans_B, m, n, k, alpha, descr_A, &
@@ -47771,7 +47741,7 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       integer(c_int), value :: k
-      type(c_ptr), value :: alpha
+      real(c_float) :: alpha
       type(rocsparse_mat_descr_t), value :: descr_A
       integer(c_int), value :: nnz_A
       type(c_ptr), value :: csr_val_A
@@ -47782,7 +47752,7 @@ contains
       type(c_ptr), value :: csr_val_B
       type(c_ptr), value :: csr_row_ptr_B
       type(c_ptr), value :: csr_col_ind_B
-      type(c_ptr), value :: beta
+      real(c_float) :: beta
       type(rocsparse_mat_descr_t), value :: descr_D
       integer(c_int), value :: nnz_D
       type(c_ptr), value :: csr_val_D
@@ -47816,7 +47786,7 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       integer(c_int), value :: k
-      real(c_double), target :: alpha(..)
+      real(c_double) :: alpha
       type(c_ptr), value :: descr_A
       integer(c_int), value :: nnz_A
       real(c_double), target :: csr_val_A(..)
@@ -47827,7 +47797,7 @@ contains
       real(c_double), target :: csr_val_B(..)
       integer(c_int), target :: csr_row_ptr_B(..)
       integer(c_int), target :: csr_col_ind_B(..)
-      real(c_double), target :: beta(..)
+      real(c_double) :: beta
       type(c_ptr), value :: descr_D
       integer(c_int), value :: nnz_D
       real(c_double), target :: csr_val_D(..)
@@ -47841,25 +47811,23 @@ contains
       type(c_ptr), value :: info_C
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: dcsrgemm_numeric
-      if (.not. is_contiguous(alpha)) error stop "alpha: array must be contiguous"
       if (.not. is_contiguous(csr_val_A)) error stop "csr_val_A: array must be contiguous"
       if (.not. is_contiguous(csr_row_ptr_A)) error stop "csr_row_ptr_A: array must be contiguous"
       if (.not. is_contiguous(csr_col_ind_A)) error stop "csr_col_ind_A: array must be contiguous"
       if (.not. is_contiguous(csr_val_B)) error stop "csr_val_B: array must be contiguous"
       if (.not. is_contiguous(csr_row_ptr_B)) error stop "csr_row_ptr_B: array must be contiguous"
       if (.not. is_contiguous(csr_col_ind_B)) error stop "csr_col_ind_B: array must be contiguous"
-      if (.not. is_contiguous(beta)) error stop "beta: array must be contiguous"
       if (.not. is_contiguous(csr_val_D)) error stop "csr_val_D: array must be contiguous"
       if (.not. is_contiguous(csr_row_ptr_D)) error stop "csr_row_ptr_D: array must be contiguous"
       if (.not. is_contiguous(csr_col_ind_D)) error stop "csr_col_ind_D: array must be contiguous"
       if (.not. is_contiguous(csr_val_C)) error stop "csr_val_C: array must be contiguous"
       if (.not. is_contiguous(csr_row_ptr_C)) error stop "csr_row_ptr_C: array must be contiguous"
       if (.not. is_contiguous(csr_col_ind_C)) error stop "csr_col_ind_C: array must be contiguous"
-      dcsrgemm_numeric = rocsparse_dcsrgemm_numeric_raw(handle, trans_A, trans_B, m, n, k, c_loc( &
-        alpha), descr_A, nnz_A, c_loc(csr_val_A), c_loc(csr_row_ptr_A), c_loc(csr_col_ind_A), &
-        descr_B, nnz_B, c_loc(csr_val_B), c_loc(csr_row_ptr_B), c_loc(csr_col_ind_B), c_loc(beta), &
-        descr_D, nnz_D, c_loc(csr_val_D), c_loc(csr_row_ptr_D), c_loc(csr_col_ind_D), descr_C, &
-        nnz_C, c_loc(csr_val_C), c_loc(csr_row_ptr_C), c_loc(csr_col_ind_C), info_C, temp_buffer)
+      dcsrgemm_numeric = rocsparse_dcsrgemm_numeric_raw(handle, trans_A, trans_B, m, n, k, alpha, &
+        descr_A, nnz_A, c_loc(csr_val_A), c_loc(csr_row_ptr_A), c_loc(csr_col_ind_A), descr_B, &
+        nnz_B, c_loc(csr_val_B), c_loc(csr_row_ptr_B), c_loc(csr_col_ind_B), beta, descr_D, nnz_D, &
+        c_loc(csr_val_D), c_loc(csr_row_ptr_D), c_loc(csr_col_ind_D), descr_C, nnz_C, c_loc( &
+        csr_val_C), c_loc(csr_row_ptr_C), c_loc(csr_col_ind_C), info_C, temp_buffer)
     end function rocsparse_dcsrgemm_numeric_native
 
     function rocsparse_dcsrgemm_numeric_typed(handle, trans_A, trans_B, m, n, k, alpha, descr_A, &
@@ -47876,7 +47844,7 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       integer(c_int), value :: k
-      type(c_ptr), value :: alpha
+      real(c_double) :: alpha
       type(rocsparse_mat_descr_t), value :: descr_A
       integer(c_int), value :: nnz_A
       type(c_ptr), value :: csr_val_A
@@ -47887,7 +47855,7 @@ contains
       type(c_ptr), value :: csr_val_B
       type(c_ptr), value :: csr_row_ptr_B
       type(c_ptr), value :: csr_col_ind_B
-      type(c_ptr), value :: beta
+      real(c_double) :: beta
       type(rocsparse_mat_descr_t), value :: descr_D
       integer(c_int), value :: nnz_D
       type(c_ptr), value :: csr_val_D
@@ -47921,7 +47889,7 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       integer(c_int), value :: k
-      complex(c_float_complex), target :: alpha(..)
+      complex(c_float_complex) :: alpha
       type(c_ptr), value :: descr_A
       integer(c_int), value :: nnz_A
       complex(c_float_complex), target :: csr_val_A(..)
@@ -47932,7 +47900,7 @@ contains
       complex(c_float_complex), target :: csr_val_B(..)
       integer(c_int), target :: csr_row_ptr_B(..)
       integer(c_int), target :: csr_col_ind_B(..)
-      complex(c_float_complex), target :: beta(..)
+      complex(c_float_complex) :: beta
       type(c_ptr), value :: descr_D
       integer(c_int), value :: nnz_D
       complex(c_float_complex), target :: csr_val_D(..)
@@ -47946,25 +47914,23 @@ contains
       type(c_ptr), value :: info_C
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: ccsrgemm_numeric
-      if (.not. is_contiguous(alpha)) error stop "alpha: array must be contiguous"
       if (.not. is_contiguous(csr_val_A)) error stop "csr_val_A: array must be contiguous"
       if (.not. is_contiguous(csr_row_ptr_A)) error stop "csr_row_ptr_A: array must be contiguous"
       if (.not. is_contiguous(csr_col_ind_A)) error stop "csr_col_ind_A: array must be contiguous"
       if (.not. is_contiguous(csr_val_B)) error stop "csr_val_B: array must be contiguous"
       if (.not. is_contiguous(csr_row_ptr_B)) error stop "csr_row_ptr_B: array must be contiguous"
       if (.not. is_contiguous(csr_col_ind_B)) error stop "csr_col_ind_B: array must be contiguous"
-      if (.not. is_contiguous(beta)) error stop "beta: array must be contiguous"
       if (.not. is_contiguous(csr_val_D)) error stop "csr_val_D: array must be contiguous"
       if (.not. is_contiguous(csr_row_ptr_D)) error stop "csr_row_ptr_D: array must be contiguous"
       if (.not. is_contiguous(csr_col_ind_D)) error stop "csr_col_ind_D: array must be contiguous"
       if (.not. is_contiguous(csr_val_C)) error stop "csr_val_C: array must be contiguous"
       if (.not. is_contiguous(csr_row_ptr_C)) error stop "csr_row_ptr_C: array must be contiguous"
       if (.not. is_contiguous(csr_col_ind_C)) error stop "csr_col_ind_C: array must be contiguous"
-      ccsrgemm_numeric = rocsparse_ccsrgemm_numeric_raw(handle, trans_A, trans_B, m, n, k, c_loc( &
-        alpha), descr_A, nnz_A, c_loc(csr_val_A), c_loc(csr_row_ptr_A), c_loc(csr_col_ind_A), &
-        descr_B, nnz_B, c_loc(csr_val_B), c_loc(csr_row_ptr_B), c_loc(csr_col_ind_B), c_loc(beta), &
-        descr_D, nnz_D, c_loc(csr_val_D), c_loc(csr_row_ptr_D), c_loc(csr_col_ind_D), descr_C, &
-        nnz_C, c_loc(csr_val_C), c_loc(csr_row_ptr_C), c_loc(csr_col_ind_C), info_C, temp_buffer)
+      ccsrgemm_numeric = rocsparse_ccsrgemm_numeric_raw(handle, trans_A, trans_B, m, n, k, alpha, &
+        descr_A, nnz_A, c_loc(csr_val_A), c_loc(csr_row_ptr_A), c_loc(csr_col_ind_A), descr_B, &
+        nnz_B, c_loc(csr_val_B), c_loc(csr_row_ptr_B), c_loc(csr_col_ind_B), beta, descr_D, nnz_D, &
+        c_loc(csr_val_D), c_loc(csr_row_ptr_D), c_loc(csr_col_ind_D), descr_C, nnz_C, c_loc( &
+        csr_val_C), c_loc(csr_row_ptr_C), c_loc(csr_col_ind_C), info_C, temp_buffer)
     end function rocsparse_ccsrgemm_numeric_native
 
     function rocsparse_ccsrgemm_numeric_typed(handle, trans_A, trans_B, m, n, k, alpha, descr_A, &
@@ -47981,7 +47947,7 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       integer(c_int), value :: k
-      type(c_ptr), value :: alpha
+      complex(c_float_complex) :: alpha
       type(rocsparse_mat_descr_t), value :: descr_A
       integer(c_int), value :: nnz_A
       type(c_ptr), value :: csr_val_A
@@ -47992,7 +47958,7 @@ contains
       type(c_ptr), value :: csr_val_B
       type(c_ptr), value :: csr_row_ptr_B
       type(c_ptr), value :: csr_col_ind_B
-      type(c_ptr), value :: beta
+      complex(c_float_complex) :: beta
       type(rocsparse_mat_descr_t), value :: descr_D
       integer(c_int), value :: nnz_D
       type(c_ptr), value :: csr_val_D
@@ -48026,7 +47992,7 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       integer(c_int), value :: k
-      complex(c_double_complex), target :: alpha(..)
+      complex(c_double_complex) :: alpha
       type(c_ptr), value :: descr_A
       integer(c_int), value :: nnz_A
       complex(c_double_complex), target :: csr_val_A(..)
@@ -48037,7 +48003,7 @@ contains
       complex(c_double_complex), target :: csr_val_B(..)
       integer(c_int), target :: csr_row_ptr_B(..)
       integer(c_int), target :: csr_col_ind_B(..)
-      complex(c_double_complex), target :: beta(..)
+      complex(c_double_complex) :: beta
       type(c_ptr), value :: descr_D
       integer(c_int), value :: nnz_D
       complex(c_double_complex), target :: csr_val_D(..)
@@ -48051,25 +48017,23 @@ contains
       type(c_ptr), value :: info_C
       type(c_ptr), value :: temp_buffer
       integer(c_int) :: zcsrgemm_numeric
-      if (.not. is_contiguous(alpha)) error stop "alpha: array must be contiguous"
       if (.not. is_contiguous(csr_val_A)) error stop "csr_val_A: array must be contiguous"
       if (.not. is_contiguous(csr_row_ptr_A)) error stop "csr_row_ptr_A: array must be contiguous"
       if (.not. is_contiguous(csr_col_ind_A)) error stop "csr_col_ind_A: array must be contiguous"
       if (.not. is_contiguous(csr_val_B)) error stop "csr_val_B: array must be contiguous"
       if (.not. is_contiguous(csr_row_ptr_B)) error stop "csr_row_ptr_B: array must be contiguous"
       if (.not. is_contiguous(csr_col_ind_B)) error stop "csr_col_ind_B: array must be contiguous"
-      if (.not. is_contiguous(beta)) error stop "beta: array must be contiguous"
       if (.not. is_contiguous(csr_val_D)) error stop "csr_val_D: array must be contiguous"
       if (.not. is_contiguous(csr_row_ptr_D)) error stop "csr_row_ptr_D: array must be contiguous"
       if (.not. is_contiguous(csr_col_ind_D)) error stop "csr_col_ind_D: array must be contiguous"
       if (.not. is_contiguous(csr_val_C)) error stop "csr_val_C: array must be contiguous"
       if (.not. is_contiguous(csr_row_ptr_C)) error stop "csr_row_ptr_C: array must be contiguous"
       if (.not. is_contiguous(csr_col_ind_C)) error stop "csr_col_ind_C: array must be contiguous"
-      zcsrgemm_numeric = rocsparse_zcsrgemm_numeric_raw(handle, trans_A, trans_B, m, n, k, c_loc( &
-        alpha), descr_A, nnz_A, c_loc(csr_val_A), c_loc(csr_row_ptr_A), c_loc(csr_col_ind_A), &
-        descr_B, nnz_B, c_loc(csr_val_B), c_loc(csr_row_ptr_B), c_loc(csr_col_ind_B), c_loc(beta), &
-        descr_D, nnz_D, c_loc(csr_val_D), c_loc(csr_row_ptr_D), c_loc(csr_col_ind_D), descr_C, &
-        nnz_C, c_loc(csr_val_C), c_loc(csr_row_ptr_C), c_loc(csr_col_ind_C), info_C, temp_buffer)
+      zcsrgemm_numeric = rocsparse_zcsrgemm_numeric_raw(handle, trans_A, trans_B, m, n, k, alpha, &
+        descr_A, nnz_A, c_loc(csr_val_A), c_loc(csr_row_ptr_A), c_loc(csr_col_ind_A), descr_B, &
+        nnz_B, c_loc(csr_val_B), c_loc(csr_row_ptr_B), c_loc(csr_col_ind_B), beta, descr_D, nnz_D, &
+        c_loc(csr_val_D), c_loc(csr_row_ptr_D), c_loc(csr_col_ind_D), descr_C, nnz_C, c_loc( &
+        csr_val_C), c_loc(csr_row_ptr_C), c_loc(csr_col_ind_C), info_C, temp_buffer)
     end function rocsparse_zcsrgemm_numeric_native
 
     function rocsparse_zcsrgemm_numeric_typed(handle, trans_A, trans_B, m, n, k, alpha, descr_A, &
@@ -48086,7 +48050,7 @@ contains
       integer(c_int), value :: m
       integer(c_int), value :: n
       integer(c_int), value :: k
-      type(c_ptr), value :: alpha
+      complex(c_double_complex) :: alpha
       type(rocsparse_mat_descr_t), value :: descr_A
       integer(c_int), value :: nnz_A
       type(c_ptr), value :: csr_val_A
@@ -48097,7 +48061,7 @@ contains
       type(c_ptr), value :: csr_val_B
       type(c_ptr), value :: csr_row_ptr_B
       type(c_ptr), value :: csr_col_ind_B
-      type(c_ptr), value :: beta
+      complex(c_double_complex) :: beta
       type(rocsparse_mat_descr_t), value :: descr_D
       integer(c_int), value :: nnz_D
       type(c_ptr), value :: csr_val_D
@@ -51522,7 +51486,7 @@ contains
       integer(c_int), value :: trans
       integer(c_int), value :: m
       integer(c_int), value :: nnz
-      real(c_float), target :: alpha(..)
+      real(c_float) :: alpha
       type(c_ptr), value :: descr
       real(c_float), target :: csr_val(..)
       integer(c_int), target :: csr_row_ptr(..)
@@ -51536,15 +51500,14 @@ contains
       if (.not. is_contiguous(host_nmaxiter)) error stop "host_nmaxiter: array must be contiguous"
       if (.not. is_contiguous(host_tol)) error stop "host_tol: array must be contiguous"
       if (.not. is_contiguous(host_history)) error stop "host_history: array must be contiguous"
-      if (.not. is_contiguous(alpha)) error stop "alpha: array must be contiguous"
       if (.not. is_contiguous(csr_val)) error stop "csr_val: array must be contiguous"
       if (.not. is_contiguous(csr_row_ptr)) error stop "csr_row_ptr: array must be contiguous"
       if (.not. is_contiguous(csr_col_ind)) error stop "csr_col_ind: array must be contiguous"
       if (.not. is_contiguous(x)) error stop "x: array must be contiguous"
       if (.not. is_contiguous(y)) error stop "y: array must be contiguous"
       scsritsv_solve = rocsparse_scsritsv_solve_raw(handle, c_loc(host_nmaxiter), c_loc(host_tol), &
-        c_loc(host_history), trans, m, nnz, c_loc(alpha), descr, c_loc(csr_val), c_loc( &
-        csr_row_ptr), c_loc(csr_col_ind), info, c_loc(x), c_loc(y), policy, temp_buffer)
+        c_loc(host_history), trans, m, nnz, alpha, descr, c_loc(csr_val), c_loc(csr_row_ptr), &
+        c_loc(csr_col_ind), info, c_loc(x), c_loc(y), policy, temp_buffer)
     end function rocsparse_scsritsv_solve_native
 
     function rocsparse_scsritsv_solve_typed(handle, host_nmaxiter, host_tol, host_history, trans, &
@@ -51560,7 +51523,7 @@ contains
       integer(c_int), value :: trans
       integer(c_int), value :: m
       integer(c_int), value :: nnz
-      type(c_ptr), value :: alpha
+      real(c_float) :: alpha
       type(rocsparse_mat_descr_t), value :: descr
       type(c_ptr), value :: csr_val
       type(c_ptr), value :: csr_row_ptr
@@ -51588,7 +51551,7 @@ contains
       integer(c_int), value :: trans
       integer(c_int), value :: m
       integer(c_int), value :: nnz
-      real(c_double), target :: alpha(..)
+      real(c_double) :: alpha
       type(c_ptr), value :: descr
       real(c_double), target :: csr_val(..)
       integer(c_int), target :: csr_row_ptr(..)
@@ -51602,15 +51565,14 @@ contains
       if (.not. is_contiguous(host_nmaxiter)) error stop "host_nmaxiter: array must be contiguous"
       if (.not. is_contiguous(host_tol)) error stop "host_tol: array must be contiguous"
       if (.not. is_contiguous(host_history)) error stop "host_history: array must be contiguous"
-      if (.not. is_contiguous(alpha)) error stop "alpha: array must be contiguous"
       if (.not. is_contiguous(csr_val)) error stop "csr_val: array must be contiguous"
       if (.not. is_contiguous(csr_row_ptr)) error stop "csr_row_ptr: array must be contiguous"
       if (.not. is_contiguous(csr_col_ind)) error stop "csr_col_ind: array must be contiguous"
       if (.not. is_contiguous(x)) error stop "x: array must be contiguous"
       if (.not. is_contiguous(y)) error stop "y: array must be contiguous"
       dcsritsv_solve = rocsparse_dcsritsv_solve_raw(handle, c_loc(host_nmaxiter), c_loc(host_tol), &
-        c_loc(host_history), trans, m, nnz, c_loc(alpha), descr, c_loc(csr_val), c_loc( &
-        csr_row_ptr), c_loc(csr_col_ind), info, c_loc(x), c_loc(y), policy, temp_buffer)
+        c_loc(host_history), trans, m, nnz, alpha, descr, c_loc(csr_val), c_loc(csr_row_ptr), &
+        c_loc(csr_col_ind), info, c_loc(x), c_loc(y), policy, temp_buffer)
     end function rocsparse_dcsritsv_solve_native
 
     function rocsparse_dcsritsv_solve_typed(handle, host_nmaxiter, host_tol, host_history, trans, &
@@ -51626,7 +51588,7 @@ contains
       integer(c_int), value :: trans
       integer(c_int), value :: m
       integer(c_int), value :: nnz
-      type(c_ptr), value :: alpha
+      real(c_double) :: alpha
       type(rocsparse_mat_descr_t), value :: descr
       type(c_ptr), value :: csr_val
       type(c_ptr), value :: csr_row_ptr
@@ -51654,7 +51616,7 @@ contains
       integer(c_int), value :: trans
       integer(c_int), value :: m
       integer(c_int), value :: nnz
-      complex(c_float_complex), target :: alpha(..)
+      complex(c_float_complex) :: alpha
       type(c_ptr), value :: descr
       complex(c_float_complex), target :: csr_val(..)
       integer(c_int), target :: csr_row_ptr(..)
@@ -51668,15 +51630,14 @@ contains
       if (.not. is_contiguous(host_nmaxiter)) error stop "host_nmaxiter: array must be contiguous"
       if (.not. is_contiguous(host_tol)) error stop "host_tol: array must be contiguous"
       if (.not. is_contiguous(host_history)) error stop "host_history: array must be contiguous"
-      if (.not. is_contiguous(alpha)) error stop "alpha: array must be contiguous"
       if (.not. is_contiguous(csr_val)) error stop "csr_val: array must be contiguous"
       if (.not. is_contiguous(csr_row_ptr)) error stop "csr_row_ptr: array must be contiguous"
       if (.not. is_contiguous(csr_col_ind)) error stop "csr_col_ind: array must be contiguous"
       if (.not. is_contiguous(x)) error stop "x: array must be contiguous"
       if (.not. is_contiguous(y)) error stop "y: array must be contiguous"
       ccsritsv_solve = rocsparse_ccsritsv_solve_raw(handle, c_loc(host_nmaxiter), c_loc(host_tol), &
-        c_loc(host_history), trans, m, nnz, c_loc(alpha), descr, c_loc(csr_val), c_loc( &
-        csr_row_ptr), c_loc(csr_col_ind), info, c_loc(x), c_loc(y), policy, temp_buffer)
+        c_loc(host_history), trans, m, nnz, alpha, descr, c_loc(csr_val), c_loc(csr_row_ptr), &
+        c_loc(csr_col_ind), info, c_loc(x), c_loc(y), policy, temp_buffer)
     end function rocsparse_ccsritsv_solve_native
 
     function rocsparse_ccsritsv_solve_typed(handle, host_nmaxiter, host_tol, host_history, trans, &
@@ -51692,7 +51653,7 @@ contains
       integer(c_int), value :: trans
       integer(c_int), value :: m
       integer(c_int), value :: nnz
-      type(c_ptr), value :: alpha
+      complex(c_float_complex) :: alpha
       type(rocsparse_mat_descr_t), value :: descr
       type(c_ptr), value :: csr_val
       type(c_ptr), value :: csr_row_ptr
@@ -51720,7 +51681,7 @@ contains
       integer(c_int), value :: trans
       integer(c_int), value :: m
       integer(c_int), value :: nnz
-      complex(c_double_complex), target :: alpha(..)
+      complex(c_double_complex) :: alpha
       type(c_ptr), value :: descr
       complex(c_double_complex), target :: csr_val(..)
       integer(c_int), target :: csr_row_ptr(..)
@@ -51734,15 +51695,14 @@ contains
       if (.not. is_contiguous(host_nmaxiter)) error stop "host_nmaxiter: array must be contiguous"
       if (.not. is_contiguous(host_tol)) error stop "host_tol: array must be contiguous"
       if (.not. is_contiguous(host_history)) error stop "host_history: array must be contiguous"
-      if (.not. is_contiguous(alpha)) error stop "alpha: array must be contiguous"
       if (.not. is_contiguous(csr_val)) error stop "csr_val: array must be contiguous"
       if (.not. is_contiguous(csr_row_ptr)) error stop "csr_row_ptr: array must be contiguous"
       if (.not. is_contiguous(csr_col_ind)) error stop "csr_col_ind: array must be contiguous"
       if (.not. is_contiguous(x)) error stop "x: array must be contiguous"
       if (.not. is_contiguous(y)) error stop "y: array must be contiguous"
       zcsritsv_solve = rocsparse_zcsritsv_solve_raw(handle, c_loc(host_nmaxiter), c_loc(host_tol), &
-        c_loc(host_history), trans, m, nnz, c_loc(alpha), descr, c_loc(csr_val), c_loc( &
-        csr_row_ptr), c_loc(csr_col_ind), info, c_loc(x), c_loc(y), policy, temp_buffer)
+        c_loc(host_history), trans, m, nnz, alpha, descr, c_loc(csr_val), c_loc(csr_row_ptr), &
+        c_loc(csr_col_ind), info, c_loc(x), c_loc(y), policy, temp_buffer)
     end function rocsparse_zcsritsv_solve_native
 
     function rocsparse_zcsritsv_solve_typed(handle, host_nmaxiter, host_tol, host_history, trans, &
@@ -51758,7 +51718,7 @@ contains
       integer(c_int), value :: trans
       integer(c_int), value :: m
       integer(c_int), value :: nnz
-      type(c_ptr), value :: alpha
+      complex(c_double_complex) :: alpha
       type(rocsparse_mat_descr_t), value :: descr
       type(c_ptr), value :: csr_val
       type(c_ptr), value :: csr_row_ptr
@@ -51787,7 +51747,7 @@ contains
       integer(c_int), value :: trans
       integer(c_int), value :: m
       integer(c_int), value :: nnz
-      real(c_float), target :: alpha(..)
+      real(c_float) :: alpha
       type(c_ptr), value :: descr
       real(c_float), target :: csr_val(..)
       integer(c_int), target :: csr_row_ptr(..)
@@ -51801,15 +51761,14 @@ contains
       if (.not. is_contiguous(host_nmaxiter)) error stop "host_nmaxiter: array must be contiguous"
       if (.not. is_contiguous(host_tol)) error stop "host_tol: array must be contiguous"
       if (.not. is_contiguous(host_history)) error stop "host_history: array must be contiguous"
-      if (.not. is_contiguous(alpha)) error stop "alpha: array must be contiguous"
       if (.not. is_contiguous(csr_val)) error stop "csr_val: array must be contiguous"
       if (.not. is_contiguous(csr_row_ptr)) error stop "csr_row_ptr: array must be contiguous"
       if (.not. is_contiguous(csr_col_ind)) error stop "csr_col_ind: array must be contiguous"
       if (.not. is_contiguous(x)) error stop "x: array must be contiguous"
       if (.not. is_contiguous(y)) error stop "y: array must be contiguous"
       scsritsv_solve_ex = rocsparse_scsritsv_solve_ex_raw(handle, c_loc(host_nmaxiter), &
-        host_nfreeiter, c_loc(host_tol), c_loc(host_history), trans, m, nnz, c_loc(alpha), descr, &
-        c_loc(csr_val), c_loc(csr_row_ptr), c_loc(csr_col_ind), info, c_loc(x), c_loc(y), policy, &
+        host_nfreeiter, c_loc(host_tol), c_loc(host_history), trans, m, nnz, alpha, descr, c_loc( &
+        csr_val), c_loc(csr_row_ptr), c_loc(csr_col_ind), info, c_loc(x), c_loc(y), policy, &
         temp_buffer)
     end function rocsparse_scsritsv_solve_ex_native
 
@@ -51827,7 +51786,7 @@ contains
       integer(c_int), value :: trans
       integer(c_int), value :: m
       integer(c_int), value :: nnz
-      type(c_ptr), value :: alpha
+      real(c_float) :: alpha
       type(rocsparse_mat_descr_t), value :: descr
       type(c_ptr), value :: csr_val
       type(c_ptr), value :: csr_row_ptr
@@ -51856,7 +51815,7 @@ contains
       integer(c_int), value :: trans
       integer(c_int), value :: m
       integer(c_int), value :: nnz
-      real(c_double), target :: alpha(..)
+      real(c_double) :: alpha
       type(c_ptr), value :: descr
       real(c_double), target :: csr_val(..)
       integer(c_int), target :: csr_row_ptr(..)
@@ -51870,15 +51829,14 @@ contains
       if (.not. is_contiguous(host_nmaxiter)) error stop "host_nmaxiter: array must be contiguous"
       if (.not. is_contiguous(host_tol)) error stop "host_tol: array must be contiguous"
       if (.not. is_contiguous(host_history)) error stop "host_history: array must be contiguous"
-      if (.not. is_contiguous(alpha)) error stop "alpha: array must be contiguous"
       if (.not. is_contiguous(csr_val)) error stop "csr_val: array must be contiguous"
       if (.not. is_contiguous(csr_row_ptr)) error stop "csr_row_ptr: array must be contiguous"
       if (.not. is_contiguous(csr_col_ind)) error stop "csr_col_ind: array must be contiguous"
       if (.not. is_contiguous(x)) error stop "x: array must be contiguous"
       if (.not. is_contiguous(y)) error stop "y: array must be contiguous"
       dcsritsv_solve_ex = rocsparse_dcsritsv_solve_ex_raw(handle, c_loc(host_nmaxiter), &
-        host_nfreeiter, c_loc(host_tol), c_loc(host_history), trans, m, nnz, c_loc(alpha), descr, &
-        c_loc(csr_val), c_loc(csr_row_ptr), c_loc(csr_col_ind), info, c_loc(x), c_loc(y), policy, &
+        host_nfreeiter, c_loc(host_tol), c_loc(host_history), trans, m, nnz, alpha, descr, c_loc( &
+        csr_val), c_loc(csr_row_ptr), c_loc(csr_col_ind), info, c_loc(x), c_loc(y), policy, &
         temp_buffer)
     end function rocsparse_dcsritsv_solve_ex_native
 
@@ -51896,7 +51854,7 @@ contains
       integer(c_int), value :: trans
       integer(c_int), value :: m
       integer(c_int), value :: nnz
-      type(c_ptr), value :: alpha
+      real(c_double) :: alpha
       type(rocsparse_mat_descr_t), value :: descr
       type(c_ptr), value :: csr_val
       type(c_ptr), value :: csr_row_ptr
@@ -51925,7 +51883,7 @@ contains
       integer(c_int), value :: trans
       integer(c_int), value :: m
       integer(c_int), value :: nnz
-      complex(c_float_complex), target :: alpha(..)
+      complex(c_float_complex) :: alpha
       type(c_ptr), value :: descr
       complex(c_float_complex), target :: csr_val(..)
       integer(c_int), target :: csr_row_ptr(..)
@@ -51939,15 +51897,14 @@ contains
       if (.not. is_contiguous(host_nmaxiter)) error stop "host_nmaxiter: array must be contiguous"
       if (.not. is_contiguous(host_tol)) error stop "host_tol: array must be contiguous"
       if (.not. is_contiguous(host_history)) error stop "host_history: array must be contiguous"
-      if (.not. is_contiguous(alpha)) error stop "alpha: array must be contiguous"
       if (.not. is_contiguous(csr_val)) error stop "csr_val: array must be contiguous"
       if (.not. is_contiguous(csr_row_ptr)) error stop "csr_row_ptr: array must be contiguous"
       if (.not. is_contiguous(csr_col_ind)) error stop "csr_col_ind: array must be contiguous"
       if (.not. is_contiguous(x)) error stop "x: array must be contiguous"
       if (.not. is_contiguous(y)) error stop "y: array must be contiguous"
       ccsritsv_solve_ex = rocsparse_ccsritsv_solve_ex_raw(handle, c_loc(host_nmaxiter), &
-        host_nfreeiter, c_loc(host_tol), c_loc(host_history), trans, m, nnz, c_loc(alpha), descr, &
-        c_loc(csr_val), c_loc(csr_row_ptr), c_loc(csr_col_ind), info, c_loc(x), c_loc(y), policy, &
+        host_nfreeiter, c_loc(host_tol), c_loc(host_history), trans, m, nnz, alpha, descr, c_loc( &
+        csr_val), c_loc(csr_row_ptr), c_loc(csr_col_ind), info, c_loc(x), c_loc(y), policy, &
         temp_buffer)
     end function rocsparse_ccsritsv_solve_ex_native
 
@@ -51965,7 +51922,7 @@ contains
       integer(c_int), value :: trans
       integer(c_int), value :: m
       integer(c_int), value :: nnz
-      type(c_ptr), value :: alpha
+      complex(c_float_complex) :: alpha
       type(rocsparse_mat_descr_t), value :: descr
       type(c_ptr), value :: csr_val
       type(c_ptr), value :: csr_row_ptr
@@ -51994,7 +51951,7 @@ contains
       integer(c_int), value :: trans
       integer(c_int), value :: m
       integer(c_int), value :: nnz
-      complex(c_double_complex), target :: alpha(..)
+      complex(c_double_complex) :: alpha
       type(c_ptr), value :: descr
       complex(c_double_complex), target :: csr_val(..)
       integer(c_int), target :: csr_row_ptr(..)
@@ -52008,15 +51965,14 @@ contains
       if (.not. is_contiguous(host_nmaxiter)) error stop "host_nmaxiter: array must be contiguous"
       if (.not. is_contiguous(host_tol)) error stop "host_tol: array must be contiguous"
       if (.not. is_contiguous(host_history)) error stop "host_history: array must be contiguous"
-      if (.not. is_contiguous(alpha)) error stop "alpha: array must be contiguous"
       if (.not. is_contiguous(csr_val)) error stop "csr_val: array must be contiguous"
       if (.not. is_contiguous(csr_row_ptr)) error stop "csr_row_ptr: array must be contiguous"
       if (.not. is_contiguous(csr_col_ind)) error stop "csr_col_ind: array must be contiguous"
       if (.not. is_contiguous(x)) error stop "x: array must be contiguous"
       if (.not. is_contiguous(y)) error stop "y: array must be contiguous"
       zcsritsv_solve_ex = rocsparse_zcsritsv_solve_ex_raw(handle, c_loc(host_nmaxiter), &
-        host_nfreeiter, c_loc(host_tol), c_loc(host_history), trans, m, nnz, c_loc(alpha), descr, &
-        c_loc(csr_val), c_loc(csr_row_ptr), c_loc(csr_col_ind), info, c_loc(x), c_loc(y), policy, &
+        host_nfreeiter, c_loc(host_tol), c_loc(host_history), trans, m, nnz, alpha, descr, c_loc( &
+        csr_val), c_loc(csr_row_ptr), c_loc(csr_col_ind), info, c_loc(x), c_loc(y), policy, &
         temp_buffer)
     end function rocsparse_zcsritsv_solve_ex_native
 
@@ -52034,7 +51990,7 @@ contains
       integer(c_int), value :: trans
       integer(c_int), value :: m
       integer(c_int), value :: nnz
-      type(c_ptr), value :: alpha
+      complex(c_double_complex) :: alpha
       type(rocsparse_mat_descr_t), value :: descr
       type(c_ptr), value :: csr_val
       type(c_ptr), value :: csr_row_ptr

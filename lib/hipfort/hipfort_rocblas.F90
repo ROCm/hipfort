@@ -1047,10 +1047,10 @@ module hipfort_rocblas
     function rocblas_sscal_raw(handle, n, alpha, x, incx) &
        result(sscal_raw) &
        bind(C, name="rocblas_sscal")
-       import :: c_ptr, c_int
+       import :: c_ptr, c_int, c_float
        type(c_ptr), value :: handle
        integer(c_int), value :: n
-       type(c_ptr), value :: alpha
+       real(c_float) :: alpha
        type(c_ptr), value :: x
        integer(c_int), value :: incx
        integer(c_int) :: sscal_raw
@@ -1067,10 +1067,10 @@ module hipfort_rocblas
     function rocblas_dscal_raw(handle, n, alpha, x, incx) &
        result(dscal_raw) &
        bind(C, name="rocblas_dscal")
-       import :: c_ptr, c_int
+       import :: c_ptr, c_int, c_double
        type(c_ptr), value :: handle
        integer(c_int), value :: n
-       type(c_ptr), value :: alpha
+       real(c_double) :: alpha
        type(c_ptr), value :: x
        integer(c_int), value :: incx
        integer(c_int) :: dscal_raw
@@ -1167,10 +1167,10 @@ module hipfort_rocblas
     function rocblas_sscal_64_raw(handle, n, alpha, x, incx) &
        result(sscal_64_raw) &
        bind(C, name="rocblas_sscal_64")
-       import :: c_ptr, c_long, c_int
+       import :: c_ptr, c_long, c_float, c_int
        type(c_ptr), value :: handle
        integer(c_long), value :: n
-       type(c_ptr), value :: alpha
+       real(c_float) :: alpha
        type(c_ptr), value :: x
        integer(c_long), value :: incx
        integer(c_int) :: sscal_64_raw
@@ -1187,10 +1187,10 @@ module hipfort_rocblas
     function rocblas_dscal_64_raw(handle, n, alpha, x, incx) &
        result(dscal_64_raw) &
        bind(C, name="rocblas_dscal_64")
-       import :: c_ptr, c_long, c_int
+       import :: c_ptr, c_long, c_double, c_int
        type(c_ptr), value :: handle
        integer(c_long), value :: n
-       type(c_ptr), value :: alpha
+       real(c_double) :: alpha
        type(c_ptr), value :: x
        integer(c_long), value :: incx
        integer(c_int) :: dscal_64_raw
@@ -7493,15 +7493,15 @@ module hipfort_rocblas
     function rocblas_srot_raw(handle, n, x, incx, y, incy, c, s) &
        result(srot_raw) &
        bind(C, name="rocblas_srot")
-       import :: c_ptr, c_int
+       import :: c_ptr, c_int, c_float
        type(c_ptr), value :: handle
        integer(c_int), value :: n
        type(c_ptr), value :: x
        integer(c_int), value :: incx
        type(c_ptr), value :: y
        integer(c_int), value :: incy
-       type(c_ptr), value :: c
-       type(c_ptr), value :: s
+       real(c_float) :: c
+       real(c_float) :: s
        integer(c_int) :: srot_raw
     end function rocblas_srot_raw
 
@@ -7516,15 +7516,15 @@ module hipfort_rocblas
     function rocblas_drot_raw(handle, n, x, incx, y, incy, c, s) &
        result(drot_raw) &
        bind(C, name="rocblas_drot")
-       import :: c_ptr, c_int
+       import :: c_ptr, c_int, c_double
        type(c_ptr), value :: handle
        integer(c_int), value :: n
        type(c_ptr), value :: x
        integer(c_int), value :: incx
        type(c_ptr), value :: y
        integer(c_int), value :: incy
-       type(c_ptr), value :: c
-       type(c_ptr), value :: s
+       real(c_double) :: c
+       real(c_double) :: s
        integer(c_int) :: drot_raw
     end function rocblas_drot_raw
 
@@ -7539,15 +7539,15 @@ module hipfort_rocblas
     function rocblas_crot_raw(handle, n, x, incx, y, incy, c, s) &
        result(crot_raw) &
        bind(C, name="rocblas_crot")
-       import :: c_ptr, c_int
+       import :: c_ptr, c_int, c_float, c_float_complex
        type(c_ptr), value :: handle
        integer(c_int), value :: n
        type(c_ptr), value :: x
        integer(c_int), value :: incx
        type(c_ptr), value :: y
        integer(c_int), value :: incy
-       type(c_ptr), value :: c
-       type(c_ptr), value :: s
+       real(c_float) :: c
+       complex(c_float_complex) :: s
        integer(c_int) :: crot_raw
     end function rocblas_crot_raw
 
@@ -7562,15 +7562,15 @@ module hipfort_rocblas
     function rocblas_csrot_raw(handle, n, x, incx, y, incy, c, s) &
        result(csrot_raw) &
        bind(C, name="rocblas_csrot")
-       import :: c_ptr, c_int
+       import :: c_ptr, c_int, c_float
        type(c_ptr), value :: handle
        integer(c_int), value :: n
        type(c_ptr), value :: x
        integer(c_int), value :: incx
        type(c_ptr), value :: y
        integer(c_int), value :: incy
-       type(c_ptr), value :: c
-       type(c_ptr), value :: s
+       real(c_float) :: c
+       real(c_float) :: s
        integer(c_int) :: csrot_raw
     end function rocblas_csrot_raw
 
@@ -7585,15 +7585,15 @@ module hipfort_rocblas
     function rocblas_zrot_raw(handle, n, x, incx, y, incy, c, s) &
        result(zrot_raw) &
        bind(C, name="rocblas_zrot")
-       import :: c_ptr, c_int
+       import :: c_ptr, c_int, c_double, c_double_complex
        type(c_ptr), value :: handle
        integer(c_int), value :: n
        type(c_ptr), value :: x
        integer(c_int), value :: incx
        type(c_ptr), value :: y
        integer(c_int), value :: incy
-       type(c_ptr), value :: c
-       type(c_ptr), value :: s
+       real(c_double) :: c
+       complex(c_double_complex) :: s
        integer(c_int) :: zrot_raw
     end function rocblas_zrot_raw
 
@@ -7608,15 +7608,15 @@ module hipfort_rocblas
     function rocblas_zdrot_raw(handle, n, x, incx, y, incy, c, s) &
        result(zdrot_raw) &
        bind(C, name="rocblas_zdrot")
-       import :: c_ptr, c_int
+       import :: c_ptr, c_int, c_double
        type(c_ptr), value :: handle
        integer(c_int), value :: n
        type(c_ptr), value :: x
        integer(c_int), value :: incx
        type(c_ptr), value :: y
        integer(c_int), value :: incy
-       type(c_ptr), value :: c
-       type(c_ptr), value :: s
+       real(c_double) :: c
+       real(c_double) :: s
        integer(c_int) :: zdrot_raw
     end function rocblas_zdrot_raw
 
@@ -7631,15 +7631,15 @@ module hipfort_rocblas
     function rocblas_srot_64_raw(handle, n, x, incx, y, incy, c, s) &
        result(srot_64_raw) &
        bind(C, name="rocblas_srot_64")
-       import :: c_ptr, c_long, c_int
+       import :: c_ptr, c_long, c_float, c_int
        type(c_ptr), value :: handle
        integer(c_long), value :: n
        type(c_ptr), value :: x
        integer(c_long), value :: incx
        type(c_ptr), value :: y
        integer(c_long), value :: incy
-       type(c_ptr), value :: c
-       type(c_ptr), value :: s
+       real(c_float) :: c
+       real(c_float) :: s
        integer(c_int) :: srot_64_raw
     end function rocblas_srot_64_raw
 
@@ -7654,15 +7654,15 @@ module hipfort_rocblas
     function rocblas_drot_64_raw(handle, n, x, incx, y, incy, c, s) &
        result(drot_64_raw) &
        bind(C, name="rocblas_drot_64")
-       import :: c_ptr, c_long, c_int
+       import :: c_ptr, c_long, c_double, c_int
        type(c_ptr), value :: handle
        integer(c_long), value :: n
        type(c_ptr), value :: x
        integer(c_long), value :: incx
        type(c_ptr), value :: y
        integer(c_long), value :: incy
-       type(c_ptr), value :: c
-       type(c_ptr), value :: s
+       real(c_double) :: c
+       real(c_double) :: s
        integer(c_int) :: drot_64_raw
     end function rocblas_drot_64_raw
 
@@ -7677,15 +7677,15 @@ module hipfort_rocblas
     function rocblas_crot_64_raw(handle, n, x, incx, y, incy, c, s) &
        result(crot_64_raw) &
        bind(C, name="rocblas_crot_64")
-       import :: c_ptr, c_long, c_int
+       import :: c_ptr, c_long, c_float, c_float_complex, c_int
        type(c_ptr), value :: handle
        integer(c_long), value :: n
        type(c_ptr), value :: x
        integer(c_long), value :: incx
        type(c_ptr), value :: y
        integer(c_long), value :: incy
-       type(c_ptr), value :: c
-       type(c_ptr), value :: s
+       real(c_float) :: c
+       complex(c_float_complex) :: s
        integer(c_int) :: crot_64_raw
     end function rocblas_crot_64_raw
 
@@ -7700,15 +7700,15 @@ module hipfort_rocblas
     function rocblas_csrot_64_raw(handle, n, x, incx, y, incy, c, s) &
        result(csrot_64_raw) &
        bind(C, name="rocblas_csrot_64")
-       import :: c_ptr, c_long, c_int
+       import :: c_ptr, c_long, c_float, c_int
        type(c_ptr), value :: handle
        integer(c_long), value :: n
        type(c_ptr), value :: x
        integer(c_long), value :: incx
        type(c_ptr), value :: y
        integer(c_long), value :: incy
-       type(c_ptr), value :: c
-       type(c_ptr), value :: s
+       real(c_float) :: c
+       real(c_float) :: s
        integer(c_int) :: csrot_64_raw
     end function rocblas_csrot_64_raw
 
@@ -7723,15 +7723,15 @@ module hipfort_rocblas
     function rocblas_zrot_64_raw(handle, n, x, incx, y, incy, c, s) &
        result(zrot_64_raw) &
        bind(C, name="rocblas_zrot_64")
-       import :: c_ptr, c_long, c_int
+       import :: c_ptr, c_long, c_double, c_double_complex, c_int
        type(c_ptr), value :: handle
        integer(c_long), value :: n
        type(c_ptr), value :: x
        integer(c_long), value :: incx
        type(c_ptr), value :: y
        integer(c_long), value :: incy
-       type(c_ptr), value :: c
-       type(c_ptr), value :: s
+       real(c_double) :: c
+       complex(c_double_complex) :: s
        integer(c_int) :: zrot_64_raw
     end function rocblas_zrot_64_raw
 
@@ -7746,15 +7746,15 @@ module hipfort_rocblas
     function rocblas_zdrot_64_raw(handle, n, x, incx, y, incy, c, s) &
        result(zdrot_64_raw) &
        bind(C, name="rocblas_zdrot_64")
-       import :: c_ptr, c_long, c_int
+       import :: c_ptr, c_long, c_double, c_int
        type(c_ptr), value :: handle
        integer(c_long), value :: n
        type(c_ptr), value :: x
        integer(c_long), value :: incx
        type(c_ptr), value :: y
        integer(c_long), value :: incy
-       type(c_ptr), value :: c
-       type(c_ptr), value :: s
+       real(c_double) :: c
+       real(c_double) :: s
        integer(c_int) :: zdrot_64_raw
     end function rocblas_zdrot_64_raw
 
@@ -7800,20 +7800,19 @@ module hipfort_rocblas
     function rocblas_srot_batched_raw(handle, n, x, incx, y, incy, c, s, batch_count) &
        result(srot_batched_raw) &
        bind(C, name="rocblas_srot_batched")
-       import :: c_ptr, c_int
+       import :: c_ptr, c_int, c_float
        type(c_ptr), value :: handle
        integer(c_int), value :: n
        type(c_ptr), value :: x
        integer(c_int), value :: incx
        type(c_ptr), value :: y
        integer(c_int), value :: incy
-       type(c_ptr), value :: c
-       type(c_ptr), value :: s
+       real(c_float) :: c
+       real(c_float) :: s
        integer(c_int), value :: batch_count
        integer(c_int) :: srot_batched_raw
     end function rocblas_srot_batched_raw
 
-    module procedure rocblas_srot_batched_native
     module procedure rocblas_srot_batched_typed
   end interface rocblas_srot_batched
 
@@ -7824,20 +7823,19 @@ module hipfort_rocblas
     function rocblas_drot_batched_raw(handle, n, x, incx, y, incy, c, s, batch_count) &
        result(drot_batched_raw) &
        bind(C, name="rocblas_drot_batched")
-       import :: c_ptr, c_int
+       import :: c_ptr, c_int, c_double
        type(c_ptr), value :: handle
        integer(c_int), value :: n
        type(c_ptr), value :: x
        integer(c_int), value :: incx
        type(c_ptr), value :: y
        integer(c_int), value :: incy
-       type(c_ptr), value :: c
-       type(c_ptr), value :: s
+       real(c_double) :: c
+       real(c_double) :: s
        integer(c_int), value :: batch_count
        integer(c_int) :: drot_batched_raw
     end function rocblas_drot_batched_raw
 
-    module procedure rocblas_drot_batched_native
     module procedure rocblas_drot_batched_typed
   end interface rocblas_drot_batched
 
@@ -7848,20 +7846,19 @@ module hipfort_rocblas
     function rocblas_crot_batched_raw(handle, n, x, incx, y, incy, c, s, batch_count) &
        result(crot_batched_raw) &
        bind(C, name="rocblas_crot_batched")
-       import :: c_ptr, c_int
+       import :: c_ptr, c_int, c_float, c_float_complex
        type(c_ptr), value :: handle
        integer(c_int), value :: n
        type(c_ptr), value :: x
        integer(c_int), value :: incx
        type(c_ptr), value :: y
        integer(c_int), value :: incy
-       type(c_ptr), value :: c
-       type(c_ptr), value :: s
+       real(c_float) :: c
+       complex(c_float_complex) :: s
        integer(c_int), value :: batch_count
        integer(c_int) :: crot_batched_raw
     end function rocblas_crot_batched_raw
 
-    module procedure rocblas_crot_batched_native
     module procedure rocblas_crot_batched_typed
   end interface rocblas_crot_batched
 
@@ -7872,20 +7869,19 @@ module hipfort_rocblas
     function rocblas_csrot_batched_raw(handle, n, x, incx, y, incy, c, s, batch_count) &
        result(csrot_batched_raw) &
        bind(C, name="rocblas_csrot_batched")
-       import :: c_ptr, c_int
+       import :: c_ptr, c_int, c_float
        type(c_ptr), value :: handle
        integer(c_int), value :: n
        type(c_ptr), value :: x
        integer(c_int), value :: incx
        type(c_ptr), value :: y
        integer(c_int), value :: incy
-       type(c_ptr), value :: c
-       type(c_ptr), value :: s
+       real(c_float) :: c
+       real(c_float) :: s
        integer(c_int), value :: batch_count
        integer(c_int) :: csrot_batched_raw
     end function rocblas_csrot_batched_raw
 
-    module procedure rocblas_csrot_batched_native
     module procedure rocblas_csrot_batched_typed
   end interface rocblas_csrot_batched
 
@@ -7896,20 +7892,19 @@ module hipfort_rocblas
     function rocblas_zrot_batched_raw(handle, n, x, incx, y, incy, c, s, batch_count) &
        result(zrot_batched_raw) &
        bind(C, name="rocblas_zrot_batched")
-       import :: c_ptr, c_int
+       import :: c_ptr, c_int, c_double, c_double_complex
        type(c_ptr), value :: handle
        integer(c_int), value :: n
        type(c_ptr), value :: x
        integer(c_int), value :: incx
        type(c_ptr), value :: y
        integer(c_int), value :: incy
-       type(c_ptr), value :: c
-       type(c_ptr), value :: s
+       real(c_double) :: c
+       complex(c_double_complex) :: s
        integer(c_int), value :: batch_count
        integer(c_int) :: zrot_batched_raw
     end function rocblas_zrot_batched_raw
 
-    module procedure rocblas_zrot_batched_native
     module procedure rocblas_zrot_batched_typed
   end interface rocblas_zrot_batched
 
@@ -7920,20 +7915,19 @@ module hipfort_rocblas
     function rocblas_zdrot_batched_raw(handle, n, x, incx, y, incy, c, s, batch_count) &
        result(zdrot_batched_raw) &
        bind(C, name="rocblas_zdrot_batched")
-       import :: c_ptr, c_int
+       import :: c_ptr, c_int, c_double
        type(c_ptr), value :: handle
        integer(c_int), value :: n
        type(c_ptr), value :: x
        integer(c_int), value :: incx
        type(c_ptr), value :: y
        integer(c_int), value :: incy
-       type(c_ptr), value :: c
-       type(c_ptr), value :: s
+       real(c_double) :: c
+       real(c_double) :: s
        integer(c_int), value :: batch_count
        integer(c_int) :: zdrot_batched_raw
     end function rocblas_zdrot_batched_raw
 
-    module procedure rocblas_zdrot_batched_native
     module procedure rocblas_zdrot_batched_typed
   end interface rocblas_zdrot_batched
 
@@ -7944,20 +7938,19 @@ module hipfort_rocblas
     function rocblas_srot_batched_64_raw(handle, n, x, incx, y, incy, c, s, batch_count) &
        result(srot_batched_64_raw) &
        bind(C, name="rocblas_srot_batched_64")
-       import :: c_ptr, c_long, c_int
+       import :: c_ptr, c_long, c_float, c_int
        type(c_ptr), value :: handle
        integer(c_long), value :: n
        type(c_ptr), value :: x
        integer(c_long), value :: incx
        type(c_ptr), value :: y
        integer(c_long), value :: incy
-       type(c_ptr), value :: c
-       type(c_ptr), value :: s
+       real(c_float) :: c
+       real(c_float) :: s
        integer(c_long), value :: batch_count
        integer(c_int) :: srot_batched_64_raw
     end function rocblas_srot_batched_64_raw
 
-    module procedure rocblas_srot_batched_64_native
     module procedure rocblas_srot_batched_64_typed
   end interface rocblas_srot_batched_64
 
@@ -7968,20 +7961,19 @@ module hipfort_rocblas
     function rocblas_drot_batched_64_raw(handle, n, x, incx, y, incy, c, s, batch_count) &
        result(drot_batched_64_raw) &
        bind(C, name="rocblas_drot_batched_64")
-       import :: c_ptr, c_long, c_int
+       import :: c_ptr, c_long, c_double, c_int
        type(c_ptr), value :: handle
        integer(c_long), value :: n
        type(c_ptr), value :: x
        integer(c_long), value :: incx
        type(c_ptr), value :: y
        integer(c_long), value :: incy
-       type(c_ptr), value :: c
-       type(c_ptr), value :: s
+       real(c_double) :: c
+       real(c_double) :: s
        integer(c_long), value :: batch_count
        integer(c_int) :: drot_batched_64_raw
     end function rocblas_drot_batched_64_raw
 
-    module procedure rocblas_drot_batched_64_native
     module procedure rocblas_drot_batched_64_typed
   end interface rocblas_drot_batched_64
 
@@ -7992,20 +7984,19 @@ module hipfort_rocblas
     function rocblas_crot_batched_64_raw(handle, n, x, incx, y, incy, c, s, batch_count) &
        result(crot_batched_64_raw) &
        bind(C, name="rocblas_crot_batched_64")
-       import :: c_ptr, c_long, c_int
+       import :: c_ptr, c_long, c_float, c_float_complex, c_int
        type(c_ptr), value :: handle
        integer(c_long), value :: n
        type(c_ptr), value :: x
        integer(c_long), value :: incx
        type(c_ptr), value :: y
        integer(c_long), value :: incy
-       type(c_ptr), value :: c
-       type(c_ptr), value :: s
+       real(c_float) :: c
+       complex(c_float_complex) :: s
        integer(c_long), value :: batch_count
        integer(c_int) :: crot_batched_64_raw
     end function rocblas_crot_batched_64_raw
 
-    module procedure rocblas_crot_batched_64_native
     module procedure rocblas_crot_batched_64_typed
   end interface rocblas_crot_batched_64
 
@@ -8016,20 +8007,19 @@ module hipfort_rocblas
     function rocblas_csrot_batched_64_raw(handle, n, x, incx, y, incy, c, s, batch_count) &
        result(csrot_batched_64_raw) &
        bind(C, name="rocblas_csrot_batched_64")
-       import :: c_ptr, c_long, c_int
+       import :: c_ptr, c_long, c_float, c_int
        type(c_ptr), value :: handle
        integer(c_long), value :: n
        type(c_ptr), value :: x
        integer(c_long), value :: incx
        type(c_ptr), value :: y
        integer(c_long), value :: incy
-       type(c_ptr), value :: c
-       type(c_ptr), value :: s
+       real(c_float) :: c
+       real(c_float) :: s
        integer(c_long), value :: batch_count
        integer(c_int) :: csrot_batched_64_raw
     end function rocblas_csrot_batched_64_raw
 
-    module procedure rocblas_csrot_batched_64_native
     module procedure rocblas_csrot_batched_64_typed
   end interface rocblas_csrot_batched_64
 
@@ -8040,20 +8030,19 @@ module hipfort_rocblas
     function rocblas_zrot_batched_64_raw(handle, n, x, incx, y, incy, c, s, batch_count) &
        result(zrot_batched_64_raw) &
        bind(C, name="rocblas_zrot_batched_64")
-       import :: c_ptr, c_long, c_int
+       import :: c_ptr, c_long, c_double, c_double_complex, c_int
        type(c_ptr), value :: handle
        integer(c_long), value :: n
        type(c_ptr), value :: x
        integer(c_long), value :: incx
        type(c_ptr), value :: y
        integer(c_long), value :: incy
-       type(c_ptr), value :: c
-       type(c_ptr), value :: s
+       real(c_double) :: c
+       complex(c_double_complex) :: s
        integer(c_long), value :: batch_count
        integer(c_int) :: zrot_batched_64_raw
     end function rocblas_zrot_batched_64_raw
 
-    module procedure rocblas_zrot_batched_64_native
     module procedure rocblas_zrot_batched_64_typed
   end interface rocblas_zrot_batched_64
 
@@ -8064,20 +8053,19 @@ module hipfort_rocblas
     function rocblas_zdrot_batched_64_raw(handle, n, x, incx, y, incy, c, s, batch_count) &
        result(zdrot_batched_64_raw) &
        bind(C, name="rocblas_zdrot_batched_64")
-       import :: c_ptr, c_long, c_int
+       import :: c_ptr, c_long, c_double, c_int
        type(c_ptr), value :: handle
        integer(c_long), value :: n
        type(c_ptr), value :: x
        integer(c_long), value :: incx
        type(c_ptr), value :: y
        integer(c_long), value :: incy
-       type(c_ptr), value :: c
-       type(c_ptr), value :: s
+       real(c_double) :: c
+       real(c_double) :: s
        integer(c_long), value :: batch_count
        integer(c_int) :: zdrot_batched_64_raw
     end function rocblas_zdrot_batched_64_raw
 
-    module procedure rocblas_zdrot_batched_64_native
     module procedure rocblas_zdrot_batched_64_typed
   end interface rocblas_zdrot_batched_64
 
@@ -8127,7 +8115,7 @@ module hipfort_rocblas
                                               s, batch_count) &
        result(srot_strided_batched_raw) &
        bind(C, name="rocblas_srot_strided_batched")
-       import :: c_ptr, c_int, c_long
+       import :: c_ptr, c_int, c_long, c_float
        type(c_ptr), value :: handle
        integer(c_int), value :: n
        type(c_ptr), value :: x
@@ -8136,8 +8124,8 @@ module hipfort_rocblas
        type(c_ptr), value :: y
        integer(c_int), value :: incy
        integer(c_long), value :: stride_y
-       type(c_ptr), value :: c
-       type(c_ptr), value :: s
+       real(c_float) :: c
+       real(c_float) :: s
        integer(c_int), value :: batch_count
        integer(c_int) :: srot_strided_batched_raw
     end function rocblas_srot_strided_batched_raw
@@ -8154,7 +8142,7 @@ module hipfort_rocblas
                                               s, batch_count) &
        result(drot_strided_batched_raw) &
        bind(C, name="rocblas_drot_strided_batched")
-       import :: c_ptr, c_int, c_long
+       import :: c_ptr, c_int, c_long, c_double
        type(c_ptr), value :: handle
        integer(c_int), value :: n
        type(c_ptr), value :: x
@@ -8163,8 +8151,8 @@ module hipfort_rocblas
        type(c_ptr), value :: y
        integer(c_int), value :: incy
        integer(c_long), value :: stride_y
-       type(c_ptr), value :: c
-       type(c_ptr), value :: s
+       real(c_double) :: c
+       real(c_double) :: s
        integer(c_int), value :: batch_count
        integer(c_int) :: drot_strided_batched_raw
     end function rocblas_drot_strided_batched_raw
@@ -8181,7 +8169,7 @@ module hipfort_rocblas
                                               s, batch_count) &
        result(crot_strided_batched_raw) &
        bind(C, name="rocblas_crot_strided_batched")
-       import :: c_ptr, c_int, c_long
+       import :: c_ptr, c_int, c_long, c_float, c_float_complex
        type(c_ptr), value :: handle
        integer(c_int), value :: n
        type(c_ptr), value :: x
@@ -8190,8 +8178,8 @@ module hipfort_rocblas
        type(c_ptr), value :: y
        integer(c_int), value :: incy
        integer(c_long), value :: stride_y
-       type(c_ptr), value :: c
-       type(c_ptr), value :: s
+       real(c_float) :: c
+       complex(c_float_complex) :: s
        integer(c_int), value :: batch_count
        integer(c_int) :: crot_strided_batched_raw
     end function rocblas_crot_strided_batched_raw
@@ -8208,7 +8196,7 @@ module hipfort_rocblas
                                                s, batch_count) &
        result(csrot_strided_batched_raw) &
        bind(C, name="rocblas_csrot_strided_batched")
-       import :: c_ptr, c_int, c_long
+       import :: c_ptr, c_int, c_long, c_float
        type(c_ptr), value :: handle
        integer(c_int), value :: n
        type(c_ptr), value :: x
@@ -8217,8 +8205,8 @@ module hipfort_rocblas
        type(c_ptr), value :: y
        integer(c_int), value :: incy
        integer(c_long), value :: stride_y
-       type(c_ptr), value :: c
-       type(c_ptr), value :: s
+       real(c_float) :: c
+       real(c_float) :: s
        integer(c_int), value :: batch_count
        integer(c_int) :: csrot_strided_batched_raw
     end function rocblas_csrot_strided_batched_raw
@@ -8235,7 +8223,7 @@ module hipfort_rocblas
                                               s, batch_count) &
        result(zrot_strided_batched_raw) &
        bind(C, name="rocblas_zrot_strided_batched")
-       import :: c_ptr, c_int, c_long
+       import :: c_ptr, c_int, c_long, c_double, c_double_complex
        type(c_ptr), value :: handle
        integer(c_int), value :: n
        type(c_ptr), value :: x
@@ -8244,8 +8232,8 @@ module hipfort_rocblas
        type(c_ptr), value :: y
        integer(c_int), value :: incy
        integer(c_long), value :: stride_y
-       type(c_ptr), value :: c
-       type(c_ptr), value :: s
+       real(c_double) :: c
+       complex(c_double_complex) :: s
        integer(c_int), value :: batch_count
        integer(c_int) :: zrot_strided_batched_raw
     end function rocblas_zrot_strided_batched_raw
@@ -8262,7 +8250,7 @@ module hipfort_rocblas
                                                s, batch_count) &
        result(zdrot_strided_batched_raw) &
        bind(C, name="rocblas_zdrot_strided_batched")
-       import :: c_ptr, c_int, c_long
+       import :: c_ptr, c_int, c_long, c_double
        type(c_ptr), value :: handle
        integer(c_int), value :: n
        type(c_ptr), value :: x
@@ -8271,8 +8259,8 @@ module hipfort_rocblas
        type(c_ptr), value :: y
        integer(c_int), value :: incy
        integer(c_long), value :: stride_y
-       type(c_ptr), value :: c
-       type(c_ptr), value :: s
+       real(c_double) :: c
+       real(c_double) :: s
        integer(c_int), value :: batch_count
        integer(c_int) :: zdrot_strided_batched_raw
     end function rocblas_zdrot_strided_batched_raw
@@ -8289,7 +8277,7 @@ module hipfort_rocblas
                                                  c, s, batch_count) &
        result(srot_strided_batched_64_raw) &
        bind(C, name="rocblas_srot_strided_batched_64")
-       import :: c_ptr, c_long, c_int
+       import :: c_ptr, c_long, c_float, c_int
        type(c_ptr), value :: handle
        integer(c_long), value :: n
        type(c_ptr), value :: x
@@ -8298,8 +8286,8 @@ module hipfort_rocblas
        type(c_ptr), value :: y
        integer(c_long), value :: incy
        integer(c_long), value :: stride_y
-       type(c_ptr), value :: c
-       type(c_ptr), value :: s
+       real(c_float) :: c
+       real(c_float) :: s
        integer(c_long), value :: batch_count
        integer(c_int) :: srot_strided_batched_64_raw
     end function rocblas_srot_strided_batched_64_raw
@@ -8316,7 +8304,7 @@ module hipfort_rocblas
                                                  c, s, batch_count) &
        result(drot_strided_batched_64_raw) &
        bind(C, name="rocblas_drot_strided_batched_64")
-       import :: c_ptr, c_long, c_int
+       import :: c_ptr, c_long, c_double, c_int
        type(c_ptr), value :: handle
        integer(c_long), value :: n
        type(c_ptr), value :: x
@@ -8325,8 +8313,8 @@ module hipfort_rocblas
        type(c_ptr), value :: y
        integer(c_long), value :: incy
        integer(c_long), value :: stride_y
-       type(c_ptr), value :: c
-       type(c_ptr), value :: s
+       real(c_double) :: c
+       real(c_double) :: s
        integer(c_long), value :: batch_count
        integer(c_int) :: drot_strided_batched_64_raw
     end function rocblas_drot_strided_batched_64_raw
@@ -8343,7 +8331,7 @@ module hipfort_rocblas
                                                  c, s, batch_count) &
        result(crot_strided_batched_64_raw) &
        bind(C, name="rocblas_crot_strided_batched_64")
-       import :: c_ptr, c_long, c_int
+       import :: c_ptr, c_long, c_float, c_float_complex, c_int
        type(c_ptr), value :: handle
        integer(c_long), value :: n
        type(c_ptr), value :: x
@@ -8352,8 +8340,8 @@ module hipfort_rocblas
        type(c_ptr), value :: y
        integer(c_long), value :: incy
        integer(c_long), value :: stride_y
-       type(c_ptr), value :: c
-       type(c_ptr), value :: s
+       real(c_float) :: c
+       complex(c_float_complex) :: s
        integer(c_long), value :: batch_count
        integer(c_int) :: crot_strided_batched_64_raw
     end function rocblas_crot_strided_batched_64_raw
@@ -8370,7 +8358,7 @@ module hipfort_rocblas
                                                   c, s, batch_count) &
        result(csrot_strided_batched_64_raw) &
        bind(C, name="rocblas_csrot_strided_batched_64")
-       import :: c_ptr, c_long, c_int
+       import :: c_ptr, c_long, c_float, c_int
        type(c_ptr), value :: handle
        integer(c_long), value :: n
        type(c_ptr), value :: x
@@ -8379,8 +8367,8 @@ module hipfort_rocblas
        type(c_ptr), value :: y
        integer(c_long), value :: incy
        integer(c_long), value :: stride_y
-       type(c_ptr), value :: c
-       type(c_ptr), value :: s
+       real(c_float) :: c
+       real(c_float) :: s
        integer(c_long), value :: batch_count
        integer(c_int) :: csrot_strided_batched_64_raw
     end function rocblas_csrot_strided_batched_64_raw
@@ -8397,7 +8385,7 @@ module hipfort_rocblas
                                                  c, s, batch_count) &
        result(zrot_strided_batched_64_raw) &
        bind(C, name="rocblas_zrot_strided_batched_64")
-       import :: c_ptr, c_long, c_int
+       import :: c_ptr, c_long, c_double, c_double_complex, c_int
        type(c_ptr), value :: handle
        integer(c_long), value :: n
        type(c_ptr), value :: x
@@ -8406,8 +8394,8 @@ module hipfort_rocblas
        type(c_ptr), value :: y
        integer(c_long), value :: incy
        integer(c_long), value :: stride_y
-       type(c_ptr), value :: c
-       type(c_ptr), value :: s
+       real(c_double) :: c
+       complex(c_double_complex) :: s
        integer(c_long), value :: batch_count
        integer(c_int) :: zrot_strided_batched_64_raw
     end function rocblas_zrot_strided_batched_64_raw
@@ -8424,7 +8412,7 @@ module hipfort_rocblas
                                                   c, s, batch_count) &
        result(zdrot_strided_batched_64_raw) &
        bind(C, name="rocblas_zdrot_strided_batched_64")
-       import :: c_ptr, c_long, c_int
+       import :: c_ptr, c_long, c_double, c_int
        type(c_ptr), value :: handle
        integer(c_long), value :: n
        type(c_ptr), value :: x
@@ -8433,8 +8421,8 @@ module hipfort_rocblas
        type(c_ptr), value :: y
        integer(c_long), value :: incy
        integer(c_long), value :: stride_y
-       type(c_ptr), value :: c
-       type(c_ptr), value :: s
+       real(c_double) :: c
+       real(c_double) :: s
        integer(c_long), value :: batch_count
        integer(c_int) :: zdrot_strided_batched_64_raw
     end function rocblas_zdrot_strided_batched_64_raw
@@ -11320,24 +11308,23 @@ module hipfort_rocblas
                                          incy, batch_count) &
        result(hshgemv_batched_raw) &
        bind(C, name="rocblas_hshgemv_batched")
-       import :: c_ptr, c_int
+       import :: c_ptr, c_int, c_float
        type(c_ptr), value :: handle
        integer(c_int), value :: trans
        integer(c_int), value :: m
        integer(c_int), value :: n
-       type(c_ptr), value :: alpha
+       real(c_float) :: alpha
        type(c_ptr), value :: A
        integer(c_int), value :: lda
        type(c_ptr), value :: x
        integer(c_int), value :: incx
-       type(c_ptr), value :: beta
+       real(c_float) :: beta
        type(c_ptr), value :: y
        integer(c_int), value :: incy
        integer(c_int), value :: batch_count
        integer(c_int) :: hshgemv_batched_raw
     end function rocblas_hshgemv_batched_raw
 
-    module procedure rocblas_hshgemv_batched_native
     module procedure rocblas_hshgemv_batched_typed
   end interface rocblas_hshgemv_batched
 
@@ -11349,24 +11336,23 @@ module hipfort_rocblas
                                          incy, batch_count) &
        result(hssgemv_batched_raw) &
        bind(C, name="rocblas_hssgemv_batched")
-       import :: c_ptr, c_int
+       import :: c_ptr, c_int, c_float
        type(c_ptr), value :: handle
        integer(c_int), value :: trans
        integer(c_int), value :: m
        integer(c_int), value :: n
-       type(c_ptr), value :: alpha
+       real(c_float) :: alpha
        type(c_ptr), value :: A
        integer(c_int), value :: lda
        type(c_ptr), value :: x
        integer(c_int), value :: incx
-       type(c_ptr), value :: beta
+       real(c_float) :: beta
        type(c_ptr), value :: y
        integer(c_int), value :: incy
        integer(c_int), value :: batch_count
        integer(c_int) :: hssgemv_batched_raw
     end function rocblas_hssgemv_batched_raw
 
-    module procedure rocblas_hssgemv_batched_native
     module procedure rocblas_hssgemv_batched_typed
   end interface rocblas_hssgemv_batched
 
@@ -11378,24 +11364,23 @@ module hipfort_rocblas
                                          incy, batch_count) &
        result(tstgemv_batched_raw) &
        bind(C, name="rocblas_tstgemv_batched")
-       import :: c_ptr, c_int
+       import :: c_ptr, c_int, c_float
        type(c_ptr), value :: handle
        integer(c_int), value :: trans
        integer(c_int), value :: m
        integer(c_int), value :: n
-       type(c_ptr), value :: alpha
+       real(c_float) :: alpha
        type(c_ptr), value :: A
        integer(c_int), value :: lda
        type(c_ptr), value :: x
        integer(c_int), value :: incx
-       type(c_ptr), value :: beta
+       real(c_float) :: beta
        type(c_ptr), value :: y
        integer(c_int), value :: incy
        integer(c_int), value :: batch_count
        integer(c_int) :: tstgemv_batched_raw
     end function rocblas_tstgemv_batched_raw
 
-    module procedure rocblas_tstgemv_batched_native
     module procedure rocblas_tstgemv_batched_typed
   end interface rocblas_tstgemv_batched
 
@@ -11407,24 +11392,23 @@ module hipfort_rocblas
                                          incy, batch_count) &
        result(tssgemv_batched_raw) &
        bind(C, name="rocblas_tssgemv_batched")
-       import :: c_ptr, c_int
+       import :: c_ptr, c_int, c_float
        type(c_ptr), value :: handle
        integer(c_int), value :: trans
        integer(c_int), value :: m
        integer(c_int), value :: n
-       type(c_ptr), value :: alpha
+       real(c_float) :: alpha
        type(c_ptr), value :: A
        integer(c_int), value :: lda
        type(c_ptr), value :: x
        integer(c_int), value :: incx
-       type(c_ptr), value :: beta
+       real(c_float) :: beta
        type(c_ptr), value :: y
        integer(c_int), value :: incy
        integer(c_int), value :: batch_count
        integer(c_int) :: tssgemv_batched_raw
     end function rocblas_tssgemv_batched_raw
 
-    module procedure rocblas_tssgemv_batched_native
     module procedure rocblas_tssgemv_batched_typed
   end interface rocblas_tssgemv_batched
 
@@ -11548,24 +11532,23 @@ module hipfort_rocblas
                                             incy, batch_count) &
        result(hshgemv_batched_64_raw) &
        bind(C, name="rocblas_hshgemv_batched_64")
-       import :: c_ptr, c_int, c_long
+       import :: c_ptr, c_int, c_long, c_float
        type(c_ptr), value :: handle
        integer(c_int), value :: trans
        integer(c_long), value :: m
        integer(c_long), value :: n
-       type(c_ptr), value :: alpha
+       real(c_float) :: alpha
        type(c_ptr), value :: A
        integer(c_long), value :: lda
        type(c_ptr), value :: x
        integer(c_long), value :: incx
-       type(c_ptr), value :: beta
+       real(c_float) :: beta
        type(c_ptr), value :: y
        integer(c_long), value :: incy
        integer(c_long), value :: batch_count
        integer(c_int) :: hshgemv_batched_64_raw
     end function rocblas_hshgemv_batched_64_raw
 
-    module procedure rocblas_hshgemv_batched_64_native
     module procedure rocblas_hshgemv_batched_64_typed
   end interface rocblas_hshgemv_batched_64
 
@@ -11577,24 +11560,23 @@ module hipfort_rocblas
                                             incy, batch_count) &
        result(hssgemv_batched_64_raw) &
        bind(C, name="rocblas_hssgemv_batched_64")
-       import :: c_ptr, c_int, c_long
+       import :: c_ptr, c_int, c_long, c_float
        type(c_ptr), value :: handle
        integer(c_int), value :: trans
        integer(c_long), value :: m
        integer(c_long), value :: n
-       type(c_ptr), value :: alpha
+       real(c_float) :: alpha
        type(c_ptr), value :: A
        integer(c_long), value :: lda
        type(c_ptr), value :: x
        integer(c_long), value :: incx
-       type(c_ptr), value :: beta
+       real(c_float) :: beta
        type(c_ptr), value :: y
        integer(c_long), value :: incy
        integer(c_long), value :: batch_count
        integer(c_int) :: hssgemv_batched_64_raw
     end function rocblas_hssgemv_batched_64_raw
 
-    module procedure rocblas_hssgemv_batched_64_native
     module procedure rocblas_hssgemv_batched_64_typed
   end interface rocblas_hssgemv_batched_64
 
@@ -11606,24 +11588,23 @@ module hipfort_rocblas
                                             incy, batch_count) &
        result(tstgemv_batched_64_raw) &
        bind(C, name="rocblas_tstgemv_batched_64")
-       import :: c_ptr, c_int, c_long
+       import :: c_ptr, c_int, c_long, c_float
        type(c_ptr), value :: handle
        integer(c_int), value :: trans
        integer(c_long), value :: m
        integer(c_long), value :: n
-       type(c_ptr), value :: alpha
+       real(c_float) :: alpha
        type(c_ptr), value :: A
        integer(c_long), value :: lda
        type(c_ptr), value :: x
        integer(c_long), value :: incx
-       type(c_ptr), value :: beta
+       real(c_float) :: beta
        type(c_ptr), value :: y
        integer(c_long), value :: incy
        integer(c_long), value :: batch_count
        integer(c_int) :: tstgemv_batched_64_raw
     end function rocblas_tstgemv_batched_64_raw
 
-    module procedure rocblas_tstgemv_batched_64_native
     module procedure rocblas_tstgemv_batched_64_typed
   end interface rocblas_tstgemv_batched_64
 
@@ -11635,24 +11616,23 @@ module hipfort_rocblas
                                             incy, batch_count) &
        result(tssgemv_batched_64_raw) &
        bind(C, name="rocblas_tssgemv_batched_64")
-       import :: c_ptr, c_int, c_long
+       import :: c_ptr, c_int, c_long, c_float
        type(c_ptr), value :: handle
        integer(c_int), value :: trans
        integer(c_long), value :: m
        integer(c_long), value :: n
-       type(c_ptr), value :: alpha
+       real(c_float) :: alpha
        type(c_ptr), value :: A
        integer(c_long), value :: lda
        type(c_ptr), value :: x
        integer(c_long), value :: incx
-       type(c_ptr), value :: beta
+       real(c_float) :: beta
        type(c_ptr), value :: y
        integer(c_long), value :: incy
        integer(c_long), value :: batch_count
        integer(c_int) :: tssgemv_batched_64_raw
     end function rocblas_tssgemv_batched_64_raw
 
-    module procedure rocblas_tssgemv_batched_64_native
     module procedure rocblas_tssgemv_batched_64_typed
   end interface rocblas_tssgemv_batched_64
 
@@ -11856,19 +11836,19 @@ module hipfort_rocblas
                                                  batch_count) &
        result(hshgemv_strided_batched_raw) &
        bind(C, name="rocblas_hshgemv_strided_batched")
-       import :: c_ptr, c_int, rocblas_half, c_long
+       import :: c_ptr, c_int, c_float, rocblas_half, c_long
        type(c_ptr), value :: handle
        integer(c_int), value :: transA
        integer(c_int), value :: m
        integer(c_int), value :: n
-       type(c_ptr), value :: alpha
+       real(c_float) :: alpha
        type(rocblas_half) :: A
        integer(c_int), value :: lda
        integer(c_long), value :: strideA
        type(rocblas_half) :: x
        integer(c_int), value :: incx
        integer(c_long), value :: stridex
-       type(c_ptr), value :: beta
+       real(c_float) :: beta
        type(rocblas_half) :: y
        integer(c_int), value :: incy
        integer(c_long), value :: stridey
@@ -11876,7 +11856,6 @@ module hipfort_rocblas
        integer(c_int) :: hshgemv_strided_batched_raw
     end function rocblas_hshgemv_strided_batched_raw
 
-    module procedure rocblas_hshgemv_strided_batched_native
     module procedure rocblas_hshgemv_strided_batched_typed
   end interface rocblas_hshgemv_strided_batched
 
@@ -11889,19 +11868,19 @@ module hipfort_rocblas
                                                  batch_count) &
        result(hssgemv_strided_batched_raw) &
        bind(C, name="rocblas_hssgemv_strided_batched")
-       import :: c_ptr, c_int, rocblas_half, c_long
+       import :: c_ptr, c_int, c_float, rocblas_half, c_long
        type(c_ptr), value :: handle
        integer(c_int), value :: transA
        integer(c_int), value :: m
        integer(c_int), value :: n
-       type(c_ptr), value :: alpha
+       real(c_float) :: alpha
        type(rocblas_half) :: A
        integer(c_int), value :: lda
        integer(c_long), value :: strideA
        type(rocblas_half) :: x
        integer(c_int), value :: incx
        integer(c_long), value :: stridex
-       type(c_ptr), value :: beta
+       real(c_float) :: beta
        type(c_ptr), value :: y
        integer(c_int), value :: incy
        integer(c_long), value :: stridey
@@ -11922,19 +11901,19 @@ module hipfort_rocblas
                                                  batch_count) &
        result(tstgemv_strided_batched_raw) &
        bind(C, name="rocblas_tstgemv_strided_batched")
-       import :: c_ptr, c_int, rocblas_bfloat16, c_long
+       import :: c_ptr, c_int, c_float, rocblas_bfloat16, c_long
        type(c_ptr), value :: handle
        integer(c_int), value :: transA
        integer(c_int), value :: m
        integer(c_int), value :: n
-       type(c_ptr), value :: alpha
+       real(c_float) :: alpha
        type(rocblas_bfloat16) :: A
        integer(c_int), value :: lda
        integer(c_long), value :: strideA
        type(rocblas_bfloat16) :: x
        integer(c_int), value :: incx
        integer(c_long), value :: stridex
-       type(c_ptr), value :: beta
+       real(c_float) :: beta
        type(rocblas_bfloat16) :: y
        integer(c_int), value :: incy
        integer(c_long), value :: stridey
@@ -11942,7 +11921,6 @@ module hipfort_rocblas
        integer(c_int) :: tstgemv_strided_batched_raw
     end function rocblas_tstgemv_strided_batched_raw
 
-    module procedure rocblas_tstgemv_strided_batched_native
     module procedure rocblas_tstgemv_strided_batched_typed
   end interface rocblas_tstgemv_strided_batched
 
@@ -11955,19 +11933,19 @@ module hipfort_rocblas
                                                  batch_count) &
        result(tssgemv_strided_batched_raw) &
        bind(C, name="rocblas_tssgemv_strided_batched")
-       import :: c_ptr, c_int, rocblas_bfloat16, c_long
+       import :: c_ptr, c_int, c_float, rocblas_bfloat16, c_long
        type(c_ptr), value :: handle
        integer(c_int), value :: transA
        integer(c_int), value :: m
        integer(c_int), value :: n
-       type(c_ptr), value :: alpha
+       real(c_float) :: alpha
        type(rocblas_bfloat16) :: A
        integer(c_int), value :: lda
        integer(c_long), value :: strideA
        type(rocblas_bfloat16) :: x
        integer(c_int), value :: incx
        integer(c_long), value :: stridex
-       type(c_ptr), value :: beta
+       real(c_float) :: beta
        type(c_ptr), value :: y
        integer(c_int), value :: incy
        integer(c_long), value :: stridey
@@ -12120,19 +12098,19 @@ module hipfort_rocblas
                                                     batch_count) &
        result(hshgemv_strided_batched_64_raw) &
        bind(C, name="rocblas_hshgemv_strided_batched_64")
-       import :: c_ptr, c_int, c_long, rocblas_half
+       import :: c_ptr, c_int, c_long, c_float, rocblas_half
        type(c_ptr), value :: handle
        integer(c_int), value :: transA
        integer(c_long), value :: m
        integer(c_long), value :: n
-       type(c_ptr), value :: alpha
+       real(c_float) :: alpha
        type(rocblas_half) :: A
        integer(c_long), value :: lda
        integer(c_long), value :: strideA
        type(rocblas_half) :: x
        integer(c_long), value :: incx
        integer(c_long), value :: stridex
-       type(c_ptr), value :: beta
+       real(c_float) :: beta
        type(rocblas_half) :: y
        integer(c_long), value :: incy
        integer(c_long), value :: stridey
@@ -12140,7 +12118,6 @@ module hipfort_rocblas
        integer(c_int) :: hshgemv_strided_batched_64_raw
     end function rocblas_hshgemv_strided_batched_64_raw
 
-    module procedure rocblas_hshgemv_strided_batched_64_native
     module procedure rocblas_hshgemv_strided_batched_64_typed
   end interface rocblas_hshgemv_strided_batched_64
 
@@ -12153,19 +12130,19 @@ module hipfort_rocblas
                                                     batch_count) &
        result(hssgemv_strided_batched_64_raw) &
        bind(C, name="rocblas_hssgemv_strided_batched_64")
-       import :: c_ptr, c_int, c_long, rocblas_half
+       import :: c_ptr, c_int, c_long, c_float, rocblas_half
        type(c_ptr), value :: handle
        integer(c_int), value :: transA
        integer(c_long), value :: m
        integer(c_long), value :: n
-       type(c_ptr), value :: alpha
+       real(c_float) :: alpha
        type(rocblas_half) :: A
        integer(c_long), value :: lda
        integer(c_long), value :: strideA
        type(rocblas_half) :: x
        integer(c_long), value :: incx
        integer(c_long), value :: stridex
-       type(c_ptr), value :: beta
+       real(c_float) :: beta
        type(c_ptr), value :: y
        integer(c_long), value :: incy
        integer(c_long), value :: stridey
@@ -12186,19 +12163,19 @@ module hipfort_rocblas
                                                     batch_count) &
        result(tstgemv_strided_batched_64_raw) &
        bind(C, name="rocblas_tstgemv_strided_batched_64")
-       import :: c_ptr, c_int, c_long, rocblas_bfloat16
+       import :: c_ptr, c_int, c_long, c_float, rocblas_bfloat16
        type(c_ptr), value :: handle
        integer(c_int), value :: transA
        integer(c_long), value :: m
        integer(c_long), value :: n
-       type(c_ptr), value :: alpha
+       real(c_float) :: alpha
        type(rocblas_bfloat16) :: A
        integer(c_long), value :: lda
        integer(c_long), value :: strideA
        type(rocblas_bfloat16) :: x
        integer(c_long), value :: incx
        integer(c_long), value :: stridex
-       type(c_ptr), value :: beta
+       real(c_float) :: beta
        type(rocblas_bfloat16) :: y
        integer(c_long), value :: incy
        integer(c_long), value :: stridey
@@ -12206,7 +12183,6 @@ module hipfort_rocblas
        integer(c_int) :: tstgemv_strided_batched_64_raw
     end function rocblas_tstgemv_strided_batched_64_raw
 
-    module procedure rocblas_tstgemv_strided_batched_64_native
     module procedure rocblas_tstgemv_strided_batched_64_typed
   end interface rocblas_tstgemv_strided_batched_64
 
@@ -12219,19 +12195,19 @@ module hipfort_rocblas
                                                     batch_count) &
        result(tssgemv_strided_batched_64_raw) &
        bind(C, name="rocblas_tssgemv_strided_batched_64")
-       import :: c_ptr, c_int, c_long, rocblas_bfloat16
+       import :: c_ptr, c_int, c_long, c_float, rocblas_bfloat16
        type(c_ptr), value :: handle
        integer(c_int), value :: transA
        integer(c_long), value :: m
        integer(c_long), value :: n
-       type(c_ptr), value :: alpha
+       real(c_float) :: alpha
        type(rocblas_bfloat16) :: A
        integer(c_long), value :: lda
        integer(c_long), value :: strideA
        type(rocblas_bfloat16) :: x
        integer(c_long), value :: incx
        integer(c_long), value :: stridex
-       type(c_ptr), value :: beta
+       real(c_float) :: beta
        type(c_ptr), value :: y
        integer(c_long), value :: incy
        integer(c_long), value :: stridey
@@ -38527,19 +38503,19 @@ module hipfort_rocblas
                                 C, ldc) &
        result(sgemmt_raw) &
        bind(C, name="rocblas_sgemmt")
-       import :: c_ptr, c_int
+       import :: c_ptr, c_int, c_float
        type(c_ptr), value :: handle
        integer(c_int), value :: uplo
        integer(c_int), value :: transA
        integer(c_int), value :: transB
        integer(c_int), value :: n
        integer(c_int), value :: k
-       type(c_ptr), value :: alpha
+       real(c_float) :: alpha
        type(c_ptr), value :: A
        integer(c_int), value :: lda
        type(c_ptr), value :: B
        integer(c_int), value :: ldb
-       type(c_ptr), value :: beta
+       real(c_float) :: beta
        type(c_ptr), value :: C
        integer(c_int), value :: ldc
        integer(c_int) :: sgemmt_raw
@@ -38557,19 +38533,19 @@ module hipfort_rocblas
                                 C, ldc) &
        result(dgemmt_raw) &
        bind(C, name="rocblas_dgemmt")
-       import :: c_ptr, c_int
+       import :: c_ptr, c_int, c_double
        type(c_ptr), value :: handle
        integer(c_int), value :: uplo
        integer(c_int), value :: transA
        integer(c_int), value :: transB
        integer(c_int), value :: n
        integer(c_int), value :: k
-       type(c_ptr), value :: alpha
+       real(c_double) :: alpha
        type(c_ptr), value :: A
        integer(c_int), value :: lda
        type(c_ptr), value :: B
        integer(c_int), value :: ldb
-       type(c_ptr), value :: beta
+       real(c_double) :: beta
        type(c_ptr), value :: C
        integer(c_int), value :: ldc
        integer(c_int) :: dgemmt_raw
@@ -38587,19 +38563,19 @@ module hipfort_rocblas
                                 C, ldc) &
        result(cgemmt_raw) &
        bind(C, name="rocblas_cgemmt")
-       import :: c_ptr, c_int
+       import :: c_ptr, c_int, c_float_complex
        type(c_ptr), value :: handle
        integer(c_int), value :: uplo
        integer(c_int), value :: transA
        integer(c_int), value :: transB
        integer(c_int), value :: n
        integer(c_int), value :: k
-       type(c_ptr), value :: alpha
+       complex(c_float_complex) :: alpha
        type(c_ptr), value :: A
        integer(c_int), value :: lda
        type(c_ptr), value :: B
        integer(c_int), value :: ldb
-       type(c_ptr), value :: beta
+       complex(c_float_complex) :: beta
        type(c_ptr), value :: C
        integer(c_int), value :: ldc
        integer(c_int) :: cgemmt_raw
@@ -38617,19 +38593,19 @@ module hipfort_rocblas
                                 C, ldc) &
        result(zgemmt_raw) &
        bind(C, name="rocblas_zgemmt")
-       import :: c_ptr, c_int
+       import :: c_ptr, c_int, c_double_complex
        type(c_ptr), value :: handle
        integer(c_int), value :: uplo
        integer(c_int), value :: transA
        integer(c_int), value :: transB
        integer(c_int), value :: n
        integer(c_int), value :: k
-       type(c_ptr), value :: alpha
+       complex(c_double_complex) :: alpha
        type(c_ptr), value :: A
        integer(c_int), value :: lda
        type(c_ptr), value :: B
        integer(c_int), value :: ldb
-       type(c_ptr), value :: beta
+       complex(c_double_complex) :: beta
        type(c_ptr), value :: C
        integer(c_int), value :: ldc
        integer(c_int) :: zgemmt_raw
@@ -38647,19 +38623,19 @@ module hipfort_rocblas
                                    beta, C, ldc) &
        result(sgemmt_64_raw) &
        bind(C, name="rocblas_sgemmt_64")
-       import :: c_ptr, c_int, c_long
+       import :: c_ptr, c_int, c_long, c_float
        type(c_ptr), value :: handle
        integer(c_int), value :: uplo
        integer(c_int), value :: transA
        integer(c_int), value :: transB
        integer(c_long), value :: n
        integer(c_long), value :: k
-       type(c_ptr), value :: alpha
+       real(c_float) :: alpha
        type(c_ptr), value :: A
        integer(c_long), value :: lda
        type(c_ptr), value :: B
        integer(c_long), value :: ldb
-       type(c_ptr), value :: beta
+       real(c_float) :: beta
        type(c_ptr), value :: C
        integer(c_long), value :: ldc
        integer(c_int) :: sgemmt_64_raw
@@ -38677,19 +38653,19 @@ module hipfort_rocblas
                                    beta, C, ldc) &
        result(dgemmt_64_raw) &
        bind(C, name="rocblas_dgemmt_64")
-       import :: c_ptr, c_int, c_long
+       import :: c_ptr, c_int, c_long, c_double
        type(c_ptr), value :: handle
        integer(c_int), value :: uplo
        integer(c_int), value :: transA
        integer(c_int), value :: transB
        integer(c_long), value :: n
        integer(c_long), value :: k
-       type(c_ptr), value :: alpha
+       real(c_double) :: alpha
        type(c_ptr), value :: A
        integer(c_long), value :: lda
        type(c_ptr), value :: B
        integer(c_long), value :: ldb
-       type(c_ptr), value :: beta
+       real(c_double) :: beta
        type(c_ptr), value :: C
        integer(c_long), value :: ldc
        integer(c_int) :: dgemmt_64_raw
@@ -38707,19 +38683,19 @@ module hipfort_rocblas
                                    beta, C, ldc) &
        result(cgemmt_64_raw) &
        bind(C, name="rocblas_cgemmt_64")
-       import :: c_ptr, c_int, c_long
+       import :: c_ptr, c_int, c_long, c_float_complex
        type(c_ptr), value :: handle
        integer(c_int), value :: uplo
        integer(c_int), value :: transA
        integer(c_int), value :: transB
        integer(c_long), value :: n
        integer(c_long), value :: k
-       type(c_ptr), value :: alpha
+       complex(c_float_complex) :: alpha
        type(c_ptr), value :: A
        integer(c_long), value :: lda
        type(c_ptr), value :: B
        integer(c_long), value :: ldb
-       type(c_ptr), value :: beta
+       complex(c_float_complex) :: beta
        type(c_ptr), value :: C
        integer(c_long), value :: ldc
        integer(c_int) :: cgemmt_64_raw
@@ -38737,19 +38713,19 @@ module hipfort_rocblas
                                    beta, C, ldc) &
        result(zgemmt_64_raw) &
        bind(C, name="rocblas_zgemmt_64")
-       import :: c_ptr, c_int, c_long
+       import :: c_ptr, c_int, c_long, c_double_complex
        type(c_ptr), value :: handle
        integer(c_int), value :: uplo
        integer(c_int), value :: transA
        integer(c_int), value :: transB
        integer(c_long), value :: n
        integer(c_long), value :: k
-       type(c_ptr), value :: alpha
+       complex(c_double_complex) :: alpha
        type(c_ptr), value :: A
        integer(c_long), value :: lda
        type(c_ptr), value :: B
        integer(c_long), value :: ldb
-       type(c_ptr), value :: beta
+       complex(c_double_complex) :: beta
        type(c_ptr), value :: C
        integer(c_long), value :: ldc
        integer(c_int) :: zgemmt_64_raw
@@ -38841,26 +38817,25 @@ module hipfort_rocblas
                                         beta, C, ldc, batch_count) &
        result(sgemmt_batched_raw) &
        bind(C, name="rocblas_sgemmt_batched")
-       import :: c_ptr, c_int
+       import :: c_ptr, c_int, c_float
        type(c_ptr), value :: handle
        integer(c_int), value :: uplo
        integer(c_int), value :: transA
        integer(c_int), value :: transB
        integer(c_int), value :: n
        integer(c_int), value :: k
-       type(c_ptr), value :: alpha
+       real(c_float) :: alpha
        type(c_ptr), value :: A
        integer(c_int), value :: lda
        type(c_ptr), value :: B
        integer(c_int), value :: ldb
-       type(c_ptr), value :: beta
+       real(c_float) :: beta
        type(c_ptr), value :: C
        integer(c_int), value :: ldc
        integer(c_int), value :: batch_count
        integer(c_int) :: sgemmt_batched_raw
     end function rocblas_sgemmt_batched_raw
 
-    module procedure rocblas_sgemmt_batched_native
     module procedure rocblas_sgemmt_batched_typed
   end interface rocblas_sgemmt_batched
 
@@ -38872,26 +38847,25 @@ module hipfort_rocblas
                                         beta, C, ldc, batch_count) &
        result(dgemmt_batched_raw) &
        bind(C, name="rocblas_dgemmt_batched")
-       import :: c_ptr, c_int
+       import :: c_ptr, c_int, c_double
        type(c_ptr), value :: handle
        integer(c_int), value :: uplo
        integer(c_int), value :: transA
        integer(c_int), value :: transB
        integer(c_int), value :: n
        integer(c_int), value :: k
-       type(c_ptr), value :: alpha
+       real(c_double) :: alpha
        type(c_ptr), value :: A
        integer(c_int), value :: lda
        type(c_ptr), value :: B
        integer(c_int), value :: ldb
-       type(c_ptr), value :: beta
+       real(c_double) :: beta
        type(c_ptr), value :: C
        integer(c_int), value :: ldc
        integer(c_int), value :: batch_count
        integer(c_int) :: dgemmt_batched_raw
     end function rocblas_dgemmt_batched_raw
 
-    module procedure rocblas_dgemmt_batched_native
     module procedure rocblas_dgemmt_batched_typed
   end interface rocblas_dgemmt_batched
 
@@ -38903,26 +38877,25 @@ module hipfort_rocblas
                                         beta, C, ldc, batch_count) &
        result(cgemmt_batched_raw) &
        bind(C, name="rocblas_cgemmt_batched")
-       import :: c_ptr, c_int
+       import :: c_ptr, c_int, c_float_complex
        type(c_ptr), value :: handle
        integer(c_int), value :: uplo
        integer(c_int), value :: transA
        integer(c_int), value :: transB
        integer(c_int), value :: n
        integer(c_int), value :: k
-       type(c_ptr), value :: alpha
+       complex(c_float_complex) :: alpha
        type(c_ptr), value :: A
        integer(c_int), value :: lda
        type(c_ptr), value :: B
        integer(c_int), value :: ldb
-       type(c_ptr), value :: beta
+       complex(c_float_complex) :: beta
        type(c_ptr), value :: C
        integer(c_int), value :: ldc
        integer(c_int), value :: batch_count
        integer(c_int) :: cgemmt_batched_raw
     end function rocblas_cgemmt_batched_raw
 
-    module procedure rocblas_cgemmt_batched_native
     module procedure rocblas_cgemmt_batched_typed
   end interface rocblas_cgemmt_batched
 
@@ -38934,26 +38907,25 @@ module hipfort_rocblas
                                         beta, C, ldc, batch_count) &
        result(zgemmt_batched_raw) &
        bind(C, name="rocblas_zgemmt_batched")
-       import :: c_ptr, c_int
+       import :: c_ptr, c_int, c_double_complex
        type(c_ptr), value :: handle
        integer(c_int), value :: uplo
        integer(c_int), value :: transA
        integer(c_int), value :: transB
        integer(c_int), value :: n
        integer(c_int), value :: k
-       type(c_ptr), value :: alpha
+       complex(c_double_complex) :: alpha
        type(c_ptr), value :: A
        integer(c_int), value :: lda
        type(c_ptr), value :: B
        integer(c_int), value :: ldb
-       type(c_ptr), value :: beta
+       complex(c_double_complex) :: beta
        type(c_ptr), value :: C
        integer(c_int), value :: ldc
        integer(c_int), value :: batch_count
        integer(c_int) :: zgemmt_batched_raw
     end function rocblas_zgemmt_batched_raw
 
-    module procedure rocblas_zgemmt_batched_native
     module procedure rocblas_zgemmt_batched_typed
   end interface rocblas_zgemmt_batched
 
@@ -38965,26 +38937,25 @@ module hipfort_rocblas
                                            ldb, beta, C, ldc, batch_count) &
        result(sgemmt_batched_64_raw) &
        bind(C, name="rocblas_sgemmt_batched_64")
-       import :: c_ptr, c_int, c_long
+       import :: c_ptr, c_int, c_long, c_float
        type(c_ptr), value :: handle
        integer(c_int), value :: uplo
        integer(c_int), value :: transA
        integer(c_int), value :: transB
        integer(c_long), value :: n
        integer(c_long), value :: k
-       type(c_ptr), value :: alpha
+       real(c_float) :: alpha
        type(c_ptr), value :: A
        integer(c_long), value :: lda
        type(c_ptr), value :: B
        integer(c_long), value :: ldb
-       type(c_ptr), value :: beta
+       real(c_float) :: beta
        type(c_ptr), value :: C
        integer(c_long), value :: ldc
        integer(c_long), value :: batch_count
        integer(c_int) :: sgemmt_batched_64_raw
     end function rocblas_sgemmt_batched_64_raw
 
-    module procedure rocblas_sgemmt_batched_64_native
     module procedure rocblas_sgemmt_batched_64_typed
   end interface rocblas_sgemmt_batched_64
 
@@ -38996,26 +38967,25 @@ module hipfort_rocblas
                                            ldb, beta, C, ldc, batch_count) &
        result(dgemmt_batched_64_raw) &
        bind(C, name="rocblas_dgemmt_batched_64")
-       import :: c_ptr, c_int, c_long
+       import :: c_ptr, c_int, c_long, c_double
        type(c_ptr), value :: handle
        integer(c_int), value :: uplo
        integer(c_int), value :: transA
        integer(c_int), value :: transB
        integer(c_long), value :: n
        integer(c_long), value :: k
-       type(c_ptr), value :: alpha
+       real(c_double) :: alpha
        type(c_ptr), value :: A
        integer(c_long), value :: lda
        type(c_ptr), value :: B
        integer(c_long), value :: ldb
-       type(c_ptr), value :: beta
+       real(c_double) :: beta
        type(c_ptr), value :: C
        integer(c_long), value :: ldc
        integer(c_long), value :: batch_count
        integer(c_int) :: dgemmt_batched_64_raw
     end function rocblas_dgemmt_batched_64_raw
 
-    module procedure rocblas_dgemmt_batched_64_native
     module procedure rocblas_dgemmt_batched_64_typed
   end interface rocblas_dgemmt_batched_64
 
@@ -39027,26 +38997,25 @@ module hipfort_rocblas
                                            ldb, beta, C, ldc, batch_count) &
        result(cgemmt_batched_64_raw) &
        bind(C, name="rocblas_cgemmt_batched_64")
-       import :: c_ptr, c_int, c_long
+       import :: c_ptr, c_int, c_long, c_float_complex
        type(c_ptr), value :: handle
        integer(c_int), value :: uplo
        integer(c_int), value :: transA
        integer(c_int), value :: transB
        integer(c_long), value :: n
        integer(c_long), value :: k
-       type(c_ptr), value :: alpha
+       complex(c_float_complex) :: alpha
        type(c_ptr), value :: A
        integer(c_long), value :: lda
        type(c_ptr), value :: B
        integer(c_long), value :: ldb
-       type(c_ptr), value :: beta
+       complex(c_float_complex) :: beta
        type(c_ptr), value :: C
        integer(c_long), value :: ldc
        integer(c_long), value :: batch_count
        integer(c_int) :: cgemmt_batched_64_raw
     end function rocblas_cgemmt_batched_64_raw
 
-    module procedure rocblas_cgemmt_batched_64_native
     module procedure rocblas_cgemmt_batched_64_typed
   end interface rocblas_cgemmt_batched_64
 
@@ -39058,26 +39027,25 @@ module hipfort_rocblas
                                            ldb, beta, C, ldc, batch_count) &
        result(zgemmt_batched_64_raw) &
        bind(C, name="rocblas_zgemmt_batched_64")
-       import :: c_ptr, c_int, c_long
+       import :: c_ptr, c_int, c_long, c_double_complex
        type(c_ptr), value :: handle
        integer(c_int), value :: uplo
        integer(c_int), value :: transA
        integer(c_int), value :: transB
        integer(c_long), value :: n
        integer(c_long), value :: k
-       type(c_ptr), value :: alpha
+       complex(c_double_complex) :: alpha
        type(c_ptr), value :: A
        integer(c_long), value :: lda
        type(c_ptr), value :: B
        integer(c_long), value :: ldb
-       type(c_ptr), value :: beta
+       complex(c_double_complex) :: beta
        type(c_ptr), value :: C
        integer(c_long), value :: ldc
        integer(c_long), value :: batch_count
        integer(c_int) :: zgemmt_batched_64_raw
     end function rocblas_zgemmt_batched_64_raw
 
-    module procedure rocblas_zgemmt_batched_64_native
     module procedure rocblas_zgemmt_batched_64_typed
   end interface rocblas_zgemmt_batched_64
 
@@ -39173,21 +39141,21 @@ module hipfort_rocblas
                                                 stride_c, batch_count) &
        result(sgemmt_strided_batched_raw) &
        bind(C, name="rocblas_sgemmt_strided_batched")
-       import :: c_ptr, c_int, c_long
+       import :: c_ptr, c_int, c_float, c_long
        type(c_ptr), value :: handle
        integer(c_int), value :: uplo
        integer(c_int), value :: transA
        integer(c_int), value :: transB
        integer(c_int), value :: n
        integer(c_int), value :: k
-       type(c_ptr), value :: alpha
+       real(c_float) :: alpha
        type(c_ptr), value :: A
        integer(c_int), value :: lda
        integer(c_long), value :: stride_a
        type(c_ptr), value :: B
        integer(c_int), value :: ldb
        integer(c_long), value :: stride_b
-       type(c_ptr), value :: beta
+       real(c_float) :: beta
        type(c_ptr), value :: C
        integer(c_int), value :: ldc
        integer(c_long), value :: stride_c
@@ -39208,21 +39176,21 @@ module hipfort_rocblas
                                                 stride_c, batch_count) &
        result(dgemmt_strided_batched_raw) &
        bind(C, name="rocblas_dgemmt_strided_batched")
-       import :: c_ptr, c_int, c_long
+       import :: c_ptr, c_int, c_double, c_long
        type(c_ptr), value :: handle
        integer(c_int), value :: uplo
        integer(c_int), value :: transA
        integer(c_int), value :: transB
        integer(c_int), value :: n
        integer(c_int), value :: k
-       type(c_ptr), value :: alpha
+       real(c_double) :: alpha
        type(c_ptr), value :: A
        integer(c_int), value :: lda
        integer(c_long), value :: stride_a
        type(c_ptr), value :: B
        integer(c_int), value :: ldb
        integer(c_long), value :: stride_b
-       type(c_ptr), value :: beta
+       real(c_double) :: beta
        type(c_ptr), value :: C
        integer(c_int), value :: ldc
        integer(c_long), value :: stride_c
@@ -39243,21 +39211,21 @@ module hipfort_rocblas
                                                 stride_c, batch_count) &
        result(cgemmt_strided_batched_raw) &
        bind(C, name="rocblas_cgemmt_strided_batched")
-       import :: c_ptr, c_int, c_long
+       import :: c_ptr, c_int, c_float_complex, c_long
        type(c_ptr), value :: handle
        integer(c_int), value :: uplo
        integer(c_int), value :: transA
        integer(c_int), value :: transB
        integer(c_int), value :: n
        integer(c_int), value :: k
-       type(c_ptr), value :: alpha
+       complex(c_float_complex) :: alpha
        type(c_ptr), value :: A
        integer(c_int), value :: lda
        integer(c_long), value :: stride_a
        type(c_ptr), value :: B
        integer(c_int), value :: ldb
        integer(c_long), value :: stride_b
-       type(c_ptr), value :: beta
+       complex(c_float_complex) :: beta
        type(c_ptr), value :: C
        integer(c_int), value :: ldc
        integer(c_long), value :: stride_c
@@ -39278,21 +39246,21 @@ module hipfort_rocblas
                                                 stride_c, batch_count) &
        result(zgemmt_strided_batched_raw) &
        bind(C, name="rocblas_zgemmt_strided_batched")
-       import :: c_ptr, c_int, c_long
+       import :: c_ptr, c_int, c_double_complex, c_long
        type(c_ptr), value :: handle
        integer(c_int), value :: uplo
        integer(c_int), value :: transA
        integer(c_int), value :: transB
        integer(c_int), value :: n
        integer(c_int), value :: k
-       type(c_ptr), value :: alpha
+       complex(c_double_complex) :: alpha
        type(c_ptr), value :: A
        integer(c_int), value :: lda
        integer(c_long), value :: stride_a
        type(c_ptr), value :: B
        integer(c_int), value :: ldb
        integer(c_long), value :: stride_b
-       type(c_ptr), value :: beta
+       complex(c_double_complex) :: beta
        type(c_ptr), value :: C
        integer(c_int), value :: ldc
        integer(c_long), value :: stride_c
@@ -39313,21 +39281,21 @@ module hipfort_rocblas
                                                    stride_c, batch_count) &
        result(sgemmt_strided_batched_64_raw) &
        bind(C, name="rocblas_sgemmt_strided_batched_64")
-       import :: c_ptr, c_int, c_long
+       import :: c_ptr, c_int, c_long, c_float
        type(c_ptr), value :: handle
        integer(c_int), value :: uplo
        integer(c_int), value :: transA
        integer(c_int), value :: transB
        integer(c_long), value :: n
        integer(c_long), value :: k
-       type(c_ptr), value :: alpha
+       real(c_float) :: alpha
        type(c_ptr), value :: A
        integer(c_long), value :: lda
        integer(c_long), value :: stride_a
        type(c_ptr), value :: B
        integer(c_long), value :: ldb
        integer(c_long), value :: stride_b
-       type(c_ptr), value :: beta
+       real(c_float) :: beta
        type(c_ptr), value :: C
        integer(c_long), value :: ldc
        integer(c_long), value :: stride_c
@@ -39348,21 +39316,21 @@ module hipfort_rocblas
                                                    stride_c, batch_count) &
        result(dgemmt_strided_batched_64_raw) &
        bind(C, name="rocblas_dgemmt_strided_batched_64")
-       import :: c_ptr, c_int, c_long
+       import :: c_ptr, c_int, c_long, c_double
        type(c_ptr), value :: handle
        integer(c_int), value :: uplo
        integer(c_int), value :: transA
        integer(c_int), value :: transB
        integer(c_long), value :: n
        integer(c_long), value :: k
-       type(c_ptr), value :: alpha
+       real(c_double) :: alpha
        type(c_ptr), value :: A
        integer(c_long), value :: lda
        integer(c_long), value :: stride_a
        type(c_ptr), value :: B
        integer(c_long), value :: ldb
        integer(c_long), value :: stride_b
-       type(c_ptr), value :: beta
+       real(c_double) :: beta
        type(c_ptr), value :: C
        integer(c_long), value :: ldc
        integer(c_long), value :: stride_c
@@ -39383,21 +39351,21 @@ module hipfort_rocblas
                                                    stride_c, batch_count) &
        result(cgemmt_strided_batched_64_raw) &
        bind(C, name="rocblas_cgemmt_strided_batched_64")
-       import :: c_ptr, c_int, c_long
+       import :: c_ptr, c_int, c_long, c_float_complex
        type(c_ptr), value :: handle
        integer(c_int), value :: uplo
        integer(c_int), value :: transA
        integer(c_int), value :: transB
        integer(c_long), value :: n
        integer(c_long), value :: k
-       type(c_ptr), value :: alpha
+       complex(c_float_complex) :: alpha
        type(c_ptr), value :: A
        integer(c_long), value :: lda
        integer(c_long), value :: stride_a
        type(c_ptr), value :: B
        integer(c_long), value :: ldb
        integer(c_long), value :: stride_b
-       type(c_ptr), value :: beta
+       complex(c_float_complex) :: beta
        type(c_ptr), value :: C
        integer(c_long), value :: ldc
        integer(c_long), value :: stride_c
@@ -39418,21 +39386,21 @@ module hipfort_rocblas
                                                    stride_c, batch_count) &
        result(zgemmt_strided_batched_64_raw) &
        bind(C, name="rocblas_zgemmt_strided_batched_64")
-       import :: c_ptr, c_int, c_long
+       import :: c_ptr, c_int, c_long, c_double_complex
        type(c_ptr), value :: handle
        integer(c_int), value :: uplo
        integer(c_int), value :: transA
        integer(c_int), value :: transB
        integer(c_long), value :: n
        integer(c_long), value :: k
-       type(c_ptr), value :: alpha
+       complex(c_double_complex) :: alpha
        type(c_ptr), value :: A
        integer(c_long), value :: lda
        integer(c_long), value :: stride_a
        type(c_ptr), value :: B
        integer(c_long), value :: ldb
        integer(c_long), value :: stride_b
-       type(c_ptr), value :: beta
+       complex(c_double_complex) :: beta
        type(c_ptr), value :: C
        integer(c_long), value :: ldc
        integer(c_long), value :: stride_c
@@ -42684,13 +42652,12 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_int), value :: n
-      real(c_float), target :: alpha(..)
+      real(c_float) :: alpha
       real(c_float), target :: x(..)
       integer(c_int), value :: incx
       integer(c_int) :: sscal
-      if (.not. is_contiguous(alpha)) error stop "alpha: array must be contiguous"
       if (.not. is_contiguous(x)) error stop "x: array must be contiguous"
-      sscal = rocblas_sscal_raw(handle, n, c_loc(alpha), c_loc(x), incx)
+      sscal = rocblas_sscal_raw(handle, n, alpha, c_loc(x), incx)
     end function rocblas_sscal_native
 
     function rocblas_sscal_typed(handle, n, alpha, x, incx) result(sscal)
@@ -42699,7 +42666,7 @@ contains
       implicit none
       type(rocblas_handle_t), value :: handle
       integer(c_int), value :: n
-      type(c_ptr), value :: alpha
+      real(c_float) :: alpha
       type(c_ptr), value :: x
       integer(c_int), value :: incx
       integer(c_int) :: sscal
@@ -42711,13 +42678,12 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_int), value :: n
-      real(c_double), target :: alpha(..)
+      real(c_double) :: alpha
       real(c_double), target :: x(..)
       integer(c_int), value :: incx
       integer(c_int) :: dscal
-      if (.not. is_contiguous(alpha)) error stop "alpha: array must be contiguous"
       if (.not. is_contiguous(x)) error stop "x: array must be contiguous"
-      dscal = rocblas_dscal_raw(handle, n, c_loc(alpha), c_loc(x), incx)
+      dscal = rocblas_dscal_raw(handle, n, alpha, c_loc(x), incx)
     end function rocblas_dscal_native
 
     function rocblas_dscal_typed(handle, n, alpha, x, incx) result(dscal)
@@ -42726,7 +42692,7 @@ contains
       implicit none
       type(rocblas_handle_t), value :: handle
       integer(c_int), value :: n
-      type(c_ptr), value :: alpha
+      real(c_double) :: alpha
       type(c_ptr), value :: x
       integer(c_int), value :: incx
       integer(c_int) :: dscal
@@ -42842,13 +42808,12 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_long), value :: n
-      real(c_float), target :: alpha(..)
+      real(c_float) :: alpha
       real(c_float), target :: x(..)
       integer(c_long), value :: incx
       integer(c_int) :: sscal_64
-      if (.not. is_contiguous(alpha)) error stop "alpha: array must be contiguous"
       if (.not. is_contiguous(x)) error stop "x: array must be contiguous"
-      sscal_64 = rocblas_sscal_64_raw(handle, n, c_loc(alpha), c_loc(x), incx)
+      sscal_64 = rocblas_sscal_64_raw(handle, n, alpha, c_loc(x), incx)
     end function rocblas_sscal_64_native
 
     function rocblas_sscal_64_typed(handle, n, alpha, x, incx) result(sscal_64)
@@ -42857,7 +42822,7 @@ contains
       implicit none
       type(rocblas_handle_t), value :: handle
       integer(c_long), value :: n
-      type(c_ptr), value :: alpha
+      real(c_float) :: alpha
       type(c_ptr), value :: x
       integer(c_long), value :: incx
       integer(c_int) :: sscal_64
@@ -42869,13 +42834,12 @@ contains
       implicit none
       type(c_ptr), value :: handle
       integer(c_long), value :: n
-      real(c_double), target :: alpha(..)
+      real(c_double) :: alpha
       real(c_double), target :: x(..)
       integer(c_long), value :: incx
       integer(c_int) :: dscal_64
-      if (.not. is_contiguous(alpha)) error stop "alpha: array must be contiguous"
       if (.not. is_contiguous(x)) error stop "x: array must be contiguous"
-      dscal_64 = rocblas_dscal_64_raw(handle, n, c_loc(alpha), c_loc(x), incx)
+      dscal_64 = rocblas_dscal_64_raw(handle, n, alpha, c_loc(x), incx)
     end function rocblas_dscal_64_native
 
     function rocblas_dscal_64_typed(handle, n, alpha, x, incx) result(dscal_64)
@@ -42884,7 +42848,7 @@ contains
       implicit none
       type(rocblas_handle_t), value :: handle
       integer(c_long), value :: n
-      type(c_ptr), value :: alpha
+      real(c_double) :: alpha
       type(c_ptr), value :: x
       integer(c_long), value :: incx
       integer(c_int) :: dscal_64
@@ -50106,14 +50070,12 @@ contains
       integer(c_int), value :: incx
       real(c_float), target :: y(..)
       integer(c_int), value :: incy
-      real(c_float), target :: c(..)
-      real(c_float), target :: s(..)
+      real(c_float) :: c
+      real(c_float) :: s
       integer(c_int) :: srot
       if (.not. is_contiguous(x)) error stop "x: array must be contiguous"
       if (.not. is_contiguous(y)) error stop "y: array must be contiguous"
-      if (.not. is_contiguous(c)) error stop "c: array must be contiguous"
-      if (.not. is_contiguous(s)) error stop "s: array must be contiguous"
-      srot = rocblas_srot_raw(handle, n, c_loc(x), incx, c_loc(y), incy, c_loc(c), c_loc(s))
+      srot = rocblas_srot_raw(handle, n, c_loc(x), incx, c_loc(y), incy, c, s)
     end function rocblas_srot_native
 
     function rocblas_srot_typed(handle, n, x, incx, y, incy, c, s) result(srot)
@@ -50126,8 +50088,8 @@ contains
       integer(c_int), value :: incx
       type(c_ptr), value :: y
       integer(c_int), value :: incy
-      type(c_ptr), value :: c
-      type(c_ptr), value :: s
+      real(c_float) :: c
+      real(c_float) :: s
       integer(c_int) :: srot
       srot = rocblas_srot_raw(handle%ptr, n, x, incx, y, incy, c, s)
     end function rocblas_srot_typed
@@ -50141,14 +50103,12 @@ contains
       integer(c_int), value :: incx
       real(c_double), target :: y(..)
       integer(c_int), value :: incy
-      real(c_double), target :: c(..)
-      real(c_double), target :: s(..)
+      real(c_double) :: c
+      real(c_double) :: s
       integer(c_int) :: drot
       if (.not. is_contiguous(x)) error stop "x: array must be contiguous"
       if (.not. is_contiguous(y)) error stop "y: array must be contiguous"
-      if (.not. is_contiguous(c)) error stop "c: array must be contiguous"
-      if (.not. is_contiguous(s)) error stop "s: array must be contiguous"
-      drot = rocblas_drot_raw(handle, n, c_loc(x), incx, c_loc(y), incy, c_loc(c), c_loc(s))
+      drot = rocblas_drot_raw(handle, n, c_loc(x), incx, c_loc(y), incy, c, s)
     end function rocblas_drot_native
 
     function rocblas_drot_typed(handle, n, x, incx, y, incy, c, s) result(drot)
@@ -50161,8 +50121,8 @@ contains
       integer(c_int), value :: incx
       type(c_ptr), value :: y
       integer(c_int), value :: incy
-      type(c_ptr), value :: c
-      type(c_ptr), value :: s
+      real(c_double) :: c
+      real(c_double) :: s
       integer(c_int) :: drot
       drot = rocblas_drot_raw(handle%ptr, n, x, incx, y, incy, c, s)
     end function rocblas_drot_typed
@@ -50176,14 +50136,12 @@ contains
       integer(c_int), value :: incx
       complex(c_float_complex), target :: y(..)
       integer(c_int), value :: incy
-      real(c_float), target :: c(..)
-      complex(c_float_complex), target :: s(..)
+      real(c_float) :: c
+      complex(c_float_complex) :: s
       integer(c_int) :: crot
       if (.not. is_contiguous(x)) error stop "x: array must be contiguous"
       if (.not. is_contiguous(y)) error stop "y: array must be contiguous"
-      if (.not. is_contiguous(c)) error stop "c: array must be contiguous"
-      if (.not. is_contiguous(s)) error stop "s: array must be contiguous"
-      crot = rocblas_crot_raw(handle, n, c_loc(x), incx, c_loc(y), incy, c_loc(c), c_loc(s))
+      crot = rocblas_crot_raw(handle, n, c_loc(x), incx, c_loc(y), incy, c, s)
     end function rocblas_crot_native
 
     function rocblas_crot_typed(handle, n, x, incx, y, incy, c, s) result(crot)
@@ -50196,8 +50154,8 @@ contains
       integer(c_int), value :: incx
       type(c_ptr), value :: y
       integer(c_int), value :: incy
-      type(c_ptr), value :: c
-      type(c_ptr), value :: s
+      real(c_float) :: c
+      complex(c_float_complex) :: s
       integer(c_int) :: crot
       crot = rocblas_crot_raw(handle%ptr, n, x, incx, y, incy, c, s)
     end function rocblas_crot_typed
@@ -50211,14 +50169,12 @@ contains
       integer(c_int), value :: incx
       complex(c_float_complex), target :: y(..)
       integer(c_int), value :: incy
-      real(c_float), target :: c(..)
-      real(c_float), target :: s(..)
+      real(c_float) :: c
+      real(c_float) :: s
       integer(c_int) :: csrot
       if (.not. is_contiguous(x)) error stop "x: array must be contiguous"
       if (.not. is_contiguous(y)) error stop "y: array must be contiguous"
-      if (.not. is_contiguous(c)) error stop "c: array must be contiguous"
-      if (.not. is_contiguous(s)) error stop "s: array must be contiguous"
-      csrot = rocblas_csrot_raw(handle, n, c_loc(x), incx, c_loc(y), incy, c_loc(c), c_loc(s))
+      csrot = rocblas_csrot_raw(handle, n, c_loc(x), incx, c_loc(y), incy, c, s)
     end function rocblas_csrot_native
 
     function rocblas_csrot_typed(handle, n, x, incx, y, incy, c, s) result(csrot)
@@ -50231,8 +50187,8 @@ contains
       integer(c_int), value :: incx
       type(c_ptr), value :: y
       integer(c_int), value :: incy
-      type(c_ptr), value :: c
-      type(c_ptr), value :: s
+      real(c_float) :: c
+      real(c_float) :: s
       integer(c_int) :: csrot
       csrot = rocblas_csrot_raw(handle%ptr, n, x, incx, y, incy, c, s)
     end function rocblas_csrot_typed
@@ -50246,14 +50202,12 @@ contains
       integer(c_int), value :: incx
       complex(c_double_complex), target :: y(..)
       integer(c_int), value :: incy
-      real(c_double), target :: c(..)
-      complex(c_double_complex), target :: s(..)
+      real(c_double) :: c
+      complex(c_double_complex) :: s
       integer(c_int) :: zrot
       if (.not. is_contiguous(x)) error stop "x: array must be contiguous"
       if (.not. is_contiguous(y)) error stop "y: array must be contiguous"
-      if (.not. is_contiguous(c)) error stop "c: array must be contiguous"
-      if (.not. is_contiguous(s)) error stop "s: array must be contiguous"
-      zrot = rocblas_zrot_raw(handle, n, c_loc(x), incx, c_loc(y), incy, c_loc(c), c_loc(s))
+      zrot = rocblas_zrot_raw(handle, n, c_loc(x), incx, c_loc(y), incy, c, s)
     end function rocblas_zrot_native
 
     function rocblas_zrot_typed(handle, n, x, incx, y, incy, c, s) result(zrot)
@@ -50266,8 +50220,8 @@ contains
       integer(c_int), value :: incx
       type(c_ptr), value :: y
       integer(c_int), value :: incy
-      type(c_ptr), value :: c
-      type(c_ptr), value :: s
+      real(c_double) :: c
+      complex(c_double_complex) :: s
       integer(c_int) :: zrot
       zrot = rocblas_zrot_raw(handle%ptr, n, x, incx, y, incy, c, s)
     end function rocblas_zrot_typed
@@ -50281,14 +50235,12 @@ contains
       integer(c_int), value :: incx
       complex(c_double_complex), target :: y(..)
       integer(c_int), value :: incy
-      real(c_double), target :: c(..)
-      real(c_double), target :: s(..)
+      real(c_double) :: c
+      real(c_double) :: s
       integer(c_int) :: zdrot
       if (.not. is_contiguous(x)) error stop "x: array must be contiguous"
       if (.not. is_contiguous(y)) error stop "y: array must be contiguous"
-      if (.not. is_contiguous(c)) error stop "c: array must be contiguous"
-      if (.not. is_contiguous(s)) error stop "s: array must be contiguous"
-      zdrot = rocblas_zdrot_raw(handle, n, c_loc(x), incx, c_loc(y), incy, c_loc(c), c_loc(s))
+      zdrot = rocblas_zdrot_raw(handle, n, c_loc(x), incx, c_loc(y), incy, c, s)
     end function rocblas_zdrot_native
 
     function rocblas_zdrot_typed(handle, n, x, incx, y, incy, c, s) result(zdrot)
@@ -50301,8 +50253,8 @@ contains
       integer(c_int), value :: incx
       type(c_ptr), value :: y
       integer(c_int), value :: incy
-      type(c_ptr), value :: c
-      type(c_ptr), value :: s
+      real(c_double) :: c
+      real(c_double) :: s
       integer(c_int) :: zdrot
       zdrot = rocblas_zdrot_raw(handle%ptr, n, x, incx, y, incy, c, s)
     end function rocblas_zdrot_typed
@@ -50316,14 +50268,12 @@ contains
       integer(c_long), value :: incx
       real(c_float), target :: y(..)
       integer(c_long), value :: incy
-      real(c_float), target :: c(..)
-      real(c_float), target :: s(..)
+      real(c_float) :: c
+      real(c_float) :: s
       integer(c_int) :: srot_64
       if (.not. is_contiguous(x)) error stop "x: array must be contiguous"
       if (.not. is_contiguous(y)) error stop "y: array must be contiguous"
-      if (.not. is_contiguous(c)) error stop "c: array must be contiguous"
-      if (.not. is_contiguous(s)) error stop "s: array must be contiguous"
-      srot_64 = rocblas_srot_64_raw(handle, n, c_loc(x), incx, c_loc(y), incy, c_loc(c), c_loc(s))
+      srot_64 = rocblas_srot_64_raw(handle, n, c_loc(x), incx, c_loc(y), incy, c, s)
     end function rocblas_srot_64_native
 
     function rocblas_srot_64_typed(handle, n, x, incx, y, incy, c, s) result(srot_64)
@@ -50336,8 +50286,8 @@ contains
       integer(c_long), value :: incx
       type(c_ptr), value :: y
       integer(c_long), value :: incy
-      type(c_ptr), value :: c
-      type(c_ptr), value :: s
+      real(c_float) :: c
+      real(c_float) :: s
       integer(c_int) :: srot_64
       srot_64 = rocblas_srot_64_raw(handle%ptr, n, x, incx, y, incy, c, s)
     end function rocblas_srot_64_typed
@@ -50351,14 +50301,12 @@ contains
       integer(c_long), value :: incx
       real(c_double), target :: y(..)
       integer(c_long), value :: incy
-      real(c_double), target :: c(..)
-      real(c_double), target :: s(..)
+      real(c_double) :: c
+      real(c_double) :: s
       integer(c_int) :: drot_64
       if (.not. is_contiguous(x)) error stop "x: array must be contiguous"
       if (.not. is_contiguous(y)) error stop "y: array must be contiguous"
-      if (.not. is_contiguous(c)) error stop "c: array must be contiguous"
-      if (.not. is_contiguous(s)) error stop "s: array must be contiguous"
-      drot_64 = rocblas_drot_64_raw(handle, n, c_loc(x), incx, c_loc(y), incy, c_loc(c), c_loc(s))
+      drot_64 = rocblas_drot_64_raw(handle, n, c_loc(x), incx, c_loc(y), incy, c, s)
     end function rocblas_drot_64_native
 
     function rocblas_drot_64_typed(handle, n, x, incx, y, incy, c, s) result(drot_64)
@@ -50371,8 +50319,8 @@ contains
       integer(c_long), value :: incx
       type(c_ptr), value :: y
       integer(c_long), value :: incy
-      type(c_ptr), value :: c
-      type(c_ptr), value :: s
+      real(c_double) :: c
+      real(c_double) :: s
       integer(c_int) :: drot_64
       drot_64 = rocblas_drot_64_raw(handle%ptr, n, x, incx, y, incy, c, s)
     end function rocblas_drot_64_typed
@@ -50386,14 +50334,12 @@ contains
       integer(c_long), value :: incx
       complex(c_float_complex), target :: y(..)
       integer(c_long), value :: incy
-      real(c_float), target :: c(..)
-      complex(c_float_complex), target :: s(..)
+      real(c_float) :: c
+      complex(c_float_complex) :: s
       integer(c_int) :: crot_64
       if (.not. is_contiguous(x)) error stop "x: array must be contiguous"
       if (.not. is_contiguous(y)) error stop "y: array must be contiguous"
-      if (.not. is_contiguous(c)) error stop "c: array must be contiguous"
-      if (.not. is_contiguous(s)) error stop "s: array must be contiguous"
-      crot_64 = rocblas_crot_64_raw(handle, n, c_loc(x), incx, c_loc(y), incy, c_loc(c), c_loc(s))
+      crot_64 = rocblas_crot_64_raw(handle, n, c_loc(x), incx, c_loc(y), incy, c, s)
     end function rocblas_crot_64_native
 
     function rocblas_crot_64_typed(handle, n, x, incx, y, incy, c, s) result(crot_64)
@@ -50406,8 +50352,8 @@ contains
       integer(c_long), value :: incx
       type(c_ptr), value :: y
       integer(c_long), value :: incy
-      type(c_ptr), value :: c
-      type(c_ptr), value :: s
+      real(c_float) :: c
+      complex(c_float_complex) :: s
       integer(c_int) :: crot_64
       crot_64 = rocblas_crot_64_raw(handle%ptr, n, x, incx, y, incy, c, s)
     end function rocblas_crot_64_typed
@@ -50421,14 +50367,12 @@ contains
       integer(c_long), value :: incx
       complex(c_float_complex), target :: y(..)
       integer(c_long), value :: incy
-      real(c_float), target :: c(..)
-      real(c_float), target :: s(..)
+      real(c_float) :: c
+      real(c_float) :: s
       integer(c_int) :: csrot_64
       if (.not. is_contiguous(x)) error stop "x: array must be contiguous"
       if (.not. is_contiguous(y)) error stop "y: array must be contiguous"
-      if (.not. is_contiguous(c)) error stop "c: array must be contiguous"
-      if (.not. is_contiguous(s)) error stop "s: array must be contiguous"
-      csrot_64 = rocblas_csrot_64_raw(handle, n, c_loc(x), incx, c_loc(y), incy, c_loc(c), c_loc(s))
+      csrot_64 = rocblas_csrot_64_raw(handle, n, c_loc(x), incx, c_loc(y), incy, c, s)
     end function rocblas_csrot_64_native
 
     function rocblas_csrot_64_typed(handle, n, x, incx, y, incy, c, s) result(csrot_64)
@@ -50441,8 +50385,8 @@ contains
       integer(c_long), value :: incx
       type(c_ptr), value :: y
       integer(c_long), value :: incy
-      type(c_ptr), value :: c
-      type(c_ptr), value :: s
+      real(c_float) :: c
+      real(c_float) :: s
       integer(c_int) :: csrot_64
       csrot_64 = rocblas_csrot_64_raw(handle%ptr, n, x, incx, y, incy, c, s)
     end function rocblas_csrot_64_typed
@@ -50456,14 +50400,12 @@ contains
       integer(c_long), value :: incx
       complex(c_double_complex), target :: y(..)
       integer(c_long), value :: incy
-      real(c_double), target :: c(..)
-      complex(c_double_complex), target :: s(..)
+      real(c_double) :: c
+      complex(c_double_complex) :: s
       integer(c_int) :: zrot_64
       if (.not. is_contiguous(x)) error stop "x: array must be contiguous"
       if (.not. is_contiguous(y)) error stop "y: array must be contiguous"
-      if (.not. is_contiguous(c)) error stop "c: array must be contiguous"
-      if (.not. is_contiguous(s)) error stop "s: array must be contiguous"
-      zrot_64 = rocblas_zrot_64_raw(handle, n, c_loc(x), incx, c_loc(y), incy, c_loc(c), c_loc(s))
+      zrot_64 = rocblas_zrot_64_raw(handle, n, c_loc(x), incx, c_loc(y), incy, c, s)
     end function rocblas_zrot_64_native
 
     function rocblas_zrot_64_typed(handle, n, x, incx, y, incy, c, s) result(zrot_64)
@@ -50476,8 +50418,8 @@ contains
       integer(c_long), value :: incx
       type(c_ptr), value :: y
       integer(c_long), value :: incy
-      type(c_ptr), value :: c
-      type(c_ptr), value :: s
+      real(c_double) :: c
+      complex(c_double_complex) :: s
       integer(c_int) :: zrot_64
       zrot_64 = rocblas_zrot_64_raw(handle%ptr, n, x, incx, y, incy, c, s)
     end function rocblas_zrot_64_typed
@@ -50491,14 +50433,12 @@ contains
       integer(c_long), value :: incx
       complex(c_double_complex), target :: y(..)
       integer(c_long), value :: incy
-      real(c_double), target :: c(..)
-      real(c_double), target :: s(..)
+      real(c_double) :: c
+      real(c_double) :: s
       integer(c_int) :: zdrot_64
       if (.not. is_contiguous(x)) error stop "x: array must be contiguous"
       if (.not. is_contiguous(y)) error stop "y: array must be contiguous"
-      if (.not. is_contiguous(c)) error stop "c: array must be contiguous"
-      if (.not. is_contiguous(s)) error stop "s: array must be contiguous"
-      zdrot_64 = rocblas_zdrot_64_raw(handle, n, c_loc(x), incx, c_loc(y), incy, c_loc(c), c_loc(s))
+      zdrot_64 = rocblas_zdrot_64_raw(handle, n, c_loc(x), incx, c_loc(y), incy, c, s)
     end function rocblas_zdrot_64_native
 
     function rocblas_zdrot_64_typed(handle, n, x, incx, y, incy, c, s) result(zdrot_64)
@@ -50511,31 +50451,11 @@ contains
       integer(c_long), value :: incx
       type(c_ptr), value :: y
       integer(c_long), value :: incy
-      type(c_ptr), value :: c
-      type(c_ptr), value :: s
+      real(c_double) :: c
+      real(c_double) :: s
       integer(c_int) :: zdrot_64
       zdrot_64 = rocblas_zdrot_64_raw(handle%ptr, n, x, incx, y, incy, c, s)
     end function rocblas_zdrot_64_typed
-
-    function rocblas_srot_batched_native(handle, n, x, incx, y, incy, c, s, batch_count) result( &
-        srot_batched)
-      use, intrinsic :: iso_c_binding
-      implicit none
-      type(c_ptr), value :: handle
-      integer(c_int), value :: n
-      type(c_ptr), value :: x
-      integer(c_int), value :: incx
-      type(c_ptr), value :: y
-      integer(c_int), value :: incy
-      real(c_float), target :: c(..)
-      real(c_float), target :: s(..)
-      integer(c_int), value :: batch_count
-      integer(c_int) :: srot_batched
-      if (.not. is_contiguous(c)) error stop "c: array must be contiguous"
-      if (.not. is_contiguous(s)) error stop "s: array must be contiguous"
-      srot_batched = rocblas_srot_batched_raw(handle, n, x, incx, y, incy, c_loc(c), c_loc(s), &
-        batch_count)
-    end function rocblas_srot_batched_native
 
     function rocblas_srot_batched_typed(handle, n, x, incx, y, incy, c, s, batch_count) result( &
         srot_batched)
@@ -50548,32 +50468,12 @@ contains
       integer(c_int), value :: incx
       type(c_ptr), value :: y
       integer(c_int), value :: incy
-      type(c_ptr), value :: c
-      type(c_ptr), value :: s
+      real(c_float) :: c
+      real(c_float) :: s
       integer(c_int), value :: batch_count
       integer(c_int) :: srot_batched
       srot_batched = rocblas_srot_batched_raw(handle%ptr, n, x, incx, y, incy, c, s, batch_count)
     end function rocblas_srot_batched_typed
-
-    function rocblas_drot_batched_native(handle, n, x, incx, y, incy, c, s, batch_count) result( &
-        drot_batched)
-      use, intrinsic :: iso_c_binding
-      implicit none
-      type(c_ptr), value :: handle
-      integer(c_int), value :: n
-      type(c_ptr), value :: x
-      integer(c_int), value :: incx
-      type(c_ptr), value :: y
-      integer(c_int), value :: incy
-      real(c_double), target :: c(..)
-      real(c_double), target :: s(..)
-      integer(c_int), value :: batch_count
-      integer(c_int) :: drot_batched
-      if (.not. is_contiguous(c)) error stop "c: array must be contiguous"
-      if (.not. is_contiguous(s)) error stop "s: array must be contiguous"
-      drot_batched = rocblas_drot_batched_raw(handle, n, x, incx, y, incy, c_loc(c), c_loc(s), &
-        batch_count)
-    end function rocblas_drot_batched_native
 
     function rocblas_drot_batched_typed(handle, n, x, incx, y, incy, c, s, batch_count) result( &
         drot_batched)
@@ -50586,32 +50486,12 @@ contains
       integer(c_int), value :: incx
       type(c_ptr), value :: y
       integer(c_int), value :: incy
-      type(c_ptr), value :: c
-      type(c_ptr), value :: s
+      real(c_double) :: c
+      real(c_double) :: s
       integer(c_int), value :: batch_count
       integer(c_int) :: drot_batched
       drot_batched = rocblas_drot_batched_raw(handle%ptr, n, x, incx, y, incy, c, s, batch_count)
     end function rocblas_drot_batched_typed
-
-    function rocblas_crot_batched_native(handle, n, x, incx, y, incy, c, s, batch_count) result( &
-        crot_batched)
-      use, intrinsic :: iso_c_binding
-      implicit none
-      type(c_ptr), value :: handle
-      integer(c_int), value :: n
-      type(c_ptr), value :: x
-      integer(c_int), value :: incx
-      type(c_ptr), value :: y
-      integer(c_int), value :: incy
-      real(c_float), target :: c(..)
-      complex(c_float_complex), target :: s(..)
-      integer(c_int), value :: batch_count
-      integer(c_int) :: crot_batched
-      if (.not. is_contiguous(c)) error stop "c: array must be contiguous"
-      if (.not. is_contiguous(s)) error stop "s: array must be contiguous"
-      crot_batched = rocblas_crot_batched_raw(handle, n, x, incx, y, incy, c_loc(c), c_loc(s), &
-        batch_count)
-    end function rocblas_crot_batched_native
 
     function rocblas_crot_batched_typed(handle, n, x, incx, y, incy, c, s, batch_count) result( &
         crot_batched)
@@ -50624,32 +50504,12 @@ contains
       integer(c_int), value :: incx
       type(c_ptr), value :: y
       integer(c_int), value :: incy
-      type(c_ptr), value :: c
-      type(c_ptr), value :: s
+      real(c_float) :: c
+      complex(c_float_complex) :: s
       integer(c_int), value :: batch_count
       integer(c_int) :: crot_batched
       crot_batched = rocblas_crot_batched_raw(handle%ptr, n, x, incx, y, incy, c, s, batch_count)
     end function rocblas_crot_batched_typed
-
-    function rocblas_csrot_batched_native(handle, n, x, incx, y, incy, c, s, batch_count) result( &
-        csrot_batched)
-      use, intrinsic :: iso_c_binding
-      implicit none
-      type(c_ptr), value :: handle
-      integer(c_int), value :: n
-      type(c_ptr), value :: x
-      integer(c_int), value :: incx
-      type(c_ptr), value :: y
-      integer(c_int), value :: incy
-      real(c_float), target :: c(..)
-      real(c_float), target :: s(..)
-      integer(c_int), value :: batch_count
-      integer(c_int) :: csrot_batched
-      if (.not. is_contiguous(c)) error stop "c: array must be contiguous"
-      if (.not. is_contiguous(s)) error stop "s: array must be contiguous"
-      csrot_batched = rocblas_csrot_batched_raw(handle, n, x, incx, y, incy, c_loc(c), c_loc(s), &
-        batch_count)
-    end function rocblas_csrot_batched_native
 
     function rocblas_csrot_batched_typed(handle, n, x, incx, y, incy, c, s, batch_count) result( &
         csrot_batched)
@@ -50662,32 +50522,12 @@ contains
       integer(c_int), value :: incx
       type(c_ptr), value :: y
       integer(c_int), value :: incy
-      type(c_ptr), value :: c
-      type(c_ptr), value :: s
+      real(c_float) :: c
+      real(c_float) :: s
       integer(c_int), value :: batch_count
       integer(c_int) :: csrot_batched
       csrot_batched = rocblas_csrot_batched_raw(handle%ptr, n, x, incx, y, incy, c, s, batch_count)
     end function rocblas_csrot_batched_typed
-
-    function rocblas_zrot_batched_native(handle, n, x, incx, y, incy, c, s, batch_count) result( &
-        zrot_batched)
-      use, intrinsic :: iso_c_binding
-      implicit none
-      type(c_ptr), value :: handle
-      integer(c_int), value :: n
-      type(c_ptr), value :: x
-      integer(c_int), value :: incx
-      type(c_ptr), value :: y
-      integer(c_int), value :: incy
-      real(c_double), target :: c(..)
-      complex(c_double_complex), target :: s(..)
-      integer(c_int), value :: batch_count
-      integer(c_int) :: zrot_batched
-      if (.not. is_contiguous(c)) error stop "c: array must be contiguous"
-      if (.not. is_contiguous(s)) error stop "s: array must be contiguous"
-      zrot_batched = rocblas_zrot_batched_raw(handle, n, x, incx, y, incy, c_loc(c), c_loc(s), &
-        batch_count)
-    end function rocblas_zrot_batched_native
 
     function rocblas_zrot_batched_typed(handle, n, x, incx, y, incy, c, s, batch_count) result( &
         zrot_batched)
@@ -50700,32 +50540,12 @@ contains
       integer(c_int), value :: incx
       type(c_ptr), value :: y
       integer(c_int), value :: incy
-      type(c_ptr), value :: c
-      type(c_ptr), value :: s
+      real(c_double) :: c
+      complex(c_double_complex) :: s
       integer(c_int), value :: batch_count
       integer(c_int) :: zrot_batched
       zrot_batched = rocblas_zrot_batched_raw(handle%ptr, n, x, incx, y, incy, c, s, batch_count)
     end function rocblas_zrot_batched_typed
-
-    function rocblas_zdrot_batched_native(handle, n, x, incx, y, incy, c, s, batch_count) result( &
-        zdrot_batched)
-      use, intrinsic :: iso_c_binding
-      implicit none
-      type(c_ptr), value :: handle
-      integer(c_int), value :: n
-      type(c_ptr), value :: x
-      integer(c_int), value :: incx
-      type(c_ptr), value :: y
-      integer(c_int), value :: incy
-      real(c_double), target :: c(..)
-      real(c_double), target :: s(..)
-      integer(c_int), value :: batch_count
-      integer(c_int) :: zdrot_batched
-      if (.not. is_contiguous(c)) error stop "c: array must be contiguous"
-      if (.not. is_contiguous(s)) error stop "s: array must be contiguous"
-      zdrot_batched = rocblas_zdrot_batched_raw(handle, n, x, incx, y, incy, c_loc(c), c_loc(s), &
-        batch_count)
-    end function rocblas_zdrot_batched_native
 
     function rocblas_zdrot_batched_typed(handle, n, x, incx, y, incy, c, s, batch_count) result( &
         zdrot_batched)
@@ -50738,32 +50558,12 @@ contains
       integer(c_int), value :: incx
       type(c_ptr), value :: y
       integer(c_int), value :: incy
-      type(c_ptr), value :: c
-      type(c_ptr), value :: s
+      real(c_double) :: c
+      real(c_double) :: s
       integer(c_int), value :: batch_count
       integer(c_int) :: zdrot_batched
       zdrot_batched = rocblas_zdrot_batched_raw(handle%ptr, n, x, incx, y, incy, c, s, batch_count)
     end function rocblas_zdrot_batched_typed
-
-    function rocblas_srot_batched_64_native(handle, n, x, incx, y, incy, c, s, &
-        batch_count) result(srot_batched_64)
-      use, intrinsic :: iso_c_binding
-      implicit none
-      type(c_ptr), value :: handle
-      integer(c_long), value :: n
-      type(c_ptr), value :: x
-      integer(c_long), value :: incx
-      type(c_ptr), value :: y
-      integer(c_long), value :: incy
-      real(c_float), target :: c(..)
-      real(c_float), target :: s(..)
-      integer(c_long), value :: batch_count
-      integer(c_int) :: srot_batched_64
-      if (.not. is_contiguous(c)) error stop "c: array must be contiguous"
-      if (.not. is_contiguous(s)) error stop "s: array must be contiguous"
-      srot_batched_64 = rocblas_srot_batched_64_raw(handle, n, x, incx, y, incy, c_loc(c), c_loc( &
-        s), batch_count)
-    end function rocblas_srot_batched_64_native
 
     function rocblas_srot_batched_64_typed(handle, n, x, incx, y, incy, c, s, batch_count) result( &
         srot_batched_64)
@@ -50776,33 +50576,13 @@ contains
       integer(c_long), value :: incx
       type(c_ptr), value :: y
       integer(c_long), value :: incy
-      type(c_ptr), value :: c
-      type(c_ptr), value :: s
+      real(c_float) :: c
+      real(c_float) :: s
       integer(c_long), value :: batch_count
       integer(c_int) :: srot_batched_64
       srot_batched_64 = rocblas_srot_batched_64_raw(handle%ptr, n, x, incx, y, incy, c, s, &
         batch_count)
     end function rocblas_srot_batched_64_typed
-
-    function rocblas_drot_batched_64_native(handle, n, x, incx, y, incy, c, s, &
-        batch_count) result(drot_batched_64)
-      use, intrinsic :: iso_c_binding
-      implicit none
-      type(c_ptr), value :: handle
-      integer(c_long), value :: n
-      type(c_ptr), value :: x
-      integer(c_long), value :: incx
-      type(c_ptr), value :: y
-      integer(c_long), value :: incy
-      real(c_double), target :: c(..)
-      real(c_double), target :: s(..)
-      integer(c_long), value :: batch_count
-      integer(c_int) :: drot_batched_64
-      if (.not. is_contiguous(c)) error stop "c: array must be contiguous"
-      if (.not. is_contiguous(s)) error stop "s: array must be contiguous"
-      drot_batched_64 = rocblas_drot_batched_64_raw(handle, n, x, incx, y, incy, c_loc(c), c_loc( &
-        s), batch_count)
-    end function rocblas_drot_batched_64_native
 
     function rocblas_drot_batched_64_typed(handle, n, x, incx, y, incy, c, s, batch_count) result( &
         drot_batched_64)
@@ -50815,33 +50595,13 @@ contains
       integer(c_long), value :: incx
       type(c_ptr), value :: y
       integer(c_long), value :: incy
-      type(c_ptr), value :: c
-      type(c_ptr), value :: s
+      real(c_double) :: c
+      real(c_double) :: s
       integer(c_long), value :: batch_count
       integer(c_int) :: drot_batched_64
       drot_batched_64 = rocblas_drot_batched_64_raw(handle%ptr, n, x, incx, y, incy, c, s, &
         batch_count)
     end function rocblas_drot_batched_64_typed
-
-    function rocblas_crot_batched_64_native(handle, n, x, incx, y, incy, c, s, &
-        batch_count) result(crot_batched_64)
-      use, intrinsic :: iso_c_binding
-      implicit none
-      type(c_ptr), value :: handle
-      integer(c_long), value :: n
-      type(c_ptr), value :: x
-      integer(c_long), value :: incx
-      type(c_ptr), value :: y
-      integer(c_long), value :: incy
-      real(c_float), target :: c(..)
-      complex(c_float_complex), target :: s(..)
-      integer(c_long), value :: batch_count
-      integer(c_int) :: crot_batched_64
-      if (.not. is_contiguous(c)) error stop "c: array must be contiguous"
-      if (.not. is_contiguous(s)) error stop "s: array must be contiguous"
-      crot_batched_64 = rocblas_crot_batched_64_raw(handle, n, x, incx, y, incy, c_loc(c), c_loc( &
-        s), batch_count)
-    end function rocblas_crot_batched_64_native
 
     function rocblas_crot_batched_64_typed(handle, n, x, incx, y, incy, c, s, batch_count) result( &
         crot_batched_64)
@@ -50854,33 +50614,13 @@ contains
       integer(c_long), value :: incx
       type(c_ptr), value :: y
       integer(c_long), value :: incy
-      type(c_ptr), value :: c
-      type(c_ptr), value :: s
+      real(c_float) :: c
+      complex(c_float_complex) :: s
       integer(c_long), value :: batch_count
       integer(c_int) :: crot_batched_64
       crot_batched_64 = rocblas_crot_batched_64_raw(handle%ptr, n, x, incx, y, incy, c, s, &
         batch_count)
     end function rocblas_crot_batched_64_typed
-
-    function rocblas_csrot_batched_64_native(handle, n, x, incx, y, incy, c, s, &
-        batch_count) result(csrot_batched_64)
-      use, intrinsic :: iso_c_binding
-      implicit none
-      type(c_ptr), value :: handle
-      integer(c_long), value :: n
-      type(c_ptr), value :: x
-      integer(c_long), value :: incx
-      type(c_ptr), value :: y
-      integer(c_long), value :: incy
-      real(c_float), target :: c(..)
-      real(c_float), target :: s(..)
-      integer(c_long), value :: batch_count
-      integer(c_int) :: csrot_batched_64
-      if (.not. is_contiguous(c)) error stop "c: array must be contiguous"
-      if (.not. is_contiguous(s)) error stop "s: array must be contiguous"
-      csrot_batched_64 = rocblas_csrot_batched_64_raw(handle, n, x, incx, y, incy, c_loc(c), &
-        c_loc(s), batch_count)
-    end function rocblas_csrot_batched_64_native
 
     function rocblas_csrot_batched_64_typed(handle, n, x, incx, y, incy, c, s, &
         batch_count) result(csrot_batched_64)
@@ -50893,33 +50633,13 @@ contains
       integer(c_long), value :: incx
       type(c_ptr), value :: y
       integer(c_long), value :: incy
-      type(c_ptr), value :: c
-      type(c_ptr), value :: s
+      real(c_float) :: c
+      real(c_float) :: s
       integer(c_long), value :: batch_count
       integer(c_int) :: csrot_batched_64
       csrot_batched_64 = rocblas_csrot_batched_64_raw(handle%ptr, n, x, incx, y, incy, c, s, &
         batch_count)
     end function rocblas_csrot_batched_64_typed
-
-    function rocblas_zrot_batched_64_native(handle, n, x, incx, y, incy, c, s, &
-        batch_count) result(zrot_batched_64)
-      use, intrinsic :: iso_c_binding
-      implicit none
-      type(c_ptr), value :: handle
-      integer(c_long), value :: n
-      type(c_ptr), value :: x
-      integer(c_long), value :: incx
-      type(c_ptr), value :: y
-      integer(c_long), value :: incy
-      real(c_double), target :: c(..)
-      complex(c_double_complex), target :: s(..)
-      integer(c_long), value :: batch_count
-      integer(c_int) :: zrot_batched_64
-      if (.not. is_contiguous(c)) error stop "c: array must be contiguous"
-      if (.not. is_contiguous(s)) error stop "s: array must be contiguous"
-      zrot_batched_64 = rocblas_zrot_batched_64_raw(handle, n, x, incx, y, incy, c_loc(c), c_loc( &
-        s), batch_count)
-    end function rocblas_zrot_batched_64_native
 
     function rocblas_zrot_batched_64_typed(handle, n, x, incx, y, incy, c, s, batch_count) result( &
         zrot_batched_64)
@@ -50932,33 +50652,13 @@ contains
       integer(c_long), value :: incx
       type(c_ptr), value :: y
       integer(c_long), value :: incy
-      type(c_ptr), value :: c
-      type(c_ptr), value :: s
+      real(c_double) :: c
+      complex(c_double_complex) :: s
       integer(c_long), value :: batch_count
       integer(c_int) :: zrot_batched_64
       zrot_batched_64 = rocblas_zrot_batched_64_raw(handle%ptr, n, x, incx, y, incy, c, s, &
         batch_count)
     end function rocblas_zrot_batched_64_typed
-
-    function rocblas_zdrot_batched_64_native(handle, n, x, incx, y, incy, c, s, &
-        batch_count) result(zdrot_batched_64)
-      use, intrinsic :: iso_c_binding
-      implicit none
-      type(c_ptr), value :: handle
-      integer(c_long), value :: n
-      type(c_ptr), value :: x
-      integer(c_long), value :: incx
-      type(c_ptr), value :: y
-      integer(c_long), value :: incy
-      real(c_double), target :: c(..)
-      real(c_double), target :: s(..)
-      integer(c_long), value :: batch_count
-      integer(c_int) :: zdrot_batched_64
-      if (.not. is_contiguous(c)) error stop "c: array must be contiguous"
-      if (.not. is_contiguous(s)) error stop "s: array must be contiguous"
-      zdrot_batched_64 = rocblas_zdrot_batched_64_raw(handle, n, x, incx, y, incy, c_loc(c), &
-        c_loc(s), batch_count)
-    end function rocblas_zdrot_batched_64_native
 
     function rocblas_zdrot_batched_64_typed(handle, n, x, incx, y, incy, c, s, &
         batch_count) result(zdrot_batched_64)
@@ -50971,8 +50671,8 @@ contains
       integer(c_long), value :: incx
       type(c_ptr), value :: y
       integer(c_long), value :: incy
-      type(c_ptr), value :: c
-      type(c_ptr), value :: s
+      real(c_double) :: c
+      real(c_double) :: s
       integer(c_long), value :: batch_count
       integer(c_int) :: zdrot_batched_64
       zdrot_batched_64 = rocblas_zdrot_batched_64_raw(handle%ptr, n, x, incx, y, incy, c, s, &
@@ -50991,16 +50691,14 @@ contains
       real(c_float), target :: y(..)
       integer(c_int), value :: incy
       integer(c_long), value :: stride_y
-      real(c_float), target :: c(..)
-      real(c_float), target :: s(..)
+      real(c_float) :: c
+      real(c_float) :: s
       integer(c_int), value :: batch_count
       integer(c_int) :: srot_strided_batched
       if (.not. is_contiguous(x)) error stop "x: array must be contiguous"
       if (.not. is_contiguous(y)) error stop "y: array must be contiguous"
-      if (.not. is_contiguous(c)) error stop "c: array must be contiguous"
-      if (.not. is_contiguous(s)) error stop "s: array must be contiguous"
       srot_strided_batched = rocblas_srot_strided_batched_raw(handle, n, c_loc(x), incx, stride_x, &
-        c_loc(y), incy, stride_y, c_loc(c), c_loc(s), batch_count)
+        c_loc(y), incy, stride_y, c, s, batch_count)
     end function rocblas_srot_strided_batched_native
 
     function rocblas_srot_strided_batched_typed(handle, n, x, incx, stride_x, y, incy, stride_y, &
@@ -51016,8 +50714,8 @@ contains
       type(c_ptr), value :: y
       integer(c_int), value :: incy
       integer(c_long), value :: stride_y
-      type(c_ptr), value :: c
-      type(c_ptr), value :: s
+      real(c_float) :: c
+      real(c_float) :: s
       integer(c_int), value :: batch_count
       integer(c_int) :: srot_strided_batched
       srot_strided_batched = rocblas_srot_strided_batched_raw(handle%ptr, n, x, incx, stride_x, y, &
@@ -51036,16 +50734,14 @@ contains
       real(c_double), target :: y(..)
       integer(c_int), value :: incy
       integer(c_long), value :: stride_y
-      real(c_double), target :: c(..)
-      real(c_double), target :: s(..)
+      real(c_double) :: c
+      real(c_double) :: s
       integer(c_int), value :: batch_count
       integer(c_int) :: drot_strided_batched
       if (.not. is_contiguous(x)) error stop "x: array must be contiguous"
       if (.not. is_contiguous(y)) error stop "y: array must be contiguous"
-      if (.not. is_contiguous(c)) error stop "c: array must be contiguous"
-      if (.not. is_contiguous(s)) error stop "s: array must be contiguous"
       drot_strided_batched = rocblas_drot_strided_batched_raw(handle, n, c_loc(x), incx, stride_x, &
-        c_loc(y), incy, stride_y, c_loc(c), c_loc(s), batch_count)
+        c_loc(y), incy, stride_y, c, s, batch_count)
     end function rocblas_drot_strided_batched_native
 
     function rocblas_drot_strided_batched_typed(handle, n, x, incx, stride_x, y, incy, stride_y, &
@@ -51061,8 +50757,8 @@ contains
       type(c_ptr), value :: y
       integer(c_int), value :: incy
       integer(c_long), value :: stride_y
-      type(c_ptr), value :: c
-      type(c_ptr), value :: s
+      real(c_double) :: c
+      real(c_double) :: s
       integer(c_int), value :: batch_count
       integer(c_int) :: drot_strided_batched
       drot_strided_batched = rocblas_drot_strided_batched_raw(handle%ptr, n, x, incx, stride_x, y, &
@@ -51081,16 +50777,14 @@ contains
       complex(c_float_complex), target :: y(..)
       integer(c_int), value :: incy
       integer(c_long), value :: stride_y
-      real(c_float), target :: c(..)
-      complex(c_float_complex), target :: s(..)
+      real(c_float) :: c
+      complex(c_float_complex) :: s
       integer(c_int), value :: batch_count
       integer(c_int) :: crot_strided_batched
       if (.not. is_contiguous(x)) error stop "x: array must be contiguous"
       if (.not. is_contiguous(y)) error stop "y: array must be contiguous"
-      if (.not. is_contiguous(c)) error stop "c: array must be contiguous"
-      if (.not. is_contiguous(s)) error stop "s: array must be contiguous"
       crot_strided_batched = rocblas_crot_strided_batched_raw(handle, n, c_loc(x), incx, stride_x, &
-        c_loc(y), incy, stride_y, c_loc(c), c_loc(s), batch_count)
+        c_loc(y), incy, stride_y, c, s, batch_count)
     end function rocblas_crot_strided_batched_native
 
     function rocblas_crot_strided_batched_typed(handle, n, x, incx, stride_x, y, incy, stride_y, &
@@ -51106,8 +50800,8 @@ contains
       type(c_ptr), value :: y
       integer(c_int), value :: incy
       integer(c_long), value :: stride_y
-      type(c_ptr), value :: c
-      type(c_ptr), value :: s
+      real(c_float) :: c
+      complex(c_float_complex) :: s
       integer(c_int), value :: batch_count
       integer(c_int) :: crot_strided_batched
       crot_strided_batched = rocblas_crot_strided_batched_raw(handle%ptr, n, x, incx, stride_x, y, &
@@ -51126,16 +50820,14 @@ contains
       complex(c_float_complex), target :: y(..)
       integer(c_int), value :: incy
       integer(c_long), value :: stride_y
-      real(c_float), target :: c(..)
-      real(c_float), target :: s(..)
+      real(c_float) :: c
+      real(c_float) :: s
       integer(c_int), value :: batch_count
       integer(c_int) :: csrot_strided_batched
       if (.not. is_contiguous(x)) error stop "x: array must be contiguous"
       if (.not. is_contiguous(y)) error stop "y: array must be contiguous"
-      if (.not. is_contiguous(c)) error stop "c: array must be contiguous"
-      if (.not. is_contiguous(s)) error stop "s: array must be contiguous"
       csrot_strided_batched = rocblas_csrot_strided_batched_raw(handle, n, c_loc(x), incx, &
-        stride_x, c_loc(y), incy, stride_y, c_loc(c), c_loc(s), batch_count)
+        stride_x, c_loc(y), incy, stride_y, c, s, batch_count)
     end function rocblas_csrot_strided_batched_native
 
     function rocblas_csrot_strided_batched_typed(handle, n, x, incx, stride_x, y, incy, stride_y, &
@@ -51151,8 +50843,8 @@ contains
       type(c_ptr), value :: y
       integer(c_int), value :: incy
       integer(c_long), value :: stride_y
-      type(c_ptr), value :: c
-      type(c_ptr), value :: s
+      real(c_float) :: c
+      real(c_float) :: s
       integer(c_int), value :: batch_count
       integer(c_int) :: csrot_strided_batched
       csrot_strided_batched = rocblas_csrot_strided_batched_raw(handle%ptr, n, x, incx, stride_x, &
@@ -51171,16 +50863,14 @@ contains
       complex(c_double_complex), target :: y(..)
       integer(c_int), value :: incy
       integer(c_long), value :: stride_y
-      real(c_double), target :: c(..)
-      complex(c_double_complex), target :: s(..)
+      real(c_double) :: c
+      complex(c_double_complex) :: s
       integer(c_int), value :: batch_count
       integer(c_int) :: zrot_strided_batched
       if (.not. is_contiguous(x)) error stop "x: array must be contiguous"
       if (.not. is_contiguous(y)) error stop "y: array must be contiguous"
-      if (.not. is_contiguous(c)) error stop "c: array must be contiguous"
-      if (.not. is_contiguous(s)) error stop "s: array must be contiguous"
       zrot_strided_batched = rocblas_zrot_strided_batched_raw(handle, n, c_loc(x), incx, stride_x, &
-        c_loc(y), incy, stride_y, c_loc(c), c_loc(s), batch_count)
+        c_loc(y), incy, stride_y, c, s, batch_count)
     end function rocblas_zrot_strided_batched_native
 
     function rocblas_zrot_strided_batched_typed(handle, n, x, incx, stride_x, y, incy, stride_y, &
@@ -51196,8 +50886,8 @@ contains
       type(c_ptr), value :: y
       integer(c_int), value :: incy
       integer(c_long), value :: stride_y
-      type(c_ptr), value :: c
-      type(c_ptr), value :: s
+      real(c_double) :: c
+      complex(c_double_complex) :: s
       integer(c_int), value :: batch_count
       integer(c_int) :: zrot_strided_batched
       zrot_strided_batched = rocblas_zrot_strided_batched_raw(handle%ptr, n, x, incx, stride_x, y, &
@@ -51216,16 +50906,14 @@ contains
       complex(c_double_complex), target :: y(..)
       integer(c_int), value :: incy
       integer(c_long), value :: stride_y
-      real(c_double), target :: c(..)
-      real(c_double), target :: s(..)
+      real(c_double) :: c
+      real(c_double) :: s
       integer(c_int), value :: batch_count
       integer(c_int) :: zdrot_strided_batched
       if (.not. is_contiguous(x)) error stop "x: array must be contiguous"
       if (.not. is_contiguous(y)) error stop "y: array must be contiguous"
-      if (.not. is_contiguous(c)) error stop "c: array must be contiguous"
-      if (.not. is_contiguous(s)) error stop "s: array must be contiguous"
       zdrot_strided_batched = rocblas_zdrot_strided_batched_raw(handle, n, c_loc(x), incx, &
-        stride_x, c_loc(y), incy, stride_y, c_loc(c), c_loc(s), batch_count)
+        stride_x, c_loc(y), incy, stride_y, c, s, batch_count)
     end function rocblas_zdrot_strided_batched_native
 
     function rocblas_zdrot_strided_batched_typed(handle, n, x, incx, stride_x, y, incy, stride_y, &
@@ -51241,8 +50929,8 @@ contains
       type(c_ptr), value :: y
       integer(c_int), value :: incy
       integer(c_long), value :: stride_y
-      type(c_ptr), value :: c
-      type(c_ptr), value :: s
+      real(c_double) :: c
+      real(c_double) :: s
       integer(c_int), value :: batch_count
       integer(c_int) :: zdrot_strided_batched
       zdrot_strided_batched = rocblas_zdrot_strided_batched_raw(handle%ptr, n, x, incx, stride_x, &
@@ -51261,16 +50949,14 @@ contains
       real(c_float), target :: y(..)
       integer(c_long), value :: incy
       integer(c_long), value :: stride_y
-      real(c_float), target :: c(..)
-      real(c_float), target :: s(..)
+      real(c_float) :: c
+      real(c_float) :: s
       integer(c_long), value :: batch_count
       integer(c_int) :: srot_strided_batched_64
       if (.not. is_contiguous(x)) error stop "x: array must be contiguous"
       if (.not. is_contiguous(y)) error stop "y: array must be contiguous"
-      if (.not. is_contiguous(c)) error stop "c: array must be contiguous"
-      if (.not. is_contiguous(s)) error stop "s: array must be contiguous"
       srot_strided_batched_64 = rocblas_srot_strided_batched_64_raw(handle, n, c_loc(x), incx, &
-        stride_x, c_loc(y), incy, stride_y, c_loc(c), c_loc(s), batch_count)
+        stride_x, c_loc(y), incy, stride_y, c, s, batch_count)
     end function rocblas_srot_strided_batched_64_native
 
     function rocblas_srot_strided_batched_64_typed(handle, n, x, incx, stride_x, y, incy, &
@@ -51286,8 +50972,8 @@ contains
       type(c_ptr), value :: y
       integer(c_long), value :: incy
       integer(c_long), value :: stride_y
-      type(c_ptr), value :: c
-      type(c_ptr), value :: s
+      real(c_float) :: c
+      real(c_float) :: s
       integer(c_long), value :: batch_count
       integer(c_int) :: srot_strided_batched_64
       srot_strided_batched_64 = rocblas_srot_strided_batched_64_raw(handle%ptr, n, x, incx, &
@@ -51306,16 +50992,14 @@ contains
       real(c_double), target :: y(..)
       integer(c_long), value :: incy
       integer(c_long), value :: stride_y
-      real(c_double), target :: c(..)
-      real(c_double), target :: s(..)
+      real(c_double) :: c
+      real(c_double) :: s
       integer(c_long), value :: batch_count
       integer(c_int) :: drot_strided_batched_64
       if (.not. is_contiguous(x)) error stop "x: array must be contiguous"
       if (.not. is_contiguous(y)) error stop "y: array must be contiguous"
-      if (.not. is_contiguous(c)) error stop "c: array must be contiguous"
-      if (.not. is_contiguous(s)) error stop "s: array must be contiguous"
       drot_strided_batched_64 = rocblas_drot_strided_batched_64_raw(handle, n, c_loc(x), incx, &
-        stride_x, c_loc(y), incy, stride_y, c_loc(c), c_loc(s), batch_count)
+        stride_x, c_loc(y), incy, stride_y, c, s, batch_count)
     end function rocblas_drot_strided_batched_64_native
 
     function rocblas_drot_strided_batched_64_typed(handle, n, x, incx, stride_x, y, incy, &
@@ -51331,8 +51015,8 @@ contains
       type(c_ptr), value :: y
       integer(c_long), value :: incy
       integer(c_long), value :: stride_y
-      type(c_ptr), value :: c
-      type(c_ptr), value :: s
+      real(c_double) :: c
+      real(c_double) :: s
       integer(c_long), value :: batch_count
       integer(c_int) :: drot_strided_batched_64
       drot_strided_batched_64 = rocblas_drot_strided_batched_64_raw(handle%ptr, n, x, incx, &
@@ -51351,16 +51035,14 @@ contains
       complex(c_float_complex), target :: y(..)
       integer(c_long), value :: incy
       integer(c_long), value :: stride_y
-      real(c_float), target :: c(..)
-      complex(c_float_complex), target :: s(..)
+      real(c_float) :: c
+      complex(c_float_complex) :: s
       integer(c_long), value :: batch_count
       integer(c_int) :: crot_strided_batched_64
       if (.not. is_contiguous(x)) error stop "x: array must be contiguous"
       if (.not. is_contiguous(y)) error stop "y: array must be contiguous"
-      if (.not. is_contiguous(c)) error stop "c: array must be contiguous"
-      if (.not. is_contiguous(s)) error stop "s: array must be contiguous"
       crot_strided_batched_64 = rocblas_crot_strided_batched_64_raw(handle, n, c_loc(x), incx, &
-        stride_x, c_loc(y), incy, stride_y, c_loc(c), c_loc(s), batch_count)
+        stride_x, c_loc(y), incy, stride_y, c, s, batch_count)
     end function rocblas_crot_strided_batched_64_native
 
     function rocblas_crot_strided_batched_64_typed(handle, n, x, incx, stride_x, y, incy, &
@@ -51376,8 +51058,8 @@ contains
       type(c_ptr), value :: y
       integer(c_long), value :: incy
       integer(c_long), value :: stride_y
-      type(c_ptr), value :: c
-      type(c_ptr), value :: s
+      real(c_float) :: c
+      complex(c_float_complex) :: s
       integer(c_long), value :: batch_count
       integer(c_int) :: crot_strided_batched_64
       crot_strided_batched_64 = rocblas_crot_strided_batched_64_raw(handle%ptr, n, x, incx, &
@@ -51396,16 +51078,14 @@ contains
       complex(c_float_complex), target :: y(..)
       integer(c_long), value :: incy
       integer(c_long), value :: stride_y
-      real(c_float), target :: c(..)
-      real(c_float), target :: s(..)
+      real(c_float) :: c
+      real(c_float) :: s
       integer(c_long), value :: batch_count
       integer(c_int) :: csrot_strided_batched_64
       if (.not. is_contiguous(x)) error stop "x: array must be contiguous"
       if (.not. is_contiguous(y)) error stop "y: array must be contiguous"
-      if (.not. is_contiguous(c)) error stop "c: array must be contiguous"
-      if (.not. is_contiguous(s)) error stop "s: array must be contiguous"
       csrot_strided_batched_64 = rocblas_csrot_strided_batched_64_raw(handle, n, c_loc(x), incx, &
-        stride_x, c_loc(y), incy, stride_y, c_loc(c), c_loc(s), batch_count)
+        stride_x, c_loc(y), incy, stride_y, c, s, batch_count)
     end function rocblas_csrot_strided_batched_64_native
 
     function rocblas_csrot_strided_batched_64_typed(handle, n, x, incx, stride_x, y, incy, &
@@ -51421,8 +51101,8 @@ contains
       type(c_ptr), value :: y
       integer(c_long), value :: incy
       integer(c_long), value :: stride_y
-      type(c_ptr), value :: c
-      type(c_ptr), value :: s
+      real(c_float) :: c
+      real(c_float) :: s
       integer(c_long), value :: batch_count
       integer(c_int) :: csrot_strided_batched_64
       csrot_strided_batched_64 = rocblas_csrot_strided_batched_64_raw(handle%ptr, n, x, incx, &
@@ -51441,16 +51121,14 @@ contains
       complex(c_double_complex), target :: y(..)
       integer(c_long), value :: incy
       integer(c_long), value :: stride_y
-      real(c_double), target :: c(..)
-      complex(c_double_complex), target :: s(..)
+      real(c_double) :: c
+      complex(c_double_complex) :: s
       integer(c_long), value :: batch_count
       integer(c_int) :: zrot_strided_batched_64
       if (.not. is_contiguous(x)) error stop "x: array must be contiguous"
       if (.not. is_contiguous(y)) error stop "y: array must be contiguous"
-      if (.not. is_contiguous(c)) error stop "c: array must be contiguous"
-      if (.not. is_contiguous(s)) error stop "s: array must be contiguous"
       zrot_strided_batched_64 = rocblas_zrot_strided_batched_64_raw(handle, n, c_loc(x), incx, &
-        stride_x, c_loc(y), incy, stride_y, c_loc(c), c_loc(s), batch_count)
+        stride_x, c_loc(y), incy, stride_y, c, s, batch_count)
     end function rocblas_zrot_strided_batched_64_native
 
     function rocblas_zrot_strided_batched_64_typed(handle, n, x, incx, stride_x, y, incy, &
@@ -51466,8 +51144,8 @@ contains
       type(c_ptr), value :: y
       integer(c_long), value :: incy
       integer(c_long), value :: stride_y
-      type(c_ptr), value :: c
-      type(c_ptr), value :: s
+      real(c_double) :: c
+      complex(c_double_complex) :: s
       integer(c_long), value :: batch_count
       integer(c_int) :: zrot_strided_batched_64
       zrot_strided_batched_64 = rocblas_zrot_strided_batched_64_raw(handle%ptr, n, x, incx, &
@@ -51486,16 +51164,14 @@ contains
       complex(c_double_complex), target :: y(..)
       integer(c_long), value :: incy
       integer(c_long), value :: stride_y
-      real(c_double), target :: c(..)
-      real(c_double), target :: s(..)
+      real(c_double) :: c
+      real(c_double) :: s
       integer(c_long), value :: batch_count
       integer(c_int) :: zdrot_strided_batched_64
       if (.not. is_contiguous(x)) error stop "x: array must be contiguous"
       if (.not. is_contiguous(y)) error stop "y: array must be contiguous"
-      if (.not. is_contiguous(c)) error stop "c: array must be contiguous"
-      if (.not. is_contiguous(s)) error stop "s: array must be contiguous"
       zdrot_strided_batched_64 = rocblas_zdrot_strided_batched_64_raw(handle, n, c_loc(x), incx, &
-        stride_x, c_loc(y), incy, stride_y, c_loc(c), c_loc(s), batch_count)
+        stride_x, c_loc(y), incy, stride_y, c, s, batch_count)
     end function rocblas_zdrot_strided_batched_64_native
 
     function rocblas_zdrot_strided_batched_64_typed(handle, n, x, incx, stride_x, y, incy, &
@@ -51511,8 +51187,8 @@ contains
       type(c_ptr), value :: y
       integer(c_long), value :: incy
       integer(c_long), value :: stride_y
-      type(c_ptr), value :: c
-      type(c_ptr), value :: s
+      real(c_double) :: c
+      real(c_double) :: s
       integer(c_long), value :: batch_count
       integer(c_int) :: zdrot_strided_batched_64
       zdrot_strided_batched_64 = rocblas_zdrot_strided_batched_64_raw(handle%ptr, n, x, incx, &
@@ -54525,30 +54201,6 @@ contains
         beta, y, incy, batch_count)
     end function rocblas_zgemv_batched_typed
 
-    function rocblas_hshgemv_batched_native(handle, trans, m, n, alpha, A, lda, x, incx, beta, y, &
-        incy, batch_count) result(hshgemv_batched)
-      use, intrinsic :: iso_c_binding
-      implicit none
-      type(c_ptr), value :: handle
-      integer(c_int), value :: trans
-      integer(c_int), value :: m
-      integer(c_int), value :: n
-      real(c_float), target :: alpha(..)
-      type(c_ptr), value :: A
-      integer(c_int), value :: lda
-      type(c_ptr), value :: x
-      integer(c_int), value :: incx
-      real(c_float), target :: beta(..)
-      type(c_ptr), value :: y
-      integer(c_int), value :: incy
-      integer(c_int), value :: batch_count
-      integer(c_int) :: hshgemv_batched
-      if (.not. is_contiguous(alpha)) error stop "alpha: array must be contiguous"
-      if (.not. is_contiguous(beta)) error stop "beta: array must be contiguous"
-      hshgemv_batched = rocblas_hshgemv_batched_raw(handle, trans, m, n, c_loc(alpha), A, lda, x, &
-        incx, c_loc(beta), y, incy, batch_count)
-    end function rocblas_hshgemv_batched_native
-
     function rocblas_hshgemv_batched_typed(handle, trans, m, n, alpha, A, lda, x, incx, beta, y, &
         incy, batch_count) result(hshgemv_batched)
       use, intrinsic :: iso_c_binding
@@ -54558,12 +54210,12 @@ contains
       integer(c_int), value :: trans
       integer(c_int), value :: m
       integer(c_int), value :: n
-      type(c_ptr), value :: alpha
+      real(c_float) :: alpha
       type(c_ptr), value :: A
       integer(c_int), value :: lda
       type(c_ptr), value :: x
       integer(c_int), value :: incx
-      type(c_ptr), value :: beta
+      real(c_float) :: beta
       type(c_ptr), value :: y
       integer(c_int), value :: incy
       integer(c_int), value :: batch_count
@@ -54571,30 +54223,6 @@ contains
       hshgemv_batched = rocblas_hshgemv_batched_raw(handle%ptr, trans, m, n, alpha, A, lda, x, &
         incx, beta, y, incy, batch_count)
     end function rocblas_hshgemv_batched_typed
-
-    function rocblas_hssgemv_batched_native(handle, trans, m, n, alpha, A, lda, x, incx, beta, y, &
-        incy, batch_count) result(hssgemv_batched)
-      use, intrinsic :: iso_c_binding
-      implicit none
-      type(c_ptr), value :: handle
-      integer(c_int), value :: trans
-      integer(c_int), value :: m
-      integer(c_int), value :: n
-      real(c_float), target :: alpha(..)
-      type(c_ptr), value :: A
-      integer(c_int), value :: lda
-      type(c_ptr), value :: x
-      integer(c_int), value :: incx
-      real(c_float), target :: beta(..)
-      type(c_ptr), value :: y
-      integer(c_int), value :: incy
-      integer(c_int), value :: batch_count
-      integer(c_int) :: hssgemv_batched
-      if (.not. is_contiguous(alpha)) error stop "alpha: array must be contiguous"
-      if (.not. is_contiguous(beta)) error stop "beta: array must be contiguous"
-      hssgemv_batched = rocblas_hssgemv_batched_raw(handle, trans, m, n, c_loc(alpha), A, lda, x, &
-        incx, c_loc(beta), y, incy, batch_count)
-    end function rocblas_hssgemv_batched_native
 
     function rocblas_hssgemv_batched_typed(handle, trans, m, n, alpha, A, lda, x, incx, beta, y, &
         incy, batch_count) result(hssgemv_batched)
@@ -54605,12 +54233,12 @@ contains
       integer(c_int), value :: trans
       integer(c_int), value :: m
       integer(c_int), value :: n
-      type(c_ptr), value :: alpha
+      real(c_float) :: alpha
       type(c_ptr), value :: A
       integer(c_int), value :: lda
       type(c_ptr), value :: x
       integer(c_int), value :: incx
-      type(c_ptr), value :: beta
+      real(c_float) :: beta
       type(c_ptr), value :: y
       integer(c_int), value :: incy
       integer(c_int), value :: batch_count
@@ -54618,30 +54246,6 @@ contains
       hssgemv_batched = rocblas_hssgemv_batched_raw(handle%ptr, trans, m, n, alpha, A, lda, x, &
         incx, beta, y, incy, batch_count)
     end function rocblas_hssgemv_batched_typed
-
-    function rocblas_tstgemv_batched_native(handle, trans, m, n, alpha, A, lda, x, incx, beta, y, &
-        incy, batch_count) result(tstgemv_batched)
-      use, intrinsic :: iso_c_binding
-      implicit none
-      type(c_ptr), value :: handle
-      integer(c_int), value :: trans
-      integer(c_int), value :: m
-      integer(c_int), value :: n
-      real(c_float), target :: alpha(..)
-      type(c_ptr), value :: A
-      integer(c_int), value :: lda
-      type(c_ptr), value :: x
-      integer(c_int), value :: incx
-      real(c_float), target :: beta(..)
-      type(c_ptr), value :: y
-      integer(c_int), value :: incy
-      integer(c_int), value :: batch_count
-      integer(c_int) :: tstgemv_batched
-      if (.not. is_contiguous(alpha)) error stop "alpha: array must be contiguous"
-      if (.not. is_contiguous(beta)) error stop "beta: array must be contiguous"
-      tstgemv_batched = rocblas_tstgemv_batched_raw(handle, trans, m, n, c_loc(alpha), A, lda, x, &
-        incx, c_loc(beta), y, incy, batch_count)
-    end function rocblas_tstgemv_batched_native
 
     function rocblas_tstgemv_batched_typed(handle, trans, m, n, alpha, A, lda, x, incx, beta, y, &
         incy, batch_count) result(tstgemv_batched)
@@ -54652,12 +54256,12 @@ contains
       integer(c_int), value :: trans
       integer(c_int), value :: m
       integer(c_int), value :: n
-      type(c_ptr), value :: alpha
+      real(c_float) :: alpha
       type(c_ptr), value :: A
       integer(c_int), value :: lda
       type(c_ptr), value :: x
       integer(c_int), value :: incx
-      type(c_ptr), value :: beta
+      real(c_float) :: beta
       type(c_ptr), value :: y
       integer(c_int), value :: incy
       integer(c_int), value :: batch_count
@@ -54665,30 +54269,6 @@ contains
       tstgemv_batched = rocblas_tstgemv_batched_raw(handle%ptr, trans, m, n, alpha, A, lda, x, &
         incx, beta, y, incy, batch_count)
     end function rocblas_tstgemv_batched_typed
-
-    function rocblas_tssgemv_batched_native(handle, trans, m, n, alpha, A, lda, x, incx, beta, y, &
-        incy, batch_count) result(tssgemv_batched)
-      use, intrinsic :: iso_c_binding
-      implicit none
-      type(c_ptr), value :: handle
-      integer(c_int), value :: trans
-      integer(c_int), value :: m
-      integer(c_int), value :: n
-      real(c_float), target :: alpha(..)
-      type(c_ptr), value :: A
-      integer(c_int), value :: lda
-      type(c_ptr), value :: x
-      integer(c_int), value :: incx
-      real(c_float), target :: beta(..)
-      type(c_ptr), value :: y
-      integer(c_int), value :: incy
-      integer(c_int), value :: batch_count
-      integer(c_int) :: tssgemv_batched
-      if (.not. is_contiguous(alpha)) error stop "alpha: array must be contiguous"
-      if (.not. is_contiguous(beta)) error stop "beta: array must be contiguous"
-      tssgemv_batched = rocblas_tssgemv_batched_raw(handle, trans, m, n, c_loc(alpha), A, lda, x, &
-        incx, c_loc(beta), y, incy, batch_count)
-    end function rocblas_tssgemv_batched_native
 
     function rocblas_tssgemv_batched_typed(handle, trans, m, n, alpha, A, lda, x, incx, beta, y, &
         incy, batch_count) result(tssgemv_batched)
@@ -54699,12 +54279,12 @@ contains
       integer(c_int), value :: trans
       integer(c_int), value :: m
       integer(c_int), value :: n
-      type(c_ptr), value :: alpha
+      real(c_float) :: alpha
       type(c_ptr), value :: A
       integer(c_int), value :: lda
       type(c_ptr), value :: x
       integer(c_int), value :: incx
-      type(c_ptr), value :: beta
+      real(c_float) :: beta
       type(c_ptr), value :: y
       integer(c_int), value :: incy
       integer(c_int), value :: batch_count
@@ -54805,30 +54385,6 @@ contains
         incx, beta, y, incy, batch_count)
     end function rocblas_zgemv_batched_64_typed
 
-    function rocblas_hshgemv_batched_64_native(handle, trans, m, n, alpha, A, lda, x, incx, beta, &
-        y, incy, batch_count) result(hshgemv_batched_64)
-      use, intrinsic :: iso_c_binding
-      implicit none
-      type(c_ptr), value :: handle
-      integer(c_int), value :: trans
-      integer(c_long), value :: m
-      integer(c_long), value :: n
-      real(c_float), target :: alpha(..)
-      type(c_ptr), value :: A
-      integer(c_long), value :: lda
-      type(c_ptr), value :: x
-      integer(c_long), value :: incx
-      real(c_float), target :: beta(..)
-      type(c_ptr), value :: y
-      integer(c_long), value :: incy
-      integer(c_long), value :: batch_count
-      integer(c_int) :: hshgemv_batched_64
-      if (.not. is_contiguous(alpha)) error stop "alpha: array must be contiguous"
-      if (.not. is_contiguous(beta)) error stop "beta: array must be contiguous"
-      hshgemv_batched_64 = rocblas_hshgemv_batched_64_raw(handle, trans, m, n, c_loc(alpha), A, &
-        lda, x, incx, c_loc(beta), y, incy, batch_count)
-    end function rocblas_hshgemv_batched_64_native
-
     function rocblas_hshgemv_batched_64_typed(handle, trans, m, n, alpha, A, lda, x, incx, beta, &
         y, incy, batch_count) result(hshgemv_batched_64)
       use, intrinsic :: iso_c_binding
@@ -54838,12 +54394,12 @@ contains
       integer(c_int), value :: trans
       integer(c_long), value :: m
       integer(c_long), value :: n
-      type(c_ptr), value :: alpha
+      real(c_float) :: alpha
       type(c_ptr), value :: A
       integer(c_long), value :: lda
       type(c_ptr), value :: x
       integer(c_long), value :: incx
-      type(c_ptr), value :: beta
+      real(c_float) :: beta
       type(c_ptr), value :: y
       integer(c_long), value :: incy
       integer(c_long), value :: batch_count
@@ -54851,30 +54407,6 @@ contains
       hshgemv_batched_64 = rocblas_hshgemv_batched_64_raw(handle%ptr, trans, m, n, alpha, A, lda, &
         x, incx, beta, y, incy, batch_count)
     end function rocblas_hshgemv_batched_64_typed
-
-    function rocblas_hssgemv_batched_64_native(handle, trans, m, n, alpha, A, lda, x, incx, beta, &
-        y, incy, batch_count) result(hssgemv_batched_64)
-      use, intrinsic :: iso_c_binding
-      implicit none
-      type(c_ptr), value :: handle
-      integer(c_int), value :: trans
-      integer(c_long), value :: m
-      integer(c_long), value :: n
-      real(c_float), target :: alpha(..)
-      type(c_ptr), value :: A
-      integer(c_long), value :: lda
-      type(c_ptr), value :: x
-      integer(c_long), value :: incx
-      real(c_float), target :: beta(..)
-      type(c_ptr), value :: y
-      integer(c_long), value :: incy
-      integer(c_long), value :: batch_count
-      integer(c_int) :: hssgemv_batched_64
-      if (.not. is_contiguous(alpha)) error stop "alpha: array must be contiguous"
-      if (.not. is_contiguous(beta)) error stop "beta: array must be contiguous"
-      hssgemv_batched_64 = rocblas_hssgemv_batched_64_raw(handle, trans, m, n, c_loc(alpha), A, &
-        lda, x, incx, c_loc(beta), y, incy, batch_count)
-    end function rocblas_hssgemv_batched_64_native
 
     function rocblas_hssgemv_batched_64_typed(handle, trans, m, n, alpha, A, lda, x, incx, beta, &
         y, incy, batch_count) result(hssgemv_batched_64)
@@ -54885,12 +54417,12 @@ contains
       integer(c_int), value :: trans
       integer(c_long), value :: m
       integer(c_long), value :: n
-      type(c_ptr), value :: alpha
+      real(c_float) :: alpha
       type(c_ptr), value :: A
       integer(c_long), value :: lda
       type(c_ptr), value :: x
       integer(c_long), value :: incx
-      type(c_ptr), value :: beta
+      real(c_float) :: beta
       type(c_ptr), value :: y
       integer(c_long), value :: incy
       integer(c_long), value :: batch_count
@@ -54898,30 +54430,6 @@ contains
       hssgemv_batched_64 = rocblas_hssgemv_batched_64_raw(handle%ptr, trans, m, n, alpha, A, lda, &
         x, incx, beta, y, incy, batch_count)
     end function rocblas_hssgemv_batched_64_typed
-
-    function rocblas_tstgemv_batched_64_native(handle, trans, m, n, alpha, A, lda, x, incx, beta, &
-        y, incy, batch_count) result(tstgemv_batched_64)
-      use, intrinsic :: iso_c_binding
-      implicit none
-      type(c_ptr), value :: handle
-      integer(c_int), value :: trans
-      integer(c_long), value :: m
-      integer(c_long), value :: n
-      real(c_float), target :: alpha(..)
-      type(c_ptr), value :: A
-      integer(c_long), value :: lda
-      type(c_ptr), value :: x
-      integer(c_long), value :: incx
-      real(c_float), target :: beta(..)
-      type(c_ptr), value :: y
-      integer(c_long), value :: incy
-      integer(c_long), value :: batch_count
-      integer(c_int) :: tstgemv_batched_64
-      if (.not. is_contiguous(alpha)) error stop "alpha: array must be contiguous"
-      if (.not. is_contiguous(beta)) error stop "beta: array must be contiguous"
-      tstgemv_batched_64 = rocblas_tstgemv_batched_64_raw(handle, trans, m, n, c_loc(alpha), A, &
-        lda, x, incx, c_loc(beta), y, incy, batch_count)
-    end function rocblas_tstgemv_batched_64_native
 
     function rocblas_tstgemv_batched_64_typed(handle, trans, m, n, alpha, A, lda, x, incx, beta, &
         y, incy, batch_count) result(tstgemv_batched_64)
@@ -54932,12 +54440,12 @@ contains
       integer(c_int), value :: trans
       integer(c_long), value :: m
       integer(c_long), value :: n
-      type(c_ptr), value :: alpha
+      real(c_float) :: alpha
       type(c_ptr), value :: A
       integer(c_long), value :: lda
       type(c_ptr), value :: x
       integer(c_long), value :: incx
-      type(c_ptr), value :: beta
+      real(c_float) :: beta
       type(c_ptr), value :: y
       integer(c_long), value :: incy
       integer(c_long), value :: batch_count
@@ -54945,30 +54453,6 @@ contains
       tstgemv_batched_64 = rocblas_tstgemv_batched_64_raw(handle%ptr, trans, m, n, alpha, A, lda, &
         x, incx, beta, y, incy, batch_count)
     end function rocblas_tstgemv_batched_64_typed
-
-    function rocblas_tssgemv_batched_64_native(handle, trans, m, n, alpha, A, lda, x, incx, beta, &
-        y, incy, batch_count) result(tssgemv_batched_64)
-      use, intrinsic :: iso_c_binding
-      implicit none
-      type(c_ptr), value :: handle
-      integer(c_int), value :: trans
-      integer(c_long), value :: m
-      integer(c_long), value :: n
-      real(c_float), target :: alpha(..)
-      type(c_ptr), value :: A
-      integer(c_long), value :: lda
-      type(c_ptr), value :: x
-      integer(c_long), value :: incx
-      real(c_float), target :: beta(..)
-      type(c_ptr), value :: y
-      integer(c_long), value :: incy
-      integer(c_long), value :: batch_count
-      integer(c_int) :: tssgemv_batched_64
-      if (.not. is_contiguous(alpha)) error stop "alpha: array must be contiguous"
-      if (.not. is_contiguous(beta)) error stop "beta: array must be contiguous"
-      tssgemv_batched_64 = rocblas_tssgemv_batched_64_raw(handle, trans, m, n, c_loc(alpha), A, &
-        lda, x, incx, c_loc(beta), y, incy, batch_count)
-    end function rocblas_tssgemv_batched_64_native
 
     function rocblas_tssgemv_batched_64_typed(handle, trans, m, n, alpha, A, lda, x, incx, beta, &
         y, incy, batch_count) result(tssgemv_batched_64)
@@ -54979,12 +54463,12 @@ contains
       integer(c_int), value :: trans
       integer(c_long), value :: m
       integer(c_long), value :: n
-      type(c_ptr), value :: alpha
+      real(c_float) :: alpha
       type(c_ptr), value :: A
       integer(c_long), value :: lda
       type(c_ptr), value :: x
       integer(c_long), value :: incx
-      type(c_ptr), value :: beta
+      real(c_float) :: beta
       type(c_ptr), value :: y
       integer(c_long), value :: incy
       integer(c_long), value :: batch_count
@@ -55209,33 +54693,6 @@ contains
         A, lda, strideA, x, incx, stridex, beta, y, incy, stridey, batch_count)
     end function rocblas_zgemv_strided_batched_typed
 
-    function rocblas_hshgemv_strided_batched_native(handle, transA, m, n, alpha, A, lda, strideA, &
-        x, incx, stridex, beta, y, incy, stridey, batch_count) result(hshgemv_strided_batched)
-      use, intrinsic :: iso_c_binding
-      implicit none
-      type(c_ptr), value :: handle
-      integer(c_int), value :: transA
-      integer(c_int), value :: m
-      integer(c_int), value :: n
-      real(c_float), target :: alpha(..)
-      type(rocblas_half) :: A
-      integer(c_int), value :: lda
-      integer(c_long), value :: strideA
-      type(rocblas_half) :: x
-      integer(c_int), value :: incx
-      integer(c_long), value :: stridex
-      real(c_float), target :: beta(..)
-      type(rocblas_half) :: y
-      integer(c_int), value :: incy
-      integer(c_long), value :: stridey
-      integer(c_int), value :: batch_count
-      integer(c_int) :: hshgemv_strided_batched
-      if (.not. is_contiguous(alpha)) error stop "alpha: array must be contiguous"
-      if (.not. is_contiguous(beta)) error stop "beta: array must be contiguous"
-      hshgemv_strided_batched = rocblas_hshgemv_strided_batched_raw(handle, transA, m, n, c_loc( &
-        alpha), A, lda, strideA, x, incx, stridex, c_loc(beta), y, incy, stridey, batch_count)
-    end function rocblas_hshgemv_strided_batched_native
-
     function rocblas_hshgemv_strided_batched_typed(handle, transA, m, n, alpha, A, lda, strideA, &
         x, incx, stridex, beta, y, incy, stridey, batch_count) result(hshgemv_strided_batched)
       use, intrinsic :: iso_c_binding
@@ -55245,14 +54702,14 @@ contains
       integer(c_int), value :: transA
       integer(c_int), value :: m
       integer(c_int), value :: n
-      type(c_ptr), value :: alpha
+      real(c_float) :: alpha
       type(rocblas_half) :: A
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
       type(rocblas_half) :: x
       integer(c_int), value :: incx
       integer(c_long), value :: stridex
-      type(c_ptr), value :: beta
+      real(c_float) :: beta
       type(rocblas_half) :: y
       integer(c_int), value :: incy
       integer(c_long), value :: stridey
@@ -55270,25 +54727,22 @@ contains
       integer(c_int), value :: transA
       integer(c_int), value :: m
       integer(c_int), value :: n
-      real(c_float), target :: alpha(..)
+      real(c_float) :: alpha
       type(rocblas_half) :: A
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
       type(rocblas_half) :: x
       integer(c_int), value :: incx
       integer(c_long), value :: stridex
-      real(c_float), target :: beta(..)
+      real(c_float) :: beta
       real(c_float), target :: y(..)
       integer(c_int), value :: incy
       integer(c_long), value :: stridey
       integer(c_int), value :: batch_count
       integer(c_int) :: hssgemv_strided_batched
-      if (.not. is_contiguous(alpha)) error stop "alpha: array must be contiguous"
-      if (.not. is_contiguous(beta)) error stop "beta: array must be contiguous"
       if (.not. is_contiguous(y)) error stop "y: array must be contiguous"
-      hssgemv_strided_batched = rocblas_hssgemv_strided_batched_raw(handle, transA, m, n, c_loc( &
-        alpha), A, lda, strideA, x, incx, stridex, c_loc(beta), c_loc(y), incy, stridey, &
-        batch_count)
+      hssgemv_strided_batched = rocblas_hssgemv_strided_batched_raw(handle, transA, m, n, alpha, &
+        A, lda, strideA, x, incx, stridex, beta, c_loc(y), incy, stridey, batch_count)
     end function rocblas_hssgemv_strided_batched_native
 
     function rocblas_hssgemv_strided_batched_typed(handle, transA, m, n, alpha, A, lda, strideA, &
@@ -55300,14 +54754,14 @@ contains
       integer(c_int), value :: transA
       integer(c_int), value :: m
       integer(c_int), value :: n
-      type(c_ptr), value :: alpha
+      real(c_float) :: alpha
       type(rocblas_half) :: A
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
       type(rocblas_half) :: x
       integer(c_int), value :: incx
       integer(c_long), value :: stridex
-      type(c_ptr), value :: beta
+      real(c_float) :: beta
       type(c_ptr), value :: y
       integer(c_int), value :: incy
       integer(c_long), value :: stridey
@@ -55316,33 +54770,6 @@ contains
       hssgemv_strided_batched = rocblas_hssgemv_strided_batched_raw(handle%ptr, transA, m, n, &
         alpha, A, lda, strideA, x, incx, stridex, beta, y, incy, stridey, batch_count)
     end function rocblas_hssgemv_strided_batched_typed
-
-    function rocblas_tstgemv_strided_batched_native(handle, transA, m, n, alpha, A, lda, strideA, &
-        x, incx, stridex, beta, y, incy, stridey, batch_count) result(tstgemv_strided_batched)
-      use, intrinsic :: iso_c_binding
-      implicit none
-      type(c_ptr), value :: handle
-      integer(c_int), value :: transA
-      integer(c_int), value :: m
-      integer(c_int), value :: n
-      real(c_float), target :: alpha(..)
-      type(rocblas_bfloat16) :: A
-      integer(c_int), value :: lda
-      integer(c_long), value :: strideA
-      type(rocblas_bfloat16) :: x
-      integer(c_int), value :: incx
-      integer(c_long), value :: stridex
-      real(c_float), target :: beta(..)
-      type(rocblas_bfloat16) :: y
-      integer(c_int), value :: incy
-      integer(c_long), value :: stridey
-      integer(c_int), value :: batch_count
-      integer(c_int) :: tstgemv_strided_batched
-      if (.not. is_contiguous(alpha)) error stop "alpha: array must be contiguous"
-      if (.not. is_contiguous(beta)) error stop "beta: array must be contiguous"
-      tstgemv_strided_batched = rocblas_tstgemv_strided_batched_raw(handle, transA, m, n, c_loc( &
-        alpha), A, lda, strideA, x, incx, stridex, c_loc(beta), y, incy, stridey, batch_count)
-    end function rocblas_tstgemv_strided_batched_native
 
     function rocblas_tstgemv_strided_batched_typed(handle, transA, m, n, alpha, A, lda, strideA, &
         x, incx, stridex, beta, y, incy, stridey, batch_count) result(tstgemv_strided_batched)
@@ -55353,14 +54780,14 @@ contains
       integer(c_int), value :: transA
       integer(c_int), value :: m
       integer(c_int), value :: n
-      type(c_ptr), value :: alpha
+      real(c_float) :: alpha
       type(rocblas_bfloat16) :: A
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
       type(rocblas_bfloat16) :: x
       integer(c_int), value :: incx
       integer(c_long), value :: stridex
-      type(c_ptr), value :: beta
+      real(c_float) :: beta
       type(rocblas_bfloat16) :: y
       integer(c_int), value :: incy
       integer(c_long), value :: stridey
@@ -55378,25 +54805,22 @@ contains
       integer(c_int), value :: transA
       integer(c_int), value :: m
       integer(c_int), value :: n
-      real(c_float), target :: alpha(..)
+      real(c_float) :: alpha
       type(rocblas_bfloat16) :: A
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
       type(rocblas_bfloat16) :: x
       integer(c_int), value :: incx
       integer(c_long), value :: stridex
-      real(c_float), target :: beta(..)
+      real(c_float) :: beta
       real(c_float), target :: y(..)
       integer(c_int), value :: incy
       integer(c_long), value :: stridey
       integer(c_int), value :: batch_count
       integer(c_int) :: tssgemv_strided_batched
-      if (.not. is_contiguous(alpha)) error stop "alpha: array must be contiguous"
-      if (.not. is_contiguous(beta)) error stop "beta: array must be contiguous"
       if (.not. is_contiguous(y)) error stop "y: array must be contiguous"
-      tssgemv_strided_batched = rocblas_tssgemv_strided_batched_raw(handle, transA, m, n, c_loc( &
-        alpha), A, lda, strideA, x, incx, stridex, c_loc(beta), c_loc(y), incy, stridey, &
-        batch_count)
+      tssgemv_strided_batched = rocblas_tssgemv_strided_batched_raw(handle, transA, m, n, alpha, &
+        A, lda, strideA, x, incx, stridex, beta, c_loc(y), incy, stridey, batch_count)
     end function rocblas_tssgemv_strided_batched_native
 
     function rocblas_tssgemv_strided_batched_typed(handle, transA, m, n, alpha, A, lda, strideA, &
@@ -55408,14 +54832,14 @@ contains
       integer(c_int), value :: transA
       integer(c_int), value :: m
       integer(c_int), value :: n
-      type(c_ptr), value :: alpha
+      real(c_float) :: alpha
       type(rocblas_bfloat16) :: A
       integer(c_int), value :: lda
       integer(c_long), value :: strideA
       type(rocblas_bfloat16) :: x
       integer(c_int), value :: incx
       integer(c_long), value :: stridex
-      type(c_ptr), value :: beta
+      real(c_float) :: beta
       type(c_ptr), value :: y
       integer(c_int), value :: incy
       integer(c_long), value :: stridey
@@ -55641,34 +55065,6 @@ contains
         alpha, A, lda, strideA, x, incx, stridex, beta, y, incy, stridey, batch_count)
     end function rocblas_zgemv_strided_batched_64_typed
 
-    function rocblas_hshgemv_strided_batched_64_native(handle, transA, m, n, alpha, A, lda, &
-        strideA, x, incx, stridex, beta, y, incy, stridey, batch_count) result( &
-        hshgemv_strided_batched_64)
-      use, intrinsic :: iso_c_binding
-      implicit none
-      type(c_ptr), value :: handle
-      integer(c_int), value :: transA
-      integer(c_long), value :: m
-      integer(c_long), value :: n
-      real(c_float), target :: alpha(..)
-      type(rocblas_half) :: A
-      integer(c_long), value :: lda
-      integer(c_long), value :: strideA
-      type(rocblas_half) :: x
-      integer(c_long), value :: incx
-      integer(c_long), value :: stridex
-      real(c_float), target :: beta(..)
-      type(rocblas_half) :: y
-      integer(c_long), value :: incy
-      integer(c_long), value :: stridey
-      integer(c_long), value :: batch_count
-      integer(c_int) :: hshgemv_strided_batched_64
-      if (.not. is_contiguous(alpha)) error stop "alpha: array must be contiguous"
-      if (.not. is_contiguous(beta)) error stop "beta: array must be contiguous"
-      hshgemv_strided_batched_64 = rocblas_hshgemv_strided_batched_64_raw(handle, transA, m, n, &
-        c_loc(alpha), A, lda, strideA, x, incx, stridex, c_loc(beta), y, incy, stridey, batch_count)
-    end function rocblas_hshgemv_strided_batched_64_native
-
     function rocblas_hshgemv_strided_batched_64_typed(handle, transA, m, n, alpha, A, lda, &
         strideA, x, incx, stridex, beta, y, incy, stridey, batch_count) result( &
         hshgemv_strided_batched_64)
@@ -55679,14 +55075,14 @@ contains
       integer(c_int), value :: transA
       integer(c_long), value :: m
       integer(c_long), value :: n
-      type(c_ptr), value :: alpha
+      real(c_float) :: alpha
       type(rocblas_half) :: A
       integer(c_long), value :: lda
       integer(c_long), value :: strideA
       type(rocblas_half) :: x
       integer(c_long), value :: incx
       integer(c_long), value :: stridex
-      type(c_ptr), value :: beta
+      real(c_float) :: beta
       type(rocblas_half) :: y
       integer(c_long), value :: incy
       integer(c_long), value :: stridey
@@ -55705,25 +55101,22 @@ contains
       integer(c_int), value :: transA
       integer(c_long), value :: m
       integer(c_long), value :: n
-      real(c_float), target :: alpha(..)
+      real(c_float) :: alpha
       type(rocblas_half) :: A
       integer(c_long), value :: lda
       integer(c_long), value :: strideA
       type(rocblas_half) :: x
       integer(c_long), value :: incx
       integer(c_long), value :: stridex
-      real(c_float), target :: beta(..)
+      real(c_float) :: beta
       real(c_float), target :: y(..)
       integer(c_long), value :: incy
       integer(c_long), value :: stridey
       integer(c_long), value :: batch_count
       integer(c_int) :: hssgemv_strided_batched_64
-      if (.not. is_contiguous(alpha)) error stop "alpha: array must be contiguous"
-      if (.not. is_contiguous(beta)) error stop "beta: array must be contiguous"
       if (.not. is_contiguous(y)) error stop "y: array must be contiguous"
       hssgemv_strided_batched_64 = rocblas_hssgemv_strided_batched_64_raw(handle, transA, m, n, &
-        c_loc(alpha), A, lda, strideA, x, incx, stridex, c_loc(beta), c_loc(y), incy, stridey, &
-        batch_count)
+        alpha, A, lda, strideA, x, incx, stridex, beta, c_loc(y), incy, stridey, batch_count)
     end function rocblas_hssgemv_strided_batched_64_native
 
     function rocblas_hssgemv_strided_batched_64_typed(handle, transA, m, n, alpha, A, lda, &
@@ -55736,14 +55129,14 @@ contains
       integer(c_int), value :: transA
       integer(c_long), value :: m
       integer(c_long), value :: n
-      type(c_ptr), value :: alpha
+      real(c_float) :: alpha
       type(rocblas_half) :: A
       integer(c_long), value :: lda
       integer(c_long), value :: strideA
       type(rocblas_half) :: x
       integer(c_long), value :: incx
       integer(c_long), value :: stridex
-      type(c_ptr), value :: beta
+      real(c_float) :: beta
       type(c_ptr), value :: y
       integer(c_long), value :: incy
       integer(c_long), value :: stridey
@@ -55752,34 +55145,6 @@ contains
       hssgemv_strided_batched_64 = rocblas_hssgemv_strided_batched_64_raw(handle%ptr, transA, m, &
         n, alpha, A, lda, strideA, x, incx, stridex, beta, y, incy, stridey, batch_count)
     end function rocblas_hssgemv_strided_batched_64_typed
-
-    function rocblas_tstgemv_strided_batched_64_native(handle, transA, m, n, alpha, A, lda, &
-        strideA, x, incx, stridex, beta, y, incy, stridey, batch_count) result( &
-        tstgemv_strided_batched_64)
-      use, intrinsic :: iso_c_binding
-      implicit none
-      type(c_ptr), value :: handle
-      integer(c_int), value :: transA
-      integer(c_long), value :: m
-      integer(c_long), value :: n
-      real(c_float), target :: alpha(..)
-      type(rocblas_bfloat16) :: A
-      integer(c_long), value :: lda
-      integer(c_long), value :: strideA
-      type(rocblas_bfloat16) :: x
-      integer(c_long), value :: incx
-      integer(c_long), value :: stridex
-      real(c_float), target :: beta(..)
-      type(rocblas_bfloat16) :: y
-      integer(c_long), value :: incy
-      integer(c_long), value :: stridey
-      integer(c_long), value :: batch_count
-      integer(c_int) :: tstgemv_strided_batched_64
-      if (.not. is_contiguous(alpha)) error stop "alpha: array must be contiguous"
-      if (.not. is_contiguous(beta)) error stop "beta: array must be contiguous"
-      tstgemv_strided_batched_64 = rocblas_tstgemv_strided_batched_64_raw(handle, transA, m, n, &
-        c_loc(alpha), A, lda, strideA, x, incx, stridex, c_loc(beta), y, incy, stridey, batch_count)
-    end function rocblas_tstgemv_strided_batched_64_native
 
     function rocblas_tstgemv_strided_batched_64_typed(handle, transA, m, n, alpha, A, lda, &
         strideA, x, incx, stridex, beta, y, incy, stridey, batch_count) result( &
@@ -55791,14 +55156,14 @@ contains
       integer(c_int), value :: transA
       integer(c_long), value :: m
       integer(c_long), value :: n
-      type(c_ptr), value :: alpha
+      real(c_float) :: alpha
       type(rocblas_bfloat16) :: A
       integer(c_long), value :: lda
       integer(c_long), value :: strideA
       type(rocblas_bfloat16) :: x
       integer(c_long), value :: incx
       integer(c_long), value :: stridex
-      type(c_ptr), value :: beta
+      real(c_float) :: beta
       type(rocblas_bfloat16) :: y
       integer(c_long), value :: incy
       integer(c_long), value :: stridey
@@ -55817,25 +55182,22 @@ contains
       integer(c_int), value :: transA
       integer(c_long), value :: m
       integer(c_long), value :: n
-      real(c_float), target :: alpha(..)
+      real(c_float) :: alpha
       type(rocblas_bfloat16) :: A
       integer(c_long), value :: lda
       integer(c_long), value :: strideA
       type(rocblas_bfloat16) :: x
       integer(c_long), value :: incx
       integer(c_long), value :: stridex
-      real(c_float), target :: beta(..)
+      real(c_float) :: beta
       real(c_float), target :: y(..)
       integer(c_long), value :: incy
       integer(c_long), value :: stridey
       integer(c_long), value :: batch_count
       integer(c_int) :: tssgemv_strided_batched_64
-      if (.not. is_contiguous(alpha)) error stop "alpha: array must be contiguous"
-      if (.not. is_contiguous(beta)) error stop "beta: array must be contiguous"
       if (.not. is_contiguous(y)) error stop "y: array must be contiguous"
       tssgemv_strided_batched_64 = rocblas_tssgemv_strided_batched_64_raw(handle, transA, m, n, &
-        c_loc(alpha), A, lda, strideA, x, incx, stridex, c_loc(beta), c_loc(y), incy, stridey, &
-        batch_count)
+        alpha, A, lda, strideA, x, incx, stridex, beta, c_loc(y), incy, stridey, batch_count)
     end function rocblas_tssgemv_strided_batched_64_native
 
     function rocblas_tssgemv_strided_batched_64_typed(handle, transA, m, n, alpha, A, lda, &
@@ -55848,14 +55210,14 @@ contains
       integer(c_int), value :: transA
       integer(c_long), value :: m
       integer(c_long), value :: n
-      type(c_ptr), value :: alpha
+      real(c_float) :: alpha
       type(rocblas_bfloat16) :: A
       integer(c_long), value :: lda
       integer(c_long), value :: strideA
       type(rocblas_bfloat16) :: x
       integer(c_long), value :: incx
       integer(c_long), value :: stridex
-      type(c_ptr), value :: beta
+      real(c_float) :: beta
       type(c_ptr), value :: y
       integer(c_long), value :: incy
       integer(c_long), value :: stridey
@@ -81560,22 +80922,20 @@ contains
       integer(c_int), value :: transB
       integer(c_int), value :: n
       integer(c_int), value :: k
-      real(c_float), target :: alpha(..)
+      real(c_float) :: alpha
       real(c_float), target :: A(..)
       integer(c_int), value :: lda
       real(c_float), target :: B(..)
       integer(c_int), value :: ldb
-      real(c_float), target :: beta(..)
+      real(c_float) :: beta
       real(c_float), target :: C(..)
       integer(c_int), value :: ldc
       integer(c_int) :: sgemmt
-      if (.not. is_contiguous(alpha)) error stop "alpha: array must be contiguous"
       if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
       if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
-      if (.not. is_contiguous(beta)) error stop "beta: array must be contiguous"
       if (.not. is_contiguous(C)) error stop "C: array must be contiguous"
-      sgemmt = rocblas_sgemmt_raw(handle, uplo, transA, transB, n, k, c_loc(alpha), c_loc(A), lda, &
-        c_loc(B), ldb, c_loc(beta), c_loc(C), ldc)
+      sgemmt = rocblas_sgemmt_raw(handle, uplo, transA, transB, n, k, alpha, c_loc(A), lda, c_loc( &
+        B), ldb, beta, c_loc(C), ldc)
     end function rocblas_sgemmt_native
 
     function rocblas_sgemmt_typed(handle, uplo, transA, transB, n, k, alpha, A, lda, B, ldb, beta, &
@@ -81589,12 +80949,12 @@ contains
       integer(c_int), value :: transB
       integer(c_int), value :: n
       integer(c_int), value :: k
-      type(c_ptr), value :: alpha
+      real(c_float) :: alpha
       type(c_ptr), value :: A
       integer(c_int), value :: lda
       type(c_ptr), value :: B
       integer(c_int), value :: ldb
-      type(c_ptr), value :: beta
+      real(c_float) :: beta
       type(c_ptr), value :: C
       integer(c_int), value :: ldc
       integer(c_int) :: sgemmt
@@ -81612,22 +80972,20 @@ contains
       integer(c_int), value :: transB
       integer(c_int), value :: n
       integer(c_int), value :: k
-      real(c_double), target :: alpha(..)
+      real(c_double) :: alpha
       real(c_double), target :: A(..)
       integer(c_int), value :: lda
       real(c_double), target :: B(..)
       integer(c_int), value :: ldb
-      real(c_double), target :: beta(..)
+      real(c_double) :: beta
       real(c_double), target :: C(..)
       integer(c_int), value :: ldc
       integer(c_int) :: dgemmt
-      if (.not. is_contiguous(alpha)) error stop "alpha: array must be contiguous"
       if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
       if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
-      if (.not. is_contiguous(beta)) error stop "beta: array must be contiguous"
       if (.not. is_contiguous(C)) error stop "C: array must be contiguous"
-      dgemmt = rocblas_dgemmt_raw(handle, uplo, transA, transB, n, k, c_loc(alpha), c_loc(A), lda, &
-        c_loc(B), ldb, c_loc(beta), c_loc(C), ldc)
+      dgemmt = rocblas_dgemmt_raw(handle, uplo, transA, transB, n, k, alpha, c_loc(A), lda, c_loc( &
+        B), ldb, beta, c_loc(C), ldc)
     end function rocblas_dgemmt_native
 
     function rocblas_dgemmt_typed(handle, uplo, transA, transB, n, k, alpha, A, lda, B, ldb, beta, &
@@ -81641,12 +80999,12 @@ contains
       integer(c_int), value :: transB
       integer(c_int), value :: n
       integer(c_int), value :: k
-      type(c_ptr), value :: alpha
+      real(c_double) :: alpha
       type(c_ptr), value :: A
       integer(c_int), value :: lda
       type(c_ptr), value :: B
       integer(c_int), value :: ldb
-      type(c_ptr), value :: beta
+      real(c_double) :: beta
       type(c_ptr), value :: C
       integer(c_int), value :: ldc
       integer(c_int) :: dgemmt
@@ -81664,22 +81022,20 @@ contains
       integer(c_int), value :: transB
       integer(c_int), value :: n
       integer(c_int), value :: k
-      complex(c_float_complex), target :: alpha(..)
+      complex(c_float_complex) :: alpha
       complex(c_float_complex), target :: A(..)
       integer(c_int), value :: lda
       complex(c_float_complex), target :: B(..)
       integer(c_int), value :: ldb
-      complex(c_float_complex), target :: beta(..)
+      complex(c_float_complex) :: beta
       complex(c_float_complex), target :: C(..)
       integer(c_int), value :: ldc
       integer(c_int) :: cgemmt
-      if (.not. is_contiguous(alpha)) error stop "alpha: array must be contiguous"
       if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
       if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
-      if (.not. is_contiguous(beta)) error stop "beta: array must be contiguous"
       if (.not. is_contiguous(C)) error stop "C: array must be contiguous"
-      cgemmt = rocblas_cgemmt_raw(handle, uplo, transA, transB, n, k, c_loc(alpha), c_loc(A), lda, &
-        c_loc(B), ldb, c_loc(beta), c_loc(C), ldc)
+      cgemmt = rocblas_cgemmt_raw(handle, uplo, transA, transB, n, k, alpha, c_loc(A), lda, c_loc( &
+        B), ldb, beta, c_loc(C), ldc)
     end function rocblas_cgemmt_native
 
     function rocblas_cgemmt_typed(handle, uplo, transA, transB, n, k, alpha, A, lda, B, ldb, beta, &
@@ -81693,12 +81049,12 @@ contains
       integer(c_int), value :: transB
       integer(c_int), value :: n
       integer(c_int), value :: k
-      type(c_ptr), value :: alpha
+      complex(c_float_complex) :: alpha
       type(c_ptr), value :: A
       integer(c_int), value :: lda
       type(c_ptr), value :: B
       integer(c_int), value :: ldb
-      type(c_ptr), value :: beta
+      complex(c_float_complex) :: beta
       type(c_ptr), value :: C
       integer(c_int), value :: ldc
       integer(c_int) :: cgemmt
@@ -81716,22 +81072,20 @@ contains
       integer(c_int), value :: transB
       integer(c_int), value :: n
       integer(c_int), value :: k
-      complex(c_double_complex), target :: alpha(..)
+      complex(c_double_complex) :: alpha
       complex(c_double_complex), target :: A(..)
       integer(c_int), value :: lda
       complex(c_double_complex), target :: B(..)
       integer(c_int), value :: ldb
-      complex(c_double_complex), target :: beta(..)
+      complex(c_double_complex) :: beta
       complex(c_double_complex), target :: C(..)
       integer(c_int), value :: ldc
       integer(c_int) :: zgemmt
-      if (.not. is_contiguous(alpha)) error stop "alpha: array must be contiguous"
       if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
       if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
-      if (.not. is_contiguous(beta)) error stop "beta: array must be contiguous"
       if (.not. is_contiguous(C)) error stop "C: array must be contiguous"
-      zgemmt = rocblas_zgemmt_raw(handle, uplo, transA, transB, n, k, c_loc(alpha), c_loc(A), lda, &
-        c_loc(B), ldb, c_loc(beta), c_loc(C), ldc)
+      zgemmt = rocblas_zgemmt_raw(handle, uplo, transA, transB, n, k, alpha, c_loc(A), lda, c_loc( &
+        B), ldb, beta, c_loc(C), ldc)
     end function rocblas_zgemmt_native
 
     function rocblas_zgemmt_typed(handle, uplo, transA, transB, n, k, alpha, A, lda, B, ldb, beta, &
@@ -81745,12 +81099,12 @@ contains
       integer(c_int), value :: transB
       integer(c_int), value :: n
       integer(c_int), value :: k
-      type(c_ptr), value :: alpha
+      complex(c_double_complex) :: alpha
       type(c_ptr), value :: A
       integer(c_int), value :: lda
       type(c_ptr), value :: B
       integer(c_int), value :: ldb
-      type(c_ptr), value :: beta
+      complex(c_double_complex) :: beta
       type(c_ptr), value :: C
       integer(c_int), value :: ldc
       integer(c_int) :: zgemmt
@@ -81768,22 +81122,20 @@ contains
       integer(c_int), value :: transB
       integer(c_long), value :: n
       integer(c_long), value :: k
-      real(c_float), target :: alpha(..)
+      real(c_float) :: alpha
       real(c_float), target :: A(..)
       integer(c_long), value :: lda
       real(c_float), target :: B(..)
       integer(c_long), value :: ldb
-      real(c_float), target :: beta(..)
+      real(c_float) :: beta
       real(c_float), target :: C(..)
       integer(c_long), value :: ldc
       integer(c_int) :: sgemmt_64
-      if (.not. is_contiguous(alpha)) error stop "alpha: array must be contiguous"
       if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
       if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
-      if (.not. is_contiguous(beta)) error stop "beta: array must be contiguous"
       if (.not. is_contiguous(C)) error stop "C: array must be contiguous"
-      sgemmt_64 = rocblas_sgemmt_64_raw(handle, uplo, transA, transB, n, k, c_loc(alpha), c_loc( &
-        A), lda, c_loc(B), ldb, c_loc(beta), c_loc(C), ldc)
+      sgemmt_64 = rocblas_sgemmt_64_raw(handle, uplo, transA, transB, n, k, alpha, c_loc(A), lda, &
+        c_loc(B), ldb, beta, c_loc(C), ldc)
     end function rocblas_sgemmt_64_native
 
     function rocblas_sgemmt_64_typed(handle, uplo, transA, transB, n, k, alpha, A, lda, B, ldb, &
@@ -81797,12 +81149,12 @@ contains
       integer(c_int), value :: transB
       integer(c_long), value :: n
       integer(c_long), value :: k
-      type(c_ptr), value :: alpha
+      real(c_float) :: alpha
       type(c_ptr), value :: A
       integer(c_long), value :: lda
       type(c_ptr), value :: B
       integer(c_long), value :: ldb
-      type(c_ptr), value :: beta
+      real(c_float) :: beta
       type(c_ptr), value :: C
       integer(c_long), value :: ldc
       integer(c_int) :: sgemmt_64
@@ -81820,22 +81172,20 @@ contains
       integer(c_int), value :: transB
       integer(c_long), value :: n
       integer(c_long), value :: k
-      real(c_double), target :: alpha(..)
+      real(c_double) :: alpha
       real(c_double), target :: A(..)
       integer(c_long), value :: lda
       real(c_double), target :: B(..)
       integer(c_long), value :: ldb
-      real(c_double), target :: beta(..)
+      real(c_double) :: beta
       real(c_double), target :: C(..)
       integer(c_long), value :: ldc
       integer(c_int) :: dgemmt_64
-      if (.not. is_contiguous(alpha)) error stop "alpha: array must be contiguous"
       if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
       if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
-      if (.not. is_contiguous(beta)) error stop "beta: array must be contiguous"
       if (.not. is_contiguous(C)) error stop "C: array must be contiguous"
-      dgemmt_64 = rocblas_dgemmt_64_raw(handle, uplo, transA, transB, n, k, c_loc(alpha), c_loc( &
-        A), lda, c_loc(B), ldb, c_loc(beta), c_loc(C), ldc)
+      dgemmt_64 = rocblas_dgemmt_64_raw(handle, uplo, transA, transB, n, k, alpha, c_loc(A), lda, &
+        c_loc(B), ldb, beta, c_loc(C), ldc)
     end function rocblas_dgemmt_64_native
 
     function rocblas_dgemmt_64_typed(handle, uplo, transA, transB, n, k, alpha, A, lda, B, ldb, &
@@ -81849,12 +81199,12 @@ contains
       integer(c_int), value :: transB
       integer(c_long), value :: n
       integer(c_long), value :: k
-      type(c_ptr), value :: alpha
+      real(c_double) :: alpha
       type(c_ptr), value :: A
       integer(c_long), value :: lda
       type(c_ptr), value :: B
       integer(c_long), value :: ldb
-      type(c_ptr), value :: beta
+      real(c_double) :: beta
       type(c_ptr), value :: C
       integer(c_long), value :: ldc
       integer(c_int) :: dgemmt_64
@@ -81872,22 +81222,20 @@ contains
       integer(c_int), value :: transB
       integer(c_long), value :: n
       integer(c_long), value :: k
-      complex(c_float_complex), target :: alpha(..)
+      complex(c_float_complex) :: alpha
       complex(c_float_complex), target :: A(..)
       integer(c_long), value :: lda
       complex(c_float_complex), target :: B(..)
       integer(c_long), value :: ldb
-      complex(c_float_complex), target :: beta(..)
+      complex(c_float_complex) :: beta
       complex(c_float_complex), target :: C(..)
       integer(c_long), value :: ldc
       integer(c_int) :: cgemmt_64
-      if (.not. is_contiguous(alpha)) error stop "alpha: array must be contiguous"
       if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
       if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
-      if (.not. is_contiguous(beta)) error stop "beta: array must be contiguous"
       if (.not. is_contiguous(C)) error stop "C: array must be contiguous"
-      cgemmt_64 = rocblas_cgemmt_64_raw(handle, uplo, transA, transB, n, k, c_loc(alpha), c_loc( &
-        A), lda, c_loc(B), ldb, c_loc(beta), c_loc(C), ldc)
+      cgemmt_64 = rocblas_cgemmt_64_raw(handle, uplo, transA, transB, n, k, alpha, c_loc(A), lda, &
+        c_loc(B), ldb, beta, c_loc(C), ldc)
     end function rocblas_cgemmt_64_native
 
     function rocblas_cgemmt_64_typed(handle, uplo, transA, transB, n, k, alpha, A, lda, B, ldb, &
@@ -81901,12 +81249,12 @@ contains
       integer(c_int), value :: transB
       integer(c_long), value :: n
       integer(c_long), value :: k
-      type(c_ptr), value :: alpha
+      complex(c_float_complex) :: alpha
       type(c_ptr), value :: A
       integer(c_long), value :: lda
       type(c_ptr), value :: B
       integer(c_long), value :: ldb
-      type(c_ptr), value :: beta
+      complex(c_float_complex) :: beta
       type(c_ptr), value :: C
       integer(c_long), value :: ldc
       integer(c_int) :: cgemmt_64
@@ -81924,22 +81272,20 @@ contains
       integer(c_int), value :: transB
       integer(c_long), value :: n
       integer(c_long), value :: k
-      complex(c_double_complex), target :: alpha(..)
+      complex(c_double_complex) :: alpha
       complex(c_double_complex), target :: A(..)
       integer(c_long), value :: lda
       complex(c_double_complex), target :: B(..)
       integer(c_long), value :: ldb
-      complex(c_double_complex), target :: beta(..)
+      complex(c_double_complex) :: beta
       complex(c_double_complex), target :: C(..)
       integer(c_long), value :: ldc
       integer(c_int) :: zgemmt_64
-      if (.not. is_contiguous(alpha)) error stop "alpha: array must be contiguous"
       if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
       if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
-      if (.not. is_contiguous(beta)) error stop "beta: array must be contiguous"
       if (.not. is_contiguous(C)) error stop "C: array must be contiguous"
-      zgemmt_64 = rocblas_zgemmt_64_raw(handle, uplo, transA, transB, n, k, c_loc(alpha), c_loc( &
-        A), lda, c_loc(B), ldb, c_loc(beta), c_loc(C), ldc)
+      zgemmt_64 = rocblas_zgemmt_64_raw(handle, uplo, transA, transB, n, k, alpha, c_loc(A), lda, &
+        c_loc(B), ldb, beta, c_loc(C), ldc)
     end function rocblas_zgemmt_64_native
 
     function rocblas_zgemmt_64_typed(handle, uplo, transA, transB, n, k, alpha, A, lda, B, ldb, &
@@ -81953,44 +81299,18 @@ contains
       integer(c_int), value :: transB
       integer(c_long), value :: n
       integer(c_long), value :: k
-      type(c_ptr), value :: alpha
+      complex(c_double_complex) :: alpha
       type(c_ptr), value :: A
       integer(c_long), value :: lda
       type(c_ptr), value :: B
       integer(c_long), value :: ldb
-      type(c_ptr), value :: beta
+      complex(c_double_complex) :: beta
       type(c_ptr), value :: C
       integer(c_long), value :: ldc
       integer(c_int) :: zgemmt_64
       zgemmt_64 = rocblas_zgemmt_64_raw(handle%ptr, uplo, transA, transB, n, k, alpha, A, lda, B, &
         ldb, beta, C, ldc)
     end function rocblas_zgemmt_64_typed
-
-    function rocblas_sgemmt_batched_native(handle, uplo, transA, transB, n, k, alpha, A, lda, B, &
-        ldb, beta, C, ldc, batch_count) result(sgemmt_batched)
-      use, intrinsic :: iso_c_binding
-      implicit none
-      type(c_ptr), value :: handle
-      integer(c_int), value :: uplo
-      integer(c_int), value :: transA
-      integer(c_int), value :: transB
-      integer(c_int), value :: n
-      integer(c_int), value :: k
-      real(c_float), target :: alpha(..)
-      type(c_ptr), value :: A
-      integer(c_int), value :: lda
-      type(c_ptr), value :: B
-      integer(c_int), value :: ldb
-      real(c_float), target :: beta(..)
-      type(c_ptr), value :: C
-      integer(c_int), value :: ldc
-      integer(c_int), value :: batch_count
-      integer(c_int) :: sgemmt_batched
-      if (.not. is_contiguous(alpha)) error stop "alpha: array must be contiguous"
-      if (.not. is_contiguous(beta)) error stop "beta: array must be contiguous"
-      sgemmt_batched = rocblas_sgemmt_batched_raw(handle, uplo, transA, transB, n, k, c_loc( &
-        alpha), A, lda, B, ldb, c_loc(beta), C, ldc, batch_count)
-    end function rocblas_sgemmt_batched_native
 
     function rocblas_sgemmt_batched_typed(handle, uplo, transA, transB, n, k, alpha, A, lda, B, &
         ldb, beta, C, ldc, batch_count) result(sgemmt_batched)
@@ -82003,12 +81323,12 @@ contains
       integer(c_int), value :: transB
       integer(c_int), value :: n
       integer(c_int), value :: k
-      type(c_ptr), value :: alpha
+      real(c_float) :: alpha
       type(c_ptr), value :: A
       integer(c_int), value :: lda
       type(c_ptr), value :: B
       integer(c_int), value :: ldb
-      type(c_ptr), value :: beta
+      real(c_float) :: beta
       type(c_ptr), value :: C
       integer(c_int), value :: ldc
       integer(c_int), value :: batch_count
@@ -82016,32 +81336,6 @@ contains
       sgemmt_batched = rocblas_sgemmt_batched_raw(handle%ptr, uplo, transA, transB, n, k, alpha, &
         A, lda, B, ldb, beta, C, ldc, batch_count)
     end function rocblas_sgemmt_batched_typed
-
-    function rocblas_dgemmt_batched_native(handle, uplo, transA, transB, n, k, alpha, A, lda, B, &
-        ldb, beta, C, ldc, batch_count) result(dgemmt_batched)
-      use, intrinsic :: iso_c_binding
-      implicit none
-      type(c_ptr), value :: handle
-      integer(c_int), value :: uplo
-      integer(c_int), value :: transA
-      integer(c_int), value :: transB
-      integer(c_int), value :: n
-      integer(c_int), value :: k
-      real(c_double), target :: alpha(..)
-      type(c_ptr), value :: A
-      integer(c_int), value :: lda
-      type(c_ptr), value :: B
-      integer(c_int), value :: ldb
-      real(c_double), target :: beta(..)
-      type(c_ptr), value :: C
-      integer(c_int), value :: ldc
-      integer(c_int), value :: batch_count
-      integer(c_int) :: dgemmt_batched
-      if (.not. is_contiguous(alpha)) error stop "alpha: array must be contiguous"
-      if (.not. is_contiguous(beta)) error stop "beta: array must be contiguous"
-      dgemmt_batched = rocblas_dgemmt_batched_raw(handle, uplo, transA, transB, n, k, c_loc( &
-        alpha), A, lda, B, ldb, c_loc(beta), C, ldc, batch_count)
-    end function rocblas_dgemmt_batched_native
 
     function rocblas_dgemmt_batched_typed(handle, uplo, transA, transB, n, k, alpha, A, lda, B, &
         ldb, beta, C, ldc, batch_count) result(dgemmt_batched)
@@ -82054,12 +81348,12 @@ contains
       integer(c_int), value :: transB
       integer(c_int), value :: n
       integer(c_int), value :: k
-      type(c_ptr), value :: alpha
+      real(c_double) :: alpha
       type(c_ptr), value :: A
       integer(c_int), value :: lda
       type(c_ptr), value :: B
       integer(c_int), value :: ldb
-      type(c_ptr), value :: beta
+      real(c_double) :: beta
       type(c_ptr), value :: C
       integer(c_int), value :: ldc
       integer(c_int), value :: batch_count
@@ -82067,32 +81361,6 @@ contains
       dgemmt_batched = rocblas_dgemmt_batched_raw(handle%ptr, uplo, transA, transB, n, k, alpha, &
         A, lda, B, ldb, beta, C, ldc, batch_count)
     end function rocblas_dgemmt_batched_typed
-
-    function rocblas_cgemmt_batched_native(handle, uplo, transA, transB, n, k, alpha, A, lda, B, &
-        ldb, beta, C, ldc, batch_count) result(cgemmt_batched)
-      use, intrinsic :: iso_c_binding
-      implicit none
-      type(c_ptr), value :: handle
-      integer(c_int), value :: uplo
-      integer(c_int), value :: transA
-      integer(c_int), value :: transB
-      integer(c_int), value :: n
-      integer(c_int), value :: k
-      complex(c_float_complex), target :: alpha(..)
-      type(c_ptr), value :: A
-      integer(c_int), value :: lda
-      type(c_ptr), value :: B
-      integer(c_int), value :: ldb
-      complex(c_float_complex), target :: beta(..)
-      type(c_ptr), value :: C
-      integer(c_int), value :: ldc
-      integer(c_int), value :: batch_count
-      integer(c_int) :: cgemmt_batched
-      if (.not. is_contiguous(alpha)) error stop "alpha: array must be contiguous"
-      if (.not. is_contiguous(beta)) error stop "beta: array must be contiguous"
-      cgemmt_batched = rocblas_cgemmt_batched_raw(handle, uplo, transA, transB, n, k, c_loc( &
-        alpha), A, lda, B, ldb, c_loc(beta), C, ldc, batch_count)
-    end function rocblas_cgemmt_batched_native
 
     function rocblas_cgemmt_batched_typed(handle, uplo, transA, transB, n, k, alpha, A, lda, B, &
         ldb, beta, C, ldc, batch_count) result(cgemmt_batched)
@@ -82105,12 +81373,12 @@ contains
       integer(c_int), value :: transB
       integer(c_int), value :: n
       integer(c_int), value :: k
-      type(c_ptr), value :: alpha
+      complex(c_float_complex) :: alpha
       type(c_ptr), value :: A
       integer(c_int), value :: lda
       type(c_ptr), value :: B
       integer(c_int), value :: ldb
-      type(c_ptr), value :: beta
+      complex(c_float_complex) :: beta
       type(c_ptr), value :: C
       integer(c_int), value :: ldc
       integer(c_int), value :: batch_count
@@ -82118,32 +81386,6 @@ contains
       cgemmt_batched = rocblas_cgemmt_batched_raw(handle%ptr, uplo, transA, transB, n, k, alpha, &
         A, lda, B, ldb, beta, C, ldc, batch_count)
     end function rocblas_cgemmt_batched_typed
-
-    function rocblas_zgemmt_batched_native(handle, uplo, transA, transB, n, k, alpha, A, lda, B, &
-        ldb, beta, C, ldc, batch_count) result(zgemmt_batched)
-      use, intrinsic :: iso_c_binding
-      implicit none
-      type(c_ptr), value :: handle
-      integer(c_int), value :: uplo
-      integer(c_int), value :: transA
-      integer(c_int), value :: transB
-      integer(c_int), value :: n
-      integer(c_int), value :: k
-      complex(c_double_complex), target :: alpha(..)
-      type(c_ptr), value :: A
-      integer(c_int), value :: lda
-      type(c_ptr), value :: B
-      integer(c_int), value :: ldb
-      complex(c_double_complex), target :: beta(..)
-      type(c_ptr), value :: C
-      integer(c_int), value :: ldc
-      integer(c_int), value :: batch_count
-      integer(c_int) :: zgemmt_batched
-      if (.not. is_contiguous(alpha)) error stop "alpha: array must be contiguous"
-      if (.not. is_contiguous(beta)) error stop "beta: array must be contiguous"
-      zgemmt_batched = rocblas_zgemmt_batched_raw(handle, uplo, transA, transB, n, k, c_loc( &
-        alpha), A, lda, B, ldb, c_loc(beta), C, ldc, batch_count)
-    end function rocblas_zgemmt_batched_native
 
     function rocblas_zgemmt_batched_typed(handle, uplo, transA, transB, n, k, alpha, A, lda, B, &
         ldb, beta, C, ldc, batch_count) result(zgemmt_batched)
@@ -82156,12 +81398,12 @@ contains
       integer(c_int), value :: transB
       integer(c_int), value :: n
       integer(c_int), value :: k
-      type(c_ptr), value :: alpha
+      complex(c_double_complex) :: alpha
       type(c_ptr), value :: A
       integer(c_int), value :: lda
       type(c_ptr), value :: B
       integer(c_int), value :: ldb
-      type(c_ptr), value :: beta
+      complex(c_double_complex) :: beta
       type(c_ptr), value :: C
       integer(c_int), value :: ldc
       integer(c_int), value :: batch_count
@@ -82169,32 +81411,6 @@ contains
       zgemmt_batched = rocblas_zgemmt_batched_raw(handle%ptr, uplo, transA, transB, n, k, alpha, &
         A, lda, B, ldb, beta, C, ldc, batch_count)
     end function rocblas_zgemmt_batched_typed
-
-    function rocblas_sgemmt_batched_64_native(handle, uplo, transA, transB, n, k, alpha, A, lda, &
-        B, ldb, beta, C, ldc, batch_count) result(sgemmt_batched_64)
-      use, intrinsic :: iso_c_binding
-      implicit none
-      type(c_ptr), value :: handle
-      integer(c_int), value :: uplo
-      integer(c_int), value :: transA
-      integer(c_int), value :: transB
-      integer(c_long), value :: n
-      integer(c_long), value :: k
-      real(c_float), target :: alpha(..)
-      type(c_ptr), value :: A
-      integer(c_long), value :: lda
-      type(c_ptr), value :: B
-      integer(c_long), value :: ldb
-      real(c_float), target :: beta(..)
-      type(c_ptr), value :: C
-      integer(c_long), value :: ldc
-      integer(c_long), value :: batch_count
-      integer(c_int) :: sgemmt_batched_64
-      if (.not. is_contiguous(alpha)) error stop "alpha: array must be contiguous"
-      if (.not. is_contiguous(beta)) error stop "beta: array must be contiguous"
-      sgemmt_batched_64 = rocblas_sgemmt_batched_64_raw(handle, uplo, transA, transB, n, k, c_loc( &
-        alpha), A, lda, B, ldb, c_loc(beta), C, ldc, batch_count)
-    end function rocblas_sgemmt_batched_64_native
 
     function rocblas_sgemmt_batched_64_typed(handle, uplo, transA, transB, n, k, alpha, A, lda, B, &
         ldb, beta, C, ldc, batch_count) result(sgemmt_batched_64)
@@ -82207,12 +81423,12 @@ contains
       integer(c_int), value :: transB
       integer(c_long), value :: n
       integer(c_long), value :: k
-      type(c_ptr), value :: alpha
+      real(c_float) :: alpha
       type(c_ptr), value :: A
       integer(c_long), value :: lda
       type(c_ptr), value :: B
       integer(c_long), value :: ldb
-      type(c_ptr), value :: beta
+      real(c_float) :: beta
       type(c_ptr), value :: C
       integer(c_long), value :: ldc
       integer(c_long), value :: batch_count
@@ -82220,32 +81436,6 @@ contains
       sgemmt_batched_64 = rocblas_sgemmt_batched_64_raw(handle%ptr, uplo, transA, transB, n, k, &
         alpha, A, lda, B, ldb, beta, C, ldc, batch_count)
     end function rocblas_sgemmt_batched_64_typed
-
-    function rocblas_dgemmt_batched_64_native(handle, uplo, transA, transB, n, k, alpha, A, lda, &
-        B, ldb, beta, C, ldc, batch_count) result(dgemmt_batched_64)
-      use, intrinsic :: iso_c_binding
-      implicit none
-      type(c_ptr), value :: handle
-      integer(c_int), value :: uplo
-      integer(c_int), value :: transA
-      integer(c_int), value :: transB
-      integer(c_long), value :: n
-      integer(c_long), value :: k
-      real(c_double), target :: alpha(..)
-      type(c_ptr), value :: A
-      integer(c_long), value :: lda
-      type(c_ptr), value :: B
-      integer(c_long), value :: ldb
-      real(c_double), target :: beta(..)
-      type(c_ptr), value :: C
-      integer(c_long), value :: ldc
-      integer(c_long), value :: batch_count
-      integer(c_int) :: dgemmt_batched_64
-      if (.not. is_contiguous(alpha)) error stop "alpha: array must be contiguous"
-      if (.not. is_contiguous(beta)) error stop "beta: array must be contiguous"
-      dgemmt_batched_64 = rocblas_dgemmt_batched_64_raw(handle, uplo, transA, transB, n, k, c_loc( &
-        alpha), A, lda, B, ldb, c_loc(beta), C, ldc, batch_count)
-    end function rocblas_dgemmt_batched_64_native
 
     function rocblas_dgemmt_batched_64_typed(handle, uplo, transA, transB, n, k, alpha, A, lda, B, &
         ldb, beta, C, ldc, batch_count) result(dgemmt_batched_64)
@@ -82258,12 +81448,12 @@ contains
       integer(c_int), value :: transB
       integer(c_long), value :: n
       integer(c_long), value :: k
-      type(c_ptr), value :: alpha
+      real(c_double) :: alpha
       type(c_ptr), value :: A
       integer(c_long), value :: lda
       type(c_ptr), value :: B
       integer(c_long), value :: ldb
-      type(c_ptr), value :: beta
+      real(c_double) :: beta
       type(c_ptr), value :: C
       integer(c_long), value :: ldc
       integer(c_long), value :: batch_count
@@ -82271,32 +81461,6 @@ contains
       dgemmt_batched_64 = rocblas_dgemmt_batched_64_raw(handle%ptr, uplo, transA, transB, n, k, &
         alpha, A, lda, B, ldb, beta, C, ldc, batch_count)
     end function rocblas_dgemmt_batched_64_typed
-
-    function rocblas_cgemmt_batched_64_native(handle, uplo, transA, transB, n, k, alpha, A, lda, &
-        B, ldb, beta, C, ldc, batch_count) result(cgemmt_batched_64)
-      use, intrinsic :: iso_c_binding
-      implicit none
-      type(c_ptr), value :: handle
-      integer(c_int), value :: uplo
-      integer(c_int), value :: transA
-      integer(c_int), value :: transB
-      integer(c_long), value :: n
-      integer(c_long), value :: k
-      complex(c_float_complex), target :: alpha(..)
-      type(c_ptr), value :: A
-      integer(c_long), value :: lda
-      type(c_ptr), value :: B
-      integer(c_long), value :: ldb
-      complex(c_float_complex), target :: beta(..)
-      type(c_ptr), value :: C
-      integer(c_long), value :: ldc
-      integer(c_long), value :: batch_count
-      integer(c_int) :: cgemmt_batched_64
-      if (.not. is_contiguous(alpha)) error stop "alpha: array must be contiguous"
-      if (.not. is_contiguous(beta)) error stop "beta: array must be contiguous"
-      cgemmt_batched_64 = rocblas_cgemmt_batched_64_raw(handle, uplo, transA, transB, n, k, c_loc( &
-        alpha), A, lda, B, ldb, c_loc(beta), C, ldc, batch_count)
-    end function rocblas_cgemmt_batched_64_native
 
     function rocblas_cgemmt_batched_64_typed(handle, uplo, transA, transB, n, k, alpha, A, lda, B, &
         ldb, beta, C, ldc, batch_count) result(cgemmt_batched_64)
@@ -82309,12 +81473,12 @@ contains
       integer(c_int), value :: transB
       integer(c_long), value :: n
       integer(c_long), value :: k
-      type(c_ptr), value :: alpha
+      complex(c_float_complex) :: alpha
       type(c_ptr), value :: A
       integer(c_long), value :: lda
       type(c_ptr), value :: B
       integer(c_long), value :: ldb
-      type(c_ptr), value :: beta
+      complex(c_float_complex) :: beta
       type(c_ptr), value :: C
       integer(c_long), value :: ldc
       integer(c_long), value :: batch_count
@@ -82322,32 +81486,6 @@ contains
       cgemmt_batched_64 = rocblas_cgemmt_batched_64_raw(handle%ptr, uplo, transA, transB, n, k, &
         alpha, A, lda, B, ldb, beta, C, ldc, batch_count)
     end function rocblas_cgemmt_batched_64_typed
-
-    function rocblas_zgemmt_batched_64_native(handle, uplo, transA, transB, n, k, alpha, A, lda, &
-        B, ldb, beta, C, ldc, batch_count) result(zgemmt_batched_64)
-      use, intrinsic :: iso_c_binding
-      implicit none
-      type(c_ptr), value :: handle
-      integer(c_int), value :: uplo
-      integer(c_int), value :: transA
-      integer(c_int), value :: transB
-      integer(c_long), value :: n
-      integer(c_long), value :: k
-      complex(c_double_complex), target :: alpha(..)
-      type(c_ptr), value :: A
-      integer(c_long), value :: lda
-      type(c_ptr), value :: B
-      integer(c_long), value :: ldb
-      complex(c_double_complex), target :: beta(..)
-      type(c_ptr), value :: C
-      integer(c_long), value :: ldc
-      integer(c_long), value :: batch_count
-      integer(c_int) :: zgemmt_batched_64
-      if (.not. is_contiguous(alpha)) error stop "alpha: array must be contiguous"
-      if (.not. is_contiguous(beta)) error stop "beta: array must be contiguous"
-      zgemmt_batched_64 = rocblas_zgemmt_batched_64_raw(handle, uplo, transA, transB, n, k, c_loc( &
-        alpha), A, lda, B, ldb, c_loc(beta), C, ldc, batch_count)
-    end function rocblas_zgemmt_batched_64_native
 
     function rocblas_zgemmt_batched_64_typed(handle, uplo, transA, transB, n, k, alpha, A, lda, B, &
         ldb, beta, C, ldc, batch_count) result(zgemmt_batched_64)
@@ -82360,12 +81498,12 @@ contains
       integer(c_int), value :: transB
       integer(c_long), value :: n
       integer(c_long), value :: k
-      type(c_ptr), value :: alpha
+      complex(c_double_complex) :: alpha
       type(c_ptr), value :: A
       integer(c_long), value :: lda
       type(c_ptr), value :: B
       integer(c_long), value :: ldb
-      type(c_ptr), value :: beta
+      complex(c_double_complex) :: beta
       type(c_ptr), value :: C
       integer(c_long), value :: ldc
       integer(c_long), value :: batch_count
@@ -82385,27 +81523,25 @@ contains
       integer(c_int), value :: transB
       integer(c_int), value :: n
       integer(c_int), value :: k
-      real(c_float), target :: alpha(..)
+      real(c_float) :: alpha
       real(c_float), target :: A(..)
       integer(c_int), value :: lda
       integer(c_long), value :: stride_a
       real(c_float), target :: B(..)
       integer(c_int), value :: ldb
       integer(c_long), value :: stride_b
-      real(c_float), target :: beta(..)
+      real(c_float) :: beta
       real(c_float), target :: C(..)
       integer(c_int), value :: ldc
       integer(c_long), value :: stride_c
       integer(c_int), value :: batch_count
       integer(c_int) :: sgemmt_strided_batched
-      if (.not. is_contiguous(alpha)) error stop "alpha: array must be contiguous"
       if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
       if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
-      if (.not. is_contiguous(beta)) error stop "beta: array must be contiguous"
       if (.not. is_contiguous(C)) error stop "C: array must be contiguous"
       sgemmt_strided_batched = rocblas_sgemmt_strided_batched_raw(handle, uplo, transA, transB, n, &
-        k, c_loc(alpha), c_loc(A), lda, stride_a, c_loc(B), ldb, stride_b, c_loc(beta), c_loc(C), &
-        ldc, stride_c, batch_count)
+        k, alpha, c_loc(A), lda, stride_a, c_loc(B), ldb, stride_b, beta, c_loc(C), ldc, stride_c, &
+        batch_count)
     end function rocblas_sgemmt_strided_batched_native
 
     function rocblas_sgemmt_strided_batched_typed(handle, uplo, transA, transB, n, k, alpha, A, &
@@ -82420,14 +81556,14 @@ contains
       integer(c_int), value :: transB
       integer(c_int), value :: n
       integer(c_int), value :: k
-      type(c_ptr), value :: alpha
+      real(c_float) :: alpha
       type(c_ptr), value :: A
       integer(c_int), value :: lda
       integer(c_long), value :: stride_a
       type(c_ptr), value :: B
       integer(c_int), value :: ldb
       integer(c_long), value :: stride_b
-      type(c_ptr), value :: beta
+      real(c_float) :: beta
       type(c_ptr), value :: C
       integer(c_int), value :: ldc
       integer(c_long), value :: stride_c
@@ -82449,27 +81585,25 @@ contains
       integer(c_int), value :: transB
       integer(c_int), value :: n
       integer(c_int), value :: k
-      real(c_double), target :: alpha(..)
+      real(c_double) :: alpha
       real(c_double), target :: A(..)
       integer(c_int), value :: lda
       integer(c_long), value :: stride_a
       real(c_double), target :: B(..)
       integer(c_int), value :: ldb
       integer(c_long), value :: stride_b
-      real(c_double), target :: beta(..)
+      real(c_double) :: beta
       real(c_double), target :: C(..)
       integer(c_int), value :: ldc
       integer(c_long), value :: stride_c
       integer(c_int), value :: batch_count
       integer(c_int) :: dgemmt_strided_batched
-      if (.not. is_contiguous(alpha)) error stop "alpha: array must be contiguous"
       if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
       if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
-      if (.not. is_contiguous(beta)) error stop "beta: array must be contiguous"
       if (.not. is_contiguous(C)) error stop "C: array must be contiguous"
       dgemmt_strided_batched = rocblas_dgemmt_strided_batched_raw(handle, uplo, transA, transB, n, &
-        k, c_loc(alpha), c_loc(A), lda, stride_a, c_loc(B), ldb, stride_b, c_loc(beta), c_loc(C), &
-        ldc, stride_c, batch_count)
+        k, alpha, c_loc(A), lda, stride_a, c_loc(B), ldb, stride_b, beta, c_loc(C), ldc, stride_c, &
+        batch_count)
     end function rocblas_dgemmt_strided_batched_native
 
     function rocblas_dgemmt_strided_batched_typed(handle, uplo, transA, transB, n, k, alpha, A, &
@@ -82484,14 +81618,14 @@ contains
       integer(c_int), value :: transB
       integer(c_int), value :: n
       integer(c_int), value :: k
-      type(c_ptr), value :: alpha
+      real(c_double) :: alpha
       type(c_ptr), value :: A
       integer(c_int), value :: lda
       integer(c_long), value :: stride_a
       type(c_ptr), value :: B
       integer(c_int), value :: ldb
       integer(c_long), value :: stride_b
-      type(c_ptr), value :: beta
+      real(c_double) :: beta
       type(c_ptr), value :: C
       integer(c_int), value :: ldc
       integer(c_long), value :: stride_c
@@ -82513,27 +81647,25 @@ contains
       integer(c_int), value :: transB
       integer(c_int), value :: n
       integer(c_int), value :: k
-      complex(c_float_complex), target :: alpha(..)
+      complex(c_float_complex) :: alpha
       complex(c_float_complex), target :: A(..)
       integer(c_int), value :: lda
       integer(c_long), value :: stride_a
       complex(c_float_complex), target :: B(..)
       integer(c_int), value :: ldb
       integer(c_long), value :: stride_b
-      complex(c_float_complex), target :: beta(..)
+      complex(c_float_complex) :: beta
       complex(c_float_complex), target :: C(..)
       integer(c_int), value :: ldc
       integer(c_long), value :: stride_c
       integer(c_int), value :: batch_count
       integer(c_int) :: cgemmt_strided_batched
-      if (.not. is_contiguous(alpha)) error stop "alpha: array must be contiguous"
       if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
       if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
-      if (.not. is_contiguous(beta)) error stop "beta: array must be contiguous"
       if (.not. is_contiguous(C)) error stop "C: array must be contiguous"
       cgemmt_strided_batched = rocblas_cgemmt_strided_batched_raw(handle, uplo, transA, transB, n, &
-        k, c_loc(alpha), c_loc(A), lda, stride_a, c_loc(B), ldb, stride_b, c_loc(beta), c_loc(C), &
-        ldc, stride_c, batch_count)
+        k, alpha, c_loc(A), lda, stride_a, c_loc(B), ldb, stride_b, beta, c_loc(C), ldc, stride_c, &
+        batch_count)
     end function rocblas_cgemmt_strided_batched_native
 
     function rocblas_cgemmt_strided_batched_typed(handle, uplo, transA, transB, n, k, alpha, A, &
@@ -82548,14 +81680,14 @@ contains
       integer(c_int), value :: transB
       integer(c_int), value :: n
       integer(c_int), value :: k
-      type(c_ptr), value :: alpha
+      complex(c_float_complex) :: alpha
       type(c_ptr), value :: A
       integer(c_int), value :: lda
       integer(c_long), value :: stride_a
       type(c_ptr), value :: B
       integer(c_int), value :: ldb
       integer(c_long), value :: stride_b
-      type(c_ptr), value :: beta
+      complex(c_float_complex) :: beta
       type(c_ptr), value :: C
       integer(c_int), value :: ldc
       integer(c_long), value :: stride_c
@@ -82577,27 +81709,25 @@ contains
       integer(c_int), value :: transB
       integer(c_int), value :: n
       integer(c_int), value :: k
-      complex(c_double_complex), target :: alpha(..)
+      complex(c_double_complex) :: alpha
       complex(c_double_complex), target :: A(..)
       integer(c_int), value :: lda
       integer(c_long), value :: stride_a
       complex(c_double_complex), target :: B(..)
       integer(c_int), value :: ldb
       integer(c_long), value :: stride_b
-      complex(c_double_complex), target :: beta(..)
+      complex(c_double_complex) :: beta
       complex(c_double_complex), target :: C(..)
       integer(c_int), value :: ldc
       integer(c_long), value :: stride_c
       integer(c_int), value :: batch_count
       integer(c_int) :: zgemmt_strided_batched
-      if (.not. is_contiguous(alpha)) error stop "alpha: array must be contiguous"
       if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
       if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
-      if (.not. is_contiguous(beta)) error stop "beta: array must be contiguous"
       if (.not. is_contiguous(C)) error stop "C: array must be contiguous"
       zgemmt_strided_batched = rocblas_zgemmt_strided_batched_raw(handle, uplo, transA, transB, n, &
-        k, c_loc(alpha), c_loc(A), lda, stride_a, c_loc(B), ldb, stride_b, c_loc(beta), c_loc(C), &
-        ldc, stride_c, batch_count)
+        k, alpha, c_loc(A), lda, stride_a, c_loc(B), ldb, stride_b, beta, c_loc(C), ldc, stride_c, &
+        batch_count)
     end function rocblas_zgemmt_strided_batched_native
 
     function rocblas_zgemmt_strided_batched_typed(handle, uplo, transA, transB, n, k, alpha, A, &
@@ -82612,14 +81742,14 @@ contains
       integer(c_int), value :: transB
       integer(c_int), value :: n
       integer(c_int), value :: k
-      type(c_ptr), value :: alpha
+      complex(c_double_complex) :: alpha
       type(c_ptr), value :: A
       integer(c_int), value :: lda
       integer(c_long), value :: stride_a
       type(c_ptr), value :: B
       integer(c_int), value :: ldb
       integer(c_long), value :: stride_b
-      type(c_ptr), value :: beta
+      complex(c_double_complex) :: beta
       type(c_ptr), value :: C
       integer(c_int), value :: ldc
       integer(c_long), value :: stride_c
@@ -82641,27 +81771,25 @@ contains
       integer(c_int), value :: transB
       integer(c_long), value :: n
       integer(c_long), value :: k
-      real(c_float), target :: alpha(..)
+      real(c_float) :: alpha
       real(c_float), target :: A(..)
       integer(c_long), value :: lda
       integer(c_long), value :: stride_a
       real(c_float), target :: B(..)
       integer(c_long), value :: ldb
       integer(c_long), value :: stride_b
-      real(c_float), target :: beta(..)
+      real(c_float) :: beta
       real(c_float), target :: C(..)
       integer(c_long), value :: ldc
       integer(c_long), value :: stride_c
       integer(c_long), value :: batch_count
       integer(c_int) :: sgemmt_strided_batched_64
-      if (.not. is_contiguous(alpha)) error stop "alpha: array must be contiguous"
       if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
       if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
-      if (.not. is_contiguous(beta)) error stop "beta: array must be contiguous"
       if (.not. is_contiguous(C)) error stop "C: array must be contiguous"
       sgemmt_strided_batched_64 = rocblas_sgemmt_strided_batched_64_raw(handle, uplo, transA, &
-        transB, n, k, c_loc(alpha), c_loc(A), lda, stride_a, c_loc(B), ldb, stride_b, c_loc(beta), &
-        c_loc(C), ldc, stride_c, batch_count)
+        transB, n, k, alpha, c_loc(A), lda, stride_a, c_loc(B), ldb, stride_b, beta, c_loc(C), &
+        ldc, stride_c, batch_count)
     end function rocblas_sgemmt_strided_batched_64_native
 
     function rocblas_sgemmt_strided_batched_64_typed(handle, uplo, transA, transB, n, k, alpha, A, &
@@ -82676,14 +81804,14 @@ contains
       integer(c_int), value :: transB
       integer(c_long), value :: n
       integer(c_long), value :: k
-      type(c_ptr), value :: alpha
+      real(c_float) :: alpha
       type(c_ptr), value :: A
       integer(c_long), value :: lda
       integer(c_long), value :: stride_a
       type(c_ptr), value :: B
       integer(c_long), value :: ldb
       integer(c_long), value :: stride_b
-      type(c_ptr), value :: beta
+      real(c_float) :: beta
       type(c_ptr), value :: C
       integer(c_long), value :: ldc
       integer(c_long), value :: stride_c
@@ -82705,27 +81833,25 @@ contains
       integer(c_int), value :: transB
       integer(c_long), value :: n
       integer(c_long), value :: k
-      real(c_double), target :: alpha(..)
+      real(c_double) :: alpha
       real(c_double), target :: A(..)
       integer(c_long), value :: lda
       integer(c_long), value :: stride_a
       real(c_double), target :: B(..)
       integer(c_long), value :: ldb
       integer(c_long), value :: stride_b
-      real(c_double), target :: beta(..)
+      real(c_double) :: beta
       real(c_double), target :: C(..)
       integer(c_long), value :: ldc
       integer(c_long), value :: stride_c
       integer(c_long), value :: batch_count
       integer(c_int) :: dgemmt_strided_batched_64
-      if (.not. is_contiguous(alpha)) error stop "alpha: array must be contiguous"
       if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
       if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
-      if (.not. is_contiguous(beta)) error stop "beta: array must be contiguous"
       if (.not. is_contiguous(C)) error stop "C: array must be contiguous"
       dgemmt_strided_batched_64 = rocblas_dgemmt_strided_batched_64_raw(handle, uplo, transA, &
-        transB, n, k, c_loc(alpha), c_loc(A), lda, stride_a, c_loc(B), ldb, stride_b, c_loc(beta), &
-        c_loc(C), ldc, stride_c, batch_count)
+        transB, n, k, alpha, c_loc(A), lda, stride_a, c_loc(B), ldb, stride_b, beta, c_loc(C), &
+        ldc, stride_c, batch_count)
     end function rocblas_dgemmt_strided_batched_64_native
 
     function rocblas_dgemmt_strided_batched_64_typed(handle, uplo, transA, transB, n, k, alpha, A, &
@@ -82740,14 +81866,14 @@ contains
       integer(c_int), value :: transB
       integer(c_long), value :: n
       integer(c_long), value :: k
-      type(c_ptr), value :: alpha
+      real(c_double) :: alpha
       type(c_ptr), value :: A
       integer(c_long), value :: lda
       integer(c_long), value :: stride_a
       type(c_ptr), value :: B
       integer(c_long), value :: ldb
       integer(c_long), value :: stride_b
-      type(c_ptr), value :: beta
+      real(c_double) :: beta
       type(c_ptr), value :: C
       integer(c_long), value :: ldc
       integer(c_long), value :: stride_c
@@ -82769,27 +81895,25 @@ contains
       integer(c_int), value :: transB
       integer(c_long), value :: n
       integer(c_long), value :: k
-      complex(c_float_complex), target :: alpha(..)
+      complex(c_float_complex) :: alpha
       complex(c_float_complex), target :: A(..)
       integer(c_long), value :: lda
       integer(c_long), value :: stride_a
       complex(c_float_complex), target :: B(..)
       integer(c_long), value :: ldb
       integer(c_long), value :: stride_b
-      complex(c_float_complex), target :: beta(..)
+      complex(c_float_complex) :: beta
       complex(c_float_complex), target :: C(..)
       integer(c_long), value :: ldc
       integer(c_long), value :: stride_c
       integer(c_long), value :: batch_count
       integer(c_int) :: cgemmt_strided_batched_64
-      if (.not. is_contiguous(alpha)) error stop "alpha: array must be contiguous"
       if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
       if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
-      if (.not. is_contiguous(beta)) error stop "beta: array must be contiguous"
       if (.not. is_contiguous(C)) error stop "C: array must be contiguous"
       cgemmt_strided_batched_64 = rocblas_cgemmt_strided_batched_64_raw(handle, uplo, transA, &
-        transB, n, k, c_loc(alpha), c_loc(A), lda, stride_a, c_loc(B), ldb, stride_b, c_loc(beta), &
-        c_loc(C), ldc, stride_c, batch_count)
+        transB, n, k, alpha, c_loc(A), lda, stride_a, c_loc(B), ldb, stride_b, beta, c_loc(C), &
+        ldc, stride_c, batch_count)
     end function rocblas_cgemmt_strided_batched_64_native
 
     function rocblas_cgemmt_strided_batched_64_typed(handle, uplo, transA, transB, n, k, alpha, A, &
@@ -82804,14 +81928,14 @@ contains
       integer(c_int), value :: transB
       integer(c_long), value :: n
       integer(c_long), value :: k
-      type(c_ptr), value :: alpha
+      complex(c_float_complex) :: alpha
       type(c_ptr), value :: A
       integer(c_long), value :: lda
       integer(c_long), value :: stride_a
       type(c_ptr), value :: B
       integer(c_long), value :: ldb
       integer(c_long), value :: stride_b
-      type(c_ptr), value :: beta
+      complex(c_float_complex) :: beta
       type(c_ptr), value :: C
       integer(c_long), value :: ldc
       integer(c_long), value :: stride_c
@@ -82833,27 +81957,25 @@ contains
       integer(c_int), value :: transB
       integer(c_long), value :: n
       integer(c_long), value :: k
-      complex(c_double_complex), target :: alpha(..)
+      complex(c_double_complex) :: alpha
       complex(c_double_complex), target :: A(..)
       integer(c_long), value :: lda
       integer(c_long), value :: stride_a
       complex(c_double_complex), target :: B(..)
       integer(c_long), value :: ldb
       integer(c_long), value :: stride_b
-      complex(c_double_complex), target :: beta(..)
+      complex(c_double_complex) :: beta
       complex(c_double_complex), target :: C(..)
       integer(c_long), value :: ldc
       integer(c_long), value :: stride_c
       integer(c_long), value :: batch_count
       integer(c_int) :: zgemmt_strided_batched_64
-      if (.not. is_contiguous(alpha)) error stop "alpha: array must be contiguous"
       if (.not. is_contiguous(A)) error stop "A: array must be contiguous"
       if (.not. is_contiguous(B)) error stop "B: array must be contiguous"
-      if (.not. is_contiguous(beta)) error stop "beta: array must be contiguous"
       if (.not. is_contiguous(C)) error stop "C: array must be contiguous"
       zgemmt_strided_batched_64 = rocblas_zgemmt_strided_batched_64_raw(handle, uplo, transA, &
-        transB, n, k, c_loc(alpha), c_loc(A), lda, stride_a, c_loc(B), ldb, stride_b, c_loc(beta), &
-        c_loc(C), ldc, stride_c, batch_count)
+        transB, n, k, alpha, c_loc(A), lda, stride_a, c_loc(B), ldb, stride_b, beta, c_loc(C), &
+        ldc, stride_c, batch_count)
     end function rocblas_zgemmt_strided_batched_64_native
 
     function rocblas_zgemmt_strided_batched_64_typed(handle, uplo, transA, transB, n, k, alpha, A, &
@@ -82868,14 +81990,14 @@ contains
       integer(c_int), value :: transB
       integer(c_long), value :: n
       integer(c_long), value :: k
-      type(c_ptr), value :: alpha
+      complex(c_double_complex) :: alpha
       type(c_ptr), value :: A
       integer(c_long), value :: lda
       integer(c_long), value :: stride_a
       type(c_ptr), value :: B
       integer(c_long), value :: ldb
       integer(c_long), value :: stride_b
-      type(c_ptr), value :: beta
+      complex(c_double_complex) :: beta
       type(c_ptr), value :: C
       integer(c_long), value :: ldc
       integer(c_long), value :: stride_c

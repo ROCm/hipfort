@@ -3036,11 +3036,7 @@ module hipfort
     !> `hipErrorCooperativeLaunchTooLarge`
     function hipLaunchCooperativeKernelMultiDevice(launchParamsList, numDevices, flags) &
        result(LaunchCooperativeKernelMultiDevice) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cudaLaunchCooperativeKernelMultiDevice")
-#else
        bind(C, name="hipLaunchCooperativeKernelMultiDevice")
-#endif
        import :: hipLaunchParams, c_int
        type(hipLaunchParams) :: launchParamsList
        integer(c_int), value :: numDevices
@@ -10674,11 +10670,7 @@ module hipfort
     function hipStreamGetCaptureInfo_v2_raw(stream, captureStatus_out, id_out, graph_out, &
                                             dependencies_out, numDependencies_out) &
        result(StreamGetCaptureInfo_v2_raw) &
-#ifdef USE_CUDA_NAMES
-       bind(C, name="cudaStreamGetCaptureInfo_v2")
-#else
        bind(C, name="hipStreamGetCaptureInfo_v2")
-#endif
        import :: c_ptr, c_int
        type(c_ptr), value :: stream
        type(c_ptr), value :: captureStatus_out
