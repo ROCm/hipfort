@@ -1,5 +1,13 @@
 # Change Log for hipfort
 
+## (Unreleased)
+
+### Added
+
+* Added GPU architecture autodetection for AMD Instinct MI300 (gfx942),
+  MI350 (gfx950), and MI455X (gfx1250) devices in the `hipfc` wrapper and
+  the `mygpu`/`mymcpu` utilities.
+
 ## hipfort 0.7.1 for ROCm 7.1.0
 
 ### Added
