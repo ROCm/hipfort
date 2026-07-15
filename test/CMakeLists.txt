@@ -105,6 +105,7 @@ if(BUILD_TESTING)
     hipfort_add_test(rocblas dgemm f2003)
     hipfort_add_test(rocblas cgemm f2003)
     hipfort_add_test(rocblas zgemm f2003)
+    hipfort_add_test(rocblas sgemm f2008)
   endif()
 
   if(TARGET hipfort::rocfft)
