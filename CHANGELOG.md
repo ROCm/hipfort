@@ -8,6 +8,12 @@
   MI350 (gfx950), and MI455X (gfx1250) devices in the `hipfc` wrapper and
   the `mygpu`/`mymcpu` utilities.
 
+### Resolved issues
+
+* Fixed the `hipfc` wrapper so it locates the hipfort module and library
+  files when hipfort is installed with the compiler-specific subdirectory
+  layout (`HIPFORT_MULTITOOLCHAIN_LAYOUT=ON`, the default since ROCm 6.4).
+
 ## hipfort 0.7.1 for ROCm 7.1.0
 
 ### Added
