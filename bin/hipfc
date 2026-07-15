@@ -415,10 +415,25 @@ if [ "$UNAMEP" == "ppc64le" ] ; then
   HOST_TARGET="ppc64le-linux-gnu"
 fi
 
+# Locate the hipfort module and library directories.  Since ROCm 6.4 hipfort
+# may be installed under a compiler-specific subdirectory when it is built with
+# HIPFORT_MULTITOOLCHAIN_LAYOUT=ON (the default):
+#   include/fortran/<compiler>/hipfort/<arch>  and  lib/fortran/<compiler>
+# Prefer that layout when present, otherwise fall back to the flat layout.
+FCNAME=$(basename "$HIPFORT_COMPILER")
+HIPFORT_INCLUDE_DIR="$HIPFORT/include/hipfort/$TARGET_ARCH"
+HIPFORT_LIB_DIR="$HIPFORT/lib"
+if [ -d "$HIPFORT/include/fortran/$FCNAME/hipfort/$TARGET_ARCH" ] ; then
+   HIPFORT_INCLUDE_DIR="$HIPFORT/include/fortran/$FCNAME/hipfort/$TARGET_ARCH"
+fi
+if [ -d "$HIPFORT/lib/fortran/$FCNAME" ] ; then
+   HIPFORT_LIB_DIR="$HIPFORT/lib/fortran/$FCNAME"
+fi
+
 if [[ "$HIPFORT_COMPILER" == *"ftn" ]] ; then
-  FCARGS="-eT -J$HIPFORT/include/hipfort/$TARGET_ARCH"
+  FCARGS="-eT -J$HIPFORT_INCLUDE_DIR"
 else
-  FCARGS="-cpp -I$HIPFORT/include/hipfort/$TARGET_ARCH"
+  FCARGS="-cpp -I$HIPFORT_INCLUDE_DIR"
 fi
 
 if [ $GEN_OBJECT_ONLY ]  ; then 
@@ -426,7 +441,7 @@ if [ $GEN_OBJECT_ONLY ]  ; then
    HIPCC_OPTS=" -c $HIPCC_OPTS"
    LINKOPTS=""
 else
-   LINKOPTS="-L$HIPFORT/lib -lhipfort-$TARGET_ARCH"
+   LINKOPTS="-L$HIPFORT_LIB_DIR -lhipfort-$TARGET_ARCH"
    for lib in $ROCM_LIBS; do
      addrocmlib $lib
    done
