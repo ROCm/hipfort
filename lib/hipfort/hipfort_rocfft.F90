@@ -4,17 +4,17 @@
 ! ==============================================================================
 ! Copyright (c) 2020-2022 Advanced Micro Devices, Inc. All rights reserved.
 ! [MITx11 License]
-! 
+!
 ! Permission is hereby granted, free of charge, to any person obtaining a copy
 ! of this software and associated documentation files (the "Software"), to deal
 ! in the Software without restriction, including without limitation the rights
 ! to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
 ! copies of the Software, and to permit persons to whom the Software is
 ! furnished to do so, subject to the following conditions:
-! 
+!
 ! The above copyright notice and this permission notice shall be included in
 ! all copies or substantial portions of the Software.
-! 
+!
 ! THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 ! IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
 ! FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.  IN NO EVENT SHALL THE
@@ -23,13 +23,11 @@
 ! OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 ! THE SOFTWARE.
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-          
-           
+
 module hipfort_rocfft
   use hipfort_rocfft_enums
   implicit none
 
- 
   !>  @brief Library setup function, called once in program before start of
   !>  library use
   interface rocfft_setup
@@ -53,27 +51,27 @@ module hipfort_rocfft
 
   end interface
   !>  @brief Create an FFT plan
-  !> 
+  !>
   !>   @details This API creates a plan, which the user can execute
   !>   subsequently.  This function takes many of the fundamental
   !>   parameters needed to specify a transform.
-  !> 
+  !>
   !>   The dimensions parameter can take a value of 1, 2, or 3. The
   !>   'lengths' array specifies the size of data in each dimension. Note
   !>   that lengths[0] is the size of the innermost dimension, lengths[1]
   !>   is the next higher dimension and so on (column-major ordering).
-  !> 
+  !>
   !>   The 'number_of_transforms' parameter specifies how many
   !>   transforms (of the same kind) needs to be computed. By specifying
   !>   a value greater than 1, a batch of transforms can be computed
   !>   with a single API call.
-  !> 
+  !>
   !>   Additionally, a handle to a plan description can be passed for
   !>   more detailed transforms. For simple transforms, this parameter
   !>   can be set to NULL.
-  !> 
+  !>
   !>   The plan must be destroyed with a call to rocfft_plan_destroy.
-  !> 
+  !>
   !>   @param[out] plan plan handle
   !>   @param[in] placement placement of result
   !>   @param[in] transform_type type of transform
@@ -107,26 +105,26 @@ module hipfort_rocfft
 #endif
   end interface
   !>  @brief Execute an FFT plan
-  !> 
+  !>
   !>   @details This API executes an FFT plan on buffers given by the user.
-  !> 
+  !>
   !>   If the transform is in-place, only the input buffer is needed and
   !>   the output buffer parameter can be set to NULL. For not in-place
   !>   transforms, output buffers have to be specified.
-  !> 
+  !>
   !>   Input and output buffer are arrays of pointers.  Interleaved
   !>   array formats are the default, and require just one pointer per
   !>   input or output buffer.  Planar array formats require two
   !>   pointers per input or output buffer - real and imaginary
   !>   pointers, in that order.
-  !> 
+  !>
   !>   Note that input buffers may still be overwritten during execution
   !>   of a transform, even if the transform is not in-place.
-  !> 
+  !>
   !>   The final parameter in this function is a rocfft_execution_info
   !>   handle. This optional parameter serves as a way for the user to control
   !>   execution streams and work buffers.
-  !> 
+  !>
   !>   @param[in] plan plan handle
   !>   @param[in,out] in_buffer array (of size 1 for interleaved data, of size 2
   !>  for planar data) of input buffers
@@ -160,43 +158,28 @@ module hipfort_rocfft
     end function
 
   end interface
-  !>  @brief Set scaling factor in single precision
+  !>  @brief Set scaling factor
   !>   @details This is one of plan description functions to specify optional additional plan properties using the description handle. This API specifies scaling factor.
   !>   @param[in] description description handle
   !>   @param[in] scale scaling factor
-  interface rocfft_plan_description_set_scale_float
-    function rocfft_plan_description_set_scale_float_(description,scale) bind(c, name="rocfft_plan_description_set_scale_float")
+  interface rocfft_plan_description_set_scale_factor
+    function rocfft_plan_description_set_scale_factor_(description,scale) bind(c, name="rocfft_plan_description_set_scale_factor")
       use iso_c_binding
       use hipfort_rocfft_enums
       implicit none
-      integer(kind(rocfft_status_success)) :: rocfft_plan_description_set_scale_float_
-      type(c_ptr),value :: description
-      real(c_float),value :: scale
-    end function
-
-  end interface
-  !>  @brief Set scaling factor in double precision
-  !>   @details This is one of plan description functions to specify optional additional plan properties using the description handle. This API specifies scaling factor.
-  !>   @param[in] description description handle
-  !>   @param[in] scale scaling factor
-  interface rocfft_plan_description_set_scale_double
-    function rocfft_plan_description_set_scale_double_(description,scale) bind(c, name="rocfft_plan_description_set_scale_double")
-      use iso_c_binding
-      use hipfort_rocfft_enums
-      implicit none
-      integer(kind(rocfft_status_success)) :: rocfft_plan_description_set_scale_double_
+      integer(kind(rocfft_status_success)) :: rocfft_plan_description_set_scale_factor_
       type(c_ptr),value :: description
       real(c_double),value :: scale
     end function
 
   end interface
   !>   @brief Set advanced data layout parameters on a plan description
-  !>  
+  !>
   !>   @details This API specifies advanced layout of input/output
   !>   buffers for a plan description.
-  !>  
+  !>
   !>   The following parameters are supported for inputs and outputs:
-  !> 
+  !>
   !>   * Array type (real, hermitian, or complex data, in either
   !>     interleaved or planar format).
   !>       * Real forward transforms require real input and hermitian output.
@@ -209,10 +192,10 @@ module hipfort_rocfft
   !>       to contiguous data in all dimensions if unspecified.
   !>   * Distance between consecutive batches.  Defaults to contiguous
   !>       batches if unspecified.
-  !> 
+  !>
   !>   Not all combinations of array types are supported and error codes
   !>   will be returned for unsupported cases.
-  !> 
+  !>
   !>   @param[in, out] description description handle
   !>   @param[in] in_array_type array type of input buffer
   !>   @param[in] out_array_type array type of output buffer
@@ -253,7 +236,7 @@ module hipfort_rocfft
 #endif
   end interface
   !>  @brief Get library version string
-  !> 
+  !>
   !>  @param[in, out] buf buffer that receives the version string
   !>  @param[in] len length of buf, minimum 30 characters
   interface rocfft_get_version_string
@@ -372,27 +355,27 @@ module hipfort_rocfft
 
   end interface
   !>  @brief Set work buffer in execution info
-  !> 
+  !>
   !>   @details This is one of the execution info functions to specify
   !>   optional additional information to control execution.  This API
   !>   provides a work buffer for the transform. It must be called
   !>   before rocfft_execute.
-  !> 
+  !>
   !>   When a non-zero value is obtained from
   !>   rocfft_plan_get_work_buffer_size, that means the library needs a
   !>   work buffer to compute the transform. In this case, the user
   !>   should allocate the work buffer and pass it to the library via
   !>   this API.
-  !> 
+  !>
   !>   If a work buffer is required for the transform but is not
   !>   specified using this function, rocfft_execute will automatically
   !>   allocate the required buffer and free it when execution is
   !>   finished.
-  !> 
+  !>
   !>   Users should allocate their own work buffers if they need precise
   !>   control over the lifetimes of those buffers, or if multiple plans
   !>   need to share the same buffer.
-  !> 
+  !>
   !>   @param[in] info execution info handle
   !>   @param[in] work_buffer work buffer
   !>   @param[in] size_in_bytes size of work buffer in bytes
@@ -428,13 +411,13 @@ module hipfort_rocfft
   !>  @brief Set stream in execution info
   !>   @details Associates an existing compute stream to a plan.  This
   !>  must be called before the call to rocfft_execute.
-  !> 
+  !>
   !>   Once the association is made, execution of the FFT will run the
   !>   computation through the specified stream.
-  !> 
+  !>
   !>   The stream must be of type hipStream_t. It is an error to pass
   !>   the address of a hipStream_t object.
-  !> 
+  !>
   !>   @param[in] info execution info handle
   !>   @param[in] stream underlying compute stream
   interface rocfft_execution_info_set_stream
@@ -452,33 +435,33 @@ module hipfort_rocfft
   !>   @details This function specifies a user-defined callback function
   !>   that is run to load input from global memory at the start of the
   !>   transform.  Callbacks are an experimental feature in rocFFT.
-  !> 
+  !>
   !>   Callback function pointers/data are given as arrays, with one
   !>   function/data pointer per device executing this plan.  Currently,
   !>   plans can only use one device.
-  !> 
+  !>
   !>   The provided function pointers replace any previously-specified
   !>   load callback for this execution info handle.
-  !> 
+  !>
   !>   Load callbacks have the following signature:
-  !> 
+  !>
   !>   @code
   !>   T load_cb(T* data, size_t offset, void* cbdata, void* sharedMem);
   !>   @endcode
-  !> 
+  !>
   !>   'T' is the type of a single element of the input buffer.  It is
   !>   the caller's responsibility to ensure that the function type is
   !>   appropriate for the plan (for example, a single-precision
   !>   real-to-complex transform would load single-precision real
   !>   elements).
-  !> 
+  !>
   !>   A null value for 'cb' may be specified to clear any previously
   !>   registered load callback.
-  !> 
+  !>
   !>   Currently, 'shared_mem_bytes' must be 0.  Callbacks are not
   !>   supported on transforms that use planar formats for either input
   !>   or output.
-  !> 
+  !>
   !>   @param[in] info execution info handle
   !>   @param[in] cb callback function pointers
   !>   @param[in] cbdata callback function data, passed to the function pointer when it is called
@@ -500,33 +483,33 @@ module hipfort_rocfft
   !>   @details This function specifies a user-defined callback function
   !>   that is run to store output to global memory at the end of the
   !>   transform.  Callbacks are an experimental feature in rocFFT.
-  !> 
+  !>
   !>   Callback function pointers/data are given as arrays, with one
   !>   function/data pointer per device executing this plan.  Currently,
   !>   plans can only use one device.
-  !> 
+  !>
   !>   The provided function pointers replace any previously-specified
   !>   store callback for this execution info handle.
-  !> 
+  !>
   !>   Store callbacks have the following signature:
-  !> 
+  !>
   !>   @code
   !>   void store_cb(T* data, size_t offset, T element, void* cbdata, void* sharedMem);
   !>   @endcode
-  !> 
+  !>
   !>   'T' is the type of a single element of the output buffer.  It is
   !>   the caller's responsibility to ensure that the function type is
   !>   appropriate for the plan (for example, a single-precision
   !>   real-to-complex transform would store single-precision complex
   !>   elements).
-  !> 
+  !>
   !>   A null value for 'cb' may be specified to clear any previously
   !>   registered store callback.
-  !> 
+  !>
   !>   Currently, 'shared_mem_bytes' must be 0.  Callbacks are not
   !>   supported on transforms that use planar formats for either input
   !>   or output.
-  !> 
+  !>
   !>   @param[in] info execution info handle
   !>   @param[in] cb callbacks function pointers
   !>   @param[in] cbdata callback function data, passed to the function pointer when it is called
@@ -564,7 +547,7 @@ module hipfort_rocfft
 
   end interface
   !>  @brief Serialize compiled kernel cache
-  !> 
+  !>
   !>   @details Serialize rocFFT's cache of compiled kernels into a
   !>   buffer.  This buffer is allocated by rocFFT and must be freed
   !>   with a call to rocfft_cache_buffer_free.  The length of the
@@ -581,7 +564,7 @@ module hipfort_rocfft
 
   end interface
   !>  @brief Free cache serialization buffer
-  !> 
+  !>
   !>   @details Deallocate a buffer allocated by rocfft_cache_serialize.
   interface rocfft_cache_buffer_free
     function rocfft_cache_buffer_free_(buffer) bind(c, name="rocfft_cache_buffer_free")
@@ -594,7 +577,7 @@ module hipfort_rocfft
 
   end interface
   !>  @brief Deserialize a buffer into the compiled kernel cache.
-  !> 
+  !>
   !>   @details Kernels in the buffer that match already-cached kernels
   !>   will replace those kernels that are in the cache.  Already-cached
   !>   kernels that do not match those in the buffer are unmodified by
@@ -688,6 +671,5 @@ module hipfort_rocfft
       rocfft_plan_description_set_data_layout_rank_1 = rocfft_plan_description_set_data_layout_(description,in_array_type,out_array_type,c_loc(in_offsets),c_loc(out_offsets),in_strides_size,c_loc(in_strides),in_distance,out_strides_size,c_loc(out_strides),out_distance)
     end function
 
-  
 #endif
 end module hipfort_rocfft
