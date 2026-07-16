@@ -85,6 +85,7 @@ if(BUILD_TESTING)
     hipfort_add_test(hipblas zgemv f2003)
     hipfort_add_test(hipblas sger f2003)
     hipfort_add_test(hipblas sswap f2003)
+    hipfort_add_test(hipblas strsv f2003)
 
     hipfort_add_test(hipblas cgemm f2008)
     hipfort_add_test(hipblas dgemm f2008)
