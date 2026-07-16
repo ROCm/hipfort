@@ -1,0 +1,72 @@
+program hip_zgemv
+
+  use iso_c_binding
+  use hipfort
+  use hipfort_check
+  use hipfort_hipblas
+
+  implicit none
+
+  integer(kind(HIPBLAS_OP_N)), parameter :: trans = HIPBLAS_OP_N
+  complex(c_double_complex), parameter :: alpha = (1.1d0, 0.d0), beta = (0.9d0, 0.d0)
+
+  integer, parameter :: m = 512, n = 512
+
+  complex(kind=8), allocatable, dimension(:,:) :: hA
+  complex(kind=8), allocatable, dimension(:) :: hx, hy
+  complex(kind=8) :: y_exact
+
+  complex(kind=8), pointer, dimension(:,:) :: dA
+  complex(kind=8), pointer, dimension(:) :: dx, dy
+  type(c_ptr) :: handle = c_null_ptr
+
+  integer :: i
+  double precision :: error
+  double precision, parameter :: error_max = 10*epsilon(error)
+
+  write(*,"(a)",advance="no") "-- Running test 'ZGEMV' (Fortran 2008 interfaces) - "
+
+  call hipblasCheck(hipblasCreate(handle))
+
+  allocate(hA(m,n))
+  allocate(hx(n))
+  allocate(hy(m))
+
+  ! Use these constant matrix/vectors so the exact answer is also a
+  ! constant vector and therefore easy to check
+  hA(:,:) = (1.d0, 0.d0)
+  hx(:) = (1.d0, 0.d0)
+  hy(:) = (1.d0, 0.d0)
+  y_exact = alpha * n + beta   ! = (1.1*512 + 0.9, 0.0) = (564.1, 0.0)
+
+  ! Allocate device memory
+  call hipCheck(hipMalloc(dA,source=hA)) ! implies (blocking) memcpy
+  call hipCheck(hipMalloc(dx,source=hx))
+  call hipCheck(hipMalloc(dy,source=hy))
+
+  call hipblasCheck(hipblasZgemv(handle, trans, m, n, alpha, dA, size(dA,1), dx, 1, beta, dy, 1))
+
+  call hipCheck(hipDeviceSynchronize())
+
+  ! Transfer data back to host memory
+  call hipCheck(hipMemcpy(hy, dy, hipMemcpyDeviceToHost))
+
+  do i = 1,m
+     error = abs((y_exact - hy(i))/y_exact)
+     if( error > error_max )then
+        write(*,*) "FAILED! Error bigger than max! Error = ", error
+        call exit(1)
+     end if
+  end do
+
+  call hipCheck(hipFree(dA))
+  call hipCheck(hipFree(dx))
+  call hipCheck(hipFree(dy))
+
+  call hipblasCheck(hipblasDestroy(handle))
+
+  deallocate(hA, hx, hy)
+
+  write(*,*) "PASSED!"
+
+end program hip_zgemv
