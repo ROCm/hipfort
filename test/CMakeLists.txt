@@ -77,6 +77,7 @@ if(BUILD_TESTING)
     hipfort_add_test(hipblas saxpy f2003)
     hipfort_add_test(hipblas scopy f2003)
     hipfort_add_test(hipblas sgemv f2003)
+    hipfort_add_test(hipblas dgemv f2003)
     hipfort_add_test(hipblas sger f2003)
     hipfort_add_test(hipblas sswap f2003)
 
