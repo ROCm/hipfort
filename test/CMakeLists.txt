@@ -141,6 +141,7 @@ if(BUILD_TESTING)
     hipfort_add_test(rocblas zgemv f2008)
     hipfort_add_test(rocblas strsv f2003)
     hipfort_add_test(rocblas dtrsv f2003)
+    hipfort_add_test(rocblas ctrsv f2003)
   endif()
 
   if(TARGET hipfort::rocfft)
