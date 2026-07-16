@@ -107,6 +107,7 @@ if(BUILD_TESTING)
     hipfort_add_test(hipblas zgemv f2008)
     hipfort_add_test(hipblas sger f2008)
     hipfort_add_test(hipblas sswap f2008)
+    hipfort_add_test(hipblas strsv f2008)
   endif()
 
   if(TARGET hipfort::hipfft)
