@@ -8,6 +8,12 @@
   MI350 (gfx950), and MI455X (gfx1250) devices in the `hipfc` wrapper and
   the `mygpu`/`mymcpu` utilities.
 
+### Removed
+
+* Removed the `rocblas_hgemm_kernel_name`, `rocblas_sgemm_kernel_name`, and
+  `rocblas_dgemm_kernel_name` interfaces. The corresponding rocBLAS API
+  functions were removed in ROCm 7.1.0.
+
 ### Resolved issues
 
 * Fixed the `hipfc` wrapper so it locates the hipfort module and library
