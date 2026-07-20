@@ -18398,7 +18398,7 @@ module hipfort_rocblas
   end interface
   
   interface rocblas_strmm
-    function rocblas_strmm_(handle,side,uplo,transA,diag,m,n,alpha,A,lda,B,ldb) bind(c, name="rocblas_strmm")
+    function rocblas_strmm_(handle,side,uplo,transA,diag,m,n,alpha,A,lda,B,ldb,C,ldc) bind(c, name="rocblas_strmm")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -18415,6 +18415,8 @@ module hipfort_rocblas
       integer(c_int),value :: lda
       type(c_ptr),value :: B
       integer(c_int),value :: ldb
+      type(c_ptr),value :: C
+      integer(c_int),value :: ldc
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
@@ -18426,7 +18428,7 @@ module hipfort_rocblas
   end interface
   
   interface rocblas_dtrmm
-    function rocblas_dtrmm_(handle,side,uplo,transA,diag,m,n,alpha,A,lda,B,ldb) bind(c, name="rocblas_dtrmm")
+    function rocblas_dtrmm_(handle,side,uplo,transA,diag,m,n,alpha,A,lda,B,ldb,C,ldc) bind(c, name="rocblas_dtrmm")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -18443,6 +18445,8 @@ module hipfort_rocblas
       integer(c_int),value :: lda
       type(c_ptr),value :: B
       integer(c_int),value :: ldb
+      type(c_ptr),value :: C
+      integer(c_int),value :: ldc
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
@@ -18454,7 +18458,7 @@ module hipfort_rocblas
   end interface
   
   interface rocblas_ctrmm
-    function rocblas_ctrmm_(handle,side,uplo,transA,diag,m,n,alpha,A,lda,B,ldb) bind(c, name="rocblas_ctrmm")
+    function rocblas_ctrmm_(handle,side,uplo,transA,diag,m,n,alpha,A,lda,B,ldb,C,ldc) bind(c, name="rocblas_ctrmm")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -18471,6 +18475,8 @@ module hipfort_rocblas
       integer(c_int),value :: lda
       type(c_ptr),value :: B
       integer(c_int),value :: ldb
+      type(c_ptr),value :: C
+      integer(c_int),value :: ldc
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
@@ -18563,18 +18569,27 @@ module hipfort_rocblas
   !>             if side == rocblas_side_left,  lda >= max( 1, m ),
   !>             if side == rocblas_side_right, lda >= max( 1, n ).
   !> 
-  !>     @param[inout]
+  !>     @param[in]
   !>     B       Device pointer to the first matrix B_0 on the GPU.
   !>             On entry,  the leading  m by n part of the array  B must
-  !>            contain the matrix  B,  and  on exit  is overwritten  by the
-  !>            transformed matrix.
-  !> 
+  !>            contain the matrix  B.
+  !>
   !>     @param[in]
   !>     ldb    [rocblas_int]
   !>            ldb specifies the first dimension of B. ldb >= max( 1, m ).
   !>
+  !>     @param[inout]
+  !>     C       Device pointer to the first matrix C_0 on the GPU.
+  !>            On exit,  the  leading  m by n  part of the array  C is
+  !>            overwritten by the transformed matrix. C may alias B for
+  !>            an in-place operation.
+  !>
+  !>     @param[in]
+  !>     ldc    [rocblas_int]
+  !>            ldc specifies the first dimension of C. ldc >= max( 1, m ).
+  !>
   interface rocblas_ztrmm
-    function rocblas_ztrmm_(handle,side,uplo,transA,diag,m,n,alpha,A,lda,B,ldb) bind(c, name="rocblas_ztrmm")
+    function rocblas_ztrmm_(handle,side,uplo,transA,diag,m,n,alpha,A,lda,B,ldb,C,ldc) bind(c, name="rocblas_ztrmm")
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -18591,6 +18606,8 @@ module hipfort_rocblas
       integer(c_int),value :: lda
       type(c_ptr),value :: B
       integer(c_int),value :: ldb
+      type(c_ptr),value :: C
+      integer(c_int),value :: ldc
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
@@ -47080,7 +47097,7 @@ module hipfort_rocblas
       rocblas_zsyrkx_strided_batched_rank_1 = rocblas_zsyrkx_strided_batched_(handle,uplo,trans,n,k,alpha,c_loc(A),lda,stride_A,c_loc(B),ldb,stride_B,beta,c_loc(C),ldc,stride_C,batch_count)
     end function
 
-    function rocblas_strmm_full_rank(handle,side,uplo,transA,diag,m,n,alpha,A,lda,B,ldb)
+    function rocblas_strmm_full_rank(handle,side,uplo,transA,diag,m,n,alpha,A,lda,B,ldb,C,ldc)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -47097,11 +47114,13 @@ module hipfort_rocblas
       integer(c_int) :: lda
       real(c_float),target,dimension(:,:) :: B
       integer(c_int) :: ldb
+      real(c_float),target,dimension(:,:) :: C
+      integer(c_int) :: ldc
       !
-      rocblas_strmm_full_rank = rocblas_strmm_(handle,side,uplo,transA,diag,m,n,alpha,c_loc(A),lda,c_loc(B),ldb)
+      rocblas_strmm_full_rank = rocblas_strmm_(handle,side,uplo,transA,diag,m,n,alpha,c_loc(A),lda,c_loc(B),ldb,c_loc(C),ldc)
     end function
 
-    function rocblas_strmm_rank_0(handle,side,uplo,transA,diag,m,n,alpha,A,lda,B,ldb)
+    function rocblas_strmm_rank_0(handle,side,uplo,transA,diag,m,n,alpha,A,lda,B,ldb,C,ldc)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -47118,11 +47137,13 @@ module hipfort_rocblas
       integer(c_int) :: lda
       real(c_float),target :: B
       integer(c_int) :: ldb
+      real(c_float),target :: C
+      integer(c_int) :: ldc
       !
-      rocblas_strmm_rank_0 = rocblas_strmm_(handle,side,uplo,transA,diag,m,n,alpha,c_loc(A),lda,c_loc(B),ldb)
+      rocblas_strmm_rank_0 = rocblas_strmm_(handle,side,uplo,transA,diag,m,n,alpha,c_loc(A),lda,c_loc(B),ldb,c_loc(C),ldc)
     end function
 
-    function rocblas_strmm_rank_1(handle,side,uplo,transA,diag,m,n,alpha,A,lda,B,ldb)
+    function rocblas_strmm_rank_1(handle,side,uplo,transA,diag,m,n,alpha,A,lda,B,ldb,C,ldc)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -47139,11 +47160,13 @@ module hipfort_rocblas
       integer(c_int) :: lda
       real(c_float),target,dimension(:) :: B
       integer(c_int) :: ldb
+      real(c_float),target,dimension(:) :: C
+      integer(c_int) :: ldc
       !
-      rocblas_strmm_rank_1 = rocblas_strmm_(handle,side,uplo,transA,diag,m,n,alpha,c_loc(A),lda,c_loc(B),ldb)
+      rocblas_strmm_rank_1 = rocblas_strmm_(handle,side,uplo,transA,diag,m,n,alpha,c_loc(A),lda,c_loc(B),ldb,c_loc(C),ldc)
     end function
 
-    function rocblas_dtrmm_full_rank(handle,side,uplo,transA,diag,m,n,alpha,A,lda,B,ldb)
+    function rocblas_dtrmm_full_rank(handle,side,uplo,transA,diag,m,n,alpha,A,lda,B,ldb,C,ldc)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -47160,11 +47183,13 @@ module hipfort_rocblas
       integer(c_int) :: lda
       real(c_double),target,dimension(:,:) :: B
       integer(c_int) :: ldb
+      real(c_double),target,dimension(:,:) :: C
+      integer(c_int) :: ldc
       !
-      rocblas_dtrmm_full_rank = rocblas_dtrmm_(handle,side,uplo,transA,diag,m,n,alpha,c_loc(A),lda,c_loc(B),ldb)
+      rocblas_dtrmm_full_rank = rocblas_dtrmm_(handle,side,uplo,transA,diag,m,n,alpha,c_loc(A),lda,c_loc(B),ldb,c_loc(C),ldc)
     end function
 
-    function rocblas_dtrmm_rank_0(handle,side,uplo,transA,diag,m,n,alpha,A,lda,B,ldb)
+    function rocblas_dtrmm_rank_0(handle,side,uplo,transA,diag,m,n,alpha,A,lda,B,ldb,C,ldc)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -47181,11 +47206,13 @@ module hipfort_rocblas
       integer(c_int) :: lda
       real(c_double),target :: B
       integer(c_int) :: ldb
+      real(c_double),target :: C
+      integer(c_int) :: ldc
       !
-      rocblas_dtrmm_rank_0 = rocblas_dtrmm_(handle,side,uplo,transA,diag,m,n,alpha,c_loc(A),lda,c_loc(B),ldb)
+      rocblas_dtrmm_rank_0 = rocblas_dtrmm_(handle,side,uplo,transA,diag,m,n,alpha,c_loc(A),lda,c_loc(B),ldb,c_loc(C),ldc)
     end function
 
-    function rocblas_dtrmm_rank_1(handle,side,uplo,transA,diag,m,n,alpha,A,lda,B,ldb)
+    function rocblas_dtrmm_rank_1(handle,side,uplo,transA,diag,m,n,alpha,A,lda,B,ldb,C,ldc)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -47202,11 +47229,13 @@ module hipfort_rocblas
       integer(c_int) :: lda
       real(c_double),target,dimension(:) :: B
       integer(c_int) :: ldb
+      real(c_double),target,dimension(:) :: C
+      integer(c_int) :: ldc
       !
-      rocblas_dtrmm_rank_1 = rocblas_dtrmm_(handle,side,uplo,transA,diag,m,n,alpha,c_loc(A),lda,c_loc(B),ldb)
+      rocblas_dtrmm_rank_1 = rocblas_dtrmm_(handle,side,uplo,transA,diag,m,n,alpha,c_loc(A),lda,c_loc(B),ldb,c_loc(C),ldc)
     end function
 
-    function rocblas_ctrmm_full_rank(handle,side,uplo,transA,diag,m,n,alpha,A,lda,B,ldb)
+    function rocblas_ctrmm_full_rank(handle,side,uplo,transA,diag,m,n,alpha,A,lda,B,ldb,C,ldc)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -47223,11 +47252,13 @@ module hipfort_rocblas
       integer(c_int) :: lda
       complex(c_float_complex),target,dimension(:,:) :: B
       integer(c_int) :: ldb
+      complex(c_float_complex),target,dimension(:,:) :: C
+      integer(c_int) :: ldc
       !
-      rocblas_ctrmm_full_rank = rocblas_ctrmm_(handle,side,uplo,transA,diag,m,n,alpha,c_loc(A),lda,c_loc(B),ldb)
+      rocblas_ctrmm_full_rank = rocblas_ctrmm_(handle,side,uplo,transA,diag,m,n,alpha,c_loc(A),lda,c_loc(B),ldb,c_loc(C),ldc)
     end function
 
-    function rocblas_ctrmm_rank_0(handle,side,uplo,transA,diag,m,n,alpha,A,lda,B,ldb)
+    function rocblas_ctrmm_rank_0(handle,side,uplo,transA,diag,m,n,alpha,A,lda,B,ldb,C,ldc)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -47244,11 +47275,13 @@ module hipfort_rocblas
       integer(c_int) :: lda
       complex(c_float_complex),target :: B
       integer(c_int) :: ldb
+      complex(c_float_complex),target :: C
+      integer(c_int) :: ldc
       !
-      rocblas_ctrmm_rank_0 = rocblas_ctrmm_(handle,side,uplo,transA,diag,m,n,alpha,c_loc(A),lda,c_loc(B),ldb)
+      rocblas_ctrmm_rank_0 = rocblas_ctrmm_(handle,side,uplo,transA,diag,m,n,alpha,c_loc(A),lda,c_loc(B),ldb,c_loc(C),ldc)
     end function
 
-    function rocblas_ctrmm_rank_1(handle,side,uplo,transA,diag,m,n,alpha,A,lda,B,ldb)
+    function rocblas_ctrmm_rank_1(handle,side,uplo,transA,diag,m,n,alpha,A,lda,B,ldb,C,ldc)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -47265,11 +47298,13 @@ module hipfort_rocblas
       integer(c_int) :: lda
       complex(c_float_complex),target,dimension(:) :: B
       integer(c_int) :: ldb
+      complex(c_float_complex),target,dimension(:) :: C
+      integer(c_int) :: ldc
       !
-      rocblas_ctrmm_rank_1 = rocblas_ctrmm_(handle,side,uplo,transA,diag,m,n,alpha,c_loc(A),lda,c_loc(B),ldb)
+      rocblas_ctrmm_rank_1 = rocblas_ctrmm_(handle,side,uplo,transA,diag,m,n,alpha,c_loc(A),lda,c_loc(B),ldb,c_loc(C),ldc)
     end function
 
-    function rocblas_ztrmm_full_rank(handle,side,uplo,transA,diag,m,n,alpha,A,lda,B,ldb)
+    function rocblas_ztrmm_full_rank(handle,side,uplo,transA,diag,m,n,alpha,A,lda,B,ldb,C,ldc)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -47286,11 +47321,13 @@ module hipfort_rocblas
       integer(c_int) :: lda
       complex(c_double_complex),target,dimension(:,:) :: B
       integer(c_int) :: ldb
+      complex(c_double_complex),target,dimension(:,:) :: C
+      integer(c_int) :: ldc
       !
-      rocblas_ztrmm_full_rank = rocblas_ztrmm_(handle,side,uplo,transA,diag,m,n,alpha,c_loc(A),lda,c_loc(B),ldb)
+      rocblas_ztrmm_full_rank = rocblas_ztrmm_(handle,side,uplo,transA,diag,m,n,alpha,c_loc(A),lda,c_loc(B),ldb,c_loc(C),ldc)
     end function
 
-    function rocblas_ztrmm_rank_0(handle,side,uplo,transA,diag,m,n,alpha,A,lda,B,ldb)
+    function rocblas_ztrmm_rank_0(handle,side,uplo,transA,diag,m,n,alpha,A,lda,B,ldb,C,ldc)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -47307,11 +47344,13 @@ module hipfort_rocblas
       integer(c_int) :: lda
       complex(c_double_complex),target :: B
       integer(c_int) :: ldb
+      complex(c_double_complex),target :: C
+      integer(c_int) :: ldc
       !
-      rocblas_ztrmm_rank_0 = rocblas_ztrmm_(handle,side,uplo,transA,diag,m,n,alpha,c_loc(A),lda,c_loc(B),ldb)
+      rocblas_ztrmm_rank_0 = rocblas_ztrmm_(handle,side,uplo,transA,diag,m,n,alpha,c_loc(A),lda,c_loc(B),ldb,c_loc(C),ldc)
     end function
 
-    function rocblas_ztrmm_rank_1(handle,side,uplo,transA,diag,m,n,alpha,A,lda,B,ldb)
+    function rocblas_ztrmm_rank_1(handle,side,uplo,transA,diag,m,n,alpha,A,lda,B,ldb,C,ldc)
       use iso_c_binding
       use hipfort_rocblas_enums
       implicit none
@@ -47328,8 +47367,10 @@ module hipfort_rocblas
       integer(c_int) :: lda
       complex(c_double_complex),target,dimension(:) :: B
       integer(c_int) :: ldb
+      complex(c_double_complex),target,dimension(:) :: C
+      integer(c_int) :: ldc
       !
-      rocblas_ztrmm_rank_1 = rocblas_ztrmm_(handle,side,uplo,transA,diag,m,n,alpha,c_loc(A),lda,c_loc(B),ldb)
+      rocblas_ztrmm_rank_1 = rocblas_ztrmm_(handle,side,uplo,transA,diag,m,n,alpha,c_loc(A),lda,c_loc(B),ldb,c_loc(C),ldc)
     end function
 
     function rocblas_strtri_full_rank(handle,uplo,diag,n,A,lda,invA,ldinvA)
