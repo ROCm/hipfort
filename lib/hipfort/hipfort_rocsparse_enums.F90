@@ -211,6 +211,11 @@ module hipfort_rocsparse_enums
     enumerator :: rocsparse_spgemm_alg_default = 0
   end enum
 
+  enum, bind(c)
+    enumerator :: rocsparse_gpsv_interleaved_alg_default = 0
+    enumerator :: rocsparse_gpsv_interleaved_alg_qr = 1
+  end enum
+
  
 
 #ifdef USE_FPOINTER_INTERFACES

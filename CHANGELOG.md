@@ -7,6 +7,12 @@
 * Added GPU architecture autodetection for AMD Instinct MI300 (gfx942),
   MI350 (gfx950), and MI455X (gfx1250) devices in the `hipfc` wrapper and
   the `mygpu`/`mymcpu` utilities.
+* Added Fortran interfaces for the interleaved batch pentadiagonal solver:
+  `rocsparse_Xgpsv_interleaved_batch` and
+  `rocsparse_Xgpsv_interleaved_batch_buffer_size` (rocSPARSE), and
+  `hipsparseXgpsvInterleavedBatch` and
+  `hipsparseXgpsvInterleavedBatch_bufferSizeExt` (hipSPARSE), for the `s`, `d`,
+  `c`, and `z` precisions, along with the `rocsparse_gpsv_interleaved_alg` enum.
 
 ### Removed
 
