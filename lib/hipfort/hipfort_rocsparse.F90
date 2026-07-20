@@ -8114,6 +8114,229 @@ module hipfort_rocsparse
       rocsparse_zgtsv_no_pivot_strided_batch_rank_1
 #endif
   end interface
+  interface rocsparse_sgpsv_interleaved_batch_buffer_size
+    function rocsparse_sgpsv_interleaved_batch_buffer_size_(handle,alg,m,ds,dl,d,du,dw,x,batch_count,batch_stride,buffer_size) bind(c, name="rocsparse_sgpsv_interleaved_batch_buffer_size")
+      use iso_c_binding
+      use hipfort_rocsparse_enums
+      implicit none
+      integer(kind(rocsparse_status_success)) :: rocsparse_sgpsv_interleaved_batch_buffer_size_
+      type(c_ptr),value :: handle
+      integer(kind(rocsparse_gpsv_interleaved_alg_default)),value :: alg
+      integer(c_int),value :: m
+      type(c_ptr),value :: ds
+      type(c_ptr),value :: dl
+      type(c_ptr),value :: d
+      type(c_ptr),value :: du
+      type(c_ptr),value :: dw
+      type(c_ptr),value :: x
+      integer(c_int),value :: batch_count
+      integer(c_int),value :: batch_stride
+      integer(c_size_t) :: buffer_size
+    end function
+
+#ifdef USE_FPOINTER_INTERFACES
+    module procedure &
+      rocsparse_sgpsv_interleaved_batch_buffer_size_full_rank,&
+      rocsparse_sgpsv_interleaved_batch_buffer_size_rank_0,&
+      rocsparse_sgpsv_interleaved_batch_buffer_size_rank_1
+#endif
+  end interface
+
+  interface rocsparse_dgpsv_interleaved_batch_buffer_size
+    function rocsparse_dgpsv_interleaved_batch_buffer_size_(handle,alg,m,ds,dl,d,du,dw,x,batch_count,batch_stride,buffer_size) bind(c, name="rocsparse_dgpsv_interleaved_batch_buffer_size")
+      use iso_c_binding
+      use hipfort_rocsparse_enums
+      implicit none
+      integer(kind(rocsparse_status_success)) :: rocsparse_dgpsv_interleaved_batch_buffer_size_
+      type(c_ptr),value :: handle
+      integer(kind(rocsparse_gpsv_interleaved_alg_default)),value :: alg
+      integer(c_int),value :: m
+      type(c_ptr),value :: ds
+      type(c_ptr),value :: dl
+      type(c_ptr),value :: d
+      type(c_ptr),value :: du
+      type(c_ptr),value :: dw
+      type(c_ptr),value :: x
+      integer(c_int),value :: batch_count
+      integer(c_int),value :: batch_stride
+      integer(c_size_t) :: buffer_size
+    end function
+
+#ifdef USE_FPOINTER_INTERFACES
+    module procedure &
+      rocsparse_dgpsv_interleaved_batch_buffer_size_full_rank,&
+      rocsparse_dgpsv_interleaved_batch_buffer_size_rank_0,&
+      rocsparse_dgpsv_interleaved_batch_buffer_size_rank_1
+#endif
+  end interface
+
+  interface rocsparse_cgpsv_interleaved_batch_buffer_size
+    function rocsparse_cgpsv_interleaved_batch_buffer_size_(handle,alg,m,ds,dl,d,du,dw,x,batch_count,batch_stride,buffer_size) bind(c, name="rocsparse_cgpsv_interleaved_batch_buffer_size")
+      use iso_c_binding
+      use hipfort_rocsparse_enums
+      implicit none
+      integer(kind(rocsparse_status_success)) :: rocsparse_cgpsv_interleaved_batch_buffer_size_
+      type(c_ptr),value :: handle
+      integer(kind(rocsparse_gpsv_interleaved_alg_default)),value :: alg
+      integer(c_int),value :: m
+      type(c_ptr),value :: ds
+      type(c_ptr),value :: dl
+      type(c_ptr),value :: d
+      type(c_ptr),value :: du
+      type(c_ptr),value :: dw
+      type(c_ptr),value :: x
+      integer(c_int),value :: batch_count
+      integer(c_int),value :: batch_stride
+      integer(c_size_t) :: buffer_size
+    end function
+
+#ifdef USE_FPOINTER_INTERFACES
+    module procedure &
+      rocsparse_cgpsv_interleaved_batch_buffer_size_full_rank,&
+      rocsparse_cgpsv_interleaved_batch_buffer_size_rank_0,&
+      rocsparse_cgpsv_interleaved_batch_buffer_size_rank_1
+#endif
+  end interface
+
+  interface rocsparse_zgpsv_interleaved_batch_buffer_size
+    function rocsparse_zgpsv_interleaved_batch_buffer_size_(handle,alg,m,ds,dl,d,du,dw,x,batch_count,batch_stride,buffer_size) bind(c, name="rocsparse_zgpsv_interleaved_batch_buffer_size")
+      use iso_c_binding
+      use hipfort_rocsparse_enums
+      implicit none
+      integer(kind(rocsparse_status_success)) :: rocsparse_zgpsv_interleaved_batch_buffer_size_
+      type(c_ptr),value :: handle
+      integer(kind(rocsparse_gpsv_interleaved_alg_default)),value :: alg
+      integer(c_int),value :: m
+      type(c_ptr),value :: ds
+      type(c_ptr),value :: dl
+      type(c_ptr),value :: d
+      type(c_ptr),value :: du
+      type(c_ptr),value :: dw
+      type(c_ptr),value :: x
+      integer(c_int),value :: batch_count
+      integer(c_int),value :: batch_stride
+      integer(c_size_t) :: buffer_size
+    end function
+
+#ifdef USE_FPOINTER_INTERFACES
+    module procedure &
+      rocsparse_zgpsv_interleaved_batch_buffer_size_full_rank,&
+      rocsparse_zgpsv_interleaved_batch_buffer_size_rank_0,&
+      rocsparse_zgpsv_interleaved_batch_buffer_size_rank_1
+#endif
+  end interface
+
+  interface rocsparse_sgpsv_interleaved_batch
+    function rocsparse_sgpsv_interleaved_batch_(handle,alg,m,ds,dl,d,du,dw,x,batch_count,batch_stride,temp_buffer) bind(c, name="rocsparse_sgpsv_interleaved_batch")
+      use iso_c_binding
+      use hipfort_rocsparse_enums
+      implicit none
+      integer(kind(rocsparse_status_success)) :: rocsparse_sgpsv_interleaved_batch_
+      type(c_ptr),value :: handle
+      integer(kind(rocsparse_gpsv_interleaved_alg_default)),value :: alg
+      integer(c_int),value :: m
+      type(c_ptr),value :: ds
+      type(c_ptr),value :: dl
+      type(c_ptr),value :: d
+      type(c_ptr),value :: du
+      type(c_ptr),value :: dw
+      type(c_ptr),value :: x
+      integer(c_int),value :: batch_count
+      integer(c_int),value :: batch_stride
+      type(c_ptr),value :: temp_buffer
+    end function
+
+#ifdef USE_FPOINTER_INTERFACES
+    module procedure &
+      rocsparse_sgpsv_interleaved_batch_full_rank,&
+      rocsparse_sgpsv_interleaved_batch_rank_0,&
+      rocsparse_sgpsv_interleaved_batch_rank_1
+#endif
+  end interface
+
+  interface rocsparse_dgpsv_interleaved_batch
+    function rocsparse_dgpsv_interleaved_batch_(handle,alg,m,ds,dl,d,du,dw,x,batch_count,batch_stride,temp_buffer) bind(c, name="rocsparse_dgpsv_interleaved_batch")
+      use iso_c_binding
+      use hipfort_rocsparse_enums
+      implicit none
+      integer(kind(rocsparse_status_success)) :: rocsparse_dgpsv_interleaved_batch_
+      type(c_ptr),value :: handle
+      integer(kind(rocsparse_gpsv_interleaved_alg_default)),value :: alg
+      integer(c_int),value :: m
+      type(c_ptr),value :: ds
+      type(c_ptr),value :: dl
+      type(c_ptr),value :: d
+      type(c_ptr),value :: du
+      type(c_ptr),value :: dw
+      type(c_ptr),value :: x
+      integer(c_int),value :: batch_count
+      integer(c_int),value :: batch_stride
+      type(c_ptr),value :: temp_buffer
+    end function
+
+#ifdef USE_FPOINTER_INTERFACES
+    module procedure &
+      rocsparse_dgpsv_interleaved_batch_full_rank,&
+      rocsparse_dgpsv_interleaved_batch_rank_0,&
+      rocsparse_dgpsv_interleaved_batch_rank_1
+#endif
+  end interface
+
+  interface rocsparse_cgpsv_interleaved_batch
+    function rocsparse_cgpsv_interleaved_batch_(handle,alg,m,ds,dl,d,du,dw,x,batch_count,batch_stride,temp_buffer) bind(c, name="rocsparse_cgpsv_interleaved_batch")
+      use iso_c_binding
+      use hipfort_rocsparse_enums
+      implicit none
+      integer(kind(rocsparse_status_success)) :: rocsparse_cgpsv_interleaved_batch_
+      type(c_ptr),value :: handle
+      integer(kind(rocsparse_gpsv_interleaved_alg_default)),value :: alg
+      integer(c_int),value :: m
+      type(c_ptr),value :: ds
+      type(c_ptr),value :: dl
+      type(c_ptr),value :: d
+      type(c_ptr),value :: du
+      type(c_ptr),value :: dw
+      type(c_ptr),value :: x
+      integer(c_int),value :: batch_count
+      integer(c_int),value :: batch_stride
+      type(c_ptr),value :: temp_buffer
+    end function
+
+#ifdef USE_FPOINTER_INTERFACES
+    module procedure &
+      rocsparse_cgpsv_interleaved_batch_full_rank,&
+      rocsparse_cgpsv_interleaved_batch_rank_0,&
+      rocsparse_cgpsv_interleaved_batch_rank_1
+#endif
+  end interface
+
+  interface rocsparse_zgpsv_interleaved_batch
+    function rocsparse_zgpsv_interleaved_batch_(handle,alg,m,ds,dl,d,du,dw,x,batch_count,batch_stride,temp_buffer) bind(c, name="rocsparse_zgpsv_interleaved_batch")
+      use iso_c_binding
+      use hipfort_rocsparse_enums
+      implicit none
+      integer(kind(rocsparse_status_success)) :: rocsparse_zgpsv_interleaved_batch_
+      type(c_ptr),value :: handle
+      integer(kind(rocsparse_gpsv_interleaved_alg_default)),value :: alg
+      integer(c_int),value :: m
+      type(c_ptr),value :: ds
+      type(c_ptr),value :: dl
+      type(c_ptr),value :: d
+      type(c_ptr),value :: du
+      type(c_ptr),value :: dw
+      type(c_ptr),value :: x
+      integer(c_int),value :: batch_count
+      integer(c_int),value :: batch_stride
+      type(c_ptr),value :: temp_buffer
+    end function
+
+#ifdef USE_FPOINTER_INTERFACES
+    module procedure &
+      rocsparse_zgpsv_interleaved_batch_full_rank,&
+      rocsparse_zgpsv_interleaved_batch_rank_0,&
+      rocsparse_zgpsv_interleaved_batch_rank_1
+#endif
+  end interface
   interface rocsparse_snnz
     function rocsparse_snnz_(handle,dir,m,n,descr,A,ld,nnz_per_row_columns,nnz_total_dev_host_ptr) bind(c, name="rocsparse_snnz")
       use iso_c_binding
@@ -24035,6 +24258,510 @@ module hipfort_rocsparse
       type(c_ptr) :: temp_buffer
       !
       rocsparse_zgtsv_no_pivot_strided_batch_rank_1 = rocsparse_zgtsv_no_pivot_strided_batch_(handle,m,dl,d,du,c_loc(x),batch_count,batch_stride,temp_buffer)
+    end function
+
+    function rocsparse_sgpsv_interleaved_batch_buffer_size_full_rank(handle,alg,m,ds,dl,d,du,dw,x,batch_count,batch_stride,buffer_size)
+      use iso_c_binding
+      use hipfort_rocsparse_enums
+      implicit none
+      integer(kind(rocsparse_status_success)) :: rocsparse_sgpsv_interleaved_batch_buffer_size_full_rank
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_gpsv_interleaved_alg_default)) :: alg
+      integer(c_int) :: m
+      type(c_ptr) :: ds
+      type(c_ptr) :: dl
+      type(c_ptr) :: d
+      type(c_ptr) :: du
+      type(c_ptr) :: dw
+      real(c_float),target,dimension(:,:) :: x
+      integer(c_int) :: batch_count
+      integer(c_int) :: batch_stride
+      integer(c_size_t) :: buffer_size
+      !
+      rocsparse_sgpsv_interleaved_batch_buffer_size_full_rank = rocsparse_sgpsv_interleaved_batch_buffer_size_(handle,alg,m,ds,dl,d,du,dw,c_loc(x),batch_count,batch_stride,buffer_size)
+    end function
+
+    function rocsparse_sgpsv_interleaved_batch_buffer_size_rank_0(handle,alg,m,ds,dl,d,du,dw,x,batch_count,batch_stride,buffer_size)
+      use iso_c_binding
+      use hipfort_rocsparse_enums
+      implicit none
+      integer(kind(rocsparse_status_success)) :: rocsparse_sgpsv_interleaved_batch_buffer_size_rank_0
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_gpsv_interleaved_alg_default)) :: alg
+      integer(c_int) :: m
+      type(c_ptr) :: ds
+      type(c_ptr) :: dl
+      type(c_ptr) :: d
+      type(c_ptr) :: du
+      type(c_ptr) :: dw
+      real(c_float),target :: x
+      integer(c_int) :: batch_count
+      integer(c_int) :: batch_stride
+      integer(c_size_t) :: buffer_size
+      !
+      rocsparse_sgpsv_interleaved_batch_buffer_size_rank_0 = rocsparse_sgpsv_interleaved_batch_buffer_size_(handle,alg,m,ds,dl,d,du,dw,c_loc(x),batch_count,batch_stride,buffer_size)
+    end function
+
+    function rocsparse_sgpsv_interleaved_batch_buffer_size_rank_1(handle,alg,m,ds,dl,d,du,dw,x,batch_count,batch_stride,buffer_size)
+      use iso_c_binding
+      use hipfort_rocsparse_enums
+      implicit none
+      integer(kind(rocsparse_status_success)) :: rocsparse_sgpsv_interleaved_batch_buffer_size_rank_1
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_gpsv_interleaved_alg_default)) :: alg
+      integer(c_int) :: m
+      type(c_ptr) :: ds
+      type(c_ptr) :: dl
+      type(c_ptr) :: d
+      type(c_ptr) :: du
+      type(c_ptr) :: dw
+      real(c_float),target,dimension(:) :: x
+      integer(c_int) :: batch_count
+      integer(c_int) :: batch_stride
+      integer(c_size_t) :: buffer_size
+      !
+      rocsparse_sgpsv_interleaved_batch_buffer_size_rank_1 = rocsparse_sgpsv_interleaved_batch_buffer_size_(handle,alg,m,ds,dl,d,du,dw,c_loc(x),batch_count,batch_stride,buffer_size)
+    end function
+
+    function rocsparse_dgpsv_interleaved_batch_buffer_size_full_rank(handle,alg,m,ds,dl,d,du,dw,x,batch_count,batch_stride,buffer_size)
+      use iso_c_binding
+      use hipfort_rocsparse_enums
+      implicit none
+      integer(kind(rocsparse_status_success)) :: rocsparse_dgpsv_interleaved_batch_buffer_size_full_rank
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_gpsv_interleaved_alg_default)) :: alg
+      integer(c_int) :: m
+      type(c_ptr) :: ds
+      type(c_ptr) :: dl
+      type(c_ptr) :: d
+      type(c_ptr) :: du
+      type(c_ptr) :: dw
+      real(c_double),target,dimension(:,:) :: x
+      integer(c_int) :: batch_count
+      integer(c_int) :: batch_stride
+      integer(c_size_t) :: buffer_size
+      !
+      rocsparse_dgpsv_interleaved_batch_buffer_size_full_rank = rocsparse_dgpsv_interleaved_batch_buffer_size_(handle,alg,m,ds,dl,d,du,dw,c_loc(x),batch_count,batch_stride,buffer_size)
+    end function
+
+    function rocsparse_dgpsv_interleaved_batch_buffer_size_rank_0(handle,alg,m,ds,dl,d,du,dw,x,batch_count,batch_stride,buffer_size)
+      use iso_c_binding
+      use hipfort_rocsparse_enums
+      implicit none
+      integer(kind(rocsparse_status_success)) :: rocsparse_dgpsv_interleaved_batch_buffer_size_rank_0
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_gpsv_interleaved_alg_default)) :: alg
+      integer(c_int) :: m
+      type(c_ptr) :: ds
+      type(c_ptr) :: dl
+      type(c_ptr) :: d
+      type(c_ptr) :: du
+      type(c_ptr) :: dw
+      real(c_double),target :: x
+      integer(c_int) :: batch_count
+      integer(c_int) :: batch_stride
+      integer(c_size_t) :: buffer_size
+      !
+      rocsparse_dgpsv_interleaved_batch_buffer_size_rank_0 = rocsparse_dgpsv_interleaved_batch_buffer_size_(handle,alg,m,ds,dl,d,du,dw,c_loc(x),batch_count,batch_stride,buffer_size)
+    end function
+
+    function rocsparse_dgpsv_interleaved_batch_buffer_size_rank_1(handle,alg,m,ds,dl,d,du,dw,x,batch_count,batch_stride,buffer_size)
+      use iso_c_binding
+      use hipfort_rocsparse_enums
+      implicit none
+      integer(kind(rocsparse_status_success)) :: rocsparse_dgpsv_interleaved_batch_buffer_size_rank_1
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_gpsv_interleaved_alg_default)) :: alg
+      integer(c_int) :: m
+      type(c_ptr) :: ds
+      type(c_ptr) :: dl
+      type(c_ptr) :: d
+      type(c_ptr) :: du
+      type(c_ptr) :: dw
+      real(c_double),target,dimension(:) :: x
+      integer(c_int) :: batch_count
+      integer(c_int) :: batch_stride
+      integer(c_size_t) :: buffer_size
+      !
+      rocsparse_dgpsv_interleaved_batch_buffer_size_rank_1 = rocsparse_dgpsv_interleaved_batch_buffer_size_(handle,alg,m,ds,dl,d,du,dw,c_loc(x),batch_count,batch_stride,buffer_size)
+    end function
+
+    function rocsparse_cgpsv_interleaved_batch_buffer_size_full_rank(handle,alg,m,ds,dl,d,du,dw,x,batch_count,batch_stride,buffer_size)
+      use iso_c_binding
+      use hipfort_rocsparse_enums
+      implicit none
+      integer(kind(rocsparse_status_success)) :: rocsparse_cgpsv_interleaved_batch_buffer_size_full_rank
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_gpsv_interleaved_alg_default)) :: alg
+      integer(c_int) :: m
+      type(c_ptr) :: ds
+      type(c_ptr) :: dl
+      type(c_ptr) :: d
+      type(c_ptr) :: du
+      type(c_ptr) :: dw
+      complex(c_float_complex),target,dimension(:,:) :: x
+      integer(c_int) :: batch_count
+      integer(c_int) :: batch_stride
+      integer(c_size_t) :: buffer_size
+      !
+      rocsparse_cgpsv_interleaved_batch_buffer_size_full_rank = rocsparse_cgpsv_interleaved_batch_buffer_size_(handle,alg,m,ds,dl,d,du,dw,c_loc(x),batch_count,batch_stride,buffer_size)
+    end function
+
+    function rocsparse_cgpsv_interleaved_batch_buffer_size_rank_0(handle,alg,m,ds,dl,d,du,dw,x,batch_count,batch_stride,buffer_size)
+      use iso_c_binding
+      use hipfort_rocsparse_enums
+      implicit none
+      integer(kind(rocsparse_status_success)) :: rocsparse_cgpsv_interleaved_batch_buffer_size_rank_0
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_gpsv_interleaved_alg_default)) :: alg
+      integer(c_int) :: m
+      type(c_ptr) :: ds
+      type(c_ptr) :: dl
+      type(c_ptr) :: d
+      type(c_ptr) :: du
+      type(c_ptr) :: dw
+      complex(c_float_complex),target :: x
+      integer(c_int) :: batch_count
+      integer(c_int) :: batch_stride
+      integer(c_size_t) :: buffer_size
+      !
+      rocsparse_cgpsv_interleaved_batch_buffer_size_rank_0 = rocsparse_cgpsv_interleaved_batch_buffer_size_(handle,alg,m,ds,dl,d,du,dw,c_loc(x),batch_count,batch_stride,buffer_size)
+    end function
+
+    function rocsparse_cgpsv_interleaved_batch_buffer_size_rank_1(handle,alg,m,ds,dl,d,du,dw,x,batch_count,batch_stride,buffer_size)
+      use iso_c_binding
+      use hipfort_rocsparse_enums
+      implicit none
+      integer(kind(rocsparse_status_success)) :: rocsparse_cgpsv_interleaved_batch_buffer_size_rank_1
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_gpsv_interleaved_alg_default)) :: alg
+      integer(c_int) :: m
+      type(c_ptr) :: ds
+      type(c_ptr) :: dl
+      type(c_ptr) :: d
+      type(c_ptr) :: du
+      type(c_ptr) :: dw
+      complex(c_float_complex),target,dimension(:) :: x
+      integer(c_int) :: batch_count
+      integer(c_int) :: batch_stride
+      integer(c_size_t) :: buffer_size
+      !
+      rocsparse_cgpsv_interleaved_batch_buffer_size_rank_1 = rocsparse_cgpsv_interleaved_batch_buffer_size_(handle,alg,m,ds,dl,d,du,dw,c_loc(x),batch_count,batch_stride,buffer_size)
+    end function
+
+    function rocsparse_zgpsv_interleaved_batch_buffer_size_full_rank(handle,alg,m,ds,dl,d,du,dw,x,batch_count,batch_stride,buffer_size)
+      use iso_c_binding
+      use hipfort_rocsparse_enums
+      implicit none
+      integer(kind(rocsparse_status_success)) :: rocsparse_zgpsv_interleaved_batch_buffer_size_full_rank
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_gpsv_interleaved_alg_default)) :: alg
+      integer(c_int) :: m
+      type(c_ptr) :: ds
+      type(c_ptr) :: dl
+      type(c_ptr) :: d
+      type(c_ptr) :: du
+      type(c_ptr) :: dw
+      complex(c_double_complex),target,dimension(:,:) :: x
+      integer(c_int) :: batch_count
+      integer(c_int) :: batch_stride
+      integer(c_size_t) :: buffer_size
+      !
+      rocsparse_zgpsv_interleaved_batch_buffer_size_full_rank = rocsparse_zgpsv_interleaved_batch_buffer_size_(handle,alg,m,ds,dl,d,du,dw,c_loc(x),batch_count,batch_stride,buffer_size)
+    end function
+
+    function rocsparse_zgpsv_interleaved_batch_buffer_size_rank_0(handle,alg,m,ds,dl,d,du,dw,x,batch_count,batch_stride,buffer_size)
+      use iso_c_binding
+      use hipfort_rocsparse_enums
+      implicit none
+      integer(kind(rocsparse_status_success)) :: rocsparse_zgpsv_interleaved_batch_buffer_size_rank_0
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_gpsv_interleaved_alg_default)) :: alg
+      integer(c_int) :: m
+      type(c_ptr) :: ds
+      type(c_ptr) :: dl
+      type(c_ptr) :: d
+      type(c_ptr) :: du
+      type(c_ptr) :: dw
+      complex(c_double_complex),target :: x
+      integer(c_int) :: batch_count
+      integer(c_int) :: batch_stride
+      integer(c_size_t) :: buffer_size
+      !
+      rocsparse_zgpsv_interleaved_batch_buffer_size_rank_0 = rocsparse_zgpsv_interleaved_batch_buffer_size_(handle,alg,m,ds,dl,d,du,dw,c_loc(x),batch_count,batch_stride,buffer_size)
+    end function
+
+    function rocsparse_zgpsv_interleaved_batch_buffer_size_rank_1(handle,alg,m,ds,dl,d,du,dw,x,batch_count,batch_stride,buffer_size)
+      use iso_c_binding
+      use hipfort_rocsparse_enums
+      implicit none
+      integer(kind(rocsparse_status_success)) :: rocsparse_zgpsv_interleaved_batch_buffer_size_rank_1
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_gpsv_interleaved_alg_default)) :: alg
+      integer(c_int) :: m
+      type(c_ptr) :: ds
+      type(c_ptr) :: dl
+      type(c_ptr) :: d
+      type(c_ptr) :: du
+      type(c_ptr) :: dw
+      complex(c_double_complex),target,dimension(:) :: x
+      integer(c_int) :: batch_count
+      integer(c_int) :: batch_stride
+      integer(c_size_t) :: buffer_size
+      !
+      rocsparse_zgpsv_interleaved_batch_buffer_size_rank_1 = rocsparse_zgpsv_interleaved_batch_buffer_size_(handle,alg,m,ds,dl,d,du,dw,c_loc(x),batch_count,batch_stride,buffer_size)
+    end function
+
+    function rocsparse_sgpsv_interleaved_batch_full_rank(handle,alg,m,ds,dl,d,du,dw,x,batch_count,batch_stride,temp_buffer)
+      use iso_c_binding
+      use hipfort_rocsparse_enums
+      implicit none
+      integer(kind(rocsparse_status_success)) :: rocsparse_sgpsv_interleaved_batch_full_rank
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_gpsv_interleaved_alg_default)) :: alg
+      integer(c_int) :: m
+      type(c_ptr) :: ds
+      type(c_ptr) :: dl
+      type(c_ptr) :: d
+      type(c_ptr) :: du
+      type(c_ptr) :: dw
+      real(c_float),target,dimension(:,:) :: x
+      integer(c_int) :: batch_count
+      integer(c_int) :: batch_stride
+      type(c_ptr) :: temp_buffer
+      !
+      rocsparse_sgpsv_interleaved_batch_full_rank = rocsparse_sgpsv_interleaved_batch_(handle,alg,m,ds,dl,d,du,dw,c_loc(x),batch_count,batch_stride,temp_buffer)
+    end function
+
+    function rocsparse_sgpsv_interleaved_batch_rank_0(handle,alg,m,ds,dl,d,du,dw,x,batch_count,batch_stride,temp_buffer)
+      use iso_c_binding
+      use hipfort_rocsparse_enums
+      implicit none
+      integer(kind(rocsparse_status_success)) :: rocsparse_sgpsv_interleaved_batch_rank_0
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_gpsv_interleaved_alg_default)) :: alg
+      integer(c_int) :: m
+      type(c_ptr) :: ds
+      type(c_ptr) :: dl
+      type(c_ptr) :: d
+      type(c_ptr) :: du
+      type(c_ptr) :: dw
+      real(c_float),target :: x
+      integer(c_int) :: batch_count
+      integer(c_int) :: batch_stride
+      type(c_ptr) :: temp_buffer
+      !
+      rocsparse_sgpsv_interleaved_batch_rank_0 = rocsparse_sgpsv_interleaved_batch_(handle,alg,m,ds,dl,d,du,dw,c_loc(x),batch_count,batch_stride,temp_buffer)
+    end function
+
+    function rocsparse_sgpsv_interleaved_batch_rank_1(handle,alg,m,ds,dl,d,du,dw,x,batch_count,batch_stride,temp_buffer)
+      use iso_c_binding
+      use hipfort_rocsparse_enums
+      implicit none
+      integer(kind(rocsparse_status_success)) :: rocsparse_sgpsv_interleaved_batch_rank_1
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_gpsv_interleaved_alg_default)) :: alg
+      integer(c_int) :: m
+      type(c_ptr) :: ds
+      type(c_ptr) :: dl
+      type(c_ptr) :: d
+      type(c_ptr) :: du
+      type(c_ptr) :: dw
+      real(c_float),target,dimension(:) :: x
+      integer(c_int) :: batch_count
+      integer(c_int) :: batch_stride
+      type(c_ptr) :: temp_buffer
+      !
+      rocsparse_sgpsv_interleaved_batch_rank_1 = rocsparse_sgpsv_interleaved_batch_(handle,alg,m,ds,dl,d,du,dw,c_loc(x),batch_count,batch_stride,temp_buffer)
+    end function
+
+    function rocsparse_dgpsv_interleaved_batch_full_rank(handle,alg,m,ds,dl,d,du,dw,x,batch_count,batch_stride,temp_buffer)
+      use iso_c_binding
+      use hipfort_rocsparse_enums
+      implicit none
+      integer(kind(rocsparse_status_success)) :: rocsparse_dgpsv_interleaved_batch_full_rank
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_gpsv_interleaved_alg_default)) :: alg
+      integer(c_int) :: m
+      type(c_ptr) :: ds
+      type(c_ptr) :: dl
+      type(c_ptr) :: d
+      type(c_ptr) :: du
+      type(c_ptr) :: dw
+      real(c_double),target,dimension(:,:) :: x
+      integer(c_int) :: batch_count
+      integer(c_int) :: batch_stride
+      type(c_ptr) :: temp_buffer
+      !
+      rocsparse_dgpsv_interleaved_batch_full_rank = rocsparse_dgpsv_interleaved_batch_(handle,alg,m,ds,dl,d,du,dw,c_loc(x),batch_count,batch_stride,temp_buffer)
+    end function
+
+    function rocsparse_dgpsv_interleaved_batch_rank_0(handle,alg,m,ds,dl,d,du,dw,x,batch_count,batch_stride,temp_buffer)
+      use iso_c_binding
+      use hipfort_rocsparse_enums
+      implicit none
+      integer(kind(rocsparse_status_success)) :: rocsparse_dgpsv_interleaved_batch_rank_0
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_gpsv_interleaved_alg_default)) :: alg
+      integer(c_int) :: m
+      type(c_ptr) :: ds
+      type(c_ptr) :: dl
+      type(c_ptr) :: d
+      type(c_ptr) :: du
+      type(c_ptr) :: dw
+      real(c_double),target :: x
+      integer(c_int) :: batch_count
+      integer(c_int) :: batch_stride
+      type(c_ptr) :: temp_buffer
+      !
+      rocsparse_dgpsv_interleaved_batch_rank_0 = rocsparse_dgpsv_interleaved_batch_(handle,alg,m,ds,dl,d,du,dw,c_loc(x),batch_count,batch_stride,temp_buffer)
+    end function
+
+    function rocsparse_dgpsv_interleaved_batch_rank_1(handle,alg,m,ds,dl,d,du,dw,x,batch_count,batch_stride,temp_buffer)
+      use iso_c_binding
+      use hipfort_rocsparse_enums
+      implicit none
+      integer(kind(rocsparse_status_success)) :: rocsparse_dgpsv_interleaved_batch_rank_1
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_gpsv_interleaved_alg_default)) :: alg
+      integer(c_int) :: m
+      type(c_ptr) :: ds
+      type(c_ptr) :: dl
+      type(c_ptr) :: d
+      type(c_ptr) :: du
+      type(c_ptr) :: dw
+      real(c_double),target,dimension(:) :: x
+      integer(c_int) :: batch_count
+      integer(c_int) :: batch_stride
+      type(c_ptr) :: temp_buffer
+      !
+      rocsparse_dgpsv_interleaved_batch_rank_1 = rocsparse_dgpsv_interleaved_batch_(handle,alg,m,ds,dl,d,du,dw,c_loc(x),batch_count,batch_stride,temp_buffer)
+    end function
+
+    function rocsparse_cgpsv_interleaved_batch_full_rank(handle,alg,m,ds,dl,d,du,dw,x,batch_count,batch_stride,temp_buffer)
+      use iso_c_binding
+      use hipfort_rocsparse_enums
+      implicit none
+      integer(kind(rocsparse_status_success)) :: rocsparse_cgpsv_interleaved_batch_full_rank
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_gpsv_interleaved_alg_default)) :: alg
+      integer(c_int) :: m
+      type(c_ptr) :: ds
+      type(c_ptr) :: dl
+      type(c_ptr) :: d
+      type(c_ptr) :: du
+      type(c_ptr) :: dw
+      complex(c_float_complex),target,dimension(:,:) :: x
+      integer(c_int) :: batch_count
+      integer(c_int) :: batch_stride
+      type(c_ptr) :: temp_buffer
+      !
+      rocsparse_cgpsv_interleaved_batch_full_rank = rocsparse_cgpsv_interleaved_batch_(handle,alg,m,ds,dl,d,du,dw,c_loc(x),batch_count,batch_stride,temp_buffer)
+    end function
+
+    function rocsparse_cgpsv_interleaved_batch_rank_0(handle,alg,m,ds,dl,d,du,dw,x,batch_count,batch_stride,temp_buffer)
+      use iso_c_binding
+      use hipfort_rocsparse_enums
+      implicit none
+      integer(kind(rocsparse_status_success)) :: rocsparse_cgpsv_interleaved_batch_rank_0
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_gpsv_interleaved_alg_default)) :: alg
+      integer(c_int) :: m
+      type(c_ptr) :: ds
+      type(c_ptr) :: dl
+      type(c_ptr) :: d
+      type(c_ptr) :: du
+      type(c_ptr) :: dw
+      complex(c_float_complex),target :: x
+      integer(c_int) :: batch_count
+      integer(c_int) :: batch_stride
+      type(c_ptr) :: temp_buffer
+      !
+      rocsparse_cgpsv_interleaved_batch_rank_0 = rocsparse_cgpsv_interleaved_batch_(handle,alg,m,ds,dl,d,du,dw,c_loc(x),batch_count,batch_stride,temp_buffer)
+    end function
+
+    function rocsparse_cgpsv_interleaved_batch_rank_1(handle,alg,m,ds,dl,d,du,dw,x,batch_count,batch_stride,temp_buffer)
+      use iso_c_binding
+      use hipfort_rocsparse_enums
+      implicit none
+      integer(kind(rocsparse_status_success)) :: rocsparse_cgpsv_interleaved_batch_rank_1
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_gpsv_interleaved_alg_default)) :: alg
+      integer(c_int) :: m
+      type(c_ptr) :: ds
+      type(c_ptr) :: dl
+      type(c_ptr) :: d
+      type(c_ptr) :: du
+      type(c_ptr) :: dw
+      complex(c_float_complex),target,dimension(:) :: x
+      integer(c_int) :: batch_count
+      integer(c_int) :: batch_stride
+      type(c_ptr) :: temp_buffer
+      !
+      rocsparse_cgpsv_interleaved_batch_rank_1 = rocsparse_cgpsv_interleaved_batch_(handle,alg,m,ds,dl,d,du,dw,c_loc(x),batch_count,batch_stride,temp_buffer)
+    end function
+
+    function rocsparse_zgpsv_interleaved_batch_full_rank(handle,alg,m,ds,dl,d,du,dw,x,batch_count,batch_stride,temp_buffer)
+      use iso_c_binding
+      use hipfort_rocsparse_enums
+      implicit none
+      integer(kind(rocsparse_status_success)) :: rocsparse_zgpsv_interleaved_batch_full_rank
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_gpsv_interleaved_alg_default)) :: alg
+      integer(c_int) :: m
+      type(c_ptr) :: ds
+      type(c_ptr) :: dl
+      type(c_ptr) :: d
+      type(c_ptr) :: du
+      type(c_ptr) :: dw
+      complex(c_double_complex),target,dimension(:,:) :: x
+      integer(c_int) :: batch_count
+      integer(c_int) :: batch_stride
+      type(c_ptr) :: temp_buffer
+      !
+      rocsparse_zgpsv_interleaved_batch_full_rank = rocsparse_zgpsv_interleaved_batch_(handle,alg,m,ds,dl,d,du,dw,c_loc(x),batch_count,batch_stride,temp_buffer)
+    end function
+
+    function rocsparse_zgpsv_interleaved_batch_rank_0(handle,alg,m,ds,dl,d,du,dw,x,batch_count,batch_stride,temp_buffer)
+      use iso_c_binding
+      use hipfort_rocsparse_enums
+      implicit none
+      integer(kind(rocsparse_status_success)) :: rocsparse_zgpsv_interleaved_batch_rank_0
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_gpsv_interleaved_alg_default)) :: alg
+      integer(c_int) :: m
+      type(c_ptr) :: ds
+      type(c_ptr) :: dl
+      type(c_ptr) :: d
+      type(c_ptr) :: du
+      type(c_ptr) :: dw
+      complex(c_double_complex),target :: x
+      integer(c_int) :: batch_count
+      integer(c_int) :: batch_stride
+      type(c_ptr) :: temp_buffer
+      !
+      rocsparse_zgpsv_interleaved_batch_rank_0 = rocsparse_zgpsv_interleaved_batch_(handle,alg,m,ds,dl,d,du,dw,c_loc(x),batch_count,batch_stride,temp_buffer)
+    end function
+
+    function rocsparse_zgpsv_interleaved_batch_rank_1(handle,alg,m,ds,dl,d,du,dw,x,batch_count,batch_stride,temp_buffer)
+      use iso_c_binding
+      use hipfort_rocsparse_enums
+      implicit none
+      integer(kind(rocsparse_status_success)) :: rocsparse_zgpsv_interleaved_batch_rank_1
+      type(c_ptr) :: handle
+      integer(kind(rocsparse_gpsv_interleaved_alg_default)) :: alg
+      integer(c_int) :: m
+      type(c_ptr) :: ds
+      type(c_ptr) :: dl
+      type(c_ptr) :: d
+      type(c_ptr) :: du
+      type(c_ptr) :: dw
+      complex(c_double_complex),target,dimension(:) :: x
+      integer(c_int) :: batch_count
+      integer(c_int) :: batch_stride
+      type(c_ptr) :: temp_buffer
+      !
+      rocsparse_zgpsv_interleaved_batch_rank_1 = rocsparse_zgpsv_interleaved_batch_(handle,alg,m,ds,dl,d,du,dw,c_loc(x),batch_count,batch_stride,temp_buffer)
     end function
 
     function rocsparse_snnz_full_rank(handle,dir,m,n,descr,A,ld,nnz_per_row_columns,nnz_total_dev_host_ptr)

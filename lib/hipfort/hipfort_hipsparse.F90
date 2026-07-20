@@ -8757,6 +8757,261 @@ module hipfort_hipsparse
       hipsparseZgtsv2StridedBatch_rank_1
 #endif
   end interface
+  interface hipsparseSgpsvInterleavedBatch_bufferSizeExt
+#ifdef USE_CUDA_NAMES
+    function hipsparseSgpsvInterleavedBatch_bufferSizeExt_(handle,algo,m,ds,dl,d,du,dw,x,batchCount,pBufferSizeInBytes) bind(c, name="cusparseSgpsvInterleavedBatch_bufferSizeExt")
+#else
+    function hipsparseSgpsvInterleavedBatch_bufferSizeExt_(handle,algo,m,ds,dl,d,du,dw,x,batchCount,pBufferSizeInBytes) bind(c, name="hipsparseSgpsvInterleavedBatch_bufferSizeExt")
+#endif
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      use hipfort_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSgpsvInterleavedBatch_bufferSizeExt_
+      type(c_ptr),value :: handle
+      integer(c_int),value :: algo
+      integer(c_int),value :: m
+      type(c_ptr),value :: ds
+      type(c_ptr),value :: dl
+      type(c_ptr),value :: d
+      type(c_ptr),value :: du
+      type(c_ptr),value :: dw
+      type(c_ptr),value :: x
+      integer(c_int),value :: batchCount
+      integer(c_size_t) :: pBufferSizeInBytes
+    end function
+
+#ifdef USE_FPOINTER_INTERFACES
+    module procedure &
+      hipsparseSgpsvInterleavedBatch_bufferSizeExt_full_rank,&
+      hipsparseSgpsvInterleavedBatch_bufferSizeExt_rank_0,&
+      hipsparseSgpsvInterleavedBatch_bufferSizeExt_rank_1
+#endif
+  end interface
+
+  interface hipsparseDgpsvInterleavedBatch_bufferSizeExt
+#ifdef USE_CUDA_NAMES
+    function hipsparseDgpsvInterleavedBatch_bufferSizeExt_(handle,algo,m,ds,dl,d,du,dw,x,batchCount,pBufferSizeInBytes) bind(c, name="cusparseDgpsvInterleavedBatch_bufferSizeExt")
+#else
+    function hipsparseDgpsvInterleavedBatch_bufferSizeExt_(handle,algo,m,ds,dl,d,du,dw,x,batchCount,pBufferSizeInBytes) bind(c, name="hipsparseDgpsvInterleavedBatch_bufferSizeExt")
+#endif
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      use hipfort_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDgpsvInterleavedBatch_bufferSizeExt_
+      type(c_ptr),value :: handle
+      integer(c_int),value :: algo
+      integer(c_int),value :: m
+      type(c_ptr),value :: ds
+      type(c_ptr),value :: dl
+      type(c_ptr),value :: d
+      type(c_ptr),value :: du
+      type(c_ptr),value :: dw
+      type(c_ptr),value :: x
+      integer(c_int),value :: batchCount
+      integer(c_size_t) :: pBufferSizeInBytes
+    end function
+
+#ifdef USE_FPOINTER_INTERFACES
+    module procedure &
+      hipsparseDgpsvInterleavedBatch_bufferSizeExt_full_rank,&
+      hipsparseDgpsvInterleavedBatch_bufferSizeExt_rank_0,&
+      hipsparseDgpsvInterleavedBatch_bufferSizeExt_rank_1
+#endif
+  end interface
+
+  interface hipsparseCgpsvInterleavedBatch_bufferSizeExt
+#ifdef USE_CUDA_NAMES
+    function hipsparseCgpsvInterleavedBatch_bufferSizeExt_(handle,algo,m,ds,dl,d,du,dw,x,batchCount,pBufferSizeInBytes) bind(c, name="cusparseCgpsvInterleavedBatch_bufferSizeExt")
+#else
+    function hipsparseCgpsvInterleavedBatch_bufferSizeExt_(handle,algo,m,ds,dl,d,du,dw,x,batchCount,pBufferSizeInBytes) bind(c, name="hipsparseCgpsvInterleavedBatch_bufferSizeExt")
+#endif
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      use hipfort_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCgpsvInterleavedBatch_bufferSizeExt_
+      type(c_ptr),value :: handle
+      integer(c_int),value :: algo
+      integer(c_int),value :: m
+      type(c_ptr),value :: ds
+      type(c_ptr),value :: dl
+      type(c_ptr),value :: d
+      type(c_ptr),value :: du
+      type(c_ptr),value :: dw
+      type(c_ptr),value :: x
+      integer(c_int),value :: batchCount
+      integer(c_size_t) :: pBufferSizeInBytes
+    end function
+
+#ifdef USE_FPOINTER_INTERFACES
+    module procedure &
+      hipsparseCgpsvInterleavedBatch_bufferSizeExt_full_rank,&
+      hipsparseCgpsvInterleavedBatch_bufferSizeExt_rank_0,&
+      hipsparseCgpsvInterleavedBatch_bufferSizeExt_rank_1
+#endif
+  end interface
+
+  interface hipsparseZgpsvInterleavedBatch_bufferSizeExt
+#ifdef USE_CUDA_NAMES
+    function hipsparseZgpsvInterleavedBatch_bufferSizeExt_(handle,algo,m,ds,dl,d,du,dw,x,batchCount,pBufferSizeInBytes) bind(c, name="cusparseZgpsvInterleavedBatch_bufferSizeExt")
+#else
+    function hipsparseZgpsvInterleavedBatch_bufferSizeExt_(handle,algo,m,ds,dl,d,du,dw,x,batchCount,pBufferSizeInBytes) bind(c, name="hipsparseZgpsvInterleavedBatch_bufferSizeExt")
+#endif
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      use hipfort_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZgpsvInterleavedBatch_bufferSizeExt_
+      type(c_ptr),value :: handle
+      integer(c_int),value :: algo
+      integer(c_int),value :: m
+      type(c_ptr),value :: ds
+      type(c_ptr),value :: dl
+      type(c_ptr),value :: d
+      type(c_ptr),value :: du
+      type(c_ptr),value :: dw
+      type(c_ptr),value :: x
+      integer(c_int),value :: batchCount
+      integer(c_size_t) :: pBufferSizeInBytes
+    end function
+
+#ifdef USE_FPOINTER_INTERFACES
+    module procedure &
+      hipsparseZgpsvInterleavedBatch_bufferSizeExt_full_rank,&
+      hipsparseZgpsvInterleavedBatch_bufferSizeExt_rank_0,&
+      hipsparseZgpsvInterleavedBatch_bufferSizeExt_rank_1
+#endif
+  end interface
+
+  interface hipsparseSgpsvInterleavedBatch
+#ifdef USE_CUDA_NAMES
+    function hipsparseSgpsvInterleavedBatch_(handle,algo,m,ds,dl,d,du,dw,x,batchCount,pBuffer) bind(c, name="cusparseSgpsvInterleavedBatch")
+#else
+    function hipsparseSgpsvInterleavedBatch_(handle,algo,m,ds,dl,d,du,dw,x,batchCount,pBuffer) bind(c, name="hipsparseSgpsvInterleavedBatch")
+#endif
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      use hipfort_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSgpsvInterleavedBatch_
+      type(c_ptr),value :: handle
+      integer(c_int),value :: algo
+      integer(c_int),value :: m
+      type(c_ptr),value :: ds
+      type(c_ptr),value :: dl
+      type(c_ptr),value :: d
+      type(c_ptr),value :: du
+      type(c_ptr),value :: dw
+      type(c_ptr),value :: x
+      integer(c_int),value :: batchCount
+      type(c_ptr),value :: pBuffer
+    end function
+
+#ifdef USE_FPOINTER_INTERFACES
+    module procedure &
+      hipsparseSgpsvInterleavedBatch_full_rank,&
+      hipsparseSgpsvInterleavedBatch_rank_0,&
+      hipsparseSgpsvInterleavedBatch_rank_1
+#endif
+  end interface
+
+  interface hipsparseDgpsvInterleavedBatch
+#ifdef USE_CUDA_NAMES
+    function hipsparseDgpsvInterleavedBatch_(handle,algo,m,ds,dl,d,du,dw,x,batchCount,pBuffer) bind(c, name="cusparseDgpsvInterleavedBatch")
+#else
+    function hipsparseDgpsvInterleavedBatch_(handle,algo,m,ds,dl,d,du,dw,x,batchCount,pBuffer) bind(c, name="hipsparseDgpsvInterleavedBatch")
+#endif
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      use hipfort_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDgpsvInterleavedBatch_
+      type(c_ptr),value :: handle
+      integer(c_int),value :: algo
+      integer(c_int),value :: m
+      type(c_ptr),value :: ds
+      type(c_ptr),value :: dl
+      type(c_ptr),value :: d
+      type(c_ptr),value :: du
+      type(c_ptr),value :: dw
+      type(c_ptr),value :: x
+      integer(c_int),value :: batchCount
+      type(c_ptr),value :: pBuffer
+    end function
+
+#ifdef USE_FPOINTER_INTERFACES
+    module procedure &
+      hipsparseDgpsvInterleavedBatch_full_rank,&
+      hipsparseDgpsvInterleavedBatch_rank_0,&
+      hipsparseDgpsvInterleavedBatch_rank_1
+#endif
+  end interface
+
+  interface hipsparseCgpsvInterleavedBatch
+#ifdef USE_CUDA_NAMES
+    function hipsparseCgpsvInterleavedBatch_(handle,algo,m,ds,dl,d,du,dw,x,batchCount,pBuffer) bind(c, name="cusparseCgpsvInterleavedBatch")
+#else
+    function hipsparseCgpsvInterleavedBatch_(handle,algo,m,ds,dl,d,du,dw,x,batchCount,pBuffer) bind(c, name="hipsparseCgpsvInterleavedBatch")
+#endif
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      use hipfort_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCgpsvInterleavedBatch_
+      type(c_ptr),value :: handle
+      integer(c_int),value :: algo
+      integer(c_int),value :: m
+      type(c_ptr),value :: ds
+      type(c_ptr),value :: dl
+      type(c_ptr),value :: d
+      type(c_ptr),value :: du
+      type(c_ptr),value :: dw
+      type(c_ptr),value :: x
+      integer(c_int),value :: batchCount
+      type(c_ptr),value :: pBuffer
+    end function
+
+#ifdef USE_FPOINTER_INTERFACES
+    module procedure &
+      hipsparseCgpsvInterleavedBatch_full_rank,&
+      hipsparseCgpsvInterleavedBatch_rank_0,&
+      hipsparseCgpsvInterleavedBatch_rank_1
+#endif
+  end interface
+
+  interface hipsparseZgpsvInterleavedBatch
+#ifdef USE_CUDA_NAMES
+    function hipsparseZgpsvInterleavedBatch_(handle,algo,m,ds,dl,d,du,dw,x,batchCount,pBuffer) bind(c, name="cusparseZgpsvInterleavedBatch")
+#else
+    function hipsparseZgpsvInterleavedBatch_(handle,algo,m,ds,dl,d,du,dw,x,batchCount,pBuffer) bind(c, name="hipsparseZgpsvInterleavedBatch")
+#endif
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      use hipfort_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZgpsvInterleavedBatch_
+      type(c_ptr),value :: handle
+      integer(c_int),value :: algo
+      integer(c_int),value :: m
+      type(c_ptr),value :: ds
+      type(c_ptr),value :: dl
+      type(c_ptr),value :: d
+      type(c_ptr),value :: du
+      type(c_ptr),value :: dw
+      type(c_ptr),value :: x
+      integer(c_int),value :: batchCount
+      type(c_ptr),value :: pBuffer
+    end function
+
+#ifdef USE_FPOINTER_INTERFACES
+    module procedure &
+      hipsparseZgpsvInterleavedBatch_full_rank,&
+      hipsparseZgpsvInterleavedBatch_rank_0,&
+      hipsparseZgpsvInterleavedBatch_rank_1
+#endif
+  end interface
   interface hipsparseSnnz
 #ifdef USE_CUDA_NAMES
     function hipsparseSnnz_(handle,dirA,m,n,descrA,A,lda,nnzPerRowColumn,nnzTotalDevHostPtr) bind(c, name="cusparseSnnz")
@@ -26118,6 +26373,510 @@ module hipfort_hipsparse
       type(c_ptr) :: pBuffer
       !
       hipsparseZgtsv2StridedBatch_rank_1 = hipsparseZgtsv2StridedBatch_(handle,m,dl,d,du,c_loc(x),batchCount,batchStride,pBuffer)
+    end function
+
+    function hipsparseSgpsvInterleavedBatch_bufferSizeExt_full_rank(handle,algo,m,ds,dl,d,du,dw,x,batchCount,pBufferSizeInBytes)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      use hipfort_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSgpsvInterleavedBatch_bufferSizeExt_full_rank
+      type(c_ptr) :: handle
+      integer(c_int) :: algo
+      integer(c_int) :: m
+      type(c_ptr) :: ds
+      type(c_ptr) :: dl
+      type(c_ptr) :: d
+      type(c_ptr) :: du
+      type(c_ptr) :: dw
+      real(c_float),target,dimension(:,:) :: x
+      integer(c_int) :: batchCount
+      integer(c_size_t) :: pBufferSizeInBytes
+      !
+      hipsparseSgpsvInterleavedBatch_bufferSizeExt_full_rank = hipsparseSgpsvInterleavedBatch_bufferSizeExt_(handle,algo,m,ds,dl,d,du,dw,c_loc(x),batchCount,pBufferSizeInBytes)
+    end function
+
+    function hipsparseSgpsvInterleavedBatch_bufferSizeExt_rank_0(handle,algo,m,ds,dl,d,du,dw,x,batchCount,pBufferSizeInBytes)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      use hipfort_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSgpsvInterleavedBatch_bufferSizeExt_rank_0
+      type(c_ptr) :: handle
+      integer(c_int) :: algo
+      integer(c_int) :: m
+      type(c_ptr) :: ds
+      type(c_ptr) :: dl
+      type(c_ptr) :: d
+      type(c_ptr) :: du
+      type(c_ptr) :: dw
+      real(c_float),target :: x
+      integer(c_int) :: batchCount
+      integer(c_size_t) :: pBufferSizeInBytes
+      !
+      hipsparseSgpsvInterleavedBatch_bufferSizeExt_rank_0 = hipsparseSgpsvInterleavedBatch_bufferSizeExt_(handle,algo,m,ds,dl,d,du,dw,c_loc(x),batchCount,pBufferSizeInBytes)
+    end function
+
+    function hipsparseSgpsvInterleavedBatch_bufferSizeExt_rank_1(handle,algo,m,ds,dl,d,du,dw,x,batchCount,pBufferSizeInBytes)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      use hipfort_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSgpsvInterleavedBatch_bufferSizeExt_rank_1
+      type(c_ptr) :: handle
+      integer(c_int) :: algo
+      integer(c_int) :: m
+      type(c_ptr) :: ds
+      type(c_ptr) :: dl
+      type(c_ptr) :: d
+      type(c_ptr) :: du
+      type(c_ptr) :: dw
+      real(c_float),target,dimension(:) :: x
+      integer(c_int) :: batchCount
+      integer(c_size_t) :: pBufferSizeInBytes
+      !
+      hipsparseSgpsvInterleavedBatch_bufferSizeExt_rank_1 = hipsparseSgpsvInterleavedBatch_bufferSizeExt_(handle,algo,m,ds,dl,d,du,dw,c_loc(x),batchCount,pBufferSizeInBytes)
+    end function
+
+    function hipsparseDgpsvInterleavedBatch_bufferSizeExt_full_rank(handle,algo,m,ds,dl,d,du,dw,x,batchCount,pBufferSizeInBytes)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      use hipfort_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDgpsvInterleavedBatch_bufferSizeExt_full_rank
+      type(c_ptr) :: handle
+      integer(c_int) :: algo
+      integer(c_int) :: m
+      type(c_ptr) :: ds
+      type(c_ptr) :: dl
+      type(c_ptr) :: d
+      type(c_ptr) :: du
+      type(c_ptr) :: dw
+      real(c_double),target,dimension(:,:) :: x
+      integer(c_int) :: batchCount
+      integer(c_size_t) :: pBufferSizeInBytes
+      !
+      hipsparseDgpsvInterleavedBatch_bufferSizeExt_full_rank = hipsparseDgpsvInterleavedBatch_bufferSizeExt_(handle,algo,m,ds,dl,d,du,dw,c_loc(x),batchCount,pBufferSizeInBytes)
+    end function
+
+    function hipsparseDgpsvInterleavedBatch_bufferSizeExt_rank_0(handle,algo,m,ds,dl,d,du,dw,x,batchCount,pBufferSizeInBytes)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      use hipfort_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDgpsvInterleavedBatch_bufferSizeExt_rank_0
+      type(c_ptr) :: handle
+      integer(c_int) :: algo
+      integer(c_int) :: m
+      type(c_ptr) :: ds
+      type(c_ptr) :: dl
+      type(c_ptr) :: d
+      type(c_ptr) :: du
+      type(c_ptr) :: dw
+      real(c_double),target :: x
+      integer(c_int) :: batchCount
+      integer(c_size_t) :: pBufferSizeInBytes
+      !
+      hipsparseDgpsvInterleavedBatch_bufferSizeExt_rank_0 = hipsparseDgpsvInterleavedBatch_bufferSizeExt_(handle,algo,m,ds,dl,d,du,dw,c_loc(x),batchCount,pBufferSizeInBytes)
+    end function
+
+    function hipsparseDgpsvInterleavedBatch_bufferSizeExt_rank_1(handle,algo,m,ds,dl,d,du,dw,x,batchCount,pBufferSizeInBytes)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      use hipfort_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDgpsvInterleavedBatch_bufferSizeExt_rank_1
+      type(c_ptr) :: handle
+      integer(c_int) :: algo
+      integer(c_int) :: m
+      type(c_ptr) :: ds
+      type(c_ptr) :: dl
+      type(c_ptr) :: d
+      type(c_ptr) :: du
+      type(c_ptr) :: dw
+      real(c_double),target,dimension(:) :: x
+      integer(c_int) :: batchCount
+      integer(c_size_t) :: pBufferSizeInBytes
+      !
+      hipsparseDgpsvInterleavedBatch_bufferSizeExt_rank_1 = hipsparseDgpsvInterleavedBatch_bufferSizeExt_(handle,algo,m,ds,dl,d,du,dw,c_loc(x),batchCount,pBufferSizeInBytes)
+    end function
+
+    function hipsparseCgpsvInterleavedBatch_bufferSizeExt_full_rank(handle,algo,m,ds,dl,d,du,dw,x,batchCount,pBufferSizeInBytes)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      use hipfort_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCgpsvInterleavedBatch_bufferSizeExt_full_rank
+      type(c_ptr) :: handle
+      integer(c_int) :: algo
+      integer(c_int) :: m
+      type(c_ptr) :: ds
+      type(c_ptr) :: dl
+      type(c_ptr) :: d
+      type(c_ptr) :: du
+      type(c_ptr) :: dw
+      complex(c_float_complex),target,dimension(:,:) :: x
+      integer(c_int) :: batchCount
+      integer(c_size_t) :: pBufferSizeInBytes
+      !
+      hipsparseCgpsvInterleavedBatch_bufferSizeExt_full_rank = hipsparseCgpsvInterleavedBatch_bufferSizeExt_(handle,algo,m,ds,dl,d,du,dw,c_loc(x),batchCount,pBufferSizeInBytes)
+    end function
+
+    function hipsparseCgpsvInterleavedBatch_bufferSizeExt_rank_0(handle,algo,m,ds,dl,d,du,dw,x,batchCount,pBufferSizeInBytes)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      use hipfort_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCgpsvInterleavedBatch_bufferSizeExt_rank_0
+      type(c_ptr) :: handle
+      integer(c_int) :: algo
+      integer(c_int) :: m
+      type(c_ptr) :: ds
+      type(c_ptr) :: dl
+      type(c_ptr) :: d
+      type(c_ptr) :: du
+      type(c_ptr) :: dw
+      complex(c_float_complex),target :: x
+      integer(c_int) :: batchCount
+      integer(c_size_t) :: pBufferSizeInBytes
+      !
+      hipsparseCgpsvInterleavedBatch_bufferSizeExt_rank_0 = hipsparseCgpsvInterleavedBatch_bufferSizeExt_(handle,algo,m,ds,dl,d,du,dw,c_loc(x),batchCount,pBufferSizeInBytes)
+    end function
+
+    function hipsparseCgpsvInterleavedBatch_bufferSizeExt_rank_1(handle,algo,m,ds,dl,d,du,dw,x,batchCount,pBufferSizeInBytes)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      use hipfort_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCgpsvInterleavedBatch_bufferSizeExt_rank_1
+      type(c_ptr) :: handle
+      integer(c_int) :: algo
+      integer(c_int) :: m
+      type(c_ptr) :: ds
+      type(c_ptr) :: dl
+      type(c_ptr) :: d
+      type(c_ptr) :: du
+      type(c_ptr) :: dw
+      complex(c_float_complex),target,dimension(:) :: x
+      integer(c_int) :: batchCount
+      integer(c_size_t) :: pBufferSizeInBytes
+      !
+      hipsparseCgpsvInterleavedBatch_bufferSizeExt_rank_1 = hipsparseCgpsvInterleavedBatch_bufferSizeExt_(handle,algo,m,ds,dl,d,du,dw,c_loc(x),batchCount,pBufferSizeInBytes)
+    end function
+
+    function hipsparseZgpsvInterleavedBatch_bufferSizeExt_full_rank(handle,algo,m,ds,dl,d,du,dw,x,batchCount,pBufferSizeInBytes)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      use hipfort_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZgpsvInterleavedBatch_bufferSizeExt_full_rank
+      type(c_ptr) :: handle
+      integer(c_int) :: algo
+      integer(c_int) :: m
+      type(c_ptr) :: ds
+      type(c_ptr) :: dl
+      type(c_ptr) :: d
+      type(c_ptr) :: du
+      type(c_ptr) :: dw
+      complex(c_double_complex),target,dimension(:,:) :: x
+      integer(c_int) :: batchCount
+      integer(c_size_t) :: pBufferSizeInBytes
+      !
+      hipsparseZgpsvInterleavedBatch_bufferSizeExt_full_rank = hipsparseZgpsvInterleavedBatch_bufferSizeExt_(handle,algo,m,ds,dl,d,du,dw,c_loc(x),batchCount,pBufferSizeInBytes)
+    end function
+
+    function hipsparseZgpsvInterleavedBatch_bufferSizeExt_rank_0(handle,algo,m,ds,dl,d,du,dw,x,batchCount,pBufferSizeInBytes)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      use hipfort_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZgpsvInterleavedBatch_bufferSizeExt_rank_0
+      type(c_ptr) :: handle
+      integer(c_int) :: algo
+      integer(c_int) :: m
+      type(c_ptr) :: ds
+      type(c_ptr) :: dl
+      type(c_ptr) :: d
+      type(c_ptr) :: du
+      type(c_ptr) :: dw
+      complex(c_double_complex),target :: x
+      integer(c_int) :: batchCount
+      integer(c_size_t) :: pBufferSizeInBytes
+      !
+      hipsparseZgpsvInterleavedBatch_bufferSizeExt_rank_0 = hipsparseZgpsvInterleavedBatch_bufferSizeExt_(handle,algo,m,ds,dl,d,du,dw,c_loc(x),batchCount,pBufferSizeInBytes)
+    end function
+
+    function hipsparseZgpsvInterleavedBatch_bufferSizeExt_rank_1(handle,algo,m,ds,dl,d,du,dw,x,batchCount,pBufferSizeInBytes)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      use hipfort_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZgpsvInterleavedBatch_bufferSizeExt_rank_1
+      type(c_ptr) :: handle
+      integer(c_int) :: algo
+      integer(c_int) :: m
+      type(c_ptr) :: ds
+      type(c_ptr) :: dl
+      type(c_ptr) :: d
+      type(c_ptr) :: du
+      type(c_ptr) :: dw
+      complex(c_double_complex),target,dimension(:) :: x
+      integer(c_int) :: batchCount
+      integer(c_size_t) :: pBufferSizeInBytes
+      !
+      hipsparseZgpsvInterleavedBatch_bufferSizeExt_rank_1 = hipsparseZgpsvInterleavedBatch_bufferSizeExt_(handle,algo,m,ds,dl,d,du,dw,c_loc(x),batchCount,pBufferSizeInBytes)
+    end function
+
+    function hipsparseSgpsvInterleavedBatch_full_rank(handle,algo,m,ds,dl,d,du,dw,x,batchCount,pBuffer)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      use hipfort_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSgpsvInterleavedBatch_full_rank
+      type(c_ptr) :: handle
+      integer(c_int) :: algo
+      integer(c_int) :: m
+      type(c_ptr) :: ds
+      type(c_ptr) :: dl
+      type(c_ptr) :: d
+      type(c_ptr) :: du
+      type(c_ptr) :: dw
+      real(c_float),target,dimension(:,:) :: x
+      integer(c_int) :: batchCount
+      type(c_ptr) :: pBuffer
+      !
+      hipsparseSgpsvInterleavedBatch_full_rank = hipsparseSgpsvInterleavedBatch_(handle,algo,m,ds,dl,d,du,dw,c_loc(x),batchCount,pBuffer)
+    end function
+
+    function hipsparseSgpsvInterleavedBatch_rank_0(handle,algo,m,ds,dl,d,du,dw,x,batchCount,pBuffer)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      use hipfort_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSgpsvInterleavedBatch_rank_0
+      type(c_ptr) :: handle
+      integer(c_int) :: algo
+      integer(c_int) :: m
+      type(c_ptr) :: ds
+      type(c_ptr) :: dl
+      type(c_ptr) :: d
+      type(c_ptr) :: du
+      type(c_ptr) :: dw
+      real(c_float),target :: x
+      integer(c_int) :: batchCount
+      type(c_ptr) :: pBuffer
+      !
+      hipsparseSgpsvInterleavedBatch_rank_0 = hipsparseSgpsvInterleavedBatch_(handle,algo,m,ds,dl,d,du,dw,c_loc(x),batchCount,pBuffer)
+    end function
+
+    function hipsparseSgpsvInterleavedBatch_rank_1(handle,algo,m,ds,dl,d,du,dw,x,batchCount,pBuffer)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      use hipfort_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSgpsvInterleavedBatch_rank_1
+      type(c_ptr) :: handle
+      integer(c_int) :: algo
+      integer(c_int) :: m
+      type(c_ptr) :: ds
+      type(c_ptr) :: dl
+      type(c_ptr) :: d
+      type(c_ptr) :: du
+      type(c_ptr) :: dw
+      real(c_float),target,dimension(:) :: x
+      integer(c_int) :: batchCount
+      type(c_ptr) :: pBuffer
+      !
+      hipsparseSgpsvInterleavedBatch_rank_1 = hipsparseSgpsvInterleavedBatch_(handle,algo,m,ds,dl,d,du,dw,c_loc(x),batchCount,pBuffer)
+    end function
+
+    function hipsparseDgpsvInterleavedBatch_full_rank(handle,algo,m,ds,dl,d,du,dw,x,batchCount,pBuffer)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      use hipfort_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDgpsvInterleavedBatch_full_rank
+      type(c_ptr) :: handle
+      integer(c_int) :: algo
+      integer(c_int) :: m
+      type(c_ptr) :: ds
+      type(c_ptr) :: dl
+      type(c_ptr) :: d
+      type(c_ptr) :: du
+      type(c_ptr) :: dw
+      real(c_double),target,dimension(:,:) :: x
+      integer(c_int) :: batchCount
+      type(c_ptr) :: pBuffer
+      !
+      hipsparseDgpsvInterleavedBatch_full_rank = hipsparseDgpsvInterleavedBatch_(handle,algo,m,ds,dl,d,du,dw,c_loc(x),batchCount,pBuffer)
+    end function
+
+    function hipsparseDgpsvInterleavedBatch_rank_0(handle,algo,m,ds,dl,d,du,dw,x,batchCount,pBuffer)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      use hipfort_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDgpsvInterleavedBatch_rank_0
+      type(c_ptr) :: handle
+      integer(c_int) :: algo
+      integer(c_int) :: m
+      type(c_ptr) :: ds
+      type(c_ptr) :: dl
+      type(c_ptr) :: d
+      type(c_ptr) :: du
+      type(c_ptr) :: dw
+      real(c_double),target :: x
+      integer(c_int) :: batchCount
+      type(c_ptr) :: pBuffer
+      !
+      hipsparseDgpsvInterleavedBatch_rank_0 = hipsparseDgpsvInterleavedBatch_(handle,algo,m,ds,dl,d,du,dw,c_loc(x),batchCount,pBuffer)
+    end function
+
+    function hipsparseDgpsvInterleavedBatch_rank_1(handle,algo,m,ds,dl,d,du,dw,x,batchCount,pBuffer)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      use hipfort_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDgpsvInterleavedBatch_rank_1
+      type(c_ptr) :: handle
+      integer(c_int) :: algo
+      integer(c_int) :: m
+      type(c_ptr) :: ds
+      type(c_ptr) :: dl
+      type(c_ptr) :: d
+      type(c_ptr) :: du
+      type(c_ptr) :: dw
+      real(c_double),target,dimension(:) :: x
+      integer(c_int) :: batchCount
+      type(c_ptr) :: pBuffer
+      !
+      hipsparseDgpsvInterleavedBatch_rank_1 = hipsparseDgpsvInterleavedBatch_(handle,algo,m,ds,dl,d,du,dw,c_loc(x),batchCount,pBuffer)
+    end function
+
+    function hipsparseCgpsvInterleavedBatch_full_rank(handle,algo,m,ds,dl,d,du,dw,x,batchCount,pBuffer)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      use hipfort_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCgpsvInterleavedBatch_full_rank
+      type(c_ptr) :: handle
+      integer(c_int) :: algo
+      integer(c_int) :: m
+      type(c_ptr) :: ds
+      type(c_ptr) :: dl
+      type(c_ptr) :: d
+      type(c_ptr) :: du
+      type(c_ptr) :: dw
+      complex(c_float_complex),target,dimension(:,:) :: x
+      integer(c_int) :: batchCount
+      type(c_ptr) :: pBuffer
+      !
+      hipsparseCgpsvInterleavedBatch_full_rank = hipsparseCgpsvInterleavedBatch_(handle,algo,m,ds,dl,d,du,dw,c_loc(x),batchCount,pBuffer)
+    end function
+
+    function hipsparseCgpsvInterleavedBatch_rank_0(handle,algo,m,ds,dl,d,du,dw,x,batchCount,pBuffer)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      use hipfort_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCgpsvInterleavedBatch_rank_0
+      type(c_ptr) :: handle
+      integer(c_int) :: algo
+      integer(c_int) :: m
+      type(c_ptr) :: ds
+      type(c_ptr) :: dl
+      type(c_ptr) :: d
+      type(c_ptr) :: du
+      type(c_ptr) :: dw
+      complex(c_float_complex),target :: x
+      integer(c_int) :: batchCount
+      type(c_ptr) :: pBuffer
+      !
+      hipsparseCgpsvInterleavedBatch_rank_0 = hipsparseCgpsvInterleavedBatch_(handle,algo,m,ds,dl,d,du,dw,c_loc(x),batchCount,pBuffer)
+    end function
+
+    function hipsparseCgpsvInterleavedBatch_rank_1(handle,algo,m,ds,dl,d,du,dw,x,batchCount,pBuffer)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      use hipfort_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCgpsvInterleavedBatch_rank_1
+      type(c_ptr) :: handle
+      integer(c_int) :: algo
+      integer(c_int) :: m
+      type(c_ptr) :: ds
+      type(c_ptr) :: dl
+      type(c_ptr) :: d
+      type(c_ptr) :: du
+      type(c_ptr) :: dw
+      complex(c_float_complex),target,dimension(:) :: x
+      integer(c_int) :: batchCount
+      type(c_ptr) :: pBuffer
+      !
+      hipsparseCgpsvInterleavedBatch_rank_1 = hipsparseCgpsvInterleavedBatch_(handle,algo,m,ds,dl,d,du,dw,c_loc(x),batchCount,pBuffer)
+    end function
+
+    function hipsparseZgpsvInterleavedBatch_full_rank(handle,algo,m,ds,dl,d,du,dw,x,batchCount,pBuffer)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      use hipfort_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZgpsvInterleavedBatch_full_rank
+      type(c_ptr) :: handle
+      integer(c_int) :: algo
+      integer(c_int) :: m
+      type(c_ptr) :: ds
+      type(c_ptr) :: dl
+      type(c_ptr) :: d
+      type(c_ptr) :: du
+      type(c_ptr) :: dw
+      complex(c_double_complex),target,dimension(:,:) :: x
+      integer(c_int) :: batchCount
+      type(c_ptr) :: pBuffer
+      !
+      hipsparseZgpsvInterleavedBatch_full_rank = hipsparseZgpsvInterleavedBatch_(handle,algo,m,ds,dl,d,du,dw,c_loc(x),batchCount,pBuffer)
+    end function
+
+    function hipsparseZgpsvInterleavedBatch_rank_0(handle,algo,m,ds,dl,d,du,dw,x,batchCount,pBuffer)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      use hipfort_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZgpsvInterleavedBatch_rank_0
+      type(c_ptr) :: handle
+      integer(c_int) :: algo
+      integer(c_int) :: m
+      type(c_ptr) :: ds
+      type(c_ptr) :: dl
+      type(c_ptr) :: d
+      type(c_ptr) :: du
+      type(c_ptr) :: dw
+      complex(c_double_complex),target :: x
+      integer(c_int) :: batchCount
+      type(c_ptr) :: pBuffer
+      !
+      hipsparseZgpsvInterleavedBatch_rank_0 = hipsparseZgpsvInterleavedBatch_(handle,algo,m,ds,dl,d,du,dw,c_loc(x),batchCount,pBuffer)
+    end function
+
+    function hipsparseZgpsvInterleavedBatch_rank_1(handle,algo,m,ds,dl,d,du,dw,x,batchCount,pBuffer)
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      use hipfort_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZgpsvInterleavedBatch_rank_1
+      type(c_ptr) :: handle
+      integer(c_int) :: algo
+      integer(c_int) :: m
+      type(c_ptr) :: ds
+      type(c_ptr) :: dl
+      type(c_ptr) :: d
+      type(c_ptr) :: du
+      type(c_ptr) :: dw
+      complex(c_double_complex),target,dimension(:) :: x
+      integer(c_int) :: batchCount
+      type(c_ptr) :: pBuffer
+      !
+      hipsparseZgpsvInterleavedBatch_rank_1 = hipsparseZgpsvInterleavedBatch_(handle,algo,m,ds,dl,d,du,dw,c_loc(x),batchCount,pBuffer)
     end function
 
     function hipsparseSnnz_full_rank(handle,dirA,m,n,descrA,A,lda,nnzPerRowColumn,nnzTotalDevHostPtr)
