@@ -13127,7 +13127,7 @@ module hipfort_rocsparse
   !>   \retval      rocsparse_status_not_implemented \p compute_type or \p alg is
   !>                currently not supported.
   interface rocsparse_spmv
-    function rocsparse_spmv_(handle,trans,alpha,mat,x,beta,y,compute_type,alg,buffer_size,temp_buffer) bind(c, name="rocsparse_spmv")
+    function rocsparse_spmv_(handle,trans,alpha,mat,x,beta,y,compute_type,alg,stage,buffer_size,temp_buffer) bind(c, name="rocsparse_spmv")
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
@@ -13141,6 +13141,7 @@ module hipfort_rocsparse
       type(c_ptr),value :: y
       integer(kind(rocsparse_datatype_f32_r)),value :: compute_type
       integer(kind(rocsparse_spmv_alg_default)),value :: alg
+      integer(kind(rocsparse_spmv_stage_buffer_size)),value :: stage
       integer(c_size_t) :: buffer_size
       type(c_ptr),value :: temp_buffer
     end function
