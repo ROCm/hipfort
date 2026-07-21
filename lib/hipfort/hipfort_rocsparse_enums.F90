@@ -149,6 +149,12 @@ module hipfort_rocsparse_enums
   end enum
 
   enum, bind(c)
+    enumerator :: rocsparse_spmv_stage_buffer_size = 1
+    enumerator :: rocsparse_spmv_stage_preprocess = 2
+    enumerator :: rocsparse_spmv_stage_compute = 3
+  end enum
+
+  enum, bind(c)
     enumerator :: rocsparse_spsv_alg_default = 0
   end enum
 
