@@ -24,7 +24,7 @@ include(CMakeFindDependencyMacro)
 
 set(_hipfort_supported_components hip
   rocblas rocfft rocrand rocsolver rocsparse
-  hipblas hipfft hiprand hipsolver hipsparse)
+  hipblas hipfft hipfftw hiprand hipsolver hipsparse)
 
 include("${CMAKE_CURRENT_LIST_DIR}/hipfort-amdgcn-targets.cmake")
 foreach(_comp ${hipfort_FIND_COMPONENTS})
