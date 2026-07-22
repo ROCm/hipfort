@@ -2,16 +2,13 @@
 ! GPU hipfftw test for the *_many interfaces
 ! =============================================================================
 !
-! This program validates hipfort's dfftw_plan_many_dft, dfftw_plan_many_dft_r2c,
-! and dfftw_plan_many_dft_c2r wrappers using GPU device memory.
+! This program validates hipfort's fftw_plan_many_dft, fftw_plan_many_dft_r2c,
+! and fftw_plan_many_dft_c2r wrappers using GPU device memory.
 !
-! KEY CONVENTION: Both hipfort and standard FFTW's legacy Fortran interface
-! (dfftw_*) take dimensions in Fortran order (first=fastest, column-major)
-! and reverse them internally before calling the C library.
-! For a Fortran array z(NX, NY), pass n = [NX, NY].
-!
-! The companion CPU test (test/fftw_reference/test_fftw_many.f90) validates
-! the same analytical expectations via cray-fftw.
+! KEY CONVENTION: These are the generated bindings to the FFTW C API, which
+! takes dimensions in C order (last index fastest, row-major) and does NOT
+! reverse them. For a Fortran array z(NX, NY) with NX fastest, pass the
+! reversed dimension list n = [NY, NX] (and likewise for the embed arrays).
 ! =============================================================================
 program hipfftw_many_test
   use iso_c_binding
@@ -22,6 +19,9 @@ program hipfftw_many_test
 
   double precision, parameter :: tol = 1.0d-12
   double precision, parameter :: pi = 4.0d0 * atan(1.0d0)
+  ! FFTW_ESTIMATE is not emitted by the generated enums module; use the
+  ! standard FFTW planner-flag value.
+  integer(c_int), parameter :: FFTW_ESTIMATE = 64
   integer :: nfail, seed_size
   integer, allocatable :: seed(:)
 
@@ -73,8 +73,7 @@ contains
     integer(c_size_t), parameter :: total_bytes = N * howmany * 16
     complex(c_double_complex), allocatable, target :: hx(:), hresult(:)
     type(c_ptr) :: dx = c_null_ptr, dy = c_null_ptr
-    complex(c_double_complex), pointer :: dx_f(:), dy_f(:)
-    integer(c_int64_t) :: plan
+    type(c_ptr) :: plan = c_null_ptr
     integer(c_int), target :: n_arr(1), ie(1), oe(1)
     integer :: j, b
     double precision :: max_err, err
@@ -94,14 +93,12 @@ contains
     call hipCheck(hipMalloc(dx, total_bytes))
     call hipCheck(hipMalloc(dy, total_bytes))
     call hipCheck(hipMemcpy(dx, c_loc(hx(1)), total_bytes, hipMemcpyHostToDevice))
-    call c_f_pointer(dx, dx_f, [N*howmany])
-    call c_f_pointer(dy, dy_f, [N*howmany])
 
     n_arr = [N]; ie = [N]; oe = [N]
-    call dfftw_plan_many_dft(plan, 1, n_arr, howmany, &
-        dx_f, ie, howmany, 1, dy_f, oe, howmany, 1, FFTW_FORWARD, FFTW_ESTIMATE)
-    call dfftw_execute_dft(plan, dx_f, dy_f)
-    call dfftw_destroy_plan(plan)
+    plan = fftw_plan_many_dft(1, c_loc(n_arr), howmany, &
+        dx, c_loc(ie), howmany, 1, dy, c_loc(oe), howmany, 1, FFTW_FORWARD, FFTW_ESTIMATE)
+    call fftw_execute_dft(plan, dx, dy)
+    call fftw_destroy_plan(plan)
 
     call hipCheck(hipMemcpy(c_loc(hresult(1)), dy, total_bytes, hipMemcpyDeviceToHost))
 
@@ -131,8 +128,8 @@ contains
   ! NX=4 (fast in Fortran), NY=6 (slow), LDX=8 (padded), howmany=2
   ! Fortran array: z(LDX, NY, howmany), transform z(1:NX, 1:NY, :)
   !
-  ! hipfort (Fortran order): n=[NX,NY], inembed=[LDX,NY]
-  ! (hipfort reverses internally to C order: n=[NY,NX], inembed=[NY,LDX])
+  ! Generated bindings call the FFTW C API directly (no dimension reversal),
+  ! so pass dimensions in C order: n=[NY,NX], inembed=[NY,LDX].
   !
   ! Signal: z(ix,iy) = exp(2*pi*i*(ix-1)/NX) * exp(2*pi*i*2*(iy-1)/NY)
   ! Expected 2D DFT (0-indexed): Z(kx=1,ky=2) = NX*NY, rest 0
@@ -143,8 +140,7 @@ contains
     integer(c_size_t), parameter :: total_bytes = LDX * NY * howmany * 16
     complex(c_double_complex), allocatable, target :: hx(:), hresult(:)
     type(c_ptr) :: dx = c_null_ptr, dy = c_null_ptr
-    complex(c_double_complex), pointer :: dx_f(:), dy_f(:)
-    integer(c_int64_t) :: plan
+    type(c_ptr) :: plan = c_null_ptr
     integer(c_int), target :: n_arr(2), ie(2), oe(2)
     integer :: ix, iy, kx, ky, b
     double precision :: max_err, err
@@ -167,16 +163,15 @@ contains
     call hipCheck(hipMalloc(dx, total_bytes))
     call hipCheck(hipMalloc(dy, total_bytes))
     call hipCheck(hipMemcpy(dx, c_loc(hx(1)), total_bytes, hipMemcpyHostToDevice))
-    call c_f_pointer(dx, dx_f, [LDX*NY*howmany])
-    call c_f_pointer(dy, dy_f, [LDX*NY*howmany])
 
-    n_arr = [NX, NY]
-    ie = [LDX, NY]
-    oe = [LDX, NY]
-    call dfftw_plan_many_dft(plan, 2, n_arr, howmany, &
-        dx_f, ie, 1, LDX*NY, dy_f, oe, 1, LDX*NY, FFTW_FORWARD, FFTW_ESTIMATE)
-    call dfftw_execute_dft(plan, dx_f, dy_f)
-    call dfftw_destroy_plan(plan)
+    ! C order (reversed from Fortran): fastest dimension last.
+    n_arr = [NY, NX]
+    ie = [NY, LDX]
+    oe = [NY, LDX]
+    plan = fftw_plan_many_dft(2, c_loc(n_arr), howmany, &
+        dx, c_loc(ie), 1, LDX*NY, dy, c_loc(oe), 1, LDX*NY, FFTW_FORWARD, FFTW_ESTIMATE)
+    call fftw_execute_dft(plan, dx, dy)
+    call fftw_destroy_plan(plan)
 
     call hipCheck(hipMemcpy(c_loc(hresult(1)), dy, total_bytes, hipMemcpyDeviceToHost))
 
@@ -203,7 +198,7 @@ contains
 
   ! ===========================================================================
   ! 1D C2R round-trip: c2r(r2c(x)) = N * x
-  ! Tests both dfftw_plan_many_dft_r2c and dfftw_plan_many_dft_c2r.
+  ! Tests both fftw_plan_many_dft_r2c and fftw_plan_many_dft_c2r.
   ! Uses random real input (any real signal is valid for R2C).
   ! ===========================================================================
   subroutine test_1d_c2r_roundtrip(nfail)
@@ -213,9 +208,7 @@ contains
     integer(c_size_t), parameter :: cbytes = Nc * howmany * 16
     real(c_double), allocatable, target :: hx(:), hresult(:)
     type(c_ptr) :: dx = c_null_ptr, dy = c_null_ptr, dz = c_null_ptr
-    real(c_double), pointer :: dx_f(:), dz_f(:)
-    complex(c_double_complex), pointer :: dy_f(:)
-    integer(c_int64_t) :: plan
+    type(c_ptr) :: plan = c_null_ptr
     integer(c_int), target :: n_arr(1), ie_r(1), oe_c(1), ie_c(1), oe_r(1)
     integer :: j, b
     double precision :: max_err, err
@@ -229,21 +222,18 @@ contains
     call hipCheck(hipMalloc(dy, cbytes))
     call hipCheck(hipMalloc(dz, rbytes))
     call hipCheck(hipMemcpy(dx, c_loc(hx(1)), rbytes, hipMemcpyHostToDevice))
-    call c_f_pointer(dx, dx_f, [N*howmany])
-    call c_f_pointer(dy, dy_f, [Nc*howmany])
-    call c_f_pointer(dz, dz_f, [N*howmany])
 
     n_arr = [N]; ie_r = [N]; oe_c = [Nc]; ie_c = [Nc]; oe_r = [N]
 
-    call dfftw_plan_many_dft_r2c(plan, 1, n_arr, howmany, &
-        dx_f, ie_r, 1, N, dy_f, oe_c, 1, Nc, FFTW_ESTIMATE)
-    call dfftw_execute_dft_r2c(plan, dx_f, dy_f)
-    call dfftw_destroy_plan(plan)
+    plan = fftw_plan_many_dft_r2c(1, c_loc(n_arr), howmany, &
+        dx, c_loc(ie_r), 1, N, dy, c_loc(oe_c), 1, Nc, FFTW_ESTIMATE)
+    call fftw_execute_dft_r2c(plan, dx, dy)
+    call fftw_destroy_plan(plan)
 
-    call dfftw_plan_many_dft_c2r(plan, 1, n_arr, howmany, &
-        dy_f, ie_c, 1, Nc, dz_f, oe_r, 1, N, FFTW_ESTIMATE)
-    call dfftw_execute_dft_c2r(plan, dy_f, dz_f)
-    call dfftw_destroy_plan(plan)
+    plan = fftw_plan_many_dft_c2r(1, c_loc(n_arr), howmany, &
+        dy, c_loc(ie_c), 1, Nc, dz, c_loc(oe_r), 1, N, FFTW_ESTIMATE)
+    call fftw_execute_dft_c2r(plan, dy, dz)
+    call fftw_destroy_plan(plan)
 
     call hipCheck(hipMemcpy(c_loc(hresult(1)), dz, rbytes, hipMemcpyDeviceToHost))
 
@@ -274,8 +264,7 @@ contains
     complex(c_double_complex), allocatable, target :: hx(:), hout_many(:), hout_ind(:)
     type(c_ptr) :: dx = c_null_ptr, dy = c_null_ptr
     type(c_ptr) :: d_sin = c_null_ptr, d_sout = c_null_ptr
-    complex(c_double_complex), pointer :: dx_f(:), dy_f(:), ds_in(:), ds_out(:)
-    integer(c_int64_t) :: plan
+    type(c_ptr) :: plan = c_null_ptr
     integer(c_int), target :: n_arr(1), ie(1), oe(1)
     integer :: j
     double precision :: max_err, err
@@ -294,28 +283,24 @@ contains
     call hipCheck(hipMalloc(dx, total_bytes))
     call hipCheck(hipMalloc(dy, total_bytes))
     call hipCheck(hipMemcpy(dx, c_loc(hx(1)), total_bytes, hipMemcpyHostToDevice))
-    call c_f_pointer(dx, dx_f, [N*howmany])
-    call c_f_pointer(dy, dy_f, [N*howmany])
 
     n_arr = [N]; ie = [N]; oe = [N]
-    call dfftw_plan_many_dft(plan, 1, n_arr, howmany, &
-        dx_f, ie, 1, N, dy_f, oe, 1, N, FFTW_FORWARD, FFTW_ESTIMATE)
-    call dfftw_execute_dft(plan, dx_f, dy_f)
-    call dfftw_destroy_plan(plan)
+    plan = fftw_plan_many_dft(1, c_loc(n_arr), howmany, &
+        dx, c_loc(ie), 1, N, dy, c_loc(oe), 1, N, FFTW_FORWARD, FFTW_ESTIMATE)
+    call fftw_execute_dft(plan, dx, dy)
+    call fftw_destroy_plan(plan)
     call hipCheck(hipMemcpy(c_loc(hout_many(1)), dy, total_bytes, hipMemcpyDeviceToHost))
     call hipCheck(hipFree(dx))
     call hipCheck(hipFree(dy))
 
     call hipCheck(hipMalloc(d_sin, slice_bytes))
     call hipCheck(hipMalloc(d_sout, slice_bytes))
-    call c_f_pointer(d_sin, ds_in, [N])
-    call c_f_pointer(d_sout, ds_out, [N])
 
     do b = 0, howmany-1
       call hipCheck(hipMemcpy(d_sin, c_loc(hx(b*N+1)), slice_bytes, hipMemcpyHostToDevice))
-      call dfftw_plan_dft_1d(plan, N, ds_in, ds_out, FFTW_FORWARD, FFTW_ESTIMATE)
-      call dfftw_execute_dft(plan, ds_in, ds_out)
-      call dfftw_destroy_plan(plan)
+      plan = fftw_plan_dft_1d(N, d_sin, d_sout, FFTW_FORWARD, FFTW_ESTIMATE)
+      call fftw_execute_dft(plan, d_sin, d_sout)
+      call fftw_destroy_plan(plan)
       call hipCheck(hipMemcpy(c_loc(hout_ind(b*N+1)), d_sout, slice_bytes, hipMemcpyDeviceToHost))
     end do
     call hipCheck(hipFree(d_sin))

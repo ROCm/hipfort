@@ -12,13 +12,14 @@ program hipfftw_r2c_c2r_test
   integer(c_size_t), parameter :: Nbytes_c = Nc * 16  ! sizeof(double complex) = 16
   double precision, parameter :: pi = 4.0d0 * atan(1.0d0)
   double precision, parameter :: tol = 1.0d-12
+  ! FFTW_ESTIMATE is not emitted by the generated enums module; use the
+  ! standard FFTW planner-flag value.
+  integer(c_int), parameter :: FFTW_ESTIMATE = 64
 
   real(c_double), allocatable, target, dimension(:) :: hx, hresult_r
   complex(c_double_complex), allocatable, target, dimension(:) :: hresult_c
   type(c_ptr) :: dx = c_null_ptr, dy = c_null_ptr, dz = c_null_ptr
-  real(c_double), pointer :: dx_f(:), dz_f(:)
-  complex(c_double_complex), pointer :: dy_f(:)
-  integer(c_int64_t) :: plan
+  type(c_ptr) :: plan = c_null_ptr
   integer :: j
   double precision :: error, max_error
 
@@ -37,13 +38,10 @@ program hipfftw_r2c_c2r_test
   call hipCheck(hipMalloc(dy, Nbytes_c))
   call hipCheck(hipMemcpy(dx, c_loc(hx(1)), Nbytes_r, hipMemcpyHostToDevice))
 
-  call c_f_pointer(dx, dx_f, [N])
-  call c_f_pointer(dy, dy_f, [Nc])
-
-  ! Forward R2C
-  call dfftw_plan_dft_r2c_1d(plan, N, dx_f, dy_f, FFTW_ESTIMATE)
-  call dfftw_execute_dft_r2c(plan, dx_f, dy_f)
-  call dfftw_destroy_plan(plan)
+  ! Forward R2C. Device pointers pass directly to the FFTW C API.
+  plan = fftw_plan_dft_r2c_1d(N, dx, dy, FFTW_ESTIMATE)
+  call fftw_execute_dft_r2c(plan, dx, dy)
+  call fftw_destroy_plan(plan)
 
   call hipCheck(hipMemcpy(c_loc(hresult_c(1)), dy, Nbytes_c, hipMemcpyDeviceToHost))
 
@@ -67,11 +65,10 @@ program hipfftw_r2c_c2r_test
   ! Backward C2R: c2r(r2c(x)) should equal N * x
   call hipCheck(hipMemcpy(dy, c_loc(hresult_c(1)), Nbytes_c, hipMemcpyHostToDevice))
   call hipCheck(hipMalloc(dz, Nbytes_r))
-  call c_f_pointer(dz, dz_f, [N])
 
-  call dfftw_plan_dft_c2r_1d(plan, N, dy_f, dz_f, FFTW_ESTIMATE)
-  call dfftw_execute_dft_c2r(plan, dy_f, dz_f)
-  call dfftw_destroy_plan(plan)
+  plan = fftw_plan_dft_c2r_1d(N, dy, dz, FFTW_ESTIMATE)
+  call fftw_execute_dft_c2r(plan, dy, dz)
+  call fftw_destroy_plan(plan)
 
   call hipCheck(hipMemcpy(c_loc(hresult_r(1)), dz, Nbytes_r, hipMemcpyDeviceToHost))
 

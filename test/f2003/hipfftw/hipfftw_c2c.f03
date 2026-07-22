@@ -10,11 +10,13 @@ program hipfftw_c2c_test
   integer(c_size_t), parameter :: Nbytes = N * 16  ! sizeof(double complex) = 16
   double precision, parameter :: pi = 4.0d0 * atan(1.0d0)
   double precision, parameter :: tol = 1.0d-12
+  ! FFTW_ESTIMATE is not emitted by the generated enums module; use the
+  ! standard FFTW planner-flag value.
+  integer(c_int), parameter :: FFTW_ESTIMATE = 64
 
   complex(c_double_complex), allocatable, target, dimension(:) :: hx, hresult
   type(c_ptr) :: dx = c_null_ptr, dy = c_null_ptr
-  complex(c_double_complex), pointer :: dx_f(:), dy_f(:)
-  integer(c_int64_t) :: plan
+  type(c_ptr) :: plan = c_null_ptr
   integer :: j
   double precision :: error, max_error
   complex(c_double_complex) :: w
@@ -33,12 +35,10 @@ program hipfftw_c2c_test
   call hipCheck(hipMalloc(dy, Nbytes))
   call hipCheck(hipMemcpy(dx, c_loc(hx(1)), Nbytes, hipMemcpyHostToDevice))
 
-  call c_f_pointer(dx, dx_f, [N])
-  call c_f_pointer(dy, dy_f, [N])
-
-  call dfftw_plan_dft_1d(plan, N, dx_f, dy_f, FFTW_FORWARD, FFTW_ESTIMATE)
-  call dfftw_execute_dft(plan, dx_f, dy_f)
-  call dfftw_destroy_plan(plan)
+  ! Device pointers pass directly to the FFTW C API (in/out are void*).
+  plan = fftw_plan_dft_1d(N, dx, dy, FFTW_FORWARD, FFTW_ESTIMATE)
+  call fftw_execute_dft(plan, dx, dy)
+  call fftw_destroy_plan(plan)
 
   call hipCheck(hipMemcpy(c_loc(hresult(1)), dy, Nbytes, hipMemcpyDeviceToHost))
 
