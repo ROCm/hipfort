@@ -31,7 +31,7 @@ ctest --test-dir build
 
 `hipfort` provides interfaces to the following HIP and ROCm libraries:
 
-* **HIP:**   HIP runtime, hipBLAS, hipSPARSE, hipFFT, hipRAND, hipSOLVER
+* **HIP:**   HIP runtime, hipBLAS, hipSPARSE, hipFFT, hipFFTW, hipRAND, hipSOLVER
 * **ROCm:** rocBLAS, rocSPARSE, rocFFT, rocRAND, rocSOLVER
 
 While the HIP interfaces and libraries allow to write portable code, the ROCm ones 
@@ -190,7 +190,7 @@ make run_all
 
 <A NAME="Copyright">
 
-Copyright (c) 2020-2022 Advanced Micro Devices, Inc. All rights reserved.
+Copyright (c) 2020-2026 Advanced Micro Devices, Inc. All rights reserved.
 [MITx11 License]
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
