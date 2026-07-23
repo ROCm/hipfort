@@ -13980,13 +13980,12 @@ module hipfort_hipsparse
 
   interface hipsparseDpruneDense2csr_bufferSizeExt
 #ifdef USE_CUDA_NAMES
-    function hipsparseDpruneDense2csr_bufferSizeExt_(handle,m,n,A,lda,threshold,descr,csrVal,csrRowPtr,csrColInd,bufferSize) bind(c, name="cusparseDpruneDense2csr_bufferSizeExt")
+    function hipsparseDpruneDense2csr_bufferSizeExt_(handle,m,n,A,lda,threshold,descr,csrVal,csrRowPtr,csrColInd,pBufferSizeInBytes) bind(c, name="cusparseDpruneDense2csr_bufferSizeExt")
 #else
-    function hipsparseDpruneDense2csr_bufferSizeExt_(handle,m,n,A,lda,threshold,descr,csrVal,csrRowPtr,csrColInd,bufferSize) bind(c, name="hipsparseDpruneDense2csr_bufferSizeExt")
+    function hipsparseDpruneDense2csr_bufferSizeExt_(handle,m,n,A,lda,threshold,descr,csrVal,csrRowPtr,csrColInd,pBufferSizeInBytes) bind(c, name="hipsparseDpruneDense2csr_bufferSizeExt")
 #endif
       use iso_c_binding
       use hipfort_hipsparse_enums
-      use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDpruneDense2csr_bufferSizeExt_
       type(c_ptr),value :: handle
@@ -13999,16 +13998,112 @@ module hipfort_hipsparse
       type(c_ptr),value :: csrVal
       type(c_ptr),value :: csrRowPtr
       type(c_ptr),value :: csrColInd
-      type(c_ptr),value :: bufferSize
+      type(c_ptr),value :: pBufferSizeInBytes
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
     module procedure &
-      hipsparseDpruneDense2csr_bufferSizeExt_full_rank,&
       hipsparseDpruneDense2csr_bufferSizeExt_rank_0,&
       hipsparseDpruneDense2csr_bufferSizeExt_rank_1
 #endif
   end interface
+
+  !>  \ingroup conv_module
+  !>   \brief
+  !>   \p hipsparseXpruneDense2csrNnz computes the number of non-zero elements per row and the total
+  !>   number of non-zero elements in a dense matrix after the elements less than the (non-negative)
+  !>   threshold are
+  !>   pruned from the matrix.
+  !>
+  !>   \details
+  !>   Given an input dense column ordered matrix \p A, with leading dimension \p lda where \p
+  !>   lda>=m,
+  !>   the resulting pruned sparse CSR matrix \f$C\f$ is computed using:
+  !>   \f[
+  !>    |C(i,j)| = A(i, j) \text{  if |A(i, j)| > threshold}
+  !>   \f]
+  !>
+  !>   First, the user must determine the size of the required temporary buffer using the routine
+  !>   `hipsparseSpruneDense2csr_bufferSize` "hipsparseXpruneDense2csr_bufferSize()" and then
+  !>   allocate it. Next,
+  !>   the user allocates \p csrRowPtr with size \p m+1. Then the function passes both the temporary
+  !>   storage buffer and
+  !>   \p csrRowPtr to \p hipsparseXpruneDense2csrNnz to determine the total number of non-zeros
+  !>   that
+  !>   will exist in the sparse CSR matrix C (after pruning has been performed on \p A ) as well as
+  !>   fill the output CSR
+  !>   row pointer array \p csrRowPtr.
+  !>
+  !>   For example, given the dense matrix:
+  !>
+  !>   \f[
+  !>     \begin{bmatrix}
+  !>     6 & 2 & 3 & 7 \\%
+  !>     5 & 6 & 7 & 8 \\%
+  !>     5 & 4 & 8 & 1
+  !>     \end{bmatrix}
+  !>   \f]
+  !>
+  !>   and the \p threshold value 5, the resulting matrix after pruning is:
+  !>
+  !>   \f[
+  !>     \begin{bmatrix}
+  !>     6 & 0 & 0 & 7 \\%
+  !>     0 & 6 & 7 & 8 \\%
+  !>     0 & 0 & 8 & 0
+  !>     \end{bmatrix}
+  !>   \f]
+  !>
+  !>   and the corresponding row pointer array and non-zero count:
+  !>
+  !>   \f[
+  !>     \begin{align}
+  !>     \text{csrRowPtr} &= \begin{bmatrix} 0 & 2 & 5 & 6 \end{bmatrix} \\%
+  !>     \text{nnzTotalDevHostPtr} &= 6
+  !>     \end{align}
+  !>   \f]
+  !>
+  !>   The above example assumes a zero index base for the output CSR matrix. Users can set the
+  !>   desired index base
+  !>   in the output CSR matrix by setting it in the `hipsparseMatDescr_t`. See
+  !>   `hipsparseSetMatIndexBase` ().
+  !>
+  !>   For a full code example on how to use this routine, see `hipsparseSpruneDense2csr()`.
+  !>
+  !>   \note
+  !>   The routine supports asynchronous execution if the pointer mode is set to device.
+  !>
+  !>   @param[in]
+  !>   handle             handle to the hipSPARSE library context queue.
+  !>   @param[in]
+  !>   m                  number of rows of the dense matrix \p A.
+  !>   @param[in]
+  !>   n                  number of columns of the dense matrix \p A.
+  !>   @param[in]
+  !>   A                  array of dimensions (\p lda, \p n).
+  !>   @param[in]
+  !>   lda                leading dimension of the dense array \p A.
+  !>   @param[in]
+  !>   threshold pointer to the pruning non-negative threshold, which can exist in either host or
+  !>   device memory.
+  !>   @param[in]
+  !>   descr              the descriptor of the dense matrix \p A.
+  !>   @param[out]
+  !>   csrRowPtr integer array of \p m+1 elements that contains the start of every row and the end
+  !>   of the last row plus one.
+  !>   @param[out]
+  !>   nnzTotalDevHostPtr total number of non-zero elements in device or host memory.
+  !>   @param[out]
+  !>   buffer             buffer allocated by the user whose size is determined by calling
+  !>                      `hipsparseSpruneDense2csr_bufferSize`
+  !>                      "hipsparseXpruneDense2csr_bufferSize()" or
+  !>                      `hipsparseSpruneDense2csr_bufferSizeExt`
+  !>                      "hipsparseXpruneDense2csr_bufferSizeExt()".
+  !>
+  !>   \retval     HIPSPARSE_STATUS_SUCCESS the operation completed successfully.
+  !>   \retval HIPSPARSE_STATUS_INVALID_VALUE \p handle, \p m, \p n, \p lda, \p A, \p threshold, \p
+  !>   descr, \p csrRowPtr,
+  !>               \p nnzTotalDevHostPtr, or \p buffer pointer is invalid.
   interface hipsparseSpruneDense2csrNnz
 #ifdef USE_CUDA_NAMES
     function hipsparseSpruneDense2csrNnz_(handle,m,n,A,lda,threshold,descr,csrRowPtr,nnzTotalDevHostPtr,buffer) bind(c, name="cusparseSpruneDense2csrNnz")
@@ -14017,7 +14112,6 @@ module hipfort_hipsparse
 #endif
       use iso_c_binding
       use hipfort_hipsparse_enums
-      use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSpruneDense2csrNnz_
       type(c_ptr),value :: handle
@@ -14034,12 +14128,11 @@ module hipfort_hipsparse
 
 #ifdef USE_FPOINTER_INTERFACES
     module procedure &
-      hipsparseSpruneDense2csrNnz_full_rank,&
       hipsparseSpruneDense2csrNnz_rank_0,&
       hipsparseSpruneDense2csrNnz_rank_1
 #endif
   end interface
-  
+
   interface hipsparseDpruneDense2csrNnz
 #ifdef USE_CUDA_NAMES
     function hipsparseDpruneDense2csrNnz_(handle,m,n,A,lda,threshold,descr,csrRowPtr,nnzTotalDevHostPtr,buffer) bind(c, name="cusparseDpruneDense2csrNnz")
@@ -14048,7 +14141,6 @@ module hipfort_hipsparse
 #endif
       use iso_c_binding
       use hipfort_hipsparse_enums
-      use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDpruneDense2csrNnz_
       type(c_ptr),value :: handle
@@ -14065,11 +14157,110 @@ module hipfort_hipsparse
 
 #ifdef USE_FPOINTER_INTERFACES
     module procedure &
-      hipsparseDpruneDense2csrNnz_full_rank,&
       hipsparseDpruneDense2csrNnz_rank_0,&
       hipsparseDpruneDense2csrNnz_rank_1
 #endif
   end interface
+
+  !>  \ingroup conv_module
+  !>   \brief
+  !>   \p hipsparseXpruneDense2csr converts the matrix \p A in dense format into a sparse matrix in
+  !>   CSR format,
+  !>   while pruning values that are less than the (non-negative) threshold. All the parameters are
+  !>   assumed
+  !>   to have been pre-allocated by the user.
+  !>
+  !>   \details
+  !>   Given an input dense column ordered matrix \p A, with leading dimension \p lda, where \p
+  !>   lda>=m,
+  !>   the resulting pruned sparse CSR matrix C is computed using:
+  !>   \f[
+  !>    |C(i,j)| = A(i, j) \text{  if |A(i, j)| > threshold}
+  !>   \f]
+  !>
+  !>   The user first calls `hipsparseSpruneDense2csr_bufferSize`
+  !>   "hipsparseXpruneDense2csr_bufferSize()" to
+  !>   determine the size of the required user-allocated temporary storage buffer. The user then
+  !>   allocates this
+  !>   buffer. Next, the user allocates \p csrRowPtr to have \p m+1 elements and then calls
+  !>   `hipsparseSpruneDense2csrNnz` "hipsparseXpruneDense2csrNnz()", which fills in the \p
+  !>   csrRowPtr array
+  !>   and stores the number of elements that are larger than the pruning \p threshold in \p
+  !>   nnzTotalDevHostPtr.
+  !>   The user then allocates \p csrColInd and \p csrVal to have size \p nnzTotalDevHostPtr and
+  !>   completes the
+  !>   conversion by calling \p hipsparseXpruneDense2csr().
+  !>
+  !>   For example, performing these steps with the dense input matrix \p A :
+  !>   \f[
+  !>     \begin{bmatrix}
+  !>     6 & 2 & 3 & 7 \\%
+  !>     5 & 6 & 7 & 8 \\%
+  !>     5 & 4 & 8 & 1
+  !>     \end{bmatrix}
+  !>   \f]
+  !>
+  !>   and the \p threshold value 5, results in the pruned matrix C:
+  !>
+  !>   \f[
+  !>     \begin{bmatrix}
+  !>     6 & 0 & 0 & 7 \\%
+  !>     0 & 6 & 7 & 8 \\%
+  !>     0 & 0 & 8 & 0
+  !>     \end{bmatrix}
+  !>   \f]
+  !>
+  !>   and corresponding CSR row, column, and values arrays:
+  !>
+  !>   \f[
+  !>     \begin{align}
+  !>     \text{csrRowPtr} &= \begin{bmatrix} 0 & 2 & 5 & 6 \end{bmatrix} \\%
+  !>     \text{csrColInd} &= \begin{bmatrix} 0 & 3 & 1 & 2 & 3 & 2 \end{bmatrix} \\%
+  !>     \text{csrVal} &= \begin{bmatrix} 6 & 7 & 6 & 7 & 8 & 8 \end{bmatrix} \\%
+  !>     \end{align}
+  !>   \f]
+  !>
+  !>   \note
+  !>   The routine \p hipsparseXpruneDense2csr() is executed asynchronously with respect to the host
+  !>   and can
+  !>   return control to the application on the host before the entire result is ready.
+  !>
+  !>   @param[in]
+  !>   handle      handle to the hipSPARSE library context queue.
+  !>   @param[in]
+  !>   m           number of rows of the dense matrix \p A.
+  !>   @param[in]
+  !>   n           number of columns of the dense matrix \p A.
+  !>   @param[in]
+  !>   A           array of dimensions (\p lda, \p n).
+  !>   @param[in]
+  !>   lda         leading dimension of dense array \p A.
+  !>   @param[in]
+  !>   threshold pointer to the non-negative pruning threshold, which can exist in either host or
+  !>   device memory.
+  !>   @param[in]
+  !>   descr the descriptor of the dense matrix \p A. The supported matrix type is
+  !>   `HIPSPARSE_MATRIX_TYPE_GENERAL`
+  !>               and any valid value of the `hipsparseIndexBase_t`.
+  !>   @param[out]
+  !>   csrVal array of nnz ( = \p csrRowPtr[m] - \p csrRowPtr[0] ) non-zero elements of matrix \p A.
+  !>   @param[in]
+  !>   csrRowPtr integer array of \p m+1 elements that contains the start of every row and the end
+  !>   of the last row plus one.
+  !>   @param[out]
+  !>   csrColInd integer array of nnz ( = \p csrRowPtr[m] - \p csrRowPtr[0] ) column indices of the
+  !>   non-zero elements of matrix \p A.
+  !>
+  !>   @param[in]
+  !>   buffer     temporary storage buffer allocated by the user. The size is returned by
+  !>              `hipsparseSpruneDense2csr_bufferSize` "hipsparseXpruneDense2csr_bufferSize()" or
+  !>              `hipsparseSpruneDense2csr_bufferSizeExt`
+  !>              "hipsparseXpruneDense2csr_bufferSizeExt()".
+  !>
+  !>   \retval     HIPSPARSE_STATUS_SUCCESS the operation completed successfully.
+  !>   \retval HIPSPARSE_STATUS_INVALID_VALUE \p handle, \p m, \p n, \p lda, \p A, \p descr, \p
+  !>   threshold, \p csrVal,
+  !>               \p csrRowPtr, \p csrColInd, or \p buffer pointer is invalid.
   interface hipsparseSpruneDense2csr
 #ifdef USE_CUDA_NAMES
     function hipsparseSpruneDense2csr_(handle,m,n,A,lda,threshold,descr,csrVal,csrRowPtr,csrColInd,buffer) bind(c, name="cusparseSpruneDense2csr")
@@ -14078,7 +14269,6 @@ module hipfort_hipsparse
 #endif
       use iso_c_binding
       use hipfort_hipsparse_enums
-      use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSpruneDense2csr_
       type(c_ptr),value :: handle
@@ -14096,12 +14286,11 @@ module hipfort_hipsparse
 
 #ifdef USE_FPOINTER_INTERFACES
     module procedure &
-      hipsparseSpruneDense2csr_full_rank,&
       hipsparseSpruneDense2csr_rank_0,&
       hipsparseSpruneDense2csr_rank_1
 #endif
   end interface
-  
+
   interface hipsparseDpruneDense2csr
 #ifdef USE_CUDA_NAMES
     function hipsparseDpruneDense2csr_(handle,m,n,A,lda,threshold,descr,csrVal,csrRowPtr,csrColInd,buffer) bind(c, name="cusparseDpruneDense2csr")
@@ -14110,7 +14299,6 @@ module hipfort_hipsparse
 #endif
       use iso_c_binding
       use hipfort_hipsparse_enums
-      use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDpruneDense2csr_
       type(c_ptr),value :: handle
@@ -14128,20 +14316,91 @@ module hipfort_hipsparse
 
 #ifdef USE_FPOINTER_INTERFACES
     module procedure &
-      hipsparseDpruneDense2csr_full_rank,&
       hipsparseDpruneDense2csr_rank_0,&
       hipsparseDpruneDense2csr_rank_1
 #endif
   end interface
+
+  !>  \ingroup conv_module
+  !>   \brief
+  !>   \p hipsparseXpruneDense2csrByPercentage_bufferSize functions convert the size of the
+  !>   user-allocated temporary
+  !>   storage buffer used when converting a dense matrix to a pruned CSR matrix where the pruning
+  !>   is done
+  !>   based on a \p percentage.
+  !>
+  !>   \details
+  !>   When converting and pruning a dense matrix \p A to a CSR matrix by percentage, the
+  !>   following steps are performed. First, the user calls
+  !>   \p hipsparseXpruneDense2csrByPercentage_bufferSize, which determines the size of the
+  !>   temporary storage buffer. After this is determined, this buffer must be allocated by the
+  !>   user.
+  !>   Next, the user allocates the \p csrRowPtr array to have \p m+1 elements and calls
+  !>   `hipsparseSpruneDense2csrNnzByPercentage` "hipsparseXpruneDense2csrNnzByPercentage()".
+  !>   Finally, the user finishes the conversion by allocating the \p csrColInd and \p csrVal arrays
+  !>   (whose size is determined by the value at \p nnzTotalDevHostPtr) and calling
+  !>   `hipsparseSpruneDense2csrByPercentage` "hipsparseXpruneDense2csrByPercentage()".
+  !>
+  !>   The pruning by \p percentage works by first sorting the absolute values of the dense
+  !>   matrix \p A. Users can then determine a position in this sorted array by
+  !>   \f[
+  !>     pos = ceil(m \cdot n \cdot (percentage/100)) - 1 \\%
+  !>     pos = \min(pos, m \cdot n-1) \\%
+  !>     pos = \max(pos, 0) \\%
+  !>     threshold = sorted_A[pos]
+  !>   \f]
+  !>
+  !>   After the user has this threshold, they can prune values in the dense matrix \p A, as in
+  !>   `hipsparseSpruneDense2csr` "hipsparseXpruneDense2csr()".
+  !>
+  !>   \note
+  !>   This function is executed asynchronously with respect to the host and can return control to
+  !>   the
+  !>   application on the host before the entire result is ready.
+  !>
+  !>   @param[in]
+  !>   handle             handle to the hipSPARSE library context queue.
+  !>   @param[in]
+  !>   m                  number of rows of the dense matrix \p A.
+  !>   @param[in]
+  !>   n                  number of columns of the dense matrix \p A.
+  !>   @param[in]
+  !>   A                  array of dimensions (\p lda, \p n).
+  !>   @param[in]
+  !>   lda                leading dimension of dense array \p A.
+  !>   @param[in]
+  !>   percentage         \p percentage>=0 and \p percentage<=100.
+  !>   @param[in]
+  !>   descr the descriptor of the dense matrix \p A. The supported matrix type is
+  !>   `HIPSPARSE_MATRIX_TYPE_GENERAL` and
+  !>                      any valid value of the `hipsparseIndexBase_t`.
+  !>   @param[in]
+  !>   csrVal array of nnz ( = \p csrRowPtr[m] - \p csrRowPtr[0] ) nonzero elements of matrix \p A.
+  !>   @param[in]
+  !>   csrRowPtr integer array of \p m+1 elements that contains the start of every row and the end
+  !>   of the last row plus one.
+  !>   @param[in]
+  !>   csrColInd integer array of nnz ( = \p csrRowPtr[m] - \p csrRowPtr[0] ) column indices of the
+  !>   non-zero elements of matrix \p A.
+  !>   @param[in]
+  !>   info               prune information structure.
+  !>   @param[out]
+  !>   pBufferSizeInBytes number of bytes of the temporary storage buffer required by
+  !>                      `hipsparseSpruneDense2csrNnzByPercentage()` and
+  !>                      hipsparseDpruneDense2csrNnzByPercentage().
+  !>
+  !>   \retval     HIPSPARSE_STATUS_SUCCESS the operation completed successfully.
+  !>   \retval HIPSPARSE_STATUS_INVALID_VALUE the \p handle or \p pBufferSizeInBytes pointer is
+  !>   invalid.
+  !>   \retval     HIPSPARSE_STATUS_INTERNAL_ERROR an internal error occurred.
   interface hipsparseSpruneDense2csrByPercentage_bufferSize
 #ifdef USE_CUDA_NAMES
-    function hipsparseSpruneDense2csrByPercentage_bufferSize_(handle,m,n,A,lda,percentage,descr,csrVal,csrRowPtr,csrColInd,myInfo,bufferSize) bind(c, name="cusparseSpruneDense2csrByPercentage_bufferSize")
+    function hipsparseSpruneDense2csrByPercentage_bufferSize_(handle,m,n,A,lda,percentage,descr,csrVal,csrRowPtr,csrColInd,myInfo,pBufferSizeInBytes) bind(c, name="cusparseSpruneDense2csrByPercentage_bufferSize")
 #else
-    function hipsparseSpruneDense2csrByPercentage_bufferSize_(handle,m,n,A,lda,percentage,descr,csrVal,csrRowPtr,csrColInd,myInfo,bufferSize) bind(c, name="hipsparseSpruneDense2csrByPercentage_bufferSize")
+    function hipsparseSpruneDense2csrByPercentage_bufferSize_(handle,m,n,A,lda,percentage,descr,csrVal,csrRowPtr,csrColInd,myInfo,pBufferSizeInBytes) bind(c, name="hipsparseSpruneDense2csrByPercentage_bufferSize")
 #endif
       use iso_c_binding
       use hipfort_hipsparse_enums
-      use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSpruneDense2csrByPercentage_bufferSize_
       type(c_ptr),value :: handle
@@ -14155,26 +14414,24 @@ module hipfort_hipsparse
       type(c_ptr),value :: csrRowPtr
       type(c_ptr),value :: csrColInd
       type(c_ptr),value :: myInfo
-      type(c_ptr),value :: bufferSize
+      type(c_ptr),value :: pBufferSizeInBytes
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
     module procedure &
-      hipsparseSpruneDense2csrByPercentage_bufferSize_full_rank,&
       hipsparseSpruneDense2csrByPercentage_bufferSize_rank_0,&
       hipsparseSpruneDense2csrByPercentage_bufferSize_rank_1
 #endif
   end interface
-  
+
   interface hipsparseDpruneDense2csrByPercentage_bufferSize
 #ifdef USE_CUDA_NAMES
-    function hipsparseDpruneDense2csrByPercentage_bufferSize_(handle,m,n,A,lda,percentage,descr,csrVal,csrRowPtr,csrColInd,myInfo,bufferSize) bind(c, name="cusparseDpruneDense2csrByPercentage_bufferSize")
+    function hipsparseDpruneDense2csrByPercentage_bufferSize_(handle,m,n,A,lda,percentage,descr,csrVal,csrRowPtr,csrColInd,myInfo,pBufferSizeInBytes) bind(c, name="cusparseDpruneDense2csrByPercentage_bufferSize")
 #else
-    function hipsparseDpruneDense2csrByPercentage_bufferSize_(handle,m,n,A,lda,percentage,descr,csrVal,csrRowPtr,csrColInd,myInfo,bufferSize) bind(c, name="hipsparseDpruneDense2csrByPercentage_bufferSize")
+    function hipsparseDpruneDense2csrByPercentage_bufferSize_(handle,m,n,A,lda,percentage,descr,csrVal,csrRowPtr,csrColInd,myInfo,pBufferSizeInBytes) bind(c, name="hipsparseDpruneDense2csrByPercentage_bufferSize")
 #endif
       use iso_c_binding
       use hipfort_hipsparse_enums
-      use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDpruneDense2csrByPercentage_bufferSize_
       type(c_ptr),value :: handle
@@ -14188,25 +14445,93 @@ module hipfort_hipsparse
       type(c_ptr),value :: csrRowPtr
       type(c_ptr),value :: csrColInd
       type(c_ptr),value :: myInfo
-      type(c_ptr),value :: bufferSize
+      type(c_ptr),value :: pBufferSizeInBytes
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
     module procedure &
-      hipsparseDpruneDense2csrByPercentage_bufferSize_full_rank,&
       hipsparseDpruneDense2csrByPercentage_bufferSize_rank_0,&
       hipsparseDpruneDense2csrByPercentage_bufferSize_rank_1
 #endif
   end interface
+
+  !>  \ingroup conv_module
+  !>   \brief
+  !>   This function computes the size of the user-allocated temporary storage buffer used
+  !>   when converting and pruning by \p percentage a dense matrix to a CSR matrix.
+  !>
+  !>   \details
+  !>   When converting and pruning a dense matrix \p A to a CSR matrix by \p percentage, the
+  !>   following steps are performed. First, the user calls
+  !>   \p hipsparseXpruneDense2csrByPercentage_bufferSizeExt, which determines the size of the
+  !>   temporary storage buffer. After this is determined, this buffer must be allocated by the
+  !>   user.
+  !>   Next, the user allocates the \p csrRowPtr array to have \p m+1 elements and calls
+  !>   `hipsparseSpruneDense2csrNnzByPercentage` "hipsparseXpruneDense2csrNnzByPercentage()".
+  !>   Finally, the user finishes the conversion by allocating the \p csrColInd and \p csrVal arrays
+  !>   (whose size is determined by the value at \p nnzTotalDevHostPtr) and calling
+  !>   `hipsparseSpruneDense2csrByPercentage` "hipsparseXpruneDense2csrByPercentage()".
+  !>
+  !>   The pruning by \p percentage works by first sorting the absolute values of the dense
+  !>   matrix \p A. Users can then determine a position in this sorted array by
+  !>   \f[
+  !>     pos = ceil(m \cdot n \cdot (percentage/100)) - 1 \\%
+  !>     pos = \min(pos, m \cdot n-1) \\%
+  !>     pos = \max(pos, 0) \\%
+  !>     threshold = sorted_A[pos]
+  !>   \f]
+  !>
+  !>   After users have this threshold, they can prune values in the dense matrix \p A, as in
+  !>   `hipsparseSpruneDense2csr` "hipsparseXpruneDense2csr()".
+  !>
+  !>   \note
+  !>   This function is executed asynchronously with respect to the host and can return control to
+  !>   the
+  !>   application on the host before the entire result is ready.
+  !>
+  !>   @param[in]
+  !>   handle             handle to the hipSPARSE library context queue.
+  !>   @param[in]
+  !>   m                  number of rows of the dense matrix \p A.
+  !>   @param[in]
+  !>   n                  number of columns of the dense matrix \p A.
+  !>   @param[in]
+  !>   A                  array of dimensions (\p lda, \p n).
+  !>   @param[in]
+  !>   lda                leading dimension of dense array \p A.
+  !>   @param[in]
+  !>   percentage         \p percentage>=0 and \p percentage<=100.
+  !>   @param[in]
+  !>   descr the descriptor of the dense matrix \p A. The supported matrix type is
+  !>   `HIPSPARSE_MATRIX_TYPE_GENERAL` and
+  !>                      any valid value of the `hipsparseIndexBase_t`.
+  !>   @param[in]
+  !>   csrVal array of nnz ( = \p csrRowPtr[m] - \p csrRowPtr[0] ) non-zero elements of matrix \p A.
+  !>   @param[in]
+  !>   csrRowPtr integer array of \p m+1 elements that contains the start of every row and the end
+  !>   of the last row plus one.
+  !>   @param[in]
+  !>   csrColInd integer array of nnz ( = \p csrRowPtr[m] - \p csrRowPtr[0] ) column indices of the
+  !>   non-zero elements of matrix \p A.
+  !>   @param[in]
+  !>   info               prune information structure.
+  !>   @param[out]
+  !>   pBufferSizeInBytes number of bytes of the temporary storage buffer required by
+  !>                      `hipsparseSpruneDense2csrNnzByPercentage()` and
+  !>                      hipsparseDpruneDense2csrNnzByPercentage().
+  !>
+  !>   \retval     HIPSPARSE_STATUS_SUCCESS the operation completed successfully.
+  !>   \retval HIPSPARSE_STATUS_INVALID_VALUE the \p handle or \p pBufferSizeInBytes pointer is
+  !>   invalid.
+  !>   \retval     HIPSPARSE_STATUS_INTERNAL_ERROR an internal error occurred.
   interface hipsparseSpruneDense2csrByPercentage_bufferSizeExt
 #ifdef USE_CUDA_NAMES
-    function hipsparseSpruneDense2csrByPercentage_bufferSizeExt_(handle,m,n,A,lda,percentage,descr,csrVal,csrRowPtr,csrColInd,myInfo,bufferSize) bind(c, name="cusparseSpruneDense2csrByPercentage_bufferSizeExt")
+    function hipsparseSpruneDense2csrByPercentage_bufferSizeExt_(handle,m,n,A,lda,percentage,descr,csrVal,csrRowPtr,csrColInd,myInfo,pBufferSizeInBytes) bind(c, name="cusparseSpruneDense2csrByPercentage_bufferSizeExt")
 #else
-    function hipsparseSpruneDense2csrByPercentage_bufferSizeExt_(handle,m,n,A,lda,percentage,descr,csrVal,csrRowPtr,csrColInd,myInfo,bufferSize) bind(c, name="hipsparseSpruneDense2csrByPercentage_bufferSizeExt")
+    function hipsparseSpruneDense2csrByPercentage_bufferSizeExt_(handle,m,n,A,lda,percentage,descr,csrVal,csrRowPtr,csrColInd,myInfo,pBufferSizeInBytes) bind(c, name="hipsparseSpruneDense2csrByPercentage_bufferSizeExt")
 #endif
       use iso_c_binding
       use hipfort_hipsparse_enums
-      use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSpruneDense2csrByPercentage_bufferSizeExt_
       type(c_ptr),value :: handle
@@ -14220,26 +14545,24 @@ module hipfort_hipsparse
       type(c_ptr),value :: csrRowPtr
       type(c_ptr),value :: csrColInd
       type(c_ptr),value :: myInfo
-      type(c_ptr),value :: bufferSize
+      type(c_ptr),value :: pBufferSizeInBytes
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
     module procedure &
-      hipsparseSpruneDense2csrByPercentage_bufferSizeExt_full_rank,&
       hipsparseSpruneDense2csrByPercentage_bufferSizeExt_rank_0,&
       hipsparseSpruneDense2csrByPercentage_bufferSizeExt_rank_1
 #endif
   end interface
-  
+
   interface hipsparseDpruneDense2csrByPercentage_bufferSizeExt
 #ifdef USE_CUDA_NAMES
-    function hipsparseDpruneDense2csrByPercentage_bufferSizeExt_(handle,m,n,A,lda,percentage,descr,csrVal,csrRowPtr,csrColInd,myInfo,bufferSize) bind(c, name="cusparseDpruneDense2csrByPercentage_bufferSizeExt")
+    function hipsparseDpruneDense2csrByPercentage_bufferSizeExt_(handle,m,n,A,lda,percentage,descr,csrVal,csrRowPtr,csrColInd,myInfo,pBufferSizeInBytes) bind(c, name="cusparseDpruneDense2csrByPercentage_bufferSizeExt")
 #else
-    function hipsparseDpruneDense2csrByPercentage_bufferSizeExt_(handle,m,n,A,lda,percentage,descr,csrVal,csrRowPtr,csrColInd,myInfo,bufferSize) bind(c, name="hipsparseDpruneDense2csrByPercentage_bufferSizeExt")
+    function hipsparseDpruneDense2csrByPercentage_bufferSizeExt_(handle,m,n,A,lda,percentage,descr,csrVal,csrRowPtr,csrColInd,myInfo,pBufferSizeInBytes) bind(c, name="hipsparseDpruneDense2csrByPercentage_bufferSizeExt")
 #endif
       use iso_c_binding
       use hipfort_hipsparse_enums
-      use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDpruneDense2csrByPercentage_bufferSizeExt_
       type(c_ptr),value :: handle
@@ -14253,16 +14576,84 @@ module hipfort_hipsparse
       type(c_ptr),value :: csrRowPtr
       type(c_ptr),value :: csrColInd
       type(c_ptr),value :: myInfo
-      type(c_ptr),value :: bufferSize
+      type(c_ptr),value :: pBufferSizeInBytes
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
     module procedure &
-      hipsparseDpruneDense2csrByPercentage_bufferSizeExt_full_rank,&
       hipsparseDpruneDense2csrByPercentage_bufferSizeExt_rank_0,&
       hipsparseDpruneDense2csrByPercentage_bufferSizeExt_rank_1
 #endif
   end interface
+
+  !>  \ingroup conv_module
+  !>   \brief
+  !>   This function computes the number of non-zero elements per row and the total number of
+  !>   non-zero elements in a dense matrix when converting and pruning by \p percentage a dense
+  !>   matrix to a CSR matrix.
+  !>
+  !>   \details
+  !>   When converting and pruning a dense matrix \p A to a CSR matrix by \p percentage, the
+  !>   following steps are performed. First, the user calls
+  !>   `hipsparseSpruneDense2csrByPercentage_bufferSize`
+  !>   "hipsparseXpruneDense2csrByPercentage_bufferSize()",
+  !>   which determines the size of the temporary storage buffer. After this is determined, this
+  !>   buffer must be allocated
+  !>   by the user. Next, the user allocates the \p csrRowPtr array to have \p m+1 elements and
+  !>   calls
+  !>   \p hipsparseXpruneDense2csrNnzByPercentage. Finally, the user finishes the conversion
+  !>   by allocating the \p csrColInd and \p csrVal arrays (which have a size determined by the
+  !>   value
+  !>   at \p nnzTotalDevHostPtr) and calling `hipsparseSpruneDense2csrByPercentage`
+  !>   "hipsparseXpruneDense2csrByPercentage()".
+  !>
+  !>   The pruning by \p percentage works by first sorting the absolute values of the dense
+  !>   matrix \p A. Users can then determine a position in this sorted array by
+  !>   \f[
+  !>     pos = ceil(m \cdot n \cdot (percentage/100)) - 1 \\%
+  !>     pos = \min(pos, m \cdot n-1) \\%
+  !>     pos = \max(pos, 0) \\%
+  !>     threshold = sorted_A[pos]
+  !>   \f]
+  !>
+  !>   After users have this threshold, they can prune values in the dense matrix \p A, as in
+  !>   `hipsparseSpruneDense2csr` "hipsparseXpruneDense2csr()".
+  !>
+  !>   \note
+  !>   This routine supports asynchronous execution if the pointer mode is set to device.
+  !>
+  !>   @param[in]
+  !>   handle             handle to the hipSPARSE library context queue.
+  !>   @param[in]
+  !>   m                  number of rows of the dense matrix \p A.
+  !>   @param[in]
+  !>   n                  number of columns of the dense matrix \p A.
+  !>   @param[in]
+  !>   A                  array of dimensions (\p lda, \p n).
+  !>   @param[in]
+  !>   lda                leading dimension of dense array \p A.
+  !>   @param[in]
+  !>   percentage         \p percentage>=0 and \p percentage<=100.
+  !>   @param[in]
+  !>   descr              the descriptor of the dense matrix \p A.
+  !>   @param[out]
+  !>   csrRowPtr integer array of \p m+1 elements that contains the start of every row and the end
+  !>   of the last row plus one.
+  !>   @param[out]
+  !>   nnzTotalDevHostPtr total number of non-zero elements in device or host memory.
+  !>   @param[in]
+  !>   info               prune information structure
+  !>   @param[out]
+  !>   buffer             buffer allocated by the user whose size is determined by calling
+  !>                      `hipsparseSpruneDense2csrByPercentage_bufferSize`
+  !>                      "hipsparseXpruneDense2csrByPercentage_bufferSize()"
+  !>                      or `hipsparseSpruneDense2csrByPercentage_bufferSizeExt`
+  !>                      "hipsparseXpruneDense2csrByPercentage_bufferSizeExt()".
+  !>
+  !>   \retval     HIPSPARSE_STATUS_SUCCESS the operation completed successfully.
+  !>   \retval HIPSPARSE_STATUS_INVALID_VALUE \p handle, \p m, \p n, \p lda, \p percentage, \p A, \p
+  !>   descr, \p info, \p csrRowPtr,
+  !>               \p nnzTotalDevHostPtr, or \p buffer pointer is invalid.
   interface hipsparseSpruneDense2csrNnzByPercentage
 #ifdef USE_CUDA_NAMES
     function hipsparseSpruneDense2csrNnzByPercentage_(handle,m,n,A,lda,percentage,descr,csrRowPtr,nnzTotalDevHostPtr,myInfo,buffer) bind(c, name="cusparseSpruneDense2csrNnzByPercentage")
@@ -14271,7 +14662,6 @@ module hipfort_hipsparse
 #endif
       use iso_c_binding
       use hipfort_hipsparse_enums
-      use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSpruneDense2csrNnzByPercentage_
       type(c_ptr),value :: handle
@@ -14289,12 +14679,11 @@ module hipfort_hipsparse
 
 #ifdef USE_FPOINTER_INTERFACES
     module procedure &
-      hipsparseSpruneDense2csrNnzByPercentage_full_rank,&
       hipsparseSpruneDense2csrNnzByPercentage_rank_0,&
       hipsparseSpruneDense2csrNnzByPercentage_rank_1
 #endif
   end interface
-  
+
   interface hipsparseDpruneDense2csrNnzByPercentage
 #ifdef USE_CUDA_NAMES
     function hipsparseDpruneDense2csrNnzByPercentage_(handle,m,n,A,lda,percentage,descr,csrRowPtr,nnzTotalDevHostPtr,myInfo,buffer) bind(c, name="cusparseDpruneDense2csrNnzByPercentage")
@@ -14303,7 +14692,6 @@ module hipfort_hipsparse
 #endif
       use iso_c_binding
       use hipfort_hipsparse_enums
-      use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDpruneDense2csrNnzByPercentage_
       type(c_ptr),value :: handle
@@ -14321,11 +14709,84 @@ module hipfort_hipsparse
 
 #ifdef USE_FPOINTER_INTERFACES
     module procedure &
-      hipsparseDpruneDense2csrNnzByPercentage_full_rank,&
       hipsparseDpruneDense2csrNnzByPercentage_rank_0,&
       hipsparseDpruneDense2csrNnzByPercentage_rank_1
 #endif
   end interface
+
+  !>  \ingroup conv_module
+  !>   \brief
+  !>   This function computes the number of non-zero elements per row and the total number of
+  !>   non-zero elements in a dense matrix when converting and pruning by \p percentage a dense
+  !>   matrix to a CSR matrix.
+  !>
+  !>   \details
+  !>   When converting and pruning a dense matrix \p A to a CSR matrix by \p percentage, the
+  !>   following steps are performed. First, the user calls
+  !>   `hipsparseSpruneDense2csrByPercentage_bufferSize`
+  !>   "hipsparseXpruneDense2csrByPercentage_bufferSize()", which determines the size of the
+  !>   temporary storage buffer. After this is determined, this buffer must be allocated by the
+  !>   user.
+  !>   Next, the user allocates the \p csrRowPtr array to have \p m+1 elements and calls
+  !>   `hipsparseSpruneDense2csrNnzByPercentage` "hipsparseXpruneDense2csrNnzByPercentage()".
+  !>   Finally, the
+  !>   user finishes the conversion by allocating the \p csrColInd and \p csrVal arrays (which have
+  !>   a size
+  !>   determined by the value at \p nnzTotalDevHostPtr) and calling \p
+  !>   hipsparseXpruneDense2csrByPercentage.
+  !>
+  !>   The pruning by \p percentage works by first sorting the absolute values of the dense
+  !>   matrix \p A. Users can then determine a position in this sorted array by
+  !>   \f[
+  !>     pos = ceil(m \ cdot n \cdot (percentage/100)) - 1 \\%
+  !>     pos = \min(pos, m \cdot n-1) \\%
+  !>     pos = \max(pos, 0) \\%
+  !>     threshold = sorted_A[pos]
+  !>   \f]
+  !>
+  !>   After users have this threshold, they can prune values in the dense matrix \p A, as in
+  !>   `hipsparseSpruneDense2csr` "hipsparseXpruneDense2csr()".
+  !>
+  !>   \note
+  !>   This routine support asynchronous execution if the pointer mode is set to device.
+  !>
+  !>   @param[in]
+  !>   handle      handle to the hipSPARSE library context queue.
+  !>   @param[in]
+  !>   m           number of rows of the dense matrix \p A.
+  !>   @param[in]
+  !>   n           number of columns of the dense matrix \p A.
+  !>   @param[in]
+  !>   A           array of dimensions (\p lda, \p n).
+  !>   @param[in]
+  !>   lda         leading dimension of dense array \p A.
+  !>   @param[in]
+  !>   percentage  \p percentage>=0 and \p percentage<=100.
+  !>   @param[in]
+  !>   descr the descriptor of the dense matrix \p A. The supported matrix type is
+  !>   `HIPSPARSE_MATRIX_TYPE_GENERAL` and
+  !>               any valid value of the `hipsparseIndexBase_t`.
+  !>   @param[out]
+  !>   csrVal array of nnz ( = \p csrRowPtr[m] - \p csrRowPtr[0] ) non-zero elements of matrix \p A.
+  !>   @param[in]
+  !>   csrRowPtr integer array of \p m+1 elements that contains the start of every row and the end
+  !>   of the last row plus one.
+  !>   @param[out]
+  !>   csrColInd integer array of nnz ( = \p csrRowPtr[m] - \p csrRowPtr[0] ) column indices of the
+  !>   non-zero elements of matrix \p A.
+  !>   @param[in]
+  !>   info prune  information structure
+  !>   @param[in]
+  !>   buffer      temporary storage buffer allocated by the user. The size is returned by
+  !>               `hipsparseSpruneDense2csrByPercentage_bufferSize`
+  !>               "hipsparseXpruneDense2csrByPercentage_bufferSize()" or
+  !>               `hipsparseSpruneDense2csrByPercentage_bufferSizeExt`
+  !>               "hipsparseXpruneDense2csrByPercentage_bufferSizeExt()".
+  !>
+  !>   \retval     HIPSPARSE_STATUS_SUCCESS the operation completed successfully.
+  !>   \retval HIPSPARSE_STATUS_INVALID_VALUE \p handle, \p m, \p n, \p lda, \p percentage, \p A, \p
+  !>   descr, \p info, \p csrVal,
+  !>               \p csrRowPtr, \p csrColInd, or \p buffer pointer is invalid.
   interface hipsparseSpruneDense2csrByPercentage
 #ifdef USE_CUDA_NAMES
     function hipsparseSpruneDense2csrByPercentage_(handle,m,n,A,lda,percentage,descr,csrVal,csrRowPtr,csrColInd,myInfo,buffer) bind(c, name="cusparseSpruneDense2csrByPercentage")
@@ -14334,7 +14795,6 @@ module hipfort_hipsparse
 #endif
       use iso_c_binding
       use hipfort_hipsparse_enums
-      use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSpruneDense2csrByPercentage_
       type(c_ptr),value :: handle
@@ -14353,12 +14813,11 @@ module hipfort_hipsparse
 
 #ifdef USE_FPOINTER_INTERFACES
     module procedure &
-      hipsparseSpruneDense2csrByPercentage_full_rank,&
       hipsparseSpruneDense2csrByPercentage_rank_0,&
       hipsparseSpruneDense2csrByPercentage_rank_1
 #endif
   end interface
-  
+
   interface hipsparseDpruneDense2csrByPercentage
 #ifdef USE_CUDA_NAMES
     function hipsparseDpruneDense2csrByPercentage_(handle,m,n,A,lda,percentage,descr,csrVal,csrRowPtr,csrColInd,myInfo,buffer) bind(c, name="cusparseDpruneDense2csrByPercentage")
@@ -14367,7 +14826,6 @@ module hipfort_hipsparse
 #endif
       use iso_c_binding
       use hipfort_hipsparse_enums
-      use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDpruneDense2csrByPercentage_
       type(c_ptr),value :: handle
@@ -14386,20 +14844,100 @@ module hipfort_hipsparse
 
 #ifdef USE_FPOINTER_INTERFACES
     module procedure &
-      hipsparseDpruneDense2csrByPercentage_full_rank,&
       hipsparseDpruneDense2csrByPercentage_rank_0,&
       hipsparseDpruneDense2csrByPercentage_rank_1
 #endif
   end interface
+
+  !>  \ingroup conv_module
+  !>   \brief
+  !>   \p hipsparseXdense2csc functions convert the matrix \p A in dense format into a sparse matrix
+  !>   in CSC format.
+  !>
+  !>   \details
+  !>   Given a dense, column-ordered, matrix \p A with leading dimension \p ld, where \p ld>=m,
+  !>   \p hipsparseXdense2csc converts the matrix to a sparse CSC format matrix.
+  !>   All the parameters are assumed to have been preallocated by the user and the arrays
+  !>   are filled in based on number of non-zeros per row, which can be pre-computed with
+  !>   `hipsparseSnnz` "hipsparseXnnz()". Users can set the desired index base in the output CSC
+  !>   matrix by setting it in the `hipsparseMatDescr_t`. See `hipsparseSetMatIndexBase`().
+  !>
+  !>   As an example, if using index base zero (that is, the default) and the dense
+  !>   matrix:
+  !>
+  !>   \f[
+  !>     \begin{bmatrix}
+  !>     1 & 0 & 0 & 2 \\%
+  !>     3 & 4 & 0 & 0 \\%
+  !>     5 & 0 & 6 & 7
+  !>     \end{bmatrix}
+  !>   \f]
+  !>
+  !>   where the \p A values have column ordering with leading dimension \p ld=m:
+  !>   \f[
+  !>     \text{A} &= \begin{bmatrix} 1 & 3 & 5 & 0 & 4 & 0 & 0 & 0 & 6 & 2 & 0 & 7 \end{bmatrix} \\%
+  !>   \f]
+  !>
+  !>   the conversion results in the CSC arrays:
+  !>
+  !>   \f[
+  !>     \begin{align}
+  !>     \text{cscRowInd} &= \begin{bmatrix} 0 & 1 & 2 & 1 & 2 & 0 & 2 \end{bmatrix} \\%
+  !>     \text{cscColPtr} &= \begin{bmatrix} 0 & 3 & 4 & 5 & 7 \end{bmatrix} \\%
+  !>     \text{cscVal} &= \begin{bmatrix} 1 & 3 & 5 & 4 & 6 & 2 & 7 \end{bmatrix} \\%
+  !>     \end{align}
+  !>   \f]
+  !>
+  !>   This function works very similar to `hipsparseSdense2csr` "hipsparseXdense2csr()".
+  !>   See `hipsparseSdense2csr()` for a code example.
+  !>
+  !>   \note
+  !>   This function is executed asynchronously with respect to the host and can return control to
+  !>   the
+  !>   application on the host before the entire result is ready.
+  !>
+  !>   \deprecated
+  !>   This function is deprecated when using the CUDA backend (CUDA 11.0+) and will be
+  !>   removed in CUDA 12.0. This deprecation does not apply to the ROCm backend.
+  !>
+  !>   @param[in]
+  !>   handle       handle to the hipSPARSE library context queue.
+  !>   @param[in]
+  !>   m            number of rows of the dense matrix \p A. Must be non-negative.
+  !>   @param[in]
+  !>   n            number of columns of the dense matrix \p A. Must be non-negative.
+  !>   @param[in]
+  !>   descr the descriptor of the dense matrix \p A. The supported matrix type is
+  !>   `HIPSPARSE_MATRIX_TYPE_GENERAL` and
+  !>                any valid value of the `hipsparseIndexBase_t`.
+  !>   @param[in]
+  !>   A            array of dimensions (\p ld, \p n).
+  !>   @param[in]
+  !>   ld           leading dimension of dense array \p A. Must be at least \p m.
+  !>   @param[in]
+  !>   nnzPerColumn array of size \p n containing the number of non-zero elements per column.
+  !>   @param[out]
+  !>   cscVal array of nnz ( = \p cscColPtr[n] - \p cscColPtr[0] ) nonzero elements of matrix \p A.
+  !>   @param[out]
+  !>   cscRowInd integer array of nnz ( = \p cscColPtr[n] - \p cscColPtr[0] ) column indices of the
+  !>   non-zero elements of matrix \p A.
+  !>   @param[out]
+  !>   cscColPtr integer array of \p n+1 elements that contains the start of every column and the
+  !>   end of the last column plus one.
+  !>
+  !>   \retval HIPSPARSE_STATUS_SUCCESS the operation completed successfully.
+  !>   \retval HIPSPARSE_STATUS_NOT_INITIALIZED \p handle is not initialized.
+  !>   \retval HIPSPARSE_STATUS_INVALID_VALUE \p handle, \p descr, \p A, \p nnzPerColumn, \p cscVal,
+  !>           \p cscColPtr, or \p cscRowInd is nullptr, \p m or \p n is negative, or \p ld is
+  !>           invalid.
   interface hipsparseSdense2csc
 #ifdef USE_CUDA_NAMES
-    function hipsparseSdense2csc_(handle,m,n,descr,A,ld,nnz_per_columns,csc_val,csc_row_ind,csc_col_ptr) bind(c, name="cusparseSdense2csc")
+    function hipsparseSdense2csc_(handle,m,n,descr,A,ld,nnzPerColumn,cscVal,cscRowInd,cscColPtr) bind(c, name="cusparseSdense2csc")
 #else
-    function hipsparseSdense2csc_(handle,m,n,descr,A,ld,nnz_per_columns,csc_val,csc_row_ind,csc_col_ptr) bind(c, name="hipsparseSdense2csc")
+    function hipsparseSdense2csc_(handle,m,n,descr,A,ld,nnzPerColumn,cscVal,cscRowInd,cscColPtr) bind(c, name="hipsparseSdense2csc")
 #endif
       use iso_c_binding
       use hipfort_hipsparse_enums
-      use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSdense2csc_
       type(c_ptr),value :: handle
@@ -14408,29 +14946,27 @@ module hipfort_hipsparse
       type(c_ptr),value :: descr
       type(c_ptr),value :: A
       integer(c_int),value :: ld
-      type(c_ptr),value :: nnz_per_columns
-      type(c_ptr),value :: csc_val
-      type(c_ptr),value :: csc_row_ind
-      type(c_ptr),value :: csc_col_ptr
+      type(c_ptr),value :: nnzPerColumn
+      type(c_ptr),value :: cscVal
+      type(c_ptr),value :: cscRowInd
+      type(c_ptr),value :: cscColPtr
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
     module procedure &
-      hipsparseSdense2csc_full_rank,&
       hipsparseSdense2csc_rank_0,&
       hipsparseSdense2csc_rank_1
 #endif
   end interface
-  
+
   interface hipsparseDdense2csc
 #ifdef USE_CUDA_NAMES
-    function hipsparseDdense2csc_(handle,m,n,descr,A,ld,nnz_per_columns,csc_val,csc_row_ind,csc_col_ptr) bind(c, name="cusparseDdense2csc")
+    function hipsparseDdense2csc_(handle,m,n,descr,A,ld,nnzPerColumn,cscVal,cscRowInd,cscColPtr) bind(c, name="cusparseDdense2csc")
 #else
-    function hipsparseDdense2csc_(handle,m,n,descr,A,ld,nnz_per_columns,csc_val,csc_row_ind,csc_col_ptr) bind(c, name="hipsparseDdense2csc")
+    function hipsparseDdense2csc_(handle,m,n,descr,A,ld,nnzPerColumn,cscVal,cscRowInd,cscColPtr) bind(c, name="hipsparseDdense2csc")
 #endif
       use iso_c_binding
       use hipfort_hipsparse_enums
-      use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDdense2csc_
       type(c_ptr),value :: handle
@@ -14439,29 +14975,27 @@ module hipfort_hipsparse
       type(c_ptr),value :: descr
       type(c_ptr),value :: A
       integer(c_int),value :: ld
-      type(c_ptr),value :: nnz_per_columns
-      type(c_ptr),value :: csc_val
-      type(c_ptr),value :: csc_row_ind
-      type(c_ptr),value :: csc_col_ptr
+      type(c_ptr),value :: nnzPerColumn
+      type(c_ptr),value :: cscVal
+      type(c_ptr),value :: cscRowInd
+      type(c_ptr),value :: cscColPtr
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
     module procedure &
-      hipsparseDdense2csc_full_rank,&
       hipsparseDdense2csc_rank_0,&
       hipsparseDdense2csc_rank_1
 #endif
   end interface
-  
+
   interface hipsparseCdense2csc
 #ifdef USE_CUDA_NAMES
-    function hipsparseCdense2csc_(handle,m,n,descr,A,ld,nnz_per_columns,csc_val,csc_row_ind,csc_col_ptr) bind(c, name="cusparseCdense2csc")
+    function hipsparseCdense2csc_(handle,m,n,descr,A,ld,nnzPerColumn,cscVal,cscRowInd,cscColPtr) bind(c, name="cusparseCdense2csc")
 #else
-    function hipsparseCdense2csc_(handle,m,n,descr,A,ld,nnz_per_columns,csc_val,csc_row_ind,csc_col_ptr) bind(c, name="hipsparseCdense2csc")
+    function hipsparseCdense2csc_(handle,m,n,descr,A,ld,nnzPerColumn,cscVal,cscRowInd,cscColPtr) bind(c, name="hipsparseCdense2csc")
 #endif
       use iso_c_binding
       use hipfort_hipsparse_enums
-      use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCdense2csc_
       type(c_ptr),value :: handle
@@ -14470,29 +15004,27 @@ module hipfort_hipsparse
       type(c_ptr),value :: descr
       type(c_ptr),value :: A
       integer(c_int),value :: ld
-      type(c_ptr),value :: nnz_per_columns
-      type(c_ptr),value :: csc_val
-      type(c_ptr),value :: csc_row_ind
-      type(c_ptr),value :: csc_col_ptr
+      type(c_ptr),value :: nnzPerColumn
+      type(c_ptr),value :: cscVal
+      type(c_ptr),value :: cscRowInd
+      type(c_ptr),value :: cscColPtr
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
     module procedure &
-      hipsparseCdense2csc_full_rank,&
       hipsparseCdense2csc_rank_0,&
       hipsparseCdense2csc_rank_1
 #endif
   end interface
-  
+
   interface hipsparseZdense2csc
 #ifdef USE_CUDA_NAMES
-    function hipsparseZdense2csc_(handle,m,n,descr,A,ld,nnz_per_columns,csc_val,csc_row_ind,csc_col_ptr) bind(c, name="cusparseZdense2csc")
+    function hipsparseZdense2csc_(handle,m,n,descr,A,ld,nnzPerColumn,cscVal,cscRowInd,cscColPtr) bind(c, name="cusparseZdense2csc")
 #else
-    function hipsparseZdense2csc_(handle,m,n,descr,A,ld,nnz_per_columns,csc_val,csc_row_ind,csc_col_ptr) bind(c, name="hipsparseZdense2csc")
+    function hipsparseZdense2csc_(handle,m,n,descr,A,ld,nnzPerColumn,cscVal,cscRowInd,cscColPtr) bind(c, name="hipsparseZdense2csc")
 #endif
       use iso_c_binding
       use hipfort_hipsparse_enums
-      use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZdense2csc_
       type(c_ptr),value :: handle
@@ -14501,264 +15033,535 @@ module hipfort_hipsparse
       type(c_ptr),value :: descr
       type(c_ptr),value :: A
       integer(c_int),value :: ld
-      type(c_ptr),value :: nnz_per_columns
-      type(c_ptr),value :: csc_val
-      type(c_ptr),value :: csc_row_ind
-      type(c_ptr),value :: csc_col_ptr
+      type(c_ptr),value :: nnzPerColumn
+      type(c_ptr),value :: cscVal
+      type(c_ptr),value :: cscRowInd
+      type(c_ptr),value :: cscColPtr
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
     module procedure &
-      hipsparseZdense2csc_full_rank,&
       hipsparseZdense2csc_rank_0,&
       hipsparseZdense2csc_rank_1
 #endif
   end interface
+
+  !>  \ingroup conv_module
+  !>   \brief
+  !>   \p hipsparseXcsr2dense functions convert the sparse matrix in CSR format into a dense matrix.
+  !>
+  !>   \details
+  !>   Given the input CSR matrix of size \p mxn, the routine writes the matrix to the dense array
+  !>   \p A such
+  !>   that \p A has leading dimension \p ld and is column ordered. This means that \p A has size \p
+  !>   ldxn where
+  !>   \p ld>=m. All the parameters are assumed to have been preallocated by the user. If the input
+  !>   CSR matrix
+  !>   has index base of one, it must be set in the `hipsparseMatDescr_t`. See
+  !>   `hipsparseSetMatIndexBase` ()
+  !>   prior to calling \p hipsparseXcsr2dense.
+  !>
+  !>   For example, consider the sparse CSR matrix:
+  !>   \f[
+  !>     \begin{align}
+  !>     \text{csrRowPtr} &= \begin{bmatrix} 0 & 2 & 4 & 7 \end{bmatrix} \\%
+  !>     \text{csrColInd} &= \begin{bmatrix} 0 & 3 & 0 & 1 & 0 & 2 & 3 \end{bmatrix} \\%
+  !>     \text{csrVal} &= \begin{bmatrix} 1 & 2 & 3 & 4 & 5 & 6 & 7 \end{bmatrix} \\%
+  !>     \end{align}
+  !>   \f]
+  !>
+  !>   \p hipsparseXcsr2dense is used to convert to the dense matrix:
+  !>   \f[
+  !>     \begin{bmatrix}
+  !>     1 & 0 & 0 & 2 \\%
+  !>     3 & 4 & 0 & 0 \\%
+  !>     5 & 0 & 6 & 7
+  !>     \end{bmatrix}
+  !>   \f]
+  !>
+  !>   where the values in the \p A array are column ordered:
+  !>   \f[
+  !>     \text{A} &= \begin{bmatrix} 1 & 3 & 5 & 0 & 4 & 0 & 0 & 0 & 6 & 2 & 0 & 7 \end{bmatrix} \\%
+  !>   \f]
+  !>
+  !>   \note
+  !>   This function is executed asynchronously with respect to the host and can return control to
+  !>   the application
+  !>   on the host before the entire result is ready.
+  !>
+  !>   \deprecated
+  !>   This function is deprecated when using the CUDA backend (CUDA 11.0+) and will be
+  !>   removed in CUDA 12.0. This deprecation does not apply to the ROCm backend.
+  !>
+  !>   @param[in]
+  !>   handle      handle to the hipSPARSE library context queue.
+  !>   @param[in]
+  !>   m           number of rows of the dense matrix \p A. Must be non-negative.
+  !>   @param[in]
+  !>   n           number of columns of the dense matrix \p A. Must be non-negative.
+  !>   @param[in]
+  !>   descr the descriptor of the dense matrix \p A, the supported matrix type is
+  !>   `HIPSPARSE_MATRIX_TYPE_GENERAL` and
+  !>               any valid value of the `hipsparseIndexBase_t`.
+  !>   @param[in]
+  !>   csrVal array of nnz ( = \p csrRowPtr[m] - \p csrRowPtr[0] ) non-zero elements of matrix \p A.
+  !>   @param[in]
+  !>   csrRowPtr integer array of \p m+1 elements that contains the start of every row and the end
+  !>   of the last row plus one.
+  !>   @param[in]
+  !>   csrColInd integer array of nnz ( = \p csrRowPtr[m] - \p csrRowPtr[0] ) column indices of the
+  !>   non-zero elements of matrix \p A.
+  !>   @param[out]
+  !>   A           array of dimensions (\p ld, \p n).
+  !>   @param[in]
+  !>   ld          leading dimension of dense array \p A. Must be at least \p m.
+  !>
+  !>   \retval HIPSPARSE_STATUS_SUCCESS the operation completed successfully.
+  !>   \retval HIPSPARSE_STATUS_NOT_INITIALIZED \p handle is not initialized.
+  !>   \retval HIPSPARSE_STATUS_INVALID_VALUE \p handle, \p descr, \p csrVal, \p csrRowPtr,
+  !>           \p csrColInd, or \p A is nullptr, \p m or \p n is negative, or \p ld is invalid.
   interface hipsparseScsr2dense
 #ifdef USE_CUDA_NAMES
-    function hipsparseScsr2dense_(handle,m,n,descr,csr_val,csr_row_ptr,csr_col_ind,A,ld) bind(c, name="cusparseScsr2dense")
+    function hipsparseScsr2dense_(handle,m,n,descr,csrVal,csrRowPtr,csrColInd,A,ld) bind(c, name="cusparseScsr2dense")
 #else
-    function hipsparseScsr2dense_(handle,m,n,descr,csr_val,csr_row_ptr,csr_col_ind,A,ld) bind(c, name="hipsparseScsr2dense")
+    function hipsparseScsr2dense_(handle,m,n,descr,csrVal,csrRowPtr,csrColInd,A,ld) bind(c, name="hipsparseScsr2dense")
 #endif
       use iso_c_binding
       use hipfort_hipsparse_enums
-      use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseScsr2dense_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
       type(c_ptr),value :: descr
-      type(c_ptr),value :: csr_val
-      type(c_ptr),value :: csr_row_ptr
-      type(c_ptr),value :: csr_col_ind
+      type(c_ptr),value :: csrVal
+      type(c_ptr),value :: csrRowPtr
+      type(c_ptr),value :: csrColInd
       type(c_ptr),value :: A
       integer(c_int),value :: ld
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
     module procedure &
-      hipsparseScsr2dense_full_rank,&
       hipsparseScsr2dense_rank_0,&
       hipsparseScsr2dense_rank_1
 #endif
   end interface
-  
+
   interface hipsparseDcsr2dense
 #ifdef USE_CUDA_NAMES
-    function hipsparseDcsr2dense_(handle,m,n,descr,csr_val,csr_row_ptr,csr_col_ind,A,ld) bind(c, name="cusparseDcsr2dense")
+    function hipsparseDcsr2dense_(handle,m,n,descr,csrVal,csrRowPtr,csrColInd,A,ld) bind(c, name="cusparseDcsr2dense")
 #else
-    function hipsparseDcsr2dense_(handle,m,n,descr,csr_val,csr_row_ptr,csr_col_ind,A,ld) bind(c, name="hipsparseDcsr2dense")
+    function hipsparseDcsr2dense_(handle,m,n,descr,csrVal,csrRowPtr,csrColInd,A,ld) bind(c, name="hipsparseDcsr2dense")
 #endif
       use iso_c_binding
       use hipfort_hipsparse_enums
-      use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDcsr2dense_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
       type(c_ptr),value :: descr
-      type(c_ptr),value :: csr_val
-      type(c_ptr),value :: csr_row_ptr
-      type(c_ptr),value :: csr_col_ind
+      type(c_ptr),value :: csrVal
+      type(c_ptr),value :: csrRowPtr
+      type(c_ptr),value :: csrColInd
       type(c_ptr),value :: A
       integer(c_int),value :: ld
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
     module procedure &
-      hipsparseDcsr2dense_full_rank,&
       hipsparseDcsr2dense_rank_0,&
       hipsparseDcsr2dense_rank_1
 #endif
   end interface
-  
+
   interface hipsparseCcsr2dense
 #ifdef USE_CUDA_NAMES
-    function hipsparseCcsr2dense_(handle,m,n,descr,csr_val,csr_row_ptr,csr_col_ind,A,ld) bind(c, name="cusparseCcsr2dense")
+    function hipsparseCcsr2dense_(handle,m,n,descr,csrVal,csrRowPtr,csrColInd,A,ld) bind(c, name="cusparseCcsr2dense")
 #else
-    function hipsparseCcsr2dense_(handle,m,n,descr,csr_val,csr_row_ptr,csr_col_ind,A,ld) bind(c, name="hipsparseCcsr2dense")
+    function hipsparseCcsr2dense_(handle,m,n,descr,csrVal,csrRowPtr,csrColInd,A,ld) bind(c, name="hipsparseCcsr2dense")
 #endif
       use iso_c_binding
       use hipfort_hipsparse_enums
-      use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCcsr2dense_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
       type(c_ptr),value :: descr
-      type(c_ptr),value :: csr_val
-      type(c_ptr),value :: csr_row_ptr
-      type(c_ptr),value :: csr_col_ind
+      type(c_ptr),value :: csrVal
+      type(c_ptr),value :: csrRowPtr
+      type(c_ptr),value :: csrColInd
       type(c_ptr),value :: A
       integer(c_int),value :: ld
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
     module procedure &
-      hipsparseCcsr2dense_full_rank,&
       hipsparseCcsr2dense_rank_0,&
       hipsparseCcsr2dense_rank_1
 #endif
   end interface
-  
+
   interface hipsparseZcsr2dense
 #ifdef USE_CUDA_NAMES
-    function hipsparseZcsr2dense_(handle,m,n,descr,csr_val,csr_row_ptr,csr_col_ind,A,ld) bind(c, name="cusparseZcsr2dense")
+    function hipsparseZcsr2dense_(handle,m,n,descr,csrVal,csrRowPtr,csrColInd,A,ld) bind(c, name="cusparseZcsr2dense")
 #else
-    function hipsparseZcsr2dense_(handle,m,n,descr,csr_val,csr_row_ptr,csr_col_ind,A,ld) bind(c, name="hipsparseZcsr2dense")
+    function hipsparseZcsr2dense_(handle,m,n,descr,csrVal,csrRowPtr,csrColInd,A,ld) bind(c, name="hipsparseZcsr2dense")
 #endif
       use iso_c_binding
       use hipfort_hipsparse_enums
-      use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZcsr2dense_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
       type(c_ptr),value :: descr
-      type(c_ptr),value :: csr_val
-      type(c_ptr),value :: csr_row_ptr
-      type(c_ptr),value :: csr_col_ind
+      type(c_ptr),value :: csrVal
+      type(c_ptr),value :: csrRowPtr
+      type(c_ptr),value :: csrColInd
       type(c_ptr),value :: A
       integer(c_int),value :: ld
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
     module procedure &
-      hipsparseZcsr2dense_full_rank,&
       hipsparseZcsr2dense_rank_0,&
       hipsparseZcsr2dense_rank_1
 #endif
   end interface
+
+  !>  \ingroup conv_module
+  !>   \brief
+  !>   \p hipsparseXcsc2dense functions convert the sparse matrix in CSC format into a dense matrix.
+  !>
+  !>   \details
+  !>   Given the input CSC matrix of size \p mxn, the routine writes the matrix to the dense array
+  !>   \p A such
+  !>   that \p A has leading dimension \p ld and is column ordered. This means that \p A has size \p
+  !>   ldxn where
+  !>   \p ld>=m. All the parameters are assumed to have been preallocated by the user. If the input
+  !>   CSC matrix
+  !>   has index base of one, it must be set in the `hipsparseMatDescr_t`. See
+  !>   `hipsparseSetMatIndexBase` ()
+  !>   prior to calling \p hipsparseXcsc2dense.
+  !>
+  !>   For example, consider the sparse CSC matrix:
+  !>   \f[
+  !>     \begin{align}
+  !>     \text{cscRowInd} &= \begin{bmatrix} 0 & 1 & 2 & 1 & 2 & 0 & 2 \end{bmatrix} \\%
+  !>     \text{cscColPtr} &= \begin{bmatrix} 0 & 3 & 4 & 5 & 7 \end{bmatrix} \\%
+  !>     \text{cscVal} &= \begin{bmatrix} 1 & 3 & 5 & 4 & 6 & 2 & 7 \end{bmatrix} \\%
+  !>     \end{align}
+  !>   \f]
+  !>
+  !>   \p hipsparseXcsc2dense is used to convert to the dense matrix:
+  !>   \f[
+  !>     \begin{bmatrix}
+  !>     1 & 0 & 0 & 2 \\%
+  !>     3 & 4 & 0 & 0 \\%
+  !>     5 & 0 & 6 & 7
+  !>     \end{bmatrix}
+  !>   \f]
+  !>
+  !>   where the values in the \p A array are column ordered:
+  !>   \f[
+  !>     \text{A} &= \begin{bmatrix} 1 & 3 & 5 & 0 & 4 & 0 & 0 & 0 & 6 & 2 & 0 & 7 \end{bmatrix} \\%
+  !>   \f]
+  !>
+  !>   \note
+  !>   This function is executed asynchronously with respect to the host and can return control to
+  !>   the application
+  !>   on the host before the entire result is ready.
+  !>
+  !>   \deprecated
+  !>   This function is deprecated when using the CUDA backend (CUDA 11.0+) and will be
+  !>   removed in CUDA 12.0. This deprecation does not apply to the ROCm backend.
+  !>
+  !>   @param[in]
+  !>   handle      handle to the hipSPARSE library context queue.
+  !>   @param[in]
+  !>   m           number of rows of the dense matrix \p A. Must be non-negative.
+  !>   @param[in]
+  !>   n           number of columns of the dense matrix \p A. Must be non-negative.
+  !>   @param[in]
+  !>   descr the descriptor of the dense matrix \p A. The supported matrix type is
+  !>   `HIPSPARSE_MATRIX_TYPE_GENERAL` and
+  !>               any valid value of the `hipsparseIndexBase_t`.
+  !>   @param[in]
+  !>   cscVal array of nnz ( = \p cscColPtr[n] - \p cscColPtr[0] ) non-zero elements of matrix \p A.
+  !>   @param[in]
+  !>   cscRowInd integer array of nnz ( = \p cscColPtr[n] - \p cscColPtr[0] ) column indices of the
+  !>   non-zero elements of matrix \p A.
+  !>   @param[in]
+  !>   cscColPtr integer array of \p n+1 elements that contains the start of every column and the
+  !>   end of the last column plus one.
+  !>   @param[out]
+  !>   A           array of dimensions (\p ld, \p n).
+  !>   @param[in]
+  !>   ld          leading dimension of dense array \p A. Must be at least \p m.
+  !>
+  !>   \retval HIPSPARSE_STATUS_SUCCESS the operation completed successfully.
+  !>   \retval HIPSPARSE_STATUS_NOT_INITIALIZED \p handle is not initialized.
+  !>   \retval HIPSPARSE_STATUS_INVALID_VALUE \p handle, \p descr, \p cscVal, \p cscColPtr,
+  !>           \p cscRowInd, or \p A is nullptr, \p m or \p n is negative, or \p ld is invalid.
   interface hipsparseScsc2dense
 #ifdef USE_CUDA_NAMES
-    function hipsparseScsc2dense_(handle,m,n,descr,csc_val,csc_row_ind,csc_col_ptr,A,ld) bind(c, name="cusparseScsc2dense")
+    function hipsparseScsc2dense_(handle,m,n,descr,cscVal,cscRowInd,cscColPtr,A,ld) bind(c, name="cusparseScsc2dense")
 #else
-    function hipsparseScsc2dense_(handle,m,n,descr,csc_val,csc_row_ind,csc_col_ptr,A,ld) bind(c, name="hipsparseScsc2dense")
+    function hipsparseScsc2dense_(handle,m,n,descr,cscVal,cscRowInd,cscColPtr,A,ld) bind(c, name="hipsparseScsc2dense")
 #endif
       use iso_c_binding
       use hipfort_hipsparse_enums
-      use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseScsc2dense_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
       type(c_ptr),value :: descr
-      type(c_ptr),value :: csc_val
-      type(c_ptr),value :: csc_row_ind
-      type(c_ptr),value :: csc_col_ptr
+      type(c_ptr),value :: cscVal
+      type(c_ptr),value :: cscRowInd
+      type(c_ptr),value :: cscColPtr
       type(c_ptr),value :: A
       integer(c_int),value :: ld
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
     module procedure &
-      hipsparseScsc2dense_full_rank,&
       hipsparseScsc2dense_rank_0,&
       hipsparseScsc2dense_rank_1
 #endif
   end interface
-  
+
   interface hipsparseDcsc2dense
 #ifdef USE_CUDA_NAMES
-    function hipsparseDcsc2dense_(handle,m,n,descr,csc_val,csc_row_ind,csc_col_ptr,A,ld) bind(c, name="cusparseDcsc2dense")
+    function hipsparseDcsc2dense_(handle,m,n,descr,cscVal,cscRowInd,cscColPtr,A,ld) bind(c, name="cusparseDcsc2dense")
 #else
-    function hipsparseDcsc2dense_(handle,m,n,descr,csc_val,csc_row_ind,csc_col_ptr,A,ld) bind(c, name="hipsparseDcsc2dense")
+    function hipsparseDcsc2dense_(handle,m,n,descr,cscVal,cscRowInd,cscColPtr,A,ld) bind(c, name="hipsparseDcsc2dense")
 #endif
       use iso_c_binding
       use hipfort_hipsparse_enums
-      use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDcsc2dense_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
       type(c_ptr),value :: descr
-      type(c_ptr),value :: csc_val
-      type(c_ptr),value :: csc_row_ind
-      type(c_ptr),value :: csc_col_ptr
+      type(c_ptr),value :: cscVal
+      type(c_ptr),value :: cscRowInd
+      type(c_ptr),value :: cscColPtr
       type(c_ptr),value :: A
       integer(c_int),value :: ld
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
     module procedure &
-      hipsparseDcsc2dense_full_rank,&
       hipsparseDcsc2dense_rank_0,&
       hipsparseDcsc2dense_rank_1
 #endif
   end interface
-  
+
   interface hipsparseCcsc2dense
 #ifdef USE_CUDA_NAMES
-    function hipsparseCcsc2dense_(handle,m,n,descr,csc_val,csc_row_ind,csc_col_ptr,A,ld) bind(c, name="cusparseCcsc2dense")
+    function hipsparseCcsc2dense_(handle,m,n,descr,cscVal,cscRowInd,cscColPtr,A,ld) bind(c, name="cusparseCcsc2dense")
 #else
-    function hipsparseCcsc2dense_(handle,m,n,descr,csc_val,csc_row_ind,csc_col_ptr,A,ld) bind(c, name="hipsparseCcsc2dense")
+    function hipsparseCcsc2dense_(handle,m,n,descr,cscVal,cscRowInd,cscColPtr,A,ld) bind(c, name="hipsparseCcsc2dense")
 #endif
       use iso_c_binding
       use hipfort_hipsparse_enums
-      use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCcsc2dense_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
       type(c_ptr),value :: descr
-      type(c_ptr),value :: csc_val
-      type(c_ptr),value :: csc_row_ind
-      type(c_ptr),value :: csc_col_ptr
+      type(c_ptr),value :: cscVal
+      type(c_ptr),value :: cscRowInd
+      type(c_ptr),value :: cscColPtr
       type(c_ptr),value :: A
       integer(c_int),value :: ld
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
     module procedure &
-      hipsparseCcsc2dense_full_rank,&
       hipsparseCcsc2dense_rank_0,&
       hipsparseCcsc2dense_rank_1
 #endif
   end interface
-  
+
   interface hipsparseZcsc2dense
 #ifdef USE_CUDA_NAMES
-    function hipsparseZcsc2dense_(handle,m,n,descr,csc_val,csc_row_ind,csc_col_ptr,A,ld) bind(c, name="cusparseZcsc2dense")
+    function hipsparseZcsc2dense_(handle,m,n,descr,cscVal,cscRowInd,cscColPtr,A,ld) bind(c, name="cusparseZcsc2dense")
 #else
-    function hipsparseZcsc2dense_(handle,m,n,descr,csc_val,csc_row_ind,csc_col_ptr,A,ld) bind(c, name="hipsparseZcsc2dense")
+    function hipsparseZcsc2dense_(handle,m,n,descr,cscVal,cscRowInd,cscColPtr,A,ld) bind(c, name="hipsparseZcsc2dense")
 #endif
       use iso_c_binding
       use hipfort_hipsparse_enums
-      use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZcsc2dense_
       type(c_ptr),value :: handle
       integer(c_int),value :: m
       integer(c_int),value :: n
       type(c_ptr),value :: descr
-      type(c_ptr),value :: csc_val
-      type(c_ptr),value :: csc_row_ind
-      type(c_ptr),value :: csc_col_ptr
+      type(c_ptr),value :: cscVal
+      type(c_ptr),value :: cscRowInd
+      type(c_ptr),value :: cscColPtr
       type(c_ptr),value :: A
       integer(c_int),value :: ld
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
     module procedure &
-      hipsparseZcsc2dense_full_rank,&
       hipsparseZcsc2dense_rank_0,&
       hipsparseZcsc2dense_rank_1
 #endif
   end interface
+
   !>  \ingroup conv_module
   !>   \brief
-  !>   This function computes the number of nonzero block columns per row and the total number of nonzero blocks in a sparse
-  !>   BSR matrix given a sparse CSR matrix as input.
-  !> 
+  !>   This function computes the number of non-zero block columns per row and the total number of
+  !>   non-zero blocks in a sparse
+  !>   BSR matrix, given a sparse CSR matrix as input.
+  !>
   !>   \details
-  !>   The routine does support asynchronous execution if the pointer mode is set to device.
+  !>   Consider the matrix:
+  !>   \f[
+  !>     \begin{bmatrix}
+  !>     1 & 0 & 0 & 2 \\%
+  !>     3 & 4 & 0 & 0 \\%
+  !>     5 & 0 & 6 & 7 \\%
+  !>     1 & 2 & 3 & 4
+  !>     \end{bmatrix}
+  !>   \f]
+  !>
+  !>   stored as a sparse CSR matrix. This function computes both the BSR row pointer array as well
+  !>   as the total number
+  !>   of non-zero blocks that results when converting the CSR matrix to the BSR format. Assuming a
+  !>   block dimension of 2,
+  !>   the above matrix, after conversion to the BSR format, looks like:
+  !>
+  !>   \f[
+  !>    \left[
+  !>     \begin{array}{c | c}
+  !>       \begin{array}{c c}
+  !>        1 & 0 \\%
+  !>        3 & 4
+  !>       \end{array} &
+  !>       \begin{array}{c c}
+  !>        0 & 2 \\%
+  !>        0 & 0
+  !>       \end{array} \\%
+  !>     \hline
+  !>       \begin{array}{c c}
+  !>        5 & 0 \\%
+  !>        1 & 2
+  !>       \end{array} &
+  !>       \begin{array}{c c}
+  !>        6 & 7 \\%
+  !>        3 & 4
+  !>       \end{array} \\%
+  !>    \end{array}
+  !>   \right]
+  !>   \f]
+  !>
+  !>   and the resulting BSR row pointer array and total non-zero blocks after \p
+  !>   hipsparseXcsr2bsrNnz has been called
+  !>   looks like:
+  !>
+  !>   \f[
+  !>     \begin{align}
+  !>     \text{bsrRowPtrC} &= \begin{bmatrix} 0 & 2 & 4 \end{bmatrix} \\%
+  !>     \text{bsrNnzb} &= 4
+  !>     \end{align}
+  !>   \f]
+  !>
+  !>   In general, when converting a CSR matrix of size \p m x \p n to a BSR matrix, the resulting
+  !>   BSR matrix will have size
+  !>   \p mb x \p nb where \p mb and \p nb equal:
+  !>
+  !>   \f[
+  !>     \begin{align}
+  !>     \text{mb} &= \text{(m - 1) / blockDim + 1} \\%
+  !>     \text{nb} &= \text{(n - 1) / blockDim + 1}
+  !>     \end{align}
+  !>   \f]
+  !>
+  !>   In particular, it can be the case that \p blockDim does not divide evenly into \p m and/or \p
+  !>   n. In these cases, the
+  !>   CSR matrix is expanded in size to fit full BSR blocks. For example, using the original CSR
+  !>   matrix and block
+  !>   dimension 3 instead of 2, the function \p hipsparseXcsr2bsrNnz computes the BSR row pointer
+  !>   array and total number of
+  !>   non-zero blocks for the BSR matrix:
+  !>
+  !>   \f[
+  !>    \left[
+  !>     \begin{array}{c | c}
+  !>       \begin{array}{c c c}
+  !>        1 & 0 & 0 \\%
+  !>        3 & 4 & 0 \\%
+  !>        5 & 0 & 6
+  !>       \end{array} &
+  !>       \begin{array}{c c c}
+  !>        2 & 0 & 0 \\%
+  !>        0 & 0 & 0 \\%
+  !>        7 & 0 & 0
+  !>       \end{array} \\%
+  !>     \hline
+  !>       \begin{array}{c c c}
+  !>        1 & 2 & 3 \\%
+  !>        0 & 0 & 0 \\%
+  !>        0 & 0 & 0
+  !>       \end{array} &
+  !>       \begin{array}{c c c}
+  !>        4 & 0 & 0 \\%
+  !>        0 & 0 & 0 \\%
+  !>        0 & 0 & 0
+  !>       \end{array} \\%
+  !>    \end{array}
+  !>   \right]
+  !>   \f]
+  !>
+  !>   See hipsparseScsr2bsr() for a full code example.
+  !>
+  !>   \note
+  !>   The routine supports asynchronous execution if the pointer mode is set to device.
+  !>
+  !>   @param[in]
+  !>   handle      handle to the hipSPARSE library context queue.
+  !>   @param[in]
+  !>   dirA direction that specifies whether to count non-zero elements by `HIPSPARSE_DIRECTION_ROW`
+  !>   or by
+  !>               `HIPSPARSE_DIRECTION_COLUMN`.
+  !>   @param[in]
+  !>   m           number of rows of the sparse CSR matrix. Must be non-negative.
+  !>   @param[in]
+  !>   n           number of columns of the sparse CSR matrix.
+  !>   @param[in]
+  !>   descrA descriptor of the sparse CSR matrix. Currently, only `HIPSPARSE_MATRIX_TYPE_GENERAL`
+  !>   is supported.
+  !>   @param[in]
+  !>   csrRowPtrA integer array containing \p m+1 elements that points to the start of each row of
+  !>   the CSR matrix.
+  !>   @param[in]
+  !>   csrColIndA  integer array of the column indices for each non-zero element in the CSR matrix.
+  !>   @param[in]
+  !>   blockDim the block dimension of the BSR matrix, which is between \f$1\f$ and \f$\min(m,
+  !>   n)\f$.
+  !>   @param[in]
+  !>   descrC descriptor of the sparse BSR matrix. Currently, only `HIPSPARSE_MATRIX_TYPE_GENERAL`
+  !>   is supported.
+  !>   @param[out]
+  !>   bsrRowPtrC integer array containing \p mb+1 elements that point to the start of each block
+  !>   row of the BSR matrix.
+  !>   @param[out]
+  !>   bsrNnzb     total number of non-zero elements in device or host memory.
+  !>
+  !>   \retval     HIPSPARSE_STATUS_SUCCESS the operation completed successfully.
+  !>   \retval HIPSPARSE_STATUS_INVALID_VALUE \p handle, \p m, \p n, \p blockDim, \p csrRowPtrA, \p
+  !>   csrColIndA,
+  !>               \p bsrRowPtrC, or \p bsrNnzb pointer is invalid.
   interface hipsparseXcsr2bsrNnz
 #ifdef USE_CUDA_NAMES
     function hipsparseXcsr2bsrNnz_(handle,dirA,m,n,descrA,csrRowPtrA,csrColIndA,blockDim,descrC,bsrRowPtrC,bsrNnzb) bind(c, name="cusparseXcsr2bsrNnz")
@@ -14767,7 +15570,6 @@ module hipfort_hipsparse
 #endif
       use iso_c_binding
       use hipfort_hipsparse_enums
-      use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseXcsr2bsrNnz_
       type(c_ptr),value :: handle
@@ -14789,6 +15591,63 @@ module hipfort_hipsparse
       hipsparseXcsr2bsrNnz_rank_1
 #endif
   end interface
+
+  !>  \ingroup conv_module
+  !>   This function is used as the first step in converting a CSR matrix to a compressed CSR
+  !>   matrix.
+  !>
+  !>   \details
+  !>   Given a sparse CSR matrix and a non-negative tolerance, this function computes how many
+  !>   entries would be left
+  !>   in each row of the matrix if elements less than the tolerance were removed. It also computes
+  !>   the total number
+  !>   of remaining elements in the matrix.
+  !>
+  !>   Given an input sparse matrix \f$A\f$ in CSR format, the resulting compressed sparse CSR
+  !>   matrix \f$C\f$ is
+  !>   computed using:
+  !>   \f[
+  !>    C(i,j) = A(i, j) \text{  if |A(i, j)| > tol}
+  !>   \f]
+  !>
+  !>   The user first allocates \p nnzPerRow with size \p m elements, then calls \p
+  !>   hipsparseXnnz_compress.
+  !>   The function fills in the \p nnzPerRow array and sets the total number of non-zeros found in
+  !>   \p nnzC.
+  !>
+  !>   See hipsparseScsr2csr_compress() for a full code example.
+  !>
+  !>   \note
+  !>   In the case of complex matrices, only the magnitude of the real part of \p tol is used.
+  !>
+  !>   @param[in]
+  !>   handle        handle to the hipSPARSE library context queue.
+  !>   @param[in]
+  !>   m             number of rows of the sparse CSR matrix.
+  !>   @param[in]
+  !>   descrA        the descriptor of the sparse CSR matrix.
+  !>   @param[in]
+  !>   csrValA       array of \p nnzA elements of the sparse CSR matrix.
+  !>   @param[in]
+  !>   csrRowPtrA    array of \p m+1 elements that point to the start of every row of the
+  !>                 uncompressed sparse CSR matrix.
+  !>   @param[out]
+  !>   nnzPerRow array of length \p m containing the number of entries that will be kept per row in
+  !>                 the final compressed CSR matrix.
+  !>   @param[out]
+  !>   nnzC          number of elements in the column indices and values arrays of the compressed
+  !>                 sparse CSR matrix. Can be either host or device pointer.
+  !>   @param[in]
+  !>   tol the non-negative tolerance used for compression. If \p tol is complex, then only the
+  !>   magnitude
+  !>                 of the real part is used. Entries in the input uncompressed CSR array that are
+  !>                 below the tolerance
+  !>                 are removed in output compressed CSR matrix.
+  !>
+  !>   \retval     HIPSPARSE_STATUS_SUCCESS the operation completed successfully.
+  !>   \retval HIPSPARSE_STATUS_INVALID_VALUE \p handle, \p m, \p n, \p tol, \p csrValA, \p
+  !>   csrRowPtrA, \p nnzPerRow, or \p nnzC
+  !>               pointer is invalid.
   interface hipsparseSnnz_compress
 #ifdef USE_CUDA_NAMES
     function hipsparseSnnz_compress_(handle,m,descrA,csrValA,csrRowPtrA,nnzPerRow,nnzC,tol) bind(c, name="cusparseSnnz_compress")
@@ -14797,7 +15656,6 @@ module hipfort_hipsparse
 #endif
       use iso_c_binding
       use hipfort_hipsparse_enums
-      use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSnnz_compress_
       type(c_ptr),value :: handle
@@ -14816,7 +15674,7 @@ module hipfort_hipsparse
       hipsparseSnnz_compress_rank_1
 #endif
   end interface
-  
+
   interface hipsparseDnnz_compress
 #ifdef USE_CUDA_NAMES
     function hipsparseDnnz_compress_(handle,m,descrA,csrValA,csrRowPtrA,nnzPerRow,nnzC,tol) bind(c, name="cusparseDnnz_compress")
@@ -14825,7 +15683,6 @@ module hipfort_hipsparse
 #endif
       use iso_c_binding
       use hipfort_hipsparse_enums
-      use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDnnz_compress_
       type(c_ptr),value :: handle
@@ -14844,7 +15701,7 @@ module hipfort_hipsparse
       hipsparseDnnz_compress_rank_1
 #endif
   end interface
-  
+
   interface hipsparseCnnz_compress
 #ifdef USE_CUDA_NAMES
     function hipsparseCnnz_compress_(handle,m,descrA,csrValA,csrRowPtrA,nnzPerRow,nnzC,tol) bind(c, name="cusparseCnnz_compress")
@@ -14853,7 +15710,6 @@ module hipfort_hipsparse
 #endif
       use iso_c_binding
       use hipfort_hipsparse_enums
-      use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCnnz_compress_
       type(c_ptr),value :: handle
@@ -14872,7 +15728,7 @@ module hipfort_hipsparse
       hipsparseCnnz_compress_rank_1
 #endif
   end interface
-  
+
   interface hipsparseZnnz_compress
 #ifdef USE_CUDA_NAMES
     function hipsparseZnnz_compress_(handle,m,descrA,csrValA,csrRowPtrA,nnzPerRow,nnzC,tol) bind(c, name="cusparseZnnz_compress")
@@ -14881,7 +15737,6 @@ module hipfort_hipsparse
 #endif
       use iso_c_binding
       use hipfort_hipsparse_enums
-      use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZnnz_compress_
       type(c_ptr),value :: handle
@@ -14900,20 +15755,60 @@ module hipfort_hipsparse
       hipsparseZnnz_compress_rank_1
 #endif
   end interface
+
   !>  \ingroup conv_module
-  !>   \brief Convert a sparse CSR matrix into a sparse COO matrix
-  !> 
+  !>   \brief Convert a sparse CSR matrix into a sparse COO matrix.
+  !>
   !>   \details
-  !>   \p hipsparseXcsr2coo converts the CSR array containing the row offsets, that point
-  !>   to the start of every row, into a COO array of row indices.
-  !> 
+  !>   \p hipsparseXcsr2coo converts the CSR array containing the row offsets that point
+  !>   to the start of every row into a COO array of row indices. All arrays are assumed
+  !>   to be allocated by the user prior to calling \p hipsparseXcsr2coo.
+  !>
+  !>   For example, given the CSR row pointer array (assuming zero index base):
+  !>   \f[
+  !>     \begin{align}
+  !>     \text{csrRowPtr} &= \begin{bmatrix} 0 & 1 & 3 & 4 \end{bmatrix}
+  !>     \end{align}
+  !>   \f]
+  !>
+  !>   Calling \p hipsparseXcsr2coo results in the COO row indices array:
+  !>   \f[
+  !>     \begin{align}
+  !>     \text{cooRowInd} &= \begin{bmatrix} 0 & 1 & 1 & 2 \end{bmatrix}
+  !>     \end{align}
+  !>   \f]
+  !>
   !>   \note
-  !>   It can also be used to convert a CSC array containing the column offsets into a COO
+  !>   This function can also be used to convert a CSC array containing the column offsets into a
+  !>   COO
   !>   array of column indices.
-  !> 
+  !>
   !>   \note
-  !>   This function is non blocking and executed asynchronously with respect to the host.
-  !>   It may return before the actual computation has finished.
+  !>   This function is non-blocking and executed asynchronously with respect to the host.
+  !>   It can return before the actual computation has finished.
+  !>
+  !>   @param[in]
+  !>   handle      handle to the hipSPARSE library context queue.
+  !>   @param[in]
+  !>   csrRowPtr   array of \p m+1 elements that point to the start of every row
+  !>               of the sparse CSR matrix.
+  !>   @param[in]
+  !>   nnz         number of non-zero entries of the sparse CSR matrix. Must be non-negative.
+  !>   @param[in]
+  !>   m           number of rows of the sparse CSR matrix. Must be non-negative.
+  !>   @param[out]
+  !>   cooRowInd   array of \p nnz elements containing the row indices of the sparse COO
+  !>               matrix.
+  !>   @param[in]
+  !>   idxBase     index base. `HIPSPARSE_INDEX_BASE_ZERO` for zero-based indexing or
+  !>               `HIPSPARSE_INDEX_BASE_ONE` for one-based indexing.
+  !>
+  !>   \retval HIPSPARSE_STATUS_SUCCESS the operation completed successfully.
+  !>   \retval HIPSPARSE_STATUS_NOT_INITIALIZED \p handle is not initialized.
+  !>   \retval HIPSPARSE_STATUS_INVALID_VALUE \p handle is nullptr, \p m or, \p nnz is negative,
+  !>           \p csrRowPtr or \p cooRowInd is nullptr when \p nnz is greater than zero, or
+  !>           \p idxBase is neither `HIPSPARSE_INDEX_BASE_ZERO` nor `HIPSPARSE_INDEX_BASE_ONE`.
+  !>   \retval HIPSPARSE_STATUS_ARCH_MISMATCH the device is not supported.
   interface hipsparseXcsr2coo
 #ifdef USE_CUDA_NAMES
     function hipsparseXcsr2coo_(handle,csrRowPtr,nnz,m,cooRowInd,idxBase) bind(c, name="cusparseXcsr2coo")
@@ -14922,7 +15817,6 @@ module hipfort_hipsparse
 #endif
       use iso_c_binding
       use hipfort_hipsparse_enums
-      use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseXcsr2coo_
       type(c_ptr),value :: handle
@@ -14939,7 +15833,100 @@ module hipfort_hipsparse
       hipsparseXcsr2coo_rank_1
 #endif
   end interface
-  
+
+  !>  \ingroup conv_module
+  !>   \brief Convert a sparse CSR matrix into a sparse CSC matrix.
+  !>
+  !>   \details
+  !>   \p hipsparseXcsr2csc converts a CSR matrix into a CSC matrix. \p hipsparseXcsr2csc
+  !>   can also be used to convert a CSC matrix into a CSR matrix. \p copyValues decides
+  !>   whether \p cscSortedVal is being filled during conversion (`HIPSPARSE_ACTION_NUMERIC`)
+  !>   or not (`HIPSPARSE_ACTION_SYMBOLIC`).
+  !>
+  !>   For example given the matrix:
+  !>   \f[
+  !>     \begin{bmatrix}
+  !>     1 & 0 & 0 & 2 \\%
+  !>     3 & 4 & 0 & 0 \\%
+  !>     5 & 0 & 6 & 7
+  !>     \end{bmatrix}
+  !>   \f]
+  !>
+  !>   Represented using the sparse CSR format as:
+  !>   \f[
+  !>     \begin{align}
+  !>     \text{csrSortedRowPtr} &= \begin{bmatrix} 0 & 2 & 4 & 7 \end{bmatrix} \\%
+  !>     \text{csrSortedColInd} &= \begin{bmatrix} 0 & 3 & 0 & 1 & 0 & 2 & 3 \end{bmatrix} \\%
+  !>     \text{csrSortedVal} &= \begin{bmatrix} 1 & 2 & 3 & 4 & 5 & 6 & 7 \end{bmatrix}
+  !>     \end{align}
+  !>   \f]
+  !>
+  !>   this function converts it to the sparse CSC format:
+  !>   \f[
+  !>     \begin{align}
+  !>     \text{cscSortedRowInd} &= \begin{bmatrix} 0 & 1 & 2 & 1 & 2 & 0 & 2 \end{bmatrix} \\%
+  !>     \text{cscSortedColPtr} &= \begin{bmatrix} 0 & 3 & 4 & 5 & 7 \end{bmatrix} \\%
+  !>     \text{cscSortedVal} &= \begin{bmatrix} 1 & 3 & 5 & 4 & 6 & 2 & 7 \end{bmatrix}
+  !>     \end{align}
+  !>   \f]
+  !>
+  !>   The CSC arrays \p cscSortedRowInd, \p cscSortedColPtr, and \p cscSortedVal must be allocated
+  !>   by the
+  !>   user prior to calling \p hipsparseXcsr2csc().
+  !>
+  !>   \note
+  !>   The resulting matrix can also be seen as the transpose of the input matrix.
+  !>
+  !>   \note
+  !>   This function is non-blocking and executed asynchronously with respect to the host.
+  !>   It can return before the actual computation has finished.
+  !>
+  !>   \deprecated
+  !>   This function is deprecated when using the CUDA backend (CUDA 10.0+) and will be
+  !>   removed in CUDA 11.0. This deprecation does not apply to the ROCm backend.
+  !>
+  !>   @param[in]
+  !>   handle          handle to the hipSPARSE library context queue.
+  !>   @param[in]
+  !>   m               number of rows of the sparse CSR matrix, which must be non-negative.
+  !>   @param[in]
+  !>   n               number of columns of the sparse CSR matrix, which must be non-negative.
+  !>   @param[in]
+  !>   nnz number of non-zero entries of the sparse CSR matrix, which must be non-negative.
+  !>   @param[in]
+  !>   csrSortedVal    array of \p nnz elements of the sparse CSR matrix.
+  !>   @param[in]
+  !>   csrSortedRowPtr array of \p m+1 elements that point to the start of every row of the
+  !>                   sparse CSR matrix.
+  !>   @param[in]
+  !>   csrSortedColInd array of \p nnz elements containing the column indices of the sparse
+  !>                   CSR matrix.
+  !>   @param[out]
+  !>   cscSortedVal    array of \p nnz elements of the sparse CSC matrix.
+  !>   @param[out]
+  !>   cscSortedRowInd array of \p nnz elements containing the row indices of the sparse CSC
+  !>                   matrix.
+  !>   @param[out]
+  !>   cscSortedColPtr array of \p n+1 elements that point to the start of every column of the
+  !>                   sparse CSC matrix.
+  !>   @param[in]
+  !>   copyValues      `HIPSPARSE_ACTION_SYMBOLIC` or `HIPSPARSE_ACTION_NUMERIC`.
+  !>   @param[in]
+  !>   idxBase         index base. `HIPSPARSE_INDEX_BASE_ZERO` for zero-based indexing or
+  !>                   `HIPSPARSE_INDEX_BASE_ONE` for one-based indexing.
+  !>
+  !>   \retval HIPSPARSE_STATUS_SUCCESS the operation completed successfully.
+  !>   \retval HIPSPARSE_STATUS_NOT_INITIALIZED \p handle is not initialized.
+  !>   \retval HIPSPARSE_STATUS_INVALID_VALUE \p handle is nullptr, \p m, \p n, or \p nnz is
+  !>   negative,
+  !>           \p csrSortedVal, \p csrSortedRowPtr, \p csrSortedColInd, \p cscSortedVal, \p
+  !>           cscSortedRowInd,
+  !>           or \p cscSortedColPtr is nullptr when \p nnz is greater than zero, \p copyValues is
+  !>           neither
+  !>           `HIPSPARSE_ACTION_SYMBOLIC` nor `HIPSPARSE_ACTION_NUMERIC`, or \p idxBase is neither
+  !>           `HIPSPARSE_INDEX_BASE_ZERO` nor `HIPSPARSE_INDEX_BASE_ONE`.
+  !>   \retval HIPSPARSE_STATUS_ARCH_MISMATCH the device is not supported.
+  !>   \retval HIPSPARSE_STATUS_INTERNAL_ERROR an internal error occurred.
   interface hipsparseScsr2csc
 #ifdef USE_CUDA_NAMES
     function hipsparseScsr2csc_(handle,m,n,nnz,csrSortedVal,csrSortedRowPtr,csrSortedColInd,cscSortedVal,cscSortedRowInd,cscSortedColPtr,copyValues,idxBase) bind(c, name="cusparseScsr2csc")
@@ -14948,7 +15935,6 @@ module hipfort_hipsparse
 #endif
       use iso_c_binding
       use hipfort_hipsparse_enums
-      use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseScsr2csc_
       type(c_ptr),value :: handle
@@ -14971,7 +15957,7 @@ module hipfort_hipsparse
       hipsparseScsr2csc_rank_1
 #endif
   end interface
-  
+
   interface hipsparseDcsr2csc
 #ifdef USE_CUDA_NAMES
     function hipsparseDcsr2csc_(handle,m,n,nnz,csrSortedVal,csrSortedRowPtr,csrSortedColInd,cscSortedVal,cscSortedRowInd,cscSortedColPtr,copyValues,idxBase) bind(c, name="cusparseDcsr2csc")
@@ -14980,7 +15966,6 @@ module hipfort_hipsparse
 #endif
       use iso_c_binding
       use hipfort_hipsparse_enums
-      use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDcsr2csc_
       type(c_ptr),value :: handle
@@ -15003,7 +15988,7 @@ module hipfort_hipsparse
       hipsparseDcsr2csc_rank_1
 #endif
   end interface
-  
+
   interface hipsparseCcsr2csc
 #ifdef USE_CUDA_NAMES
     function hipsparseCcsr2csc_(handle,m,n,nnz,csrSortedVal,csrSortedRowPtr,csrSortedColInd,cscSortedVal,cscSortedRowInd,cscSortedColPtr,copyValues,idxBase) bind(c, name="cusparseCcsr2csc")
@@ -15012,7 +15997,6 @@ module hipfort_hipsparse
 #endif
       use iso_c_binding
       use hipfort_hipsparse_enums
-      use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCcsr2csc_
       type(c_ptr),value :: handle
@@ -15035,7 +16019,7 @@ module hipfort_hipsparse
       hipsparseCcsr2csc_rank_1
 #endif
   end interface
-  
+
   interface hipsparseZcsr2csc
 #ifdef USE_CUDA_NAMES
     function hipsparseZcsr2csc_(handle,m,n,nnz,csrSortedVal,csrSortedRowPtr,csrSortedColInd,cscSortedVal,cscSortedRowInd,cscSortedColPtr,copyValues,idxBase) bind(c, name="cusparseZcsr2csc")
@@ -15044,7 +16028,6 @@ module hipfort_hipsparse
 #endif
       use iso_c_binding
       use hipfort_hipsparse_enums
-      use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZcsr2csc_
       type(c_ptr),value :: handle
@@ -15067,7 +16050,61 @@ module hipfort_hipsparse
       hipsparseZcsr2csc_rank_1
 #endif
   end interface
-  
+
+  !>  \ingroup conv_module
+  !>   \brief Convert a sparse CSR matrix into a sparse HYB matrix.
+  !>
+  !>   \details
+  !>   \p hipsparseXcsr2hyb converts a CSR matrix into a HYB matrix. It is assumed
+  !>   that \p hyb has been initialized with `hipsparseCreateHybMat`().
+  !>
+  !>   \note
+  !>   This function requires a significant amount of storage for the HYB matrix,
+  !>   depending on the matrix structure.
+  !>
+  !>   \note
+  !>   This function is non-blocking and executed asynchronously with respect to the host.
+  !>   It can return before the actual computation has finished.
+  !>
+  !>   \deprecated
+  !>   This function is deprecated when using the CUDA backend (CUDA 10.0+) and will be
+  !>   removed in CUDA 11.0. This deprecation does not apply to the ROCm backend.
+  !>
+  !>   @param[in]
+  !>   handle            handle to the hipSPARSE library context queue.
+  !>   @param[in]
+  !>   m                 number of rows of the sparse CSR matrix, which must be non-negative.
+  !>   @param[in]
+  !>   n                 number of columns of the sparse CSR matrix, which must be non-negative.
+  !>   @param[in]
+  !>   descrA            descriptor of the sparse CSR matrix. Currently, only
+  !>                     `HIPSPARSE_MATRIX_TYPE_GENERAL` is supported.
+  !>   @param[in]
+  !>   csrSortedValA     array containing the values of the sparse CSR matrix.
+  !>   @param[in]
+  !>   csrSortedRowPtrA  array of \p m+1 elements that point to the start of every row of the
+  !>                     sparse CSR matrix.
+  !>   @param[in]
+  !>   csrSortedColIndA  array containing the column indices of the sparse CSR matrix.
+  !>   @param[out]
+  !>   hybA              sparse matrix in HYB format.
+  !>   @param[in]
+  !>   userEllWidth      width of the ELL part of the HYB matrix (only required if
+  !>                     \p partitionType == `HIPSPARSE_HYB_PARTITION_USER`). Must be non-negative.
+  !>   @param[in]
+  !>   partitionType     `HIPSPARSE_HYB_PARTITION_AUTO` (recommended),
+  !>                     `HIPSPARSE_HYB_PARTITION_USER`, or
+  !>                     `HIPSPARSE_HYB_PARTITION_MAX`.
+  !>
+  !>   \retval HIPSPARSE_STATUS_SUCCESS the operation completed successfully.
+  !>   \retval HIPSPARSE_STATUS_NOT_INITIALIZED \p handle is not initialized.
+  !>   \retval HIPSPARSE_STATUS_INVALID_VALUE \p handle, \p descrA, \p hybA, \p csrSortedValA,
+  !>           \p csrSortedRowPtrA, or \p csrSortedColIndA is nullptr, \p m or \p n is negative, or
+  !>           \p userEllWidth or \p partitionType is invalid.
+  !>   \retval HIPSPARSE_STATUS_ALLOC_FAILED the buffer for the HYB matrix could not be allocated.
+  !>   \retval HIPSPARSE_STATUS_INTERNAL_ERROR an internal error occurred.
+  !>   \retval HIPSPARSE_STATUS_NOT_SUPPORTED `hipsparseMatrixType_t` !=
+  !>   `HIPSPARSE_MATRIX_TYPE_GENERAL`.
   interface hipsparseScsr2hyb
 #ifdef USE_CUDA_NAMES
     function hipsparseScsr2hyb_(handle,m,n,descrA,csrSortedValA,csrSortedRowPtrA,csrSortedColIndA,hybA,userEllWidth,partitionType) bind(c, name="cusparseScsr2hyb")
@@ -15076,7 +16113,6 @@ module hipfort_hipsparse
 #endif
       use iso_c_binding
       use hipfort_hipsparse_enums
-      use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseScsr2hyb_
       type(c_ptr),value :: handle
@@ -15097,7 +16133,7 @@ module hipfort_hipsparse
       hipsparseScsr2hyb_rank_1
 #endif
   end interface
-  
+
   interface hipsparseDcsr2hyb
 #ifdef USE_CUDA_NAMES
     function hipsparseDcsr2hyb_(handle,m,n,descrA,csrSortedValA,csrSortedRowPtrA,csrSortedColIndA,hybA,userEllWidth,partitionType) bind(c, name="cusparseDcsr2hyb")
@@ -15106,7 +16142,6 @@ module hipfort_hipsparse
 #endif
       use iso_c_binding
       use hipfort_hipsparse_enums
-      use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDcsr2hyb_
       type(c_ptr),value :: handle
@@ -15127,7 +16162,7 @@ module hipfort_hipsparse
       hipsparseDcsr2hyb_rank_1
 #endif
   end interface
-  
+
   interface hipsparseCcsr2hyb
 #ifdef USE_CUDA_NAMES
     function hipsparseCcsr2hyb_(handle,m,n,descrA,csrSortedValA,csrSortedRowPtrA,csrSortedColIndA,hybA,userEllWidth,partitionType) bind(c, name="cusparseCcsr2hyb")
@@ -15136,7 +16171,6 @@ module hipfort_hipsparse
 #endif
       use iso_c_binding
       use hipfort_hipsparse_enums
-      use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCcsr2hyb_
       type(c_ptr),value :: handle
@@ -15157,7 +16191,7 @@ module hipfort_hipsparse
       hipsparseCcsr2hyb_rank_1
 #endif
   end interface
-  
+
   interface hipsparseZcsr2hyb
 #ifdef USE_CUDA_NAMES
     function hipsparseZcsr2hyb_(handle,m,n,descrA,csrSortedValA,csrSortedRowPtrA,csrSortedColIndA,hybA,userEllWidth,partitionType) bind(c, name="cusparseZcsr2hyb")
@@ -15166,7 +16200,6 @@ module hipfort_hipsparse
 #endif
       use iso_c_binding
       use hipfort_hipsparse_enums
-      use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZcsr2hyb_
       type(c_ptr),value :: handle
@@ -15187,233 +16220,428 @@ module hipfort_hipsparse
       hipsparseZcsr2hyb_rank_1
 #endif
   end interface
+
+  !>  \ingroup conv_module
+  !>   \brief Convert a sparse GEBSR matrix into a sparse GEBSC matrix.
+  !>
+  !>   \details
+  !>   \p hipsparseXgebsr2gebsc_bufferSize returns the size of the temporary storage buffer
+  !>   required by `hipsparseSgebsr2gebsc` "hipsparseXgebsr2gebsc()". This is the first step
+  !>   in converting a sparse matrix in GEBSR format to a sparse matrix in GEBSC format. After
+  !>   the size of the temporary storage buffer has been determined, it must be allocated by the
+  !>   user.
+  !>
+  !>   See `hipsparseSgebsr2gebsc()` for a complete code example.
+  !>
+  !>   @param[in]
+  !>   handle             handle to the hipSPARSE library context queue.
+  !>   @param[in]
+  !>   mb                 number of rows of the sparse General BSR matrix.
+  !>   @param[in]
+  !>   nb                 number of columns of the sparse General BSR matrix.
+  !>   @param[in]
+  !>   nnzb               number of non-zero entries of the sparse General BSR matrix.
+  !>   @param[in]
+  !>   bsrVal array of \p nnzb*rowBlockDim*colBlockDim containing the values of the sparse General
+  !>                      BSR matrix.
+  !>   @param[in]
+  !>   bsrRowPtr          array of \p mb+1 elements that point to the start of every row of the
+  !>                      sparse General BSR matrix.
+  !>   @param[in]
+  !>   bsrColInd          array of \p nnzb elements containing the column indices of the sparse
+  !>                      General BSR matrix.
+  !>   @param[in]
+  !>   rowBlockDim        row size of the blocks in the sparse General BSR matrix.
+  !>   @param[in]
+  !>   colBlockDim        column size of the blocks in the sparse General BSR matrix.
+  !>   @param[out]
+  !>   pBufferSizeInBytes number of bytes of the temporary storage buffer required by
+  !>                      `hipsparseSgebsr2gebsc()`, hipsparseDgebsr2gebsc(),
+  !>                      hipsparseCgebsr2gebsc(), and
+  !>                      hipsparseZgebsr2gebsc().
+  !>
+  !>   \retval     HIPSPARSE_STATUS_SUCCESS the operation completed successfully.
+  !>   \retval HIPSPARSE_STATUS_INVALID_VALUE \p handle, \p mb, \p nb, \p nnzb, \p bsrRowPtr, \p
+  !>   bsrColInd,
+  !>               or \p pBufferSizeInBytes pointer is invalid.
+  !>   \retval     rocsparse_status_internal_error an internal error occurred.
   interface hipsparseSgebsr2gebsc_bufferSize
 #ifdef USE_CUDA_NAMES
-    function hipsparseSgebsr2gebsc_bufferSize_(handle,mb,nb,nnzb,bsr_val,bsr_row_ptr,bsr_col_ind,row_block_dim,col_block_dim,p_buffer_size) bind(c, name="cusparseSgebsr2gebsc_bufferSize")
+    function hipsparseSgebsr2gebsc_bufferSize_(handle,mb,nb,nnzb,bsrVal,bsrRowPtr,bsrColInd,rowBlockDim,colBlockDim,pBufferSizeInBytes) bind(c, name="cusparseSgebsr2gebsc_bufferSize")
 #else
-    function hipsparseSgebsr2gebsc_bufferSize_(handle,mb,nb,nnzb,bsr_val,bsr_row_ptr,bsr_col_ind,row_block_dim,col_block_dim,p_buffer_size) bind(c, name="hipsparseSgebsr2gebsc_bufferSize")
+    function hipsparseSgebsr2gebsc_bufferSize_(handle,mb,nb,nnzb,bsrVal,bsrRowPtr,bsrColInd,rowBlockDim,colBlockDim,pBufferSizeInBytes) bind(c, name="hipsparseSgebsr2gebsc_bufferSize")
 #endif
       use iso_c_binding
       use hipfort_hipsparse_enums
-      use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSgebsr2gebsc_bufferSize_
       type(c_ptr),value :: handle
       integer(c_int),value :: mb
       integer(c_int),value :: nb
       integer(c_int),value :: nnzb
-      type(c_ptr),value :: bsr_val
-      type(c_ptr),value :: bsr_row_ptr
-      type(c_ptr),value :: bsr_col_ind
-      integer(c_int),value :: row_block_dim
-      integer(c_int),value :: col_block_dim
-      type(c_ptr),value :: p_buffer_size
+      type(c_ptr),value :: bsrVal
+      type(c_ptr),value :: bsrRowPtr
+      type(c_ptr),value :: bsrColInd
+      integer(c_int),value :: rowBlockDim
+      integer(c_int),value :: colBlockDim
+      type(c_ptr),value :: pBufferSizeInBytes
     end function
-
   end interface
-  
+
   interface hipsparseDgebsr2gebsc_bufferSize
 #ifdef USE_CUDA_NAMES
-    function hipsparseDgebsr2gebsc_bufferSize_(handle,mb,nb,nnzb,bsr_val,bsr_row_ptr,bsr_col_ind,row_block_dim,col_block_dim,p_buffer_size) bind(c, name="cusparseDgebsr2gebsc_bufferSize")
+    function hipsparseDgebsr2gebsc_bufferSize_(handle,mb,nb,nnzb,bsrVal,bsrRowPtr,bsrColInd,rowBlockDim,colBlockDim,pBufferSizeInBytes) bind(c, name="cusparseDgebsr2gebsc_bufferSize")
 #else
-    function hipsparseDgebsr2gebsc_bufferSize_(handle,mb,nb,nnzb,bsr_val,bsr_row_ptr,bsr_col_ind,row_block_dim,col_block_dim,p_buffer_size) bind(c, name="hipsparseDgebsr2gebsc_bufferSize")
+    function hipsparseDgebsr2gebsc_bufferSize_(handle,mb,nb,nnzb,bsrVal,bsrRowPtr,bsrColInd,rowBlockDim,colBlockDim,pBufferSizeInBytes) bind(c, name="hipsparseDgebsr2gebsc_bufferSize")
 #endif
       use iso_c_binding
       use hipfort_hipsparse_enums
-      use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDgebsr2gebsc_bufferSize_
       type(c_ptr),value :: handle
       integer(c_int),value :: mb
       integer(c_int),value :: nb
       integer(c_int),value :: nnzb
-      type(c_ptr),value :: bsr_val
-      type(c_ptr),value :: bsr_row_ptr
-      type(c_ptr),value :: bsr_col_ind
-      integer(c_int),value :: row_block_dim
-      integer(c_int),value :: col_block_dim
-      type(c_ptr),value :: p_buffer_size
+      type(c_ptr),value :: bsrVal
+      type(c_ptr),value :: bsrRowPtr
+      type(c_ptr),value :: bsrColInd
+      integer(c_int),value :: rowBlockDim
+      integer(c_int),value :: colBlockDim
+      type(c_ptr),value :: pBufferSizeInBytes
     end function
-
   end interface
-  
+
   interface hipsparseCgebsr2gebsc_bufferSize
 #ifdef USE_CUDA_NAMES
-    function hipsparseCgebsr2gebsc_bufferSize_(handle,mb,nb,nnzb,bsr_val,bsr_row_ptr,bsr_col_ind,row_block_dim,col_block_dim,p_buffer_size) bind(c, name="cusparseCgebsr2gebsc_bufferSize")
+    function hipsparseCgebsr2gebsc_bufferSize_(handle,mb,nb,nnzb,bsrVal,bsrRowPtr,bsrColInd,rowBlockDim,colBlockDim,pBufferSizeInBytes) bind(c, name="cusparseCgebsr2gebsc_bufferSize")
 #else
-    function hipsparseCgebsr2gebsc_bufferSize_(handle,mb,nb,nnzb,bsr_val,bsr_row_ptr,bsr_col_ind,row_block_dim,col_block_dim,p_buffer_size) bind(c, name="hipsparseCgebsr2gebsc_bufferSize")
+    function hipsparseCgebsr2gebsc_bufferSize_(handle,mb,nb,nnzb,bsrVal,bsrRowPtr,bsrColInd,rowBlockDim,colBlockDim,pBufferSizeInBytes) bind(c, name="hipsparseCgebsr2gebsc_bufferSize")
 #endif
       use iso_c_binding
       use hipfort_hipsparse_enums
-      use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCgebsr2gebsc_bufferSize_
       type(c_ptr),value :: handle
       integer(c_int),value :: mb
       integer(c_int),value :: nb
       integer(c_int),value :: nnzb
-      type(c_ptr),value :: bsr_val
-      type(c_ptr),value :: bsr_row_ptr
-      type(c_ptr),value :: bsr_col_ind
-      integer(c_int),value :: row_block_dim
-      integer(c_int),value :: col_block_dim
-      type(c_ptr),value :: p_buffer_size
+      type(c_ptr),value :: bsrVal
+      type(c_ptr),value :: bsrRowPtr
+      type(c_ptr),value :: bsrColInd
+      integer(c_int),value :: rowBlockDim
+      integer(c_int),value :: colBlockDim
+      type(c_ptr),value :: pBufferSizeInBytes
     end function
-
   end interface
-  
+
   interface hipsparseZgebsr2gebsc_bufferSize
 #ifdef USE_CUDA_NAMES
-    function hipsparseZgebsr2gebsc_bufferSize_(handle,mb,nb,nnzb,bsr_val,bsr_row_ptr,bsr_col_ind,row_block_dim,col_block_dim,p_buffer_size) bind(c, name="cusparseZgebsr2gebsc_bufferSize")
+    function hipsparseZgebsr2gebsc_bufferSize_(handle,mb,nb,nnzb,bsrVal,bsrRowPtr,bsrColInd,rowBlockDim,colBlockDim,pBufferSizeInBytes) bind(c, name="cusparseZgebsr2gebsc_bufferSize")
 #else
-    function hipsparseZgebsr2gebsc_bufferSize_(handle,mb,nb,nnzb,bsr_val,bsr_row_ptr,bsr_col_ind,row_block_dim,col_block_dim,p_buffer_size) bind(c, name="hipsparseZgebsr2gebsc_bufferSize")
+    function hipsparseZgebsr2gebsc_bufferSize_(handle,mb,nb,nnzb,bsrVal,bsrRowPtr,bsrColInd,rowBlockDim,colBlockDim,pBufferSizeInBytes) bind(c, name="hipsparseZgebsr2gebsc_bufferSize")
 #endif
       use iso_c_binding
       use hipfort_hipsparse_enums
-      use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZgebsr2gebsc_bufferSize_
       type(c_ptr),value :: handle
       integer(c_int),value :: mb
       integer(c_int),value :: nb
       integer(c_int),value :: nnzb
-      type(c_ptr),value :: bsr_val
-      type(c_ptr),value :: bsr_row_ptr
-      type(c_ptr),value :: bsr_col_ind
-      integer(c_int),value :: row_block_dim
-      integer(c_int),value :: col_block_dim
-      type(c_ptr),value :: p_buffer_size
+      type(c_ptr),value :: bsrVal
+      type(c_ptr),value :: bsrRowPtr
+      type(c_ptr),value :: bsrColInd
+      integer(c_int),value :: rowBlockDim
+      integer(c_int),value :: colBlockDim
+      type(c_ptr),value :: pBufferSizeInBytes
     end function
-
   end interface
+
+  !>  \ingroup conv_module
+  !>   \brief Convert a sparse GEBSR matrix into a sparse GEBSC matrix
+  !>
+  !>   \details
+  !>   \p hipsparseXgebsr2gebsc converts a GEBSR matrix into a GEBSC matrix. \p
+  !>   hipsparseXgebsr2gebsc
+  !>   can also be used to convert a GEBSC matrix into a GEBSR matrix. \p copyValues decides
+  !>   whether \p bscVal is being filled during conversion (`HIPSPARSE_ACTION_NUMERIC`)
+  !>   or not (`HIPSPARSE_ACTION_SYMBOLIC`).
+  !>
+  !>   \p hipsparseXgebsr2gebsc requires extra temporary storage buffer that has to be allocated
+  !>   by the user. Storage buffer size can be determined by `hipsparseSgebsr2gebsc_bufferSize`
+  !>   "hipsparseXgebsr2gebsc_bufferSize()".
+  !>
+  !>   For example, given the GEBSR matrix:
+  !>   \f[
+  !>    \left[
+  !>     \begin{array}{c | c}
+  !>       \begin{array}{c c}
+  !>        1 & 2 \\%
+  !>        3 & 4 \\%
+  !>        6 & 0
+  !>       \end{array} &
+  !>       \begin{array}{c c}
+  !>        0 & 2 \\%
+  !>        0 & 0 \\%
+  !>        3 & 4
+  !>       \end{array} \\%
+  !>     \hline
+  !>       \begin{array}{c c}
+  !>        5 & 0 \\%
+  !>        1 & 2 \\%
+  !>        3 & 4
+  !>       \end{array} &
+  !>       \begin{array}{c c}
+  !>        6 & 7 \\%
+  !>        3 & 4 \\%
+  !>        3 & 4
+  !>       \end{array} \\%
+  !>    \end{array}
+  !>   \right]
+  !>   \f]
+  !>
+  !>   represented with the arrays:
+  !>   \f[
+  !>     \begin{align}
+  !>     \text{bsrRowPtr} &= \begin{bmatrix} 0 & 2 & 4 \end{bmatrix} \\%
+  !>     \text{bsrColInd} &= \begin{bmatrix} 0 & 1 & 0 & 1 \end{bmatrix} \\%
+  !>     \text{bsrVal} &= \begin{bmatrix} 1 & 2 & 3 & 4 & 6 & 0 & 0 & 2 & 0 & 0 & 3 & 4 & 5 & 0 & 1
+  !>     & 2 & 3 & 4 & 6 & 7 & 3 & 4 & 3 & 4 \end{bmatrix}
+  !>     \end{align}
+  !>   \f]
+  !>
+  !>   this function converts the matrix to GEBSC format:
+  !>   \f[
+  !>     \begin{align}
+  !>     \text{bscRowInd} &= \begin{bmatrix} 0 & 1 & 0 & 1 \end{bmatrix} \\%
+  !>     \text{bscColPtr} &= \begin{bmatrix} 0 & 2 & 4 \end{bmatrix} \\%
+  !>     \text{bscVal} &= \begin{bmatrix} 1 & 2 & 3 & 4 & 6 & 0 & 5 & 0 & 1 & 2 & 3 & 4 & 0 & 2 & 0
+  !>     & 0 & 3 & 4 & 6 & 7 & 3 & 4 & 3 & 4 \end{bmatrix}
+  !>     \end{align}
+  !>   \f]
+  !>
+  !>   The GEBSC arrays \p bscRowInd, \p bscColPtr, and \p bscVal must be allocated by the user
+  !>   prior
+  !>   to calling \p hipsparseXgebsr2gebsc(). The \p bscRowInd array has size \p nnzb, the \p
+  !>   bscColPtr
+  !>   array has size \p nb+1, and the \p bscVal array has size \p nnzb*rowBlockDim*colBlockDim.
+  !>
+  !>   \note
+  !>   The resulting matrix can also be seen as the transpose of the input matrix.
+  !>
+  !>   \note
+  !>   This function is non-blocking and executed asynchronously with respect to the host.
+  !>   It can return before the actual computation has finished.
+  !>
+  !>   @param[in]
+  !>   handle      handle to the hipSPARSE library context queue.
+  !>   @param[in]
+  !>   mb          number of rows of the sparse general BSR matrix.
+  !>   @param[in]
+  !>   nb          number of columns of the sparse general BSR matrix.
+  !>   @param[in]
+  !>   nnzb        number of non-zero entries of the sparse general BSR matrix.
+  !>   @param[in]
+  !>   bsrVal array of \p nnzb * \p rowBlockDim * \p colBlockDim elements of the sparse general BSR
+  !>   matrix.
+  !>   @param[in]
+  !>   bsrRowPtr   array of \p m+1 elements that point to the start of every row of the
+  !>               sparse general BSR matrix.
+  !>   @param[in]
+  !>   bsrColInd   array of \p nnz elements containing the column indices of the sparse
+  !>               general BSR matrix.
+  !>   @param[in]
+  !>   rowBlockDim row size of the blocks in the sparse general BSR matrix.
+  !>   @param[in]
+  !>   colBlockDim col size of the blocks in the sparse general BSR matrix.
+  !>   @param[out]
+  !>   bscVal      array of \p nnz elements of the sparse BSC matrix.
+  !>   @param[out]
+  !>   bscRowInd   array of \p nnz elements containing the row indices of the sparse BSC
+  !>               matrix.
+  !>   @param[out]
+  !>   bscColPtr   array of \p n+1 elements that point to the start of every column of the
+  !>               sparse BSC matrix.
+  !>   @param[in]
+  !>   copyValues  `HIPSPARSE_ACTION_SYMBOLIC` or `HIPSPARSE_ACTION_NUMERIC`.
+  !>   @param[in]
+  !>   idxBase     `HIPSPARSE_INDEX_BASE_ZERO` or `HIPSPARSE_INDEX_BASE_ONE`.
+  !>   @param[in]
+  !>   temp_buffer temporary storage buffer allocated by the user. The size is returned by
+  !>               `hipsparseSgebsr2gebsc_bufferSize` "hipsparseXgebsr2gebsc_bufferSize()".
+  !>
+  !>   \retval     HIPSPARSE_STATUS_SUCCESS the operation completed successfully.
+  !>   \retval     HIPSPARSE_STATUS_INVALID_VALUE \p handle, \p mb, \p nb, \p nnzb, \p bsrVal,
+  !>               \p bsrRowPtr, \p bsrColInd, \p bscVal, \p bscRowInd, \p bscColPtr, or
+  !>               \p temp_buffer pointer is invalid.
+  !>   \retval     HIPSPARSE_STATUS_ARCH_MISMATCH the device is not supported.
+  !>   \retval     HIPSPARSE_STATUS_INTERNAL_ERROR an internal error occurred.
   interface hipsparseSgebsr2gebsc
 #ifdef USE_CUDA_NAMES
-    function hipsparseSgebsr2gebsc_(handle,mb,nb,nnzb,bsr_val,bsr_row_ptr,bsr_col_ind,row_block_dim,col_block_dim,bsc_val,bsc_row_ind,bsc_col_ptr,copy_values,idx_base,temp_buffer) bind(c, name="cusparseSgebsr2gebsc")
+    function hipsparseSgebsr2gebsc_(handle,mb,nb,nnzb,bsrVal,bsrRowPtr,bsrColInd,rowBlockDim,colBlockDim,bscVal,bscRowInd,bscColPtr,copyValues,idxBase,temp_buffer) bind(c, name="cusparseSgebsr2gebsc")
 #else
-    function hipsparseSgebsr2gebsc_(handle,mb,nb,nnzb,bsr_val,bsr_row_ptr,bsr_col_ind,row_block_dim,col_block_dim,bsc_val,bsc_row_ind,bsc_col_ptr,copy_values,idx_base,temp_buffer) bind(c, name="hipsparseSgebsr2gebsc")
+    function hipsparseSgebsr2gebsc_(handle,mb,nb,nnzb,bsrVal,bsrRowPtr,bsrColInd,rowBlockDim,colBlockDim,bscVal,bscRowInd,bscColPtr,copyValues,idxBase,temp_buffer) bind(c, name="hipsparseSgebsr2gebsc")
 #endif
       use iso_c_binding
       use hipfort_hipsparse_enums
-      use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSgebsr2gebsc_
       type(c_ptr),value :: handle
       integer(c_int),value :: mb
       integer(c_int),value :: nb
       integer(c_int),value :: nnzb
-      type(c_ptr),value :: bsr_val
-      type(c_ptr),value :: bsr_row_ptr
-      type(c_ptr),value :: bsr_col_ind
-      integer(c_int),value :: row_block_dim
-      integer(c_int),value :: col_block_dim
-      type(c_ptr),value :: bsc_val
-      type(c_ptr),value :: bsc_row_ind
-      type(c_ptr),value :: bsc_col_ptr
-      integer(kind(HIPSPARSE_ACTION_SYMBOLIC)),value :: copy_values
-      integer(kind(HIPSPARSE_INDEX_BASE_ZERO)),value :: idx_base
+      type(c_ptr),value :: bsrVal
+      type(c_ptr),value :: bsrRowPtr
+      type(c_ptr),value :: bsrColInd
+      integer(c_int),value :: rowBlockDim
+      integer(c_int),value :: colBlockDim
+      type(c_ptr),value :: bscVal
+      type(c_ptr),value :: bscRowInd
+      type(c_ptr),value :: bscColPtr
+      integer(kind(HIPSPARSE_ACTION_SYMBOLIC)),value :: copyValues
+      integer(kind(HIPSPARSE_INDEX_BASE_ZERO)),value :: idxBase
       type(c_ptr),value :: temp_buffer
     end function
-
   end interface
-  
+
   interface hipsparseDgebsr2gebsc
 #ifdef USE_CUDA_NAMES
-    function hipsparseDgebsr2gebsc_(handle,mb,nb,nnzb,bsr_val,bsr_row_ptr,bsr_col_ind,row_block_dim,col_block_dim,bsc_val,bsc_row_ind,bsc_col_ptr,copy_values,idx_base,temp_buffer) bind(c, name="cusparseDgebsr2gebsc")
+    function hipsparseDgebsr2gebsc_(handle,mb,nb,nnzb,bsrVal,bsrRowPtr,bsrColInd,rowBlockDim,colBlockDim,bscVal,bscRowInd,bscColPtr,copyValues,idxBase,temp_buffer) bind(c, name="cusparseDgebsr2gebsc")
 #else
-    function hipsparseDgebsr2gebsc_(handle,mb,nb,nnzb,bsr_val,bsr_row_ptr,bsr_col_ind,row_block_dim,col_block_dim,bsc_val,bsc_row_ind,bsc_col_ptr,copy_values,idx_base,temp_buffer) bind(c, name="hipsparseDgebsr2gebsc")
+    function hipsparseDgebsr2gebsc_(handle,mb,nb,nnzb,bsrVal,bsrRowPtr,bsrColInd,rowBlockDim,colBlockDim,bscVal,bscRowInd,bscColPtr,copyValues,idxBase,temp_buffer) bind(c, name="hipsparseDgebsr2gebsc")
 #endif
       use iso_c_binding
       use hipfort_hipsparse_enums
-      use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDgebsr2gebsc_
       type(c_ptr),value :: handle
       integer(c_int),value :: mb
       integer(c_int),value :: nb
       integer(c_int),value :: nnzb
-      type(c_ptr),value :: bsr_val
-      type(c_ptr),value :: bsr_row_ptr
-      type(c_ptr),value :: bsr_col_ind
-      integer(c_int),value :: row_block_dim
-      integer(c_int),value :: col_block_dim
-      type(c_ptr),value :: bsc_val
-      type(c_ptr),value :: bsc_row_ind
-      type(c_ptr),value :: bsc_col_ptr
-      integer(kind(HIPSPARSE_ACTION_SYMBOLIC)),value :: copy_values
-      integer(kind(HIPSPARSE_INDEX_BASE_ZERO)),value :: idx_base
+      type(c_ptr),value :: bsrVal
+      type(c_ptr),value :: bsrRowPtr
+      type(c_ptr),value :: bsrColInd
+      integer(c_int),value :: rowBlockDim
+      integer(c_int),value :: colBlockDim
+      type(c_ptr),value :: bscVal
+      type(c_ptr),value :: bscRowInd
+      type(c_ptr),value :: bscColPtr
+      integer(kind(HIPSPARSE_ACTION_SYMBOLIC)),value :: copyValues
+      integer(kind(HIPSPARSE_INDEX_BASE_ZERO)),value :: idxBase
       type(c_ptr),value :: temp_buffer
     end function
-
   end interface
-  
+
   interface hipsparseCgebsr2gebsc
 #ifdef USE_CUDA_NAMES
-    function hipsparseCgebsr2gebsc_(handle,mb,nb,nnzb,bsr_val,bsr_row_ptr,bsr_col_ind,row_block_dim,col_block_dim,bsc_val,bsc_row_ind,bsc_col_ptr,copy_values,idx_base,temp_buffer) bind(c, name="cusparseCgebsr2gebsc")
+    function hipsparseCgebsr2gebsc_(handle,mb,nb,nnzb,bsrVal,bsrRowPtr,bsrColInd,rowBlockDim,colBlockDim,bscVal,bscRowInd,bscColPtr,copyValues,idxBase,temp_buffer) bind(c, name="cusparseCgebsr2gebsc")
 #else
-    function hipsparseCgebsr2gebsc_(handle,mb,nb,nnzb,bsr_val,bsr_row_ptr,bsr_col_ind,row_block_dim,col_block_dim,bsc_val,bsc_row_ind,bsc_col_ptr,copy_values,idx_base,temp_buffer) bind(c, name="hipsparseCgebsr2gebsc")
+    function hipsparseCgebsr2gebsc_(handle,mb,nb,nnzb,bsrVal,bsrRowPtr,bsrColInd,rowBlockDim,colBlockDim,bscVal,bscRowInd,bscColPtr,copyValues,idxBase,temp_buffer) bind(c, name="hipsparseCgebsr2gebsc")
 #endif
       use iso_c_binding
       use hipfort_hipsparse_enums
-      use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCgebsr2gebsc_
       type(c_ptr),value :: handle
       integer(c_int),value :: mb
       integer(c_int),value :: nb
       integer(c_int),value :: nnzb
-      type(c_ptr),value :: bsr_val
-      type(c_ptr),value :: bsr_row_ptr
-      type(c_ptr),value :: bsr_col_ind
-      integer(c_int),value :: row_block_dim
-      integer(c_int),value :: col_block_dim
-      type(c_ptr),value :: bsc_val
-      type(c_ptr),value :: bsc_row_ind
-      type(c_ptr),value :: bsc_col_ptr
-      integer(kind(HIPSPARSE_ACTION_SYMBOLIC)),value :: copy_values
-      integer(kind(HIPSPARSE_INDEX_BASE_ZERO)),value :: idx_base
+      type(c_ptr),value :: bsrVal
+      type(c_ptr),value :: bsrRowPtr
+      type(c_ptr),value :: bsrColInd
+      integer(c_int),value :: rowBlockDim
+      integer(c_int),value :: colBlockDim
+      type(c_ptr),value :: bscVal
+      type(c_ptr),value :: bscRowInd
+      type(c_ptr),value :: bscColPtr
+      integer(kind(HIPSPARSE_ACTION_SYMBOLIC)),value :: copyValues
+      integer(kind(HIPSPARSE_INDEX_BASE_ZERO)),value :: idxBase
       type(c_ptr),value :: temp_buffer
     end function
-
   end interface
-  
+
   interface hipsparseZgebsr2gebsc
 #ifdef USE_CUDA_NAMES
-    function hipsparseZgebsr2gebsc_(handle,mb,nb,nnzb,bsr_val,bsr_row_ptr,bsr_col_ind,row_block_dim,col_block_dim,bsc_val,bsc_row_ind,bsc_col_ptr,copy_values,idx_base,temp_buffer) bind(c, name="cusparseZgebsr2gebsc")
+    function hipsparseZgebsr2gebsc_(handle,mb,nb,nnzb,bsrVal,bsrRowPtr,bsrColInd,rowBlockDim,colBlockDim,bscVal,bscRowInd,bscColPtr,copyValues,idxBase,temp_buffer) bind(c, name="cusparseZgebsr2gebsc")
 #else
-    function hipsparseZgebsr2gebsc_(handle,mb,nb,nnzb,bsr_val,bsr_row_ptr,bsr_col_ind,row_block_dim,col_block_dim,bsc_val,bsc_row_ind,bsc_col_ptr,copy_values,idx_base,temp_buffer) bind(c, name="hipsparseZgebsr2gebsc")
+    function hipsparseZgebsr2gebsc_(handle,mb,nb,nnzb,bsrVal,bsrRowPtr,bsrColInd,rowBlockDim,colBlockDim,bscVal,bscRowInd,bscColPtr,copyValues,idxBase,temp_buffer) bind(c, name="hipsparseZgebsr2gebsc")
 #endif
       use iso_c_binding
       use hipfort_hipsparse_enums
-      use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZgebsr2gebsc_
       type(c_ptr),value :: handle
       integer(c_int),value :: mb
       integer(c_int),value :: nb
       integer(c_int),value :: nnzb
-      type(c_ptr),value :: bsr_val
-      type(c_ptr),value :: bsr_row_ptr
-      type(c_ptr),value :: bsr_col_ind
-      integer(c_int),value :: row_block_dim
-      integer(c_int),value :: col_block_dim
-      type(c_ptr),value :: bsc_val
-      type(c_ptr),value :: bsc_row_ind
-      type(c_ptr),value :: bsc_col_ptr
-      integer(kind(HIPSPARSE_ACTION_SYMBOLIC)),value :: copy_values
-      integer(kind(HIPSPARSE_INDEX_BASE_ZERO)),value :: idx_base
+      type(c_ptr),value :: bsrVal
+      type(c_ptr),value :: bsrRowPtr
+      type(c_ptr),value :: bsrColInd
+      integer(c_int),value :: rowBlockDim
+      integer(c_int),value :: colBlockDim
+      type(c_ptr),value :: bscVal
+      type(c_ptr),value :: bscRowInd
+      type(c_ptr),value :: bscColPtr
+      integer(kind(HIPSPARSE_ACTION_SYMBOLIC)),value :: copyValues
+      integer(kind(HIPSPARSE_INDEX_BASE_ZERO)),value :: idxBase
       type(c_ptr),value :: temp_buffer
     end function
-
   end interface
+
+  !>  \ingroup conv_module
+  !>   \brief Convert a sparse CSR matrix into a sparse GEBSR matrix.
+  !>
+  !>   \details
+  !>   \p hipsparseXcsr2gebsr_bufferSize returns the size of the temporary buffer that
+  !>   is required by `hipsparseXcsr2gebsrNnz` and `hipsparseScsr2gebsr` "hipsparseXcsr2gebsr()".
+  !>   After the temporary buffer size has been determined, it must be allocated by the user prior
+  !>   to calling `hipsparseXcsr2gebsrNnz` and `hipsparseScsr2gebsr` "hipsparseXcsr2gebsr()".
+  !>
+  !>   See `hipsparseScsr2gebsr()` for a complete code example.
+  !>
+  !>   \note
+  !>   The routine supports asynchronous execution if the pointer mode is set to device.
+  !>
+  !>   @param[in]
+  !>   handle             handle to the hipSPARSE library context queue.
+  !>   @param[in]
+  !>   dir direction that specifies whether to count non-zero elements by `HIPSPARSE_DIRECTION_ROW`
+  !>                      or by `HIPSPARSE_DIRECTION_COLUMN`.
+  !>   @param[in]
+  !>   m                  number of rows of the sparse CSR matrix.
+  !>   @param[in]
+  !>   n                  number of columns of the sparse CSR matrix.
+  !>   @param[in]
+  !>   csr_descr          descriptor of the sparse CSR matrix. Currently, only
+  !>                      `HIPSPARSE_MATRIX_TYPE_GENERAL` is supported.
+  !>   @param[in]
+  !>   csrVal             array of \p nnz elements containing the values of the sparse CSR matrix.
+  !>   @param[in]
+  !>   csrRowPtr integer array containing \p m+1 elements that point to the start of each row of the
+  !>   CSR matrix.
+  !>   @param[in]
+  !>   csrColInd integer array of the column indices for each non-zero element in the CSR matrix.
+  !>   @param[in]
+  !>   rowBlockDim        the row block dimension of the general BSR matrix. Between 1 and \p m.
+  !>   @param[in]
+  !>   colBlockDim        the col block dimension of the general BSR matrix. Between 1 and \p n.
+  !>   @param[out]
+  !>   pBufferSizeInBytes number of bytes of the temporary storage buffer required by
+  !>   `hipsparseXcsr2gebsrNnz` ()
+  !>                      and `hipsparseScsr2gebsr` "hipsparseXcsr2gebsr()".
+  !>
+  !>   \retval     HIPSPARSE_STATUS_SUCCESS the operation completed successfully.
+  !>   \retval HIPSPARSE_STATUS_INVALID_VALUE \p handle, \p m, \p n, \p rowBlockDim, \p colBlockDim,
+  !>   \p csrVal,
+  !>               \p csrRowPtr, \p csrColInd, or \p pBufferSizeInBytes pointer is invalid.
   interface hipsparseScsr2gebsr_bufferSize
 #ifdef USE_CUDA_NAMES
-    function hipsparseScsr2gebsr_bufferSize_(handle,dir,m,n,csr_descr,csr_val,csr_row_ptr,csr_col_ind,row_block_dim,col_block_dim,p_buffer_size) bind(c, name="cusparseScsr2gebsr_bufferSize")
+    function hipsparseScsr2gebsr_bufferSize_(handle,dir,m,n,csr_descr,csrVal,csrRowPtr,csrColInd,rowBlockDim,colBlockDim,pBufferSizeInBytes) bind(c, name="cusparseScsr2gebsr_bufferSize")
 #else
-    function hipsparseScsr2gebsr_bufferSize_(handle,dir,m,n,csr_descr,csr_val,csr_row_ptr,csr_col_ind,row_block_dim,col_block_dim,p_buffer_size) bind(c, name="hipsparseScsr2gebsr_bufferSize")
+    function hipsparseScsr2gebsr_bufferSize_(handle,dir,m,n,csr_descr,csrVal,csrRowPtr,csrColInd,rowBlockDim,colBlockDim,pBufferSizeInBytes) bind(c, name="hipsparseScsr2gebsr_bufferSize")
 #endif
       use iso_c_binding
       use hipfort_hipsparse_enums
-      use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseScsr2gebsr_bufferSize_
       type(c_ptr),value :: handle
@@ -15421,12 +16649,12 @@ module hipfort_hipsparse
       integer(c_int),value :: m
       integer(c_int),value :: n
       type(c_ptr),value :: csr_descr
-      type(c_ptr),value :: csr_val
-      type(c_ptr),value :: csr_row_ptr
-      type(c_ptr),value :: csr_col_ind
-      integer(c_int),value :: row_block_dim
-      integer(c_int),value :: col_block_dim
-      type(c_ptr),value :: p_buffer_size
+      type(c_ptr),value :: csrVal
+      type(c_ptr),value :: csrRowPtr
+      type(c_ptr),value :: csrColInd
+      integer(c_int),value :: rowBlockDim
+      integer(c_int),value :: colBlockDim
+      type(c_ptr),value :: pBufferSizeInBytes
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
@@ -15435,16 +16663,15 @@ module hipfort_hipsparse
       hipsparseScsr2gebsr_bufferSize_rank_1
 #endif
   end interface
-  
+
   interface hipsparseDcsr2gebsr_bufferSize
 #ifdef USE_CUDA_NAMES
-    function hipsparseDcsr2gebsr_bufferSize_(handle,dir,m,n,csr_descr,csr_val,csr_row_ptr,csr_col_ind,row_block_dim,col_block_dim,p_buffer_size) bind(c, name="cusparseDcsr2gebsr_bufferSize")
+    function hipsparseDcsr2gebsr_bufferSize_(handle,dir,m,n,csr_descr,csrVal,csrRowPtr,csrColInd,rowBlockDim,colBlockDim,pBufferSizeInBytes) bind(c, name="cusparseDcsr2gebsr_bufferSize")
 #else
-    function hipsparseDcsr2gebsr_bufferSize_(handle,dir,m,n,csr_descr,csr_val,csr_row_ptr,csr_col_ind,row_block_dim,col_block_dim,p_buffer_size) bind(c, name="hipsparseDcsr2gebsr_bufferSize")
+    function hipsparseDcsr2gebsr_bufferSize_(handle,dir,m,n,csr_descr,csrVal,csrRowPtr,csrColInd,rowBlockDim,colBlockDim,pBufferSizeInBytes) bind(c, name="hipsparseDcsr2gebsr_bufferSize")
 #endif
       use iso_c_binding
       use hipfort_hipsparse_enums
-      use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDcsr2gebsr_bufferSize_
       type(c_ptr),value :: handle
@@ -15452,12 +16679,12 @@ module hipfort_hipsparse
       integer(c_int),value :: m
       integer(c_int),value :: n
       type(c_ptr),value :: csr_descr
-      type(c_ptr),value :: csr_val
-      type(c_ptr),value :: csr_row_ptr
-      type(c_ptr),value :: csr_col_ind
-      integer(c_int),value :: row_block_dim
-      integer(c_int),value :: col_block_dim
-      type(c_ptr),value :: p_buffer_size
+      type(c_ptr),value :: csrVal
+      type(c_ptr),value :: csrRowPtr
+      type(c_ptr),value :: csrColInd
+      integer(c_int),value :: rowBlockDim
+      integer(c_int),value :: colBlockDim
+      type(c_ptr),value :: pBufferSizeInBytes
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
@@ -15466,16 +16693,15 @@ module hipfort_hipsparse
       hipsparseDcsr2gebsr_bufferSize_rank_1
 #endif
   end interface
-  
+
   interface hipsparseCcsr2gebsr_bufferSize
 #ifdef USE_CUDA_NAMES
-    function hipsparseCcsr2gebsr_bufferSize_(handle,dir,m,n,csr_descr,csr_val,csr_row_ptr,csr_col_ind,row_block_dim,col_block_dim,p_buffer_size) bind(c, name="cusparseCcsr2gebsr_bufferSize")
+    function hipsparseCcsr2gebsr_bufferSize_(handle,dir,m,n,csr_descr,csrVal,csrRowPtr,csrColInd,rowBlockDim,colBlockDim,pBufferSizeInBytes) bind(c, name="cusparseCcsr2gebsr_bufferSize")
 #else
-    function hipsparseCcsr2gebsr_bufferSize_(handle,dir,m,n,csr_descr,csr_val,csr_row_ptr,csr_col_ind,row_block_dim,col_block_dim,p_buffer_size) bind(c, name="hipsparseCcsr2gebsr_bufferSize")
+    function hipsparseCcsr2gebsr_bufferSize_(handle,dir,m,n,csr_descr,csrVal,csrRowPtr,csrColInd,rowBlockDim,colBlockDim,pBufferSizeInBytes) bind(c, name="hipsparseCcsr2gebsr_bufferSize")
 #endif
       use iso_c_binding
       use hipfort_hipsparse_enums
-      use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCcsr2gebsr_bufferSize_
       type(c_ptr),value :: handle
@@ -15483,12 +16709,12 @@ module hipfort_hipsparse
       integer(c_int),value :: m
       integer(c_int),value :: n
       type(c_ptr),value :: csr_descr
-      type(c_ptr),value :: csr_val
-      type(c_ptr),value :: csr_row_ptr
-      type(c_ptr),value :: csr_col_ind
-      integer(c_int),value :: row_block_dim
-      integer(c_int),value :: col_block_dim
-      type(c_ptr),value :: p_buffer_size
+      type(c_ptr),value :: csrVal
+      type(c_ptr),value :: csrRowPtr
+      type(c_ptr),value :: csrColInd
+      integer(c_int),value :: rowBlockDim
+      integer(c_int),value :: colBlockDim
+      type(c_ptr),value :: pBufferSizeInBytes
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
@@ -15497,16 +16723,15 @@ module hipfort_hipsparse
       hipsparseCcsr2gebsr_bufferSize_rank_1
 #endif
   end interface
-  
+
   interface hipsparseZcsr2gebsr_bufferSize
 #ifdef USE_CUDA_NAMES
-    function hipsparseZcsr2gebsr_bufferSize_(handle,dir,m,n,csr_descr,csr_val,csr_row_ptr,csr_col_ind,row_block_dim,col_block_dim,p_buffer_size) bind(c, name="cusparseZcsr2gebsr_bufferSize")
+    function hipsparseZcsr2gebsr_bufferSize_(handle,dir,m,n,csr_descr,csrVal,csrRowPtr,csrColInd,rowBlockDim,colBlockDim,pBufferSizeInBytes) bind(c, name="cusparseZcsr2gebsr_bufferSize")
 #else
-    function hipsparseZcsr2gebsr_bufferSize_(handle,dir,m,n,csr_descr,csr_val,csr_row_ptr,csr_col_ind,row_block_dim,col_block_dim,p_buffer_size) bind(c, name="hipsparseZcsr2gebsr_bufferSize")
+    function hipsparseZcsr2gebsr_bufferSize_(handle,dir,m,n,csr_descr,csrVal,csrRowPtr,csrColInd,rowBlockDim,colBlockDim,pBufferSizeInBytes) bind(c, name="hipsparseZcsr2gebsr_bufferSize")
 #endif
       use iso_c_binding
       use hipfort_hipsparse_enums
-      use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZcsr2gebsr_bufferSize_
       type(c_ptr),value :: handle
@@ -15514,12 +16739,12 @@ module hipfort_hipsparse
       integer(c_int),value :: m
       integer(c_int),value :: n
       type(c_ptr),value :: csr_descr
-      type(c_ptr),value :: csr_val
-      type(c_ptr),value :: csr_row_ptr
-      type(c_ptr),value :: csr_col_ind
-      integer(c_int),value :: row_block_dim
-      integer(c_int),value :: col_block_dim
-      type(c_ptr),value :: p_buffer_size
+      type(c_ptr),value :: csrVal
+      type(c_ptr),value :: csrRowPtr
+      type(c_ptr),value :: csrColInd
+      integer(c_int),value :: rowBlockDim
+      integer(c_int),value :: colBlockDim
+      type(c_ptr),value :: pBufferSizeInBytes
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
@@ -15528,20 +16753,155 @@ module hipfort_hipsparse
       hipsparseZcsr2gebsr_bufferSize_rank_1
 #endif
   end interface
+
   !>  \ingroup conv_module
   !>   \brief
-  !>   This function computes the number of nonzero block columns per row and the total number of nonzero blocks in a sparse
-  !>   GEneral BSR matrix given a sparse CSR matrix as input.
+  !>   This function computes the number of non-zero block columns per row and the total number of
+  !>   non-zero blocks in a sparse
+  !>   GEBSR matrix given a sparse CSR matrix as input.
   !>
+  !>   \details
+  !>   This is the second step in converting a CSR matrix to a GEBSR matrix. The user must first
+  !>   call
+  !>   `hipsparseScsr2gebsr_bufferSize` "hipsparseXcsr2gebsr_bufferSize()" to determine the size of
+  !>   the required temporary storage buffer. The user then allocates this buffer as well as the
+  !>   \p bsrRowPtr array ( size \p mb+1 ) and passes both to \p `hipsparseXcsr2gebsrNnz()`. This
+  !>   second
+  !>   step then computes the number of non-zero block columns per row and the total number of
+  !>   non-zero blocks.
+  !>
+  !>   In general, when converting a CSR matrix of size \p m x \p n to a GEBSR matrix, the resulting
+  !>   GEBSR matrix will have size
+  !>   \p mb x \p nb, where \p mb and \p nb equal:
+  !>   \f[
+  !>     \begin{align}
+  !>     \text{mb} &= \text{(m - 1) / rowBlockDim + 1} \\%
+  !>     \text{nb} &= \text{(n - 1) / colBlockDim + 1}
+  !>     \end{align}
+  !>   \f]
+  !>
+  !>   For example, given a matrix:
+  !>   \f[
+  !>     \begin{bmatrix}
+  !>     1 & 0 & 0 & 2 & 4 & 0 \\%
+  !>     3 & 4 & 0 & 0 & 5 & 1 \\%
+  !>     5 & 0 & 6 & 7 & 6 & 2
+  !>     \end{bmatrix}
+  !>   \f]
+  !>
+  !>   represented in CSR format with the arrays:
+  !>   \f[
+  !>     \begin{align}
+  !>     \text{csrRowPtr} &= \begin{bmatrix} 0 & 3 & 7 & 12 \end{bmatrix} \\%
+  !>     \text{csrColInd} &= \begin{bmatrix} 0 & 3 & 4 & 0 & 1 & 4 & 5 & 0 & 2 & 3 & 4 & 5
+  !>     \end{bmatrix} \\%
+  !>     \text{csrVal} &= \begin{bmatrix} 1 & 2 & 4 & 3 & 4 & 5 & 1 & 5 & 6 & 7 & 6 & 2
+  !>     \end{bmatrix}
+  !>     \end{align}
+  !>   \f]
+  !>
+  !>   the \p bsrRowPtr array and total non-zero block count will be filled with:
+  !>   \f[
+  !>     \begin{align}
+  !>     \text{bsrRowPtr} &= \begin{bmatrix} 0 & 3 \end{bmatrix} \\%
+  !>     \text{*bsrNnzDevhost} &= 3
+  !>     \end{align}
+  !>   \f]
+  !>
+  !>   after calling \p hipsparseXcsr2gebsrNnz with \p rowBlockDim=3 and \p colBlockDim=2.
+  !>
+  !>   \note
+  !>   As indicated, \p bsrNnzDevhost can point either to host or device memory. This is controlled
+  !>   by setting the pointer mode. See `hipsparseSetPointerMode`().
+  !>
+  !>   It might be the case that \p rowBlockDim does not divide evenly into \p m and/or that \p
+  !>   colBlockDim does not divide
+  !>   evenly into \p n. In these cases, the CSR matrix is expanded in size to fit full GEBSR
+  !>   blocks. For example,
+  !>   using the original CSR matrix but this time with \p rowBlockDim=2 and \p colBlockDim=3, the
+  !>   function
+  !>   \p hipsparseXcsr2gebsrNnz computes the GEBSR row pointer array and total number of non-zero
+  !>   blocks for the GEBSR matrix:
+  !>
+  !>   \f[
+  !>    \left[
+  !>     \begin{array}{c | c}
+  !>       \begin{array}{c c c}
+  !>        1 & 0 & 0 \\%
+  !>        3 & 4 & 0
+  !>       \end{array} &
+  !>       \begin{array}{c c c}
+  !>        2 & 4 & 0 \\%
+  !>        0 & 5 & 1
+  !>       \end{array} \\%
+  !>     \hline
+  !>       \begin{array}{c c c}
+  !>        5 & 0 & 6 \\%
+  !>        0 & 0 & 0
+  !>       \end{array} &
+  !>       \begin{array}{c c c}
+  !>        7 & 6 & 2 \\%
+  !>        0 & 0 & 0
+  !>       \end{array}
+  !>    \end{array}
+  !>   \right]
+  !>   \f]
+  !>
+  !>   See `hipsparseScsr2gebsr()` for a full code example.
+  !>
+  !>   @param[in]
+  !>   handle        handle to the hipSPARSE library context queue.
+  !>   @param[in]
+  !>   dir direction that specifies whether to count non-zero elements by `HIPSPARSE_DIRECTION_ROW`
+  !>   or by
+  !>                 `HIPSPARSE_DIRECTION_COLUMN`.
+  !>   @param[in]
+  !>   m             number of rows of the sparse CSR matrix.
+  !>   @param[in]
+  !>   n             number of columns of the sparse CSR matrix.
+  !>   @param[in]
+  !>   csr_descr     descriptor of the sparse CSR matrix. Currently, only
+  !>                 `HIPSPARSE_MATRIX_TYPE_GENERAL` is supported.
+  !>   @param[in]
+  !>   csrRowPtr integer array containing \p m+1 elements that point to the start of each row of the
+  !>   CSR matrix.
+  !>   @param[in]
+  !>   csrColInd integer array of the column indices for each non-zero element in the CSR matrix.
+  !>   @param[in]
+  !>   bsr_descr     descriptor of the sparse general BSR matrix. Currently, only
+  !>                 `HIPSPARSE_MATRIX_TYPE_GENERAL` is supported.
+  !>   @param[out]
+  !>   bsrRowPtr integer array containing \p mb+1 elements that point to the start of each block row
+  !>   of the general BSR matrix.
+  !>
+  !>   @param[in]
+  !>   rowBlockDim the row block dimension of the general BSR matrix, which is between \f$1\f$ and
+  !>   \f$\min(m, n)\f$.
+  !>
+  !>   @param[in]
+  !>   colBlockDim the col block dimension of the general BSR matrix, which is between \f$1\f$ and
+  !>   \f$\min(m, n)\f$.
+  !>
+  !>   @param[out]
+  !>   bsrNnzDevhost total number of non-zero elements in device or host memory.
+  !>
+  !>   @param[in]
+  !>   pbuffer buffer allocated by the user whose size is determined by calling
+  !>   `hipsparseScsr2gebsr_bufferSize`
+  !>                 "hipsparseXcsr2gebsr_bufferSize()".
+  !>
+  !>   \retval     HIPSPARSE_STATUS_SUCCESS the operation completed successfully.
+  !>   \retval HIPSPARSE_STATUS_INVALID_VALUE \p handle, \p m, \p n, \p rowBlockDim, \p colBlockDim,
+  !>   \p csrRowPtr,
+  !>               \p csrColInd, \p bsrRowPtr, or \p bsrNnzDevhost pointer is invalid.
   interface hipsparseXcsr2gebsrNnz
 #ifdef USE_CUDA_NAMES
-    function hipsparseXcsr2gebsrNnz_(handle,dir,m,n,csr_descr,csr_row_ptr,csr_col_ind,bsr_descr,bsr_row_ptr,row_block_dim,col_block_dim,bsr_nnz_devhost,p_buffer) bind(c, name="cusparseXcsr2gebsrNnz")
+    function hipsparseXcsr2gebsrNnz_(handle,dir,m,n,csr_descr,csrRowPtr,csrColInd,bsr_descr,bsrRowPtr,rowBlockDim,colBlockDim,bsrNnzDevhost,pbuffer) bind(c, name="cusparseXcsr2gebsrNnz")
 #else
-    function hipsparseXcsr2gebsrNnz_(handle,dir,m,n,csr_descr,csr_row_ptr,csr_col_ind,bsr_descr,bsr_row_ptr,row_block_dim,col_block_dim,bsr_nnz_devhost,p_buffer) bind(c, name="hipsparseXcsr2gebsrNnz")
+    function hipsparseXcsr2gebsrNnz_(handle,dir,m,n,csr_descr,csrRowPtr,csrColInd,bsr_descr,bsrRowPtr,rowBlockDim,colBlockDim,bsrNnzDevhost,pbuffer) bind(c, name="hipsparseXcsr2gebsrNnz")
 #endif
       use iso_c_binding
       use hipfort_hipsparse_enums
-      use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseXcsr2gebsrNnz_
       type(c_ptr),value :: handle
@@ -15549,14 +16909,14 @@ module hipfort_hipsparse
       integer(c_int),value :: m
       integer(c_int),value :: n
       type(c_ptr),value :: csr_descr
-      type(c_ptr),value :: csr_row_ptr
-      type(c_ptr),value :: csr_col_ind
+      type(c_ptr),value :: csrRowPtr
+      type(c_ptr),value :: csrColInd
       type(c_ptr),value :: bsr_descr
-      type(c_ptr),value :: bsr_row_ptr
-      integer(c_int),value :: row_block_dim
-      integer(c_int),value :: col_block_dim
-      type(c_ptr),value :: bsr_nnz_devhost
-      type(c_ptr),value :: p_buffer
+      type(c_ptr),value :: bsrRowPtr
+      integer(c_int),value :: rowBlockDim
+      integer(c_int),value :: colBlockDim
+      type(c_ptr),value :: bsrNnzDevhost
+      type(c_ptr),value :: pbuffer
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
@@ -15565,15 +16925,195 @@ module hipfort_hipsparse
       hipsparseXcsr2gebsrNnz_rank_1
 #endif
   end interface
+
+  !>  \ingroup conv_module
+  !>   \brief Convert a sparse CSR matrix into a sparse GEBSR matrix.
+  !>
+  !>   \details
+  !>   \p hipsparseXcsr2gebsr converts a CSR matrix into a GEBSR matrix. It is assumed
+  !>   that \p bsrVal, \p bsrColInd, and \p bsrRowPtr are allocated. Allocation size
+  !>   for \p bsrRowPtr is computed as \p mb+1, where \p mb is the number of block rows in
+  !>   the GEBSR matrix. The number of non-zero blocks in the resulting GEBSR matrix
+  !>   is computed using `hipsparseXcsr2gebsrNnz`, which also fills in \p bsrRowPtr.
+  !>
+  !>   In more detail, \p hipsparseXcsr2gebsr is the third and final step of the conversion from CSR
+  !>   to GEBSR.
+  !>   The user first determines the size of the required user-allocated temporary storage buffer
+  !>   using
+  !>   `hipsparseScsr2gebsr_bufferSize` "hipsparseXcsr2gebsr_bufferSize()". The user then allocates
+  !>   this buffer
+  !>   as well as the row pointer array \p bsrRowPtr with size \p mb+1, where \p mb is the number of
+  !>   block rows
+  !>   in the GEBSR matrix and \p nb is the number of block columns in GEBSR matrix:
+  !>
+  !>   \f[
+  !>     \begin{align}
+  !>     \text{mb} &= \text{(m - 1) / rowBlockDim + 1} \\%
+  !>     \text{nb} &= \text{(n - 1) / colBlockDim + 1}
+  !>     \end{align}
+  !>   \f]
+  !>
+  !>   Both the temporary storage buffer and the GEBSR row pointer array are then passed to
+  !>   `hipsparseXcsr2gebsrNnz`,
+  !>   which fills the GEBSR row pointer array \p bsrRowPtr and also computes the number of non-zero
+  !>   blocks,
+  !>   \p bsrNnzDevhost, that will exist in the GEBSR matrix. The user then allocates both the GEBSR
+  !>   column indices array
+  !>   \p bsrColInd with size \p bsrNnzDevhost as well as the GEBSR values array \p bsrVal with size
+  !>   \p bsrNnzDevhost*rowBlockDim*colBlockDim. Finally, with all arrays allocated, the conversion
+  !>   is completed by calling
+  !>   \p hipsparseXcsr2gebsr.
+  !>
+  !>   For example, assuming the matrix:
+  !>   \f[
+  !>     \begin{bmatrix}
+  !>     1 & 0 & 0 & 2 & 4 & 0 \\%
+  !>     3 & 4 & 0 & 0 & 5 & 1 \\%
+  !>     5 & 0 & 6 & 7 & 6 & 2
+  !>     \end{bmatrix}
+  !>   \f]
+  !>
+  !>   represented in CSR format with the arrays:
+  !>   \f[
+  !>     \begin{align}
+  !>     \text{csrRowPtr} &= \begin{bmatrix} 0 & 3 & 7 & 12 \end{bmatrix} \\%
+  !>     \text{csrColInd} &= \begin{bmatrix} 0 & 3 & 4 & 0 & 1 & 4 & 5 & 0 & 2 & 3 & 4 & 5
+  !>     \end{bmatrix} \\%
+  !>     \text{csrVal} &= \begin{bmatrix} 1 & 2 & 4 & 3 & 4 & 5 & 1 & 5 & 6 & 7 & 6 & 2
+  !>     \end{bmatrix}
+  !>     \end{align}
+  !>   \f]
+  !>
+  !>   then using \p rowBlockDim=3 and \p colBlockDim=2, the final GEBSR matrix is:
+  !>   \f[
+  !>    \left[
+  !>     \begin{array}{c | c}
+  !>       \begin{array}{c c}
+  !>        1 & 0 \\%
+  !>        3 & 4 \\%
+  !>        3 & 0
+  !>       \end{array} &
+  !>       \begin{array}{c c}
+  !>        0 & 2 \\%
+  !>        0 & 0 \\%
+  !>        6 & 7
+  !>       \end{array} &
+  !>       \begin{array}{c c}
+  !>        4 & 0 \\%
+  !>        5 & 1 \\%
+  !>        6 & 2
+  !>       \end{array}
+  !>    \end{array}
+  !>   \right]
+  !>   \f]
+  !>
+  !>   and is represented with the arrays:
+  !>   \f[
+  !>     \begin{align}
+  !>     \text{bsrRowPtr} &= \begin{bmatrix} 0 & 3 \end{bmatrix} \\%
+  !>     \text{bsrColInd} &= \begin{bmatrix} 0 & 1 & 2 \end{bmatrix} \\%
+  !>     \text{bsrVal} &= \begin{bmatrix} 1 & 0 & 3 & 4 & 3 & 0 & 0 & 2 & 0 & 0 & 6 & 7 & 4 & 0 & 5
+  !>     & 1 & 6 & 2 \end{bmatrix}
+  !>     \end{align}
+  !>   \f]
+  !>
+  !>   The above example assumes that the blocks are row ordered. If instead the blocks are column
+  !>   ordered, the \p bsrVal arrays
+  !>   become:
+  !>   \f[
+  !>     \begin{align}
+  !>     \text{bsrVal} &= \begin{bmatrix} 1 & 3 & 3 & 0 & 4 & 0 & 0 & 0 & 6 & 2 & 0 & 7 & 4 & 5 & 6
+  !>     & 0 & 1 & 2 \end{bmatrix}
+  !>     \end{align}
+  !>   \f]
+  !>
+  !>   The block order direction is determined by \p dir.
+  !>
+  !>   It might be the case that \p rowBlockDim does not divide evenly into \p m and/or that \p
+  !>   colBlockDim does not divide
+  !>   evenly into \p n. In these cases, the CSR matrix is expanded in size to fit full GEBSR
+  !>   blocks. For example,
+  !>   using the original CSR matrix but this time with \p rowBlockDim=2 and \p colBlockDim=3, the
+  !>   resulting GEBSR matrix
+  !>   would look like:
+  !>
+  !>   \f[
+  !>    \left[
+  !>     \begin{array}{c | c}
+  !>       \begin{array}{c c c}
+  !>        1 & 0 & 0 \\%
+  !>        3 & 4 & 0
+  !>       \end{array} &
+  !>       \begin{array}{c c c}
+  !>        2 & 4 & 0 \\%
+  !>        0 & 5 & 1
+  !>       \end{array} \\%
+  !>     \hline
+  !>       \begin{array}{c c c}
+  !>        5 & 0 & 6 \\%
+  !>        0 & 0 & 0
+  !>       \end{array} &
+  !>       \begin{array}{c c c}
+  !>        7 & 6 & 2 \\%
+  !>        0 & 0 & 0
+  !>       \end{array}
+  !>    \end{array}
+  !>   \right]
+  !>   \f]
+  !>
+  !>   @param[in]
+  !>   handle       handle to the hipSPARSE library context queue.
+  !>   @param[in]
+  !>   dir the storage format of the blocks, `HIPSPARSE_DIRECTION_ROW` or
+  !>   `HIPSPARSE_DIRECTION_COLUMN`.
+  !>   @param[in]
+  !>   m            number of rows in the sparse CSR matrix.
+  !>   @param[in]
+  !>   n            number of columns in the sparse CSR matrix.
+  !>   @param[in]
+  !>   csr_descr    descriptor of the sparse CSR matrix. Currently, only
+  !>                `HIPSPARSE_MATRIX_TYPE_GENERAL` is supported.
+  !>   @param[in]
+  !>   csrVal       array of \p nnz elements containing the values of the sparse CSR matrix.
+  !>   @param[in]
+  !>   csrRowPtr    array of \p m+1 elements that point to the start of every row of the
+  !>                sparse CSR matrix.
+  !>   @param[in]
+  !>   csrColInd    array of \p nnz elements containing the column indices of the sparse CSR matrix.
+  !>   @param[in]
+  !>   bsr_descr    descriptor of the sparse BSR matrix. Currently, only
+  !>                `HIPSPARSE_MATRIX_TYPE_GENERAL` is supported.
+  !>   @param[out]
+  !>   bsrVal array of \p nnzb* \p rowBlockDim* \p colBlockDim containing the values of the sparse
+  !>   BSR matrix.
+  !>   @param[out]
+  !>   bsrRowPtr    array of \p mb+1 elements that point to the start of every block row of the
+  !>                sparse BSR matrix.
+  !>   @param[out]
+  !>   bsrColInd array of \p nnzb elements containing the block column indices of the sparse BSR
+  !>   matrix.
+  !>   @param[in]
+  !>   rowBlockDim  row size of the blocks in the sparse general BSR matrix.
+  !>   @param[in]
+  !>   colBlockDim  col size of the blocks in the sparse general BSR matrix.
+  !>   @param[in]
+  !>   pbuffer buffer allocated by the user. The buffer size is determined by calling
+  !>   `hipsparseScsr2gebsr_bufferSize`
+  !>                "hipsparseXcsr2gebsr_bufferSize()".
+  !>
+  !>   \retval     HIPSPARSE_STATUS_SUCCESS the operation completed successfully.
+  !>   \retval HIPSPARSE_STATUS_INVALID_VALUE \p handle, \p m, \p n, \p rowBlockDim, \p colBlockDim,
+  !>   \p bsrVal,
+  !>               \p bsrRowPtr, \p bsrColInd, \p csrVal, \p csrRowPtr, or \p csrColInd pointer is
+  !>               invalid.
   interface hipsparseScsr2gebsr
 #ifdef USE_CUDA_NAMES
-    function hipsparseScsr2gebsr_(handle,dir,m,n,csr_descr,csr_val,csr_row_ptr,csr_col_ind,bsr_descr,bsr_val,bsr_row_ptr,bsr_col_ind,row_block_dim,col_block_dim,p_buffer) bind(c, name="cusparseScsr2gebsr")
+    function hipsparseScsr2gebsr_(handle,dir,m,n,csr_descr,csrVal,csrRowPtr,csrColInd,bsr_descr,bsrVal,bsrRowPtr,bsrColInd,rowBlockDim,colBlockDim,pbuffer) bind(c, name="cusparseScsr2gebsr")
 #else
-    function hipsparseScsr2gebsr_(handle,dir,m,n,csr_descr,csr_val,csr_row_ptr,csr_col_ind,bsr_descr,bsr_val,bsr_row_ptr,bsr_col_ind,row_block_dim,col_block_dim,p_buffer) bind(c, name="hipsparseScsr2gebsr")
+    function hipsparseScsr2gebsr_(handle,dir,m,n,csr_descr,csrVal,csrRowPtr,csrColInd,bsr_descr,bsrVal,bsrRowPtr,bsrColInd,rowBlockDim,colBlockDim,pbuffer) bind(c, name="hipsparseScsr2gebsr")
 #endif
       use iso_c_binding
       use hipfort_hipsparse_enums
-      use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseScsr2gebsr_
       type(c_ptr),value :: handle
@@ -15581,16 +17121,16 @@ module hipfort_hipsparse
       integer(c_int),value :: m
       integer(c_int),value :: n
       type(c_ptr),value :: csr_descr
-      type(c_ptr),value :: csr_val
-      type(c_ptr),value :: csr_row_ptr
-      type(c_ptr),value :: csr_col_ind
+      type(c_ptr),value :: csrVal
+      type(c_ptr),value :: csrRowPtr
+      type(c_ptr),value :: csrColInd
       type(c_ptr),value :: bsr_descr
-      type(c_ptr),value :: bsr_val
-      type(c_ptr),value :: bsr_row_ptr
-      type(c_ptr),value :: bsr_col_ind
-      integer(c_int),value :: row_block_dim
-      integer(c_int),value :: col_block_dim
-      type(c_ptr),value :: p_buffer
+      type(c_ptr),value :: bsrVal
+      type(c_ptr),value :: bsrRowPtr
+      type(c_ptr),value :: bsrColInd
+      integer(c_int),value :: rowBlockDim
+      integer(c_int),value :: colBlockDim
+      type(c_ptr),value :: pbuffer
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
@@ -15599,7 +17139,7 @@ module hipfort_hipsparse
       hipsparseScsr2gebsr_rank_1
 #endif
   end interface
-  
+
   interface hipsparseDcsr2gebsr
 #ifdef USE_CUDA_NAMES
     function hipsparseDcsr2gebsr_(handle,dir,m,n,csr_descr,csr_val,csr_row_ptr,csr_col_ind,bsr_descr,bsr_val,bsr_row_ptr,bsr_col_ind,row_block_dim,col_block_dim,p_buffer) bind(c, name="cusparseDcsr2gebsr")
@@ -31348,31 +32888,9 @@ module hipfort_hipsparse
       hipsparseSpruneDense2csr_bufferSizeExt_rank_1 = hipsparseSpruneDense2csr_bufferSizeExt_(handle,m,n,c_loc(A),lda,threshold,descr,c_loc(csrVal),c_loc(csrRowPtr),c_loc(csrColInd),c_loc(pBufferSizeInBytes))
     end function
 
-    function hipsparseDpruneDense2csr_bufferSizeExt_full_rank(handle,m,n,A,lda,threshold,descr,csrVal,csrRowPtr,csrColInd,bufferSize)
+    function hipsparseDpruneDense2csr_bufferSizeExt_rank_0(handle,m,n,A,lda,threshold,descr,csrVal,csrRowPtr,csrColInd,pBufferSizeInBytes)
       use iso_c_binding
       use hipfort_hipsparse_enums
-      use hipfort_enums
-      implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDpruneDense2csr_bufferSizeExt_full_rank
-      type(c_ptr) :: handle
-      integer(c_int) :: m
-      integer(c_int) :: n
-      real(c_double),target,dimension(:,:) :: A
-      integer(c_int) :: lda
-      real(c_double) :: threshold
-      type(c_ptr) :: descr
-      real(c_double),target,dimension(:) :: csrVal
-      integer(c_int),target,dimension(:) :: csrRowPtr
-      integer(c_int),target,dimension(:) :: csrColInd
-      integer(c_size_t),target,dimension(:) :: bufferSize
-      !
-      hipsparseDpruneDense2csr_bufferSizeExt_full_rank = hipsparseDpruneDense2csr_bufferSizeExt_(handle,m,n,c_loc(A),lda,threshold,descr,c_loc(csrVal),c_loc(csrRowPtr),c_loc(csrColInd),c_loc(bufferSize))
-    end function
-
-    function hipsparseDpruneDense2csr_bufferSizeExt_rank_0(handle,m,n,A,lda,threshold,descr,csrVal,csrRowPtr,csrColInd,bufferSize)
-      use iso_c_binding
-      use hipfort_hipsparse_enums
-      use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDpruneDense2csr_bufferSizeExt_rank_0
       type(c_ptr) :: handle
@@ -31385,15 +32903,14 @@ module hipfort_hipsparse
       real(c_double),target :: csrVal
       integer(c_int),target :: csrRowPtr
       integer(c_int),target :: csrColInd
-      integer(c_size_t),target :: bufferSize
+      integer(c_size_t),target :: pBufferSizeInBytes
       !
-      hipsparseDpruneDense2csr_bufferSizeExt_rank_0 = hipsparseDpruneDense2csr_bufferSizeExt_(handle,m,n,c_loc(A),lda,threshold,descr,c_loc(csrVal),c_loc(csrRowPtr),c_loc(csrColInd),c_loc(bufferSize))
+      hipsparseDpruneDense2csr_bufferSizeExt_rank_0 = hipsparseDpruneDense2csr_bufferSizeExt_(handle,m,n,c_loc(A),lda,threshold,descr,c_loc(csrVal),c_loc(csrRowPtr),c_loc(csrColInd),c_loc(pBufferSizeInBytes))
     end function
 
-    function hipsparseDpruneDense2csr_bufferSizeExt_rank_1(handle,m,n,A,lda,threshold,descr,csrVal,csrRowPtr,csrColInd,bufferSize)
+    function hipsparseDpruneDense2csr_bufferSizeExt_rank_1(handle,m,n,A,lda,threshold,descr,csrVal,csrRowPtr,csrColInd,pBufferSizeInBytes)
       use iso_c_binding
       use hipfort_hipsparse_enums
-      use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDpruneDense2csr_bufferSizeExt_rank_1
       type(c_ptr) :: handle
@@ -31406,35 +32923,14 @@ module hipfort_hipsparse
       real(c_double),target,dimension(:) :: csrVal
       integer(c_int),target,dimension(:) :: csrRowPtr
       integer(c_int),target,dimension(:) :: csrColInd
-      integer(c_size_t),target,dimension(:) :: bufferSize
+      integer(c_size_t),target,dimension(:) :: pBufferSizeInBytes
       !
-      hipsparseDpruneDense2csr_bufferSizeExt_rank_1 = hipsparseDpruneDense2csr_bufferSizeExt_(handle,m,n,c_loc(A),lda,threshold,descr,c_loc(csrVal),c_loc(csrRowPtr),c_loc(csrColInd),c_loc(bufferSize))
-    end function
-
-    function hipsparseSpruneDense2csrNnz_full_rank(handle,m,n,A,lda,threshold,descr,csrRowPtr,nnzTotalDevHostPtr,buffer)
-      use iso_c_binding
-      use hipfort_hipsparse_enums
-      use hipfort_enums
-      implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSpruneDense2csrNnz_full_rank
-      type(c_ptr) :: handle
-      integer(c_int) :: m
-      integer(c_int) :: n
-      real(c_float),target,dimension(:,:) :: A
-      integer(c_int) :: lda
-      real(c_float) :: threshold
-      type(c_ptr) :: descr
-      integer(c_int),target,dimension(:) :: csrRowPtr
-      integer(c_int) :: nnzTotalDevHostPtr
-      type(c_ptr) :: buffer
-      !
-      hipsparseSpruneDense2csrNnz_full_rank = hipsparseSpruneDense2csrNnz_(handle,m,n,c_loc(A),lda,threshold,descr,c_loc(csrRowPtr),nnzTotalDevHostPtr,buffer)
+      hipsparseDpruneDense2csr_bufferSizeExt_rank_1 = hipsparseDpruneDense2csr_bufferSizeExt_(handle,m,n,c_loc(A),lda,threshold,descr,c_loc(csrVal),c_loc(csrRowPtr),c_loc(csrColInd),c_loc(pBufferSizeInBytes))
     end function
 
     function hipsparseSpruneDense2csrNnz_rank_0(handle,m,n,A,lda,threshold,descr,csrRowPtr,nnzTotalDevHostPtr,buffer)
       use iso_c_binding
       use hipfort_hipsparse_enums
-      use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSpruneDense2csrNnz_rank_0
       type(c_ptr) :: handle
@@ -31454,7 +32950,6 @@ module hipfort_hipsparse
     function hipsparseSpruneDense2csrNnz_rank_1(handle,m,n,A,lda,threshold,descr,csrRowPtr,nnzTotalDevHostPtr,buffer)
       use iso_c_binding
       use hipfort_hipsparse_enums
-      use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSpruneDense2csrNnz_rank_1
       type(c_ptr) :: handle
@@ -31471,30 +32966,9 @@ module hipfort_hipsparse
       hipsparseSpruneDense2csrNnz_rank_1 = hipsparseSpruneDense2csrNnz_(handle,m,n,c_loc(A),lda,threshold,descr,c_loc(csrRowPtr),nnzTotalDevHostPtr,buffer)
     end function
 
-    function hipsparseDpruneDense2csrNnz_full_rank(handle,m,n,A,lda,threshold,descr,csrRowPtr,nnzTotalDevHostPtr,buffer)
-      use iso_c_binding
-      use hipfort_hipsparse_enums
-      use hipfort_enums
-      implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDpruneDense2csrNnz_full_rank
-      type(c_ptr) :: handle
-      integer(c_int) :: m
-      integer(c_int) :: n
-      real(c_double),target,dimension(:,:) :: A
-      integer(c_int) :: lda
-      real(c_double) :: threshold
-      type(c_ptr) :: descr
-      integer(c_int),target,dimension(:) :: csrRowPtr
-      integer(c_int) :: nnzTotalDevHostPtr
-      type(c_ptr) :: buffer
-      !
-      hipsparseDpruneDense2csrNnz_full_rank = hipsparseDpruneDense2csrNnz_(handle,m,n,c_loc(A),lda,threshold,descr,c_loc(csrRowPtr),nnzTotalDevHostPtr,buffer)
-    end function
-
     function hipsparseDpruneDense2csrNnz_rank_0(handle,m,n,A,lda,threshold,descr,csrRowPtr,nnzTotalDevHostPtr,buffer)
       use iso_c_binding
       use hipfort_hipsparse_enums
-      use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDpruneDense2csrNnz_rank_0
       type(c_ptr) :: handle
@@ -31514,7 +32988,6 @@ module hipfort_hipsparse
     function hipsparseDpruneDense2csrNnz_rank_1(handle,m,n,A,lda,threshold,descr,csrRowPtr,nnzTotalDevHostPtr,buffer)
       use iso_c_binding
       use hipfort_hipsparse_enums
-      use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDpruneDense2csrNnz_rank_1
       type(c_ptr) :: handle
@@ -31531,31 +33004,9 @@ module hipfort_hipsparse
       hipsparseDpruneDense2csrNnz_rank_1 = hipsparseDpruneDense2csrNnz_(handle,m,n,c_loc(A),lda,threshold,descr,c_loc(csrRowPtr),nnzTotalDevHostPtr,buffer)
     end function
 
-    function hipsparseSpruneDense2csr_full_rank(handle,m,n,A,lda,threshold,descr,csrVal,csrRowPtr,csrColInd,buffer)
-      use iso_c_binding
-      use hipfort_hipsparse_enums
-      use hipfort_enums
-      implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSpruneDense2csr_full_rank
-      type(c_ptr) :: handle
-      integer(c_int) :: m
-      integer(c_int) :: n
-      real(c_float),target,dimension(:,:) :: A
-      integer(c_int) :: lda
-      real(c_float) :: threshold
-      type(c_ptr) :: descr
-      real(c_float),target,dimension(:) :: csrVal
-      integer(c_int),target,dimension(:) :: csrRowPtr
-      integer(c_int),target,dimension(:) :: csrColInd
-      type(c_ptr) :: buffer
-      !
-      hipsparseSpruneDense2csr_full_rank = hipsparseSpruneDense2csr_(handle,m,n,c_loc(A),lda,threshold,descr,c_loc(csrVal),c_loc(csrRowPtr),c_loc(csrColInd),buffer)
-    end function
-
     function hipsparseSpruneDense2csr_rank_0(handle,m,n,A,lda,threshold,descr,csrVal,csrRowPtr,csrColInd,buffer)
       use iso_c_binding
       use hipfort_hipsparse_enums
-      use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSpruneDense2csr_rank_0
       type(c_ptr) :: handle
@@ -31576,7 +33027,6 @@ module hipfort_hipsparse
     function hipsparseSpruneDense2csr_rank_1(handle,m,n,A,lda,threshold,descr,csrVal,csrRowPtr,csrColInd,buffer)
       use iso_c_binding
       use hipfort_hipsparse_enums
-      use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSpruneDense2csr_rank_1
       type(c_ptr) :: handle
@@ -31594,31 +33044,9 @@ module hipfort_hipsparse
       hipsparseSpruneDense2csr_rank_1 = hipsparseSpruneDense2csr_(handle,m,n,c_loc(A),lda,threshold,descr,c_loc(csrVal),c_loc(csrRowPtr),c_loc(csrColInd),buffer)
     end function
 
-    function hipsparseDpruneDense2csr_full_rank(handle,m,n,A,lda,threshold,descr,csrVal,csrRowPtr,csrColInd,buffer)
-      use iso_c_binding
-      use hipfort_hipsparse_enums
-      use hipfort_enums
-      implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDpruneDense2csr_full_rank
-      type(c_ptr) :: handle
-      integer(c_int) :: m
-      integer(c_int) :: n
-      real(c_double),target,dimension(:,:) :: A
-      integer(c_int) :: lda
-      real(c_double) :: threshold
-      type(c_ptr) :: descr
-      real(c_double),target,dimension(:) :: csrVal
-      integer(c_int),target,dimension(:) :: csrRowPtr
-      integer(c_int),target,dimension(:) :: csrColInd
-      type(c_ptr) :: buffer
-      !
-      hipsparseDpruneDense2csr_full_rank = hipsparseDpruneDense2csr_(handle,m,n,c_loc(A),lda,threshold,descr,c_loc(csrVal),c_loc(csrRowPtr),c_loc(csrColInd),buffer)
-    end function
-
     function hipsparseDpruneDense2csr_rank_0(handle,m,n,A,lda,threshold,descr,csrVal,csrRowPtr,csrColInd,buffer)
       use iso_c_binding
       use hipfort_hipsparse_enums
-      use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDpruneDense2csr_rank_0
       type(c_ptr) :: handle
@@ -31639,7 +33067,6 @@ module hipfort_hipsparse
     function hipsparseDpruneDense2csr_rank_1(handle,m,n,A,lda,threshold,descr,csrVal,csrRowPtr,csrColInd,buffer)
       use iso_c_binding
       use hipfort_hipsparse_enums
-      use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDpruneDense2csr_rank_1
       type(c_ptr) :: handle
@@ -31657,32 +33084,9 @@ module hipfort_hipsparse
       hipsparseDpruneDense2csr_rank_1 = hipsparseDpruneDense2csr_(handle,m,n,c_loc(A),lda,threshold,descr,c_loc(csrVal),c_loc(csrRowPtr),c_loc(csrColInd),buffer)
     end function
 
-    function hipsparseSpruneDense2csrByPercentage_bufferSize_full_rank(handle,m,n,A,lda,percentage,descr,csrVal,csrRowPtr,csrColInd,myInfo,bufferSize)
+    function hipsparseSpruneDense2csrByPercentage_bufferSize_rank_0(handle,m,n,A,lda,percentage,descr,csrVal,csrRowPtr,csrColInd,myInfo,pBufferSizeInBytes)
       use iso_c_binding
       use hipfort_hipsparse_enums
-      use hipfort_enums
-      implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSpruneDense2csrByPercentage_bufferSize_full_rank
-      type(c_ptr) :: handle
-      integer(c_int) :: m
-      integer(c_int) :: n
-      real(c_float),target,dimension(:,:) :: A
-      integer(c_int) :: lda
-      real(c_float) :: percentage
-      type(c_ptr) :: descr
-      real(c_float),target,dimension(:) :: csrVal
-      integer(c_int),target,dimension(:) :: csrRowPtr
-      integer(c_int),target,dimension(:) :: csrColInd
-      type(c_ptr) :: myInfo
-      integer(c_size_t),target,dimension(:) :: bufferSize
-      !
-      hipsparseSpruneDense2csrByPercentage_bufferSize_full_rank = hipsparseSpruneDense2csrByPercentage_bufferSize_(handle,m,n,c_loc(A),lda,percentage,descr,c_loc(csrVal),c_loc(csrRowPtr),c_loc(csrColInd),myInfo,c_loc(bufferSize))
-    end function
-
-    function hipsparseSpruneDense2csrByPercentage_bufferSize_rank_0(handle,m,n,A,lda,percentage,descr,csrVal,csrRowPtr,csrColInd,myInfo,bufferSize)
-      use iso_c_binding
-      use hipfort_hipsparse_enums
-      use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSpruneDense2csrByPercentage_bufferSize_rank_0
       type(c_ptr) :: handle
@@ -31696,15 +33100,14 @@ module hipfort_hipsparse
       integer(c_int),target :: csrRowPtr
       integer(c_int),target :: csrColInd
       type(c_ptr) :: myInfo
-      integer(c_size_t),target :: bufferSize
+      integer(c_size_t),target :: pBufferSizeInBytes
       !
-      hipsparseSpruneDense2csrByPercentage_bufferSize_rank_0 = hipsparseSpruneDense2csrByPercentage_bufferSize_(handle,m,n,c_loc(A),lda,percentage,descr,c_loc(csrVal),c_loc(csrRowPtr),c_loc(csrColInd),myInfo,c_loc(bufferSize))
+      hipsparseSpruneDense2csrByPercentage_bufferSize_rank_0 = hipsparseSpruneDense2csrByPercentage_bufferSize_(handle,m,n,c_loc(A),lda,percentage,descr,c_loc(csrVal),c_loc(csrRowPtr),c_loc(csrColInd),myInfo,c_loc(pBufferSizeInBytes))
     end function
 
-    function hipsparseSpruneDense2csrByPercentage_bufferSize_rank_1(handle,m,n,A,lda,percentage,descr,csrVal,csrRowPtr,csrColInd,myInfo,bufferSize)
+    function hipsparseSpruneDense2csrByPercentage_bufferSize_rank_1(handle,m,n,A,lda,percentage,descr,csrVal,csrRowPtr,csrColInd,myInfo,pBufferSizeInBytes)
       use iso_c_binding
       use hipfort_hipsparse_enums
-      use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSpruneDense2csrByPercentage_bufferSize_rank_1
       type(c_ptr) :: handle
@@ -31718,37 +33121,14 @@ module hipfort_hipsparse
       integer(c_int),target,dimension(:) :: csrRowPtr
       integer(c_int),target,dimension(:) :: csrColInd
       type(c_ptr) :: myInfo
-      integer(c_size_t),target,dimension(:) :: bufferSize
+      integer(c_size_t),target,dimension(:) :: pBufferSizeInBytes
       !
-      hipsparseSpruneDense2csrByPercentage_bufferSize_rank_1 = hipsparseSpruneDense2csrByPercentage_bufferSize_(handle,m,n,c_loc(A),lda,percentage,descr,c_loc(csrVal),c_loc(csrRowPtr),c_loc(csrColInd),myInfo,c_loc(bufferSize))
+      hipsparseSpruneDense2csrByPercentage_bufferSize_rank_1 = hipsparseSpruneDense2csrByPercentage_bufferSize_(handle,m,n,c_loc(A),lda,percentage,descr,c_loc(csrVal),c_loc(csrRowPtr),c_loc(csrColInd),myInfo,c_loc(pBufferSizeInBytes))
     end function
 
-    function hipsparseDpruneDense2csrByPercentage_bufferSize_full_rank(handle,m,n,A,lda,percentage,descr,csrVal,csrRowPtr,csrColInd,myInfo,bufferSize)
+    function hipsparseDpruneDense2csrByPercentage_bufferSize_rank_0(handle,m,n,A,lda,percentage,descr,csrVal,csrRowPtr,csrColInd,myInfo,pBufferSizeInBytes)
       use iso_c_binding
       use hipfort_hipsparse_enums
-      use hipfort_enums
-      implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDpruneDense2csrByPercentage_bufferSize_full_rank
-      type(c_ptr) :: handle
-      integer(c_int) :: m
-      integer(c_int) :: n
-      real(c_double),target,dimension(:,:) :: A
-      integer(c_int) :: lda
-      real(c_double) :: percentage
-      type(c_ptr) :: descr
-      real(c_double),target,dimension(:) :: csrVal
-      integer(c_int),target,dimension(:) :: csrRowPtr
-      integer(c_int),target,dimension(:) :: csrColInd
-      type(c_ptr) :: myInfo
-      integer(c_size_t),target,dimension(:) :: bufferSize
-      !
-      hipsparseDpruneDense2csrByPercentage_bufferSize_full_rank = hipsparseDpruneDense2csrByPercentage_bufferSize_(handle,m,n,c_loc(A),lda,percentage,descr,c_loc(csrVal),c_loc(csrRowPtr),c_loc(csrColInd),myInfo,c_loc(bufferSize))
-    end function
-
-    function hipsparseDpruneDense2csrByPercentage_bufferSize_rank_0(handle,m,n,A,lda,percentage,descr,csrVal,csrRowPtr,csrColInd,myInfo,bufferSize)
-      use iso_c_binding
-      use hipfort_hipsparse_enums
-      use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDpruneDense2csrByPercentage_bufferSize_rank_0
       type(c_ptr) :: handle
@@ -31762,15 +33142,14 @@ module hipfort_hipsparse
       integer(c_int),target :: csrRowPtr
       integer(c_int),target :: csrColInd
       type(c_ptr) :: myInfo
-      integer(c_size_t),target :: bufferSize
+      integer(c_size_t),target :: pBufferSizeInBytes
       !
-      hipsparseDpruneDense2csrByPercentage_bufferSize_rank_0 = hipsparseDpruneDense2csrByPercentage_bufferSize_(handle,m,n,c_loc(A),lda,percentage,descr,c_loc(csrVal),c_loc(csrRowPtr),c_loc(csrColInd),myInfo,c_loc(bufferSize))
+      hipsparseDpruneDense2csrByPercentage_bufferSize_rank_0 = hipsparseDpruneDense2csrByPercentage_bufferSize_(handle,m,n,c_loc(A),lda,percentage,descr,c_loc(csrVal),c_loc(csrRowPtr),c_loc(csrColInd),myInfo,c_loc(pBufferSizeInBytes))
     end function
 
-    function hipsparseDpruneDense2csrByPercentage_bufferSize_rank_1(handle,m,n,A,lda,percentage,descr,csrVal,csrRowPtr,csrColInd,myInfo,bufferSize)
+    function hipsparseDpruneDense2csrByPercentage_bufferSize_rank_1(handle,m,n,A,lda,percentage,descr,csrVal,csrRowPtr,csrColInd,myInfo,pBufferSizeInBytes)
       use iso_c_binding
       use hipfort_hipsparse_enums
-      use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDpruneDense2csrByPercentage_bufferSize_rank_1
       type(c_ptr) :: handle
@@ -31784,37 +33163,14 @@ module hipfort_hipsparse
       integer(c_int),target,dimension(:) :: csrRowPtr
       integer(c_int),target,dimension(:) :: csrColInd
       type(c_ptr) :: myInfo
-      integer(c_size_t),target,dimension(:) :: bufferSize
+      integer(c_size_t),target,dimension(:) :: pBufferSizeInBytes
       !
-      hipsparseDpruneDense2csrByPercentage_bufferSize_rank_1 = hipsparseDpruneDense2csrByPercentage_bufferSize_(handle,m,n,c_loc(A),lda,percentage,descr,c_loc(csrVal),c_loc(csrRowPtr),c_loc(csrColInd),myInfo,c_loc(bufferSize))
+      hipsparseDpruneDense2csrByPercentage_bufferSize_rank_1 = hipsparseDpruneDense2csrByPercentage_bufferSize_(handle,m,n,c_loc(A),lda,percentage,descr,c_loc(csrVal),c_loc(csrRowPtr),c_loc(csrColInd),myInfo,c_loc(pBufferSizeInBytes))
     end function
 
-    function hipsparseSpruneDense2csrByPercentage_bufferSizeExt_full_rank(handle,m,n,A,lda,percentage,descr,csrVal,csrRowPtr,csrColInd,myInfo,bufferSize)
+    function hipsparseSpruneDense2csrByPercentage_bufferSizeExt_rank_0(handle,m,n,A,lda,percentage,descr,csrVal,csrRowPtr,csrColInd,myInfo,pBufferSizeInBytes)
       use iso_c_binding
       use hipfort_hipsparse_enums
-      use hipfort_enums
-      implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSpruneDense2csrByPercentage_bufferSizeExt_full_rank
-      type(c_ptr) :: handle
-      integer(c_int) :: m
-      integer(c_int) :: n
-      real(c_float),target,dimension(:,:) :: A
-      integer(c_int) :: lda
-      real(c_float) :: percentage
-      type(c_ptr) :: descr
-      real(c_float),target,dimension(:) :: csrVal
-      integer(c_int),target,dimension(:) :: csrRowPtr
-      integer(c_int),target,dimension(:) :: csrColInd
-      type(c_ptr) :: myInfo
-      integer(c_size_t),target,dimension(:) :: bufferSize
-      !
-      hipsparseSpruneDense2csrByPercentage_bufferSizeExt_full_rank = hipsparseSpruneDense2csrByPercentage_bufferSizeExt_(handle,m,n,c_loc(A),lda,percentage,descr,c_loc(csrVal),c_loc(csrRowPtr),c_loc(csrColInd),myInfo,c_loc(bufferSize))
-    end function
-
-    function hipsparseSpruneDense2csrByPercentage_bufferSizeExt_rank_0(handle,m,n,A,lda,percentage,descr,csrVal,csrRowPtr,csrColInd,myInfo,bufferSize)
-      use iso_c_binding
-      use hipfort_hipsparse_enums
-      use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSpruneDense2csrByPercentage_bufferSizeExt_rank_0
       type(c_ptr) :: handle
@@ -31828,15 +33184,14 @@ module hipfort_hipsparse
       integer(c_int),target :: csrRowPtr
       integer(c_int),target :: csrColInd
       type(c_ptr) :: myInfo
-      integer(c_size_t),target :: bufferSize
+      integer(c_size_t),target :: pBufferSizeInBytes
       !
-      hipsparseSpruneDense2csrByPercentage_bufferSizeExt_rank_0 = hipsparseSpruneDense2csrByPercentage_bufferSizeExt_(handle,m,n,c_loc(A),lda,percentage,descr,c_loc(csrVal),c_loc(csrRowPtr),c_loc(csrColInd),myInfo,c_loc(bufferSize))
+      hipsparseSpruneDense2csrByPercentage_bufferSizeExt_rank_0 = hipsparseSpruneDense2csrByPercentage_bufferSizeExt_(handle,m,n,c_loc(A),lda,percentage,descr,c_loc(csrVal),c_loc(csrRowPtr),c_loc(csrColInd),myInfo,c_loc(pBufferSizeInBytes))
     end function
 
-    function hipsparseSpruneDense2csrByPercentage_bufferSizeExt_rank_1(handle,m,n,A,lda,percentage,descr,csrVal,csrRowPtr,csrColInd,myInfo,bufferSize)
+    function hipsparseSpruneDense2csrByPercentage_bufferSizeExt_rank_1(handle,m,n,A,lda,percentage,descr,csrVal,csrRowPtr,csrColInd,myInfo,pBufferSizeInBytes)
       use iso_c_binding
       use hipfort_hipsparse_enums
-      use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSpruneDense2csrByPercentage_bufferSizeExt_rank_1
       type(c_ptr) :: handle
@@ -31850,37 +33205,14 @@ module hipfort_hipsparse
       integer(c_int),target,dimension(:) :: csrRowPtr
       integer(c_int),target,dimension(:) :: csrColInd
       type(c_ptr) :: myInfo
-      integer(c_size_t),target,dimension(:) :: bufferSize
+      integer(c_size_t),target,dimension(:) :: pBufferSizeInBytes
       !
-      hipsparseSpruneDense2csrByPercentage_bufferSizeExt_rank_1 = hipsparseSpruneDense2csrByPercentage_bufferSizeExt_(handle,m,n,c_loc(A),lda,percentage,descr,c_loc(csrVal),c_loc(csrRowPtr),c_loc(csrColInd),myInfo,c_loc(bufferSize))
+      hipsparseSpruneDense2csrByPercentage_bufferSizeExt_rank_1 = hipsparseSpruneDense2csrByPercentage_bufferSizeExt_(handle,m,n,c_loc(A),lda,percentage,descr,c_loc(csrVal),c_loc(csrRowPtr),c_loc(csrColInd),myInfo,c_loc(pBufferSizeInBytes))
     end function
 
-    function hipsparseDpruneDense2csrByPercentage_bufferSizeExt_full_rank(handle,m,n,A,lda,percentage,descr,csrVal,csrRowPtr,csrColInd,myInfo,bufferSize)
+    function hipsparseDpruneDense2csrByPercentage_bufferSizeExt_rank_0(handle,m,n,A,lda,percentage,descr,csrVal,csrRowPtr,csrColInd,myInfo,pBufferSizeInBytes)
       use iso_c_binding
       use hipfort_hipsparse_enums
-      use hipfort_enums
-      implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDpruneDense2csrByPercentage_bufferSizeExt_full_rank
-      type(c_ptr) :: handle
-      integer(c_int) :: m
-      integer(c_int) :: n
-      real(c_double),target,dimension(:,:) :: A
-      integer(c_int) :: lda
-      real(c_double) :: percentage
-      type(c_ptr) :: descr
-      real(c_double),target,dimension(:) :: csrVal
-      integer(c_int),target,dimension(:) :: csrRowPtr
-      integer(c_int),target,dimension(:) :: csrColInd
-      type(c_ptr) :: myInfo
-      integer(c_size_t),target,dimension(:) :: bufferSize
-      !
-      hipsparseDpruneDense2csrByPercentage_bufferSizeExt_full_rank = hipsparseDpruneDense2csrByPercentage_bufferSizeExt_(handle,m,n,c_loc(A),lda,percentage,descr,c_loc(csrVal),c_loc(csrRowPtr),c_loc(csrColInd),myInfo,c_loc(bufferSize))
-    end function
-
-    function hipsparseDpruneDense2csrByPercentage_bufferSizeExt_rank_0(handle,m,n,A,lda,percentage,descr,csrVal,csrRowPtr,csrColInd,myInfo,bufferSize)
-      use iso_c_binding
-      use hipfort_hipsparse_enums
-      use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDpruneDense2csrByPercentage_bufferSizeExt_rank_0
       type(c_ptr) :: handle
@@ -31894,15 +33226,14 @@ module hipfort_hipsparse
       integer(c_int),target :: csrRowPtr
       integer(c_int),target :: csrColInd
       type(c_ptr) :: myInfo
-      integer(c_size_t),target :: bufferSize
+      integer(c_size_t),target :: pBufferSizeInBytes
       !
-      hipsparseDpruneDense2csrByPercentage_bufferSizeExt_rank_0 = hipsparseDpruneDense2csrByPercentage_bufferSizeExt_(handle,m,n,c_loc(A),lda,percentage,descr,c_loc(csrVal),c_loc(csrRowPtr),c_loc(csrColInd),myInfo,c_loc(bufferSize))
+      hipsparseDpruneDense2csrByPercentage_bufferSizeExt_rank_0 = hipsparseDpruneDense2csrByPercentage_bufferSizeExt_(handle,m,n,c_loc(A),lda,percentage,descr,c_loc(csrVal),c_loc(csrRowPtr),c_loc(csrColInd),myInfo,c_loc(pBufferSizeInBytes))
     end function
 
-    function hipsparseDpruneDense2csrByPercentage_bufferSizeExt_rank_1(handle,m,n,A,lda,percentage,descr,csrVal,csrRowPtr,csrColInd,myInfo,bufferSize)
+    function hipsparseDpruneDense2csrByPercentage_bufferSizeExt_rank_1(handle,m,n,A,lda,percentage,descr,csrVal,csrRowPtr,csrColInd,myInfo,pBufferSizeInBytes)
       use iso_c_binding
       use hipfort_hipsparse_enums
-      use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDpruneDense2csrByPercentage_bufferSizeExt_rank_1
       type(c_ptr) :: handle
@@ -31916,36 +33247,14 @@ module hipfort_hipsparse
       integer(c_int),target,dimension(:) :: csrRowPtr
       integer(c_int),target,dimension(:) :: csrColInd
       type(c_ptr) :: myInfo
-      integer(c_size_t),target,dimension(:) :: bufferSize
+      integer(c_size_t),target,dimension(:) :: pBufferSizeInBytes
       !
-      hipsparseDpruneDense2csrByPercentage_bufferSizeExt_rank_1 = hipsparseDpruneDense2csrByPercentage_bufferSizeExt_(handle,m,n,c_loc(A),lda,percentage,descr,c_loc(csrVal),c_loc(csrRowPtr),c_loc(csrColInd),myInfo,c_loc(bufferSize))
-    end function
-
-    function hipsparseSpruneDense2csrNnzByPercentage_full_rank(handle,m,n,A,lda,percentage,descr,csrRowPtr,nnzTotalDevHostPtr,myInfo,buffer)
-      use iso_c_binding
-      use hipfort_hipsparse_enums
-      use hipfort_enums
-      implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSpruneDense2csrNnzByPercentage_full_rank
-      type(c_ptr) :: handle
-      integer(c_int) :: m
-      integer(c_int) :: n
-      real(c_float),target,dimension(:,:) :: A
-      integer(c_int) :: lda
-      real(c_float) :: percentage
-      type(c_ptr) :: descr
-      integer(c_int),target,dimension(:) :: csrRowPtr
-      integer(c_int) :: nnzTotalDevHostPtr
-      type(c_ptr) :: myInfo
-      type(c_ptr) :: buffer
-      !
-      hipsparseSpruneDense2csrNnzByPercentage_full_rank = hipsparseSpruneDense2csrNnzByPercentage_(handle,m,n,c_loc(A),lda,percentage,descr,c_loc(csrRowPtr),nnzTotalDevHostPtr,myInfo,buffer)
+      hipsparseDpruneDense2csrByPercentage_bufferSizeExt_rank_1 = hipsparseDpruneDense2csrByPercentage_bufferSizeExt_(handle,m,n,c_loc(A),lda,percentage,descr,c_loc(csrVal),c_loc(csrRowPtr),c_loc(csrColInd),myInfo,c_loc(pBufferSizeInBytes))
     end function
 
     function hipsparseSpruneDense2csrNnzByPercentage_rank_0(handle,m,n,A,lda,percentage,descr,csrRowPtr,nnzTotalDevHostPtr,myInfo,buffer)
       use iso_c_binding
       use hipfort_hipsparse_enums
-      use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSpruneDense2csrNnzByPercentage_rank_0
       type(c_ptr) :: handle
@@ -31966,7 +33275,6 @@ module hipfort_hipsparse
     function hipsparseSpruneDense2csrNnzByPercentage_rank_1(handle,m,n,A,lda,percentage,descr,csrRowPtr,nnzTotalDevHostPtr,myInfo,buffer)
       use iso_c_binding
       use hipfort_hipsparse_enums
-      use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSpruneDense2csrNnzByPercentage_rank_1
       type(c_ptr) :: handle
@@ -31984,31 +33292,9 @@ module hipfort_hipsparse
       hipsparseSpruneDense2csrNnzByPercentage_rank_1 = hipsparseSpruneDense2csrNnzByPercentage_(handle,m,n,c_loc(A),lda,percentage,descr,c_loc(csrRowPtr),nnzTotalDevHostPtr,myInfo,buffer)
     end function
 
-    function hipsparseDpruneDense2csrNnzByPercentage_full_rank(handle,m,n,A,lda,percentage,descr,csrRowPtr,nnzTotalDevHostPtr,myInfo,buffer)
-      use iso_c_binding
-      use hipfort_hipsparse_enums
-      use hipfort_enums
-      implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDpruneDense2csrNnzByPercentage_full_rank
-      type(c_ptr) :: handle
-      integer(c_int) :: m
-      integer(c_int) :: n
-      real(c_double),target,dimension(:,:) :: A
-      integer(c_int) :: lda
-      real(c_double) :: percentage
-      type(c_ptr) :: descr
-      integer(c_int),target,dimension(:) :: csrRowPtr
-      integer(c_int) :: nnzTotalDevHostPtr
-      type(c_ptr) :: myInfo
-      type(c_ptr) :: buffer
-      !
-      hipsparseDpruneDense2csrNnzByPercentage_full_rank = hipsparseDpruneDense2csrNnzByPercentage_(handle,m,n,c_loc(A),lda,percentage,descr,c_loc(csrRowPtr),nnzTotalDevHostPtr,myInfo,buffer)
-    end function
-
     function hipsparseDpruneDense2csrNnzByPercentage_rank_0(handle,m,n,A,lda,percentage,descr,csrRowPtr,nnzTotalDevHostPtr,myInfo,buffer)
       use iso_c_binding
       use hipfort_hipsparse_enums
-      use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDpruneDense2csrNnzByPercentage_rank_0
       type(c_ptr) :: handle
@@ -32029,7 +33315,6 @@ module hipfort_hipsparse
     function hipsparseDpruneDense2csrNnzByPercentage_rank_1(handle,m,n,A,lda,percentage,descr,csrRowPtr,nnzTotalDevHostPtr,myInfo,buffer)
       use iso_c_binding
       use hipfort_hipsparse_enums
-      use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDpruneDense2csrNnzByPercentage_rank_1
       type(c_ptr) :: handle
@@ -32047,32 +33332,9 @@ module hipfort_hipsparse
       hipsparseDpruneDense2csrNnzByPercentage_rank_1 = hipsparseDpruneDense2csrNnzByPercentage_(handle,m,n,c_loc(A),lda,percentage,descr,c_loc(csrRowPtr),nnzTotalDevHostPtr,myInfo,buffer)
     end function
 
-    function hipsparseSpruneDense2csrByPercentage_full_rank(handle,m,n,A,lda,percentage,descr,csrVal,csrRowPtr,csrColInd,myInfo,buffer)
-      use iso_c_binding
-      use hipfort_hipsparse_enums
-      use hipfort_enums
-      implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSpruneDense2csrByPercentage_full_rank
-      type(c_ptr) :: handle
-      integer(c_int) :: m
-      integer(c_int) :: n
-      real(c_float),target,dimension(:,:) :: A
-      integer(c_int) :: lda
-      real(c_float) :: percentage
-      type(c_ptr) :: descr
-      real(c_float),target,dimension(:) :: csrVal
-      integer(c_int),target,dimension(:) :: csrRowPtr
-      integer(c_int),target,dimension(:) :: csrColInd
-      type(c_ptr) :: myInfo
-      type(c_ptr) :: buffer
-      !
-      hipsparseSpruneDense2csrByPercentage_full_rank = hipsparseSpruneDense2csrByPercentage_(handle,m,n,c_loc(A),lda,percentage,descr,c_loc(csrVal),c_loc(csrRowPtr),c_loc(csrColInd),myInfo,buffer)
-    end function
-
     function hipsparseSpruneDense2csrByPercentage_rank_0(handle,m,n,A,lda,percentage,descr,csrVal,csrRowPtr,csrColInd,myInfo,buffer)
       use iso_c_binding
       use hipfort_hipsparse_enums
-      use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSpruneDense2csrByPercentage_rank_0
       type(c_ptr) :: handle
@@ -32094,7 +33356,6 @@ module hipfort_hipsparse
     function hipsparseSpruneDense2csrByPercentage_rank_1(handle,m,n,A,lda,percentage,descr,csrVal,csrRowPtr,csrColInd,myInfo,buffer)
       use iso_c_binding
       use hipfort_hipsparse_enums
-      use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSpruneDense2csrByPercentage_rank_1
       type(c_ptr) :: handle
@@ -32113,32 +33374,9 @@ module hipfort_hipsparse
       hipsparseSpruneDense2csrByPercentage_rank_1 = hipsparseSpruneDense2csrByPercentage_(handle,m,n,c_loc(A),lda,percentage,descr,c_loc(csrVal),c_loc(csrRowPtr),c_loc(csrColInd),myInfo,buffer)
     end function
 
-    function hipsparseDpruneDense2csrByPercentage_full_rank(handle,m,n,A,lda,percentage,descr,csrVal,csrRowPtr,csrColInd,myInfo,buffer)
-      use iso_c_binding
-      use hipfort_hipsparse_enums
-      use hipfort_enums
-      implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDpruneDense2csrByPercentage_full_rank
-      type(c_ptr) :: handle
-      integer(c_int) :: m
-      integer(c_int) :: n
-      real(c_double),target,dimension(:,:) :: A
-      integer(c_int) :: lda
-      real(c_double) :: percentage
-      type(c_ptr) :: descr
-      real(c_double),target,dimension(:) :: csrVal
-      integer(c_int),target,dimension(:) :: csrRowPtr
-      integer(c_int),target,dimension(:) :: csrColInd
-      type(c_ptr) :: myInfo
-      type(c_ptr) :: buffer
-      !
-      hipsparseDpruneDense2csrByPercentage_full_rank = hipsparseDpruneDense2csrByPercentage_(handle,m,n,c_loc(A),lda,percentage,descr,c_loc(csrVal),c_loc(csrRowPtr),c_loc(csrColInd),myInfo,buffer)
-    end function
-
     function hipsparseDpruneDense2csrByPercentage_rank_0(handle,m,n,A,lda,percentage,descr,csrVal,csrRowPtr,csrColInd,myInfo,buffer)
       use iso_c_binding
       use hipfort_hipsparse_enums
-      use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDpruneDense2csrByPercentage_rank_0
       type(c_ptr) :: handle
@@ -32160,7 +33398,6 @@ module hipfort_hipsparse
     function hipsparseDpruneDense2csrByPercentage_rank_1(handle,m,n,A,lda,percentage,descr,csrVal,csrRowPtr,csrColInd,myInfo,buffer)
       use iso_c_binding
       use hipfort_hipsparse_enums
-      use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDpruneDense2csrByPercentage_rank_1
       type(c_ptr) :: handle
@@ -32179,30 +33416,9 @@ module hipfort_hipsparse
       hipsparseDpruneDense2csrByPercentage_rank_1 = hipsparseDpruneDense2csrByPercentage_(handle,m,n,c_loc(A),lda,percentage,descr,c_loc(csrVal),c_loc(csrRowPtr),c_loc(csrColInd),myInfo,buffer)
     end function
 
-    function hipsparseSdense2csc_full_rank(handle,m,n,descr,A,ld,nnz_per_columns,csc_val,csc_row_ind,csc_col_ptr)
+    function hipsparseSdense2csc_rank_0(handle,m,n,descr,A,ld,nnzPerColumn,cscVal,cscRowInd,cscColPtr)
       use iso_c_binding
       use hipfort_hipsparse_enums
-      use hipfort_enums
-      implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSdense2csc_full_rank
-      type(c_ptr) :: handle
-      integer(c_int) :: m
-      integer(c_int) :: n
-      type(c_ptr) :: descr
-      real(c_float),target,dimension(:,:) :: A
-      integer(c_int) :: ld
-      integer(c_int),target,dimension(:) :: nnz_per_columns
-      real(c_float),target,dimension(:) :: csc_val
-      integer(c_int),target,dimension(:) :: csc_row_ind
-      integer(c_int),target,dimension(:) :: csc_col_ptr
-      !
-      hipsparseSdense2csc_full_rank = hipsparseSdense2csc_(handle,m,n,descr,c_loc(A),ld,c_loc(nnz_per_columns),c_loc(csc_val),c_loc(csc_row_ind),c_loc(csc_col_ptr))
-    end function
-
-    function hipsparseSdense2csc_rank_0(handle,m,n,descr,A,ld,nnz_per_columns,csc_val,csc_row_ind,csc_col_ptr)
-      use iso_c_binding
-      use hipfort_hipsparse_enums
-      use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSdense2csc_rank_0
       type(c_ptr) :: handle
@@ -32211,18 +33427,17 @@ module hipfort_hipsparse
       type(c_ptr) :: descr
       real(c_float),target :: A
       integer(c_int) :: ld
-      integer(c_int),target :: nnz_per_columns
-      real(c_float),target :: csc_val
-      integer(c_int),target :: csc_row_ind
-      integer(c_int),target :: csc_col_ptr
+      integer(c_int),target :: nnzPerColumn
+      real(c_float),target :: cscVal
+      integer(c_int),target :: cscRowInd
+      integer(c_int),target :: cscColPtr
       !
-      hipsparseSdense2csc_rank_0 = hipsparseSdense2csc_(handle,m,n,descr,c_loc(A),ld,c_loc(nnz_per_columns),c_loc(csc_val),c_loc(csc_row_ind),c_loc(csc_col_ptr))
+      hipsparseSdense2csc_rank_0 = hipsparseSdense2csc_(handle,m,n,descr,c_loc(A),ld,c_loc(nnzPerColumn),c_loc(cscVal),c_loc(cscRowInd),c_loc(cscColPtr))
     end function
 
-    function hipsparseSdense2csc_rank_1(handle,m,n,descr,A,ld,nnz_per_columns,csc_val,csc_row_ind,csc_col_ptr)
+    function hipsparseSdense2csc_rank_1(handle,m,n,descr,A,ld,nnzPerColumn,cscVal,cscRowInd,cscColPtr)
       use iso_c_binding
       use hipfort_hipsparse_enums
-      use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSdense2csc_rank_1
       type(c_ptr) :: handle
@@ -32231,38 +33446,17 @@ module hipfort_hipsparse
       type(c_ptr) :: descr
       real(c_float),target,dimension(:) :: A
       integer(c_int) :: ld
-      integer(c_int),target,dimension(:) :: nnz_per_columns
-      real(c_float),target,dimension(:) :: csc_val
-      integer(c_int),target,dimension(:) :: csc_row_ind
-      integer(c_int),target,dimension(:) :: csc_col_ptr
+      integer(c_int),target,dimension(:) :: nnzPerColumn
+      real(c_float),target,dimension(:) :: cscVal
+      integer(c_int),target,dimension(:) :: cscRowInd
+      integer(c_int),target,dimension(:) :: cscColPtr
       !
-      hipsparseSdense2csc_rank_1 = hipsparseSdense2csc_(handle,m,n,descr,c_loc(A),ld,c_loc(nnz_per_columns),c_loc(csc_val),c_loc(csc_row_ind),c_loc(csc_col_ptr))
+      hipsparseSdense2csc_rank_1 = hipsparseSdense2csc_(handle,m,n,descr,c_loc(A),ld,c_loc(nnzPerColumn),c_loc(cscVal),c_loc(cscRowInd),c_loc(cscColPtr))
     end function
 
-    function hipsparseDdense2csc_full_rank(handle,m,n,descr,A,ld,nnz_per_columns,csc_val,csc_row_ind,csc_col_ptr)
+    function hipsparseDdense2csc_rank_0(handle,m,n,descr,A,ld,nnzPerColumn,cscVal,cscRowInd,cscColPtr)
       use iso_c_binding
       use hipfort_hipsparse_enums
-      use hipfort_enums
-      implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDdense2csc_full_rank
-      type(c_ptr) :: handle
-      integer(c_int) :: m
-      integer(c_int) :: n
-      type(c_ptr) :: descr
-      real(c_double),target,dimension(:,:) :: A
-      integer(c_int) :: ld
-      integer(c_int),target,dimension(:) :: nnz_per_columns
-      real(c_double),target,dimension(:) :: csc_val
-      integer(c_int),target,dimension(:) :: csc_row_ind
-      integer(c_int),target,dimension(:) :: csc_col_ptr
-      !
-      hipsparseDdense2csc_full_rank = hipsparseDdense2csc_(handle,m,n,descr,c_loc(A),ld,c_loc(nnz_per_columns),c_loc(csc_val),c_loc(csc_row_ind),c_loc(csc_col_ptr))
-    end function
-
-    function hipsparseDdense2csc_rank_0(handle,m,n,descr,A,ld,nnz_per_columns,csc_val,csc_row_ind,csc_col_ptr)
-      use iso_c_binding
-      use hipfort_hipsparse_enums
-      use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDdense2csc_rank_0
       type(c_ptr) :: handle
@@ -32271,18 +33465,17 @@ module hipfort_hipsparse
       type(c_ptr) :: descr
       real(c_double),target :: A
       integer(c_int) :: ld
-      integer(c_int),target :: nnz_per_columns
-      real(c_double),target :: csc_val
-      integer(c_int),target :: csc_row_ind
-      integer(c_int),target :: csc_col_ptr
+      integer(c_int),target :: nnzPerColumn
+      real(c_double),target :: cscVal
+      integer(c_int),target :: cscRowInd
+      integer(c_int),target :: cscColPtr
       !
-      hipsparseDdense2csc_rank_0 = hipsparseDdense2csc_(handle,m,n,descr,c_loc(A),ld,c_loc(nnz_per_columns),c_loc(csc_val),c_loc(csc_row_ind),c_loc(csc_col_ptr))
+      hipsparseDdense2csc_rank_0 = hipsparseDdense2csc_(handle,m,n,descr,c_loc(A),ld,c_loc(nnzPerColumn),c_loc(cscVal),c_loc(cscRowInd),c_loc(cscColPtr))
     end function
 
-    function hipsparseDdense2csc_rank_1(handle,m,n,descr,A,ld,nnz_per_columns,csc_val,csc_row_ind,csc_col_ptr)
+    function hipsparseDdense2csc_rank_1(handle,m,n,descr,A,ld,nnzPerColumn,cscVal,cscRowInd,cscColPtr)
       use iso_c_binding
       use hipfort_hipsparse_enums
-      use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDdense2csc_rank_1
       type(c_ptr) :: handle
@@ -32291,38 +33484,17 @@ module hipfort_hipsparse
       type(c_ptr) :: descr
       real(c_double),target,dimension(:) :: A
       integer(c_int) :: ld
-      integer(c_int),target,dimension(:) :: nnz_per_columns
-      real(c_double),target,dimension(:) :: csc_val
-      integer(c_int),target,dimension(:) :: csc_row_ind
-      integer(c_int),target,dimension(:) :: csc_col_ptr
+      integer(c_int),target,dimension(:) :: nnzPerColumn
+      real(c_double),target,dimension(:) :: cscVal
+      integer(c_int),target,dimension(:) :: cscRowInd
+      integer(c_int),target,dimension(:) :: cscColPtr
       !
-      hipsparseDdense2csc_rank_1 = hipsparseDdense2csc_(handle,m,n,descr,c_loc(A),ld,c_loc(nnz_per_columns),c_loc(csc_val),c_loc(csc_row_ind),c_loc(csc_col_ptr))
+      hipsparseDdense2csc_rank_1 = hipsparseDdense2csc_(handle,m,n,descr,c_loc(A),ld,c_loc(nnzPerColumn),c_loc(cscVal),c_loc(cscRowInd),c_loc(cscColPtr))
     end function
 
-    function hipsparseCdense2csc_full_rank(handle,m,n,descr,A,ld,nnz_per_columns,csc_val,csc_row_ind,csc_col_ptr)
+    function hipsparseCdense2csc_rank_0(handle,m,n,descr,A,ld,nnzPerColumn,cscVal,cscRowInd,cscColPtr)
       use iso_c_binding
       use hipfort_hipsparse_enums
-      use hipfort_enums
-      implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCdense2csc_full_rank
-      type(c_ptr) :: handle
-      integer(c_int) :: m
-      integer(c_int) :: n
-      type(c_ptr) :: descr
-      complex(c_float_complex),target,dimension(:,:) :: A
-      integer(c_int) :: ld
-      integer(c_int),target,dimension(:) :: nnz_per_columns
-      complex(c_float_complex),target,dimension(:) :: csc_val
-      integer(c_int),target,dimension(:) :: csc_row_ind
-      integer(c_int),target,dimension(:) :: csc_col_ptr
-      !
-      hipsparseCdense2csc_full_rank = hipsparseCdense2csc_(handle,m,n,descr,c_loc(A),ld,c_loc(nnz_per_columns),c_loc(csc_val),c_loc(csc_row_ind),c_loc(csc_col_ptr))
-    end function
-
-    function hipsparseCdense2csc_rank_0(handle,m,n,descr,A,ld,nnz_per_columns,csc_val,csc_row_ind,csc_col_ptr)
-      use iso_c_binding
-      use hipfort_hipsparse_enums
-      use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCdense2csc_rank_0
       type(c_ptr) :: handle
@@ -32331,18 +33503,17 @@ module hipfort_hipsparse
       type(c_ptr) :: descr
       complex(c_float_complex),target :: A
       integer(c_int) :: ld
-      integer(c_int),target :: nnz_per_columns
-      complex(c_float_complex),target :: csc_val
-      integer(c_int),target :: csc_row_ind
-      integer(c_int),target :: csc_col_ptr
+      integer(c_int),target :: nnzPerColumn
+      complex(c_float_complex),target :: cscVal
+      integer(c_int),target :: cscRowInd
+      integer(c_int),target :: cscColPtr
       !
-      hipsparseCdense2csc_rank_0 = hipsparseCdense2csc_(handle,m,n,descr,c_loc(A),ld,c_loc(nnz_per_columns),c_loc(csc_val),c_loc(csc_row_ind),c_loc(csc_col_ptr))
+      hipsparseCdense2csc_rank_0 = hipsparseCdense2csc_(handle,m,n,descr,c_loc(A),ld,c_loc(nnzPerColumn),c_loc(cscVal),c_loc(cscRowInd),c_loc(cscColPtr))
     end function
 
-    function hipsparseCdense2csc_rank_1(handle,m,n,descr,A,ld,nnz_per_columns,csc_val,csc_row_ind,csc_col_ptr)
+    function hipsparseCdense2csc_rank_1(handle,m,n,descr,A,ld,nnzPerColumn,cscVal,cscRowInd,cscColPtr)
       use iso_c_binding
       use hipfort_hipsparse_enums
-      use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCdense2csc_rank_1
       type(c_ptr) :: handle
@@ -32351,38 +33522,17 @@ module hipfort_hipsparse
       type(c_ptr) :: descr
       complex(c_float_complex),target,dimension(:) :: A
       integer(c_int) :: ld
-      integer(c_int),target,dimension(:) :: nnz_per_columns
-      complex(c_float_complex),target,dimension(:) :: csc_val
-      integer(c_int),target,dimension(:) :: csc_row_ind
-      integer(c_int),target,dimension(:) :: csc_col_ptr
+      integer(c_int),target,dimension(:) :: nnzPerColumn
+      complex(c_float_complex),target,dimension(:) :: cscVal
+      integer(c_int),target,dimension(:) :: cscRowInd
+      integer(c_int),target,dimension(:) :: cscColPtr
       !
-      hipsparseCdense2csc_rank_1 = hipsparseCdense2csc_(handle,m,n,descr,c_loc(A),ld,c_loc(nnz_per_columns),c_loc(csc_val),c_loc(csc_row_ind),c_loc(csc_col_ptr))
+      hipsparseCdense2csc_rank_1 = hipsparseCdense2csc_(handle,m,n,descr,c_loc(A),ld,c_loc(nnzPerColumn),c_loc(cscVal),c_loc(cscRowInd),c_loc(cscColPtr))
     end function
 
-    function hipsparseZdense2csc_full_rank(handle,m,n,descr,A,ld,nnz_per_columns,csc_val,csc_row_ind,csc_col_ptr)
+    function hipsparseZdense2csc_rank_0(handle,m,n,descr,A,ld,nnzPerColumn,cscVal,cscRowInd,cscColPtr)
       use iso_c_binding
       use hipfort_hipsparse_enums
-      use hipfort_enums
-      implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZdense2csc_full_rank
-      type(c_ptr) :: handle
-      integer(c_int) :: m
-      integer(c_int) :: n
-      type(c_ptr) :: descr
-      complex(c_double_complex),target,dimension(:,:) :: A
-      integer(c_int) :: ld
-      integer(c_int),target,dimension(:) :: nnz_per_columns
-      complex(c_double_complex),target,dimension(:) :: csc_val
-      integer(c_int),target,dimension(:) :: csc_row_ind
-      integer(c_int),target,dimension(:) :: csc_col_ptr
-      !
-      hipsparseZdense2csc_full_rank = hipsparseZdense2csc_(handle,m,n,descr,c_loc(A),ld,c_loc(nnz_per_columns),c_loc(csc_val),c_loc(csc_row_ind),c_loc(csc_col_ptr))
-    end function
-
-    function hipsparseZdense2csc_rank_0(handle,m,n,descr,A,ld,nnz_per_columns,csc_val,csc_row_ind,csc_col_ptr)
-      use iso_c_binding
-      use hipfort_hipsparse_enums
-      use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZdense2csc_rank_0
       type(c_ptr) :: handle
@@ -32391,18 +33541,17 @@ module hipfort_hipsparse
       type(c_ptr) :: descr
       complex(c_double_complex),target :: A
       integer(c_int) :: ld
-      integer(c_int),target :: nnz_per_columns
-      complex(c_double_complex),target :: csc_val
-      integer(c_int),target :: csc_row_ind
-      integer(c_int),target :: csc_col_ptr
+      integer(c_int),target :: nnzPerColumn
+      complex(c_double_complex),target :: cscVal
+      integer(c_int),target :: cscRowInd
+      integer(c_int),target :: cscColPtr
       !
-      hipsparseZdense2csc_rank_0 = hipsparseZdense2csc_(handle,m,n,descr,c_loc(A),ld,c_loc(nnz_per_columns),c_loc(csc_val),c_loc(csc_row_ind),c_loc(csc_col_ptr))
+      hipsparseZdense2csc_rank_0 = hipsparseZdense2csc_(handle,m,n,descr,c_loc(A),ld,c_loc(nnzPerColumn),c_loc(cscVal),c_loc(cscRowInd),c_loc(cscColPtr))
     end function
 
-    function hipsparseZdense2csc_rank_1(handle,m,n,descr,A,ld,nnz_per_columns,csc_val,csc_row_ind,csc_col_ptr)
+    function hipsparseZdense2csc_rank_1(handle,m,n,descr,A,ld,nnzPerColumn,cscVal,cscRowInd,cscColPtr)
       use iso_c_binding
       use hipfort_hipsparse_enums
-      use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZdense2csc_rank_1
       type(c_ptr) :: handle
@@ -32411,474 +33560,305 @@ module hipfort_hipsparse
       type(c_ptr) :: descr
       complex(c_double_complex),target,dimension(:) :: A
       integer(c_int) :: ld
-      integer(c_int),target,dimension(:) :: nnz_per_columns
-      complex(c_double_complex),target,dimension(:) :: csc_val
-      integer(c_int),target,dimension(:) :: csc_row_ind
-      integer(c_int),target,dimension(:) :: csc_col_ptr
+      integer(c_int),target,dimension(:) :: nnzPerColumn
+      complex(c_double_complex),target,dimension(:) :: cscVal
+      integer(c_int),target,dimension(:) :: cscRowInd
+      integer(c_int),target,dimension(:) :: cscColPtr
       !
-      hipsparseZdense2csc_rank_1 = hipsparseZdense2csc_(handle,m,n,descr,c_loc(A),ld,c_loc(nnz_per_columns),c_loc(csc_val),c_loc(csc_row_ind),c_loc(csc_col_ptr))
+      hipsparseZdense2csc_rank_1 = hipsparseZdense2csc_(handle,m,n,descr,c_loc(A),ld,c_loc(nnzPerColumn),c_loc(cscVal),c_loc(cscRowInd),c_loc(cscColPtr))
     end function
 
-    function hipsparseScsr2dense_full_rank(handle,m,n,descr,csr_val,csr_row_ptr,csr_col_ind,A,ld)
+    function hipsparseScsr2dense_rank_0(handle,m,n,descr,csrVal,csrRowPtr,csrColInd,A,ld)
       use iso_c_binding
       use hipfort_hipsparse_enums
-      use hipfort_enums
-      implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseScsr2dense_full_rank
-      type(c_ptr) :: handle
-      integer(c_int) :: m
-      integer(c_int) :: n
-      type(c_ptr) :: descr
-      real(c_float),target,dimension(:) :: csr_val
-      integer(c_int),target,dimension(:) :: csr_row_ptr
-      integer(c_int),target,dimension(:) :: csr_col_ind
-      real(c_float),target,dimension(:,:) :: A
-      integer(c_int) :: ld
-      !
-      hipsparseScsr2dense_full_rank = hipsparseScsr2dense_(handle,m,n,descr,c_loc(csr_val),c_loc(csr_row_ptr),c_loc(csr_col_ind),c_loc(A),ld)
-    end function
-
-    function hipsparseScsr2dense_rank_0(handle,m,n,descr,csr_val,csr_row_ptr,csr_col_ind,A,ld)
-      use iso_c_binding
-      use hipfort_hipsparse_enums
-      use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseScsr2dense_rank_0
       type(c_ptr) :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       type(c_ptr) :: descr
-      real(c_float),target :: csr_val
-      integer(c_int),target :: csr_row_ptr
-      integer(c_int),target :: csr_col_ind
+      real(c_float),target :: csrVal
+      integer(c_int),target :: csrRowPtr
+      integer(c_int),target :: csrColInd
       real(c_float),target :: A
       integer(c_int) :: ld
       !
-      hipsparseScsr2dense_rank_0 = hipsparseScsr2dense_(handle,m,n,descr,c_loc(csr_val),c_loc(csr_row_ptr),c_loc(csr_col_ind),c_loc(A),ld)
+      hipsparseScsr2dense_rank_0 = hipsparseScsr2dense_(handle,m,n,descr,c_loc(csrVal),c_loc(csrRowPtr),c_loc(csrColInd),c_loc(A),ld)
     end function
 
-    function hipsparseScsr2dense_rank_1(handle,m,n,descr,csr_val,csr_row_ptr,csr_col_ind,A,ld)
+    function hipsparseScsr2dense_rank_1(handle,m,n,descr,csrVal,csrRowPtr,csrColInd,A,ld)
       use iso_c_binding
       use hipfort_hipsparse_enums
-      use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseScsr2dense_rank_1
       type(c_ptr) :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       type(c_ptr) :: descr
-      real(c_float),target,dimension(:) :: csr_val
-      integer(c_int),target,dimension(:) :: csr_row_ptr
-      integer(c_int),target,dimension(:) :: csr_col_ind
+      real(c_float),target,dimension(:) :: csrVal
+      integer(c_int),target,dimension(:) :: csrRowPtr
+      integer(c_int),target,dimension(:) :: csrColInd
       real(c_float),target,dimension(:) :: A
       integer(c_int) :: ld
       !
-      hipsparseScsr2dense_rank_1 = hipsparseScsr2dense_(handle,m,n,descr,c_loc(csr_val),c_loc(csr_row_ptr),c_loc(csr_col_ind),c_loc(A),ld)
+      hipsparseScsr2dense_rank_1 = hipsparseScsr2dense_(handle,m,n,descr,c_loc(csrVal),c_loc(csrRowPtr),c_loc(csrColInd),c_loc(A),ld)
     end function
 
-    function hipsparseDcsr2dense_full_rank(handle,m,n,descr,csr_val,csr_row_ptr,csr_col_ind,A,ld)
+    function hipsparseDcsr2dense_rank_0(handle,m,n,descr,csrVal,csrRowPtr,csrColInd,A,ld)
       use iso_c_binding
       use hipfort_hipsparse_enums
-      use hipfort_enums
-      implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDcsr2dense_full_rank
-      type(c_ptr) :: handle
-      integer(c_int) :: m
-      integer(c_int) :: n
-      type(c_ptr) :: descr
-      real(c_double),target,dimension(:) :: csr_val
-      integer(c_int),target,dimension(:) :: csr_row_ptr
-      integer(c_int),target,dimension(:) :: csr_col_ind
-      real(c_double),target,dimension(:,:) :: A
-      integer(c_int) :: ld
-      !
-      hipsparseDcsr2dense_full_rank = hipsparseDcsr2dense_(handle,m,n,descr,c_loc(csr_val),c_loc(csr_row_ptr),c_loc(csr_col_ind),c_loc(A),ld)
-    end function
-
-    function hipsparseDcsr2dense_rank_0(handle,m,n,descr,csr_val,csr_row_ptr,csr_col_ind,A,ld)
-      use iso_c_binding
-      use hipfort_hipsparse_enums
-      use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDcsr2dense_rank_0
       type(c_ptr) :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       type(c_ptr) :: descr
-      real(c_double),target :: csr_val
-      integer(c_int),target :: csr_row_ptr
-      integer(c_int),target :: csr_col_ind
+      real(c_double),target :: csrVal
+      integer(c_int),target :: csrRowPtr
+      integer(c_int),target :: csrColInd
       real(c_double),target :: A
       integer(c_int) :: ld
       !
-      hipsparseDcsr2dense_rank_0 = hipsparseDcsr2dense_(handle,m,n,descr,c_loc(csr_val),c_loc(csr_row_ptr),c_loc(csr_col_ind),c_loc(A),ld)
+      hipsparseDcsr2dense_rank_0 = hipsparseDcsr2dense_(handle,m,n,descr,c_loc(csrVal),c_loc(csrRowPtr),c_loc(csrColInd),c_loc(A),ld)
     end function
 
-    function hipsparseDcsr2dense_rank_1(handle,m,n,descr,csr_val,csr_row_ptr,csr_col_ind,A,ld)
+    function hipsparseDcsr2dense_rank_1(handle,m,n,descr,csrVal,csrRowPtr,csrColInd,A,ld)
       use iso_c_binding
       use hipfort_hipsparse_enums
-      use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDcsr2dense_rank_1
       type(c_ptr) :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       type(c_ptr) :: descr
-      real(c_double),target,dimension(:) :: csr_val
-      integer(c_int),target,dimension(:) :: csr_row_ptr
-      integer(c_int),target,dimension(:) :: csr_col_ind
+      real(c_double),target,dimension(:) :: csrVal
+      integer(c_int),target,dimension(:) :: csrRowPtr
+      integer(c_int),target,dimension(:) :: csrColInd
       real(c_double),target,dimension(:) :: A
       integer(c_int) :: ld
       !
-      hipsparseDcsr2dense_rank_1 = hipsparseDcsr2dense_(handle,m,n,descr,c_loc(csr_val),c_loc(csr_row_ptr),c_loc(csr_col_ind),c_loc(A),ld)
+      hipsparseDcsr2dense_rank_1 = hipsparseDcsr2dense_(handle,m,n,descr,c_loc(csrVal),c_loc(csrRowPtr),c_loc(csrColInd),c_loc(A),ld)
     end function
 
-    function hipsparseCcsr2dense_full_rank(handle,m,n,descr,csr_val,csr_row_ptr,csr_col_ind,A,ld)
+    function hipsparseCcsr2dense_rank_0(handle,m,n,descr,csrVal,csrRowPtr,csrColInd,A,ld)
       use iso_c_binding
       use hipfort_hipsparse_enums
-      use hipfort_enums
-      implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCcsr2dense_full_rank
-      type(c_ptr) :: handle
-      integer(c_int) :: m
-      integer(c_int) :: n
-      type(c_ptr) :: descr
-      complex(c_float_complex),target,dimension(:) :: csr_val
-      integer(c_int),target,dimension(:) :: csr_row_ptr
-      integer(c_int),target,dimension(:) :: csr_col_ind
-      complex(c_float_complex),target,dimension(:,:) :: A
-      integer(c_int) :: ld
-      !
-      hipsparseCcsr2dense_full_rank = hipsparseCcsr2dense_(handle,m,n,descr,c_loc(csr_val),c_loc(csr_row_ptr),c_loc(csr_col_ind),c_loc(A),ld)
-    end function
-
-    function hipsparseCcsr2dense_rank_0(handle,m,n,descr,csr_val,csr_row_ptr,csr_col_ind,A,ld)
-      use iso_c_binding
-      use hipfort_hipsparse_enums
-      use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCcsr2dense_rank_0
       type(c_ptr) :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       type(c_ptr) :: descr
-      complex(c_float_complex),target :: csr_val
-      integer(c_int),target :: csr_row_ptr
-      integer(c_int),target :: csr_col_ind
+      complex(c_float_complex),target :: csrVal
+      integer(c_int),target :: csrRowPtr
+      integer(c_int),target :: csrColInd
       complex(c_float_complex),target :: A
       integer(c_int) :: ld
       !
-      hipsparseCcsr2dense_rank_0 = hipsparseCcsr2dense_(handle,m,n,descr,c_loc(csr_val),c_loc(csr_row_ptr),c_loc(csr_col_ind),c_loc(A),ld)
+      hipsparseCcsr2dense_rank_0 = hipsparseCcsr2dense_(handle,m,n,descr,c_loc(csrVal),c_loc(csrRowPtr),c_loc(csrColInd),c_loc(A),ld)
     end function
 
-    function hipsparseCcsr2dense_rank_1(handle,m,n,descr,csr_val,csr_row_ptr,csr_col_ind,A,ld)
+    function hipsparseCcsr2dense_rank_1(handle,m,n,descr,csrVal,csrRowPtr,csrColInd,A,ld)
       use iso_c_binding
       use hipfort_hipsparse_enums
-      use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCcsr2dense_rank_1
       type(c_ptr) :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       type(c_ptr) :: descr
-      complex(c_float_complex),target,dimension(:) :: csr_val
-      integer(c_int),target,dimension(:) :: csr_row_ptr
-      integer(c_int),target,dimension(:) :: csr_col_ind
+      complex(c_float_complex),target,dimension(:) :: csrVal
+      integer(c_int),target,dimension(:) :: csrRowPtr
+      integer(c_int),target,dimension(:) :: csrColInd
       complex(c_float_complex),target,dimension(:) :: A
       integer(c_int) :: ld
       !
-      hipsparseCcsr2dense_rank_1 = hipsparseCcsr2dense_(handle,m,n,descr,c_loc(csr_val),c_loc(csr_row_ptr),c_loc(csr_col_ind),c_loc(A),ld)
+      hipsparseCcsr2dense_rank_1 = hipsparseCcsr2dense_(handle,m,n,descr,c_loc(csrVal),c_loc(csrRowPtr),c_loc(csrColInd),c_loc(A),ld)
     end function
 
-    function hipsparseZcsr2dense_full_rank(handle,m,n,descr,csr_val,csr_row_ptr,csr_col_ind,A,ld)
+    function hipsparseZcsr2dense_rank_0(handle,m,n,descr,csrVal,csrRowPtr,csrColInd,A,ld)
       use iso_c_binding
       use hipfort_hipsparse_enums
-      use hipfort_enums
-      implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZcsr2dense_full_rank
-      type(c_ptr) :: handle
-      integer(c_int) :: m
-      integer(c_int) :: n
-      type(c_ptr) :: descr
-      complex(c_double_complex),target,dimension(:) :: csr_val
-      integer(c_int),target,dimension(:) :: csr_row_ptr
-      integer(c_int),target,dimension(:) :: csr_col_ind
-      complex(c_double_complex),target,dimension(:,:) :: A
-      integer(c_int) :: ld
-      !
-      hipsparseZcsr2dense_full_rank = hipsparseZcsr2dense_(handle,m,n,descr,c_loc(csr_val),c_loc(csr_row_ptr),c_loc(csr_col_ind),c_loc(A),ld)
-    end function
-
-    function hipsparseZcsr2dense_rank_0(handle,m,n,descr,csr_val,csr_row_ptr,csr_col_ind,A,ld)
-      use iso_c_binding
-      use hipfort_hipsparse_enums
-      use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZcsr2dense_rank_0
       type(c_ptr) :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       type(c_ptr) :: descr
-      complex(c_double_complex),target :: csr_val
-      integer(c_int),target :: csr_row_ptr
-      integer(c_int),target :: csr_col_ind
+      complex(c_double_complex),target :: csrVal
+      integer(c_int),target :: csrRowPtr
+      integer(c_int),target :: csrColInd
       complex(c_double_complex),target :: A
       integer(c_int) :: ld
       !
-      hipsparseZcsr2dense_rank_0 = hipsparseZcsr2dense_(handle,m,n,descr,c_loc(csr_val),c_loc(csr_row_ptr),c_loc(csr_col_ind),c_loc(A),ld)
+      hipsparseZcsr2dense_rank_0 = hipsparseZcsr2dense_(handle,m,n,descr,c_loc(csrVal),c_loc(csrRowPtr),c_loc(csrColInd),c_loc(A),ld)
     end function
 
-    function hipsparseZcsr2dense_rank_1(handle,m,n,descr,csr_val,csr_row_ptr,csr_col_ind,A,ld)
+    function hipsparseZcsr2dense_rank_1(handle,m,n,descr,csrVal,csrRowPtr,csrColInd,A,ld)
       use iso_c_binding
       use hipfort_hipsparse_enums
-      use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZcsr2dense_rank_1
       type(c_ptr) :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       type(c_ptr) :: descr
-      complex(c_double_complex),target,dimension(:) :: csr_val
-      integer(c_int),target,dimension(:) :: csr_row_ptr
-      integer(c_int),target,dimension(:) :: csr_col_ind
+      complex(c_double_complex),target,dimension(:) :: csrVal
+      integer(c_int),target,dimension(:) :: csrRowPtr
+      integer(c_int),target,dimension(:) :: csrColInd
       complex(c_double_complex),target,dimension(:) :: A
       integer(c_int) :: ld
       !
-      hipsparseZcsr2dense_rank_1 = hipsparseZcsr2dense_(handle,m,n,descr,c_loc(csr_val),c_loc(csr_row_ptr),c_loc(csr_col_ind),c_loc(A),ld)
+      hipsparseZcsr2dense_rank_1 = hipsparseZcsr2dense_(handle,m,n,descr,c_loc(csrVal),c_loc(csrRowPtr),c_loc(csrColInd),c_loc(A),ld)
     end function
 
-    function hipsparseScsc2dense_full_rank(handle,m,n,descr,csc_val,csc_row_ind,csc_col_ptr,A,ld)
+    function hipsparseScsc2dense_rank_0(handle,m,n,descr,cscVal,cscRowInd,cscColPtr,A,ld)
       use iso_c_binding
       use hipfort_hipsparse_enums
-      use hipfort_enums
-      implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseScsc2dense_full_rank
-      type(c_ptr) :: handle
-      integer(c_int) :: m
-      integer(c_int) :: n
-      type(c_ptr) :: descr
-      real(c_float),target,dimension(:) :: csc_val
-      integer(c_int),target,dimension(:) :: csc_row_ind
-      integer(c_int),target,dimension(:) :: csc_col_ptr
-      real(c_float),target,dimension(:,:) :: A
-      integer(c_int) :: ld
-      !
-      hipsparseScsc2dense_full_rank = hipsparseScsc2dense_(handle,m,n,descr,c_loc(csc_val),c_loc(csc_row_ind),c_loc(csc_col_ptr),c_loc(A),ld)
-    end function
-
-    function hipsparseScsc2dense_rank_0(handle,m,n,descr,csc_val,csc_row_ind,csc_col_ptr,A,ld)
-      use iso_c_binding
-      use hipfort_hipsparse_enums
-      use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseScsc2dense_rank_0
       type(c_ptr) :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       type(c_ptr) :: descr
-      real(c_float),target :: csc_val
-      integer(c_int),target :: csc_row_ind
-      integer(c_int),target :: csc_col_ptr
+      real(c_float),target :: cscVal
+      integer(c_int),target :: cscRowInd
+      integer(c_int),target :: cscColPtr
       real(c_float),target :: A
       integer(c_int) :: ld
       !
-      hipsparseScsc2dense_rank_0 = hipsparseScsc2dense_(handle,m,n,descr,c_loc(csc_val),c_loc(csc_row_ind),c_loc(csc_col_ptr),c_loc(A),ld)
+      hipsparseScsc2dense_rank_0 = hipsparseScsc2dense_(handle,m,n,descr,c_loc(cscVal),c_loc(cscRowInd),c_loc(cscColPtr),c_loc(A),ld)
     end function
 
-    function hipsparseScsc2dense_rank_1(handle,m,n,descr,csc_val,csc_row_ind,csc_col_ptr,A,ld)
+    function hipsparseScsc2dense_rank_1(handle,m,n,descr,cscVal,cscRowInd,cscColPtr,A,ld)
       use iso_c_binding
       use hipfort_hipsparse_enums
-      use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseScsc2dense_rank_1
       type(c_ptr) :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       type(c_ptr) :: descr
-      real(c_float),target,dimension(:) :: csc_val
-      integer(c_int),target,dimension(:) :: csc_row_ind
-      integer(c_int),target,dimension(:) :: csc_col_ptr
+      real(c_float),target,dimension(:) :: cscVal
+      integer(c_int),target,dimension(:) :: cscRowInd
+      integer(c_int),target,dimension(:) :: cscColPtr
       real(c_float),target,dimension(:) :: A
       integer(c_int) :: ld
       !
-      hipsparseScsc2dense_rank_1 = hipsparseScsc2dense_(handle,m,n,descr,c_loc(csc_val),c_loc(csc_row_ind),c_loc(csc_col_ptr),c_loc(A),ld)
+      hipsparseScsc2dense_rank_1 = hipsparseScsc2dense_(handle,m,n,descr,c_loc(cscVal),c_loc(cscRowInd),c_loc(cscColPtr),c_loc(A),ld)
     end function
 
-    function hipsparseDcsc2dense_full_rank(handle,m,n,descr,csc_val,csc_row_ind,csc_col_ptr,A,ld)
+    function hipsparseDcsc2dense_rank_0(handle,m,n,descr,cscVal,cscRowInd,cscColPtr,A,ld)
       use iso_c_binding
       use hipfort_hipsparse_enums
-      use hipfort_enums
-      implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDcsc2dense_full_rank
-      type(c_ptr) :: handle
-      integer(c_int) :: m
-      integer(c_int) :: n
-      type(c_ptr) :: descr
-      real(c_double),target,dimension(:) :: csc_val
-      integer(c_int),target,dimension(:) :: csc_row_ind
-      integer(c_int),target,dimension(:) :: csc_col_ptr
-      real(c_double),target,dimension(:,:) :: A
-      integer(c_int) :: ld
-      !
-      hipsparseDcsc2dense_full_rank = hipsparseDcsc2dense_(handle,m,n,descr,c_loc(csc_val),c_loc(csc_row_ind),c_loc(csc_col_ptr),c_loc(A),ld)
-    end function
-
-    function hipsparseDcsc2dense_rank_0(handle,m,n,descr,csc_val,csc_row_ind,csc_col_ptr,A,ld)
-      use iso_c_binding
-      use hipfort_hipsparse_enums
-      use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDcsc2dense_rank_0
       type(c_ptr) :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       type(c_ptr) :: descr
-      real(c_double),target :: csc_val
-      integer(c_int),target :: csc_row_ind
-      integer(c_int),target :: csc_col_ptr
+      real(c_double),target :: cscVal
+      integer(c_int),target :: cscRowInd
+      integer(c_int),target :: cscColPtr
       real(c_double),target :: A
       integer(c_int) :: ld
       !
-      hipsparseDcsc2dense_rank_0 = hipsparseDcsc2dense_(handle,m,n,descr,c_loc(csc_val),c_loc(csc_row_ind),c_loc(csc_col_ptr),c_loc(A),ld)
+      hipsparseDcsc2dense_rank_0 = hipsparseDcsc2dense_(handle,m,n,descr,c_loc(cscVal),c_loc(cscRowInd),c_loc(cscColPtr),c_loc(A),ld)
     end function
 
-    function hipsparseDcsc2dense_rank_1(handle,m,n,descr,csc_val,csc_row_ind,csc_col_ptr,A,ld)
+    function hipsparseDcsc2dense_rank_1(handle,m,n,descr,cscVal,cscRowInd,cscColPtr,A,ld)
       use iso_c_binding
       use hipfort_hipsparse_enums
-      use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDcsc2dense_rank_1
       type(c_ptr) :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       type(c_ptr) :: descr
-      real(c_double),target,dimension(:) :: csc_val
-      integer(c_int),target,dimension(:) :: csc_row_ind
-      integer(c_int),target,dimension(:) :: csc_col_ptr
+      real(c_double),target,dimension(:) :: cscVal
+      integer(c_int),target,dimension(:) :: cscRowInd
+      integer(c_int),target,dimension(:) :: cscColPtr
       real(c_double),target,dimension(:) :: A
       integer(c_int) :: ld
       !
-      hipsparseDcsc2dense_rank_1 = hipsparseDcsc2dense_(handle,m,n,descr,c_loc(csc_val),c_loc(csc_row_ind),c_loc(csc_col_ptr),c_loc(A),ld)
+      hipsparseDcsc2dense_rank_1 = hipsparseDcsc2dense_(handle,m,n,descr,c_loc(cscVal),c_loc(cscRowInd),c_loc(cscColPtr),c_loc(A),ld)
     end function
 
-    function hipsparseCcsc2dense_full_rank(handle,m,n,descr,csc_val,csc_row_ind,csc_col_ptr,A,ld)
+    function hipsparseCcsc2dense_rank_0(handle,m,n,descr,cscVal,cscRowInd,cscColPtr,A,ld)
       use iso_c_binding
       use hipfort_hipsparse_enums
-      use hipfort_enums
-      implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCcsc2dense_full_rank
-      type(c_ptr) :: handle
-      integer(c_int) :: m
-      integer(c_int) :: n
-      type(c_ptr) :: descr
-      complex(c_float_complex),target,dimension(:) :: csc_val
-      integer(c_int),target,dimension(:) :: csc_row_ind
-      integer(c_int),target,dimension(:) :: csc_col_ptr
-      complex(c_float_complex),target,dimension(:,:) :: A
-      integer(c_int) :: ld
-      !
-      hipsparseCcsc2dense_full_rank = hipsparseCcsc2dense_(handle,m,n,descr,c_loc(csc_val),c_loc(csc_row_ind),c_loc(csc_col_ptr),c_loc(A),ld)
-    end function
-
-    function hipsparseCcsc2dense_rank_0(handle,m,n,descr,csc_val,csc_row_ind,csc_col_ptr,A,ld)
-      use iso_c_binding
-      use hipfort_hipsparse_enums
-      use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCcsc2dense_rank_0
       type(c_ptr) :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       type(c_ptr) :: descr
-      complex(c_float_complex),target :: csc_val
-      integer(c_int),target :: csc_row_ind
-      integer(c_int),target :: csc_col_ptr
+      complex(c_float_complex),target :: cscVal
+      integer(c_int),target :: cscRowInd
+      integer(c_int),target :: cscColPtr
       complex(c_float_complex),target :: A
       integer(c_int) :: ld
       !
-      hipsparseCcsc2dense_rank_0 = hipsparseCcsc2dense_(handle,m,n,descr,c_loc(csc_val),c_loc(csc_row_ind),c_loc(csc_col_ptr),c_loc(A),ld)
+      hipsparseCcsc2dense_rank_0 = hipsparseCcsc2dense_(handle,m,n,descr,c_loc(cscVal),c_loc(cscRowInd),c_loc(cscColPtr),c_loc(A),ld)
     end function
 
-    function hipsparseCcsc2dense_rank_1(handle,m,n,descr,csc_val,csc_row_ind,csc_col_ptr,A,ld)
+    function hipsparseCcsc2dense_rank_1(handle,m,n,descr,cscVal,cscRowInd,cscColPtr,A,ld)
       use iso_c_binding
       use hipfort_hipsparse_enums
-      use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCcsc2dense_rank_1
       type(c_ptr) :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       type(c_ptr) :: descr
-      complex(c_float_complex),target,dimension(:) :: csc_val
-      integer(c_int),target,dimension(:) :: csc_row_ind
-      integer(c_int),target,dimension(:) :: csc_col_ptr
+      complex(c_float_complex),target,dimension(:) :: cscVal
+      integer(c_int),target,dimension(:) :: cscRowInd
+      integer(c_int),target,dimension(:) :: cscColPtr
       complex(c_float_complex),target,dimension(:) :: A
       integer(c_int) :: ld
       !
-      hipsparseCcsc2dense_rank_1 = hipsparseCcsc2dense_(handle,m,n,descr,c_loc(csc_val),c_loc(csc_row_ind),c_loc(csc_col_ptr),c_loc(A),ld)
+      hipsparseCcsc2dense_rank_1 = hipsparseCcsc2dense_(handle,m,n,descr,c_loc(cscVal),c_loc(cscRowInd),c_loc(cscColPtr),c_loc(A),ld)
     end function
 
-    function hipsparseZcsc2dense_full_rank(handle,m,n,descr,csc_val,csc_row_ind,csc_col_ptr,A,ld)
+    function hipsparseZcsc2dense_rank_0(handle,m,n,descr,cscVal,cscRowInd,cscColPtr,A,ld)
       use iso_c_binding
       use hipfort_hipsparse_enums
-      use hipfort_enums
-      implicit none
-      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZcsc2dense_full_rank
-      type(c_ptr) :: handle
-      integer(c_int) :: m
-      integer(c_int) :: n
-      type(c_ptr) :: descr
-      complex(c_double_complex),target,dimension(:) :: csc_val
-      integer(c_int),target,dimension(:) :: csc_row_ind
-      integer(c_int),target,dimension(:) :: csc_col_ptr
-      complex(c_double_complex),target,dimension(:,:) :: A
-      integer(c_int) :: ld
-      !
-      hipsparseZcsc2dense_full_rank = hipsparseZcsc2dense_(handle,m,n,descr,c_loc(csc_val),c_loc(csc_row_ind),c_loc(csc_col_ptr),c_loc(A),ld)
-    end function
-
-    function hipsparseZcsc2dense_rank_0(handle,m,n,descr,csc_val,csc_row_ind,csc_col_ptr,A,ld)
-      use iso_c_binding
-      use hipfort_hipsparse_enums
-      use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZcsc2dense_rank_0
       type(c_ptr) :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       type(c_ptr) :: descr
-      complex(c_double_complex),target :: csc_val
-      integer(c_int),target :: csc_row_ind
-      integer(c_int),target :: csc_col_ptr
+      complex(c_double_complex),target :: cscVal
+      integer(c_int),target :: cscRowInd
+      integer(c_int),target :: cscColPtr
       complex(c_double_complex),target :: A
       integer(c_int) :: ld
       !
-      hipsparseZcsc2dense_rank_0 = hipsparseZcsc2dense_(handle,m,n,descr,c_loc(csc_val),c_loc(csc_row_ind),c_loc(csc_col_ptr),c_loc(A),ld)
+      hipsparseZcsc2dense_rank_0 = hipsparseZcsc2dense_(handle,m,n,descr,c_loc(cscVal),c_loc(cscRowInd),c_loc(cscColPtr),c_loc(A),ld)
     end function
 
-    function hipsparseZcsc2dense_rank_1(handle,m,n,descr,csc_val,csc_row_ind,csc_col_ptr,A,ld)
+    function hipsparseZcsc2dense_rank_1(handle,m,n,descr,cscVal,cscRowInd,cscColPtr,A,ld)
       use iso_c_binding
       use hipfort_hipsparse_enums
-      use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZcsc2dense_rank_1
       type(c_ptr) :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       type(c_ptr) :: descr
-      complex(c_double_complex),target,dimension(:) :: csc_val
-      integer(c_int),target,dimension(:) :: csc_row_ind
-      integer(c_int),target,dimension(:) :: csc_col_ptr
+      complex(c_double_complex),target,dimension(:) :: cscVal
+      integer(c_int),target,dimension(:) :: cscRowInd
+      integer(c_int),target,dimension(:) :: cscColPtr
       complex(c_double_complex),target,dimension(:) :: A
       integer(c_int) :: ld
       !
-      hipsparseZcsc2dense_rank_1 = hipsparseZcsc2dense_(handle,m,n,descr,c_loc(csc_val),c_loc(csc_row_ind),c_loc(csc_col_ptr),c_loc(A),ld)
+      hipsparseZcsc2dense_rank_1 = hipsparseZcsc2dense_(handle,m,n,descr,c_loc(cscVal),c_loc(cscRowInd),c_loc(cscColPtr),c_loc(A),ld)
     end function
 
     function hipsparseXcsr2bsrNnz_rank_0(handle,dirA,m,n,descrA,csrRowPtrA,csrColIndA,blockDim,descrC,bsrRowPtrC,bsrNnzb)
       use iso_c_binding
       use hipfort_hipsparse_enums
-      use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseXcsr2bsrNnz_rank_0
       type(c_ptr) :: handle
@@ -32899,7 +33879,6 @@ module hipfort_hipsparse
     function hipsparseXcsr2bsrNnz_rank_1(handle,dirA,m,n,descrA,csrRowPtrA,csrColIndA,blockDim,descrC,bsrRowPtrC,bsrNnzb)
       use iso_c_binding
       use hipfort_hipsparse_enums
-      use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseXcsr2bsrNnz_rank_1
       type(c_ptr) :: handle
@@ -32920,7 +33899,6 @@ module hipfort_hipsparse
     function hipsparseSnnz_compress_rank_0(handle,m,descrA,csrValA,csrRowPtrA,nnzPerRow,nnzC,tol)
       use iso_c_binding
       use hipfort_hipsparse_enums
-      use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSnnz_compress_rank_0
       type(c_ptr) :: handle
@@ -32938,7 +33916,6 @@ module hipfort_hipsparse
     function hipsparseSnnz_compress_rank_1(handle,m,descrA,csrValA,csrRowPtrA,nnzPerRow,nnzC,tol)
       use iso_c_binding
       use hipfort_hipsparse_enums
-      use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSnnz_compress_rank_1
       type(c_ptr) :: handle
@@ -32956,7 +33933,6 @@ module hipfort_hipsparse
     function hipsparseDnnz_compress_rank_0(handle,m,descrA,csrValA,csrRowPtrA,nnzPerRow,nnzC,tol)
       use iso_c_binding
       use hipfort_hipsparse_enums
-      use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDnnz_compress_rank_0
       type(c_ptr) :: handle
@@ -32974,7 +33950,6 @@ module hipfort_hipsparse
     function hipsparseDnnz_compress_rank_1(handle,m,descrA,csrValA,csrRowPtrA,nnzPerRow,nnzC,tol)
       use iso_c_binding
       use hipfort_hipsparse_enums
-      use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDnnz_compress_rank_1
       type(c_ptr) :: handle
@@ -32992,7 +33967,6 @@ module hipfort_hipsparse
     function hipsparseCnnz_compress_rank_0(handle,m,descrA,csrValA,csrRowPtrA,nnzPerRow,nnzC,tol)
       use iso_c_binding
       use hipfort_hipsparse_enums
-      use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCnnz_compress_rank_0
       type(c_ptr) :: handle
@@ -33010,7 +33984,6 @@ module hipfort_hipsparse
     function hipsparseCnnz_compress_rank_1(handle,m,descrA,csrValA,csrRowPtrA,nnzPerRow,nnzC,tol)
       use iso_c_binding
       use hipfort_hipsparse_enums
-      use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCnnz_compress_rank_1
       type(c_ptr) :: handle
@@ -33028,7 +34001,6 @@ module hipfort_hipsparse
     function hipsparseZnnz_compress_rank_0(handle,m,descrA,csrValA,csrRowPtrA,nnzPerRow,nnzC,tol)
       use iso_c_binding
       use hipfort_hipsparse_enums
-      use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZnnz_compress_rank_0
       type(c_ptr) :: handle
@@ -33046,7 +34018,6 @@ module hipfort_hipsparse
     function hipsparseZnnz_compress_rank_1(handle,m,descrA,csrValA,csrRowPtrA,nnzPerRow,nnzC,tol)
       use iso_c_binding
       use hipfort_hipsparse_enums
-      use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZnnz_compress_rank_1
       type(c_ptr) :: handle
@@ -33064,7 +34035,6 @@ module hipfort_hipsparse
     function hipsparseXcsr2coo_rank_0(handle,csrRowPtr,nnz,m,cooRowInd,idxBase)
       use iso_c_binding
       use hipfort_hipsparse_enums
-      use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseXcsr2coo_rank_0
       type(c_ptr) :: handle
@@ -33080,7 +34050,6 @@ module hipfort_hipsparse
     function hipsparseXcsr2coo_rank_1(handle,csrRowPtr,nnz,m,cooRowInd,idxBase)
       use iso_c_binding
       use hipfort_hipsparse_enums
-      use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseXcsr2coo_rank_1
       type(c_ptr) :: handle
@@ -33096,7 +34065,6 @@ module hipfort_hipsparse
     function hipsparseScsr2csc_rank_0(handle,m,n,nnz,csrSortedVal,csrSortedRowPtr,csrSortedColInd,cscSortedVal,cscSortedRowInd,cscSortedColPtr,copyValues,idxBase)
       use iso_c_binding
       use hipfort_hipsparse_enums
-      use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseScsr2csc_rank_0
       type(c_ptr) :: handle
@@ -33118,7 +34086,6 @@ module hipfort_hipsparse
     function hipsparseScsr2csc_rank_1(handle,m,n,nnz,csrSortedVal,csrSortedRowPtr,csrSortedColInd,cscSortedVal,cscSortedRowInd,cscSortedColPtr,copyValues,idxBase)
       use iso_c_binding
       use hipfort_hipsparse_enums
-      use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseScsr2csc_rank_1
       type(c_ptr) :: handle
@@ -33140,7 +34107,6 @@ module hipfort_hipsparse
     function hipsparseDcsr2csc_rank_0(handle,m,n,nnz,csrSortedVal,csrSortedRowPtr,csrSortedColInd,cscSortedVal,cscSortedRowInd,cscSortedColPtr,copyValues,idxBase)
       use iso_c_binding
       use hipfort_hipsparse_enums
-      use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDcsr2csc_rank_0
       type(c_ptr) :: handle
@@ -33162,7 +34128,6 @@ module hipfort_hipsparse
     function hipsparseDcsr2csc_rank_1(handle,m,n,nnz,csrSortedVal,csrSortedRowPtr,csrSortedColInd,cscSortedVal,cscSortedRowInd,cscSortedColPtr,copyValues,idxBase)
       use iso_c_binding
       use hipfort_hipsparse_enums
-      use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDcsr2csc_rank_1
       type(c_ptr) :: handle
@@ -33184,7 +34149,6 @@ module hipfort_hipsparse
     function hipsparseCcsr2csc_rank_0(handle,m,n,nnz,csrSortedVal,csrSortedRowPtr,csrSortedColInd,cscSortedVal,cscSortedRowInd,cscSortedColPtr,copyValues,idxBase)
       use iso_c_binding
       use hipfort_hipsparse_enums
-      use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCcsr2csc_rank_0
       type(c_ptr) :: handle
@@ -33206,7 +34170,6 @@ module hipfort_hipsparse
     function hipsparseCcsr2csc_rank_1(handle,m,n,nnz,csrSortedVal,csrSortedRowPtr,csrSortedColInd,cscSortedVal,cscSortedRowInd,cscSortedColPtr,copyValues,idxBase)
       use iso_c_binding
       use hipfort_hipsparse_enums
-      use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCcsr2csc_rank_1
       type(c_ptr) :: handle
@@ -33228,7 +34191,6 @@ module hipfort_hipsparse
     function hipsparseZcsr2csc_rank_0(handle,m,n,nnz,csrSortedVal,csrSortedRowPtr,csrSortedColInd,cscSortedVal,cscSortedRowInd,cscSortedColPtr,copyValues,idxBase)
       use iso_c_binding
       use hipfort_hipsparse_enums
-      use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZcsr2csc_rank_0
       type(c_ptr) :: handle
@@ -33250,7 +34212,6 @@ module hipfort_hipsparse
     function hipsparseZcsr2csc_rank_1(handle,m,n,nnz,csrSortedVal,csrSortedRowPtr,csrSortedColInd,cscSortedVal,cscSortedRowInd,cscSortedColPtr,copyValues,idxBase)
       use iso_c_binding
       use hipfort_hipsparse_enums
-      use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZcsr2csc_rank_1
       type(c_ptr) :: handle
@@ -33272,7 +34233,6 @@ module hipfort_hipsparse
     function hipsparseScsr2hyb_rank_0(handle,m,n,descrA,csrSortedValA,csrSortedRowPtrA,csrSortedColIndA,hybA,userEllWidth,partitionType)
       use iso_c_binding
       use hipfort_hipsparse_enums
-      use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseScsr2hyb_rank_0
       type(c_ptr) :: handle
@@ -33292,7 +34252,6 @@ module hipfort_hipsparse
     function hipsparseScsr2hyb_rank_1(handle,m,n,descrA,csrSortedValA,csrSortedRowPtrA,csrSortedColIndA,hybA,userEllWidth,partitionType)
       use iso_c_binding
       use hipfort_hipsparse_enums
-      use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseScsr2hyb_rank_1
       type(c_ptr) :: handle
@@ -33312,7 +34271,6 @@ module hipfort_hipsparse
     function hipsparseDcsr2hyb_rank_0(handle,m,n,descrA,csrSortedValA,csrSortedRowPtrA,csrSortedColIndA,hybA,userEllWidth,partitionType)
       use iso_c_binding
       use hipfort_hipsparse_enums
-      use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDcsr2hyb_rank_0
       type(c_ptr) :: handle
@@ -33332,7 +34290,6 @@ module hipfort_hipsparse
     function hipsparseDcsr2hyb_rank_1(handle,m,n,descrA,csrSortedValA,csrSortedRowPtrA,csrSortedColIndA,hybA,userEllWidth,partitionType)
       use iso_c_binding
       use hipfort_hipsparse_enums
-      use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDcsr2hyb_rank_1
       type(c_ptr) :: handle
@@ -33352,7 +34309,6 @@ module hipfort_hipsparse
     function hipsparseCcsr2hyb_rank_0(handle,m,n,descrA,csrSortedValA,csrSortedRowPtrA,csrSortedColIndA,hybA,userEllWidth,partitionType)
       use iso_c_binding
       use hipfort_hipsparse_enums
-      use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCcsr2hyb_rank_0
       type(c_ptr) :: handle
@@ -33372,7 +34328,6 @@ module hipfort_hipsparse
     function hipsparseCcsr2hyb_rank_1(handle,m,n,descrA,csrSortedValA,csrSortedRowPtrA,csrSortedColIndA,hybA,userEllWidth,partitionType)
       use iso_c_binding
       use hipfort_hipsparse_enums
-      use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCcsr2hyb_rank_1
       type(c_ptr) :: handle
@@ -33392,7 +34347,6 @@ module hipfort_hipsparse
     function hipsparseZcsr2hyb_rank_0(handle,m,n,descrA,csrSortedValA,csrSortedRowPtrA,csrSortedColIndA,hybA,userEllWidth,partitionType)
       use iso_c_binding
       use hipfort_hipsparse_enums
-      use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZcsr2hyb_rank_0
       type(c_ptr) :: handle
@@ -33412,7 +34366,6 @@ module hipfort_hipsparse
     function hipsparseZcsr2hyb_rank_1(handle,m,n,descrA,csrSortedValA,csrSortedRowPtrA,csrSortedColIndA,hybA,userEllWidth,partitionType)
       use iso_c_binding
       use hipfort_hipsparse_enums
-      use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZcsr2hyb_rank_1
       type(c_ptr) :: handle
@@ -33429,10 +34382,9 @@ module hipfort_hipsparse
       hipsparseZcsr2hyb_rank_1 = hipsparseZcsr2hyb_(handle,m,n,descrA,c_loc(csrSortedValA),c_loc(csrSortedRowPtrA),c_loc(csrSortedColIndA),hybA,userEllWidth,partitionType)
     end function
 
-    function hipsparseScsr2gebsr_bufferSize_rank_0(handle,dir,m,n,csr_descr,csr_val,csr_row_ptr,csr_col_ind,row_block_dim,col_block_dim,p_buffer_size)
+    function hipsparseScsr2gebsr_bufferSize_rank_0(handle,dir,m,n,csr_descr,csrVal,csrRowPtr,csrColInd,rowBlockDim,colBlockDim,pBufferSizeInBytes)
       use iso_c_binding
       use hipfort_hipsparse_enums
-      use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseScsr2gebsr_bufferSize_rank_0
       type(c_ptr) :: handle
@@ -33440,20 +34392,19 @@ module hipfort_hipsparse
       integer(c_int) :: m
       integer(c_int) :: n
       type(c_ptr) :: csr_descr
-      real(c_float),target :: csr_val
-      integer(c_int),target :: csr_row_ptr
-      integer(c_int),target :: csr_col_ind
-      integer(c_int) :: row_block_dim
-      integer(c_int) :: col_block_dim
-      type(c_ptr) :: p_buffer_size
+      real(c_float),target :: csrVal
+      integer(c_int),target :: csrRowPtr
+      integer(c_int),target :: csrColInd
+      integer(c_int) :: rowBlockDim
+      integer(c_int) :: colBlockDim
+      integer(c_size_t),target :: pBufferSizeInBytes
       !
-      hipsparseScsr2gebsr_bufferSize_rank_0 = hipsparseScsr2gebsr_bufferSize_(handle,dir,m,n,csr_descr,c_loc(csr_val),c_loc(csr_row_ptr),c_loc(csr_col_ind),row_block_dim,col_block_dim,p_buffer_size)
+      hipsparseScsr2gebsr_bufferSize_rank_0 = hipsparseScsr2gebsr_bufferSize_(handle,dir,m,n,csr_descr,c_loc(csrVal),c_loc(csrRowPtr),c_loc(csrColInd),rowBlockDim,colBlockDim,c_loc(pBufferSizeInBytes))
     end function
 
-    function hipsparseScsr2gebsr_bufferSize_rank_1(handle,dir,m,n,csr_descr,csr_val,csr_row_ptr,csr_col_ind,row_block_dim,col_block_dim,p_buffer_size)
+    function hipsparseScsr2gebsr_bufferSize_rank_1(handle,dir,m,n,csr_descr,csrVal,csrRowPtr,csrColInd,rowBlockDim,colBlockDim,pBufferSizeInBytes)
       use iso_c_binding
       use hipfort_hipsparse_enums
-      use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseScsr2gebsr_bufferSize_rank_1
       type(c_ptr) :: handle
@@ -33461,20 +34412,19 @@ module hipfort_hipsparse
       integer(c_int) :: m
       integer(c_int) :: n
       type(c_ptr) :: csr_descr
-      real(c_float),target,dimension(:) :: csr_val
-      integer(c_int),target,dimension(:) :: csr_row_ptr
-      integer(c_int),target,dimension(:) :: csr_col_ind
-      integer(c_int) :: row_block_dim
-      integer(c_int) :: col_block_dim
-      type(c_ptr) :: p_buffer_size
+      real(c_float),target,dimension(:) :: csrVal
+      integer(c_int),target,dimension(:) :: csrRowPtr
+      integer(c_int),target,dimension(:) :: csrColInd
+      integer(c_int) :: rowBlockDim
+      integer(c_int) :: colBlockDim
+      integer(c_size_t),target,dimension(:) :: pBufferSizeInBytes
       !
-      hipsparseScsr2gebsr_bufferSize_rank_1 = hipsparseScsr2gebsr_bufferSize_(handle,dir,m,n,csr_descr,c_loc(csr_val),c_loc(csr_row_ptr),c_loc(csr_col_ind),row_block_dim,col_block_dim,p_buffer_size)
+      hipsparseScsr2gebsr_bufferSize_rank_1 = hipsparseScsr2gebsr_bufferSize_(handle,dir,m,n,csr_descr,c_loc(csrVal),c_loc(csrRowPtr),c_loc(csrColInd),rowBlockDim,colBlockDim,c_loc(pBufferSizeInBytes))
     end function
 
-    function hipsparseDcsr2gebsr_bufferSize_rank_0(handle,dir,m,n,csr_descr,csr_val,csr_row_ptr,csr_col_ind,row_block_dim,col_block_dim,p_buffer_size)
+    function hipsparseDcsr2gebsr_bufferSize_rank_0(handle,dir,m,n,csr_descr,csrVal,csrRowPtr,csrColInd,rowBlockDim,colBlockDim,pBufferSizeInBytes)
       use iso_c_binding
       use hipfort_hipsparse_enums
-      use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDcsr2gebsr_bufferSize_rank_0
       type(c_ptr) :: handle
@@ -33482,20 +34432,19 @@ module hipfort_hipsparse
       integer(c_int) :: m
       integer(c_int) :: n
       type(c_ptr) :: csr_descr
-      real(c_double),target :: csr_val
-      integer(c_int),target :: csr_row_ptr
-      integer(c_int),target :: csr_col_ind
-      integer(c_int) :: row_block_dim
-      integer(c_int) :: col_block_dim
-      type(c_ptr) :: p_buffer_size
+      real(c_double),target :: csrVal
+      integer(c_int),target :: csrRowPtr
+      integer(c_int),target :: csrColInd
+      integer(c_int) :: rowBlockDim
+      integer(c_int) :: colBlockDim
+      integer(c_size_t),target :: pBufferSizeInBytes
       !
-      hipsparseDcsr2gebsr_bufferSize_rank_0 = hipsparseDcsr2gebsr_bufferSize_(handle,dir,m,n,csr_descr,c_loc(csr_val),c_loc(csr_row_ptr),c_loc(csr_col_ind),row_block_dim,col_block_dim,p_buffer_size)
+      hipsparseDcsr2gebsr_bufferSize_rank_0 = hipsparseDcsr2gebsr_bufferSize_(handle,dir,m,n,csr_descr,c_loc(csrVal),c_loc(csrRowPtr),c_loc(csrColInd),rowBlockDim,colBlockDim,c_loc(pBufferSizeInBytes))
     end function
 
-    function hipsparseDcsr2gebsr_bufferSize_rank_1(handle,dir,m,n,csr_descr,csr_val,csr_row_ptr,csr_col_ind,row_block_dim,col_block_dim,p_buffer_size)
+    function hipsparseDcsr2gebsr_bufferSize_rank_1(handle,dir,m,n,csr_descr,csrVal,csrRowPtr,csrColInd,rowBlockDim,colBlockDim,pBufferSizeInBytes)
       use iso_c_binding
       use hipfort_hipsparse_enums
-      use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDcsr2gebsr_bufferSize_rank_1
       type(c_ptr) :: handle
@@ -33503,20 +34452,19 @@ module hipfort_hipsparse
       integer(c_int) :: m
       integer(c_int) :: n
       type(c_ptr) :: csr_descr
-      real(c_double),target,dimension(:) :: csr_val
-      integer(c_int),target,dimension(:) :: csr_row_ptr
-      integer(c_int),target,dimension(:) :: csr_col_ind
-      integer(c_int) :: row_block_dim
-      integer(c_int) :: col_block_dim
-      type(c_ptr) :: p_buffer_size
+      real(c_double),target,dimension(:) :: csrVal
+      integer(c_int),target,dimension(:) :: csrRowPtr
+      integer(c_int),target,dimension(:) :: csrColInd
+      integer(c_int) :: rowBlockDim
+      integer(c_int) :: colBlockDim
+      integer(c_size_t),target,dimension(:) :: pBufferSizeInBytes
       !
-      hipsparseDcsr2gebsr_bufferSize_rank_1 = hipsparseDcsr2gebsr_bufferSize_(handle,dir,m,n,csr_descr,c_loc(csr_val),c_loc(csr_row_ptr),c_loc(csr_col_ind),row_block_dim,col_block_dim,p_buffer_size)
+      hipsparseDcsr2gebsr_bufferSize_rank_1 = hipsparseDcsr2gebsr_bufferSize_(handle,dir,m,n,csr_descr,c_loc(csrVal),c_loc(csrRowPtr),c_loc(csrColInd),rowBlockDim,colBlockDim,c_loc(pBufferSizeInBytes))
     end function
 
-    function hipsparseCcsr2gebsr_bufferSize_rank_0(handle,dir,m,n,csr_descr,csr_val,csr_row_ptr,csr_col_ind,row_block_dim,col_block_dim,p_buffer_size)
+    function hipsparseCcsr2gebsr_bufferSize_rank_0(handle,dir,m,n,csr_descr,csrVal,csrRowPtr,csrColInd,rowBlockDim,colBlockDim,pBufferSizeInBytes)
       use iso_c_binding
       use hipfort_hipsparse_enums
-      use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCcsr2gebsr_bufferSize_rank_0
       type(c_ptr) :: handle
@@ -33524,20 +34472,19 @@ module hipfort_hipsparse
       integer(c_int) :: m
       integer(c_int) :: n
       type(c_ptr) :: csr_descr
-      complex(c_float_complex),target :: csr_val
-      integer(c_int),target :: csr_row_ptr
-      integer(c_int),target :: csr_col_ind
-      integer(c_int) :: row_block_dim
-      integer(c_int) :: col_block_dim
-      type(c_ptr) :: p_buffer_size
+      complex(c_float_complex),target :: csrVal
+      integer(c_int),target :: csrRowPtr
+      integer(c_int),target :: csrColInd
+      integer(c_int) :: rowBlockDim
+      integer(c_int) :: colBlockDim
+      integer(c_size_t),target :: pBufferSizeInBytes
       !
-      hipsparseCcsr2gebsr_bufferSize_rank_0 = hipsparseCcsr2gebsr_bufferSize_(handle,dir,m,n,csr_descr,c_loc(csr_val),c_loc(csr_row_ptr),c_loc(csr_col_ind),row_block_dim,col_block_dim,p_buffer_size)
+      hipsparseCcsr2gebsr_bufferSize_rank_0 = hipsparseCcsr2gebsr_bufferSize_(handle,dir,m,n,csr_descr,c_loc(csrVal),c_loc(csrRowPtr),c_loc(csrColInd),rowBlockDim,colBlockDim,c_loc(pBufferSizeInBytes))
     end function
 
-    function hipsparseCcsr2gebsr_bufferSize_rank_1(handle,dir,m,n,csr_descr,csr_val,csr_row_ptr,csr_col_ind,row_block_dim,col_block_dim,p_buffer_size)
+    function hipsparseCcsr2gebsr_bufferSize_rank_1(handle,dir,m,n,csr_descr,csrVal,csrRowPtr,csrColInd,rowBlockDim,colBlockDim,pBufferSizeInBytes)
       use iso_c_binding
       use hipfort_hipsparse_enums
-      use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCcsr2gebsr_bufferSize_rank_1
       type(c_ptr) :: handle
@@ -33545,20 +34492,19 @@ module hipfort_hipsparse
       integer(c_int) :: m
       integer(c_int) :: n
       type(c_ptr) :: csr_descr
-      complex(c_float_complex),target,dimension(:) :: csr_val
-      integer(c_int),target,dimension(:) :: csr_row_ptr
-      integer(c_int),target,dimension(:) :: csr_col_ind
-      integer(c_int) :: row_block_dim
-      integer(c_int) :: col_block_dim
-      type(c_ptr) :: p_buffer_size
+      complex(c_float_complex),target,dimension(:) :: csrVal
+      integer(c_int),target,dimension(:) :: csrRowPtr
+      integer(c_int),target,dimension(:) :: csrColInd
+      integer(c_int) :: rowBlockDim
+      integer(c_int) :: colBlockDim
+      integer(c_size_t),target,dimension(:) :: pBufferSizeInBytes
       !
-      hipsparseCcsr2gebsr_bufferSize_rank_1 = hipsparseCcsr2gebsr_bufferSize_(handle,dir,m,n,csr_descr,c_loc(csr_val),c_loc(csr_row_ptr),c_loc(csr_col_ind),row_block_dim,col_block_dim,p_buffer_size)
+      hipsparseCcsr2gebsr_bufferSize_rank_1 = hipsparseCcsr2gebsr_bufferSize_(handle,dir,m,n,csr_descr,c_loc(csrVal),c_loc(csrRowPtr),c_loc(csrColInd),rowBlockDim,colBlockDim,c_loc(pBufferSizeInBytes))
     end function
 
-    function hipsparseZcsr2gebsr_bufferSize_rank_0(handle,dir,m,n,csr_descr,csr_val,csr_row_ptr,csr_col_ind,row_block_dim,col_block_dim,p_buffer_size)
+    function hipsparseZcsr2gebsr_bufferSize_rank_0(handle,dir,m,n,csr_descr,csrVal,csrRowPtr,csrColInd,rowBlockDim,colBlockDim,pBufferSizeInBytes)
       use iso_c_binding
       use hipfort_hipsparse_enums
-      use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZcsr2gebsr_bufferSize_rank_0
       type(c_ptr) :: handle
@@ -33566,20 +34512,19 @@ module hipfort_hipsparse
       integer(c_int) :: m
       integer(c_int) :: n
       type(c_ptr) :: csr_descr
-      complex(c_double_complex),target :: csr_val
-      integer(c_int),target :: csr_row_ptr
-      integer(c_int),target :: csr_col_ind
-      integer(c_int) :: row_block_dim
-      integer(c_int) :: col_block_dim
-      type(c_ptr) :: p_buffer_size
+      complex(c_double_complex),target :: csrVal
+      integer(c_int),target :: csrRowPtr
+      integer(c_int),target :: csrColInd
+      integer(c_int) :: rowBlockDim
+      integer(c_int) :: colBlockDim
+      integer(c_size_t),target :: pBufferSizeInBytes
       !
-      hipsparseZcsr2gebsr_bufferSize_rank_0 = hipsparseZcsr2gebsr_bufferSize_(handle,dir,m,n,csr_descr,c_loc(csr_val),c_loc(csr_row_ptr),c_loc(csr_col_ind),row_block_dim,col_block_dim,p_buffer_size)
+      hipsparseZcsr2gebsr_bufferSize_rank_0 = hipsparseZcsr2gebsr_bufferSize_(handle,dir,m,n,csr_descr,c_loc(csrVal),c_loc(csrRowPtr),c_loc(csrColInd),rowBlockDim,colBlockDim,c_loc(pBufferSizeInBytes))
     end function
 
-    function hipsparseZcsr2gebsr_bufferSize_rank_1(handle,dir,m,n,csr_descr,csr_val,csr_row_ptr,csr_col_ind,row_block_dim,col_block_dim,p_buffer_size)
+    function hipsparseZcsr2gebsr_bufferSize_rank_1(handle,dir,m,n,csr_descr,csrVal,csrRowPtr,csrColInd,rowBlockDim,colBlockDim,pBufferSizeInBytes)
       use iso_c_binding
       use hipfort_hipsparse_enums
-      use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZcsr2gebsr_bufferSize_rank_1
       type(c_ptr) :: handle
@@ -33587,20 +34532,19 @@ module hipfort_hipsparse
       integer(c_int) :: m
       integer(c_int) :: n
       type(c_ptr) :: csr_descr
-      complex(c_double_complex),target,dimension(:) :: csr_val
-      integer(c_int),target,dimension(:) :: csr_row_ptr
-      integer(c_int),target,dimension(:) :: csr_col_ind
-      integer(c_int) :: row_block_dim
-      integer(c_int) :: col_block_dim
-      type(c_ptr) :: p_buffer_size
+      complex(c_double_complex),target,dimension(:) :: csrVal
+      integer(c_int),target,dimension(:) :: csrRowPtr
+      integer(c_int),target,dimension(:) :: csrColInd
+      integer(c_int) :: rowBlockDim
+      integer(c_int) :: colBlockDim
+      integer(c_size_t),target,dimension(:) :: pBufferSizeInBytes
       !
-      hipsparseZcsr2gebsr_bufferSize_rank_1 = hipsparseZcsr2gebsr_bufferSize_(handle,dir,m,n,csr_descr,c_loc(csr_val),c_loc(csr_row_ptr),c_loc(csr_col_ind),row_block_dim,col_block_dim,p_buffer_size)
+      hipsparseZcsr2gebsr_bufferSize_rank_1 = hipsparseZcsr2gebsr_bufferSize_(handle,dir,m,n,csr_descr,c_loc(csrVal),c_loc(csrRowPtr),c_loc(csrColInd),rowBlockDim,colBlockDim,c_loc(pBufferSizeInBytes))
     end function
 
-    function hipsparseXcsr2gebsrNnz_rank_0(handle,dir,m,n,csr_descr,csr_row_ptr,csr_col_ind,bsr_descr,bsr_row_ptr,row_block_dim,col_block_dim,bsr_nnz_devhost,p_buffer)
+    function hipsparseXcsr2gebsrNnz_rank_0(handle,dir,m,n,csr_descr,csrRowPtr,csrColInd,bsr_descr,bsrRowPtr,rowBlockDim,colBlockDim,bsrNnzDevhost,pbuffer)
       use iso_c_binding
       use hipfort_hipsparse_enums
-      use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseXcsr2gebsrNnz_rank_0
       type(c_ptr) :: handle
@@ -33608,22 +34552,21 @@ module hipfort_hipsparse
       integer(c_int) :: m
       integer(c_int) :: n
       type(c_ptr) :: csr_descr
-      integer(c_int),target :: csr_row_ptr
-      integer(c_int),target :: csr_col_ind
+      integer(c_int),target :: csrRowPtr
+      integer(c_int),target :: csrColInd
       type(c_ptr) :: bsr_descr
-      type(c_ptr) :: bsr_row_ptr
-      integer(c_int) :: row_block_dim
-      integer(c_int) :: col_block_dim
-      type(c_ptr) :: bsr_nnz_devhost
-      type(c_ptr) :: p_buffer
+      integer(c_int),target :: bsrRowPtr
+      integer(c_int) :: rowBlockDim
+      integer(c_int) :: colBlockDim
+      integer(c_int),target :: bsrNnzDevhost
+      type(c_ptr) :: pbuffer
       !
-      hipsparseXcsr2gebsrNnz_rank_0 = hipsparseXcsr2gebsrNnz_(handle,dir,m,n,csr_descr,c_loc(csr_row_ptr),c_loc(csr_col_ind),bsr_descr,bsr_row_ptr,row_block_dim,col_block_dim,bsr_nnz_devhost,p_buffer)
+      hipsparseXcsr2gebsrNnz_rank_0 = hipsparseXcsr2gebsrNnz_(handle,dir,m,n,csr_descr,c_loc(csrRowPtr),c_loc(csrColInd),bsr_descr,c_loc(bsrRowPtr),rowBlockDim,colBlockDim,c_loc(bsrNnzDevhost),pbuffer)
     end function
 
-    function hipsparseXcsr2gebsrNnz_rank_1(handle,dir,m,n,csr_descr,csr_row_ptr,csr_col_ind,bsr_descr,bsr_row_ptr,row_block_dim,col_block_dim,bsr_nnz_devhost,p_buffer)
+    function hipsparseXcsr2gebsrNnz_rank_1(handle,dir,m,n,csr_descr,csrRowPtr,csrColInd,bsr_descr,bsrRowPtr,rowBlockDim,colBlockDim,bsrNnzDevhost,pbuffer)
       use iso_c_binding
       use hipfort_hipsparse_enums
-      use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseXcsr2gebsrNnz_rank_1
       type(c_ptr) :: handle
@@ -33631,22 +34574,21 @@ module hipfort_hipsparse
       integer(c_int) :: m
       integer(c_int) :: n
       type(c_ptr) :: csr_descr
-      integer(c_int),target,dimension(:) :: csr_row_ptr
-      integer(c_int),target,dimension(:) :: csr_col_ind
+      integer(c_int),target,dimension(:) :: csrRowPtr
+      integer(c_int),target,dimension(:) :: csrColInd
       type(c_ptr) :: bsr_descr
-      type(c_ptr) :: bsr_row_ptr
-      integer(c_int) :: row_block_dim
-      integer(c_int) :: col_block_dim
-      type(c_ptr) :: bsr_nnz_devhost
-      type(c_ptr) :: p_buffer
+      integer(c_int),target,dimension(:) :: bsrRowPtr
+      integer(c_int) :: rowBlockDim
+      integer(c_int) :: colBlockDim
+      integer(c_int),target,dimension(:) :: bsrNnzDevhost
+      type(c_ptr) :: pbuffer
       !
-      hipsparseXcsr2gebsrNnz_rank_1 = hipsparseXcsr2gebsrNnz_(handle,dir,m,n,csr_descr,c_loc(csr_row_ptr),c_loc(csr_col_ind),bsr_descr,bsr_row_ptr,row_block_dim,col_block_dim,bsr_nnz_devhost,p_buffer)
+      hipsparseXcsr2gebsrNnz_rank_1 = hipsparseXcsr2gebsrNnz_(handle,dir,m,n,csr_descr,c_loc(csrRowPtr),c_loc(csrColInd),bsr_descr,c_loc(bsrRowPtr),rowBlockDim,colBlockDim,c_loc(bsrNnzDevhost),pbuffer)
     end function
 
-    function hipsparseScsr2gebsr_rank_0(handle,dir,m,n,csr_descr,csr_val,csr_row_ptr,csr_col_ind,bsr_descr,bsr_val,bsr_row_ptr,bsr_col_ind,row_block_dim,col_block_dim,p_buffer)
+    function hipsparseScsr2gebsr_rank_0(handle,dir,m,n,csr_descr,csrVal,csrRowPtr,csrColInd,bsr_descr,bsrVal,bsrRowPtr,bsrColInd,rowBlockDim,colBlockDim,pbuffer)
       use iso_c_binding
       use hipfort_hipsparse_enums
-      use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseScsr2gebsr_rank_0
       type(c_ptr) :: handle
@@ -33654,24 +34596,23 @@ module hipfort_hipsparse
       integer(c_int) :: m
       integer(c_int) :: n
       type(c_ptr) :: csr_descr
-      real(c_float),target :: csr_val
-      integer(c_int),target :: csr_row_ptr
-      integer(c_int),target :: csr_col_ind
+      real(c_float),target :: csrVal
+      integer(c_int),target :: csrRowPtr
+      integer(c_int),target :: csrColInd
       type(c_ptr) :: bsr_descr
-      type(c_ptr) :: bsr_val
-      type(c_ptr) :: bsr_row_ptr
-      type(c_ptr) :: bsr_col_ind
-      integer(c_int) :: row_block_dim
-      integer(c_int) :: col_block_dim
-      type(c_ptr) :: p_buffer
+      real(c_float),target :: bsrVal
+      integer(c_int),target :: bsrRowPtr
+      integer(c_int),target :: bsrColInd
+      integer(c_int) :: rowBlockDim
+      integer(c_int) :: colBlockDim
+      type(c_ptr) :: pbuffer
       !
-      hipsparseScsr2gebsr_rank_0 = hipsparseScsr2gebsr_(handle,dir,m,n,csr_descr,c_loc(csr_val),c_loc(csr_row_ptr),c_loc(csr_col_ind),bsr_descr,bsr_val,bsr_row_ptr,bsr_col_ind,row_block_dim,col_block_dim,p_buffer)
+      hipsparseScsr2gebsr_rank_0 = hipsparseScsr2gebsr_(handle,dir,m,n,csr_descr,c_loc(csrVal),c_loc(csrRowPtr),c_loc(csrColInd),bsr_descr,c_loc(bsrVal),c_loc(bsrRowPtr),c_loc(bsrColInd),rowBlockDim,colBlockDim,pbuffer)
     end function
 
-    function hipsparseScsr2gebsr_rank_1(handle,dir,m,n,csr_descr,csr_val,csr_row_ptr,csr_col_ind,bsr_descr,bsr_val,bsr_row_ptr,bsr_col_ind,row_block_dim,col_block_dim,p_buffer)
+    function hipsparseScsr2gebsr_rank_1(handle,dir,m,n,csr_descr,csrVal,csrRowPtr,csrColInd,bsr_descr,bsrVal,bsrRowPtr,bsrColInd,rowBlockDim,colBlockDim,pbuffer)
       use iso_c_binding
       use hipfort_hipsparse_enums
-      use hipfort_enums
       implicit none
       integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseScsr2gebsr_rank_1
       type(c_ptr) :: handle
@@ -33679,18 +34620,18 @@ module hipfort_hipsparse
       integer(c_int) :: m
       integer(c_int) :: n
       type(c_ptr) :: csr_descr
-      real(c_float),target,dimension(:) :: csr_val
-      integer(c_int),target,dimension(:) :: csr_row_ptr
-      integer(c_int),target,dimension(:) :: csr_col_ind
+      real(c_float),target,dimension(:) :: csrVal
+      integer(c_int),target,dimension(:) :: csrRowPtr
+      integer(c_int),target,dimension(:) :: csrColInd
       type(c_ptr) :: bsr_descr
-      type(c_ptr) :: bsr_val
-      type(c_ptr) :: bsr_row_ptr
-      type(c_ptr) :: bsr_col_ind
-      integer(c_int) :: row_block_dim
-      integer(c_int) :: col_block_dim
-      type(c_ptr) :: p_buffer
+      real(c_float),target,dimension(:) :: bsrVal
+      integer(c_int),target,dimension(:) :: bsrRowPtr
+      integer(c_int),target,dimension(:) :: bsrColInd
+      integer(c_int) :: rowBlockDim
+      integer(c_int) :: colBlockDim
+      type(c_ptr) :: pbuffer
       !
-      hipsparseScsr2gebsr_rank_1 = hipsparseScsr2gebsr_(handle,dir,m,n,csr_descr,c_loc(csr_val),c_loc(csr_row_ptr),c_loc(csr_col_ind),bsr_descr,bsr_val,bsr_row_ptr,bsr_col_ind,row_block_dim,col_block_dim,p_buffer)
+      hipsparseScsr2gebsr_rank_1 = hipsparseScsr2gebsr_(handle,dir,m,n,csr_descr,c_loc(csrVal),c_loc(csrRowPtr),c_loc(csrColInd),bsr_descr,c_loc(bsrVal),c_loc(bsrRowPtr),c_loc(bsrColInd),rowBlockDim,colBlockDim,pbuffer)
     end function
 
     function hipsparseDcsr2gebsr_rank_0(handle,dir,m,n,csr_descr,csr_val,csr_row_ptr,csr_col_ind,bsr_descr,bsr_val,bsr_row_ptr,bsr_col_ind,row_block_dim,col_block_dim,p_buffer)
