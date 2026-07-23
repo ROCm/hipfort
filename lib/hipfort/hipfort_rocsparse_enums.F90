@@ -26,6 +26,7 @@
           
            
 module hipfort_rocsparse_enums
+  use, intrinsic :: iso_c_binding
   implicit none
 
   enum, bind(c)
@@ -228,4 +229,284 @@ module hipfort_rocsparse_enums
 
   
 #endif
+  ! rocsparse_storage_mode_
+  enum, bind(c)
+    enumerator :: rocsparse_storage_mode_sorted = 0
+    enumerator :: rocsparse_storage_mode_unsorted = 1
+  end enum
+
+  ! rocsparse_data_status_
+  enum, bind(c)
+    enumerator :: rocsparse_data_status_success = 0
+    enumerator :: rocsparse_data_status_inf = 1
+    enumerator :: rocsparse_data_status_nan = 2
+    enumerator :: rocsparse_data_status_invalid_offset_ptr = 3
+    enumerator :: rocsparse_data_status_invalid_index = 4
+    enumerator :: rocsparse_data_status_duplicate_entry = 5
+    enumerator :: rocsparse_data_status_invalid_sorting = 6
+    enumerator :: rocsparse_data_status_invalid_fill = 7
+  end enum
+
+  ! rocsparse_sparse_to_sparse_alg_
+  enum, bind(c)
+    enumerator :: rocsparse_sparse_to_sparse_alg_default = 0
+  end enum
+
+  ! rocsparse_sparse_to_sparse_stage_
+  enum, bind(c)
+    enumerator :: rocsparse_sparse_to_sparse_stage_analysis = 0
+    enumerator :: rocsparse_sparse_to_sparse_stage_compute = 1
+  end enum
+
+  ! rocsparse_extract_alg_
+  enum, bind(c)
+    enumerator :: rocsparse_extract_alg_default = 0
+  end enum
+
+  ! rocsparse_extract_stage_
+  enum, bind(c)
+    enumerator :: rocsparse_extract_stage_analysis = 0
+    enumerator :: rocsparse_extract_stage_compute = 1
+  end enum
+
+  ! rocsparse_itilu0_alg_
+  enum, bind(c)
+    enumerator :: rocsparse_itilu0_alg_default = 0
+    enumerator :: rocsparse_itilu0_alg_async_inplace = 1
+    enumerator :: rocsparse_itilu0_alg_async_split = 2
+    enumerator :: rocsparse_itilu0_alg_sync_split = 3
+    enumerator :: rocsparse_itilu0_alg_sync_split_fusion = 4
+  end enum
+
+  ! rocsparse_itilu0_option_
+  enum, bind(c)
+    enumerator :: rocsparse_itilu0_option_verbose = 1
+    enumerator :: rocsparse_itilu0_option_stopping_criteria = 2
+    enumerator :: rocsparse_itilu0_option_compute_nrm_correction = 4
+    enumerator :: rocsparse_itilu0_option_compute_nrm_residual = 8
+    enumerator :: rocsparse_itilu0_option_convergence_history = 16
+    enumerator :: rocsparse_itilu0_option_coo_format = 32
+  end enum
+
+  ! rocsparse_gtsv_interleaved_alg_
+  enum, bind(c)
+    enumerator :: rocsparse_gtsv_interleaved_alg_default = 0
+    enumerator :: rocsparse_gtsv_interleaved_alg_thomas = 1
+    enumerator :: rocsparse_gtsv_interleaved_alg_lu = 2
+    enumerator :: rocsparse_gtsv_interleaved_alg_qr = 3
+  end enum
+
+  ! rocsparse_check_spmat_stage_
+  enum, bind(c)
+    enumerator :: rocsparse_check_spmat_stage_buffer_size = 0
+    enumerator :: rocsparse_check_spmat_stage_compute = 1
+  end enum
+
+  ! rocsparse_spmv_input_
+  enum, bind(c)
+    enumerator :: rocsparse_spmv_input_alg = 0
+    enumerator :: rocsparse_spmv_input_operation = 1
+    enumerator :: rocsparse_spmv_input_scalar_datatype = 2
+    enumerator :: rocsparse_spmv_input_compute_datatype = 3
+    enumerator :: rocsparse_spmv_input_nnz_use_starting_block_ids = 4
+    enumerator :: rocsparse_spmv_input_enable_extra = 5
+  end enum
+
+  ! rocsparse_v2_spmv_stage_
+  enum, bind(c)
+    enumerator :: rocsparse_v2_spmv_stage_analysis = 0
+    enumerator :: rocsparse_v2_spmv_stage_compute = 1
+  end enum
+
+  ! rocsparse_spitsv_alg_
+  enum, bind(c)
+    enumerator :: rocsparse_spitsv_alg_default = 0
+  end enum
+
+  ! rocsparse_spitsv_stage_
+  enum, bind(c)
+    enumerator :: rocsparse_spitsv_stage_buffer_size = 1
+    enumerator :: rocsparse_spitsv_stage_preprocess = 2
+    enumerator :: rocsparse_spitsv_stage_compute = 3
+  end enum
+
+  ! rocsparse_singularity_
+  enum, bind(c)
+    enumerator :: rocsparse_singularity_none = 0
+    enumerator :: rocsparse_singularity_symbolic = 1
+    enumerator :: rocsparse_singularity_numeric_exact = 2
+    enumerator :: rocsparse_singularity_numeric_near = 3
+  end enum
+
+  ! rocsparse_sptrsv_alg_
+  enum, bind(c)
+    enumerator :: rocsparse_sptrsv_alg_default = 0
+  end enum
+
+  ! rocsparse_sptrsv_stage_
+  enum, bind(c)
+    enumerator :: rocsparse_sptrsv_stage_analysis = 0
+    enumerator :: rocsparse_sptrsv_stage_compute = 1
+  end enum
+
+  ! rocsparse_sptrsv_input_
+  enum, bind(c)
+    enumerator :: rocsparse_sptrsv_input_alg = 0
+    enumerator :: rocsparse_sptrsv_input_operation = 1
+    enumerator :: rocsparse_sptrsv_input_scalar_datatype = 2
+    enumerator :: rocsparse_sptrsv_input_compute_datatype = 3
+    enumerator :: rocsparse_sptrsv_input_scalar_alpha = 4
+    enumerator :: rocsparse_sptrsv_input_analysis_policy = 5
+  end enum
+
+  ! rocsparse_sptrsv_output_
+  enum, bind(c)
+    enumerator :: rocsparse_sptrsv_output_zero_pivot_position = 0
+    enumerator :: rocsparse_sptrsv_output_singularity = 1
+    enumerator :: rocsparse_sptrsv_output_singularity_position = 2
+  end enum
+
+  ! rocsparse_sptrsm_alg_
+  enum, bind(c)
+    enumerator :: rocsparse_sptrsm_alg_default = 0
+  end enum
+
+  ! rocsparse_sptrsm_stage_
+  enum, bind(c)
+    enumerator :: rocsparse_sptrsm_stage_analysis = 0
+    enumerator :: rocsparse_sptrsm_stage_compute = 1
+  end enum
+
+  ! rocsparse_sptrsm_input_
+  enum, bind(c)
+    enumerator :: rocsparse_sptrsm_input_alg = 0
+    enumerator :: rocsparse_sptrsm_input_operation_A = 1
+    enumerator :: rocsparse_sptrsm_input_operation_X = 2
+    enumerator :: rocsparse_sptrsm_input_compute_datatype = 3
+    enumerator :: rocsparse_sptrsm_input_scalar_datatype = 4
+    enumerator :: rocsparse_sptrsm_input_scalar_alpha = 5
+    enumerator :: rocsparse_sptrsm_input_analysis_policy = 6
+  end enum
+
+  ! rocsparse_sptrsm_output_
+  enum, bind(c)
+    enumerator :: rocsparse_sptrsm_output_zero_pivot_position = 0
+  end enum
+
+  ! rocsparse_spic0_alg_
+  enum, bind(c)
+    enumerator :: rocsparse_spic0_alg_default = 0
+  end enum
+
+  ! rocsparse_spic0_stage_
+  enum, bind(c)
+    enumerator :: rocsparse_spic0_stage_analysis = 0
+    enumerator :: rocsparse_spic0_stage_compute = 1
+  end enum
+
+  ! rocsparse_spic0_input_
+  enum, bind(c)
+    enumerator :: rocsparse_spic0_input_alg = 0
+    enumerator :: rocsparse_spic0_input_analysis_policy = 1
+    enumerator :: rocsparse_spic0_input_compute_datatype = 2
+    enumerator :: rocsparse_spic0_input_boost_enable = 3
+    enumerator :: rocsparse_spic0_input_boost_tolerance = 4
+    enumerator :: rocsparse_spic0_input_boost_value = 5
+    enumerator :: rocsparse_spic0_input_singularity_tolerance = 6
+  end enum
+
+  ! rocsparse_spic0_output_
+  enum, bind(c)
+    enumerator :: rocsparse_spic0_output_singularity = 0
+    enumerator :: rocsparse_spic0_output_singularity_position = 1
+  end enum
+
+  ! rocsparse_spilu0_alg_
+  enum, bind(c)
+    enumerator :: rocsparse_spilu0_alg_default = 0
+  end enum
+
+  ! rocsparse_spilu0_stage_
+  enum, bind(c)
+    enumerator :: rocsparse_spilu0_stage_analysis = 0
+    enumerator :: rocsparse_spilu0_stage_compute = 1
+  end enum
+
+  ! rocsparse_spilu0_input_
+  enum, bind(c)
+    enumerator :: rocsparse_spilu0_input_alg = 0
+    enumerator :: rocsparse_spilu0_input_analysis_policy = 1
+    enumerator :: rocsparse_spilu0_input_compute_datatype = 2
+    enumerator :: rocsparse_spilu0_input_boost_enable = 3
+    enumerator :: rocsparse_spilu0_input_boost_tolerance = 4
+    enumerator :: rocsparse_spilu0_input_boost_value = 5
+    enumerator :: rocsparse_spilu0_input_singularity_tolerance = 6
+  end enum
+
+  ! rocsparse_spilu0_output_
+  enum, bind(c)
+    enumerator :: rocsparse_spilu0_output_singularity = 0
+    enumerator :: rocsparse_spilu0_output_singularity_position = 1
+  end enum
+
+  ! rocsparse_spgeam_stage_
+  enum, bind(c)
+    enumerator :: rocsparse_spgeam_stage_analysis = 1
+    enumerator :: rocsparse_spgeam_stage_compute = 2
+    enumerator :: rocsparse_spgeam_stage_symbolic_analysis = 3
+    enumerator :: rocsparse_spgeam_stage_symbolic_compute = 4
+    enumerator :: rocsparse_spgeam_stage_numeric_analysis = 5
+    enumerator :: rocsparse_spgeam_stage_numeric_compute = 6
+  end enum
+
+  ! rocsparse_spgeam_input_
+  enum, bind(c)
+    enumerator :: rocsparse_spgeam_input_alg = 0
+    enumerator :: rocsparse_spgeam_input_scalar_datatype = 1
+    enumerator :: rocsparse_spgeam_input_compute_datatype = 2
+    enumerator :: rocsparse_spgeam_input_operation_A = 3
+    enumerator :: rocsparse_spgeam_input_operation_B = 4
+    enumerator :: rocsparse_spgeam_input_scalar_alpha = 5
+    enumerator :: rocsparse_spgeam_input_scalar_beta = 6
+  end enum
+
+  ! rocsparse_spgeam_output_
+  enum, bind(c)
+    enumerator :: rocsparse_spgeam_output_nnz = 0
+  end enum
+
+  ! rocsparse_spgeam_alg_
+  enum, bind(c)
+    enumerator :: rocsparse_spgeam_alg_default = 0
+  end enum
+
+  integer(c_int), parameter :: rocsparse_layer_mode_log_debug = 4
+  integer(c_int), parameter :: rocsparse_status_requires_sorted_storage = 12
+  integer(c_int), parameter :: rocsparse_status_thrown_exception = 13
+  integer(c_int), parameter :: rocsparse_status_continue = 14
+  integer(c_int), parameter :: rocsparse_datatype_f16_r = 150
+  integer(c_int), parameter :: rocsparse_datatype_i8_r = 160
+  integer(c_int), parameter :: rocsparse_datatype_u8_r = 161
+  integer(c_int), parameter :: rocsparse_datatype_i32_r = 162
+  integer(c_int), parameter :: rocsparse_datatype_u32_r = 163
+  integer(c_int), parameter :: rocsparse_datatype_bf16_r = 168
+  integer(c_int), parameter :: rocsparse_format_bsr = 6
+  integer(c_int), parameter :: rocsparse_format_sell = 7
+  integer(c_int), parameter :: rocsparse_spmat_storage_mode = 3
+  integer(c_int), parameter :: rocsparse_spmv_alg_csr_rowsplit = 3
+  integer(c_int), parameter :: rocsparse_spmv_alg_coo_atomic = 5
+  integer(c_int), parameter :: rocsparse_spmv_alg_bsr = 6
+  integer(c_int), parameter :: rocsparse_spmv_alg_csr_lrb = 7
+  integer(c_int), parameter :: rocsparse_spmv_alg_csr_nnzsplit = 8
+  integer(c_int), parameter :: rocsparse_spmv_alg_sell = 9
+  integer(c_int), parameter :: rocsparse_spmm_alg_bsr = 8
+  integer(c_int), parameter :: rocsparse_spmm_alg_csr_merge_path = 9
+  integer(c_int), parameter :: rocsparse_spmm_alg_csr_nnz_split = 5
+  integer(c_int), parameter :: rocsparse_sddmm_alg_dense = 1
+  integer(c_int), parameter :: rocsparse_spgemm_stage_symbolic = 4
+  integer(c_int), parameter :: rocsparse_spgemm_stage_numeric = 5
+  integer(c_int), parameter :: ROCSPARSE_VERSION_MAJOR = 4
+  integer(c_int), parameter :: ROCSPARSE_VERSION_MINOR = 2
+  integer(c_int), parameter :: ROCSPARSE_VERSION_PATCH = 0
+
 end module hipfort_rocsparse_enums
