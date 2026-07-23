@@ -21911,11 +21911,11 @@ module hipfort_rocsparse
   end interface
 
   !>  \ingroup generic_module
-  !>   \brief Sparse matrix sparse matrix multiplication
-  !> 
+  !>   \brief Sparse matrix sparse matrix multiplication.
+  !>
   !>   \details
   !>   \p rocsparse_spgemm multiplies the scalar \f$\alpha\f$ with the sparse
-  !>   \f$m \times k\f$ matrix \f$A\f$ and the sparse \f$k \times n\f$ matrix \f$B\f$ and
+  !>   \f$m \times k\f$ matrix \f$op(A)\f$ and the sparse \f$k \times n\f$ matrix \f$op(B)\f$ and
   !>   adds the result to the sparse \f$m \times n\f$ matrix \f$D\f$ that is multiplied by
   !>   \f$\beta\f$. The final result is stored in the sparse \f$m \times n\f$ matrix \f$C\f$,
   !>   such that
@@ -21926,11 +21926,7 @@ module hipfort_rocsparse
   !>   \f[
   !>     op(A) = \left\{
   !>     \begin{array}{ll}
-  !>         A,   & \text{if trans_A == rocsparse_operation_none} \newline
-  !>
-  !>         A^T, & \text{if trans_A == rocsparse_operation_transpose} \newline
-  !>
-  !>         A^H, & \text{if trans_A == rocsparse_operation_conjugate_transpose}
+  !>         A,   & \text{if trans_A == rocsparse_operation_none}
   !>     \end{array}
   !>     \right.
   !>   \f]
@@ -21938,43 +21934,121 @@ module hipfort_rocsparse
   !>   \f[
   !>     op(B) = \left\{
   !>     \begin{array}{ll}
-  !>         B,   & \text{if trans_B == rocsparse_operation_none} \newline
-  !>
-  !>         B^T, & \text{if trans_B == rocsparse_operation_transpose} \newline
-  !>
-  !>         B^H, & \text{if trans_B == rocsparse_operation_conjugate_transpose}
+  !>         B,   & \text{if trans_B == rocsparse_operation_none}
   !>     \end{array}
   !>     \right.
   !>   \f]
-  !> 
-  !>   \note SpGEMM requires three stages to complete. The first stage
-  !>   \p rocsparse_spgemm_stage_buffer_size will return the size of the temporary storage buffer
-  !>   that is required for subsequent calls to \p rocsparse_spgemm. The second stage
-  !>   \p rocsparse_spgemm_stage_nnz will determine the number of non-zero elements of the
+  !>
+  !>   \p rocsparse_spgemm requires three stages to complete. First, pass the
+  !>   `rocsparse_spgemm_stage_buffer_size`
+  !>   stage to determine the size of the required temporary storage buffer. Next, allocate this
+  !>   buffer and call
+  !>   \p rocsparse_spgemm again with the `rocsparse_spgemm_stage_nnz` stage, which will determine
+  !>   the number of non-zeros
+  !>   in \f$C\f$. This stage will also fill in the row pointer array of \f$C\f$. Now that the
+  !>   number of non-zeros in \f$C\f$
+  !>   is known, allocate space for the column indices and values arrays of \f$C\f$. Finally, call
+  !>   \p rocsparse_spgemm with the `rocsparse_spgemm_stage_compute` stage to perform the actual
+  !>   computation, which fills in
+  !>   the column indices and values arrays of \f$C\f$. After all calls to \p rocsparse_spgemm are
+  !>   complete, the temporary buffer
+  !>   can be deallocated.
+  !>
+  !>   Alternatively, it is possible to perform sparse matrix products multiple times with matrices
+  !>   having the same sparsity
+  !>   pattern with different values. In this scenario, the process begins like before. First, call
+  !>   \p rocsparse_spgemm
+  !>   with stage `rocsparse_spgemm_stage_buffer_size` to determine the required buffer size. Then
+  !>   allocate this buffer
+  !>   and call \p rocsparse_spgemm with the stage `rocsparse_spgemm_stage_nnz` to determine the
+  !>   number of non-zeros in \f$C\f$
+  !>   and allocate the \f$C\f$ column indices and values arrays. Now, however, call \p
+  !>   rocsparse_spgemm with the
+  !>   `rocsparse_spgemm_stage_symbolic` stage, which will fill in the column indices array of
+  !>   \f$C\f$ but not the values array.
+  !>   It is then possible to repeatedly change the values of \f$A\f$, \f$B\f$, and \f$D\f$ and call
+  !>   \p rocsparse_spgemm with
+  !>   the `rocsparse_spgemm_stage_numeric` stage, which fills the values array of \f$C\f$. The use
+  !>   of the extra
+  !>   `rocsparse_spgemm_stage_symbolic` and `rocsparse_spgemm_stage_numeric` stages allows users to
+  !>   compute the sparsity pattern
+  !>   of \f$C\f$ once, but compute the values multiple times.
+  !>
+  !>   \p rocsparse_spgemm supports multiple combinations of data types and compute types. The
+  !>   tables below indicate the currently
+  !>   supported different data types that can be used for the sparse matrices \f$op(A)\f$,
+  !>   \f$op(B)\f$, \f$C\f$, and \f$D\f$,
+  !>   and the compute type for \f$\alpha\f$ and \f$\beta\f$. The advantage of using different data
+  !>   types is to save on
+  !>   memory bandwidth and storage when a user application allows, while performing the actual
+  !>   computation in a higher precision.
+  !>
+  !>   \par Uniform Precisions:
+  !>   <table>
+  !>   <caption id="spgemm_uniform">Uniform Precisions</caption>
+  !>   <tr><th>A / B / C / D / compute_type
+  !>   <tr><td>rocsparse_datatype_f16_r
+  !>   <tr><td>rocsparse_datatype_bf16_r
+  !>   <tr><td>rocsparse_datatype_f32_r
+  !>   <tr><td>rocsparse_datatype_f64_r
+  !>   <tr><td>rocsparse_datatype_f32_c
+  !>   <tr><td>rocsparse_datatype_f64_c
+  !>   </table>
+  !>
+  !>   \p rocsparse_spgemm supports `rocsparse_indextype_i32` and `rocsparse_indextype_i64` index
+  !>   precisions for storing the row
+  !>   pointer and column indices arrays of the sparse matrices.
+  !>
+  !>   In general, when multiplying two sparse matrices together, it is possible that the resulting
+  !>   matrix will require a
+  !>   larger index representation to store correctly. For example, when multiplying \f$A \times
+  !>   B\f$ using
+  !>   `rocsparse_indextype_i32` index types for the row pointer and column indices arrays, it might
+  !>   be the case that the row pointer
+  !>   of the resulting \f$C\f$ matrix would require index precision `rocsparse_indextype_i64`. This
+  !>   is currently not supported.
+  !>   In this scenario, the \f$A\f$ and \f$B\f$ matrices need to be stored using the higher index
+  !>   precision.
+  !>
+  !>   \note
+  !>   This function does not produce deterministic results.
+  !>
+  !>   \note SpGEMM requires three stages to complete. The first stage,
+  !>   `rocsparse_spgemm_stage_buffer_size`, will return the size of the temporary storage buffer
+  !>   that is required for subsequent calls to \ref rocsparse_spgemm. The second stage,
+  !>   `rocsparse_spgemm_stage_nnz`, will determine the number of non-zero elements of the
   !>   resulting \f$C\f$ matrix. If the sparsity pattern of \f$C\f$ is already known, this
-  !>   stage can be skipped. In the final stage \p rocsparse_spgemm_stage_compute, the actual
+  !>   stage can be skipped. In the final stage, `rocsparse_spgemm_stage_compute`, the actual
   !>   computation is performed.
-  !>   \note If \p rocsparse_spgemm_stage_auto is selected, rocSPARSE will automatically detect
-  !>   which stage is required based on the following indicators:
-  !>   If \p temp_buffer is equal to \p nullptr, the required buffer size will be returned.
-  !>   Else, if the number of non-zeros of \f$C\f$ is zero, the number of non-zero entries will be
-  !>   computed.
-  !>   Else, the SpGEMM algorithm will be executed.
   !>   \note If \f$\alpha == 0\f$, then \f$C = \beta \cdot D\f$ will be computed.
   !>   \note If \f$\beta == 0\f$, then \f$C = \alpha \cdot op(A) \cdot op(B)\f$ will be
   !>   computed.
+  !>   \note Currently only CSR and BSR formats are supported.
+  !>   \note If `rocsparse_spgemm_stage_symbolic` is selected, then only the symbolic computation is
+  !>   performed.
+  !>   \note If `rocsparse_spgemm_stage_numeric` is selected, then only the numeric computation is
+  !>   performed.
+  !>   \note For the `rocsparse_spgemm_stage_symbolic` and `rocsparse_spgemm_stage_numeric` stages,
+  !>   only the
+  !>   CSR matrix format is currently supported.
   !>   \note \f$\alpha == beta == 0\f$ is invalid.
-  !>   \note It is allowed to pass the same sparse matrix for \f$C\f$ and \f$D\f$, if both
+  !>   \note It is permissible to pass the same sparse matrix for \f$C\f$ and \f$D\f$ if both
   !>   matrices have the same sparsity pattern.
-  !>   \note Currently, only \p trans_A == \p rocsparse_operation_none is supported.
-  !>   \note Currently, only \p trans_B == \p rocsparse_operation_none is supported.
-  !>   \note This function is non blocking and executed asynchronously with respect to the
-  !>         host. It may return before the actual computation has finished.
-  !>   \note Please note, that for rare matrix products with more than 4096 non-zero entries
-  !>   per row, additional temporary storage buffer is allocated by the algorithm.
-  !> 
+  !>   \note Currently, only \p trans_A == `rocsparse_operation_none` is supported.
+  !>   \note Currently, only \p trans_B == `rocsparse_operation_none` is supported.
+  !>   \note This function is non-blocking and executed asynchronously with respect to the
+  !>         host. It can return before the actual computation has finished.
+  !>   \note Note that for rare matrix products with more than 4096 non-zero entries
+  !>   per row, an additional temporary storage buffer is allocated by the algorithm.
+  !>
+  !>   \note
+  !>   This routine does not support execution in a hipGraph context.
+  !>
+  !>   \note
+  !>   This routine does not support batched computation.
+  !>
   !>   @param[in]
-  !>   handle       handle to the rocsparse library context queue.
+  !>   handle       handle to the rocSPARSE library context queue.
   !>   @param[in]
   !>   trans_A      sparse matrix \f$A\f$ operation type.
   !>   @param[in]
@@ -22002,18 +22076,20 @@ module hipfort_rocsparse
   !>                \p temp_buffer is nullptr.
   !>   @param[in]
   !>   temp_buffer  temporary storage buffer allocated by the user. When a nullptr is passed,
-  !>                the required allocation size (in bytes) is written to \p buffer_size and
+  !>                the required allocation size (in bytes) is written to \p buffer_size and the
   !>                function returns without performing the SpGEMM operation.
-  !> 
+  !>
   !>   \retval rocsparse_status_success the operation completed successfully.
   !>   \retval rocsparse_status_invalid_handle the library context was not initialized.
-  !>   \retval rocsparse_status_invalid_pointer \p alpha and \p beta are invalid,
-  !>           \p A, \p B, \p D, \p C or \p buffer_size pointer is invalid.
+  !>   \retval rocsparse_status_invalid_pointer \p alpha and \p beta are invalid, or the
+  !>           \p A, \p B, \p D, \p C, or \p buffer_size pointer is invalid.
   !>   \retval rocsparse_status_memory_error additional buffer for long rows could not be
   !>           allocated.
   !>   \retval rocsparse_status_not_implemented
-  !>           \p trans_A != \p rocsparse_operation_none or
-  !>           \p trans_B != \p rocsparse_operation_none.
+  !>           \p trans_A != `rocsparse_operation_none` or
+  !>           \p trans_B != `rocsparse_operation_none`.
+  !>
+  !>   \par Example
   interface rocsparse_spgemm
     function rocsparse_spgemm_(handle,trans_A,trans_B,alpha,A,B,beta,D,C,compute_type,alg,stage,buffer_size,temp_buffer) bind(c, name="rocsparse_spgemm")
       use iso_c_binding
@@ -22029,92 +22105,156 @@ module hipfort_rocsparse
       type(c_ptr),value :: beta
       type(c_ptr),value :: D
       type(c_ptr),value :: C
-      integer(kind(rocsparse_datatype_f32_r)),value :: compute_type
+      integer(kind(rocsparse_datatype_f16_r)),value :: compute_type
       integer(kind(rocsparse_spgemm_alg_default)),value :: alg
-      integer(kind(rocsparse_spgemm_stage_auto)),value :: stage
+      integer(kind(rocsparse_spgemm_stage_buffer_size)),value :: stage
       integer(c_size_t) :: buffer_size
       type(c_ptr),value :: temp_buffer
     end function
-
   end interface
+
   !>  \ingroup generic_module
   !>   \brief  Sampled Dense-Dense Matrix Multiplication.
-  !> 
+  !>
   !>   \details
   !>   \p rocsparse_sddmm multiplies the scalar \f$\alpha\f$ with the dense
-  !>   \f$m \times k\f$ matrix \f$A\f$, the dense \f$k \times n\f$ matrix \f$B\f$, filtered by the sparsity pattern of the \f$m \times n\f$ sparse matrix \f$C\f$ and
-  !>   adds the result to \f$C\f$ scaled by
+  !>   \f$m \times k\f$ matrix \f$op(A)\f$, the dense \f$k \times n\f$ matrix \f$op(B)\f$, filtered
+  !>   by the sparsity pattern
+  !>   of the \f$m \times n\f$ sparse matrix \f$C\f$ and adds the result to \f$C\f$ scaled by
   !>   \f$\beta\f$. The final result is stored in the sparse \f$m \times n\f$ matrix \f$C\f$,
   !>   such that
   !>   \f[
-  !>     C := \alpha ( opA(A) \cdot opB(B) ) \cdot spy(C) + \beta C,
+  !>     C := \alpha ( op(A) \cdot op(B) ) \circ spy(C) + \beta C,
   !>   \f]
   !>   with
   !>   \f[
   !>     op(A) = \left\{
   !>     \begin{array}{ll}
-  !>         A,   & \text{if opA == rocsparse_operation_none} \newline
-  !>
-  !>         A^T,   & \text{if opA == rocsparse_operation_transpose} \newline
-  !>
+  !>         A,   & \text{if op(A) == rocsparse_operation_none} \\%
+  !>         A^T, & \text{if op(A) == rocsparse_operation_transpose} \\%
   !>     \end{array}
   !>     \right.
   !>   \f],
   !>   \f[
   !>     op(B) = \left\{
   !>     \begin{array}{ll}
-  !>         B,   & \text{if opB == rocsparse_operation_none} \newline
-  !>
-  !>         B^T,   & \text{if opB == rocsparse_operation_transpose} \newline
-  !>
+  !>         B,   & \text{if op(B) == rocsparse_operation_none} \\%
+  !>         B^T, & \text{if op(B) == rocsparse_operation_transpose} \\%
   !>     \end{array}
   !>     \right.
   !>   \f]
   !>    and
   !>   \f[
-  !>     spy(C)_ij = \left\{
+  !>     spy(C)_{ij} = \left\{
   !>     \begin{array}{ll}
-  !>         1 \text{if i == j},   & 0 \text{if i != j} \newline
-  !>
+  !>         1, & \text{ if C_{ij} != 0} \\%
+  !>         0, & \text{ otherwise} \\%
   !>     \end{array}
   !>     \right.
   !>   \f]
-  !>   \note \p opA == \p rocsparse_operation_conjugate_transpose is not supported.
-  !>   \note \p opB == \p rocsparse_operation_conjugate_transpose is not supported.
+  !>
+  !>   Computing the above sampled dense-dense multiplication requires three steps to complete.
+  !>   First, call
+  !>   \ref rocsparse_sddmm_buffer_size to determine the size of the required temporary storage
+  !>   buffer. Next,
+  !>   allocate this buffer and call `rocsparse_sddmm_preprocess`, which performs any analysis of
+  !>   the input matrices
+  !>   that might be required. Finally, call \p rocsparse_sddmm to complete the computation. After
+  !>   all calls to
+  !>   \p rocsparse_sddmm are complete, the temporary buffer can be deallocated.
+  !>
+  !>   \p rocsparse_sddmm supports different algorithms which can provide better performance for
+  !>   different matrices.
+  !>
+  !>   <table>
+  !>   <caption id="sddmm_algorithms">Algorithms</caption>
+  !>   <tr><th>Algorithms                        <th>Deterministic  <th>Preprocessing  <th>Notes
+  !>   <tr><td>rocsparse_sddmm_alg_default</td> <td>Yes</td> <td>No</td> <td>Uses the sparsity
+  !>   pattern of matrix C to perform a limited set of dot products. </td>
+  !>   <tr><td>rocsparse_sddmm_alg_dense</td> <td>Yes</td> <td>No</td> <td>Explicitly converts the
+  !>   matrix C into a dense matrix to perform a dense matrix multiply and add. </td>
+  !>   </table>
+  !>
+  !>   Currently, \p rocsparse_sddmm only supports the uniform precisions indicated in the table
+  !>   below. For the sparse matrix \f$C\f$, \p rocsparse_sddmm supports the index types
+  !>   `rocsparse_indextype_i32` and `rocsparse_indextype_i64`.
+  !>
+  !>   \par Uniform Precisions:
+  !>   <table>
+  !>   <caption id="sddmm_uniform">Uniform Precisions</caption>
+  !>   <tr><th>A / B / C / compute_type
+  !>   <tr><td>rocsparse_datatype_f16_r
+  !>   <tr><td>rocsparse_datatype_f32_r
+  !>   <tr><td>rocsparse_datatype_f64_r
+  !>   <tr><td>rocsparse_datatype_f32_c
+  !>   <tr><td>rocsparse_datatype_f64_c
+  !>   </table>
+  !>
+  !>   \par Mixed Precisions:
+  !>   <table>
+  !>   <caption id="sddmm_mixed">Mixed Precisions</caption>
+  !>   <tr><th>A / B                     <th>C                         <th>compute_type
+  !>   <tr><td>rocsparse_datatype_f16_r  <td>rocsparse_datatype_f32_r  <td>rocsparse_datatype_f32_r
+  !>   <tr><td>rocsparse_datatype_f16_r  <td>rocsparse_datatype_f16_r  <td>rocsparse_datatype_f32_r
+  !>   <tr><td>rocsparse_datatype_bf16_r <td>rocsparse_datatype_f32_r  <td>rocsparse_datatype_f32_r
+  !>   <tr><td>rocsparse_datatype_bf16_r <td>rocsparse_datatype_bf16_r <td>rocsparse_datatype_f32_r
+  !>   </table>
+  !>
+  !>   \note
+  !>   The sparse matrix formats currently supported are: `rocsparse_format_csr`,
+  !>   `rocsparse_format_csc`, `rocsparse_format_coo`, `rocsparse_format_coo_aos`,
+  !>   and `rocsparse_format_ell`.
+  !>
+  !>   \note \p opA == `rocsparse_operation_conjugate_transpose` is not supported.
+  !>   \note \p opB == `rocsparse_operation_conjugate_transpose` is not supported.
+  !>
+  !>   \note
+  !>   This routine supports execution in a hipGraph context only when \p alg ==
+  !>   `rocsparse_sddmm_alg_default`.
+  !>
+  !>   \note
+  !>   This routine does not support batched computation.
+  !>
   !>   @param[in]
-  !>   handle       handle to the rocsparse library context queue.
+  !>   handle       handle to the rocSPARSE library context queue.
   !>   @param[in]
-  !>   opA      dense matrix \f$A\f$ operation type.
+  !>   opA          dense matrix \f$A\f$ operation type.
   !>   @param[in]
-  !>   opB      dense matrix \f$B\f$ operation type.
+  !>   opB          dense matrix \f$B\f$ operation type.
   !>   @param[in]
   !>   alpha        scalar \f$\alpha\f$.
   !>   @param[in]
-  !>   A            dense matrix \f$A\f$ descriptor.
+  !>   mat_A        dense matrix \f$A\f$ descriptor.
   !>   @param[in]
-  !>   B            dense matrix \f$B\f$ descriptor.
+  !>   mat_B        dense matrix \f$B\f$ descriptor.
   !>   @param[in]
   !>   beta         scalar \f$\beta\f$.
   !>   @param[inout]
-  !>   C            sparse matrix \f$C\f$ descriptor.
+  !>   mat_C        sparse matrix \f$C\f$ descriptor.
   !>   @param[in]
   !>   compute_type floating point precision for the SDDMM computation.
   !>   @param[in]
   !>   alg specification of the algorithm to use.
   !>   @param[in]
   !>   temp_buffer  temporary storage buffer allocated by the user.
-  !>   The size must be greater or equal to the size obtained with \p rocsparse_sddmm_buffer_size.
-  !> 
+  !>   The size must be greater or equal to the size obtained with \ref rocsparse_sddmm_buffer_size.
+  !>
   !>   \retval rocsparse_status_success the operation completed successfully.
-  !>   \retval rocsparse_status_invalid_value the value of \p trans\_A, \p trans\_B, \p compute\_type or alg is incorrect.
+  !>   \retval rocsparse_status_invalid_value the value of \p opA, \p opB, \p compute\_type, or \p
+  !>   alg is incorrect.
   !>   \retval rocsparse_status_invalid_handle the library context was not initialized.
-  !>   \retval rocsparse_status_invalid_pointer \p alpha and \p beta are invalid,
-  !>           \p A, \p B, \p D, \p C or \p temp_buffer pointer is invalid.
+  !>   \retval rocsparse_status_invalid_pointer \p alpha and \p beta are invalid, or the
+  !>           \p mat_A, \p mat_B, \p mat_C, or \p temp_buffer pointer is invalid.
   !>   \retval rocsparse_status_not_implemented
-  !>           \p opA == \p rocsparse_operation_conjugate_transpose or
-  !>           \p opB == \p rocsparse_operation_conjugate_transpose.
+  !>           \p opA == `rocsparse_operation_conjugate_transpose` or
+  !>           \p opB == `rocsparse_operation_conjugate_transpose`.
+  !>
+  !>   \par Example
+  !>   This example performs a sampled dense-dense matrix product, \f$C := \alpha ( A \cdot B )
+  !>   \circ spy(C) + \beta C\f$
+  !>   where \f$\circ\f$ is the Hadamard product.
   interface rocsparse_sddmm
-    function rocsparse_sddmm_(handle,opA,opB,alpha,A,B,beta,C,compute_type,alg,temp_buffer) bind(c, name="rocsparse_sddmm")
+    function rocsparse_sddmm_(handle,opA,opB,alpha,mat_A,mat_B,beta,mat_C,compute_type,alg,temp_buffer) bind(c, name="rocsparse_sddmm")
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
@@ -22123,54 +22263,59 @@ module hipfort_rocsparse
       integer(kind(rocsparse_operation_none)),value :: opA
       integer(kind(rocsparse_operation_none)),value :: opB
       type(c_ptr),value :: alpha
-      type(c_ptr),value :: A
-      type(c_ptr),value :: B
+      type(c_ptr),value :: mat_A
+      type(c_ptr),value :: mat_B
       type(c_ptr),value :: beta
-      type(c_ptr),value :: C
-      integer(kind(rocsparse_datatype_f32_r)),value :: compute_type
+      type(c_ptr),value :: mat_C
+      integer(kind(rocsparse_datatype_f16_r)),value :: compute_type
       integer(kind(rocsparse_sddmm_alg_default)),value :: alg
       type(c_ptr),value :: temp_buffer
     end function
-
   end interface
+
   !>  \ingroup generic_module
-  !>   \brief Calculate the size in bytes of the required buffer for the use of \p rocsparse_sddmm and \p rocsparse_sddmm_preprocess
-  !> 
   !>   \details
-  !>   \p rocsparse_sddmm_buffer_size returns the size of the required buffer to execute the SDDMM operation from a given configuration.
+  !>   \p rocsparse_sddmm_buffer_size returns the size of the required buffer to execute the SDDMM
+  !>   operation from a given configuration.
+  !>   This routine is used in conjunction with `rocsparse_sddmm_preprocess` () and
+  !>   `rocsparse_sddmm` ().
+  !>
+  !>   \note
+  !>   This routine does not support execution in a hipGraph context.
+  !>
   !>   @param[in]
-  !>   handle       handle to the rocsparse library context queue.
+  !>   handle       handle to the rocSPARSE library context queue.
   !>   @param[in]
-  !>   opA      dense matrix \f$A\f$ operation type.
+  !>   opA          dense matrix \f$A\f$ operation type.
   !>   @param[in]
-  !>   opB      dense matrix \f$B\f$ operation type.
+  !>   opB          dense matrix \f$B\f$ operation type.
   !>   @param[in]
   !>   alpha        scalar \f$\alpha\f$.
   !>   @param[in]
-  !>   A            dense matrix \f$A\f$ descriptor.
+  !>   mat_A        dense matrix \f$A\f$ descriptor.
   !>   @param[in]
-  !>   B            dense matrix \f$B\f$ descriptor.
+  !>   mat_B        dense matrix \f$B\f$ descriptor.
   !>   @param[in]
   !>   beta         scalar \f$\beta\f$.
   !>   @param[inout]
-  !>   C            sparse matrix \f$C\f$ descriptor.
+  !>   mat_C        sparse matrix \f$C\f$ descriptor.
   !>   @param[in]
   !>   compute_type floating point precision for the SDDMM computation.
   !>   @param[in]
   !>   alg specification of the algorithm to use.
   !>   @param[out]
   !>   buffer_size  number of bytes of the temporary storage buffer.
-  !> 
+  !>
   !>   \retval rocsparse_status_success the operation completed successfully.
-  !>   \retval rocsparse_status_invalid_value the value of \p trans\_A or \p trans\_B is incorrect.
+  !>   \retval rocsparse_status_invalid_value the value of \p opA or \p opB is incorrect.
   !>   \retval rocsparse_status_invalid_handle the library context was not initialized.
   !>   \retval rocsparse_status_invalid_pointer \p alpha and \p beta are invalid,
-  !>           \p A, \p B, \p D, \p C or \p buffer_size pointer is invalid.
+  !>           or the \p mat_A, \p mat_B, \p mat_C, or \p buffer_size pointer is invalid.
   !>   \retval rocsparse_status_not_implemented
-  !>           \p opA == \p rocsparse_operation_conjugate_transpose or
-  !>           \p opB == \p rocsparse_operation_conjugate_transpose.
+  !>           \p opA == `rocsparse_operation_conjugate_transpose` or
+  !>           \p opB == `rocsparse_operation_conjugate_transpose`.
   interface rocsparse_sddmm_buffer_size
-    function rocsparse_sddmm_buffer_size_(handle,opA,opB,alpha,A,B,beta,C,compute_type,alg,buffer_size) bind(c, name="rocsparse_sddmm_buffer_size")
+    function rocsparse_sddmm_buffer_size_(handle,opA,opB,alpha,mat_A,mat_B,beta,mat_C,compute_type,alg,buffer_size) bind(c, name="rocsparse_sddmm_buffer_size")
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
@@ -22179,56 +22324,59 @@ module hipfort_rocsparse
       integer(kind(rocsparse_operation_none)),value :: opA
       integer(kind(rocsparse_operation_none)),value :: opB
       type(c_ptr),value :: alpha
-      type(c_ptr),value :: A
-      type(c_ptr),value :: B
+      type(c_ptr),value :: mat_A
+      type(c_ptr),value :: mat_B
       type(c_ptr),value :: beta
-      type(c_ptr),value :: C
-      integer(kind(rocsparse_datatype_f32_r)),value :: compute_type
+      type(c_ptr),value :: mat_C
+      integer(kind(rocsparse_datatype_f16_r)),value :: compute_type
       integer(kind(rocsparse_sddmm_alg_default)),value :: alg
       integer(c_size_t) :: buffer_size
     end function
-
   end interface
+
   !>  \ingroup generic_module
-  !>   \brief Preprocess data before the use of \p rocsparse_sddmm.
-  !> 
   !>   \details
-  !>   \p rocsparse_sddmm_preprocess executes a part of the algorithm that can be calculated once in the context of multiple calls of the \p rocsparse_sddmm
-  !>   with the same sparsity pattern.
+  !>   \p rocsparse_sddmm_preprocess executes a part of the algorithm that can be calculated once in
+  !>   the context of multiple
+  !>   calls of the `rocsparse_sddmm` with the same sparsity pattern.
+  !>
+  !>   \note
+  !>   This routine does not support execution in a hipGraph context.
+  !>
   !>   @param[in]
-  !>   handle       handle to the rocsparse library context queue.
+  !>   handle       handle to the rocSPARSE library context queue.
   !>   @param[in]
-  !>   opA      dense matrix \f$A\f$ operation type.
+  !>   opA          dense matrix \f$A\f$ operation type.
   !>   @param[in]
-  !>   opB      dense matrix \f$B\f$ operation type.
+  !>   opB          dense matrix \f$B\f$ operation type.
   !>   @param[in]
   !>   alpha        scalar \f$\alpha\f$.
   !>   @param[in]
-  !>   A            dense matrix \f$A\f$ descriptor.
+  !>   mat_A        dense matrix \f$A\f$ descriptor.
   !>   @param[in]
-  !>   B            dense matrix \f$B\f$ descriptor.
+  !>   mat_B        dense matrix \f$B\f$ descriptor.
   !>   @param[in]
   !>   beta         scalar \f$\beta\f$.
   !>   @param[inout]
-  !>   C            sparse matrix \f$C\f$ descriptor.
+  !>   mat_C        sparse matrix \f$C\f$ descriptor.
   !>   @param[in]
   !>   compute_type floating point precision for the SDDMM computation.
   !>   @param[in]
   !>   alg specification of the algorithm to use.
   !>   @param[in]
   !>   temp_buffer  temporary storage buffer allocated by the user.
-  !>   The size must be greater or equal to the size obtained with \p rocsparse_sddmm_buffer_size.
-  !> 
+  !>   The size must be greater or equal to the size obtained with \ref rocsparse_sddmm_buffer_size.
+  !>
   !>   \retval rocsparse_status_success the operation completed successfully.
-  !>   \retval rocsparse_status_invalid_value the value of \p trans\_A or \p trans\_B is incorrect.
+  !>   \retval rocsparse_status_invalid_value the value of \p opA or \p opB is incorrect.
   !>   \retval rocsparse_status_invalid_handle the library context was not initialized.
-  !>   \retval rocsparse_status_invalid_pointer \p alpha and \p beta are invalid,
-  !>           \p A, \p B, \p D, \p C or \p temp_buffer pointer is invalid.
+  !>   \retval rocsparse_status_invalid_pointer \p alpha and \p beta are invalid, or the
+  !>           \p mat_A, \p mat_B, \p mat_C, or \p temp_buffer pointer is invalid.
   !>   \retval rocsparse_status_not_implemented
-  !>           \p opA == \p rocsparse_operation_conjugate_transpose or
-  !>           \p opB == \p rocsparse_operation_conjugate_transpose.
+  !>           \p opA == `rocsparse_operation_conjugate_transpose` or
+  !>           \p opB == `rocsparse_operation_conjugate_transpose`.
   interface rocsparse_sddmm_preprocess
-    function rocsparse_sddmm_preprocess_(handle,opA,opB,alpha,A,B,beta,C,compute_type,alg,temp_buffer) bind(c, name="rocsparse_sddmm_preprocess")
+    function rocsparse_sddmm_preprocess_(handle,opA,opB,alpha,mat_A,mat_B,beta,mat_C,compute_type,alg,temp_buffer) bind(c, name="rocsparse_sddmm_preprocess")
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
@@ -22237,16 +22385,72 @@ module hipfort_rocsparse
       integer(kind(rocsparse_operation_none)),value :: opA
       integer(kind(rocsparse_operation_none)),value :: opB
       type(c_ptr),value :: alpha
-      type(c_ptr),value :: A
-      type(c_ptr),value :: B
+      type(c_ptr),value :: mat_A
+      type(c_ptr),value :: mat_B
       type(c_ptr),value :: beta
-      type(c_ptr),value :: C
-      integer(kind(rocsparse_datatype_f32_r)),value :: compute_type
+      type(c_ptr),value :: mat_C
+      integer(kind(rocsparse_datatype_f16_r)),value :: compute_type
       integer(kind(rocsparse_sddmm_alg_default)),value :: alg
       type(c_ptr),value :: temp_buffer
     end function
-
   end interface
+
+  !>  \ingroup reordering_module
+  !>   \brief Coloring of the adjacency graph of the matrix \f$A\f$ stored in the CSR format.
+  !>
+  !>   \details
+  !>   \p rocsparse_csrcolor performs the coloring of the undirected graph represented by the
+  !>   (symmetric) sparsity pattern of the
+  !>   matrix \f$A\f$ stored in CSR format. Graph coloring is a way of coloring the nodes of a graph
+  !>   such that no two adjacent nodes
+  !>   are of the same color. The \p fraction_to_color is a parameter to only color a given
+  !>   percentage of the graph nodes, while the
+  !>   remaining uncolored nodes receive distinct new colors. The optional \p reordering array is a
+  !>   permutation array such that
+  !>   unknowns of the same color are grouped. The matrix \f$A\f$ must be stored as a general matrix
+  !>   with a symmetric sparsity pattern,
+  !>   and if the matrix \f$A\f$ is non-symmetric, then the user is responsible to provide the
+  !>   symmetric part \f$\frac{A+A^T}{2}\f$.
+  !>
+  !>   \note
+  !>   This function is blocking with respect to the host.
+  !>
+  !>   \note
+  !>   This routine does not support execution in a hipGraph context.
+  !>
+  !>   @param[in]
+  !>   handle      handle to the rocSPARSE library context queue.
+  !>   @param[in]
+  !>   m           number of rows of sparse matrix \f$A\f$.
+  !>   @param[in]
+  !>   nnz         number of non-zero entries of sparse matrix \f$A\f$.
+  !>   @param[in]
+  !>   descr      sparse matrix descriptor.
+  !>   @param[in]
+  !>   csr_val     array of \p nnz elements of the sparse CSR matrix.
+  !>   @param[in]
+  !>   csr_row_ptr array of \p m+1 elements that point to the start of every row of the
+  !>               sparse CSR matrix.
+  !>   @param[in]
+  !>   csr_col_ind array of \p nnz elements containing the column indices of the sparse
+  !>               CSR matrix.
+  !>   @param[in]
+  !>   fraction_to_color fraction of nodes to be colored, which should be in the interval [0.0,1.0],
+  !>   for example, 0.8 implies that 80 percent of nodes will be colored.
+  !>   @param[out]
+  !>   ncolors      resulting number of distinct colors.
+  !>   @param[out]
+  !>   coloring     resulting mapping of colors.
+  !>   @param[out]
+  !>   reordering optional resulting reordering permutation if \p reordering is a non-null pointer.
+  !>   @param[inout]
+  !>   info    structure that holds the information collected during the coloring algorithm.
+  !>
+  !>   \retval rocsparse_status_success the operation completed successfully.
+  !>   \retval rocsparse_status_invalid_handle the library context was not initialized.
+  !>   \retval rocsparse_status_invalid_size \p m or \p nnz is invalid.
+  !>   \retval rocsparse_status_invalid_pointer \p descr, \p csr_val, \p csr_row_ptr, \p
+  !>   csr_col_ind, \p fraction_to_color, \p ncolors, \p coloring, or \p info pointer is invalid.
   interface rocsparse_scsrcolor
     function rocsparse_scsrcolor_(handle,m,nnz,descr,csr_val,csr_row_ptr,csr_col_ind,fraction_to_color,ncolors,coloring,reordering,myInfo) bind(c, name="rocsparse_scsrcolor")
       use iso_c_binding
@@ -22273,7 +22477,7 @@ module hipfort_rocsparse
       rocsparse_scsrcolor_rank_1
 #endif
   end interface
-  
+
   interface rocsparse_dcsrcolor
     function rocsparse_dcsrcolor_(handle,m,nnz,descr,csr_val,csr_row_ptr,csr_col_ind,fraction_to_color,ncolors,coloring,reordering,myInfo) bind(c, name="rocsparse_dcsrcolor")
       use iso_c_binding
@@ -22300,7 +22504,7 @@ module hipfort_rocsparse
       rocsparse_dcsrcolor_rank_1
 #endif
   end interface
-  
+
   interface rocsparse_ccsrcolor
     function rocsparse_ccsrcolor_(handle,m,nnz,descr,csr_val,csr_row_ptr,csr_col_ind,fraction_to_color,ncolors,coloring,reordering,myInfo) bind(c, name="rocsparse_ccsrcolor")
       use iso_c_binding
@@ -22327,7 +22531,7 @@ module hipfort_rocsparse
       rocsparse_ccsrcolor_rank_1
 #endif
   end interface
-  
+
   interface rocsparse_zcsrcolor
     function rocsparse_zcsrcolor_(handle,m,nnz,descr,csr_val,csr_row_ptr,csr_col_ind,fraction_to_color,ncolors,coloring,reordering,myInfo) bind(c, name="rocsparse_zcsrcolor")
       use iso_c_binding
@@ -47942,6 +48146,5 @@ module hipfort_rocsparse
       rocsparse_zcsrcolor_rank_1 = rocsparse_zcsrcolor_(handle,m,nnz,descr,c_loc(csr_val),c_loc(csr_row_ptr),c_loc(csr_col_ind),fraction_to_color,ncolors,coloring,reordering,myInfo)
     end function
 
-  
 #endif
 end module hipfort_rocsparse
