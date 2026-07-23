@@ -2,19 +2,19 @@
 ! ==============================================================================
 ! hipfort: FORTRAN Interfaces for GPU kernels
 ! ==============================================================================
-! Copyright (c) 2020-2022 Advanced Micro Devices, Inc. All rights reserved.
+! Copyright (c) 2020-2026 Advanced Micro Devices, Inc. All rights reserved.
 ! [MITx11 License]
-! 
+!
 ! Permission is hereby granted, free of charge, to any person obtaining a copy
 ! of this software and associated documentation files (the "Software"), to deal
 ! in the Software without restriction, including without limitation the rights
 ! to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
 ! copies of the Software, and to permit persons to whom the Software is
 ! furnished to do so, subject to the following conditions:
-! 
+!
 ! The above copyright notice and this permission notice shall be included in
 ! all copies or substantial portions of the Software.
-! 
+!
 ! THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 ! IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
 ! FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.  IN NO EVENT SHALL THE
@@ -23,11 +23,12 @@
 ! OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 ! THE SOFTWARE.
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-          
-           
+
 module hipfort_hipfft_enums
+  use, intrinsic :: iso_c_binding
   implicit none
 
+  ! hipfftResult_t
   enum, bind(c)
     enumerator :: HIPFFT_SUCCESS = 0
     enumerator :: HIPFFT_INVALID_PLAN = 1
@@ -47,6 +48,7 @@ module hipfort_hipfft_enums
     enumerator :: HIPFFT_NOT_SUPPORTED = 16
   end enum
 
+  ! hipfftType_t
   enum, bind(c)
     enumerator :: HIPFFT_R2C = 42
     enumerator :: HIPFFT_C2R = 44
@@ -56,16 +58,17 @@ module hipfort_hipfft_enums
     enumerator :: HIPFFT_Z2Z = 105
   end enum
 
+  ! hipfftLibraryPropertyType_t
   enum, bind(c)
-    enumerator :: HIPFFT_MAJOR_VERSION
-    enumerator :: HIPFFT_MINOR_VERSION
-    enumerator :: HIPFFT_PATCH_LEVEL
+    enumerator :: HIPFFT_MAJOR_VERSION = 0
+    enumerator :: HIPFFT_MINOR_VERSION = 1
+    enumerator :: HIPFFT_PATCH_LEVEL = 2
   end enum
 
- 
+  integer(c_int), parameter :: hipfftVersionMajor = 1
+  integer(c_int), parameter :: hipfftVersionMinor = 0
+  integer(c_int), parameter :: hipfftVersionPatch = 22
+  integer(c_int), parameter :: HIPFFT_FORWARD = -1
+  integer(c_int), parameter :: HIPFFT_BACKWARD = 1
 
-#ifdef USE_FPOINTER_INTERFACES
-
-  
-#endif
 end module hipfort_hipfft_enums
