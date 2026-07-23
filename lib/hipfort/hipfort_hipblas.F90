@@ -26446,6 +26446,14859 @@ module hipfort_hipblas
 
   end interface
 
+  !>  \brief Gets the hipBLAS library version number.
+  !>     \details
+  !>     Returns version as integer: major * 10000 + minor * 100 + patch.
+  !>     Example: version 3.5.1 returns 30501.
+  !>
+  !>     Handle parameter can be NULL.
+  !>
+  !>     @param[in] handle - Handle to library context (can be NULL)
+  !>     @param[out] version - Pointer to integer for version number
+  !>
+  !>     @return HIPBLAS_STATUS_SUCCESS or HIPBLAS_STATUS_INVALID_VALUE if version is NULL
+  interface hipblasGetVersion
+#ifdef USE_CUDA_NAMES
+    function hipblasGetVersion_(handle,version) bind(c, name="cublasGetVersion")
+#else
+    function hipblasGetVersion_(handle,version) bind(c, name="hipblasGetVersion")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasGetVersion_
+      type(c_ptr),value :: handle
+      type(c_ptr),value :: version
+    end function
+  end interface
+
+  !>  \brief Gets a specific property of the hipBLAS library.
+  !>     \details
+  !>     Returns requested property value (major, minor, or patch).
+  !>     Does not require a handle.
+  !>
+  !>     @param[in] myType - Property type to query
+  !>     @param[out] myValue - Pointer to integer for property value
+  !>
+  !>     @return HIPBLAS_STATUS_SUCCESS or HIPBLAS_STATUS_INVALID_VALUE
+  interface hipblasGetProperty
+#ifdef USE_CUDA_NAMES
+    function hipblasGetProperty_(myType,myValue) bind(c, name="cublasGetProperty")
+#else
+    function hipblasGetProperty_(myType,myValue) bind(c, name="hipblasGetProperty")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasGetProperty_
+      integer(kind(HIPBLAS_MAJOR_VERSION)),value :: myType
+      type(c_ptr),value :: myValue
+    end function
+  end interface
+
+  !>  \brief Set hipblas math mode
+  interface hipblasSetMathMode
+#ifdef USE_CUDA_NAMES
+    function hipblasSetMathMode_(handle,mode) bind(c, name="cublasSetMathMode")
+#else
+    function hipblasSetMathMode_(handle,mode) bind(c, name="hipblasSetMathMode")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSetMathMode_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_DEFAULT_MATH)),value :: mode
+    end function
+  end interface
+
+  !>  \brief Get hipblas math mode
+  interface hipblasGetMathMode
+#ifdef USE_CUDA_NAMES
+    function hipblasGetMathMode_(handle,mode) bind(c, name="cublasGetMathMode")
+#else
+    function hipblasGetMathMode_(handle,mode) bind(c, name="hipblasGetMathMode")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasGetMathMode_
+      type(c_ptr),value :: handle
+      type(c_ptr),value :: mode
+    end function
+  end interface
+
+  !>  \brief Set hipblas workspace to user-owned device buffer
+  interface hipblasSetWorkspace
+#ifdef USE_CUDA_NAMES
+    function hipblasSetWorkspace_(handle,workspace,workspaceSizeInBytes) bind(c, name="cublasSetWorkspace_v2")
+#else
+    function hipblasSetWorkspace_(handle,workspace,workspaceSizeInBytes) bind(c, name="hipblasSetWorkspace")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSetWorkspace_
+      type(c_ptr),value :: handle
+      type(c_ptr),value :: workspace
+      integer(c_size_t),value :: workspaceSizeInBytes
+    end function
+  end interface
+
+  !>  \brief Set alpha stride for a limited set of batched and strided_batched functions to specify
+  !>  the stride for alpha between successive batch elements.
+  !>     Only applies to hipblasPointerModeDevice and thus device side allocations.
+  !>     It enables interpretation of the alpha pointer for both batched and strided_batched
+  !>     functions as a pointer to a vector of values.
+  !>     Default value is 0 which treats it as a pointer to a single scalar. Support is denoted with
+  !>     specific function documentation.
+  !>     Warning this is a modal like state in the handle. Restore to value 0 if no longer
+  !>     applicable to later function calls.
+  !>     - Supported in rocBLAS backend only.
+#ifndef USE_CUDA_NAMES
+  interface hipblasSetBatchAlphaStride
+    function hipblasSetBatchAlphaStride_(handle,alpha_stride) bind(c, name="hipblasSetBatchAlphaStride")
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSetBatchAlphaStride_
+      type(c_ptr),value :: handle
+      integer(c_int64_t),value :: alpha_stride
+    end function
+  end interface
+#endif
+
+  !>  \brief Get batch alpha stride from the handle.
+#ifndef USE_CUDA_NAMES
+  interface hipblasGetBatchAlphaStride
+    function hipblasGetBatchAlphaStride_(handle,alpha_stride) bind(c, name="hipblasGetBatchAlphaStride")
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasGetBatchAlphaStride_
+      type(c_ptr),value :: handle
+      type(c_ptr),value :: alpha_stride
+    end function
+  end interface
+#endif
+
+  !>  \brief Set beta stride for a limited set of batched and strided_batched functions to specify
+  !>  the stride for beta between successive batch elements.
+  !>     Only applies to hipblasPointerModeDevice and thus device side allocations.
+  !>     It enables interpretation of the beta pointer for both batched and strided_batched
+  !>     functions as a pointer to a vector of values.
+  !>     Default value is 0 which treats it as a pointer to a single scalar. Support is denoted with
+  !>     specific function documentation.
+  !>     Warning this is a modal like state in the handle. Restore to value 0 if no longer
+  !>     applicable to later function calls.
+  !>     - Supported in rocBLAS backend only.
+#ifndef USE_CUDA_NAMES
+  interface hipblasSetBatchBetaStride
+    function hipblasSetBatchBetaStride_(handle,beta_stride) bind(c, name="hipblasSetBatchBetaStride")
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSetBatchBetaStride_
+      type(c_ptr),value :: handle
+      integer(c_int64_t),value :: beta_stride
+    end function
+  end interface
+#endif
+
+  !>  \brief Get batch beta stride from the handle.
+#ifndef USE_CUDA_NAMES
+  interface hipblasGetBatchBetaStride
+    function hipblasGetBatchBetaStride_(handle,beta_stride) bind(c, name="hipblasGetBatchBetaStride")
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasGetBatchBetaStride_
+      type(c_ptr),value :: handle
+      type(c_ptr),value :: beta_stride
+    end function
+  end interface
+#endif
+
+  interface hipblasIsamax_64
+#ifdef USE_CUDA_NAMES
+    function hipblasIsamax_64_(handle,n,x,incx,myResult) bind(c, name="cublasIsamax_v2_64")
+#else
+    function hipblasIsamax_64_(handle,n,x,incx,myResult) bind(c, name="hipblasIsamax_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasIsamax_64_
+      type(c_ptr),value :: handle
+      integer(c_int64_t),value :: n
+      type(c_ptr),value :: x
+      integer(c_int64_t),value :: incx
+      type(c_ptr),value :: myResult
+    end function
+  end interface
+
+  interface hipblasIdamax_64
+#ifdef USE_CUDA_NAMES
+    function hipblasIdamax_64_(handle,n,x,incx,myResult) bind(c, name="cublasIdamax_v2_64")
+#else
+    function hipblasIdamax_64_(handle,n,x,incx,myResult) bind(c, name="hipblasIdamax_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasIdamax_64_
+      type(c_ptr),value :: handle
+      integer(c_int64_t),value :: n
+      type(c_ptr),value :: x
+      integer(c_int64_t),value :: incx
+      type(c_ptr),value :: myResult
+    end function
+  end interface
+
+  interface hipblasIcamax_64
+#ifdef USE_CUDA_NAMES
+    function hipblasIcamax_64_(handle,n,x,incx,myResult) bind(c, name="cublasIcamax_v2_64")
+#else
+    function hipblasIcamax_64_(handle,n,x,incx,myResult) bind(c, name="hipblasIcamax_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasIcamax_64_
+      type(c_ptr),value :: handle
+      integer(c_int64_t),value :: n
+      type(c_ptr),value :: x
+      integer(c_int64_t),value :: incx
+      type(c_ptr),value :: myResult
+    end function
+  end interface
+
+  interface hipblasIzamax_64
+#ifdef USE_CUDA_NAMES
+    function hipblasIzamax_64_(handle,n,x,incx,myResult) bind(c, name="cublasIzamax_v2_64")
+#else
+    function hipblasIzamax_64_(handle,n,x,incx,myResult) bind(c, name="hipblasIzamax_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasIzamax_64_
+      type(c_ptr),value :: handle
+      integer(c_int64_t),value :: n
+      type(c_ptr),value :: x
+      integer(c_int64_t),value :: incx
+      type(c_ptr),value :: myResult
+    end function
+  end interface
+
+  interface hipblasIsamaxBatched_64
+#ifdef USE_CUDA_NAMES
+    function hipblasIsamaxBatched_64_(handle,n,x,incx,batchCount,myResult) bind(c, name="cublasIsamaxBatched_64")
+#else
+    function hipblasIsamaxBatched_64_(handle,n,x,incx,batchCount,myResult) bind(c, name="hipblasIsamaxBatched_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasIsamaxBatched_64_
+      type(c_ptr),value :: handle
+      integer(c_int64_t),value :: n
+      type(c_ptr) :: x
+      integer(c_int64_t),value :: incx
+      integer(c_int64_t),value :: batchCount
+      type(c_ptr),value :: myResult
+    end function
+  end interface
+
+  interface hipblasIdamaxBatched_64
+#ifdef USE_CUDA_NAMES
+    function hipblasIdamaxBatched_64_(handle,n,x,incx,batchCount,myResult) bind(c, name="cublasIdamaxBatched_64")
+#else
+    function hipblasIdamaxBatched_64_(handle,n,x,incx,batchCount,myResult) bind(c, name="hipblasIdamaxBatched_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasIdamaxBatched_64_
+      type(c_ptr),value :: handle
+      integer(c_int64_t),value :: n
+      type(c_ptr) :: x
+      integer(c_int64_t),value :: incx
+      integer(c_int64_t),value :: batchCount
+      type(c_ptr),value :: myResult
+    end function
+  end interface
+
+  interface hipblasIcamaxBatched_64
+#ifdef USE_CUDA_NAMES
+    function hipblasIcamaxBatched_64_(handle,n,x,incx,batchCount,myResult) bind(c, name="cublasIcamaxBatched_64")
+#else
+    function hipblasIcamaxBatched_64_(handle,n,x,incx,batchCount,myResult) bind(c, name="hipblasIcamaxBatched_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasIcamaxBatched_64_
+      type(c_ptr),value :: handle
+      integer(c_int64_t),value :: n
+      type(c_ptr) :: x
+      integer(c_int64_t),value :: incx
+      integer(c_int64_t),value :: batchCount
+      type(c_ptr),value :: myResult
+    end function
+  end interface
+
+  interface hipblasIzamaxBatched_64
+#ifdef USE_CUDA_NAMES
+    function hipblasIzamaxBatched_64_(handle,n,x,incx,batchCount,myResult) bind(c, name="cublasIzamaxBatched_64")
+#else
+    function hipblasIzamaxBatched_64_(handle,n,x,incx,batchCount,myResult) bind(c, name="hipblasIzamaxBatched_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasIzamaxBatched_64_
+      type(c_ptr),value :: handle
+      integer(c_int64_t),value :: n
+      type(c_ptr) :: x
+      integer(c_int64_t),value :: incx
+      integer(c_int64_t),value :: batchCount
+      type(c_ptr),value :: myResult
+    end function
+  end interface
+
+  interface hipblasIsamaxStridedBatched_64
+#ifdef USE_CUDA_NAMES
+    function hipblasIsamaxStridedBatched_64_(handle,n,x,incx,stridex,batchCount,myResult) bind(c, name="cublasIsamaxStridedBatched_64")
+#else
+    function hipblasIsamaxStridedBatched_64_(handle,n,x,incx,stridex,batchCount,myResult) bind(c, name="hipblasIsamaxStridedBatched_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasIsamaxStridedBatched_64_
+      type(c_ptr),value :: handle
+      integer(c_int64_t),value :: n
+      type(c_ptr),value :: x
+      integer(c_int64_t),value :: incx
+      integer(c_int64_t),value :: stridex
+      integer(c_int64_t),value :: batchCount
+      type(c_ptr),value :: myResult
+    end function
+  end interface
+
+  interface hipblasIdamaxStridedBatched_64
+#ifdef USE_CUDA_NAMES
+    function hipblasIdamaxStridedBatched_64_(handle,n,x,incx,stridex,batchCount,myResult) bind(c, name="cublasIdamaxStridedBatched_64")
+#else
+    function hipblasIdamaxStridedBatched_64_(handle,n,x,incx,stridex,batchCount,myResult) bind(c, name="hipblasIdamaxStridedBatched_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasIdamaxStridedBatched_64_
+      type(c_ptr),value :: handle
+      integer(c_int64_t),value :: n
+      type(c_ptr),value :: x
+      integer(c_int64_t),value :: incx
+      integer(c_int64_t),value :: stridex
+      integer(c_int64_t),value :: batchCount
+      type(c_ptr),value :: myResult
+    end function
+  end interface
+
+  interface hipblasIcamaxStridedBatched_64
+#ifdef USE_CUDA_NAMES
+    function hipblasIcamaxStridedBatched_64_(handle,n,x,incx,stridex,batchCount,myResult) bind(c, name="cublasIcamaxStridedBatched_64")
+#else
+    function hipblasIcamaxStridedBatched_64_(handle,n,x,incx,stridex,batchCount,myResult) bind(c, name="hipblasIcamaxStridedBatched_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasIcamaxStridedBatched_64_
+      type(c_ptr),value :: handle
+      integer(c_int64_t),value :: n
+      type(c_ptr),value :: x
+      integer(c_int64_t),value :: incx
+      integer(c_int64_t),value :: stridex
+      integer(c_int64_t),value :: batchCount
+      type(c_ptr),value :: myResult
+    end function
+  end interface
+
+  interface hipblasIzamaxStridedBatched_64
+#ifdef USE_CUDA_NAMES
+    function hipblasIzamaxStridedBatched_64_(handle,n,x,incx,stridex,batchCount,myResult) bind(c, name="cublasIzamaxStridedBatched_64")
+#else
+    function hipblasIzamaxStridedBatched_64_(handle,n,x,incx,stridex,batchCount,myResult) bind(c, name="hipblasIzamaxStridedBatched_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasIzamaxStridedBatched_64_
+      type(c_ptr),value :: handle
+      integer(c_int64_t),value :: n
+      type(c_ptr),value :: x
+      integer(c_int64_t),value :: incx
+      integer(c_int64_t),value :: stridex
+      integer(c_int64_t),value :: batchCount
+      type(c_ptr),value :: myResult
+    end function
+  end interface
+
+  interface hipblasIsamin_64
+#ifdef USE_CUDA_NAMES
+    function hipblasIsamin_64_(handle,n,x,incx,myResult) bind(c, name="cublasIsamin_v2_64")
+#else
+    function hipblasIsamin_64_(handle,n,x,incx,myResult) bind(c, name="hipblasIsamin_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasIsamin_64_
+      type(c_ptr),value :: handle
+      integer(c_int64_t),value :: n
+      type(c_ptr),value :: x
+      integer(c_int64_t),value :: incx
+      type(c_ptr),value :: myResult
+    end function
+  end interface
+
+  interface hipblasIdamin_64
+#ifdef USE_CUDA_NAMES
+    function hipblasIdamin_64_(handle,n,x,incx,myResult) bind(c, name="cublasIdamin_v2_64")
+#else
+    function hipblasIdamin_64_(handle,n,x,incx,myResult) bind(c, name="hipblasIdamin_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasIdamin_64_
+      type(c_ptr),value :: handle
+      integer(c_int64_t),value :: n
+      type(c_ptr),value :: x
+      integer(c_int64_t),value :: incx
+      type(c_ptr),value :: myResult
+    end function
+  end interface
+
+  interface hipblasIcamin_64
+#ifdef USE_CUDA_NAMES
+    function hipblasIcamin_64_(handle,n,x,incx,myResult) bind(c, name="cublasIcamin_v2_64")
+#else
+    function hipblasIcamin_64_(handle,n,x,incx,myResult) bind(c, name="hipblasIcamin_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasIcamin_64_
+      type(c_ptr),value :: handle
+      integer(c_int64_t),value :: n
+      type(c_ptr),value :: x
+      integer(c_int64_t),value :: incx
+      type(c_ptr),value :: myResult
+    end function
+  end interface
+
+  interface hipblasIzamin_64
+#ifdef USE_CUDA_NAMES
+    function hipblasIzamin_64_(handle,n,x,incx,myResult) bind(c, name="cublasIzamin_v2_64")
+#else
+    function hipblasIzamin_64_(handle,n,x,incx,myResult) bind(c, name="hipblasIzamin_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasIzamin_64_
+      type(c_ptr),value :: handle
+      integer(c_int64_t),value :: n
+      type(c_ptr),value :: x
+      integer(c_int64_t),value :: incx
+      type(c_ptr),value :: myResult
+    end function
+  end interface
+
+  interface hipblasIsaminBatched_64
+#ifdef USE_CUDA_NAMES
+    function hipblasIsaminBatched_64_(handle,n,x,incx,batchCount,myResult) bind(c, name="cublasIsaminBatched_64")
+#else
+    function hipblasIsaminBatched_64_(handle,n,x,incx,batchCount,myResult) bind(c, name="hipblasIsaminBatched_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasIsaminBatched_64_
+      type(c_ptr),value :: handle
+      integer(c_int64_t),value :: n
+      type(c_ptr) :: x
+      integer(c_int64_t),value :: incx
+      integer(c_int64_t),value :: batchCount
+      type(c_ptr),value :: myResult
+    end function
+  end interface
+
+  interface hipblasIdaminBatched_64
+#ifdef USE_CUDA_NAMES
+    function hipblasIdaminBatched_64_(handle,n,x,incx,batchCount,myResult) bind(c, name="cublasIdaminBatched_64")
+#else
+    function hipblasIdaminBatched_64_(handle,n,x,incx,batchCount,myResult) bind(c, name="hipblasIdaminBatched_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasIdaminBatched_64_
+      type(c_ptr),value :: handle
+      integer(c_int64_t),value :: n
+      type(c_ptr) :: x
+      integer(c_int64_t),value :: incx
+      integer(c_int64_t),value :: batchCount
+      type(c_ptr),value :: myResult
+    end function
+  end interface
+
+  interface hipblasIcaminBatched_64
+#ifdef USE_CUDA_NAMES
+    function hipblasIcaminBatched_64_(handle,n,x,incx,batchCount,myResult) bind(c, name="cublasIcaminBatched_64")
+#else
+    function hipblasIcaminBatched_64_(handle,n,x,incx,batchCount,myResult) bind(c, name="hipblasIcaminBatched_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasIcaminBatched_64_
+      type(c_ptr),value :: handle
+      integer(c_int64_t),value :: n
+      type(c_ptr) :: x
+      integer(c_int64_t),value :: incx
+      integer(c_int64_t),value :: batchCount
+      type(c_ptr),value :: myResult
+    end function
+  end interface
+
+  interface hipblasIzaminBatched_64
+#ifdef USE_CUDA_NAMES
+    function hipblasIzaminBatched_64_(handle,n,x,incx,batchCount,myResult) bind(c, name="cublasIzaminBatched_64")
+#else
+    function hipblasIzaminBatched_64_(handle,n,x,incx,batchCount,myResult) bind(c, name="hipblasIzaminBatched_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasIzaminBatched_64_
+      type(c_ptr),value :: handle
+      integer(c_int64_t),value :: n
+      type(c_ptr) :: x
+      integer(c_int64_t),value :: incx
+      integer(c_int64_t),value :: batchCount
+      type(c_ptr),value :: myResult
+    end function
+  end interface
+
+  interface hipblasIsaminStridedBatched_64
+#ifdef USE_CUDA_NAMES
+    function hipblasIsaminStridedBatched_64_(handle,n,x,incx,stridex,batchCount,myResult) bind(c, name="cublasIsaminStridedBatched_64")
+#else
+    function hipblasIsaminStridedBatched_64_(handle,n,x,incx,stridex,batchCount,myResult) bind(c, name="hipblasIsaminStridedBatched_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasIsaminStridedBatched_64_
+      type(c_ptr),value :: handle
+      integer(c_int64_t),value :: n
+      type(c_ptr),value :: x
+      integer(c_int64_t),value :: incx
+      integer(c_int64_t),value :: stridex
+      integer(c_int64_t),value :: batchCount
+      type(c_ptr),value :: myResult
+    end function
+  end interface
+
+  interface hipblasIdaminStridedBatched_64
+#ifdef USE_CUDA_NAMES
+    function hipblasIdaminStridedBatched_64_(handle,n,x,incx,stridex,batchCount,myResult) bind(c, name="cublasIdaminStridedBatched_64")
+#else
+    function hipblasIdaminStridedBatched_64_(handle,n,x,incx,stridex,batchCount,myResult) bind(c, name="hipblasIdaminStridedBatched_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasIdaminStridedBatched_64_
+      type(c_ptr),value :: handle
+      integer(c_int64_t),value :: n
+      type(c_ptr),value :: x
+      integer(c_int64_t),value :: incx
+      integer(c_int64_t),value :: stridex
+      integer(c_int64_t),value :: batchCount
+      type(c_ptr),value :: myResult
+    end function
+  end interface
+
+  interface hipblasIcaminStridedBatched_64
+#ifdef USE_CUDA_NAMES
+    function hipblasIcaminStridedBatched_64_(handle,n,x,incx,stridex,batchCount,myResult) bind(c, name="cublasIcaminStridedBatched_64")
+#else
+    function hipblasIcaminStridedBatched_64_(handle,n,x,incx,stridex,batchCount,myResult) bind(c, name="hipblasIcaminStridedBatched_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasIcaminStridedBatched_64_
+      type(c_ptr),value :: handle
+      integer(c_int64_t),value :: n
+      type(c_ptr),value :: x
+      integer(c_int64_t),value :: incx
+      integer(c_int64_t),value :: stridex
+      integer(c_int64_t),value :: batchCount
+      type(c_ptr),value :: myResult
+    end function
+  end interface
+
+  interface hipblasIzaminStridedBatched_64
+#ifdef USE_CUDA_NAMES
+    function hipblasIzaminStridedBatched_64_(handle,n,x,incx,stridex,batchCount,myResult) bind(c, name="cublasIzaminStridedBatched_64")
+#else
+    function hipblasIzaminStridedBatched_64_(handle,n,x,incx,stridex,batchCount,myResult) bind(c, name="hipblasIzaminStridedBatched_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasIzaminStridedBatched_64_
+      type(c_ptr),value :: handle
+      integer(c_int64_t),value :: n
+      type(c_ptr),value :: x
+      integer(c_int64_t),value :: incx
+      integer(c_int64_t),value :: stridex
+      integer(c_int64_t),value :: batchCount
+      type(c_ptr),value :: myResult
+    end function
+  end interface
+
+  interface hipblasSasum_64
+#ifdef USE_CUDA_NAMES
+    function hipblasSasum_64_(handle,n,x,incx,myResult) bind(c, name="cublasSasum_v2_64")
+#else
+    function hipblasSasum_64_(handle,n,x,incx,myResult) bind(c, name="hipblasSasum_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSasum_64_
+      type(c_ptr),value :: handle
+      integer(c_int64_t),value :: n
+      type(c_ptr),value :: x
+      integer(c_int64_t),value :: incx
+      type(c_ptr),value :: myResult
+    end function
+  end interface
+
+  interface hipblasDasum_64
+#ifdef USE_CUDA_NAMES
+    function hipblasDasum_64_(handle,n,x,incx,myResult) bind(c, name="cublasDasum_v2_64")
+#else
+    function hipblasDasum_64_(handle,n,x,incx,myResult) bind(c, name="hipblasDasum_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDasum_64_
+      type(c_ptr),value :: handle
+      integer(c_int64_t),value :: n
+      type(c_ptr),value :: x
+      integer(c_int64_t),value :: incx
+      type(c_ptr),value :: myResult
+    end function
+  end interface
+
+  interface hipblasScasum_64
+#ifdef USE_CUDA_NAMES
+    function hipblasScasum_64_(handle,n,x,incx,myResult) bind(c, name="cublasScasum_v2_64")
+#else
+    function hipblasScasum_64_(handle,n,x,incx,myResult) bind(c, name="hipblasScasum_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasScasum_64_
+      type(c_ptr),value :: handle
+      integer(c_int64_t),value :: n
+      type(c_ptr),value :: x
+      integer(c_int64_t),value :: incx
+      type(c_ptr),value :: myResult
+    end function
+  end interface
+
+  interface hipblasDzasum_64
+#ifdef USE_CUDA_NAMES
+    function hipblasDzasum_64_(handle,n,x,incx,myResult) bind(c, name="cublasDzasum_v2_64")
+#else
+    function hipblasDzasum_64_(handle,n,x,incx,myResult) bind(c, name="hipblasDzasum_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDzasum_64_
+      type(c_ptr),value :: handle
+      integer(c_int64_t),value :: n
+      type(c_ptr),value :: x
+      integer(c_int64_t),value :: incx
+      type(c_ptr),value :: myResult
+    end function
+  end interface
+
+  interface hipblasSasumBatched_64
+#ifdef USE_CUDA_NAMES
+    function hipblasSasumBatched_64_(handle,n,x,incx,batchCount,myResult) bind(c, name="cublasSasumBatched_64")
+#else
+    function hipblasSasumBatched_64_(handle,n,x,incx,batchCount,myResult) bind(c, name="hipblasSasumBatched_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSasumBatched_64_
+      type(c_ptr),value :: handle
+      integer(c_int64_t),value :: n
+      type(c_ptr) :: x
+      integer(c_int64_t),value :: incx
+      integer(c_int64_t),value :: batchCount
+      type(c_ptr),value :: myResult
+    end function
+  end interface
+
+  interface hipblasDasumBatched_64
+#ifdef USE_CUDA_NAMES
+    function hipblasDasumBatched_64_(handle,n,x,incx,batchCount,myResult) bind(c, name="cublasDasumBatched_64")
+#else
+    function hipblasDasumBatched_64_(handle,n,x,incx,batchCount,myResult) bind(c, name="hipblasDasumBatched_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDasumBatched_64_
+      type(c_ptr),value :: handle
+      integer(c_int64_t),value :: n
+      type(c_ptr) :: x
+      integer(c_int64_t),value :: incx
+      integer(c_int64_t),value :: batchCount
+      type(c_ptr),value :: myResult
+    end function
+  end interface
+
+  interface hipblasScasumBatched_64
+#ifdef USE_CUDA_NAMES
+    function hipblasScasumBatched_64_(handle,n,x,incx,batchCount,myResult) bind(c, name="cublasScasumBatched_64")
+#else
+    function hipblasScasumBatched_64_(handle,n,x,incx,batchCount,myResult) bind(c, name="hipblasScasumBatched_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasScasumBatched_64_
+      type(c_ptr),value :: handle
+      integer(c_int64_t),value :: n
+      type(c_ptr) :: x
+      integer(c_int64_t),value :: incx
+      integer(c_int64_t),value :: batchCount
+      type(c_ptr),value :: myResult
+    end function
+  end interface
+
+  interface hipblasDzasumBatched_64
+#ifdef USE_CUDA_NAMES
+    function hipblasDzasumBatched_64_(handle,n,x,incx,batchCount,myResult) bind(c, name="cublasDzasumBatched_64")
+#else
+    function hipblasDzasumBatched_64_(handle,n,x,incx,batchCount,myResult) bind(c, name="hipblasDzasumBatched_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDzasumBatched_64_
+      type(c_ptr),value :: handle
+      integer(c_int64_t),value :: n
+      type(c_ptr) :: x
+      integer(c_int64_t),value :: incx
+      integer(c_int64_t),value :: batchCount
+      type(c_ptr),value :: myResult
+    end function
+  end interface
+
+  interface hipblasSasumStridedBatched_64
+#ifdef USE_CUDA_NAMES
+    function hipblasSasumStridedBatched_64_(handle,n,x,incx,stridex,batchCount,myResult) bind(c, name="cublasSasumStridedBatched_64")
+#else
+    function hipblasSasumStridedBatched_64_(handle,n,x,incx,stridex,batchCount,myResult) bind(c, name="hipblasSasumStridedBatched_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSasumStridedBatched_64_
+      type(c_ptr),value :: handle
+      integer(c_int64_t),value :: n
+      type(c_ptr),value :: x
+      integer(c_int64_t),value :: incx
+      integer(c_int64_t),value :: stridex
+      integer(c_int64_t),value :: batchCount
+      type(c_ptr),value :: myResult
+    end function
+  end interface
+
+  interface hipblasDasumStridedBatched_64
+#ifdef USE_CUDA_NAMES
+    function hipblasDasumStridedBatched_64_(handle,n,x,incx,stridex,batchCount,myResult) bind(c, name="cublasDasumStridedBatched_64")
+#else
+    function hipblasDasumStridedBatched_64_(handle,n,x,incx,stridex,batchCount,myResult) bind(c, name="hipblasDasumStridedBatched_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDasumStridedBatched_64_
+      type(c_ptr),value :: handle
+      integer(c_int64_t),value :: n
+      type(c_ptr),value :: x
+      integer(c_int64_t),value :: incx
+      integer(c_int64_t),value :: stridex
+      integer(c_int64_t),value :: batchCount
+      type(c_ptr),value :: myResult
+    end function
+  end interface
+
+  interface hipblasScasumStridedBatched_64
+#ifdef USE_CUDA_NAMES
+    function hipblasScasumStridedBatched_64_(handle,n,x,incx,stridex,batchCount,myResult) bind(c, name="cublasScasumStridedBatched_64")
+#else
+    function hipblasScasumStridedBatched_64_(handle,n,x,incx,stridex,batchCount,myResult) bind(c, name="hipblasScasumStridedBatched_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasScasumStridedBatched_64_
+      type(c_ptr),value :: handle
+      integer(c_int64_t),value :: n
+      type(c_ptr),value :: x
+      integer(c_int64_t),value :: incx
+      integer(c_int64_t),value :: stridex
+      integer(c_int64_t),value :: batchCount
+      type(c_ptr),value :: myResult
+    end function
+  end interface
+
+  interface hipblasDzasumStridedBatched_64
+#ifdef USE_CUDA_NAMES
+    function hipblasDzasumStridedBatched_64_(handle,n,x,incx,stridex,batchCount,myResult) bind(c, name="cublasDzasumStridedBatched_64")
+#else
+    function hipblasDzasumStridedBatched_64_(handle,n,x,incx,stridex,batchCount,myResult) bind(c, name="hipblasDzasumStridedBatched_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDzasumStridedBatched_64_
+      type(c_ptr),value :: handle
+      integer(c_int64_t),value :: n
+      type(c_ptr),value :: x
+      integer(c_int64_t),value :: incx
+      integer(c_int64_t),value :: stridex
+      integer(c_int64_t),value :: batchCount
+      type(c_ptr),value :: myResult
+    end function
+  end interface
+
+  !>     \brief  BLAS Level 1 API
+  !>
+  !>     \details
+  !>     The axpy functions compute a constant ``alpha`` multiplied by vector ``x`` plus vector
+  !>     ``y``.
+  !>
+  !>         y := alpha * x + y
+  !>
+  !>     - Supported precisions in rocBLAS : ``h``, ``s``, ``d``, ``c``, and ``z``.
+  !>     - Supported precisions in cuBLAS  : ``s``, ``d``, ``c``, and ``z``.
+  !>
+  !>     @param[in]
+  !>     handle    [hipblasHandle_t]
+  !>               handle to the hipBLAS library context queue.
+  !>     @param[in]
+  !>     n         [int]
+  !>               the number of elements in x and y.
+  !>     @param[in]
+  !>     alpha     device pointer or host pointer to specify the scalar alpha.
+  !>     @param[in]
+  !>     x         device pointer storing vector x.
+  !>     @param[in]
+  !>     incx      [int]
+  !>               specifies the increment for the elements of x.
+  !>     @param[out]
+  !>     y         device pointer storing vector y.
+  !>     @param[inout]
+  !>     incy      [int]
+  !>               specifies the increment for the elements of y.
+#ifndef USE_CUDA_NAMES
+  interface hipblasHaxpy
+    function hipblasHaxpy_(handle,n,alpha,x,incx,y,incy) bind(c, name="hipblasHaxpy")
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasHaxpy_
+      type(c_ptr),value :: handle
+      integer(c_int),value :: n
+      type(c_ptr),value :: alpha
+      type(c_ptr),value :: x
+      integer(c_int),value :: incx
+      type(c_ptr),value :: y
+      integer(c_int),value :: incy
+    end function
+  end interface
+#endif
+
+#ifndef USE_CUDA_NAMES
+  interface hipblasHaxpy_64
+    function hipblasHaxpy_64_(handle,n,alpha,x,incx,y,incy) bind(c, name="hipblasHaxpy_64")
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasHaxpy_64_
+      type(c_ptr),value :: handle
+      integer(c_int64_t),value :: n
+      type(c_ptr),value :: alpha
+      type(c_ptr),value :: x
+      integer(c_int64_t),value :: incx
+      type(c_ptr),value :: y
+      integer(c_int64_t),value :: incy
+    end function
+  end interface
+#endif
+
+  interface hipblasSaxpy_64
+#ifdef USE_CUDA_NAMES
+    function hipblasSaxpy_64_(handle,n,alpha,x,incx,y,incy) bind(c, name="cublasSaxpy_v2_64")
+#else
+    function hipblasSaxpy_64_(handle,n,alpha,x,incx,y,incy) bind(c, name="hipblasSaxpy_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSaxpy_64_
+      type(c_ptr),value :: handle
+      integer(c_int64_t),value :: n
+      real(c_float) :: alpha
+      type(c_ptr),value :: x
+      integer(c_int64_t),value :: incx
+      type(c_ptr),value :: y
+      integer(c_int64_t),value :: incy
+    end function
+  end interface
+
+  interface hipblasDaxpy_64
+#ifdef USE_CUDA_NAMES
+    function hipblasDaxpy_64_(handle,n,alpha,x,incx,y,incy) bind(c, name="cublasDaxpy_v2_64")
+#else
+    function hipblasDaxpy_64_(handle,n,alpha,x,incx,y,incy) bind(c, name="hipblasDaxpy_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDaxpy_64_
+      type(c_ptr),value :: handle
+      integer(c_int64_t),value :: n
+      real(c_double) :: alpha
+      type(c_ptr),value :: x
+      integer(c_int64_t),value :: incx
+      type(c_ptr),value :: y
+      integer(c_int64_t),value :: incy
+    end function
+  end interface
+
+  interface hipblasCaxpy_64
+#ifdef USE_CUDA_NAMES
+    function hipblasCaxpy_64_(handle,n,alpha,x,incx,y,incy) bind(c, name="cublasCaxpy_v2_64")
+#else
+    function hipblasCaxpy_64_(handle,n,alpha,x,incx,y,incy) bind(c, name="hipblasCaxpy_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCaxpy_64_
+      type(c_ptr),value :: handle
+      integer(c_int64_t),value :: n
+      complex(c_float_complex) :: alpha
+      type(c_ptr),value :: x
+      integer(c_int64_t),value :: incx
+      type(c_ptr),value :: y
+      integer(c_int64_t),value :: incy
+    end function
+  end interface
+
+  interface hipblasZaxpy_64
+#ifdef USE_CUDA_NAMES
+    function hipblasZaxpy_64_(handle,n,alpha,x,incx,y,incy) bind(c, name="cublasZaxpy_v2_64")
+#else
+    function hipblasZaxpy_64_(handle,n,alpha,x,incx,y,incy) bind(c, name="hipblasZaxpy_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZaxpy_64_
+      type(c_ptr),value :: handle
+      integer(c_int64_t),value :: n
+      complex(c_double_complex) :: alpha
+      type(c_ptr),value :: x
+      integer(c_int64_t),value :: incx
+      type(c_ptr),value :: y
+      integer(c_int64_t),value :: incy
+    end function
+  end interface
+
+  !>     \brief  BLAS Level 1 API
+  !>
+  !>     \details
+  !>     The axpyBatched functions compute ``y := alpha * x + y`` over a set of batched vectors.
+  !>
+  !>     - Supported precisions in rocBLAS : ``h``, ``s``, ``d``, ``c``, and ``z``.
+  !>     - Supported precisions in cuBLAS  : No support.
+  !>
+  !>     @param[in]
+  !>     handle    [hipblasHandle_t]
+  !>               handle to the hipBLAS library context queue.
+  !>     @param[in]
+  !>     n         [int]
+  !>               the number of elements in x and y.
+  !>     @param[in]
+  !>     alpha     specifies the scalar alpha.
+  !>     @param[in]
+  !>     x         pointer storing vector x on the GPU.
+  !>     @param[in]
+  !>     incx      [int]
+  !>               specifies the increment for the elements of x.
+  !>     @param[out]
+  !>     y         pointer storing vector y on the GPU.
+  !>     @param[inout]
+  !>     incy      [int]
+  !>               specifies the increment for the elements of y.
+  !>
+  !>     @param[in]
+  !>     batchCount [int]
+  !>               number of instances in the batch.
+#ifndef USE_CUDA_NAMES
+  interface hipblasHaxpyBatched
+    function hipblasHaxpyBatched_(handle,n,alpha,x,incx,y,incy,batchCount) bind(c, name="hipblasHaxpyBatched")
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasHaxpyBatched_
+      type(c_ptr),value :: handle
+      integer(c_int),value :: n
+      type(c_ptr),value :: alpha
+      type(c_ptr) :: x
+      integer(c_int),value :: incx
+      type(c_ptr) :: y
+      integer(c_int),value :: incy
+      integer(c_int),value :: batchCount
+    end function
+  end interface
+#endif
+
+#ifndef USE_CUDA_NAMES
+  interface hipblasHaxpyBatched_64
+    function hipblasHaxpyBatched_64_(handle,n,alpha,x,incx,y,incy,batchCount) bind(c, name="hipblasHaxpyBatched_64")
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasHaxpyBatched_64_
+      type(c_ptr),value :: handle
+      integer(c_int64_t),value :: n
+      type(c_ptr),value :: alpha
+      type(c_ptr) :: x
+      integer(c_int64_t),value :: incx
+      type(c_ptr) :: y
+      integer(c_int64_t),value :: incy
+      integer(c_int64_t),value :: batchCount
+    end function
+  end interface
+#endif
+
+  interface hipblasSaxpyBatched_64
+#ifdef USE_CUDA_NAMES
+    function hipblasSaxpyBatched_64_(handle,n,alpha,x,incx,y,incy,batchCount) bind(c, name="cublasSaxpyBatched_64")
+#else
+    function hipblasSaxpyBatched_64_(handle,n,alpha,x,incx,y,incy,batchCount) bind(c, name="hipblasSaxpyBatched_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSaxpyBatched_64_
+      type(c_ptr),value :: handle
+      integer(c_int64_t),value :: n
+      real(c_float) :: alpha
+      type(c_ptr) :: x
+      integer(c_int64_t),value :: incx
+      type(c_ptr) :: y
+      integer(c_int64_t),value :: incy
+      integer(c_int64_t),value :: batchCount
+    end function
+  end interface
+
+  interface hipblasDaxpyBatched_64
+#ifdef USE_CUDA_NAMES
+    function hipblasDaxpyBatched_64_(handle,n,alpha,x,incx,y,incy,batchCount) bind(c, name="cublasDaxpyBatched_64")
+#else
+    function hipblasDaxpyBatched_64_(handle,n,alpha,x,incx,y,incy,batchCount) bind(c, name="hipblasDaxpyBatched_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDaxpyBatched_64_
+      type(c_ptr),value :: handle
+      integer(c_int64_t),value :: n
+      real(c_double) :: alpha
+      type(c_ptr) :: x
+      integer(c_int64_t),value :: incx
+      type(c_ptr) :: y
+      integer(c_int64_t),value :: incy
+      integer(c_int64_t),value :: batchCount
+    end function
+  end interface
+
+  interface hipblasCaxpyBatched_64
+#ifdef USE_CUDA_NAMES
+    function hipblasCaxpyBatched_64_(handle,n,alpha,x,incx,y,incy,batchCount) bind(c, name="cublasCaxpyBatched_64")
+#else
+    function hipblasCaxpyBatched_64_(handle,n,alpha,x,incx,y,incy,batchCount) bind(c, name="hipblasCaxpyBatched_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCaxpyBatched_64_
+      type(c_ptr),value :: handle
+      integer(c_int64_t),value :: n
+      complex(c_float_complex) :: alpha
+      type(c_ptr) :: x
+      integer(c_int64_t),value :: incx
+      type(c_ptr) :: y
+      integer(c_int64_t),value :: incy
+      integer(c_int64_t),value :: batchCount
+    end function
+  end interface
+
+  interface hipblasZaxpyBatched_64
+#ifdef USE_CUDA_NAMES
+    function hipblasZaxpyBatched_64_(handle,n,alpha,x,incx,y,incy,batchCount) bind(c, name="cublasZaxpyBatched_64")
+#else
+    function hipblasZaxpyBatched_64_(handle,n,alpha,x,incx,y,incy,batchCount) bind(c, name="hipblasZaxpyBatched_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZaxpyBatched_64_
+      type(c_ptr),value :: handle
+      integer(c_int64_t),value :: n
+      complex(c_double_complex) :: alpha
+      type(c_ptr) :: x
+      integer(c_int64_t),value :: incx
+      type(c_ptr) :: y
+      integer(c_int64_t),value :: incy
+      integer(c_int64_t),value :: batchCount
+    end function
+  end interface
+
+  !>     \brief  BLAS Level 1 API
+  !>
+  !>     \details
+  !>     The axpyStridedBatched functions compute ``y := alpha * x + y`` over a set of strided
+  !>     batched vectors.
+  !>
+  !>     - Supported precisions in rocBLAS : ``h``, ``s``, ``d``, ``c``, and ``z``.
+  !>     - Supported precisions in cuBLAS  : No support.
+  !>
+  !>     @param[in]
+  !>     handle    [hipblasHandle_t]
+  !>               handle to the hipBLAS library context queue.
+  !>     @param[in]
+  !>     n         [int]
+  !>     @param[in]
+  !>     alpha     specifies the scalar alpha.
+  !>     @param[in]
+  !>     x         pointer storing vector x on the GPU.
+  !>     @param[in]
+  !>     incx      [int]
+  !>               specifies the increment for the elements of x.
+  !>     @param[in]
+  !>     stridex   [hipblasStride]
+  !>               specifies the increment between vectors of x.
+  !>     @param[out]
+  !>     y         pointer storing vector y on the GPU.
+  !>     @param[inout]
+  !>     incy      [int]
+  !>               specifies the increment for the elements of y.
+  !>     @param[in]
+  !>     stridey   [hipblasStride]
+  !>               specifies the increment between vectors of y.
+  !>
+  !>     @param[in]
+  !>     batchCount [int]
+  !>               number of instances in the batch.
+#ifndef USE_CUDA_NAMES
+  interface hipblasHaxpyStridedBatched
+    function hipblasHaxpyStridedBatched_(handle,n,alpha,x,incx,stridex,y,incy,stridey,batchCount) bind(c, name="hipblasHaxpyStridedBatched")
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasHaxpyStridedBatched_
+      type(c_ptr),value :: handle
+      integer(c_int),value :: n
+      type(c_ptr),value :: alpha
+      type(c_ptr),value :: x
+      integer(c_int),value :: incx
+      integer(c_int64_t),value :: stridex
+      type(c_ptr),value :: y
+      integer(c_int),value :: incy
+      integer(c_int64_t),value :: stridey
+      integer(c_int),value :: batchCount
+    end function
+  end interface
+#endif
+
+#ifndef USE_CUDA_NAMES
+  interface hipblasHaxpyStridedBatched_64
+    function hipblasHaxpyStridedBatched_64_(handle,n,alpha,x,incx,stridex,y,incy,stridey,batchCount) bind(c, name="hipblasHaxpyStridedBatched_64")
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasHaxpyStridedBatched_64_
+      type(c_ptr),value :: handle
+      integer(c_int64_t),value :: n
+      type(c_ptr),value :: alpha
+      type(c_ptr),value :: x
+      integer(c_int64_t),value :: incx
+      integer(c_int64_t),value :: stridex
+      type(c_ptr),value :: y
+      integer(c_int64_t),value :: incy
+      integer(c_int64_t),value :: stridey
+      integer(c_int64_t),value :: batchCount
+    end function
+  end interface
+#endif
+
+  interface hipblasSaxpyStridedBatched_64
+#ifdef USE_CUDA_NAMES
+    function hipblasSaxpyStridedBatched_64_(handle,n,alpha,x,incx,stridex,y,incy,stridey,batchCount) bind(c, name="cublasSaxpyStridedBatched_64")
+#else
+    function hipblasSaxpyStridedBatched_64_(handle,n,alpha,x,incx,stridex,y,incy,stridey,batchCount) bind(c, name="hipblasSaxpyStridedBatched_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSaxpyStridedBatched_64_
+      type(c_ptr),value :: handle
+      integer(c_int64_t),value :: n
+      real(c_float) :: alpha
+      type(c_ptr),value :: x
+      integer(c_int64_t),value :: incx
+      integer(c_int64_t),value :: stridex
+      type(c_ptr),value :: y
+      integer(c_int64_t),value :: incy
+      integer(c_int64_t),value :: stridey
+      integer(c_int64_t),value :: batchCount
+    end function
+  end interface
+
+  interface hipblasDaxpyStridedBatched_64
+#ifdef USE_CUDA_NAMES
+    function hipblasDaxpyStridedBatched_64_(handle,n,alpha,x,incx,stridex,y,incy,stridey,batchCount) bind(c, name="cublasDaxpyStridedBatched_64")
+#else
+    function hipblasDaxpyStridedBatched_64_(handle,n,alpha,x,incx,stridex,y,incy,stridey,batchCount) bind(c, name="hipblasDaxpyStridedBatched_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDaxpyStridedBatched_64_
+      type(c_ptr),value :: handle
+      integer(c_int64_t),value :: n
+      real(c_double) :: alpha
+      type(c_ptr),value :: x
+      integer(c_int64_t),value :: incx
+      integer(c_int64_t),value :: stridex
+      type(c_ptr),value :: y
+      integer(c_int64_t),value :: incy
+      integer(c_int64_t),value :: stridey
+      integer(c_int64_t),value :: batchCount
+    end function
+  end interface
+
+  interface hipblasCaxpyStridedBatched_64
+#ifdef USE_CUDA_NAMES
+    function hipblasCaxpyStridedBatched_64_(handle,n,alpha,x,incx,stridex,y,incy,stridey,batchCount) bind(c, name="cublasCaxpyStridedBatched_64")
+#else
+    function hipblasCaxpyStridedBatched_64_(handle,n,alpha,x,incx,stridex,y,incy,stridey,batchCount) bind(c, name="hipblasCaxpyStridedBatched_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCaxpyStridedBatched_64_
+      type(c_ptr),value :: handle
+      integer(c_int64_t),value :: n
+      complex(c_float_complex) :: alpha
+      type(c_ptr),value :: x
+      integer(c_int64_t),value :: incx
+      integer(c_int64_t),value :: stridex
+      type(c_ptr),value :: y
+      integer(c_int64_t),value :: incy
+      integer(c_int64_t),value :: stridey
+      integer(c_int64_t),value :: batchCount
+    end function
+  end interface
+
+  interface hipblasZaxpyStridedBatched_64
+#ifdef USE_CUDA_NAMES
+    function hipblasZaxpyStridedBatched_64_(handle,n,alpha,x,incx,stridex,y,incy,stridey,batchCount) bind(c, name="cublasZaxpyStridedBatched_64")
+#else
+    function hipblasZaxpyStridedBatched_64_(handle,n,alpha,x,incx,stridex,y,incy,stridey,batchCount) bind(c, name="hipblasZaxpyStridedBatched_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZaxpyStridedBatched_64_
+      type(c_ptr),value :: handle
+      integer(c_int64_t),value :: n
+      complex(c_double_complex) :: alpha
+      type(c_ptr),value :: x
+      integer(c_int64_t),value :: incx
+      integer(c_int64_t),value :: stridex
+      type(c_ptr),value :: y
+      integer(c_int64_t),value :: incy
+      integer(c_int64_t),value :: stridey
+      integer(c_int64_t),value :: batchCount
+    end function
+  end interface
+
+  interface hipblasScopy_64
+#ifdef USE_CUDA_NAMES
+    function hipblasScopy_64_(handle,n,x,incx,y,incy) bind(c, name="cublasScopy_v2_64")
+#else
+    function hipblasScopy_64_(handle,n,x,incx,y,incy) bind(c, name="hipblasScopy_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasScopy_64_
+      type(c_ptr),value :: handle
+      integer(c_int64_t),value :: n
+      type(c_ptr),value :: x
+      integer(c_int64_t),value :: incx
+      type(c_ptr),value :: y
+      integer(c_int64_t),value :: incy
+    end function
+  end interface
+
+  interface hipblasDcopy_64
+#ifdef USE_CUDA_NAMES
+    function hipblasDcopy_64_(handle,n,x,incx,y,incy) bind(c, name="cublasDcopy_v2_64")
+#else
+    function hipblasDcopy_64_(handle,n,x,incx,y,incy) bind(c, name="hipblasDcopy_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDcopy_64_
+      type(c_ptr),value :: handle
+      integer(c_int64_t),value :: n
+      type(c_ptr),value :: x
+      integer(c_int64_t),value :: incx
+      type(c_ptr),value :: y
+      integer(c_int64_t),value :: incy
+    end function
+  end interface
+
+  interface hipblasCcopy_64
+#ifdef USE_CUDA_NAMES
+    function hipblasCcopy_64_(handle,n,x,incx,y,incy) bind(c, name="cublasCcopy_v2_64")
+#else
+    function hipblasCcopy_64_(handle,n,x,incx,y,incy) bind(c, name="hipblasCcopy_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCcopy_64_
+      type(c_ptr),value :: handle
+      integer(c_int64_t),value :: n
+      type(c_ptr),value :: x
+      integer(c_int64_t),value :: incx
+      type(c_ptr),value :: y
+      integer(c_int64_t),value :: incy
+    end function
+  end interface
+
+  interface hipblasZcopy_64
+#ifdef USE_CUDA_NAMES
+    function hipblasZcopy_64_(handle,n,x,incx,y,incy) bind(c, name="cublasZcopy_v2_64")
+#else
+    function hipblasZcopy_64_(handle,n,x,incx,y,incy) bind(c, name="hipblasZcopy_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZcopy_64_
+      type(c_ptr),value :: handle
+      integer(c_int64_t),value :: n
+      type(c_ptr),value :: x
+      integer(c_int64_t),value :: incx
+      type(c_ptr),value :: y
+      integer(c_int64_t),value :: incy
+    end function
+  end interface
+
+  interface hipblasScopyBatched_64
+#ifdef USE_CUDA_NAMES
+    function hipblasScopyBatched_64_(handle,n,x,incx,y,incy,batchCount) bind(c, name="cublasScopyBatched_64")
+#else
+    function hipblasScopyBatched_64_(handle,n,x,incx,y,incy,batchCount) bind(c, name="hipblasScopyBatched_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasScopyBatched_64_
+      type(c_ptr),value :: handle
+      integer(c_int64_t),value :: n
+      type(c_ptr) :: x
+      integer(c_int64_t),value :: incx
+      type(c_ptr) :: y
+      integer(c_int64_t),value :: incy
+      integer(c_int64_t),value :: batchCount
+    end function
+  end interface
+
+  interface hipblasDcopyBatched_64
+#ifdef USE_CUDA_NAMES
+    function hipblasDcopyBatched_64_(handle,n,x,incx,y,incy,batchCount) bind(c, name="cublasDcopyBatched_64")
+#else
+    function hipblasDcopyBatched_64_(handle,n,x,incx,y,incy,batchCount) bind(c, name="hipblasDcopyBatched_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDcopyBatched_64_
+      type(c_ptr),value :: handle
+      integer(c_int64_t),value :: n
+      type(c_ptr) :: x
+      integer(c_int64_t),value :: incx
+      type(c_ptr) :: y
+      integer(c_int64_t),value :: incy
+      integer(c_int64_t),value :: batchCount
+    end function
+  end interface
+
+  interface hipblasCcopyBatched_64
+#ifdef USE_CUDA_NAMES
+    function hipblasCcopyBatched_64_(handle,n,x,incx,y,incy,batchCount) bind(c, name="cublasCcopyBatched_64")
+#else
+    function hipblasCcopyBatched_64_(handle,n,x,incx,y,incy,batchCount) bind(c, name="hipblasCcopyBatched_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCcopyBatched_64_
+      type(c_ptr),value :: handle
+      integer(c_int64_t),value :: n
+      type(c_ptr) :: x
+      integer(c_int64_t),value :: incx
+      type(c_ptr) :: y
+      integer(c_int64_t),value :: incy
+      integer(c_int64_t),value :: batchCount
+    end function
+  end interface
+
+  interface hipblasZcopyBatched_64
+#ifdef USE_CUDA_NAMES
+    function hipblasZcopyBatched_64_(handle,n,x,incx,y,incy,batchCount) bind(c, name="cublasZcopyBatched_64")
+#else
+    function hipblasZcopyBatched_64_(handle,n,x,incx,y,incy,batchCount) bind(c, name="hipblasZcopyBatched_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZcopyBatched_64_
+      type(c_ptr),value :: handle
+      integer(c_int64_t),value :: n
+      type(c_ptr) :: x
+      integer(c_int64_t),value :: incx
+      type(c_ptr) :: y
+      integer(c_int64_t),value :: incy
+      integer(c_int64_t),value :: batchCount
+    end function
+  end interface
+
+  interface hipblasScopyStridedBatched_64
+#ifdef USE_CUDA_NAMES
+    function hipblasScopyStridedBatched_64_(handle,n,x,incx,stridex,y,incy,stridey,batchCount) bind(c, name="cublasScopyStridedBatched_64")
+#else
+    function hipblasScopyStridedBatched_64_(handle,n,x,incx,stridex,y,incy,stridey,batchCount) bind(c, name="hipblasScopyStridedBatched_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasScopyStridedBatched_64_
+      type(c_ptr),value :: handle
+      integer(c_int64_t),value :: n
+      type(c_ptr),value :: x
+      integer(c_int64_t),value :: incx
+      integer(c_int64_t),value :: stridex
+      type(c_ptr),value :: y
+      integer(c_int64_t),value :: incy
+      integer(c_int64_t),value :: stridey
+      integer(c_int64_t),value :: batchCount
+    end function
+  end interface
+
+  interface hipblasDcopyStridedBatched_64
+#ifdef USE_CUDA_NAMES
+    function hipblasDcopyStridedBatched_64_(handle,n,x,incx,stridex,y,incy,stridey,batchCount) bind(c, name="cublasDcopyStridedBatched_64")
+#else
+    function hipblasDcopyStridedBatched_64_(handle,n,x,incx,stridex,y,incy,stridey,batchCount) bind(c, name="hipblasDcopyStridedBatched_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDcopyStridedBatched_64_
+      type(c_ptr),value :: handle
+      integer(c_int64_t),value :: n
+      type(c_ptr),value :: x
+      integer(c_int64_t),value :: incx
+      integer(c_int64_t),value :: stridex
+      type(c_ptr),value :: y
+      integer(c_int64_t),value :: incy
+      integer(c_int64_t),value :: stridey
+      integer(c_int64_t),value :: batchCount
+    end function
+  end interface
+
+  interface hipblasCcopyStridedBatched_64
+#ifdef USE_CUDA_NAMES
+    function hipblasCcopyStridedBatched_64_(handle,n,x,incx,stridex,y,incy,stridey,batchCount) bind(c, name="cublasCcopyStridedBatched_64")
+#else
+    function hipblasCcopyStridedBatched_64_(handle,n,x,incx,stridex,y,incy,stridey,batchCount) bind(c, name="hipblasCcopyStridedBatched_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCcopyStridedBatched_64_
+      type(c_ptr),value :: handle
+      integer(c_int64_t),value :: n
+      type(c_ptr),value :: x
+      integer(c_int64_t),value :: incx
+      integer(c_int64_t),value :: stridex
+      type(c_ptr),value :: y
+      integer(c_int64_t),value :: incy
+      integer(c_int64_t),value :: stridey
+      integer(c_int64_t),value :: batchCount
+    end function
+  end interface
+
+  interface hipblasZcopyStridedBatched_64
+#ifdef USE_CUDA_NAMES
+    function hipblasZcopyStridedBatched_64_(handle,n,x,incx,stridex,y,incy,stridey,batchCount) bind(c, name="cublasZcopyStridedBatched_64")
+#else
+    function hipblasZcopyStridedBatched_64_(handle,n,x,incx,stridex,y,incy,stridey,batchCount) bind(c, name="hipblasZcopyStridedBatched_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZcopyStridedBatched_64_
+      type(c_ptr),value :: handle
+      integer(c_int64_t),value :: n
+      type(c_ptr),value :: x
+      integer(c_int64_t),value :: incx
+      integer(c_int64_t),value :: stridex
+      type(c_ptr),value :: y
+      integer(c_int64_t),value :: incy
+      integer(c_int64_t),value :: stridey
+      integer(c_int64_t),value :: batchCount
+    end function
+  end interface
+
+  !>     \brief  BLAS Level 1 API
+  !>
+  !>     \details
+  !>     The dot(u) functions performs the dot product of vectors ``x`` and ``y``.
+  !>
+  !>         result = x * y;
+  !>
+  !>     The dotc functions performs the dot product of the conjugate of complex vector ``x`` and
+  !>     complex vector ``y``.
+  !>
+  !>         result = conjugate (x) * y;
+  !>
+  !>     - Supported precisions in rocBLAS : ``h``, ``bf``, ``s``, ``d``, ``c``, and ``z``.
+  !>     - Supported precisions in cuBLAS  : ``s``, ``d``, ``c``, and ``z``.
+  !>
+  !>     @param[in]
+  !>     handle    [hipblasHandle_t]
+  !>               handle to the hipBLAS library context queue.
+  !>     @param[in]
+  !>     n         [int]
+  !>               the number of elements in x and y.
+  !>     @param[in]
+  !>     x         device pointer storing vector x.
+  !>     @param[in]
+  !>     incx      [int]
+  !>               specifies the increment for the elements of y.
+  !>     @param[in]
+  !>     y         device pointer storing vector y.
+  !>     @param[in]
+  !>     incy      [int]
+  !>               specifies the increment for the elements of y.
+  !>     @param[inout]
+  !>     result
+  !>               device pointer or host pointer to store the dot product.
+  !>               Return value is 0.0 if n <= 0.
+#ifndef USE_CUDA_NAMES
+  interface hipblasHdot
+    function hipblasHdot_(handle,n,x,incx,y,incy,myResult) bind(c, name="hipblasHdot")
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasHdot_
+      type(c_ptr),value :: handle
+      integer(c_int),value :: n
+      type(c_ptr),value :: x
+      integer(c_int),value :: incx
+      type(c_ptr),value :: y
+      integer(c_int),value :: incy
+      type(c_ptr),value :: myResult
+    end function
+  end interface
+#endif
+
+#ifndef USE_CUDA_NAMES
+  interface hipblasBfdot
+    function hipblasBfdot_(handle,n,x,incx,y,incy,myResult) bind(c, name="hipblasBfdot")
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      use hipfort_hipblas_types
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasBfdot_
+      type(c_ptr),value :: handle
+      integer(c_int),value :: n
+      type(hipblasBfloat16) :: x
+      integer(c_int),value :: incx
+      type(hipblasBfloat16) :: y
+      integer(c_int),value :: incy
+      type(hipblasBfloat16) :: myResult
+    end function
+  end interface
+#endif
+
+#ifndef USE_CUDA_NAMES
+  interface hipblasHdot_64
+    function hipblasHdot_64_(handle,n,x,incx,y,incy,myResult) bind(c, name="hipblasHdot_64")
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasHdot_64_
+      type(c_ptr),value :: handle
+      integer(c_int64_t),value :: n
+      type(c_ptr),value :: x
+      integer(c_int64_t),value :: incx
+      type(c_ptr),value :: y
+      integer(c_int64_t),value :: incy
+      type(c_ptr),value :: myResult
+    end function
+  end interface
+#endif
+
+#ifndef USE_CUDA_NAMES
+  interface hipblasBfdot_64
+    function hipblasBfdot_64_(handle,n,x,incx,y,incy,myResult) bind(c, name="hipblasBfdot_64")
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      use hipfort_hipblas_types
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasBfdot_64_
+      type(c_ptr),value :: handle
+      integer(c_int64_t),value :: n
+      type(hipblasBfloat16) :: x
+      integer(c_int64_t),value :: incx
+      type(hipblasBfloat16) :: y
+      integer(c_int64_t),value :: incy
+      type(hipblasBfloat16) :: myResult
+    end function
+  end interface
+#endif
+
+  interface hipblasSdot_64
+#ifdef USE_CUDA_NAMES
+    function hipblasSdot_64_(handle,n,x,incx,y,incy,myResult) bind(c, name="cublasSdot_v2_64")
+#else
+    function hipblasSdot_64_(handle,n,x,incx,y,incy,myResult) bind(c, name="hipblasSdot_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSdot_64_
+      type(c_ptr),value :: handle
+      integer(c_int64_t),value :: n
+      type(c_ptr),value :: x
+      integer(c_int64_t),value :: incx
+      type(c_ptr),value :: y
+      integer(c_int64_t),value :: incy
+      type(c_ptr),value :: myResult
+    end function
+  end interface
+
+  interface hipblasDdot_64
+#ifdef USE_CUDA_NAMES
+    function hipblasDdot_64_(handle,n,x,incx,y,incy,myResult) bind(c, name="cublasDdot_v2_64")
+#else
+    function hipblasDdot_64_(handle,n,x,incx,y,incy,myResult) bind(c, name="hipblasDdot_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDdot_64_
+      type(c_ptr),value :: handle
+      integer(c_int64_t),value :: n
+      type(c_ptr),value :: x
+      integer(c_int64_t),value :: incx
+      type(c_ptr),value :: y
+      integer(c_int64_t),value :: incy
+      type(c_ptr),value :: myResult
+    end function
+  end interface
+
+  interface hipblasCdotc_64
+#ifdef USE_CUDA_NAMES
+    function hipblasCdotc_64_(handle,n,x,incx,y,incy,myResult) bind(c, name="cublasCdotc_v2_64")
+#else
+    function hipblasCdotc_64_(handle,n,x,incx,y,incy,myResult) bind(c, name="hipblasCdotc_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCdotc_64_
+      type(c_ptr),value :: handle
+      integer(c_int64_t),value :: n
+      type(c_ptr),value :: x
+      integer(c_int64_t),value :: incx
+      type(c_ptr),value :: y
+      integer(c_int64_t),value :: incy
+      type(c_ptr),value :: myResult
+    end function
+  end interface
+
+  interface hipblasCdotu_64
+#ifdef USE_CUDA_NAMES
+    function hipblasCdotu_64_(handle,n,x,incx,y,incy,myResult) bind(c, name="cublasCdotu_v2_64")
+#else
+    function hipblasCdotu_64_(handle,n,x,incx,y,incy,myResult) bind(c, name="hipblasCdotu_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCdotu_64_
+      type(c_ptr),value :: handle
+      integer(c_int64_t),value :: n
+      type(c_ptr),value :: x
+      integer(c_int64_t),value :: incx
+      type(c_ptr),value :: y
+      integer(c_int64_t),value :: incy
+      type(c_ptr),value :: myResult
+    end function
+  end interface
+
+  interface hipblasZdotc_64
+#ifdef USE_CUDA_NAMES
+    function hipblasZdotc_64_(handle,n,x,incx,y,incy,myResult) bind(c, name="cublasZdotc_v2_64")
+#else
+    function hipblasZdotc_64_(handle,n,x,incx,y,incy,myResult) bind(c, name="hipblasZdotc_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZdotc_64_
+      type(c_ptr),value :: handle
+      integer(c_int64_t),value :: n
+      type(c_ptr),value :: x
+      integer(c_int64_t),value :: incx
+      type(c_ptr),value :: y
+      integer(c_int64_t),value :: incy
+      type(c_ptr),value :: myResult
+    end function
+  end interface
+
+  interface hipblasZdotu_64
+#ifdef USE_CUDA_NAMES
+    function hipblasZdotu_64_(handle,n,x,incx,y,incy,myResult) bind(c, name="cublasZdotu_v2_64")
+#else
+    function hipblasZdotu_64_(handle,n,x,incx,y,incy,myResult) bind(c, name="hipblasZdotu_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZdotu_64_
+      type(c_ptr),value :: handle
+      integer(c_int64_t),value :: n
+      type(c_ptr),value :: x
+      integer(c_int64_t),value :: incx
+      type(c_ptr),value :: y
+      integer(c_int64_t),value :: incy
+      type(c_ptr),value :: myResult
+    end function
+  end interface
+
+  !>     \brief  BLAS Level 1 API
+  !>
+  !>     \details
+  !>     The dot(u)Batched functions perform a batch of dot products of vectors ``x`` and ``y``.
+  !>
+  !>         result_i = x_i * y_i;
+  !>
+  !>     The dotcBatched functions performs a batch of dot products of the conjugate of complex
+  !>     vector ``x`` and complex vector ``y``.
+  !>
+  !>         result_i = conjugate (x_i) * y_i;
+  !>
+  !>     where (``x_i``, ``y_i``) is the ``i``-th instance of the batch and
+  !>     ``x_i`` and ``y_i`` are vectors, for ``i`` = 1, ..., ``batchCount``.
+  !>
+  !>     - Supported precisions in rocBLAS : ``h``, ``bf``, ``s``, ``d``, ``c``, and ``z``.
+  !>     - Supported precisions in cuBLAS  : No support.
+  !>
+  !>     @param[in]
+  !>     handle    [hipblasHandle_t]
+  !>               handle to the hipBLAS library context queue.
+  !>     @param[in]
+  !>     n         [int]
+  !>               the number of elements in each x_i and y_i.
+  !>     @param[in]
+  !>     x         device array of device pointers storing each vector x_i.
+  !>     @param[in]
+  !>     incx      [int]
+  !>               specifies the increment for the elements of each x_i.
+  !>     @param[in]
+  !>     y         device array of device pointers storing each vector y_i.
+  !>     @param[in]
+  !>     incy      [int]
+  !>               specifies the increment for the elements of each y_i.
+  !>     @param[in]
+  !>     batchCount [int]
+  !>                 number of instances in the batch.
+  !>     @param[inout]
+  !>     result
+  !>               device array or host array of batchCount size to store the dot products of each
+  !>               batch.
+  !>               Returns 0.0 for each element if n <= 0.
+#ifndef USE_CUDA_NAMES
+  interface hipblasHdotBatched
+    function hipblasHdotBatched_(handle,n,x,incx,y,incy,batchCount,myResult) bind(c, name="hipblasHdotBatched")
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasHdotBatched_
+      type(c_ptr),value :: handle
+      integer(c_int),value :: n
+      type(c_ptr) :: x
+      integer(c_int),value :: incx
+      type(c_ptr) :: y
+      integer(c_int),value :: incy
+      integer(c_int),value :: batchCount
+      type(c_ptr),value :: myResult
+    end function
+  end interface
+#endif
+
+#ifndef USE_CUDA_NAMES
+  interface hipblasBfdotBatched
+    function hipblasBfdotBatched_(handle,n,x,incx,y,incy,batchCount,myResult) bind(c, name="hipblasBfdotBatched")
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      use hipfort_hipblas_types
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasBfdotBatched_
+      type(c_ptr),value :: handle
+      integer(c_int),value :: n
+      type(c_ptr) :: x
+      integer(c_int),value :: incx
+      type(c_ptr) :: y
+      integer(c_int),value :: incy
+      integer(c_int),value :: batchCount
+      type(hipblasBfloat16) :: myResult
+    end function
+  end interface
+#endif
+
+#ifndef USE_CUDA_NAMES
+  interface hipblasHdotBatched_64
+    function hipblasHdotBatched_64_(handle,n,x,incx,y,incy,batchCount,myResult) bind(c, name="hipblasHdotBatched_64")
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasHdotBatched_64_
+      type(c_ptr),value :: handle
+      integer(c_int64_t),value :: n
+      type(c_ptr) :: x
+      integer(c_int64_t),value :: incx
+      type(c_ptr) :: y
+      integer(c_int64_t),value :: incy
+      integer(c_int64_t),value :: batchCount
+      type(c_ptr),value :: myResult
+    end function
+  end interface
+#endif
+
+#ifndef USE_CUDA_NAMES
+  interface hipblasBfdotBatched_64
+    function hipblasBfdotBatched_64_(handle,n,x,incx,y,incy,batchCount,myResult) bind(c, name="hipblasBfdotBatched_64")
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      use hipfort_hipblas_types
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasBfdotBatched_64_
+      type(c_ptr),value :: handle
+      integer(c_int64_t),value :: n
+      type(c_ptr) :: x
+      integer(c_int64_t),value :: incx
+      type(c_ptr) :: y
+      integer(c_int64_t),value :: incy
+      integer(c_int64_t),value :: batchCount
+      type(hipblasBfloat16) :: myResult
+    end function
+  end interface
+#endif
+
+  interface hipblasSdotBatched_64
+#ifdef USE_CUDA_NAMES
+    function hipblasSdotBatched_64_(handle,n,x,incx,y,incy,batchCount,myResult) bind(c, name="cublasSdotBatched_64")
+#else
+    function hipblasSdotBatched_64_(handle,n,x,incx,y,incy,batchCount,myResult) bind(c, name="hipblasSdotBatched_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSdotBatched_64_
+      type(c_ptr),value :: handle
+      integer(c_int64_t),value :: n
+      type(c_ptr) :: x
+      integer(c_int64_t),value :: incx
+      type(c_ptr) :: y
+      integer(c_int64_t),value :: incy
+      integer(c_int64_t),value :: batchCount
+      type(c_ptr),value :: myResult
+    end function
+  end interface
+
+  interface hipblasDdotBatched_64
+#ifdef USE_CUDA_NAMES
+    function hipblasDdotBatched_64_(handle,n,x,incx,y,incy,batchCount,myResult) bind(c, name="cublasDdotBatched_64")
+#else
+    function hipblasDdotBatched_64_(handle,n,x,incx,y,incy,batchCount,myResult) bind(c, name="hipblasDdotBatched_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDdotBatched_64_
+      type(c_ptr),value :: handle
+      integer(c_int64_t),value :: n
+      type(c_ptr) :: x
+      integer(c_int64_t),value :: incx
+      type(c_ptr) :: y
+      integer(c_int64_t),value :: incy
+      integer(c_int64_t),value :: batchCount
+      type(c_ptr),value :: myResult
+    end function
+  end interface
+
+  interface hipblasCdotcBatched_64
+#ifdef USE_CUDA_NAMES
+    function hipblasCdotcBatched_64_(handle,n,x,incx,y,incy,batchCount,myResult) bind(c, name="cublasCdotcBatched_64")
+#else
+    function hipblasCdotcBatched_64_(handle,n,x,incx,y,incy,batchCount,myResult) bind(c, name="hipblasCdotcBatched_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCdotcBatched_64_
+      type(c_ptr),value :: handle
+      integer(c_int64_t),value :: n
+      type(c_ptr) :: x
+      integer(c_int64_t),value :: incx
+      type(c_ptr) :: y
+      integer(c_int64_t),value :: incy
+      integer(c_int64_t),value :: batchCount
+      type(c_ptr),value :: myResult
+    end function
+  end interface
+
+  interface hipblasCdotuBatched_64
+#ifdef USE_CUDA_NAMES
+    function hipblasCdotuBatched_64_(handle,n,x,incx,y,incy,batchCount,myResult) bind(c, name="cublasCdotuBatched_64")
+#else
+    function hipblasCdotuBatched_64_(handle,n,x,incx,y,incy,batchCount,myResult) bind(c, name="hipblasCdotuBatched_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCdotuBatched_64_
+      type(c_ptr),value :: handle
+      integer(c_int64_t),value :: n
+      type(c_ptr) :: x
+      integer(c_int64_t),value :: incx
+      type(c_ptr) :: y
+      integer(c_int64_t),value :: incy
+      integer(c_int64_t),value :: batchCount
+      type(c_ptr),value :: myResult
+    end function
+  end interface
+
+  interface hipblasZdotcBatched_64
+#ifdef USE_CUDA_NAMES
+    function hipblasZdotcBatched_64_(handle,n,x,incx,y,incy,batchCount,myResult) bind(c, name="cublasZdotcBatched_64")
+#else
+    function hipblasZdotcBatched_64_(handle,n,x,incx,y,incy,batchCount,myResult) bind(c, name="hipblasZdotcBatched_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZdotcBatched_64_
+      type(c_ptr),value :: handle
+      integer(c_int64_t),value :: n
+      type(c_ptr) :: x
+      integer(c_int64_t),value :: incx
+      type(c_ptr) :: y
+      integer(c_int64_t),value :: incy
+      integer(c_int64_t),value :: batchCount
+      type(c_ptr),value :: myResult
+    end function
+  end interface
+
+  interface hipblasZdotuBatched_64
+#ifdef USE_CUDA_NAMES
+    function hipblasZdotuBatched_64_(handle,n,x,incx,y,incy,batchCount,myResult) bind(c, name="cublasZdotuBatched_64")
+#else
+    function hipblasZdotuBatched_64_(handle,n,x,incx,y,incy,batchCount,myResult) bind(c, name="hipblasZdotuBatched_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZdotuBatched_64_
+      type(c_ptr),value :: handle
+      integer(c_int64_t),value :: n
+      type(c_ptr) :: x
+      integer(c_int64_t),value :: incx
+      type(c_ptr) :: y
+      integer(c_int64_t),value :: incy
+      integer(c_int64_t),value :: batchCount
+      type(c_ptr),value :: myResult
+    end function
+  end interface
+
+  !>     \brief  BLAS Level 1 API
+  !>
+  !>     \details
+  !>     The dot(u)StridedBatched functions perform a batch of dot products of vectors ``x`` and
+  !>     ``y``.
+  !>
+  !>         result_i = x_i * y_i;
+  !>
+  !>     The dotcStridedBatched functions perform a batch of dot products of the conjugate of
+  !>     complex vector ``x`` and complex vector ``y``.
+  !>
+  !>         result_i = conjugate (x_i) * y_i;
+  !>
+  !>     where (``x_i``, ``y_i``) is the ``i``-th instance of the batch and
+  !>     ``x_i`` and ``y_i`` are vectors, for ``i`` = 1, ..., ``batchCount``.
+  !>
+  !>     - Supported precisions in rocBLAS : ``h``, ``bf``, ``s``, ``d``, ``c``, and ``z``.
+  !>     - Supported precisions in cuBLAS  : No support.
+  !>
+  !>     @param[in]
+  !>     handle    [hipblasHandle_t]
+  !>               handle to the hipBLAS library context queue.
+  !>     @param[in]
+  !>     n         [int]
+  !>               the number of elements in each x_i and y_i.
+  !>     @param[in]
+  !>     x         device pointer to the first vector (x_1) in the batch.
+  !>     @param[in]
+  !>     incx      [int]
+  !>               specifies the increment for the elements of each x_i.
+  !>     @param[in]
+  !>     stridex     [hipblasStride]
+  !>                 stride from the start of one vector (x_i) to the next one (x_i+1).
+  !>     @param[in]
+  !>     y         device pointer to the first vector (y_1) in the batch.
+  !>     @param[in]
+  !>     incy      [int]
+  !>               specifies the increment for the elements of each y_i.
+  !>     @param[in]
+  !>     stridey     [hipblasStride]
+  !>                 stride from the start of one vector (y_i) to the next one (y_i+1).
+  !>     @param[in]
+  !>     batchCount [int]
+  !>                 number of instances in the batch.
+  !>     @param[inout]
+  !>     result
+  !>               device array or host array of batchCount size to store the dot products of each
+  !>               batch.
+  !>               Returns 0.0 for each element if n <= 0.
+#ifndef USE_CUDA_NAMES
+  interface hipblasHdotStridedBatched
+    function hipblasHdotStridedBatched_(handle,n,x,incx,stridex,y,incy,stridey,batchCount,myResult) bind(c, name="hipblasHdotStridedBatched")
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasHdotStridedBatched_
+      type(c_ptr),value :: handle
+      integer(c_int),value :: n
+      type(c_ptr),value :: x
+      integer(c_int),value :: incx
+      integer(c_int64_t),value :: stridex
+      type(c_ptr),value :: y
+      integer(c_int),value :: incy
+      integer(c_int64_t),value :: stridey
+      integer(c_int),value :: batchCount
+      type(c_ptr),value :: myResult
+    end function
+  end interface
+#endif
+
+#ifndef USE_CUDA_NAMES
+  interface hipblasBfdotStridedBatched
+    function hipblasBfdotStridedBatched_(handle,n,x,incx,stridex,y,incy,stridey,batchCount,myResult) bind(c, name="hipblasBfdotStridedBatched")
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      use hipfort_hipblas_types
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasBfdotStridedBatched_
+      type(c_ptr),value :: handle
+      integer(c_int),value :: n
+      type(hipblasBfloat16) :: x
+      integer(c_int),value :: incx
+      integer(c_int64_t),value :: stridex
+      type(hipblasBfloat16) :: y
+      integer(c_int),value :: incy
+      integer(c_int64_t),value :: stridey
+      integer(c_int),value :: batchCount
+      type(hipblasBfloat16) :: myResult
+    end function
+  end interface
+#endif
+
+#ifndef USE_CUDA_NAMES
+  interface hipblasHdotStridedBatched_64
+    function hipblasHdotStridedBatched_64_(handle,n,x,incx,stridex,y,incy,stridey,batchCount,myResult) bind(c, name="hipblasHdotStridedBatched_64")
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasHdotStridedBatched_64_
+      type(c_ptr),value :: handle
+      integer(c_int64_t),value :: n
+      type(c_ptr),value :: x
+      integer(c_int64_t),value :: incx
+      integer(c_int64_t),value :: stridex
+      type(c_ptr),value :: y
+      integer(c_int64_t),value :: incy
+      integer(c_int64_t),value :: stridey
+      integer(c_int64_t),value :: batchCount
+      type(c_ptr),value :: myResult
+    end function
+  end interface
+#endif
+
+#ifndef USE_CUDA_NAMES
+  interface hipblasBfdotStridedBatched_64
+    function hipblasBfdotStridedBatched_64_(handle,n,x,incx,stridex,y,incy,stridey,batchCount,myResult) bind(c, name="hipblasBfdotStridedBatched_64")
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      use hipfort_hipblas_types
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasBfdotStridedBatched_64_
+      type(c_ptr),value :: handle
+      integer(c_int64_t),value :: n
+      type(hipblasBfloat16) :: x
+      integer(c_int64_t),value :: incx
+      integer(c_int64_t),value :: stridex
+      type(hipblasBfloat16) :: y
+      integer(c_int64_t),value :: incy
+      integer(c_int64_t),value :: stridey
+      integer(c_int64_t),value :: batchCount
+      type(hipblasBfloat16) :: myResult
+    end function
+  end interface
+#endif
+
+  interface hipblasSdotStridedBatched_64
+#ifdef USE_CUDA_NAMES
+    function hipblasSdotStridedBatched_64_(handle,n,x,incx,stridex,y,incy,stridey,batchCount,myResult) bind(c, name="cublasSdotStridedBatched_64")
+#else
+    function hipblasSdotStridedBatched_64_(handle,n,x,incx,stridex,y,incy,stridey,batchCount,myResult) bind(c, name="hipblasSdotStridedBatched_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSdotStridedBatched_64_
+      type(c_ptr),value :: handle
+      integer(c_int64_t),value :: n
+      type(c_ptr),value :: x
+      integer(c_int64_t),value :: incx
+      integer(c_int64_t),value :: stridex
+      type(c_ptr),value :: y
+      integer(c_int64_t),value :: incy
+      integer(c_int64_t),value :: stridey
+      integer(c_int64_t),value :: batchCount
+      type(c_ptr),value :: myResult
+    end function
+  end interface
+
+  interface hipblasDdotStridedBatched_64
+#ifdef USE_CUDA_NAMES
+    function hipblasDdotStridedBatched_64_(handle,n,x,incx,stridex,y,incy,stridey,batchCount,myResult) bind(c, name="cublasDdotStridedBatched_64")
+#else
+    function hipblasDdotStridedBatched_64_(handle,n,x,incx,stridex,y,incy,stridey,batchCount,myResult) bind(c, name="hipblasDdotStridedBatched_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDdotStridedBatched_64_
+      type(c_ptr),value :: handle
+      integer(c_int64_t),value :: n
+      type(c_ptr),value :: x
+      integer(c_int64_t),value :: incx
+      integer(c_int64_t),value :: stridex
+      type(c_ptr),value :: y
+      integer(c_int64_t),value :: incy
+      integer(c_int64_t),value :: stridey
+      integer(c_int64_t),value :: batchCount
+      type(c_ptr),value :: myResult
+    end function
+  end interface
+
+  interface hipblasCdotcStridedBatched_64
+#ifdef USE_CUDA_NAMES
+    function hipblasCdotcStridedBatched_64_(handle,n,x,incx,stridex,y,incy,stridey,batchCount,myResult) bind(c, name="cublasCdotcStridedBatched_64")
+#else
+    function hipblasCdotcStridedBatched_64_(handle,n,x,incx,stridex,y,incy,stridey,batchCount,myResult) bind(c, name="hipblasCdotcStridedBatched_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCdotcStridedBatched_64_
+      type(c_ptr),value :: handle
+      integer(c_int64_t),value :: n
+      type(c_ptr),value :: x
+      integer(c_int64_t),value :: incx
+      integer(c_int64_t),value :: stridex
+      type(c_ptr),value :: y
+      integer(c_int64_t),value :: incy
+      integer(c_int64_t),value :: stridey
+      integer(c_int64_t),value :: batchCount
+      type(c_ptr),value :: myResult
+    end function
+  end interface
+
+  interface hipblasCdotuStridedBatched_64
+#ifdef USE_CUDA_NAMES
+    function hipblasCdotuStridedBatched_64_(handle,n,x,incx,stridex,y,incy,stridey,batchCount,myResult) bind(c, name="cublasCdotuStridedBatched_64")
+#else
+    function hipblasCdotuStridedBatched_64_(handle,n,x,incx,stridex,y,incy,stridey,batchCount,myResult) bind(c, name="hipblasCdotuStridedBatched_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCdotuStridedBatched_64_
+      type(c_ptr),value :: handle
+      integer(c_int64_t),value :: n
+      type(c_ptr),value :: x
+      integer(c_int64_t),value :: incx
+      integer(c_int64_t),value :: stridex
+      type(c_ptr),value :: y
+      integer(c_int64_t),value :: incy
+      integer(c_int64_t),value :: stridey
+      integer(c_int64_t),value :: batchCount
+      type(c_ptr),value :: myResult
+    end function
+  end interface
+
+  interface hipblasZdotcStridedBatched_64
+#ifdef USE_CUDA_NAMES
+    function hipblasZdotcStridedBatched_64_(handle,n,x,incx,stridex,y,incy,stridey,batchCount,myResult) bind(c, name="cublasZdotcStridedBatched_64")
+#else
+    function hipblasZdotcStridedBatched_64_(handle,n,x,incx,stridex,y,incy,stridey,batchCount,myResult) bind(c, name="hipblasZdotcStridedBatched_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZdotcStridedBatched_64_
+      type(c_ptr),value :: handle
+      integer(c_int64_t),value :: n
+      type(c_ptr),value :: x
+      integer(c_int64_t),value :: incx
+      integer(c_int64_t),value :: stridex
+      type(c_ptr),value :: y
+      integer(c_int64_t),value :: incy
+      integer(c_int64_t),value :: stridey
+      integer(c_int64_t),value :: batchCount
+      type(c_ptr),value :: myResult
+    end function
+  end interface
+
+  interface hipblasZdotuStridedBatched_64
+#ifdef USE_CUDA_NAMES
+    function hipblasZdotuStridedBatched_64_(handle,n,x,incx,stridex,y,incy,stridey,batchCount,myResult) bind(c, name="cublasZdotuStridedBatched_64")
+#else
+    function hipblasZdotuStridedBatched_64_(handle,n,x,incx,stridex,y,incy,stridey,batchCount,myResult) bind(c, name="hipblasZdotuStridedBatched_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZdotuStridedBatched_64_
+      type(c_ptr),value :: handle
+      integer(c_int64_t),value :: n
+      type(c_ptr),value :: x
+      integer(c_int64_t),value :: incx
+      integer(c_int64_t),value :: stridex
+      type(c_ptr),value :: y
+      integer(c_int64_t),value :: incy
+      integer(c_int64_t),value :: stridey
+      integer(c_int64_t),value :: batchCount
+      type(c_ptr),value :: myResult
+    end function
+  end interface
+
+  interface hipblasSnrm2_64
+#ifdef USE_CUDA_NAMES
+    function hipblasSnrm2_64_(handle,n,x,incx,myResult) bind(c, name="cublasSnrm2_v2_64")
+#else
+    function hipblasSnrm2_64_(handle,n,x,incx,myResult) bind(c, name="hipblasSnrm2_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSnrm2_64_
+      type(c_ptr),value :: handle
+      integer(c_int64_t),value :: n
+      type(c_ptr),value :: x
+      integer(c_int64_t),value :: incx
+      type(c_ptr),value :: myResult
+    end function
+  end interface
+
+  interface hipblasDnrm2_64
+#ifdef USE_CUDA_NAMES
+    function hipblasDnrm2_64_(handle,n,x,incx,myResult) bind(c, name="cublasDnrm2_v2_64")
+#else
+    function hipblasDnrm2_64_(handle,n,x,incx,myResult) bind(c, name="hipblasDnrm2_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDnrm2_64_
+      type(c_ptr),value :: handle
+      integer(c_int64_t),value :: n
+      type(c_ptr),value :: x
+      integer(c_int64_t),value :: incx
+      type(c_ptr),value :: myResult
+    end function
+  end interface
+
+  interface hipblasScnrm2_64
+#ifdef USE_CUDA_NAMES
+    function hipblasScnrm2_64_(handle,n,x,incx,myResult) bind(c, name="cublasScnrm2_v2_64")
+#else
+    function hipblasScnrm2_64_(handle,n,x,incx,myResult) bind(c, name="hipblasScnrm2_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasScnrm2_64_
+      type(c_ptr),value :: handle
+      integer(c_int64_t),value :: n
+      type(c_ptr),value :: x
+      integer(c_int64_t),value :: incx
+      type(c_ptr),value :: myResult
+    end function
+  end interface
+
+  interface hipblasDznrm2_64
+#ifdef USE_CUDA_NAMES
+    function hipblasDznrm2_64_(handle,n,x,incx,myResult) bind(c, name="cublasDznrm2_v2_64")
+#else
+    function hipblasDznrm2_64_(handle,n,x,incx,myResult) bind(c, name="hipblasDznrm2_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDznrm2_64_
+      type(c_ptr),value :: handle
+      integer(c_int64_t),value :: n
+      type(c_ptr),value :: x
+      integer(c_int64_t),value :: incx
+      type(c_ptr),value :: myResult
+    end function
+  end interface
+
+  interface hipblasSnrm2Batched_64
+#ifdef USE_CUDA_NAMES
+    function hipblasSnrm2Batched_64_(handle,n,x,incx,batchCount,myResult) bind(c, name="cublasSnrm2Batched_64")
+#else
+    function hipblasSnrm2Batched_64_(handle,n,x,incx,batchCount,myResult) bind(c, name="hipblasSnrm2Batched_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSnrm2Batched_64_
+      type(c_ptr),value :: handle
+      integer(c_int64_t),value :: n
+      type(c_ptr) :: x
+      integer(c_int64_t),value :: incx
+      integer(c_int64_t),value :: batchCount
+      type(c_ptr),value :: myResult
+    end function
+  end interface
+
+  interface hipblasDnrm2Batched_64
+#ifdef USE_CUDA_NAMES
+    function hipblasDnrm2Batched_64_(handle,n,x,incx,batchCount,myResult) bind(c, name="cublasDnrm2Batched_64")
+#else
+    function hipblasDnrm2Batched_64_(handle,n,x,incx,batchCount,myResult) bind(c, name="hipblasDnrm2Batched_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDnrm2Batched_64_
+      type(c_ptr),value :: handle
+      integer(c_int64_t),value :: n
+      type(c_ptr) :: x
+      integer(c_int64_t),value :: incx
+      integer(c_int64_t),value :: batchCount
+      type(c_ptr),value :: myResult
+    end function
+  end interface
+
+  interface hipblasScnrm2Batched_64
+#ifdef USE_CUDA_NAMES
+    function hipblasScnrm2Batched_64_(handle,n,x,incx,batchCount,myResult) bind(c, name="cublasScnrm2Batched_64")
+#else
+    function hipblasScnrm2Batched_64_(handle,n,x,incx,batchCount,myResult) bind(c, name="hipblasScnrm2Batched_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasScnrm2Batched_64_
+      type(c_ptr),value :: handle
+      integer(c_int64_t),value :: n
+      type(c_ptr) :: x
+      integer(c_int64_t),value :: incx
+      integer(c_int64_t),value :: batchCount
+      type(c_ptr),value :: myResult
+    end function
+  end interface
+
+  interface hipblasDznrm2Batched_64
+#ifdef USE_CUDA_NAMES
+    function hipblasDznrm2Batched_64_(handle,n,x,incx,batchCount,myResult) bind(c, name="cublasDznrm2Batched_64")
+#else
+    function hipblasDznrm2Batched_64_(handle,n,x,incx,batchCount,myResult) bind(c, name="hipblasDznrm2Batched_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDznrm2Batched_64_
+      type(c_ptr),value :: handle
+      integer(c_int64_t),value :: n
+      type(c_ptr) :: x
+      integer(c_int64_t),value :: incx
+      integer(c_int64_t),value :: batchCount
+      type(c_ptr),value :: myResult
+    end function
+  end interface
+
+  interface hipblasSnrm2StridedBatched_64
+#ifdef USE_CUDA_NAMES
+    function hipblasSnrm2StridedBatched_64_(handle,n,x,incx,stridex,batchCount,myResult) bind(c, name="cublasSnrm2StridedBatched_64")
+#else
+    function hipblasSnrm2StridedBatched_64_(handle,n,x,incx,stridex,batchCount,myResult) bind(c, name="hipblasSnrm2StridedBatched_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSnrm2StridedBatched_64_
+      type(c_ptr),value :: handle
+      integer(c_int64_t),value :: n
+      type(c_ptr),value :: x
+      integer(c_int64_t),value :: incx
+      integer(c_int64_t),value :: stridex
+      integer(c_int64_t),value :: batchCount
+      type(c_ptr),value :: myResult
+    end function
+  end interface
+
+  interface hipblasDnrm2StridedBatched_64
+#ifdef USE_CUDA_NAMES
+    function hipblasDnrm2StridedBatched_64_(handle,n,x,incx,stridex,batchCount,myResult) bind(c, name="cublasDnrm2StridedBatched_64")
+#else
+    function hipblasDnrm2StridedBatched_64_(handle,n,x,incx,stridex,batchCount,myResult) bind(c, name="hipblasDnrm2StridedBatched_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDnrm2StridedBatched_64_
+      type(c_ptr),value :: handle
+      integer(c_int64_t),value :: n
+      type(c_ptr),value :: x
+      integer(c_int64_t),value :: incx
+      integer(c_int64_t),value :: stridex
+      integer(c_int64_t),value :: batchCount
+      type(c_ptr),value :: myResult
+    end function
+  end interface
+
+  interface hipblasScnrm2StridedBatched_64
+#ifdef USE_CUDA_NAMES
+    function hipblasScnrm2StridedBatched_64_(handle,n,x,incx,stridex,batchCount,myResult) bind(c, name="cublasScnrm2StridedBatched_64")
+#else
+    function hipblasScnrm2StridedBatched_64_(handle,n,x,incx,stridex,batchCount,myResult) bind(c, name="hipblasScnrm2StridedBatched_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasScnrm2StridedBatched_64_
+      type(c_ptr),value :: handle
+      integer(c_int64_t),value :: n
+      type(c_ptr),value :: x
+      integer(c_int64_t),value :: incx
+      integer(c_int64_t),value :: stridex
+      integer(c_int64_t),value :: batchCount
+      type(c_ptr),value :: myResult
+    end function
+  end interface
+
+  interface hipblasDznrm2StridedBatched_64
+#ifdef USE_CUDA_NAMES
+    function hipblasDznrm2StridedBatched_64_(handle,n,x,incx,stridex,batchCount,myResult) bind(c, name="cublasDznrm2StridedBatched_64")
+#else
+    function hipblasDznrm2StridedBatched_64_(handle,n,x,incx,stridex,batchCount,myResult) bind(c, name="hipblasDznrm2StridedBatched_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDznrm2StridedBatched_64_
+      type(c_ptr),value :: handle
+      integer(c_int64_t),value :: n
+      type(c_ptr),value :: x
+      integer(c_int64_t),value :: incx
+      integer(c_int64_t),value :: stridex
+      integer(c_int64_t),value :: batchCount
+      type(c_ptr),value :: myResult
+    end function
+  end interface
+
+  interface hipblasSrot_64
+#ifdef USE_CUDA_NAMES
+    function hipblasSrot_64_(handle,n,x,incx,y,incy,c,s) bind(c, name="cublasSrot_v2_64")
+#else
+    function hipblasSrot_64_(handle,n,x,incx,y,incy,c,s) bind(c, name="hipblasSrot_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSrot_64_
+      type(c_ptr),value :: handle
+      integer(c_int64_t),value :: n
+      type(c_ptr),value :: x
+      integer(c_int64_t),value :: incx
+      type(c_ptr),value :: y
+      integer(c_int64_t),value :: incy
+      type(c_ptr),value :: c
+      type(c_ptr),value :: s
+    end function
+  end interface
+
+  interface hipblasDrot_64
+#ifdef USE_CUDA_NAMES
+    function hipblasDrot_64_(handle,n,x,incx,y,incy,c,s) bind(c, name="cublasDrot_v2_64")
+#else
+    function hipblasDrot_64_(handle,n,x,incx,y,incy,c,s) bind(c, name="hipblasDrot_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDrot_64_
+      type(c_ptr),value :: handle
+      integer(c_int64_t),value :: n
+      type(c_ptr),value :: x
+      integer(c_int64_t),value :: incx
+      type(c_ptr),value :: y
+      integer(c_int64_t),value :: incy
+      type(c_ptr),value :: c
+      type(c_ptr),value :: s
+    end function
+  end interface
+
+  interface hipblasCrot_64
+#ifdef USE_CUDA_NAMES
+    function hipblasCrot_64_(handle,n,x,incx,y,incy,c,s) bind(c, name="cublasCrot_v2_64")
+#else
+    function hipblasCrot_64_(handle,n,x,incx,y,incy,c,s) bind(c, name="hipblasCrot_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCrot_64_
+      type(c_ptr),value :: handle
+      integer(c_int64_t),value :: n
+      type(c_ptr),value :: x
+      integer(c_int64_t),value :: incx
+      type(c_ptr),value :: y
+      integer(c_int64_t),value :: incy
+      type(c_ptr),value :: c
+      type(c_ptr),value :: s
+    end function
+  end interface
+
+  interface hipblasCsrot_64
+#ifdef USE_CUDA_NAMES
+    function hipblasCsrot_64_(handle,n,x,incx,y,incy,c,s) bind(c, name="cublasCsrot_v2_64")
+#else
+    function hipblasCsrot_64_(handle,n,x,incx,y,incy,c,s) bind(c, name="hipblasCsrot_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCsrot_64_
+      type(c_ptr),value :: handle
+      integer(c_int64_t),value :: n
+      type(c_ptr),value :: x
+      integer(c_int64_t),value :: incx
+      type(c_ptr),value :: y
+      integer(c_int64_t),value :: incy
+      type(c_ptr),value :: c
+      type(c_ptr),value :: s
+    end function
+  end interface
+
+  interface hipblasZrot_64
+#ifdef USE_CUDA_NAMES
+    function hipblasZrot_64_(handle,n,x,incx,y,incy,c,s) bind(c, name="cublasZrot_v2_64")
+#else
+    function hipblasZrot_64_(handle,n,x,incx,y,incy,c,s) bind(c, name="hipblasZrot_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZrot_64_
+      type(c_ptr),value :: handle
+      integer(c_int64_t),value :: n
+      type(c_ptr),value :: x
+      integer(c_int64_t),value :: incx
+      type(c_ptr),value :: y
+      integer(c_int64_t),value :: incy
+      type(c_ptr),value :: c
+      type(c_ptr),value :: s
+    end function
+  end interface
+
+  interface hipblasZdrot_64
+#ifdef USE_CUDA_NAMES
+    function hipblasZdrot_64_(handle,n,x,incx,y,incy,c,s) bind(c, name="cublasZdrot_v2_64")
+#else
+    function hipblasZdrot_64_(handle,n,x,incx,y,incy,c,s) bind(c, name="hipblasZdrot_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZdrot_64_
+      type(c_ptr),value :: handle
+      integer(c_int64_t),value :: n
+      type(c_ptr),value :: x
+      integer(c_int64_t),value :: incx
+      type(c_ptr),value :: y
+      integer(c_int64_t),value :: incy
+      type(c_ptr),value :: c
+      type(c_ptr),value :: s
+    end function
+  end interface
+
+  interface hipblasSrotBatched_64
+#ifdef USE_CUDA_NAMES
+    function hipblasSrotBatched_64_(handle,n,x,incx,y,incy,c,s,batchCount) bind(c, name="cublasSrotBatched_64")
+#else
+    function hipblasSrotBatched_64_(handle,n,x,incx,y,incy,c,s,batchCount) bind(c, name="hipblasSrotBatched_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSrotBatched_64_
+      type(c_ptr),value :: handle
+      integer(c_int64_t),value :: n
+      type(c_ptr) :: x
+      integer(c_int64_t),value :: incx
+      type(c_ptr) :: y
+      integer(c_int64_t),value :: incy
+      type(c_ptr),value :: c
+      type(c_ptr),value :: s
+      integer(c_int64_t),value :: batchCount
+    end function
+  end interface
+
+  interface hipblasDrotBatched_64
+#ifdef USE_CUDA_NAMES
+    function hipblasDrotBatched_64_(handle,n,x,incx,y,incy,c,s,batchCount) bind(c, name="cublasDrotBatched_64")
+#else
+    function hipblasDrotBatched_64_(handle,n,x,incx,y,incy,c,s,batchCount) bind(c, name="hipblasDrotBatched_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDrotBatched_64_
+      type(c_ptr),value :: handle
+      integer(c_int64_t),value :: n
+      type(c_ptr) :: x
+      integer(c_int64_t),value :: incx
+      type(c_ptr) :: y
+      integer(c_int64_t),value :: incy
+      type(c_ptr),value :: c
+      type(c_ptr),value :: s
+      integer(c_int64_t),value :: batchCount
+    end function
+  end interface
+
+  interface hipblasCrotBatched_64
+#ifdef USE_CUDA_NAMES
+    function hipblasCrotBatched_64_(handle,n,x,incx,y,incy,c,s,batchCount) bind(c, name="cublasCrotBatched_64")
+#else
+    function hipblasCrotBatched_64_(handle,n,x,incx,y,incy,c,s,batchCount) bind(c, name="hipblasCrotBatched_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCrotBatched_64_
+      type(c_ptr),value :: handle
+      integer(c_int64_t),value :: n
+      type(c_ptr) :: x
+      integer(c_int64_t),value :: incx
+      type(c_ptr) :: y
+      integer(c_int64_t),value :: incy
+      type(c_ptr),value :: c
+      type(c_ptr),value :: s
+      integer(c_int64_t),value :: batchCount
+    end function
+  end interface
+
+  interface hipblasCsrotBatched_64
+#ifdef USE_CUDA_NAMES
+    function hipblasCsrotBatched_64_(handle,n,x,incx,y,incy,c,s,batchCount) bind(c, name="cublasCsrotBatched_64")
+#else
+    function hipblasCsrotBatched_64_(handle,n,x,incx,y,incy,c,s,batchCount) bind(c, name="hipblasCsrotBatched_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCsrotBatched_64_
+      type(c_ptr),value :: handle
+      integer(c_int64_t),value :: n
+      type(c_ptr) :: x
+      integer(c_int64_t),value :: incx
+      type(c_ptr) :: y
+      integer(c_int64_t),value :: incy
+      type(c_ptr),value :: c
+      type(c_ptr),value :: s
+      integer(c_int64_t),value :: batchCount
+    end function
+  end interface
+
+  interface hipblasZrotBatched_64
+#ifdef USE_CUDA_NAMES
+    function hipblasZrotBatched_64_(handle,n,x,incx,y,incy,c,s,batchCount) bind(c, name="cublasZrotBatched_64")
+#else
+    function hipblasZrotBatched_64_(handle,n,x,incx,y,incy,c,s,batchCount) bind(c, name="hipblasZrotBatched_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZrotBatched_64_
+      type(c_ptr),value :: handle
+      integer(c_int64_t),value :: n
+      type(c_ptr) :: x
+      integer(c_int64_t),value :: incx
+      type(c_ptr) :: y
+      integer(c_int64_t),value :: incy
+      type(c_ptr),value :: c
+      type(c_ptr),value :: s
+      integer(c_int64_t),value :: batchCount
+    end function
+  end interface
+
+  interface hipblasZdrotBatched_64
+#ifdef USE_CUDA_NAMES
+    function hipblasZdrotBatched_64_(handle,n,x,incx,y,incy,c,s,batchCount) bind(c, name="cublasZdrotBatched_64")
+#else
+    function hipblasZdrotBatched_64_(handle,n,x,incx,y,incy,c,s,batchCount) bind(c, name="hipblasZdrotBatched_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZdrotBatched_64_
+      type(c_ptr),value :: handle
+      integer(c_int64_t),value :: n
+      type(c_ptr) :: x
+      integer(c_int64_t),value :: incx
+      type(c_ptr) :: y
+      integer(c_int64_t),value :: incy
+      type(c_ptr),value :: c
+      type(c_ptr),value :: s
+      integer(c_int64_t),value :: batchCount
+    end function
+  end interface
+
+  interface hipblasSrotStridedBatched_64
+#ifdef USE_CUDA_NAMES
+    function hipblasSrotStridedBatched_64_(handle,n,x,incx,stridex,y,incy,stridey,c,s,batchCount) bind(c, name="cublasSrotStridedBatched_64")
+#else
+    function hipblasSrotStridedBatched_64_(handle,n,x,incx,stridex,y,incy,stridey,c,s,batchCount) bind(c, name="hipblasSrotStridedBatched_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSrotStridedBatched_64_
+      type(c_ptr),value :: handle
+      integer(c_int64_t),value :: n
+      type(c_ptr),value :: x
+      integer(c_int64_t),value :: incx
+      integer(c_int64_t),value :: stridex
+      type(c_ptr),value :: y
+      integer(c_int64_t),value :: incy
+      integer(c_int64_t),value :: stridey
+      type(c_ptr),value :: c
+      type(c_ptr),value :: s
+      integer(c_int64_t),value :: batchCount
+    end function
+  end interface
+
+  interface hipblasDrotStridedBatched_64
+#ifdef USE_CUDA_NAMES
+    function hipblasDrotStridedBatched_64_(handle,n,x,incx,stridex,y,incy,stridey,c,s,batchCount) bind(c, name="cublasDrotStridedBatched_64")
+#else
+    function hipblasDrotStridedBatched_64_(handle,n,x,incx,stridex,y,incy,stridey,c,s,batchCount) bind(c, name="hipblasDrotStridedBatched_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDrotStridedBatched_64_
+      type(c_ptr),value :: handle
+      integer(c_int64_t),value :: n
+      type(c_ptr),value :: x
+      integer(c_int64_t),value :: incx
+      integer(c_int64_t),value :: stridex
+      type(c_ptr),value :: y
+      integer(c_int64_t),value :: incy
+      integer(c_int64_t),value :: stridey
+      type(c_ptr),value :: c
+      type(c_ptr),value :: s
+      integer(c_int64_t),value :: batchCount
+    end function
+  end interface
+
+  interface hipblasCrotStridedBatched_64
+#ifdef USE_CUDA_NAMES
+    function hipblasCrotStridedBatched_64_(handle,n,x,incx,stridex,y,incy,stridey,c,s,batchCount) bind(c, name="cublasCrotStridedBatched_64")
+#else
+    function hipblasCrotStridedBatched_64_(handle,n,x,incx,stridex,y,incy,stridey,c,s,batchCount) bind(c, name="hipblasCrotStridedBatched_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCrotStridedBatched_64_
+      type(c_ptr),value :: handle
+      integer(c_int64_t),value :: n
+      type(c_ptr),value :: x
+      integer(c_int64_t),value :: incx
+      integer(c_int64_t),value :: stridex
+      type(c_ptr),value :: y
+      integer(c_int64_t),value :: incy
+      integer(c_int64_t),value :: stridey
+      type(c_ptr),value :: c
+      type(c_ptr),value :: s
+      integer(c_int64_t),value :: batchCount
+    end function
+  end interface
+
+  interface hipblasCsrotStridedBatched_64
+#ifdef USE_CUDA_NAMES
+    function hipblasCsrotStridedBatched_64_(handle,n,x,incx,stridex,y,incy,stridey,c,s,batchCount) bind(c, name="cublasCsrotStridedBatched_64")
+#else
+    function hipblasCsrotStridedBatched_64_(handle,n,x,incx,stridex,y,incy,stridey,c,s,batchCount) bind(c, name="hipblasCsrotStridedBatched_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCsrotStridedBatched_64_
+      type(c_ptr),value :: handle
+      integer(c_int64_t),value :: n
+      type(c_ptr),value :: x
+      integer(c_int64_t),value :: incx
+      integer(c_int64_t),value :: stridex
+      type(c_ptr),value :: y
+      integer(c_int64_t),value :: incy
+      integer(c_int64_t),value :: stridey
+      type(c_ptr),value :: c
+      type(c_ptr),value :: s
+      integer(c_int64_t),value :: batchCount
+    end function
+  end interface
+
+  interface hipblasZrotStridedBatched_64
+#ifdef USE_CUDA_NAMES
+    function hipblasZrotStridedBatched_64_(handle,n,x,incx,stridex,y,incy,stridey,c,s,batchCount) bind(c, name="cublasZrotStridedBatched_64")
+#else
+    function hipblasZrotStridedBatched_64_(handle,n,x,incx,stridex,y,incy,stridey,c,s,batchCount) bind(c, name="hipblasZrotStridedBatched_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZrotStridedBatched_64_
+      type(c_ptr),value :: handle
+      integer(c_int64_t),value :: n
+      type(c_ptr),value :: x
+      integer(c_int64_t),value :: incx
+      integer(c_int64_t),value :: stridex
+      type(c_ptr),value :: y
+      integer(c_int64_t),value :: incy
+      integer(c_int64_t),value :: stridey
+      type(c_ptr),value :: c
+      type(c_ptr),value :: s
+      integer(c_int64_t),value :: batchCount
+    end function
+  end interface
+
+  interface hipblasZdrotStridedBatched_64
+#ifdef USE_CUDA_NAMES
+    function hipblasZdrotStridedBatched_64_(handle,n,x,incx,stridex,y,incy,stridey,c,s,batchCount) bind(c, name="cublasZdrotStridedBatched_64")
+#else
+    function hipblasZdrotStridedBatched_64_(handle,n,x,incx,stridex,y,incy,stridey,c,s,batchCount) bind(c, name="hipblasZdrotStridedBatched_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZdrotStridedBatched_64_
+      type(c_ptr),value :: handle
+      integer(c_int64_t),value :: n
+      type(c_ptr),value :: x
+      integer(c_int64_t),value :: incx
+      integer(c_int64_t),value :: stridex
+      type(c_ptr),value :: y
+      integer(c_int64_t),value :: incy
+      integer(c_int64_t),value :: stridey
+      type(c_ptr),value :: c
+      type(c_ptr),value :: s
+      integer(c_int64_t),value :: batchCount
+    end function
+  end interface
+
+#ifndef USE_CUDA_NAMES
+  interface hipblasSrotg_64
+    function hipblasSrotg_64_(handle,a,b,c,s) bind(c, name="hipblasSrotg_64")
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSrotg_64_
+      type(c_ptr),value :: handle
+      type(c_ptr),value :: a
+      type(c_ptr),value :: b
+      type(c_ptr),value :: c
+      type(c_ptr),value :: s
+    end function
+  end interface
+#endif
+
+#ifndef USE_CUDA_NAMES
+  interface hipblasDrotg_64
+    function hipblasDrotg_64_(handle,a,b,c,s) bind(c, name="hipblasDrotg_64")
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDrotg_64_
+      type(c_ptr),value :: handle
+      type(c_ptr),value :: a
+      type(c_ptr),value :: b
+      type(c_ptr),value :: c
+      type(c_ptr),value :: s
+    end function
+  end interface
+#endif
+
+#ifndef USE_CUDA_NAMES
+  interface hipblasCrotg_64
+    function hipblasCrotg_64_(handle,a,b,c,s) bind(c, name="hipblasCrotg_64")
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCrotg_64_
+      type(c_ptr),value :: handle
+      type(c_ptr),value :: a
+      type(c_ptr),value :: b
+      type(c_ptr),value :: c
+      type(c_ptr),value :: s
+    end function
+  end interface
+#endif
+
+#ifndef USE_CUDA_NAMES
+  interface hipblasZrotg_64
+    function hipblasZrotg_64_(handle,a,b,c,s) bind(c, name="hipblasZrotg_64")
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZrotg_64_
+      type(c_ptr),value :: handle
+      type(c_ptr),value :: a
+      type(c_ptr),value :: b
+      type(c_ptr),value :: c
+      type(c_ptr),value :: s
+    end function
+  end interface
+#endif
+
+  interface hipblasSrotgBatched_64
+#ifdef USE_CUDA_NAMES
+    function hipblasSrotgBatched_64_(handle,a,b,c,s,batchCount) bind(c, name="cublasSrotgBatched_64")
+#else
+    function hipblasSrotgBatched_64_(handle,a,b,c,s,batchCount) bind(c, name="hipblasSrotgBatched_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSrotgBatched_64_
+      type(c_ptr),value :: handle
+      type(c_ptr) :: a
+      type(c_ptr) :: b
+      type(c_ptr) :: c
+      type(c_ptr) :: s
+      integer(c_int64_t),value :: batchCount
+    end function
+  end interface
+
+  interface hipblasDrotgBatched_64
+#ifdef USE_CUDA_NAMES
+    function hipblasDrotgBatched_64_(handle,a,b,c,s,batchCount) bind(c, name="cublasDrotgBatched_64")
+#else
+    function hipblasDrotgBatched_64_(handle,a,b,c,s,batchCount) bind(c, name="hipblasDrotgBatched_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDrotgBatched_64_
+      type(c_ptr),value :: handle
+      type(c_ptr) :: a
+      type(c_ptr) :: b
+      type(c_ptr) :: c
+      type(c_ptr) :: s
+      integer(c_int64_t),value :: batchCount
+    end function
+  end interface
+
+  interface hipblasCrotgBatched_64
+#ifdef USE_CUDA_NAMES
+    function hipblasCrotgBatched_64_(handle,a,b,c,s,batchCount) bind(c, name="cublasCrotgBatched_64")
+#else
+    function hipblasCrotgBatched_64_(handle,a,b,c,s,batchCount) bind(c, name="hipblasCrotgBatched_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCrotgBatched_64_
+      type(c_ptr),value :: handle
+      type(c_ptr) :: a
+      type(c_ptr) :: b
+      type(c_ptr) :: c
+      type(c_ptr) :: s
+      integer(c_int64_t),value :: batchCount
+    end function
+  end interface
+
+  interface hipblasZrotgBatched_64
+#ifdef USE_CUDA_NAMES
+    function hipblasZrotgBatched_64_(handle,a,b,c,s,batchCount) bind(c, name="cublasZrotgBatched_64")
+#else
+    function hipblasZrotgBatched_64_(handle,a,b,c,s,batchCount) bind(c, name="hipblasZrotgBatched_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZrotgBatched_64_
+      type(c_ptr),value :: handle
+      type(c_ptr) :: a
+      type(c_ptr) :: b
+      type(c_ptr) :: c
+      type(c_ptr) :: s
+      integer(c_int64_t),value :: batchCount
+    end function
+  end interface
+
+  interface hipblasSrotgStridedBatched_64
+#ifdef USE_CUDA_NAMES
+    function hipblasSrotgStridedBatched_64_(handle,a,stridea,b,strideb,c,stridec,s,strides,batchCount) bind(c, name="cublasSrotgStridedBatched_64")
+#else
+    function hipblasSrotgStridedBatched_64_(handle,a,stridea,b,strideb,c,stridec,s,strides,batchCount) bind(c, name="hipblasSrotgStridedBatched_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSrotgStridedBatched_64_
+      type(c_ptr),value :: handle
+      type(c_ptr),value :: a
+      integer(c_int64_t),value :: stridea
+      type(c_ptr),value :: b
+      integer(c_int64_t),value :: strideb
+      type(c_ptr),value :: c
+      integer(c_int64_t),value :: stridec
+      type(c_ptr),value :: s
+      integer(c_int64_t),value :: strides
+      integer(c_int64_t),value :: batchCount
+    end function
+  end interface
+
+  interface hipblasDrotgStridedBatched_64
+#ifdef USE_CUDA_NAMES
+    function hipblasDrotgStridedBatched_64_(handle,a,stridea,b,strideb,c,stridec,s,strides,batchCount) bind(c, name="cublasDrotgStridedBatched_64")
+#else
+    function hipblasDrotgStridedBatched_64_(handle,a,stridea,b,strideb,c,stridec,s,strides,batchCount) bind(c, name="hipblasDrotgStridedBatched_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDrotgStridedBatched_64_
+      type(c_ptr),value :: handle
+      type(c_ptr),value :: a
+      integer(c_int64_t),value :: stridea
+      type(c_ptr),value :: b
+      integer(c_int64_t),value :: strideb
+      type(c_ptr),value :: c
+      integer(c_int64_t),value :: stridec
+      type(c_ptr),value :: s
+      integer(c_int64_t),value :: strides
+      integer(c_int64_t),value :: batchCount
+    end function
+  end interface
+
+  interface hipblasCrotgStridedBatched_64
+#ifdef USE_CUDA_NAMES
+    function hipblasCrotgStridedBatched_64_(handle,a,stridea,b,strideb,c,stridec,s,strides,batchCount) bind(c, name="cublasCrotgStridedBatched_64")
+#else
+    function hipblasCrotgStridedBatched_64_(handle,a,stridea,b,strideb,c,stridec,s,strides,batchCount) bind(c, name="hipblasCrotgStridedBatched_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCrotgStridedBatched_64_
+      type(c_ptr),value :: handle
+      type(c_ptr),value :: a
+      integer(c_int64_t),value :: stridea
+      type(c_ptr),value :: b
+      integer(c_int64_t),value :: strideb
+      type(c_ptr),value :: c
+      integer(c_int64_t),value :: stridec
+      type(c_ptr),value :: s
+      integer(c_int64_t),value :: strides
+      integer(c_int64_t),value :: batchCount
+    end function
+  end interface
+
+  interface hipblasZrotgStridedBatched_64
+#ifdef USE_CUDA_NAMES
+    function hipblasZrotgStridedBatched_64_(handle,a,stridea,b,strideb,c,stridec,s,strides,batchCount) bind(c, name="cublasZrotgStridedBatched_64")
+#else
+    function hipblasZrotgStridedBatched_64_(handle,a,stridea,b,strideb,c,stridec,s,strides,batchCount) bind(c, name="hipblasZrotgStridedBatched_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZrotgStridedBatched_64_
+      type(c_ptr),value :: handle
+      type(c_ptr),value :: a
+      integer(c_int64_t),value :: stridea
+      type(c_ptr),value :: b
+      integer(c_int64_t),value :: strideb
+      type(c_ptr),value :: c
+      integer(c_int64_t),value :: stridec
+      type(c_ptr),value :: s
+      integer(c_int64_t),value :: strides
+      integer(c_int64_t),value :: batchCount
+    end function
+  end interface
+
+  interface hipblasSrotm_64
+#ifdef USE_CUDA_NAMES
+    function hipblasSrotm_64_(handle,n,x,incx,y,incy,param) bind(c, name="cublasSrotm_v2_64")
+#else
+    function hipblasSrotm_64_(handle,n,x,incx,y,incy,param) bind(c, name="hipblasSrotm_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSrotm_64_
+      type(c_ptr),value :: handle
+      integer(c_int64_t),value :: n
+      type(c_ptr),value :: x
+      integer(c_int64_t),value :: incx
+      type(c_ptr),value :: y
+      integer(c_int64_t),value :: incy
+      type(c_ptr),value :: param
+    end function
+  end interface
+
+  interface hipblasDrotm_64
+#ifdef USE_CUDA_NAMES
+    function hipblasDrotm_64_(handle,n,x,incx,y,incy,param) bind(c, name="cublasDrotm_v2_64")
+#else
+    function hipblasDrotm_64_(handle,n,x,incx,y,incy,param) bind(c, name="hipblasDrotm_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDrotm_64_
+      type(c_ptr),value :: handle
+      integer(c_int64_t),value :: n
+      type(c_ptr),value :: x
+      integer(c_int64_t),value :: incx
+      type(c_ptr),value :: y
+      integer(c_int64_t),value :: incy
+      type(c_ptr),value :: param
+    end function
+  end interface
+
+  interface hipblasSrotmBatched_64
+#ifdef USE_CUDA_NAMES
+    function hipblasSrotmBatched_64_(handle,n,x,incx,y,incy,param,batchCount) bind(c, name="cublasSrotmBatched_64")
+#else
+    function hipblasSrotmBatched_64_(handle,n,x,incx,y,incy,param,batchCount) bind(c, name="hipblasSrotmBatched_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSrotmBatched_64_
+      type(c_ptr),value :: handle
+      integer(c_int64_t),value :: n
+      type(c_ptr) :: x
+      integer(c_int64_t),value :: incx
+      type(c_ptr) :: y
+      integer(c_int64_t),value :: incy
+      type(c_ptr) :: param
+      integer(c_int64_t),value :: batchCount
+    end function
+  end interface
+
+  interface hipblasDrotmBatched_64
+#ifdef USE_CUDA_NAMES
+    function hipblasDrotmBatched_64_(handle,n,x,incx,y,incy,param,batchCount) bind(c, name="cublasDrotmBatched_64")
+#else
+    function hipblasDrotmBatched_64_(handle,n,x,incx,y,incy,param,batchCount) bind(c, name="hipblasDrotmBatched_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDrotmBatched_64_
+      type(c_ptr),value :: handle
+      integer(c_int64_t),value :: n
+      type(c_ptr) :: x
+      integer(c_int64_t),value :: incx
+      type(c_ptr) :: y
+      integer(c_int64_t),value :: incy
+      type(c_ptr) :: param
+      integer(c_int64_t),value :: batchCount
+    end function
+  end interface
+
+  interface hipblasSrotmStridedBatched_64
+#ifdef USE_CUDA_NAMES
+    function hipblasSrotmStridedBatched_64_(handle,n,x,incx,stridex,y,incy,stridey,param,strideParam,batchCount) bind(c, name="cublasSrotmStridedBatched_64")
+#else
+    function hipblasSrotmStridedBatched_64_(handle,n,x,incx,stridex,y,incy,stridey,param,strideParam,batchCount) bind(c, name="hipblasSrotmStridedBatched_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSrotmStridedBatched_64_
+      type(c_ptr),value :: handle
+      integer(c_int64_t),value :: n
+      type(c_ptr),value :: x
+      integer(c_int64_t),value :: incx
+      integer(c_int64_t),value :: stridex
+      type(c_ptr),value :: y
+      integer(c_int64_t),value :: incy
+      integer(c_int64_t),value :: stridey
+      type(c_ptr),value :: param
+      integer(c_int64_t),value :: strideParam
+      integer(c_int64_t),value :: batchCount
+    end function
+  end interface
+
+  interface hipblasDrotmStridedBatched_64
+#ifdef USE_CUDA_NAMES
+    function hipblasDrotmStridedBatched_64_(handle,n,x,incx,stridex,y,incy,stridey,param,strideParam,batchCount) bind(c, name="cublasDrotmStridedBatched_64")
+#else
+    function hipblasDrotmStridedBatched_64_(handle,n,x,incx,stridex,y,incy,stridey,param,strideParam,batchCount) bind(c, name="hipblasDrotmStridedBatched_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDrotmStridedBatched_64_
+      type(c_ptr),value :: handle
+      integer(c_int64_t),value :: n
+      type(c_ptr),value :: x
+      integer(c_int64_t),value :: incx
+      integer(c_int64_t),value :: stridex
+      type(c_ptr),value :: y
+      integer(c_int64_t),value :: incy
+      integer(c_int64_t),value :: stridey
+      type(c_ptr),value :: param
+      integer(c_int64_t),value :: strideParam
+      integer(c_int64_t),value :: batchCount
+    end function
+  end interface
+
+#ifndef USE_CUDA_NAMES
+  interface hipblasSrotmg_64
+    function hipblasSrotmg_64_(handle,d1,d2,x1,y1,param) bind(c, name="hipblasSrotmg_64")
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSrotmg_64_
+      type(c_ptr),value :: handle
+      type(c_ptr),value :: d1
+      type(c_ptr),value :: d2
+      type(c_ptr),value :: x1
+      type(c_ptr),value :: y1
+      type(c_ptr),value :: param
+    end function
+  end interface
+#endif
+
+#ifndef USE_CUDA_NAMES
+  interface hipblasDrotmg_64
+    function hipblasDrotmg_64_(handle,d1,d2,x1,y1,param) bind(c, name="hipblasDrotmg_64")
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDrotmg_64_
+      type(c_ptr),value :: handle
+      type(c_ptr),value :: d1
+      type(c_ptr),value :: d2
+      type(c_ptr),value :: x1
+      type(c_ptr),value :: y1
+      type(c_ptr),value :: param
+    end function
+  end interface
+#endif
+
+  interface hipblasSrotmgBatched_64
+#ifdef USE_CUDA_NAMES
+    function hipblasSrotmgBatched_64_(handle,d1,d2,x1,y1,param,batchCount) bind(c, name="cublasSrotmgBatched_64")
+#else
+    function hipblasSrotmgBatched_64_(handle,d1,d2,x1,y1,param,batchCount) bind(c, name="hipblasSrotmgBatched_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSrotmgBatched_64_
+      type(c_ptr),value :: handle
+      type(c_ptr) :: d1
+      type(c_ptr) :: d2
+      type(c_ptr) :: x1
+      type(c_ptr) :: y1
+      type(c_ptr) :: param
+      integer(c_int64_t),value :: batchCount
+    end function
+  end interface
+
+  interface hipblasDrotmgBatched_64
+#ifdef USE_CUDA_NAMES
+    function hipblasDrotmgBatched_64_(handle,d1,d2,x1,y1,param,batchCount) bind(c, name="cublasDrotmgBatched_64")
+#else
+    function hipblasDrotmgBatched_64_(handle,d1,d2,x1,y1,param,batchCount) bind(c, name="hipblasDrotmgBatched_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDrotmgBatched_64_
+      type(c_ptr),value :: handle
+      type(c_ptr) :: d1
+      type(c_ptr) :: d2
+      type(c_ptr) :: x1
+      type(c_ptr) :: y1
+      type(c_ptr) :: param
+      integer(c_int64_t),value :: batchCount
+    end function
+  end interface
+
+  interface hipblasSrotmgStridedBatched_64
+#ifdef USE_CUDA_NAMES
+    function hipblasSrotmgStridedBatched_64_(handle,d1,strided1,d2,strided2,x1,stridex1,y1,stridey1,param,strideParam,batchCount) bind(c, name="cublasSrotmgStridedBatched_64")
+#else
+    function hipblasSrotmgStridedBatched_64_(handle,d1,strided1,d2,strided2,x1,stridex1,y1,stridey1,param,strideParam,batchCount) bind(c, name="hipblasSrotmgStridedBatched_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSrotmgStridedBatched_64_
+      type(c_ptr),value :: handle
+      type(c_ptr),value :: d1
+      integer(c_int64_t),value :: strided1
+      type(c_ptr),value :: d2
+      integer(c_int64_t),value :: strided2
+      type(c_ptr),value :: x1
+      integer(c_int64_t),value :: stridex1
+      type(c_ptr),value :: y1
+      integer(c_int64_t),value :: stridey1
+      type(c_ptr),value :: param
+      integer(c_int64_t),value :: strideParam
+      integer(c_int64_t),value :: batchCount
+    end function
+  end interface
+
+  interface hipblasDrotmgStridedBatched_64
+#ifdef USE_CUDA_NAMES
+    function hipblasDrotmgStridedBatched_64_(handle,d1,strided1,d2,strided2,x1,stridex1,y1,stridey1,param,strideParam,batchCount) bind(c, name="cublasDrotmgStridedBatched_64")
+#else
+    function hipblasDrotmgStridedBatched_64_(handle,d1,strided1,d2,strided2,x1,stridex1,y1,stridey1,param,strideParam,batchCount) bind(c, name="hipblasDrotmgStridedBatched_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDrotmgStridedBatched_64_
+      type(c_ptr),value :: handle
+      type(c_ptr),value :: d1
+      integer(c_int64_t),value :: strided1
+      type(c_ptr),value :: d2
+      integer(c_int64_t),value :: strided2
+      type(c_ptr),value :: x1
+      integer(c_int64_t),value :: stridex1
+      type(c_ptr),value :: y1
+      integer(c_int64_t),value :: stridey1
+      type(c_ptr),value :: param
+      integer(c_int64_t),value :: strideParam
+      integer(c_int64_t),value :: batchCount
+    end function
+  end interface
+
+  interface hipblasSscal_64
+#ifdef USE_CUDA_NAMES
+    function hipblasSscal_64_(handle,n,alpha,x,incx) bind(c, name="cublasSscal_v2_64")
+#else
+    function hipblasSscal_64_(handle,n,alpha,x,incx) bind(c, name="hipblasSscal_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSscal_64_
+      type(c_ptr),value :: handle
+      integer(c_int64_t),value :: n
+      real(c_float) :: alpha
+      type(c_ptr),value :: x
+      integer(c_int64_t),value :: incx
+    end function
+  end interface
+
+  interface hipblasDscal_64
+#ifdef USE_CUDA_NAMES
+    function hipblasDscal_64_(handle,n,alpha,x,incx) bind(c, name="cublasDscal_v2_64")
+#else
+    function hipblasDscal_64_(handle,n,alpha,x,incx) bind(c, name="hipblasDscal_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDscal_64_
+      type(c_ptr),value :: handle
+      integer(c_int64_t),value :: n
+      real(c_double) :: alpha
+      type(c_ptr),value :: x
+      integer(c_int64_t),value :: incx
+    end function
+  end interface
+
+  interface hipblasCscal_64
+#ifdef USE_CUDA_NAMES
+    function hipblasCscal_64_(handle,n,alpha,x,incx) bind(c, name="cublasCscal_v2_64")
+#else
+    function hipblasCscal_64_(handle,n,alpha,x,incx) bind(c, name="hipblasCscal_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCscal_64_
+      type(c_ptr),value :: handle
+      integer(c_int64_t),value :: n
+      complex(c_float_complex) :: alpha
+      type(c_ptr),value :: x
+      integer(c_int64_t),value :: incx
+    end function
+  end interface
+
+  interface hipblasCsscal_64
+#ifdef USE_CUDA_NAMES
+    function hipblasCsscal_64_(handle,n,alpha,x,incx) bind(c, name="cublasCsscal_v2_64")
+#else
+    function hipblasCsscal_64_(handle,n,alpha,x,incx) bind(c, name="hipblasCsscal_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCsscal_64_
+      type(c_ptr),value :: handle
+      integer(c_int64_t),value :: n
+      real(c_float) :: alpha
+      type(c_ptr),value :: x
+      integer(c_int64_t),value :: incx
+    end function
+  end interface
+
+  interface hipblasZscal_64
+#ifdef USE_CUDA_NAMES
+    function hipblasZscal_64_(handle,n,alpha,x,incx) bind(c, name="cublasZscal_v2_64")
+#else
+    function hipblasZscal_64_(handle,n,alpha,x,incx) bind(c, name="hipblasZscal_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZscal_64_
+      type(c_ptr),value :: handle
+      integer(c_int64_t),value :: n
+      complex(c_double_complex) :: alpha
+      type(c_ptr),value :: x
+      integer(c_int64_t),value :: incx
+    end function
+  end interface
+
+  interface hipblasZdscal_64
+#ifdef USE_CUDA_NAMES
+    function hipblasZdscal_64_(handle,n,alpha,x,incx) bind(c, name="cublasZdscal_v2_64")
+#else
+    function hipblasZdscal_64_(handle,n,alpha,x,incx) bind(c, name="hipblasZdscal_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZdscal_64_
+      type(c_ptr),value :: handle
+      integer(c_int64_t),value :: n
+      real(c_double) :: alpha
+      type(c_ptr),value :: x
+      integer(c_int64_t),value :: incx
+    end function
+  end interface
+
+  interface hipblasSscalBatched_64
+#ifdef USE_CUDA_NAMES
+    function hipblasSscalBatched_64_(handle,n,alpha,x,incx,batchCount) bind(c, name="cublasSscalBatched_64")
+#else
+    function hipblasSscalBatched_64_(handle,n,alpha,x,incx,batchCount) bind(c, name="hipblasSscalBatched_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSscalBatched_64_
+      type(c_ptr),value :: handle
+      integer(c_int64_t),value :: n
+      real(c_float) :: alpha
+      type(c_ptr) :: x
+      integer(c_int64_t),value :: incx
+      integer(c_int64_t),value :: batchCount
+    end function
+  end interface
+
+  interface hipblasDscalBatched_64
+#ifdef USE_CUDA_NAMES
+    function hipblasDscalBatched_64_(handle,n,alpha,x,incx,batchCount) bind(c, name="cublasDscalBatched_64")
+#else
+    function hipblasDscalBatched_64_(handle,n,alpha,x,incx,batchCount) bind(c, name="hipblasDscalBatched_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDscalBatched_64_
+      type(c_ptr),value :: handle
+      integer(c_int64_t),value :: n
+      real(c_double) :: alpha
+      type(c_ptr) :: x
+      integer(c_int64_t),value :: incx
+      integer(c_int64_t),value :: batchCount
+    end function
+  end interface
+
+  interface hipblasCscalBatched_64
+#ifdef USE_CUDA_NAMES
+    function hipblasCscalBatched_64_(handle,n,alpha,x,incx,batchCount) bind(c, name="cublasCscalBatched_64")
+#else
+    function hipblasCscalBatched_64_(handle,n,alpha,x,incx,batchCount) bind(c, name="hipblasCscalBatched_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCscalBatched_64_
+      type(c_ptr),value :: handle
+      integer(c_int64_t),value :: n
+      complex(c_float_complex) :: alpha
+      type(c_ptr) :: x
+      integer(c_int64_t),value :: incx
+      integer(c_int64_t),value :: batchCount
+    end function
+  end interface
+
+  interface hipblasZscalBatched_64
+#ifdef USE_CUDA_NAMES
+    function hipblasZscalBatched_64_(handle,n,alpha,x,incx,batchCount) bind(c, name="cublasZscalBatched_64")
+#else
+    function hipblasZscalBatched_64_(handle,n,alpha,x,incx,batchCount) bind(c, name="hipblasZscalBatched_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZscalBatched_64_
+      type(c_ptr),value :: handle
+      integer(c_int64_t),value :: n
+      complex(c_double_complex) :: alpha
+      type(c_ptr) :: x
+      integer(c_int64_t),value :: incx
+      integer(c_int64_t),value :: batchCount
+    end function
+  end interface
+
+  interface hipblasCsscalBatched_64
+#ifdef USE_CUDA_NAMES
+    function hipblasCsscalBatched_64_(handle,n,alpha,x,incx,batchCount) bind(c, name="cublasCsscalBatched_64")
+#else
+    function hipblasCsscalBatched_64_(handle,n,alpha,x,incx,batchCount) bind(c, name="hipblasCsscalBatched_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCsscalBatched_64_
+      type(c_ptr),value :: handle
+      integer(c_int64_t),value :: n
+      real(c_float) :: alpha
+      type(c_ptr) :: x
+      integer(c_int64_t),value :: incx
+      integer(c_int64_t),value :: batchCount
+    end function
+  end interface
+
+  interface hipblasZdscalBatched_64
+#ifdef USE_CUDA_NAMES
+    function hipblasZdscalBatched_64_(handle,n,alpha,x,incx,batchCount) bind(c, name="cublasZdscalBatched_64")
+#else
+    function hipblasZdscalBatched_64_(handle,n,alpha,x,incx,batchCount) bind(c, name="hipblasZdscalBatched_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZdscalBatched_64_
+      type(c_ptr),value :: handle
+      integer(c_int64_t),value :: n
+      real(c_double) :: alpha
+      type(c_ptr) :: x
+      integer(c_int64_t),value :: incx
+      integer(c_int64_t),value :: batchCount
+    end function
+  end interface
+
+  interface hipblasSscalStridedBatched_64
+#ifdef USE_CUDA_NAMES
+    function hipblasSscalStridedBatched_64_(handle,n,alpha,x,incx,stridex,batchCount) bind(c, name="cublasSscalStridedBatched_64")
+#else
+    function hipblasSscalStridedBatched_64_(handle,n,alpha,x,incx,stridex,batchCount) bind(c, name="hipblasSscalStridedBatched_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSscalStridedBatched_64_
+      type(c_ptr),value :: handle
+      integer(c_int64_t),value :: n
+      real(c_float) :: alpha
+      type(c_ptr),value :: x
+      integer(c_int64_t),value :: incx
+      integer(c_int64_t),value :: stridex
+      integer(c_int64_t),value :: batchCount
+    end function
+  end interface
+
+  interface hipblasDscalStridedBatched_64
+#ifdef USE_CUDA_NAMES
+    function hipblasDscalStridedBatched_64_(handle,n,alpha,x,incx,stridex,batchCount) bind(c, name="cublasDscalStridedBatched_64")
+#else
+    function hipblasDscalStridedBatched_64_(handle,n,alpha,x,incx,stridex,batchCount) bind(c, name="hipblasDscalStridedBatched_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDscalStridedBatched_64_
+      type(c_ptr),value :: handle
+      integer(c_int64_t),value :: n
+      real(c_double) :: alpha
+      type(c_ptr),value :: x
+      integer(c_int64_t),value :: incx
+      integer(c_int64_t),value :: stridex
+      integer(c_int64_t),value :: batchCount
+    end function
+  end interface
+
+  interface hipblasCscalStridedBatched_64
+#ifdef USE_CUDA_NAMES
+    function hipblasCscalStridedBatched_64_(handle,n,alpha,x,incx,stridex,batchCount) bind(c, name="cublasCscalStridedBatched_64")
+#else
+    function hipblasCscalStridedBatched_64_(handle,n,alpha,x,incx,stridex,batchCount) bind(c, name="hipblasCscalStridedBatched_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCscalStridedBatched_64_
+      type(c_ptr),value :: handle
+      integer(c_int64_t),value :: n
+      complex(c_float_complex) :: alpha
+      type(c_ptr),value :: x
+      integer(c_int64_t),value :: incx
+      integer(c_int64_t),value :: stridex
+      integer(c_int64_t),value :: batchCount
+    end function
+  end interface
+
+  interface hipblasZscalStridedBatched_64
+#ifdef USE_CUDA_NAMES
+    function hipblasZscalStridedBatched_64_(handle,n,alpha,x,incx,stridex,batchCount) bind(c, name="cublasZscalStridedBatched_64")
+#else
+    function hipblasZscalStridedBatched_64_(handle,n,alpha,x,incx,stridex,batchCount) bind(c, name="hipblasZscalStridedBatched_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZscalStridedBatched_64_
+      type(c_ptr),value :: handle
+      integer(c_int64_t),value :: n
+      complex(c_double_complex) :: alpha
+      type(c_ptr),value :: x
+      integer(c_int64_t),value :: incx
+      integer(c_int64_t),value :: stridex
+      integer(c_int64_t),value :: batchCount
+    end function
+  end interface
+
+  interface hipblasCsscalStridedBatched_64
+#ifdef USE_CUDA_NAMES
+    function hipblasCsscalStridedBatched_64_(handle,n,alpha,x,incx,stridex,batchCount) bind(c, name="cublasCsscalStridedBatched_64")
+#else
+    function hipblasCsscalStridedBatched_64_(handle,n,alpha,x,incx,stridex,batchCount) bind(c, name="hipblasCsscalStridedBatched_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCsscalStridedBatched_64_
+      type(c_ptr),value :: handle
+      integer(c_int64_t),value :: n
+      real(c_float) :: alpha
+      type(c_ptr),value :: x
+      integer(c_int64_t),value :: incx
+      integer(c_int64_t),value :: stridex
+      integer(c_int64_t),value :: batchCount
+    end function
+  end interface
+
+  interface hipblasZdscalStridedBatched_64
+#ifdef USE_CUDA_NAMES
+    function hipblasZdscalStridedBatched_64_(handle,n,alpha,x,incx,stridex,batchCount) bind(c, name="cublasZdscalStridedBatched_64")
+#else
+    function hipblasZdscalStridedBatched_64_(handle,n,alpha,x,incx,stridex,batchCount) bind(c, name="hipblasZdscalStridedBatched_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZdscalStridedBatched_64_
+      type(c_ptr),value :: handle
+      integer(c_int64_t),value :: n
+      real(c_double) :: alpha
+      type(c_ptr),value :: x
+      integer(c_int64_t),value :: incx
+      integer(c_int64_t),value :: stridex
+      integer(c_int64_t),value :: batchCount
+    end function
+  end interface
+
+  interface hipblasSswap_64
+#ifdef USE_CUDA_NAMES
+    function hipblasSswap_64_(handle,n,x,incx,y,incy) bind(c, name="cublasSswap_v2_64")
+#else
+    function hipblasSswap_64_(handle,n,x,incx,y,incy) bind(c, name="hipblasSswap_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSswap_64_
+      type(c_ptr),value :: handle
+      integer(c_int64_t),value :: n
+      type(c_ptr),value :: x
+      integer(c_int64_t),value :: incx
+      type(c_ptr),value :: y
+      integer(c_int64_t),value :: incy
+    end function
+  end interface
+
+  interface hipblasDswap_64
+#ifdef USE_CUDA_NAMES
+    function hipblasDswap_64_(handle,n,x,incx,y,incy) bind(c, name="cublasDswap_v2_64")
+#else
+    function hipblasDswap_64_(handle,n,x,incx,y,incy) bind(c, name="hipblasDswap_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDswap_64_
+      type(c_ptr),value :: handle
+      integer(c_int64_t),value :: n
+      type(c_ptr),value :: x
+      integer(c_int64_t),value :: incx
+      type(c_ptr),value :: y
+      integer(c_int64_t),value :: incy
+    end function
+  end interface
+
+  interface hipblasCswap_64
+#ifdef USE_CUDA_NAMES
+    function hipblasCswap_64_(handle,n,x,incx,y,incy) bind(c, name="cublasCswap_v2_64")
+#else
+    function hipblasCswap_64_(handle,n,x,incx,y,incy) bind(c, name="hipblasCswap_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCswap_64_
+      type(c_ptr),value :: handle
+      integer(c_int64_t),value :: n
+      type(c_ptr),value :: x
+      integer(c_int64_t),value :: incx
+      type(c_ptr),value :: y
+      integer(c_int64_t),value :: incy
+    end function
+  end interface
+
+  interface hipblasZswap_64
+#ifdef USE_CUDA_NAMES
+    function hipblasZswap_64_(handle,n,x,incx,y,incy) bind(c, name="cublasZswap_v2_64")
+#else
+    function hipblasZswap_64_(handle,n,x,incx,y,incy) bind(c, name="hipblasZswap_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZswap_64_
+      type(c_ptr),value :: handle
+      integer(c_int64_t),value :: n
+      type(c_ptr),value :: x
+      integer(c_int64_t),value :: incx
+      type(c_ptr),value :: y
+      integer(c_int64_t),value :: incy
+    end function
+  end interface
+
+  interface hipblasSswapBatched_64
+#ifdef USE_CUDA_NAMES
+    function hipblasSswapBatched_64_(handle,n,x,incx,y,incy,batchCount) bind(c, name="cublasSswapBatched_64")
+#else
+    function hipblasSswapBatched_64_(handle,n,x,incx,y,incy,batchCount) bind(c, name="hipblasSswapBatched_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSswapBatched_64_
+      type(c_ptr),value :: handle
+      integer(c_int64_t),value :: n
+      type(c_ptr) :: x
+      integer(c_int64_t),value :: incx
+      type(c_ptr) :: y
+      integer(c_int64_t),value :: incy
+      integer(c_int64_t),value :: batchCount
+    end function
+  end interface
+
+  interface hipblasDswapBatched_64
+#ifdef USE_CUDA_NAMES
+    function hipblasDswapBatched_64_(handle,n,x,incx,y,incy,batchCount) bind(c, name="cublasDswapBatched_64")
+#else
+    function hipblasDswapBatched_64_(handle,n,x,incx,y,incy,batchCount) bind(c, name="hipblasDswapBatched_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDswapBatched_64_
+      type(c_ptr),value :: handle
+      integer(c_int64_t),value :: n
+      type(c_ptr) :: x
+      integer(c_int64_t),value :: incx
+      type(c_ptr) :: y
+      integer(c_int64_t),value :: incy
+      integer(c_int64_t),value :: batchCount
+    end function
+  end interface
+
+  interface hipblasCswapBatched_64
+#ifdef USE_CUDA_NAMES
+    function hipblasCswapBatched_64_(handle,n,x,incx,y,incy,batchCount) bind(c, name="cublasCswapBatched_64")
+#else
+    function hipblasCswapBatched_64_(handle,n,x,incx,y,incy,batchCount) bind(c, name="hipblasCswapBatched_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCswapBatched_64_
+      type(c_ptr),value :: handle
+      integer(c_int64_t),value :: n
+      type(c_ptr) :: x
+      integer(c_int64_t),value :: incx
+      type(c_ptr) :: y
+      integer(c_int64_t),value :: incy
+      integer(c_int64_t),value :: batchCount
+    end function
+  end interface
+
+  interface hipblasZswapBatched_64
+#ifdef USE_CUDA_NAMES
+    function hipblasZswapBatched_64_(handle,n,x,incx,y,incy,batchCount) bind(c, name="cublasZswapBatched_64")
+#else
+    function hipblasZswapBatched_64_(handle,n,x,incx,y,incy,batchCount) bind(c, name="hipblasZswapBatched_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZswapBatched_64_
+      type(c_ptr),value :: handle
+      integer(c_int64_t),value :: n
+      type(c_ptr) :: x
+      integer(c_int64_t),value :: incx
+      type(c_ptr) :: y
+      integer(c_int64_t),value :: incy
+      integer(c_int64_t),value :: batchCount
+    end function
+  end interface
+
+  interface hipblasSswapStridedBatched_64
+#ifdef USE_CUDA_NAMES
+    function hipblasSswapStridedBatched_64_(handle,n,x,incx,stridex,y,incy,stridey,batchCount) bind(c, name="cublasSswapStridedBatched_64")
+#else
+    function hipblasSswapStridedBatched_64_(handle,n,x,incx,stridex,y,incy,stridey,batchCount) bind(c, name="hipblasSswapStridedBatched_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSswapStridedBatched_64_
+      type(c_ptr),value :: handle
+      integer(c_int64_t),value :: n
+      type(c_ptr),value :: x
+      integer(c_int64_t),value :: incx
+      integer(c_int64_t),value :: stridex
+      type(c_ptr),value :: y
+      integer(c_int64_t),value :: incy
+      integer(c_int64_t),value :: stridey
+      integer(c_int64_t),value :: batchCount
+    end function
+  end interface
+
+  interface hipblasDswapStridedBatched_64
+#ifdef USE_CUDA_NAMES
+    function hipblasDswapStridedBatched_64_(handle,n,x,incx,stridex,y,incy,stridey,batchCount) bind(c, name="cublasDswapStridedBatched_64")
+#else
+    function hipblasDswapStridedBatched_64_(handle,n,x,incx,stridex,y,incy,stridey,batchCount) bind(c, name="hipblasDswapStridedBatched_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDswapStridedBatched_64_
+      type(c_ptr),value :: handle
+      integer(c_int64_t),value :: n
+      type(c_ptr),value :: x
+      integer(c_int64_t),value :: incx
+      integer(c_int64_t),value :: stridex
+      type(c_ptr),value :: y
+      integer(c_int64_t),value :: incy
+      integer(c_int64_t),value :: stridey
+      integer(c_int64_t),value :: batchCount
+    end function
+  end interface
+
+  interface hipblasCswapStridedBatched_64
+#ifdef USE_CUDA_NAMES
+    function hipblasCswapStridedBatched_64_(handle,n,x,incx,stridex,y,incy,stridey,batchCount) bind(c, name="cublasCswapStridedBatched_64")
+#else
+    function hipblasCswapStridedBatched_64_(handle,n,x,incx,stridex,y,incy,stridey,batchCount) bind(c, name="hipblasCswapStridedBatched_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCswapStridedBatched_64_
+      type(c_ptr),value :: handle
+      integer(c_int64_t),value :: n
+      type(c_ptr),value :: x
+      integer(c_int64_t),value :: incx
+      integer(c_int64_t),value :: stridex
+      type(c_ptr),value :: y
+      integer(c_int64_t),value :: incy
+      integer(c_int64_t),value :: stridey
+      integer(c_int64_t),value :: batchCount
+    end function
+  end interface
+
+  interface hipblasZswapStridedBatched_64
+#ifdef USE_CUDA_NAMES
+    function hipblasZswapStridedBatched_64_(handle,n,x,incx,stridex,y,incy,stridey,batchCount) bind(c, name="cublasZswapStridedBatched_64")
+#else
+    function hipblasZswapStridedBatched_64_(handle,n,x,incx,stridex,y,incy,stridey,batchCount) bind(c, name="hipblasZswapStridedBatched_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZswapStridedBatched_64_
+      type(c_ptr),value :: handle
+      integer(c_int64_t),value :: n
+      type(c_ptr),value :: x
+      integer(c_int64_t),value :: incx
+      integer(c_int64_t),value :: stridex
+      type(c_ptr),value :: y
+      integer(c_int64_t),value :: incy
+      integer(c_int64_t),value :: stridey
+      integer(c_int64_t),value :: batchCount
+    end function
+  end interface
+
+  interface hipblasSgbmv_64
+#ifdef USE_CUDA_NAMES
+    function hipblasSgbmv_64_(handle,trans,m,n,kl,ku,alpha,AP,lda,x,incx,beta,y,incy) bind(c, name="cublasSgbmv_v2_64")
+#else
+    function hipblasSgbmv_64_(handle,trans,m,n,kl,ku,alpha,AP,lda,x,incx,beta,y,incy) bind(c, name="hipblasSgbmv_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSgbmv_64_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_OP_N)),value :: trans
+      integer(c_int64_t),value :: m
+      integer(c_int64_t),value :: n
+      integer(c_int64_t),value :: kl
+      integer(c_int64_t),value :: ku
+      real(c_float) :: alpha
+      type(c_ptr),value :: AP
+      integer(c_int64_t),value :: lda
+      type(c_ptr),value :: x
+      integer(c_int64_t),value :: incx
+      real(c_float) :: beta
+      type(c_ptr),value :: y
+      integer(c_int64_t),value :: incy
+    end function
+  end interface
+
+  interface hipblasDgbmv_64
+#ifdef USE_CUDA_NAMES
+    function hipblasDgbmv_64_(handle,trans,m,n,kl,ku,alpha,AP,lda,x,incx,beta,y,incy) bind(c, name="cublasDgbmv_v2_64")
+#else
+    function hipblasDgbmv_64_(handle,trans,m,n,kl,ku,alpha,AP,lda,x,incx,beta,y,incy) bind(c, name="hipblasDgbmv_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDgbmv_64_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_OP_N)),value :: trans
+      integer(c_int64_t),value :: m
+      integer(c_int64_t),value :: n
+      integer(c_int64_t),value :: kl
+      integer(c_int64_t),value :: ku
+      real(c_double) :: alpha
+      type(c_ptr),value :: AP
+      integer(c_int64_t),value :: lda
+      type(c_ptr),value :: x
+      integer(c_int64_t),value :: incx
+      real(c_double) :: beta
+      type(c_ptr),value :: y
+      integer(c_int64_t),value :: incy
+    end function
+  end interface
+
+  interface hipblasCgbmv_64
+#ifdef USE_CUDA_NAMES
+    function hipblasCgbmv_64_(handle,trans,m,n,kl,ku,alpha,AP,lda,x,incx,beta,y,incy) bind(c, name="cublasCgbmv_v2_64")
+#else
+    function hipblasCgbmv_64_(handle,trans,m,n,kl,ku,alpha,AP,lda,x,incx,beta,y,incy) bind(c, name="hipblasCgbmv_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCgbmv_64_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_OP_N)),value :: trans
+      integer(c_int64_t),value :: m
+      integer(c_int64_t),value :: n
+      integer(c_int64_t),value :: kl
+      integer(c_int64_t),value :: ku
+      complex(c_float_complex) :: alpha
+      type(c_ptr),value :: AP
+      integer(c_int64_t),value :: lda
+      type(c_ptr),value :: x
+      integer(c_int64_t),value :: incx
+      complex(c_float_complex) :: beta
+      type(c_ptr),value :: y
+      integer(c_int64_t),value :: incy
+    end function
+  end interface
+
+  interface hipblasZgbmv_64
+#ifdef USE_CUDA_NAMES
+    function hipblasZgbmv_64_(handle,trans,m,n,kl,ku,alpha,AP,lda,x,incx,beta,y,incy) bind(c, name="cublasZgbmv_v2_64")
+#else
+    function hipblasZgbmv_64_(handle,trans,m,n,kl,ku,alpha,AP,lda,x,incx,beta,y,incy) bind(c, name="hipblasZgbmv_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZgbmv_64_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_OP_N)),value :: trans
+      integer(c_int64_t),value :: m
+      integer(c_int64_t),value :: n
+      integer(c_int64_t),value :: kl
+      integer(c_int64_t),value :: ku
+      complex(c_double_complex) :: alpha
+      type(c_ptr),value :: AP
+      integer(c_int64_t),value :: lda
+      type(c_ptr),value :: x
+      integer(c_int64_t),value :: incx
+      complex(c_double_complex) :: beta
+      type(c_ptr),value :: y
+      integer(c_int64_t),value :: incy
+    end function
+  end interface
+
+  interface hipblasSgbmvBatched_64
+#ifdef USE_CUDA_NAMES
+    function hipblasSgbmvBatched_64_(handle,trans,m,n,kl,ku,alpha,AP,lda,x,incx,beta,y,incy,batchCount) bind(c, name="cublasSgbmvBatched_64")
+#else
+    function hipblasSgbmvBatched_64_(handle,trans,m,n,kl,ku,alpha,AP,lda,x,incx,beta,y,incy,batchCount) bind(c, name="hipblasSgbmvBatched_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSgbmvBatched_64_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_OP_N)),value :: trans
+      integer(c_int64_t),value :: m
+      integer(c_int64_t),value :: n
+      integer(c_int64_t),value :: kl
+      integer(c_int64_t),value :: ku
+      real(c_float) :: alpha
+      type(c_ptr) :: AP
+      integer(c_int64_t),value :: lda
+      type(c_ptr) :: x
+      integer(c_int64_t),value :: incx
+      real(c_float) :: beta
+      type(c_ptr) :: y
+      integer(c_int64_t),value :: incy
+      integer(c_int64_t),value :: batchCount
+    end function
+  end interface
+
+  interface hipblasDgbmvBatched_64
+#ifdef USE_CUDA_NAMES
+    function hipblasDgbmvBatched_64_(handle,trans,m,n,kl,ku,alpha,AP,lda,x,incx,beta,y,incy,batchCount) bind(c, name="cublasDgbmvBatched_64")
+#else
+    function hipblasDgbmvBatched_64_(handle,trans,m,n,kl,ku,alpha,AP,lda,x,incx,beta,y,incy,batchCount) bind(c, name="hipblasDgbmvBatched_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDgbmvBatched_64_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_OP_N)),value :: trans
+      integer(c_int64_t),value :: m
+      integer(c_int64_t),value :: n
+      integer(c_int64_t),value :: kl
+      integer(c_int64_t),value :: ku
+      real(c_double) :: alpha
+      type(c_ptr) :: AP
+      integer(c_int64_t),value :: lda
+      type(c_ptr) :: x
+      integer(c_int64_t),value :: incx
+      real(c_double) :: beta
+      type(c_ptr) :: y
+      integer(c_int64_t),value :: incy
+      integer(c_int64_t),value :: batchCount
+    end function
+  end interface
+
+  interface hipblasCgbmvBatched_64
+#ifdef USE_CUDA_NAMES
+    function hipblasCgbmvBatched_64_(handle,trans,m,n,kl,ku,alpha,AP,lda,x,incx,beta,y,incy,batchCount) bind(c, name="cublasCgbmvBatched_64")
+#else
+    function hipblasCgbmvBatched_64_(handle,trans,m,n,kl,ku,alpha,AP,lda,x,incx,beta,y,incy,batchCount) bind(c, name="hipblasCgbmvBatched_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCgbmvBatched_64_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_OP_N)),value :: trans
+      integer(c_int64_t),value :: m
+      integer(c_int64_t),value :: n
+      integer(c_int64_t),value :: kl
+      integer(c_int64_t),value :: ku
+      complex(c_float_complex) :: alpha
+      type(c_ptr) :: AP
+      integer(c_int64_t),value :: lda
+      type(c_ptr) :: x
+      integer(c_int64_t),value :: incx
+      complex(c_float_complex) :: beta
+      type(c_ptr) :: y
+      integer(c_int64_t),value :: incy
+      integer(c_int64_t),value :: batchCount
+    end function
+  end interface
+
+  interface hipblasZgbmvBatched_64
+#ifdef USE_CUDA_NAMES
+    function hipblasZgbmvBatched_64_(handle,trans,m,n,kl,ku,alpha,AP,lda,x,incx,beta,y,incy,batchCount) bind(c, name="cublasZgbmvBatched_64")
+#else
+    function hipblasZgbmvBatched_64_(handle,trans,m,n,kl,ku,alpha,AP,lda,x,incx,beta,y,incy,batchCount) bind(c, name="hipblasZgbmvBatched_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZgbmvBatched_64_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_OP_N)),value :: trans
+      integer(c_int64_t),value :: m
+      integer(c_int64_t),value :: n
+      integer(c_int64_t),value :: kl
+      integer(c_int64_t),value :: ku
+      complex(c_double_complex) :: alpha
+      type(c_ptr) :: AP
+      integer(c_int64_t),value :: lda
+      type(c_ptr) :: x
+      integer(c_int64_t),value :: incx
+      complex(c_double_complex) :: beta
+      type(c_ptr) :: y
+      integer(c_int64_t),value :: incy
+      integer(c_int64_t),value :: batchCount
+    end function
+  end interface
+
+  interface hipblasSgbmvStridedBatched_64
+#ifdef USE_CUDA_NAMES
+    function hipblasSgbmvStridedBatched_64_(handle,trans,m,n,kl,ku,alpha,AP,lda,strideA,x,incx,stridex,beta,y,incy,stridey,batchCount) bind(c, name="cublasSgbmvStridedBatched_64")
+#else
+    function hipblasSgbmvStridedBatched_64_(handle,trans,m,n,kl,ku,alpha,AP,lda,strideA,x,incx,stridex,beta,y,incy,stridey,batchCount) bind(c, name="hipblasSgbmvStridedBatched_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSgbmvStridedBatched_64_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_OP_N)),value :: trans
+      integer(c_int64_t),value :: m
+      integer(c_int64_t),value :: n
+      integer(c_int64_t),value :: kl
+      integer(c_int64_t),value :: ku
+      real(c_float) :: alpha
+      type(c_ptr),value :: AP
+      integer(c_int64_t),value :: lda
+      integer(c_int64_t),value :: strideA
+      type(c_ptr),value :: x
+      integer(c_int64_t),value :: incx
+      integer(c_int64_t),value :: stridex
+      real(c_float) :: beta
+      type(c_ptr),value :: y
+      integer(c_int64_t),value :: incy
+      integer(c_int64_t),value :: stridey
+      integer(c_int64_t),value :: batchCount
+    end function
+  end interface
+
+  interface hipblasDgbmvStridedBatched_64
+#ifdef USE_CUDA_NAMES
+    function hipblasDgbmvStridedBatched_64_(handle,trans,m,n,kl,ku,alpha,AP,lda,strideA,x,incx,stridex,beta,y,incy,stridey,batchCount) bind(c, name="cublasDgbmvStridedBatched_64")
+#else
+    function hipblasDgbmvStridedBatched_64_(handle,trans,m,n,kl,ku,alpha,AP,lda,strideA,x,incx,stridex,beta,y,incy,stridey,batchCount) bind(c, name="hipblasDgbmvStridedBatched_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDgbmvStridedBatched_64_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_OP_N)),value :: trans
+      integer(c_int64_t),value :: m
+      integer(c_int64_t),value :: n
+      integer(c_int64_t),value :: kl
+      integer(c_int64_t),value :: ku
+      real(c_double) :: alpha
+      type(c_ptr),value :: AP
+      integer(c_int64_t),value :: lda
+      integer(c_int64_t),value :: strideA
+      type(c_ptr),value :: x
+      integer(c_int64_t),value :: incx
+      integer(c_int64_t),value :: stridex
+      real(c_double) :: beta
+      type(c_ptr),value :: y
+      integer(c_int64_t),value :: incy
+      integer(c_int64_t),value :: stridey
+      integer(c_int64_t),value :: batchCount
+    end function
+  end interface
+
+  interface hipblasCgbmvStridedBatched_64
+#ifdef USE_CUDA_NAMES
+    function hipblasCgbmvStridedBatched_64_(handle,trans,m,n,kl,ku,alpha,AP,lda,strideA,x,incx,stridex,beta,y,incy,stridey,batchCount) bind(c, name="cublasCgbmvStridedBatched_64")
+#else
+    function hipblasCgbmvStridedBatched_64_(handle,trans,m,n,kl,ku,alpha,AP,lda,strideA,x,incx,stridex,beta,y,incy,stridey,batchCount) bind(c, name="hipblasCgbmvStridedBatched_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCgbmvStridedBatched_64_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_OP_N)),value :: trans
+      integer(c_int64_t),value :: m
+      integer(c_int64_t),value :: n
+      integer(c_int64_t),value :: kl
+      integer(c_int64_t),value :: ku
+      complex(c_float_complex) :: alpha
+      type(c_ptr),value :: AP
+      integer(c_int64_t),value :: lda
+      integer(c_int64_t),value :: strideA
+      type(c_ptr),value :: x
+      integer(c_int64_t),value :: incx
+      integer(c_int64_t),value :: stridex
+      complex(c_float_complex) :: beta
+      type(c_ptr),value :: y
+      integer(c_int64_t),value :: incy
+      integer(c_int64_t),value :: stridey
+      integer(c_int64_t),value :: batchCount
+    end function
+  end interface
+
+  interface hipblasZgbmvStridedBatched_64
+#ifdef USE_CUDA_NAMES
+    function hipblasZgbmvStridedBatched_64_(handle,trans,m,n,kl,ku,alpha,AP,lda,strideA,x,incx,stridex,beta,y,incy,stridey,batchCount) bind(c, name="cublasZgbmvStridedBatched_64")
+#else
+    function hipblasZgbmvStridedBatched_64_(handle,trans,m,n,kl,ku,alpha,AP,lda,strideA,x,incx,stridex,beta,y,incy,stridey,batchCount) bind(c, name="hipblasZgbmvStridedBatched_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZgbmvStridedBatched_64_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_OP_N)),value :: trans
+      integer(c_int64_t),value :: m
+      integer(c_int64_t),value :: n
+      integer(c_int64_t),value :: kl
+      integer(c_int64_t),value :: ku
+      complex(c_double_complex) :: alpha
+      type(c_ptr),value :: AP
+      integer(c_int64_t),value :: lda
+      integer(c_int64_t),value :: strideA
+      type(c_ptr),value :: x
+      integer(c_int64_t),value :: incx
+      integer(c_int64_t),value :: stridex
+      complex(c_double_complex) :: beta
+      type(c_ptr),value :: y
+      integer(c_int64_t),value :: incy
+      integer(c_int64_t),value :: stridey
+      integer(c_int64_t),value :: batchCount
+    end function
+  end interface
+
+  interface hipblasSgemv_64
+#ifdef USE_CUDA_NAMES
+    function hipblasSgemv_64_(handle,trans,m,n,alpha,AP,lda,x,incx,beta,y,incy) bind(c, name="cublasSgemv_v2_64")
+#else
+    function hipblasSgemv_64_(handle,trans,m,n,alpha,AP,lda,x,incx,beta,y,incy) bind(c, name="hipblasSgemv_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSgemv_64_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_OP_N)),value :: trans
+      integer(c_int64_t),value :: m
+      integer(c_int64_t),value :: n
+      real(c_float) :: alpha
+      type(c_ptr),value :: AP
+      integer(c_int64_t),value :: lda
+      type(c_ptr),value :: x
+      integer(c_int64_t),value :: incx
+      real(c_float) :: beta
+      type(c_ptr),value :: y
+      integer(c_int64_t),value :: incy
+    end function
+  end interface
+
+  interface hipblasDgemv_64
+#ifdef USE_CUDA_NAMES
+    function hipblasDgemv_64_(handle,trans,m,n,alpha,AP,lda,x,incx,beta,y,incy) bind(c, name="cublasDgemv_v2_64")
+#else
+    function hipblasDgemv_64_(handle,trans,m,n,alpha,AP,lda,x,incx,beta,y,incy) bind(c, name="hipblasDgemv_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDgemv_64_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_OP_N)),value :: trans
+      integer(c_int64_t),value :: m
+      integer(c_int64_t),value :: n
+      real(c_double) :: alpha
+      type(c_ptr),value :: AP
+      integer(c_int64_t),value :: lda
+      type(c_ptr),value :: x
+      integer(c_int64_t),value :: incx
+      real(c_double) :: beta
+      type(c_ptr),value :: y
+      integer(c_int64_t),value :: incy
+    end function
+  end interface
+
+  interface hipblasCgemv_64
+#ifdef USE_CUDA_NAMES
+    function hipblasCgemv_64_(handle,trans,m,n,alpha,AP,lda,x,incx,beta,y,incy) bind(c, name="cublasCgemv_v2_64")
+#else
+    function hipblasCgemv_64_(handle,trans,m,n,alpha,AP,lda,x,incx,beta,y,incy) bind(c, name="hipblasCgemv_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCgemv_64_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_OP_N)),value :: trans
+      integer(c_int64_t),value :: m
+      integer(c_int64_t),value :: n
+      complex(c_float_complex) :: alpha
+      type(c_ptr),value :: AP
+      integer(c_int64_t),value :: lda
+      type(c_ptr),value :: x
+      integer(c_int64_t),value :: incx
+      complex(c_float_complex) :: beta
+      type(c_ptr),value :: y
+      integer(c_int64_t),value :: incy
+    end function
+  end interface
+
+  interface hipblasZgemv_64
+#ifdef USE_CUDA_NAMES
+    function hipblasZgemv_64_(handle,trans,m,n,alpha,AP,lda,x,incx,beta,y,incy) bind(c, name="cublasZgemv_v2_64")
+#else
+    function hipblasZgemv_64_(handle,trans,m,n,alpha,AP,lda,x,incx,beta,y,incy) bind(c, name="hipblasZgemv_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZgemv_64_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_OP_N)),value :: trans
+      integer(c_int64_t),value :: m
+      integer(c_int64_t),value :: n
+      complex(c_double_complex) :: alpha
+      type(c_ptr),value :: AP
+      integer(c_int64_t),value :: lda
+      type(c_ptr),value :: x
+      integer(c_int64_t),value :: incx
+      complex(c_double_complex) :: beta
+      type(c_ptr),value :: y
+      integer(c_int64_t),value :: incy
+    end function
+  end interface
+
+  interface hipblasSgemvBatched_64
+#ifdef USE_CUDA_NAMES
+    function hipblasSgemvBatched_64_(handle,trans,m,n,alpha,AP,lda,x,incx,beta,y,incy,batchCount) bind(c, name="cublasSgemvBatched_64")
+#else
+    function hipblasSgemvBatched_64_(handle,trans,m,n,alpha,AP,lda,x,incx,beta,y,incy,batchCount) bind(c, name="hipblasSgemvBatched_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSgemvBatched_64_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_OP_N)),value :: trans
+      integer(c_int64_t),value :: m
+      integer(c_int64_t),value :: n
+      real(c_float) :: alpha
+      type(c_ptr) :: AP
+      integer(c_int64_t),value :: lda
+      type(c_ptr) :: x
+      integer(c_int64_t),value :: incx
+      real(c_float) :: beta
+      type(c_ptr) :: y
+      integer(c_int64_t),value :: incy
+      integer(c_int64_t),value :: batchCount
+    end function
+  end interface
+
+  interface hipblasDgemvBatched_64
+#ifdef USE_CUDA_NAMES
+    function hipblasDgemvBatched_64_(handle,trans,m,n,alpha,AP,lda,x,incx,beta,y,incy,batchCount) bind(c, name="cublasDgemvBatched_64")
+#else
+    function hipblasDgemvBatched_64_(handle,trans,m,n,alpha,AP,lda,x,incx,beta,y,incy,batchCount) bind(c, name="hipblasDgemvBatched_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDgemvBatched_64_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_OP_N)),value :: trans
+      integer(c_int64_t),value :: m
+      integer(c_int64_t),value :: n
+      real(c_double) :: alpha
+      type(c_ptr) :: AP
+      integer(c_int64_t),value :: lda
+      type(c_ptr) :: x
+      integer(c_int64_t),value :: incx
+      real(c_double) :: beta
+      type(c_ptr) :: y
+      integer(c_int64_t),value :: incy
+      integer(c_int64_t),value :: batchCount
+    end function
+  end interface
+
+  interface hipblasCgemvBatched_64
+#ifdef USE_CUDA_NAMES
+    function hipblasCgemvBatched_64_(handle,trans,m,n,alpha,AP,lda,x,incx,beta,y,incy,batchCount) bind(c, name="cublasCgemvBatched_64")
+#else
+    function hipblasCgemvBatched_64_(handle,trans,m,n,alpha,AP,lda,x,incx,beta,y,incy,batchCount) bind(c, name="hipblasCgemvBatched_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCgemvBatched_64_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_OP_N)),value :: trans
+      integer(c_int64_t),value :: m
+      integer(c_int64_t),value :: n
+      complex(c_float_complex) :: alpha
+      type(c_ptr) :: AP
+      integer(c_int64_t),value :: lda
+      type(c_ptr) :: x
+      integer(c_int64_t),value :: incx
+      complex(c_float_complex) :: beta
+      type(c_ptr) :: y
+      integer(c_int64_t),value :: incy
+      integer(c_int64_t),value :: batchCount
+    end function
+  end interface
+
+  interface hipblasZgemvBatched_64
+#ifdef USE_CUDA_NAMES
+    function hipblasZgemvBatched_64_(handle,trans,m,n,alpha,AP,lda,x,incx,beta,y,incy,batchCount) bind(c, name="cublasZgemvBatched_64")
+#else
+    function hipblasZgemvBatched_64_(handle,trans,m,n,alpha,AP,lda,x,incx,beta,y,incy,batchCount) bind(c, name="hipblasZgemvBatched_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZgemvBatched_64_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_OP_N)),value :: trans
+      integer(c_int64_t),value :: m
+      integer(c_int64_t),value :: n
+      complex(c_double_complex) :: alpha
+      type(c_ptr) :: AP
+      integer(c_int64_t),value :: lda
+      type(c_ptr) :: x
+      integer(c_int64_t),value :: incx
+      complex(c_double_complex) :: beta
+      type(c_ptr) :: y
+      integer(c_int64_t),value :: incy
+      integer(c_int64_t),value :: batchCount
+    end function
+  end interface
+
+  interface hipblasSgemvStridedBatched_64
+#ifdef USE_CUDA_NAMES
+    function hipblasSgemvStridedBatched_64_(handle,transA,m,n,alpha,AP,lda,strideA,x,incx,stridex,beta,y,incy,stridey,batchCount) bind(c, name="cublasSgemvStridedBatched_64")
+#else
+    function hipblasSgemvStridedBatched_64_(handle,transA,m,n,alpha,AP,lda,strideA,x,incx,stridex,beta,y,incy,stridey,batchCount) bind(c, name="hipblasSgemvStridedBatched_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSgemvStridedBatched_64_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_OP_N)),value :: transA
+      integer(c_int64_t),value :: m
+      integer(c_int64_t),value :: n
+      real(c_float) :: alpha
+      type(c_ptr),value :: AP
+      integer(c_int64_t),value :: lda
+      integer(c_int64_t),value :: strideA
+      type(c_ptr),value :: x
+      integer(c_int64_t),value :: incx
+      integer(c_int64_t),value :: stridex
+      real(c_float) :: beta
+      type(c_ptr),value :: y
+      integer(c_int64_t),value :: incy
+      integer(c_int64_t),value :: stridey
+      integer(c_int64_t),value :: batchCount
+    end function
+  end interface
+
+  interface hipblasDgemvStridedBatched_64
+#ifdef USE_CUDA_NAMES
+    function hipblasDgemvStridedBatched_64_(handle,transA,m,n,alpha,AP,lda,strideA,x,incx,stridex,beta,y,incy,stridey,batchCount) bind(c, name="cublasDgemvStridedBatched_64")
+#else
+    function hipblasDgemvStridedBatched_64_(handle,transA,m,n,alpha,AP,lda,strideA,x,incx,stridex,beta,y,incy,stridey,batchCount) bind(c, name="hipblasDgemvStridedBatched_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDgemvStridedBatched_64_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_OP_N)),value :: transA
+      integer(c_int64_t),value :: m
+      integer(c_int64_t),value :: n
+      real(c_double) :: alpha
+      type(c_ptr),value :: AP
+      integer(c_int64_t),value :: lda
+      integer(c_int64_t),value :: strideA
+      type(c_ptr),value :: x
+      integer(c_int64_t),value :: incx
+      integer(c_int64_t),value :: stridex
+      real(c_double) :: beta
+      type(c_ptr),value :: y
+      integer(c_int64_t),value :: incy
+      integer(c_int64_t),value :: stridey
+      integer(c_int64_t),value :: batchCount
+    end function
+  end interface
+
+  interface hipblasCgemvStridedBatched_64
+#ifdef USE_CUDA_NAMES
+    function hipblasCgemvStridedBatched_64_(handle,transA,m,n,alpha,AP,lda,strideA,x,incx,stridex,beta,y,incy,stridey,batchCount) bind(c, name="cublasCgemvStridedBatched_64")
+#else
+    function hipblasCgemvStridedBatched_64_(handle,transA,m,n,alpha,AP,lda,strideA,x,incx,stridex,beta,y,incy,stridey,batchCount) bind(c, name="hipblasCgemvStridedBatched_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCgemvStridedBatched_64_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_OP_N)),value :: transA
+      integer(c_int64_t),value :: m
+      integer(c_int64_t),value :: n
+      complex(c_float_complex) :: alpha
+      type(c_ptr),value :: AP
+      integer(c_int64_t),value :: lda
+      integer(c_int64_t),value :: strideA
+      type(c_ptr),value :: x
+      integer(c_int64_t),value :: incx
+      integer(c_int64_t),value :: stridex
+      complex(c_float_complex) :: beta
+      type(c_ptr),value :: y
+      integer(c_int64_t),value :: incy
+      integer(c_int64_t),value :: stridey
+      integer(c_int64_t),value :: batchCount
+    end function
+  end interface
+
+  interface hipblasZgemvStridedBatched_64
+#ifdef USE_CUDA_NAMES
+    function hipblasZgemvStridedBatched_64_(handle,transA,m,n,alpha,AP,lda,strideA,x,incx,stridex,beta,y,incy,stridey,batchCount) bind(c, name="cublasZgemvStridedBatched_64")
+#else
+    function hipblasZgemvStridedBatched_64_(handle,transA,m,n,alpha,AP,lda,strideA,x,incx,stridex,beta,y,incy,stridey,batchCount) bind(c, name="hipblasZgemvStridedBatched_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZgemvStridedBatched_64_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_OP_N)),value :: transA
+      integer(c_int64_t),value :: m
+      integer(c_int64_t),value :: n
+      complex(c_double_complex) :: alpha
+      type(c_ptr),value :: AP
+      integer(c_int64_t),value :: lda
+      integer(c_int64_t),value :: strideA
+      type(c_ptr),value :: x
+      integer(c_int64_t),value :: incx
+      integer(c_int64_t),value :: stridex
+      complex(c_double_complex) :: beta
+      type(c_ptr),value :: y
+      integer(c_int64_t),value :: incy
+      integer(c_int64_t),value :: stridey
+      integer(c_int64_t),value :: batchCount
+    end function
+  end interface
+
+  interface hipblasSger_64
+#ifdef USE_CUDA_NAMES
+    function hipblasSger_64_(handle,m,n,alpha,x,incx,y,incy,AP,lda) bind(c, name="cublasSger_v2_64")
+#else
+    function hipblasSger_64_(handle,m,n,alpha,x,incx,y,incy,AP,lda) bind(c, name="hipblasSger_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSger_64_
+      type(c_ptr),value :: handle
+      integer(c_int64_t),value :: m
+      integer(c_int64_t),value :: n
+      real(c_float) :: alpha
+      type(c_ptr),value :: x
+      integer(c_int64_t),value :: incx
+      type(c_ptr),value :: y
+      integer(c_int64_t),value :: incy
+      type(c_ptr),value :: AP
+      integer(c_int64_t),value :: lda
+    end function
+  end interface
+
+  interface hipblasDger_64
+#ifdef USE_CUDA_NAMES
+    function hipblasDger_64_(handle,m,n,alpha,x,incx,y,incy,AP,lda) bind(c, name="cublasDger_v2_64")
+#else
+    function hipblasDger_64_(handle,m,n,alpha,x,incx,y,incy,AP,lda) bind(c, name="hipblasDger_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDger_64_
+      type(c_ptr),value :: handle
+      integer(c_int64_t),value :: m
+      integer(c_int64_t),value :: n
+      real(c_double) :: alpha
+      type(c_ptr),value :: x
+      integer(c_int64_t),value :: incx
+      type(c_ptr),value :: y
+      integer(c_int64_t),value :: incy
+      type(c_ptr),value :: AP
+      integer(c_int64_t),value :: lda
+    end function
+  end interface
+
+  interface hipblasCgeru_64
+#ifdef USE_CUDA_NAMES
+    function hipblasCgeru_64_(handle,m,n,alpha,x,incx,y,incy,AP,lda) bind(c, name="cublasCgeru_v2_64")
+#else
+    function hipblasCgeru_64_(handle,m,n,alpha,x,incx,y,incy,AP,lda) bind(c, name="hipblasCgeru_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCgeru_64_
+      type(c_ptr),value :: handle
+      integer(c_int64_t),value :: m
+      integer(c_int64_t),value :: n
+      complex(c_float_complex) :: alpha
+      type(c_ptr),value :: x
+      integer(c_int64_t),value :: incx
+      type(c_ptr),value :: y
+      integer(c_int64_t),value :: incy
+      type(c_ptr),value :: AP
+      integer(c_int64_t),value :: lda
+    end function
+  end interface
+
+  interface hipblasCgerc_64
+#ifdef USE_CUDA_NAMES
+    function hipblasCgerc_64_(handle,m,n,alpha,x,incx,y,incy,AP,lda) bind(c, name="cublasCgerc_v2_64")
+#else
+    function hipblasCgerc_64_(handle,m,n,alpha,x,incx,y,incy,AP,lda) bind(c, name="hipblasCgerc_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCgerc_64_
+      type(c_ptr),value :: handle
+      integer(c_int64_t),value :: m
+      integer(c_int64_t),value :: n
+      complex(c_float_complex) :: alpha
+      type(c_ptr),value :: x
+      integer(c_int64_t),value :: incx
+      type(c_ptr),value :: y
+      integer(c_int64_t),value :: incy
+      type(c_ptr),value :: AP
+      integer(c_int64_t),value :: lda
+    end function
+  end interface
+
+  interface hipblasZgeru_64
+#ifdef USE_CUDA_NAMES
+    function hipblasZgeru_64_(handle,m,n,alpha,x,incx,y,incy,AP,lda) bind(c, name="cublasZgeru_v2_64")
+#else
+    function hipblasZgeru_64_(handle,m,n,alpha,x,incx,y,incy,AP,lda) bind(c, name="hipblasZgeru_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZgeru_64_
+      type(c_ptr),value :: handle
+      integer(c_int64_t),value :: m
+      integer(c_int64_t),value :: n
+      complex(c_double_complex) :: alpha
+      type(c_ptr),value :: x
+      integer(c_int64_t),value :: incx
+      type(c_ptr),value :: y
+      integer(c_int64_t),value :: incy
+      type(c_ptr),value :: AP
+      integer(c_int64_t),value :: lda
+    end function
+  end interface
+
+  interface hipblasZgerc_64
+#ifdef USE_CUDA_NAMES
+    function hipblasZgerc_64_(handle,m,n,alpha,x,incx,y,incy,AP,lda) bind(c, name="cublasZgerc_v2_64")
+#else
+    function hipblasZgerc_64_(handle,m,n,alpha,x,incx,y,incy,AP,lda) bind(c, name="hipblasZgerc_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZgerc_64_
+      type(c_ptr),value :: handle
+      integer(c_int64_t),value :: m
+      integer(c_int64_t),value :: n
+      complex(c_double_complex) :: alpha
+      type(c_ptr),value :: x
+      integer(c_int64_t),value :: incx
+      type(c_ptr),value :: y
+      integer(c_int64_t),value :: incy
+      type(c_ptr),value :: AP
+      integer(c_int64_t),value :: lda
+    end function
+  end interface
+
+  interface hipblasSgerBatched_64
+#ifdef USE_CUDA_NAMES
+    function hipblasSgerBatched_64_(handle,m,n,alpha,x,incx,y,incy,AP,lda,batchCount) bind(c, name="cublasSgerBatched_64")
+#else
+    function hipblasSgerBatched_64_(handle,m,n,alpha,x,incx,y,incy,AP,lda,batchCount) bind(c, name="hipblasSgerBatched_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSgerBatched_64_
+      type(c_ptr),value :: handle
+      integer(c_int64_t),value :: m
+      integer(c_int64_t),value :: n
+      real(c_float) :: alpha
+      type(c_ptr) :: x
+      integer(c_int64_t),value :: incx
+      type(c_ptr) :: y
+      integer(c_int64_t),value :: incy
+      type(c_ptr) :: AP
+      integer(c_int64_t),value :: lda
+      integer(c_int64_t),value :: batchCount
+    end function
+  end interface
+
+  interface hipblasDgerBatched_64
+#ifdef USE_CUDA_NAMES
+    function hipblasDgerBatched_64_(handle,m,n,alpha,x,incx,y,incy,AP,lda,batchCount) bind(c, name="cublasDgerBatched_64")
+#else
+    function hipblasDgerBatched_64_(handle,m,n,alpha,x,incx,y,incy,AP,lda,batchCount) bind(c, name="hipblasDgerBatched_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDgerBatched_64_
+      type(c_ptr),value :: handle
+      integer(c_int64_t),value :: m
+      integer(c_int64_t),value :: n
+      real(c_double) :: alpha
+      type(c_ptr) :: x
+      integer(c_int64_t),value :: incx
+      type(c_ptr) :: y
+      integer(c_int64_t),value :: incy
+      type(c_ptr) :: AP
+      integer(c_int64_t),value :: lda
+      integer(c_int64_t),value :: batchCount
+    end function
+  end interface
+
+  interface hipblasCgeruBatched_64
+#ifdef USE_CUDA_NAMES
+    function hipblasCgeruBatched_64_(handle,m,n,alpha,x,incx,y,incy,AP,lda,batchCount) bind(c, name="cublasCgeruBatched_64")
+#else
+    function hipblasCgeruBatched_64_(handle,m,n,alpha,x,incx,y,incy,AP,lda,batchCount) bind(c, name="hipblasCgeruBatched_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCgeruBatched_64_
+      type(c_ptr),value :: handle
+      integer(c_int64_t),value :: m
+      integer(c_int64_t),value :: n
+      complex(c_float_complex) :: alpha
+      type(c_ptr) :: x
+      integer(c_int64_t),value :: incx
+      type(c_ptr) :: y
+      integer(c_int64_t),value :: incy
+      type(c_ptr) :: AP
+      integer(c_int64_t),value :: lda
+      integer(c_int64_t),value :: batchCount
+    end function
+  end interface
+
+  interface hipblasCgercBatched_64
+#ifdef USE_CUDA_NAMES
+    function hipblasCgercBatched_64_(handle,m,n,alpha,x,incx,y,incy,AP,lda,batchCount) bind(c, name="cublasCgercBatched_64")
+#else
+    function hipblasCgercBatched_64_(handle,m,n,alpha,x,incx,y,incy,AP,lda,batchCount) bind(c, name="hipblasCgercBatched_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCgercBatched_64_
+      type(c_ptr),value :: handle
+      integer(c_int64_t),value :: m
+      integer(c_int64_t),value :: n
+      complex(c_float_complex) :: alpha
+      type(c_ptr) :: x
+      integer(c_int64_t),value :: incx
+      type(c_ptr) :: y
+      integer(c_int64_t),value :: incy
+      type(c_ptr) :: AP
+      integer(c_int64_t),value :: lda
+      integer(c_int64_t),value :: batchCount
+    end function
+  end interface
+
+  interface hipblasZgeruBatched_64
+#ifdef USE_CUDA_NAMES
+    function hipblasZgeruBatched_64_(handle,m,n,alpha,x,incx,y,incy,AP,lda,batchCount) bind(c, name="cublasZgeruBatched_64")
+#else
+    function hipblasZgeruBatched_64_(handle,m,n,alpha,x,incx,y,incy,AP,lda,batchCount) bind(c, name="hipblasZgeruBatched_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZgeruBatched_64_
+      type(c_ptr),value :: handle
+      integer(c_int64_t),value :: m
+      integer(c_int64_t),value :: n
+      complex(c_double_complex) :: alpha
+      type(c_ptr) :: x
+      integer(c_int64_t),value :: incx
+      type(c_ptr) :: y
+      integer(c_int64_t),value :: incy
+      type(c_ptr) :: AP
+      integer(c_int64_t),value :: lda
+      integer(c_int64_t),value :: batchCount
+    end function
+  end interface
+
+  interface hipblasZgercBatched_64
+#ifdef USE_CUDA_NAMES
+    function hipblasZgercBatched_64_(handle,m,n,alpha,x,incx,y,incy,AP,lda,batchCount) bind(c, name="cublasZgercBatched_64")
+#else
+    function hipblasZgercBatched_64_(handle,m,n,alpha,x,incx,y,incy,AP,lda,batchCount) bind(c, name="hipblasZgercBatched_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZgercBatched_64_
+      type(c_ptr),value :: handle
+      integer(c_int64_t),value :: m
+      integer(c_int64_t),value :: n
+      complex(c_double_complex) :: alpha
+      type(c_ptr) :: x
+      integer(c_int64_t),value :: incx
+      type(c_ptr) :: y
+      integer(c_int64_t),value :: incy
+      type(c_ptr) :: AP
+      integer(c_int64_t),value :: lda
+      integer(c_int64_t),value :: batchCount
+    end function
+  end interface
+
+  interface hipblasSgerStridedBatched_64
+#ifdef USE_CUDA_NAMES
+    function hipblasSgerStridedBatched_64_(handle,m,n,alpha,x,incx,stridex,y,incy,stridey,AP,lda,strideA,batchCount) bind(c, name="cublasSgerStridedBatched_64")
+#else
+    function hipblasSgerStridedBatched_64_(handle,m,n,alpha,x,incx,stridex,y,incy,stridey,AP,lda,strideA,batchCount) bind(c, name="hipblasSgerStridedBatched_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSgerStridedBatched_64_
+      type(c_ptr),value :: handle
+      integer(c_int64_t),value :: m
+      integer(c_int64_t),value :: n
+      real(c_float) :: alpha
+      type(c_ptr),value :: x
+      integer(c_int64_t),value :: incx
+      integer(c_int64_t),value :: stridex
+      type(c_ptr),value :: y
+      integer(c_int64_t),value :: incy
+      integer(c_int64_t),value :: stridey
+      type(c_ptr),value :: AP
+      integer(c_int64_t),value :: lda
+      integer(c_int64_t),value :: strideA
+      integer(c_int64_t),value :: batchCount
+    end function
+  end interface
+
+  interface hipblasDgerStridedBatched_64
+#ifdef USE_CUDA_NAMES
+    function hipblasDgerStridedBatched_64_(handle,m,n,alpha,x,incx,stridex,y,incy,stridey,AP,lda,strideA,batchCount) bind(c, name="cublasDgerStridedBatched_64")
+#else
+    function hipblasDgerStridedBatched_64_(handle,m,n,alpha,x,incx,stridex,y,incy,stridey,AP,lda,strideA,batchCount) bind(c, name="hipblasDgerStridedBatched_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDgerStridedBatched_64_
+      type(c_ptr),value :: handle
+      integer(c_int64_t),value :: m
+      integer(c_int64_t),value :: n
+      real(c_double) :: alpha
+      type(c_ptr),value :: x
+      integer(c_int64_t),value :: incx
+      integer(c_int64_t),value :: stridex
+      type(c_ptr),value :: y
+      integer(c_int64_t),value :: incy
+      integer(c_int64_t),value :: stridey
+      type(c_ptr),value :: AP
+      integer(c_int64_t),value :: lda
+      integer(c_int64_t),value :: strideA
+      integer(c_int64_t),value :: batchCount
+    end function
+  end interface
+
+  interface hipblasCgeruStridedBatched_64
+#ifdef USE_CUDA_NAMES
+    function hipblasCgeruStridedBatched_64_(handle,m,n,alpha,x,incx,stridex,y,incy,stridey,AP,lda,strideA,batchCount) bind(c, name="cublasCgeruStridedBatched_64")
+#else
+    function hipblasCgeruStridedBatched_64_(handle,m,n,alpha,x,incx,stridex,y,incy,stridey,AP,lda,strideA,batchCount) bind(c, name="hipblasCgeruStridedBatched_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCgeruStridedBatched_64_
+      type(c_ptr),value :: handle
+      integer(c_int64_t),value :: m
+      integer(c_int64_t),value :: n
+      complex(c_float_complex) :: alpha
+      type(c_ptr),value :: x
+      integer(c_int64_t),value :: incx
+      integer(c_int64_t),value :: stridex
+      type(c_ptr),value :: y
+      integer(c_int64_t),value :: incy
+      integer(c_int64_t),value :: stridey
+      type(c_ptr),value :: AP
+      integer(c_int64_t),value :: lda
+      integer(c_int64_t),value :: strideA
+      integer(c_int64_t),value :: batchCount
+    end function
+  end interface
+
+  interface hipblasCgercStridedBatched_64
+#ifdef USE_CUDA_NAMES
+    function hipblasCgercStridedBatched_64_(handle,m,n,alpha,x,incx,stridex,y,incy,stridey,AP,lda,strideA,batchCount) bind(c, name="cublasCgercStridedBatched_64")
+#else
+    function hipblasCgercStridedBatched_64_(handle,m,n,alpha,x,incx,stridex,y,incy,stridey,AP,lda,strideA,batchCount) bind(c, name="hipblasCgercStridedBatched_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCgercStridedBatched_64_
+      type(c_ptr),value :: handle
+      integer(c_int64_t),value :: m
+      integer(c_int64_t),value :: n
+      complex(c_float_complex) :: alpha
+      type(c_ptr),value :: x
+      integer(c_int64_t),value :: incx
+      integer(c_int64_t),value :: stridex
+      type(c_ptr),value :: y
+      integer(c_int64_t),value :: incy
+      integer(c_int64_t),value :: stridey
+      type(c_ptr),value :: AP
+      integer(c_int64_t),value :: lda
+      integer(c_int64_t),value :: strideA
+      integer(c_int64_t),value :: batchCount
+    end function
+  end interface
+
+  interface hipblasZgeruStridedBatched_64
+#ifdef USE_CUDA_NAMES
+    function hipblasZgeruStridedBatched_64_(handle,m,n,alpha,x,incx,stridex,y,incy,stridey,AP,lda,strideA,batchCount) bind(c, name="cublasZgeruStridedBatched_64")
+#else
+    function hipblasZgeruStridedBatched_64_(handle,m,n,alpha,x,incx,stridex,y,incy,stridey,AP,lda,strideA,batchCount) bind(c, name="hipblasZgeruStridedBatched_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZgeruStridedBatched_64_
+      type(c_ptr),value :: handle
+      integer(c_int64_t),value :: m
+      integer(c_int64_t),value :: n
+      complex(c_double_complex) :: alpha
+      type(c_ptr),value :: x
+      integer(c_int64_t),value :: incx
+      integer(c_int64_t),value :: stridex
+      type(c_ptr),value :: y
+      integer(c_int64_t),value :: incy
+      integer(c_int64_t),value :: stridey
+      type(c_ptr),value :: AP
+      integer(c_int64_t),value :: lda
+      integer(c_int64_t),value :: strideA
+      integer(c_int64_t),value :: batchCount
+    end function
+  end interface
+
+  interface hipblasZgercStridedBatched_64
+#ifdef USE_CUDA_NAMES
+    function hipblasZgercStridedBatched_64_(handle,m,n,alpha,x,incx,stridex,y,incy,stridey,AP,lda,strideA,batchCount) bind(c, name="cublasZgercStridedBatched_64")
+#else
+    function hipblasZgercStridedBatched_64_(handle,m,n,alpha,x,incx,stridex,y,incy,stridey,AP,lda,strideA,batchCount) bind(c, name="hipblasZgercStridedBatched_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZgercStridedBatched_64_
+      type(c_ptr),value :: handle
+      integer(c_int64_t),value :: m
+      integer(c_int64_t),value :: n
+      complex(c_double_complex) :: alpha
+      type(c_ptr),value :: x
+      integer(c_int64_t),value :: incx
+      integer(c_int64_t),value :: stridex
+      type(c_ptr),value :: y
+      integer(c_int64_t),value :: incy
+      integer(c_int64_t),value :: stridey
+      type(c_ptr),value :: AP
+      integer(c_int64_t),value :: lda
+      integer(c_int64_t),value :: strideA
+      integer(c_int64_t),value :: batchCount
+    end function
+  end interface
+
+  interface hipblasChbmv_64
+#ifdef USE_CUDA_NAMES
+    function hipblasChbmv_64_(handle,uplo,n,k,alpha,AP,lda,x,incx,beta,y,incy) bind(c, name="cublasChbmv_v2_64")
+#else
+    function hipblasChbmv_64_(handle,uplo,n,k,alpha,AP,lda,x,incx,beta,y,incy) bind(c, name="hipblasChbmv_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasChbmv_64_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int64_t),value :: n
+      integer(c_int64_t),value :: k
+      complex(c_float_complex) :: alpha
+      type(c_ptr),value :: AP
+      integer(c_int64_t),value :: lda
+      type(c_ptr),value :: x
+      integer(c_int64_t),value :: incx
+      complex(c_float_complex) :: beta
+      type(c_ptr),value :: y
+      integer(c_int64_t),value :: incy
+    end function
+  end interface
+
+  interface hipblasZhbmv_64
+#ifdef USE_CUDA_NAMES
+    function hipblasZhbmv_64_(handle,uplo,n,k,alpha,AP,lda,x,incx,beta,y,incy) bind(c, name="cublasZhbmv_v2_64")
+#else
+    function hipblasZhbmv_64_(handle,uplo,n,k,alpha,AP,lda,x,incx,beta,y,incy) bind(c, name="hipblasZhbmv_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZhbmv_64_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int64_t),value :: n
+      integer(c_int64_t),value :: k
+      complex(c_double_complex) :: alpha
+      type(c_ptr),value :: AP
+      integer(c_int64_t),value :: lda
+      type(c_ptr),value :: x
+      integer(c_int64_t),value :: incx
+      complex(c_double_complex) :: beta
+      type(c_ptr),value :: y
+      integer(c_int64_t),value :: incy
+    end function
+  end interface
+
+  interface hipblasChbmvBatched_64
+#ifdef USE_CUDA_NAMES
+    function hipblasChbmvBatched_64_(handle,uplo,n,k,alpha,AP,lda,x,incx,beta,y,incy,batchCount) bind(c, name="cublasChbmvBatched_64")
+#else
+    function hipblasChbmvBatched_64_(handle,uplo,n,k,alpha,AP,lda,x,incx,beta,y,incy,batchCount) bind(c, name="hipblasChbmvBatched_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasChbmvBatched_64_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int64_t),value :: n
+      integer(c_int64_t),value :: k
+      complex(c_float_complex) :: alpha
+      type(c_ptr) :: AP
+      integer(c_int64_t),value :: lda
+      type(c_ptr) :: x
+      integer(c_int64_t),value :: incx
+      complex(c_float_complex) :: beta
+      type(c_ptr) :: y
+      integer(c_int64_t),value :: incy
+      integer(c_int64_t),value :: batchCount
+    end function
+  end interface
+
+  interface hipblasZhbmvBatched_64
+#ifdef USE_CUDA_NAMES
+    function hipblasZhbmvBatched_64_(handle,uplo,n,k,alpha,AP,lda,x,incx,beta,y,incy,batchCount) bind(c, name="cublasZhbmvBatched_64")
+#else
+    function hipblasZhbmvBatched_64_(handle,uplo,n,k,alpha,AP,lda,x,incx,beta,y,incy,batchCount) bind(c, name="hipblasZhbmvBatched_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZhbmvBatched_64_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int64_t),value :: n
+      integer(c_int64_t),value :: k
+      complex(c_double_complex) :: alpha
+      type(c_ptr) :: AP
+      integer(c_int64_t),value :: lda
+      type(c_ptr) :: x
+      integer(c_int64_t),value :: incx
+      complex(c_double_complex) :: beta
+      type(c_ptr) :: y
+      integer(c_int64_t),value :: incy
+      integer(c_int64_t),value :: batchCount
+    end function
+  end interface
+
+  interface hipblasChbmvStridedBatched_64
+#ifdef USE_CUDA_NAMES
+    function hipblasChbmvStridedBatched_64_(handle,uplo,n,k,alpha,AP,lda,strideA,x,incx,stridex,beta,y,incy,stridey,batchCount) bind(c, name="cublasChbmvStridedBatched_64")
+#else
+    function hipblasChbmvStridedBatched_64_(handle,uplo,n,k,alpha,AP,lda,strideA,x,incx,stridex,beta,y,incy,stridey,batchCount) bind(c, name="hipblasChbmvStridedBatched_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasChbmvStridedBatched_64_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int64_t),value :: n
+      integer(c_int64_t),value :: k
+      complex(c_float_complex) :: alpha
+      type(c_ptr),value :: AP
+      integer(c_int64_t),value :: lda
+      integer(c_int64_t),value :: strideA
+      type(c_ptr),value :: x
+      integer(c_int64_t),value :: incx
+      integer(c_int64_t),value :: stridex
+      complex(c_float_complex) :: beta
+      type(c_ptr),value :: y
+      integer(c_int64_t),value :: incy
+      integer(c_int64_t),value :: stridey
+      integer(c_int64_t),value :: batchCount
+    end function
+  end interface
+
+  interface hipblasZhbmvStridedBatched_64
+#ifdef USE_CUDA_NAMES
+    function hipblasZhbmvStridedBatched_64_(handle,uplo,n,k,alpha,AP,lda,strideA,x,incx,stridex,beta,y,incy,stridey,batchCount) bind(c, name="cublasZhbmvStridedBatched_64")
+#else
+    function hipblasZhbmvStridedBatched_64_(handle,uplo,n,k,alpha,AP,lda,strideA,x,incx,stridex,beta,y,incy,stridey,batchCount) bind(c, name="hipblasZhbmvStridedBatched_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZhbmvStridedBatched_64_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int64_t),value :: n
+      integer(c_int64_t),value :: k
+      complex(c_double_complex) :: alpha
+      type(c_ptr),value :: AP
+      integer(c_int64_t),value :: lda
+      integer(c_int64_t),value :: strideA
+      type(c_ptr),value :: x
+      integer(c_int64_t),value :: incx
+      integer(c_int64_t),value :: stridex
+      complex(c_double_complex) :: beta
+      type(c_ptr),value :: y
+      integer(c_int64_t),value :: incy
+      integer(c_int64_t),value :: stridey
+      integer(c_int64_t),value :: batchCount
+    end function
+  end interface
+
+  interface hipblasChemv_64
+#ifdef USE_CUDA_NAMES
+    function hipblasChemv_64_(handle,uplo,n,alpha,AP,lda,x,incx,beta,y,incy) bind(c, name="cublasChemv_v2_64")
+#else
+    function hipblasChemv_64_(handle,uplo,n,alpha,AP,lda,x,incx,beta,y,incy) bind(c, name="hipblasChemv_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasChemv_64_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int64_t),value :: n
+      complex(c_float_complex) :: alpha
+      type(c_ptr),value :: AP
+      integer(c_int64_t),value :: lda
+      type(c_ptr),value :: x
+      integer(c_int64_t),value :: incx
+      complex(c_float_complex) :: beta
+      type(c_ptr),value :: y
+      integer(c_int64_t),value :: incy
+    end function
+  end interface
+
+  interface hipblasZhemv_64
+#ifdef USE_CUDA_NAMES
+    function hipblasZhemv_64_(handle,uplo,n,alpha,AP,lda,x,incx,beta,y,incy) bind(c, name="cublasZhemv_v2_64")
+#else
+    function hipblasZhemv_64_(handle,uplo,n,alpha,AP,lda,x,incx,beta,y,incy) bind(c, name="hipblasZhemv_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZhemv_64_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int64_t),value :: n
+      complex(c_double_complex) :: alpha
+      type(c_ptr),value :: AP
+      integer(c_int64_t),value :: lda
+      type(c_ptr),value :: x
+      integer(c_int64_t),value :: incx
+      complex(c_double_complex) :: beta
+      type(c_ptr),value :: y
+      integer(c_int64_t),value :: incy
+    end function
+  end interface
+
+  interface hipblasChemvBatched_64
+#ifdef USE_CUDA_NAMES
+    function hipblasChemvBatched_64_(handle,uplo,n,alpha,AP,lda,x,incx,beta,y,incy,batchCount) bind(c, name="cublasChemvBatched_64")
+#else
+    function hipblasChemvBatched_64_(handle,uplo,n,alpha,AP,lda,x,incx,beta,y,incy,batchCount) bind(c, name="hipblasChemvBatched_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasChemvBatched_64_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int64_t),value :: n
+      complex(c_float_complex) :: alpha
+      type(c_ptr) :: AP
+      integer(c_int64_t),value :: lda
+      type(c_ptr) :: x
+      integer(c_int64_t),value :: incx
+      complex(c_float_complex) :: beta
+      type(c_ptr) :: y
+      integer(c_int64_t),value :: incy
+      integer(c_int64_t),value :: batchCount
+    end function
+  end interface
+
+  interface hipblasZhemvBatched_64
+#ifdef USE_CUDA_NAMES
+    function hipblasZhemvBatched_64_(handle,uplo,n,alpha,AP,lda,x,incx,beta,y,incy,batchCount) bind(c, name="cublasZhemvBatched_64")
+#else
+    function hipblasZhemvBatched_64_(handle,uplo,n,alpha,AP,lda,x,incx,beta,y,incy,batchCount) bind(c, name="hipblasZhemvBatched_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZhemvBatched_64_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int64_t),value :: n
+      complex(c_double_complex) :: alpha
+      type(c_ptr) :: AP
+      integer(c_int64_t),value :: lda
+      type(c_ptr) :: x
+      integer(c_int64_t),value :: incx
+      complex(c_double_complex) :: beta
+      type(c_ptr) :: y
+      integer(c_int64_t),value :: incy
+      integer(c_int64_t),value :: batchCount
+    end function
+  end interface
+
+  interface hipblasChemvStridedBatched_64
+#ifdef USE_CUDA_NAMES
+    function hipblasChemvStridedBatched_64_(handle,uplo,n,alpha,AP,lda,strideA,x,incx,stridex,beta,y,incy,stridey,batchCount) bind(c, name="cublasChemvStridedBatched_64")
+#else
+    function hipblasChemvStridedBatched_64_(handle,uplo,n,alpha,AP,lda,strideA,x,incx,stridex,beta,y,incy,stridey,batchCount) bind(c, name="hipblasChemvStridedBatched_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasChemvStridedBatched_64_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int64_t),value :: n
+      complex(c_float_complex) :: alpha
+      type(c_ptr),value :: AP
+      integer(c_int64_t),value :: lda
+      integer(c_int64_t),value :: strideA
+      type(c_ptr),value :: x
+      integer(c_int64_t),value :: incx
+      integer(c_int64_t),value :: stridex
+      complex(c_float_complex) :: beta
+      type(c_ptr),value :: y
+      integer(c_int64_t),value :: incy
+      integer(c_int64_t),value :: stridey
+      integer(c_int64_t),value :: batchCount
+    end function
+  end interface
+
+  interface hipblasZhemvStridedBatched_64
+#ifdef USE_CUDA_NAMES
+    function hipblasZhemvStridedBatched_64_(handle,uplo,n,alpha,AP,lda,strideA,x,incx,stridex,beta,y,incy,stridey,batchCount) bind(c, name="cublasZhemvStridedBatched_64")
+#else
+    function hipblasZhemvStridedBatched_64_(handle,uplo,n,alpha,AP,lda,strideA,x,incx,stridex,beta,y,incy,stridey,batchCount) bind(c, name="hipblasZhemvStridedBatched_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZhemvStridedBatched_64_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int64_t),value :: n
+      complex(c_double_complex) :: alpha
+      type(c_ptr),value :: AP
+      integer(c_int64_t),value :: lda
+      integer(c_int64_t),value :: strideA
+      type(c_ptr),value :: x
+      integer(c_int64_t),value :: incx
+      integer(c_int64_t),value :: stridex
+      complex(c_double_complex) :: beta
+      type(c_ptr),value :: y
+      integer(c_int64_t),value :: incy
+      integer(c_int64_t),value :: stridey
+      integer(c_int64_t),value :: batchCount
+    end function
+  end interface
+
+  interface hipblasCher_64
+#ifdef USE_CUDA_NAMES
+    function hipblasCher_64_(handle,uplo,n,alpha,x,incx,AP,lda) bind(c, name="cublasCher_v2_64")
+#else
+    function hipblasCher_64_(handle,uplo,n,alpha,x,incx,AP,lda) bind(c, name="hipblasCher_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCher_64_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int64_t),value :: n
+      real(c_float) :: alpha
+      type(c_ptr),value :: x
+      integer(c_int64_t),value :: incx
+      type(c_ptr),value :: AP
+      integer(c_int64_t),value :: lda
+    end function
+  end interface
+
+  interface hipblasZher_64
+#ifdef USE_CUDA_NAMES
+    function hipblasZher_64_(handle,uplo,n,alpha,x,incx,AP,lda) bind(c, name="cublasZher_v2_64")
+#else
+    function hipblasZher_64_(handle,uplo,n,alpha,x,incx,AP,lda) bind(c, name="hipblasZher_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZher_64_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int64_t),value :: n
+      real(c_double) :: alpha
+      type(c_ptr),value :: x
+      integer(c_int64_t),value :: incx
+      type(c_ptr),value :: AP
+      integer(c_int64_t),value :: lda
+    end function
+  end interface
+
+  interface hipblasCherBatched_64
+#ifdef USE_CUDA_NAMES
+    function hipblasCherBatched_64_(handle,uplo,n,alpha,x,incx,AP,lda,batchCount) bind(c, name="cublasCherBatched_64")
+#else
+    function hipblasCherBatched_64_(handle,uplo,n,alpha,x,incx,AP,lda,batchCount) bind(c, name="hipblasCherBatched_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCherBatched_64_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int64_t),value :: n
+      real(c_float) :: alpha
+      type(c_ptr) :: x
+      integer(c_int64_t),value :: incx
+      type(c_ptr) :: AP
+      integer(c_int64_t),value :: lda
+      integer(c_int64_t),value :: batchCount
+    end function
+  end interface
+
+  interface hipblasZherBatched_64
+#ifdef USE_CUDA_NAMES
+    function hipblasZherBatched_64_(handle,uplo,n,alpha,x,incx,AP,lda,batchCount) bind(c, name="cublasZherBatched_64")
+#else
+    function hipblasZherBatched_64_(handle,uplo,n,alpha,x,incx,AP,lda,batchCount) bind(c, name="hipblasZherBatched_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZherBatched_64_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int64_t),value :: n
+      real(c_double) :: alpha
+      type(c_ptr) :: x
+      integer(c_int64_t),value :: incx
+      type(c_ptr) :: AP
+      integer(c_int64_t),value :: lda
+      integer(c_int64_t),value :: batchCount
+    end function
+  end interface
+
+  interface hipblasCherStridedBatched_64
+#ifdef USE_CUDA_NAMES
+    function hipblasCherStridedBatched_64_(handle,uplo,n,alpha,x,incx,stridex,AP,lda,strideA,batchCount) bind(c, name="cublasCherStridedBatched_64")
+#else
+    function hipblasCherStridedBatched_64_(handle,uplo,n,alpha,x,incx,stridex,AP,lda,strideA,batchCount) bind(c, name="hipblasCherStridedBatched_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCherStridedBatched_64_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int64_t),value :: n
+      real(c_float) :: alpha
+      type(c_ptr),value :: x
+      integer(c_int64_t),value :: incx
+      integer(c_int64_t),value :: stridex
+      type(c_ptr),value :: AP
+      integer(c_int64_t),value :: lda
+      integer(c_int64_t),value :: strideA
+      integer(c_int64_t),value :: batchCount
+    end function
+  end interface
+
+  interface hipblasZherStridedBatched_64
+#ifdef USE_CUDA_NAMES
+    function hipblasZherStridedBatched_64_(handle,uplo,n,alpha,x,incx,stridex,AP,lda,strideA,batchCount) bind(c, name="cublasZherStridedBatched_64")
+#else
+    function hipblasZherStridedBatched_64_(handle,uplo,n,alpha,x,incx,stridex,AP,lda,strideA,batchCount) bind(c, name="hipblasZherStridedBatched_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZherStridedBatched_64_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int64_t),value :: n
+      real(c_double) :: alpha
+      type(c_ptr),value :: x
+      integer(c_int64_t),value :: incx
+      integer(c_int64_t),value :: stridex
+      type(c_ptr),value :: AP
+      integer(c_int64_t),value :: lda
+      integer(c_int64_t),value :: strideA
+      integer(c_int64_t),value :: batchCount
+    end function
+  end interface
+
+  interface hipblasCher2_64
+#ifdef USE_CUDA_NAMES
+    function hipblasCher2_64_(handle,uplo,n,alpha,x,incx,y,incy,AP,lda) bind(c, name="cublasCher2_v2_64")
+#else
+    function hipblasCher2_64_(handle,uplo,n,alpha,x,incx,y,incy,AP,lda) bind(c, name="hipblasCher2_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCher2_64_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int64_t),value :: n
+      complex(c_float_complex) :: alpha
+      type(c_ptr),value :: x
+      integer(c_int64_t),value :: incx
+      type(c_ptr),value :: y
+      integer(c_int64_t),value :: incy
+      type(c_ptr),value :: AP
+      integer(c_int64_t),value :: lda
+    end function
+  end interface
+
+  interface hipblasZher2_64
+#ifdef USE_CUDA_NAMES
+    function hipblasZher2_64_(handle,uplo,n,alpha,x,incx,y,incy,AP,lda) bind(c, name="cublasZher2_v2_64")
+#else
+    function hipblasZher2_64_(handle,uplo,n,alpha,x,incx,y,incy,AP,lda) bind(c, name="hipblasZher2_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZher2_64_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int64_t),value :: n
+      complex(c_double_complex) :: alpha
+      type(c_ptr),value :: x
+      integer(c_int64_t),value :: incx
+      type(c_ptr),value :: y
+      integer(c_int64_t),value :: incy
+      type(c_ptr),value :: AP
+      integer(c_int64_t),value :: lda
+    end function
+  end interface
+
+  interface hipblasCher2Batched_64
+#ifdef USE_CUDA_NAMES
+    function hipblasCher2Batched_64_(handle,uplo,n,alpha,x,incx,y,incy,AP,lda,batchCount) bind(c, name="cublasCher2Batched_64")
+#else
+    function hipblasCher2Batched_64_(handle,uplo,n,alpha,x,incx,y,incy,AP,lda,batchCount) bind(c, name="hipblasCher2Batched_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCher2Batched_64_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int64_t),value :: n
+      complex(c_float_complex) :: alpha
+      type(c_ptr) :: x
+      integer(c_int64_t),value :: incx
+      type(c_ptr) :: y
+      integer(c_int64_t),value :: incy
+      type(c_ptr) :: AP
+      integer(c_int64_t),value :: lda
+      integer(c_int64_t),value :: batchCount
+    end function
+  end interface
+
+  interface hipblasZher2Batched_64
+#ifdef USE_CUDA_NAMES
+    function hipblasZher2Batched_64_(handle,uplo,n,alpha,x,incx,y,incy,AP,lda,batchCount) bind(c, name="cublasZher2Batched_64")
+#else
+    function hipblasZher2Batched_64_(handle,uplo,n,alpha,x,incx,y,incy,AP,lda,batchCount) bind(c, name="hipblasZher2Batched_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZher2Batched_64_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int64_t),value :: n
+      complex(c_double_complex) :: alpha
+      type(c_ptr) :: x
+      integer(c_int64_t),value :: incx
+      type(c_ptr) :: y
+      integer(c_int64_t),value :: incy
+      type(c_ptr) :: AP
+      integer(c_int64_t),value :: lda
+      integer(c_int64_t),value :: batchCount
+    end function
+  end interface
+
+  interface hipblasCher2StridedBatched_64
+#ifdef USE_CUDA_NAMES
+    function hipblasCher2StridedBatched_64_(handle,uplo,n,alpha,x,incx,stridex,y,incy,stridey,AP,lda,strideA,batchCount) bind(c, name="cublasCher2StridedBatched_64")
+#else
+    function hipblasCher2StridedBatched_64_(handle,uplo,n,alpha,x,incx,stridex,y,incy,stridey,AP,lda,strideA,batchCount) bind(c, name="hipblasCher2StridedBatched_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCher2StridedBatched_64_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int64_t),value :: n
+      complex(c_float_complex) :: alpha
+      type(c_ptr),value :: x
+      integer(c_int64_t),value :: incx
+      integer(c_int64_t),value :: stridex
+      type(c_ptr),value :: y
+      integer(c_int64_t),value :: incy
+      integer(c_int64_t),value :: stridey
+      type(c_ptr),value :: AP
+      integer(c_int64_t),value :: lda
+      integer(c_int64_t),value :: strideA
+      integer(c_int64_t),value :: batchCount
+    end function
+  end interface
+
+  interface hipblasZher2StridedBatched_64
+#ifdef USE_CUDA_NAMES
+    function hipblasZher2StridedBatched_64_(handle,uplo,n,alpha,x,incx,stridex,y,incy,stridey,AP,lda,strideA,batchCount) bind(c, name="cublasZher2StridedBatched_64")
+#else
+    function hipblasZher2StridedBatched_64_(handle,uplo,n,alpha,x,incx,stridex,y,incy,stridey,AP,lda,strideA,batchCount) bind(c, name="hipblasZher2StridedBatched_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZher2StridedBatched_64_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int64_t),value :: n
+      complex(c_double_complex) :: alpha
+      type(c_ptr),value :: x
+      integer(c_int64_t),value :: incx
+      integer(c_int64_t),value :: stridex
+      type(c_ptr),value :: y
+      integer(c_int64_t),value :: incy
+      integer(c_int64_t),value :: stridey
+      type(c_ptr),value :: AP
+      integer(c_int64_t),value :: lda
+      integer(c_int64_t),value :: strideA
+      integer(c_int64_t),value :: batchCount
+    end function
+  end interface
+
+  interface hipblasChpmv_64
+#ifdef USE_CUDA_NAMES
+    function hipblasChpmv_64_(handle,uplo,n,alpha,AP,x,incx,beta,y,incy) bind(c, name="cublasChpmv_v2_64")
+#else
+    function hipblasChpmv_64_(handle,uplo,n,alpha,AP,x,incx,beta,y,incy) bind(c, name="hipblasChpmv_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasChpmv_64_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int64_t),value :: n
+      complex(c_float_complex) :: alpha
+      type(c_ptr),value :: AP
+      type(c_ptr),value :: x
+      integer(c_int64_t),value :: incx
+      complex(c_float_complex) :: beta
+      type(c_ptr),value :: y
+      integer(c_int64_t),value :: incy
+    end function
+  end interface
+
+  interface hipblasZhpmv_64
+#ifdef USE_CUDA_NAMES
+    function hipblasZhpmv_64_(handle,uplo,n,alpha,AP,x,incx,beta,y,incy) bind(c, name="cublasZhpmv_v2_64")
+#else
+    function hipblasZhpmv_64_(handle,uplo,n,alpha,AP,x,incx,beta,y,incy) bind(c, name="hipblasZhpmv_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZhpmv_64_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int64_t),value :: n
+      complex(c_double_complex) :: alpha
+      type(c_ptr),value :: AP
+      type(c_ptr),value :: x
+      integer(c_int64_t),value :: incx
+      complex(c_double_complex) :: beta
+      type(c_ptr),value :: y
+      integer(c_int64_t),value :: incy
+    end function
+  end interface
+
+  interface hipblasChpmvBatched_64
+#ifdef USE_CUDA_NAMES
+    function hipblasChpmvBatched_64_(handle,uplo,n,alpha,AP,x,incx,beta,y,incy,batchCount) bind(c, name="cublasChpmvBatched_64")
+#else
+    function hipblasChpmvBatched_64_(handle,uplo,n,alpha,AP,x,incx,beta,y,incy,batchCount) bind(c, name="hipblasChpmvBatched_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasChpmvBatched_64_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int64_t),value :: n
+      complex(c_float_complex) :: alpha
+      type(c_ptr) :: AP
+      type(c_ptr) :: x
+      integer(c_int64_t),value :: incx
+      complex(c_float_complex) :: beta
+      type(c_ptr) :: y
+      integer(c_int64_t),value :: incy
+      integer(c_int64_t),value :: batchCount
+    end function
+  end interface
+
+  interface hipblasZhpmvBatched_64
+#ifdef USE_CUDA_NAMES
+    function hipblasZhpmvBatched_64_(handle,uplo,n,alpha,AP,x,incx,beta,y,incy,batchCount) bind(c, name="cublasZhpmvBatched_64")
+#else
+    function hipblasZhpmvBatched_64_(handle,uplo,n,alpha,AP,x,incx,beta,y,incy,batchCount) bind(c, name="hipblasZhpmvBatched_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZhpmvBatched_64_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int64_t),value :: n
+      complex(c_double_complex) :: alpha
+      type(c_ptr) :: AP
+      type(c_ptr) :: x
+      integer(c_int64_t),value :: incx
+      complex(c_double_complex) :: beta
+      type(c_ptr) :: y
+      integer(c_int64_t),value :: incy
+      integer(c_int64_t),value :: batchCount
+    end function
+  end interface
+
+  interface hipblasChpmvStridedBatched_64
+#ifdef USE_CUDA_NAMES
+    function hipblasChpmvStridedBatched_64_(handle,uplo,n,alpha,AP,strideA,x,incx,stridex,beta,y,incy,stridey,batchCount) bind(c, name="cublasChpmvStridedBatched_64")
+#else
+    function hipblasChpmvStridedBatched_64_(handle,uplo,n,alpha,AP,strideA,x,incx,stridex,beta,y,incy,stridey,batchCount) bind(c, name="hipblasChpmvStridedBatched_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasChpmvStridedBatched_64_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int64_t),value :: n
+      complex(c_float_complex) :: alpha
+      type(c_ptr),value :: AP
+      integer(c_int64_t),value :: strideA
+      type(c_ptr),value :: x
+      integer(c_int64_t),value :: incx
+      integer(c_int64_t),value :: stridex
+      complex(c_float_complex) :: beta
+      type(c_ptr),value :: y
+      integer(c_int64_t),value :: incy
+      integer(c_int64_t),value :: stridey
+      integer(c_int64_t),value :: batchCount
+    end function
+  end interface
+
+  interface hipblasZhpmvStridedBatched_64
+#ifdef USE_CUDA_NAMES
+    function hipblasZhpmvStridedBatched_64_(handle,uplo,n,alpha,AP,strideA,x,incx,stridex,beta,y,incy,stridey,batchCount) bind(c, name="cublasZhpmvStridedBatched_64")
+#else
+    function hipblasZhpmvStridedBatched_64_(handle,uplo,n,alpha,AP,strideA,x,incx,stridex,beta,y,incy,stridey,batchCount) bind(c, name="hipblasZhpmvStridedBatched_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZhpmvStridedBatched_64_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int64_t),value :: n
+      complex(c_double_complex) :: alpha
+      type(c_ptr),value :: AP
+      integer(c_int64_t),value :: strideA
+      type(c_ptr),value :: x
+      integer(c_int64_t),value :: incx
+      integer(c_int64_t),value :: stridex
+      complex(c_double_complex) :: beta
+      type(c_ptr),value :: y
+      integer(c_int64_t),value :: incy
+      integer(c_int64_t),value :: stridey
+      integer(c_int64_t),value :: batchCount
+    end function
+  end interface
+
+  interface hipblasChpr_64
+#ifdef USE_CUDA_NAMES
+    function hipblasChpr_64_(handle,uplo,n,alpha,x,incx,AP) bind(c, name="cublasChpr_v2_64")
+#else
+    function hipblasChpr_64_(handle,uplo,n,alpha,x,incx,AP) bind(c, name="hipblasChpr_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasChpr_64_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int64_t),value :: n
+      real(c_float) :: alpha
+      type(c_ptr),value :: x
+      integer(c_int64_t),value :: incx
+      type(c_ptr),value :: AP
+    end function
+  end interface
+
+  interface hipblasZhpr_64
+#ifdef USE_CUDA_NAMES
+    function hipblasZhpr_64_(handle,uplo,n,alpha,x,incx,AP) bind(c, name="cublasZhpr_v2_64")
+#else
+    function hipblasZhpr_64_(handle,uplo,n,alpha,x,incx,AP) bind(c, name="hipblasZhpr_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZhpr_64_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int64_t),value :: n
+      real(c_double) :: alpha
+      type(c_ptr),value :: x
+      integer(c_int64_t),value :: incx
+      type(c_ptr),value :: AP
+    end function
+  end interface
+
+  interface hipblasChprBatched_64
+#ifdef USE_CUDA_NAMES
+    function hipblasChprBatched_64_(handle,uplo,n,alpha,x,incx,AP,batchCount) bind(c, name="cublasChprBatched_64")
+#else
+    function hipblasChprBatched_64_(handle,uplo,n,alpha,x,incx,AP,batchCount) bind(c, name="hipblasChprBatched_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasChprBatched_64_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int64_t),value :: n
+      real(c_float) :: alpha
+      type(c_ptr) :: x
+      integer(c_int64_t),value :: incx
+      type(c_ptr) :: AP
+      integer(c_int64_t),value :: batchCount
+    end function
+  end interface
+
+  interface hipblasZhprBatched_64
+#ifdef USE_CUDA_NAMES
+    function hipblasZhprBatched_64_(handle,uplo,n,alpha,x,incx,AP,batchCount) bind(c, name="cublasZhprBatched_64")
+#else
+    function hipblasZhprBatched_64_(handle,uplo,n,alpha,x,incx,AP,batchCount) bind(c, name="hipblasZhprBatched_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZhprBatched_64_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int64_t),value :: n
+      real(c_double) :: alpha
+      type(c_ptr) :: x
+      integer(c_int64_t),value :: incx
+      type(c_ptr) :: AP
+      integer(c_int64_t),value :: batchCount
+    end function
+  end interface
+
+  interface hipblasChprStridedBatched_64
+#ifdef USE_CUDA_NAMES
+    function hipblasChprStridedBatched_64_(handle,uplo,n,alpha,x,incx,stridex,AP,strideA,batchCount) bind(c, name="cublasChprStridedBatched_64")
+#else
+    function hipblasChprStridedBatched_64_(handle,uplo,n,alpha,x,incx,stridex,AP,strideA,batchCount) bind(c, name="hipblasChprStridedBatched_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasChprStridedBatched_64_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int64_t),value :: n
+      real(c_float) :: alpha
+      type(c_ptr),value :: x
+      integer(c_int64_t),value :: incx
+      integer(c_int64_t),value :: stridex
+      type(c_ptr),value :: AP
+      integer(c_int64_t),value :: strideA
+      integer(c_int64_t),value :: batchCount
+    end function
+  end interface
+
+  interface hipblasZhprStridedBatched_64
+#ifdef USE_CUDA_NAMES
+    function hipblasZhprStridedBatched_64_(handle,uplo,n,alpha,x,incx,stridex,AP,strideA,batchCount) bind(c, name="cublasZhprStridedBatched_64")
+#else
+    function hipblasZhprStridedBatched_64_(handle,uplo,n,alpha,x,incx,stridex,AP,strideA,batchCount) bind(c, name="hipblasZhprStridedBatched_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZhprStridedBatched_64_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int64_t),value :: n
+      real(c_double) :: alpha
+      type(c_ptr),value :: x
+      integer(c_int64_t),value :: incx
+      integer(c_int64_t),value :: stridex
+      type(c_ptr),value :: AP
+      integer(c_int64_t),value :: strideA
+      integer(c_int64_t),value :: batchCount
+    end function
+  end interface
+
+  interface hipblasChpr2_64
+#ifdef USE_CUDA_NAMES
+    function hipblasChpr2_64_(handle,uplo,n,alpha,x,incx,y,incy,AP) bind(c, name="cublasChpr2_v2_64")
+#else
+    function hipblasChpr2_64_(handle,uplo,n,alpha,x,incx,y,incy,AP) bind(c, name="hipblasChpr2_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasChpr2_64_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int64_t),value :: n
+      complex(c_float_complex) :: alpha
+      type(c_ptr),value :: x
+      integer(c_int64_t),value :: incx
+      type(c_ptr),value :: y
+      integer(c_int64_t),value :: incy
+      type(c_ptr),value :: AP
+    end function
+  end interface
+
+  interface hipblasZhpr2_64
+#ifdef USE_CUDA_NAMES
+    function hipblasZhpr2_64_(handle,uplo,n,alpha,x,incx,y,incy,AP) bind(c, name="cublasZhpr2_v2_64")
+#else
+    function hipblasZhpr2_64_(handle,uplo,n,alpha,x,incx,y,incy,AP) bind(c, name="hipblasZhpr2_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZhpr2_64_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int64_t),value :: n
+      complex(c_double_complex) :: alpha
+      type(c_ptr),value :: x
+      integer(c_int64_t),value :: incx
+      type(c_ptr),value :: y
+      integer(c_int64_t),value :: incy
+      type(c_ptr),value :: AP
+    end function
+  end interface
+
+  interface hipblasChpr2Batched_64
+#ifdef USE_CUDA_NAMES
+    function hipblasChpr2Batched_64_(handle,uplo,n,alpha,x,incx,y,incy,AP,batchCount) bind(c, name="cublasChpr2Batched_64")
+#else
+    function hipblasChpr2Batched_64_(handle,uplo,n,alpha,x,incx,y,incy,AP,batchCount) bind(c, name="hipblasChpr2Batched_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasChpr2Batched_64_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int64_t),value :: n
+      complex(c_float_complex) :: alpha
+      type(c_ptr) :: x
+      integer(c_int64_t),value :: incx
+      type(c_ptr) :: y
+      integer(c_int64_t),value :: incy
+      type(c_ptr) :: AP
+      integer(c_int64_t),value :: batchCount
+    end function
+  end interface
+
+  interface hipblasZhpr2Batched_64
+#ifdef USE_CUDA_NAMES
+    function hipblasZhpr2Batched_64_(handle,uplo,n,alpha,x,incx,y,incy,AP,batchCount) bind(c, name="cublasZhpr2Batched_64")
+#else
+    function hipblasZhpr2Batched_64_(handle,uplo,n,alpha,x,incx,y,incy,AP,batchCount) bind(c, name="hipblasZhpr2Batched_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZhpr2Batched_64_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int64_t),value :: n
+      complex(c_double_complex) :: alpha
+      type(c_ptr) :: x
+      integer(c_int64_t),value :: incx
+      type(c_ptr) :: y
+      integer(c_int64_t),value :: incy
+      type(c_ptr) :: AP
+      integer(c_int64_t),value :: batchCount
+    end function
+  end interface
+
+  interface hipblasChpr2StridedBatched_64
+#ifdef USE_CUDA_NAMES
+    function hipblasChpr2StridedBatched_64_(handle,uplo,n,alpha,x,incx,stridex,y,incy,stridey,AP,strideA,batchCount) bind(c, name="cublasChpr2StridedBatched_64")
+#else
+    function hipblasChpr2StridedBatched_64_(handle,uplo,n,alpha,x,incx,stridex,y,incy,stridey,AP,strideA,batchCount) bind(c, name="hipblasChpr2StridedBatched_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasChpr2StridedBatched_64_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int64_t),value :: n
+      complex(c_float_complex) :: alpha
+      type(c_ptr),value :: x
+      integer(c_int64_t),value :: incx
+      integer(c_int64_t),value :: stridex
+      type(c_ptr),value :: y
+      integer(c_int64_t),value :: incy
+      integer(c_int64_t),value :: stridey
+      type(c_ptr),value :: AP
+      integer(c_int64_t),value :: strideA
+      integer(c_int64_t),value :: batchCount
+    end function
+  end interface
+
+  interface hipblasZhpr2StridedBatched_64
+#ifdef USE_CUDA_NAMES
+    function hipblasZhpr2StridedBatched_64_(handle,uplo,n,alpha,x,incx,stridex,y,incy,stridey,AP,strideA,batchCount) bind(c, name="cublasZhpr2StridedBatched_64")
+#else
+    function hipblasZhpr2StridedBatched_64_(handle,uplo,n,alpha,x,incx,stridex,y,incy,stridey,AP,strideA,batchCount) bind(c, name="hipblasZhpr2StridedBatched_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZhpr2StridedBatched_64_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int64_t),value :: n
+      complex(c_double_complex) :: alpha
+      type(c_ptr),value :: x
+      integer(c_int64_t),value :: incx
+      integer(c_int64_t),value :: stridex
+      type(c_ptr),value :: y
+      integer(c_int64_t),value :: incy
+      integer(c_int64_t),value :: stridey
+      type(c_ptr),value :: AP
+      integer(c_int64_t),value :: strideA
+      integer(c_int64_t),value :: batchCount
+    end function
+  end interface
+
+  interface hipblasSsbmv_64
+#ifdef USE_CUDA_NAMES
+    function hipblasSsbmv_64_(handle,uplo,n,k,alpha,AP,lda,x,incx,beta,y,incy) bind(c, name="cublasSsbmv_v2_64")
+#else
+    function hipblasSsbmv_64_(handle,uplo,n,k,alpha,AP,lda,x,incx,beta,y,incy) bind(c, name="hipblasSsbmv_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSsbmv_64_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int64_t),value :: n
+      integer(c_int64_t),value :: k
+      real(c_float) :: alpha
+      type(c_ptr),value :: AP
+      integer(c_int64_t),value :: lda
+      type(c_ptr),value :: x
+      integer(c_int64_t),value :: incx
+      real(c_float) :: beta
+      type(c_ptr),value :: y
+      integer(c_int64_t),value :: incy
+    end function
+  end interface
+
+  interface hipblasDsbmv_64
+#ifdef USE_CUDA_NAMES
+    function hipblasDsbmv_64_(handle,uplo,n,k,alpha,AP,lda,x,incx,beta,y,incy) bind(c, name="cublasDsbmv_v2_64")
+#else
+    function hipblasDsbmv_64_(handle,uplo,n,k,alpha,AP,lda,x,incx,beta,y,incy) bind(c, name="hipblasDsbmv_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDsbmv_64_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int64_t),value :: n
+      integer(c_int64_t),value :: k
+      real(c_double) :: alpha
+      type(c_ptr),value :: AP
+      integer(c_int64_t),value :: lda
+      type(c_ptr),value :: x
+      integer(c_int64_t),value :: incx
+      real(c_double) :: beta
+      type(c_ptr),value :: y
+      integer(c_int64_t),value :: incy
+    end function
+  end interface
+
+  interface hipblasSsbmvBatched_64
+#ifdef USE_CUDA_NAMES
+    function hipblasSsbmvBatched_64_(handle,uplo,n,k,alpha,AP,lda,x,incx,beta,y,incy,batchCount) bind(c, name="cublasSsbmvBatched_64")
+#else
+    function hipblasSsbmvBatched_64_(handle,uplo,n,k,alpha,AP,lda,x,incx,beta,y,incy,batchCount) bind(c, name="hipblasSsbmvBatched_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSsbmvBatched_64_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int64_t),value :: n
+      integer(c_int64_t),value :: k
+      real(c_float) :: alpha
+      type(c_ptr) :: AP
+      integer(c_int64_t),value :: lda
+      type(c_ptr) :: x
+      integer(c_int64_t),value :: incx
+      real(c_float) :: beta
+      type(c_ptr) :: y
+      integer(c_int64_t),value :: incy
+      integer(c_int64_t),value :: batchCount
+    end function
+  end interface
+
+  interface hipblasDsbmvBatched_64
+#ifdef USE_CUDA_NAMES
+    function hipblasDsbmvBatched_64_(handle,uplo,n,k,alpha,AP,lda,x,incx,beta,y,incy,batchCount) bind(c, name="cublasDsbmvBatched_64")
+#else
+    function hipblasDsbmvBatched_64_(handle,uplo,n,k,alpha,AP,lda,x,incx,beta,y,incy,batchCount) bind(c, name="hipblasDsbmvBatched_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDsbmvBatched_64_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int64_t),value :: n
+      integer(c_int64_t),value :: k
+      real(c_double) :: alpha
+      type(c_ptr) :: AP
+      integer(c_int64_t),value :: lda
+      type(c_ptr) :: x
+      integer(c_int64_t),value :: incx
+      real(c_double) :: beta
+      type(c_ptr) :: y
+      integer(c_int64_t),value :: incy
+      integer(c_int64_t),value :: batchCount
+    end function
+  end interface
+
+  interface hipblasSsbmvStridedBatched_64
+#ifdef USE_CUDA_NAMES
+    function hipblasSsbmvStridedBatched_64_(handle,uplo,n,k,alpha,AP,lda,strideA,x,incx,stridex,beta,y,incy,stridey,batchCount) bind(c, name="cublasSsbmvStridedBatched_64")
+#else
+    function hipblasSsbmvStridedBatched_64_(handle,uplo,n,k,alpha,AP,lda,strideA,x,incx,stridex,beta,y,incy,stridey,batchCount) bind(c, name="hipblasSsbmvStridedBatched_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSsbmvStridedBatched_64_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int64_t),value :: n
+      integer(c_int64_t),value :: k
+      real(c_float) :: alpha
+      type(c_ptr),value :: AP
+      integer(c_int64_t),value :: lda
+      integer(c_int64_t),value :: strideA
+      type(c_ptr),value :: x
+      integer(c_int64_t),value :: incx
+      integer(c_int64_t),value :: stridex
+      real(c_float) :: beta
+      type(c_ptr),value :: y
+      integer(c_int64_t),value :: incy
+      integer(c_int64_t),value :: stridey
+      integer(c_int64_t),value :: batchCount
+    end function
+  end interface
+
+  interface hipblasDsbmvStridedBatched_64
+#ifdef USE_CUDA_NAMES
+    function hipblasDsbmvStridedBatched_64_(handle,uplo,n,k,alpha,AP,lda,strideA,x,incx,stridex,beta,y,incy,stridey,batchCount) bind(c, name="cublasDsbmvStridedBatched_64")
+#else
+    function hipblasDsbmvStridedBatched_64_(handle,uplo,n,k,alpha,AP,lda,strideA,x,incx,stridex,beta,y,incy,stridey,batchCount) bind(c, name="hipblasDsbmvStridedBatched_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDsbmvStridedBatched_64_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int64_t),value :: n
+      integer(c_int64_t),value :: k
+      real(c_double) :: alpha
+      type(c_ptr),value :: AP
+      integer(c_int64_t),value :: lda
+      integer(c_int64_t),value :: strideA
+      type(c_ptr),value :: x
+      integer(c_int64_t),value :: incx
+      integer(c_int64_t),value :: stridex
+      real(c_double) :: beta
+      type(c_ptr),value :: y
+      integer(c_int64_t),value :: incy
+      integer(c_int64_t),value :: stridey
+      integer(c_int64_t),value :: batchCount
+    end function
+  end interface
+
+  interface hipblasSspmv_64
+#ifdef USE_CUDA_NAMES
+    function hipblasSspmv_64_(handle,uplo,n,alpha,AP,x,incx,beta,y,incy) bind(c, name="cublasSspmv_v2_64")
+#else
+    function hipblasSspmv_64_(handle,uplo,n,alpha,AP,x,incx,beta,y,incy) bind(c, name="hipblasSspmv_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSspmv_64_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int64_t),value :: n
+      real(c_float) :: alpha
+      type(c_ptr),value :: AP
+      type(c_ptr),value :: x
+      integer(c_int64_t),value :: incx
+      real(c_float) :: beta
+      type(c_ptr),value :: y
+      integer(c_int64_t),value :: incy
+    end function
+  end interface
+
+  interface hipblasDspmv_64
+#ifdef USE_CUDA_NAMES
+    function hipblasDspmv_64_(handle,uplo,n,alpha,AP,x,incx,beta,y,incy) bind(c, name="cublasDspmv_v2_64")
+#else
+    function hipblasDspmv_64_(handle,uplo,n,alpha,AP,x,incx,beta,y,incy) bind(c, name="hipblasDspmv_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDspmv_64_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int64_t),value :: n
+      real(c_double) :: alpha
+      type(c_ptr),value :: AP
+      type(c_ptr),value :: x
+      integer(c_int64_t),value :: incx
+      real(c_double) :: beta
+      type(c_ptr),value :: y
+      integer(c_int64_t),value :: incy
+    end function
+  end interface
+
+  interface hipblasSspmvBatched_64
+#ifdef USE_CUDA_NAMES
+    function hipblasSspmvBatched_64_(handle,uplo,n,alpha,AP,x,incx,beta,y,incy,batchCount) bind(c, name="cublasSspmvBatched_64")
+#else
+    function hipblasSspmvBatched_64_(handle,uplo,n,alpha,AP,x,incx,beta,y,incy,batchCount) bind(c, name="hipblasSspmvBatched_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSspmvBatched_64_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int64_t),value :: n
+      real(c_float) :: alpha
+      type(c_ptr) :: AP
+      type(c_ptr) :: x
+      integer(c_int64_t),value :: incx
+      real(c_float) :: beta
+      type(c_ptr) :: y
+      integer(c_int64_t),value :: incy
+      integer(c_int64_t),value :: batchCount
+    end function
+  end interface
+
+  interface hipblasDspmvBatched_64
+#ifdef USE_CUDA_NAMES
+    function hipblasDspmvBatched_64_(handle,uplo,n,alpha,AP,x,incx,beta,y,incy,batchCount) bind(c, name="cublasDspmvBatched_64")
+#else
+    function hipblasDspmvBatched_64_(handle,uplo,n,alpha,AP,x,incx,beta,y,incy,batchCount) bind(c, name="hipblasDspmvBatched_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDspmvBatched_64_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int64_t),value :: n
+      real(c_double) :: alpha
+      type(c_ptr) :: AP
+      type(c_ptr) :: x
+      integer(c_int64_t),value :: incx
+      real(c_double) :: beta
+      type(c_ptr) :: y
+      integer(c_int64_t),value :: incy
+      integer(c_int64_t),value :: batchCount
+    end function
+  end interface
+
+  interface hipblasSspmvStridedBatched_64
+#ifdef USE_CUDA_NAMES
+    function hipblasSspmvStridedBatched_64_(handle,uplo,n,alpha,AP,strideA,x,incx,stridex,beta,y,incy,stridey,batchCount) bind(c, name="cublasSspmvStridedBatched_64")
+#else
+    function hipblasSspmvStridedBatched_64_(handle,uplo,n,alpha,AP,strideA,x,incx,stridex,beta,y,incy,stridey,batchCount) bind(c, name="hipblasSspmvStridedBatched_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSspmvStridedBatched_64_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int64_t),value :: n
+      real(c_float) :: alpha
+      type(c_ptr),value :: AP
+      integer(c_int64_t),value :: strideA
+      type(c_ptr),value :: x
+      integer(c_int64_t),value :: incx
+      integer(c_int64_t),value :: stridex
+      real(c_float) :: beta
+      type(c_ptr),value :: y
+      integer(c_int64_t),value :: incy
+      integer(c_int64_t),value :: stridey
+      integer(c_int64_t),value :: batchCount
+    end function
+  end interface
+
+  interface hipblasDspmvStridedBatched_64
+#ifdef USE_CUDA_NAMES
+    function hipblasDspmvStridedBatched_64_(handle,uplo,n,alpha,AP,strideA,x,incx,stridex,beta,y,incy,stridey,batchCount) bind(c, name="cublasDspmvStridedBatched_64")
+#else
+    function hipblasDspmvStridedBatched_64_(handle,uplo,n,alpha,AP,strideA,x,incx,stridex,beta,y,incy,stridey,batchCount) bind(c, name="hipblasDspmvStridedBatched_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDspmvStridedBatched_64_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int64_t),value :: n
+      real(c_double) :: alpha
+      type(c_ptr),value :: AP
+      integer(c_int64_t),value :: strideA
+      type(c_ptr),value :: x
+      integer(c_int64_t),value :: incx
+      integer(c_int64_t),value :: stridex
+      real(c_double) :: beta
+      type(c_ptr),value :: y
+      integer(c_int64_t),value :: incy
+      integer(c_int64_t),value :: stridey
+      integer(c_int64_t),value :: batchCount
+    end function
+  end interface
+
+  interface hipblasSspr_64
+#ifdef USE_CUDA_NAMES
+    function hipblasSspr_64_(handle,uplo,n,alpha,x,incx,AP) bind(c, name="cublasSspr_v2_64")
+#else
+    function hipblasSspr_64_(handle,uplo,n,alpha,x,incx,AP) bind(c, name="hipblasSspr_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSspr_64_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int64_t),value :: n
+      real(c_float) :: alpha
+      type(c_ptr),value :: x
+      integer(c_int64_t),value :: incx
+      type(c_ptr),value :: AP
+    end function
+  end interface
+
+  interface hipblasDspr_64
+#ifdef USE_CUDA_NAMES
+    function hipblasDspr_64_(handle,uplo,n,alpha,x,incx,AP) bind(c, name="cublasDspr_v2_64")
+#else
+    function hipblasDspr_64_(handle,uplo,n,alpha,x,incx,AP) bind(c, name="hipblasDspr_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDspr_64_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int64_t),value :: n
+      real(c_double) :: alpha
+      type(c_ptr),value :: x
+      integer(c_int64_t),value :: incx
+      type(c_ptr),value :: AP
+    end function
+  end interface
+
+  interface hipblasCspr_64
+#ifdef USE_CUDA_NAMES
+    function hipblasCspr_64_(handle,uplo,n,alpha,x,incx,AP) bind(c, name="cublasCspr_64")
+#else
+    function hipblasCspr_64_(handle,uplo,n,alpha,x,incx,AP) bind(c, name="hipblasCspr_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCspr_64_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int64_t),value :: n
+      complex(c_float_complex) :: alpha
+      type(c_ptr),value :: x
+      integer(c_int64_t),value :: incx
+      type(c_ptr),value :: AP
+    end function
+  end interface
+
+  interface hipblasZspr_64
+#ifdef USE_CUDA_NAMES
+    function hipblasZspr_64_(handle,uplo,n,alpha,x,incx,AP) bind(c, name="cublasZspr_64")
+#else
+    function hipblasZspr_64_(handle,uplo,n,alpha,x,incx,AP) bind(c, name="hipblasZspr_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZspr_64_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int64_t),value :: n
+      complex(c_double_complex) :: alpha
+      type(c_ptr),value :: x
+      integer(c_int64_t),value :: incx
+      type(c_ptr),value :: AP
+    end function
+  end interface
+
+  interface hipblasSsprBatched_64
+#ifdef USE_CUDA_NAMES
+    function hipblasSsprBatched_64_(handle,uplo,n,alpha,x,incx,AP,batchCount) bind(c, name="cublasSsprBatched_64")
+#else
+    function hipblasSsprBatched_64_(handle,uplo,n,alpha,x,incx,AP,batchCount) bind(c, name="hipblasSsprBatched_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSsprBatched_64_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int64_t),value :: n
+      real(c_float) :: alpha
+      type(c_ptr) :: x
+      integer(c_int64_t),value :: incx
+      type(c_ptr) :: AP
+      integer(c_int64_t),value :: batchCount
+    end function
+  end interface
+
+  interface hipblasDsprBatched_64
+#ifdef USE_CUDA_NAMES
+    function hipblasDsprBatched_64_(handle,uplo,n,alpha,x,incx,AP,batchCount) bind(c, name="cublasDsprBatched_64")
+#else
+    function hipblasDsprBatched_64_(handle,uplo,n,alpha,x,incx,AP,batchCount) bind(c, name="hipblasDsprBatched_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDsprBatched_64_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int64_t),value :: n
+      real(c_double) :: alpha
+      type(c_ptr) :: x
+      integer(c_int64_t),value :: incx
+      type(c_ptr) :: AP
+      integer(c_int64_t),value :: batchCount
+    end function
+  end interface
+
+  interface hipblasCsprBatched_64
+#ifdef USE_CUDA_NAMES
+    function hipblasCsprBatched_64_(handle,uplo,n,alpha,x,incx,AP,batchCount) bind(c, name="cublasCsprBatched_64")
+#else
+    function hipblasCsprBatched_64_(handle,uplo,n,alpha,x,incx,AP,batchCount) bind(c, name="hipblasCsprBatched_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCsprBatched_64_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int64_t),value :: n
+      complex(c_float_complex) :: alpha
+      type(c_ptr) :: x
+      integer(c_int64_t),value :: incx
+      type(c_ptr) :: AP
+      integer(c_int64_t),value :: batchCount
+    end function
+  end interface
+
+  interface hipblasZsprBatched_64
+#ifdef USE_CUDA_NAMES
+    function hipblasZsprBatched_64_(handle,uplo,n,alpha,x,incx,AP,batchCount) bind(c, name="cublasZsprBatched_64")
+#else
+    function hipblasZsprBatched_64_(handle,uplo,n,alpha,x,incx,AP,batchCount) bind(c, name="hipblasZsprBatched_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZsprBatched_64_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int64_t),value :: n
+      complex(c_double_complex) :: alpha
+      type(c_ptr) :: x
+      integer(c_int64_t),value :: incx
+      type(c_ptr) :: AP
+      integer(c_int64_t),value :: batchCount
+    end function
+  end interface
+
+  interface hipblasSsprStridedBatched_64
+#ifdef USE_CUDA_NAMES
+    function hipblasSsprStridedBatched_64_(handle,uplo,n,alpha,x,incx,stridex,AP,strideA,batchCount) bind(c, name="cublasSsprStridedBatched_64")
+#else
+    function hipblasSsprStridedBatched_64_(handle,uplo,n,alpha,x,incx,stridex,AP,strideA,batchCount) bind(c, name="hipblasSsprStridedBatched_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSsprStridedBatched_64_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int64_t),value :: n
+      real(c_float) :: alpha
+      type(c_ptr),value :: x
+      integer(c_int64_t),value :: incx
+      integer(c_int64_t),value :: stridex
+      type(c_ptr),value :: AP
+      integer(c_int64_t),value :: strideA
+      integer(c_int64_t),value :: batchCount
+    end function
+  end interface
+
+  interface hipblasDsprStridedBatched_64
+#ifdef USE_CUDA_NAMES
+    function hipblasDsprStridedBatched_64_(handle,uplo,n,alpha,x,incx,stridex,AP,strideA,batchCount) bind(c, name="cublasDsprStridedBatched_64")
+#else
+    function hipblasDsprStridedBatched_64_(handle,uplo,n,alpha,x,incx,stridex,AP,strideA,batchCount) bind(c, name="hipblasDsprStridedBatched_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDsprStridedBatched_64_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int64_t),value :: n
+      real(c_double) :: alpha
+      type(c_ptr),value :: x
+      integer(c_int64_t),value :: incx
+      integer(c_int64_t),value :: stridex
+      type(c_ptr),value :: AP
+      integer(c_int64_t),value :: strideA
+      integer(c_int64_t),value :: batchCount
+    end function
+  end interface
+
+  interface hipblasCsprStridedBatched_64
+#ifdef USE_CUDA_NAMES
+    function hipblasCsprStridedBatched_64_(handle,uplo,n,alpha,x,incx,stridex,AP,strideA,batchCount) bind(c, name="cublasCsprStridedBatched_64")
+#else
+    function hipblasCsprStridedBatched_64_(handle,uplo,n,alpha,x,incx,stridex,AP,strideA,batchCount) bind(c, name="hipblasCsprStridedBatched_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCsprStridedBatched_64_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int64_t),value :: n
+      complex(c_float_complex) :: alpha
+      type(c_ptr),value :: x
+      integer(c_int64_t),value :: incx
+      integer(c_int64_t),value :: stridex
+      type(c_ptr),value :: AP
+      integer(c_int64_t),value :: strideA
+      integer(c_int64_t),value :: batchCount
+    end function
+  end interface
+
+  interface hipblasZsprStridedBatched_64
+#ifdef USE_CUDA_NAMES
+    function hipblasZsprStridedBatched_64_(handle,uplo,n,alpha,x,incx,stridex,AP,strideA,batchCount) bind(c, name="cublasZsprStridedBatched_64")
+#else
+    function hipblasZsprStridedBatched_64_(handle,uplo,n,alpha,x,incx,stridex,AP,strideA,batchCount) bind(c, name="hipblasZsprStridedBatched_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZsprStridedBatched_64_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int64_t),value :: n
+      complex(c_double_complex) :: alpha
+      type(c_ptr),value :: x
+      integer(c_int64_t),value :: incx
+      integer(c_int64_t),value :: stridex
+      type(c_ptr),value :: AP
+      integer(c_int64_t),value :: strideA
+      integer(c_int64_t),value :: batchCount
+    end function
+  end interface
+
+  interface hipblasSspr2_64
+#ifdef USE_CUDA_NAMES
+    function hipblasSspr2_64_(handle,uplo,n,alpha,x,incx,y,incy,AP) bind(c, name="cublasSspr2_v2_64")
+#else
+    function hipblasSspr2_64_(handle,uplo,n,alpha,x,incx,y,incy,AP) bind(c, name="hipblasSspr2_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSspr2_64_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int64_t),value :: n
+      real(c_float) :: alpha
+      type(c_ptr),value :: x
+      integer(c_int64_t),value :: incx
+      type(c_ptr),value :: y
+      integer(c_int64_t),value :: incy
+      type(c_ptr),value :: AP
+    end function
+  end interface
+
+  interface hipblasDspr2_64
+#ifdef USE_CUDA_NAMES
+    function hipblasDspr2_64_(handle,uplo,n,alpha,x,incx,y,incy,AP) bind(c, name="cublasDspr2_v2_64")
+#else
+    function hipblasDspr2_64_(handle,uplo,n,alpha,x,incx,y,incy,AP) bind(c, name="hipblasDspr2_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDspr2_64_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int64_t),value :: n
+      real(c_double) :: alpha
+      type(c_ptr),value :: x
+      integer(c_int64_t),value :: incx
+      type(c_ptr),value :: y
+      integer(c_int64_t),value :: incy
+      type(c_ptr),value :: AP
+    end function
+  end interface
+
+  interface hipblasSspr2Batched_64
+#ifdef USE_CUDA_NAMES
+    function hipblasSspr2Batched_64_(handle,uplo,n,alpha,x,incx,y,incy,AP,batchCount) bind(c, name="cublasSspr2Batched_64")
+#else
+    function hipblasSspr2Batched_64_(handle,uplo,n,alpha,x,incx,y,incy,AP,batchCount) bind(c, name="hipblasSspr2Batched_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSspr2Batched_64_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int64_t),value :: n
+      real(c_float) :: alpha
+      type(c_ptr) :: x
+      integer(c_int64_t),value :: incx
+      type(c_ptr) :: y
+      integer(c_int64_t),value :: incy
+      type(c_ptr) :: AP
+      integer(c_int64_t),value :: batchCount
+    end function
+  end interface
+
+  interface hipblasDspr2Batched_64
+#ifdef USE_CUDA_NAMES
+    function hipblasDspr2Batched_64_(handle,uplo,n,alpha,x,incx,y,incy,AP,batchCount) bind(c, name="cublasDspr2Batched_64")
+#else
+    function hipblasDspr2Batched_64_(handle,uplo,n,alpha,x,incx,y,incy,AP,batchCount) bind(c, name="hipblasDspr2Batched_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDspr2Batched_64_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int64_t),value :: n
+      real(c_double) :: alpha
+      type(c_ptr) :: x
+      integer(c_int64_t),value :: incx
+      type(c_ptr) :: y
+      integer(c_int64_t),value :: incy
+      type(c_ptr) :: AP
+      integer(c_int64_t),value :: batchCount
+    end function
+  end interface
+
+  interface hipblasSspr2StridedBatched_64
+#ifdef USE_CUDA_NAMES
+    function hipblasSspr2StridedBatched_64_(handle,uplo,n,alpha,x,incx,stridex,y,incy,stridey,AP,strideA,batchCount) bind(c, name="cublasSspr2StridedBatched_64")
+#else
+    function hipblasSspr2StridedBatched_64_(handle,uplo,n,alpha,x,incx,stridex,y,incy,stridey,AP,strideA,batchCount) bind(c, name="hipblasSspr2StridedBatched_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSspr2StridedBatched_64_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int64_t),value :: n
+      real(c_float) :: alpha
+      type(c_ptr),value :: x
+      integer(c_int64_t),value :: incx
+      integer(c_int64_t),value :: stridex
+      type(c_ptr),value :: y
+      integer(c_int64_t),value :: incy
+      integer(c_int64_t),value :: stridey
+      type(c_ptr),value :: AP
+      integer(c_int64_t),value :: strideA
+      integer(c_int64_t),value :: batchCount
+    end function
+  end interface
+
+  interface hipblasDspr2StridedBatched_64
+#ifdef USE_CUDA_NAMES
+    function hipblasDspr2StridedBatched_64_(handle,uplo,n,alpha,x,incx,stridex,y,incy,stridey,AP,strideA,batchCount) bind(c, name="cublasDspr2StridedBatched_64")
+#else
+    function hipblasDspr2StridedBatched_64_(handle,uplo,n,alpha,x,incx,stridex,y,incy,stridey,AP,strideA,batchCount) bind(c, name="hipblasDspr2StridedBatched_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDspr2StridedBatched_64_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int64_t),value :: n
+      real(c_double) :: alpha
+      type(c_ptr),value :: x
+      integer(c_int64_t),value :: incx
+      integer(c_int64_t),value :: stridex
+      type(c_ptr),value :: y
+      integer(c_int64_t),value :: incy
+      integer(c_int64_t),value :: stridey
+      type(c_ptr),value :: AP
+      integer(c_int64_t),value :: strideA
+      integer(c_int64_t),value :: batchCount
+    end function
+  end interface
+
+  interface hipblasSsymv_64
+#ifdef USE_CUDA_NAMES
+    function hipblasSsymv_64_(handle,uplo,n,alpha,AP,lda,x,incx,beta,y,incy) bind(c, name="cublasSsymv_v2_64")
+#else
+    function hipblasSsymv_64_(handle,uplo,n,alpha,AP,lda,x,incx,beta,y,incy) bind(c, name="hipblasSsymv_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSsymv_64_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int64_t),value :: n
+      real(c_float) :: alpha
+      type(c_ptr),value :: AP
+      integer(c_int64_t),value :: lda
+      type(c_ptr),value :: x
+      integer(c_int64_t),value :: incx
+      real(c_float) :: beta
+      type(c_ptr),value :: y
+      integer(c_int64_t),value :: incy
+    end function
+  end interface
+
+  interface hipblasDsymv_64
+#ifdef USE_CUDA_NAMES
+    function hipblasDsymv_64_(handle,uplo,n,alpha,AP,lda,x,incx,beta,y,incy) bind(c, name="cublasDsymv_v2_64")
+#else
+    function hipblasDsymv_64_(handle,uplo,n,alpha,AP,lda,x,incx,beta,y,incy) bind(c, name="hipblasDsymv_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDsymv_64_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int64_t),value :: n
+      real(c_double) :: alpha
+      type(c_ptr),value :: AP
+      integer(c_int64_t),value :: lda
+      type(c_ptr),value :: x
+      integer(c_int64_t),value :: incx
+      real(c_double) :: beta
+      type(c_ptr),value :: y
+      integer(c_int64_t),value :: incy
+    end function
+  end interface
+
+  interface hipblasCsymv_64
+#ifdef USE_CUDA_NAMES
+    function hipblasCsymv_64_(handle,uplo,n,alpha,AP,lda,x,incx,beta,y,incy) bind(c, name="cublasCsymv_v2_64")
+#else
+    function hipblasCsymv_64_(handle,uplo,n,alpha,AP,lda,x,incx,beta,y,incy) bind(c, name="hipblasCsymv_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCsymv_64_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int64_t),value :: n
+      complex(c_float_complex) :: alpha
+      type(c_ptr),value :: AP
+      integer(c_int64_t),value :: lda
+      type(c_ptr),value :: x
+      integer(c_int64_t),value :: incx
+      complex(c_float_complex) :: beta
+      type(c_ptr),value :: y
+      integer(c_int64_t),value :: incy
+    end function
+  end interface
+
+  interface hipblasZsymv_64
+#ifdef USE_CUDA_NAMES
+    function hipblasZsymv_64_(handle,uplo,n,alpha,AP,lda,x,incx,beta,y,incy) bind(c, name="cublasZsymv_v2_64")
+#else
+    function hipblasZsymv_64_(handle,uplo,n,alpha,AP,lda,x,incx,beta,y,incy) bind(c, name="hipblasZsymv_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZsymv_64_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int64_t),value :: n
+      complex(c_double_complex) :: alpha
+      type(c_ptr),value :: AP
+      integer(c_int64_t),value :: lda
+      type(c_ptr),value :: x
+      integer(c_int64_t),value :: incx
+      complex(c_double_complex) :: beta
+      type(c_ptr),value :: y
+      integer(c_int64_t),value :: incy
+    end function
+  end interface
+
+  interface hipblasSsymvBatched_64
+#ifdef USE_CUDA_NAMES
+    function hipblasSsymvBatched_64_(handle,uplo,n,alpha,AP,lda,x,incx,beta,y,incy,batchCount) bind(c, name="cublasSsymvBatched_64")
+#else
+    function hipblasSsymvBatched_64_(handle,uplo,n,alpha,AP,lda,x,incx,beta,y,incy,batchCount) bind(c, name="hipblasSsymvBatched_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSsymvBatched_64_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int64_t),value :: n
+      real(c_float) :: alpha
+      type(c_ptr) :: AP
+      integer(c_int64_t),value :: lda
+      type(c_ptr) :: x
+      integer(c_int64_t),value :: incx
+      real(c_float) :: beta
+      type(c_ptr) :: y
+      integer(c_int64_t),value :: incy
+      integer(c_int64_t),value :: batchCount
+    end function
+  end interface
+
+  interface hipblasDsymvBatched_64
+#ifdef USE_CUDA_NAMES
+    function hipblasDsymvBatched_64_(handle,uplo,n,alpha,AP,lda,x,incx,beta,y,incy,batchCount) bind(c, name="cublasDsymvBatched_64")
+#else
+    function hipblasDsymvBatched_64_(handle,uplo,n,alpha,AP,lda,x,incx,beta,y,incy,batchCount) bind(c, name="hipblasDsymvBatched_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDsymvBatched_64_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int64_t),value :: n
+      real(c_double) :: alpha
+      type(c_ptr) :: AP
+      integer(c_int64_t),value :: lda
+      type(c_ptr) :: x
+      integer(c_int64_t),value :: incx
+      real(c_double) :: beta
+      type(c_ptr) :: y
+      integer(c_int64_t),value :: incy
+      integer(c_int64_t),value :: batchCount
+    end function
+  end interface
+
+  interface hipblasCsymvBatched_64
+#ifdef USE_CUDA_NAMES
+    function hipblasCsymvBatched_64_(handle,uplo,n,alpha,AP,lda,x,incx,beta,y,incy,batchCount) bind(c, name="cublasCsymvBatched_64")
+#else
+    function hipblasCsymvBatched_64_(handle,uplo,n,alpha,AP,lda,x,incx,beta,y,incy,batchCount) bind(c, name="hipblasCsymvBatched_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCsymvBatched_64_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int64_t),value :: n
+      complex(c_float_complex) :: alpha
+      type(c_ptr) :: AP
+      integer(c_int64_t),value :: lda
+      type(c_ptr) :: x
+      integer(c_int64_t),value :: incx
+      complex(c_float_complex) :: beta
+      type(c_ptr) :: y
+      integer(c_int64_t),value :: incy
+      integer(c_int64_t),value :: batchCount
+    end function
+  end interface
+
+  interface hipblasZsymvBatched_64
+#ifdef USE_CUDA_NAMES
+    function hipblasZsymvBatched_64_(handle,uplo,n,alpha,AP,lda,x,incx,beta,y,incy,batchCount) bind(c, name="cublasZsymvBatched_64")
+#else
+    function hipblasZsymvBatched_64_(handle,uplo,n,alpha,AP,lda,x,incx,beta,y,incy,batchCount) bind(c, name="hipblasZsymvBatched_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZsymvBatched_64_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int64_t),value :: n
+      complex(c_double_complex) :: alpha
+      type(c_ptr) :: AP
+      integer(c_int64_t),value :: lda
+      type(c_ptr) :: x
+      integer(c_int64_t),value :: incx
+      complex(c_double_complex) :: beta
+      type(c_ptr) :: y
+      integer(c_int64_t),value :: incy
+      integer(c_int64_t),value :: batchCount
+    end function
+  end interface
+
+  interface hipblasSsymvStridedBatched_64
+#ifdef USE_CUDA_NAMES
+    function hipblasSsymvStridedBatched_64_(handle,uplo,n,alpha,AP,lda,strideA,x,incx,stridex,beta,y,incy,stridey,batchCount) bind(c, name="cublasSsymvStridedBatched_64")
+#else
+    function hipblasSsymvStridedBatched_64_(handle,uplo,n,alpha,AP,lda,strideA,x,incx,stridex,beta,y,incy,stridey,batchCount) bind(c, name="hipblasSsymvStridedBatched_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSsymvStridedBatched_64_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int64_t),value :: n
+      real(c_float) :: alpha
+      type(c_ptr),value :: AP
+      integer(c_int64_t),value :: lda
+      integer(c_int64_t),value :: strideA
+      type(c_ptr),value :: x
+      integer(c_int64_t),value :: incx
+      integer(c_int64_t),value :: stridex
+      real(c_float) :: beta
+      type(c_ptr),value :: y
+      integer(c_int64_t),value :: incy
+      integer(c_int64_t),value :: stridey
+      integer(c_int64_t),value :: batchCount
+    end function
+  end interface
+
+  interface hipblasDsymvStridedBatched_64
+#ifdef USE_CUDA_NAMES
+    function hipblasDsymvStridedBatched_64_(handle,uplo,n,alpha,AP,lda,strideA,x,incx,stridex,beta,y,incy,stridey,batchCount) bind(c, name="cublasDsymvStridedBatched_64")
+#else
+    function hipblasDsymvStridedBatched_64_(handle,uplo,n,alpha,AP,lda,strideA,x,incx,stridex,beta,y,incy,stridey,batchCount) bind(c, name="hipblasDsymvStridedBatched_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDsymvStridedBatched_64_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int64_t),value :: n
+      real(c_double) :: alpha
+      type(c_ptr),value :: AP
+      integer(c_int64_t),value :: lda
+      integer(c_int64_t),value :: strideA
+      type(c_ptr),value :: x
+      integer(c_int64_t),value :: incx
+      integer(c_int64_t),value :: stridex
+      real(c_double) :: beta
+      type(c_ptr),value :: y
+      integer(c_int64_t),value :: incy
+      integer(c_int64_t),value :: stridey
+      integer(c_int64_t),value :: batchCount
+    end function
+  end interface
+
+  interface hipblasCsymvStridedBatched_64
+#ifdef USE_CUDA_NAMES
+    function hipblasCsymvStridedBatched_64_(handle,uplo,n,alpha,AP,lda,strideA,x,incx,stridex,beta,y,incy,stridey,batchCount) bind(c, name="cublasCsymvStridedBatched_64")
+#else
+    function hipblasCsymvStridedBatched_64_(handle,uplo,n,alpha,AP,lda,strideA,x,incx,stridex,beta,y,incy,stridey,batchCount) bind(c, name="hipblasCsymvStridedBatched_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCsymvStridedBatched_64_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int64_t),value :: n
+      complex(c_float_complex) :: alpha
+      type(c_ptr),value :: AP
+      integer(c_int64_t),value :: lda
+      integer(c_int64_t),value :: strideA
+      type(c_ptr),value :: x
+      integer(c_int64_t),value :: incx
+      integer(c_int64_t),value :: stridex
+      complex(c_float_complex) :: beta
+      type(c_ptr),value :: y
+      integer(c_int64_t),value :: incy
+      integer(c_int64_t),value :: stridey
+      integer(c_int64_t),value :: batchCount
+    end function
+  end interface
+
+  interface hipblasZsymvStridedBatched_64
+#ifdef USE_CUDA_NAMES
+    function hipblasZsymvStridedBatched_64_(handle,uplo,n,alpha,AP,lda,strideA,x,incx,stridex,beta,y,incy,stridey,batchCount) bind(c, name="cublasZsymvStridedBatched_64")
+#else
+    function hipblasZsymvStridedBatched_64_(handle,uplo,n,alpha,AP,lda,strideA,x,incx,stridex,beta,y,incy,stridey,batchCount) bind(c, name="hipblasZsymvStridedBatched_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZsymvStridedBatched_64_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int64_t),value :: n
+      complex(c_double_complex) :: alpha
+      type(c_ptr),value :: AP
+      integer(c_int64_t),value :: lda
+      integer(c_int64_t),value :: strideA
+      type(c_ptr),value :: x
+      integer(c_int64_t),value :: incx
+      integer(c_int64_t),value :: stridex
+      complex(c_double_complex) :: beta
+      type(c_ptr),value :: y
+      integer(c_int64_t),value :: incy
+      integer(c_int64_t),value :: stridey
+      integer(c_int64_t),value :: batchCount
+    end function
+  end interface
+
+  interface hipblasSsyr_64
+#ifdef USE_CUDA_NAMES
+    function hipblasSsyr_64_(handle,uplo,n,alpha,x,incx,AP,lda) bind(c, name="cublasSsyr_v2_64")
+#else
+    function hipblasSsyr_64_(handle,uplo,n,alpha,x,incx,AP,lda) bind(c, name="hipblasSsyr_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSsyr_64_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int64_t),value :: n
+      real(c_float) :: alpha
+      type(c_ptr),value :: x
+      integer(c_int64_t),value :: incx
+      type(c_ptr),value :: AP
+      integer(c_int64_t),value :: lda
+    end function
+  end interface
+
+  interface hipblasDsyr_64
+#ifdef USE_CUDA_NAMES
+    function hipblasDsyr_64_(handle,uplo,n,alpha,x,incx,AP,lda) bind(c, name="cublasDsyr_v2_64")
+#else
+    function hipblasDsyr_64_(handle,uplo,n,alpha,x,incx,AP,lda) bind(c, name="hipblasDsyr_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDsyr_64_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int64_t),value :: n
+      real(c_double) :: alpha
+      type(c_ptr),value :: x
+      integer(c_int64_t),value :: incx
+      type(c_ptr),value :: AP
+      integer(c_int64_t),value :: lda
+    end function
+  end interface
+
+  interface hipblasCsyr_64
+#ifdef USE_CUDA_NAMES
+    function hipblasCsyr_64_(handle,uplo,n,alpha,x,incx,AP,lda) bind(c, name="cublasCsyr_v2_64")
+#else
+    function hipblasCsyr_64_(handle,uplo,n,alpha,x,incx,AP,lda) bind(c, name="hipblasCsyr_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCsyr_64_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int64_t),value :: n
+      complex(c_float_complex) :: alpha
+      type(c_ptr),value :: x
+      integer(c_int64_t),value :: incx
+      type(c_ptr),value :: AP
+      integer(c_int64_t),value :: lda
+    end function
+  end interface
+
+  interface hipblasZsyr_64
+#ifdef USE_CUDA_NAMES
+    function hipblasZsyr_64_(handle,uplo,n,alpha,x,incx,AP,lda) bind(c, name="cublasZsyr_v2_64")
+#else
+    function hipblasZsyr_64_(handle,uplo,n,alpha,x,incx,AP,lda) bind(c, name="hipblasZsyr_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZsyr_64_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int64_t),value :: n
+      complex(c_double_complex) :: alpha
+      type(c_ptr),value :: x
+      integer(c_int64_t),value :: incx
+      type(c_ptr),value :: AP
+      integer(c_int64_t),value :: lda
+    end function
+  end interface
+
+  interface hipblasSsyrBatched_64
+#ifdef USE_CUDA_NAMES
+    function hipblasSsyrBatched_64_(handle,uplo,n,alpha,x,incx,AP,lda,batchCount) bind(c, name="cublasSsyrBatched_64")
+#else
+    function hipblasSsyrBatched_64_(handle,uplo,n,alpha,x,incx,AP,lda,batchCount) bind(c, name="hipblasSsyrBatched_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSsyrBatched_64_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int64_t),value :: n
+      real(c_float) :: alpha
+      type(c_ptr) :: x
+      integer(c_int64_t),value :: incx
+      type(c_ptr) :: AP
+      integer(c_int64_t),value :: lda
+      integer(c_int64_t),value :: batchCount
+    end function
+  end interface
+
+  interface hipblasDsyrBatched_64
+#ifdef USE_CUDA_NAMES
+    function hipblasDsyrBatched_64_(handle,uplo,n,alpha,x,incx,AP,lda,batchCount) bind(c, name="cublasDsyrBatched_64")
+#else
+    function hipblasDsyrBatched_64_(handle,uplo,n,alpha,x,incx,AP,lda,batchCount) bind(c, name="hipblasDsyrBatched_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDsyrBatched_64_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int64_t),value :: n
+      real(c_double) :: alpha
+      type(c_ptr) :: x
+      integer(c_int64_t),value :: incx
+      type(c_ptr) :: AP
+      integer(c_int64_t),value :: lda
+      integer(c_int64_t),value :: batchCount
+    end function
+  end interface
+
+  interface hipblasCsyrBatched_64
+#ifdef USE_CUDA_NAMES
+    function hipblasCsyrBatched_64_(handle,uplo,n,alpha,x,incx,AP,lda,batchCount) bind(c, name="cublasCsyrBatched_64")
+#else
+    function hipblasCsyrBatched_64_(handle,uplo,n,alpha,x,incx,AP,lda,batchCount) bind(c, name="hipblasCsyrBatched_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCsyrBatched_64_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int64_t),value :: n
+      complex(c_float_complex) :: alpha
+      type(c_ptr) :: x
+      integer(c_int64_t),value :: incx
+      type(c_ptr) :: AP
+      integer(c_int64_t),value :: lda
+      integer(c_int64_t),value :: batchCount
+    end function
+  end interface
+
+  interface hipblasZsyrBatched_64
+#ifdef USE_CUDA_NAMES
+    function hipblasZsyrBatched_64_(handle,uplo,n,alpha,x,incx,AP,lda,batchCount) bind(c, name="cublasZsyrBatched_64")
+#else
+    function hipblasZsyrBatched_64_(handle,uplo,n,alpha,x,incx,AP,lda,batchCount) bind(c, name="hipblasZsyrBatched_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZsyrBatched_64_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int64_t),value :: n
+      complex(c_double_complex) :: alpha
+      type(c_ptr) :: x
+      integer(c_int64_t),value :: incx
+      type(c_ptr) :: AP
+      integer(c_int64_t),value :: lda
+      integer(c_int64_t),value :: batchCount
+    end function
+  end interface
+
+  interface hipblasSsyrStridedBatched_64
+#ifdef USE_CUDA_NAMES
+    function hipblasSsyrStridedBatched_64_(handle,uplo,n,alpha,x,incx,stridex,AP,lda,strideA,batchCount) bind(c, name="cublasSsyrStridedBatched_64")
+#else
+    function hipblasSsyrStridedBatched_64_(handle,uplo,n,alpha,x,incx,stridex,AP,lda,strideA,batchCount) bind(c, name="hipblasSsyrStridedBatched_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSsyrStridedBatched_64_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int64_t),value :: n
+      real(c_float) :: alpha
+      type(c_ptr),value :: x
+      integer(c_int64_t),value :: incx
+      integer(c_int64_t),value :: stridex
+      type(c_ptr),value :: AP
+      integer(c_int64_t),value :: lda
+      integer(c_int64_t),value :: strideA
+      integer(c_int64_t),value :: batchCount
+    end function
+  end interface
+
+  interface hipblasDsyrStridedBatched_64
+#ifdef USE_CUDA_NAMES
+    function hipblasDsyrStridedBatched_64_(handle,uplo,n,alpha,x,incx,stridex,AP,lda,strideA,batchCount) bind(c, name="cublasDsyrStridedBatched_64")
+#else
+    function hipblasDsyrStridedBatched_64_(handle,uplo,n,alpha,x,incx,stridex,AP,lda,strideA,batchCount) bind(c, name="hipblasDsyrStridedBatched_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDsyrStridedBatched_64_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int64_t),value :: n
+      real(c_double) :: alpha
+      type(c_ptr),value :: x
+      integer(c_int64_t),value :: incx
+      integer(c_int64_t),value :: stridex
+      type(c_ptr),value :: AP
+      integer(c_int64_t),value :: lda
+      integer(c_int64_t),value :: strideA
+      integer(c_int64_t),value :: batchCount
+    end function
+  end interface
+
+  interface hipblasCsyrStridedBatched_64
+#ifdef USE_CUDA_NAMES
+    function hipblasCsyrStridedBatched_64_(handle,uplo,n,alpha,x,incx,stridex,AP,lda,strideA,batchCount) bind(c, name="cublasCsyrStridedBatched_64")
+#else
+    function hipblasCsyrStridedBatched_64_(handle,uplo,n,alpha,x,incx,stridex,AP,lda,strideA,batchCount) bind(c, name="hipblasCsyrStridedBatched_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCsyrStridedBatched_64_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int64_t),value :: n
+      complex(c_float_complex) :: alpha
+      type(c_ptr),value :: x
+      integer(c_int64_t),value :: incx
+      integer(c_int64_t),value :: stridex
+      type(c_ptr),value :: AP
+      integer(c_int64_t),value :: lda
+      integer(c_int64_t),value :: strideA
+      integer(c_int64_t),value :: batchCount
+    end function
+  end interface
+
+  interface hipblasZsyrStridedBatched_64
+#ifdef USE_CUDA_NAMES
+    function hipblasZsyrStridedBatched_64_(handle,uplo,n,alpha,x,incx,stridex,AP,lda,strideA,batchCount) bind(c, name="cublasZsyrStridedBatched_64")
+#else
+    function hipblasZsyrStridedBatched_64_(handle,uplo,n,alpha,x,incx,stridex,AP,lda,strideA,batchCount) bind(c, name="hipblasZsyrStridedBatched_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZsyrStridedBatched_64_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int64_t),value :: n
+      complex(c_double_complex) :: alpha
+      type(c_ptr),value :: x
+      integer(c_int64_t),value :: incx
+      integer(c_int64_t),value :: stridex
+      type(c_ptr),value :: AP
+      integer(c_int64_t),value :: lda
+      integer(c_int64_t),value :: strideA
+      integer(c_int64_t),value :: batchCount
+    end function
+  end interface
+
+  interface hipblasSsyr2_64
+#ifdef USE_CUDA_NAMES
+    function hipblasSsyr2_64_(handle,uplo,n,alpha,x,incx,y,incy,AP,lda) bind(c, name="cublasSsyr2_v2_64")
+#else
+    function hipblasSsyr2_64_(handle,uplo,n,alpha,x,incx,y,incy,AP,lda) bind(c, name="hipblasSsyr2_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSsyr2_64_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int64_t),value :: n
+      real(c_float) :: alpha
+      type(c_ptr),value :: x
+      integer(c_int64_t),value :: incx
+      type(c_ptr),value :: y
+      integer(c_int64_t),value :: incy
+      type(c_ptr),value :: AP
+      integer(c_int64_t),value :: lda
+    end function
+  end interface
+
+  interface hipblasDsyr2_64
+#ifdef USE_CUDA_NAMES
+    function hipblasDsyr2_64_(handle,uplo,n,alpha,x,incx,y,incy,AP,lda) bind(c, name="cublasDsyr2_v2_64")
+#else
+    function hipblasDsyr2_64_(handle,uplo,n,alpha,x,incx,y,incy,AP,lda) bind(c, name="hipblasDsyr2_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDsyr2_64_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int64_t),value :: n
+      real(c_double) :: alpha
+      type(c_ptr),value :: x
+      integer(c_int64_t),value :: incx
+      type(c_ptr),value :: y
+      integer(c_int64_t),value :: incy
+      type(c_ptr),value :: AP
+      integer(c_int64_t),value :: lda
+    end function
+  end interface
+
+  interface hipblasCsyr2_64
+#ifdef USE_CUDA_NAMES
+    function hipblasCsyr2_64_(handle,uplo,n,alpha,x,incx,y,incy,AP,lda) bind(c, name="cublasCsyr2_v2_64")
+#else
+    function hipblasCsyr2_64_(handle,uplo,n,alpha,x,incx,y,incy,AP,lda) bind(c, name="hipblasCsyr2_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCsyr2_64_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int64_t),value :: n
+      complex(c_float_complex) :: alpha
+      type(c_ptr),value :: x
+      integer(c_int64_t),value :: incx
+      type(c_ptr),value :: y
+      integer(c_int64_t),value :: incy
+      type(c_ptr),value :: AP
+      integer(c_int64_t),value :: lda
+    end function
+  end interface
+
+  interface hipblasZsyr2_64
+#ifdef USE_CUDA_NAMES
+    function hipblasZsyr2_64_(handle,uplo,n,alpha,x,incx,y,incy,AP,lda) bind(c, name="cublasZsyr2_v2_64")
+#else
+    function hipblasZsyr2_64_(handle,uplo,n,alpha,x,incx,y,incy,AP,lda) bind(c, name="hipblasZsyr2_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZsyr2_64_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int64_t),value :: n
+      complex(c_double_complex) :: alpha
+      type(c_ptr),value :: x
+      integer(c_int64_t),value :: incx
+      type(c_ptr),value :: y
+      integer(c_int64_t),value :: incy
+      type(c_ptr),value :: AP
+      integer(c_int64_t),value :: lda
+    end function
+  end interface
+
+  interface hipblasSsyr2Batched_64
+#ifdef USE_CUDA_NAMES
+    function hipblasSsyr2Batched_64_(handle,uplo,n,alpha,x,incx,y,incy,AP,lda,batchCount) bind(c, name="cublasSsyr2Batched_64")
+#else
+    function hipblasSsyr2Batched_64_(handle,uplo,n,alpha,x,incx,y,incy,AP,lda,batchCount) bind(c, name="hipblasSsyr2Batched_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSsyr2Batched_64_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int64_t),value :: n
+      real(c_float) :: alpha
+      type(c_ptr) :: x
+      integer(c_int64_t),value :: incx
+      type(c_ptr) :: y
+      integer(c_int64_t),value :: incy
+      type(c_ptr) :: AP
+      integer(c_int64_t),value :: lda
+      integer(c_int64_t),value :: batchCount
+    end function
+  end interface
+
+  interface hipblasDsyr2Batched_64
+#ifdef USE_CUDA_NAMES
+    function hipblasDsyr2Batched_64_(handle,uplo,n,alpha,x,incx,y,incy,AP,lda,batchCount) bind(c, name="cublasDsyr2Batched_64")
+#else
+    function hipblasDsyr2Batched_64_(handle,uplo,n,alpha,x,incx,y,incy,AP,lda,batchCount) bind(c, name="hipblasDsyr2Batched_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDsyr2Batched_64_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int64_t),value :: n
+      real(c_double) :: alpha
+      type(c_ptr) :: x
+      integer(c_int64_t),value :: incx
+      type(c_ptr) :: y
+      integer(c_int64_t),value :: incy
+      type(c_ptr) :: AP
+      integer(c_int64_t),value :: lda
+      integer(c_int64_t),value :: batchCount
+    end function
+  end interface
+
+  interface hipblasCsyr2Batched_64
+#ifdef USE_CUDA_NAMES
+    function hipblasCsyr2Batched_64_(handle,uplo,n,alpha,x,incx,y,incy,AP,lda,batchCount) bind(c, name="cublasCsyr2Batched_64")
+#else
+    function hipblasCsyr2Batched_64_(handle,uplo,n,alpha,x,incx,y,incy,AP,lda,batchCount) bind(c, name="hipblasCsyr2Batched_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCsyr2Batched_64_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int64_t),value :: n
+      complex(c_float_complex) :: alpha
+      type(c_ptr) :: x
+      integer(c_int64_t),value :: incx
+      type(c_ptr) :: y
+      integer(c_int64_t),value :: incy
+      type(c_ptr) :: AP
+      integer(c_int64_t),value :: lda
+      integer(c_int64_t),value :: batchCount
+    end function
+  end interface
+
+  interface hipblasZsyr2Batched_64
+#ifdef USE_CUDA_NAMES
+    function hipblasZsyr2Batched_64_(handle,uplo,n,alpha,x,incx,y,incy,AP,lda,batchCount) bind(c, name="cublasZsyr2Batched_64")
+#else
+    function hipblasZsyr2Batched_64_(handle,uplo,n,alpha,x,incx,y,incy,AP,lda,batchCount) bind(c, name="hipblasZsyr2Batched_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZsyr2Batched_64_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int64_t),value :: n
+      complex(c_double_complex) :: alpha
+      type(c_ptr) :: x
+      integer(c_int64_t),value :: incx
+      type(c_ptr) :: y
+      integer(c_int64_t),value :: incy
+      type(c_ptr) :: AP
+      integer(c_int64_t),value :: lda
+      integer(c_int64_t),value :: batchCount
+    end function
+  end interface
+
+  interface hipblasSsyr2StridedBatched_64
+#ifdef USE_CUDA_NAMES
+    function hipblasSsyr2StridedBatched_64_(handle,uplo,n,alpha,x,incx,stridex,y,incy,stridey,AP,lda,strideA,batchCount) bind(c, name="cublasSsyr2StridedBatched_64")
+#else
+    function hipblasSsyr2StridedBatched_64_(handle,uplo,n,alpha,x,incx,stridex,y,incy,stridey,AP,lda,strideA,batchCount) bind(c, name="hipblasSsyr2StridedBatched_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSsyr2StridedBatched_64_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int64_t),value :: n
+      real(c_float) :: alpha
+      type(c_ptr),value :: x
+      integer(c_int64_t),value :: incx
+      integer(c_int64_t),value :: stridex
+      type(c_ptr),value :: y
+      integer(c_int64_t),value :: incy
+      integer(c_int64_t),value :: stridey
+      type(c_ptr),value :: AP
+      integer(c_int64_t),value :: lda
+      integer(c_int64_t),value :: strideA
+      integer(c_int64_t),value :: batchCount
+    end function
+  end interface
+
+  interface hipblasDsyr2StridedBatched_64
+#ifdef USE_CUDA_NAMES
+    function hipblasDsyr2StridedBatched_64_(handle,uplo,n,alpha,x,incx,stridex,y,incy,stridey,AP,lda,strideA,batchCount) bind(c, name="cublasDsyr2StridedBatched_64")
+#else
+    function hipblasDsyr2StridedBatched_64_(handle,uplo,n,alpha,x,incx,stridex,y,incy,stridey,AP,lda,strideA,batchCount) bind(c, name="hipblasDsyr2StridedBatched_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDsyr2StridedBatched_64_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int64_t),value :: n
+      real(c_double) :: alpha
+      type(c_ptr),value :: x
+      integer(c_int64_t),value :: incx
+      integer(c_int64_t),value :: stridex
+      type(c_ptr),value :: y
+      integer(c_int64_t),value :: incy
+      integer(c_int64_t),value :: stridey
+      type(c_ptr),value :: AP
+      integer(c_int64_t),value :: lda
+      integer(c_int64_t),value :: strideA
+      integer(c_int64_t),value :: batchCount
+    end function
+  end interface
+
+  interface hipblasCsyr2StridedBatched_64
+#ifdef USE_CUDA_NAMES
+    function hipblasCsyr2StridedBatched_64_(handle,uplo,n,alpha,x,incx,stridex,y,incy,stridey,AP,lda,strideA,batchCount) bind(c, name="cublasCsyr2StridedBatched_64")
+#else
+    function hipblasCsyr2StridedBatched_64_(handle,uplo,n,alpha,x,incx,stridex,y,incy,stridey,AP,lda,strideA,batchCount) bind(c, name="hipblasCsyr2StridedBatched_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCsyr2StridedBatched_64_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int64_t),value :: n
+      complex(c_float_complex) :: alpha
+      type(c_ptr),value :: x
+      integer(c_int64_t),value :: incx
+      integer(c_int64_t),value :: stridex
+      type(c_ptr),value :: y
+      integer(c_int64_t),value :: incy
+      integer(c_int64_t),value :: stridey
+      type(c_ptr),value :: AP
+      integer(c_int64_t),value :: lda
+      integer(c_int64_t),value :: strideA
+      integer(c_int64_t),value :: batchCount
+    end function
+  end interface
+
+  interface hipblasZsyr2StridedBatched_64
+#ifdef USE_CUDA_NAMES
+    function hipblasZsyr2StridedBatched_64_(handle,uplo,n,alpha,x,incx,stridex,y,incy,stridey,AP,lda,strideA,batchCount) bind(c, name="cublasZsyr2StridedBatched_64")
+#else
+    function hipblasZsyr2StridedBatched_64_(handle,uplo,n,alpha,x,incx,stridex,y,incy,stridey,AP,lda,strideA,batchCount) bind(c, name="hipblasZsyr2StridedBatched_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZsyr2StridedBatched_64_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int64_t),value :: n
+      complex(c_double_complex) :: alpha
+      type(c_ptr),value :: x
+      integer(c_int64_t),value :: incx
+      integer(c_int64_t),value :: stridex
+      type(c_ptr),value :: y
+      integer(c_int64_t),value :: incy
+      integer(c_int64_t),value :: stridey
+      type(c_ptr),value :: AP
+      integer(c_int64_t),value :: lda
+      integer(c_int64_t),value :: strideA
+      integer(c_int64_t),value :: batchCount
+    end function
+  end interface
+
+  interface hipblasStbmv_64
+#ifdef USE_CUDA_NAMES
+    function hipblasStbmv_64_(handle,uplo,transA,diag,n,k,AP,lda,x,incx) bind(c, name="cublasStbmv_v2_64")
+#else
+    function hipblasStbmv_64_(handle,uplo,transA,diag,n,k,AP,lda,x,incx) bind(c, name="hipblasStbmv_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasStbmv_64_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
+      integer(kind(HIPBLAS_OP_N)),value :: transA
+      integer(kind(HIPBLAS_DIAG_NON_UNIT)),value :: diag
+      integer(c_int64_t),value :: n
+      integer(c_int64_t),value :: k
+      type(c_ptr),value :: AP
+      integer(c_int64_t),value :: lda
+      type(c_ptr),value :: x
+      integer(c_int64_t),value :: incx
+    end function
+  end interface
+
+  interface hipblasDtbmv_64
+#ifdef USE_CUDA_NAMES
+    function hipblasDtbmv_64_(handle,uplo,transA,diag,n,k,AP,lda,x,incx) bind(c, name="cublasDtbmv_v2_64")
+#else
+    function hipblasDtbmv_64_(handle,uplo,transA,diag,n,k,AP,lda,x,incx) bind(c, name="hipblasDtbmv_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDtbmv_64_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
+      integer(kind(HIPBLAS_OP_N)),value :: transA
+      integer(kind(HIPBLAS_DIAG_NON_UNIT)),value :: diag
+      integer(c_int64_t),value :: n
+      integer(c_int64_t),value :: k
+      type(c_ptr),value :: AP
+      integer(c_int64_t),value :: lda
+      type(c_ptr),value :: x
+      integer(c_int64_t),value :: incx
+    end function
+  end interface
+
+  interface hipblasCtbmv_64
+#ifdef USE_CUDA_NAMES
+    function hipblasCtbmv_64_(handle,uplo,transA,diag,n,k,AP,lda,x,incx) bind(c, name="cublasCtbmv_v2_64")
+#else
+    function hipblasCtbmv_64_(handle,uplo,transA,diag,n,k,AP,lda,x,incx) bind(c, name="hipblasCtbmv_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCtbmv_64_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
+      integer(kind(HIPBLAS_OP_N)),value :: transA
+      integer(kind(HIPBLAS_DIAG_NON_UNIT)),value :: diag
+      integer(c_int64_t),value :: n
+      integer(c_int64_t),value :: k
+      type(c_ptr),value :: AP
+      integer(c_int64_t),value :: lda
+      type(c_ptr),value :: x
+      integer(c_int64_t),value :: incx
+    end function
+  end interface
+
+  interface hipblasZtbmv_64
+#ifdef USE_CUDA_NAMES
+    function hipblasZtbmv_64_(handle,uplo,transA,diag,n,k,AP,lda,x,incx) bind(c, name="cublasZtbmv_v2_64")
+#else
+    function hipblasZtbmv_64_(handle,uplo,transA,diag,n,k,AP,lda,x,incx) bind(c, name="hipblasZtbmv_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZtbmv_64_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
+      integer(kind(HIPBLAS_OP_N)),value :: transA
+      integer(kind(HIPBLAS_DIAG_NON_UNIT)),value :: diag
+      integer(c_int64_t),value :: n
+      integer(c_int64_t),value :: k
+      type(c_ptr),value :: AP
+      integer(c_int64_t),value :: lda
+      type(c_ptr),value :: x
+      integer(c_int64_t),value :: incx
+    end function
+  end interface
+
+  interface hipblasStbmvBatched_64
+#ifdef USE_CUDA_NAMES
+    function hipblasStbmvBatched_64_(handle,uplo,transA,diag,n,k,AP,lda,x,incx,batchCount) bind(c, name="cublasStbmvBatched_64")
+#else
+    function hipblasStbmvBatched_64_(handle,uplo,transA,diag,n,k,AP,lda,x,incx,batchCount) bind(c, name="hipblasStbmvBatched_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasStbmvBatched_64_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
+      integer(kind(HIPBLAS_OP_N)),value :: transA
+      integer(kind(HIPBLAS_DIAG_NON_UNIT)),value :: diag
+      integer(c_int64_t),value :: n
+      integer(c_int64_t),value :: k
+      type(c_ptr) :: AP
+      integer(c_int64_t),value :: lda
+      type(c_ptr) :: x
+      integer(c_int64_t),value :: incx
+      integer(c_int64_t),value :: batchCount
+    end function
+  end interface
+
+  interface hipblasDtbmvBatched_64
+#ifdef USE_CUDA_NAMES
+    function hipblasDtbmvBatched_64_(handle,uplo,transA,diag,n,k,AP,lda,x,incx,batchCount) bind(c, name="cublasDtbmvBatched_64")
+#else
+    function hipblasDtbmvBatched_64_(handle,uplo,transA,diag,n,k,AP,lda,x,incx,batchCount) bind(c, name="hipblasDtbmvBatched_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDtbmvBatched_64_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
+      integer(kind(HIPBLAS_OP_N)),value :: transA
+      integer(kind(HIPBLAS_DIAG_NON_UNIT)),value :: diag
+      integer(c_int64_t),value :: n
+      integer(c_int64_t),value :: k
+      type(c_ptr) :: AP
+      integer(c_int64_t),value :: lda
+      type(c_ptr) :: x
+      integer(c_int64_t),value :: incx
+      integer(c_int64_t),value :: batchCount
+    end function
+  end interface
+
+  interface hipblasCtbmvBatched_64
+#ifdef USE_CUDA_NAMES
+    function hipblasCtbmvBatched_64_(handle,uplo,transA,diag,n,k,AP,lda,x,incx,batchCount) bind(c, name="cublasCtbmvBatched_64")
+#else
+    function hipblasCtbmvBatched_64_(handle,uplo,transA,diag,n,k,AP,lda,x,incx,batchCount) bind(c, name="hipblasCtbmvBatched_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCtbmvBatched_64_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
+      integer(kind(HIPBLAS_OP_N)),value :: transA
+      integer(kind(HIPBLAS_DIAG_NON_UNIT)),value :: diag
+      integer(c_int64_t),value :: n
+      integer(c_int64_t),value :: k
+      type(c_ptr) :: AP
+      integer(c_int64_t),value :: lda
+      type(c_ptr) :: x
+      integer(c_int64_t),value :: incx
+      integer(c_int64_t),value :: batchCount
+    end function
+  end interface
+
+  interface hipblasZtbmvBatched_64
+#ifdef USE_CUDA_NAMES
+    function hipblasZtbmvBatched_64_(handle,uplo,transA,diag,n,k,AP,lda,x,incx,batchCount) bind(c, name="cublasZtbmvBatched_64")
+#else
+    function hipblasZtbmvBatched_64_(handle,uplo,transA,diag,n,k,AP,lda,x,incx,batchCount) bind(c, name="hipblasZtbmvBatched_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZtbmvBatched_64_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
+      integer(kind(HIPBLAS_OP_N)),value :: transA
+      integer(kind(HIPBLAS_DIAG_NON_UNIT)),value :: diag
+      integer(c_int64_t),value :: n
+      integer(c_int64_t),value :: k
+      type(c_ptr) :: AP
+      integer(c_int64_t),value :: lda
+      type(c_ptr) :: x
+      integer(c_int64_t),value :: incx
+      integer(c_int64_t),value :: batchCount
+    end function
+  end interface
+
+  interface hipblasStbmvStridedBatched_64
+#ifdef USE_CUDA_NAMES
+    function hipblasStbmvStridedBatched_64_(handle,uplo,transA,diag,n,k,AP,lda,strideA,x,incx,stridex,batchCount) bind(c, name="cublasStbmvStridedBatched_64")
+#else
+    function hipblasStbmvStridedBatched_64_(handle,uplo,transA,diag,n,k,AP,lda,strideA,x,incx,stridex,batchCount) bind(c, name="hipblasStbmvStridedBatched_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasStbmvStridedBatched_64_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
+      integer(kind(HIPBLAS_OP_N)),value :: transA
+      integer(kind(HIPBLAS_DIAG_NON_UNIT)),value :: diag
+      integer(c_int64_t),value :: n
+      integer(c_int64_t),value :: k
+      type(c_ptr),value :: AP
+      integer(c_int64_t),value :: lda
+      integer(c_int64_t),value :: strideA
+      type(c_ptr),value :: x
+      integer(c_int64_t),value :: incx
+      integer(c_int64_t),value :: stridex
+      integer(c_int64_t),value :: batchCount
+    end function
+  end interface
+
+  interface hipblasDtbmvStridedBatched_64
+#ifdef USE_CUDA_NAMES
+    function hipblasDtbmvStridedBatched_64_(handle,uplo,transA,diag,n,k,AP,lda,strideA,x,incx,stridex,batchCount) bind(c, name="cublasDtbmvStridedBatched_64")
+#else
+    function hipblasDtbmvStridedBatched_64_(handle,uplo,transA,diag,n,k,AP,lda,strideA,x,incx,stridex,batchCount) bind(c, name="hipblasDtbmvStridedBatched_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDtbmvStridedBatched_64_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
+      integer(kind(HIPBLAS_OP_N)),value :: transA
+      integer(kind(HIPBLAS_DIAG_NON_UNIT)),value :: diag
+      integer(c_int64_t),value :: n
+      integer(c_int64_t),value :: k
+      type(c_ptr),value :: AP
+      integer(c_int64_t),value :: lda
+      integer(c_int64_t),value :: strideA
+      type(c_ptr),value :: x
+      integer(c_int64_t),value :: incx
+      integer(c_int64_t),value :: stridex
+      integer(c_int64_t),value :: batchCount
+    end function
+  end interface
+
+  interface hipblasCtbmvStridedBatched_64
+#ifdef USE_CUDA_NAMES
+    function hipblasCtbmvStridedBatched_64_(handle,uplo,transA,diag,n,k,AP,lda,strideA,x,incx,stridex,batchCount) bind(c, name="cublasCtbmvStridedBatched_64")
+#else
+    function hipblasCtbmvStridedBatched_64_(handle,uplo,transA,diag,n,k,AP,lda,strideA,x,incx,stridex,batchCount) bind(c, name="hipblasCtbmvStridedBatched_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCtbmvStridedBatched_64_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
+      integer(kind(HIPBLAS_OP_N)),value :: transA
+      integer(kind(HIPBLAS_DIAG_NON_UNIT)),value :: diag
+      integer(c_int64_t),value :: n
+      integer(c_int64_t),value :: k
+      type(c_ptr),value :: AP
+      integer(c_int64_t),value :: lda
+      integer(c_int64_t),value :: strideA
+      type(c_ptr),value :: x
+      integer(c_int64_t),value :: incx
+      integer(c_int64_t),value :: stridex
+      integer(c_int64_t),value :: batchCount
+    end function
+  end interface
+
+  interface hipblasZtbmvStridedBatched_64
+#ifdef USE_CUDA_NAMES
+    function hipblasZtbmvStridedBatched_64_(handle,uplo,transA,diag,n,k,AP,lda,strideA,x,incx,stridex,batchCount) bind(c, name="cublasZtbmvStridedBatched_64")
+#else
+    function hipblasZtbmvStridedBatched_64_(handle,uplo,transA,diag,n,k,AP,lda,strideA,x,incx,stridex,batchCount) bind(c, name="hipblasZtbmvStridedBatched_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZtbmvStridedBatched_64_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
+      integer(kind(HIPBLAS_OP_N)),value :: transA
+      integer(kind(HIPBLAS_DIAG_NON_UNIT)),value :: diag
+      integer(c_int64_t),value :: n
+      integer(c_int64_t),value :: k
+      type(c_ptr),value :: AP
+      integer(c_int64_t),value :: lda
+      integer(c_int64_t),value :: strideA
+      type(c_ptr),value :: x
+      integer(c_int64_t),value :: incx
+      integer(c_int64_t),value :: stridex
+      integer(c_int64_t),value :: batchCount
+    end function
+  end interface
+
+  interface hipblasStbsv_64
+#ifdef USE_CUDA_NAMES
+    function hipblasStbsv_64_(handle,uplo,transA,diag,n,k,AP,lda,x,incx) bind(c, name="cublasStbsv_v2_64")
+#else
+    function hipblasStbsv_64_(handle,uplo,transA,diag,n,k,AP,lda,x,incx) bind(c, name="hipblasStbsv_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasStbsv_64_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
+      integer(kind(HIPBLAS_OP_N)),value :: transA
+      integer(kind(HIPBLAS_DIAG_NON_UNIT)),value :: diag
+      integer(c_int64_t),value :: n
+      integer(c_int64_t),value :: k
+      type(c_ptr),value :: AP
+      integer(c_int64_t),value :: lda
+      type(c_ptr),value :: x
+      integer(c_int64_t),value :: incx
+    end function
+  end interface
+
+  interface hipblasDtbsv_64
+#ifdef USE_CUDA_NAMES
+    function hipblasDtbsv_64_(handle,uplo,transA,diag,n,k,AP,lda,x,incx) bind(c, name="cublasDtbsv_v2_64")
+#else
+    function hipblasDtbsv_64_(handle,uplo,transA,diag,n,k,AP,lda,x,incx) bind(c, name="hipblasDtbsv_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDtbsv_64_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
+      integer(kind(HIPBLAS_OP_N)),value :: transA
+      integer(kind(HIPBLAS_DIAG_NON_UNIT)),value :: diag
+      integer(c_int64_t),value :: n
+      integer(c_int64_t),value :: k
+      type(c_ptr),value :: AP
+      integer(c_int64_t),value :: lda
+      type(c_ptr),value :: x
+      integer(c_int64_t),value :: incx
+    end function
+  end interface
+
+  interface hipblasCtbsv_64
+#ifdef USE_CUDA_NAMES
+    function hipblasCtbsv_64_(handle,uplo,transA,diag,n,k,AP,lda,x,incx) bind(c, name="cublasCtbsv_v2_64")
+#else
+    function hipblasCtbsv_64_(handle,uplo,transA,diag,n,k,AP,lda,x,incx) bind(c, name="hipblasCtbsv_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCtbsv_64_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
+      integer(kind(HIPBLAS_OP_N)),value :: transA
+      integer(kind(HIPBLAS_DIAG_NON_UNIT)),value :: diag
+      integer(c_int64_t),value :: n
+      integer(c_int64_t),value :: k
+      type(c_ptr),value :: AP
+      integer(c_int64_t),value :: lda
+      type(c_ptr),value :: x
+      integer(c_int64_t),value :: incx
+    end function
+  end interface
+
+  interface hipblasZtbsv_64
+#ifdef USE_CUDA_NAMES
+    function hipblasZtbsv_64_(handle,uplo,transA,diag,n,k,AP,lda,x,incx) bind(c, name="cublasZtbsv_v2_64")
+#else
+    function hipblasZtbsv_64_(handle,uplo,transA,diag,n,k,AP,lda,x,incx) bind(c, name="hipblasZtbsv_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZtbsv_64_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
+      integer(kind(HIPBLAS_OP_N)),value :: transA
+      integer(kind(HIPBLAS_DIAG_NON_UNIT)),value :: diag
+      integer(c_int64_t),value :: n
+      integer(c_int64_t),value :: k
+      type(c_ptr),value :: AP
+      integer(c_int64_t),value :: lda
+      type(c_ptr),value :: x
+      integer(c_int64_t),value :: incx
+    end function
+  end interface
+
+  interface hipblasStbsvBatched_64
+#ifdef USE_CUDA_NAMES
+    function hipblasStbsvBatched_64_(handle,uplo,transA,diag,n,k,AP,lda,x,incx,batchCount) bind(c, name="cublasStbsvBatched_64")
+#else
+    function hipblasStbsvBatched_64_(handle,uplo,transA,diag,n,k,AP,lda,x,incx,batchCount) bind(c, name="hipblasStbsvBatched_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasStbsvBatched_64_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
+      integer(kind(HIPBLAS_OP_N)),value :: transA
+      integer(kind(HIPBLAS_DIAG_NON_UNIT)),value :: diag
+      integer(c_int64_t),value :: n
+      integer(c_int64_t),value :: k
+      type(c_ptr) :: AP
+      integer(c_int64_t),value :: lda
+      type(c_ptr) :: x
+      integer(c_int64_t),value :: incx
+      integer(c_int64_t),value :: batchCount
+    end function
+  end interface
+
+  interface hipblasDtbsvBatched_64
+#ifdef USE_CUDA_NAMES
+    function hipblasDtbsvBatched_64_(handle,uplo,transA,diag,n,k,AP,lda,x,incx,batchCount) bind(c, name="cublasDtbsvBatched_64")
+#else
+    function hipblasDtbsvBatched_64_(handle,uplo,transA,diag,n,k,AP,lda,x,incx,batchCount) bind(c, name="hipblasDtbsvBatched_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDtbsvBatched_64_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
+      integer(kind(HIPBLAS_OP_N)),value :: transA
+      integer(kind(HIPBLAS_DIAG_NON_UNIT)),value :: diag
+      integer(c_int64_t),value :: n
+      integer(c_int64_t),value :: k
+      type(c_ptr) :: AP
+      integer(c_int64_t),value :: lda
+      type(c_ptr) :: x
+      integer(c_int64_t),value :: incx
+      integer(c_int64_t),value :: batchCount
+    end function
+  end interface
+
+  interface hipblasCtbsvBatched_64
+#ifdef USE_CUDA_NAMES
+    function hipblasCtbsvBatched_64_(handle,uplo,transA,diag,n,k,AP,lda,x,incx,batchCount) bind(c, name="cublasCtbsvBatched_64")
+#else
+    function hipblasCtbsvBatched_64_(handle,uplo,transA,diag,n,k,AP,lda,x,incx,batchCount) bind(c, name="hipblasCtbsvBatched_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCtbsvBatched_64_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
+      integer(kind(HIPBLAS_OP_N)),value :: transA
+      integer(kind(HIPBLAS_DIAG_NON_UNIT)),value :: diag
+      integer(c_int64_t),value :: n
+      integer(c_int64_t),value :: k
+      type(c_ptr) :: AP
+      integer(c_int64_t),value :: lda
+      type(c_ptr) :: x
+      integer(c_int64_t),value :: incx
+      integer(c_int64_t),value :: batchCount
+    end function
+  end interface
+
+  interface hipblasZtbsvBatched_64
+#ifdef USE_CUDA_NAMES
+    function hipblasZtbsvBatched_64_(handle,uplo,transA,diag,n,k,AP,lda,x,incx,batchCount) bind(c, name="cublasZtbsvBatched_64")
+#else
+    function hipblasZtbsvBatched_64_(handle,uplo,transA,diag,n,k,AP,lda,x,incx,batchCount) bind(c, name="hipblasZtbsvBatched_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZtbsvBatched_64_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
+      integer(kind(HIPBLAS_OP_N)),value :: transA
+      integer(kind(HIPBLAS_DIAG_NON_UNIT)),value :: diag
+      integer(c_int64_t),value :: n
+      integer(c_int64_t),value :: k
+      type(c_ptr) :: AP
+      integer(c_int64_t),value :: lda
+      type(c_ptr) :: x
+      integer(c_int64_t),value :: incx
+      integer(c_int64_t),value :: batchCount
+    end function
+  end interface
+
+  interface hipblasStbsvStridedBatched_64
+#ifdef USE_CUDA_NAMES
+    function hipblasStbsvStridedBatched_64_(handle,uplo,transA,diag,n,k,AP,lda,strideA,x,incx,stridex,batchCount) bind(c, name="cublasStbsvStridedBatched_64")
+#else
+    function hipblasStbsvStridedBatched_64_(handle,uplo,transA,diag,n,k,AP,lda,strideA,x,incx,stridex,batchCount) bind(c, name="hipblasStbsvStridedBatched_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasStbsvStridedBatched_64_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
+      integer(kind(HIPBLAS_OP_N)),value :: transA
+      integer(kind(HIPBLAS_DIAG_NON_UNIT)),value :: diag
+      integer(c_int64_t),value :: n
+      integer(c_int64_t),value :: k
+      type(c_ptr),value :: AP
+      integer(c_int64_t),value :: lda
+      integer(c_int64_t),value :: strideA
+      type(c_ptr),value :: x
+      integer(c_int64_t),value :: incx
+      integer(c_int64_t),value :: stridex
+      integer(c_int64_t),value :: batchCount
+    end function
+  end interface
+
+  interface hipblasDtbsvStridedBatched_64
+#ifdef USE_CUDA_NAMES
+    function hipblasDtbsvStridedBatched_64_(handle,uplo,transA,diag,n,k,AP,lda,strideA,x,incx,stridex,batchCount) bind(c, name="cublasDtbsvStridedBatched_64")
+#else
+    function hipblasDtbsvStridedBatched_64_(handle,uplo,transA,diag,n,k,AP,lda,strideA,x,incx,stridex,batchCount) bind(c, name="hipblasDtbsvStridedBatched_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDtbsvStridedBatched_64_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
+      integer(kind(HIPBLAS_OP_N)),value :: transA
+      integer(kind(HIPBLAS_DIAG_NON_UNIT)),value :: diag
+      integer(c_int64_t),value :: n
+      integer(c_int64_t),value :: k
+      type(c_ptr),value :: AP
+      integer(c_int64_t),value :: lda
+      integer(c_int64_t),value :: strideA
+      type(c_ptr),value :: x
+      integer(c_int64_t),value :: incx
+      integer(c_int64_t),value :: stridex
+      integer(c_int64_t),value :: batchCount
+    end function
+  end interface
+
+  interface hipblasCtbsvStridedBatched_64
+#ifdef USE_CUDA_NAMES
+    function hipblasCtbsvStridedBatched_64_(handle,uplo,transA,diag,n,k,AP,lda,strideA,x,incx,stridex,batchCount) bind(c, name="cublasCtbsvStridedBatched_64")
+#else
+    function hipblasCtbsvStridedBatched_64_(handle,uplo,transA,diag,n,k,AP,lda,strideA,x,incx,stridex,batchCount) bind(c, name="hipblasCtbsvStridedBatched_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCtbsvStridedBatched_64_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
+      integer(kind(HIPBLAS_OP_N)),value :: transA
+      integer(kind(HIPBLAS_DIAG_NON_UNIT)),value :: diag
+      integer(c_int64_t),value :: n
+      integer(c_int64_t),value :: k
+      type(c_ptr),value :: AP
+      integer(c_int64_t),value :: lda
+      integer(c_int64_t),value :: strideA
+      type(c_ptr),value :: x
+      integer(c_int64_t),value :: incx
+      integer(c_int64_t),value :: stridex
+      integer(c_int64_t),value :: batchCount
+    end function
+  end interface
+
+  interface hipblasZtbsvStridedBatched_64
+#ifdef USE_CUDA_NAMES
+    function hipblasZtbsvStridedBatched_64_(handle,uplo,transA,diag,n,k,AP,lda,strideA,x,incx,stridex,batchCount) bind(c, name="cublasZtbsvStridedBatched_64")
+#else
+    function hipblasZtbsvStridedBatched_64_(handle,uplo,transA,diag,n,k,AP,lda,strideA,x,incx,stridex,batchCount) bind(c, name="hipblasZtbsvStridedBatched_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZtbsvStridedBatched_64_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
+      integer(kind(HIPBLAS_OP_N)),value :: transA
+      integer(kind(HIPBLAS_DIAG_NON_UNIT)),value :: diag
+      integer(c_int64_t),value :: n
+      integer(c_int64_t),value :: k
+      type(c_ptr),value :: AP
+      integer(c_int64_t),value :: lda
+      integer(c_int64_t),value :: strideA
+      type(c_ptr),value :: x
+      integer(c_int64_t),value :: incx
+      integer(c_int64_t),value :: stridex
+      integer(c_int64_t),value :: batchCount
+    end function
+  end interface
+
+  interface hipblasStpmv_64
+#ifdef USE_CUDA_NAMES
+    function hipblasStpmv_64_(handle,uplo,transA,diag,n,AP,x,incx) bind(c, name="cublasStpmv_v2_64")
+#else
+    function hipblasStpmv_64_(handle,uplo,transA,diag,n,AP,x,incx) bind(c, name="hipblasStpmv_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasStpmv_64_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
+      integer(kind(HIPBLAS_OP_N)),value :: transA
+      integer(kind(HIPBLAS_DIAG_NON_UNIT)),value :: diag
+      integer(c_int64_t),value :: n
+      type(c_ptr),value :: AP
+      type(c_ptr),value :: x
+      integer(c_int64_t),value :: incx
+    end function
+  end interface
+
+  interface hipblasDtpmv_64
+#ifdef USE_CUDA_NAMES
+    function hipblasDtpmv_64_(handle,uplo,transA,diag,n,AP,x,incx) bind(c, name="cublasDtpmv_v2_64")
+#else
+    function hipblasDtpmv_64_(handle,uplo,transA,diag,n,AP,x,incx) bind(c, name="hipblasDtpmv_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDtpmv_64_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
+      integer(kind(HIPBLAS_OP_N)),value :: transA
+      integer(kind(HIPBLAS_DIAG_NON_UNIT)),value :: diag
+      integer(c_int64_t),value :: n
+      type(c_ptr),value :: AP
+      type(c_ptr),value :: x
+      integer(c_int64_t),value :: incx
+    end function
+  end interface
+
+  interface hipblasCtpmv_64
+#ifdef USE_CUDA_NAMES
+    function hipblasCtpmv_64_(handle,uplo,transA,diag,n,AP,x,incx) bind(c, name="cublasCtpmv_v2_64")
+#else
+    function hipblasCtpmv_64_(handle,uplo,transA,diag,n,AP,x,incx) bind(c, name="hipblasCtpmv_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCtpmv_64_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
+      integer(kind(HIPBLAS_OP_N)),value :: transA
+      integer(kind(HIPBLAS_DIAG_NON_UNIT)),value :: diag
+      integer(c_int64_t),value :: n
+      type(c_ptr),value :: AP
+      type(c_ptr),value :: x
+      integer(c_int64_t),value :: incx
+    end function
+  end interface
+
+  interface hipblasZtpmv_64
+#ifdef USE_CUDA_NAMES
+    function hipblasZtpmv_64_(handle,uplo,transA,diag,n,AP,x,incx) bind(c, name="cublasZtpmv_v2_64")
+#else
+    function hipblasZtpmv_64_(handle,uplo,transA,diag,n,AP,x,incx) bind(c, name="hipblasZtpmv_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZtpmv_64_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
+      integer(kind(HIPBLAS_OP_N)),value :: transA
+      integer(kind(HIPBLAS_DIAG_NON_UNIT)),value :: diag
+      integer(c_int64_t),value :: n
+      type(c_ptr),value :: AP
+      type(c_ptr),value :: x
+      integer(c_int64_t),value :: incx
+    end function
+  end interface
+
+  interface hipblasStpmvBatched_64
+#ifdef USE_CUDA_NAMES
+    function hipblasStpmvBatched_64_(handle,uplo,transA,diag,n,AP,x,incx,batchCount) bind(c, name="cublasStpmvBatched_64")
+#else
+    function hipblasStpmvBatched_64_(handle,uplo,transA,diag,n,AP,x,incx,batchCount) bind(c, name="hipblasStpmvBatched_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasStpmvBatched_64_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
+      integer(kind(HIPBLAS_OP_N)),value :: transA
+      integer(kind(HIPBLAS_DIAG_NON_UNIT)),value :: diag
+      integer(c_int64_t),value :: n
+      type(c_ptr) :: AP
+      type(c_ptr) :: x
+      integer(c_int64_t),value :: incx
+      integer(c_int64_t),value :: batchCount
+    end function
+  end interface
+
+  interface hipblasDtpmvBatched_64
+#ifdef USE_CUDA_NAMES
+    function hipblasDtpmvBatched_64_(handle,uplo,transA,diag,n,AP,x,incx,batchCount) bind(c, name="cublasDtpmvBatched_64")
+#else
+    function hipblasDtpmvBatched_64_(handle,uplo,transA,diag,n,AP,x,incx,batchCount) bind(c, name="hipblasDtpmvBatched_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDtpmvBatched_64_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
+      integer(kind(HIPBLAS_OP_N)),value :: transA
+      integer(kind(HIPBLAS_DIAG_NON_UNIT)),value :: diag
+      integer(c_int64_t),value :: n
+      type(c_ptr) :: AP
+      type(c_ptr) :: x
+      integer(c_int64_t),value :: incx
+      integer(c_int64_t),value :: batchCount
+    end function
+  end interface
+
+  interface hipblasCtpmvBatched_64
+#ifdef USE_CUDA_NAMES
+    function hipblasCtpmvBatched_64_(handle,uplo,transA,diag,n,AP,x,incx,batchCount) bind(c, name="cublasCtpmvBatched_64")
+#else
+    function hipblasCtpmvBatched_64_(handle,uplo,transA,diag,n,AP,x,incx,batchCount) bind(c, name="hipblasCtpmvBatched_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCtpmvBatched_64_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
+      integer(kind(HIPBLAS_OP_N)),value :: transA
+      integer(kind(HIPBLAS_DIAG_NON_UNIT)),value :: diag
+      integer(c_int64_t),value :: n
+      type(c_ptr) :: AP
+      type(c_ptr) :: x
+      integer(c_int64_t),value :: incx
+      integer(c_int64_t),value :: batchCount
+    end function
+  end interface
+
+  interface hipblasZtpmvBatched_64
+#ifdef USE_CUDA_NAMES
+    function hipblasZtpmvBatched_64_(handle,uplo,transA,diag,n,AP,x,incx,batchCount) bind(c, name="cublasZtpmvBatched_64")
+#else
+    function hipblasZtpmvBatched_64_(handle,uplo,transA,diag,n,AP,x,incx,batchCount) bind(c, name="hipblasZtpmvBatched_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZtpmvBatched_64_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
+      integer(kind(HIPBLAS_OP_N)),value :: transA
+      integer(kind(HIPBLAS_DIAG_NON_UNIT)),value :: diag
+      integer(c_int64_t),value :: n
+      type(c_ptr) :: AP
+      type(c_ptr) :: x
+      integer(c_int64_t),value :: incx
+      integer(c_int64_t),value :: batchCount
+    end function
+  end interface
+
+  interface hipblasStpmvStridedBatched_64
+#ifdef USE_CUDA_NAMES
+    function hipblasStpmvStridedBatched_64_(handle,uplo,transA,diag,n,AP,strideA,x,incx,stridex,batchCount) bind(c, name="cublasStpmvStridedBatched_64")
+#else
+    function hipblasStpmvStridedBatched_64_(handle,uplo,transA,diag,n,AP,strideA,x,incx,stridex,batchCount) bind(c, name="hipblasStpmvStridedBatched_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasStpmvStridedBatched_64_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
+      integer(kind(HIPBLAS_OP_N)),value :: transA
+      integer(kind(HIPBLAS_DIAG_NON_UNIT)),value :: diag
+      integer(c_int64_t),value :: n
+      type(c_ptr),value :: AP
+      integer(c_int64_t),value :: strideA
+      type(c_ptr),value :: x
+      integer(c_int64_t),value :: incx
+      integer(c_int64_t),value :: stridex
+      integer(c_int64_t),value :: batchCount
+    end function
+  end interface
+
+  interface hipblasDtpmvStridedBatched_64
+#ifdef USE_CUDA_NAMES
+    function hipblasDtpmvStridedBatched_64_(handle,uplo,transA,diag,n,AP,strideA,x,incx,stridex,batchCount) bind(c, name="cublasDtpmvStridedBatched_64")
+#else
+    function hipblasDtpmvStridedBatched_64_(handle,uplo,transA,diag,n,AP,strideA,x,incx,stridex,batchCount) bind(c, name="hipblasDtpmvStridedBatched_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDtpmvStridedBatched_64_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
+      integer(kind(HIPBLAS_OP_N)),value :: transA
+      integer(kind(HIPBLAS_DIAG_NON_UNIT)),value :: diag
+      integer(c_int64_t),value :: n
+      type(c_ptr),value :: AP
+      integer(c_int64_t),value :: strideA
+      type(c_ptr),value :: x
+      integer(c_int64_t),value :: incx
+      integer(c_int64_t),value :: stridex
+      integer(c_int64_t),value :: batchCount
+    end function
+  end interface
+
+  interface hipblasCtpmvStridedBatched_64
+#ifdef USE_CUDA_NAMES
+    function hipblasCtpmvStridedBatched_64_(handle,uplo,transA,diag,n,AP,strideA,x,incx,stridex,batchCount) bind(c, name="cublasCtpmvStridedBatched_64")
+#else
+    function hipblasCtpmvStridedBatched_64_(handle,uplo,transA,diag,n,AP,strideA,x,incx,stridex,batchCount) bind(c, name="hipblasCtpmvStridedBatched_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCtpmvStridedBatched_64_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
+      integer(kind(HIPBLAS_OP_N)),value :: transA
+      integer(kind(HIPBLAS_DIAG_NON_UNIT)),value :: diag
+      integer(c_int64_t),value :: n
+      type(c_ptr),value :: AP
+      integer(c_int64_t),value :: strideA
+      type(c_ptr),value :: x
+      integer(c_int64_t),value :: incx
+      integer(c_int64_t),value :: stridex
+      integer(c_int64_t),value :: batchCount
+    end function
+  end interface
+
+  interface hipblasZtpmvStridedBatched_64
+#ifdef USE_CUDA_NAMES
+    function hipblasZtpmvStridedBatched_64_(handle,uplo,transA,diag,n,AP,strideA,x,incx,stridex,batchCount) bind(c, name="cublasZtpmvStridedBatched_64")
+#else
+    function hipblasZtpmvStridedBatched_64_(handle,uplo,transA,diag,n,AP,strideA,x,incx,stridex,batchCount) bind(c, name="hipblasZtpmvStridedBatched_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZtpmvStridedBatched_64_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
+      integer(kind(HIPBLAS_OP_N)),value :: transA
+      integer(kind(HIPBLAS_DIAG_NON_UNIT)),value :: diag
+      integer(c_int64_t),value :: n
+      type(c_ptr),value :: AP
+      integer(c_int64_t),value :: strideA
+      type(c_ptr),value :: x
+      integer(c_int64_t),value :: incx
+      integer(c_int64_t),value :: stridex
+      integer(c_int64_t),value :: batchCount
+    end function
+  end interface
+
+  interface hipblasStpsv_64
+#ifdef USE_CUDA_NAMES
+    function hipblasStpsv_64_(handle,uplo,transA,diag,n,AP,x,incx) bind(c, name="cublasStpsv_v2_64")
+#else
+    function hipblasStpsv_64_(handle,uplo,transA,diag,n,AP,x,incx) bind(c, name="hipblasStpsv_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasStpsv_64_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
+      integer(kind(HIPBLAS_OP_N)),value :: transA
+      integer(kind(HIPBLAS_DIAG_NON_UNIT)),value :: diag
+      integer(c_int64_t),value :: n
+      type(c_ptr),value :: AP
+      type(c_ptr),value :: x
+      integer(c_int64_t),value :: incx
+    end function
+  end interface
+
+  interface hipblasDtpsv_64
+#ifdef USE_CUDA_NAMES
+    function hipblasDtpsv_64_(handle,uplo,transA,diag,n,AP,x,incx) bind(c, name="cublasDtpsv_v2_64")
+#else
+    function hipblasDtpsv_64_(handle,uplo,transA,diag,n,AP,x,incx) bind(c, name="hipblasDtpsv_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDtpsv_64_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
+      integer(kind(HIPBLAS_OP_N)),value :: transA
+      integer(kind(HIPBLAS_DIAG_NON_UNIT)),value :: diag
+      integer(c_int64_t),value :: n
+      type(c_ptr),value :: AP
+      type(c_ptr),value :: x
+      integer(c_int64_t),value :: incx
+    end function
+  end interface
+
+  interface hipblasCtpsv_64
+#ifdef USE_CUDA_NAMES
+    function hipblasCtpsv_64_(handle,uplo,transA,diag,n,AP,x,incx) bind(c, name="cublasCtpsv_v2_64")
+#else
+    function hipblasCtpsv_64_(handle,uplo,transA,diag,n,AP,x,incx) bind(c, name="hipblasCtpsv_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCtpsv_64_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
+      integer(kind(HIPBLAS_OP_N)),value :: transA
+      integer(kind(HIPBLAS_DIAG_NON_UNIT)),value :: diag
+      integer(c_int64_t),value :: n
+      type(c_ptr),value :: AP
+      type(c_ptr),value :: x
+      integer(c_int64_t),value :: incx
+    end function
+  end interface
+
+  interface hipblasZtpsv_64
+#ifdef USE_CUDA_NAMES
+    function hipblasZtpsv_64_(handle,uplo,transA,diag,n,AP,x,incx) bind(c, name="cublasZtpsv_v2_64")
+#else
+    function hipblasZtpsv_64_(handle,uplo,transA,diag,n,AP,x,incx) bind(c, name="hipblasZtpsv_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZtpsv_64_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
+      integer(kind(HIPBLAS_OP_N)),value :: transA
+      integer(kind(HIPBLAS_DIAG_NON_UNIT)),value :: diag
+      integer(c_int64_t),value :: n
+      type(c_ptr),value :: AP
+      type(c_ptr),value :: x
+      integer(c_int64_t),value :: incx
+    end function
+  end interface
+
+  interface hipblasStpsvBatched_64
+#ifdef USE_CUDA_NAMES
+    function hipblasStpsvBatched_64_(handle,uplo,transA,diag,n,AP,x,incx,batchCount) bind(c, name="cublasStpsvBatched_64")
+#else
+    function hipblasStpsvBatched_64_(handle,uplo,transA,diag,n,AP,x,incx,batchCount) bind(c, name="hipblasStpsvBatched_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasStpsvBatched_64_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
+      integer(kind(HIPBLAS_OP_N)),value :: transA
+      integer(kind(HIPBLAS_DIAG_NON_UNIT)),value :: diag
+      integer(c_int64_t),value :: n
+      type(c_ptr) :: AP
+      type(c_ptr) :: x
+      integer(c_int64_t),value :: incx
+      integer(c_int64_t),value :: batchCount
+    end function
+  end interface
+
+  interface hipblasDtpsvBatched_64
+#ifdef USE_CUDA_NAMES
+    function hipblasDtpsvBatched_64_(handle,uplo,transA,diag,n,AP,x,incx,batchCount) bind(c, name="cublasDtpsvBatched_64")
+#else
+    function hipblasDtpsvBatched_64_(handle,uplo,transA,diag,n,AP,x,incx,batchCount) bind(c, name="hipblasDtpsvBatched_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDtpsvBatched_64_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
+      integer(kind(HIPBLAS_OP_N)),value :: transA
+      integer(kind(HIPBLAS_DIAG_NON_UNIT)),value :: diag
+      integer(c_int64_t),value :: n
+      type(c_ptr) :: AP
+      type(c_ptr) :: x
+      integer(c_int64_t),value :: incx
+      integer(c_int64_t),value :: batchCount
+    end function
+  end interface
+
+  interface hipblasCtpsvBatched_64
+#ifdef USE_CUDA_NAMES
+    function hipblasCtpsvBatched_64_(handle,uplo,transA,diag,n,AP,x,incx,batchCount) bind(c, name="cublasCtpsvBatched_64")
+#else
+    function hipblasCtpsvBatched_64_(handle,uplo,transA,diag,n,AP,x,incx,batchCount) bind(c, name="hipblasCtpsvBatched_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCtpsvBatched_64_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
+      integer(kind(HIPBLAS_OP_N)),value :: transA
+      integer(kind(HIPBLAS_DIAG_NON_UNIT)),value :: diag
+      integer(c_int64_t),value :: n
+      type(c_ptr) :: AP
+      type(c_ptr) :: x
+      integer(c_int64_t),value :: incx
+      integer(c_int64_t),value :: batchCount
+    end function
+  end interface
+
+  interface hipblasZtpsvBatched_64
+#ifdef USE_CUDA_NAMES
+    function hipblasZtpsvBatched_64_(handle,uplo,transA,diag,n,AP,x,incx,batchCount) bind(c, name="cublasZtpsvBatched_64")
+#else
+    function hipblasZtpsvBatched_64_(handle,uplo,transA,diag,n,AP,x,incx,batchCount) bind(c, name="hipblasZtpsvBatched_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZtpsvBatched_64_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
+      integer(kind(HIPBLAS_OP_N)),value :: transA
+      integer(kind(HIPBLAS_DIAG_NON_UNIT)),value :: diag
+      integer(c_int64_t),value :: n
+      type(c_ptr) :: AP
+      type(c_ptr) :: x
+      integer(c_int64_t),value :: incx
+      integer(c_int64_t),value :: batchCount
+    end function
+  end interface
+
+  interface hipblasStpsvStridedBatched_64
+#ifdef USE_CUDA_NAMES
+    function hipblasStpsvStridedBatched_64_(handle,uplo,transA,diag,n,AP,strideA,x,incx,stridex,batchCount) bind(c, name="cublasStpsvStridedBatched_64")
+#else
+    function hipblasStpsvStridedBatched_64_(handle,uplo,transA,diag,n,AP,strideA,x,incx,stridex,batchCount) bind(c, name="hipblasStpsvStridedBatched_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasStpsvStridedBatched_64_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
+      integer(kind(HIPBLAS_OP_N)),value :: transA
+      integer(kind(HIPBLAS_DIAG_NON_UNIT)),value :: diag
+      integer(c_int64_t),value :: n
+      type(c_ptr),value :: AP
+      integer(c_int64_t),value :: strideA
+      type(c_ptr),value :: x
+      integer(c_int64_t),value :: incx
+      integer(c_int64_t),value :: stridex
+      integer(c_int64_t),value :: batchCount
+    end function
+  end interface
+
+  interface hipblasDtpsvStridedBatched_64
+#ifdef USE_CUDA_NAMES
+    function hipblasDtpsvStridedBatched_64_(handle,uplo,transA,diag,n,AP,strideA,x,incx,stridex,batchCount) bind(c, name="cublasDtpsvStridedBatched_64")
+#else
+    function hipblasDtpsvStridedBatched_64_(handle,uplo,transA,diag,n,AP,strideA,x,incx,stridex,batchCount) bind(c, name="hipblasDtpsvStridedBatched_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDtpsvStridedBatched_64_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
+      integer(kind(HIPBLAS_OP_N)),value :: transA
+      integer(kind(HIPBLAS_DIAG_NON_UNIT)),value :: diag
+      integer(c_int64_t),value :: n
+      type(c_ptr),value :: AP
+      integer(c_int64_t),value :: strideA
+      type(c_ptr),value :: x
+      integer(c_int64_t),value :: incx
+      integer(c_int64_t),value :: stridex
+      integer(c_int64_t),value :: batchCount
+    end function
+  end interface
+
+  interface hipblasCtpsvStridedBatched_64
+#ifdef USE_CUDA_NAMES
+    function hipblasCtpsvStridedBatched_64_(handle,uplo,transA,diag,n,AP,strideA,x,incx,stridex,batchCount) bind(c, name="cublasCtpsvStridedBatched_64")
+#else
+    function hipblasCtpsvStridedBatched_64_(handle,uplo,transA,diag,n,AP,strideA,x,incx,stridex,batchCount) bind(c, name="hipblasCtpsvStridedBatched_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCtpsvStridedBatched_64_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
+      integer(kind(HIPBLAS_OP_N)),value :: transA
+      integer(kind(HIPBLAS_DIAG_NON_UNIT)),value :: diag
+      integer(c_int64_t),value :: n
+      type(c_ptr),value :: AP
+      integer(c_int64_t),value :: strideA
+      type(c_ptr),value :: x
+      integer(c_int64_t),value :: incx
+      integer(c_int64_t),value :: stridex
+      integer(c_int64_t),value :: batchCount
+    end function
+  end interface
+
+  interface hipblasZtpsvStridedBatched_64
+#ifdef USE_CUDA_NAMES
+    function hipblasZtpsvStridedBatched_64_(handle,uplo,transA,diag,n,AP,strideA,x,incx,stridex,batchCount) bind(c, name="cublasZtpsvStridedBatched_64")
+#else
+    function hipblasZtpsvStridedBatched_64_(handle,uplo,transA,diag,n,AP,strideA,x,incx,stridex,batchCount) bind(c, name="hipblasZtpsvStridedBatched_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZtpsvStridedBatched_64_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
+      integer(kind(HIPBLAS_OP_N)),value :: transA
+      integer(kind(HIPBLAS_DIAG_NON_UNIT)),value :: diag
+      integer(c_int64_t),value :: n
+      type(c_ptr),value :: AP
+      integer(c_int64_t),value :: strideA
+      type(c_ptr),value :: x
+      integer(c_int64_t),value :: incx
+      integer(c_int64_t),value :: stridex
+      integer(c_int64_t),value :: batchCount
+    end function
+  end interface
+
+  interface hipblasStrmv_64
+#ifdef USE_CUDA_NAMES
+    function hipblasStrmv_64_(handle,uplo,transA,diag,n,AP,lda,x,incx) bind(c, name="cublasStrmv_v2_64")
+#else
+    function hipblasStrmv_64_(handle,uplo,transA,diag,n,AP,lda,x,incx) bind(c, name="hipblasStrmv_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasStrmv_64_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
+      integer(kind(HIPBLAS_OP_N)),value :: transA
+      integer(kind(HIPBLAS_DIAG_NON_UNIT)),value :: diag
+      integer(c_int64_t),value :: n
+      type(c_ptr),value :: AP
+      integer(c_int64_t),value :: lda
+      type(c_ptr),value :: x
+      integer(c_int64_t),value :: incx
+    end function
+  end interface
+
+  interface hipblasDtrmv_64
+#ifdef USE_CUDA_NAMES
+    function hipblasDtrmv_64_(handle,uplo,transA,diag,n,AP,lda,x,incx) bind(c, name="cublasDtrmv_v2_64")
+#else
+    function hipblasDtrmv_64_(handle,uplo,transA,diag,n,AP,lda,x,incx) bind(c, name="hipblasDtrmv_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDtrmv_64_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
+      integer(kind(HIPBLAS_OP_N)),value :: transA
+      integer(kind(HIPBLAS_DIAG_NON_UNIT)),value :: diag
+      integer(c_int64_t),value :: n
+      type(c_ptr),value :: AP
+      integer(c_int64_t),value :: lda
+      type(c_ptr),value :: x
+      integer(c_int64_t),value :: incx
+    end function
+  end interface
+
+  interface hipblasCtrmv_64
+#ifdef USE_CUDA_NAMES
+    function hipblasCtrmv_64_(handle,uplo,transA,diag,n,AP,lda,x,incx) bind(c, name="cublasCtrmv_v2_64")
+#else
+    function hipblasCtrmv_64_(handle,uplo,transA,diag,n,AP,lda,x,incx) bind(c, name="hipblasCtrmv_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCtrmv_64_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
+      integer(kind(HIPBLAS_OP_N)),value :: transA
+      integer(kind(HIPBLAS_DIAG_NON_UNIT)),value :: diag
+      integer(c_int64_t),value :: n
+      type(c_ptr),value :: AP
+      integer(c_int64_t),value :: lda
+      type(c_ptr),value :: x
+      integer(c_int64_t),value :: incx
+    end function
+  end interface
+
+  interface hipblasZtrmv_64
+#ifdef USE_CUDA_NAMES
+    function hipblasZtrmv_64_(handle,uplo,transA,diag,n,AP,lda,x,incx) bind(c, name="cublasZtrmv_v2_64")
+#else
+    function hipblasZtrmv_64_(handle,uplo,transA,diag,n,AP,lda,x,incx) bind(c, name="hipblasZtrmv_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZtrmv_64_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
+      integer(kind(HIPBLAS_OP_N)),value :: transA
+      integer(kind(HIPBLAS_DIAG_NON_UNIT)),value :: diag
+      integer(c_int64_t),value :: n
+      type(c_ptr),value :: AP
+      integer(c_int64_t),value :: lda
+      type(c_ptr),value :: x
+      integer(c_int64_t),value :: incx
+    end function
+  end interface
+
+  interface hipblasStrmvBatched_64
+#ifdef USE_CUDA_NAMES
+    function hipblasStrmvBatched_64_(handle,uplo,transA,diag,n,AP,lda,x,incx,batchCount) bind(c, name="cublasStrmvBatched_64")
+#else
+    function hipblasStrmvBatched_64_(handle,uplo,transA,diag,n,AP,lda,x,incx,batchCount) bind(c, name="hipblasStrmvBatched_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasStrmvBatched_64_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
+      integer(kind(HIPBLAS_OP_N)),value :: transA
+      integer(kind(HIPBLAS_DIAG_NON_UNIT)),value :: diag
+      integer(c_int64_t),value :: n
+      type(c_ptr) :: AP
+      integer(c_int64_t),value :: lda
+      type(c_ptr) :: x
+      integer(c_int64_t),value :: incx
+      integer(c_int64_t),value :: batchCount
+    end function
+  end interface
+
+  interface hipblasDtrmvBatched_64
+#ifdef USE_CUDA_NAMES
+    function hipblasDtrmvBatched_64_(handle,uplo,transA,diag,n,AP,lda,x,incx,batchCount) bind(c, name="cublasDtrmvBatched_64")
+#else
+    function hipblasDtrmvBatched_64_(handle,uplo,transA,diag,n,AP,lda,x,incx,batchCount) bind(c, name="hipblasDtrmvBatched_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDtrmvBatched_64_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
+      integer(kind(HIPBLAS_OP_N)),value :: transA
+      integer(kind(HIPBLAS_DIAG_NON_UNIT)),value :: diag
+      integer(c_int64_t),value :: n
+      type(c_ptr) :: AP
+      integer(c_int64_t),value :: lda
+      type(c_ptr) :: x
+      integer(c_int64_t),value :: incx
+      integer(c_int64_t),value :: batchCount
+    end function
+  end interface
+
+  interface hipblasCtrmvBatched_64
+#ifdef USE_CUDA_NAMES
+    function hipblasCtrmvBatched_64_(handle,uplo,transA,diag,n,AP,lda,x,incx,batchCount) bind(c, name="cublasCtrmvBatched_64")
+#else
+    function hipblasCtrmvBatched_64_(handle,uplo,transA,diag,n,AP,lda,x,incx,batchCount) bind(c, name="hipblasCtrmvBatched_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCtrmvBatched_64_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
+      integer(kind(HIPBLAS_OP_N)),value :: transA
+      integer(kind(HIPBLAS_DIAG_NON_UNIT)),value :: diag
+      integer(c_int64_t),value :: n
+      type(c_ptr) :: AP
+      integer(c_int64_t),value :: lda
+      type(c_ptr) :: x
+      integer(c_int64_t),value :: incx
+      integer(c_int64_t),value :: batchCount
+    end function
+  end interface
+
+  interface hipblasZtrmvBatched_64
+#ifdef USE_CUDA_NAMES
+    function hipblasZtrmvBatched_64_(handle,uplo,transA,diag,n,AP,lda,x,incx,batchCount) bind(c, name="cublasZtrmvBatched_64")
+#else
+    function hipblasZtrmvBatched_64_(handle,uplo,transA,diag,n,AP,lda,x,incx,batchCount) bind(c, name="hipblasZtrmvBatched_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZtrmvBatched_64_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
+      integer(kind(HIPBLAS_OP_N)),value :: transA
+      integer(kind(HIPBLAS_DIAG_NON_UNIT)),value :: diag
+      integer(c_int64_t),value :: n
+      type(c_ptr) :: AP
+      integer(c_int64_t),value :: lda
+      type(c_ptr) :: x
+      integer(c_int64_t),value :: incx
+      integer(c_int64_t),value :: batchCount
+    end function
+  end interface
+
+  interface hipblasStrmvStridedBatched_64
+#ifdef USE_CUDA_NAMES
+    function hipblasStrmvStridedBatched_64_(handle,uplo,transA,diag,n,AP,lda,strideA,x,incx,stridex,batchCount) bind(c, name="cublasStrmvStridedBatched_64")
+#else
+    function hipblasStrmvStridedBatched_64_(handle,uplo,transA,diag,n,AP,lda,strideA,x,incx,stridex,batchCount) bind(c, name="hipblasStrmvStridedBatched_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasStrmvStridedBatched_64_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
+      integer(kind(HIPBLAS_OP_N)),value :: transA
+      integer(kind(HIPBLAS_DIAG_NON_UNIT)),value :: diag
+      integer(c_int64_t),value :: n
+      type(c_ptr),value :: AP
+      integer(c_int64_t),value :: lda
+      integer(c_int64_t),value :: strideA
+      type(c_ptr),value :: x
+      integer(c_int64_t),value :: incx
+      integer(c_int64_t),value :: stridex
+      integer(c_int64_t),value :: batchCount
+    end function
+  end interface
+
+  interface hipblasDtrmvStridedBatched_64
+#ifdef USE_CUDA_NAMES
+    function hipblasDtrmvStridedBatched_64_(handle,uplo,transA,diag,n,AP,lda,strideA,x,incx,stridex,batchCount) bind(c, name="cublasDtrmvStridedBatched_64")
+#else
+    function hipblasDtrmvStridedBatched_64_(handle,uplo,transA,diag,n,AP,lda,strideA,x,incx,stridex,batchCount) bind(c, name="hipblasDtrmvStridedBatched_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDtrmvStridedBatched_64_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
+      integer(kind(HIPBLAS_OP_N)),value :: transA
+      integer(kind(HIPBLAS_DIAG_NON_UNIT)),value :: diag
+      integer(c_int64_t),value :: n
+      type(c_ptr),value :: AP
+      integer(c_int64_t),value :: lda
+      integer(c_int64_t),value :: strideA
+      type(c_ptr),value :: x
+      integer(c_int64_t),value :: incx
+      integer(c_int64_t),value :: stridex
+      integer(c_int64_t),value :: batchCount
+    end function
+  end interface
+
+  interface hipblasCtrmvStridedBatched_64
+#ifdef USE_CUDA_NAMES
+    function hipblasCtrmvStridedBatched_64_(handle,uplo,transA,diag,n,AP,lda,strideA,x,incx,stridex,batchCount) bind(c, name="cublasCtrmvStridedBatched_64")
+#else
+    function hipblasCtrmvStridedBatched_64_(handle,uplo,transA,diag,n,AP,lda,strideA,x,incx,stridex,batchCount) bind(c, name="hipblasCtrmvStridedBatched_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCtrmvStridedBatched_64_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
+      integer(kind(HIPBLAS_OP_N)),value :: transA
+      integer(kind(HIPBLAS_DIAG_NON_UNIT)),value :: diag
+      integer(c_int64_t),value :: n
+      type(c_ptr),value :: AP
+      integer(c_int64_t),value :: lda
+      integer(c_int64_t),value :: strideA
+      type(c_ptr),value :: x
+      integer(c_int64_t),value :: incx
+      integer(c_int64_t),value :: stridex
+      integer(c_int64_t),value :: batchCount
+    end function
+  end interface
+
+  interface hipblasZtrmvStridedBatched_64
+#ifdef USE_CUDA_NAMES
+    function hipblasZtrmvStridedBatched_64_(handle,uplo,transA,diag,n,AP,lda,strideA,x,incx,stridex,batchCount) bind(c, name="cublasZtrmvStridedBatched_64")
+#else
+    function hipblasZtrmvStridedBatched_64_(handle,uplo,transA,diag,n,AP,lda,strideA,x,incx,stridex,batchCount) bind(c, name="hipblasZtrmvStridedBatched_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZtrmvStridedBatched_64_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
+      integer(kind(HIPBLAS_OP_N)),value :: transA
+      integer(kind(HIPBLAS_DIAG_NON_UNIT)),value :: diag
+      integer(c_int64_t),value :: n
+      type(c_ptr),value :: AP
+      integer(c_int64_t),value :: lda
+      integer(c_int64_t),value :: strideA
+      type(c_ptr),value :: x
+      integer(c_int64_t),value :: incx
+      integer(c_int64_t),value :: stridex
+      integer(c_int64_t),value :: batchCount
+    end function
+  end interface
+
+  interface hipblasStrsv_64
+#ifdef USE_CUDA_NAMES
+    function hipblasStrsv_64_(handle,uplo,transA,diag,n,AP,lda,x,incx) bind(c, name="cublasStrsv_v2_64")
+#else
+    function hipblasStrsv_64_(handle,uplo,transA,diag,n,AP,lda,x,incx) bind(c, name="hipblasStrsv_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasStrsv_64_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
+      integer(kind(HIPBLAS_OP_N)),value :: transA
+      integer(kind(HIPBLAS_DIAG_NON_UNIT)),value :: diag
+      integer(c_int64_t),value :: n
+      type(c_ptr),value :: AP
+      integer(c_int64_t),value :: lda
+      type(c_ptr),value :: x
+      integer(c_int64_t),value :: incx
+    end function
+  end interface
+
+  interface hipblasDtrsv_64
+#ifdef USE_CUDA_NAMES
+    function hipblasDtrsv_64_(handle,uplo,transA,diag,n,AP,lda,x,incx) bind(c, name="cublasDtrsv_v2_64")
+#else
+    function hipblasDtrsv_64_(handle,uplo,transA,diag,n,AP,lda,x,incx) bind(c, name="hipblasDtrsv_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDtrsv_64_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
+      integer(kind(HIPBLAS_OP_N)),value :: transA
+      integer(kind(HIPBLAS_DIAG_NON_UNIT)),value :: diag
+      integer(c_int64_t),value :: n
+      type(c_ptr),value :: AP
+      integer(c_int64_t),value :: lda
+      type(c_ptr),value :: x
+      integer(c_int64_t),value :: incx
+    end function
+  end interface
+
+  interface hipblasCtrsv_64
+#ifdef USE_CUDA_NAMES
+    function hipblasCtrsv_64_(handle,uplo,transA,diag,n,AP,lda,x,incx) bind(c, name="cublasCtrsv_v2_64")
+#else
+    function hipblasCtrsv_64_(handle,uplo,transA,diag,n,AP,lda,x,incx) bind(c, name="hipblasCtrsv_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCtrsv_64_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
+      integer(kind(HIPBLAS_OP_N)),value :: transA
+      integer(kind(HIPBLAS_DIAG_NON_UNIT)),value :: diag
+      integer(c_int64_t),value :: n
+      type(c_ptr),value :: AP
+      integer(c_int64_t),value :: lda
+      type(c_ptr),value :: x
+      integer(c_int64_t),value :: incx
+    end function
+  end interface
+
+  interface hipblasZtrsv_64
+#ifdef USE_CUDA_NAMES
+    function hipblasZtrsv_64_(handle,uplo,transA,diag,n,AP,lda,x,incx) bind(c, name="cublasZtrsv_v2_64")
+#else
+    function hipblasZtrsv_64_(handle,uplo,transA,diag,n,AP,lda,x,incx) bind(c, name="hipblasZtrsv_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZtrsv_64_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
+      integer(kind(HIPBLAS_OP_N)),value :: transA
+      integer(kind(HIPBLAS_DIAG_NON_UNIT)),value :: diag
+      integer(c_int64_t),value :: n
+      type(c_ptr),value :: AP
+      integer(c_int64_t),value :: lda
+      type(c_ptr),value :: x
+      integer(c_int64_t),value :: incx
+    end function
+  end interface
+
+  interface hipblasStrsvBatched_64
+#ifdef USE_CUDA_NAMES
+    function hipblasStrsvBatched_64_(handle,uplo,transA,diag,n,AP,lda,x,incx,batchCount) bind(c, name="cublasStrsvBatched_64")
+#else
+    function hipblasStrsvBatched_64_(handle,uplo,transA,diag,n,AP,lda,x,incx,batchCount) bind(c, name="hipblasStrsvBatched_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasStrsvBatched_64_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
+      integer(kind(HIPBLAS_OP_N)),value :: transA
+      integer(kind(HIPBLAS_DIAG_NON_UNIT)),value :: diag
+      integer(c_int64_t),value :: n
+      type(c_ptr) :: AP
+      integer(c_int64_t),value :: lda
+      type(c_ptr) :: x
+      integer(c_int64_t),value :: incx
+      integer(c_int64_t),value :: batchCount
+    end function
+  end interface
+
+  interface hipblasDtrsvBatched_64
+#ifdef USE_CUDA_NAMES
+    function hipblasDtrsvBatched_64_(handle,uplo,transA,diag,n,AP,lda,x,incx,batchCount) bind(c, name="cublasDtrsvBatched_64")
+#else
+    function hipblasDtrsvBatched_64_(handle,uplo,transA,diag,n,AP,lda,x,incx,batchCount) bind(c, name="hipblasDtrsvBatched_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDtrsvBatched_64_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
+      integer(kind(HIPBLAS_OP_N)),value :: transA
+      integer(kind(HIPBLAS_DIAG_NON_UNIT)),value :: diag
+      integer(c_int64_t),value :: n
+      type(c_ptr) :: AP
+      integer(c_int64_t),value :: lda
+      type(c_ptr) :: x
+      integer(c_int64_t),value :: incx
+      integer(c_int64_t),value :: batchCount
+    end function
+  end interface
+
+  interface hipblasCtrsvBatched_64
+#ifdef USE_CUDA_NAMES
+    function hipblasCtrsvBatched_64_(handle,uplo,transA,diag,n,AP,lda,x,incx,batchCount) bind(c, name="cublasCtrsvBatched_64")
+#else
+    function hipblasCtrsvBatched_64_(handle,uplo,transA,diag,n,AP,lda,x,incx,batchCount) bind(c, name="hipblasCtrsvBatched_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCtrsvBatched_64_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
+      integer(kind(HIPBLAS_OP_N)),value :: transA
+      integer(kind(HIPBLAS_DIAG_NON_UNIT)),value :: diag
+      integer(c_int64_t),value :: n
+      type(c_ptr) :: AP
+      integer(c_int64_t),value :: lda
+      type(c_ptr) :: x
+      integer(c_int64_t),value :: incx
+      integer(c_int64_t),value :: batchCount
+    end function
+  end interface
+
+  interface hipblasZtrsvBatched_64
+#ifdef USE_CUDA_NAMES
+    function hipblasZtrsvBatched_64_(handle,uplo,transA,diag,n,AP,lda,x,incx,batchCount) bind(c, name="cublasZtrsvBatched_64")
+#else
+    function hipblasZtrsvBatched_64_(handle,uplo,transA,diag,n,AP,lda,x,incx,batchCount) bind(c, name="hipblasZtrsvBatched_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZtrsvBatched_64_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
+      integer(kind(HIPBLAS_OP_N)),value :: transA
+      integer(kind(HIPBLAS_DIAG_NON_UNIT)),value :: diag
+      integer(c_int64_t),value :: n
+      type(c_ptr) :: AP
+      integer(c_int64_t),value :: lda
+      type(c_ptr) :: x
+      integer(c_int64_t),value :: incx
+      integer(c_int64_t),value :: batchCount
+    end function
+  end interface
+
+  interface hipblasStrsvStridedBatched_64
+#ifdef USE_CUDA_NAMES
+    function hipblasStrsvStridedBatched_64_(handle,uplo,transA,diag,n,AP,lda,strideA,x,incx,stridex,batchCount) bind(c, name="cublasStrsvStridedBatched_64")
+#else
+    function hipblasStrsvStridedBatched_64_(handle,uplo,transA,diag,n,AP,lda,strideA,x,incx,stridex,batchCount) bind(c, name="hipblasStrsvStridedBatched_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasStrsvStridedBatched_64_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
+      integer(kind(HIPBLAS_OP_N)),value :: transA
+      integer(kind(HIPBLAS_DIAG_NON_UNIT)),value :: diag
+      integer(c_int64_t),value :: n
+      type(c_ptr),value :: AP
+      integer(c_int64_t),value :: lda
+      integer(c_int64_t),value :: strideA
+      type(c_ptr),value :: x
+      integer(c_int64_t),value :: incx
+      integer(c_int64_t),value :: stridex
+      integer(c_int64_t),value :: batchCount
+    end function
+  end interface
+
+  interface hipblasDtrsvStridedBatched_64
+#ifdef USE_CUDA_NAMES
+    function hipblasDtrsvStridedBatched_64_(handle,uplo,transA,diag,n,AP,lda,strideA,x,incx,stridex,batchCount) bind(c, name="cublasDtrsvStridedBatched_64")
+#else
+    function hipblasDtrsvStridedBatched_64_(handle,uplo,transA,diag,n,AP,lda,strideA,x,incx,stridex,batchCount) bind(c, name="hipblasDtrsvStridedBatched_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDtrsvStridedBatched_64_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
+      integer(kind(HIPBLAS_OP_N)),value :: transA
+      integer(kind(HIPBLAS_DIAG_NON_UNIT)),value :: diag
+      integer(c_int64_t),value :: n
+      type(c_ptr),value :: AP
+      integer(c_int64_t),value :: lda
+      integer(c_int64_t),value :: strideA
+      type(c_ptr),value :: x
+      integer(c_int64_t),value :: incx
+      integer(c_int64_t),value :: stridex
+      integer(c_int64_t),value :: batchCount
+    end function
+  end interface
+
+  interface hipblasCtrsvStridedBatched_64
+#ifdef USE_CUDA_NAMES
+    function hipblasCtrsvStridedBatched_64_(handle,uplo,transA,diag,n,AP,lda,strideA,x,incx,stridex,batchCount) bind(c, name="cublasCtrsvStridedBatched_64")
+#else
+    function hipblasCtrsvStridedBatched_64_(handle,uplo,transA,diag,n,AP,lda,strideA,x,incx,stridex,batchCount) bind(c, name="hipblasCtrsvStridedBatched_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCtrsvStridedBatched_64_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
+      integer(kind(HIPBLAS_OP_N)),value :: transA
+      integer(kind(HIPBLAS_DIAG_NON_UNIT)),value :: diag
+      integer(c_int64_t),value :: n
+      type(c_ptr),value :: AP
+      integer(c_int64_t),value :: lda
+      integer(c_int64_t),value :: strideA
+      type(c_ptr),value :: x
+      integer(c_int64_t),value :: incx
+      integer(c_int64_t),value :: stridex
+      integer(c_int64_t),value :: batchCount
+    end function
+  end interface
+
+  interface hipblasZtrsvStridedBatched_64
+#ifdef USE_CUDA_NAMES
+    function hipblasZtrsvStridedBatched_64_(handle,uplo,transA,diag,n,AP,lda,strideA,x,incx,stridex,batchCount) bind(c, name="cublasZtrsvStridedBatched_64")
+#else
+    function hipblasZtrsvStridedBatched_64_(handle,uplo,transA,diag,n,AP,lda,strideA,x,incx,stridex,batchCount) bind(c, name="hipblasZtrsvStridedBatched_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZtrsvStridedBatched_64_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
+      integer(kind(HIPBLAS_OP_N)),value :: transA
+      integer(kind(HIPBLAS_DIAG_NON_UNIT)),value :: diag
+      integer(c_int64_t),value :: n
+      type(c_ptr),value :: AP
+      integer(c_int64_t),value :: lda
+      integer(c_int64_t),value :: strideA
+      type(c_ptr),value :: x
+      integer(c_int64_t),value :: incx
+      integer(c_int64_t),value :: stridex
+      integer(c_int64_t),value :: batchCount
+    end function
+  end interface
+
+  !>     \brief  BLAS Level 3 API
+  !>
+  !>     \details
+  !>     The gemm functions perform one of the matrix-matrix operations:
+  !>
+  !>         C = alpha*op( A )*op( B ) + beta*C,
+  !>
+  !>     where op( X ) is one of:
+  !>
+  !>         op( X ) = X      or
+  !>         op( X ) = X**T   or
+  !>         op( X ) = X**H,
+  !>
+  !>     ``alpha`` and ``beta`` are scalars, and ``A``, ``B``, and ``C`` are matrices, with
+  !>     ``op( A )`` an ``m`` by ``k`` matrix, ``op( B )`` a ``k`` by ``n`` matrix, and ``C`` an
+  !>     ``m`` by ``n`` matrix.
+  !>
+  !>     - Supported precisions in rocBLAS : ``h``, ``s``, ``d``, ``c``, and ``z``.
+  !>     - Supported precisions in cuBLAS  : ``h``, ``s``, ``d``, ``c``, and ``z``.
+  !>
+  !>     @param[in]
+  !>     handle    [hipblasHandle_t]
+  !>               handle to the hipBLAS library context queue.
+  !>     @param[in]
+  !>     transA    [hipblasOperation_t]
+  !>               specifies the form of op( A ).
+  !>     @param[in]
+  !>     transB    [hipblasOperation_t]
+  !>               specifies the form of op( B ).
+  !>     @param[in]
+  !>     m         [int]
+  !>               number or rows of matrices op( A ) and C.
+  !>     @param[in]
+  !>     n         [int]
+  !>               number of columns of matrices op( B ) and C.
+  !>     @param[in]
+  !>     k         [int]
+  !>               number of columns of matrix op( A ) and number of rows of matrix op( B ).
+  !>     @param[in]
+  !>     alpha     device pointer or host pointer specifying the scalar alpha.
+  !>     @param[in]
+  !>     AP         device pointer storing matrix A.
+  !>     @param[in]
+  !>     lda       [int]
+  !>               specifies the leading dimension of A.
+  !>     @param[in]
+  !>     BP         device pointer storing matrix B.
+  !>     @param[in]
+  !>     ldb       [int]
+  !>               specifies the leading dimension of B.
+  !>     @param[in]
+  !>     beta      device pointer or host pointer specifying the scalar beta.
+  !>     @param[in, out]
+  !>     CP         device pointer storing matrix C on the GPU.
+  !>     @param[in]
+  !>     ldc       [int]
+  !>               specifies the leading dimension of C.
+  interface hipblasHgemm
+#ifdef USE_CUDA_NAMES
+    function hipblasHgemm_(handle,transA,transB,m,n,k,alpha,AP,lda,BP,ldb,beta,CP,ldc) bind(c, name="cublasHgemm")
+#else
+    function hipblasHgemm_(handle,transA,transB,m,n,k,alpha,AP,lda,BP,ldb,beta,CP,ldc) bind(c, name="hipblasHgemm")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasHgemm_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_OP_N)),value :: transA
+      integer(kind(HIPBLAS_OP_N)),value :: transB
+      integer(c_int),value :: m
+      integer(c_int),value :: n
+      integer(c_int),value :: k
+      type(c_ptr),value :: alpha
+      type(c_ptr),value :: AP
+      integer(c_int),value :: lda
+      type(c_ptr),value :: BP
+      integer(c_int),value :: ldb
+      type(c_ptr),value :: beta
+      type(c_ptr),value :: CP
+      integer(c_int),value :: ldc
+    end function
+  end interface
+
+  interface hipblasHgemm_64
+#ifdef USE_CUDA_NAMES
+    function hipblasHgemm_64_(handle,transA,transB,m,n,k,alpha,AP,lda,BP,ldb,beta,CP,ldc) bind(c, name="cublasHgemm_64")
+#else
+    function hipblasHgemm_64_(handle,transA,transB,m,n,k,alpha,AP,lda,BP,ldb,beta,CP,ldc) bind(c, name="hipblasHgemm_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasHgemm_64_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_OP_N)),value :: transA
+      integer(kind(HIPBLAS_OP_N)),value :: transB
+      integer(c_int64_t),value :: m
+      integer(c_int64_t),value :: n
+      integer(c_int64_t),value :: k
+      type(c_ptr),value :: alpha
+      type(c_ptr),value :: AP
+      integer(c_int64_t),value :: lda
+      type(c_ptr),value :: BP
+      integer(c_int64_t),value :: ldb
+      type(c_ptr),value :: beta
+      type(c_ptr),value :: CP
+      integer(c_int64_t),value :: ldc
+    end function
+  end interface
+
+  interface hipblasSgemm_64
+#ifdef USE_CUDA_NAMES
+    function hipblasSgemm_64_(handle,transA,transB,m,n,k,alpha,AP,lda,BP,ldb,beta,CP,ldc) bind(c, name="cublasSgemm_v2_64")
+#else
+    function hipblasSgemm_64_(handle,transA,transB,m,n,k,alpha,AP,lda,BP,ldb,beta,CP,ldc) bind(c, name="hipblasSgemm_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSgemm_64_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_OP_N)),value :: transA
+      integer(kind(HIPBLAS_OP_N)),value :: transB
+      integer(c_int64_t),value :: m
+      integer(c_int64_t),value :: n
+      integer(c_int64_t),value :: k
+      real(c_float) :: alpha
+      type(c_ptr),value :: AP
+      integer(c_int64_t),value :: lda
+      type(c_ptr),value :: BP
+      integer(c_int64_t),value :: ldb
+      real(c_float) :: beta
+      type(c_ptr),value :: CP
+      integer(c_int64_t),value :: ldc
+    end function
+  end interface
+
+  interface hipblasDgemm_64
+#ifdef USE_CUDA_NAMES
+    function hipblasDgemm_64_(handle,transA,transB,m,n,k,alpha,AP,lda,BP,ldb,beta,CP,ldc) bind(c, name="cublasDgemm_v2_64")
+#else
+    function hipblasDgemm_64_(handle,transA,transB,m,n,k,alpha,AP,lda,BP,ldb,beta,CP,ldc) bind(c, name="hipblasDgemm_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDgemm_64_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_OP_N)),value :: transA
+      integer(kind(HIPBLAS_OP_N)),value :: transB
+      integer(c_int64_t),value :: m
+      integer(c_int64_t),value :: n
+      integer(c_int64_t),value :: k
+      real(c_double) :: alpha
+      type(c_ptr),value :: AP
+      integer(c_int64_t),value :: lda
+      type(c_ptr),value :: BP
+      integer(c_int64_t),value :: ldb
+      real(c_double) :: beta
+      type(c_ptr),value :: CP
+      integer(c_int64_t),value :: ldc
+    end function
+  end interface
+
+  interface hipblasCgemm_64
+#ifdef USE_CUDA_NAMES
+    function hipblasCgemm_64_(handle,transA,transB,m,n,k,alpha,AP,lda,BP,ldb,beta,CP,ldc) bind(c, name="cublasCgemm_v2_64")
+#else
+    function hipblasCgemm_64_(handle,transA,transB,m,n,k,alpha,AP,lda,BP,ldb,beta,CP,ldc) bind(c, name="hipblasCgemm_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCgemm_64_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_OP_N)),value :: transA
+      integer(kind(HIPBLAS_OP_N)),value :: transB
+      integer(c_int64_t),value :: m
+      integer(c_int64_t),value :: n
+      integer(c_int64_t),value :: k
+      complex(c_float_complex) :: alpha
+      type(c_ptr),value :: AP
+      integer(c_int64_t),value :: lda
+      type(c_ptr),value :: BP
+      integer(c_int64_t),value :: ldb
+      complex(c_float_complex) :: beta
+      type(c_ptr),value :: CP
+      integer(c_int64_t),value :: ldc
+    end function
+  end interface
+
+  interface hipblasZgemm_64
+#ifdef USE_CUDA_NAMES
+    function hipblasZgemm_64_(handle,transA,transB,m,n,k,alpha,AP,lda,BP,ldb,beta,CP,ldc) bind(c, name="cublasZgemm_v2_64")
+#else
+    function hipblasZgemm_64_(handle,transA,transB,m,n,k,alpha,AP,lda,BP,ldb,beta,CP,ldc) bind(c, name="hipblasZgemm_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZgemm_64_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_OP_N)),value :: transA
+      integer(kind(HIPBLAS_OP_N)),value :: transB
+      integer(c_int64_t),value :: m
+      integer(c_int64_t),value :: n
+      integer(c_int64_t),value :: k
+      complex(c_double_complex) :: alpha
+      type(c_ptr),value :: AP
+      integer(c_int64_t),value :: lda
+      type(c_ptr),value :: BP
+      integer(c_int64_t),value :: ldb
+      complex(c_double_complex) :: beta
+      type(c_ptr),value :: CP
+      integer(c_int64_t),value :: ldc
+    end function
+  end interface
+
+  !>     \brief  BLAS Level 3 API
+  !>
+  !>     \details
+  !>     The gemmBatched functions perform one of the batched matrix-matrix operations:
+  !>
+  !>          C_i = alpha*op( A_i )*op( B_i ) + beta*C_i, for i = 1, ..., batchCount.
+  !>
+  !>     where ``op( X )`` is one of:
+  !>
+  !>          op( X ) = X      or
+  !>          op( X ) = X**T   or
+  !>          op( X ) = X**H,
+  !>
+  !>     ``alpha`` and ``beta`` are scalars, and ``A``, ``B`` , and ``C`` are strided batched
+  !>     matrices, with
+  !>     ``op( A )`` an ``m`` by ``k`` by ``batchCount`` strided_batched matrix,
+  !>     ``op( B )`` a ``k`` by ``n`` by ``batchCount`` strided_batched matrix, and
+  !>     ``C`` an ``m`` by ``n`` by ``batchCount`` strided_batched matrix.
+  !>
+  !>     - Supported precisions in rocBLAS : ``h``, ``s``, ``d``, ``c``, and ``z``.
+  !>     - Supported precisions in cuBLAS  : ``h``, ``s``, ``d``, ``c``, and ``z``.
+  !>
+  !>     @param[in]
+  !>     handle    [hipblasHandle_t]
+  !>               handle to the hipBLAS library context queue.
+  !>     @param[in]
+  !>     transA    [hipblasOperation_t]
+  !>               specifies the form of op( A ).
+  !>     @param[in]
+  !>     transB    [hipblasOperation_t]
+  !>               specifies the form of op( B ).
+  !>     @param[in]
+  !>     m         [int]
+  !>               matrix dimension m.
+  !>     @param[in]
+  !>     n         [int]
+  !>               matrix dimension n.
+  !>     @param[in]
+  !>     k         [int]
+  !>               matrix dimension k.
+  !>     @param[in]
+  !>     alpha     device pointer or host pointer specifying the scalar alpha.
+  !>     @param[in]
+  !>     AP         device array of device pointers storing each matrix A_i.
+  !>     @param[in]
+  !>     lda       [int]
+  !>               specifies the leading dimension of each A_i.
+  !>     @param[in]
+  !>     BP         device array of device pointers storing each matrix B_i.
+  !>     @param[in]
+  !>     ldb       [int]
+  !>               specifies the leading dimension of each B_i.
+  !>     @param[in]
+  !>     beta      device pointer or host pointer specifying the scalar beta.
+  !>     @param[in, out]
+  !>     CP         device array of device pointers storing each matrix C_i.
+  !>     @param[in]
+  !>     ldc       [int]
+  !>               specifies the leading dimension of each C_i.
+  !>     @param[in]
+  !>     batchCount
+  !>               [int]
+  !>               number of gemm operations in the batch.
+  interface hipblasHgemmBatched
+#ifdef USE_CUDA_NAMES
+    function hipblasHgemmBatched_(handle,transA,transB,m,n,k,alpha,AP,lda,BP,ldb,beta,CP,ldc,batchCount) bind(c, name="cublasHgemmBatched")
+#else
+    function hipblasHgemmBatched_(handle,transA,transB,m,n,k,alpha,AP,lda,BP,ldb,beta,CP,ldc,batchCount) bind(c, name="hipblasHgemmBatched")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasHgemmBatched_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_OP_N)),value :: transA
+      integer(kind(HIPBLAS_OP_N)),value :: transB
+      integer(c_int),value :: m
+      integer(c_int),value :: n
+      integer(c_int),value :: k
+      type(c_ptr),value :: alpha
+      type(c_ptr) :: AP
+      integer(c_int),value :: lda
+      type(c_ptr) :: BP
+      integer(c_int),value :: ldb
+      type(c_ptr),value :: beta
+      type(c_ptr) :: CP
+      integer(c_int),value :: ldc
+      integer(c_int),value :: batchCount
+    end function
+  end interface
+
+  interface hipblasHgemmBatched_64
+#ifdef USE_CUDA_NAMES
+    function hipblasHgemmBatched_64_(handle,transA,transB,m,n,k,alpha,AP,lda,BP,ldb,beta,CP,ldc,batchCount) bind(c, name="cublasHgemmBatched_64")
+#else
+    function hipblasHgemmBatched_64_(handle,transA,transB,m,n,k,alpha,AP,lda,BP,ldb,beta,CP,ldc,batchCount) bind(c, name="hipblasHgemmBatched_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasHgemmBatched_64_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_OP_N)),value :: transA
+      integer(kind(HIPBLAS_OP_N)),value :: transB
+      integer(c_int64_t),value :: m
+      integer(c_int64_t),value :: n
+      integer(c_int64_t),value :: k
+      type(c_ptr),value :: alpha
+      type(c_ptr) :: AP
+      integer(c_int64_t),value :: lda
+      type(c_ptr) :: BP
+      integer(c_int64_t),value :: ldb
+      type(c_ptr),value :: beta
+      type(c_ptr) :: CP
+      integer(c_int64_t),value :: ldc
+      integer(c_int64_t),value :: batchCount
+    end function
+  end interface
+
+  interface hipblasSgemmBatched_64
+#ifdef USE_CUDA_NAMES
+    function hipblasSgemmBatched_64_(handle,transA,transB,m,n,k,alpha,AP,lda,BP,ldb,beta,CP,ldc,batchCount) bind(c, name="cublasSgemmBatched_64")
+#else
+    function hipblasSgemmBatched_64_(handle,transA,transB,m,n,k,alpha,AP,lda,BP,ldb,beta,CP,ldc,batchCount) bind(c, name="hipblasSgemmBatched_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSgemmBatched_64_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_OP_N)),value :: transA
+      integer(kind(HIPBLAS_OP_N)),value :: transB
+      integer(c_int64_t),value :: m
+      integer(c_int64_t),value :: n
+      integer(c_int64_t),value :: k
+      real(c_float) :: alpha
+      type(c_ptr) :: AP
+      integer(c_int64_t),value :: lda
+      type(c_ptr) :: BP
+      integer(c_int64_t),value :: ldb
+      real(c_float) :: beta
+      type(c_ptr) :: CP
+      integer(c_int64_t),value :: ldc
+      integer(c_int64_t),value :: batchCount
+    end function
+  end interface
+
+  interface hipblasDgemmBatched_64
+#ifdef USE_CUDA_NAMES
+    function hipblasDgemmBatched_64_(handle,transA,transB,m,n,k,alpha,AP,lda,BP,ldb,beta,CP,ldc,batchCount) bind(c, name="cublasDgemmBatched_64")
+#else
+    function hipblasDgemmBatched_64_(handle,transA,transB,m,n,k,alpha,AP,lda,BP,ldb,beta,CP,ldc,batchCount) bind(c, name="hipblasDgemmBatched_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDgemmBatched_64_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_OP_N)),value :: transA
+      integer(kind(HIPBLAS_OP_N)),value :: transB
+      integer(c_int64_t),value :: m
+      integer(c_int64_t),value :: n
+      integer(c_int64_t),value :: k
+      real(c_double) :: alpha
+      type(c_ptr) :: AP
+      integer(c_int64_t),value :: lda
+      type(c_ptr) :: BP
+      integer(c_int64_t),value :: ldb
+      real(c_double) :: beta
+      type(c_ptr) :: CP
+      integer(c_int64_t),value :: ldc
+      integer(c_int64_t),value :: batchCount
+    end function
+  end interface
+
+  interface hipblasCgemmBatched_64
+#ifdef USE_CUDA_NAMES
+    function hipblasCgemmBatched_64_(handle,transA,transB,m,n,k,alpha,AP,lda,BP,ldb,beta,CP,ldc,batchCount) bind(c, name="cublasCgemmBatched_64")
+#else
+    function hipblasCgemmBatched_64_(handle,transA,transB,m,n,k,alpha,AP,lda,BP,ldb,beta,CP,ldc,batchCount) bind(c, name="hipblasCgemmBatched_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCgemmBatched_64_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_OP_N)),value :: transA
+      integer(kind(HIPBLAS_OP_N)),value :: transB
+      integer(c_int64_t),value :: m
+      integer(c_int64_t),value :: n
+      integer(c_int64_t),value :: k
+      complex(c_float_complex) :: alpha
+      type(c_ptr) :: AP
+      integer(c_int64_t),value :: lda
+      type(c_ptr) :: BP
+      integer(c_int64_t),value :: ldb
+      complex(c_float_complex) :: beta
+      type(c_ptr) :: CP
+      integer(c_int64_t),value :: ldc
+      integer(c_int64_t),value :: batchCount
+    end function
+  end interface
+
+  interface hipblasZgemmBatched_64
+#ifdef USE_CUDA_NAMES
+    function hipblasZgemmBatched_64_(handle,transA,transB,m,n,k,alpha,AP,lda,BP,ldb,beta,CP,ldc,batchCount) bind(c, name="cublasZgemmBatched_64")
+#else
+    function hipblasZgemmBatched_64_(handle,transA,transB,m,n,k,alpha,AP,lda,BP,ldb,beta,CP,ldc,batchCount) bind(c, name="hipblasZgemmBatched_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZgemmBatched_64_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_OP_N)),value :: transA
+      integer(kind(HIPBLAS_OP_N)),value :: transB
+      integer(c_int64_t),value :: m
+      integer(c_int64_t),value :: n
+      integer(c_int64_t),value :: k
+      complex(c_double_complex) :: alpha
+      type(c_ptr) :: AP
+      integer(c_int64_t),value :: lda
+      type(c_ptr) :: BP
+      integer(c_int64_t),value :: ldb
+      complex(c_double_complex) :: beta
+      type(c_ptr) :: CP
+      integer(c_int64_t),value :: ldc
+      integer(c_int64_t),value :: batchCount
+    end function
+  end interface
+
+  !>     \brief  BLAS Level 3 API
+  !>
+  !>     \details
+  !>     The gemmStridedBatched functions perform one of the strided batched matrix-matrix
+  !>     operations:
+  !>
+  !>         C_i = alpha*op( A_i )*op( B_i ) + beta*C_i, for i = 1, ..., batchCount
+  !>
+  !>     where ``op( X )`` is one of:
+  !>
+  !>         op( X ) = X      or
+  !>         op( X ) = X**T   or
+  !>         op( X ) = X**H,
+  !>
+  !>     ``alpha`` and ``beta`` are scalars, and ``A``, ``B``, and ``C`` are strided batched
+  !>     matrices, with
+  !>     ``op( A )`` an ``m`` by ``k`` by ``batchCount`` strided_batched matrix,
+  !>     ``op( B )`` a ``k`` by ``n`` by ``batchCount`` strided_batched matrix, and
+  !>     ``C`` an ``m`` by ``n`` by ``batchCount`` strided_batched matrix.
+  !>
+  !>     - Supported precisions in rocBLAS : ``h``, ``s``, ``d``, ``c``, and ``z``.
+  !>     - Supported precisions in cuBLAS  : ``h``, ``s``, ``d``, ``c``, and ``z``.
+  !>
+  !>     @param[in]
+  !>     handle    [hipblasHandle_t]
+  !>               handle to the hipBLAS library context queue.
+  !>     @param[in]
+  !>     transA    [hipblasOperation_t]
+  !>               specifies the form of op( A ).
+  !>     @param[in]
+  !>     transB    [hipblasOperation_t]
+  !>               specifies the form of op( B ).
+  !>     @param[in]
+  !>     m         [int]
+  !>               matrix dimension m.
+  !>     @param[in]
+  !>     n         [int]
+  !>               matrix dimension n.
+  !>     @param[in]
+  !>     k         [int]
+  !>               matrix dimension k.
+  !>     @param[in]
+  !>     alpha     device pointer or host pointer specifying the scalar alpha.
+  !>     @param[in]
+  !>     AP         device pointer pointing to the first matrix A_1.
+  !>     @param[in]
+  !>     lda       [int]
+  !>               specifies the leading dimension of each A_i.
+  !>     @param[in]
+  !>     strideA  [hipblasStride]
+  !>               stride from the start of one A_i matrix to the next A_(i + 1).
+  !>     @param[in]
+  !>     BP         device pointer pointing to the first matrix B_1.
+  !>     @param[in]
+  !>     ldb       [int]
+  !>               specifies the leading dimension of each B_i.
+  !>     @param[in]
+  !>     strideB  [hipblasStride]
+  !>               stride from the start of one B_i matrix to the next B_(i + 1).
+  !>     @param[in]
+  !>     beta      device pointer or host pointer specifying the scalar beta.
+  !>     @param[in, out]
+  !>     CP         device pointer pointing to the first matrix C_1.
+  !>     @param[in]
+  !>     ldc       [int]
+  !>               specifies the leading dimension of each C_i.
+  !>     @param[in]
+  !>     strideC  [hipblasStride]
+  !>               stride from the start of one C_i matrix to the next C_(i + 1).
+  !>     @param[in]
+  !>     batchCount
+  !>               [int]
+  !>               number of gemm operatons in the batch.
+  interface hipblasHgemmStridedBatched
+#ifdef USE_CUDA_NAMES
+    function hipblasHgemmStridedBatched_(handle,transA,transB,m,n,k,alpha,AP,lda,strideA,BP,ldb,strideB,beta,CP,ldc,strideC,batchCount) bind(c, name="cublasHgemmStridedBatched")
+#else
+    function hipblasHgemmStridedBatched_(handle,transA,transB,m,n,k,alpha,AP,lda,strideA,BP,ldb,strideB,beta,CP,ldc,strideC,batchCount) bind(c, name="hipblasHgemmStridedBatched")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasHgemmStridedBatched_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_OP_N)),value :: transA
+      integer(kind(HIPBLAS_OP_N)),value :: transB
+      integer(c_int),value :: m
+      integer(c_int),value :: n
+      integer(c_int),value :: k
+      type(c_ptr),value :: alpha
+      type(c_ptr),value :: AP
+      integer(c_int),value :: lda
+      integer(c_int64_t),value :: strideA
+      type(c_ptr),value :: BP
+      integer(c_int),value :: ldb
+      integer(c_int64_t),value :: strideB
+      type(c_ptr),value :: beta
+      type(c_ptr),value :: CP
+      integer(c_int),value :: ldc
+      integer(c_int64_t),value :: strideC
+      integer(c_int),value :: batchCount
+    end function
+  end interface
+
+  interface hipblasHgemmStridedBatched_64
+#ifdef USE_CUDA_NAMES
+    function hipblasHgemmStridedBatched_64_(handle,transA,transB,m,n,k,alpha,AP,lda,strideA,BP,ldb,strideB,beta,CP,ldc,strideC,batchCount) bind(c, name="cublasHgemmStridedBatched_64")
+#else
+    function hipblasHgemmStridedBatched_64_(handle,transA,transB,m,n,k,alpha,AP,lda,strideA,BP,ldb,strideB,beta,CP,ldc,strideC,batchCount) bind(c, name="hipblasHgemmStridedBatched_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasHgemmStridedBatched_64_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_OP_N)),value :: transA
+      integer(kind(HIPBLAS_OP_N)),value :: transB
+      integer(c_int64_t),value :: m
+      integer(c_int64_t),value :: n
+      integer(c_int64_t),value :: k
+      type(c_ptr),value :: alpha
+      type(c_ptr),value :: AP
+      integer(c_int64_t),value :: lda
+      integer(c_int64_t),value :: strideA
+      type(c_ptr),value :: BP
+      integer(c_int64_t),value :: ldb
+      integer(c_int64_t),value :: strideB
+      type(c_ptr),value :: beta
+      type(c_ptr),value :: CP
+      integer(c_int64_t),value :: ldc
+      integer(c_int64_t),value :: strideC
+      integer(c_int64_t),value :: batchCount
+    end function
+  end interface
+
+  interface hipblasSgemmStridedBatched_64
+#ifdef USE_CUDA_NAMES
+    function hipblasSgemmStridedBatched_64_(handle,transA,transB,m,n,k,alpha,AP,lda,strideA,BP,ldb,strideB,beta,CP,ldc,strideC,batchCount) bind(c, name="cublasSgemmStridedBatched_64")
+#else
+    function hipblasSgemmStridedBatched_64_(handle,transA,transB,m,n,k,alpha,AP,lda,strideA,BP,ldb,strideB,beta,CP,ldc,strideC,batchCount) bind(c, name="hipblasSgemmStridedBatched_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSgemmStridedBatched_64_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_OP_N)),value :: transA
+      integer(kind(HIPBLAS_OP_N)),value :: transB
+      integer(c_int64_t),value :: m
+      integer(c_int64_t),value :: n
+      integer(c_int64_t),value :: k
+      real(c_float) :: alpha
+      type(c_ptr),value :: AP
+      integer(c_int64_t),value :: lda
+      integer(c_int64_t),value :: strideA
+      type(c_ptr),value :: BP
+      integer(c_int64_t),value :: ldb
+      integer(c_int64_t),value :: strideB
+      real(c_float) :: beta
+      type(c_ptr),value :: CP
+      integer(c_int64_t),value :: ldc
+      integer(c_int64_t),value :: strideC
+      integer(c_int64_t),value :: batchCount
+    end function
+  end interface
+
+  interface hipblasDgemmStridedBatched_64
+#ifdef USE_CUDA_NAMES
+    function hipblasDgemmStridedBatched_64_(handle,transA,transB,m,n,k,alpha,AP,lda,strideA,BP,ldb,strideB,beta,CP,ldc,strideC,batchCount) bind(c, name="cublasDgemmStridedBatched_64")
+#else
+    function hipblasDgemmStridedBatched_64_(handle,transA,transB,m,n,k,alpha,AP,lda,strideA,BP,ldb,strideB,beta,CP,ldc,strideC,batchCount) bind(c, name="hipblasDgemmStridedBatched_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDgemmStridedBatched_64_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_OP_N)),value :: transA
+      integer(kind(HIPBLAS_OP_N)),value :: transB
+      integer(c_int64_t),value :: m
+      integer(c_int64_t),value :: n
+      integer(c_int64_t),value :: k
+      real(c_double) :: alpha
+      type(c_ptr),value :: AP
+      integer(c_int64_t),value :: lda
+      integer(c_int64_t),value :: strideA
+      type(c_ptr),value :: BP
+      integer(c_int64_t),value :: ldb
+      integer(c_int64_t),value :: strideB
+      real(c_double) :: beta
+      type(c_ptr),value :: CP
+      integer(c_int64_t),value :: ldc
+      integer(c_int64_t),value :: strideC
+      integer(c_int64_t),value :: batchCount
+    end function
+  end interface
+
+  interface hipblasCgemmStridedBatched_64
+#ifdef USE_CUDA_NAMES
+    function hipblasCgemmStridedBatched_64_(handle,transA,transB,m,n,k,alpha,AP,lda,strideA,BP,ldb,strideB,beta,CP,ldc,strideC,batchCount) bind(c, name="cublasCgemmStridedBatched_64")
+#else
+    function hipblasCgemmStridedBatched_64_(handle,transA,transB,m,n,k,alpha,AP,lda,strideA,BP,ldb,strideB,beta,CP,ldc,strideC,batchCount) bind(c, name="hipblasCgemmStridedBatched_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCgemmStridedBatched_64_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_OP_N)),value :: transA
+      integer(kind(HIPBLAS_OP_N)),value :: transB
+      integer(c_int64_t),value :: m
+      integer(c_int64_t),value :: n
+      integer(c_int64_t),value :: k
+      complex(c_float_complex) :: alpha
+      type(c_ptr),value :: AP
+      integer(c_int64_t),value :: lda
+      integer(c_int64_t),value :: strideA
+      type(c_ptr),value :: BP
+      integer(c_int64_t),value :: ldb
+      integer(c_int64_t),value :: strideB
+      complex(c_float_complex) :: beta
+      type(c_ptr),value :: CP
+      integer(c_int64_t),value :: ldc
+      integer(c_int64_t),value :: strideC
+      integer(c_int64_t),value :: batchCount
+    end function
+  end interface
+
+  interface hipblasZgemmStridedBatched_64
+#ifdef USE_CUDA_NAMES
+    function hipblasZgemmStridedBatched_64_(handle,transA,transB,m,n,k,alpha,AP,lda,strideA,BP,ldb,strideB,beta,CP,ldc,strideC,batchCount) bind(c, name="cublasZgemmStridedBatched_64")
+#else
+    function hipblasZgemmStridedBatched_64_(handle,transA,transB,m,n,k,alpha,AP,lda,strideA,BP,ldb,strideB,beta,CP,ldc,strideC,batchCount) bind(c, name="hipblasZgemmStridedBatched_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZgemmStridedBatched_64_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_OP_N)),value :: transA
+      integer(kind(HIPBLAS_OP_N)),value :: transB
+      integer(c_int64_t),value :: m
+      integer(c_int64_t),value :: n
+      integer(c_int64_t),value :: k
+      complex(c_double_complex) :: alpha
+      type(c_ptr),value :: AP
+      integer(c_int64_t),value :: lda
+      integer(c_int64_t),value :: strideA
+      type(c_ptr),value :: BP
+      integer(c_int64_t),value :: ldb
+      integer(c_int64_t),value :: strideB
+      complex(c_double_complex) :: beta
+      type(c_ptr),value :: CP
+      integer(c_int64_t),value :: ldc
+      integer(c_int64_t),value :: strideC
+      integer(c_int64_t),value :: batchCount
+    end function
+  end interface
+
+  interface hipblasCherk_64
+#ifdef USE_CUDA_NAMES
+    function hipblasCherk_64_(handle,uplo,transA,n,k,alpha,AP,lda,beta,CP,ldc) bind(c, name="cublasCherk_v2_64")
+#else
+    function hipblasCherk_64_(handle,uplo,transA,n,k,alpha,AP,lda,beta,CP,ldc) bind(c, name="hipblasCherk_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCherk_64_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
+      integer(kind(HIPBLAS_OP_N)),value :: transA
+      integer(c_int64_t),value :: n
+      integer(c_int64_t),value :: k
+      real(c_float) :: alpha
+      type(c_ptr),value :: AP
+      integer(c_int64_t),value :: lda
+      real(c_float) :: beta
+      type(c_ptr),value :: CP
+      integer(c_int64_t),value :: ldc
+    end function
+  end interface
+
+  interface hipblasZherk_64
+#ifdef USE_CUDA_NAMES
+    function hipblasZherk_64_(handle,uplo,transA,n,k,alpha,AP,lda,beta,CP,ldc) bind(c, name="cublasZherk_v2_64")
+#else
+    function hipblasZherk_64_(handle,uplo,transA,n,k,alpha,AP,lda,beta,CP,ldc) bind(c, name="hipblasZherk_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZherk_64_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
+      integer(kind(HIPBLAS_OP_N)),value :: transA
+      integer(c_int64_t),value :: n
+      integer(c_int64_t),value :: k
+      real(c_double) :: alpha
+      type(c_ptr),value :: AP
+      integer(c_int64_t),value :: lda
+      real(c_double) :: beta
+      type(c_ptr),value :: CP
+      integer(c_int64_t),value :: ldc
+    end function
+  end interface
+
+  interface hipblasCherkBatched_64
+#ifdef USE_CUDA_NAMES
+    function hipblasCherkBatched_64_(handle,uplo,transA,n,k,alpha,AP,lda,beta,CP,ldc,batchCount) bind(c, name="cublasCherkBatched_64")
+#else
+    function hipblasCherkBatched_64_(handle,uplo,transA,n,k,alpha,AP,lda,beta,CP,ldc,batchCount) bind(c, name="hipblasCherkBatched_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCherkBatched_64_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
+      integer(kind(HIPBLAS_OP_N)),value :: transA
+      integer(c_int64_t),value :: n
+      integer(c_int64_t),value :: k
+      real(c_float) :: alpha
+      type(c_ptr) :: AP
+      integer(c_int64_t),value :: lda
+      real(c_float) :: beta
+      type(c_ptr) :: CP
+      integer(c_int64_t),value :: ldc
+      integer(c_int64_t),value :: batchCount
+    end function
+  end interface
+
+  interface hipblasZherkBatched_64
+#ifdef USE_CUDA_NAMES
+    function hipblasZherkBatched_64_(handle,uplo,transA,n,k,alpha,AP,lda,beta,CP,ldc,batchCount) bind(c, name="cublasZherkBatched_64")
+#else
+    function hipblasZherkBatched_64_(handle,uplo,transA,n,k,alpha,AP,lda,beta,CP,ldc,batchCount) bind(c, name="hipblasZherkBatched_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZherkBatched_64_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
+      integer(kind(HIPBLAS_OP_N)),value :: transA
+      integer(c_int64_t),value :: n
+      integer(c_int64_t),value :: k
+      real(c_double) :: alpha
+      type(c_ptr) :: AP
+      integer(c_int64_t),value :: lda
+      real(c_double) :: beta
+      type(c_ptr) :: CP
+      integer(c_int64_t),value :: ldc
+      integer(c_int64_t),value :: batchCount
+    end function
+  end interface
+
+  interface hipblasCherkStridedBatched_64
+#ifdef USE_CUDA_NAMES
+    function hipblasCherkStridedBatched_64_(handle,uplo,transA,n,k,alpha,AP,lda,strideA,beta,CP,ldc,strideC,batchCount) bind(c, name="cublasCherkStridedBatched_64")
+#else
+    function hipblasCherkStridedBatched_64_(handle,uplo,transA,n,k,alpha,AP,lda,strideA,beta,CP,ldc,strideC,batchCount) bind(c, name="hipblasCherkStridedBatched_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCherkStridedBatched_64_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
+      integer(kind(HIPBLAS_OP_N)),value :: transA
+      integer(c_int64_t),value :: n
+      integer(c_int64_t),value :: k
+      real(c_float) :: alpha
+      type(c_ptr),value :: AP
+      integer(c_int64_t),value :: lda
+      integer(c_int64_t),value :: strideA
+      real(c_float) :: beta
+      type(c_ptr),value :: CP
+      integer(c_int64_t),value :: ldc
+      integer(c_int64_t),value :: strideC
+      integer(c_int64_t),value :: batchCount
+    end function
+  end interface
+
+  interface hipblasZherkStridedBatched_64
+#ifdef USE_CUDA_NAMES
+    function hipblasZherkStridedBatched_64_(handle,uplo,transA,n,k,alpha,AP,lda,strideA,beta,CP,ldc,strideC,batchCount) bind(c, name="cublasZherkStridedBatched_64")
+#else
+    function hipblasZherkStridedBatched_64_(handle,uplo,transA,n,k,alpha,AP,lda,strideA,beta,CP,ldc,strideC,batchCount) bind(c, name="hipblasZherkStridedBatched_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZherkStridedBatched_64_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
+      integer(kind(HIPBLAS_OP_N)),value :: transA
+      integer(c_int64_t),value :: n
+      integer(c_int64_t),value :: k
+      real(c_double) :: alpha
+      type(c_ptr),value :: AP
+      integer(c_int64_t),value :: lda
+      integer(c_int64_t),value :: strideA
+      real(c_double) :: beta
+      type(c_ptr),value :: CP
+      integer(c_int64_t),value :: ldc
+      integer(c_int64_t),value :: strideC
+      integer(c_int64_t),value :: batchCount
+    end function
+  end interface
+
+  interface hipblasCherkx_64
+#ifdef USE_CUDA_NAMES
+    function hipblasCherkx_64_(handle,uplo,transA,n,k,alpha,AP,lda,BP,ldb,beta,CP,ldc) bind(c, name="cublasCherkx_64")
+#else
+    function hipblasCherkx_64_(handle,uplo,transA,n,k,alpha,AP,lda,BP,ldb,beta,CP,ldc) bind(c, name="hipblasCherkx_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCherkx_64_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
+      integer(kind(HIPBLAS_OP_N)),value :: transA
+      integer(c_int64_t),value :: n
+      integer(c_int64_t),value :: k
+      complex(c_float_complex) :: alpha
+      type(c_ptr),value :: AP
+      integer(c_int64_t),value :: lda
+      type(c_ptr),value :: BP
+      integer(c_int64_t),value :: ldb
+      real(c_float) :: beta
+      type(c_ptr),value :: CP
+      integer(c_int64_t),value :: ldc
+    end function
+  end interface
+
+  interface hipblasZherkx_64
+#ifdef USE_CUDA_NAMES
+    function hipblasZherkx_64_(handle,uplo,transA,n,k,alpha,AP,lda,BP,ldb,beta,CP,ldc) bind(c, name="cublasZherkx_64")
+#else
+    function hipblasZherkx_64_(handle,uplo,transA,n,k,alpha,AP,lda,BP,ldb,beta,CP,ldc) bind(c, name="hipblasZherkx_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZherkx_64_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
+      integer(kind(HIPBLAS_OP_N)),value :: transA
+      integer(c_int64_t),value :: n
+      integer(c_int64_t),value :: k
+      complex(c_double_complex) :: alpha
+      type(c_ptr),value :: AP
+      integer(c_int64_t),value :: lda
+      type(c_ptr),value :: BP
+      integer(c_int64_t),value :: ldb
+      real(c_double) :: beta
+      type(c_ptr),value :: CP
+      integer(c_int64_t),value :: ldc
+    end function
+  end interface
+
+  interface hipblasCherkxBatched_64
+#ifdef USE_CUDA_NAMES
+    function hipblasCherkxBatched_64_(handle,uplo,transA,n,k,alpha,AP,lda,BP,ldb,beta,CP,ldc,batchCount) bind(c, name="cublasCherkxBatched_64")
+#else
+    function hipblasCherkxBatched_64_(handle,uplo,transA,n,k,alpha,AP,lda,BP,ldb,beta,CP,ldc,batchCount) bind(c, name="hipblasCherkxBatched_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCherkxBatched_64_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
+      integer(kind(HIPBLAS_OP_N)),value :: transA
+      integer(c_int64_t),value :: n
+      integer(c_int64_t),value :: k
+      complex(c_float_complex) :: alpha
+      type(c_ptr) :: AP
+      integer(c_int64_t),value :: lda
+      type(c_ptr) :: BP
+      integer(c_int64_t),value :: ldb
+      real(c_float) :: beta
+      type(c_ptr) :: CP
+      integer(c_int64_t),value :: ldc
+      integer(c_int64_t),value :: batchCount
+    end function
+  end interface
+
+  interface hipblasZherkxBatched_64
+#ifdef USE_CUDA_NAMES
+    function hipblasZherkxBatched_64_(handle,uplo,transA,n,k,alpha,AP,lda,BP,ldb,beta,CP,ldc,batchCount) bind(c, name="cublasZherkxBatched_64")
+#else
+    function hipblasZherkxBatched_64_(handle,uplo,transA,n,k,alpha,AP,lda,BP,ldb,beta,CP,ldc,batchCount) bind(c, name="hipblasZherkxBatched_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZherkxBatched_64_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
+      integer(kind(HIPBLAS_OP_N)),value :: transA
+      integer(c_int64_t),value :: n
+      integer(c_int64_t),value :: k
+      complex(c_double_complex) :: alpha
+      type(c_ptr) :: AP
+      integer(c_int64_t),value :: lda
+      type(c_ptr) :: BP
+      integer(c_int64_t),value :: ldb
+      real(c_double) :: beta
+      type(c_ptr) :: CP
+      integer(c_int64_t),value :: ldc
+      integer(c_int64_t),value :: batchCount
+    end function
+  end interface
+
+  interface hipblasCherkxStridedBatched_64
+#ifdef USE_CUDA_NAMES
+    function hipblasCherkxStridedBatched_64_(handle,uplo,transA,n,k,alpha,AP,lda,strideA,BP,ldb,strideB,beta,CP,ldc,strideC,batchCount) bind(c, name="cublasCherkxStridedBatched_64")
+#else
+    function hipblasCherkxStridedBatched_64_(handle,uplo,transA,n,k,alpha,AP,lda,strideA,BP,ldb,strideB,beta,CP,ldc,strideC,batchCount) bind(c, name="hipblasCherkxStridedBatched_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCherkxStridedBatched_64_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
+      integer(kind(HIPBLAS_OP_N)),value :: transA
+      integer(c_int64_t),value :: n
+      integer(c_int64_t),value :: k
+      complex(c_float_complex) :: alpha
+      type(c_ptr),value :: AP
+      integer(c_int64_t),value :: lda
+      integer(c_int64_t),value :: strideA
+      type(c_ptr),value :: BP
+      integer(c_int64_t),value :: ldb
+      integer(c_int64_t),value :: strideB
+      real(c_float) :: beta
+      type(c_ptr),value :: CP
+      integer(c_int64_t),value :: ldc
+      integer(c_int64_t),value :: strideC
+      integer(c_int64_t),value :: batchCount
+    end function
+  end interface
+
+  interface hipblasZherkxStridedBatched_64
+#ifdef USE_CUDA_NAMES
+    function hipblasZherkxStridedBatched_64_(handle,uplo,transA,n,k,alpha,AP,lda,strideA,BP,ldb,strideB,beta,CP,ldc,strideC,batchCount) bind(c, name="cublasZherkxStridedBatched_64")
+#else
+    function hipblasZherkxStridedBatched_64_(handle,uplo,transA,n,k,alpha,AP,lda,strideA,BP,ldb,strideB,beta,CP,ldc,strideC,batchCount) bind(c, name="hipblasZherkxStridedBatched_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZherkxStridedBatched_64_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
+      integer(kind(HIPBLAS_OP_N)),value :: transA
+      integer(c_int64_t),value :: n
+      integer(c_int64_t),value :: k
+      complex(c_double_complex) :: alpha
+      type(c_ptr),value :: AP
+      integer(c_int64_t),value :: lda
+      integer(c_int64_t),value :: strideA
+      type(c_ptr),value :: BP
+      integer(c_int64_t),value :: ldb
+      integer(c_int64_t),value :: strideB
+      real(c_double) :: beta
+      type(c_ptr),value :: CP
+      integer(c_int64_t),value :: ldc
+      integer(c_int64_t),value :: strideC
+      integer(c_int64_t),value :: batchCount
+    end function
+  end interface
+
+  interface hipblasCher2k_64
+#ifdef USE_CUDA_NAMES
+    function hipblasCher2k_64_(handle,uplo,transA,n,k,alpha,AP,lda,BP,ldb,beta,CP,ldc) bind(c, name="cublasCher2k_v2_64")
+#else
+    function hipblasCher2k_64_(handle,uplo,transA,n,k,alpha,AP,lda,BP,ldb,beta,CP,ldc) bind(c, name="hipblasCher2k_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCher2k_64_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
+      integer(kind(HIPBLAS_OP_N)),value :: transA
+      integer(c_int64_t),value :: n
+      integer(c_int64_t),value :: k
+      complex(c_float_complex) :: alpha
+      type(c_ptr),value :: AP
+      integer(c_int64_t),value :: lda
+      type(c_ptr),value :: BP
+      integer(c_int64_t),value :: ldb
+      real(c_float) :: beta
+      type(c_ptr),value :: CP
+      integer(c_int64_t),value :: ldc
+    end function
+  end interface
+
+  interface hipblasZher2k_64
+#ifdef USE_CUDA_NAMES
+    function hipblasZher2k_64_(handle,uplo,transA,n,k,alpha,AP,lda,BP,ldb,beta,CP,ldc) bind(c, name="cublasZher2k_v2_64")
+#else
+    function hipblasZher2k_64_(handle,uplo,transA,n,k,alpha,AP,lda,BP,ldb,beta,CP,ldc) bind(c, name="hipblasZher2k_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZher2k_64_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
+      integer(kind(HIPBLAS_OP_N)),value :: transA
+      integer(c_int64_t),value :: n
+      integer(c_int64_t),value :: k
+      complex(c_double_complex) :: alpha
+      type(c_ptr),value :: AP
+      integer(c_int64_t),value :: lda
+      type(c_ptr),value :: BP
+      integer(c_int64_t),value :: ldb
+      real(c_double) :: beta
+      type(c_ptr),value :: CP
+      integer(c_int64_t),value :: ldc
+    end function
+  end interface
+
+  interface hipblasCher2kBatched_64
+#ifdef USE_CUDA_NAMES
+    function hipblasCher2kBatched_64_(handle,uplo,transA,n,k,alpha,AP,lda,BP,ldb,beta,CP,ldc,batchCount) bind(c, name="cublasCher2kBatched_64")
+#else
+    function hipblasCher2kBatched_64_(handle,uplo,transA,n,k,alpha,AP,lda,BP,ldb,beta,CP,ldc,batchCount) bind(c, name="hipblasCher2kBatched_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCher2kBatched_64_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
+      integer(kind(HIPBLAS_OP_N)),value :: transA
+      integer(c_int64_t),value :: n
+      integer(c_int64_t),value :: k
+      complex(c_float_complex) :: alpha
+      type(c_ptr) :: AP
+      integer(c_int64_t),value :: lda
+      type(c_ptr) :: BP
+      integer(c_int64_t),value :: ldb
+      real(c_float) :: beta
+      type(c_ptr) :: CP
+      integer(c_int64_t),value :: ldc
+      integer(c_int64_t),value :: batchCount
+    end function
+  end interface
+
+  interface hipblasZher2kBatched_64
+#ifdef USE_CUDA_NAMES
+    function hipblasZher2kBatched_64_(handle,uplo,transA,n,k,alpha,AP,lda,BP,ldb,beta,CP,ldc,batchCount) bind(c, name="cublasZher2kBatched_64")
+#else
+    function hipblasZher2kBatched_64_(handle,uplo,transA,n,k,alpha,AP,lda,BP,ldb,beta,CP,ldc,batchCount) bind(c, name="hipblasZher2kBatched_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZher2kBatched_64_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
+      integer(kind(HIPBLAS_OP_N)),value :: transA
+      integer(c_int64_t),value :: n
+      integer(c_int64_t),value :: k
+      complex(c_double_complex) :: alpha
+      type(c_ptr) :: AP
+      integer(c_int64_t),value :: lda
+      type(c_ptr) :: BP
+      integer(c_int64_t),value :: ldb
+      real(c_double) :: beta
+      type(c_ptr) :: CP
+      integer(c_int64_t),value :: ldc
+      integer(c_int64_t),value :: batchCount
+    end function
+  end interface
+
+  interface hipblasCher2kStridedBatched_64
+#ifdef USE_CUDA_NAMES
+    function hipblasCher2kStridedBatched_64_(handle,uplo,transA,n,k,alpha,AP,lda,strideA,BP,ldb,strideB,beta,CP,ldc,strideC,batchCount) bind(c, name="cublasCher2kStridedBatched_64")
+#else
+    function hipblasCher2kStridedBatched_64_(handle,uplo,transA,n,k,alpha,AP,lda,strideA,BP,ldb,strideB,beta,CP,ldc,strideC,batchCount) bind(c, name="hipblasCher2kStridedBatched_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCher2kStridedBatched_64_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
+      integer(kind(HIPBLAS_OP_N)),value :: transA
+      integer(c_int64_t),value :: n
+      integer(c_int64_t),value :: k
+      complex(c_float_complex) :: alpha
+      type(c_ptr),value :: AP
+      integer(c_int64_t),value :: lda
+      integer(c_int64_t),value :: strideA
+      type(c_ptr),value :: BP
+      integer(c_int64_t),value :: ldb
+      integer(c_int64_t),value :: strideB
+      real(c_float) :: beta
+      type(c_ptr),value :: CP
+      integer(c_int64_t),value :: ldc
+      integer(c_int64_t),value :: strideC
+      integer(c_int64_t),value :: batchCount
+    end function
+  end interface
+
+  interface hipblasZher2kStridedBatched_64
+#ifdef USE_CUDA_NAMES
+    function hipblasZher2kStridedBatched_64_(handle,uplo,transA,n,k,alpha,AP,lda,strideA,BP,ldb,strideB,beta,CP,ldc,strideC,batchCount) bind(c, name="cublasZher2kStridedBatched_64")
+#else
+    function hipblasZher2kStridedBatched_64_(handle,uplo,transA,n,k,alpha,AP,lda,strideA,BP,ldb,strideB,beta,CP,ldc,strideC,batchCount) bind(c, name="hipblasZher2kStridedBatched_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZher2kStridedBatched_64_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
+      integer(kind(HIPBLAS_OP_N)),value :: transA
+      integer(c_int64_t),value :: n
+      integer(c_int64_t),value :: k
+      complex(c_double_complex) :: alpha
+      type(c_ptr),value :: AP
+      integer(c_int64_t),value :: lda
+      integer(c_int64_t),value :: strideA
+      type(c_ptr),value :: BP
+      integer(c_int64_t),value :: ldb
+      integer(c_int64_t),value :: strideB
+      real(c_double) :: beta
+      type(c_ptr),value :: CP
+      integer(c_int64_t),value :: ldc
+      integer(c_int64_t),value :: strideC
+      integer(c_int64_t),value :: batchCount
+    end function
+  end interface
+
+  interface hipblasSsymm_64
+#ifdef USE_CUDA_NAMES
+    function hipblasSsymm_64_(handle,side,uplo,m,n,alpha,AP,lda,BP,ldb,beta,CP,ldc) bind(c, name="cublasSsymm_v2_64")
+#else
+    function hipblasSsymm_64_(handle,side,uplo,m,n,alpha,AP,lda,BP,ldb,beta,CP,ldc) bind(c, name="hipblasSsymm_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSsymm_64_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_SIDE_LEFT)),value :: side
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int64_t),value :: m
+      integer(c_int64_t),value :: n
+      real(c_float) :: alpha
+      type(c_ptr),value :: AP
+      integer(c_int64_t),value :: lda
+      type(c_ptr),value :: BP
+      integer(c_int64_t),value :: ldb
+      real(c_float) :: beta
+      type(c_ptr),value :: CP
+      integer(c_int64_t),value :: ldc
+    end function
+  end interface
+
+  interface hipblasDsymm_64
+#ifdef USE_CUDA_NAMES
+    function hipblasDsymm_64_(handle,side,uplo,m,n,alpha,AP,lda,BP,ldb,beta,CP,ldc) bind(c, name="cublasDsymm_v2_64")
+#else
+    function hipblasDsymm_64_(handle,side,uplo,m,n,alpha,AP,lda,BP,ldb,beta,CP,ldc) bind(c, name="hipblasDsymm_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDsymm_64_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_SIDE_LEFT)),value :: side
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int64_t),value :: m
+      integer(c_int64_t),value :: n
+      real(c_double) :: alpha
+      type(c_ptr),value :: AP
+      integer(c_int64_t),value :: lda
+      type(c_ptr),value :: BP
+      integer(c_int64_t),value :: ldb
+      real(c_double) :: beta
+      type(c_ptr),value :: CP
+      integer(c_int64_t),value :: ldc
+    end function
+  end interface
+
+  interface hipblasCsymm_64
+#ifdef USE_CUDA_NAMES
+    function hipblasCsymm_64_(handle,side,uplo,m,n,alpha,AP,lda,BP,ldb,beta,CP,ldc) bind(c, name="cublasCsymm_v2_64")
+#else
+    function hipblasCsymm_64_(handle,side,uplo,m,n,alpha,AP,lda,BP,ldb,beta,CP,ldc) bind(c, name="hipblasCsymm_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCsymm_64_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_SIDE_LEFT)),value :: side
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int64_t),value :: m
+      integer(c_int64_t),value :: n
+      complex(c_float_complex) :: alpha
+      type(c_ptr),value :: AP
+      integer(c_int64_t),value :: lda
+      type(c_ptr),value :: BP
+      integer(c_int64_t),value :: ldb
+      complex(c_float_complex) :: beta
+      type(c_ptr),value :: CP
+      integer(c_int64_t),value :: ldc
+    end function
+  end interface
+
+  interface hipblasZsymm_64
+#ifdef USE_CUDA_NAMES
+    function hipblasZsymm_64_(handle,side,uplo,m,n,alpha,AP,lda,BP,ldb,beta,CP,ldc) bind(c, name="cublasZsymm_v2_64")
+#else
+    function hipblasZsymm_64_(handle,side,uplo,m,n,alpha,AP,lda,BP,ldb,beta,CP,ldc) bind(c, name="hipblasZsymm_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZsymm_64_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_SIDE_LEFT)),value :: side
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int64_t),value :: m
+      integer(c_int64_t),value :: n
+      complex(c_double_complex) :: alpha
+      type(c_ptr),value :: AP
+      integer(c_int64_t),value :: lda
+      type(c_ptr),value :: BP
+      integer(c_int64_t),value :: ldb
+      complex(c_double_complex) :: beta
+      type(c_ptr),value :: CP
+      integer(c_int64_t),value :: ldc
+    end function
+  end interface
+
+  interface hipblasSsymmBatched_64
+#ifdef USE_CUDA_NAMES
+    function hipblasSsymmBatched_64_(handle,side,uplo,m,n,alpha,AP,lda,BP,ldb,beta,CP,ldc,batchCount) bind(c, name="cublasSsymmBatched_64")
+#else
+    function hipblasSsymmBatched_64_(handle,side,uplo,m,n,alpha,AP,lda,BP,ldb,beta,CP,ldc,batchCount) bind(c, name="hipblasSsymmBatched_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSsymmBatched_64_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_SIDE_LEFT)),value :: side
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int64_t),value :: m
+      integer(c_int64_t),value :: n
+      real(c_float) :: alpha
+      type(c_ptr) :: AP
+      integer(c_int64_t),value :: lda
+      type(c_ptr) :: BP
+      integer(c_int64_t),value :: ldb
+      real(c_float) :: beta
+      type(c_ptr) :: CP
+      integer(c_int64_t),value :: ldc
+      integer(c_int64_t),value :: batchCount
+    end function
+  end interface
+
+  interface hipblasDsymmBatched_64
+#ifdef USE_CUDA_NAMES
+    function hipblasDsymmBatched_64_(handle,side,uplo,m,n,alpha,AP,lda,BP,ldb,beta,CP,ldc,batchCount) bind(c, name="cublasDsymmBatched_64")
+#else
+    function hipblasDsymmBatched_64_(handle,side,uplo,m,n,alpha,AP,lda,BP,ldb,beta,CP,ldc,batchCount) bind(c, name="hipblasDsymmBatched_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDsymmBatched_64_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_SIDE_LEFT)),value :: side
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int64_t),value :: m
+      integer(c_int64_t),value :: n
+      real(c_double) :: alpha
+      type(c_ptr) :: AP
+      integer(c_int64_t),value :: lda
+      type(c_ptr) :: BP
+      integer(c_int64_t),value :: ldb
+      real(c_double) :: beta
+      type(c_ptr) :: CP
+      integer(c_int64_t),value :: ldc
+      integer(c_int64_t),value :: batchCount
+    end function
+  end interface
+
+  interface hipblasCsymmBatched_64
+#ifdef USE_CUDA_NAMES
+    function hipblasCsymmBatched_64_(handle,side,uplo,m,n,alpha,AP,lda,BP,ldb,beta,CP,ldc,batchCount) bind(c, name="cublasCsymmBatched_64")
+#else
+    function hipblasCsymmBatched_64_(handle,side,uplo,m,n,alpha,AP,lda,BP,ldb,beta,CP,ldc,batchCount) bind(c, name="hipblasCsymmBatched_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCsymmBatched_64_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_SIDE_LEFT)),value :: side
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int64_t),value :: m
+      integer(c_int64_t),value :: n
+      complex(c_float_complex) :: alpha
+      type(c_ptr) :: AP
+      integer(c_int64_t),value :: lda
+      type(c_ptr) :: BP
+      integer(c_int64_t),value :: ldb
+      complex(c_float_complex) :: beta
+      type(c_ptr) :: CP
+      integer(c_int64_t),value :: ldc
+      integer(c_int64_t),value :: batchCount
+    end function
+  end interface
+
+  interface hipblasZsymmBatched_64
+#ifdef USE_CUDA_NAMES
+    function hipblasZsymmBatched_64_(handle,side,uplo,m,n,alpha,AP,lda,BP,ldb,beta,CP,ldc,batchCount) bind(c, name="cublasZsymmBatched_64")
+#else
+    function hipblasZsymmBatched_64_(handle,side,uplo,m,n,alpha,AP,lda,BP,ldb,beta,CP,ldc,batchCount) bind(c, name="hipblasZsymmBatched_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZsymmBatched_64_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_SIDE_LEFT)),value :: side
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int64_t),value :: m
+      integer(c_int64_t),value :: n
+      complex(c_double_complex) :: alpha
+      type(c_ptr) :: AP
+      integer(c_int64_t),value :: lda
+      type(c_ptr) :: BP
+      integer(c_int64_t),value :: ldb
+      complex(c_double_complex) :: beta
+      type(c_ptr) :: CP
+      integer(c_int64_t),value :: ldc
+      integer(c_int64_t),value :: batchCount
+    end function
+  end interface
+
+  interface hipblasSsymmStridedBatched_64
+#ifdef USE_CUDA_NAMES
+    function hipblasSsymmStridedBatched_64_(handle,side,uplo,m,n,alpha,AP,lda,strideA,BP,ldb,strideB,beta,CP,ldc,strideC,batchCount) bind(c, name="cublasSsymmStridedBatched_64")
+#else
+    function hipblasSsymmStridedBatched_64_(handle,side,uplo,m,n,alpha,AP,lda,strideA,BP,ldb,strideB,beta,CP,ldc,strideC,batchCount) bind(c, name="hipblasSsymmStridedBatched_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSsymmStridedBatched_64_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_SIDE_LEFT)),value :: side
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int64_t),value :: m
+      integer(c_int64_t),value :: n
+      real(c_float) :: alpha
+      type(c_ptr),value :: AP
+      integer(c_int64_t),value :: lda
+      integer(c_int64_t),value :: strideA
+      type(c_ptr),value :: BP
+      integer(c_int64_t),value :: ldb
+      integer(c_int64_t),value :: strideB
+      real(c_float) :: beta
+      type(c_ptr),value :: CP
+      integer(c_int64_t),value :: ldc
+      integer(c_int64_t),value :: strideC
+      integer(c_int64_t),value :: batchCount
+    end function
+  end interface
+
+  interface hipblasDsymmStridedBatched_64
+#ifdef USE_CUDA_NAMES
+    function hipblasDsymmStridedBatched_64_(handle,side,uplo,m,n,alpha,AP,lda,strideA,BP,ldb,strideB,beta,CP,ldc,strideC,batchCount) bind(c, name="cublasDsymmStridedBatched_64")
+#else
+    function hipblasDsymmStridedBatched_64_(handle,side,uplo,m,n,alpha,AP,lda,strideA,BP,ldb,strideB,beta,CP,ldc,strideC,batchCount) bind(c, name="hipblasDsymmStridedBatched_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDsymmStridedBatched_64_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_SIDE_LEFT)),value :: side
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int64_t),value :: m
+      integer(c_int64_t),value :: n
+      real(c_double) :: alpha
+      type(c_ptr),value :: AP
+      integer(c_int64_t),value :: lda
+      integer(c_int64_t),value :: strideA
+      type(c_ptr),value :: BP
+      integer(c_int64_t),value :: ldb
+      integer(c_int64_t),value :: strideB
+      real(c_double) :: beta
+      type(c_ptr),value :: CP
+      integer(c_int64_t),value :: ldc
+      integer(c_int64_t),value :: strideC
+      integer(c_int64_t),value :: batchCount
+    end function
+  end interface
+
+  interface hipblasCsymmStridedBatched_64
+#ifdef USE_CUDA_NAMES
+    function hipblasCsymmStridedBatched_64_(handle,side,uplo,m,n,alpha,AP,lda,strideA,BP,ldb,strideB,beta,CP,ldc,strideC,batchCount) bind(c, name="cublasCsymmStridedBatched_64")
+#else
+    function hipblasCsymmStridedBatched_64_(handle,side,uplo,m,n,alpha,AP,lda,strideA,BP,ldb,strideB,beta,CP,ldc,strideC,batchCount) bind(c, name="hipblasCsymmStridedBatched_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCsymmStridedBatched_64_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_SIDE_LEFT)),value :: side
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int64_t),value :: m
+      integer(c_int64_t),value :: n
+      complex(c_float_complex) :: alpha
+      type(c_ptr),value :: AP
+      integer(c_int64_t),value :: lda
+      integer(c_int64_t),value :: strideA
+      type(c_ptr),value :: BP
+      integer(c_int64_t),value :: ldb
+      integer(c_int64_t),value :: strideB
+      complex(c_float_complex) :: beta
+      type(c_ptr),value :: CP
+      integer(c_int64_t),value :: ldc
+      integer(c_int64_t),value :: strideC
+      integer(c_int64_t),value :: batchCount
+    end function
+  end interface
+
+  interface hipblasZsymmStridedBatched_64
+#ifdef USE_CUDA_NAMES
+    function hipblasZsymmStridedBatched_64_(handle,side,uplo,m,n,alpha,AP,lda,strideA,BP,ldb,strideB,beta,CP,ldc,strideC,batchCount) bind(c, name="cublasZsymmStridedBatched_64")
+#else
+    function hipblasZsymmStridedBatched_64_(handle,side,uplo,m,n,alpha,AP,lda,strideA,BP,ldb,strideB,beta,CP,ldc,strideC,batchCount) bind(c, name="hipblasZsymmStridedBatched_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZsymmStridedBatched_64_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_SIDE_LEFT)),value :: side
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int64_t),value :: m
+      integer(c_int64_t),value :: n
+      complex(c_double_complex) :: alpha
+      type(c_ptr),value :: AP
+      integer(c_int64_t),value :: lda
+      integer(c_int64_t),value :: strideA
+      type(c_ptr),value :: BP
+      integer(c_int64_t),value :: ldb
+      integer(c_int64_t),value :: strideB
+      complex(c_double_complex) :: beta
+      type(c_ptr),value :: CP
+      integer(c_int64_t),value :: ldc
+      integer(c_int64_t),value :: strideC
+      integer(c_int64_t),value :: batchCount
+    end function
+  end interface
+
+  interface hipblasSsyrk_64
+#ifdef USE_CUDA_NAMES
+    function hipblasSsyrk_64_(handle,uplo,transA,n,k,alpha,AP,lda,beta,CP,ldc) bind(c, name="cublasSsyrk_v2_64")
+#else
+    function hipblasSsyrk_64_(handle,uplo,transA,n,k,alpha,AP,lda,beta,CP,ldc) bind(c, name="hipblasSsyrk_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSsyrk_64_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
+      integer(kind(HIPBLAS_OP_N)),value :: transA
+      integer(c_int64_t),value :: n
+      integer(c_int64_t),value :: k
+      real(c_float) :: alpha
+      type(c_ptr),value :: AP
+      integer(c_int64_t),value :: lda
+      real(c_float) :: beta
+      type(c_ptr),value :: CP
+      integer(c_int64_t),value :: ldc
+    end function
+  end interface
+
+  interface hipblasDsyrk_64
+#ifdef USE_CUDA_NAMES
+    function hipblasDsyrk_64_(handle,uplo,transA,n,k,alpha,AP,lda,beta,CP,ldc) bind(c, name="cublasDsyrk_v2_64")
+#else
+    function hipblasDsyrk_64_(handle,uplo,transA,n,k,alpha,AP,lda,beta,CP,ldc) bind(c, name="hipblasDsyrk_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDsyrk_64_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
+      integer(kind(HIPBLAS_OP_N)),value :: transA
+      integer(c_int64_t),value :: n
+      integer(c_int64_t),value :: k
+      real(c_double) :: alpha
+      type(c_ptr),value :: AP
+      integer(c_int64_t),value :: lda
+      real(c_double) :: beta
+      type(c_ptr),value :: CP
+      integer(c_int64_t),value :: ldc
+    end function
+  end interface
+
+  interface hipblasCsyrk_64
+#ifdef USE_CUDA_NAMES
+    function hipblasCsyrk_64_(handle,uplo,transA,n,k,alpha,AP,lda,beta,CP,ldc) bind(c, name="cublasCsyrk_v2_64")
+#else
+    function hipblasCsyrk_64_(handle,uplo,transA,n,k,alpha,AP,lda,beta,CP,ldc) bind(c, name="hipblasCsyrk_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCsyrk_64_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
+      integer(kind(HIPBLAS_OP_N)),value :: transA
+      integer(c_int64_t),value :: n
+      integer(c_int64_t),value :: k
+      complex(c_float_complex) :: alpha
+      type(c_ptr),value :: AP
+      integer(c_int64_t),value :: lda
+      complex(c_float_complex) :: beta
+      type(c_ptr),value :: CP
+      integer(c_int64_t),value :: ldc
+    end function
+  end interface
+
+  interface hipblasZsyrk_64
+#ifdef USE_CUDA_NAMES
+    function hipblasZsyrk_64_(handle,uplo,transA,n,k,alpha,AP,lda,beta,CP,ldc) bind(c, name="cublasZsyrk_v2_64")
+#else
+    function hipblasZsyrk_64_(handle,uplo,transA,n,k,alpha,AP,lda,beta,CP,ldc) bind(c, name="hipblasZsyrk_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZsyrk_64_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
+      integer(kind(HIPBLAS_OP_N)),value :: transA
+      integer(c_int64_t),value :: n
+      integer(c_int64_t),value :: k
+      complex(c_double_complex) :: alpha
+      type(c_ptr),value :: AP
+      integer(c_int64_t),value :: lda
+      complex(c_double_complex) :: beta
+      type(c_ptr),value :: CP
+      integer(c_int64_t),value :: ldc
+    end function
+  end interface
+
+  interface hipblasSsyrkBatched_64
+#ifdef USE_CUDA_NAMES
+    function hipblasSsyrkBatched_64_(handle,uplo,transA,n,k,alpha,AP,lda,beta,CP,ldc,batchCount) bind(c, name="cublasSsyrkBatched_64")
+#else
+    function hipblasSsyrkBatched_64_(handle,uplo,transA,n,k,alpha,AP,lda,beta,CP,ldc,batchCount) bind(c, name="hipblasSsyrkBatched_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSsyrkBatched_64_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
+      integer(kind(HIPBLAS_OP_N)),value :: transA
+      integer(c_int64_t),value :: n
+      integer(c_int64_t),value :: k
+      real(c_float) :: alpha
+      type(c_ptr) :: AP
+      integer(c_int64_t),value :: lda
+      real(c_float) :: beta
+      type(c_ptr) :: CP
+      integer(c_int64_t),value :: ldc
+      integer(c_int64_t),value :: batchCount
+    end function
+  end interface
+
+  interface hipblasDsyrkBatched_64
+#ifdef USE_CUDA_NAMES
+    function hipblasDsyrkBatched_64_(handle,uplo,transA,n,k,alpha,AP,lda,beta,CP,ldc,batchCount) bind(c, name="cublasDsyrkBatched_64")
+#else
+    function hipblasDsyrkBatched_64_(handle,uplo,transA,n,k,alpha,AP,lda,beta,CP,ldc,batchCount) bind(c, name="hipblasDsyrkBatched_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDsyrkBatched_64_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
+      integer(kind(HIPBLAS_OP_N)),value :: transA
+      integer(c_int64_t),value :: n
+      integer(c_int64_t),value :: k
+      real(c_double) :: alpha
+      type(c_ptr) :: AP
+      integer(c_int64_t),value :: lda
+      real(c_double) :: beta
+      type(c_ptr) :: CP
+      integer(c_int64_t),value :: ldc
+      integer(c_int64_t),value :: batchCount
+    end function
+  end interface
+
+  interface hipblasCsyrkBatched_64
+#ifdef USE_CUDA_NAMES
+    function hipblasCsyrkBatched_64_(handle,uplo,transA,n,k,alpha,AP,lda,beta,CP,ldc,batchCount) bind(c, name="cublasCsyrkBatched_64")
+#else
+    function hipblasCsyrkBatched_64_(handle,uplo,transA,n,k,alpha,AP,lda,beta,CP,ldc,batchCount) bind(c, name="hipblasCsyrkBatched_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCsyrkBatched_64_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
+      integer(kind(HIPBLAS_OP_N)),value :: transA
+      integer(c_int64_t),value :: n
+      integer(c_int64_t),value :: k
+      complex(c_float_complex) :: alpha
+      type(c_ptr) :: AP
+      integer(c_int64_t),value :: lda
+      complex(c_float_complex) :: beta
+      type(c_ptr) :: CP
+      integer(c_int64_t),value :: ldc
+      integer(c_int64_t),value :: batchCount
+    end function
+  end interface
+
+  interface hipblasZsyrkBatched_64
+#ifdef USE_CUDA_NAMES
+    function hipblasZsyrkBatched_64_(handle,uplo,transA,n,k,alpha,AP,lda,beta,CP,ldc,batchCount) bind(c, name="cublasZsyrkBatched_64")
+#else
+    function hipblasZsyrkBatched_64_(handle,uplo,transA,n,k,alpha,AP,lda,beta,CP,ldc,batchCount) bind(c, name="hipblasZsyrkBatched_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZsyrkBatched_64_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
+      integer(kind(HIPBLAS_OP_N)),value :: transA
+      integer(c_int64_t),value :: n
+      integer(c_int64_t),value :: k
+      complex(c_double_complex) :: alpha
+      type(c_ptr) :: AP
+      integer(c_int64_t),value :: lda
+      complex(c_double_complex) :: beta
+      type(c_ptr) :: CP
+      integer(c_int64_t),value :: ldc
+      integer(c_int64_t),value :: batchCount
+    end function
+  end interface
+
+  interface hipblasSsyrkStridedBatched_64
+#ifdef USE_CUDA_NAMES
+    function hipblasSsyrkStridedBatched_64_(handle,uplo,transA,n,k,alpha,AP,lda,strideA,beta,CP,ldc,strideC,batchCount) bind(c, name="cublasSsyrkStridedBatched_64")
+#else
+    function hipblasSsyrkStridedBatched_64_(handle,uplo,transA,n,k,alpha,AP,lda,strideA,beta,CP,ldc,strideC,batchCount) bind(c, name="hipblasSsyrkStridedBatched_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSsyrkStridedBatched_64_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
+      integer(kind(HIPBLAS_OP_N)),value :: transA
+      integer(c_int64_t),value :: n
+      integer(c_int64_t),value :: k
+      real(c_float) :: alpha
+      type(c_ptr),value :: AP
+      integer(c_int64_t),value :: lda
+      integer(c_int64_t),value :: strideA
+      real(c_float) :: beta
+      type(c_ptr),value :: CP
+      integer(c_int64_t),value :: ldc
+      integer(c_int64_t),value :: strideC
+      integer(c_int64_t),value :: batchCount
+    end function
+  end interface
+
+  interface hipblasDsyrkStridedBatched_64
+#ifdef USE_CUDA_NAMES
+    function hipblasDsyrkStridedBatched_64_(handle,uplo,transA,n,k,alpha,AP,lda,strideA,beta,CP,ldc,strideC,batchCount) bind(c, name="cublasDsyrkStridedBatched_64")
+#else
+    function hipblasDsyrkStridedBatched_64_(handle,uplo,transA,n,k,alpha,AP,lda,strideA,beta,CP,ldc,strideC,batchCount) bind(c, name="hipblasDsyrkStridedBatched_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDsyrkStridedBatched_64_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
+      integer(kind(HIPBLAS_OP_N)),value :: transA
+      integer(c_int64_t),value :: n
+      integer(c_int64_t),value :: k
+      real(c_double) :: alpha
+      type(c_ptr),value :: AP
+      integer(c_int64_t),value :: lda
+      integer(c_int64_t),value :: strideA
+      real(c_double) :: beta
+      type(c_ptr),value :: CP
+      integer(c_int64_t),value :: ldc
+      integer(c_int64_t),value :: strideC
+      integer(c_int64_t),value :: batchCount
+    end function
+  end interface
+
+  interface hipblasCsyrkStridedBatched_64
+#ifdef USE_CUDA_NAMES
+    function hipblasCsyrkStridedBatched_64_(handle,uplo,transA,n,k,alpha,AP,lda,strideA,beta,CP,ldc,strideC,batchCount) bind(c, name="cublasCsyrkStridedBatched_64")
+#else
+    function hipblasCsyrkStridedBatched_64_(handle,uplo,transA,n,k,alpha,AP,lda,strideA,beta,CP,ldc,strideC,batchCount) bind(c, name="hipblasCsyrkStridedBatched_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCsyrkStridedBatched_64_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
+      integer(kind(HIPBLAS_OP_N)),value :: transA
+      integer(c_int64_t),value :: n
+      integer(c_int64_t),value :: k
+      complex(c_float_complex) :: alpha
+      type(c_ptr),value :: AP
+      integer(c_int64_t),value :: lda
+      integer(c_int64_t),value :: strideA
+      complex(c_float_complex) :: beta
+      type(c_ptr),value :: CP
+      integer(c_int64_t),value :: ldc
+      integer(c_int64_t),value :: strideC
+      integer(c_int64_t),value :: batchCount
+    end function
+  end interface
+
+  interface hipblasZsyrkStridedBatched_64
+#ifdef USE_CUDA_NAMES
+    function hipblasZsyrkStridedBatched_64_(handle,uplo,transA,n,k,alpha,AP,lda,strideA,beta,CP,ldc,strideC,batchCount) bind(c, name="cublasZsyrkStridedBatched_64")
+#else
+    function hipblasZsyrkStridedBatched_64_(handle,uplo,transA,n,k,alpha,AP,lda,strideA,beta,CP,ldc,strideC,batchCount) bind(c, name="hipblasZsyrkStridedBatched_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZsyrkStridedBatched_64_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
+      integer(kind(HIPBLAS_OP_N)),value :: transA
+      integer(c_int64_t),value :: n
+      integer(c_int64_t),value :: k
+      complex(c_double_complex) :: alpha
+      type(c_ptr),value :: AP
+      integer(c_int64_t),value :: lda
+      integer(c_int64_t),value :: strideA
+      complex(c_double_complex) :: beta
+      type(c_ptr),value :: CP
+      integer(c_int64_t),value :: ldc
+      integer(c_int64_t),value :: strideC
+      integer(c_int64_t),value :: batchCount
+    end function
+  end interface
+
+  interface hipblasSsyr2k_64
+#ifdef USE_CUDA_NAMES
+    function hipblasSsyr2k_64_(handle,uplo,transA,n,k,alpha,AP,lda,BP,ldb,beta,CP,ldc) bind(c, name="cublasSsyr2k_v2_64")
+#else
+    function hipblasSsyr2k_64_(handle,uplo,transA,n,k,alpha,AP,lda,BP,ldb,beta,CP,ldc) bind(c, name="hipblasSsyr2k_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSsyr2k_64_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
+      integer(kind(HIPBLAS_OP_N)),value :: transA
+      integer(c_int64_t),value :: n
+      integer(c_int64_t),value :: k
+      real(c_float) :: alpha
+      type(c_ptr),value :: AP
+      integer(c_int64_t),value :: lda
+      type(c_ptr),value :: BP
+      integer(c_int64_t),value :: ldb
+      real(c_float) :: beta
+      type(c_ptr),value :: CP
+      integer(c_int64_t),value :: ldc
+    end function
+  end interface
+
+  interface hipblasDsyr2k_64
+#ifdef USE_CUDA_NAMES
+    function hipblasDsyr2k_64_(handle,uplo,transA,n,k,alpha,AP,lda,BP,ldb,beta,CP,ldc) bind(c, name="cublasDsyr2k_v2_64")
+#else
+    function hipblasDsyr2k_64_(handle,uplo,transA,n,k,alpha,AP,lda,BP,ldb,beta,CP,ldc) bind(c, name="hipblasDsyr2k_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDsyr2k_64_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
+      integer(kind(HIPBLAS_OP_N)),value :: transA
+      integer(c_int64_t),value :: n
+      integer(c_int64_t),value :: k
+      real(c_double) :: alpha
+      type(c_ptr),value :: AP
+      integer(c_int64_t),value :: lda
+      type(c_ptr),value :: BP
+      integer(c_int64_t),value :: ldb
+      real(c_double) :: beta
+      type(c_ptr),value :: CP
+      integer(c_int64_t),value :: ldc
+    end function
+  end interface
+
+  interface hipblasCsyr2k_64
+#ifdef USE_CUDA_NAMES
+    function hipblasCsyr2k_64_(handle,uplo,transA,n,k,alpha,AP,lda,BP,ldb,beta,CP,ldc) bind(c, name="cublasCsyr2k_v2_64")
+#else
+    function hipblasCsyr2k_64_(handle,uplo,transA,n,k,alpha,AP,lda,BP,ldb,beta,CP,ldc) bind(c, name="hipblasCsyr2k_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCsyr2k_64_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
+      integer(kind(HIPBLAS_OP_N)),value :: transA
+      integer(c_int64_t),value :: n
+      integer(c_int64_t),value :: k
+      complex(c_float_complex) :: alpha
+      type(c_ptr),value :: AP
+      integer(c_int64_t),value :: lda
+      type(c_ptr),value :: BP
+      integer(c_int64_t),value :: ldb
+      complex(c_float_complex) :: beta
+      type(c_ptr),value :: CP
+      integer(c_int64_t),value :: ldc
+    end function
+  end interface
+
+  interface hipblasZsyr2k_64
+#ifdef USE_CUDA_NAMES
+    function hipblasZsyr2k_64_(handle,uplo,transA,n,k,alpha,AP,lda,BP,ldb,beta,CP,ldc) bind(c, name="cublasZsyr2k_v2_64")
+#else
+    function hipblasZsyr2k_64_(handle,uplo,transA,n,k,alpha,AP,lda,BP,ldb,beta,CP,ldc) bind(c, name="hipblasZsyr2k_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZsyr2k_64_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
+      integer(kind(HIPBLAS_OP_N)),value :: transA
+      integer(c_int64_t),value :: n
+      integer(c_int64_t),value :: k
+      complex(c_double_complex) :: alpha
+      type(c_ptr),value :: AP
+      integer(c_int64_t),value :: lda
+      type(c_ptr),value :: BP
+      integer(c_int64_t),value :: ldb
+      complex(c_double_complex) :: beta
+      type(c_ptr),value :: CP
+      integer(c_int64_t),value :: ldc
+    end function
+  end interface
+
+  interface hipblasSsyr2kBatched_64
+#ifdef USE_CUDA_NAMES
+    function hipblasSsyr2kBatched_64_(handle,uplo,transA,n,k,alpha,AP,lda,BP,ldb,beta,CP,ldc,batchCount) bind(c, name="cublasSsyr2kBatched_64")
+#else
+    function hipblasSsyr2kBatched_64_(handle,uplo,transA,n,k,alpha,AP,lda,BP,ldb,beta,CP,ldc,batchCount) bind(c, name="hipblasSsyr2kBatched_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSsyr2kBatched_64_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
+      integer(kind(HIPBLAS_OP_N)),value :: transA
+      integer(c_int64_t),value :: n
+      integer(c_int64_t),value :: k
+      real(c_float) :: alpha
+      type(c_ptr) :: AP
+      integer(c_int64_t),value :: lda
+      type(c_ptr) :: BP
+      integer(c_int64_t),value :: ldb
+      real(c_float) :: beta
+      type(c_ptr) :: CP
+      integer(c_int64_t),value :: ldc
+      integer(c_int64_t),value :: batchCount
+    end function
+  end interface
+
+  interface hipblasDsyr2kBatched_64
+#ifdef USE_CUDA_NAMES
+    function hipblasDsyr2kBatched_64_(handle,uplo,transA,n,k,alpha,AP,lda,BP,ldb,beta,CP,ldc,batchCount) bind(c, name="cublasDsyr2kBatched_64")
+#else
+    function hipblasDsyr2kBatched_64_(handle,uplo,transA,n,k,alpha,AP,lda,BP,ldb,beta,CP,ldc,batchCount) bind(c, name="hipblasDsyr2kBatched_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDsyr2kBatched_64_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
+      integer(kind(HIPBLAS_OP_N)),value :: transA
+      integer(c_int64_t),value :: n
+      integer(c_int64_t),value :: k
+      real(c_double) :: alpha
+      type(c_ptr) :: AP
+      integer(c_int64_t),value :: lda
+      type(c_ptr) :: BP
+      integer(c_int64_t),value :: ldb
+      real(c_double) :: beta
+      type(c_ptr) :: CP
+      integer(c_int64_t),value :: ldc
+      integer(c_int64_t),value :: batchCount
+    end function
+  end interface
+
+  interface hipblasCsyr2kBatched_64
+#ifdef USE_CUDA_NAMES
+    function hipblasCsyr2kBatched_64_(handle,uplo,transA,n,k,alpha,AP,lda,BP,ldb,beta,CP,ldc,batchCount) bind(c, name="cublasCsyr2kBatched_64")
+#else
+    function hipblasCsyr2kBatched_64_(handle,uplo,transA,n,k,alpha,AP,lda,BP,ldb,beta,CP,ldc,batchCount) bind(c, name="hipblasCsyr2kBatched_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCsyr2kBatched_64_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
+      integer(kind(HIPBLAS_OP_N)),value :: transA
+      integer(c_int64_t),value :: n
+      integer(c_int64_t),value :: k
+      complex(c_float_complex) :: alpha
+      type(c_ptr) :: AP
+      integer(c_int64_t),value :: lda
+      type(c_ptr) :: BP
+      integer(c_int64_t),value :: ldb
+      complex(c_float_complex) :: beta
+      type(c_ptr) :: CP
+      integer(c_int64_t),value :: ldc
+      integer(c_int64_t),value :: batchCount
+    end function
+  end interface
+
+  interface hipblasZsyr2kBatched_64
+#ifdef USE_CUDA_NAMES
+    function hipblasZsyr2kBatched_64_(handle,uplo,transA,n,k,alpha,AP,lda,BP,ldb,beta,CP,ldc,batchCount) bind(c, name="cublasZsyr2kBatched_64")
+#else
+    function hipblasZsyr2kBatched_64_(handle,uplo,transA,n,k,alpha,AP,lda,BP,ldb,beta,CP,ldc,batchCount) bind(c, name="hipblasZsyr2kBatched_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZsyr2kBatched_64_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
+      integer(kind(HIPBLAS_OP_N)),value :: transA
+      integer(c_int64_t),value :: n
+      integer(c_int64_t),value :: k
+      complex(c_double_complex) :: alpha
+      type(c_ptr) :: AP
+      integer(c_int64_t),value :: lda
+      type(c_ptr) :: BP
+      integer(c_int64_t),value :: ldb
+      complex(c_double_complex) :: beta
+      type(c_ptr) :: CP
+      integer(c_int64_t),value :: ldc
+      integer(c_int64_t),value :: batchCount
+    end function
+  end interface
+
+  interface hipblasSsyr2kStridedBatched_64
+#ifdef USE_CUDA_NAMES
+    function hipblasSsyr2kStridedBatched_64_(handle,uplo,transA,n,k,alpha,AP,lda,strideA,BP,ldb,strideB,beta,CP,ldc,strideC,batchCount) bind(c, name="cublasSsyr2kStridedBatched_64")
+#else
+    function hipblasSsyr2kStridedBatched_64_(handle,uplo,transA,n,k,alpha,AP,lda,strideA,BP,ldb,strideB,beta,CP,ldc,strideC,batchCount) bind(c, name="hipblasSsyr2kStridedBatched_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSsyr2kStridedBatched_64_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
+      integer(kind(HIPBLAS_OP_N)),value :: transA
+      integer(c_int64_t),value :: n
+      integer(c_int64_t),value :: k
+      real(c_float) :: alpha
+      type(c_ptr),value :: AP
+      integer(c_int64_t),value :: lda
+      integer(c_int64_t),value :: strideA
+      type(c_ptr),value :: BP
+      integer(c_int64_t),value :: ldb
+      integer(c_int64_t),value :: strideB
+      real(c_float) :: beta
+      type(c_ptr),value :: CP
+      integer(c_int64_t),value :: ldc
+      integer(c_int64_t),value :: strideC
+      integer(c_int64_t),value :: batchCount
+    end function
+  end interface
+
+  interface hipblasDsyr2kStridedBatched_64
+#ifdef USE_CUDA_NAMES
+    function hipblasDsyr2kStridedBatched_64_(handle,uplo,transA,n,k,alpha,AP,lda,strideA,BP,ldb,strideB,beta,CP,ldc,strideC,batchCount) bind(c, name="cublasDsyr2kStridedBatched_64")
+#else
+    function hipblasDsyr2kStridedBatched_64_(handle,uplo,transA,n,k,alpha,AP,lda,strideA,BP,ldb,strideB,beta,CP,ldc,strideC,batchCount) bind(c, name="hipblasDsyr2kStridedBatched_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDsyr2kStridedBatched_64_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
+      integer(kind(HIPBLAS_OP_N)),value :: transA
+      integer(c_int64_t),value :: n
+      integer(c_int64_t),value :: k
+      real(c_double) :: alpha
+      type(c_ptr),value :: AP
+      integer(c_int64_t),value :: lda
+      integer(c_int64_t),value :: strideA
+      type(c_ptr),value :: BP
+      integer(c_int64_t),value :: ldb
+      integer(c_int64_t),value :: strideB
+      real(c_double) :: beta
+      type(c_ptr),value :: CP
+      integer(c_int64_t),value :: ldc
+      integer(c_int64_t),value :: strideC
+      integer(c_int64_t),value :: batchCount
+    end function
+  end interface
+
+  interface hipblasCsyr2kStridedBatched_64
+#ifdef USE_CUDA_NAMES
+    function hipblasCsyr2kStridedBatched_64_(handle,uplo,transA,n,k,alpha,AP,lda,strideA,BP,ldb,strideB,beta,CP,ldc,strideC,batchCount) bind(c, name="cublasCsyr2kStridedBatched_64")
+#else
+    function hipblasCsyr2kStridedBatched_64_(handle,uplo,transA,n,k,alpha,AP,lda,strideA,BP,ldb,strideB,beta,CP,ldc,strideC,batchCount) bind(c, name="hipblasCsyr2kStridedBatched_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCsyr2kStridedBatched_64_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
+      integer(kind(HIPBLAS_OP_N)),value :: transA
+      integer(c_int64_t),value :: n
+      integer(c_int64_t),value :: k
+      complex(c_float_complex) :: alpha
+      type(c_ptr),value :: AP
+      integer(c_int64_t),value :: lda
+      integer(c_int64_t),value :: strideA
+      type(c_ptr),value :: BP
+      integer(c_int64_t),value :: ldb
+      integer(c_int64_t),value :: strideB
+      complex(c_float_complex) :: beta
+      type(c_ptr),value :: CP
+      integer(c_int64_t),value :: ldc
+      integer(c_int64_t),value :: strideC
+      integer(c_int64_t),value :: batchCount
+    end function
+  end interface
+
+  interface hipblasZsyr2kStridedBatched_64
+#ifdef USE_CUDA_NAMES
+    function hipblasZsyr2kStridedBatched_64_(handle,uplo,transA,n,k,alpha,AP,lda,strideA,BP,ldb,strideB,beta,CP,ldc,strideC,batchCount) bind(c, name="cublasZsyr2kStridedBatched_64")
+#else
+    function hipblasZsyr2kStridedBatched_64_(handle,uplo,transA,n,k,alpha,AP,lda,strideA,BP,ldb,strideB,beta,CP,ldc,strideC,batchCount) bind(c, name="hipblasZsyr2kStridedBatched_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZsyr2kStridedBatched_64_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
+      integer(kind(HIPBLAS_OP_N)),value :: transA
+      integer(c_int64_t),value :: n
+      integer(c_int64_t),value :: k
+      complex(c_double_complex) :: alpha
+      type(c_ptr),value :: AP
+      integer(c_int64_t),value :: lda
+      integer(c_int64_t),value :: strideA
+      type(c_ptr),value :: BP
+      integer(c_int64_t),value :: ldb
+      integer(c_int64_t),value :: strideB
+      complex(c_double_complex) :: beta
+      type(c_ptr),value :: CP
+      integer(c_int64_t),value :: ldc
+      integer(c_int64_t),value :: strideC
+      integer(c_int64_t),value :: batchCount
+    end function
+  end interface
+
+  interface hipblasSsyrkx_64
+#ifdef USE_CUDA_NAMES
+    function hipblasSsyrkx_64_(handle,uplo,transA,n,k,alpha,AP,lda,BP,ldb,beta,CP,ldc) bind(c, name="cublasSsyrkx_64")
+#else
+    function hipblasSsyrkx_64_(handle,uplo,transA,n,k,alpha,AP,lda,BP,ldb,beta,CP,ldc) bind(c, name="hipblasSsyrkx_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSsyrkx_64_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
+      integer(kind(HIPBLAS_OP_N)),value :: transA
+      integer(c_int64_t),value :: n
+      integer(c_int64_t),value :: k
+      real(c_float) :: alpha
+      type(c_ptr),value :: AP
+      integer(c_int64_t),value :: lda
+      type(c_ptr),value :: BP
+      integer(c_int64_t),value :: ldb
+      real(c_float) :: beta
+      type(c_ptr),value :: CP
+      integer(c_int64_t),value :: ldc
+    end function
+  end interface
+
+  interface hipblasDsyrkx_64
+#ifdef USE_CUDA_NAMES
+    function hipblasDsyrkx_64_(handle,uplo,transA,n,k,alpha,AP,lda,BP,ldb,beta,CP,ldc) bind(c, name="cublasDsyrkx_64")
+#else
+    function hipblasDsyrkx_64_(handle,uplo,transA,n,k,alpha,AP,lda,BP,ldb,beta,CP,ldc) bind(c, name="hipblasDsyrkx_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDsyrkx_64_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
+      integer(kind(HIPBLAS_OP_N)),value :: transA
+      integer(c_int64_t),value :: n
+      integer(c_int64_t),value :: k
+      real(c_double) :: alpha
+      type(c_ptr),value :: AP
+      integer(c_int64_t),value :: lda
+      type(c_ptr),value :: BP
+      integer(c_int64_t),value :: ldb
+      real(c_double) :: beta
+      type(c_ptr),value :: CP
+      integer(c_int64_t),value :: ldc
+    end function
+  end interface
+
+  interface hipblasCsyrkx_64
+#ifdef USE_CUDA_NAMES
+    function hipblasCsyrkx_64_(handle,uplo,transA,n,k,alpha,AP,lda,BP,ldb,beta,CP,ldc) bind(c, name="cublasCsyrkx_64")
+#else
+    function hipblasCsyrkx_64_(handle,uplo,transA,n,k,alpha,AP,lda,BP,ldb,beta,CP,ldc) bind(c, name="hipblasCsyrkx_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCsyrkx_64_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
+      integer(kind(HIPBLAS_OP_N)),value :: transA
+      integer(c_int64_t),value :: n
+      integer(c_int64_t),value :: k
+      complex(c_float_complex) :: alpha
+      type(c_ptr),value :: AP
+      integer(c_int64_t),value :: lda
+      type(c_ptr),value :: BP
+      integer(c_int64_t),value :: ldb
+      complex(c_float_complex) :: beta
+      type(c_ptr),value :: CP
+      integer(c_int64_t),value :: ldc
+    end function
+  end interface
+
+  interface hipblasZsyrkx_64
+#ifdef USE_CUDA_NAMES
+    function hipblasZsyrkx_64_(handle,uplo,transA,n,k,alpha,AP,lda,BP,ldb,beta,CP,ldc) bind(c, name="cublasZsyrkx_64")
+#else
+    function hipblasZsyrkx_64_(handle,uplo,transA,n,k,alpha,AP,lda,BP,ldb,beta,CP,ldc) bind(c, name="hipblasZsyrkx_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZsyrkx_64_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
+      integer(kind(HIPBLAS_OP_N)),value :: transA
+      integer(c_int64_t),value :: n
+      integer(c_int64_t),value :: k
+      complex(c_double_complex) :: alpha
+      type(c_ptr),value :: AP
+      integer(c_int64_t),value :: lda
+      type(c_ptr),value :: BP
+      integer(c_int64_t),value :: ldb
+      complex(c_double_complex) :: beta
+      type(c_ptr),value :: CP
+      integer(c_int64_t),value :: ldc
+    end function
+  end interface
+
+  interface hipblasSsyrkxBatched_64
+#ifdef USE_CUDA_NAMES
+    function hipblasSsyrkxBatched_64_(handle,uplo,transA,n,k,alpha,AP,lda,BP,ldb,beta,CP,ldc,batchCount) bind(c, name="cublasSsyrkxBatched_64")
+#else
+    function hipblasSsyrkxBatched_64_(handle,uplo,transA,n,k,alpha,AP,lda,BP,ldb,beta,CP,ldc,batchCount) bind(c, name="hipblasSsyrkxBatched_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSsyrkxBatched_64_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
+      integer(kind(HIPBLAS_OP_N)),value :: transA
+      integer(c_int64_t),value :: n
+      integer(c_int64_t),value :: k
+      real(c_float) :: alpha
+      type(c_ptr) :: AP
+      integer(c_int64_t),value :: lda
+      type(c_ptr) :: BP
+      integer(c_int64_t),value :: ldb
+      real(c_float) :: beta
+      type(c_ptr) :: CP
+      integer(c_int64_t),value :: ldc
+      integer(c_int64_t),value :: batchCount
+    end function
+  end interface
+
+  interface hipblasDsyrkxBatched_64
+#ifdef USE_CUDA_NAMES
+    function hipblasDsyrkxBatched_64_(handle,uplo,transA,n,k,alpha,AP,lda,BP,ldb,beta,CP,ldc,batchCount) bind(c, name="cublasDsyrkxBatched_64")
+#else
+    function hipblasDsyrkxBatched_64_(handle,uplo,transA,n,k,alpha,AP,lda,BP,ldb,beta,CP,ldc,batchCount) bind(c, name="hipblasDsyrkxBatched_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDsyrkxBatched_64_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
+      integer(kind(HIPBLAS_OP_N)),value :: transA
+      integer(c_int64_t),value :: n
+      integer(c_int64_t),value :: k
+      real(c_double) :: alpha
+      type(c_ptr) :: AP
+      integer(c_int64_t),value :: lda
+      type(c_ptr) :: BP
+      integer(c_int64_t),value :: ldb
+      real(c_double) :: beta
+      type(c_ptr) :: CP
+      integer(c_int64_t),value :: ldc
+      integer(c_int64_t),value :: batchCount
+    end function
+  end interface
+
+  interface hipblasCsyrkxBatched_64
+#ifdef USE_CUDA_NAMES
+    function hipblasCsyrkxBatched_64_(handle,uplo,transA,n,k,alpha,AP,lda,BP,ldb,beta,CP,ldc,batchCount) bind(c, name="cublasCsyrkxBatched_64")
+#else
+    function hipblasCsyrkxBatched_64_(handle,uplo,transA,n,k,alpha,AP,lda,BP,ldb,beta,CP,ldc,batchCount) bind(c, name="hipblasCsyrkxBatched_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCsyrkxBatched_64_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
+      integer(kind(HIPBLAS_OP_N)),value :: transA
+      integer(c_int64_t),value :: n
+      integer(c_int64_t),value :: k
+      complex(c_float_complex) :: alpha
+      type(c_ptr) :: AP
+      integer(c_int64_t),value :: lda
+      type(c_ptr) :: BP
+      integer(c_int64_t),value :: ldb
+      complex(c_float_complex) :: beta
+      type(c_ptr) :: CP
+      integer(c_int64_t),value :: ldc
+      integer(c_int64_t),value :: batchCount
+    end function
+  end interface
+
+  interface hipblasZsyrkxBatched_64
+#ifdef USE_CUDA_NAMES
+    function hipblasZsyrkxBatched_64_(handle,uplo,transA,n,k,alpha,AP,lda,BP,ldb,beta,CP,ldc,batchCount) bind(c, name="cublasZsyrkxBatched_64")
+#else
+    function hipblasZsyrkxBatched_64_(handle,uplo,transA,n,k,alpha,AP,lda,BP,ldb,beta,CP,ldc,batchCount) bind(c, name="hipblasZsyrkxBatched_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZsyrkxBatched_64_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
+      integer(kind(HIPBLAS_OP_N)),value :: transA
+      integer(c_int64_t),value :: n
+      integer(c_int64_t),value :: k
+      complex(c_double_complex) :: alpha
+      type(c_ptr) :: AP
+      integer(c_int64_t),value :: lda
+      type(c_ptr) :: BP
+      integer(c_int64_t),value :: ldb
+      complex(c_double_complex) :: beta
+      type(c_ptr) :: CP
+      integer(c_int64_t),value :: ldc
+      integer(c_int64_t),value :: batchCount
+    end function
+  end interface
+
+  interface hipblasSsyrkxStridedBatched_64
+#ifdef USE_CUDA_NAMES
+    function hipblasSsyrkxStridedBatched_64_(handle,uplo,transA,n,k,alpha,AP,lda,strideA,BP,ldb,strideB,beta,CP,ldc,strideC,batchCount) bind(c, name="cublasSsyrkxStridedBatched_64")
+#else
+    function hipblasSsyrkxStridedBatched_64_(handle,uplo,transA,n,k,alpha,AP,lda,strideA,BP,ldb,strideB,beta,CP,ldc,strideC,batchCount) bind(c, name="hipblasSsyrkxStridedBatched_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSsyrkxStridedBatched_64_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
+      integer(kind(HIPBLAS_OP_N)),value :: transA
+      integer(c_int64_t),value :: n
+      integer(c_int64_t),value :: k
+      real(c_float) :: alpha
+      type(c_ptr),value :: AP
+      integer(c_int64_t),value :: lda
+      integer(c_int64_t),value :: strideA
+      type(c_ptr),value :: BP
+      integer(c_int64_t),value :: ldb
+      integer(c_int64_t),value :: strideB
+      real(c_float) :: beta
+      type(c_ptr),value :: CP
+      integer(c_int64_t),value :: ldc
+      integer(c_int64_t),value :: strideC
+      integer(c_int64_t),value :: batchCount
+    end function
+  end interface
+
+  interface hipblasDsyrkxStridedBatched_64
+#ifdef USE_CUDA_NAMES
+    function hipblasDsyrkxStridedBatched_64_(handle,uplo,transA,n,k,alpha,AP,lda,strideA,BP,ldb,strideB,beta,CP,ldc,strideC,batchCount) bind(c, name="cublasDsyrkxStridedBatched_64")
+#else
+    function hipblasDsyrkxStridedBatched_64_(handle,uplo,transA,n,k,alpha,AP,lda,strideA,BP,ldb,strideB,beta,CP,ldc,strideC,batchCount) bind(c, name="hipblasDsyrkxStridedBatched_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDsyrkxStridedBatched_64_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
+      integer(kind(HIPBLAS_OP_N)),value :: transA
+      integer(c_int64_t),value :: n
+      integer(c_int64_t),value :: k
+      real(c_double) :: alpha
+      type(c_ptr),value :: AP
+      integer(c_int64_t),value :: lda
+      integer(c_int64_t),value :: strideA
+      type(c_ptr),value :: BP
+      integer(c_int64_t),value :: ldb
+      integer(c_int64_t),value :: strideB
+      real(c_double) :: beta
+      type(c_ptr),value :: CP
+      integer(c_int64_t),value :: ldc
+      integer(c_int64_t),value :: strideC
+      integer(c_int64_t),value :: batchCount
+    end function
+  end interface
+
+  interface hipblasCsyrkxStridedBatched_64
+#ifdef USE_CUDA_NAMES
+    function hipblasCsyrkxStridedBatched_64_(handle,uplo,transA,n,k,alpha,AP,lda,strideA,BP,ldb,strideB,beta,CP,ldc,strideC,batchCount) bind(c, name="cublasCsyrkxStridedBatched_64")
+#else
+    function hipblasCsyrkxStridedBatched_64_(handle,uplo,transA,n,k,alpha,AP,lda,strideA,BP,ldb,strideB,beta,CP,ldc,strideC,batchCount) bind(c, name="hipblasCsyrkxStridedBatched_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCsyrkxStridedBatched_64_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
+      integer(kind(HIPBLAS_OP_N)),value :: transA
+      integer(c_int64_t),value :: n
+      integer(c_int64_t),value :: k
+      complex(c_float_complex) :: alpha
+      type(c_ptr),value :: AP
+      integer(c_int64_t),value :: lda
+      integer(c_int64_t),value :: strideA
+      type(c_ptr),value :: BP
+      integer(c_int64_t),value :: ldb
+      integer(c_int64_t),value :: strideB
+      complex(c_float_complex) :: beta
+      type(c_ptr),value :: CP
+      integer(c_int64_t),value :: ldc
+      integer(c_int64_t),value :: strideC
+      integer(c_int64_t),value :: batchCount
+    end function
+  end interface
+
+  interface hipblasZsyrkxStridedBatched_64
+#ifdef USE_CUDA_NAMES
+    function hipblasZsyrkxStridedBatched_64_(handle,uplo,transA,n,k,alpha,AP,lda,strideA,BP,ldb,strideB,beta,CP,ldc,strideC,batchCount) bind(c, name="cublasZsyrkxStridedBatched_64")
+#else
+    function hipblasZsyrkxStridedBatched_64_(handle,uplo,transA,n,k,alpha,AP,lda,strideA,BP,ldb,strideB,beta,CP,ldc,strideC,batchCount) bind(c, name="hipblasZsyrkxStridedBatched_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZsyrkxStridedBatched_64_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
+      integer(kind(HIPBLAS_OP_N)),value :: transA
+      integer(c_int64_t),value :: n
+      integer(c_int64_t),value :: k
+      complex(c_double_complex) :: alpha
+      type(c_ptr),value :: AP
+      integer(c_int64_t),value :: lda
+      integer(c_int64_t),value :: strideA
+      type(c_ptr),value :: BP
+      integer(c_int64_t),value :: ldb
+      integer(c_int64_t),value :: strideB
+      complex(c_double_complex) :: beta
+      type(c_ptr),value :: CP
+      integer(c_int64_t),value :: ldc
+      integer(c_int64_t),value :: strideC
+      integer(c_int64_t),value :: batchCount
+    end function
+  end interface
+
+  interface hipblasSgeam_64
+#ifdef USE_CUDA_NAMES
+    function hipblasSgeam_64_(handle,transA,transB,m,n,alpha,AP,lda,beta,BP,ldb,CP,ldc) bind(c, name="cublasSgeam_64")
+#else
+    function hipblasSgeam_64_(handle,transA,transB,m,n,alpha,AP,lda,beta,BP,ldb,CP,ldc) bind(c, name="hipblasSgeam_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSgeam_64_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_OP_N)),value :: transA
+      integer(kind(HIPBLAS_OP_N)),value :: transB
+      integer(c_int64_t),value :: m
+      integer(c_int64_t),value :: n
+      real(c_float) :: alpha
+      type(c_ptr),value :: AP
+      integer(c_int64_t),value :: lda
+      real(c_float) :: beta
+      type(c_ptr),value :: BP
+      integer(c_int64_t),value :: ldb
+      type(c_ptr),value :: CP
+      integer(c_int64_t),value :: ldc
+    end function
+  end interface
+
+  interface hipblasDgeam_64
+#ifdef USE_CUDA_NAMES
+    function hipblasDgeam_64_(handle,transA,transB,m,n,alpha,AP,lda,beta,BP,ldb,CP,ldc) bind(c, name="cublasDgeam_64")
+#else
+    function hipblasDgeam_64_(handle,transA,transB,m,n,alpha,AP,lda,beta,BP,ldb,CP,ldc) bind(c, name="hipblasDgeam_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDgeam_64_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_OP_N)),value :: transA
+      integer(kind(HIPBLAS_OP_N)),value :: transB
+      integer(c_int64_t),value :: m
+      integer(c_int64_t),value :: n
+      real(c_double) :: alpha
+      type(c_ptr),value :: AP
+      integer(c_int64_t),value :: lda
+      real(c_double) :: beta
+      type(c_ptr),value :: BP
+      integer(c_int64_t),value :: ldb
+      type(c_ptr),value :: CP
+      integer(c_int64_t),value :: ldc
+    end function
+  end interface
+
+  interface hipblasCgeam_64
+#ifdef USE_CUDA_NAMES
+    function hipblasCgeam_64_(handle,transA,transB,m,n,alpha,AP,lda,beta,BP,ldb,CP,ldc) bind(c, name="cublasCgeam_64")
+#else
+    function hipblasCgeam_64_(handle,transA,transB,m,n,alpha,AP,lda,beta,BP,ldb,CP,ldc) bind(c, name="hipblasCgeam_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCgeam_64_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_OP_N)),value :: transA
+      integer(kind(HIPBLAS_OP_N)),value :: transB
+      integer(c_int64_t),value :: m
+      integer(c_int64_t),value :: n
+      complex(c_float_complex) :: alpha
+      type(c_ptr),value :: AP
+      integer(c_int64_t),value :: lda
+      complex(c_float_complex) :: beta
+      type(c_ptr),value :: BP
+      integer(c_int64_t),value :: ldb
+      type(c_ptr),value :: CP
+      integer(c_int64_t),value :: ldc
+    end function
+  end interface
+
+  interface hipblasZgeam_64
+#ifdef USE_CUDA_NAMES
+    function hipblasZgeam_64_(handle,transA,transB,m,n,alpha,AP,lda,beta,BP,ldb,CP,ldc) bind(c, name="cublasZgeam_64")
+#else
+    function hipblasZgeam_64_(handle,transA,transB,m,n,alpha,AP,lda,beta,BP,ldb,CP,ldc) bind(c, name="hipblasZgeam_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZgeam_64_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_OP_N)),value :: transA
+      integer(kind(HIPBLAS_OP_N)),value :: transB
+      integer(c_int64_t),value :: m
+      integer(c_int64_t),value :: n
+      complex(c_double_complex) :: alpha
+      type(c_ptr),value :: AP
+      integer(c_int64_t),value :: lda
+      complex(c_double_complex) :: beta
+      type(c_ptr),value :: BP
+      integer(c_int64_t),value :: ldb
+      type(c_ptr),value :: CP
+      integer(c_int64_t),value :: ldc
+    end function
+  end interface
+
+  interface hipblasSgeamBatched_64
+#ifdef USE_CUDA_NAMES
+    function hipblasSgeamBatched_64_(handle,transA,transB,m,n,alpha,AP,lda,beta,BP,ldb,CP,ldc,batchCount) bind(c, name="cublasSgeamBatched_64")
+#else
+    function hipblasSgeamBatched_64_(handle,transA,transB,m,n,alpha,AP,lda,beta,BP,ldb,CP,ldc,batchCount) bind(c, name="hipblasSgeamBatched_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSgeamBatched_64_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_OP_N)),value :: transA
+      integer(kind(HIPBLAS_OP_N)),value :: transB
+      integer(c_int64_t),value :: m
+      integer(c_int64_t),value :: n
+      real(c_float) :: alpha
+      type(c_ptr) :: AP
+      integer(c_int64_t),value :: lda
+      real(c_float) :: beta
+      type(c_ptr) :: BP
+      integer(c_int64_t),value :: ldb
+      type(c_ptr) :: CP
+      integer(c_int64_t),value :: ldc
+      integer(c_int64_t),value :: batchCount
+    end function
+  end interface
+
+  interface hipblasDgeamBatched_64
+#ifdef USE_CUDA_NAMES
+    function hipblasDgeamBatched_64_(handle,transA,transB,m,n,alpha,AP,lda,beta,BP,ldb,CP,ldc,batchCount) bind(c, name="cublasDgeamBatched_64")
+#else
+    function hipblasDgeamBatched_64_(handle,transA,transB,m,n,alpha,AP,lda,beta,BP,ldb,CP,ldc,batchCount) bind(c, name="hipblasDgeamBatched_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDgeamBatched_64_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_OP_N)),value :: transA
+      integer(kind(HIPBLAS_OP_N)),value :: transB
+      integer(c_int64_t),value :: m
+      integer(c_int64_t),value :: n
+      real(c_double) :: alpha
+      type(c_ptr) :: AP
+      integer(c_int64_t),value :: lda
+      real(c_double) :: beta
+      type(c_ptr) :: BP
+      integer(c_int64_t),value :: ldb
+      type(c_ptr) :: CP
+      integer(c_int64_t),value :: ldc
+      integer(c_int64_t),value :: batchCount
+    end function
+  end interface
+
+  interface hipblasCgeamBatched_64
+#ifdef USE_CUDA_NAMES
+    function hipblasCgeamBatched_64_(handle,transA,transB,m,n,alpha,AP,lda,beta,BP,ldb,CP,ldc,batchCount) bind(c, name="cublasCgeamBatched_64")
+#else
+    function hipblasCgeamBatched_64_(handle,transA,transB,m,n,alpha,AP,lda,beta,BP,ldb,CP,ldc,batchCount) bind(c, name="hipblasCgeamBatched_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCgeamBatched_64_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_OP_N)),value :: transA
+      integer(kind(HIPBLAS_OP_N)),value :: transB
+      integer(c_int64_t),value :: m
+      integer(c_int64_t),value :: n
+      complex(c_float_complex) :: alpha
+      type(c_ptr) :: AP
+      integer(c_int64_t),value :: lda
+      complex(c_float_complex) :: beta
+      type(c_ptr) :: BP
+      integer(c_int64_t),value :: ldb
+      type(c_ptr) :: CP
+      integer(c_int64_t),value :: ldc
+      integer(c_int64_t),value :: batchCount
+    end function
+  end interface
+
+  interface hipblasZgeamBatched_64
+#ifdef USE_CUDA_NAMES
+    function hipblasZgeamBatched_64_(handle,transA,transB,m,n,alpha,AP,lda,beta,BP,ldb,CP,ldc,batchCount) bind(c, name="cublasZgeamBatched_64")
+#else
+    function hipblasZgeamBatched_64_(handle,transA,transB,m,n,alpha,AP,lda,beta,BP,ldb,CP,ldc,batchCount) bind(c, name="hipblasZgeamBatched_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZgeamBatched_64_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_OP_N)),value :: transA
+      integer(kind(HIPBLAS_OP_N)),value :: transB
+      integer(c_int64_t),value :: m
+      integer(c_int64_t),value :: n
+      complex(c_double_complex) :: alpha
+      type(c_ptr) :: AP
+      integer(c_int64_t),value :: lda
+      complex(c_double_complex) :: beta
+      type(c_ptr) :: BP
+      integer(c_int64_t),value :: ldb
+      type(c_ptr) :: CP
+      integer(c_int64_t),value :: ldc
+      integer(c_int64_t),value :: batchCount
+    end function
+  end interface
+
+  interface hipblasSgeamStridedBatched_64
+#ifdef USE_CUDA_NAMES
+    function hipblasSgeamStridedBatched_64_(handle,transA,transB,m,n,alpha,AP,lda,strideA,beta,BP,ldb,strideB,CP,ldc,strideC,batchCount) bind(c, name="cublasSgeamStridedBatched_64")
+#else
+    function hipblasSgeamStridedBatched_64_(handle,transA,transB,m,n,alpha,AP,lda,strideA,beta,BP,ldb,strideB,CP,ldc,strideC,batchCount) bind(c, name="hipblasSgeamStridedBatched_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSgeamStridedBatched_64_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_OP_N)),value :: transA
+      integer(kind(HIPBLAS_OP_N)),value :: transB
+      integer(c_int64_t),value :: m
+      integer(c_int64_t),value :: n
+      real(c_float) :: alpha
+      type(c_ptr),value :: AP
+      integer(c_int64_t),value :: lda
+      integer(c_int64_t),value :: strideA
+      real(c_float) :: beta
+      type(c_ptr),value :: BP
+      integer(c_int64_t),value :: ldb
+      integer(c_int64_t),value :: strideB
+      type(c_ptr),value :: CP
+      integer(c_int64_t),value :: ldc
+      integer(c_int64_t),value :: strideC
+      integer(c_int64_t),value :: batchCount
+    end function
+  end interface
+
+  interface hipblasDgeamStridedBatched_64
+#ifdef USE_CUDA_NAMES
+    function hipblasDgeamStridedBatched_64_(handle,transA,transB,m,n,alpha,AP,lda,strideA,beta,BP,ldb,strideB,CP,ldc,strideC,batchCount) bind(c, name="cublasDgeamStridedBatched_64")
+#else
+    function hipblasDgeamStridedBatched_64_(handle,transA,transB,m,n,alpha,AP,lda,strideA,beta,BP,ldb,strideB,CP,ldc,strideC,batchCount) bind(c, name="hipblasDgeamStridedBatched_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDgeamStridedBatched_64_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_OP_N)),value :: transA
+      integer(kind(HIPBLAS_OP_N)),value :: transB
+      integer(c_int64_t),value :: m
+      integer(c_int64_t),value :: n
+      real(c_double) :: alpha
+      type(c_ptr),value :: AP
+      integer(c_int64_t),value :: lda
+      integer(c_int64_t),value :: strideA
+      real(c_double) :: beta
+      type(c_ptr),value :: BP
+      integer(c_int64_t),value :: ldb
+      integer(c_int64_t),value :: strideB
+      type(c_ptr),value :: CP
+      integer(c_int64_t),value :: ldc
+      integer(c_int64_t),value :: strideC
+      integer(c_int64_t),value :: batchCount
+    end function
+  end interface
+
+  interface hipblasCgeamStridedBatched_64
+#ifdef USE_CUDA_NAMES
+    function hipblasCgeamStridedBatched_64_(handle,transA,transB,m,n,alpha,AP,lda,strideA,beta,BP,ldb,strideB,CP,ldc,strideC,batchCount) bind(c, name="cublasCgeamStridedBatched_64")
+#else
+    function hipblasCgeamStridedBatched_64_(handle,transA,transB,m,n,alpha,AP,lda,strideA,beta,BP,ldb,strideB,CP,ldc,strideC,batchCount) bind(c, name="hipblasCgeamStridedBatched_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCgeamStridedBatched_64_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_OP_N)),value :: transA
+      integer(kind(HIPBLAS_OP_N)),value :: transB
+      integer(c_int64_t),value :: m
+      integer(c_int64_t),value :: n
+      complex(c_float_complex) :: alpha
+      type(c_ptr),value :: AP
+      integer(c_int64_t),value :: lda
+      integer(c_int64_t),value :: strideA
+      complex(c_float_complex) :: beta
+      type(c_ptr),value :: BP
+      integer(c_int64_t),value :: ldb
+      integer(c_int64_t),value :: strideB
+      type(c_ptr),value :: CP
+      integer(c_int64_t),value :: ldc
+      integer(c_int64_t),value :: strideC
+      integer(c_int64_t),value :: batchCount
+    end function
+  end interface
+
+  interface hipblasZgeamStridedBatched_64
+#ifdef USE_CUDA_NAMES
+    function hipblasZgeamStridedBatched_64_(handle,transA,transB,m,n,alpha,AP,lda,strideA,beta,BP,ldb,strideB,CP,ldc,strideC,batchCount) bind(c, name="cublasZgeamStridedBatched_64")
+#else
+    function hipblasZgeamStridedBatched_64_(handle,transA,transB,m,n,alpha,AP,lda,strideA,beta,BP,ldb,strideB,CP,ldc,strideC,batchCount) bind(c, name="hipblasZgeamStridedBatched_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZgeamStridedBatched_64_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_OP_N)),value :: transA
+      integer(kind(HIPBLAS_OP_N)),value :: transB
+      integer(c_int64_t),value :: m
+      integer(c_int64_t),value :: n
+      complex(c_double_complex) :: alpha
+      type(c_ptr),value :: AP
+      integer(c_int64_t),value :: lda
+      integer(c_int64_t),value :: strideA
+      complex(c_double_complex) :: beta
+      type(c_ptr),value :: BP
+      integer(c_int64_t),value :: ldb
+      integer(c_int64_t),value :: strideB
+      type(c_ptr),value :: CP
+      integer(c_int64_t),value :: ldc
+      integer(c_int64_t),value :: strideC
+      integer(c_int64_t),value :: batchCount
+    end function
+  end interface
+
+  interface hipblasChemm_64
+#ifdef USE_CUDA_NAMES
+    function hipblasChemm_64_(handle,side,uplo,n,k,alpha,AP,lda,BP,ldb,beta,CP,ldc) bind(c, name="cublasChemm_v2_64")
+#else
+    function hipblasChemm_64_(handle,side,uplo,n,k,alpha,AP,lda,BP,ldb,beta,CP,ldc) bind(c, name="hipblasChemm_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasChemm_64_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_SIDE_LEFT)),value :: side
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int64_t),value :: n
+      integer(c_int64_t),value :: k
+      complex(c_float_complex) :: alpha
+      type(c_ptr),value :: AP
+      integer(c_int64_t),value :: lda
+      type(c_ptr),value :: BP
+      integer(c_int64_t),value :: ldb
+      complex(c_float_complex) :: beta
+      type(c_ptr),value :: CP
+      integer(c_int64_t),value :: ldc
+    end function
+  end interface
+
+  interface hipblasZhemm_64
+#ifdef USE_CUDA_NAMES
+    function hipblasZhemm_64_(handle,side,uplo,n,k,alpha,AP,lda,BP,ldb,beta,CP,ldc) bind(c, name="cublasZhemm_v2_64")
+#else
+    function hipblasZhemm_64_(handle,side,uplo,n,k,alpha,AP,lda,BP,ldb,beta,CP,ldc) bind(c, name="hipblasZhemm_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZhemm_64_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_SIDE_LEFT)),value :: side
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int64_t),value :: n
+      integer(c_int64_t),value :: k
+      complex(c_double_complex) :: alpha
+      type(c_ptr),value :: AP
+      integer(c_int64_t),value :: lda
+      type(c_ptr),value :: BP
+      integer(c_int64_t),value :: ldb
+      complex(c_double_complex) :: beta
+      type(c_ptr),value :: CP
+      integer(c_int64_t),value :: ldc
+    end function
+  end interface
+
+  interface hipblasChemmBatched_64
+#ifdef USE_CUDA_NAMES
+    function hipblasChemmBatched_64_(handle,side,uplo,n,k,alpha,AP,lda,BP,ldb,beta,CP,ldc,batchCount) bind(c, name="cublasChemmBatched_64")
+#else
+    function hipblasChemmBatched_64_(handle,side,uplo,n,k,alpha,AP,lda,BP,ldb,beta,CP,ldc,batchCount) bind(c, name="hipblasChemmBatched_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasChemmBatched_64_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_SIDE_LEFT)),value :: side
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int64_t),value :: n
+      integer(c_int64_t),value :: k
+      complex(c_float_complex) :: alpha
+      type(c_ptr) :: AP
+      integer(c_int64_t),value :: lda
+      type(c_ptr) :: BP
+      integer(c_int64_t),value :: ldb
+      complex(c_float_complex) :: beta
+      type(c_ptr) :: CP
+      integer(c_int64_t),value :: ldc
+      integer(c_int64_t),value :: batchCount
+    end function
+  end interface
+
+  interface hipblasZhemmBatched_64
+#ifdef USE_CUDA_NAMES
+    function hipblasZhemmBatched_64_(handle,side,uplo,n,k,alpha,AP,lda,BP,ldb,beta,CP,ldc,batchCount) bind(c, name="cublasZhemmBatched_64")
+#else
+    function hipblasZhemmBatched_64_(handle,side,uplo,n,k,alpha,AP,lda,BP,ldb,beta,CP,ldc,batchCount) bind(c, name="hipblasZhemmBatched_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZhemmBatched_64_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_SIDE_LEFT)),value :: side
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int64_t),value :: n
+      integer(c_int64_t),value :: k
+      complex(c_double_complex) :: alpha
+      type(c_ptr) :: AP
+      integer(c_int64_t),value :: lda
+      type(c_ptr) :: BP
+      integer(c_int64_t),value :: ldb
+      complex(c_double_complex) :: beta
+      type(c_ptr) :: CP
+      integer(c_int64_t),value :: ldc
+      integer(c_int64_t),value :: batchCount
+    end function
+  end interface
+
+  interface hipblasChemmStridedBatched_64
+#ifdef USE_CUDA_NAMES
+    function hipblasChemmStridedBatched_64_(handle,side,uplo,n,k,alpha,AP,lda,strideA,BP,ldb,strideB,beta,CP,ldc,strideC,batchCount) bind(c, name="cublasChemmStridedBatched_64")
+#else
+    function hipblasChemmStridedBatched_64_(handle,side,uplo,n,k,alpha,AP,lda,strideA,BP,ldb,strideB,beta,CP,ldc,strideC,batchCount) bind(c, name="hipblasChemmStridedBatched_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasChemmStridedBatched_64_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_SIDE_LEFT)),value :: side
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int64_t),value :: n
+      integer(c_int64_t),value :: k
+      complex(c_float_complex) :: alpha
+      type(c_ptr),value :: AP
+      integer(c_int64_t),value :: lda
+      integer(c_int64_t),value :: strideA
+      type(c_ptr),value :: BP
+      integer(c_int64_t),value :: ldb
+      integer(c_int64_t),value :: strideB
+      complex(c_float_complex) :: beta
+      type(c_ptr),value :: CP
+      integer(c_int64_t),value :: ldc
+      integer(c_int64_t),value :: strideC
+      integer(c_int64_t),value :: batchCount
+    end function
+  end interface
+
+  interface hipblasZhemmStridedBatched_64
+#ifdef USE_CUDA_NAMES
+    function hipblasZhemmStridedBatched_64_(handle,side,uplo,n,k,alpha,AP,lda,strideA,BP,ldb,strideB,beta,CP,ldc,strideC,batchCount) bind(c, name="cublasZhemmStridedBatched_64")
+#else
+    function hipblasZhemmStridedBatched_64_(handle,side,uplo,n,k,alpha,AP,lda,strideA,BP,ldb,strideB,beta,CP,ldc,strideC,batchCount) bind(c, name="hipblasZhemmStridedBatched_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZhemmStridedBatched_64_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_SIDE_LEFT)),value :: side
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
+      integer(c_int64_t),value :: n
+      integer(c_int64_t),value :: k
+      complex(c_double_complex) :: alpha
+      type(c_ptr),value :: AP
+      integer(c_int64_t),value :: lda
+      integer(c_int64_t),value :: strideA
+      type(c_ptr),value :: BP
+      integer(c_int64_t),value :: ldb
+      integer(c_int64_t),value :: strideB
+      complex(c_double_complex) :: beta
+      type(c_ptr),value :: CP
+      integer(c_int64_t),value :: ldc
+      integer(c_int64_t),value :: strideC
+      integer(c_int64_t),value :: batchCount
+    end function
+  end interface
+
+  interface hipblasStrmm_64
+#ifdef USE_CUDA_NAMES
+    function hipblasStrmm_64_(handle,side,uplo,transA,diag,m,n,alpha,A,lda,B,ldb,C,ldc) bind(c, name="cublasStrmm_v2_64")
+#else
+    function hipblasStrmm_64_(handle,side,uplo,transA,diag,m,n,alpha,A,lda,B,ldb,C,ldc) bind(c, name="hipblasStrmm_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasStrmm_64_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_SIDE_LEFT)),value :: side
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
+      integer(kind(HIPBLAS_OP_N)),value :: transA
+      integer(kind(HIPBLAS_DIAG_NON_UNIT)),value :: diag
+      integer(c_int64_t),value :: m
+      integer(c_int64_t),value :: n
+      real(c_float) :: alpha
+      type(c_ptr),value :: A
+      integer(c_int64_t),value :: lda
+      type(c_ptr),value :: B
+      integer(c_int64_t),value :: ldb
+      type(c_ptr),value :: C
+      integer(c_int64_t),value :: ldc
+    end function
+  end interface
+
+  interface hipblasDtrmm_64
+#ifdef USE_CUDA_NAMES
+    function hipblasDtrmm_64_(handle,side,uplo,transA,diag,m,n,alpha,A,lda,B,ldb,C,ldc) bind(c, name="cublasDtrmm_v2_64")
+#else
+    function hipblasDtrmm_64_(handle,side,uplo,transA,diag,m,n,alpha,A,lda,B,ldb,C,ldc) bind(c, name="hipblasDtrmm_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDtrmm_64_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_SIDE_LEFT)),value :: side
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
+      integer(kind(HIPBLAS_OP_N)),value :: transA
+      integer(kind(HIPBLAS_DIAG_NON_UNIT)),value :: diag
+      integer(c_int64_t),value :: m
+      integer(c_int64_t),value :: n
+      real(c_double) :: alpha
+      type(c_ptr),value :: A
+      integer(c_int64_t),value :: lda
+      type(c_ptr),value :: B
+      integer(c_int64_t),value :: ldb
+      type(c_ptr),value :: C
+      integer(c_int64_t),value :: ldc
+    end function
+  end interface
+
+  interface hipblasCtrmm_64
+#ifdef USE_CUDA_NAMES
+    function hipblasCtrmm_64_(handle,side,uplo,transA,diag,m,n,alpha,A,lda,B,ldb,C,ldc) bind(c, name="cublasCtrmm_v2_64")
+#else
+    function hipblasCtrmm_64_(handle,side,uplo,transA,diag,m,n,alpha,A,lda,B,ldb,C,ldc) bind(c, name="hipblasCtrmm_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCtrmm_64_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_SIDE_LEFT)),value :: side
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
+      integer(kind(HIPBLAS_OP_N)),value :: transA
+      integer(kind(HIPBLAS_DIAG_NON_UNIT)),value :: diag
+      integer(c_int64_t),value :: m
+      integer(c_int64_t),value :: n
+      complex(c_float_complex) :: alpha
+      type(c_ptr),value :: A
+      integer(c_int64_t),value :: lda
+      type(c_ptr),value :: B
+      integer(c_int64_t),value :: ldb
+      type(c_ptr),value :: C
+      integer(c_int64_t),value :: ldc
+    end function
+  end interface
+
+  interface hipblasZtrmm_64
+#ifdef USE_CUDA_NAMES
+    function hipblasZtrmm_64_(handle,side,uplo,transA,diag,m,n,alpha,A,lda,B,ldb,C,ldc) bind(c, name="cublasZtrmm_v2_64")
+#else
+    function hipblasZtrmm_64_(handle,side,uplo,transA,diag,m,n,alpha,A,lda,B,ldb,C,ldc) bind(c, name="hipblasZtrmm_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZtrmm_64_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_SIDE_LEFT)),value :: side
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
+      integer(kind(HIPBLAS_OP_N)),value :: transA
+      integer(kind(HIPBLAS_DIAG_NON_UNIT)),value :: diag
+      integer(c_int64_t),value :: m
+      integer(c_int64_t),value :: n
+      complex(c_double_complex) :: alpha
+      type(c_ptr),value :: A
+      integer(c_int64_t),value :: lda
+      type(c_ptr),value :: B
+      integer(c_int64_t),value :: ldb
+      type(c_ptr),value :: C
+      integer(c_int64_t),value :: ldc
+    end function
+  end interface
+
+  interface hipblasStrmmBatched_64
+#ifdef USE_CUDA_NAMES
+    function hipblasStrmmBatched_64_(handle,side,uplo,transA,diag,m,n,alpha,A,lda,B,ldb,C,ldc,batchCount) bind(c, name="cublasStrmmBatched_64")
+#else
+    function hipblasStrmmBatched_64_(handle,side,uplo,transA,diag,m,n,alpha,A,lda,B,ldb,C,ldc,batchCount) bind(c, name="hipblasStrmmBatched_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasStrmmBatched_64_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_SIDE_LEFT)),value :: side
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
+      integer(kind(HIPBLAS_OP_N)),value :: transA
+      integer(kind(HIPBLAS_DIAG_NON_UNIT)),value :: diag
+      integer(c_int64_t),value :: m
+      integer(c_int64_t),value :: n
+      real(c_float) :: alpha
+      type(c_ptr) :: A
+      integer(c_int64_t),value :: lda
+      type(c_ptr) :: B
+      integer(c_int64_t),value :: ldb
+      type(c_ptr) :: C
+      integer(c_int64_t),value :: ldc
+      integer(c_int64_t),value :: batchCount
+    end function
+  end interface
+
+  interface hipblasDtrmmBatched_64
+#ifdef USE_CUDA_NAMES
+    function hipblasDtrmmBatched_64_(handle,side,uplo,transA,diag,m,n,alpha,A,lda,B,ldb,C,ldc,batchCount) bind(c, name="cublasDtrmmBatched_64")
+#else
+    function hipblasDtrmmBatched_64_(handle,side,uplo,transA,diag,m,n,alpha,A,lda,B,ldb,C,ldc,batchCount) bind(c, name="hipblasDtrmmBatched_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDtrmmBatched_64_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_SIDE_LEFT)),value :: side
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
+      integer(kind(HIPBLAS_OP_N)),value :: transA
+      integer(kind(HIPBLAS_DIAG_NON_UNIT)),value :: diag
+      integer(c_int64_t),value :: m
+      integer(c_int64_t),value :: n
+      real(c_double) :: alpha
+      type(c_ptr) :: A
+      integer(c_int64_t),value :: lda
+      type(c_ptr) :: B
+      integer(c_int64_t),value :: ldb
+      type(c_ptr) :: C
+      integer(c_int64_t),value :: ldc
+      integer(c_int64_t),value :: batchCount
+    end function
+  end interface
+
+  interface hipblasCtrmmBatched_64
+#ifdef USE_CUDA_NAMES
+    function hipblasCtrmmBatched_64_(handle,side,uplo,transA,diag,m,n,alpha,A,lda,B,ldb,C,ldc,batchCount) bind(c, name="cublasCtrmmBatched_64")
+#else
+    function hipblasCtrmmBatched_64_(handle,side,uplo,transA,diag,m,n,alpha,A,lda,B,ldb,C,ldc,batchCount) bind(c, name="hipblasCtrmmBatched_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCtrmmBatched_64_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_SIDE_LEFT)),value :: side
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
+      integer(kind(HIPBLAS_OP_N)),value :: transA
+      integer(kind(HIPBLAS_DIAG_NON_UNIT)),value :: diag
+      integer(c_int64_t),value :: m
+      integer(c_int64_t),value :: n
+      complex(c_float_complex) :: alpha
+      type(c_ptr) :: A
+      integer(c_int64_t),value :: lda
+      type(c_ptr) :: B
+      integer(c_int64_t),value :: ldb
+      type(c_ptr) :: C
+      integer(c_int64_t),value :: ldc
+      integer(c_int64_t),value :: batchCount
+    end function
+  end interface
+
+  interface hipblasZtrmmBatched_64
+#ifdef USE_CUDA_NAMES
+    function hipblasZtrmmBatched_64_(handle,side,uplo,transA,diag,m,n,alpha,A,lda,B,ldb,C,ldc,batchCount) bind(c, name="cublasZtrmmBatched_64")
+#else
+    function hipblasZtrmmBatched_64_(handle,side,uplo,transA,diag,m,n,alpha,A,lda,B,ldb,C,ldc,batchCount) bind(c, name="hipblasZtrmmBatched_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZtrmmBatched_64_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_SIDE_LEFT)),value :: side
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
+      integer(kind(HIPBLAS_OP_N)),value :: transA
+      integer(kind(HIPBLAS_DIAG_NON_UNIT)),value :: diag
+      integer(c_int64_t),value :: m
+      integer(c_int64_t),value :: n
+      complex(c_double_complex) :: alpha
+      type(c_ptr) :: A
+      integer(c_int64_t),value :: lda
+      type(c_ptr) :: B
+      integer(c_int64_t),value :: ldb
+      type(c_ptr) :: C
+      integer(c_int64_t),value :: ldc
+      integer(c_int64_t),value :: batchCount
+    end function
+  end interface
+
+  interface hipblasStrmmStridedBatched_64
+#ifdef USE_CUDA_NAMES
+    function hipblasStrmmStridedBatched_64_(handle,side,uplo,transA,diag,m,n,alpha,A,lda,strideA,B,ldb,strideB,C,ldc,strideC,batchCount) bind(c, name="cublasStrmmStridedBatched_64")
+#else
+    function hipblasStrmmStridedBatched_64_(handle,side,uplo,transA,diag,m,n,alpha,A,lda,strideA,B,ldb,strideB,C,ldc,strideC,batchCount) bind(c, name="hipblasStrmmStridedBatched_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasStrmmStridedBatched_64_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_SIDE_LEFT)),value :: side
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
+      integer(kind(HIPBLAS_OP_N)),value :: transA
+      integer(kind(HIPBLAS_DIAG_NON_UNIT)),value :: diag
+      integer(c_int64_t),value :: m
+      integer(c_int64_t),value :: n
+      real(c_float) :: alpha
+      type(c_ptr),value :: A
+      integer(c_int64_t),value :: lda
+      integer(c_int64_t),value :: strideA
+      type(c_ptr),value :: B
+      integer(c_int64_t),value :: ldb
+      integer(c_int64_t),value :: strideB
+      type(c_ptr),value :: C
+      integer(c_int64_t),value :: ldc
+      integer(c_int64_t),value :: strideC
+      integer(c_int64_t),value :: batchCount
+    end function
+  end interface
+
+  interface hipblasDtrmmStridedBatched_64
+#ifdef USE_CUDA_NAMES
+    function hipblasDtrmmStridedBatched_64_(handle,side,uplo,transA,diag,m,n,alpha,A,lda,strideA,B,ldb,strideB,C,ldc,strideC,batchCount) bind(c, name="cublasDtrmmStridedBatched_64")
+#else
+    function hipblasDtrmmStridedBatched_64_(handle,side,uplo,transA,diag,m,n,alpha,A,lda,strideA,B,ldb,strideB,C,ldc,strideC,batchCount) bind(c, name="hipblasDtrmmStridedBatched_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDtrmmStridedBatched_64_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_SIDE_LEFT)),value :: side
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
+      integer(kind(HIPBLAS_OP_N)),value :: transA
+      integer(kind(HIPBLAS_DIAG_NON_UNIT)),value :: diag
+      integer(c_int64_t),value :: m
+      integer(c_int64_t),value :: n
+      real(c_double) :: alpha
+      type(c_ptr),value :: A
+      integer(c_int64_t),value :: lda
+      integer(c_int64_t),value :: strideA
+      type(c_ptr),value :: B
+      integer(c_int64_t),value :: ldb
+      integer(c_int64_t),value :: strideB
+      type(c_ptr),value :: C
+      integer(c_int64_t),value :: ldc
+      integer(c_int64_t),value :: strideC
+      integer(c_int64_t),value :: batchCount
+    end function
+  end interface
+
+  interface hipblasCtrmmStridedBatched_64
+#ifdef USE_CUDA_NAMES
+    function hipblasCtrmmStridedBatched_64_(handle,side,uplo,transA,diag,m,n,alpha,A,lda,strideA,B,ldb,strideB,C,ldc,strideC,batchCount) bind(c, name="cublasCtrmmStridedBatched_64")
+#else
+    function hipblasCtrmmStridedBatched_64_(handle,side,uplo,transA,diag,m,n,alpha,A,lda,strideA,B,ldb,strideB,C,ldc,strideC,batchCount) bind(c, name="hipblasCtrmmStridedBatched_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCtrmmStridedBatched_64_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_SIDE_LEFT)),value :: side
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
+      integer(kind(HIPBLAS_OP_N)),value :: transA
+      integer(kind(HIPBLAS_DIAG_NON_UNIT)),value :: diag
+      integer(c_int64_t),value :: m
+      integer(c_int64_t),value :: n
+      complex(c_float_complex) :: alpha
+      type(c_ptr),value :: A
+      integer(c_int64_t),value :: lda
+      integer(c_int64_t),value :: strideA
+      type(c_ptr),value :: B
+      integer(c_int64_t),value :: ldb
+      integer(c_int64_t),value :: strideB
+      type(c_ptr),value :: C
+      integer(c_int64_t),value :: ldc
+      integer(c_int64_t),value :: strideC
+      integer(c_int64_t),value :: batchCount
+    end function
+  end interface
+
+  interface hipblasZtrmmStridedBatched_64
+#ifdef USE_CUDA_NAMES
+    function hipblasZtrmmStridedBatched_64_(handle,side,uplo,transA,diag,m,n,alpha,A,lda,strideA,B,ldb,strideB,C,ldc,strideC,batchCount) bind(c, name="cublasZtrmmStridedBatched_64")
+#else
+    function hipblasZtrmmStridedBatched_64_(handle,side,uplo,transA,diag,m,n,alpha,A,lda,strideA,B,ldb,strideB,C,ldc,strideC,batchCount) bind(c, name="hipblasZtrmmStridedBatched_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZtrmmStridedBatched_64_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_SIDE_LEFT)),value :: side
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
+      integer(kind(HIPBLAS_OP_N)),value :: transA
+      integer(kind(HIPBLAS_DIAG_NON_UNIT)),value :: diag
+      integer(c_int64_t),value :: m
+      integer(c_int64_t),value :: n
+      complex(c_double_complex) :: alpha
+      type(c_ptr),value :: A
+      integer(c_int64_t),value :: lda
+      integer(c_int64_t),value :: strideA
+      type(c_ptr),value :: B
+      integer(c_int64_t),value :: ldb
+      integer(c_int64_t),value :: strideB
+      type(c_ptr),value :: C
+      integer(c_int64_t),value :: ldc
+      integer(c_int64_t),value :: strideC
+      integer(c_int64_t),value :: batchCount
+    end function
+  end interface
+
+  interface hipblasStrsm_64
+#ifdef USE_CUDA_NAMES
+    function hipblasStrsm_64_(handle,side,uplo,transA,diag,m,n,alpha,AP,lda,BP,ldb) bind(c, name="cublasStrsm_v2_64")
+#else
+    function hipblasStrsm_64_(handle,side,uplo,transA,diag,m,n,alpha,AP,lda,BP,ldb) bind(c, name="hipblasStrsm_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasStrsm_64_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_SIDE_LEFT)),value :: side
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
+      integer(kind(HIPBLAS_OP_N)),value :: transA
+      integer(kind(HIPBLAS_DIAG_NON_UNIT)),value :: diag
+      integer(c_int64_t),value :: m
+      integer(c_int64_t),value :: n
+      real(c_float) :: alpha
+      type(c_ptr),value :: AP
+      integer(c_int64_t),value :: lda
+      type(c_ptr),value :: BP
+      integer(c_int64_t),value :: ldb
+    end function
+  end interface
+
+  interface hipblasDtrsm_64
+#ifdef USE_CUDA_NAMES
+    function hipblasDtrsm_64_(handle,side,uplo,transA,diag,m,n,alpha,AP,lda,BP,ldb) bind(c, name="cublasDtrsm_v2_64")
+#else
+    function hipblasDtrsm_64_(handle,side,uplo,transA,diag,m,n,alpha,AP,lda,BP,ldb) bind(c, name="hipblasDtrsm_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDtrsm_64_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_SIDE_LEFT)),value :: side
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
+      integer(kind(HIPBLAS_OP_N)),value :: transA
+      integer(kind(HIPBLAS_DIAG_NON_UNIT)),value :: diag
+      integer(c_int64_t),value :: m
+      integer(c_int64_t),value :: n
+      real(c_double) :: alpha
+      type(c_ptr),value :: AP
+      integer(c_int64_t),value :: lda
+      type(c_ptr),value :: BP
+      integer(c_int64_t),value :: ldb
+    end function
+  end interface
+
+  interface hipblasCtrsm_64
+#ifdef USE_CUDA_NAMES
+    function hipblasCtrsm_64_(handle,side,uplo,transA,diag,m,n,alpha,AP,lda,BP,ldb) bind(c, name="cublasCtrsm_v2_64")
+#else
+    function hipblasCtrsm_64_(handle,side,uplo,transA,diag,m,n,alpha,AP,lda,BP,ldb) bind(c, name="hipblasCtrsm_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCtrsm_64_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_SIDE_LEFT)),value :: side
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
+      integer(kind(HIPBLAS_OP_N)),value :: transA
+      integer(kind(HIPBLAS_DIAG_NON_UNIT)),value :: diag
+      integer(c_int64_t),value :: m
+      integer(c_int64_t),value :: n
+      complex(c_float_complex) :: alpha
+      type(c_ptr),value :: AP
+      integer(c_int64_t),value :: lda
+      type(c_ptr),value :: BP
+      integer(c_int64_t),value :: ldb
+    end function
+  end interface
+
+  interface hipblasZtrsm_64
+#ifdef USE_CUDA_NAMES
+    function hipblasZtrsm_64_(handle,side,uplo,transA,diag,m,n,alpha,AP,lda,BP,ldb) bind(c, name="cublasZtrsm_v2_64")
+#else
+    function hipblasZtrsm_64_(handle,side,uplo,transA,diag,m,n,alpha,AP,lda,BP,ldb) bind(c, name="hipblasZtrsm_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZtrsm_64_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_SIDE_LEFT)),value :: side
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
+      integer(kind(HIPBLAS_OP_N)),value :: transA
+      integer(kind(HIPBLAS_DIAG_NON_UNIT)),value :: diag
+      integer(c_int64_t),value :: m
+      integer(c_int64_t),value :: n
+      complex(c_double_complex) :: alpha
+      type(c_ptr),value :: AP
+      integer(c_int64_t),value :: lda
+      type(c_ptr),value :: BP
+      integer(c_int64_t),value :: ldb
+    end function
+  end interface
+
+  interface hipblasStrsmBatched_64
+#ifdef USE_CUDA_NAMES
+    function hipblasStrsmBatched_64_(handle,side,uplo,transA,diag,m,n,alpha,AP,lda,BP,ldb,batchCount) bind(c, name="cublasStrsmBatched_64")
+#else
+    function hipblasStrsmBatched_64_(handle,side,uplo,transA,diag,m,n,alpha,AP,lda,BP,ldb,batchCount) bind(c, name="hipblasStrsmBatched_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasStrsmBatched_64_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_SIDE_LEFT)),value :: side
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
+      integer(kind(HIPBLAS_OP_N)),value :: transA
+      integer(kind(HIPBLAS_DIAG_NON_UNIT)),value :: diag
+      integer(c_int64_t),value :: m
+      integer(c_int64_t),value :: n
+      real(c_float) :: alpha
+      type(c_ptr) :: AP
+      integer(c_int64_t),value :: lda
+      type(c_ptr) :: BP
+      integer(c_int64_t),value :: ldb
+      integer(c_int64_t),value :: batchCount
+    end function
+  end interface
+
+  interface hipblasDtrsmBatched_64
+#ifdef USE_CUDA_NAMES
+    function hipblasDtrsmBatched_64_(handle,side,uplo,transA,diag,m,n,alpha,AP,lda,BP,ldb,batchCount) bind(c, name="cublasDtrsmBatched_64")
+#else
+    function hipblasDtrsmBatched_64_(handle,side,uplo,transA,diag,m,n,alpha,AP,lda,BP,ldb,batchCount) bind(c, name="hipblasDtrsmBatched_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDtrsmBatched_64_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_SIDE_LEFT)),value :: side
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
+      integer(kind(HIPBLAS_OP_N)),value :: transA
+      integer(kind(HIPBLAS_DIAG_NON_UNIT)),value :: diag
+      integer(c_int64_t),value :: m
+      integer(c_int64_t),value :: n
+      real(c_double) :: alpha
+      type(c_ptr) :: AP
+      integer(c_int64_t),value :: lda
+      type(c_ptr) :: BP
+      integer(c_int64_t),value :: ldb
+      integer(c_int64_t),value :: batchCount
+    end function
+  end interface
+
+  interface hipblasCtrsmBatched_64
+#ifdef USE_CUDA_NAMES
+    function hipblasCtrsmBatched_64_(handle,side,uplo,transA,diag,m,n,alpha,AP,lda,BP,ldb,batchCount) bind(c, name="cublasCtrsmBatched_64")
+#else
+    function hipblasCtrsmBatched_64_(handle,side,uplo,transA,diag,m,n,alpha,AP,lda,BP,ldb,batchCount) bind(c, name="hipblasCtrsmBatched_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCtrsmBatched_64_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_SIDE_LEFT)),value :: side
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
+      integer(kind(HIPBLAS_OP_N)),value :: transA
+      integer(kind(HIPBLAS_DIAG_NON_UNIT)),value :: diag
+      integer(c_int64_t),value :: m
+      integer(c_int64_t),value :: n
+      complex(c_float_complex) :: alpha
+      type(c_ptr) :: AP
+      integer(c_int64_t),value :: lda
+      type(c_ptr) :: BP
+      integer(c_int64_t),value :: ldb
+      integer(c_int64_t),value :: batchCount
+    end function
+  end interface
+
+  interface hipblasZtrsmBatched_64
+#ifdef USE_CUDA_NAMES
+    function hipblasZtrsmBatched_64_(handle,side,uplo,transA,diag,m,n,alpha,AP,lda,BP,ldb,batchCount) bind(c, name="cublasZtrsmBatched_64")
+#else
+    function hipblasZtrsmBatched_64_(handle,side,uplo,transA,diag,m,n,alpha,AP,lda,BP,ldb,batchCount) bind(c, name="hipblasZtrsmBatched_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZtrsmBatched_64_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_SIDE_LEFT)),value :: side
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
+      integer(kind(HIPBLAS_OP_N)),value :: transA
+      integer(kind(HIPBLAS_DIAG_NON_UNIT)),value :: diag
+      integer(c_int64_t),value :: m
+      integer(c_int64_t),value :: n
+      complex(c_double_complex) :: alpha
+      type(c_ptr) :: AP
+      integer(c_int64_t),value :: lda
+      type(c_ptr) :: BP
+      integer(c_int64_t),value :: ldb
+      integer(c_int64_t),value :: batchCount
+    end function
+  end interface
+
+  interface hipblasStrsmStridedBatched_64
+#ifdef USE_CUDA_NAMES
+    function hipblasStrsmStridedBatched_64_(handle,side,uplo,transA,diag,m,n,alpha,AP,lda,strideA,BP,ldb,strideB,batchCount) bind(c, name="cublasStrsmStridedBatched_64")
+#else
+    function hipblasStrsmStridedBatched_64_(handle,side,uplo,transA,diag,m,n,alpha,AP,lda,strideA,BP,ldb,strideB,batchCount) bind(c, name="hipblasStrsmStridedBatched_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasStrsmStridedBatched_64_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_SIDE_LEFT)),value :: side
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
+      integer(kind(HIPBLAS_OP_N)),value :: transA
+      integer(kind(HIPBLAS_DIAG_NON_UNIT)),value :: diag
+      integer(c_int64_t),value :: m
+      integer(c_int64_t),value :: n
+      real(c_float) :: alpha
+      type(c_ptr),value :: AP
+      integer(c_int64_t),value :: lda
+      integer(c_int64_t),value :: strideA
+      type(c_ptr),value :: BP
+      integer(c_int64_t),value :: ldb
+      integer(c_int64_t),value :: strideB
+      integer(c_int64_t),value :: batchCount
+    end function
+  end interface
+
+  interface hipblasDtrsmStridedBatched_64
+#ifdef USE_CUDA_NAMES
+    function hipblasDtrsmStridedBatched_64_(handle,side,uplo,transA,diag,m,n,alpha,AP,lda,strideA,BP,ldb,strideB,batchCount) bind(c, name="cublasDtrsmStridedBatched_64")
+#else
+    function hipblasDtrsmStridedBatched_64_(handle,side,uplo,transA,diag,m,n,alpha,AP,lda,strideA,BP,ldb,strideB,batchCount) bind(c, name="hipblasDtrsmStridedBatched_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDtrsmStridedBatched_64_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_SIDE_LEFT)),value :: side
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
+      integer(kind(HIPBLAS_OP_N)),value :: transA
+      integer(kind(HIPBLAS_DIAG_NON_UNIT)),value :: diag
+      integer(c_int64_t),value :: m
+      integer(c_int64_t),value :: n
+      real(c_double) :: alpha
+      type(c_ptr),value :: AP
+      integer(c_int64_t),value :: lda
+      integer(c_int64_t),value :: strideA
+      type(c_ptr),value :: BP
+      integer(c_int64_t),value :: ldb
+      integer(c_int64_t),value :: strideB
+      integer(c_int64_t),value :: batchCount
+    end function
+  end interface
+
+  interface hipblasCtrsmStridedBatched_64
+#ifdef USE_CUDA_NAMES
+    function hipblasCtrsmStridedBatched_64_(handle,side,uplo,transA,diag,m,n,alpha,AP,lda,strideA,BP,ldb,strideB,batchCount) bind(c, name="cublasCtrsmStridedBatched_64")
+#else
+    function hipblasCtrsmStridedBatched_64_(handle,side,uplo,transA,diag,m,n,alpha,AP,lda,strideA,BP,ldb,strideB,batchCount) bind(c, name="hipblasCtrsmStridedBatched_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCtrsmStridedBatched_64_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_SIDE_LEFT)),value :: side
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
+      integer(kind(HIPBLAS_OP_N)),value :: transA
+      integer(kind(HIPBLAS_DIAG_NON_UNIT)),value :: diag
+      integer(c_int64_t),value :: m
+      integer(c_int64_t),value :: n
+      complex(c_float_complex) :: alpha
+      type(c_ptr),value :: AP
+      integer(c_int64_t),value :: lda
+      integer(c_int64_t),value :: strideA
+      type(c_ptr),value :: BP
+      integer(c_int64_t),value :: ldb
+      integer(c_int64_t),value :: strideB
+      integer(c_int64_t),value :: batchCount
+    end function
+  end interface
+
+  interface hipblasZtrsmStridedBatched_64
+#ifdef USE_CUDA_NAMES
+    function hipblasZtrsmStridedBatched_64_(handle,side,uplo,transA,diag,m,n,alpha,AP,lda,strideA,BP,ldb,strideB,batchCount) bind(c, name="cublasZtrsmStridedBatched_64")
+#else
+    function hipblasZtrsmStridedBatched_64_(handle,side,uplo,transA,diag,m,n,alpha,AP,lda,strideA,BP,ldb,strideB,batchCount) bind(c, name="hipblasZtrsmStridedBatched_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZtrsmStridedBatched_64_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_SIDE_LEFT)),value :: side
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
+      integer(kind(HIPBLAS_OP_N)),value :: transA
+      integer(kind(HIPBLAS_DIAG_NON_UNIT)),value :: diag
+      integer(c_int64_t),value :: m
+      integer(c_int64_t),value :: n
+      complex(c_double_complex) :: alpha
+      type(c_ptr),value :: AP
+      integer(c_int64_t),value :: lda
+      integer(c_int64_t),value :: strideA
+      type(c_ptr),value :: BP
+      integer(c_int64_t),value :: ldb
+      integer(c_int64_t),value :: strideB
+      integer(c_int64_t),value :: batchCount
+    end function
+  end interface
+
+  interface hipblasSdgmm_64
+#ifdef USE_CUDA_NAMES
+    function hipblasSdgmm_64_(handle,side,m,n,AP,lda,x,incx,CP,ldc) bind(c, name="cublasSdgmm_64")
+#else
+    function hipblasSdgmm_64_(handle,side,m,n,AP,lda,x,incx,CP,ldc) bind(c, name="hipblasSdgmm_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSdgmm_64_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_SIDE_LEFT)),value :: side
+      integer(c_int64_t),value :: m
+      integer(c_int64_t),value :: n
+      type(c_ptr),value :: AP
+      integer(c_int64_t),value :: lda
+      type(c_ptr),value :: x
+      integer(c_int64_t),value :: incx
+      type(c_ptr),value :: CP
+      integer(c_int64_t),value :: ldc
+    end function
+  end interface
+
+  interface hipblasDdgmm_64
+#ifdef USE_CUDA_NAMES
+    function hipblasDdgmm_64_(handle,side,m,n,AP,lda,x,incx,CP,ldc) bind(c, name="cublasDdgmm_64")
+#else
+    function hipblasDdgmm_64_(handle,side,m,n,AP,lda,x,incx,CP,ldc) bind(c, name="hipblasDdgmm_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDdgmm_64_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_SIDE_LEFT)),value :: side
+      integer(c_int64_t),value :: m
+      integer(c_int64_t),value :: n
+      type(c_ptr),value :: AP
+      integer(c_int64_t),value :: lda
+      type(c_ptr),value :: x
+      integer(c_int64_t),value :: incx
+      type(c_ptr),value :: CP
+      integer(c_int64_t),value :: ldc
+    end function
+  end interface
+
+  interface hipblasCdgmm_64
+#ifdef USE_CUDA_NAMES
+    function hipblasCdgmm_64_(handle,side,m,n,AP,lda,x,incx,CP,ldc) bind(c, name="cublasCdgmm_64")
+#else
+    function hipblasCdgmm_64_(handle,side,m,n,AP,lda,x,incx,CP,ldc) bind(c, name="hipblasCdgmm_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCdgmm_64_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_SIDE_LEFT)),value :: side
+      integer(c_int64_t),value :: m
+      integer(c_int64_t),value :: n
+      type(c_ptr),value :: AP
+      integer(c_int64_t),value :: lda
+      type(c_ptr),value :: x
+      integer(c_int64_t),value :: incx
+      type(c_ptr),value :: CP
+      integer(c_int64_t),value :: ldc
+    end function
+  end interface
+
+  interface hipblasZdgmm_64
+#ifdef USE_CUDA_NAMES
+    function hipblasZdgmm_64_(handle,side,m,n,AP,lda,x,incx,CP,ldc) bind(c, name="cublasZdgmm_64")
+#else
+    function hipblasZdgmm_64_(handle,side,m,n,AP,lda,x,incx,CP,ldc) bind(c, name="hipblasZdgmm_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZdgmm_64_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_SIDE_LEFT)),value :: side
+      integer(c_int64_t),value :: m
+      integer(c_int64_t),value :: n
+      type(c_ptr),value :: AP
+      integer(c_int64_t),value :: lda
+      type(c_ptr),value :: x
+      integer(c_int64_t),value :: incx
+      type(c_ptr),value :: CP
+      integer(c_int64_t),value :: ldc
+    end function
+  end interface
+
+  interface hipblasSdgmmBatched_64
+#ifdef USE_CUDA_NAMES
+    function hipblasSdgmmBatched_64_(handle,side,m,n,AP,lda,x,incx,CP,ldc,batchCount) bind(c, name="cublasSdgmmBatched_64")
+#else
+    function hipblasSdgmmBatched_64_(handle,side,m,n,AP,lda,x,incx,CP,ldc,batchCount) bind(c, name="hipblasSdgmmBatched_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSdgmmBatched_64_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_SIDE_LEFT)),value :: side
+      integer(c_int64_t),value :: m
+      integer(c_int64_t),value :: n
+      type(c_ptr) :: AP
+      integer(c_int64_t),value :: lda
+      type(c_ptr) :: x
+      integer(c_int64_t),value :: incx
+      type(c_ptr) :: CP
+      integer(c_int64_t),value :: ldc
+      integer(c_int64_t),value :: batchCount
+    end function
+  end interface
+
+  interface hipblasDdgmmBatched_64
+#ifdef USE_CUDA_NAMES
+    function hipblasDdgmmBatched_64_(handle,side,m,n,AP,lda,x,incx,CP,ldc,batchCount) bind(c, name="cublasDdgmmBatched_64")
+#else
+    function hipblasDdgmmBatched_64_(handle,side,m,n,AP,lda,x,incx,CP,ldc,batchCount) bind(c, name="hipblasDdgmmBatched_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDdgmmBatched_64_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_SIDE_LEFT)),value :: side
+      integer(c_int64_t),value :: m
+      integer(c_int64_t),value :: n
+      type(c_ptr) :: AP
+      integer(c_int64_t),value :: lda
+      type(c_ptr) :: x
+      integer(c_int64_t),value :: incx
+      type(c_ptr) :: CP
+      integer(c_int64_t),value :: ldc
+      integer(c_int64_t),value :: batchCount
+    end function
+  end interface
+
+  interface hipblasCdgmmBatched_64
+#ifdef USE_CUDA_NAMES
+    function hipblasCdgmmBatched_64_(handle,side,m,n,AP,lda,x,incx,CP,ldc,batchCount) bind(c, name="cublasCdgmmBatched_64")
+#else
+    function hipblasCdgmmBatched_64_(handle,side,m,n,AP,lda,x,incx,CP,ldc,batchCount) bind(c, name="hipblasCdgmmBatched_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCdgmmBatched_64_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_SIDE_LEFT)),value :: side
+      integer(c_int64_t),value :: m
+      integer(c_int64_t),value :: n
+      type(c_ptr) :: AP
+      integer(c_int64_t),value :: lda
+      type(c_ptr) :: x
+      integer(c_int64_t),value :: incx
+      type(c_ptr) :: CP
+      integer(c_int64_t),value :: ldc
+      integer(c_int64_t),value :: batchCount
+    end function
+  end interface
+
+  interface hipblasZdgmmBatched_64
+#ifdef USE_CUDA_NAMES
+    function hipblasZdgmmBatched_64_(handle,side,m,n,AP,lda,x,incx,CP,ldc,batchCount) bind(c, name="cublasZdgmmBatched_64")
+#else
+    function hipblasZdgmmBatched_64_(handle,side,m,n,AP,lda,x,incx,CP,ldc,batchCount) bind(c, name="hipblasZdgmmBatched_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZdgmmBatched_64_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_SIDE_LEFT)),value :: side
+      integer(c_int64_t),value :: m
+      integer(c_int64_t),value :: n
+      type(c_ptr) :: AP
+      integer(c_int64_t),value :: lda
+      type(c_ptr) :: x
+      integer(c_int64_t),value :: incx
+      type(c_ptr) :: CP
+      integer(c_int64_t),value :: ldc
+      integer(c_int64_t),value :: batchCount
+    end function
+  end interface
+
+  interface hipblasSdgmmStridedBatched_64
+#ifdef USE_CUDA_NAMES
+    function hipblasSdgmmStridedBatched_64_(handle,side,m,n,AP,lda,strideA,x,incx,stridex,CP,ldc,strideC,batchCount) bind(c, name="cublasSdgmmStridedBatched_64")
+#else
+    function hipblasSdgmmStridedBatched_64_(handle,side,m,n,AP,lda,strideA,x,incx,stridex,CP,ldc,strideC,batchCount) bind(c, name="hipblasSdgmmStridedBatched_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSdgmmStridedBatched_64_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_SIDE_LEFT)),value :: side
+      integer(c_int64_t),value :: m
+      integer(c_int64_t),value :: n
+      type(c_ptr),value :: AP
+      integer(c_int64_t),value :: lda
+      integer(c_int64_t),value :: strideA
+      type(c_ptr),value :: x
+      integer(c_int64_t),value :: incx
+      integer(c_int64_t),value :: stridex
+      type(c_ptr),value :: CP
+      integer(c_int64_t),value :: ldc
+      integer(c_int64_t),value :: strideC
+      integer(c_int64_t),value :: batchCount
+    end function
+  end interface
+
+  interface hipblasDdgmmStridedBatched_64
+#ifdef USE_CUDA_NAMES
+    function hipblasDdgmmStridedBatched_64_(handle,side,m,n,AP,lda,strideA,x,incx,stridex,CP,ldc,strideC,batchCount) bind(c, name="cublasDdgmmStridedBatched_64")
+#else
+    function hipblasDdgmmStridedBatched_64_(handle,side,m,n,AP,lda,strideA,x,incx,stridex,CP,ldc,strideC,batchCount) bind(c, name="hipblasDdgmmStridedBatched_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDdgmmStridedBatched_64_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_SIDE_LEFT)),value :: side
+      integer(c_int64_t),value :: m
+      integer(c_int64_t),value :: n
+      type(c_ptr),value :: AP
+      integer(c_int64_t),value :: lda
+      integer(c_int64_t),value :: strideA
+      type(c_ptr),value :: x
+      integer(c_int64_t),value :: incx
+      integer(c_int64_t),value :: stridex
+      type(c_ptr),value :: CP
+      integer(c_int64_t),value :: ldc
+      integer(c_int64_t),value :: strideC
+      integer(c_int64_t),value :: batchCount
+    end function
+  end interface
+
+  interface hipblasCdgmmStridedBatched_64
+#ifdef USE_CUDA_NAMES
+    function hipblasCdgmmStridedBatched_64_(handle,side,m,n,AP,lda,strideA,x,incx,stridex,CP,ldc,strideC,batchCount) bind(c, name="cublasCdgmmStridedBatched_64")
+#else
+    function hipblasCdgmmStridedBatched_64_(handle,side,m,n,AP,lda,strideA,x,incx,stridex,CP,ldc,strideC,batchCount) bind(c, name="hipblasCdgmmStridedBatched_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCdgmmStridedBatched_64_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_SIDE_LEFT)),value :: side
+      integer(c_int64_t),value :: m
+      integer(c_int64_t),value :: n
+      type(c_ptr),value :: AP
+      integer(c_int64_t),value :: lda
+      integer(c_int64_t),value :: strideA
+      type(c_ptr),value :: x
+      integer(c_int64_t),value :: incx
+      integer(c_int64_t),value :: stridex
+      type(c_ptr),value :: CP
+      integer(c_int64_t),value :: ldc
+      integer(c_int64_t),value :: strideC
+      integer(c_int64_t),value :: batchCount
+    end function
+  end interface
+
+  interface hipblasZdgmmStridedBatched_64
+#ifdef USE_CUDA_NAMES
+    function hipblasZdgmmStridedBatched_64_(handle,side,m,n,AP,lda,strideA,x,incx,stridex,CP,ldc,strideC,batchCount) bind(c, name="cublasZdgmmStridedBatched_64")
+#else
+    function hipblasZdgmmStridedBatched_64_(handle,side,m,n,AP,lda,strideA,x,incx,stridex,CP,ldc,strideC,batchCount) bind(c, name="hipblasZdgmmStridedBatched_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZdgmmStridedBatched_64_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_SIDE_LEFT)),value :: side
+      integer(c_int64_t),value :: m
+      integer(c_int64_t),value :: n
+      type(c_ptr),value :: AP
+      integer(c_int64_t),value :: lda
+      integer(c_int64_t),value :: strideA
+      type(c_ptr),value :: x
+      integer(c_int64_t),value :: incx
+      integer(c_int64_t),value :: stridex
+      type(c_ptr),value :: CP
+      integer(c_int64_t),value :: ldc
+      integer(c_int64_t),value :: strideC
+      integer(c_int64_t),value :: batchCount
+    end function
+  end interface
+
+  !>     \brief  SOLVER API
+  !>
+  !>     \details
+  !>     The gels functions solve an overdetermined (or underdetermined) linear system defined by an
+  !>     ``m`` -by-``n``
+  !>     matrix ``A`` and a corresponding matrix ``B``, using the QR factorization computed by
+  !>     `hipblasSgeqrf` "GEQRF" (or the LQ
+  !>     factorization computed by ``GELQF``).
+  !>
+  !>     Depending on the value of ``trans``, the problem solved by this function is either of the
+  !>     form:
+  !>
+  !>     \f[
+  !>         \begin{array}{cl}
+  !>         A X = B & \: \text{not transposed, or}\\%
+  !>         A' X = B & \: \text{transposed if real, or conjugate transposed if complex}
+  !>         \end{array}
+  !>     \f]
+  !>
+  !>     If ``m >= n`` (or ``m < n`` in the case of transpose/conjugate transpose), the system is
+  !>     overdetermined
+  !>     and a least-squares solution approximating ``X`` is found by minimizing:
+  !>
+  !>     \f[
+  !>         || B - A  X || \quad \text{(or} \: || B - A' X ||\text{)}
+  !>     \f]
+  !>
+  !>     If ``m < n`` (or ``m >= n`` in the case of transpose/conjugate transpose), the system is
+  !>     underdetermined
+  !>     and a unique solution for ``X`` is chosen such that \f$|| X ||\f$ is minimal.
+  !>
+  !>     - Supported precisions in rocSOLVER : ``s``, ``d``, ``c``, and ``z``.
+  !>     - Supported precisions in cuBLAS    : No support.
+  !>
+  !>     @param[in]
+  !>     handle      hipblasHandle_t.
+  !>     @param[in]
+  !>     trans       hipblasOperation_t.
+  !>                 Specifies the form of the system of equations.
+  !>     @param[in]
+  !>     m           int. m >= 0.
+  !>                 The number of rows of matrix A.
+  !>     @param[in]
+  !>     n           int. n >= 0.
+  !>                 The number of columns of matrix A.
+  !>     @param[in]
+  !>     nrhs        int. nrhs >= 0.
+  !>                 The number of columns of matrices B and X,
+  !>                 that is, the columns on the right hand side.
+  !>     @param[inout]
+  !>     A           pointer to type. Array on the GPU of dimension lda*n.
+  !>                 - On entry, the matrix A.
+  !>                 - On exit, the QR (or LQ) factorization of A as returned by "GEQRF" (or
+  !>                 "GELQF").
+  !>     @param[in]
+  !>     lda         int. lda >= m.
+  !>                 Specifies the leading dimension of matrix A.
+  !>     @param[inout]
+  !>     B           pointer to type. Array on the GPU of dimension ldb*nrhs.
+  !>                 - On entry, the matrix B.
+  !>                 - On exit, when info = 0, B is overwritten by the solution vectors (and the
+  !>                 residuals in
+  !>                 the overdetermined cases) stored as columns.
+  !>     @param[in]
+  !>     ldb         int. ldb >= max(m,n).
+  !>                 Specifies the leading dimension of matrix B.
+  !>     @param[out]
+  !>     info        pointer to an int on the host.
+  !>                 - If info = 0, successful exit.
+  !>                 - If info = j < 0, the argument at position -j is invalid.
+  !>     @param[out]
+  !>     deviceInfo  pointer to int on the GPU.
+  !>                 - If info = 0, successful exit.
+  !>                 - If info = i > 0, the solution could not be computed because input matrix A is
+  !>                 rank deficient; the i-th diagonal element of its triangular factor is zero.
+#ifndef USE_CUDA_NAMES
+  interface hipblasSgels
+    function hipblasSgels_(handle,trans,m,n,nrhs,A,lda,B,ldb,myInfo,deviceInfo) bind(c, name="hipblasSgels")
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSgels_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_OP_N)),value :: trans
+      integer(c_int),value :: m
+      integer(c_int),value :: n
+      integer(c_int),value :: nrhs
+      type(c_ptr),value :: A
+      integer(c_int),value :: lda
+      type(c_ptr),value :: B
+      integer(c_int),value :: ldb
+      type(c_ptr),value :: myInfo
+      type(c_ptr),value :: deviceInfo
+    end function
+  end interface
+#endif
+
+#ifndef USE_CUDA_NAMES
+  interface hipblasDgels
+    function hipblasDgels_(handle,trans,m,n,nrhs,A,lda,B,ldb,myInfo,deviceInfo) bind(c, name="hipblasDgels")
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDgels_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_OP_N)),value :: trans
+      integer(c_int),value :: m
+      integer(c_int),value :: n
+      integer(c_int),value :: nrhs
+      type(c_ptr),value :: A
+      integer(c_int),value :: lda
+      type(c_ptr),value :: B
+      integer(c_int),value :: ldb
+      type(c_ptr),value :: myInfo
+      type(c_ptr),value :: deviceInfo
+    end function
+  end interface
+#endif
+
+#ifndef USE_CUDA_NAMES
+  interface hipblasCgels
+    function hipblasCgels_(handle,trans,m,n,nrhs,A,lda,B,ldb,myInfo,deviceInfo) bind(c, name="hipblasCgels")
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCgels_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_OP_N)),value :: trans
+      integer(c_int),value :: m
+      integer(c_int),value :: n
+      integer(c_int),value :: nrhs
+      type(c_ptr),value :: A
+      integer(c_int),value :: lda
+      type(c_ptr),value :: B
+      integer(c_int),value :: ldb
+      type(c_ptr),value :: myInfo
+      type(c_ptr),value :: deviceInfo
+    end function
+  end interface
+#endif
+
+#ifndef USE_CUDA_NAMES
+  interface hipblasZgels
+    function hipblasZgels_(handle,trans,m,n,nrhs,A,lda,B,ldb,myInfo,deviceInfo) bind(c, name="hipblasZgels")
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZgels_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_OP_N)),value :: trans
+      integer(c_int),value :: m
+      integer(c_int),value :: n
+      integer(c_int),value :: nrhs
+      type(c_ptr),value :: A
+      integer(c_int),value :: lda
+      type(c_ptr),value :: B
+      integer(c_int),value :: ldb
+      type(c_ptr),value :: myInfo
+      type(c_ptr),value :: deviceInfo
+    end function
+  end interface
+#endif
+
+  !>     \brief  SOLVER API
+  !>
+  !>     \details
+  !>     The gelsBatched functions solve a batch of overdetermined (or underdetermined) linear
+  !>     systems
+  !>     defined by a set of ``m`` -by-``n`` matrices \f$A_j\f$ and corresponding matrices
+  !>     \f$B_j\f$, using the
+  !>     QR factorizations computed by ``GEQRF_BATCHED`` (or the LQ factorizations computed by
+  !>     ``GELQF_BATCHED`` ).
+  !>
+  !>     For each instance in the batch, depending on the value of ``trans``, the problem solved by
+  !>     this function is either of the form:
+  !>
+  !>     \f[
+  !>         \begin{array}{cl}
+  !>         A_j X_j = B_j & \: \text{not transposed, or}\\%
+  !>         A_j' X_j = B_j & \: \text{transposed if real, or conjugate transposed if complex}
+  !>         \end{array}
+  !>     \f]
+  !>
+  !>     If ``m >= n`` (or ``m < n`` in the case of transpose/conjugate transpose), the system is
+  !>     overdetermined
+  !>     and a least-squares solution approximating ``X_j`` is found by minimizing:
+  !>
+  !>     \f[
+  !>         || B_j - A_j  X_j || \quad \text{(or} \: || B_j - A_j' X_j ||\text{)}
+  !>     \f]
+  !>
+  !>     If ``m < n`` (or ``m >= n`` in the case of transpose/conjugate transpose), the system is
+  !>     underdetermined
+  !>     and a unique solution for X_j is chosen such that \f$|| X_j ||\f$ is minimal.
+  !>
+  !>     - Supported precisions in rocSOLVER : ``s``, ``d``, ``c``, and ``z``.
+  !>     - Supported precisions in cuBLAS    : ``s``, ``d``, ``c``, and ``z``.
+  !>
+  !>     Note that the cuBLAS backend supports only the non-transpose operation and only solves
+  !>     over-determined systems (``m >= n``).
+  !>
+  !>     @param[in]
+  !>     handle      hipblasHandle_t.
+  !>     @param[in]
+  !>     trans       hipblasOperation_t.
+  !>                 Specifies the form of the system of equations.
+  !>     @param[in]
+  !>     m           int. m >= 0.
+  !>                 The number of rows of all matrices A_j in the batch.
+  !>     @param[in]
+  !>     n           int. n >= 0.
+  !>                 The number of columns of all matrices A_j in the batch.
+  !>     @param[in]
+  !>     nrhs        int. nrhs >= 0.
+  !>                 The number of columns of all matrices B_j and X_j in the batch,
+  !>                 that is, the columns on the right hand side.
+  !>     @param[inout]
+  !>     A array of pointer to type. Each pointer points to an array on the GPU of dimension lda*n.
+  !>                 - On entry, the matrices A_j.
+  !>                 - On exit, the QR (or LQ) factorizations of A_j as returned by "GEQRF_BATCHED"
+  !>                 (or "GELQF_BATCHED").
+  !>     @param[in]
+  !>     lda         int. lda >= m.
+  !>                 Specifies the leading dimension of matrices A_j.
+  !>     @param[inout]
+  !>     B array of pointer to type. Each pointer points to an array on the GPU of dimension
+  !>     ldb*nrhs.
+  !>                 - On entry, the matrices B_j.
+  !>                 - On exit, when info[j] = 0, B_j is overwritten by the solution vectors (and
+  !>                 the residuals in
+  !>                 the overdetermined cases) stored as columns.
+  !>     @param[in]
+  !>     ldb         int. ldb >= max(m,n).
+  !>                 Specifies the leading dimension of matrices B_j.
+  !>     @param[out]
+  !>     info        pointer to an int on the host.
+  !>                 If info = 0, successful exit.
+  !>                 If info = j < 0, the argument at position -j is invalid.
+  !>     @param[out]
+  !>     deviceInfo  pointer to int. Array of batchCount integers on the GPU.
+  !>                 - If deviceInfo[j] = 0, successful exit for solution of A_j.
+  !>                 - If deviceInfo[j] = i > 0, the solution of A_j could not be computed because
+  !>                 input
+  !>                 matrix A_j is rank deficient; the i-th diagonal element of its triangular
+  !>                 factor is zero.
+  !>     @param[in]
+  !>     batchCount  int. batchCount >= 0.
+  !>                 Number of matrices in the batch.
+  interface hipblasSgelsBatched
+#ifdef USE_CUDA_NAMES
+    function hipblasSgelsBatched_(handle,trans,m,n,nrhs,A,lda,B,ldb,myInfo,deviceInfo,batchCount) bind(c, name="cublasSgelsBatched")
+#else
+    function hipblasSgelsBatched_(handle,trans,m,n,nrhs,A,lda,B,ldb,myInfo,deviceInfo,batchCount) bind(c, name="hipblasSgelsBatched")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSgelsBatched_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_OP_N)),value :: trans
+      integer(c_int),value :: m
+      integer(c_int),value :: n
+      integer(c_int),value :: nrhs
+      type(c_ptr) :: A
+      integer(c_int),value :: lda
+      type(c_ptr) :: B
+      integer(c_int),value :: ldb
+      type(c_ptr),value :: myInfo
+      type(c_ptr),value :: deviceInfo
+      integer(c_int),value :: batchCount
+    end function
+  end interface
+
+  interface hipblasDgelsBatched
+#ifdef USE_CUDA_NAMES
+    function hipblasDgelsBatched_(handle,trans,m,n,nrhs,A,lda,B,ldb,myInfo,deviceInfo,batchCount) bind(c, name="cublasDgelsBatched")
+#else
+    function hipblasDgelsBatched_(handle,trans,m,n,nrhs,A,lda,B,ldb,myInfo,deviceInfo,batchCount) bind(c, name="hipblasDgelsBatched")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDgelsBatched_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_OP_N)),value :: trans
+      integer(c_int),value :: m
+      integer(c_int),value :: n
+      integer(c_int),value :: nrhs
+      type(c_ptr) :: A
+      integer(c_int),value :: lda
+      type(c_ptr) :: B
+      integer(c_int),value :: ldb
+      type(c_ptr),value :: myInfo
+      type(c_ptr),value :: deviceInfo
+      integer(c_int),value :: batchCount
+    end function
+  end interface
+
+  interface hipblasCgelsBatched
+#ifdef USE_CUDA_NAMES
+    function hipblasCgelsBatched_(handle,trans,m,n,nrhs,A,lda,B,ldb,myInfo,deviceInfo,batchCount) bind(c, name="cublasCgelsBatched")
+#else
+    function hipblasCgelsBatched_(handle,trans,m,n,nrhs,A,lda,B,ldb,myInfo,deviceInfo,batchCount) bind(c, name="hipblasCgelsBatched")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCgelsBatched_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_OP_N)),value :: trans
+      integer(c_int),value :: m
+      integer(c_int),value :: n
+      integer(c_int),value :: nrhs
+      type(c_ptr) :: A
+      integer(c_int),value :: lda
+      type(c_ptr) :: B
+      integer(c_int),value :: ldb
+      type(c_ptr),value :: myInfo
+      type(c_ptr),value :: deviceInfo
+      integer(c_int),value :: batchCount
+    end function
+  end interface
+
+  interface hipblasZgelsBatched
+#ifdef USE_CUDA_NAMES
+    function hipblasZgelsBatched_(handle,trans,m,n,nrhs,A,lda,B,ldb,myInfo,deviceInfo,batchCount) bind(c, name="cublasZgelsBatched")
+#else
+    function hipblasZgelsBatched_(handle,trans,m,n,nrhs,A,lda,B,ldb,myInfo,deviceInfo,batchCount) bind(c, name="hipblasZgelsBatched")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZgelsBatched_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_OP_N)),value :: trans
+      integer(c_int),value :: m
+      integer(c_int),value :: n
+      integer(c_int),value :: nrhs
+      type(c_ptr) :: A
+      integer(c_int),value :: lda
+      type(c_ptr) :: B
+      integer(c_int),value :: ldb
+      type(c_ptr),value :: myInfo
+      type(c_ptr),value :: deviceInfo
+      integer(c_int),value :: batchCount
+    end function
+  end interface
+
+  !>     \brief  SOLVER API
+  !>
+  !>     \details
+  !>     The gelsStridedBatched functions solve a batch of overdetermined (or underdetermined)
+  !>     linear
+  !>     systems defined by a set of ``m`` -by-``n`` matrices \f$A_j\f$ and corresponding matrices
+  !>     \f$B_j\f$,
+  !>     using the QR factorizations computed by ``GEQRF_STRIDED_BATCHED``
+  !>     (or the LQ factorizations computed by ``GELQF_STRIDED_BATCHED``).
+  !>
+  !>     For each instance in the batch, depending on the value of ``trans``, the problem solved by
+  !>     this function is either of the form:
+  !>
+  !>     \f[
+  !>         \begin{array}{cl}
+  !>         A_j X_j = B_j & \: \text{not transposed, or}\\%
+  !>         A_j' X_j = B_j & \: \text{transposed if real, or conjugate transposed if complex}
+  !>         \end{array}
+  !>     \f]
+  !>
+  !>     If ``m >= n`` (or ``m < n`` in the case of transpose/conjugate transpose), the system is
+  !>     overdetermined
+  !>     and a least-squares solution approximating ``X_j`` is found by minimizing:
+  !>
+  !>     \f[
+  !>         || B_j - A_j  X_j || \quad \text{(or} \: || B_j - A_j' X_j ||\text{)}
+  !>     \f]
+  !>
+  !>     If ``m < n`` (or ``m >= n`` in the case of transpose/conjugate transpose), the system is
+  !>     underdetermined
+  !>     and a unique solution for ``X_j`` is chosen such that \f$|| X_j ||\f$ is minimal.
+  !>
+  !>     - Supported precisions in rocSOLVER : ``s``, ``d``, ``c``, and ``z``.
+  !>     - Supported precisions in cuBLAS    : No support.
+  !>
+  !>     @param[in]
+  !>     handle      hipblasHandle_t.
+  !>     @param[in]
+  !>     trans       hipblasOperation_t.
+  !>                 Specifies the form of the system of equations.
+  !>     @param[in]
+  !>     m           int. m >= 0.
+  !>                 The number of rows of all matrices A_j in the batch.
+  !>     @param[in]
+  !>     n           int. n >= 0.
+  !>                 The number of columns of all matrices A_j in the batch.
+  !>     @param[in]
+  !>     nrhs        int. nrhs >= 0.
+  !>                 The number of columns of all matrices B_j and X_j in the batch,
+  !>                 that is, the columns on the right hand side.
+  !>     @param[inout]
+  !>     A           pointer to type. Array on the GPU (the size depends on the value of strideA).
+  !>                 - On entry, the matrices A_j.
+  !>                 - On exit, the QR (or LQ) factorizations of A_j as returned by
+  !>                 "GEQRF_STRIDED_BATCHED"
+  !>                 (or "GELQF_STRIDED_BATCHED").
+  !>     @param[in]
+  !>     lda         int. lda >= m.
+  !>                 Specifies the leading dimension of matrices A_j.
+  !>     @param[in]
+  !>     strideA     hipblasStride.
+  !>                 Stride from the start of one matrix A_j to the next one A_(j+1).
+  !>                 There is no restriction for the value of strideA. Normal use case is strideA >=
+  !>                 lda*n.
+  !>     @param[inout]
+  !>     B           pointer to type. Array on the GPU (the size depends on the value of strideB).
+  !>                 - On entry, the matrices B_j.
+  !>                 - On exit, when info[j] = 0, each B_j is overwritten by the solution vectors
+  !>                 (and the residuals in
+  !>                 the overdetermined cases) stored as columns.
+  !>     @param[in]
+  !>     ldb         int. ldb >= max(m,n).
+  !>                 Specifies the leading dimension of matrices B_j.
+  !>     @param[in]
+  !>     strideB     hipblasStride.
+  !>                 Stride from the start of one matrix B_j to the next one B_(j+1).
+  !>                 There is no restriction for the value of strideB. Normal use case is strideB >=
+  !>                 ldb*nrhs.
+  !>     @param[out]
+  !>     info        pointer to an int on the host.
+  !>                 - If info = 0, successful exit.
+  !>                 - If info = j < 0, the argument at position -j is invalid.
+  !>     @param[out]
+  !>     deviceInfo  pointer to int. Array of batchCount integers on the GPU.
+  !>                 - If deviceInfo[j] = 0, successful exit for solution of A_j.
+  !>                 - If deviceInfo[j] = i > 0, the solution of A_j could not be computed because
+  !>                 input
+  !>                 matrix A_j is rank deficient; the i-th diagonal element of its triangular
+  !>                 factor is zero.
+  !>     @param[in]
+  !>     batchCount  int. batchCount >= 0.
+  !>                 Number of matrices in the batch.
+#ifndef USE_CUDA_NAMES
+  interface hipblasSgelsStridedBatched
+    function hipblasSgelsStridedBatched_(handle,trans,m,n,nrhs,A,lda,strideA,B,ldb,strideB,myInfo,deviceInfo,batchCount) bind(c, name="hipblasSgelsStridedBatched")
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSgelsStridedBatched_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_OP_N)),value :: trans
+      integer(c_int),value :: m
+      integer(c_int),value :: n
+      integer(c_int),value :: nrhs
+      type(c_ptr),value :: A
+      integer(c_int),value :: lda
+      integer(c_int64_t),value :: strideA
+      type(c_ptr),value :: B
+      integer(c_int),value :: ldb
+      integer(c_int64_t),value :: strideB
+      type(c_ptr),value :: myInfo
+      type(c_ptr),value :: deviceInfo
+      integer(c_int),value :: batchCount
+    end function
+  end interface
+#endif
+
+#ifndef USE_CUDA_NAMES
+  interface hipblasDgelsStridedBatched
+    function hipblasDgelsStridedBatched_(handle,trans,m,n,nrhs,A,lda,strideA,B,ldb,strideB,myInfo,deviceInfo,batchCount) bind(c, name="hipblasDgelsStridedBatched")
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDgelsStridedBatched_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_OP_N)),value :: trans
+      integer(c_int),value :: m
+      integer(c_int),value :: n
+      integer(c_int),value :: nrhs
+      type(c_ptr),value :: A
+      integer(c_int),value :: lda
+      integer(c_int64_t),value :: strideA
+      type(c_ptr),value :: B
+      integer(c_int),value :: ldb
+      integer(c_int64_t),value :: strideB
+      type(c_ptr),value :: myInfo
+      type(c_ptr),value :: deviceInfo
+      integer(c_int),value :: batchCount
+    end function
+  end interface
+#endif
+
+#ifndef USE_CUDA_NAMES
+  interface hipblasCgelsStridedBatched
+    function hipblasCgelsStridedBatched_(handle,trans,m,n,nrhs,A,lda,strideA,B,ldb,strideB,myInfo,deviceInfo,batchCount) bind(c, name="hipblasCgelsStridedBatched")
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasCgelsStridedBatched_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_OP_N)),value :: trans
+      integer(c_int),value :: m
+      integer(c_int),value :: n
+      integer(c_int),value :: nrhs
+      type(c_ptr),value :: A
+      integer(c_int),value :: lda
+      integer(c_int64_t),value :: strideA
+      type(c_ptr),value :: B
+      integer(c_int),value :: ldb
+      integer(c_int64_t),value :: strideB
+      type(c_ptr),value :: myInfo
+      type(c_ptr),value :: deviceInfo
+      integer(c_int),value :: batchCount
+    end function
+  end interface
+#endif
+
+#ifndef USE_CUDA_NAMES
+  interface hipblasZgelsStridedBatched
+    function hipblasZgelsStridedBatched_(handle,trans,m,n,nrhs,A,lda,strideA,B,ldb,strideB,myInfo,deviceInfo,batchCount) bind(c, name="hipblasZgelsStridedBatched")
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasZgelsStridedBatched_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_OP_N)),value :: trans
+      integer(c_int),value :: m
+      integer(c_int),value :: n
+      integer(c_int),value :: nrhs
+      type(c_ptr),value :: A
+      integer(c_int),value :: lda
+      integer(c_int64_t),value :: strideA
+      type(c_ptr),value :: B
+      integer(c_int),value :: ldb
+      integer(c_int64_t),value :: strideB
+      type(c_ptr),value :: myInfo
+      type(c_ptr),value :: deviceInfo
+      integer(c_int),value :: batchCount
+    end function
+  end interface
+#endif
+
+#ifndef USE_CUDA_NAMES
+  interface hipblasGemmExWithFlags
+    function hipblasGemmExWithFlags_(handle,transA,transB,m,n,k,alpha,A,aType,lda,B,bType,ldb,beta,C,cType,ldc,computeType,algo,flags) bind(c, name="hipblasGemmExWithFlags")
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      use hipfort_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasGemmExWithFlags_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_OP_N)),value :: transA
+      integer(kind(HIPBLAS_OP_N)),value :: transB
+      integer(c_int),value :: m
+      integer(c_int),value :: n
+      integer(c_int),value :: k
+      type(c_ptr),value :: alpha
+      type(c_ptr),value :: A
+      integer(kind(HIP_R_32F)),value :: aType
+      integer(c_int),value :: lda
+      type(c_ptr),value :: B
+      integer(kind(HIP_R_32F)),value :: bType
+      integer(c_int),value :: ldb
+      type(c_ptr),value :: beta
+      type(c_ptr),value :: C
+      integer(kind(HIP_R_32F)),value :: cType
+      integer(c_int),value :: ldc
+      integer(kind(HIPBLAS_COMPUTE_16F)),value :: computeType
+      integer(kind(HIPBLAS_GEMM_DEFAULT)),value :: algo
+      integer(kind(HIPBLAS_GEMM_FLAGS_NONE)),value :: flags
+    end function
+  end interface
+#endif
+
+  interface hipblasGemmEx_64
+#ifdef USE_CUDA_NAMES
+    function hipblasGemmEx_64_(handle,transA,transB,m,n,k,alpha,A,aType,lda,B,bType,ldb,beta,C,cType,ldc,computeType,algo) bind(c, name="cublasGemmEx_64")
+#else
+    function hipblasGemmEx_64_(handle,transA,transB,m,n,k,alpha,A,aType,lda,B,bType,ldb,beta,C,cType,ldc,computeType,algo) bind(c, name="hipblasGemmEx_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      use hipfort_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasGemmEx_64_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_OP_N)),value :: transA
+      integer(kind(HIPBLAS_OP_N)),value :: transB
+      integer(c_int64_t),value :: m
+      integer(c_int64_t),value :: n
+      integer(c_int64_t),value :: k
+      type(c_ptr),value :: alpha
+      type(c_ptr),value :: A
+      integer(kind(HIP_R_32F)),value :: aType
+      integer(c_int64_t),value :: lda
+      type(c_ptr),value :: B
+      integer(kind(HIP_R_32F)),value :: bType
+      integer(c_int64_t),value :: ldb
+      type(c_ptr),value :: beta
+      type(c_ptr),value :: C
+      integer(kind(HIP_R_32F)),value :: cType
+      integer(c_int64_t),value :: ldc
+      integer(kind(HIPBLAS_COMPUTE_16F)),value :: computeType
+      integer(kind(HIPBLAS_GEMM_DEFAULT)),value :: algo
+    end function
+  end interface
+
+#ifndef USE_CUDA_NAMES
+  interface hipblasGemmExWithFlags_64
+    function hipblasGemmExWithFlags_64_(handle,transA,transB,m,n,k,alpha,A,aType,lda,B,bType,ldb,beta,C,cType,ldc,computeType,algo,flags) bind(c, name="hipblasGemmExWithFlags_64")
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      use hipfort_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasGemmExWithFlags_64_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_OP_N)),value :: transA
+      integer(kind(HIPBLAS_OP_N)),value :: transB
+      integer(c_int64_t),value :: m
+      integer(c_int64_t),value :: n
+      integer(c_int64_t),value :: k
+      type(c_ptr),value :: alpha
+      type(c_ptr),value :: A
+      integer(kind(HIP_R_32F)),value :: aType
+      integer(c_int64_t),value :: lda
+      type(c_ptr),value :: B
+      integer(kind(HIP_R_32F)),value :: bType
+      integer(c_int64_t),value :: ldb
+      type(c_ptr),value :: beta
+      type(c_ptr),value :: C
+      integer(kind(HIP_R_32F)),value :: cType
+      integer(c_int64_t),value :: ldc
+      integer(kind(HIPBLAS_COMPUTE_16F)),value :: computeType
+      integer(kind(HIPBLAS_GEMM_DEFAULT)),value :: algo
+      integer(kind(HIPBLAS_GEMM_FLAGS_NONE)),value :: flags
+    end function
+  end interface
+#endif
+
+#ifndef USE_CUDA_NAMES
+  interface hipblasGemmBatchedExWithFlags
+    function hipblasGemmBatchedExWithFlags_(handle,transA,transB,m,n,k,alpha,A,aType,lda,B,bType,ldb,beta,C,cType,ldc,batchCount,computeType,algo,flags) bind(c, name="hipblasGemmBatchedExWithFlags")
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      use hipfort_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasGemmBatchedExWithFlags_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_OP_N)),value :: transA
+      integer(kind(HIPBLAS_OP_N)),value :: transB
+      integer(c_int),value :: m
+      integer(c_int),value :: n
+      integer(c_int),value :: k
+      type(c_ptr),value :: alpha
+      type(c_ptr) :: A
+      integer(kind(HIP_R_32F)),value :: aType
+      integer(c_int),value :: lda
+      type(c_ptr) :: B
+      integer(kind(HIP_R_32F)),value :: bType
+      integer(c_int),value :: ldb
+      type(c_ptr),value :: beta
+      type(c_ptr) :: C
+      integer(kind(HIP_R_32F)),value :: cType
+      integer(c_int),value :: ldc
+      integer(c_int),value :: batchCount
+      integer(kind(HIPBLAS_COMPUTE_16F)),value :: computeType
+      integer(kind(HIPBLAS_GEMM_DEFAULT)),value :: algo
+      integer(kind(HIPBLAS_GEMM_FLAGS_NONE)),value :: flags
+    end function
+  end interface
+#endif
+
+  interface hipblasGemmBatchedEx_64
+#ifdef USE_CUDA_NAMES
+    function hipblasGemmBatchedEx_64_(handle,transA,transB,m,n,k,alpha,A,aType,lda,B,bType,ldb,beta,C,cType,ldc,batchCount,computeType,algo) bind(c, name="cublasGemmBatchedEx_64")
+#else
+    function hipblasGemmBatchedEx_64_(handle,transA,transB,m,n,k,alpha,A,aType,lda,B,bType,ldb,beta,C,cType,ldc,batchCount,computeType,algo) bind(c, name="hipblasGemmBatchedEx_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      use hipfort_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasGemmBatchedEx_64_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_OP_N)),value :: transA
+      integer(kind(HIPBLAS_OP_N)),value :: transB
+      integer(c_int64_t),value :: m
+      integer(c_int64_t),value :: n
+      integer(c_int64_t),value :: k
+      type(c_ptr),value :: alpha
+      type(c_ptr) :: A
+      integer(kind(HIP_R_32F)),value :: aType
+      integer(c_int64_t),value :: lda
+      type(c_ptr) :: B
+      integer(kind(HIP_R_32F)),value :: bType
+      integer(c_int64_t),value :: ldb
+      type(c_ptr),value :: beta
+      type(c_ptr) :: C
+      integer(kind(HIP_R_32F)),value :: cType
+      integer(c_int64_t),value :: ldc
+      integer(c_int64_t),value :: batchCount
+      integer(kind(HIPBLAS_COMPUTE_16F)),value :: computeType
+      integer(kind(HIPBLAS_GEMM_DEFAULT)),value :: algo
+    end function
+  end interface
+
+#ifndef USE_CUDA_NAMES
+  interface hipblasGemmBatchedExWithFlags_64
+    function hipblasGemmBatchedExWithFlags_64_(handle,transA,transB,m,n,k,alpha,A,aType,lda,B,bType,ldb,beta,C,cType,ldc,batchCount,computeType,algo,flags) bind(c, name="hipblasGemmBatchedExWithFlags_64")
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      use hipfort_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasGemmBatchedExWithFlags_64_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_OP_N)),value :: transA
+      integer(kind(HIPBLAS_OP_N)),value :: transB
+      integer(c_int64_t),value :: m
+      integer(c_int64_t),value :: n
+      integer(c_int64_t),value :: k
+      type(c_ptr),value :: alpha
+      type(c_ptr) :: A
+      integer(kind(HIP_R_32F)),value :: aType
+      integer(c_int64_t),value :: lda
+      type(c_ptr) :: B
+      integer(kind(HIP_R_32F)),value :: bType
+      integer(c_int64_t),value :: ldb
+      type(c_ptr),value :: beta
+      type(c_ptr) :: C
+      integer(kind(HIP_R_32F)),value :: cType
+      integer(c_int64_t),value :: ldc
+      integer(c_int64_t),value :: batchCount
+      integer(kind(HIPBLAS_COMPUTE_16F)),value :: computeType
+      integer(kind(HIPBLAS_GEMM_DEFAULT)),value :: algo
+      integer(kind(HIPBLAS_GEMM_FLAGS_NONE)),value :: flags
+    end function
+  end interface
+#endif
+
+#ifndef USE_CUDA_NAMES
+  interface hipblasGemmStridedBatchedExWithFlags
+    function hipblasGemmStridedBatchedExWithFlags_(handle,transA,transB,m,n,k,alpha,A,aType,lda,strideA,B,bType,ldb,strideB,beta,C,cType,ldc,strideC,batchCount,computeType,algo,flags) bind(c, name="hipblasGemmStridedBatchedExWithFlags")
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      use hipfort_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasGemmStridedBatchedExWithFlags_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_OP_N)),value :: transA
+      integer(kind(HIPBLAS_OP_N)),value :: transB
+      integer(c_int),value :: m
+      integer(c_int),value :: n
+      integer(c_int),value :: k
+      type(c_ptr),value :: alpha
+      type(c_ptr),value :: A
+      integer(kind(HIP_R_32F)),value :: aType
+      integer(c_int),value :: lda
+      integer(c_int64_t),value :: strideA
+      type(c_ptr),value :: B
+      integer(kind(HIP_R_32F)),value :: bType
+      integer(c_int),value :: ldb
+      integer(c_int64_t),value :: strideB
+      type(c_ptr),value :: beta
+      type(c_ptr),value :: C
+      integer(kind(HIP_R_32F)),value :: cType
+      integer(c_int),value :: ldc
+      integer(c_int64_t),value :: strideC
+      integer(c_int),value :: batchCount
+      integer(kind(HIPBLAS_COMPUTE_16F)),value :: computeType
+      integer(kind(HIPBLAS_GEMM_DEFAULT)),value :: algo
+      integer(kind(HIPBLAS_GEMM_FLAGS_NONE)),value :: flags
+    end function
+  end interface
+#endif
+
+  interface hipblasGemmStridedBatchedEx_64
+#ifdef USE_CUDA_NAMES
+    function hipblasGemmStridedBatchedEx_64_(handle,transA,transB,m,n,k,alpha,A,aType,lda,strideA,B,bType,ldb,strideB,beta,C,cType,ldc,strideC,batchCount,computeType,algo) bind(c, name="cublasGemmStridedBatchedEx_64")
+#else
+    function hipblasGemmStridedBatchedEx_64_(handle,transA,transB,m,n,k,alpha,A,aType,lda,strideA,B,bType,ldb,strideB,beta,C,cType,ldc,strideC,batchCount,computeType,algo) bind(c, name="hipblasGemmStridedBatchedEx_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      use hipfort_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasGemmStridedBatchedEx_64_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_OP_N)),value :: transA
+      integer(kind(HIPBLAS_OP_N)),value :: transB
+      integer(c_int64_t),value :: m
+      integer(c_int64_t),value :: n
+      integer(c_int64_t),value :: k
+      type(c_ptr),value :: alpha
+      type(c_ptr),value :: A
+      integer(kind(HIP_R_32F)),value :: aType
+      integer(c_int64_t),value :: lda
+      integer(c_int64_t),value :: strideA
+      type(c_ptr),value :: B
+      integer(kind(HIP_R_32F)),value :: bType
+      integer(c_int64_t),value :: ldb
+      integer(c_int64_t),value :: strideB
+      type(c_ptr),value :: beta
+      type(c_ptr),value :: C
+      integer(kind(HIP_R_32F)),value :: cType
+      integer(c_int64_t),value :: ldc
+      integer(c_int64_t),value :: strideC
+      integer(c_int64_t),value :: batchCount
+      integer(kind(HIPBLAS_COMPUTE_16F)),value :: computeType
+      integer(kind(HIPBLAS_GEMM_DEFAULT)),value :: algo
+    end function
+  end interface
+
+#ifndef USE_CUDA_NAMES
+  interface hipblasGemmStridedBatchedExWithFlags_64
+    function hipblasGemmStridedBatchedExWithFlags_64_(handle,transA,transB,m,n,k,alpha,A,aType,lda,strideA,B,bType,ldb,strideB,beta,C,cType,ldc,strideC,batchCount,computeType,algo,flags) bind(c, name="hipblasGemmStridedBatchedExWithFlags_64")
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      use hipfort_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasGemmStridedBatchedExWithFlags_64_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_OP_N)),value :: transA
+      integer(kind(HIPBLAS_OP_N)),value :: transB
+      integer(c_int64_t),value :: m
+      integer(c_int64_t),value :: n
+      integer(c_int64_t),value :: k
+      type(c_ptr),value :: alpha
+      type(c_ptr),value :: A
+      integer(kind(HIP_R_32F)),value :: aType
+      integer(c_int64_t),value :: lda
+      integer(c_int64_t),value :: strideA
+      type(c_ptr),value :: B
+      integer(kind(HIP_R_32F)),value :: bType
+      integer(c_int64_t),value :: ldb
+      integer(c_int64_t),value :: strideB
+      type(c_ptr),value :: beta
+      type(c_ptr),value :: C
+      integer(kind(HIP_R_32F)),value :: cType
+      integer(c_int64_t),value :: ldc
+      integer(c_int64_t),value :: strideC
+      integer(c_int64_t),value :: batchCount
+      integer(kind(HIPBLAS_COMPUTE_16F)),value :: computeType
+      integer(kind(HIPBLAS_GEMM_DEFAULT)),value :: algo
+      integer(kind(HIPBLAS_GEMM_FLAGS_NONE)),value :: flags
+    end function
+  end interface
+#endif
+
+  !>  \brief  BLAS EX API
+  !>
+  !>     \details
+  !>
+  !>     The syrkEx function performs one of the matrix-matrix operations for a symmetric rank-k
+  !>     update:
+  !>
+  !>         C := alpha*op( A )*op( A )^T + beta*C
+  !>
+  !>     where ``alpha`` and ``beta`` are scalars, ``op(A)`` is an ``n`` by ``k`` matrix, and
+  !>     ``C`` is a symmetric ``n`` x ``n`` matrix stored as either upper or lower.
+  !>
+  !>         op( A ) = A, and A is n by k if transA == HIPBLAS_OP_N
+  !>         op( A ) = A^T and A is k by n if transA == HIPBLAS_OP_T
+  !>
+  !>     - Supported types are determined by the backend. See the rocBLAS or cuBLAS documentation.
+  !>
+  !>     @param[in]
+  !>     handle    [hipblasHandle_t]
+  !>               handle to the hipBLAS library context queue.
+  !>     @param[in]
+  !>     uplo      [hipblasFillMode_t]
+  !>               Specifies whether the matrix C is an upper or lower triangular matrix as follows:
+  !>               - HIPBLAS_FILL_MODE_UPPER:  C is an upper triangular matrix.
+  !>               - HIPBLAS_FILL_MODE_LOWER:  C is a  lower triangular matrix.
+  !>     @param[in]
+  !>     transA    [hipblasOperation_t]
+  !>               specifies the form of op( A ).
+  !>     @param[in]
+  !>     n         [int]
+  !>               matrix dimension n.
+  !>     @param[in]
+  !>     k         [int]
+  !>               matrix dimension k.
+  !>     @param[in]
+  !>     alpha     [const void *]
+  !>               device pointer or host pointer specifying the scalar alpha. Same datatype as
+  !>               computeType.
+  !>     @param[in]
+  !>     A         [void *]
+  !>               device pointer storing matrix A.
+  !>     @param[in]
+  !>     aType
+  !>     [hipDataType]
+  !>               specifies the datatype of matrix A.
+  !>     @param[in]
+  !>     lda       [int]
+  !>               specifies the leading dimension of A.
+  !>     @param[in]
+  !>     beta      [const void *]
+  !>               device pointer or host pointer specifying the scalar beta. Same datatype as
+  !>               computeType.
+  !>     @param[in]
+  !>     C         [void *]
+  !>               device pointer storing matrix C.
+  !>     @param[in]
+  !>     cType
+  !>     [hipDataType]
+  !>               specifies the datatype of matrix C.
+  !>     @param[in]
+  !>     ldc       [int]
+  !>               specifies the leading dimension of C.
+  !>     @param[in]
+  !>     computeType
+  !>     [hipDataType]
+  !>               specifies the datatype of the computation.
+#ifndef USE_CUDA_NAMES
+  interface hipblasSyrkEx
+    function hipblasSyrkEx_(handle,uplo,transA,n,k,alpha,A,aType,lda,beta,C,cType,ldc,computeType) bind(c, name="hipblasSyrkEx")
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      use hipfort_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasSyrkEx_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
+      integer(kind(HIPBLAS_OP_N)),value :: transA
+      integer(c_int),value :: n
+      integer(c_int),value :: k
+      type(c_ptr),value :: alpha
+      type(c_ptr),value :: A
+      integer(kind(HIP_R_32F)),value :: aType
+      integer(c_int),value :: lda
+      type(c_ptr),value :: beta
+      type(c_ptr),value :: C
+      integer(kind(HIP_R_32F)),value :: cType
+      integer(c_int),value :: ldc
+      integer(kind(HIP_R_32F)),value :: computeType
+    end function
+  end interface
+#endif
+
+  !>  \brief  BLAS EX API
+  !>
+  !>     \details
+  !>
+  !>     The herkEx function performs one of the matrix-matrix operations for a Hermitian rank-k
+  !>     update:
+  !>
+  !>         C := alpha*op( A )*op( A )^H + beta*C
+  !>
+  !>     where ``alpha`` and ``beta`` are scalars, ``op(A)`` is an ``n`` by ``k`` matrix, and
+  !>     ``C`` is a Hermitian ``n`` x ``n`` matrix stored as either upper or lower.
+  !>
+  !>         op( A ) = A, and A is n by k if transA == HIPBLAS_OP_N
+  !>         op( A ) = A^H and A is k by n if transA == HIPBLAS_OP_C
+  !>
+  !>     - Supported types are determined by the backend. See the rocBLAS or cuBLAS documentation.
+  !>
+  !>     @param[in]
+  !>     handle    [hipblasHandle_t]
+  !>               handle to the hipBLAS library context queue.
+  !>     @param[in]
+  !>     uplo      [hipblasFillMode_t]
+  !>               Specifies whether the matrix C is an upper or lower triangular matrix as follows:
+  !>               - HIPBLAS_FILL_MODE_UPPER:  C is an upper triangular matrix.
+  !>               - HIPBLAS_FILL_MODE_LOWER:  C is a  lower triangular matrix.
+  !>     @param[in]
+  !>     transA    [hipblasOperation_t]
+  !>               specifies the form of op( A ).
+  !>     @param[in]
+  !>     n         [int]
+  !>               matrix dimension n.
+  !>     @param[in]
+  !>     k         [int]
+  !>               matrix dimension k.
+  !>     @param[in]
+  !>     alpha     [const void *]
+  !>               device pointer or host pointer specifying the scalar alpha. Same datatype as
+  !>               computeType.
+  !>     @param[in]
+  !>     A         [void *]
+  !>               device pointer storing matrix A.
+  !>     @param[in]
+  !>     aType
+  !>     [hipDataType]
+  !>               specifies the datatype of matrix A.
+  !>     @param[in]
+  !>     lda       [int]
+  !>               specifies the leading dimension of A.
+  !>     @param[in]
+  !>     beta      [const void *]
+  !>               device pointer or host pointer specifying the scalar beta. Same datatype as
+  !>               computeType.
+  !>     @param[in]
+  !>     C         [void *]
+  !>               device pointer storing matrix C.
+  !>     @param[in]
+  !>     cType
+  !>     [hipDataType]
+  !>               specifies the datatype of matrix C.
+  !>     @param[in]
+  !>     ldc       [int]
+  !>               specifies the leading dimension of C.
+  !>     @param[in]
+  !>     computeType
+  !>     [hipDataType]
+  !>               specifies the datatype of the computation.
+#ifndef USE_CUDA_NAMES
+  interface hipblasHerkEx
+    function hipblasHerkEx_(handle,uplo,transA,n,k,alpha,A,aType,lda,beta,C,cType,ldc,computeType) bind(c, name="hipblasHerkEx")
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      use hipfort_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasHerkEx_
+      type(c_ptr),value :: handle
+      integer(kind(HIPBLAS_FILL_MODE_UPPER)),value :: uplo
+      integer(kind(HIPBLAS_OP_N)),value :: transA
+      integer(c_int),value :: n
+      integer(c_int),value :: k
+      type(c_ptr),value :: alpha
+      type(c_ptr),value :: A
+      integer(kind(HIP_R_32F)),value :: aType
+      integer(c_int),value :: lda
+      type(c_ptr),value :: beta
+      type(c_ptr),value :: C
+      integer(kind(HIP_R_32F)),value :: cType
+      integer(c_int),value :: ldc
+      integer(kind(HIP_R_32F)),value :: computeType
+    end function
+  end interface
+#endif
+
+  interface hipblasAxpyEx_64
+#ifdef USE_CUDA_NAMES
+    function hipblasAxpyEx_64_(handle,n,alpha,alphaType,x,xType,incx,y,yType,incy,executionType) bind(c, name="cublasAxpyEx_64")
+#else
+    function hipblasAxpyEx_64_(handle,n,alpha,alphaType,x,xType,incx,y,yType,incy,executionType) bind(c, name="hipblasAxpyEx_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      use hipfort_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasAxpyEx_64_
+      type(c_ptr),value :: handle
+      integer(c_int64_t),value :: n
+      type(c_ptr),value :: alpha
+      integer(kind(HIP_R_32F)),value :: alphaType
+      type(c_ptr),value :: x
+      integer(kind(HIP_R_32F)),value :: xType
+      integer(c_int64_t),value :: incx
+      type(c_ptr),value :: y
+      integer(kind(HIP_R_32F)),value :: yType
+      integer(c_int64_t),value :: incy
+      integer(kind(HIP_R_32F)),value :: executionType
+    end function
+  end interface
+
+  interface hipblasAxpyBatchedEx_64
+#ifdef USE_CUDA_NAMES
+    function hipblasAxpyBatchedEx_64_(handle,n,alpha,alphaType,x,xType,incx,y,yType,incy,batchCount,executionType) bind(c, name="cublasAxpyBatchedEx_64")
+#else
+    function hipblasAxpyBatchedEx_64_(handle,n,alpha,alphaType,x,xType,incx,y,yType,incy,batchCount,executionType) bind(c, name="hipblasAxpyBatchedEx_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      use hipfort_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasAxpyBatchedEx_64_
+      type(c_ptr),value :: handle
+      integer(c_int64_t),value :: n
+      type(c_ptr),value :: alpha
+      integer(kind(HIP_R_32F)),value :: alphaType
+      type(c_ptr),value :: x
+      integer(kind(HIP_R_32F)),value :: xType
+      integer(c_int64_t),value :: incx
+      type(c_ptr),value :: y
+      integer(kind(HIP_R_32F)),value :: yType
+      integer(c_int64_t),value :: incy
+      integer(c_int64_t),value :: batchCount
+      integer(kind(HIP_R_32F)),value :: executionType
+    end function
+  end interface
+
+  interface hipblasAxpyStridedBatchedEx_64
+#ifdef USE_CUDA_NAMES
+    function hipblasAxpyStridedBatchedEx_64_(handle,n,alpha,alphaType,x,xType,incx,stridex,y,yType,incy,stridey,batchCount,executionType) bind(c, name="cublasAxpyStridedBatchedEx_64")
+#else
+    function hipblasAxpyStridedBatchedEx_64_(handle,n,alpha,alphaType,x,xType,incx,stridex,y,yType,incy,stridey,batchCount,executionType) bind(c, name="hipblasAxpyStridedBatchedEx_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      use hipfort_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasAxpyStridedBatchedEx_64_
+      type(c_ptr),value :: handle
+      integer(c_int64_t),value :: n
+      type(c_ptr),value :: alpha
+      integer(kind(HIP_R_32F)),value :: alphaType
+      type(c_ptr),value :: x
+      integer(kind(HIP_R_32F)),value :: xType
+      integer(c_int64_t),value :: incx
+      integer(c_int64_t),value :: stridex
+      type(c_ptr),value :: y
+      integer(kind(HIP_R_32F)),value :: yType
+      integer(c_int64_t),value :: incy
+      integer(c_int64_t),value :: stridey
+      integer(c_int64_t),value :: batchCount
+      integer(kind(HIP_R_32F)),value :: executionType
+    end function
+  end interface
+
+  interface hipblasDotEx_64
+#ifdef USE_CUDA_NAMES
+    function hipblasDotEx_64_(handle,n,x,xType,incx,y,yType,incy,myResult,resultType,executionType) bind(c, name="cublasDotEx_64")
+#else
+    function hipblasDotEx_64_(handle,n,x,xType,incx,y,yType,incy,myResult,resultType,executionType) bind(c, name="hipblasDotEx_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      use hipfort_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDotEx_64_
+      type(c_ptr),value :: handle
+      integer(c_int64_t),value :: n
+      type(c_ptr),value :: x
+      integer(kind(HIP_R_32F)),value :: xType
+      integer(c_int64_t),value :: incx
+      type(c_ptr),value :: y
+      integer(kind(HIP_R_32F)),value :: yType
+      integer(c_int64_t),value :: incy
+      type(c_ptr),value :: myResult
+      integer(kind(HIP_R_32F)),value :: resultType
+      integer(kind(HIP_R_32F)),value :: executionType
+    end function
+  end interface
+
+  interface hipblasDotcEx_64
+#ifdef USE_CUDA_NAMES
+    function hipblasDotcEx_64_(handle,n,x,xType,incx,y,yType,incy,myResult,resultType,executionType) bind(c, name="cublasDotcEx_64")
+#else
+    function hipblasDotcEx_64_(handle,n,x,xType,incx,y,yType,incy,myResult,resultType,executionType) bind(c, name="hipblasDotcEx_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      use hipfort_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDotcEx_64_
+      type(c_ptr),value :: handle
+      integer(c_int64_t),value :: n
+      type(c_ptr),value :: x
+      integer(kind(HIP_R_32F)),value :: xType
+      integer(c_int64_t),value :: incx
+      type(c_ptr),value :: y
+      integer(kind(HIP_R_32F)),value :: yType
+      integer(c_int64_t),value :: incy
+      type(c_ptr),value :: myResult
+      integer(kind(HIP_R_32F)),value :: resultType
+      integer(kind(HIP_R_32F)),value :: executionType
+    end function
+  end interface
+
+  interface hipblasDotBatchedEx_64
+#ifdef USE_CUDA_NAMES
+    function hipblasDotBatchedEx_64_(handle,n,x,xType,incx,y,yType,incy,batchCount,myResult,resultType,executionType) bind(c, name="cublasDotBatchedEx_64")
+#else
+    function hipblasDotBatchedEx_64_(handle,n,x,xType,incx,y,yType,incy,batchCount,myResult,resultType,executionType) bind(c, name="hipblasDotBatchedEx_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      use hipfort_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDotBatchedEx_64_
+      type(c_ptr),value :: handle
+      integer(c_int64_t),value :: n
+      type(c_ptr),value :: x
+      integer(kind(HIP_R_32F)),value :: xType
+      integer(c_int64_t),value :: incx
+      type(c_ptr),value :: y
+      integer(kind(HIP_R_32F)),value :: yType
+      integer(c_int64_t),value :: incy
+      integer(c_int64_t),value :: batchCount
+      type(c_ptr),value :: myResult
+      integer(kind(HIP_R_32F)),value :: resultType
+      integer(kind(HIP_R_32F)),value :: executionType
+    end function
+  end interface
+
+  interface hipblasDotcBatchedEx_64
+#ifdef USE_CUDA_NAMES
+    function hipblasDotcBatchedEx_64_(handle,n,x,xType,incx,y,yType,incy,batchCount,myResult,resultType,executionType) bind(c, name="cublasDotcBatchedEx_64")
+#else
+    function hipblasDotcBatchedEx_64_(handle,n,x,xType,incx,y,yType,incy,batchCount,myResult,resultType,executionType) bind(c, name="hipblasDotcBatchedEx_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      use hipfort_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDotcBatchedEx_64_
+      type(c_ptr),value :: handle
+      integer(c_int64_t),value :: n
+      type(c_ptr),value :: x
+      integer(kind(HIP_R_32F)),value :: xType
+      integer(c_int64_t),value :: incx
+      type(c_ptr),value :: y
+      integer(kind(HIP_R_32F)),value :: yType
+      integer(c_int64_t),value :: incy
+      integer(c_int64_t),value :: batchCount
+      type(c_ptr),value :: myResult
+      integer(kind(HIP_R_32F)),value :: resultType
+      integer(kind(HIP_R_32F)),value :: executionType
+    end function
+  end interface
+
+  interface hipblasDotStridedBatchedEx_64
+#ifdef USE_CUDA_NAMES
+    function hipblasDotStridedBatchedEx_64_(handle,n,x,xType,incx,stridex,y,yType,incy,stridey,batchCount,myResult,resultType,executionType) bind(c, name="cublasDotStridedBatchedEx_64")
+#else
+    function hipblasDotStridedBatchedEx_64_(handle,n,x,xType,incx,stridex,y,yType,incy,stridey,batchCount,myResult,resultType,executionType) bind(c, name="hipblasDotStridedBatchedEx_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      use hipfort_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDotStridedBatchedEx_64_
+      type(c_ptr),value :: handle
+      integer(c_int64_t),value :: n
+      type(c_ptr),value :: x
+      integer(kind(HIP_R_32F)),value :: xType
+      integer(c_int64_t),value :: incx
+      integer(c_int64_t),value :: stridex
+      type(c_ptr),value :: y
+      integer(kind(HIP_R_32F)),value :: yType
+      integer(c_int64_t),value :: incy
+      integer(c_int64_t),value :: stridey
+      integer(c_int64_t),value :: batchCount
+      type(c_ptr),value :: myResult
+      integer(kind(HIP_R_32F)),value :: resultType
+      integer(kind(HIP_R_32F)),value :: executionType
+    end function
+  end interface
+
+  interface hipblasDotcStridedBatchedEx_64
+#ifdef USE_CUDA_NAMES
+    function hipblasDotcStridedBatchedEx_64_(handle,n,x,xType,incx,stridex,y,yType,incy,stridey,batchCount,myResult,resultType,executionType) bind(c, name="cublasDotcStridedBatchedEx_64")
+#else
+    function hipblasDotcStridedBatchedEx_64_(handle,n,x,xType,incx,stridex,y,yType,incy,stridey,batchCount,myResult,resultType,executionType) bind(c, name="hipblasDotcStridedBatchedEx_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      use hipfort_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasDotcStridedBatchedEx_64_
+      type(c_ptr),value :: handle
+      integer(c_int64_t),value :: n
+      type(c_ptr),value :: x
+      integer(kind(HIP_R_32F)),value :: xType
+      integer(c_int64_t),value :: incx
+      integer(c_int64_t),value :: stridex
+      type(c_ptr),value :: y
+      integer(kind(HIP_R_32F)),value :: yType
+      integer(c_int64_t),value :: incy
+      integer(c_int64_t),value :: stridey
+      integer(c_int64_t),value :: batchCount
+      type(c_ptr),value :: myResult
+      integer(kind(HIP_R_32F)),value :: resultType
+      integer(kind(HIP_R_32F)),value :: executionType
+    end function
+  end interface
+
+  interface hipblasNrm2Ex_64
+#ifdef USE_CUDA_NAMES
+    function hipblasNrm2Ex_64_(handle,n,x,xType,incx,myResult,resultType,executionType) bind(c, name="cublasNrm2Ex_64")
+#else
+    function hipblasNrm2Ex_64_(handle,n,x,xType,incx,myResult,resultType,executionType) bind(c, name="hipblasNrm2Ex_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      use hipfort_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasNrm2Ex_64_
+      type(c_ptr),value :: handle
+      integer(c_int64_t),value :: n
+      type(c_ptr),value :: x
+      integer(kind(HIP_R_32F)),value :: xType
+      integer(c_int64_t),value :: incx
+      type(c_ptr),value :: myResult
+      integer(kind(HIP_R_32F)),value :: resultType
+      integer(kind(HIP_R_32F)),value :: executionType
+    end function
+  end interface
+
+  interface hipblasNrm2BatchedEx_64
+#ifdef USE_CUDA_NAMES
+    function hipblasNrm2BatchedEx_64_(handle,n,x,xType,incx,batchCount,myResult,resultType,executionType) bind(c, name="cublasNrm2BatchedEx_64")
+#else
+    function hipblasNrm2BatchedEx_64_(handle,n,x,xType,incx,batchCount,myResult,resultType,executionType) bind(c, name="hipblasNrm2BatchedEx_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      use hipfort_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasNrm2BatchedEx_64_
+      type(c_ptr),value :: handle
+      integer(c_int64_t),value :: n
+      type(c_ptr),value :: x
+      integer(kind(HIP_R_32F)),value :: xType
+      integer(c_int64_t),value :: incx
+      integer(c_int64_t),value :: batchCount
+      type(c_ptr),value :: myResult
+      integer(kind(HIP_R_32F)),value :: resultType
+      integer(kind(HIP_R_32F)),value :: executionType
+    end function
+  end interface
+
+  interface hipblasNrm2StridedBatchedEx_64
+#ifdef USE_CUDA_NAMES
+    function hipblasNrm2StridedBatchedEx_64_(handle,n,x,xType,incx,stridex,batchCount,myResult,resultType,executionType) bind(c, name="cublasNrm2StridedBatchedEx_64")
+#else
+    function hipblasNrm2StridedBatchedEx_64_(handle,n,x,xType,incx,stridex,batchCount,myResult,resultType,executionType) bind(c, name="hipblasNrm2StridedBatchedEx_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      use hipfort_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasNrm2StridedBatchedEx_64_
+      type(c_ptr),value :: handle
+      integer(c_int64_t),value :: n
+      type(c_ptr),value :: x
+      integer(kind(HIP_R_32F)),value :: xType
+      integer(c_int64_t),value :: incx
+      integer(c_int64_t),value :: stridex
+      integer(c_int64_t),value :: batchCount
+      type(c_ptr),value :: myResult
+      integer(kind(HIP_R_32F)),value :: resultType
+      integer(kind(HIP_R_32F)),value :: executionType
+    end function
+  end interface
+
+  interface hipblasRotEx_64
+#ifdef USE_CUDA_NAMES
+    function hipblasRotEx_64_(handle,n,x,xType,incx,y,yType,incy,c,s,csType,executionType) bind(c, name="cublasRotEx_64")
+#else
+    function hipblasRotEx_64_(handle,n,x,xType,incx,y,yType,incy,c,s,csType,executionType) bind(c, name="hipblasRotEx_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      use hipfort_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasRotEx_64_
+      type(c_ptr),value :: handle
+      integer(c_int64_t),value :: n
+      type(c_ptr),value :: x
+      integer(kind(HIP_R_32F)),value :: xType
+      integer(c_int64_t),value :: incx
+      type(c_ptr),value :: y
+      integer(kind(HIP_R_32F)),value :: yType
+      integer(c_int64_t),value :: incy
+      type(c_ptr),value :: c
+      type(c_ptr),value :: s
+      integer(kind(HIP_R_32F)),value :: csType
+      integer(kind(HIP_R_32F)),value :: executionType
+    end function
+  end interface
+
+  interface hipblasRotBatchedEx_64
+#ifdef USE_CUDA_NAMES
+    function hipblasRotBatchedEx_64_(handle,n,x,xType,incx,y,yType,incy,c,s,csType,batchCount,executionType) bind(c, name="cublasRotBatchedEx_64")
+#else
+    function hipblasRotBatchedEx_64_(handle,n,x,xType,incx,y,yType,incy,c,s,csType,batchCount,executionType) bind(c, name="hipblasRotBatchedEx_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      use hipfort_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasRotBatchedEx_64_
+      type(c_ptr),value :: handle
+      integer(c_int64_t),value :: n
+      type(c_ptr),value :: x
+      integer(kind(HIP_R_32F)),value :: xType
+      integer(c_int64_t),value :: incx
+      type(c_ptr),value :: y
+      integer(kind(HIP_R_32F)),value :: yType
+      integer(c_int64_t),value :: incy
+      type(c_ptr),value :: c
+      type(c_ptr),value :: s
+      integer(kind(HIP_R_32F)),value :: csType
+      integer(c_int64_t),value :: batchCount
+      integer(kind(HIP_R_32F)),value :: executionType
+    end function
+  end interface
+
+  interface hipblasRotStridedBatchedEx_64
+#ifdef USE_CUDA_NAMES
+    function hipblasRotStridedBatchedEx_64_(handle,n,x,xType,incx,stridex,y,yType,incy,stridey,c,s,csType,batchCount,executionType) bind(c, name="cublasRotStridedBatchedEx_64")
+#else
+    function hipblasRotStridedBatchedEx_64_(handle,n,x,xType,incx,stridex,y,yType,incy,stridey,c,s,csType,batchCount,executionType) bind(c, name="hipblasRotStridedBatchedEx_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      use hipfort_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasRotStridedBatchedEx_64_
+      type(c_ptr),value :: handle
+      integer(c_int64_t),value :: n
+      type(c_ptr),value :: x
+      integer(kind(HIP_R_32F)),value :: xType
+      integer(c_int64_t),value :: incx
+      integer(c_int64_t),value :: stridex
+      type(c_ptr),value :: y
+      integer(kind(HIP_R_32F)),value :: yType
+      integer(c_int64_t),value :: incy
+      integer(c_int64_t),value :: stridey
+      type(c_ptr),value :: c
+      type(c_ptr),value :: s
+      integer(kind(HIP_R_32F)),value :: csType
+      integer(c_int64_t),value :: batchCount
+      integer(kind(HIP_R_32F)),value :: executionType
+    end function
+  end interface
+
+  interface hipblasScalEx_64
+#ifdef USE_CUDA_NAMES
+    function hipblasScalEx_64_(handle,n,alpha,alphaType,x,xType,incx,executionType) bind(c, name="cublasScalEx_64")
+#else
+    function hipblasScalEx_64_(handle,n,alpha,alphaType,x,xType,incx,executionType) bind(c, name="hipblasScalEx_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      use hipfort_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasScalEx_64_
+      type(c_ptr),value :: handle
+      integer(c_int64_t),value :: n
+      type(c_ptr),value :: alpha
+      integer(kind(HIP_R_32F)),value :: alphaType
+      type(c_ptr),value :: x
+      integer(kind(HIP_R_32F)),value :: xType
+      integer(c_int64_t),value :: incx
+      integer(kind(HIP_R_32F)),value :: executionType
+    end function
+  end interface
+
+  interface hipblasScalBatchedEx_64
+#ifdef USE_CUDA_NAMES
+    function hipblasScalBatchedEx_64_(handle,n,alpha,alphaType,x,xType,incx,batchCount,executionType) bind(c, name="cublasScalBatchedEx_64")
+#else
+    function hipblasScalBatchedEx_64_(handle,n,alpha,alphaType,x,xType,incx,batchCount,executionType) bind(c, name="hipblasScalBatchedEx_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      use hipfort_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasScalBatchedEx_64_
+      type(c_ptr),value :: handle
+      integer(c_int64_t),value :: n
+      type(c_ptr),value :: alpha
+      integer(kind(HIP_R_32F)),value :: alphaType
+      type(c_ptr),value :: x
+      integer(kind(HIP_R_32F)),value :: xType
+      integer(c_int64_t),value :: incx
+      integer(c_int64_t),value :: batchCount
+      integer(kind(HIP_R_32F)),value :: executionType
+    end function
+  end interface
+
+  interface hipblasScalStridedBatchedEx_64
+#ifdef USE_CUDA_NAMES
+    function hipblasScalStridedBatchedEx_64_(handle,n,alpha,alphaType,x,xType,incx,stridex,batchCount,executionType) bind(c, name="cublasScalStridedBatchedEx_64")
+#else
+    function hipblasScalStridedBatchedEx_64_(handle,n,alpha,alphaType,x,xType,incx,stridex,batchCount,executionType) bind(c, name="hipblasScalStridedBatchedEx_64")
+#endif
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      use hipfort_enums
+      implicit none
+      integer(kind(HIPBLAS_STATUS_SUCCESS)) :: hipblasScalStridedBatchedEx_64_
+      type(c_ptr),value :: handle
+      integer(c_int64_t),value :: n
+      type(c_ptr),value :: alpha
+      integer(kind(HIP_R_32F)),value :: alphaType
+      type(c_ptr),value :: x
+      integer(kind(HIP_R_32F)),value :: xType
+      integer(c_int64_t),value :: incx
+      integer(c_int64_t),value :: stridex
+      integer(c_int64_t),value :: batchCount
+      integer(kind(HIP_R_32F)),value :: executionType
+    end function
+  end interface
+
+  !>  \brief  Auxiliary API
+  !>
+  !>     \details
+  !>     Returns a string representing the ``hipblasStatus_t`` value.
+  !>
+  !>     @param[in]
+  !>     status  [hipblasStatus_t]
+  !>             hipBLAS status to convert to string.
+#ifndef USE_CUDA_NAMES
+  interface hipblasStatusToString
+    function hipblasStatusToString_(status) bind(c, name="hipblasStatusToString")
+      use iso_c_binding
+      use hipfort_hipblas_enums
+      implicit none
+      character(c_char) :: hipblasStatusToString_
+      integer(kind(HIPBLAS_STATUS_SUCCESS)),value :: status
+    end function
+  end interface
+#endif
+
+
 #ifdef USE_FPOINTER_INTERFACES
   contains
     function hipblasIsamax_rank_0(handle,n,x,incx,myResult)
