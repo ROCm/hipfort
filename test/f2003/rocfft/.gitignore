@@ -1,8 +1,0 @@
-rocfft
-rocfft_c2c_1d_z
-rocfft_c2c_1d_c
-rocfft_r2c_c2r_1d_d
-rocfft_r2c_c2r_1d_s
-rocfft_c2c_2d_z
-rocfft_c2c_3d_z
-rocfft_c2c_1d_batched_z
