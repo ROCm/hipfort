@@ -155,8 +155,14 @@ if(HIP_PLATFORM STREQUAL "amd")
   find_package(hipfft PATHS ${ROCM_PATH} /opt/rocm)
   if(hipfft_FOUND)
     hipfort_add_component(hipfft hip::hipfft)
-    # hipFFTW: the FFTW3-compatible API ships inside the hipFFT library.
-    hipfort_add_component(hipfftw hip::hipfft)
+    # hipFFTW: the FFTW3-compatible API. In some ROCm versions its symbols live
+    # in a separate libhipfftw (hip::hipfftw target); in others they are folded
+    # into libhipfft. Prefer the dedicated target when present.
+    if(TARGET hip::hipfftw)
+      hipfort_add_component(hipfftw hip::hipfftw)
+    else()
+      hipfort_add_component(hipfftw hip::hipfft)
+    endif()
   else()
     message(STATUS "Skipping hipfort::hipfft target export")
   endif()
