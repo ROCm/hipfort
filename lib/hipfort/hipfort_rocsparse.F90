@@ -14291,6 +14291,55 @@ module hipfort_rocsparse
 #endif
   end interface
 
+  !>  \ingroup conv_module
+  !>   \details
+  !>   \p rocsparse_prune_dense2csr_buffer_size returns the size of the temporary buffer that
+  !>   is required by \ref rocsparse_sprune_dense2csr_nnz "rocsparse_Xprune_dense2csr_nnz()" and
+  !>   \ref rocsparse_sprune_dense2csr "rocsparse_Xprune_dense2csr()". The temporary storage
+  !>   buffer must be allocated by the user.
+  !>
+  !>   \note
+  !>   This function is non-blocking and executed asynchronously with respect to the host.
+  !>   It can return before the actual computation has finished.
+  !>
+  !>   \note
+  !>   This routine supports execution in a hipGraph context.
+  !>
+  !>   @param[in]
+  !>   handle      handle to the rocSPARSE library context queue.
+  !>   @param[in]
+  !>   m           number of rows of the dense matrix \p A.
+  !>   @param[in]
+  !>   n           number of columns of the dense matrix \p A.
+  !>   @param[in]
+  !>   A           array of dimensions (\p lda, \p n).
+  !>   @param[in]
+  !>   lda         leading dimension of dense array \p A.
+  !>   @param[in]
+  !>   threshold pointer to the pruning non-negative threshold which can exist in either host or
+  !>   device memory.
+  !>   @param[in]
+  !>   descr the descriptor of the dense matrix \p A, the supported matrix type is
+  !>   `rocsparse_matrix_type_general` and
+  !>               also any valid value of the `rocsparse_index_base`.
+  !>   @param[in]
+  !>   csr_val array of nnz ( = \p csr_row_ptr[m] - \p csr_row_ptr[0] ) non-zero elements of matrix
+  !>   \p A.
+  !>   @param[in]
+  !>   csr_row_ptr integer array of \p m+1 elements that contains the start of every row and the end
+  !>   of the last row plus one.
+  !>   @param[in]
+  !>   csr_col_ind integer array of nnz ( = \p csr_row_ptr[m] - \p csr_row_ptr[0] ) column indices
+  !>   of the non-zero elements of matrix \p A.
+  !>   @param[out]
+  !>   buffer_size number of bytes of the temporary storage buffer required by
+  !>               \ref rocsparse_sprune_dense2csr_nnz "rocsparse_Xprune_dense2csr_nnz()" and
+  !>               \ref rocsparse_sprune_dense2csr "rocsparse_Xprune_dense2csr()".
+  !>
+  !>   \retval     rocsparse_status_success the operation completed successfully.
+  !>   \retval     rocsparse_status_invalid_handle the library context was not initialized.
+  !>   \retval     rocsparse_status_invalid_pointer \p buffer_size pointer is invalid.
+  !>   \retval     rocsparse_status_internal_error an internal error occurred.
   interface rocsparse_sprune_dense2csr_buffer_size
     function rocsparse_sprune_dense2csr_buffer_size_(handle,m,n,A,lda,threshold,descr,csr_val,csr_row_ptr,csr_col_ind,buffer_size) bind(c, name="rocsparse_sprune_dense2csr_buffer_size")
       use iso_c_binding
@@ -14312,12 +14361,11 @@ module hipfort_rocsparse
 
 #ifdef USE_FPOINTER_INTERFACES
     module procedure &
-      rocsparse_sprune_dense2csr_buffer_size_full_rank,&
       rocsparse_sprune_dense2csr_buffer_size_rank_0,&
       rocsparse_sprune_dense2csr_buffer_size_rank_1
 #endif
   end interface
-  
+
   interface rocsparse_dprune_dense2csr_buffer_size
     function rocsparse_dprune_dense2csr_buffer_size_(handle,m,n,A,lda,threshold,descr,csr_val,csr_row_ptr,csr_col_ind,buffer_size) bind(c, name="rocsparse_dprune_dense2csr_buffer_size")
       use iso_c_binding
@@ -14339,11 +14387,54 @@ module hipfort_rocsparse
 
 #ifdef USE_FPOINTER_INTERFACES
     module procedure &
-      rocsparse_dprune_dense2csr_buffer_size_full_rank,&
       rocsparse_dprune_dense2csr_buffer_size_rank_0,&
       rocsparse_dprune_dense2csr_buffer_size_rank_1
 #endif
   end interface
+
+  !>  \ingroup conv_module
+  !>   \details
+  !>   \p rocsparse_prune_dense2csr_nnz computes the number of non-zero elements per row and the
+  !>   total
+  !>   number of non-zero elements in a sparse CSR matrix after elements less than the threshold are
+  !>   pruned from the matrix.
+  !>
+  !>   \note
+  !>   The routine supports asynchronous execution if the pointer mode is set to device.
+  !>
+  !>   \note
+  !>   This routine does not support execution in a hipGraph context.
+  !>
+  !>   @param[in]
+  !>   handle                 handle to the rocSPARSE library context queue.
+  !>   @param[in]
+  !>   m                      number of rows of the dense matrix \p A.
+  !>   @param[in]
+  !>   n                      number of columns of the dense matrix \p A.
+  !>   @param[in]
+  !>   A                      array of dimensions (\p lda, \p n).
+  !>   @param[in]
+  !>   lda                    leading dimension of dense array \p A.
+  !>   @param[in]
+  !>   threshold pointer to the pruning non-negative threshold which can exist in either host or
+  !>   device memory.
+  !>   @param[in]
+  !>   descr                  the descriptor of the dense matrix \p A.
+  !>   @param[out]
+  !>   csr_row_ptr integer array of \p m+1 elements that contains the start of every row and the end
+  !>   of the last row plus one.
+  !>   @param[out]
+  !>   nnz_total_dev_host_ptr total number of non-zero elements in device or host memory.
+  !>   @param[out]
+  !>   temp_buffer            buffer allocated by the user. Its size is determined by calling
+  !>                          \ref rocsparse_sprune_dense2csr_buffer_size
+  !>                          "rocsparse_Xprune_dense2csr_buffer_size()".
+  !>
+  !>   \retval     rocsparse_status_success the operation completed successfully.
+  !>   \retval     rocsparse_status_invalid_handle the library context was not initialized.
+  !>   \retval     rocsparse_status_invalid_size \p m, \p n, or \p lda is invalid.
+  !>   \retval     rocsparse_status_invalid_pointer \p A, \p threshold, \p descr, \p csr_row_ptr,
+  !>               \p nnz_total_dev_host_ptr, or \p temp_buffer pointer is invalid.
   interface rocsparse_sprune_dense2csr_nnz
     function rocsparse_sprune_dense2csr_nnz_(handle,m,n,A,lda,threshold,descr,csr_row_ptr,nnz_total_dev_host_ptr,temp_buffer) bind(c, name="rocsparse_sprune_dense2csr_nnz")
       use iso_c_binding
@@ -14364,12 +14455,11 @@ module hipfort_rocsparse
 
 #ifdef USE_FPOINTER_INTERFACES
     module procedure &
-      rocsparse_sprune_dense2csr_nnz_full_rank,&
       rocsparse_sprune_dense2csr_nnz_rank_0,&
       rocsparse_sprune_dense2csr_nnz_rank_1
 #endif
   end interface
-  
+
   interface rocsparse_dprune_dense2csr_nnz
     function rocsparse_dprune_dense2csr_nnz_(handle,m,n,A,lda,threshold,descr,csr_row_ptr,nnz_total_dev_host_ptr,temp_buffer) bind(c, name="rocsparse_dprune_dense2csr_nnz")
       use iso_c_binding
@@ -14390,11 +14480,78 @@ module hipfort_rocsparse
 
 #ifdef USE_FPOINTER_INTERFACES
     module procedure &
-      rocsparse_dprune_dense2csr_nnz_full_rank,&
       rocsparse_dprune_dense2csr_nnz_rank_0,&
       rocsparse_dprune_dense2csr_nnz_rank_1
 #endif
   end interface
+
+  !>  \ingroup conv_module
+  !>   \brief Convert and prune dense matrix \f$A\f$ into a sparse CSR matrix \f$C\f$.
+  !>
+  !>   \details
+  !>   This function converts the dense matrix \f$A\f$ into a sparse CSR matrix \f$C\f$ by pruning
+  !>   values in \f$A\f$
+  !>   that are less than a threshold.
+  !>
+  !>   The conversion involves three steps. First, call
+  !>   \ref rocsparse_sprune_dense2csr_buffer_size "rocsparse_Xprune_dense2csr_buffer_size()"
+  !>   to determine the size of the temporary storage buffer. Allocate this buffer as well as the
+  !>   array
+  !>   \p csr_row_ptr to have \p m+1 elements. Then call
+  !>   \ref rocsparse_sprune_dense2csr_nnz "rocsparse_Xprune_dense2csr_nnz()", which fills
+  !>   in the \p csr_row_ptr array and stores the number of elements that are larger than the
+  !>   pruning \p threshold
+  !>   in \p nnz_total_dev_host_ptr. Now that the number of non-zeros larger than the pruning \p
+  !>   threshold is known,
+  !>   use this information to allocate the \p csr_col_ind and \p csr_val arrays and then call
+  !>   \p rocsparse_prune_dense2csr to complete the conversion. After the conversion is complete,
+  !>   the temporary storage
+  !>   buffer can be freed.
+  !>
+  !>   \note
+  !>   This function is blocking with respect to the host.
+  !>
+  !>   \note
+  !>   This routine does not support execution in a hipGraph context.
+  !>
+  !>   @param[in]
+  !>   handle      handle to the rocSPARSE library context queue.
+  !>   @param[in]
+  !>   m           number of rows of the dense matrix \p A.
+  !>   @param[in]
+  !>   n           number of columns of the dense matrix \p A.
+  !>   @param[in]
+  !>   A           array of dimensions (\p lda, \p n).
+  !>   @param[in]
+  !>   lda         leading dimension of dense array \p A.
+  !>   @param[in]
+  !>   threshold pointer to the non-negative pruning threshold, which can exist in either host or
+  !>   device memory.
+  !>   @param[in]
+  !>   descr the descriptor of the dense matrix \p A. The supported matrix type is
+  !>   `rocsparse_matrix_type_general` and
+  !>               also any valid value of the `rocsparse_index_base`.
+  !>   @param[out]
+  !>   csr_val array of nnz ( = \p csr_row_ptr[m] - \p csr_row_ptr[0] ) non-zero elements of matrix
+  !>   \p A.
+  !>   @param[in]
+  !>   csr_row_ptr integer array of \p m+1 elements that contains the start of every row and the end
+  !>   of the last row plus one.
+  !>   @param[out]
+  !>   csr_col_ind integer array of nnz ( = \p csr_row_ptr[m] - \p csr_row_ptr[0] ) column indices
+  !>   of the non-zero elements of matrix \p A.
+  !>   @param[in]
+  !>   temp_buffer temporary storage buffer allocated by the user. The size is returned by
+  !>               \ref rocsparse_sprune_dense2csr_buffer_size
+  !>               "rocsparse_Xprune_dense2csr_buffer_size()".
+  !>
+  !>   \retval     rocsparse_status_success the operation completed successfully.
+  !>   \retval     rocsparse_status_invalid_handle the library context was not initialized.
+  !>   \retval     rocsparse_status_invalid_size \p m, \p n, or \p lda is invalid.
+  !>   \retval     rocsparse_status_invalid_pointer \p A, \p descr, \p threshold, \p csr_val,
+  !>               \p csr_row_ptr, \p csr_col_ind, or \p temp_buffer pointer is invalid.
+  !>
+  !>   \par Example
   interface rocsparse_sprune_dense2csr
     function rocsparse_sprune_dense2csr_(handle,m,n,A,lda,threshold,descr,csr_val,csr_row_ptr,csr_col_ind,temp_buffer) bind(c, name="rocsparse_sprune_dense2csr")
       use iso_c_binding
@@ -14416,12 +14573,11 @@ module hipfort_rocsparse
 
 #ifdef USE_FPOINTER_INTERFACES
     module procedure &
-      rocsparse_sprune_dense2csr_full_rank,&
       rocsparse_sprune_dense2csr_rank_0,&
       rocsparse_sprune_dense2csr_rank_1
 #endif
   end interface
-  
+
   interface rocsparse_dprune_dense2csr
     function rocsparse_dprune_dense2csr_(handle,m,n,A,lda,threshold,descr,csr_val,csr_row_ptr,csr_col_ind,temp_buffer) bind(c, name="rocsparse_dprune_dense2csr")
       use iso_c_binding
@@ -14443,11 +14599,66 @@ module hipfort_rocsparse
 
 #ifdef USE_FPOINTER_INTERFACES
     module procedure &
-      rocsparse_dprune_dense2csr_full_rank,&
       rocsparse_dprune_dense2csr_rank_0,&
       rocsparse_dprune_dense2csr_rank_1
 #endif
   end interface
+
+  !>  \ingroup conv_module
+  !>   \details
+  !>   \p rocsparse_prune_dense2csr_by_percentage_buffer_size returns the size of the temporary
+  !>   buffer that
+  !>   is required by \ref rocsparse_sprune_dense2csr_nnz_by_percentage
+  !>   "rocsparse_Xprune_dense2csr_nnz_by_percentage()"
+  !>   and \ref rocsparse_sprune_dense2csr_by_percentage
+  !>   "rocsparse_Xprune_dense2csr_by_percentage()". The temporary
+  !>   storage buffer must be allocated by the user.
+  !>
+  !>   \note
+  !>   This function is non-blocking and executed asynchronously with respect to the host.
+  !>   It can return before the actual computation has finished.
+  !>
+  !>   \note
+  !>   This routine supports execution in a hipGraph context.
+  !>
+  !>   @param[in]
+  !>   handle      handle to the rocSPARSE library context queue.
+  !>   @param[in]
+  !>   m           number of rows of the dense matrix \p A.
+  !>   @param[in]
+  !>   n           number of columns of the dense matrix \p A.
+  !>   @param[in]
+  !>   A           array of dimensions (\p lda, \p n).
+  !>   @param[in]
+  !>   lda         leading dimension of dense array \p A.
+  !>   @param[in]
+  !>   percentage  \p percentage>=0 and \p percentage<=100.
+  !>   @param[in]
+  !>   descr the descriptor of the dense matrix \p A. The supported matrix type is
+  !>   `rocsparse_matrix_type_general`
+  !>               and also any valid value of the `rocsparse_index_base`.
+  !>   @param[in]
+  !>   csr_val array of nnz ( = \p csr_row_ptr[m] - \p csr_row_ptr[0] ) non-zero elements of matrix
+  !>   \p A.
+  !>   @param[in]
+  !>   csr_row_ptr integer array of \p m+1 elements that contains the start of every row and the end
+  !>   of the last row plus one.
+  !>   @param[in]
+  !>   csr_col_ind integer array of nnz ( = \p csr_row_ptr[m] - \p csr_row_ptr[0] ) column indices
+  !>   of the non-zero elements of matrix \p A.
+  !>   @param[in]
+  !>   info prune  information structure.
+  !>   @param[out]
+  !>   buffer_size number of bytes of the temporary storage buffer required by
+  !>               \ref rocsparse_sprune_dense2csr_nnz_by_percentage
+  !>               "rocsparse_Xprune_dense2csr_nnz_by_percentage()" and
+  !>               \ref rocsparse_sprune_dense2csr_by_percentage
+  !>               "rocsparse_Xprune_dense2csr_by_percentage()".
+  !>
+  !>   \retval     rocsparse_status_success the operation completed successfully.
+  !>   \retval     rocsparse_status_invalid_handle the library context was not initialized.
+  !>   \retval     rocsparse_status_invalid_pointer \p buffer_size pointer is invalid.
+  !>   \retval     rocsparse_status_internal_error an internal error occurred.
   interface rocsparse_sprune_dense2csr_by_percentage_buffer_size
     function rocsparse_sprune_dense2csr_by_percentage_buffer_size_(handle,m,n,A,lda,percentage,descr,csr_val,csr_row_ptr,csr_col_ind,myInfo,buffer_size) bind(c, name="rocsparse_sprune_dense2csr_by_percentage_buffer_size")
       use iso_c_binding
@@ -14470,12 +14681,11 @@ module hipfort_rocsparse
 
 #ifdef USE_FPOINTER_INTERFACES
     module procedure &
-      rocsparse_sprune_dense2csr_by_percentage_buffer_size_full_rank,&
       rocsparse_sprune_dense2csr_by_percentage_buffer_size_rank_0,&
       rocsparse_sprune_dense2csr_by_percentage_buffer_size_rank_1
 #endif
   end interface
-  
+
   interface rocsparse_dprune_dense2csr_by_percentage_buffer_size
     function rocsparse_dprune_dense2csr_by_percentage_buffer_size_(handle,m,n,A,lda,percentage,descr,csr_val,csr_row_ptr,csr_col_ind,myInfo,buffer_size) bind(c, name="rocsparse_dprune_dense2csr_by_percentage_buffer_size")
       use iso_c_binding
@@ -14498,11 +14708,59 @@ module hipfort_rocsparse
 
 #ifdef USE_FPOINTER_INTERFACES
     module procedure &
-      rocsparse_dprune_dense2csr_by_percentage_buffer_size_full_rank,&
       rocsparse_dprune_dense2csr_by_percentage_buffer_size_rank_0,&
       rocsparse_dprune_dense2csr_by_percentage_buffer_size_rank_1
 #endif
   end interface
+
+  !>  \ingroup conv_module
+  !>   \details
+  !>   \p rocsparse_sprune_dense2csr_nnz_by_percentage computes the number of non-zero elements per
+  !>   row and the total
+  !>   number of non-zero elements in a sparse CSR matrix after a \p percentage of the smallest
+  !>   magnitude elements
+  !>   have been pruned from the dense input matrix. See
+  !>   \ref rocsparse_sprune_dense2csr_by_percentage "rocsparse_sprune_dense2csr_by_percentage()"
+  !>   for a more detailed
+  !>   description of how this pruning based on \p percentage works.
+  !>
+  !>   \note
+  !>   This function is blocking with respect to the host.
+  !>
+  !>   \note
+  !>   This routine does not support execution in a hipGraph context.
+  !>
+  !>   @param[in]
+  !>   handle                 handle to the rocSPARSE library context queue.
+  !>   @param[in]
+  !>   m                      number of rows of the dense matrix \p A.
+  !>   @param[in]
+  !>   n                      number of columns of the dense matrix \p A.
+  !>   @param[in]
+  !>   A                      array of dimensions (\p lda, \p n).
+  !>   @param[in]
+  !>   lda                    leading dimension of dense array \p A.
+  !>   @param[in]
+  !>   percentage             \p percentage>=0 and \p percentage<=100.
+  !>   @param[in]
+  !>   descr                  the descriptor of the dense matrix \p A.
+  !>   @param[out]
+  !>   csr_row_ptr integer array of \p m+1 elements that contains the start of every row and the end
+  !>   of the last row plus one.
+  !>   @param[out]
+  !>   nnz_total_dev_host_ptr total number of non-zero elements in device or host memory.
+  !>   @param[in]
+  !>   info prune             information structure.
+  !>   @param[out]
+  !>   temp_buffer            buffer allocated by the user. Its size is determined by calling
+  !>                          \ref rocsparse_sprune_dense2csr_by_percentage_buffer_size
+  !>                          "rocsparse_Xprune_dense2csr_by_percentage_buffer_size()".
+  !>
+  !>   \retval     rocsparse_status_success the operation completed successfully.
+  !>   \retval     rocsparse_status_invalid_handle the library context was not initialized.
+  !>   \retval     rocsparse_status_invalid_size \p m, \p n, \p lda, or \p percentage is invalid.
+  !>   \retval     rocsparse_status_invalid_pointer \p A, \p descr, \p info, \p csr_row_ptr,
+  !>               \p nnz_total_dev_host_ptr, or \p temp_buffer pointer is invalid.
   interface rocsparse_sprune_dense2csr_nnz_by_percentage
     function rocsparse_sprune_dense2csr_nnz_by_percentage_(handle,m,n,A,lda,percentage,descr,csr_row_ptr,nnz_total_dev_host_ptr,myInfo,temp_buffer) bind(c, name="rocsparse_sprune_dense2csr_nnz_by_percentage")
       use iso_c_binding
@@ -14524,12 +14782,11 @@ module hipfort_rocsparse
 
 #ifdef USE_FPOINTER_INTERFACES
     module procedure &
-      rocsparse_sprune_dense2csr_nnz_by_percentage_full_rank,&
       rocsparse_sprune_dense2csr_nnz_by_percentage_rank_0,&
       rocsparse_sprune_dense2csr_nnz_by_percentage_rank_1
 #endif
   end interface
-  
+
   interface rocsparse_dprune_dense2csr_nnz_by_percentage
     function rocsparse_dprune_dense2csr_nnz_by_percentage_(handle,m,n,A,lda,percentage,descr,csr_row_ptr,nnz_total_dev_host_ptr,myInfo,temp_buffer) bind(c, name="rocsparse_dprune_dense2csr_nnz_by_percentage")
       use iso_c_binding
@@ -14551,11 +14808,102 @@ module hipfort_rocsparse
 
 #ifdef USE_FPOINTER_INTERFACES
     module procedure &
-      rocsparse_dprune_dense2csr_nnz_by_percentage_full_rank,&
       rocsparse_dprune_dense2csr_nnz_by_percentage_rank_0,&
       rocsparse_dprune_dense2csr_nnz_by_percentage_rank_1
 #endif
   end interface
+
+  !>  \ingroup conv_module
+  !>   \brief
+  !>   This function converts the matrix \f$A\f$ in dense format into a sparse matrix in CSR format
+  !>   while pruning values
+  !>   based on percentage.
+  !>
+  !>   \details
+  !>   This function converts the dense column-oriented matrix \f$A\f$ into a sparse CSR matrix
+  !>   \f$C\f$ by pruning values in \f$A\f$
+  !>   that are less than a threshold. This threshold is determined by using a \p percentage and the
+  !>   following steps:
+  !>
+  !>   Step 1: First, the \p A array is sorted in ascending order using the absolute value of each
+  !>   entry:
+  !>   \f[
+  !>     A\_sorted = sort(abs(A))
+  !>   \f]
+  !>
+  !>   Step 2: Next, use the \p percentage parameter to determine the threshold:
+  !>   \f[
+  !>     pos = ceil(m \times n \times (percentage/100)) - 1 \\%
+  !>     pos = \min(pos, m \times n - 1) \\%
+  !>     pos = \max(pos, 0) \\%
+  !>     threshold = A\_sorted[pos]
+  !>   \f]
+  !>
+  !>   Step 3: Finally, use this threshold with the routine
+  !>   \ref rocsparse_sprune_dense2csr "rocsparse_Xprune_dense2csr()" to complete the conversion.
+  !>
+  !>   The conversion involves three steps. First, call
+  !>   \ref rocsparse_sprune_dense2csr_by_percentage_buffer_size
+  !>   "rocsparse_Xprune_dense2csr_by_percentage_buffer_size()"
+  !>   to determine the size of the temporary storage buffer. Allocate this buffer as well as the
+  !>   array
+  !>   \p csr_row_ptr to have \p m+1 elements. Then call
+  !>   \ref rocsparse_sprune_dense2csr_nnz_by_percentage
+  !>   "rocsparse_Xprune_dense2csr_nnz_by_percentage()", which fills
+  !>   in the \p csr_row_ptr array and stores the number of elements that are larger than the
+  !>   pruning threshold
+  !>   in \p nnz_total_dev_host_ptr. Now that the number of non-zeros larger than the pruning
+  !>   threshold is known,
+  !>   use this information to allocate the \p csr_col_ind and \p csr_val arrays and then call
+  !>   \p rocsparse_prune_dense2csr_by_percentage to complete the conversion. After the conversion
+  !>   is complete, the
+  !>   temporary storage buffer can be freed.
+  !>
+  !>   \note
+  !>   This function is blocking with respect to the host.
+  !>
+  !>   \note
+  !>   This routine does not support execution in a hipGraph context.
+  !>
+  !>   @param[in]
+  !>   handle      handle to the rocSPARSE library context queue.
+  !>   @param[in]
+  !>   m           number of rows of the dense matrix \p A.
+  !>   @param[in]
+  !>   n           number of columns of the dense matrix \p A.
+  !>   @param[in]
+  !>   A           array of dimensions (\p lda, \p n).
+  !>   @param[in]
+  !>   lda         leading dimension of dense array \p A.
+  !>   @param[in]
+  !>   percentage  \p percentage>=0 and \p percentage<=100.
+  !>   @param[in]
+  !>   descr the descriptor of the dense matrix \p A. The supported matrix type is
+  !>   `rocsparse_matrix_type_general` and
+  !>               also any valid value of the `rocsparse_index_base`.
+  !>   @param[out]
+  !>   csr_val array of nnz ( = \p csr_row_ptr[m] - \p csr_row_ptr[0] ) non-zero elements of matrix
+  !>   \p A.
+  !>   @param[in]
+  !>   csr_row_ptr integer array of \p m+1 elements that contains the start of every row and the end
+  !>   of the last row plus one.
+  !>   @param[out]
+  !>   csr_col_ind integer array of nnz ( = \p csr_row_ptr[m] - \p csr_row_ptr[0] ) column indices
+  !>   of the non-zero elements of matrix \p A.
+  !>   @param[in]
+  !>   info prune  information structure.
+  !>   @param[in]
+  !>   temp_buffer temporary storage buffer allocated by the user. The size is returned by
+  !>               \ref rocsparse_sprune_dense2csr_by_percentage_buffer_size
+  !>               "rocsparse_Xprune_dense2csr_by_percentage_buffer_size()".
+  !>
+  !>   \retval     rocsparse_status_success the operation completed successfully.
+  !>   \retval     rocsparse_status_invalid_handle the library context was not initialized.
+  !>   \retval     rocsparse_status_invalid_size \p m, \p n, \p lda, or \p percentage is invalid.
+  !>   \retval     rocsparse_status_invalid_pointer \p A, \p descr, \p info, \p csr_val,
+  !>               \p csr_row_ptr, \p csr_col_ind, or \p temp_buffer pointer is invalid.
+  !>
+  !>   \par Example
   interface rocsparse_sprune_dense2csr_by_percentage
     function rocsparse_sprune_dense2csr_by_percentage_(handle,m,n,A,lda,percentage,descr,csr_val,csr_row_ptr,csr_col_ind,myInfo,temp_buffer) bind(c, name="rocsparse_sprune_dense2csr_by_percentage")
       use iso_c_binding
@@ -14578,12 +14926,11 @@ module hipfort_rocsparse
 
 #ifdef USE_FPOINTER_INTERFACES
     module procedure &
-      rocsparse_sprune_dense2csr_by_percentage_full_rank,&
       rocsparse_sprune_dense2csr_by_percentage_rank_0,&
       rocsparse_sprune_dense2csr_by_percentage_rank_1
 #endif
   end interface
-  
+
   interface rocsparse_dprune_dense2csr_by_percentage
     function rocsparse_dprune_dense2csr_by_percentage_(handle,m,n,A,lda,percentage,descr,csr_val,csr_row_ptr,csr_col_ind,myInfo,temp_buffer) bind(c, name="rocsparse_dprune_dense2csr_by_percentage")
       use iso_c_binding
@@ -14606,11 +14953,62 @@ module hipfort_rocsparse
 
 #ifdef USE_FPOINTER_INTERFACES
     module procedure &
-      rocsparse_dprune_dense2csr_by_percentage_full_rank,&
       rocsparse_dprune_dense2csr_by_percentage_rank_0,&
       rocsparse_dprune_dense2csr_by_percentage_rank_1
 #endif
   end interface
+
+  !>  \ingroup conv_module
+  !>   \brief
+  !>
+  !>   This function converts the matrix \f$A\f$ in column-oriented dense format into a sparse
+  !>   matrix in CSC format.
+  !>   All the parameters are assumed to have been preallocated by the user, and the arrays are
+  !>   filled in based on \p nnz_per_columns, which can be pre-computed with \ref rocsparse_snnz
+  !>   "rocsparse_Xnnz()".
+  !>
+  !>   \note
+  !>   This function is blocking with respect to the host.
+  !>
+  !>   \note
+  !>   This routine does not support execution in a hipGraph context.
+  !>
+  !>   @param[in]
+  !>   handle           handle to the rocSPARSE library context queue.
+  !>   @param[in]
+  !>   m                number of rows of the column-oriented dense matrix \p A.
+  !>   @param[in]
+  !>   n                number of columns of the column-oriented dense matrix \p A.
+  !>   @param[in]
+  !>   descr the descriptor of the column-oriented dense matrix \p A. The supported matrix type is
+  !>                    `rocsparse_matrix_type_general` and also any valid value of the
+  !>                    `rocsparse_index_base`.
+  !>   @param[in]
+  !>   A                column-oriented dense matrix of dimensions (\p ld, \p n).
+  !>   @param[in]
+  !>   ld               leading dimension of the column-oriented dense matrix \p A.
+  !>   @param[in]
+  !>   nnz_per_columns  array of size \p n containing the number of non-zero elements per column.
+  !>   @param[out]
+  !>   csc_val array of nnz ( = \p csc_col_ptr[n] - \p csc_col_ptr[0] ) non-zero elements of matrix
+  !>   \p A.
+  !>   @param[out]
+  !>   csc_col_ptr integer array of \p n+1 elements that contains the start of every column and the
+  !>   end of the last column
+  !>                    plus one.
+  !>   @param[out]
+  !>   csc_row_ind integer array of nnz ( = \p csc_col_ptr[n] - \p csc_col_ptr[0] ) column indices
+  !>   of the non-zero elements
+  !>                    of matrix \p A.
+  !>
+  !>   \retval     rocsparse_status_success the operation completed successfully.
+  !>   \retval     rocsparse_status_invalid_handle the library context was not initialized.
+  !>   \retval     rocsparse_status_invalid_size \p m, \p n, or \p ld is invalid.
+  !>   \retval rocsparse_status_invalid_pointer \p A, \p nnz_per_columns, \p csc_val, \p
+  !>   csc_col_ptr, or \p csc_row_ind
+  !>               pointer is invalid.
+  !>
+  !>   \par Example
   interface rocsparse_sdense2csc
     function rocsparse_sdense2csc_(handle,m,n,descr,A,ld,nnz_per_columns,csc_val,csc_col_ptr,csc_row_ind) bind(c, name="rocsparse_sdense2csc")
       use iso_c_binding
@@ -14631,12 +15029,11 @@ module hipfort_rocsparse
 
 #ifdef USE_FPOINTER_INTERFACES
     module procedure &
-      rocsparse_sdense2csc_full_rank,&
       rocsparse_sdense2csc_rank_0,&
       rocsparse_sdense2csc_rank_1
 #endif
   end interface
-  
+
   interface rocsparse_ddense2csc
     function rocsparse_ddense2csc_(handle,m,n,descr,A,ld,nnz_per_columns,csc_val,csc_col_ptr,csc_row_ind) bind(c, name="rocsparse_ddense2csc")
       use iso_c_binding
@@ -14657,12 +15054,11 @@ module hipfort_rocsparse
 
 #ifdef USE_FPOINTER_INTERFACES
     module procedure &
-      rocsparse_ddense2csc_full_rank,&
       rocsparse_ddense2csc_rank_0,&
       rocsparse_ddense2csc_rank_1
 #endif
   end interface
-  
+
   interface rocsparse_cdense2csc
     function rocsparse_cdense2csc_(handle,m,n,descr,A,ld,nnz_per_columns,csc_val,csc_col_ptr,csc_row_ind) bind(c, name="rocsparse_cdense2csc")
       use iso_c_binding
@@ -14683,12 +15079,11 @@ module hipfort_rocsparse
 
 #ifdef USE_FPOINTER_INTERFACES
     module procedure &
-      rocsparse_cdense2csc_full_rank,&
       rocsparse_cdense2csc_rank_0,&
       rocsparse_cdense2csc_rank_1
 #endif
   end interface
-  
+
   interface rocsparse_zdense2csc
     function rocsparse_zdense2csc_(handle,m,n,descr,A,ld,nnz_per_columns,csc_val,csc_col_ptr,csc_row_ind) bind(c, name="rocsparse_zdense2csc")
       use iso_c_binding
@@ -14709,11 +15104,57 @@ module hipfort_rocsparse
 
 #ifdef USE_FPOINTER_INTERFACES
     module procedure &
-      rocsparse_zdense2csc_full_rank,&
       rocsparse_zdense2csc_rank_0,&
       rocsparse_zdense2csc_rank_1
 #endif
   end interface
+
+  !>  \ingroup conv_module
+  !>   \brief
+  !>   This function converts the matrix \f$A\f$ in column-oriented dense format into a sparse
+  !>   matrix in COO format.
+  !>   All the parameters are assumed to have been preallocated by the user, and the arrays are
+  !>   filled in based on \p nnz_per_rows, which can be pre-computed with \ref rocsparse_snnz
+  !>   "rocsparse_Xnnz()".
+  !>
+  !>   \note
+  !>   This function is blocking with respect to the host.
+  !>
+  !>   \note
+  !>   This routine does not support execution in a hipGraph context.
+  !>
+  !>   @param[in]
+  !>   handle       handle to the rocSPARSE library context queue.
+  !>   @param[in]
+  !>   m            number of rows of the column-oriented dense matrix \p A.
+  !>   @param[in]
+  !>   n            number of columns of the column-oriented dense matrix \p A.
+  !>   @param[in]
+  !>   descr the descriptor of the column-oriented dense matrix \p A. The supported matrix type is
+  !>                `rocsparse_matrix_type_general` and also any valid value of the
+  !>                `rocsparse_index_base`.
+  !>   @param[in]
+  !>   A            column-oriented dense matrix of dimensions (\p ld, \p n).
+  !>   @param[in]
+  !>   ld           leading dimension of column-oriented dense matrix \p A.
+  !>   @param[in]
+  !>   nnz_per_rows array of size \p n containing the number of non-zero elements per row.
+  !>   @param[out]
+  !>   coo_val
+  !>                array of nnz nonzero elements of matrix \p A.
+  !>   @param[out]
+  !>   coo_row_ind  integer array of nnz row indices of the non-zero elements of matrix \p A.
+  !>   @param[out]
+  !>   coo_col_ind  integer array of nnz column indices of the non-zero elements of matrix \p A.
+  !>
+  !>   \retval     rocsparse_status_success the operation completed successfully.
+  !>   \retval     rocsparse_status_invalid_handle the library context was not initialized.
+  !>   \retval     rocsparse_status_invalid_size \p m, \p n, or \p ld is invalid.
+  !>   \retval rocsparse_status_invalid_pointer \p A, \p nnz_per_rows, \p coo_val, \p coo_col_ind,
+  !>   or \p coo_row_ind
+  !>               pointer is invalid.
+  !>
+  !>   \par Example
   interface rocsparse_sdense2coo
     function rocsparse_sdense2coo_(handle,m,n,descr,A,ld,nnz_per_rows,coo_val,coo_row_ind,coo_col_ind) bind(c, name="rocsparse_sdense2coo")
       use iso_c_binding
@@ -14734,12 +15175,11 @@ module hipfort_rocsparse
 
 #ifdef USE_FPOINTER_INTERFACES
     module procedure &
-      rocsparse_sdense2coo_full_rank,&
       rocsparse_sdense2coo_rank_0,&
       rocsparse_sdense2coo_rank_1
 #endif
   end interface
-  
+
   interface rocsparse_ddense2coo
     function rocsparse_ddense2coo_(handle,m,n,descr,A,ld,nnz_per_rows,coo_val,coo_row_ind,coo_col_ind) bind(c, name="rocsparse_ddense2coo")
       use iso_c_binding
@@ -14760,12 +15200,11 @@ module hipfort_rocsparse
 
 #ifdef USE_FPOINTER_INTERFACES
     module procedure &
-      rocsparse_ddense2coo_full_rank,&
       rocsparse_ddense2coo_rank_0,&
       rocsparse_ddense2coo_rank_1
 #endif
   end interface
-  
+
   interface rocsparse_cdense2coo
     function rocsparse_cdense2coo_(handle,m,n,descr,A,ld,nnz_per_rows,coo_val,coo_row_ind,coo_col_ind) bind(c, name="rocsparse_cdense2coo")
       use iso_c_binding
@@ -14786,12 +15225,11 @@ module hipfort_rocsparse
 
 #ifdef USE_FPOINTER_INTERFACES
     module procedure &
-      rocsparse_cdense2coo_full_rank,&
       rocsparse_cdense2coo_rank_0,&
       rocsparse_cdense2coo_rank_1
 #endif
   end interface
-  
+
   interface rocsparse_zdense2coo
     function rocsparse_zdense2coo_(handle,m,n,descr,A,ld,nnz_per_rows,coo_val,coo_row_ind,coo_col_ind) bind(c, name="rocsparse_zdense2coo")
       use iso_c_binding
@@ -14812,11 +15250,55 @@ module hipfort_rocsparse
 
 #ifdef USE_FPOINTER_INTERFACES
     module procedure &
-      rocsparse_zdense2coo_full_rank,&
       rocsparse_zdense2coo_rank_0,&
       rocsparse_zdense2coo_rank_1
 #endif
   end interface
+
+  !>  \ingroup conv_module
+  !>   \brief
+  !>   This function converts the sparse matrix in CSR format into a column-oriented dense matrix.
+  !>
+  !>   \note
+  !>   This function is non-blocking and executed asynchronously with respect to the host.
+  !>   It can return before the actual computation has finished.
+  !>
+  !>   \note
+  !>   This routine supports execution in a hipGraph context.
+  !>
+  !>   @param[in]
+  !>   handle      handle to the rocSPARSE library context queue.
+  !>   @param[in]
+  !>   m           number of rows of the column-oriented dense matrix \p A.
+  !>   @param[in]
+  !>   n           number of columns of the column-oriented dense matrix \p A.
+  !>   @param[in]
+  !>   descr the descriptor of the column-oriented dense matrix \p A. The supported matrix type is
+  !>               `rocsparse_matrix_type_general` and also any valid value of the
+  !>               `rocsparse_index_base`.
+  !>   @param[in]
+  !>   csr_val array of nnz ( = \p csr_row_ptr[m] - \p csr_row_ptr[0] ) non-zero elements of matrix
+  !>   \p A.
+  !>   @param[in]
+  !>   csr_row_ptr integer array of \p m+1 elements that contains the start of every row and the end
+  !>   of the last
+  !>               row plus one.
+  !>   @param[in]
+  !>   csr_col_ind integer array of nnz ( = \p csr_row_ptr[m] - \p csr_row_ptr[0] ) column indices
+  !>   of the non-zero
+  !>               elements of matrix \p A.
+  !>   @param[out]
+  !>   A           array of dimensions (\p ld, \p n).
+  !>   @param[out]
+  !>   ld          leading dimension of column-oriented dense matrix \p A.
+  !>
+  !>   \retval     rocsparse_status_success the operation completed successfully.
+  !>   \retval     rocsparse_status_invalid_handle the library context was not initialized.
+  !>   \retval     rocsparse_status_invalid_size \p m, \p n, or \p ld is invalid.
+  !>   \retval rocsparse_status_invalid_pointer \p A, \p csr_val, \p csr_row_ptr, or \p csr_col_ind
+  !>               pointer is invalid.
+  !>
+  !>   \par Example
   interface rocsparse_scsr2dense
     function rocsparse_scsr2dense_(handle,m,n,descr,csr_val,csr_row_ptr,csr_col_ind,A,ld) bind(c, name="rocsparse_scsr2dense")
       use iso_c_binding
@@ -14836,12 +15318,11 @@ module hipfort_rocsparse
 
 #ifdef USE_FPOINTER_INTERFACES
     module procedure &
-      rocsparse_scsr2dense_full_rank,&
       rocsparse_scsr2dense_rank_0,&
       rocsparse_scsr2dense_rank_1
 #endif
   end interface
-  
+
   interface rocsparse_dcsr2dense
     function rocsparse_dcsr2dense_(handle,m,n,descr,csr_val,csr_row_ptr,csr_col_ind,A,ld) bind(c, name="rocsparse_dcsr2dense")
       use iso_c_binding
@@ -14861,12 +15342,11 @@ module hipfort_rocsparse
 
 #ifdef USE_FPOINTER_INTERFACES
     module procedure &
-      rocsparse_dcsr2dense_full_rank,&
       rocsparse_dcsr2dense_rank_0,&
       rocsparse_dcsr2dense_rank_1
 #endif
   end interface
-  
+
   interface rocsparse_ccsr2dense
     function rocsparse_ccsr2dense_(handle,m,n,descr,csr_val,csr_row_ptr,csr_col_ind,A,ld) bind(c, name="rocsparse_ccsr2dense")
       use iso_c_binding
@@ -14886,12 +15366,11 @@ module hipfort_rocsparse
 
 #ifdef USE_FPOINTER_INTERFACES
     module procedure &
-      rocsparse_ccsr2dense_full_rank,&
       rocsparse_ccsr2dense_rank_0,&
       rocsparse_ccsr2dense_rank_1
 #endif
   end interface
-  
+
   interface rocsparse_zcsr2dense
     function rocsparse_zcsr2dense_(handle,m,n,descr,csr_val,csr_row_ptr,csr_col_ind,A,ld) bind(c, name="rocsparse_zcsr2dense")
       use iso_c_binding
@@ -14911,11 +15390,55 @@ module hipfort_rocsparse
 
 #ifdef USE_FPOINTER_INTERFACES
     module procedure &
-      rocsparse_zcsr2dense_full_rank,&
       rocsparse_zcsr2dense_rank_0,&
       rocsparse_zcsr2dense_rank_1
 #endif
   end interface
+
+  !>  \ingroup conv_module
+  !>   \brief
+  !>   This function converts the sparse matrix in CSC format into a column-oriented dense matrix.
+  !>
+  !>   \note
+  !>   This function is non-blocking and executed asynchronously with respect to the host.
+  !>   It can return before the actual computation has finished.
+  !>
+  !>   \note
+  !>   This routine supports execution in a hipGraph context.
+  !>
+  !>   @param[in]
+  !>   handle      handle to the rocSPARSE library context queue.
+  !>   @param[in]
+  !>   m           number of rows of the column-oriented dense matrix \p A.
+  !>   @param[in]
+  !>   n           number of columns of the column-oriented dense matrix \p A.
+  !>   @param[in]
+  !>   descr the descriptor of the column-oriented dense matrix \p A. The supported matrix type is
+  !>               `rocsparse_matrix_type_general` and also any valid value of the
+  !>               `rocsparse_index_base`.
+  !>   @param[in]
+  !>   csc_val array of nnz ( = \p csc_col_ptr[n] - \p csc_col_ptr[0] ) non-zero elements of matrix
+  !>   \p A.
+  !>   @param[in]
+  !>   csc_col_ptr integer array of \p n+1 elements that contains the start of every column and the
+  !>   end of the last
+  !>               column plus one.
+  !>   @param[in]
+  !>   csc_row_ind integer array of nnz ( = \p csc_col_ptr[n] - \p csc_col_ptr[0] ) column indices
+  !>   of the non-zero
+  !>               elements of matrix \p A.
+  !>   @param[out]
+  !>   A           array of dimensions (\p ld, \p n).
+  !>   @param[out]
+  !>   ld          leading dimension of column-oriented dense matrix \p A.
+  !>
+  !>   \retval     rocsparse_status_success the operation completed successfully.
+  !>   \retval     rocsparse_status_invalid_handle the library context was not initialized.
+  !>   \retval     rocsparse_status_invalid_size \p m, \p n, or \p ld is invalid.
+  !>   \retval rocsparse_status_invalid_pointer \p A, \p csc_val, \p csc_col_ptr, or \p csc_row_ind
+  !>               pointer is invalid.
+  !>
+  !>   \par Example
   interface rocsparse_scsc2dense
     function rocsparse_scsc2dense_(handle,m,n,descr,csc_val,csc_col_ptr,csc_row_ind,A,ld) bind(c, name="rocsparse_scsc2dense")
       use iso_c_binding
@@ -14935,12 +15458,11 @@ module hipfort_rocsparse
 
 #ifdef USE_FPOINTER_INTERFACES
     module procedure &
-      rocsparse_scsc2dense_full_rank,&
       rocsparse_scsc2dense_rank_0,&
       rocsparse_scsc2dense_rank_1
 #endif
   end interface
-  
+
   interface rocsparse_dcsc2dense
     function rocsparse_dcsc2dense_(handle,m,n,descr,csc_val,csc_col_ptr,csc_row_ind,A,ld) bind(c, name="rocsparse_dcsc2dense")
       use iso_c_binding
@@ -14960,12 +15482,11 @@ module hipfort_rocsparse
 
 #ifdef USE_FPOINTER_INTERFACES
     module procedure &
-      rocsparse_dcsc2dense_full_rank,&
       rocsparse_dcsc2dense_rank_0,&
       rocsparse_dcsc2dense_rank_1
 #endif
   end interface
-  
+
   interface rocsparse_ccsc2dense
     function rocsparse_ccsc2dense_(handle,m,n,descr,csc_val,csc_col_ptr,csc_row_ind,A,ld) bind(c, name="rocsparse_ccsc2dense")
       use iso_c_binding
@@ -14985,12 +15506,11 @@ module hipfort_rocsparse
 
 #ifdef USE_FPOINTER_INTERFACES
     module procedure &
-      rocsparse_ccsc2dense_full_rank,&
       rocsparse_ccsc2dense_rank_0,&
       rocsparse_ccsc2dense_rank_1
 #endif
   end interface
-  
+
   interface rocsparse_zcsc2dense
     function rocsparse_zcsc2dense_(handle,m,n,descr,csc_val,csc_col_ptr,csc_row_ind,A,ld) bind(c, name="rocsparse_zcsc2dense")
       use iso_c_binding
@@ -15010,11 +15530,53 @@ module hipfort_rocsparse
 
 #ifdef USE_FPOINTER_INTERFACES
     module procedure &
-      rocsparse_zcsc2dense_full_rank,&
       rocsparse_zcsc2dense_rank_0,&
       rocsparse_zcsc2dense_rank_1
 #endif
   end interface
+
+  !>  \ingroup conv_module
+  !>   \brief
+  !>   This function converts the sparse matrix in COO format into a column-oriented dense matrix.
+  !>
+  !>   \note
+  !>   This function is non-blocking and executed asynchronously with respect to the host.
+  !>   It can return before the actual computation has finished.
+  !>
+  !>   \note
+  !>   This routine supports execution in a hipGraph context.
+  !>
+  !>   @param[in]
+  !>   handle      handle to the rocSPARSE library context queue.
+  !>   @param[in]
+  !>   m           number of rows of the column-oriented dense matrix \p A.
+  !>   @param[in]
+  !>   n           number of columns of the column-oriented dense matrix \p A.
+  !>   @param[in]
+  !>   nnz         number of non-zero entries of the sparse COO matrix.
+  !>   @param[in]
+  !>   descr the descriptor of the column-oriented dense matrix \p A. The supported matrix type is
+  !>               `rocsparse_matrix_type_general` and also any valid value of the
+  !>               `rocsparse_index_base`.
+  !>   @param[in]
+  !>   coo_val     array of \p nnz non-zero elements of matrix \p A.
+  !>   @param[in]
+  !>   coo_row_ind integer array of \p nnz row indices of the non-zero elements of matrix \p A.
+  !>   @param[in]
+  !>   coo_col_ind integer array of \p nnz column indices of the non-zero elements of matrix \p A.
+  !>   @param[out]
+  !>   A           array of dimensions (\p ld, \p n).
+  !>
+  !>   @param[out]
+  !>   ld          leading dimension of column-oriented dense matrix \p A.
+  !>
+  !>   \retval     rocsparse_status_success the operation completed successfully.
+  !>   \retval     rocsparse_status_invalid_handle the library context was not initialized.
+  !>   \retval     rocsparse_status_invalid_size \p m, \p n, \p nnz, or \p ld is invalid.
+  !>   \retval rocsparse_status_invalid_pointer \p A, \p coo_val, \p coo_col_ind, or \p coo_row_ind
+  !>               pointer is invalid.
+  !>
+  !>   \par Example
   interface rocsparse_scoo2dense
     function rocsparse_scoo2dense_(handle,m,n,nnz,descr,coo_val,coo_row_ind,coo_col_ind,A,ld) bind(c, name="rocsparse_scoo2dense")
       use iso_c_binding
@@ -15035,12 +15597,11 @@ module hipfort_rocsparse
 
 #ifdef USE_FPOINTER_INTERFACES
     module procedure &
-      rocsparse_scoo2dense_full_rank,&
       rocsparse_scoo2dense_rank_0,&
       rocsparse_scoo2dense_rank_1
 #endif
   end interface
-  
+
   interface rocsparse_dcoo2dense
     function rocsparse_dcoo2dense_(handle,m,n,nnz,descr,coo_val,coo_row_ind,coo_col_ind,A,ld) bind(c, name="rocsparse_dcoo2dense")
       use iso_c_binding
@@ -15061,12 +15622,11 @@ module hipfort_rocsparse
 
 #ifdef USE_FPOINTER_INTERFACES
     module procedure &
-      rocsparse_dcoo2dense_full_rank,&
       rocsparse_dcoo2dense_rank_0,&
       rocsparse_dcoo2dense_rank_1
 #endif
   end interface
-  
+
   interface rocsparse_ccoo2dense
     function rocsparse_ccoo2dense_(handle,m,n,nnz,descr,coo_val,coo_row_ind,coo_col_ind,A,ld) bind(c, name="rocsparse_ccoo2dense")
       use iso_c_binding
@@ -15087,12 +15647,11 @@ module hipfort_rocsparse
 
 #ifdef USE_FPOINTER_INTERFACES
     module procedure &
-      rocsparse_ccoo2dense_full_rank,&
       rocsparse_ccoo2dense_rank_0,&
       rocsparse_ccoo2dense_rank_1
 #endif
   end interface
-  
+
   interface rocsparse_zcoo2dense
     function rocsparse_zcoo2dense_(handle,m,n,nnz,descr,coo_val,coo_row_ind,coo_col_ind,A,ld) bind(c, name="rocsparse_zcoo2dense")
       use iso_c_binding
@@ -15113,11 +15672,61 @@ module hipfort_rocsparse
 
 #ifdef USE_FPOINTER_INTERFACES
     module procedure &
-      rocsparse_zcoo2dense_full_rank,&
       rocsparse_zcoo2dense_rank_0,&
       rocsparse_zcoo2dense_rank_1
 #endif
   end interface
+
+  !>  \ingroup conv_module
+  !>   Given a sparse CSR matrix and a non-negative tolerance, this function computes how many
+  !>   entries would be left
+  !>   in each row of the matrix if elements less than the tolerance were removed. It also computes
+  !>   the total number
+  !>   of remaining elements in the matrix.
+  !>
+  !>   \note
+  !>   This function is blocking with respect to the host.
+  !>
+  !>   \note
+  !>   This routine does not support execution in a hipGraph context.
+  !>
+  !>   @param[in]
+  !>   handle        handle to the rocSPARSE library context queue.
+  !>
+  !>   @param[in]
+  !>   m             number of rows of the sparse CSR matrix.
+  !>
+  !>   @param[in]
+  !>   descr_A       the descriptor of the sparse CSR matrix.
+  !>
+  !>   @param[in]
+  !>   csr_val_A     array of \p nnz_A elements of the sparse CSR matrix.
+  !>   @param[in]
+  !>   csr_row_ptr_A array of \p m+1 elements that point to the start of every row of the
+  !>                 uncompressed sparse CSR matrix.
+  !>   @param[out]
+  !>   nnz_per_row array of length \p m containing the number of entries that will be kept per row
+  !>   in
+  !>                 the final compressed CSR matrix.
+  !>   @param[out]
+  !>   nnz_C         number of elements in the column indices and values arrays of the compressed
+  !>                 sparse CSR matrix. It can be either a host or device pointer.
+  !>   @param[in]
+  !>   tol the non-negative tolerance used for compression. If \p tol is complex, then only the
+  !>   magnitude
+  !>                 of the real part is used. Entries in the input uncompressed CSR array that are
+  !>                 below the tolerance
+  !>                 are removed in the output compressed CSR matrix.
+  !>
+  !>   \retval     rocsparse_status_success the operation completed successfully.
+  !>   \retval     rocsparse_status_invalid_handle the library context was not initialized.
+  !>   \retval     rocsparse_status_invalid_size \p m or \p n is invalid.
+  !>   \retval     rocsparse_status_invalid_value \p tol is invalid.
+  !>   \retval rocsparse_status_invalid_pointer \p csr_val_A, \p csr_row_ptr_A, \p nnz_per_row, or
+  !>   \p nnz_C
+  !>               pointer is invalid.
+  !>
+  !>   \par Example
   interface rocsparse_snnz_compress
     function rocsparse_snnz_compress_(handle,m,descr_A,csr_val_A,csr_row_ptr_A,nnz_per_row,nnz_C,tol) bind(c, name="rocsparse_snnz_compress")
       use iso_c_binding
@@ -15140,7 +15749,7 @@ module hipfort_rocsparse
       rocsparse_snnz_compress_rank_1
 #endif
   end interface
-  
+
   interface rocsparse_dnnz_compress
     function rocsparse_dnnz_compress_(handle,m,descr_A,csr_val_A,csr_row_ptr_A,nnz_per_row,nnz_C,tol) bind(c, name="rocsparse_dnnz_compress")
       use iso_c_binding
@@ -15163,7 +15772,7 @@ module hipfort_rocsparse
       rocsparse_dnnz_compress_rank_1
 #endif
   end interface
-  
+
   interface rocsparse_cnnz_compress
     function rocsparse_cnnz_compress_(handle,m,descr_A,csr_val_A,csr_row_ptr_A,nnz_per_row,nnz_C,tol) bind(c, name="rocsparse_cnnz_compress")
       use iso_c_binding
@@ -15186,7 +15795,7 @@ module hipfort_rocsparse
       rocsparse_cnnz_compress_rank_1
 #endif
   end interface
-  
+
   interface rocsparse_znnz_compress
     function rocsparse_znnz_compress_(handle,m,descr_A,csr_val_A,csr_row_ptr_A,nnz_per_row,nnz_C,tol) bind(c, name="rocsparse_znnz_compress")
       use iso_c_binding
@@ -15209,23 +15818,26 @@ module hipfort_rocsparse
       rocsparse_znnz_compress_rank_1
 #endif
   end interface
+
   !>  \ingroup conv_module
-  !>   \brief Convert a sparse CSR matrix into a sparse COO matrix
-  !> 
+  !>   \brief Convert a sparse CSR matrix into a sparse COO matrix.
+  !>
   !>   \details
-  !>   \p rocsparse_csr2coo converts the CSR array containing the row offsets, that point
-  !>   to the start of every row, into a COO array of row indices.
-  !> 
+  !>   \p rocsparse_csr2coo converts the CSR array containing the row offsets that point
+  !>   to the start of every row into a COO array of row indices.
+  !>
+  !>   \p rocsparse_csr2coo can also be used to convert a CSC array containing the column offsets
+  !>   into a COO array of column indices.
+  !>
   !>   \note
-  !>   It can also be used to convert a CSC array containing the column offsets into a COO
-  !>   array of column indices.
-  !> 
+  !>   This function is non-blocking and executed asynchronously with respect to the host.
+  !>   It can return before the actual computation has finished.
+  !>
   !>   \note
-  !>   This function is non blocking and executed asynchronously with respect to the host.
-  !>   It may return before the actual computation has finished.
-  !> 
+  !>   This routine supports execution in a hipGraph context.
+  !>
   !>   @param[in]
-  !>   handle      handle to the rocsparse library context queue.
+  !>   handle      handle to the rocSPARSE library context queue.
   !>   @param[in]
   !>   csr_row_ptr array of \p m+1 elements that point to the start of every row
   !>               of the sparse CSR matrix.
@@ -15237,58 +15849,17 @@ module hipfort_rocsparse
   !>   coo_row_ind array of \p nnz elements containing the row indices of the sparse COO
   !>               matrix.
   !>   @param[in]
-  !>   idx_base    \p rocsparse_index_base_zero or \p rocsparse_index_base_one.
-  !> 
+  !>   idx_base    `rocsparse_index_base_zero` or `rocsparse_index_base_one`.
+  !>
   !>   \retval     rocsparse_status_success the operation completed successfully.
   !>   \retval     rocsparse_status_invalid_handle the library context was not initialized.
   !>   \retval     rocsparse_status_invalid_size \p m or \p nnz is invalid.
   !>   \retval     rocsparse_status_invalid_pointer \p csr_row_ptr or \p coo_row_ind
   !>               pointer is invalid.
   !>   \retval     rocsparse_status_arch_mismatch the device is not supported.
-  !> 
+  !>
   !>   \par Example
   !>   This example converts a CSR matrix into a COO matrix.
-  !>   \code{.c}
-  !> /     1 2 0 3 0
-  !> / A = 0 4 5 0 0
-  !> /     6 0 0 7 8
-  !> 
-  !>       rocsparse_int m   = 3;
-  !>       rocsparse_int n   = 5;
-  !>       rocsparse_int nnz = 8;
-  !> 
-  !>       csr_row_ptr[m+1] = {0, 3, 5, 8};/ device memory
-  !>       csr_col_ind[nnz] = {0, 1, 3, 1, 2, 0, 3, 4};/ device memory
-  !>       csr_val[nnz]     = {1, 2, 3, 4, 5, 6, 7, 8};/ device memory
-  !> 
-  !> / Allocate COO matrix arrays
-  !>       rocsparse_int* coo_row_ind;
-  !>       rocsparse_int* coo_col_ind;
-  !>       float* coo_val;
-  !> 
-  !>       hipMalloc((void**)&coo_row_ind, sizeof(rocsparse_int) * nnz);
-  !>       hipMalloc((void**)&coo_col_ind, sizeof(rocsparse_int) * nnz);
-  !>       hipMalloc((void**)&coo_val, sizeof(float) * nnz);
-  !> 
-  !> / Convert the csr row offsets into coo row indices
-  !>       rocsparse_csr2coo(handle,
-  !>                         csr_row_ptr,
-  !>                         nnz,
-  !>                         m,
-  !>                         coo_row_ind,
-  !>                         rocsparse_index_base_zero);
-  !> 
-  !> / Copy the column and value arrays
-  !>       hipMemcpy(coo_col_ind,
-  !>                 csr_col_ind,
-  !>                 sizeof(rocsparse_int) * nnz,
-  !>                 hipMemcpyDeviceToDevice);
-  !> 
-  !>       hipMemcpy(coo_val,
-  !>                 csr_val,
-  !>                 sizeof(float) * nnz,
-  !>                 hipMemcpyDeviceToDevice);
-  !>   \endcode
   interface rocsparse_csr2coo
     function rocsparse_csr2coo_(handle,csr_row_ptr,nnz,m,coo_row_ind,idx_base) bind(c, name="rocsparse_csr2coo")
       use iso_c_binding
@@ -15309,16 +15880,21 @@ module hipfort_rocsparse
       rocsparse_csr2coo_rank_1
 #endif
   end interface
+
   !>  \ingroup conv_module
-  !>   \brief Convert a sparse CSR matrix into a sparse CSC matrix
-  !> 
   !>   \details
   !>   \p rocsparse_csr2csc_buffer_size returns the size of the temporary storage buffer
-  !>   required by rocsparse_scsr2csc(), rocsparse_dcsr2csc(), rocsparse_ccsr2csc() and
-  !>   rocsparse_zcsr2csc(). The temporary storage buffer must be allocated by the user.
-  !> 
+  !>   required by \ref rocsparse_scsr2csc "rocsparse_Xcsr2csc()".
+  !>
+  !>   \note
+  !>   This function is non-blocking and executed asynchronously with respect to the host.
+  !>   It can return before the actual computation has finished.
+  !>
+  !>   \note
+  !>   This routine supports execution in a hipGraph context.
+  !>
   !>   @param[in]
-  !>   handle      handle to the rocsparse library context queue.
+  !>   handle      handle to the rocSPARSE library context queue.
   !>   @param[in]
   !>   m           number of rows of the sparse CSR matrix.
   !>   @param[in]
@@ -15332,16 +15908,15 @@ module hipfort_rocsparse
   !>   csr_col_ind array of \p nnz elements containing the column indices of the sparse
   !>               CSR matrix.
   !>   @param[in]
-  !>   copy_values \p rocsparse_action_symbolic or \p rocsparse_action_numeric.
+  !>   copy_values `rocsparse_action_symbolic` or `rocsparse_action_numeric`.
   !>   @param[out]
   !>   buffer_size number of bytes of the temporary storage buffer required by
-  !>               rocsparse_scsr2csc(), rocsparse_dcsr2csc(), rocsparse_ccsr2csc() and
-  !>               rocsparse_zcsr2csc().
-  !> 
+  !>               \ref rocsparse_scsr2csc "rocsparse_Xcsr2csc()".
+  !>
   !>   \retval     rocsparse_status_success the operation completed successfully.
   !>   \retval     rocsparse_status_invalid_handle the library context was not initialized.
-  !>   \retval     rocsparse_status_invalid_size \p m, \p n or \p nnz is invalid.
-  !>   \retval     rocsparse_status_invalid_pointer \p csr_row_ptr, \p csr_col_ind or
+  !>   \retval     rocsparse_status_invalid_size \p m, \p n, or \p nnz is invalid.
+  !>   \retval     rocsparse_status_invalid_pointer \p csr_row_ptr, \p csr_col_ind, or
   !>               \p buffer_size pointer is invalid.
   !>   \retval     rocsparse_status_internal_error an internal error occurred.
   interface rocsparse_csr2csc_buffer_size
@@ -15366,6 +15941,139 @@ module hipfort_rocsparse
       rocsparse_csr2csc_buffer_size_rank_1
 #endif
   end interface
+
+  !>  \ingroup conv_module
+  !>   \brief Convert a sparse CSR matrix into a sparse CSC matrix.
+  !>
+  !>   \details
+  !>   \p rocsparse_csr2csc converts a CSR matrix into a CSC matrix. The resulting matrix can also
+  !>   be seen as the transpose of the input matrix. \p rocsparse_csr2csc can also be used to
+  !>   convert
+  !>   a CSC matrix into a CSR matrix.
+  !>
+  !>   The conversion of a sparse matrix from CSR to CSC format involves two steps. First,
+  !>   call \ref rocsparse_csr2csc_buffer_size to determine the size of the required
+  !>   tempory storage buffer. Then allocate this buffer. Secondly, call
+  !>   \p rocsparse_csr2csc to complete the conversion. After the conversion is complete,
+  !>   free the temporary buffer.
+  !>
+  !>   Both \ref rocsparse_csr2csc_buffer_size and \p rocsparse_csr2csc take a `rocsparse_action`
+  !>   parameter as input. This \p copy_values parameter decides whether \p csc_row_ind and \p
+  !>   csc_val
+  !>   are filled during conversion (`rocsparse_action_numeric`) or whether only \p csc_row_ind is
+  !>   filled
+  !>   (`rocsparse_action_symbolic`). Using `rocsparse_action_symbolic` can be useful, for example,
+  !>   if only
+  !>   the sparsity pattern is required.
+  !>
+  !>   \note
+  !>   This function is non-blocking and executed asynchronously with respect to the host.
+  !>   It can return before the actual computation has finished.
+  !>
+  !>   \note
+  !>   This routine supports execution in a hipGraph context.
+  !>
+  !>   @param[in]
+  !>   handle      handle to the rocSPARSE library context queue.
+  !>   @param[in]
+  !>   m           number of rows of the sparse CSR matrix.
+  !>   @param[in]
+  !>   n           number of columns of the sparse CSR matrix.
+  !>   @param[in]
+  !>   nnz         number of non-zero entries of the sparse CSR matrix.
+  !>   @param[in]
+  !>   csr_val     array of \p nnz elements of the sparse CSR matrix.
+  !>   @param[in]
+  !>   csr_row_ptr array of \p m+1 elements that point to the start of every row of the
+  !>               sparse CSR matrix.
+  !>   @param[in]
+  !>   csr_col_ind array of \p nnz elements containing the column indices of the sparse
+  !>               CSR matrix.
+  !>   @param[out]
+  !>   csc_val     array of \p nnz elements of the sparse CSC matrix.
+  !>   @param[out]
+  !>   csc_row_ind array of \p nnz elements containing the row indices of the sparse CSC
+  !>               matrix.
+  !>   @param[out]
+  !>   csc_col_ptr array of \p n+1 elements that point to the start of every column of the
+  !>               sparse CSC matrix.
+  !>   @param[in]
+  !>   copy_values `rocsparse_action_symbolic` or `rocsparse_action_numeric`.
+  !>   @param[in]
+  !>   idx_base    `rocsparse_index_base_zero` or `rocsparse_index_base_one`.
+  !>   @param[in]
+  !>   temp_buffer temporary storage buffer allocated by the user. The size is returned by
+  !>               rocsparse_csr2csc_buffer_size().
+  !>
+  !>   \retval     rocsparse_status_success the operation completed successfully.
+  !>   \retval     rocsparse_status_invalid_handle the library context was not initialized.
+  !>   \retval     rocsparse_status_invalid_size \p m, \p n, or \p nnz is invalid.
+  !>   \retval     rocsparse_status_invalid_pointer \p csr_val, \p csr_row_ptr,
+  !>               \p csr_col_ind, \p csc_val, \p csc_row_ind, \p csc_col_ptr, or
+  !>               \p temp_buffer pointer is invalid.
+  !>   \retval     rocsparse_status_arch_mismatch the device is not supported.
+  !>   \retval     rocsparse_status_internal_error an internal error occurred.
+  !>
+  !>   \par Example
+  !>   This example computes the transpose of a CSR matrix.
+  !>   \code{.c}
+  !>       //     1 2 0 3 0
+  !>       // A = 0 4 5 0 0
+  !>       //     6 0 0 7 8
+  !>
+  !>       rocsparse_int m_A   = 3;
+  !>       rocsparse_int n_A   = 5;
+  !>       rocsparse_int nnz_A = 8;
+  !>
+  !>       csr_row_ptr_A[m_A + 1] = {0, 3, 5, 8};             // device memory
+  !>       csr_col_ind_A[nnz_A] = {0, 1, 3, 1, 2, 0, 3, 4}; // device memory
+  !>       csr_val_A[nnz_A]     = {1, 2, 3, 4, 5, 6, 7, 8}; // device memory
+  !>
+  !>       // Allocate memory for transposed CSR matrix
+  !>       rocsparse_int m_T   = n_A;
+  !>       rocsparse_int n_T   = m_A;
+  !>       rocsparse_int nnz_T = nnz_A;
+  !>
+  !>       rocsparse_int* csr_row_ptr_T;
+  !>       rocsparse_int* csr_col_ind_T;
+  !>       float* csr_val_T;
+  !>
+  !>       hipMalloc((void**)&csr_row_ptr_T, sizeof(rocsparse_int) * (m_T + 1));
+  !>       hipMalloc((void**)&csr_col_ind_T, sizeof(rocsparse_int) * nnz_T);
+  !>       hipMalloc((void**)&csr_val_T, sizeof(float) * nnz_T);
+  !>
+  !>       // Obtain the temporary buffer size
+  !>       size_t buffer_size;
+  !>       rocsparse_csr2csc_buffer_size(handle,
+  !>                                     m_A,
+  !>                                     n_A,
+  !>                                     nnz_A,
+  !>                                     csr_row_ptr_A,
+  !>                                     csr_col_ind_A,
+  !>                                     rocsparse_action_numeric,
+  !>                                     &buffer_size);
+  !>
+  !>       // Allocate temporary buffer
+  !>       void* temp_buffer;
+  !>       hipMalloc(&temp_buffer, buffer_size);
+  !>
+  !>       rocsparse_scsr2csc(handle,
+  !>                          m_A,
+  !>                          n_A,
+  !>                          nnz_A,
+  !>                          csr_val_A,
+  !>                          csr_row_ptr_A,
+  !>                          csr_col_ind_A,
+  !>                          csr_val_T,
+  !>                          csr_col_ind_T,
+  !>                          csr_row_ptr_T,
+  !>                          rocsparse_action_numeric,
+  !>                          rocsparse_index_base_zero,
+  !>                          temp_buffer);
+  !>   \endcode
+  !>
+  !>   \par Example
+  !>   This example computes the symbolic transpose of A
   interface rocsparse_scsr2csc
     function rocsparse_scsr2csc_(handle,m,n,nnz,csr_val,csr_row_ptr,csr_col_ind,csc_val,csc_row_ind,csc_col_ptr,copy_values,idx_base,temp_buffer) bind(c, name="rocsparse_scsr2csc")
       use iso_c_binding
@@ -15393,7 +16101,7 @@ module hipfort_rocsparse
       rocsparse_scsr2csc_rank_1
 #endif
   end interface
-  
+
   interface rocsparse_dcsr2csc
     function rocsparse_dcsr2csc_(handle,m,n,nnz,csr_val,csr_row_ptr,csr_col_ind,csc_val,csc_row_ind,csc_col_ptr,copy_values,idx_base,temp_buffer) bind(c, name="rocsparse_dcsr2csc")
       use iso_c_binding
@@ -15421,7 +16129,7 @@ module hipfort_rocsparse
       rocsparse_dcsr2csc_rank_1
 #endif
   end interface
-  
+
   interface rocsparse_ccsr2csc
     function rocsparse_ccsr2csc_(handle,m,n,nnz,csr_val,csr_row_ptr,csr_col_ind,csc_val,csc_row_ind,csc_col_ptr,copy_values,idx_base,temp_buffer) bind(c, name="rocsparse_ccsr2csc")
       use iso_c_binding
@@ -15449,7 +16157,7 @@ module hipfort_rocsparse
       rocsparse_ccsr2csc_rank_1
 #endif
   end interface
-  
+
   interface rocsparse_zcsr2csc
     function rocsparse_zcsr2csc_(handle,m,n,nnz,csr_val,csr_row_ptr,csr_col_ind,csc_val,csc_row_ind,csc_col_ptr,copy_values,idx_base,temp_buffer) bind(c, name="rocsparse_zcsr2csc")
       use iso_c_binding
@@ -15477,6 +16185,52 @@ module hipfort_rocsparse
       rocsparse_zcsr2csc_rank_1
 #endif
   end interface
+
+  !>  \ingroup conv_module
+  !>   \details
+  !>   \p rocsparse_gebsr2gebsc_buffer_size returns the size of the temporary storage buffer
+  !>   required by \ref rocsparse_sgebsr2gebsc "rocsparse_Xgebsr2gebsc()".
+  !>   The temporary storage buffer must be allocated by the user.
+  !>
+  !>   \note
+  !>   This function is non-blocking and executed asynchronously with respect to the host.
+  !>   It can return before the actual computation has finished.
+  !>
+  !>   \note
+  !>   This routine supports execution in a hipGraph context.
+  !>
+  !>   @param[in]
+  !>   handle      handle to the rocSPARSE library context queue.
+  !>   @param[in]
+  !>   mb           number of rows of the sparse general BSR matrix.
+  !>   @param[in]
+  !>   nb           number of columns of the sparse general BSR matrix.
+  !>   @param[in]
+  !>   nnzb         number of non-zero entries of the sparse general BSR matrix.
+  !>   @param[in]
+  !>   bsr_val array of \p nnzb*row_block_dim*col_block_dim containing the values of the sparse
+  !>   general BSR matrix.
+  !>   @param[in]
+  !>   bsr_row_ptr array of \p mb+1 elements that point to the start of every row of the
+  !>               sparse general BSR matrix.
+  !>   @param[in]
+  !>   bsr_col_ind array of \p nnzb elements containing the column indices of the sparse
+  !>               general BSR matrix.
+  !>   @param[in]
+  !>   row_block_dim   row size of the blocks in the sparse general BSR matrix.
+  !>   @param[in]
+  !>   col_block_dim   col size of the blocks in the sparse general BSR matrix.
+  !>   @param[out]
+  !>   p_buffer_size number of bytes of the temporary storage buffer required by
+  !>               rocsparse_sgebsr2gebsc(), rocsparse_dgebsr2gebsc(), rocsparse_cgebsr2gebsc(), and
+  !>               rocsparse_zgebsr2gebsc().
+  !>
+  !>   \retval     rocsparse_status_success the operation completed successfully.
+  !>   \retval     rocsparse_status_invalid_handle the library context was not initialized.
+  !>   \retval     rocsparse_status_invalid_size \p mb, \p nb, or \p nnzb is invalid.
+  !>   \retval     rocsparse_status_invalid_pointer \p bsr_row_ptr, \p bsr_col_ind, or
+  !>               \p p_buffer_size pointer is invalid.
+  !>   \retval     rocsparse_status_internal_error an internal error occurred.
   interface rocsparse_sgebsr2gebsc_buffer_size
     function rocsparse_sgebsr2gebsc_buffer_size_(handle,mb,nb,nnzb,bsr_val,bsr_row_ptr,bsr_col_ind,row_block_dim,col_block_dim,p_buffer_size) bind(c, name="rocsparse_sgebsr2gebsc_buffer_size")
       use iso_c_binding
@@ -15501,7 +16255,7 @@ module hipfort_rocsparse
       rocsparse_sgebsr2gebsc_buffer_size_rank_1
 #endif
   end interface
-  
+
   interface rocsparse_dgebsr2gebsc_buffer_size
     function rocsparse_dgebsr2gebsc_buffer_size_(handle,mb,nb,nnzb,bsr_val,bsr_row_ptr,bsr_col_ind,row_block_dim,col_block_dim,p_buffer_size) bind(c, name="rocsparse_dgebsr2gebsc_buffer_size")
       use iso_c_binding
@@ -15526,7 +16280,7 @@ module hipfort_rocsparse
       rocsparse_dgebsr2gebsc_buffer_size_rank_1
 #endif
   end interface
-  
+
   interface rocsparse_cgebsr2gebsc_buffer_size
     function rocsparse_cgebsr2gebsc_buffer_size_(handle,mb,nb,nnzb,bsr_val,bsr_row_ptr,bsr_col_ind,row_block_dim,col_block_dim,p_buffer_size) bind(c, name="rocsparse_cgebsr2gebsc_buffer_size")
       use iso_c_binding
@@ -15551,7 +16305,7 @@ module hipfort_rocsparse
       rocsparse_cgebsr2gebsc_buffer_size_rank_1
 #endif
   end interface
-  
+
   interface rocsparse_zgebsr2gebsc_buffer_size
     function rocsparse_zgebsr2gebsc_buffer_size_(handle,mb,nb,nnzb,bsr_val,bsr_row_ptr,bsr_col_ind,row_block_dim,col_block_dim,p_buffer_size) bind(c, name="rocsparse_zgebsr2gebsc_buffer_size")
       use iso_c_binding
@@ -15576,6 +16330,93 @@ module hipfort_rocsparse
       rocsparse_zgebsr2gebsc_buffer_size_rank_1
 #endif
   end interface
+
+  !>  \ingroup conv_module
+  !>   \brief Convert a sparse general BSR matrix into a sparse general BSC matrix.
+  !>
+  !>   \details
+  !>   \p rocsparse_gebsr2gebsc converts a general BSR matrix into a general BSC matrix. The
+  !>   resulting
+  !>   matrix can also be seen as the transpose of the input matrix. \p rocsparse_gebsr2gebsc can
+  !>   also
+  !>   be used to convert a general BSC matrix into a general BSR matrix.
+  !>
+  !>   The conversion of a sparse matrix from general BSR to general BSC format involves two steps.
+  !>   First,
+  !>   call \ref rocsparse_sgebsr2gebsc_buffer_size "rocsparse_Xgebsr2gebsc_buffer_size()" to
+  !>   determine the size of the required tempory storage buffer. Then allocate this buffer.
+  !>   Secondly,
+  !>   call \p rocsparse_gebsr2gebsc to complete the conversion. After the conversion is complete,
+  !>   the
+  !>   user must free the temporary buffer.
+  !>
+  !>   \p rocsparse_gebsr2gebsc takes a `rocsparse_action` parameter as input. This \p copy_values
+  !>   parameter
+  !>   decides whether \p bsc_row_ind and \p bsc_val are filled during conversion
+  !>   (`rocsparse_action_numeric`)
+  !>   or whether only \p bsc_row_ind is filled (`rocsparse_action_symbolic`). Using
+  !>   `rocsparse_action_symbolic` can be useful, for example, if only the sparsity pattern is
+  !>   required.
+  !>
+  !>   \note
+  !>   The resulting matrix can also be seen as the transpose of the input matrix.
+  !>
+  !>   \note
+  !>   This function is non-blocking and executed asynchronously with respect to the host.
+  !>   It can return before the actual computation has finished.
+  !>
+  !>   \note
+  !>   This routine supports execution in a hipGraph context.
+  !>
+  !>   @param[in]
+  !>   handle         handle to the rocSPARSE library context queue.
+  !>   @param[in]
+  !>   mb             number of rows of the sparse general BSR matrix.
+  !>   @param[in]
+  !>   nb             number of columns of the sparse general BSR matrix.
+  !>   @param[in]
+  !>   nnzb           number of non-zero entries of the sparse general BSR matrix.
+  !>   @param[in]
+  !>   bsr_val array of \p nnzb * \p row_block_dim * \p col_block_dim elements of the sparse general
+  !>   BSR matrix.
+  !>   @param[in]
+  !>   bsr_row_ptr    array of \p mb+1 elements that point to the start of every row of the
+  !>                  sparse general BSR matrix.
+  !>   @param[in]
+  !>   bsr_col_ind    array of \p nnz elements containing the column indices of the sparse
+  !>                  general BSR matrix.
+  !>   @param[in]
+  !>   row_block_dim  row size of the blocks in the sparse general BSR matrix.
+  !>   @param[in]
+  !>   col_block_dim  col size of the blocks in the sparse general BSR matrix.
+  !>   @param[out]
+  !>   bsc_val        array of \p nnz elements of the sparse BSC matrix.
+  !>   @param[out]
+  !>   bsc_row_ind    array of \p nnz elements containing the row indices of the sparse BSC
+  !>                  matrix.
+  !>   @param[out]
+  !>   bsc_col_ptr    array of \p nb+1 elements that point to the start of every column of the
+  !>                  sparse BSC matrix.
+  !>   @param[in]
+  !>   copy_values    `rocsparse_action_symbolic` or `rocsparse_action_numeric`.
+  !>   @param[in]
+  !>   idx_base       `rocsparse_index_base_zero` or `rocsparse_index_base_one`.
+  !>   @param[in]
+  !>   temp_buffer    temporary storage buffer allocated by the user. The size is returned by
+  !>                  \ref rocsparse_sgebsr2gebsc_buffer_size
+  !>                  "rocsparse_Xgebsr2gebsc_buffer_size()".
+  !>
+  !>   \retval     rocsparse_status_success the operation completed successfully.
+  !>   \retval     rocsparse_status_invalid_handle the library context was not initialized.
+  !>   \retval     rocsparse_status_invalid_size \p mb, \p nb, or \p nnzb is invalid.
+  !>   \retval     rocsparse_status_invalid_pointer \p bsr_val, \p bsr_row_ptr,
+  !>               \p bsr_col_ind, \p bsc_val, \p bsc_row_ind, \p bsc_col_ptr, or
+  !>               \p temp_buffer pointer is invalid.
+  !>   \retval     rocsparse_status_arch_mismatch the device is not supported.
+  !>   \retval     rocsparse_status_internal_error an internal error occurred.
+  !>
+  !>   \par Example
+  !>   This example computes the transpose of a general BSR matrix.
   interface rocsparse_sgebsr2gebsc
     function rocsparse_sgebsr2gebsc_(handle,mb,nb,nnzb,bsr_val,bsr_row_ptr,bsr_col_ind,row_block_dim,col_block_dim,bsc_val,bsc_row_ind,bsc_col_ptr,copy_values,idx_base,temp_buffer) bind(c, name="rocsparse_sgebsr2gebsc")
       use iso_c_binding
@@ -15605,7 +16446,7 @@ module hipfort_rocsparse
       rocsparse_sgebsr2gebsc_rank_1
 #endif
   end interface
-  
+
   interface rocsparse_dgebsr2gebsc
     function rocsparse_dgebsr2gebsc_(handle,mb,nb,nnzb,bsr_val,bsr_row_ptr,bsr_col_ind,row_block_dim,col_block_dim,bsc_val,bsc_row_ind,bsc_col_ptr,copy_values,idx_base,temp_buffer) bind(c, name="rocsparse_dgebsr2gebsc")
       use iso_c_binding
@@ -15635,7 +16476,7 @@ module hipfort_rocsparse
       rocsparse_dgebsr2gebsc_rank_1
 #endif
   end interface
-  
+
   interface rocsparse_cgebsr2gebsc
     function rocsparse_cgebsr2gebsc_(handle,mb,nb,nnzb,bsr_val,bsr_row_ptr,bsr_col_ind,row_block_dim,col_block_dim,bsc_val,bsc_row_ind,bsc_col_ptr,copy_values,idx_base,temp_buffer) bind(c, name="rocsparse_cgebsr2gebsc")
       use iso_c_binding
@@ -15665,7 +16506,7 @@ module hipfort_rocsparse
       rocsparse_cgebsr2gebsc_rank_1
 #endif
   end interface
-  
+
   interface rocsparse_zgebsr2gebsc
     function rocsparse_zgebsr2gebsc_(handle,mb,nb,nnzb,bsr_val,bsr_row_ptr,bsr_col_ind,row_block_dim,col_block_dim,bsc_val,bsc_row_ind,bsc_col_ptr,copy_values,idx_base,temp_buffer) bind(c, name="rocsparse_zgebsr2gebsc")
       use iso_c_binding
@@ -15695,34 +16536,36 @@ module hipfort_rocsparse
       rocsparse_zgebsr2gebsc_rank_1
 #endif
   end interface
+
   !>  \ingroup conv_module
-  !>   \brief Convert a sparse CSR matrix into a sparse ELL matrix
-  !> 
   !>   \details
   !>   \p rocsparse_csr2ell_width computes the maximum of the per row non-zero elements
-  !>   over all rows, the ELL \p width, for a given CSR matrix.
-  !> 
+  !>   over all rows, the \p ell_width, for a given CSR matrix.
+  !>
   !>   \note
-  !>   This function is non blocking and executed asynchronously with respect to the host.
-  !>   It may return before the actual computation has finished.
-  !> 
+  !>   This function is non-blocking and executed asynchronously with respect to the host.
+  !>   It can return before the actual computation has finished.
+  !>
+  !>   \note
+  !>   This routine supports execution in a hipGraph context.
+  !>
   !>   @param[in]
-  !>   handle      handle to the rocsparse library context queue.
+  !>   handle      handle to the rocSPARSE library context queue.
   !>   @param[in]
   !>   m           number of rows of the sparse CSR matrix.
   !>   @param[in]
   !>   csr_descr   descriptor of the sparse CSR matrix. Currently, only
-  !>               \p rocsparse_matrix_type_general is supported.
+  !>               `rocsparse_matrix_type_general` is supported.
   !>   @param[in]
   !>   csr_row_ptr array of \p m+1 elements that point to the start of every row of the
   !>               sparse CSR matrix.
   !>   @param[in]
   !>   ell_descr   descriptor of the sparse ELL matrix. Currently, only
-  !>               \p rocsparse_matrix_type_general is supported.
+  !>               `rocsparse_matrix_type_general` is supported.
   !>   @param[out]
   !>   ell_width   pointer to the number of non-zero elements per row in ELL storage
   !>               format.
-  !> 
+  !>
   !>   \retval     rocsparse_status_success the operation completed successfully.
   !>   \retval     rocsparse_status_invalid_handle the library context was not initialized.
   !>   \retval     rocsparse_status_invalid_size \p m is invalid.
@@ -15730,7 +16573,7 @@ module hipfort_rocsparse
   !>               \p ell_width pointer is invalid.
   !>   \retval     rocsparse_status_internal_error an internal error occurred.
   !>   \retval     rocsparse_status_not_implemented
-  !>               \p rocsparse_matrix_type != \p rocsparse_matrix_type_general.
+  !>               `rocsparse_matrix_type` != `rocsparse_matrix_type_general`.
   interface rocsparse_csr2ell_width
     function rocsparse_csr2ell_width_(handle,m,csr_descr,csr_row_ptr,ell_descr,ell_width) bind(c, name="rocsparse_csr2ell_width")
       use iso_c_binding
@@ -15751,6 +16594,60 @@ module hipfort_rocsparse
       rocsparse_csr2ell_width_rank_1
 #endif
   end interface
+
+  !>  \ingroup conv_module
+  !>   \brief Convert a sparse CSR matrix into a sparse ELL matrix.
+  !>
+  !>   \details
+  !>   \p rocsparse_csr2ell converts a CSR matrix into an ELL matrix. It is assumed,
+  !>   that \p ell_val and \p ell_col_ind are allocated. Allocation size is computed by the
+  !>   number of rows times the number of ELL non-zero elements per row, such that
+  !>   \f$\text{nnz}_{\text{ELL}} = m \cdot \text{ell_width}\f$. The number of ELL
+  !>   non-zero elements per row is obtained by rocsparse_csr2ell_width().
+  !>
+  !>   \note
+  !>   This function is non-blocking and executed asynchronously with respect to the host.
+  !>   It can return before the actual computation has finished.
+  !>
+  !>   \note
+  !>   This routine supports execution in a hipGraph context.
+  !>
+  !>   @param[in]
+  !>   handle      handle to the rocSPARSE library context queue.
+  !>   @param[in]
+  !>   m           number of rows of the sparse CSR matrix.
+  !>   @param[in]
+  !>   csr_descr   descriptor of the sparse CSR matrix. Currently, only
+  !>               `rocsparse_matrix_type_general` is supported.
+  !>   @param[in]
+  !>   csr_val     array containing the values of the sparse CSR matrix.
+  !>   @param[in]
+  !>   csr_row_ptr array of \p m+1 elements that point to the start of every row of the
+  !>               sparse CSR matrix.
+  !>   @param[in]
+  !>   csr_col_ind array containing the column indices of the sparse CSR matrix.
+  !>   @param[in]
+  !>   ell_descr   descriptor of the sparse ELL matrix. Currently, only
+  !>               `rocsparse_matrix_type_general` is supported.
+  !>   @param[in]
+  !>   ell_width   number of non-zero elements per row in ELL storage format.
+  !>   @param[out]
+  !>   ell_val     array of \p m times \p ell_width elements of the sparse ELL matrix.
+  !>   @param[out]
+  !>   ell_col_ind array of \p m times \p ell_width elements containing the column indices
+  !>               of the sparse ELL matrix.
+  !>
+  !>   \retval     rocsparse_status_success the operation completed successfully.
+  !>   \retval     rocsparse_status_invalid_handle the library context was not initialized.
+  !>   \retval     rocsparse_status_invalid_size \p m or \p ell_width is invalid.
+  !>   \retval     rocsparse_status_invalid_pointer \p csr_descr, \p csr_val,
+  !>               \p csr_row_ptr, \p csr_col_ind, \p ell_descr, \p ell_val, or
+  !>               \p ell_col_ind pointer is invalid.
+  !>   \retval     rocsparse_status_not_implemented
+  !>               `rocsparse_matrix_type` != `rocsparse_matrix_type_general`.
+  !>
+  !>   \par Example
+  !>   This example converts a CSR matrix into an ELL matrix.
   interface rocsparse_scsr2ell
     function rocsparse_scsr2ell_(handle,m,csr_descr,csr_val,csr_row_ptr,csr_col_ind,ell_descr,ell_width,ell_val,ell_col_ind) bind(c, name="rocsparse_scsr2ell")
       use iso_c_binding
@@ -15775,7 +16672,7 @@ module hipfort_rocsparse
       rocsparse_scsr2ell_rank_1
 #endif
   end interface
-  
+
   interface rocsparse_dcsr2ell
     function rocsparse_dcsr2ell_(handle,m,csr_descr,csr_val,csr_row_ptr,csr_col_ind,ell_descr,ell_width,ell_val,ell_col_ind) bind(c, name="rocsparse_dcsr2ell")
       use iso_c_binding
@@ -15800,7 +16697,7 @@ module hipfort_rocsparse
       rocsparse_dcsr2ell_rank_1
 #endif
   end interface
-  
+
   interface rocsparse_ccsr2ell
     function rocsparse_ccsr2ell_(handle,m,csr_descr,csr_val,csr_row_ptr,csr_col_ind,ell_descr,ell_width,ell_val,ell_col_ind) bind(c, name="rocsparse_ccsr2ell")
       use iso_c_binding
@@ -15825,7 +16722,7 @@ module hipfort_rocsparse
       rocsparse_ccsr2ell_rank_1
 #endif
   end interface
-  
+
   interface rocsparse_zcsr2ell
     function rocsparse_zcsr2ell_(handle,m,csr_descr,csr_val,csr_row_ptr,csr_col_ind,ell_descr,ell_width,ell_val,ell_col_ind) bind(c, name="rocsparse_zcsr2ell")
       use iso_c_binding
@@ -15850,6 +16747,64 @@ module hipfort_rocsparse
       rocsparse_zcsr2ell_rank_1
 #endif
   end interface
+
+  !>  \ingroup conv_module
+  !>   \brief Convert a sparse CSR matrix into a sparse HYB matrix.
+  !>
+  !>   \details
+  !>   \p rocsparse_csr2hyb converts a CSR matrix into a HYB matrix. It is assumed
+  !>   that \p hyb has been initialized with `rocsparse_create_hyb_mat`().
+  !>
+  !>   \note
+  !>   This function requires a significant amount of storage for the HYB matrix,
+  !>   depending on the matrix structure.
+  !>
+  !>   \note
+  !>   This function is blocking with respect to the host.
+  !>
+  !>   \note
+  !>   This routine does not support execution in a hipGraph context.
+  !>
+  !>   @param[in]
+  !>   handle          handle to the rocSPARSE library context queue.
+  !>   @param[in]
+  !>   m               number of rows of the sparse CSR matrix.
+  !>   @param[in]
+  !>   n               number of columns of the sparse CSR matrix.
+  !>   @param[in]
+  !>   descr           descriptor of the sparse CSR matrix. Currently, only
+  !>                   `rocsparse_matrix_type_general` is supported.
+  !>   @param[in]
+  !>   csr_val         array containing the values of the sparse CSR matrix.
+  !>   @param[in]
+  !>   csr_row_ptr     array of \p m+1 elements that point to the start of every row of the
+  !>                   sparse CSR matrix.
+  !>   @param[in]
+  !>   csr_col_ind     array containing the column indices of the sparse CSR matrix.
+  !>   @param[out]
+  !>   hyb             sparse matrix in HYB format.
+  !>   @param[in]
+  !>   user_ell_width  width of the ELL part of the HYB matrix (only required if
+  !>                   \p partition_type == `rocsparse_hyb_partition_user`).
+  !>   @param[in]
+  !>   partition_type  `rocsparse_hyb_partition_auto` (recommended),
+  !>                   `rocsparse_hyb_partition_user`, or
+  !>                   `rocsparse_hyb_partition_max`.
+  !>
+  !>   \retval     rocsparse_status_success the operation completed successfully.
+  !>   \retval     rocsparse_status_invalid_handle the library context was not initialized.
+  !>   \retval     rocsparse_status_invalid_size \p m, \p n, or \p user_ell_width is invalid.
+  !>   \retval     rocsparse_status_invalid_value \p partition_type is invalid.
+  !>   \retval     rocsparse_status_invalid_pointer \p descr, \p hyb, \p csr_val,
+  !>               \p csr_row_ptr, or \p csr_col_ind pointer is invalid.
+  !>   \retval     rocsparse_status_memory_error the buffer for the HYB matrix could not be
+  !>               allocated.
+  !>   \retval     rocsparse_status_internal_error an internal error occurred.
+  !>   \retval     rocsparse_status_not_implemented
+  !>               `rocsparse_matrix_type` != `rocsparse_matrix_type_general`.
+  !>
+  !>   \par Example
+  !>   This example converts a CSR matrix into a HYB matrix using user-defined partitioning.
   interface rocsparse_scsr2hyb
     function rocsparse_scsr2hyb_(handle,m,n,descr,csr_val,csr_row_ptr,csr_col_ind,hyb,user_ell_width,partition_type) bind(c, name="rocsparse_scsr2hyb")
       use iso_c_binding
@@ -15874,7 +16829,7 @@ module hipfort_rocsparse
       rocsparse_scsr2hyb_rank_1
 #endif
   end interface
-  
+
   interface rocsparse_dcsr2hyb
     function rocsparse_dcsr2hyb_(handle,m,n,descr,csr_val,csr_row_ptr,csr_col_ind,hyb,user_ell_width,partition_type) bind(c, name="rocsparse_dcsr2hyb")
       use iso_c_binding
@@ -15899,7 +16854,7 @@ module hipfort_rocsparse
       rocsparse_dcsr2hyb_rank_1
 #endif
   end interface
-  
+
   interface rocsparse_ccsr2hyb
     function rocsparse_ccsr2hyb_(handle,m,n,descr,csr_val,csr_row_ptr,csr_col_ind,hyb,user_ell_width,partition_type) bind(c, name="rocsparse_ccsr2hyb")
       use iso_c_binding
@@ -15924,7 +16879,7 @@ module hipfort_rocsparse
       rocsparse_ccsr2hyb_rank_1
 #endif
   end interface
-  
+
   interface rocsparse_zcsr2hyb
     function rocsparse_zcsr2hyb_(handle,m,n,descr,csr_val,csr_row_ptr,csr_col_ind,hyb,user_ell_width,partition_type) bind(c, name="rocsparse_zcsr2hyb")
       use iso_c_binding
@@ -15949,52 +16904,65 @@ module hipfort_rocsparse
       rocsparse_zcsr2hyb_rank_1
 #endif
   end interface
+
   !>  \ingroup conv_module
-  !>   \brief
-  !>   This function computes the number of nonzero block columns per row and the total number of nonzero blocks in a sparse
-  !>   BSR matrix given a sparse CSR matrix as input.
-  !> 
   !>   \details
-  !>   The routine does support asynchronous execution if the pointer mode is set to device.
-  !> 
+  !>   This function takes a sparse CSR matrix as input and computes the block row offset array, \p
+  !>   bsr_row_ptr,
+  !>   and the total number of non-zero blocks, \p bsr_nnz, that will result from converting the CSR
+  !>   format input
+  !>   matrix to a BSR format output matrix. This function is the first step in the conversion and
+  !>   is used in
+  !>   conjunction with \ref rocsparse_scsr2bsr "rocsparse_Xcsr2bsr()".
+  !>
+  !>   \note
+  !>   The routine supports asynchronous execution if the pointer mode is set to device.
+  !>
+  !>   \note
+  !>   This routine does not support execution in a hipGraph context.
+  !>
   !>   @param[in]
-  !>   handle      handle to the rocsparse library context queue.
-  !> 
+  !>   handle      handle to the rocSPARSE library context queue.
+  !>
   !>   @param[in]
-  !>   dir         direction that specified whether to count nonzero elements by \p rocsparse_direction_row or by
-  !>               \p rocsparse_direction_row.
-  !> 
+  !>   dir direction that specifies whether to count non-zero elements by `rocsparse_direction_row`
+  !>   or by
+  !>               `rocsparse_direction_column`.
+  !>
   !>   @param[in]
   !>   m           number of rows of the sparse CSR matrix.
-  !> 
+  !>
   !>   @param[in]
   !>   n           number of columns of the sparse CSR matrix.
-  !> 
+  !>
   !>   @param[in]
   !>   csr_descr    descriptor of the sparse CSR matrix. Currently, only
-  !>                \p rocsparse_matrix_type_general is supported.
+  !>                `rocsparse_matrix_type_general` is supported.
   !>   @param[in]
-  !>   csr_row_ptr integer array containing \p m+1 elements that point to the start of each row of the CSR matrix
-  !> 
+  !>   csr_row_ptr integer array containing \p m+1 elements that point to the start of each row of
+  !>   the CSR matrix.
+  !>
   !>   @param[in]
-  !>   csr_col_ind integer array of the column indices for each non-zero element in the CSR matrix
-  !> 
+  !>   csr_col_ind integer array of the column indices for each non-zero element in the CSR matrix.
+  !>
   !>   @param[in]
-  !>   block_dim   the block dimension of the BSR matrix. Between 1 and min(m, n)
-  !> 
+  !>   block_dim   the block dimension of the BSR matrix. Between 1 and min(m, n).
+  !>
   !>   @param[in]
   !>   bsr_descr    descriptor of the sparse BSR matrix. Currently, only
-  !>                \p rocsparse_matrix_type_general is supported.
+  !>                `rocsparse_matrix_type_general` is supported.
   !>   @param[out]
-  !>   bsr_row_ptr integer array containing \p mb+1 elements that point to the start of each block row of the BSR matrix
-  !> 
+  !>   bsr_row_ptr integer array containing \p mb+1 elements that point to the start of each block
+  !>   row of the BSR matrix.
+  !>
   !>   @param[out]
-  !>   bsr_nnz     total number of nonzero elements in device or host memory.
-  !> 
+  !>   bsr_nnz     total number of non-zero elements in device or host memory.
+  !>
   !>   \retval     rocsparse_status_success the operation completed successfully.
   !>   \retval     rocsparse_status_invalid_handle the library context was not initialized.
-  !>   \retval     rocsparse_status_invalid_size \p m or \p n or \p block_dim is invalid.
-  !>   \retval     rocsparse_status_invalid_pointer \p csr_row_ptr or \p csr_col_ind or \p bsr_row_ptr or \p bsr_nnz
+  !>   \retval     rocsparse_status_invalid_size \p m, \p n, or \p block_dim is invalid.
+  !>   \retval rocsparse_status_invalid_pointer \p csr_row_ptr, \p csr_col_ind, \p bsr_row_ptr, or
+  !>   \p bsr_nnz
   !>               pointer is invalid.
   interface rocsparse_csr2bsr_nnz
     function rocsparse_csr2bsr_nnz_(handle,dir,m,n,csr_descr,csr_row_ptr,csr_col_ind,block_dim,bsr_descr,bsr_row_ptr,bsr_nnz) bind(c, name="rocsparse_csr2bsr_nnz")
@@ -16021,6 +16989,82 @@ module hipfort_rocsparse
       rocsparse_csr2bsr_nnz_rank_1
 #endif
   end interface
+
+  !>  \ingroup conv_module
+  !>   \brief Convert a sparse CSR matrix into a sparse BSR matrix.
+  !>
+  !>   \details
+  !>   \p rocsparse_csr2bsr converts a CSR matrix into a BSR matrix. It is assumed
+  !>   that \p bsr_val, \p bsr_col_ind, and \p bsr_row_ptr are allocated. The allocation size
+  !>   for \p bsr_row_ptr is computed as \p mb+1, where \p mb is the number of block rows
+  !>   and \p nb is the number of block columns in the BSR matrix:
+  !>   \f[
+  !>     mb = (m + block\_dim - 1) / block\_dim \\%
+  !>     nb = (n + block\_dim - 1) / block\_dim
+  !>   \f]
+  !>   The allocation size for \p bsr_val and \p bsr_col_ind is computed using
+  !>   `rocsparse_csr2bsr_nnz` (),
+  !>   which also fills in \p bsr_row_ptr.
+  !>
+  !>   Converting from a sparse CSR matrix to a sparse BSR matrix requires two steps. First,
+  !>   allocate the \p bsr_row_ptr array to have length \p mb+1 and pass this to the function
+  !>   `rocsparse_csr2bsr_nnz`. This will fill the \p bsr_row_ptr array and also compute the total
+  !>   number of non-zero blocks in the BSR matrix. Now that the total number of non-zero blocks is
+  !>   known,
+  !>   allocate the \p bsr_col_ind and \p bsr_val arrays. Finally, call
+  !>   \p rocsparse_csr2bsr to complete the conversion. See the example below.
+  !>
+  !>   \p rocsparse_csr2bsr requires extra temporary storage that is allocated internally if \p
+  !>   block_dim>16.
+  !>
+  !>   \note
+  !>   This function is blocking with respect to the host.
+  !>
+  !>   \note
+  !>   This routine does not support execution in a hipGraph context.
+  !>
+  !>   @param[in]
+  !>   handle       handle to the rocSPARSE library context queue.
+  !>   @param[in]
+  !>   dir the storage format of the blocks, `rocsparse_direction_row` or
+  !>   `rocsparse_direction_column`.
+  !>   @param[in]
+  !>   m            number of rows in the sparse CSR matrix.
+  !>   @param[in]
+  !>   n            number of columns in the sparse CSR matrix.
+  !>   @param[in]
+  !>   csr_descr    descriptor of the sparse CSR matrix. Currently, only
+  !>                `rocsparse_matrix_type_general` is supported.
+  !>   @param[in]
+  !>   csr_val      array of \p nnz elements containing the values of the sparse CSR matrix.
+  !>   @param[in]
+  !>   csr_row_ptr  array of \p m+1 elements that point to the start of every row of the
+  !>                sparse CSR matrix.
+  !>   @param[in]
+  !>   csr_col_ind  array of \p nnz elements containing the column indices of the sparse CSR matrix.
+  !>   @param[in]
+  !>   block_dim    size of the blocks in the sparse BSR matrix.
+  !>   @param[in]
+  !>   bsr_descr    descriptor of the sparse BSR matrix. Currently, only
+  !>                `rocsparse_matrix_type_general` is supported.
+  !>   @param[out]
+  !>   bsr_val array of \p nnzb*block_dim*block_dim containing the values of the sparse BSR matrix.
+  !>   @param[out]
+  !>   bsr_row_ptr  array of \p mb+1 elements that point to the start of every block row of the
+  !>                sparse BSR matrix.
+  !>   @param[out]
+  !>   bsr_col_ind array of \p nnzb elements containing the block column indices of the sparse BSR
+  !>   matrix.
+  !>
+  !>   \retval     rocsparse_status_success the operation completed successfully.
+  !>   \retval     rocsparse_status_invalid_handle the library context was not initialized.
+  !>   \retval     rocsparse_status_invalid_size \p m, \p n, or \p block_dim is invalid.
+  !>   \retval     rocsparse_status_invalid_pointer \p bsr_val,
+  !>               \p bsr_row_ptr, \p bsr_col_ind, \p csr_val, \p csr_row_ptr, or
+  !>               \p csr_col_ind pointer is invalid.
+  !>
+  !>   \par Example
+  !>   This example converts a CSR matrix into an BSR matrix.
   interface rocsparse_scsr2bsr
     function rocsparse_scsr2bsr_(handle,dir,m,n,csr_descr,csr_val,csr_row_ptr,csr_col_ind,block_dim,bsr_descr,bsr_val,bsr_row_ptr,bsr_col_ind) bind(c, name="rocsparse_scsr2bsr")
       use iso_c_binding
@@ -16048,7 +17092,7 @@ module hipfort_rocsparse
       rocsparse_scsr2bsr_rank_1
 #endif
   end interface
-  
+
   interface rocsparse_dcsr2bsr
     function rocsparse_dcsr2bsr_(handle,dir,m,n,csr_descr,csr_val,csr_row_ptr,csr_col_ind,block_dim,bsr_descr,bsr_val,bsr_row_ptr,bsr_col_ind) bind(c, name="rocsparse_dcsr2bsr")
       use iso_c_binding
@@ -16076,7 +17120,7 @@ module hipfort_rocsparse
       rocsparse_dcsr2bsr_rank_1
 #endif
   end interface
-  
+
   interface rocsparse_ccsr2bsr
     function rocsparse_ccsr2bsr_(handle,dir,m,n,csr_descr,csr_val,csr_row_ptr,csr_col_ind,block_dim,bsr_descr,bsr_val,bsr_row_ptr,bsr_col_ind) bind(c, name="rocsparse_ccsr2bsr")
       use iso_c_binding
@@ -16104,7 +17148,7 @@ module hipfort_rocsparse
       rocsparse_ccsr2bsr_rank_1
 #endif
   end interface
-  
+
   interface rocsparse_zcsr2bsr
     function rocsparse_zcsr2bsr_(handle,dir,m,n,csr_descr,csr_val,csr_row_ptr,csr_col_ind,block_dim,bsr_descr,bsr_val,bsr_row_ptr,bsr_col_ind) bind(c, name="rocsparse_zcsr2bsr")
       use iso_c_binding
@@ -16132,8 +17176,68 @@ module hipfort_rocsparse
       rocsparse_zcsr2bsr_rank_1
 #endif
   end interface
+
+  !>  \ingroup conv_module
+  !>   \details
+  !>   \p rocsparse_csr2gebsr_buffer_size returns the size of the temporary buffer that is required
+  !>   by \ref rocsparse_csr2gebsr_nnz and \ref rocsparse_scsr2gebsr "rocsparse_Xcsr2gebsr()". The
+  !>   temporary storage buffer must be allocated by the user.
+  !>
+  !>   \note
+  !>   This function is non-blocking and executed asynchronously with respect to the host.
+  !>   It can return before the actual computation has finished.
+  !>
+  !>   \note
+  !>   This routine supports execution in a hipGraph context.
+  !>
+  !>   @param[in]
+  !>   handle      handle to the rocSPARSE library context queue.
+  !>
+  !>   @param[in]
+  !>   dir direction that specifies whether to count non-zero elements by `rocsparse_direction_row`
+  !>   or by
+  !>               `rocsparse_direction_column`.
+  !>
+  !>   @param[in]
+  !>   m           number of rows of the sparse CSR matrix.
+  !>
+  !>   @param[in]
+  !>   n           number of columns of the sparse CSR matrix.
+  !>
+  !>   @param[in]
+  !>   csr_descr    descriptor of the sparse CSR matrix. Currently, only
+  !>                `rocsparse_matrix_type_general` is supported.
+  !>
+  !>   @param[in]
+  !>   csr_val      array of \p nnz elements containing the values of the sparse CSR matrix.
+  !>
+  !>   @param[in]
+  !>   csr_row_ptr integer array containing \p m+1 elements that point to the start of each row of
+  !>   the CSR matrix.
+  !>
+  !>   @param[in]
+  !>   csr_col_ind  integer array of the column indices for each non-zero element in the CSR matrix.
+  !>
+  !>   @param[in]
+  !>   row_block_dim   the row block dimension of the general BSR matrix. Between 1 and \p m.
+  !>
+  !>   @param[in]
+  !>   col_block_dim   the col block dimension of the general BSR matrix. Between 1 and \p n.
+  !>
+  !>   @param[out]
+  !>   buffer_size number of bytes of the temporary storage buffer required by \ref
+  !>   rocsparse_csr2gebsr_nnz
+  !>                and \ref rocsparse_scsr2gebsr "rocsparse_Xcsr2gebsr()".
+  !>
+  !>   \retval     rocsparse_status_success the operation completed successfully.
+  !>   \retval     rocsparse_status_invalid_handle the library context was not initialized.
+  !>   \retval rocsparse_status_invalid_size \p m, \p n, \p row_block_dim, or \p col_block_dim is
+  !>   invalid.
+  !>   \retval rocsparse_status_invalid_pointer \p csr_val, \p csr_row_ptr, \p csr_col_ind, or \p
+  !>   buffer_size
+  !>               pointer is invalid.
   interface rocsparse_scsr2gebsr_buffer_size
-    function rocsparse_scsr2gebsr_buffer_size_(handle,dir,m,n,csr_descr,csr_val,csr_row_ptr,csr_col_ind,row_block_dim,col_block_dim,p_buffer_size) bind(c, name="rocsparse_scsr2gebsr_buffer_size")
+    function rocsparse_scsr2gebsr_buffer_size_(handle,dir,m,n,csr_descr,csr_val,csr_row_ptr,csr_col_ind,row_block_dim,col_block_dim,buffer_size) bind(c, name="rocsparse_scsr2gebsr_buffer_size")
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
@@ -16148,7 +17252,7 @@ module hipfort_rocsparse
       type(c_ptr),value :: csr_col_ind
       integer(c_int),value :: row_block_dim
       integer(c_int),value :: col_block_dim
-      type(c_ptr),value :: p_buffer_size
+      type(c_ptr),value :: buffer_size
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
@@ -16157,9 +17261,9 @@ module hipfort_rocsparse
       rocsparse_scsr2gebsr_buffer_size_rank_1
 #endif
   end interface
-  
+
   interface rocsparse_dcsr2gebsr_buffer_size
-    function rocsparse_dcsr2gebsr_buffer_size_(handle,dir,m,n,csr_descr,csr_val,csr_row_ptr,csr_col_ind,row_block_dim,col_block_dim,p_buffer_size) bind(c, name="rocsparse_dcsr2gebsr_buffer_size")
+    function rocsparse_dcsr2gebsr_buffer_size_(handle,dir,m,n,csr_descr,csr_val,csr_row_ptr,csr_col_ind,row_block_dim,col_block_dim,buffer_size) bind(c, name="rocsparse_dcsr2gebsr_buffer_size")
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
@@ -16174,7 +17278,7 @@ module hipfort_rocsparse
       type(c_ptr),value :: csr_col_ind
       integer(c_int),value :: row_block_dim
       integer(c_int),value :: col_block_dim
-      type(c_ptr),value :: p_buffer_size
+      type(c_ptr),value :: buffer_size
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
@@ -16183,9 +17287,9 @@ module hipfort_rocsparse
       rocsparse_dcsr2gebsr_buffer_size_rank_1
 #endif
   end interface
-  
+
   interface rocsparse_ccsr2gebsr_buffer_size
-    function rocsparse_ccsr2gebsr_buffer_size_(handle,dir,m,n,csr_descr,csr_val,csr_row_ptr,csr_col_ind,row_block_dim,col_block_dim,p_buffer_size) bind(c, name="rocsparse_ccsr2gebsr_buffer_size")
+    function rocsparse_ccsr2gebsr_buffer_size_(handle,dir,m,n,csr_descr,csr_val,csr_row_ptr,csr_col_ind,row_block_dim,col_block_dim,buffer_size) bind(c, name="rocsparse_ccsr2gebsr_buffer_size")
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
@@ -16200,7 +17304,7 @@ module hipfort_rocsparse
       type(c_ptr),value :: csr_col_ind
       integer(c_int),value :: row_block_dim
       integer(c_int),value :: col_block_dim
-      type(c_ptr),value :: p_buffer_size
+      type(c_ptr),value :: buffer_size
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
@@ -16209,9 +17313,9 @@ module hipfort_rocsparse
       rocsparse_ccsr2gebsr_buffer_size_rank_1
 #endif
   end interface
-  
+
   interface rocsparse_zcsr2gebsr_buffer_size
-    function rocsparse_zcsr2gebsr_buffer_size_(handle,dir,m,n,csr_descr,csr_val,csr_row_ptr,csr_col_ind,row_block_dim,col_block_dim,p_buffer_size) bind(c, name="rocsparse_zcsr2gebsr_buffer_size")
+    function rocsparse_zcsr2gebsr_buffer_size_(handle,dir,m,n,csr_descr,csr_val,csr_row_ptr,csr_col_ind,row_block_dim,col_block_dim,buffer_size) bind(c, name="rocsparse_zcsr2gebsr_buffer_size")
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
@@ -16226,7 +17330,7 @@ module hipfort_rocsparse
       type(c_ptr),value :: csr_col_ind
       integer(c_int),value :: row_block_dim
       integer(c_int),value :: col_block_dim
-      type(c_ptr),value :: p_buffer_size
+      type(c_ptr),value :: buffer_size
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
@@ -16235,8 +17339,76 @@ module hipfort_rocsparse
       rocsparse_zcsr2gebsr_buffer_size_rank_1
 #endif
   end interface
+
+  !>  \ingroup conv_module
+  !>   \details
+  !>   This function takes a sparse CSR matrix as input and computes the block row offset array, \p
+  !>   bsr_row_ptr,
+  !>   and the total number of non-zero blocks, \p bsr_nnz_devhost, that will result from converting
+  !>   the CSR format
+  !>   input matrix to a general BSR format output matrix. This function is the second step in the
+  !>   conversion and
+  !>   is used in conjunction with \ref rocsparse_scsr2gebsr_buffer_size
+  !>   "rocsparse_Xcsr2gebsr_buffer_size()" and
+  !>   \ref rocsparse_scsr2gebsr "rocsparse_Xcsr2gebsr()".
+  !>
+  !>   \p rocsparse_csr2gebsr_nnz accepts both host and device pointers for \p bsr_nnz_devhost,
+  !>   which can be set by
+  !>   calling \ref rocsparse_set_pointer_mode prior to calling \p rocsparse_csr2gebsr_nnz.
+  !>
+  !>   \note
+  !>   This function is blocking with respect to the host.
+  !>   \note
+  !>   This routine does not support execution in a hipGraph context.
+  !>
+  !>   @param[in]
+  !>   handle           handle to the rocSPARSE library context queue.
+  !>   @param[in]
+  !>   dir direction that specifies whether to count non-zero elements by `rocsparse_direction_row`
+  !>   or by
+  !>                    `rocsparse_direction_column`.
+  !>   @param[in]
+  !>   m                number of rows of the sparse CSR matrix.
+  !>   @param[in]
+  !>   n                number of columns of the sparse CSR matrix.
+  !>   @param[in]
+  !>   csr_descr        descriptor of the sparse CSR matrix. Currently, only
+  !>                    `rocsparse_matrix_type_general` is supported.
+  !>   @param[in]
+  !>   csr_row_ptr integer array containing \p m+1 elements that point to the start of each row of
+  !>   the CSR matrix.
+  !>
+  !>   @param[in]
+  !>   csr_col_ind integer array of the column indices for each non-zero element in the CSR matrix.
+  !>
+  !>   @param[in]
+  !>   bsr_descr        descriptor of the sparse general BSR matrix. Currently, only
+  !>                    `rocsparse_matrix_type_general` is supported.
+  !>   @param[out]
+  !>   bsr_row_ptr integer array containing \p mb+1 elements that point to the start of each block
+  !>   row of the
+  !>                    general BSR matrix.
+  !>   @param[in]
+  !>   row_block_dim the row block dimension of the general BSR matrix. Between \f$1\f$ and
+  !>   \f$\min(m, n)\f$.
+  !>   @param[in]
+  !>   col_block_dim the col block dimension of the general BSR matrix. Between \f$1\f$ and
+  !>   \f$\min(m, n)\f$.
+  !>   @param[out]
+  !>   bsr_nnz_devhost  total number of non-zero elements in device or host memory.
+  !>   @param[in]
+  !>   temp_buffer      buffer allocated by the user. Its size is determined by calling
+  !>                    \ref rocsparse_scsr2gebsr_buffer_size "rocsparse_Xcsr2gebsr_buffer_size()".
+  !>
+  !>   \retval     rocsparse_status_success the operation completed successfully.
+  !>   \retval     rocsparse_status_invalid_handle the library context was not initialized.
+  !>   \retval rocsparse_status_invalid_size \p m, \p n, \p row_block_dim, or \p col_block_dim is
+  !>   invalid.
+  !>   \retval rocsparse_status_invalid_pointer \p csr_row_ptr, \p csr_col_ind, \p bsr_row_ptr, or
+  !>   \p bsr_nnz_devhost
+  !>               pointer is invalid.
   interface rocsparse_csr2gebsr_nnz
-    function rocsparse_csr2gebsr_nnz_(handle,dir,m,n,csr_descr,csr_row_ptr,csr_col_ind,bsr_descr,bsr_row_ptr,row_block_dim,col_block_dim,bsr_nnz_devhost,p_buffer) bind(c, name="rocsparse_csr2gebsr_nnz")
+    function rocsparse_csr2gebsr_nnz_(handle,dir,m,n,csr_descr,csr_row_ptr,csr_col_ind,bsr_descr,bsr_row_ptr,row_block_dim,col_block_dim,bsr_nnz_devhost,temp_buffer) bind(c, name="rocsparse_csr2gebsr_nnz")
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
@@ -16253,7 +17425,7 @@ module hipfort_rocsparse
       integer(c_int),value :: row_block_dim
       integer(c_int),value :: col_block_dim
       type(c_ptr),value :: bsr_nnz_devhost
-      type(c_ptr),value :: p_buffer
+      type(c_ptr),value :: temp_buffer
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
@@ -16262,8 +17434,93 @@ module hipfort_rocsparse
       rocsparse_csr2gebsr_nnz_rank_1
 #endif
   end interface
+
+  !>  \ingroup conv_module
+  !>   \brief Convert a sparse CSR matrix into a sparse general BSR matrix.
+  !>
+  !>   \details
+  !>   \p rocsparse_csr2gebsr converts a CSR matrix into a general BSR matrix. It is assumed
+  !>   that \p bsr_val, \p bsr_col_ind, and \p bsr_row_ptr are allocated. The allocation size
+  !>   for \p bsr_row_ptr is computed as \p mb+1, where \p mb is the number of block rows
+  !>   and \p nb is the number of block columns in the general BSR matrix:
+  !>   \f[
+  !>     mb = (m + row\_block\_dim - 1) / row\_block\_dim \\%
+  !>     nb = (n + col\_block\_dim - 1) / col\_block\_dim
+  !>   \f]
+  !>   The allocation size for \p bsr_val and \p bsr_col_ind is computed using
+  !>   `rocsparse_csr2bsr_nnz` (),
+  !>   which also fills in \p bsr_row_ptr.
+  !>
+  !>   Converting from a sparse CSR matrix to a sparse general BSR matrix requires three steps.
+  !>   First,
+  !>   call \ref rocsparse_scsr2gebsr_buffer_size "rocsparse_Xcsr2gebsr_buffer_size()"
+  !>   to determine the size of the required temporary storage buffer. After this has been
+  !>   determined,
+  !>   allocate this buffer. Also now allocate the \p bsr_row_ptr array to have length
+  !>   \p mb+1 and pass it to the function \ref rocsparse_csr2gebsr_nnz. This will fill the \p
+  !>   bsr_row_ptr
+  !>   array and also compute the total number of non-zero blocks in the general BSR matrix. Now
+  !>   that the total
+  !>   number of non-zero blocks is known, allocate the \p bsr_col_ind and \p bsr_val arrays.
+  !>   Finally, call \p rocsparse_csr2gebsr to complete the conversion. See the example below.
+  !>
+  !>   \note
+  !>   This function is blocking with respect to the host.
+  !>
+  !>   \note
+  !>   This routine does not support execution in a hipGraph context.
+  !>
+  !>   @param[in]
+  !>   handle         handle to the rocSPARSE library context queue.
+  !>   @param[in]
+  !>   dir the storage format of the blocks, `rocsparse_direction_row` or
+  !>   `rocsparse_direction_column`.
+  !>   @param[in]
+  !>   m              number of rows in the sparse CSR matrix.
+  !>   @param[in]
+  !>   n              number of columns in the sparse CSR matrix.
+  !>   @param[in]
+  !>   csr_descr      descriptor of the sparse CSR matrix. Currently, only
+  !>                  `rocsparse_matrix_type_general` is supported.
+  !>   @param[in]
+  !>   csr_val        array of \p nnz elements containing the values of the sparse CSR matrix.
+  !>   @param[in]
+  !>   csr_row_ptr    array of \p m+1 elements that point to the start of every row of the
+  !>                  sparse CSR matrix.
+  !>   @param[in]
+  !>   csr_col_ind array of \p nnz elements containing the column indices of the sparse CSR matrix.
+  !>   @param[in]
+  !>   bsr_descr      descriptor of the sparse BSR matrix. Currently, only
+  !>                  `rocsparse_matrix_type_general` is supported.
+  !>   @param[out]
+  !>   bsr_val array of \p nnzb* \p row_block_dim* \p col_block_dim containing the values of the
+  !>   sparse BSR matrix.
+  !>   @param[out]
+  !>   bsr_row_ptr    array of \p mb+1 elements that point to the start of every block row of the
+  !>                  sparse BSR matrix.
+  !>   @param[out]
+  !>   bsr_col_ind array of \p nnzb elements containing the block column indices of the sparse BSR
+  !>   matrix.
+  !>   @param[in]
+  !>   row_block_dim  row size of the blocks in the sparse general BSR matrix.
+  !>   @param[in]
+  !>   col_block_dim  col size of the blocks in the sparse general BSR matrix.
+  !>   @param[in]
+  !>   temp_buffer    buffer allocated by the user. Its size is determined by calling
+  !>                  \ref rocsparse_scsr2gebsr_buffer_size "rocsparse_Xcsr2gebsr_buffer_size()".
+  !>
+  !>   \retval     rocsparse_status_success the operation completed successfully.
+  !>   \retval     rocsparse_status_invalid_handle the library context was not initialized.
+  !>   \retval rocsparse_status_invalid_size \p m, \p n, \p row_block_dim, or \p col_block_dim is
+  !>   invalid.
+  !>   \retval     rocsparse_status_invalid_pointer \p bsr_val,
+  !>               \p bsr_row_ptr, \p bsr_col_ind, \p csr_val, \p csr_row_ptr, or
+  !>               \p csr_col_ind pointer is invalid.
+  !>
+  !>   \par Example
+  !>   This example converts a CSR matrix into an BSR matrix.
   interface rocsparse_scsr2gebsr
-    function rocsparse_scsr2gebsr_(handle,dir,m,n,csr_descr,csr_val,csr_row_ptr,csr_col_ind,bsr_descr,bsr_val,bsr_row_ptr,bsr_col_ind,row_block_dim,col_block_dim,p_buffer) bind(c, name="rocsparse_scsr2gebsr")
+    function rocsparse_scsr2gebsr_(handle,dir,m,n,csr_descr,csr_val,csr_row_ptr,csr_col_ind,bsr_descr,bsr_val,bsr_row_ptr,bsr_col_ind,row_block_dim,col_block_dim,temp_buffer) bind(c, name="rocsparse_scsr2gebsr")
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
@@ -16282,7 +17539,7 @@ module hipfort_rocsparse
       type(c_ptr),value :: bsr_col_ind
       integer(c_int),value :: row_block_dim
       integer(c_int),value :: col_block_dim
-      type(c_ptr),value :: p_buffer
+      type(c_ptr),value :: temp_buffer
     end function
 
 #ifdef USE_FPOINTER_INTERFACES
@@ -16291,7 +17548,7 @@ module hipfort_rocsparse
       rocsparse_scsr2gebsr_rank_1
 #endif
   end interface
-  
+
   interface rocsparse_dcsr2gebsr
     function rocsparse_dcsr2gebsr_(handle,dir,m,n,csr_descr,csr_val,csr_row_ptr,csr_col_ind,bsr_descr,bsr_val,bsr_row_ptr,bsr_col_ind,row_block_dim,col_block_dim,p_buffer) bind(c, name="rocsparse_dcsr2gebsr")
       use iso_c_binding
@@ -40358,26 +41615,6 @@ module hipfort_rocsparse
       rocsparse_zdense2csr_rank_1 = rocsparse_zdense2csr_(handle,m,n,descr,c_loc(A),ld,c_loc(nnz_per_rows),c_loc(csr_val),c_loc(csr_row_ptr),c_loc(csr_col_ind))
     end function
 
-    function rocsparse_sprune_dense2csr_buffer_size_full_rank(handle,m,n,A,lda,threshold,descr,csr_val,csr_row_ptr,csr_col_ind,buffer_size)
-      use iso_c_binding
-      use hipfort_rocsparse_enums
-      implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_sprune_dense2csr_buffer_size_full_rank
-      type(c_ptr) :: handle
-      integer(c_int) :: m
-      integer(c_int) :: n
-      real(c_float),target,dimension(:,:) :: A
-      integer(c_int) :: lda
-      real(c_float) :: threshold
-      type(c_ptr) :: descr
-      real(c_float),target,dimension(:) :: csr_val
-      integer(c_int),target,dimension(:) :: csr_row_ptr
-      integer(c_int),target,dimension(:) :: csr_col_ind
-      integer(c_size_t) :: buffer_size
-      !
-      rocsparse_sprune_dense2csr_buffer_size_full_rank = rocsparse_sprune_dense2csr_buffer_size_(handle,m,n,c_loc(A),lda,threshold,descr,c_loc(csr_val),c_loc(csr_row_ptr),c_loc(csr_col_ind),buffer_size)
-    end function
-
     function rocsparse_sprune_dense2csr_buffer_size_rank_0(handle,m,n,A,lda,threshold,descr,csr_val,csr_row_ptr,csr_col_ind,buffer_size)
       use iso_c_binding
       use hipfort_rocsparse_enums
@@ -40416,26 +41653,6 @@ module hipfort_rocsparse
       integer(c_size_t) :: buffer_size
       !
       rocsparse_sprune_dense2csr_buffer_size_rank_1 = rocsparse_sprune_dense2csr_buffer_size_(handle,m,n,c_loc(A),lda,threshold,descr,c_loc(csr_val),c_loc(csr_row_ptr),c_loc(csr_col_ind),buffer_size)
-    end function
-
-    function rocsparse_dprune_dense2csr_buffer_size_full_rank(handle,m,n,A,lda,threshold,descr,csr_val,csr_row_ptr,csr_col_ind,buffer_size)
-      use iso_c_binding
-      use hipfort_rocsparse_enums
-      implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_dprune_dense2csr_buffer_size_full_rank
-      type(c_ptr) :: handle
-      integer(c_int) :: m
-      integer(c_int) :: n
-      real(c_double),target,dimension(:,:) :: A
-      integer(c_int) :: lda
-      real(c_double) :: threshold
-      type(c_ptr) :: descr
-      real(c_double),target,dimension(:) :: csr_val
-      integer(c_int),target,dimension(:) :: csr_row_ptr
-      integer(c_int),target,dimension(:) :: csr_col_ind
-      integer(c_size_t) :: buffer_size
-      !
-      rocsparse_dprune_dense2csr_buffer_size_full_rank = rocsparse_dprune_dense2csr_buffer_size_(handle,m,n,c_loc(A),lda,threshold,descr,c_loc(csr_val),c_loc(csr_row_ptr),c_loc(csr_col_ind),buffer_size)
     end function
 
     function rocsparse_dprune_dense2csr_buffer_size_rank_0(handle,m,n,A,lda,threshold,descr,csr_val,csr_row_ptr,csr_col_ind,buffer_size)
@@ -40478,25 +41695,6 @@ module hipfort_rocsparse
       rocsparse_dprune_dense2csr_buffer_size_rank_1 = rocsparse_dprune_dense2csr_buffer_size_(handle,m,n,c_loc(A),lda,threshold,descr,c_loc(csr_val),c_loc(csr_row_ptr),c_loc(csr_col_ind),buffer_size)
     end function
 
-    function rocsparse_sprune_dense2csr_nnz_full_rank(handle,m,n,A,lda,threshold,descr,csr_row_ptr,nnz_total_dev_host_ptr,temp_buffer)
-      use iso_c_binding
-      use hipfort_rocsparse_enums
-      implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_sprune_dense2csr_nnz_full_rank
-      type(c_ptr) :: handle
-      integer(c_int) :: m
-      integer(c_int) :: n
-      real(c_float),target,dimension(:,:) :: A
-      integer(c_int) :: lda
-      real(c_float) :: threshold
-      type(c_ptr) :: descr
-      integer(c_int),target,dimension(:) :: csr_row_ptr
-      integer(c_int) :: nnz_total_dev_host_ptr
-      type(c_ptr) :: temp_buffer
-      !
-      rocsparse_sprune_dense2csr_nnz_full_rank = rocsparse_sprune_dense2csr_nnz_(handle,m,n,c_loc(A),lda,threshold,descr,c_loc(csr_row_ptr),nnz_total_dev_host_ptr,temp_buffer)
-    end function
-
     function rocsparse_sprune_dense2csr_nnz_rank_0(handle,m,n,A,lda,threshold,descr,csr_row_ptr,nnz_total_dev_host_ptr,temp_buffer)
       use iso_c_binding
       use hipfort_rocsparse_enums
@@ -40535,25 +41733,6 @@ module hipfort_rocsparse
       rocsparse_sprune_dense2csr_nnz_rank_1 = rocsparse_sprune_dense2csr_nnz_(handle,m,n,c_loc(A),lda,threshold,descr,c_loc(csr_row_ptr),nnz_total_dev_host_ptr,temp_buffer)
     end function
 
-    function rocsparse_dprune_dense2csr_nnz_full_rank(handle,m,n,A,lda,threshold,descr,csr_row_ptr,nnz_total_dev_host_ptr,temp_buffer)
-      use iso_c_binding
-      use hipfort_rocsparse_enums
-      implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_dprune_dense2csr_nnz_full_rank
-      type(c_ptr) :: handle
-      integer(c_int) :: m
-      integer(c_int) :: n
-      real(c_double),target,dimension(:,:) :: A
-      integer(c_int) :: lda
-      real(c_double) :: threshold
-      type(c_ptr) :: descr
-      integer(c_int),target,dimension(:) :: csr_row_ptr
-      integer(c_int) :: nnz_total_dev_host_ptr
-      type(c_ptr) :: temp_buffer
-      !
-      rocsparse_dprune_dense2csr_nnz_full_rank = rocsparse_dprune_dense2csr_nnz_(handle,m,n,c_loc(A),lda,threshold,descr,c_loc(csr_row_ptr),nnz_total_dev_host_ptr,temp_buffer)
-    end function
-
     function rocsparse_dprune_dense2csr_nnz_rank_0(handle,m,n,A,lda,threshold,descr,csr_row_ptr,nnz_total_dev_host_ptr,temp_buffer)
       use iso_c_binding
       use hipfort_rocsparse_enums
@@ -40590,26 +41769,6 @@ module hipfort_rocsparse
       type(c_ptr) :: temp_buffer
       !
       rocsparse_dprune_dense2csr_nnz_rank_1 = rocsparse_dprune_dense2csr_nnz_(handle,m,n,c_loc(A),lda,threshold,descr,c_loc(csr_row_ptr),nnz_total_dev_host_ptr,temp_buffer)
-    end function
-
-    function rocsparse_sprune_dense2csr_full_rank(handle,m,n,A,lda,threshold,descr,csr_val,csr_row_ptr,csr_col_ind,temp_buffer)
-      use iso_c_binding
-      use hipfort_rocsparse_enums
-      implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_sprune_dense2csr_full_rank
-      type(c_ptr) :: handle
-      integer(c_int) :: m
-      integer(c_int) :: n
-      real(c_float),target,dimension(:,:) :: A
-      integer(c_int) :: lda
-      real(c_float) :: threshold
-      type(c_ptr) :: descr
-      real(c_float),target,dimension(:) :: csr_val
-      integer(c_int),target,dimension(:) :: csr_row_ptr
-      integer(c_int),target,dimension(:) :: csr_col_ind
-      type(c_ptr) :: temp_buffer
-      !
-      rocsparse_sprune_dense2csr_full_rank = rocsparse_sprune_dense2csr_(handle,m,n,c_loc(A),lda,threshold,descr,c_loc(csr_val),c_loc(csr_row_ptr),c_loc(csr_col_ind),temp_buffer)
     end function
 
     function rocsparse_sprune_dense2csr_rank_0(handle,m,n,A,lda,threshold,descr,csr_val,csr_row_ptr,csr_col_ind,temp_buffer)
@@ -40652,26 +41811,6 @@ module hipfort_rocsparse
       rocsparse_sprune_dense2csr_rank_1 = rocsparse_sprune_dense2csr_(handle,m,n,c_loc(A),lda,threshold,descr,c_loc(csr_val),c_loc(csr_row_ptr),c_loc(csr_col_ind),temp_buffer)
     end function
 
-    function rocsparse_dprune_dense2csr_full_rank(handle,m,n,A,lda,threshold,descr,csr_val,csr_row_ptr,csr_col_ind,temp_buffer)
-      use iso_c_binding
-      use hipfort_rocsparse_enums
-      implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_dprune_dense2csr_full_rank
-      type(c_ptr) :: handle
-      integer(c_int) :: m
-      integer(c_int) :: n
-      real(c_double),target,dimension(:,:) :: A
-      integer(c_int) :: lda
-      real(c_double) :: threshold
-      type(c_ptr) :: descr
-      real(c_double),target,dimension(:) :: csr_val
-      integer(c_int),target,dimension(:) :: csr_row_ptr
-      integer(c_int),target,dimension(:) :: csr_col_ind
-      type(c_ptr) :: temp_buffer
-      !
-      rocsparse_dprune_dense2csr_full_rank = rocsparse_dprune_dense2csr_(handle,m,n,c_loc(A),lda,threshold,descr,c_loc(csr_val),c_loc(csr_row_ptr),c_loc(csr_col_ind),temp_buffer)
-    end function
-
     function rocsparse_dprune_dense2csr_rank_0(handle,m,n,A,lda,threshold,descr,csr_val,csr_row_ptr,csr_col_ind,temp_buffer)
       use iso_c_binding
       use hipfort_rocsparse_enums
@@ -40710,27 +41849,6 @@ module hipfort_rocsparse
       type(c_ptr) :: temp_buffer
       !
       rocsparse_dprune_dense2csr_rank_1 = rocsparse_dprune_dense2csr_(handle,m,n,c_loc(A),lda,threshold,descr,c_loc(csr_val),c_loc(csr_row_ptr),c_loc(csr_col_ind),temp_buffer)
-    end function
-
-    function rocsparse_sprune_dense2csr_by_percentage_buffer_size_full_rank(handle,m,n,A,lda,percentage,descr,csr_val,csr_row_ptr,csr_col_ind,myInfo,buffer_size)
-      use iso_c_binding
-      use hipfort_rocsparse_enums
-      implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_sprune_dense2csr_by_percentage_buffer_size_full_rank
-      type(c_ptr) :: handle
-      integer(c_int) :: m
-      integer(c_int) :: n
-      real(c_float),target,dimension(:,:) :: A
-      integer(c_int) :: lda
-      real(c_float) :: percentage
-      type(c_ptr) :: descr
-      real(c_float),target,dimension(:) :: csr_val
-      integer(c_int),target,dimension(:) :: csr_row_ptr
-      integer(c_int),target,dimension(:) :: csr_col_ind
-      type(c_ptr) :: myInfo
-      integer(c_size_t) :: buffer_size
-      !
-      rocsparse_sprune_dense2csr_by_percentage_buffer_size_full_rank = rocsparse_sprune_dense2csr_by_percentage_buffer_size_(handle,m,n,c_loc(A),lda,percentage,descr,c_loc(csr_val),c_loc(csr_row_ptr),c_loc(csr_col_ind),myInfo,buffer_size)
     end function
 
     function rocsparse_sprune_dense2csr_by_percentage_buffer_size_rank_0(handle,m,n,A,lda,percentage,descr,csr_val,csr_row_ptr,csr_col_ind,myInfo,buffer_size)
@@ -40775,27 +41893,6 @@ module hipfort_rocsparse
       rocsparse_sprune_dense2csr_by_percentage_buffer_size_rank_1 = rocsparse_sprune_dense2csr_by_percentage_buffer_size_(handle,m,n,c_loc(A),lda,percentage,descr,c_loc(csr_val),c_loc(csr_row_ptr),c_loc(csr_col_ind),myInfo,buffer_size)
     end function
 
-    function rocsparse_dprune_dense2csr_by_percentage_buffer_size_full_rank(handle,m,n,A,lda,percentage,descr,csr_val,csr_row_ptr,csr_col_ind,myInfo,buffer_size)
-      use iso_c_binding
-      use hipfort_rocsparse_enums
-      implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_dprune_dense2csr_by_percentage_buffer_size_full_rank
-      type(c_ptr) :: handle
-      integer(c_int) :: m
-      integer(c_int) :: n
-      real(c_double),target,dimension(:,:) :: A
-      integer(c_int) :: lda
-      real(c_double) :: percentage
-      type(c_ptr) :: descr
-      real(c_double),target,dimension(:) :: csr_val
-      integer(c_int),target,dimension(:) :: csr_row_ptr
-      integer(c_int),target,dimension(:) :: csr_col_ind
-      type(c_ptr) :: myInfo
-      integer(c_size_t) :: buffer_size
-      !
-      rocsparse_dprune_dense2csr_by_percentage_buffer_size_full_rank = rocsparse_dprune_dense2csr_by_percentage_buffer_size_(handle,m,n,c_loc(A),lda,percentage,descr,c_loc(csr_val),c_loc(csr_row_ptr),c_loc(csr_col_ind),myInfo,buffer_size)
-    end function
-
     function rocsparse_dprune_dense2csr_by_percentage_buffer_size_rank_0(handle,m,n,A,lda,percentage,descr,csr_val,csr_row_ptr,csr_col_ind,myInfo,buffer_size)
       use iso_c_binding
       use hipfort_rocsparse_enums
@@ -40838,26 +41935,6 @@ module hipfort_rocsparse
       rocsparse_dprune_dense2csr_by_percentage_buffer_size_rank_1 = rocsparse_dprune_dense2csr_by_percentage_buffer_size_(handle,m,n,c_loc(A),lda,percentage,descr,c_loc(csr_val),c_loc(csr_row_ptr),c_loc(csr_col_ind),myInfo,buffer_size)
     end function
 
-    function rocsparse_sprune_dense2csr_nnz_by_percentage_full_rank(handle,m,n,A,lda,percentage,descr,csr_row_ptr,nnz_total_dev_host_ptr,myInfo,temp_buffer)
-      use iso_c_binding
-      use hipfort_rocsparse_enums
-      implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_sprune_dense2csr_nnz_by_percentage_full_rank
-      type(c_ptr) :: handle
-      integer(c_int) :: m
-      integer(c_int) :: n
-      real(c_float),target,dimension(:,:) :: A
-      integer(c_int) :: lda
-      real(c_float) :: percentage
-      type(c_ptr) :: descr
-      integer(c_int),target,dimension(:) :: csr_row_ptr
-      integer(c_int) :: nnz_total_dev_host_ptr
-      type(c_ptr) :: myInfo
-      type(c_ptr) :: temp_buffer
-      !
-      rocsparse_sprune_dense2csr_nnz_by_percentage_full_rank = rocsparse_sprune_dense2csr_nnz_by_percentage_(handle,m,n,c_loc(A),lda,percentage,descr,c_loc(csr_row_ptr),nnz_total_dev_host_ptr,myInfo,temp_buffer)
-    end function
-
     function rocsparse_sprune_dense2csr_nnz_by_percentage_rank_0(handle,m,n,A,lda,percentage,descr,csr_row_ptr,nnz_total_dev_host_ptr,myInfo,temp_buffer)
       use iso_c_binding
       use hipfort_rocsparse_enums
@@ -40898,26 +41975,6 @@ module hipfort_rocsparse
       rocsparse_sprune_dense2csr_nnz_by_percentage_rank_1 = rocsparse_sprune_dense2csr_nnz_by_percentage_(handle,m,n,c_loc(A),lda,percentage,descr,c_loc(csr_row_ptr),nnz_total_dev_host_ptr,myInfo,temp_buffer)
     end function
 
-    function rocsparse_dprune_dense2csr_nnz_by_percentage_full_rank(handle,m,n,A,lda,percentage,descr,csr_row_ptr,nnz_total_dev_host_ptr,myInfo,temp_buffer)
-      use iso_c_binding
-      use hipfort_rocsparse_enums
-      implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_dprune_dense2csr_nnz_by_percentage_full_rank
-      type(c_ptr) :: handle
-      integer(c_int) :: m
-      integer(c_int) :: n
-      real(c_double),target,dimension(:,:) :: A
-      integer(c_int) :: lda
-      real(c_double) :: percentage
-      type(c_ptr) :: descr
-      integer(c_int),target,dimension(:) :: csr_row_ptr
-      integer(c_int) :: nnz_total_dev_host_ptr
-      type(c_ptr) :: myInfo
-      type(c_ptr) :: temp_buffer
-      !
-      rocsparse_dprune_dense2csr_nnz_by_percentage_full_rank = rocsparse_dprune_dense2csr_nnz_by_percentage_(handle,m,n,c_loc(A),lda,percentage,descr,c_loc(csr_row_ptr),nnz_total_dev_host_ptr,myInfo,temp_buffer)
-    end function
-
     function rocsparse_dprune_dense2csr_nnz_by_percentage_rank_0(handle,m,n,A,lda,percentage,descr,csr_row_ptr,nnz_total_dev_host_ptr,myInfo,temp_buffer)
       use iso_c_binding
       use hipfort_rocsparse_enums
@@ -40956,27 +42013,6 @@ module hipfort_rocsparse
       type(c_ptr) :: temp_buffer
       !
       rocsparse_dprune_dense2csr_nnz_by_percentage_rank_1 = rocsparse_dprune_dense2csr_nnz_by_percentage_(handle,m,n,c_loc(A),lda,percentage,descr,c_loc(csr_row_ptr),nnz_total_dev_host_ptr,myInfo,temp_buffer)
-    end function
-
-    function rocsparse_sprune_dense2csr_by_percentage_full_rank(handle,m,n,A,lda,percentage,descr,csr_val,csr_row_ptr,csr_col_ind,myInfo,temp_buffer)
-      use iso_c_binding
-      use hipfort_rocsparse_enums
-      implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_sprune_dense2csr_by_percentage_full_rank
-      type(c_ptr) :: handle
-      integer(c_int) :: m
-      integer(c_int) :: n
-      real(c_float),target,dimension(:,:) :: A
-      integer(c_int) :: lda
-      real(c_float) :: percentage
-      type(c_ptr) :: descr
-      real(c_float),target,dimension(:) :: csr_val
-      integer(c_int),target,dimension(:) :: csr_row_ptr
-      integer(c_int),target,dimension(:) :: csr_col_ind
-      type(c_ptr) :: myInfo
-      type(c_ptr) :: temp_buffer
-      !
-      rocsparse_sprune_dense2csr_by_percentage_full_rank = rocsparse_sprune_dense2csr_by_percentage_(handle,m,n,c_loc(A),lda,percentage,descr,c_loc(csr_val),c_loc(csr_row_ptr),c_loc(csr_col_ind),myInfo,temp_buffer)
     end function
 
     function rocsparse_sprune_dense2csr_by_percentage_rank_0(handle,m,n,A,lda,percentage,descr,csr_val,csr_row_ptr,csr_col_ind,myInfo,temp_buffer)
@@ -41021,27 +42057,6 @@ module hipfort_rocsparse
       rocsparse_sprune_dense2csr_by_percentage_rank_1 = rocsparse_sprune_dense2csr_by_percentage_(handle,m,n,c_loc(A),lda,percentage,descr,c_loc(csr_val),c_loc(csr_row_ptr),c_loc(csr_col_ind),myInfo,temp_buffer)
     end function
 
-    function rocsparse_dprune_dense2csr_by_percentage_full_rank(handle,m,n,A,lda,percentage,descr,csr_val,csr_row_ptr,csr_col_ind,myInfo,temp_buffer)
-      use iso_c_binding
-      use hipfort_rocsparse_enums
-      implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_dprune_dense2csr_by_percentage_full_rank
-      type(c_ptr) :: handle
-      integer(c_int) :: m
-      integer(c_int) :: n
-      real(c_double),target,dimension(:,:) :: A
-      integer(c_int) :: lda
-      real(c_double) :: percentage
-      type(c_ptr) :: descr
-      real(c_double),target,dimension(:) :: csr_val
-      integer(c_int),target,dimension(:) :: csr_row_ptr
-      integer(c_int),target,dimension(:) :: csr_col_ind
-      type(c_ptr) :: myInfo
-      type(c_ptr) :: temp_buffer
-      !
-      rocsparse_dprune_dense2csr_by_percentage_full_rank = rocsparse_dprune_dense2csr_by_percentage_(handle,m,n,c_loc(A),lda,percentage,descr,c_loc(csr_val),c_loc(csr_row_ptr),c_loc(csr_col_ind),myInfo,temp_buffer)
-    end function
-
     function rocsparse_dprune_dense2csr_by_percentage_rank_0(handle,m,n,A,lda,percentage,descr,csr_val,csr_row_ptr,csr_col_ind,myInfo,temp_buffer)
       use iso_c_binding
       use hipfort_rocsparse_enums
@@ -41084,25 +42099,6 @@ module hipfort_rocsparse
       rocsparse_dprune_dense2csr_by_percentage_rank_1 = rocsparse_dprune_dense2csr_by_percentage_(handle,m,n,c_loc(A),lda,percentage,descr,c_loc(csr_val),c_loc(csr_row_ptr),c_loc(csr_col_ind),myInfo,temp_buffer)
     end function
 
-    function rocsparse_sdense2csc_full_rank(handle,m,n,descr,A,ld,nnz_per_columns,csc_val,csc_col_ptr,csc_row_ind)
-      use iso_c_binding
-      use hipfort_rocsparse_enums
-      implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_sdense2csc_full_rank
-      type(c_ptr) :: handle
-      integer(c_int) :: m
-      integer(c_int) :: n
-      type(c_ptr) :: descr
-      real(c_float),target,dimension(:,:) :: A
-      integer(c_int) :: ld
-      integer(c_int),target,dimension(:) :: nnz_per_columns
-      real(c_float),target,dimension(:) :: csc_val
-      integer(c_int),target,dimension(:) :: csc_col_ptr
-      integer(c_int),target,dimension(:) :: csc_row_ind
-      !
-      rocsparse_sdense2csc_full_rank = rocsparse_sdense2csc_(handle,m,n,descr,c_loc(A),ld,c_loc(nnz_per_columns),c_loc(csc_val),c_loc(csc_col_ptr),c_loc(csc_row_ind))
-    end function
-
     function rocsparse_sdense2csc_rank_0(handle,m,n,descr,A,ld,nnz_per_columns,csc_val,csc_col_ptr,csc_row_ind)
       use iso_c_binding
       use hipfort_rocsparse_enums
@@ -41139,25 +42135,6 @@ module hipfort_rocsparse
       integer(c_int),target,dimension(:) :: csc_row_ind
       !
       rocsparse_sdense2csc_rank_1 = rocsparse_sdense2csc_(handle,m,n,descr,c_loc(A),ld,c_loc(nnz_per_columns),c_loc(csc_val),c_loc(csc_col_ptr),c_loc(csc_row_ind))
-    end function
-
-    function rocsparse_ddense2csc_full_rank(handle,m,n,descr,A,ld,nnz_per_columns,csc_val,csc_col_ptr,csc_row_ind)
-      use iso_c_binding
-      use hipfort_rocsparse_enums
-      implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_ddense2csc_full_rank
-      type(c_ptr) :: handle
-      integer(c_int) :: m
-      integer(c_int) :: n
-      type(c_ptr) :: descr
-      real(c_double),target,dimension(:,:) :: A
-      integer(c_int) :: ld
-      integer(c_int),target,dimension(:) :: nnz_per_columns
-      real(c_double),target,dimension(:) :: csc_val
-      integer(c_int),target,dimension(:) :: csc_col_ptr
-      integer(c_int),target,dimension(:) :: csc_row_ind
-      !
-      rocsparse_ddense2csc_full_rank = rocsparse_ddense2csc_(handle,m,n,descr,c_loc(A),ld,c_loc(nnz_per_columns),c_loc(csc_val),c_loc(csc_col_ptr),c_loc(csc_row_ind))
     end function
 
     function rocsparse_ddense2csc_rank_0(handle,m,n,descr,A,ld,nnz_per_columns,csc_val,csc_col_ptr,csc_row_ind)
@@ -41198,25 +42175,6 @@ module hipfort_rocsparse
       rocsparse_ddense2csc_rank_1 = rocsparse_ddense2csc_(handle,m,n,descr,c_loc(A),ld,c_loc(nnz_per_columns),c_loc(csc_val),c_loc(csc_col_ptr),c_loc(csc_row_ind))
     end function
 
-    function rocsparse_cdense2csc_full_rank(handle,m,n,descr,A,ld,nnz_per_columns,csc_val,csc_col_ptr,csc_row_ind)
-      use iso_c_binding
-      use hipfort_rocsparse_enums
-      implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_cdense2csc_full_rank
-      type(c_ptr) :: handle
-      integer(c_int) :: m
-      integer(c_int) :: n
-      type(c_ptr) :: descr
-      complex(c_float_complex),target,dimension(:,:) :: A
-      integer(c_int) :: ld
-      integer(c_int),target,dimension(:) :: nnz_per_columns
-      complex(c_float_complex),target,dimension(:) :: csc_val
-      integer(c_int),target,dimension(:) :: csc_col_ptr
-      integer(c_int),target,dimension(:) :: csc_row_ind
-      !
-      rocsparse_cdense2csc_full_rank = rocsparse_cdense2csc_(handle,m,n,descr,c_loc(A),ld,c_loc(nnz_per_columns),c_loc(csc_val),c_loc(csc_col_ptr),c_loc(csc_row_ind))
-    end function
-
     function rocsparse_cdense2csc_rank_0(handle,m,n,descr,A,ld,nnz_per_columns,csc_val,csc_col_ptr,csc_row_ind)
       use iso_c_binding
       use hipfort_rocsparse_enums
@@ -41253,25 +42211,6 @@ module hipfort_rocsparse
       integer(c_int),target,dimension(:) :: csc_row_ind
       !
       rocsparse_cdense2csc_rank_1 = rocsparse_cdense2csc_(handle,m,n,descr,c_loc(A),ld,c_loc(nnz_per_columns),c_loc(csc_val),c_loc(csc_col_ptr),c_loc(csc_row_ind))
-    end function
-
-    function rocsparse_zdense2csc_full_rank(handle,m,n,descr,A,ld,nnz_per_columns,csc_val,csc_col_ptr,csc_row_ind)
-      use iso_c_binding
-      use hipfort_rocsparse_enums
-      implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_zdense2csc_full_rank
-      type(c_ptr) :: handle
-      integer(c_int) :: m
-      integer(c_int) :: n
-      type(c_ptr) :: descr
-      complex(c_double_complex),target,dimension(:,:) :: A
-      integer(c_int) :: ld
-      integer(c_int),target,dimension(:) :: nnz_per_columns
-      complex(c_double_complex),target,dimension(:) :: csc_val
-      integer(c_int),target,dimension(:) :: csc_col_ptr
-      integer(c_int),target,dimension(:) :: csc_row_ind
-      !
-      rocsparse_zdense2csc_full_rank = rocsparse_zdense2csc_(handle,m,n,descr,c_loc(A),ld,c_loc(nnz_per_columns),c_loc(csc_val),c_loc(csc_col_ptr),c_loc(csc_row_ind))
     end function
 
     function rocsparse_zdense2csc_rank_0(handle,m,n,descr,A,ld,nnz_per_columns,csc_val,csc_col_ptr,csc_row_ind)
@@ -41312,25 +42251,6 @@ module hipfort_rocsparse
       rocsparse_zdense2csc_rank_1 = rocsparse_zdense2csc_(handle,m,n,descr,c_loc(A),ld,c_loc(nnz_per_columns),c_loc(csc_val),c_loc(csc_col_ptr),c_loc(csc_row_ind))
     end function
 
-    function rocsparse_sdense2coo_full_rank(handle,m,n,descr,A,ld,nnz_per_rows,coo_val,coo_row_ind,coo_col_ind)
-      use iso_c_binding
-      use hipfort_rocsparse_enums
-      implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_sdense2coo_full_rank
-      type(c_ptr) :: handle
-      integer(c_int) :: m
-      integer(c_int) :: n
-      type(c_ptr) :: descr
-      real(c_float),target,dimension(:,:) :: A
-      integer(c_int) :: ld
-      integer(c_int),target,dimension(:) :: nnz_per_rows
-      real(c_float),target,dimension(:) :: coo_val
-      integer(c_int),target,dimension(:) :: coo_row_ind
-      integer(c_int),target,dimension(:) :: coo_col_ind
-      !
-      rocsparse_sdense2coo_full_rank = rocsparse_sdense2coo_(handle,m,n,descr,c_loc(A),ld,c_loc(nnz_per_rows),c_loc(coo_val),c_loc(coo_row_ind),c_loc(coo_col_ind))
-    end function
-
     function rocsparse_sdense2coo_rank_0(handle,m,n,descr,A,ld,nnz_per_rows,coo_val,coo_row_ind,coo_col_ind)
       use iso_c_binding
       use hipfort_rocsparse_enums
@@ -41367,25 +42287,6 @@ module hipfort_rocsparse
       integer(c_int),target,dimension(:) :: coo_col_ind
       !
       rocsparse_sdense2coo_rank_1 = rocsparse_sdense2coo_(handle,m,n,descr,c_loc(A),ld,c_loc(nnz_per_rows),c_loc(coo_val),c_loc(coo_row_ind),c_loc(coo_col_ind))
-    end function
-
-    function rocsparse_ddense2coo_full_rank(handle,m,n,descr,A,ld,nnz_per_rows,coo_val,coo_row_ind,coo_col_ind)
-      use iso_c_binding
-      use hipfort_rocsparse_enums
-      implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_ddense2coo_full_rank
-      type(c_ptr) :: handle
-      integer(c_int) :: m
-      integer(c_int) :: n
-      type(c_ptr) :: descr
-      real(c_double),target,dimension(:,:) :: A
-      integer(c_int) :: ld
-      integer(c_int),target,dimension(:) :: nnz_per_rows
-      real(c_double),target,dimension(:) :: coo_val
-      integer(c_int),target,dimension(:) :: coo_row_ind
-      integer(c_int),target,dimension(:) :: coo_col_ind
-      !
-      rocsparse_ddense2coo_full_rank = rocsparse_ddense2coo_(handle,m,n,descr,c_loc(A),ld,c_loc(nnz_per_rows),c_loc(coo_val),c_loc(coo_row_ind),c_loc(coo_col_ind))
     end function
 
     function rocsparse_ddense2coo_rank_0(handle,m,n,descr,A,ld,nnz_per_rows,coo_val,coo_row_ind,coo_col_ind)
@@ -41426,25 +42327,6 @@ module hipfort_rocsparse
       rocsparse_ddense2coo_rank_1 = rocsparse_ddense2coo_(handle,m,n,descr,c_loc(A),ld,c_loc(nnz_per_rows),c_loc(coo_val),c_loc(coo_row_ind),c_loc(coo_col_ind))
     end function
 
-    function rocsparse_cdense2coo_full_rank(handle,m,n,descr,A,ld,nnz_per_rows,coo_val,coo_row_ind,coo_col_ind)
-      use iso_c_binding
-      use hipfort_rocsparse_enums
-      implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_cdense2coo_full_rank
-      type(c_ptr) :: handle
-      integer(c_int) :: m
-      integer(c_int) :: n
-      type(c_ptr) :: descr
-      complex(c_float_complex),target,dimension(:,:) :: A
-      integer(c_int) :: ld
-      integer(c_int),target,dimension(:) :: nnz_per_rows
-      complex(c_float_complex),target,dimension(:) :: coo_val
-      integer(c_int),target,dimension(:) :: coo_row_ind
-      integer(c_int),target,dimension(:) :: coo_col_ind
-      !
-      rocsparse_cdense2coo_full_rank = rocsparse_cdense2coo_(handle,m,n,descr,c_loc(A),ld,c_loc(nnz_per_rows),c_loc(coo_val),c_loc(coo_row_ind),c_loc(coo_col_ind))
-    end function
-
     function rocsparse_cdense2coo_rank_0(handle,m,n,descr,A,ld,nnz_per_rows,coo_val,coo_row_ind,coo_col_ind)
       use iso_c_binding
       use hipfort_rocsparse_enums
@@ -41481,25 +42363,6 @@ module hipfort_rocsparse
       integer(c_int),target,dimension(:) :: coo_col_ind
       !
       rocsparse_cdense2coo_rank_1 = rocsparse_cdense2coo_(handle,m,n,descr,c_loc(A),ld,c_loc(nnz_per_rows),c_loc(coo_val),c_loc(coo_row_ind),c_loc(coo_col_ind))
-    end function
-
-    function rocsparse_zdense2coo_full_rank(handle,m,n,descr,A,ld,nnz_per_rows,coo_val,coo_row_ind,coo_col_ind)
-      use iso_c_binding
-      use hipfort_rocsparse_enums
-      implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_zdense2coo_full_rank
-      type(c_ptr) :: handle
-      integer(c_int) :: m
-      integer(c_int) :: n
-      type(c_ptr) :: descr
-      complex(c_double_complex),target,dimension(:,:) :: A
-      integer(c_int) :: ld
-      integer(c_int),target,dimension(:) :: nnz_per_rows
-      complex(c_double_complex),target,dimension(:) :: coo_val
-      integer(c_int),target,dimension(:) :: coo_row_ind
-      integer(c_int),target,dimension(:) :: coo_col_ind
-      !
-      rocsparse_zdense2coo_full_rank = rocsparse_zdense2coo_(handle,m,n,descr,c_loc(A),ld,c_loc(nnz_per_rows),c_loc(coo_val),c_loc(coo_row_ind),c_loc(coo_col_ind))
     end function
 
     function rocsparse_zdense2coo_rank_0(handle,m,n,descr,A,ld,nnz_per_rows,coo_val,coo_row_ind,coo_col_ind)
@@ -41540,24 +42403,6 @@ module hipfort_rocsparse
       rocsparse_zdense2coo_rank_1 = rocsparse_zdense2coo_(handle,m,n,descr,c_loc(A),ld,c_loc(nnz_per_rows),c_loc(coo_val),c_loc(coo_row_ind),c_loc(coo_col_ind))
     end function
 
-    function rocsparse_scsr2dense_full_rank(handle,m,n,descr,csr_val,csr_row_ptr,csr_col_ind,A,ld)
-      use iso_c_binding
-      use hipfort_rocsparse_enums
-      implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_scsr2dense_full_rank
-      type(c_ptr) :: handle
-      integer(c_int) :: m
-      integer(c_int) :: n
-      type(c_ptr) :: descr
-      real(c_float),target,dimension(:) :: csr_val
-      integer(c_int),target,dimension(:) :: csr_row_ptr
-      integer(c_int),target,dimension(:) :: csr_col_ind
-      real(c_float),target,dimension(:,:) :: A
-      integer(c_int) :: ld
-      !
-      rocsparse_scsr2dense_full_rank = rocsparse_scsr2dense_(handle,m,n,descr,c_loc(csr_val),c_loc(csr_row_ptr),c_loc(csr_col_ind),c_loc(A),ld)
-    end function
-
     function rocsparse_scsr2dense_rank_0(handle,m,n,descr,csr_val,csr_row_ptr,csr_col_ind,A,ld)
       use iso_c_binding
       use hipfort_rocsparse_enums
@@ -41592,24 +42437,6 @@ module hipfort_rocsparse
       integer(c_int) :: ld
       !
       rocsparse_scsr2dense_rank_1 = rocsparse_scsr2dense_(handle,m,n,descr,c_loc(csr_val),c_loc(csr_row_ptr),c_loc(csr_col_ind),c_loc(A),ld)
-    end function
-
-    function rocsparse_dcsr2dense_full_rank(handle,m,n,descr,csr_val,csr_row_ptr,csr_col_ind,A,ld)
-      use iso_c_binding
-      use hipfort_rocsparse_enums
-      implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_dcsr2dense_full_rank
-      type(c_ptr) :: handle
-      integer(c_int) :: m
-      integer(c_int) :: n
-      type(c_ptr) :: descr
-      real(c_double),target,dimension(:) :: csr_val
-      integer(c_int),target,dimension(:) :: csr_row_ptr
-      integer(c_int),target,dimension(:) :: csr_col_ind
-      real(c_double),target,dimension(:,:) :: A
-      integer(c_int) :: ld
-      !
-      rocsparse_dcsr2dense_full_rank = rocsparse_dcsr2dense_(handle,m,n,descr,c_loc(csr_val),c_loc(csr_row_ptr),c_loc(csr_col_ind),c_loc(A),ld)
     end function
 
     function rocsparse_dcsr2dense_rank_0(handle,m,n,descr,csr_val,csr_row_ptr,csr_col_ind,A,ld)
@@ -41648,24 +42475,6 @@ module hipfort_rocsparse
       rocsparse_dcsr2dense_rank_1 = rocsparse_dcsr2dense_(handle,m,n,descr,c_loc(csr_val),c_loc(csr_row_ptr),c_loc(csr_col_ind),c_loc(A),ld)
     end function
 
-    function rocsparse_ccsr2dense_full_rank(handle,m,n,descr,csr_val,csr_row_ptr,csr_col_ind,A,ld)
-      use iso_c_binding
-      use hipfort_rocsparse_enums
-      implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_ccsr2dense_full_rank
-      type(c_ptr) :: handle
-      integer(c_int) :: m
-      integer(c_int) :: n
-      type(c_ptr) :: descr
-      complex(c_float_complex),target,dimension(:) :: csr_val
-      integer(c_int),target,dimension(:) :: csr_row_ptr
-      integer(c_int),target,dimension(:) :: csr_col_ind
-      complex(c_float_complex),target,dimension(:,:) :: A
-      integer(c_int) :: ld
-      !
-      rocsparse_ccsr2dense_full_rank = rocsparse_ccsr2dense_(handle,m,n,descr,c_loc(csr_val),c_loc(csr_row_ptr),c_loc(csr_col_ind),c_loc(A),ld)
-    end function
-
     function rocsparse_ccsr2dense_rank_0(handle,m,n,descr,csr_val,csr_row_ptr,csr_col_ind,A,ld)
       use iso_c_binding
       use hipfort_rocsparse_enums
@@ -41700,24 +42509,6 @@ module hipfort_rocsparse
       integer(c_int) :: ld
       !
       rocsparse_ccsr2dense_rank_1 = rocsparse_ccsr2dense_(handle,m,n,descr,c_loc(csr_val),c_loc(csr_row_ptr),c_loc(csr_col_ind),c_loc(A),ld)
-    end function
-
-    function rocsparse_zcsr2dense_full_rank(handle,m,n,descr,csr_val,csr_row_ptr,csr_col_ind,A,ld)
-      use iso_c_binding
-      use hipfort_rocsparse_enums
-      implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_zcsr2dense_full_rank
-      type(c_ptr) :: handle
-      integer(c_int) :: m
-      integer(c_int) :: n
-      type(c_ptr) :: descr
-      complex(c_double_complex),target,dimension(:) :: csr_val
-      integer(c_int),target,dimension(:) :: csr_row_ptr
-      integer(c_int),target,dimension(:) :: csr_col_ind
-      complex(c_double_complex),target,dimension(:,:) :: A
-      integer(c_int) :: ld
-      !
-      rocsparse_zcsr2dense_full_rank = rocsparse_zcsr2dense_(handle,m,n,descr,c_loc(csr_val),c_loc(csr_row_ptr),c_loc(csr_col_ind),c_loc(A),ld)
     end function
 
     function rocsparse_zcsr2dense_rank_0(handle,m,n,descr,csr_val,csr_row_ptr,csr_col_ind,A,ld)
@@ -41756,24 +42547,6 @@ module hipfort_rocsparse
       rocsparse_zcsr2dense_rank_1 = rocsparse_zcsr2dense_(handle,m,n,descr,c_loc(csr_val),c_loc(csr_row_ptr),c_loc(csr_col_ind),c_loc(A),ld)
     end function
 
-    function rocsparse_scsc2dense_full_rank(handle,m,n,descr,csc_val,csc_col_ptr,csc_row_ind,A,ld)
-      use iso_c_binding
-      use hipfort_rocsparse_enums
-      implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_scsc2dense_full_rank
-      type(c_ptr) :: handle
-      integer(c_int) :: m
-      integer(c_int) :: n
-      type(c_ptr) :: descr
-      real(c_float),target,dimension(:) :: csc_val
-      integer(c_int),target,dimension(:) :: csc_col_ptr
-      integer(c_int),target,dimension(:) :: csc_row_ind
-      real(c_float),target,dimension(:,:) :: A
-      integer(c_int) :: ld
-      !
-      rocsparse_scsc2dense_full_rank = rocsparse_scsc2dense_(handle,m,n,descr,c_loc(csc_val),c_loc(csc_col_ptr),c_loc(csc_row_ind),c_loc(A),ld)
-    end function
-
     function rocsparse_scsc2dense_rank_0(handle,m,n,descr,csc_val,csc_col_ptr,csc_row_ind,A,ld)
       use iso_c_binding
       use hipfort_rocsparse_enums
@@ -41808,24 +42581,6 @@ module hipfort_rocsparse
       integer(c_int) :: ld
       !
       rocsparse_scsc2dense_rank_1 = rocsparse_scsc2dense_(handle,m,n,descr,c_loc(csc_val),c_loc(csc_col_ptr),c_loc(csc_row_ind),c_loc(A),ld)
-    end function
-
-    function rocsparse_dcsc2dense_full_rank(handle,m,n,descr,csc_val,csc_col_ptr,csc_row_ind,A,ld)
-      use iso_c_binding
-      use hipfort_rocsparse_enums
-      implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_dcsc2dense_full_rank
-      type(c_ptr) :: handle
-      integer(c_int) :: m
-      integer(c_int) :: n
-      type(c_ptr) :: descr
-      real(c_double),target,dimension(:) :: csc_val
-      integer(c_int),target,dimension(:) :: csc_col_ptr
-      integer(c_int),target,dimension(:) :: csc_row_ind
-      real(c_double),target,dimension(:,:) :: A
-      integer(c_int) :: ld
-      !
-      rocsparse_dcsc2dense_full_rank = rocsparse_dcsc2dense_(handle,m,n,descr,c_loc(csc_val),c_loc(csc_col_ptr),c_loc(csc_row_ind),c_loc(A),ld)
     end function
 
     function rocsparse_dcsc2dense_rank_0(handle,m,n,descr,csc_val,csc_col_ptr,csc_row_ind,A,ld)
@@ -41864,24 +42619,6 @@ module hipfort_rocsparse
       rocsparse_dcsc2dense_rank_1 = rocsparse_dcsc2dense_(handle,m,n,descr,c_loc(csc_val),c_loc(csc_col_ptr),c_loc(csc_row_ind),c_loc(A),ld)
     end function
 
-    function rocsparse_ccsc2dense_full_rank(handle,m,n,descr,csc_val,csc_col_ptr,csc_row_ind,A,ld)
-      use iso_c_binding
-      use hipfort_rocsparse_enums
-      implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_ccsc2dense_full_rank
-      type(c_ptr) :: handle
-      integer(c_int) :: m
-      integer(c_int) :: n
-      type(c_ptr) :: descr
-      complex(c_float_complex),target,dimension(:) :: csc_val
-      integer(c_int),target,dimension(:) :: csc_col_ptr
-      integer(c_int),target,dimension(:) :: csc_row_ind
-      complex(c_float_complex),target,dimension(:,:) :: A
-      integer(c_int) :: ld
-      !
-      rocsparse_ccsc2dense_full_rank = rocsparse_ccsc2dense_(handle,m,n,descr,c_loc(csc_val),c_loc(csc_col_ptr),c_loc(csc_row_ind),c_loc(A),ld)
-    end function
-
     function rocsparse_ccsc2dense_rank_0(handle,m,n,descr,csc_val,csc_col_ptr,csc_row_ind,A,ld)
       use iso_c_binding
       use hipfort_rocsparse_enums
@@ -41918,24 +42655,6 @@ module hipfort_rocsparse
       rocsparse_ccsc2dense_rank_1 = rocsparse_ccsc2dense_(handle,m,n,descr,c_loc(csc_val),c_loc(csc_col_ptr),c_loc(csc_row_ind),c_loc(A),ld)
     end function
 
-    function rocsparse_zcsc2dense_full_rank(handle,m,n,descr,csc_val,csc_col_ptr,csc_row_ind,A,ld)
-      use iso_c_binding
-      use hipfort_rocsparse_enums
-      implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_zcsc2dense_full_rank
-      type(c_ptr) :: handle
-      integer(c_int) :: m
-      integer(c_int) :: n
-      type(c_ptr) :: descr
-      complex(c_double_complex),target,dimension(:) :: csc_val
-      integer(c_int),target,dimension(:) :: csc_col_ptr
-      integer(c_int),target,dimension(:) :: csc_row_ind
-      complex(c_double_complex),target,dimension(:,:) :: A
-      integer(c_int) :: ld
-      !
-      rocsparse_zcsc2dense_full_rank = rocsparse_zcsc2dense_(handle,m,n,descr,c_loc(csc_val),c_loc(csc_col_ptr),c_loc(csc_row_ind),c_loc(A),ld)
-    end function
-
     function rocsparse_zcsc2dense_rank_0(handle,m,n,descr,csc_val,csc_col_ptr,csc_row_ind,A,ld)
       use iso_c_binding
       use hipfort_rocsparse_enums
@@ -41970,25 +42689,6 @@ module hipfort_rocsparse
       integer(c_int) :: ld
       !
       rocsparse_zcsc2dense_rank_1 = rocsparse_zcsc2dense_(handle,m,n,descr,c_loc(csc_val),c_loc(csc_col_ptr),c_loc(csc_row_ind),c_loc(A),ld)
-    end function
-
-    function rocsparse_scoo2dense_full_rank(handle,m,n,nnz,descr,coo_val,coo_row_ind,coo_col_ind,A,ld)
-      use iso_c_binding
-      use hipfort_rocsparse_enums
-      implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_scoo2dense_full_rank
-      type(c_ptr) :: handle
-      integer(c_int) :: m
-      integer(c_int) :: n
-      integer(c_int) :: nnz
-      type(c_ptr) :: descr
-      real(c_float),target,dimension(:) :: coo_val
-      integer(c_int),target,dimension(:) :: coo_row_ind
-      integer(c_int),target,dimension(:) :: coo_col_ind
-      real(c_float),target,dimension(:,:) :: A
-      integer(c_int) :: ld
-      !
-      rocsparse_scoo2dense_full_rank = rocsparse_scoo2dense_(handle,m,n,nnz,descr,c_loc(coo_val),c_loc(coo_row_ind),c_loc(coo_col_ind),c_loc(A),ld)
     end function
 
     function rocsparse_scoo2dense_rank_0(handle,m,n,nnz,descr,coo_val,coo_row_ind,coo_col_ind,A,ld)
@@ -42029,25 +42729,6 @@ module hipfort_rocsparse
       rocsparse_scoo2dense_rank_1 = rocsparse_scoo2dense_(handle,m,n,nnz,descr,c_loc(coo_val),c_loc(coo_row_ind),c_loc(coo_col_ind),c_loc(A),ld)
     end function
 
-    function rocsparse_dcoo2dense_full_rank(handle,m,n,nnz,descr,coo_val,coo_row_ind,coo_col_ind,A,ld)
-      use iso_c_binding
-      use hipfort_rocsparse_enums
-      implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_dcoo2dense_full_rank
-      type(c_ptr) :: handle
-      integer(c_int) :: m
-      integer(c_int) :: n
-      integer(c_int) :: nnz
-      type(c_ptr) :: descr
-      real(c_double),target,dimension(:) :: coo_val
-      integer(c_int),target,dimension(:) :: coo_row_ind
-      integer(c_int),target,dimension(:) :: coo_col_ind
-      real(c_double),target,dimension(:,:) :: A
-      integer(c_int) :: ld
-      !
-      rocsparse_dcoo2dense_full_rank = rocsparse_dcoo2dense_(handle,m,n,nnz,descr,c_loc(coo_val),c_loc(coo_row_ind),c_loc(coo_col_ind),c_loc(A),ld)
-    end function
-
     function rocsparse_dcoo2dense_rank_0(handle,m,n,nnz,descr,coo_val,coo_row_ind,coo_col_ind,A,ld)
       use iso_c_binding
       use hipfort_rocsparse_enums
@@ -42086,25 +42767,6 @@ module hipfort_rocsparse
       rocsparse_dcoo2dense_rank_1 = rocsparse_dcoo2dense_(handle,m,n,nnz,descr,c_loc(coo_val),c_loc(coo_row_ind),c_loc(coo_col_ind),c_loc(A),ld)
     end function
 
-    function rocsparse_ccoo2dense_full_rank(handle,m,n,nnz,descr,coo_val,coo_row_ind,coo_col_ind,A,ld)
-      use iso_c_binding
-      use hipfort_rocsparse_enums
-      implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_ccoo2dense_full_rank
-      type(c_ptr) :: handle
-      integer(c_int) :: m
-      integer(c_int) :: n
-      integer(c_int) :: nnz
-      type(c_ptr) :: descr
-      complex(c_float_complex),target,dimension(:) :: coo_val
-      integer(c_int),target,dimension(:) :: coo_row_ind
-      integer(c_int),target,dimension(:) :: coo_col_ind
-      complex(c_float_complex),target,dimension(:,:) :: A
-      integer(c_int) :: ld
-      !
-      rocsparse_ccoo2dense_full_rank = rocsparse_ccoo2dense_(handle,m,n,nnz,descr,c_loc(coo_val),c_loc(coo_row_ind),c_loc(coo_col_ind),c_loc(A),ld)
-    end function
-
     function rocsparse_ccoo2dense_rank_0(handle,m,n,nnz,descr,coo_val,coo_row_ind,coo_col_ind,A,ld)
       use iso_c_binding
       use hipfort_rocsparse_enums
@@ -42141,25 +42803,6 @@ module hipfort_rocsparse
       integer(c_int) :: ld
       !
       rocsparse_ccoo2dense_rank_1 = rocsparse_ccoo2dense_(handle,m,n,nnz,descr,c_loc(coo_val),c_loc(coo_row_ind),c_loc(coo_col_ind),c_loc(A),ld)
-    end function
-
-    function rocsparse_zcoo2dense_full_rank(handle,m,n,nnz,descr,coo_val,coo_row_ind,coo_col_ind,A,ld)
-      use iso_c_binding
-      use hipfort_rocsparse_enums
-      implicit none
-      integer(kind(rocsparse_status_success)) :: rocsparse_zcoo2dense_full_rank
-      type(c_ptr) :: handle
-      integer(c_int) :: m
-      integer(c_int) :: n
-      integer(c_int) :: nnz
-      type(c_ptr) :: descr
-      complex(c_double_complex),target,dimension(:) :: coo_val
-      integer(c_int),target,dimension(:) :: coo_row_ind
-      integer(c_int),target,dimension(:) :: coo_col_ind
-      complex(c_double_complex),target,dimension(:,:) :: A
-      integer(c_int) :: ld
-      !
-      rocsparse_zcoo2dense_full_rank = rocsparse_zcoo2dense_(handle,m,n,nnz,descr,c_loc(coo_val),c_loc(coo_row_ind),c_loc(coo_col_ind),c_loc(A),ld)
     end function
 
     function rocsparse_zcoo2dense_rank_0(handle,m,n,nnz,descr,coo_val,coo_row_ind,coo_col_ind,A,ld)
@@ -42590,9 +43233,9 @@ module hipfort_rocsparse
       integer(c_int),target :: bsr_col_ind
       integer(c_int) :: row_block_dim
       integer(c_int) :: col_block_dim
-      type(c_ptr) :: p_buffer_size
+      integer(c_size_t),target :: p_buffer_size
       !
-      rocsparse_sgebsr2gebsc_buffer_size_rank_0 = rocsparse_sgebsr2gebsc_buffer_size_(handle,mb,nb,nnzb,c_loc(bsr_val),c_loc(bsr_row_ptr),c_loc(bsr_col_ind),row_block_dim,col_block_dim,p_buffer_size)
+      rocsparse_sgebsr2gebsc_buffer_size_rank_0 = rocsparse_sgebsr2gebsc_buffer_size_(handle,mb,nb,nnzb,c_loc(bsr_val),c_loc(bsr_row_ptr),c_loc(bsr_col_ind),row_block_dim,col_block_dim,c_loc(p_buffer_size))
     end function
 
     function rocsparse_sgebsr2gebsc_buffer_size_rank_1(handle,mb,nb,nnzb,bsr_val,bsr_row_ptr,bsr_col_ind,row_block_dim,col_block_dim,p_buffer_size)
@@ -42609,9 +43252,9 @@ module hipfort_rocsparse
       integer(c_int),target,dimension(:) :: bsr_col_ind
       integer(c_int) :: row_block_dim
       integer(c_int) :: col_block_dim
-      type(c_ptr) :: p_buffer_size
+      integer(c_size_t),target,dimension(:) :: p_buffer_size
       !
-      rocsparse_sgebsr2gebsc_buffer_size_rank_1 = rocsparse_sgebsr2gebsc_buffer_size_(handle,mb,nb,nnzb,c_loc(bsr_val),c_loc(bsr_row_ptr),c_loc(bsr_col_ind),row_block_dim,col_block_dim,p_buffer_size)
+      rocsparse_sgebsr2gebsc_buffer_size_rank_1 = rocsparse_sgebsr2gebsc_buffer_size_(handle,mb,nb,nnzb,c_loc(bsr_val),c_loc(bsr_row_ptr),c_loc(bsr_col_ind),row_block_dim,col_block_dim,c_loc(p_buffer_size))
     end function
 
     function rocsparse_dgebsr2gebsc_buffer_size_rank_0(handle,mb,nb,nnzb,bsr_val,bsr_row_ptr,bsr_col_ind,row_block_dim,col_block_dim,p_buffer_size)
@@ -42628,9 +43271,9 @@ module hipfort_rocsparse
       integer(c_int),target :: bsr_col_ind
       integer(c_int) :: row_block_dim
       integer(c_int) :: col_block_dim
-      type(c_ptr) :: p_buffer_size
+      integer(c_size_t),target :: p_buffer_size
       !
-      rocsparse_dgebsr2gebsc_buffer_size_rank_0 = rocsparse_dgebsr2gebsc_buffer_size_(handle,mb,nb,nnzb,c_loc(bsr_val),c_loc(bsr_row_ptr),c_loc(bsr_col_ind),row_block_dim,col_block_dim,p_buffer_size)
+      rocsparse_dgebsr2gebsc_buffer_size_rank_0 = rocsparse_dgebsr2gebsc_buffer_size_(handle,mb,nb,nnzb,c_loc(bsr_val),c_loc(bsr_row_ptr),c_loc(bsr_col_ind),row_block_dim,col_block_dim,c_loc(p_buffer_size))
     end function
 
     function rocsparse_dgebsr2gebsc_buffer_size_rank_1(handle,mb,nb,nnzb,bsr_val,bsr_row_ptr,bsr_col_ind,row_block_dim,col_block_dim,p_buffer_size)
@@ -42647,9 +43290,9 @@ module hipfort_rocsparse
       integer(c_int),target,dimension(:) :: bsr_col_ind
       integer(c_int) :: row_block_dim
       integer(c_int) :: col_block_dim
-      type(c_ptr) :: p_buffer_size
+      integer(c_size_t),target,dimension(:) :: p_buffer_size
       !
-      rocsparse_dgebsr2gebsc_buffer_size_rank_1 = rocsparse_dgebsr2gebsc_buffer_size_(handle,mb,nb,nnzb,c_loc(bsr_val),c_loc(bsr_row_ptr),c_loc(bsr_col_ind),row_block_dim,col_block_dim,p_buffer_size)
+      rocsparse_dgebsr2gebsc_buffer_size_rank_1 = rocsparse_dgebsr2gebsc_buffer_size_(handle,mb,nb,nnzb,c_loc(bsr_val),c_loc(bsr_row_ptr),c_loc(bsr_col_ind),row_block_dim,col_block_dim,c_loc(p_buffer_size))
     end function
 
     function rocsparse_cgebsr2gebsc_buffer_size_rank_0(handle,mb,nb,nnzb,bsr_val,bsr_row_ptr,bsr_col_ind,row_block_dim,col_block_dim,p_buffer_size)
@@ -42666,9 +43309,9 @@ module hipfort_rocsparse
       integer(c_int),target :: bsr_col_ind
       integer(c_int) :: row_block_dim
       integer(c_int) :: col_block_dim
-      type(c_ptr) :: p_buffer_size
+      integer(c_size_t),target :: p_buffer_size
       !
-      rocsparse_cgebsr2gebsc_buffer_size_rank_0 = rocsparse_cgebsr2gebsc_buffer_size_(handle,mb,nb,nnzb,c_loc(bsr_val),c_loc(bsr_row_ptr),c_loc(bsr_col_ind),row_block_dim,col_block_dim,p_buffer_size)
+      rocsparse_cgebsr2gebsc_buffer_size_rank_0 = rocsparse_cgebsr2gebsc_buffer_size_(handle,mb,nb,nnzb,c_loc(bsr_val),c_loc(bsr_row_ptr),c_loc(bsr_col_ind),row_block_dim,col_block_dim,c_loc(p_buffer_size))
     end function
 
     function rocsparse_cgebsr2gebsc_buffer_size_rank_1(handle,mb,nb,nnzb,bsr_val,bsr_row_ptr,bsr_col_ind,row_block_dim,col_block_dim,p_buffer_size)
@@ -42685,9 +43328,9 @@ module hipfort_rocsparse
       integer(c_int),target,dimension(:) :: bsr_col_ind
       integer(c_int) :: row_block_dim
       integer(c_int) :: col_block_dim
-      type(c_ptr) :: p_buffer_size
+      integer(c_size_t),target,dimension(:) :: p_buffer_size
       !
-      rocsparse_cgebsr2gebsc_buffer_size_rank_1 = rocsparse_cgebsr2gebsc_buffer_size_(handle,mb,nb,nnzb,c_loc(bsr_val),c_loc(bsr_row_ptr),c_loc(bsr_col_ind),row_block_dim,col_block_dim,p_buffer_size)
+      rocsparse_cgebsr2gebsc_buffer_size_rank_1 = rocsparse_cgebsr2gebsc_buffer_size_(handle,mb,nb,nnzb,c_loc(bsr_val),c_loc(bsr_row_ptr),c_loc(bsr_col_ind),row_block_dim,col_block_dim,c_loc(p_buffer_size))
     end function
 
     function rocsparse_zgebsr2gebsc_buffer_size_rank_0(handle,mb,nb,nnzb,bsr_val,bsr_row_ptr,bsr_col_ind,row_block_dim,col_block_dim,p_buffer_size)
@@ -42704,9 +43347,9 @@ module hipfort_rocsparse
       integer(c_int),target :: bsr_col_ind
       integer(c_int) :: row_block_dim
       integer(c_int) :: col_block_dim
-      type(c_ptr) :: p_buffer_size
+      integer(c_size_t),target :: p_buffer_size
       !
-      rocsparse_zgebsr2gebsc_buffer_size_rank_0 = rocsparse_zgebsr2gebsc_buffer_size_(handle,mb,nb,nnzb,c_loc(bsr_val),c_loc(bsr_row_ptr),c_loc(bsr_col_ind),row_block_dim,col_block_dim,p_buffer_size)
+      rocsparse_zgebsr2gebsc_buffer_size_rank_0 = rocsparse_zgebsr2gebsc_buffer_size_(handle,mb,nb,nnzb,c_loc(bsr_val),c_loc(bsr_row_ptr),c_loc(bsr_col_ind),row_block_dim,col_block_dim,c_loc(p_buffer_size))
     end function
 
     function rocsparse_zgebsr2gebsc_buffer_size_rank_1(handle,mb,nb,nnzb,bsr_val,bsr_row_ptr,bsr_col_ind,row_block_dim,col_block_dim,p_buffer_size)
@@ -42723,9 +43366,9 @@ module hipfort_rocsparse
       integer(c_int),target,dimension(:) :: bsr_col_ind
       integer(c_int) :: row_block_dim
       integer(c_int) :: col_block_dim
-      type(c_ptr) :: p_buffer_size
+      integer(c_size_t),target,dimension(:) :: p_buffer_size
       !
-      rocsparse_zgebsr2gebsc_buffer_size_rank_1 = rocsparse_zgebsr2gebsc_buffer_size_(handle,mb,nb,nnzb,c_loc(bsr_val),c_loc(bsr_row_ptr),c_loc(bsr_col_ind),row_block_dim,col_block_dim,p_buffer_size)
+      rocsparse_zgebsr2gebsc_buffer_size_rank_1 = rocsparse_zgebsr2gebsc_buffer_size_(handle,mb,nb,nnzb,c_loc(bsr_val),c_loc(bsr_row_ptr),c_loc(bsr_col_ind),row_block_dim,col_block_dim,c_loc(p_buffer_size))
     end function
 
     function rocsparse_sgebsr2gebsc_rank_0(handle,mb,nb,nnzb,bsr_val,bsr_row_ptr,bsr_col_ind,row_block_dim,col_block_dim,bsc_val,bsc_row_ind,bsc_col_ptr,copy_values,idx_base,temp_buffer)
@@ -42742,14 +43385,14 @@ module hipfort_rocsparse
       integer(c_int),target :: bsr_col_ind
       integer(c_int) :: row_block_dim
       integer(c_int) :: col_block_dim
-      type(c_ptr) :: bsc_val
-      type(c_ptr) :: bsc_row_ind
-      type(c_ptr) :: bsc_col_ptr
+      real(c_float),target :: bsc_val
+      integer(c_int),target :: bsc_row_ind
+      integer(c_int),target :: bsc_col_ptr
       integer(kind(rocsparse_action_symbolic)) :: copy_values
       integer(kind(rocsparse_index_base_zero)) :: idx_base
       type(c_ptr) :: temp_buffer
       !
-      rocsparse_sgebsr2gebsc_rank_0 = rocsparse_sgebsr2gebsc_(handle,mb,nb,nnzb,c_loc(bsr_val),c_loc(bsr_row_ptr),c_loc(bsr_col_ind),row_block_dim,col_block_dim,bsc_val,bsc_row_ind,bsc_col_ptr,copy_values,idx_base,temp_buffer)
+      rocsparse_sgebsr2gebsc_rank_0 = rocsparse_sgebsr2gebsc_(handle,mb,nb,nnzb,c_loc(bsr_val),c_loc(bsr_row_ptr),c_loc(bsr_col_ind),row_block_dim,col_block_dim,c_loc(bsc_val),c_loc(bsc_row_ind),c_loc(bsc_col_ptr),copy_values,idx_base,temp_buffer)
     end function
 
     function rocsparse_sgebsr2gebsc_rank_1(handle,mb,nb,nnzb,bsr_val,bsr_row_ptr,bsr_col_ind,row_block_dim,col_block_dim,bsc_val,bsc_row_ind,bsc_col_ptr,copy_values,idx_base,temp_buffer)
@@ -42766,14 +43409,14 @@ module hipfort_rocsparse
       integer(c_int),target,dimension(:) :: bsr_col_ind
       integer(c_int) :: row_block_dim
       integer(c_int) :: col_block_dim
-      type(c_ptr) :: bsc_val
-      type(c_ptr) :: bsc_row_ind
-      type(c_ptr) :: bsc_col_ptr
+      real(c_float),target,dimension(:) :: bsc_val
+      integer(c_int),target,dimension(:) :: bsc_row_ind
+      integer(c_int),target,dimension(:) :: bsc_col_ptr
       integer(kind(rocsparse_action_symbolic)) :: copy_values
       integer(kind(rocsparse_index_base_zero)) :: idx_base
       type(c_ptr) :: temp_buffer
       !
-      rocsparse_sgebsr2gebsc_rank_1 = rocsparse_sgebsr2gebsc_(handle,mb,nb,nnzb,c_loc(bsr_val),c_loc(bsr_row_ptr),c_loc(bsr_col_ind),row_block_dim,col_block_dim,bsc_val,bsc_row_ind,bsc_col_ptr,copy_values,idx_base,temp_buffer)
+      rocsparse_sgebsr2gebsc_rank_1 = rocsparse_sgebsr2gebsc_(handle,mb,nb,nnzb,c_loc(bsr_val),c_loc(bsr_row_ptr),c_loc(bsr_col_ind),row_block_dim,col_block_dim,c_loc(bsc_val),c_loc(bsc_row_ind),c_loc(bsc_col_ptr),copy_values,idx_base,temp_buffer)
     end function
 
     function rocsparse_dgebsr2gebsc_rank_0(handle,mb,nb,nnzb,bsr_val,bsr_row_ptr,bsr_col_ind,row_block_dim,col_block_dim,bsc_val,bsc_row_ind,bsc_col_ptr,copy_values,idx_base,temp_buffer)
@@ -42790,14 +43433,14 @@ module hipfort_rocsparse
       integer(c_int),target :: bsr_col_ind
       integer(c_int) :: row_block_dim
       integer(c_int) :: col_block_dim
-      type(c_ptr) :: bsc_val
-      type(c_ptr) :: bsc_row_ind
-      type(c_ptr) :: bsc_col_ptr
+      real(c_double),target :: bsc_val
+      integer(c_int),target :: bsc_row_ind
+      integer(c_int),target :: bsc_col_ptr
       integer(kind(rocsparse_action_symbolic)) :: copy_values
       integer(kind(rocsparse_index_base_zero)) :: idx_base
       type(c_ptr) :: temp_buffer
       !
-      rocsparse_dgebsr2gebsc_rank_0 = rocsparse_dgebsr2gebsc_(handle,mb,nb,nnzb,c_loc(bsr_val),c_loc(bsr_row_ptr),c_loc(bsr_col_ind),row_block_dim,col_block_dim,bsc_val,bsc_row_ind,bsc_col_ptr,copy_values,idx_base,temp_buffer)
+      rocsparse_dgebsr2gebsc_rank_0 = rocsparse_dgebsr2gebsc_(handle,mb,nb,nnzb,c_loc(bsr_val),c_loc(bsr_row_ptr),c_loc(bsr_col_ind),row_block_dim,col_block_dim,c_loc(bsc_val),c_loc(bsc_row_ind),c_loc(bsc_col_ptr),copy_values,idx_base,temp_buffer)
     end function
 
     function rocsparse_dgebsr2gebsc_rank_1(handle,mb,nb,nnzb,bsr_val,bsr_row_ptr,bsr_col_ind,row_block_dim,col_block_dim,bsc_val,bsc_row_ind,bsc_col_ptr,copy_values,idx_base,temp_buffer)
@@ -42814,14 +43457,14 @@ module hipfort_rocsparse
       integer(c_int),target,dimension(:) :: bsr_col_ind
       integer(c_int) :: row_block_dim
       integer(c_int) :: col_block_dim
-      type(c_ptr) :: bsc_val
-      type(c_ptr) :: bsc_row_ind
-      type(c_ptr) :: bsc_col_ptr
+      real(c_double),target,dimension(:) :: bsc_val
+      integer(c_int),target,dimension(:) :: bsc_row_ind
+      integer(c_int),target,dimension(:) :: bsc_col_ptr
       integer(kind(rocsparse_action_symbolic)) :: copy_values
       integer(kind(rocsparse_index_base_zero)) :: idx_base
       type(c_ptr) :: temp_buffer
       !
-      rocsparse_dgebsr2gebsc_rank_1 = rocsparse_dgebsr2gebsc_(handle,mb,nb,nnzb,c_loc(bsr_val),c_loc(bsr_row_ptr),c_loc(bsr_col_ind),row_block_dim,col_block_dim,bsc_val,bsc_row_ind,bsc_col_ptr,copy_values,idx_base,temp_buffer)
+      rocsparse_dgebsr2gebsc_rank_1 = rocsparse_dgebsr2gebsc_(handle,mb,nb,nnzb,c_loc(bsr_val),c_loc(bsr_row_ptr),c_loc(bsr_col_ind),row_block_dim,col_block_dim,c_loc(bsc_val),c_loc(bsc_row_ind),c_loc(bsc_col_ptr),copy_values,idx_base,temp_buffer)
     end function
 
     function rocsparse_cgebsr2gebsc_rank_0(handle,mb,nb,nnzb,bsr_val,bsr_row_ptr,bsr_col_ind,row_block_dim,col_block_dim,bsc_val,bsc_row_ind,bsc_col_ptr,copy_values,idx_base,temp_buffer)
@@ -42838,14 +43481,14 @@ module hipfort_rocsparse
       integer(c_int),target :: bsr_col_ind
       integer(c_int) :: row_block_dim
       integer(c_int) :: col_block_dim
-      type(c_ptr) :: bsc_val
-      type(c_ptr) :: bsc_row_ind
-      type(c_ptr) :: bsc_col_ptr
+      complex(c_float_complex),target :: bsc_val
+      integer(c_int),target :: bsc_row_ind
+      integer(c_int),target :: bsc_col_ptr
       integer(kind(rocsparse_action_symbolic)) :: copy_values
       integer(kind(rocsparse_index_base_zero)) :: idx_base
       type(c_ptr) :: temp_buffer
       !
-      rocsparse_cgebsr2gebsc_rank_0 = rocsparse_cgebsr2gebsc_(handle,mb,nb,nnzb,c_loc(bsr_val),c_loc(bsr_row_ptr),c_loc(bsr_col_ind),row_block_dim,col_block_dim,bsc_val,bsc_row_ind,bsc_col_ptr,copy_values,idx_base,temp_buffer)
+      rocsparse_cgebsr2gebsc_rank_0 = rocsparse_cgebsr2gebsc_(handle,mb,nb,nnzb,c_loc(bsr_val),c_loc(bsr_row_ptr),c_loc(bsr_col_ind),row_block_dim,col_block_dim,c_loc(bsc_val),c_loc(bsc_row_ind),c_loc(bsc_col_ptr),copy_values,idx_base,temp_buffer)
     end function
 
     function rocsparse_cgebsr2gebsc_rank_1(handle,mb,nb,nnzb,bsr_val,bsr_row_ptr,bsr_col_ind,row_block_dim,col_block_dim,bsc_val,bsc_row_ind,bsc_col_ptr,copy_values,idx_base,temp_buffer)
@@ -42862,14 +43505,14 @@ module hipfort_rocsparse
       integer(c_int),target,dimension(:) :: bsr_col_ind
       integer(c_int) :: row_block_dim
       integer(c_int) :: col_block_dim
-      type(c_ptr) :: bsc_val
-      type(c_ptr) :: bsc_row_ind
-      type(c_ptr) :: bsc_col_ptr
+      complex(c_float_complex),target,dimension(:) :: bsc_val
+      integer(c_int),target,dimension(:) :: bsc_row_ind
+      integer(c_int),target,dimension(:) :: bsc_col_ptr
       integer(kind(rocsparse_action_symbolic)) :: copy_values
       integer(kind(rocsparse_index_base_zero)) :: idx_base
       type(c_ptr) :: temp_buffer
       !
-      rocsparse_cgebsr2gebsc_rank_1 = rocsparse_cgebsr2gebsc_(handle,mb,nb,nnzb,c_loc(bsr_val),c_loc(bsr_row_ptr),c_loc(bsr_col_ind),row_block_dim,col_block_dim,bsc_val,bsc_row_ind,bsc_col_ptr,copy_values,idx_base,temp_buffer)
+      rocsparse_cgebsr2gebsc_rank_1 = rocsparse_cgebsr2gebsc_(handle,mb,nb,nnzb,c_loc(bsr_val),c_loc(bsr_row_ptr),c_loc(bsr_col_ind),row_block_dim,col_block_dim,c_loc(bsc_val),c_loc(bsc_row_ind),c_loc(bsc_col_ptr),copy_values,idx_base,temp_buffer)
     end function
 
     function rocsparse_zgebsr2gebsc_rank_0(handle,mb,nb,nnzb,bsr_val,bsr_row_ptr,bsr_col_ind,row_block_dim,col_block_dim,bsc_val,bsc_row_ind,bsc_col_ptr,copy_values,idx_base,temp_buffer)
@@ -42886,14 +43529,14 @@ module hipfort_rocsparse
       integer(c_int),target :: bsr_col_ind
       integer(c_int) :: row_block_dim
       integer(c_int) :: col_block_dim
-      type(c_ptr) :: bsc_val
-      type(c_ptr) :: bsc_row_ind
-      type(c_ptr) :: bsc_col_ptr
+      complex(c_double_complex),target :: bsc_val
+      integer(c_int),target :: bsc_row_ind
+      integer(c_int),target :: bsc_col_ptr
       integer(kind(rocsparse_action_symbolic)) :: copy_values
       integer(kind(rocsparse_index_base_zero)) :: idx_base
       type(c_ptr) :: temp_buffer
       !
-      rocsparse_zgebsr2gebsc_rank_0 = rocsparse_zgebsr2gebsc_(handle,mb,nb,nnzb,c_loc(bsr_val),c_loc(bsr_row_ptr),c_loc(bsr_col_ind),row_block_dim,col_block_dim,bsc_val,bsc_row_ind,bsc_col_ptr,copy_values,idx_base,temp_buffer)
+      rocsparse_zgebsr2gebsc_rank_0 = rocsparse_zgebsr2gebsc_(handle,mb,nb,nnzb,c_loc(bsr_val),c_loc(bsr_row_ptr),c_loc(bsr_col_ind),row_block_dim,col_block_dim,c_loc(bsc_val),c_loc(bsc_row_ind),c_loc(bsc_col_ptr),copy_values,idx_base,temp_buffer)
     end function
 
     function rocsparse_zgebsr2gebsc_rank_1(handle,mb,nb,nnzb,bsr_val,bsr_row_ptr,bsr_col_ind,row_block_dim,col_block_dim,bsc_val,bsc_row_ind,bsc_col_ptr,copy_values,idx_base,temp_buffer)
@@ -42910,14 +43553,14 @@ module hipfort_rocsparse
       integer(c_int),target,dimension(:) :: bsr_col_ind
       integer(c_int) :: row_block_dim
       integer(c_int) :: col_block_dim
-      type(c_ptr) :: bsc_val
-      type(c_ptr) :: bsc_row_ind
-      type(c_ptr) :: bsc_col_ptr
+      complex(c_double_complex),target,dimension(:) :: bsc_val
+      integer(c_int),target,dimension(:) :: bsc_row_ind
+      integer(c_int),target,dimension(:) :: bsc_col_ptr
       integer(kind(rocsparse_action_symbolic)) :: copy_values
       integer(kind(rocsparse_index_base_zero)) :: idx_base
       type(c_ptr) :: temp_buffer
       !
-      rocsparse_zgebsr2gebsc_rank_1 = rocsparse_zgebsr2gebsc_(handle,mb,nb,nnzb,c_loc(bsr_val),c_loc(bsr_row_ptr),c_loc(bsr_col_ind),row_block_dim,col_block_dim,bsc_val,bsc_row_ind,bsc_col_ptr,copy_values,idx_base,temp_buffer)
+      rocsparse_zgebsr2gebsc_rank_1 = rocsparse_zgebsr2gebsc_(handle,mb,nb,nnzb,c_loc(bsr_val),c_loc(bsr_row_ptr),c_loc(bsr_col_ind),row_block_dim,col_block_dim,c_loc(bsc_val),c_loc(bsc_row_ind),c_loc(bsc_col_ptr),copy_values,idx_base,temp_buffer)
     end function
 
     function rocsparse_csr2ell_width_rank_0(handle,m,csr_descr,csr_row_ptr,ell_descr,ell_width)
@@ -43470,7 +44113,7 @@ module hipfort_rocsparse
       rocsparse_zcsr2bsr_rank_1 = rocsparse_zcsr2bsr_(handle,dir,m,n,csr_descr,c_loc(csr_val),c_loc(csr_row_ptr),c_loc(csr_col_ind),block_dim,bsr_descr,c_loc(bsr_val),c_loc(bsr_row_ptr),c_loc(bsr_col_ind))
     end function
 
-    function rocsparse_scsr2gebsr_buffer_size_rank_0(handle,dir,m,n,csr_descr,csr_val,csr_row_ptr,csr_col_ind,row_block_dim,col_block_dim,p_buffer_size)
+    function rocsparse_scsr2gebsr_buffer_size_rank_0(handle,dir,m,n,csr_descr,csr_val,csr_row_ptr,csr_col_ind,row_block_dim,col_block_dim,buffer_size)
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
@@ -43485,12 +44128,12 @@ module hipfort_rocsparse
       integer(c_int),target :: csr_col_ind
       integer(c_int) :: row_block_dim
       integer(c_int) :: col_block_dim
-      type(c_ptr) :: p_buffer_size
+      integer(c_size_t),target :: buffer_size
       !
-      rocsparse_scsr2gebsr_buffer_size_rank_0 = rocsparse_scsr2gebsr_buffer_size_(handle,dir,m,n,csr_descr,c_loc(csr_val),c_loc(csr_row_ptr),c_loc(csr_col_ind),row_block_dim,col_block_dim,p_buffer_size)
+      rocsparse_scsr2gebsr_buffer_size_rank_0 = rocsparse_scsr2gebsr_buffer_size_(handle,dir,m,n,csr_descr,c_loc(csr_val),c_loc(csr_row_ptr),c_loc(csr_col_ind),row_block_dim,col_block_dim,c_loc(buffer_size))
     end function
 
-    function rocsparse_scsr2gebsr_buffer_size_rank_1(handle,dir,m,n,csr_descr,csr_val,csr_row_ptr,csr_col_ind,row_block_dim,col_block_dim,p_buffer_size)
+    function rocsparse_scsr2gebsr_buffer_size_rank_1(handle,dir,m,n,csr_descr,csr_val,csr_row_ptr,csr_col_ind,row_block_dim,col_block_dim,buffer_size)
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
@@ -43505,12 +44148,12 @@ module hipfort_rocsparse
       integer(c_int),target,dimension(:) :: csr_col_ind
       integer(c_int) :: row_block_dim
       integer(c_int) :: col_block_dim
-      type(c_ptr) :: p_buffer_size
+      integer(c_size_t),target,dimension(:) :: buffer_size
       !
-      rocsparse_scsr2gebsr_buffer_size_rank_1 = rocsparse_scsr2gebsr_buffer_size_(handle,dir,m,n,csr_descr,c_loc(csr_val),c_loc(csr_row_ptr),c_loc(csr_col_ind),row_block_dim,col_block_dim,p_buffer_size)
+      rocsparse_scsr2gebsr_buffer_size_rank_1 = rocsparse_scsr2gebsr_buffer_size_(handle,dir,m,n,csr_descr,c_loc(csr_val),c_loc(csr_row_ptr),c_loc(csr_col_ind),row_block_dim,col_block_dim,c_loc(buffer_size))
     end function
 
-    function rocsparse_dcsr2gebsr_buffer_size_rank_0(handle,dir,m,n,csr_descr,csr_val,csr_row_ptr,csr_col_ind,row_block_dim,col_block_dim,p_buffer_size)
+    function rocsparse_dcsr2gebsr_buffer_size_rank_0(handle,dir,m,n,csr_descr,csr_val,csr_row_ptr,csr_col_ind,row_block_dim,col_block_dim,buffer_size)
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
@@ -43525,12 +44168,12 @@ module hipfort_rocsparse
       integer(c_int),target :: csr_col_ind
       integer(c_int) :: row_block_dim
       integer(c_int) :: col_block_dim
-      type(c_ptr) :: p_buffer_size
+      integer(c_size_t),target :: buffer_size
       !
-      rocsparse_dcsr2gebsr_buffer_size_rank_0 = rocsparse_dcsr2gebsr_buffer_size_(handle,dir,m,n,csr_descr,c_loc(csr_val),c_loc(csr_row_ptr),c_loc(csr_col_ind),row_block_dim,col_block_dim,p_buffer_size)
+      rocsparse_dcsr2gebsr_buffer_size_rank_0 = rocsparse_dcsr2gebsr_buffer_size_(handle,dir,m,n,csr_descr,c_loc(csr_val),c_loc(csr_row_ptr),c_loc(csr_col_ind),row_block_dim,col_block_dim,c_loc(buffer_size))
     end function
 
-    function rocsparse_dcsr2gebsr_buffer_size_rank_1(handle,dir,m,n,csr_descr,csr_val,csr_row_ptr,csr_col_ind,row_block_dim,col_block_dim,p_buffer_size)
+    function rocsparse_dcsr2gebsr_buffer_size_rank_1(handle,dir,m,n,csr_descr,csr_val,csr_row_ptr,csr_col_ind,row_block_dim,col_block_dim,buffer_size)
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
@@ -43545,12 +44188,12 @@ module hipfort_rocsparse
       integer(c_int),target,dimension(:) :: csr_col_ind
       integer(c_int) :: row_block_dim
       integer(c_int) :: col_block_dim
-      type(c_ptr) :: p_buffer_size
+      integer(c_size_t),target,dimension(:) :: buffer_size
       !
-      rocsparse_dcsr2gebsr_buffer_size_rank_1 = rocsparse_dcsr2gebsr_buffer_size_(handle,dir,m,n,csr_descr,c_loc(csr_val),c_loc(csr_row_ptr),c_loc(csr_col_ind),row_block_dim,col_block_dim,p_buffer_size)
+      rocsparse_dcsr2gebsr_buffer_size_rank_1 = rocsparse_dcsr2gebsr_buffer_size_(handle,dir,m,n,csr_descr,c_loc(csr_val),c_loc(csr_row_ptr),c_loc(csr_col_ind),row_block_dim,col_block_dim,c_loc(buffer_size))
     end function
 
-    function rocsparse_ccsr2gebsr_buffer_size_rank_0(handle,dir,m,n,csr_descr,csr_val,csr_row_ptr,csr_col_ind,row_block_dim,col_block_dim,p_buffer_size)
+    function rocsparse_ccsr2gebsr_buffer_size_rank_0(handle,dir,m,n,csr_descr,csr_val,csr_row_ptr,csr_col_ind,row_block_dim,col_block_dim,buffer_size)
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
@@ -43565,12 +44208,12 @@ module hipfort_rocsparse
       integer(c_int),target :: csr_col_ind
       integer(c_int) :: row_block_dim
       integer(c_int) :: col_block_dim
-      type(c_ptr) :: p_buffer_size
+      integer(c_size_t),target :: buffer_size
       !
-      rocsparse_ccsr2gebsr_buffer_size_rank_0 = rocsparse_ccsr2gebsr_buffer_size_(handle,dir,m,n,csr_descr,c_loc(csr_val),c_loc(csr_row_ptr),c_loc(csr_col_ind),row_block_dim,col_block_dim,p_buffer_size)
+      rocsparse_ccsr2gebsr_buffer_size_rank_0 = rocsparse_ccsr2gebsr_buffer_size_(handle,dir,m,n,csr_descr,c_loc(csr_val),c_loc(csr_row_ptr),c_loc(csr_col_ind),row_block_dim,col_block_dim,c_loc(buffer_size))
     end function
 
-    function rocsparse_ccsr2gebsr_buffer_size_rank_1(handle,dir,m,n,csr_descr,csr_val,csr_row_ptr,csr_col_ind,row_block_dim,col_block_dim,p_buffer_size)
+    function rocsparse_ccsr2gebsr_buffer_size_rank_1(handle,dir,m,n,csr_descr,csr_val,csr_row_ptr,csr_col_ind,row_block_dim,col_block_dim,buffer_size)
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
@@ -43585,12 +44228,12 @@ module hipfort_rocsparse
       integer(c_int),target,dimension(:) :: csr_col_ind
       integer(c_int) :: row_block_dim
       integer(c_int) :: col_block_dim
-      type(c_ptr) :: p_buffer_size
+      integer(c_size_t),target,dimension(:) :: buffer_size
       !
-      rocsparse_ccsr2gebsr_buffer_size_rank_1 = rocsparse_ccsr2gebsr_buffer_size_(handle,dir,m,n,csr_descr,c_loc(csr_val),c_loc(csr_row_ptr),c_loc(csr_col_ind),row_block_dim,col_block_dim,p_buffer_size)
+      rocsparse_ccsr2gebsr_buffer_size_rank_1 = rocsparse_ccsr2gebsr_buffer_size_(handle,dir,m,n,csr_descr,c_loc(csr_val),c_loc(csr_row_ptr),c_loc(csr_col_ind),row_block_dim,col_block_dim,c_loc(buffer_size))
     end function
 
-    function rocsparse_zcsr2gebsr_buffer_size_rank_0(handle,dir,m,n,csr_descr,csr_val,csr_row_ptr,csr_col_ind,row_block_dim,col_block_dim,p_buffer_size)
+    function rocsparse_zcsr2gebsr_buffer_size_rank_0(handle,dir,m,n,csr_descr,csr_val,csr_row_ptr,csr_col_ind,row_block_dim,col_block_dim,buffer_size)
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
@@ -43605,12 +44248,12 @@ module hipfort_rocsparse
       integer(c_int),target :: csr_col_ind
       integer(c_int) :: row_block_dim
       integer(c_int) :: col_block_dim
-      type(c_ptr) :: p_buffer_size
+      integer(c_size_t),target :: buffer_size
       !
-      rocsparse_zcsr2gebsr_buffer_size_rank_0 = rocsparse_zcsr2gebsr_buffer_size_(handle,dir,m,n,csr_descr,c_loc(csr_val),c_loc(csr_row_ptr),c_loc(csr_col_ind),row_block_dim,col_block_dim,p_buffer_size)
+      rocsparse_zcsr2gebsr_buffer_size_rank_0 = rocsparse_zcsr2gebsr_buffer_size_(handle,dir,m,n,csr_descr,c_loc(csr_val),c_loc(csr_row_ptr),c_loc(csr_col_ind),row_block_dim,col_block_dim,c_loc(buffer_size))
     end function
 
-    function rocsparse_zcsr2gebsr_buffer_size_rank_1(handle,dir,m,n,csr_descr,csr_val,csr_row_ptr,csr_col_ind,row_block_dim,col_block_dim,p_buffer_size)
+    function rocsparse_zcsr2gebsr_buffer_size_rank_1(handle,dir,m,n,csr_descr,csr_val,csr_row_ptr,csr_col_ind,row_block_dim,col_block_dim,buffer_size)
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
@@ -43625,12 +44268,12 @@ module hipfort_rocsparse
       integer(c_int),target,dimension(:) :: csr_col_ind
       integer(c_int) :: row_block_dim
       integer(c_int) :: col_block_dim
-      type(c_ptr) :: p_buffer_size
+      integer(c_size_t),target,dimension(:) :: buffer_size
       !
-      rocsparse_zcsr2gebsr_buffer_size_rank_1 = rocsparse_zcsr2gebsr_buffer_size_(handle,dir,m,n,csr_descr,c_loc(csr_val),c_loc(csr_row_ptr),c_loc(csr_col_ind),row_block_dim,col_block_dim,p_buffer_size)
+      rocsparse_zcsr2gebsr_buffer_size_rank_1 = rocsparse_zcsr2gebsr_buffer_size_(handle,dir,m,n,csr_descr,c_loc(csr_val),c_loc(csr_row_ptr),c_loc(csr_col_ind),row_block_dim,col_block_dim,c_loc(buffer_size))
     end function
 
-    function rocsparse_csr2gebsr_nnz_rank_0(handle,dir,m,n,csr_descr,csr_row_ptr,csr_col_ind,bsr_descr,bsr_row_ptr,row_block_dim,col_block_dim,bsr_nnz_devhost,p_buffer)
+    function rocsparse_csr2gebsr_nnz_rank_0(handle,dir,m,n,csr_descr,csr_row_ptr,csr_col_ind,bsr_descr,bsr_row_ptr,row_block_dim,col_block_dim,bsr_nnz_devhost,temp_buffer)
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
@@ -43646,13 +44289,13 @@ module hipfort_rocsparse
       integer(c_int),target :: bsr_row_ptr
       integer(c_int) :: row_block_dim
       integer(c_int) :: col_block_dim
-      type(c_ptr) :: bsr_nnz_devhost
-      type(c_ptr) :: p_buffer
+      integer(c_int),target :: bsr_nnz_devhost
+      type(c_ptr) :: temp_buffer
       !
-      rocsparse_csr2gebsr_nnz_rank_0 = rocsparse_csr2gebsr_nnz_(handle,dir,m,n,csr_descr,c_loc(csr_row_ptr),c_loc(csr_col_ind),bsr_descr,c_loc(bsr_row_ptr),row_block_dim,col_block_dim,bsr_nnz_devhost,p_buffer)
+      rocsparse_csr2gebsr_nnz_rank_0 = rocsparse_csr2gebsr_nnz_(handle,dir,m,n,csr_descr,c_loc(csr_row_ptr),c_loc(csr_col_ind),bsr_descr,c_loc(bsr_row_ptr),row_block_dim,col_block_dim,c_loc(bsr_nnz_devhost),temp_buffer)
     end function
 
-    function rocsparse_csr2gebsr_nnz_rank_1(handle,dir,m,n,csr_descr,csr_row_ptr,csr_col_ind,bsr_descr,bsr_row_ptr,row_block_dim,col_block_dim,bsr_nnz_devhost,p_buffer)
+    function rocsparse_csr2gebsr_nnz_rank_1(handle,dir,m,n,csr_descr,csr_row_ptr,csr_col_ind,bsr_descr,bsr_row_ptr,row_block_dim,col_block_dim,bsr_nnz_devhost,temp_buffer)
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
@@ -43668,13 +44311,13 @@ module hipfort_rocsparse
       integer(c_int),target,dimension(:) :: bsr_row_ptr
       integer(c_int) :: row_block_dim
       integer(c_int) :: col_block_dim
-      type(c_ptr) :: bsr_nnz_devhost
-      type(c_ptr) :: p_buffer
+      integer(c_int),target,dimension(:) :: bsr_nnz_devhost
+      type(c_ptr) :: temp_buffer
       !
-      rocsparse_csr2gebsr_nnz_rank_1 = rocsparse_csr2gebsr_nnz_(handle,dir,m,n,csr_descr,c_loc(csr_row_ptr),c_loc(csr_col_ind),bsr_descr,c_loc(bsr_row_ptr),row_block_dim,col_block_dim,bsr_nnz_devhost,p_buffer)
+      rocsparse_csr2gebsr_nnz_rank_1 = rocsparse_csr2gebsr_nnz_(handle,dir,m,n,csr_descr,c_loc(csr_row_ptr),c_loc(csr_col_ind),bsr_descr,c_loc(bsr_row_ptr),row_block_dim,col_block_dim,c_loc(bsr_nnz_devhost),temp_buffer)
     end function
 
-    function rocsparse_scsr2gebsr_rank_0(handle,dir,m,n,csr_descr,csr_val,csr_row_ptr,csr_col_ind,bsr_descr,bsr_val,bsr_row_ptr,bsr_col_ind,row_block_dim,col_block_dim,p_buffer)
+    function rocsparse_scsr2gebsr_rank_0(handle,dir,m,n,csr_descr,csr_val,csr_row_ptr,csr_col_ind,bsr_descr,bsr_val,bsr_row_ptr,bsr_col_ind,row_block_dim,col_block_dim,temp_buffer)
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
@@ -43693,12 +44336,12 @@ module hipfort_rocsparse
       integer(c_int),target :: bsr_col_ind
       integer(c_int) :: row_block_dim
       integer(c_int) :: col_block_dim
-      type(c_ptr) :: p_buffer
+      type(c_ptr) :: temp_buffer
       !
-      rocsparse_scsr2gebsr_rank_0 = rocsparse_scsr2gebsr_(handle,dir,m,n,csr_descr,c_loc(csr_val),c_loc(csr_row_ptr),c_loc(csr_col_ind),bsr_descr,c_loc(bsr_val),c_loc(bsr_row_ptr),c_loc(bsr_col_ind),row_block_dim,col_block_dim,p_buffer)
+      rocsparse_scsr2gebsr_rank_0 = rocsparse_scsr2gebsr_(handle,dir,m,n,csr_descr,c_loc(csr_val),c_loc(csr_row_ptr),c_loc(csr_col_ind),bsr_descr,c_loc(bsr_val),c_loc(bsr_row_ptr),c_loc(bsr_col_ind),row_block_dim,col_block_dim,temp_buffer)
     end function
 
-    function rocsparse_scsr2gebsr_rank_1(handle,dir,m,n,csr_descr,csr_val,csr_row_ptr,csr_col_ind,bsr_descr,bsr_val,bsr_row_ptr,bsr_col_ind,row_block_dim,col_block_dim,p_buffer)
+    function rocsparse_scsr2gebsr_rank_1(handle,dir,m,n,csr_descr,csr_val,csr_row_ptr,csr_col_ind,bsr_descr,bsr_val,bsr_row_ptr,bsr_col_ind,row_block_dim,col_block_dim,temp_buffer)
       use iso_c_binding
       use hipfort_rocsparse_enums
       implicit none
@@ -43717,9 +44360,9 @@ module hipfort_rocsparse
       integer(c_int),target,dimension(:) :: bsr_col_ind
       integer(c_int) :: row_block_dim
       integer(c_int) :: col_block_dim
-      type(c_ptr) :: p_buffer
+      type(c_ptr) :: temp_buffer
       !
-      rocsparse_scsr2gebsr_rank_1 = rocsparse_scsr2gebsr_(handle,dir,m,n,csr_descr,c_loc(csr_val),c_loc(csr_row_ptr),c_loc(csr_col_ind),bsr_descr,c_loc(bsr_val),c_loc(bsr_row_ptr),c_loc(bsr_col_ind),row_block_dim,col_block_dim,p_buffer)
+      rocsparse_scsr2gebsr_rank_1 = rocsparse_scsr2gebsr_(handle,dir,m,n,csr_descr,c_loc(csr_val),c_loc(csr_row_ptr),c_loc(csr_col_ind),bsr_descr,c_loc(bsr_val),c_loc(bsr_row_ptr),c_loc(bsr_col_ind),row_block_dim,col_block_dim,temp_buffer)
     end function
 
     function rocsparse_dcsr2gebsr_rank_0(handle,dir,m,n,csr_descr,csr_val,csr_row_ptr,csr_col_ind,bsr_descr,bsr_val,bsr_row_ptr,bsr_col_ind,row_block_dim,col_block_dim,p_buffer)
