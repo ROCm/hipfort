@@ -140,7 +140,7 @@ module hipfort_hipfftw
   !>  @param[in] out - pointer to the output buffer for the transform;
   !>  @param[in] sign - exponent sign defining the desired complex transform (``FFTW_FORWARD`` or
   !>  ``FFTW_BACKWARD`` );
-  !>  @param[in] flags - bitwise OR (``|``) combination of zero or more constant flag values.
+  !>  @param[in] flags - bitwise OR (|) combination of zero or more constant flag values.
   !>  @return a valid double-precision hipFFTW plan ready for execution upon success (``nullptr``
   !>  otherwise).
   interface fftw_plan_dft_1d
@@ -182,7 +182,7 @@ module hipfort_hipfftw
   !>  @param[in] out - pointer to the output buffer for the transform;
   !>  @param[in] sign - exponent sign defining the desired complex transform (``FFTW_FORWARD`` or
   !>  ``FFTW_BACKWARD`` );
-  !>  @param[in] flags - bitwise OR (``|``) combination of zero or more constant flag values.
+  !>  @param[in] flags - bitwise OR (|) combination of zero or more constant flag values.
   !>  @return a valid double-precision hipFFTW plan ready for execution upon success (``nullptr``
   !>  otherwise).
   interface fftw_plan_dft_2d
@@ -226,7 +226,7 @@ module hipfort_hipfftw
   !>  @param[in] out - pointer to the output buffer for the transform;
   !>  @param[in] sign - exponent sign defining the desired complex transform (``FFTW_FORWARD`` or
   !>  ``FFTW_BACKWARD`` );
-  !>  @param[in] flags - bitwise OR (``|``) combination of zero or more constant flag values.
+  !>  @param[in] flags - bitwise OR (|) combination of zero or more constant flag values.
   !>  @return a valid double-precision hipFFTW plan ready for execution upon success (``nullptr``
   !>  otherwise).
   interface fftw_plan_dft_3d
@@ -265,7 +265,7 @@ module hipfort_hipfftw
   end interface
 
   !>  @brief Creates a basic plan for a multidimensional, double-precision, complex discrete Fourier
-  !>  transform of lengths ``n[0] x n[1] x ... x n[rank-1]``.
+  !>  transform of lengths n[0] x n[1] x ... x n[rank-1].
   !>
   !>  @param[in] rank - strictly positive rank of the transform;
   !>  @param[in] n - array of strictly positive lengths of the transform (must be of size ``rank``);
@@ -273,7 +273,7 @@ module hipfort_hipfftw
   !>  @param[in] out - pointer to the output buffer for the transform;
   !>  @param[in] sign - exponent sign defining the desired complex transform (``FFTW_FORWARD`` or
   !>  ``FFTW_BACKWARD`` );
-  !>  @param[in] flags - bitwise OR (``|``) combination of zero or more constant flag values.
+  !>  @param[in] flags - bitwise OR (|) combination of zero or more constant flag values.
   !>  @return a valid double-precision hipFFTW plan ready for execution upon success (``nullptr``
   !>  otherwise).
   interface fftw_plan_dft
@@ -315,7 +315,7 @@ module hipfort_hipfftw
   !>  @param[in] n - strictly positive length of the transform;
   !>  @param[in] in - pointer to the input buffer for the transform;
   !>  @param[in] out - pointer to the output buffer for the transform;
-  !>  @param[in] flags - bitwise OR (``|``) combination of zero or more constant flag values.
+  !>  @param[in] flags - bitwise OR (|) combination of zero or more constant flag values.
   !>  @return a valid double-precision hipFFTW plan ready for execution upon success (``nullptr``
   !>  otherwise).
   interface fftw_plan_dft_r2c_1d
@@ -353,7 +353,7 @@ module hipfort_hipfftw
   !>  @param[in] n0 - , n1 strictly positive lengths of the transform;
   !>  @param[in] in - pointer to the input buffer for the transform;
   !>  @param[in] out - pointer to the output buffer for the transform;
-  !>  @param[in] flags - bitwise OR (``|``) combination of zero or more constant flag values.
+  !>  @param[in] flags - bitwise OR (|) combination of zero or more constant flag values.
   !>  @return a valid double-precision hipFFTW plan ready for execution upon success (``nullptr``
   !>  otherwise).
   interface fftw_plan_dft_r2c_2d
@@ -393,7 +393,7 @@ module hipfort_hipfftw
   !>  @param[in] n0 - , n1, n2 strictly positive lengths of the transform;
   !>  @param[in] in - pointer to the input buffer for the transform;
   !>  @param[in] out - pointer to the output buffer for the transform;
-  !>  @param[in] flags - bitwise OR (``|``) combination of zero or more constant flag values.
+  !>  @param[in] flags - bitwise OR (|) combination of zero or more constant flag values.
   !>  @return a valid double-precision hipFFTW plan ready for execution upon success (``nullptr``
   !>  otherwise).
   interface fftw_plan_dft_r2c_3d
@@ -430,13 +430,13 @@ module hipfort_hipfftw
   end interface
 
   !>  @brief Creates a basic plan for a multidimensional, double-precision, real forward discrete
-  !>  Fourier transform of lengths ``n[0] x n[1] x ... x n[rank-1]``.
+  !>  Fourier transform of lengths n[0] x n[1] x ... x n[rank-1].
   !>
   !>  @param[in] rank - strictly positive rank of the transform;
   !>  @param[in] n - array of strictly positive lengths of the transform (must be of size ``rank``);
   !>  @param[in] in - pointer to the input buffer for the transform;
   !>  @param[in] out - pointer to the output buffer for the transform;
-  !>  @param[in] flags - bitwise OR (``|``) combination of zero or more constant flag values.
+  !>  @param[in] flags - bitwise OR (|) combination of zero or more constant flag values.
   !>  @return a valid double-precision hipFFTW plan ready for execution upon success (``nullptr``
   !>  otherwise).
   interface fftw_plan_dft_r2c
@@ -476,7 +476,7 @@ module hipfort_hipfftw
   !>  @param[in] n - strictly positive length of the transform;
   !>  @param[in] in - pointer to the input buffer for the transform;
   !>  @param[in] out - pointer to the output buffer for the transform;
-  !>  @param[in] flags - bitwise OR (``|``) combination of zero or more constant flag values.
+  !>  @param[in] flags - bitwise OR (|) combination of zero or more constant flag values.
   !>  @return a valid double-precision hipFFTW plan ready for execution upon success (``nullptr``
   !>  otherwise).
   interface fftw_plan_dft_c2r_1d
@@ -514,7 +514,7 @@ module hipfort_hipfftw
   !>  @param[in] n0 - , n1 strictly positive lengths of the transform;
   !>  @param[in] in - pointer to the input buffer for the transform;
   !>  @param[in] out - pointer to the output buffer for the transform;
-  !>  @param[in] flags - bitwise OR (``|``) combination of zero or more constant flag values.
+  !>  @param[in] flags - bitwise OR (|) combination of zero or more constant flag values.
   !>  @return a valid double-precision hipFFTW plan ready for execution upon success (``nullptr``
   !>  otherwise).
   interface fftw_plan_dft_c2r_2d
@@ -554,7 +554,7 @@ module hipfort_hipfftw
   !>  @param[in] n0 - , n1, n2 strictly positive lengths of the transform;
   !>  @param[in] in - pointer to the input buffer for the transform;
   !>  @param[in] out - pointer to the output buffer for the transform;
-  !>  @param[in] flags - bitwise OR (``|``) combination of zero or more constant flag values.
+  !>  @param[in] flags - bitwise OR (|) combination of zero or more constant flag values.
   !>  @return a valid double-precision hipFFTW plan ready for execution upon success (``nullptr``
   !>  otherwise).
   interface fftw_plan_dft_c2r_3d
@@ -591,13 +591,13 @@ module hipfort_hipfftw
   end interface
 
   !>  @brief Creates a basic plan for a multidimensional, double-precision, real backward (inverse)
-  !>  discrete Fourier transform of lengths ``n[0] x n[1] x ... x n[rank-1]``.
+  !>  discrete Fourier transform of lengths n[0] x n[1] x ... x n[rank-1].
   !>
   !>  @param[in] rank - strictly positive rank of the transform;
   !>  @param[in] n - array of strictly positive lengths of the transform (must be of size ``rank``);
   !>  @param[in] in - pointer to the input buffer for the transform;
   !>  @param[in] out - pointer to the output buffer for the transform;
-  !>  @param[in] flags - bitwise OR (``|``) combination of zero or more constant flag values.
+  !>  @param[in] flags - bitwise OR (|) combination of zero or more constant flag values.
   !>  @return a valid double-precision hipFFTW plan ready for execution upon success (``nullptr``
   !>  otherwise).
   interface fftw_plan_dft_c2r
@@ -633,7 +633,7 @@ module hipfort_hipfftw
 
   !>  @brief Creates an advanced plan for a multidimensional, double-precision, complex discrete
   !>  Fourier transform
-  !>  of lengths ``n[0] x n[1] x ... x n[rank-1]`` and batch size ``howmany``.
+  !>  of lengths n[0] x n[1] x ... x n[rank-1] and batch size ``howmany``.
   !>
   !>  @param[in] rank - strictly positive rank of the transform;
   !>  @param[in] n - array of strictly positive lengths of the transform (must be of size ``rank``);
@@ -654,7 +654,7 @@ module hipfort_hipfftw
   !>  batch;
   !>  @param[in] sign - exponent sign defining the desired complex transform (``FFTW_FORWARD`` or
   !>  ``FFTW_BACKWARD`` );
-  !>  @param[in] flags - bitwise OR (``|``) combination of zero or more constant flag values.
+  !>  @param[in] flags - bitwise OR (|) combination of zero or more constant flag values.
   !>  @return a valid double-precision hipFFTW plan ready for execution upon success (``nullptr``
   !>  otherwise).
   interface fftw_plan_many_dft
@@ -706,7 +706,7 @@ module hipfort_hipfftw
 
   !>  @brief Creates an advanced plan for a multidimensional, double-precision, real forward
   !>  discrete Fourier
-  !>  transform of lengths ``n[0] x n[1] x ... x n[rank-1]`` and batch size ``howmany``.
+  !>  transform of lengths n[0] x n[1] x ... x n[rank-1] and batch size ``howmany``.
   !>
   !>  @param[in] rank - strictly positive rank of the transform;
   !>  @param[in] n - array of strictly positive lengths of the transform (must be of size ``rank``);
@@ -725,7 +725,7 @@ module hipfort_hipfftw
   !>  dimension);
   !>  @param[in] odist - strictly positive distance between consecutive output data sequences in the
   !>  batch;
-  !>  @param[in] flags - bitwise OR (``|``) combination of zero or more constant flag values.
+  !>  @param[in] flags - bitwise OR (|) combination of zero or more constant flag values.
   !>  @return a valid double-precision hipFFTW plan ready for execution upon success (``nullptr``
   !>  otherwise).
   interface fftw_plan_many_dft_r2c
@@ -775,7 +775,7 @@ module hipfort_hipfftw
 
   !>  @brief Creates an advanced plan for a multidimensional, double-precision, real backward
   !>  (inverse)
-  !>  discrete Fourier transform of lengths ``n[0] x n[1] x ... x n[rank-1]`` and batch size
+  !>  discrete Fourier transform of lengths n[0] x n[1] x ... x n[rank-1] and batch size
   !>  ``howmany``.
   !>
   !>  @param[in] rank - strictly positive rank of the transform;
@@ -795,7 +795,7 @@ module hipfort_hipfftw
   !>  dimension);
   !>  @param[in] odist - strictly positive distance between consecutive output data sequences in the
   !>  batch;
-  !>  @param[in] flags - bitwise OR (``|``) combination of zero or more constant flag values.
+  !>  @param[in] flags - bitwise OR (|) combination of zero or more constant flag values.
   !>  @return a valid double-precision hipFFTW plan ready for execution upon success (``nullptr``
   !>  otherwise).
   interface fftw_plan_many_dft_c2r
@@ -844,9 +844,9 @@ module hipfort_hipfftw
   end interface
 
   !>  @brief Creates an arbitrary plan for a multidimensional, double-precision, complex
-  !>  discrete Fourier transform of lengths ``dims[0].n x dims[1].n x ... x dims[rank-1].n``
+  !>  discrete Fourier transform of lengths dims[0].n x dims[1].n x ... x dims[rank-1].n
   !>  and batch sizes
-  !>  ``howmany_dims[0].n x howmany_dims[1].n x ... x howmany_dims[howmany_rank-1].n``.
+  !>  howmany_dims[0].n x howmany_dims[1].n x ... x howmany_dims[howmany_rank-1].n.
   !>
   !>  @param[in] rank - strictly positive rank of the transform;
   !>  @param[in] dims - array of ``rank`` ``fftw_iodim`` values;
@@ -856,7 +856,7 @@ module hipfort_hipfftw
   !>  @param[in] out - pointer to the output buffer for the transform;
   !>  @param[in] sign - exponent sign defining the desired complex transform (``FFTW_FORWARD`` or
   !>  ``FFTW_BACKWARD`` );
-  !>  @param[in] flags - bitwise OR (``|``) combination of zero or more constant flag values.
+  !>  @param[in] flags - bitwise OR (|) combination of zero or more constant flag values.
   !>  @return a valid double-precision hipFFTW plan ready for execution upon success (``nullptr``
   !>  otherwise).
   interface fftw_plan_guru_dft
@@ -897,9 +897,9 @@ module hipfort_hipfftw
   end interface
 
   !>  @brief Creates an arbitrary plan for a multidimensional, double-precision, real forward
-  !>  discrete Fourier transform of lengths ``dims[0].n x dims[1].n x ... x dims[rank-1].n``
+  !>  discrete Fourier transform of lengths dims[0].n x dims[1].n x ... x dims[rank-1].n
   !>  and batch sizes
-  !>  ``howmany_dims[0].n x howmany_dims[1].n x ... x howmany_dims[howmany_rank-1].n``.
+  !>  howmany_dims[0].n x howmany_dims[1].n x ... x howmany_dims[howmany_rank-1].n.
   !>
   !>  @param[in] rank - strictly positive rank of the transform;
   !>  @param[in] dims - array of ``rank`` ``fftw_iodim`` values;
@@ -907,7 +907,7 @@ module hipfort_hipfftw
   !>  @param[in] howmany_dims - array of ``howmany_rank`` ``fftw_iodim`` values;
   !>  @param[in] in - pointer to the input buffer for the transform;
   !>  @param[in] out - pointer to the output buffer for the transform;
-  !>  @param[in] flags - bitwise OR (``|``) combination of zero or more constant flag values.
+  !>  @param[in] flags - bitwise OR (|) combination of zero or more constant flag values.
   !>  @return a valid double-precision hipFFTW plan ready for execution upon success (``nullptr``
   !>  otherwise).
   interface fftw_plan_guru_dft_r2c
@@ -947,9 +947,9 @@ module hipfort_hipfftw
 
   !>  @brief Creates an arbitrary plan for a multidimensional, double-precision, real backward
   !>  (inverse) discrete Fourier transform of lengths
-  !>  ``dims[0].n x dims[1].n x ... x dims[rank-1].n``
+  !>  dims[0].n x dims[1].n x ... x dims[rank-1].n
   !>  and batch sizes
-  !>  ``howmany_dims[0].n x howmany_dims[1].n x ... x howmany_dims[howmany_rank-1].n``.
+  !>  howmany_dims[0].n x howmany_dims[1].n x ... x howmany_dims[howmany_rank-1].n.
   !>
   !>  @param[in] rank - strictly positive rank of the transform;
   !>  @param[in] dims - array of ``rank`` ``fftw_iodim`` values;
@@ -957,7 +957,7 @@ module hipfort_hipfftw
   !>  @param[in] howmany_dims - array of ``howmany_rank`` ``fftw_iodim`` values;
   !>  @param[in] in - pointer to the input buffer for the transform;
   !>  @param[in] out - pointer to the output buffer for the transform;
-  !>  @param[in] flags - bitwise OR (``|``) combination of zero or more constant flag values.
+  !>  @param[in] flags - bitwise OR (|) combination of zero or more constant flag values.
   !>  @return a valid double-precision hipFFTW plan ready for execution upon success (``nullptr``
   !>  otherwise).
   interface fftw_plan_guru_dft_c2r

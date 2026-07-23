@@ -2,19 +2,19 @@
 ! ==============================================================================
 ! hipfort: FORTRAN Interfaces for GPU kernels
 ! ==============================================================================
-! Copyright (c) 2020-2022 Advanced Micro Devices, Inc. All rights reserved.
+! Copyright (c) 2020-2026 Advanced Micro Devices, Inc. All rights reserved.
 ! [MITx11 License]
-! 
+!
 ! Permission is hereby granted, free of charge, to any person obtaining a copy
 ! of this software and associated documentation files (the "Software"), to deal
 ! in the Software without restriction, including without limitation the rights
 ! to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
 ! copies of the Software, and to permit persons to whom the Software is
 ! furnished to do so, subject to the following conditions:
-! 
+!
 ! The above copyright notice and this permission notice shall be included in
 ! all copies or substantial portions of the Software.
-! 
+!
 ! THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 ! IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
 ! FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.  IN NO EVENT SHALL THE
@@ -23,11 +23,12 @@
 ! OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 ! THE SOFTWARE.
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-          
-           
+
 module hipfort_hiprand_enums
+  use, intrinsic :: iso_c_binding
   implicit none
 
+  ! hiprandStatus
   enum, bind(c)
     enumerator :: HIPRAND_STATUS_SUCCESS = 0
     enumerator :: HIPRAND_STATUS_VERSION_MISMATCH = 100
@@ -45,6 +46,7 @@ module hipfort_hiprand_enums
     enumerator :: HIPRAND_STATUS_NOT_IMPLEMENTED = 1000
   end enum
 
+  ! hiprandRngType
   enum, bind(c)
     enumerator :: HIPRAND_RNG_TEST = 0
     enumerator :: HIPRAND_RNG_PSEUDO_DEFAULT = 400
@@ -60,10 +62,26 @@ module hipfort_hiprand_enums
     enumerator :: HIPRAND_RNG_QUASI_SCRAMBLED_SOBOL64 = 504
   end enum
 
- 
+  ! hiprandOrdering
+  enum, bind(c)
+    enumerator :: HIPRAND_ORDERING_PSEUDO_BEST = 100
+    enumerator :: HIPRAND_ORDERING_PSEUDO_DEFAULT = 101
+    enumerator :: HIPRAND_ORDERING_PSEUDO_SEEDED = 102
+    enumerator :: HIPRAND_ORDERING_PSEUDO_LEGACY = 103
+    enumerator :: HIPRAND_ORDERING_PSEUDO_DYNAMIC = 104
+    enumerator :: HIPRAND_ORDERING_QUASI_DEFAULT = 201
+  end enum
 
-#ifdef USE_FPOINTER_INTERFACES
+  ! hiprandDirectionVectorSet
+  enum, bind(c)
+    enumerator :: HIPRAND_DIRECTION_VECTORS_32_JOEKUO6 = 101
+    enumerator :: HIPRAND_SCRAMBLED_DIRECTION_VECTORS_32_JOEKUO6 = 102
+    enumerator :: HIPRAND_DIRECTION_VECTORS_64_JOEKUO6 = 103
+    enumerator :: HIPRAND_SCRAMBLED_DIRECTION_VECTORS_64_JOEKUO6 = 104
+  end enum
 
-  
-#endif
+  integer(c_int), parameter :: HIPRAND_VERSION = 300100
+  integer(c_int), parameter :: HIPRAND_DEFAULT_MAX_BLOCK_SIZE = 256
+  integer(c_int), parameter :: HIPRAND_DEFAULT_MIN_WARPS_PER_EU = 1
+
 end module hipfort_hiprand_enums
