@@ -26,6 +26,7 @@
           
            
 module hipfort_rocblas_enums
+  use, intrinsic :: iso_c_binding
   implicit none
 
   enum, bind(c)
@@ -134,4 +135,29 @@ module hipfort_rocblas_enums
 
   
 #endif
+  ! rocblas_geam_ex_operation_
+  enum, bind(c)
+    enumerator :: rocblas_geam_ex_operation_min_plus = 0
+    enumerator :: rocblas_geam_ex_operation_plus_min = 1
+  end enum
+
+  ! rocblas_math_mode_
+  enum, bind(c)
+    enumerator :: rocblas_default_math = 0
+    enumerator :: rocblas_xf32_xdl_math_op = 1
+  end enum
+
+  integer(c_int), parameter :: rocblas_datatype_invalid = 255
+  integer(c_int), parameter :: rocblas_status_excluded_from_build = 14
+  integer(c_int), parameter :: rocblas_status_arch_mismatch = 15
+  integer(c_int), parameter :: rocblas_layer_mode_log_internal = 8
+  integer(c_int), parameter :: rocblas_gemm_algo_solution_index = 1
+  integer(c_int), parameter :: rocblas_gemm_flags_check_solution_index = 8
+  integer(c_int), parameter :: rocblas_gemm_flags_fp16_alt_impl_rnz = 16
+  integer(c_int), parameter :: rocblas_gemm_flags_stochastic_rounding = 32
+  integer(c_int), parameter :: rocblas_check_numerics_mode_only_nan_inf = 8
+  integer(c_int), parameter :: ROCBLAS_VERSION_MAJOR = 5
+  integer(c_int), parameter :: ROCBLAS_VERSION_MINOR = 2
+  integer(c_int), parameter :: ROCBLAS_VERSION_PATCH = 0
+
 end module hipfort_rocblas_enums
