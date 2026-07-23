@@ -14911,6 +14911,1330 @@ module hipfort_hipsparse
 
   end interface
 
+  !>  \ingroup aux_module
+  !>   \brief Return the string representation of a hipSPARSE status's matching backend status enum
+  !>   name
+  !>
+  !>   \details
+  !>   \p hipsparseGetErrorName takes a hipSPARSE status as input and first converts it to the
+  !>   matching backend
+  !>   status (either \p rocsparse_status or \p cusparseStatus_t). It then returns the string
+  !>   representation of this status
+  !>   enum name. If the status is not recognized, the function returns "Unrecognized status code".
+  !>
+  !>   For example, \p hipsparseGetErrorName( `HIPSPARSE_STATUS_SUCCESS` ) on a system with a
+  !>   rocSPARSE backend will
+  !>   return \p rocsparse_status_success. On a system with a cuSPARSE backend this function would
+  !>   return
+  !>   \p CUSPARSE_STATUS_SUCCESS.
+  interface hipsparseGetErrorName
+#ifdef USE_CUDA_NAMES
+    function hipsparseGetErrorName_(status) bind(c, name="cusparseGetErrorName")
+#else
+    function hipsparseGetErrorName_(status) bind(c, name="hipsparseGetErrorName")
+#endif
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      character(c_char) :: hipsparseGetErrorName_
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)),value :: status
+    end function
+  end interface
+
+  !>  \ingroup aux_module
+  !>   \brief Return the hipSPARSE status's matching backend status description as a string
+  !>
+  !>   \details
+  !>   \p hipsparseGetErrorString takes a hipSPARSE status as input and first converts it to the
+  !>   matching backend
+  !>   status (either \p rocsparse_status or \p cusparseStatus_t). It then returns the string
+  !>   description of this status.
+  !>   If the status is not recognized, the function returns "Unrecognized status code".
+  interface hipsparseGetErrorString
+#ifdef USE_CUDA_NAMES
+    function hipsparseGetErrorString_(status) bind(c, name="cusparseGetErrorString")
+#else
+    function hipsparseGetErrorString_(status) bind(c, name="hipsparseGetErrorString")
+#endif
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      character(c_char) :: hipsparseGetErrorString_
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)),value :: status
+    end function
+  end interface
+
+  !>  \ingroup aux_module
+  !>   \brief Get the matrix type of a matrix descriptor.
+  !>
+  !>   \details
+  !>   \p hipsparseGetMatType returns the matrix type of a matrix descriptor.
+  interface hipsparseGetMatType
+#ifdef USE_CUDA_NAMES
+    function hipsparseGetMatType_(descrA) bind(c, name="cusparseGetMatType")
+#else
+    function hipsparseGetMatType_(descrA) bind(c, name="hipsparseGetMatType")
+#endif
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_MATRIX_TYPE_GENERAL)) :: hipsparseGetMatType_
+      type(c_ptr),value :: descrA
+    end function
+  end interface
+
+  !>  \ingroup aux_module
+  !>   \brief Get the matrix fill mode of a matrix descriptor.
+  !>
+  !>   \details
+  !>   \p hipsparseGetMatFillMode returns the matrix fill mode of a matrix descriptor.
+  interface hipsparseGetMatFillMode
+#ifdef USE_CUDA_NAMES
+    function hipsparseGetMatFillMode_(descrA) bind(c, name="cusparseGetMatFillMode")
+#else
+    function hipsparseGetMatFillMode_(descrA) bind(c, name="hipsparseGetMatFillMode")
+#endif
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_FILL_MODE_LOWER)) :: hipsparseGetMatFillMode_
+      type(c_ptr),value :: descrA
+    end function
+  end interface
+
+  !>  \ingroup aux_module
+  !>   \brief Get the matrix diagonal type of a matrix descriptor.
+  !>
+  !>   \details
+  !>   \p hipsparseGetMatDiagType returns the matrix diagonal type of a matrix
+  !>   descriptor.
+  interface hipsparseGetMatDiagType
+#ifdef USE_CUDA_NAMES
+    function hipsparseGetMatDiagType_(descrA) bind(c, name="cusparseGetMatDiagType")
+#else
+    function hipsparseGetMatDiagType_(descrA) bind(c, name="hipsparseGetMatDiagType")
+#endif
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_DIAG_TYPE_NON_UNIT)) :: hipsparseGetMatDiagType_
+      type(c_ptr),value :: descrA
+    end function
+  end interface
+
+  !>  \ingroup aux_module
+  !>   \brief Get the index base of a matrix descriptor.
+  !>
+  !>   \details
+  !>   \p hipsparseGetMatIndexBase returns the index base of a matrix descriptor.
+  interface hipsparseGetMatIndexBase
+#ifdef USE_CUDA_NAMES
+    function hipsparseGetMatIndexBase_(descrA) bind(c, name="cusparseGetMatIndexBase")
+#else
+    function hipsparseGetMatIndexBase_(descrA) bind(c, name="hipsparseGetMatIndexBase")
+#endif
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_INDEX_BASE_ZERO)) :: hipsparseGetMatIndexBase_
+      type(c_ptr),value :: descrA
+    end function
+  end interface
+
+  !>  \ingroup precond_module
+  !>   \details
+  !>   \p hipsparseXgtsvInterleavedBatch_bufferSizeExt returns the size of the temporary storage
+  !>   buffer in bytes that is required by `hipsparseSgtsvInterleavedBatch`
+  !>   "hipsparseXgtsvInterleavedBatch()".
+  !>   The temporary storage buffer must be allocated by the user.
+  !>
+  !>   @param[in]
+  !>   handle             handle to the hipSPARSE library context queue.
+  !>   @param[in]
+  !>   algo Algorithm to use when solving tridiagonal systems. Options are Thomas ( \p algo=0 ),
+  !>                      LU ( \p algo=1 ), or QR ( \p algo=2 ). The Thomas algorithm is the fastest
+  !>                      but is not
+  !>                      stable, while LU and QR are slower but are stable.
+  !>   @param[in]
+  !>   m                  size of the tridiagonal linear system.
+  !>   @param[in]
+  !>   dl lower diagonal of the tridiagonal system. The first element of the lower diagonal must be
+  !>   zero.
+  !>   @param[in]
+  !>   d                  main diagonal of the tridiagonal system.
+  !>   @param[in]
+  !>   du upper diagonal of the tridiagonal system. The last element of the upper diagonal must be
+  !>   zero.
+  !>   @param[inout]
+  !>   x                  Dense array of right-hand sides with dimension \p batchCount by \p m.
+  !>   @param[in]
+  !>   batchCount         The number of systems to solve.
+  !>   @param[out]
+  !>   pBufferSizeInBytes number of bytes of the temporary storage buffer required by
+  !>                      `hipsparseSgtsvInterleavedBatch` "`hipsparseSgtsvInterleavedBatch()`".
+  !>
+  !>   \retval     HIPSPARSE_STATUS_SUCCESS the operation completed successfully.
+  !>   \retval HIPSPARSE_STATUS_INVALID_VALUE \p handle, \p m, \p batchCount, \p dl, \p d, \p du,
+  !>               \p x, or \p pBufferSizeInBytes pointer is invalid.
+  !>   \retval     HIPSPARSE_STATUS_INTERNAL_ERROR an internal error occurred.
+  interface hipsparseSgtsvInterleavedBatch_bufferSizeExt
+#ifdef USE_CUDA_NAMES
+    function hipsparseSgtsvInterleavedBatch_bufferSizeExt_(handle,algo,m,dl,d,du,x,batchCount,pBufferSizeInBytes) bind(c, name="cusparseSgtsvInterleavedBatch_bufferSizeExt")
+#else
+    function hipsparseSgtsvInterleavedBatch_bufferSizeExt_(handle,algo,m,dl,d,du,x,batchCount,pBufferSizeInBytes) bind(c, name="hipsparseSgtsvInterleavedBatch_bufferSizeExt")
+#endif
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSgtsvInterleavedBatch_bufferSizeExt_
+      type(c_ptr),value :: handle
+      integer(c_int),value :: algo
+      integer(c_int),value :: m
+      type(c_ptr),value :: dl
+      type(c_ptr),value :: d
+      type(c_ptr),value :: du
+      type(c_ptr),value :: x
+      integer(c_int),value :: batchCount
+      type(c_ptr),value :: pBufferSizeInBytes
+    end function
+  end interface
+
+  interface hipsparseDgtsvInterleavedBatch_bufferSizeExt
+#ifdef USE_CUDA_NAMES
+    function hipsparseDgtsvInterleavedBatch_bufferSizeExt_(handle,algo,m,dl,d,du,x,batchCount,pBufferSizeInBytes) bind(c, name="cusparseDgtsvInterleavedBatch_bufferSizeExt")
+#else
+    function hipsparseDgtsvInterleavedBatch_bufferSizeExt_(handle,algo,m,dl,d,du,x,batchCount,pBufferSizeInBytes) bind(c, name="hipsparseDgtsvInterleavedBatch_bufferSizeExt")
+#endif
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDgtsvInterleavedBatch_bufferSizeExt_
+      type(c_ptr),value :: handle
+      integer(c_int),value :: algo
+      integer(c_int),value :: m
+      type(c_ptr),value :: dl
+      type(c_ptr),value :: d
+      type(c_ptr),value :: du
+      type(c_ptr),value :: x
+      integer(c_int),value :: batchCount
+      type(c_ptr),value :: pBufferSizeInBytes
+    end function
+  end interface
+
+  interface hipsparseCgtsvInterleavedBatch_bufferSizeExt
+#ifdef USE_CUDA_NAMES
+    function hipsparseCgtsvInterleavedBatch_bufferSizeExt_(handle,algo,m,dl,d,du,x,batchCount,pBufferSizeInBytes) bind(c, name="cusparseCgtsvInterleavedBatch_bufferSizeExt")
+#else
+    function hipsparseCgtsvInterleavedBatch_bufferSizeExt_(handle,algo,m,dl,d,du,x,batchCount,pBufferSizeInBytes) bind(c, name="hipsparseCgtsvInterleavedBatch_bufferSizeExt")
+#endif
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCgtsvInterleavedBatch_bufferSizeExt_
+      type(c_ptr),value :: handle
+      integer(c_int),value :: algo
+      integer(c_int),value :: m
+      type(c_ptr),value :: dl
+      type(c_ptr),value :: d
+      type(c_ptr),value :: du
+      type(c_ptr),value :: x
+      integer(c_int),value :: batchCount
+      type(c_ptr),value :: pBufferSizeInBytes
+    end function
+  end interface
+
+  interface hipsparseZgtsvInterleavedBatch_bufferSizeExt
+#ifdef USE_CUDA_NAMES
+    function hipsparseZgtsvInterleavedBatch_bufferSizeExt_(handle,algo,m,dl,d,du,x,batchCount,pBufferSizeInBytes) bind(c, name="cusparseZgtsvInterleavedBatch_bufferSizeExt")
+#else
+    function hipsparseZgtsvInterleavedBatch_bufferSizeExt_(handle,algo,m,dl,d,du,x,batchCount,pBufferSizeInBytes) bind(c, name="hipsparseZgtsvInterleavedBatch_bufferSizeExt")
+#endif
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZgtsvInterleavedBatch_bufferSizeExt_
+      type(c_ptr),value :: handle
+      integer(c_int),value :: algo
+      integer(c_int),value :: m
+      type(c_ptr),value :: dl
+      type(c_ptr),value :: d
+      type(c_ptr),value :: du
+      type(c_ptr),value :: x
+      integer(c_int),value :: batchCount
+      type(c_ptr),value :: pBufferSizeInBytes
+    end function
+  end interface
+
+  !>  \ingroup precond_module
+  !>   \brief Interleaved batch tridiagonal solver.
+  !>
+  !>   \details
+  !>   \p hipsparseXgtsvInterleavedBatch solves a batched tridiagonal linear system
+  !>   \f[
+  !>     T^{i}*x^{i} = x^{i}
+  !>   \f]
+  !>   where for each batch \f$i=0\ldots\f$ \p batchCount, \f$T^{i}\f$ is a sparse tridiagonal
+  !>   matrix and
+  !>   \f$x^{i}\f$ is a dense right-hand side vector. All of the tridiagonal matrices, \f$T^{i}\f$,
+  !>   are
+  !>   packed in an interleaved fashion into three vectors: \p dl for the lower diagonals, \p d for
+  !>   the main
+  !>   diagonals, and \p du for the upper diagonals. See below for a description of the interleaved
+  !>   memory pattern.
+  !>
+  !>   Solving the batched tridiagonal system involves two steps. First, the user calls
+  !>   `hipsparseSgtsvInterleavedBatch_bufferSizeExt`
+  !>   "hipsparseXgtsvInterleavedBatch_bufferSizeExt()"
+  !>   to determine the size of the required temporary storage buffer. Once determined, the user
+  !>   allocates
+  !>   this buffer and passes it to `hipsparseSgtsvInterleavedBatch`
+  !>   "hipsparseXgtsvInterleavedBatch()"
+  !>   to perform the actual solve. The \f$x^{i}\f$ vectors, which initially stores the right-hand
+  !>   side values, are
+  !>   overwritten with the solution after the call to
+  !>   `hipsparseSgtsvInterleavedBatch` "hipsparseXgtsvInterleavedBatch()".
+  !>
+  !>   The user can specify different algorithms for \p hipsparseXgtsvInterleavedBatch
+  !>   to use. Options are Thomas ( \p algo=0 ),
+  !>   LU ( \p algo=1 ), or QR ( \p algo=2 ).
+  !>
+  !>   Unlike the strided batch routines, which write each batch matrix one after the other in
+  !>   memory, the interleaved
+  !>   routines write the batch matrices such that each element from each matrix is written
+  !>   consecutively one after
+  !>   the other. For example, consider the following batch matrices:
+  !>
+  !>   \f[
+  !>     \begin{bmatrix}
+  !>     t^{0}_{00} & t^{0}_{01} & 0 \\%
+  !>     t^{0}_{10} & t^{0}_{11} & t^{0}_{12} \\%
+  !>     0 & t^{0}_{21} & t^{0}_{22}
+  !>     \end{bmatrix}
+  !>     \begin{bmatrix}
+  !>     t^{1}_{00} & t^{1}_{01} & 0 \\%
+  !>     t^{1}_{10} & t^{1}_{11} & t^{1}_{12} \\%
+  !>     0 & t^{1}_{21} & t^{1}_{22}
+  !>     \end{bmatrix}
+  !>     \begin{bmatrix}
+  !>     t^{2}_{00} & t^{2}_{01} & 0 \\%
+  !>     t^{2}_{10} & t^{2}_{11} & t^{2}_{12} \\%
+  !>     0 & t^{2}_{21} & t^{2}_{22}
+  !>     \end{bmatrix}
+  !>   \f]
+  !>
+  !>   In interleaved format, the upper, lower, and diagonal arrays would look like:
+  !>   \f[
+  !>     \begin{align}
+  !>     \text{lower} &= \begin{bmatrix} 0 & 0 & 0 & t^{0}_{10} & t^{1}_{10} & t^{1}_{10} &
+  !>     t^{0}_{21} & t^{1}_{21} & t^{2}_{21} \end{bmatrix} \\%
+  !>     \text{diagonal} &= \begin{bmatrix} t^{0}_{00} & t^{1}_{00} & t^{2}_{00} & t^{0}_{11} &
+  !>     t^{1}_{11} & t^{2}_{11} & t^{0}_{22} & t^{1}_{22} & t^{2}_{22} \end{bmatrix} \\%
+  !>     \text{upper} &= \begin{bmatrix} t^{0}_{01} & t^{1}_{01} & t^{2}_{01} & t^{0}_{12} &
+  !>     t^{1}_{12} & t^{2}_{12} & 0 & 0 & 0 \end{bmatrix} \\%
+  !>     \end{align}
+  !>   \f]
+  !>   For the lower array, the first \p batchCount entries are zero, and for the upper array, the
+  !>   last \p batchCount
+  !>   entries are zero.
+  !>
+  !>   \note
+  !>   This function is non-blocking and executed asynchronously with respect to the host.
+  !>   It can return before the actual computation has finished.
+  !>
+  !>   @param[in]
+  !>   handle      handle to the hipSPARSE library context queue.
+  !>   @param[in]
+  !>   algo Algorithm to use when solving tridiagonal systems. Options are Thomas ( \p algo=0 ),
+  !>               LU ( \p algo=1 ), or QR ( \p algo=2 ). The Thomas algorithm is the fastest but is
+  !>               not
+  !>               stable, while LU and QR are slower but are stable.
+  !>   @param[in]
+  !>   m           size of the tridiagonal linear system.
+  !>   @param[inout]
+  !>   dl lower diagonal of the tridiagonal system. The first element of the lower diagonal must be
+  !>   zero.
+  !>   @param[inout]
+  !>   d           main diagonal of the tridiagonal system.
+  !>   @param[inout]
+  !>   du upper diagonal of the tridiagonal system. The last element of the upper diagonal must be
+  !>   zero.
+  !>   @param[inout]
+  !>   x           Dense array of right-hand sides with dimension \p batchCount by \p m.
+  !>   @param[in]
+  !>   batchCount  The number of systems to solve.
+  !>   @param[in]
+  !>   pBuffer     temporary storage buffer allocated by the user.
+  !>
+  !>   \retval     HIPSPARSE_STATUS_SUCCESS the operation completed successfully.
+  !>   \retval     HIPSPARSE_STATUS_INVALID_VALUE \p handle, \p m, \p batchCount, \p dl, \p d,
+  !>               \p du, \p x, or \p pBuffer pointer is invalid.
+  !>   \retval     HIPSPARSE_STATUS_INTERNAL_ERROR an internal error occurred.
+  interface hipsparseSgtsvInterleavedBatch
+#ifdef USE_CUDA_NAMES
+    function hipsparseSgtsvInterleavedBatch_(handle,algo,m,dl,d,du,x,batchCount,pBuffer) bind(c, name="cusparseSgtsvInterleavedBatch")
+#else
+    function hipsparseSgtsvInterleavedBatch_(handle,algo,m,dl,d,du,x,batchCount,pBuffer) bind(c, name="hipsparseSgtsvInterleavedBatch")
+#endif
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSgtsvInterleavedBatch_
+      type(c_ptr),value :: handle
+      integer(c_int),value :: algo
+      integer(c_int),value :: m
+      type(c_ptr),value :: dl
+      type(c_ptr),value :: d
+      type(c_ptr),value :: du
+      type(c_ptr),value :: x
+      integer(c_int),value :: batchCount
+      type(c_ptr),value :: pBuffer
+    end function
+  end interface
+
+  interface hipsparseDgtsvInterleavedBatch
+#ifdef USE_CUDA_NAMES
+    function hipsparseDgtsvInterleavedBatch_(handle,algo,m,dl,d,du,x,batchCount,pBuffer) bind(c, name="cusparseDgtsvInterleavedBatch")
+#else
+    function hipsparseDgtsvInterleavedBatch_(handle,algo,m,dl,d,du,x,batchCount,pBuffer) bind(c, name="hipsparseDgtsvInterleavedBatch")
+#endif
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDgtsvInterleavedBatch_
+      type(c_ptr),value :: handle
+      integer(c_int),value :: algo
+      integer(c_int),value :: m
+      type(c_ptr),value :: dl
+      type(c_ptr),value :: d
+      type(c_ptr),value :: du
+      type(c_ptr),value :: x
+      integer(c_int),value :: batchCount
+      type(c_ptr),value :: pBuffer
+    end function
+  end interface
+
+  interface hipsparseCgtsvInterleavedBatch
+#ifdef USE_CUDA_NAMES
+    function hipsparseCgtsvInterleavedBatch_(handle,algo,m,dl,d,du,x,batchCount,pBuffer) bind(c, name="cusparseCgtsvInterleavedBatch")
+#else
+    function hipsparseCgtsvInterleavedBatch_(handle,algo,m,dl,d,du,x,batchCount,pBuffer) bind(c, name="hipsparseCgtsvInterleavedBatch")
+#endif
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCgtsvInterleavedBatch_
+      type(c_ptr),value :: handle
+      integer(c_int),value :: algo
+      integer(c_int),value :: m
+      type(c_ptr),value :: dl
+      type(c_ptr),value :: d
+      type(c_ptr),value :: du
+      type(c_ptr),value :: x
+      integer(c_int),value :: batchCount
+      type(c_ptr),value :: pBuffer
+    end function
+  end interface
+
+  interface hipsparseZgtsvInterleavedBatch
+#ifdef USE_CUDA_NAMES
+    function hipsparseZgtsvInterleavedBatch_(handle,algo,m,dl,d,du,x,batchCount,pBuffer) bind(c, name="cusparseZgtsvInterleavedBatch")
+#else
+    function hipsparseZgtsvInterleavedBatch_(handle,algo,m,dl,d,du,x,batchCount,pBuffer) bind(c, name="hipsparseZgtsvInterleavedBatch")
+#endif
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseZgtsvInterleavedBatch_
+      type(c_ptr),value :: handle
+      integer(c_int),value :: algo
+      integer(c_int),value :: m
+      type(c_ptr),value :: dl
+      type(c_ptr),value :: d
+      type(c_ptr),value :: du
+      type(c_ptr),value :: x
+      integer(c_int),value :: batchCount
+      type(c_ptr),value :: pBuffer
+    end function
+  end interface
+
+  !>  \ingroup conv_module
+  !>   \brief This function computes the size of the user-allocated temporary storage buffer used
+  !>   when converting a sparse CSR matrix into a sparse CSC matrix.
+  !>
+  !>   \details
+  !>   \p hipsparseCsr2cscEx2_bufferSize calculates the required user allocated temporary buffer
+  !>   needed
+  !>   by `hipsparseCsr2cscEx2` to convert a CSR matrix into a CSC matrix. `hipsparseCsr2cscEx2`
+  !>   can also be used to convert a CSC matrix into a CSR matrix. \p copyValues decides
+  !>   whether \p cscVal is being filled during conversion (`HIPSPARSE_ACTION_NUMERIC`)
+  !>   or not (`HIPSPARSE_ACTION_SYMBOLIC`).
+  !>
+  !>   \note
+  !>   The resulting matrix can also be seen as the transpose of the input matrix.
+  !>
+  !>   \note
+  !>   This function is non-blocking and executed asynchronously with respect to the host.
+  !>   It can return before the actual computation has finished.
+  !>
+  !>   @param[in]
+  !>   handle             handle to the hipSPARSE library context queue.
+  !>   @param[in]
+  !>   m                  number of rows of the sparse CSR matrix.
+  !>   @param[in]
+  !>   n                  number of columns of the sparse CSR matrix.
+  !>   @param[in]
+  !>   nnz                number of non-zero entries of the sparse CSR matrix.
+  !>   @param[in]
+  !>   csrVal             array of \p nnz elements of the sparse CSR matrix.
+  !>   @param[in]
+  !>   csrRowPtr          array of \p m+1 elements that point to the start of every row of the
+  !>                      sparse CSR matrix.
+  !>   @param[in]
+  !>   csrColInd          array of \p nnz elements containing the column indices of the sparse
+  !>                      CSR matrix.
+  !>   @param[in]
+  !>   cscVal             array of \p nnz elements of the sparse CSC matrix.
+  !>   @param[in]
+  !>   cscColPtr          array of \p n+1 elements that point to the start of every column of the
+  !>                      sparse CSC matrix.
+  !>   @param[in]
+  !>   cscRowInd          array of \p nnz elements containing the row indices of the sparse
+  !>                      CSC matrix.
+  !>   @param[in]
+  !>   valType The data type of the values arrays \p csrVal and \p cscVal. Can be HIP_R_32F,
+  !>                      HIP_R_64F, HIP_C_32F, or HIP_C_64F.
+  !>   @param[in]
+  !>   copyValues         `HIPSPARSE_ACTION_SYMBOLIC` or `HIPSPARSE_ACTION_NUMERIC`.
+  !>   @param[in]
+  !>   idxBase            `HIPSPARSE_INDEX_BASE_ZERO` or `HIPSPARSE_INDEX_BASE_ONE`.
+  !>   @param[in]
+  !>   alg HIPSPARSE_CSR2CSC_ALG_DEFAULT, HIPSPARSE_CSR2CSC_ALG1, or HIPSPARSE_CSR2CSC_ALG2.
+  !>   @param[out]
+  !>   pBufferSizeInBytes number of bytes of the temporary storage buffer required by
+  !>                      `hipsparseCsr2cscEx2()`.
+  !>
+  !>   \retval     HIPSPARSE_STATUS_SUCCESS the operation completed successfully.
+  !>   \retval HIPSPARSE_STATUS_INVALID_VALUE \p handle, \p m, \p n, \p nnz, \p csrRowPtr, \p
+  !>   csrColInd, or
+  !>               \p pBufferSizeInBytes pointer is invalid.
+  !>   \retval     HIPSPARSE_STATUS_INTERNAL_ERROR an internal error occurred.
+  interface hipsparseCsr2cscEx2_bufferSize
+#ifdef USE_CUDA_NAMES
+    function hipsparseCsr2cscEx2_bufferSize_(handle,m,n,nnz,csrVal,csrRowPtr,csrColInd,cscVal,cscColPtr,cscRowInd,valType,copyValues,idxBase,alg,pBufferSizeInBytes) bind(c, name="cusparseCsr2cscEx2_bufferSize")
+#else
+    function hipsparseCsr2cscEx2_bufferSize_(handle,m,n,nnz,csrVal,csrRowPtr,csrColInd,cscVal,cscColPtr,cscRowInd,valType,copyValues,idxBase,alg,pBufferSizeInBytes) bind(c, name="hipsparseCsr2cscEx2_bufferSize")
+#endif
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      use hipfort_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCsr2cscEx2_bufferSize_
+      type(c_ptr),value :: handle
+      integer(c_int),value :: m
+      integer(c_int),value :: n
+      integer(c_int),value :: nnz
+      type(c_ptr),value :: csrVal
+      type(c_ptr),value :: csrRowPtr
+      type(c_ptr),value :: csrColInd
+      type(c_ptr),value :: cscVal
+      type(c_ptr),value :: cscColPtr
+      type(c_ptr),value :: cscRowInd
+      integer(kind(HIP_R_32F)),value :: valType
+      integer(kind(HIPSPARSE_ACTION_SYMBOLIC)),value :: copyValues
+      integer(kind(HIPSPARSE_INDEX_BASE_ZERO)),value :: idxBase
+      integer(kind(HIPSPARSE_CSR2CSC_ALG_DEFAULT)),value :: alg
+      type(c_ptr),value :: pBufferSizeInBytes
+    end function
+  end interface
+
+  !>  \ingroup conv_module
+  !>   \brief Convert a sparse CSR matrix into a sparse CSC matrix.
+  !>
+  !>   \details
+  !>   \p hipsparseCsr2cscEx2 converts a CSR matrix into a CSC matrix. \p hipsparseCsr2cscEx2
+  !>   can also be used to convert a CSC matrix into a CSR matrix. \p copyValues decides
+  !>   whether \p cscVal is being filled during conversion (`HIPSPARSE_ACTION_NUMERIC`)
+  !>   or not (`HIPSPARSE_ACTION_SYMBOLIC`).
+  !>
+  !>   \note
+  !>   The resulting matrix can also be seen as the transpose of the input matrix.
+  !>
+  !>   \note
+  !>   This function is non-blocking and executed asynchronously with respect to the host.
+  !>   It can return before the actual computation has finished.
+  !>
+  !>   @param[in]
+  !>   handle      handle to the hipSPARSE library context queue.
+  !>   @param[in]
+  !>   m           number of rows of the sparse CSR matrix.
+  !>   @param[in]
+  !>   n           number of columns of the sparse CSR matrix.
+  !>   @param[in]
+  !>   nnz         number of non-zero entries of the sparse CSR matrix.
+  !>   @param[in]
+  !>   csrVal      array of \p nnz elements of the sparse CSR matrix.
+  !>   @param[in]
+  !>   csrRowPtr   array of \p m+1 elements that point to the start of every row of the
+  !>               sparse CSR matrix.
+  !>   @param[in]
+  !>   csrColInd   array of \p nnz elements containing the column indices of the sparse
+  !>               CSR matrix.
+  !>   @param[in]
+  !>   cscVal      array of \p nnz elements of the sparse CSC matrix.
+  !>   @param[in]
+  !>   cscColPtr   array of \p n+1 elements that point to the start of every column of the
+  !>               sparse CSC matrix.
+  !>   @param[in]
+  !>   cscRowInd   array of \p nnz elements containing the row indices of the sparse
+  !>               CSC matrix.
+  !>   @param[in]
+  !>   valType     The data type of the values arrays \p csrVal and \p cscVal. Can be HIP_R_32F,
+  !>               HIP_R_64F, HIP_C_32F, or HIP_C_64F.
+  !>   @param[in]
+  !>   copyValues  `HIPSPARSE_ACTION_SYMBOLIC` or `HIPSPARSE_ACTION_NUMERIC`.
+  !>   @param[in]
+  !>   idxBase     `HIPSPARSE_INDEX_BASE_ZERO` or `HIPSPARSE_INDEX_BASE_ONE`.
+  !>   @param[in]
+  !>   alg         HIPSPARSE_CSR2CSC_ALG_DEFAULT, HIPSPARSE_CSR2CSC_ALG1 or HIPSPARSE_CSR2CSC_ALG2.
+  !>   @param[in]
+  !>   buffer      temporary storage buffer allocated by the user. The size is returned by
+  !>               hipsparseCsr2cscEx2_bufferSize().
+  !>
+  !>   \retval     HIPSPARSE_STATUS_SUCCESS the operation completed successfully.
+  !>   \retval HIPSPARSE_STATUS_INVALID_VALUE \p handle, \p m, \p n, \p nnz, \p csrRowPtr, \p
+  !>   csrColInd, or
+  !>               \p pBufferSizeInBytes pointer is invalid.
+  !>   \retval     HIPSPARSE_STATUS_INTERNAL_ERROR an internal error occurred.
+  interface hipsparseCsr2cscEx2
+#ifdef USE_CUDA_NAMES
+    function hipsparseCsr2cscEx2_(handle,m,n,nnz,csrVal,csrRowPtr,csrColInd,cscVal,cscColPtr,cscRowInd,valType,copyValues,idxBase,alg,buffer) bind(c, name="cusparseCsr2cscEx2")
+#else
+    function hipsparseCsr2cscEx2_(handle,m,n,nnz,csrVal,csrRowPtr,csrColInd,cscVal,cscColPtr,cscRowInd,valType,copyValues,idxBase,alg,buffer) bind(c, name="hipsparseCsr2cscEx2")
+#endif
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      use hipfort_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCsr2cscEx2_
+      type(c_ptr),value :: handle
+      integer(c_int),value :: m
+      integer(c_int),value :: n
+      integer(c_int),value :: nnz
+      type(c_ptr),value :: csrVal
+      type(c_ptr),value :: csrRowPtr
+      type(c_ptr),value :: csrColInd
+      type(c_ptr),value :: cscVal
+      type(c_ptr),value :: cscColPtr
+      type(c_ptr),value :: cscRowInd
+      integer(kind(HIP_R_32F)),value :: valType
+      integer(kind(HIPSPARSE_ACTION_SYMBOLIC)),value :: copyValues
+      integer(kind(HIPSPARSE_INDEX_BASE_ZERO)),value :: idxBase
+      integer(kind(HIPSPARSE_CSR2CSC_ALG_DEFAULT)),value :: alg
+      type(c_ptr),value :: buffer
+    end function
+  end interface
+
+  interface hipsparseCreateConstSpVec
+#ifdef USE_CUDA_NAMES
+    function hipsparseCreateConstSpVec_(spVecDescr,mySize,nnz,indices,values,idxType,idxBase,valueType) bind(c, name="cusparseCreateConstSpVec")
+#else
+    function hipsparseCreateConstSpVec_(spVecDescr,mySize,nnz,indices,values,idxType,idxBase,valueType) bind(c, name="hipsparseCreateConstSpVec")
+#endif
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      use hipfort_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCreateConstSpVec_
+      type(c_ptr) :: spVecDescr
+      integer(c_int64_t),value :: mySize
+      integer(c_int64_t),value :: nnz
+      type(c_ptr),value :: indices
+      type(c_ptr),value :: values
+      integer(kind(HIPSPARSE_INDEX_16U)),value :: idxType
+      integer(kind(HIPSPARSE_INDEX_BASE_ZERO)),value :: idxBase
+      integer(kind(HIP_R_32F)),value :: valueType
+    end function
+  end interface
+
+  interface hipsparseConstSpVecGet
+#ifdef USE_CUDA_NAMES
+    function hipsparseConstSpVecGet_(spVecDescr,mySize,nnz,indices,values,idxType,idxBase,valueType) bind(c, name="cusparseConstSpVecGet")
+#else
+    function hipsparseConstSpVecGet_(spVecDescr,mySize,nnz,indices,values,idxType,idxBase,valueType) bind(c, name="hipsparseConstSpVecGet")
+#endif
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseConstSpVecGet_
+      type(c_ptr),value :: spVecDescr
+      type(c_ptr),value :: mySize
+      type(c_ptr),value :: nnz
+      type(c_ptr) :: indices
+      type(c_ptr) :: values
+      type(c_ptr),value :: idxType
+      type(c_ptr),value :: idxBase
+      type(c_ptr),value :: valueType
+    end function
+  end interface
+
+  interface hipsparseConstSpVecGetValues
+#ifdef USE_CUDA_NAMES
+    function hipsparseConstSpVecGetValues_(spVecDescr,values) bind(c, name="cusparseConstSpVecGetValues")
+#else
+    function hipsparseConstSpVecGetValues_(spVecDescr,values) bind(c, name="hipsparseConstSpVecGetValues")
+#endif
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseConstSpVecGetValues_
+      type(c_ptr),value :: spVecDescr
+      type(c_ptr) :: values
+    end function
+  end interface
+
+  interface hipsparseCreateConstCoo
+#ifdef USE_CUDA_NAMES
+    function hipsparseCreateConstCoo_(spMatDescr,rows,cols,nnz,cooRowInd,cooColInd,cooValues,cooIdxType,idxBase,valueType) bind(c, name="cusparseCreateConstCoo")
+#else
+    function hipsparseCreateConstCoo_(spMatDescr,rows,cols,nnz,cooRowInd,cooColInd,cooValues,cooIdxType,idxBase,valueType) bind(c, name="hipsparseCreateConstCoo")
+#endif
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      use hipfort_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCreateConstCoo_
+      type(c_ptr) :: spMatDescr
+      integer(c_int64_t),value :: rows
+      integer(c_int64_t),value :: cols
+      integer(c_int64_t),value :: nnz
+      type(c_ptr),value :: cooRowInd
+      type(c_ptr),value :: cooColInd
+      type(c_ptr),value :: cooValues
+      integer(kind(HIPSPARSE_INDEX_16U)),value :: cooIdxType
+      integer(kind(HIPSPARSE_INDEX_BASE_ZERO)),value :: idxBase
+      integer(kind(HIP_R_32F)),value :: valueType
+    end function
+  end interface
+
+  interface hipsparseCreateConstCsr
+#ifdef USE_CUDA_NAMES
+    function hipsparseCreateConstCsr_(spMatDescr,rows,cols,nnz,csrRowOffsets,csrColInd,csrValues,csrRowOffsetsType,csrColIndType,idxBase,valueType) bind(c, name="cusparseCreateConstCsr")
+#else
+    function hipsparseCreateConstCsr_(spMatDescr,rows,cols,nnz,csrRowOffsets,csrColInd,csrValues,csrRowOffsetsType,csrColIndType,idxBase,valueType) bind(c, name="hipsparseCreateConstCsr")
+#endif
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      use hipfort_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCreateConstCsr_
+      type(c_ptr) :: spMatDescr
+      integer(c_int64_t),value :: rows
+      integer(c_int64_t),value :: cols
+      integer(c_int64_t),value :: nnz
+      type(c_ptr),value :: csrRowOffsets
+      type(c_ptr),value :: csrColInd
+      type(c_ptr),value :: csrValues
+      integer(kind(HIPSPARSE_INDEX_16U)),value :: csrRowOffsetsType
+      integer(kind(HIPSPARSE_INDEX_16U)),value :: csrColIndType
+      integer(kind(HIPSPARSE_INDEX_BASE_ZERO)),value :: idxBase
+      integer(kind(HIP_R_32F)),value :: valueType
+    end function
+  end interface
+
+  interface hipsparseCreateConstCsc
+#ifdef USE_CUDA_NAMES
+    function hipsparseCreateConstCsc_(spMatDescr,rows,cols,nnz,cscColOffsets,cscRowInd,cscValues,cscColOffsetsType,cscRowIndType,idxBase,valueType) bind(c, name="cusparseCreateConstCsc")
+#else
+    function hipsparseCreateConstCsc_(spMatDescr,rows,cols,nnz,cscColOffsets,cscRowInd,cscValues,cscColOffsetsType,cscRowIndType,idxBase,valueType) bind(c, name="hipsparseCreateConstCsc")
+#endif
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      use hipfort_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCreateConstCsc_
+      type(c_ptr) :: spMatDescr
+      integer(c_int64_t),value :: rows
+      integer(c_int64_t),value :: cols
+      integer(c_int64_t),value :: nnz
+      type(c_ptr),value :: cscColOffsets
+      type(c_ptr),value :: cscRowInd
+      type(c_ptr),value :: cscValues
+      integer(kind(HIPSPARSE_INDEX_16U)),value :: cscColOffsetsType
+      integer(kind(HIPSPARSE_INDEX_16U)),value :: cscRowIndType
+      integer(kind(HIPSPARSE_INDEX_BASE_ZERO)),value :: idxBase
+      integer(kind(HIP_R_32F)),value :: valueType
+    end function
+  end interface
+
+  interface hipsparseCreateConstBlockedEll
+#ifdef USE_CUDA_NAMES
+    function hipsparseCreateConstBlockedEll_(spMatDescr,rows,cols,ellBlockSize,ellCols,ellColInd,ellValue,ellIdxType,idxBase,valueType) bind(c, name="cusparseCreateConstBlockedEll")
+#else
+    function hipsparseCreateConstBlockedEll_(spMatDescr,rows,cols,ellBlockSize,ellCols,ellColInd,ellValue,ellIdxType,idxBase,valueType) bind(c, name="hipsparseCreateConstBlockedEll")
+#endif
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      use hipfort_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCreateConstBlockedEll_
+      type(c_ptr) :: spMatDescr
+      integer(c_int64_t),value :: rows
+      integer(c_int64_t),value :: cols
+      integer(c_int64_t),value :: ellBlockSize
+      integer(c_int64_t),value :: ellCols
+      type(c_ptr),value :: ellColInd
+      type(c_ptr),value :: ellValue
+      integer(kind(HIPSPARSE_INDEX_16U)),value :: ellIdxType
+      integer(kind(HIPSPARSE_INDEX_BASE_ZERO)),value :: idxBase
+      integer(kind(HIP_R_32F)),value :: valueType
+    end function
+  end interface
+
+  interface hipsparseCreateSlicedEll
+#ifdef USE_CUDA_NAMES
+    function hipsparseCreateSlicedEll_(spMatDescr,rows,cols,nnz,sellValuesSize,sliceSize,sellSliceOffsets,sellColInd,sellValues,sellSliceOffsetsType,sellColIndType,idxBase,valueType) bind(c, name="cusparseCreateSlicedEll")
+#else
+    function hipsparseCreateSlicedEll_(spMatDescr,rows,cols,nnz,sellValuesSize,sliceSize,sellSliceOffsets,sellColInd,sellValues,sellSliceOffsetsType,sellColIndType,idxBase,valueType) bind(c, name="hipsparseCreateSlicedEll")
+#endif
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      use hipfort_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCreateSlicedEll_
+      type(c_ptr) :: spMatDescr
+      integer(c_int64_t),value :: rows
+      integer(c_int64_t),value :: cols
+      integer(c_int64_t),value :: nnz
+      integer(c_int64_t),value :: sellValuesSize
+      integer(c_int64_t),value :: sliceSize
+      type(c_ptr),value :: sellSliceOffsets
+      type(c_ptr),value :: sellColInd
+      type(c_ptr),value :: sellValues
+      integer(kind(HIPSPARSE_INDEX_16U)),value :: sellSliceOffsetsType
+      integer(kind(HIPSPARSE_INDEX_16U)),value :: sellColIndType
+      integer(kind(HIPSPARSE_INDEX_BASE_ZERO)),value :: idxBase
+      integer(kind(HIP_R_32F)),value :: valueType
+    end function
+  end interface
+
+  interface hipsparseCreateConstSlicedEll
+#ifdef USE_CUDA_NAMES
+    function hipsparseCreateConstSlicedEll_(spMatDescr,rows,cols,nnz,sellValuesSize,sliceSize,sellSliceOffsets,sellColInd,sellValues,sellSliceOffsetsType,sellColIndType,idxBase,valueType) bind(c, name="cusparseCreateConstSlicedEll")
+#else
+    function hipsparseCreateConstSlicedEll_(spMatDescr,rows,cols,nnz,sellValuesSize,sliceSize,sellSliceOffsets,sellColInd,sellValues,sellSliceOffsetsType,sellColIndType,idxBase,valueType) bind(c, name="hipsparseCreateConstSlicedEll")
+#endif
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      use hipfort_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCreateConstSlicedEll_
+      type(c_ptr) :: spMatDescr
+      integer(c_int64_t),value :: rows
+      integer(c_int64_t),value :: cols
+      integer(c_int64_t),value :: nnz
+      integer(c_int64_t),value :: sellValuesSize
+      integer(c_int64_t),value :: sliceSize
+      type(c_ptr),value :: sellSliceOffsets
+      type(c_ptr),value :: sellColInd
+      type(c_ptr),value :: sellValues
+      integer(kind(HIPSPARSE_INDEX_16U)),value :: sellSliceOffsetsType
+      integer(kind(HIPSPARSE_INDEX_16U)),value :: sellColIndType
+      integer(kind(HIPSPARSE_INDEX_BASE_ZERO)),value :: idxBase
+      integer(kind(HIP_R_32F)),value :: valueType
+    end function
+  end interface
+
+  interface hipsparseConstCooGet
+#ifdef USE_CUDA_NAMES
+    function hipsparseConstCooGet_(spMatDescr,rows,cols,nnz,cooRowInd,cooColInd,cooValues,idxType,idxBase,valueType) bind(c, name="cusparseConstCooGet")
+#else
+    function hipsparseConstCooGet_(spMatDescr,rows,cols,nnz,cooRowInd,cooColInd,cooValues,idxType,idxBase,valueType) bind(c, name="hipsparseConstCooGet")
+#endif
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseConstCooGet_
+      type(c_ptr),value :: spMatDescr
+      type(c_ptr),value :: rows
+      type(c_ptr),value :: cols
+      type(c_ptr),value :: nnz
+      type(c_ptr) :: cooRowInd
+      type(c_ptr) :: cooColInd
+      type(c_ptr) :: cooValues
+      type(c_ptr),value :: idxType
+      type(c_ptr),value :: idxBase
+      type(c_ptr),value :: valueType
+    end function
+  end interface
+
+  interface hipsparseConstCsrGet
+#ifdef USE_CUDA_NAMES
+    function hipsparseConstCsrGet_(spMatDescr,rows,cols,nnz,csrRowOffsets,csrColInd,csrValues,csrRowOffsetsType,csrColIndType,idxBase,valueType) bind(c, name="cusparseConstCsrGet")
+#else
+    function hipsparseConstCsrGet_(spMatDescr,rows,cols,nnz,csrRowOffsets,csrColInd,csrValues,csrRowOffsetsType,csrColIndType,idxBase,valueType) bind(c, name="hipsparseConstCsrGet")
+#endif
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseConstCsrGet_
+      type(c_ptr),value :: spMatDescr
+      type(c_ptr),value :: rows
+      type(c_ptr),value :: cols
+      type(c_ptr),value :: nnz
+      type(c_ptr) :: csrRowOffsets
+      type(c_ptr) :: csrColInd
+      type(c_ptr) :: csrValues
+      type(c_ptr),value :: csrRowOffsetsType
+      type(c_ptr),value :: csrColIndType
+      type(c_ptr),value :: idxBase
+      type(c_ptr),value :: valueType
+    end function
+  end interface
+
+  interface hipsparseCscGet
+#ifdef USE_CUDA_NAMES
+    function hipsparseCscGet_(spMatDescr,rows,cols,nnz,cscColOffsets,cscRowInd,cscValues,cscColOffsetsType,cscRowIndType,idxBase,valueType) bind(c, name="cusparseCscGet")
+#else
+    function hipsparseCscGet_(spMatDescr,rows,cols,nnz,cscColOffsets,cscRowInd,cscValues,cscColOffsetsType,cscRowIndType,idxBase,valueType) bind(c, name="hipsparseCscGet")
+#endif
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCscGet_
+      type(c_ptr),value :: spMatDescr
+      type(c_ptr),value :: rows
+      type(c_ptr),value :: cols
+      type(c_ptr),value :: nnz
+      type(c_ptr) :: cscColOffsets
+      type(c_ptr) :: cscRowInd
+      type(c_ptr) :: cscValues
+      type(c_ptr),value :: cscColOffsetsType
+      type(c_ptr),value :: cscRowIndType
+      type(c_ptr),value :: idxBase
+      type(c_ptr),value :: valueType
+    end function
+  end interface
+
+  interface hipsparseConstCscGet
+#ifdef USE_CUDA_NAMES
+    function hipsparseConstCscGet_(spMatDescr,rows,cols,nnz,cscColOffsets,cscRowInd,cscValues,cscColOffsetsType,cscRowIndType,idxBase,valueType) bind(c, name="cusparseConstCscGet")
+#else
+    function hipsparseConstCscGet_(spMatDescr,rows,cols,nnz,cscColOffsets,cscRowInd,cscValues,cscColOffsetsType,cscRowIndType,idxBase,valueType) bind(c, name="hipsparseConstCscGet")
+#endif
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseConstCscGet_
+      type(c_ptr),value :: spMatDescr
+      type(c_ptr),value :: rows
+      type(c_ptr),value :: cols
+      type(c_ptr),value :: nnz
+      type(c_ptr) :: cscColOffsets
+      type(c_ptr) :: cscRowInd
+      type(c_ptr) :: cscValues
+      type(c_ptr),value :: cscColOffsetsType
+      type(c_ptr),value :: cscRowIndType
+      type(c_ptr),value :: idxBase
+      type(c_ptr),value :: valueType
+    end function
+  end interface
+
+  interface hipsparseConstBlockedEllGet
+#ifdef USE_CUDA_NAMES
+    function hipsparseConstBlockedEllGet_(spMatDescr,rows,cols,ellBlockSize,ellCols,ellColInd,ellValue,ellIdxType,idxBase,valueType) bind(c, name="cusparseConstBlockedEllGet")
+#else
+    function hipsparseConstBlockedEllGet_(spMatDescr,rows,cols,ellBlockSize,ellCols,ellColInd,ellValue,ellIdxType,idxBase,valueType) bind(c, name="hipsparseConstBlockedEllGet")
+#endif
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseConstBlockedEllGet_
+      type(c_ptr),value :: spMatDescr
+      type(c_ptr),value :: rows
+      type(c_ptr),value :: cols
+      type(c_ptr),value :: ellBlockSize
+      type(c_ptr),value :: ellCols
+      type(c_ptr) :: ellColInd
+      type(c_ptr) :: ellValue
+      type(c_ptr),value :: ellIdxType
+      type(c_ptr),value :: idxBase
+      type(c_ptr),value :: valueType
+    end function
+  end interface
+
+#ifndef USE_CUDA_NAMES
+  interface hipsparseBlockedEllSetPointers
+    function hipsparseBlockedEllSetPointers_(spMatDescr,ellColInd,ellValue) bind(c, name="hipsparseBlockedEllSetPointers")
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseBlockedEllSetPointers_
+      type(c_ptr),value :: spMatDescr
+      type(c_ptr),value :: ellColInd
+      type(c_ptr),value :: ellValue
+    end function
+  end interface
+#endif
+
+  interface hipsparseConstSpMatGetValues
+#ifdef USE_CUDA_NAMES
+    function hipsparseConstSpMatGetValues_(spMatDescr,values) bind(c, name="cusparseConstSpMatGetValues")
+#else
+    function hipsparseConstSpMatGetValues_(spMatDescr,values) bind(c, name="hipsparseConstSpMatGetValues")
+#endif
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseConstSpMatGetValues_
+      type(c_ptr),value :: spMatDescr
+      type(c_ptr) :: values
+    end function
+  end interface
+
+  interface hipsparseSpMatGetStridedBatch
+#ifdef USE_CUDA_NAMES
+    function hipsparseSpMatGetStridedBatch_(spMatDescr,batchCount) bind(c, name="cusparseSpMatGetStridedBatch")
+#else
+    function hipsparseSpMatGetStridedBatch_(spMatDescr,batchCount) bind(c, name="hipsparseSpMatGetStridedBatch")
+#endif
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSpMatGetStridedBatch_
+      type(c_ptr),value :: spMatDescr
+      type(c_ptr),value :: batchCount
+    end function
+  end interface
+
+#ifndef USE_CUDA_NAMES
+  interface hipsparseSpMatSetStridedBatch
+    function hipsparseSpMatSetStridedBatch_(spMatDescr,batchCount) bind(c, name="hipsparseSpMatSetStridedBatch")
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSpMatSetStridedBatch_
+      type(c_ptr),value :: spMatDescr
+      integer(c_int),value :: batchCount
+    end function
+  end interface
+#endif
+
+  interface hipsparseCooSetStridedBatch
+#ifdef USE_CUDA_NAMES
+    function hipsparseCooSetStridedBatch_(spMatDescr,batchCount,batchStride) bind(c, name="cusparseCooSetStridedBatch")
+#else
+    function hipsparseCooSetStridedBatch_(spMatDescr,batchCount,batchStride) bind(c, name="hipsparseCooSetStridedBatch")
+#endif
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCooSetStridedBatch_
+      type(c_ptr),value :: spMatDescr
+      integer(c_int),value :: batchCount
+      integer(c_int64_t),value :: batchStride
+    end function
+  end interface
+
+  interface hipsparseCsrSetStridedBatch
+#ifdef USE_CUDA_NAMES
+    function hipsparseCsrSetStridedBatch_(spMatDescr,batchCount,offsetsBatchStride,columnsValuesBatchStride) bind(c, name="cusparseCsrSetStridedBatch")
+#else
+    function hipsparseCsrSetStridedBatch_(spMatDescr,batchCount,offsetsBatchStride,columnsValuesBatchStride) bind(c, name="hipsparseCsrSetStridedBatch")
+#endif
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCsrSetStridedBatch_
+      type(c_ptr),value :: spMatDescr
+      integer(c_int),value :: batchCount
+      integer(c_int64_t),value :: offsetsBatchStride
+      integer(c_int64_t),value :: columnsValuesBatchStride
+    end function
+  end interface
+
+  interface hipsparseCreateConstDnVec
+#ifdef USE_CUDA_NAMES
+    function hipsparseCreateConstDnVec_(dnVecDescr,mySize,values,valueType) bind(c, name="cusparseCreateConstDnVec")
+#else
+    function hipsparseCreateConstDnVec_(dnVecDescr,mySize,values,valueType) bind(c, name="hipsparseCreateConstDnVec")
+#endif
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      use hipfort_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCreateConstDnVec_
+      type(c_ptr) :: dnVecDescr
+      integer(c_int64_t),value :: mySize
+      type(c_ptr),value :: values
+      integer(kind(HIP_R_32F)),value :: valueType
+    end function
+  end interface
+
+  interface hipsparseConstDnVecGet
+#ifdef USE_CUDA_NAMES
+    function hipsparseConstDnVecGet_(dnVecDescr,mySize,values,valueType) bind(c, name="cusparseConstDnVecGet")
+#else
+    function hipsparseConstDnVecGet_(dnVecDescr,mySize,values,valueType) bind(c, name="hipsparseConstDnVecGet")
+#endif
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseConstDnVecGet_
+      type(c_ptr),value :: dnVecDescr
+      type(c_ptr),value :: mySize
+      type(c_ptr) :: values
+      type(c_ptr),value :: valueType
+    end function
+  end interface
+
+  interface hipsparseConstDnVecGetValues
+#ifdef USE_CUDA_NAMES
+    function hipsparseConstDnVecGetValues_(dnVecDescr,values) bind(c, name="cusparseConstDnVecGetValues")
+#else
+    function hipsparseConstDnVecGetValues_(dnVecDescr,values) bind(c, name="hipsparseConstDnVecGetValues")
+#endif
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseConstDnVecGetValues_
+      type(c_ptr),value :: dnVecDescr
+      type(c_ptr) :: values
+    end function
+  end interface
+
+  interface hipsparseCreateConstDnMat
+#ifdef USE_CUDA_NAMES
+    function hipsparseCreateConstDnMat_(dnMatDescr,rows,cols,ld,values,valueType,order) bind(c, name="cusparseCreateConstDnMat")
+#else
+    function hipsparseCreateConstDnMat_(dnMatDescr,rows,cols,ld,values,valueType,order) bind(c, name="hipsparseCreateConstDnMat")
+#endif
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      use hipfort_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseCreateConstDnMat_
+      type(c_ptr) :: dnMatDescr
+      integer(c_int64_t),value :: rows
+      integer(c_int64_t),value :: cols
+      integer(c_int64_t),value :: ld
+      type(c_ptr),value :: values
+      integer(kind(HIP_R_32F)),value :: valueType
+      integer(kind(HIPSPARSE_ORDER_COLUMN)),value :: order
+    end function
+  end interface
+
+  interface hipsparseConstDnMatGet
+#ifdef USE_CUDA_NAMES
+    function hipsparseConstDnMatGet_(dnMatDescr,rows,cols,ld,values,valueType,order) bind(c, name="cusparseConstDnMatGet")
+#else
+    function hipsparseConstDnMatGet_(dnMatDescr,rows,cols,ld,values,valueType,order) bind(c, name="hipsparseConstDnMatGet")
+#endif
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseConstDnMatGet_
+      type(c_ptr),value :: dnMatDescr
+      type(c_ptr),value :: rows
+      type(c_ptr),value :: cols
+      type(c_ptr),value :: ld
+      type(c_ptr) :: values
+      type(c_ptr),value :: valueType
+      type(c_ptr),value :: order
+    end function
+  end interface
+
+  interface hipsparseConstDnMatGetValues
+#ifdef USE_CUDA_NAMES
+    function hipsparseConstDnMatGetValues_(dnMatDescr,values) bind(c, name="cusparseConstDnMatGetValues")
+#else
+    function hipsparseConstDnMatGetValues_(dnMatDescr,values) bind(c, name="hipsparseConstDnMatGetValues")
+#endif
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseConstDnMatGetValues_
+      type(c_ptr),value :: dnMatDescr
+      type(c_ptr) :: values
+    end function
+  end interface
+
+  interface hipsparseDnMatGetStridedBatch
+#ifdef USE_CUDA_NAMES
+    function hipsparseDnMatGetStridedBatch_(dnMatDescr,batchCount,batchStride) bind(c, name="cusparseDnMatGetStridedBatch")
+#else
+    function hipsparseDnMatGetStridedBatch_(dnMatDescr,batchCount,batchStride) bind(c, name="hipsparseDnMatGetStridedBatch")
+#endif
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDnMatGetStridedBatch_
+      type(c_ptr),value :: dnMatDescr
+      type(c_ptr),value :: batchCount
+      type(c_ptr),value :: batchStride
+    end function
+  end interface
+
+  interface hipsparseDnMatSetStridedBatch
+#ifdef USE_CUDA_NAMES
+    function hipsparseDnMatSetStridedBatch_(dnMatDescr,batchCount,batchStride) bind(c, name="cusparseDnMatSetStridedBatch")
+#else
+    function hipsparseDnMatSetStridedBatch_(dnMatDescr,batchCount,batchStride) bind(c, name="hipsparseDnMatSetStridedBatch")
+#endif
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseDnMatSetStridedBatch_
+      type(c_ptr),value :: dnMatDescr
+      integer(c_int),value :: batchCount
+      integer(c_int64_t),value :: batchStride
+    end function
+  end interface
+
+  interface hipsparseSpGEMMreuse_workEstimation
+#ifdef USE_CUDA_NAMES
+    function hipsparseSpGEMMreuse_workEstimation_(handle,opA,opB,matA,matB,matC,alg,spgemmDescr,bufferSize1,externalBuffer1) bind(c, name="cusparseSpGEMMreuse_workEstimation")
+#else
+    function hipsparseSpGEMMreuse_workEstimation_(handle,opA,opB,matA,matB,matC,alg,spgemmDescr,bufferSize1,externalBuffer1) bind(c, name="hipsparseSpGEMMreuse_workEstimation")
+#endif
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSpGEMMreuse_workEstimation_
+      type(c_ptr),value :: handle
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: opA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: opB
+      type(c_ptr),value :: matA
+      type(c_ptr),value :: matB
+      type(c_ptr),value :: matC
+      integer(kind(HIPSPARSE_SPGEMM_DEFAULT)),value :: alg
+      type(c_ptr),value :: spgemmDescr
+      type(c_ptr),value :: bufferSize1
+      type(c_ptr),value :: externalBuffer1
+    end function
+  end interface
+
+  interface hipsparseSpGEMMreuse_nnz
+#ifdef USE_CUDA_NAMES
+    function hipsparseSpGEMMreuse_nnz_(handle,opA,opB,matA,matB,matC,alg,spgemmDescr,bufferSize2,externalBuffer2,bufferSize3,externalBuffer3,bufferSize4,externalBuffer4) bind(c, name="cusparseSpGEMMreuse_nnz")
+#else
+    function hipsparseSpGEMMreuse_nnz_(handle,opA,opB,matA,matB,matC,alg,spgemmDescr,bufferSize2,externalBuffer2,bufferSize3,externalBuffer3,bufferSize4,externalBuffer4) bind(c, name="hipsparseSpGEMMreuse_nnz")
+#endif
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSpGEMMreuse_nnz_
+      type(c_ptr),value :: handle
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: opA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: opB
+      type(c_ptr),value :: matA
+      type(c_ptr),value :: matB
+      type(c_ptr),value :: matC
+      integer(kind(HIPSPARSE_SPGEMM_DEFAULT)),value :: alg
+      type(c_ptr),value :: spgemmDescr
+      type(c_ptr),value :: bufferSize2
+      type(c_ptr),value :: externalBuffer2
+      type(c_ptr),value :: bufferSize3
+      type(c_ptr),value :: externalBuffer3
+      type(c_ptr),value :: bufferSize4
+      type(c_ptr),value :: externalBuffer4
+    end function
+  end interface
+
+  interface hipsparseSpGEMMreuse_copy
+#ifdef USE_CUDA_NAMES
+    function hipsparseSpGEMMreuse_copy_(handle,opA,opB,matA,matB,matC,alg,spgemmDescr,bufferSize5,externalBuffer5) bind(c, name="cusparseSpGEMMreuse_copy")
+#else
+    function hipsparseSpGEMMreuse_copy_(handle,opA,opB,matA,matB,matC,alg,spgemmDescr,bufferSize5,externalBuffer5) bind(c, name="hipsparseSpGEMMreuse_copy")
+#endif
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSpGEMMreuse_copy_
+      type(c_ptr),value :: handle
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: opA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: opB
+      type(c_ptr),value :: matA
+      type(c_ptr),value :: matB
+      type(c_ptr),value :: matC
+      integer(kind(HIPSPARSE_SPGEMM_DEFAULT)),value :: alg
+      type(c_ptr),value :: spgemmDescr
+      type(c_ptr),value :: bufferSize5
+      type(c_ptr),value :: externalBuffer5
+    end function
+  end interface
+
+  interface hipsparseSpGEMMreuse_compute
+#ifdef USE_CUDA_NAMES
+    function hipsparseSpGEMMreuse_compute_(handle,opA,opB,alpha,matA,matB,beta,matC,computeType,alg,spgemmDescr) bind(c, name="cusparseSpGEMMreuse_compute")
+#else
+    function hipsparseSpGEMMreuse_compute_(handle,opA,opB,alpha,matA,matB,beta,matC,computeType,alg,spgemmDescr) bind(c, name="hipsparseSpGEMMreuse_compute")
+#endif
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      use hipfort_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSpGEMMreuse_compute_
+      type(c_ptr),value :: handle
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: opA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: opB
+      type(c_ptr),value :: alpha
+      type(c_ptr),value :: matA
+      type(c_ptr),value :: matB
+      type(c_ptr),value :: beta
+      type(c_ptr),value :: matC
+      integer(kind(HIP_R_32F)),value :: computeType
+      integer(kind(HIPSPARSE_SPGEMM_DEFAULT)),value :: alg
+      type(c_ptr),value :: spgemmDescr
+    end function
+  end interface
+
+  interface hipsparseSpMV_preprocess
+#ifdef USE_CUDA_NAMES
+    function hipsparseSpMV_preprocess_(handle,opA,alpha,matA,vecX,beta,vecY,computeType,alg,externalBuffer) bind(c, name="cusparseSpMV_preprocess")
+#else
+    function hipsparseSpMV_preprocess_(handle,opA,alpha,matA,vecX,beta,vecY,computeType,alg,externalBuffer) bind(c, name="hipsparseSpMV_preprocess")
+#endif
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      use hipfort_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSpMV_preprocess_
+      type(c_ptr),value :: handle
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: opA
+      type(c_ptr),value :: alpha
+      type(c_ptr),value :: matA
+      type(c_ptr),value :: vecX
+      type(c_ptr),value :: beta
+      type(c_ptr),value :: vecY
+      integer(kind(HIP_R_32F)),value :: computeType
+      integer(kind(HIPSPARSE_MV_ALG_DEFAULT)),value :: alg
+      type(c_ptr),value :: externalBuffer
+    end function
+  end interface
+
+#ifndef USE_CUDA_NAMES
+  interface hipsparseSpSM_solve_ex
+    function hipsparseSpSM_solve_ex_(handle,opA,opB,alpha,matA,matB,matC,computeType,alg,spsmDescr) bind(c, name="hipsparseSpSM_solve_ex")
+      use iso_c_binding
+      use hipfort_hipsparse_enums
+      use hipfort_enums
+      implicit none
+      integer(kind(HIPSPARSE_STATUS_SUCCESS)) :: hipsparseSpSM_solve_ex_
+      type(c_ptr),value :: handle
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: opA
+      integer(kind(HIPSPARSE_OPERATION_NON_TRANSPOSE)),value :: opB
+      type(c_ptr),value :: alpha
+      type(c_ptr),value :: matA
+      type(c_ptr),value :: matB
+      type(c_ptr),value :: matC
+      integer(kind(HIP_R_32F)),value :: computeType
+      integer(kind(HIPSPARSE_SPSM_ALG_DEFAULT)),value :: alg
+      type(c_ptr),value :: spsmDescr
+    end function
+  end interface
+#endif
+
+
 #ifdef USE_FPOINTER_INTERFACES
   contains
     function hipsparseSaxpyi_rank_0(handle,nnz,alpha,xVal,xInd,y,idxBase)

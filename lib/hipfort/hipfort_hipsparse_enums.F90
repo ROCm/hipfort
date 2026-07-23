@@ -26,6 +26,7 @@
           
            
 module hipfort_hipsparse_enums
+  use, intrinsic :: iso_c_binding
   implicit none
 
   enum, bind(c)
@@ -184,4 +185,26 @@ module hipfort_hipsparse_enums
 
   
 #endif
+  ! hipsparseCsr2CscAlg_t
+  enum, bind(c)
+    enumerator :: HIPSPARSE_CSR2CSC_ALG_DEFAULT = 0
+    enumerator :: HIPSPARSE_CSR2CSC_ALG1 = 1
+    enumerator :: HIPSPARSE_CSR2CSC_ALG2 = 2
+  end enum
+
+  integer(c_int), parameter :: HIPSPARSE_FORMAT_CSC = 2
+  integer(c_int), parameter :: HIPSPARSE_FORMAT_SLICED_ELL = 6
+  integer(c_int), parameter :: HIPSPARSE_ORDER_COL = 1
+  integer(c_int), parameter :: HIPSPARSE_SPMV_SELL_ALG1 = 5
+  integer(c_int), parameter :: HIPSPARSE_SPMV_CSR_ALG3 = 7
+  integer(c_int), parameter :: HIPSPARSE_SPMM_BSR_ALG1 = 14
+  integer(c_int), parameter :: HIPSPARSE_SPGEMM_CSR_ALG_DETERMINISTIC = 1
+  integer(c_int), parameter :: HIPSPARSE_SPGEMM_CSR_ALG_NONDETERMINISTIC = 2
+  integer(c_int), parameter :: HIPSPARSE_SPGEMM_ALG1 = 3
+  integer(c_int), parameter :: HIPSPARSE_SPGEMM_ALG2 = 4
+  integer(c_int), parameter :: HIPSPARSE_SPGEMM_ALG3 = 5
+  integer(c_int), parameter :: hipsparseVersionMajor = 4
+  integer(c_int), parameter :: hipsparseVersionMinor = 2
+  integer(c_int), parameter :: hipsparseVersionPatch = 0
+
 end module hipfort_hipsparse_enums
