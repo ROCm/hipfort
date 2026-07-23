@@ -2,19 +2,19 @@
 ! ==============================================================================
 ! hipfort: FORTRAN Interfaces for GPU kernels
 ! ==============================================================================
-! Copyright (c) 2020-2022 Advanced Micro Devices, Inc. All rights reserved.
+! Copyright (c) 2020-2026 Advanced Micro Devices, Inc. All rights reserved.
 ! [MITx11 License]
-! 
+!
 ! Permission is hereby granted, free of charge, to any person obtaining a copy
 ! of this software and associated documentation files (the "Software"), to deal
 ! in the Software without restriction, including without limitation the rights
 ! to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
 ! copies of the Software, and to permit persons to whom the Software is
 ! furnished to do so, subject to the following conditions:
-! 
+!
 ! The above copyright notice and this permission notice shall be included in
 ! all copies or substantial portions of the Software.
-! 
+!
 ! THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 ! IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
 ! FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.  IN NO EVENT SHALL THE
@@ -23,107 +23,19 @@
 ! OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 ! THE SOFTWARE.
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-          
-           
+
 module hipfort_rocsolver
   use hipfort_rocsolver_enums
+  use hipfort_rocsolver_types
   implicit none
 
- 
-  
-  interface rocsolver_create_handle
-    function rocsolver_create_handle_(handle) bind(c, name="rocsolver_create_handle")
-      use iso_c_binding
-      use hipfort_rocsolver_enums
-      use hipfort_rocblas_enums
-      implicit none
-      integer(kind(rocblas_status_success)) :: rocsolver_create_handle_
-      type(c_ptr) :: handle
-    end function
-
-  end interface
-  
-  interface rocsolver_destroy_handle
-    function rocsolver_destroy_handle_(handle) bind(c, name="rocsolver_destroy_handle")
-      use iso_c_binding
-      use hipfort_rocsolver_enums
-      use hipfort_rocblas_enums
-      implicit none
-      integer(kind(rocblas_status_success)) :: rocsolver_destroy_handle_
-      type(c_ptr),value :: handle
-    end function
-
-  end interface
-  
-  interface rocsolver_set_stream
-    function rocsolver_set_stream_(handle,stream) bind(c, name="rocsolver_set_stream")
-      use iso_c_binding
-      use hipfort_rocsolver_enums
-      use hipfort_rocblas_enums
-      implicit none
-      integer(kind(rocblas_status_success)) :: rocsolver_set_stream_
-      type(c_ptr),value :: handle
-      type(c_ptr),value :: stream
-    end function
-
-  end interface
-  
-  interface rocsolver_get_stream
-    function rocsolver_get_stream_(handle,stream) bind(c, name="rocsolver_get_stream")
-      use iso_c_binding
-      use hipfort_rocsolver_enums
-      use hipfort_rocblas_enums
-      implicit none
-      integer(kind(rocblas_status_success)) :: rocsolver_get_stream_
-      type(c_ptr),value :: handle
-      type(c_ptr) :: stream
-    end function
-
-  end interface
-  
-  interface rocsolver_set_matrix
-    function rocsolver_set_matrix_(rows,cols,elem_size,a,lda,b,ldb) bind(c, name="rocsolver_set_matrix")
-      use iso_c_binding
-      use hipfort_rocsolver_enums
-      use hipfort_rocblas_enums
-      implicit none
-      integer(kind(rocblas_status_success)) :: rocsolver_set_matrix_
-      integer(c_int),value :: rows
-      integer(c_int),value :: cols
-      integer(c_int),value :: elem_size
-      type(c_ptr),value :: a
-      integer(c_int),value :: lda
-      type(c_ptr),value :: b
-      integer(c_int),value :: ldb
-    end function
-
-  end interface
-  
-  interface rocsolver_get_matrix
-    function rocsolver_get_matrix_(rows,cols,elem_size,a,lda,b,ldb) bind(c, name="rocsolver_get_matrix")
-      use iso_c_binding
-      use hipfort_rocsolver_enums
-      use hipfort_rocblas_enums
-      implicit none
-      integer(kind(rocblas_status_success)) :: rocsolver_get_matrix_
-      integer(c_int),value :: rows
-      integer(c_int),value :: cols
-      integer(c_int),value :: elem_size
-      type(c_ptr),value :: a
-      integer(c_int),value :: lda
-      type(c_ptr),value :: b
-      integer(c_int),value :: ldb
-    end function
-
-  end interface
-  !>  \brief GET_VERSION_STRING Queries the library version.
-  !> 
+  !>  \brief The GET_VERSION_STRING function queries the library version.
+  !>
   !>     \details
   !>     @param[out]
   !>     buf         A buffer that the version string will be written into.
   !>     @param[in]
   !>     len         The size of the given buffer in bytes.
-  !>
   interface rocsolver_get_version_string
     function rocsolver_get_version_string_(buf,len) bind(c, name="rocsolver_get_version_string")
       use iso_c_binding
@@ -134,17 +46,16 @@ module hipfort_rocsolver
       type(c_ptr),value :: buf
       integer(c_size_t),value :: len
     end function
-
   end interface
-  !>  \brief GET_VERSION_STRING_SIZE Queries the minimum buffer size for a
-  !>     successful call to \ref rocsolver_get_version_string.
-  !> 
+
+  !>  \brief The GET_VERSION_STRING_SIZE function queries the minimum buffer size for a
+  !>     successful call to `rocsolver_get_version_string`.
+  !>
   !>     \details
   !>     @param[out]
-  !>     len         pointer to size_t.\n
+  !>     len         pointer to size_t.
   !>                 The minimum length of buffer to pass to
-  !>                 \ref rocsolver_get_version_string.
-  !>
+  !>                 `rocsolver_get_version_string`.
   interface rocsolver_get_version_string_size
     function rocsolver_get_version_string_size_(len) bind(c, name="rocsolver_get_version_string_size")
       use iso_c_binding
@@ -154,19 +65,20 @@ module hipfort_rocsolver
       integer(kind(rocblas_status_success)) :: rocsolver_get_version_string_size_
       type(c_ptr),value :: len
     end function
-
   end interface
-  !>  \brief LOG_BEGIN begins a rocSOLVER multi-level logging session.
-  !> 
+
+  !>  \brief The LOG_BEGIN function initiates a rocSOLVER multi-level logging session.
+  !>
   !>     \details
   !>     Initializes the rocSOLVER logging environment with default values (no
   !>     logging and one level depth). Default mode can be overridden by using the
-  !>     environment variables ROCSOLVER_LAYER and ROCSOLVER_LEVELS.
-  !> 
-  !>     This function also sets the streams where the log results will be outputted.
-  !>     The default is STDERR for all the modes. This default can also be overridden
-  !>     using the environment variable ROCSOLVER_LOG_PATH, or specifically
-  !>     ROCSOLVER_LOG_TRACE_PATH, ROCSOLVER_LOG_BENCH_PATH, and/or ROCSOLVER_LOG_PROFILE_PATH.
+  !>     environment variables ``ROCSOLVER_LAYER`` and ``ROCSOLVER_LEVELS``.
+  !>
+  !>     This function also sets the streams for the log results output.
+  !>     The default is ``STDERR`` for all modes. This default can be overridden
+  !>     using the environment variable ``ROCSOLVER_LOG_PATH``, or, more specifically,
+  !>     ``ROCSOLVER_LOG_TRACE_PATH``, ``ROCSOLVER_LOG_BENCH_PATH``, and
+  !>     ``ROCSOLVER_LOG_PROFILE_PATH``.
   interface rocsolver_log_begin
     function rocsolver_log_begin_() bind(c, name="rocsolver_log_begin")
       use iso_c_binding
@@ -175,10 +87,10 @@ module hipfort_rocsolver
       implicit none
       integer(kind(rocblas_status_success)) :: rocsolver_log_begin_
     end function
-
   end interface
-  !>  \brief LOG_END ends the multi-level rocSOLVER logging session.
-  !> 
+
+  !>  \brief The LOG_END function ends the multi-level rocSOLVER logging session.
+  !>
   !>     \details
   !>     If applicable, this function also prints the profile logging results
   !>     before cleaning the logging environment.
@@ -190,15 +102,15 @@ module hipfort_rocsolver
       implicit none
       integer(kind(rocblas_status_success)) :: rocsolver_log_end_
     end function
-
   end interface
-  !>  \brief LOG_SET_LAYER_MODE sets the logging mode for the rocSOLVER multi-level
+
+  !>  \brief The LOG_SET_LAYER_MODE function sets the logging mode for the rocSOLVER multi-level
   !>     logging environment.
-  !> 
+  !>
   !>     \details
   !>     @param[in]
-  !>     layer_mode      rocblas_layer_mode_flags.\n
-  !>                     Specifies the logging mode.
+  !>     layer_mode  rocblas_layer_mode_flags.
+  !>                 Specifies the logging mode.
   interface rocsolver_log_set_layer_mode
     function rocsolver_log_set_layer_mode_(layer_mode) bind(c, name="rocsolver_log_set_layer_mode")
       use iso_c_binding
@@ -206,18 +118,18 @@ module hipfort_rocsolver
       use hipfort_rocblas_enums
       implicit none
       integer(kind(rocblas_status_success)) :: rocsolver_log_set_layer_mode_
-      integer(4),value :: layer_mode
+      integer(c_int),value :: layer_mode
     end function
-
   end interface
-  !>  \brief LOG_SET_MAX_LEVELS sets the maximum trace log depth for the rocSOLVER
+
+  !>  \brief The LOG_SET_MAX_LEVELS function sets the maximum trace log depth for the rocSOLVER
   !>     multi-level logging environment.
-  !> 
+  !>
   !>     \details
   !>     @param[in]
-  !>     max_levels      rocblas_int. max_levels >= 1.\n
-  !>                     Specifies the maximum depth at which nested function calls
-  !>                     will appear in the trace and profile logs.
+  !>     max_levels  rocblas_int. max_levels >= 1.
+  !>                 Specifies the maximum depth for which nested function calls
+  !>                 will appear in the trace and profile logs.
   interface rocsolver_log_set_max_levels
     function rocsolver_log_set_max_levels_(max_levels) bind(c, name="rocsolver_log_set_max_levels")
       use iso_c_binding
@@ -227,11 +139,11 @@ module hipfort_rocsolver
       integer(kind(rocblas_status_success)) :: rocsolver_log_set_max_levels_
       integer(c_int),value :: max_levels
     end function
-
   end interface
-  !>  \brief LOG_RESTORE_DEFAULTS restores the default values of the rocSOLVER
+
+  !>  \brief The LOG_RESTORE_DEFAULTS function restores the default values of the rocSOLVER
   !>     multi-level logging environment.
-  !> 
+  !>
   !>     \details
   !>     This function sets the logging mode and maximum trace log depth to their
   !>     default values (no logging and one level depth).
@@ -243,9 +155,9 @@ module hipfort_rocsolver
       implicit none
       integer(kind(rocblas_status_success)) :: rocsolver_log_restore_defaults_
     end function
-
   end interface
-  !>  \brief LOG_WRITE_PROFILE prints the profile logging results.
+
+  !>  \brief The LOG_WRITE_PROFILE function prints the profile logging results.
   interface rocsolver_log_write_profile
     function rocsolver_log_write_profile_() bind(c, name="rocsolver_log_write_profile")
       use iso_c_binding
@@ -254,9 +166,9 @@ module hipfort_rocsolver
       implicit none
       integer(kind(rocblas_status_success)) :: rocsolver_log_write_profile_
     end function
-
   end interface
-  !>  \brief LOG_FLUSH_PROFILE prints the profile logging results and clears the
+
+  !>  \brief The LOG_FLUSH_PROFILE function prints the profile logging results and clears the
   !>     profile record.
   interface rocsolver_log_flush_profile
     function rocsolver_log_flush_profile_() bind(c, name="rocsolver_log_flush_profile")
@@ -266,27 +178,27 @@ module hipfort_rocsolver
       implicit none
       integer(kind(rocblas_status_success)) :: rocsolver_log_flush_profile_
     end function
-
   end interface
-  !>     \brief LACGV conjugates the complex vector x.
-  !> 
+
+  !>     \brief The LACGV functions conjugate the complex vector ``x``.
+  !>
   !>     \details
-  !>     It conjugates the n entries of a complex vector x with increment incx.
-  !> 
+  !>     Conjugates the ``n`` entries of a complex vector ``x`` with increment ``incx``.
+  !>
   !>     @param[in]
-  !>     handle          rocblas_handle.
+  !>     handle      rocblas_handle.
   !>     @param[in]
-  !>     n               rocblas_int. n >= 0.\n
-  !>                     The dimension of vector x.
+  !>     n           rocblas_int. n >= 0.
+  !>                 The dimension of vector x.
   !>     @param[inout]
-  !>     x               pointer to type. Array on the GPU of size at least n (size depends on the value of incx).\n
-  !>                     On entry, the vector x.
-  !>                     On exit, each entry is overwritten with its conjugate value.
+  !>     x pointer to type. Array on the GPU of size at least n (size depends on the value of incx).
+  !>                 On entry, the vector x.
+  !>                 On exit, each entry is overwritten with its conjugate value.
   !>     @param[in]
-  !>     incx            rocblas_int. incx != 0.\n
-  !>                     The distance between two consecutive elements of x.
-  !>                     If incx is negative, the elements of x are indexed in
-  !>                     reverse order.
+  !>     incx        rocblas_int. incx != 0.
+  !>                 The distance between two consecutive elements of x.
+  !>                 If incx is negative, the elements of x are indexed in
+  !>                 reverse order.
   interface rocsolver_clacgv
     function rocsolver_clacgv_(handle,n,x,incx) bind(c, name="rocsolver_clacgv")
       use iso_c_binding
@@ -306,7 +218,7 @@ module hipfort_rocsolver
       rocsolver_clacgv_rank_1
 #endif
   end interface
-  
+
   interface rocsolver_zlacgv
     function rocsolver_zlacgv_(handle,n,x,incx) bind(c, name="rocsolver_zlacgv")
       use iso_c_binding
@@ -326,41 +238,47 @@ module hipfort_rocsolver
       rocsolver_zlacgv_rank_1
 #endif
   end interface
-  !>     \brief LASWP performs a series of row interchanges on the matrix A.
-  !> 
+
+  !>     \brief The LASWP functions perform a series of row interchanges on the matrix ``A``.
+  !>
   !>     \details
-  !>     Row interchanges are done one by one. If \f$\text{ipiv}[k_1 + (j - k_1) \cdot \text{abs}(\text{incx})] = r\f$, then the j-th row of A
-  !>     will be interchanged with the r-th row of A, for \f$j = k_1,k_1+1,\dots,k_2\f$. Indices \f$k_1\f$ and \f$k_2\f$ are 1-based indices.
-  !> 
+  !>     Row interchanges are done one by one. If \f$\text{ipiv}[k_1 + (j - k_1) \cdot
+  !>     \text{abs}(\text{incx})] = r\f$, then the j-th row of ``A``
+  !>     will be interchanged with the r-th row of ``A``, for \f$j = k_1,k_1+1,\dots,k_2\f$. Indices
+  !>     \f$k_1\f$ and \f$k_2\f$ are 1-based indices.
+  !>
   !>     @param[in]
-  !>     handle          rocblas_handle.
+  !>     handle      rocblas_handle.
   !>     @param[in]
-  !>     n               rocblas_int. n >= 0.\n
-  !>                     The number of columns of the matrix A.
+  !>     n           rocblas_int. n >= 0.
+  !>                 The number of columns of the matrix A.
   !>     @param[inout]
-  !>     A               pointer to type. Array on the GPU of dimension lda*n. \n
-  !>                     On entry, the matrix to which the row
-  !>                     interchanges will be applied. On exit, the resulting permuted matrix.
+  !>     A           pointer to type. Array on the GPU of dimension lda*n.
+  !>                 On entry, the matrix to which the row
+  !>                 interchanges will be applied. On exit, the resulting permuted matrix.
   !>     @param[in]
-  !>     lda             rocblas_int. lda > 0.\n
-  !>                     The leading dimension of the array A.
+  !>     lda         rocblas_int. lda > 0.
+  !>                 The leading dimension of the array A.
   !>     @param[in]
-  !>     k1              rocblas_int. k1 > 0.\n
-  !>                     The k_1 index. It is the first element of ipiv for which a row interchange will
-  !>                     be done. This is a 1-based index.
+  !>     k1          rocblas_int. k1 > 0.
+  !>                 The k_1 index. This is the first element of ipiv for which a row interchange
+  !>                 will
+  !>                 be done. This is a 1-based index.
   !>     @param[in]
-  !>     k2              rocblas_int. k2 > k1 > 0.\n
-  !>                     The k_2 index. k_2 - k_1 + 1 is the number of elements of ipiv for which a row
-  !>                     interchange will be done. This is a 1-based index.
+  !>     k2          rocblas_int. k2 > k1 > 0.
+  !>                 The k_2 index. k_2 - k_1 + 1 is the number of elements of ipiv for which a row
+  !>                 interchange will be done. This is a 1-based index.
   !>     @param[in]
-  !>     ipiv            pointer to rocblas_int. Array on the GPU of dimension at least k_1 + (k_2 - k_1)*abs(incx).\n
-  !>                     The vector of pivot indices. Only the elements in positions
-  !>                     k_1 through k_1 + (k_2 - k_1)*abs(incx) of this vector are accessed.
-  !>                     Elements of ipiv are considered 1-based.
+  !>     ipiv pointer to rocblas_int. Array on the GPU of dimension at least \f$k_1 + (k_2 -
+  !>     k_1)\cdot \text{abs}(\text{incx})\f$.
+  !>                 The vector of pivot indices. Only the elements in positions
+  !>                 \f$k_1\f$ through \f$k_1 + (k_2 - k_1)\cdot \text{abs}(\text{incx})\f$ of this
+  !>                 vector are accessed.
+  !>                 Elements of ipiv are considered 1-based.
   !>     @param[in]
-  !>     incx            rocblas_int. incx != 0.\n
-  !>                     The distance between successive values of ipiv.  If incx
-  !>                     is negative, the pivots are applied in reverse order.
+  !>     incx        rocblas_int. incx != 0.
+  !>                 The distance between successive values of ipiv.  If incx
+  !>                 is negative, the pivots are applied in reverse order.
   interface rocsolver_slaswp
     function rocsolver_slaswp_(handle,n,A,lda,k1,k2,ipiv,incx) bind(c, name="rocsolver_slaswp")
       use iso_c_binding
@@ -380,12 +298,12 @@ module hipfort_rocsolver
 
 #ifdef USE_FPOINTER_INTERFACES
     module procedure &
-      rocsolver_slaswp_full_rank,&
       rocsolver_slaswp_rank_0,&
-      rocsolver_slaswp_rank_1
+      rocsolver_slaswp_rank_1,&
+      rocsolver_slaswp_full_rank
 #endif
   end interface
-  
+
   interface rocsolver_dlaswp
     function rocsolver_dlaswp_(handle,n,A,lda,k1,k2,ipiv,incx) bind(c, name="rocsolver_dlaswp")
       use iso_c_binding
@@ -405,12 +323,12 @@ module hipfort_rocsolver
 
 #ifdef USE_FPOINTER_INTERFACES
     module procedure &
-      rocsolver_dlaswp_full_rank,&
       rocsolver_dlaswp_rank_0,&
-      rocsolver_dlaswp_rank_1
+      rocsolver_dlaswp_rank_1,&
+      rocsolver_dlaswp_full_rank
 #endif
   end interface
-  
+
   interface rocsolver_claswp
     function rocsolver_claswp_(handle,n,A,lda,k1,k2,ipiv,incx) bind(c, name="rocsolver_claswp")
       use iso_c_binding
@@ -430,12 +348,12 @@ module hipfort_rocsolver
 
 #ifdef USE_FPOINTER_INTERFACES
     module procedure &
-      rocsolver_claswp_full_rank,&
       rocsolver_claswp_rank_0,&
-      rocsolver_claswp_rank_1
+      rocsolver_claswp_rank_1,&
+      rocsolver_claswp_full_rank
 #endif
   end interface
-  
+
   interface rocsolver_zlaswp
     function rocsolver_zlaswp_(handle,n,A,lda,k1,k2,ipiv,incx) bind(c, name="rocsolver_zlaswp")
       use iso_c_binding
@@ -455,77 +373,75 @@ module hipfort_rocsolver
 
 #ifdef USE_FPOINTER_INTERFACES
     module procedure &
-      rocsolver_zlaswp_full_rank,&
       rocsolver_zlaswp_rank_0,&
-      rocsolver_zlaswp_rank_1
+      rocsolver_zlaswp_rank_1,&
+      rocsolver_zlaswp_full_rank
 #endif
   end interface
-  !>     \brief LARFG generates a Householder reflector H of order n.
-  !> 
-  !>     \details
-  !>     The reflector H is such that
-  !> 
-  !>     \f[
-  !>         H'\left[\begin{array}{c}
-  !>         \text{alpha}\newline
+
+  !>     \brief The LARFG functions generate a Householder reflector H of order ``n``.
   !>
+  !>     \details
+  !>     The reflector H is such that:
+  !>
+  !>     \f[
+  !>         H^H\left[\begin{array}{c}
+  !>         \text{alpha}\\%
   !>         x
   !>         \end{array}\right]=\left[\begin{array}{c}
-  !>         \text{beta}\newline
-  !>
+  !>         \text{beta}\\%
   !>         0
   !>         \end{array}\right]
   !>     \f]
-  !> 
-  !>     where x is an n-1 vector, and alpha and beta are scalars. Matrix H can be
+  !>
+  !>     where ``x`` is an ``n``-1 vector and ``alpha`` and ``beta`` are scalars. Matrix H can be
   !>     generated as
-  !> 
+  !>
   !>     \f[
   !>         H = I - \text{tau}\left[\begin{array}{c}
-  !>         1\newline
-  !>
+  !>         1\\%
   !>         v
   !>         \end{array}\right]\left[\begin{array}{cc}
-  !>         1 & v'
-  !>         \end{array}\right]
+  !>         1 & v^H \end{array}\right]
   !>     \f]
-  !> 
-  !>     where v is an n-1 vector, and tau is a scalar known as the Householder scalar. The vector
-  !> 
+  !>
+  !>     where v is an ``n`` -1 vector, and ``tau`` is a scalar known as the Householder scalar. The
+  !>     vector
+  !>
   !>     \f[
   !>         \bar{v}=\left[\begin{array}{c}
-  !>         1\newline
-  !>
+  !>         1\\%
   !>         v
   !>         \end{array}\right]
   !>     \f]
-  !> 
-  !>     is the Householder vector associated with the reflection.
-  !> 
-  !>     \note
-  !>     The matrix H is orthogonal/unitary (i.e. \f$H'H=HH'=I\f$). It is symmetric when real (i.e. \f$H^T=H\f$), but not Hermitian when complex
-  !>     (i.e. \f$H^H\neq H\f$ in general).
-  !> 
-  !>     @param[in]
-  !>     handle          rocblas_handle.
-  !>     @param[in]
-  !>     n               rocblas_int. n >= 0.\n
-  !>                     The order (size) of reflector H.
-  !>     @param[inout]
-  !>     alpha           pointer to type. A scalar on the GPU.\n
-  !>                     On entry, the scalar alpha.
-  !>                     On exit, it is overwritten with beta.
-  !>     @param[inout]
-  !>     x               pointer to type. Array on the GPU of size at least n-1 (size depends on the value of incx).\n
-  !>                     On entry, the vector x,
-  !>                     On exit, it is overwritten with vector v.
-  !>     @param[in]
-  !>     incx            rocblas_int. incx > 0.\n
-  !>                     The distance between two consecutive elements of x.
-  !>     @param[out]
-  !>     tau             pointer to type. A scalar on the GPU.\n
-  !>                     The Householder scalar tau.
   !>
+  !>     is the Householder vector associated with the reflection.
+  !>
+  !>     \note
+  !>     The matrix H is orthogonal/unitary (that is, \f$H^H H=H H^H=I\f$). It is symmetric when
+  !>     real (that is, \f$H^T=H\f$), but not Hermitian when complex
+  !>     (that is, \f$H^H&ne; H\f$ in general).
+  !>
+  !>     @param[in]
+  !>     handle      rocblas_handle.
+  !>     @param[in]
+  !>     n           rocblas_int. n >= 0.
+  !>                 The order (size) of reflector H.
+  !>     @param[inout]
+  !>     alpha       pointer to type. A scalar on the GPU.
+  !>                 On entry, the scalar alpha.
+  !>                 On exit, it is overwritten with beta.
+  !>     @param[inout]
+  !>     x pointer to type. Array on the GPU of size at least n-1 (size depends on the value of
+  !>     incx).
+  !>                 On entry, the vector x,
+  !>                 On exit, it is overwritten with vector v.
+  !>     @param[in]
+  !>     incx        rocblas_int. incx > 0.
+  !>                 The distance between two consecutive elements of x.
+  !>     @param[out]
+  !>     tau         pointer to type. A scalar on the GPU.
+  !>                 The Householder scalar tau.
   interface rocsolver_slarfg
     function rocsolver_slarfg_(handle,n,alpha,x,incx,tau) bind(c, name="rocsolver_slarfg")
       use iso_c_binding
@@ -547,7 +463,7 @@ module hipfort_rocsolver
       rocsolver_slarfg_rank_1
 #endif
   end interface
-  
+
   interface rocsolver_dlarfg
     function rocsolver_dlarfg_(handle,n,alpha,x,incx,tau) bind(c, name="rocsolver_dlarfg")
       use iso_c_binding
@@ -569,7 +485,7 @@ module hipfort_rocsolver
       rocsolver_dlarfg_rank_1
 #endif
   end interface
-  
+
   interface rocsolver_clarfg
     function rocsolver_clarfg_(handle,n,alpha,x,incx,tau) bind(c, name="rocsolver_clarfg")
       use iso_c_binding
@@ -591,7 +507,7 @@ module hipfort_rocsolver
       rocsolver_clarfg_rank_1
 #endif
   end interface
-  
+
   interface rocsolver_zlarfg
     function rocsolver_zlarfg_(handle,n,alpha,x,incx,tau) bind(c, name="rocsolver_zlarfg")
       use iso_c_binding
@@ -613,66 +529,69 @@ module hipfort_rocsolver
       rocsolver_zlarfg_rank_1
 #endif
   end interface
-  !>     \brief LARFT generates the triangular factor T of a block reflector H of
-  !>     order n.
-  !> 
+
+  !>     \brief The LARFT functions generate the triangular factor ``T`` of a block reflector H of
+  !>     order ``n``.
+  !>
   !>     \details
-  !>     The block reflector H is defined as the product of k Householder matrices
-  !> 
+  !>     The block reflector H is defined as the product of ``k`` Householder matrices:
+  !>
   !>     \f[
   !>         \begin{array}{cl}
-  !>         H = H_1H_2\cdots H_k & \: \text{if direct indicates forward direction, or} \newline
-  !>
-  !>         H = H_k\cdots H_2H_1 & \: \text{if direct indicates backward direction}
+  !>         H = H(1)H(2)\cdots H(k) & \: \text{if direct indicates forward direction, or} \\%
+  !>         H = H(k)\cdots H(2)H(1) & \: \text{if direct indicates backward direction}
   !>         \end{array}
   !>     \f]
-  !> 
-  !>     The triangular factor T is upper triangular in the forward direction and lower triangular in the backward direction.
-  !>     If storev is column-wise, then
-  !> 
-  !>     \f[
-  !>         H = I - VTV'
-  !>     \f]
-  !> 
-  !>     where the i-th column of matrix V contains the Householder vector associated with \f$H_i\f$. If storev is row-wise, then
-  !> 
-  !>     \f[
-  !>         H = I - V'TV
-  !>     \f]
-  !> 
-  !>     where the i-th row of matrix V contains the Householder vector associated with \f$H_i\f$.
-  !> 
-  !>     @param[in]
-  !>     handle              rocblas_handle.
-  !>     @param[in]
-  !>     direct              rocblas_direct.\n
-  !>                         Specifies the direction in which the Householder matrices are applied.
-  !>     @param[in]
-  !>     storev              rocblas_storev.\n
-  !>                         Specifies how the Householder vectors are stored in matrix V.
-  !>     @param[in]
-  !>     n                   rocblas_int. n >= 0.\n
-  !>                         The order (size) of the block reflector.
-  !>     @param[in]
-  !>     k                   rocblas_int. k >= 1.\n
-  !>                         The number of Householder matrices forming H.
-  !>     @param[in]
-  !>     V                   pointer to type. Array on the GPU of size ldv*k if column-wise, or ldv*n if row-wise.\n
-  !>                         The matrix of Householder vectors.
-  !>     @param[in]
-  !>     ldv                 rocblas_int. ldv >= n if column-wise, or ldv >= k if row-wise.\n
-  !>                         Leading dimension of V.
-  !>     @param[in]
-  !>     tau                 pointer to type. Array of k scalars on the GPU.\n
-  !>                         The vector of all the Householder scalars.
-  !>     @param[out]
-  !>     T                   pointer to type. Array on the GPU of dimension ldt*k.\n
-  !>                         The triangular factor. T is upper triangular if direct indicates forward direction, otherwise it is
-  !>                         lower triangular. The rest of the array is not used.
-  !>     @param[in]
-  !>     ldt                 rocblas_int. ldt >= k.\n
-  !>                         The leading dimension of T.
   !>
+  !>     The triangular factor ``T`` is upper triangular in the forward direction and lower
+  !>     triangular in the backward direction.
+  !>     If ``storev`` is column-wise, then
+  !>
+  !>     \f[
+  !>         H = I - VTV^H
+  !>     \f]
+  !>
+  !>     where the \f$j\f$th column of matrix ``V`` contains the Householder vector associated with
+  !>     \f$H(j)\f$. If ``storev`` is row-wise, then
+  !>
+  !>     \f[
+  !>         H = I - V^H T V
+  !>     \f]
+  !>
+  !>     where the \f$i\f$th row of matrix ``V`` contains the Householder vector associated with
+  !>     \f$H(i)\f$.
+  !>
+  !>     @param[in]
+  !>     handle      rocblas_handle.
+  !>     @param[in]
+  !>     direct      `rocblas_direct`.
+  !>                 Specifies the direction in which the Householder matrices are applied.
+  !>     @param[in]
+  !>     storev      `rocblas_storev`.
+  !>                 Specifies how the Householder vectors are stored in matrix V.
+  !>     @param[in]
+  !>     n           rocblas_int. n >= 0.
+  !>                 The order (size) of the block reflector.
+  !>     @param[in]
+  !>     k           rocblas_int. k >= 1.
+  !>                 The number of Householder matrices forming H.
+  !>     @param[in]
+  !>     V pointer to type. Array on the GPU of size ldv*k if column-wise or ldv*n if row-wise.
+  !>                 The matrix of Householder vectors.
+  !>     @param[in]
+  !>     ldv         rocblas_int. ldv >= n if column-wise or ldv >= k if row-wise.
+  !>                 The leading dimension of V.
+  !>     @param[in]
+  !>     tau         pointer to type. Array of k scalars on the GPU.
+  !>                 The vector of all the Householder scalars.
+  !>     @param[out]
+  !>     T           pointer to type. Array on the GPU of dimension ldt*k.
+  !>                 The triangular factor. T is upper triangular if direct indicates forward
+  !>                 direction. Otherwise, it is
+  !>                 lower triangular. The rest of the array is not used.
+  !>     @param[in]
+  !>     ldt         rocblas_int. ldt >= k.
+  !>                 The leading dimension of T.
   interface rocsolver_slarft
     function rocsolver_slarft_(handle,myDirect,storev,n,k,V,ldv,tau,T,ldt) bind(c, name="rocsolver_slarft")
       use iso_c_binding
@@ -694,12 +613,12 @@ module hipfort_rocsolver
 
 #ifdef USE_FPOINTER_INTERFACES
     module procedure &
-      rocsolver_slarft_full_rank,&
       rocsolver_slarft_rank_0,&
-      rocsolver_slarft_rank_1
+      rocsolver_slarft_rank_1,&
+      rocsolver_slarft_full_rank
 #endif
   end interface
-  
+
   interface rocsolver_dlarft
     function rocsolver_dlarft_(handle,myDirect,storev,n,k,V,ldv,tau,T,ldt) bind(c, name="rocsolver_dlarft")
       use iso_c_binding
@@ -721,12 +640,12 @@ module hipfort_rocsolver
 
 #ifdef USE_FPOINTER_INTERFACES
     module procedure &
-      rocsolver_dlarft_full_rank,&
       rocsolver_dlarft_rank_0,&
-      rocsolver_dlarft_rank_1
+      rocsolver_dlarft_rank_1,&
+      rocsolver_dlarft_full_rank
 #endif
   end interface
-  
+
   interface rocsolver_clarft
     function rocsolver_clarft_(handle,myDirect,storev,n,k,V,ldv,tau,T,ldt) bind(c, name="rocsolver_clarft")
       use iso_c_binding
@@ -748,12 +667,12 @@ module hipfort_rocsolver
 
 #ifdef USE_FPOINTER_INTERFACES
     module procedure &
-      rocsolver_clarft_full_rank,&
       rocsolver_clarft_rank_0,&
-      rocsolver_clarft_rank_1
+      rocsolver_clarft_rank_1,&
+      rocsolver_clarft_full_rank
 #endif
   end interface
-  
+
   interface rocsolver_zlarft
     function rocsolver_zlarft_(handle,myDirect,storev,n,k,V,ldv,tau,T,ldt) bind(c, name="rocsolver_zlarft")
       use iso_c_binding
@@ -775,54 +694,56 @@ module hipfort_rocsolver
 
 #ifdef USE_FPOINTER_INTERFACES
     module procedure &
-      rocsolver_zlarft_full_rank,&
       rocsolver_zlarft_rank_0,&
-      rocsolver_zlarft_rank_1
+      rocsolver_zlarft_rank_1,&
+      rocsolver_zlarft_full_rank
 #endif
   end interface
-  !>     \brief LARF applies a Householder reflector H to a general matrix A.
-  !> 
-  !>     \details
-  !>     The Householder reflector H, of order m or n, is to be applied to an m-by-n matrix A
-  !>     from the left or the right, depending on the value of side. H is given by
-  !> 
-  !>     \f[
-  !>         H = I - \text{alpha}\cdot xx'
-  !>     \f]
-  !> 
-  !>     where alpha is the Householder scalar and x is a Householder vector. H is never actually computed.
-  !> 
-  !>     @param[in]
-  !>     handle          rocblas_handle.
-  !>     @param[in]
-  !>     side            rocblas_side.\n
-  !>                     Determines whether H is applied from the left or the right.
-  !>     @param[in]
-  !>     m               rocblas_int. m >= 0.\n
-  !>                     Number of rows of A.
-  !>     @param[in]
-  !>     n               rocblas_int. n >= 0.\n
-  !>                     Number of columns of A.
-  !>     @param[in]
-  !>     x               pointer to type. Array on the GPU of
-  !>                     size at least 1 + (m-1)*abs(incx) if left side, or
-  !>                     at least 1 + (n-1)*abs(incx) if right side.\n
-  !>                     The Householder vector x.
-  !>     @param[in]
-  !>     incx            rocblas_int. incx != 0.\n
-  !>                     Distance between two consecutive elements of x.
-  !>                     If incx < 0, the elements of x are indexed in reverse order.
-  !>     @param[in]
-  !>     alpha           pointer to type. A scalar on the GPU.\n
-  !>                     The Householder scalar. If alpha = 0, then H = I (A will remain the same; x is never used)
-  !>     @param[inout]
-  !>     A               pointer to type. Array on the GPU of size lda*n.\n
-  !>                     On entry, the matrix A. On exit, it is overwritten with
-  !>                     H*A (or A*H).
-  !>     @param[in]
-  !>     lda             rocblas_int. lda >= m.\n
-  !>                     Leading dimension of A.
+
+  !>     \brief The LARF functions apply a Householder reflector H to a general matrix ``A``.
   !>
+  !>     \details
+  !>     The Householder reflector H, of order ``m`` or ``n``, is applied to an ``m`` -by-``n``
+  !>     matrix ``A``
+  !>     from the left or the right, depending on the value of ``side``. H is given by
+  !>
+  !>     \f[
+  !>         H = I - \text{alpha}\cdot xx^H
+  !>     \f]
+  !>
+  !>     where ``alpha`` is the Householder scalar and ``x`` is a Householder vector. H is never
+  !>     actually computed.
+  !>
+  !>     @param[in]
+  !>     handle      rocblas_handle.
+  !>     @param[in]
+  !>     side        rocblas_side.
+  !>                 Determines whether H is applied from the left or the right.
+  !>     @param[in]
+  !>     m           rocblas_int. m >= 0.
+  !>                 Number of rows of A.
+  !>     @param[in]
+  !>     n           rocblas_int. n >= 0.
+  !>                 Number of columns of A.
+  !>     @param[in]
+  !>     x pointer to type. Array on the GPU of size at least 1 + (m-1)*abs(incx) if left side, or
+  !>                 at least 1 + (n-1)*abs(incx) if right side.
+  !>                 The Householder vector x.
+  !>     @param[in]
+  !>     incx        rocblas_int. incx != 0.
+  !>                 Distance between two consecutive elements of x.
+  !>                 If incx < 0, the elements of x are indexed in reverse order.
+  !>     @param[in]
+  !>     alpha       pointer to type. A scalar on the GPU.
+  !>                 The Householder scalar. If \f$\alpha = 0\f$, then \f$H = I\f$ (A will remain
+  !>                 the same, and x is never used).
+  !>     @param[inout]
+  !>     A           pointer to type. Array on the GPU of size lda*n.
+  !>                 On entry, the matrix A. On exit, it is overwritten with
+  !>                 \f$HA\f$ (or \f$AH\f$).
+  !>     @param[in]
+  !>     lda         rocblas_int. lda >= m.
+  !>                 Leading dimension of A.
   interface rocsolver_slarf
     function rocsolver_slarf_(handle,side,m,n,x,incx,alpha,A,lda) bind(c, name="rocsolver_slarf")
       use iso_c_binding
@@ -843,12 +764,12 @@ module hipfort_rocsolver
 
 #ifdef USE_FPOINTER_INTERFACES
     module procedure &
-      rocsolver_slarf_full_rank,&
       rocsolver_slarf_rank_0,&
-      rocsolver_slarf_rank_1
+      rocsolver_slarf_rank_1,&
+      rocsolver_slarf_full_rank
 #endif
   end interface
-  
+
   interface rocsolver_dlarf
     function rocsolver_dlarf_(handle,side,m,n,x,incx,alpha,A,lda) bind(c, name="rocsolver_dlarf")
       use iso_c_binding
@@ -869,12 +790,12 @@ module hipfort_rocsolver
 
 #ifdef USE_FPOINTER_INTERFACES
     module procedure &
-      rocsolver_dlarf_full_rank,&
       rocsolver_dlarf_rank_0,&
-      rocsolver_dlarf_rank_1
+      rocsolver_dlarf_rank_1,&
+      rocsolver_dlarf_full_rank
 #endif
   end interface
-  
+
   interface rocsolver_clarf
     function rocsolver_clarf_(handle,side,m,n,x,incx,alpha,A,lda) bind(c, name="rocsolver_clarf")
       use iso_c_binding
@@ -895,12 +816,12 @@ module hipfort_rocsolver
 
 #ifdef USE_FPOINTER_INTERFACES
     module procedure &
-      rocsolver_clarf_full_rank,&
       rocsolver_clarf_rank_0,&
-      rocsolver_clarf_rank_1
+      rocsolver_clarf_rank_1,&
+      rocsolver_clarf_full_rank
 #endif
   end interface
-  
+
   interface rocsolver_zlarf
     function rocsolver_zlarf_(handle,side,m,n,x,incx,alpha,A,lda) bind(c, name="rocsolver_zlarf")
       use iso_c_binding
@@ -921,99 +842,102 @@ module hipfort_rocsolver
 
 #ifdef USE_FPOINTER_INTERFACES
     module procedure &
-      rocsolver_zlarf_full_rank,&
       rocsolver_zlarf_rank_0,&
-      rocsolver_zlarf_rank_1
+      rocsolver_zlarf_rank_1,&
+      rocsolver_zlarf_full_rank
 #endif
   end interface
-  !>     \brief LARFB applies a block reflector H to a general m-by-n matrix A.
-  !> 
+
+  !>     \brief The LARFB functions apply a block reflector ``H`` to a general ``m`` -by-``n``
+  !>     matrix ``A``.
+  !>
   !>     \details
   !>     The block reflector H is applied in one of the following forms, depending on
-  !>     the values of side and trans:
-  !> 
+  !>     the values of ``side`` and ``trans``:
+  !>
   !>     \f[
   !>         \begin{array}{cl}
-  !>         HA & \: \text{(No transpose from the left),}\newline
-  !>
-  !>         H'A & \:  \text{(Transpose or conjugate transpose from the left),}\newline
-  !>
-  !>         AH & \: \text{(No transpose from the right), or}\newline
-  !>
-  !>         AH' & \: \text{(Transpose or conjugate transpose from the right).}
+  !>         HA & \: \text{(No transpose from the left),}\\%
+  !>         H^H A & \:  \text{(Transpose or conjugate transpose from the left),}\\%
+  !>         AH & \: \text{(No transpose from the right), or}\\%
+  !>         AH^H & \: \text{(Transpose or conjugate transpose from the right).}
   !>         \end{array}
   !>     \f]
-  !> 
-  !>     The block reflector H is defined as the product of k Householder matrices as
-  !> 
+  !>
+  !>     The block reflector H is defined as the product of ``k`` Householder matrices as
+  !>
   !>     \f[
   !>         \begin{array}{cl}
-  !>         H = H_1H_2\cdots H_k & \: \text{if direct indicates forward direction, or} \newline
-  !>
-  !>         H = H_k\cdots H_2H_1 & \: \text{if direct indicates backward direction}
+  !>         H = H(1)H(2)\cdots H(k) & \: \text{if direct indicates forward direction, or} \\%
+  !>         H = H(k)\cdots H(2)H(1) & \: \text{if direct indicates backward direction}
   !>         \end{array}
   !>     \f]
-  !> 
+  !>
   !>     H is never stored. It is calculated as
-  !> 
-  !>     \f[
-  !>         H = I - VTV'
-  !>     \f]
-  !> 
-  !>     where the i-th column of matrix V contains the Householder vector associated with \f$H_i\f$, if storev is column-wise; or
-  !> 
-  !>     \f[
-  !>         H = I - V'TV
-  !>     \f]
-  !> 
-  !>     where the i-th row of matrix V contains the Householder vector associated with \f$H_i\f$, if storev is row-wise.
-  !>     T is the associated triangular factor as computed by \ref rocsolver_slarft "LARFT".
-  !> 
-  !>     @param[in]
-  !>     handle              rocblas_handle.
-  !>     @param[in]
-  !>     side                rocblas_side.\n
-  !>                         Specifies from which side to apply H.
-  !>     @param[in]
-  !>     trans               rocblas_operation.\n
-  !>                         Specifies whether the block reflector or its transpose/conjugate transpose is to be applied.
-  !>     @param[in]
-  !>     direct              rocblas_direct.\n
-  !>                         Specifies the direction in which the Householder matrices are to be applied to generate H.
-  !>     @param[in]
-  !>     storev              rocblas_storev.\n
-  !>                         Specifies how the Householder vectors are stored in matrix V.
-  !>     @param[in]
-  !>     m                   rocblas_int. m >= 0.\n
-  !>                         Number of rows of matrix A.
-  !>     @param[in]
-  !>     n                   rocblas_int. n >= 0.\n
-  !>                         Number of columns of matrix A.
-  !>     @param[in]
-  !>     k                   rocblas_int. k >= 1.\n
-  !>                         The number of Householder matrices.
-  !>     @param[in]
-  !>     V                   pointer to type. Array on the GPU of size ldv*k if column-wise, ldv*n if row-wise and applying from the right,
-  !>                         or ldv*m if row-wise and applying from the left.\n
-  !>                         The matrix of Householder vectors.
-  !>     @param[in]
-  !>     ldv                 rocblas_int. ldv >= k if row-wise, ldv >= m if column-wise and applying from the left, or ldv >= n if
-  !>                         column-wise and applying from the right.\n
-  !>                         Leading dimension of V.
-  !>     @param[in]
-  !>     T                   pointer to type. Array on the GPU of dimension ldt*k.\n
-  !>                         The triangular factor of the block reflector.
-  !>     @param[in]
-  !>     ldt                 rocblas_int. ldt >= k.\n
-  !>                         The leading dimension of T.
-  !>     @param[inout]
-  !>     A                   pointer to type. Array on the GPU of size lda*n.\n
-  !>                         On entry, the matrix A. On exit, it is overwritten with
-  !>                         H*A, A*H, H'*A, or A*H'.
-  !>     @param[in]
-  !>     lda                 rocblas_int. lda >= m.\n
-  !>                         Leading dimension of A.
   !>
+  !>     \f[
+  !>         H = I - VTV^H
+  !>     \f]
+  !>
+  !>     where the \f$j\f$th column of matrix ``V`` contains the Householder vector associated with
+  !>     \f$H(j)\f$, if ``storev`` is column-wise, or
+  !>
+  !>     \f[
+  !>         H = I - V^H T V
+  !>     \f]
+  !>
+  !>     where the \f$i\f$th row of matrix ``V`` contains the Householder vector associated with
+  !>     \f$H(i)\f$, if ``storev`` is row-wise.
+  !>     ``T`` is the associated triangular factor as computed by \ref rocsolver_slarft "LARFT".
+  !>
+  !>     @param[in]
+  !>     handle      rocblas_handle.
+  !>     @param[in]
+  !>     side        rocblas_side.
+  !>                 Specifies from which side to apply H.
+  !>     @param[in]
+  !>     trans       rocblas_operation.
+  !>                 Specifies whether the block reflector or its transpose/conjugate transpose is
+  !>                 to be applied.
+  !>     @param[in]
+  !>     direct      `rocblas_direct`.
+  !>                 Specifies the direction in which the Householder matrices are to be applied to
+  !>                 generate H.
+  !>     @param[in]
+  !>     storev      `rocblas_storev`.
+  !>                 Specifies how the Householder vectors are stored in matrix V.
+  !>     @param[in]
+  !>     m           rocblas_int. m >= 0.
+  !>                 Number of rows of matrix A.
+  !>     @param[in]
+  !>     n           rocblas_int. n >= 0.
+  !>                 Number of columns of matrix A.
+  !>     @param[in]
+  !>     k           rocblas_int. k >= 1.
+  !>                 The number of Householder matrices.
+  !>     @param[in]
+  !>     V pointer to type. Array on the GPU of size ldv*k if column-wise, ldv*n if row-wise and
+  !>     applying from the right,
+  !>                 or ldv*m if row-wise and applying from the left.
+  !>                 The matrix of Householder vectors.
+  !>     @param[in]
+  !>     ldv rocblas_int. ldv >= k if row-wise, ldv >= m if column-wise and applying from the left,
+  !>     or ldv >= n if
+  !>                 column-wise and applying from the right.
+  !>                 The leading dimension of V.
+  !>     @param[in]
+  !>     T           pointer to type. Array on the GPU of dimension ldt*k.
+  !>                 The triangular factor of the block reflector.
+  !>     @param[in]
+  !>     ldt         rocblas_int. ldt >= k.
+  !>                 The leading dimension of T.
+  !>     @param[inout]
+  !>     A           pointer to type. Array on the GPU of size lda*n.
+  !>                 On entry, the matrix A. On exit, it is overwritten with
+  !>                 \f$HA\f$, \f$AH\f$, \f$H^H A\f$, or \f$AH^H\f$.
+  !>     @param[in]
+  !>     lda         rocblas_int. lda >= m.
+  !>                 The leading dimension of A.
   interface rocsolver_slarfb
     function rocsolver_slarfb_(handle,side,trans,myDirect,storev,m,n,k,V,ldv,T,ldt,A,lda) bind(c, name="rocsolver_slarfb")
       use iso_c_binding
@@ -1039,12 +963,12 @@ module hipfort_rocsolver
 
 #ifdef USE_FPOINTER_INTERFACES
     module procedure &
-      rocsolver_slarfb_full_rank,&
       rocsolver_slarfb_rank_0,&
-      rocsolver_slarfb_rank_1
+      rocsolver_slarfb_rank_1,&
+      rocsolver_slarfb_full_rank
 #endif
   end interface
-  
+
   interface rocsolver_dlarfb
     function rocsolver_dlarfb_(handle,side,trans,myDirect,storev,m,n,k,V,ldv,T,ldt,A,lda) bind(c, name="rocsolver_dlarfb")
       use iso_c_binding
@@ -1070,12 +994,12 @@ module hipfort_rocsolver
 
 #ifdef USE_FPOINTER_INTERFACES
     module procedure &
-      rocsolver_dlarfb_full_rank,&
       rocsolver_dlarfb_rank_0,&
-      rocsolver_dlarfb_rank_1
+      rocsolver_dlarfb_rank_1,&
+      rocsolver_dlarfb_full_rank
 #endif
   end interface
-  
+
   interface rocsolver_clarfb
     function rocsolver_clarfb_(handle,side,trans,myDirect,storev,m,n,k,V,ldv,T,ldt,A,lda) bind(c, name="rocsolver_clarfb")
       use iso_c_binding
@@ -1101,12 +1025,12 @@ module hipfort_rocsolver
 
 #ifdef USE_FPOINTER_INTERFACES
     module procedure &
-      rocsolver_clarfb_full_rank,&
       rocsolver_clarfb_rank_0,&
-      rocsolver_clarfb_rank_1
+      rocsolver_clarfb_rank_1,&
+      rocsolver_clarfb_full_rank
 #endif
   end interface
-  
+
   interface rocsolver_zlarfb
     function rocsolver_zlarfb_(handle,side,trans,myDirect,storev,m,n,k,V,ldv,T,ldt,A,lda) bind(c, name="rocsolver_zlarfb")
       use iso_c_binding
@@ -1132,106 +1056,116 @@ module hipfort_rocsolver
 
 #ifdef USE_FPOINTER_INTERFACES
     module procedure &
-      rocsolver_zlarfb_full_rank,&
       rocsolver_zlarfb_rank_0,&
-      rocsolver_zlarfb_rank_1
+      rocsolver_zlarfb_rank_1,&
+      rocsolver_zlarfb_full_rank
 #endif
   end interface
-  !>     \brief LABRD computes the bidiagonal form of the first k rows and columns of
-  !>     a general m-by-n matrix A, as well as the matrices X and Y needed to reduce
-  !>     the remaining part of A.
-  !> 
+
+  !>     \brief The LABRD functions computes the bidiagonal form of the first ``k`` rows and columns
+  !>     of
+  !>     a general ``m`` -by-``n`` matrix ``A``, as well as the matrices ``X`` and ``Y`` needed to
+  !>     reduce
+  !>     the remaining part of ``A``.
+  !>
   !>     \details
   !>     The reduced form is given by:
-  !> 
+  !>
   !>     \f[
-  !>         B = Q'AP
+  !>         B = Q^H A P
   !>     \f]
-  !> 
-  !>     where the leading k-by-k block of B is upper bidiagonal if m >= n, or lower bidiagonal if m < n. Q and
-  !>     P are orthogonal/unitary matrices represented as the product of Householder matrices
-  !> 
+  !>
+  !>     where the leading ``k`` -by-``k`` block of B is upper bidiagonal if ``m`` >= ``n``, or
+  !>     lower bidiagonal if ``m`` < ``n``. Q and
+  !>     P are orthogonal/unitary matrices represented as the product of Householder matrices:
+  !>
   !>     \f[
   !>         \begin{array}{cl}
-  !>         Q = H_1H_2\cdots H_k, & \text{and} \newline
-  !>
-  !>         P = G_1G_2\cdots G_k.
+  !>         Q = H(1)H(2)\cdots H(k), & \text{and} \\%
+  !>         P = G(1)G(2)\cdots G(k).
   !>         \end{array}
   !>     \f]
-  !> 
-  !>     Each Householder matrix \f$H_i\f$ and \f$G_i\f$ is given by
-  !> 
+  !>
+  !>     Each Householder matrix \f$H(i)\f$ and \f$G(i)\f$ is given by
+  !>
   !>     \f[
   !>         \begin{array}{cl}
-  !>         H_i = I - \text{tauq}[i]\cdot v_iv_i', & \text{and} \newline
-  !>
-  !>         G_i = I - \text{taup}[i]\cdot u_iu_i'.
+  !>         H(i) = I - \text{tauq}[i]\cdot v_i^{}v_i^H, & \text{and} \\%
+  !>         G(i) = I - \text{taup}[i]\cdot u_i^{}u_i^H.
   !>         \end{array}
   !>     \f]
-  !> 
-  !>     If m >= n, the first i-1 elements of the Householder vector \f$v_i\f$ are zero, and \f$v_i[i]=1\f$;
-  !>     while the first i elements of the Householder vector \f$u_i\f$ are zero, and  \f$u_i[i+1]=1\f$.
-  !>     If m < n, the first i elements of the Householder vector  \f$v_i\f$ are zero, and  \f$v_i[i+1]=1\f$;
-  !>     while the first i-1 elements of the Householder vector \f$u_i\f$ are zero, and \f$u_i[i]=1\f$.
-  !> 
-  !>     The unreduced part of the matrix A can be updated using the block update
-  !> 
+  !>
+  !>     If ``m`` >= ``n``, the first \f$i-1\f$ elements of the Householder vector \f$v_i\f$ are
+  !>     zero, and \f$v_i[i]=1\f$,
+  !>     while the first \f$i\f$ elements of the Householder vector \f$u_i\f$ are zero, and
+  !>     \f$u_i[i+1]=1\f$.
+  !>     If ``m`` < ``n``, the first \f$i\f$ elements of the Householder vector \f$v_i\f$ are zero,
+  !>     and \f$v_i[i+1]=1\f$,
+  !>     while the first \f$i-1\f$ elements of the Householder vector \f$u_i\f$ are zero, and
+  !>     \f$u_i[i]=1\f$.
+  !>
+  !>     The unreduced part of the matrix ``A`` can be updated using the block update
+  !>
   !>     \f[
-  !>         A = A - VY' - XU'
+  !>         A = A - VY^H - XU^H
   !>     \f]
-  !> 
-  !>     where V and U are the m-by-k and n-by-k matrices formed with the vectors \f$v_i\f$ and \f$u_i\f$, respectively.
-  !> 
+  !>
+  !>     where V and U are the ``m`` -by-``k`` and ``n`` -by-``k`` matrices formed with the vectors
+  !>     \f$v_i\f$ and \f$u_i\f$, respectively.
+  !>
   !>     @param[in]
-  !>     handle    rocblas_handle.
+  !>     handle      rocblas_handle.
   !>     @param[in]
-  !>     m         rocblas_int. m >= 0.\n
-  !>               The number of rows of the matrix A.
+  !>     m           rocblas_int. m >= 0.
+  !>                 The number of rows of the matrix A.
   !>     @param[in]
-  !>     n         rocblas_int. n >= 0.\n
-  !>               The number of columns of the matrix A.
+  !>     n           rocblas_int. n >= 0.
+  !>                 The number of columns of the matrix A.
   !>     @param[in]
-  !>     k         rocblas_int. min(m,n) >= k >= 0.\n
-  !>               The number of leading rows and columns of matrix A that will be reduced.
+  !>     k           rocblas_int. min(m,n) >= k >= 0.
+  !>                 The number of leading rows and columns of matrix A that will be reduced.
   !>     @param[inout]
-  !>     A         pointer to type. Array on the GPU of dimension lda*n.\n
-  !>               On entry, the m-by-n matrix to be reduced.
-  !>               On exit, the first k elements on the diagonal and superdiagonal (if m >= n), or
-  !>               subdiagonal (if m < n), contain the bidiagonal form B.
-  !>               If m >= n, the elements below the diagonal of the first k columns are the possibly non-zero elements
-  !>               of the Householder vectors associated with Q, while the elements above the
-  !>               superdiagonal of the first k rows are the n - i - 1 possibly non-zero elements of the Householder vectors related to P.
-  !>               If m < n, the elements below the subdiagonal of the first k columns are the m - i - 1 possibly non-zero
-  !>               elements of the Householder vectors related to Q, while the elements above the
-  !>               diagonal of the first k rows are the n - i possibly non-zero elements of the vectors associated with P.
+  !>     A           pointer to type. Array on the GPU of dimension lda*n.
+  !>                 On entry, the m-by-n matrix to be reduced.
+  !>                 On exit, the first k elements on the diagonal and superdiagonal (if m >= n) or
+  !>                 subdiagonal (if m < n) contain the bidiagonal form B.
+  !>                 - If m >= n, the elements below the diagonal of the first k columns are the
+  !>                 (possibly non-zero) elements
+  !>                 of the Householder vectors associated with Q, while the elements above the
+  !>                 superdiagonal of the first k rows are the n - i - 1 (possibly non-zero)
+  !>                 elements of the Householder vectors related to P.
+  !>                 - If m < n, the elements below the subdiagonal of the first k columns are the m
+  !>                 - i - 1 (possibly non-zero)
+  !>                 elements of the Householder vectors related to Q, while the elements above the
+  !>                 diagonal of the first k rows are the n - i (possibly non-zero) elements of the
+  !>                 vectors associated with P.
   !>     @param[in]
-  !>     lda       rocblas_int. lda >= m.\n
-  !>               specifies the leading dimension of A.
+  !>     lda         rocblas_int. lda >= m.
+  !>                 Specifies the leading dimension of A.
   !>     @param[out]
-  !>     D         pointer to real type. Array on the GPU of dimension k.\n
-  !>               The diagonal elements of B.
+  !>     D           pointer to real type. Array on the GPU of dimension k.
+  !>                 The diagonal elements of B.
   !>     @param[out]
-  !>     E         pointer to real type. Array on the GPU of dimension k.\n
-  !>               The off-diagonal elements of B.
+  !>     E           pointer to real type. Array on the GPU of dimension k.
+  !>                 The off-diagonal elements of B.
   !>     @param[out]
-  !>     tauq      pointer to type. Array on the GPU of dimension k.\n
-  !>               The Householder scalars associated with matrix Q.
+  !>     tauq        pointer to type. Array on the GPU of dimension k.
+  !>                 The Householder scalars associated with matrix Q.
   !>     @param[out]
-  !>     taup      pointer to type. Array on the GPU of dimension k.\n
-  !>               The Householder scalars associated with matrix P.
+  !>     taup        pointer to type. Array on the GPU of dimension k.
+  !>                 The Householder scalars associated with matrix P.
   !>     @param[out]
-  !>     X         pointer to type. Array on the GPU of dimension ldx*k.\n
-  !>               The m-by-k matrix needed to update the unreduced part of A.
+  !>     X           pointer to type. Array on the GPU of dimension ldx*k.
+  !>                 The m-by-k matrix needed to update the unreduced part of A.
   !>     @param[in]
-  !>     ldx       rocblas_int. ldx >= m.\n
-  !>               The leading dimension of X.
+  !>     ldx         rocblas_int. ldx >= m.
+  !>                 The leading dimension of X.
   !>     @param[out]
-  !>     Y         pointer to type. Array on the GPU of dimension ldy*k.\n
-  !>               The n-by-k matrix needed to update the unreduced part of A.
+  !>     Y           pointer to type. Array on the GPU of dimension ldy*k.
+  !>                 The n-by-k matrix needed to update the unreduced part of A.
   !>     @param[in]
-  !>     ldy       rocblas_int. ldy >= n.\n
-  !>               The leading dimension of Y.
-  !>
+  !>     ldy         rocblas_int. ldy >= n.
+  !>                 The leading dimension of Y.
   interface rocsolver_slabrd
     function rocsolver_slabrd_(handle,m,n,k,A,lda,D,E,tauq,taup,X,ldx,Y,ldy) bind(c, name="rocsolver_slabrd")
       use iso_c_binding
@@ -1257,12 +1191,12 @@ module hipfort_rocsolver
 
 #ifdef USE_FPOINTER_INTERFACES
     module procedure &
-      rocsolver_slabrd_full_rank,&
       rocsolver_slabrd_rank_0,&
-      rocsolver_slabrd_rank_1
+      rocsolver_slabrd_rank_1,&
+      rocsolver_slabrd_full_rank
 #endif
   end interface
-  
+
   interface rocsolver_dlabrd
     function rocsolver_dlabrd_(handle,m,n,k,A,lda,D,E,tauq,taup,X,ldx,Y,ldy) bind(c, name="rocsolver_dlabrd")
       use iso_c_binding
@@ -1288,12 +1222,12 @@ module hipfort_rocsolver
 
 #ifdef USE_FPOINTER_INTERFACES
     module procedure &
-      rocsolver_dlabrd_full_rank,&
       rocsolver_dlabrd_rank_0,&
-      rocsolver_dlabrd_rank_1
+      rocsolver_dlabrd_rank_1,&
+      rocsolver_dlabrd_full_rank
 #endif
   end interface
-  
+
   interface rocsolver_clabrd
     function rocsolver_clabrd_(handle,m,n,k,A,lda,D,E,tauq,taup,X,ldx,Y,ldy) bind(c, name="rocsolver_clabrd")
       use iso_c_binding
@@ -1319,12 +1253,12 @@ module hipfort_rocsolver
 
 #ifdef USE_FPOINTER_INTERFACES
     module procedure &
-      rocsolver_clabrd_full_rank,&
       rocsolver_clabrd_rank_0,&
-      rocsolver_clabrd_rank_1
+      rocsolver_clabrd_rank_1,&
+      rocsolver_clabrd_full_rank
 #endif
   end interface
-  
+
   interface rocsolver_zlabrd
     function rocsolver_zlabrd_(handle,m,n,k,A,lda,D,E,tauq,taup,X,ldx,Y,ldy) bind(c, name="rocsolver_zlabrd")
       use iso_c_binding
@@ -1350,90 +1284,102 @@ module hipfort_rocsolver
 
 #ifdef USE_FPOINTER_INTERFACES
     module procedure &
-      rocsolver_zlabrd_full_rank,&
       rocsolver_zlabrd_rank_0,&
-      rocsolver_zlabrd_rank_1
+      rocsolver_zlabrd_rank_1,&
+      rocsolver_zlabrd_full_rank
 #endif
   end interface
+
   !>     \brief LATRD computes the tridiagonal form of k rows and columns of
   !>     a symmetric/hermitian matrix A, as well as the matrix W needed to update
   !>     the remaining part of A.
-  !> 
+  !>
   !>     \details
   !>     The reduced form is given by:
-  !> 
+  !>
   !>     \f[
-  !>         T = Q'AQ
+  !>         T = Q^H A Q
   !>     \f]
-  !> 
-  !>     If uplo is lower, the first k rows and columns of T form the tridiagonal block. If uplo is upper, then the last
-  !>     k rows and columns of T form the tridiagonal block. Q is an orthogonal/unitary matrix represented as the
+  !>
+  !>     If uplo is lower, the first k rows and columns of T form the tridiagonal block. If uplo is
+  !>     upper, then the last
+  !>     k rows and columns of T form the tridiagonal block. Q is an orthogonal/unitary matrix
+  !>     represented as the
   !>     product of Householder matrices
-  !> 
+  !>
   !>     \f[
   !>         \begin{array}{cl}
-  !>         Q = H_1H_2\cdots H_k & \text{if uplo indicates lower, or}\newline
-  !>
-  !>         Q = H_nH_{n-1}\cdots H_{n-k+1} & \text{if uplo is upper}.
+  !>         Q = H(1)H(2)\cdots H(k) & \text{if uplo indicates lower, or}\\%
+  !>         Q = H(n)H(n-1)\cdots H(n-k+1) & \text{if uplo is upper}.
   !>         \end{array}
   !>     \f]
-  !> 
-  !>     Each Householder matrix \f$H_i\f$ is given by
-  !> 
+  !>
+  !>     Each Householder matrix \f$H(i)\f$ is given by
+  !>
   !>     \f[
-  !>         H_i = I - \text{tau}[i]\cdot v_iv_i'
+  !>         H(i) = I - \text{tau}[i]\cdot v_i^{}v_i^H
   !>     \f]
-  !> 
-  !>     where tau[i] is the corresponding Householder scalar. When uplo indicates lower, the first i
-  !>     elements of the Householder vector \f$v_i\f$ are zero, and \f$v_i[i+1] = 1\f$. If uplo is upper,
-  !>     the last n-i elements of the Householder vector \f$v_i\f$ are zero, and \f$v_i[i] = 1\f$.
-  !> 
+  !>
+  !>     where tau[\f$i\f$] is the corresponding Householder scalar. When uplo indicates lower, the
+  !>     first \f$i\f$
+  !>     elements of the Householder vector \f$v_i\f$ are zero, and \f$v_i[i+1] = 1\f$. If uplo is
+  !>     upper,
+  !>     the last n-\f$i\f$ elements of the Householder vector \f$v_i\f$ are zero, and \f$v_i[i] =
+  !>     1\f$.
+  !>
   !>     The unreduced part of the matrix A can be updated using a rank update of the form:
-  !> 
+  !>
   !>     \f[
-  !>         A = A - VW' - WV'
+  !>         A = A - VW^H - WV^H
   !>     \f]
-  !> 
+  !>
   !>     where V is the n-by-k matrix formed by the vectors \f$v_i\f$.
-  !> 
+  !>
   !>     @param[in]
-  !>     handle    rocblas_handle.
+  !>     handle      rocblas_handle.
   !>     @param[in]
-  !>     uplo      rocblas_fill.\n
-  !>               Specifies whether the upper or lower part of the matrix A is stored.
-  !>               If uplo indicates lower (or upper), then the upper (or lower)
-  !>               part of A is not used.
+  !>     uplo        rocblas_fill.
+  !>                 Specifies whether the upper or lower part of the matrix A is stored.
+  !>                 If uplo indicates lower (or upper), then the upper (or lower)
+  !>                 part of A is not used.
   !>     @param[in]
-  !>     n         rocblas_int. n >= 0.\n
-  !>               The number of rows and columns of the matrix A.
+  !>     n           rocblas_int. n >= 0.
+  !>                 The number of rows and columns of the matrix A.
   !>     @param[in]
-  !>     k         rocblas_int. 0 <= k <= n.\n
-  !>               The number of rows and columns of the matrix A to be reduced.
+  !>     k           rocblas_int. 0 <= k <= n.
+  !>                 The number of rows and columns of the matrix A to be reduced.
   !>     @param[inout]
-  !>     A         pointer to type. Array on the GPU of dimension lda*n.\n
-  !>               On entry, the n-by-n matrix to be reduced.
-  !>               On exit, if uplo is lower, the first k columns have been reduced to tridiagonal form
-  !>               (given in the diagonal elements of A and the array E), the elements below the diagonal
-  !>               contain the possibly non-zero entries of the Householder vectors associated with Q, stored as columns.
-  !>               If uplo is upper, the last k columns have been reduced to tridiagonal form
-  !>               (given in the diagonal elements of A and the array E), the elements above the diagonal
-  !>               contain the possibly non-zero entries of the Householder vectors associated with Q, stored as columns.
+  !>     A           pointer to type. Array on the GPU of dimension lda*n.
+  !>                 On entry, the n-by-n matrix to be reduced.
+  !>                 On exit, if uplo is lower, the first k columns have been reduced to tridiagonal
+  !>                 form
+  !>                 (given in the diagonal elements of A and the array E), the elements below the
+  !>                 diagonal
+  !>                 contain the possibly non-zero entries of the Householder vectors associated
+  !>                 with Q, stored as columns.
+  !>                 If uplo is upper, the last k columns have been reduced to tridiagonal form
+  !>                 (given in the diagonal elements of A and the array E), the elements above the
+  !>                 diagonal
+  !>                 contain the possibly non-zero entries of the Householder vectors associated
+  !>                 with Q, stored as columns.
   !>     @param[in]
-  !>     lda       rocblas_int. lda >= n.\n
-  !>               The leading dimension of A.
+  !>     lda         rocblas_int. lda >= n.
+  !>                 The leading dimension of A.
   !>     @param[out]
-  !>     E         pointer to real type. Array on the GPU of dimension n-1.\n
-  !>               If upper (lower), the last (first) k elements of E are the off-diagonal elements of the
-  !>               computed tridiagonal block.
+  !>     E           pointer to real type. Array on the GPU of dimension n-1.
+  !>                 If upper (lower), the last (first) k elements of E are the off-diagonal
+  !>                 elements of the
+  !>                 computed tridiagonal block.
   !>     @param[out]
-  !>     tau       pointer to type. Array on the GPU of dimension n-1.\n
-  !>               If upper (lower), the last (first) k elements of tau are the Householder scalars related to Q.
+  !>     tau         pointer to type. Array on the GPU of dimension n-1.
+  !>                 If upper (lower), the last (first) k elements of tau are the Householder
+  !>                 scalars related to Q.
   !>     @param[out]
-  !>     W         pointer to type. Array on the GPU of dimension ldw*k.\n
-  !>               The n-by-k matrix needed to update the unreduced part of A.
+  !>     W           pointer to type. Array on the GPU of dimension ldw*k.
+  !>                 The n-by-k matrix needed to update the unreduced part of A.
   !>     @param[in]
-  !>     ldw       rocblas_int. ldw >= n.\n
-  !>               The leading dimension of W.
+  !>     ldw         rocblas_int. ldw >= n.
+  !>                 The leading dimension of W.
   interface rocsolver_slatrd
     function rocsolver_slatrd_(handle,uplo,n,k,A,lda,E,tau,W,ldw) bind(c, name="rocsolver_slatrd")
       use iso_c_binding
@@ -1455,12 +1401,12 @@ module hipfort_rocsolver
 
 #ifdef USE_FPOINTER_INTERFACES
     module procedure &
-      rocsolver_slatrd_full_rank,&
       rocsolver_slatrd_rank_0,&
-      rocsolver_slatrd_rank_1
+      rocsolver_slatrd_rank_1,&
+      rocsolver_slatrd_full_rank
 #endif
   end interface
-  
+
   interface rocsolver_dlatrd
     function rocsolver_dlatrd_(handle,uplo,n,k,A,lda,E,tau,W,ldw) bind(c, name="rocsolver_dlatrd")
       use iso_c_binding
@@ -1482,12 +1428,12 @@ module hipfort_rocsolver
 
 #ifdef USE_FPOINTER_INTERFACES
     module procedure &
-      rocsolver_dlatrd_full_rank,&
       rocsolver_dlatrd_rank_0,&
-      rocsolver_dlatrd_rank_1
+      rocsolver_dlatrd_rank_1,&
+      rocsolver_dlatrd_full_rank
 #endif
   end interface
-  
+
   interface rocsolver_clatrd
     function rocsolver_clatrd_(handle,uplo,n,k,A,lda,E,tau,W,ldw) bind(c, name="rocsolver_clatrd")
       use iso_c_binding
@@ -1509,12 +1455,12 @@ module hipfort_rocsolver
 
 #ifdef USE_FPOINTER_INTERFACES
     module procedure &
-      rocsolver_clatrd_full_rank,&
       rocsolver_clatrd_rank_0,&
-      rocsolver_clatrd_rank_1
+      rocsolver_clatrd_rank_1,&
+      rocsolver_clatrd_full_rank
 #endif
   end interface
-  
+
   interface rocsolver_zlatrd
     function rocsolver_zlatrd_(handle,uplo,n,k,A,lda,E,tau,W,ldw) bind(c, name="rocsolver_zlatrd")
       use iso_c_binding
@@ -1536,97 +1482,92 @@ module hipfort_rocsolver
 
 #ifdef USE_FPOINTER_INTERFACES
     module procedure &
-      rocsolver_zlatrd_full_rank,&
       rocsolver_zlatrd_rank_0,&
-      rocsolver_zlatrd_rank_1
+      rocsolver_zlatrd_rank_1,&
+      rocsolver_zlatrd_full_rank
 #endif
   end interface
-  !>     \brief LASYF computes a partial factorization of a symmetric matrix \f$A\f$
+
+  !>     \brief The LASYF functions compute a partial factorization of a symmetric matrix \f$A\f$
   !>     using Bunch-Kaufman diagonal pivoting.
-  !> 
+  !>
   !>     \details
   !>     The partial factorization has the form
-  !> 
+  !>
   !>     \f[
   !>         A = \left[ \begin{array}{cc}
-  !>         I & U_{12} \newline
-  !>
+  !>         I & U_{12} \\%
   !>         0 & U_{22}
   !>         \end{array} \right] \left[ \begin{array}{cc}
-  !>         A_{11} & 0 \newline
-  !>
+  !>         A_{11} & 0 \\%
   !>         0 & D
   !>         \end{array} \right] \left[ \begin{array}{cc}
-  !>         I & 0 \newline
-  !>
+  !>         I & 0 \\%
   !>         U_{12}^T & U_{22}^T
   !>         \end{array} \right]
   !>     \f]
-  !> 
+  !>
   !>     or
-  !> 
+  !>
   !>     \f[
   !>         A = \left[ \begin{array}{cc}
-  !>         L_{11} & 0 \newline
-  !>
+  !>         L_{11} & 0 \\%
   !>         L_{21} & I
   !>         \end{array} \right] \left[ \begin{array}{cc}
-  !>         D & 0 \newline
-  !>
+  !>         D & 0 \\%
   !>         0 & A_{22}
   !>         \end{array} \right] \left[ \begin{array}{cc}
-  !>         L_{11}^T & L_{21}^T \newline
-  !>
+  !>         L_{11}^T & L_{21}^T \\%
   !>         0 & I
   !>         \end{array} \right]
   !>     \f]
-  !> 
-  !>     depending on the value of uplo. The order of the block diagonal matrix \f$D\f$
-  !>     is either \f$nb\f$ or \f$nb-1\f$, and is returned in the argument \f$kb\f$.
-  !> 
+  !>
+  !>     depending on the value of ``uplo``. The order of the block diagonal matrix \f$D\f$
+  !>     is either \f$nb\f$ or \f$nb-1\f$ and is returned in the argument \f$kb\f$.
+  !>
   !>     @param[in]
-  !>     handle    rocblas_handle.
+  !>     handle      rocblas_handle.
   !>     @param[in]
-  !>     uplo      rocblas_fill.\n
-  !>               Specifies whether the upper or lower part of the matrix A is stored.
-  !>               If uplo indicates lower (or upper), then the upper (or lower)
-  !>               part of A is not used.
+  !>     uplo        rocblas_fill.
+  !>                 Specifies whether the upper or lower part of the matrix A is stored.
+  !>                 If uplo indicates lower (or upper), then the upper (or lower)
+  !>                 part of A is not used.
   !>     @param[in]
-  !>     n         rocblas_int. n >= 0.\n
-  !>               The number of rows and columns of the matrix A.
+  !>     n           rocblas_int. n >= 0.
+  !>                 The number of rows and columns of the matrix A.
   !>     @param[in]
-  !>     nb        rocblas_int. 2 <= nb <= n.\n
-  !>               The number of columns of A to be factored.
+  !>     nb          rocblas_int. 2 <= nb <= n.
+  !>                 The number of columns of A to be factored.
   !>     @param[out]
-  !>     kb        pointer to a rocblas_int on the GPU.\n
-  !>               The number of columns of A that were actually factored (either nb or
-  !>               nb-1).
+  !>     kb          pointer to a rocblas_int on the GPU.
+  !>                 The number of columns of A that were actually factored (either nb or
+  !>                 nb-1).
   !>     @param[inout]
-  !>     A         pointer to type. Array on the GPU of dimension lda*n.\n
-  !>               On entry, the symmetric matrix A to be factored.
-  !>               On exit, the partially factored matrix.
+  !>     A           pointer to type. Array on the GPU of dimension lda*n.
+  !>                 On entry, the symmetric matrix A to be factored.
+  !>                 On exit, the partially factored matrix.
   !>     @param[in]
-  !>     lda       rocblas_int. lda >= n.\n
-  !>               Specifies the leading dimension of A.
+  !>     lda         rocblas_int. lda >= n.
+  !>                 Specifies the leading dimension of A.
   !>     @param[out]
-  !>     ipiv      pointer to rocblas_int. Array on the GPU of dimension n.\n
-  !>               The vector of pivot indices. Elements of ipiv are 1-based indices.
-  !>               If uplo is upper, then only the last kb elements of ipiv will be
-  !>               set. For n - kb < k <= n, if ipiv[k] > 0 then rows and columns k
-  !>               and ipiv[k] were interchanged and D[k,k] is a 1-by-1 diagonal block.
-  !>               If, instead, ipiv[k] = ipiv[k-1] < 0, then rows and columns k-1
-  !>               and -ipiv[k] were interchanged and D[k-1,k-1] to D[k,k] is a 2-by-2
-  !>               diagonal block.
-  !>               If uplo is lower, then only the first kb elements of ipiv will be
-  !>               set. For 1 <= k <= kb, if ipiv[k] > 0 then rows and columns k
-  !>               and ipiv[k] were interchanged and D[k,k] is a 1-by-1 diagonal block.
-  !>               If, instead, ipiv[k] = ipiv[k+1] < 0, then rows and columns k+1
-  !>               and -ipiv[k] were interchanged and D[k,k] to D[k+1,k+1] is a 2-by-2
-  !>               diagonal block.
+  !>     ipiv        pointer to rocblas_int. Array on the GPU of dimension n.
+  !>                 The vector of pivot indices. Elements of ipiv are 1-based indices.
+  !>                 - If uplo is upper, then only the last kb elements of ipiv will be
+  !>                 set. For n - kb < k <= n, if ipiv[k] > 0, then rows and columns k
+  !>                 and ipiv[k] were interchanged and D[k,k] is a 1-by-1 diagonal block.
+  !>                 If, instead, ipiv[k] = ipiv[k-1] < 0, then rows and columns k-1
+  !>                 and -ipiv[k] were interchanged and D[k-1,k-1] to D[k,k] is a 2-by-2
+  !>                 diagonal block.
+  !>                 - If uplo is lower, then only the first kb elements of ipiv will be
+  !>                 set. For 1 <= k <= kb, if ipiv[k] > 0, then rows and columns k
+  !>                 and ipiv[k] were interchanged and D[k,k] is a 1-by-1 diagonal block.
+  !>                 If, instead, ipiv[k] = ipiv[k+1] < 0, then rows and columns k+1
+  !>                 and -ipiv[k] were interchanged and D[k,k] to D[k+1,k+1] is a 2-by-2
+  !>                 diagonal block.
   !>     @param[out]
-  !>     info      pointer to a rocblas_int on the GPU.\n
-  !>               If info = 0, successful exit.
-  !>               If info[i] = j > 0, D is singular. D[j,j] is the first diagonal zero.
+  !>     info        pointer to a rocblas_int on the GPU.
+  !>                 If info = 0, successful exit.
+  !>                 If info = i > 0, D is singular. D[i,i] is the first diagonal zero.
   interface rocsolver_slasyf
     function rocsolver_slasyf_(handle,uplo,n,nb,kb,A,lda,ipiv,myInfo) bind(c, name="rocsolver_slasyf")
       use iso_c_binding
@@ -1647,12 +1588,12 @@ module hipfort_rocsolver
 
 #ifdef USE_FPOINTER_INTERFACES
     module procedure &
-      rocsolver_slasyf_full_rank,&
       rocsolver_slasyf_rank_0,&
-      rocsolver_slasyf_rank_1
+      rocsolver_slasyf_rank_1,&
+      rocsolver_slasyf_full_rank
 #endif
   end interface
-  
+
   interface rocsolver_dlasyf
     function rocsolver_dlasyf_(handle,uplo,n,nb,kb,A,lda,ipiv,myInfo) bind(c, name="rocsolver_dlasyf")
       use iso_c_binding
@@ -1673,12 +1614,12 @@ module hipfort_rocsolver
 
 #ifdef USE_FPOINTER_INTERFACES
     module procedure &
-      rocsolver_dlasyf_full_rank,&
       rocsolver_dlasyf_rank_0,&
-      rocsolver_dlasyf_rank_1
+      rocsolver_dlasyf_rank_1,&
+      rocsolver_dlasyf_full_rank
 #endif
   end interface
-  
+
   interface rocsolver_clasyf
     function rocsolver_clasyf_(handle,uplo,n,nb,kb,A,lda,ipiv,myInfo) bind(c, name="rocsolver_clasyf")
       use iso_c_binding
@@ -1699,12 +1640,12 @@ module hipfort_rocsolver
 
 #ifdef USE_FPOINTER_INTERFACES
     module procedure &
-      rocsolver_clasyf_full_rank,&
       rocsolver_clasyf_rank_0,&
-      rocsolver_clasyf_rank_1
+      rocsolver_clasyf_rank_1,&
+      rocsolver_clasyf_full_rank
 #endif
   end interface
-  
+
   interface rocsolver_zlasyf
     function rocsolver_zlasyf_(handle,uplo,n,nb,kb,A,lda,ipiv,myInfo) bind(c, name="rocsolver_zlasyf")
       use iso_c_binding
@@ -1725,46 +1666,50 @@ module hipfort_rocsolver
 
 #ifdef USE_FPOINTER_INTERFACES
     module procedure &
-      rocsolver_zlasyf_full_rank,&
       rocsolver_zlasyf_rank_0,&
-      rocsolver_zlasyf_rank_1
+      rocsolver_zlasyf_rank_1,&
+      rocsolver_zlasyf_full_rank
 #endif
   end interface
-  !>     \brief ORG2R generates an m-by-n Matrix Q with orthonormal columns.
-  !> 
+
+  !>     \brief The ORG2R functions generate an ``m``-by-``n`` Matrix Q with orthonormal columns.
+  !>
   !>     \details
-  !>     (This is the unblocked version of the algorithm).
-  !> 
-  !>     The matrix Q is defined as the first n columns of the product of k Householder
-  !>     reflectors of order m
-  !> 
+  !>     (This is the unblocked version of the algorithm.)
+  !>
+  !>     The matrix Q is defined as the first ``n`` columns of the product of ``k`` Householder
+  !>     reflectors of order ``m``
+  !>
   !>     \f[
-  !>         Q = H_1H_2\cdots H_k.
+  !>         Q = H(1)H(2)\cdots H(k).
   !>     \f]
-  !> 
-  !>     The Householder matrices \f$H_i\f$ are never stored, they are computed from its corresponding
-  !>     Householder vectors \f$v_i\f$ and scalars \f$\text{ipiv}[i]\f$, as returned by \ref rocsolver_sgeqrf "GEQRF".
-  !> 
+  !>
+  !>     The Householder matrices \f$H(i)\f$ are never stored. They are computed from the
+  !>     corresponding
+  !>     Householder vectors \f$v_i\f$ and scalars \f$\text{ipiv}[i]\f$, as returned by \ref
+  !>     rocsolver_sgeqrf "GEQRF".
+  !>
   !>     @param[in]
   !>     handle      rocblas_handle.
   !>     @param[in]
-  !>     m           rocblas_int. m >= 0.\n
+  !>     m           rocblas_int. m >= 0.
   !>                 The number of rows of the matrix Q.
   !>     @param[in]
-  !>     n           rocblas_int. 0 <= n <= m.\n
+  !>     n           rocblas_int. 0 <= n <= m.
   !>                 The number of columns of the matrix Q.
   !>     @param[in]
-  !>     k           rocblas_int. 0 <= k <= n.\n
+  !>     k           rocblas_int. 0 <= k <= n.
   !>                 The number of Householder reflectors.
   !>     @param[inout]
-  !>     A           pointer to type. Array on the GPU of dimension lda*n.\n
-  !>                 On entry, the matrix A as returned by \ref rocsolver_sgeqrf "GEQRF", with the Householder vectors in the first k columns.
+  !>     A           pointer to type. Array on the GPU of dimension lda*n.
+  !>                 On entry, the matrix A as returned by \ref rocsolver_sgeqrf "GEQRF", with the
+  !>                 Householder vectors in the first k columns.
   !>                 On exit, the computed matrix Q.
   !>     @param[in]
-  !>     lda         rocblas_int. lda >= m.\n
+  !>     lda         rocblas_int. lda >= m.
   !>                 Specifies the leading dimension of A.
   !>     @param[in]
-  !>     ipiv        pointer to type. Array on the GPU of dimension at least k.\n
+  !>     ipiv        pointer to type. Array on the GPU of dimension at least k.
   !>                 The Householder scalars as returned by \ref rocsolver_sgeqrf "GEQRF".
   interface rocsolver_sorg2r
     function rocsolver_sorg2r_(handle,m,n,k,A,lda,ipiv) bind(c, name="rocsolver_sorg2r")
@@ -1784,12 +1729,12 @@ module hipfort_rocsolver
 
 #ifdef USE_FPOINTER_INTERFACES
     module procedure &
-      rocsolver_sorg2r_full_rank,&
       rocsolver_sorg2r_rank_0,&
-      rocsolver_sorg2r_rank_1
+      rocsolver_sorg2r_rank_1,&
+      rocsolver_sorg2r_full_rank
 #endif
   end interface
-  
+
   interface rocsolver_dorg2r
     function rocsolver_dorg2r_(handle,m,n,k,A,lda,ipiv) bind(c, name="rocsolver_dorg2r")
       use iso_c_binding
@@ -1808,46 +1753,51 @@ module hipfort_rocsolver
 
 #ifdef USE_FPOINTER_INTERFACES
     module procedure &
-      rocsolver_dorg2r_full_rank,&
       rocsolver_dorg2r_rank_0,&
-      rocsolver_dorg2r_rank_1
+      rocsolver_dorg2r_rank_1,&
+      rocsolver_dorg2r_full_rank
 #endif
   end interface
-  !>     \brief UNG2R generates an m-by-n complex Matrix Q with orthonormal columns.
-  !> 
+
+  !>     \brief The UNG2R functions generate an ``m`` -by-``n`` complex matrix Q with orthonormal
+  !>     columns.
+  !>
   !>     \details
-  !>     (This is the unblocked version of the algorithm).
-  !> 
-  !>     The matrix Q is defined as the first n columns of the product of k Householder
-  !>     reflectors of order m
-  !> 
+  !>     (This is the unblocked version of the algorithm.)
+  !>
+  !>     The matrix Q is defined as the first ``n`` columns of the product of ``k`` Householder
+  !>     reflectors of order ``m``
+  !>
   !>     \f[
-  !>         Q = H_1H_2\cdots H_k
+  !>         Q = H(1)H(2)\cdots H(k)
   !>     \f]
-  !> 
-  !>     The Householder matrices \f$H_i\f$ are never stored, they are computed from its corresponding
-  !>     Householder vectors \f$v_i\f$ and scalars \f$\text{ipiv}[i]\f$, as returned by \ref rocsolver_sgeqrf "GEQRF".
-  !> 
+  !>
+  !>     The Householder matrices \f$H(i)\f$ are never stored. They are computed from the
+  !>     corresponding
+  !>     Householder vectors \f$v_i\f$ and scalars \f$\text{ipiv}[i]\f$, as returned by \ref
+  !>     rocsolver_sgeqrf "GEQRF".
+  !>
   !>     @param[in]
   !>     handle      rocblas_handle.
   !>     @param[in]
-  !>     m           rocblas_int. m >= 0.\n
+  !>     m           rocblas_int. m >= 0.
   !>                 The number of rows of the matrix Q.
   !>     @param[in]
-  !>     n           rocblas_int. 0 <= n <= m.\n
+  !>     n           rocblas_int. 0 <= n <= m.
   !>                 The number of columns of the matrix Q.
   !>     @param[in]
-  !>     k           rocblas_int. 0 <= k <= n.\n
+  !>     k           rocblas_int. 0 <= k <= n.
   !>                 The number of Householder reflectors.
   !>     @param[inout]
-  !>     A           pointer to type. Array on the GPU of dimension lda*n.\n
-  !>                 On entry, the matrix A as returned by \ref rocsolver_sgeqrf "GEQRF", with the Householder vectors in the first k columns.
+  !>     A           pointer to type. Array on the GPU of dimension lda*n.
+  !>                 On entry, the matrix A as returned by \ref rocsolver_sgeqrf "GEQRF", with the
+  !>                 Householder vectors in the first k columns.
   !>                 On exit, the computed matrix Q.
   !>     @param[in]
-  !>     lda         rocblas_int. lda >= m.\n
+  !>     lda         rocblas_int. lda >= m.
   !>                 Specifies the leading dimension of A.
   !>     @param[in]
-  !>     ipiv        pointer to type. Array on the GPU of dimension at least k.\n
+  !>     ipiv        pointer to type. Array on the GPU of dimension at least k.
   !>                 The Householder scalars as returned by \ref rocsolver_sgeqrf "GEQRF".
   interface rocsolver_cung2r
     function rocsolver_cung2r_(handle,m,n,k,A,lda,ipiv) bind(c, name="rocsolver_cung2r")
@@ -1867,12 +1817,12 @@ module hipfort_rocsolver
 
 #ifdef USE_FPOINTER_INTERFACES
     module procedure &
-      rocsolver_cung2r_full_rank,&
       rocsolver_cung2r_rank_0,&
-      rocsolver_cung2r_rank_1
+      rocsolver_cung2r_rank_1,&
+      rocsolver_cung2r_full_rank
 #endif
   end interface
-  
+
   interface rocsolver_zung2r
     function rocsolver_zung2r_(handle,m,n,k,A,lda,ipiv) bind(c, name="rocsolver_zung2r")
       use iso_c_binding
@@ -1891,46 +1841,50 @@ module hipfort_rocsolver
 
 #ifdef USE_FPOINTER_INTERFACES
     module procedure &
-      rocsolver_zung2r_full_rank,&
       rocsolver_zung2r_rank_0,&
-      rocsolver_zung2r_rank_1
+      rocsolver_zung2r_rank_1,&
+      rocsolver_zung2r_full_rank
 #endif
   end interface
-  !>     \brief ORGQR generates an m-by-n Matrix Q with orthonormal columns.
-  !> 
+
+  !>     \brief The ORGQR functions generate an ``m``-by-``n`` Matrix Q with orthonormal columns.
+  !>
   !>     \details
-  !>     (This is the blocked version of the algorithm).
-  !> 
-  !>     The matrix Q is defined as the first n columns of the product of k Householder
-  !>     reflectors of order m
-  !> 
+  !>     (This is the blocked version of the algorithm.)
+  !>
+  !>     The matrix Q is defined as the first ``n`` columns of the product of ``k`` Householder
+  !>     reflectors of order ``m``
+  !>
   !>     \f[
-  !>         Q = H_1H_2\cdots H_k
+  !>         Q = H(1)H(2)\cdots H(k)
   !>     \f]
-  !> 
-  !>     The Householder matrices \f$H_i\f$ are never stored, they are computed from its corresponding
-  !>     Householder vectors \f$v_i\f$ and scalars \f$\text{ipiv}[i]\f$, as returned by \ref rocsolver_sgeqrf "GEQRF".
-  !> 
+  !>
+  !>     The Householder matrices \f$H(i)\f$ are never stored. They are computed from the
+  !>     corresponding
+  !>     Householder vectors \f$v_i\f$ and scalars \f$\text{ipiv}[i]\f$, as returned by \ref
+  !>     rocsolver_sgeqrf "GEQRF".
+  !>
   !>     @param[in]
   !>     handle      rocblas_handle.
   !>     @param[in]
-  !>     m           rocblas_int. m >= 0.\n
+  !>     m           rocblas_int. m >= 0.
   !>                 The number of rows of the matrix Q.
   !>     @param[in]
-  !>     n           rocblas_int. 0 <= n <= m.\n
+  !>     n           rocblas_int. 0 <= n <= m.
   !>                 The number of columns of the matrix Q.
   !>     @param[in]
-  !>     k           rocblas_int. 0 <= k <= n.\n
+  !>     k           rocblas_int. 0 <= k <= n.
   !>                 The number of Householder reflectors.
   !>     @param[inout]
-  !>     A           pointer to type. Array on the GPU of dimension lda*n.\n
-  !>                 On entry, the matrix A as returned by \ref rocsolver_sgeqrf "GEQRF", with the Householder vectors in the first k columns.
+  !>     A           pointer to type. Array on the GPU of dimension lda*n.
+  !>                 On entry, the matrix A as returned by \ref rocsolver_sgeqrf "GEQRF", with the
+  !>                 Householder vectors in the first k columns.
   !>                 On exit, the computed matrix Q.
   !>     @param[in]
-  !>     lda         rocblas_int. lda >= m.\n
+  !>     lda         rocblas_int. lda >= m.
   !>                 Specifies the leading dimension of A.
   !>     @param[in]
-  !>     ipiv        pointer to type. Array on the GPU of dimension at least k.\n
+  !>     ipiv        pointer to type. Array on the GPU of dimension at least k.
   !>                 The Householder scalars as returned by \ref rocsolver_sgeqrf "GEQRF".
   interface rocsolver_sorgqr
     function rocsolver_sorgqr_(handle,m,n,k,A,lda,ipiv) bind(c, name="rocsolver_sorgqr")
@@ -1950,12 +1904,12 @@ module hipfort_rocsolver
 
 #ifdef USE_FPOINTER_INTERFACES
     module procedure &
-      rocsolver_sorgqr_full_rank,&
       rocsolver_sorgqr_rank_0,&
-      rocsolver_sorgqr_rank_1
+      rocsolver_sorgqr_rank_1,&
+      rocsolver_sorgqr_full_rank
 #endif
   end interface
-  
+
   interface rocsolver_dorgqr
     function rocsolver_dorgqr_(handle,m,n,k,A,lda,ipiv) bind(c, name="rocsolver_dorgqr")
       use iso_c_binding
@@ -1974,46 +1928,50 @@ module hipfort_rocsolver
 
 #ifdef USE_FPOINTER_INTERFACES
     module procedure &
-      rocsolver_dorgqr_full_rank,&
       rocsolver_dorgqr_rank_0,&
-      rocsolver_dorgqr_rank_1
+      rocsolver_dorgqr_rank_1,&
+      rocsolver_dorgqr_full_rank
 #endif
   end interface
-  !>     \brief UNGQR generates an m-by-n complex Matrix Q with orthonormal columns.
-  !> 
+
+  !>     \brief The UNGQR functions generate an ``m`` -by-``n`` complex matrix Q with orthonormal
+  !>     columns.
+  !>
   !>     \details
-  !>     (This is the blocked version of the algorithm).
-  !> 
-  !>     The matrix Q is defined as the first n columns of the product of k Householder
-  !>     reflectors of order m
-  !> 
+  !>     (This is the blocked version of the algorithm.)
+  !>
+  !>     The matrix Q is defined as the first ``n`` columns of the product of ``k`` Householder
+  !>     reflectors of order ``m``
+  !>
   !>     \f[
-  !>         Q = H_1H_2\cdots H_k
+  !>         Q = H(1)H(2)\cdots H(k)
   !>     \f]
-  !> 
-  !>     Householder matrices \f$H_i\f$ are never stored, they are computed from its corresponding
-  !>     Householder vectors \f$v_i\f$ and scalars \f$\text{ipiv}[i]\f$, as returned by \ref rocsolver_sgeqrf "GEQRF".
-  !> 
+  !>
+  !>     Householder matrices \f$H(i)\f$ are never stored. They are computed from the corresponding
+  !>     Householder vectors \f$v_i\f$ and scalars \f$\text{ipiv}[i]\f$, as returned by \ref
+  !>     rocsolver_sgeqrf "GEQRF".
+  !>
   !>     @param[in]
   !>     handle      rocblas_handle.
   !>     @param[in]
-  !>     m           rocblas_int. m >= 0.\n
+  !>     m           rocblas_int. m >= 0.
   !>                 The number of rows of the matrix Q.
   !>     @param[in]
-  !>     n           rocblas_int. 0 <= n <= m.\n
+  !>     n           rocblas_int. 0 <= n <= m.
   !>                 The number of columns of the matrix Q.
   !>     @param[in]
-  !>     k           rocblas_int. 0 <= k <= n.\n
+  !>     k           rocblas_int. 0 <= k <= n.
   !>                 The number of Householder reflectors.
   !>     @param[inout]
-  !>     A           pointer to type. Array on the GPU of dimension lda*n.\n
-  !>                 On entry, the matrix A as returned by \ref rocsolver_sgeqrf "GEQRF", with the Householder vectors in the first k columns.
+  !>     A           pointer to type. Array on the GPU of dimension lda*n.
+  !>                 On entry, the matrix A as returned by \ref rocsolver_sgeqrf "GEQRF", with the
+  !>                 Householder vectors in the first k columns.
   !>                 On exit, the computed matrix Q.
   !>     @param[in]
-  !>     lda         rocblas_int. lda >= m.\n
+  !>     lda         rocblas_int. lda >= m.
   !>                 Specifies the leading dimension of A.
   !>     @param[in]
-  !>     ipiv        pointer to type. Array on the GPU of dimension at least k.\n
+  !>     ipiv        pointer to type. Array on the GPU of dimension at least k.
   !>                 The Householder scalars as returned by \ref rocsolver_sgeqrf "GEQRF".
   interface rocsolver_cungqr
     function rocsolver_cungqr_(handle,m,n,k,A,lda,ipiv) bind(c, name="rocsolver_cungqr")
@@ -2033,12 +1991,12 @@ module hipfort_rocsolver
 
 #ifdef USE_FPOINTER_INTERFACES
     module procedure &
-      rocsolver_cungqr_full_rank,&
       rocsolver_cungqr_rank_0,&
-      rocsolver_cungqr_rank_1
+      rocsolver_cungqr_rank_1,&
+      rocsolver_cungqr_full_rank
 #endif
   end interface
-  
+
   interface rocsolver_zungqr
     function rocsolver_zungqr_(handle,m,n,k,A,lda,ipiv) bind(c, name="rocsolver_zungqr")
       use iso_c_binding
@@ -2057,46 +2015,50 @@ module hipfort_rocsolver
 
 #ifdef USE_FPOINTER_INTERFACES
     module procedure &
-      rocsolver_zungqr_full_rank,&
       rocsolver_zungqr_rank_0,&
-      rocsolver_zungqr_rank_1
+      rocsolver_zungqr_rank_1,&
+      rocsolver_zungqr_full_rank
 #endif
   end interface
-  !>     \brief ORGL2 generates an m-by-n Matrix Q with orthonormal rows.
-  !> 
+
+  !>     \brief The ORGL2 functions generate an ``m``-by-``n`` Matrix Q with orthonormal rows.
+  !>
   !>     \details
-  !>     (This is the unblocked version of the algorithm).
-  !> 
-  !>     The matrix Q is defined as the first m rows of the product of k Householder
-  !>     reflectors of order n
-  !> 
+  !>     (This is the unblocked version of the algorithm.)
+  !>
+  !>     The matrix Q is defined as the first ``m`` rows of the product of ``k`` Householder
+  !>     reflectors of order ``n``
+  !>
   !>     \f[
-  !>         Q = H_kH_{k-1}\cdots H_1
+  !>         Q = H(k)H(k-1)\cdots H(1)
   !>     \f]
-  !> 
-  !>     The Householder matrices \f$H_i\f$ are never stored, they are computed from its corresponding
-  !>     Householder vectors \f$v_i\f$ and scalars \f$\text{ipiv}[i]\f$, as returned by \ref rocsolver_sgelqf "GELQF".
-  !> 
+  !>
+  !>     The Householder matrices \f$H(i)\f$ are never stored. They are computed from its
+  !>     corresponding
+  !>     Householder vectors \f$v_i\f$ and scalars \f$\text{ipiv}[i]\f$, as returned by \ref
+  !>     rocsolver_sgelqf "GELQF".
+  !>
   !>     @param[in]
   !>     handle      rocblas_handle.
   !>     @param[in]
-  !>     m           rocblas_int. 0 <= m <= n.\n
+  !>     m           rocblas_int. 0 <= m <= n.
   !>                 The number of rows of the matrix Q.
   !>     @param[in]
-  !>     n           rocblas_int. n >= 0.\n
+  !>     n           rocblas_int. n >= 0.
   !>                 The number of columns of the matrix Q.
   !>     @param[in]
-  !>     k           rocblas_int. 0 <= k <= m.\n
+  !>     k           rocblas_int. 0 <= k <= m.
   !>                 The number of Householder reflectors.
   !>     @param[inout]
-  !>     A           pointer to type. Array on the GPU of dimension lda*n.\n
-  !>                 On entry, the matrix A as returned by \ref rocsolver_sgeqrf "GELQF", with the Householder vectors in the first k rows.
+  !>     A           pointer to type. Array on the GPU of dimension lda*n.
+  !>                 On entry, the matrix A as returned by \ref rocsolver_sgeqrf "GELQF", with the
+  !>                 Householder vectors in the first k rows.
   !>                 On exit, the computed matrix Q.
   !>     @param[in]
-  !>     lda         rocblas_int. lda >= m.\n
+  !>     lda         rocblas_int. lda >= m.
   !>                 Specifies the leading dimension of A.
   !>     @param[in]
-  !>     ipiv        pointer to type. Array on the GPU of dimension at least k.\n
+  !>     ipiv        pointer to type. Array on the GPU, of dimension at least k.
   !>                 The Householder scalars as returned by \ref rocsolver_sgelqf "GELQF".
   interface rocsolver_sorgl2
     function rocsolver_sorgl2_(handle,m,n,k,A,lda,ipiv) bind(c, name="rocsolver_sorgl2")
@@ -2116,12 +2078,12 @@ module hipfort_rocsolver
 
 #ifdef USE_FPOINTER_INTERFACES
     module procedure &
-      rocsolver_sorgl2_full_rank,&
       rocsolver_sorgl2_rank_0,&
-      rocsolver_sorgl2_rank_1
+      rocsolver_sorgl2_rank_1,&
+      rocsolver_sorgl2_full_rank
 #endif
   end interface
-  
+
   interface rocsolver_dorgl2
     function rocsolver_dorgl2_(handle,m,n,k,A,lda,ipiv) bind(c, name="rocsolver_dorgl2")
       use iso_c_binding
@@ -2140,46 +2102,51 @@ module hipfort_rocsolver
 
 #ifdef USE_FPOINTER_INTERFACES
     module procedure &
-      rocsolver_dorgl2_full_rank,&
       rocsolver_dorgl2_rank_0,&
-      rocsolver_dorgl2_rank_1
+      rocsolver_dorgl2_rank_1,&
+      rocsolver_dorgl2_full_rank
 #endif
   end interface
-  !>     \brief UNGL2 generates an m-by-n complex Matrix Q with orthonormal rows.
-  !> 
+
+  !>     \brief The UNGL2 functions generate an ``m`` -by-``n`` complex matrix Q with orthonormal
+  !>     rows.
+  !>
   !>     \details
-  !>     (This is the unblocked version of the algorithm).
-  !> 
-  !>     The matrix Q is defined as the first m rows of the product of k Householder
-  !>     reflectors of order n
-  !> 
+  !>     (This is the unblocked version of the algorithm.)
+  !>
+  !>     The matrix Q is defined as the first ``m`` rows of the product of ``k`` Householder
+  !>     reflectors of order ``n``
+  !>
   !>     \f[
-  !>         Q = H_k^HH_{k-1}^H\cdots H_1^H
+  !>         Q = H(k)^H H(k-1)^H\cdots H(1)^H
   !>     \f]
-  !> 
-  !>     The Householder matrices \f$H_i\f$ are never stored, they are computed from its corresponding
-  !>     Householder vectors \f$v_i\f$ and scalars \f$\text{ipiv}[i]\f$, as returned by \ref rocsolver_sgelqf "GELQF".
-  !> 
+  !>
+  !>     The Householder matrices \f$H(i)\f$ are never stored. They are computed from the
+  !>     corresponding
+  !>     Householder vectors \f$v_i\f$ and scalars \f$\text{ipiv}[i]\f$, as returned by \ref
+  !>     rocsolver_sgelqf "GELQF".
+  !>
   !>     @param[in]
   !>     handle      rocblas_handle.
   !>     @param[in]
-  !>     m           rocblas_int. 0 <= m <= n.\n
+  !>     m           rocblas_int. 0 <= m <= n.
   !>                 The number of rows of the matrix Q.
   !>     @param[in]
-  !>     n           rocblas_int. n >= 0.\n
+  !>     n           rocblas_int. n >= 0.
   !>                 The number of columns of the matrix Q.
   !>     @param[in]
-  !>     k           rocblas_int. 0 <= k <= m.\n
+  !>     k           rocblas_int. 0 <= k <= m.
   !>                 The number of Householder reflectors.
   !>     @param[inout]
-  !>     A           pointer to type. Array on the GPU of dimension lda*n.\n
-  !>                 On entry, the matrix A as returned by \ref rocsolver_sgeqrf "GELQF", with the Householder vectors in the first k rows.
+  !>     A           pointer to type. Array on the GPU of dimension lda*n.
+  !>                 On entry, the matrix A as returned by \ref rocsolver_sgeqrf "GELQF", with the
+  !>                 Householder vectors in the first k rows.
   !>                 On exit, the computed matrix Q.
   !>     @param[in]
-  !>     lda         rocblas_int. lda >= m.\n
+  !>     lda         rocblas_int. lda >= m.
   !>                 Specifies the leading dimension of A.
   !>     @param[in]
-  !>     ipiv        pointer to type. Array on the GPU of dimension at least k.\n
+  !>     ipiv        pointer to type. Array on the GPU of dimension at least k.
   !>                 The Householder scalars as returned by \ref rocsolver_sgelqf "GELQF".
   interface rocsolver_cungl2
     function rocsolver_cungl2_(handle,m,n,k,A,lda,ipiv) bind(c, name="rocsolver_cungl2")
@@ -2199,12 +2166,12 @@ module hipfort_rocsolver
 
 #ifdef USE_FPOINTER_INTERFACES
     module procedure &
-      rocsolver_cungl2_full_rank,&
       rocsolver_cungl2_rank_0,&
-      rocsolver_cungl2_rank_1
+      rocsolver_cungl2_rank_1,&
+      rocsolver_cungl2_full_rank
 #endif
   end interface
-  
+
   interface rocsolver_zungl2
     function rocsolver_zungl2_(handle,m,n,k,A,lda,ipiv) bind(c, name="rocsolver_zungl2")
       use iso_c_binding
@@ -2223,46 +2190,50 @@ module hipfort_rocsolver
 
 #ifdef USE_FPOINTER_INTERFACES
     module procedure &
-      rocsolver_zungl2_full_rank,&
       rocsolver_zungl2_rank_0,&
-      rocsolver_zungl2_rank_1
+      rocsolver_zungl2_rank_1,&
+      rocsolver_zungl2_full_rank
 #endif
   end interface
-  !>     \brief ORGLQ generates an m-by-n Matrix Q with orthonormal rows.
-  !> 
+
+  !>     \brief The ORGLQ functions generate an ``m``-by-``n`` Matrix Q with orthonormal rows.
+  !>
   !>     \details
-  !>     (This is the blocked version of the algorithm).
-  !> 
-  !>     The matrix Q is defined as the first m rows of the product of k Householder
-  !>     reflectors of order n
-  !> 
+  !>     (This is the blocked version of the algorithm.)
+  !>
+  !>     The matrix Q is defined as the first ``m`` rows of the product of ``k`` Householder
+  !>     reflectors of order ``n``
+  !>
   !>     \f[
-  !>         Q = H_kH_{k-1}\cdots H_1
+  !>         Q = H(k)H(k-1)\cdots H(1)
   !>     \f]
-  !> 
-  !>     The Householder matrices \f$H_i\f$ are never stored, they are computed from its corresponding
-  !>     Householder vectors \f$v_i\f$ and scalars \f$\text{ipiv}[i]\f$, as returned by \ref rocsolver_sgelqf "GELQF".
-  !> 
+  !>
+  !>     The Householder matrices \f$H(i)\f$ are never stored. They are computed from the
+  !>     corresponding
+  !>     Householder vectors \f$v_i\f$ and scalars \f$\text{ipiv}[i]\f$, as returned by \ref
+  !>     rocsolver_sgelqf "GELQF".
+  !>
   !>     @param[in]
   !>     handle      rocblas_handle.
   !>     @param[in]
-  !>     m           rocblas_int. 0 <= m <= n.\n
+  !>     m           rocblas_int. 0 <= m <= n.
   !>                 The number of rows of the matrix Q.
   !>     @param[in]
-  !>     n           rocblas_int. n >= 0.\n
+  !>     n           rocblas_int. n >= 0.
   !>                 The number of columns of the matrix Q.
   !>     @param[in]
-  !>     k           rocblas_int. 0 <= k <= m.\n
+  !>     k           rocblas_int. 0 <= k <= m.
   !>                 The number of Householder reflectors.
   !>     @param[inout]
-  !>     A           pointer to type. Array on the GPU of dimension lda*n.\n
-  !>                 On entry, the matrix A as returned by \ref rocsolver_sgeqrf "GELQF", with the Householder vectors in the first k rows.
+  !>     A           pointer to type. Array on the GPU of dimension lda*n.
+  !>                 On entry, the matrix A as returned by \ref rocsolver_sgeqrf "GELQF", with the
+  !>                 Householder vectors in the first k rows.
   !>                 On exit, the computed matrix Q.
   !>     @param[in]
-  !>     lda         rocblas_int. lda >= m.\n
+  !>     lda         rocblas_int. lda >= m.
   !>                 Specifies the leading dimension of A.
   !>     @param[in]
-  !>     ipiv        pointer to type. Array on the GPU of dimension at least k.\n
+  !>     ipiv        pointer to type. Array on the GPU of dimension at least k.
   !>                 The Householder scalars as returned by \ref rocsolver_sgelqf "GELQF".
   interface rocsolver_sorglq
     function rocsolver_sorglq_(handle,m,n,k,A,lda,ipiv) bind(c, name="rocsolver_sorglq")
@@ -2282,12 +2253,12 @@ module hipfort_rocsolver
 
 #ifdef USE_FPOINTER_INTERFACES
     module procedure &
-      rocsolver_sorglq_full_rank,&
       rocsolver_sorglq_rank_0,&
-      rocsolver_sorglq_rank_1
+      rocsolver_sorglq_rank_1,&
+      rocsolver_sorglq_full_rank
 #endif
   end interface
-  
+
   interface rocsolver_dorglq
     function rocsolver_dorglq_(handle,m,n,k,A,lda,ipiv) bind(c, name="rocsolver_dorglq")
       use iso_c_binding
@@ -2306,46 +2277,51 @@ module hipfort_rocsolver
 
 #ifdef USE_FPOINTER_INTERFACES
     module procedure &
-      rocsolver_dorglq_full_rank,&
       rocsolver_dorglq_rank_0,&
-      rocsolver_dorglq_rank_1
+      rocsolver_dorglq_rank_1,&
+      rocsolver_dorglq_full_rank
 #endif
   end interface
-  !>     \brief UNGLQ generates an m-by-n complex Matrix Q with orthonormal rows.
-  !> 
+
+  !>     \brief The UNGLQ functions generate an ``m`` -by-``n`` complex matrix Q with orthonormal
+  !>     rows.
+  !>
   !>     \details
-  !>     (This is the blocked version of the algorithm).
-  !> 
-  !>     The matrix Q is defined as the first m rows of the product of k Householder
-  !>     reflectors of order n
-  !> 
+  !>     (This is the blocked version of the algorithm.)
+  !>
+  !>     The matrix Q is defined as the first ``m`` rows of the product of ``k`` Householder
+  !>     reflectors of order ``n``
+  !>
   !>     \f[
-  !>         Q = H_k^HH_{k-1}^H\cdots H_1^H
+  !>         Q = H(k)^H H(k-1)^H\cdots H(1)^H
   !>     \f]
-  !> 
-  !>     The Householder matrices \f$H_i\f$ are never stored, they are computed from its corresponding
-  !>     Householder vectors \f$v_i\f$ and scalars \f$\text{ipiv}[i]\f$, as returned by \ref rocsolver_sgelqf "GELQF".
-  !> 
+  !>
+  !>     The Householder matrices \f$H(i)\f$ are never stored. They are computed from the
+  !>     corresponding
+  !>     Householder vectors \f$v_i\f$ and scalars \f$\text{ipiv}[i]\f$, as returned by \ref
+  !>     rocsolver_sgelqf "GELQF".
+  !>
   !>     @param[in]
   !>     handle      rocblas_handle.
   !>     @param[in]
-  !>     m           rocblas_int. 0 <= m <= n.\n
+  !>     m           rocblas_int. 0 <= m <= n.
   !>                 The number of rows of the matrix Q.
   !>     @param[in]
-  !>     n           rocblas_int. n >= 0.\n
+  !>     n           rocblas_int. n >= 0.
   !>                 The number of columns of the matrix Q.
   !>     @param[in]
-  !>     k           rocblas_int. 0 <= k <= m.\n
+  !>     k           rocblas_int. 0 <= k <= m.
   !>                 The number of Householder reflectors.
   !>     @param[inout]
-  !>     A           pointer to type. Array on the GPU of dimension lda*n.\n
-  !>                 On entry, the matrix A as returned by \ref rocsolver_sgeqrf "GELQF", with the Householder vectors in the first k rows.
+  !>     A           pointer to type. Array on the GPU of dimension lda*n.
+  !>                 On entry, the matrix A as returned by \ref rocsolver_sgeqrf "GELQF", with the
+  !>                 Householder vectors in the first k rows.
   !>                 On exit, the computed matrix Q.
   !>     @param[in]
-  !>     lda         rocblas_int. lda >= m.\n
+  !>     lda         rocblas_int. lda >= m.
   !>                 Specifies the leading dimension of A.
   !>     @param[in]
-  !>     ipiv        pointer to type. Array on the GPU of dimension at least k.\n
+  !>     ipiv        pointer to type. Array on the GPU of dimension at least k.
   !>                 The Householder scalars as returned by \ref rocsolver_sgelqf "GELQF".
   interface rocsolver_cunglq
     function rocsolver_cunglq_(handle,m,n,k,A,lda,ipiv) bind(c, name="rocsolver_cunglq")
@@ -2365,12 +2341,12 @@ module hipfort_rocsolver
 
 #ifdef USE_FPOINTER_INTERFACES
     module procedure &
-      rocsolver_cunglq_full_rank,&
       rocsolver_cunglq_rank_0,&
-      rocsolver_cunglq_rank_1
+      rocsolver_cunglq_rank_1,&
+      rocsolver_cunglq_full_rank
 #endif
   end interface
-  
+
   interface rocsolver_zunglq
     function rocsolver_zunglq_(handle,m,n,k,A,lda,ipiv) bind(c, name="rocsolver_zunglq")
       use iso_c_binding
@@ -2389,46 +2365,49 @@ module hipfort_rocsolver
 
 #ifdef USE_FPOINTER_INTERFACES
     module procedure &
-      rocsolver_zunglq_full_rank,&
       rocsolver_zunglq_rank_0,&
-      rocsolver_zunglq_rank_1
+      rocsolver_zunglq_rank_1,&
+      rocsolver_zunglq_full_rank
 #endif
   end interface
-  !>     \brief ORG2L generates an m-by-n Matrix Q with orthonormal columns.
-  !> 
+
+  !>     \brief The ORG2L functions generate an ``m``-by-``n`` Matrix Q with orthonormal columns.
+  !>
   !>     \details
-  !>     (This is the unblocked version of the algorithm).
-  !> 
-  !>     The matrix Q is defined as the last n columns of the product of k
-  !>     Householder reflectors of order m
-  !> 
+  !>     (This is the unblocked version of the algorithm.)
+  !>
+  !>     The matrix Q is defined as the last ``n`` columns of the product of ``k``
+  !>     Householder reflectors of order ``m``
+  !>
   !>     \f[
-  !>         Q = H_kH_{k-1}\cdots H_1
+  !>         Q = H(k)H(k-1)\cdots H(1)
   !>     \f]
-  !> 
-  !>     The Householder matrices \f$H_i\f$ are never stored, they are computed from its
-  !>     corresponding Householder vectors \f$v_i\f$ and scalars \f$\text{ipiv}[i]\f$, as returned by \ref rocsolver_sgeqlf "GEQLF".
-  !> 
+  !>
+  !>     The Householder matrices \f$H(i)\f$ are never stored. They are computed from the
+  !>     corresponding Householder vectors \f$v_i\f$ and scalars \f$\text{ipiv}[i]\f$, as returned
+  !>     by \ref rocsolver_sgeqlf "GEQLF".
+  !>
   !>     @param[in]
   !>     handle      rocblas_handle.
   !>     @param[in]
-  !>     m           rocblas_int. m >= 0.\n
+  !>     m           rocblas_int. m >= 0.
   !>                 The number of rows of the matrix Q.
   !>     @param[in]
-  !>     n           rocblas_int. 0 <= n <= m.\n
+  !>     n           rocblas_int. 0 <= n <= m.
   !>                 The number of columns of the matrix Q.
   !>     @param[in]
-  !>     k           rocblas_int. 0 <= k <= n.\n
+  !>     k           rocblas_int. 0 <= k <= n.
   !>                 The number of Householder reflectors.
   !>     @param[inout]
-  !>     A           pointer to type. Array on the GPU of dimension lda*n.\n
-  !>                 On entry, the matrix A as returned by \ref rocsolver_sgeqrf "GEQLF", with the Householder vectors in the last k columns.
+  !>     A           pointer to type. Array on the GPU of dimension lda*n.
+  !>                 On entry, the matrix A as returned by \ref rocsolver_sgeqrf "GEQLF", with the
+  !>                 Householder vectors in the last k columns.
   !>                 On exit, the computed matrix Q.
   !>     @param[in]
-  !>     lda         rocblas_int. lda >= m.\n
+  !>     lda         rocblas_int. lda >= m.
   !>                 Specifies the leading dimension of A.
   !>     @param[in]
-  !>     ipiv        pointer to type. Array on the GPU of dimension at least k.\n
+  !>     ipiv        pointer to type. Array on the GPU of dimension at least k.
   !>                 The Householder scalars as returned by \ref rocsolver_sgeqlf "GEQLF".
   interface rocsolver_sorg2l
     function rocsolver_sorg2l_(handle,m,n,k,A,lda,ipiv) bind(c, name="rocsolver_sorg2l")
@@ -2448,12 +2427,12 @@ module hipfort_rocsolver
 
 #ifdef USE_FPOINTER_INTERFACES
     module procedure &
-      rocsolver_sorg2l_full_rank,&
       rocsolver_sorg2l_rank_0,&
-      rocsolver_sorg2l_rank_1
+      rocsolver_sorg2l_rank_1,&
+      rocsolver_sorg2l_full_rank
 #endif
   end interface
-  
+
   interface rocsolver_dorg2l
     function rocsolver_dorg2l_(handle,m,n,k,A,lda,ipiv) bind(c, name="rocsolver_dorg2l")
       use iso_c_binding
@@ -2472,46 +2451,50 @@ module hipfort_rocsolver
 
 #ifdef USE_FPOINTER_INTERFACES
     module procedure &
-      rocsolver_dorg2l_full_rank,&
       rocsolver_dorg2l_rank_0,&
-      rocsolver_dorg2l_rank_1
+      rocsolver_dorg2l_rank_1,&
+      rocsolver_dorg2l_full_rank
 #endif
   end interface
-  !>     \brief UNG2L generates an m-by-n complex Matrix Q with orthonormal columns.
-  !> 
+
+  !>     \brief The UNG2L functions generate an ``m`` -by-``n`` complex matrix Q with orthonormal
+  !>     columns.
+  !>
   !>     \details
-  !>     (This is the unblocked version of the algorithm).
-  !> 
-  !>     The matrix Q is defined as the last n columns of the product of k
-  !>     Householder reflectors of order m
-  !> 
+  !>     (This is the unblocked version of the algorithm.)
+  !>
+  !>     The matrix Q is defined as the last ``n`` columns of the product of ``k``
+  !>     Householder reflectors of order ``m``
+  !>
   !>     \f[
-  !>         Q = H_kH_{k-1}\cdots H_1
+  !>         Q = H(k)H(k-1)\cdots H(1)
   !>     \f]
-  !> 
-  !>     The Householder matrices \f$H_i\f$ are never stored, they are computed from its
-  !>     corresponding Householder vectors \f$v_i\f$ and scalars \f$\text{ipiv}[i]\f$, as returned by \ref rocsolver_sgeqlf "GEQLF".
-  !> 
+  !>
+  !>     The Householder matrices \f$H(i)\f$ are never stored. They are computed from the
+  !>     corresponding Householder vectors \f$v_i\f$ and scalars \f$\text{ipiv}[i]\f$, as returned
+  !>     by \ref rocsolver_sgeqlf "GEQLF".
+  !>
   !>     @param[in]
   !>     handle      rocblas_handle.
   !>     @param[in]
-  !>     m           rocblas_int. m >= 0.\n
+  !>     m           rocblas_int. m >= 0.
   !>                 The number of rows of the matrix Q.
   !>     @param[in]
-  !>     n           rocblas_int. 0 <= n <= m.\n
+  !>     n           rocblas_int. 0 <= n <= m.
   !>                 The number of columns of the matrix Q.
   !>     @param[in]
-  !>     k           rocblas_int. 0 <= k <= n.\n
+  !>     k           rocblas_int. 0 <= k <= n.
   !>                 The number of Householder reflectors.
   !>     @param[inout]
-  !>     A           pointer to type. Array on the GPU of dimension lda*n.\n
-  !>                 On entry, the matrix A as returned by \ref rocsolver_sgeqrf "GEQLF", with the Householder vectors in the last k columns.
+  !>     A           pointer to type. Array on the GPU of dimension lda*n.
+  !>                 On entry, the matrix A as returned by \ref rocsolver_sgeqrf "GEQLF", with the
+  !>                 Householder vectors in the last k columns.
   !>                 On exit, the computed matrix Q.
   !>     @param[in]
-  !>     lda         rocblas_int. lda >= m.\n
+  !>     lda         rocblas_int. lda >= m.
   !>                 Specifies the leading dimension of A.
   !>     @param[in]
-  !>     ipiv        pointer to type. Array on the GPU of dimension at least k.\n
+  !>     ipiv        pointer to type. Array on the GPU of dimension at least k.
   !>                 The Householder scalars as returned by \ref rocsolver_sgeqlf "GEQLF".
   interface rocsolver_cung2l
     function rocsolver_cung2l_(handle,m,n,k,A,lda,ipiv) bind(c, name="rocsolver_cung2l")
@@ -2531,12 +2514,12 @@ module hipfort_rocsolver
 
 #ifdef USE_FPOINTER_INTERFACES
     module procedure &
-      rocsolver_cung2l_full_rank,&
       rocsolver_cung2l_rank_0,&
-      rocsolver_cung2l_rank_1
+      rocsolver_cung2l_rank_1,&
+      rocsolver_cung2l_full_rank
 #endif
   end interface
-  
+
   interface rocsolver_zung2l
     function rocsolver_zung2l_(handle,m,n,k,A,lda,ipiv) bind(c, name="rocsolver_zung2l")
       use iso_c_binding
@@ -2555,46 +2538,49 @@ module hipfort_rocsolver
 
 #ifdef USE_FPOINTER_INTERFACES
     module procedure &
-      rocsolver_zung2l_full_rank,&
       rocsolver_zung2l_rank_0,&
-      rocsolver_zung2l_rank_1
+      rocsolver_zung2l_rank_1,&
+      rocsolver_zung2l_full_rank
 #endif
   end interface
-  !>     \brief ORGQL generates an m-by-n Matrix Q with orthonormal columns.
-  !> 
+
+  !>     \brief The ORGQL functions generate an ``m``-by-``n`` Matrix Q with orthonormal columns.
+  !>
   !>     \details
-  !>     (This is the blocked version of the algorithm).
-  !> 
-  !>     The matrix Q is defined as the last n column of the product of k Householder
-  !>     reflectors of order m
-  !> 
+  !>     (This is the blocked version of the algorithm.)
+  !>
+  !>     The matrix Q is defined as the last ``n`` column of the product of ``k`` Householder
+  !>     reflectors of order ``m``
+  !>
   !>     \f[
-  !>         Q = H_kH_{k-1}\cdots H_1
+  !>         Q = H(k)H(k-1)\cdots H(1)
   !>     \f]
-  !> 
-  !>     The Householder matrices \f$H_i\f$ are never stored, they are computed from its
-  !>     corresponding Householder vectors \f$v_i\f$ and scalars \f$\text{ipiv}[i]\f$, as returned by \ref rocsolver_sgeqlf "GEQLF".
-  !> 
+  !>
+  !>     The Householder matrices \f$H(i)\f$ are never stored. They are computed from the
+  !>     corresponding Householder vectors \f$v_i\f$ and scalars \f$\text{ipiv}[i]\f$, as returned
+  !>     by \ref rocsolver_sgeqlf "GEQLF".
+  !>
   !>     @param[in]
   !>     handle      rocblas_handle.
   !>     @param[in]
-  !>     m           rocblas_int. m >= 0.\n
+  !>     m           rocblas_int. m >= 0.
   !>                 The number of rows of the matrix Q.
   !>     @param[in]
-  !>     n           rocblas_int. 0 <= n <= m.\n
+  !>     n           rocblas_int. 0 <= n <= m.
   !>                 The number of columns of the matrix Q.
   !>     @param[in]
-  !>     k           rocblas_int. 0 <= k <= n.\n
+  !>     k           rocblas_int. 0 <= k <= n.
   !>                 The number of Householder reflectors.
   !>     @param[inout]
-  !>     A           pointer to type. Array on the GPU of dimension lda*n.\n
-  !>                 On entry, the matrix A as returned by \ref rocsolver_sgeqrf "GEQLF", with the Householder vectors in the last k columns.
+  !>     A           pointer to type. Array on the GPU of dimension lda*n.
+  !>                 On entry, the matrix A as returned by \ref rocsolver_sgeqrf "GEQLF", with the
+  !>                 Householder vectors in the last k columns.
   !>                 On exit, the computed matrix Q.
   !>     @param[in]
-  !>     lda         rocblas_int. lda >= m.\n
+  !>     lda         rocblas_int. lda >= m.
   !>                 Specifies the leading dimension of A.
   !>     @param[in]
-  !>     ipiv        pointer to type. Array on the GPU of dimension at least k.\n
+  !>     ipiv        pointer to type. Array on the GPU of dimension at least k.
   !>                 The Householder scalars as returned by \ref rocsolver_sgeqlf "GEQLF".
   interface rocsolver_sorgql
     function rocsolver_sorgql_(handle,m,n,k,A,lda,ipiv) bind(c, name="rocsolver_sorgql")
@@ -2614,12 +2600,12 @@ module hipfort_rocsolver
 
 #ifdef USE_FPOINTER_INTERFACES
     module procedure &
-      rocsolver_sorgql_full_rank,&
       rocsolver_sorgql_rank_0,&
-      rocsolver_sorgql_rank_1
+      rocsolver_sorgql_rank_1,&
+      rocsolver_sorgql_full_rank
 #endif
   end interface
-  
+
   interface rocsolver_dorgql
     function rocsolver_dorgql_(handle,m,n,k,A,lda,ipiv) bind(c, name="rocsolver_dorgql")
       use iso_c_binding
@@ -2638,46 +2624,50 @@ module hipfort_rocsolver
 
 #ifdef USE_FPOINTER_INTERFACES
     module procedure &
-      rocsolver_dorgql_full_rank,&
       rocsolver_dorgql_rank_0,&
-      rocsolver_dorgql_rank_1
+      rocsolver_dorgql_rank_1,&
+      rocsolver_dorgql_full_rank
 #endif
   end interface
-  !>     \brief UNGQL generates an m-by-n complex Matrix Q with orthonormal columns.
-  !> 
+
+  !>     \brief The UNGQL functions generate an ``m`` -by-``n`` complex matrix Q with orthonormal
+  !>     columns.
+  !>
   !>     \details
-  !>     (This is the blocked version of the algorithm).
-  !> 
-  !>     The matrix Q is defined as the last n columns of the product of k
-  !>     Householder reflectors of order m
-  !> 
+  !>     (This is the blocked version of the algorithm.)
+  !>
+  !>     The matrix Q is defined as the last ``n`` columns of the product of ``k``
+  !>     Householder reflectors of order ``m``
+  !>
   !>     \f[
-  !>         Q = H_kH_{k-1}\cdots H_1
+  !>         Q = H(k)H(k-1)\cdots H(1)
   !>     \f]
-  !> 
-  !>     The Householder matrices \f$H_i\f$ are never stored, they are computed from its
-  !>     corresponding Householder vectors \f$v_i\f$ and scalars \f$\text{ipiv}[i]\f$, as returned by \ref rocsolver_sgeqlf "GEQLF".
-  !> 
+  !>
+  !>     The Householder matrices \f$H(i)\f$ are never stored. They are computed from the
+  !>     corresponding Householder vectors \f$v_i\f$ and scalars \f$\text{ipiv}[i]\f$, as returned
+  !>     by \ref rocsolver_sgeqlf "GEQLF".
+  !>
   !>     @param[in]
   !>     handle      rocblas_handle.
   !>     @param[in]
-  !>     m           rocblas_int. m >= 0.\n
+  !>     m           rocblas_int. m >= 0.
   !>                 The number of rows of the matrix Q.
   !>     @param[in]
-  !>     n           rocblas_int. 0 <= n <= m.\n
+  !>     n           rocblas_int. 0 <= n <= m.
   !>                 The number of columns of the matrix Q.
   !>     @param[in]
-  !>     k           rocblas_int. 0 <= k <= n.\n
+  !>     k           rocblas_int. 0 <= k <= n.
   !>                 The number of Householder reflectors.
   !>     @param[inout]
-  !>     A           pointer to type. Array on the GPU of dimension lda*n.\n
-  !>                 On entry, the matrix A as returned by \ref rocsolver_sgeqrf "GEQLF", with the Householder vectors in the last k columns.
+  !>     A           pointer to type. Array on the GPU of dimension lda*n.
+  !>                 On entry, the matrix A as returned by \ref rocsolver_sgeqrf "GEQLF", with the
+  !>                 Householder vectors in the last k columns.
   !>                 On exit, the computed matrix Q.
   !>     @param[in]
-  !>     lda         rocblas_int. lda >= m.\n
+  !>     lda         rocblas_int. lda >= m.
   !>                 Specifies the leading dimension of A.
   !>     @param[in]
-  !>     ipiv        pointer to type. Array on the GPU of dimension at least k.\n
+  !>     ipiv        pointer to type. Array on the GPU of dimension at least k.
   !>                 The Householder scalars as returned by \ref rocsolver_sgeqlf "GEQLF".
   interface rocsolver_cungql
     function rocsolver_cungql_(handle,m,n,k,A,lda,ipiv) bind(c, name="rocsolver_cungql")
@@ -2697,12 +2687,12 @@ module hipfort_rocsolver
 
 #ifdef USE_FPOINTER_INTERFACES
     module procedure &
-      rocsolver_cungql_full_rank,&
       rocsolver_cungql_rank_0,&
-      rocsolver_cungql_rank_1
+      rocsolver_cungql_rank_1,&
+      rocsolver_cungql_full_rank
 #endif
   end interface
-  
+
   interface rocsolver_zungql
     function rocsolver_zungql_(handle,m,n,k,A,lda,ipiv) bind(c, name="rocsolver_zungql")
       use iso_c_binding
@@ -2721,69 +2711,76 @@ module hipfort_rocsolver
 
 #ifdef USE_FPOINTER_INTERFACES
     module procedure &
-      rocsolver_zungql_full_rank,&
       rocsolver_zungql_rank_0,&
-      rocsolver_zungql_rank_1
+      rocsolver_zungql_rank_1,&
+      rocsolver_zungql_full_rank
 #endif
   end interface
-  !>     \brief ORGBR generates an m-by-n Matrix Q with orthonormal rows or columns.
-  !> 
+
+  !>     \brief The ORGBR functions generate an ``m`` -by-``n`` Matrix Q with orthonormal rows or
+  !>     columns.
+  !>
   !>     \details
-  !>     If storev is column-wise, then the matrix Q has orthonormal columns. If m >= k, Q is defined as the first
-  !>     n columns of the product of k Householder reflectors of order m
-  !> 
+  !>     If ``storev`` is column-wise, then the matrix Q has orthonormal columns. If ``m`` >= ``k``,
+  !>     Q is defined as the first
+  !>     ``n`` columns of the product of ``k`` Householder reflectors of order ``m``
+  !>
   !>     \f[
-  !>         Q = H_1H_2\cdots H_k
+  !>         Q = H(1)H(2)\cdots H(k)
   !>     \f]
-  !> 
-  !>     If m < k, Q is defined as the product of Householder reflectors of order m
-  !> 
+  !>
+  !>     If ``m`` < ``k``, Q is defined as the product of Householder reflectors of order ``m``
+  !>
   !>     \f[
-  !>         Q = H_1H_2\cdots H_{m-1}
+  !>         Q = H(1)H(2)\cdots H(m-1)
   !>     \f]
-  !> 
-  !>     On the other hand, if storev is row-wise, then the matrix Q has orthonormal rows. If n > k, Q is defined as the
-  !>     first m rows of the product of k Householder reflectors of order n
-  !> 
+  !>
+  !>     However, if ``storev`` is row-wise, then the matrix Q has orthonormal rows. If ``n`` >
+  !>     ``k``, Q is defined as the
+  !>     first ``m`` rows of the product of ``k`` Householder reflectors of order ``n``
+  !>
   !>     \f[
-  !>         Q = H_kH_{k-1}\cdots H_1
+  !>         Q = H(k)H(k-1)\cdots H(1)
   !>     \f]
-  !> 
-  !>     If n <= k, Q is defined as the product of Householder reflectors of order n
-  !> 
+  !>
+  !>     If ``n`` <= ``k``, Q is defined as the product of Householder reflectors of order ``n``
+  !>
   !>     \f[
-  !>         Q = H_{n-1}H_{n-2}\cdots H_1
+  !>         Q = H(n-1)H(n-2)\cdots H(1)
   !>     \f]
-  !> 
-  !>     The Householder matrices \f$H_i\f$ are never stored, they are computed from its corresponding
-  !>     Householder vectors \f$v_i\f$ and scalars \f$\text{ipiv}[i]\f$, as returned by \ref rocsolver_sgebrd "GEBRD" in its arguments A and tauq or taup.
-  !> 
+  !>
+  !>     The Householder matrices \f$H(i)\f$ are never stored. They are computed from the
+  !>     corresponding
+  !>     Householder vectors \f$v_i\f$ and scalars \f$\text{ipiv}[i]\f$, as returned by \ref
+  !>     rocsolver_sgebrd "GEBRD" in its arguments ``A`` and tauq or taup.
+  !>
   !>     @param[in]
   !>     handle      rocblas_handle.
   !>     @param[in]
-  !>     storev      rocblas_storev.\n
+  !>     storev      `rocblas_storev`.
   !>                 Specifies whether to work column-wise or row-wise.
   !>     @param[in]
-  !>     m           rocblas_int. m >= 0.\n
+  !>     m           rocblas_int. m >= 0.
   !>                 The number of rows of the matrix Q.
   !>                 If row-wise, then min(n,k) <= m <= n.
   !>     @param[in]
-  !>     n           rocblas_int. n >= 0.\n
+  !>     n           rocblas_int. n >= 0.
   !>                 The number of columns of the matrix Q.
   !>                 If column-wise, then min(m,k) <= n <= m.
   !>     @param[in]
-  !>     k           rocblas_int. k >= 0.\n
+  !>     k           rocblas_int. k >= 0.
   !>                 The number of columns (if storev is column-wise) or rows (if row-wise) of the
   !>                 original matrix reduced by \ref rocsolver_sgebrd "GEBRD".
   !>     @param[inout]
-  !>     A           pointer to type. Array on the GPU of dimension lda*n.\n
+  !>     A           pointer to type. Array on the GPU of dimension lda*n.
   !>                 On entry, the Householder vectors as returned by \ref rocsolver_sgebrd "GEBRD".
   !>                 On exit, the computed matrix Q.
   !>     @param[in]
-  !>     lda         rocblas_int. lda >= m.\n
+  !>     lda         rocblas_int. lda >= m.
   !>                 Specifies the leading dimension of A.
   !>     @param[in]
-  !>     ipiv        pointer to type. Array on the GPU of dimension min(m,k) if column-wise, or min(n,k) if row-wise.\n
+  !>     ipiv pointer to type. Array on the GPU of dimension min(m,k) if column-wise, or min(n,k) if
+  !>     row-wise.
   !>                 The Householder scalars as returned by \ref rocsolver_sgebrd "GEBRD".
   interface rocsolver_sorgbr
     function rocsolver_sorgbr_(handle,storev,m,n,k,A,lda,ipiv) bind(c, name="rocsolver_sorgbr")
@@ -2804,12 +2801,12 @@ module hipfort_rocsolver
 
 #ifdef USE_FPOINTER_INTERFACES
     module procedure &
-      rocsolver_sorgbr_full_rank,&
       rocsolver_sorgbr_rank_0,&
-      rocsolver_sorgbr_rank_1
+      rocsolver_sorgbr_rank_1,&
+      rocsolver_sorgbr_full_rank
 #endif
   end interface
-  
+
   interface rocsolver_dorgbr
     function rocsolver_dorgbr_(handle,storev,m,n,k,A,lda,ipiv) bind(c, name="rocsolver_dorgbr")
       use iso_c_binding
@@ -2829,70 +2826,77 @@ module hipfort_rocsolver
 
 #ifdef USE_FPOINTER_INTERFACES
     module procedure &
-      rocsolver_dorgbr_full_rank,&
       rocsolver_dorgbr_rank_0,&
-      rocsolver_dorgbr_rank_1
+      rocsolver_dorgbr_rank_1,&
+      rocsolver_dorgbr_full_rank
 #endif
   end interface
-  !>     \brief UNGBR generates an m-by-n complex Matrix Q with orthonormal rows or
+
+  !>     \brief The UNGBR functions generate an ``m`` -by-``n`` complex matrix Q with orthonormal
+  !>     rows or
   !>     columns.
-  !> 
+  !>
   !>     \details
-  !>     If storev is column-wise, then the matrix Q has orthonormal columns. If m >= k, Q is defined as the first
-  !>     n columns of the product of k Householder reflectors of order m
-  !> 
+  !>     If ``storev`` is column-wise, then the matrix Q has orthonormal columns. If ``m`` >= ``k``,
+  !>     Q is defined as the first
+  !>     ``n`` columns of the product of ``k`` Householder reflectors of order ``m``
+  !>
   !>     \f[
-  !>         Q = H_1H_2\cdots H_k
+  !>         Q = H(1)H(2)\cdots H(k)
   !>     \f]
-  !> 
-  !>     If m < k, Q is defined as the product of Householder reflectors of order m
-  !> 
+  !>
+  !>     If ``m`` < ``k``, Q is defined as the product of Householder reflectors of order ``m``
+  !>
   !>     \f[
-  !>         Q = H_1H_2\cdots H_{m-1}
+  !>         Q = H(1)H(2)\cdots H(m-1)
   !>     \f]
-  !> 
-  !>     On the other hand, if storev is row-wise, then the matrix Q has orthonormal rows. If n > k, Q is defined as the
-  !>     first m rows of the product of k Householder reflectors of order n
-  !> 
+  !>
+  !>     However, if ``storev`` is row-wise, then the matrix Q has orthonormal rows. If ``n`` >
+  !>     ``k``, Q is defined as the
+  !>     first ``m`` rows of the product of ``k`` Householder reflectors of order ``n``
+  !>
   !>     \f[
-  !>         Q = H_kH_{k-1}\cdots H_1
+  !>         Q = H(k)H(k-1)\cdots H(1)
   !>     \f]
-  !> 
-  !>     If n <= k, Q is defined as the product of Householder reflectors of order n
-  !> 
+  !>
+  !>     If ``n`` <= ``k``, Q is defined as the product of Householder reflectors of order ``n``
+  !>
   !>     \f[
-  !>         Q = H_{n-1}H_{n-2}\cdots H_1
+  !>         Q = H(n-1)H(n-2)\cdots H(1)
   !>     \f]
-  !> 
-  !>     The Householder matrices \f$H_i\f$ are never stored, they are computed from its corresponding
-  !>     Householder vectors \f$v_i\f$ and scalars \f$\text{ipiv}[i]\f$, as returned by \ref rocsolver_sgebrd "GEBRD" in its arguments A and tauq or taup.
-  !> 
+  !>
+  !>     The Householder matrices \f$H(i)\f$ are never stored. They are computed from the
+  !>     corresponding
+  !>     Householder vectors \f$v_i\f$ and scalars \f$\text{ipiv}[i]\f$, as returned by \ref
+  !>     rocsolver_sgebrd "GEBRD" in its arguments ``A`` and tauq or taup.
+  !>
   !>     @param[in]
   !>     handle      rocblas_handle.
   !>     @param[in]
-  !>     storev      rocblas_storev.\n
+  !>     storev      `rocblas_storev`.
   !>                 Specifies whether to work column-wise or row-wise.
   !>     @param[in]
-  !>     m           rocblas_int. m >= 0.\n
+  !>     m           rocblas_int. m >= 0.
   !>                 The number of rows of the matrix Q.
   !>                 If row-wise, then min(n,k) <= m <= n.
   !>     @param[in]
-  !>     n           rocblas_int. n >= 0.\n
+  !>     n           rocblas_int. n >= 0.
   !>                 The number of columns of the matrix Q.
   !>                 If column-wise, then min(m,k) <= n <= m.
   !>     @param[in]
-  !>     k           rocblas_int. k >= 0.\n
+  !>     k           rocblas_int. k >= 0.
   !>                 The number of columns (if storev is column-wise) or rows (if row-wise) of the
   !>                 original matrix reduced by \ref rocsolver_sgebrd "GEBRD".
   !>     @param[inout]
-  !>     A           pointer to type. Array on the GPU of dimension lda*n.\n
+  !>     A           pointer to type. Array on the GPU of dimension lda*n.
   !>                 On entry, the Householder vectors as returned by \ref rocsolver_sgebrd "GEBRD".
   !>                 On exit, the computed matrix Q.
   !>     @param[in]
-  !>     lda         rocblas_int. lda >= m.\n
+  !>     lda         rocblas_int. lda >= m.
   !>                 Specifies the leading dimension of A.
   !>     @param[in]
-  !>     ipiv        pointer to type. Array on the GPU of dimension min(m,k) if column-wise, or min(n,k) if row-wise.\n
+  !>     ipiv pointer to type. Array on the GPU of dimension min(m,k) if column-wise or min(n,k) if
+  !>     row-wise.
   !>                 The Householder scalars as returned by \ref rocsolver_sgebrd "GEBRD".
   interface rocsolver_cungbr
     function rocsolver_cungbr_(handle,storev,m,n,k,A,lda,ipiv) bind(c, name="rocsolver_cungbr")
@@ -2913,12 +2917,12 @@ module hipfort_rocsolver
 
 #ifdef USE_FPOINTER_INTERFACES
     module procedure &
-      rocsolver_cungbr_full_rank,&
       rocsolver_cungbr_rank_0,&
-      rocsolver_cungbr_rank_1
+      rocsolver_cungbr_rank_1,&
+      rocsolver_cungbr_full_rank
 #endif
   end interface
-  
+
   interface rocsolver_zungbr
     function rocsolver_zungbr_(handle,storev,m,n,k,A,lda,ipiv) bind(c, name="rocsolver_zungbr")
       use iso_c_binding
@@ -2938,50 +2942,53 @@ module hipfort_rocsolver
 
 #ifdef USE_FPOINTER_INTERFACES
     module procedure &
-      rocsolver_zungbr_full_rank,&
       rocsolver_zungbr_rank_0,&
-      rocsolver_zungbr_rank_1
+      rocsolver_zungbr_rank_1,&
+      rocsolver_zungbr_full_rank
 #endif
   end interface
-  !>     \brief ORGTR generates an n-by-n orthogonal Matrix Q.
-  !> 
+
+  !>     \brief The ORGTR functions generate an ``n``-by-``n`` orthogonal Matrix Q.
+  !>
   !>     \details
-  !>     Q is defined as the product of n-1 Householder reflectors of order n. If
-  !>     uplo indicates upper, then Q has the form
-  !> 
+  !>     Q is defined as the product of ``n``-1 Householder reflectors of order ``n``. If
+  !>     ``uplo`` indicates ``upper``, then Q has the form
+  !>
   !>     \f[
-  !>         Q = H_{n-1}H_{n-2}\cdots H_1
+  !>         Q = H(n-1)H(n-2)\cdots H(1)
   !>     \f]
-  !> 
-  !>     On the other hand, if uplo indicates lower, then Q has the form
-  !> 
+  !>
+  !>     However, if ``uplo`` indicates ``lower``, then Q has the form
+  !>
   !>     \f[
-  !>         Q = H_1H_2\cdots H_{n-1}
+  !>         Q = H(1)H(2)\cdots H(n-1)
   !>     \f]
-  !> 
-  !>     The Householder matrices \f$H_i\f$ are never stored, they are computed from its
-  !>     corresponding Householder vectors \f$v_i\f$ and scalars \f$\text{ipiv}[i]\f$, as returned by
-  !>     \ref rocsolver_ssytrd "SYTRD" in its arguments A and tau.
-  !> 
+  !>
+  !>     The Householder matrices \f$H(i)\f$ are never stored. They are computed from the
+  !>     corresponding Householder vectors \f$v_i\f$ and scalars \f$\text{ipiv}[i]\f$, as returned
+  !>     by
+  !>     \ref rocsolver_ssytrd "SYTRD" in its arguments ``A`` and tau.
+  !>
   !>     @param[in]
   !>     handle      rocblas_handle.
   !>     @param[in]
-  !>     uplo        rocblas_fill.\n
-  !>                 Specifies whether the \ref rocsolver_ssytrd "SYTRD" factorization was upper or lower
+  !>     uplo        rocblas_fill.
+  !>                 Specifies whether the \ref rocsolver_ssytrd "SYTRD" factorization was upper or
+  !>                 lower
   !>                 triangular. If uplo indicates lower (or upper), then the upper (or lower)
   !>                 part of A is not used.
   !>     @param[in]
-  !>     n           rocblas_int. n >= 0.\n
+  !>     n           rocblas_int. n >= 0.
   !>                 The number of rows and columns of the matrix Q.
   !>     @param[inout]
-  !>     A           pointer to type. Array on the GPU of dimension lda*n.\n
+  !>     A           pointer to type. Array on the GPU of dimension lda*n.
   !>                 On entry, the Householder vectors as returned
   !>                 by \ref rocsolver_ssytrd "SYTRD". On exit, the computed matrix Q.
   !>     @param[in]
-  !>     lda         rocblas_int. lda >= n.\n
+  !>     lda         rocblas_int. lda >= n.
   !>                 Specifies the leading dimension of A.
   !>     @param[in]
-  !>     ipiv        pointer to type. Array on the GPU of dimension n-1.\n
+  !>     ipiv        pointer to type. Array on the GPU of dimension n-1.
   !>                 The Householder scalars as returned by \ref rocsolver_ssytrd "SYTRD".
   interface rocsolver_sorgtr
     function rocsolver_sorgtr_(handle,uplo,n,A,lda,ipiv) bind(c, name="rocsolver_sorgtr")
@@ -3000,12 +3007,12 @@ module hipfort_rocsolver
 
 #ifdef USE_FPOINTER_INTERFACES
     module procedure &
-      rocsolver_sorgtr_full_rank,&
       rocsolver_sorgtr_rank_0,&
-      rocsolver_sorgtr_rank_1
+      rocsolver_sorgtr_rank_1,&
+      rocsolver_sorgtr_full_rank
 #endif
   end interface
-  
+
   interface rocsolver_dorgtr
     function rocsolver_dorgtr_(handle,uplo,n,A,lda,ipiv) bind(c, name="rocsolver_dorgtr")
       use iso_c_binding
@@ -3023,50 +3030,53 @@ module hipfort_rocsolver
 
 #ifdef USE_FPOINTER_INTERFACES
     module procedure &
-      rocsolver_dorgtr_full_rank,&
       rocsolver_dorgtr_rank_0,&
-      rocsolver_dorgtr_rank_1
+      rocsolver_dorgtr_rank_1,&
+      rocsolver_dorgtr_full_rank
 #endif
   end interface
-  !>     \brief UNGTR generates an n-by-n unitary Matrix Q.
-  !> 
+
+  !>     \brief The UNGTR functions generate an ``n``-by-``n`` unitary matrix Q.
+  !>
   !>     \details
-  !>     Q is defined as the product of n-1 Householder reflectors of order n. If
-  !>     uplo indicates upper, then Q has the form
-  !> 
+  !>     Q is defined as the product of ``n``-1 Householder reflectors of order ``n``. If
+  !>     ``uplo`` indicates ``upper``, then Q has the form
+  !>
   !>     \f[
-  !>         Q = H_{n-1}H_{n-2}\cdots H_1
+  !>         Q = H(n-1)H(n-2)\cdots H(1)
   !>     \f]
-  !> 
-  !>     On the other hand, if uplo indicates lower, then Q has the form
-  !> 
+  !>
+  !>     However, if ``uplo`` indicates ``lower``, then Q has the form
+  !>
   !>     \f[
-  !>         Q = H_1H_2\cdots H_{n-1}
+  !>         Q = H(1)H(2)\cdots H(n-1)
   !>     \f]
-  !> 
-  !>     The Householder matrices \f$H_i\f$ are never stored, they are computed from its
-  !>     corresponding Householder vectors \f$v_i\f$ and scalars \f$\text{ipiv}[i]\f$, as returned by
-  !>     \ref rocsolver_chetrd "HETRD" in its arguments A and tau.
-  !> 
+  !>
+  !>     The Householder matrices \f$H(i)\f$ are never stored. They are computed from their
+  !>     corresponding Householder vectors \f$v_i\f$ and scalars \f$\text{ipiv}[i]\f$, as returned
+  !>     by
+  !>     \ref rocsolver_chetrd "HETRD" in its arguments ``A`` and tau.
+  !>
   !>     @param[in]
   !>     handle      rocblas_handle.
   !>     @param[in]
-  !>     uplo        rocblas_fill.\n
-  !>                 Specifies whether the \ref rocsolver_chetrd "HETRD" factorization was upper or lower
+  !>     uplo        rocblas_fill.
+  !>                 Specifies whether the \ref rocsolver_chetrd "HETRD" factorization was upper or
+  !>                 lower
   !>                 triangular. If uplo indicates lower (or upper), then the upper (or lower)
   !>                 part of A is not used.
   !>     @param[in]
-  !>     n           rocblas_int. n >= 0.\n
+  !>     n           rocblas_int. n >= 0.
   !>                 The number of rows and columns of the matrix Q.
   !>     @param[inout]
-  !>     A           pointer to type. Array on the GPU of dimension lda*n.\n
+  !>     A           pointer to type. Array on the GPU of dimension lda*n.
   !>                 On entry, the Householder vectors as returned
   !>                 by \ref rocsolver_chetrd "HETRD". On exit, the computed matrix Q.
   !>     @param[in]
-  !>     lda         rocblas_int. lda >= m.\n
+  !>     lda         rocblas_int. lda >= m.
   !>                 Specifies the leading dimension of A.
   !>     @param[in]
-  !>     ipiv        pointer to type. Array on the GPU of dimension n-1.\n
+  !>     ipiv        pointer to type. Array on the GPU of dimension n-1.
   !>                 The Householder scalars as returned by \ref rocsolver_chetrd "HETRD".
   interface rocsolver_cungtr
     function rocsolver_cungtr_(handle,uplo,n,A,lda,ipiv) bind(c, name="rocsolver_cungtr")
@@ -3085,12 +3095,12 @@ module hipfort_rocsolver
 
 #ifdef USE_FPOINTER_INTERFACES
     module procedure &
-      rocsolver_cungtr_full_rank,&
       rocsolver_cungtr_rank_0,&
-      rocsolver_cungtr_rank_1
+      rocsolver_cungtr_rank_1,&
+      rocsolver_cungtr_full_rank
 #endif
   end interface
-  
+
   interface rocsolver_zungtr
     function rocsolver_zungtr_(handle,uplo,n,A,lda,ipiv) bind(c, name="rocsolver_zungtr")
       use iso_c_binding
@@ -3108,75 +3118,76 @@ module hipfort_rocsolver
 
 #ifdef USE_FPOINTER_INTERFACES
     module procedure &
-      rocsolver_zungtr_full_rank,&
       rocsolver_zungtr_rank_0,&
-      rocsolver_zungtr_rank_1
+      rocsolver_zungtr_rank_1,&
+      rocsolver_zungtr_full_rank
 #endif
   end interface
-  !>     \brief ORM2R multiplies a matrix Q with orthonormal columns by a general m-by-n
-  !>     matrix C.
-  !> 
+
+  !>     \brief The ORM2R functions multiply a matrix Q with orthonormal columns by a general ``m``
+  !>     -by-``n``
+  !>     matrix ``C``.
+  !>
   !>     \details
-  !>     (This is the unblocked version of the algorithm).
-  !> 
+  !>     (This is the unblocked version of the algorithm.)
+  !>
   !>     The matrix Q is applied in one of the following forms, depending on
-  !>     the values of side and trans:
-  !> 
+  !>     the values of ``side`` and ``trans``:
+  !>
   !>     \f[
   !>         \begin{array}{cl}
-  !>         QC & \: \text{No transpose from the left,}\newline
-  !>
-  !>         Q^TC & \: \text{Transpose from the left,}\newline
-  !>
-  !>         CQ & \: \text{No transpose from the right, and}\newline
-  !>
+  !>         QC & \: \text{No transpose from the left,}\\%
+  !>         Q^TC & \: \text{Transpose from the left,}\\%
+  !>         CQ & \: \text{No transpose from the right, and}\\%
   !>         CQ^T & \: \text{Transpose from the right.}
   !>         \end{array}
   !>     \f]
-  !> 
-  !>     Q is defined as the product of k Householder reflectors
-  !> 
+  !>
+  !>     Q is defined as the product of ``k`` Householder reflectors
+  !>
   !>     \f[
-  !>         Q = H_1H_2 \cdots H_k
+  !>         Q = H(1)H(2) \cdots H(k)
   !>     \f]
-  !> 
-  !>     of order m if applying from the left, or n if applying from the right. Q is never stored, it is
-  !>     calculated from the Householder vectors and scalars returned by the QR factorization \ref rocsolver_sgeqrf "GEQRF".
-  !> 
+  !>
+  !>     of order ``m`` if applying from the left, or ``n`` if applying from the right. Q is never
+  !>     stored. It is
+  !>     calculated from the Householder vectors and scalars returned by the QR factorization \ref
+  !>     rocsolver_sgeqrf "GEQRF".
+  !>
   !>     @param[in]
-  !>     handle              rocblas_handle.
+  !>     handle      rocblas_handle.
   !>     @param[in]
-  !>     side                rocblas_side.\n
-  !>                         Specifies from which side to apply Q.
+  !>     side        rocblas_side.
+  !>                 Specifies from which side to apply Q.
   !>     @param[in]
-  !>     trans               rocblas_operation.\n
-  !>                         Specifies whether the matrix Q or its transpose is to be applied.
+  !>     trans       rocblas_operation.
+  !>                 Specifies whether the matrix Q or its transpose is to be applied.
   !>     @param[in]
-  !>     m                   rocblas_int. m >= 0.\n
-  !>                         Number of rows of matrix C.
+  !>     m           rocblas_int. m >= 0.
+  !>                 Number of rows of matrix C.
   !>     @param[in]
-  !>     n                   rocblas_int. n >= 0.\n
-  !>                         Number of columns of matrix C.
+  !>     n           rocblas_int. n >= 0.
+  !>                 Number of columns of matrix C.
   !>     @param[in]
-  !>     k                   rocblas_int. k >= 0; k <= m if side is left, k <= n if side is right.\n
-  !>                         The number of Householder reflectors that form Q.
+  !>     k           rocblas_int. k >= 0. k <= m if side is left, and k <= n if side is right.
+  !>                 The number of Householder reflectors that form Q.
   !>     @param[in]
-  !>     A                   pointer to type. Array on the GPU of size lda*k.\n
-  !>                         The Householder vectors as returned by \ref rocsolver_sgeqrf "GEQRF"
-  !>                         in the first k columns of its argument A.
+  !>     A           pointer to type. Array on the GPU of size lda*k.
+  !>                 The Householder vectors as returned by \ref rocsolver_sgeqrf "GEQRF"
+  !>                 in the first k columns of its argument A.
   !>     @param[in]
-  !>     lda                 rocblas_int. lda >= m if side is left, or lda >= n if side is right. \n
-  !>                         Leading dimension of A.
+  !>     lda         rocblas_int. lda >= m if side is left, or lda >= n if side is right.
+  !>                 Leading dimension of A.
   !>     @param[in]
-  !>     ipiv                pointer to type. Array on the GPU of dimension at least k.\n
-  !>                         The Householder scalars as returned by \ref rocsolver_sgeqrf "GEQRF".
+  !>     ipiv        pointer to type. Array on the GPU of dimension at least k.
+  !>                 The Householder scalars as returned by \ref rocsolver_sgeqrf "GEQRF".
   !>     @param[inout]
-  !>     C                   pointer to type. Array on the GPU of size ldc*n.\n
-  !>                         On entry, the matrix C. On exit, it is overwritten with
-  !>                         Q*C, C*Q, Q'*C, or C*Q'.
+  !>     C           pointer to type. Array on the GPU of size ldc*n.
+  !>                 On entry, the matrix C. On exit, it is overwritten with
+  !>                 \f$QC\f$, \f$CQ\f$, \f$Q^TC\f$, or \f$CQ^T\f$.
   !>     @param[in]
-  !>     ldc                 rocblas_int. ldc >= m.\n
-  !>                         Leading dimension of C.
+  !>     ldc         rocblas_int. ldc >= m.
+  !>                 Leading dimension of C.
   interface rocsolver_sorm2r
     function rocsolver_sorm2r_(handle,side,trans,m,n,k,A,lda,ipiv,C,ldc) bind(c, name="rocsolver_sorm2r")
       use iso_c_binding
@@ -3199,12 +3210,12 @@ module hipfort_rocsolver
 
 #ifdef USE_FPOINTER_INTERFACES
     module procedure &
-      rocsolver_sorm2r_full_rank,&
       rocsolver_sorm2r_rank_0,&
-      rocsolver_sorm2r_rank_1
+      rocsolver_sorm2r_rank_1,&
+      rocsolver_sorm2r_full_rank
 #endif
   end interface
-  
+
   interface rocsolver_dorm2r
     function rocsolver_dorm2r_(handle,side,trans,m,n,k,A,lda,ipiv,C,ldc) bind(c, name="rocsolver_dorm2r")
       use iso_c_binding
@@ -3227,76 +3238,75 @@ module hipfort_rocsolver
 
 #ifdef USE_FPOINTER_INTERFACES
     module procedure &
-      rocsolver_dorm2r_full_rank,&
       rocsolver_dorm2r_rank_0,&
-      rocsolver_dorm2r_rank_1
+      rocsolver_dorm2r_rank_1,&
+      rocsolver_dorm2r_full_rank
 #endif
   end interface
-  !>     \brief UNM2R multiplies a complex matrix Q with orthonormal columns by a
-  !>     general m-by-n matrix C.
-  !> 
+
+  !>     \brief The UNM2R functions multiply a complex matrix Q with orthonormal columns by a
+  !>     general ``m``-by-``n`` matrix ``C``.
+  !>
   !>     \details
-  !>     (This is the unblocked version of the algorithm).
-  !> 
+  !>     (This is the unblocked version of the algorithm.)
+  !>
   !>     The matrix Q is applied in one of the following forms, depending on
-  !>     the values of side and trans:
-  !> 
+  !>     the values of ``side`` and ``trans``:
+  !>
   !>     \f[
   !>         \begin{array}{cl}
-  !>         QC & \: \text{No transpose from the left,}\newline
-  !>
-  !>         Q^HC & \: \text{Conjugate transpose from the left,}\newline
-  !>
-  !>         CQ & \: \text{No transpose from the right, and}\newline
-  !>
+  !>         QC & \: \text{No transpose from the left,}\\%
+  !>         Q^H C & \: \text{Conjugate transpose from the left,}\\%
+  !>         CQ & \: \text{No transpose from the right, and}\\%
   !>         CQ^H & \: \text{Conjugate transpose from the right.}
   !>         \end{array}
   !>     \f]
-  !> 
-  !>     Q is defined as the product of k Householder reflectors
-  !> 
-  !>     \f[
-  !>         Q = H_1H_2\cdots H_k
-  !>     \f]
-  !> 
-  !>     of order m if applying from the left, or n if applying from the right. Q is never stored, it is
-  !>     calculated from the Householder vectors and scalars returned by the QR factorization \ref rocsolver_sgeqrf "GEQRF".
-  !> 
-  !>     @param[in]
-  !>     handle              rocblas_handle.
-  !>     @param[in]
-  !>     side                rocblas_side.\n
-  !>                         Specifies from which side to apply Q.
-  !>     @param[in]
-  !>     trans               rocblas_operation.\n
-  !>                         Specifies whether the matrix Q or its conjugate transpose is to be applied.
-  !>     @param[in]
-  !>     m                   rocblas_int. m >= 0.\n
-  !>                         Number of rows of matrix C.
-  !>     @param[in]
-  !>     n                   rocblas_int. n >= 0.\n
-  !>                         Number of columns of matrix C.
-  !>     @param[in]
-  !>     k                   rocblas_int. k >= 0; k <= m if side is left, k <= n if side is right.\n
-  !>                         The number of Householder reflectors that form Q.
-  !>     @param[in]
-  !>     A                   pointer to type. Array on the GPU of size lda*k.\n
-  !>                         The Householder vectors as returned by \ref rocsolver_sgeqrf "GEQRF"
-  !>                         in the first k columns of its argument A.
-  !>     @param[in]
-  !>     lda                 rocblas_int. lda >= m if side is left, or lda >= n if side is right. \n
-  !>                         Leading dimension of A.
-  !>     @param[in]
-  !>     ipiv                pointer to type. Array on the GPU of dimension at least k.\n
-  !>                         The Householder scalars as returned by \ref rocsolver_sgeqrf "GEQRF".
-  !>     @param[inout]
-  !>     C                   pointer to type. Array on the GPU of size ldc*n.\n
-  !>                         On entry, the matrix C. On exit, it is overwritten with
-  !>                         Q*C, C*Q, Q'*C, or C*Q'.
-  !>     @param[in]
-  !>     ldc                 rocblas_int. ldc >= m.\n
-  !>                         Leading dimension of C.
   !>
+  !>     Q is defined as the product of ``k`` Householder reflectors
+  !>
+  !>     \f[
+  !>         Q = H(1)H(2)\cdots H(k)
+  !>     \f]
+  !>
+  !>     of order ``m`` if applying from the left, or ``n`` if applying from the right. Q is never
+  !>     stored. It is
+  !>     calculated from the Householder vectors and scalars returned by the QR factorization \ref
+  !>     rocsolver_sgeqrf "GEQRF".
+  !>
+  !>     @param[in]
+  !>     handle      rocblas_handle.
+  !>     @param[in]
+  !>     side        rocblas_side.
+  !>                 Specifies from which side to apply Q.
+  !>     @param[in]
+  !>     trans       rocblas_operation.
+  !>                 Specifies whether the matrix Q or its conjugate transpose is to be applied.
+  !>     @param[in]
+  !>     m           rocblas_int. m >= 0.
+  !>                 Number of rows of matrix C.
+  !>     @param[in]
+  !>     n           rocblas_int. n >= 0.
+  !>                 Number of columns of matrix C.
+  !>     @param[in]
+  !>     k           rocblas_int. k >= 0. k <= m if side is left, and k <= n if side is right.
+  !>                 The number of Householder reflectors that form Q.
+  !>     @param[in]
+  !>     A           pointer to type. Array on the GPU of size lda*k.
+  !>                 The Householder vectors as returned by \ref rocsolver_sgeqrf "GEQRF"
+  !>                 in the first k columns of its argument A.
+  !>     @param[in]
+  !>     lda         rocblas_int. lda >= m if side is left, or lda >= n if side is right.
+  !>                 Leading dimension of A.
+  !>     @param[in]
+  !>     ipiv        pointer to type. Array on the GPU of dimension at least k.
+  !>                 The Householder scalars as returned by \ref rocsolver_sgeqrf "GEQRF".
+  !>     @param[inout]
+  !>     C           pointer to type. Array on the GPU of size ldc*n.
+  !>                 On entry, the matrix C. On exit, it is overwritten with
+  !>                 \f$QC\f$, \f$CQ\f$, \f$Q^H C\f$, or \f$CQ^H\f$.
+  !>     @param[in]
+  !>     ldc         rocblas_int. ldc >= m.
+  !>                 Leading dimension of C.
   interface rocsolver_cunm2r
     function rocsolver_cunm2r_(handle,side,trans,m,n,k,A,lda,ipiv,C,ldc) bind(c, name="rocsolver_cunm2r")
       use iso_c_binding
@@ -3319,12 +3329,12 @@ module hipfort_rocsolver
 
 #ifdef USE_FPOINTER_INTERFACES
     module procedure &
-      rocsolver_cunm2r_full_rank,&
       rocsolver_cunm2r_rank_0,&
-      rocsolver_cunm2r_rank_1
+      rocsolver_cunm2r_rank_1,&
+      rocsolver_cunm2r_full_rank
 #endif
   end interface
-  
+
   interface rocsolver_zunm2r
     function rocsolver_zunm2r_(handle,side,trans,m,n,k,A,lda,ipiv,C,ldc) bind(c, name="rocsolver_zunm2r")
       use iso_c_binding
@@ -3347,75 +3357,76 @@ module hipfort_rocsolver
 
 #ifdef USE_FPOINTER_INTERFACES
     module procedure &
-      rocsolver_zunm2r_full_rank,&
       rocsolver_zunm2r_rank_0,&
-      rocsolver_zunm2r_rank_1
+      rocsolver_zunm2r_rank_1,&
+      rocsolver_zunm2r_full_rank
 #endif
   end interface
-  !>     \brief ORMQR multiplies a matrix Q with orthonormal columns by a general m-by-n
-  !>     matrix C.
-  !> 
+
+  !>     \brief The ORMQR functions multiply a matrix Q with orthonormal columns by a general ``m``
+  !>     -by-``n``
+  !>     matrix ``C``.
+  !>
   !>     \details
-  !>     (This is the blocked version of the algorithm).
-  !> 
+  !>     (This is the blocked version of the algorithm.)
+  !>
   !>     The matrix Q is applied in one of the following forms, depending on
   !>     the values of side and trans:
-  !> 
+  !>
   !>     \f[
   !>         \begin{array}{cl}
-  !>         QC & \: \text{No transpose from the left,}\newline
-  !>
-  !>         Q^TC & \: \text{Transpose from the left,}\newline
-  !>
-  !>         CQ & \: \text{No transpose from the right, and}\newline
-  !>
+  !>         QC & \: \text{No transpose from the left,}\\%
+  !>         Q^TC & \: \text{Transpose from the left,}\\%
+  !>         CQ & \: \text{No transpose from the right, and}\\%
   !>         CQ^T & \: \text{Transpose from the right.}
   !>         \end{array}
   !>     \f]
-  !> 
-  !>     Q is defined as the product of k Householder reflectors
-  !> 
+  !>
+  !>     Q is defined as the product of ``k`` Householder reflectors
+  !>
   !>     \f[
-  !>         Q = H_1H_2\cdots H_k
+  !>         Q = H(1)H(2)\cdots H(k)
   !>     \f]
-  !> 
-  !>     of order m if applying from the left, or n if applying from the right. Q is never stored, it is
-  !>     calculated from the Householder vectors and scalars returned by the QR factorization \ref rocsolver_sgeqrf "GEQRF".
-  !> 
+  !>
+  !>     of order ``m`` if applying from the left, or ``n`` if applying from the right. Q is never
+  !>     stored. It is
+  !>     calculated from the Householder vectors and scalars returned by the QR factorization \ref
+  !>     rocsolver_sgeqrf "GEQRF".
+  !>
   !>     @param[in]
-  !>     handle              rocblas_handle.
+  !>     handle      rocblas_handle.
   !>     @param[in]
-  !>     side                rocblas_side.\n
-  !>                         Specifies from which side to apply Q.
+  !>     side        rocblas_side.
+  !>                 Specifies from which side to apply Q.
   !>     @param[in]
-  !>     trans               rocblas_operation.\n
-  !>                         Specifies whether the matrix Q or its transpose is to be applied.
+  !>     trans       rocblas_operation.
+  !>                 Specifies whether the matrix Q or its transpose is to be applied.
   !>     @param[in]
-  !>     m                   rocblas_int. m >= 0.\n
-  !>                         Number of rows of matrix C.
+  !>     m           rocblas_int. m >= 0.
+  !>                 Number of rows of matrix C.
   !>     @param[in]
-  !>     n                   rocblas_int. n >= 0.\n
-  !>                         Number of columns of matrix C.
+  !>     n           rocblas_int. n >= 0.
+  !>                 Number of columns of matrix C.
   !>     @param[in]
-  !>     k                   rocblas_int. k >= 0; k <= m if side is left, k <= n if side is right.\n
-  !>                         The number of Householder reflectors that form Q.
+  !>     k           rocblas_int. k >= 0. k <= m if side is left, and k <= n if side is right.
+  !>                 The number of Householder reflectors that form Q.
   !>     @param[in]
-  !>     A                   pointer to type. Array on the GPU of size lda*k.\n
-  !>                         The Householder vectors as returned by \ref rocsolver_sgeqrf "GEQRF"
-  !>                         in the first k columns of its argument A.
+  !>     A           pointer to type. Array on the GPU of size lda*k.
+  !>                 The Householder vectors as returned by \ref rocsolver_sgeqrf "GEQRF"
+  !>                 in the first k columns of its argument A.
   !>     @param[in]
-  !>     lda                 rocblas_int. lda >= m if side is left, or lda >= n if side is right. \n
-  !>                         Leading dimension of A.
+  !>     lda         rocblas_int. lda >= m if side is left, or lda >= n if side is right.
+  !>                 Leading dimension of A.
   !>     @param[in]
-  !>     ipiv                pointer to type. Array on the GPU of dimension at least k.\n
-  !>                         The Householder scalars as returned by \ref rocsolver_sgeqrf "GEQRF".
+  !>     ipiv        pointer to type. Array on the GPU of dimension at least k.
+  !>                 The Householder scalars as returned by \ref rocsolver_sgeqrf "GEQRF".
   !>     @param[inout]
-  !>     C                   pointer to type. Array on the GPU of size ldc*n.\n
-  !>                         On entry, the matrix C. On exit, it is overwritten with
-  !>                         Q*C, C*Q, Q'*C, or C*Q'.
+  !>     C           pointer to type. Array on the GPU of size ldc*n.
+  !>                 On entry, the matrix C. On exit, it is overwritten with
+  !>                 \f$QC\f$, \f$CQ\f$, \f$Q^TC\f$, or \f$CQ^T\f$.
   !>     @param[in]
-  !>     ldc                 rocblas_int. ldc >= m.\n
-  !>                         Leading dimension of C.
+  !>     ldc         rocblas_int. ldc >= m.
+  !>                 Leading dimension of C.
   interface rocsolver_sormqr
     function rocsolver_sormqr_(handle,side,trans,m,n,k,A,lda,ipiv,C,ldc) bind(c, name="rocsolver_sormqr")
       use iso_c_binding
@@ -3438,12 +3449,12 @@ module hipfort_rocsolver
 
 #ifdef USE_FPOINTER_INTERFACES
     module procedure &
-      rocsolver_sormqr_full_rank,&
       rocsolver_sormqr_rank_0,&
-      rocsolver_sormqr_rank_1
+      rocsolver_sormqr_rank_1,&
+      rocsolver_sormqr_full_rank
 #endif
   end interface
-  
+
   interface rocsolver_dormqr
     function rocsolver_dormqr_(handle,side,trans,m,n,k,A,lda,ipiv,C,ldc) bind(c, name="rocsolver_dormqr")
       use iso_c_binding
@@ -3466,75 +3477,75 @@ module hipfort_rocsolver
 
 #ifdef USE_FPOINTER_INTERFACES
     module procedure &
-      rocsolver_dormqr_full_rank,&
       rocsolver_dormqr_rank_0,&
-      rocsolver_dormqr_rank_1
+      rocsolver_dormqr_rank_1,&
+      rocsolver_dormqr_full_rank
 #endif
   end interface
-  !>     \brief UNMQR multiplies a complex matrix Q with orthonormal columns by a
-  !>     general m-by-n matrix C.
-  !> 
+
+  !>     \brief The UNMQR functions multiply a complex matrix Q with orthonormal columns by a
+  !>     general ``m``-by-``n`` matrix ``C``.
+  !>
   !>     \details
-  !>     (This is the blocked version of the algorithm).
-  !> 
+  !>     (This is the blocked version of the algorithm.)
+  !>
   !>     The matrix Q is applied in one of the following forms, depending on
-  !>     the values of side and trans:
-  !> 
+  !>     the values of ``side`` and ``trans``:
+  !>
   !>     \f[
   !>         \begin{array}{cl}
-  !>         QC & \: \text{No transpose from the left,}\newline
-  !>
-  !>         Q^HC & \: \text{Conjugate transpose from the left,}\newline
-  !>
-  !>         CQ & \: \text{No transpose from the right, and}\newline
-  !>
+  !>         QC & \: \text{No transpose from the left,}\\%
+  !>         Q^H C & \: \text{Conjugate transpose from the left,}\\%
+  !>         CQ & \: \text{No transpose from the right, and}\\%
   !>         CQ^H & \: \text{Conjugate transpose from the right.}
   !>         \end{array}
   !>     \f]
-  !> 
-  !>     Q is defined as the product of k Householder reflectors
-  !> 
+  !>
+  !>     Q is defined as the product of ``k`` Householder reflectors
+  !>
   !>     \f[
-  !>         Q = H_1H_2\cdots H_k
+  !>         Q = H(1)H(2)\cdots H(k)
   !>     \f]
-  !> 
-  !>     of order m if applying from the left, or n if applying from the right. Q is never stored, it is
-  !>     calculated from the Householder vectors and scalars returned by the QR factorization \ref rocsolver_sgeqrf "GEQRF".
-  !> 
+  !>
+  !>     of order ``m`` if applying from the left or ``n`` if applying from the right. Q is never
+  !>     stored. It is
+  !>     calculated from the Householder vectors and scalars returned by the QR factorization \ref
+  !>     rocsolver_sgeqrf "GEQRF".
+  !>
   !>     @param[in]
-  !>     handle              rocblas_handle.
+  !>     handle      rocblas_handle.
   !>     @param[in]
-  !>     side                rocblas_side.\n
-  !>                         Specifies from which side to apply Q.
+  !>     side        rocblas_side.
+  !>                 Specifies from which side to apply Q.
   !>     @param[in]
-  !>     trans               rocblas_operation.\n
-  !>                         Specifies whether the matrix Q or its conjugate transpose is to be applied.
+  !>     trans       rocblas_operation.
+  !>                 Specifies whether the matrix Q or its conjugate transpose is to be applied.
   !>     @param[in]
-  !>     m                   rocblas_int. m >= 0.\n
-  !>                         Number of rows of matrix C.
+  !>     m           rocblas_int. m >= 0.
+  !>                 Number of rows of matrix C.
   !>     @param[in]
-  !>     n                   rocblas_int. n >= 0.\n
-  !>                         Number of columns of matrix C.
+  !>     n           rocblas_int. n >= 0.
+  !>                 Number of columns of matrix C.
   !>     @param[in]
-  !>     k                   rocblas_int. k >= 0; k <= m if side is left, k <= n if side is right.\n
-  !>                         The number of Householder reflectors that form Q.
+  !>     k           rocblas_int. k >= 0. k <= m if side is left, and k <= n if side is right.
+  !>                 The number of Householder reflectors that form Q.
   !>     @param[in]
-  !>     A                   pointer to type. Array on the GPU of size lda*k.\n
-  !>                         The Householder vectors as returned by \ref rocsolver_sgeqrf "GEQRF"
-  !>                         in the first k columns of its argument A.
+  !>     A           pointer to type. Array on the GPU of size lda*k.
+  !>                 The Householder vectors as returned by \ref rocsolver_sgeqrf "GEQRF"
+  !>                 in the first k columns of its argument A.
   !>     @param[in]
-  !>     lda                 rocblas_int. lda >= m if side is left, or lda >= n if side is right. \n
-  !>                         Leading dimension of A.
+  !>     lda         rocblas_int. lda >= m if side is left, or lda >= n if side is right.
+  !>                 Leading dimension of A.
   !>     @param[in]
-  !>     ipiv                pointer to type. Array on the GPU of dimension at least k.\n
-  !>                         The Householder scalars as returned by \ref rocsolver_sgeqrf "GEQRF".
+  !>     ipiv        pointer to type. Array on the GPU of dimension at least k.
+  !>                 The Householder scalars as returned by \ref rocsolver_sgeqrf "GEQRF".
   !>     @param[inout]
-  !>     C                   pointer to type. Array on the GPU of size ldc*n.\n
-  !>                         On entry, the matrix C. On exit, it is overwritten with
-  !>                         Q*C, C*Q, Q'*C, or C*Q'.
+  !>     C           pointer to type. Array on the GPU of size ldc*n.
+  !>                 On entry, the matrix C. On exit, it is overwritten with
+  !>                 \f$QC\f$, \f$CQ\f$, \f$Q^H C\f$, or \f$CQ^H\f$.
   !>     @param[in]
-  !>     ldc                 rocblas_int. ldc >= m.\n
-  !>                         Leading dimension of C.
+  !>     ldc         rocblas_int. ldc >= m.
+  !>                 Leading dimension of C.
   interface rocsolver_cunmqr
     function rocsolver_cunmqr_(handle,side,trans,m,n,k,A,lda,ipiv,C,ldc) bind(c, name="rocsolver_cunmqr")
       use iso_c_binding
@@ -3557,12 +3568,12 @@ module hipfort_rocsolver
 
 #ifdef USE_FPOINTER_INTERFACES
     module procedure &
-      rocsolver_cunmqr_full_rank,&
       rocsolver_cunmqr_rank_0,&
-      rocsolver_cunmqr_rank_1
+      rocsolver_cunmqr_rank_1,&
+      rocsolver_cunmqr_full_rank
 #endif
   end interface
-  
+
   interface rocsolver_zunmqr
     function rocsolver_zunmqr_(handle,side,trans,m,n,k,A,lda,ipiv,C,ldc) bind(c, name="rocsolver_zunmqr")
       use iso_c_binding
@@ -3585,76 +3596,77 @@ module hipfort_rocsolver
 
 #ifdef USE_FPOINTER_INTERFACES
     module procedure &
-      rocsolver_zunmqr_full_rank,&
       rocsolver_zunmqr_rank_0,&
-      rocsolver_zunmqr_rank_1
+      rocsolver_zunmqr_rank_1,&
+      rocsolver_zunmqr_full_rank
 #endif
   end interface
-  !>     \brief ORML2 multiplies a matrix Q with orthonormal rows by a general m-by-n
-  !>     matrix C.
-  !> 
+
+  !>     \brief The ORML2 functions multiply a matrix Q with orthonormal rows by a general ``m``
+  !>     -by-``n``
+  !>     matrix ``C``.
+  !>
   !>     \details
-  !>     (This is the unblocked version of the algorithm).
-  !> 
+  !>     (This is the unblocked version of the algorithm.)
+  !>
   !>     The matrix Q is applied in one of the following forms, depending on
-  !>     the values of side and trans:
-  !> 
+  !>     the values of ``side`` and ``trans``:
+  !>
   !>     \f[
   !>         \begin{array}{cl}
-  !>         QC & \: \text{No transpose from the left,}\newline
-  !>
-  !>         Q^TC & \: \text{Transpose from the left,}\newline
-  !>
-  !>         CQ & \: \text{No transpose from the right, and}\newline
-  !>
+  !>         QC & \: \text{No transpose from the left,}\\%
+  !>         Q^TC & \: \text{Transpose from the left,}\\%
+  !>         CQ & \: \text{No transpose from the right, and}\\%
   !>         CQ^T & \: \text{Transpose from the right.}
   !>         \end{array}
   !>     \f]
-  !> 
-  !>     Q is defined as the product of k Householder reflectors
-  !> 
-  !>     \f[
-  !>         Q = H_kH_{k-1}\cdots H_1
-  !>     \f]
-  !> 
-  !>     of order m if applying from the left, or n if applying from the right. Q is never stored, it is
-  !>     calculated from the Householder vectors and scalars returned by the LQ factorization \ref rocsolver_sgelqf "GELQF".
-  !> 
-  !>     @param[in]
-  !>     handle              rocblas_handle.
-  !>     @param[in]
-  !>     side                rocblas_side.\n
-  !>                         Specifies from which side to apply Q.
-  !>     @param[in]
-  !>     trans               rocblas_operation.\n
-  !>                         Specifies whether the matrix Q or its transpose is to be applied.
-  !>     @param[in]
-  !>     m                   rocblas_int. m >= 0.\n
-  !>                         Number of rows of matrix C.
-  !>     @param[in]
-  !>     n                   rocblas_int. n >= 0.\n
-  !>                         Number of columns of matrix C.
-  !>     @param[in]
-  !>     k                   rocblas_int. k >= 0; k <= m if side is left, k <= n if side is right.\n
-  !>                         The number of Householder reflectors that form Q.
-  !>     @param[in]
-  !>     A                   pointer to type. Array on the GPU of size lda*m if side is left, or lda*n if side is right.\n
-  !>                         The Householder vectors as returned by \ref rocsolver_sgelqf "GELQF"
-  !>                         in the first k rows of its argument A.
-  !>     @param[in]
-  !>     lda                 rocblas_int. lda >= k. \n
-  !>                         Leading dimension of A.
-  !>     @param[in]
-  !>     ipiv                pointer to type. Array on the GPU of dimension at least k.\n
-  !>                         The Householder scalars as returned by \ref rocsolver_sgelqf "GELQF".
-  !>     @param[inout]
-  !>     C                   pointer to type. Array on the GPU of size ldc*n.\n
-  !>                         On entry, the matrix C. On exit, it is overwritten with
-  !>                         Q*C, C*Q, Q'*C, or C*Q'.
-  !>     @param[in]
-  !>     ldc                 rocblas_int. ldc >= m.\n
-  !>                         Leading dimension of C.
   !>
+  !>     Q is defined as the product of ``k`` Householder reflectors
+  !>
+  !>     \f[
+  !>         Q = H(k)H(k-1)\cdots H(1)
+  !>     \f]
+  !>
+  !>     of order ``m`` if applying from the left, or ``n`` if applying from the right. Q is never
+  !>     stored. It is
+  !>     calculated from the Householder vectors and scalars returned by the LQ factorization \ref
+  !>     rocsolver_sgelqf "GELQF".
+  !>
+  !>     @param[in]
+  !>     handle      rocblas_handle.
+  !>     @param[in]
+  !>     side        rocblas_side.
+  !>                 Specifies from which side to apply Q.
+  !>     @param[in]
+  !>     trans       rocblas_operation.
+  !>                 Specifies whether the matrix Q or its transpose is to be applied.
+  !>     @param[in]
+  !>     m           rocblas_int. m >= 0.
+  !>                 Number of rows of matrix C.
+  !>     @param[in]
+  !>     n           rocblas_int. n >= 0.
+  !>                 Number of columns of matrix C.
+  !>     @param[in]
+  !>     k           rocblas_int. k >= 0. k <= m if side is left, and k <= n if side is right.
+  !>                 The number of Householder reflectors that form Q.
+  !>     @param[in]
+  !>     A pointer to type. Array on the GPU of size lda*m if side is left, or lda*n if side is
+  !>     right.
+  !>                 The Householder vectors as returned by \ref rocsolver_sgelqf "GELQF"
+  !>                 in the first k rows of its argument A.
+  !>     @param[in]
+  !>     lda         rocblas_int. lda >= k.
+  !>                 Leading dimension of A.
+  !>     @param[in]
+  !>     ipiv        pointer to type. Array on the GPU of dimension at least k.
+  !>                 The Householder scalars as returned by \ref rocsolver_sgelqf "GELQF".
+  !>     @param[inout]
+  !>     C           pointer to type. Array on the GPU of size ldc*n.
+  !>                 On entry, the matrix C. On exit, it is overwritten with
+  !>                 \f$QC\f$, \f$CQ\f$, \f$Q^TC\f$, or \f$CQ^T\f$.
+  !>     @param[in]
+  !>     ldc         rocblas_int. ldc >= m.
+  !>                 Leading dimension of C.
   interface rocsolver_sorml2
     function rocsolver_sorml2_(handle,side,trans,m,n,k,A,lda,ipiv,C,ldc) bind(c, name="rocsolver_sorml2")
       use iso_c_binding
@@ -3677,12 +3689,12 @@ module hipfort_rocsolver
 
 #ifdef USE_FPOINTER_INTERFACES
     module procedure &
-      rocsolver_sorml2_full_rank,&
       rocsolver_sorml2_rank_0,&
-      rocsolver_sorml2_rank_1
+      rocsolver_sorml2_rank_1,&
+      rocsolver_sorml2_full_rank
 #endif
   end interface
-  
+
   interface rocsolver_dorml2
     function rocsolver_dorml2_(handle,side,trans,m,n,k,A,lda,ipiv,C,ldc) bind(c, name="rocsolver_dorml2")
       use iso_c_binding
@@ -3705,75 +3717,76 @@ module hipfort_rocsolver
 
 #ifdef USE_FPOINTER_INTERFACES
     module procedure &
-      rocsolver_dorml2_full_rank,&
       rocsolver_dorml2_rank_0,&
-      rocsolver_dorml2_rank_1
+      rocsolver_dorml2_rank_1,&
+      rocsolver_dorml2_full_rank
 #endif
   end interface
-  !>     \brief UNML2 multiplies a complex matrix Q with orthonormal rows by a general
-  !>     m-by-n matrix C.
-  !> 
+
+  !>     \brief The UNML2 functions multiply a complex matrix Q with orthonormal rows by a general
+  !>     ``m``-by-``n`` matrix ``C``.
+  !>
   !>     \details
-  !>     (This is the unblocked version of the algorithm).
-  !> 
+  !>     (This is the unblocked version of the algorithm.)
+  !>
   !>     The matrix Q is applied in one of the following forms, depending on
-  !>     the values of side and trans:
-  !> 
+  !>     the values of ``side`` and ``trans``:
+  !>
   !>     \f[
   !>         \begin{array}{cl}
-  !>         QC & \: \text{No transpose from the left,}\newline
-  !>
-  !>         Q^HC & \: \text{Conjugate transpose from the left,}\newline
-  !>
-  !>         CQ & \: \text{No transpose from the right, and}\newline
-  !>
+  !>         QC & \: \text{No transpose from the left,}\\%
+  !>         Q^H C & \: \text{Conjugate transpose from the left,}\\%
+  !>         CQ & \: \text{No transpose from the right, and}\\%
   !>         CQ^H & \: \text{Conjugate transpose from the right.}
   !>         \end{array}
   !>     \f]
-  !> 
-  !>     Q is defined as the product of k Householder reflectors
-  !> 
+  !>
+  !>     Q is defined as the product of ``k`` Householder reflectors
+  !>
   !>     \f[
-  !>         Q = H_k^HH_{k-1}^H\cdots H_1^H
+  !>         Q = H(k)^H H(k-1)^H\cdots H(1)^H
   !>     \f]
-  !> 
-  !>     of order m if applying from the left, or n if applying from the right. Q is never stored, it is
-  !>     calculated from the Householder vectors and scalars returned by the LQ factorization \ref rocsolver_sgelqf "GELQF".
-  !> 
+  !>
+  !>     of order ``m`` if applying from the left, or ``n`` if applying from the right. Q is never
+  !>     stored. It is
+  !>     calculated from the Householder vectors and scalars returned by the LQ factorization \ref
+  !>     rocsolver_sgelqf "GELQF".
+  !>
   !>     @param[in]
-  !>     handle              rocblas_handle.
+  !>     handle      rocblas_handle.
   !>     @param[in]
-  !>     side                rocblas_side.\n
-  !>                         Specifies from which side to apply Q.
+  !>     side        rocblas_side.
+  !>                 Specifies from which side to apply Q.
   !>     @param[in]
-  !>     trans               rocblas_operation.\n
-  !>                         Specifies whether the matrix Q or its conjugate transpose is to be applied.
+  !>     trans       rocblas_operation.
+  !>                 Specifies whether the matrix Q or its conjugate transpose is to be applied.
   !>     @param[in]
-  !>     m                   rocblas_int. m >= 0.\n
-  !>                         Number of rows of matrix C.
+  !>     m           rocblas_int. m >= 0.
+  !>                 Number of rows of matrix C.
   !>     @param[in]
-  !>     n                   rocblas_int. n >= 0.\n
-  !>                         Number of columns of matrix C.
+  !>     n           rocblas_int. n >= 0.
+  !>                 Number of columns of matrix C.
   !>     @param[in]
-  !>     k                   rocblas_int. k >= 0; k <= m if side is left, k <= n if side is right.\n
-  !>                         The number of Householder reflectors that form Q.
+  !>     k           rocblas_int. k >= 0. k <= m if side is left, and k <= n if side is right.
+  !>                 The number of Householder reflectors that form Q.
   !>     @param[in]
-  !>     A                   pointer to type. Array on the GPU of size lda*m if side is left, or lda*n if side is right.\n
-  !>                         The Householder vectors as returned by \ref rocsolver_sgelqf "GELQF"
-  !>                         in the first k rows of its argument A.
+  !>     A pointer to type. Array on the GPU of size lda*m if side is left or lda*n if side is
+  !>     right.
+  !>                 The Householder vectors as returned by \ref rocsolver_sgelqf "GELQF"
+  !>                 in the first k rows of its argument A.
   !>     @param[in]
-  !>     lda                 rocblas_int. lda >= k. \n
-  !>                         Leading dimension of A.
+  !>     lda         rocblas_int. lda >= k.
+  !>                 Leading dimension of A.
   !>     @param[in]
-  !>     ipiv                pointer to type. Array on the GPU of dimension at least k.\n
-  !>                         The Householder scalars as returned by \ref rocsolver_sgelqf "GELQF".
+  !>     ipiv        pointer to type. Array on the GPU of dimension at least k.
+  !>                 The Householder scalars as returned by \ref rocsolver_sgelqf "GELQF".
   !>     @param[inout]
-  !>     C                   pointer to type. Array on the GPU of size ldc*n.\n
-  !>                         On entry, the matrix C. On exit, it is overwritten with
-  !>                         Q*C, C*Q, Q'*C, or C*Q'.
+  !>     C           pointer to type. Array on the GPU of size ldc*n.
+  !>                 On entry, the matrix C. On exit, it is overwritten with
+  !>                 \f$QC\f$, \f$CQ\f$, \f$Q^H C\f$, or \f$CQ^H\f$.
   !>     @param[in]
-  !>     ldc                 rocblas_int. ldc >= m.\n
-  !>                         Leading dimension of C.
+  !>     ldc         rocblas_int. ldc >= m.
+  !>                 Leading dimension of C.
   interface rocsolver_cunml2
     function rocsolver_cunml2_(handle,side,trans,m,n,k,A,lda,ipiv,C,ldc) bind(c, name="rocsolver_cunml2")
       use iso_c_binding
@@ -3796,12 +3809,12 @@ module hipfort_rocsolver
 
 #ifdef USE_FPOINTER_INTERFACES
     module procedure &
-      rocsolver_cunml2_full_rank,&
       rocsolver_cunml2_rank_0,&
-      rocsolver_cunml2_rank_1
+      rocsolver_cunml2_rank_1,&
+      rocsolver_cunml2_full_rank
 #endif
   end interface
-  
+
   interface rocsolver_zunml2
     function rocsolver_zunml2_(handle,side,trans,m,n,k,A,lda,ipiv,C,ldc) bind(c, name="rocsolver_zunml2")
       use iso_c_binding
@@ -3824,75 +3837,77 @@ module hipfort_rocsolver
 
 #ifdef USE_FPOINTER_INTERFACES
     module procedure &
-      rocsolver_zunml2_full_rank,&
       rocsolver_zunml2_rank_0,&
-      rocsolver_zunml2_rank_1
+      rocsolver_zunml2_rank_1,&
+      rocsolver_zunml2_full_rank
 #endif
   end interface
-  !>     \brief ORMLQ multiplies a matrix Q with orthonormal rows by a general m-by-n
-  !>     matrix C.
-  !> 
+
+  !>     \brief The ORMLQ functions multiply a matrix Q with orthonormal rows by a general ``m``
+  !>     -by-``n``
+  !>     matrix ``C``.
+  !>
   !>     \details
-  !>     (This is the blocked version of the algorithm).
-  !> 
+  !>     (This is the blocked version of the algorithm.)
+  !>
   !>     The matrix Q is applied in one of the following forms, depending on
-  !>     the values of side and trans:
-  !> 
+  !>     the values of ``side`` and ``trans``:
+  !>
   !>     \f[
   !>         \begin{array}{cl}
-  !>         QC & \: \text{No transpose from the left,}\newline
-  !>
-  !>         Q^TC & \: \text{Transpose from the left,}\newline
-  !>
-  !>         CQ & \: \text{No transpose from the right, and}\newline
-  !>
+  !>         QC & \: \text{No transpose from the left,}\\%
+  !>         Q^TC & \: \text{Transpose from the left,}\\%
+  !>         CQ & \: \text{No transpose from the right, and}\\%
   !>         CQ^T & \: \text{Transpose from the right.}
   !>         \end{array}
   !>     \f]
-  !> 
-  !>     Q is defined as the product of k Householder reflectors
-  !> 
+  !>
+  !>     Q is defined as the product of ``k`` Householder reflectors
+  !>
   !>     \f[
-  !>         Q = H_kH_{k-1}\cdots H_1
+  !>         Q = H(k)H(k-1)\cdots H(1)
   !>     \f]
-  !> 
-  !>     of order m if applying from the left, or n if applying from the right. Q is never stored, it is
-  !>     calculated from the Householder vectors and scalars returned by the LQ factorization \ref rocsolver_sgelqf "GELQF".
-  !> 
+  !>
+  !>     of order ``m`` if applying from the left, or ``n`` if applying from the right. Q is never
+  !>     stored. It is
+  !>     calculated from the Householder vectors and scalars returned by the LQ factorization \ref
+  !>     rocsolver_sgelqf "GELQF".
+  !>
   !>     @param[in]
-  !>     handle              rocblas_handle.
+  !>     handle      rocblas_handle.
   !>     @param[in]
-  !>     side                rocblas_side.\n
-  !>                         Specifies from which side to apply Q.
+  !>     side        rocblas_side.
+  !>                 Specifies from which side to apply Q.
   !>     @param[in]
-  !>     trans               rocblas_operation.\n
-  !>                         Specifies whether the matrix Q or its transpose is to be applied.
+  !>     trans       rocblas_operation.
+  !>                 Specifies whether the matrix Q or its transpose is to be applied.
   !>     @param[in]
-  !>     m                   rocblas_int. m >= 0.\n
-  !>                         Number of rows of matrix C.
+  !>     m           rocblas_int. m >= 0.
+  !>                 Number of rows of matrix C.
   !>     @param[in]
-  !>     n                   rocblas_int. n >= 0.\n
-  !>                         Number of columns of matrix C.
+  !>     n           rocblas_int. n >= 0.
+  !>                 Number of columns of matrix C.
   !>     @param[in]
-  !>     k                   rocblas_int. k >= 0; k <= m if side is left, k <= n if side is right.\n
-  !>                         The number of Householder reflectors that form Q.
+  !>     k           rocblas_int. k >= 0. k <= m if side is left, and k <= n if side is right.
+  !>                 The number of Householder reflectors that form Q.
   !>     @param[in]
-  !>     A                   pointer to type. Array on the GPU of size lda*m if side is left, or lda*n if side is right.\n
-  !>                         The Householder vectors as returned by \ref rocsolver_sgelqf "GELQF"
-  !>                         in the first k rows of its argument A.
+  !>     A pointer to type. Array on the GPU of size lda*m if side is left, or lda*n if side is
+  !>     right.
+  !>                 The Householder vectors as returned by \ref rocsolver_sgelqf "GELQF"
+  !>                 in the first k rows of its argument A.
   !>     @param[in]
-  !>     lda                 rocblas_int. lda >= k. \n
-  !>                         Leading dimension of A.
+  !>     lda         rocblas_int. lda >= k.
+  !>                 Leading dimension of A.
   !>     @param[in]
-  !>     ipiv                pointer to type. Array on the GPU of dimension at least k.\n
-  !>                         The Householder scalars as returned by \ref rocsolver_sgelqf "GELQF".
+  !>     ipiv        pointer to type. Array on the GPU of dimension at least k.
+  !>                 The Householder scalars as returned by \ref rocsolver_sgelqf "GELQF".
   !>     @param[inout]
-  !>     C                   pointer to type. Array on the GPU of size ldc*n.\n
-  !>                         On entry, the matrix C. On exit, it is overwritten with
-  !>                         Q*C, C*Q, Q'*C, or C*Q'.
+  !>     C           pointer to type. Array on the GPU of size ldc*n.
+  !>                 On entry, the matrix C. On exit, it is overwritten with
+  !>                 \f$QC\f$, \f$CQ\f$, \f$Q^TC\f$, or \f$CQ^T\f$.
   !>     @param[in]
-  !>     ldc                 rocblas_int. ldc >= m.\n
-  !>                         Leading dimension of C.
+  !>     ldc         rocblas_int. ldc >= m.
+  !>                 Leading dimension of C.
   interface rocsolver_sormlq
     function rocsolver_sormlq_(handle,side,trans,m,n,k,A,lda,ipiv,C,ldc) bind(c, name="rocsolver_sormlq")
       use iso_c_binding
@@ -3915,12 +3930,12 @@ module hipfort_rocsolver
 
 #ifdef USE_FPOINTER_INTERFACES
     module procedure &
-      rocsolver_sormlq_full_rank,&
       rocsolver_sormlq_rank_0,&
-      rocsolver_sormlq_rank_1
+      rocsolver_sormlq_rank_1,&
+      rocsolver_sormlq_full_rank
 #endif
   end interface
-  
+
   interface rocsolver_dormlq
     function rocsolver_dormlq_(handle,side,trans,m,n,k,A,lda,ipiv,C,ldc) bind(c, name="rocsolver_dormlq")
       use iso_c_binding
@@ -3943,75 +3958,76 @@ module hipfort_rocsolver
 
 #ifdef USE_FPOINTER_INTERFACES
     module procedure &
-      rocsolver_dormlq_full_rank,&
       rocsolver_dormlq_rank_0,&
-      rocsolver_dormlq_rank_1
+      rocsolver_dormlq_rank_1,&
+      rocsolver_dormlq_full_rank
 #endif
   end interface
-  !>     \brief UNMLQ multiplies a complex matrix Q with orthonormal rows by a general
-  !>     m-by-n matrix C.
-  !> 
+
+  !>     \brief The UNMLQ functions multiply a complex matrix Q with orthonormal rows by a general
+  !>     ``m``-by-``n`` matrix ``C``.
+  !>
   !>     \details
-  !>     (This is the blocked version of the algorithm).
-  !> 
+  !>     (This is the blocked version of the algorithm.)
+  !>
   !>     The matrix Q is applied in one of the following forms, depending on
-  !>     the values of side and trans:
-  !> 
+  !>     the values of ``side`` and ``trans``:
+  !>
   !>     \f[
   !>         \begin{array}{cl}
-  !>         QC & \: \text{No transpose from the left,}\newline
-  !>
-  !>         Q^HC & \: \text{Conjugate transpose from the left,}\newline
-  !>
-  !>         CQ & \: \text{No transpose from the right, and}\newline
-  !>
+  !>         QC & \: \text{No transpose from the left,}\\%
+  !>         Q^H C & \: \text{Conjugate transpose from the left,}\\%
+  !>         CQ & \: \text{No transpose from the right, and}\\%
   !>         CQ^H & \: \text{Conjugate transpose from the right.}
   !>         \end{array}
   !>     \f]
-  !> 
-  !>     Q is defined as the product of k Householder reflectors
-  !> 
+  !>
+  !>     Q is defined as the product of ``k`` Householder reflectors
+  !>
   !>     \f[
-  !>         Q = H_k^HH_{k-1}^H\cdots H_1^H
+  !>         Q = H(k)^H H(k-1)^H\cdots H(1)^H
   !>     \f]
-  !> 
-  !>     of order m if applying from the left, or n if applying from the right. Q is never stored, it is
-  !>     calculated from the Householder vectors and scalars returned by the LQ factorization \ref rocsolver_sgelqf "GELQF".
-  !> 
+  !>
+  !>     of order ``m`` if applying from the left, or ``n`` if applying from the right. Q is never
+  !>     stored. It is
+  !>     calculated from the Householder vectors and scalars returned by the LQ factorization \ref
+  !>     rocsolver_sgelqf "GELQF".
+  !>
   !>     @param[in]
-  !>     handle              rocblas_handle.
+  !>     handle      rocblas_handle.
   !>     @param[in]
-  !>     side                rocblas_side.\n
-  !>                         Specifies from which side to apply Q.
+  !>     side        rocblas_side.
+  !>                 Specifies from which side to apply Q.
   !>     @param[in]
-  !>     trans               rocblas_operation.\n
-  !>                         Specifies whether the matrix Q or its conjugate transpose is to be applied.
+  !>     trans       rocblas_operation.
+  !>                 Specifies whether the matrix Q or its conjugate transpose is to be applied.
   !>     @param[in]
-  !>     m                   rocblas_int. m >= 0.\n
-  !>                         Number of rows of matrix C.
+  !>     m           rocblas_int. m >= 0.
+  !>                 Number of rows of matrix C.
   !>     @param[in]
-  !>     n                   rocblas_int. n >= 0.\n
-  !>                         Number of columns of matrix C.
+  !>     n           rocblas_int. n >= 0.
+  !>                 Number of columns of matrix C.
   !>     @param[in]
-  !>     k                   rocblas_int. k >= 0; k <= m if side is left, k <= n if side is right.\n
-  !>                         The number of Householder reflectors that form Q.
+  !>     k           rocblas_int. k >= 0. k <= m if side is left, and k <= n if side is right.
+  !>                 The number of Householder reflectors that form Q.
   !>     @param[in]
-  !>     A                   pointer to type. Array on the GPU of size lda*m if side is left, or lda*n if side is right.\n
-  !>                         The Householder vectors as returned by \ref rocsolver_sgelqf "GELQF"
-  !>                         in the first k rows of its argument A.
+  !>     A pointer to type. Array on the GPU of size lda*m if side is left or lda*n if side is
+  !>     right.
+  !>                 The Householder vectors as returned by \ref rocsolver_sgelqf "GELQF"
+  !>                 in the first k rows of its argument A.
   !>     @param[in]
-  !>     lda                 rocblas_int. lda >= k. \n
-  !>                         Leading dimension of A.
+  !>     lda         rocblas_int. lda >= k.
+  !>                 Leading dimension of A.
   !>     @param[in]
-  !>     ipiv                pointer to type. Array on the GPU of dimension at least k.\n
-  !>                         The Householder scalars as returned by \ref rocsolver_sgelqf "GELQF".
+  !>     ipiv        pointer to type. Array on the GPU of dimension at least k.
+  !>                 The Householder scalars as returned by \ref rocsolver_sgelqf "GELQF".
   !>     @param[inout]
-  !>     C                   pointer to type. Array on the GPU of size ldc*n.\n
-  !>                         On entry, the matrix C. On exit, it is overwritten with
-  !>                         Q*C, C*Q, Q'*C, or C*Q'.
+  !>     C           pointer to type. Array on the GPU of size ldc*n.
+  !>                 On entry, the matrix C. On exit, it is overwritten with
+  !>                 \f$QC\f$, \f$CQ\f$, \f$Q^H C\f$, or \f$CQ^H\f$.
   !>     @param[in]
-  !>     ldc                 rocblas_int. ldc >= m.\n
-  !>                         Leading dimension of C.
+  !>     ldc         rocblas_int. ldc >= m.
+  !>                 Leading dimension of C.
   interface rocsolver_cunmlq
     function rocsolver_cunmlq_(handle,side,trans,m,n,k,A,lda,ipiv,C,ldc) bind(c, name="rocsolver_cunmlq")
       use iso_c_binding
@@ -4034,12 +4050,12 @@ module hipfort_rocsolver
 
 #ifdef USE_FPOINTER_INTERFACES
     module procedure &
-      rocsolver_cunmlq_full_rank,&
       rocsolver_cunmlq_rank_0,&
-      rocsolver_cunmlq_rank_1
+      rocsolver_cunmlq_rank_1,&
+      rocsolver_cunmlq_full_rank
 #endif
   end interface
-  
+
   interface rocsolver_zunmlq
     function rocsolver_zunmlq_(handle,side,trans,m,n,k,A,lda,ipiv,C,ldc) bind(c, name="rocsolver_zunmlq")
       use iso_c_binding
@@ -4062,78 +4078,78 @@ module hipfort_rocsolver
 
 #ifdef USE_FPOINTER_INTERFACES
     module procedure &
-      rocsolver_zunmlq_full_rank,&
       rocsolver_zunmlq_rank_0,&
-      rocsolver_zunmlq_rank_1
+      rocsolver_zunmlq_rank_1,&
+      rocsolver_zunmlq_full_rank
 #endif
   end interface
-  !>     \brief ORM2L multiplies a matrix Q with orthonormal columns by a general m-by-n
-  !>     matrix C.
-  !> 
+
+  !>     \brief The ORM2L functions multiply a matrix Q with orthonormal columns by a general ``m``
+  !>     -by-``n``
+  !>     matrix ``C``.
+  !>
   !>     \details
-  !>     (This is the unblocked version of the algorithm).
-  !> 
+  !>     (This is the unblocked version of the algorithm.)
+  !>
   !>     The matrix Q is applied in one of the following forms, depending on
-  !>     the values of side and trans:
-  !> 
+  !>     the values of ``side`` and ``trans``:
+  !>
   !>     \f[
   !>         \begin{array}{cl}
-  !>         QC & \: \text{No transpose from the left,}\newline
-  !>
-  !>         Q^TC & \: \text{Transpose from the left,}\newline
-  !>
-  !>         CQ & \: \text{No transpose from the right, and}\newline
-  !>
+  !>         QC & \: \text{No transpose from the left,}\\%
+  !>         Q^TC & \: \text{Transpose from the left,}\\%
+  !>         CQ & \: \text{No transpose from the right, and}\\%
   !>         CQ^T & \: \text{Transpose from the right.}
   !>         \end{array}
   !>     \f]
-  !> 
-  !>     Q is defined as the product of k Householder reflectors
-  !> 
+  !>
+  !>     Q is defined as the product of ``k`` Householder reflectors
+  !>
   !>     \f[
-  !>         Q = H_kH_{k-1}\cdots H_1
+  !>         Q = H(k)H(k-1)\cdots H(1)
   !>     \f]
-  !> 
-  !>     of order m if applying from the left, or n if applying from the right. Q is
-  !>     never stored, it is calculated from the Householder vectors and scalars
+  !>
+  !>     of order ``m`` if applying from the left, or ``n`` if applying from the right. Q is
+  !>     never stored. It is calculated from the Householder vectors and scalars
   !>     returned by the QL factorization \ref rocsolver_sgeqlf "GEQLF".
-  !> 
+  !>
   !>     @param[in]
-  !>     handle              rocblas_handle.
+  !>     handle      rocblas_handle.
   !>     @param[in]
-  !>     side                rocblas_side.\n
-  !>                         Specifies from which side to apply Q.
+  !>     side        rocblas_side.
+  !>                 Specifies from which side to apply Q.
   !>     @param[in]
-  !>     trans               rocblas_operation.\n
-  !>                         Specifies whether the matrix Q or its transpose is to be
-  !>                         applied.
+  !>     trans       rocblas_operation.
+  !>                 Specifies whether the matrix Q or its transpose is to be
+  !>                 applied.
   !>     @param[in]
-  !>     m                   rocblas_int. m >= 0.\n
-  !>                         Number of rows of matrix C.
+  !>     m           rocblas_int. m >= 0.
+  !>                 Number of rows of matrix C.
   !>     @param[in]
-  !>     n                   rocblas_int. n >= 0.\n
-  !>                         Number of columns of matrix C.
+  !>     n           rocblas_int. n >= 0.
+  !>                 Number of columns of matrix C.
   !>     @param[in]
-  !>     k                   rocblas_int. k >= 0; k <= m if side is left, k <= n if side is right.\n
-  !>                         The number of Householder reflectors that form Q.
+  !>     k           rocblas_int. k >= 0. k <= m if side is left, and k <= n if side is right.
+  !>                 The number of Householder reflectors that form Q.
   !>     @param[in]
-  !>     A                   pointer to type. Array on the GPU of size lda*k.\n
-  !>                         The Householder vectors as returned by \ref rocsolver_sgeqlf "GEQLF" in the last k columns of its
-  !>                         argument A.
+  !>     A           pointer to type. Array on the GPU of size lda*k.
+  !>                 The Householder vectors as returned by \ref rocsolver_sgeqlf "GEQLF" in the
+  !>                 last k columns of its
+  !>                 argument A.
   !>     @param[in]
-  !>     lda                 rocblas_int. lda >= m if side is left, lda >= n if side is right.\n
-  !>                         Leading dimension of A.
+  !>     lda         rocblas_int. lda >= m if side is left, and lda >= n if side is right.
+  !>                 Leading dimension of A.
   !>     @param[in]
-  !>     ipiv                pointer to type. Array on the GPU of dimension at least k.\n
-  !>                         The Householder scalars as returned by
-  !>                         \ref rocsolver_sgeqlf "GEQLF".
+  !>     ipiv        pointer to type. Array on the GPU of dimension at least k.
+  !>                 The Householder scalars as returned by
+  !>                 \ref rocsolver_sgeqlf "GEQLF".
   !>     @param[inout]
-  !>     C                   pointer to type. Array on the GPU of size ldc*n.\n
-  !>                         On entry, the matrix C. On exit, it is overwritten with
-  !>                         Q*C, C*Q, Q'*C, or C*Q'.
+  !>     C           pointer to type. Array on the GPU of size ldc*n.
+  !>                 On entry, the matrix C. On exit, it is overwritten with
+  !>                 \f$QC\f$, \f$CQ\f$, \f$Q^TC\f$, or \f$CQ^T\f$.
   !>     @param[in]
-  !>     ldc                 rocblas_int. ldc >= m.\n
-  !>                         Leading dimension of C.
+  !>     ldc         rocblas_int. ldc >= m.
+  !>                 Leading dimension of C.
   interface rocsolver_sorm2l
     function rocsolver_sorm2l_(handle,side,trans,m,n,k,A,lda,ipiv,C,ldc) bind(c, name="rocsolver_sorm2l")
       use iso_c_binding
@@ -4156,12 +4172,12 @@ module hipfort_rocsolver
 
 #ifdef USE_FPOINTER_INTERFACES
     module procedure &
-      rocsolver_sorm2l_full_rank,&
       rocsolver_sorm2l_rank_0,&
-      rocsolver_sorm2l_rank_1
+      rocsolver_sorm2l_rank_1,&
+      rocsolver_sorm2l_full_rank
 #endif
   end interface
-  
+
   interface rocsolver_dorm2l
     function rocsolver_dorm2l_(handle,side,trans,m,n,k,A,lda,ipiv,C,ldc) bind(c, name="rocsolver_dorm2l")
       use iso_c_binding
@@ -4184,78 +4200,77 @@ module hipfort_rocsolver
 
 #ifdef USE_FPOINTER_INTERFACES
     module procedure &
-      rocsolver_dorm2l_full_rank,&
       rocsolver_dorm2l_rank_0,&
-      rocsolver_dorm2l_rank_1
+      rocsolver_dorm2l_rank_1,&
+      rocsolver_dorm2l_full_rank
 #endif
   end interface
-  !>     \brief UNM2L multiplies a complex matrix Q with orthonormal columns by a
-  !>     general m-by-n matrix C.
-  !> 
+
+  !>     \brief The UNM2L functions multiply a complex matrix Q with orthonormal columns by a
+  !>     general ``m``-by-``n`` matrix ``C``.
+  !>
   !>     \details
-  !>     (This is the unblocked version of the algorithm).
-  !> 
+  !>     (This is the unblocked version of the algorithm.)
+  !>
   !>     The matrix Q is applied in one of the following forms, depending on
-  !>     the values of side and trans:
-  !> 
+  !>     the values of ``side`` and ``trans``:
+  !>
   !>     \f[
   !>         \begin{array}{cl}
-  !>         QC & \: \text{No transpose from the left,}\newline
-  !>
-  !>         Q^HC & \: \text{Conjugate transpose from the left,}\newline
-  !>
-  !>         CQ & \: \text{No transpose from the right, and}\newline
-  !>
+  !>         QC & \: \text{No transpose from the left,}\\%
+  !>         Q^H C & \: \text{Conjugate transpose from the left,}\\%
+  !>         CQ & \: \text{No transpose from the right, and}\\%
   !>         CQ^H & \: \text{Conjugate transpose from the right.}
   !>         \end{array}
   !>     \f]
-  !> 
-  !>     Q is defined as the product of k Householder reflectors
-  !> 
+  !>
+  !>     Q is defined as the product of ``k`` Householder reflectors
+  !>
   !>     \f[
-  !>         Q = H_kH_{k-1}\cdots H_1
+  !>         Q = H(k)H(k-1)\cdots H(1)
   !>     \f]
-  !> 
-  !>     of order m if applying from the left, or n if applying from the right. Q is
-  !>     never stored, it is calculated from the Householder vectors and scalars
+  !>
+  !>     of order ``m`` if applying from the left, or ``n`` if applying from the right. Q is
+  !>     never stored. It is calculated from the Householder vectors and scalars
   !>     returned by the QL factorization \ref rocsolver_sgeqlf "GEQLF".
-  !> 
+  !>
   !>     @param[in]
-  !>     handle              rocblas_handle.
+  !>     handle      rocblas_handle.
   !>     @param[in]
-  !>     side                rocblas_side.\n
-  !>                         Specifies from which side to apply Q.
+  !>     side        rocblas_side.
+  !>                 Specifies from which side to apply Q.
   !>     @param[in]
-  !>     trans               rocblas_operation.\n
-  !>                         Specifies whether the matrix Q or its conjugate
-  !>                         transpose is to be applied.
+  !>     trans       rocblas_operation.
+  !>                 Specifies whether the matrix Q or its conjugate
+  !>                 transpose is to be applied.
   !>     @param[in]
-  !>     m                   rocblas_int. m >= 0.\n
-  !>                         Number of rows of matrix C.
+  !>     m           rocblas_int. m >= 0.
+  !>                 Number of rows of matrix C.
   !>     @param[in]
-  !>     n                   rocblas_int. n >= 0.\n
-  !>                         Number of columns of matrix C.
+  !>     n           rocblas_int. n >= 0.
+  !>                 Number of columns of matrix C.
   !>     @param[in]
-  !>     k                   rocblas_int. k >= 0; k <= m if side is left, k <= n if side is right.\n
-  !>                         The number of Householder reflectors that form Q.
+  !>     k           rocblas_int. k >= 0. k <= m if side is left, and k <= n if side is right.
+  !>                 The number of Householder reflectors that form Q.
   !>     @param[in]
-  !>     A                   pointer to type. Array on the GPU of size lda*k.\n
-  !>                         The Householder vectors as returned by \ref rocsolver_sgeqlf "GEQLF" in the last k columns of its
-  !>                         argument A.
+  !>     A           pointer to type. Array on the GPU of size lda*k.
+  !>                 The Householder vectors as returned by \ref rocsolver_sgeqlf "GEQLF" in the
+  !>                 last k columns of its
+  !>                 argument A.
   !>     @param[in]
-  !>     lda                 rocblas_int. lda >= m if side is left, lda >= n if side is right.\n
-  !>                         Leading dimension of A.
+  !>     lda         rocblas_int. lda >= m if side is left, and lda >= n if side is right.
+  !>                 Leading dimension of A.
   !>     @param[in]
-  !>     ipiv                pointer to type. Array on the GPU of dimension at least k.\n
-  !>                         The Householder scalars as returned by
-  !>                         \ref rocsolver_sgeqlf "GEQLF".
+  !>     ipiv        pointer to type. Array on the GPU of dimension at least k.
+  !>                 The Householder scalars as returned by
+  !>                 \ref rocsolver_sgeqlf "GEQLF".
   !>     @param[inout]
-  !>     C                   pointer to type. Array on the GPU of size ldc*n.\n
-  !>                         On entry, the matrix C. On exit, it is overwritten with
-  !>                         Q*C, C*Q, Q'*C, or C*Q'.
+  !>     C           pointer to type. Array on the GPU of size ldc*n.
+  !>                 On entry, the matrix C. On exit, it is overwritten with
+  !>                 \f$QC\f$, \f$CQ\f$, \f$Q^HC\f$, or \f$CQ^H\f$.
   !>     @param[in]
-  !>     ldc                 rocblas_int. ldc >= m.\n
-  !>                         Leading dimension of C.
+  !>     ldc         rocblas_int. ldc >= m.
+  !>                 Leading dimension of C.
   interface rocsolver_cunm2l
     function rocsolver_cunm2l_(handle,side,trans,m,n,k,A,lda,ipiv,C,ldc) bind(c, name="rocsolver_cunm2l")
       use iso_c_binding
@@ -4278,12 +4293,12 @@ module hipfort_rocsolver
 
 #ifdef USE_FPOINTER_INTERFACES
     module procedure &
-      rocsolver_cunm2l_full_rank,&
       rocsolver_cunm2l_rank_0,&
-      rocsolver_cunm2l_rank_1
+      rocsolver_cunm2l_rank_1,&
+      rocsolver_cunm2l_full_rank
 #endif
   end interface
-  
+
   interface rocsolver_zunm2l
     function rocsolver_zunm2l_(handle,side,trans,m,n,k,A,lda,ipiv,C,ldc) bind(c, name="rocsolver_zunm2l")
       use iso_c_binding
@@ -4306,78 +4321,78 @@ module hipfort_rocsolver
 
 #ifdef USE_FPOINTER_INTERFACES
     module procedure &
-      rocsolver_zunm2l_full_rank,&
       rocsolver_zunm2l_rank_0,&
-      rocsolver_zunm2l_rank_1
+      rocsolver_zunm2l_rank_1,&
+      rocsolver_zunm2l_full_rank
 #endif
   end interface
-  !>     \brief ORMQL multiplies a matrix Q with orthonormal columns by a general m-by-n
-  !>     matrix C.
-  !> 
+
+  !>     \brief The ORMQL functions multiply a matrix Q with orthonormal columns by a general ``m``
+  !>     -by-``n``
+  !>     matrix ``C``.
+  !>
   !>     \details
-  !>     (This is the blocked version of the algorithm).
-  !> 
+  !>     (This is the blocked version of the algorithm.)
+  !>
   !>     The matrix Q is applied in one of the following forms, depending on
-  !>     the values of side and trans:
-  !> 
+  !>     the values of ``side`` and ``trans``:
+  !>
   !>     \f[
   !>         \begin{array}{cl}
-  !>         QC & \: \text{No transpose from the left,}\newline
-  !>
-  !>         Q^TC & \: \text{Transpose from the left,}\newline
-  !>
-  !>         CQ & \: \text{No transpose from the right, and}\newline
-  !>
+  !>         QC & \: \text{No transpose from the left,}\\%
+  !>         Q^TC & \: \text{Transpose from the left,}\\%
+  !>         CQ & \: \text{No transpose from the right, and}\\%
   !>         CQ^T & \: \text{Transpose from the right.}
   !>         \end{array}
   !>     \f]
-  !> 
-  !>     Q is defined as the product of k Householder reflectors
-  !> 
+  !>
+  !>     Q is defined as the product of ``k`` Householder reflectors
+  !>
   !>     \f[
-  !>         Q = H_kH_{k-1}\cdots H_1
+  !>         Q = H(k)H(k-1)\cdots H(1)
   !>     \f]
-  !> 
-  !>     of order m if applying from the left, or n if applying from the right. Q is
-  !>     never stored, it is calculated from the Householder vectors and scalars
+  !>
+  !>     of order ``m`` if applying from the left, or ``n`` if applying from the right. Q is
+  !>     never stored. It is calculated from the Householder vectors and scalars
   !>     returned by the QL factorization \ref rocsolver_sgeqlf "GEQLF".
-  !> 
+  !>
   !>     @param[in]
-  !>     handle              rocblas_handle.
+  !>     handle      rocblas_handle.
   !>     @param[in]
-  !>     side                rocblas_side.\n
-  !>                         Specifies from which side to apply Q.
+  !>     side        rocblas_side.
+  !>                 Specifies from which side to apply Q.
   !>     @param[in]
-  !>     trans               rocblas_operation.\n
-  !>                         Specifies whether the matrix Q or its transpose is to be
-  !>                         applied.
+  !>     trans       rocblas_operation.
+  !>                 Specifies whether the matrix Q or its transpose is to be
+  !>                 applied.
   !>     @param[in]
-  !>     m                   rocblas_int. m >= 0.\n
-  !>                         Number of rows of matrix C.
+  !>     m           rocblas_int. m >= 0.
+  !>                 Number of rows of matrix C.
   !>     @param[in]
-  !>     n                   rocblas_int. n >= 0.\n
-  !>                         Number of columns of matrix C.
+  !>     n           rocblas_int. n >= 0.
+  !>                 Number of columns of matrix C.
   !>     @param[in]
-  !>     k                   rocblas_int. k >= 0; k <= m if side is left, k <= n if side is right.\n
-  !>                         The number of Householder reflectors that form Q.
+  !>     k           rocblas_int. k >= 0. k <= m if side is left, and k <= n if side is right.
+  !>                 The number of Householder reflectors that form Q.
   !>     @param[in]
-  !>     A                   pointer to type. Array on the GPU of size lda*k.\n
-  !>                         The Householder vectors as returned by \ref rocsolver_sgeqlf "GEQLF" in the last k columns of its
-  !>                         argument A.
+  !>     A           pointer to type. Array on the GPU of size lda*k.
+  !>                 The Householder vectors as returned by \ref rocsolver_sgeqlf "GEQLF" in the
+  !>                 last k columns of its
+  !>                 argument A.
   !>     @param[in]
-  !>     lda                 rocblas_int. lda >= m if side is left, lda >= n if side is right.\n
-  !>                         Leading dimension of A.
+  !>     lda         rocblas_int. lda >= m if side is left, and lda >= n if side is right.
+  !>                 Leading dimension of A.
   !>     @param[in]
-  !>     ipiv                pointer to type. Array on the GPU of dimension at least k.\n
-  !>                         The Householder scalars as returned by
-  !>                         \ref rocsolver_sgeqlf "GEQLF".
+  !>     ipiv        pointer to type. Array on the GPU of dimension at least k.
+  !>                 The Householder scalars as returned by
+  !>                 \ref rocsolver_sgeqlf "GEQLF".
   !>     @param[inout]
-  !>     C                   pointer to type. Array on the GPU of size ldc*n.\n
-  !>                         On entry, the matrix C. On exit, it is overwritten with
-  !>                         Q*C, C*Q, Q'*C, or C*Q'.
+  !>     C           pointer to type. Array on the GPU of size ldc*n.
+  !>                 On entry, the matrix C. On exit, it is overwritten with
+  !>                 \f$QC\f$, \f$CQ\f$, \f$Q^TC\f$, or \f$CQ^T\f$.
   !>     @param[in]
-  !>     ldc                 rocblas_int. ldc >= m.\n
-  !>                         Leading dimension of C.
+  !>     ldc         rocblas_int. ldc >= m.
+  !>                 Leading dimension of C.
   interface rocsolver_sormql
     function rocsolver_sormql_(handle,side,trans,m,n,k,A,lda,ipiv,C,ldc) bind(c, name="rocsolver_sormql")
       use iso_c_binding
@@ -4400,12 +4415,12 @@ module hipfort_rocsolver
 
 #ifdef USE_FPOINTER_INTERFACES
     module procedure &
-      rocsolver_sormql_full_rank,&
       rocsolver_sormql_rank_0,&
-      rocsolver_sormql_rank_1
+      rocsolver_sormql_rank_1,&
+      rocsolver_sormql_full_rank
 #endif
   end interface
-  
+
   interface rocsolver_dormql
     function rocsolver_dormql_(handle,side,trans,m,n,k,A,lda,ipiv,C,ldc) bind(c, name="rocsolver_dormql")
       use iso_c_binding
@@ -4428,78 +4443,77 @@ module hipfort_rocsolver
 
 #ifdef USE_FPOINTER_INTERFACES
     module procedure &
-      rocsolver_dormql_full_rank,&
       rocsolver_dormql_rank_0,&
-      rocsolver_dormql_rank_1
+      rocsolver_dormql_rank_1,&
+      rocsolver_dormql_full_rank
 #endif
   end interface
-  !>     \brief UNMQL multiplies a complex matrix Q with orthonormal columns by a
-  !>     general m-by-n matrix C.
-  !> 
+
+  !>     \brief The UNMQL functions multiply a complex matrix Q with orthonormal columns by a
+  !>     general ``m``-by-``n`` matrix ``C``.
+  !>
   !>     \details
-  !>     (This is the blocked version of the algorithm).
-  !> 
+  !>     (This is the blocked version of the algorithm.)
+  !>
   !>     The matrix Q is applied in one of the following forms, depending on
-  !>     the values of side and trans:
-  !> 
+  !>     the values of ``side`` and ``trans``:
+  !>
   !>     \f[
   !>         \begin{array}{cl}
-  !>         QC & \: \text{No transpose from the left,}\newline
-  !>
-  !>         Q^HC & \: \text{Conjugate transpose from the left,}\newline
-  !>
-  !>         CQ & \: \text{No transpose from the right, and}\newline
-  !>
+  !>         QC & \: \text{No transpose from the left,}\\%
+  !>         Q^H C & \: \text{Conjugate transpose from the left,}\\%
+  !>         CQ & \: \text{No transpose from the right, and}\\%
   !>         CQ^H & \: \text{Conjugate transpose from the right.}
   !>         \end{array}
   !>     \f]
-  !> 
-  !>     Q is defined as the product of k Householder reflectors
-  !> 
+  !>
+  !>     Q is defined as the product of ``k`` Householder reflectors
+  !>
   !>     \f[
-  !>         Q = H_kH_{k-1}\cdots H_1
+  !>         Q = H(k)H(k-1)\cdots H(1)
   !>     \f]
-  !> 
-  !>     of order m if applying from the left, or n if applying from the right. Q is
-  !>     never stored, it is calculated from the Householder vectors and scalars
+  !>
+  !>     of order ``m`` if applying from the left, or ``n`` if applying from the right. Q is
+  !>     never stored. It is calculated from the Householder vectors and scalars
   !>     returned by the QL factorization \ref rocsolver_sgeqlf "GEQLF".
-  !> 
+  !>
   !>     @param[in]
-  !>     handle              rocblas_handle.
+  !>     handle      rocblas_handle.
   !>     @param[in]
-  !>     side                rocblas_side.\n
-  !>                         Specifies from which side to apply Q.
+  !>     side        rocblas_side.
+  !>                 Specifies from which side to apply Q.
   !>     @param[in]
-  !>     trans               rocblas_operation.\n
-  !>                         Specifies whether the matrix Q or its conjugate
-  !>                         transpose is to be applied.
+  !>     trans       rocblas_operation.
+  !>                 Specifies whether the matrix Q or its conjugate
+  !>                 transpose is to be applied.
   !>     @param[in]
-  !>     m                   rocblas_int. m >= 0.\n
-  !>                         Number of rows of matrix C.
+  !>     m           rocblas_int. m >= 0.
+  !>                 Number of rows of matrix C.
   !>     @param[in]
-  !>     n                   rocblas_int. n >= 0.\n
-  !>                         Number of columns of matrix C.
+  !>     n           rocblas_int. n >= 0.
+  !>                 Number of columns of matrix C.
   !>     @param[in]
-  !>     k                   rocblas_int. k >= 0; k <= m if side is left, k <= n if side is right.\n
-  !>                         The number of Householder reflectors that form Q.
+  !>     k           rocblas_int. k >= 0. k <= m if side is left, and k <= n if side is right.
+  !>                 The number of Householder reflectors that form Q.
   !>     @param[in]
-  !>     A                   pointer to type. Array on the GPU of size lda*k.\n
-  !>                         The Householder vectors as returned by \ref rocsolver_sgeqlf "GEQLF" in the last k columns of its
-  !>                         argument A.
+  !>     A           pointer to type. Array on the GPU of size lda*k.
+  !>                 The Householder vectors as returned by \ref rocsolver_sgeqlf "GEQLF" in the
+  !>                 last k columns of its
+  !>                 argument A.
   !>     @param[in]
-  !>     lda                 rocblas_int. lda >= m if side is left, lda >= n if side is right.\n
-  !>                         Leading dimension of A.
+  !>     lda         rocblas_int. lda >= m if side is left, and lda >= n if side is right.
+  !>                 Leading dimension of A.
   !>     @param[in]
-  !>     ipiv                pointer to type. Array on the GPU of dimension at least k.\n
-  !>                         The Householder scalars as returned by
-  !>                         \ref rocsolver_sgeqlf "GEQLF".
+  !>     ipiv        pointer to type. Array on the GPU of dimension at least k.
+  !>                 The Householder scalars as returned by
+  !>                 \ref rocsolver_sgeqlf "GEQLF".
   !>     @param[inout]
-  !>     C                   pointer to type. Array on the GPU of size ldc*n.\n
-  !>                         On entry, the matrix C. On exit, it is overwritten with
-  !>                         Q*C, C*Q, Q'*C, or C*Q'.
+  !>     C           pointer to type. Array on the GPU of size ldc*n.
+  !>                 On entry, the matrix C. On exit, it is overwritten with
+  !>                 \f$QC\f$, \f$CQ\f$, \f$Q^HC\f$, or \f$CQ^H\f$.
   !>     @param[in]
-  !>     ldc                 rocblas_int. ldc >= m.\n
-  !>                         Leading dimension of C.
+  !>     ldc         rocblas_int. ldc >= m.
+  !>                 Leading dimension of C.
   interface rocsolver_cunmql
     function rocsolver_cunmql_(handle,side,trans,m,n,k,A,lda,ipiv,C,ldc) bind(c, name="rocsolver_cunmql")
       use iso_c_binding
@@ -4522,12 +4536,12 @@ module hipfort_rocsolver
 
 #ifdef USE_FPOINTER_INTERFACES
     module procedure &
-      rocsolver_cunmql_full_rank,&
       rocsolver_cunmql_rank_0,&
-      rocsolver_cunmql_rank_1
+      rocsolver_cunmql_rank_1,&
+      rocsolver_cunmql_full_rank
 #endif
   end interface
-  
+
   interface rocsolver_zunmql
     function rocsolver_zunmql_(handle,side,trans,m,n,k,A,lda,ipiv,C,ldc) bind(c, name="rocsolver_zunmql")
       use iso_c_binding
@@ -4550,11 +4564,12 @@ module hipfort_rocsolver
 
 #ifdef USE_FPOINTER_INTERFACES
     module procedure &
-      rocsolver_zunmql_full_rank,&
       rocsolver_zunmql_rank_0,&
-      rocsolver_zunmql_rank_1
+      rocsolver_zunmql_rank_1,&
+      rocsolver_zunmql_full_rank
 #endif
   end interface
+
   !>     \brief ORMBR multiplies a matrix Q with orthonormal rows or columns by a
   !>     general m-by-n matrix C.
   !> 
@@ -43290,6 +43305,7 @@ module hipfort_rocsolver
 
 #ifdef USE_FPOINTER_INTERFACES
   contains
+
     function rocsolver_clacgv_rank_0(handle,n,x,incx)
       use iso_c_binding
       use hipfort_rocsolver_enums
@@ -43346,24 +43362,6 @@ module hipfort_rocsolver
       rocsolver_zlacgv_rank_1 = rocsolver_zlacgv_(handle,n,c_loc(x),incx)
     end function
 
-    function rocsolver_slaswp_full_rank(handle,n,A,lda,k1,k2,ipiv,incx)
-      use iso_c_binding
-      use hipfort_rocsolver_enums
-      use hipfort_rocblas_enums
-      implicit none
-      integer(kind(rocblas_status_success)) :: rocsolver_slaswp_full_rank
-      type(c_ptr) :: handle
-      integer(c_int) :: n
-      real(c_float),target,dimension(:,:) :: A
-      integer(c_int) :: lda
-      integer(c_int) :: k1
-      integer(c_int) :: k2
-      integer(c_int),target,dimension(:) :: ipiv
-      integer(c_int) :: incx
-      !
-      rocsolver_slaswp_full_rank = rocsolver_slaswp_(handle,n,c_loc(A),lda,k1,k2,c_loc(ipiv),incx)
-    end function
-
     function rocsolver_slaswp_rank_0(handle,n,A,lda,k1,k2,ipiv,incx)
       use iso_c_binding
       use hipfort_rocsolver_enums
@@ -43400,22 +43398,22 @@ module hipfort_rocsolver
       rocsolver_slaswp_rank_1 = rocsolver_slaswp_(handle,n,c_loc(A),lda,k1,k2,c_loc(ipiv),incx)
     end function
 
-    function rocsolver_dlaswp_full_rank(handle,n,A,lda,k1,k2,ipiv,incx)
+    function rocsolver_slaswp_full_rank(handle,n,A,lda,k1,k2,ipiv,incx)
       use iso_c_binding
       use hipfort_rocsolver_enums
       use hipfort_rocblas_enums
       implicit none
-      integer(kind(rocblas_status_success)) :: rocsolver_dlaswp_full_rank
+      integer(kind(rocblas_status_success)) :: rocsolver_slaswp_full_rank
       type(c_ptr) :: handle
       integer(c_int) :: n
-      real(c_double),target,dimension(:,:) :: A
+      real(c_float),target,dimension(:,:) :: A
       integer(c_int) :: lda
       integer(c_int) :: k1
       integer(c_int) :: k2
-      integer(c_int),target,dimension(:) :: ipiv
+      integer(c_int),target,dimension(:,:) :: ipiv
       integer(c_int) :: incx
       !
-      rocsolver_dlaswp_full_rank = rocsolver_dlaswp_(handle,n,c_loc(A),lda,k1,k2,c_loc(ipiv),incx)
+      rocsolver_slaswp_full_rank = rocsolver_slaswp_(handle,n,c_loc(A),lda,k1,k2,c_loc(ipiv),incx)
     end function
 
     function rocsolver_dlaswp_rank_0(handle,n,A,lda,k1,k2,ipiv,incx)
@@ -43454,22 +43452,22 @@ module hipfort_rocsolver
       rocsolver_dlaswp_rank_1 = rocsolver_dlaswp_(handle,n,c_loc(A),lda,k1,k2,c_loc(ipiv),incx)
     end function
 
-    function rocsolver_claswp_full_rank(handle,n,A,lda,k1,k2,ipiv,incx)
+    function rocsolver_dlaswp_full_rank(handle,n,A,lda,k1,k2,ipiv,incx)
       use iso_c_binding
       use hipfort_rocsolver_enums
       use hipfort_rocblas_enums
       implicit none
-      integer(kind(rocblas_status_success)) :: rocsolver_claswp_full_rank
+      integer(kind(rocblas_status_success)) :: rocsolver_dlaswp_full_rank
       type(c_ptr) :: handle
       integer(c_int) :: n
-      complex(c_float_complex),target,dimension(:,:) :: A
+      real(c_double),target,dimension(:,:) :: A
       integer(c_int) :: lda
       integer(c_int) :: k1
       integer(c_int) :: k2
-      integer(c_int),target,dimension(:) :: ipiv
+      integer(c_int),target,dimension(:,:) :: ipiv
       integer(c_int) :: incx
       !
-      rocsolver_claswp_full_rank = rocsolver_claswp_(handle,n,c_loc(A),lda,k1,k2,c_loc(ipiv),incx)
+      rocsolver_dlaswp_full_rank = rocsolver_dlaswp_(handle,n,c_loc(A),lda,k1,k2,c_loc(ipiv),incx)
     end function
 
     function rocsolver_claswp_rank_0(handle,n,A,lda,k1,k2,ipiv,incx)
@@ -43508,22 +43506,22 @@ module hipfort_rocsolver
       rocsolver_claswp_rank_1 = rocsolver_claswp_(handle,n,c_loc(A),lda,k1,k2,c_loc(ipiv),incx)
     end function
 
-    function rocsolver_zlaswp_full_rank(handle,n,A,lda,k1,k2,ipiv,incx)
+    function rocsolver_claswp_full_rank(handle,n,A,lda,k1,k2,ipiv,incx)
       use iso_c_binding
       use hipfort_rocsolver_enums
       use hipfort_rocblas_enums
       implicit none
-      integer(kind(rocblas_status_success)) :: rocsolver_zlaswp_full_rank
+      integer(kind(rocblas_status_success)) :: rocsolver_claswp_full_rank
       type(c_ptr) :: handle
       integer(c_int) :: n
-      complex(c_double_complex),target,dimension(:,:) :: A
+      complex(c_float_complex),target,dimension(:,:) :: A
       integer(c_int) :: lda
       integer(c_int) :: k1
       integer(c_int) :: k2
-      integer(c_int),target,dimension(:) :: ipiv
+      integer(c_int),target,dimension(:,:) :: ipiv
       integer(c_int) :: incx
       !
-      rocsolver_zlaswp_full_rank = rocsolver_zlaswp_(handle,n,c_loc(A),lda,k1,k2,c_loc(ipiv),incx)
+      rocsolver_claswp_full_rank = rocsolver_claswp_(handle,n,c_loc(A),lda,k1,k2,c_loc(ipiv),incx)
     end function
 
     function rocsolver_zlaswp_rank_0(handle,n,A,lda,k1,k2,ipiv,incx)
@@ -43560,6 +43558,24 @@ module hipfort_rocsolver
       integer(c_int) :: incx
       !
       rocsolver_zlaswp_rank_1 = rocsolver_zlaswp_(handle,n,c_loc(A),lda,k1,k2,c_loc(ipiv),incx)
+    end function
+
+    function rocsolver_zlaswp_full_rank(handle,n,A,lda,k1,k2,ipiv,incx)
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_zlaswp_full_rank
+      type(c_ptr) :: handle
+      integer(c_int) :: n
+      complex(c_double_complex),target,dimension(:,:) :: A
+      integer(c_int) :: lda
+      integer(c_int) :: k1
+      integer(c_int) :: k2
+      integer(c_int),target,dimension(:,:) :: ipiv
+      integer(c_int) :: incx
+      !
+      rocsolver_zlaswp_full_rank = rocsolver_zlaswp_(handle,n,c_loc(A),lda,k1,k2,c_loc(ipiv),incx)
     end function
 
     function rocsolver_slarfg_rank_0(handle,n,alpha,x,incx,tau)
@@ -43690,26 +43706,6 @@ module hipfort_rocsolver
       rocsolver_zlarfg_rank_1 = rocsolver_zlarfg_(handle,n,alpha,c_loc(x),incx,tau)
     end function
 
-    function rocsolver_slarft_full_rank(handle,myDirect,storev,n,k,V,ldv,tau,T,ldt)
-      use iso_c_binding
-      use hipfort_rocsolver_enums
-      use hipfort_rocblas_enums
-      implicit none
-      integer(kind(rocblas_status_success)) :: rocsolver_slarft_full_rank
-      type(c_ptr) :: handle
-      integer(kind(rocblas_forward_direction)) :: myDirect
-      integer(kind(rocblas_column_wise)) :: storev
-      integer(c_int) :: n
-      integer(c_int) :: k
-      real(c_float),target,dimension(:,:) :: V
-      integer(c_int) :: ldv
-      real(c_float) :: tau
-      real(c_float),target,dimension(:,:) :: T
-      integer(c_int) :: ldt
-      !
-      rocsolver_slarft_full_rank = rocsolver_slarft_(handle,myDirect,storev,n,k,c_loc(V),ldv,tau,c_loc(T),ldt)
-    end function
-
     function rocsolver_slarft_rank_0(handle,myDirect,storev,n,k,V,ldv,tau,T,ldt)
       use iso_c_binding
       use hipfort_rocsolver_enums
@@ -43750,24 +43746,24 @@ module hipfort_rocsolver
       rocsolver_slarft_rank_1 = rocsolver_slarft_(handle,myDirect,storev,n,k,c_loc(V),ldv,tau,c_loc(T),ldt)
     end function
 
-    function rocsolver_dlarft_full_rank(handle,myDirect,storev,n,k,V,ldv,tau,T,ldt)
+    function rocsolver_slarft_full_rank(handle,myDirect,storev,n,k,V,ldv,tau,T,ldt)
       use iso_c_binding
       use hipfort_rocsolver_enums
       use hipfort_rocblas_enums
       implicit none
-      integer(kind(rocblas_status_success)) :: rocsolver_dlarft_full_rank
+      integer(kind(rocblas_status_success)) :: rocsolver_slarft_full_rank
       type(c_ptr) :: handle
       integer(kind(rocblas_forward_direction)) :: myDirect
       integer(kind(rocblas_column_wise)) :: storev
       integer(c_int) :: n
       integer(c_int) :: k
-      real(c_double),target,dimension(:,:) :: V
+      real(c_float),target,dimension(:,:) :: V
       integer(c_int) :: ldv
-      real(c_double) :: tau
-      real(c_double),target,dimension(:,:) :: T
+      real(c_float) :: tau
+      real(c_float),target,dimension(:,:) :: T
       integer(c_int) :: ldt
       !
-      rocsolver_dlarft_full_rank = rocsolver_dlarft_(handle,myDirect,storev,n,k,c_loc(V),ldv,tau,c_loc(T),ldt)
+      rocsolver_slarft_full_rank = rocsolver_slarft_(handle,myDirect,storev,n,k,c_loc(V),ldv,tau,c_loc(T),ldt)
     end function
 
     function rocsolver_dlarft_rank_0(handle,myDirect,storev,n,k,V,ldv,tau,T,ldt)
@@ -43810,24 +43806,24 @@ module hipfort_rocsolver
       rocsolver_dlarft_rank_1 = rocsolver_dlarft_(handle,myDirect,storev,n,k,c_loc(V),ldv,tau,c_loc(T),ldt)
     end function
 
-    function rocsolver_clarft_full_rank(handle,myDirect,storev,n,k,V,ldv,tau,T,ldt)
+    function rocsolver_dlarft_full_rank(handle,myDirect,storev,n,k,V,ldv,tau,T,ldt)
       use iso_c_binding
       use hipfort_rocsolver_enums
       use hipfort_rocblas_enums
       implicit none
-      integer(kind(rocblas_status_success)) :: rocsolver_clarft_full_rank
+      integer(kind(rocblas_status_success)) :: rocsolver_dlarft_full_rank
       type(c_ptr) :: handle
       integer(kind(rocblas_forward_direction)) :: myDirect
       integer(kind(rocblas_column_wise)) :: storev
       integer(c_int) :: n
       integer(c_int) :: k
-      complex(c_float_complex),target,dimension(:,:) :: V
+      real(c_double),target,dimension(:,:) :: V
       integer(c_int) :: ldv
-      complex(c_float_complex) :: tau
-      complex(c_float_complex),target,dimension(:,:) :: T
+      real(c_double) :: tau
+      real(c_double),target,dimension(:,:) :: T
       integer(c_int) :: ldt
       !
-      rocsolver_clarft_full_rank = rocsolver_clarft_(handle,myDirect,storev,n,k,c_loc(V),ldv,tau,c_loc(T),ldt)
+      rocsolver_dlarft_full_rank = rocsolver_dlarft_(handle,myDirect,storev,n,k,c_loc(V),ldv,tau,c_loc(T),ldt)
     end function
 
     function rocsolver_clarft_rank_0(handle,myDirect,storev,n,k,V,ldv,tau,T,ldt)
@@ -43870,24 +43866,24 @@ module hipfort_rocsolver
       rocsolver_clarft_rank_1 = rocsolver_clarft_(handle,myDirect,storev,n,k,c_loc(V),ldv,tau,c_loc(T),ldt)
     end function
 
-    function rocsolver_zlarft_full_rank(handle,myDirect,storev,n,k,V,ldv,tau,T,ldt)
+    function rocsolver_clarft_full_rank(handle,myDirect,storev,n,k,V,ldv,tau,T,ldt)
       use iso_c_binding
       use hipfort_rocsolver_enums
       use hipfort_rocblas_enums
       implicit none
-      integer(kind(rocblas_status_success)) :: rocsolver_zlarft_full_rank
+      integer(kind(rocblas_status_success)) :: rocsolver_clarft_full_rank
       type(c_ptr) :: handle
       integer(kind(rocblas_forward_direction)) :: myDirect
       integer(kind(rocblas_column_wise)) :: storev
       integer(c_int) :: n
       integer(c_int) :: k
-      complex(c_double_complex),target,dimension(:,:) :: V
+      complex(c_float_complex),target,dimension(:,:) :: V
       integer(c_int) :: ldv
-      complex(c_double_complex) :: tau
-      complex(c_double_complex),target,dimension(:,:) :: T
+      complex(c_float_complex) :: tau
+      complex(c_float_complex),target,dimension(:,:) :: T
       integer(c_int) :: ldt
       !
-      rocsolver_zlarft_full_rank = rocsolver_zlarft_(handle,myDirect,storev,n,k,c_loc(V),ldv,tau,c_loc(T),ldt)
+      rocsolver_clarft_full_rank = rocsolver_clarft_(handle,myDirect,storev,n,k,c_loc(V),ldv,tau,c_loc(T),ldt)
     end function
 
     function rocsolver_zlarft_rank_0(handle,myDirect,storev,n,k,V,ldv,tau,T,ldt)
@@ -43930,23 +43926,24 @@ module hipfort_rocsolver
       rocsolver_zlarft_rank_1 = rocsolver_zlarft_(handle,myDirect,storev,n,k,c_loc(V),ldv,tau,c_loc(T),ldt)
     end function
 
-    function rocsolver_slarf_full_rank(handle,side,m,n,x,incx,alpha,A,lda)
+    function rocsolver_zlarft_full_rank(handle,myDirect,storev,n,k,V,ldv,tau,T,ldt)
       use iso_c_binding
       use hipfort_rocsolver_enums
       use hipfort_rocblas_enums
       implicit none
-      integer(kind(rocblas_status_success)) :: rocsolver_slarf_full_rank
+      integer(kind(rocblas_status_success)) :: rocsolver_zlarft_full_rank
       type(c_ptr) :: handle
-      integer(kind(rocblas_side_left)) :: side
-      integer(c_int) :: m
+      integer(kind(rocblas_forward_direction)) :: myDirect
+      integer(kind(rocblas_column_wise)) :: storev
       integer(c_int) :: n
-      real(c_float),target,dimension(:) :: x
-      integer(c_int) :: incx
-      real(c_float) :: alpha
-      real(c_float),target,dimension(:,:) :: A
-      integer(c_int) :: lda
+      integer(c_int) :: k
+      complex(c_double_complex),target,dimension(:,:) :: V
+      integer(c_int) :: ldv
+      complex(c_double_complex) :: tau
+      complex(c_double_complex),target,dimension(:,:) :: T
+      integer(c_int) :: ldt
       !
-      rocsolver_slarf_full_rank = rocsolver_slarf_(handle,side,m,n,c_loc(x),incx,alpha,c_loc(A),lda)
+      rocsolver_zlarft_full_rank = rocsolver_zlarft_(handle,myDirect,storev,n,k,c_loc(V),ldv,tau,c_loc(T),ldt)
     end function
 
     function rocsolver_slarf_rank_0(handle,side,m,n,x,incx,alpha,A,lda)
@@ -43987,23 +43984,23 @@ module hipfort_rocsolver
       rocsolver_slarf_rank_1 = rocsolver_slarf_(handle,side,m,n,c_loc(x),incx,alpha,c_loc(A),lda)
     end function
 
-    function rocsolver_dlarf_full_rank(handle,side,m,n,x,incx,alpha,A,lda)
+    function rocsolver_slarf_full_rank(handle,side,m,n,x,incx,alpha,A,lda)
       use iso_c_binding
       use hipfort_rocsolver_enums
       use hipfort_rocblas_enums
       implicit none
-      integer(kind(rocblas_status_success)) :: rocsolver_dlarf_full_rank
+      integer(kind(rocblas_status_success)) :: rocsolver_slarf_full_rank
       type(c_ptr) :: handle
       integer(kind(rocblas_side_left)) :: side
       integer(c_int) :: m
       integer(c_int) :: n
-      real(c_double),target,dimension(:) :: x
+      real(c_float),target,dimension(:,:) :: x
       integer(c_int) :: incx
-      real(c_double) :: alpha
-      real(c_double),target,dimension(:,:) :: A
+      real(c_float) :: alpha
+      real(c_float),target,dimension(:,:) :: A
       integer(c_int) :: lda
       !
-      rocsolver_dlarf_full_rank = rocsolver_dlarf_(handle,side,m,n,c_loc(x),incx,alpha,c_loc(A),lda)
+      rocsolver_slarf_full_rank = rocsolver_slarf_(handle,side,m,n,c_loc(x),incx,alpha,c_loc(A),lda)
     end function
 
     function rocsolver_dlarf_rank_0(handle,side,m,n,x,incx,alpha,A,lda)
@@ -44044,23 +44041,23 @@ module hipfort_rocsolver
       rocsolver_dlarf_rank_1 = rocsolver_dlarf_(handle,side,m,n,c_loc(x),incx,alpha,c_loc(A),lda)
     end function
 
-    function rocsolver_clarf_full_rank(handle,side,m,n,x,incx,alpha,A,lda)
+    function rocsolver_dlarf_full_rank(handle,side,m,n,x,incx,alpha,A,lda)
       use iso_c_binding
       use hipfort_rocsolver_enums
       use hipfort_rocblas_enums
       implicit none
-      integer(kind(rocblas_status_success)) :: rocsolver_clarf_full_rank
+      integer(kind(rocblas_status_success)) :: rocsolver_dlarf_full_rank
       type(c_ptr) :: handle
       integer(kind(rocblas_side_left)) :: side
       integer(c_int) :: m
       integer(c_int) :: n
-      complex(c_float_complex),target,dimension(:) :: x
+      real(c_double),target,dimension(:,:) :: x
       integer(c_int) :: incx
-      complex(c_float_complex) :: alpha
-      complex(c_float_complex),target,dimension(:,:) :: A
+      real(c_double) :: alpha
+      real(c_double),target,dimension(:,:) :: A
       integer(c_int) :: lda
       !
-      rocsolver_clarf_full_rank = rocsolver_clarf_(handle,side,m,n,c_loc(x),incx,alpha,c_loc(A),lda)
+      rocsolver_dlarf_full_rank = rocsolver_dlarf_(handle,side,m,n,c_loc(x),incx,alpha,c_loc(A),lda)
     end function
 
     function rocsolver_clarf_rank_0(handle,side,m,n,x,incx,alpha,A,lda)
@@ -44101,23 +44098,23 @@ module hipfort_rocsolver
       rocsolver_clarf_rank_1 = rocsolver_clarf_(handle,side,m,n,c_loc(x),incx,alpha,c_loc(A),lda)
     end function
 
-    function rocsolver_zlarf_full_rank(handle,side,m,n,x,incx,alpha,A,lda)
+    function rocsolver_clarf_full_rank(handle,side,m,n,x,incx,alpha,A,lda)
       use iso_c_binding
       use hipfort_rocsolver_enums
       use hipfort_rocblas_enums
       implicit none
-      integer(kind(rocblas_status_success)) :: rocsolver_zlarf_full_rank
+      integer(kind(rocblas_status_success)) :: rocsolver_clarf_full_rank
       type(c_ptr) :: handle
       integer(kind(rocblas_side_left)) :: side
       integer(c_int) :: m
       integer(c_int) :: n
-      complex(c_double_complex),target,dimension(:) :: x
+      complex(c_float_complex),target,dimension(:,:) :: x
       integer(c_int) :: incx
-      complex(c_double_complex) :: alpha
-      complex(c_double_complex),target,dimension(:,:) :: A
+      complex(c_float_complex) :: alpha
+      complex(c_float_complex),target,dimension(:,:) :: A
       integer(c_int) :: lda
       !
-      rocsolver_zlarf_full_rank = rocsolver_zlarf_(handle,side,m,n,c_loc(x),incx,alpha,c_loc(A),lda)
+      rocsolver_clarf_full_rank = rocsolver_clarf_(handle,side,m,n,c_loc(x),incx,alpha,c_loc(A),lda)
     end function
 
     function rocsolver_zlarf_rank_0(handle,side,m,n,x,incx,alpha,A,lda)
@@ -44158,28 +44155,23 @@ module hipfort_rocsolver
       rocsolver_zlarf_rank_1 = rocsolver_zlarf_(handle,side,m,n,c_loc(x),incx,alpha,c_loc(A),lda)
     end function
 
-    function rocsolver_slarfb_full_rank(handle,side,trans,myDirect,storev,m,n,k,V,ldv,T,ldt,A,lda)
+    function rocsolver_zlarf_full_rank(handle,side,m,n,x,incx,alpha,A,lda)
       use iso_c_binding
       use hipfort_rocsolver_enums
       use hipfort_rocblas_enums
       implicit none
-      integer(kind(rocblas_status_success)) :: rocsolver_slarfb_full_rank
+      integer(kind(rocblas_status_success)) :: rocsolver_zlarf_full_rank
       type(c_ptr) :: handle
       integer(kind(rocblas_side_left)) :: side
-      integer(kind(rocblas_operation_none)) :: trans
-      integer(kind(rocblas_forward_direction)) :: myDirect
-      integer(kind(rocblas_column_wise)) :: storev
       integer(c_int) :: m
       integer(c_int) :: n
-      integer(c_int) :: k
-      real(c_float),target,dimension(:,:) :: V
-      integer(c_int) :: ldv
-      real(c_float),target,dimension(:,:) :: T
-      integer(c_int) :: ldt
-      real(c_float),target,dimension(:,:) :: A
+      complex(c_double_complex),target,dimension(:,:) :: x
+      integer(c_int) :: incx
+      complex(c_double_complex) :: alpha
+      complex(c_double_complex),target,dimension(:,:) :: A
       integer(c_int) :: lda
       !
-      rocsolver_slarfb_full_rank = rocsolver_slarfb_(handle,side,trans,myDirect,storev,m,n,k,c_loc(V),ldv,c_loc(T),ldt,c_loc(A),lda)
+      rocsolver_zlarf_full_rank = rocsolver_zlarf_(handle,side,m,n,c_loc(x),incx,alpha,c_loc(A),lda)
     end function
 
     function rocsolver_slarfb_rank_0(handle,side,trans,myDirect,storev,m,n,k,V,ldv,T,ldt,A,lda)
@@ -44230,12 +44222,12 @@ module hipfort_rocsolver
       rocsolver_slarfb_rank_1 = rocsolver_slarfb_(handle,side,trans,myDirect,storev,m,n,k,c_loc(V),ldv,c_loc(T),ldt,c_loc(A),lda)
     end function
 
-    function rocsolver_dlarfb_full_rank(handle,side,trans,myDirect,storev,m,n,k,V,ldv,T,ldt,A,lda)
+    function rocsolver_slarfb_full_rank(handle,side,trans,myDirect,storev,m,n,k,V,ldv,T,ldt,A,lda)
       use iso_c_binding
       use hipfort_rocsolver_enums
       use hipfort_rocblas_enums
       implicit none
-      integer(kind(rocblas_status_success)) :: rocsolver_dlarfb_full_rank
+      integer(kind(rocblas_status_success)) :: rocsolver_slarfb_full_rank
       type(c_ptr) :: handle
       integer(kind(rocblas_side_left)) :: side
       integer(kind(rocblas_operation_none)) :: trans
@@ -44244,14 +44236,14 @@ module hipfort_rocsolver
       integer(c_int) :: m
       integer(c_int) :: n
       integer(c_int) :: k
-      real(c_double),target,dimension(:,:) :: V
+      real(c_float),target,dimension(:,:) :: V
       integer(c_int) :: ldv
-      real(c_double),target,dimension(:,:) :: T
+      real(c_float),target,dimension(:,:) :: T
       integer(c_int) :: ldt
-      real(c_double),target,dimension(:,:) :: A
+      real(c_float),target,dimension(:,:) :: A
       integer(c_int) :: lda
       !
-      rocsolver_dlarfb_full_rank = rocsolver_dlarfb_(handle,side,trans,myDirect,storev,m,n,k,c_loc(V),ldv,c_loc(T),ldt,c_loc(A),lda)
+      rocsolver_slarfb_full_rank = rocsolver_slarfb_(handle,side,trans,myDirect,storev,m,n,k,c_loc(V),ldv,c_loc(T),ldt,c_loc(A),lda)
     end function
 
     function rocsolver_dlarfb_rank_0(handle,side,trans,myDirect,storev,m,n,k,V,ldv,T,ldt,A,lda)
@@ -44302,12 +44294,12 @@ module hipfort_rocsolver
       rocsolver_dlarfb_rank_1 = rocsolver_dlarfb_(handle,side,trans,myDirect,storev,m,n,k,c_loc(V),ldv,c_loc(T),ldt,c_loc(A),lda)
     end function
 
-    function rocsolver_clarfb_full_rank(handle,side,trans,myDirect,storev,m,n,k,V,ldv,T,ldt,A,lda)
+    function rocsolver_dlarfb_full_rank(handle,side,trans,myDirect,storev,m,n,k,V,ldv,T,ldt,A,lda)
       use iso_c_binding
       use hipfort_rocsolver_enums
       use hipfort_rocblas_enums
       implicit none
-      integer(kind(rocblas_status_success)) :: rocsolver_clarfb_full_rank
+      integer(kind(rocblas_status_success)) :: rocsolver_dlarfb_full_rank
       type(c_ptr) :: handle
       integer(kind(rocblas_side_left)) :: side
       integer(kind(rocblas_operation_none)) :: trans
@@ -44316,14 +44308,14 @@ module hipfort_rocsolver
       integer(c_int) :: m
       integer(c_int) :: n
       integer(c_int) :: k
-      complex(c_float_complex),target,dimension(:,:) :: V
+      real(c_double),target,dimension(:,:) :: V
       integer(c_int) :: ldv
-      complex(c_float_complex),target,dimension(:,:) :: T
+      real(c_double),target,dimension(:,:) :: T
       integer(c_int) :: ldt
-      complex(c_float_complex),target,dimension(:,:) :: A
+      real(c_double),target,dimension(:,:) :: A
       integer(c_int) :: lda
       !
-      rocsolver_clarfb_full_rank = rocsolver_clarfb_(handle,side,trans,myDirect,storev,m,n,k,c_loc(V),ldv,c_loc(T),ldt,c_loc(A),lda)
+      rocsolver_dlarfb_full_rank = rocsolver_dlarfb_(handle,side,trans,myDirect,storev,m,n,k,c_loc(V),ldv,c_loc(T),ldt,c_loc(A),lda)
     end function
 
     function rocsolver_clarfb_rank_0(handle,side,trans,myDirect,storev,m,n,k,V,ldv,T,ldt,A,lda)
@@ -44374,12 +44366,12 @@ module hipfort_rocsolver
       rocsolver_clarfb_rank_1 = rocsolver_clarfb_(handle,side,trans,myDirect,storev,m,n,k,c_loc(V),ldv,c_loc(T),ldt,c_loc(A),lda)
     end function
 
-    function rocsolver_zlarfb_full_rank(handle,side,trans,myDirect,storev,m,n,k,V,ldv,T,ldt,A,lda)
+    function rocsolver_clarfb_full_rank(handle,side,trans,myDirect,storev,m,n,k,V,ldv,T,ldt,A,lda)
       use iso_c_binding
       use hipfort_rocsolver_enums
       use hipfort_rocblas_enums
       implicit none
-      integer(kind(rocblas_status_success)) :: rocsolver_zlarfb_full_rank
+      integer(kind(rocblas_status_success)) :: rocsolver_clarfb_full_rank
       type(c_ptr) :: handle
       integer(kind(rocblas_side_left)) :: side
       integer(kind(rocblas_operation_none)) :: trans
@@ -44388,14 +44380,14 @@ module hipfort_rocsolver
       integer(c_int) :: m
       integer(c_int) :: n
       integer(c_int) :: k
-      complex(c_double_complex),target,dimension(:,:) :: V
+      complex(c_float_complex),target,dimension(:,:) :: V
       integer(c_int) :: ldv
-      complex(c_double_complex),target,dimension(:,:) :: T
+      complex(c_float_complex),target,dimension(:,:) :: T
       integer(c_int) :: ldt
-      complex(c_double_complex),target,dimension(:,:) :: A
+      complex(c_float_complex),target,dimension(:,:) :: A
       integer(c_int) :: lda
       !
-      rocsolver_zlarfb_full_rank = rocsolver_zlarfb_(handle,side,trans,myDirect,storev,m,n,k,c_loc(V),ldv,c_loc(T),ldt,c_loc(A),lda)
+      rocsolver_clarfb_full_rank = rocsolver_clarfb_(handle,side,trans,myDirect,storev,m,n,k,c_loc(V),ldv,c_loc(T),ldt,c_loc(A),lda)
     end function
 
     function rocsolver_zlarfb_rank_0(handle,side,trans,myDirect,storev,m,n,k,V,ldv,T,ldt,A,lda)
@@ -44446,28 +44438,28 @@ module hipfort_rocsolver
       rocsolver_zlarfb_rank_1 = rocsolver_zlarfb_(handle,side,trans,myDirect,storev,m,n,k,c_loc(V),ldv,c_loc(T),ldt,c_loc(A),lda)
     end function
 
-    function rocsolver_slabrd_full_rank(handle,m,n,k,A,lda,D,E,tauq,taup,X,ldx,Y,ldy)
+    function rocsolver_zlarfb_full_rank(handle,side,trans,myDirect,storev,m,n,k,V,ldv,T,ldt,A,lda)
       use iso_c_binding
       use hipfort_rocsolver_enums
       use hipfort_rocblas_enums
       implicit none
-      integer(kind(rocblas_status_success)) :: rocsolver_slabrd_full_rank
+      integer(kind(rocblas_status_success)) :: rocsolver_zlarfb_full_rank
       type(c_ptr) :: handle
+      integer(kind(rocblas_side_left)) :: side
+      integer(kind(rocblas_operation_none)) :: trans
+      integer(kind(rocblas_forward_direction)) :: myDirect
+      integer(kind(rocblas_column_wise)) :: storev
       integer(c_int) :: m
       integer(c_int) :: n
       integer(c_int) :: k
-      real(c_float),target,dimension(:,:) :: A
+      complex(c_double_complex),target,dimension(:,:) :: V
+      integer(c_int) :: ldv
+      complex(c_double_complex),target,dimension(:,:) :: T
+      integer(c_int) :: ldt
+      complex(c_double_complex),target,dimension(:,:) :: A
       integer(c_int) :: lda
-      real(c_float),target,dimension(:) :: D
-      real(c_float),target,dimension(:) :: E
-      real(c_float),target,dimension(:) :: tauq
-      real(c_float),target,dimension(:) :: taup
-      real(c_float),target,dimension(:,:) :: X
-      integer(c_int) :: ldx
-      real(c_float),target,dimension(:,:) :: Y
-      integer(c_int) :: ldy
       !
-      rocsolver_slabrd_full_rank = rocsolver_slabrd_(handle,m,n,k,c_loc(A),lda,c_loc(D),c_loc(E),c_loc(tauq),c_loc(taup),c_loc(X),ldx,c_loc(Y),ldy)
+      rocsolver_zlarfb_full_rank = rocsolver_zlarfb_(handle,side,trans,myDirect,storev,m,n,k,c_loc(V),ldv,c_loc(T),ldt,c_loc(A),lda)
     end function
 
     function rocsolver_slabrd_rank_0(handle,m,n,k,A,lda,D,E,tauq,taup,X,ldx,Y,ldy)
@@ -44518,28 +44510,28 @@ module hipfort_rocsolver
       rocsolver_slabrd_rank_1 = rocsolver_slabrd_(handle,m,n,k,c_loc(A),lda,c_loc(D),c_loc(E),c_loc(tauq),c_loc(taup),c_loc(X),ldx,c_loc(Y),ldy)
     end function
 
-    function rocsolver_dlabrd_full_rank(handle,m,n,k,A,lda,D,E,tauq,taup,X,ldx,Y,ldy)
+    function rocsolver_slabrd_full_rank(handle,m,n,k,A,lda,D,E,tauq,taup,X,ldx,Y,ldy)
       use iso_c_binding
       use hipfort_rocsolver_enums
       use hipfort_rocblas_enums
       implicit none
-      integer(kind(rocblas_status_success)) :: rocsolver_dlabrd_full_rank
+      integer(kind(rocblas_status_success)) :: rocsolver_slabrd_full_rank
       type(c_ptr) :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       integer(c_int) :: k
-      real(c_double),target,dimension(:,:) :: A
+      real(c_float),target,dimension(:,:) :: A
       integer(c_int) :: lda
-      real(c_double),target,dimension(:) :: D
-      real(c_double),target,dimension(:) :: E
-      real(c_double),target,dimension(:) :: tauq
-      real(c_double),target,dimension(:) :: taup
-      real(c_double),target,dimension(:,:) :: X
+      real(c_float),target,dimension(:,:) :: D
+      real(c_float),target,dimension(:,:) :: E
+      real(c_float),target,dimension(:,:) :: tauq
+      real(c_float),target,dimension(:,:) :: taup
+      real(c_float),target,dimension(:,:) :: X
       integer(c_int) :: ldx
-      real(c_double),target,dimension(:,:) :: Y
+      real(c_float),target,dimension(:,:) :: Y
       integer(c_int) :: ldy
       !
-      rocsolver_dlabrd_full_rank = rocsolver_dlabrd_(handle,m,n,k,c_loc(A),lda,c_loc(D),c_loc(E),c_loc(tauq),c_loc(taup),c_loc(X),ldx,c_loc(Y),ldy)
+      rocsolver_slabrd_full_rank = rocsolver_slabrd_(handle,m,n,k,c_loc(A),lda,c_loc(D),c_loc(E),c_loc(tauq),c_loc(taup),c_loc(X),ldx,c_loc(Y),ldy)
     end function
 
     function rocsolver_dlabrd_rank_0(handle,m,n,k,A,lda,D,E,tauq,taup,X,ldx,Y,ldy)
@@ -44590,28 +44582,28 @@ module hipfort_rocsolver
       rocsolver_dlabrd_rank_1 = rocsolver_dlabrd_(handle,m,n,k,c_loc(A),lda,c_loc(D),c_loc(E),c_loc(tauq),c_loc(taup),c_loc(X),ldx,c_loc(Y),ldy)
     end function
 
-    function rocsolver_clabrd_full_rank(handle,m,n,k,A,lda,D,E,tauq,taup,X,ldx,Y,ldy)
+    function rocsolver_dlabrd_full_rank(handle,m,n,k,A,lda,D,E,tauq,taup,X,ldx,Y,ldy)
       use iso_c_binding
       use hipfort_rocsolver_enums
       use hipfort_rocblas_enums
       implicit none
-      integer(kind(rocblas_status_success)) :: rocsolver_clabrd_full_rank
+      integer(kind(rocblas_status_success)) :: rocsolver_dlabrd_full_rank
       type(c_ptr) :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       integer(c_int) :: k
-      complex(c_float_complex),target,dimension(:,:) :: A
+      real(c_double),target,dimension(:,:) :: A
       integer(c_int) :: lda
-      real(c_float),target,dimension(:) :: D
-      real(c_float),target,dimension(:) :: E
-      complex(c_float_complex),target,dimension(:) :: tauq
-      complex(c_float_complex),target,dimension(:) :: taup
-      complex(c_float_complex),target,dimension(:,:) :: X
+      real(c_double),target,dimension(:,:) :: D
+      real(c_double),target,dimension(:,:) :: E
+      real(c_double),target,dimension(:,:) :: tauq
+      real(c_double),target,dimension(:,:) :: taup
+      real(c_double),target,dimension(:,:) :: X
       integer(c_int) :: ldx
-      complex(c_float_complex),target,dimension(:,:) :: Y
+      real(c_double),target,dimension(:,:) :: Y
       integer(c_int) :: ldy
       !
-      rocsolver_clabrd_full_rank = rocsolver_clabrd_(handle,m,n,k,c_loc(A),lda,c_loc(D),c_loc(E),c_loc(tauq),c_loc(taup),c_loc(X),ldx,c_loc(Y),ldy)
+      rocsolver_dlabrd_full_rank = rocsolver_dlabrd_(handle,m,n,k,c_loc(A),lda,c_loc(D),c_loc(E),c_loc(tauq),c_loc(taup),c_loc(X),ldx,c_loc(Y),ldy)
     end function
 
     function rocsolver_clabrd_rank_0(handle,m,n,k,A,lda,D,E,tauq,taup,X,ldx,Y,ldy)
@@ -44662,28 +44654,28 @@ module hipfort_rocsolver
       rocsolver_clabrd_rank_1 = rocsolver_clabrd_(handle,m,n,k,c_loc(A),lda,c_loc(D),c_loc(E),c_loc(tauq),c_loc(taup),c_loc(X),ldx,c_loc(Y),ldy)
     end function
 
-    function rocsolver_zlabrd_full_rank(handle,m,n,k,A,lda,D,E,tauq,taup,X,ldx,Y,ldy)
+    function rocsolver_clabrd_full_rank(handle,m,n,k,A,lda,D,E,tauq,taup,X,ldx,Y,ldy)
       use iso_c_binding
       use hipfort_rocsolver_enums
       use hipfort_rocblas_enums
       implicit none
-      integer(kind(rocblas_status_success)) :: rocsolver_zlabrd_full_rank
+      integer(kind(rocblas_status_success)) :: rocsolver_clabrd_full_rank
       type(c_ptr) :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       integer(c_int) :: k
-      complex(c_double_complex),target,dimension(:,:) :: A
+      complex(c_float_complex),target,dimension(:,:) :: A
       integer(c_int) :: lda
-      real(c_double),target,dimension(:) :: D
-      real(c_double),target,dimension(:) :: E
-      complex(c_double_complex),target,dimension(:) :: tauq
-      complex(c_double_complex),target,dimension(:) :: taup
-      complex(c_double_complex),target,dimension(:,:) :: X
+      real(c_float),target,dimension(:,:) :: D
+      real(c_float),target,dimension(:,:) :: E
+      complex(c_float_complex),target,dimension(:,:) :: tauq
+      complex(c_float_complex),target,dimension(:,:) :: taup
+      complex(c_float_complex),target,dimension(:,:) :: X
       integer(c_int) :: ldx
-      complex(c_double_complex),target,dimension(:,:) :: Y
+      complex(c_float_complex),target,dimension(:,:) :: Y
       integer(c_int) :: ldy
       !
-      rocsolver_zlabrd_full_rank = rocsolver_zlabrd_(handle,m,n,k,c_loc(A),lda,c_loc(D),c_loc(E),c_loc(tauq),c_loc(taup),c_loc(X),ldx,c_loc(Y),ldy)
+      rocsolver_clabrd_full_rank = rocsolver_clabrd_(handle,m,n,k,c_loc(A),lda,c_loc(D),c_loc(E),c_loc(tauq),c_loc(taup),c_loc(X),ldx,c_loc(Y),ldy)
     end function
 
     function rocsolver_zlabrd_rank_0(handle,m,n,k,A,lda,D,E,tauq,taup,X,ldx,Y,ldy)
@@ -44734,24 +44726,28 @@ module hipfort_rocsolver
       rocsolver_zlabrd_rank_1 = rocsolver_zlabrd_(handle,m,n,k,c_loc(A),lda,c_loc(D),c_loc(E),c_loc(tauq),c_loc(taup),c_loc(X),ldx,c_loc(Y),ldy)
     end function
 
-    function rocsolver_slatrd_full_rank(handle,uplo,n,k,A,lda,E,tau,W,ldw)
+    function rocsolver_zlabrd_full_rank(handle,m,n,k,A,lda,D,E,tauq,taup,X,ldx,Y,ldy)
       use iso_c_binding
       use hipfort_rocsolver_enums
       use hipfort_rocblas_enums
       implicit none
-      integer(kind(rocblas_status_success)) :: rocsolver_slatrd_full_rank
+      integer(kind(rocblas_status_success)) :: rocsolver_zlabrd_full_rank
       type(c_ptr) :: handle
-      integer(kind(rocblas_fill_upper)) :: uplo
+      integer(c_int) :: m
       integer(c_int) :: n
       integer(c_int) :: k
-      real(c_float),target,dimension(:,:) :: A
+      complex(c_double_complex),target,dimension(:,:) :: A
       integer(c_int) :: lda
-      real(c_float),target,dimension(:) :: E
-      real(c_float) :: tau
-      type(c_ptr) :: W
-      integer(c_int) :: ldw
+      real(c_double),target,dimension(:,:) :: D
+      real(c_double),target,dimension(:,:) :: E
+      complex(c_double_complex),target,dimension(:,:) :: tauq
+      complex(c_double_complex),target,dimension(:,:) :: taup
+      complex(c_double_complex),target,dimension(:,:) :: X
+      integer(c_int) :: ldx
+      complex(c_double_complex),target,dimension(:,:) :: Y
+      integer(c_int) :: ldy
       !
-      rocsolver_slatrd_full_rank = rocsolver_slatrd_(handle,uplo,n,k,c_loc(A),lda,c_loc(E),tau,W,ldw)
+      rocsolver_zlabrd_full_rank = rocsolver_zlabrd_(handle,m,n,k,c_loc(A),lda,c_loc(D),c_loc(E),c_loc(tauq),c_loc(taup),c_loc(X),ldx,c_loc(Y),ldy)
     end function
 
     function rocsolver_slatrd_rank_0(handle,uplo,n,k,A,lda,E,tau,W,ldw)
@@ -44768,10 +44764,10 @@ module hipfort_rocsolver
       integer(c_int) :: lda
       real(c_float),target :: E
       real(c_float) :: tau
-      type(c_ptr) :: W
+      real(c_float),target :: W
       integer(c_int) :: ldw
       !
-      rocsolver_slatrd_rank_0 = rocsolver_slatrd_(handle,uplo,n,k,c_loc(A),lda,c_loc(E),tau,W,ldw)
+      rocsolver_slatrd_rank_0 = rocsolver_slatrd_(handle,uplo,n,k,c_loc(A),lda,c_loc(E),tau,c_loc(W),ldw)
     end function
 
     function rocsolver_slatrd_rank_1(handle,uplo,n,k,A,lda,E,tau,W,ldw)
@@ -44788,30 +44784,30 @@ module hipfort_rocsolver
       integer(c_int) :: lda
       real(c_float),target,dimension(:) :: E
       real(c_float) :: tau
-      type(c_ptr) :: W
+      real(c_float),target,dimension(:) :: W
       integer(c_int) :: ldw
       !
-      rocsolver_slatrd_rank_1 = rocsolver_slatrd_(handle,uplo,n,k,c_loc(A),lda,c_loc(E),tau,W,ldw)
+      rocsolver_slatrd_rank_1 = rocsolver_slatrd_(handle,uplo,n,k,c_loc(A),lda,c_loc(E),tau,c_loc(W),ldw)
     end function
 
-    function rocsolver_dlatrd_full_rank(handle,uplo,n,k,A,lda,E,tau,W,ldw)
+    function rocsolver_slatrd_full_rank(handle,uplo,n,k,A,lda,E,tau,W,ldw)
       use iso_c_binding
       use hipfort_rocsolver_enums
       use hipfort_rocblas_enums
       implicit none
-      integer(kind(rocblas_status_success)) :: rocsolver_dlatrd_full_rank
+      integer(kind(rocblas_status_success)) :: rocsolver_slatrd_full_rank
       type(c_ptr) :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       integer(c_int) :: k
-      real(c_double),target,dimension(:,:) :: A
+      real(c_float),target,dimension(:,:) :: A
       integer(c_int) :: lda
-      real(c_double),target,dimension(:) :: E
-      real(c_double) :: tau
-      type(c_ptr) :: W
+      real(c_float),target,dimension(:,:) :: E
+      real(c_float) :: tau
+      real(c_float),target,dimension(:,:) :: W
       integer(c_int) :: ldw
       !
-      rocsolver_dlatrd_full_rank = rocsolver_dlatrd_(handle,uplo,n,k,c_loc(A),lda,c_loc(E),tau,W,ldw)
+      rocsolver_slatrd_full_rank = rocsolver_slatrd_(handle,uplo,n,k,c_loc(A),lda,c_loc(E),tau,c_loc(W),ldw)
     end function
 
     function rocsolver_dlatrd_rank_0(handle,uplo,n,k,A,lda,E,tau,W,ldw)
@@ -44828,10 +44824,10 @@ module hipfort_rocsolver
       integer(c_int) :: lda
       real(c_double),target :: E
       real(c_double) :: tau
-      type(c_ptr) :: W
+      real(c_double),target :: W
       integer(c_int) :: ldw
       !
-      rocsolver_dlatrd_rank_0 = rocsolver_dlatrd_(handle,uplo,n,k,c_loc(A),lda,c_loc(E),tau,W,ldw)
+      rocsolver_dlatrd_rank_0 = rocsolver_dlatrd_(handle,uplo,n,k,c_loc(A),lda,c_loc(E),tau,c_loc(W),ldw)
     end function
 
     function rocsolver_dlatrd_rank_1(handle,uplo,n,k,A,lda,E,tau,W,ldw)
@@ -44848,30 +44844,30 @@ module hipfort_rocsolver
       integer(c_int) :: lda
       real(c_double),target,dimension(:) :: E
       real(c_double) :: tau
-      type(c_ptr) :: W
+      real(c_double),target,dimension(:) :: W
       integer(c_int) :: ldw
       !
-      rocsolver_dlatrd_rank_1 = rocsolver_dlatrd_(handle,uplo,n,k,c_loc(A),lda,c_loc(E),tau,W,ldw)
+      rocsolver_dlatrd_rank_1 = rocsolver_dlatrd_(handle,uplo,n,k,c_loc(A),lda,c_loc(E),tau,c_loc(W),ldw)
     end function
 
-    function rocsolver_clatrd_full_rank(handle,uplo,n,k,A,lda,E,tau,W,ldw)
+    function rocsolver_dlatrd_full_rank(handle,uplo,n,k,A,lda,E,tau,W,ldw)
       use iso_c_binding
       use hipfort_rocsolver_enums
       use hipfort_rocblas_enums
       implicit none
-      integer(kind(rocblas_status_success)) :: rocsolver_clatrd_full_rank
+      integer(kind(rocblas_status_success)) :: rocsolver_dlatrd_full_rank
       type(c_ptr) :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       integer(c_int) :: k
-      complex(c_float_complex),target,dimension(:,:) :: A
+      real(c_double),target,dimension(:,:) :: A
       integer(c_int) :: lda
-      real(c_float),target,dimension(:) :: E
-      complex(c_float_complex) :: tau
-      type(c_ptr) :: W
+      real(c_double),target,dimension(:,:) :: E
+      real(c_double) :: tau
+      real(c_double),target,dimension(:,:) :: W
       integer(c_int) :: ldw
       !
-      rocsolver_clatrd_full_rank = rocsolver_clatrd_(handle,uplo,n,k,c_loc(A),lda,c_loc(E),tau,W,ldw)
+      rocsolver_dlatrd_full_rank = rocsolver_dlatrd_(handle,uplo,n,k,c_loc(A),lda,c_loc(E),tau,c_loc(W),ldw)
     end function
 
     function rocsolver_clatrd_rank_0(handle,uplo,n,k,A,lda,E,tau,W,ldw)
@@ -44888,10 +44884,10 @@ module hipfort_rocsolver
       integer(c_int) :: lda
       real(c_float),target :: E
       complex(c_float_complex) :: tau
-      type(c_ptr) :: W
+      complex(c_float_complex),target :: W
       integer(c_int) :: ldw
       !
-      rocsolver_clatrd_rank_0 = rocsolver_clatrd_(handle,uplo,n,k,c_loc(A),lda,c_loc(E),tau,W,ldw)
+      rocsolver_clatrd_rank_0 = rocsolver_clatrd_(handle,uplo,n,k,c_loc(A),lda,c_loc(E),tau,c_loc(W),ldw)
     end function
 
     function rocsolver_clatrd_rank_1(handle,uplo,n,k,A,lda,E,tau,W,ldw)
@@ -44908,30 +44904,30 @@ module hipfort_rocsolver
       integer(c_int) :: lda
       real(c_float),target,dimension(:) :: E
       complex(c_float_complex) :: tau
-      type(c_ptr) :: W
+      complex(c_float_complex),target,dimension(:) :: W
       integer(c_int) :: ldw
       !
-      rocsolver_clatrd_rank_1 = rocsolver_clatrd_(handle,uplo,n,k,c_loc(A),lda,c_loc(E),tau,W,ldw)
+      rocsolver_clatrd_rank_1 = rocsolver_clatrd_(handle,uplo,n,k,c_loc(A),lda,c_loc(E),tau,c_loc(W),ldw)
     end function
 
-    function rocsolver_zlatrd_full_rank(handle,uplo,n,k,A,lda,E,tau,W,ldw)
+    function rocsolver_clatrd_full_rank(handle,uplo,n,k,A,lda,E,tau,W,ldw)
       use iso_c_binding
       use hipfort_rocsolver_enums
       use hipfort_rocblas_enums
       implicit none
-      integer(kind(rocblas_status_success)) :: rocsolver_zlatrd_full_rank
+      integer(kind(rocblas_status_success)) :: rocsolver_clatrd_full_rank
       type(c_ptr) :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       integer(c_int) :: k
-      complex(c_double_complex),target,dimension(:,:) :: A
+      complex(c_float_complex),target,dimension(:,:) :: A
       integer(c_int) :: lda
-      real(c_double),target,dimension(:) :: E
-      complex(c_double_complex) :: tau
-      type(c_ptr) :: W
+      real(c_float),target,dimension(:,:) :: E
+      complex(c_float_complex) :: tau
+      complex(c_float_complex),target,dimension(:,:) :: W
       integer(c_int) :: ldw
       !
-      rocsolver_zlatrd_full_rank = rocsolver_zlatrd_(handle,uplo,n,k,c_loc(A),lda,c_loc(E),tau,W,ldw)
+      rocsolver_clatrd_full_rank = rocsolver_clatrd_(handle,uplo,n,k,c_loc(A),lda,c_loc(E),tau,c_loc(W),ldw)
     end function
 
     function rocsolver_zlatrd_rank_0(handle,uplo,n,k,A,lda,E,tau,W,ldw)
@@ -44948,10 +44944,10 @@ module hipfort_rocsolver
       integer(c_int) :: lda
       real(c_double),target :: E
       complex(c_double_complex) :: tau
-      type(c_ptr) :: W
+      complex(c_double_complex),target :: W
       integer(c_int) :: ldw
       !
-      rocsolver_zlatrd_rank_0 = rocsolver_zlatrd_(handle,uplo,n,k,c_loc(A),lda,c_loc(E),tau,W,ldw)
+      rocsolver_zlatrd_rank_0 = rocsolver_zlatrd_(handle,uplo,n,k,c_loc(A),lda,c_loc(E),tau,c_loc(W),ldw)
     end function
 
     function rocsolver_zlatrd_rank_1(handle,uplo,n,k,A,lda,E,tau,W,ldw)
@@ -44968,29 +44964,30 @@ module hipfort_rocsolver
       integer(c_int) :: lda
       real(c_double),target,dimension(:) :: E
       complex(c_double_complex) :: tau
-      type(c_ptr) :: W
+      complex(c_double_complex),target,dimension(:) :: W
       integer(c_int) :: ldw
       !
-      rocsolver_zlatrd_rank_1 = rocsolver_zlatrd_(handle,uplo,n,k,c_loc(A),lda,c_loc(E),tau,W,ldw)
+      rocsolver_zlatrd_rank_1 = rocsolver_zlatrd_(handle,uplo,n,k,c_loc(A),lda,c_loc(E),tau,c_loc(W),ldw)
     end function
 
-    function rocsolver_slasyf_full_rank(handle,uplo,n,nb,kb,A,lda,ipiv,myInfo)
+    function rocsolver_zlatrd_full_rank(handle,uplo,n,k,A,lda,E,tau,W,ldw)
       use iso_c_binding
       use hipfort_rocsolver_enums
       use hipfort_rocblas_enums
       implicit none
-      integer(kind(rocblas_status_success)) :: rocsolver_slasyf_full_rank
+      integer(kind(rocblas_status_success)) :: rocsolver_zlatrd_full_rank
       type(c_ptr) :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
-      integer(c_int) :: nb
-      type(c_ptr) :: kb
-      real(c_float),target,dimension(:,:) :: A
+      integer(c_int) :: k
+      complex(c_double_complex),target,dimension(:,:) :: A
       integer(c_int) :: lda
-      integer(c_int),target,dimension(:) :: ipiv
-      type(c_ptr),value :: myInfo
+      real(c_double),target,dimension(:,:) :: E
+      complex(c_double_complex) :: tau
+      complex(c_double_complex),target,dimension(:,:) :: W
+      integer(c_int) :: ldw
       !
-      rocsolver_slasyf_full_rank = rocsolver_slasyf_(handle,uplo,n,nb,kb,c_loc(A),lda,c_loc(ipiv),myInfo)
+      rocsolver_zlatrd_full_rank = rocsolver_zlatrd_(handle,uplo,n,k,c_loc(A),lda,c_loc(E),tau,c_loc(W),ldw)
     end function
 
     function rocsolver_slasyf_rank_0(handle,uplo,n,nb,kb,A,lda,ipiv,myInfo)
@@ -45003,13 +45000,13 @@ module hipfort_rocsolver
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       integer(c_int) :: nb
-      type(c_ptr) :: kb
+      integer(c_int),target :: kb
       real(c_float),target :: A
       integer(c_int) :: lda
       integer(c_int),target :: ipiv
-      type(c_ptr),value :: myInfo
+      integer(c_int),target :: myInfo
       !
-      rocsolver_slasyf_rank_0 = rocsolver_slasyf_(handle,uplo,n,nb,kb,c_loc(A),lda,c_loc(ipiv),myInfo)
+      rocsolver_slasyf_rank_0 = rocsolver_slasyf_(handle,uplo,n,nb,c_loc(kb),c_loc(A),lda,c_loc(ipiv),c_loc(myInfo))
     end function
 
     function rocsolver_slasyf_rank_1(handle,uplo,n,nb,kb,A,lda,ipiv,myInfo)
@@ -45022,32 +45019,32 @@ module hipfort_rocsolver
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       integer(c_int) :: nb
-      type(c_ptr) :: kb
+      integer(c_int),target,dimension(:) :: kb
       real(c_float),target,dimension(:) :: A
       integer(c_int) :: lda
       integer(c_int),target,dimension(:) :: ipiv
-      type(c_ptr),value :: myInfo
+      integer(c_int),target,dimension(:) :: myInfo
       !
-      rocsolver_slasyf_rank_1 = rocsolver_slasyf_(handle,uplo,n,nb,kb,c_loc(A),lda,c_loc(ipiv),myInfo)
+      rocsolver_slasyf_rank_1 = rocsolver_slasyf_(handle,uplo,n,nb,c_loc(kb),c_loc(A),lda,c_loc(ipiv),c_loc(myInfo))
     end function
 
-    function rocsolver_dlasyf_full_rank(handle,uplo,n,nb,kb,A,lda,ipiv,myInfo)
+    function rocsolver_slasyf_full_rank(handle,uplo,n,nb,kb,A,lda,ipiv,myInfo)
       use iso_c_binding
       use hipfort_rocsolver_enums
       use hipfort_rocblas_enums
       implicit none
-      integer(kind(rocblas_status_success)) :: rocsolver_dlasyf_full_rank
+      integer(kind(rocblas_status_success)) :: rocsolver_slasyf_full_rank
       type(c_ptr) :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       integer(c_int) :: nb
-      type(c_ptr) :: kb
-      real(c_double),target,dimension(:,:) :: A
+      integer(c_int),target,dimension(:,:) :: kb
+      real(c_float),target,dimension(:,:) :: A
       integer(c_int) :: lda
-      integer(c_int),target,dimension(:) :: ipiv
-      type(c_ptr),value :: myInfo
+      integer(c_int),target,dimension(:,:) :: ipiv
+      integer(c_int),target,dimension(:,:) :: myInfo
       !
-      rocsolver_dlasyf_full_rank = rocsolver_dlasyf_(handle,uplo,n,nb,kb,c_loc(A),lda,c_loc(ipiv),myInfo)
+      rocsolver_slasyf_full_rank = rocsolver_slasyf_(handle,uplo,n,nb,c_loc(kb),c_loc(A),lda,c_loc(ipiv),c_loc(myInfo))
     end function
 
     function rocsolver_dlasyf_rank_0(handle,uplo,n,nb,kb,A,lda,ipiv,myInfo)
@@ -45060,13 +45057,13 @@ module hipfort_rocsolver
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       integer(c_int) :: nb
-      type(c_ptr) :: kb
+      integer(c_int),target :: kb
       real(c_double),target :: A
       integer(c_int) :: lda
       integer(c_int),target :: ipiv
-      type(c_ptr),value :: myInfo
+      integer(c_int),target :: myInfo
       !
-      rocsolver_dlasyf_rank_0 = rocsolver_dlasyf_(handle,uplo,n,nb,kb,c_loc(A),lda,c_loc(ipiv),myInfo)
+      rocsolver_dlasyf_rank_0 = rocsolver_dlasyf_(handle,uplo,n,nb,c_loc(kb),c_loc(A),lda,c_loc(ipiv),c_loc(myInfo))
     end function
 
     function rocsolver_dlasyf_rank_1(handle,uplo,n,nb,kb,A,lda,ipiv,myInfo)
@@ -45079,32 +45076,32 @@ module hipfort_rocsolver
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       integer(c_int) :: nb
-      type(c_ptr) :: kb
+      integer(c_int),target,dimension(:) :: kb
       real(c_double),target,dimension(:) :: A
       integer(c_int) :: lda
       integer(c_int),target,dimension(:) :: ipiv
-      type(c_ptr),value :: myInfo
+      integer(c_int),target,dimension(:) :: myInfo
       !
-      rocsolver_dlasyf_rank_1 = rocsolver_dlasyf_(handle,uplo,n,nb,kb,c_loc(A),lda,c_loc(ipiv),myInfo)
+      rocsolver_dlasyf_rank_1 = rocsolver_dlasyf_(handle,uplo,n,nb,c_loc(kb),c_loc(A),lda,c_loc(ipiv),c_loc(myInfo))
     end function
 
-    function rocsolver_clasyf_full_rank(handle,uplo,n,nb,kb,A,lda,ipiv,myInfo)
+    function rocsolver_dlasyf_full_rank(handle,uplo,n,nb,kb,A,lda,ipiv,myInfo)
       use iso_c_binding
       use hipfort_rocsolver_enums
       use hipfort_rocblas_enums
       implicit none
-      integer(kind(rocblas_status_success)) :: rocsolver_clasyf_full_rank
+      integer(kind(rocblas_status_success)) :: rocsolver_dlasyf_full_rank
       type(c_ptr) :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       integer(c_int) :: nb
-      type(c_ptr) :: kb
-      complex(c_float_complex),target,dimension(:,:) :: A
+      integer(c_int),target,dimension(:,:) :: kb
+      real(c_double),target,dimension(:,:) :: A
       integer(c_int) :: lda
-      integer(c_int),target,dimension(:) :: ipiv
-      type(c_ptr),value :: myInfo
+      integer(c_int),target,dimension(:,:) :: ipiv
+      integer(c_int),target,dimension(:,:) :: myInfo
       !
-      rocsolver_clasyf_full_rank = rocsolver_clasyf_(handle,uplo,n,nb,kb,c_loc(A),lda,c_loc(ipiv),myInfo)
+      rocsolver_dlasyf_full_rank = rocsolver_dlasyf_(handle,uplo,n,nb,c_loc(kb),c_loc(A),lda,c_loc(ipiv),c_loc(myInfo))
     end function
 
     function rocsolver_clasyf_rank_0(handle,uplo,n,nb,kb,A,lda,ipiv,myInfo)
@@ -45117,13 +45114,13 @@ module hipfort_rocsolver
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       integer(c_int) :: nb
-      type(c_ptr) :: kb
+      integer(c_int),target :: kb
       complex(c_float_complex),target :: A
       integer(c_int) :: lda
       integer(c_int),target :: ipiv
-      type(c_ptr),value :: myInfo
+      integer(c_int),target :: myInfo
       !
-      rocsolver_clasyf_rank_0 = rocsolver_clasyf_(handle,uplo,n,nb,kb,c_loc(A),lda,c_loc(ipiv),myInfo)
+      rocsolver_clasyf_rank_0 = rocsolver_clasyf_(handle,uplo,n,nb,c_loc(kb),c_loc(A),lda,c_loc(ipiv),c_loc(myInfo))
     end function
 
     function rocsolver_clasyf_rank_1(handle,uplo,n,nb,kb,A,lda,ipiv,myInfo)
@@ -45136,32 +45133,32 @@ module hipfort_rocsolver
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       integer(c_int) :: nb
-      type(c_ptr) :: kb
+      integer(c_int),target,dimension(:) :: kb
       complex(c_float_complex),target,dimension(:) :: A
       integer(c_int) :: lda
       integer(c_int),target,dimension(:) :: ipiv
-      type(c_ptr),value :: myInfo
+      integer(c_int),target,dimension(:) :: myInfo
       !
-      rocsolver_clasyf_rank_1 = rocsolver_clasyf_(handle,uplo,n,nb,kb,c_loc(A),lda,c_loc(ipiv),myInfo)
+      rocsolver_clasyf_rank_1 = rocsolver_clasyf_(handle,uplo,n,nb,c_loc(kb),c_loc(A),lda,c_loc(ipiv),c_loc(myInfo))
     end function
 
-    function rocsolver_zlasyf_full_rank(handle,uplo,n,nb,kb,A,lda,ipiv,myInfo)
+    function rocsolver_clasyf_full_rank(handle,uplo,n,nb,kb,A,lda,ipiv,myInfo)
       use iso_c_binding
       use hipfort_rocsolver_enums
       use hipfort_rocblas_enums
       implicit none
-      integer(kind(rocblas_status_success)) :: rocsolver_zlasyf_full_rank
+      integer(kind(rocblas_status_success)) :: rocsolver_clasyf_full_rank
       type(c_ptr) :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       integer(c_int) :: nb
-      type(c_ptr) :: kb
-      complex(c_double_complex),target,dimension(:,:) :: A
+      integer(c_int),target,dimension(:,:) :: kb
+      complex(c_float_complex),target,dimension(:,:) :: A
       integer(c_int) :: lda
-      integer(c_int),target,dimension(:) :: ipiv
-      type(c_ptr),value :: myInfo
+      integer(c_int),target,dimension(:,:) :: ipiv
+      integer(c_int),target,dimension(:,:) :: myInfo
       !
-      rocsolver_zlasyf_full_rank = rocsolver_zlasyf_(handle,uplo,n,nb,kb,c_loc(A),lda,c_loc(ipiv),myInfo)
+      rocsolver_clasyf_full_rank = rocsolver_clasyf_(handle,uplo,n,nb,c_loc(kb),c_loc(A),lda,c_loc(ipiv),c_loc(myInfo))
     end function
 
     function rocsolver_zlasyf_rank_0(handle,uplo,n,nb,kb,A,lda,ipiv,myInfo)
@@ -45174,13 +45171,13 @@ module hipfort_rocsolver
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       integer(c_int) :: nb
-      type(c_ptr) :: kb
+      integer(c_int),target :: kb
       complex(c_double_complex),target :: A
       integer(c_int) :: lda
       integer(c_int),target :: ipiv
-      type(c_ptr),value :: myInfo
+      integer(c_int),target :: myInfo
       !
-      rocsolver_zlasyf_rank_0 = rocsolver_zlasyf_(handle,uplo,n,nb,kb,c_loc(A),lda,c_loc(ipiv),myInfo)
+      rocsolver_zlasyf_rank_0 = rocsolver_zlasyf_(handle,uplo,n,nb,c_loc(kb),c_loc(A),lda,c_loc(ipiv),c_loc(myInfo))
     end function
 
     function rocsolver_zlasyf_rank_1(handle,uplo,n,nb,kb,A,lda,ipiv,myInfo)
@@ -45193,30 +45190,32 @@ module hipfort_rocsolver
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
       integer(c_int) :: nb
-      type(c_ptr) :: kb
+      integer(c_int),target,dimension(:) :: kb
       complex(c_double_complex),target,dimension(:) :: A
       integer(c_int) :: lda
       integer(c_int),target,dimension(:) :: ipiv
-      type(c_ptr),value :: myInfo
+      integer(c_int),target,dimension(:) :: myInfo
       !
-      rocsolver_zlasyf_rank_1 = rocsolver_zlasyf_(handle,uplo,n,nb,kb,c_loc(A),lda,c_loc(ipiv),myInfo)
+      rocsolver_zlasyf_rank_1 = rocsolver_zlasyf_(handle,uplo,n,nb,c_loc(kb),c_loc(A),lda,c_loc(ipiv),c_loc(myInfo))
     end function
 
-    function rocsolver_sorg2r_full_rank(handle,m,n,k,A,lda,ipiv)
+    function rocsolver_zlasyf_full_rank(handle,uplo,n,nb,kb,A,lda,ipiv,myInfo)
       use iso_c_binding
       use hipfort_rocsolver_enums
       use hipfort_rocblas_enums
       implicit none
-      integer(kind(rocblas_status_success)) :: rocsolver_sorg2r_full_rank
+      integer(kind(rocblas_status_success)) :: rocsolver_zlasyf_full_rank
       type(c_ptr) :: handle
-      integer(c_int) :: m
+      integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
-      integer(c_int) :: k
-      real(c_float),target,dimension(:,:) :: A
+      integer(c_int) :: nb
+      integer(c_int),target,dimension(:,:) :: kb
+      complex(c_double_complex),target,dimension(:,:) :: A
       integer(c_int) :: lda
-      real(c_float),target,dimension(:) :: ipiv
+      integer(c_int),target,dimension(:,:) :: ipiv
+      integer(c_int),target,dimension(:,:) :: myInfo
       !
-      rocsolver_sorg2r_full_rank = rocsolver_sorg2r_(handle,m,n,k,c_loc(A),lda,c_loc(ipiv))
+      rocsolver_zlasyf_full_rank = rocsolver_zlasyf_(handle,uplo,n,nb,c_loc(kb),c_loc(A),lda,c_loc(ipiv),c_loc(myInfo))
     end function
 
     function rocsolver_sorg2r_rank_0(handle,m,n,k,A,lda,ipiv)
@@ -45253,21 +45252,21 @@ module hipfort_rocsolver
       rocsolver_sorg2r_rank_1 = rocsolver_sorg2r_(handle,m,n,k,c_loc(A),lda,c_loc(ipiv))
     end function
 
-    function rocsolver_dorg2r_full_rank(handle,m,n,k,A,lda,ipiv)
+    function rocsolver_sorg2r_full_rank(handle,m,n,k,A,lda,ipiv)
       use iso_c_binding
       use hipfort_rocsolver_enums
       use hipfort_rocblas_enums
       implicit none
-      integer(kind(rocblas_status_success)) :: rocsolver_dorg2r_full_rank
+      integer(kind(rocblas_status_success)) :: rocsolver_sorg2r_full_rank
       type(c_ptr) :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       integer(c_int) :: k
-      real(c_double),target,dimension(:,:) :: A
+      real(c_float),target,dimension(:,:) :: A
       integer(c_int) :: lda
-      real(c_double),target,dimension(:) :: ipiv
+      real(c_float),target,dimension(:,:) :: ipiv
       !
-      rocsolver_dorg2r_full_rank = rocsolver_dorg2r_(handle,m,n,k,c_loc(A),lda,c_loc(ipiv))
+      rocsolver_sorg2r_full_rank = rocsolver_sorg2r_(handle,m,n,k,c_loc(A),lda,c_loc(ipiv))
     end function
 
     function rocsolver_dorg2r_rank_0(handle,m,n,k,A,lda,ipiv)
@@ -45304,21 +45303,21 @@ module hipfort_rocsolver
       rocsolver_dorg2r_rank_1 = rocsolver_dorg2r_(handle,m,n,k,c_loc(A),lda,c_loc(ipiv))
     end function
 
-    function rocsolver_cung2r_full_rank(handle,m,n,k,A,lda,ipiv)
+    function rocsolver_dorg2r_full_rank(handle,m,n,k,A,lda,ipiv)
       use iso_c_binding
       use hipfort_rocsolver_enums
       use hipfort_rocblas_enums
       implicit none
-      integer(kind(rocblas_status_success)) :: rocsolver_cung2r_full_rank
+      integer(kind(rocblas_status_success)) :: rocsolver_dorg2r_full_rank
       type(c_ptr) :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       integer(c_int) :: k
-      complex(c_float_complex),target,dimension(:,:) :: A
+      real(c_double),target,dimension(:,:) :: A
       integer(c_int) :: lda
-      complex(c_float_complex),target,dimension(:) :: ipiv
+      real(c_double),target,dimension(:,:) :: ipiv
       !
-      rocsolver_cung2r_full_rank = rocsolver_cung2r_(handle,m,n,k,c_loc(A),lda,c_loc(ipiv))
+      rocsolver_dorg2r_full_rank = rocsolver_dorg2r_(handle,m,n,k,c_loc(A),lda,c_loc(ipiv))
     end function
 
     function rocsolver_cung2r_rank_0(handle,m,n,k,A,lda,ipiv)
@@ -45355,21 +45354,21 @@ module hipfort_rocsolver
       rocsolver_cung2r_rank_1 = rocsolver_cung2r_(handle,m,n,k,c_loc(A),lda,c_loc(ipiv))
     end function
 
-    function rocsolver_zung2r_full_rank(handle,m,n,k,A,lda,ipiv)
+    function rocsolver_cung2r_full_rank(handle,m,n,k,A,lda,ipiv)
       use iso_c_binding
       use hipfort_rocsolver_enums
       use hipfort_rocblas_enums
       implicit none
-      integer(kind(rocblas_status_success)) :: rocsolver_zung2r_full_rank
+      integer(kind(rocblas_status_success)) :: rocsolver_cung2r_full_rank
       type(c_ptr) :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       integer(c_int) :: k
-      complex(c_double_complex),target,dimension(:,:) :: A
+      complex(c_float_complex),target,dimension(:,:) :: A
       integer(c_int) :: lda
-      complex(c_double_complex),target,dimension(:) :: ipiv
+      complex(c_float_complex),target,dimension(:,:) :: ipiv
       !
-      rocsolver_zung2r_full_rank = rocsolver_zung2r_(handle,m,n,k,c_loc(A),lda,c_loc(ipiv))
+      rocsolver_cung2r_full_rank = rocsolver_cung2r_(handle,m,n,k,c_loc(A),lda,c_loc(ipiv))
     end function
 
     function rocsolver_zung2r_rank_0(handle,m,n,k,A,lda,ipiv)
@@ -45406,21 +45405,21 @@ module hipfort_rocsolver
       rocsolver_zung2r_rank_1 = rocsolver_zung2r_(handle,m,n,k,c_loc(A),lda,c_loc(ipiv))
     end function
 
-    function rocsolver_sorgqr_full_rank(handle,m,n,k,A,lda,ipiv)
+    function rocsolver_zung2r_full_rank(handle,m,n,k,A,lda,ipiv)
       use iso_c_binding
       use hipfort_rocsolver_enums
       use hipfort_rocblas_enums
       implicit none
-      integer(kind(rocblas_status_success)) :: rocsolver_sorgqr_full_rank
+      integer(kind(rocblas_status_success)) :: rocsolver_zung2r_full_rank
       type(c_ptr) :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       integer(c_int) :: k
-      real(c_float),target,dimension(:,:) :: A
+      complex(c_double_complex),target,dimension(:,:) :: A
       integer(c_int) :: lda
-      real(c_float),target,dimension(:) :: ipiv
+      complex(c_double_complex),target,dimension(:,:) :: ipiv
       !
-      rocsolver_sorgqr_full_rank = rocsolver_sorgqr_(handle,m,n,k,c_loc(A),lda,c_loc(ipiv))
+      rocsolver_zung2r_full_rank = rocsolver_zung2r_(handle,m,n,k,c_loc(A),lda,c_loc(ipiv))
     end function
 
     function rocsolver_sorgqr_rank_0(handle,m,n,k,A,lda,ipiv)
@@ -45457,21 +45456,21 @@ module hipfort_rocsolver
       rocsolver_sorgqr_rank_1 = rocsolver_sorgqr_(handle,m,n,k,c_loc(A),lda,c_loc(ipiv))
     end function
 
-    function rocsolver_dorgqr_full_rank(handle,m,n,k,A,lda,ipiv)
+    function rocsolver_sorgqr_full_rank(handle,m,n,k,A,lda,ipiv)
       use iso_c_binding
       use hipfort_rocsolver_enums
       use hipfort_rocblas_enums
       implicit none
-      integer(kind(rocblas_status_success)) :: rocsolver_dorgqr_full_rank
+      integer(kind(rocblas_status_success)) :: rocsolver_sorgqr_full_rank
       type(c_ptr) :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       integer(c_int) :: k
-      real(c_double),target,dimension(:,:) :: A
+      real(c_float),target,dimension(:,:) :: A
       integer(c_int) :: lda
-      real(c_double),target,dimension(:) :: ipiv
+      real(c_float),target,dimension(:,:) :: ipiv
       !
-      rocsolver_dorgqr_full_rank = rocsolver_dorgqr_(handle,m,n,k,c_loc(A),lda,c_loc(ipiv))
+      rocsolver_sorgqr_full_rank = rocsolver_sorgqr_(handle,m,n,k,c_loc(A),lda,c_loc(ipiv))
     end function
 
     function rocsolver_dorgqr_rank_0(handle,m,n,k,A,lda,ipiv)
@@ -45508,21 +45507,21 @@ module hipfort_rocsolver
       rocsolver_dorgqr_rank_1 = rocsolver_dorgqr_(handle,m,n,k,c_loc(A),lda,c_loc(ipiv))
     end function
 
-    function rocsolver_cungqr_full_rank(handle,m,n,k,A,lda,ipiv)
+    function rocsolver_dorgqr_full_rank(handle,m,n,k,A,lda,ipiv)
       use iso_c_binding
       use hipfort_rocsolver_enums
       use hipfort_rocblas_enums
       implicit none
-      integer(kind(rocblas_status_success)) :: rocsolver_cungqr_full_rank
+      integer(kind(rocblas_status_success)) :: rocsolver_dorgqr_full_rank
       type(c_ptr) :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       integer(c_int) :: k
-      complex(c_float_complex),target,dimension(:,:) :: A
+      real(c_double),target,dimension(:,:) :: A
       integer(c_int) :: lda
-      complex(c_float_complex),target,dimension(:) :: ipiv
+      real(c_double),target,dimension(:,:) :: ipiv
       !
-      rocsolver_cungqr_full_rank = rocsolver_cungqr_(handle,m,n,k,c_loc(A),lda,c_loc(ipiv))
+      rocsolver_dorgqr_full_rank = rocsolver_dorgqr_(handle,m,n,k,c_loc(A),lda,c_loc(ipiv))
     end function
 
     function rocsolver_cungqr_rank_0(handle,m,n,k,A,lda,ipiv)
@@ -45559,21 +45558,21 @@ module hipfort_rocsolver
       rocsolver_cungqr_rank_1 = rocsolver_cungqr_(handle,m,n,k,c_loc(A),lda,c_loc(ipiv))
     end function
 
-    function rocsolver_zungqr_full_rank(handle,m,n,k,A,lda,ipiv)
+    function rocsolver_cungqr_full_rank(handle,m,n,k,A,lda,ipiv)
       use iso_c_binding
       use hipfort_rocsolver_enums
       use hipfort_rocblas_enums
       implicit none
-      integer(kind(rocblas_status_success)) :: rocsolver_zungqr_full_rank
+      integer(kind(rocblas_status_success)) :: rocsolver_cungqr_full_rank
       type(c_ptr) :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       integer(c_int) :: k
-      complex(c_double_complex),target,dimension(:,:) :: A
+      complex(c_float_complex),target,dimension(:,:) :: A
       integer(c_int) :: lda
-      complex(c_double_complex),target,dimension(:) :: ipiv
+      complex(c_float_complex),target,dimension(:,:) :: ipiv
       !
-      rocsolver_zungqr_full_rank = rocsolver_zungqr_(handle,m,n,k,c_loc(A),lda,c_loc(ipiv))
+      rocsolver_cungqr_full_rank = rocsolver_cungqr_(handle,m,n,k,c_loc(A),lda,c_loc(ipiv))
     end function
 
     function rocsolver_zungqr_rank_0(handle,m,n,k,A,lda,ipiv)
@@ -45610,21 +45609,21 @@ module hipfort_rocsolver
       rocsolver_zungqr_rank_1 = rocsolver_zungqr_(handle,m,n,k,c_loc(A),lda,c_loc(ipiv))
     end function
 
-    function rocsolver_sorgl2_full_rank(handle,m,n,k,A,lda,ipiv)
+    function rocsolver_zungqr_full_rank(handle,m,n,k,A,lda,ipiv)
       use iso_c_binding
       use hipfort_rocsolver_enums
       use hipfort_rocblas_enums
       implicit none
-      integer(kind(rocblas_status_success)) :: rocsolver_sorgl2_full_rank
+      integer(kind(rocblas_status_success)) :: rocsolver_zungqr_full_rank
       type(c_ptr) :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       integer(c_int) :: k
-      real(c_float),target,dimension(:,:) :: A
+      complex(c_double_complex),target,dimension(:,:) :: A
       integer(c_int) :: lda
-      real(c_float),target,dimension(:) :: ipiv
+      complex(c_double_complex),target,dimension(:,:) :: ipiv
       !
-      rocsolver_sorgl2_full_rank = rocsolver_sorgl2_(handle,m,n,k,c_loc(A),lda,c_loc(ipiv))
+      rocsolver_zungqr_full_rank = rocsolver_zungqr_(handle,m,n,k,c_loc(A),lda,c_loc(ipiv))
     end function
 
     function rocsolver_sorgl2_rank_0(handle,m,n,k,A,lda,ipiv)
@@ -45661,21 +45660,21 @@ module hipfort_rocsolver
       rocsolver_sorgl2_rank_1 = rocsolver_sorgl2_(handle,m,n,k,c_loc(A),lda,c_loc(ipiv))
     end function
 
-    function rocsolver_dorgl2_full_rank(handle,m,n,k,A,lda,ipiv)
+    function rocsolver_sorgl2_full_rank(handle,m,n,k,A,lda,ipiv)
       use iso_c_binding
       use hipfort_rocsolver_enums
       use hipfort_rocblas_enums
       implicit none
-      integer(kind(rocblas_status_success)) :: rocsolver_dorgl2_full_rank
+      integer(kind(rocblas_status_success)) :: rocsolver_sorgl2_full_rank
       type(c_ptr) :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       integer(c_int) :: k
-      real(c_double),target,dimension(:,:) :: A
+      real(c_float),target,dimension(:,:) :: A
       integer(c_int) :: lda
-      real(c_double),target,dimension(:) :: ipiv
+      real(c_float),target,dimension(:,:) :: ipiv
       !
-      rocsolver_dorgl2_full_rank = rocsolver_dorgl2_(handle,m,n,k,c_loc(A),lda,c_loc(ipiv))
+      rocsolver_sorgl2_full_rank = rocsolver_sorgl2_(handle,m,n,k,c_loc(A),lda,c_loc(ipiv))
     end function
 
     function rocsolver_dorgl2_rank_0(handle,m,n,k,A,lda,ipiv)
@@ -45712,21 +45711,21 @@ module hipfort_rocsolver
       rocsolver_dorgl2_rank_1 = rocsolver_dorgl2_(handle,m,n,k,c_loc(A),lda,c_loc(ipiv))
     end function
 
-    function rocsolver_cungl2_full_rank(handle,m,n,k,A,lda,ipiv)
+    function rocsolver_dorgl2_full_rank(handle,m,n,k,A,lda,ipiv)
       use iso_c_binding
       use hipfort_rocsolver_enums
       use hipfort_rocblas_enums
       implicit none
-      integer(kind(rocblas_status_success)) :: rocsolver_cungl2_full_rank
+      integer(kind(rocblas_status_success)) :: rocsolver_dorgl2_full_rank
       type(c_ptr) :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       integer(c_int) :: k
-      complex(c_float_complex),target,dimension(:,:) :: A
+      real(c_double),target,dimension(:,:) :: A
       integer(c_int) :: lda
-      complex(c_float_complex),target,dimension(:) :: ipiv
+      real(c_double),target,dimension(:,:) :: ipiv
       !
-      rocsolver_cungl2_full_rank = rocsolver_cungl2_(handle,m,n,k,c_loc(A),lda,c_loc(ipiv))
+      rocsolver_dorgl2_full_rank = rocsolver_dorgl2_(handle,m,n,k,c_loc(A),lda,c_loc(ipiv))
     end function
 
     function rocsolver_cungl2_rank_0(handle,m,n,k,A,lda,ipiv)
@@ -45763,21 +45762,21 @@ module hipfort_rocsolver
       rocsolver_cungl2_rank_1 = rocsolver_cungl2_(handle,m,n,k,c_loc(A),lda,c_loc(ipiv))
     end function
 
-    function rocsolver_zungl2_full_rank(handle,m,n,k,A,lda,ipiv)
+    function rocsolver_cungl2_full_rank(handle,m,n,k,A,lda,ipiv)
       use iso_c_binding
       use hipfort_rocsolver_enums
       use hipfort_rocblas_enums
       implicit none
-      integer(kind(rocblas_status_success)) :: rocsolver_zungl2_full_rank
+      integer(kind(rocblas_status_success)) :: rocsolver_cungl2_full_rank
       type(c_ptr) :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       integer(c_int) :: k
-      complex(c_double_complex),target,dimension(:,:) :: A
+      complex(c_float_complex),target,dimension(:,:) :: A
       integer(c_int) :: lda
-      complex(c_double_complex),target,dimension(:) :: ipiv
+      complex(c_float_complex),target,dimension(:,:) :: ipiv
       !
-      rocsolver_zungl2_full_rank = rocsolver_zungl2_(handle,m,n,k,c_loc(A),lda,c_loc(ipiv))
+      rocsolver_cungl2_full_rank = rocsolver_cungl2_(handle,m,n,k,c_loc(A),lda,c_loc(ipiv))
     end function
 
     function rocsolver_zungl2_rank_0(handle,m,n,k,A,lda,ipiv)
@@ -45814,21 +45813,21 @@ module hipfort_rocsolver
       rocsolver_zungl2_rank_1 = rocsolver_zungl2_(handle,m,n,k,c_loc(A),lda,c_loc(ipiv))
     end function
 
-    function rocsolver_sorglq_full_rank(handle,m,n,k,A,lda,ipiv)
+    function rocsolver_zungl2_full_rank(handle,m,n,k,A,lda,ipiv)
       use iso_c_binding
       use hipfort_rocsolver_enums
       use hipfort_rocblas_enums
       implicit none
-      integer(kind(rocblas_status_success)) :: rocsolver_sorglq_full_rank
+      integer(kind(rocblas_status_success)) :: rocsolver_zungl2_full_rank
       type(c_ptr) :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       integer(c_int) :: k
-      real(c_float),target,dimension(:,:) :: A
+      complex(c_double_complex),target,dimension(:,:) :: A
       integer(c_int) :: lda
-      real(c_float),target,dimension(:) :: ipiv
+      complex(c_double_complex),target,dimension(:,:) :: ipiv
       !
-      rocsolver_sorglq_full_rank = rocsolver_sorglq_(handle,m,n,k,c_loc(A),lda,c_loc(ipiv))
+      rocsolver_zungl2_full_rank = rocsolver_zungl2_(handle,m,n,k,c_loc(A),lda,c_loc(ipiv))
     end function
 
     function rocsolver_sorglq_rank_0(handle,m,n,k,A,lda,ipiv)
@@ -45865,21 +45864,21 @@ module hipfort_rocsolver
       rocsolver_sorglq_rank_1 = rocsolver_sorglq_(handle,m,n,k,c_loc(A),lda,c_loc(ipiv))
     end function
 
-    function rocsolver_dorglq_full_rank(handle,m,n,k,A,lda,ipiv)
+    function rocsolver_sorglq_full_rank(handle,m,n,k,A,lda,ipiv)
       use iso_c_binding
       use hipfort_rocsolver_enums
       use hipfort_rocblas_enums
       implicit none
-      integer(kind(rocblas_status_success)) :: rocsolver_dorglq_full_rank
+      integer(kind(rocblas_status_success)) :: rocsolver_sorglq_full_rank
       type(c_ptr) :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       integer(c_int) :: k
-      real(c_double),target,dimension(:,:) :: A
+      real(c_float),target,dimension(:,:) :: A
       integer(c_int) :: lda
-      real(c_double),target,dimension(:) :: ipiv
+      real(c_float),target,dimension(:,:) :: ipiv
       !
-      rocsolver_dorglq_full_rank = rocsolver_dorglq_(handle,m,n,k,c_loc(A),lda,c_loc(ipiv))
+      rocsolver_sorglq_full_rank = rocsolver_sorglq_(handle,m,n,k,c_loc(A),lda,c_loc(ipiv))
     end function
 
     function rocsolver_dorglq_rank_0(handle,m,n,k,A,lda,ipiv)
@@ -45916,21 +45915,21 @@ module hipfort_rocsolver
       rocsolver_dorglq_rank_1 = rocsolver_dorglq_(handle,m,n,k,c_loc(A),lda,c_loc(ipiv))
     end function
 
-    function rocsolver_cunglq_full_rank(handle,m,n,k,A,lda,ipiv)
+    function rocsolver_dorglq_full_rank(handle,m,n,k,A,lda,ipiv)
       use iso_c_binding
       use hipfort_rocsolver_enums
       use hipfort_rocblas_enums
       implicit none
-      integer(kind(rocblas_status_success)) :: rocsolver_cunglq_full_rank
+      integer(kind(rocblas_status_success)) :: rocsolver_dorglq_full_rank
       type(c_ptr) :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       integer(c_int) :: k
-      complex(c_float_complex),target,dimension(:,:) :: A
+      real(c_double),target,dimension(:,:) :: A
       integer(c_int) :: lda
-      complex(c_float_complex),target,dimension(:) :: ipiv
+      real(c_double),target,dimension(:,:) :: ipiv
       !
-      rocsolver_cunglq_full_rank = rocsolver_cunglq_(handle,m,n,k,c_loc(A),lda,c_loc(ipiv))
+      rocsolver_dorglq_full_rank = rocsolver_dorglq_(handle,m,n,k,c_loc(A),lda,c_loc(ipiv))
     end function
 
     function rocsolver_cunglq_rank_0(handle,m,n,k,A,lda,ipiv)
@@ -45967,21 +45966,21 @@ module hipfort_rocsolver
       rocsolver_cunglq_rank_1 = rocsolver_cunglq_(handle,m,n,k,c_loc(A),lda,c_loc(ipiv))
     end function
 
-    function rocsolver_zunglq_full_rank(handle,m,n,k,A,lda,ipiv)
+    function rocsolver_cunglq_full_rank(handle,m,n,k,A,lda,ipiv)
       use iso_c_binding
       use hipfort_rocsolver_enums
       use hipfort_rocblas_enums
       implicit none
-      integer(kind(rocblas_status_success)) :: rocsolver_zunglq_full_rank
+      integer(kind(rocblas_status_success)) :: rocsolver_cunglq_full_rank
       type(c_ptr) :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       integer(c_int) :: k
-      complex(c_double_complex),target,dimension(:,:) :: A
+      complex(c_float_complex),target,dimension(:,:) :: A
       integer(c_int) :: lda
-      complex(c_double_complex),target,dimension(:) :: ipiv
+      complex(c_float_complex),target,dimension(:,:) :: ipiv
       !
-      rocsolver_zunglq_full_rank = rocsolver_zunglq_(handle,m,n,k,c_loc(A),lda,c_loc(ipiv))
+      rocsolver_cunglq_full_rank = rocsolver_cunglq_(handle,m,n,k,c_loc(A),lda,c_loc(ipiv))
     end function
 
     function rocsolver_zunglq_rank_0(handle,m,n,k,A,lda,ipiv)
@@ -46018,21 +46017,21 @@ module hipfort_rocsolver
       rocsolver_zunglq_rank_1 = rocsolver_zunglq_(handle,m,n,k,c_loc(A),lda,c_loc(ipiv))
     end function
 
-    function rocsolver_sorg2l_full_rank(handle,m,n,k,A,lda,ipiv)
+    function rocsolver_zunglq_full_rank(handle,m,n,k,A,lda,ipiv)
       use iso_c_binding
       use hipfort_rocsolver_enums
       use hipfort_rocblas_enums
       implicit none
-      integer(kind(rocblas_status_success)) :: rocsolver_sorg2l_full_rank
+      integer(kind(rocblas_status_success)) :: rocsolver_zunglq_full_rank
       type(c_ptr) :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       integer(c_int) :: k
-      real(c_float),target,dimension(:,:) :: A
+      complex(c_double_complex),target,dimension(:,:) :: A
       integer(c_int) :: lda
-      real(c_float),target,dimension(:) :: ipiv
+      complex(c_double_complex),target,dimension(:,:) :: ipiv
       !
-      rocsolver_sorg2l_full_rank = rocsolver_sorg2l_(handle,m,n,k,c_loc(A),lda,c_loc(ipiv))
+      rocsolver_zunglq_full_rank = rocsolver_zunglq_(handle,m,n,k,c_loc(A),lda,c_loc(ipiv))
     end function
 
     function rocsolver_sorg2l_rank_0(handle,m,n,k,A,lda,ipiv)
@@ -46069,21 +46068,21 @@ module hipfort_rocsolver
       rocsolver_sorg2l_rank_1 = rocsolver_sorg2l_(handle,m,n,k,c_loc(A),lda,c_loc(ipiv))
     end function
 
-    function rocsolver_dorg2l_full_rank(handle,m,n,k,A,lda,ipiv)
+    function rocsolver_sorg2l_full_rank(handle,m,n,k,A,lda,ipiv)
       use iso_c_binding
       use hipfort_rocsolver_enums
       use hipfort_rocblas_enums
       implicit none
-      integer(kind(rocblas_status_success)) :: rocsolver_dorg2l_full_rank
+      integer(kind(rocblas_status_success)) :: rocsolver_sorg2l_full_rank
       type(c_ptr) :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       integer(c_int) :: k
-      real(c_double),target,dimension(:,:) :: A
+      real(c_float),target,dimension(:,:) :: A
       integer(c_int) :: lda
-      real(c_double),target,dimension(:) :: ipiv
+      real(c_float),target,dimension(:,:) :: ipiv
       !
-      rocsolver_dorg2l_full_rank = rocsolver_dorg2l_(handle,m,n,k,c_loc(A),lda,c_loc(ipiv))
+      rocsolver_sorg2l_full_rank = rocsolver_sorg2l_(handle,m,n,k,c_loc(A),lda,c_loc(ipiv))
     end function
 
     function rocsolver_dorg2l_rank_0(handle,m,n,k,A,lda,ipiv)
@@ -46120,21 +46119,21 @@ module hipfort_rocsolver
       rocsolver_dorg2l_rank_1 = rocsolver_dorg2l_(handle,m,n,k,c_loc(A),lda,c_loc(ipiv))
     end function
 
-    function rocsolver_cung2l_full_rank(handle,m,n,k,A,lda,ipiv)
+    function rocsolver_dorg2l_full_rank(handle,m,n,k,A,lda,ipiv)
       use iso_c_binding
       use hipfort_rocsolver_enums
       use hipfort_rocblas_enums
       implicit none
-      integer(kind(rocblas_status_success)) :: rocsolver_cung2l_full_rank
+      integer(kind(rocblas_status_success)) :: rocsolver_dorg2l_full_rank
       type(c_ptr) :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       integer(c_int) :: k
-      complex(c_float_complex),target,dimension(:,:) :: A
+      real(c_double),target,dimension(:,:) :: A
       integer(c_int) :: lda
-      complex(c_float_complex),target,dimension(:) :: ipiv
+      real(c_double),target,dimension(:,:) :: ipiv
       !
-      rocsolver_cung2l_full_rank = rocsolver_cung2l_(handle,m,n,k,c_loc(A),lda,c_loc(ipiv))
+      rocsolver_dorg2l_full_rank = rocsolver_dorg2l_(handle,m,n,k,c_loc(A),lda,c_loc(ipiv))
     end function
 
     function rocsolver_cung2l_rank_0(handle,m,n,k,A,lda,ipiv)
@@ -46171,21 +46170,21 @@ module hipfort_rocsolver
       rocsolver_cung2l_rank_1 = rocsolver_cung2l_(handle,m,n,k,c_loc(A),lda,c_loc(ipiv))
     end function
 
-    function rocsolver_zung2l_full_rank(handle,m,n,k,A,lda,ipiv)
+    function rocsolver_cung2l_full_rank(handle,m,n,k,A,lda,ipiv)
       use iso_c_binding
       use hipfort_rocsolver_enums
       use hipfort_rocblas_enums
       implicit none
-      integer(kind(rocblas_status_success)) :: rocsolver_zung2l_full_rank
+      integer(kind(rocblas_status_success)) :: rocsolver_cung2l_full_rank
       type(c_ptr) :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       integer(c_int) :: k
-      complex(c_double_complex),target,dimension(:,:) :: A
+      complex(c_float_complex),target,dimension(:,:) :: A
       integer(c_int) :: lda
-      complex(c_double_complex),target,dimension(:) :: ipiv
+      complex(c_float_complex),target,dimension(:,:) :: ipiv
       !
-      rocsolver_zung2l_full_rank = rocsolver_zung2l_(handle,m,n,k,c_loc(A),lda,c_loc(ipiv))
+      rocsolver_cung2l_full_rank = rocsolver_cung2l_(handle,m,n,k,c_loc(A),lda,c_loc(ipiv))
     end function
 
     function rocsolver_zung2l_rank_0(handle,m,n,k,A,lda,ipiv)
@@ -46222,21 +46221,21 @@ module hipfort_rocsolver
       rocsolver_zung2l_rank_1 = rocsolver_zung2l_(handle,m,n,k,c_loc(A),lda,c_loc(ipiv))
     end function
 
-    function rocsolver_sorgql_full_rank(handle,m,n,k,A,lda,ipiv)
+    function rocsolver_zung2l_full_rank(handle,m,n,k,A,lda,ipiv)
       use iso_c_binding
       use hipfort_rocsolver_enums
       use hipfort_rocblas_enums
       implicit none
-      integer(kind(rocblas_status_success)) :: rocsolver_sorgql_full_rank
+      integer(kind(rocblas_status_success)) :: rocsolver_zung2l_full_rank
       type(c_ptr) :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       integer(c_int) :: k
-      real(c_float),target,dimension(:,:) :: A
+      complex(c_double_complex),target,dimension(:,:) :: A
       integer(c_int) :: lda
-      real(c_float),target,dimension(:) :: ipiv
+      complex(c_double_complex),target,dimension(:,:) :: ipiv
       !
-      rocsolver_sorgql_full_rank = rocsolver_sorgql_(handle,m,n,k,c_loc(A),lda,c_loc(ipiv))
+      rocsolver_zung2l_full_rank = rocsolver_zung2l_(handle,m,n,k,c_loc(A),lda,c_loc(ipiv))
     end function
 
     function rocsolver_sorgql_rank_0(handle,m,n,k,A,lda,ipiv)
@@ -46273,21 +46272,21 @@ module hipfort_rocsolver
       rocsolver_sorgql_rank_1 = rocsolver_sorgql_(handle,m,n,k,c_loc(A),lda,c_loc(ipiv))
     end function
 
-    function rocsolver_dorgql_full_rank(handle,m,n,k,A,lda,ipiv)
+    function rocsolver_sorgql_full_rank(handle,m,n,k,A,lda,ipiv)
       use iso_c_binding
       use hipfort_rocsolver_enums
       use hipfort_rocblas_enums
       implicit none
-      integer(kind(rocblas_status_success)) :: rocsolver_dorgql_full_rank
+      integer(kind(rocblas_status_success)) :: rocsolver_sorgql_full_rank
       type(c_ptr) :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       integer(c_int) :: k
-      real(c_double),target,dimension(:,:) :: A
+      real(c_float),target,dimension(:,:) :: A
       integer(c_int) :: lda
-      real(c_double),target,dimension(:) :: ipiv
+      real(c_float),target,dimension(:,:) :: ipiv
       !
-      rocsolver_dorgql_full_rank = rocsolver_dorgql_(handle,m,n,k,c_loc(A),lda,c_loc(ipiv))
+      rocsolver_sorgql_full_rank = rocsolver_sorgql_(handle,m,n,k,c_loc(A),lda,c_loc(ipiv))
     end function
 
     function rocsolver_dorgql_rank_0(handle,m,n,k,A,lda,ipiv)
@@ -46324,21 +46323,21 @@ module hipfort_rocsolver
       rocsolver_dorgql_rank_1 = rocsolver_dorgql_(handle,m,n,k,c_loc(A),lda,c_loc(ipiv))
     end function
 
-    function rocsolver_cungql_full_rank(handle,m,n,k,A,lda,ipiv)
+    function rocsolver_dorgql_full_rank(handle,m,n,k,A,lda,ipiv)
       use iso_c_binding
       use hipfort_rocsolver_enums
       use hipfort_rocblas_enums
       implicit none
-      integer(kind(rocblas_status_success)) :: rocsolver_cungql_full_rank
+      integer(kind(rocblas_status_success)) :: rocsolver_dorgql_full_rank
       type(c_ptr) :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       integer(c_int) :: k
-      complex(c_float_complex),target,dimension(:,:) :: A
+      real(c_double),target,dimension(:,:) :: A
       integer(c_int) :: lda
-      complex(c_float_complex),target,dimension(:) :: ipiv
+      real(c_double),target,dimension(:,:) :: ipiv
       !
-      rocsolver_cungql_full_rank = rocsolver_cungql_(handle,m,n,k,c_loc(A),lda,c_loc(ipiv))
+      rocsolver_dorgql_full_rank = rocsolver_dorgql_(handle,m,n,k,c_loc(A),lda,c_loc(ipiv))
     end function
 
     function rocsolver_cungql_rank_0(handle,m,n,k,A,lda,ipiv)
@@ -46375,21 +46374,21 @@ module hipfort_rocsolver
       rocsolver_cungql_rank_1 = rocsolver_cungql_(handle,m,n,k,c_loc(A),lda,c_loc(ipiv))
     end function
 
-    function rocsolver_zungql_full_rank(handle,m,n,k,A,lda,ipiv)
+    function rocsolver_cungql_full_rank(handle,m,n,k,A,lda,ipiv)
       use iso_c_binding
       use hipfort_rocsolver_enums
       use hipfort_rocblas_enums
       implicit none
-      integer(kind(rocblas_status_success)) :: rocsolver_zungql_full_rank
+      integer(kind(rocblas_status_success)) :: rocsolver_cungql_full_rank
       type(c_ptr) :: handle
       integer(c_int) :: m
       integer(c_int) :: n
       integer(c_int) :: k
-      complex(c_double_complex),target,dimension(:,:) :: A
+      complex(c_float_complex),target,dimension(:,:) :: A
       integer(c_int) :: lda
-      complex(c_double_complex),target,dimension(:) :: ipiv
+      complex(c_float_complex),target,dimension(:,:) :: ipiv
       !
-      rocsolver_zungql_full_rank = rocsolver_zungql_(handle,m,n,k,c_loc(A),lda,c_loc(ipiv))
+      rocsolver_cungql_full_rank = rocsolver_cungql_(handle,m,n,k,c_loc(A),lda,c_loc(ipiv))
     end function
 
     function rocsolver_zungql_rank_0(handle,m,n,k,A,lda,ipiv)
@@ -46426,22 +46425,21 @@ module hipfort_rocsolver
       rocsolver_zungql_rank_1 = rocsolver_zungql_(handle,m,n,k,c_loc(A),lda,c_loc(ipiv))
     end function
 
-    function rocsolver_sorgbr_full_rank(handle,storev,m,n,k,A,lda,ipiv)
+    function rocsolver_zungql_full_rank(handle,m,n,k,A,lda,ipiv)
       use iso_c_binding
       use hipfort_rocsolver_enums
       use hipfort_rocblas_enums
       implicit none
-      integer(kind(rocblas_status_success)) :: rocsolver_sorgbr_full_rank
+      integer(kind(rocblas_status_success)) :: rocsolver_zungql_full_rank
       type(c_ptr) :: handle
-      integer(kind(rocblas_column_wise)) :: storev
       integer(c_int) :: m
       integer(c_int) :: n
       integer(c_int) :: k
-      real(c_float),target,dimension(:,:) :: A
+      complex(c_double_complex),target,dimension(:,:) :: A
       integer(c_int) :: lda
-      real(c_float),target,dimension(:) :: ipiv
+      complex(c_double_complex),target,dimension(:,:) :: ipiv
       !
-      rocsolver_sorgbr_full_rank = rocsolver_sorgbr_(handle,storev,m,n,k,c_loc(A),lda,c_loc(ipiv))
+      rocsolver_zungql_full_rank = rocsolver_zungql_(handle,m,n,k,c_loc(A),lda,c_loc(ipiv))
     end function
 
     function rocsolver_sorgbr_rank_0(handle,storev,m,n,k,A,lda,ipiv)
@@ -46480,22 +46478,22 @@ module hipfort_rocsolver
       rocsolver_sorgbr_rank_1 = rocsolver_sorgbr_(handle,storev,m,n,k,c_loc(A),lda,c_loc(ipiv))
     end function
 
-    function rocsolver_dorgbr_full_rank(handle,storev,m,n,k,A,lda,ipiv)
+    function rocsolver_sorgbr_full_rank(handle,storev,m,n,k,A,lda,ipiv)
       use iso_c_binding
       use hipfort_rocsolver_enums
       use hipfort_rocblas_enums
       implicit none
-      integer(kind(rocblas_status_success)) :: rocsolver_dorgbr_full_rank
+      integer(kind(rocblas_status_success)) :: rocsolver_sorgbr_full_rank
       type(c_ptr) :: handle
       integer(kind(rocblas_column_wise)) :: storev
       integer(c_int) :: m
       integer(c_int) :: n
       integer(c_int) :: k
-      real(c_double),target,dimension(:,:) :: A
+      real(c_float),target,dimension(:,:) :: A
       integer(c_int) :: lda
-      real(c_double),target,dimension(:) :: ipiv
+      real(c_float),target,dimension(:,:) :: ipiv
       !
-      rocsolver_dorgbr_full_rank = rocsolver_dorgbr_(handle,storev,m,n,k,c_loc(A),lda,c_loc(ipiv))
+      rocsolver_sorgbr_full_rank = rocsolver_sorgbr_(handle,storev,m,n,k,c_loc(A),lda,c_loc(ipiv))
     end function
 
     function rocsolver_dorgbr_rank_0(handle,storev,m,n,k,A,lda,ipiv)
@@ -46534,22 +46532,22 @@ module hipfort_rocsolver
       rocsolver_dorgbr_rank_1 = rocsolver_dorgbr_(handle,storev,m,n,k,c_loc(A),lda,c_loc(ipiv))
     end function
 
-    function rocsolver_cungbr_full_rank(handle,storev,m,n,k,A,lda,ipiv)
+    function rocsolver_dorgbr_full_rank(handle,storev,m,n,k,A,lda,ipiv)
       use iso_c_binding
       use hipfort_rocsolver_enums
       use hipfort_rocblas_enums
       implicit none
-      integer(kind(rocblas_status_success)) :: rocsolver_cungbr_full_rank
+      integer(kind(rocblas_status_success)) :: rocsolver_dorgbr_full_rank
       type(c_ptr) :: handle
       integer(kind(rocblas_column_wise)) :: storev
       integer(c_int) :: m
       integer(c_int) :: n
       integer(c_int) :: k
-      complex(c_float_complex),target,dimension(:,:) :: A
+      real(c_double),target,dimension(:,:) :: A
       integer(c_int) :: lda
-      complex(c_float_complex),target,dimension(:) :: ipiv
+      real(c_double),target,dimension(:,:) :: ipiv
       !
-      rocsolver_cungbr_full_rank = rocsolver_cungbr_(handle,storev,m,n,k,c_loc(A),lda,c_loc(ipiv))
+      rocsolver_dorgbr_full_rank = rocsolver_dorgbr_(handle,storev,m,n,k,c_loc(A),lda,c_loc(ipiv))
     end function
 
     function rocsolver_cungbr_rank_0(handle,storev,m,n,k,A,lda,ipiv)
@@ -46588,22 +46586,22 @@ module hipfort_rocsolver
       rocsolver_cungbr_rank_1 = rocsolver_cungbr_(handle,storev,m,n,k,c_loc(A),lda,c_loc(ipiv))
     end function
 
-    function rocsolver_zungbr_full_rank(handle,storev,m,n,k,A,lda,ipiv)
+    function rocsolver_cungbr_full_rank(handle,storev,m,n,k,A,lda,ipiv)
       use iso_c_binding
       use hipfort_rocsolver_enums
       use hipfort_rocblas_enums
       implicit none
-      integer(kind(rocblas_status_success)) :: rocsolver_zungbr_full_rank
+      integer(kind(rocblas_status_success)) :: rocsolver_cungbr_full_rank
       type(c_ptr) :: handle
       integer(kind(rocblas_column_wise)) :: storev
       integer(c_int) :: m
       integer(c_int) :: n
       integer(c_int) :: k
-      complex(c_double_complex),target,dimension(:,:) :: A
+      complex(c_float_complex),target,dimension(:,:) :: A
       integer(c_int) :: lda
-      complex(c_double_complex),target,dimension(:) :: ipiv
+      complex(c_float_complex),target,dimension(:,:) :: ipiv
       !
-      rocsolver_zungbr_full_rank = rocsolver_zungbr_(handle,storev,m,n,k,c_loc(A),lda,c_loc(ipiv))
+      rocsolver_cungbr_full_rank = rocsolver_cungbr_(handle,storev,m,n,k,c_loc(A),lda,c_loc(ipiv))
     end function
 
     function rocsolver_zungbr_rank_0(handle,storev,m,n,k,A,lda,ipiv)
@@ -46642,20 +46640,22 @@ module hipfort_rocsolver
       rocsolver_zungbr_rank_1 = rocsolver_zungbr_(handle,storev,m,n,k,c_loc(A),lda,c_loc(ipiv))
     end function
 
-    function rocsolver_sorgtr_full_rank(handle,uplo,n,A,lda,ipiv)
+    function rocsolver_zungbr_full_rank(handle,storev,m,n,k,A,lda,ipiv)
       use iso_c_binding
       use hipfort_rocsolver_enums
       use hipfort_rocblas_enums
       implicit none
-      integer(kind(rocblas_status_success)) :: rocsolver_sorgtr_full_rank
+      integer(kind(rocblas_status_success)) :: rocsolver_zungbr_full_rank
       type(c_ptr) :: handle
-      integer(kind(rocblas_fill_upper)) :: uplo
+      integer(kind(rocblas_column_wise)) :: storev
+      integer(c_int) :: m
       integer(c_int) :: n
-      real(c_float),target,dimension(:,:) :: A
+      integer(c_int) :: k
+      complex(c_double_complex),target,dimension(:,:) :: A
       integer(c_int) :: lda
-      real(c_float),target,dimension(:) :: ipiv
+      complex(c_double_complex),target,dimension(:,:) :: ipiv
       !
-      rocsolver_sorgtr_full_rank = rocsolver_sorgtr_(handle,uplo,n,c_loc(A),lda,c_loc(ipiv))
+      rocsolver_zungbr_full_rank = rocsolver_zungbr_(handle,storev,m,n,k,c_loc(A),lda,c_loc(ipiv))
     end function
 
     function rocsolver_sorgtr_rank_0(handle,uplo,n,A,lda,ipiv)
@@ -46690,20 +46690,20 @@ module hipfort_rocsolver
       rocsolver_sorgtr_rank_1 = rocsolver_sorgtr_(handle,uplo,n,c_loc(A),lda,c_loc(ipiv))
     end function
 
-    function rocsolver_dorgtr_full_rank(handle,uplo,n,A,lda,ipiv)
+    function rocsolver_sorgtr_full_rank(handle,uplo,n,A,lda,ipiv)
       use iso_c_binding
       use hipfort_rocsolver_enums
       use hipfort_rocblas_enums
       implicit none
-      integer(kind(rocblas_status_success)) :: rocsolver_dorgtr_full_rank
+      integer(kind(rocblas_status_success)) :: rocsolver_sorgtr_full_rank
       type(c_ptr) :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
-      real(c_double),target,dimension(:,:) :: A
+      real(c_float),target,dimension(:,:) :: A
       integer(c_int) :: lda
-      real(c_double),target,dimension(:) :: ipiv
+      real(c_float),target,dimension(:,:) :: ipiv
       !
-      rocsolver_dorgtr_full_rank = rocsolver_dorgtr_(handle,uplo,n,c_loc(A),lda,c_loc(ipiv))
+      rocsolver_sorgtr_full_rank = rocsolver_sorgtr_(handle,uplo,n,c_loc(A),lda,c_loc(ipiv))
     end function
 
     function rocsolver_dorgtr_rank_0(handle,uplo,n,A,lda,ipiv)
@@ -46738,20 +46738,20 @@ module hipfort_rocsolver
       rocsolver_dorgtr_rank_1 = rocsolver_dorgtr_(handle,uplo,n,c_loc(A),lda,c_loc(ipiv))
     end function
 
-    function rocsolver_cungtr_full_rank(handle,uplo,n,A,lda,ipiv)
+    function rocsolver_dorgtr_full_rank(handle,uplo,n,A,lda,ipiv)
       use iso_c_binding
       use hipfort_rocsolver_enums
       use hipfort_rocblas_enums
       implicit none
-      integer(kind(rocblas_status_success)) :: rocsolver_cungtr_full_rank
+      integer(kind(rocblas_status_success)) :: rocsolver_dorgtr_full_rank
       type(c_ptr) :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
-      complex(c_float_complex),target,dimension(:,:) :: A
+      real(c_double),target,dimension(:,:) :: A
       integer(c_int) :: lda
-      complex(c_float_complex),target,dimension(:) :: ipiv
+      real(c_double),target,dimension(:,:) :: ipiv
       !
-      rocsolver_cungtr_full_rank = rocsolver_cungtr_(handle,uplo,n,c_loc(A),lda,c_loc(ipiv))
+      rocsolver_dorgtr_full_rank = rocsolver_dorgtr_(handle,uplo,n,c_loc(A),lda,c_loc(ipiv))
     end function
 
     function rocsolver_cungtr_rank_0(handle,uplo,n,A,lda,ipiv)
@@ -46786,20 +46786,20 @@ module hipfort_rocsolver
       rocsolver_cungtr_rank_1 = rocsolver_cungtr_(handle,uplo,n,c_loc(A),lda,c_loc(ipiv))
     end function
 
-    function rocsolver_zungtr_full_rank(handle,uplo,n,A,lda,ipiv)
+    function rocsolver_cungtr_full_rank(handle,uplo,n,A,lda,ipiv)
       use iso_c_binding
       use hipfort_rocsolver_enums
       use hipfort_rocblas_enums
       implicit none
-      integer(kind(rocblas_status_success)) :: rocsolver_zungtr_full_rank
+      integer(kind(rocblas_status_success)) :: rocsolver_cungtr_full_rank
       type(c_ptr) :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
-      complex(c_double_complex),target,dimension(:,:) :: A
+      complex(c_float_complex),target,dimension(:,:) :: A
       integer(c_int) :: lda
-      complex(c_double_complex),target,dimension(:) :: ipiv
+      complex(c_float_complex),target,dimension(:,:) :: ipiv
       !
-      rocsolver_zungtr_full_rank = rocsolver_zungtr_(handle,uplo,n,c_loc(A),lda,c_loc(ipiv))
+      rocsolver_cungtr_full_rank = rocsolver_cungtr_(handle,uplo,n,c_loc(A),lda,c_loc(ipiv))
     end function
 
     function rocsolver_zungtr_rank_0(handle,uplo,n,A,lda,ipiv)
@@ -46834,25 +46834,20 @@ module hipfort_rocsolver
       rocsolver_zungtr_rank_1 = rocsolver_zungtr_(handle,uplo,n,c_loc(A),lda,c_loc(ipiv))
     end function
 
-    function rocsolver_sorm2r_full_rank(handle,side,trans,m,n,k,A,lda,ipiv,C,ldc)
+    function rocsolver_zungtr_full_rank(handle,uplo,n,A,lda,ipiv)
       use iso_c_binding
       use hipfort_rocsolver_enums
       use hipfort_rocblas_enums
       implicit none
-      integer(kind(rocblas_status_success)) :: rocsolver_sorm2r_full_rank
+      integer(kind(rocblas_status_success)) :: rocsolver_zungtr_full_rank
       type(c_ptr) :: handle
-      integer(kind(rocblas_side_left)) :: side
-      integer(kind(rocblas_operation_none)) :: trans
-      integer(c_int) :: m
+      integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
-      integer(c_int) :: k
-      real(c_float),target,dimension(:,:) :: A
+      complex(c_double_complex),target,dimension(:,:) :: A
       integer(c_int) :: lda
-      real(c_float),target,dimension(:) :: ipiv
-      real(c_float),target,dimension(:,:) :: C
-      integer(c_int) :: ldc
+      complex(c_double_complex),target,dimension(:,:) :: ipiv
       !
-      rocsolver_sorm2r_full_rank = rocsolver_sorm2r_(handle,side,trans,m,n,k,c_loc(A),lda,c_loc(ipiv),c_loc(C),ldc)
+      rocsolver_zungtr_full_rank = rocsolver_zungtr_(handle,uplo,n,c_loc(A),lda,c_loc(ipiv))
     end function
 
     function rocsolver_sorm2r_rank_0(handle,side,trans,m,n,k,A,lda,ipiv,C,ldc)
@@ -46897,25 +46892,25 @@ module hipfort_rocsolver
       rocsolver_sorm2r_rank_1 = rocsolver_sorm2r_(handle,side,trans,m,n,k,c_loc(A),lda,c_loc(ipiv),c_loc(C),ldc)
     end function
 
-    function rocsolver_dorm2r_full_rank(handle,side,trans,m,n,k,A,lda,ipiv,C,ldc)
+    function rocsolver_sorm2r_full_rank(handle,side,trans,m,n,k,A,lda,ipiv,C,ldc)
       use iso_c_binding
       use hipfort_rocsolver_enums
       use hipfort_rocblas_enums
       implicit none
-      integer(kind(rocblas_status_success)) :: rocsolver_dorm2r_full_rank
+      integer(kind(rocblas_status_success)) :: rocsolver_sorm2r_full_rank
       type(c_ptr) :: handle
       integer(kind(rocblas_side_left)) :: side
       integer(kind(rocblas_operation_none)) :: trans
       integer(c_int) :: m
       integer(c_int) :: n
       integer(c_int) :: k
-      real(c_double),target,dimension(:,:) :: A
+      real(c_float),target,dimension(:,:) :: A
       integer(c_int) :: lda
-      real(c_double),target,dimension(:) :: ipiv
-      real(c_double),target,dimension(:,:) :: C
+      real(c_float),target,dimension(:,:) :: ipiv
+      real(c_float),target,dimension(:,:) :: C
       integer(c_int) :: ldc
       !
-      rocsolver_dorm2r_full_rank = rocsolver_dorm2r_(handle,side,trans,m,n,k,c_loc(A),lda,c_loc(ipiv),c_loc(C),ldc)
+      rocsolver_sorm2r_full_rank = rocsolver_sorm2r_(handle,side,trans,m,n,k,c_loc(A),lda,c_loc(ipiv),c_loc(C),ldc)
     end function
 
     function rocsolver_dorm2r_rank_0(handle,side,trans,m,n,k,A,lda,ipiv,C,ldc)
@@ -46960,25 +46955,25 @@ module hipfort_rocsolver
       rocsolver_dorm2r_rank_1 = rocsolver_dorm2r_(handle,side,trans,m,n,k,c_loc(A),lda,c_loc(ipiv),c_loc(C),ldc)
     end function
 
-    function rocsolver_cunm2r_full_rank(handle,side,trans,m,n,k,A,lda,ipiv,C,ldc)
+    function rocsolver_dorm2r_full_rank(handle,side,trans,m,n,k,A,lda,ipiv,C,ldc)
       use iso_c_binding
       use hipfort_rocsolver_enums
       use hipfort_rocblas_enums
       implicit none
-      integer(kind(rocblas_status_success)) :: rocsolver_cunm2r_full_rank
+      integer(kind(rocblas_status_success)) :: rocsolver_dorm2r_full_rank
       type(c_ptr) :: handle
       integer(kind(rocblas_side_left)) :: side
       integer(kind(rocblas_operation_none)) :: trans
       integer(c_int) :: m
       integer(c_int) :: n
       integer(c_int) :: k
-      complex(c_float_complex),target,dimension(:,:) :: A
+      real(c_double),target,dimension(:,:) :: A
       integer(c_int) :: lda
-      complex(c_float_complex),target,dimension(:) :: ipiv
-      complex(c_float_complex),target,dimension(:,:) :: C
+      real(c_double),target,dimension(:,:) :: ipiv
+      real(c_double),target,dimension(:,:) :: C
       integer(c_int) :: ldc
       !
-      rocsolver_cunm2r_full_rank = rocsolver_cunm2r_(handle,side,trans,m,n,k,c_loc(A),lda,c_loc(ipiv),c_loc(C),ldc)
+      rocsolver_dorm2r_full_rank = rocsolver_dorm2r_(handle,side,trans,m,n,k,c_loc(A),lda,c_loc(ipiv),c_loc(C),ldc)
     end function
 
     function rocsolver_cunm2r_rank_0(handle,side,trans,m,n,k,A,lda,ipiv,C,ldc)
@@ -47023,25 +47018,25 @@ module hipfort_rocsolver
       rocsolver_cunm2r_rank_1 = rocsolver_cunm2r_(handle,side,trans,m,n,k,c_loc(A),lda,c_loc(ipiv),c_loc(C),ldc)
     end function
 
-    function rocsolver_zunm2r_full_rank(handle,side,trans,m,n,k,A,lda,ipiv,C,ldc)
+    function rocsolver_cunm2r_full_rank(handle,side,trans,m,n,k,A,lda,ipiv,C,ldc)
       use iso_c_binding
       use hipfort_rocsolver_enums
       use hipfort_rocblas_enums
       implicit none
-      integer(kind(rocblas_status_success)) :: rocsolver_zunm2r_full_rank
+      integer(kind(rocblas_status_success)) :: rocsolver_cunm2r_full_rank
       type(c_ptr) :: handle
       integer(kind(rocblas_side_left)) :: side
       integer(kind(rocblas_operation_none)) :: trans
       integer(c_int) :: m
       integer(c_int) :: n
       integer(c_int) :: k
-      complex(c_double_complex),target,dimension(:,:) :: A
+      complex(c_float_complex),target,dimension(:,:) :: A
       integer(c_int) :: lda
-      complex(c_double_complex),target,dimension(:) :: ipiv
-      complex(c_double_complex),target,dimension(:,:) :: C
+      complex(c_float_complex),target,dimension(:,:) :: ipiv
+      complex(c_float_complex),target,dimension(:,:) :: C
       integer(c_int) :: ldc
       !
-      rocsolver_zunm2r_full_rank = rocsolver_zunm2r_(handle,side,trans,m,n,k,c_loc(A),lda,c_loc(ipiv),c_loc(C),ldc)
+      rocsolver_cunm2r_full_rank = rocsolver_cunm2r_(handle,side,trans,m,n,k,c_loc(A),lda,c_loc(ipiv),c_loc(C),ldc)
     end function
 
     function rocsolver_zunm2r_rank_0(handle,side,trans,m,n,k,A,lda,ipiv,C,ldc)
@@ -47086,25 +47081,25 @@ module hipfort_rocsolver
       rocsolver_zunm2r_rank_1 = rocsolver_zunm2r_(handle,side,trans,m,n,k,c_loc(A),lda,c_loc(ipiv),c_loc(C),ldc)
     end function
 
-    function rocsolver_sormqr_full_rank(handle,side,trans,m,n,k,A,lda,ipiv,C,ldc)
+    function rocsolver_zunm2r_full_rank(handle,side,trans,m,n,k,A,lda,ipiv,C,ldc)
       use iso_c_binding
       use hipfort_rocsolver_enums
       use hipfort_rocblas_enums
       implicit none
-      integer(kind(rocblas_status_success)) :: rocsolver_sormqr_full_rank
+      integer(kind(rocblas_status_success)) :: rocsolver_zunm2r_full_rank
       type(c_ptr) :: handle
       integer(kind(rocblas_side_left)) :: side
       integer(kind(rocblas_operation_none)) :: trans
       integer(c_int) :: m
       integer(c_int) :: n
       integer(c_int) :: k
-      real(c_float),target,dimension(:,:) :: A
+      complex(c_double_complex),target,dimension(:,:) :: A
       integer(c_int) :: lda
-      real(c_float),target,dimension(:) :: ipiv
-      real(c_float),target,dimension(:,:) :: C
+      complex(c_double_complex),target,dimension(:,:) :: ipiv
+      complex(c_double_complex),target,dimension(:,:) :: C
       integer(c_int) :: ldc
       !
-      rocsolver_sormqr_full_rank = rocsolver_sormqr_(handle,side,trans,m,n,k,c_loc(A),lda,c_loc(ipiv),c_loc(C),ldc)
+      rocsolver_zunm2r_full_rank = rocsolver_zunm2r_(handle,side,trans,m,n,k,c_loc(A),lda,c_loc(ipiv),c_loc(C),ldc)
     end function
 
     function rocsolver_sormqr_rank_0(handle,side,trans,m,n,k,A,lda,ipiv,C,ldc)
@@ -47149,25 +47144,25 @@ module hipfort_rocsolver
       rocsolver_sormqr_rank_1 = rocsolver_sormqr_(handle,side,trans,m,n,k,c_loc(A),lda,c_loc(ipiv),c_loc(C),ldc)
     end function
 
-    function rocsolver_dormqr_full_rank(handle,side,trans,m,n,k,A,lda,ipiv,C,ldc)
+    function rocsolver_sormqr_full_rank(handle,side,trans,m,n,k,A,lda,ipiv,C,ldc)
       use iso_c_binding
       use hipfort_rocsolver_enums
       use hipfort_rocblas_enums
       implicit none
-      integer(kind(rocblas_status_success)) :: rocsolver_dormqr_full_rank
+      integer(kind(rocblas_status_success)) :: rocsolver_sormqr_full_rank
       type(c_ptr) :: handle
       integer(kind(rocblas_side_left)) :: side
       integer(kind(rocblas_operation_none)) :: trans
       integer(c_int) :: m
       integer(c_int) :: n
       integer(c_int) :: k
-      real(c_double),target,dimension(:,:) :: A
+      real(c_float),target,dimension(:,:) :: A
       integer(c_int) :: lda
-      real(c_double),target,dimension(:) :: ipiv
-      real(c_double),target,dimension(:,:) :: C
+      real(c_float),target,dimension(:,:) :: ipiv
+      real(c_float),target,dimension(:,:) :: C
       integer(c_int) :: ldc
       !
-      rocsolver_dormqr_full_rank = rocsolver_dormqr_(handle,side,trans,m,n,k,c_loc(A),lda,c_loc(ipiv),c_loc(C),ldc)
+      rocsolver_sormqr_full_rank = rocsolver_sormqr_(handle,side,trans,m,n,k,c_loc(A),lda,c_loc(ipiv),c_loc(C),ldc)
     end function
 
     function rocsolver_dormqr_rank_0(handle,side,trans,m,n,k,A,lda,ipiv,C,ldc)
@@ -47212,25 +47207,25 @@ module hipfort_rocsolver
       rocsolver_dormqr_rank_1 = rocsolver_dormqr_(handle,side,trans,m,n,k,c_loc(A),lda,c_loc(ipiv),c_loc(C),ldc)
     end function
 
-    function rocsolver_cunmqr_full_rank(handle,side,trans,m,n,k,A,lda,ipiv,C,ldc)
+    function rocsolver_dormqr_full_rank(handle,side,trans,m,n,k,A,lda,ipiv,C,ldc)
       use iso_c_binding
       use hipfort_rocsolver_enums
       use hipfort_rocblas_enums
       implicit none
-      integer(kind(rocblas_status_success)) :: rocsolver_cunmqr_full_rank
+      integer(kind(rocblas_status_success)) :: rocsolver_dormqr_full_rank
       type(c_ptr) :: handle
       integer(kind(rocblas_side_left)) :: side
       integer(kind(rocblas_operation_none)) :: trans
       integer(c_int) :: m
       integer(c_int) :: n
       integer(c_int) :: k
-      complex(c_float_complex),target,dimension(:,:) :: A
+      real(c_double),target,dimension(:,:) :: A
       integer(c_int) :: lda
-      complex(c_float_complex),target,dimension(:) :: ipiv
-      complex(c_float_complex),target,dimension(:,:) :: C
+      real(c_double),target,dimension(:,:) :: ipiv
+      real(c_double),target,dimension(:,:) :: C
       integer(c_int) :: ldc
       !
-      rocsolver_cunmqr_full_rank = rocsolver_cunmqr_(handle,side,trans,m,n,k,c_loc(A),lda,c_loc(ipiv),c_loc(C),ldc)
+      rocsolver_dormqr_full_rank = rocsolver_dormqr_(handle,side,trans,m,n,k,c_loc(A),lda,c_loc(ipiv),c_loc(C),ldc)
     end function
 
     function rocsolver_cunmqr_rank_0(handle,side,trans,m,n,k,A,lda,ipiv,C,ldc)
@@ -47275,25 +47270,25 @@ module hipfort_rocsolver
       rocsolver_cunmqr_rank_1 = rocsolver_cunmqr_(handle,side,trans,m,n,k,c_loc(A),lda,c_loc(ipiv),c_loc(C),ldc)
     end function
 
-    function rocsolver_zunmqr_full_rank(handle,side,trans,m,n,k,A,lda,ipiv,C,ldc)
+    function rocsolver_cunmqr_full_rank(handle,side,trans,m,n,k,A,lda,ipiv,C,ldc)
       use iso_c_binding
       use hipfort_rocsolver_enums
       use hipfort_rocblas_enums
       implicit none
-      integer(kind(rocblas_status_success)) :: rocsolver_zunmqr_full_rank
+      integer(kind(rocblas_status_success)) :: rocsolver_cunmqr_full_rank
       type(c_ptr) :: handle
       integer(kind(rocblas_side_left)) :: side
       integer(kind(rocblas_operation_none)) :: trans
       integer(c_int) :: m
       integer(c_int) :: n
       integer(c_int) :: k
-      complex(c_double_complex),target,dimension(:,:) :: A
+      complex(c_float_complex),target,dimension(:,:) :: A
       integer(c_int) :: lda
-      complex(c_double_complex),target,dimension(:) :: ipiv
-      complex(c_double_complex),target,dimension(:,:) :: C
+      complex(c_float_complex),target,dimension(:,:) :: ipiv
+      complex(c_float_complex),target,dimension(:,:) :: C
       integer(c_int) :: ldc
       !
-      rocsolver_zunmqr_full_rank = rocsolver_zunmqr_(handle,side,trans,m,n,k,c_loc(A),lda,c_loc(ipiv),c_loc(C),ldc)
+      rocsolver_cunmqr_full_rank = rocsolver_cunmqr_(handle,side,trans,m,n,k,c_loc(A),lda,c_loc(ipiv),c_loc(C),ldc)
     end function
 
     function rocsolver_zunmqr_rank_0(handle,side,trans,m,n,k,A,lda,ipiv,C,ldc)
@@ -47338,25 +47333,25 @@ module hipfort_rocsolver
       rocsolver_zunmqr_rank_1 = rocsolver_zunmqr_(handle,side,trans,m,n,k,c_loc(A),lda,c_loc(ipiv),c_loc(C),ldc)
     end function
 
-    function rocsolver_sorml2_full_rank(handle,side,trans,m,n,k,A,lda,ipiv,C,ldc)
+    function rocsolver_zunmqr_full_rank(handle,side,trans,m,n,k,A,lda,ipiv,C,ldc)
       use iso_c_binding
       use hipfort_rocsolver_enums
       use hipfort_rocblas_enums
       implicit none
-      integer(kind(rocblas_status_success)) :: rocsolver_sorml2_full_rank
+      integer(kind(rocblas_status_success)) :: rocsolver_zunmqr_full_rank
       type(c_ptr) :: handle
       integer(kind(rocblas_side_left)) :: side
       integer(kind(rocblas_operation_none)) :: trans
       integer(c_int) :: m
       integer(c_int) :: n
       integer(c_int) :: k
-      real(c_float),target,dimension(:,:) :: A
+      complex(c_double_complex),target,dimension(:,:) :: A
       integer(c_int) :: lda
-      real(c_float),target,dimension(:) :: ipiv
-      real(c_float),target,dimension(:,:) :: C
+      complex(c_double_complex),target,dimension(:,:) :: ipiv
+      complex(c_double_complex),target,dimension(:,:) :: C
       integer(c_int) :: ldc
       !
-      rocsolver_sorml2_full_rank = rocsolver_sorml2_(handle,side,trans,m,n,k,c_loc(A),lda,c_loc(ipiv),c_loc(C),ldc)
+      rocsolver_zunmqr_full_rank = rocsolver_zunmqr_(handle,side,trans,m,n,k,c_loc(A),lda,c_loc(ipiv),c_loc(C),ldc)
     end function
 
     function rocsolver_sorml2_rank_0(handle,side,trans,m,n,k,A,lda,ipiv,C,ldc)
@@ -47401,25 +47396,25 @@ module hipfort_rocsolver
       rocsolver_sorml2_rank_1 = rocsolver_sorml2_(handle,side,trans,m,n,k,c_loc(A),lda,c_loc(ipiv),c_loc(C),ldc)
     end function
 
-    function rocsolver_dorml2_full_rank(handle,side,trans,m,n,k,A,lda,ipiv,C,ldc)
+    function rocsolver_sorml2_full_rank(handle,side,trans,m,n,k,A,lda,ipiv,C,ldc)
       use iso_c_binding
       use hipfort_rocsolver_enums
       use hipfort_rocblas_enums
       implicit none
-      integer(kind(rocblas_status_success)) :: rocsolver_dorml2_full_rank
+      integer(kind(rocblas_status_success)) :: rocsolver_sorml2_full_rank
       type(c_ptr) :: handle
       integer(kind(rocblas_side_left)) :: side
       integer(kind(rocblas_operation_none)) :: trans
       integer(c_int) :: m
       integer(c_int) :: n
       integer(c_int) :: k
-      real(c_double),target,dimension(:,:) :: A
+      real(c_float),target,dimension(:,:) :: A
       integer(c_int) :: lda
-      real(c_double),target,dimension(:) :: ipiv
-      real(c_double),target,dimension(:,:) :: C
+      real(c_float),target,dimension(:,:) :: ipiv
+      real(c_float),target,dimension(:,:) :: C
       integer(c_int) :: ldc
       !
-      rocsolver_dorml2_full_rank = rocsolver_dorml2_(handle,side,trans,m,n,k,c_loc(A),lda,c_loc(ipiv),c_loc(C),ldc)
+      rocsolver_sorml2_full_rank = rocsolver_sorml2_(handle,side,trans,m,n,k,c_loc(A),lda,c_loc(ipiv),c_loc(C),ldc)
     end function
 
     function rocsolver_dorml2_rank_0(handle,side,trans,m,n,k,A,lda,ipiv,C,ldc)
@@ -47464,25 +47459,25 @@ module hipfort_rocsolver
       rocsolver_dorml2_rank_1 = rocsolver_dorml2_(handle,side,trans,m,n,k,c_loc(A),lda,c_loc(ipiv),c_loc(C),ldc)
     end function
 
-    function rocsolver_cunml2_full_rank(handle,side,trans,m,n,k,A,lda,ipiv,C,ldc)
+    function rocsolver_dorml2_full_rank(handle,side,trans,m,n,k,A,lda,ipiv,C,ldc)
       use iso_c_binding
       use hipfort_rocsolver_enums
       use hipfort_rocblas_enums
       implicit none
-      integer(kind(rocblas_status_success)) :: rocsolver_cunml2_full_rank
+      integer(kind(rocblas_status_success)) :: rocsolver_dorml2_full_rank
       type(c_ptr) :: handle
       integer(kind(rocblas_side_left)) :: side
       integer(kind(rocblas_operation_none)) :: trans
       integer(c_int) :: m
       integer(c_int) :: n
       integer(c_int) :: k
-      complex(c_float_complex),target,dimension(:,:) :: A
+      real(c_double),target,dimension(:,:) :: A
       integer(c_int) :: lda
-      complex(c_float_complex),target,dimension(:) :: ipiv
-      complex(c_float_complex),target,dimension(:,:) :: C
+      real(c_double),target,dimension(:,:) :: ipiv
+      real(c_double),target,dimension(:,:) :: C
       integer(c_int) :: ldc
       !
-      rocsolver_cunml2_full_rank = rocsolver_cunml2_(handle,side,trans,m,n,k,c_loc(A),lda,c_loc(ipiv),c_loc(C),ldc)
+      rocsolver_dorml2_full_rank = rocsolver_dorml2_(handle,side,trans,m,n,k,c_loc(A),lda,c_loc(ipiv),c_loc(C),ldc)
     end function
 
     function rocsolver_cunml2_rank_0(handle,side,trans,m,n,k,A,lda,ipiv,C,ldc)
@@ -47527,25 +47522,25 @@ module hipfort_rocsolver
       rocsolver_cunml2_rank_1 = rocsolver_cunml2_(handle,side,trans,m,n,k,c_loc(A),lda,c_loc(ipiv),c_loc(C),ldc)
     end function
 
-    function rocsolver_zunml2_full_rank(handle,side,trans,m,n,k,A,lda,ipiv,C,ldc)
+    function rocsolver_cunml2_full_rank(handle,side,trans,m,n,k,A,lda,ipiv,C,ldc)
       use iso_c_binding
       use hipfort_rocsolver_enums
       use hipfort_rocblas_enums
       implicit none
-      integer(kind(rocblas_status_success)) :: rocsolver_zunml2_full_rank
+      integer(kind(rocblas_status_success)) :: rocsolver_cunml2_full_rank
       type(c_ptr) :: handle
       integer(kind(rocblas_side_left)) :: side
       integer(kind(rocblas_operation_none)) :: trans
       integer(c_int) :: m
       integer(c_int) :: n
       integer(c_int) :: k
-      complex(c_double_complex),target,dimension(:,:) :: A
+      complex(c_float_complex),target,dimension(:,:) :: A
       integer(c_int) :: lda
-      complex(c_double_complex),target,dimension(:) :: ipiv
-      complex(c_double_complex),target,dimension(:,:) :: C
+      complex(c_float_complex),target,dimension(:,:) :: ipiv
+      complex(c_float_complex),target,dimension(:,:) :: C
       integer(c_int) :: ldc
       !
-      rocsolver_zunml2_full_rank = rocsolver_zunml2_(handle,side,trans,m,n,k,c_loc(A),lda,c_loc(ipiv),c_loc(C),ldc)
+      rocsolver_cunml2_full_rank = rocsolver_cunml2_(handle,side,trans,m,n,k,c_loc(A),lda,c_loc(ipiv),c_loc(C),ldc)
     end function
 
     function rocsolver_zunml2_rank_0(handle,side,trans,m,n,k,A,lda,ipiv,C,ldc)
@@ -47590,25 +47585,25 @@ module hipfort_rocsolver
       rocsolver_zunml2_rank_1 = rocsolver_zunml2_(handle,side,trans,m,n,k,c_loc(A),lda,c_loc(ipiv),c_loc(C),ldc)
     end function
 
-    function rocsolver_sormlq_full_rank(handle,side,trans,m,n,k,A,lda,ipiv,C,ldc)
+    function rocsolver_zunml2_full_rank(handle,side,trans,m,n,k,A,lda,ipiv,C,ldc)
       use iso_c_binding
       use hipfort_rocsolver_enums
       use hipfort_rocblas_enums
       implicit none
-      integer(kind(rocblas_status_success)) :: rocsolver_sormlq_full_rank
+      integer(kind(rocblas_status_success)) :: rocsolver_zunml2_full_rank
       type(c_ptr) :: handle
       integer(kind(rocblas_side_left)) :: side
       integer(kind(rocblas_operation_none)) :: trans
       integer(c_int) :: m
       integer(c_int) :: n
       integer(c_int) :: k
-      real(c_float),target,dimension(:,:) :: A
+      complex(c_double_complex),target,dimension(:,:) :: A
       integer(c_int) :: lda
-      real(c_float),target,dimension(:) :: ipiv
-      real(c_float),target,dimension(:,:) :: C
+      complex(c_double_complex),target,dimension(:,:) :: ipiv
+      complex(c_double_complex),target,dimension(:,:) :: C
       integer(c_int) :: ldc
       !
-      rocsolver_sormlq_full_rank = rocsolver_sormlq_(handle,side,trans,m,n,k,c_loc(A),lda,c_loc(ipiv),c_loc(C),ldc)
+      rocsolver_zunml2_full_rank = rocsolver_zunml2_(handle,side,trans,m,n,k,c_loc(A),lda,c_loc(ipiv),c_loc(C),ldc)
     end function
 
     function rocsolver_sormlq_rank_0(handle,side,trans,m,n,k,A,lda,ipiv,C,ldc)
@@ -47653,25 +47648,25 @@ module hipfort_rocsolver
       rocsolver_sormlq_rank_1 = rocsolver_sormlq_(handle,side,trans,m,n,k,c_loc(A),lda,c_loc(ipiv),c_loc(C),ldc)
     end function
 
-    function rocsolver_dormlq_full_rank(handle,side,trans,m,n,k,A,lda,ipiv,C,ldc)
+    function rocsolver_sormlq_full_rank(handle,side,trans,m,n,k,A,lda,ipiv,C,ldc)
       use iso_c_binding
       use hipfort_rocsolver_enums
       use hipfort_rocblas_enums
       implicit none
-      integer(kind(rocblas_status_success)) :: rocsolver_dormlq_full_rank
+      integer(kind(rocblas_status_success)) :: rocsolver_sormlq_full_rank
       type(c_ptr) :: handle
       integer(kind(rocblas_side_left)) :: side
       integer(kind(rocblas_operation_none)) :: trans
       integer(c_int) :: m
       integer(c_int) :: n
       integer(c_int) :: k
-      real(c_double),target,dimension(:,:) :: A
+      real(c_float),target,dimension(:,:) :: A
       integer(c_int) :: lda
-      real(c_double),target,dimension(:) :: ipiv
-      real(c_double),target,dimension(:,:) :: C
+      real(c_float),target,dimension(:,:) :: ipiv
+      real(c_float),target,dimension(:,:) :: C
       integer(c_int) :: ldc
       !
-      rocsolver_dormlq_full_rank = rocsolver_dormlq_(handle,side,trans,m,n,k,c_loc(A),lda,c_loc(ipiv),c_loc(C),ldc)
+      rocsolver_sormlq_full_rank = rocsolver_sormlq_(handle,side,trans,m,n,k,c_loc(A),lda,c_loc(ipiv),c_loc(C),ldc)
     end function
 
     function rocsolver_dormlq_rank_0(handle,side,trans,m,n,k,A,lda,ipiv,C,ldc)
@@ -47716,25 +47711,25 @@ module hipfort_rocsolver
       rocsolver_dormlq_rank_1 = rocsolver_dormlq_(handle,side,trans,m,n,k,c_loc(A),lda,c_loc(ipiv),c_loc(C),ldc)
     end function
 
-    function rocsolver_cunmlq_full_rank(handle,side,trans,m,n,k,A,lda,ipiv,C,ldc)
+    function rocsolver_dormlq_full_rank(handle,side,trans,m,n,k,A,lda,ipiv,C,ldc)
       use iso_c_binding
       use hipfort_rocsolver_enums
       use hipfort_rocblas_enums
       implicit none
-      integer(kind(rocblas_status_success)) :: rocsolver_cunmlq_full_rank
+      integer(kind(rocblas_status_success)) :: rocsolver_dormlq_full_rank
       type(c_ptr) :: handle
       integer(kind(rocblas_side_left)) :: side
       integer(kind(rocblas_operation_none)) :: trans
       integer(c_int) :: m
       integer(c_int) :: n
       integer(c_int) :: k
-      complex(c_float_complex),target,dimension(:,:) :: A
+      real(c_double),target,dimension(:,:) :: A
       integer(c_int) :: lda
-      complex(c_float_complex),target,dimension(:) :: ipiv
-      complex(c_float_complex),target,dimension(:,:) :: C
+      real(c_double),target,dimension(:,:) :: ipiv
+      real(c_double),target,dimension(:,:) :: C
       integer(c_int) :: ldc
       !
-      rocsolver_cunmlq_full_rank = rocsolver_cunmlq_(handle,side,trans,m,n,k,c_loc(A),lda,c_loc(ipiv),c_loc(C),ldc)
+      rocsolver_dormlq_full_rank = rocsolver_dormlq_(handle,side,trans,m,n,k,c_loc(A),lda,c_loc(ipiv),c_loc(C),ldc)
     end function
 
     function rocsolver_cunmlq_rank_0(handle,side,trans,m,n,k,A,lda,ipiv,C,ldc)
@@ -47779,25 +47774,25 @@ module hipfort_rocsolver
       rocsolver_cunmlq_rank_1 = rocsolver_cunmlq_(handle,side,trans,m,n,k,c_loc(A),lda,c_loc(ipiv),c_loc(C),ldc)
     end function
 
-    function rocsolver_zunmlq_full_rank(handle,side,trans,m,n,k,A,lda,ipiv,C,ldc)
+    function rocsolver_cunmlq_full_rank(handle,side,trans,m,n,k,A,lda,ipiv,C,ldc)
       use iso_c_binding
       use hipfort_rocsolver_enums
       use hipfort_rocblas_enums
       implicit none
-      integer(kind(rocblas_status_success)) :: rocsolver_zunmlq_full_rank
+      integer(kind(rocblas_status_success)) :: rocsolver_cunmlq_full_rank
       type(c_ptr) :: handle
       integer(kind(rocblas_side_left)) :: side
       integer(kind(rocblas_operation_none)) :: trans
       integer(c_int) :: m
       integer(c_int) :: n
       integer(c_int) :: k
-      complex(c_double_complex),target,dimension(:,:) :: A
+      complex(c_float_complex),target,dimension(:,:) :: A
       integer(c_int) :: lda
-      complex(c_double_complex),target,dimension(:) :: ipiv
-      complex(c_double_complex),target,dimension(:,:) :: C
+      complex(c_float_complex),target,dimension(:,:) :: ipiv
+      complex(c_float_complex),target,dimension(:,:) :: C
       integer(c_int) :: ldc
       !
-      rocsolver_zunmlq_full_rank = rocsolver_zunmlq_(handle,side,trans,m,n,k,c_loc(A),lda,c_loc(ipiv),c_loc(C),ldc)
+      rocsolver_cunmlq_full_rank = rocsolver_cunmlq_(handle,side,trans,m,n,k,c_loc(A),lda,c_loc(ipiv),c_loc(C),ldc)
     end function
 
     function rocsolver_zunmlq_rank_0(handle,side,trans,m,n,k,A,lda,ipiv,C,ldc)
@@ -47842,25 +47837,25 @@ module hipfort_rocsolver
       rocsolver_zunmlq_rank_1 = rocsolver_zunmlq_(handle,side,trans,m,n,k,c_loc(A),lda,c_loc(ipiv),c_loc(C),ldc)
     end function
 
-    function rocsolver_sorm2l_full_rank(handle,side,trans,m,n,k,A,lda,ipiv,C,ldc)
+    function rocsolver_zunmlq_full_rank(handle,side,trans,m,n,k,A,lda,ipiv,C,ldc)
       use iso_c_binding
       use hipfort_rocsolver_enums
       use hipfort_rocblas_enums
       implicit none
-      integer(kind(rocblas_status_success)) :: rocsolver_sorm2l_full_rank
+      integer(kind(rocblas_status_success)) :: rocsolver_zunmlq_full_rank
       type(c_ptr) :: handle
       integer(kind(rocblas_side_left)) :: side
       integer(kind(rocblas_operation_none)) :: trans
       integer(c_int) :: m
       integer(c_int) :: n
       integer(c_int) :: k
-      real(c_float),target,dimension(:,:) :: A
+      complex(c_double_complex),target,dimension(:,:) :: A
       integer(c_int) :: lda
-      real(c_float),target,dimension(:) :: ipiv
-      real(c_float),target,dimension(:,:) :: C
+      complex(c_double_complex),target,dimension(:,:) :: ipiv
+      complex(c_double_complex),target,dimension(:,:) :: C
       integer(c_int) :: ldc
       !
-      rocsolver_sorm2l_full_rank = rocsolver_sorm2l_(handle,side,trans,m,n,k,c_loc(A),lda,c_loc(ipiv),c_loc(C),ldc)
+      rocsolver_zunmlq_full_rank = rocsolver_zunmlq_(handle,side,trans,m,n,k,c_loc(A),lda,c_loc(ipiv),c_loc(C),ldc)
     end function
 
     function rocsolver_sorm2l_rank_0(handle,side,trans,m,n,k,A,lda,ipiv,C,ldc)
@@ -47905,25 +47900,25 @@ module hipfort_rocsolver
       rocsolver_sorm2l_rank_1 = rocsolver_sorm2l_(handle,side,trans,m,n,k,c_loc(A),lda,c_loc(ipiv),c_loc(C),ldc)
     end function
 
-    function rocsolver_dorm2l_full_rank(handle,side,trans,m,n,k,A,lda,ipiv,C,ldc)
+    function rocsolver_sorm2l_full_rank(handle,side,trans,m,n,k,A,lda,ipiv,C,ldc)
       use iso_c_binding
       use hipfort_rocsolver_enums
       use hipfort_rocblas_enums
       implicit none
-      integer(kind(rocblas_status_success)) :: rocsolver_dorm2l_full_rank
+      integer(kind(rocblas_status_success)) :: rocsolver_sorm2l_full_rank
       type(c_ptr) :: handle
       integer(kind(rocblas_side_left)) :: side
       integer(kind(rocblas_operation_none)) :: trans
       integer(c_int) :: m
       integer(c_int) :: n
       integer(c_int) :: k
-      real(c_double),target,dimension(:,:) :: A
+      real(c_float),target,dimension(:,:) :: A
       integer(c_int) :: lda
-      real(c_double),target,dimension(:) :: ipiv
-      real(c_double),target,dimension(:,:) :: C
+      real(c_float),target,dimension(:,:) :: ipiv
+      real(c_float),target,dimension(:,:) :: C
       integer(c_int) :: ldc
       !
-      rocsolver_dorm2l_full_rank = rocsolver_dorm2l_(handle,side,trans,m,n,k,c_loc(A),lda,c_loc(ipiv),c_loc(C),ldc)
+      rocsolver_sorm2l_full_rank = rocsolver_sorm2l_(handle,side,trans,m,n,k,c_loc(A),lda,c_loc(ipiv),c_loc(C),ldc)
     end function
 
     function rocsolver_dorm2l_rank_0(handle,side,trans,m,n,k,A,lda,ipiv,C,ldc)
@@ -47968,25 +47963,25 @@ module hipfort_rocsolver
       rocsolver_dorm2l_rank_1 = rocsolver_dorm2l_(handle,side,trans,m,n,k,c_loc(A),lda,c_loc(ipiv),c_loc(C),ldc)
     end function
 
-    function rocsolver_cunm2l_full_rank(handle,side,trans,m,n,k,A,lda,ipiv,C,ldc)
+    function rocsolver_dorm2l_full_rank(handle,side,trans,m,n,k,A,lda,ipiv,C,ldc)
       use iso_c_binding
       use hipfort_rocsolver_enums
       use hipfort_rocblas_enums
       implicit none
-      integer(kind(rocblas_status_success)) :: rocsolver_cunm2l_full_rank
+      integer(kind(rocblas_status_success)) :: rocsolver_dorm2l_full_rank
       type(c_ptr) :: handle
       integer(kind(rocblas_side_left)) :: side
       integer(kind(rocblas_operation_none)) :: trans
       integer(c_int) :: m
       integer(c_int) :: n
       integer(c_int) :: k
-      complex(c_float_complex),target,dimension(:,:) :: A
+      real(c_double),target,dimension(:,:) :: A
       integer(c_int) :: lda
-      complex(c_float_complex),target,dimension(:) :: ipiv
-      complex(c_float_complex),target,dimension(:,:) :: C
+      real(c_double),target,dimension(:,:) :: ipiv
+      real(c_double),target,dimension(:,:) :: C
       integer(c_int) :: ldc
       !
-      rocsolver_cunm2l_full_rank = rocsolver_cunm2l_(handle,side,trans,m,n,k,c_loc(A),lda,c_loc(ipiv),c_loc(C),ldc)
+      rocsolver_dorm2l_full_rank = rocsolver_dorm2l_(handle,side,trans,m,n,k,c_loc(A),lda,c_loc(ipiv),c_loc(C),ldc)
     end function
 
     function rocsolver_cunm2l_rank_0(handle,side,trans,m,n,k,A,lda,ipiv,C,ldc)
@@ -48031,25 +48026,25 @@ module hipfort_rocsolver
       rocsolver_cunm2l_rank_1 = rocsolver_cunm2l_(handle,side,trans,m,n,k,c_loc(A),lda,c_loc(ipiv),c_loc(C),ldc)
     end function
 
-    function rocsolver_zunm2l_full_rank(handle,side,trans,m,n,k,A,lda,ipiv,C,ldc)
+    function rocsolver_cunm2l_full_rank(handle,side,trans,m,n,k,A,lda,ipiv,C,ldc)
       use iso_c_binding
       use hipfort_rocsolver_enums
       use hipfort_rocblas_enums
       implicit none
-      integer(kind(rocblas_status_success)) :: rocsolver_zunm2l_full_rank
+      integer(kind(rocblas_status_success)) :: rocsolver_cunm2l_full_rank
       type(c_ptr) :: handle
       integer(kind(rocblas_side_left)) :: side
       integer(kind(rocblas_operation_none)) :: trans
       integer(c_int) :: m
       integer(c_int) :: n
       integer(c_int) :: k
-      complex(c_double_complex),target,dimension(:,:) :: A
+      complex(c_float_complex),target,dimension(:,:) :: A
       integer(c_int) :: lda
-      complex(c_double_complex),target,dimension(:) :: ipiv
-      complex(c_double_complex),target,dimension(:,:) :: C
+      complex(c_float_complex),target,dimension(:,:) :: ipiv
+      complex(c_float_complex),target,dimension(:,:) :: C
       integer(c_int) :: ldc
       !
-      rocsolver_zunm2l_full_rank = rocsolver_zunm2l_(handle,side,trans,m,n,k,c_loc(A),lda,c_loc(ipiv),c_loc(C),ldc)
+      rocsolver_cunm2l_full_rank = rocsolver_cunm2l_(handle,side,trans,m,n,k,c_loc(A),lda,c_loc(ipiv),c_loc(C),ldc)
     end function
 
     function rocsolver_zunm2l_rank_0(handle,side,trans,m,n,k,A,lda,ipiv,C,ldc)
@@ -48094,25 +48089,25 @@ module hipfort_rocsolver
       rocsolver_zunm2l_rank_1 = rocsolver_zunm2l_(handle,side,trans,m,n,k,c_loc(A),lda,c_loc(ipiv),c_loc(C),ldc)
     end function
 
-    function rocsolver_sormql_full_rank(handle,side,trans,m,n,k,A,lda,ipiv,C,ldc)
+    function rocsolver_zunm2l_full_rank(handle,side,trans,m,n,k,A,lda,ipiv,C,ldc)
       use iso_c_binding
       use hipfort_rocsolver_enums
       use hipfort_rocblas_enums
       implicit none
-      integer(kind(rocblas_status_success)) :: rocsolver_sormql_full_rank
+      integer(kind(rocblas_status_success)) :: rocsolver_zunm2l_full_rank
       type(c_ptr) :: handle
       integer(kind(rocblas_side_left)) :: side
       integer(kind(rocblas_operation_none)) :: trans
       integer(c_int) :: m
       integer(c_int) :: n
       integer(c_int) :: k
-      real(c_float),target,dimension(:,:) :: A
+      complex(c_double_complex),target,dimension(:,:) :: A
       integer(c_int) :: lda
-      real(c_float),target,dimension(:) :: ipiv
-      real(c_float),target,dimension(:,:) :: C
+      complex(c_double_complex),target,dimension(:,:) :: ipiv
+      complex(c_double_complex),target,dimension(:,:) :: C
       integer(c_int) :: ldc
       !
-      rocsolver_sormql_full_rank = rocsolver_sormql_(handle,side,trans,m,n,k,c_loc(A),lda,c_loc(ipiv),c_loc(C),ldc)
+      rocsolver_zunm2l_full_rank = rocsolver_zunm2l_(handle,side,trans,m,n,k,c_loc(A),lda,c_loc(ipiv),c_loc(C),ldc)
     end function
 
     function rocsolver_sormql_rank_0(handle,side,trans,m,n,k,A,lda,ipiv,C,ldc)
@@ -48157,25 +48152,25 @@ module hipfort_rocsolver
       rocsolver_sormql_rank_1 = rocsolver_sormql_(handle,side,trans,m,n,k,c_loc(A),lda,c_loc(ipiv),c_loc(C),ldc)
     end function
 
-    function rocsolver_dormql_full_rank(handle,side,trans,m,n,k,A,lda,ipiv,C,ldc)
+    function rocsolver_sormql_full_rank(handle,side,trans,m,n,k,A,lda,ipiv,C,ldc)
       use iso_c_binding
       use hipfort_rocsolver_enums
       use hipfort_rocblas_enums
       implicit none
-      integer(kind(rocblas_status_success)) :: rocsolver_dormql_full_rank
+      integer(kind(rocblas_status_success)) :: rocsolver_sormql_full_rank
       type(c_ptr) :: handle
       integer(kind(rocblas_side_left)) :: side
       integer(kind(rocblas_operation_none)) :: trans
       integer(c_int) :: m
       integer(c_int) :: n
       integer(c_int) :: k
-      real(c_double),target,dimension(:,:) :: A
+      real(c_float),target,dimension(:,:) :: A
       integer(c_int) :: lda
-      real(c_double),target,dimension(:) :: ipiv
-      real(c_double),target,dimension(:,:) :: C
+      real(c_float),target,dimension(:,:) :: ipiv
+      real(c_float),target,dimension(:,:) :: C
       integer(c_int) :: ldc
       !
-      rocsolver_dormql_full_rank = rocsolver_dormql_(handle,side,trans,m,n,k,c_loc(A),lda,c_loc(ipiv),c_loc(C),ldc)
+      rocsolver_sormql_full_rank = rocsolver_sormql_(handle,side,trans,m,n,k,c_loc(A),lda,c_loc(ipiv),c_loc(C),ldc)
     end function
 
     function rocsolver_dormql_rank_0(handle,side,trans,m,n,k,A,lda,ipiv,C,ldc)
@@ -48220,25 +48215,25 @@ module hipfort_rocsolver
       rocsolver_dormql_rank_1 = rocsolver_dormql_(handle,side,trans,m,n,k,c_loc(A),lda,c_loc(ipiv),c_loc(C),ldc)
     end function
 
-    function rocsolver_cunmql_full_rank(handle,side,trans,m,n,k,A,lda,ipiv,C,ldc)
+    function rocsolver_dormql_full_rank(handle,side,trans,m,n,k,A,lda,ipiv,C,ldc)
       use iso_c_binding
       use hipfort_rocsolver_enums
       use hipfort_rocblas_enums
       implicit none
-      integer(kind(rocblas_status_success)) :: rocsolver_cunmql_full_rank
+      integer(kind(rocblas_status_success)) :: rocsolver_dormql_full_rank
       type(c_ptr) :: handle
       integer(kind(rocblas_side_left)) :: side
       integer(kind(rocblas_operation_none)) :: trans
       integer(c_int) :: m
       integer(c_int) :: n
       integer(c_int) :: k
-      complex(c_float_complex),target,dimension(:,:) :: A
+      real(c_double),target,dimension(:,:) :: A
       integer(c_int) :: lda
-      complex(c_float_complex),target,dimension(:) :: ipiv
-      complex(c_float_complex),target,dimension(:,:) :: C
+      real(c_double),target,dimension(:,:) :: ipiv
+      real(c_double),target,dimension(:,:) :: C
       integer(c_int) :: ldc
       !
-      rocsolver_cunmql_full_rank = rocsolver_cunmql_(handle,side,trans,m,n,k,c_loc(A),lda,c_loc(ipiv),c_loc(C),ldc)
+      rocsolver_dormql_full_rank = rocsolver_dormql_(handle,side,trans,m,n,k,c_loc(A),lda,c_loc(ipiv),c_loc(C),ldc)
     end function
 
     function rocsolver_cunmql_rank_0(handle,side,trans,m,n,k,A,lda,ipiv,C,ldc)
@@ -48283,25 +48278,25 @@ module hipfort_rocsolver
       rocsolver_cunmql_rank_1 = rocsolver_cunmql_(handle,side,trans,m,n,k,c_loc(A),lda,c_loc(ipiv),c_loc(C),ldc)
     end function
 
-    function rocsolver_zunmql_full_rank(handle,side,trans,m,n,k,A,lda,ipiv,C,ldc)
+    function rocsolver_cunmql_full_rank(handle,side,trans,m,n,k,A,lda,ipiv,C,ldc)
       use iso_c_binding
       use hipfort_rocsolver_enums
       use hipfort_rocblas_enums
       implicit none
-      integer(kind(rocblas_status_success)) :: rocsolver_zunmql_full_rank
+      integer(kind(rocblas_status_success)) :: rocsolver_cunmql_full_rank
       type(c_ptr) :: handle
       integer(kind(rocblas_side_left)) :: side
       integer(kind(rocblas_operation_none)) :: trans
       integer(c_int) :: m
       integer(c_int) :: n
       integer(c_int) :: k
-      complex(c_double_complex),target,dimension(:,:) :: A
+      complex(c_float_complex),target,dimension(:,:) :: A
       integer(c_int) :: lda
-      complex(c_double_complex),target,dimension(:) :: ipiv
-      complex(c_double_complex),target,dimension(:,:) :: C
+      complex(c_float_complex),target,dimension(:,:) :: ipiv
+      complex(c_float_complex),target,dimension(:,:) :: C
       integer(c_int) :: ldc
       !
-      rocsolver_zunmql_full_rank = rocsolver_zunmql_(handle,side,trans,m,n,k,c_loc(A),lda,c_loc(ipiv),c_loc(C),ldc)
+      rocsolver_cunmql_full_rank = rocsolver_cunmql_(handle,side,trans,m,n,k,c_loc(A),lda,c_loc(ipiv),c_loc(C),ldc)
     end function
 
     function rocsolver_zunmql_rank_0(handle,side,trans,m,n,k,A,lda,ipiv,C,ldc)
@@ -48344,6 +48339,27 @@ module hipfort_rocsolver
       integer(c_int) :: ldc
       !
       rocsolver_zunmql_rank_1 = rocsolver_zunmql_(handle,side,trans,m,n,k,c_loc(A),lda,c_loc(ipiv),c_loc(C),ldc)
+    end function
+
+    function rocsolver_zunmql_full_rank(handle,side,trans,m,n,k,A,lda,ipiv,C,ldc)
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_zunmql_full_rank
+      type(c_ptr) :: handle
+      integer(kind(rocblas_side_left)) :: side
+      integer(kind(rocblas_operation_none)) :: trans
+      integer(c_int) :: m
+      integer(c_int) :: n
+      integer(c_int) :: k
+      complex(c_double_complex),target,dimension(:,:) :: A
+      integer(c_int) :: lda
+      complex(c_double_complex),target,dimension(:,:) :: ipiv
+      complex(c_double_complex),target,dimension(:,:) :: C
+      integer(c_int) :: ldc
+      !
+      rocsolver_zunmql_full_rank = rocsolver_zunmql_(handle,side,trans,m,n,k,c_loc(A),lda,c_loc(ipiv),c_loc(C),ldc)
     end function
 
     function rocsolver_sormbr_full_rank(handle,storev,side,trans,m,n,k,A,lda,ipiv,C,ldc)
@@ -72946,6 +72962,198 @@ module hipfort_rocsolver
       rocsolver_zhegvd_strided_batched_rank_1 = rocsolver_zhegvd_strided_batched_(handle,itype,evect,uplo,n,c_loc(A),lda,strideA,c_loc(B),ldb,strideB,c_loc(D),strideD,c_loc(E),strideE,myInfo,batch_count)
     end function
 
+    function rocsolver_chegvdx_full_rank(handle, itype, evect, erange, uplo, n, A, lda, B, ldb, &
+                                        vl, vu, il, iu, nev, W, Z, ldz, info)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      use hipfort_rocsolver_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_chegvdx_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(rocblas_eform_ax)), value :: itype
+      integer(kind(rocblas_evect_original)), value :: evect
+      integer(kind(rocblas_erange_all)), value :: erange
+      integer(kind(rocblas_fill_upper)), value :: uplo
+      integer(c_int), value :: n
+      complex(c_float_complex), target, dimension(:,:) :: A
+      integer(c_int), value :: lda
+      complex(c_float_complex), target, dimension(:,:) :: B
+      integer(c_int), value :: ldb
+      real(c_float), value :: vl
+      real(c_float), value :: vu
+      integer(c_int), value :: il
+      integer(c_int), value :: iu
+      integer(c_int), intent(out) :: nev
+      real(c_float), target, dimension(:) :: W
+      complex(c_float_complex), target, dimension(:,:) :: Z
+      integer(c_int), value :: ldz
+      integer(c_int), intent(out) :: info
+
+      rocsolver_chegvdx_full_rank = rocsolver_chegvdx_(handle, itype, evect, erange, uplo, n, c_loc(A), lda, c_loc(B), ldb, &
+                                                       vl, vu, il, iu, nev, c_loc(W), c_loc(Z), ldz, info)
+
+    end function rocsolver_chegvdx_full_rank
+
+    function rocsolver_chegvdx_rank_1(handle, itype, evect, erange, uplo, n, A, lda, B, ldb, &
+                                        vl, vu, il, iu, nev, W, Z, ldz, info)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      use hipfort_rocsolver_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_chegvdx_rank_1
+      type(c_ptr), value :: handle
+      integer(kind(rocblas_eform_ax)), value :: itype
+      integer(kind(rocblas_evect_original)), value :: evect
+      integer(kind(rocblas_erange_all)), value :: erange
+      integer(kind(rocblas_fill_upper)), value :: uplo
+      integer(c_int), value :: n
+      complex(c_float_complex), target, dimension(:) :: A
+      integer(c_int), value :: lda
+      complex(c_float_complex), target, dimension(:) :: B
+      integer(c_int), value :: ldb
+      real(c_float), value :: vl
+      real(c_float), value :: vu
+      integer(c_int), value :: il
+      integer(c_int), value :: iu
+      integer(c_int), intent(out) :: nev
+      real(c_float), target, dimension(:) :: W
+      complex(c_float_complex), target, dimension(:) :: Z
+      integer(c_int), value :: ldz
+      integer(c_int), intent(out) :: info
+
+      rocsolver_chegvdx_rank_1 = rocsolver_chegvdx_(handle, itype, evect, erange, uplo, n, c_loc(A), lda, c_loc(B), ldb, &
+                                                       vl, vu, il, iu, nev, c_loc(W), c_loc(Z), ldz, info)
+
+    end function rocsolver_chegvdx_rank_1
+
+    function rocsolver_chegvdx_rank_0(handle, itype, evect, erange, uplo, n, A, lda, B, ldb, &
+                                        vl, vu, il, iu, nev, W, Z, ldz, info)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      use hipfort_rocsolver_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_chegvdx_rank_0
+      type(c_ptr), value :: handle
+      integer(kind(rocblas_eform_ax)), value :: itype
+      integer(kind(rocblas_evect_original)), value :: evect
+      integer(kind(rocblas_erange_all)), value :: erange
+      integer(kind(rocblas_fill_upper)), value :: uplo
+      integer(c_int), value :: n
+      complex(c_float_complex), target :: A
+      integer(c_int), value :: lda
+      complex(c_float_complex), target :: B
+      integer(c_int), value :: ldb
+      real(c_float), value :: vl
+      real(c_float), value :: vu
+      integer(c_int), value :: il
+      integer(c_int), value :: iu
+      integer(c_int), intent(out) :: nev
+      real(c_float), target :: W
+      complex(c_float_complex), target :: Z
+      integer(c_int), value :: ldz
+      integer(c_int), intent(out) :: info
+
+      rocsolver_chegvdx_rank_0 = rocsolver_chegvdx_(handle, itype, evect, erange, uplo, n, c_loc(A), lda, c_loc(B), ldb, &
+                                                       vl, vu, il, iu, nev, c_loc(W), c_loc(Z), ldz, info)
+
+    end function rocsolver_chegvdx_rank_0
+
+    function rocsolver_zhegvdx_full_rank(handle, itype, evect, erange, uplo, n, A, lda, B, ldb, &
+                                        vl, vu, il, iu, nev, W, Z, ldz, info)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      use hipfort_rocsolver_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_zhegvdx_full_rank
+      type(c_ptr), value :: handle
+      integer(kind(rocblas_eform_ax)), value :: itype
+      integer(kind(rocblas_evect_original)), value :: evect
+      integer(kind(rocblas_erange_all)), value :: erange
+      integer(kind(rocblas_fill_upper)), value :: uplo
+      integer(c_int), value :: n
+      complex(c_double_complex), target, dimension(:,:) :: A
+      integer(c_int), value :: lda
+      complex(c_double_complex), target, dimension(:,:) :: B
+      integer(c_int), value :: ldb
+      real(c_double), value :: vl
+      real(c_double), value :: vu
+      integer(c_int), value :: il
+      integer(c_int), value :: iu
+      integer(c_int), intent(out) :: nev
+      real(c_double), target, dimension(:) :: W
+      complex(c_double_complex), target, dimension(:,:) :: Z
+      integer(c_int), value :: ldz
+      integer(c_int), intent(out) :: info
+
+      rocsolver_zhegvdx_full_rank = rocsolver_zhegvdx_(handle, itype, evect, erange, uplo, n, c_loc(A), lda, c_loc(B), ldb, &
+                                                       vl, vu, il, iu, nev, c_loc(W), c_loc(Z), ldz, info)
+
+    end function rocsolver_zhegvdx_full_rank
+
+    function rocsolver_zhegvdx_rank_1(handle, itype, evect, erange, uplo, n, A, lda, B, ldb, &
+                                        vl, vu, il, iu, nev, W, Z, ldz, info)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      use hipfort_rocsolver_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_zhegvdx_rank_1
+      type(c_ptr), value :: handle
+      integer(kind(rocblas_eform_ax)), value :: itype
+      integer(kind(rocblas_evect_original)), value :: evect
+      integer(kind(rocblas_erange_all)), value :: erange
+      integer(kind(rocblas_fill_upper)), value :: uplo
+      integer(c_int), value :: n
+      complex(c_double_complex), target, dimension(:) :: A
+      integer(c_int), value :: lda
+      complex(c_double_complex), target, dimension(:) :: B
+      integer(c_int), value :: ldb
+      real(c_double), value :: vl
+      real(c_double), value :: vu
+      integer(c_int), value :: il
+      integer(c_int), value :: iu
+      integer(c_int), intent(out) :: nev
+      real(c_double), target, dimension(:) :: W
+      complex(c_double_complex), target, dimension(:) :: Z
+      integer(c_int), value :: ldz
+      integer(c_int), intent(out) :: info
+
+      rocsolver_zhegvdx_rank_1 = rocsolver_zhegvdx_(handle, itype, evect, erange, uplo, n, c_loc(A), lda, c_loc(B), ldb, &
+                                                       vl, vu, il, iu, nev, c_loc(W), c_loc(Z), ldz, info)
+
+    end function rocsolver_zhegvdx_rank_1
+
+    function rocsolver_zhegvdx_rank_0(handle, itype, evect, erange, uplo, n, A, lda, B, ldb, &
+                                        vl, vu, il, iu, nev, W, Z, ldz, info)
+      use iso_c_binding
+      use hipfort_rocblas_enums
+      use hipfort_rocsolver_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_zhegvdx_rank_0
+      type(c_ptr), value :: handle
+      integer(kind(rocblas_eform_ax)), value :: itype
+      integer(kind(rocblas_evect_original)), value :: evect
+      integer(kind(rocblas_erange_all)), value :: erange
+      integer(kind(rocblas_fill_upper)), value :: uplo
+      integer(c_int), value :: n
+      complex(c_double_complex), target :: A
+      integer(c_int), value :: lda
+      complex(c_double_complex), target :: B
+      integer(c_int), value :: ldb
+      real(c_double), value :: vl
+      real(c_double), value :: vu
+      integer(c_int), value :: il
+      integer(c_int), value :: iu
+      integer(c_int), intent(out) :: nev
+      real(c_double), target :: W
+      complex(c_double_complex), target :: Z
+      integer(c_int), value :: ldz
+      integer(c_int), intent(out) :: info
+
+      rocsolver_zhegvdx_rank_0 = rocsolver_zhegvdx_(handle, itype, evect, erange, uplo, n, c_loc(A), lda, c_loc(B), ldb, &
+                                                       vl, vu, il, iu, nev, c_loc(W), c_loc(Z), ldz, info)
+
+    end function rocsolver_zhegvdx_rank_0
+  
     function rocsolver_sgetri_outofplace_full_rank(handle,n,A,lda,ipiv,C,ldc,myInfo)
       use iso_c_binding
       use hipfort_rocsolver_enums
@@ -76318,197 +76526,5 @@ module hipfort_rocsolver
       rocsolver_zsytrf_strided_batched_rank_1 = rocsolver_zsytrf_strided_batched_(handle,uplo,n,c_loc(A),lda,strideA,c_loc(ipiv),strideP,myInfo,batch_count)
     end function
 
-    function rocsolver_chegvdx_full_rank(handle, itype, evect, erange, uplo, n, A, lda, B, ldb, &
-                                        vl, vu, il, iu, nev, W, Z, ldz, info)
-      use iso_c_binding
-      use hipfort_rocblas_enums
-      use hipfort_rocsolver_enums
-      implicit none
-      integer(kind(rocblas_status_success)) :: rocsolver_chegvdx_full_rank
-      type(c_ptr), value :: handle
-      integer(kind(rocblas_eform_ax)), value :: itype
-      integer(kind(rocblas_evect_original)), value :: evect
-      integer(kind(rocblas_erange_all)), value :: erange
-      integer(kind(rocblas_fill_upper)), value :: uplo
-      integer(c_int), value :: n
-      complex(c_float_complex), target, dimension(:,:) :: A
-      integer(c_int), value :: lda
-      complex(c_float_complex), target, dimension(:,:) :: B
-      integer(c_int), value :: ldb
-      real(c_float), value :: vl
-      real(c_float), value :: vu
-      integer(c_int), value :: il
-      integer(c_int), value :: iu
-      integer(c_int), intent(out) :: nev
-      real(c_float), target, dimension(:) :: W
-      complex(c_float_complex), target, dimension(:,:) :: Z
-      integer(c_int), value :: ldz
-      integer(c_int), intent(out) :: info
-
-      rocsolver_chegvdx_full_rank = rocsolver_chegvdx_(handle, itype, evect, erange, uplo, n, c_loc(A), lda, c_loc(B), ldb, &
-                                                       vl, vu, il, iu, nev, c_loc(W), c_loc(Z), ldz, info)
-
-    end function rocsolver_chegvdx_full_rank
-
-    function rocsolver_chegvdx_rank_1(handle, itype, evect, erange, uplo, n, A, lda, B, ldb, &
-                                        vl, vu, il, iu, nev, W, Z, ldz, info)
-      use iso_c_binding
-      use hipfort_rocblas_enums
-      use hipfort_rocsolver_enums
-      implicit none
-      integer(kind(rocblas_status_success)) :: rocsolver_chegvdx_rank_1
-      type(c_ptr), value :: handle
-      integer(kind(rocblas_eform_ax)), value :: itype
-      integer(kind(rocblas_evect_original)), value :: evect
-      integer(kind(rocblas_erange_all)), value :: erange
-      integer(kind(rocblas_fill_upper)), value :: uplo
-      integer(c_int), value :: n
-      complex(c_float_complex), target, dimension(:) :: A
-      integer(c_int), value :: lda
-      complex(c_float_complex), target, dimension(:) :: B
-      integer(c_int), value :: ldb
-      real(c_float), value :: vl
-      real(c_float), value :: vu
-      integer(c_int), value :: il
-      integer(c_int), value :: iu
-      integer(c_int), intent(out) :: nev
-      real(c_float), target, dimension(:) :: W
-      complex(c_float_complex), target, dimension(:) :: Z
-      integer(c_int), value :: ldz
-      integer(c_int), intent(out) :: info
-
-      rocsolver_chegvdx_rank_1 = rocsolver_chegvdx_(handle, itype, evect, erange, uplo, n, c_loc(A), lda, c_loc(B), ldb, &
-                                                       vl, vu, il, iu, nev, c_loc(W), c_loc(Z), ldz, info)
-
-    end function rocsolver_chegvdx_rank_1
-
-    function rocsolver_chegvdx_rank_0(handle, itype, evect, erange, uplo, n, A, lda, B, ldb, &
-                                        vl, vu, il, iu, nev, W, Z, ldz, info)
-      use iso_c_binding
-      use hipfort_rocblas_enums
-      use hipfort_rocsolver_enums
-      implicit none
-      integer(kind(rocblas_status_success)) :: rocsolver_chegvdx_rank_0
-      type(c_ptr), value :: handle
-      integer(kind(rocblas_eform_ax)), value :: itype
-      integer(kind(rocblas_evect_original)), value :: evect
-      integer(kind(rocblas_erange_all)), value :: erange
-      integer(kind(rocblas_fill_upper)), value :: uplo
-      integer(c_int), value :: n
-      complex(c_float_complex), target :: A
-      integer(c_int), value :: lda
-      complex(c_float_complex), target :: B
-      integer(c_int), value :: ldb
-      real(c_float), value :: vl
-      real(c_float), value :: vu
-      integer(c_int), value :: il
-      integer(c_int), value :: iu
-      integer(c_int), intent(out) :: nev
-      real(c_float), target :: W
-      complex(c_float_complex), target :: Z
-      integer(c_int), value :: ldz
-      integer(c_int), intent(out) :: info
-
-      rocsolver_chegvdx_rank_0 = rocsolver_chegvdx_(handle, itype, evect, erange, uplo, n, c_loc(A), lda, c_loc(B), ldb, &
-                                                       vl, vu, il, iu, nev, c_loc(W), c_loc(Z), ldz, info)
-
-    end function rocsolver_chegvdx_rank_0
-
-    function rocsolver_zhegvdx_full_rank(handle, itype, evect, erange, uplo, n, A, lda, B, ldb, &
-                                        vl, vu, il, iu, nev, W, Z, ldz, info)
-      use iso_c_binding
-      use hipfort_rocblas_enums
-      use hipfort_rocsolver_enums
-      implicit none
-      integer(kind(rocblas_status_success)) :: rocsolver_zhegvdx_full_rank
-      type(c_ptr), value :: handle
-      integer(kind(rocblas_eform_ax)), value :: itype
-      integer(kind(rocblas_evect_original)), value :: evect
-      integer(kind(rocblas_erange_all)), value :: erange
-      integer(kind(rocblas_fill_upper)), value :: uplo
-      integer(c_int), value :: n
-      complex(c_double_complex), target, dimension(:,:) :: A
-      integer(c_int), value :: lda
-      complex(c_double_complex), target, dimension(:,:) :: B
-      integer(c_int), value :: ldb
-      real(c_double), value :: vl
-      real(c_double), value :: vu
-      integer(c_int), value :: il
-      integer(c_int), value :: iu
-      integer(c_int), intent(out) :: nev
-      real(c_double), target, dimension(:) :: W
-      complex(c_double_complex), target, dimension(:,:) :: Z
-      integer(c_int), value :: ldz
-      integer(c_int), intent(out) :: info
-
-      rocsolver_zhegvdx_full_rank = rocsolver_zhegvdx_(handle, itype, evect, erange, uplo, n, c_loc(A), lda, c_loc(B), ldb, &
-                                                       vl, vu, il, iu, nev, c_loc(W), c_loc(Z), ldz, info)
-
-    end function rocsolver_zhegvdx_full_rank
-
-    function rocsolver_zhegvdx_rank_1(handle, itype, evect, erange, uplo, n, A, lda, B, ldb, &
-                                        vl, vu, il, iu, nev, W, Z, ldz, info)
-      use iso_c_binding
-      use hipfort_rocblas_enums
-      use hipfort_rocsolver_enums
-      implicit none
-      integer(kind(rocblas_status_success)) :: rocsolver_zhegvdx_rank_1
-      type(c_ptr), value :: handle
-      integer(kind(rocblas_eform_ax)), value :: itype
-      integer(kind(rocblas_evect_original)), value :: evect
-      integer(kind(rocblas_erange_all)), value :: erange
-      integer(kind(rocblas_fill_upper)), value :: uplo
-      integer(c_int), value :: n
-      complex(c_double_complex), target, dimension(:) :: A
-      integer(c_int), value :: lda
-      complex(c_double_complex), target, dimension(:) :: B
-      integer(c_int), value :: ldb
-      real(c_double), value :: vl
-      real(c_double), value :: vu
-      integer(c_int), value :: il
-      integer(c_int), value :: iu
-      integer(c_int), intent(out) :: nev
-      real(c_double), target, dimension(:) :: W
-      complex(c_double_complex), target, dimension(:) :: Z
-      integer(c_int), value :: ldz
-      integer(c_int), intent(out) :: info
-
-      rocsolver_zhegvdx_rank_1 = rocsolver_zhegvdx_(handle, itype, evect, erange, uplo, n, c_loc(A), lda, c_loc(B), ldb, &
-                                                       vl, vu, il, iu, nev, c_loc(W), c_loc(Z), ldz, info)
-
-    end function rocsolver_zhegvdx_rank_1
-
-    function rocsolver_zhegvdx_rank_0(handle, itype, evect, erange, uplo, n, A, lda, B, ldb, &
-                                        vl, vu, il, iu, nev, W, Z, ldz, info)
-      use iso_c_binding
-      use hipfort_rocblas_enums
-      use hipfort_rocsolver_enums
-      implicit none
-      integer(kind(rocblas_status_success)) :: rocsolver_zhegvdx_rank_0
-      type(c_ptr), value :: handle
-      integer(kind(rocblas_eform_ax)), value :: itype
-      integer(kind(rocblas_evect_original)), value :: evect
-      integer(kind(rocblas_erange_all)), value :: erange
-      integer(kind(rocblas_fill_upper)), value :: uplo
-      integer(c_int), value :: n
-      complex(c_double_complex), target :: A
-      integer(c_int), value :: lda
-      complex(c_double_complex), target :: B
-      integer(c_int), value :: ldb
-      real(c_double), value :: vl
-      real(c_double), value :: vu
-      integer(c_int), value :: il
-      integer(c_int), value :: iu
-      integer(c_int), intent(out) :: nev
-      real(c_double), target :: W
-      complex(c_double_complex), target :: Z
-      integer(c_int), value :: ldz
-      integer(c_int), intent(out) :: info
-
-      rocsolver_zhegvdx_rank_0 = rocsolver_zhegvdx_(handle, itype, evect, erange, uplo, n, c_loc(A), lda, c_loc(B), ldb, &
-                                                       vl, vu, il, iu, nev, c_loc(W), c_loc(Z), ldz, info)
-
-    end function rocsolver_zhegvdx_rank_0
-  
 #endif
 end module hipfort_rocsolver
