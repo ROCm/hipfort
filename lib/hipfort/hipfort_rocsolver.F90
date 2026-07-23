@@ -26230,12 +26230,12 @@ module hipfort_rocsolver
 
 #ifdef USE_FPOINTER_INTERFACES
     module procedure &
-      rocsolver_dsytf2_full_rank,&
       rocsolver_dsytf2_rank_0,&
-      rocsolver_dsytf2_rank_1
+      rocsolver_dsytf2_rank_1,&
+      rocsolver_dsytf2_full_rank
 #endif
   end interface
-  
+
   interface rocsolver_csytf2
     function rocsolver_csytf2_(handle,uplo,n,A,lda,ipiv,myInfo) bind(c, name="rocsolver_csytf2")
       use iso_c_binding
@@ -26254,12 +26254,12 @@ module hipfort_rocsolver
 
 #ifdef USE_FPOINTER_INTERFACES
     module procedure &
-      rocsolver_csytf2_full_rank,&
       rocsolver_csytf2_rank_0,&
-      rocsolver_csytf2_rank_1
+      rocsolver_csytf2_rank_1,&
+      rocsolver_csytf2_full_rank
 #endif
   end interface
-  
+
   interface rocsolver_zsytf2
     function rocsolver_zsytf2_(handle,uplo,n,A,lda,ipiv,myInfo) bind(c, name="rocsolver_zsytf2")
       use iso_c_binding
@@ -26278,113 +26278,116 @@ module hipfort_rocsolver
 
 #ifdef USE_FPOINTER_INTERFACES
     module procedure &
-      rocsolver_zsytf2_full_rank,&
       rocsolver_zsytf2_rank_0,&
-      rocsolver_zsytf2_rank_1
+      rocsolver_zsytf2_rank_1,&
+      rocsolver_zsytf2_full_rank
 #endif
   end interface
-  !>     \brief SYTF2_BATCHED computes the factorization of a batch of symmetric indefinite
+
+  !>     \brief The SYTF2_BATCHED functions computes the factorization of a batch of symmetric and
+  !>     maybe indefinite
   !>     matrices using Bunch-Kaufman diagonal pivoting.
-  !> 
+  !>
   !>     \details
-  !>     (This is the unblocked version of the algorithm).
-  !> 
+  !>     (This is the unblocked version of the algorithm.)
+  !>
   !>     The factorization has the form
-  !> 
+  !>
   !>     \f[
   !>         \begin{array}{cl}
-  !>         A_i = U_i D_i U_i^T & \: \text{or}\newline
-  !>
-  !>         A_i = L_i D_i L_i^T &
+  !>         A_l^{} = U_l^{} D_l^{} U_l^T & \: \text{or}\\%
+  !>         A_l^{} = L_l^{} D_l^{} L_l^T &
   !>         \end{array}
   !>     \f]
-  !> 
-  !>     where \f$U_i\f$ or \f$L_i\f$ is a product of permutation and unit upper/lower
-  !>     triangular matrices (depending on the value of uplo), and \f$D_i\f$ is a symmetric
-  !>     block diagonal matrix with 1-by-1 and 2-by-2 diagonal blocks \f$D_i(k)\f$.
-  !> 
-  !>     Specifically, \f$U_i\f$ and \f$L_i\f$ are computed as
-  !> 
+  !>
+  !>     where \f$U_l\f$ or \f$L_l\f$ is a product of permutation and unit upper/lower
+  !>     triangular matrices (depending on the value of ``uplo``), and \f$D_l\f$ is a symmetric
+  !>     block diagonal matrix with 1-by-1 and 2-by-2 diagonal blocks \f$D_{kl}\f$.
+  !>
+  !>     Specifically, \f$U_l\f$ and \f$L_l\f$ are computed as
+  !>
   !>     \f[
   !>         \begin{array}{cl}
-  !>         U_i = P_i(n) U_i(n) \cdots P_i(k) U_i(k) \cdots & \: \text{and}\newline
-  !>
-  !>         L_i = P_i(1) L_i(1) \cdots P_i(k) L_i(k) \cdots &
+  !>         U_l = P_l(n) U_l(n) \cdots P_l(k) U_l(k) \cdots & \: \text{and}\\%
+  !>         L_l = P_l(1) L_l(1) \cdots P_l(k) L_l(k) \cdots &
   !>         \end{array}
   !>     \f]
-  !> 
+  !>
   !>     where \f$k\f$ decreases from \f$n\f$ to 1 (increases from 1 to \f$n\f$) in steps of 1 or 2,
-  !>     depending on the order of block \f$D_i(k)\f$, and \f$P_i(k)\f$ is a permutation matrix defined by
-  !>     \f$ipiv_i[k]\f$. If we let \f$s\f$ denote the order of block \f$D_i(k)\f$, then \f$U_i(k)\f$
-  !>     and \f$L_i(k)\f$ are unit upper/lower triangular matrices defined as
-  !> 
+  !>     depending on the order of block \f$D_{kl}\f$, and \f$P_l(k)\f$ is a permutation matrix
+  !>     defined by
+  !>     \f$ipiv_l[k]\f$. If \f$s\f$ denotes the order of block \f$D_{kl}\f$, then \f$U_l(k)\f$
+  !>     and \f$L_l(k)\f$ are unit upper/lower triangular matrices defined as
+  !>
   !>     \f[
-  !>         U_i(k) = \left[ \begin{array}{ccc}
-  !>         I_{k-s} & v & 0 \newline
-  !>
-  !>         0 & I_s & 0 \newline
-  !>
-  !>         0 & 0 & I_{n-k}
+  !>         U_l(k) = \left[ \begin{array}{ccc}
+  !>         I_{k-s} & v   & 0       \\%
+  !>         0       & I_s & 0       \\%
+  !>         0       & 0   & I_{n-k}
   !>         \end{array} \right]
   !>     \f]
-  !> 
+  !>
   !>     and
-  !> 
+  !>
   !>     \f[
-  !>         L_i(k) = \left[ \begin{array}{ccc}
-  !>         I_{k-1} & 0 & 0 \newline
-  !>
-  !>         0 & I_s & 0 \newline
-  !>
-  !>         0 & v & I_{n-k-s+1}
+  !>         L_l(k) = \left[ \begin{array}{ccc}
+  !>         I_{k-1} & 0   & 0           \\%
+  !>         0       & I_s & 0           \\%
+  !>         0       & v   & I_{n-k-s+1}
   !>         \end{array} \right].
   !>     \f]
-  !> 
-  !>     If \f$s = 1\f$, then \f$D_i(k)\f$ is stored in \f$A_i[k,k]\f$ and \f$v\f$ is stored in the upper/lower
-  !>     part of column \f$k\f$ of \f$A_i\f$.
-  !>     If \f$s = 2\f$ and uplo is upper, then \f$D_i(k)\f$ is stored in \f$A_i[k-1,k-1]\f$, \f$A_i[k-1,k]\f$,
-  !>     and \f$A_i[k,k]\f$, and \f$v\f$ is stored in the upper parts of columns \f$k-1\f$ and \f$k\f$ of \f$A_i\f$.
-  !>     If \f$s = 2\f$ and uplo is lower, then \f$D_i(k)\f$ is stored in \f$A_i[k,k]\f$, \f$A_i[k+1,k]\f$,
-  !>     and \f$A_i[k+1,k+1]\f$, and \f$v\f$ is stored in the lower parts of columns \f$k\f$ and \f$k+1\f$ of \f$A_i\f$.
-  !> 
+  !>
+  !>     If \f$s = 1\f$, then \f$D_{kl}\f$ is stored in \f$A_l[k,k]\f$, and \f$v\f$ is stored in the
+  !>     upper/lower
+  !>     part of column \f$k\f$ of \f$A_l\f$.
+  !>     If \f$s = 2\f$ and ``uplo`` is ``upper``, then \f$D_{kl}\f$ is stored in
+  !>     \f$A_l[k-1,k-1]\f$, \f$A_l[k-1,k]\f$,
+  !>     and \f$A_l[k,k]\f$, and \f$v\f$ is stored in the upper parts of columns \f$k-1\f$ and
+  !>     \f$k\f$ of \f$A_l\f$.
+  !>     If \f$s = 2\f$ and ``uplo`` is ``lower``, then \f$D_{kl}\f$ is stored in \f$A_l[k,k]\f$,
+  !>     \f$A_l[k+1,k]\f$,
+  !>     and \f$A_l[k+1,k+1]\f$, and \f$v\f$ is stored in the lower parts of columns \f$k\f$ and
+  !>     \f$k+1\f$ of \f$A_l\f$.
+  !>
   !>     @param[in]
-  !>     handle    rocblas_handle.
+  !>     handle      rocblas_handle.
   !>     @param[in]
-  !>     uplo      rocblas_fill.\n
-  !>               Specifies whether the upper or lower part of the matrices A_i are stored.
-  !>               If uplo indicates lower (or upper), then the upper (or lower)
-  !>               part of A_i is not used.
+  !>     uplo        rocblas_fill.
+  !>                 Specifies whether the upper or lower part of the matrices A_l are stored.
+  !>                 If uplo indicates lower (or upper), then the upper (or lower)
+  !>                 part of A_l is not used.
   !>     @param[in]
-  !>     n         rocblas_int. n >= 0.\n
-  !>               The number of rows and columns of all matrices A_i in the batch.
+  !>     n           rocblas_int. n >= 0.
+  !>                 The number of rows and columns of all matrices A_l in the batch.
   !>     @param[inout]
-  !>     A         array of pointers to type. Each pointer points to an array on the GPU of dimension lda*n.\n
-  !>               On entry, the symmetric matrices A_i to be factored.
-  !>               On exit, the block diagonal matrices D_i and the multipliers needed to
-  !>               compute U_i or L_i.
+  !>     A array of pointers to type. Each pointer points to an array on the GPU of dimension lda*n.
+  !>                 On entry, the symmetric matrices A_l to be factored.
+  !>                 On exit, the block diagonal matrices D_l and the multipliers needed to
+  !>                 compute U_l or L_l.
   !>     @param[in]
-  !>     lda       rocblas_int. lda >= n.\n
-  !>               Specifies the leading dimension of matrices A_i.
+  !>     lda         rocblas_int. lda >= n.
+  !>                 Specifies the leading dimension of matrices A_l.
   !>     @param[out]
-  !>     ipiv      pointer to rocblas_int. Array on the GPU of dimension n.\n
-  !>               The vector of pivot indices. Elements of ipiv are 1-based indices.
-  !>               For 1 <= k <= n, if ipiv_i[k] > 0 then rows and columns k and ipiv_i[k]
-  !>               were interchanged and D_i[k,k] is a 1-by-1 diagonal block.
-  !>               If, instead, ipiv_i[k] = ipiv_i[k-1] < 0 and uplo is upper (or ipiv_i[k]
-  !>               = ipiv_i[k+1] < 0 and uplo is lower), then rows and columns k-1 and
-  !>               -ipiv_i[k] (or rows and columns k+1 and -ipiv_i[k]) were interchanged
-  !>               and D_i[k-1,k-1] to D_i[k,k] (or D_i[k,k] to D_i[k+1,k+1]) is a 2-by-2
-  !>               diagonal block.
+  !>     ipiv        pointer to rocblas_int. Array on the GPU of dimension n.
+  !>                 The vector of pivot indices. Elements of ipiv are 1-based indices.
+  !>                 For 1 <= k <= n, if ipiv_l[k] > 0, then rows and columns k and ipiv_l[k]
+  !>                 were interchanged, and D_l[k,k] is a 1-by-1 diagonal block.
+  !>                 If, instead, ipiv_l[k] = ipiv_l[k-1] < 0 and uplo is upper (or ipiv_l[k]
+  !>                 = ipiv_l[k+1] < 0 and uplo is lower), then rows and columns k-1 and
+  !>                 -ipiv_l[k] (or rows and columns k+1 and -ipiv_l[k]) were interchanged,
+  !>                 and D_l[k-1,k-1] to D_l[k,k] (or D_l[k,k] to D_l[k+1,k+1]) is a 2-by-2
+  !>                 diagonal block.
   !>     @param[in]
-  !>     strideP   rocblas_stride.\n
-  !>               Stride from the start of one vector ipiv_i to the next one ipiv_(i+1).
-  !>               There is no restriction for the value of strideP. Normal use case is strideP >= n.
+  !>     strideP     rocblas_stride.
+  !>                 Stride from the start of one vector ipiv_l to the next one ipiv_(l+1).
+  !>                 There is no restriction for the value of strideP. The normal use case is
+  !>                 strideP >= n.
   !>     @param[out]
-  !>     info      pointer to rocblas_int. Array of batch_count integers on the GPU.\n
-  !>               If info[i] = 0, successful exit for factorization of A_i.
-  !>               If info[i] = j > 0, D_i is singular. D_i[j,j] is the first diagonal zero.
+  !>     info        pointer to rocblas_int. Array of batch_count integers on the GPU.
+  !>                 If info[l] = 0, successful exit for factorization of A_l.
+  !>                 If info[l] = i > 0, D_l is singular. D_l[i,i] is the first diagonal zero.
   !>     @param[in]
-  !>     batch_count rocblas_int. batch_count >= 0.\n
+  !>     batch_count rocblas_int. batch_count >= 0.
   !>                 Number of matrices in the batch.
   interface rocsolver_ssytf2_batched
     function rocsolver_ssytf2_batched_(handle,uplo,n,A,lda,ipiv,strideP,myInfo,batch_count) bind(c, name="rocsolver_ssytf2_batched")
@@ -26406,12 +26409,12 @@ module hipfort_rocsolver
 
 #ifdef USE_FPOINTER_INTERFACES
     module procedure &
-      rocsolver_ssytf2_batched_full_rank,&
       rocsolver_ssytf2_batched_rank_0,&
-      rocsolver_ssytf2_batched_rank_1
+      rocsolver_ssytf2_batched_rank_1,&
+      rocsolver_ssytf2_batched_full_rank
 #endif
   end interface
-  
+
   interface rocsolver_dsytf2_batched
     function rocsolver_dsytf2_batched_(handle,uplo,n,A,lda,ipiv,strideP,myInfo,batch_count) bind(c, name="rocsolver_dsytf2_batched")
       use iso_c_binding
@@ -26432,12 +26435,12 @@ module hipfort_rocsolver
 
 #ifdef USE_FPOINTER_INTERFACES
     module procedure &
-      rocsolver_dsytf2_batched_full_rank,&
       rocsolver_dsytf2_batched_rank_0,&
-      rocsolver_dsytf2_batched_rank_1
+      rocsolver_dsytf2_batched_rank_1,&
+      rocsolver_dsytf2_batched_full_rank
 #endif
   end interface
-  
+
   interface rocsolver_csytf2_batched
     function rocsolver_csytf2_batched_(handle,uplo,n,A,lda,ipiv,strideP,myInfo,batch_count) bind(c, name="rocsolver_csytf2_batched")
       use iso_c_binding
@@ -26458,12 +26461,12 @@ module hipfort_rocsolver
 
 #ifdef USE_FPOINTER_INTERFACES
     module procedure &
-      rocsolver_csytf2_batched_full_rank,&
       rocsolver_csytf2_batched_rank_0,&
-      rocsolver_csytf2_batched_rank_1
+      rocsolver_csytf2_batched_rank_1,&
+      rocsolver_csytf2_batched_full_rank
 #endif
   end interface
-  
+
   interface rocsolver_zsytf2_batched
     function rocsolver_zsytf2_batched_(handle,uplo,n,A,lda,ipiv,strideP,myInfo,batch_count) bind(c, name="rocsolver_zsytf2_batched")
       use iso_c_binding
@@ -26484,117 +26487,121 @@ module hipfort_rocsolver
 
 #ifdef USE_FPOINTER_INTERFACES
     module procedure &
-      rocsolver_zsytf2_batched_full_rank,&
       rocsolver_zsytf2_batched_rank_0,&
-      rocsolver_zsytf2_batched_rank_1
+      rocsolver_zsytf2_batched_rank_1,&
+      rocsolver_zsytf2_batched_full_rank
 #endif
   end interface
-  !>     \brief SYTF2_STRIDED_BATCHED computes the factorization of a batch of symmetric indefinite
+
+  !>     \brief The SYTF2_STRIDED_BATCHED functions compute the factorization of a batch of
+  !>     symmetric and maybe indefinite
   !>     matrices using Bunch-Kaufman diagonal pivoting.
-  !> 
+  !>
   !>     \details
-  !>     (This is the unblocked version of the algorithm).
-  !> 
+  !>     (This is the unblocked version of the algorithm.)
+  !>
   !>     The factorization has the form
-  !> 
+  !>
   !>     \f[
   !>         \begin{array}{cl}
-  !>         A_i = U_i D_i U_i^T & \: \text{or}\newline
-  !>
-  !>         A_i = L_i D_i L_i^T &
+  !>         A_l^{} = U_l^{} D_l^{} U_l^T & \: \text{or}\\%
+  !>         A_l^{} = L_l^{} D_l^{} L_l^T &
   !>         \end{array}
   !>     \f]
-  !> 
-  !>     where \f$U_i\f$ or \f$L_i\f$ is a product of permutation and unit upper/lower
-  !>     triangular matrices (depending on the value of uplo), and \f$D_i\f$ is a symmetric
-  !>     block diagonal matrix with 1-by-1 and 2-by-2 diagonal blocks \f$D_i(k)\f$.
-  !> 
-  !>     Specifically, \f$U_i\f$ and \f$L_i\f$ are computed as
-  !> 
+  !>
+  !>     where \f$U_l\f$ or \f$L_l\f$ is a product of permutation and unit upper/lower
+  !>     triangular matrices (depending on the value of uplo), and \f$D_l\f$ is a symmetric
+  !>     block diagonal matrix with 1-by-1 and 2-by-2 diagonal blocks \f$D_{kl}\f$.
+  !>
+  !>     Specifically, \f$U_l\f$ and \f$L_l\f$ are computed as
+  !>
   !>     \f[
   !>         \begin{array}{cl}
-  !>         U_i = P_i(n) U_i(n) \cdots P_i(k) U_i(k) \cdots & \: \text{and}\newline
-  !>
-  !>         L_i = P_i(1) L_i(1) \cdots P_i(k) L_i(k) \cdots &
+  !>         U_l = P_l(n) U_l(n) \cdots P_l(k) U_l(k) \cdots & \: \text{and}\\%
+  !>         L_l = P_l(1) L_l(1) \cdots P_l(k) L_l(k) \cdots &
   !>         \end{array}
   !>     \f]
-  !> 
+  !>
   !>     where \f$k\f$ decreases from \f$n\f$ to 1 (increases from 1 to \f$n\f$) in steps of 1 or 2,
-  !>     depending on the order of block \f$D_i(k)\f$, and \f$P_i(k)\f$ is a permutation matrix defined by
-  !>     \f$ipiv_i[k]\f$. If we let \f$s\f$ denote the order of block \f$D_i(k)\f$, then \f$U_i(k)\f$
-  !>     and \f$L_i(k)\f$ are unit upper/lower triangular matrices defined as
-  !> 
+  !>     depending on the order of block \f$D_{kl}\f$, and \f$P_l(k)\f$ is a permutation matrix
+  !>     defined by
+  !>     \f$ipiv_l[k]\f$. If \f$s\f$ denotes the order of block \f$D_{kl}\f$, then \f$U_l(k)\f$
+  !>     and \f$L_l(k)\f$ are unit upper/lower triangular matrices defined as
+  !>
   !>     \f[
-  !>         U_i(k) = \left[ \begin{array}{ccc}
-  !>         I_{k-s} & v & 0 \newline
-  !>
-  !>         0 & I_s & 0 \newline
-  !>
-  !>         0 & 0 & I_{n-k}
+  !>         U_l(k) = \left[ \begin{array}{ccc}
+  !>         I_{k-s} & v   & 0        \\%
+  !>         0       & I_s & 0        \\%
+  !>         0       & 0   & I_{n-k}
   !>         \end{array} \right]
   !>     \f]
-  !> 
+  !>
   !>     and
-  !> 
+  !>
   !>     \f[
-  !>         L_i(k) = \left[ \begin{array}{ccc}
-  !>         I_{k-1} & 0 & 0 \newline
-  !>
-  !>         0 & I_s & 0 \newline
-  !>
-  !>         0 & v & I_{n-k-s+1}
+  !>         L_l(k) = \left[ \begin{array}{ccc}
+  !>         I_{k-1} & 0   & 0           \\%
+  !>         0       & I_s & 0           \\%
+  !>         0       & v   & I_{n-k-s+1}
   !>         \end{array} \right].
   !>     \f]
-  !> 
-  !>     If \f$s = 1\f$, then \f$D_i(k)\f$ is stored in \f$A_i[k,k]\f$ and \f$v\f$ is stored in the upper/lower
-  !>     part of column \f$k\f$ of \f$A_i\f$.
-  !>     If \f$s = 2\f$ and uplo is upper, then \f$D_i(k)\f$ is stored in \f$A_i[k-1,k-1]\f$, \f$A_i[k-1,k]\f$,
-  !>     and \f$A_i[k,k]\f$, and \f$v\f$ is stored in the upper parts of columns \f$k-1\f$ and \f$k\f$ of \f$A_i\f$.
-  !>     If \f$s = 2\f$ and uplo is lower, then \f$D_i(k)\f$ is stored in \f$A_i[k,k]\f$, \f$A_i[k+1,k]\f$,
-  !>     and \f$A_i[k+1,k+1]\f$, and \f$v\f$ is stored in the lower parts of columns \f$k\f$ and \f$k+1\f$ of \f$A_i\f$.
-  !> 
+  !>
+  !>     If \f$s = 1\f$, then \f$D_{kl}\f$ is stored in \f$A_l[k,k]\f$ and \f$v\f$ is stored in the
+  !>     upper/lower
+  !>     part of column \f$k\f$ of \f$A_l\f$.
+  !>     If \f$s = 2\f$ and ``uplo`` is ``upper``, then \f$D_{kl}\f$ is stored in
+  !>     \f$A_l[k-1,k-1]\f$, \f$A_l[k-1,k]\f$,
+  !>     and \f$A_l[k,k]\f$, and \f$v\f$ is stored in the upper parts of columns \f$k-1\f$ and
+  !>     \f$k\f$ of \f$A_l\f$.
+  !>     If \f$s = 2\f$ and ``uplo`` is ``lower``, then \f$D_{kl}\f$ is stored in \f$A_l[k,k]\f$,
+  !>     \f$A_l[k+1,k]\f$,
+  !>     and \f$A_l[k+1,k+1]\f$, and \f$v\f$ is stored in the lower parts of columns \f$k\f$ and
+  !>     \f$k+1\f$ of \f$A_l\f$.
+  !>
   !>     @param[in]
-  !>     handle    rocblas_handle.
+  !>     handle      rocblas_handle.
   !>     @param[in]
-  !>     uplo      rocblas_fill.\n
-  !>               Specifies whether the upper or lower part of the matrices A_i are stored.
-  !>               If uplo indicates lower (or upper), then the upper (or lower)
-  !>               part of A_i is not used.
+  !>     uplo        rocblas_fill.
+  !>                 Specifies whether the upper or lower part of the matrices A_l are stored.
+  !>                 If uplo indicates lower (or upper), then the upper (or lower)
+  !>                 part of A_l is not used.
   !>     @param[in]
-  !>     n         rocblas_int. n >= 0.\n
-  !>               The number of rows and columns of all matrices A_i in the batch.
+  !>     n           rocblas_int. n >= 0.
+  !>                 The number of rows and columns of all matrices A_l in the batch.
   !>     @param[inout]
-  !>     A         pointer to type. Array on the GPU (the size depends on the value of strideA).\n
-  !>               On entry, the symmetric matrices A_i to be factored.
-  !>               On exit, the block diagonal matrices D_i and the multipliers needed to
-  !>               compute U_i or L_i.
+  !>     A           pointer to type. Array on the GPU (the size depends on the value of strideA).
+  !>                 On entry, the symmetric matrices A_l to be factored.
+  !>                 On exit, the block diagonal matrices D_l and the multipliers needed to
+  !>                 compute U_l or L_l.
   !>     @param[in]
-  !>     lda       rocblas_int. lda >= n.\n
-  !>               Specifies the leading dimension of matrices A_i.
+  !>     lda         rocblas_int. lda >= n.
+  !>                 Specifies the leading dimension of matrices A_l.
   !>     @param[in]
-  !>     strideA   rocblas_stride.\n
-  !>               Stride from the start of one matrix A_i to the next one A_(i+1).
-  !>               There is no restriction for the value of strideA. Normal use case is strideA >= lda*n
+  !>     strideA     rocblas_stride.
+  !>                 Stride from the start of one matrix A_l to the next one A_(l+1).
+  !>                 There is no restriction for the value of strideA. The normal use case is
+  !>                 strideA >= lda*n
   !>     @param[out]
-  !>     ipiv      pointer to rocblas_int. Array on the GPU of dimension n.\n
-  !>               The vector of pivot indices. Elements of ipiv are 1-based indices.
-  !>               For 1 <= k <= n, if ipiv_i[k] > 0 then rows and columns k and ipiv_i[k]
-  !>               were interchanged and D_i[k,k] is a 1-by-1 diagonal block.
-  !>               If, instead, ipiv_i[k] = ipiv_i[k-1] < 0 and uplo is upper (or ipiv_i[k]
-  !>               = ipiv_i[k+1] < 0 and uplo is lower), then rows and columns k-1 and
-  !>               -ipiv_i[k] (or rows and columns k+1 and -ipiv_i[k]) were interchanged
-  !>               and D_i[k-1,k-1] to D_i[k,k] (or D_i[k,k] to D_i[k+1,k+1]) is a 2-by-2
-  !>               diagonal block.
+  !>     ipiv        pointer to rocblas_int. Array on the GPU of dimension n.
+  !>                 The vector of pivot indices. Elements of ipiv are 1-based indices.
+  !>                 For 1 <= k <= n, if ipiv_l[k] > 0, then rows and columns k and ipiv_l[k]
+  !>                 were interchanged, and D_l[k,k] is a 1-by-1 diagonal block.
+  !>                 If, instead, ipiv_l[k] = ipiv_l[k-1] < 0 and uplo is upper (or ipiv_l[k]
+  !>                 = ipiv_l[k+1] < 0 and uplo is lower), then rows and columns k-1 and
+  !>                 -ipiv_l[k] (or rows and columns k+1 and -ipiv_l[k]) were interchanged,
+  !>                 and D_l[k-1,k-1] to D_l[k,k] (or D_l[k,k] to D_l[k+1,k+1]) is a 2-by-2
+  !>                 diagonal block.
   !>     @param[in]
-  !>     strideP   rocblas_stride.\n
-  !>               Stride from the start of one vector ipiv_i to the next one ipiv_(i+1).
-  !>               There is no restriction for the value of strideP. Normal use case is strideP >= n.
+  !>     strideP     rocblas_stride.
+  !>                 Stride from the start of one vector ipiv_l to the next one ipiv_(l+1).
+  !>                 There is no restriction for the value of strideP. The normal use case is
+  !>                 strideP >= n.
   !>     @param[out]
-  !>     info      pointer to rocblas_int. Array of batch_count integers on the GPU.\n
-  !>               If info[i] = 0, successful exit for factorization of A_i.
-  !>               If info[i] = j > 0, D_i is singular. D_i[j,j] is the first diagonal zero.
+  !>     info        pointer to rocblas_int. Array of batch_count integers on the GPU.
+  !>                 If info[l] = 0, successful exit for factorization of A_l.
+  !>                 If info[l] = i > 0, D_l is singular. D_l[i,i] is the first diagonal zero.
   !>     @param[in]
-  !>     batch_count rocblas_int. batch_count >= 0.\n
+  !>     batch_count rocblas_int. batch_count >= 0.
   !>                 Number of matrices in the batch.
   interface rocsolver_ssytf2_strided_batched
     function rocsolver_ssytf2_strided_batched_(handle,uplo,n,A,lda,strideA,ipiv,strideP,myInfo,batch_count) bind(c, name="rocsolver_ssytf2_strided_batched")
@@ -26617,12 +26624,12 @@ module hipfort_rocsolver
 
 #ifdef USE_FPOINTER_INTERFACES
     module procedure &
-      rocsolver_ssytf2_strided_batched_full_rank,&
       rocsolver_ssytf2_strided_batched_rank_0,&
-      rocsolver_ssytf2_strided_batched_rank_1
+      rocsolver_ssytf2_strided_batched_rank_1,&
+      rocsolver_ssytf2_strided_batched_full_rank
 #endif
   end interface
-  
+
   interface rocsolver_dsytf2_strided_batched
     function rocsolver_dsytf2_strided_batched_(handle,uplo,n,A,lda,strideA,ipiv,strideP,myInfo,batch_count) bind(c, name="rocsolver_dsytf2_strided_batched")
       use iso_c_binding
@@ -26644,12 +26651,12 @@ module hipfort_rocsolver
 
 #ifdef USE_FPOINTER_INTERFACES
     module procedure &
-      rocsolver_dsytf2_strided_batched_full_rank,&
       rocsolver_dsytf2_strided_batched_rank_0,&
-      rocsolver_dsytf2_strided_batched_rank_1
+      rocsolver_dsytf2_strided_batched_rank_1,&
+      rocsolver_dsytf2_strided_batched_full_rank
 #endif
   end interface
-  
+
   interface rocsolver_csytf2_strided_batched
     function rocsolver_csytf2_strided_batched_(handle,uplo,n,A,lda,strideA,ipiv,strideP,myInfo,batch_count) bind(c, name="rocsolver_csytf2_strided_batched")
       use iso_c_binding
@@ -26671,12 +26678,12 @@ module hipfort_rocsolver
 
 #ifdef USE_FPOINTER_INTERFACES
     module procedure &
-      rocsolver_csytf2_strided_batched_full_rank,&
       rocsolver_csytf2_strided_batched_rank_0,&
-      rocsolver_csytf2_strided_batched_rank_1
+      rocsolver_csytf2_strided_batched_rank_1,&
+      rocsolver_csytf2_strided_batched_full_rank
 #endif
   end interface
-  
+
   interface rocsolver_zsytf2_strided_batched
     function rocsolver_zsytf2_strided_batched_(handle,uplo,n,A,lda,strideA,ipiv,strideP,myInfo,batch_count) bind(c, name="rocsolver_zsytf2_strided_batched")
       use iso_c_binding
@@ -26698,107 +26705,109 @@ module hipfort_rocsolver
 
 #ifdef USE_FPOINTER_INTERFACES
     module procedure &
-      rocsolver_zsytf2_strided_batched_full_rank,&
       rocsolver_zsytf2_strided_batched_rank_0,&
-      rocsolver_zsytf2_strided_batched_rank_1
+      rocsolver_zsytf2_strided_batched_rank_1,&
+      rocsolver_zsytf2_strided_batched_full_rank
 #endif
   end interface
-  !>     \brief SYTRF computes the factorization of a symmetric indefinite matrix \f$A\f$
+
+  !>     \brief The SYTRF functions compute the factorization of a symmetric and maybe indefinite
+  !>     matrix \f$A\f$
   !>     using Bunch-Kaufman diagonal pivoting.
-  !> 
+  !>
   !>     \details
-  !>     (This is the blocked version of the algorithm).
-  !> 
+  !>     (This is the blocked version of the algorithm.)
+  !>
   !>     The factorization has the form
-  !> 
+  !>
   !>     \f[
   !>         \begin{array}{cl}
-  !>         A = U D U^T & \: \text{or}\newline
-  !>
+  !>         A = U D U^T & \: \text{or}\\%
   !>         A = L D L^T &
   !>         \end{array}
   !>     \f]
-  !> 
+  !>
   !>     where \f$U\f$ or \f$L\f$ is a product of permutation and unit upper/lower
   !>     triangular matrices (depending on the value of uplo), and \f$D\f$ is a symmetric
-  !>     block diagonal matrix with 1-by-1 and 2-by-2 diagonal blocks \f$D(k)\f$.
-  !> 
+  !>     block diagonal matrix with 1-by-1 and 2-by-2 diagonal blocks \f$D_k\f$.
+  !>
   !>     Specifically, \f$U\f$ and \f$L\f$ are computed as
-  !> 
+  !>
   !>     \f[
   !>         \begin{array}{cl}
-  !>         U = P(n) U(n) \cdots P(k) U(k) \cdots & \: \text{and}\newline
-  !>
+  !>         U = P(n) U(n) \cdots P(k) U(k) \cdots & \: \text{and}\\%
   !>         L = P(1) L(1) \cdots P(k) L(k) \cdots &
   !>         \end{array}
   !>     \f]
-  !> 
+  !>
   !>     where \f$k\f$ decreases from \f$n\f$ to 1 (increases from 1 to \f$n\f$) in steps of 1 or 2,
-  !>     depending on the order of block \f$D(k)\f$, and \f$P(k)\f$ is a permutation matrix defined by
-  !>     \f$ipiv[k]\f$. If we let \f$s\f$ denote the order of block \f$D(k)\f$, then \f$U(k)\f$
+  !>     depending on the order of block \f$D_k\f$, and \f$P(k)\f$ is a permutation matrix defined
+  !>     by
+  !>     \f$ipiv[k]\f$. If \f$s\f$ denotes the order of block \f$D_k\f$, then \f$U(k)\f$
   !>     and \f$L(k)\f$ are unit upper/lower triangular matrices defined as
-  !> 
+  !>
   !>     \f[
   !>         U(k) = \left[ \begin{array}{ccc}
-  !>         I_{k-s} & v & 0 \newline
-  !>
-  !>         0 & I_s & 0 \newline
-  !>
-  !>         0 & 0 & I_{n-k}
+  !>         I_{k-s} & v   & 0       \\%
+  !>         0       & I_s & 0       \\%
+  !>         0       & 0   & I_{n-k}
   !>         \end{array} \right]
   !>     \f]
-  !> 
+  !>
   !>     and
-  !> 
+  !>
   !>     \f[
   !>         L(k) = \left[ \begin{array}{ccc}
-  !>         I_{k-1} & 0 & 0 \newline
-  !>
-  !>         0 & I_s & 0 \newline
-  !>
-  !>         0 & v & I_{n-k-s+1}
+  !>         I_{k-1} & 0   & 0            \\%
+  !>         0       & I_s & 0            \\%
+  !>         0       & v   & I_{n-k-s+1}
   !>         \end{array} \right].
   !>     \f]
-  !> 
-  !>     If \f$s = 1\f$, then \f$D(k)\f$ is stored in \f$A[k,k]\f$ and \f$v\f$ is stored in the upper/lower
+  !>
+  !>     If \f$s = 1\f$, then \f$D_k\f$ is stored in \f$A[k,k]\f$, and \f$v\f$ is stored in the
+  !>     upper/lower
   !>     part of column \f$k\f$ of \f$A\f$.
-  !>     If \f$s = 2\f$ and uplo is upper, then \f$D(k)\f$ is stored in \f$A[k-1,k-1]\f$, \f$A[k-1,k]\f$,
-  !>     and \f$A[k,k]\f$, and \f$v\f$ is stored in the upper parts of columns \f$k-1\f$ and \f$k\f$ of \f$A\f$.
-  !>     If \f$s = 2\f$ and uplo is lower, then \f$D(k)\f$ is stored in \f$A[k,k]\f$, \f$A[k+1,k]\f$,
-  !>     and \f$A[k+1,k+1]\f$, and \f$v\f$ is stored in the lower parts of columns \f$k\f$ and \f$k+1\f$ of \f$A\f$.
-  !> 
+  !>     If \f$s = 2\f$ and ``uplo`` is ``upper``, then \f$D_k\f$ is stored in \f$A[k-1,k-1]\f$,
+  !>     \f$A[k-1,k]\f$,
+  !>     and \f$A[k,k]\f$, and \f$v\f$ is stored in the upper parts of columns \f$k-1\f$ and \f$k\f$
+  !>     of \f$A\f$.
+  !>     If \f$s = 2\f$ and ``uplo`` is ``lower``, then \f$D_k\f$ is stored in \f$A[k,k]\f$,
+  !>     \f$A[k+1,k]\f$,
+  !>     and \f$A[k+1,k+1]\f$, and \f$v\f$ is stored in the lower parts of columns \f$k\f$ and
+  !>     \f$k+1\f$ of \f$A\f$.
+  !>
   !>     @param[in]
-  !>     handle    rocblas_handle.
+  !>     handle      rocblas_handle.
   !>     @param[in]
-  !>     uplo      rocblas_fill.\n
-  !>               Specifies whether the upper or lower part of the matrix A is stored.
-  !>               If uplo indicates lower (or upper), then the upper (or lower)
-  !>               part of A is not used.
+  !>     uplo        rocblas_fill.
+  !>                 Specifies whether the upper or lower part of the matrix A is stored.
+  !>                 If uplo indicates lower (or upper), then the upper (or lower)
+  !>                 part of A is not used.
   !>     @param[in]
-  !>     n         rocblas_int. n >= 0.\n
-  !>               The number of rows and columns of the matrix A.
+  !>     n           rocblas_int. n >= 0.
+  !>                 The number of rows and columns of the matrix A.
   !>     @param[inout]
-  !>     A         pointer to type. Array on the GPU of dimension lda*n.\n
-  !>               On entry, the symmetric matrix A to be factored.
-  !>               On exit, the block diagonal matrix D and the multipliers needed to
-  !>               compute U or L.
+  !>     A           pointer to type. Array on the GPU of dimension lda*n.
+  !>                 On entry, the symmetric matrix A to be factored.
+  !>                 On exit, the block diagonal matrix D and the multipliers needed to
+  !>                 compute U or L.
   !>     @param[in]
-  !>     lda       rocblas_int. lda >= n.\n
-  !>               Specifies the leading dimension of A.
+  !>     lda         rocblas_int. lda >= n.
+  !>                 Specifies the leading dimension of A.
   !>     @param[out]
-  !>     ipiv      pointer to rocblas_int. Array on the GPU of dimension n.\n
-  !>               The vector of pivot indices. Elements of ipiv are 1-based indices.
-  !>               For 1 <= k <= n, if ipiv[k] > 0 then rows and columns k and ipiv[k]
-  !>               were interchanged and D[k,k] is a 1-by-1 diagonal block.
-  !>               If, instead, ipiv[k] = ipiv[k-1] < 0 and uplo is upper (or ipiv[k]
-  !>               = ipiv[k+1] < 0 and uplo is lower), then rows and columns k-1 and
-  !>               -ipiv[k] (or rows and columns k+1 and -ipiv[k]) were interchanged
-  !>               and D[k-1,k-1] to D[k,k] (or D[k,k] to D[k+1,k+1]) is a 2-by-2
-  !>               diagonal block.
+  !>     ipiv        pointer to rocblas_int. Array on the GPU of dimension n.
+  !>                 The vector of pivot indices. Elements of ipiv are 1-based indices.
+  !>                 For 1 <= k <= n, if ipiv[k] > 0, then rows and columns k and ipiv[k]
+  !>                 were interchanged, and D[k,k] is a 1-by-1 diagonal block.
+  !>                 If, instead, ipiv[k] = ipiv[k-1] < 0 and uplo is upper (or ipiv[k]
+  !>                 = ipiv[k+1] < 0 and uplo is lower), then rows and columns k-1 and
+  !>                 -ipiv[k] (or rows and columns k+1 and -ipiv[k]) were interchanged,
+  !>                 and D[k-1,k-1] to D[k,k] (or D[k,k] to D[k+1,k+1]) is a 2-by-2
+  !>                 diagonal block.
   !>     @param[out]
-  !>     info      pointer to a rocblas_int on the GPU.\n
-  !>               If info = 0, successful exit.
-  !>               If info[i] = j > 0, D is singular. D[j,j] is the first diagonal zero.
+  !>     info        pointer to a rocblas_int on the GPU.
+  !>                 If info = 0, successful exit.
+  !>                 If info = i > 0, D is singular. D[i,i] is the first diagonal zero.
   interface rocsolver_ssytrf
     function rocsolver_ssytrf_(handle,uplo,n,A,lda,ipiv,myInfo) bind(c, name="rocsolver_ssytrf")
       use iso_c_binding
@@ -26817,12 +26826,12 @@ module hipfort_rocsolver
 
 #ifdef USE_FPOINTER_INTERFACES
     module procedure &
-      rocsolver_ssytrf_full_rank,&
       rocsolver_ssytrf_rank_0,&
-      rocsolver_ssytrf_rank_1
+      rocsolver_ssytrf_rank_1,&
+      rocsolver_ssytrf_full_rank
 #endif
   end interface
-  
+
   interface rocsolver_dsytrf
     function rocsolver_dsytrf_(handle,uplo,n,A,lda,ipiv,myInfo) bind(c, name="rocsolver_dsytrf")
       use iso_c_binding
@@ -26841,12 +26850,12 @@ module hipfort_rocsolver
 
 #ifdef USE_FPOINTER_INTERFACES
     module procedure &
-      rocsolver_dsytrf_full_rank,&
       rocsolver_dsytrf_rank_0,&
-      rocsolver_dsytrf_rank_1
+      rocsolver_dsytrf_rank_1,&
+      rocsolver_dsytrf_full_rank
 #endif
   end interface
-  
+
   interface rocsolver_csytrf
     function rocsolver_csytrf_(handle,uplo,n,A,lda,ipiv,myInfo) bind(c, name="rocsolver_csytrf")
       use iso_c_binding
@@ -26865,12 +26874,12 @@ module hipfort_rocsolver
 
 #ifdef USE_FPOINTER_INTERFACES
     module procedure &
-      rocsolver_csytrf_full_rank,&
       rocsolver_csytrf_rank_0,&
-      rocsolver_csytrf_rank_1
+      rocsolver_csytrf_rank_1,&
+      rocsolver_csytrf_full_rank
 #endif
   end interface
-  
+
   interface rocsolver_zsytrf
     function rocsolver_zsytrf_(handle,uplo,n,A,lda,ipiv,myInfo) bind(c, name="rocsolver_zsytrf")
       use iso_c_binding
@@ -26889,113 +26898,116 @@ module hipfort_rocsolver
 
 #ifdef USE_FPOINTER_INTERFACES
     module procedure &
-      rocsolver_zsytrf_full_rank,&
       rocsolver_zsytrf_rank_0,&
-      rocsolver_zsytrf_rank_1
+      rocsolver_zsytrf_rank_1,&
+      rocsolver_zsytrf_full_rank
 #endif
   end interface
-  !>     \brief SYTRF_BATCHED computes the factorization of a batch of symmetric indefinite
+
+  !>     \brief The SYTRF_BATCHED functions compute the factorization of a batch of symmetric and
+  !>     maybe indefinite
   !>     matrices using Bunch-Kaufman diagonal pivoting.
-  !> 
+  !>
   !>     \details
-  !>     (This is the blocked version of the algorithm).
-  !> 
+  !>     (This is the blocked version of the algorithm.)
+  !>
   !>     The factorization has the form
-  !> 
+  !>
   !>     \f[
   !>         \begin{array}{cl}
-  !>         A_i = U_i D_i U_i^T & \: \text{or}\newline
-  !>
-  !>         A_i = L_i D_i L_i^T &
+  !>         A_l^{} = U_l^{} D_l^{} U_l^T & \: \text{or}\\%
+  !>         A_l^{} = L_l^{} D_l^{} L_l^T &
   !>         \end{array}
   !>     \f]
-  !> 
-  !>     where \f$U_i\f$ or \f$L_i\f$ is a product of permutation and unit upper/lower
-  !>     triangular matrices (depending on the value of uplo), and \f$D_i\f$ is a symmetric
-  !>     block diagonal matrix with 1-by-1 and 2-by-2 diagonal blocks \f$D_i(k)\f$.
-  !> 
-  !>     Specifically, \f$U_i\f$ and \f$L_i\f$ are computed as
-  !> 
+  !>
+  !>     where \f$U_l\f$ or \f$L_l\f$ is a product of permutation and unit upper/lower
+  !>     triangular matrices (depending on the value of uplo), and \f$D_l\f$ is a symmetric
+  !>     block diagonal matrix with 1-by-1 and 2-by-2 diagonal blocks \f$D_{kl}\f$.
+  !>
+  !>     Specifically, \f$U_l\f$ and \f$L_l\f$ are computed as
+  !>
   !>     \f[
   !>         \begin{array}{cl}
-  !>         U_i = P_i(n) U_i(n) \cdots P_i(k) U_i(k) \cdots & \: \text{and}\newline
-  !>
-  !>         L_i = P_i(1) L_i(1) \cdots P_i(k) L_i(k) \cdots &
+  !>         U_l = P_l(n) U_l(n) \cdots P_l(k) U_l(k) \cdots & \: \text{and}\\%
+  !>         L_l = P_l(1) L_l(1) \cdots P_l(k) L_l(k) \cdots &
   !>         \end{array}
   !>     \f]
-  !> 
+  !>
   !>     where \f$k\f$ decreases from \f$n\f$ to 1 (increases from 1 to \f$n\f$) in steps of 1 or 2,
-  !>     depending on the order of block \f$D_i(k)\f$, and \f$P_i(k)\f$ is a permutation matrix defined by
-  !>     \f$ipiv_i[k]\f$. If we let \f$s\f$ denote the order of block \f$D_i(k)\f$, then \f$U_i(k)\f$
-  !>     and \f$L_i(k)\f$ are unit upper/lower triangular matrices defined as
-  !> 
+  !>     depending on the order of block \f$D_{kl}\f$, and \f$P_l(k)\f$ is a permutation matrix
+  !>     defined by
+  !>     \f$ipiv_l[k]\f$. If \f$s\f$ denotes the order of block \f$D_{kl}\f$, then \f$U_l(k)\f$
+  !>     and \f$L_l(k)\f$ are unit upper/lower triangular matrices defined as
+  !>
   !>     \f[
-  !>         U_i(k) = \left[ \begin{array}{ccc}
-  !>         I_{k-s} & v & 0 \newline
-  !>
-  !>         0 & I_s & 0 \newline
-  !>
-  !>         0 & 0 & I_{n-k}
+  !>         U_l(k) = \left[ \begin{array}{ccc}
+  !>         I_{k-s} & v   & 0        \\%
+  !>         0       & I_s & 0        \\%
+  !>         0       & 0   & I_{n-k}
   !>         \end{array} \right]
   !>     \f]
-  !> 
+  !>
   !>     and
-  !> 
+  !>
   !>     \f[
-  !>         L_i(k) = \left[ \begin{array}{ccc}
-  !>         I_{k-1} & 0 & 0 \newline
-  !>
-  !>         0 & I_s & 0 \newline
-  !>
-  !>         0 & v & I_{n-k-s+1}
+  !>         L_l(k) = \left[ \begin{array}{ccc}
+  !>         I_{k-1} & 0   & 0           \\%
+  !>         0       & I_s & 0           \\%
+  !>         0       & v   & I_{n-k-s+1}
   !>         \end{array} \right].
   !>     \f]
-  !> 
-  !>     If \f$s = 1\f$, then \f$D_i(k)\f$ is stored in \f$A_i[k,k]\f$ and \f$v\f$ is stored in the upper/lower
-  !>     part of column \f$k\f$ of \f$A_i\f$.
-  !>     If \f$s = 2\f$ and uplo is upper, then \f$D_i(k)\f$ is stored in \f$A_i[k-1,k-1]\f$, \f$A_i[k-1,k]\f$,
-  !>     and \f$A_i[k,k]\f$, and \f$v\f$ is stored in the upper parts of columns \f$k-1\f$ and \f$k\f$ of \f$A_i\f$.
-  !>     If \f$s = 2\f$ and uplo is lower, then \f$D_i(k)\f$ is stored in \f$A_i[k,k]\f$, \f$A_i[k+1,k]\f$,
-  !>     and \f$A_i[k+1,k+1]\f$, and \f$v\f$ is stored in the lower parts of columns \f$k\f$ and \f$k+1\f$ of \f$A_i\f$.
-  !> 
+  !>
+  !>     If \f$s = 1\f$, then \f$D_{kl}\f$ is stored in \f$A_l[k,k]\f$, and \f$v\f$ is stored in the
+  !>     upper/lower
+  !>     part of column \f$k\f$ of \f$A_l\f$.
+  !>     If \f$s = 2\f$ and ``uplo`` is ``upper``, then \f$D_{kl}\f$ is stored in
+  !>     \f$A_l[k-1,k-1]\f$, \f$A_l[k-1,k]\f$,
+  !>     and \f$A_l[k,k]\f$, and \f$v\f$ is stored in the upper parts of columns \f$k-1\f$ and
+  !>     \f$k\f$ of \f$A_l\f$.
+  !>     If \f$s = 2\f$ and ``uplo`` is ``lower``, then \f$D_{kl}\f$ is stored in \f$A_l[k,k]\f$,
+  !>     \f$A_l[k+1,k]\f$,
+  !>     and \f$A_l[k+1,k+1]\f$, and \f$v\f$ is stored in the lower parts of columns \f$k\f$ and
+  !>     \f$k+1\f$ of \f$A_l\f$.
+  !>
   !>     @param[in]
-  !>     handle    rocblas_handle.
+  !>     handle      rocblas_handle.
   !>     @param[in]
-  !>     uplo      rocblas_fill.\n
-  !>               Specifies whether the upper or lower part of the matrices A_i are stored.
-  !>               If uplo indicates lower (or upper), then the upper (or lower)
-  !>               part of A_i is not used.
+  !>     uplo        rocblas_fill.
+  !>                 Specifies whether the upper or lower part of the matrices A_l are stored.
+  !>                 If uplo indicates lower (or upper), then the upper (or lower)
+  !>                 part of A_l is not used.
   !>     @param[in]
-  !>     n         rocblas_int. n >= 0.\n
-  !>               The number of rows and columns of all matrices A_i in the batch.
+  !>     n           rocblas_int. n >= 0.
+  !>                 The number of rows and columns of all matrices A_l in the batch.
   !>     @param[inout]
-  !>     A         array of pointers to type. Each pointer points to an array on the GPU of dimension lda*n.\n
-  !>               On entry, the symmetric matrices A_i to be factored.
-  !>               On exit, the block diagonal matrices D_i and the multipliers needed to
-  !>               compute U_i or L_i.
+  !>     A array of pointers to type. Each pointer points to an array on the GPU of dimension lda*n.
+  !>                 On entry, the symmetric matrices A_l to be factored.
+  !>                 On exit, the block diagonal matrices D_l and the multipliers needed to
+  !>                 compute U_l or L_l.
   !>     @param[in]
-  !>     lda       rocblas_int. lda >= n.\n
-  !>               Specifies the leading dimension of matrices A_i.
+  !>     lda         rocblas_int. lda >= n.
+  !>                 Specifies the leading dimension of matrices A_l.
   !>     @param[out]
-  !>     ipiv      pointer to rocblas_int. Array on the GPU of dimension n.\n
-  !>               The vector of pivot indices. Elements of ipiv are 1-based indices.
-  !>               For 1 <= k <= n, if ipiv_i[k] > 0 then rows and columns k and ipiv_i[k]
-  !>               were interchanged and D_i[k,k] is a 1-by-1 diagonal block.
-  !>               If, instead, ipiv_i[k] = ipiv_i[k-1] < 0 and uplo is upper (or ipiv_i[k]
-  !>               = ipiv_i[k+1] < 0 and uplo is lower), then rows and columns k-1 and
-  !>               -ipiv_i[k] (or rows and columns k+1 and -ipiv_i[k]) were interchanged
-  !>               and D_i[k-1,k-1] to D_i[k,k] (or D_i[k,k] to D_i[k+1,k+1]) is a 2-by-2
-  !>               diagonal block.
+  !>     ipiv        pointer to rocblas_int. Array on the GPU of dimension n.
+  !>                 The vector of pivot indices. Elements of ipiv are 1-based indices.
+  !>                 For 1 <= k <= n, if ipiv_l[k] > 0, then rows and columns k and ipiv_l[k]
+  !>                 were interchanged, and D_l[k,k] is a 1-by-1 diagonal block.
+  !>                 If, instead, ipiv_l[k] = ipiv_l[k-1] < 0 and uplo is upper (or ipiv_l[k]
+  !>                 = ipiv_l[k+1] < 0 and uplo is lower), then rows and columns k-1 and
+  !>                 -ipiv_l[k] (or rows and columns k+1 and -ipiv_l[k]) were interchanged,
+  !>                 and D_l[k-1,k-1] to D_l[k,k] (or D_l[k,k] to D_l[k+1,k+1]) is a 2-by-2
+  !>                 diagonal block.
   !>     @param[in]
-  !>     strideP   rocblas_stride.\n
-  !>               Stride from the start of one vector ipiv_i to the next one ipiv_(i+1).
-  !>               There is no restriction for the value of strideP. Normal use case is strideP >= n.
+  !>     strideP     rocblas_stride.
+  !>                 Stride from the start of one vector ipiv_l to the next one ipiv_(l+1).
+  !>                 There is no restriction for the value of strideP. The normal use case is
+  !>                 strideP >= n.
   !>     @param[out]
-  !>     info      pointer to rocblas_int. Array of batch_count integers on the GPU.\n
-  !>               If info[i] = 0, successful exit for factorization of A_i.
-  !>               If info[i] = j > 0, D_i is singular. D_i[j,j] is the first diagonal zero.
+  !>     info        pointer to rocblas_int. Array of batch_count integers on the GPU.
+  !>                 If info[l] = 0, successful exit for factorization of A_l.
+  !>                 If info[l] = i > 0, D_l is singular. D_l[i,i] is the first diagonal zero.
   !>     @param[in]
-  !>     batch_count rocblas_int. batch_count >= 0.\n
+  !>     batch_count rocblas_int. batch_count >= 0.
   !>                 Number of matrices in the batch.
   interface rocsolver_ssytrf_batched
     function rocsolver_ssytrf_batched_(handle,uplo,n,A,lda,ipiv,strideP,myInfo,batch_count) bind(c, name="rocsolver_ssytrf_batched")
@@ -27017,12 +27029,12 @@ module hipfort_rocsolver
 
 #ifdef USE_FPOINTER_INTERFACES
     module procedure &
-      rocsolver_ssytrf_batched_full_rank,&
       rocsolver_ssytrf_batched_rank_0,&
-      rocsolver_ssytrf_batched_rank_1
+      rocsolver_ssytrf_batched_rank_1,&
+      rocsolver_ssytrf_batched_full_rank
 #endif
   end interface
-  
+
   interface rocsolver_dsytrf_batched
     function rocsolver_dsytrf_batched_(handle,uplo,n,A,lda,ipiv,strideP,myInfo,batch_count) bind(c, name="rocsolver_dsytrf_batched")
       use iso_c_binding
@@ -27043,12 +27055,12 @@ module hipfort_rocsolver
 
 #ifdef USE_FPOINTER_INTERFACES
     module procedure &
-      rocsolver_dsytrf_batched_full_rank,&
       rocsolver_dsytrf_batched_rank_0,&
-      rocsolver_dsytrf_batched_rank_1
+      rocsolver_dsytrf_batched_rank_1,&
+      rocsolver_dsytrf_batched_full_rank
 #endif
   end interface
-  
+
   interface rocsolver_csytrf_batched
     function rocsolver_csytrf_batched_(handle,uplo,n,A,lda,ipiv,strideP,myInfo,batch_count) bind(c, name="rocsolver_csytrf_batched")
       use iso_c_binding
@@ -27069,12 +27081,12 @@ module hipfort_rocsolver
 
 #ifdef USE_FPOINTER_INTERFACES
     module procedure &
-      rocsolver_csytrf_batched_full_rank,&
       rocsolver_csytrf_batched_rank_0,&
-      rocsolver_csytrf_batched_rank_1
+      rocsolver_csytrf_batched_rank_1,&
+      rocsolver_csytrf_batched_full_rank
 #endif
   end interface
-  
+
   interface rocsolver_zsytrf_batched
     function rocsolver_zsytrf_batched_(handle,uplo,n,A,lda,ipiv,strideP,myInfo,batch_count) bind(c, name="rocsolver_zsytrf_batched")
       use iso_c_binding
@@ -27095,117 +27107,121 @@ module hipfort_rocsolver
 
 #ifdef USE_FPOINTER_INTERFACES
     module procedure &
-      rocsolver_zsytrf_batched_full_rank,&
       rocsolver_zsytrf_batched_rank_0,&
-      rocsolver_zsytrf_batched_rank_1
+      rocsolver_zsytrf_batched_rank_1,&
+      rocsolver_zsytrf_batched_full_rank
 #endif
   end interface
-  !>     \brief SYTRF_STRIDED_BATCHED computes the factorization of a batch of symmetric indefinite
+
+  !>     \brief The SYTRF_STRIDED_BATCHED functions compute the factorization of a batch of
+  !>     symmetric and maybe indefinite
   !>     matrices using Bunch-Kaufman diagonal pivoting.
-  !> 
+  !>
   !>     \details
-  !>     (This is the blocked version of the algorithm).
-  !> 
+  !>     (This is the blocked version of the algorithm.)
+  !>
   !>     The factorization has the form
-  !> 
+  !>
   !>     \f[
   !>         \begin{array}{cl}
-  !>         A_i = U_i D_i U_i^T & \: \text{or}\newline
-  !>
-  !>         A_i = L_i D_i L_i^T &
+  !>         A_l^{} = U_l^{} D_l^{} U_l^T & \: \text{or}\\%
+  !>         A_l^{} = L_l^{} D_l^{} L_l^T &
   !>         \end{array}
   !>     \f]
-  !> 
-  !>     where \f$U_i\f$ or \f$L_i\f$ is a product of permutation and unit upper/lower
-  !>     triangular matrices (depending on the value of uplo), and \f$D_i\f$ is a symmetric
-  !>     block diagonal matrix with 1-by-1 and 2-by-2 diagonal blocks \f$D_i(k)\f$.
-  !> 
-  !>     Specifically, \f$U_i\f$ and \f$L_i\f$ are computed as
-  !> 
+  !>
+  !>     where \f$U_l\f$ or \f$L_l\f$ is a product of permutation and unit upper/lower
+  !>     triangular matrices (depending on the value of uplo), and \f$D_l\f$ is a symmetric
+  !>     block diagonal matrix with 1-by-1 and 2-by-2 diagonal blocks \f$D_{kl}\f$.
+  !>
+  !>     Specifically, \f$U_l\f$ and \f$L_l\f$ are computed as
+  !>
   !>     \f[
   !>         \begin{array}{cl}
-  !>         U_i = P_i(n) U_i(n) \cdots P_i(k) U_i(k) \cdots & \: \text{and}\newline
-  !>
-  !>         L_i = P_i(1) L_i(1) \cdots P_i(k) L_i(k) \cdots &
+  !>         U_l = P_l(n) U_l(n) \cdots P_l(k) U_l(k) \cdots & \: \text{and}\\%
+  !>         L_l = P_l(1) L_l(1) \cdots P_l(k) L_l(k) \cdots &
   !>         \end{array}
   !>     \f]
-  !> 
+  !>
   !>     where \f$k\f$ decreases from \f$n\f$ to 1 (increases from 1 to \f$n\f$) in steps of 1 or 2,
-  !>     depending on the order of block \f$D_i(k)\f$, and \f$P_i(k)\f$ is a permutation matrix defined by
-  !>     \f$ipiv_i[k]\f$. If we let \f$s\f$ denote the order of block \f$D_i(k)\f$, then \f$U_i(k)\f$
-  !>     and \f$L_i(k)\f$ are unit upper/lower triangular matrices defined as
-  !> 
+  !>     depending on the order of block \f$D_{kl}\f$, and \f$P_l(k)\f$ is a permutation matrix
+  !>     defined by
+  !>     \f$ipiv_l[k]\f$. If \f$s\f$ denotes the order of block \f$D_{kl}\f$, then \f$U_l(k)\f$
+  !>     and \f$L_l(k)\f$ are unit upper/lower triangular matrices defined as
+  !>
   !>     \f[
-  !>         U_i(k) = \left[ \begin{array}{ccc}
-  !>         I_{k-s} & v & 0 \newline
-  !>
-  !>         0 & I_s & 0 \newline
-  !>
-  !>         0 & 0 & I_{n-k}
+  !>         U_l(k) = \left[ \begin{array}{ccc}
+  !>         I_{k-s} & v   & 0       \\%
+  !>         0       & I_s & 0       \\%
+  !>         0       & 0   & I_{n-k}
   !>         \end{array} \right]
   !>     \f]
-  !> 
+  !>
   !>     and
-  !> 
+  !>
   !>     \f[
-  !>         L_i(k) = \left[ \begin{array}{ccc}
-  !>         I_{k-1} & 0 & 0 \newline
-  !>
-  !>         0 & I_s & 0 \newline
-  !>
-  !>         0 & v & I_{n-k-s+1}
+  !>         L_l(k) = \left[ \begin{array}{ccc}
+  !>         I_{k-1} & 0   & 0           \\%
+  !>         0       & I_s & 0           \\%
+  !>         0       & v   & I_{n-k-s+1}
   !>         \end{array} \right].
   !>     \f]
-  !> 
-  !>     If \f$s = 1\f$, then \f$D_i(k)\f$ is stored in \f$A_i[k,k]\f$ and \f$v\f$ is stored in the upper/lower
-  !>     part of column \f$k\f$ of \f$A_i\f$.
-  !>     If \f$s = 2\f$ and uplo is upper, then \f$D_i(k)\f$ is stored in \f$A_i[k-1,k-1]\f$, \f$A_i[k-1,k]\f$,
-  !>     and \f$A_i[k,k]\f$, and \f$v\f$ is stored in the upper parts of columns \f$k-1\f$ and \f$k\f$ of \f$A_i\f$.
-  !>     If \f$s = 2\f$ and uplo is lower, then \f$D_i(k)\f$ is stored in \f$A_i[k,k]\f$, \f$A_i[k+1,k]\f$,
-  !>     and \f$A_i[k+1,k+1]\f$, and \f$v\f$ is stored in the lower parts of columns \f$k\f$ and \f$k+1\f$ of \f$A_i\f$.
-  !> 
+  !>
+  !>     If \f$s = 1\f$, then \f$D_{kl}\f$ is stored in \f$A_l[k,k]\f$, and \f$v\f$ is stored in the
+  !>     upper/lower
+  !>     part of column \f$k\f$ of \f$A_l\f$.
+  !>     If \f$s = 2\f$ and ``uplo`` is ``upper``, then \f$D_{kl}\f$ is stored in
+  !>     \f$A_l[k-1,k-1]\f$, \f$A_l[k-1,k]\f$,
+  !>     and \f$A_l[k,k]\f$, and \f$v\f$ is stored in the upper parts of columns \f$k-1\f$ and
+  !>     \f$k\f$ of \f$A_l\f$.
+  !>     If \f$s = 2\f$ and ``uplo`` is ``lower``, then \f$D_l(k)\f$ is stored in \f$A_l[k,k]\f$,
+  !>     \f$A_l[k+1,k]\f$,
+  !>     and \f$A_l[k+1,k+1]\f$, and \f$v\f$ is stored in the lower parts of columns \f$k\f$ and
+  !>     \f$k+1\f$ of \f$A_l\f$.
+  !>
   !>     @param[in]
-  !>     handle    rocblas_handle.
+  !>     handle      rocblas_handle.
   !>     @param[in]
-  !>     uplo      rocblas_fill.\n
-  !>               Specifies whether the upper or lower part of the matrices A_i are stored.
-  !>               If uplo indicates lower (or upper), then the upper (or lower)
-  !>               part of A_i is not used.
+  !>     uplo        rocblas_fill.
+  !>                 Specifies whether the upper or lower part of the matrices A_l are stored.
+  !>                 If uplo indicates lower (or upper), then the upper (or lower)
+  !>                 part of A_l is not used.
   !>     @param[in]
-  !>     n         rocblas_int. n >= 0.\n
-  !>               The number of rows and columns of all matrices A_i in the batch.
+  !>     n           rocblas_int. n >= 0.
+  !>                 The number of rows and columns of all matrices A_l in the batch.
   !>     @param[inout]
-  !>     A         pointer to type. Array on the GPU (the size depends on the value of strideA).\n
-  !>               On entry, the symmetric matrices A_i to be factored.
-  !>               On exit, the block diagonal matrices D_i and the multipliers needed to
-  !>               compute U_i or L_i.
+  !>     A           pointer to type. Array on the GPU (the size depends on the value of strideA).
+  !>                 On entry, the symmetric matrices A_l to be factored.
+  !>                 On exit, the block diagonal matrices D_l and the multipliers needed to
+  !>                 compute U_l or L_l.
   !>     @param[in]
-  !>     lda       rocblas_int. lda >= n.\n
-  !>               Specifies the leading dimension of matrices A_i.
+  !>     lda         rocblas_int. lda >= n.
+  !>                 Specifies the leading dimension of matrices A_l.
   !>     @param[in]
-  !>     strideA   rocblas_stride.\n
-  !>               Stride from the start of one matrix A_i to the next one A_(i+1).
-  !>               There is no restriction for the value of strideA. Normal use case is strideA >= lda*n
+  !>     strideA     rocblas_stride.
+  !>                 Stride from the start of one matrix A_l to the next one A_(l+1).
+  !>                 There is no restriction for the value of strideA. The normal use case is
+  !>                 strideA >= lda*n.
   !>     @param[out]
-  !>     ipiv      pointer to rocblas_int. Array on the GPU of dimension n.\n
-  !>               The vector of pivot indices. Elements of ipiv are 1-based indices.
-  !>               For 1 <= k <= n, if ipiv_i[k] > 0 then rows and columns k and ipiv_i[k]
-  !>               were interchanged and D_i[k,k] is a 1-by-1 diagonal block.
-  !>               If, instead, ipiv_i[k] = ipiv_i[k-1] < 0 and uplo is upper (or ipiv_i[k]
-  !>               = ipiv_i[k+1] < 0 and uplo is lower), then rows and columns k-1 and
-  !>               -ipiv_i[k] (or rows and columns k+1 and -ipiv_i[k]) were interchanged
-  !>               and D_i[k-1,k-1] to D_i[k,k] (or D_i[k,k] to D_i[k+1,k+1]) is a 2-by-2
-  !>               diagonal block.
+  !>     ipiv        pointer to rocblas_int. Array on the GPU of dimension n.
+  !>                 The vector of pivot indices. Elements of ipiv are 1-based indices.
+  !>                 For 1 <= k <= n, if ipiv_l[k] > 0, then rows and columns k and ipiv_l[k]
+  !>                 were interchanged, and D_l[k,k] is a 1-by-1 diagonal block.
+  !>                 If, instead, ipiv_l[k] = ipiv_l[k-1] < 0 and uplo is upper (or ipiv_l[k]
+  !>                 = ipiv_l[k+1] < 0 and uplo is lower), then rows and columns k-1 and
+  !>                 -ipiv_l[k] (or rows and columns k+1 and -ipiv_l[k]) were interchanged,
+  !>                 and D_l[k-1,k-1] to D_l[k,k] (or D_l[k,k] to D_l[k+1,k+1]) is a 2-by-2
+  !>                 diagonal block.
   !>     @param[in]
-  !>     strideP   rocblas_stride.\n
-  !>               Stride from the start of one vector ipiv_i to the next one ipiv_(i+1).
-  !>               There is no restriction for the value of strideP. Normal use case is strideP >= n.
+  !>     strideP     rocblas_stride.
+  !>                 Stride from the start of one vector ipiv_l to the next one ipiv_(l+1).
+  !>                 There is no restriction for the value of strideP. The normal use case is
+  !>                 strideP >= n.
   !>     @param[out]
-  !>     info      pointer to rocblas_int. Array of batch_count integers on the GPU.\n
-  !>               If info[i] = 0, successful exit for factorization of A_i.
-  !>               If info[i] = j > 0, D_i is singular. D_i[j,j] is the first diagonal zero.
+  !>     info        pointer to rocblas_int. Array of batch_count integers on the GPU.
+  !>                 If info[l] = 0, successful exit for factorization of A_l.
+  !>                 If info[l] = i > 0, D_l is singular. D_l[i,i] is the first diagonal zero.
   !>     @param[in]
-  !>     batch_count rocblas_int. batch_count >= 0.\n
+  !>     batch_count rocblas_int. batch_count >= 0.
   !>                 Number of matrices in the batch.
   interface rocsolver_ssytrf_strided_batched
     function rocsolver_ssytrf_strided_batched_(handle,uplo,n,A,lda,strideA,ipiv,strideP,myInfo,batch_count) bind(c, name="rocsolver_ssytrf_strided_batched")
@@ -27228,12 +27244,12 @@ module hipfort_rocsolver
 
 #ifdef USE_FPOINTER_INTERFACES
     module procedure &
-      rocsolver_ssytrf_strided_batched_full_rank,&
       rocsolver_ssytrf_strided_batched_rank_0,&
-      rocsolver_ssytrf_strided_batched_rank_1
+      rocsolver_ssytrf_strided_batched_rank_1,&
+      rocsolver_ssytrf_strided_batched_full_rank
 #endif
   end interface
-  
+
   interface rocsolver_dsytrf_strided_batched
     function rocsolver_dsytrf_strided_batched_(handle,uplo,n,A,lda,strideA,ipiv,strideP,myInfo,batch_count) bind(c, name="rocsolver_dsytrf_strided_batched")
       use iso_c_binding
@@ -27255,12 +27271,12 @@ module hipfort_rocsolver
 
 #ifdef USE_FPOINTER_INTERFACES
     module procedure &
-      rocsolver_dsytrf_strided_batched_full_rank,&
       rocsolver_dsytrf_strided_batched_rank_0,&
-      rocsolver_dsytrf_strided_batched_rank_1
+      rocsolver_dsytrf_strided_batched_rank_1,&
+      rocsolver_dsytrf_strided_batched_full_rank
 #endif
   end interface
-  
+
   interface rocsolver_csytrf_strided_batched
     function rocsolver_csytrf_strided_batched_(handle,uplo,n,A,lda,strideA,ipiv,strideP,myInfo,batch_count) bind(c, name="rocsolver_csytrf_strided_batched")
       use iso_c_binding
@@ -27282,12 +27298,12 @@ module hipfort_rocsolver
 
 #ifdef USE_FPOINTER_INTERFACES
     module procedure &
-      rocsolver_csytrf_strided_batched_full_rank,&
       rocsolver_csytrf_strided_batched_rank_0,&
-      rocsolver_csytrf_strided_batched_rank_1
+      rocsolver_csytrf_strided_batched_rank_1,&
+      rocsolver_csytrf_strided_batched_full_rank
 #endif
   end interface
-  
+
   interface rocsolver_zsytrf_strided_batched
     function rocsolver_zsytrf_strided_batched_(handle,uplo,n,A,lda,strideA,ipiv,strideP,myInfo,batch_count) bind(c, name="rocsolver_zsytrf_strided_batched")
       use iso_c_binding
@@ -27309,9 +27325,9 @@ module hipfort_rocsolver
 
 #ifdef USE_FPOINTER_INTERFACES
     module procedure &
-      rocsolver_zsytrf_strided_batched_full_rank,&
       rocsolver_zsytrf_strided_batched_rank_0,&
-      rocsolver_zsytrf_strided_batched_rank_1
+      rocsolver_zsytrf_strided_batched_rank_1,&
+      rocsolver_zsytrf_strided_batched_full_rank
 #endif
   end interface
 
@@ -28588,7 +28604,7 @@ module hipfort_rocsolver
       integer(c_int64_t),value :: n
       type(c_ptr),value :: A
       integer(c_int64_t),value :: lda
-      integer(c_int64_t) :: myInfo
+      type(c_ptr),value :: myInfo
     end function
   end interface
 
@@ -28604,7 +28620,7 @@ module hipfort_rocsolver
       integer(c_int64_t),value :: n
       type(c_ptr),value :: A
       integer(c_int64_t),value :: lda
-      integer(c_int64_t) :: myInfo
+      type(c_ptr),value :: myInfo
     end function
   end interface
 
@@ -28620,7 +28636,7 @@ module hipfort_rocsolver
       integer(c_int64_t),value :: n
       type(c_ptr),value :: A
       integer(c_int64_t),value :: lda
-      integer(c_int64_t) :: myInfo
+      type(c_ptr),value :: myInfo
     end function
   end interface
 
@@ -28636,7 +28652,7 @@ module hipfort_rocsolver
       integer(c_int64_t),value :: n
       type(c_ptr),value :: A
       integer(c_int64_t),value :: lda
-      integer(c_int64_t) :: myInfo
+      type(c_ptr),value :: myInfo
     end function
   end interface
 
@@ -28652,7 +28668,7 @@ module hipfort_rocsolver
       integer(c_int64_t),value :: n
       type(c_ptr) :: A
       integer(c_int64_t),value :: lda
-      integer(c_int64_t) :: myInfo
+      type(c_ptr),value :: myInfo
       integer(c_int64_t),value :: batch_count
     end function
   end interface
@@ -28669,7 +28685,7 @@ module hipfort_rocsolver
       integer(c_int64_t),value :: n
       type(c_ptr) :: A
       integer(c_int64_t),value :: lda
-      integer(c_int64_t) :: myInfo
+      type(c_ptr),value :: myInfo
       integer(c_int64_t),value :: batch_count
     end function
   end interface
@@ -28686,7 +28702,7 @@ module hipfort_rocsolver
       integer(c_int64_t),value :: n
       type(c_ptr) :: A
       integer(c_int64_t),value :: lda
-      integer(c_int64_t) :: myInfo
+      type(c_ptr),value :: myInfo
       integer(c_int64_t),value :: batch_count
     end function
   end interface
@@ -28703,7 +28719,7 @@ module hipfort_rocsolver
       integer(c_int64_t),value :: n
       type(c_ptr) :: A
       integer(c_int64_t),value :: lda
-      integer(c_int64_t) :: myInfo
+      type(c_ptr),value :: myInfo
       integer(c_int64_t),value :: batch_count
     end function
   end interface
@@ -28721,7 +28737,7 @@ module hipfort_rocsolver
       type(c_ptr),value :: A
       integer(c_int64_t),value :: lda
       integer(c_int64_t),value :: strideA
-      integer(c_int64_t) :: myInfo
+      type(c_ptr),value :: myInfo
       integer(c_int64_t),value :: batch_count
     end function
   end interface
@@ -28739,7 +28755,7 @@ module hipfort_rocsolver
       type(c_ptr),value :: A
       integer(c_int64_t),value :: lda
       integer(c_int64_t),value :: strideA
-      integer(c_int64_t) :: myInfo
+      type(c_ptr),value :: myInfo
       integer(c_int64_t),value :: batch_count
     end function
   end interface
@@ -28757,7 +28773,7 @@ module hipfort_rocsolver
       type(c_ptr),value :: A
       integer(c_int64_t),value :: lda
       integer(c_int64_t),value :: strideA
-      integer(c_int64_t) :: myInfo
+      type(c_ptr),value :: myInfo
       integer(c_int64_t),value :: batch_count
     end function
   end interface
@@ -28775,7 +28791,7 @@ module hipfort_rocsolver
       type(c_ptr),value :: A
       integer(c_int64_t),value :: lda
       integer(c_int64_t),value :: strideA
-      integer(c_int64_t) :: myInfo
+      type(c_ptr),value :: myInfo
       integer(c_int64_t),value :: batch_count
     end function
   end interface
@@ -28792,7 +28808,7 @@ module hipfort_rocsolver
       integer(c_int64_t),value :: n
       type(c_ptr),value :: A
       integer(c_int64_t),value :: lda
-      integer(c_int64_t) :: myInfo
+      type(c_ptr),value :: myInfo
     end function
   end interface
 
@@ -28808,7 +28824,7 @@ module hipfort_rocsolver
       integer(c_int64_t),value :: n
       type(c_ptr),value :: A
       integer(c_int64_t),value :: lda
-      integer(c_int64_t) :: myInfo
+      type(c_ptr),value :: myInfo
     end function
   end interface
 
@@ -28824,7 +28840,7 @@ module hipfort_rocsolver
       integer(c_int64_t),value :: n
       type(c_ptr),value :: A
       integer(c_int64_t),value :: lda
-      integer(c_int64_t) :: myInfo
+      type(c_ptr),value :: myInfo
     end function
   end interface
 
@@ -28840,7 +28856,7 @@ module hipfort_rocsolver
       integer(c_int64_t),value :: n
       type(c_ptr),value :: A
       integer(c_int64_t),value :: lda
-      integer(c_int64_t) :: myInfo
+      type(c_ptr),value :: myInfo
     end function
   end interface
 
@@ -28856,7 +28872,7 @@ module hipfort_rocsolver
       integer(c_int64_t),value :: n
       type(c_ptr) :: A
       integer(c_int64_t),value :: lda
-      integer(c_int64_t) :: myInfo
+      type(c_ptr),value :: myInfo
       integer(c_int64_t),value :: batch_count
     end function
   end interface
@@ -28873,7 +28889,7 @@ module hipfort_rocsolver
       integer(c_int64_t),value :: n
       type(c_ptr) :: A
       integer(c_int64_t),value :: lda
-      integer(c_int64_t) :: myInfo
+      type(c_ptr),value :: myInfo
       integer(c_int64_t),value :: batch_count
     end function
   end interface
@@ -28890,7 +28906,7 @@ module hipfort_rocsolver
       integer(c_int64_t),value :: n
       type(c_ptr) :: A
       integer(c_int64_t),value :: lda
-      integer(c_int64_t) :: myInfo
+      type(c_ptr),value :: myInfo
       integer(c_int64_t),value :: batch_count
     end function
   end interface
@@ -28907,7 +28923,7 @@ module hipfort_rocsolver
       integer(c_int64_t),value :: n
       type(c_ptr) :: A
       integer(c_int64_t),value :: lda
-      integer(c_int64_t) :: myInfo
+      type(c_ptr),value :: myInfo
       integer(c_int64_t),value :: batch_count
     end function
   end interface
@@ -28925,7 +28941,7 @@ module hipfort_rocsolver
       type(c_ptr),value :: A
       integer(c_int64_t),value :: lda
       integer(c_int64_t),value :: strideA
-      integer(c_int64_t) :: myInfo
+      type(c_ptr),value :: myInfo
       integer(c_int64_t),value :: batch_count
     end function
   end interface
@@ -28943,7 +28959,7 @@ module hipfort_rocsolver
       type(c_ptr),value :: A
       integer(c_int64_t),value :: lda
       integer(c_int64_t),value :: strideA
-      integer(c_int64_t) :: myInfo
+      type(c_ptr),value :: myInfo
       integer(c_int64_t),value :: batch_count
     end function
   end interface
@@ -28961,7 +28977,7 @@ module hipfort_rocsolver
       type(c_ptr),value :: A
       integer(c_int64_t),value :: lda
       integer(c_int64_t),value :: strideA
-      integer(c_int64_t) :: myInfo
+      type(c_ptr),value :: myInfo
       integer(c_int64_t),value :: batch_count
     end function
   end interface
@@ -28979,7 +28995,7 @@ module hipfort_rocsolver
       type(c_ptr),value :: A
       integer(c_int64_t),value :: lda
       integer(c_int64_t),value :: strideA
-      integer(c_int64_t) :: myInfo
+      type(c_ptr),value :: myInfo
       integer(c_int64_t),value :: batch_count
     end function
   end interface
@@ -28997,7 +29013,7 @@ module hipfort_rocsolver
       type(c_ptr),value :: A
       integer(c_int64_t),value :: lda
       type(c_ptr),value :: ipiv
-      integer(c_int64_t) :: myInfo
+      type(c_ptr),value :: myInfo
     end function
   end interface
 
@@ -29014,7 +29030,7 @@ module hipfort_rocsolver
       type(c_ptr),value :: A
       integer(c_int64_t),value :: lda
       type(c_ptr),value :: ipiv
-      integer(c_int64_t) :: myInfo
+      type(c_ptr),value :: myInfo
     end function
   end interface
 
@@ -29031,7 +29047,7 @@ module hipfort_rocsolver
       type(c_ptr),value :: A
       integer(c_int64_t),value :: lda
       type(c_ptr),value :: ipiv
-      integer(c_int64_t) :: myInfo
+      type(c_ptr),value :: myInfo
     end function
   end interface
 
@@ -29048,7 +29064,7 @@ module hipfort_rocsolver
       type(c_ptr),value :: A
       integer(c_int64_t),value :: lda
       type(c_ptr),value :: ipiv
-      integer(c_int64_t) :: myInfo
+      type(c_ptr),value :: myInfo
     end function
   end interface
 
@@ -29066,7 +29082,7 @@ module hipfort_rocsolver
       integer(c_int64_t),value :: lda
       type(c_ptr),value :: ipiv
       integer(c_int64_t),value :: strideP
-      integer(c_int64_t) :: myInfo
+      type(c_ptr),value :: myInfo
       integer(c_int64_t),value :: batch_count
     end function
   end interface
@@ -29085,7 +29101,7 @@ module hipfort_rocsolver
       integer(c_int64_t),value :: lda
       type(c_ptr),value :: ipiv
       integer(c_int64_t),value :: strideP
-      integer(c_int64_t) :: myInfo
+      type(c_ptr),value :: myInfo
       integer(c_int64_t),value :: batch_count
     end function
   end interface
@@ -29104,7 +29120,7 @@ module hipfort_rocsolver
       integer(c_int64_t),value :: lda
       type(c_ptr),value :: ipiv
       integer(c_int64_t),value :: strideP
-      integer(c_int64_t) :: myInfo
+      type(c_ptr),value :: myInfo
       integer(c_int64_t),value :: batch_count
     end function
   end interface
@@ -29123,7 +29139,7 @@ module hipfort_rocsolver
       integer(c_int64_t),value :: lda
       type(c_ptr),value :: ipiv
       integer(c_int64_t),value :: strideP
-      integer(c_int64_t) :: myInfo
+      type(c_ptr),value :: myInfo
       integer(c_int64_t),value :: batch_count
     end function
   end interface
@@ -29143,7 +29159,7 @@ module hipfort_rocsolver
       integer(c_int64_t),value :: strideA
       type(c_ptr),value :: ipiv
       integer(c_int64_t),value :: strideP
-      integer(c_int64_t) :: myInfo
+      type(c_ptr),value :: myInfo
       integer(c_int64_t),value :: batch_count
     end function
   end interface
@@ -29163,7 +29179,7 @@ module hipfort_rocsolver
       integer(c_int64_t),value :: strideA
       type(c_ptr),value :: ipiv
       integer(c_int64_t),value :: strideP
-      integer(c_int64_t) :: myInfo
+      type(c_ptr),value :: myInfo
       integer(c_int64_t),value :: batch_count
     end function
   end interface
@@ -29183,7 +29199,7 @@ module hipfort_rocsolver
       integer(c_int64_t),value :: strideA
       type(c_ptr),value :: ipiv
       integer(c_int64_t),value :: strideP
-      integer(c_int64_t) :: myInfo
+      type(c_ptr),value :: myInfo
       integer(c_int64_t),value :: batch_count
     end function
   end interface
@@ -29203,7 +29219,7 @@ module hipfort_rocsolver
       integer(c_int64_t),value :: strideA
       type(c_ptr),value :: ipiv
       integer(c_int64_t),value :: strideP
-      integer(c_int64_t) :: myInfo
+      type(c_ptr),value :: myInfo
       integer(c_int64_t),value :: batch_count
     end function
   end interface
@@ -29221,7 +29237,7 @@ module hipfort_rocsolver
       type(c_ptr),value :: A
       integer(c_int64_t),value :: lda
       type(c_ptr),value :: ipiv
-      integer(c_int64_t) :: myInfo
+      type(c_ptr),value :: myInfo
     end function
   end interface
 
@@ -29238,7 +29254,7 @@ module hipfort_rocsolver
       type(c_ptr),value :: A
       integer(c_int64_t),value :: lda
       type(c_ptr),value :: ipiv
-      integer(c_int64_t) :: myInfo
+      type(c_ptr),value :: myInfo
     end function
   end interface
 
@@ -29255,7 +29271,7 @@ module hipfort_rocsolver
       type(c_ptr),value :: A
       integer(c_int64_t),value :: lda
       type(c_ptr),value :: ipiv
-      integer(c_int64_t) :: myInfo
+      type(c_ptr),value :: myInfo
     end function
   end interface
 
@@ -29272,7 +29288,7 @@ module hipfort_rocsolver
       type(c_ptr),value :: A
       integer(c_int64_t),value :: lda
       type(c_ptr),value :: ipiv
-      integer(c_int64_t) :: myInfo
+      type(c_ptr),value :: myInfo
     end function
   end interface
 
@@ -29290,7 +29306,7 @@ module hipfort_rocsolver
       integer(c_int64_t),value :: lda
       type(c_ptr),value :: ipiv
       integer(c_int64_t),value :: strideP
-      integer(c_int64_t) :: myInfo
+      type(c_ptr),value :: myInfo
       integer(c_int64_t),value :: batch_count
     end function
   end interface
@@ -29309,7 +29325,7 @@ module hipfort_rocsolver
       integer(c_int64_t),value :: lda
       type(c_ptr),value :: ipiv
       integer(c_int64_t),value :: strideP
-      integer(c_int64_t) :: myInfo
+      type(c_ptr),value :: myInfo
       integer(c_int64_t),value :: batch_count
     end function
   end interface
@@ -29328,7 +29344,7 @@ module hipfort_rocsolver
       integer(c_int64_t),value :: lda
       type(c_ptr),value :: ipiv
       integer(c_int64_t),value :: strideP
-      integer(c_int64_t) :: myInfo
+      type(c_ptr),value :: myInfo
       integer(c_int64_t),value :: batch_count
     end function
   end interface
@@ -29347,7 +29363,7 @@ module hipfort_rocsolver
       integer(c_int64_t),value :: lda
       type(c_ptr),value :: ipiv
       integer(c_int64_t),value :: strideP
-      integer(c_int64_t) :: myInfo
+      type(c_ptr),value :: myInfo
       integer(c_int64_t),value :: batch_count
     end function
   end interface
@@ -29367,7 +29383,7 @@ module hipfort_rocsolver
       integer(c_int64_t),value :: strideA
       type(c_ptr),value :: ipiv
       integer(c_int64_t),value :: strideP
-      integer(c_int64_t) :: myInfo
+      type(c_ptr),value :: myInfo
       integer(c_int64_t),value :: batch_count
     end function
   end interface
@@ -29387,7 +29403,7 @@ module hipfort_rocsolver
       integer(c_int64_t),value :: strideA
       type(c_ptr),value :: ipiv
       integer(c_int64_t),value :: strideP
-      integer(c_int64_t) :: myInfo
+      type(c_ptr),value :: myInfo
       integer(c_int64_t),value :: batch_count
     end function
   end interface
@@ -29407,7 +29423,7 @@ module hipfort_rocsolver
       integer(c_int64_t),value :: strideA
       type(c_ptr),value :: ipiv
       integer(c_int64_t),value :: strideP
-      integer(c_int64_t) :: myInfo
+      type(c_ptr),value :: myInfo
       integer(c_int64_t),value :: batch_count
     end function
   end interface
@@ -29427,7 +29443,7 @@ module hipfort_rocsolver
       integer(c_int64_t),value :: strideA
       type(c_ptr),value :: ipiv
       integer(c_int64_t),value :: strideP
-      integer(c_int64_t) :: myInfo
+      type(c_ptr),value :: myInfo
       integer(c_int64_t),value :: batch_count
     end function
   end interface
@@ -31429,7 +31445,7 @@ module hipfort_rocsolver
       integer(c_int64_t),value :: n
       type(c_ptr),value :: A
       integer(c_int64_t),value :: lda
-      integer(c_int64_t) :: myInfo
+      type(c_ptr),value :: myInfo
     end function
   end interface
 
@@ -31445,7 +31461,7 @@ module hipfort_rocsolver
       integer(c_int64_t),value :: n
       type(c_ptr),value :: A
       integer(c_int64_t),value :: lda
-      integer(c_int64_t) :: myInfo
+      type(c_ptr),value :: myInfo
     end function
   end interface
 
@@ -31461,7 +31477,7 @@ module hipfort_rocsolver
       integer(c_int64_t),value :: n
       type(c_ptr),value :: A
       integer(c_int64_t),value :: lda
-      integer(c_int64_t) :: myInfo
+      type(c_ptr),value :: myInfo
     end function
   end interface
 
@@ -31477,7 +31493,7 @@ module hipfort_rocsolver
       integer(c_int64_t),value :: n
       type(c_ptr),value :: A
       integer(c_int64_t),value :: lda
-      integer(c_int64_t) :: myInfo
+      type(c_ptr),value :: myInfo
     end function
   end interface
 
@@ -31493,7 +31509,7 @@ module hipfort_rocsolver
       integer(c_int64_t),value :: n
       type(c_ptr) :: A
       integer(c_int64_t),value :: lda
-      integer(c_int64_t) :: myInfo
+      type(c_ptr),value :: myInfo
       integer(c_int64_t),value :: batch_count
     end function
   end interface
@@ -31510,7 +31526,7 @@ module hipfort_rocsolver
       integer(c_int64_t),value :: n
       type(c_ptr) :: A
       integer(c_int64_t),value :: lda
-      integer(c_int64_t) :: myInfo
+      type(c_ptr),value :: myInfo
       integer(c_int64_t),value :: batch_count
     end function
   end interface
@@ -31527,7 +31543,7 @@ module hipfort_rocsolver
       integer(c_int64_t),value :: n
       type(c_ptr) :: A
       integer(c_int64_t),value :: lda
-      integer(c_int64_t) :: myInfo
+      type(c_ptr),value :: myInfo
       integer(c_int64_t),value :: batch_count
     end function
   end interface
@@ -31544,7 +31560,7 @@ module hipfort_rocsolver
       integer(c_int64_t),value :: n
       type(c_ptr) :: A
       integer(c_int64_t),value :: lda
-      integer(c_int64_t) :: myInfo
+      type(c_ptr),value :: myInfo
       integer(c_int64_t),value :: batch_count
     end function
   end interface
@@ -31562,7 +31578,7 @@ module hipfort_rocsolver
       type(c_ptr),value :: A
       integer(c_int64_t),value :: lda
       integer(c_int64_t),value :: strideA
-      integer(c_int64_t) :: myInfo
+      type(c_ptr),value :: myInfo
       integer(c_int64_t),value :: batch_count
     end function
   end interface
@@ -31580,7 +31596,7 @@ module hipfort_rocsolver
       type(c_ptr),value :: A
       integer(c_int64_t),value :: lda
       integer(c_int64_t),value :: strideA
-      integer(c_int64_t) :: myInfo
+      type(c_ptr),value :: myInfo
       integer(c_int64_t),value :: batch_count
     end function
   end interface
@@ -31598,7 +31614,7 @@ module hipfort_rocsolver
       type(c_ptr),value :: A
       integer(c_int64_t),value :: lda
       integer(c_int64_t),value :: strideA
-      integer(c_int64_t) :: myInfo
+      type(c_ptr),value :: myInfo
       integer(c_int64_t),value :: batch_count
     end function
   end interface
@@ -31616,7 +31632,7 @@ module hipfort_rocsolver
       type(c_ptr),value :: A
       integer(c_int64_t),value :: lda
       integer(c_int64_t),value :: strideA
-      integer(c_int64_t) :: myInfo
+      type(c_ptr),value :: myInfo
       integer(c_int64_t),value :: batch_count
     end function
   end interface
@@ -31633,7 +31649,7 @@ module hipfort_rocsolver
       integer(c_int64_t),value :: n
       type(c_ptr),value :: A
       integer(c_int64_t),value :: lda
-      integer(c_int64_t) :: myInfo
+      type(c_ptr),value :: myInfo
     end function
   end interface
 
@@ -31649,7 +31665,7 @@ module hipfort_rocsolver
       integer(c_int64_t),value :: n
       type(c_ptr),value :: A
       integer(c_int64_t),value :: lda
-      integer(c_int64_t) :: myInfo
+      type(c_ptr),value :: myInfo
     end function
   end interface
 
@@ -31665,7 +31681,7 @@ module hipfort_rocsolver
       integer(c_int64_t),value :: n
       type(c_ptr),value :: A
       integer(c_int64_t),value :: lda
-      integer(c_int64_t) :: myInfo
+      type(c_ptr),value :: myInfo
     end function
   end interface
 
@@ -31681,7 +31697,7 @@ module hipfort_rocsolver
       integer(c_int64_t),value :: n
       type(c_ptr),value :: A
       integer(c_int64_t),value :: lda
-      integer(c_int64_t) :: myInfo
+      type(c_ptr),value :: myInfo
     end function
   end interface
 
@@ -31697,7 +31713,7 @@ module hipfort_rocsolver
       integer(c_int64_t),value :: n
       type(c_ptr) :: A
       integer(c_int64_t),value :: lda
-      integer(c_int64_t) :: myInfo
+      type(c_ptr),value :: myInfo
       integer(c_int64_t),value :: batch_count
     end function
   end interface
@@ -31714,7 +31730,7 @@ module hipfort_rocsolver
       integer(c_int64_t),value :: n
       type(c_ptr) :: A
       integer(c_int64_t),value :: lda
-      integer(c_int64_t) :: myInfo
+      type(c_ptr),value :: myInfo
       integer(c_int64_t),value :: batch_count
     end function
   end interface
@@ -31731,7 +31747,7 @@ module hipfort_rocsolver
       integer(c_int64_t),value :: n
       type(c_ptr) :: A
       integer(c_int64_t),value :: lda
-      integer(c_int64_t) :: myInfo
+      type(c_ptr),value :: myInfo
       integer(c_int64_t),value :: batch_count
     end function
   end interface
@@ -31748,7 +31764,7 @@ module hipfort_rocsolver
       integer(c_int64_t),value :: n
       type(c_ptr) :: A
       integer(c_int64_t),value :: lda
-      integer(c_int64_t) :: myInfo
+      type(c_ptr),value :: myInfo
       integer(c_int64_t),value :: batch_count
     end function
   end interface
@@ -31766,7 +31782,7 @@ module hipfort_rocsolver
       type(c_ptr),value :: A
       integer(c_int64_t),value :: lda
       integer(c_int64_t),value :: strideA
-      integer(c_int64_t) :: myInfo
+      type(c_ptr),value :: myInfo
       integer(c_int64_t),value :: batch_count
     end function
   end interface
@@ -31784,7 +31800,7 @@ module hipfort_rocsolver
       type(c_ptr),value :: A
       integer(c_int64_t),value :: lda
       integer(c_int64_t),value :: strideA
-      integer(c_int64_t) :: myInfo
+      type(c_ptr),value :: myInfo
       integer(c_int64_t),value :: batch_count
     end function
   end interface
@@ -31802,7 +31818,7 @@ module hipfort_rocsolver
       type(c_ptr),value :: A
       integer(c_int64_t),value :: lda
       integer(c_int64_t),value :: strideA
-      integer(c_int64_t) :: myInfo
+      type(c_ptr),value :: myInfo
       integer(c_int64_t),value :: batch_count
     end function
   end interface
@@ -31820,7 +31836,7 @@ module hipfort_rocsolver
       type(c_ptr),value :: A
       integer(c_int64_t),value :: lda
       integer(c_int64_t),value :: strideA
-      integer(c_int64_t) :: myInfo
+      type(c_ptr),value :: myInfo
       integer(c_int64_t),value :: batch_count
     end function
   end interface
@@ -75174,23 +75190,6 @@ module hipfort_rocsolver
       rocsolver_ssytf2_full_rank = rocsolver_ssytf2_(handle,uplo,n,c_loc(A),lda,c_loc(ipiv),c_loc(myInfo))
     end function
 
-    function rocsolver_dsytf2_full_rank(handle,uplo,n,A,lda,ipiv,myInfo)
-      use iso_c_binding
-      use hipfort_rocsolver_enums
-      use hipfort_rocblas_enums
-      implicit none
-      integer(kind(rocblas_status_success)) :: rocsolver_dsytf2_full_rank
-      type(c_ptr) :: handle
-      integer(kind(rocblas_fill_upper)) :: uplo
-      integer(c_int) :: n
-      real(c_double),target,dimension(:,:) :: A
-      integer(c_int) :: lda
-      integer(c_int),target,dimension(:) :: ipiv
-      type(c_ptr),value :: myInfo
-      !
-      rocsolver_dsytf2_full_rank = rocsolver_dsytf2_(handle,uplo,n,c_loc(A),lda,c_loc(ipiv),myInfo)
-    end function
-
     function rocsolver_dsytf2_rank_0(handle,uplo,n,A,lda,ipiv,myInfo)
       use iso_c_binding
       use hipfort_rocsolver_enums
@@ -75203,9 +75202,9 @@ module hipfort_rocsolver
       real(c_double),target :: A
       integer(c_int) :: lda
       integer(c_int),target :: ipiv
-      type(c_ptr),value :: myInfo
+      integer(c_int),target :: myInfo
       !
-      rocsolver_dsytf2_rank_0 = rocsolver_dsytf2_(handle,uplo,n,c_loc(A),lda,c_loc(ipiv),myInfo)
+      rocsolver_dsytf2_rank_0 = rocsolver_dsytf2_(handle,uplo,n,c_loc(A),lda,c_loc(ipiv),c_loc(myInfo))
     end function
 
     function rocsolver_dsytf2_rank_1(handle,uplo,n,A,lda,ipiv,myInfo)
@@ -75220,26 +75219,26 @@ module hipfort_rocsolver
       real(c_double),target,dimension(:) :: A
       integer(c_int) :: lda
       integer(c_int),target,dimension(:) :: ipiv
-      type(c_ptr),value :: myInfo
+      integer(c_int),target,dimension(:) :: myInfo
       !
-      rocsolver_dsytf2_rank_1 = rocsolver_dsytf2_(handle,uplo,n,c_loc(A),lda,c_loc(ipiv),myInfo)
+      rocsolver_dsytf2_rank_1 = rocsolver_dsytf2_(handle,uplo,n,c_loc(A),lda,c_loc(ipiv),c_loc(myInfo))
     end function
 
-    function rocsolver_csytf2_full_rank(handle,uplo,n,A,lda,ipiv,myInfo)
+    function rocsolver_dsytf2_full_rank(handle,uplo,n,A,lda,ipiv,myInfo)
       use iso_c_binding
       use hipfort_rocsolver_enums
       use hipfort_rocblas_enums
       implicit none
-      integer(kind(rocblas_status_success)) :: rocsolver_csytf2_full_rank
+      integer(kind(rocblas_status_success)) :: rocsolver_dsytf2_full_rank
       type(c_ptr) :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
-      complex(c_float_complex),target,dimension(:,:) :: A
+      real(c_double),target,dimension(:,:) :: A
       integer(c_int) :: lda
-      integer(c_int),target,dimension(:) :: ipiv
-      type(c_ptr),value :: myInfo
+      integer(c_int),target,dimension(:,:) :: ipiv
+      integer(c_int),target,dimension(:,:) :: myInfo
       !
-      rocsolver_csytf2_full_rank = rocsolver_csytf2_(handle,uplo,n,c_loc(A),lda,c_loc(ipiv),myInfo)
+      rocsolver_dsytf2_full_rank = rocsolver_dsytf2_(handle,uplo,n,c_loc(A),lda,c_loc(ipiv),c_loc(myInfo))
     end function
 
     function rocsolver_csytf2_rank_0(handle,uplo,n,A,lda,ipiv,myInfo)
@@ -75254,9 +75253,9 @@ module hipfort_rocsolver
       complex(c_float_complex),target :: A
       integer(c_int) :: lda
       integer(c_int),target :: ipiv
-      type(c_ptr),value :: myInfo
+      integer(c_int),target :: myInfo
       !
-      rocsolver_csytf2_rank_0 = rocsolver_csytf2_(handle,uplo,n,c_loc(A),lda,c_loc(ipiv),myInfo)
+      rocsolver_csytf2_rank_0 = rocsolver_csytf2_(handle,uplo,n,c_loc(A),lda,c_loc(ipiv),c_loc(myInfo))
     end function
 
     function rocsolver_csytf2_rank_1(handle,uplo,n,A,lda,ipiv,myInfo)
@@ -75271,26 +75270,26 @@ module hipfort_rocsolver
       complex(c_float_complex),target,dimension(:) :: A
       integer(c_int) :: lda
       integer(c_int),target,dimension(:) :: ipiv
-      type(c_ptr),value :: myInfo
+      integer(c_int),target,dimension(:) :: myInfo
       !
-      rocsolver_csytf2_rank_1 = rocsolver_csytf2_(handle,uplo,n,c_loc(A),lda,c_loc(ipiv),myInfo)
+      rocsolver_csytf2_rank_1 = rocsolver_csytf2_(handle,uplo,n,c_loc(A),lda,c_loc(ipiv),c_loc(myInfo))
     end function
 
-    function rocsolver_zsytf2_full_rank(handle,uplo,n,A,lda,ipiv,myInfo)
+    function rocsolver_csytf2_full_rank(handle,uplo,n,A,lda,ipiv,myInfo)
       use iso_c_binding
       use hipfort_rocsolver_enums
       use hipfort_rocblas_enums
       implicit none
-      integer(kind(rocblas_status_success)) :: rocsolver_zsytf2_full_rank
+      integer(kind(rocblas_status_success)) :: rocsolver_csytf2_full_rank
       type(c_ptr) :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
-      complex(c_double_complex),target,dimension(:,:) :: A
+      complex(c_float_complex),target,dimension(:,:) :: A
       integer(c_int) :: lda
-      integer(c_int),target,dimension(:) :: ipiv
-      type(c_ptr),value :: myInfo
+      integer(c_int),target,dimension(:,:) :: ipiv
+      integer(c_int),target,dimension(:,:) :: myInfo
       !
-      rocsolver_zsytf2_full_rank = rocsolver_zsytf2_(handle,uplo,n,c_loc(A),lda,c_loc(ipiv),myInfo)
+      rocsolver_csytf2_full_rank = rocsolver_csytf2_(handle,uplo,n,c_loc(A),lda,c_loc(ipiv),c_loc(myInfo))
     end function
 
     function rocsolver_zsytf2_rank_0(handle,uplo,n,A,lda,ipiv,myInfo)
@@ -75305,9 +75304,9 @@ module hipfort_rocsolver
       complex(c_double_complex),target :: A
       integer(c_int) :: lda
       integer(c_int),target :: ipiv
-      type(c_ptr),value :: myInfo
+      integer(c_int),target :: myInfo
       !
-      rocsolver_zsytf2_rank_0 = rocsolver_zsytf2_(handle,uplo,n,c_loc(A),lda,c_loc(ipiv),myInfo)
+      rocsolver_zsytf2_rank_0 = rocsolver_zsytf2_(handle,uplo,n,c_loc(A),lda,c_loc(ipiv),c_loc(myInfo))
     end function
 
     function rocsolver_zsytf2_rank_1(handle,uplo,n,A,lda,ipiv,myInfo)
@@ -75322,28 +75321,26 @@ module hipfort_rocsolver
       complex(c_double_complex),target,dimension(:) :: A
       integer(c_int) :: lda
       integer(c_int),target,dimension(:) :: ipiv
-      type(c_ptr),value :: myInfo
+      integer(c_int),target,dimension(:) :: myInfo
       !
-      rocsolver_zsytf2_rank_1 = rocsolver_zsytf2_(handle,uplo,n,c_loc(A),lda,c_loc(ipiv),myInfo)
+      rocsolver_zsytf2_rank_1 = rocsolver_zsytf2_(handle,uplo,n,c_loc(A),lda,c_loc(ipiv),c_loc(myInfo))
     end function
 
-    function rocsolver_ssytf2_batched_full_rank(handle,uplo,n,A,lda,ipiv,strideP,myInfo,batch_count)
+    function rocsolver_zsytf2_full_rank(handle,uplo,n,A,lda,ipiv,myInfo)
       use iso_c_binding
       use hipfort_rocsolver_enums
       use hipfort_rocblas_enums
       implicit none
-      integer(kind(rocblas_status_success)) :: rocsolver_ssytf2_batched_full_rank
+      integer(kind(rocblas_status_success)) :: rocsolver_zsytf2_full_rank
       type(c_ptr) :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
-      real(c_float),target,dimension(:,:,:) :: A
+      complex(c_double_complex),target,dimension(:,:) :: A
       integer(c_int) :: lda
-      integer(c_int),target,dimension(:) :: ipiv
-      integer(c_int64_t) :: strideP
-      type(c_ptr),value :: myInfo
-      integer(c_int) :: batch_count
+      integer(c_int),target,dimension(:,:) :: ipiv
+      integer(c_int),target,dimension(:,:) :: myInfo
       !
-      rocsolver_ssytf2_batched_full_rank = rocsolver_ssytf2_batched_(handle,uplo,n,c_loc(A),lda,c_loc(ipiv),strideP,myInfo,batch_count)
+      rocsolver_zsytf2_full_rank = rocsolver_zsytf2_(handle,uplo,n,c_loc(A),lda,c_loc(ipiv),c_loc(myInfo))
     end function
 
     function rocsolver_ssytf2_batched_rank_0(handle,uplo,n,A,lda,ipiv,strideP,myInfo,batch_count)
@@ -75355,14 +75352,14 @@ module hipfort_rocsolver
       type(c_ptr) :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
-      real(c_float),target :: A
+      type(c_ptr) :: A
       integer(c_int) :: lda
       integer(c_int),target :: ipiv
       integer(c_int64_t) :: strideP
-      type(c_ptr),value :: myInfo
+      integer(c_int),target :: myInfo
       integer(c_int) :: batch_count
       !
-      rocsolver_ssytf2_batched_rank_0 = rocsolver_ssytf2_batched_(handle,uplo,n,c_loc(A),lda,c_loc(ipiv),strideP,myInfo,batch_count)
+      rocsolver_ssytf2_batched_rank_0 = rocsolver_ssytf2_batched_(handle,uplo,n,A,lda,c_loc(ipiv),strideP,c_loc(myInfo),batch_count)
     end function
 
     function rocsolver_ssytf2_batched_rank_1(handle,uplo,n,A,lda,ipiv,strideP,myInfo,batch_count)
@@ -75374,33 +75371,33 @@ module hipfort_rocsolver
       type(c_ptr) :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
-      real(c_float),target,dimension(:) :: A
+      type(c_ptr) :: A
       integer(c_int) :: lda
       integer(c_int),target,dimension(:) :: ipiv
       integer(c_int64_t) :: strideP
-      type(c_ptr),value :: myInfo
+      integer(c_int),target,dimension(:) :: myInfo
       integer(c_int) :: batch_count
       !
-      rocsolver_ssytf2_batched_rank_1 = rocsolver_ssytf2_batched_(handle,uplo,n,c_loc(A),lda,c_loc(ipiv),strideP,myInfo,batch_count)
+      rocsolver_ssytf2_batched_rank_1 = rocsolver_ssytf2_batched_(handle,uplo,n,A,lda,c_loc(ipiv),strideP,c_loc(myInfo),batch_count)
     end function
 
-    function rocsolver_dsytf2_batched_full_rank(handle,uplo,n,A,lda,ipiv,strideP,myInfo,batch_count)
+    function rocsolver_ssytf2_batched_full_rank(handle,uplo,n,A,lda,ipiv,strideP,myInfo,batch_count)
       use iso_c_binding
       use hipfort_rocsolver_enums
       use hipfort_rocblas_enums
       implicit none
-      integer(kind(rocblas_status_success)) :: rocsolver_dsytf2_batched_full_rank
+      integer(kind(rocblas_status_success)) :: rocsolver_ssytf2_batched_full_rank
       type(c_ptr) :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
-      real(c_double),target,dimension(:,:,:) :: A
+      type(c_ptr) :: A
       integer(c_int) :: lda
-      integer(c_int),target,dimension(:) :: ipiv
+      integer(c_int),target,dimension(:,:) :: ipiv
       integer(c_int64_t) :: strideP
-      type(c_ptr),value :: myInfo
+      integer(c_int),target,dimension(:,:) :: myInfo
       integer(c_int) :: batch_count
       !
-      rocsolver_dsytf2_batched_full_rank = rocsolver_dsytf2_batched_(handle,uplo,n,c_loc(A),lda,c_loc(ipiv),strideP,myInfo,batch_count)
+      rocsolver_ssytf2_batched_full_rank = rocsolver_ssytf2_batched_(handle,uplo,n,A,lda,c_loc(ipiv),strideP,c_loc(myInfo),batch_count)
     end function
 
     function rocsolver_dsytf2_batched_rank_0(handle,uplo,n,A,lda,ipiv,strideP,myInfo,batch_count)
@@ -75412,14 +75409,14 @@ module hipfort_rocsolver
       type(c_ptr) :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
-      real(c_double),target :: A
+      type(c_ptr) :: A
       integer(c_int) :: lda
       integer(c_int),target :: ipiv
       integer(c_int64_t) :: strideP
-      type(c_ptr),value :: myInfo
+      integer(c_int),target :: myInfo
       integer(c_int) :: batch_count
       !
-      rocsolver_dsytf2_batched_rank_0 = rocsolver_dsytf2_batched_(handle,uplo,n,c_loc(A),lda,c_loc(ipiv),strideP,myInfo,batch_count)
+      rocsolver_dsytf2_batched_rank_0 = rocsolver_dsytf2_batched_(handle,uplo,n,A,lda,c_loc(ipiv),strideP,c_loc(myInfo),batch_count)
     end function
 
     function rocsolver_dsytf2_batched_rank_1(handle,uplo,n,A,lda,ipiv,strideP,myInfo,batch_count)
@@ -75431,33 +75428,33 @@ module hipfort_rocsolver
       type(c_ptr) :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
-      real(c_double),target,dimension(:) :: A
+      type(c_ptr) :: A
       integer(c_int) :: lda
       integer(c_int),target,dimension(:) :: ipiv
       integer(c_int64_t) :: strideP
-      type(c_ptr),value :: myInfo
+      integer(c_int),target,dimension(:) :: myInfo
       integer(c_int) :: batch_count
       !
-      rocsolver_dsytf2_batched_rank_1 = rocsolver_dsytf2_batched_(handle,uplo,n,c_loc(A),lda,c_loc(ipiv),strideP,myInfo,batch_count)
+      rocsolver_dsytf2_batched_rank_1 = rocsolver_dsytf2_batched_(handle,uplo,n,A,lda,c_loc(ipiv),strideP,c_loc(myInfo),batch_count)
     end function
 
-    function rocsolver_csytf2_batched_full_rank(handle,uplo,n,A,lda,ipiv,strideP,myInfo,batch_count)
+    function rocsolver_dsytf2_batched_full_rank(handle,uplo,n,A,lda,ipiv,strideP,myInfo,batch_count)
       use iso_c_binding
       use hipfort_rocsolver_enums
       use hipfort_rocblas_enums
       implicit none
-      integer(kind(rocblas_status_success)) :: rocsolver_csytf2_batched_full_rank
+      integer(kind(rocblas_status_success)) :: rocsolver_dsytf2_batched_full_rank
       type(c_ptr) :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
-      complex(c_float_complex),target,dimension(:,:,:) :: A
+      type(c_ptr) :: A
       integer(c_int) :: lda
-      integer(c_int),target,dimension(:) :: ipiv
+      integer(c_int),target,dimension(:,:) :: ipiv
       integer(c_int64_t) :: strideP
-      type(c_ptr),value :: myInfo
+      integer(c_int),target,dimension(:,:) :: myInfo
       integer(c_int) :: batch_count
       !
-      rocsolver_csytf2_batched_full_rank = rocsolver_csytf2_batched_(handle,uplo,n,c_loc(A),lda,c_loc(ipiv),strideP,myInfo,batch_count)
+      rocsolver_dsytf2_batched_full_rank = rocsolver_dsytf2_batched_(handle,uplo,n,A,lda,c_loc(ipiv),strideP,c_loc(myInfo),batch_count)
     end function
 
     function rocsolver_csytf2_batched_rank_0(handle,uplo,n,A,lda,ipiv,strideP,myInfo,batch_count)
@@ -75469,14 +75466,14 @@ module hipfort_rocsolver
       type(c_ptr) :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
-      complex(c_float_complex),target :: A
+      type(c_ptr) :: A
       integer(c_int) :: lda
       integer(c_int),target :: ipiv
       integer(c_int64_t) :: strideP
-      type(c_ptr),value :: myInfo
+      integer(c_int),target :: myInfo
       integer(c_int) :: batch_count
       !
-      rocsolver_csytf2_batched_rank_0 = rocsolver_csytf2_batched_(handle,uplo,n,c_loc(A),lda,c_loc(ipiv),strideP,myInfo,batch_count)
+      rocsolver_csytf2_batched_rank_0 = rocsolver_csytf2_batched_(handle,uplo,n,A,lda,c_loc(ipiv),strideP,c_loc(myInfo),batch_count)
     end function
 
     function rocsolver_csytf2_batched_rank_1(handle,uplo,n,A,lda,ipiv,strideP,myInfo,batch_count)
@@ -75488,33 +75485,33 @@ module hipfort_rocsolver
       type(c_ptr) :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
-      complex(c_float_complex),target,dimension(:) :: A
+      type(c_ptr) :: A
       integer(c_int) :: lda
       integer(c_int),target,dimension(:) :: ipiv
       integer(c_int64_t) :: strideP
-      type(c_ptr),value :: myInfo
+      integer(c_int),target,dimension(:) :: myInfo
       integer(c_int) :: batch_count
       !
-      rocsolver_csytf2_batched_rank_1 = rocsolver_csytf2_batched_(handle,uplo,n,c_loc(A),lda,c_loc(ipiv),strideP,myInfo,batch_count)
+      rocsolver_csytf2_batched_rank_1 = rocsolver_csytf2_batched_(handle,uplo,n,A,lda,c_loc(ipiv),strideP,c_loc(myInfo),batch_count)
     end function
 
-    function rocsolver_zsytf2_batched_full_rank(handle,uplo,n,A,lda,ipiv,strideP,myInfo,batch_count)
+    function rocsolver_csytf2_batched_full_rank(handle,uplo,n,A,lda,ipiv,strideP,myInfo,batch_count)
       use iso_c_binding
       use hipfort_rocsolver_enums
       use hipfort_rocblas_enums
       implicit none
-      integer(kind(rocblas_status_success)) :: rocsolver_zsytf2_batched_full_rank
+      integer(kind(rocblas_status_success)) :: rocsolver_csytf2_batched_full_rank
       type(c_ptr) :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
-      complex(c_double_complex),target,dimension(:,:,:) :: A
+      type(c_ptr) :: A
       integer(c_int) :: lda
-      integer(c_int),target,dimension(:) :: ipiv
+      integer(c_int),target,dimension(:,:) :: ipiv
       integer(c_int64_t) :: strideP
-      type(c_ptr),value :: myInfo
+      integer(c_int),target,dimension(:,:) :: myInfo
       integer(c_int) :: batch_count
       !
-      rocsolver_zsytf2_batched_full_rank = rocsolver_zsytf2_batched_(handle,uplo,n,c_loc(A),lda,c_loc(ipiv),strideP,myInfo,batch_count)
+      rocsolver_csytf2_batched_full_rank = rocsolver_csytf2_batched_(handle,uplo,n,A,lda,c_loc(ipiv),strideP,c_loc(myInfo),batch_count)
     end function
 
     function rocsolver_zsytf2_batched_rank_0(handle,uplo,n,A,lda,ipiv,strideP,myInfo,batch_count)
@@ -75526,14 +75523,14 @@ module hipfort_rocsolver
       type(c_ptr) :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
-      complex(c_double_complex),target :: A
+      type(c_ptr) :: A
       integer(c_int) :: lda
       integer(c_int),target :: ipiv
       integer(c_int64_t) :: strideP
-      type(c_ptr),value :: myInfo
+      integer(c_int),target :: myInfo
       integer(c_int) :: batch_count
       !
-      rocsolver_zsytf2_batched_rank_0 = rocsolver_zsytf2_batched_(handle,uplo,n,c_loc(A),lda,c_loc(ipiv),strideP,myInfo,batch_count)
+      rocsolver_zsytf2_batched_rank_0 = rocsolver_zsytf2_batched_(handle,uplo,n,A,lda,c_loc(ipiv),strideP,c_loc(myInfo),batch_count)
     end function
 
     function rocsolver_zsytf2_batched_rank_1(handle,uplo,n,A,lda,ipiv,strideP,myInfo,batch_count)
@@ -75545,34 +75542,33 @@ module hipfort_rocsolver
       type(c_ptr) :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
-      complex(c_double_complex),target,dimension(:) :: A
+      type(c_ptr) :: A
       integer(c_int) :: lda
       integer(c_int),target,dimension(:) :: ipiv
       integer(c_int64_t) :: strideP
-      type(c_ptr),value :: myInfo
+      integer(c_int),target,dimension(:) :: myInfo
       integer(c_int) :: batch_count
       !
-      rocsolver_zsytf2_batched_rank_1 = rocsolver_zsytf2_batched_(handle,uplo,n,c_loc(A),lda,c_loc(ipiv),strideP,myInfo,batch_count)
+      rocsolver_zsytf2_batched_rank_1 = rocsolver_zsytf2_batched_(handle,uplo,n,A,lda,c_loc(ipiv),strideP,c_loc(myInfo),batch_count)
     end function
 
-    function rocsolver_ssytf2_strided_batched_full_rank(handle,uplo,n,A,lda,strideA,ipiv,strideP,myInfo,batch_count)
+    function rocsolver_zsytf2_batched_full_rank(handle,uplo,n,A,lda,ipiv,strideP,myInfo,batch_count)
       use iso_c_binding
       use hipfort_rocsolver_enums
       use hipfort_rocblas_enums
       implicit none
-      integer(kind(rocblas_status_success)) :: rocsolver_ssytf2_strided_batched_full_rank
+      integer(kind(rocblas_status_success)) :: rocsolver_zsytf2_batched_full_rank
       type(c_ptr) :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
-      real(c_float),target,dimension(:,:) :: A
+      type(c_ptr) :: A
       integer(c_int) :: lda
-      integer(c_int64_t) :: strideA
-      integer(c_int),target,dimension(:) :: ipiv
+      integer(c_int),target,dimension(:,:) :: ipiv
       integer(c_int64_t) :: strideP
-      type(c_ptr),value :: myInfo
+      integer(c_int),target,dimension(:,:) :: myInfo
       integer(c_int) :: batch_count
       !
-      rocsolver_ssytf2_strided_batched_full_rank = rocsolver_ssytf2_strided_batched_(handle,uplo,n,c_loc(A),lda,strideA,c_loc(ipiv),strideP,myInfo,batch_count)
+      rocsolver_zsytf2_batched_full_rank = rocsolver_zsytf2_batched_(handle,uplo,n,A,lda,c_loc(ipiv),strideP,c_loc(myInfo),batch_count)
     end function
 
     function rocsolver_ssytf2_strided_batched_rank_0(handle,uplo,n,A,lda,strideA,ipiv,strideP,myInfo,batch_count)
@@ -75589,10 +75585,10 @@ module hipfort_rocsolver
       integer(c_int64_t) :: strideA
       integer(c_int),target :: ipiv
       integer(c_int64_t) :: strideP
-      type(c_ptr),value :: myInfo
+      integer(c_int),target :: myInfo
       integer(c_int) :: batch_count
       !
-      rocsolver_ssytf2_strided_batched_rank_0 = rocsolver_ssytf2_strided_batched_(handle,uplo,n,c_loc(A),lda,strideA,c_loc(ipiv),strideP,myInfo,batch_count)
+      rocsolver_ssytf2_strided_batched_rank_0 = rocsolver_ssytf2_strided_batched_(handle,uplo,n,c_loc(A),lda,strideA,c_loc(ipiv),strideP,c_loc(myInfo),batch_count)
     end function
 
     function rocsolver_ssytf2_strided_batched_rank_1(handle,uplo,n,A,lda,strideA,ipiv,strideP,myInfo,batch_count)
@@ -75609,30 +75605,30 @@ module hipfort_rocsolver
       integer(c_int64_t) :: strideA
       integer(c_int),target,dimension(:) :: ipiv
       integer(c_int64_t) :: strideP
-      type(c_ptr),value :: myInfo
+      integer(c_int),target,dimension(:) :: myInfo
       integer(c_int) :: batch_count
       !
-      rocsolver_ssytf2_strided_batched_rank_1 = rocsolver_ssytf2_strided_batched_(handle,uplo,n,c_loc(A),lda,strideA,c_loc(ipiv),strideP,myInfo,batch_count)
+      rocsolver_ssytf2_strided_batched_rank_1 = rocsolver_ssytf2_strided_batched_(handle,uplo,n,c_loc(A),lda,strideA,c_loc(ipiv),strideP,c_loc(myInfo),batch_count)
     end function
 
-    function rocsolver_dsytf2_strided_batched_full_rank(handle,uplo,n,A,lda,strideA,ipiv,strideP,myInfo,batch_count)
+    function rocsolver_ssytf2_strided_batched_full_rank(handle,uplo,n,A,lda,strideA,ipiv,strideP,myInfo,batch_count)
       use iso_c_binding
       use hipfort_rocsolver_enums
       use hipfort_rocblas_enums
       implicit none
-      integer(kind(rocblas_status_success)) :: rocsolver_dsytf2_strided_batched_full_rank
+      integer(kind(rocblas_status_success)) :: rocsolver_ssytf2_strided_batched_full_rank
       type(c_ptr) :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
-      real(c_double),target,dimension(:,:) :: A
+      real(c_float),target,dimension(:,:) :: A
       integer(c_int) :: lda
       integer(c_int64_t) :: strideA
-      integer(c_int),target,dimension(:) :: ipiv
+      integer(c_int),target,dimension(:,:) :: ipiv
       integer(c_int64_t) :: strideP
-      type(c_ptr),value :: myInfo
+      integer(c_int),target,dimension(:,:) :: myInfo
       integer(c_int) :: batch_count
       !
-      rocsolver_dsytf2_strided_batched_full_rank = rocsolver_dsytf2_strided_batched_(handle,uplo,n,c_loc(A),lda,strideA,c_loc(ipiv),strideP,myInfo,batch_count)
+      rocsolver_ssytf2_strided_batched_full_rank = rocsolver_ssytf2_strided_batched_(handle,uplo,n,c_loc(A),lda,strideA,c_loc(ipiv),strideP,c_loc(myInfo),batch_count)
     end function
 
     function rocsolver_dsytf2_strided_batched_rank_0(handle,uplo,n,A,lda,strideA,ipiv,strideP,myInfo,batch_count)
@@ -75649,10 +75645,10 @@ module hipfort_rocsolver
       integer(c_int64_t) :: strideA
       integer(c_int),target :: ipiv
       integer(c_int64_t) :: strideP
-      type(c_ptr),value :: myInfo
+      integer(c_int),target :: myInfo
       integer(c_int) :: batch_count
       !
-      rocsolver_dsytf2_strided_batched_rank_0 = rocsolver_dsytf2_strided_batched_(handle,uplo,n,c_loc(A),lda,strideA,c_loc(ipiv),strideP,myInfo,batch_count)
+      rocsolver_dsytf2_strided_batched_rank_0 = rocsolver_dsytf2_strided_batched_(handle,uplo,n,c_loc(A),lda,strideA,c_loc(ipiv),strideP,c_loc(myInfo),batch_count)
     end function
 
     function rocsolver_dsytf2_strided_batched_rank_1(handle,uplo,n,A,lda,strideA,ipiv,strideP,myInfo,batch_count)
@@ -75669,30 +75665,30 @@ module hipfort_rocsolver
       integer(c_int64_t) :: strideA
       integer(c_int),target,dimension(:) :: ipiv
       integer(c_int64_t) :: strideP
-      type(c_ptr),value :: myInfo
+      integer(c_int),target,dimension(:) :: myInfo
       integer(c_int) :: batch_count
       !
-      rocsolver_dsytf2_strided_batched_rank_1 = rocsolver_dsytf2_strided_batched_(handle,uplo,n,c_loc(A),lda,strideA,c_loc(ipiv),strideP,myInfo,batch_count)
+      rocsolver_dsytf2_strided_batched_rank_1 = rocsolver_dsytf2_strided_batched_(handle,uplo,n,c_loc(A),lda,strideA,c_loc(ipiv),strideP,c_loc(myInfo),batch_count)
     end function
 
-    function rocsolver_csytf2_strided_batched_full_rank(handle,uplo,n,A,lda,strideA,ipiv,strideP,myInfo,batch_count)
+    function rocsolver_dsytf2_strided_batched_full_rank(handle,uplo,n,A,lda,strideA,ipiv,strideP,myInfo,batch_count)
       use iso_c_binding
       use hipfort_rocsolver_enums
       use hipfort_rocblas_enums
       implicit none
-      integer(kind(rocblas_status_success)) :: rocsolver_csytf2_strided_batched_full_rank
+      integer(kind(rocblas_status_success)) :: rocsolver_dsytf2_strided_batched_full_rank
       type(c_ptr) :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
-      complex(c_float_complex),target,dimension(:,:) :: A
+      real(c_double),target,dimension(:,:) :: A
       integer(c_int) :: lda
       integer(c_int64_t) :: strideA
-      integer(c_int),target,dimension(:) :: ipiv
+      integer(c_int),target,dimension(:,:) :: ipiv
       integer(c_int64_t) :: strideP
-      type(c_ptr),value :: myInfo
+      integer(c_int),target,dimension(:,:) :: myInfo
       integer(c_int) :: batch_count
       !
-      rocsolver_csytf2_strided_batched_full_rank = rocsolver_csytf2_strided_batched_(handle,uplo,n,c_loc(A),lda,strideA,c_loc(ipiv),strideP,myInfo,batch_count)
+      rocsolver_dsytf2_strided_batched_full_rank = rocsolver_dsytf2_strided_batched_(handle,uplo,n,c_loc(A),lda,strideA,c_loc(ipiv),strideP,c_loc(myInfo),batch_count)
     end function
 
     function rocsolver_csytf2_strided_batched_rank_0(handle,uplo,n,A,lda,strideA,ipiv,strideP,myInfo,batch_count)
@@ -75709,10 +75705,10 @@ module hipfort_rocsolver
       integer(c_int64_t) :: strideA
       integer(c_int),target :: ipiv
       integer(c_int64_t) :: strideP
-      type(c_ptr),value :: myInfo
+      integer(c_int),target :: myInfo
       integer(c_int) :: batch_count
       !
-      rocsolver_csytf2_strided_batched_rank_0 = rocsolver_csytf2_strided_batched_(handle,uplo,n,c_loc(A),lda,strideA,c_loc(ipiv),strideP,myInfo,batch_count)
+      rocsolver_csytf2_strided_batched_rank_0 = rocsolver_csytf2_strided_batched_(handle,uplo,n,c_loc(A),lda,strideA,c_loc(ipiv),strideP,c_loc(myInfo),batch_count)
     end function
 
     function rocsolver_csytf2_strided_batched_rank_1(handle,uplo,n,A,lda,strideA,ipiv,strideP,myInfo,batch_count)
@@ -75729,30 +75725,30 @@ module hipfort_rocsolver
       integer(c_int64_t) :: strideA
       integer(c_int),target,dimension(:) :: ipiv
       integer(c_int64_t) :: strideP
-      type(c_ptr),value :: myInfo
+      integer(c_int),target,dimension(:) :: myInfo
       integer(c_int) :: batch_count
       !
-      rocsolver_csytf2_strided_batched_rank_1 = rocsolver_csytf2_strided_batched_(handle,uplo,n,c_loc(A),lda,strideA,c_loc(ipiv),strideP,myInfo,batch_count)
+      rocsolver_csytf2_strided_batched_rank_1 = rocsolver_csytf2_strided_batched_(handle,uplo,n,c_loc(A),lda,strideA,c_loc(ipiv),strideP,c_loc(myInfo),batch_count)
     end function
 
-    function rocsolver_zsytf2_strided_batched_full_rank(handle,uplo,n,A,lda,strideA,ipiv,strideP,myInfo,batch_count)
+    function rocsolver_csytf2_strided_batched_full_rank(handle,uplo,n,A,lda,strideA,ipiv,strideP,myInfo,batch_count)
       use iso_c_binding
       use hipfort_rocsolver_enums
       use hipfort_rocblas_enums
       implicit none
-      integer(kind(rocblas_status_success)) :: rocsolver_zsytf2_strided_batched_full_rank
+      integer(kind(rocblas_status_success)) :: rocsolver_csytf2_strided_batched_full_rank
       type(c_ptr) :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
-      complex(c_double_complex),target,dimension(:,:) :: A
+      complex(c_float_complex),target,dimension(:,:) :: A
       integer(c_int) :: lda
       integer(c_int64_t) :: strideA
-      integer(c_int),target,dimension(:) :: ipiv
+      integer(c_int),target,dimension(:,:) :: ipiv
       integer(c_int64_t) :: strideP
-      type(c_ptr),value :: myInfo
+      integer(c_int),target,dimension(:,:) :: myInfo
       integer(c_int) :: batch_count
       !
-      rocsolver_zsytf2_strided_batched_full_rank = rocsolver_zsytf2_strided_batched_(handle,uplo,n,c_loc(A),lda,strideA,c_loc(ipiv),strideP,myInfo,batch_count)
+      rocsolver_csytf2_strided_batched_full_rank = rocsolver_csytf2_strided_batched_(handle,uplo,n,c_loc(A),lda,strideA,c_loc(ipiv),strideP,c_loc(myInfo),batch_count)
     end function
 
     function rocsolver_zsytf2_strided_batched_rank_0(handle,uplo,n,A,lda,strideA,ipiv,strideP,myInfo,batch_count)
@@ -75769,10 +75765,10 @@ module hipfort_rocsolver
       integer(c_int64_t) :: strideA
       integer(c_int),target :: ipiv
       integer(c_int64_t) :: strideP
-      type(c_ptr),value :: myInfo
+      integer(c_int),target :: myInfo
       integer(c_int) :: batch_count
       !
-      rocsolver_zsytf2_strided_batched_rank_0 = rocsolver_zsytf2_strided_batched_(handle,uplo,n,c_loc(A),lda,strideA,c_loc(ipiv),strideP,myInfo,batch_count)
+      rocsolver_zsytf2_strided_batched_rank_0 = rocsolver_zsytf2_strided_batched_(handle,uplo,n,c_loc(A),lda,strideA,c_loc(ipiv),strideP,c_loc(myInfo),batch_count)
     end function
 
     function rocsolver_zsytf2_strided_batched_rank_1(handle,uplo,n,A,lda,strideA,ipiv,strideP,myInfo,batch_count)
@@ -75789,27 +75785,30 @@ module hipfort_rocsolver
       integer(c_int64_t) :: strideA
       integer(c_int),target,dimension(:) :: ipiv
       integer(c_int64_t) :: strideP
-      type(c_ptr),value :: myInfo
+      integer(c_int),target,dimension(:) :: myInfo
       integer(c_int) :: batch_count
       !
-      rocsolver_zsytf2_strided_batched_rank_1 = rocsolver_zsytf2_strided_batched_(handle,uplo,n,c_loc(A),lda,strideA,c_loc(ipiv),strideP,myInfo,batch_count)
+      rocsolver_zsytf2_strided_batched_rank_1 = rocsolver_zsytf2_strided_batched_(handle,uplo,n,c_loc(A),lda,strideA,c_loc(ipiv),strideP,c_loc(myInfo),batch_count)
     end function
 
-    function rocsolver_ssytrf_full_rank(handle,uplo,n,A,lda,ipiv,myInfo)
+    function rocsolver_zsytf2_strided_batched_full_rank(handle,uplo,n,A,lda,strideA,ipiv,strideP,myInfo,batch_count)
       use iso_c_binding
       use hipfort_rocsolver_enums
       use hipfort_rocblas_enums
       implicit none
-      integer(kind(rocblas_status_success)) :: rocsolver_ssytrf_full_rank
+      integer(kind(rocblas_status_success)) :: rocsolver_zsytf2_strided_batched_full_rank
       type(c_ptr) :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
-      real(c_float),target,dimension(:,:) :: A
+      complex(c_double_complex),target,dimension(:,:) :: A
       integer(c_int) :: lda
-      integer(c_int),target,dimension(:) :: ipiv
-      type(c_ptr),value :: myInfo
+      integer(c_int64_t) :: strideA
+      integer(c_int),target,dimension(:,:) :: ipiv
+      integer(c_int64_t) :: strideP
+      integer(c_int),target,dimension(:,:) :: myInfo
+      integer(c_int) :: batch_count
       !
-      rocsolver_ssytrf_full_rank = rocsolver_ssytrf_(handle,uplo,n,c_loc(A),lda,c_loc(ipiv),myInfo)
+      rocsolver_zsytf2_strided_batched_full_rank = rocsolver_zsytf2_strided_batched_(handle,uplo,n,c_loc(A),lda,strideA,c_loc(ipiv),strideP,c_loc(myInfo),batch_count)
     end function
 
     function rocsolver_ssytrf_rank_0(handle,uplo,n,A,lda,ipiv,myInfo)
@@ -75824,9 +75823,9 @@ module hipfort_rocsolver
       real(c_float),target :: A
       integer(c_int) :: lda
       integer(c_int),target :: ipiv
-      type(c_ptr),value :: myInfo
+      integer(c_int),target :: myInfo
       !
-      rocsolver_ssytrf_rank_0 = rocsolver_ssytrf_(handle,uplo,n,c_loc(A),lda,c_loc(ipiv),myInfo)
+      rocsolver_ssytrf_rank_0 = rocsolver_ssytrf_(handle,uplo,n,c_loc(A),lda,c_loc(ipiv),c_loc(myInfo))
     end function
 
     function rocsolver_ssytrf_rank_1(handle,uplo,n,A,lda,ipiv,myInfo)
@@ -75841,26 +75840,26 @@ module hipfort_rocsolver
       real(c_float),target,dimension(:) :: A
       integer(c_int) :: lda
       integer(c_int),target,dimension(:) :: ipiv
-      type(c_ptr),value :: myInfo
+      integer(c_int),target,dimension(:) :: myInfo
       !
-      rocsolver_ssytrf_rank_1 = rocsolver_ssytrf_(handle,uplo,n,c_loc(A),lda,c_loc(ipiv),myInfo)
+      rocsolver_ssytrf_rank_1 = rocsolver_ssytrf_(handle,uplo,n,c_loc(A),lda,c_loc(ipiv),c_loc(myInfo))
     end function
 
-    function rocsolver_dsytrf_full_rank(handle,uplo,n,A,lda,ipiv,myInfo)
+    function rocsolver_ssytrf_full_rank(handle,uplo,n,A,lda,ipiv,myInfo)
       use iso_c_binding
       use hipfort_rocsolver_enums
       use hipfort_rocblas_enums
       implicit none
-      integer(kind(rocblas_status_success)) :: rocsolver_dsytrf_full_rank
+      integer(kind(rocblas_status_success)) :: rocsolver_ssytrf_full_rank
       type(c_ptr) :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
-      real(c_double),target,dimension(:,:) :: A
+      real(c_float),target,dimension(:,:) :: A
       integer(c_int) :: lda
-      integer(c_int),target,dimension(:) :: ipiv
-      type(c_ptr),value :: myInfo
+      integer(c_int),target,dimension(:,:) :: ipiv
+      integer(c_int),target,dimension(:,:) :: myInfo
       !
-      rocsolver_dsytrf_full_rank = rocsolver_dsytrf_(handle,uplo,n,c_loc(A),lda,c_loc(ipiv),myInfo)
+      rocsolver_ssytrf_full_rank = rocsolver_ssytrf_(handle,uplo,n,c_loc(A),lda,c_loc(ipiv),c_loc(myInfo))
     end function
 
     function rocsolver_dsytrf_rank_0(handle,uplo,n,A,lda,ipiv,myInfo)
@@ -75875,9 +75874,9 @@ module hipfort_rocsolver
       real(c_double),target :: A
       integer(c_int) :: lda
       integer(c_int),target :: ipiv
-      type(c_ptr),value :: myInfo
+      integer(c_int),target :: myInfo
       !
-      rocsolver_dsytrf_rank_0 = rocsolver_dsytrf_(handle,uplo,n,c_loc(A),lda,c_loc(ipiv),myInfo)
+      rocsolver_dsytrf_rank_0 = rocsolver_dsytrf_(handle,uplo,n,c_loc(A),lda,c_loc(ipiv),c_loc(myInfo))
     end function
 
     function rocsolver_dsytrf_rank_1(handle,uplo,n,A,lda,ipiv,myInfo)
@@ -75892,26 +75891,26 @@ module hipfort_rocsolver
       real(c_double),target,dimension(:) :: A
       integer(c_int) :: lda
       integer(c_int),target,dimension(:) :: ipiv
-      type(c_ptr),value :: myInfo
+      integer(c_int),target,dimension(:) :: myInfo
       !
-      rocsolver_dsytrf_rank_1 = rocsolver_dsytrf_(handle,uplo,n,c_loc(A),lda,c_loc(ipiv),myInfo)
+      rocsolver_dsytrf_rank_1 = rocsolver_dsytrf_(handle,uplo,n,c_loc(A),lda,c_loc(ipiv),c_loc(myInfo))
     end function
 
-    function rocsolver_csytrf_full_rank(handle,uplo,n,A,lda,ipiv,myInfo)
+    function rocsolver_dsytrf_full_rank(handle,uplo,n,A,lda,ipiv,myInfo)
       use iso_c_binding
       use hipfort_rocsolver_enums
       use hipfort_rocblas_enums
       implicit none
-      integer(kind(rocblas_status_success)) :: rocsolver_csytrf_full_rank
+      integer(kind(rocblas_status_success)) :: rocsolver_dsytrf_full_rank
       type(c_ptr) :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
-      complex(c_float_complex),target,dimension(:,:) :: A
+      real(c_double),target,dimension(:,:) :: A
       integer(c_int) :: lda
-      integer(c_int),target,dimension(:) :: ipiv
-      type(c_ptr),value :: myInfo
+      integer(c_int),target,dimension(:,:) :: ipiv
+      integer(c_int),target,dimension(:,:) :: myInfo
       !
-      rocsolver_csytrf_full_rank = rocsolver_csytrf_(handle,uplo,n,c_loc(A),lda,c_loc(ipiv),myInfo)
+      rocsolver_dsytrf_full_rank = rocsolver_dsytrf_(handle,uplo,n,c_loc(A),lda,c_loc(ipiv),c_loc(myInfo))
     end function
 
     function rocsolver_csytrf_rank_0(handle,uplo,n,A,lda,ipiv,myInfo)
@@ -75926,9 +75925,9 @@ module hipfort_rocsolver
       complex(c_float_complex),target :: A
       integer(c_int) :: lda
       integer(c_int),target :: ipiv
-      type(c_ptr),value :: myInfo
+      integer(c_int),target :: myInfo
       !
-      rocsolver_csytrf_rank_0 = rocsolver_csytrf_(handle,uplo,n,c_loc(A),lda,c_loc(ipiv),myInfo)
+      rocsolver_csytrf_rank_0 = rocsolver_csytrf_(handle,uplo,n,c_loc(A),lda,c_loc(ipiv),c_loc(myInfo))
     end function
 
     function rocsolver_csytrf_rank_1(handle,uplo,n,A,lda,ipiv,myInfo)
@@ -75943,26 +75942,26 @@ module hipfort_rocsolver
       complex(c_float_complex),target,dimension(:) :: A
       integer(c_int) :: lda
       integer(c_int),target,dimension(:) :: ipiv
-      type(c_ptr),value :: myInfo
+      integer(c_int),target,dimension(:) :: myInfo
       !
-      rocsolver_csytrf_rank_1 = rocsolver_csytrf_(handle,uplo,n,c_loc(A),lda,c_loc(ipiv),myInfo)
+      rocsolver_csytrf_rank_1 = rocsolver_csytrf_(handle,uplo,n,c_loc(A),lda,c_loc(ipiv),c_loc(myInfo))
     end function
 
-    function rocsolver_zsytrf_full_rank(handle,uplo,n,A,lda,ipiv,myInfo)
+    function rocsolver_csytrf_full_rank(handle,uplo,n,A,lda,ipiv,myInfo)
       use iso_c_binding
       use hipfort_rocsolver_enums
       use hipfort_rocblas_enums
       implicit none
-      integer(kind(rocblas_status_success)) :: rocsolver_zsytrf_full_rank
+      integer(kind(rocblas_status_success)) :: rocsolver_csytrf_full_rank
       type(c_ptr) :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
-      complex(c_double_complex),target,dimension(:,:) :: A
+      complex(c_float_complex),target,dimension(:,:) :: A
       integer(c_int) :: lda
-      integer(c_int),target,dimension(:) :: ipiv
-      type(c_ptr),value :: myInfo
+      integer(c_int),target,dimension(:,:) :: ipiv
+      integer(c_int),target,dimension(:,:) :: myInfo
       !
-      rocsolver_zsytrf_full_rank = rocsolver_zsytrf_(handle,uplo,n,c_loc(A),lda,c_loc(ipiv),myInfo)
+      rocsolver_csytrf_full_rank = rocsolver_csytrf_(handle,uplo,n,c_loc(A),lda,c_loc(ipiv),c_loc(myInfo))
     end function
 
     function rocsolver_zsytrf_rank_0(handle,uplo,n,A,lda,ipiv,myInfo)
@@ -75977,9 +75976,9 @@ module hipfort_rocsolver
       complex(c_double_complex),target :: A
       integer(c_int) :: lda
       integer(c_int),target :: ipiv
-      type(c_ptr),value :: myInfo
+      integer(c_int),target :: myInfo
       !
-      rocsolver_zsytrf_rank_0 = rocsolver_zsytrf_(handle,uplo,n,c_loc(A),lda,c_loc(ipiv),myInfo)
+      rocsolver_zsytrf_rank_0 = rocsolver_zsytrf_(handle,uplo,n,c_loc(A),lda,c_loc(ipiv),c_loc(myInfo))
     end function
 
     function rocsolver_zsytrf_rank_1(handle,uplo,n,A,lda,ipiv,myInfo)
@@ -75994,28 +75993,26 @@ module hipfort_rocsolver
       complex(c_double_complex),target,dimension(:) :: A
       integer(c_int) :: lda
       integer(c_int),target,dimension(:) :: ipiv
-      type(c_ptr),value :: myInfo
+      integer(c_int),target,dimension(:) :: myInfo
       !
-      rocsolver_zsytrf_rank_1 = rocsolver_zsytrf_(handle,uplo,n,c_loc(A),lda,c_loc(ipiv),myInfo)
+      rocsolver_zsytrf_rank_1 = rocsolver_zsytrf_(handle,uplo,n,c_loc(A),lda,c_loc(ipiv),c_loc(myInfo))
     end function
 
-    function rocsolver_ssytrf_batched_full_rank(handle,uplo,n,A,lda,ipiv,strideP,myInfo,batch_count)
+    function rocsolver_zsytrf_full_rank(handle,uplo,n,A,lda,ipiv,myInfo)
       use iso_c_binding
       use hipfort_rocsolver_enums
       use hipfort_rocblas_enums
       implicit none
-      integer(kind(rocblas_status_success)) :: rocsolver_ssytrf_batched_full_rank
+      integer(kind(rocblas_status_success)) :: rocsolver_zsytrf_full_rank
       type(c_ptr) :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
-      real(c_float),target,dimension(:,:,:) :: A
+      complex(c_double_complex),target,dimension(:,:) :: A
       integer(c_int) :: lda
-      integer(c_int),target,dimension(:) :: ipiv
-      integer(c_int64_t) :: strideP
-      type(c_ptr),value :: myInfo
-      integer(c_int) :: batch_count
+      integer(c_int),target,dimension(:,:) :: ipiv
+      integer(c_int),target,dimension(:,:) :: myInfo
       !
-      rocsolver_ssytrf_batched_full_rank = rocsolver_ssytrf_batched_(handle,uplo,n,c_loc(A),lda,c_loc(ipiv),strideP,myInfo,batch_count)
+      rocsolver_zsytrf_full_rank = rocsolver_zsytrf_(handle,uplo,n,c_loc(A),lda,c_loc(ipiv),c_loc(myInfo))
     end function
 
     function rocsolver_ssytrf_batched_rank_0(handle,uplo,n,A,lda,ipiv,strideP,myInfo,batch_count)
@@ -76027,14 +76024,14 @@ module hipfort_rocsolver
       type(c_ptr) :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
-      real(c_float),target :: A
+      type(c_ptr) :: A
       integer(c_int) :: lda
       integer(c_int),target :: ipiv
       integer(c_int64_t) :: strideP
-      type(c_ptr),value :: myInfo
+      integer(c_int),target :: myInfo
       integer(c_int) :: batch_count
       !
-      rocsolver_ssytrf_batched_rank_0 = rocsolver_ssytrf_batched_(handle,uplo,n,c_loc(A),lda,c_loc(ipiv),strideP,myInfo,batch_count)
+      rocsolver_ssytrf_batched_rank_0 = rocsolver_ssytrf_batched_(handle,uplo,n,A,lda,c_loc(ipiv),strideP,c_loc(myInfo),batch_count)
     end function
 
     function rocsolver_ssytrf_batched_rank_1(handle,uplo,n,A,lda,ipiv,strideP,myInfo,batch_count)
@@ -76046,33 +76043,33 @@ module hipfort_rocsolver
       type(c_ptr) :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
-      real(c_float),target,dimension(:) :: A
+      type(c_ptr) :: A
       integer(c_int) :: lda
       integer(c_int),target,dimension(:) :: ipiv
       integer(c_int64_t) :: strideP
-      type(c_ptr),value :: myInfo
+      integer(c_int),target,dimension(:) :: myInfo
       integer(c_int) :: batch_count
       !
-      rocsolver_ssytrf_batched_rank_1 = rocsolver_ssytrf_batched_(handle,uplo,n,c_loc(A),lda,c_loc(ipiv),strideP,myInfo,batch_count)
+      rocsolver_ssytrf_batched_rank_1 = rocsolver_ssytrf_batched_(handle,uplo,n,A,lda,c_loc(ipiv),strideP,c_loc(myInfo),batch_count)
     end function
 
-    function rocsolver_dsytrf_batched_full_rank(handle,uplo,n,A,lda,ipiv,strideP,myInfo,batch_count)
+    function rocsolver_ssytrf_batched_full_rank(handle,uplo,n,A,lda,ipiv,strideP,myInfo,batch_count)
       use iso_c_binding
       use hipfort_rocsolver_enums
       use hipfort_rocblas_enums
       implicit none
-      integer(kind(rocblas_status_success)) :: rocsolver_dsytrf_batched_full_rank
+      integer(kind(rocblas_status_success)) :: rocsolver_ssytrf_batched_full_rank
       type(c_ptr) :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
-      real(c_double),target,dimension(:,:,:) :: A
+      type(c_ptr) :: A
       integer(c_int) :: lda
-      integer(c_int),target,dimension(:) :: ipiv
+      integer(c_int),target,dimension(:,:) :: ipiv
       integer(c_int64_t) :: strideP
-      type(c_ptr),value :: myInfo
+      integer(c_int),target,dimension(:,:) :: myInfo
       integer(c_int) :: batch_count
       !
-      rocsolver_dsytrf_batched_full_rank = rocsolver_dsytrf_batched_(handle,uplo,n,c_loc(A),lda,c_loc(ipiv),strideP,myInfo,batch_count)
+      rocsolver_ssytrf_batched_full_rank = rocsolver_ssytrf_batched_(handle,uplo,n,A,lda,c_loc(ipiv),strideP,c_loc(myInfo),batch_count)
     end function
 
     function rocsolver_dsytrf_batched_rank_0(handle,uplo,n,A,lda,ipiv,strideP,myInfo,batch_count)
@@ -76084,14 +76081,14 @@ module hipfort_rocsolver
       type(c_ptr) :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
-      real(c_double),target :: A
+      type(c_ptr) :: A
       integer(c_int) :: lda
       integer(c_int),target :: ipiv
       integer(c_int64_t) :: strideP
-      type(c_ptr),value :: myInfo
+      integer(c_int),target :: myInfo
       integer(c_int) :: batch_count
       !
-      rocsolver_dsytrf_batched_rank_0 = rocsolver_dsytrf_batched_(handle,uplo,n,c_loc(A),lda,c_loc(ipiv),strideP,myInfo,batch_count)
+      rocsolver_dsytrf_batched_rank_0 = rocsolver_dsytrf_batched_(handle,uplo,n,A,lda,c_loc(ipiv),strideP,c_loc(myInfo),batch_count)
     end function
 
     function rocsolver_dsytrf_batched_rank_1(handle,uplo,n,A,lda,ipiv,strideP,myInfo,batch_count)
@@ -76103,33 +76100,33 @@ module hipfort_rocsolver
       type(c_ptr) :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
-      real(c_double),target,dimension(:) :: A
+      type(c_ptr) :: A
       integer(c_int) :: lda
       integer(c_int),target,dimension(:) :: ipiv
       integer(c_int64_t) :: strideP
-      type(c_ptr),value :: myInfo
+      integer(c_int),target,dimension(:) :: myInfo
       integer(c_int) :: batch_count
       !
-      rocsolver_dsytrf_batched_rank_1 = rocsolver_dsytrf_batched_(handle,uplo,n,c_loc(A),lda,c_loc(ipiv),strideP,myInfo,batch_count)
+      rocsolver_dsytrf_batched_rank_1 = rocsolver_dsytrf_batched_(handle,uplo,n,A,lda,c_loc(ipiv),strideP,c_loc(myInfo),batch_count)
     end function
 
-    function rocsolver_csytrf_batched_full_rank(handle,uplo,n,A,lda,ipiv,strideP,myInfo,batch_count)
+    function rocsolver_dsytrf_batched_full_rank(handle,uplo,n,A,lda,ipiv,strideP,myInfo,batch_count)
       use iso_c_binding
       use hipfort_rocsolver_enums
       use hipfort_rocblas_enums
       implicit none
-      integer(kind(rocblas_status_success)) :: rocsolver_csytrf_batched_full_rank
+      integer(kind(rocblas_status_success)) :: rocsolver_dsytrf_batched_full_rank
       type(c_ptr) :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
-      complex(c_float_complex),target,dimension(:,:,:) :: A
+      type(c_ptr) :: A
       integer(c_int) :: lda
-      integer(c_int),target,dimension(:) :: ipiv
+      integer(c_int),target,dimension(:,:) :: ipiv
       integer(c_int64_t) :: strideP
-      type(c_ptr),value :: myInfo
+      integer(c_int),target,dimension(:,:) :: myInfo
       integer(c_int) :: batch_count
       !
-      rocsolver_csytrf_batched_full_rank = rocsolver_csytrf_batched_(handle,uplo,n,c_loc(A),lda,c_loc(ipiv),strideP,myInfo,batch_count)
+      rocsolver_dsytrf_batched_full_rank = rocsolver_dsytrf_batched_(handle,uplo,n,A,lda,c_loc(ipiv),strideP,c_loc(myInfo),batch_count)
     end function
 
     function rocsolver_csytrf_batched_rank_0(handle,uplo,n,A,lda,ipiv,strideP,myInfo,batch_count)
@@ -76141,14 +76138,14 @@ module hipfort_rocsolver
       type(c_ptr) :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
-      complex(c_float_complex),target :: A
+      type(c_ptr) :: A
       integer(c_int) :: lda
       integer(c_int),target :: ipiv
       integer(c_int64_t) :: strideP
-      type(c_ptr),value :: myInfo
+      integer(c_int),target :: myInfo
       integer(c_int) :: batch_count
       !
-      rocsolver_csytrf_batched_rank_0 = rocsolver_csytrf_batched_(handle,uplo,n,c_loc(A),lda,c_loc(ipiv),strideP,myInfo,batch_count)
+      rocsolver_csytrf_batched_rank_0 = rocsolver_csytrf_batched_(handle,uplo,n,A,lda,c_loc(ipiv),strideP,c_loc(myInfo),batch_count)
     end function
 
     function rocsolver_csytrf_batched_rank_1(handle,uplo,n,A,lda,ipiv,strideP,myInfo,batch_count)
@@ -76160,33 +76157,33 @@ module hipfort_rocsolver
       type(c_ptr) :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
-      complex(c_float_complex),target,dimension(:) :: A
+      type(c_ptr) :: A
       integer(c_int) :: lda
       integer(c_int),target,dimension(:) :: ipiv
       integer(c_int64_t) :: strideP
-      type(c_ptr),value :: myInfo
+      integer(c_int),target,dimension(:) :: myInfo
       integer(c_int) :: batch_count
       !
-      rocsolver_csytrf_batched_rank_1 = rocsolver_csytrf_batched_(handle,uplo,n,c_loc(A),lda,c_loc(ipiv),strideP,myInfo,batch_count)
+      rocsolver_csytrf_batched_rank_1 = rocsolver_csytrf_batched_(handle,uplo,n,A,lda,c_loc(ipiv),strideP,c_loc(myInfo),batch_count)
     end function
 
-    function rocsolver_zsytrf_batched_full_rank(handle,uplo,n,A,lda,ipiv,strideP,myInfo,batch_count)
+    function rocsolver_csytrf_batched_full_rank(handle,uplo,n,A,lda,ipiv,strideP,myInfo,batch_count)
       use iso_c_binding
       use hipfort_rocsolver_enums
       use hipfort_rocblas_enums
       implicit none
-      integer(kind(rocblas_status_success)) :: rocsolver_zsytrf_batched_full_rank
+      integer(kind(rocblas_status_success)) :: rocsolver_csytrf_batched_full_rank
       type(c_ptr) :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
-      complex(c_double_complex),target,dimension(:,:,:) :: A
+      type(c_ptr) :: A
       integer(c_int) :: lda
-      integer(c_int),target,dimension(:) :: ipiv
+      integer(c_int),target,dimension(:,:) :: ipiv
       integer(c_int64_t) :: strideP
-      type(c_ptr),value :: myInfo
+      integer(c_int),target,dimension(:,:) :: myInfo
       integer(c_int) :: batch_count
       !
-      rocsolver_zsytrf_batched_full_rank = rocsolver_zsytrf_batched_(handle,uplo,n,c_loc(A),lda,c_loc(ipiv),strideP,myInfo,batch_count)
+      rocsolver_csytrf_batched_full_rank = rocsolver_csytrf_batched_(handle,uplo,n,A,lda,c_loc(ipiv),strideP,c_loc(myInfo),batch_count)
     end function
 
     function rocsolver_zsytrf_batched_rank_0(handle,uplo,n,A,lda,ipiv,strideP,myInfo,batch_count)
@@ -76198,14 +76195,14 @@ module hipfort_rocsolver
       type(c_ptr) :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
-      complex(c_double_complex),target :: A
+      type(c_ptr) :: A
       integer(c_int) :: lda
       integer(c_int),target :: ipiv
       integer(c_int64_t) :: strideP
-      type(c_ptr),value :: myInfo
+      integer(c_int),target :: myInfo
       integer(c_int) :: batch_count
       !
-      rocsolver_zsytrf_batched_rank_0 = rocsolver_zsytrf_batched_(handle,uplo,n,c_loc(A),lda,c_loc(ipiv),strideP,myInfo,batch_count)
+      rocsolver_zsytrf_batched_rank_0 = rocsolver_zsytrf_batched_(handle,uplo,n,A,lda,c_loc(ipiv),strideP,c_loc(myInfo),batch_count)
     end function
 
     function rocsolver_zsytrf_batched_rank_1(handle,uplo,n,A,lda,ipiv,strideP,myInfo,batch_count)
@@ -76217,34 +76214,33 @@ module hipfort_rocsolver
       type(c_ptr) :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
-      complex(c_double_complex),target,dimension(:) :: A
+      type(c_ptr) :: A
       integer(c_int) :: lda
       integer(c_int),target,dimension(:) :: ipiv
       integer(c_int64_t) :: strideP
-      type(c_ptr),value :: myInfo
+      integer(c_int),target,dimension(:) :: myInfo
       integer(c_int) :: batch_count
       !
-      rocsolver_zsytrf_batched_rank_1 = rocsolver_zsytrf_batched_(handle,uplo,n,c_loc(A),lda,c_loc(ipiv),strideP,myInfo,batch_count)
+      rocsolver_zsytrf_batched_rank_1 = rocsolver_zsytrf_batched_(handle,uplo,n,A,lda,c_loc(ipiv),strideP,c_loc(myInfo),batch_count)
     end function
 
-    function rocsolver_ssytrf_strided_batched_full_rank(handle,uplo,n,A,lda,strideA,ipiv,strideP,myInfo,batch_count)
+    function rocsolver_zsytrf_batched_full_rank(handle,uplo,n,A,lda,ipiv,strideP,myInfo,batch_count)
       use iso_c_binding
       use hipfort_rocsolver_enums
       use hipfort_rocblas_enums
       implicit none
-      integer(kind(rocblas_status_success)) :: rocsolver_ssytrf_strided_batched_full_rank
+      integer(kind(rocblas_status_success)) :: rocsolver_zsytrf_batched_full_rank
       type(c_ptr) :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
-      real(c_float),target,dimension(:,:) :: A
+      type(c_ptr) :: A
       integer(c_int) :: lda
-      integer(c_int64_t) :: strideA
-      integer(c_int),target,dimension(:) :: ipiv
+      integer(c_int),target,dimension(:,:) :: ipiv
       integer(c_int64_t) :: strideP
-      type(c_ptr),value :: myInfo
+      integer(c_int),target,dimension(:,:) :: myInfo
       integer(c_int) :: batch_count
       !
-      rocsolver_ssytrf_strided_batched_full_rank = rocsolver_ssytrf_strided_batched_(handle,uplo,n,c_loc(A),lda,strideA,c_loc(ipiv),strideP,myInfo,batch_count)
+      rocsolver_zsytrf_batched_full_rank = rocsolver_zsytrf_batched_(handle,uplo,n,A,lda,c_loc(ipiv),strideP,c_loc(myInfo),batch_count)
     end function
 
     function rocsolver_ssytrf_strided_batched_rank_0(handle,uplo,n,A,lda,strideA,ipiv,strideP,myInfo,batch_count)
@@ -76261,10 +76257,10 @@ module hipfort_rocsolver
       integer(c_int64_t) :: strideA
       integer(c_int),target :: ipiv
       integer(c_int64_t) :: strideP
-      type(c_ptr),value :: myInfo
+      integer(c_int),target :: myInfo
       integer(c_int) :: batch_count
       !
-      rocsolver_ssytrf_strided_batched_rank_0 = rocsolver_ssytrf_strided_batched_(handle,uplo,n,c_loc(A),lda,strideA,c_loc(ipiv),strideP,myInfo,batch_count)
+      rocsolver_ssytrf_strided_batched_rank_0 = rocsolver_ssytrf_strided_batched_(handle,uplo,n,c_loc(A),lda,strideA,c_loc(ipiv),strideP,c_loc(myInfo),batch_count)
     end function
 
     function rocsolver_ssytrf_strided_batched_rank_1(handle,uplo,n,A,lda,strideA,ipiv,strideP,myInfo,batch_count)
@@ -76281,30 +76277,30 @@ module hipfort_rocsolver
       integer(c_int64_t) :: strideA
       integer(c_int),target,dimension(:) :: ipiv
       integer(c_int64_t) :: strideP
-      type(c_ptr),value :: myInfo
+      integer(c_int),target,dimension(:) :: myInfo
       integer(c_int) :: batch_count
       !
-      rocsolver_ssytrf_strided_batched_rank_1 = rocsolver_ssytrf_strided_batched_(handle,uplo,n,c_loc(A),lda,strideA,c_loc(ipiv),strideP,myInfo,batch_count)
+      rocsolver_ssytrf_strided_batched_rank_1 = rocsolver_ssytrf_strided_batched_(handle,uplo,n,c_loc(A),lda,strideA,c_loc(ipiv),strideP,c_loc(myInfo),batch_count)
     end function
 
-    function rocsolver_dsytrf_strided_batched_full_rank(handle,uplo,n,A,lda,strideA,ipiv,strideP,myInfo,batch_count)
+    function rocsolver_ssytrf_strided_batched_full_rank(handle,uplo,n,A,lda,strideA,ipiv,strideP,myInfo,batch_count)
       use iso_c_binding
       use hipfort_rocsolver_enums
       use hipfort_rocblas_enums
       implicit none
-      integer(kind(rocblas_status_success)) :: rocsolver_dsytrf_strided_batched_full_rank
+      integer(kind(rocblas_status_success)) :: rocsolver_ssytrf_strided_batched_full_rank
       type(c_ptr) :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
-      real(c_double),target,dimension(:,:) :: A
+      real(c_float),target,dimension(:,:) :: A
       integer(c_int) :: lda
       integer(c_int64_t) :: strideA
-      integer(c_int),target,dimension(:) :: ipiv
+      integer(c_int),target,dimension(:,:) :: ipiv
       integer(c_int64_t) :: strideP
-      type(c_ptr),value :: myInfo
+      integer(c_int),target,dimension(:,:) :: myInfo
       integer(c_int) :: batch_count
       !
-      rocsolver_dsytrf_strided_batched_full_rank = rocsolver_dsytrf_strided_batched_(handle,uplo,n,c_loc(A),lda,strideA,c_loc(ipiv),strideP,myInfo,batch_count)
+      rocsolver_ssytrf_strided_batched_full_rank = rocsolver_ssytrf_strided_batched_(handle,uplo,n,c_loc(A),lda,strideA,c_loc(ipiv),strideP,c_loc(myInfo),batch_count)
     end function
 
     function rocsolver_dsytrf_strided_batched_rank_0(handle,uplo,n,A,lda,strideA,ipiv,strideP,myInfo,batch_count)
@@ -76321,10 +76317,10 @@ module hipfort_rocsolver
       integer(c_int64_t) :: strideA
       integer(c_int),target :: ipiv
       integer(c_int64_t) :: strideP
-      type(c_ptr),value :: myInfo
+      integer(c_int),target :: myInfo
       integer(c_int) :: batch_count
       !
-      rocsolver_dsytrf_strided_batched_rank_0 = rocsolver_dsytrf_strided_batched_(handle,uplo,n,c_loc(A),lda,strideA,c_loc(ipiv),strideP,myInfo,batch_count)
+      rocsolver_dsytrf_strided_batched_rank_0 = rocsolver_dsytrf_strided_batched_(handle,uplo,n,c_loc(A),lda,strideA,c_loc(ipiv),strideP,c_loc(myInfo),batch_count)
     end function
 
     function rocsolver_dsytrf_strided_batched_rank_1(handle,uplo,n,A,lda,strideA,ipiv,strideP,myInfo,batch_count)
@@ -76341,30 +76337,30 @@ module hipfort_rocsolver
       integer(c_int64_t) :: strideA
       integer(c_int),target,dimension(:) :: ipiv
       integer(c_int64_t) :: strideP
-      type(c_ptr),value :: myInfo
+      integer(c_int),target,dimension(:) :: myInfo
       integer(c_int) :: batch_count
       !
-      rocsolver_dsytrf_strided_batched_rank_1 = rocsolver_dsytrf_strided_batched_(handle,uplo,n,c_loc(A),lda,strideA,c_loc(ipiv),strideP,myInfo,batch_count)
+      rocsolver_dsytrf_strided_batched_rank_1 = rocsolver_dsytrf_strided_batched_(handle,uplo,n,c_loc(A),lda,strideA,c_loc(ipiv),strideP,c_loc(myInfo),batch_count)
     end function
 
-    function rocsolver_csytrf_strided_batched_full_rank(handle,uplo,n,A,lda,strideA,ipiv,strideP,myInfo,batch_count)
+    function rocsolver_dsytrf_strided_batched_full_rank(handle,uplo,n,A,lda,strideA,ipiv,strideP,myInfo,batch_count)
       use iso_c_binding
       use hipfort_rocsolver_enums
       use hipfort_rocblas_enums
       implicit none
-      integer(kind(rocblas_status_success)) :: rocsolver_csytrf_strided_batched_full_rank
+      integer(kind(rocblas_status_success)) :: rocsolver_dsytrf_strided_batched_full_rank
       type(c_ptr) :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
-      complex(c_float_complex),target,dimension(:,:) :: A
+      real(c_double),target,dimension(:,:) :: A
       integer(c_int) :: lda
       integer(c_int64_t) :: strideA
-      integer(c_int),target,dimension(:) :: ipiv
+      integer(c_int),target,dimension(:,:) :: ipiv
       integer(c_int64_t) :: strideP
-      type(c_ptr),value :: myInfo
+      integer(c_int),target,dimension(:,:) :: myInfo
       integer(c_int) :: batch_count
       !
-      rocsolver_csytrf_strided_batched_full_rank = rocsolver_csytrf_strided_batched_(handle,uplo,n,c_loc(A),lda,strideA,c_loc(ipiv),strideP,myInfo,batch_count)
+      rocsolver_dsytrf_strided_batched_full_rank = rocsolver_dsytrf_strided_batched_(handle,uplo,n,c_loc(A),lda,strideA,c_loc(ipiv),strideP,c_loc(myInfo),batch_count)
     end function
 
     function rocsolver_csytrf_strided_batched_rank_0(handle,uplo,n,A,lda,strideA,ipiv,strideP,myInfo,batch_count)
@@ -76381,10 +76377,10 @@ module hipfort_rocsolver
       integer(c_int64_t) :: strideA
       integer(c_int),target :: ipiv
       integer(c_int64_t) :: strideP
-      type(c_ptr),value :: myInfo
+      integer(c_int),target :: myInfo
       integer(c_int) :: batch_count
       !
-      rocsolver_csytrf_strided_batched_rank_0 = rocsolver_csytrf_strided_batched_(handle,uplo,n,c_loc(A),lda,strideA,c_loc(ipiv),strideP,myInfo,batch_count)
+      rocsolver_csytrf_strided_batched_rank_0 = rocsolver_csytrf_strided_batched_(handle,uplo,n,c_loc(A),lda,strideA,c_loc(ipiv),strideP,c_loc(myInfo),batch_count)
     end function
 
     function rocsolver_csytrf_strided_batched_rank_1(handle,uplo,n,A,lda,strideA,ipiv,strideP,myInfo,batch_count)
@@ -76401,30 +76397,30 @@ module hipfort_rocsolver
       integer(c_int64_t) :: strideA
       integer(c_int),target,dimension(:) :: ipiv
       integer(c_int64_t) :: strideP
-      type(c_ptr),value :: myInfo
+      integer(c_int),target,dimension(:) :: myInfo
       integer(c_int) :: batch_count
       !
-      rocsolver_csytrf_strided_batched_rank_1 = rocsolver_csytrf_strided_batched_(handle,uplo,n,c_loc(A),lda,strideA,c_loc(ipiv),strideP,myInfo,batch_count)
+      rocsolver_csytrf_strided_batched_rank_1 = rocsolver_csytrf_strided_batched_(handle,uplo,n,c_loc(A),lda,strideA,c_loc(ipiv),strideP,c_loc(myInfo),batch_count)
     end function
 
-    function rocsolver_zsytrf_strided_batched_full_rank(handle,uplo,n,A,lda,strideA,ipiv,strideP,myInfo,batch_count)
+    function rocsolver_csytrf_strided_batched_full_rank(handle,uplo,n,A,lda,strideA,ipiv,strideP,myInfo,batch_count)
       use iso_c_binding
       use hipfort_rocsolver_enums
       use hipfort_rocblas_enums
       implicit none
-      integer(kind(rocblas_status_success)) :: rocsolver_zsytrf_strided_batched_full_rank
+      integer(kind(rocblas_status_success)) :: rocsolver_csytrf_strided_batched_full_rank
       type(c_ptr) :: handle
       integer(kind(rocblas_fill_upper)) :: uplo
       integer(c_int) :: n
-      complex(c_double_complex),target,dimension(:,:) :: A
+      complex(c_float_complex),target,dimension(:,:) :: A
       integer(c_int) :: lda
       integer(c_int64_t) :: strideA
-      integer(c_int),target,dimension(:) :: ipiv
+      integer(c_int),target,dimension(:,:) :: ipiv
       integer(c_int64_t) :: strideP
-      type(c_ptr),value :: myInfo
+      integer(c_int),target,dimension(:,:) :: myInfo
       integer(c_int) :: batch_count
       !
-      rocsolver_zsytrf_strided_batched_full_rank = rocsolver_zsytrf_strided_batched_(handle,uplo,n,c_loc(A),lda,strideA,c_loc(ipiv),strideP,myInfo,batch_count)
+      rocsolver_csytrf_strided_batched_full_rank = rocsolver_csytrf_strided_batched_(handle,uplo,n,c_loc(A),lda,strideA,c_loc(ipiv),strideP,c_loc(myInfo),batch_count)
     end function
 
     function rocsolver_zsytrf_strided_batched_rank_0(handle,uplo,n,A,lda,strideA,ipiv,strideP,myInfo,batch_count)
@@ -76441,10 +76437,10 @@ module hipfort_rocsolver
       integer(c_int64_t) :: strideA
       integer(c_int),target :: ipiv
       integer(c_int64_t) :: strideP
-      type(c_ptr),value :: myInfo
+      integer(c_int),target :: myInfo
       integer(c_int) :: batch_count
       !
-      rocsolver_zsytrf_strided_batched_rank_0 = rocsolver_zsytrf_strided_batched_(handle,uplo,n,c_loc(A),lda,strideA,c_loc(ipiv),strideP,myInfo,batch_count)
+      rocsolver_zsytrf_strided_batched_rank_0 = rocsolver_zsytrf_strided_batched_(handle,uplo,n,c_loc(A),lda,strideA,c_loc(ipiv),strideP,c_loc(myInfo),batch_count)
     end function
 
     function rocsolver_zsytrf_strided_batched_rank_1(handle,uplo,n,A,lda,strideA,ipiv,strideP,myInfo,batch_count)
@@ -76461,10 +76457,30 @@ module hipfort_rocsolver
       integer(c_int64_t) :: strideA
       integer(c_int),target,dimension(:) :: ipiv
       integer(c_int64_t) :: strideP
-      type(c_ptr),value :: myInfo
+      integer(c_int),target,dimension(:) :: myInfo
       integer(c_int) :: batch_count
       !
-      rocsolver_zsytrf_strided_batched_rank_1 = rocsolver_zsytrf_strided_batched_(handle,uplo,n,c_loc(A),lda,strideA,c_loc(ipiv),strideP,myInfo,batch_count)
+      rocsolver_zsytrf_strided_batched_rank_1 = rocsolver_zsytrf_strided_batched_(handle,uplo,n,c_loc(A),lda,strideA,c_loc(ipiv),strideP,c_loc(myInfo),batch_count)
+    end function
+
+    function rocsolver_zsytrf_strided_batched_full_rank(handle,uplo,n,A,lda,strideA,ipiv,strideP,myInfo,batch_count)
+      use iso_c_binding
+      use hipfort_rocsolver_enums
+      use hipfort_rocblas_enums
+      implicit none
+      integer(kind(rocblas_status_success)) :: rocsolver_zsytrf_strided_batched_full_rank
+      type(c_ptr) :: handle
+      integer(kind(rocblas_fill_upper)) :: uplo
+      integer(c_int) :: n
+      complex(c_double_complex),target,dimension(:,:) :: A
+      integer(c_int) :: lda
+      integer(c_int64_t) :: strideA
+      integer(c_int),target,dimension(:,:) :: ipiv
+      integer(c_int64_t) :: strideP
+      integer(c_int),target,dimension(:,:) :: myInfo
+      integer(c_int) :: batch_count
+      !
+      rocsolver_zsytrf_strided_batched_full_rank = rocsolver_zsytrf_strided_batched_(handle,uplo,n,c_loc(A),lda,strideA,c_loc(ipiv),strideP,c_loc(myInfo),batch_count)
     end function
 
 #endif
