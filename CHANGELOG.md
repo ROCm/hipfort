@@ -4,9 +4,6 @@
 
 ### Added
 
-* Added GPU architecture autodetection for AMD Instinct MI300 (gfx942),
-  MI350 (gfx950), and MI455X (gfx1250) devices in the `hipfc` wrapper and
-  the `mygpu`/`mymcpu` utilities.
 * Added Fortran interfaces for the interleaved batch pentadiagonal solver:
   `rocsparse_Xgpsv_interleaved_batch` and
   `rocsparse_Xgpsv_interleaved_batch_buffer_size` (rocSPARSE), and
@@ -24,15 +21,14 @@
 
 ### Removed
 
+* Removed the deprecated `hipfc` compiler wrapper, the `Makefile.hipfort`
+  include file, and the `mygpu`/`mymcpu`/`myarchgpu` GPU autodetection
+  utilities. Build hipfort-based applications by invoking the Fortran and HIP
+  compilers directly and linking against the exported `hipfort::*` CMake
+  targets.
 * Removed the `rocblas_hgemm_kernel_name`, `rocblas_sgemm_kernel_name`, and
   `rocblas_dgemm_kernel_name` interfaces. The corresponding rocBLAS API
   functions were removed in ROCm 7.1.0.
-
-### Resolved issues
-
-* Fixed the `hipfc` wrapper so it locates the hipfort module and library
-  files when hipfort is installed with the compiler-specific subdirectory
-  layout (`HIPFORT_MULTITOOLCHAIN_LAYOUT=ON`, the default since ROCm 6.4).
 
 ## hipfort 0.7.1 for ROCm 7.1.0
 

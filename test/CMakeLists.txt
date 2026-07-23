@@ -1,43 +1,14 @@
 #
 # File: test/CMakeLists.txt
 
-# These tests are all Makefile based tests.
-# Each test is contained in its own subdirectory of this test directory
-# The Makefile must create a binary with the same name as the directory name.
+# Each test is contained in its own subdirectory of this test directory.
+# The tests are driven by CTest; build the test suite with -DBUILD_TESTING=ON
+# and run it with `ctest`.
 
 cmake_minimum_required(VERSION 3.18..4.0 FATAL_ERROR)
 if ("${CMAKE_SOURCE_DIR}" STREQUAL "${CMAKE_CURRENT_SOURCE_DIR}")
   project(test-hipfort)
 endif()
-
-# make-based test infrastructure
-
-set(CMAKE_BUILD_PARALLEL_LEVEL "4" CACHE STRING "Number of build jobs")
-
-add_custom_target(all-f2003-tests
-	COMMAND make -C ${CMAKE_CURRENT_SOURCE_DIR} -j${CMAKE_BUILD_PARALLEL_LEVEL} PREFIX=f2003 build)
-add_custom_target(all-f2003-tests-run
-	COMMAND make -C ${CMAKE_CURRENT_SOURCE_DIR} -j1 PREFIX=f2003 run
-	DEPENDS all-f2003-tests)
-add_custom_target(all-f2003-tests-clean
-	COMMAND make -C ${CMAKE_CURRENT_SOURCE_DIR} -j${CMAKE_BUILD_PARALLEL_LEVEL} PREFIX=f2003 clean)
-
-add_custom_target(all-f2008-tests
-	COMMAND make -C ${CMAKE_CURRENT_SOURCE_DIR} -j${CMAKE_BUILD_PARALLEL_LEVEL} PREFIX=f2008 build)
-add_custom_target(all-f2008-tests-run
-	COMMAND make -C ${CMAKE_CURRENT_SOURCE_DIR} -j1 PREFIX=f2008 run
-	DEPENDS all-f2008-tests)
-add_custom_target(all-f2008-tests-clean
-	COMMAND make -C ${CMAKE_CURRENT_SOURCE_DIR} -j${CMAKE_BUILD_PARALLEL_LEVEL} PREFIX=f2008 clean)
-
-add_custom_target(all-tests
-	COMMAND make -C ${CMAKE_CURRENT_SOURCE_DIR} -j${CMAKE_BUILD_PARALLEL_LEVEL} build_all)
-add_custom_target(all-tests-run
-	COMMAND make -C ${CMAKE_CURRENT_SOURCE_DIR} -j1 run_all
-	DEPENDS all-tests)
-add_custom_target(all-tests-clean
-	COMMAND make -C ${CMAKE_CURRENT_SOURCE_DIR} -j${CMAKE_BUILD_PARALLEL_LEVEL} clean_all)
-
 
 # cmake-based test infrastructure
 
@@ -375,6 +346,30 @@ if(BUILD_TESTING)
     hipfort_add_test(rocsparse rocsparse_dsptrsm f2003)
     hipfort_add_test(rocsparse rocsparse_csptrsm f2003)
     hipfort_add_test(rocsparse rocsparse_zsptrsm f2003)
+  endif()
+
+  # vecadd mixes a Fortran driver with a HIP C++ kernel, so it needs the HIP
+  # language enabled rather than the plain hipfort_add_test() helper.
+  include(CheckLanguage)
+  check_language(HIP)
+  if(CMAKE_HIP_COMPILER)
+    enable_language(HIP)
+    foreach(std IN ITEMS f2003 f2008)
+      set(vecadd_target hipfort_test_${std}_vecadd_main)
+      add_executable(${vecadd_target}
+        ${std}/vecadd/main.f03
+        ${std}/vecadd/hip_implementation.cpp)
+      set_source_files_properties(${std}/vecadd/main.f03 PROPERTIES LANGUAGE Fortran)
+      set_source_files_properties(${std}/vecadd/hip_implementation.cpp PROPERTIES LANGUAGE HIP)
+      target_link_libraries(${vecadd_target} PRIVATE hipfort::hip)
+      set_target_properties(${vecadd_target}
+        PROPERTIES
+          LINKER_LANGUAGE Fortran
+          POSITION_INDEPENDENT_CODE ON)
+      # the tests call EXIT, which is a GNU extension in gfortran
+      target_compile_options(${vecadd_target} PRIVATE $<$<COMPILE_LANG_AND_ID:Fortran,GNU>:-std=gnu>)
+      add_test(NAME ${vecadd_target} COMMAND ${vecadd_target})
+    endforeach()
   endif()
 
   if(TARGET hipfort::roctx)
