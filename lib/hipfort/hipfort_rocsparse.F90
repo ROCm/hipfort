@@ -28344,8 +28344,8 @@ module hipfort_rocsparse
   !>   </table>
   !>
   !>   \note
-  !>   The sparse matrix formats currently supported are: `rocsparse_format_coo`,
-  !>   `rocsparse_format_csr`, and `rocsparse_format_csc`.
+  !>   The sparse matrix formats currently supported are: `rocsparse_format_coo` and
+  !>   `rocsparse_format_csr`.
   !>
   !>   \note
   !>   Only the `rocsparse_sptrsm_stage_compute` stage is non-blocking

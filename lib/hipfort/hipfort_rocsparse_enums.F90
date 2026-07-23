@@ -530,9 +530,4 @@ module hipfort_rocsparse_enums
   integer(c_int), parameter :: ROCSPARSE_VERSION_MINOR = 2
   integer(c_int), parameter :: ROCSPARSE_VERSION_PATCH = 0
 
-  integer(c_int), parameter :: rocsparse_spsv_stage_auto = 0
-  integer(c_int), parameter :: rocsparse_spsm_stage_auto = 0
-  integer(c_int), parameter :: rocsparse_spmm_stage_auto = 0
-  integer(c_int), parameter :: rocsparse_spgemm_stage_auto = 0
-
 end module hipfort_rocsparse_enums
