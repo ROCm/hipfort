@@ -401,6 +401,19 @@ contains
 
   ! ROCm math libs
 
+  subroutine rocrandCheck(rocrandError_t)
+    use hipfort_rocrand_enums
+
+    implicit none
+
+    integer(kind(ROCRAND_STATUS_SUCCESS)) :: rocrandError_t
+
+    if(rocrandError_t /= ROCRAND_STATUS_SUCCESS)then
+       write(*,*) "ROCRAND ERROR: Error code = ", rocrandError_t
+       call exit(rocrandError_t)
+    end if
+  end subroutine rocrandCheck
+
   subroutine rocfftCheck(rocfft_status)
     use hipfort_rocfft_enums
 
